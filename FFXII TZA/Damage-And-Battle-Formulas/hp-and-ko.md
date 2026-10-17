@@ -150,9 +150,9 @@ A delta of 0 or less that leaves HP at or below the floor runs, in order:
 3. with a target unit and a source, the killer: target unit `+30`<sub>h</sub> = source unit `+08`<sub>h</sub>
    (`003007DD`-`003007E5`);
 4. for a unit built from the enemy table (byte `+05`<sub>h</sub> of the stats record at unit `+698`<sub>h</sub> is 1), the
-   spawn record's death count `+08`<sub>h</sub> (`u16`) goes up by one and `+0C`<sub>h</sub> takes the time in seconds: the
-   tick counter divided by 30 times the frame base `01DFE0B8`, which is 1 as shipped
-   (`003007E8`-`00300829`, [Action phases](../Battle-Actions/action-phases.md));
+   spawn record's death count `+08`<sub>h</sub> (`u16`) goes up by one and `+0C`<sub>h</sub> takes the time in seconds,
+   `0032A150() / (int)([01DFE0B8] × 30.0)` as an unsigned divide, with the frame base `01DFE0B8` 1 as
+   shipped (`00300805`-`00300829`, [Action phases](../Battle-Actions/action-phases.md));
 5. `00306F00(targetUnit)` records the death in the group ledger and ends the function when it completes
    the group ([Boss fights](../Battle-Actions/boss-fights.md); `0030082F`-`00300836`);
 6. otherwise, unless flag bit 2, the KO event: `200E`<sub>h</sub> with flag bit 8, else `2007`<sub>h</sub> or `2008`<sub>h</sub> by the

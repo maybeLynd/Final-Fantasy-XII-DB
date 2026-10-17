@@ -413,8 +413,9 @@ and `002A5B90(ids, count)` the list entry (`003F3F6B`).
 
 ## Modding notes
 
-- `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+7C`<sub>h</sub>
-  (`002A2F9F`-`002A2FDF`), so values above 31 wrap round.
+- `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+7C`<sub>h</sub>:
+  bits 12-21 take `open & 3FFh` and bits 22-31 `close << 22` (`002A2FAF`-`002A2FDF`), so values above 31
+  (31 × 33 = 1,023 ms) wrap round.
 - The eighth simultaneous window (registry entry 7) is not removed from the registry when it is destroyed; the entry
   keeps pointing at the destroyed widget, which the loops over `0209C4D0` (`002A28E0`, `002A29A0`, `002A38C0`,
   `002A3F50`) still read until the reset.

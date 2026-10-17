@@ -10,7 +10,12 @@ addresses: "02EBF190, 00233C10, 002370C0, 0030B6A0, 00320A40, 0031B9F0, 00327C40
 The party block is `7410`<sub>h</sub> bytes inside the save image: buffer `02164280` + `4E68C`<sub>h</sub>, which is payload
 `+4E48C`<sub>h</sub> ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)). `00233C10` points `02EBF190` at it when the
 pointer is empty and rebases the inventory class descriptors, and checks the magic `05071901`<sub>h</sub> when it is set
-(`00233C25`-`00233C4D`). The reset `002370C0` clears all `7410`<sub>h</sub> bytes, writes the magic, empties map 0's seats
+(`00233C25`-`00233C4D`).
+
+With an empty pointer or a wrong magic `00233C10` then runs the battle-state reset `00237DF0`,
+whose first step `0023AF50` resets the block and adds the starting inventory
+([Starting inventory](starting-inventory.md)). With the magic in place it rebuilds the gambit order set of all forty
+members with `00327F80`, the loop form of `00327DE0` (`00233CAD`; [Gambits](../Enemy-AI-And-Gambits/gambits.md)). The reset `002370C0` clears all `7410`<sub>h</sub> bytes, writes the magic, empties map 0's seats
 and zeroes the walked distance (`002370CD`-`0023712E`).
 
 The block holds:
@@ -20,6 +25,10 @@ The block holds:
   `0030B6A0` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md));
 - the seats, leader and battle mode ([Party slots](party-slots.md),
   [Battle mode](../Engine-Core/party-control-modes.md));
+- the mode flags `+5B04`<sub>h</sub>, whose bits 0 and 1 the status view `00329220` tests for its flag bits 10 and 11; the
+  screens read members through that view, the battle menu's target window `002BFD20` among them
+  ([Party member status record](../Characters-And-Objects/party-member-status-record.md),
+  [Battle menu](../Menus-And-HUD/battle-menu.md));
 - the counters three formulas keep ([Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md));
 - the gambit banks ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
 

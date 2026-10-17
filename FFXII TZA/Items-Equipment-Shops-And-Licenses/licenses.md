@@ -121,8 +121,8 @@ Script verb `5D6`<sub>h</sub> `resetJobs(member)` calls `00328BD0` for main char
    the member did not start with and adds its cost back to the LP, clamped to 0-99,999 (`00328990`, `003289F0`-`00328AF2`).
 3. It then refreshes the menu state (`00559760`), and when the member is the current summoner it dismisses the Esper
    (`003137F0`, `003138D0(1)`, `00313550(0)`) (`00328C3A`-`00328C59`).
-4. It rebuilds the stats with `0030FED0(record, 97h)` (`00328C5E`-`00328C66`), reloads the member's gambit preset
-   and banks, clears the record's bytes `+68`<sub>h</sub>-`+87`<sub>h</sub>, the MP bars and the
+4. It rebuilds the stats with `0030FED0(record, 97h)` (`00328C5E`-`00328C66`), reloads its gambit preset
+   and banks (`00327CB0`, `00326030`, `00327DE0`), clears the record's bytes `+68`<sub>h</sub>-`+87`<sub>h</sub>, the MP bars and the
    Mist charges, and sets both boards and the byte `+1C5`<sub>h</sub> back to none (`00328CA3`-`00328D5D`). For Vaan and
    Penelo, rows 0 and 5, it also raises the gambit block's slot count `+BA`<sub>h</sub> by one, at most 12
    (`00328CB4`-`00328CF5`).

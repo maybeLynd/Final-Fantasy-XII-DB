@@ -71,7 +71,8 @@ value = start + delta, length = 0             at the end; 004076B0 returns -1 wh
 - The counter child steps its ramp only while the window's `+C8`<sub>h</sub> bits 2 and 3 are both clear
   (`00407631`-`00407639`).
 
-`00407300(counter, a, b, c)` multiplies the three thresholds by 60 for a timer and stores them at `+EA`<sub>h</sub>,
+`00407300(counter, a, b, c)` sets `a = a x 60`, `b = b x 60` and `c = c x 60` when the mode byte `+C0`<sub>h</sub> is 1,
+a timer (`0040730C`-`0040731C`), and stores them at `+EA`<sub>h</sub>,
 `+EC`<sub>h</sub> and `+EE`<sub>h</sub>: in that order for types 1 and 3, in reverse order for types 2 and 4, and not at all for
 type 0. A `-1` keeps a threshold. `00408A20(type)` stores the type and sets bit 25 of the value widget's
 `+20`<sub>h</sub> for types 2 and 4, clearing it for 1 and 3. `00408780(c0, c1, c2, c3)` stores the colours, `-1`
@@ -85,7 +86,7 @@ keeping one.
 | Flags | Format id | Shown as |
 |---|---|---|
 | `+130`<sub>h</sub> bit 0 clear | `4B3C`<sub>h</sub> | hours (value / 216,000), minutes, seconds and hundredths; above 9 hours it shows 99, 59, 59, 99 |
-| `+130`<sub>h</sub> bit 0 set, `+D8`<sub>h</sub> bit 1 clear | `4B3D`<sub>h</sub> | seconds and hundredths, at most 999 and 99 |
+| `+130`<sub>h</sub> bit 0 set, `+D8`<sub>h</sub> bit 1 clear | `4B3D`<sub>h</sub> | seconds `value / 60` and the hundredths below; when the seconds exceed 999 it shows 999 and 99 (`00407774`-`004077B5`) |
 | `+130`<sub>h</sub> bit 0 set, `+D8`<sub>h</sub> bit 1 set | `4B3E`<sub>h</sub> | the same |
 
 The hundredths are `(value mod 60) x 100 / 60`.

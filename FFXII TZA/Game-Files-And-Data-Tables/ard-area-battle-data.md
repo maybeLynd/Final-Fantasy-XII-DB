@@ -39,7 +39,8 @@ FF12AR03 header (0x30 bytes, offsets from the start of the file)
                slot 6 st2e, 56-byte growth stat rows    -> 02EBF140
                slot 7 motion-file overrides             -> 02B58178
 
-slot 1         +0x00 u16 count, +0x04 count + 1 u32 offsets from the section (the last is the end)
+slot 1         +0x00 u16 count, +0x02 u16 100 (in all 166 area files), +0x04 count + 1 u32 offsets
+               from the section (the last is the end)
 slot 7         +0x00 u32 count, +0x04 12 bytes, then count records of 0x10:
                +0x00 u32 bound model id, +0x04 u16 weapon class, +0x06 u16 motion, +0x08 u16 file index
 trailer        +0x00 u32 count, then count records {u32 bound model id, u32 lane mask}

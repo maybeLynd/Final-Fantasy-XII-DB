@@ -163,8 +163,9 @@ out, 3 hidden) with its count `022CBE8A` out of `022CBE88`. `00368360` moves it 
 - `00368830(on)` sets or clears flag bit 4, which allows the bounce (`005641F0`, `00564650`, `005680E0`,
   `005687F0`). `003688A0(n)`, from `002D3BA0`, and `003687C0(flags, n)`, from `00368360`, start a bounce whose
   first phase lasts n frames (2 for -1) while bit 4 is set; `003687C0` stops it when the request's bit 1 is set.
-- `003688E0(frames)`, from `00368360` and `003689E0`, starts a fade in over `frames`: from a fade out it keeps
-  the progress, scaled; from hidden it starts at the full count.
+- `003688E0(frames)`, from `00368360` and `003689E0`, starts a fade in over `frames`: from a fade out (`022CBE87` = 2)
+  it keeps the progress, `022CBE8A = 022CBE8A * frames / 022CBE88` (`0036890E`-`00368923`); from hidden (3) it
+  starts at the full count, `022CBE8A = 022CBE88 = frames` (`003688F6`-`003688FE`).
 
 ## Layouts
 

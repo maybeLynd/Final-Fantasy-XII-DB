@@ -227,6 +227,12 @@ and later), `007CF980` a record's zero-one count (2 below version 3, byte `+08`<
 curve's value at a point: the input scaled into 0-1 by the curve's range, then a binary search over its 16-byte
 points.
 
+In `007CFD00`, with the curve header's count `u16 +04h` (0 gives 0), range `+08`<sub>h</sub>..`+0C`<sub>h</sub> and points at
+`u16 +02h` past the header, moved on by `(byte +01h + 10h) & F0h` when byte `+00`<sub>h</sub> is above 3 (`x +00h`, `y +04h`, ease byte `+08`<sub>h</sub>): `x = clamp((input - min) / (max - min), 0, 1)` when the
+header's first byte is non-zero (0 when `max <= min`), the search finds the last point `k` with `x[k] <= x`, and the
+value is `y[k] + 007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] - y[k])`, or `y[k]` at the last point
+(`007CFD00`-`007CFE5B`).
+
 ## Modding notes
 
 - A block bank is found by its number: `se<n>/se<n>.win.sab`, where `n` is the index file's block number; a

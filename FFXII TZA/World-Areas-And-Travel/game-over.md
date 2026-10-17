@@ -159,14 +159,17 @@ the re-initialisation `0022BC20`). It refreshes the busy mask's bit 7 with `0033
    `0053DD10(1)`;
 2. for managers 0 to 2 with `+10`<sub>h</sub> bit 0, the jump lock `+200`<sub>h</sub> bit 0 is cleared;
 3. `002DEE90(-1)`, `003634A0(0)`, `003633B0(0)`, `00362850`, `002DF0F0(0, -1)`, `002DF060`,
-   `001DC330(-1)`, `002DEB90(1)`, `005C5230`;
+   `001DC330(-1)`, `002DEB90(1)`, `005C5230`: the sound teardown, in which `002DF0F0(0, -1)` and
+   `001DC330(-1)` are the audio manager's stop calls for sounds and for voices, and `002DEE90(-1)` calls
+   `0035EA30(0)` until `001DBD00` returns 0 ([audio manager](../Sound-And-Music/audio-manager.md));
 4. the layer mask bits 2 to 4 are cleared through `002DF370(1Ch, 0, 1)` and every image slot is
    released (`00360D70`);
 5. `022CB726 = 1`; `022CB727`, `022CB72A` and `022CB72B` are cleared;
 6. `002EF840(0)` to `002EF840(6)`, `002F1A70`, `003DE210`, `003DE0A0`, `002EFE40(6)`,
    `002EFE50(FFh)`, `002EFA70(2, 0, 0, 0)`, `002EFA70(3, 0, 1)`;
 7. `002E06B0`, `003636A0`, `00363750`, `00363E40(0)`, `0036DF30`, `0024E910`, `0024D9C0`,
-   `00331920(1)`, `002EF5F0`, `002DDE60`.
+   `00331920(1)`, `002EF5F0`, `002DDE60`; `003636A0`, `00363750` (which unbinds the map sound list) and
+   `00363E40(0)` are map-sound calls ([map sounds](../Sound-And-Music/map-sounds.md)).
 
 The other title byte has one writer: the script verb `softwarereset` (`3E2`<sub>h</sub>, handler `0034EB20`,
 a jump to `003603D0`, which sets `022CB72A = 1`). `00360370` clears every byte of the block at boot

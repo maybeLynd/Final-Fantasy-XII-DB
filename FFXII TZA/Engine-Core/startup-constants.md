@@ -42,7 +42,7 @@ archive mount. It runs these in order:
    `0036FD70` (the stub returns 0, so always), `0036EFD0`, `0036D8B0`, a ret-stub call, the actor
    system `00266D10`, `0036F4D0`, `003325C0`, `00259180`;
 9. the seed `00379CF0(11B9h)` (below); `00253970`, the spawn banks `002368D0`, `002EA520`,
-   `00259DF0`, `0035B270`, `00379E90`, `00379D20`, `0036E310`, `0037CCC0`, `0036FFF0`; the game-step
+   `00259DF0`, `0035B270` (the vibration slot reset, [vibration](../Controls-And-Input/vibration.md)), `00379E90`, `00379D20`, `0036E310`, `0037CCC0`, `0036FFF0`; the game-step
    count `02064AD0` = 0; a drain loop over `00364200` / `0032E040` / `0035EA30(0)` gated on
    `005C5230()` being non-zero never runs.
 
@@ -69,7 +69,9 @@ at `022C2528` on a match; the loop does not stop at one), and calls `001EDDC0(Fr
 With 0 that arm begins a multimedia timer period (`timeGetDevCaps`, `timeBeginPeriod(wPeriodMin)`,
 the period at `01F82E40`, `01F82E3C` = 1); with 1 it writes the time base, `01DFE0B8` = 2.0,
 `01DFE0BC` = 0.5, `01F82E38` = 1 and `01DFE0B4` = 2, runs `0033F020` and ends any period begun.
-Both arms then run `0032AE70`, `003333D0`, `00337A00` and `002BDA90`.
+Both arms then run `0032AE70`, `003333D0`, `00337A00` and `002BDA90`. Of these,
+`00337A00` sets the formation angle step `02EC0F84` to `2 / (30 × [01DFE0B4])`
+([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
 
 `01DFE0B4` ships as 1 and has that one writer; its readers divide authored 30 fps frame counts by
 it. The boot fixer then computes `02064ACC = 2 / [01DFE0B4]`, 2 at 30 fps and 1 at 60: the number
@@ -148,7 +150,9 @@ when `demo` is set, then the name, upper-cased with `/` turned into `\` unless `
 The loader `008628E0` stores 0 through its fourth argument and returns 0, so every module counts as
 loaded and its bit goes into `022D7FCC`. Before the walk, `00369650` performs the I/O processor
 reset with `ioprp300.img` (`01EF9360`): only stub calls, `003691E0` and `0046E000`, which also
-sets `02CA6074` and `02CA6114` to -1. `004746C0` is four stub calls.
+sets `02CA6074` and `02CA6114` to -1. `004746C0` is four stub calls. After the walk `003692D0`
+runs the sound state reset `002DE360` (`00369451`), which among its stores sets the spatial-sound
+behind ratio `0215EFD0` ([spatial sound](../Sound-And-Music/spatial-sound.md)).
 
 `00474680`, called first (`00369306`), makes two stub calls (`0016D6A0`) and copies the first eight bytes of the
 `memset` import stub `00861EC0` to `02CA6C88` and `02CA6C8C`; the only reference to `02CA6C88` is that write

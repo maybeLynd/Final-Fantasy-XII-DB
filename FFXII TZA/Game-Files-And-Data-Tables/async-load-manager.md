@@ -110,6 +110,10 @@ callback `001D6D70` writes the byte count through `01F82CC0` and clears it. `002
 n)` copies the same path into a buffer, at most n characters and a terminator, and returns −1 for an id
 with no path.
 
+Its one caller, the map-pack loader `00377DC0`, takes the file name from that path to
+build the loose effect bank path `PS2Data\efb\<name>.efb`
+([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
+
 `001D6B40(name)` asks the cache (`0020BE50`): it drops a leading `/hostapp/`, `/app0/` or `/host/`,
 builds the cache key (`0020C440`), hashes it (`00674A00`) and searches the cache's tree under its lock,
 returning 1 on a hit.

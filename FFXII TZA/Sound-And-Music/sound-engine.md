@@ -166,7 +166,7 @@ The driver's start-up `007AEF30` fixes the mix format:
 | rate | 48000 Hz (`007AC691`) |
 | channels | 8 (`007AC698`); any other count is refused with "enable SIMD, need rendering channel 8" |
 | frames per block | 256 (`007A4F46`) |
-| source voice pool | the sum of three start-up counts, each capped (`007A4ED7`-`007A4EFD`) |
+| source voice pool | the sum of three start-up counts, each capped: `min(+20h, 2 x ([02EAD3E8] + 32)) + min(+24h, 128) + min(+28h, 32)` of the start-up block, unsigned (`007A4EC0`-`007A4EFD`) |
 | buses | one submix per `bus ` chunk record |
 | masters | one (`02EAD358`); a second (`02EAD360`) only with start-up byte `+1C`<sub>h</sub> set, which is 0 |
 

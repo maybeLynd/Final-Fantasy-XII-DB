@@ -44,6 +44,13 @@ Each begin raises busy bit 19 (`003601B0(13h)`) before it touches the party, and
 rebuild the roster first hide the four roster actors with `002ECD50(actor, 0)`. Guest and main
 selectors are checked by `00322350`: a verb for one kind silently ignores the other.
 
+The guest activation `00316DF0` also grants goods. For a record of type 0 to 6 it adds each of
+its five equipment words to the inventory and equips it (`00300B80`, `0030C410`); unless the
+record's bit 3 is set it then adds up to ten items with their counts (`00300B80`) and an amount of
+gil (`003004B0`) from a row of the party definitions `02EBF130`
+([inventory](../Items-Equipment-Shops-And-Licenses/inventory.md),
+[gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
+
 `00328DB0(list, 3)` builds a fixed mask from map 1's first four units (a stats record with bit 0,
 the lock, or a guest keeps its slot), looks each requested selector up in map 0 (a missing one
 returns −1 with nothing applied), treats one already in slots 0 to 2 as fixed, and swaps the rest

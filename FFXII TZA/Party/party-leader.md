@@ -38,6 +38,9 @@ A change is a request and a later commit:
 3. The handle `022C7FE4`, re-read after the release, becomes the leader, the kind returns to 0, and the new
    leader's actor gets its roster-role notice (`002681D0`).
 
+The commit runs from the main-loop frames `0022A770`, `0022B8C0` and `0022BC20`, which call it through the thunk
+`00358BB0` (`0022AE3C`, `0022BAF9`, `0022BD49`; [Frame update order](../Engine-Core/frame-update-order.md)).
+
 Kind 2 comes only from the script verb `205`<sub>h</sub> `changetosummonparty`, which raises a pending request's kind
 (`003594C0`-`003594D3`). Between request and commit every reader still sees the old leader, so the formation
 follows the new one from the frame of the commit.
@@ -61,6 +64,9 @@ or carry them while `00377C20()` holds.
 Otherwise it lists fighting seats 0-3 with `0030A880(list, 3)`: units
 standing (or with `00377C20()`), of kind `+05`<sub>h</sub> 0 and type `+04`<sub>h</sub> below 7. The first becomes the selector
 `+5AA4`<sub>h</sub> through `00327810`, which then runs `00326500`.
+
+A summon goes the same way: the summon arm of `00306760` passes the summoner to `00327810` (`0030696F`), so the
+summoner becomes the controlled member ([Quickenings and summons](../Battle-Actions/quickenings-and-summons.md)).
 
 ### The default controlled member
 
@@ -135,6 +141,10 @@ Any bit of `022C8000` stops the stick. Of the OR of the four bytes, bit 0 stops 
 stick and bit 2 the desired heading (`00358DFB`-`00358E99`). A setter that leaves a lock standing stops the
 leader's actor at once with `0026D6D0` (`00359221`-`00359242`, `0035927D`-`003592AD`). The event lock also
 clears capability byte `0209A2C6` while it stands (`003071DC`-`003071F2`, `0026BD20`).
+
+The event lock goes up when the last member of an enemy spawn group falls: the group's death handler `00306F00`
+calls `00307140(1)` once the defeated mask covers the member mask (`00306F95`-`00306F9A`;
+[Boss fights](../Battle-Actions/boss-fights.md), [Enemy respawning](../Enemy-Spawning/enemy-respawning.md)).
 
 ## Modding notes
 

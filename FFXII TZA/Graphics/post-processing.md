@@ -124,7 +124,10 @@ gives the per-frame library calls its work function `00193DA0` makes with it.
 
 When the first argument's `+124`<sub>h</sub> is 2 the focus distance is its `+128`<sub>h</sub>; when it is 1 and `+128`<sub>h</sub>
 is positive, both the distance and an f-number computed from it (scaled by block `+11C`<sub>h</sub>) are used,
-eased over ten frames when they change (`0018EF94` to `0018F2BD`).
+eased over ten frames when they change (`0018EF94` to `0018F2BD`). With `d` the distance and
+`c(x, lo, hi)` a clamp, the f-number is `(1 + 0.33 c(4 - d, -2, 3) + 0.7 c(2.9 - d, 0, 2.7) +
+0.15 c(d - 4.4, 0, 4) - 0.2 c(d - 6, 0, 3)) x [block +11Ch]`. While easing, each frame moves both values by
+`(target - current) / (10 x [01DFE0B4] - n)`, `n` counting the frames already eased.
 
 While the block's byte `+164`<sub>h</sub> is set, the render pass list `00187950` marks the point at `+168`<sub>h</sub>
 and `+16C`<sub>h</sub> (`0018D320`) on screen. It maps the point from 0 to 1 into clip space with y flipped

@@ -54,8 +54,19 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
 - `007D0FB7` in `007D0F60` and `007D119B` in `007D1140` take the square root of a gain while
   computing the five coefficients of a shelving filter, each scaled by `0.9999` over the leading
   term. `007D1C80`, slot 8 of the `SQEX::Sd::Driver::Filter` vtable (`01CB7078`), jumps to both.
+  - With `A` the gain (fourth argument), `q` the third, `C = 007B8BA0(w)`, `S = 007B8C80(w)`,
+    `k = S x q x sqrt(A)`, `P = A + 1` and `M = A - 1`, the low shelf `007D1140` has `a0 = P + M C + k`,
+    `b0 = A (P - M C + k)`, `b1 = 2A (M - P C)`, `b2 = A (P - M C - k)`, `a1 = -2 (M + P C)` and `a2 = P + M C - k`.
+  - The high shelf `007D0F60` has `a0 = P - M C + k`, `b0 = A (P + M C + k)`, `b1 = -2A (M + P C)`,
+    `b2 = A (P + M C - k)`, `a1 = 2 (M - P C)` and `a2 = P - M C - k`. Both store each times `0.9999 / a0`, in
+    the order `a1`, `a2`, `b0`, `b1`, `b2`.
 - `007E9184` in `007E9030`, which advances a time value at `+3C0`<sub>h</sub> and interpolates between control
   points linearly or as a cubic.
+  - With the curve `[+3B8h]`, `t = min(time x 999.99994 / u32 [+24h], 1)` (1 for a zero duration). Mode byte
+    `+28`<sub>h</sub> 0 gives `p = p0 + (p3 - p0) t`, mode 1 the cubic Bezier `(1 - t)^3 p0 + 3(1 - t)^2 t p1 + 3(1 - t) t^2 p2
+    + t^3 p3`, with the points `(x, y)` at `+04`<sub>h</sub>, `+0C`<sub>h</sub>, `+14`<sub>h</sub> and `+1C`<sub>h</sub>.
+  - `r = sqrt(x^2 + y^2)`, with `p` scaled to length 1 when `r > 1`; the ramp at `+B8`<sub>h</sub> gets `atan2(x, y) / pi`
+    (0 when `p` is zero) and the ramp at `+E8`<sub>h</sub> gets `min(r, 1)` (`007E9030`).
 
 ### The sound engine's vector routines
 

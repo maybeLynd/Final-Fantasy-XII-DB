@@ -136,8 +136,13 @@ A negative bank skips the pool load and the state that waits for it.
 ### How animation sounds reach the slots
 
 `002E9D90(actor, group, variant, footstep)` turns an animation sound into a sound id
-([Animation sounds](../Sound-And-Music/animation-sounds.md) gives the groups each sound type uses). It reads the
-block handle from word `+30h + 4 × group` of a binding (`002E9F62`):
+([Animation sounds](../Sound-And-Music/animation-sounds.md) gives the groups each sound type uses). Its callers
+are the verbs `charseplay_move_51e` (`0034B7C0`), `charseplay_voice_520` (`0034C210`) and
+`charseplay_weapon_522` (`0034CA40`) ([verb table](../Scripts-And-Script-Commands/verb-table.md)), the emitter
+sound helper `0046CC70` that presentation commands `19`<sub>h</sub> and `29`<sub>h</sub> use, and `0046CC20`
+([authored presentation commands](../Graphics/authored-presentation-commands.md)).
+
+It reads the block handle from word `+30h + 4 × group` of a binding (`002E9F62`):
 
 - Groups 1 and 2 use the actor's own model binding, `[[actor + C0h] + 08h]`, so `block1` and `block2`.
 - Group 0 uses the binding attached in the model's first attach slot, `[[actor + C0h] + 38h]`

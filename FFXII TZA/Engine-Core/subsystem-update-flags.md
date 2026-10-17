@@ -74,6 +74,11 @@ with bits 2 and 3 cleared when that AND lacks bit 37; `0036D840(on)` sets or cle
 through the same setter. So a lock record that clears bit 36 skips group 6 for every frame it is
 held, while the other fifteen groups keep running.
 
+Script verbs call `0036D840`: `setmenuhptargetshowstatus` (`2A7`<sub>h</sub>, `0034D700`), and `003B7BB0`,
+`003B7C60` and `003B7E20`, the bodies of `resumeposbattletarget` (`195`<sub>h</sub>), `resumepartyinfo_spattack`
+(`2A4`<sub>h</sub>) and `setpossummonspace` (`191`<sub>h</sub>, `003482E0`)
+([cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md)).
+
 ## Layouts
 
 ```

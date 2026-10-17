@@ -144,6 +144,11 @@ by `00377C20()`), clears its bit 12, sets bit 13, stores it and starts the displ
 `00226BE0(10, unit id, ...)`. While a unit is shown and no scene is playing (state not 5 or 6), it is
 released when it dies or its bit 13 is cleared - which phase 11 does - with `00225CD0(10, -1)`.
 
+While a unit is shown, `00313A00` sets bits 0, 2-8, 11, 12 and 20 of row 2 of the action-availability table
+`0215F1C0` (`00313A68`-`00313AF5`; [Action availability](../Controls-And-Input/action-availability.md)), and the menu
+request router `00254B50` refuses a request whose id a set bit lists (`00254B80`-`00254BC1`;
+[Menu requests](../Menus-And-HUD/menus.md)).
+
 ### The presentation slots
 
 Phases 6 and 7 hold the action in a presentation slot until its effect, its animation and, for a

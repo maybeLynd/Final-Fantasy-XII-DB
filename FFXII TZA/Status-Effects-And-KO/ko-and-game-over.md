@@ -29,7 +29,8 @@ tearing a unit down runs `00300FC0(unit, 1)` (`00300E59`). It does (`00300FC0`-`
    grudge against its party type to 1 where it was above 0 (`00301048`-`0030105E`;
    [Enmity](../Enemy-AI-And-Gambits/enmity.md)).
 3. Then the KO-time wipe tests run, below. On a wipe it sets battle flag `400`<sub>h</sub> or `200`<sub>h</sub>, runs the survivors'
-   pass `003001D0`, arms the request and recomputes party control (`00301063`-`003010C0`).
+   pass `003001D0`, arms the request and recomputes party control with `0023B040`
+   ([Party leader](../Party/party-leader.md)) (`00301063`-`003010C0`).
 4. Otherwise a fallen summoner sets battle flag `800`<sub>h</sub> (`002373C0`, `003010C5`-`003010CE`), and a fallen
    controlled character sets `100`<sub>h</sub> and arms request `17`<sub>h</sub> (`003010D8`-`003010F1`).
 5. With argument 0, in summon mode, when the fallen unit is the summoner, the Esper is dismissed and party
@@ -64,13 +65,19 @@ fallen character as gone only once its body has been torn down.
 | `18`<sub>h</sub>, the active party down | `01`<sub>h</sub> | `00254940(1)` |
 | `17`<sub>h</sub>, the controlled character down | `10`<sub>h</sub> | `002548F0(1)` |
 
+While Game Over is armed (bit 1 of `022C83E8`, read by `0035C740`) or a mode request is stored in `0215F1A0`
+(`002E12D0`), or `00228380` answers non-zero (`00253CC3`), the input arbiter `00253C70` returns before reading
+any field button (`00253C97`-`00253CCC`,
+[Controls](../Controls-And-Input/controls.md)).
+
 Every field frame, `00234590` posts one (`002345EF`-`0023461F`). Unless a request is pending (`0035C700`: flag
 `100`<sub>h</sub>, mode `02092730` already `0B`<sub>h</sub> or `18`<sub>h</sub>, or `002E12D0`) or a special-sequence scene is running
 (`00306BB0`, [Field frame](../Engine-Core/frame-update-order.md)), it
 posts `0B`<sub>h</sub> when `002371B0` is 1, else `18`<sub>h</sub> when `00237140` is 1, through `0035C7A0`, which calls
 `0035C7B0(kind, 1)` (`0023461F`, `0035C7A5`):
 
-- **`0B`<sub>h</sub>**: flag `100`<sub>h</sub>; `00227370` halts the actors, unless bit 22 of `01FD46D4` is set; `002E1B10(0Bh, 0)`
+- **`0B`<sub>h</sub>**: flag `100`<sub>h</sub>; `00227370` halts the actors by starting time-stop request 22 (`00226BE0(16h, ...)`,
+  [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), unless bit 22 of `01FD46D4` is set; `002E1B10(0Bh, 0)`
   stores the mode request at `0215F1A0`-`0215F1A8`, unless `0215F1A1` refuses it; then the arming above
   (`0035C806`-`0035C870`).
 - **`18`<sub>h</sub>**: `00254B40` opens the mode-`18`<sub>h</sub> screen, then the arming (`0035C7FD`, `0035C832`-`0035C844`).

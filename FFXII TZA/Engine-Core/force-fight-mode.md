@@ -54,7 +54,8 @@ order](frame-update-order.md)) with `force` = 0, on every pass that reaches the 
 
 The arbiter keeps the toggle in `020927E0`: it flips on each press while `0017DE10()` holds and
 the edge byte `020927E4` was clear, is forced to 1 by the device poll path (`00862CF0`, with
-`01E0C2B4`), and is cleared when `01E0C2B4` is 1 or the area is a town.
+`01E0C2B4`), and is cleared when `01E0C2B4` is 1 or the area is a town (the town flag
+`00377C20()`, bit 15 of the area's flag word, [area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
 `00252B60(state, flag)` re-decides the state before the write:
 
@@ -70,6 +71,12 @@ the edge byte `020927E4` was clear, is forced to 1 by the device poll path (`008
   0 or `00366870` for state 1), and a non-zero state is replaced by `003669F0()`, bit 2 of
   `022CBE1A`: the flag drops to 0 only once the hold has armed.
 
+The arming counter makes the hold audible. `00366870` starts sound `52`<sub>h</sub> (`003A1180`, then
+`002DF220`) on its first pass, keeping the handle in `022CBE1C` and bit 4 of `022CBE1A`;
+`003667E0` stops that sound if it still plays (`002DEE80`, `002DF0F0`) and, when the hold had
+armed (bit 2) and `00265680()` holds with bit 6 clear, plays sound `2A`<sub>h</sub> (`00249C60`)
+([sound effects](../Sound-And-Music/sound-effects.md)).
+
 ### What fleeing changes
 
 The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 functions:
@@ -78,7 +85,7 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 |---|---|
 | `002FFCF0` | refuses every command with reason `24`<sub>h</sub> for a party-side unit without Confuse or Berserk (status `08000020`<sub>h</sub>), except Dismiss (`113`<sub>h</sub>) and Dismount (`95`<sub>h</sub>) ([command availability](../Battle-Actions/command-availability.md)) |
 | `00308610`, `0030C010` | the combat frame skips the combo continuation `0030FA00` for a unit without Confuse or Berserk, and `0030C010` answers "no" to the same question ([combos](../Battle-Actions/combos.md)) |
-| `00307D10` | the engagement update: for a unit that is not the chocobo (`1A`<sub>h</sub>) and not in a town, with the two statuses clear, it clears `022C1F48` bits 1 and 2, zeroes `022C1F40` and the unit's `+DCC`<sub>h</sub>, and clears unit `+4` bits 9, 10 and 16 (bit 16 = engaged); the other arm (fighting, or the chocobo, a town or a status set) runs the bit-9 path through `00307CE0`, `0030BF20` and `0030B050` |
+| `00307D10` | the engagement update: for a unit that is not the chocobo (`1A`<sub>h</sub>) and not in a town, with the two statuses clear, it clears `022C1F48` bits 1 and 2, zeroes `022C1F40` and the unit's `+DCC`<sub>h</sub>, and clears unit `+4` bits 9, 10 and 16 (bit 16 = engaged); the other arm (fighting, or the chocobo, a town or a status set) runs the bit-9 path through `00307CE0`, `0030BF20` and `0030B050`; it runs when a status is added or removed (`0030E360`, at `0030E7AC`, [status changes](../Status-Effects-And-KO/status-changes.md)) and when the stats block is recomputed (`002FEF30`, [stats](../Damage-And-Battle-Formulas/stats.md)) |
 | `00307FF0` | the two global writes alone (`022C1F48 &= F9h`, `022C1F40` = 0), run by the area initialisation `002342F0` and by `002348E0`, which first tears down every enemy unit (`00300E40`) |
 | `00308130` | "may the unit engage" answers false for a unit with the two statuses clear; otherwise unit `+4` bit 16, or `022C1F48` bit 0 with the clock `0032A150()` at or past `+DCC`<sub>h</sub> |
 | `00309A90` | the approach distance is 3.8 at party-control level 1 or 2.2 otherwise, instead of the fighting value 24.0 ([party control modes](party-control-modes.md)) |

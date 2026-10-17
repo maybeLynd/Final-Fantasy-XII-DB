@@ -29,7 +29,9 @@ Healing gives no MP, and neither does damage between two units on the same side.
 2. The new value is floored at 0 and capped at max MP `+28`<sub>h</sub>. With augment 39 in either layer (byte
    `+6C`<sub>h</sub> or `+7C`<sub>h</sub>, bit 7) the cap is 0, so MP stays at 0 (`00300D6D`-`00300D9F`).
 3. Unless flags bit 4 is set, `003283D0` shows the change; unless bit 7 is set, `0028F1F0` reports it
-   (`00300DA6`-`00300DD3`).
+   (`00300DA6`-`00300DD3`). `003283D0` posts a battle number through `003BBD00` (`00328462`,
+   [Battle numbers](../Menus-And-HUD/battle-numbers.md)); `0028F1F0` finds the member's counter pair with `00296280`
+   (`0028F20E`) and starts its roll ([Party list](../Menus-And-HUD/party-list.md)).
 4. A loss is refused at this point when the unit mask has a high bit (`00300DD8`-`00300DFE`); otherwise MP is
    stored (`00300E00`).
 5. A gain also feeds the Mist charges through `00300BC0` ([Augments](../Damage-And-Battle-Formulas/augments.md)), and
@@ -123,7 +125,12 @@ summons (`106`<sub>h</sub>-`112`<sub>h</sub>). For every other action, in this o
 
 Each augment counts in either layer. The action pays when it runs: `00305640` subtracts the cost with
 `00300CE0`, its Mist charges with `00300BC0` and its gil (`003056C1`-`0030571A`;
-[Action phases](../Battle-Actions/action-phases.md)).
+[Action phases](../Battle-Actions/action-phases.md)), the gil through `00253690` and `00254EE0`
+(`0030571A`, `0030572B`; [Gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
+
+The battle menu's list builder `0031EB20` runs the same `002F9820` and `002F95D0` for each action it lists and
+keeps the adjusted cost in the entry's word `+52`<sub>h</sub>, with entry flag 8 for the gil channel and 2 otherwise
+(`0031F00C`-`0031F072`, [Battle menu](../Menus-And-HUD/battle-menu.md)).
 
 ## Shipped data
 

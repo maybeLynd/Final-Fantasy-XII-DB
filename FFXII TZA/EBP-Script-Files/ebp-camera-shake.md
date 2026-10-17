@@ -122,6 +122,12 @@ four shake entries with a rate ([actor managers](../Characters-And-Objects/actor
    then the entry is finished.
 5. The clock grows by the entry's rate times `02B58190` and the frame factor.
 
+The entries are `F0`<sub>h</sub> bytes, four to each `3D0`<sub>h</sub>-byte manager from `02ADDA78`. Before the steps,
+`003DCFB0` stores `003DA190` of the record's word `+174h + 8 x i` in word `+04`<sub>h</sub> of each entry whose record word
+`+178h + 8 x i` is non-zero (`003DD007`-`003DD010`)
+through `0037DB40(manager, entry, value)` (`003DD026`). After step 2 it reads the entry's word `+00`<sub>h</sub> through
+`0037DCC0(manager, entry)` (`003DD075`).
+
 The outputs are a three-part offset from oscillators 0-2, a second from oscillators 3-5 added to
 the first, and single values from oscillators 6 and 7. `0037D4C0` sums the outputs of every
 shake bound to the current camera frame and hands them through `00382B70` to `003820C0`, which:

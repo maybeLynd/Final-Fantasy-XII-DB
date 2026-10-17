@@ -39,7 +39,7 @@ bytes:
 ### Unlocking a good
 
 Each loot id has a sold tally, one byte in the inventory at `+57C8h + loot`, kept between 0 and 99
-([Inventory](inventory.md)). A sale through `00310870` takes the loot from the inventory, adds the gil, adds the
+([Inventory](inventory.md)). A sale through `00310870` takes the loot from the inventory, adds the gil (`003108AB`-`003108BD`), adds the
 quantity to the tally (`003108D1`-`003108E8`) and then runs the refresh `0030B270` (`003108ED`), its only caller.
 
 The refresh checks every good (`0030B270`-`0030B468`):
@@ -60,7 +60,7 @@ set (mode 2 of `002FA920`, [Shops](shops.md)).
 The shop's transaction function `0056D370` reads the price from the good's query record, clears its bit 31 and
 multiplies it by the quantity (`0056D461`-`0056D473`). The purchase `002FEEB0(id, quantity, price, flags)` adds the
 good through `003008A0`, which hands out its
-items (`002FEEDB`, `002FD780`), takes the price from the gil, floored at 0 (`002FEEE0`-`002FEEF3`), and calls
+items (`002FEEDB`, `002FD780`), takes the price from the gil, floored at 0, through `00253690` and `00254EE0` (`002FEEE0`-`002FEEF3`; [Gil](../Rewards-EXP-Gil-And-Loot/gil.md)), and calls
 `0030B180` (`002FEF0A`).
 
 For a bazaar id, `0030B180` clears flag bit 1, so the good leaves the list, and sets the

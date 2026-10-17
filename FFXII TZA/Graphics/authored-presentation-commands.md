@@ -202,9 +202,12 @@ each channel value with the blend set by a weight from `0046FAE0`. Then:
 
 - `+50`<sub>h</sub>, `+54`<sub>h</sub> plus `+48`<sub>h</sub>, `+4C`<sub>h</sub>, times `+44`<sub>h</sub>, is an offset from the anchor bone, rotated by
   the character's facing (render record `+124`<sub>h</sub>);
-- `+58`<sub>h</sub>, `+5C`<sub>h</sub> multiply the shadow's two extents (out `+34`<sub>h</sub>, `+38`<sub>h</sub>);
+- `+58`<sub>h</sub>, `+5C`<sub>h</sub> multiply the shadow's two extents: out `+34h = s[+18h] x [+08h] x [+44h] x [+58h]`
+  and `+38`<sub>h</sub> the same with `s[+1Ch]` and `+5C`<sub>h</sub>, `s` being the shadow record `003B6BF0` returns
+  (`003B64D2`-`003B64F5`, `003B6707`-`003B670C`);
 - `+70`<sub>h</sub> plus the facing plus `+BC`<sub>h</sub> is the shadow's rotation (out `+24`<sub>h</sub>);
-- `+78`<sub>h</sub> multiplies the strength term (out `+28`<sub>h</sub>).
+- `+78`<sub>h</sub> multiplies the strength term: out `+28h = [+0Ch] x s[+0Ch] x [01EFE314] x [+2Ch] x 0.5 x [+78h]`
+  (0.5 at `01CEBB70`; `003B64FA`-`003B6519`, `003B671A`).
 
 The values used are saved at `+C0`<sub>h</sub> to `+D4`<sub>h</sub> for the next cross-fade.
 

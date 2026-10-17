@@ -106,7 +106,8 @@ and the battle movement step `00336710`, `00339BF0`, `0033A720`, `0033C310` and 
 is on [Force fight mode](../Engine-Core/force-fight-mode.md).
 
 `00253BA0` returns the flag itself when `003BA2E0` answers non-zero, and 0 otherwise (`00253BAD`). It is called from
-`00276650` (`0027668C`) and `00276D30` (`00276FD3`). Those two readers and the writers above are the only accesses
+the battle menu's builder `00276650` (`0027668C`) and its panel procedure `00276D30` (`00276FD3`)
+([Battle menu](../Menus-And-HUD/battle-menu.md)). Those two readers and the writers above are the only accesses
 to `01E0C2B8`.
 
 ## Modding notes

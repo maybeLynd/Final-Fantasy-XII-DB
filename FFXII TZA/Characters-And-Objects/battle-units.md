@@ -80,6 +80,9 @@ entry must be non-null and the actor's full word `+16`<sub>h</sub> must equal th
 then returns that actor's unit `+30`<sub>h</sub> (`00263E30`) when `02089340` bit 4 is set; `0031B760(actor)`
 is the null-guarded form of the same back-pointer read.
 
+One such handle is the target of a committed action: the commit `0030F760` stores it at unit `+710`<sub>h</sub> (`0030F7F2`-`0030F82A`,
+[Action commit](../Battle-Actions/action-commit.md)).
+
 Small predicates over the same reads serve the menus and the HUD: `0031FCF0(actor)` is true for a
 non-null actor with a unit; `0031FD20(handle)` is true when `02089340` bit 4 is set and the handle
 resolves to an actor with a unit; `00273780(handle)` is true for a non-zero handle that resolves;

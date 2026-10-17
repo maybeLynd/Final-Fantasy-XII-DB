@@ -18,7 +18,8 @@ moment passes through it.
 
 ### The four call opcodes
 
-The interpreter `0025E4C0` pre-decodes a sixteen-bit operand for every opcode at or above `47`<sub>h</sub>,
+The interpreter `0025E4C0`, which the per-actor driver `0025DF00` of the field runtime runs
+([script interpreter](script-interpreter.md)), pre-decodes a sixteen-bit operand for every opcode at or above `47`<sub>h</sub>,
 as two zero-extended bytes combined with sixteen-bit shifts, so the id can never exceed `FFFF`<sub>h</sub>.
 Four three-byte opcodes turn that operand into a verb call:
 
@@ -39,7 +40,8 @@ rewinds the program counter so the same instruction runs again next frame.
 
 `002621D0` splits the id with an arithmetic shift by 12 and a mask of `FFF`<sub>h</sub>: four bits of
 family, twelve of command. The family selects a table pointer from the sixteen-entry array at
-`02B57EF0`, which `003DC2D0` fills at start-up: every entry gets the default table `01F26720`,
+`02B57EF0`, which `003DC2D0` fills at start-up (from the actor-system reset `00266D10`,
+[startup constants](../Engine-Core/startup-constants.md)): every entry gets the default table `01F26720`,
 then families 0, 3, 5 and 7 get their own.
 
 | Family | Id range | Table | Commands |

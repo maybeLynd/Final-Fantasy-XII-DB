@@ -30,7 +30,7 @@ not 0 (`0030EF60`-`0030EF77`). Otherwise:
 2. A reserved item is taken from the inventory at once, `003008A0(item, -1, 0, 1, 0)` (`0030EF9A`-`0030EFB0`,
    [Inventory](inventory.md)).
 3. The action's gil cost, `00309060`, is kept at unit `+E58`<sub>h</sub> and taken from the gil, floored at 0
-   (`0030EFBB`-`0030EFD8`). Only actions paid in gil have one: `00309060` returns 0 for an enemy record, for an
+   (`0030EFBB`-`0030EFD8`), through `00253690` and `00254EE0` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)). Only actions paid in gil have one: `00309060` returns 0 for an enemy record, for an
    action id above `21E`<sub>h</sub> and for rows of kind 5 or 6 ([MP gain and cost](../Status-Effects-And-KO/mp.md)).
 
 ### Keeping it spent
@@ -56,7 +56,7 @@ A fourth pair of calls, a prepare at `003073AB` and a consume at `003073B9`, run
 `00300280(unit)` is called when an action is cancelled, by `BattleUnit_CancelAndResetCurrentAction`
 (`0031063A`). For a party unit (`0030029D`-`003002A3`) it adds the reserved item back,
 `003008A0(item, +1, 0, 1, 0)`, and empties the reservation (`003002A5`-`003002D0`). It then adds the reserved gil
-back and clears it (`003002D7`-`003002F5`).
+back through the same `00253690` and `00254EE0` and clears it (`003002D7`-`003002F5`).
 
 ### Units that never spend items
 

@@ -66,6 +66,12 @@ directories (`0059A770("../../..")`), runs `0019B190()`, mounts `../FFXII_TZA.vb
 `0019CDE0`, the debug display `001C2F00`, `001DBA40`) and `00182F70` with the viewport size
 `+D24`<sub>h</sub>/`+D28`<sub>h</sub>. The archive path is relative to the executable.
 
+`0017DAC0(on)` reads the Sticky Keys settings (`SystemParametersInfoW` action `3A`<sub>h</sub>) and, when
+their hot-key bit 2 differs from `on`, writes them back with that bit changed (action `3B`<sub>h</sub>): the
+boot turns the Sticky Keys shortcut off and the shutdown's `0017DAC0(1)` turns it on
+(platform). `001DBA40` starts the sound engine
+([sound engine config](../Sound-And-Music/sound-engine-config.md)).
+
 Slot 3, `0017CF30`, configures the device (`0018D850` with `00193D50()`, `00182EB0()`, `00182E80()`
 and the device byte `+D48`<sub>h</sub> of `00796E20()`), ensures the two `AsyncJobManager` instances
 (`0019A0A0`: `01F810F8` and `01F81100`, `158`<sub>h</sub> bytes each, flags 0 and 1), and queues a job node
@@ -186,7 +192,8 @@ and then loops over passes:
    own, so the pump's result is `0022A580`'s register value surviving the increment;
 6. `001D8AB0(001D8A60(), dt)`, the `SaveloadManager` `001C1910` (`01F81260`), the screen fade
    `001D9080` (`01F82CE0`), and the `MultipleDebugDisplay` (`01F81270`): `0022FFE0` when its byte
-   `+463C`<sub>h</sub> is set, then `001C2F50`;
+   `+463C`<sub>h</sub> is set, then the auto-test walker `001C2F50`
+   ([cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md));
 7. when `01F82D30` is clear the pump returns (`001E0560`, at the end of `0022A580`, sets it when
    `01F82D31` was armed; states 4 and 6 also call `001E0580` before their handlers); otherwise the frame-end reset `001E0590` runs
    (`00185D80` on the render manager, `0018B040(01F7F5E0)`, `0018C8F0(01F7F5E8)`, `001DB620`,
@@ -261,7 +268,8 @@ at `01F82CD8`, `40`<sub>h</sub> bytes built by `001D89D0` in the init burst with
 `+34`<sub>h</sub> and a delay of 5.0 s at `+38`<sub>h</sub>. It is the icon that turns while a load runs:
 
 1. `001831A0` arms it (`001D8A90`: when the start time `+08`<sub>h</sub> is 0, the armed byte `+1D`<sub>h</sub> = 1).
-   The save-load post-load sequence and the zone change call `001831A0`.
+   The save-load post-load sequence (`00582860`) and the zone change's restore path (`00314530`,
+   [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) call `001831A0`.
 2. Each update `001D8700` stamps the start time on the first armed pass (`005CC930` minus
    `02CB60E8`); once 5 s have passed it sets the shown byte `+1C`<sub>h</sub>, clears the armed byte and
    restarts the fade timer `+20`<sub>h</sub>.
@@ -274,7 +282,9 @@ at `01F82CD8`, `40`<sub>h</sub> bytes built by `001D89D0` in the init burst with
    centred for a 1920 × 1080 or 512 × 448 frame, writes the alpha into each, rotates them by the
    angle (`001D8790`) while the running byte `[0018A7D0()]` is 0, and emits them (`001B06D0`, `001B03D0`).
 5. `00183070` dismisses it (`001D8770`): it zeroes the start time, clears the armed byte and,
-   unless a fade-out already runs, starts one.
+   unless a fade-out already runs, starts one. The actor drive pass `0025D9E0` calls it, and so do
+   six functions of the script layer, among them the handlers of `fadesync` (`00B9`<sub>h</sub>, `0033F4C0`) and `calltelepoeffect`
+   (`333`<sub>h</sub>, `00344170`) ([native commands](../Scripts-And-Script-Commands/native-commands.md)).
 
 A load shorter than 5 s therefore never shows the icon.
 

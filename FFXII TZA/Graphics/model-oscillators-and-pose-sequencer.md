@@ -31,7 +31,9 @@ oscillator record. `003DFFE0`:
 
 Each frame `0040ACF0` advances two phase and speed pairs, adding `speed × [01DFE0BC]` and wrapping at
 2π. On each wrap it draws a new speed and amplitude: a base plus a random amount up to a range
-(`003D8E50`).
+(`003D8E50`). For the global pair `+24h = [02CA4398] + 003D8E50([02CA439C])` and
+`+28h = [02CA4380] + 003D8E50([02CA4384])`; for the per-record pair, with `r` the preset row at `+2C`<sub>h</sub>,
+`+34h = r[+0Ch] + 003D8E50(r[+10h])` and `+38h = r[+04h] + 003D8E50(r[+08h])` (`0040ACF0`).
 
 - The global pair (`+20`<sub>h</sub> phase, `+24`<sub>h</sub> speed, `+28`<sub>h</sub> amplitude) runs only while the byte
   `02CA4390` is set. `0040B3B0(preset)` sets that byte and copies preset row `preset − 1` of

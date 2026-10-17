@@ -84,6 +84,12 @@ the node records' own name words.
 | on no board | 4-17, all named Quickening |
 | on some boards | the other 287 nodes: 106 on one board, 35 on two, 29 on three, 57 on four, 23 on five, 10 on six, 7 on seven, 6 on eight, 1 on nine, 9 on ten, 4 on eleven |
 
+[`license-board-squares.tsv`](license-board-squares.tsv) lists all 1,626 filled squares of the twelve boards, one
+line each: the board, its file and job, the row and column (0-23, row first, as the grid is stored from `+8`), the
+node number, and the node's name and LP cost from the node record (`+00`<sub>h</sub> name word, `+04`<sub>h</sub> LP;
+[Licenses](licenses.md)). It is produced by `Database/Tools/catalogues/license_boards.py`, which checks each board's
+square count and Second Board square against the table above.
+
 ## Loader behaviour
 
 1. `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once (`002369E5`-`00236A24`).

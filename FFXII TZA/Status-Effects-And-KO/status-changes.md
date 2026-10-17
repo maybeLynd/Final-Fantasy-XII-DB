@@ -111,7 +111,8 @@ When presence changed, in this order (`0030E5D1`-`0030E828`):
    (`0030E63D`-`0030E6D7`; [Statuses](statuses.md)).
 3. **The reaction.** When adding with the reaction allowed, `003284D0` queues reaction 2 for the status, but
    only for a unit within 24 units of the party leader on the ground plane (`0030E6E7`-`0030E6FF`,
-   `002FA3B0`-`002FA451`).
+   `002FA3B0`-`002FA451`). The reaction is a popup of the status's name, posted through `003BBD00`
+   ([Battle numbers](../Menus-And-HUD/battle-numbers.md)).
 4. **The message.** When adding with the message allowed, `0046A800` posts message `12`<sub>h</sub> "turns to stone."
    for Stone and `11`<sub>h</sub> "is cast into the void." for X-Zone, for a party-side unit only
    (`0030E704`-`0030E727`, `0046A831`-`0046A85A`; [Battle message list](../Battle-Actions/battle-message-list.md)).
@@ -140,6 +141,9 @@ The two `+E9A`<sub>h</sub> bits decide whether a Poison kill or a Stone from Pet
 cancels the action in flight with `003105D0`, except when the unit is changing stance, carries an action at
 phase 9 or later, or is dismissing (`113`<sub>h</sub>); those give 0 and keep it (`0030E770`-`0030E79F`). Events go through `003299B0` (`0030E766`, `0030E86D`). What the defeat cleanup and the
 recovery do is on [KO and Game Over](ko-and-game-over.md).
+
+On a party wipe the defeat cleanup sets battle flag `400`<sub>h</sub> or `200`<sub>h</sub>, arms the request and recomputes party
+control with `0023B040` (`00301063`-`003010C0`; [Party leader](../Party/party-leader.md)).
 
 ## Modding notes
 

@@ -113,7 +113,11 @@ an 8-byte record `x, y, w:12, h:12`):
 - `003C9950` frees any previous buffer at `+D0`<sub>h</sub> and requests kind 7, id `0Eh + k`, into it.
 - `003C9E50` copies `2h` rows of `w` bytes into `battle_4_c` from the sub-image's top-left corner, writing `w` to
   `01EFE384` and `2h` to `01EFE388`. It re-uploads the picture and frees the buffer.
-- The flags are set by `0031A910` and cleared by `0031A8C0`. `0031A7B0` refuses a command whose command-record byte
+- The flags are set by `0031A910` and cleared by `0031A8C0`; their callers are the handlers of the verbs
+  `set_field_effect` (`4F5`<sub>h</sub>, `00344610`) and `clear_field_effect` (`4F6`<sub>h</sub>, `00344980`) and `002FDDA0`
+  ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
+- `0031A7B0`, asked by the command check `002FFCF0`
+  ([command availability](../Battle-Actions/command-availability.md)), refuses a command whose command-record byte
   `+1E`<sub>h</sub> is 0, 1, 2 or 3 while bit `4`<sub>h</sub>, `8`<sub>h</sub>, `10`<sub>h</sub> or `20`<sub>h</sub> is set, with codes `16`<sub>h</sub> to `19`<sub>h</sub>.
 
 ### The destination pictures and the palette

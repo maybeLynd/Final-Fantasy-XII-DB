@@ -33,7 +33,8 @@ Before anything else the installer:
 `003220E0(actor)` at `+08`<sub>h</sub>: that function encodes the actor's current handle, advances the actor's
 discriminator (`002659D0`), encodes the new handle, and, when the party focus record `00327150()`
 held the old handle, stores the re-keyed unit's stats byte `+04`<sub>h</sub> (or `FF`<sub>h</sub>) as a dword at
-`[02EBF190] + 5AA4h` and runs `00326500`.
+`[02EBF190] + 5AA4h` and runs `00326500`, which picks the default controlled member and requests its handle
+([Party leader](../Party/party-leader.md)).
 
 ### The enemy path
 

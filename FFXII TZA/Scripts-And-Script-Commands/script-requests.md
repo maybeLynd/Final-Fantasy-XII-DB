@@ -57,8 +57,8 @@ through the null pointer and decrementing it when it is non-zero, as the shipped
 Two insert paths exist. When the requester's `+2` is 1 (an actor past the image's type-0 count,
 so not a director) and it has no outstanding requests (`+10`<sub>h</sub> = 0), `003DB790` files the entry in
 run state 1; otherwise `003DBAE0` files it in state 2 and, when the target is a different actor,
-promotes every state-1 entry of the target to 2, re-runs the target's selection and halves its
-`+63`<sub>h</sub> flag byte.
+promotes every state-1 entry of the target to 2, re-runs the target's selection and sets its flag
+byte `+63h >>= 1` (`003DBB4A`).
 
 A result of 1 sets bit *channel* of the target's `+26`<sub>h</sub> word and calls `0025B580`, which calls
 the exit-trap stub `008620C0` when the highest bit of `+26`<sub>h</sub> lies above the highest bit of a
@@ -110,9 +110,10 @@ and re-selects when the requester differs, exactly as the script path does.
 
 `003DBCF0(actor, descriptor, state)` refuses with 3 when the function id is at or above the
 actor's function count (`[[actor + 48h]]`), with 2 when the free head `+60`<sub>h</sub> is `FF`<sub>h</sub>, and
-otherwise unlinks the head entry and hands it to `003DB7A0`. The insert clamps the channel to
-`count − 1`, then applies the kind: kind 0 files only when the channel's bit in the busy mask `+6`
-is clear; kind 2 always; kind 4 only when no entry on that channel already carries the function
+otherwise unlinks the head entry and hands it to `003DB7A0`.
+The insert clamps the descriptor's signed channel byte `+2` with `ch = (ch >= [+88h]) ? [+88h] − 1 : ch`
+(`003DB7A7`-`003DB7C5`), then applies the kind: kind 0 files only when `(([+6] >> ch) & 1) == 0`
+(`003DB888`-`003DB890`); kind 2 always; kind 4 only when no entry on that channel already carries the function
 id.
 
 A refused kind relinks the entry at the free head and returns 3; the bytecode address
@@ -127,7 +128,7 @@ channel state: that is how notifications travel.
 
 Engine filings enter in state 1 and wait for `003DB1F0`, which the script step `00314020` runs
 for every manager after each drive pass: every state-1 entry of every actor becomes state 2, then
-the selection runs and `+63`<sub>h</sub> is halved. The step repeats up to sixteen times a frame, later
+the selection runs and `+63h >>= 1` (`003DB25A`). The step repeats up to sixteen times a frame, later
 rounds only for managers whose byte `02099011 + manager × 288h` is set (`00267310`), so a request
 a touch files runs within the frame. A script's request on another actor is promoted at once by
 `003DBAE0`.

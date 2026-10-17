@@ -1,0 +1,1627 @@
+board	file	job	row	column	node	name	lp_cost
+0	board_1.bin	White Mage	3	9	277	Libra	25
+0	board_1.bin	White Mage	3	15	300	+230 HP	70
+0	board_1.bin	White Mage	4	9	22	Cúchulainn	50
+0	board_1.bin	White Mage	4	15	25	Shemhazai	50
+0	board_1.bin	White Mage	4	17	3	Quickening	125
+0	board_1.bin	White Mage	5	6	354	Accessories 22	160
+0	board_1.bin	White Mage	5	7	180	Accessories 20	115
+0	board_1.bin	White Mage	5	8	178	Accessories 18	80
+0	board_1.bin	White Mage	5	9	176	Accessories 16	70
+0	board_1.bin	White Mage	5	10	174	Accessories 14	70
+0	board_1.bin	White Mage	5	12	265	+190 HP	60
+0	board_1.bin	White Mage	5	14	173	Accessories 13	60
+0	board_1.bin	White Mage	5	15	175	Accessories 15	70
+0	board_1.bin	White Mage	5	16	177	Accessories 17	80
+0	board_1.bin	White Mage	5	17	254	Battle Lore	30
+0	board_1.bin	White Mage	5	18	181	Ribbon	215
+0	board_1.bin	White Mage	6	4	301	+270 HP	80
+0	board_1.bin	White Mage	6	5	27	Zeromus	65
+0	board_1.bin	White Mage	6	6	352	Mystic Armor 13	110
+0	board_1.bin	White Mage	6	7	326	Magick Lore	100
+0	board_1.bin	White Mage	6	8	294	Stamp	40
+0	board_1.bin	White Mage	6	9	221	Inquisitor	30
+0	board_1.bin	White Mage	6	10	172	Accessories 12	60
+0	board_1.bin	White Mage	6	12	1	Quickening	75
+0	board_1.bin	White Mage	6	14	171	Accessories 11	45
+0	board_1.bin	White Mage	6	15	224	Spellbreaker	65
+0	board_1.bin	White Mage	6	16	179	Accessories 19	100
+0	board_1.bin	White Mage	6	17	353	Accessories 21	130
+0	board_1.bin	White Mage	6	18	100	Rod of Faith	130
+0	board_1.bin	White Mage	6	19	26	Chaos	100
+0	board_1.bin	White Mage	6	20	302	+310 HP	90
+0	board_1.bin	White Mage	7	6	160	Mystic Armor 12	90
+0	board_1.bin	White Mage	7	7	226	Serenity	70
+0	board_1.bin	White Mage	7	8	246	Ether Lore 2	35
+0	board_1.bin	White Mage	7	9	320	Magick Lore	50
+0	board_1.bin	White Mage	7	10	170	Accessories 10	40
+0	board_1.bin	White Mage	7	11	168	Accessories 8	45
+0	board_1.bin	White Mage	7	12	166	Accessories 6	35
+0	board_1.bin	White Mage	7	13	167	Accessories 7	40
+0	board_1.bin	White Mage	7	14	169	Accessories 9	30
+0	board_1.bin	White Mage	7	15	319	Magick Lore	50
+0	board_1.bin	White Mage	7	16	222	Headsman	30
+0	board_1.bin	White Mage	7	17	321	Magick Lore	70
+0	board_1.bin	White Mage	7	18	263	+110 HP	40
+0	board_1.bin	White Mage	7	20	41	Greatswords 2	70
+0	board_1.bin	White Mage	8	6	159	Mystic Armor 11	80
+0	board_1.bin	White Mage	8	7	158	Mystic Armor 10	75
+0	board_1.bin	White Mage	8	8	157	Mystic Armor 9	70
+0	board_1.bin	White Mage	8	9	156	Mystic Armor 8	60
+0	board_1.bin	White Mage	8	10	155	Mystic Armor 7	50
+0	board_1.bin	White Mage	8	11	154	Mystic Armor 6	40
+0	board_1.bin	White Mage	8	12	165	Accessories 5	35
+0	board_1.bin	White Mage	8	13	280	Charge	30
+0	board_1.bin	White Mage	8	14	98	Rods 3	40
+0	board_1.bin	White Mage	8	15	234	Channeling	50
+0	board_1.bin	White Mage	8	16	99	Rods 4	50
+0	board_1.bin	White Mage	8	17	235	Channeling	80
+0	board_1.bin	White Mage	8	18	253	Battle Lore	30
+0	board_1.bin	White Mage	9	6	327	Magick Lore	100
+0	board_1.bin	White Mage	9	7	237	Swiftness	50
+0	board_1.bin	White Mage	9	8	322	Magick Lore	70
+0	board_1.bin	White Mage	9	11	153	Mystic Armor 5	30
+0	board_1.bin	White Mage	9	12	164	Accessories 4	35
+0	board_1.bin	White Mage	9	13	245	Ether Lore 1	20
+0	board_1.bin	White Mage	9	14	360	Second Board	30
+0	board_1.bin	White Mage	9	16	252	Battle Lore	30
+0	board_1.bin	White Mage	9	17	323	Magick Lore	70
+0	board_1.bin	White Mage	9	18	325	Magick Lore	100
+0	board_1.bin	White Mage	9	19	29	Ultima	115
+0	board_1.bin	White Mage	10	5	30	Zodiark	200
+0	board_1.bin	White Mage	10	6	211	White Magick 13	155
+0	board_1.bin	White Mage	10	7	324	Magick Lore	70
+0	board_1.bin	White Mage	10	8	262	+70 HP	30
+0	board_1.bin	White Mage	10	10	19	Mateus	30
+0	board_1.bin	White Mage	10	11	152	Mystic Armor 4	25
+0	board_1.bin	White Mage	10	12	163	Accessories 3	25
+0	board_1.bin	White Mage	10	13	97	Rods 2	30
+0	board_1.bin	White Mage	10	14	18	Belias	20
+0	board_1.bin	White Mage	10	16	219	Warmage	30
+0	board_1.bin	White Mage	10	17	236	Swiftness	30
+0	board_1.bin	White Mage	10	18	286	Achilles	40
+0	board_1.bin	White Mage	11	5	40	Greatswords 1	50
+0	board_1.bin	White Mage	11	8	23	Famfrit	100
+0	board_1.bin	White Mage	11	11	151	Mystic Armor 3	20
+0	board_1.bin	White Mage	11	12	162	Accessories 2	20
+0	board_1.bin	White Mage	11	13	251	Battle Lore	30
+0	board_1.bin	White Mage	11	16	28	Exodus	65
+0	board_1.bin	White Mage	12	7	284	Numerology	40
+0	board_1.bin	White Mage	12	8	94	Daggers 5	60
+0	board_1.bin	White Mage	12	11	150	Mystic Armor 2	15
+0	board_1.bin	White Mage	12	12	161	Accessories 1	5
+0	board_1.bin	White Mage	12	13	96	Rods 1	20
+0	board_1.bin	White Mage	12	16	307	Battle Lore	50
+0	board_1.bin	White Mage	13	11	149	Mystic Armor 1	10
+0	board_1.bin	White Mage	13	12	31	Essentials	1
+0	board_1.bin	White Mage	13	13	266	Gambit Slot	15
+0	board_1.bin	White Mage	14	11	267	Gambit Slot	20
+0	board_1.bin	White Mage	14	12	182	White Magick 1	15
+0	board_1.bin	White Mage	14	13	256	Magick Lore	30
+0	board_1.bin	White Mage	15	8	264	+150 HP	50
+0	board_1.bin	White Mage	15	9	0	Quickening	50
+0	board_1.bin	White Mage	15	10	269	Gambit Slot	30
+0	board_1.bin	White Mage	15	11	220	Martyr	30
+0	board_1.bin	White Mage	15	12	183	White Magick 2	20
+0	board_1.bin	White Mage	15	13	268	Gambit Slot	25
+0	board_1.bin	White Mage	15	14	257	Magick Lore	30
+0	board_1.bin	White Mage	16	10	259	Magick Lore	30
+0	board_1.bin	White Mage	16	11	261	+30 HP	20
+0	board_1.bin	White Mage	16	12	184	White Magick 3	25
+0	board_1.bin	White Mage	16	13	233	Channeling	30
+0	board_1.bin	White Mage	16	14	270	Gambit Slot	35
+0	board_1.bin	White Mage	17	7	308	Battle Lore	50
+0	board_1.bin	White Mage	17	8	20	Adrammelech	35
+0	board_1.bin	White Mage	17	9	318	Magick Lore	50
+0	board_1.bin	White Mage	17	10	272	Gambit Slot	45
+0	board_1.bin	White Mage	17	11	258	Magick Lore	30
+0	board_1.bin	White Mage	17	12	185	White Magick 4	30
+0	board_1.bin	White Mage	17	13	260	Magick Lore	50
+0	board_1.bin	White Mage	17	14	207	Green Magick 3	90
+0	board_1.bin	White Mage	17	15	271	Gambit Slot	40
+0	board_1.bin	White Mage	18	7	282	Souleater	35
+0	board_1.bin	White Mage	18	9	275	Gambit Slot	100
+0	board_1.bin	White Mage	18	10	274	Gambit Slot	70
+0	board_1.bin	White Mage	18	11	205	Green Magick 1	40
+0	board_1.bin	White Mage	18	12	186	White Magick 5	40
+0	board_1.bin	White Mage	18	13	206	Green Magick 2	50
+0	board_1.bin	White Mage	18	14	273	Gambit Slot	50
+0	board_1.bin	White Mage	18	15	228	Spellbound	30
+0	board_1.bin	White Mage	18	16	24	Zalera	30
+0	board_1.bin	White Mage	19	9	210	White Magick 12	110
+0	board_1.bin	White Mage	19	10	208	White Magick 10	90
+0	board_1.bin	White Mage	19	11	189	White Magick 8	70
+0	board_1.bin	White Mage	19	12	187	White Magick 6	50
+0	board_1.bin	White Mage	19	13	188	White Magick 7	60
+0	board_1.bin	White Mage	19	14	355	White Magick 9	80
+0	board_1.bin	White Mage	19	15	209	White Magick 11	100
+0	board_1.bin	White Mage	20	11	21	Hashmal	50
+0	board_1.bin	White Mage	20	14	2	Quickening	100
+0	board_1.bin	White Mage	21	14	255	Battle Lore	50
+1	board_2.bin	Uhlan	4	8	27	Zeromus	65
+1	board_2.bin	Uhlan	4	15	3	Quickening	125
+1	board_2.bin	Uhlan	5	8	350	Heavy Armor 12	110
+1	board_2.bin	Uhlan	5	9	279	Poach	30
+1	board_2.bin	Uhlan	5	10	249	Phoenix Lore	50
+1	board_2.bin	Uhlan	5	12	195	Black Magick 6	50
+1	board_2.bin	Uhlan	5	14	223	Adrenaline	65
+1	board_2.bin	Uhlan	5	15	353	Accessories 21	130
+1	board_2.bin	Uhlan	5	16	181	Ribbon	215
+1	board_2.bin	Uhlan	6	8	349	Heavy Armor 11	90
+1	board_2.bin	Uhlan	6	9	135	Heavy Armor 10	80
+1	board_2.bin	Uhlan	6	10	236	Swiftness	30
+1	board_2.bin	Uhlan	6	12	194	Black Magick 5	40
+1	board_2.bin	Uhlan	6	13	2	Quickening	100
+1	board_2.bin	Uhlan	6	14	237	Swiftness	50
+1	board_2.bin	Uhlan	6	15	179	Accessories 19	100
+1	board_2.bin	Uhlan	6	16	354	Accessories 22	160
+1	board_2.bin	Uhlan	6	17	30	Zodiark	200
+1	board_2.bin	Uhlan	7	9	134	Heavy Armor 9	70
+1	board_2.bin	Uhlan	7	10	293	Shades of Black	70
+1	board_2.bin	Uhlan	7	14	303	+350 HP	100
+1	board_2.bin	Uhlan	7	15	177	Accessories 17	80
+1	board_2.bin	Uhlan	8	9	133	Heavy Armor 8	65
+1	board_2.bin	Uhlan	8	10	222	Headsman	30
+1	board_2.bin	Uhlan	8	11	25	Shemhazai	50
+1	board_2.bin	Uhlan	8	14	302	+310 HP	90
+1	board_2.bin	Uhlan	8	15	175	Accessories 15	70
+1	board_2.bin	Uhlan	8	16	29	Ultima	115
+1	board_2.bin	Uhlan	8	17	295	Expose	50
+1	board_2.bin	Uhlan	9	9	132	Heavy Armor 7	60
+1	board_2.bin	Uhlan	9	10	290	Infuse	30
+1	board_2.bin	Uhlan	9	13	28	Exodus	65
+1	board_2.bin	Uhlan	9	14	301	+270 HP	80
+1	board_2.bin	Uhlan	9	15	173	Accessories 13	60
+1	board_2.bin	Uhlan	10	6	315	Battle Lore	100
+1	board_2.bin	Uhlan	10	7	20	Adrammelech	35
+1	board_2.bin	Uhlan	10	9	131	Heavy Armor 6	55
+1	board_2.bin	Uhlan	10	10	248	Phoenix Lore	30
+1	board_2.bin	Uhlan	10	14	300	+230 HP	70
+1	board_2.bin	Uhlan	10	15	171	Accessories 11	45
+1	board_2.bin	Uhlan	11	7	288	Charm	30
+1	board_2.bin	Uhlan	11	8	129	Heavy Armor 4	40
+1	board_2.bin	Uhlan	11	9	130	Heavy Armor 5	50
+1	board_2.bin	Uhlan	11	10	261	+30 HP	20
+1	board_2.bin	Uhlan	11	11	262	+70 HP	30
+1	board_2.bin	Uhlan	11	12	263	+110 HP	40
+1	board_2.bin	Uhlan	11	13	264	+150 HP	50
+1	board_2.bin	Uhlan	11	14	265	+190 HP	60
+1	board_2.bin	Uhlan	11	15	225	Focus	70
+1	board_2.bin	Uhlan	11	16	172	Accessories 12	60
+1	board_2.bin	Uhlan	11	17	174	Accessories 14	70
+1	board_2.bin	Uhlan	12	6	0	Quickening	50
+1	board_2.bin	Uhlan	12	7	239	Remedy Lore 1	20
+1	board_2.bin	Uhlan	12	8	128	Heavy Armor 3	35
+1	board_2.bin	Uhlan	12	9	164	Accessories 4	35
+1	board_2.bin	Uhlan	12	10	165	Accessories 5	35
+1	board_2.bin	Uhlan	12	11	166	Accessories 6	35
+1	board_2.bin	Uhlan	12	12	167	Accessories 7	40
+1	board_2.bin	Uhlan	12	13	168	Accessories 8	45
+1	board_2.bin	Uhlan	12	14	169	Accessories 9	30
+1	board_2.bin	Uhlan	12	15	170	Accessories 10	40
+1	board_2.bin	Uhlan	12	16	240	Remedy Lore 2	30
+1	board_2.bin	Uhlan	12	17	176	Accessories 16	70
+1	board_2.bin	Uhlan	12	18	26	Chaos	100
+1	board_2.bin	Uhlan	12	19	196	Black Magick 7	60
+1	board_2.bin	Uhlan	13	7	252	Battle Lore	30
+1	board_2.bin	Uhlan	13	8	127	Heavy Armor 2	30
+1	board_2.bin	Uhlan	13	9	163	Accessories 3	25
+1	board_2.bin	Uhlan	13	11	18	Belias	20
+1	board_2.bin	Uhlan	13	12	360	Second Board	30
+1	board_2.bin	Uhlan	13	15	227	Last Stand	70
+1	board_2.bin	Uhlan	13	16	307	Battle Lore	50
+1	board_2.bin	Uhlan	13	17	178	Accessories 18	80
+1	board_2.bin	Uhlan	13	19	197	Black Magick 8	70
+1	board_2.bin	Uhlan	14	7	220	Martyr	30
+1	board_2.bin	Uhlan	14	8	126	Heavy Armor 1	25
+1	board_2.bin	Uhlan	14	9	162	Accessories 2	20
+1	board_2.bin	Uhlan	14	15	254	Battle Lore	30
+1	board_2.bin	Uhlan	14	16	309	Battle Lore	50
+1	board_2.bin	Uhlan	14	17	180	Accessories 20	115
+1	board_2.bin	Uhlan	15	7	53	Spears 1	20
+1	board_2.bin	Uhlan	15	8	31	Essentials	1
+1	board_2.bin	Uhlan	15	9	161	Accessories 1	5
+1	board_2.bin	Uhlan	15	13	292	Bonecrusher	30
+1	board_2.bin	Uhlan	15	14	21	Hashmal	50
+1	board_2.bin	Uhlan	15	15	286	Achilles	40
+1	board_2.bin	Uhlan	15	16	311	Battle Lore	70
+1	board_2.bin	Uhlan	15	17	256	Magick Lore	30
+1	board_2.bin	Uhlan	16	7	54	Spears 2	25
+1	board_2.bin	Uhlan	16	8	251	Battle Lore	30
+1	board_2.bin	Uhlan	16	9	266	Gambit Slot	15
+1	board_2.bin	Uhlan	16	15	310	Battle Lore	70
+1	board_2.bin	Uhlan	16	16	312	Battle Lore	70
+1	board_2.bin	Uhlan	16	17	257	Magick Lore	30
+1	board_2.bin	Uhlan	16	18	23	Famfrit	100
+1	board_2.bin	Uhlan	16	19	244	Potion Lore 3	70
+1	board_2.bin	Uhlan	17	7	55	Spears 3	35
+1	board_2.bin	Uhlan	17	8	278	First Aid	20
+1	board_2.bin	Uhlan	17	9	267	Gambit Slot	20
+1	board_2.bin	Uhlan	17	10	268	Gambit Slot	25
+1	board_2.bin	Uhlan	17	11	269	Gambit Slot	30
+1	board_2.bin	Uhlan	17	12	1	Quickening	75
+1	board_2.bin	Uhlan	17	13	273	Gambit Slot	50
+1	board_2.bin	Uhlan	17	14	274	Gambit Slot	70
+1	board_2.bin	Uhlan	17	15	275	Gambit Slot	100
+1	board_2.bin	Uhlan	17	16	313	Battle Lore	70
+1	board_2.bin	Uhlan	17	17	258	Magick Lore	30
+1	board_2.bin	Uhlan	18	7	57	Spears 5	60
+1	board_2.bin	Uhlan	18	8	56	Spears 4	50
+1	board_2.bin	Uhlan	18	9	221	Inquisitor	30
+1	board_2.bin	Uhlan	18	10	242	Potion Lore 1	20
+1	board_2.bin	Uhlan	18	11	270	Gambit Slot	35
+1	board_2.bin	Uhlan	18	12	271	Gambit Slot	40
+1	board_2.bin	Uhlan	18	13	272	Gambit Slot	45
+1	board_2.bin	Uhlan	18	14	253	Battle Lore	30
+1	board_2.bin	Uhlan	18	15	308	Battle Lore	50
+1	board_2.bin	Uhlan	18	16	314	Battle Lore	100
+1	board_2.bin	Uhlan	18	17	259	Magick Lore	30
+1	board_2.bin	Uhlan	19	8	58	Dragon Whisker	70
+1	board_2.bin	Uhlan	19	9	337	Vrsabha	100
+1	board_2.bin	Uhlan	19	10	59	Zodiac Spear	240
+1	board_2.bin	Uhlan	19	11	296	Revive	40
+1	board_2.bin	Uhlan	19	12	24	Zalera	30
+1	board_2.bin	Uhlan	19	13	243	Potion Lore 2	35
+1	board_2.bin	Uhlan	19	14	255	Battle Lore	50
+1	board_2.bin	Uhlan	19	15	228	Spellbound	30
+1	board_2.bin	Uhlan	19	16	282	Souleater	35
+1	board_2.bin	Uhlan	20	7	318	Magick Lore	50
+1	board_2.bin	Uhlan	20	8	19	Mateus	30
+1	board_2.bin	Uhlan	20	16	22	Cúchulainn	50
+1	board_2.bin	Uhlan	20	17	298	Wither	50
+1	board_2.bin	Uhlan	21	8	260	Magick Lore	50
+2	board_3.bin	Machinist	5	4	205	Green Magick 1	40
+2	board_3.bin	Machinist	5	6	1	Quickening	75
+2	board_3.bin	Machinist	5	16	303	+350 HP	100
+2	board_3.bin	Machinist	5	17	26	Chaos	100
+2	board_3.bin	Machinist	6	4	28	Exodus	65
+2	board_3.bin	Machinist	6	5	275	Gambit Slot	100
+2	board_3.bin	Machinist	6	6	272	Gambit Slot	45
+2	board_3.bin	Machinist	6	8	18	Belias	20
+2	board_3.bin	Machinist	6	9	360	Second Board	30
+2	board_3.bin	Machinist	6	17	252	Battle Lore	30
+2	board_3.bin	Machinist	6	18	342	Mithuna	190
+2	board_3.bin	Machinist	7	5	274	Gambit Slot	70
+2	board_3.bin	Machinist	7	6	270	Gambit Slot	35
+2	board_3.bin	Machinist	7	7	269	Gambit Slot	30
+2	board_3.bin	Machinist	7	8	268	Gambit Slot	25
+2	board_3.bin	Machinist	7	9	267	Gambit Slot	20
+2	board_3.bin	Machinist	7	12	20	Adrammelech	35
+2	board_3.bin	Machinist	7	14	279	Poach	30
+2	board_3.bin	Machinist	7	15	256	Magick Lore	30
+2	board_3.bin	Machinist	7	16	257	Magick Lore	30
+2	board_3.bin	Machinist	7	17	251	Battle Lore	30
+2	board_3.bin	Machinist	7	18	253	Battle Lore	30
+2	board_3.bin	Machinist	8	5	273	Gambit Slot	50
+2	board_3.bin	Machinist	8	6	271	Gambit Slot	40
+2	board_3.bin	Machinist	8	7	220	Martyr	30
+2	board_3.bin	Machinist	8	8	162	Accessories 2	20
+2	board_3.bin	Machinist	8	9	161	Accessories 1	5
+2	board_3.bin	Machinist	8	10	137	Light Armor 1	10
+2	board_3.bin	Machinist	8	11	138	Light Armor 2	15
+2	board_3.bin	Machinist	8	12	139	Light Armor 3	20
+2	board_3.bin	Machinist	8	13	242	Potion Lore 1	20
+2	board_3.bin	Machinist	8	14	140	Light Armor 4	25
+2	board_3.bin	Machinist	8	15	141	Light Armor 5	30
+2	board_3.bin	Machinist	8	16	81	Guns 5	90
+2	board_3.bin	Machinist	8	17	258	Magick Lore	30
+2	board_3.bin	Machinist	8	18	82	Guns 6	110
+2	board_3.bin	Machinist	9	6	19	Mateus	30
+2	board_3.bin	Machinist	9	8	163	Accessories 3	25
+2	board_3.bin	Machinist	9	9	31	Essentials	1
+2	board_3.bin	Machinist	9	10	77	Guns 1	30
+2	board_3.bin	Machinist	9	11	78	Guns 2	50
+2	board_3.bin	Machinist	9	12	221	Inquisitor	30
+2	board_3.bin	Machinist	9	13	79	Guns 3	60
+2	board_3.bin	Machinist	9	14	80	Guns 4	70
+2	board_3.bin	Machinist	9	15	222	Headsman	30
+2	board_3.bin	Machinist	10	8	164	Accessories 4	35
+2	board_3.bin	Machinist	10	9	266	Gambit Slot	15
+2	board_3.bin	Machinist	10	12	0	Quickening	50
+2	board_3.bin	Machinist	10	14	243	Potion Lore 2	35
+2	board_3.bin	Machinist	10	15	142	Light Armor 6	40
+2	board_3.bin	Machinist	11	8	165	Accessories 5	35
+2	board_3.bin	Machinist	11	9	111	Measures 1	40
+2	board_3.bin	Machinist	11	14	286	Achilles	40
+2	board_3.bin	Machinist	11	15	143	Light Armor 7	50
+2	board_3.bin	Machinist	11	16	2	Quickening	100
+2	board_3.bin	Machinist	12	7	24	Zalera	30
+2	board_3.bin	Machinist	12	8	166	Accessories 6	35
+2	board_3.bin	Machinist	12	9	277	Libra	25
+2	board_3.bin	Machinist	12	14	245	Ether Lore 1	20
+2	board_3.bin	Machinist	12	15	144	Light Armor 8	60
+2	board_3.bin	Machinist	13	8	167	Accessories 7	40
+2	board_3.bin	Machinist	13	9	112	Measures 2	50
+2	board_3.bin	Machinist	13	14	287	Gil Toss	30
+2	board_3.bin	Machinist	13	15	227	Last Stand	70
+2	board_3.bin	Machinist	13	17	218	Time Magick 9	100
+2	board_3.bin	Machinist	13	18	359	Time Magick 10	125
+2	board_3.bin	Machinist	14	8	168	Accessories 8	45
+2	board_3.bin	Machinist	14	9	276	Steal	20
+2	board_3.bin	Machinist	14	10	21	Hashmal	50
+2	board_3.bin	Machinist	14	14	244	Potion Lore 3	70
+2	board_3.bin	Machinist	14	15	145	Light Armor 9	70
+2	board_3.bin	Machinist	14	16	23	Famfrit	100
+2	board_3.bin	Machinist	14	17	357	Time Magick 8	90
+2	board_3.bin	Machinist	15	8	169	Accessories 9	30
+2	board_3.bin	Machinist	15	9	113	Measures 3	70
+2	board_3.bin	Machinist	15	14	284	Numerology	40
+2	board_3.bin	Machinist	15	15	146	Light Armor 10	75
+2	board_3.bin	Machinist	16	3	347	Makara	105
+2	board_3.bin	Machinist	16	7	248	Phoenix Lore	30
+2	board_3.bin	Machinist	16	8	170	Accessories 10	40
+2	board_3.bin	Machinist	16	9	288	Charm	30
+2	board_3.bin	Machinist	16	10	239	Remedy Lore 1	20
+2	board_3.bin	Machinist	16	11	283	Traveler	50
+2	board_3.bin	Machinist	16	12	240	Remedy Lore 2	30
+2	board_3.bin	Machinist	16	13	281	Horology	50
+2	board_3.bin	Machinist	16	14	241	Remedy Lore 3	70
+2	board_3.bin	Machinist	16	15	147	Light Armor 11	80
+2	board_3.bin	Machinist	16	16	236	Swiftness	30
+2	board_3.bin	Machinist	16	19	30	Zodiark	200
+2	board_3.bin	Machinist	16	20	304	+390 HP	115
+2	board_3.bin	Machinist	17	3	27	Zeromus	65
+2	board_3.bin	Machinist	17	4	302	+310 HP	90
+2	board_3.bin	Machinist	17	5	265	+190 HP	60
+2	board_3.bin	Machinist	17	6	264	+150 HP	50
+2	board_3.bin	Machinist	17	7	261	+30 HP	20
+2	board_3.bin	Machinist	17	8	171	Accessories 11	45
+2	board_3.bin	Machinist	17	9	172	Accessories 12	60
+2	board_3.bin	Machinist	17	10	173	Accessories 13	60
+2	board_3.bin	Machinist	17	11	174	Accessories 14	70
+2	board_3.bin	Machinist	17	12	175	Accessories 15	70
+2	board_3.bin	Machinist	17	13	176	Accessories 16	70
+2	board_3.bin	Machinist	17	14	177	Accessories 17	80
+2	board_3.bin	Machinist	17	15	148	Light Armor 12	90
+2	board_3.bin	Machinist	17	16	351	Light Armor 13	110
+2	board_3.bin	Machinist	17	17	237	Swiftness	50
+2	board_3.bin	Machinist	17	18	294	Stamp	40
+2	board_3.bin	Machinist	17	19	238	Swiftness	80
+2	board_3.bin	Machinist	18	4	301	+270 HP	80
+2	board_3.bin	Machinist	18	5	300	+230 HP	70
+2	board_3.bin	Machinist	18	6	263	+110 HP	40
+2	board_3.bin	Machinist	18	7	262	+70 HP	30
+2	board_3.bin	Machinist	18	8	228	Spellbound	30
+2	board_3.bin	Machinist	18	9	346	Measures 4	100
+2	board_3.bin	Machinist	18	12	22	Cúchulainn	50
+2	board_3.bin	Machinist	18	14	178	Accessories 18	80
+2	board_3.bin	Machinist	18	15	179	Accessories 19	100
+2	board_3.bin	Machinist	18	16	180	Accessories 20	115
+2	board_3.bin	Machinist	18	17	353	Accessories 21	130
+2	board_3.bin	Machinist	18	18	354	Accessories 22	160
+2	board_3.bin	Machinist	18	19	181	Ribbon	215
+2	board_3.bin	Machinist	19	8	25	Shemhazai	50
+2	board_3.bin	Machinist	19	12	259	Magick Lore	30
+2	board_3.bin	Machinist	19	16	29	Ultima	115
+2	board_3.bin	Machinist	19	18	3	Quickening	125
+2	board_3.bin	Machinist	20	8	116	Hand-bombs 3	75
+2	board_3.bin	Machinist	20	16	260	Magick Lore	50
+2	board_3.bin	Machinist	20	17	318	Magick Lore	50
+2	board_3.bin	Machinist	20	18	319	Magick Lore	50
+3	board_4.bin	Red Battlemage	4	6	276	Steal	20
+3	board_4.bin	Red Battlemage	4	8	183	White Magick 2	20
+3	board_4.bin	Red Battlemage	5	6	21	Hashmal	50
+3	board_4.bin	Red Battlemage	5	8	0	Quickening	50
+3	board_4.bin	Red Battlemage	5	10	19	Mateus	30
+3	board_4.bin	Red Battlemage	5	13	188	White Magick 7	60
+3	board_4.bin	Red Battlemage	5	15	300	+230 HP	70
+3	board_4.bin	Red Battlemage	5	17	134	Heavy Armor 9	70
+3	board_4.bin	Red Battlemage	5	18	135	Heavy Armor 10	80
+3	board_4.bin	Red Battlemage	6	5	176	Accessories 16	70
+3	board_4.bin	Red Battlemage	6	6	171	Accessories 11	45
+3	board_4.bin	Red Battlemage	6	7	271	Gambit Slot	40
+3	board_4.bin	Red Battlemage	6	8	269	Gambit Slot	30
+3	board_4.bin	Red Battlemage	6	9	268	Gambit Slot	25
+3	board_4.bin	Red Battlemage	6	10	199	Time Magick 2	30
+3	board_4.bin	Red Battlemage	6	13	25	Shemhazai	50
+3	board_4.bin	Red Battlemage	6	15	1	Quickening	75
+3	board_4.bin	Red Battlemage	6	17	133	Heavy Armor 8	65
+3	board_4.bin	Red Battlemage	7	5	174	Accessories 14	70
+3	board_4.bin	Red Battlemage	7	6	170	Accessories 10	40
+3	board_4.bin	Red Battlemage	7	7	270	Gambit Slot	35
+3	board_4.bin	Red Battlemage	7	8	220	Martyr	30
+3	board_4.bin	Red Battlemage	7	9	267	Gambit Slot	20
+3	board_4.bin	Red Battlemage	7	10	184	White Magick 3	25
+3	board_4.bin	Red Battlemage	7	11	192	Black Magick 3	25
+3	board_4.bin	Red Battlemage	7	12	206	Green Magick 2	50
+3	board_4.bin	Red Battlemage	7	13	193	Black Magick 4	30
+3	board_4.bin	Red Battlemage	7	14	194	Black Magick 5	40
+3	board_4.bin	Red Battlemage	7	15	195	Black Magick 6	50
+3	board_4.bin	Red Battlemage	7	16	200	Time Magick 3	40
+3	board_4.bin	Red Battlemage	7	17	28	Exodus	65
+3	board_4.bin	Red Battlemage	8	5	354	Accessories 22	160
+3	board_4.bin	Red Battlemage	8	6	173	Accessories 13	60
+3	board_4.bin	Red Battlemage	8	7	360	Second Board	30
+3	board_4.bin	Red Battlemage	8	8	18	Belias	20
+3	board_4.bin	Red Battlemage	8	9	266	Gambit Slot	15
+3	board_4.bin	Red Battlemage	8	10	205	Green Magick 1	40
+3	board_4.bin	Red Battlemage	8	11	185	White Magick 4	30
+3	board_4.bin	Red Battlemage	8	12	213	Arcane Magick 2	50
+3	board_4.bin	Red Battlemage	8	13	186	White Magick 5	40
+3	board_4.bin	Red Battlemage	8	14	207	Green Magick 3	90
+3	board_4.bin	Red Battlemage	8	15	187	White Magick 6	50
+3	board_4.bin	Red Battlemage	8	16	214	Arcane Magick 3	110
+3	board_4.bin	Red Battlemage	9	3	235	Channeling	80
+3	board_4.bin	Red Battlemage	9	4	27	Zeromus	65
+3	board_4.bin	Red Battlemage	9	5	181	Ribbon	215
+3	board_4.bin	Red Battlemage	9	6	180	Accessories 20	115
+3	board_4.bin	Red Battlemage	9	9	212	Arcane Magick 1	40
+3	board_4.bin	Red Battlemage	9	10	198	Time Magick 1	20
+3	board_4.bin	Red Battlemage	9	14	22	Cúchulainn	50
+3	board_4.bin	Red Battlemage	10	5	353	Accessories 21	130
+3	board_4.bin	Red Battlemage	10	6	179	Accessories 19	100
+3	board_4.bin	Red Battlemage	10	9	31	Essentials	1
+3	board_4.bin	Red Battlemage	10	10	149	Mystic Armor 1	10
+3	board_4.bin	Red Battlemage	10	14	356	Black Magick 9	90
+3	board_4.bin	Red Battlemage	10	15	358	Black Magick 10	90
+3	board_4.bin	Red Battlemage	10	17	252	Battle Lore	30
+3	board_4.bin	Red Battlemage	10	18	253	Battle Lore	30
+3	board_4.bin	Red Battlemage	11	5	178	Accessories 18	80
+3	board_4.bin	Red Battlemage	11	6	172	Accessories 12	60
+3	board_4.bin	Red Battlemage	11	9	161	Accessories 1	5
+3	board_4.bin	Red Battlemage	11	10	106	Maces 1	30
+3	board_4.bin	Red Battlemage	11	17	23	Famfrit	100
+3	board_4.bin	Red Battlemage	12	5	175	Accessories 15	70
+3	board_4.bin	Red Battlemage	12	6	168	Accessories 8	45
+3	board_4.bin	Red Battlemage	12	7	166	Accessories 6	35
+3	board_4.bin	Red Battlemage	12	8	164	Accessories 4	35
+3	board_4.bin	Red Battlemage	12	9	162	Accessories 2	20
+3	board_4.bin	Red Battlemage	12	10	150	Mystic Armor 2	15
+3	board_4.bin	Red Battlemage	12	11	151	Mystic Armor 3	20
+3	board_4.bin	Red Battlemage	12	12	152	Mystic Armor 4	25
+3	board_4.bin	Red Battlemage	12	13	118	Shields 2	20
+3	board_4.bin	Red Battlemage	12	14	272	Gambit Slot	45
+3	board_4.bin	Red Battlemage	12	15	119	Shields 3	25
+3	board_4.bin	Red Battlemage	12	16	273	Gambit Slot	50
+3	board_4.bin	Red Battlemage	12	17	274	Gambit Slot	70
+3	board_4.bin	Red Battlemage	12	18	275	Gambit Slot	100
+3	board_4.bin	Red Battlemage	13	4	24	Zalera	30
+3	board_4.bin	Red Battlemage	13	5	177	Accessories 17	80
+3	board_4.bin	Red Battlemage	13	6	169	Accessories 9	30
+3	board_4.bin	Red Battlemage	13	7	167	Accessories 7	40
+3	board_4.bin	Red Battlemage	13	8	165	Accessories 5	35
+3	board_4.bin	Red Battlemage	13	9	163	Accessories 3	25
+3	board_4.bin	Red Battlemage	13	10	280	Charge	30
+3	board_4.bin	Red Battlemage	13	11	117	Shields 1	15
+3	board_4.bin	Red Battlemage	13	12	107	Maces 2	40
+3	board_4.bin	Red Battlemage	13	13	219	Warmage	30
+3	board_4.bin	Red Battlemage	13	14	153	Mystic Armor 5	30
+3	board_4.bin	Red Battlemage	13	15	154	Mystic Armor 6	40
+3	board_4.bin	Red Battlemage	13	16	155	Mystic Armor 7	50
+3	board_4.bin	Red Battlemage	13	17	156	Mystic Armor 8	60
+3	board_4.bin	Red Battlemage	13	18	120	Shields 4	30
+3	board_4.bin	Red Battlemage	14	7	20	Adrammelech	35
+3	board_4.bin	Red Battlemage	14	13	251	Battle Lore	30
+3	board_4.bin	Red Battlemage	14	14	263	+110 HP	40
+3	board_4.bin	Red Battlemage	14	17	157	Mystic Armor 9	70
+3	board_4.bin	Red Battlemage	14	18	121	Shields 5	35
+3	board_4.bin	Red Battlemage	15	9	332	Greatswords 4	100
+3	board_4.bin	Red Battlemage	15	13	108	Maces 3	60
+3	board_4.bin	Red Battlemage	15	14	245	Ether Lore 1	20
+3	board_4.bin	Red Battlemage	15	17	158	Mystic Armor 10	75
+3	board_4.bin	Red Battlemage	15	18	122	Shields 6	40
+3	board_4.bin	Red Battlemage	15	20	41	Greatswords 2	70
+3	board_4.bin	Red Battlemage	16	6	305	+435 HP	130
+3	board_4.bin	Red Battlemage	16	9	30	Zodiark	200
+3	board_4.bin	Red Battlemage	16	13	221	Inquisitor	30
+3	board_4.bin	Red Battlemage	16	14	224	Spellbreaker	65
+3	board_4.bin	Red Battlemage	16	17	159	Mystic Armor 11	80
+3	board_4.bin	Red Battlemage	16	18	348	Shields 7	65
+3	board_4.bin	Red Battlemage	16	19	29	Ultima	115
+3	board_4.bin	Red Battlemage	16	20	40	Greatswords 1	50
+3	board_4.bin	Red Battlemage	17	6	3	Quickening	125
+3	board_4.bin	Red Battlemage	17	7	123	Ensanguined Shield	100
+3	board_4.bin	Red Battlemage	17	8	323	Magick Lore	70
+3	board_4.bin	Red Battlemage	17	9	322	Magick Lore	70
+3	board_4.bin	Red Battlemage	17	10	319	Magick Lore	50
+3	board_4.bin	Red Battlemage	17	11	318	Magick Lore	50
+3	board_4.bin	Red Battlemage	17	12	257	Magick Lore	30
+3	board_4.bin	Red Battlemage	17	13	109	Maces 4	80
+3	board_4.bin	Red Battlemage	17	14	233	Channeling	30
+3	board_4.bin	Red Battlemage	17	17	160	Mystic Armor 12	90
+3	board_4.bin	Red Battlemage	17	18	124	Shell Shield	90
+3	board_4.bin	Red Battlemage	18	7	125	Zodiac Escutcheon	235
+3	board_4.bin	Red Battlemage	18	8	324	Magick Lore	70
+3	board_4.bin	Red Battlemage	18	9	321	Magick Lore	70
+3	board_4.bin	Red Battlemage	18	10	320	Magick Lore	50
+3	board_4.bin	Red Battlemage	18	11	260	Magick Lore	50
+3	board_4.bin	Red Battlemage	18	12	259	Magick Lore	30
+3	board_4.bin	Red Battlemage	18	13	256	Magick Lore	30
+3	board_4.bin	Red Battlemage	18	14	265	+190 HP	60
+3	board_4.bin	Red Battlemage	18	15	236	Swiftness	30
+3	board_4.bin	Red Battlemage	18	16	226	Serenity	70
+3	board_4.bin	Red Battlemage	18	17	352	Mystic Armor 13	110
+3	board_4.bin	Red Battlemage	18	18	282	Souleater	35
+3	board_4.bin	Red Battlemage	19	11	2	Quickening	100
+3	board_4.bin	Red Battlemage	19	13	258	Magick Lore	30
+3	board_4.bin	Red Battlemage	19	14	110	Maces 5	130
+3	board_4.bin	Red Battlemage	19	15	234	Channeling	50
+3	board_4.bin	Red Battlemage	19	16	222	Headsman	30
+3	board_4.bin	Red Battlemage	19	17	301	+270 HP	80
+3	board_4.bin	Red Battlemage	19	18	228	Spellbound	30
+3	board_4.bin	Red Battlemage	20	16	26	Chaos	100
+3	board_4.bin	Red Battlemage	21	16	42	Greatswords 3	80
+4	board_5.bin	Knight	4	15	243	Potion Lore 2	35
+4	board_5.bin	Knight	5	7	282	Souleater	35
+4	board_5.bin	Knight	5	8	223	Adrenaline	65
+4	board_5.bin	Knight	5	9	222	Headsman	30
+4	board_5.bin	Knight	5	11	1	Quickening	75
+4	board_5.bin	Knight	5	15	25	Shemhazai	50
+4	board_5.bin	Knight	6	7	301	+270 HP	80
+4	board_5.bin	Knight	6	8	129	Heavy Armor 4	40
+4	board_5.bin	Knight	6	9	230	Shield Block	25
+4	board_5.bin	Knight	6	10	130	Heavy Armor 5	50
+4	board_5.bin	Knight	6	11	251	Battle Lore	30
+4	board_5.bin	Knight	6	12	131	Heavy Armor 6	55
+4	board_5.bin	Knight	6	13	252	Battle Lore	30
+4	board_5.bin	Knight	6	14	132	Heavy Armor 7	60
+4	board_5.bin	Knight	6	15	253	Battle Lore	30
+4	board_5.bin	Knight	6	16	133	Heavy Armor 8	65
+4	board_5.bin	Knight	7	5	188	White Magick 7	60
+4	board_5.bin	Knight	7	7	271	Gambit Slot	40
+4	board_5.bin	Knight	7	8	220	Martyr	30
+4	board_5.bin	Knight	7	9	34	Swords 3	35
+4	board_5.bin	Knight	7	10	119	Shields 3	25
+4	board_5.bin	Knight	7	11	35	Swords 4	50
+4	board_5.bin	Knight	7	12	120	Shields 4	30
+4	board_5.bin	Knight	7	13	36	Swords 5	55
+4	board_5.bin	Knight	7	14	121	Shields 5	35
+4	board_5.bin	Knight	7	15	37	Swords 6	60
+4	board_5.bin	Knight	7	16	254	Battle Lore	30
+4	board_5.bin	Knight	8	5	187	White Magick 6	50
+4	board_5.bin	Knight	8	6	19	Mateus	30
+4	board_5.bin	Knight	8	7	270	Gambit Slot	35
+4	board_5.bin	Knight	8	8	128	Heavy Armor 3	35
+4	board_5.bin	Knight	8	9	118	Shields 2	20
+4	board_5.bin	Knight	8	15	122	Shields 6	40
+4	board_5.bin	Knight	8	16	134	Heavy Armor 9	70
+4	board_5.bin	Knight	8	17	2	Quickening	100
+4	board_5.bin	Knight	9	7	269	Gambit Slot	30
+4	board_5.bin	Knight	9	8	300	+230 HP	70
+4	board_5.bin	Knight	9	9	33	Swords 2	25
+4	board_5.bin	Knight	9	10	18	Belias	20
+4	board_5.bin	Knight	9	11	242	Potion Lore 1	20
+4	board_5.bin	Knight	9	15	38	Swords 7	70
+4	board_5.bin	Knight	9	16	255	Battle Lore	50
+4	board_5.bin	Knight	10	7	268	Gambit Slot	25
+4	board_5.bin	Knight	10	8	127	Heavy Armor 2	30
+4	board_5.bin	Knight	10	9	117	Shields 1	15
+4	board_5.bin	Knight	10	10	360	Second Board	30
+4	board_5.bin	Knight	10	13	312	Battle Lore	70
+4	board_5.bin	Knight	10	14	22	Cúchulainn	50
+4	board_5.bin	Knight	10	15	348	Shields 7	65
+4	board_5.bin	Knight	10	16	40	Greatswords 1	50
+4	board_5.bin	Knight	11	7	267	Gambit Slot	20
+4	board_5.bin	Knight	11	8	221	Inquisitor	30
+4	board_5.bin	Knight	11	9	32	Swords 1	15
+4	board_5.bin	Knight	11	15	329	Swords 8	80
+4	board_5.bin	Knight	11	16	135	Heavy Armor 10	80
+4	board_5.bin	Knight	11	17	28	Exodus	65
+4	board_5.bin	Knight	11	18	303	+350 HP	100
+4	board_5.bin	Knight	12	5	265	+190 HP	60
+4	board_5.bin	Knight	12	6	263	+110 HP	40
+4	board_5.bin	Knight	12	7	262	+70 HP	30
+4	board_5.bin	Knight	12	8	126	Heavy Armor 1	25
+4	board_5.bin	Knight	12	9	31	Essentials	1
+4	board_5.bin	Knight	12	10	161	Accessories 1	5
+4	board_5.bin	Knight	12	11	162	Accessories 2	20
+4	board_5.bin	Knight	12	15	231	Shield Block	45
+4	board_5.bin	Knight	12	16	41	Greatswords 2	70
+4	board_5.bin	Knight	13	5	272	Gambit Slot	45
+4	board_5.bin	Knight	13	6	227	Last Stand	70
+4	board_5.bin	Knight	13	7	261	+30 HP	20
+4	board_5.bin	Knight	13	8	266	Gambit Slot	15
+4	board_5.bin	Knight	13	9	278	First Aid	20
+4	board_5.bin	Knight	13	10	163	Accessories 3	25
+4	board_5.bin	Knight	13	11	164	Accessories 4	35
+4	board_5.bin	Knight	13	15	330	Swords 9	90
+4	board_5.bin	Knight	13	16	307	Battle Lore	50
+4	board_5.bin	Knight	13	18	23	Famfrit	100
+4	board_5.bin	Knight	14	5	273	Gambit Slot	50
+4	board_5.bin	Knight	14	6	264	+150 HP	50
+4	board_5.bin	Knight	14	10	165	Accessories 5	35
+4	board_5.bin	Knight	14	11	166	Accessories 6	35
+4	board_5.bin	Knight	14	12	0	Quickening	50
+4	board_5.bin	Knight	14	15	302	+310 HP	90
+4	board_5.bin	Knight	14	16	42	Greatswords 3	80
+4	board_5.bin	Knight	14	17	349	Heavy Armor 11	90
+4	board_5.bin	Knight	14	18	332	Greatswords 4	100
+4	board_5.bin	Knight	14	19	350	Heavy Armor 12	110
+4	board_5.bin	Knight	15	5	274	Gambit Slot	70
+4	board_5.bin	Knight	15	6	290	Infuse	30
+4	board_5.bin	Knight	15	10	167	Accessories 7	40
+4	board_5.bin	Knight	15	11	168	Accessories 8	45
+4	board_5.bin	Knight	15	14	27	Zeromus	65
+4	board_5.bin	Knight	15	15	228	Spellbound	30
+4	board_5.bin	Knight	15	16	308	Battle Lore	50
+4	board_5.bin	Knight	15	17	124	Shell Shield	90
+4	board_5.bin	Knight	15	18	310	Battle Lore	70
+4	board_5.bin	Knight	15	19	43	Excalibur	135
+4	board_5.bin	Knight	15	21	313	Battle Lore	70
+4	board_5.bin	Knight	16	5	275	Gambit Slot	100
+4	board_5.bin	Knight	16	6	225	Focus	70
+4	board_5.bin	Knight	16	8	24	Zalera	30
+4	board_5.bin	Knight	16	10	169	Accessories 9	30
+4	board_5.bin	Knight	16	11	170	Accessories 10	40
+4	board_5.bin	Knight	16	12	20	Adrammelech	35
+4	board_5.bin	Knight	16	15	232	Shield Block	75
+4	board_5.bin	Knight	16	16	289	Sight Unseeing	40
+4	board_5.bin	Knight	16	17	309	Battle Lore	50
+4	board_5.bin	Knight	16	18	311	Battle Lore	70
+4	board_5.bin	Knight	16	19	136	Genji Armor	190
+4	board_5.bin	Knight	16	20	29	Ultima	115
+4	board_5.bin	Knight	16	21	299	Telekinesis	80
+4	board_5.bin	Knight	17	5	39	Blood Sword	50
+4	board_5.bin	Knight	17	6	353	Accessories 21	130
+4	board_5.bin	Knight	17	7	179	Accessories 19	100
+4	board_5.bin	Knight	17	8	177	Accessories 17	80
+4	board_5.bin	Knight	17	9	173	Accessories 13	60
+4	board_5.bin	Knight	17	10	171	Accessories 11	45
+4	board_5.bin	Knight	17	11	172	Accessories 12	60
+4	board_5.bin	Knight	17	15	331	Karkata	80
+4	board_5.bin	Knight	17	16	123	Ensanguined Shield	100
+4	board_5.bin	Knight	17	17	236	Swiftness	30
+4	board_5.bin	Knight	17	18	125	Zodiac Escutcheon	235
+4	board_5.bin	Knight	17	19	44	Tournesol	225
+4	board_5.bin	Knight	18	5	181	Ribbon	215
+4	board_5.bin	Knight	18	6	354	Accessories 22	160
+4	board_5.bin	Knight	18	7	180	Accessories 20	115
+4	board_5.bin	Knight	18	8	178	Accessories 18	80
+4	board_5.bin	Knight	18	9	176	Accessories 16	70
+4	board_5.bin	Knight	18	10	174	Accessories 14	70
+4	board_5.bin	Knight	18	11	175	Accessories 15	70
+4	board_5.bin	Knight	18	16	26	Chaos	100
+4	board_5.bin	Knight	18	17	3	Quickening	125
+4	board_5.bin	Knight	18	18	30	Zodiark	200
+4	board_5.bin	Knight	19	6	21	Hashmal	50
+4	board_5.bin	Knight	19	16	304	+390 HP	115
+4	board_5.bin	Knight	19	17	296	Revive	40
+4	board_5.bin	Knight	19	18	333	Excalipur	150
+4	board_5.bin	Knight	20	6	189	White Magick 8	70
+4	board_5.bin	Knight	20	7	355	White Magick 9	80
+5	board_6.bin	Monk	5	7	22	Cúchulainn	50
+5	board_6.bin	Monk	5	12	18	Belias	20
+5	board_6.bin	Monk	5	13	360	Second Board	30
+5	board_6.bin	Monk	6	6	229	Brawler	90
+5	board_6.bin	Monk	6	7	254	Battle Lore	30
+5	board_6.bin	Monk	6	9	221	Inquisitor	30
+5	board_6.bin	Monk	6	10	220	Martyr	30
+5	board_6.bin	Monk	6	12	278	First Aid	20
+5	board_6.bin	Monk	6	13	277	Libra	25
+5	board_6.bin	Monk	7	6	255	Battle Lore	50
+5	board_6.bin	Monk	7	7	140	Light Armor 4	25
+5	board_6.bin	Monk	7	8	139	Light Armor 3	20
+5	board_6.bin	Monk	7	9	138	Light Armor 2	15
+5	board_6.bin	Monk	7	10	137	Light Armor 1	10
+5	board_6.bin	Monk	7	11	266	Gambit Slot	15
+5	board_6.bin	Monk	7	12	267	Gambit Slot	20
+5	board_6.bin	Monk	7	13	268	Gambit Slot	25
+5	board_6.bin	Monk	7	14	0	Quickening	50
+5	board_6.bin	Monk	8	4	283	Traveler	50
+5	board_6.bin	Monk	8	5	24	Zalera	30
+5	board_6.bin	Monk	8	6	253	Battle Lore	30
+5	board_6.bin	Monk	8	7	141	Light Armor 5	30
+5	board_6.bin	Monk	8	8	251	Battle Lore	30
+5	board_6.bin	Monk	8	9	261	+30 HP	20
+5	board_6.bin	Monk	8	10	31	Essentials	1
+5	board_6.bin	Monk	8	11	161	Accessories 1	5
+5	board_6.bin	Monk	8	12	162	Accessories 2	20
+5	board_6.bin	Monk	8	13	269	Gambit Slot	30
+5	board_6.bin	Monk	9	6	252	Battle Lore	30
+5	board_6.bin	Monk	9	7	142	Light Armor 6	40
+5	board_6.bin	Monk	9	9	262	+70 HP	30
+5	board_6.bin	Monk	9	10	60	Poles 1	20
+5	board_6.bin	Monk	9	12	163	Accessories 3	25
+5	board_6.bin	Monk	9	13	270	Gambit Slot	35
+5	board_6.bin	Monk	9	15	20	Adrammelech	35
+5	board_6.bin	Monk	9	18	249	Phoenix Lore	50
+5	board_6.bin	Monk	10	4	355	White Magick 9	80
+5	board_6.bin	Monk	10	5	1	Quickening	75
+5	board_6.bin	Monk	10	6	284	Numerology	40
+5	board_6.bin	Monk	10	7	143	Light Armor 7	50
+5	board_6.bin	Monk	10	9	263	+110 HP	40
+5	board_6.bin	Monk	10	10	61	Poles 2	30
+5	board_6.bin	Monk	10	12	164	Accessories 4	35
+5	board_6.bin	Monk	10	13	242	Potion Lore 1	20
+5	board_6.bin	Monk	10	14	271	Gambit Slot	40
+5	board_6.bin	Monk	10	15	225	Focus	70
+5	board_6.bin	Monk	10	16	272	Gambit Slot	45
+5	board_6.bin	Monk	10	17	273	Gambit Slot	50
+5	board_6.bin	Monk	10	18	3	Quickening	125
+5	board_6.bin	Monk	11	6	307	Battle Lore	50
+5	board_6.bin	Monk	11	7	144	Light Armor 8	60
+5	board_6.bin	Monk	11	9	264	+150 HP	50
+5	board_6.bin	Monk	11	10	62	Poles 3	35
+5	board_6.bin	Monk	11	12	165	Accessories 5	35
+5	board_6.bin	Monk	11	13	248	Phoenix Lore	30
+5	board_6.bin	Monk	11	14	227	Last Stand	70
+5	board_6.bin	Monk	11	15	228	Spellbound	30
+5	board_6.bin	Monk	11	16	302	+310 HP	90
+5	board_6.bin	Monk	11	17	274	Gambit Slot	70
+5	board_6.bin	Monk	11	18	27	Zeromus	65
+5	board_6.bin	Monk	11	19	289	Sight Unseeing	40
+5	board_6.bin	Monk	12	4	185	White Magick 4	30
+5	board_6.bin	Monk	12	5	21	Hashmal	50
+5	board_6.bin	Monk	12	6	222	Headsman	30
+5	board_6.bin	Monk	12	7	145	Light Armor 9	70
+5	board_6.bin	Monk	12	9	265	+190 HP	60
+5	board_6.bin	Monk	12	10	63	Poles 4	40
+5	board_6.bin	Monk	12	12	166	Accessories 6	35
+5	board_6.bin	Monk	12	13	167	Accessories 7	40
+5	board_6.bin	Monk	12	16	303	+350 HP	100
+5	board_6.bin	Monk	12	17	275	Gambit Slot	100
+5	board_6.bin	Monk	13	6	308	Battle Lore	50
+5	board_6.bin	Monk	13	7	146	Light Armor 10	75
+5	board_6.bin	Monk	13	9	243	Potion Lore 2	35
+5	board_6.bin	Monk	13	10	64	Poles 5	50
+5	board_6.bin	Monk	13	12	168	Accessories 8	45
+5	board_6.bin	Monk	13	13	169	Accessories 9	30
+5	board_6.bin	Monk	13	15	2	Quickening	100
+5	board_6.bin	Monk	13	16	304	+390 HP	115
+5	board_6.bin	Monk	13	17	236	Swiftness	30
+5	board_6.bin	Monk	13	18	26	Chaos	100
+5	board_6.bin	Monk	13	19	209	White Magick 11	100
+5	board_6.bin	Monk	14	4	244	Potion Lore 3	70
+5	board_6.bin	Monk	14	5	25	Shemhazai	50
+5	board_6.bin	Monk	14	6	309	Battle Lore	50
+5	board_6.bin	Monk	14	7	147	Light Armor 11	80
+5	board_6.bin	Monk	14	9	300	+230 HP	70
+5	board_6.bin	Monk	14	10	338	Poles 6	60
+5	board_6.bin	Monk	14	12	170	Accessories 10	40
+5	board_6.bin	Monk	14	13	171	Accessories 11	45
+5	board_6.bin	Monk	14	14	19	Mateus	30
+5	board_6.bin	Monk	14	16	306	+500 HP	220
+5	board_6.bin	Monk	14	17	312	Battle Lore	70
+5	board_6.bin	Monk	14	19	210	White Magick 12	110
+5	board_6.bin	Monk	15	6	310	Battle Lore	70
+5	board_6.bin	Monk	15	7	148	Light Armor 12	90
+5	board_6.bin	Monk	15	9	296	Revive	40
+5	board_6.bin	Monk	15	10	292	Bonecrusher	30
+5	board_6.bin	Monk	15	12	172	Accessories 12	60
+5	board_6.bin	Monk	15	13	173	Accessories 13	60
+5	board_6.bin	Monk	15	16	354	Accessories 22	160
+5	board_6.bin	Monk	15	17	313	Battle Lore	70
+5	board_6.bin	Monk	16	6	311	Battle Lore	70
+5	board_6.bin	Monk	16	7	351	Light Armor 13	110
+5	board_6.bin	Monk	16	9	301	+270 HP	80
+5	board_6.bin	Monk	16	10	65	Whale Whisker	90
+5	board_6.bin	Monk	16	12	286	Achilles	40
+5	board_6.bin	Monk	16	13	174	Accessories 14	70
+5	board_6.bin	Monk	16	14	175	Accessories 15	70
+5	board_6.bin	Monk	16	15	177	Accessories 17	80
+5	board_6.bin	Monk	16	16	179	Accessories 19	100
+5	board_6.bin	Monk	16	17	181	Ribbon	215
+5	board_6.bin	Monk	16	18	315	Battle Lore	100
+5	board_6.bin	Monk	16	19	29	Ultima	115
+5	board_6.bin	Monk	16	20	237	Swiftness	50
+5	board_6.bin	Monk	17	6	298	Wither	50
+5	board_6.bin	Monk	17	7	305	+435 HP	130
+5	board_6.bin	Monk	17	9	295	Expose	50
+5	board_6.bin	Monk	17	10	339	Kanya	180
+5	board_6.bin	Monk	17	12	223	Adrenaline	65
+5	board_6.bin	Monk	17	13	293	Shades of Black	70
+5	board_6.bin	Monk	17	14	176	Accessories 16	70
+5	board_6.bin	Monk	17	15	178	Accessories 18	80
+5	board_6.bin	Monk	17	16	180	Accessories 20	115
+5	board_6.bin	Monk	17	17	353	Accessories 21	130
+5	board_6.bin	Monk	17	18	316	Battle Lore	100
+5	board_6.bin	Monk	17	20	238	Swiftness	80
+5	board_6.bin	Monk	18	9	28	Exodus	65
+5	board_6.bin	Monk	18	13	23	Famfrit	100
+5	board_6.bin	Monk	18	16	314	Battle Lore	100
+5	board_6.bin	Monk	18	17	317	Battle Lore	100
+5	board_6.bin	Monk	19	9	282	Souleater	35
+5	board_6.bin	Monk	19	13	208	White Magick 10	90
+5	board_6.bin	Monk	19	15	211	White Magick 13	155
+5	board_6.bin	Monk	19	16	30	Zodiark	200
+6	board_7.bin	Time Battlemage	4	9	235	Channeling	80
+6	board_7.bin	Time Battlemage	4	11	264	+150 HP	50
+6	board_7.bin	Time Battlemage	4	13	185	White Magick 4	30
+6	board_7.bin	Time Battlemage	5	9	21	Hashmal	50
+6	board_7.bin	Time Battlemage	5	11	1	Quickening	75
+6	board_7.bin	Time Battlemage	5	13	20	Adrammelech	35
+6	board_7.bin	Time Battlemage	6	7	273	Gambit Slot	50
+6	board_7.bin	Time Battlemage	6	8	233	Channeling	30
+6	board_7.bin	Time Battlemage	6	9	318	Magick Lore	50
+6	board_7.bin	Time Battlemage	6	10	219	Warmage	30
+6	board_7.bin	Time Battlemage	6	11	260	Magick Lore	50
+6	board_7.bin	Time Battlemage	6	12	280	Charge	30
+6	board_7.bin	Time Battlemage	6	13	259	Magick Lore	30
+6	board_7.bin	Time Battlemage	6	14	258	Magick Lore	30
+6	board_7.bin	Time Battlemage	6	15	279	Poach	30
+6	board_7.bin	Time Battlemage	6	16	224	Spellbreaker	65
+6	board_7.bin	Time Battlemage	7	5	311	Battle Lore	70
+6	board_7.bin	Time Battlemage	7	6	28	Exodus	65
+6	board_7.bin	Time Battlemage	7	7	274	Gambit Slot	70
+6	board_7.bin	Time Battlemage	7	8	222	Headsman	30
+6	board_7.bin	Time Battlemage	7	9	131	Heavy Armor 6	55
+6	board_7.bin	Time Battlemage	7	10	203	Time Magick 6	70
+6	board_7.bin	Time Battlemage	7	11	236	Swiftness	30
+6	board_7.bin	Time Battlemage	7	12	130	Heavy Armor 5	50
+6	board_7.bin	Time Battlemage	7	13	202	Time Magick 5	60
+6	board_7.bin	Time Battlemage	7	14	129	Heavy Armor 4	40
+6	board_7.bin	Time Battlemage	7	15	246	Ether Lore 2	35
+6	board_7.bin	Time Battlemage	7	16	272	Gambit Slot	45
+6	board_7.bin	Time Battlemage	8	7	275	Gambit Slot	100
+6	board_7.bin	Time Battlemage	8	8	319	Magick Lore	50
+6	board_7.bin	Time Battlemage	8	9	204	Time Magick 7	80
+6	board_7.bin	Time Battlemage	8	11	24	Zalera	30
+6	board_7.bin	Time Battlemage	8	14	257	Magick Lore	30
+6	board_7.bin	Time Battlemage	8	15	201	Time Magick 4	50
+6	board_7.bin	Time Battlemage	8	16	271	Gambit Slot	40
+6	board_7.bin	Time Battlemage	8	17	19	Mateus	30
+6	board_7.bin	Time Battlemage	8	18	300	+230 HP	70
+6	board_7.bin	Time Battlemage	9	7	265	+190 HP	60
+6	board_7.bin	Time Battlemage	9	8	240	Remedy Lore 2	30
+6	board_7.bin	Time Battlemage	9	9	132	Heavy Armor 7	60
+6	board_7.bin	Time Battlemage	9	11	247	Ether Lore 3	70
+6	board_7.bin	Time Battlemage	9	13	360	Second Board	30
+6	board_7.bin	Time Battlemage	9	14	128	Heavy Armor 3	35
+6	board_7.bin	Time Battlemage	9	15	200	Time Magick 3	40
+6	board_7.bin	Time Battlemage	9	16	270	Gambit Slot	35
+6	board_7.bin	Time Battlemage	10	6	2	Quickening	100
+6	board_7.bin	Time Battlemage	10	7	281	Horology	50
+6	board_7.bin	Time Battlemage	10	8	227	Last Stand	70
+6	board_7.bin	Time Battlemage	10	9	133	Heavy Armor 8	65
+6	board_7.bin	Time Battlemage	10	13	18	Belias	20
+6	board_7.bin	Time Battlemage	10	14	127	Heavy Armor 2	30
+6	board_7.bin	Time Battlemage	10	15	199	Time Magick 2	30
+6	board_7.bin	Time Battlemage	10	16	269	Gambit Slot	30
+6	board_7.bin	Time Battlemage	10	17	0	Quickening	50
+6	board_7.bin	Time Battlemage	11	7	228	Spellbound	30
+6	board_7.bin	Time Battlemage	11	8	320	Magick Lore	50
+6	board_7.bin	Time Battlemage	11	9	357	Time Magick 8	90
+6	board_7.bin	Time Battlemage	11	14	256	Magick Lore	30
+6	board_7.bin	Time Battlemage	11	15	198	Time Magick 1	20
+6	board_7.bin	Time Battlemage	11	16	267	Gambit Slot	20
+6	board_7.bin	Time Battlemage	12	4	312	Battle Lore	70
+6	board_7.bin	Time Battlemage	12	5	23	Famfrit	100
+6	board_7.bin	Time Battlemage	12	7	245	Ether Lore 1	20
+6	board_7.bin	Time Battlemage	12	8	226	Serenity	70
+6	board_7.bin	Time Battlemage	12	9	134	Heavy Armor 9	70
+6	board_7.bin	Time Battlemage	12	10	27	Zeromus	65
+6	board_7.bin	Time Battlemage	12	11	291	Addle	50
+6	board_7.bin	Time Battlemage	12	12	285	Shear	50
+6	board_7.bin	Time Battlemage	12	14	126	Heavy Armor 1	25
+6	board_7.bin	Time Battlemage	12	15	31	Essentials	1
+6	board_7.bin	Time Battlemage	12	16	266	Gambit Slot	15
+6	board_7.bin	Time Battlemage	13	5	321	Magick Lore	70
+6	board_7.bin	Time Battlemage	13	6	350	Heavy Armor 12	110
+6	board_7.bin	Time Battlemage	13	7	294	Stamp	40
+6	board_7.bin	Time Battlemage	13	8	218	Time Magick 9	100
+6	board_7.bin	Time Battlemage	13	9	135	Heavy Armor 10	80
+6	board_7.bin	Time Battlemage	13	14	220	Martyr	30
+6	board_7.bin	Time Battlemage	13	15	161	Accessories 1	5
+6	board_7.bin	Time Battlemage	13	16	162	Accessories 2	20
+6	board_7.bin	Time Battlemage	13	17	221	Inquisitor	30
+6	board_7.bin	Time Battlemage	13	18	239	Remedy Lore 1	20
+6	board_7.bin	Time Battlemage	14	5	238	Swiftness	80
+6	board_7.bin	Time Battlemage	14	6	359	Time Magick 10	125
+6	board_7.bin	Time Battlemage	14	7	349	Heavy Armor 11	90
+6	board_7.bin	Time Battlemage	14	8	234	Channeling	50
+6	board_7.bin	Time Battlemage	14	9	237	Swiftness	50
+6	board_7.bin	Time Battlemage	14	11	301	+270 HP	80
+6	board_7.bin	Time Battlemage	14	14	268	Gambit Slot	25
+6	board_7.bin	Time Battlemage	14	15	73	Crossbows 1	25
+6	board_7.bin	Time Battlemage	14	16	163	Accessories 3	25
+6	board_7.bin	Time Battlemage	14	17	164	Accessories 4	35
+6	board_7.bin	Time Battlemage	14	18	74	Crossbows 2	40
+6	board_7.bin	Time Battlemage	15	11	26	Chaos	100
+6	board_7.bin	Time Battlemage	15	17	165	Accessories 5	35
+6	board_7.bin	Time Battlemage	16	6	180	Accessories 20	115
+6	board_7.bin	Time Battlemage	16	7	178	Accessories 18	80
+6	board_7.bin	Time Battlemage	16	8	176	Accessories 16	70
+6	board_7.bin	Time Battlemage	16	9	174	Accessories 14	70
+6	board_7.bin	Time Battlemage	16	10	173	Accessories 13	60
+6	board_7.bin	Time Battlemage	16	11	172	Accessories 12	60
+6	board_7.bin	Time Battlemage	16	12	171	Accessories 11	45
+6	board_7.bin	Time Battlemage	16	13	170	Accessories 10	40
+6	board_7.bin	Time Battlemage	16	14	169	Accessories 9	30
+6	board_7.bin	Time Battlemage	16	15	168	Accessories 8	45
+6	board_7.bin	Time Battlemage	16	16	167	Accessories 7	40
+6	board_7.bin	Time Battlemage	16	17	166	Accessories 6	35
+6	board_7.bin	Time Battlemage	17	5	354	Accessories 22	160
+6	board_7.bin	Time Battlemage	17	6	353	Accessories 21	130
+6	board_7.bin	Time Battlemage	17	7	179	Accessories 19	100
+6	board_7.bin	Time Battlemage	17	8	177	Accessories 17	80
+6	board_7.bin	Time Battlemage	17	9	175	Accessories 15	70
+6	board_7.bin	Time Battlemage	17	10	76	Crossbows 4	115
+6	board_7.bin	Time Battlemage	17	11	308	Battle Lore	50
+6	board_7.bin	Time Battlemage	17	12	307	Battle Lore	50
+6	board_7.bin	Time Battlemage	17	13	255	Battle Lore	50
+6	board_7.bin	Time Battlemage	17	14	254	Battle Lore	30
+6	board_7.bin	Time Battlemage	17	15	253	Battle Lore	30
+6	board_7.bin	Time Battlemage	17	16	252	Battle Lore	30
+6	board_7.bin	Time Battlemage	17	17	251	Battle Lore	30
+6	board_7.bin	Time Battlemage	17	18	263	+110 HP	40
+6	board_7.bin	Time Battlemage	18	5	181	Ribbon	215
+6	board_7.bin	Time Battlemage	18	6	310	Battle Lore	70
+6	board_7.bin	Time Battlemage	18	7	309	Battle Lore	50
+6	board_7.bin	Time Battlemage	18	8	207	Green Magick 3	90
+6	board_7.bin	Time Battlemage	18	10	29	Ultima	115
+6	board_7.bin	Time Battlemage	18	13	22	Cúchulainn	50
+6	board_7.bin	Time Battlemage	18	15	206	Green Magick 2	50
+6	board_7.bin	Time Battlemage	18	16	75	Crossbows 3	60
+6	board_7.bin	Time Battlemage	18	17	205	Green Magick 1	40
+6	board_7.bin	Time Battlemage	18	18	284	Numerology	40
+6	board_7.bin	Time Battlemage	18	19	25	Shemhazai	50
+6	board_7.bin	Time Battlemage	19	6	30	Zodiark	200
+6	board_7.bin	Time Battlemage	19	8	3	Quickening	125
+6	board_7.bin	Time Battlemage	19	10	38	Swords 7	70
+6	board_7.bin	Time Battlemage	20	6	330	Swords 9	90
+6	board_7.bin	Time Battlemage	20	10	329	Swords 8	80
+7	board_8.bin	Foebreaker	4	8	293	Shades of Black	70
+7	board_8.bin	Foebreaker	4	10	237	Swiftness	50
+7	board_8.bin	Foebreaker	5	8	22	Cúchulainn	50
+7	board_8.bin	Foebreaker	5	10	21	Hashmal	50
+7	board_8.bin	Foebreaker	5	11	1	Quickening	75
+7	board_8.bin	Foebreaker	5	14	0	Quickening	50
+7	board_8.bin	Foebreaker	6	7	124	Shell Shield	90
+7	board_8.bin	Foebreaker	6	8	227	Last Stand	70
+7	board_8.bin	Foebreaker	6	10	285	Shear	50
+7	board_8.bin	Foebreaker	6	11	220	Martyr	30
+7	board_8.bin	Foebreaker	6	13	268	Gambit Slot	25
+7	board_8.bin	Foebreaker	6	14	269	Gambit Slot	30
+7	board_8.bin	Foebreaker	7	6	25	Shemhazai	50
+7	board_8.bin	Foebreaker	7	7	274	Gambit Slot	70
+7	board_8.bin	Foebreaker	7	8	273	Gambit Slot	50
+7	board_8.bin	Foebreaker	7	9	272	Gambit Slot	45
+7	board_8.bin	Foebreaker	7	10	271	Gambit Slot	40
+7	board_8.bin	Foebreaker	7	11	270	Gambit Slot	35
+7	board_8.bin	Foebreaker	7	12	290	Infuse	30
+7	board_8.bin	Foebreaker	7	13	266	Gambit Slot	15
+7	board_8.bin	Foebreaker	7	14	267	Gambit Slot	20
+7	board_8.bin	Foebreaker	8	7	131	Heavy Armor 6	55
+7	board_8.bin	Foebreaker	8	8	130	Heavy Armor 5	50
+7	board_8.bin	Foebreaker	8	9	129	Heavy Armor 4	40
+7	board_8.bin	Foebreaker	8	10	128	Heavy Armor 3	35
+7	board_8.bin	Foebreaker	8	11	127	Heavy Armor 2	30
+7	board_8.bin	Foebreaker	8	12	126	Heavy Armor 1	25
+7	board_8.bin	Foebreaker	8	13	31	Essentials	1
+7	board_8.bin	Foebreaker	8	14	161	Accessories 1	5
+7	board_8.bin	Foebreaker	9	5	304	+390 HP	115
+7	board_8.bin	Foebreaker	9	6	2	Quickening	100
+7	board_8.bin	Foebreaker	9	7	132	Heavy Armor 7	60
+7	board_8.bin	Foebreaker	9	8	88	Axes & Hammers 6	65
+7	board_8.bin	Foebreaker	9	9	87	Axes & Hammers 5	60
+7	board_8.bin	Foebreaker	9	10	86	Axes & Hammers 4	50
+7	board_8.bin	Foebreaker	9	11	85	Axes & Hammers 3	35
+7	board_8.bin	Foebreaker	9	12	84	Axes & Hammers 2	25
+7	board_8.bin	Foebreaker	9	13	83	Axes & Hammers 1	20
+7	board_8.bin	Foebreaker	9	14	162	Accessories 2	20
+7	board_8.bin	Foebreaker	10	7	133	Heavy Armor 8	65
+7	board_8.bin	Foebreaker	10	8	89	Axes & Hammers 7	85
+7	board_8.bin	Foebreaker	10	10	221	Inquisitor	30
+7	board_8.bin	Foebreaker	10	11	117	Shields 1	15
+7	board_8.bin	Foebreaker	10	13	261	+30 HP	20
+7	board_8.bin	Foebreaker	10	14	163	Accessories 3	25
+7	board_8.bin	Foebreaker	10	15	18	Belias	20
+7	board_8.bin	Foebreaker	10	16	281	Horology	50
+7	board_8.bin	Foebreaker	11	7	134	Heavy Armor 9	70
+7	board_8.bin	Foebreaker	11	8	343	Vrscika	175
+7	board_8.bin	Foebreaker	11	10	230	Shield Block	25
+7	board_8.bin	Foebreaker	11	11	118	Shields 2	20
+7	board_8.bin	Foebreaker	11	13	251	Battle Lore	30
+7	board_8.bin	Foebreaker	11	14	164	Accessories 4	35
+7	board_8.bin	Foebreaker	11	15	360	Second Board	30
+7	board_8.bin	Foebreaker	11	19	238	Swiftness	80
+7	board_8.bin	Foebreaker	12	7	135	Heavy Armor 10	80
+7	board_8.bin	Foebreaker	12	8	275	Gambit Slot	100
+7	board_8.bin	Foebreaker	12	10	223	Adrenaline	65
+7	board_8.bin	Foebreaker	12	11	119	Shields 3	25
+7	board_8.bin	Foebreaker	12	13	262	+70 HP	30
+7	board_8.bin	Foebreaker	12	14	165	Accessories 5	35
+7	board_8.bin	Foebreaker	12	19	29	Ultima	115
+7	board_8.bin	Foebreaker	13	5	256	Magick Lore	30
+7	board_8.bin	Foebreaker	13	6	28	Exodus	65
+7	board_8.bin	Foebreaker	13	7	349	Heavy Armor 11	90
+7	board_8.bin	Foebreaker	13	8	289	Sight Unseeing	40
+7	board_8.bin	Foebreaker	13	10	231	Shield Block	45
+7	board_8.bin	Foebreaker	13	11	120	Shields 4	30
+7	board_8.bin	Foebreaker	13	13	252	Battle Lore	30
+7	board_8.bin	Foebreaker	13	14	166	Accessories 6	35
+7	board_8.bin	Foebreaker	13	17	177	Accessories 17	80
+7	board_8.bin	Foebreaker	13	18	178	Accessories 18	80
+7	board_8.bin	Foebreaker	13	19	179	Accessories 19	100
+7	board_8.bin	Foebreaker	13	20	30	Zodiark	200
+7	board_8.bin	Foebreaker	14	5	257	Magick Lore	30
+7	board_8.bin	Foebreaker	14	7	350	Heavy Armor 12	110
+7	board_8.bin	Foebreaker	14	8	228	Spellbound	30
+7	board_8.bin	Foebreaker	14	10	222	Headsman	30
+7	board_8.bin	Foebreaker	14	11	121	Shields 5	35
+7	board_8.bin	Foebreaker	14	13	263	+110 HP	40
+7	board_8.bin	Foebreaker	14	14	167	Accessories 7	40
+7	board_8.bin	Foebreaker	14	15	19	Mateus	30
+7	board_8.bin	Foebreaker	14	17	176	Accessories 16	70
+7	board_8.bin	Foebreaker	14	18	312	Battle Lore	70
+7	board_8.bin	Foebreaker	14	19	354	Accessories 22	160
+7	board_8.bin	Foebreaker	15	5	258	Magick Lore	30
+7	board_8.bin	Foebreaker	15	7	136	Genji Armor	190
+7	board_8.bin	Foebreaker	15	8	295	Expose	50
+7	board_8.bin	Foebreaker	15	10	232	Shield Block	75
+7	board_8.bin	Foebreaker	15	11	122	Shields 6	40
+7	board_8.bin	Foebreaker	15	13	253	Battle Lore	30
+7	board_8.bin	Foebreaker	15	14	168	Accessories 8	45
+7	board_8.bin	Foebreaker	15	17	175	Accessories 15	70
+7	board_8.bin	Foebreaker	15	18	311	Battle Lore	70
+7	board_8.bin	Foebreaker	15	19	353	Accessories 21	130
+7	board_8.bin	Foebreaker	16	5	259	Magick Lore	30
+7	board_8.bin	Foebreaker	16	6	27	Zeromus	65
+7	board_8.bin	Foebreaker	16	7	236	Swiftness	30
+7	board_8.bin	Foebreaker	16	8	123	Ensanguined Shield	100
+7	board_8.bin	Foebreaker	16	10	225	Focus	70
+7	board_8.bin	Foebreaker	16	11	348	Shields 7	65
+7	board_8.bin	Foebreaker	16	13	264	+150 HP	50
+7	board_8.bin	Foebreaker	16	14	169	Accessories 9	30
+7	board_8.bin	Foebreaker	16	17	174	Accessories 14	70
+7	board_8.bin	Foebreaker	16	18	310	Battle Lore	70
+7	board_8.bin	Foebreaker	16	19	180	Accessories 20	115
+7	board_8.bin	Foebreaker	17	7	291	Addle	50
+7	board_8.bin	Foebreaker	17	8	298	Wither	50
+7	board_8.bin	Foebreaker	17	10	115	Hand-bombs 2	55
+7	board_8.bin	Foebreaker	17	11	114	Hand-bombs 1	35
+7	board_8.bin	Foebreaker	17	13	254	Battle Lore	30
+7	board_8.bin	Foebreaker	17	14	170	Accessories 10	40
+7	board_8.bin	Foebreaker	17	15	171	Accessories 11	45
+7	board_8.bin	Foebreaker	17	16	172	Accessories 12	60
+7	board_8.bin	Foebreaker	17	17	173	Accessories 13	60
+7	board_8.bin	Foebreaker	17	18	302	+310 HP	90
+7	board_8.bin	Foebreaker	17	19	303	+350 HP	100
+7	board_8.bin	Foebreaker	18	7	181	Ribbon	215
+7	board_8.bin	Foebreaker	18	8	125	Zodiac Escutcheon	235
+7	board_8.bin	Foebreaker	18	10	347	Makara	105
+7	board_8.bin	Foebreaker	18	11	116	Hand-bombs 3	75
+7	board_8.bin	Foebreaker	18	13	265	+190 HP	60
+7	board_8.bin	Foebreaker	18	14	255	Battle Lore	50
+7	board_8.bin	Foebreaker	18	15	300	+230 HP	70
+7	board_8.bin	Foebreaker	18	16	307	Battle Lore	50
+7	board_8.bin	Foebreaker	18	17	301	+270 HP	80
+7	board_8.bin	Foebreaker	18	18	308	Battle Lore	50
+7	board_8.bin	Foebreaker	18	19	309	Battle Lore	50
+7	board_8.bin	Foebreaker	18	20	26	Chaos	100
+7	board_8.bin	Foebreaker	19	8	3	Quickening	125
+7	board_8.bin	Foebreaker	19	11	20	Adrammelech	35
+7	board_8.bin	Foebreaker	19	14	24	Zalera	30
+7	board_8.bin	Foebreaker	19	19	23	Famfrit	100
+7	board_8.bin	Foebreaker	20	8	314	Battle Lore	100
+7	board_8.bin	Foebreaker	20	11	313	Battle Lore	70
+7	board_8.bin	Foebreaker	20	14	283	Traveler	50
+7	board_8.bin	Foebreaker	20	19	260	Magick Lore	50
+8	board_9.bin	Archer	3	9	3	Quickening	125
+8	board_9.bin	Archer	3	12	21	Hashmal	50
+8	board_9.bin	Archer	4	9	300	+230 HP	70
+8	board_9.bin	Archer	4	10	296	Revive	40
+8	board_9.bin	Archer	4	11	275	Gambit Slot	100
+8	board_9.bin	Archer	4	12	274	Gambit Slot	70
+8	board_9.bin	Archer	4	13	273	Gambit Slot	50
+8	board_9.bin	Archer	5	5	305	+435 HP	130
+8	board_9.bin	Archer	5	6	304	+390 HP	115
+8	board_9.bin	Archer	5	7	23	Famfrit	100
+8	board_9.bin	Archer	5	8	302	+310 HP	90
+8	board_9.bin	Archer	5	9	301	+270 HP	80
+8	board_9.bin	Archer	5	10	225	Focus	70
+8	board_9.bin	Archer	5	11	283	Traveler	50
+8	board_9.bin	Archer	5	12	263	+110 HP	40
+8	board_9.bin	Archer	5	13	272	Gambit Slot	45
+8	board_9.bin	Archer	5	14	271	Gambit Slot	40
+8	board_9.bin	Archer	6	9	181	Ribbon	215
+8	board_9.bin	Archer	6	10	265	+190 HP	60
+8	board_9.bin	Archer	6	11	264	+150 HP	50
+8	board_9.bin	Archer	6	12	288	Charm	30
+8	board_9.bin	Archer	6	13	262	+70 HP	30
+8	board_9.bin	Archer	6	14	270	Gambit Slot	35
+8	board_9.bin	Archer	6	15	24	Zalera	30
+8	board_9.bin	Archer	7	13	261	+30 HP	20
+8	board_9.bin	Archer	7	14	269	Gambit Slot	30
+8	board_9.bin	Archer	8	8	252	Battle Lore	30
+8	board_9.bin	Archer	8	9	179	Accessories 19	100
+8	board_9.bin	Archer	8	12	19	Mateus	30
+8	board_9.bin	Archer	8	13	279	Poach	30
+8	board_9.bin	Archer	8	14	268	Gambit Slot	25
+8	board_9.bin	Archer	8	15	0	Quickening	50
+8	board_9.bin	Archer	8	16	185	White Magick 4	30
+8	board_9.bin	Archer	9	8	353	Accessories 21	130
+8	board_9.bin	Archer	9	9	173	Accessories 13	60
+8	board_9.bin	Archer	9	10	27	Zeromus	65
+8	board_9.bin	Archer	9	13	277	Libra	25
+8	board_9.bin	Archer	9	14	267	Gambit Slot	20
+8	board_9.bin	Archer	10	5	2	Quickening	100
+8	board_9.bin	Archer	10	8	176	Accessories 16	70
+8	board_9.bin	Archer	10	9	169	Accessories 9	30
+8	board_9.bin	Archer	10	13	278	First Aid	20
+8	board_9.bin	Archer	10	14	266	Gambit Slot	15
+8	board_9.bin	Archer	10	19	28	Exodus	65
+8	board_9.bin	Archer	11	3	290	Infuse	30
+8	board_9.bin	Archer	11	4	29	Ultima	115
+8	board_9.bin	Archer	11	5	241	Remedy Lore 3	70
+8	board_9.bin	Archer	11	6	285	Shear	50
+8	board_9.bin	Archer	11	7	175	Accessories 15	70
+8	board_9.bin	Archer	11	8	171	Accessories 11	45
+8	board_9.bin	Archer	11	9	167	Accessories 7	40
+8	board_9.bin	Archer	11	10	165	Accessories 5	35
+8	board_9.bin	Archer	11	11	163	Accessories 3	25
+8	board_9.bin	Archer	11	12	161	Accessories 1	5
+8	board_9.bin	Archer	11	13	31	Essentials	1
+8	board_9.bin	Archer	11	14	66	Bows 1	20
+8	board_9.bin	Archer	11	15	220	Martyr	30
+8	board_9.bin	Archer	11	16	222	Headsman	30
+8	board_9.bin	Archer	11	17	239	Remedy Lore 1	20
+8	board_9.bin	Archer	11	18	248	Phoenix Lore	30
+8	board_9.bin	Archer	11	19	228	Spellbound	30
+8	board_9.bin	Archer	11	20	243	Potion Lore 2	35
+8	board_9.bin	Archer	12	3	297	1000 Needles	35
+8	board_9.bin	Archer	12	4	30	Zodiark	200
+8	board_9.bin	Archer	12	5	250	Phoenix Lore	90
+8	board_9.bin	Archer	12	6	291	Addle	50
+8	board_9.bin	Archer	12	7	177	Accessories 17	80
+8	board_9.bin	Archer	12	8	172	Accessories 12	60
+8	board_9.bin	Archer	12	9	168	Accessories 8	45
+8	board_9.bin	Archer	12	10	166	Accessories 6	35
+8	board_9.bin	Archer	12	11	164	Accessories 4	35
+8	board_9.bin	Archer	12	12	162	Accessories 2	20
+8	board_9.bin	Archer	12	13	137	Light Armor 1	10
+8	board_9.bin	Archer	12	14	67	Bows 2	30
+8	board_9.bin	Archer	12	15	221	Inquisitor	30
+8	board_9.bin	Archer	12	16	236	Swiftness	30
+8	board_9.bin	Archer	12	17	242	Potion Lore 1	20
+8	board_9.bin	Archer	12	18	240	Remedy Lore 2	30
+8	board_9.bin	Archer	12	19	251	Battle Lore	30
+8	board_9.bin	Archer	12	20	244	Potion Lore 3	70
+8	board_9.bin	Archer	13	8	293	Shades of Black	70
+8	board_9.bin	Archer	13	9	170	Accessories 10	40
+8	board_9.bin	Archer	13	13	138	Light Armor 2	15
+8	board_9.bin	Archer	13	14	276	Steal	20
+8	board_9.bin	Archer	13	17	22	Cúchulainn	50
+8	board_9.bin	Archer	14	6	257	Magick Lore	30
+8	board_9.bin	Archer	14	7	26	Chaos	100
+8	board_9.bin	Archer	14	8	178	Accessories 18	80
+8	board_9.bin	Archer	14	9	174	Accessories 14	70
+8	board_9.bin	Archer	14	12	18	Belias	20
+8	board_9.bin	Archer	14	13	139	Light Armor 3	20
+8	board_9.bin	Archer	14	14	68	Bows 3	35
+8	board_9.bin	Archer	15	4	260	Magick Lore	50
+8	board_9.bin	Archer	15	5	259	Magick Lore	30
+8	board_9.bin	Archer	15	6	258	Magick Lore	30
+8	board_9.bin	Archer	15	8	354	Accessories 22	160
+8	board_9.bin	Archer	15	9	180	Accessories 20	115
+8	board_9.bin	Archer	15	10	1	Quickening	75
+8	board_9.bin	Archer	15	12	360	Second Board	30
+8	board_9.bin	Archer	15	13	140	Light Armor 4	25
+8	board_9.bin	Archer	15	14	227	Last Stand	70
+8	board_9.bin	Archer	16	4	318	Magick Lore	50
+8	board_9.bin	Archer	16	13	141	Light Armor 5	30
+8	board_9.bin	Archer	16	14	69	Bows 4	45
+8	board_9.bin	Archer	16	15	20	Adrammelech	35
+8	board_9.bin	Archer	17	9	146	Light Armor 10	75
+8	board_9.bin	Archer	17	10	145	Light Armor 9	70
+8	board_9.bin	Archer	17	11	144	Light Armor 8	60
+8	board_9.bin	Archer	17	12	143	Light Armor 7	50
+8	board_9.bin	Archer	17	13	142	Light Armor 6	40
+8	board_9.bin	Archer	17	14	287	Gil Toss	30
+8	board_9.bin	Archer	18	8	148	Light Armor 12	90
+8	board_9.bin	Archer	18	9	147	Light Armor 11	80
+8	board_9.bin	Archer	18	10	238	Swiftness	80
+8	board_9.bin	Archer	18	11	340	Bows 7	90
+8	board_9.bin	Archer	18	12	286	Achilles	40
+8	board_9.bin	Archer	18	13	70	Bows 5	60
+8	board_9.bin	Archer	18	14	256	Magick Lore	30
+8	board_9.bin	Archer	19	8	351	Light Armor 13	110
+8	board_9.bin	Archer	19	9	341	Dhanusha	200
+8	board_9.bin	Archer	19	10	72	Sagittarius	130
+8	board_9.bin	Archer	19	11	249	Phoenix Lore	50
+8	board_9.bin	Archer	19	12	71	Bows 6	70
+8	board_9.bin	Archer	19	13	237	Swiftness	50
+8	board_9.bin	Archer	20	11	25	Shemhazai	50
+8	board_9.bin	Archer	21	9	350	Heavy Armor 12	110
+8	board_9.bin	Archer	21	10	349	Heavy Armor 11	90
+8	board_9.bin	Archer	21	11	135	Heavy Armor 10	80
+9	board_10.bin	Black Mage	3	11	262	+70 HP	30
+9	board_10.bin	Black Mage	4	7	30	Zodiark	200
+9	board_10.bin	Black Mage	4	9	116	Hand-bombs 3	75
+9	board_10.bin	Black Mage	4	11	0	Quickening	50
+9	board_10.bin	Black Mage	5	6	352	Mystic Armor 13	110
+9	board_10.bin	Black Mage	5	7	160	Mystic Armor 12	90
+9	board_10.bin	Black Mage	5	9	19	Mateus	30
+9	board_10.bin	Black Mage	5	10	258	Magick Lore	30
+9	board_10.bin	Black Mage	5	11	270	Gambit Slot	35
+9	board_10.bin	Black Mage	5	12	20	Adrammelech	35
+9	board_10.bin	Black Mage	5	13	115	Hand-bombs 2	55
+9	board_10.bin	Black Mage	6	4	304	+390 HP	115
+9	board_10.bin	Black Mage	6	5	3	Quickening	125
+9	board_10.bin	Black Mage	6	6	159	Mystic Armor 11	80
+9	board_10.bin	Black Mage	6	7	345	Staves 5	65
+9	board_10.bin	Black Mage	6	10	233	Channeling	30
+9	board_10.bin	Black Mage	6	11	269	Gambit Slot	30
+9	board_10.bin	Black Mage	7	6	323	Magick Lore	70
+9	board_10.bin	Black Mage	7	7	158	Mystic Armor 10	75
+9	board_10.bin	Black Mage	7	10	257	Magick Lore	30
+9	board_10.bin	Black Mage	7	11	267	Gambit Slot	20
+9	board_10.bin	Black Mage	8	6	322	Magick Lore	70
+9	board_10.bin	Black Mage	8	7	157	Mystic Armor 9	70
+9	board_10.bin	Black Mage	8	10	256	Magick Lore	30
+9	board_10.bin	Black Mage	8	11	266	Gambit Slot	15
+9	board_10.bin	Black Mage	8	12	268	Gambit Slot	25
+9	board_10.bin	Black Mage	8	13	271	Gambit Slot	40
+9	board_10.bin	Black Mage	8	14	220	Martyr	30
+9	board_10.bin	Black Mage	9	6	321	Magick Lore	70
+9	board_10.bin	Black Mage	9	7	104	Staves 4	40
+9	board_10.bin	Black Mage	9	8	2	Quickening	100
+9	board_10.bin	Black Mage	9	10	149	Mystic Armor 1	10
+9	board_10.bin	Black Mage	9	11	31	Essentials	1
+9	board_10.bin	Black Mage	9	12	161	Accessories 1	5
+9	board_10.bin	Black Mage	9	13	162	Accessories 2	20
+9	board_10.bin	Black Mage	9	14	164	Accessories 4	35
+9	board_10.bin	Black Mage	10	6	320	Magick Lore	50
+9	board_10.bin	Black Mage	10	7	156	Mystic Armor 8	60
+9	board_10.bin	Black Mage	10	9	360	Second Board	30
+9	board_10.bin	Black Mage	10	10	150	Mystic Armor 2	15
+9	board_10.bin	Black Mage	10	11	190	Black Magick 1	15
+9	board_10.bin	Black Mage	10	13	163	Accessories 3	25
+9	board_10.bin	Black Mage	10	14	272	Gambit Slot	45
+9	board_10.bin	Black Mage	10	16	279	Poach	30
+9	board_10.bin	Black Mage	11	6	217	Black Magick 13	165
+9	board_10.bin	Black Mage	11	7	155	Mystic Armor 7	50
+9	board_10.bin	Black Mage	11	9	18	Belias	20
+9	board_10.bin	Black Mage	11	10	101	Staves 1	15
+9	board_10.bin	Black Mage	11	11	191	Black Magick 2	20
+9	board_10.bin	Black Mage	11	13	245	Ether Lore 1	20
+9	board_10.bin	Black Mage	11	14	165	Accessories 5	35
+9	board_10.bin	Black Mage	11	15	24	Zalera	30
+9	board_10.bin	Black Mage	11	16	276	Steal	20
+9	board_10.bin	Black Mage	12	6	216	Black Magick 12	120
+9	board_10.bin	Black Mage	12	7	103	Staves 3	30
+9	board_10.bin	Black Mage	12	10	151	Mystic Armor 3	20
+9	board_10.bin	Black Mage	12	11	192	Black Magick 3	25
+9	board_10.bin	Black Mage	12	13	166	Accessories 6	35
+9	board_10.bin	Black Mage	12	14	259	Magick Lore	30
+9	board_10.bin	Black Mage	12	17	347	Makara	105
+9	board_10.bin	Black Mage	13	6	215	Black Magick 11	100
+9	board_10.bin	Black Mage	13	7	154	Mystic Armor 6	40
+9	board_10.bin	Black Mage	13	8	153	Mystic Armor 5	30
+9	board_10.bin	Black Mage	13	9	102	Staves 2	25
+9	board_10.bin	Black Mage	13	10	152	Mystic Armor 4	25
+9	board_10.bin	Black Mage	13	11	193	Black Magick 4	30
+9	board_10.bin	Black Mage	13	13	219	Warmage	30
+9	board_10.bin	Black Mage	13	14	167	Accessories 7	40
+9	board_10.bin	Black Mage	13	17	21	Hashmal	50
+9	board_10.bin	Black Mage	14	6	358	Black Magick 10	90
+9	board_10.bin	Black Mage	14	7	356	Black Magick 9	90
+9	board_10.bin	Black Mage	14	8	197	Black Magick 8	70
+9	board_10.bin	Black Mage	14	9	196	Black Magick 7	60
+9	board_10.bin	Black Mage	14	10	195	Black Magick 6	50
+9	board_10.bin	Black Mage	14	11	194	Black Magick 5	40
+9	board_10.bin	Black Mage	14	13	168	Accessories 8	45
+9	board_10.bin	Black Mage	14	14	221	Inquisitor	30
+9	board_10.bin	Black Mage	14	15	260	Magick Lore	50
+9	board_10.bin	Black Mage	14	16	205	Green Magick 1	40
+9	board_10.bin	Black Mage	14	17	234	Channeling	50
+9	board_10.bin	Black Mage	14	18	301	+270 HP	80
+9	board_10.bin	Black Mage	15	13	280	Charge	30
+9	board_10.bin	Black Mage	15	14	169	Accessories 9	30
+9	board_10.bin	Black Mage	15	15	246	Ether Lore 2	35
+9	board_10.bin	Black Mage	15	16	224	Spellbreaker	65
+9	board_10.bin	Black Mage	15	17	318	Magick Lore	50
+9	board_10.bin	Black Mage	15	18	319	Magick Lore	50
+9	board_10.bin	Black Mage	16	3	299	Telekinesis	80
+9	board_10.bin	Black Mage	16	4	29	Ultima	115
+9	board_10.bin	Black Mage	16	5	327	Magick Lore	100
+9	board_10.bin	Black Mage	16	6	325	Magick Lore	100
+9	board_10.bin	Black Mage	16	7	181	Ribbon	215
+9	board_10.bin	Black Mage	16	8	235	Channeling	80
+9	board_10.bin	Black Mage	16	9	179	Accessories 19	100
+9	board_10.bin	Black Mage	16	10	274	Gambit Slot	70
+9	board_10.bin	Black Mage	16	11	175	Accessories 15	70
+9	board_10.bin	Black Mage	16	12	239	Remedy Lore 1	20
+9	board_10.bin	Black Mage	16	13	170	Accessories 10	40
+9	board_10.bin	Black Mage	16	14	264	+150 HP	50
+9	board_10.bin	Black Mage	16	17	240	Remedy Lore 2	30
+9	board_10.bin	Black Mage	16	18	222	Headsman	30
+9	board_10.bin	Black Mage	16	19	25	Shemhazai	50
+9	board_10.bin	Black Mage	16	20	132	Heavy Armor 7	60
+9	board_10.bin	Black Mage	17	5	328	Magick Lore	100
+9	board_10.bin	Black Mage	17	6	326	Magick Lore	100
+9	board_10.bin	Black Mage	17	7	324	Magick Lore	70
+9	board_10.bin	Black Mage	17	8	353	Accessories 21	130
+9	board_10.bin	Black Mage	17	9	206	Green Magick 2	50
+9	board_10.bin	Black Mage	17	10	177	Accessories 17	80
+9	board_10.bin	Black Mage	17	11	288	Charm	30
+9	board_10.bin	Black Mage	17	12	172	Accessories 12	60
+9	board_10.bin	Black Mage	17	13	226	Serenity	70
+9	board_10.bin	Black Mage	17	14	171	Accessories 11	45
+9	board_10.bin	Black Mage	17	17	247	Ether Lore 3	70
+9	board_10.bin	Black Mage	17	18	207	Green Magick 3	90
+9	board_10.bin	Black Mage	18	6	26	Chaos	100
+9	board_10.bin	Black Mage	18	8	23	Famfrit	100
+9	board_10.bin	Black Mage	18	11	27	Zeromus	65
+9	board_10.bin	Black Mage	18	13	173	Accessories 13	60
+9	board_10.bin	Black Mage	18	14	273	Gambit Slot	50
+9	board_10.bin	Black Mage	18	15	176	Accessories 16	70
+9	board_10.bin	Black Mage	18	16	275	Gambit Slot	100
+9	board_10.bin	Black Mage	18	17	180	Accessories 20	115
+9	board_10.bin	Black Mage	18	18	105	Staff of the Magi	110
+9	board_10.bin	Black Mage	19	7	300	+230 HP	70
+9	board_10.bin	Black Mage	19	8	265	+190 HP	60
+9	board_10.bin	Black Mage	19	11	134	Heavy Armor 9	70
+9	board_10.bin	Black Mage	19	13	228	Spellbound	30
+9	board_10.bin	Black Mage	19	14	174	Accessories 14	70
+9	board_10.bin	Black Mage	19	15	236	Swiftness	30
+9	board_10.bin	Black Mage	19	16	178	Accessories 18	80
+9	board_10.bin	Black Mage	19	17	237	Swiftness	50
+9	board_10.bin	Black Mage	19	18	354	Accessories 22	160
+9	board_10.bin	Black Mage	20	7	302	+310 HP	90
+9	board_10.bin	Black Mage	20	13	1	Quickening	75
+9	board_10.bin	Black Mage	20	15	22	Cúchulainn	50
+9	board_10.bin	Black Mage	20	17	28	Exodus	65
+9	board_10.bin	Black Mage	21	17	133	Heavy Armor 8	65
+10	board_11.bin	Bushi	3	13	331	Karkata	80
+10	board_11.bin	Bushi	3	15	49	Masamune	130
+10	board_11.bin	Bushi	3	16	335	Kumbha	200
+10	board_11.bin	Bushi	4	11	282	Souleater	35
+10	board_11.bin	Bushi	4	13	39	Blood Sword	50
+10	board_11.bin	Bushi	4	14	24	Zalera	30
+10	board_11.bin	Bushi	4	15	318	Magick Lore	50
+10	board_11.bin	Bushi	4	16	226	Serenity	70
+10	board_11.bin	Bushi	4	18	308	Battle Lore	50
+10	board_11.bin	Bushi	5	11	20	Adrammelech	35
+10	board_11.bin	Bushi	5	15	260	Magick Lore	50
+10	board_11.bin	Bushi	5	16	334	Katana 5	100
+10	board_11.bin	Bushi	5	17	2	Quickening	100
+10	board_11.bin	Bushi	5	18	304	+390 HP	115
+10	board_11.bin	Bushi	6	10	257	Magick Lore	30
+10	board_11.bin	Bushi	6	11	300	+230 HP	70
+10	board_11.bin	Bushi	6	12	258	Magick Lore	30
+10	board_11.bin	Bushi	6	13	301	+270 HP	80
+10	board_11.bin	Bushi	6	14	224	Spellbreaker	65
+10	board_11.bin	Bushi	6	15	259	Magick Lore	30
+10	board_11.bin	Bushi	6	16	302	+310 HP	90
+10	board_11.bin	Bushi	7	9	360	Second Board	30
+10	board_11.bin	Bushi	7	10	265	+190 HP	60
+10	board_11.bin	Bushi	7	11	221	Inquisitor	30
+10	board_11.bin	Bushi	7	12	46	Katana 2	50
+10	board_11.bin	Bushi	7	13	237	Swiftness	50
+10	board_11.bin	Bushi	7	14	47	Katana 3	70
+10	board_11.bin	Bushi	7	15	222	Headsman	30
+10	board_11.bin	Bushi	7	16	48	Katana 4	90
+10	board_11.bin	Bushi	7	19	274	Gambit Slot	70
+10	board_11.bin	Bushi	7	20	275	Gambit Slot	100
+10	board_11.bin	Bushi	8	8	277	Libra	25
+10	board_11.bin	Bushi	8	9	18	Belias	20
+10	board_11.bin	Bushi	8	10	256	Magick Lore	30
+10	board_11.bin	Bushi	8	11	236	Swiftness	30
+10	board_11.bin	Bushi	8	13	19	Mateus	30
+10	board_11.bin	Bushi	8	15	21	Hashmal	50
+10	board_11.bin	Bushi	8	19	273	Gambit Slot	50
+10	board_11.bin	Bushi	8	20	289	Sight Unseeing	40
+10	board_11.bin	Bushi	9	10	264	+150 HP	50
+10	board_11.bin	Bushi	9	11	45	Katana 1	35
+10	board_11.bin	Bushi	9	19	272	Gambit Slot	45
+10	board_11.bin	Bushi	9	20	297	1000 Needles	35
+10	board_11.bin	Bushi	10	6	230	Shield Block	25
+10	board_11.bin	Bushi	10	10	262	+70 HP	30
+10	board_11.bin	Bushi	10	11	31	Essentials	1
+10	board_11.bin	Bushi	10	12	161	Accessories 1	5
+10	board_11.bin	Bushi	10	13	162	Accessories 2	20
+10	board_11.bin	Bushi	10	14	227	Last Stand	70
+10	board_11.bin	Bushi	10	15	266	Gambit Slot	15
+10	board_11.bin	Bushi	10	16	268	Gambit Slot	25
+10	board_11.bin	Bushi	10	17	269	Gambit Slot	30
+10	board_11.bin	Bushi	10	18	270	Gambit Slot	35
+10	board_11.bin	Bushi	10	19	271	Gambit Slot	40
+10	board_11.bin	Bushi	10	20	287	Gil Toss	30
+10	board_11.bin	Bushi	11	6	25	Shemhazai	50
+10	board_11.bin	Bushi	11	10	263	+110 HP	40
+10	board_11.bin	Bushi	11	11	149	Mystic Armor 1	10
+10	board_11.bin	Bushi	11	14	163	Accessories 3	25
+10	board_11.bin	Bushi	11	15	267	Gambit Slot	20
+10	board_11.bin	Bushi	11	16	290	Infuse	30
+10	board_11.bin	Bushi	11	17	292	Bonecrusher	30
+10	board_11.bin	Bushi	11	18	240	Remedy Lore 2	30
+10	board_11.bin	Bushi	11	19	293	Shades of Black	70
+10	board_11.bin	Bushi	11	20	228	Spellbound	30
+10	board_11.bin	Bushi	12	5	320	Magick Lore	50
+10	board_11.bin	Bushi	12	6	319	Magick Lore	50
+10	board_11.bin	Bushi	12	7	157	Mystic Armor 9	70
+10	board_11.bin	Bushi	12	8	155	Mystic Armor 7	50
+10	board_11.bin	Bushi	12	9	153	Mystic Armor 5	30
+10	board_11.bin	Bushi	12	10	151	Mystic Armor 3	20
+10	board_11.bin	Bushi	12	11	150	Mystic Armor 2	15
+10	board_11.bin	Bushi	12	14	164	Accessories 4	35
+10	board_11.bin	Bushi	12	15	239	Remedy Lore 1	20
+10	board_11.bin	Bushi	12	17	1	Quickening	75
+10	board_11.bin	Bushi	13	5	321	Magick Lore	70
+10	board_11.bin	Bushi	13	6	159	Mystic Armor 11	80
+10	board_11.bin	Bushi	13	7	158	Mystic Armor 10	75
+10	board_11.bin	Bushi	13	8	156	Mystic Armor 8	60
+10	board_11.bin	Bushi	13	9	154	Mystic Armor 6	40
+10	board_11.bin	Bushi	13	10	152	Mystic Armor 4	25
+10	board_11.bin	Bushi	13	11	220	Martyr	30
+10	board_11.bin	Bushi	13	12	0	Quickening	50
+10	board_11.bin	Bushi	13	14	165	Accessories 5	35
+10	board_11.bin	Bushi	13	15	166	Accessories 6	35
+10	board_11.bin	Bushi	13	17	303	+350 HP	100
+10	board_11.bin	Bushi	14	3	306	+500 HP	220
+10	board_11.bin	Bushi	14	4	28	Exodus	65
+10	board_11.bin	Bushi	14	5	322	Magick Lore	70
+10	board_11.bin	Bushi	14	6	160	Mystic Armor 12	90
+10	board_11.bin	Bushi	14	14	167	Accessories 7	40
+10	board_11.bin	Bushi	14	15	168	Accessories 8	45
+10	board_11.bin	Bushi	14	17	309	Battle Lore	50
+10	board_11.bin	Bushi	15	5	323	Magick Lore	70
+10	board_11.bin	Bushi	15	6	352	Mystic Armor 13	110
+10	board_11.bin	Bushi	15	7	22	Cúchulainn	50
+10	board_11.bin	Bushi	15	8	294	Stamp	40
+10	board_11.bin	Bushi	15	9	29	Ultima	115
+10	board_11.bin	Bushi	15	12	23	Famfrit	100
+10	board_11.bin	Bushi	15	14	169	Accessories 9	30
+10	board_11.bin	Bushi	15	15	170	Accessories 10	40
+10	board_11.bin	Bushi	16	5	324	Magick Lore	70
+10	board_11.bin	Bushi	16	6	136	Genji Armor	190
+10	board_11.bin	Bushi	16	9	181	Ribbon	215
+10	board_11.bin	Bushi	16	10	353	Accessories 21	130
+10	board_11.bin	Bushi	16	11	179	Accessories 19	100
+10	board_11.bin	Bushi	16	12	177	Accessories 17	80
+10	board_11.bin	Bushi	16	13	174	Accessories 14	70
+10	board_11.bin	Bushi	16	14	171	Accessories 11	45
+10	board_11.bin	Bushi	16	15	173	Accessories 13	60
+10	board_11.bin	Bushi	17	5	27	Zeromus	65
+10	board_11.bin	Bushi	17	9	251	Battle Lore	30
+10	board_11.bin	Bushi	17	10	354	Accessories 22	160
+10	board_11.bin	Bushi	17	11	180	Accessories 20	115
+10	board_11.bin	Bushi	17	12	178	Accessories 18	80
+10	board_11.bin	Bushi	17	13	176	Accessories 16	70
+10	board_11.bin	Bushi	17	14	175	Accessories 15	70
+10	board_11.bin	Bushi	17	15	172	Accessories 12	60
+10	board_11.bin	Bushi	18	4	326	Magick Lore	100
+10	board_11.bin	Bushi	18	5	325	Magick Lore	100
+10	board_11.bin	Bushi	18	7	305	+435 HP	130
+10	board_11.bin	Bushi	18	8	3	Quickening	125
+10	board_11.bin	Bushi	18	9	253	Battle Lore	30
+10	board_11.bin	Bushi	18	10	252	Battle Lore	30
+10	board_11.bin	Bushi	19	9	255	Battle Lore	50
+10	board_11.bin	Bushi	19	10	254	Battle Lore	30
+10	board_11.bin	Bushi	19	11	26	Chaos	100
+10	board_11.bin	Bushi	19	12	229	Brawler	90
+10	board_11.bin	Bushi	20	6	135	Heavy Armor 10	80
+10	board_11.bin	Bushi	20	7	134	Heavy Armor 9	70
+10	board_11.bin	Bushi	20	8	30	Zodiark	200
+10	board_11.bin	Bushi	20	9	238	Swiftness	80
+10	board_11.bin	Bushi	20	10	307	Battle Lore	50
+10	board_11.bin	Bushi	21	6	349	Heavy Armor 11	90
+11	board_12.bin	Shikari	4	7	293	Shades of Black	70
+11	board_12.bin	Shikari	4	17	248	Phoenix Lore	30
+11	board_12.bin	Shikari	4	18	249	Phoenix Lore	50
+11	board_12.bin	Shikari	5	7	20	Adrammelech	35
+11	board_12.bin	Shikari	5	17	29	Ultima	115
+11	board_12.bin	Shikari	6	6	275	Gambit Slot	100
+11	board_12.bin	Shikari	6	7	273	Gambit Slot	50
+11	board_12.bin	Shikari	6	8	240	Remedy Lore 2	30
+11	board_12.bin	Shikari	6	9	272	Gambit Slot	45
+11	board_12.bin	Shikari	6	15	146	Light Armor 10	75
+11	board_12.bin	Shikari	6	16	344	Daggers 6	80
+11	board_12.bin	Shikari	6	17	148	Light Armor 12	90
+11	board_12.bin	Shikari	6	18	95	Shikari Nagasa & Mina	220
+11	board_12.bin	Shikari	6	19	26	Chaos	100
+11	board_12.bin	Shikari	7	5	1	Quickening	75
+11	board_12.bin	Shikari	7	6	274	Gambit Slot	70
+11	board_12.bin	Shikari	7	7	236	Swiftness	30
+11	board_12.bin	Shikari	7	8	271	Gambit Slot	40
+11	board_12.bin	Shikari	7	9	270	Gambit Slot	35
+11	board_12.bin	Shikari	7	10	19	Mateus	30
+11	board_12.bin	Shikari	7	11	287	Gil Toss	30
+11	board_12.bin	Shikari	7	13	210	White Magick 12	110
+11	board_12.bin	Shikari	7	14	22	Cúchulainn	50
+11	board_12.bin	Shikari	7	15	94	Daggers 5	60
+11	board_12.bin	Shikari	7	16	147	Light Armor 11	80
+11	board_12.bin	Shikari	7	17	348	Shields 7	65
+11	board_12.bin	Shikari	7	18	351	Light Armor 13	110
+11	board_12.bin	Shikari	8	5	51	Ninja Swords 2	120
+11	board_12.bin	Shikari	8	7	360	Second Board	30
+11	board_12.bin	Shikari	8	8	269	Gambit Slot	30
+11	board_12.bin	Shikari	8	9	268	Gambit Slot	25
+11	board_12.bin	Shikari	8	15	145	Light Armor 9	70
+11	board_12.bin	Shikari	8	16	122	Shields 6	40
+11	board_12.bin	Shikari	9	7	18	Belias	20
+11	board_12.bin	Shikari	9	8	267	Gambit Slot	20
+11	board_12.bin	Shikari	9	9	266	Gambit Slot	15
+11	board_12.bin	Shikari	9	15	93	Daggers 4	45
+11	board_12.bin	Shikari	9	16	144	Light Armor 8	60
+11	board_12.bin	Shikari	9	17	28	Exodus	65
+11	board_12.bin	Shikari	9	18	294	Stamp	40
+11	board_12.bin	Shikari	10	4	50	Ninja Swords 1	100
+11	board_12.bin	Shikari	10	8	278	First Aid	20
+11	board_12.bin	Shikari	10	9	90	Daggers 1	15
+11	board_12.bin	Shikari	10	10	138	Light Armor 2	15
+11	board_12.bin	Shikari	10	11	91	Daggers 2	20
+11	board_12.bin	Shikari	10	12	118	Shields 2	20
+11	board_12.bin	Shikari	10	13	141	Light Armor 5	30
+11	board_12.bin	Shikari	10	14	119	Shields 3	25
+11	board_12.bin	Shikari	10	15	143	Light Armor 7	50
+11	board_12.bin	Shikari	10	16	121	Shields 5	35
+11	board_12.bin	Shikari	11	4	0	Quickening	50
+11	board_12.bin	Shikari	11	5	223	Adrenaline	65
+11	board_12.bin	Shikari	11	6	227	Last Stand	70
+11	board_12.bin	Shikari	11	7	261	+30 HP	20
+11	board_12.bin	Shikari	11	8	220	Martyr	30
+11	board_12.bin	Shikari	11	9	31	Essentials	1
+11	board_12.bin	Shikari	11	10	137	Light Armor 1	10
+11	board_12.bin	Shikari	11	11	139	Light Armor 3	20
+11	board_12.bin	Shikari	11	12	140	Light Armor 4	25
+11	board_12.bin	Shikari	11	13	92	Daggers 3	35
+11	board_12.bin	Shikari	11	14	142	Light Armor 6	40
+11	board_12.bin	Shikari	11	15	120	Shields 4	30
+11	board_12.bin	Shikari	11	16	231	Shield Block	45
+11	board_12.bin	Shikari	11	17	179	Accessories 19	100
+11	board_12.bin	Shikari	11	18	354	Accessories 22	160
+11	board_12.bin	Shikari	11	19	299	Telekinesis	80
+11	board_12.bin	Shikari	12	5	228	Spellbound	30
+11	board_12.bin	Shikari	12	6	300	+230 HP	70
+11	board_12.bin	Shikari	12	7	263	+110 HP	40
+11	board_12.bin	Shikari	12	8	277	Libra	25
+11	board_12.bin	Shikari	12	9	161	Accessories 1	5
+11	board_12.bin	Shikari	12	15	230	Shield Block	25
+11	board_12.bin	Shikari	12	16	225	Focus	70
+11	board_12.bin	Shikari	12	17	178	Accessories 18	80
+11	board_12.bin	Shikari	12	18	353	Accessories 21	130
+11	board_12.bin	Shikari	12	19	181	Ribbon	215
+11	board_12.bin	Shikari	13	5	302	+310 HP	90
+11	board_12.bin	Shikari	13	6	222	Headsman	30
+11	board_12.bin	Shikari	13	7	265	+190 HP	60
+11	board_12.bin	Shikari	13	8	262	+70 HP	30
+11	board_12.bin	Shikari	13	9	162	Accessories 2	20
+11	board_12.bin	Shikari	13	10	163	Accessories 3	25
+11	board_12.bin	Shikari	13	11	166	Accessories 6	35
+11	board_12.bin	Shikari	13	12	168	Accessories 8	45
+11	board_12.bin	Shikari	13	13	170	Accessories 10	40
+11	board_12.bin	Shikari	13	14	172	Accessories 12	60
+11	board_12.bin	Shikari	13	15	174	Accessories 14	70
+11	board_12.bin	Shikari	13	16	176	Accessories 16	70
+11	board_12.bin	Shikari	13	17	177	Accessories 17	80
+11	board_12.bin	Shikari	13	18	180	Accessories 20	115
+11	board_12.bin	Shikari	13	19	304	+390 HP	115
+11	board_12.bin	Shikari	14	6	21	Hashmal	50
+11	board_12.bin	Shikari	14	8	264	+150 HP	50
+11	board_12.bin	Shikari	14	9	164	Accessories 4	35
+11	board_12.bin	Shikari	14	10	165	Accessories 5	35
+11	board_12.bin	Shikari	14	11	167	Accessories 7	40
+11	board_12.bin	Shikari	14	12	169	Accessories 9	30
+11	board_12.bin	Shikari	14	13	171	Accessories 11	45
+11	board_12.bin	Shikari	14	14	173	Accessories 13	60
+11	board_12.bin	Shikari	14	15	175	Accessories 15	70
+11	board_12.bin	Shikari	14	16	303	+350 HP	100
+11	board_12.bin	Shikari	15	6	292	Bonecrusher	30
+11	board_12.bin	Shikari	15	8	251	Battle Lore	30
+11	board_12.bin	Shikari	15	9	221	Inquisitor	30
+11	board_12.bin	Shikari	15	15	242	Potion Lore 1	20
+11	board_12.bin	Shikari	15	16	283	Traveler	50
+11	board_12.bin	Shikari	15	17	23	Famfrit	100
+11	board_12.bin	Shikari	16	8	252	Battle Lore	30
+11	board_12.bin	Shikari	16	9	301	+270 HP	80
+11	board_12.bin	Shikari	16	10	24	Zalera	30
+11	board_12.bin	Shikari	16	11	305	+435 HP	130
+11	board_12.bin	Shikari	16	14	27	Zeromus	65
+11	board_12.bin	Shikari	16	15	243	Potion Lore 2	35
+11	board_12.bin	Shikari	16	16	256	Magick Lore	30
+11	board_12.bin	Shikari	17	6	241	Remedy Lore 3	70
+11	board_12.bin	Shikari	17	7	254	Battle Lore	30
+11	board_12.bin	Shikari	17	8	253	Battle Lore	30
+11	board_12.bin	Shikari	17	9	239	Remedy Lore 1	20
+11	board_12.bin	Shikari	17	15	238	Swiftness	80
+11	board_12.bin	Shikari	17	16	257	Magick Lore	30
+11	board_12.bin	Shikari	17	17	258	Magick Lore	30
+11	board_12.bin	Shikari	17	18	260	Magick Lore	50
+11	board_12.bin	Shikari	17	19	30	Zodiark	200
+11	board_12.bin	Shikari	18	4	336	Ninja Swords 3	120
+11	board_12.bin	Shikari	18	5	2	Quickening	100
+11	board_12.bin	Shikari	18	6	296	Revive	40
+11	board_12.bin	Shikari	18	7	237	Swiftness	50
+11	board_12.bin	Shikari	18	8	255	Battle Lore	50
+11	board_12.bin	Shikari	18	9	307	Battle Lore	50
+11	board_12.bin	Shikari	18	15	297	1000 Needles	35
+11	board_12.bin	Shikari	18	16	244	Potion Lore 3	70
+11	board_12.bin	Shikari	18	17	259	Magick Lore	30
+11	board_12.bin	Shikari	18	18	229	Brawler	90
+11	board_12.bin	Shikari	19	7	25	Shemhazai	50
+11	board_12.bin	Shikari	19	17	3	Quickening	125
+11	board_12.bin	Shikari	20	6	82	Guns 6	110
+11	board_12.bin	Shikari	20	7	81	Guns 5	90
+11	board_12.bin	Shikari	20	17	52	Yagyu Darkblade & Mesa	180

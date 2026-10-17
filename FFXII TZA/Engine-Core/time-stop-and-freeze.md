@@ -64,6 +64,11 @@ and 21, 17 to 19, 23 and 25, 24 and 26 are pairs; id 0 runs `00182D10` unless th
 (`002DDC30`, the Battle Mode setting, [game settings](../Saving-Loading-And-Settings/game-settings.md))
 is set, id 12 and 17 run `00182CF0`, 13 and 15 run `00182CD0`.
 
+Those side calls set one bit of the input manager's movement-key mode byte `+3A`<sub>h</sub> and mark
+`+3B`<sub>h</sub>: `00182D10` bit 1 (`00198690`), `00182CF0` bit 0 (`001986B0`) and `00182CD0` bit 2
+(`00198670`); the cancel side calls below, `00182DA0`, `00182D60` and `00182D40`, clear the same
+bits ([controls](../Controls-And-Input/controls.md)).
+
 ### The twenty-eight requests
 
 | Id | Raised by | Released by |

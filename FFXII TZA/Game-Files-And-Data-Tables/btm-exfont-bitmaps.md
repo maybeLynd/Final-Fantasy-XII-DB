@@ -155,9 +155,13 @@ for a shadow, first with its face index plus 1 (the shadow face) at an offset, t
 `003649A0` draws nothing for a face whose ready bit is clear. For each character it takes a cached entry
 (`00365FD0`) or calls `00364210(code, face)`:
 
-- `00364210` scans face `n`'s table for the code and returns null when it is absent, so that character is
-  skipped.
-- It rounds `cellW` and `cellH` up to 8, 16, 32, 64 or 128 and recycles the least recently used cache entry.
+- `00364210` first recycles the least recently used cache entry: it moves the head of the list at
+  `[022CBE00] + 228h` to the tail `+230`<sub>h</sub> and, when the entry held texels, clears it (key `FF0000`<sub>h</sub>, texel and
+  record pointers null) (`0036422B`-`00364272`).
+- It then scans face `n`'s table for the code and returns null when it is absent (`003642A1`), so that character
+  is skipped and the recycled entry stays empty.
+- It rounds `cellW` and `cellH` each with `r = v <= 8 ? 8 : v <= 16 ? 16 : v <= 32 ? 32 : v <= 64 ? 64 : 128`
+  (`003642D0`-`00364342`).
 - The entry gets the record, the rounded size and `sheet + sheetOffset`, or a null texel pointer when face
   `n` has no sheet. No offset is checked against the sheet's size.
 

@@ -480,6 +480,6 @@ all three colour bits) and `2000`<sub>h</sub> and `4000`<sub>h</sub> mark depth 
 ## Related
 
 - [Phyre D3D11 draws and state](phyre-d3d11-draws-and-state.md): the draw calls, bind caches, data-block rings and the deferred upload queue.
-- Graphics adapters and vendor libraries: how the adapter is chosen and the multisample probe that ends device creation.
+- [Graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md): how the adapter is chosen and the multisample probe that ends device creation.
 - [Phyre application](phyre-application.md): the framework that opens the window the swap chain draws into.
 - [Phyre asset files](phyre-asset-files.md): the texture data a cluster load copies into these objects.

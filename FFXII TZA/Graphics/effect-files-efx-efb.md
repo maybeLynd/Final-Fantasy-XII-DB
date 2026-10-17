@@ -283,8 +283,10 @@ byte to the same loaders:
 | `55`<sub>h</sub> | `00503CD0` | as the first store |
 
 - `005032D0` numbers the texture and palette slots 1 to n and expands each `48`<sub>h</sub>-byte row into a
-  `90`<sub>h</sub>-byte sprite row: the four corners of its rectangle, rotated by the row's angle in degrees,
-  scaled and offset; the last row gets bit 1 of `+70`<sub>h</sub>.
+  `90`<sub>h</sub>-byte sprite row: the four corners `(±0.5 x abs(w) x sx, ±0.5 x abs(h) x sy)` of its rectangle (row
+  `+08`<sub>h</sub>, `+0C`<sub>h</sub> the size `w`, `h`; `+18`<sub>h</sub>, `+1C`<sub>h</sub> the scales), rotated about z by the row's angle
+  `+20h x 2π / 360` and offset by `+10`<sub>h</sub>, `+14`<sub>h</sub>; the last row gets bit 1 of `+70`<sub>h</sub>
+  (`005032D0`-`0050378D`).
 - `00503180(record)` then resolves the kind-`50`<sub>h</sub> record's slot bytes into handles with
   `003AA280(key, 52h, slot)` and `003AA280(key, 53h, slot)`, and turns each row's pixel rectangle
   into texture coordinates by dividing by the texture's width `+A4`<sub>h</sub> and height `+A6`<sub>h</sub>.

@@ -69,7 +69,8 @@ While statuses `8800203B`<sub>h</sub> are clear it stores the id at `+BA0`<sub>h
 target at `+748`<sub>h</sub> and the transient set `01EEC2D0` at `+6F8`<sub>h</sub>; then it calls `00317E60`. It returns
 0 otherwise, including when a status drops the command silently.
 
-Its callers are the menu path `00311B20` (two sites) and `003138D0`. The one verb that reaches it is
+Its callers are the menu path `00311B20` (two sites), which the battle menu `002778C0` calls
+([battle menu](../Menus-And-HUD/battle-menu.md)), and `003138D0`. The one verb that reaches it is
 `resetJobs` (`05D6`<sub>h</sub>, `00342230` → `00328BD0`): resetting the character recorded at
 `[02EBF190] + 5AD5h` (`003137F0`) runs `003138D0(1)`, which issues the fixed command `113`<sub>h</sub> to the
 party-slot-3 unit (`0031B8C0(3)`) with itself as target. `003138D0` acts only when `0030D9A0()` is 1,
@@ -173,12 +174,17 @@ zero.
 `btlAtelSetStatus(ref)` (`3002`<sub>h</sub>, `005103B0` → `002394C0`) reads a table of 32 two-bit values
 through a reference (`002650B0`) and sets bit `i` of `+E90`<sub>h</sub> for value 3. Values 1 and 2 are
 applied at once through `0030EAE0`, only when dword `[[unit + 6A0h]] & 5` is 0, and value 1 also
-needs `00328370()` bit 0.
+needs `00328370()` bit 0, a draw of the generator at `022C256C`
+([random number generators](../Random-Numbers/random-number-generators.md)).
 
 The ability list rebuild `0030FED0` reads both, only for a record with `+5` = 1: each `+E80`<sub>h</sub> bit
 becomes `0030E130` (`00310047`) and each `+E90`<sub>h</sub> bit becomes `0030E360(unit, 0, i, 0)` (`003103E0`).
 This covers an immediate-displacement search for `+E80`<sub>h</sub>, `+E88`<sub>h</sub> and `+E90`<sub>h</sub>; the other hits are
 the reset `00236A60` and functions on other objects.
+
+The rebuild also runs from the equipment setters `0031A410`, `0031A510` and `0031A630` and the licence setter
+`00323910` ([equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)), and from the level growth `0030C470`
+and `0030C650` ([stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)).
 
 ### Verbs that do not touch battle decisions
 

@@ -78,7 +78,8 @@ returns 1 without trying it (`00305DA4`). A resumed commit also calls
    when the previous command's `+730`<sub>h</sub> bit 0 is set (`003015A6`-`003015C9`).
 5. For an action outside the order band, the actor and the availability check must pass
    (`003015EA`-`00301606`), and an order with a chance word at `+02`<sub>h</sub> passes only when a shared gameplay
-   LCG percent roll is below it (`00301608`-`00301637`).
+   LCG percent roll is below it (`00301608`-`00301637`; the draw is `00328370`,
+   [Random number generators](../Random-Numbers/random-number-generators.md)).
 6. It builds the candidates for an action with `0030F130` (`00301649`). An order id instead must pass
    `00301830` and takes the unit's perception list `+BC0`<sub>h</sub> as its candidates (`00301599`, `003015D4`-`003015E1`;
    [Enemy AI](enemy-ai.md)). Then it runs the order's tests, below.
@@ -170,6 +171,11 @@ is a row of `02EBF0E0`, id `5000`<sub>h</sub> + row, with twelve condition words
 from `+20`<sub>h</sub>. The loader copies the pairs into the twelve 4-byte slots from `+88`<sub>h</sub> until either word is
 `FFFF`<sub>h</sub>, sets a mask bit for each (`+B8`<sub>h</sub>) and stores the count (`+BA`<sub>h</sub>) (`00327D42`-`00327D84`). The unit
 definition passes the party table row's word `+14`<sub>h</sub> as the preset (`0023AEEE`).
+
+The fresh stats record `0023AC80` calls `00327CB0`, `00326030` and `00327DE0` in turn (`0023AEF5`-`0023AF1D`,
+[Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The party-row reset `00328BD0`, run
+by the script verb `resetJobs`, makes the same three calls (`00328CAA`-`00328D1E`,
+[Party table](../Party/party-table.md), [Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md)).
 
 ## Layouts
 
@@ -287,6 +293,7 @@ timer is below 20 ([Gambit conditions](gambit-conditions.md)).
 
 - [Gambit conditions](gambit-conditions.md) - every target condition.
 - [Enemy AI](enemy-ai.md) - the same walk for enemies and the subgroups.
+- [Enemy order sets](enemy-order-sets.md) - every shipped enemy order, in the 24-byte order layout.
 - [Action commit](../Battle-Actions/action-commit.md) - `0030F760`.
 - [Battle orders](../Battle-Actions/battle-orders.md) - the order ids, including `4021`<sub>h</sub>.
 - [Boss fights](../Battle-Actions/boss-fights.md) - the battle freeze.

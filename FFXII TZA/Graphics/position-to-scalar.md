@@ -71,8 +71,9 @@ more) to `02EBB7E0`–`02EBB7EF` and, when `clear` is non-zero, drops the kept p
 The map's own request is built at `02EBB7C0` with priority 0 by `003ECCA0` while a map's settings are loaded
 (`02EBB808` and `0209A660` set). `003ECAC0(request, target, t)` moves it toward a target: for `t`
 above `0.99609375` it copies the target's near, far and colour, for `t` above `0.00390625` it
-interpolates them (the distances rounded, the colour channel by channel through `00466140` and
-`00466170`), and otherwise does nothing.
+interpolates them, and otherwise does nothing. Each distance becomes `v = cur x (1 - t) + target x t`
+stored as `trunc(v)`, plus 1 when `v - trunc(v) > 0.5`; each colour byte (split by `00466140`, packed by
+`00466170`) becomes `trunc(cur x (1 - t) + target x t)` (`003ECAC0`-`003ECC9C`).
 
 `003ECE60` then scales the colour's red, green and blue by `0209A380`–`0209A388` times
 `0209A3D0`–`0209A3D8` where a product is below `0.99609375`, stores the colour at `022D8ED8` when
@@ -85,7 +86,7 @@ to 0 to 255):
 
 | Bit | Effect on the colour |
 |---|---|
-| `8`<sub>h</sub> | multiplied (`0026EE00`) by the container colour `+334`<sub>h</sub>, or `+398`<sub>h</sub> for element kind `40`<sub>h</sub> |
+| `8`<sub>h</sub> | multiplied (`0026EE00`, each byte channel `min((a x b) >> 7, 255)`, `psrlw` 7 and the clamp at `0026F287`-`0026F2D6`) by the container colour `+334`<sub>h</sub>, or `+398`<sub>h</sub> for element kind `40`<sub>h</sub> |
 | `400`<sub>h</sub> | alpha x the float `02EBF278[container byte +377h]` |
 | `1000`<sub>h</sub> | alpha x `+35C`<sub>h</sub> when the element's `+208`<sub>h</sub> differs from the container's `+37C`<sub>h</sub> |
 | `2000`<sub>h</sub> | alpha x `+35C`<sub>h</sub> when they are equal |

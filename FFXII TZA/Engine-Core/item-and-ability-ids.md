@@ -40,7 +40,10 @@ table at `01EEBCC0` has fifteen records of `58`<sub>h</sub> bytes:
 
 The rebaser `0030B6A0(state)` adds the state block's address to every non-zero offset, writes
 the cumulative bases, zeroes `200`<sub>h</sub> bytes at state `+57C8`<sub>h</sub> and masks `80`<sub>h</sub> bytes at `+59C8`<sub>h</sub>
-with `F8`<sub>h</sub>. The fifteen records, read from the image:
+with `F8`<sub>h</sub>. It runs from `00233C10` and from `00238A80`, which first points `02EBF190` at
+`002EF640() + 4E68Ch` in the save runtime buffer and is called only by the payload reset
+`002EF650` ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)). The fifteen
+records, read from the image:
 
 | Nibble | Class | Count | Region A (words) | B | C | Handlers | What it holds |
 |---|---|---|---|---|---|---|---|
@@ -176,6 +179,11 @@ when the fill returns negative and return the record's address either way. The r
 159 call sites in 75 functions and the id form 15; `0035E070` fills the row record itself for
 class 1 with the id in the high word of `+4`, and eleven other functions hand `0031C5D0` their
 own record at fourteen sites.
+
+The menus are those callers: the gambit screen's row and page builders (`00567B60`, `0056B100`,
+`0056AE80`), the licence screens (`00558CE0`, `005618E0`) and the battle menu's title
+`0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),
+[menu screens](../Menus-And-HUD/menu-screens.md)).
 
 The name at `+18`<sub>h</sub> is the field half of the callers read and nothing else; the equipment block
 `+3C`<sub>h</sub> to `+60`<sub>h</sub> is read by the equip menus, the licence bytes `+21`<sub>h</sub> to `+25`<sub>h</sub> by the

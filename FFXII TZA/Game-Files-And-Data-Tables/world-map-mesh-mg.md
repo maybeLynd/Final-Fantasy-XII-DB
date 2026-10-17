@@ -175,7 +175,9 @@ extent to `02CA8F80` to `02CA8F8C`, then calls `00555D10` for each slot (`005556
 - After 32 vertices without a restart, it opens a new packet chunk without a new `PRIM`, so the strip
   continues (`00555DB2`).
 - The vertex is `vtxOff + 20h × (entry & 7FFFh)`; nothing compares it with `vtxCount`.
-- The vertex colour is multiplied by the slot colour times the widget colour, `>> 7`, scaled by 1/128.
+- Per channel `c` (R, G, B, A), `00555B90` stores `f[c] = ((widget[+94h + c] × slot[+18h + 2c]) >> 7) / 128`,
+  the widget's colour bytes times the slot's `s16` colours (`00555BB7`-`00555CAA`); each vertex colour then
+  becomes `(int)(vertex[c] × f[c])` (`00555E68`-`00555E9A` for R and G, the same for B and A).
 - The position is transformed by the matrix at `02CA8F40`. Texture coordinates are not stored: the
   transformed x and y, less the origin at `02CA8F80`/`02CA8F84` and divided by the extent at
   `02CA8F88`/`02CA8F8C`, are the fractions of the image's width and height.

@@ -88,6 +88,9 @@ while `001EDC80` is 0). The raw count is stored instead under any of four gates:
 field ids `001ED180` names. Its poll `0034DCC0` decrements the word and finishes when it goes
 below zero.
 
+`001ED180` holds while the loaded map `00314910()` is `2F4`<sub>h</sub>, `2E9`<sub>h</sub> or `27B`<sub>h</sub> and `001EC560`,
+`00265760` and `002E0540` all answer 0 ([zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
+
 ### The sync verbs
 
 `camerasync` (`0079`<sub>h</sub>), `effectsync` (`00DE`<sub>h</sub>) and `effectreadsync` (`00DC`<sub>h</sub>) share the begin
@@ -117,7 +120,7 @@ so one signal releases one waiter. Neither poll reads the skip mask.
 `0036E290(handle, &n)`, which `0036E310` installs as entry 0 of the effect callback table
 `02091140` (`0024F780` stores it), raises the effect signals: it sets bit `n` of `02099DE8` with
 `0026BE50(n, 1)` and, when the handle is a script effect handle, the same bit in that effect slot's
-own signal bytes. The motion signals have one writer, `002E7080`, which `002EA320` and `002EA5F0`
+own signal bytes. The motion signals have one writer, `002E7080`, which `002EA320` (run by the boot `00266D10`) and `002EA5F0` (run by `002368D0`)
 install as entry `26`<sub>h</sub> of the motion callback table `02CA4410` (`0041D6C0` stores it): it calls
 `0026BE90(0, 1)`, so a motion only ever raises bit 0.
 
@@ -136,7 +139,8 @@ the bytes at `+10`<sub>h</sub> of that slot's record, and returns 1 and clears t
 `00267310(manager)` reads byte `02099011 + manager × 288h`, the manager slot's `+201`<sub>h</sub>, and
 72 sites call it. `0026A5B0(manager, set, bit)` sets or clears one bit of it: the verb `skipexec`
 (`0539`<sub>h</sub>, `0034ECF0`) pops a bit index and calls `00360710`, which sets the bit at the end of its
-skip bookkeeping (after `003601B0(Fh)` and the rest), and `00360A50` clears it when the skip
+skip bookkeeping (after `003601B0(Fh)` and the rest, among them `002DEDD0`, which stores the current track's
+point, [music](../Sound-And-Music/music.md)), and `00360A50` clears it when the skip
 ends.
 
 A poll that tests the mask ends its wait when the

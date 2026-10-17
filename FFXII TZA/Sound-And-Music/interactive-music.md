@@ -288,7 +288,7 @@ tick = the rest
 | `007F3140` | subtracts one timing from another |
 | `007F2F10` | rounds up to the next bar when the beat or tick is not 0 |
 | `007F2FA0`, `007F3080` | round a timing (bar `+0`, beat `+2`, tick `+3`) down to the grid of a sync type, and step it by one grid unit: 3 two ticks, 4 three ticks, 5 a beat, 6 two beats, 7 a bar, 8 two bars, 9 four bars, 10 eight bars, and for the step only 2 one tick; rounding clears the smaller units, and a step carries into the next beat at `+21`<sub>h</sub> ticks and into the next bar at `+20`<sub>h</sub> |
-| `007F3570` | the sample of a timing; a timing before the start or past the end is clamped with a warning ("GetSampleFromTiming timing is before startTiming") |
+| `007F3570` | the sample of a timing: with `d` = timing − start timing `+08`<sub>h</sub> (`007F3140`), `[+00h] + d.bar x [+2Ch] + d.beat x [+28h] + d.tick x [+24h]`, or `[+04h]` at the end timing `+0C`<sub>h</sub>; a timing before the start or past the end is clamped with a warning ("GetSampleFromTiming timing is before startTiming"), and with byte `+18`<sub>h</sub> clear it logs "Invalid Timing!" and returns `[+00h]` (`007F3570`-`007F37FE`) |
 | `007F3800` | the timing of a sample, through `007F2EA0`; "GetTimingFromSample Invalid Timing!" outside the music |
 | `007F3510` | the sample of a custom point: from its timing (`007F3570`) when its byte `+18`<sub>h</sub> is set, otherwise from its sample |
 | `007F3430` | the timing of a meter record `+08`<sub>h</sub>, or with its byte `+18`<sub>h</sub> set the later of it and a given timing, rounded down to the sync grid (`007F2FA0`) |

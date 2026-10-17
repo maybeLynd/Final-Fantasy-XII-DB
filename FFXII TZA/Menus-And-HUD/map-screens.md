@@ -106,8 +106,9 @@ Each frame, a page rebuilds its element list (`00402A40`) and draws (`002B8A19`-
 A page keeps its zoom in percent at `+D4`<sub>h</sub> and its scroll at `+C8`<sub>h</sub>/`+CC`<sub>h</sub>:
 
 1. The overlay page starts at `TrackMapScale` (200, `002B806C`) through `002B7210` and `002B6AE0`.
-2. `002B6AE0(page, zoom)` changes the zoom and keeps the view centre still: `002B69B0` scales the centre's distance
-   from the scroll by the new zoom, rounding to the nearest unit.
+2. `002B6AE0(page, zoom)` changes the zoom and keeps the view centre still. With `c = [+9Ch] >> 1`,
+   `002B69B0` takes `v = (c - [+C8h]) * 100 / [+D4h] * zoom / 10`, adds 10 when `v % 10 >= 5`, and sets the
+   scroll to `c - v / 10`, all integer divides; y is the same with `+9E`<sub>h</sub> and `+CC`<sub>h</sub> (`002B69BF`-`002B6AD4`).
 3. Each frame `002B66E0` keeps the tracked point at `+BBD8`<sub>h</sub>, placed at the current zoom (`00403550`), inside a box
    of 32 units either side of the view centre. It moves the scroll a sixth of the way per call, at least 1 unit,
    within the bounds `+F8`<sub>h</sub>-`+104`<sub>h</sub>, and centres an axis whose bounds cross (`002B6865`-`002B6923`).

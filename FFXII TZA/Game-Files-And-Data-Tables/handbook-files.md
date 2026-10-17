@@ -227,6 +227,12 @@ no maps, the caption is the message `caption[section]`. Otherwise it is shown wh
 current map the live set, `00255060`); when none does, the caption reads message `3EC`<sub>h</sub> (`002F9860`).
 A caption of -1 yields no text.
 
+The same two map-bit tests serve the achievement check `003160C0`, which needs every map flagged in
+`menuhandbook.bin` to have a revealed tile
+([achievements](../Steam-And-Achievements/achievements.md)). The Clan Primer's index builder
+`00571F60` reads the entries through `00576030`, `005760A0`, `00576740`, `00576CA0` and `00577550`
+([Clan Primer](../Menus-And-HUD/clan-primer.md)).
+
 ### Entry text
 
 `00576300` builds the open entry's lines from slot 1's bundle. The entry number must lie in the bundle's

@@ -234,11 +234,16 @@ buffer by `+54`<sub>h</sub> and adds `+58`<sub>h</sub>.
 2. For each output channel (count `+0C`<sub>h</sub>), it sums 19 taps of that history, each with its own delay and gain. The
    byte table `01CB73E0` picks one of two delay sets per channel (`007D482F`).
 3. It reads 16 delay lines, damps each with a one-pole filter, and mixes them with a 16-point Hadamard transform after
-   scaling each line (`007D3B80`, called at `007D4D98`).
-4. It writes the mixed lines back, each with a share of the new signal scaled by `0.125` (`00D90640`) and a per-line
-   gain.
-5. It runs the output through three filter stages, `007D3200` twice and `007D33B0` (`007D54A7`-`007D54EF`).
-6. It moves every line's position on, wrapping each at its length, and moves on four further rings.
+   scaling each line (`007D3B80`, called at `007D4D98`): line `i` times the state block's `[+418h][i]`, then unnormalised
+   butterflies `a + b`, `a - b` at strides 1, 2, 4 and 8.
+4. It writes the mixed lines back: each sample `k` of line `i` becomes `mixed[i][k] + v[i] x s[k]`
+   (`007D4DB2`-`007D4DF2`), `v[i] = [+410h][i]` (the pointer `007D3D0E` reads is parked at `[rbp+18h]` by
+   `007D3D7E` and reloaded at `007D4DA8`), with the same eight samples `s` for every line.
+5. `s = 0.125 x (p + a + r)` per sample (`[00D90640]`, `007D4CBC`-`007D4CC6`): `p` the quad pair formed at
+   `007D4B6D` and `007D4B81`, `a` the output of the third allpass stage (coefficient `[+12Ch]`, `007D4C6A`,
+   `007D4C7A`) and `r` the ring sample read at `007D4C9F`, added at `007D4CB0`.
+6. It runs the output through three filter stages, `007D3200` twice and `007D33B0` (`007D54A7`-`007D54EF`).
+7. It moves every line's position on, wrapping each at its length, and moves on four further rings.
 
 The rings are 16,384, 1,024, 2,048 and 2,048 frames long, the last three read 367, 512 and 1,179 frames back
 (`007D55A3`-`007D563E`). `007D33B0` is one frame of an eight-channel direct-form-1 biquad; `007D3200` is the same

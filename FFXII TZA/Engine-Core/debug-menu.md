@@ -91,6 +91,10 @@ read-out rows use two more tables:
   `01F832E9` for a `spc_` name) the setter `0020AC30` and the pusher `0020AF10` maintain from
   the `plan_master\<locale>\event\` paths the resource loads hand them.
 
+The setter's test that a path has that form is `0020A800`, a `std::regex` match
+([MSVC containers](../Compiler-And-C-Runtime/msvc-containers.md),
+story and events).
+
 The setter takes the slot's name from the path with `0020AA50(out, path)`: the text between the last
 `\` and the last `.`, the event file's name without its extension.
 
@@ -110,14 +114,14 @@ Several rows print a live value that the renderer `001CD0E0` gathers itself:
 
 | Row | Label | What the renderer prints |
 |---|---|---|
-| 2 | (information) | the frame rates and the background, and, with an event slot marked, `event:` with the slot's name from `001C5110` (the name at `01F832F0 + slot × 20h`, empty without a marked slot) |
+| 2 | (information) | the frame rates and the background, with the loaded map `00314910()` (payload `+105C`<sub>h</sub>, [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) and the story-progress word `00265270()` as its `(%d/%d)`, and, with an event slot marked, `event:` with the slot's name from `001C5110` (the name at `01F832F0 + slot × 20h`, empty without a marked slot) |
 | 7 | (information) | `CutSceneName: %s Cut: %d(id: %d) Frame: %d`: the slot name (`001C5110`), its queued count, the last entry of its vector `01F83390`, and the counter `01F832C4` |
 | 8 | (information) | for the picked object of `001C0DA0()` while its byte `+9` is set and the information page is open: its name (`001C0330`: `Disabled`, `NULL` or its own), its mesh texture (`001C0540`), its procedural texture (`001C0480`) and its tiling and blending values |
 | 57 | Operate cube map | `001AD440()` `+168`<sub>h</sub> through `0017F5E0` (-1 without the object), marked `NOT EDITABLE` unless its `+40`<sub>h</sub> is 1 |
 | 59 | Recapture cube maps | the status string `001AC7A0` picks: `+204h + [+200h] × 20h` of the cube-map object |
 | 102 | Current GPU Temperature | the current adapter's temperature, `%d(C)` (below) |
 | 220 | Extra BGM status | `0017E010`: `Not forced`, `Forced on` or `Forced off` from `01DF0018` by `01DF0010` |
-| 222 | Control character position | `x:%f, y:%f, z:%f` from `003091C0`: the position (`00265020`) of the actor `00263750(003272F0())` when `00265970` holds |
+| 222 | Control character position | `x:%f, y:%f, z:%f` from `003091C0`: the position (`00265020`) of the actor `00263750(003272F0())` when `00265970` holds; `003272F0` is the party leader's roster slot ([party leader](../Party/party-leader.md)) and the call goes through `0031ABF0`, a jump to `00263750` |
 | 246 | Chara Name | `(%d) %s`: `00308E80(i)` gives a name from the record that `022C24E0 + i × 8` points to: its byte `+4`, below 6, picks one of `Vaan`, `Ashe`, `Fran`, `Balthier`, `Basch`, `Penelo` at `01EEC268`; otherwise `Nobody` |
 | 264 | Game Display Resolution | `001DCD30`: `%d X %d ,%dHz, %dHz`, the configured resolution (`[01F82D20]` `+04`<sub>h</sub> / `+06`<sub>h</sub> with `+08`<sub>h</sub> set, else `+2C`<sub>h</sub> / `+2E`<sub>h</sub>), the desktop's refresh rate (`EnumDisplaySettingsW`) and the selected mode's rate; then `Screen Resolution :%dx%d` from `GetSystemMetrics` |
 | 266 | System Adapter | `001DCB90`: ` Count %d ,Now: %s ,Video Memory: %lld MB, Temperature: %d(C)`, the memory being the adapter's `+110`<sub>h</sub> divided by 1,000,000 |
@@ -157,6 +161,10 @@ singleton getters: `001A9930` (`01F81168`), `00193D50` (the `4A8`<sub>h</sub> po
 at `01F7F5F0`), `001DDAB0` (`01F82D18`), `001C2F40` (`01F81270`), the game-setting object pointer
 `01F82D20` loaded in 18 arms, and the indexed store `001DF340(obj, i, v)`.
 
+Rows 205 to 207 (Music, Voice, Sound Effect) set the music, voice and sound-effect category
+volume to 1.0 or 0 through `001DBB00`, and row 217 steps the 3D sound behind ratio with the
+getter `002DEBA0` and the setter `002DF2A0` ([audio manager](../Sound-And-Music/audio-manager.md)).
+
 Most stepped fields are in the render settings block ([graphics settings](graphics-settings.md)); the gil row is
 `003058B0`, which hands 99,999,999 to the ordinary setter `00254EE0`
 ([gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
@@ -193,6 +201,12 @@ Kinds 5 and 6 do not dispatch: 5 runs `001DC940` on the `001DDAB0` object and `0
 retail, reached from the Config screen; the other 266 have no caller in the shipped game, and
 the menu that would reach them never opens.
 
+Two console bytes are read by input code instead of a menu arm. While `+C3D`<sub>h</sub> (row 293, "Key
+Board Debug For Japanese Keyboard") is set, the control-code lookups `00197790` and `00197800`
+use the 106-entry table `01DF1030` in place of `01DF0E80`, and while `+C35`<sub>h</sub> (row 187, "Enable
+mouse control camera") is set the input translator `00197160` calls `GetForegroundWindow` at
+`001973DA` ([on-screen keyboard](../Controls-And-Input/on-screen-keyboard.md), [controls](../Controls-And-Input/controls.md)).
+
 ### The debug script verbs
 
 The verb table keeps a family of `debug_` calls that event scripts could issue. Their handlers in the
@@ -212,8 +226,9 @@ shipped game:
 
 The rows that print text in the 3D view do it through the `MultipleDebugDisplay` singleton at
 `01F81270` (getter `001C2F40`). `001C2F00` allocates its `4670`<sub>h</sub> bytes and runs the constructor
-`001C1D40`; `001C2120` is the destructor body and `001C2670` the deleting wrapper. A line is a
-`230`<sub>h</sub>-byte record: x and y floats, a 256-byte text buffer at `+08`<sub>h</sub> and a text object at `+108`<sub>h</sub>.
+`001C1D40`; `001C2120` is the destructor body and `001C2670` the deleting wrapper. The start-up
+step `0017D6B0` makes the call to `001C2F00` ([game application](game-application.md)). A line
+is a `230`<sub>h</sub>-byte record: x and y floats, a 256-byte text buffer at `+08`<sub>h</sub> and a text object at `+108`<sub>h</sub>.
 
 The constructor builds 32 fixed records at `+10`<sub>h</sub> and prepares each text object with `001EA3C0`.
 That loads `PhyreText.fx` and the font `tuffysdf.fgen` (the two paths at `01DFDE00`), binds the
@@ -449,7 +464,8 @@ object, the display flag words, the event-slot arrays.
 - A row's label names the field; the arm defines its type, step and range. Three adjacent rows
   labelled "Enable 100% successful steal / poach / drop" cycle four, three and five states.
 - The gil row is not a cheat path of its own: it calls the setter every shop and reward uses, so
-  the achievement counter behind it moves too.
+  the achievement counter behind it moves too: `00254EE0` calls `00316A50`
+  ([achievements](../Steam-And-Achievements/achievements.md)).
 
 ## Related
 

@@ -63,6 +63,14 @@ to `0025A96A`), which is the `VCLIP` instruction, and two more translated bodies
 the new word to `022D9478`, and the only readers are those three and `0025C830` (`0025CEFA`),
 which tests the bits after calling `0025A8E0` four times.
 
+`0025C830` is the box test of class-1 trigger records that files the `touch` and `touchon`
+script requests ([script requests](../Scripts-And-Script-Commands/script-requests.md)).
+
+`003623C0` and the segment chain `00362230` (with its helper `00363FD0`) are point clamps of the
+map-sound emitter shapes, called from the emitter walk `003631B0`
+([geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md),
+[map sounds](../Sound-And-Music/map-sounds.md)).
+
 `022D9198` is `Q`, the divide and square-root result: 55 functions write it at 85 sites, always
 from a division (`0024AEC0` stores `vf00.w / w`, `003640CE` stores `vf00.w / |d|²`). `022D91A0`
 is `ACC`, the accumulator the multiply-add forms read: 83 functions write it, 544 stores and 356

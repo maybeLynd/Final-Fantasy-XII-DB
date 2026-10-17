@@ -25,7 +25,8 @@ the last level is 99. While the script's summon mode is on, the whole EXP goes t
 
 ### When rewards are paid
 
-`00312280(killer, enemy)` pays EXP and LP only when the defeated unit is an
+`00312280(killer, enemy)`, whose only caller is the status write `0030E360` when it adds KO, Stone or X-Zone
+([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)), pays EXP and LP only when the defeated unit is an
 enemy (stats byte `+05`<sub>h</sub> = 1) whose byte `+E9A`<sub>h</sub> has bit 3 clear, and when at least one of these
 holds: `+E9A`<sub>h</sub> has bits 0 and 2 set, or the enemy's status words `+64h | +3Ch` have bit 1 set
 while `+E9A`<sub>h</sub> bit 1 is set, or the killer is a party member (killer stats byte `+05`<sub>h</sub> = 0).

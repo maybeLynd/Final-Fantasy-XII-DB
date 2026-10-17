@@ -219,6 +219,11 @@ its words this way. The way back is `002D7F20(e)`: 2^e for e up to 10, 0 above. 
 upload `00375B90` (kind 4) reads the width and height out of its word `+30`<sub>h</sub> with it and passes
 them, with the base and the format, to `003A22A0`.
 
+A second exponent helper, `003666E0(n)`, returns log2 n for a power of two `n`; its two callers are `003649A0` and
+`00474710`. `00474710` builds a GS sprite packet of register and value pairs, registers `3F`<sub>h</sub>, `4C`<sub>h</sub>, `06`<sub>h</sub>
+(TEX0) and `42`<sub>h</sub> (ALPHA, value `44`<sub>h</sub>) (`00474F95`-`00474FF5`), with the colour `80808080`<sub>h</sub> (`0047502A`), and
+divides its two texture coordinates by `1 << 003666E0` of each texture dimension (`00475044`, `00475066`).
+
 ### The VIF packet writer
 
 The map screens, the world map and the battle target lines still build VIF1 packets for VU1 in the GS

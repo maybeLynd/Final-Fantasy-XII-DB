@@ -190,8 +190,11 @@ Obtaining the Second Board ends with the chooser opening for the member's second
   any square still fades or counts down.
 - `0055B8C0(view)` starts a 6-frame pan toward the cursor square (`+550`<sub>h</sub>/`+551`<sub>h</sub> times the cell size `+554`<sub>h</sub>) when
   the view is not there; `0055F1C0` runs the pan (`00248F40`) and the cursor's pulse `+191`<sub>h</sub> in five steps.
-- `0055B960(view, dx, dy, now)` gives the scroll that keeps the cursor inside the view, a sixteenth per frame (rounded
-  to an even step) unless `now`; `00561F20` clamps a scroll to its limits.
+- `0055B960(view, dx, dy, now)` gives the scroll `d` that keeps the cursor inside the view. Unless `now`,
+  each axis takes `s = d >> 4` (arithmetic), `s = d / abs(d)` when that is 0, and an odd `s` one further from 0
+  (`0055BA33`-`0055BA5F` for x, `0055BA6E`-`0055BA91` for y).
+- `00561F20` clamps a scroll to its limits: `+10h = min(max(+10h, +08h), +0Ch)` and
+  `+12h = min(max(+12h, +0Ah), +0Eh)`, all `s16`.
 - `0055AB20` tiles the background picture `+180`<sub>h</sub> over the screen in batches of 12 (`002D9380`); `0055B6D0` draws
   the cursor frame `+188`<sub>h</sub>, inset by the pulse.
 

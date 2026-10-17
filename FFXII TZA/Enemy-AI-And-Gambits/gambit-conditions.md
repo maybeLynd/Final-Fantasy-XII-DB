@@ -29,11 +29,16 @@ When a gambit list is built, each line's condition row becomes up to three tests
 
 A row whose test keeps no unit fails the line, and the walk goes on to the next line.
 
+The "on screen" test of rows such as `Foe: nearest visible` keeps a unit only when `00322360(unit)` returns
+non-zero (`00303185`-`00303197`). That test builds a box from the unit's position and size and checks it against
+the view-projection matrix `02AEDDF0` through `0046C0D0`
+([Scripted camera](../Graphics/scripted-camera.md)), so it follows the current camera.
+
 ### How the target is picked
 
 | Rule | Conditions | Sites |
 |---|---|---|
-| random | "any" conditions (`Foe: any`, `Ally: any`, the gated `any` rows) | `00301ECC` sets pick rule 1; `00308B0D`-`00308B19` |
+| random | "any" conditions (`Foe: any`, `Ally: any`, the gated `any` rows) | `00301ECC` sets pick rule 1; `00308B0D`-`00308B19`, a draw of the shared LCG `00328370` ([Random number generators](../Random-Numbers/random-number-generators.md)) |
 | highest or lowest HP %, MP % or HP | `HP >= 70%`, `HP < 50%`, `MP < 30%`, `HP < 2,000` and the like | `003022C7`, `00302EDF` set key type 1 and pick 2 or 3; `003089D7`, `00308A73` |
 | nearest | every other condition, and ties between equal highest or lowest values | `00308B2F`-`00308B76`, squared distance on the ground plane |
 
@@ -128,5 +133,6 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 
 - [Gambits](gambits.md) - the walk, the relation rules and the gambit layouts.
 - [Enemy AI](enemy-ai.md) - the same tests used by enemy orders.
+- [Enemy order sets](enemy-order-sets.md) - every opcode of the selector `00301AD0`, beyond the shipped gambit conditions.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the stats offsets the tests read.
 - [Elements](../Damage-And-Battle-Formulas/elements.md) - the weak and absorb bytes.

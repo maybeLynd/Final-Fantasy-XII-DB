@@ -19,7 +19,15 @@ so it never touches damage, drops or anything else in play.
 
 An expression is a 16-byte record with two operands, A and B, and an operator. `004314E0(record, x)`
 evaluates it as an integer and `004309C0(record, x)` as a float; `x` is the input a curve is
-sampled at, usually a time or frame. Each operand is one of three kinds:
+sampled at, usually a time or frame.
+
+The evaluators' callers are presentation code: the effect
+element runtime and types (`002F2530`, `00441B30`, `00442600`), the character rig (`003A4290`,
+`003A56F0`), the character render records (`00422870`) and the model oscillators (`0040AA20`)
+([effect element runtime](../Graphics/effect-element-runtime.md),
+[character render records](../Graphics/character-render-records.md)).
+
+Each operand is one of three kinds:
 
 | Kind byte (`+0C`<sub>h</sub> A, `+0D`<sub>h</sub> B) | Value |
 |---|---|

@@ -91,8 +91,8 @@ The four blank tokens scale with the text size and letter spacing (`002ACC97`-`0
 | `0F <` | shifts the baseline (`002AE1C5`) |
 | `0F 4` | sets the advance of the next glyph only (`002ADD03`) |
 | `0F (` | the text size in 24ths (`008F3128`) |
-| `0F 7` | the text size in percent (`008F3134`) |
-| `0F 3` | separate x and y scales in tenths (`002ADC5A`-`002ADC62`) |
+| `0F 7` | the text size in percent: `+34h = value / 100.0` for the unsigned value byte (`008F3134`, `002AD394`-`002AD3B1`) |
+| `0F 3` | separate x and y scales in tenths: `+38h = (byte1 & 7Fh) / 10.0` and `+3Ch = (byte2 & 7Fh) / 10.0` (`003FFDA0`, called at `002ADC5A`-`002ADC62`) |
 | `0F` space | a fixed advance for marked glyphs, the value over 90 (`009166FC`, `002AD074`) |
 | `0F $` | the letter spacing (`002AD252`) |
 

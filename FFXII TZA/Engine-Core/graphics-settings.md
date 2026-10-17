@@ -205,8 +205,8 @@ bytes at a time into snapshot `+110`<sub>h</sub>, `+190`<sub>h</sub> to `+44F`<s
 `00604750` builds that snapshot on its stack (the defaults of `005DC580` and `005DC430` first,
 then `006084B0` over them), takes the lock at `+4B0`<sub>h</sub> (`005CD4F0` / `005CD820`), and compares
 the `598`<sub>h</sub> bytes against the slot `idx & 1` at `+4E0`<sub>h</sub> with `idx` = `+4D8`<sub>h</sub>. When they are
-equal it returns the previous ring entry and writes nothing. When they differ it advances `idx`
-modulo `+498`<sub>h</sub>, copies the snapshot into that slot (`005DF3E0`), waits on the ring entry's busy
+equal it returns the previous ring entry and writes nothing. When they differ it sets
+`idx = (idx + 1 == [+498h]) ? 0 : idx + 1` (`006048E1`-`006048EE`), copies the snapshot into that slot (`005DF3E0`), waits on the ring entry's busy
 word (a `Sleep(1)` loop) and rewrites the constant buffer.
 
 The write fills the shipped shaders' `SceneWideParameterConstantBuffer` from the snapshot, field

@@ -73,8 +73,9 @@ The quest list of the `menuhandbook` object, bound at `022C2550`, gives a minimu
   byte reaches the minimum (`00315DE9`-`00315E6B`), else true.
 
 Besides these, the menu's quest readers (`0037E780`, `0037EAA0`, `0037EB90`, `0037EC70`, `0037EE10`, `0037EF70`,
-`0037F060`, `00380170`, `003BC260`, `003C0A00`, `003F4C30`) and the save screen's panes (`00577C30`, `005781A0`,
-`00578310`, `00578450`, `005789D0`) read the bits.
+`0037F060`, `00380170`, `003BC260`, `003C0A00`, `003F4C30`) and the Clan Primer's hunt panes (`00577C30`, `005781A0`,
+`00578310`, `00578450`, `005789D0`; [Clan Primer](../Menus-And-HUD/clan-primer.md),
+[Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)) read the bits.
 
 ## Modding notes
 

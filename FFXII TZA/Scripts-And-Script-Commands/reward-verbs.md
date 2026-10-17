@@ -184,7 +184,11 @@ statistics counter 17 (`00316A50(11h, n)`) and no script uses it.
 
 `btlAtelSetLevel(a, b)` (`3031`<sub>h</sub>, `0050F910` → `002398F0`) sets a foe's level to a random value
 from a to a + b (`0030C470(record, a + rand % (b + 1), a)`), refused when `[[unit + 6A0h]] & 5` is
-non-zero. The debug give-all verbs add 99 of every id (`003008A0(id, 99, 0, 1, 0)`): items
+non-zero. Its draw comes from the LCG `00328370`, while the chest rolls above draw from the
+Mersenne Twister thunk `00379CD0`
+([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)).
+
+The debug give-all verbs add 99 of every id (`003008A0(id, 99, 0, 1, 0)`): items
 (`00510850` → `0030DD70`, class 0), equipment (`00510860` → `0030DCB0`, class 1) and event items
 (`0050F0E0` → `0030DD10`, class 2).
 

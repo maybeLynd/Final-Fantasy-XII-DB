@@ -113,8 +113,10 @@ motion word `+CC`<sub>h</sub> is not `2009`<sub>h</sub> or `2031`<sub>h</sub>, n
 on when `00422DE0` puts the motion word in class 3.
 
 The update `00471150` steps a counter `+D`<sub>h</sub> through the eight-entry
-curves `01F22130` and `01F22170`, scales them by `+10`<sub>h</sub> and turns them by the heading `+124`<sub>h</sub> into the offset
-`+20`<sub>h</sub>, `+28`<sub>h</sub>; at the end of the curves it stops the controller.
+curves `01F22130` and `01F22170` and turns them by the record's heading `h` (`+124`<sub>h</sub>): with
+`a = [+10h] x c1[n]` (kept at `+18`<sub>h</sub>) and `b = [+10h] x c2[n]` (kept at `+1C`<sub>h</sub>), it writes
+`+20h = a cos h - b sin h` and `+28h = b cos h + a sin h`, sine and cosine read from the 32,768-entry table
+`01F004E0` (`00471180`-`00471221`). At the end of the curves it stops the controller.
 
 ### Rotators and authored commands
 

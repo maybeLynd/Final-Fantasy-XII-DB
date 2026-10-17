@@ -94,7 +94,11 @@ either is past its count, and otherwise the row's address. Many readers instead 
 inline with no bounds test, among them the unit name lookup in `0023A570`.
 
 A row starts with two zero bytes. `002B58B0(row, k)` skips them and then `k` strings and returns the
-string it reaches; a row without the two zero bytes is returned as it is.
+string it reaches; a row without the two zero bytes is returned as it is. Of its 59 callers, 14
+are interface code reading a row's strings: the gambit screen (`00567B60`, `0056A890`,
+`0056BC70`), the licence screens (`00558CE0`, `005618E0`), the battle menu's title `0027D480`
+and the party list `002986E0` among them ([gambit screen](../Menus-And-HUD/gambit-screen.md),
+[battle menu](../Menus-And-HUD/battle-menu.md), [party list](../Menus-And-HUD/party-list.md)).
 
 ### Text groups
 

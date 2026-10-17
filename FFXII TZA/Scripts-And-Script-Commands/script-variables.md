@@ -34,9 +34,10 @@ names an array header in the image: the element descriptor at `+0`, the dimensio
 (u16) and the dimensions from `+8`.
 
 The resolver pops one index per dimension from the value
-stack, last dimension first, clamps each into `0 … dim − 1` (a negative index reads element 0, a
-large one the last element), multiplies the dimensions out row-major into one flat index, and
-then resolves the element descriptor's class as above. The flat index is returned separately and
+stack, last dimension `d[n − 1]` first, and folds them row-major with `stride = 1`, then for
+`k = n − 1 … 0`: `i = min(max(pop(), 0), d[k] − 1); flat += i × stride; stride ×= d[k]`
+(`002624D2`-`00262537`), so a negative index reads element 0 and a large one the last element.
+It then resolves the element descriptor's class as above. The flat index is returned separately and
 the caller scales it by the element width.
 
 The resolver fills a `30`<sub>h</sub>-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int,

@@ -92,6 +92,9 @@ every active slot (`+4C`<sub>h</sub> bit `1`<sub>h</sub>), and `004668C0` adds t
 (`+4C`<sub>h</sub> bit `2`<sub>h</sub>) and a span of at least 1.0 the time wraps within `+3C`<sub>h</sub>..`+40`<sub>h</sub>; otherwise it
 clamps there and sets bit `4`<sub>h</sub> (finished).
 
+The field frame drives `004678E0` through `0036F460`, which hands it the accumulator's growth
+([frame update order](../Engine-Core/frame-update-order.md)).
+
 ## Modding notes
 
 - Number a map's lists from 0 with no gaps, end every line with CRLF, start no line with whitespace,

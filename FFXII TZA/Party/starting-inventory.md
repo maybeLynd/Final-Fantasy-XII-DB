@@ -23,7 +23,9 @@ nothing; the items a new party holds come from the first-join lists of the
 3. `003008A0` returns -1 at once for id `FFFF`<sub>h</sub> (`003008C0`-`003008C5`).
 
 `0023AF50` runs at the start of `00237DF0`, which then builds the forty member records with `0023AC80`;
-`00237DF0` is called by `00233C10`, `00238A80`, `00239960` and `00394460`.
+`00237DF0` is called by `00233C10`, `00238A80`, `00239960` and `00394460`. The last is the title asset's factory,
+which the title script verb `fsttl_initialize` (`00511EA0`) runs, calling `00237DF0` at `00394486`
+([Widgets](../Menus-And-HUD/widgets.md), [Verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
 ### How it is built
 

@@ -97,7 +97,7 @@ A recipe's first list runs when the action executes, through `00385680` (slot ca
 | `7`, `8` | `00388490`, `003884F0` | the alternative outcome flag `02AEDFC4`: a chance from the target's Speed when it has effect 6 |
 | `9`, `10` | `00388550`, `00388660` | the combo chance and count ([Combos](../Battle-Actions/combos.md)) |
 | `22` | `00388FB0` | loads the target's shield, weapon and innate evade (`+33`<sub>h</sub>, `+32`<sub>h</sub>, `+31`<sub>h</sub>) and sets the hit chance to 100 |
-| `33` | `00389310` | halves the hit for a Blind source; clears the bands for an Invisible source or a target under Stop, Sleep or Disable, and the innate band under Immobilize |
+| `33` | `00389310` | halves the hit for a Blind source, `02AEDFE0 = 02AEDFE0 / 2` signed (`00389318`-`00389323`); clears the bands for an Invisible source or a target under Stop, Sleep or Disable, and the innate band under Immobilize |
 | `34` | `00389370` | adds 25 to the innate band (30 for a party-side target) under target effect 4, adds the shield-block augments 3 and 88-90 to the block band, clears all three bands when the user has effect 2 (the Cameo Belt's augment), and clears bands the target's equipment does not allow |
 | `41` | `003896B0` | the outcome roll below |
 

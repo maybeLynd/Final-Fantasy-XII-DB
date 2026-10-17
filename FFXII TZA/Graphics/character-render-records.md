@@ -524,9 +524,9 @@ The authored command `00`<sub>h</sub> also ends with kind `2F`<sub>h</sub>'s han
 | `01`<sub>h</sub> | `00422420` | a counter in byte `+40E`<sub>h</sub>: at 0 it draws a random 0–4 (`003A6E60(5)`) into `+411`<sub>h</sub>, returns it and starts counting at `[01DFE0B4]`; at `11 × [01DFE0B4]`, when the query `0041F2F0(record, 20h)` reports bit `4`<sub>h</sub>, it adds 5 to `+411`<sub>h</sub> and returns that; otherwise it counts up to at most 100 and returns −1 |
 | `02`<sub>h</sub> | `00422500` | the byte `+410`<sub>h</sub>, chosen once while it is −1 from the bits of `0041F2F0(record, 30h)`: bit `2`<sub>h</sub> counts `+40E`<sub>h</sub> up (back to `[01DFE0B4]` past three times that) and chooses 0; otherwise 1 with bit `4`<sub>h</sub>, else 2, and `+40E`<sub>h</sub> is cleared |
 | `04`<sub>h</sub> | `00660570` | −1 |
-| `10`<sub>h</sub> | `004225A0` | counts down `+412`<sub>h</sub>, armed with a random value from the stream's byte `+2DD`<sub>h</sub> − 1 to `+2DE`<sub>h</sub> − 1 (times `[01DFE0B4]`), and chooses 1 when it reaches 0 |
+| `10`<sub>h</sub> | `004225A0` | counts down `+412`<sub>h</sub>, armed while it is −1 with `(rand() % (b - a + 1) + a - 1) x [01DFE0B4]` for the stream's bytes `a` = `+2DD`<sub>h</sub> and `b` = `+2DE`<sub>h</sub> (`004225C3`-`004225F8`), and chooses 1 when it reaches 0, setting it back to −1 |
 | `20`<sub>h</sub> | `00422630` | 0 when the point from `0041F2F0(record, 4)` lies within ±90° of the record's heading (`00424370`: `atan2` of x and z in the record's own frame), else 1 |
-| `21`<sub>h</sub> | `004226C0` | 0 within ±60°, else 1 or 2 by side; plus 3 on a random half (`003A6E60(2)`) |
+| `21`<sub>h</sub> | `004226C0` | with `d` the angle from `00424370` times 57.295776: 0 for `-60 <= d <= 60`, else 1 for `d > 0` and 2 for `d <= 0`; plus 3 when `003A6E60(2)` is non-zero (`004226FF`-`00422742`) |
 | `22`<sub>h</sub> | `00422760` | 1 when the vertical angle to the point (`00424460`) is negative |
 | `23`<sub>h</sub> | `004227D0` | 0 within ±60°, else 2 or 3 by side |
 | `24`<sub>h</sub> | `00422870` | the quarter the point lies in (0 ahead, 1 at 45°–135°, 2 at −45° to −135°, 3 behind) in record byte `+2AF`<sub>h</sub>, plus 4 on a random half |

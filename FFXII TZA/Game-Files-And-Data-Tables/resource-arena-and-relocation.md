@@ -16,9 +16,17 @@ overwritten makes the game write a memory dump and quit.
 ### The arenas
 
 There are fifteen arena records of `A8`<sub>h</sub> bytes at `022D7FD0`, indexed 0 to 14. `00369D30(arena, buffer,
-size, slots)` builds one inside a caller's buffer: a `40`<sub>h</sub>-byte name header at the start, a page map
-(one qword per 64 KB page, the page count rounded to 32) and a bitmap of `pages / 32` dwords, the
-handle-slot table when `slots` is non-zero, and the block heap after them, rounded to 64 bytes. It sets
+size, slots)` builds one inside a caller's buffer, with
+`pages = ((size + FFFFh) / 10000h + 31) & ~31`: one page per 64 KB, rounded up to a multiple of 32
+(`00369DDF`-`00369E0D`, record `+58`<sub>h</sub>).
+
+The buffer starts with a `40`<sub>h</sub>-byte name header. A bitmap of `pages / 32` dwords follows at record
+`+20`<sub>h</sub> = `(buffer + 7Fh) & ~3Fh`, the page map of one qword per page at `+28`<sub>h</sub> =
+`(bitmap + (pages / 32) × 8 + 3Fh) & ~3Fh`, and then `h = (map + pages × 8 + 3Fh) & ~3Fh`
+(`00369E73`-`00369EA4`).
+
+When `slots` is non-zero the handle-slot table of 16-byte slots starts at `h` and the block heap at
+`(h + slots × 16 + 3Fh) & ~3Fh` (`00369EAC`-`00369EC6`); otherwise the heap starts at `h`. It sets
 the arena's bit in the enabled mask `022D89B8` and writes the heap's first free block header.
 
 Boot (`0022A0B0`) and four later calls build these:
@@ -168,8 +176,8 @@ hang off `+48`<sub>h</sub>.
 - `0036B130(handle)` returns `[slot + 8] + 40h` with no check word test, so a stale handle resolves
   to whatever the slot holds now. `003AB7F0` wraps it and returns 0 when the low 32 bits of the
   result are `40`<sub>h</sub> or less.
-- `0036A0B0(handle)` checks only the tag bits and the `100000`<sub>h</sub> floor, sets the block's `+15`<sub>h</sub> bit 2 when it
-  is clear, zeroing `+3E`<sub>h</sub>, and returns the payload `+40`<sub>h</sub>, or 0; `0036D200(handle)` clears that bit and
+- `0036A0B0(handle)` checks only `(handle & 3) != 0 && handle >= 100000h` (`0036A0BA`-`0036A0C5`), takes
+  the header `[(handle & ~3) + 8]`, sets the block's `+15`<sub>h</sub> bit 2 when it is clear, zeroing `+3E`<sub>h</sub>, and returns the payload `+40`<sub>h</sub>, or 0; `0036D200(handle)` clears that bit and
   `+3E`<sub>h</sub> again. The sound-bank loaders `002E60F0`, `0036E9F0`, `0036EAB0`, `0036ED50` and `003A1650` use the
   first, `002E60F0` and `003A0EA0` the second.
 - `00369800(handle)` frees the slot (`0036A9C0`: unlinks it, takes the block out of the tree, zeroes

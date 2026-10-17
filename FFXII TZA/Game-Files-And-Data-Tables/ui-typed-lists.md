@@ -266,9 +266,13 @@ bits 2-5. Types 1, 3, 6 and 8 have no arm.
 - Type 4 goes to `0029ED30`; type 5 to `0029FBD0` (only in `002435C0`), which draws the string at `+18`<sub>h</sub> with
   `002D8910` and draws nothing when it is null.
 - Type 7 goes to `0029ED50`. It clamps the value into 0 to maximum, draws the background strip at full length,
-  then the fill strip at `fill length × value / maximum`, then the overlay over the fill. `002A0180` draws a strip
-  as left cap, middle stretched to the remaining length, and right cap; when the length is shorter than both
-  caps it shrinks the caps in proportion.
+  then the fill strip at `fill length × value / maximum`, then the overlay over the fill.
+- `002A0180` draws a strip of length `len` as left cap `L`, middle `len − L − R` and right cap `R` (the pieces' `s16` widths at `+04`<sub>h</sub>
+  and `+14`<sub>h</sub>), the middle only when it is positive; when `len − L − R < 0` it draws only the caps,
+  `L × len / (L + R)` and `R × len / (L + R)` wide (`idiv`; `002A028D`-`002A029B`, `002A0351`-`002A038C`).
+- With a non-zero last argument (`002A01B4`) `002A0180` draws the left cap `L` at `x`, the middle `len − L` after
+  it when `L < len`, and the right cap `R` at `x + len`, past the strip's end, so no cap is shrunk. A strip with
+  `len <= 0` draws nothing.
 - `002A0180` emits each piece with `002D8D40(writer, draw, picture, source, x, y, w, h, flags)` (`002A0209` to
   `002A0410`). Into the VIF packet go the picture bind (TEX0_1 with the palette offset from the draw's `+5C`<sub>h</sub>;
   a PSM `14`<sub>h</sub> picture is bound as `13`<sub>h</sub> with its palette entry in a second record for register `16`<sub>h</sub>),

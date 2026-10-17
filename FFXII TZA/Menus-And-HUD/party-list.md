@@ -115,7 +115,9 @@ with `003F89C0` and the callbacks `0029B7D0` (HP) and `0029B810` (MP), and regis
 runs `003F8BF0(node)` (`003F8A42`): it calls the node's callback `+38`<sub>h</sub> with 5, links its previous `+30`<sub>h</sub> and next
 `+28`<sub>h</sub> neighbours to each other, clears both links and the word `+26`<sub>h</sub>, and calls the callback again with 6.
 
-`0028F1F0(handle, old, new, mp)` starts a roll: it finds the member's pair (`00296280`), or the target window's pair
+`0028F1F0(handle, old, new, mp)`, called by the HP write `00300530` (`003006E7`,
+[HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)) and the MP write `00300CE0` (`00300DD3`,
+[MP](../Status-Effects-And-KO/mp.md)), starts a roll: it finds the member's pair (`00296280`), or the target window's pair
 when its handle matches, and sends the HP or MP counter message 1 (`003F8980`). The HP callback passes the maximum
 `+24`<sub>h</sub>, the MP callback the capacity `+30`<sub>h</sub> times the bar count `+87`<sub>h</sub> (`0029B7D0`, `0029B810`).
 

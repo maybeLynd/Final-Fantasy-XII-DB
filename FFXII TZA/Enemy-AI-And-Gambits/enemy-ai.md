@@ -39,8 +39,8 @@ the wait `4021`<sub>h</sub> from `01EEC298` (`00305C7E`-`00305C9B`).
 ### The built-in sets
 
 The image holds six one-subgroup sets and one bare order record (`.data`, read at the addresses below). The
-wait record `01EEC298` has no count header; `00305AB0` commits it directly instead of walking it
-(`00305C7E`-`00305C9B`):
+wait record `01EEC298` has no count header; `00305AB0` commits it directly with the action commit `0030F760`
+([Action commit](../Battle-Actions/action-commit.md)) instead of walking it (`00305C7E`-`00305C9B`):
 
 | Set | Order | Flags | Used for |
 |---|---|---|---|
@@ -70,7 +70,8 @@ a `u16` count, then one 32-bit offset per set, each resolved against `01F83530` 
   (`002FE0B3`-`002FE0D2`).
 
 So an enemy has up to four lists and twelve phases in each. The walk `00305CC0` starts a subgroup after the
-orders of all earlier subgroups ([Gambits](gambits.md)).
+orders of all earlier subgroups ([Gambits](gambits.md)). Every shipped set and order is on
+[Enemy order sets](enemy-order-sets.md).
 
 ### The perception list
 
@@ -140,6 +141,10 @@ so with both running every frame a unit rebuilds its list in full one frame in e
 reset and the previous command is kept in `+730`<sub>h</sub>
 ([Action commit](../Battle-Actions/action-commit.md)).
 
+A status change can also end the order. `00300140(unit, cancel)` empties the issued command set `+6F8`<sub>h</sub> and its
+target `+748`<sub>h</sub>, and with `cancel` non-zero first cancels the order with `003105D0` (`00300149`-`0030015C`); adding
+or removing Confuse or Berserk runs it ([Status changes](../Status-Effects-And-KO/status-changes.md)).
+
 ## Layouts
 
 The header of an order set, followed by its 24-byte orders ([Gambits](gambits.md)) from `+20`<sub>h</sub>:
@@ -161,6 +166,7 @@ The header of an order set, followed by its 24-byte orders ([Gambits](gambits.md
 
 - [Gambits](gambits.md) - the cascade, the walk and the target tests.
 - [Gambit conditions](gambit-conditions.md) - the tests an order can make.
+- [Enemy order sets](enemy-order-sets.md) - every shipped order set and order, and the selector's full test list.
 - [Enmity](enmity.md) - which noticed unit an enemy attacks.
 - [Battle orders](../Battle-Actions/battle-orders.md) - the order ids.
 - [Action commit](../Battle-Actions/action-commit.md) - committing and cancelling an order.

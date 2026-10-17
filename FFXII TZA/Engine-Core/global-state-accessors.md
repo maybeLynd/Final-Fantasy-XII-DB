@@ -20,7 +20,7 @@ other pages establish for their globals:
 |---|---|---|---|
 | `006372A0` | `02CF8270` (address) | 248 | the root of the PhyreEngine class-descriptor registry (also reached through the thunk `006C4460`, which the count excludes) |
 | `002640C0` | `02099D70` | 138 | the pointer the binder publishes to actor manager 0 ([frame update order](frame-update-order.md)) |
-| `00189120` | `01F7F598` | 117 | the application manager object ([game application](game-application.md)) |
+| `00189120` | `01F7F598` | 117 | the render manager object ([game application](game-application.md)) |
 | `003590D0` | `022C7FE0` (u32) | 78 | the party-focus actor's packed handle |
 | `001B1C00` | `01F811E8` | 56 | the immediate-mode batcher singleton |
 | `00796E20` | `02EA5368` | 55 | the PhyreEngine application object |
@@ -37,7 +37,7 @@ other pages establish for their globals:
 Two helpers that are three instructions rather than one carry more traffic than any getter.
 `0020E600(u)` returns `u + [01F83530]` with `u` zero-extended from 32 bits, and `0020E620(p)`
 returns the low 32 bits of `p - [01F83530]`: a pointer is stored as a 32-bit offset from the base
-and recovered by adding it back. `0020E600` has 814 direct callers and `0020E620` 279; the base
+and recovered by adding it back. `0020E600` has 815 direct callers and `0020E620` 279; the base
 `01F83530` is zero in the image and has no writer, so in this build the offset is the pointer's
 low 32 bits.
 

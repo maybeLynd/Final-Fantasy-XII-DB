@@ -16,7 +16,10 @@ which kind a record is, and several fields mean different things for the two kin
   values ([Stats](stats.md)).
 
 The computed stats `+24`<sub>h</sub>-`+44`<sub>h</sub> are rewritten from these by `002FEF30`, and the augment layer `+78`<sub>h</sub>
-by `0030FED0` ([Augments](augments.md)).
+by `0030FED0` ([Augments](augments.md)). Statuses are added and removed by `0030E360`
+([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)), the level is reset to 0 by the
+grower `0030C470` (`0030C496`) and raised by the level change `0030C650`
+([Stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)).
 
 ## Columns
 

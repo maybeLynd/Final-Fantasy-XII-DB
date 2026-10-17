@@ -94,8 +94,8 @@ wrapper fetches the batcher through `001B1C00`.
 
 ### The flushes
 
-`00181330` runs `001B03D0`, the 2D flush (25 callers); `00181310` runs `001B0190`, the 3D flush (7
-callers). Both walk batches 0 to the current index and, for each, take `238`<sub>h</sub> bytes from the command arena
+The 2D flush `001B03D0` is run by `00181330` (25 callers) and the 3D flush `001B0190` by `00181310`
+(7 callers). Both walk batches 0 to the current index and, for each, take `238`<sub>h</sub> bytes from the command arena
 `[01F7F4C0]` and build a drawing object: `DynGeoTextureInstance` (`001FB870`) for 2D,
 `DynGeo3DInstance` (`001FBB40`) for 3D ([Gi render commands](gi-render-commands.md)).
 
@@ -178,7 +178,8 @@ Three more emitters set state around them:
   `5D76EB`<sub>h</sub>, an untextured 1 × 1 state (`00181930`) and the 2D flush. Either closes an empty packet when
   no quad was added.
 - `002DBDD0(widget, rect)` draws a flat colour rectangle alone. Its colour is widget `+90`<sub>h</sub> scaled by
-  brightness and alpha (`>> 7`), kept at `+94`<sub>h</sub>; it writes TEST_1, ALPHA_1 and RGBAQ, a flat strip of four
+  brightness and alpha, kept at `+94`<sub>h</sub>: `rgb = (byte +90h..+92h x s16 +5Ah) >> 7` and
+  `a = (byte +93h x s16 +58h) >> 7` (`002DBEB4`-`002DBF0E`); it writes TEST_1, ALPHA_1 and RGBAQ, a flat strip of four
   XYZF2, closes with `00248E10`, and draws the same rectangle untextured through the batcher.
 
 ### Soft windows

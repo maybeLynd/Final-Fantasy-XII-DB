@@ -23,6 +23,11 @@ its class row (slot 0, `02EBF150`), its base stat row (slot 5, `02EBF148`) and i
 - 1,143 definitions are placed by the us map scripts, 6,229 times in all. Three are placed by none: Dead Bones
   (`bog_a` row 3), Axebeak (`enw_b` row 8) and Omega Mark XII (`gil_i` row 7).
 
+[`enemy-placements.tsv`](enemy-placements.tsv) lists those 6,229 placements one by one: the area, the map script by
+its path under `plan_map`, the zone-script function that makes the four calls (its name as the script stores it),
+the definition row it places with its id and name, and the level it sets. The same walk builds both files, and the
+decoder asserts that each definition's `placements` count is its number of lines there.
+
 The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
 installer `0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
 

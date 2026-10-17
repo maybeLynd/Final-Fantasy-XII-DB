@@ -22,7 +22,11 @@ addresses: "001E8070, 001E8580, 002142A0, 00213FE0, 00212E70, 00213140, 00214210
 3. The emitter picks palette entry `index mod 28` (`001E94E0`), or the default entry at `+1358`<sub>h</sub> for a negative index,
    and writes six `3C`<sub>h</sub>-byte vertices, corners 0, 1, 2 and 1, 2, 3 (`001E8140`-`001E8477`).
 4. Each vertex carries two colours: the glyph colour from the palette's `+14`<sub>h</sub>-`+20`<sub>h</sub> and the border colour from
-   `+04`<sub>h</sub>-`+10`<sub>h</sub>, both scaled by the corner colour (`001E81FC`-`001E834D`).
+   `+04`<sub>h</sub>-`+10`<sub>h</sub>. Each red, green and blue is `palette channel x (c / 128) / 255`, with `c` the record's integer at
+   `+5C`<sub>h</sub>, `+6C`<sub>h</sub> or `+7C`<sub>h</sub> plus 4 x corner.
+   - The border alpha is `+10h / 128`; the glyph alpha is `+20h / 128`, times `[record +8Ch + 4 x corner] / 128`
+     and the corner factor below unless the line's byte `+2348`<sub>h</sub> is set (`001E81AA`-`001E834D`, 1/128 at
+     `008C5B34`, 255.0 at `008C5B40`).
 5. The vertices go into the open batch of the current font (`001E8361`-`001E838C`). `001E9D20` picks that batch from
    the font id, one batch per font in each of two groups of 32 (`001E9E26`-`001E9E46`). The line's box and origin are
    widened to cover the glyph.
@@ -178,7 +182,8 @@ with `ex` is UTF-16 (`00364980`), as the credits strings are ([Text codes](text-
 | `0029CCD0(x, font)`, a blank's width | the width of token 7 (`002ABAA0(0)`) | the advance of `0` in UTF-16 font `font - 1` (`003655F0`) |
 
 `002DD680` hands the record's palette byte `+5C`<sub>h</sub>, size `+60`<sub>h</sub> and letter spacing `+65`<sub>h</sub> to the context, and its
-colour `+90`<sub>h</sub> scaled by the alpha `+5A`<sub>h</sub> (and `+58`<sub>h</sub> for the alpha byte) to `+30`<sub>h</sub>. It places the text at
+colour to `+30`<sub>h</sub> (also kept at record `+94`<sub>h</sub>): `rgb = (byte +90h..+92h x s16 +5Ah) >> 7` and
+`a = (byte +93h x s16 +58h) >> 7` (`002DD6DD`-`002DD738`). It places the text at
 (x, y) through `00397910` and draws it with `002B0280`. `002D8550` sets up the same and draws through `002AF960`, for
 the confirm windows and the pause task (`0057C92A`, `00242373`, `00227F39`).
 

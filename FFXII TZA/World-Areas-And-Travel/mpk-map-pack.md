@@ -227,7 +227,9 @@ The slot accessors take a slot number and test it against `02EBB6E0` and `+08`<s
   `0034FEE3`); `004734C0(slot)` returns the clip's end (`00466BB0`) less its start, `getbganimelastframe` (`0AE`<sub>h</sub>,
   `00350393`);
 - `00467730(slot, t)` seeks: it clears bit 2, sets bit 3, stores `t` as the time of the slot and of every track and
-  zeroes the step and each track's `+10`<sub>h</sub>; the rewind `00473500` and `00466DD0` use it;
+  zeroes the step and each track's `+10`<sub>h</sub>; the rewind `00473500`, called by `bganimeplay` (`09D`<sub>h</sub>, `003477B0`),
+  `bganimeplay_9e` (`09E`<sub>h</sub>, `00347CD0`) ([verb table](../Scripts-And-Script-Commands/verb-table.md)), `003E8440`,
+  `003E8690` and `003E8990`, and `00466DD0` use it;
 - `00466DD0()` sends every playing slot that does not loop and has a non-zero rate to its range end and marks it
   finished; it runs from the script skip's start `00360710` and end `00360A50`, and from `003486A0` and `00355300`.
 

@@ -164,7 +164,7 @@ a negative value gives only the padding (`003EFD20`).
 ### Character mapping
 
 The text code reaches the font sheet through `0039C4A0(alt)`, which returns `[02AEE808]` when `alt` is non-zero
-and that pointer is set, and `[02AEE800]` otherwise. Its 24 callers include the character mapping `002AC2F0`, the
+and that pointer is set, and `[02AEE800]` otherwise. `0039C4A0` has 24 callers; among them are the character mapping `002AC2F0`, the
 number writer `002B3770`, the encoders `002B5AB0` and `002B5A20`, the text drawers `002AC5F0`, `002AE610` and
 `002B0280`, and the font pack binder `0039C150`.
 

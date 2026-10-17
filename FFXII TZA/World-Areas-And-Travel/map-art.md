@@ -141,7 +141,8 @@ when the vector is full (`+2A8`<sub>h</sub> at `+2B0`<sub>h</sub>), `001A40B0` i
 (one record when empty) through the allocator at `+2B8`<sub>h</sub>.
 
 Every frame `001808D0`, called from `0022A770`, runs `001AA120`, which rewrites each recorded palette from its PS2 data through
-`00183320`, scaling alpha from 0-128 to 0-255, so a palette the original code animates in memory
+`00183320`, scaling alpha from 0-128 to 0-255 with `a = min((int)(a × 255.0 × (1 / 128)), 255)`
+(`00183440`-`0018346A`), so a palette the original code animates in memory
 animates on screen. `004680D0` releases the PS2 side and calls `00180280`, whose `001A5980` frees
 both textures of every entry (`00183720`) and empties the map and the vector.
 

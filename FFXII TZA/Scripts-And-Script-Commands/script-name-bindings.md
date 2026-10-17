@@ -225,7 +225,10 @@ name table at that index (`00263F80`). Otherwise the model is −1.
 
 It then resolves the chest record with `002650B0` and rolls for the chest with `002FAED0`: no chest
 when the opened flag `0032AA60(record[+9])` is set (bit `record[+9]` of the 256-bit set at `+14B4`<sub>h</sub>
-of `002EF2B0()`); otherwise a chest when `rand % 100 < record[+Ah]`. A flag byte of `FF`<sub>h</sub> tests bit
+of `002EF2B0()`); otherwise a chest when `rand % 100 < record[+Ah]`, `rand` being the Mersenne Twister
+thunk `00379CD0` ([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)).
+
+A flag byte of `FF`<sub>h</sub> tests bit
 255, while the payout `002FAFD0` never sets the flag for `FF`<sub>h</sub>. Both outcomes of the roll are recorded with
 `002FB430`. No chest sets the model to −1. A model of −1 leaves `args[0]` at 0; any other model is
 found or created with `002EAE20` and its handle stored in `args[0]`.

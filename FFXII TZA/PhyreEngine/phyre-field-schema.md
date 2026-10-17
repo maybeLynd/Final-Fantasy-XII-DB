@@ -167,7 +167,9 @@ None of these stops the load.
   or `00595E70` for a one-byte member that is not an array;
 - same type with a different width, or a fixed-size array whose count differs while offset and
   attribute word match: skipped;
-- different type: the conversion `0059A030` returns, or skipped when there is none.
+- different type: the conversion `0059A030` returns, or skipped when there is none. `0059A030` runs the 144
+  conversion registrars `005850F0`-`00592770` once (guard byte `02CA9D91`), then looks the `(source, destination)`
+  pair up in the tree they fill ([Image hardening](../Compiler-And-C-Runtime/image-hardening.md)).
 
 ### Dynamic classes
 

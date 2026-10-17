@@ -32,7 +32,7 @@ progress returns 1 after `0020E4E0()`), counts `01FD4A80`, runs `00183100`, `001
 
 | State | Handler | What it is |
 |---|---|---|
-| 0 | `0022B6E0` | start-up: after `0032E520(1)` reports no load pending and `0209273C` is 5 it moves to state 1 and runs the first-screen set-up (`0035EA30(0)`, `0053DD10(1Ch)`, `00236A40`, `00253A10`, `002EF650`, `003318C0`, `0037CB30`) |
+| 0 | `0022B6E0` | start-up: after `0032E520(1)` reports no load pending and `0209273C` is 5 it moves to state 1 and runs the first-screen set-up (`0035EA30(0)`, `0053DD10(1Ch)`, `00236A40`, `00253A10`, `002EF650` (the new-game payload reset `002EF2D0` and the save-image binding `00253A80`, [save data fields](../Saving-Loading-And-Settings/save-data-fields.md)), `003318C0`, `0037CB30`) |
 | 1 | `0022B7E0` | title and loading: moves to state 2 when `0032E520(1)` and `0037C2E0()` are both 0, then `00184960(2)` |
 | 2 | `0022A770` | the field frame (below); the default for any other value |
 | 3 | `0022B8C0` | the full menu frame: pad, UI effects, `00314020(1)` under its `ATEL CONTROL` label, sound, the menu's own update; when `002E05C0()` is 0 it closes (`CLOSE FULLMENU`): `00263560`, state 2, `00182D40`, `002E1BA0`, `0024F980(0)`, four `002E1CA0(7)`, `0037CF00`, `003323D0`, `00332660`, `003323B0`, `00376BE0`, `00226280` |
@@ -102,7 +102,7 @@ records at `02EBF9F0` (stride `70`<sub>h</sub>) up to the first whose `+58`<sub>
 
 ### The field frame
 
-`0022A770` is state 2. After the pad (`0036F2F0`, `0035FF90`, `0036FDF0`, `002498B0`) and the
+`0022A770` is state 2. After the pad (`0036F2F0`, `0035FF90`, `0036FDF0`, `002498B0`, which rebuilds the pad words at `02F97360`, [controls](../Controls-And-Input/controls.md)) and the
 draw set-up it runs, when `0017E4E0()` is 0, `001EC760()` passes of the following; each pass ends
 in the camera, the end-of-frame list and the pacer. `001EC690` advances the counter `01F832C4`, which `001EC760`
 among others reads: once when `001EC760` returns 0, and in the pass loop's first step. The event-slot
@@ -134,7 +134,7 @@ While the accumulator is at least 1.0, one simulation step runs:
 2. `0037A450`, `0036D890`, `004668C0`; `003323D0` when `00358290()`; `002507C0(first)` when
    `003583A0()`; `00258B90(0)` when `00358340()`; `00314370(result)`; with the mode saved by
    `00358320`, `00358640(0)`, `0037D4C0`, `00314820`, `0036F510`, `00256F60`, `00358640(saved)`;
-   `00258D70` when `00358340()`, and `001808D0` on the last step; `00254E50`; `0035AF20(0)`;
+   `00258D70` when `00358340()`, and `001808D0` on the last step; `00254E50` (the per-tick game-over check, [game over](../World-Areas-And-Travel/game-over.md)); `0035AF20(0)`;
 3. the accumulator loses 1.0 (floored at 0); a state other than 2 zeroes it and stops; otherwise
    `003586A0(1, 1)` when `002361A0()`, `(3, 1)` when `00265760()`, `(2, 1)` unless `00226BC0()`,
    `(4, 1)` unless `002F1A20()`;
@@ -149,13 +149,13 @@ After the steps come three groups:
   set at the top of the pass is cleared after every step): `00358640(0)`, `004668C0`,
   `00258B90(1)`, `003143D0`, `00314370(1)`, `0037D4C0`, `00314820`, `0036F510`, `0035AF20(1)`,
   `00358640(saved)`, so the camera and the follow still advance on a carry frame;
-- the end of the frame: `0035AE30`, `00360120` (the title-return gate, [game
+- the end of the frame: `0035AE30` (the pad vibration output, [vibration](../Controls-And-Input/vibration.md)), `00360120` (the title-return gate, [game
   over](../World-Areas-And-Travel/game-over.md)), `00377520` and `0036F530` when `00358370()`, the
   accumulator gain, the controlled-character change `00358BC0`, `00226280`, `002E65A0`, `00332660`,
   `003323B0`, `00324510`, `0036F2C0`, `0032E040`, `0035E9A0(0022BFD0)`;
 - the pacer `0035EC80([02064ACC], 0)` (an identical copy of `0035EB70`) ([startup constants](startup-constants.md)), then
   `0017F370(1)`, `00375B80(1)`, `00376470` and `00375500(7)` when `003583F0`, `0024B4F0`,
-  `00374FD0`, `0037DDD0` and `00316930`.
+  `00374FD0`, `0037DDD0` and `00316930`, the end-of-frame achievement pass ([achievements](../Steam-And-Achievements/achievements.md)).
 
 With `0017E4E0()` non-zero the frame runs `002506D0` and, when `001EC560()`, the camera block
 (its `00314370(1)` and `0037D4C0` each only while `02064AA0` is 0) followed by `0035AE30`,
@@ -263,8 +263,12 @@ Then `00358EE0(mode)`; the request drain `002E09A0`; `00359800`; `003DE640`; `00
 `003E7EC0`; `0036FD90(0)` when no dialog is open (`00228480`); `002F1770(mode, arg)`; `002EF910`;
 `0036E1E0`; `003DEB30`; `003DF670`; `003606E0`; the audio listener `00362850`.
 
-Then, when `00362DA0()` is 0, the time-scale block: `x = 00362DB0() + [022C2544]` (after
-`00259AF0()` when `00265760()` is 0) and `y = 002DEBA0()`; `00361700(y <= x ? min(x, 1.0) : y, 0)`.
+Then, when `00362DA0()` (the byte `022CBA9B`) is 0, the spatial-sound behind factor `022CBB28`
+is recomputed ([spatial sound](../Sound-And-Music/spatial-sound.md)): `x = 00362DB0() + [022C2544]`, where
+`00362DB0` reads the factor itself (after `00259AF0()` when `00265760()` is 0), and
+`y = 002DEBA0()`, the configured ratio at `0215EFD0`; `00361700(y <= x ? min(x, 1.0) : y, 0)`
+stores the result, floored at 0, back into `022CBB28`.
+
 Then `003E7650`, `0025D950`, `00263660`, `002EEEB0` (`002EE430`, `002EF050`), and the
 tick-active word is cleared.
 
@@ -279,12 +283,12 @@ behind the menu:
    move;
 3. unless `0035C700()` or `00306BB0()`: UI request `0B`<sub>h</sub> when `002371B0()` holds, else `18`<sub>h</sub> when
    `00237140()` holds (`0035C7A0`);
-4. `00313A00`; then, when the force-fight predicate `00253B90()` differs from the inverse of bit 3,
+4. `00313A00` (row 2 of [action availability](../Controls-And-Input/action-availability.md)); then, when the force-fight predicate `00253B90()` differs from the inverse of bit 3,
    the unit reset loop: for every unit `0030A880(buffer, 1)` lists, `00300140(unit, keep)` with `keep` = unit
    bit 24 clear, and (`+714`<sub>h</sub> above `21E`<sub>h</sub> or `+6B4`<sub>h</sub> below 9), and `+714`<sub>h</sub> not `113`<sub>h</sub>, and
    the status words `+3Ch | +64h` clear of `8000020`<sub>h</sub>; then bit 3 is toggled;
-5. bit 1 cleared; the lock evaluator `0023B040`; `0032A650`; `003226C0`; `0030CBE0`; `003065D0`;
-   `00325060`; `00307E70`; `00319600`; `00313760`; `00304440`; the group completion `00307030`;
+5. bit 1 cleared; the lock evaluator `0023B040`; `0032A650`; `003226C0`; `0030CBE0`, which walks the action chain ([action phases](../Battle-Actions/action-phases.md)); `003065D0`;
+   `00325060`, which steps the generation `022C2578` that the per-unit `003247F0` compares ([enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)); `00307E70`; `00319600`; `00313760`; `00304440`; the group completion `00307030`;
 6. the `18`<sub>h</sub> latch: when `00237260()` holds, bit 9 is set and request `18`<sub>h</sub> raised once
    (`0035C8A0`) and the rest is skipped; otherwise bit 9 is cleared (`0035C8E0(18h)` when it was
    set);
@@ -319,7 +323,7 @@ loaded, unit flag bit 3 must be set and bit 16 clear. Then:
 - bit 4 clear: when `00267240(record)` holds (byte `+10`<sub>h</sub> zero and `+14`<sub>h</sub> bit 6 or `+0C`<sub>h</sub> bit 0)
   and the unit's `+698`<sub>h</sub> record exists, bit 4 is set: the unit is simulated from the next frame;
 - bit 4 set, with a `+698`<sub>h</sub> record whose status words `+3Ch | +64h` are clear of `80000003`<sub>h</sub>
-  or with `00377C20()`: the active frame `00307C70`, `00236300`, `00310DB0`, `003247F0`, `00308610`,
+  or with `00377C20()`: the active frame `00307C70`, `00236300`, `00310DB0` (the periodic status step, [status timers](../Status-Effects-And-KO/status-timers.md)), `003247F0`, `00308610`,
   `0023A070`, `002350C0(unit + 10h)`, then `00312700`;
 - bit 4 set, the gate failed, bit 1 set: `00312700` only;
 - bit 4 set, the gate failed, bit 1 clear, a spawn-backed unit (record byte `+5` = 1 and
@@ -331,7 +335,7 @@ loaded, unit flag bit 3 must be set and bit 16 clear. Then:
 ### The battle-state word
 
 `02089340` is one dword the frame and the battle layer share. `002341C0`, the area teardown reset
-(`0030FE60`, `00383A20`, `00306570(0)`, `00392710`, `002FAEC0`, `0031BD60`, `00325080`, `00319B10`,
+(`0030FE60`, `00383A20`, `00306570(0)`, `00392710`, `002FAEC0`, `0031BD60`, `00325080`, `00319B10` (resets the loot pickup pool, [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)),
 `002FA470`), clears bit 4. The area initialisation `002342F0` writes `(word & FFFFC01Eh) | 10h`:
 bit 4 set, bits 0 and 5 to 13 cleared at once. The boot's battle work init `002368D0` zeroes the
 word.

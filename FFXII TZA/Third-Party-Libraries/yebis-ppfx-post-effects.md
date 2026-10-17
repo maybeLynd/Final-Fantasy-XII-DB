@@ -227,6 +227,16 @@ Nine large bodies in the span are in neither member list. Each is called only fr
 
 - `006E9C20` computes blur tap offsets: it divides the target size by the tap spacing, caps the
   count, and writes one `{x, y, 0, 0}` float vector per tap.
+  - Per axis, with size `s` (third or fourth argument), spacing `p` (`s x` the tenth or eleventh argument when
+    that is positive, else the fifth or sixth) and cap `m` (eighth): `n = min(ceil(s / 2 / p), m)` while the mode
+    byte (ninth) is 0, else `n = min(ceil(s / p), m)`.
+  - Before the cap, `n` drops by 1 when `n > 1`, `p >= 8` and `q = (n - 1) x p x 2` (mode 0) or `q = (n - 1) x p`
+    satisfies `s - 2(n - 1) <= q < s` (mode 0) or `s - (n - 1) <= q < s`.
+  - Tap `i` of an axis is at `(2i - (n - 1)) x k / R`, `R` the target resolution (first or second argument) and
+    `k` 1 in mode 0, else 0.5 (`006E9A90`). In mode 0 with a positive last argument `e` and one tap on both axes it
+    uses two per axis, at `±e / R`.
+  - The vectors take both axes in steps of `max(twelfth argument, 1)`, and the count is returned
+    (`006E9C20`-`006EA05B`).
 - `00740BE0` clamps a sample count to 4 to 8, selects the shader for it, uploads constants through
   slot `+98`<sub>h</sub> of the GPU device at `+38`<sub>h</sub> and binds textures through slot `+B8`<sub>h</sub>.
 - `0078AD20`, the code of `TinyEffect.cpp`, reflects a shader with `D3DReflect` and allocates its

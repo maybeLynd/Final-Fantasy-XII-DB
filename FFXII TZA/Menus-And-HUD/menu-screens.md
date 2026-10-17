@@ -135,7 +135,8 @@ The panel `002CBF80`, built by `002CBED0` under Status and Equip, `002CBE40` und
 ### Screens opened by menu requests
 
 The generic request host `0027FB70` (built by `00280A00` for the router `00254B50`, `00254C39`) and its dispatcher
-`0027F5D0` open the rest:
+`0027F5D0` open the rest. The field's input arbiter `00253C70` hands a button's menu request to that router
+(`002540D2`, `002541C7`; [Controls](../Controls-And-Input/controls.md)), and `002E09A0` does too (`002E0D0B`):
 
 | Screen | Procedure | Opened through |
 |---|---|---|

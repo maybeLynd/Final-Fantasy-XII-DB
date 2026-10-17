@@ -471,8 +471,11 @@ the microprogram the template's header installs. `A6`<sub>h</sub>, `A8`<sub>h</s
   `00547350` and `005479B0` count four slots from a `40`<sub>h</sub>-byte head.
 - `0054B3A0` never returns 0: its head is `4F0`<sub>h</sub> bytes. `00543940` adds `190`<sub>h</sub> bytes for each of
   four non-zero words at `+740`<sub>h</sub>–`+830`<sub>h</sub>; `00544590` adds one quadword per 20 entries to `130`<sub>h</sub>.
-- `00545EF0` (type `6A`<sub>h</sub>) adds `60`<sub>h</sub> bytes per tile of at most 22 by 22 grid points, plus the
-  points themselves when bit 1 of `+64`<sub>h</sub> is set. `0054BD40` and `0054D610` add the two index blocks
+- `00545EF0` (type `6A`<sub>h</sub>) starts from `(+1Ch + 17h) x 16` bytes and adds, per tile, `60`<sub>h</sub> plus
+  `w x h x 16` when bit 1 of `+64`<sub>h</sub> is set. Tiles start every 21 grid points along `+10`<sub>h</sub> and `+14`<sub>h</sub>
+  while the start is below the count minus 1, and `w = min(22, +10h - start)`, `h` likewise; it returns
+  the total `>> 4` (`00545EF0`-`00545FAE`).
+- `0054BD40` and `0054D610` add the two index blocks
   of every piece and, per enabled layer byte `+E0`<sub>h</sub>–`+E3`<sub>h</sub>, `60`<sub>h</sub> bytes per piece.
 - `00540F40(packet, chain, count, key)` computes the flag word, 2 when `0024E460` or `003A3D20`
   returns non-zero, ORed with `003A2C70()`, and passes everything to `00540DB0`, which appends the
@@ -523,25 +526,54 @@ gravity, its position `+70`<sub>h</sub> adds the velocity and its angles `+00`<s
 scaled by one of two parameter sets chosen by the piece's time against the block's thresholds;
 `0046D560` then rebuilds the piece's rotation at `+40`<sub>h</sub>.
 
+In `0054C440` the step is `v.y -= [+C0h] x [+44h] x s x k.y`, then per axis `pos += s x k x v` and
+`angle += r x spin x q`. Set A is `s` = block `+58`<sub>h</sub>, `k` = `+80`<sub>h</sub>-`+88`<sub>h</sub>, `r` = `+70`<sub>h</sub>-`+78`<sub>h</sub>,
+`q` = `+5C`<sub>h</sub>; set B is `+90`<sub>h</sub>, `+B0`<sub>h</sub>-`+B8`<sub>h</sub>, `+A0`<sub>h</sub>-`+A8`<sub>h</sub> and `+94`<sub>h</sub> (`0054C4AE`-`0054C67E`).
+
+Set A applies when piece `+0Ch <= [+C4h]` or piece `+98h <= [+3Ch]`. Otherwise set B applies, unless
+piece `+0Ch > (1 - [+C4h]) x [+FCh] + [+C4h]` and piece `+98h > (1 - [+3Ch]) x [+9Ch] + [+3Ch]`, which
+leaves the piece unmoved that step.
+
 - `0054C440` moves only a piece whose `+30`<sub>h</sub> points to itself (`0054C4A4`).
 - `0054DD30` rotates the velocity step by the matrix at block `+150`<sub>h</sub> when bit 1 of `+9C`<sub>h</sub> is set
   (`00202B90`).
 
 ### Births of the other sub-range types
 
-- `68`<sub>h</sub>'s birth `00522AB0` calls `00541E00`, which draws five random values with `003D8E50`, each
-  minus 0.5, and, unless block byte `+39`<sub>h</sub> bits 3 or 4 say otherwise, turns them into two
-  normalised directions scaled by a random length (`00380800`); and `00542060`, which draws six
-  more in `[−0.5, 0.5)`.
+- `68`<sub>h</sub>'s birth `00522AB0` calls `00541E00`, which draws five random values `r0`-`r4` =
+  `003D8E50(1.0) - 0.5` into `+00`<sub>h</sub>-`+10`<sub>h</sub> and, unless block byte `+39`<sub>h</sub> bits 3 or 4 say otherwise,
+  sets `+A0h = normalise(r0, r1, r2) x L1` and `+B0h = normalise(r3, r4, 003D8E50(1.0) - 0.5) x L2`
+  (`00380800` normalises; `00541E12`-`00541FCF`).
+  - `L1 = [+ACh] + 003D8E50([+120h])` and `L2 = [+BCh] + 003D8E50([+124h])`, written back to `+AC`<sub>h</sub>
+    and `+BC`<sub>h</sub>.
+- The same birth calls `00542060`, which draws six more in `[−0.5, 0.5)`.
 - `69`<sub>h</sub>'s birth `00523C30` calls `005439A0`, which clears block `+04`<sub>h</sub> and `+14`<sub>h</sub> and stores
   the float `1 / (count + 1)`, the count being block `+00`<sub>h</sub>, at `+18`<sub>h</sub>.
 - `67`<sub>h</sub>'s birth `0045FD50` and `6B`<sub>h</sub>'s birth `00529200` call `00532EF0`, which fills each of
   the `+B0`<sub>h</sub> strands (`440`<sub>h</sub> bytes) with a base plus a random amount for every parameter and a
   direction from a random or stepped angle; `00532E80` sizes `6B`<sub>h</sub>'s packet from the strand count
   and three enabled layers (`+88`<sub>h</sub>–`+90`<sub>h</sub>).
+  - Each field is `base + 003D8E50(1.0) x range`, with the strand field, block base and block range:
+    `+10`<sub>h</sub>, `+C8`<sub>h</sub>, `+CC`<sub>h</sub>; `+14`<sub>h</sub>, `+F8`<sub>h</sub>, `+FC`<sub>h</sub>; `+18`<sub>h</sub>, `+100`<sub>h</sub>, `+104`<sub>h</sub>; `+424`<sub>h</sub>, `+D8`<sub>h</sub>,
+    `+DC`<sub>h</sub>; `+434`<sub>h</sub>, `+C0`<sub>h</sub>, `+C4`<sub>h</sub>; `+438`<sub>h</sub>, `+E8`<sub>h</sub>, `+EC`<sub>h</sub>; `+43C`<sub>h</sub>, `+F0`<sub>h</sub>, `+F4`<sub>h</sub>
+    (`00532EF0`-`00533242`).
+  - `+08`<sub>h</sub> takes `+E0`<sub>h</sub>, `+E4`<sub>h</sub> the same way when block `+140`<sub>h</sub> bit 1 is set, else
+    `(+14h + +18h) x 0.5`; `+1C`<sub>h</sub> is `003D8E50(1.0) x` block `+1C`<sub>h</sub>.
+  - The direction is `+420h = L sin a`, `+428h = L cos a`, `+42Ch = 1.0`, with `L` from `+D0`<sub>h</sub>, `+D4`<sub>h</sub>
+    as above and `a = 003D8E50(6.284)` while block `+124`<sub>h</sub> is 0, otherwise `+128`<sub>h</sub> plus `+12C`<sub>h</sub> for each
+    strand before it.
 - `71`<sub>h</sub>'s birth `0052A130` calls `00547DD0`, which fills each of the `+140`<sub>h</sub> records (`450`<sub>h</sub>
   bytes) with a base plus a random amount for every parameter, and a direction from a random or
   stepped angle.
+  - Each field is `base + 003D8E50(range)`, with the record field, block base and range: `+10`<sub>h</sub>, `+158`<sub>h</sub>,
+    `+15C`<sub>h</sub>; `+08`<sub>h</sub>, `+188`<sub>h</sub>, `+18C`<sub>h</sub>; `+0C`<sub>h</sub>, `+190`<sub>h</sub>, `+194`<sub>h</sub>; `+434`<sub>h</sub>, `+168`<sub>h</sub>, `+16C`<sub>h</sub>;
+    `+444`<sub>h</sub>, `+150`<sub>h</sub>, `+154`<sub>h</sub>; `+448`<sub>h</sub>, `+178`<sub>h</sub>, `+17C`<sub>h</sub>; `+44C`<sub>h</sub>, `+180`<sub>h</sub>, `+184`<sub>h</sub>
+    (`00547DD0`-`005480D7`).
+  - `+04h = u16 +170h + 003A6E60(u16 +172h)`; `+14`<sub>h</sub>-`+1C`<sub>h</sub> are each `003D8E50([+48h])` and
+    `+20`<sub>h</sub>-`+28`<sub>h</sub> each `003D8E50([+4Ch])`.
+  - The direction is `+430h = L sin a`, `+438h = L cos a`, `+43Ch = 1.0`, with
+    `L = +160h + 003D8E50(+164h)` and `a = 003D8E50(6.284)` while block byte `+67`<sub>h</sub> is 0, otherwise
+    `+70`<sub>h</sub> plus `+74`<sub>h</sub> for each record before it.
 - `72`<sub>h</sub> keeps a sway chain (see [model oscillators](model-oscillators-and-pose-sequencer.md)).
   `0054B0E0`, called by its birth tail `0052BBD0` and its update tail `0052B5E0`, adds an offset to
   every node and sets the root; `0054A690(section, out, mode)`, called by `0052B5E0`, returns the
@@ -612,9 +644,12 @@ are drawn even when the instance's flag byte `+36A`<sub>h</sub> bit 0 is clear (
 | `D1`<sub>h</sub> | `003D9040` | `003D9000` | `0016D6A0` | `0053AA30` | `003D90C0` | 765 / 406 |
 
 - `D0`<sub>h</sub> changes how chosen characters look. Its apply `00465690` works from the flag word `+232`<sub>h</sub>
-  (`004656DB`); one branch scales the scene colour `020926C0` (`00465784`–`0046578F`), and it passes
-  each chosen character to `00465CD0`, which it calls from eight sites. `D0`<sub>h</sub> and `41`<sub>h</sub> share the
-  update `00464F10`.
+  (`004656DB`) and passes each chosen character to `00465CD0`, which it calls from eight sites. `D0`<sub>h</sub>
+  and `41`<sub>h</sub> share the update `00464F10`.
+- With bit 0 of `+232`<sub>h</sub> set the apply scales the scene colour per channel,
+  `020926C0 x= 1 + w x (c / 128 - 1)`: `c` is the four colour bytes of `0042FDB0([+20h] + 80h, [+44h])`
+  and `w` the alpha byte of the `002F1F40` fade over 128 while bit 7 is set, else 0; bit 7 is then cleared
+  (`004656C6`-`0046578F`).
 - `D1`<sub>h</sub> draws nothing (its draw is `0016D6A0`). Its update tail `003D92C0` publishes the element at
   `02092628` (`003D9698`); `00258B90`, which the field frame runs with its camera work
   ([frame update order](../Engine-Core/frame-update-order.md)), copies it into the block at

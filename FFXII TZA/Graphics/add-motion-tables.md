@@ -98,8 +98,9 @@ the file ends with a -1 where a record would start
   `<name>_town.adm` and names it `<name>_town` with `sprintf`. Both go into the registry's list.
 - The name is written over the parsed record, whose track count sits at `+14`<sub>h</sub>: a name of 20
   characters or more, `_town` included, overwrites the count and the track pointer.
-- `001BE1A0` trusts every count: nothing is checked against the file size, and the sizes are
-  multiplied with overflow saturating to all ones before allocation.
+- `001BE1A0` trusts every count: nothing is checked against the file size. It allocates
+  `track count x 10h`, `group count x 28h` and `records per group x 1Ch` bytes, each a 64-bit `mul`
+  whose result becomes `FFFFFFFFFFFFFFFF`<sub>h</sub> on overflow (`cmovo`, `001BE210`, `001BE299`, `001BE319`).
 
 ### Which table a model uses
 
@@ -123,9 +124,10 @@ name that bone. Then for each track:
   skeleton's `+0C`<sub>h</sub> names. It takes that bone's angle `+190h + 4 × angle` and
   the same angle of the bone's matrix at `+230`<sub>h</sub> (`003719F7`–`00371A4A`) and uses their difference
   in degrees; `00180060` / `00180090` can replace it with a set value.
-- Kind 0 then finds the pair of groups
-  whose keys hold the value and interpolates every record between them, extending past the first and
-  last keys.
+- Kind 0 then finds the pair of groups `k`, `k + 1` whose keys (group `+00`<sub>h</sub>, groups `28`<sub>h</sub> bytes apart)
+  hold the value `v`, the first or last pair when `v` lies outside them. With
+  `t = (v - key[k]) / (key[k + 1] - key[k])` each record's three angles (record `+04`<sub>h</sub>-`+0C`<sub>h</sub>) become
+  `(1 - t) x a[k] + t x a[k + 1]`, so `t` runs past 0 or 1 beyond the end keys (`00371B13`-`00371C82`).
 - **Kind 1**. It asks `004776D0` for the value of sequencer slot `+02`<sub>h</sub> (`00371F64`) and applies the
   group whose id equals it; with no such group nothing is applied.
 - Either way the angles are turned into radians, written to bone `+190`<sub>h</sub>–`+198`<sub>h</sub> and every bone

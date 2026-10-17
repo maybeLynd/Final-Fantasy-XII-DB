@@ -115,6 +115,11 @@ gambit sets, held between 0 and 12 (`003279B0`, `003279BB`-`00327A0B`;
 [Gambits](../Enemy-AI-And-Gambits/gambits.md)). Their augment text is "Adds an additional gambit slot.", and
 only the gear and license rebuild sets them, in `+78`<sub>h</sub>.
 
+That rebuild is `0030FED0`, which the equipment-slot
+setters `0031A410`, `0031A510` and `0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)), the
+licence write `00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)) and the level growers
+`0030C470` and `0030C650` ([Stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)) run.
+
 ## Modding notes
 
 - The buff an ability grants is its action row's `+10`<sub>h</sub> and `+11`<sub>h</sub>; the buff an order grants is the order id

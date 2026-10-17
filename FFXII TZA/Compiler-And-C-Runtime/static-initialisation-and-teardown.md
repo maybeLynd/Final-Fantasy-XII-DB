@@ -77,7 +77,7 @@ Grouped by the first function each entry calls, from a census of every entry's b
 | 9 | `006D58D0` | a named morph record (`Morph22`, `Morph23`, …) |
 | 75 | none | inline stores, then a teardown registration (among them the SQEX sound driver's fixed lists and queues) |
 | 31 | none | only `lea rcx, [teardown]; jmp atexit`: a static with no constructor work |
-| 7 | none | no calls: four copy 16-byte prototype blocks into live globals with `movaps` (`0015BD30`, `0015BF20` and `0015C0D0` from `01DF0980`–`01DF0A80`, `0015C280` partly from `01F800F0`), `00168C10` zeroes five qwords at `02EA1960`, `0016A270` stores a constant divided by a square root at `02EADEF0`, `001610B0` zeroes eight 16-byte slots |
+| 7 | none | no calls: four copy 16-byte prototype blocks into live globals with `movaps` (`0015BD30`, `0015BF20` and `0015C0D0` from `01DF0980`–`01DF0A80`, `0015C280` partly from `01F800F0`), `00168C10` zeroes five qwords at `02EA1960`, `0016A270` stores `0.9 / sqrt(16.0)` = 0.225 at `02EADEF0` (`sqrtss`, `divss`, `0016A270`-`0016A284`), `001610B0` zeroes eight 16-byte slots |
 | 419 | others | 362 further first callees, none used by more than 11 entries |
 
 The registry inserts share one shape: the routine refuses an object whose name pointer is null

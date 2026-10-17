@@ -246,7 +246,9 @@ player `002E9D90` behind the `charseplay` verbs plays nothing.
 
 `skipend(i)` (`051B`<sub>h</sub>, begin `0034D820`, poll `0034DB30`) marks an entry whose state is not 2
 (`00360650`) in its scratch and releases it at once (`00360A20`); otherwise it waits through four
-stages (`0025C070`, `003608D0`, `00360D60`, the resource queue idle through `002F1A30` and
+stages (`0025C070`; `003608D0`, which starts the track `skipexec` recorded, or only sets its volume
+when it already plays
+([music](../Sound-And-Music/music.md)); `00360D60`; the resource queue idle through `002F1A30` and
 `0032E520`), releases, and waits one more stage on `00229EB0`.
 
 ### Event party modes and event time stop

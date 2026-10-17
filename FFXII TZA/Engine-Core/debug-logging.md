@@ -46,6 +46,21 @@ other 39 compute theirs from a register. No literal is 4, so no literal site can
 debugger. The format strings beside the literals read as informational text on channel 0, engine
 and screen messages on 1 and 2, and unexpected-value errors on 3.
 
+Among its callers in other layers:
+
+- The path resolver `0059EE90` logs the name it resolves as `[FFXII_data] %s` or
+  `[FFXII_data_notcache] %s` unless the stream's selector byte `+18`<sub>h</sub> is 3 to 5, and a failed
+  open as `[FFXII_ERROR] Big file open failed %s`
+  ([File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md)).
+- The prefetch manager writes the `[FileCache]` lines, `001DA090` on each map jump and
+  `001DA290` on map entry ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
+- The input code logs every recorded action as `INPUT:%d:%s:%s @ frame=%d` and its kin
+  (`0079A120`) and each controller connection and disconnection (`007A2140`)
+  ([Vibration](../Controls-And-Input/vibration.md)).
+- The renderer logs binding errors such as `Texture2D (%p) missing Shader Resource View%s`
+  (`0062A0A0`) and shadow-split mismatches (`00600F30`)
+  (Presentation and rendering).
+
 ### The two other formatters
 
 `0019C5D0(buffer, size, format, …)` is the `vsprintf` wrapper 120 functions use at 268 sites: it
@@ -53,12 +68,27 @@ calls
 `__stdio_common_vsprintf_s(options, buffer, size, format, 0, args)` and returns the count, with
 any negative result clamped to -1.
 
+90 of the 120 are the sound engine's (`007A4D50` to
+`007F3950`), which formats its `[sead]` messages with it before `OutputDebugStringA`, and its
+sink `007A5570` fetches the options word through `0016D670` ([Sound engine](../Sound-And-Music/sound-engine.md));
+the sprite batcher `001B0A20` builds `%s_clut_%d` texture names with it
+([Sprite batcher](../Graphics/sprite-batcher.md)).
+
 `0017D280(format, …)` is a plain `printf`: `__stdio_common_vfprintf(options, stdout, format, 0,
 args)`. 38 functions call it at 60 sites: the PS2 emulation start-up lines in `0036D990` and
 `0022CB90` ([PS2 CPU emulation](ps2-cpu-emulation.md)), the boot step list in `0036FCC0`
 (`AtelMapJumpByLoad()`, `YsConfig_Load()` and five more), the loader's `load failed!` in
 `0017D9D0`, two lines in the field start `00314020`, and the script verbs of the `0050C670` to
 `00510870` family that print their arguments.
+
+`0017D9D0` prints `load failed!` when the resource loader's open `001D6F20` returns null, and
+the archive open `001F4340` prints `BigFile head wrong!`
+([Bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md)).
+
+The settings parser reports bad lines of the
+config file through it: `[ConfigFile] invalid line at [%s]` and `invalid key` (`001DE5D0`), and
+`[ConfigFile] %s value invalid [%s]` and `invalid Resolution` (`001DF350`)
+([Game settings](../Saving-Loading-And-Settings/game-settings.md)).
 
 The executable is a windowed application (PE subsystem 2), so the stream has no console to appear
 in unless one is attached from outside.

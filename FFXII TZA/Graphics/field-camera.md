@@ -98,8 +98,10 @@ pitch = −atan2(y, x)        distance = √(x² + y²)
 
 At level 0 the eye is 2.8 out and 0.7 below the look point; at level 1, 8.8 out and 7.6 above
 (`01EED478`: −0.7, 2.8, 7.6, 8.8). The starting level is 0.483 (`0032B600`). `0032CD20` places the eye
-from the look point, heading, pitch and a distance scale (`003CC2F0`), raises it by the floor lift, and
-keeps it at most 9.0 above the followed position.
+from the look point `+20`<sub>h</sub>, heading `h` `+30`<sub>h</sub>, pitch `p` `+34`<sub>h</sub> and distance `+38`<sub>h</sub> of its slot, times
+a scale argument `k`: `eye = look + k x [+38h] x (sin h cos p, -sin p, cos h cos p)` (`003CC2F0`,
+`003CC480`). It then sets `eye.y = min(eye.y + lift, look.y - [camera +11Ch] + 9.0)`, at most 9.0 above
+the followed position.
 
 Each frame `0032B9C0` adds the input rates to heading and level, divided by `+100`<sub>h</sub>: 1.0 when idle, the
 frame-rate float `00229E70()` while input moves the camera (`0032C910`). It also adds the wall turn

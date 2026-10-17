@@ -94,6 +94,12 @@ whole 64 KiB blocks by adding each skipped block's stored size (a block-size val
 `0019AA20` turns each block into 64 KiB (or the tail's length): a block whose `+70`<sub>h</sub> byte is 0 is
 copied as stored, any other is inflated with zlib 1.2.11's `uncompress` (`0080C5A0`).
 
+When an
+`uncompress` call returns an error or the total differs from the expected length `+58`<sub>h</sub>, it
+loads string-table text `7834`<sub>h</sub> (`0019A510`, [Steam integration](../Steam-And-Achievements/steam-integration.md)),
+shows it with `MessageBoxW` under the caption "error" and sets its state `+88`<sub>h</sub> to 6; otherwise
+the state becomes 5.
+
 `0019AA20` ORs every
 `uncompress` result; when any is non-zero, or the bytes produced do not total the request (`+58`<sub>h</sub>),
 it calls `007A0A80(1)`, shows `MessageBoxW` with string resource `7834`<sub>h</sub> and caption `error`, and

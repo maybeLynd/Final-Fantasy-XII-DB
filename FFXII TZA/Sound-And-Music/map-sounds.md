@@ -2,7 +2,7 @@
 title: "Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience"
 kind: "format"
 category: "Sound and music"
-addresses: "003635E0, 00363750, 00346260, 00346990, 003638B0, 00363B40, 002DF070, 022CBAF8"
+addresses: "003635E0, 00363750, 00363E40, 00346260, 00346990, 003638B0, 00363B40, 002DF070, 022CBAF8"
 ---
 
 ## What the player sees
@@ -88,6 +88,15 @@ Every update `00362850` also runs the two ambience steps:
   `022CBA92` to the playing handle `022CBA70` (`002DF150`).
 - `00362D20` moves the map sound volume `022CBA94` from `022CBA98` towards `022CBA99` by the step `022CBA9C` per
   pass. Character and effect sounds take their volume byte from `022CBA94` ([Spatial sound](spatial-sound.md)).
+
+`00363E40(frames)` stops the ambience:
+
+- with no playing handle (`022CBA70 == 0`) it runs `003636A0` and resets the ramp: `022CBA9C = 0`,
+  `022CBAA0 = 1.0`, and `022CBA94`, `022CBA98` and `022CBA99` to `7F`<sub>h</sub>;
+- with `frames > 0` it fades `022CBA7C` out over that many frames (`002DF190(022CBA7C, frames)`), moves the handle
+  from `022CBA70` to `022CBA74` and sets the countdown `022CBA78 = frames`;
+- otherwise it stops `022CBA7C` at once (`002DF0F0(0, 022CBA7C)`), runs `003636A0`, makes the same resets, clears
+  both handles and sets `022CBA78 = -1`.
 
 `envsoundtrans` (`57E`<sub>h</sub>, `00346060`) ramps the ambience bank's volume through `00361730`, which calls
 `002DF1E0(022CBA7C, frames, volume)` while a handle is held at `022CBA70`.
