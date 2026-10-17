@@ -74,6 +74,17 @@ the issuer's slot 2 (`0025D5E0(actor, 2)`); its poll `00355E20` waits on the int
 `0208CD18`. `talktreasureafter` (`0414`<sub>h</sub>, begin `00356570`, poll `00356A10`) waits on `00319180`,
 the latch's getter, for the controlled character.
 
+The latch runs the opening in three steps:
+
+1. `00328640(record)`, while the latch is 0 and the record's first actor has a unit, copies the 32-byte record to
+   `0208CCF8` (opener actor at `0208CD00`, chest actor at `0208CD08`), stores the chest's id at the opener unit's
+   `+710`<sub>h</sub>, plays motion `201C`<sub>h</sub> on the opener (`002EB030`) and sets the latch to 1 (`003286BB`).
+2. The opener's command step `00325260`, case 0, calls `00317850` while the latch is 1 and `0208CD00` is its own actor
+   (`00325311`). `00317850` plays motion `2008`<sub>h</sub> on the chest, starts the chest's effect (`002EACD0`, handle kept at
+   `0208CD1C`) and clears the latch (`003178A3`).
+3. `0032A170`, once the latch is 0, resets the chest's motion (`002EBB80`), plays `2001`<sub>h</sub> on the opener, releases the
+   effect (`003B0770`) when the handle is valid, clears bit 6 of `02089340` and sets the handle to -1.
+
 `btlAtelOpenTreasureMessage(ref)` (`3037`<sub>h</sub>, begin `0050FAF0`) is the payout. It takes a message
 record (`0035E550`), resolves the chest record through the reference and runs `002FAFD0`:
 

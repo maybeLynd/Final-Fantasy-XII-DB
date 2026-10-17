@@ -176,6 +176,10 @@ The shipped rows:
 | 2 | 50 / 35 / 8 / 3 / 100 | 24 | 30 / 50 / 20 / 0 | 20 | 75 / 15 / 10 |
 | 3 | 55 / 40 / 12 / 5 / 100 | -1 | 0 / 60 / 30 / 10 | -1 | 65 / 20 / 15 |
 
+Every byte of the four rows, with the quantity weights of all five slots and the chain-bonus copy (the seven
+percentages of the chain-level table above), is in [the drop table](loot-drops-drop-table.tsv)
+(`Database/Tools/catalogues/opus_drop.py`, which checks itself against this table).
+
 The enemy's drop record (`[unit+E60h]`), the fields the drop roll reads:
 
 `EnemyDropFields` (offsets from the start of the record):

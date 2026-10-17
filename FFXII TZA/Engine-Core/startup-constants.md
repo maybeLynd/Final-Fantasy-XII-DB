@@ -150,6 +150,10 @@ loaded and its bit goes into `022D7FCC`. Before the walk, `00369650` performs th
 reset with `ioprp300.img` (`01EF9360`): only stub calls, `003691E0` and `0046E000`, which also
 sets `02CA6074` and `02CA6114` to -1. `004746C0` is four stub calls.
 
+`00474680`, called first (`00369306`), makes two stub calls (`0016D6A0`) and copies the first eight bytes of the
+`memset` import stub `00861EC0` to `02CA6C88` and `02CA6C8C`; the only reference to `02CA6C88` is that write
+(`0047469E`).
+
 `0036FD70` clears `02AD9E00` and runs `003696D0`, which releases the three handles at `022D7FC0` to
 `022D7FC8` (retrying while the stub reports busy) and sets each to -1. `003694D0` fills the two
 256-byte tables `022C5AF0` (`0032EAF0`) and `022C59F0` (`0032EB10`, which also sets bit 7 of its

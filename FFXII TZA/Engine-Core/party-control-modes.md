@@ -189,6 +189,7 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
   `0035CFA0(1)`) only when `00303CC0()` passes, channel 1 has expired (`003EBB70(1)`), `0017D380()`
   is 0, the level is 2 and `0031B8C0(3)` is non-null.
 - `00313590`: at level 1, `0031E860(3)`.
+- `00303E90` returns `0031E860(3)` when `0030D9A0()` is 2 and 0 otherwise; `003200A0` calls it (`00320116`).
 
 ### Carried across an area change, restored and reset
 

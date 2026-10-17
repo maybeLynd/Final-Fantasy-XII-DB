@@ -17,6 +17,8 @@ beyond a set distance.
 ### The popup ring
 
 The popups live in a ring of 64 records of `50`<sub>h</sub> bytes at `[02B457D0]`; the byte `02B443C0` is the next slot.
+`003BBCD0`, from the field set-up `00253A30` (`00253A39`), points `02B457D0` at the block `02B443D0` and clears its
+`1400`<sub>h</sub> bytes; `003BBB30`, from `0028E190` (`0028E1BE`), does the same after `0028FB60`.
 `003BBD00(request)` posts one and returns the slot with bit 5 set, or `FF`<sub>h</sub> when it refuses:
 
 1. it refuses when the ring is absent, when the next slot is still in use, and for a status word whose record

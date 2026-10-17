@@ -147,6 +147,10 @@ script calls any of the eight; the developer verb `debug_bgmstream` `201E`<sub>h
 `30000`<sub>h</sub> bytes, allocates it under the name `BGMSTR`, and `003EB180` keeps the buffer and the size at `02B5E0E8`
 and `02B5E0F0`.
 
+`bgmstreamplay` `44A`<sub>h</sub> is a jump (`00354D60`) to `003EB150`: while
+the stream is armed (byte `02B5E111` non-zero) and its state byte `02B5E110` is 5, it sets the state to 6; in any
+other state it changes nothing.
+
 ## Layouts
 
 A track slot, `18`<sub>h</sub> bytes, four at `022CB9F0` (`00360C70` sets them up):

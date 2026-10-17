@@ -340,6 +340,10 @@ The widget holds up to two sloc files, in two `A8`<sub>h</sub>-byte slots at `+1
 - `00404730` draws a zone picture through the zone's explored-cell mask from `002551B0`, which `003C4AE0`
   asks for with `00264790()` when that is positive, and otherwise, or on a null result, takes the block at `02B45A50`; with no mask, or
   with bit 15 of the element's flags, every cell is shown.
+- `00404730` places the picture with `003C46B0(…, element, …)`: from the element record it sets up a matrix from
+  `+20`<sub>h</sub>, turns it by -π/2 (`BFC90FDB`<sub>h</sub>, `003985B0`) and by the negated `+1C`<sub>h</sub> (`00398C50`), sets it at half of
+  `+04`<sub>h</sub> and `+08`<sub>h</sub>, and combines it (`003977B0`) with the record's `+14`<sub>h</sub>/`+18`<sub>h</sub> and with a second matrix moved
+  by -`+0C`<sub>h</sub> and -`+10`<sub>h</sub>; `003C6420` then draws with the result.
 - `003BE2D0(field)` returns the field's NAVIICN2 block. `003DFBB0` gives a kind's count (kinds 1 to 9 below
   the block's `kinds`); `003DFB50` gives entry i and drops it when its gate fails.
 - `004048E0` draws icon kinds 3 to 8 (through `00403640`, called by `00403970`), and `00403BC0` kind 9. An

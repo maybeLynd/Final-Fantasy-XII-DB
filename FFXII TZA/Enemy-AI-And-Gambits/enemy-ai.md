@@ -119,9 +119,8 @@ non-zero (1 in the image; no instruction writes it), it first calls `00324F20` (
 | otherwise | the old list is kept, minus inactive units and units with KO, Stone or X-Zone (`00324F45`-`0032504C`) |
 
 The generation steps by one, modulo 8, each time the field frame `00234590` runs (`00325060`, `002346FE`),
-so with both running every frame a unit rebuilds its list in full one frame in eight. Bit 0 is set when the
-unit object is set up (`00172CA1`), and through `00316D30` when it is reset for reuse (`00236B03`) and when its
-action is cancelled (`003087D2`).
+so with both running every frame a unit rebuilds its list in full one frame in eight. Bit 0 is set through
+`00316D30` when the unit is reset for reuse (`00236B03`) and when its action is cancelled (`003087D2`).
 
 ### An order in flight
 

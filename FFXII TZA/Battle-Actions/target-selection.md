@@ -145,6 +145,44 @@ None of `002FFB60`, `002FFA60` or `0030AF30` reads a position or a distance, and
 availability check behind reason 6 (`002FFCF0` and its callees `0030E9C0`, `0031A7B0`, `00306480`,
 `00303BD0`, which take only the stats record, the action id or the unit's cost state).
 
+### The Reflect bounce target
+
+When Reflect bounces an action, `00384F40(source, target)` picks the new target from the target's position
+(`00265020`). Every battle unit from 0 to `00236850()` (`00321170(i)`) is a candidate when:
+
+- it is not the target's own slot (`+EA9`<sub>h</sub>), it is active (first byte bit 4) and has a stats record;
+- it has no status bit 0, 1 or 31 (mask `80000003`<sub>h</sub> of `+64`<sub>h</sub> and `+3C`<sub>h</sub>), unless `00377C20()` is non-zero;
+- it is not an enemy (`+05`<sub>h</sub> = 1) whose byte `[+6A0h]` has bits `30`<sub>h</sub> or `48`<sub>h</sub>;
+- exactly one of the target (`002F8E90`) and the candidate (`002F8E70`) has the class 8.
+
+Its gap is the distance between the two positions (`003A1920`) less the target's smaller radius (`00334790`, the
+lesser of the two `00265090` floats) and the candidate's larger radius (`00334A70`, the greater, 0 without an
+actor). The candidate with the smallest gap below the action row's reach `+05`<sub>h</sub> / 10 wins (`0038517D`); with none,
+it returns 0.
+
+### Tutorial limits on the command lists
+
+For a party-side member (stats `+05`<sub>h</sub> = 0) the list builder also checks a `tutorial_data` row (`02EBF020`).
+`0032A230(group, type, &row)` takes the group number at `+04`<sub>h</sub> of the list block and the member's type byte (stats
+`+04`<sub>h</sub>), and gives:
+
+| Case | Result |
+|---|---|
+| the group is out of range or empty | true, no row: nothing is limited |
+| a row of the group has the type as its leading `u16` | true, that row |
+| the group has no such row | false: every entry is refused |
+
+A row lists up to seven `u16` action ids from `+02`<sub>h</sub>, ending at `FFFF`<sub>h</sub>, with a `u32` mask at `+10`<sub>h</sub>:
+
+- In the command lists (codes 6 to 9) each `(mode, value)` pair of the command table goes to `0032A320(group,
+  type, mode, value)` (`0031ED10`); a 0 sets bit 1 of the entry's byte `+3` and stores code `2B`<sub>h</sub> in its byte `+4`.
+  With a row, an id whose mask bit is
+  set passes only for mode 0, value `D`<sub>h</sub>; any other id passes when `0032A3E0(mode, value, id)` does.
+- `0032A3E0` passes, in mode 0, an id whose row kind `+1E`<sub>h</sub> equals the value, or is 1 or 2 for value `12`<sub>h</sub>, or 5
+  or 6 for value `13`<sub>h</sub>; in mode 1, a Magicks row (kind 1) whose `+2Ch & 7` equals the value.
+- In the action list (code `B`<sub>h</sub>) an action gets flag bit 0 and code `2B`<sub>h</sub> unless it is one of the row's ids with
+  its mask bit clear (`0031F1AD`-`0031F1FF`); the code goes in the entry's byte `+6`.
+
 ## Modding notes
 
 - The 24-unit limit is the float at `00D1081C` (576.0, the square of the range); it applies to every

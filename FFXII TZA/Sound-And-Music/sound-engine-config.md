@@ -97,6 +97,13 @@ its element count: each category gets that many plus one volume ramps (`007AAAB2
 builds one `88`<sub>h</sub>-byte `Driver::Category` per element (`007A96F0`; `007A9760` destroys one) and keeps the pointers at
 `02EAD008`. `007AA010` gives each category a handle list with as many nodes as its size.
 
+The binding is `007AA320(category, element)`, called by `007AAA40` (`007AABED`) after every category is built. For
+an element whose `i16` size (`+4` of the element data the argument's `+8` points to) is negative it looks up category
+`-size` (`007AAA20`: an index below the count `02EAD000`, else 0) and keeps it at the category's `+58`<sub>h</sub>. When the
+dword `+10`<sub>h</sub> of that category is 0 it prints
+"[sead][!!error!!]Category::InitializeRefCategory referenced category is not initialized( or reference is looping )!"
+and returns -1; otherwise, and for a size of 0 or more, it returns 0.
+
 ### How a category limits its sounds
 
 `007A9A10(category, handle)` adds a starting sound, music or instrument to its category, or to the one a negative size

@@ -87,6 +87,16 @@ resolves to an actor with a unit; `00273780(handle)` is true for a non-zero hand
 `00273A00(handle)` when it is 5. `00358960(slot, ordinal)` returns the class bits `+03h >> 5` of a
 record of the slot `00263FF0` gives, and reads address 3 when the ordinal is out of range.
 
+Three more read the unit behind a handle, through `003588B0` and, while `02089340` bit 4 is set, `00263E30`:
+
+- `003229A0(handle)` returns bit 0 of the unit's `+E9C`<sub>h</sub>, which `002392D0` copies from bit 14 of its flag argument
+  (`0023932A`-`00239339`).
+- `00273910(handle)` is true when the actor's class nibble is 3 and `003229A0` returns 0 (`00273934`); the HUD's
+  `002BFD20` asks it (`002BFE2A`).
+- `00322950(handle)` is true when `00321770(unit, 0)` returns 0: none of the unit's 40 enmity bytes (`+1A`<sub>h</sub> of
+  `[unit+6A0h]`, for the ids `00322C50(2, i)` accepts) is above 0 ([Enmity](../Enemy-AI-And-Gambits/enmity.md)).
+  `002C7660` asks it (`002C780D`) right after `003229A0` (`002C77F6`).
+
 ### Release
 
 `00234200(_, actor)` releases the actor's unit. With no unit it runs `00263980` and `003589A0` on
@@ -141,6 +151,10 @@ The writers:
 
 `00263AC0(actor)` reads `+0F`<sub>h</sub> back: 0 for a null actor, 1 instead of 2 when the actor is the party
 focus (`003590D0`, `003588B0`, resolved with slot 0 as the current slot), else the byte itself.
+
+`00263AA0(actor)` and `00263AB0(actor)` return the signed bytes `+21`<sub>h</sub> and `+22`<sub>h</sub> while `+0F`<sub>h</sub> bit 6 is set, and 0
+otherwise. The minimap's list build `003C5130` adds them to the actor's x and z (`003C51F5`, `003C520F`), so they
+move the actor's marker off its position ([Map screens](../Menus-And-HUD/map-screens.md)).
 
 ### The script queries
 

@@ -241,6 +241,15 @@ awards with `00577550(7)` (`005750AF`, `00316930`). `00572920` lays out one grou
    it, so the model appears only in the menu.
 6. Closing the entry (`001846B0`, `00570355`) frees the model and restores `02CB8138`.
 
+The loader settles a request with `002EED80` (`002EE975`), only on a pass where `0216420C` is 1, which it clears:
+
+- with a model shown (`0216423C` = 1) and `00181DD0()` answering 0, it releases it (`002EEB20([02164238])`) and clears
+  the request flag `02164208`;
+- with a request (`02164208` = 1) for another model (`02164240` not equal to `02164210`), it releases the shown one,
+  copies the request (`02164240`-`0216426C`) over the current values (`02164210`-`0216423C`), sets `01EEBAA8` to 0 and
+  clears the flag;
+- otherwise, with a model shown, it calls `00181DF0` with entry `[02164238]` of `01EEBAB0`.
+
 The viewer is the `2E0`<sub>h</sub>-byte object `[01F82E18]`, built on first use by `001EBA40`. When the entry page opens it,
 `00181D50` and `00181D80` take two screen-sized render targets from the pool `[01F81210]` (`00182BE0(1.0, 1.0)`)
 into viewer `+270`<sub>h</sub> and `+278`<sub>h</sub> (`0057025F`, `00570264`); `00181B90` and `00181BD0` hand them back when it

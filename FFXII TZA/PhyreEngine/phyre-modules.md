@@ -75,12 +75,17 @@ is started by the walk alone.
 
 ### Shutdown
 
-`005A0840` runs only while `02CACCA0` is set. It walks the list calling each module's shutdown and
-ignores the results, ends the 5 ms timer period (`005CCB90`, `timeEndPeriod(5)`, the counterpart of
-the `timeBeginPeriod(5)` in `005CC980`), then stops the `006AA280` object (its slot 3), runs the deferred-destruction
-reaper `00638C90`, closes the synchronisation object (`00677520`), frees the `E0`<sub>h</sub>-byte object and
-clears `02CACCA0`. The start-up calls it directly when the message loop ends; the `atexit` call that
-follows finds the byte clear and does nothing.
+`005A0840` runs only while `02CACCA0` is set:
+
+1. It walks the list calling each module's shutdown and ignores the results.
+2. It ends the 5 ms timer period (`005CCB90`, `timeEndPeriod(5)`, the counterpart of the `timeBeginPeriod(5)` in
+   `005CC980`) and stops the `006AA280` object (its slot 3).
+3. It runs the deferred-destruction reaper `00638C90` and closes the synchronisation object (`00677520`).
+4. It destroys the `E0`<sub>h</sub>-byte object's four `38`<sub>h</sub>-byte entries (`0062EAF0`, through the vector destructor
+   iterator `00809054` with `0062EA60`), frees the object and clears `02CACCA0`.
+
+The start-up calls it directly when the message loop ends; the `atexit` call that follows finds the byte clear
+and does nothing.
 
 At process exit each module's `atexit` destructor writes the base vtable back and unlinks the object.
 Slot 0, `005A0CB0`, does the same and frees the object when bit 0 of its flag argument is set.

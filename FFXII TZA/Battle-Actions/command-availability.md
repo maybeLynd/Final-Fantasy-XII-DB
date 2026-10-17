@@ -79,7 +79,8 @@ pass. Kinds 1,
 `+22`<sub>h</sub> is one of the ten `i16` at `+58`<sub>h</sub> of its record in the table at `02EBF130`; anyone else when
 `0030B0E0(+22h)` (the owned count for that id class, through the handler table at `01EEBD10`) is above
 0. Kind 3: `003037A0` (below). Kind 9: only an Esper passes. Kind 4 and kinds 7, 8 and 10 return 5.
-`00306480` turns any non-zero result into `0F`<sub>h</sub>.
+`00306480` turns any non-zero result into `0F`<sub>h</sub>. `003093B0(row)` returns a kind-3 row's `+22`<sub>h</sub>, and `FFFF`<sub>h</sub>
+for any other kind or a null row; the battle menu `0031EB20` asks it (`0031F090`).
 
 ### License
 
@@ -99,6 +100,21 @@ record (`0030A330`) is below `00324020(stats)`; for any other row the License Bo
 | `13`<sub>h</sub> | MP: the `i16` at stats `+4C`<sub>h</sub> is below `00309110` - for kinds other than 5 and 6, the row's byte `+0A`<sub>h</sub> adjusted by `002F95D0`, or 0 when the unit pays with gil |
 | `14`<sub>h</sub> | Mist charges: the byte at stats `+4E`<sub>h</sub> is below `00308FF0` - the row's byte `+0A`<sub>h</sub> for kinds 5 and 6, else 0 |
 | `15`<sub>h</sub> | gil: for a party-side unit paying with gil (`002F9820`: effect bit 0 of `+6C`<sub>h</sub> or `+7C`<sub>h</sub>, effect 32, "Enables casting of magicks with gil, rather than MP"), when the cost `00309060` is above both the party's gil (`[02092758]+8`, `00253690`) and the gil already reserved at `+E58`<sub>h</sub> |
+
+### Which cost the battle menu shows
+
+For a row with bit 29 of `+0C`<sub>h</sub> (the entry carries a cost), the battle menu `0031EB20` asks
+`002FA140(unit, id)` (90 bytes, called only at `0031F033`) which cost to show, and stores the mapped value
+at `+4C`<sub>h</sub> of its list record:
+
+| `002FA140` returns | When | Stored |
+|---:|---|---:|
+| 0 | the unit's stats record has kind byte `+05`<sub>h</sub> = 1 (an enemy) (`002FA151`) | 1 (MP) |
+| 2 | the id is a summon `106`<sub>h</sub>-`112`<sub>h</sub> or a Quickening `D0`<sub>h</sub>-`E1`<sub>h</sub> (`002FA15A`-`002FA179`) | 2 (Mist charges) |
+| 1 | bit 0 of stats `+6C`<sub>h</sub> or `+7C`<sub>h</sub> is set, the same pay-with-gil test as `002F9820` (`002FA182`-`002FA18C`) | 4 (gil) |
+| 0 | otherwise | 1 (MP) |
+
+A row with bit 31 of `+0C`<sub>h</sub> stores 3 (the item count) instead.
 
 ## Modding notes
 

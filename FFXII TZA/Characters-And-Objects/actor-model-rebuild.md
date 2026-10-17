@@ -118,6 +118,10 @@ returns 1, adds the step to the slot, and repeats until `0037CB50` reports the w
 or more going up, below 0 going down). It then calls `00233AA0` (`0030D8B0(1)`, `00326500`,
 `00311E10(0)`, `00311E20`) and clears the task pointer `02EBF400`.
 
+`0037B4B0(actor)` writes 0 to the parts-requested byte `+23`<sub>h</sub> of a non-null actor (`0037B4B5`). `0031A300`
+(`0031A3B8`) and `00324380` (`003243B0`) walk the battle units (`00236820(i)`) and call it on each unit's bound actor
+`+10`<sub>h</sub>; `003261D0` (`00326490`) and `003273D0` (`003277A0`) also call it.
+
 The read-in verbs' poll `0034E3E0`, shared with `summonreadsync` (`0204`<sub>h</sub>) and
 `summontopartyreadsync` (`0208`<sub>h</sub>), waits while `0037CB50` reports a walk in progress (its third
 caller is `00324360`); `partyallread`'s result `0034D460` is `003601C0(13h)`, which clears busy

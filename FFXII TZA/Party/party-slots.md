@@ -87,6 +87,22 @@ the new member (`0023A570`); a unit that changes member while down is torn down 
 the end `00326500` picks the controlled member and `022C2670` counts the fighting members that are standing
 (`00326B1E`-`00326B97`).
 
+### The snapshot a menu takes
+
+`00326BB0`, run when the menu tasks `00281AE0` (`00281B52`) and `002D70F0` (`002D73BC`) open, records the active seats
+once; bit 0 of `022C25A0` marks the snapshot as taken (`003278C0` reads it):
+
+1. For each seat 0 to 3 that map 1 holds (`00322C50(17h, i)`, the byte at `[02EBF190] + 5A5Ah + 2i`) whose unit
+   (`002367A0`) has first-byte bit 3, the 48-byte record at `022C25B0 + 30h x i` gets the member's type at `+0` and
+   `+1`, the unit id at `+4`, the position at `+10`<sub>h</sub> (`00265020`) and the angle at `+20`<sub>h</sub> (`00265200`).
+2. `022C25A4` takes the saved leader `[02EBF190] + 5AA4h`, and `022C25A5` the controlled member's type (`003590D0`),
+   or the saved leader when there is none.
+
+`00326D60`, from the menu close `00281E00` (`00281EA8`), reads the snapshot (`00326D67`) and clears the mark when
+it is done (`00327125`). `00327360`, run by the area
+initialisation `002342F0` (`00234459`), clears the mark, sets `022C25A4` to `FF`<sub>h</sub> and each record's type word to
+`FFFF`<sub>h</sub> and id to 0.
+
 ## Layouts
 
 The slot maps in the battle state block:

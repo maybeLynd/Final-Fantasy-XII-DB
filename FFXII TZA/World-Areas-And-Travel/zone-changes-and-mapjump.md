@@ -193,6 +193,24 @@ plus 1, clamped to 1 to 3, when `00264170()` is non-zero and `001C3370()` is not
 calls `00314D40(1)`. A scene is therefore loaded into manager 1, 2 or 3 from namespace 8 at index
 `id * 4` when the verb finishes, through the same pending-mask pipeline as a zone.
 
+### The menu scene in manager 3
+
+Two menu tasks load a scene into manager 3 while they are open. A small state machine keeps the state at
+`02B47748`, the scene id at `02B4774C` and an in-use flag at `02B47750`:
+
+| Function | What it does |
+|---|---|
+| `003CA140(n)` | when not in use: sets in use, state 1, and the id `1B5`<sub>h</sub> for n = 0, `1B6`<sub>h</sub> for 1, `1B7`<sub>h</sub> for 2, `1B8`<sub>h</sub> otherwise |
+| `003C9FD0(3)` | the step, run each UI frame by `00250540` (`0025060A`), only while in use and `022C6D20[3]` (`0032F6E0`) is clear: state 1 runs `0032FC30(3, id)` and `0032ED70(3)` and becomes 2; state 3, once `0032F6C0(3)` reports nothing pending, runs `00332130(3)` and becomes 0; state 4, once nothing is pending, runs `00332190(3)` and becomes 5 with the flag cleared and the id -1 |
+| `003CA0C0()` | true in state 2 with nothing pending: the scene is loaded and held |
+| `003CA1B0(s)` | stores state `s`; the menus call it with 3 to start the held scene |
+| `003CA0A0()` | while in use, sets state 4 to dispose the scene |
+| `003CA0F0()` | true when idle: state 0 not in use, or state 5 once `022C6D20[3]` is clear |
+
+The menu task `002D70F0` starts it with n = 0 for its mode `40`<sub>h</sub> and 1 for `41`<sub>h</sub> (`002D73F3`); `0027F5D0` with
+n = 2 for its entry `42`<sub>h</sub> (`0027FA00`). Each waits in its state 8 for `003CA0C0` and then calls `003CA1B0(3)` in its
+state `C`<sub>h</sub>. Their close path `002D6F90` ends by calling `003CA0A0` (`002D6FF0`).
+
 ### The jump lock
 
 Verbs `599`<sub>h</sub> (`lockmapjump`, handler `0034AD70`) and `59A`<sub>h</sub> (`unlockmapjump`, `0034B1C0`) set and

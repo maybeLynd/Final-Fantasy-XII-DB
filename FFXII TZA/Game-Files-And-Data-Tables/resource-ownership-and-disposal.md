@@ -176,7 +176,8 @@ the array (`0051F020`), stores the stride and count, and runs it with `first` 0 
 ### Disposal order
 
 `0041E490(manager, source)` pins and unpins the source once, then calls `00409D60(manager + D90h,
-source)`. `00409D60` loops while the bank finds an entry for the source (`0051FE30`), and for each:
+source)`. `00409D60` loops while the bank finds an entry for the source (`0051FE30` with the test `004095B0`,
+below), and for each:
 
 1. clears every render record of `[022C6F28]` (`740`<sub>h</sub> bytes each, chained by the word `+4`) whose
    decoded `+68`<sub>h</sub>, `+E0`<sub>h</sub>, `+F8`<sub>h</sub>, `+42C`<sub>h</sub>, `+430`<sub>h</sub> or `+390`<sub>h</sub> is the source;
@@ -188,6 +189,12 @@ source)`. `00409D60` loops while the bank finds an entry for the source (`0051FE
 `00409CA0(bank, tag, name)` runs the same steps 2 to 4 for every entry that holds a section with that tag
 and name (`0051FE30` with the test `0040A1E0`, which asks `00409A30`); `00504C40` uses it to drop the
 `@FDM` entries of an object. `00409FE0`'s lookup for an existing entry uses the same test.
+
+The source test `004095B0(entry, source)`, passed through its thunk `0040A200`, compares by the entry's mode
+`+04`<sub>h</sub>: a mode-0 entry holds the source when its decoded handle (`0051EE00(entry + 10h)`) is the source, a
+mode-1 entry when its raw handle `+30`<sub>h</sub> is, and any other mode never. `00409FD0(bank, source)` runs one search
+with it and returns the entry's slot or −1; the motion start `00424D80` asks it for the manager's bank
+`+D90`<sub>h</sub> (`004250CC`).
 
 `003B37E0(id)` acts only when the slot's whole id matches, so a stale id does nothing. It sets the
 ticket `+30`<sub>h</sub> to −1, then:

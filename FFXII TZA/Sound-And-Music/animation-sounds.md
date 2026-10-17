@@ -104,6 +104,10 @@ bank at the point (`002DF280`), and -1 plays nothing. The same call serves `0046
 `003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays (`0046CE04`-`0046CE1F`), with the
 kind from emitter byte `+07`<sub>h</sub>: kind 0 through the battle-voice stop (`001DC330`), kind 1 through `002DF0F0`.
 
+That kind is written when a voice of types 4-7 starts: `003A10F0(id)` returns 1 when bit 30 of the id is clear
+(a block-bank sound) and 0 when it is set (a battle-voice line), and `0046D055`-`0046D05E` stores it at `+07`<sub>h</sub>
+beside the handle `+18`<sub>h</sub> and the type `+1C`<sub>h</sub>.
+
 The battle routine `00307300` plays mode 4 at a battle record's actor through `00329F70` (`00307727`), which passes
 the record's `+08`<sub>h</sub> to `0046CBB0`. That finds the actor's render record (`740`<sub>h</sub> bytes each from `[022C6F28]`) and
 calls `0046CC70` on its emitter at `+5F0`<sub>h</sub>.

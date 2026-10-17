@@ -126,6 +126,10 @@ the destination.
   `+40`<sub>h</sub> and frees a kind-`FF`<sub>h</sub> path at once; a request in states 2 or 3 goes to state 4 for the
   pump to finish; state 4 is left alone; any other state runs the cancel callback and is released at
   once. Its callers are `002FC3C0`, `003B1310`, `003B1710` and `003B18E0`.
+- `00379E30(h)`, run by the slot handlers `003DEC90` (`003DED09`, its state 2) and `003DEE10` (`003DEEB9`), pumps
+  (`0032E040`, then `0035EA30(0)`) while `00379E60(h)` holds. For `h` other than 0 that is: the dword `+28`<sub>h</sub> of
+  record `h & Fh` of the sixteen `70`<sub>h</sub>-byte records at `02ADD170` still equals `h`; for 0, the qword `02ADD870`
+  is non-zero. `00379D60` clears the records, numbers each `+28`<sub>h</sub> as `10h + i`, and clears `02ADD870`.
 
 `0035EA30(n)` is `0035EB70(n, 0)`: off the thread `00368C70` names it spins until the tick counter
 has advanced by `max(n, 1)`; on that thread it only updates the frame bookkeeping and does not wait.

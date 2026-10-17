@@ -231,6 +231,9 @@ each `entryAt` and set bit 31 of `count`. Widget bits `100`<sub>h</sub> and `200
 when no widget exists; the map-data widget's procedure `003BC4E0` reads it.
 
 - `00473BB0` reads step `j` of entry 0 and tests bit `min(progress / 5, 50)` of `shown` and `labelled`.
+- `00473B70(i)` returns the byte that entry `i`'s `entryAt` address (at `+8 + 4i` of the published `QHD0` chunk)
+  points at, read as the step count by `0037EB90` (`0037EBE0`), `0037EC70` (`0037ECD1`), `003BC160` (`003BC1C9`)
+  and `003BC4E0` (`003BC836`).
 - The map-data widget takes the first type-1 step whose `shown` bit is set and looks its `location` up
   among the map's locations (`003BC160`, `003C0380`).
 - For the location under the cursor, `003BDB30` finds a type-1 step with both bits set for that location

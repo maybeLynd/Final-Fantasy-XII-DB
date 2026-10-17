@@ -559,6 +559,57 @@ only records with `+284`<sub>h</sub> bit 27 and no parent, and in phase 2 it ski
 otherwise 1 when the move direction `+244`<sub>h</sub> is within 45° of the facing `+124`<sub>h</sub>, 3 from 45° to
 135°, 4 from −45° to −135°, and 5 behind.
 
+`004256E0(entry, mode)` is the full locomotion selector; motion commands `00`<sub>h</sub>, `0A`<sub>h</sub> and `0B`<sub>h</sub> jump to it with
+mode 0, 1 and 2. It reads the entry's render record (`+2E0`<sub>h</sub>), takes the speed `+23C`<sub>h</sub> as 0 in the same two
+cases as `004255B0`, and turns headings into degrees wrapped to ±180. The turn is the facing `+124`<sub>h</sub> minus
+`+254`<sub>h</sub>, taken as 0 unless the entry's `+31C`<sub>h</sub> top nibble is 2. It picks a state:
+
+| State | When |
+|---|---|
+| 14 | the actor is asleep: `003E7D10(+6A4h, 4)`, the status-visual record's Sleep dword `+D0`<sub>h</sub> |
+| 0 | below the walk threshold `003E58B0` and the turn is 0 or under `[01DFE0BC]` degrees either way |
+| 6, 7 | below the walk threshold with a larger turn: 7 when section 9's `+A4`<sub>h</sub> (`003E5EA0`) is set and the turn times `[01DFE0B8]` reaches its `+A8`<sub>h</sub> (`003E5C90`) in degrees, else 6 |
+| 1, 3, 4, 5 | below the run threshold `+420`<sub>h</sub>: as `004255B0`, 1 within 45° of the facing, 3 from 45° to 135°, 4 from −45° to −135°, 5 behind |
+| 2, 10, 9, 11 | at or above `+420`<sub>h</sub>: 2, or, when the record has a target record (`00512EC0(+650h)`) and bit `20`<sub>h</sub> is set in byte `+3C`<sub>h</sub> of the record `002ED500(+108h, 1000h, out)` fills, the angle to that target (`00424370`, `00424280`): 2 within 45°, 10 from 45° to 135°, 9 from −45° to −135°, 11 behind |
+
+A model can lack a state. Through `004FE2F0` the selector reads one byte per direction from dword `30`<sub>h</sub> of the
+model's `@FCP` section 9 (ids `63070F30`<sub>h</sub>, `62070E30`<sub>h</sub>, `61070D30`<sub>h</sub>, `60070C30`<sub>h</sub>; payload version 7 or later,
+else the default 0) and byte 3 of dword `2D`<sub>h</sub> (`63070B2D`<sub>h</sub>) for state 7, and falls back:
+
+| States | Property | 0 | 1 | 2 or more |
+|---|---|---|---|---|
+| 1, 2 | `63070F30`<sub>h</sub> | 0, and the mode goes to controller 5 (`003E4890`) | kept | kept |
+| 3, 4 | `62070E30`<sub>h</sub> | 0, and the mode goes to controller 5 | 1 | kept |
+| 9, 10 | `62070E30`<sub>h</sub> | 0 | 2 | kept |
+| 5 | `61070D30`<sub>h</sub> | 0 | 1 | kept |
+| 11 | `61070D30`<sub>h</sub> | 2 | 2 | kept |
+| 7 | `63070B2D`<sub>h</sub> | 0 | 1 | kept |
+| 6 | `60070C30`<sub>h</sub> | 0 | 1 | 2: 1 when the low six bits of byte `+2` of the actor's resource block (`00422D90` of entry `+310`<sub>h</sub>, `+318`<sub>h</sub>) are below 16; 3 and 5 kept; 4: 1 when those bits are non-zero |
+
+Over the 1,066 shipped models the forward byte is 0 in 626 (343 of them by default), 1 in 129, 2 in 10 and 3 in
+301; the sideways and backward bytes are 0, 1 or 2; the turn byte runs 0 to 5 (`fcp_locomotion_props.py`).
+
+The selector then sets the entry's `+0C`<sub>h</sub> bit 13. In mode 1, and in mode 2 when `002ED530` answers for the
+record's actor (`+108`<sub>h</sub>), it times the states with two byte counters in 30 fps frames (`[01DFE0B4]`, 1 at 30
+fps, 2 at 60):
+
+- Walking (1, 3, 4, 5) counts `+456`<sub>h</sub> up to 90 frames, starting it at 30 when the previous state `+2A0`<sub>h</sub> was 0.
+  Below 3 frames it keeps the previous state, so a change of gait waits a tenth of a second; a previous state 15
+  becomes 0.
+- Running (2, 9 to 11) counts `+457`<sub>h</sub> up to 90 frames.
+- Standing (0) after at least 30 frames of running becomes 8, the stop; a previous 8 stays while `0041C720`
+  reports its motion still on byte `+95`<sub>h</sub> = 1. States 0, 6 to 8 and above 11 clear both counters.
+
+`002ED530(actor)` is 0 without an actor. While the field is live (the cached copy `02099DE0` of `00265680`,
+which `00265760` reads) it is `0030BEB0`: for a party-side battle unit (stats `+05`<sub>h</sub> = 0) with unit flag bit 3
+set, the inverse of unit flag bit 23, else 0. Otherwise it is bit 1 of the presentation record's byte `+29`<sub>h</sub>
+when its bit 0 is set, else 0 (`002637D0`).
+
+The state is stored at `+2A0`<sub>h</sub>. Mode 0 returns 9 to 11 as 8 to 10 and 14 as 11; mode 1 returns 14 as 12; mode
+2 returns every state from 9 one lower, and 8 as 12 and 2 as 11 when `002ED530` answers, else 8 as 0. The
+return value's low word is the state; its high word is 1 minus a flag that is the record's `+418`<sub>h</sub> bit 0, set
+for states 0 and 14, and for 6 and 7 whether the turn is positive.
+
 Smaller entry helpers:
 
 - `0041D7E0(entry, start, end, limit)` stores the time window `+344`<sub>h</sub>, `+348`<sub>h</sub>, `+34C`<sub>h</sub>, pulling

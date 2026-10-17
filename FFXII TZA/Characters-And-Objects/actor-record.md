@@ -176,6 +176,11 @@ returns the movement context of a class-1 or class-3 actor and the static block 
 other actor or a null one. `002638F0` returns secondary `+140`<sub>h</sub> (0 without a context), and
 `002E9BE0` the signed secondary byte `+13`<sub>h</sub> (-1 without an actor or a context).
 
+`002637D0(actor, default)` returns bit 1 of the secondary byte `+29`<sub>h</sub> when the context exists (`002E97B0`), its
+dword `+00`<sub>h</sub> is not -1 and that byte's bit 0 is set, and `default` otherwise. `002ED530(actor)` returns
+`0030BEB0()` while `00265760()` answers non-zero and `002637D0(actor, 0)` otherwise; the character draw `004256E0`
+asks it (`00425B7D`, `00425CD1`).
+
 The common effect verbs keep one effect job per actor in the movement context: `002638C0` reads it
 and `00269DD0` writes it, at `+74`<sub>h</sub> for class 1 and `+220`<sub>h</sub> for class 3 (other classes read 0 and
 write nothing):

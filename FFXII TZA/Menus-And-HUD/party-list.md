@@ -25,6 +25,9 @@ addresses: "0029BE50, 0029A0A0, 00299090, 002986E0, 00297C10, 002973E0, 00271960
 and shows the widget `0029C530` at `[0209C300]` instead (`00297100`). `00290E10` closes the list and `00296A70` the widget beside it;
 `002970C0` closes `[0209C300]`. Each close first sets bit 16 of the widget's `+40`<sub>h</sub> when `002544B0` answers 1.
 
+`0028FD70` also calls `003CA1E0` (`0028FD99`), which, when the object at `[02B47758]` exists, clears bit 1 and sets
+bit 0 of its `+A90`<sub>h</sub>.
+
 On message 1 the list reads its layout, layout record `15`<sub>h</sub>, takes the member count from `022C8064`, the leader's
 index from `022C8074` (`0035BAE0`), and builds the header `0029B700` at `+B38`<sub>h</sub> (`0029BEAB`-`0029BF2A`).
 `00296450` gives the y position of the first row from the header's layout.
@@ -107,6 +110,10 @@ window at `0209C240`. `00297C10(record)` finds the pair holding the record's han
 with `003F89C0` and the callbacks `0029B7D0` (HP) and `0029B810` (MP), and registers both in the HUD's counter list
 `+80`<sub>h</sub> (`003F8A50`). `002962D0` unregisters pairs whose handle no longer resolves (`002732E0`, `003F8A30`), and
 `00296360(record, on)` does the same for the target window's pair (from `002C0870`).
+
+`003F8A30(list, node)` first moves the list head on to the node's next (`+28`<sub>h</sub>) when the node is the head, then
+runs `003F8BF0(node)` (`003F8A42`): it calls the node's callback `+38`<sub>h</sub> with 5, links its previous `+30`<sub>h</sub> and next
+`+28`<sub>h</sub> neighbours to each other, clears both links and the word `+26`<sub>h</sub>, and calls the callback again with 6.
 
 `0028F1F0(handle, old, new, mp)` starts a roll: it finds the member's pair (`00296280`), or the target window's pair
 when its handle matches, and sends the HP or MP counter message 1 (`003F8980`). The HP callback passes the maximum

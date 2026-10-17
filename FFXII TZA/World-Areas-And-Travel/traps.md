@@ -140,6 +140,22 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 | 259 | 163 (`0038F6F0`) | gil loss `(1 + roll % 99) × (1 + roll % level)`: "Your pockets feel lighter" |
 | 250 to 256, 258 | 181 | the row's `+18`<sub>h</sub> status mask: Sap; Confuse and Berserk; Petrify; Blind; Silence; Reverse and Disable; Disease; Oil |
 
+### Marking the trap's effect
+
+Between steps 1 and 2 above, the tick hands the effect handle `002EACD0` returned to `0024ED50`
+(`00311070`-`00311072`). `0024ED50` routes it by the handle's top four bits and sets bit 11 (`800`<sub>h</sub>)
+of the effect record's `u16` at `+36A`<sub>h</sub>:
+
+| Top four bits | Body | Record lookup |
+|---:|---|---|
+| 1 | `002FCFB0` | slot = the handle's low six bits, below 48; the slot's dword at `02EC32E0` + slot·`38`<sub>h</sub> must equal the handle, and its pointer at `+10`<sub>h</sub> must be set (`002FCFE1`) |
+| 5, 6, 9 | `003B0F30` | the 36 entries of 24 bytes at `02EBEC00`, walked until the first dword equals the handle; a zero first dword ends the walk; the entry's pointer `+08`<sub>h</sub> must be set (`003B0F76`) |
+| any other | none | returns (`0024ED76`) |
+
+The only other caller, `00319E40`, does the same for the handle `0030CA50()` returns, after passing it
+with the ids of the units in the list at `+780`<sub>h</sub> (count `+77C`<sub>h</sub>) to `002EAD00`, when `00237420()` is
+non-zero (`00319F10`).
+
 ### Showing the markers
 
 `settrapshowstatus(v)` (`547`<sub>h</sub>, handler `00355E00` → `003EC6C0`) shows or hides all sixteen
