@@ -362,7 +362,8 @@ Mode-screen backdrop ([`020927F0`]), `140`<sub>h</sub> bytes:
 ## Shipped data
 
 Counted in the decompiled `us` scripts (1,114 files); the calls and scripts per verb are in
-the census table:
+[the census table](script-screen-effects-screen-effect-census.tsv), and the calls per argument list in
+[the arguments table](script-screen-effects-screen-effect-arguments.tsv):
 
 | Fact | Value |
 |---|---|

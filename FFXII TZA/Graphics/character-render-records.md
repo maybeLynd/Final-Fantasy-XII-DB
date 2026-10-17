@@ -338,7 +338,7 @@ on a record also raises `+294`<sub>h</sub> bit 25 on the top of its parent chain
 that root's model transform (`00420A40`). `00426090` calls `00427DE0(0)` inside each simulation step
 (from `003323D0`); `0042ED60` calls it with 1 at the end of the frame. Each bit's test site, handler
 and setters are in
-the dirty-bit table.
+[the dirty-bit table](character-render-records-dirty-bits.tsv).
 
 ### The system tail
 

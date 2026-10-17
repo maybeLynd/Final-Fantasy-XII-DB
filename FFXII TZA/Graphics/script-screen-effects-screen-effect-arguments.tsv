@@ -1,0 +1,8 @@
+verb	arguments	calls	scripts
+cutinlinefade	1	4	4
+movebluraplpha	1	2304	264
+moveblurclearfade	10	1	1
+moveblurclearfade	15	2305	264
+moveblurfade	15	2304	264
+moveblurpresettype	1	1	1
+setsoftfocusmode	0, 0, 0, 0	52	49

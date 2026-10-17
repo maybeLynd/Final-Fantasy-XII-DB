@@ -19,7 +19,7 @@ by values each map and cutscene authors.
 ### The game's twelve passes
 
 Each pass function looks its shader constants up by name and draws with pass records from the static
-array at `01F2D6A0` (array):
+array at `01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
 
 | Function | Pass | Pass records | Constants it names | Caller |
 |---|---|---|---|---|
@@ -203,7 +203,7 @@ Two sets of named pass records exist side by side:
     the record at the head and returns 0. `005DDD60` unlinks a record at exit.
   - The 60 names are PhyreEngine's passes, from `ShadowRender` and `RenderFXAA` to the atmosphere
     precompute and `RenderText_*` passes
-    (registry,
+    ([registry](post-processing-runtime-render-pass-registry.tsv),
     [teardown wrappers](post-processing-render-pass-registry-60.tsv)).
 
 ### The frame-marker table

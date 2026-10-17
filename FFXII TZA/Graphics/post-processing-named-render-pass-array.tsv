@@ -1,0 +1,57 @@
+index	address	name	selected_by_001E2AF0
+0	01F2D6A0	Opaque	
+1	01F2D6C0	OpaqueRGB	
+2	01F2D6E0	Transparent	
+3	01F2D700	DeferredRender	
+4	01F2D720	DefaultMapRenderPassNztNzwAtNoBlending	yes
+5	01F2D740	DefaultMapRenderPassNztNzwAtAddtiveBlend	yes
+6	01F2D760	DefaultMapRenderPassNztNzwAtSubtractBlend	yes
+7	01F2D780	DefaultMapRenderPassNztNzwAtLinearBlending	yes
+8	01F2D7A0	DefaultMapRenderPassZtZwAtNoBlending	yes
+9	01F2D7C0	DefaultMapRenderPassZtZwAtLinearBlending	yes
+10	01F2D7E0	DefaultMapRenderPassZtZwNatNoBlending	yes
+11	01F2D800	DefaultMapRenderPassZtZwNatLinearBlending	yes
+12	01F2D820	DefaultMapRenderPassZtNzwAtLinearBlending	yes
+13	01F2D840	AteGequalFbonly	
+14	01F2D860	AteGequalFbonlyATC	
+15	01F2D880	AteGequalFbonlyAdd	
+16	01F2D8A0	AteGequalFbonlySub	
+17	01F2D8C0	NoBlendWithAlphaClip	yes
+18	01F2D8E0	WaterPassForStencil	yes
+19	01F2D900	WaterPassForClearBg	
+20	01F2D920	WaterPassForFrac	
+21	01F2D940	WaterPassForFracAdd	
+22	01F2D960	WaterPassForFracSub	
+23	01F2D980	ChrOpaque	
+24	01F2D9A0	ChrOpaqueClip	
+25	01F2D9C0	ChrOpaqueReflection	
+26	01F2D9E0	ChrOpaqueReflectionClip	
+27	01F2DA00	ChrOpaqueRefract	
+28	01F2DA20	ChrOpaqueRefractInverse	
+29	01F2DA40	ChrOpaqueClipRefract	
+30	01F2DA60	ChrOpaqueReflectionRefract	
+31	01F2DA80	ChrOpaqueReflectionClipRefract	
+32	01F2DAA0	ChrOpaqueNoGS	
+33	01F2DAC0	ChrOpaqueClipNoGS	
+34	01F2DAE0	ChrOpaqueReflectionNoGS	
+35	01F2DB00	ChrOpaqueReflectionClipNoGS	
+36	01F2DB20	ChrOpaquePT	
+37	01F2DB40	ChrOpaqueClipPT	
+38	01F2DB60	ChrOpaquePTNoGS	
+39	01F2DB80	ChrOpaqueClipPTNoGS	
+40	01F2DBA0	DOFWriteOnePass	
+41	01F2DBC0	SAOGenerateAO	
+42	01F2DBE0	SAOBlur	
+43	01F2DC00	SAORender	
+44	01F2DC20	SAOBlendCombine	
+45	01F2DC40	HBAOGenerateAO	
+46	01F2DC60	ColorCorrection	
+47	01F2DC80	SSS	
+48	01F2DCA0	ColorEdgeDetection	
+49	01F2DCC0	BlendingWeightCalculation	
+50	01F2DCE0	NeighborhoodBlending	
+51	01F2DD00	FontBorderWidth	
+52	01F2DD20	FontBorderHeight	
+53	01F2DD40	BrightBlend	
+54	01F2DD60	DebugMask	
+55	01F2DD80	NULL	

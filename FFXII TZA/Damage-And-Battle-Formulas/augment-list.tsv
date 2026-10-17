@@ -1,0 +1,130 @@
+id	name	text_id	text	value	value_reader	value_use	timer_slot	explanation
+0	NOT USED			0				an unused row
+1	NOT USED	13001		0				an unused row
+2	NOT USED	13002	Improves chance to hit.	0				Improves chance to hit.
+3	NOT USED	13003	Improves chance to block with a shield.	10	00387FD0, 00389370	added to the shield-block chance		Improves chance to block with a shield; value 10, added to the shield-block chance
+4	NOT USED	13004	Improves chance of avoiding attacks.	0				Improves chance of avoiding attacks.
+5	Increases defense when HP Critical.	13005	Reduces physical damage taken when HP Critical.	0				Increases defense when HP Critical.
+6	NOT USED	13006	When attacked, automatically counter with weapon in hand.	0				When attacked, automatically counter with weapon in hand.
+7	NOT USED	13007	Improves chance to counter.	0				Improves chance to counter.
+8	Increases magick power when HP Critical.	13008	Raises magick power when HP Critical.	0				Increases magick power when HP Critical.
+9	Increases attack power when fighting empty-handed.	13009	Increases physical damage dealt while empty-handed.	0				Increases attack power when fighting empty-handed.
+10	Increases strength when HP Critical.	13010	Raises strength when HP Critical.	0				Increases strength when HP Critical.
+11	Increases strength when HP is full.	13011	Raises strength when character has full HP.	0				Increases strength when HP is full.
+12	Converts license points to gil.	13012	Convert all license points earned to gil.	0				Converts license points to gil.
+13	NOT USED	13013	Improves chance of scoring multiple hits.	0				Improves chance of scoring multiple hits.
+14	NOT USED	13014	Improves potency of restorative items such as potions.	0				Improves potency of restorative items such as potions.
+15	NOT USED	13015	Reverses effects of restorative items such as potions.	0				Reverses effects of restorative items such as potions.
+16	NOT USED	13016	Nullifies weather and terrain effects on elemental damage.	0				Nullifies weather and terrain effects on elemental damage.
+17	NOT USED	13017	Enables the theft of superior and rare items.	0				Enables the theft of superior and rare items.
+18	NOT USED	13018	Improves chance to strike with magicks.	0				Improves chance to strike with magicks.
+19	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+20	Gain MP after dealing magick damage.	13020	NOT USED	0				Gain MP after dealing magick damage.
+21	Gain MP after taking damage.	13021	NOT USED	0				Gain MP after taking damage.
+22	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+23	Gain MP after defeating a foe.	13023	NOT USED	0				Gain MP after defeating a foe.
+24	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+25	NOT USED	13025	Search the deepest recesses of chests, coffers, and the like.	0				Search the deepest recesses of chests, coffers, and the like.
+26	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+27	NOT USED	13027	Doubles EXP earned.	0				Doubles EXP earned.
+28	NOT USED	13028	Doubles license points earned.	0				Doubles license points earned.
+29	NOT USED	13029	Reduces EXP earned to 0.	0				Reduces EXP earned to 0.
+30	Increases duration of status effects.	13030	NOT USED	0				Increases duration of status effects.
+31	NOT USED	13031	Magicks will not bounce off targets with Reflect status.	0				Magicks will not bounce off targets with Reflect status.
+32	NOT USED	13032	Enables casting of magicks with gil, rather than MP.	0				Enables casting of magicks with gil, rather than MP.
+33	NOT USED	13033	NOT USED	0				an unused row
+34	NOT USED	13034	NOT USED	0				an unused row
+35	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+36	NOT USED	13036	Reduces MP cost by half.	0				Reduces MP cost by half.
+37	NOT USED	13037	Move safely past traps.	0				Move safely past traps.
+38	NOT USED			0				an unused row
+39	NOT USED	13039	Reduces MP to 0.	0				Reduces MP to 0.
+40	NOT USED			0				an unused row
+41	NOT USED			0				an unused row
+42	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+43	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+44	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+45	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+46	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+47	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+48	NOT USED			0				an unused row
+49	NOT USED			0				an unused row
+50	NOT USED			0				an unused row
+51	NOT USED			0				an unused row
+52	NOT USED			0				an unused row
+53	NOT USED			0				an unused row
+54	NOT USED			0				an unused row
+55	NOT USED			120	00387020	the default timer: value x 30 x the frame base	3	Paling: a timed effect, slot 3, 120 x 30 steps by default
+56	NOT USED			120	00387020	the default timer: value x 30 x the frame base	4	Magick Shield: a timed effect, slot 4, 120 x 30 steps by default
+57	NOT USED			120	00387020	the default timer: value x 30 x the frame base	5	White Wind: a timed effect, slot 5, 120 x 30 steps by default
+58	NOT USED			0				an unused row
+59	NOT USED			0				an unused row
+60	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+61	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+62	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+63	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+64	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+65	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+66	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+67	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+68	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
+69	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+70	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+71	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+72	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+73	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+74	Increases max HP by 30.			30	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 30; value 30, added to max HP (list 00D102B0)
+75	Increases max HP by 70.			70	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 70; value 70, added to max HP (list 00D102B0)
+76	Increases max HP by 110.			110	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 110; value 110, added to max HP (list 00D102B0)
+77	Increases max HP by 150.			150	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 150; value 150, added to max HP (list 00D102B0)
+78	Increases max HP by 190.			190	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 190; value 190, added to max HP (list 00D102B0)
+79	Increases max HP by 230.			230	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 230; value 230, added to max HP (list 00D102B0)
+80	Increases max HP by 270.			270	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 270; value 270, added to max HP (list 00D102B0)
+81	Increases max HP by 310.			310	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 310; value 310, added to max HP (list 00D102B0)
+82	Increases max HP by 350.			350	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 350; value 350, added to max HP (list 00D102B0)
+83	Increases max HP by 390.			390	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 390; value 390, added to max HP (list 00D102B0)
+84	Increases max HP by 435.			435	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 435; value 435, added to max HP (list 00D102B0)
+85	Increases max HP by 500.			500	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 500; value 500, added to max HP (list 00D102B0)
+86	Gain MP after dealing damage.	13040	NOT USED	0				Gain MP after dealing damage.
+87	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+88	Increases chance to block with a shield.			5	00387FD0, 00389370	added to the shield-block chance		Increases chance to block with a shield; value 5, added to the shield-block chance
+89	Increases chance to block with a shield.			5	00387FD0, 00389370	added to the shield-block chance		Increases chance to block with a shield; value 5, added to the shield-block chance
+90	Increases chance to block with a shield.			5	00387FD0, 00389370	added to the shield-block chance		Increases chance to block with a shield; value 5, added to the shield-block chance
+91	Reduces magick MP cost by 10%.			10	002F95D0	percent taken off a magick's MP cost		Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
+92	Reduces magick MP cost by 10%.			10	002F95D0	percent taken off a magick's MP cost		Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
+93	Reduces magick MP cost by 10%.			10	002F95D0	percent taken off a magick's MP cost		Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
+94	Reduces action time by 10%.			12	002F8410	percent taken off the charge time		Reduces action time by 10%; value 12, percent taken off the charge time
+95	Reduces action time by 10%.			12	002F8410	percent taken off the charge time		Reduces action time by 10%; value 12, percent taken off the charge time
+96	Reduces action time by 10%.			12	002F8410	percent taken off the charge time		Reduces action time by 10%; value 12, percent taken off the charge time
+97	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+98	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+99	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+100	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+101	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+102	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
+103	Increases magick power when HP is full.	13041	Increases magick power when HP is full.	0				Increases magick power when HP is full.
+104	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+105	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+106	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+107	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+108	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+109	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+110	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+111	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+112	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+113	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
+114	Attack Items	13062	Slightly raises max HP.	0				Attack Items
+115	NOT USED	13063	Move with great celerity.	0				Move with great celerity.
+116	Remedies remove Stop, Doom, and Disease.			0				Remedies remove Stop, Doom, and Disease.
+117	Remedies remove Petrify, Confuse, and Oil.			0				Remedies remove Petrify, Confuse, and Oil.
+118	Remedies remove Sleep, Sap, Immobilize, and Disable.			0				Remedies remove Sleep, Sap, Immobilize, and Disable.
+119	Potions restore more HP.			40	0038DD20	percent added to a Potion's HP		Potions restore more HP; value 40, percent added to a Potion's HP
+120	Potions restore more HP.			30	0038DD20	percent added to a Potion's HP		Potions restore more HP; value 30, percent added to a Potion's HP
+121	Potions restore more HP.			20	0038DD20	percent added to a Potion's HP		Potions restore more HP; value 20, percent added to a Potion's HP
+122	Ethers restore more MP.			30	0038DF00	percent added to an Ether's MP		Ethers restore more MP; value 30, percent added to an Ether's MP
+123	Ethers restore more MP.			20	0038DF00	percent added to an Ether's MP		Ethers restore more MP; value 20, percent added to an Ether's MP
+124	Ethers restore more MP.			10	0038DF00	percent added to an Ether's MP		Ethers restore more MP; value 10, percent added to an Ether's MP
+125	Phoenix Down restores more HP.			10	0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
+126	Phoenix Down restores more HP.			10	0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
+127	Phoenix Down restores more HP.			10	0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
+128	Additional License Board unlocked.			20				Additional License Board unlocked; value 20, not read by number

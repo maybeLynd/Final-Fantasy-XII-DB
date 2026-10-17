@@ -1,0 +1,513 @@
+id	row	name	sort_order	icon_frame	price	sell_price	text_id	description	explanation
+2000h	0	Teleport Stone	0	73	200	100	14000	A stone allowing instantaneous transport between two gate crystals.	sells for 100 gil
+2001h	1	Reserve	1	0	20	10	14001		a Reserve row
+2002h	2	Reserve	2	0	20	10	14002		a Reserve row
+2003h	3	Reserve	3	0	20	10	14003		a Reserve row
+2004h	4	Reserve	4	0	20	10	14004		a Reserve row
+2005h	5	Reserve	5	0	20	10	14005		a Reserve row
+2006h	6	Reserve	6	0	20	10	14006		a Reserve row
+2007h	7	Reserve	7	0	20	10	14007		a Reserve row
+2008h	8	Reserve	8	0	20	10	14008		a Reserve row
+2009h	9	Reserve	9	0	20	10	14009		a Reserve row
+200Ah	10	Reserve	10	0	20	10	14010		a Reserve row
+200Bh	11	Reserve	11	0	20	10	14011		a Reserve row
+200Ch	12	Reserve	12	0	20	10	14012		a Reserve row
+200Dh	13	Reserve	13	0	20	10	14013		a Reserve row
+200Eh	14	Reserve	14	0	20	10	14014		a Reserve row
+200Fh	15	Reserve	15	0	20	10	14015		a Reserve row
+2010h	16	Reserve	16	0	20	10	14016		a Reserve row
+2011h	17	Reserve	17	0	20	10	14017		a Reserve row
+2012h	18	Reserve	18	0	20	10	14018		a Reserve row
+2013h	19	Reserve	19	0	20	10	14019		a Reserve row
+2014h	20	Reserve	20	0	20	10	14020		a Reserve row
+2015h	21	Reserve	21	0	20	10	14021		a Reserve row
+2016h	22	Reserve	22	0	20	10	14022		a Reserve row
+2017h	23	Reserve	23	0	20	10	14023		a Reserve row
+2018h	24	Reserve	24	0	20	10	14024		a Reserve row
+2019h	25	Reserve	25	0	20	10	14025		a Reserve row
+201Ah	26	Reserve	26	0	20	10	14026		a Reserve row
+201Bh	27	Reserve	27	0	20	10	14027		a Reserve row
+201Ch	28	Reserve	28	0	20	10	14028		a Reserve row
+201Dh	29	Reserve	29	0	20	10	14029		a Reserve row
+201Eh	30	Reserve	30	0	20	10	14030		a Reserve row
+201Fh	31	Reserve	31	0	20	10	14031		a Reserve row
+2020h	32	Earth Stone	32	73	70	35	14032	A stone infused with the power of earth. It looks like an ordinary stone, but is surprisingly heavy.	sells for 35 gil
+2021h	33	Wind Stone	33	73	70	35	14033	A stone infused with the power of wind. It looks like an ordinary stone, but put it to your ear and you may hear the wind blowing.	sells for 35 gil
+2022h	34	Water Stone	34	73	70	35	14034	A stone infused with the power of water. It looks like an ordinary stone, but gushes water when sundered.	sells for 35 gil
+2023h	35	Fire Stone	35	73	70	35	14035	A stone infused with the power of fire. It looks like an ordinary stone, but is faintly warm to the touch.	sells for 35 gil
+2024h	36	Ice Stone	36	73	70	35	14036	A stone infused with the power of ice. It looks like an ordinary stone, but is oddly cool to the touch.	sells for 35 gil
+2025h	37	Storm Stone	37	73	70	35	14037	A stone infused with the power of lightning. It looks like an ordinary stone, but tingles to the touch.	sells for 35 gil
+2026h	38	Holy Stone	38	73	70	35	14038	A stone infused with power most holy. It looks like an ordinary stone, but merely placing it in your hand gives you a feeling of tremendous peace.	sells for 35 gil
+2027h	39	Dark Stone	39	73	70	35	14039	A stone infused with a dark power. It looks like an ordinary stone, yet casts an eerily twisted shadow.	sells for 35 gil
+2028h	40	Earth Magicite	40	73	160	80	14040	A stone infused with earth magicks. Many plant these in the soil to encourage a rich harvest.	sells for 80 gil
+2029h	41	Wind Magicite	41	73	160	80	14041	A stone infused with wind magicks. Travelers carry these as charms to ensure safe passage with the wind at their backs.	sells for 80 gil
+202Ah	42	Water Magicite	42	73	160	80	14042	A stone infused with water magicks. It is said one of these thrown into a brackish or foul pond will make it sweet as spring water.	sells for 80 gil
+202Bh	43	Fire Magicite	43	73	160	80	14043	A stone infused with fire magicks. Thrown into a flame, its power is said to multiply in the blink of an eye.	sells for 80 gil
+202Ch	44	Ice Magicite	44	73	160	80	14044	A stone infused with ice magicks. One of these placed in an icebox is enough to keep foodstuffs frozen for weeks.	sells for 80 gil
+202Dh	45	Storm Magicite	45	73	160	80	14045	A stone infused with lightning magicks. When shaken, these stones release an electrical charge sufficient to power a small airship.	sells for 80 gil
+202Eh	46	Holy Magicite	46	73	160	80	14046	A stone infused with holy magicks. Placed inside burial caskets to grant the dead peaceful repose, and the living peace of mind.	sells for 80 gil
+202Fh	47	Dark Magicite	47	73	160	80	14047	A stone infused with dark magicks. Placed in the proper locations, these protect a home from evil spirits.	sells for 80 gil
+2030h	48	Earth Crystal	48	73	320	160	14048	A crystallization of potent earth magicks, said to contain the divine power of pure logic. The source of a gnoma entite's energy.	sells for 160 gil
+2031h	49	Wind Crystal	49	73	320	160	14049	A crystallization of potent wind magicks, said to contain the divine power of protection. The source of a sylphi entite's energy.	sells for 160 gil
+2032h	50	Water Crystal	50	73	320	160	14050	A crystallization of potent water magicks, said to contain the divine power of regeneration. The source of an undin entite's energy.	sells for 160 gil
+2033h	51	Fire Crystal	51	73	320	160	14051	A crystallization of potent fire magicks, said to contain the divine power of creation. The source of a salamand entite's energy.	sells for 160 gil
+2034h	52	Ice Crystal	52	73	320	160	14052	A crystallization of potent ice magicks, said to contain the divine power of sorcery. The source of a leshach entite's energy.	sells for 160 gil
+2035h	53	Storm Crystal	53	73	320	160	14053	A crystallization of potent lightning magicks, said to contain the divine power of destruction. The source of a mardu entite's energy.	sells for 160 gil
+2036h	54	Holy Crystal	54	73	320	160	14054	A crystallization of potent holy magicks, said to contain the divine power of the sun. The source of a diakon entite's energy.	sells for 160 gil
+2037h	55	Dark Crystal	55	73	320	160	14055	A crystallization of potent dark magicks, said to contain the divine power of the full moon. The source of a leamonde entite's energy.	sells for 160 gil
+2038h	56	Aries Gem	56	73	300	150	14056	"A yellow gemstone bearing the name ""Aries."" Represents the ideals that live in Man's heart."	sells for 150 gil
+2039h	57	Taurus Gem	57	73	300	150	14057	"A yellow gemstone bearing the name ""Taurus."" Portends conspiracy and dark rumor."	sells for 150 gil
+203Ah	58	Gemini Gem	58	73	300	150	14058	"A yellow gemstone bearing the name ""Gemini."" Said to portend assassination."	sells for 150 gil
+203Bh	59	Cancer Gem	59	73	300	150	14059	"A yellow gemstone bearing the name ""Cancer."" Represents the forces of restoration and renewal."	sells for 150 gil
+203Ch	60	Leo Gem	60	73	300	150	14060	"A yellow gemstone bearing the name ""Leo."" Represents wild dreams and unspoken ambitions."	sells for 150 gil
+203Dh	61	Virgo Gem	61	73	300	150	14061	"A yellow gemstone bearing the name ""Virgo."" Said to portend reincarnation."	sells for 150 gil
+203Eh	62	Libra Gem	62	73	300	150	14062	"A yellow gemstone bearing the name ""Libra."" Represents success in negotiations."	sells for 150 gil
+203Fh	63	Scorpio Gem	63	73	300	150	14063	"A yellow gemstone bearing the name ""Scorpio."" Foretells the fruition of long-held plans."	sells for 150 gil
+2040h	64	Sagittarius Gem	64	73	300	150	14064	"A yellow gemstone bearing the name ""Sagittarius."" Represents the iron law of truth."	sells for 150 gil
+2041h	65	Capricorn Gem	65	73	300	150	14065	"A yellow gemstone bearing the name ""Capricorn."" Represents the forces of order and rule."	sells for 150 gil
+2042h	66	Aquarius Gem	66	73	300	150	14066	"A yellow gemstone bearing the name ""Aquarius."" Represents the forces of regeneration and regrowth."	sells for 150 gil
+2043h	67	Pisces Gem	67	73	300	150	14067	"A yellow gemstone bearing the name ""Pisces."" Represents the tangled weave of fate."	sells for 150 gil
+2044h	68	Salamand Halcyon	68	73	3000	1500	14068	Searing flames adorn this fiery jewel engraved with an exquisite depiction of a salamand entite.	sells for 1500 gil
+2045h	69	Mardu Halcyon	69	73	3000	1500	14069	Swirling thunderclouds adorn this cerulean jewel engraved with an exquisite depiction of a mardu entite.	sells for 1500 gil
+2046h	70	Leshach Halcyon	70	73	3000	1500	14070	Dancing chill winds cold enough to freeze time itself adorn this niveous jewel carved with an exquisite engraving of a leshach entite.	sells for 1500 gil
+2047h	71	Gnoma Halcyon	71	73	3000	1500	14071	Renderings of cracked, broken earth adorn this umber jewel engraved with an exquisite depiction of a gnoma entite.	sells for 1500 gil
+2048h	72	Undin Halcyon	72	73	3000	1500	14072	A great torrent, threatening to consume all, adorns this watery jewel engraved with an exquisite depiction of an undin entite.	sells for 1500 gil
+2049h	73	Sylphi Halcyon	73	73	3000	1500	14073	A wind of terrible destructive power adorns this azure jewel engraved with an exquisite depiction of a sylphi entite.	sells for 1500 gil
+204Ah	74	Diakon Halcyon	74	73	3000	1500	14074	Brilliant light shines from this alabast jewel engraved with an exquisite depiction of a diakon entite.	sells for 1500 gil
+204Bh	75	Leamonde Halcyon	75	73	3000	1500	14075	Eddies of jet-black darkness adorn this smoky jewel engraved with an exquisite depiction of a leamonde entite.	sells for 1500 gil
+204Ch	76	Arcana	76	73	20	10	14076	A jewel containing a creature's soul. Only when its soul is released will the creature find true peace.	sells for 10 gil
+204Dh	77	High Arcana	77	73	40	20	14077	A jewel containing the souls of many creatures. Within can be seen the true forms of creatures rent from their natural fates and bound within.	sells for 20 gil
+204Eh	78	Turtle Shell	78	73	894	447	14078	A tough shell. These are often used to craft crockery, armor, and other items of daily convenience.	sells for 447 gil
+204Fh	79	Aged Turtle Shell	79	73	2150	1075	14079	A slightly worn shell. Considered antiques, the value of these pieces varies with the pattern of the cracks and pit-marks on the surface.	sells for 1075 gil
+2050h	80	Ancient Turtle Shell	80	73	2674	1337	14080	This shell is faded in color, but of remarkable durability and quality. These are prized by artificers for use in all manner of crafts.	sells for 1337 gil
+2051h	81	Molting	81	73	148	74	14081	A brittle skin molted as its former occupant outgrew its compass. Abundant and cheap, these are often ground into powders for various uses.	sells for 74 gil
+2052h	82	Iron Carapace	82	73	826	413	14082	Artificers have perfected a technique of extracting and rarefying the mineral content of these hard, iron-rich husks.	sells for 413 gil
+2053h	83	Wyrm Carapace	83	73	1478	739	14083	A thick dragon-hide, like a sheath of iron. Countless are the blades that failed to pass its test and now lie sundered beneath the bleached bones of their owners.	sells for 739 gil
+2054h	84	Insect Husk	84	73	1360	680	14084	A thick insect carapace, hard as gemsteel. Only those from the largest insects have any value, and the price varies with the piece's luster.	sells for 680 gil
+2055h	85	Battlewyrm Carapace	85	73	1742	871	14085	A carapace hewn from an aggressive, spiteful wyrm. Somewhat softer than a typical wyrm carapace, but exceedingly light. These are often used by armorers.	sells for 871 gil
+2056h	86	Destrier Barding	86	73	2428	1214	14086	A set of equestrian armor meant only to be worn by a knight's steed. Valued more for its style than its substance.	sells for 1214 gil
+2057h	87	Charger Barding	87	73	2308	1154	14087	This barding is the perfect balance of lightweight construction and protection. Its iron alloy composition makes it prone to rust if not properly maintained.	sells for 1154 gil
+2058h	88	Fish Scale	88	73	302	151	14088	The oily surface of this scale gives off a peculiar sheen. Both the scale and its oil are known to find buyers at market.	sells for 151 gil
+2059h	89	Yensa Scale	89	73	638	319	14089	Tiny pores in these scales allow them to breathe, preventing excessive moisture loss while still offering excellent protection against desert heat.	sells for 319 gil
+205Ah	90	Ichthon Scale	90	73	2066	1033	14090	A scale from a fish as curious as it is fell. These are popular among those who favor their unusual patterning for use in crafts.	sells for 1033 gil
+205Bh	91	Ring Wyrm Scale	91	73	2570	1285	14091	This impervious scale stands as proof of the mighty ring wyrm's existence. Few blades exist that can mark it, though many are the smiths who have tried to make one that can.	sells for 1285 gil
+205Ch	92	Drab Wool	92	73	126	63	14092	Unattractive, inexpensive wool, suitable only for stitching in places not like to be seen, lest it cheapen the garment's appearance.	sells for 63 gil
+205Dh	93	Braid Wool	93	73	930	465	14093	Highly absorptive wool, widely used for fashioning garments for everyday wear.	sells for 465 gil
+205Eh	94	Fine Wool	94	73	1238	619	14094	This highly absorptive wool is quite soft, and well suited to use in bedding. Try a fine wool quilt once and the thought of anything else will give you nightmares.	sells for 619 gil
+205Fh	95	Blood Wool	95	73	1742	871	14095	This wool is of exceedingly high quality, and, as such, is the privilege only of nobles and landed gentry.	sells for 871 gil
+2060h	96	Rat Pelt	96	73	70	35	14096	An easily torn, yet very pliable small pelt. These are suited to a variety of uses, but fetch a low price due to their ready availability.	sells for 35 gil
+2061h	97	Snake Skin	97	73	106	53	14097	A pliable skin that wears well. Garments made of snake skin last longer than those fashioned from inferior materials, though some dislike its eerie luster.	sells for 53 gil
+2062h	98	Tyrant Hide	98	73	1098	549	14098	A tough hide, difficult to work with common tools. Sturdy armor can be made from strips of this material, though such armor is grindingly cumbersome.	sells for 549 gil
+2063h	99	Quality Hide	99	73	768	384	14099	A hide with just the right combination of pliability and strength. Its pleasing hue only improves with use, making it suitable for crafting quality articles.	sells for 384 gil
+2064h	100	Beastlord Hide	100	73	2998	1499	14100	A supple, majestic hide. As they are easily marred, only small sections are suitable for use, making them all the more valuable.	sells for 1499 gil
+2065h	101	Tanned Hide	101	73	154	77	14101	A basic material in the fashioning of leather goods. The tanning process makes these hides softer and far more useful than raw hides.	sells for 77 gil
+2066h	102	Tanned Giantskin	102	73	1344	672	14102	The tanned skin of a member of the race of giants. While of low quality, the feel of a giantskin garment cannot be matched. Neither, however, can the stench.	sells for 672 gil
+2067h	103	Tanned Tyrant Hide	103	73	1604	802	14103	The tanned hide of a tyrant lizard. Highly elastic, but easily damaged by moisture.	sells for 802 gil
+2068h	104	Prime Tanned Hide	104	73	2744	1372	14104	A high-quality tanned hide, used in making clothing, bags, and all manner of useful goods.	sells for 1372 gil
+2069h	105	Wolf Pelt	105	73	82	41	14105	This pelt is notable for its short, delicate hair that sheds heat and wears well in the sun. A popular clothing material in warmer climes.	sells for 41 gil
+206Ah	106	Coeurl Pelt	106	73	908	454	14106	A fine pelt with fur rising in a distinctive wave-like pattern. Its insulating qualities make it an excellent choice for cold- weather gear.	sells for 454 gil
+206Bh	107	Quality Pelt	107	73	1302	651	14107	Soft fur covers the surface of this fine pelt. Clothing made from one of these is a luxury item coveted by nobles and adventurers alike.	sells for 651 gil
+206Ch	108	Prime Pelt	108	73	2248	1124	14108	A thick pelt, luxuriant in its softness and warmth. The sheen of its fur screams quality. One look is all it takes to steal the heart of any seamstress.	sells for 1124 gil
+206Dh	109	Small Feather	109	73	98	49	14109	A feather small enough to fit in one's palm. The perfect accent to a hat, accessory, or other garment.	sells for 49 gil
+206Eh	110	Large Feather	110	73	142	71	14110	A large feather. Its value is judged not only by the beauty of its pattern, but also by its fullness and suitability as a decorative material.	sells for 71 gil
+206Fh	111	Chocobo Feather	111	73	960	480	14111	A feather the size of a butcher's knife. These are sturdier than they might appear, and suitable for use in armor, though they smell a mite foul.	sells for 480 gil
+2070h	112	Giant Feather	112	73	1372	686	14112	A feather large enough to conceal a moogle. Quite sturdy, these are used to reinforce all manner of tools and garments. Surprisingly heavy.	sells for 686 gil
+2071h	113	Bundle of Feathers	113	73	1666	833	14113	Several feathers tied into a single bunch. These are used for clothing, though the technique for fixing them to fabric requires patience and no little skill.	sells for 833 gil
+2072h	114	Windslicer Pinion	114	73	2296	1148	14114	This feather, resembling a finely honed blade, makes a slicing sound when swung through the air. Grown seeq have been known to weep at its suppleness.	sells for 1148 gil
+2073h	115	Horn	115	73	240	120	14115	A spiral horn. While the material of the horn is hard, its hollowness makes it prone to shattering. As such, these horns have lost favor among artificers of late.	sells for 120 gil
+2074h	116	Pointed Horn	116	73	1412	706	14116	A sharply pointed horn which is completely hollow, save for its tip. Often only the top few fingers are used for crafting.	sells for 706 gil
+2075h	117	Solid Horn	117	73	2576	1288	14117	A solid core makes this horn highly prized for crafting. The larger the horn, the greater the price it fetches, though the heaviest can be hard to carry home.	sells for 1288 gil
+2076h	118	Bat Fang	118	73	210	105	14118	This fang's sharp tip is perfect for rending flesh and sucking blood. Small serrations down the side of the tooth complete the carnage.	sells for 105 gil
+2077h	119	Crooked Fang	119	73	574	287	14119	This claw-like fang is designed for biting and ripping, though it lacks penetrating force.	sells for 287 gil
+2078h	120	Spiral Incisor	120	73	1996	998	14120	A large, spiral fang, possessing considerable penetrating force—enough to pierce rock and even the hardest ore.	sells for 998 gil
+2079h	121	Wyvern Fang	121	73	2548	1274	14121	A cruel fang, worthy of the mighty maw within which it once stood. These evolved not only to deliver crushing bites, but also to withstand the wyvern's deadly breath.	sells for 1274 gil
+207Ah	122	Cactus Fruit	122	73	118	59	14122	These dense desert fruits are slightly sweet and surprisingly juicy. Valued as a treat for children.	sells for 59 gil
+207Bh	123	Succulent Fruit	123	73	726	363	14123	These fruits are rather bitter when raw, but, when properly cooked, they become a delectable, mouth-wateringly sweet treat.	sells for 363 gil
+207Ch	124	Screamroot	124	73	2700	1350	14124	As their name suggests, these roots give off a horrible, ear-piercing scream when yanked from their earthy beds, giving unwary foragers the fright of their lives.	sells for 1350 gil
+207Dh	125	Malboro Vine	125	73	866	433	14125	A thin, highly elastic vine. Easily cut, these are excellent for various crafts. Bundles of such vines are a common sight at market.	sells for 433 gil
+207Eh	126	Malboro Fruit	126	73	1224	612	14126	This poisonous, rotten-smelling fruit is valued as a source of virulent toxin. If cooked for a very long time, they can be rendered harmless enough to eat, but why bother?	sells for 612 gil
+207Fh	127	Malboro Flower	127	73	2086	1043	14127	This beautiful yellow flower takes weeks to bloom, lasts a mere day, and wilts before the next dawn. Its cloying scent is chokingly sweet.	sells for 1043 gil
+2080h	128	Bone Fragment	128	73	386	193	14128	This fragment is too small to identify the type of bone it once formed a part of. Some lands prohibit their use outright, others require prior ablution with holy water.	sells for 193 gil
+2081h	129	Sturdy Bone	129	73	856	428	14129	A solid, well-preserved bone. Its natural strength makes it perfect for numerous applications, though a purification ceremony is often required.	sells for 428 gil
+2082h	130	Blood-darkened Bone	130	73	2870	1435	14130	Belonging to one who lived a life steeped in others' blood, this bone is stained black with magicks and beyond purification. Used in magicks and alchemy.	sells for 1435 gil
+2083h	131	Lumber	131	73	966	483	14131	Wood popular with shipwrights, carpenters, and builders.	sells for 483 gil
+2084h	132	Quality Lumber	132	73	2254	1127	14132	Long years in the primordial forests have infused the fibers of this lumber with Mist. Perfect for use in the crafting of fine furnishings and magick staves.	sells for 1127 gil
+2085h	133	Solid Stone	133	73	716	358	14133	A rough-hewn block of ore-veined stone. A ready supply of these stones has led to recent advancements in masonry... and some sturdy buildings.	sells for 358 gil
+2086h	134	Quality Stone	134	73	2850	1425	14134	These stones are chosen for their coloration as well as their usefulness as building materials. Used in the construction of prominent buildings and temples.	sells for 1425 gil
+2087h	135	Iron Scraps	135	73	370	185	14135	Discarded scraps of varying shapes and sizes. Great quantities are melted for reuse, but a large amount of impurities makes for low-quality metal.	sells for 185 gil
+2088h	136	Iron Ore	136	73	2086	1043	14136	A chunk of iron-rich ore. The iron is extracted and purified, though some lands forbid its use in the making of arms and ammunition for warfare.	sells for 1043 gil
+2089h	137	Green Liquid	137	73	412	206	14137	A thick, virescent, sludgy goop that exudes a truly vile odor.	sells for 206 gil
+208Ah	138	Yellow Liquid	138	73	1062	531	14138	An ever-frothing, sulphureous liquid corrosive enough to melt metal into a plume of oily smoke. Exposure to air causes its distinctive coloration to fade.	sells for 531 gil
+208Bh	139	Silver Liquid	139	73	2752	1376	14139	A metallic liquid that turns to poison upon contact with any metal other than iron. Stored carefully in special wrought iron containers.	sells for 1376 gil
+208Ch	140	Glass Jewel	140	73	230	115	14140	A foggy, dull glass bead. It is said that when a soul leaves its mortal frame, its former burdens remain in this world as the crystallized tears of clouds.	sells for 115 gil
+208Dh	141	Sky Jewel	141	73	1960	980	14141	A translucent bead, thought to be the product of heavenly power. When a soul reaches heaven, it is said that the body left behind is transformed into one of these jewels.	sells for 980 gil
+208Eh	142	Demon Eyeball	142	73	246	123	14142	A foul, fiendish being's eyeball, reeking of dark magicks. It seems to be watching, searching you for a weakness born of some small misdeed.	sells for 123 gil
+208Fh	143	Demon Feather	143	73	1820	910	14143	A deeply magicked feather, torn from the wing of something genuinely horrible. The feather's magicks aid the finding of air currents for flight.	sells for 910 gil
+2090h	144	Demon Tail	144	73	2406	1203	14144	The magicked tail of a demon. It is said that the only true gauge of a demon's temper is its tail, so practiced are they at hiding their evil natures.	sells for 1203 gil
+2091h	145	Grimoire Togail	145	73	950	475	14145	A musty tome containing the words of a long-forgotten incantation in a language long dead. The diagrams suggest a magick capable of destroying Ivalice.	sells for 475 gil
+2092h	146	Grimoire Aidhed	146	73	2010	1005	14146	A musty tome containing the words of a long-forgotten incantation in a language long dead. The diagrams suggest a magick capable of ending life.	sells for 1005 gil
+2093h	147	Bomb Ashes	147	73	400	200	14147	The remains of a blasted-out bomb. They are still quite volatile and must be handled with care. Some lands require a license for their handling.	sells for 200 gil
+2094h	148	Bomb Shell	148	73	1792	896	14148	The remains of a detonated bomb. Still contains fragments of unexploded material. Wiser folks leave these well alone.	sells for 896 gil
+2095h	149	Book of Orgain	149	73	1064	532	14149	A time-worn book of tales. The book is popular for the tragic fates that befall all of its characters.	sells for 532 gil
+2096h	150	Book of Orgain-Cent	150	73	1848	924	14150	A time-worn book of tales. This book tells the story of a commoner who became a knight. Every child loves the part where the hero single-handedly defeats a great army.	sells for 924 gil
+2097h	151	Book of Orgain-Mille	151	73	2954	1477	14151	A time-worn book of tales. This book charts the course of history, following the births and deaths of hundreds, and the ripples their lives cause throughout the world.	sells for 1477 gil
+2098h	152	Foul Flesh	152	73	286	143	14152	Carrion flesh of the kind often eaten by hyenas and their ilk. Used in magicks and alchemy.	sells for 143 gil
+2099h	153	Festering Flesh	153	73	1084	542	14153	It is difficult to tell what part of what animal is represented by this oozing lump of meat. Used in dark magicks and alchemy.	sells for 542 gil
+209Ah	154	Maggoty Flesh	154	73	1482	741	14154	This lurid, decaying lump is assumed to be maggoty. No one has been able to look at it long enough to know for sure. Used in dark magicks and alchemy.	sells for 741 gil
+209Bh	155	Forbidden Flesh	155	73	2794	1397	14155	Any creature of this world foolish enough to consume this flesh is assured an eternity of agonizing pain. Used mainly in high sorcery.	sells for 1397 gil
+209Ch	156	Feystone	156	73	2000	1000	14156	This chunk of stone, filled with the power of nature, gives off a wan light. These stones lend form to elementals and entites.	sells for 1000 gil
+209Dh	157	Pebble	157	73	4	2	14157	A common, featureless stone with a pleasing color and shape; the kind treasured by small children.	sells for 2 gil
+209Eh	158	Broken Sword	158	73	2198	1099	14158	A sword with a jagged break halfway down the blade. One can only imagine with what grisly fate its former owner must have met.	sells for 1099 gil
+209Fh	159	Broken Greataxe	159	73	3524	1762	14159	The haft of this greataxe is broken, and the blade notched. The quantity of dried gore on the shaft suggests that its bearer met with a most unfortunate end.	sells for 1762 gil
+20A0h	160	Broken Spear	160	73	1234	617	14160	A broken-hafted spear, thrust deep into the ground. Perhaps it marked the grave of its former wielder.	sells for 617 gil
+20A1h	161	Bent Staff	161	73	2388	1194	14161	A staff bent beyond all usefulness. It is like that its former bearer's life ended in violence that left him as bent and useless as his favorite weapon.	sells for 1194 gil
+20A2h	162	Moon Ring	162	73	3294	1647	14162	A large metal disc, out of which the shape of a full moon has been carved. Rumored to be a device for the entrapment of spirits, or perhaps a protective charm.	sells for 1647 gil
+20A3h	163	Bundle of Needles	163	73	184	92	14163	A bundle of 1,000 needles. Frustrated merchants and impatient buyers arguing over the precise count of needles in a given bundle is a common market sight.	sells for 92 gil
+20A4h	164	Coeurl Whisker	164	73	4152	2076	14164	Something about this whip-like whisker speaks of intelligence beyond animal cunning. Used in magicks, and also a popular collector's item.	sells for 2076 gil
+20A5h	165	Mallet	165	73	4996	2498	14165	This handy tool, called a gavel by some artificers, is said to have once been used to restore order in courtrooms in ancient times.	sells for 2498 gil
+20A6h	166	Tattered Garment	166	73	2940	1470	14166	This tattered and torn garment bears a chilling number of bloody puncture marks. Prayers for its former owner's well-being would doubtless be wasted.	sells for 1470 gil
+20A7h	167	Split Armor	167	73	3936	1968	14167	This armor was sundered and broken in combat. Whoever wore it was surely brave, and is now just as surely dead.	sells for 1968 gil
+20A8h	168	Chimera Head	168	73	4052	2026	14168	This head was chopped off a chimera. Chimera heads are prized as an ingredient in alchemy, and only rarely appear on the open market.	sells for 2026 gil
+20A9h	169	Rat Tail	169	73	448	224	14169	A common alchemical ingredient. Rumored to be quite tasty when properly prepared.	sells for 224 gil
+20AAh	170	Slaven Harness	170	73	1630	815	14170	A leather harness used on slaven. Blood and tufts of fur stuck to the harness attest to the heavy loads the slaven must bear.	sells for 815 gil
+20ABh	171	Blood-stained Necklace	171	73	3326	1663	14171	A necklace stained black with spattered blood. The dull light it exudes suggests that it was once a piece of surpassing beauty.	sells for 1663 gil
+20ACh	172	Destrier Mane	172	73	1616	808	14172	This steel mane covering tapers to a sharp point, designed to impale unwary foes with a fatal lunge. Even those who shun war use these in the casting of magicks.	sells for 808 gil
+20ADh	173	Wargod's Band	173	73	4428	2214	14173	A strikingly simple but skillfully crafted accessory. Several of these bands may be linked together to form a chain.	sells for 2214 gil
+20AEh	174	Soul of Thamasa	174	73	3712	1856	14174	A coalescence of goodwill found buried deep inside a corrupt and evil heart. It glistens like an uncut gemstone.	sells for 1856 gil
+20AFh	175	Beastlord Horn	175	73	2668	1334	14175	Sign by which one knows the true king of the beasts. Towering toward the heavens, the horn seems to challenge the gods themselves.	sells for 1334 gil
+20B0h	176	Vampyr Fang	176	73	3368	1684	14176	This fang is riddled with holes so small they cannot be seen by the naked eye, connecting to vein-like tubes running up the fang that pulse red when drawing blood.	sells for 1684 gil
+20B1h	177	Great Serpent's Fang	177	73	1988	994	14177	These fangs are thought to ward off evil spirits. Some hang them in doorways to keep misfortune from visiting a household.	sells for 994 gil
+20B2h	178	Death's-Head	178	73	1306	653	14178	The perfectly preserved head of a skeleton, blessed and burned to give the owner's spirit rest. The teeth are known to chatter in the deep watches of the night.	sells for 653 gil
+20B3h	179	Ancient Bone	179	73	4230	2115	14179	These battle-scarred bones belonged to a race of humanoids who warred in ancient times, though no one knows who they fought, or why.	sells for 2115 gil
+20B4h	180	Wyrm Bone	180	73	3294	1647	14180	Bone from a slain wyrm. The powerful magicks encircling the bone are visible to the naked eye. Used in alchemy.	sells for 1647 gil
+20B5h	181	Tyrant Bone	181	73	2466	1233	14181	This bone is as hard as iron. Struck against a metal object, it produces a pleasing tone.	sells for 1233 gil
+20B6h	182	Mirror Scale	182	73	3904	1952	14182	Though it resembles thin glass, this scale is anything but fragile. It shines in the dimmest light, glowing brightly even on nights of the new moon.	sells for 1952 gil
+20B7h	183	Emperor Scale	183	73	2790	1395	14183	Scale from a primordial wyrm that has lived for centuries. The mere sight of one of these scales strikes fear into the hearts of those upon whom the wyrms prey.	sells for 1395 gil
+20B8h	184	Mythril	184	73	3062	1531	14184	This type of silver is laced with strong magicks, making it resistant to fire and the ill will of foes. A common material in quality arms and armor.	sells for 1531 gil
+20B9h	185	Adamantite	185	73	2958	1479	14185	The strongest material known to exist in nature. Mention of this metal in the oldest records of Ivalice attests to its long-established use.	sells for 1479 gil
+20BAh	186	Scarletite	186	73	3358	1679	14186	A legendary metal said to bestow divine protection. The product of a lost age, none now live who know the manner of its manufacting.	sells for 1679 gil
+20BBh	187	Damascus Steel	187	73	4376	2188	14187	This steel bears a unique pattern like the rings of a tree. It is sometimes said that victory in battle is determined by how many soldiers wear this matchless metal.	sells for 2188 gil
+20BCh	188	Orichalcum	188	73	3554	1777	14188	This mysterious metal seems to waver and shine like a flame. Some believe it does not even truly exist, and that it is the mere idea of the metal which lends protection.	sells for 1777 gil
+20BDh	189	Mystletainn	189	73	3450	1725	14189	This oddly organic metal seems to grow and change shape, though it hardens when tempered in the purest of holy waters.	sells for 1725 gil
+20BEh	190	Einherjarium	190	73	3364	1682	14190	This metal contains veins of pure cloudstone, giving it an almost weightless feel. Made into armor, it promises passage into paradise, be it in this life or the next.	sells for 1682 gil
+20BFh	191	Electrum	191	73	7126	3563	14191	"This whitish, natural alloy of silver and gold is sometimes called ""aurargentium"" by alchemists."	sells for 3563 gil
+20C0h	192	Dorsal Fin	192	73	3154	1577	14192	These fins graced the back of one of the largest fish in the sea. Considered a delicacy in lands where seafood is an important part of the diet.	sells for 1577 gil
+20C1h	193	Yensa Fin	193	73	818	409	14193	"A fin designed to cut through seas of sand. Extremely tough, and must be finely chopped for cooking. Used as a ""secret ingredient"" in any number of dishes."	sells for 409 gil
+20C2h	194	Ring Wyrm Liver	194	73	2934	1467	14194	A steaming ring wyrm liver. A recipe exists to turn one of these into a potent cure-all.	sells for 1467 gil
+20C3h	195	Eye of the Hawk	195	73	1978	989	14195	Hawks' eyes are specially developed to spot prey from high in the air. Used as an aid to vision in folk medicine, though the effects are questionable.	sells for 989 gil
+20C4h	196	Serpent Eye	196	73	2880	1440	14196	An eye with the power to freeze prey in its tracks with fear. In antiquity it was said they could even turn flesh to stone, though that ability has since been lost.	sells for 1440 gil
+20C5h	197	Ambrosia	197	73	3364	1682	14197	A blessed nectar limned in numinous light. A drop on the tongue causes such exhilaration that all pain and suffering is forgotten.	sells for 1682 gil
+20C6h	198	Foul Liquid	198	73	1406	703	14198	A nasty-smelling froth culled from the maw of a malboro. Dipped in this, the freshest fruit goes rotten in moments. The cause of the malboro's bad breath.	sells for 703 gil
+20C7h	199	Putrid Liquid	199	73	2684	1342	14199	A liquid so rank, few dare handle it. A single whiff has been known to render men unconscious, and wake the dead from their sleep.	sells for 1342 gil
+20C8h	200	Caramel	200	73	552	276	14200	A viscous sauce sweet enough to cause dizziness. Dilute with water before cooking.	sells for 276 gil
+20C9h	201	Slime Oil	201	73	3434	1717	14201	A translucent, odorless oil. Becomes viscous and soupy when mixed with water. Valued as an ingredient in several medicines.	sells for 1717 gil
+20CAh	202	Unpurified Ether	202	73	3566	1783	14202	This liquid is lighter than air itself. Look at it from different angles and it changes hue from a scintillating crimson to a glowing azure.	sells for 1783 gil
+20CBh	203	Demon Drink	203	73	3726	1863	14203	Only demons know the recipe for concocting this heady brew. Many are the lords who have fallen victim to its lure, selling all they have for one more drop.	sells for 1863 gil
+20CCh	204	Death Powder	204	73	2646	1323	14204	A powder so black it seems to suck in all light and life. Artists have been known to use it in compositions to effect deep, rich shadows.	sells for 1323 gil
+20CDh	205	Soul Powder	205	73	4482	2241	14205	The physical manifestation of a soul's lingering scent. Some bathe in this powder, believing the traces of soul within will draw off their ill fortunes.	sells for 2241 gil
+20CEh	206	Zombie Powder	206	73	3950	1975	14206	Vital ingredient for making the secret elixir that causes zombification. Use on humes and their ilk is a crime due to its mentally debilitating effects.	sells for 1975 gil
+20CFh	207	Snowfly	207	73	1964	982	14207	A small, buzzing fly. Those who listen to the sound of their wings overlong are said to suffer bouts of disorientation and confusion.	sells for 982 gil
+20D0h	208	Corpse Fly	208	73	3596	1798	14208	A livid-hued fly that feeds on the corpses of men. They appear as if by magick wherever there is death, and leave nothing but bleached bones behind.	sells for 1798 gil
+20D1h	209	Bat Wing	209	73	1294	647	14209	A bat wing covered in gorgeous white fur. Prized by collectors for its outstanding beauty.	sells for 647 gil
+20D2h	210	Wyvern Wing	210	73	3746	1873	14210	A giant wing from a great wyrm. Shaped like a bow to catch the wind and support the wyrm's massive bulk--a design copied by the first airshipwrights.	sells for 1873 gil
+20D3h	211	Bomb Fragment	211	73	3822	1911	14211	The remains of a detonated bomb. Even now, the pieces smolder and glow.	sells for 1911 gil
+20D4h	212	Throat Wolf Blood	212	73	2720	1360	14212	The fresh blood of a wolf that died from starvation, called a throat wolf after the horrible gurgling noise it is said to make when it expires. A rare find.	sells for 1360 gil
+20D5h	213	Frogspawn	213	73	1522	761	14213	A gelatinous sac-like clump of countless tiny frog eggs. Watch closely and, every now and then, you can spy their contents moving.	sells for 761 gil
+20D6h	214	Frog Oil	214	73	3652	1826	14214	Great amphibians exude this oil from their warty skin. Widely used as an ingredient in salves and ointments.	sells for 1826 gil
+20D7h	215	Behemoth Steak	215	73	3342	1671	14215	A chewy, invigorating cut of steak, t-bone and all. Best eaten by holding the bone with two hands and gnawing at the meat with great, primitive enthusiasm.	sells for 1671 gil
+20D8h	216	Gysahl Greens	216	73	108	54	14216	A leafy vegetable favored by chocobos. The taste is slightly bitter, but quite palatable, even for humes. Thought to give chocobos a slight buzz.	sells for 54 gil
+20D9h	217	White Incense	217	73	1762	881	14217	Shining powder gleaned from brilliantly glowing wings. Gives off a sublime, uplifting scent when burned, which is said to keep evil at bay.	sells for 881 gil
+20DAh	218	Antarctic Wind	218	73	3378	1689	14218	A cold wind swirls in endless circles inside this perfect sphere. Merely touching it with your bare hands sends a penetrating chill through your bones.	sells for 1689 gil
+20DBh	219	Arctic Wind	219	73	2358	1179	14219	A slender cylinder with hollow ends, made of raging arctic winds. Gives off a constant chilling aura of magickal potency.	sells for 1179 gil
+20DCh	220	Wrath of the Gods	220	73	4428	2214	14220	A strange object containing a sphere wrapped in thin metallic wire. Capable of holding an electrical charge indefinitely.	sells for 2214 gil
+20DDh	221	Charged Gizzard	221	73	1890	945	14221	A long, stringy object made of a special kind of metal. Holds an electrical charge that can be released at will.	sells for 945 gil
+20DEh	222	Lifewick	222	73	3480	1740	14222	The height of this candle's flame varies with the bearer. As long as someone holds it, the flame will never go out, the bearer's life force made manifest.	sells for 1740 gil
+20DFh	223	Ketu Board	223	73	3542	1771	14223	A prayer board bearing the name of an ancient star written in strange glyphs. A divination tool and protective ward from the eastern kingdoms.	sells for 1771 gil
+20E0h	224	Magick Lamp	224	73	3506	1753	14224	A thin wisp of smoke rises from the mouth of this golden lamp. Once used to entrap the souls of demons, bound into service upon their release.	sells for 1753 gil
+20E1h	225	Hell-Gate's Flame	225	73	3168	1584	14225	A flame painful to look upon. Said to be a looking-glass into the inferno, where tortured souls can be seen writhing in ceaseless agony.	sells for 1584 gil
+20E2h	226	Sickle-Blade	226	73	3756	1878	14226	An incredibly thin blade, translucent as a moonbeam. So sharp, a man might be beheaded without knowing it until a gust of wind came to finish the task.	sells for 1878 gil
+20E3h	227	Stardust	227	73	3010	1505	14227	A fine dust that glitters like stars in the night sky. Some natural philosophers believe the dust to have actually blown down to us from the stars themselves.	sells for 1505 gil
+20E4h	228	Moondust	228	73	3950	1975	14228	Each grain of this dust looks like a tiny moon. Legend says that if you shape the dust into a large crescent, it will form a boat to carry you to the moon.	sells for 1975 gil
+20E5h	229	Rainbow Egg	229	73	1076	538	14229	A large egg that scintillates with the colors of the rainbow as you walk around it. Used for decoration, cooking, and as a reagent in medicine-making.	sells for 538 gil
+20E6h	230	Four-leaf Clover	230	73	3938	1969	14230	A rare sprig of clover with four symmetrical leaves. They say that finding one of these brings good luck.	sells for 1969 gil
+20E7h	231	Gimble Stalk	231	73	3294	1647	14231	A conical protuberance that gyres and gimbles. Used for making holes in extremely hard objects and wabes. A favorite of children everywhere.	sells for 1647 gil
+20E8h	232	Onion	232	73	4020	2010	14232	The onion: a humble bulb that, with the proper spices and seasonings, can change the world.	sells for 2010 gil
+20E9h	233	Jack-o'-Lantern	233	73	3776	1888	14233	This pumpkin has been hollowed out and fashioned into a lantern. Said to be a symbol of sagacity and erudition, and is thus favored by young scholars.	sells for 1888 gil
+20EAh	234	Tomato Stalk	234	73	1932	966	14234	Tomato stalks, when chewed, are said to produce drowsiness and listlessness. Adventurers and knife throwers be warned!	sells for 966 gil
+20EBh	235	Demon's Sigh	235	73	3408	1704	14235	A brooch so exquisite, even demons are said to sigh at its beauty and come to steal it, after which another sigh can be heard: that of the brooch's former owner.	sells for 1704 gil
+20ECh	236	Omega Badge	236	73	2	1	14236	Badge awarded for felling the legendary weapon, the Omega Mark XII, the sign of a true hero of Ivalice.	sells for 1 gil
+20EDh	237	Empyreal Soul	237	73	4000	2000	14237	All the souls of the world are contained in this single sphere. Small enough to fit in a hand, but its power extends beyond the limits of knowledge.	sells for 2000 gil
+20EEh	238	Serpentarius	238	73	4000	2000	14238	"A gemstone bearing the name ""Serpentarius."" Said to portend great destruction and undoing."	sells for 2000 gil
+20EFh	239	Gemsteel	239	73	4000	2000	14239	A metal alloy impervious to breakage or blemish. Knowledge of its working was passed down the ages by a guild of jewelers, and it remains their secret.	sells for 2000 gil
+20F0h	240	Centurio Hero's Badge	240	73	2	1	14240	Montblanc made this badge to award those whose actions brought glory to the clan. A fine example of skilled moogle handiwork.	sells for 1 gil
+20F1h	241	Horakhty's Flame	241	73	2000	1000	14241	An ever-burning tongue of flame that consumes all it is fed. At night it grows dark and cold as ice.	sells for 1000 gil
+20F2h	242	Phobos Glaze	242	73	2000	1000	14242	A legendary pottery glaze, known only in the eastern kingdoms. Said to instantly and eternally fix the form of any creation to which it is applied.	sells for 1000 gil
+20F3h	243	Deimos Clay	243	73	2000	1000	14243	Clay used for building gaols, said to imprison not only the flesh and blood, but the soul as well.	sells for 1000 gil
+20F4h	244	Godslayer's Badge	244	73	2	1	14244	Badge awarded for slaying the most powerful creature of all time, the great Wyrmgod, Yiazmat. The mark of a true knight of Ivalice.	sells for 1 gil
+20F5h	245	Lu Shang's Badge	245	73	2	1	14245	A badge said to be handed down from the great angler of legend, Lu Shang himself. The mark of a true fisherman of Ivalice.	sells for 1 gil
+20F6h	246	Reserve	246	0	2	1	14246		a Reserve row
+20F7h	247	Reserve	247	0	2	1	14247		a Reserve row
+20F8h	248	Reserve	248	0	2	1	14248		a Reserve row
+20F9h	249	Reserve	249	0	2	1	14249		a Reserve row
+20FAh	250	Reserve	250	0	2	1	14250		a Reserve row
+20FBh	251	Reserve	251	0	2	1	14251		a Reserve row
+20FCh	252	Reserve	252	0	2	1	14252		a Reserve row
+20FDh	253	Reserve	253	0	2	1	14253		a Reserve row
+20FEh	254	Reserve	254	0	2	1	14254		a Reserve row
+20FFh	255	Reserve	255	0	2	1	14255		a Reserve row
+2100h	256	Empty Bottle	256	73	2	1	14256	An empty bottle found on the banks of the Nebra. The discarded refuse of a town further upstream.	sells for 1 gil
+2101h	257	Common Fish	257	73	20	10	14257	A small fish found in the River Nebra. Edible, but not very tasty.	sells for 10 gil
+2102h	258	Delicious Fish	258	73	50	25	14258	A small fish found in the River Nebra. Tastes best fried.	sells for 25 gil
+2103h	259	Nebra Succulent	259	73	200	100	14259	A small fish found in the River Nebra. Best eaten fresh and raw, right after catching. A delicacy popular in Rabanastre markets.	sells for 100 gil
+2104h	260	Peach Tuft	260	73	2	1	14260	A tuft of hair from the pom-pom that sways to and fro atop a moogle's head. Tricolor balls made from many tufts are said to bring good luck.	sells for 1 gil
+2105h	261	Green Tuft	261	73	2	1	14261	A tuft of hair from the pom-pom that sways to and fro atop a moogle's head. Tricolor balls made from many tufts are said to bring good luck.	sells for 1 gil
+2106h	262	Orange Tuft	262	73	2	1	14262	A tuft of hair from the pom-pom that sways to and fro atop a moogle's head. Tricolor balls made from many tufts are said to bring good luck.	sells for 1 gil
+2107h	263	Brown Tuft	263	73	2	1	14263	A tuft of hair from the pom-pom that sways to and fro atop a moogle's head. Tricolor balls made from many tufts are said to bring good luck.	sells for 1 gil
+2108h	264	White Tuft	264	73	2	1	14264	A tuft of hair from the pom-pom that sways to and fro atop a moogle's head. Tricolor balls made from many tufts are said to bring good luck.	sells for 1 gil
+2109h	265	Valeblossom Dew	265	73	200	100	14265	Dew harvested from a rare flower found only in the vales and defiles of the Dalmasca Estersand. Has the property of drawing out venom from poisoned wounds.	sells for 100 gil
+210Ah	266	Semclam Shell	266	73	180	90	14266	Shell from a mollusk found in the River Nebra. Pulverized into a powder and taken as an alleviator of distress.	sells for 90 gil
+210Bh	267	Nebralim	267	73	300	150	14267	A traditional salve used by the peoples living in the valley of the River Nebra. Effective on cuts, burns, and even bruises.	sells for 150 gil
+210Ch	268	Great Serpentskin	268	73	140	70	14268	The molted skin of the great serpent, the nidhogg. A single glance at its gargantuan span is enough to discourage most would-be hunters.	sells for 70 gil
+210Dh	269	Bhujerban Madhu	269	73	500	250	14269	A local spirit made in the Skycity of Bhujerba. So strong, a single sip is enough to warm a man on even the coldest nights in the clouds.	sells for 250 gil
+210Eh	270	Reserve	270	0	2	1	14270		a Reserve row
+210Fh	271	Reserve	271	0	2	1	14271		a Reserve row
+2110h	272	Reserve	272	0	2	1	14272		a Reserve row
+2111h	273	Reserve	273	0	2	1	14273		a Reserve row
+2112h	274	Sandalwood Chop	274	73	0	0	14274	An elegantly carved tablet inlaid with gold. It is a mark of status held by gentry in the Imperial City of Archades.	cannot be sold: half its price is 0
+2113h	275	Pinewood Chop	275	73	0	0	14275	A simple, carved tablet inlaid with silver. It is a mark of status held by ardents in the Imperial City of Archades.	cannot be sold: half its price is 0
+2114h	276	Small Package	276	73	300	150	14276	Package received from a bangaa merchant who wants it delivered to an associate at Eastgate.	sells for 150 gil
+2115h	277	Dewdrop Pebble	277	73	2	1	14277	A small stone in the shape of a drop of dew, formed when water touches the sal-tree of Eruyt Village. The stones come in a variety of colors.	sells for 1 gil
+2116h	278	Black Orb	278	73	2	1	14278	Very rarely, when a certain creature is slain, the lost life force coalesces into a tiny black orb. Some magickal devices are said to draw on this energy.	sells for 1 gil
+2117h	279	Jaya Stick	279	73	1000	500	14279	A fragrant stick of jaya wood, said to protect the bearer from evil spirits.	sells for 500 gil
+2118h	280	Reserve	280	0	2	1	14280		a Reserve row
+2119h	281	Reserve	281	0	2	1	14281		a Reserve row
+211Ah	282	Reserve	282	0	2	1	14282		a Reserve row
+211Bh	283	Reserve	283	0	2	1	14283		a Reserve row
+211Ch	284	Reserve	284	0	2	1	14284		a Reserve row
+211Dh	285	Reserve	285	0	2	1	14285		a Reserve row
+211Eh	286	Reserve	286	0	2	1	14286		a Reserve row
+211Fh	287	Reserve	287	0	2	1	14287		a Reserve row
+2120h	288	Reserve	288	0	2	1	14288		a Reserve row
+2121h	289	Reserve	289	0	2	1	14289		a Reserve row
+2122h	290	Reserve	290	0	2	1	14290		a Reserve row
+2123h	291	Reserve	291	0	2	1	14291		a Reserve row
+2124h	292	Reserve	292	0	2	1	14292		a Reserve row
+2125h	293	Reserve	293	0	2	1	14293		a Reserve row
+2126h	294	Reserve	294	0	2	1	14294		a Reserve row
+2127h	295	Reserve	295	0	2	1	14295		a Reserve row
+2128h	296	Reserve	296	0	2	1	14296		a Reserve row
+2129h	297	Reserve	297	0	2	1	14297		a Reserve row
+212Ah	298	Reserve	298	0	2	1	14298		a Reserve row
+212Bh	299	Reserve	299	0	2	1	14299		a Reserve row
+212Ch	300	Reserve	300	0	2	1	14300		a Reserve row
+212Dh	301	Reserve	301	0	2	1	14301		a Reserve row
+212Eh	302	Reserve	302	0	2	1	14302		a Reserve row
+212Fh	303	Reserve	303	0	2	1	14303		a Reserve row
+2130h	304	Reserve	304	0	2	1	14304		a Reserve row
+2131h	305	Reserve	305	0	2	1	14305		a Reserve row
+2132h	306	Reserve	306	0	2	1	14306		a Reserve row
+2133h	307	Reserve	307	0	2	1	14307		a Reserve row
+2134h	308	Reserve	308	0	2	1	14308		a Reserve row
+2135h	309	Reserve	309	0	2	1	14309		a Reserve row
+2136h	310	Reserve	310	0	2	1	14310		a Reserve row
+2137h	311	Reserve	311	0	2	1	14311		a Reserve row
+2138h	312	Reserve	312	0	2	1	14312		a Reserve row
+2139h	313	Reserve	313	0	2	1	14313		a Reserve row
+213Ah	314	Reserve	314	0	2	1	14314		a Reserve row
+213Bh	315	Reserve	315	0	2	1	14315		a Reserve row
+213Ch	316	Reserve	316	0	2	1	14316		a Reserve row
+213Dh	317	Reserve	317	0	2	1	14317		a Reserve row
+213Eh	318	Reserve	318	0	2	1	14318		a Reserve row
+213Fh	319	Reserve	319	0	2	1	14319		a Reserve row
+2140h	320	Reserve	320	0	2	1	14320		a Reserve row
+2141h	321	Reserve	321	0	2	1	14321		a Reserve row
+2142h	322	Reserve	322	0	2	1	14322		a Reserve row
+2143h	323	Reserve	323	0	2	1	14323		a Reserve row
+2144h	324	Reserve	324	0	2	1	14324		a Reserve row
+2145h	325	Reserve	325	0	2	1	14325		a Reserve row
+2146h	326	Reserve	326	0	2	1	14326		a Reserve row
+2147h	327	Reserve	327	0	2	1	14327		a Reserve row
+2148h	328	Reserve	328	0	2	1	14328		a Reserve row
+2149h	329	Reserve	329	0	2	1	14329		a Reserve row
+214Ah	330	Reserve	330	0	2	1	14330		a Reserve row
+214Bh	331	Reserve	331	0	2	1	14331		a Reserve row
+214Ch	332	Reserve	332	0	2	1	14332		a Reserve row
+214Dh	333	Reserve	333	0	2	1	14333		a Reserve row
+214Eh	334	Reserve	334	0	2	1	14334		a Reserve row
+214Fh	335	Reserve	335	0	2	1	14335		a Reserve row
+2150h	336	Reserve	336	0	2	1	14336		a Reserve row
+2151h	337	Reserve	337	0	2	1	14337		a Reserve row
+2152h	338	Reserve	338	0	2	1	14338		a Reserve row
+2153h	339	Reserve	339	0	2	1	14339		a Reserve row
+2154h	340	Reserve	340	0	2	1	14340		a Reserve row
+2155h	341	Reserve	341	0	2	1	14341		a Reserve row
+2156h	342	Reserve	342	0	2	1	14342		a Reserve row
+2157h	343	Reserve	343	0	2	1	14343		a Reserve row
+2158h	344	Reserve	344	0	2	1	14344		a Reserve row
+2159h	345	Reserve	345	0	2	1	14345		a Reserve row
+215Ah	346	Reserve	346	0	2	1	14346		a Reserve row
+215Bh	347	Reserve	347	0	2	1	14347		a Reserve row
+215Ch	348	Reserve	348	0	2	1	14348		a Reserve row
+215Dh	349	Reserve	349	0	2	1	14349		a Reserve row
+215Eh	350	Reserve	350	0	2	1	14350		a Reserve row
+215Fh	351	Reserve	351	0	2	1	14351		a Reserve row
+2160h	352	Reserve	352	0	2	1	14352		a Reserve row
+2161h	353	Reserve	353	0	2	1	14353		a Reserve row
+2162h	354	Reserve	354	0	2	1	14354		a Reserve row
+2163h	355	Reserve	355	0	2	1	14355		a Reserve row
+2164h	356	Reserve	356	0	2	1	14356		a Reserve row
+2165h	357	Reserve	357	0	2	1	14357		a Reserve row
+2166h	358	Reserve	358	0	2	1	14358		a Reserve row
+2167h	359	Reserve	359	0	2	1	14359		a Reserve row
+2168h	360	Reserve	360	0	2	1	14360		a Reserve row
+2169h	361	Reserve	361	0	2	1	14361		a Reserve row
+216Ah	362	Reserve	362	0	2	1	14362		a Reserve row
+216Bh	363	Reserve	363	0	2	1	14363		a Reserve row
+216Ch	364	Reserve	364	0	2	1	14364		a Reserve row
+216Dh	365	Reserve	365	0	2	1	14365		a Reserve row
+216Eh	366	Reserve	366	0	2	1	14366		a Reserve row
+216Fh	367	Reserve	367	0	2	1	14367		a Reserve row
+2170h	368	Reserve	368	0	2	1	14368		a Reserve row
+2171h	369	Reserve	369	0	2	1	14369		a Reserve row
+2172h	370	Reserve	370	0	2	1	14370		a Reserve row
+2173h	371	Reserve	371	0	2	1	14371		a Reserve row
+2174h	372	Reserve	372	0	2	1	14372		a Reserve row
+2175h	373	Reserve	373	0	2	1	14373		a Reserve row
+2176h	374	Reserve	374	0	2	1	14374		a Reserve row
+2177h	375	Reserve	375	0	2	1	14375		a Reserve row
+2178h	376	Reserve	376	0	2	1	14376		a Reserve row
+2179h	377	Reserve	377	0	2	1	14377		a Reserve row
+217Ah	378	Reserve	378	0	2	1	14378		a Reserve row
+217Bh	379	Reserve	379	0	2	1	14379		a Reserve row
+217Ch	380	Reserve	380	0	2	1	14380		a Reserve row
+217Dh	381	Reserve	381	0	2	1	14381		a Reserve row
+217Eh	382	Reserve	382	0	2	1	14382		a Reserve row
+217Fh	383	Reserve	383	0	2	1	14383		a Reserve row
+2180h	384	Reserve	384	0	2	1	14384		a Reserve row
+2181h	385	Reserve	385	0	2	1	14385		a Reserve row
+2182h	386	Reserve	386	0	2	1	14386		a Reserve row
+2183h	387	Reserve	387	0	2	1	14387		a Reserve row
+2184h	388	Reserve	388	0	2	1	14388		a Reserve row
+2185h	389	Reserve	389	0	2	1	14389		a Reserve row
+2186h	390	Reserve	390	0	2	1	14390		a Reserve row
+2187h	391	Reserve	391	0	2	1	14391		a Reserve row
+2188h	392	Reserve	392	0	2	1	14392		a Reserve row
+2189h	393	Reserve	393	0	2	1	14393		a Reserve row
+218Ah	394	Reserve	394	0	2	1	14394		a Reserve row
+218Bh	395	Reserve	395	0	2	1	14395		a Reserve row
+218Ch	396	Reserve	396	0	2	1	14396		a Reserve row
+218Dh	397	Reserve	397	0	2	1	14397		a Reserve row
+218Eh	398	Reserve	398	0	2	1	14398		a Reserve row
+218Fh	399	Reserve	399	0	2	1	14399		a Reserve row
+2190h	400	Reserve	400	0	2	1	14400		a Reserve row
+2191h	401	Reserve	401	0	2	1	14401		a Reserve row
+2192h	402	Reserve	402	0	2	1	14402		a Reserve row
+2193h	403	Reserve	403	0	2	1	14403		a Reserve row
+2194h	404	Reserve	404	0	2	1	14404		a Reserve row
+2195h	405	Reserve	405	0	2	1	14405		a Reserve row
+2196h	406	Reserve	406	0	2	1	14406		a Reserve row
+2197h	407	Reserve	407	0	2	1	14407		a Reserve row
+2198h	408	Reserve	408	0	2	1	14408		a Reserve row
+2199h	409	Reserve	409	0	2	1	14409		a Reserve row
+219Ah	410	Reserve	410	0	2	1	14410		a Reserve row
+219Bh	411	Reserve	411	0	2	1	14411		a Reserve row
+219Ch	412	Reserve	412	0	2	1	14412		a Reserve row
+219Dh	413	Reserve	413	0	2	1	14413		a Reserve row
+219Eh	414	Reserve	414	0	2	1	14414		a Reserve row
+219Fh	415	Reserve	415	0	2	1	14415		a Reserve row
+21A0h	416	Reserve	416	0	2	1	14416		a Reserve row
+21A1h	417	Reserve	417	0	2	1	14417		a Reserve row
+21A2h	418	Reserve	418	0	2	1	14418		a Reserve row
+21A3h	419	Reserve	419	0	2	1	14419		a Reserve row
+21A4h	420	Reserve	420	0	2	1	14420		a Reserve row
+21A5h	421	Reserve	421	0	2	1	14421		a Reserve row
+21A6h	422	Reserve	422	0	2	1	14422		a Reserve row
+21A7h	423	Reserve	423	0	2	1	14423		a Reserve row
+21A8h	424	Reserve	424	0	2	1	14424		a Reserve row
+21A9h	425	Reserve	425	0	2	1	14425		a Reserve row
+21AAh	426	Reserve	426	0	2	1	14426		a Reserve row
+21ABh	427	Reserve	427	0	2	1	14427		a Reserve row
+21ACh	428	Reserve	428	0	2	1	14428		a Reserve row
+21ADh	429	Reserve	429	0	2	1	14429		a Reserve row
+21AEh	430	Reserve	430	0	2	1	14430		a Reserve row
+21AFh	431	Reserve	431	0	2	1	14431		a Reserve row
+21B0h	432	Reserve	432	0	2	1	14432		a Reserve row
+21B1h	433	Reserve	433	0	2	1	14433		a Reserve row
+21B2h	434	Reserve	434	0	2	1	14434		a Reserve row
+21B3h	435	Reserve	435	0	2	1	14435		a Reserve row
+21B4h	436	Reserve	436	0	2	1	14436		a Reserve row
+21B5h	437	Reserve	437	0	2	1	14437		a Reserve row
+21B6h	438	Reserve	438	0	2	1	14438		a Reserve row
+21B7h	439	Reserve	439	0	2	1	14439		a Reserve row
+21B8h	440	Reserve	440	0	2	1	14440		a Reserve row
+21B9h	441	Reserve	441	0	2	1	14441		a Reserve row
+21BAh	442	Reserve	442	0	2	1	14442		a Reserve row
+21BBh	443	Reserve	443	0	2	1	14443		a Reserve row
+21BCh	444	Reserve	444	0	2	1	14444		a Reserve row
+21BDh	445	Reserve	445	0	2	1	14445		a Reserve row
+21BEh	446	Reserve	446	0	2	1	14446		a Reserve row
+21BFh	447	Reserve	447	0	2	1	14447		a Reserve row
+21C0h	448	Reserve	448	0	2	1	14448		a Reserve row
+21C1h	449	Reserve	449	0	2	1	14449		a Reserve row
+21C2h	450	Reserve	450	0	2	1	14450		a Reserve row
+21C3h	451	Reserve	451	0	2	1	14451		a Reserve row
+21C4h	452	Reserve	452	0	2	1	14452		a Reserve row
+21C5h	453	Reserve	453	0	2	1	14453		a Reserve row
+21C6h	454	Reserve	454	0	2	1	14454		a Reserve row
+21C7h	455	Reserve	455	0	2	1	14455		a Reserve row
+21C8h	456	Reserve	456	0	2	1	14456		a Reserve row
+21C9h	457	Reserve	457	0	2	1	14457		a Reserve row
+21CAh	458	Reserve	458	0	2	1	14458		a Reserve row
+21CBh	459	Reserve	459	0	2	1	14459		a Reserve row
+21CCh	460	Reserve	460	0	2	1	14460		a Reserve row
+21CDh	461	Reserve	461	0	2	1	14461		a Reserve row
+21CEh	462	Reserve	462	0	2	1	14462		a Reserve row
+21CFh	463	Reserve	463	0	2	1	14463		a Reserve row
+21D0h	464	Reserve	464	0	2	1	14464		a Reserve row
+21D1h	465	Reserve	465	0	2	1	14465		a Reserve row
+21D2h	466	Reserve	466	0	2	1	14466		a Reserve row
+21D3h	467	Reserve	467	0	2	1	14467		a Reserve row
+21D4h	468	Reserve	468	0	2	1	14468		a Reserve row
+21D5h	469	Reserve	469	0	2	1	14469		a Reserve row
+21D6h	470	Reserve	470	0	2	1	14470		a Reserve row
+21D7h	471	Reserve	471	0	2	1	14471		a Reserve row
+21D8h	472	Reserve	472	0	2	1	14472		a Reserve row
+21D9h	473	Reserve	473	0	2	1	14473		a Reserve row
+21DAh	474	Reserve	474	0	2	1	14474		a Reserve row
+21DBh	475	Reserve	475	0	2	1	14475		a Reserve row
+21DCh	476	Reserve	476	0	2	1	14476		a Reserve row
+21DDh	477	Reserve	477	0	2	1	14477		a Reserve row
+21DEh	478	Reserve	478	0	2	1	14478		a Reserve row
+21DFh	479	Reserve	479	0	2	1	14479		a Reserve row
+21E0h	480	Reserve	480	0	2	1	14480		a Reserve row
+21E1h	481	Reserve	481	0	2	1	14481		a Reserve row
+21E2h	482	Reserve	482	0	2	1	14482		a Reserve row
+21E3h	483	Reserve	483	0	2	1	14483		a Reserve row
+21E4h	484	Reserve	484	0	2	1	14484		a Reserve row
+21E5h	485	Reserve	485	0	2	1	14485		a Reserve row
+21E6h	486	Reserve	486	0	2	1	14486		a Reserve row
+21E7h	487	Reserve	487	0	2	1	14487		a Reserve row
+21E8h	488	Reserve	488	0	2	1	14488		a Reserve row
+21E9h	489	Reserve	489	0	2	1	14489		a Reserve row
+21EAh	490	Reserve	490	0	2	1	14490		a Reserve row
+21EBh	491	Reserve	491	0	2	1	14491		a Reserve row
+21ECh	492	Reserve	492	0	2	1	14492		a Reserve row
+21EDh	493	Reserve	493	0	2	1	14493		a Reserve row
+21EEh	494	Reserve	494	0	2	1	14494		a Reserve row
+21EFh	495	Reserve	495	0	2	1	14495		a Reserve row
+21F0h	496	Reserve	496	0	2	1	14496		a Reserve row
+21F1h	497	Reserve	497	0	2	1	14497		a Reserve row
+21F2h	498	Reserve	498	0	2	1	14498		a Reserve row
+21F3h	499	Reserve	499	0	2	1	14499		a Reserve row
+21F4h	500	Reserve	500	0	2	1	14500		a Reserve row
+21F5h	501	Reserve	501	0	2	1	14501		a Reserve row
+21F6h	502	Reserve	502	0	2	1	14502		a Reserve row
+21F7h	503	Reserve	503	0	2	1	14503		a Reserve row
+21F8h	504	Reserve	504	0	2	1	14504		a Reserve row
+21F9h	505	Reserve	505	0	2	1	14505		a Reserve row
+21FAh	506	Reserve	506	0	2	1	14506		a Reserve row
+21FBh	507	Reserve	507	0	2	1	14507		a Reserve row
+21FCh	508	Reserve	508	0	2	1	14508		a Reserve row
+21FDh	509	Reserve	509	0	2	1	14509		a Reserve row
+21FEh	510	Reserve	510	0	2	1	14510		a Reserve row
+21FFh	511	Reserve	511	0	2	1	14511		a Reserve row
