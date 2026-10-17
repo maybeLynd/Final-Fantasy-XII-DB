@@ -42,7 +42,8 @@ the view-projection matrix `02AEDDF0` through `0046C0D0`
 | highest or lowest HP %, MP % or HP | `HP >= 70%`, `HP < 50%`, `MP < 30%`, `HP < 2,000` and the like | `003022C7`, `00302EDF` set key type 1 and pick 2 or 3; `003089D7`, `00308A73` |
 | nearest | every other condition, and ties between equal highest or lowest values | `00308B2F`-`00308B76`, squared distance on the ground plane |
 
-So "Ally: HP < 50%" picks the ally with the lowest HP percentage among those under half, and "Foe: status =
+So "Ally: HP < 50%" keeps the allies whose `pct = hp x 100 / max` (`003209E0`, 64-bit, 0 for a maximum of 0; `hp`
+and `max` as below) is below 50 and picks the lowest `pct` (`0030228A`-`003022CE`), and "Foe: status =
 Poison" picks the nearest poisoned foe.
 
 ### HP and MP in a condition

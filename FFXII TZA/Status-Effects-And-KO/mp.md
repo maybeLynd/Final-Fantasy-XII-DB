@@ -121,7 +121,7 @@ summons (`106`<sub>h</sub>-`112`<sub>h</sub>). For every other action, in this o
 | 32 | `10 * trunc(cost * 64 / 50)`, paid in gil | `002F97E4`-`002F9802` |
 | 91, 92, 93 "Reduces magick MP cost by 10%" | `trunc(cost - cost / 100 * sum)`, the sum of word `+4` of augment rows 91-93 present | `002F9688`-`002F97C1` |
 | 51 | 0 | `002F97A3`, `002F97C7` |
-| 36 | halved | `002F97CD`-`002F97DC` |
+| 36 | `cost / 2`, truncated toward 0 | `002F97CD`-`002F97DC` |
 
 Each augment counts in either layer. The action pays when it runs: `00305640` subtracts the cost with
 `00300CE0`, its Mist charges with `00300BC0` and its gil (`003056C1`-`0030571A`;

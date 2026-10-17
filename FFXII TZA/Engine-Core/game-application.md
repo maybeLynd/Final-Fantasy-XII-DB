@@ -226,11 +226,16 @@ report the rising and the falling edge of that byte.
 
 Each pumped object is a lazily built singleton: a global pointer, an ensure function that
 allocates a fixed size and constructs on first use, and a getter. The screen fade `01F82CE0` is a
-`38`<sub>h</sub>-byte record built disabled (`+0` = 0, `+10`<sub>h</sub> = 3) whose update steps a level `+1C`<sub>h</sub> by
-`+20`<sub>h</sub> up (mode 0) or down (mode 1) and clamps at 255 ([screen fade](../17-Presentation-Rendering/screen-fades.md
+`38`<sub>h</sub>-byte record built disabled (`+0` = 0, `+10`<sub>h</sub> = 3) ([screen fade](../17-Presentation-Rendering/screen-fades.md
 )).
-Its update draws first: inside a `"ScreenImage"` scope `001D8BB0` emits a quad over the screen
+
+Its update `001D9080` draws first: inside a `"ScreenImage"` scope `001D8BB0` emits a quad over the screen
 (corners from `001D8B20`) with colour 255, 255, 255 and the level `+1C`<sub>h</sub> as alpha.
+
+It then steps the float level `+1C`<sub>h</sub> by the mode `+10`<sub>h</sub>: `level += [+20h]` in mode 0,
+`level -= [+20h]` in mode 1 (`001D90B5`-`001D90D0`). It adds 1 to the counter `+0C`<sub>h</sub>; in mode 0
+with `+0Ch >= +14h` it sets `level = min(level, 255)` and the mode to 2, and in mode 1 with
+`+0Ch >= +18h` it sets `level = max(level, 0)` and calls `001D8C80` (`001D90D5`-`001D911F`).
 
 ### The screen captures
 

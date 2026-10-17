@@ -180,8 +180,11 @@ table of 24-byte entries:
 - The child `0028B860`, built by `002899A0` under the window, takes its box from the HUD sprite set
   (`0035D460()`) on message 1. On message 2, 90 frames after the time `+C0`<sub>h</sub> that message 6 stamps, it
   closes (`00244DD0`, or `00245020` with `+C4`<sub>h</sub> bit 1), unless message 15 has set `+C4`<sub>h</sub> bit 0.
-- Its draw (message 4) scales a value from `00915E10` by the time (`00271AB0`) and draws the set's piece
-  `+88`<sub>h</sub> twice with it, the second time from 16/256 of the 90 frames on.
+- Its draw (message 4) takes `t = min(frame - +C0h, 90) x 256 / 90` and reads the four-key track `00915E10` at
+  `t` with `00271AB0` ([Party list](party-list.md)): the widget's `+5A`<sub>h</sub> takes the key byte `+7`, `+58`<sub>h</sub> the byte
+  `+6` `>> 1`, and the key field `+10` is the `s` with which `0028B700` draws the set's piece `+88`<sub>h</sub> at
+  `(+9Ch >> 1, +9Eh >> 1)` (`0028B9A3`-`0028BA59`).
+- While `t >= 16` the draw draws the piece again with `s` from the track at `t - 16` (`0028BA5E`-`0028BAB9`).
 - `0028B700(draw, set, piece, x, y, s)` draws a piece one source row at a time, centred on `x` and starting
   half the piece's height above `y`. Each row is one pixel high and its half width alternates between
   `w - (w x s >> 8)` and `w + (w x s >> 8)`, with `w` half the piece's width; `002D8C80` draws each row.

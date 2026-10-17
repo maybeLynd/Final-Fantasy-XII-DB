@@ -351,7 +351,8 @@ and `+04`<sub>h</sub> (`001CCB47`), writes `+C18`<sub>h</sub> and `+C1C`<sub>h</
 and clears `+C0C`<sub>h</sub> (`001CCC25`) and `+C24`<sub>h</sub> (`001CCC51`). Only the arms of rows 60 and 103 set
 `+C0C`<sub>h</sub>, and neither is a retail id:
 
-- row 60 "Capture panorama" steps `+C28`<sub>h</sub> and clamps it to 0 to 12; it sets `+C0C`<sub>h</sub> when the value
+- row 60 "Capture panorama" sets `+C28h = clamp(+C28h + step, 0, 12)`, `step` -1 when the arm's
+  direction byte is set and +1 otherwise (`001D1F5A`-`001D1F89`); it sets `+C0C`<sub>h</sub> when the value
   is 1 (`001D1F98`) and otherwise clears it (`001D1FA4`) and runs row 103's copy;
 - row 103 "Camera Over Write" toggles `+C0C`<sub>h</sub> (`001D2B07`); switching it off copies the render
   manager's `+CC4`<sub>h</sub>, `+CC8`<sub>h</sub> and `+CCC`<sub>h</sub> into `+C10`<sub>h</sub>, `+C14`<sub>h</sub> and `+C18`<sub>h</sub>.

@@ -55,7 +55,8 @@ After the check the opener:
    `size & FFFFh`.
 4. Rebases each record's `nameOffset` to a pointer (adding the name table's start) and inserts the
    record under its key into a red-black tree at `+08`<sub>h</sub> (`001F4720` → `001F3FD0`); nodes hold the key
-   at `+18`<sub>h</sub> and the record pointer at `+28`<sub>h</sub>, ordered by the two halves as signed 64-bit values.
+   at `+18`<sub>h</sub> and the record pointer at `+28`<sub>h</sub>, ordered by the halves as signed 64-bit values, `+18`<sub>h</sub>
+   first and `+20`<sub>h</sub> on a tie (`001F4008`-`001F4028`).
 5. Allocates fifteen `30`<sub>h</sub>-byte reader handles (`2D8`<sub>h</sub> bytes, a count of 15 first) at `+A8`<sub>h</sub>, and
    opens the archive in each one (`00215290`).
 
@@ -113,9 +114,11 @@ part descriptors, each with its own 64 KiB buffer) and creates a semaphore with 
 
 - `0019A660` waits on the semaphore, then claims the first record whose busy word `+90`<sub>h</sub> it can
   change from 0 to 1 atomically, and raises its use count `+40`<sub>h</sub>.
-- `0019A6E0(manager, start, 10000h, n)` takes a record that way and divides the n bytes from `start`
-  within the first block into a head (the rest of that block, when `start` is not 0), a middle (used
-  when at least one whole block remains) and a tail (the remainder), marking each part used.
+- `0019A6E0(manager, start, block, n)`, `block` = `10000`<sub>h</sub>, takes a record that way. With `start`
+  not 0 it marks the head used with offset `start` and length `head = min(block - start, n)`, then
+  `n -= head` (`0019A70F`-`0019A736`); it marks the middle used when `n >= block`
+  (`0019A739`-`0019A741`) and the tail used with length `n % block` when that is above 0
+  (`0019A744`-`0019A759`).
 - After the read, `0019A9B0` lowers the use count under the manager's critical section `+48`<sub>h</sub>; at 0
   it resets the record (`0019B130`), clears the busy word and releases one semaphore count.
 

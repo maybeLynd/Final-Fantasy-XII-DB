@@ -262,7 +262,8 @@ It sets the object's `+218`<sub>h</sub>.
 
 The weather roll `0026D910` calls `00180620(slot - 1)`, which runs `001A7E40(context, slot - 1)`. That
 copies the slot's map and character shadow minimums (`+338`<sub>h</sub> and `+344`<sub>h</sub> plus four times the slot)
-to the shadow object's `+144`<sub>h</sub> and `+140`<sub>h</sub>, its cascade row (`+350`<sub>h</sub> plus 12 times the slot) to
+to the shadow object's `+140`<sub>h</sub> and `+144`<sub>h</sub> (`001A7E5F`-`001A7E7A`), its cascade row (`+350`<sub>h</sub> plus 12
+times the slot) to
 `+870`<sub>h</sub> to `+878`<sub>h</sub>, and, while `+398`<sub>h</sub> is set, its light direction (`+374`<sub>h</sub> plus 12 times the
 slot) through `001F08A0`.
 

@@ -53,8 +53,9 @@ record bit 15 (`00377C20`, a town) gives 3, bit 1 gives 2, otherwise bit 0 gives
 riding into a town, or while bit 2 or 3 is set, keeps the bit but leaves chocobo mode. `003135C0`
 is ladder = 1.
 
-The area music follows the ladder: the field music select `00261F90` plays track `5B`<sub>h</sub> when the
-ladder is 1 and track `5A`<sub>h</sub>, the chocobo theme, when it is 2 ([music](../Sound-And-Music/music-table.md));
+The area music follows the ladder: unless the field's own track is boss music (`00361010`, tested at
+`00262041`), the field music select `00261F90` plays track `5B`<sub>h</sub> when the ladder is 1 and track `5A`<sub>h</sub>, the
+chocobo theme, when it is 2 (`0026204A`-`00262063`; [music](../Sound-And-Music/music-table.md));
 the dismount task stops that track again.
 
 ### The verbs

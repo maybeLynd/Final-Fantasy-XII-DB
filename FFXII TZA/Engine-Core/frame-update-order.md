@@ -123,8 +123,10 @@ Before the pad, once per `01E02824` with `00264610(0)` non-null, the deferred `0
   `002507C0(1)` ([subsystem update flags](subsystem-update-flags.md)).
 - `0036F460` hands the map animation clock `004678E0`
   ([texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md)) the
-  accumulator's growth since its last call divided by `[01DFE0B8]`, keeps the fraction in `02AD9B50`,
-  and ends with `00468520`, which runs `003CD820` on `+14`<sub>h</sub> of each record of the table
+  value `(acc - [02AD9B50]) * 30 / ([01DFE0B8] * 30)` for the accumulator `acc` (`0036F472`,
+  `0036F4A1`-`0036F4B9`), and stores in `02AD9B50` `acc`, less 1.0 repeatedly while it is 1.0 or more
+  (`0036F47A`-`0036F499`);
+- `0036F460` ends with `00468520`, which runs `003CD820` on `+14`<sub>h</sub> of each record of the table
   `[02CA6010]` (count `[02CA6020]`, stride `40`<sub>h</sub>) whose `+4` is 0.
 
 While the accumulator is at least 1.0, one simulation step runs:

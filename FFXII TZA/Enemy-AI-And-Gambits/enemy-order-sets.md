@@ -162,9 +162,10 @@ The orders that write a register (`002FE660`) take it from the order's own test-
 
 The `value` column reads the word `+02`<sub>h</sub> by action:
 
-- an action: the percent chance the order is tried, `always` for 0 (`00301608`);
-- orders `4051`<sub>h</sub>-`4121`<sub>h</sub> except `4091`<sub>h</sub>, and `414B`<sub>h</sub>: the same percentage, checked by `00301830`
-  (`0030193B`-`00301962`); 0 and 100 are `always`;
+- an action: the percent chance the order is tried, `always` for 0: it is tried when
+  `value` is 0 or `00328370() % 100 < (s16)value` (`00301608`-`00301637`);
+- orders `4051`<sub>h</sub>-`4121`<sub>h</sub> except `4091`<sub>h</sub>, and `414B`<sub>h</sub>: the same percentage, checked by `00301830` with the
+  same test, `value` 0 or `00328370() % 100 < (s16)value` (`0030193B`-`00301962`); 0 and 100 are `always`;
 - the wait `4021`<sub>h</sub>: seconds, `never ends` for 0 (`002FE7D0`);
 - any other order: its parameter.
 

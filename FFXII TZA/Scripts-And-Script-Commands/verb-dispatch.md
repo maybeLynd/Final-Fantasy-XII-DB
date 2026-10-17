@@ -20,7 +20,7 @@ moment passes through it.
 
 The interpreter `0025E4C0`, which the per-actor driver `0025DF00` of the field runtime runs
 ([script interpreter](script-interpreter.md)), pre-decodes a sixteen-bit operand for every opcode at or above `47`<sub>h</sub>,
-as two zero-extended bytes combined with sixteen-bit shifts, so the id can never exceed `FFFF`<sub>h</sub>.
+as `operand = pc[1] | pc[2] << 8` in a sixteen-bit register (`0025E5AF`-`0025E5BD`), so the id can never exceed `FFFF`<sub>h</sub>.
 Four three-byte opcodes turn that operand into a verb call:
 
 | Opcode | Mnemonic | Actor | Result |
@@ -110,9 +110,10 @@ the first.
 
 ### References and actor handles
 
-`PUSHP` (`00268100`) pushes a packed reference: the variable's 24-bit offset plus the element
-index scaled by its width, the storage class in bits 24 to 26, the width nibble forced to 7, tag
-1, and the real width in the source byte. `002650B0(slot, offset)` turns it back into an address
+`PUSHP` (`00268100`) pushes the packed reference
+`((ref & FFFFFFh) + index × size) | (ref & 7000000h) | 70000000h` (`00268155`-`0026816C`) for the
+decoded reference `ref` and element `index`, `size` being 2 for the width nibble `ref >> 28` of 2 or
+3, 4 for 4 or 5 and 1 otherwise (`00268124`-`00268146`), with tag 1 and the real width in the source byte. `002650B0(slot, offset)` turns it back into an address
 through the six class bases ([script variables](script-variables.md)); classes 6 and 7 fall to
 base 0. 57 handlers call it; a store through it is a raw dword whatever the declared width.
 

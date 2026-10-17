@@ -74,12 +74,19 @@ mode bits 0–1 (A) or 2–3 (B) of `+0E`<sub>h</sub>:
 3. Mode 1 with three or more pairs is a quadratic B-spline. At or before the first pair it gives
    the first `y`, past the last pair the last `y`. From the first pair to the midpoint of the first
    two, and from the midpoint of the last two to the last pair, it interpolates linearly as in mode 0.
-4. Elsewhere in mode 1 it takes the three pairs around `x`, solves the curve's `x(t) = x` for `t`
-   (`0039B6E0`) and evaluates `y(t)` (`0039B630`); the integer form rounds the result half away from
-   zero, the float form `00430540` returns it as it is.
+4. Elsewhere in mode 1 it takes the three pairs `(x0, y0)`, `(x1, y1)`, `(x2, y2)` around `x`, solves
+   the curve's `x(t) = x` for `t` (`0039B6E0`) and evaluates `y(t)` (`0039B630`) as in the block
+   below; the integer form rounds the result half away from zero, the float form `00430540` returns
+   it as it is.
 5. Mode 0, or mode 1 with fewer than three pairs, is linear. An `x` equal to a pair's `x` gives its
    `y`; between two pairs it gives `y0 + (y1 − y0)(x − x0) / (x1 − x0)` in integer arithmetic; past the
    last pair the last `y`; with no pairs 0.
+
+```python
+a = x0 - 2*x1 + x2,  b = x1 - x0                                 0039B6E6-0039B720
+t = (sqrt(b*b - (x0 + x1 - 2*x) * a) - b) / a;  t = 2.0 if a == 0  0039B725-0039B769
+y(t) = (1-t)^2/2 * y0 + ((1-t)*t + 0.5) * y1 + t^2/2 * y2         0039B64B-0039B6C7
+```
 
 In linear mode an `x` below the first pair's `x` interpolates from stack values no pair has set,
 so the result is garbage.

@@ -111,8 +111,8 @@ group is below 28, its file is resident (`02EC3D80[group]`), and the row is belo
 row equal to `id`, returning the text-block string at that row's position, or `01CEB638`. A row's
 id need not be `group × 10000 + row`: `us` `menu_command` row 5 is `10100`, so that string is both
 `1005` and `10100`. In all nine languages 144 files number their rows from `group × 10000` in order
-and 90 do not. Both resolvers divide a signed id, so an id below −999 gives a negative group that
-passes their `< 28` test.
+and 90 do not. Both resolvers divide a signed id, so a negative group passes their `< 28` test: an id of −1000
+or less for `002F9860` (`id / 1000`), and of −10000 or less for `002F9920` (`id / 10000`).
 
 A group is loaded on demand:
 

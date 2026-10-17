@@ -36,7 +36,9 @@ surfaces 0 and 2 of the three the budget reserves.
 ### GS page geometry
 
 `003A1E50(width, height, psm)` returns a texture's footprint in 32-bit words, rounded up to whole
-GS pages. It indexes the 43-byte table `003A1EF0` with `psm − 2`; an index above `2A`<sub>h</sub>, which
+GS pages: `((height + ha - 1) & ~(ha - 1)) x ((width + wa - 1) & ~(wa - 1)) / d`, with the width align `wa`,
+height align `ha` and divisor `d` of the table below (`003A1EBA`-`003A1ED8`).
+It indexes the 43-byte table `003A1EF0` with `psm − 2`; an index above `2A`<sub>h</sub>, which
 includes PSM 0 and 1 through the unsigned compare at `003A1E68`, takes the default class. The
 class picks an arm from `003A1EE0`:
 
@@ -105,7 +107,8 @@ integers at `+44`<sub>h</sub> and `+48`<sub>h</sub> of the same block and the tw
 widget draw: an identity matrix at `0209AB90` scaled by `scale`, the offset `2048 - screen / 2 + x` and
 `+ y` from the screen size `01E0C1D8`, `01E0C1DC`, the widget's position `/ 4096`, its colour bytes `/ 128`
 and the four-word rectangle; it first writes the widget's colour scaled by its brightness `+5A`<sub>h</sub> and alpha
-`+58`<sub>h</sub> into `+94`<sub>h</sub>.
+`+58`<sub>h</sub> into `+94`<sub>h</sub>: `rgb = (byte +90h..+92h x s16 +5Ah) >> 7` and `a = (byte +93h x s16 +58h) >> 7`
+(`0027643F`-`0027649F`).
 
 The draw-list build `002F5550` calls it (`002F5AB0`) on a stack copy of the view block at
 `02AED500` whose depths it has replaced by `003B40B0` results, and copies the matrix to `+80`<sub>h</sub> of
@@ -134,7 +137,8 @@ the dirty word is set and then clears it (`0026E2C4`, `0026E2C9`), and then call
 The map's file reaches the set-up through an eight-slot table at `02EBB820` (`38`<sub>h</sub> bytes a slot:
 `+00`<sub>h</sub> the data, `+08`<sub>h</sub> a count, `+10`<sub>h</sub> a word set to 2, `+14`<sub>h</sub> a name). The binders `0026E760`
 and `0026E7D0`, both from `00378120`, register the data with `003EC9A0`, which takes the next free
-slot from a round-robin cursor (`02EBB9E0`, at most eight tries, counted in `02EBB9E4`), writes a
+slot from a round-robin cursor: `slot = [02EBB9E0]`, then `[02EBB9E0] = ([02EBB9E0] + 1) % 8`, repeated while
+`slot` holds data, at most eight times; a free slot adds 1 to `02EBB9E4` (`003EC9A0`-`003ECA66`). It writes a
 fixed placeholder name and returns the slot number.
 
 The set-up `002F6AB0` stores the number at map `+168`<sub>h</sub> and reads the
@@ -189,8 +193,12 @@ buffer width `022D8EAC` / 64, TW the highest set bit of 2 x width - 1 (9 for the
 A+D GIF tag (`003A2090`) and writes BITBLTBUF with the destination base in bits 32–45, the buffer
 width from `003A1FE0` in bits 48–53 and the format in bits 56–61, then TRXPOS 0, TRXREG
 `width, height` and TRXDIR 0, and closes the tag (`0024B150`). The image follows through
-`003A21A0`, and a second A+D tag writes TEXFLUSH (`3F`<sub>h</sub>). The data size is `003A1F20(width,
-height, format)`, the pixel count scaled for the format, divided by 4.
+`003A21A0`, and a second A+D tag writes TEXFLUSH (`3F`<sub>h</sub>).
+
+The data size is `003A1F20(width, height, format) / 4` (`003A22E0`-`003A22EF`).
+`003A1F20` takes `n = width x height` and returns `n x 3 / 2` for
+formats `1` and `31`<sub>h</sub>, `n / 2` for `2`, `0A`<sub>h</sub>, `32`<sub>h</sub> and `3A`<sub>h</sub>, `n / 4` for `13`<sub>h</sub> and `1B`<sub>h</sub>, `n / 8` for
+`14`<sub>h</sub>, `24`<sub>h</sub> and `2C`<sub>h</sub>, and `n` otherwise (`003A1F20`-`003A1F8C`).
 
 - `003A1FE0(width, format)` is the buffer width in 64-pixel units: the width rounded up to a
   multiple of 64, or to a multiple of 128 for the formats `13`<sub>h</sub>, `14`<sub>h</sub>, `1B`<sub>h</sub>, `24`<sub>h</sub> and `2C`<sub>h</sub>

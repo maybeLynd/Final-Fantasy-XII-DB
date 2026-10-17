@@ -79,18 +79,25 @@ set. `001807F0(object, frame)` calls `001E62E0` when the done byte is set: on fi
 object's `TextureSampler` texture and caches its frame set at `+210`<sub>h</sub>, then stores the frame at
 `+204`<sub>h</sub> and marks `+208`<sub>h</sub> when it changed.
 
-The frame comes from the map-draw pass `002F4520` (`002F4A1B`–`002F4A55`): it truncates the float at
-`[[context + 50h] + 90h]` (0 when that pointer is null), subtracts 1, adds the draw record's signed
-word `+4` (records above `3FFF`<sub>h</sub> are skipped), clamps the sum into the animation table's range
-(`[r14 + 150h]`, a count then `60`<sub>h</sub>-byte entries), and passes the frame on only when that entry's
-`u16 +0Ch` equals it. The pass clamps and never wraps.
+The frame comes from the map-draw pass `002F4520(map, ...)`. Its inputs: `v`, the float at `+90`<sub>h</sub> of the
+object that the pointer at `+50`<sub>h</sub> of the id's `70`<sub>h</sub>-byte record at `[map + 1C0h]` points to (0 when that pointer is
+null); `w`, the signed word `+4` of the id's `30`<sub>h</sub>-byte draw record at `[map + 178h]` (a `w` above `3FFF`<sub>h</sub>, or
+negative, skips the record through the unsigned compare at `002F49FD`); and `count`, the dword at `+0` of the
+animation table `[r14 + 150h]`, which holds at `+8` a pointer to its `60`<sub>h</sub>-byte entries (`002F4A23`-`002F4A48`).
+
+It computes `frame = trunc(v) - 1` and `i = clamp(frame + w, 0, count - 1)` (`002F4A1B`–`002F4A3F`), and calls
+`001807F0(object, frame)` only when entry `i`'s `u16 +0Ch` equals `frame` (`002F4A44`–`002F4A5D`). The pass
+clamps and never wraps.
 
 The float is the value of a map animation track bound on channel 9 (`00466420`'s arm at `00466488`
 stores the track at `+90`<sub>h</sub>). The track's slot is one of the `50`<sub>h</sub>-byte records at `[02EBB6F0]`
 (count `[02EBB6E0]`): each frame `004678E0(dt)` adds `dt × rate` (`+38`<sub>h</sub>) to the step `+48`<sub>h</sub> of
-every active slot (`+4C`<sub>h</sub> bit `1`<sub>h</sub>), and `004668C0` adds the step to the time `+44`<sub>h</sub>. With loop
-(`+4C`<sub>h</sub> bit `2`<sub>h</sub>) and a span of at least 1.0 the time wraps within `+3C`<sub>h</sub>..`+40`<sub>h</sub>; otherwise it
-clamps there and sets bit `4`<sub>h</sub> (finished).
+every active slot (`+4C`<sub>h</sub> bit `1`<sub>h</sub>), and `004668C0` sets `t = +44h + step` (`0046699D`).
+
+With `lo` = `+3C`<sub>h</sub>, `hi` = `+40`<sub>h</sub> and `span = hi - lo`: with loop (`+4C`<sub>h</sub> bit `2`<sub>h</sub>) and
+`span >= 1.0` the time becomes `t - span` when `t >= hi` and `t + span` when `t < lo`
+(`004669A7`-`004669CA`); otherwise `t >= hi` stores `hi`, `t < lo` stores `lo`, and either sets
+bit `4`<sub>h</sub> (finished) (`004669D1`-`004669EA`).
 
 The field frame drives `004678E0` through `0036F460`, which hands it the accumulator's growth
 ([frame update order](../Engine-Core/frame-update-order.md)).

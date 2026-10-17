@@ -139,12 +139,13 @@ row index, and for kind 0 it is the type the code partitions:
 - `002F8BB0(recipient, source)` pays experience only for a kind-0 recipient with a unit, outside the
   band (type 26 included), without a terminal status, from a kind-1 source. The amount is
   `(source level +1C2h - +88h) * [source +E78h] +34h + [source +E70h] +34h`.
-- That amount is divided among the party members (`0031B810(0..3)`) that are alive, outside the
-  band and not type 26 when `003135C0()` is 0, or paid whole to the `00313800` member otherwise;
-  it is doubled by layer bit 3 at `+6B`<sub>h</sub> or `+7B`<sub>h</sub> and zeroed by bit 5.
+- When `003135C0()` is 0 that amount becomes `amount / n` (`idiv`, `002F8D1C`-`002F8D1D`; 0 when
+  `n` is 0) for the count `n` of party members (`0031B810(0..3)`) that are alive, outside the band
+  and not type 26; otherwise it is paid whole to the `00313800` member. It is doubled when
+  `(+6Bh | +7Bh) & 08h` and zeroed when `(+6Bh | +7Bh) & 20h` (`002F8D26`-`002F8D40`).
 - `002F90C0(recipient, source)` pays licence points, when `00264150()` is 0, for a kind-0 recipient
   of type 26, below 7 or above 39 without a terminal status, from a kind-1 source: `(level - +88h) * [source +E78h] +2Fh + [source +E70h] +2Fh`,
-  doubled by layer bit 4.
+  doubled when `(+6Bh | +7Bh) & 10h` (`002F914B`-`002F9157`).
 - `00309230(unit, actionRow)` returns the row's word `+24`<sub>h</sub> as the presentation code, except for
   action row `113`<sub>h</sub>, where a band type gets `42 + 3 * (type - 27)`.
 - `0050FF20`, a script verb's handler, resolves its operand through `00320AB0(value, 3)` and pushes

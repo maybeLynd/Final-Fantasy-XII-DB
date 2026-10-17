@@ -124,9 +124,13 @@ the flag set to 0, so every record of the sub-tree stops its per-record pair.
 
 An effect element whose set-up is `0052BBD0` copies a sway section from its effect data into its own
 buffer and prepares it with `0054A9C0`, which passes it to `0040EEA0` and gives the record a random
-global phase. `0054B1F0` installs the element's parameter block into that section, runs the global
-phase step `0040AA20` and, depending on its flags, one pass of the three stages (`0040FEF0`).
-`0052BBD0` calls it 32 times in a row; `0052B5E0` calls it once (`0052BB30`).
+global phase.
+
+`0054B1F0` installs the element's parameter block into that section, resets its scale with
+`004158F0(h, 1.0)` (`0054B23B`), runs the global phase step `0040AA20` (`0054B339`), a second time when its third
+argument is non-zero and `001EDDA0()` returns 0 (`0054B33E`-`0054B34E`), and, depending on its flags, one pass of
+the three stages (`0040FEF0`). `0052BBD0` calls it 32 times in a row with that argument 1 (`0052BF43`);
+`0052B5E0` calls it once (`0052BB30`).
 
 ### The pose sequencer
 

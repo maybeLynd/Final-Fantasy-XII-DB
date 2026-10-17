@@ -148,7 +148,10 @@ path: the prefix `host0:/image/FF12/modules/` when `host` is set, another prefix
 when `demo` is set, then the name, upper-cased with `/` turned into `\` unless `host` is set.
 
 The loader `008628E0` stores 0 through its fourth argument and returns 0, so every module counts as
-loaded and its bit goes into `022D7FCC`. Before the walk, `00369650` performs the I/O processor
+loaded and the walk sets `022D7FCC |= 1 << b` for the record's signed byte `b` at `+12`<sub>h</sub> when `b`
+is not negative (`003694A5`-`003694B8`).
+
+Before the walk, `00369650` performs the I/O processor
 reset with `ioprp300.img` (`01EF9360`): only stub calls, `003691E0` and `0046E000`, which also
 sets `02CA6074` and `02CA6114` to -1. `004746C0` is four stub calls. After the walk `003692D0`
 runs the sound state reset `002DE360` (`00369451`), which among its stores sets the spatial-sound
@@ -198,10 +201,13 @@ with a 28-node list, and eight pairs of 0 and `100`<sub>h</sub>.
 
 `0036F4D0` runs `00382910`, which clears 8 records at `02AED700` (stride `E0`<sub>h</sub>) and builds two
 view records with `004679C0(record, width, height)`: `02AED4A0` for the frame size
-`[022D8EAC]` × `[022D8EB4]` and `02AED500` for 2000 × 2000. A view record holds the size at `+44`<sub>h</sub>
-/ `+48`<sub>h</sub>, depth limits 1024 and 16,776,191 at `+4C`<sub>h</sub> / `+50`<sub>h</sub>, `00229D20()` at `+40`<sub>h</sub>, scales of
-width / 2 and -height / 2, a depth scale and offset from the limits, and 2048 as the screen
-offset.
+`[022D8EAC]` × `[022D8EB4]` and `02AED500` for 2000 × 2000.
+
+A view record holds the integer size at `+44`<sub>h</sub> / `+48`<sub>h</sub>, the depth limits `near` = 1024 and `far` =
+16,776,191 at `+4C`<sub>h</sub> / `+50`<sub>h</sub>, and `00229D20()` at `+40`<sub>h</sub>. It sets `+00h = width × 0.5` and
+`+14h = height × -0.5` (`00467A0F`-`00467A26`), the depth scale `+28h = (far - near) × -0.5` and
+offset `+38h = (far + near) × 0.5` (`00467A2B`-`00467A62`), 2048 at `+30`<sub>h</sub> / `+34`<sub>h</sub> as the
+screen offset and 1.0 at `+3C`<sub>h</sub>.
 
 Step 4's `00184660` ends with `00248410`, which sets `0208ECC0` / `0208ECC4` to minus half of
 `[01E0C1D8]` / `[01E0C1DC]` and writes that size into the four objects at `0208EA20` to `0208EA38`

@@ -155,8 +155,11 @@ the cube one takes the counter `01F7F5A0` modulo the ring size; both return 7 fo
 format.
 
 `006264F0` (3D) and `00626990` (cube) fill the caller's layout of up to 12 levels (layouts below).
-Level sizes come from the format's bits per pixel, halving each side down to 1 and rounding sides up
-to 4 for block formats, whose row pitch covers a row of 4×4 blocks.
+Level sizes come from the format's bits per pixel `bpp` (format `+14`<sub>h</sub>). Each level's sides are
+`max(side >> 1, 1)` of the level before; for a block format (format `+18`<sub>h</sub> bit 0) the width `w` and height `h` are
+first rounded up, `(side + 3) & ~3`. A level's row pitch is `bpp x w x k >> 3`, `k` 4 for a block format and 1
+otherwise, its slice pitch `bpp x w x h >> 3` and its size the slice pitch times the depth (`006264F0`); a cube
+level is square, `bpp x w x w >> 3` (`00626990`).
 
 - Without CPU write access (the description's `+1C`<sub>h</sub> bit `10000`<sub>h</sub>) they log
   `Performance warning: mapping texture that was not created with D3D11_CPU_ACCESS_WRITE flag

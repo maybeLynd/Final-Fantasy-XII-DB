@@ -197,18 +197,24 @@ channels are:
 | 18 to 20 | rotation in radians `+118`<sub>h</sub>, `+120`<sub>h</sub>, `+128`<sub>h</sub> |
 
 Each world step `004668C0` (reached through the thunk at `0036F400`) advances every slot with bit 0 whose bit 3 is set or
-whose step exceeds 0.001:
+whose step's absolute value exceeds 0.001 (`|+48h| > 0.001`, `00466969`-`0046697B`):
 
 1. bits 2 and 3 are cleared and the time moves by the step;
-2. with the loop bit and a range of at least 1.0 the time wraps within the range; otherwise it
-   clamps and bit 2 (finished) is set;
+2. with `lo` = `+3C`<sub>h</sub>, `hi` = `+40`<sub>h</sub> and `span = hi - lo`, the loop bit and `span >= 1.0` the
+   time `t` becomes `t - span` when `t >= hi` and `t + span` when `t < lo` (`004669A7`-`004669CA`);
+   otherwise `t >= hi` stores `hi`, `t < lo` stores `lo`, and either sets bit 2 (finished)
+   (`004669D1`-`004669EA`);
 3. unless the clip's group is above `100`<sub>h</sub> with its bit in the hidden-model set (`0026E5F0`),
    `00466240` advances each track and `00466550` rebuilds each target;
 4. the step is zeroed.
 
-`00466240(slot, track)` moves the track's time by the slot's step, clamps or wraps it the same way
-within the range and the track's own first and last key, finds the key pair around the time and
-interpolates with a cubic Hermite curve (each key's value, the first key's out-slope and the second
+`00466240(slot, track)` sets the track's time `t = t + step` for the slot's step, and with
+`lo = max(+3Ch, first key time)`, `hi = min(+40h, last key time)` and `span = hi - lo`
+(`00466251`-`0046629E`) checks only the side it moves toward: for a step above 0, `t >= hi` stores
+`t - span` (loop bit and `span >= 1.0`, key index 0) or `hi`; for a step of 0 or less, `t < lo`
+stores `t + span` (key index the last) or `lo` (`004662A2`-`004662F6`).
+
+`00466240` then finds the key pair around the time and interpolates with a cubic Hermite curve (each key's value, the first key's out-slope and the second
 key's in-slope) into the track's value. The slopes are per unit of time: with u = (t - t0) / (t1 - t0),
 the value is h00(u) v0 + h01(u) v1 + (t1 - t0) (h10(u) out0 + h11(u) in1).
 

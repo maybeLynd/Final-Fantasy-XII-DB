@@ -76,16 +76,16 @@ A row's flag word `+D8`<sub>h</sub> (`+318h + i x 160h` in the list) drives its 
 | Bit | Effect |
 |---:|---|
 | `0` | the row takes part in a pick mode; the list's draw hook `+B28`<sub>h</sub> may then draw the hand cursor on it (`0029A19C`, `002426F0`) |
-| `1` | the row is refused in a pick mode; its alpha is halved |
-| `2` | the cursor is on the row; its alpha pulses, `00296FB0(32, 128, 0)` (`0029A25C`), and a pointer is drawn (`0029A1EA`) |
+| `1` | the row is refused in a pick mode; its widget's brightness `+5A`<sub>h</sub> becomes `+5Ah >> 1` (`0029A247`-`0029A24B`) |
+| `2` | the cursor is on the row; its brightness `+5A`<sub>h</sub> pulses, `00296FB0(32, 128, 0)` (`0029A25C`-`0029A264`), and a pointer is drawn (`0029A1EA`) |
 | `3` | the row is closing |
-| `4` | a status pulse: alpha follows the track `009162B0` over `+110`<sub>h</sub> (`0029A223`), 16 a frame (`00299890`) |
+| `4` | a status pulse: brightness `+5A`<sub>h</sub> and alpha `+58`<sub>h</sub> follow the track `009162B0` over `+110`<sub>h</sub> (`0029A223`-`0029A23D`), 16 a frame (`00299890`) |
 | `5`, `6` | an HP or MP flash, below |
 | `7` | nodes 0-2 fade out over 8 frames, and back in once it clears (`00298130`) |
 
 `00296FB0(amplitude, base, phase)` is `base + amplitude x sin((frame x rate - phase) x pi / 15)`, with the rate 1, or
 one over the speed steps while the game runs at speed (`00229DF0`, `00229E70`). A row whose shown status has flag
-bit 1 at `+25`<sub>h</sub> is also drawn at half alpha (`0029A267`).
+bit 1 at `+25`<sub>h</sub> is also drawn at half brightness (`+5A`<sub>h</sub>, `0029A267`-`0029A282`).
 
 ### Flashes
 
@@ -99,9 +99,18 @@ by the popup's kind byte `+0D`<sub>h</sub>:
 | `2`, `6` | status pulse: bit 4, `00296E90` |
 
 `002994E0` draws the HP flash as a highlight sprite round the union of the HP digit nodes (`00271DB0`), as wide as
-the digit frame plus 24 for each node past the first (`002998D0`), scaled by the track `009162D8` over `+114`<sub>h</sub>;
-`002996E0` does the same round the MP frame over `+116`<sub>h</sub>. Each advances 8 a frame and ends at 256
-(`0029A467`-`0029A4AD`).
+the digit frame plus 24 for each node past the first (`002998D0`). For the draw it sets the widget's
+`+58h = (+58h x a) >> 7` and `+5Ah = (+5Ah x b) >> 7`, `a` and `b` the bytes `+6` and `+7` of the three-key track
+`009162D8` at time `+114`<sub>h</sub>, and restores both afterwards (`0029957C`-`002995BF`).
+
+`002996E0` does the same round the MP frame with the time `+116`<sub>h</sub>. Each time steps `t += 8` a frame; above 255 it
+goes back to 0 and the flash bit clears (`0029A467`-`0029A4AD`).
+
+`00271AB0(out, keys, n, t)` evaluates a track of `n` 12-byte keys (`s16` `+0`, `s16` `+2`, `u16` time `+4`, bytes
+`+6`, `+7`, `s16` ease `+8`, `s16` `+10`). It takes the first pair with `time[k] <= t < time[k+1]`, else the last
+pair, and with `d = t - time[k]` and `span = time[k+1] - time[k]` sets `f = d x 256 / span`, or
+`int(256 sin(pi/2 x d / span))` for ease 1 in key `k+1`, or `256 - int(256 sin(pi/2 x (span - d) / span))` for ease 2.
+Each field is `v[k] + (v[k+1] - v[k]) x f / 256`, truncated (`00271AB0`-`00271CA9`).
 
 ### Rolling numbers
 
@@ -134,10 +143,15 @@ when its handle matches, and sends the HP or MP counter message 1 (`003F8980`). 
 Each HUD frame group 2 steps every registered counter (`003F8B40`): `00272710` advances the step and `00271960` gives
 the shown value. The five points are from, the three between, and to, one quarter apart:
 
-- over the first three quarters the value follows a cubic spline through them (`00270260`): the first segment uses
-  the basis at `009157B0`, the next two the Catmull-Rom basis at `009157F0` with four points from `00276220`, both
-  halved by `00915870`;
-- over the last quarter it moves in a straight line from the third point between to the target.
+- with the step below `400`<sub>h</sub>, `u = step / 256`, `i = int(u)`, `t = u - i` and the points `P0`-`P4` in that order,
+  over the first three quarters the value follows a spline through them (`00271960`, `00270260`). Segment 0 is
+  `0.5 x ((P0 - 2 P1 + P2) t^2 + (4 P1 - 3 P0 - P2) t)`, 0 at `t = 0` and `P1 - P0` at `t = 1` (the basis at
+  `009157B0`; its constant term multiplies the point matrix's first row, which `00270260` makes zero at `0027034F`);
+- segments 1 and 2 are the Catmull-Rom `0.5 x ((3 P[i] - P[i-1] - 3 P[i+1] + P[i+2]) t^3 + (2 P[i-1] - 5 P[i] +
+  4 P[i+1] - P[i+2]) t^2 + (P[i+1] - P[i-1]) t + 2 P[i])` (the basis at `009157F0`, points from `00276220`), the
+  0.5 being the vector at `00915870`;
+- over the last quarter it moves in a straight line, `P3 + (P4 - P3) x (u - 3)`, from the third point between to the
+  target. The shown value is `int(x) >> 4` (`00271960`).
 
 The row shows the counter's value at `+50`<sub>h</sub> while it runs, and the record's value at rest (`0029A4CE`, `0029A5FD`).
 
@@ -185,7 +199,7 @@ The Status pane `002C59D0` keeps 32 such entries at `+C8`<sub>h</sub> and its ma
 
 The HP number's colour comes from the statuses present, in order 0 (`00271FB0`, `00297D62`): colour `B5`<sub>h</sub> when one
 has bit 4 at `+25`<sub>h</sub> and `B6`<sub>h</sub> for bit 3, pulsing by `128 + 32 x sin(frame x pi / 30)` (`00271EF0`); a status with
-bit 1 halves it.
+bit 1 at `+25`<sub>h</sub> halves each channel, `c x 40h >> 7` in place of `c x 80h >> 7` (`00297D67`-`00297DAE`).
 
 ### The summon gauge
 
@@ -206,10 +220,16 @@ changes. It shows while the record's flag bit 9 is set or its action id `+5C`<su
 `002986E0(bar, record)`:
 
 1. shows the action's name (class `14`<sub>h</sub>, `0029FB50`) once flag bit 13 is set and the id changed;
-2. fills to `+3C`<sub>h</sub> / `+40`<sub>h</sub> x 100 percent, or 100 with flag bit 12;
+2. fills to `pct = +3Ch x 100 / +40h` percent, a maximum of 0 counting as 100 (`00298BD0`-`00298BD5`), or 100
+   with flag bit 12;
 3. on reaching 100 flashes for 8 frames with `sin(t x pi / 15)` (state 1), then fades out by 16 a frame (state 2);
-4. blends the bar between the colours `7A`<sub>h</sub>-`7D`<sub>h</sub> and `7E`<sub>h</sub>-`80`<sub>h</sub> (`002DD7E0`) by the percentage
-   (`002752E0`), and cycles a four-key colour track (`00274870`, `00271E50`) while `00226BA0` answers 0.
+4. blends two colour pairs from `002DD7E0`, each channel `c0 + (c1 - c0) x f / 256` (`002752E0`), and cycles a
+   four-key colour track (`00274870`, `00271E50`) while `00226BA0` answers 0:
+   - filling (state 0): `f = pct x 256 / 100`, colour `7A`<sub>h</sub> to `7B`<sub>h</sub> and `7E`<sub>h</sub> to `7F`<sub>h</sub> (`00298F9B`, `00298FB0`);
+   - flashing (state 1): `f = 128 + int(128 sin((frame - start) x pi / 15))`, `start` the frame stored at cell `+0C`<sub>h</sub>, `7B`<sub>h</sub> to `7C`<sub>h</sub> and `7F`<sub>h</sub> to `80`<sub>h</sub>
+     (`00298E0A`, `00298E23`);
+   - fading (state 2): `f` the fade count, which steps by 16 to 256, `7C`<sub>h</sub> to `7D`<sub>h</sub> and `80`<sub>h</sub> to `7E`<sub>h</sub>
+     (`00298C4C`-`00298CC1`).
 
 `00297290` fades the bar's frame in and out by 16 a step (tracks on the stack, `00271AB0`).
 

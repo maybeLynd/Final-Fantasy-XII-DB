@@ -77,8 +77,8 @@ returns 1 without trying it (`00305DA4`). A resumed commit also calls
 4. An order with flag `800`<sub>h</sub> fails while it is the unit's previous order `+738`<sub>h</sub>; for an action id only
    when the previous command's `+730`<sub>h</sub> bit 0 is set (`003015A6`-`003015C9`).
 5. For an action outside the order band, the actor and the availability check must pass
-   (`003015EA`-`00301606`), and an order with a chance word at `+02`<sub>h</sub> passes only when a shared gameplay
-   LCG percent roll is below it (`00301608`-`00301637`; the draw is `00328370`,
+   (`003015EA`-`00301606`), and an order with a non-zero chance word `c` at `+02`<sub>h</sub> passes only when a shared
+   gameplay LCG draw gives `00328370() % 100 < (s16)c` (`00301608`-`00301637`; the draw is `00328370`,
    [Random number generators](../Random-Numbers/random-number-generators.md)).
 6. It builds the candidates for an action with `0030F130` (`00301649`). An order id instead must pass
    `00301830` and takes the unit's perception list `+BC0`<sub>h</sub> as its candidates (`00301599`, `003015D4`-`003015E1`;
