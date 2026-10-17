@@ -202,6 +202,16 @@ that entry `n` of the table at `01EF9400` names, through `0036E750(0, 0, params,
 handle, so its effect runs to its own end; `efffadeout` (`002EFDC0`) keeps the handle, so its effect
 holds until `efffadecancel` (`02A6`<sub>h</sub>, `002EFD50`) or the next effect fade releases it.
 
+### The screen picture
+
+The verb `5A3`<sub>h</sub> (`0034EA10`) passes its argument (`00267E10`) to `00473E60(n)`, which first dismisses the
+loading icon (`00183070`) and then runs `00182F10(n)` on the screen picture `[01F82CE0]` (`001D8D30`):
+
+1. `001D8FC0` sets `+08`<sub>h</sub> to `n x [01DFE0B4] + [+18h] + [+14h]` and the mode `+30`<sub>h</sub> to 1, or 2 when `n` is 0;
+2. `001D8F50` starts the picture when it holds one (`+28`<sub>h</sub>): it logs `[ScreenImage]:playDPic`, sets `+00`<sub>h</sub> to 1
+   and either fades the level `+1C`<sub>h</sub> in from 0 by `255 / [+14h]` per step or, with no fade length, shows it at
+   255 and sets `+10`<sub>h</sub> to 2.
+
 ## Layouts
 
 FadeLayer[7] at `022BDD60`, stride `30`<sub>h</sub>:

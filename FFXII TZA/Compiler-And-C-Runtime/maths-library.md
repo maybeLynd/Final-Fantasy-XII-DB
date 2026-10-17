@@ -36,6 +36,12 @@ Together they are reached from 1,563 call or jump sites:
 | `ceilf` | 37 | `acosf` | 9 |
 | `sqrt` | 36 | `sin` | 8 |
 
+One double-precision routine is linked into the executable instead: `008958C0(x)`, called twice by `00895DC0`
+(`0089622D`, `0089624A`). It reduces the argument against the table at `0300E7D0`, picks one of 64 entries of 32
+bytes at `0300E880` (a step of pi / 32, `0.09817477042088285`), and finishes with sine and cosine series; entry 16,
+the one `x = 0` selects, holds 0 and 1.0, so it returns 1.0 for 0, and entry 32, the one `x = pi / 2` selects,
+holds 0 and 0: a cosine at both points.
+
 The other 25 imports have 7 sites or fewer each; `tanh`, `sinh`, `cosh`, `modf`, `log2f`, `log10f`,
 `log10`, `fmodf`, `fmod`, `asin`, `acos` and `__setusermatherr` have one each.
 

@@ -158,6 +158,20 @@ the single mesh at `+50`<sub>h</sub>, and does not test `+4B4`<sub>h</sub>.
 The root's `+DA0`<sub>h</sub> bank holds the `260`<sub>h</sub>-byte render model instances, 160 slots, taken by
 `004780C0` and reset by `005049E0`. A record's `+64`<sub>h</sub> names its instance (`003E55B0`).
 
+Before the instances, `0041E4D0` runs `004FDD90`, which calls `004FDDA0`. That function copies
+the camera matrices `02AEDE70`-`02AEDEAF` and `02AEDD30`-`02AEDD6F` to `02CA7F80` and writes three records into the
+current GS command buffer (`005044B0`, closing a full block with `00504450`):
+
+1. a header holding `[02EBA404]`;
+2. an A+D GIF tag of 19 register writes, among them XYOFFSET_1 and _2 (`18`<sub>h</sub>, `19`<sub>h</sub>) = `(1000h - w) x 8`,
+   `(1000h - h) x 8` and SCISSOR_1 and _2 (`40`<sub>h</sub>, `41`<sub>h</sub>) = 0 to `w - 1`, 0 to `h - 1`, for the GS frame `w`
+   `022D8EAC` and `h` `022D8EB4`;
+3. a copy of the `150`<sub>h</sub>-byte block `02EBA400` with the matrices at `+10`<sub>h</sub> and `+50`<sub>h</sub>, the vector `02AEDF10` at
+   `+E0`<sub>h</sub> (kept at `02EBA4B0`), and 1791.97 and 1823.97 at `+A0`<sub>h</sub> and `+A4`<sub>h</sub>.
+
+At boot `00475310` (`0036F4FC`) fills part of that block: `+C4`<sub>h</sub> 10.0, `+C8`<sub>h</sub> 150.0, `+CC`<sub>h</sub> 1.5, `+E0`<sub>h</sub> 16.0,
+`+E4`<sub>h</sub> and `+E8`<sub>h</sub> 4.0, `+D4`<sub>h</sub> 5, `+D8`<sub>h</sub> `40`<sub>h</sub>, and 0 in `+C0`<sub>h</sub> and `+D0`<sub>h</sub>.
+
 `0041E4D0` draws them through `00477F20`: it sorts the instances with `+08`<sub>h</sub> bit 0 set into a list by
 the sort key `+04`<sub>h</sub> (head at bank `+60`<sub>h</sub>, link `+02`<sub>h</sub>, `004781E0`), then calls `00504700` for each
 whose skeleton entry passes the frame-state test. `00504700` calls `0053D780` once, or twice when

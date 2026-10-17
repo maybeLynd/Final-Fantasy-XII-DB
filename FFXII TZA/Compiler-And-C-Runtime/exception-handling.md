@@ -74,6 +74,10 @@ itself, named directly as an action.
 | `jmp 00861EAE` | 86 |
 | other short forms: 53 offset a global (`lea rcx,[rip+g] ; add rcx,imm`), 32 end in `jmp [import slot]` | 94 |
 
+[The cleanup funclet table](exception-handling-cleanup-funclets.tsv) lists all 3,820, read from every
+`FuncInfo` unwind map, with the form, the object each points `rcx` at (a local `rdx+N` of the parent's
+frame, or a global) and the code it jumps to.
+
 3,092 of the 3,819 bodies in `.text$x` are 12 bytes or shorter, and the longest, `00896D60`, is 62
 bytes. The common tail-jump targets:
 
@@ -123,7 +127,7 @@ and returns the address the parent resumes at.
 - `00896960`, a handler of the string grow `00195670`, allocates again through `001DF990` for the
   size held at frame `+68`<sub>h</sub> plus one byte and resumes at `0019573B`.
 
-`exception-handling-catch-funclets.tsv` lists all 72 with their parents, `FuncInfo` records, sizes,
+[The catch funclet table](exception-handling-catch-funclets.tsv) lists all 72 with their parents, `FuncInfo` records, sizes,
 the calls they make and where they end.
 
 ### What the image throws
@@ -174,7 +178,7 @@ Unwind-map entries reach them through 12-byte funclets of the form `lea rcx,[rdx
 and `uncaught_exception` from `MSVCP140`, and `001DDC40` calls `_Ipfx`, `sgetc` and `snextc`.
 
 So the bodies are the destructor of the stream sentry these routines construct at frame `+28`<sub>h</sub>.
-They are listed in `exception-handling-bk6-sentry-base-destructor-clones.tsv`.
+They are listed in [the sentry destructor clones table](exception-handling-bk6-sentry-base-destructor-clones.tsv).
 
 `001953F0` is the fuller form for a wide-character output stream: unless `uncaught_exception`
 returns true it calls `basic_ostream<wchar_t>::_Osfx`, then makes the same slot-2 call. The funclet

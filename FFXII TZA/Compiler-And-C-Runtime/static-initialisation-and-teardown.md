@@ -106,9 +106,14 @@ first.
 |---:|---|
 | 1,084 | C++ initialisers |
 | 1,541 | functions holding thread-safe local statics, inside the guarded block |
-| 2 | `00159340`, one critical-section static at `02EAEA70` built behind bit `1`<sub>h</sub> of the plain flag word `02EAEA98`, its accessor inlined twice |
+| 2 | `00159340`, one critical-section static at `02EAEA70` built behind bit `1`<sub>h</sub> of the plain flag word `02EAEA98`, its accessor inlined twice; both register the teardown `008B9040` (`00159384`, `001593F1`), which stores `01CC6B60` at `02EAEA68` and hands `02EAEA70` to the import at `008C20D0` |
 | 1 | `005A08E0`, the engine set-up, registering the engine shutdown `005A0840` |
 | 2 | the runtime's own `00808C90` and `00809124` |
+
+Library initialisers register theirs the same way: the Bullet initialiser `00859D20` builds the static at `02EAF400`
+(`00852E10`) and registers `008B90A0` (`00859D95`), which puts back the vtable `01CCF348`, releases the buffer
+`[02EAF620]` through `0085E710` when it is set and `02EAF628` is set, clears both fields and runs `00839FD0` on the
+object.
 
 That is 2,630 call sites (1,574 calls and 1,056 tail jumps) for about 2,560 distinct teardown functions,
 counting the `lea rcx` that sets the argument within the 64 bytes before each site.

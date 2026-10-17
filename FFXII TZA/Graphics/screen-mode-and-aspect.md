@@ -115,6 +115,29 @@ It then sorts by width and height, keeps one entry per size, and selects the ent
 count is nearest the Resolution setting's. With no usable mode the list is one entry of the
 Resolution size at 60/1 Hz.
 
+### Switching the swap chain
+
+`0079C140` keeps the swap chain in step with the chosen mode through three device functions:
+
+- `00625F30(device)` answers 1 when the output's mode list changed: a different count (format 28, `+18A0`<sub>h</sub>) or
+  output (`+1898`<sub>h</sub>) than the device kept (`0079C340`);
+- `0062B250(device)` answers 0 only while the device is full screen (`+1890`<sub>h</sub> = 1) and the swap chain reports it is
+  not (`IDXGISwapChain::GetFullscreenState`, vtable `+58`<sub>h</sub>; `0079C36F`);
+- `00629690(device, w, h, full, hz)` sets the mode (`0079C444`), in the steps below, and returns 1 when both
+  switches succeed.
+
+1. It lists the output's modes and logs `[Screen Mode]number of modes: %d  pOutput = %x`.
+2. It takes the mode of that size whose refresh rate is `hz`; when none matches it takes the last one, or fails in
+   full screen.
+3. It logs the mode id and the desktop refresh rate (`EnumDisplaySettingsA`).
+4. It switches the full-screen state (`SetFullscreenState`, vtable `+50`<sub>h</sub>) and resizes the target (`ResizeTarget`,
+   `+70`<sub>h</sub>), and logs `[Screen Mode]Full Screen Result : Target = %d , Mode = %d`.
+
+`006278B0(device, w, h)` resizes the swap chain itself (`0062389D`, `007A0663`): it unbinds the targets (vtable
+`+108`<sub>h</sub>), releases the colour and depth views (`0062B890`), calls `ResizeBuffers` (`+68`<sub>h</sub>) with the device's count
+`+148`<sub>h</sub> and format `+130`<sub>h</sub>, takes buffer 0 again (`GetBuffer`, `+48`<sub>h</sub>), rebuilds the views (`00620F60`) and the
+viewport (`0061D3D0`, `00607D10`), and binds the targets again. It returns `15`<sub>h</sub> without a swap chain.
+
 ### The window-size list
 
 `001DD8E0` copies the display-mode list into the window-size list at `+40`<sub>h</sub> with one spare entry,

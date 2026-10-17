@@ -34,7 +34,7 @@ The row layout:
 |---|---|---|---|
 | `00`<sub>h</sub> | `u8` | sortOrder | copied to query record `+30`<sub>h</sub> (`0031C845`); Auto-sort `002CFFE0` orders items by it, then by id ([Dialogs](../Menus-And-HUD/dialogs.md)) |
 | `01`<sub>h</sub> | `u8[3]` | | 0 on every row |
-| `04`<sub>h</sub> | `u8` | iconFrame | copied to query record `+2C`<sub>h</sub> (`0031C83E`); the list-row filler `0057DAD0` puts it at row `+0A`<sub>h</sub>, the icon frame the row painters draw (Inventory screen, [Shop screens](../Menus-And-HUD/shop-screens.md)) |
+| `04`<sub>h</sub> | `u8` | iconFrame | copied to query record `+2C`<sub>h</sub> (`0031C83E`); the list-row filler `0057DAD0` puts it at row `+0A`<sub>h</sub>, the icon frame the row painters draw ([Inventory screen](../Menus-And-HUD/inventory-screen.md), [Shop screens](../Menus-And-HUD/shop-screens.md)) |
 | `05`<sub>h</sub> | `u8[2]` | | 0 on every row |
 | `07`<sub>h</sub> | `u8` | actionRow | the item's action row, `52`<sub>h</sub> plus the row number on every row; copied to query record `+38`<sub>h</sub> (`0031C821`), where the magick and technick arms put their own action row `+02`<sub>h</sub> |
 | `08`<sub>h</sub> | `u16` | nameWord | the name (`0031C7F5`) |

@@ -117,6 +117,19 @@ argument). Three routes build the packets that carry them:
   element type reaches) constructs the same command with no packets, and the element appends its
   own packet, which carries its own MPG.
 
+### Shared subroutines of the microprograms
+
+The programs share 33 subroutines, listed with their callers in
+[ps2-vif1-vu1-emulation-subroutines.tsv](ps2-vif1-vu1-emulation-subroutines.tsv). They work on the same words:
+
+- `004A6780` clears the float and index words at the start of 14 programs;
+- `0047BFB0` and `00487F90` evaluate a sine series and `0048F790` wraps an angle by whole turns;
+- `004825F0`, `0048D240`, `004B0CF0`, `004B0F60` and `00487D60` look a frame up in a table of per-frame counts in VU
+  memory;
+- `004753B0` and `004AD9E0` clip edges, `004EB910` builds a sprite, and `004ECB70` emits a GS packet like `004EF860`;
+- the 21 small ones from `004B97F0` to `004B9E30`, with `004CF230` and `004CF280`, are lane arithmetic, cell loads
+  and the random generator `01E02828` (`004B97F0`), which returns 1.0 while `02064AFC` is 0.
+
 `00476C80` is a template read end to end: `008631E0` with program `004758E0`, BASE 0 and OFFSET 0
 (`03000000`<sub>h</sub>, `02000000`<sub>h</sub>), a sub-header, STCYCL 4,4 (`01000404`<sub>h</sub>), UNPACK V4-32 of 66
 quadwords (`6C420000`<sub>h</sub>) whose payload starts with the GS screen centre 2048.0 (`45000000`<sub>h</sub>)

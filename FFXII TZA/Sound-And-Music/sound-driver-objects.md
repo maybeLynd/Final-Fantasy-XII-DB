@@ -227,7 +227,14 @@ curve at `+38`<sub>h</sub> the configuration curve shapes it (`007AE260`), run b
 
 `007AD620` stores the allocate and free functions from the start-up block. `007AD550(size, tag)` allocates
 `size + 16` bytes with a header of `5EAD5EAD`<sub>h</sub>, the tag and the size; `007AD4D0` also zeroes the block and
-`007AD5A0` grows one by copying. `007AD6D0` reads the performance-counter frequency and start; `007AD630` gives counts
+`007AD5A0` grows one by copying.
+
+The engine start points the Vorbis decoder's allocation hooks at this heap
+(`007A4E3E`-`007A4E6B`): `01F41CF8` (malloc) at `007A52E0`, `01F41D00` (calloc) at `007A52C0`, `01F41D08` (realloc)
+at `007A52F0`, each passing tag 5 to `007AD550`, `007AD4D0` or `007AD5A0`, and the free hook at `007A52D0`, a jump to
+`007AD540` ([Media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md)).
+
+`007AD6D0` reads the performance-counter frequency and start; `007AD630` gives counts
 since the start and `007AD680` microseconds, which seed `srand` (`007A5404`).
 
 ## Modding notes

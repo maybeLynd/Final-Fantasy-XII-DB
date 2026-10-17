@@ -215,6 +215,18 @@ applied only when it is not 0 (`00202E90`, `00202F00`, `00202F70`), and the tran
 (`00202FE0`) and, for the `ambient` slot, copies the colour `+50`<sub>h</sub> to `+5C`<sub>h</sub> to `0209A370` to
 `0209A37C`, the ambient colour of the map's lights.
 
+The slot accessors take a slot number and test it against `02EBB6E0` and `+08`<sub>h</sub>:
+
+- `00466C80(slot)` returns the time `+44`<sub>h</sub> (0 for a bad slot) and `00466AD0(slot)` the finished bit 2 (1 for a bad
+  slot, the test `004735E0` of the actor-control table uses);
+- `00473490(slot)` returns the time less the clip's start (`00466C40`), the verb `getbganimeframe` (`0AD`<sub>h</sub>,
+  `0034FEE3`); `004734C0(slot)` returns the clip's end (`00466BB0`) less its start, `getbganimelastframe` (`0AE`<sub>h</sub>,
+  `00350393`);
+- `00467730(slot, t)` seeks: it clears bit 2, sets bit 3, stores `t` as the time of the slot and of every track and
+  zeroes the step and each track's `+10`<sub>h</sub>; the rewind `00473500` and `00466DD0` use it;
+- `00466DD0()` sends every playing slot that does not loop and has a non-zero rate to its range end and marks it
+  finished; it runs from the script skip's start `00360710` and end `00360A50`, and from `003486A0` and `00355300`.
+
 The draw code reaches targets through the tag-30 instances. `00466CB0(slot, idB, idA, mask)`
 returns the slot's first target when the clip's group is below `100`<sub>h</sub> and its bit is in the
 instance's group mask, else the target whose `+46`<sub>h</sub> (or map entry `+00`<sub>h</sub>) equals `idB`, else the

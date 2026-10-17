@@ -281,6 +281,42 @@ The boss gauge `00405310` (manager `00406A60`, `02B62D88`) draws up to two bars 
 (`0023AA04`), with the class from the spawn row ([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
 The style is one bar for class 1 or 2 and style 2 for class 3 (`00405100`).
 
+### Boss gauge bars
+
+Each bar is a child `004061F0` of the gauge's window `[02B62D88] + C0h`, at `+C8`<sub>h</sub> and `+D0`<sub>h</sub>
+(`00404D40(i)` returns bar `i`, 0 or 1). A bar carries the counter of the
+[script gauges](script-gauges.md) (`+C0`<sub>h</sub> mode, `+E0`<sub>h</sub> maximum, `+E4`<sub>h</sub> value, `00408140`, `00407240`).
+
+- `00405770(gauge, style)` sets both bars up for a style from the pairs at `00D12190`: style 0 uses layout child 0
+  and hides bar 1, styles 1 and 2 use children 2 and 3, style 3 children 1 and 2. It reads each value with
+  `00404F50` (1000 when missing), sets the maximum (`004073B0`) and redraws.
+- `00404F50(i, style, cells)` returns entry `i` of the value table `[02B62D88] + E8h` (count `+E3`<sub>h</sub>, `18`<sub>h</sub> bytes
+  each). For style 2 it cuts entry 0 into 50 cells: `cells = current x 51 / max`, 51 counted as 50. Bar 0 then
+  gets the part inside the current cell, bar 1 the cell count as a width `cells x 6 - 2` of 298.
+- `004060B0(bar, open, b)` starts a bar's 25-frame opening (`00246AD0`) or closing; a segmented bar (`+130`<sub>h</sub>
+  bit 8) also plans a ramp of 50 cells over 25 frames, and closing marks all 50 cells `+13C`<sub>h</sub> lit (9).
+- `004058E0(bar, start)` runs the opening or closing each frame: the value widget grows by the square of the eased
+  step (`00248F40`), or a segmented bar widens cell by cell (`004076B0`). When a closing run ends the bar is
+  released (`00245020`).
+- `004068B0(bar, value)` takes a new value, ends a running ramp at it and sets the flash timer `+178`<sub>h</sub>: 1 frame for a
+  rise; 40 for a drop, or 1 once the drops' total `+17C`<sub>h</sub> passes 3,999 (each adds 40 divided by its size).
+- `00406770(bar, on)` re-reads the value when shown, and `00406DD0(gauge, on)` records the state in `+C8`<sub>h</sub> bit 5
+  and passes it to every shown bar (`+130`<sub>h</sub> bit 4).
+- `00405C20` draws a bar: the number (`0029E840`) and, for a segmented bar, up to 49 cell frames in batches of 16
+  (`002D9DB0`, `002DAC70`). A lit cell's state counts 1 to 8 while the first sprite fades out, then 9 to 17 while
+  the second fades in, wrapping to 9 (`002D8D10`).
+
+A bar does nothing in a frame while the window's `+C8`<sub>h</sub> bit 6 or 7 is set, unless it is closing (`0040639D`-`004063B2`).
+The verbs reach the gauge through one-jump stubs:
+
+| Verb or caller | Function | Effect |
+|---|---|---|
+| `bossgaugeopen` (`00349B60` → `003EC7F0`) | `00405270` | sets `+C8`<sub>h</sub> bit 0, unless bit 1 or 5 is set |
+| `bossgaugeclose` (`00349F80` → `003EC7C0`) | `00404E10` | once (`+C2`<sub>h</sub> bit 0): turns the bars off (`00406DD0`), closes the window (`00244F00`) when a value is still above 0, or else releases each bar or marks it closing |
+| HUD hide (`0035D0E0`) | `00405150` | closes the window (`00244DD0`) and remembers it in `+C8`<sub>h</sub> bit 2 |
+| HUD show (`0035D1B0`) | `004052D0` | reopens it (`00246AD0`) when bit 2 is set |
+| pause mask `0215F1B3` | `00404D70`, `00404DC0` | sets or clears `+C8`<sub>h</sub> bit 7 ([Script gauges](script-gauges.md)) |
+
 ### Overhead HP gauges
 
 `002C7660` gives each unit a gauge kind, 0 for a party member, 1 or 2 for other units, and `002C8310` draws it when

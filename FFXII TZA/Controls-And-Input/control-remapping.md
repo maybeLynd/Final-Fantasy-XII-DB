@@ -82,7 +82,20 @@ Inside a row (`0023C5C0`):
 |---:|---|---|
 | 0 | bound | refreshes the screen (`00287C20`, `002B5C90`) |
 | 1 | the key is in use | opens the swap question, dialog `2A`<sub>h</sub> (`0023C7E9`) |
-| 2 | a reserved key, or a bad group or slot | plays the error sound (`0023C7B9`) |
+| 2 | a reserved key, or a bad group or slot | shows notice 2 (`0023C7B9`) |
+
+`005841B0(parent, n)` shows the Controls screen's notices 1 to 4 as notices `1B`<sub>h</sub>-`1E`<sub>h</sub> of `00583FD0`, the notice
+table at `00D23DA0` (text id, format, flags, sound per 8-byte entry), each with sound 5:
+
+| `n` | Text (`menu_message.bin`) |
+|---:|---|
+| 1 | "That key is already being used" with "Override current setting" (`891`<sub>h</sub>) |
+| 2 | "That key cannot be used" (`892`<sub>h</sub>) |
+| 3 | "Key assignment not complete" (`893`<sub>h</sub>) |
+| 4 | "Keyboard ... controls cannot be left unassigned" (`899`<sub>h</sub>) |
+
+Leaving the screen with cancel shows notice `001E08F0()` when that is not 0 (`0023D25A`-`0023D297`); notice 2 follows
+the assigner's refusal (`0023C7B9`), and notice 4 a row whose `+E8`<sub>h</sub> is 0 (`0023C8CF`).
 
 A yes to the question calls `001E1050` again with swap 1 (`0023C637`); a no changes nothing. Square clears the
 binding with `001E1050(row, profile, 0, 1)` (`0023C8F5`), and in the first profile it plays error sound 4 instead

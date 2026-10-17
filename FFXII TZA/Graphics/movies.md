@@ -150,6 +150,14 @@ The player's constructor `001B6D90` builds the playback object at `+678`<sub>h</
 sets up its three queues (`+000`<sub>h</sub>, `+A8`<sub>h</sub>, `+150`<sub>h</sub>) and three locks and zeroes its counters and
 flags, among them the state `+268`<sub>h</sub> and the audio flag `+538`<sub>h</sub>.
 
+- Each queue is a `CDataFrameQueue` built by `006CC350`: its vtable, two locks (`00874D60`), two `20`<sub>h</sub>-byte frame
+  lists and `00584730` as its free function. `006CC960` builds the `VbfMkvReader` (`0067922B`).
+- `006CC730(queue, keep)` lets go of the frame a queue holds: with `keep` it pushes the frame onto the list at `+60`<sub>h</sub>
+  (or `+80`<sub>h</sub> when `+A0`<sub>h</sub> is 0), otherwise it frees it through `+58`<sub>h</sub>; then it closes both lock handles
+  (`005CD700`).
+- `0067A970(playback, pause)` resets the playback's run event `+4D0`<sub>h</sub> to pause it and sets it to run again
+  (`005CD500`, `005CD5E0`); `001B82A0` runs it with 0 (`001B82D2`) and `001B82F0` again (`001B835C`).
+
 `0067ABF0(playback, y, u, v)`, from the update in states 1, 3 and 4, takes one decoded frame into
 the player's three plane textures `+108`<sub>h</sub>, `+290`<sub>h</sub> and `+418`<sub>h</sub>:
 

@@ -146,6 +146,19 @@ and clears `022CA5C8` (`0035ED12`–`0035ED20`). The callback `0022BFD0` runs
 the `28`<sub>h</sub>-byte display record `022D8E50 + 28h × [022D8EA8]`. This store comes from the TkSyncv
 thread, so a settle-spin on the frame thread can see the word change between its two loads.
 
+### The thread and semaphore wrappers
+
+The vertical-sync set-up and the Tk threads use a thin layer over the Windows calls:
+
+- `008636E0(desc, name, arg)` makes a `crossThreadImpl` thread object of `28`<sub>h</sub> bytes (`00863430`, the name
+  "UnknownThread" when none is given), files its id under the name in `02EB37B8`, and `00863610(thread, arg)` stores
+  the argument and starts it (`ResumeThread`; `0035E92A`, `00368D53`);
+- `00863520(thread, p)` sets the priority `(32 - p) / 2` (`SetThreadPriority`; `00368C61`);
+- `00863540(desc)` makes a semaphore from the descriptor's counts (`008632E0`, `CreateSemaphoreW`; `0035E8A7`);
+  `00863800` releases it by one, `00863690(sem, ms)` waits on it (`WaitForSingleObject`), and `00863590` closes and
+  frees it (`0035E74B`);
+- `008635F0(ms)` sleeps (`0035E735`, `0035EAB3`).
+
 ### Effect capture
 
 The capture draws `003749F0` and `00376050` wait while bit 8 is set with a loop that reloads the

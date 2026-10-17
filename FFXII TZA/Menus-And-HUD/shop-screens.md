@@ -131,6 +131,56 @@ A sale of loot also counts `00316A50(Eh, quantity)`, and every purchase counts `
 | equipment bought | the equip offer `0057A620` (`0057A980`); a sale of equipment rebuilds the list |
 | anything else | the list is rebuilt with the cursor kept on its row (`0056E410`) |
 
+### Row painters and the list state
+
+`0056D370` installs four row painters (`0056D66E`-`0056D6AC`), each with its own label layout: `0056CBC0` (`00D23568`),
+`0056CD50` (`00D23550`), `0056D1B0` (`00D23538`) and `0056CF10`, which also paints the quantity column (`00D23520`). A
+painter greys a row (`00392FC0`, or `00393240` on four labels in `0056CF10`):
+
+- buying, when its price `+10`<sub>h</sub> (low 31 bits) is above the gil (`00253690`); in `0056CD50` and `0056D1B0` also when the
+  party already holds one (`+0E`<sub>h</sub>), and in `0056CF10` when it holds 99;
+- selling, when the price word's bit 31 marks it unsaleable or its sellable count `+0C`<sub>h</sub> is 0;
+- with the quantity window open, every row but the cursor's.
+
+`0056D870(row, widgets, layout)` paints the common part: the icon frame `+0A`<sub>h</sub> (none for `-1`), the name and the price.
+`0056DA80` paints the quantity window's row: the quantity and, when bit 2 is set, the price times the quantity
+(`0029FF60`). `0056D9D0(list, quantity)` stores the quantity at `+DC`<sub>h</sub>, sets `+E4`<sub>h</sub> bit 2 when `0056E700` refuses it
+and bit 3 when it is not 1, and passes both to the list.
+
+### Tabs and the help line
+
+- `0057D600(buy)` gives the tab count, 9 when buying and 6 otherwise; `0057D5E0(buy, i)` the category of tab `i`,
+  from `00D23D60` (buy: 20 to 27 and 29) or `00D23D6C` (otherwise: 8 to 12 and 15); `0057D610` is `0057D620` with 0.
+- `0057CE10(category)` returns the category's row table, one of 17 between `00D239A0` and `00D23A50`; `0057CDD0(n)`
+  allocates `n` zeroed `20`<sub>h</sub>-byte rows (`002497E0(2)`).
+- `0056DED0(screen)` is the screen's step: the quantity window's input while it is open (`0056CA60`); otherwise the
+  tab switch of the [Inventory screen](inventory-screen.md) (`00563EC0`, `00564300`), which redraws the tab strip
+  (`005674B0`), takes the help kind `0056DC30(category)` into `+191`<sub>h</sub>, rebuilds the list (`0056C950`, `0056E410`)
+  and plays sound 10.
+- `0056DC30` maps categories to help kinds: 0 to `B`<sub>h</sub>; 1-4 to 0; 5-8 to 1; 9 to 2; 10 and 27-30 to 3; 11 to 4; 12 and
+  31 to 8; 13 to 9; 14 to 10; 15 to 5; 16-21 to 6; 26 to 7; any other to `FF`<sub>h</sub>.
+- `0056E5D0(screen, x)` writes the help line when the mode has goods (`0056E880`): `C6B`<sub>h</sub>, or `C6D`<sub>h</sub> when selling,
+  and the row's description through `00293100(00D235D8[kind], id << 16)`; for kinds other than 11 it also shows the
+  member panel for the id (`002CC4F0`, `002CC2A0`; [Menu screens](menu-screens.md)). `0056E840(kind)` and
+  `0056E860(kind)` read the bytes at `00D235D8` (kinds to 11) and `00D235C8` (to 10).
+- `0057B660(mode)` gives 9 for Buy, 6 for Sell and 1 for Bazaar.
+
+### Closing the window
+
+- `0056C850(list)` closes the quantity window and rebuilds the list (`0056E410`, `0056C490`); with no rows left it
+  clears the help and closes the screen (`+194`<sub>h</sub> bit 2, `00244F00`), otherwise it re-attaches the screen and redraws
+  the help (`0056E5D0`).
+- `0056E580(screen, v)` returns from the equip offer (`0057ADCD`, `0057AFFA`, `0057C04B`): it sets `+194`<sub>h</sub> bit 1 when
+  `v` is 0, re-attaches the screen and runs `0056C850`.
+- `0056DD00(screen)` answers whether the screen may close: not while the grant window `[02CA9790]` and its part
+  `[02CA97A0]` exist (`0057A960`), always once `+194`<sub>h</sub> bit 2 is set, and otherwise unless `0057A440` reports state 2
+  of `003F4670`.
+- `0057B680(i)` returns the grant window's child `+158`<sub>h</sub> for `i` below 1, and `0057B6A0` closes the grant window's
+  parts (`0057A5C0`): the list (`002CA110`), the panel `[02CA9798]`, the help lines (`00291D80`, `00293110`) and the
+  window itself, returning `C`<sub>h</sub>.
+- `0057CD00(table, id)` returns the index of `id` among the 16-byte entries at `+5B8`<sub>h</sub> (count `+636`<sub>h</sub>), or 0, for
+  the sort strip (`005669A5`).
+
 The equip offer checks each party member (`00317B70`):
 
 1. When someone can equip it, it asks "Equip your purchase now?" (`803`<sub>h</sub>).

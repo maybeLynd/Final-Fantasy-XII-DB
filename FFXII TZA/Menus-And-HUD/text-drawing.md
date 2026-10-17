@@ -102,7 +102,10 @@ The shared body `002142A0` walks the ten layers. For each layer with a texture a
 - `ShadowFinal` (`002143E0`) does not use the shared body: it draws layer 0 alone as a triangle strip with program 10
   (`0021446D`, `0021453C`).
 
-Draw types are those of `006DA5A0`: 2 a triangle list, 3 a strip, 4 a fan.
+Draw types are those of `006DA5A0`: 2 a triangle list, 3 a strip, 4 a fan. A strip and a fan of `n` vertices become
+`3 x (n - 2)` triangle-list indices from the batch's base vertex word `+8010`<sub>h</sub>, through `006DA790` (strip, the winding
+alternating) and `006DA6F0` (fan, every triangle sharing the first vertex), written into the batch's index buffer of
+`4000`<sub>h</sub> words (count `+08`<sub>h</sub>); both refuse a draw that would overflow it (`006DA61A`, `006DA62B`).
 
 ### How menu text is drawn
 
@@ -121,6 +124,9 @@ On the offscreen path, each line is drawn in five ordered steps (`001E8664`-`001
    target onto the screen as one quad (`00214930`), with the line's first alpha on its left corners and its latest
    alpha on its right ones (`00214A67`-`00214AA8`). `002148F0` makes the target its layer-0 texture (`001E8AAF`), and
    `002145A0` maps each corner through the matrix `+11C`<sub>h</sub> into clip space (`00214A62`).
+
+The font display's constructor `001E71B0` builds the reset object through `00212D60`, which writes its vtable and
+clears `+18`<sub>h</sub>.
 
 The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`
 (`001902FF`-`00190352`). The colour is the palette's border colour, and `FontBorderSetting` is the border width from
@@ -204,6 +210,7 @@ entries.
 | Object | Where | Holds |
 |---|---|---|
 | font display | `[01F811F8]`, `2380`<sub>h</sub> bytes (`001B5F6D`) | the current font `+00`<sub>h</sub>, the 64 batches `+30`<sub>h</sub>, the matrix `+E30`<sub>h</sub>, 28 palette entries `+F68`<sub>h</sub>, the target ladder `+13C0`<sub>h</sub>, the 64 border objects `+1500`<sub>h</sub>, the reset object `+2300`<sub>h</sub>, the two line records `+2320`<sub>h</sub>, the path byte `+2378`<sub>h</sub> |
+| the display's `+28`<sub>h</sub> | `0017F940()`, through `001B5FA0` and `005C52D0` | read by the text interpreter and drawers `002AC2F0`, `002AC5F0`, `002AE610`, `002AF340`, `002B0280` and `002B2150` |
 | text painter | `0209D490`, `1108`<sub>h</sub> bytes, published in `[0209CC40]` by `002B3550` | the terminator `+10C8`<sub>h</sub>, tab stop `+10E0`<sub>h</sub>, columns `+10EC`<sub>h</sub>, line state `+10FC`<sub>h</sub>, justification `+1104`<sub>h</sub> ([Text codes](text-codes.md)) |
 | text context | the interpreter's argument (`002AC5F0`) | size, spacing, colour and pager state |
 

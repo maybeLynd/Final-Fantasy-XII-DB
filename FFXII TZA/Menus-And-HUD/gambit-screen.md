@@ -48,6 +48,10 @@ line follows the column (`00569E6D`):
 | condition | "Change the conditions under which an action is performed. ..." (`CEE`<sub>h</sub>) |
 | action | "Change which action is performed. ..." (`CEF`<sub>h</sub>) |
 
+`005678C0(column)` gives the help kind of a column from `00D234F8`: none, 4 and 5 for columns 0 to 2, and 8 or 9 for
+column 3, by the language test `00254A10` (`00569CB8`, `00569D87`, `00569DA8`). `00568AA0` paints a line's number in
+two digits (`0029F6E0`), nudging the second label for numbers below 10 unless `00254A10` is true.
+
 ### Changing set and character
 
 Bit 9 of the pressed or repeat word (`02F97392`, `02F97394`; R2 in the [Controls](../Controls-And-Input/controls.md) order) moves to the next of the
@@ -68,6 +72,9 @@ in the convention of [Dialogs](dialogs.md). Confirm runs `00567D80`:
 5. On another row's switch it moves the line there (`00567F90`) and saves.
 
 A move is an insertion: the lines between the old and new row shift one place, and the moved line takes the new row.
+While a line is held, `00568FE0` slides each line between the two rows by 4 a frame, and the editor's tick `005678F0`
+eases the scroll `+343`<sub>h</sub> (`00248F40`) and pulses the held line through `005682C0`: its level `+350`<sub>h</sub> swings between
+`80`<sub>h</sub> and `FF`<sub>h</sub> by `20`<sub>h</sub> a frame, and fades by 16 a frame once nothing is held.
 Cancel while a line is picked up returns it; cancel otherwise saves and closes all three editors (`005679D0`).
 
 ### Clearing a line
@@ -90,6 +97,24 @@ L1 and R1, or left and right, turn the page (`0056AAC0`, `0056AD50`), and the ta
 class (`0056ADA0`). An entry not yet owned is listed as the placeholder `4C7`<sub>h</sub>, with "Select conditions for an
 action." (`CD8`<sub>h</sub>) or "Select action to be performed." (`CD7`<sub>h</sub>) as its help, and cannot be picked (`0056BC70`,
 `0056A890`).
+
+The pages are built by `0056B100` (conditions, the page count from `00327BD0`) and `0056AE80` (actions, `00327BB0`),
+eight bytes a page from `+300`<sub>h</sub>, from the run state of `0056A3D0` and the tab colouring of `0056ADA0`:
+
+- each page's entries come from `0031EB20`; a page with none, or whose entries all have state `0F`<sub>h</sub>, gets colour
+  `87`<sub>h</sub> and is disabled (state 2 for conditions, 3 for actions);
+- a condition page is coloured by the target class `+38`<sub>h</sub> of its entries' class `B`<sub>h</sub> record: 1 `85`<sub>h</sub>, 2 `86`<sub>h</sub>,
+  3 `84`<sub>h</sub>; an action page by the class 1 record its item names (`0035D330(14h)` `+2C`<sub>h</sub>): 5 `8B`<sub>h</sub>, 8 `89`<sub>h</sub>,
+  9 `8A`<sub>h</sub>, else `88`<sub>h</sub>;
+- the page and row of the line's current entry go to `+595`<sub>h</sub> and `+599`<sub>h</sub>/`+59A`<sub>h</sub> (page 0, row 0 when absent), and an
+  entry equal to the argument with state 0 returns 1 and stores its page and row at the editor's `+334`<sub>h</sub>/`+335`<sub>h</sub>.
+
+The rows use painters at `+120`<sub>h</sub>: `0056BBD0` for a condition (the name, in colour 2 when its state byte is not 0)
+and `0056A780` for an action, which adds the icon frame and, when its byte `+11`<sub>h</sub> is set, the number `+0C`<sub>h</sub> with text
+`465F`<sub>h</sub> (`0029FF60`); the frame is hidden for an empty entry, id `96`<sub>h</sub>, or state `0F`<sub>h</sub>.
+
+`005678A0` re-attaches the member-scoped pane `[02CA96D8]` (`005677A0`) to the root `[0208EA28]` (`00246AD0`) for the
+two openers (`00282286`, `002D7270`).
 
 ### Refusals
 

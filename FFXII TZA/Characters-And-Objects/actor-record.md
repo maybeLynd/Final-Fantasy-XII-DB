@@ -33,6 +33,10 @@ record count at `+20`<sub>h</sub> ([actor managers](actor-managers.md)):
    `+1D8`<sub>h</sub>;
 4. `00266530(slot, block, i)` initialises every record.
 
+`0046BA50(m)` returns `[slot + 1F0h]` of manager `m` (`00263FF0`) when the slot's `+10`<sub>h</sub> bit 0 is set, and
+otherwise an empty table at `02CA6050`, whose count it zeroes; render and effect code walks records through it
+(`0031F607`, `0035E644`, `00465344`, `00465A84`).
+
 `00358940(slot, ordinal)` returns `[block + 8 + ordinal * 8]` for an ordinal below the count. The
 descriptor table at `01E0C328` has eight entries of `{u8 class, u8 sub, u16 size}`:
 

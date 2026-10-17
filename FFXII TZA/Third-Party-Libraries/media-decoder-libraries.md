@@ -292,9 +292,9 @@ One of the player's three frame queues, as the queue functions use it:
 | libwebm `mkvparser` | `007FFBC0` to `00808887` and three scattered vtable bodies; 104 functions in `media-decoder-libraries-libwebm-mkvparser.tsv` |
 | libvpx VP8 decoder | `0016DDD0` to `0017C88F`; 116 functions in `media-decoder-libraries-libvpx-vp8-decoder.tsv`, and the four control handlers the function list does not hold (`0016EE40`, `0016EE80`, `0016EFF0`, `0016F030`) in `media-decoder-libraries-libvpx-vp8-control-handlers.tsv` |
 | libvpx kernels | 63 in `media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`, `00125740` to `00158C09` |
-| libvorbis | `008800C0` to `008958AF`; 115 functions in `media-decoder-libraries-libvorbis.tsv` |
+| libvorbis | `008800C0` to `008958AF`; 118 functions in `media-decoder-libraries-libvorbis.tsv` |
 | CRI HCA decoder | `00121000` to `0012573F`; 53 functions in `media-decoder-libraries-cri-hca-decoder.tsv` |
-| Tremor with `vorbisfile` | `007F41A0` to `007F6FAF` and `007F7680` to `007FFBBF`; 99 functions in `media-decoder-libraries-tremor-vorbisfile.tsv` |
+| Tremor with `vorbisfile` | `007F41A0` to `007F6FAF` and `007F7680` to `007FFBBF`; 103 functions in `media-decoder-libraries-tremor-vorbisfile.tsv` |
 | libogg | `framing.c` 22 functions in `media-decoder-libraries-libogg-framing.tsv`; `bitwise.c` 4 in `media-decoder-libraries-libogg-bitwise.tsv` |
 | VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in `media-decoder-libraries-vp8-decoder-instance-accesses.tsv` and `media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv` |
 | encoder text | `mkvmuxer`, "VP8 Encoder" and "VP9" occur zero times |
