@@ -1,0 +1,15 @@
+function	name	site	disp	kind	instruction	route	note
+005AA0E0	FUN_005aa0e0	005AA0FE	0h	w	mov qword ptr [rcx], rax	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA101	30h	r	mov edx, dword ptr [rcx + 30h]	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA113	38h	r	mov rcx, qword ptr [rcx + 38h]	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA11F	38h	w	mov qword ptr [rbx + 38h], rdi	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA123	30h	w	mov dword ptr [rbx + 30h], edi	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA126	18h	r	mov eax, dword ptr [rbx + 18h]	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA132	20h	r	mov rcx, qword ptr [rbx + 20h]	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA141	20h	w	mov qword ptr [rbx + 20h], rdi	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA145	18h	w	mov dword ptr [rbx + 18h], edi	vtable-seeded 00D31548	
+005AA0E0	FUN_005aa0e0	005AA14F	0h	w	mov qword ptr [rbx], rax	vtable-seeded 00D31548	
+005C5120	FUN_005c5120	005C5120	10h	r	mov rax, qword ptr [rcx + 10h]	vtable-seeded 00D31548	
+005C6ED0	FUN_005c6ed0	005C6ED6	18h	r	mov edx, dword ptr [rcx + 18h]	vtable-seeded 00D31548	
+005C6ED0	FUN_005c6ed0	005C6EFE	20h	r	mov rdx, qword ptr [r9 + 20h]	vtable-seeded 00D31548	
+005CB620	FUN_005cb620	005CB65A	28h	r	mov rcx, qword ptr [rdi + 28h]	vtable-seeded 00D31548	

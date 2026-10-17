@@ -300,5 +300,3 @@ The status cycle record at the row's `+F0`<sub>h</sub>:
 - [Menus](menus.md) - request 3, choosing the leader.
 - [Controls](../Controls-And-Input/controls.md) - the button words.
 - [Widgets](widgets.md) - focus, priorities and the input turn.
-</content>
-</invoke>

@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+005A5090	FUN_005a5090	005A5097	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 005A5090	
+005A5090	FUN_005a5090	005A5099	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005A5090	
+005A5090	FUN_005a5090	005A509C	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 005A5090	

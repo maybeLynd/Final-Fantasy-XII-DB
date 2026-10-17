@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+006807F0	FUN_006807f0	006807F7	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 006807F0	
+006807F0	FUN_006807f0	006807FA	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 006807F0	
+006807F0	FUN_006807f0	006807FE	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 006807F0	
+006807F0	FUN_006807f0	00680802	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 006807F0	
+006807F0	FUN_006807f0	00680806	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 006807F0	

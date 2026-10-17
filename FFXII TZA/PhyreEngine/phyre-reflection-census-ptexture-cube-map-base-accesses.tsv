@@ -1,0 +1,8 @@
+function	name	site	disp	kind	instruction	route	note
+005D1700	FUN_005d1700	005D170C	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005D1700	
+005D1700	FUN_005d1700	005D1711	8h	w	mov word ptr [rdx + 8], 300h	ctorrdx-seeded 005D1700	
+005D1700	FUN_005d1700	005D1717	Ch	w	mov qword ptr [rdx + Ch], rax	ctorrdx-seeded 005D1700	
+005D1700	FUN_005d1700	005D171B	14h	w	mov dword ptr [rdx + 14h], eax	ctorrdx-seeded 005D1700	
+005D1700	FUN_005d1700	005D171E	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 005D1700	
+005D1700	FUN_005d1700	005D1722	28h	w	mov dword ptr [rdx + 28h], eax	ctorrdx-seeded 005D1700	
+005D1700	FUN_005d1700	005D1725	18h	w	mov dword ptr [rdx + 18h], 2	ctorrdx-seeded 005D1700	

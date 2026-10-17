@@ -1,0 +1,53 @@
+function	name	site	disp	kind	instruction	route	note
+00646590	FUN_00646590	006465A9	0h	w	mov qword ptr [rcx], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00646590	FUN_00646590	006465C6	0h	w	mov qword ptr [rbx], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00646600	FUN_00646600	00646619	0h	w	mov qword ptr [rcx], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00657150	FUN_00657150	0065715A	0h	r	mov rax, qword ptr [rcx]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B43B	0h	r	mov rax, qword ptr [rcx]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B472	0h	r	mov rax, qword ptr [rbx]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B8F0	FUN_0065b8f0	0065B90F	0h	r	mov rax, qword ptr [rcx]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00653B10	FUN_00653b10	00653B10	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00654B00	FUN_00654b00	00654B6A	10h	r	mov rdx, qword ptr [rbx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006571C0	FUN_006571c0	006571C0	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006572C0	FUN_006572c0	006572C6	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006572C0	FUN_006572c0	006572F3	10h	r	mov rax, qword ptr [rbx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006575E0	FUN_006575e0	006575E0	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B44F	10h	r	mov rax, qword ptr [rbx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B47B	10h	r	mov rax, qword ptr [rbx + 10h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006572C0	FUN_006572c0	006572F9	18h	w	mov qword ptr [rbx + 18h], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006575E0	FUN_006575e0	006575E4	18h	w	mov qword ptr [rcx + 18h], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B453	18h	r	cmp rax, qword ptr [rbx + 18h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006572C0	FUN_006572c0	0065730B	20h	w	mov qword ptr [rbx + 20h], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006575E0	FUN_006575e0	006575F1	20h	w	mov qword ptr [rcx + 20h], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B462	20h	r	cmp rcx, qword ptr [rbx + 20h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006572C0	FUN_006572c0	00657318	28h	w	mov qword ptr [rbx + 28h], rcx	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006575E0	FUN_006575e0	006575FE	28h	w	mov qword ptr [rcx + 28h], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006575E0	FUN_006575e0	00657605	28h	w	mov qword ptr [rcx + 28h], 0	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B468	28h	r	mov rax, qword ptr [rbx + 28h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00646590	FUN_00646590	006465C9	30h	r	mov ecx, dword ptr [rbx + 30h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00646590	FUN_00646590	006465F5	30h	w	mov dword ptr [rbx + 30h], eax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00654B00	FUN_00654b00	00654B9A	30h	r	mov edx, dword ptr [rbx + 30h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00654B00	FUN_00654b00	00654B9D	30h	addr	lea rax, [rbx + 30h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00659EC0	FUN_00659ec0	0065A353	30h	addr	lea rax, [rbx + 30h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00659EC0	FUN_00659ec0	0065A555	30h	addr	lea rax, [rbx + 30h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065A960	FUN_0065a960	0065B1D4	30h	addr	lea rax, [rdi + 30h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00646590	FUN_00646590	006465E0	38h	r	mov rcx, qword ptr [rbx + 38h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00646590	FUN_00646590	006465F1	38h	w	mov qword ptr [rbx + 38h], rax	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00654B00	FUN_00654b00	00654BB8	38h	r	mov rcx, qword ptr [rax + 8]	route-seeded CHAIN PDeferredLightingBase +000h base+30h	
+00654B00	FUN_00654b00	00654BC0	38h	addr	lea rcx, [rax + 8]	route-seeded CHAIN PDeferredLightingBase +000h base+30h	
+00655AC0	FUN_00655ac0	00655B5C	40h	w	mov byte ptr [rdi + 40h], 1	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00655DC0	FUN_00655dc0	00655E15	40h	w	mov byte ptr [rsi + 40h], 1	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00657690	FUN_00657690	0065769F	40h	r	cmp byte ptr [rcx + 40h], 0	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B400	FUN_0065b400	0065B414	40h	r	cmp byte ptr [rcx + 40h], 0	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+0065B8F0	FUN_0065b8f0	0065B8F4	40h	r	cmp byte ptr [rcx + 40h], 0	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+006571C0	FUN_006571c0	006571CF	41h	r	cmp byte ptr [rcx + 41h], 0	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00653CD0	FUN_00653cd0	00653CD0	44h	r	mov eax, dword ptr [rcx + 44h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00655AC0	FUN_00655ac0	00655B53	44h	w	mov dword ptr [rdi + 44h], r14d	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00655DC0	FUN_00655dc0	00655E12	44h	w	mov dword ptr [rsi + 44h], edi	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00657680	FUN_00657680	00657680	44h	w	mov dword ptr [rcx + 44h], edx	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00657690	FUN_00657690	006576B6	44h	w	mov dword ptr [rbx + 44h], esi	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00653B20	FUN_00653b20	00653B20	48h	r	mov eax, dword ptr [rcx + 48h]	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00655AC0	FUN_00655ac0	00655B59	48h	w	mov dword ptr [rdi + 48h], ebx	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00655DC0	FUN_00655dc0	00655E08	48h	w	mov dword ptr [rsi + 48h], ebx	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00657680	FUN_00657680	00657685	48h	w	mov dword ptr [rcx + 48h], r8d	route-seeded CHAIN PDeferredLightingBase +000h base+0h	
+00657690	FUN_00657690	006576BB	48h	w	mov dword ptr [rbx + 48h], edi	route-seeded CHAIN PDeferredLightingBase +000h base+0h	

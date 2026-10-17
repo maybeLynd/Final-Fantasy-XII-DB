@@ -1,0 +1,9 @@
+function	name	site	disp	kind	instruction	route	note
+005D5D80	FUN_005d5d80	005D5D8C	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5D91	8h	w	mov word ptr [rdx + 8], 300h	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5D97	Ch	w	mov qword ptr [rdx + Ch], rax	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5D9B	14h	w	mov dword ptr [rdx + 14h], eax	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5D9E	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5DA2	28h	w	mov qword ptr [rdx + 28h], rax	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5DA6	30h	w	mov dword ptr [rdx + 30h], eax	ctorrdx-seeded 005D5D80	
+005D5D80	FUN_005d5d80	005D5DA9	18h	w	mov dword ptr [rdx + 18h], 2	ctorrdx-seeded 005D5D80	

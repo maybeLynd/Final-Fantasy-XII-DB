@@ -115,14 +115,14 @@ allocates the new block (alignment 8) and copies the kept elements, and a failed
 
 ## Layouts
 
-PArray<T> (`10`<sub>h</sub>):
+PArray&lt;T&gt; (`10`<sub>h</sub>):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00`<sub>h</sub> | `u32` | m_count | element count in bits 0-30; bit 31 = storage not owned |
 | `08`<sub>h</sub> | `void*` | m_els | elements, or null |
 
-PSharray<T> (`10`<sub>h</sub>):
+PSharray&lt;T&gt; (`10`<sub>h</sub>):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -135,12 +135,12 @@ PString (8):
 |---|---|---|---|
 | `00`<sub>h</sub> | `void*` | text; bit 0 = not owned |  |
 
-PClassDataMemberArrayDynamic<T>, beyond the PClassDataMemberArray fields:
+PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `60`<sub>h</sub> | `void*` | count hook (005C4CC0) |  |
-| `68`<sub>h</sub> | `void*` | element-pointer hook: 00671250 for PSharray<PUInt32>, 0 for PArray<unsigned int,4> |  |
+| `68`<sub>h</sub> | `void*` | element-pointer hook: 00671250 for PSharray&lt;PUInt32&gt;, 0 for PArray&lt;unsigned int,4&gt; |  |
 | `70`<sub>h</sub> | `void*` | set-external hook |  |
 
 ## Shipped data

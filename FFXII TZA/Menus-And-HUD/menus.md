@@ -127,7 +127,7 @@ Four more verbs read or set menu state through helpers of their own:
 
 Selector 5 with bit 15, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
 selector 4, the notice board, 8 times; selector 0 with bit 15, the destination map, 18 times. Bit 15 makes the screen
-open with no fade (`0027FF6E`-`0027FF77`).
+open with no fade (`0027FF6D`-`0027FF77`).
 
 ### Delivery
 

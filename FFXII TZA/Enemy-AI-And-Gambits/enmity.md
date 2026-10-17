@@ -22,7 +22,7 @@ Every enemy remembers how much each party member has bothered it.
 
 ### The table
 
-The table lives in the enemy's spawn record at unit `+6A0`<sub>h</sub>, from `+19`<sub>h</sub> (`00321562`-`0032156D`):
+The table lives in the enemy's spawn record at unit `+6A0`<sub>h</sub>, from `+19`<sub>h</sub> (`00321553`-`0032156D`):
 
 | Byte | Meaning |
 |---|---|

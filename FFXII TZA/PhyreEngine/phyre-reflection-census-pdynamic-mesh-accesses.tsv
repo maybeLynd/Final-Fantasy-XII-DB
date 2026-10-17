@@ -1,0 +1,13 @@
+function	name	site	disp	kind	instruction	route	note
+00663080	FUN_00663080	0066309E	0h	w	mov qword ptr [rcx], rax	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630A1	20h	r	mov eax, dword ptr [rcx + 20h]	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630AD	28h	r	mov rcx, qword ptr [rcx + 28h]	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630BE	28h	w	mov qword ptr [rbx + 28h], rdi	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630C2	20h	w	mov dword ptr [rbx + 20h], edi	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630C5	10h	r	mov eax, dword ptr [rbx + 10h]	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630D1	18h	r	mov rcx, qword ptr [rbx + 18h]	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630E0	18h	w	mov qword ptr [rbx + 18h], rdi	vtable-seeded 00D68DF0	
+00663080	FUN_00663080	006630E4	10h	w	mov dword ptr [rbx + 10h], edi	vtable-seeded 00D68DF0	
+00671E80	FUN_00671e80	00671F46	28h	r	mov rax, qword ptr [r14 + 28h]	vtable-seeded 00D68DF0	
+00671E80	FUN_00671e80	00671F53	18h	r	mov rax, qword ptr [r14 + 18h]	vtable-seeded 00D68DF0	
+00671E80	FUN_00671e80	00671F87	0h	r	mov rax, qword ptr [r14]	vtable-seeded 00D68DF0	

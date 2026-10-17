@@ -121,7 +121,7 @@ record's first byte:
 - byte 0: point mode. The authored point stands. `0031AC90` gives the heading from the leader to
   the point (`atan2(dx, dz)`, or the leader's heading when the two coincide), `0031A930` the
   absolute wrapped difference, and the point passes the arc when that is at most
-  `(arcDeg / 2) * 2pi / 360` with an integer halving (`00234C0B`-`00234C2B`); then
+  `(arcDeg / 2) * 2pi / 360` with an integer halving (`00234BF8`-`00234C2B`); then
   `00234DA0(out, minR^2, maxR^2, outObserved, allSlots)` decides;
 - any other byte: area mode. Two draws of `00328370`: `r = (draw % (int)((maxR - minR) * 100)) / 100
   + minR`, quantised to a hundredth, and `theta = wrap(heading + ((draw % arcDeg) - arcDeg / 2) *

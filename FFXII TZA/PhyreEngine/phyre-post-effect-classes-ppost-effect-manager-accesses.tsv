@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+00642F50	FUN_00642f50	00642F57	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 00642F50	
+00642F50	FUN_00642f50	00642F59	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 00642F50	
+00642F50	FUN_00642f50	00642F5D	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 00642F50	
+00642F50	FUN_00642f50	00642F61	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 00642F50	
+00642F50	FUN_00642f50	00642F65	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 00642F50	

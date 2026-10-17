@@ -135,7 +135,7 @@ The settings are `GameSetting.ini` keys at `[01F82D20]` ([Game settings](../Savi
   old value.
 
 The row widget `0023B6F0` keeps the shown value at `+C4`<sub>h</sub> and the applied one at `+C8`<sub>h</sub>. On the notice `2CA5`<sub>h</sub>
-it applies the shown value and keeps it; on `2CA4`<sub>h</sub> it applies the kept value again (`0023B76A`-`0023B7B2`). Both
+it applies the shown value and keeps it; on `2CA4`<sub>h</sub> it applies the kept value again (`0023B769`-`0023B7B2`). Both
 go through `0017E540(row, value)`:
 
 - Display Adapter: `001DC650` and `001DC7A0` on the display object `001DDAB0`.

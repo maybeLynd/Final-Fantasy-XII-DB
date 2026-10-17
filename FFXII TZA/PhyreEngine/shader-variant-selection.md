@@ -143,7 +143,7 @@ Light output record (caller's stack, `0060B980` [rbp+`100`<sub>h</sub>]):
 | `01F2ECE0` | `LOW_RES_PARTICLES` | `00D80FE8` `PContextSwitchLowResParticles` | `006B9050` |
 
 The per-switch installers, teardown stubs and all four slots are in
-[shader-variant-selection-context-switch-family.tsv](shader-variant-selection-context-switch-family.tsv).
+shader-variant-selection-context-switch-family.tsv.
 Instruction-level accesses to the D3D11 shader pass state are in
 [shader-variant-selection-p-shader-pass-state-d3d11-accesses.tsv](shader-variant-selection-p-shader-pass-state-d3d11-accesses.tsv).
 

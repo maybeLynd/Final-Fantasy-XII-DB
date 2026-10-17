@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+0051F9F0	FUN_0051f9f0	0051FA60	0h	w	mov qword ptr [rax - 8], FFFFFFFFFFFFFFFFh	route-seeded ARRAY 02CA74A0h stride=20h count=5 base+8h	
+0051F9F0	FUN_0051f9f0	0051FA68	8h	w	mov dword ptr [rax], FFFFFFFFh	route-seeded ARRAY 02CA74A0h stride=20h count=5 base+8h	
+0051F9F0	FUN_0051f9f0	0051FA6E	14h	w	mov qword ptr [rax + Ch], rdi	route-seeded ARRAY 02CA74A0h stride=20h count=5 base+8h	

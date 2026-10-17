@@ -1,0 +1,29 @@
+function	name	site	disp	kind	instruction	route	note
+0019A860	FUN_0019a860	0019A8B2	0h	r	cmp byte ptr [rcx], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019A860	FUN_0019a860	0019A8E3	0h	r	cmp byte ptr [rax], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019A860	FUN_0019a860	0019A965	0h	r	cmp byte ptr [rcx], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AA83	0h	r	cmp byte ptr [rdx], bl	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AB77	0h	r	cmp byte ptr [rax], bl	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019ACFD	0h	r	cmp byte ptr [rdx], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019B070	FUN_0019b070	0019B098	0h	r	cmp qword ptr [rax], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019B130	FUN_0019b130	0019B146	0h	w	mov byte ptr [rax], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019B130	FUN_0019b130	0019B14D	0h	w	mov byte ptr [rax], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019B130	FUN_0019b130	0019B154	0h	w	mov byte ptr [rax], 0	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+001F41A0	FUN_001f41a0	001F41D0	0h	r	mov rcx, qword ptr [rdi]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+001F41A0	FUN_001f41a0	001F41DD	0h	w	mov qword ptr [rdi], rsi	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019A860	FUN_0019a860	0019A8BF	8h	r	mov rcx, qword ptr [rcx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019A860	FUN_0019a860	0019A94D	8h	r	mov rcx, qword ptr [rcx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019A860	FUN_0019a860	0019A972	8h	r	mov rcx, qword ptr [rcx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AAA3	8h	r	mov r8, qword ptr [rdx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AABF	8h	r	mov rax, qword ptr [rdx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AC76	8h	r	mov r8, qword ptr [r8 + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AC95	8h	r	mov rdx, qword ptr [rcx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AD1F	8h	r	mov r8, qword ptr [rdx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AD3C	8h	r	mov rax, qword ptr [rdx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+001F4120	FUN_001f4120	001F414B	8h	addr	lea rdi, [rbx + 8]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019A860	FUN_0019a860	0019A8DB	10h	r	sub r15d, dword ptr [rax + 10h]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AB26	10h	r	mov r8d, dword ptr [rax + 10h]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AB65	10h	r	mov r14d, dword ptr [rax + 10h]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AD96	10h	r	mov r8d, dword ptr [rax + 10h]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019ADCD	10h	r	add r14d, dword ptr [rax + 10h]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	
+0019AA20	FUN_0019aa20	0019AB2A	14h	r	mov edx, dword ptr [rax + 14h]	route-seeded CHAIN SlowReaderRecord +08h | CHAIN SlowReaderRecord +10h | CHAIN SlowReaderRecord +18h base+0h	

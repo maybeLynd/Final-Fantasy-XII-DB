@@ -1,0 +1,25 @@
+function	name	site	disp	kind	instruction	route	note
+00660470	FUN_00660470	00660497	0h	w	mov qword ptr [rdx], rdi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	0066049A	8h	w	mov dword ptr [rdx + 8], edi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	0066049D	10h	w	mov qword ptr [rdx + 10h], rdi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	006604A1	18h	w	mov dword ptr [rdx + 18h], edi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	006604A4	1Ch	w	mov word ptr [rdx + 1Ch], 300h	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	006604AE	20h	w	mov dword ptr [rcx], edi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	006604B8	70h	w	mov qword ptr [rbx + 70h], rdi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	006604BC	78h	w	mov dword ptr [rbx + 78h], edi	ctorrdx-seeded 00660470	
+00660470	FUN_00660470	006604BF	80h	w	mov qword ptr [rbx + 80h], rdi	ctorrdx-seeded 00660470	
+0066F5F0	FUN_0066f5f0	0066F649	28h	w	mov qword ptr [rax], r9	ctorrdx-seeded 00660470	
+0066F5F0	FUN_0066f5f0	0066F649	70h	w	mov qword ptr [rax], r9	ctorrdx-seeded 00660470	enumerated-base
+0066F5F0	FUN_0066f5f0	0066F64C	30h	w	mov qword ptr [rcx - 8], r9	ctorrdx-seeded 00660470	
+0066F5F0	FUN_0066f5f0	0066F64C	78h	w	mov qword ptr [rcx - 8], r9	ctorrdx-seeded 00660470	enumerated-base
+0066F5F0	FUN_0066f5f0	0066F650	38h	w	mov qword ptr [rcx], r9	ctorrdx-seeded 00660470	
+0066F5F0	FUN_0066f5f0	0066F650	80h	w	mov qword ptr [rcx], r9	ctorrdx-seeded 00660470	enumerated-base
+0066F5F0	FUN_0066f5f0	0066F653	40h	w	mov qword ptr [rcx + 8], r9	ctorrdx-seeded 00660470	
+0066F5F0	FUN_0066f5f0	0066F657	48h	w	mov dword ptr [rcx + 10h], r9d	ctorrdx-seeded 00660470	
+0066F5F0	FUN_0066f5f0	0066F65B	50h	w	mov qword ptr [rcx + 18h], r10	ctorrdx-seeded 00660470	
+006725F0	FUN_006725f0	00672609	20h	r	mov ecx, dword ptr [rcx]	ctorrdx-seeded 00660470	
+006725F0	FUN_006725f0	0067260F	20h	r	cmp edx, dword ptr [rbx]	ctorrdx-seeded 00660470	
+006725F0	FUN_006725f0	00672618	28h	r	mov rdi, qword ptr [rbx + 8]	ctorrdx-seeded 00660470	
+006725F0	FUN_006725f0	00672656	20h	r	mov eax, dword ptr [rbx]	ctorrdx-seeded 00660470	
+006725F0	FUN_006725f0	00672673	28h	w	mov qword ptr [r14], rsi	ctorrdx-seeded 00660470	
+006725F0	FUN_006725f0	0067267B	20h	w	mov dword ptr [rbx], ebp	ctorrdx-seeded 00660470	

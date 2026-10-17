@@ -1,0 +1,7 @@
+function	name	site	disp	kind	instruction	route	note
+0065F340	FUN_0065f340	0065F347	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0065F340	
+0065F340	FUN_0065f340	0065F34A	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0065F340	
+0065F340	FUN_0065f340	0065F34E	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 0065F340	
+0065F340	FUN_0065f340	0065F352	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 0065F340	
+0065F340	FUN_0065f340	0065F356	20h	w	mov dword ptr [rdx + 20h], eax	ctorrdx-seeded 0065F340	
+0065F340	FUN_0065f340	0065F360	28h	w	mov qword ptr [rdx + 28h], rax	ctorrdx-seeded 0065F340	

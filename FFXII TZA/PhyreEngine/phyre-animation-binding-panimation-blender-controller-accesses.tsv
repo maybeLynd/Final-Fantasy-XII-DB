@@ -1,0 +1,21 @@
+function	name	site	disp	kind	instruction	route	note
+005AC9B0	FUN_005ac9b0	005AC9D0	0h	w	mov qword ptr [rcx], rax	vtable-seeded 00D315B0	
+005AC9B0	FUN_005ac9b0	005AC9D3	18h	r	mov eax, dword ptr [rcx + 18h]	vtable-seeded 00D315B0	
+005AC9B0	FUN_005ac9b0	005AC9DF	20h	r	mov rcx, qword ptr [rcx + 20h]	vtable-seeded 00D315B0	
+005AC9B0	FUN_005ac9b0	005AC9F0	20h	w	mov qword ptr [rbx + 20h], rax	vtable-seeded 00D315B0	
+005AC9B0	FUN_005ac9b0	005AC9F4	18h	w	mov dword ptr [rbx + 18h], eax	vtable-seeded 00D315B0	
+005AC9B0	FUN_005ac9b0	005AC9FE	0h	w	mov qword ptr [rbx], rax	vtable-seeded 00D315B0	
+005C3A20	FUN_005c3a20	005C3A20	18h	r	mov eax, dword ptr [rcx + 18h]	vtable-seeded 00D315B0	
+005C52B0	FUN_005c52b0	005C52B0	18h	r	mov eax, dword ptr [rcx + 18h]	vtable-seeded 00D315B0	
+005C52B0	FUN_005c52b0	005C52BB	20h	r	mov rax, qword ptr [rcx + 20h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9F44	18h	r	mov esi, dword ptr [rcx + 18h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9F54	18h	r	mov r8d, dword ptr [rcx + 18h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9F5D	18h	r	cmp edx, dword ptr [rcx + 18h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9F69	20h	r	mov rdx, qword ptr [rcx + 20h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9F85	20h	r	mov rcx, qword ptr [rbx + 20h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9F8E	18h	r	mov eax, dword ptr [rbx + 18h]	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9FA4	20h	w	mov qword ptr [rbx + 20h], rbp	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9FA8	18h	w	mov dword ptr [rbx + 18h], edi	vtable-seeded 00D315B0	
+005C9F30	FUN_005c9f30	005C9FC0	20h	r	mov rax, qword ptr [rbx + 20h]	vtable-seeded 00D315B0	
+005CB4F0	FUN_005cb4f0	005CB52C	18h	r	mov ebp, dword ptr [rsi + 18h]	vtable-seeded 00D315B0	
+005CB4F0	FUN_005cb4f0	005CB540	20h	r	mov rax, qword ptr [rsi + 20h]	vtable-seeded 00D315B0	

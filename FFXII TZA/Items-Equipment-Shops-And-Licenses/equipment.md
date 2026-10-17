@@ -37,7 +37,7 @@ hands with `00318B40`. When the slot it set has changed, it rebuilds the stats w
 refreshes the unit (`00324470`). Only that slot is compared (`0031A6BB`, `0031A4B2`, `0031A5DA`).
 
 `0031A510` also
-re-records the fighting units and reloads their models (`00324380`) unless `flags` bit 0 is set (`0031A5F8`-`0031A606`);
+re-records the fighting units and reloads their models (`00324380`) unless `flags` bit 0 is set (`0031A5F5`-`0031A610`);
 the five-slot callers `0031A710` and `0031A300` pass bit 0 and do that once at the end.
 
 The worn counts are kept only while the member is in the party: joining adds an owned and a worn copy of every

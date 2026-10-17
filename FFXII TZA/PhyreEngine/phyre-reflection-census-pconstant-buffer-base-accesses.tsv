@@ -1,0 +1,3 @@
+function	name	site	disp	kind	instruction	route	note
+005CE780	FUN_005ce780	005CE787	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005CE780	
+005CE780	FUN_005ce780	005CE78A	8h	w	mov byte ptr [rdx + 8], al	ctorrdx-seeded 005CE780	

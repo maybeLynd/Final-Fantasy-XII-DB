@@ -1,0 +1,8 @@
+function	name	site	disp	kind	instruction	route	note
+0067C660	FUN_0067c660	0067C667	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0067C660	
+0067C660	FUN_0067c660	0067C66A	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0067C660	
+0067C660	FUN_0067c660	0067C66E	14h	w	mov qword ptr [rdx + 14h], rax	ctorrdx-seeded 0067C660	
+0067C660	FUN_0067c660	0067C672	2Ch	w	mov byte ptr [rdx + 2Ch], al	ctorrdx-seeded 0067C660	
+0067C660	FUN_0067c660	0067C675	10h	w	mov dword ptr [rdx + 10h], eax	ctorrdx-seeded 0067C660	
+0067C660	FUN_0067c660	0067C678	1Ch	w	mov qword ptr [rdx + 1Ch], rax	ctorrdx-seeded 0067C660	
+0067C660	FUN_0067c660	0067C67C	24h	w	mov qword ptr [rdx + 24h], rax	ctorrdx-seeded 0067C660	

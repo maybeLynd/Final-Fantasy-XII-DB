@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+006C0A80	FUN_006c0a80	006C0A87	C8h	w	mov qword ptr [rdx + C8h], 41200000h	ctorrdx-seeded 006C0A80	
+006C0A80	FUN_006c0a80	006C0A92	C0h	w	mov qword ptr [rdx + C0h], rax	ctorrdx-seeded 006C0A80	
+006C0A80	FUN_006c0a80	006C0A99	D0h	w	mov qword ptr [rdx + D0h], 41200000h	ctorrdx-seeded 006C0A80	
+006C0A80	FUN_006c0a80	006C0AA4	D8h	w	mov qword ptr [rdx + D8h], rax	ctorrdx-seeded 006C0A80	
+006C0A80	FUN_006c0a80	006C0AAB	E0h	w	mov dword ptr [rdx + E0h], eax	ctorrdx-seeded 006C0A80	

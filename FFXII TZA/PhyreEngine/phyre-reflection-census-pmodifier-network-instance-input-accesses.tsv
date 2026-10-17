@@ -1,0 +1,5 @@
+function	name	site	disp	kind	instruction	route	note
+006C2960	FUN_006c2960	006C2967	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 006C2960	
+006C2960	FUN_006c2960	006C296B	0h	w	mov qword ptr [rdx], FFFFFFFFFFFFFFFFh	ctorrdx-seeded 006C2960	
+006C2960	FUN_006c2960	006C2972	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 006C2960	
+006C2960	FUN_006c2960	006C2976	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 006C2960	

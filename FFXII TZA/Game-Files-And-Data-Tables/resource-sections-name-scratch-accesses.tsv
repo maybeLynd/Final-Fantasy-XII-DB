@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+00409210	FUN_00409210	0040921B	0h	w	mov qword ptr [rcx], rax	route-seeded STATIC 02B62E20h base+0h zeroclear	
+00409210	FUN_00409210	0040921E	8h	w	mov qword ptr [rcx + 8], rax	route-seeded STATIC 02B62E20h base+0h zeroclear	
+00409210	FUN_00409210	00409222	10h	w	mov qword ptr [rcx + 10h], rax	route-seeded STATIC 02B62E20h base+0h zeroclear	
+00409210	FUN_00409210	0040922A	18h	w	mov qword ptr [rcx + 18h], rax	route-seeded STATIC 02B62E20h base+0h zeroclear	
+00409210	FUN_00409210	00409234	1Fh	w	mov byte ptr [rbx + 1Fh], 0	route-seeded STATIC 02B62E20h base+0h	

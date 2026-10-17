@@ -44,7 +44,7 @@ a town, loads those slots' actors from the general pool.
 ### The two tests
 
 `00377440(id)` reads the list at `02ADD0A8`: no list, an empty list or an id not in it all count as absent
-(`00377440`-`00377478`). `00377480(id)` returns bit 15 of the id's record in the field record table `02ADD100`,
+(`00377440`-`0037747A`). `00377480(id)` returns bit 15 of the id's record in the field record table `02ADD100`,
 the town bit ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)), and 0 for an id outside the table.
 So the summon memory heap is made only for fields that are not towns.
 

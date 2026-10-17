@@ -1,0 +1,23 @@
+function	name	site	disp	kind	instruction	route	note
+005DC400	FUN_005dc400	005DC400	58h	w	mov dword ptr [rcx], 1010105h	ctor-seeded 006C0EB0	
+005DC400	FUN_005dc400	005DC408	5Ch	w	mov byte ptr [rcx + 4], 1	ctor-seeded 006C0EB0	
+005DC400	FUN_005dc400	005DC40C	60h	w	mov dword ptr [rcx + 8], eax	ctor-seeded 006C0EB0	
+005DC400	FUN_005dc400	005DC40F	6Ch	w	mov dword ptr [rcx + 14h], eax	ctor-seeded 006C0EB0	
+005DC400	FUN_005dc400	005DC415	64h	w	mov qword ptr [rcx + Ch], 3F800000h	ctor-seeded 006C0EB0	
+005DC400	FUN_005dc400	005DC41D	70h	w	mov qword ptr [rcx + 18h], 400h	ctor-seeded 006C0EB0	
+00615CD0	FUN_00615cd0	00615CE1	78h	w	mov qword ptr [rbx + 20h], 0	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0ECD	0h	w	mov qword ptr [rdi], rcx	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0ED7	8h	w	mov qword ptr [rdi + 8], rax	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0EDB	10h	w	mov dword ptr [rdi + 10h], ecx	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0EDE	18h	w	mov qword ptr [rdi + 18h], rcx	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0EE2	50h	w	mov dword ptr [rdi + 50h], 3727C5ACh	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0EFA	74h	r	mov eax, dword ptr [rbx + 1Ch]	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F04	58h	w	mov byte ptr [rbx], 1	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F07	74h	r	mov eax, dword ptr [rbx + 1Ch]	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F11	59h	w	mov byte ptr [rbx + 1], 1	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F15	74h	r	mov eax, dword ptr [rbx + 1Ch]	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F1F	5Ah	w	mov byte ptr [rbx + 2], 2	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F23	74h	r	mov eax, dword ptr [rbx + 1Ch]	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F2D	5Bh	w	mov byte ptr [rbx + 3], 2	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F31	74h	r	mov ecx, dword ptr [rbx + 1Ch]	ctor-seeded 006C0EB0	
+006C0EB0	FUN_006c0eb0	006C0F40	74h	w	mov dword ptr [rbx + 1Ch], ecx	ctor-seeded 006C0EB0	

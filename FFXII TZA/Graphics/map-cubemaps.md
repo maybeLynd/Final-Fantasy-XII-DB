@@ -132,7 +132,7 @@ Probe (`001AA840`), pointed to from manager +`F0`<sub>h</sub>:
 | `34`<sub>h</sub> | `f32` | current weight | `001ABF50` |
 | `38`<sub>h</sub> | `u32` | index |  |
 | `40`<sub>h</sub> | `u8` | enabled | 1 |
-| `44`<sub>h</sub> | `u32` | variant | the _e<v> set in use |
+| `44`<sub>h</sub> | `u32` | variant | the _e&lt;v&gt; set in use |
 
 ```python
 cubeMapConfigs.txt, CRLF text

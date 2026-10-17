@@ -1,0 +1,39 @@
+function	name	site	disp	kind	instruction	route	note
+00409600	ResourceEntry_GetResolvedBasePointer	00409648	0h	addr	lea rcx, [rbx + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+00409780	ResourceEntry_FindSectionIndexAndOffset	00409805	0h	addr	lea rcx, [rbx + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+00409960	FUN_00409960	004099D8	0h	addr	lea rdx, [rdi + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+00409A60	FUN_00409a60	00409BAF	0h	addr	lea rcx, [r14 + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+00409A60	FUN_00409a60	00409BBE	0h	addr	lea rcx, [r14 + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+00409A60	FUN_00409a60	00409BD0	0h	addr	lea rcx, [r14 + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+0051EE10	FUN_0051ee10	0051EE1A	0h	w	mov dword ptr [rcx], eax	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EEC9	0h	r	mov edx, dword ptr [rcx]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EF73	0h	w	movaps xmmword ptr [rdi], xmm0	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051F020	FUN_0051f020	0051F035	0h	r	mov edx, dword ptr [rcx]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+00409FE0	FUN_00409fe0	0040A073	8h	r	mov rbp, qword ptr [rdi + 18h]	route-seeded EMBED RenderResourceEntry +10h base+0x-10	
+0051EE00	FUN_0051ee00	0051EE00	8h	r	mov rcx, qword ptr [rcx + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE10	FUN_0051ee10	0051EE1C	8h	w	mov qword ptr [rcx + 8], rax	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE30	FUN_0051ee30	0051EE40	8h	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EED8	8h	r	cmp qword ptr [rdi + 8], 0	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EF19	8h	r	mov rcx, qword ptr [rdi + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EF56	8h	r	mov rcx, qword ptr [rdi + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF80	FUN_0051ef80	0051EF80	8h	r	mov rcx, qword ptr [rcx + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF90	FUN_0051ef90	0051EFE9	8h	r	mov rcx, qword ptr [rdi + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051F020	FUN_0051f020	0051F044	8h	w	mov qword ptr [rdi + 8], rax	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051F020	FUN_0051f020	0051F055	8h	r	mov rcx, qword ptr [rdi + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+006B5C70	FUN_006b5c70	006B5C70	8h	r	mov rax, qword ptr [rcx + 8]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE10	FUN_0051ee10	0051EE20	10h	w	mov dword ptr [rcx + 10h], eax	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE30	FUN_0051ee30	0051EE58	10h	r	mov eax, dword ptr [rdi + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EF0C	10h	r	mov ecx, dword ptr [rdi + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EF30	10h	r	mov eax, dword ptr [rdi + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EF76	10h	w	movaps xmmword ptr [rdi + 10h], xmm1	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF90	FUN_0051ef90	0051EFAA	10h	r	mov ecx, dword ptr [rcx + 10h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051F020	FUN_0051f020	0051F048	10h	w	mov dword ptr [rdi + 10h], esi	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE10	FUN_0051ee10	0051EE12	14h	w	mov qword ptr [rcx + 14h], 800h	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE30	FUN_0051ee30	0051EE5E	14h	r	mov eax, dword ptr [rdi + 14h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EEDD	14h	r	mov r9d, dword ptr [rdi + 14h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF90	FUN_0051ef90	0051EFBC	14h	r	mov r9d, dword ptr [rdi + 14h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EE30	FUN_0051ee30	0051EE64	18h	r	mov eax, dword ptr [rdi + 18h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EEB0	FUN_0051eeb0	0051EEE6	18h	r	mov r9d, dword ptr [rdi + 18h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF90	FUN_0051ef90	0051EFB0	18h	r	mov r9d, dword ptr [rdi + 18h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF90	FUN_0051ef90	0051EFF2	18h	r	add eax, dword ptr [rdi + 18h]	route-seeded EMBED RenderResourceEntry +10h base+0h	
+0051EF90	FUN_0051ef90	0051F002	18h	rw	add dword ptr [rdi + 18h], esi	route-seeded EMBED RenderResourceEntry +10h base+0h	

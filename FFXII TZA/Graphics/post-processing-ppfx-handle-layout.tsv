@@ -1,0 +1,353 @@
+this_offset	base	kind	count	name	site
+A0h	r14	inline 48h	1	(built string)	0072A4D4
+A4h	r14	inline 48h	1	(built string)	0072A4ED
+A8h	r14	inline 48h	1	(built string)	0072A506
+ACh	r14	inline 48h	1	(built string)	0072A51F
+B0h	r14	inline 48h	1	(built string)	0072A538
+B4h	r14	inline 48h	1	(built string)	0072A551
+B8h	r14	inline 48h	1	(built string)	0072A56A
+BCh	r14	inline 48h	1	(built string)	0072A583
+C0h	r14	inline 48h	1	(built string)	0072A59C
+C4h	r14	inline 48h	1	(built string)	0072A5B5
+C8h	r14	inline 48h	1	(built string)	0072A5CE
+CCh	r14	inline 48h	1	(built string)	0072A5E7
+D0h	r14	inline 48h	1	(built string)	0072A600
+D4h	r14	inline 48h	1	(built string)	0072A619
+D8h	r14	inline 48h	1	(built string)	0072A632
+DCh	r14	inline 48h	1	(built string)	0072A64B
+E0h	r14	inline 48h	1	(built string)	0072A664
+E4h	r14	inline 48h	1	(built string)	0072A67D
+E8h	r14	inline 48h	1	(built string)	0072A696
+ECh	r14	inline 48h	1	(built string)	0072A6AF
+F0h	r14	inline 48h	1	(built string)	0072A6C8
+F4h	r14	inline 48h	1	(built string)	0072A6E1
+F8h	r14	inline 48h	1	(built string)	0072A6FA
+FCh	r14	inline 48h	1	(built string)	0072A713
+100h	r14	inline 48h	1	(built string)	0072A72C
+104h	r14	inline 48h	1	(built string)	0072A745
+108h	r14	inline 48h	1	(built string)	0072A75E
+10Ch	r14	inline 48h	1	(built string)	0072A777
+110h	r14	inline 48h	1	(built string)	0072A790
+114h	r14	inline 48h	1	(built string)	0072A7A9
+118h	r14	inline 48h	1	(built string)	0072A7C2
+11Ch	r14	suffix-family	32	tech_MadT1_Sn	0072A7E3
+C1Ch	r14	suffix-family	32	tech_MadScalarWeightT1_Sn	0072A7FF
+171Ch	r14	suffix-family	32	tech_MadAlphaT1_Sn	0072A81B
+221Ch	r14	suffix-family	32	tech_MadT2_Sn	0072A837
+2D1Ch	r14	suffix-family	1	tech_MadAlphaColorT2_R_Sn	0072A872
+329Ch	r14	suffix-family	1	tech_MadAlphaColorT2_G_Sn	0072A88B
+381Ch	r14	suffix-family	1	tech_MadAlphaColorT2_B_Sn	0072A8A4
+3D9Ch	r14	suffix-family	1	tech_MadAlphaColorT2_A_Sn	0072A8BD
+431Ch	r14	inline 60h	1	tech_Alpha_R	0072A8CF
+4320h	r14	inline 60h	1	tech_Alpha_G	0072A8E6
+4324h	r14	inline 60h	1	tech_Alpha_B	0072A8FD
+4328h	r14	inline 60h	1	tech_Alpha_A	0072A914
+432Ch	r14	suffix-family	16	tech_TexCoordOffsetMadTn	0072A933
+48ACh	r14	suffix-family	16	tech_MadTn	0072A94D
+4E2Ch	r14	suffix-family	16	tech_MadLumGammaTn	0072A967
+53ACh	r14	suffix-family	16	tech_MadOffsetTn	0072A981
+592Ch	r14	suffix-family	1	tech_MadOffsetVignetteTn	0072A9CE
+5EACh	r14	suffix-family	1	tech_MadOffsetVignetteSimulateTn	0072A9E7
+642Ch	r14	suffix-family	16	tech_MaxColorTn	0072A99B
+69ACh	r14	suffix-family	16	tech_MaxColorLumGammaTn	0072A9B5
+6F2Ch	r14	suffix-family	4	tech_MadColorGradingLutT1_Sn	0072A853
+7194h	r14	suffix-family	1	tech_BrightPassT1_THRESHOLD_Sn	0072AA34
+71ECh	r14	suffix-family	1	tech_BrightPassT1_Vignette_THRESHOLD_Sn	0072AA7F
+7244h	r14	suffix-family	1	tech_BrightPassT1_VignetteSimulate_THRESHOLD_Sn	0072AACA
+729Ch	r14	suffix-family	1	tech_BrightPassT1_THRESHOLD_LUMINANCE_Sn	0072AA4D
+72F4h	r14	suffix-family	1	tech_BrightPassT1_Vignette_THRESHOLD_LUMINANCE_Sn	0072AA98
+734Ch	r14	suffix-family	1	tech_BrightPassT1_VignetteSimulate_THRESHOLD_LUMINANCE_Sn	0072AAE3
+73A4h	r14	suffix-family	1	tech_BrightPassT1_THRESHOLD_LUMINANCE_REMAP_Sn	0072AA66
+73FCh	r14	suffix-family	1	tech_BrightPassT1_Vignette_THRESHOLD_LUMINANCE_REMAP_Sn	0072AAB1
+7454h	r14	suffix-family	1	tech_BrightPassT1_VignetteSimulate_THRESHOLD_LUMINANCE_REMAP_Sn	0072AAFC
+74ACh	r14	inline 60h	1	tech_LightShaftMask	0072AB0E
+74B0h	r14	inline 60h	1	tech_LightShaftMask_SM3	0072AB25
+74B4h	r14	inline 60h	1	tech_Corona	0072AB3C
+75C0h	r14	inline 60h	1	tech_MedianFilter_Separablex3x3	0072AE5D
+75C4h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGen_DepthR	0072AEE7
+75C8h	r14	inline 60h	1	tech_GenerateNormalDepth_NormRGB_DepthR	0072AF5A
+75CCh	r14	inline 60h	1	tech_GenerateNormalDepth_NormGenMan_DepthR	0072AE74
+75D0h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGen_DepthG	0072AEFE
+75D4h	r14	inline 60h	1	tech_GenerateNormalDepth_NormRGB_DepthG	0072AF71
+75D8h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGenMan_DepthG	0072AE8B
+75DCh	r14	inline 60h	1	tech_GenerateNormalDepth_NormGen_DepthB	0072AF15
+75E0h	r14	inline 60h	1	tech_GenerateNormalDepth_NormRGB_DepthB	0072AF88
+75E4h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGenMan_DepthB	0072AEA2
+75E8h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGen_DepthA	0072AF2C
+75ECh	r14	inline 60h	1	tech_GenerateNormalDepth_NormRGB_DepthA	0072AF9F
+75F0h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGenMan_DepthA	0072AEB9
+75F4h	r14	inline 60h	1	tech_GenerateNormalDepth_NormGen_DepthRGBA8	0072AF43
+75F8h	r14	inline 60h	1	tech_GenerateNormalDepth_NormRGB_DepthRGBA8	0072AFB6
+75FCh	r14	inline 60h	1	tech_GenerateNormalDepth_NormGenMan_DepthRGBA8	0072AED0
+7618h	r14	numbered-family	64	tech_AlchemySsao_T1_Sn	0072AFD5
+7718h	r14	numbered-family	8	tech_CrossBilateralForSsao_Sn	0072AFEF
+7738h	r14	numbered-family	8	tech_CrossBilateralForSsao_MC_Sn	0072B009
+7778h	r14	numbered-family	8	tech_CrossBilateralForSsao_MC_R_Sn	0072B023
+7798h	r14	numbered-family	8	tech_CrossBilateralForSsao_MC_G_Sn	0072B03D
+77B8h	r14	numbered-family	8	tech_CrossBilateralForSsao_MC_B_Sn	0072B057
+77D8h	r14	numbered-family	8	tech_CrossBilateralForSsao_MC_A_Sn	0072B071
+77F8h	r14	numbered-family	8	tech_CrossBilateralForSsao_MC_RGB_Sn	0072B08B
+7818h	r14	inline 60h	1	tech_TemporalAntialias	0072B09D
+781Ch	r14	inline 60h	1	tech_TemporalAntialias_DynamicPixel	0072B0B4
+7820h	r14	inline 60h	1	tech_TemporalAntialias_DynamicPixel_DepthR	0072B0CB
+7824h	r14	inline 60h	1	tech_TemporalAntialias_DynamicPixel_DepthG	0072B0E2
+7828h	r14	inline 60h	1	tech_TemporalAntialias_DynamicPixel_DepthB	0072B0F9
+782Ch	r14	inline 60h	1	tech_TemporalAntialias_DynamicPixel_DepthA	0072B110
+7830h	r14	inline 60h	1	tech_TemporalAntialias_DynamicPixel_DepthRGBA8	0072B127
+783Ch	r14	inline 60h	1	tech_TemporalAntialias_Tonemap	0072B13E
+7840h	r14	inline 60h	1	tech_TemporalAntialias_Tonemap_DynamicPixel	0072B155
+7844h	r14	inline 60h	1	tech_TemporalAntialias_Tonemap_DynamicPixel_DepthR	0072B16C
+7848h	r14	inline 60h	1	tech_TemporalAntialias_Tonemap_DynamicPixel_DepthG	0072B183
+784Ch	r14	inline 60h	1	tech_TemporalAntialias_Tonemap_DynamicPixel_DepthB	0072B19A
+7850h	r14	inline 60h	1	tech_TemporalAntialias_Tonemap_DynamicPixel_DepthA	0072B1B1
+7854h	r14	inline 60h	1	tech_TemporalAntialias_Tonemap_DynamicPixel_DepthRGBA8	0072B1C8
+7860h	r14	suffix-family	8	tech_DepthOfField_CompositeBlurredLevels_Tn	0072AB9D
+7B20h	r14	suffix-family	8	tech_DepthOfField_CompositeBlurredLevels_USNORM_Tn	0072ABB7
+7DE0h	r14	suffix-family	8	tech_DepthOfField_CompositeBlurredLevelsFrontBlur_Tn	0072ABD1
+80A0h	r14	suffix-family	8	tech_DepthOfField_CompositeBlurredLevelsFrontBlur_USNORM_Tn	0072ABEB
+8360h	r14	two-dimensional	8	tech_DepthOfField_CompositeBlurLevelsFrontBlur_TSn_n	0072AC01
+9960h	r14	two-dimensional	-1	tech_DepthOfField_CompositeBlurLevelsFrontBlur_USNORM_TSn_n	0072AC17
+AF60h	r14	two-dimensional	-1	tech_DepthOfField_CompositeMaskedBlurLevels_TSn_n	0072AC2D
+C560h	r14	two-dimensional	-1	tech_DepthOfField_CompositeMaskedBlurLevels_USNORM_TSn_n	0072AC43
+DB60h	r14	suffix-family	25	tech_DepthOfField_BackgroundLayerMaskT1_Sn	0072AC5D
+E3F8h	r14	suffix-family	25	tech_DepthOfField_BackgroundLayerMaskT1_USNORM_Sn	0072AC77
+EC90h	r14	suffix-family	25	tech_DepthOfField_ForegroundLayerMaskT1_Sn	0072AC91
+F528h	r14	suffix-family	25	tech_DepthOfField_ForegroundLayerMaskT1_USNORM_Sn	0072ACAB
+FDC0h	r14	numbered-family	17	tech_DepthOfField_BackgroundLayerMaskMakeColorT1_Sn	0072ACC5
+FE44h	r14	numbered-family	17	tech_DepthOfField_BackgroundLayerMaskMakeColorT1_USNORM_Sn	0072ACDF
+FEC8h	r14	numbered-family	33	tech_DepthOfField_BackgroundLayerMaskMakeColorDenseT1_Sn	0072AD95
+FF4Ch	r14	numbered-family	33	tech_DepthOfField_BackgroundLayerMaskMakeColorDenseT1_USNORM_Sn	0072ADAF
+FFD0h	r14	numbered-family	17	tech_DepthOfField_ForegroundLayerMaskMakeColorT1_Sn	0072ACF9
+10054h	r14	numbered-family	17	tech_DepthOfField_ForegroundLayerMaskMakeColorT1_USNORM_Sn	0072AD13
+100D8h	r14	numbered-family	33	tech_DepthOfField_ForegroundLayerMaskMakeColorDenseT1_Sn	0072ADC9
+1015Ch	r14	numbered-family	33	tech_DepthOfField_ForegroundLayerMaskMakeColorDenseT1_USNORM_Sn	0072ADE3
+101E0h	r14	numbered-family	17	tech_DepthOfField_BackgroundLayerMaskMakeColorMaskT1_Sn	0072AD2D
+10264h	r14	numbered-family	17	tech_DepthOfField_BackgroundLayerMaskMakeColorMaskT1_USNORM_Sn	0072AD47
+102E8h	r14	numbered-family	33	tech_DepthOfField_BackgroundLayerMaskMakeColorDenseMaskT1_Sn	0072ADFD
+1036Ch	r14	numbered-family	33	tech_DepthOfField_BackgroundLayerMaskMakeColorDenseMaskT1_USNORM_Sn	0072AE17
+103F0h	r14	numbered-family	17	tech_DepthOfField_ForegroundLayerMaskMakeColorMaskT1_Sn	0072AD61
+10474h	r14	numbered-family	17	tech_DepthOfField_ForegroundLayerMaskMakeColorMaskT1_USNORM_Sn	0072AD7B
+104F8h	r14	numbered-family	33	tech_DepthOfField_ForegroundLayerMaskMakeColorDenseMaskT1_Sn	0072AE31
+1057Ch	r14	numbered-family	33	tech_DepthOfField_ForegroundLayerMaskMakeColorDenseMaskT1_USNORM_Sn	0072AE4B
+10600h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCast_RVALUE	0072B1DF
+10608h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCast_GVALUE	0072B1F6
+10610h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCast_BVALUE	0072B20D
+10618h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCast_AVALUE	0072B224
+10620h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCast_RGBA8	0072B23B
+10634h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCast_USNORM_ABGR8	0072C8E5
+15338h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCastLut_RVALUE	0072B252
+15340h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCastLut_GVALUE	0072B269
+15348h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCastLut_BVALUE	0072B280
+15350h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCastLut_AVALUE	0072B297
+15358h	r14	inline 60h	1	tech_DepthOfField_BlurFactorAlphaFromDepthTextureTypeCastLut_RGBA8	0072B2AE
+1A070h	r14	inline 60h	1	tech_DepthOfField_NormalizeBackgroundBlurFactor	0072B2C5
+1A074h	r14	inline 60h	1	tech_DepthOfField_NormalizeBackgroundBlurFactor_USNORM	0072B2DC
+1A078h	r14	inline 60h	1	tech_DepthOfField_FrontBlurBlendFactor	0072B2F3
+1A07Ch	r14	inline 60h	1	tech_DepthOfField_FrontBlurBlendFactorDilation	0072B321
+1A080h	r14	inline 60h	1	tech_DepthOfField_FrontBlurBlendFactorMask	0072B30A
+1A084h	r14	inline 60h	1	tech_DepthOfField_FrontBlurBlendFactorDilationMask	0072B338
+1A088h	r14	suffix-family	25	tech_MadCocT2_Sn	0072B357
+1A920h	r14	inline 60h	1	tech_ScatterCoc	0072B40B
+1A924h	r14	inline 60h	1	tech_ScatterCoc_SeparateXY	0072B467
+1A928h	r14	inline 60h	1	tech_ScatterCoc_Eclipse	0072B439
+1A92Ch	r14	inline 60h	1	tech_ScatterCoc_EclipseSeparateXY	0072B495
+1A930h	r14	inline 60h	1	tech_ScatterCoc_Rad	0072B422
+1A934h	r14	inline 60h	1	tech_ScatterCoc_RadSeparateXY	0072B47E
+1A938h	r14	inline 60h	1	tech_ScatterCoc_RadEclipse	0072B450
+1A93Ch	r14	inline 60h	1	tech_ScatterCoc_RadEclipseSeparateXY	0072B4AC
+1A940h	r14	inline 60h	1	tech_ScatterCocLevel	0072B4C3
+1A944h	r14	inline 60h	1	tech_ScatterCocLevel_SeparateXY	0072B51F
+1A948h	r14	inline 60h	1	tech_ScatterCocLevel_Eclipse	0072B4F1
+1A94Ch	r14	inline 60h	1	tech_ScatterCocLevel_EclipseSeparateXY	0072B54D
+1A950h	r14	inline 60h	1	tech_ScatterCocLevel_Rad	0072B4DA
+1A954h	r14	inline 60h	1	tech_ScatterCocLevel_RadSeparateXY	0072B536
+1A958h	r14	inline 60h	1	tech_ScatterCocLevel_RadEclipse	0072B508
+1A95Ch	r14	inline 60h	1	tech_ScatterCocLevel_RadEclipseSeparateXY	0072B564
+1A960h	r14	inline 60h	1	tech_ScatterCocLevelClamp	0072B57B
+1A964h	r14	inline 60h	1	tech_ScatterCocLevelClamp_SeparateXY	0072B5D7
+1A968h	r14	inline 60h	1	tech_ScatterCocLevelClamp_Eclipse	0072B5A9
+1A96Ch	r14	inline 60h	1	tech_ScatterCocLevelClamp_EclipseSeparateXY	0072B605
+1A970h	r14	inline 60h	1	tech_ScatterCocLevelClamp_Rad	0072B592
+1A974h	r14	inline 60h	1	tech_ScatterCocLevelClamp_RadSeparateXY	0072B5EE
+1A978h	r14	inline 60h	1	tech_ScatterCocLevelClamp_RadEclipse	0072B5C0
+1A97Ch	r14	inline 60h	1	tech_ScatterCocLevelClamp_RadEclipseSeparateXY	0072B61C
+1A980h	r14	inline 60h	1	tech_ScatterCocLevel_Rad_Lerp	0072B633
+1A984h	r14	inline 60h	1	tech_ScatterCocLevel_RadSeparateXY_Lerp	0072B661
+1A988h	r14	inline 60h	1	tech_ScatterCocLevel_RadEclipse_Lerp	0072B64A
+1A98Ch	r14	inline 60h	1	tech_ScatterCocLevel_RadEclipseSeparateXY_Lerp	0072B678
+1A990h	r14	inline 60h	1	tech_ScatterCocLevelClamp_Rad_Lerp	0072B68F
+1A994h	r14	inline 60h	1	tech_ScatterCocLevelClamp_RadSeparateXY_Lerp	0072B6BD
+1A998h	r14	inline 60h	1	tech_ScatterCocLevelClamp_RadEclipse_Lerp	0072B6A6
+1A99Ch	r14	inline 60h	1	tech_ScatterCocLevelClamp_RadEclipseSeparateXY_Lerp	0072B6D4
+1A9A0h	r14	inline 60h	1	tech_DepthOfField_CompositeScatteredLevels	0072B6EB
+1A9A4h	r14	inline 60h	1	tech_DepthOfField_CompositeScatteredLevels_Eclipse	0072B702
+1A9B0h	r14	inline 60h	1	tech_DepthOfField_CompositeScatteredLevels_Blur	0072B719
+1A9B4h	r14	inline 60h	1	tech_DepthOfField_CompositeScatteredLevels_BlurEclipse	0072B730
+1A9B8h	r14	inline 60h	1	tech_DepthOfField_CompositeScatteredLevels_BlurRad	0072B747
+1A9BCh	r14	inline 60h	1	tech_DepthOfField_CompositeScatteredLevels_BlurRadEclipse	0072B75E
+1AA24h	rsi	inline 60h	1	(built string)	0072BFA7
+1AA38h	rsi	inline 60h	1	(built string)	0072BBCA
+1AA4Ch	rsi	inline 60h	1	(built string)	0072C02F
+1AA60h	rsi	inline 60h	1	(built string)	0072BC0E
+1AA74h	rsi	inline 60h	1	(built string)	0072C073
+1AA88h	rsi	inline 60h	1	(built string)	0072BC99
+1AA9Ch	rsi	inline 60h	1	(built string)	0072C0FE
+1AAB0h	rsi	inline 60h	1	(built string)	0072BC52
+1AAC4h	rsi	inline 60h	1	(built string)	0072C0B7
+1AAD8h	rsi	inline 60h	1	(built string)	0072BCDD
+1AAECh	rsi	inline 60h	1	(built string)	0072C145
+1AB00h	rsi	inline 60h	1	(built string)	0072BD24
+1AB14h	rsi	inline 60h	1	(built string)	0072C18C
+1AB28h	rsi	inline 60h	1	(built string)	0072BDB2
+1AB3Ch	rsi	inline 60h	1	(built string)	0072C21A
+1AB50h	rsi	inline 60h	1	(built string)	0072BD6B
+1AB64h	rsi	inline 60h	1	(built string)	0072C1D3
+1AB78h	rsi	inline 60h	1	(built string)	0072BDF9
+1AB8Ch	rsi	inline 60h	1	(built string)	0072C261
+1ABA0h	rsi	inline 60h	1	(built string)	0072BE3D
+1ABB4h	rsi	inline 60h	1	(built string)	0072C2A5
+1ABC8h	rsi	inline 60h	1	(built string)	0072BEC5
+1ABDCh	rsi	inline 60h	1	(built string)	0072C32D
+1ABF0h	rsi	inline 60h	1	(built string)	0072BE81
+1AC04h	rsi	inline 60h	1	(built string)	0072C2E9
+1AC18h	rsi	inline 60h	1	(built string)	0072BF09
+1AC2Ch	rsi	inline 60h	1	(built string)	0072C371
+1AC40h	rsi	inline 60h	1	(built string)	0072C3C9
+1AC54h	rsi	inline 60h	1	(built string)	0072C4D9
+1AC68h	rsi	inline 60h	1	(built string)	0072C451
+1AC7Ch	rsi	inline 60h	1	(built string)	0072C561
+1AC90h	rsi	inline 60h	1	(built string)	0072C40D
+1ACA4h	rsi	inline 60h	1	(built string)	0072C51D
+1ACB8h	rsi	inline 60h	1	(built string)	0072C495
+1ACCCh	rsi	inline 60h	1	(built string)	0072C5A5
+1ACE0h	r14	inline 60h	1	tech_GradientMaskT1_S4	0072C7B6
+1ACE4h	r14	inline 60h	1	tech_DilateScatteredColorT1_S37	0072B775
+1ACE8h	r14	inline 60h	1	tech_DepthEncode_RVALUE	0072C7FF
+1ACF8h	r14	inline 60h	1	tech_DepthEncode_RGBA8	0072C816
+1AD04h	r14	inline 60h	1	tech_DepthFromDofFactor_R	0072C82D
+1AD08h	r14	inline 60h	1	tech_DepthFromDofFactor_G	0072C844
+1AD0Ch	r14	inline 60h	1	tech_DepthFromDofFactor_B	0072C85B
+1AD10h	r14	inline 60h	1	tech_DepthFromDofFactor_A	0072C872
+1AD14h	r14	inline 60h	1	tech_DepthFromDofFactor_USNORM_R	0072C889
+1AD18h	r14	inline 60h	1	tech_DepthFromDofFactor_USNORM_G	0072C8A0
+1AD1Ch	r14	inline 60h	1	tech_DepthFromDofFactor_USNORM_B	0072C8B7
+1AD20h	r14	inline 60h	1	tech_DepthFromDofFactor_USNORM_A	0072C8CE
+1AD24h	r14	inline 60h	1	tech_LensDistortion	0072C8FC
+1AD28h	r14	inline 60h	1	tech_LensDistortionConv	0072C913
+1AD2Ch	r14	inline 60h	1	tech_LensDistortionFalloff	0072C92A
+1AD30h	r14	inline 60h	1	tech_LensDistortion_Noise	0072C941
+1AD34h	r14	inline 60h	1	tech_LensDistortionConv_Noise	0072C958
+1AD38h	r14	inline 60h	1	tech_LensDistortion_Noise_Additive	0072C96F
+1AD3Ch	r14	inline 60h	1	tech_LensDistortionConv_Noise_Additive	0072C986
+1AD40h	r14	inline 60h	1	tech_ImageSensorNoise	0072C99D
+1AD44h	r14	inline 60h	1	tech_ImageSensorNoise_Additive	0072C9B4
+1ADA8h	r14	numbered-family	8	tech_TransformMadT1_Sn	0072AA01
+1ADC8h	r14	numbered-family	4	tech_TexCoordMadT1_Sn	0072AA1B
+1ADD8h	r14	inline 60h	1	tech_Feedback	0072CB84
+1ADDCh	r14	inline 60h	1	tech_Feedback_Matrix	0072CB9B
+1ADE0h	r14	inline 60h	1	tech_Feedback_Blend	0072CBB2
+1ADE4h	r14	inline 60h	1	tech_Feedback_Blend_Matrix	0072CBC9
+1ADE8h	r14	suffix-family	8	tech_MotionBlurCameraRotatePerspectiveT1_Sn	0072CBEA
+1B0A8h	r14	suffix-family	8	tech_MotionBlurCameraRotatePerspectiveFalloffT1_Sn	0072CC22
+1B368h	r14	suffix-family	8	tech_MotionBlurCameraRotatePerspective_SM3_T1_Sn	0072CC06
+1B628h	r14	suffix-family	8	tech_MotionBlurCameraRotatePerspectiveFalloff_SM3_T1_Sn	0072CC3E
+1B8E8h	r14	suffix-family	8	tech_MotionBlurCameraRotatePerspectiveFalloffBiLinearT1_Sn	0072CC5A
+1BBA8h	r14	suffix-family	8	tech_MotionBlurCameraRotatePerspectiveFalloffBiLinear_SM3_T1_Sn	0072CC76
+1BE68h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocity_R	0072CC88
+1BE6Ch	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocity_G	0072CC9F
+1BE70h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocity_B	0072CCB6
+1BE74h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocity_A	0072CCCD
+1BE78h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocity_RGBA8	0072CCE4
+1BE84h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityFalloff_R	0072CCFB
+1BE88h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityFalloff_G	0072CD12
+1BE8Ch	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityFalloff_B	0072CD29
+1BE90h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityFalloff_A	0072CD40
+1BE94h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityFalloff_RGBA8	0072CD57
+1BEA0h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwrite_R	0072CD6E
+1BEA4h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwrite_G	0072CD85
+1BEA8h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwrite_B	0072CD9C
+1BEACh	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwrite_A	0072CDB3
+1BEB0h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwrite_RGBA8	0072CDCA
+1BEBCh	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwriteFalloff_R	0072CDE1
+1BEC0h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwriteFalloff_G	0072CDF8
+1BEC4h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwriteFalloff_B	0072CE0F
+1BEC8h	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwriteFalloff_A	0072CE26
+1BECCh	r14	inline 60h	1	tech_MotionBlurMakeCameraVelocityOverwriteFalloff_RGBA8	0072CE3D
+1BED8h	r14	suffix-family	8	tech_MotionBlurVelocityT2_Sn	0072CE5E
+1C198h	r14	suffix-family	8	tech_MotionBlurVelocityInnerscreenT2_Sn	0072CE96
+1C458h	r14	suffix-family	8	tech_MotionBlurVelocityDirT2_Sn	0072CF3E
+1C718h	r14	suffix-family	8	tech_MotionBlurVelocityDirInnerscreenT2_Sn	0072CF76
+1C9D8h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthT2_Sn	0072D01E
+1CC98h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthInnerscreenT2_Sn	0072D056
+1CF58h	r14	suffix-family	8	tech_MotionBlurVelocity_SM3_T2_Sn	0072CE7A
+1D218h	r14	suffix-family	8	tech_MotionBlurVelocityInnerscreen_SM3_T2_Sn	0072CEB2
+1D4D8h	r14	suffix-family	8	tech_MotionBlurVelocityDir_SM3_T2_Sn	0072CF5A
+1D798h	r14	suffix-family	8	tech_MotionBlurVelocityDirInnerscreen_SM3_T2_Sn	0072CF92
+1DA58h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepth_SM3_T2_Sn	0072D03A
+1DD18h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthInnerscreen_SM3_T2_Sn	0072D072
+1DFD8h	r14	suffix-family	8	tech_MotionBlurVelocityClampT2_Sn	0072CECE
+1E298h	r14	suffix-family	8	tech_MotionBlurVelocityInnerscreenClampT2_Sn	0072CF06
+1E558h	r14	suffix-family	8	tech_MotionBlurVelocityDirClampT2_Sn	0072CFAE
+1E818h	r14	suffix-family	8	tech_MotionBlurVelocityDirInnerscreenClampT2_Sn	0072CFE6
+1EAD8h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthClampT2_Sn	0072D08E
+1ED98h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthInnerscreenClampT2_Sn	0072D0C6
+1F058h	r14	suffix-family	8	tech_MotionBlurVelocityClamp_SM3_T2_Sn	0072CEEA
+1F318h	r14	suffix-family	8	tech_MotionBlurVelocityInnerscreenClamp_SM3_T2_Sn	0072CF22
+1F5D8h	r14	suffix-family	8	tech_MotionBlurVelocityDirClamp_SM3_T2_Sn	0072CFCA
+1F898h	r14	suffix-family	8	tech_MotionBlurVelocityDirInnerscreenClamp_SM3_T2_Sn	0072D002
+1FB58h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthClamp_SM3_T2_Sn	0072D0AA
+1FE18h	r14	suffix-family	8	tech_MotionBlurVelocityDirDepthInnerscreenClamp_SM3_T2_Sn	0072D0E2
+220D8h	r14	inline 60h	1	tech_UpdateWaterHeight	0072D183
+220DCh	r14	inline 60h	1	tech_GenerateNormalMap	0072D19A
+220E0h	r14	inline 60h	1	tech_ConstantColor	0072D1B1
+220F4h	r14	inline 60h	1	tech_AnalyzeIntensity	0072D267
+220F8h	r14	inline 60h	1	tech_AnalyzeIntensityTest	0072D27E
+220FCh	r14	inline 60h	1	tech_Fxaa2	0072D295
+22100h	r14	inline 60h	1	tech_Fxaa2_Falloff	0072D2AC
+22104h	r14	inline 60h	1	tech_Fxaa2_Tonemap	0072D2C3
+22108h	r14	inline 60h	1	tech_Fxaa2_Tonemap_Falloff	0072D2DA
+22110h	r14	inline 60h	1	tech_ColorModulateByChannel_R	0072D2F1
+22114h	r14	inline 60h	1	tech_ColorModulateByChannel_G	0072D308
+22118h	r14	inline 60h	1	tech_ColorModulateByChannel_B	0072D31F
+2211Ch	r14	inline 60h	1	tech_ColorModulateByChannel_A	0072D336
+22120h	r14	inline 60h	1	tech_ColorModulateByChannel_RGB	0072D34D
+22138h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_R	0072D364
+2213Ch	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_R_R	0072D3C0
+22140h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_R_G	0072D3D7
+22144h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_R_B	0072D3EE
+22148h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_R_A	0072D405
+2214Ch	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_G	0072D37B
+22150h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_G_R	0072D41C
+22154h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_G_G	0072D433
+22158h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_G_B	0072D44A
+2215Ch	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_G_A	0072D461
+22160h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_B	0072D392
+22164h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_B_R	0072D478
+22168h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_B_G	0072D48F
+2216Ch	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_B_B	0072D4A6
+22170h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_B_A	0072D4BD
+22174h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_A	0072D3A9
+22178h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_A_R	0072D4D4
+2217Ch	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_A_G	0072D4EB
+22180h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_A_B	0072D502
+22184h	r14	inline 60h	1	tech_CompositeColorAndAlphaEffectsMask_A_A	0072D519
+22188h	r14	inline 60h	1	tech_RenderSceneRect	0072D530
+2218Ch	r14	inline 60h	1	tech_RenderSceneRect_OutReinhard	0072D547
+22190h	r14	inline 60h	1	tech_RenderSceneRect_InLinearDepth	0072D55E
+22194h	r14	inline 60h	1	tech_RenderSceneRect_InLinearDepth_OutReinhard	0072D575
+221D8h	r14	inline 60h	1	tech_HybridLogGamma	0072D7D5
+?	?	inline 60h	1	(built string)	0072BAFF
+?	?	inline 60h	1	(built string)	0072BB43
+?	?	inline 60h	1	(built string)	0072BB86
+?	?	inline 60h	1	(built string)	0072BF63
+?	?	inline 60h	1	(built string)	0072BFEB
+?	?	inline 60h	1	%s%d	0072CA18
+?	?	inline 60h	1	%s%d	0072CAA8
+?	?	inline 60h	1	%s%d	0072CB38
+?	?	inline 48h	1	(built string)	0072D10C
+?	?	inline 48h	1	(built string)	0072D121
+?	?	inline 60h	1	%s%d	0072D21A
+?	?	inline 60h	1	%s%d	0072D5D8
+?	?	inline 60h	1	%s%d	0072D668
+?	?	inline 60h	1	%s%d	0072D6F8
+?	?	inline 60h	1	%s%d	0072D788

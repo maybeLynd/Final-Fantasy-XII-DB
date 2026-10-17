@@ -1,0 +1,129 @@
+function	name	site	disp	kind	instruction	route	note
+0051F9F0	FUN_0051f9f0	0051FA17	0h	w	mov dword ptr [rcx], edi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FB4E	0h	rw	or dword ptr [rbx], 1	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB7A	0h	w	mov dword ptr [rcx], eax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5AE	8h	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5AE	8h	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5AE	8h	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7A6	8h	r	mov rcx, qword ptr [rsi + 8]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA3F	8h	w	mov qword ptr [rcx + 8], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB7C	8h	w	mov qword ptr [rcx + 8], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FFA0	8h	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520082	8h	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5BC	10h	w	mov qword ptr [rbx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5BC	10h	w	mov qword ptr [rbx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5BC	10h	w	mov qword ptr [rbx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5C7	10h	r	add rax, qword ptr [rbx + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5C7	10h	r	add rax, qword ptr [rbx + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5C7	10h	r	add rax, qword ptr [rbx + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7BF	10h	w	mov qword ptr [rsi + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7CA	10h	r	add rax, qword ptr [rsi + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA43	10h	w	mov qword ptr [rcx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FB10	10h	r	mov rsi, qword ptr [rbx + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB80	10h	w	mov qword ptr [rcx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FFAE	10h	w	mov qword ptr [rbx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FFB9	10h	r	add rax, qword ptr [rbx + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520090	10h	w	mov qword ptr [rbx + 10h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	0052009B	10h	r	add rax, qword ptr [rbx + 10h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA19	18h	w	mov qword ptr [rcx + 18h], FFFFFFFFFFFFFFFFh	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB72	18h	w	mov qword ptr [rcx + 18h], FFFFFFFFFFFFFFFFh	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA21	20h	w	mov dword ptr [rcx + 20h], edi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB84	20h	w	mov dword ptr [rcx + 20h], eax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA47	24h	w	mov word ptr [rcx + 24h], r14w	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAF2	24h	r	movsx eax, word ptr [rbx + 24h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB87	24h	w	mov word ptr [rcx + 24h], ax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA4C	26h	w	mov word ptr [rcx + 26h], di	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FB03	28h	w	mov qword ptr [rbx + 28h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FB0C	28h	r	mov rbp, qword ptr [rbx + 28h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED58A	30h	r	mov rcx, qword ptr [rcx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED58A	30h	r	mov rcx, qword ptr [rcx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED58A	30h	r	mov rcx, qword ptr [rcx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E760	30h	r	mov rcx, qword ptr [rsi + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E78D	30h	r	mov rcx, qword ptr [rsi + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA24	30h	w	mov qword ptr [rcx + 30h], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA94	30h	w	mov qword ptr [rbx + 30h], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA94	30h	w	mov qword ptr [rbx + 30h], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB8B	30h	w	mov qword ptr [rcx + 30h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF60	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF60	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF76	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520042	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520042	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520058	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED598	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED598	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED598	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5A8	38h	r	add rdi, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5A8	38h	r	add rdi, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5A8	38h	r	add rdi, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E775	38h	w	mov qword ptr [rsi + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E780	38h	r	add r15, qword ptr [rsi + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E79B	38h	w	mov qword ptr [rsi + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7B1	38h	r	add rdi, qword ptr [rsi + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA28	38h	w	mov qword ptr [rcx + 38h], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA98	38h	w	mov qword ptr [rbx + 38h], rsi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA98	38h	w	mov qword ptr [rbx + 38h], rsi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB8F	38h	w	mov qword ptr [rcx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF6E	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF72	38h	r	mov r14, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF8E	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF95	38h	r	mov rbp, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520050	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520054	38h	r	mov r14, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520070	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520077	38h	r	mov rbp, qword ptr [rbx + 38h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E740	40h	r	mov ebx, dword ptr [rsi + 40h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA2C	40h	w	mov qword ptr [rcx + 40h], FFFFFFFFFFFFFFFFh	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB9E	40h	w	mov qword ptr [rcx + 40h], FFFFFFFFFFFFFFFFh	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF39	40h	r	mov edi, dword ptr [rcx + 40h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	0052001E	40h	r	mov edi, dword ptr [rcx + 40h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5E4	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5E4	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5E4	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7E7	48h	r	imul eax, dword ptr [rsi + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA34	48h	w	mov qword ptr [rcx + 48h], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA84	48h	w	mov dword ptr [rbx + 48h], edx	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA84	48h	w	mov dword ptr [rbx + 48h], edx	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAF8	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FB2A	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB93	48h	w	mov qword ptr [rcx + 48h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FFD7	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	005200B9	48h	r	imul eax, dword ptr [rbx + 48h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED59C	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED59C	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED59C	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E79F	4Ch	r	mov ecx, dword ptr [rsi + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA8E	4Ch	w	mov dword ptr [rbx + 4Ch], r8d	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA8E	4Ch	w	mov dword ptr [rbx + 4Ch], r8d	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAEF	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FB20	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FF92	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	00520074	4Ch	r	mov ecx, dword ptr [rbx + 4Ch]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5DF	50h	r	mov eax, dword ptr [rbx + 50h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5DF	50h	r	mov eax, dword ptr [rbx + 50h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+002ED570	ResourceTable_ResolveEntryByIndex	002ED5DF	50h	r	mov eax, dword ptr [rbx + 50h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7E2	50h	r	mov eax, dword ptr [rsi + 50h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA38	50h	w	mov qword ptr [rcx + 50h], rdi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAA3	50h	w	mov dword ptr [rbx + 50h], eax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAA3	50h	w	mov dword ptr [rbx + 50h], eax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB97	50h	w	mov qword ptr [rcx + 50h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FF30	FUN_0051ff30	0051FFD2	50h	r	mov eax, dword ptr [rbx + 50h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00520010	FUN_00520010	005200B4	50h	r	mov eax, dword ptr [rbx + 50h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAA6	54h	w	mov dword ptr [rbx + 54h], edx	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FAA6	54h	w	mov dword ptr [rbx + 54h], edx	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FADE	54h	r	cmp ebp, dword ptr [rbx + 54h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051F9F0	FUN_0051f9f0	0051FA3C	58h	w	mov dword ptr [rcx + 58h], edi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0051FB70	FUN_0051fb70	0051FB9B	58h	w	mov dword ptr [rcx + 58h], eax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E0F0	SkeletonModelGroup_UpdateFinalPoses	0046E116	60h	addr	lea rcx, [rsi + 60h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E1B0	FUN_0046e1b0	0046E1D0	60h	addr	lea rcx, [rbp + 60h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E250	FUN_0046e250	0046E290	60h	addr	lea rcx, [rbx + 60h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E250	FUN_0046e250	0046E297	60h	w	mov dword ptr [rcx], 1	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E4B0	FUN_0046e4b0	0046E4BE	60h	addr	lea rcx, [rbx + 60h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E71E	60h	addr	lea rbp, [rsi + 60h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E7F1	60h	addr	lea rbp, [rsi + 60h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+0046E6F0	FUN_0046e6f0	0046E72F	78h	w	mov dword ptr [rsi + 78h], eax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00537180	FUN_00537180	00537190	80h	r	div dword ptr [rbx + 20h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00537180	FUN_00537180	00537190	80h	r	div dword ptr [rbx + 20h]	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+005371A0	FUN_005371a0	005371B0	80h	w	mov qword ptr [rbx + 20h], rax	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00537270	FUN_00537270	0053729B	80h	w	mov dword ptr [rsi + 20h], ebx	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	
+00537270	FUN_00537270	0053729E	84h	w	mov dword ptr [rsi + 24h], edi	seeded on proven entry points: 0046E250, 0046E4B0, 0046E3E0, 0046E0F0, 0046E640, 0046E1B0	

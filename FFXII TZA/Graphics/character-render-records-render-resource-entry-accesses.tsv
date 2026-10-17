@@ -1,0 +1,39 @@
+function	name	site	disp	kind	instruction	route	note
+00409710	FUN_00409710	00409715	0h	w	mov word ptr [rcx], dx	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	00409616	4h	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	00409718	4h	w	mov dword ptr [rcx + 4], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097D7	4h	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097D7	4h	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409A96	4h	w	mov dword ptr [r14 + 4], ebp	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	00409648	10h	addr	lea rcx, [rbx + 10h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	00409805	10h	addr	lea rcx, [rbx + 10h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BAF	10h	addr	lea rcx, [r14 + 10h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BBE	10h	addr	lea rcx, [r14 + 10h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BD0	10h	addr	lea rcx, [r14 + 10h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE1A	10h	w	mov dword ptr [rcx], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F035	10h	r	mov edx, dword ptr [rcx]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE00	FUN_0051ee00	0051EE00	18h	r	mov rcx, qword ptr [rcx + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE1C	18h	w	mov qword ptr [rcx + 8], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFE9	18h	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F044	18h	w	mov qword ptr [rdi + 8], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F055	18h	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+006B5C70	FUN_006b5c70	006B5C70	18h	r	mov rax, qword ptr [rcx + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE20	20h	w	mov dword ptr [rcx + 10h], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFAA	20h	r	mov ecx, dword ptr [rcx + 10h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F048	20h	w	mov dword ptr [rdi + 10h], esi	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE12	24h	w	mov qword ptr [rcx + 14h], 800h	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFBC	24h	r	mov r9d, dword ptr [rdi + 14h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFB0	28h	r	mov r9d, dword ptr [rdi + 18h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFF2	28h	r	add eax, dword ptr [rdi + 18h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051F002	28h	rw	add dword ptr [rdi + 18h], esi	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	0040962B	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	0040971B	30h	w	mov qword ptr [rcx + 30h], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097F0	30h	r	mov rcx, qword ptr [rbx + 30h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409B9E	30h	w	mov qword ptr [r14 + 30h], r15	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	00409634	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	0040963E	38h	r	mov rax, qword ptr [rbx + 38h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097F9	38h	w	mov qword ptr [rbx + 38h], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097FF	38h	r	mov r10, qword ptr [rbx + 38h]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	0040971F	40h	w	mov dword ptr [rcx + 40h], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BF1	40h	w	mov dword ptr [r14 + 40h], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	00409722	44h	w	mov dword ptr [rcx + 44h], edx	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	

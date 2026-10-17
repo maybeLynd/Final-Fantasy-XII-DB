@@ -1,0 +1,14 @@
+function	name	site	disp	kind	instruction	route	note
+005A26F0	FUN_005a26f0	005A2715	0h	w	mov qword ptr [rbx], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A271A	8h	w	mov qword ptr [rbx + 8], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A271E	10h	w	mov qword ptr [rbx + 10h], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2722	18h	w	mov qword ptr [rbx + 18h], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2726	20h	w	mov dword ptr [rbx + 20h], eax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2729	28h	w	mov qword ptr [rbx + 28h], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A272D	30h	w	mov dword ptr [rbx + 30h], eax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2730	38h	w	mov qword ptr [rbx + 38h], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2734	40h	w	mov dword ptr [rbx + 40h], eax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2737	48h	w	mov qword ptr [rbx + 48h], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A273B	50h	w	mov dword ptr [rbx + 50h], eax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A273E	58h	w	mov qword ptr [rbx + 58h], rax	ctorrdx-seeded 005A26F0	
+005A26F0	FUN_005a26f0	005A2742	60h	w	mov dword ptr [rbx + 60h], eax	ctorrdx-seeded 005A26F0	

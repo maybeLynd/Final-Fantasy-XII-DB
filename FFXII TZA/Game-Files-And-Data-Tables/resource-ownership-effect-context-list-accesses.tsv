@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+0024F610	FUN_0024f610	0024F630	4h	r	cmp word ptr [rax + 4], cx	route-seeded SLOTPTR 020910A0h stride=8h base+0h	
+0024F610	FUN_0024f610	0024F636	8h	r	mov rax, qword ptr [rax + 8]	route-seeded SLOTPTR 020910A0h stride=8h base+0h	
+0024B3A0	FUN_0024b3a0	0024B441	10h	w	mov qword ptr [rax + 10h], rbx	route-seeded SLOTPTR 020910A0h stride=8h base+0h	

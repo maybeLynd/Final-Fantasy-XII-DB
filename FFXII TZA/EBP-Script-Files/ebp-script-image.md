@@ -30,7 +30,7 @@ image's first byte.
 | `02`<sub>h</sub> | `u16` | marker | `8000`<sub>h</sub> |
 | `04`<sub>h</sub> | `u32` | length | bytes of image; the section's slot may be padded beyond it |
 | `08`<sub>h</sub> | `u32` | authorOff | -> NUL-terminated author name |
-| `0C`<sub>h</sub> | `u32` | sourceOff | -> NUL-terminated source file name, "<script>.src" |
+| `0C`<sub>h</sub> | `u32` | sourceOff | -> NUL-terminated source file name, "&lt;script&gt;.src" |
 | `10`<sub>h</sub> | `u32` | stampOff | -> NUL-terminated build stamp "MM/DD HH:MM", at +`90`<sub>h</sub> |
 | `14`<sub>h</sub> | `i32` | typeCounts | -> u16 8, then u16 count[8]: directory entries per actor type |
 | `18`<sub>h</sub> | `i32` | directory | -> u32 count, then `30`<sub>h</sub>-byte actor entries sorted by type |

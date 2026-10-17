@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+003845F0	AreaData_BindAndRebaseSectionDescriptor	003845F4	0h	w	mov qword ptr [rcx], rdx	route-seeded ARRAY 02EBF008h stride=8h count=64 base+0h exposed	
+003845F0	AreaData_BindAndRebaseSectionDescriptor	00384611	0h	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 02EBF008h stride=8h count=64 base+0h exposed	
+003845F0	AreaData_BindAndRebaseSectionDescriptor	00384622	0h	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 02EBF008h stride=8h count=64 base+0h exposed	
+003845F0	AreaData_BindAndRebaseSectionDescriptor	00384633	0h	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 02EBF008h stride=8h count=64 base+0h exposed	
+003845F0	AreaData_BindAndRebaseSectionDescriptor	00384644	0h	r	mov rdi, qword ptr [rcx]	route-seeded ARRAY 02EBF008h stride=8h count=64 base+0h exposed	

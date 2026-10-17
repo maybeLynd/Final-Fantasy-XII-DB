@@ -102,7 +102,7 @@ Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 an
 | texel values | all 16 nibble values occur in every sheet |
 | size tables | 42,240 / 29,184 / 32,256 for ids `DA`<sub>h</sub>-`DF`<sub>h</sub> in every table except `KR` and `CN`, which hold -1 |
 | `fontpack_fs.bin` tables | 12 in every copy; faces 6 to 11 are the staff-roll faces |
-| glyphs per face (`in`, `ch`, `kr`, `cn`) | 78: `A`-`Z`, `a`-`z`, `,.!?`, `1`-`0`, `&*-_|:'"()/` and `・` (U+30FB) |
+| glyphs per face (`in`, `ch`, `kr`, `cn`) | 78: `A`-`Z`, `a`-`z`, `,.!?`, `1`-`0`, `&*-_\|:'"()/` and `・` (U+30FB) |
 | glyphs per face (`us`, `it`) | 78 in faces 6 and 7; 127 in faces 8 to 11, the 78 followed by 49 accented Latin letters (`À` to `ß`) |
 | cell packing (`in` tables against the `in` sheets) | cells in table order, back to back, no gaps or overlaps, ending exactly at the end of each sheet |
 | rounded cell sizes | 16 x 32, 32 x 32, 32 x 64 and 64 x 32 in faces 6 and 7; 16 x 32 and 32 x 32 in faces 8 to 11 |

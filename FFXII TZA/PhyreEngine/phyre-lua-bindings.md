@@ -148,9 +148,9 @@ to 1:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `PArray` | m_scriptChunk32 | PArray<PUInt8> |
-| `10`<sub>h</sub> | `PArray` | m_scriptChunk64 | PArray<PUInt8>; the loader reads +`10`<sub>h</sub> count, +`18`<sub>h</sub> data |
-| `20`<sub>h</sub> | `PArray` | m_functionNames | PArray<PString>; entry points by index |
+| `00`<sub>h</sub> | `PArray` | m_scriptChunk32 | PArray&lt;PUInt8&gt; |
+| `10`<sub>h</sub> | `PArray` | m_scriptChunk64 | PArray&lt;PUInt8&gt;; the loader reads +`10`<sub>h</sub> count, +`18`<sub>h</sub> data |
+| `20`<sub>h</sub> | `PArray` | m_functionNames | PArray&lt;PString&gt;; entry points by index |
 | `30`<sub>h</sub> | `void*` | m_onLoadEntryPoint |  |
 | `38`<sub>h</sub> | `void*` | m_onUnloadEntryPoint |  |
 | `40`<sub>h</sub> | `void*` | m_defaultEntryPoint |  |

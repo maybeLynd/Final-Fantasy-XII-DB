@@ -89,7 +89,7 @@ ownership rule for each):
 | `9` | 26 | Esper attacks: Painflare, Hellfire |
 | `10` | 16 | Concurrences: Inferno, Torrent |
 | `13`, `14`, `16`, `17` | 3, 1, 1, 1 | the Reserve rows 155-157, `actstop`, `escape`, `escapestop` |
-| `255` | 56 | `NOT USED` and Reserve rows |
+| `255` | 56 | 47 `NOT USED` and Reserve rows; nine named rows with no linked id: `Do nothing.`, Mount, Dismount, `sousachange`, Mist Charge (3), Chain Bonus, Dismiss |
 
 ### The element byte
 

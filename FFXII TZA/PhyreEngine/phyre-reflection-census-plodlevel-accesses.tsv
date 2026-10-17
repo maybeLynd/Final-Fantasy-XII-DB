@@ -1,0 +1,9 @@
+function	name	site	disp	kind	instruction	route	note
+006C4A60	FUN_006c4a60	006C4A78	0h	w	mov qword ptr [rdx], rcx	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4A7B	8h	w	mov dword ptr [rdx + 8], ecx	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4A7E	10h	w	mov qword ptr [rdx + 10h], rcx	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4A82	18h	w	mov dword ptr [rdx + 18h], ecx	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4A85	1Ch	w	mov qword ptr [rdx + 1Ch], 461C4000h	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4A96	28h	w	mov qword ptr [rax], 3F800000h	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4A9D	30h	w	mov dword ptr [rax + 8], 4	ctorrdx-seeded 006C4A60	
+006C4A60	FUN_006c4a60	006C4AA4	20h	w	mov dword ptr [rdx + 20h], 1	ctorrdx-seeded 006C4A60	

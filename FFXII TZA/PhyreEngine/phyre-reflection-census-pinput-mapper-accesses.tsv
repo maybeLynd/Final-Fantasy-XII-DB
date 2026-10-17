@@ -1,0 +1,126 @@
+function	name	site	disp	kind	instruction	route	note
+00792DD0	FUN_00792dd0	00792DDF	0h	w	mov qword ptr [rcx], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DE2	8h	w	mov qword ptr [rcx + 8], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DE6	18h	w	mov qword ptr [rcx + 18h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DEA	20h	w	mov qword ptr [rcx + 20h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DEE	30h	w	mov qword ptr [rcx + 30h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DF2	38h	w	mov qword ptr [rcx + 38h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DF6	40h	w	mov qword ptr [rcx + 40h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792DFA	150h	w	mov qword ptr [rcx + 150h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E01	194h	w	mov dword ptr [rcx + 194h], edi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E1F	2B8h	w	mov dword ptr [rbx + 2B8h], 17h	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E30	2C0h	w	mov qword ptr [rbx + 2C0h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E3A	48h	w	mov qword ptr [rbx + 48h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E3E	50h	w	mov qword ptr [rbx + 50h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E42	58h	w	mov qword ptr [rbx + 58h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E46	60h	w	mov qword ptr [rbx + 60h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E4A	68h	w	mov qword ptr [rbx + 68h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E4E	70h	w	mov qword ptr [rbx + 70h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E52	78h	w	mov qword ptr [rbx + 78h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E56	80h	w	mov qword ptr [rbx + 80h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E60	108h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	148h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	188h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	1C8h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	208h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	248h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	288h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E60	88h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E60	C8h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	110h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	150h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	190h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	1D0h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	210h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	250h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	290h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E63	90h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E63	D0h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	118h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	158h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	198h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	1D8h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	218h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	258h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	298h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E67	98h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E67	D8h	w	mov qword ptr [rax + 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	120h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	160h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	1A0h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	1E0h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	220h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	260h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	2A0h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E6F	A0h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E6F	E0h	w	mov qword ptr [rax - 28h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	128h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	168h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	1A8h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	1E8h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	228h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	268h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	2A8h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E73	A8h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E73	E8h	w	mov qword ptr [rax - 20h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	130h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	170h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	1B0h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	1F0h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	230h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	270h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	2B0h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E77	B0h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E77	F0h	w	mov qword ptr [rax - 18h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	138h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	178h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	1B8h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	1F8h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	238h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	278h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	2B8h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7B	B8h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E7B	F8h	w	mov qword ptr [rax - 10h], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	100h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	140h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	180h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	1C0h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	200h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	240h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	280h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	2C0h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E7F	C0h	w	mov qword ptr [rax - 8], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E89	108h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	148h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	188h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	1C8h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	208h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	248h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	288h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E89	C8h	w	mov qword ptr [rax], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E8C	110h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	150h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	190h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	1D0h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	210h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	250h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	290h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	enumerated-base
+00792DD0	FUN_00792dd0	00792E8C	D0h	w	mov qword ptr [rax + 8], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E93	118h	w	mov qword ptr [rbx + 118h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792E9A	120h	w	mov qword ptr [rbx + 120h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EA1	128h	w	mov qword ptr [rbx + 128h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EA8	130h	w	mov qword ptr [rbx + 130h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EAF	138h	w	mov qword ptr [rbx + 138h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EB6	140h	w	mov qword ptr [rbx + 140h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EBD	148h	w	mov qword ptr [rbx + 148h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EC4	158h	w	mov qword ptr [rbx + 158h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792ECB	160h	w	mov qword ptr [rbx + 160h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792ED2	168h	w	mov word ptr [rbx + 168h], di	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792ED9	16Ch	w	mov qword ptr [rbx + 16Ch], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EE0	174h	w	mov dword ptr [rbx + 174h], 10000h	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EEA	178h	w	mov qword ptr [rbx + 178h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EF1	180h	w	mov qword ptr [rbx + 180h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EF8	188h	w	mov qword ptr [rbx + 188h], rdi	ctorrdx-seeded 007919A0	
+00792DD0	FUN_00792dd0	00792EFF	10h	w	mov dword ptr [rbx + 10h], edi	ctorrdx-seeded 007919A0	
+00874D60	FUN_00874d60	00874D60	198h	w	mov qword ptr [rcx], 0	ctorrdx-seeded 007919A0	
+00874D60	FUN_00874d60	00874D60	228h	w	mov qword ptr [rcx], 0	ctorrdx-seeded 007919A0	

@@ -1,0 +1,17 @@
+function	name	site	disp	kind	instruction	route	note
+006A7B10	FUN_006a7b10	006A7B1C	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B21	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B24	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B28	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B2C	20h	w	mov dword ptr [rdx + 20h], eax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B2F	24h	w	mov qword ptr [rdx + 24h], 3F800000h	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B37	2Ch	w	mov qword ptr [rdx + 2Ch], rax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B3B	34h	w	mov dword ptr [rdx + 34h], eax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B3E	38h	w	mov qword ptr [rdx + 38h], 3F800000h	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B46	40h	w	mov qword ptr [rdx + 40h], rax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B4A	48h	w	mov dword ptr [rdx + 48h], eax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B4D	4Ch	w	mov dword ptr [rdx + 4Ch], 3F800000h	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B54	2Ch	w	mov dword ptr [rdx + 2Ch], 3F800000h	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B5B	3Ch	w	mov dword ptr [rdx + 3Ch], eax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B5E	4Ch	w	mov dword ptr [rdx + 4Ch], eax	ctorrdx-seeded 006A7B10	
+006A7B10	FUN_006a7b10	006A7B61	50h	w	mov byte ptr [rdx + 50h], 1	ctorrdx-seeded 006A7B10	

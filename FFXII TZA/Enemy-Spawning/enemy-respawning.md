@@ -159,7 +159,7 @@ bit, and its next death completes the group again: a room can be cleared twice.
 
 ### The lock
 
-Three calls run on every completion, each with argument 1 (`00306FAD`-`00306FBC`):
+Three calls run on every completion, each with argument 1 (`00306F95`-`00306FB2`):
 
 - `00307140(on)` calls `002E1C20(Ch)` ten times when on (`002E1CA0(Ch)` when off): the row-12
   capability inhibitions ([party roster and control

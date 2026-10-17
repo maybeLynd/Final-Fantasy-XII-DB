@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+005CF970	FUN_005cf970	005CF988	0h	w	mov dword ptr [rdx], 34460000h	ctorrdx-seeded 005CF970	
+005CF970	FUN_005cf970	005CF98E	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 005CF970	
+005CF970	FUN_005cf970	005CF992	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 005CF970	

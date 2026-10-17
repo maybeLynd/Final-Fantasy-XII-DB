@@ -26,7 +26,7 @@ The member-pick widget `00560910` opens one of two screens (`00560910` messages 
 | no board | the chooser window `00558FB0` with the chooser `00557DB0` | `00558F20` (`00560C89`) |
 
 The board screen loads `lic_bk`, `cm2_win_c`, `lic_8_c`, `lic_8_c2` and `lic_8_c3`, and the per-node art table into
-`[02CA9670]` (`005615C0`-`00561765`).
+`[02CA9670]` (`005615C4`-`00561765`).
 
 ### The board chooser
 

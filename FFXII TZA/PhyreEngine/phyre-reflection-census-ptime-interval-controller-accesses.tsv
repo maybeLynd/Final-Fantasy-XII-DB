@@ -1,0 +1,7 @@
+function	name	site	disp	kind	instruction	route	note
+005ACFA0	FUN_005acfa0	005ACFB9	0h	w	mov qword ptr [rcx], rax	vtable-seeded 00D313B0	
+005C5330	FUN_005c5330	005C533E	10h	r	mov rcx, qword ptr [rcx + 10h]	vtable-seeded 00D313B0	
+005C5330	FUN_005c5330	005C5362	20h	r	movss xmm1, dword ptr [rbx + 20h]	vtable-seeded 00D313B0	
+005C5330	FUN_005c5330	005C5383	18h	r	subss xmm0, dword ptr [rbx + 18h]	vtable-seeded 00D313B0	
+005C5330	FUN_005c5330	005C53B5	1Ch	r	addss xmm0, dword ptr [rbx + 1Ch]	vtable-seeded 00D313B0	
+005CB780	FUN_005cb780	005CB7BA	10h	r	mov rcx, qword ptr [rdi + 10h]	vtable-seeded 00D313B0	

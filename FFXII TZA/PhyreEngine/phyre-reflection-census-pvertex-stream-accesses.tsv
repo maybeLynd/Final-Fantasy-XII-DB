@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+0065F960	FUN_0065f960	0065F967	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0065F960	
+0065F960	FUN_0065f960	0065F969	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0065F960	
+0065F960	FUN_0065f960	0065F96D	10h	w	mov word ptr [rdx + 10h], FF34h	ctorrdx-seeded 0065F960	

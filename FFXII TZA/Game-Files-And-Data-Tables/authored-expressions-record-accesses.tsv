@@ -1,0 +1,26 @@
+function	name	site	disp	kind	instruction	route	note
+0042FDB0	FUN_0042fdb0	0042FE23	0h	r	mov ecx, dword ptr [rbx]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FEA0	0h	r	mov ecx, dword ptr [rbx]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FFFC	0h	r	mov ecx, dword ptr [rbx]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431080	FUN_00431080	004310AE	0h	r	mov ecx, dword ptr [rcx]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+004314E0	FUN_004314e0	00431505	0h	r	mov ecx, dword ptr [rcx]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FE4F	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FECC	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FFC6	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431080	FUN_00431080	004310BB	4h	r	mov ecx, dword ptr [rcx + 4]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+004314E0	FUN_004314e0	0043153A	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431080	FUN_00431080	004310D0	8h	r	movzx eax, word ptr [rsi + rdi*2 + 8]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FE11	Ch	r	movzx eax, byte ptr [rbx + Ch]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FE8E	Ch	r	movzx eax, byte ptr [rbx + Ch]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FFB5	Ch	r	movzx eax, byte ptr [rbx + Ch]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+004314E0	FUN_004314e0	004314EF	Ch	r	movzx eax, byte ptr [rcx + Ch]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FE3E	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FEBB	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FFA2	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+004314E0	FUN_004314e0	0043151B	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431080	FUN_00431080	004310B5	Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431080	FUN_00431080	004310C3	Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431350	FUN_00431350	00431368	Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431350	FUN_00431350	004313E9	Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431430	FUN_00431430	0043143D	Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	
+00431430	FUN_00431430	00431492	Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded EMBED AuthoredExpressionBlock +00h stride=10h count=4 base+0h exposed	

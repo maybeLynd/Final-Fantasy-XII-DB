@@ -1,0 +1,10 @@
+function	name	site	disp	kind	instruction	route	note
+0032EA90	FUN_0032ea90	0032EAB1	0h	w	mov qword ptr [rax], rdx	route-seeded STATIC 022C51F0h base+0h zeroclear	
+0032EA90	FUN_0032ea90	0032EAB4	8h	w	mov qword ptr [rax + 8], rdx	route-seeded STATIC 022C51F0h base+0h zeroclear	
+0032EA90	FUN_0032ea90	0032EAB8	10h	w	mov qword ptr [rax + 10h], rdx	route-seeded STATIC 022C51F0h base+0h zeroclear	
+0032EA90	FUN_0032ea90	0032EAC0	18h	w	mov qword ptr [rax - 28h], rdx	route-seeded STATIC 022C51F0h base+40h zeroclear	
+0032EA90	FUN_0032ea90	0032EAC4	20h	w	mov qword ptr [rax - 20h], rdx	route-seeded STATIC 022C51F0h base+40h zeroclear	
+0032EA90	FUN_0032ea90	0032EAC8	28h	w	mov qword ptr [rax - 18h], rdx	route-seeded STATIC 022C51F0h base+40h zeroclear	
+0032EA90	FUN_0032ea90	0032EACC	30h	w	mov qword ptr [rax - 10h], rdx	route-seeded STATIC 022C51F0h base+40h zeroclear	
+0032EA90	FUN_0032ea90	0032EAD0	38h	w	mov qword ptr [rax - 8], rdx	route-seeded STATIC 022C51F0h base+40h zeroclear	
+0032EA90	FUN_0032ea90	0032EABC	40h	addr	lea rax, [rax + 40h]	route-seeded STATIC 022C51F0h base+0h	

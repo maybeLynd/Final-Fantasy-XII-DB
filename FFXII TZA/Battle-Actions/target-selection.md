@@ -133,7 +133,7 @@ unit bit 32 is set (and that bit is cleared). The other reasons are tested only 
 | `7` | bit 13 of the word at `[+708h]+4` is clear and `0030AF30` times the action out |
 
 `002FFA60(action, target)` returns 1 when the target has none of status bits 0, 1, 31 (or
-`00377C20()` is non-zero), or when the action row's `+2C`<sub>h</sub> has bit 6 or bit 7 (`002FFA88`-`002FFB43`).
+`00377C20()` is non-zero), or when the action row's `+2C`<sub>h</sub> has bit 6 or bit 7 (`002FFA87`-`002FFB43`).
 
 `0030AF30` compares the counter `+75C`<sub>h</sub> with `30 * (int)(30.0 * [01DFE0B8])` for an action id below
 `21F`<sub>h</sub>, 10 times that factor above it, and 60 times it when the word at `[+708h]+4` is negative. On a

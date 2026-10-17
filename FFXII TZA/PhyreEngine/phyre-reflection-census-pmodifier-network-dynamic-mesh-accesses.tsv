@@ -1,0 +1,37 @@
+function	name	site	disp	kind	instruction	route	note
+00663080	FUN_00663080	0066309E	0h	w	mov qword ptr [rcx], rax	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630A1	20h	r	mov eax, dword ptr [rcx + 20h]	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630AD	28h	r	mov rcx, qword ptr [rcx + 28h]	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630BE	28h	w	mov qword ptr [rbx + 28h], rdi	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630C2	20h	w	mov dword ptr [rbx + 20h], edi	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630C5	10h	r	mov eax, dword ptr [rbx + 10h]	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630D1	18h	r	mov rcx, qword ptr [rbx + 18h]	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630E0	18h	w	mov qword ptr [rbx + 18h], rdi	vtable-seeded 00D81738	
+00663080	FUN_00663080	006630E4	10h	w	mov dword ptr [rbx + 10h], edi	vtable-seeded 00D81738	
+00671E80	FUN_00671e80	00671F46	28h	r	mov rax, qword ptr [r14 + 28h]	vtable-seeded 00D81738	
+00671E80	FUN_00671e80	00671F53	18h	r	mov rax, qword ptr [r14 + 18h]	vtable-seeded 00D81738	
+00671E80	FUN_00671e80	00671F87	0h	r	mov rax, qword ptr [r14]	vtable-seeded 00D81738	
+006BB6D0	FUN_006bb6d0	006BB6DD	70h	r	mov rax, qword ptr [rcx + 70h]	vtable-seeded 00D81738	
+006BB6D0	FUN_006bb6d0	006BB72E	28h	r	add rdi, qword ptr [rcx + 28h]	vtable-seeded 00D81738	
+006BB6D0	FUN_006bb6d0	006BB753	60h	r	mov rax, qword ptr [r11 + 60h]	vtable-seeded 00D81738	
+006BB6D0	FUN_006bb6d0	006BB78E	40h	r	mov rax, qword ptr [r11 + 40h]	vtable-seeded 00D81738	
+006BB7D0	FUN_006bb7d0	006BB7E2	70h	r	mov rax, qword ptr [rcx + 70h]	vtable-seeded 00D81738	
+006BB7D0	FUN_006bb7d0	006BB7F9	28h	r	add rsi, qword ptr [rcx + 28h]	vtable-seeded 00D81738	
+006BB7D0	FUN_006bb7d0	006BB853	60h	r	mov rax, qword ptr [rbx + 60h]	vtable-seeded 00D81738	
+006BB7D0	FUN_006bb7d0	006BB88F	40h	r	mov rax, qword ptr [rbx + 40h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBC87	68h	r	mov eax, dword ptr [rcx + 68h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBC93	70h	r	mov rcx, qword ptr [rcx + 70h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCA4	70h	w	mov qword ptr [rbx + 70h], rdi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCA8	68h	w	mov dword ptr [rbx + 68h], edi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCAB	58h	r	mov eax, dword ptr [rbx + 58h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCB7	60h	r	mov rcx, qword ptr [rbx + 60h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCC6	60h	w	mov qword ptr [rbx + 60h], rdi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCCA	58h	w	mov dword ptr [rbx + 58h], edi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCCD	48h	r	mov eax, dword ptr [rbx + 48h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCD9	50h	r	mov rcx, qword ptr [rbx + 50h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCE8	50h	w	mov qword ptr [rbx + 50h], rdi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCEC	48h	w	mov dword ptr [rbx + 48h], edi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCEF	38h	r	mov eax, dword ptr [rbx + 38h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBCFB	40h	r	mov rcx, qword ptr [rbx + 40h]	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBD0A	40h	w	mov qword ptr [rbx + 40h], rdi	vtable-seeded 00D81738	
+006BBC70	FUN_006bbc70	006BBD0E	38h	w	mov dword ptr [rbx + 38h], edi	vtable-seeded 00D81738	

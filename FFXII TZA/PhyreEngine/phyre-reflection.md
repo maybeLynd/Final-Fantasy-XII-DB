@@ -362,7 +362,7 @@ PAnnotation (`30`<sub>h</sub>):
 | `18`<sub>h</sub> | `void*` | key (02CF8570 for WriteMask) |  |
 | `20`<sub>h</sub> | `void*` | value type |  |
 | `28`<sub>h</sub> | `u32` | fourth constructor argument |  |
-| `30`<sub>h</sub> | `u32` | value (PAnnotationWithValue<unsigned int>) |  |
+| `30`<sub>h</sub> | `u32` | value (PAnnotationWithValue&lt;unsigned int&gt;) |  |
 
 ```
 attribute word (member +0x28)
@@ -374,7 +374,7 @@ attribute word (member +0x28)
 0x40  a kind-2 array measured and defaulted inline, not as a pointer (PSharray<T>::m_u)
 ```
 
-Descriptor vtable slots (PClassDescriptorConcrete<PAnimatableComponent>, `00D29E90`):
+Descriptor vtable slots (PClassDescriptorConcrete&lt;PAnimatableComponent&gt;, `00D29E90`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -386,7 +386,7 @@ Descriptor vtable slots (PClassDescriptorConcrete<PAnimatableComponent>, `00D29E
 | `48`<sub>h</sub> | `detach` | a | member (`0062F080`) |
 | `50`<sub>h</sub> | `construct` | in | place; returns false for a class without one (`00657140`) |
 | `58`<sub>h</sub> | `destruct` | in | place (`0063FC60`) |
-| `60`<sub>h</sub> | `register` | the | members (_purecall in ForType<T>) |
+| `60`<sub>h</sub> | `register` | the | members (_purecall in ForType&lt;T&gt;) |
 
 ## Shipped data
 
@@ -416,11 +416,11 @@ These tables stay beside this page. Each lists one generated family or one per-c
 | [phyre-reflection-guarded-class-registration-stubs.tsv](phyre-reflection-guarded-class-registration-stubs.tsv) | 98 | thread-safe guarded class registrars |
 | [phyre-reflection-name-only-class-registration-initialisers.tsv](phyre-reflection-name-only-class-registration-initialisers.tsv) | 110 | initialisers that call `006388C0` and jump to `00639450` |
 | [phyre-reflection-two-member-descriptor-registrars.tsv](phyre-reflection-two-member-descriptor-registrars.tsv) | 38 | array descriptors with `m_count` and `m_els` |
-| [phyre-reflection-phyre-registrar-classes.tsv](phyre-reflection-phyre-registrar-classes.tsv) | 409 | registrars and the classes they name |
-| [phyre-reflection-phyre-type-name-hashes.tsv](phyre-reflection-phyre-type-name-hashes.tsv) | 399 | type names and their `006388C0` hashes |
+| phyre-reflection-phyre-registrar-classes.tsv | 409 | registrars and the classes they name |
+| phyre-reflection-phyre-type-name-hashes.tsv | 399 | type names and their `006388C0` hashes |
 | [phyre-reflection-phyre-class-instance-sizes.tsv](phyre-reflection-phyre-class-instance-sizes.tsv) | 177 | instance size and alignment per class |
 | [phyre-reflection-phyre-class-parent-chain.tsv](phyre-reflection-phyre-class-parent-chain.tsv) | 330 | parent descriptor per class |
-| [phyre-reflection-phyre-class-f4-offset-adjustment.tsv](phyre-reflection-phyre-class-f4-offset-adjustment.tsv) | 179 | `+F4`<sub>h</sub> per class |
+| phyre-reflection-phyre-class-f4-offset-adjustment.tsv | 179 | `+F4`<sub>h</sub> per class |
 | [phyre-reflection-phyre-default-instances.tsv](phyre-reflection-phyre-default-instances.tsv) | 173 | default instance per class |
 | [phyre-reflection-phyre-class-default-buffers.tsv](phyre-reflection-phyre-class-default-buffers.tsv) | 384 | the `+C0`<sub>h</sub>, `+C8`<sub>h</sub> and `+D0`<sub>h</sub> buffers per class |
 | [phyre-reflection-phyre-class-descriptor-vtable.tsv](phyre-reflection-phyre-class-descriptor-vtable.tsv) | 315 | each class's descriptor vtable and its slots |
@@ -430,7 +430,7 @@ These tables stay beside this page. Each lists one generated family or one per-c
 | [phyre-reflection-ptexture-cube-map-d3d11-accesses.tsv](phyre-reflection-ptexture-cube-map-d3d11-accesses.tsv) | 95 | accesses to a `PTextureCubeMapD3D11`, from its constructor `006161A0` (placement constructor `00612D00`) |
 | [phyre-reflection-rtti-class-vtables.tsv](phyre-reflection-rtti-class-vtables.tsv) | 2,286 | class name to vtable for every polymorphic class |
 | [phyre-reflection-pclassdescriptorconcrete-placement-default-ctors.tsv](phyre-reflection-pclassdescriptorconcrete-placement-default-ctors.tsv) | 123 | slot `+50`<sub>h</sub> construct-in-place bodies |
-| [phyre-reflection-object-traversal-adapters.tsv](phyre-reflection-object-traversal-adapters.tsv) | 303 | slot `+00`<sub>h</sub> member-visit adapters |
+| phyre-reflection-object-traversal-adapters.tsv | 303 | slot `+00`<sub>h</sub> member-visit adapters |
 | [phyre-reflection-flag-selected-traversal-adapters.tsv](phyre-reflection-flag-selected-traversal-adapters.tsv) | 11 | member-visit adapters that pass the order flag |
 | [phyre-reflection-registry-fetch-traversal-adapters.tsv](phyre-reflection-registry-fetch-traversal-adapters.tsv) | 84 | member-visit adapters that fetch their descriptor first |
 | [phyre-reflection-object-lifecycle-lookup-adapters.tsv](phyre-reflection-object-lifecycle-lookup-adapters.tsv) | 6 | adapters that call `0063BC00` |

@@ -1,0 +1,16 @@
+function	name	site	disp	kind	instruction	route	note
+0051FB70	FUN_0051fb70	0051FB7A	0h	w	mov dword ptr [rcx], eax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+0051FB70	FUN_0051fb70	0051FB7C	8h	w	mov qword ptr [rcx + 8], rax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h zeroclear	
+0051FB70	FUN_0051fb70	0051FB80	10h	w	mov qword ptr [rcx + 10h], rax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h zeroclear	
+0051FB70	FUN_0051fb70	0051FB72	18h	w	mov qword ptr [rcx + 18h], FFFFFFFFFFFFFFFFh	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+0051FB70	FUN_0051fb70	0051FB84	20h	w	mov dword ptr [rcx + 20h], eax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+0051FB70	FUN_0051fb70	0051FB87	24h	w	mov word ptr [rcx + 24h], ax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+0051FB70	FUN_0051fb70	0051FB8B	30h	w	mov qword ptr [rcx + 30h], rax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h zeroclear	
+0051FB70	FUN_0051fb70	0051FB8F	38h	w	mov qword ptr [rcx + 38h], rax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h zeroclear	
+0051FB70	FUN_0051fb70	0051FB9E	40h	w	mov qword ptr [rcx + 40h], FFFFFFFFFFFFFFFFh	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+0051FB70	FUN_0051fb70	0051FB93	48h	w	mov qword ptr [rcx + 48h], rax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h zeroclear	
+0051FB70	FUN_0051fb70	0051FB97	50h	w	mov qword ptr [rcx + 50h], rax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h zeroclear	
+0051FB70	FUN_0051fb70	0051FB9B	58h	w	mov dword ptr [rcx + 58h], eax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+00478040	RenderModelInstanceContainer_Reset	00478055	60h	w	mov word ptr [rbx + 60h], ax	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+00478040	RenderModelInstanceContainer_Reset	00478059	62h	w	mov byte ptr [rbx + 62h], 0	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	
+00478040	RenderModelInstanceContainer_Reset	00478051	66h	w	mov byte ptr [rbx + 66h], 0	route-seeded STATIC 022C7020h | PTR 022C7CD0h base+0h	

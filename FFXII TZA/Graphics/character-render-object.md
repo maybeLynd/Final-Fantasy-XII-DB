@@ -74,7 +74,7 @@ pointers from `+30`<sub>h</sub>; with one it copies the template.
 It then writes defaults into the parameter block: `sunIndex` -1, `fresnelRefEnabled` and `eCameraLightEnabled` 1, `PS2ZBiasEnabled`,
 `PS2ZBiasOriginal`, `PS2ZBiasInstance` and `paletteEnabled` 0, among others. A descriptor's word
 `+10`<sub>h</sub> is the byte offset into the block and `+12h & 1FFFh` its size; every write checks it fits.
-The offset of each name is in [the binding table](character-render-object-shader-binding-record-`318`<sub>h</sub>-slots.tsv).
+The offset of each name is in [the binding table](character-render-object-shader-binding-record-318h-slots.tsv).
 
 ### The z-bias and matrix publish
 

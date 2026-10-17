@@ -78,7 +78,7 @@ Four functions write the table, and each ends in a call to `003278D0`:
 
 | function | arguments | effect |
 |---|---|---|
-| `0026E880` | entry, v, bit, width | `mask |= ((1 << width) - 1) << bit`, then those bits of `value` become `v << bit` |
+| `0026E880` | entry, v, bit, width | `mask \|= ((1 << width) - 1) << bit`, then those bits of `value` become `v << bit` |
 | `0026E850` | entry, bit, width | clears those mask bits, so the authored bits show through again |
 | `0026E130` | entry | `mask := 0` for one entry |
 | `0026E150` | first, count | `mask := 0` for `count` consecutive entries |

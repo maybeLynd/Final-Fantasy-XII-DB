@@ -1,0 +1,17 @@
+function	name	site	disp	kind	instruction	route	note
+006314B0	FUN_006314b0	006314BE	8h	addr	lea rbx, [rdx + 8]	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006314B0	FUN_006314b0	006314DC	8h	w	mov qword ptr [rbx], rcx	route-seeded STATIC 01F2E5A0h base+8h exposed	
+006388C0	FUN_006388c0	00638991	8h	addr	lea rdx, [rbp + 8]	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006314B0	FUN_006314b0	006314DF	10h	w	mov qword ptr [rdx + 10h], rcx	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006314B0	FUN_006314b0	006314BA	18h	r	movzx eax, byte ptr [rdx + 18h]	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006314B0	FUN_006314b0	006314D8	18h	rw	add qword ptr [rbx + 10h], rax	route-seeded STATIC 01F2E5A0h base+8h exposed	
+006314B0	FUN_006314b0	00631589	18h	r	movzx eax, byte ptr [rbx + 10h]	route-seeded STATIC 01F2E5A0h base+8h exposed	
+006314B0	FUN_006314b0	00631598	18h	w	mov qword ptr [rbx + 10h], rax	route-seeded STATIC 01F2E5A0h base+8h exposed	
+0067F700	FUN_0067f700	0067F702	18h	r	movzx r8d, byte ptr [rdx + 10h]	route-seeded STATIC 01F2E5A0h base+8h exposed	
+0067F700	FUN_0067f700	0067F70A	18h	r	mov rax, qword ptr [rdx + 10h]	route-seeded STATIC 01F2E5A0h base+8h exposed	
+0067F700	FUN_0067f700	0067F730	18h	r	movzx eax, byte ptr [r9 + 10h]	route-seeded STATIC 01F2E5A0h base+8h exposed	
+0067F700	FUN_0067f700	0067F73D	18h	r	add rcx, qword ptr [r9 + 10h]	route-seeded STATIC 01F2E5A0h base+8h exposed	
+006314B0	FUN_006314b0	00631507	20h	r	mov ecx, dword ptr [r10 + 20h]	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006388C0	FUN_006388c0	00638976	20h	w	mov dword ptr [rbp + 20h], edi	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006314B0	FUN_006314b0	00631532	28h	r	mov rax, qword ptr [r10 + 28h]	route-seeded STATIC 01F2E5A0h base+0h exposed	
+006388C0	FUN_006388c0	0063897C	28h	w	mov qword ptr [rbp + 28h], rsi	route-seeded STATIC 01F2E5A0h base+0h exposed	

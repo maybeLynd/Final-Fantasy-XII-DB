@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+00879980	FUN_00879980	00879987	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 00879980	
+00879980	FUN_00879980	00879989	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 00879980	
+00879980	FUN_00879980	0087998D	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 00879980	

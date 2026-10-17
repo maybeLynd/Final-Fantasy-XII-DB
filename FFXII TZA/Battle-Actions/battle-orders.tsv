@@ -1,360 +1,360 @@
 order_id	handler	operation	value	name
-0x4000	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4001	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4002	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4003	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4004	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4005	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4006	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4007	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4008	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4009	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x400A	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x400B	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x400C	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x400D	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x400E	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x400F	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4010	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4011	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4012	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4013	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4014	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4015	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4016	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4017	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4018	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4019	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x401A	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x401B	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x401C	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x401D	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x401E	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x401F	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4020	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4021	002FE7D0	wait until the counter +0x75C reaches param * (int)(30 * [01DFE0B8]); clears +0x750-+0x757 first; with param 0 it never ends	param = record +0x02	
-0x4022	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4023	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4024	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4025	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4026	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4027	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4028	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4029	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x402A	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x402B	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x402C	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x402D	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x402E	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x402F	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4030	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4031	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4032	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4033	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4034	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4035	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4036	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4037	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4038	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4039	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403A	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403B	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403C	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403D	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403E	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403F	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4040	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4041	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4042	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4043	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4044	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4045	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4046	002FDDA0	set unit flag bit 15		
-0x4047	002FDDA0	clear unit flag bit 15		
-0x4048	002FDDA0	set unit byte +0x54	0	
-0x4049	002FDDA0	set unit byte +0x54	1	
-0x404A	002FDDA0	set unit byte +0x54	2	
-0x404B	002FDDA0	set unit byte +0x54	3	
-0x404C	002FDDA0	set unit byte +0x54	4	
-0x404D	002FDDA0	set unit byte +0x54	5	
-0x404E	002FDDA0	set unit byte +0x54	6	
-0x404F	002FDDA0	set unit byte +0x54	7	
-0x4050	002FDDA0	remove every status (0030E8F0)		
-0x4051	002FDDA0	add a status (0030E360 mode 3)	0	KO
-0x4052	002FDDA0	add a status (0030E360 mode 3)	1	Stone
-0x4053	002FDDA0	add a status (0030E360 mode 3)	2	Petrify
-0x4054	002FDDA0	add a status (0030E360 mode 3)	3	Stop
-0x4055	002FDDA0	add a status (0030E360 mode 3)	4	Sleep
-0x4056	002FDDA0	add a status (0030E360 mode 3)	5	Confuse
-0x4057	002FDDA0	add a status (0030E360 mode 3)	6	Doom
-0x4058	002FDDA0	add a status (0030E360 mode 3)	7	Blind
-0x4059	002FDDA0	add a status (0030E360 mode 3)	8	Poison
-0x405A	002FDDA0	add a status (0030E360 mode 3)	9	Silence
-0x405B	002FDDA0	add a status (0030E360 mode 3)	10	Sap
-0x405C	002FDDA0	add a status (0030E360 mode 3)	11	Oil
-0x405D	002FDDA0	add a status (0030E360 mode 3)	12	Reverse
-0x405E	002FDDA0	add a status (0030E360 mode 3)	13	Disable
-0x405F	002FDDA0	add a status (0030E360 mode 3)	14	Immobilize
-0x4060	002FDDA0	add a status (0030E360 mode 3)	15	Slow
-0x4061	002FDDA0	add a status (0030E360 mode 3)	16	Disease
-0x4062	002FDDA0	add a status (0030E360 mode 3)	17	Lure
-0x4063	002FDDA0	add a status (0030E360 mode 3)	18	Protect
-0x4064	002FDDA0	add a status (0030E360 mode 3)	19	Shell
-0x4065	002FDDA0	add a status (0030E360 mode 3)	20	Haste
-0x4066	002FDDA0	add a status (0030E360 mode 3)	21	Bravery
-0x4067	002FDDA0	add a status (0030E360 mode 3)	22	Faith
-0x4068	002FDDA0	add a status (0030E360 mode 3)	23	Reflect
-0x4069	002FDDA0	add a status (0030E360 mode 3)	24	Invisible
-0x406A	002FDDA0	add a status (0030E360 mode 3)	25	Regen
-0x406B	002FDDA0	add a status (0030E360 mode 3)	26	Float
-0x406C	002FDDA0	add a status (0030E360 mode 3)	27	Berserk
-0x406D	002FDDA0	add a status (0030E360 mode 3)	28	Bubble
-0x406E	002FDDA0	add a status (0030E360 mode 3)	29	HP Critical
-0x406F	002FDDA0	add a status (0030E360 mode 3)	30	Libra
-0x4070	002FDDA0	add a status (0030E360 mode 3)	31	X-Zone
-0x4071	002FDDA0	remove a status (0030E360 mode 0)	0	KO
-0x4072	002FDDA0	remove a status (0030E360 mode 0)	1	Stone
-0x4073	002FDDA0	remove a status (0030E360 mode 0)	2	Petrify
-0x4074	002FDDA0	remove a status (0030E360 mode 0)	3	Stop
-0x4075	002FDDA0	remove a status (0030E360 mode 0)	4	Sleep
-0x4076	002FDDA0	remove a status (0030E360 mode 0)	5	Confuse
-0x4077	002FDDA0	remove a status (0030E360 mode 0)	6	Doom
-0x4078	002FDDA0	remove a status (0030E360 mode 0)	7	Blind
-0x4079	002FDDA0	remove a status (0030E360 mode 0)	8	Poison
-0x407A	002FDDA0	remove a status (0030E360 mode 0)	9	Silence
-0x407B	002FDDA0	remove a status (0030E360 mode 0)	10	Sap
-0x407C	002FDDA0	remove a status (0030E360 mode 0)	11	Oil
-0x407D	002FDDA0	remove a status (0030E360 mode 0)	12	Reverse
-0x407E	002FDDA0	remove a status (0030E360 mode 0)	13	Disable
-0x407F	002FDDA0	remove a status (0030E360 mode 0)	14	Immobilize
-0x4080	002FDDA0	remove a status (0030E360 mode 0)	15	Slow
-0x4081	002FDDA0	remove a status (0030E360 mode 0)	16	Disease
-0x4082	002FDDA0	remove a status (0030E360 mode 0)	17	Lure
-0x4083	002FDDA0	remove a status (0030E360 mode 0)	18	Protect
-0x4084	002FDDA0	remove a status (0030E360 mode 0)	19	Shell
-0x4085	002FDDA0	remove a status (0030E360 mode 0)	20	Haste
-0x4086	002FDDA0	remove a status (0030E360 mode 0)	21	Bravery
-0x4087	002FDDA0	remove a status (0030E360 mode 0)	22	Faith
-0x4088	002FDDA0	remove a status (0030E360 mode 0)	23	Reflect
-0x4089	002FDDA0	remove a status (0030E360 mode 0)	24	Invisible
-0x408A	002FDDA0	remove a status (0030E360 mode 0)	25	Regen
-0x408B	002FDDA0	remove a status (0030E360 mode 0)	26	Float
-0x408C	002FDDA0	remove a status (0030E360 mode 0)	27	Berserk
-0x408D	002FDDA0	remove a status (0030E360 mode 0)	28	Bubble
-0x408E	002FDDA0	remove a status (0030E360 mode 0)	29	HP Critical
-0x408F	002FDDA0	remove a status (0030E360 mode 0)	30	Libra
-0x4090	002FDDA0	remove a status (0030E360 mode 0)	31	X-Zone
-0x4091	002FDDA0	clear all 128 effect bits of layer +0x68, then rebuild the stats (0030FED0)		
-0x4092	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	0	
-0x4093	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	1	
-0x4094	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	2	Improves chance to hit.
-0x4095	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	3	Improves chance to block with a shield.
-0x4096	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	4	Improves chance of avoiding attacks.
-0x4097	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	5	Reduces physical damage taken when HP Critical.
-0x4098	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	6	When attacked, automatically counter with weapon in hand.
-0x4099	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	7	Improves chance to counter.
-0x409A	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	8	Raises magick power when HP Critical.
-0x409B	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	9	Increases physical damage dealt while empty-handed.
-0x409C	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	10	Raises strength when HP Critical.
-0x409D	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	11	Raises strength when character has full HP.
-0x409E	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	12	Convert all license points earned to gil.
-0x409F	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	13	Improves chance of scoring multiple hits.
-0x40A0	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	14	Improves potency of restorative items such as potions.
-0x40A1	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	15	Reverses effects of restorative items such as potions.
-0x40A2	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	16	Nullifies weather and terrain effects on elemental damage.
-0x40A3	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	17	Enables the theft of superior and rare items.
-0x40A4	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	18	Improves chance to strike with magicks.
-0x40A5	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	19	
-0x40A6	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	20	NOT USED
-0x40A7	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	21	NOT USED
-0x40A8	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	22	
-0x40A9	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	23	NOT USED
-0x40AA	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	24	
-0x40AB	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	25	Search the deepest recesses of chests, coffers, and the like.
-0x40AC	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	26	
-0x40AD	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	27	Doubles EXP earned.
-0x40AE	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	28	Doubles license points earned.
-0x40AF	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	29	Reduces EXP earned to 0.
-0x40B0	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	30	NOT USED
-0x40B1	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	31	Magicks will not bounce off targets with Reflect status.
-0x40B2	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	32	Enables casting of magicks with gil, rather than MP.
-0x40B3	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	33	NOT USED
-0x40B4	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	34	NOT USED
-0x40B5	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	35	
-0x40B6	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	36	Reduces MP cost by half.
-0x40B7	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	37	Move safely past traps.
-0x40B8	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	38	
-0x40B9	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	39	Reduces MP to 0.
-0x40BA	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	40	NOT USED
-0x40BB	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	41	Increases magick power when HP is full.
-0x40BC	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	42	
-0x40BD	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	43	
-0x40BE	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	44	
-0x40BF	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	45	
-0x40C0	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	46	
-0x40C1	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	47	
-0x40C2	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	48	
-0x40C3	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	49	
-0x40C4	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	50	
-0x40C5	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	51	
-0x40C6	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	52	
-0x40C7	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	53	
-0x40C8	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	54	
-0x40C9	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	55	
-0x40CA	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	56	
-0x40CB	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	57	
-0x40CC	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	58	
-0x40CD	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	59	
-0x40CE	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	60	
-0x40CF	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	61	
-0x40D0	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	62	Slightly raises max HP.
-0x40D1	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	63	Move with great celerity.
-0x40D2	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	0	
-0x40D3	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	1	
-0x40D4	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	2	Improves chance to hit.
-0x40D5	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	3	Improves chance to block with a shield.
-0x40D6	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	4	Improves chance of avoiding attacks.
-0x40D7	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	5	Reduces physical damage taken when HP Critical.
-0x40D8	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	6	When attacked, automatically counter with weapon in hand.
-0x40D9	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	7	Improves chance to counter.
-0x40DA	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	8	Raises magick power when HP Critical.
-0x40DB	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	9	Increases physical damage dealt while empty-handed.
-0x40DC	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	10	Raises strength when HP Critical.
-0x40DD	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	11	Raises strength when character has full HP.
-0x40DE	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	12	Convert all license points earned to gil.
-0x40DF	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	13	Improves chance of scoring multiple hits.
-0x40E0	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	14	Improves potency of restorative items such as potions.
-0x40E1	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	15	Reverses effects of restorative items such as potions.
-0x40E2	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	16	Nullifies weather and terrain effects on elemental damage.
-0x40E3	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	17	Enables the theft of superior and rare items.
-0x40E4	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	18	Improves chance to strike with magicks.
-0x40E5	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	19	
-0x40E6	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	20	NOT USED
-0x40E7	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	21	NOT USED
-0x40E8	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	22	
-0x40E9	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	23	NOT USED
-0x40EA	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	24	
-0x40EB	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	25	Search the deepest recesses of chests, coffers, and the like.
-0x40EC	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	26	
-0x40ED	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	27	Doubles EXP earned.
-0x40EE	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	28	Doubles license points earned.
-0x40EF	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	29	Reduces EXP earned to 0.
-0x40F0	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	30	NOT USED
-0x40F1	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	31	Magicks will not bounce off targets with Reflect status.
-0x40F2	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	32	Enables casting of magicks with gil, rather than MP.
-0x40F3	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	33	NOT USED
-0x40F4	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	34	NOT USED
-0x40F5	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	35	
-0x40F6	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	36	Reduces MP cost by half.
-0x40F7	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	37	Move safely past traps.
-0x40F8	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	38	
-0x40F9	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	39	Reduces MP to 0.
-0x40FA	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	40	NOT USED
-0x40FB	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	41	Increases magick power when HP is full.
-0x40FC	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	42	
-0x40FD	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	43	
-0x40FE	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	44	
-0x40FF	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	45	
-0x4100	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	46	
-0x4101	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	47	
-0x4102	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	48	
-0x4103	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	49	
-0x4104	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	50	
-0x4105	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	51	
-0x4106	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	52	
-0x4107	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	53	
-0x4108	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	54	
-0x4109	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	55	
-0x410A	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	56	
-0x410B	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	57	
-0x410C	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	58	
-0x410D	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	59	
-0x410E	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	60	
-0x410F	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	61	
-0x4110	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	62	Slightly raises max HP.
-0x4111	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	63	Move with great celerity.
-0x4112	002FDDA0	enemy side: point +0x6E0 at entry [[unit+0xE60]+0x50+2k] of the table at 02EBF168 and zero +0x6B5; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 0	
-0x4113	002FDDA0	enemy side: point +0x6E0 at entry [[unit+0xE60]+0x50+2k] of the table at 02EBF168 and zero +0x6B5; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 1	
-0x4114	002FDDA0	enemy side: point +0x6E0 at entry [[unit+0xE60]+0x50+2k] of the table at 02EBF168 and zero +0x6B5; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 2	
-0x4115	002FDDA0	enemy side: point +0x6E0 at entry [[unit+0xE60]+0x50+2k] of the table at 02EBF168 and zero +0x6B5; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 3	
-0x4116	002FDDA0	set unit byte +0x6B5	0	
-0x4117	002FDDA0	set unit byte +0x6B5	1	
-0x4118	002FDDA0	set unit byte +0x6B5	2	
-0x4119	002FDDA0	set unit byte +0x6B5	3	
-0x411A	002FDDA0	set unit byte +0x6B5	4	
-0x411B	002FDDA0	set unit byte +0x6B5	5	
-0x411C	002FDDA0	set unit byte +0x6B5	6	
-0x411D	002FDDA0	set unit byte +0x6B5	7	
-0x411E	002FDDA0	set unit byte +0x6B5	8	
-0x411F	002FDDA0	set unit byte +0x6B5	9	
-0x4120	002FDDA0	set unit byte +0x6B5	10	
-0x4121	002FDDA0	set unit byte +0x6B5	11	
-0x4122	002FE660	set bit param of the register	register kind 10 of the target unit (+0xB90)	
-0x4123	002FE660	clear bit param of the register	register kind 10 of the target unit (+0xB90)	
-0x4124	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4125	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
-0x4126	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x4127	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4128	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4129	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x412A	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x412B	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x412C	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x412D	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x412E	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x412F	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4130	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4131	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4132	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4133	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4134	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4135	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4136	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4137	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4138	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x4139	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 0	
-0x413A	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 1	
-0x413B	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 2	
-0x413C	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 3	
-0x413D	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 4	
-0x413E	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 5	
-0x413F	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 6	
-0x4140	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 7	
-0x4141	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 0	
-0x4142	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 1	
-0x4143	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 2	
-0x4144	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 3	
-0x4145	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 4	
-0x4146	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 5	
-0x4147	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 6	
-0x4148	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 7	
-0x4149	002FE660	set the register to param	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
-0x414A	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x414B	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
-0x414C	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x414D	002FE840	calls 00313400(unit), or 00313480() when unit bit 23 is set; ends when unit bits 50-51 are clear		
-0x414E	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits; keeps the target handle +0x710 as the movement target	
-0x414F	002FE8D0	calls 002E73C0(actor, param)	param = record +0x02	
-0x4150	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x4151	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x4152	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x4153	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x4154	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
-0x4155	002FE660	add param to the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
-0x4156	002FE660	set bit param of the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
-0x4157	002FE660	clear bit param of the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
-0x4158	002FDDA0	add param to the stats i16 at +0x08, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x4159	002FDDA0	add param to the stats i16 at +0x0A, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x415A	002FDDA0	add param to the stats i16 at +0x0C, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x415B	002FDDA0	add param to the stats i16 at +0x0E, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x415C	002FDDA0	add param to the stats i16 at +0x1E, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x415D	002FDDA0	add param to the stats i16 at +0x12, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
-0x415E	002FDDA0	add param to the stats i16 at +0x14, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
-0x415F	002FDDA0	add param to the stats i16 at +0x10, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
-0x4160	002FDDA0	add param to the stats i16 at +0x18, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x4161	002FDDA0	add param to the stats i16 at +0x1A, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x4162	002FDDA0	add param to the stats i16 at +0x1C, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x4163	002FDDA0	enemy side: set its per-party-member byte table to 1 for every living party member (00321B00)		
-0x4164	002FDDA0	enemy side: add param to its per-party-member byte table for every living party member (00321B00)	param = record +0x02	
-0x4165	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
-0x4166	002FE910	calls 0046A6E0(param)	param = record +0x02	
+4000h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4001h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4002h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4003h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4004h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4005h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4006h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4007h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4008h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4009h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+400Ah	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+400Bh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+400Ch	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+400Dh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+400Eh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+400Fh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4010h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4011h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4012h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4013h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4014h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4015h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4016h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4017h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4018h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4019h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+401Ah	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+401Bh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+401Ch	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+401Dh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+401Eh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+401Fh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4020h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4021h	002FE7D0	wait until the counter +75Ch reaches param * (int)(30 * [01DFE0B8]); clears +750h-+757h first; with param 0 it never ends	param = record +02h	
+4022h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4023h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4024h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4025h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4026h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4027h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4028h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4029h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+402Ah	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+402Bh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+402Ch	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+402Dh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+402Eh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+402Fh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4030h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4031h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4032h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4033h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4034h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4035h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4036h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4037h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4038h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4039h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+403Ah	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+403Bh	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+403Ch	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+403Dh	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+403Eh	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+403Fh	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4040h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4041h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4042h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4043h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4044h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4045h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4046h	002FDDA0	set unit flag bit 15		
+4047h	002FDDA0	clear unit flag bit 15		
+4048h	002FDDA0	set unit byte +54h	0	
+4049h	002FDDA0	set unit byte +54h	1	
+404Ah	002FDDA0	set unit byte +54h	2	
+404Bh	002FDDA0	set unit byte +54h	3	
+404Ch	002FDDA0	set unit byte +54h	4	
+404Dh	002FDDA0	set unit byte +54h	5	
+404Eh	002FDDA0	set unit byte +54h	6	
+404Fh	002FDDA0	set unit byte +54h	7	
+4050h	002FDDA0	remove every status (0030E8F0)		
+4051h	002FDDA0	add a status (0030E360 mode 3)	0	KO
+4052h	002FDDA0	add a status (0030E360 mode 3)	1	Stone
+4053h	002FDDA0	add a status (0030E360 mode 3)	2	Petrify
+4054h	002FDDA0	add a status (0030E360 mode 3)	3	Stop
+4055h	002FDDA0	add a status (0030E360 mode 3)	4	Sleep
+4056h	002FDDA0	add a status (0030E360 mode 3)	5	Confuse
+4057h	002FDDA0	add a status (0030E360 mode 3)	6	Doom
+4058h	002FDDA0	add a status (0030E360 mode 3)	7	Blind
+4059h	002FDDA0	add a status (0030E360 mode 3)	8	Poison
+405Ah	002FDDA0	add a status (0030E360 mode 3)	9	Silence
+405Bh	002FDDA0	add a status (0030E360 mode 3)	10	Sap
+405Ch	002FDDA0	add a status (0030E360 mode 3)	11	Oil
+405Dh	002FDDA0	add a status (0030E360 mode 3)	12	Reverse
+405Eh	002FDDA0	add a status (0030E360 mode 3)	13	Disable
+405Fh	002FDDA0	add a status (0030E360 mode 3)	14	Immobilize
+4060h	002FDDA0	add a status (0030E360 mode 3)	15	Slow
+4061h	002FDDA0	add a status (0030E360 mode 3)	16	Disease
+4062h	002FDDA0	add a status (0030E360 mode 3)	17	Lure
+4063h	002FDDA0	add a status (0030E360 mode 3)	18	Protect
+4064h	002FDDA0	add a status (0030E360 mode 3)	19	Shell
+4065h	002FDDA0	add a status (0030E360 mode 3)	20	Haste
+4066h	002FDDA0	add a status (0030E360 mode 3)	21	Bravery
+4067h	002FDDA0	add a status (0030E360 mode 3)	22	Faith
+4068h	002FDDA0	add a status (0030E360 mode 3)	23	Reflect
+4069h	002FDDA0	add a status (0030E360 mode 3)	24	Invisible
+406Ah	002FDDA0	add a status (0030E360 mode 3)	25	Regen
+406Bh	002FDDA0	add a status (0030E360 mode 3)	26	Float
+406Ch	002FDDA0	add a status (0030E360 mode 3)	27	Berserk
+406Dh	002FDDA0	add a status (0030E360 mode 3)	28	Bubble
+406Eh	002FDDA0	add a status (0030E360 mode 3)	29	HP Critical
+406Fh	002FDDA0	add a status (0030E360 mode 3)	30	Libra
+4070h	002FDDA0	add a status (0030E360 mode 3)	31	X-Zone
+4071h	002FDDA0	remove a status (0030E360 mode 0)	0	KO
+4072h	002FDDA0	remove a status (0030E360 mode 0)	1	Stone
+4073h	002FDDA0	remove a status (0030E360 mode 0)	2	Petrify
+4074h	002FDDA0	remove a status (0030E360 mode 0)	3	Stop
+4075h	002FDDA0	remove a status (0030E360 mode 0)	4	Sleep
+4076h	002FDDA0	remove a status (0030E360 mode 0)	5	Confuse
+4077h	002FDDA0	remove a status (0030E360 mode 0)	6	Doom
+4078h	002FDDA0	remove a status (0030E360 mode 0)	7	Blind
+4079h	002FDDA0	remove a status (0030E360 mode 0)	8	Poison
+407Ah	002FDDA0	remove a status (0030E360 mode 0)	9	Silence
+407Bh	002FDDA0	remove a status (0030E360 mode 0)	10	Sap
+407Ch	002FDDA0	remove a status (0030E360 mode 0)	11	Oil
+407Dh	002FDDA0	remove a status (0030E360 mode 0)	12	Reverse
+407Eh	002FDDA0	remove a status (0030E360 mode 0)	13	Disable
+407Fh	002FDDA0	remove a status (0030E360 mode 0)	14	Immobilize
+4080h	002FDDA0	remove a status (0030E360 mode 0)	15	Slow
+4081h	002FDDA0	remove a status (0030E360 mode 0)	16	Disease
+4082h	002FDDA0	remove a status (0030E360 mode 0)	17	Lure
+4083h	002FDDA0	remove a status (0030E360 mode 0)	18	Protect
+4084h	002FDDA0	remove a status (0030E360 mode 0)	19	Shell
+4085h	002FDDA0	remove a status (0030E360 mode 0)	20	Haste
+4086h	002FDDA0	remove a status (0030E360 mode 0)	21	Bravery
+4087h	002FDDA0	remove a status (0030E360 mode 0)	22	Faith
+4088h	002FDDA0	remove a status (0030E360 mode 0)	23	Reflect
+4089h	002FDDA0	remove a status (0030E360 mode 0)	24	Invisible
+408Ah	002FDDA0	remove a status (0030E360 mode 0)	25	Regen
+408Bh	002FDDA0	remove a status (0030E360 mode 0)	26	Float
+408Ch	002FDDA0	remove a status (0030E360 mode 0)	27	Berserk
+408Dh	002FDDA0	remove a status (0030E360 mode 0)	28	Bubble
+408Eh	002FDDA0	remove a status (0030E360 mode 0)	29	HP Critical
+408Fh	002FDDA0	remove a status (0030E360 mode 0)	30	Libra
+4090h	002FDDA0	remove a status (0030E360 mode 0)	31	X-Zone
+4091h	002FDDA0	clear all 128 effect bits of layer +68h, then rebuild the stats (0030FED0)		
+4092h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	0	
+4093h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	1	
+4094h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	2	Improves chance to hit.
+4095h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	3	Improves chance to block with a shield.
+4096h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	4	Improves chance of avoiding attacks.
+4097h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	5	Reduces physical damage taken when HP Critical.
+4098h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	6	When attacked, automatically counter with weapon in hand.
+4099h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	7	Improves chance to counter.
+409Ah	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	8	Raises magick power when HP Critical.
+409Bh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	9	Increases physical damage dealt while empty-handed.
+409Ch	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	10	Raises strength when HP Critical.
+409Dh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	11	Raises strength when character has full HP.
+409Eh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	12	Convert all license points earned to gil.
+409Fh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	13	Improves chance of scoring multiple hits.
+40A0h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	14	Improves potency of restorative items such as potions.
+40A1h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	15	Reverses effects of restorative items such as potions.
+40A2h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	16	Nullifies weather and terrain effects on elemental damage.
+40A3h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	17	Enables the theft of superior and rare items.
+40A4h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	18	Improves chance to strike with magicks.
+40A5h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	19	
+40A6h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	20	NOT USED
+40A7h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	21	NOT USED
+40A8h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	22	
+40A9h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	23	NOT USED
+40AAh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	24	
+40ABh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	25	Search the deepest recesses of chests, coffers, and the like.
+40ACh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	26	
+40ADh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	27	Doubles EXP earned.
+40AEh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	28	Doubles license points earned.
+40AFh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	29	Reduces EXP earned to 0.
+40B0h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	30	NOT USED
+40B1h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	31	Magicks will not bounce off targets with Reflect status.
+40B2h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	32	Enables casting of magicks with gil, rather than MP.
+40B3h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	33	NOT USED
+40B4h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	34	NOT USED
+40B5h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	35	
+40B6h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	36	Reduces MP cost by half.
+40B7h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	37	Move safely past traps.
+40B8h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	38	
+40B9h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	39	Reduces MP to 0.
+40BAh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	40	NOT USED
+40BBh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	41	Increases magick power when HP is full.
+40BCh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	42	
+40BDh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	43	
+40BEh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	44	
+40BFh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	45	
+40C0h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	46	
+40C1h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	47	
+40C2h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	48	
+40C3h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	49	
+40C4h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	50	
+40C5h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	51	
+40C6h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	52	
+40C7h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	53	
+40C8h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	54	
+40C9h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	55	
+40CAh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	56	
+40CBh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	57	
+40CCh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	58	
+40CDh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	59	
+40CEh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	60	
+40CFh	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	61	
+40D0h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	62	Slightly raises max HP.
+40D1h	002FDDA0	set an effect bit in layer +68h (0030E130 mode 2)	63	Move with great celerity.
+40D2h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	0	
+40D3h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	1	
+40D4h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	2	Improves chance to hit.
+40D5h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	3	Improves chance to block with a shield.
+40D6h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	4	Improves chance of avoiding attacks.
+40D7h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	5	Reduces physical damage taken when HP Critical.
+40D8h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	6	When attacked, automatically counter with weapon in hand.
+40D9h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	7	Improves chance to counter.
+40DAh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	8	Raises magick power when HP Critical.
+40DBh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	9	Increases physical damage dealt while empty-handed.
+40DCh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	10	Raises strength when HP Critical.
+40DDh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	11	Raises strength when character has full HP.
+40DEh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	12	Convert all license points earned to gil.
+40DFh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	13	Improves chance of scoring multiple hits.
+40E0h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	14	Improves potency of restorative items such as potions.
+40E1h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	15	Reverses effects of restorative items such as potions.
+40E2h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	16	Nullifies weather and terrain effects on elemental damage.
+40E3h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	17	Enables the theft of superior and rare items.
+40E4h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	18	Improves chance to strike with magicks.
+40E5h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	19	
+40E6h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	20	NOT USED
+40E7h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	21	NOT USED
+40E8h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	22	
+40E9h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	23	NOT USED
+40EAh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	24	
+40EBh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	25	Search the deepest recesses of chests, coffers, and the like.
+40ECh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	26	
+40EDh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	27	Doubles EXP earned.
+40EEh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	28	Doubles license points earned.
+40EFh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	29	Reduces EXP earned to 0.
+40F0h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	30	NOT USED
+40F1h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	31	Magicks will not bounce off targets with Reflect status.
+40F2h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	32	Enables casting of magicks with gil, rather than MP.
+40F3h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	33	NOT USED
+40F4h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	34	NOT USED
+40F5h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	35	
+40F6h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	36	Reduces MP cost by half.
+40F7h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	37	Move safely past traps.
+40F8h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	38	
+40F9h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	39	Reduces MP to 0.
+40FAh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	40	NOT USED
+40FBh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	41	Increases magick power when HP is full.
+40FCh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	42	
+40FDh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	43	
+40FEh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	44	
+40FFh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	45	
+4100h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	46	
+4101h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	47	
+4102h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	48	
+4103h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	49	
+4104h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	50	
+4105h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	51	
+4106h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	52	
+4107h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	53	
+4108h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	54	
+4109h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	55	
+410Ah	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	56	
+410Bh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	57	
+410Ch	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	58	
+410Dh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	59	
+410Eh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	60	
+410Fh	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	61	
+4110h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	62	Slightly raises max HP.
+4111h	002FDDA0	clear an effect bit in layer +68h (0030E130 mode 0)	63	Move with great celerity.
+4112h	002FDDA0	enemy side: point +6E0h at entry [[unit+E60h]+50h+2k] of the table at 02EBF168 and zero +6B5h; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 0	
+4113h	002FDDA0	enemy side: point +6E0h at entry [[unit+E60h]+50h+2k] of the table at 02EBF168 and zero +6B5h; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 1	
+4114h	002FDDA0	enemy side: point +6E0h at entry [[unit+E60h]+50h+2k] of the table at 02EBF168 and zero +6B5h; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 2	
+4115h	002FDDA0	enemy side: point +6E0h at entry [[unit+E60h]+50h+2k] of the table at 02EBF168 and zero +6B5h; a selector at or past the table count (u16 at +0) refuses the order (-1); any other unit ends at once doing nothing	k = 3	
+4116h	002FDDA0	set unit byte +6B5h	0	
+4117h	002FDDA0	set unit byte +6B5h	1	
+4118h	002FDDA0	set unit byte +6B5h	2	
+4119h	002FDDA0	set unit byte +6B5h	3	
+411Ah	002FDDA0	set unit byte +6B5h	4	
+411Bh	002FDDA0	set unit byte +6B5h	5	
+411Ch	002FDDA0	set unit byte +6B5h	6	
+411Dh	002FDDA0	set unit byte +6B5h	7	
+411Eh	002FDDA0	set unit byte +6B5h	8	
+411Fh	002FDDA0	set unit byte +6B5h	9	
+4120h	002FDDA0	set unit byte +6B5h	10	
+4121h	002FDDA0	set unit byte +6B5h	11	
+4122h	002FE660	set bit param of the register	register kind 10 of the target unit (+B90h)	
+4123h	002FE660	clear bit param of the register	register kind 10 of the target unit (+B90h)	
+4124h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4125h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal set once (003291B0); a failed navigation step (00325BB0 = 0) ends the order with -1	
+4126h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+4127h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4128h	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+4129h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+412Ah	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+412Bh	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+412Ch	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+412Dh	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+412Eh	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+412Fh	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4130h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4131h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4132h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4133h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4134h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4135h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4136h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4137h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4138h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+4139h	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 0	
+413Ah	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 1	
+413Bh	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 2	
+413Ch	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 3	
+413Dh	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 4	
+413Eh	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 5	
+413Fh	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 6	
+4140h	002FDDA0	set a bit of the global battle flags 022C314C (0031A910)	bit 7	
+4141h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 0	
+4142h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 1	
+4143h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 2	
+4144h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 3	
+4145h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 4	
+4146h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 5	
+4147h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 6	
+4148h	002FDDA0	clear a bit of the global battle flags 022C314C (0031A8C0)	bit 7	
+4149h	002FE660	set the register to param	register kind = record +06h >> 12, index = low byte of +06h (00321190 / 00329E60)	
+414Ah	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+414Bh	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal re-resolved every frame	
+414Ch	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+414Dh	002FE840	calls 00313400(unit), or 00313480() when unit bit 23 is set; ends when unit bits 50-51 are clear		
+414Eh	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits; keeps the target handle +710h as the movement target	
+414Fh	002FE8D0	calls 002E73C0(actor, param)	param = record +02h	
+4150h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+4151h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+4152h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+4153h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+4154h	002FDC30	move by 00312B40 to a goal from the order record, stopping at the larger body size; ends when 0033A120 reports it reached	goal resolved once	
+4155h	002FE660	add param to the register	register kind = record +06h >> 12, index = low byte of +06h (00321190 / 00329E60)	
+4156h	002FE660	set bit param of the register	register kind = record +06h >> 12, index = low byte of +06h (00321190 / 00329E60)	
+4157h	002FE660	clear bit param of the register	register kind = record +06h >> 12, index = low byte of +06h (00321190 / 00329E60)	
+4158h	002FDDA0	add param to the stats i16 at +08h, clamped to +-99, then rebuild (0030FED0)	param = record +02h	
+4159h	002FDDA0	add param to the stats i16 at +0Ah, clamped to +-99, then rebuild (0030FED0)	param = record +02h	
+415Ah	002FDDA0	add param to the stats i16 at +0Ch, clamped to +-99, then rebuild (0030FED0)	param = record +02h	
+415Bh	002FDDA0	add param to the stats i16 at +0Eh, clamped to +-99, then rebuild (0030FED0)	param = record +02h	
+415Ch	002FDDA0	add param to the stats i16 at +1Eh, clamped to +-100, then rebuild (0030FED0)	param = record +02h	
+415Dh	002FDDA0	add param to the stats i16 at +12h, clamped to +-255, then rebuild (0030FED0)	param = record +02h	
+415Eh	002FDDA0	add param to the stats i16 at +14h, clamped to +-255, then rebuild (0030FED0)	param = record +02h	
+415Fh	002FDDA0	add param to the stats i16 at +10h, clamped to +-255, then rebuild (0030FED0)	param = record +02h	
+4160h	002FDDA0	add param to the stats i16 at +18h, clamped to +-100, then rebuild (0030FED0)	param = record +02h	
+4161h	002FDDA0	add param to the stats i16 at +1Ah, clamped to +-100, then rebuild (0030FED0)	param = record +02h	
+4162h	002FDDA0	add param to the stats i16 at +1Ch, clamped to +-100, then rebuild (0030FED0)	param = record +02h	
+4163h	002FDDA0	enemy side: set its per-party-member byte table to 1 for every living party member (00321B00)		
+4164h	002FDDA0	enemy side: add param to its per-party-member byte table for every living party member (00321B00)	param = record +02h	
+4165h	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	
+4166h	002FE910	calls 0046A6E0(param)	param = record +02h	

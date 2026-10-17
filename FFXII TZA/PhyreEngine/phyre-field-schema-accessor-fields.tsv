@@ -1,0 +1,74 @@
+class	descriptor	class_size	offset	width	ctype	accessor	adapter	adapter_asm	note	status
+PAnimatableComponent	02CAD140	108h	0020h	8	void*	getAnimationSet	00624680	mov rax, qword ptr [rcx + 20h] / ret  / int3		AGREES
+PAnimatableComponent	02CAD140	108h	0028h	4	uint32	getMaximumClipCount	005C4D10	mov eax, dword ptr [rcx + 28h] / btr eax, 1Fh / ret	PACKED - the value is masked or shifted before return (btr,ret,int3)	NEW
+PAnimatableComponent	02CAD140	108h	0080h	8	void*	stop	005CAC80	mov qword ptr [rcx + 80h], 0 / ret  / int3		NEW
+PAnimationChannelTarget	02CAD640	38h	0000h	8	void*	getTargetObjectType	006B5C60	mov rax, qword ptr [rcx] / ret  / int3		AGREES
+PAnimationChannelTarget	02CAD640	38h	0010h	8	void*	getTargetBaseObjectType	005C5310	mov rax, qword ptr [rcx + 10h] / ret  / int3		AGREES
+PAnimationChannelTarget	02CAD640	38h	0028h	1	uint8	getTargetName	005C5320	movzx edx, byte ptr [rcx + 28h] / mov rax, qword ptr [rcx + 28h] / and edx, 1	PACKED - the value is masked or shifted before return (mov,and,sub)	WIDTH-DIFFERS
+PAnimationChannelTarget	02CAD640	38h	0030h	4	uint32	getTargetIndex	0079CFA0	mov eax, dword ptr [rcx + 30h] / ret  / int3		AGREES
+PAnimationClip	02CAD840	38h	0008h	4	uint32	getAnimationChannelCount	005C39A0	mov eax, dword ptr [rcx + 8] / btr eax, 1Fh / ret	PACKED - the value is masked or shifted before return (btr,ret,int3)	NEW
+PAnimationClip	02CAD840	38h	0010h	8	void*	getAnimationChannel	005C3990	mov rax, qword ptr [rcx + 10h] / mov edx, edx / mov rax, qword ptr [rax + rdx*8]		NEW
+PAnimationClip	02CAD840	38h	0018h	4	uint32	getAnimationConstantChannelCount	005C3A20	mov eax, dword ptr [rcx + 18h] / btr eax, 1Fh / ret	PACKED - the value is masked or shifted before return (btr,ret,int3)	NEW
+PAnimationClip	02CAD840	38h	0030h	8	uint8[?]	getName	005C4D20	lea rax, [rcx + 30h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	AGREES
+PApplication	02EA5660	1130h	0040h	8	double	getTotalElapsedTime	0079DA00	movsd xmm0, qword ptr [rcx + 40h] / ret  / int3		AGREES
+PApplication	02EA5660	1130h	0048h	8	double	getElapsedTime	0079CF70	movsd xmm0, qword ptr [rcx + 48h] / ret  / int3		AGREES
+PApplication	02EA5660	1130h	0064h	4	uint32	getFrameCount	0079CF80	mov eax, dword ptr [rcx + 64h] / ret  / int3		AGREES
+PApplication	02EA5660	1130h	0D24h	4	uint32	getWidth	0079E3A0	mov eax, dword ptr [rcx + D24h] / ret  / int3		AGREES
+PApplication	02EA5660	1130h	0D28h	4	uint32	getHeight	0079CF90	mov eax, dword ptr [rcx + D28h] / ret  / int3		AGREES
+PApplication	02EA5660	1130h	0DB8h	4	uint32	getViewportCount	0079E390	mov eax, dword ptr [rcx + DB8h] / btr eax, 1Fh / ret	PACKED - the value is masked or shifted before return (btr,ret,int3)	AGREES
+PApplication	02EA5660	1130h	0DC0h	8	void*	getViewport	0079E380	mov rax, qword ptr [rcx + DC0h] / mov edx, edx / mov rax, qword ptr [rax + rdx*8]		AGREES
+PApplication	02EA5660	1130h	0DC8h	8	uint8[?]	getWorld	0079E3B0	lea rax, [rcx + DC8h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	WIDTH-DIFFERS
+PApplication	02EA5660	1130h	0DF8h	8	void*	getInputMapper	0079D000	mov rax, qword ptr [rcx + DF8h] / ret  / int3		AGREES
+PApplication	02EA5660	1130h	10D8h	8	uint8[?]	getDebugUtils	0079CEB0	lea rax, [rcx + 10D8h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	AGREES
+PApplicationViewport	02EA5380	38h	0020h	4	float	getAspect	0079CEA0	movss xmm0, dword ptr [rcx + 20h] / ret  / int3		NEW
+PApplicationViewport	02EA5380	38h	0024h	4	uint32	getX	00225690	mov eax, dword ptr [rcx + 24h] / ret  / int3		NEW
+PApplicationViewport	02EA5380	38h	0028h	4	uint32	getY	0079E3C0	mov eax, dword ptr [rcx + 28h] / ret  / int3		NEW
+PApplicationViewport	02EA5380	38h	002Ch	4	uint32	getWidth	00225670	mov eax, dword ptr [rcx + 2Ch] / ret  / int3		NEW
+PApplicationViewport	02EA5380	38h	0030h	4	uint32	getHeight	0079CFA0	mov eax, dword ptr [rcx + 30h] / ret  / int3		NEW
+PAssetReference	02D3E680	50h	0030h	8	uint8[?]	getID	005C4D20	lea rax, [rcx + 30h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	AGREES
+PAssetReference	02D3E680	50h	0040h	8	void*	getAssetType	00677A70	mov rax, qword ptr [rcx + 40h] / ret  / int3		AGREES
+PCamera	02D3F210	C0h	00B0h	8	void*	getLocalToWorldMatrix	00679100	mov rax, qword ptr [rcx + B0h] / ret  / int3		AGREES
+PComponent	02E4E720	18h	0008h	8	void*	getEntity	006B5C70	mov rax, qword ptr [rcx + 8] / ret  / int3		AGREES
+PComponent	02E4E720	18h	0010h	8	void*	getComponentType	005C5310	mov rax, qword ptr [rcx + 10h] / ret  / int3		AGREES
+PEntity	02E4EAF0	38h	0008h	8	void*	getWorldMatrix	006B5C70	mov rax, qword ptr [rcx + 8] / ret  / int3		AGREES
+PInputAction	02EB6CF0	28h	0018h	8	void*	getInputType	00873C30	mov rax, qword ptr [rcx + 18h] / mov edx, edx / mov rax, qword ptr [rax + rdx*8]		NEW
+PInputMapper	02EA5560	2C8h	0178h	4	uint32	getMouseX	0079D600	mov eax, dword ptr [rcx + 178h] / ret  / int3		NEW
+PInputMapper	02EA5560	2C8h	017Ch	4	uint32	getMouseY	0079D610	mov eax, dword ptr [rcx + 17Ch] / ret  / int3		NEW
+PInstancesComponent	02E4F900	28h	0018h	8	uint8[?]	getInstances	006AF560	lea rax, [rcx + 18h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	NEW
+PInstancesComponent	02E4F900	28h	0018h	4	uint32	getInstanceCount	005C3A20	mov eax, dword ptr [rcx + 18h] / btr eax, 1Fh / ret	PACKED - the value is masked or shifted before return (btr,ret,int3)	NEW
+PLight	02E58DB0	40h	0010h	8	void*	getLocalToWorldMatrix	005C5310	mov rax, qword ptr [rcx + 10h] / ret  / int3		AGREES
+PLight	02E58DB0	40h	0010h	8	void*	setLocalToWorldMatrix	00213540	mov qword ptr [rcx + 10h], rdx / ret  / int3		AGREES
+PLight	02E58DB0	40h	0028h	4	float	setInnerConeAngle	006C05C0	movss dword ptr [rcx + 28h], xmm1 / ret  / int3		AGREES
+PLight	02E58DB0	40h	002Ch	4	float	setOuterConeAngle	006C05E0	movss dword ptr [rcx + 2Ch], xmm1 / ret  / int3		AGREES
+PLight	02E58DB0	40h	0030h	4	float	setIntensity	006C05D0	movss dword ptr [rcx + 30h], xmm1 / ret  / int3		AGREES
+PLight	02E58DB0	40h	0034h	4	float	setRange	006C05F0	movss dword ptr [rcx + 34h], xmm1 / movss dword ptr [rcx + 38h], xmm2 / ret	adapter continues past the load	AGREES
+PLight	02E58DB0	40h	003Ch	4	float	setScatteringIntensity	006C0600	movss dword ptr [rcx + 3Ch], xmm1 / ret  / int3		AGREES
+PMaterialSet	02D3A440	10h	0000h	4	uint32	getMaterialCount	005C4CC0	mov eax, dword ptr [rcx] / btr eax, 1Fh / ret	PACKED - the value is masked or shifted before return (btr,ret,int3)	NEW
+PMeshInstance	02CB6E80	C8h	0000h	8	void*	getMesh	006B5C60	mov rax, qword ptr [rcx] / ret  / int3		AGREES
+PMeshInstance	02CB6E80	C8h	0008h	8	void*	getLocalToWorldMatrix	006B5C70	mov rax, qword ptr [rcx + 8] / ret  / int3		AGREES
+PMeshInstance	02CB6E80	C8h	0020h	8	void*	getMaterialSet	00624680	mov rax, qword ptr [rcx + 20h] / ret  / int3		AGREES
+PMeshInstance	02CB6E80	C8h	0038h	8	void*	getBounds	006045D0	mov rax, qword ptr [rcx + 38h] / ret  / int3		AGREES
+PMeshInstance	02CB6E80	C8h	0038h	8	void*	setBounds	00213550	mov qword ptr [rcx + 38h], rdx / ret  / int3		AGREES
+PNode	02E518D0	68h	0000h	8	void*	getNextSibling	006B5C60	mov rax, qword ptr [rcx] / ret  / int3		AGREES
+PNode	02E518D0	68h	0008h	8	void*	getParent	006B5C70	mov rax, qword ptr [rcx + 8] / ret  / int3		AGREES
+PNode	02E518D0	68h	0010h	8	void*	getFirstChild	005C5310	mov rax, qword ptr [rcx + 10h] / ret  / int3		AGREES
+PNode	02E518D0	68h	0018h	8	void*	getLocalToWorldMatrix	00848350	mov rax, qword ptr [rcx + 18h] / ret  / int3		AGREES
+PNode	02E518D0	68h	0018h	8	void*	setLocalToWorldMatrix	006B5D50	mov qword ptr [rcx + 18h], rdx / ret  / int3		AGREES
+PNode	02E518D0	68h	0020h	8	uint8[?]	getLocalMatrix	006B5C50	lea rax, [rcx + 20h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	WIDTH-DIFFERS
+PNode	02E518D0	68h	0060h	8	uint8[?]	getName	00837860	lea rax, [rcx + 60h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	AGREES
+POccluderGeometryInstance	02E5BBB0	10h	0008h	8	void*	getLocalToWorldMatrix	006B5C70	mov rax, qword ptr [rcx + 8] / ret  / int3		AGREES
+PPhysicsCharacterCamera	02E47CD0	208h	0048h	8	uint8[?]	getCameraPosition	006A3960	lea rax, [rcx + 48h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	NEW
+PPhysicsCharacterCamera	02E47CD0	208h	0058h	8	uint8[?]	getCameraTarget	006A3970	lea rax, [rcx + 58h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	NEW
+PPhysicsCharacterCamera	02E47CD0	208h	0068h	8	uint8[?]	getCameraDirection	006A3950	lea rax, [rcx + 68h] / ret  / int3	EMBEDDED - lea, not a load, so the member is inline	NEW
+PPhysicsCharacterControllerBase	02E47DD0	130h	00ECh	4	float	getVelocity	006A4040	movss xmm0, dword ptr [rcx + ECh] / ret  / int3		AGREES
+PPhysicsCharacterControllerBase	02E47DD0	130h	0105h	1	uint8	getIsOnGround	006A3A90	movzx eax, byte ptr [rcx + 105h] / ret  / int3		AGREES
+PPhysicsRigidBody	02E48BD0	128h	00A8h	8	void*	getTargetWorldMatrix	006A4000	mov rax, qword ptr [rcx + A8h] / ret  / int3		NEW
+PPhysicsRigidBody	02E48BD0	128h	00E9h	1	uint8	isEnabled	006A43D0	movzx eax, byte ptr [rcx + E9h] / ret  / int3		NEW
+PPhysicsRigidBodyBase	02E489D0	118h	00A0h	8	void*	getTargetNode	0084A320	mov rax, qword ptr [rcx + A0h] / ret  / int3		AGREES
+PPhysicsRigidBodyBase	02E489D0	118h	00A8h	8	void*	getTargetWorldMatrix	006A4000	mov rax, qword ptr [rcx + A8h] / ret  / int3		AGREES
+PPhysicsRigidBodyBase	02E489D0	118h	00E4h	4	float	getMass	006A3B00	movss xmm0, dword ptr [rcx + E4h] / ret  / int3		AGREES
+PString	02E4D630	8h	0000h	1	uint8	c_str	006A77F0	movzx edx, byte ptr [rcx] / mov rax, qword ptr [rcx] / and edx, 1	PACKED - the value is masked or shifted before return (mov,and,sub)	NEW
+PTextureCommonBase	02CBB700	28h	0000h	8	void*	getFormatName	00606680	mov rax, qword ptr [rcx] / mov rax, qword ptr [rax] / ret		AGREES
+PTrigger	02E4D940	58h	0018h	8	void*	getLocalToWorldMatrix	00848350	mov rax, qword ptr [rcx + 18h] / ret  / int3		AGREES
+PTrigger	02E4D940	58h	0050h	1	uint8	getEnabled	006A9150	movzx eax, byte ptr [rcx + 50h] / ret  / int3		AGREES
+PTrigger	02E4D940	58h	0050h	1	uint8	setEnabled	006A9280	mov byte ptr [rcx + 50h], dl / ret  / int3		AGREES

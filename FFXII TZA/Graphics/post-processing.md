@@ -19,7 +19,7 @@ by values each map and cutscene authors.
 ### The game's twelve passes
 
 Each pass function looks its shader constants up by name and draws with pass records from the static
-array at `01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
+array at `01F2D6A0` (array):
 
 | Function | Pass | Pass records | Constants it names | Caller |
 |---|---|---|---|---|
@@ -124,7 +124,7 @@ gives the per-frame library calls its work function `00193DA0` makes with it.
 
 When the first argument's `+124`<sub>h</sub> is 2 the focus distance is its `+128`<sub>h</sub>; when it is 1 and `+128`<sub>h</sub>
 is positive, both the distance and an f-number computed from it (scaled by block `+11C`<sub>h</sub>) are used,
-eased over ten frames when they change (`0018EF95` to `0018F2BD`).
+eased over ten frames when they change (`0018EF94` to `0018F2BD`).
 
 While the block's byte `+164`<sub>h</sub> is set, the render pass list `00187950` marks the point at `+168`<sub>h</sub>
 and `+16C`<sub>h</sub> (`0018D320`) on screen. It maps the point from 0 to 1 into clip space with y flipped
@@ -203,7 +203,7 @@ Two sets of named pass records exist side by side:
     the record at the head and returns 0. `005DDD60` unlinks a record at exit.
   - The 60 names are PhyreEngine's passes, from `ShadowRender` and `RenderFXAA` to the atmosphere
     precompute and `RenderText_*` passes
-    ([registry](post-processing-runtime-render-pass-registry.tsv),
+    (registry,
     [teardown wrappers](post-processing-render-pass-registry-60.tsv)).
 
 ### The frame-marker table

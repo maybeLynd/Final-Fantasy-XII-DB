@@ -1,0 +1,15 @@
+function	name	site	disp	kind	instruction	route	note
+006CFA50	FUN_006cfa50	006CFA57	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA5A	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA5E	20h	w	mov dword ptr [rdx + 20h], eax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA61	28h	w	mov qword ptr [rdx + 28h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA65	30h	w	mov dword ptr [rdx + 30h], eax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA68	38h	w	mov qword ptr [rdx + 38h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA6C	60h	w	mov dword ptr [rdx + 60h], eax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA6F	68h	w	mov qword ptr [rdx + 68h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA73	18h	w	mov dword ptr [rdx + 18h], eax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA76	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA78	40h	w	mov qword ptr [rdx + 40h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA7C	48h	w	mov qword ptr [rdx + 48h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA80	50h	w	mov qword ptr [rdx + 50h], rax	ctorrdx-seeded 006CFA50	
+006CFA50	FUN_006cfa50	006CFA84	58h	w	mov byte ptr [rdx + 58h], al	ctorrdx-seeded 006CFA50	

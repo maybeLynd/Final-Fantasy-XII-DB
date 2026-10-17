@@ -1,0 +1,16 @@
+function	name	site	disp	kind	instruction	route	note
+0086C830	FUN_0086c830	0086C853	0h	w	mov qword ptr [rcx], rax	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C858	20h	r	cmp qword ptr [rcx + 20h], rsi	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C860	10h	r	test dword ptr [rcx + 10h], 7FFFFFFFh	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C872	18h	r	mov rax, qword ptr [rbx + 18h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C885	20h	r	mov rcx, qword ptr [rbx + 20h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C891	10h	r	mov eax, dword ptr [rbx + 10h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C89C	10h	r	mov eax, dword ptr [rbx + 10h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8A3	18h	r	mov rcx, qword ptr [rbx + 18h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8BB	18h	w	mov qword ptr [rbx + 18h], rsi	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8BF	10h	w	mov dword ptr [rbx + 10h], esi	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8C2	10h	r	mov eax, dword ptr [rbx + 10h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8CE	18h	r	mov rcx, qword ptr [rbx + 18h]	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8DD	18h	w	mov qword ptr [rbx + 18h], rsi	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8E1	10h	w	mov dword ptr [rbx + 10h], esi	vtable-seeded 01CD65A8	
+0086C830	FUN_0086c830	0086C8E4	8h	r	mov rcx, qword ptr [rbx + 8]	vtable-seeded 01CD65A8	

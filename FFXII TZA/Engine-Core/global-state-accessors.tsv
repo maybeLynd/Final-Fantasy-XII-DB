@@ -1,402 +1,402 @@
 accessor	global	width	kind	instruction	follow_up	callers
-0016D670	02EBA3D0	0	address	lea rax, [rip + 0x2d4cd59]		23
-0016D690	01CDAE78	0	address	lea rax, [rip + 0x1b6d7e1]		0
-0016F070	01CDB290	0	address	lea rax, [rip + 0x1b6c219]		1
-0017D270	01F7F4B0	8	read	movsd xmm0, qword ptr [rip + 0x1e02238]		2
-0017D8F0	01F82D20	8	read	mov rax, qword ptr [rip + 0x1e05429]	mov eax, dword ptr [rax + 0x48]	2
-0017D980	01F7F4B8	4	read	mov eax, dword ptr [rip + 0x1e01b32]		4
-0017E210	01F82D20	8	read	mov rax, qword ptr [rip + 0x1e04b09]	mov eax, dword ptr [rax + 0x64]	4
-0017E260	01F82D20	8	read	mov rax, qword ptr [rip + 0x1e04ab9]	mov eax, dword ptr [rax + 0x58]	9
-0017E420	01F82D20	8	read	mov rax, qword ptr [rip + 0x1e048f9]	mov eax, dword ptr [rax + 0x60]	2
-0017E430	01F82D20	8	read	mov rax, qword ptr [rip + 0x1e048e9]	mov eax, dword ptr [rax + 0x5c]	2
-0017ECE0	01DF08F8	4	read	mov eax, dword ptr [rip + 0x1c71c12]		2
-0017FE10	01DF08F4	4	read	mov eax, dword ptr [rip + 0x1c70ade]		5
-0017FE20	01F7F504	4	read	mov eax, dword ptr [rip + 0x1dff6de]		1
-0017FE50	01F7F50E	1	read	movzx eax, byte ptr [rip + 0x1dff6b7]		2
-0017FF90	01DF08F0	4	read	mov eax, dword ptr [rip + 0x1c7095a]		1
-0017FFA0	01F7F4FC	4	read	mov eax, dword ptr [rip + 0x1dff556]		1
-00182560	01F7F538	4	read	mov eax, dword ptr [rip + 0x1dfcfd2]		2
-00184950	01F3DA18	4	read	mov eax, dword ptr [rip + 0x1db90c2]		12
-00189120	01F7F598	8	read	mov rax, qword ptr [rip + 0x1df6471]		117
-0018A320	01F7F5B0	0	address	lea rax, [rip + 0x1df5289]		5
-0018CA40	01F7F5E8	8	read	mov rax, qword ptr [rip + 0x1df2ba1]		46
-00194AF0	01F7FFD8	8	read	mov rax, qword ptr [rip + 0x1deb4e1]		2
-00198790	01F7FFE0	8	read	mov rax, qword ptr [rip + 0x1de7849]		46
-001997D0	01F810F0	8	read	mov rax, qword ptr [rip + 0x1de7919]		7
-0019A170	01F810F8	8	read	mov rax, qword ptr [rip + 0x1de6f81]		3
-0019A180	01F81100	8	read	mov rax, qword ptr [rip + 0x1de6f79]		2
-0019B1F0	01F81110	8	read	mov rax, qword ptr [rip + 0x1de5f19]		3
-0019CE20	01F81150	8	read	mov rax, qword ptr [rip + 0x1de4329]		14
-0019EF80	01F81158	8	read	mov rax, qword ptr [rip + 0x1de21d1]		9
-001A1220	01F81160	8	read	mov rax, qword ptr [rip + 0x1ddff39]		19
-001A9930	01F81168	8	read	mov rax, qword ptr [rip + 0x1dd7831]		47
-001AD440	01F811C8	8	read	mov rax, qword ptr [rip + 0x1dd3d81]		20
-001B1620	01F811E0	1	read	movzx eax, byte ptr [rip + 0x1dcfbb9]		23
-001B1C00	01F811E8	8	read	mov rax, qword ptr [rip + 0x1dcf5e1]		56
-001B31D0	01F811F0	8	read	mov rax, qword ptr [rip + 0x1dce019]		4
-001B5FA0	01F811F8	8	read	mov rax, qword ptr [rip + 0x1dcb251]		23
-001B6C40	01F81210	8	read	mov rax, qword ptr [rip + 0x1dca5c9]		6
-001B7F20	01F81218	8	read	mov rax, qword ptr [rip + 0x1dc92f1]		17
-001BC000	01F81240	8	read	mov rax, qword ptr [rip + 0x1dc5239]		11
-001BDAB0	01F81248	8	read	mov rax, qword ptr [rip + 0x1dc3791]		13
-001BE420	01F81250	8	read	mov rax, qword ptr [rip + 0x1dc2e29]		5
-001C0DA0	01F81258	8	read	mov rax, qword ptr [rip + 0x1dc04b1]		6
-001C18E0	01F81260	8	read	mov rax, qword ptr [rip + 0x1dbf979]		10
-001C1990	01F81268	8	read	mov rax, qword ptr [rip + 0x1dbf8d1]		6
-001C2F40	01F81270	8	read	mov rax, qword ptr [rip + 0x1dbe329]		6
-001D8D30	01F82CE0	8	read	mov rax, qword ptr [rip + 0x1da9fa9]		7
-001DADA0	01F82CF0	8	read	mov rax, qword ptr [rip + 0x1da7f49]		10
-001DB210	01F82CF8	8	read	mov rax, qword ptr [rip + 0x1da7ae1]		1
-001DD110	008C5B38	4	read	movss xmm0, dword ptr [rip + 0x6e8a20]		3
-001DDAB0	01F82D18	8	read	mov rax, qword ptr [rip + 0x1da5261]		26
-001E05E0	01F82D30	1	read	movzx eax, byte ptr [rip + 0x1da2749]		2
-001EB920	01F82E28	0	address	lea rax, [rip + 0x1d97501]		0
-001EB930	01DFE0A0	0	address	lea rax, [rip + 0x1c12769]		0
-001EDE70	01F82E38	4	read	mov eax, dword ptr [rip + 0x1d94fc2]		22
-001FBE20	01F83068	4	read	mov eax, dword ptr [rip + 0x1d87242]		3
-001FBE30	01F83060	4	read	mov eax, dword ptr [rip + 0x1d8722a]		6
-0020AA30	01F832E9	1	read	movzx eax, byte ptr [rip + 0x1d788b2]		1
-0020AA40	01F832E8	1	read	movzx eax, byte ptr [rip + 0x1d788a1]		1
-0020C700	01F83438	8	read	mov rax, qword ptr [rip + 0x1d76d31]		11
-0020C710	01F83440	1	read	movzx eax, byte ptr [rip + 0x1d76d29]		1
-0020C720	01F83441	1	read	movzx eax, byte ptr [rip + 0x1d76d1a]		1
-0020CE00	01F83450	8	read	mov rax, qword ptr [rip + 0x1d76649]		3
-002105C0	01FD3698	1	read	movzx eax, byte ptr [rip + 0x1dc30d1]		2
-002125E0	01FD36A8	8	read	mov rax, qword ptr [rip + 0x1dc10c1]		3
-00221710	01FD4138	8	read	mov rax, qword ptr [rip + 0x1db2a21]		15
-002286F0	01FD4948	8	read	mov rax, qword ptr [rip + 0x1dac251]		2
-00229D50	02064AD1	1	read	movzx eax, byte ptr [rip + 0x1e3ad7a]		1
-00229DF0	02064AD2	1	read	movzx eax, byte ptr [rip + 0x1e3acdb]		12
-00229E20	01FD4A98	4	read	mov eax, dword ptr [rip + 0x1daac72]		4
-00229E30	01E02818	4	read	mov eax, dword ptr [rip + 0x1bd89e2]		1
-00229E40	01E02814	4	read	mov eax, dword ptr [rip + 0x1bd89ce]		16
-00229EA0	02064AD3	1	read	movsx eax, byte ptr [rip + 0x1e3ac2c]		22
-00229EB0	02064AD0	1	read	movzx eax, byte ptr [rip + 0x1e3ac19]		3
-00229F90	01FD49ED	1	read	movzx eax, byte ptr [rip + 0x1daaa56]		1
-0022A030	02064AA8	4	read	mov eax, dword ptr [rip + 0x1e3aa72]		1
-0022A080	02064AD8	4	read	mov eax, dword ptr [rip + 0x1e3aa52]		1
-0022BE90	02064ADC	4	read	mov eax, dword ptr [rip + 0x1e38c46]		1
-0022BEA0	02064AE0	4	read	mov eax, dword ptr [rip + 0x1e38c3a]		1
-00235330	0208936C	4	read	mov eax, dword ptr [rip + 0x1e54036]		1
-002361A0	0208E6B4	4	read	mov eax, dword ptr [rip + 0x1e5850e]		1
-00236850	0208E6A0	4	read	mov eax, dword ptr [rip + 0x1e57e4a]		27
-002441D0	0208EA90	8	read	mov rax, qword ptr [rip + 0x1e4a8b9]		1
-002441E0	0208EAB8	8	read	mov rax, qword ptr [rip + 0x1e4a8d1]		1
-002441F0	0208EAA8	8	read	mov rax, qword ptr [rip + 0x1e4a8b1]		0
-00244620	0208ED5C	4	read	mov eax, dword ptr [rip + 0x1e4a736]		1
-00244820	0208EBC0	8	read	mov rax, qword ptr [rip + 0x1e4a399]		2
-002465C0	0208ED10	0	address	lea rax, [rip + 0x1e48749]		1
-00246780	0208ED58	4	read	mov eax, dword ptr [rip + 0x1e485d2]	and eax, 1	1
-00246790	0208F568	4	read	mov eax, dword ptr [rip + 0x1e48dd2]		5
-002498A0	02F97364	4	read	mov eax, dword ptr [rip + 0x2d4dabe]	and eax, 0x800	1
-0024AC00	02091094	4	read	mov eax, dword ptr [rip + 0x1e4648e]		1
-0024DE20	02092700	4	read	mov eax, dword ptr [rip + 0x1e448da]		1
-0024DED0	020926F6	2	read	movzx eax, word ptr [rip + 0x1e4481f]		1
-00250000	02092724	4	read	mov eax, dword ptr [rip + 0x1e4271e]		11
-00253690	02092758	8	read	mov rax, qword ptr [rip + 0x1e3f0c1]	mov eax, dword ptr [rax + 8]	19
-002536A0	020927C0	8	read	mov rax, qword ptr [rip + 0x1e3f119]		26
-002544B0	020927EC	4	read	mov eax, dword ptr [rip + 0x1e3e336]		16
-00254A00	009155D8	4	read	movss xmm0, dword ptr [rip + 0x6c0bd0]		9
-00254A70	0209AC30	8	read	mov rax, qword ptr [rip + 0x1e461b9]	movsx eax, byte ptr [rax + 0xdef]	4
-00259170	020972E0	8	read	mov rax, qword ptr [rip + 0x1e3e169]		1
-00259AF0	02098DEC	4	read	mov eax, dword ptr [rip + 0x1e3f2f6]		1
-00259B00	02098DE8	1	read	movzx eax, byte ptr [rip + 0x1e3f2e1]		1
-0025A850	02098354	4	read	mov eax, dword ptr [rip + 0x1e3dafe]		2
-0025A860	02098348	4	read	movss xmm0, dword ptr [rip + 0x1e3dae0]		1
-0025A870	02098344	4	read	mov eax, dword ptr [rip + 0x1e3dace]		1
-00263E10	02099DA8	4	read	mov eax, dword ptr [rip + 0x1e35f92]		0
-00263E20	02099DAC	4	read	mov eax, dword ptr [rip + 0x1e35f86]		0
-00263FB0	02099DA3	1	read	movsx eax, byte ptr [rip + 0x1e35dec]		1
-002640C0	02099D70	8	read	mov rax, qword ptr [rip + 0x1e35ca9]		138
-002640D0	02099D70	8	read	mov rax, qword ptr [rip + 0x1e35c99]	mov eax, dword ptr [rax + 0x28]	1
-00264150	0209A2A9	1	read	movsx eax, byte ptr [rip + 0x1e36152]		21
-00264160	02099DE1	1	read	movsx eax, byte ptr [rip + 0x1e35c7a]		2
-00264170	02099DE2	1	read	movsx eax, byte ptr [rip + 0x1e35c6b]		8
-00264180	02099DB8	4	read	mov eax, dword ptr [rip + 0x1e35c32]		2
-002647D0	0209A2C0	4	read	mov eax, dword ptr [rip + 0x1e35aea]		5
-00264D50	02099DBC	4	read	mov eax, dword ptr [rip + 0x1e35066]		1
-00265450	02099DB4	4	read	mov eax, dword ptr [rip + 0x1e3495e]		1
-00265460	0209A2C5	1	read	movsx eax, byte ptr [rip + 0x1e34e5e]		4
-002654D0	0209A2AC	4	read	mov eax, dword ptr [rip + 0x1e34dd6]		1
-00265760	02099DE0	1	read	movsx eax, byte ptr [rip + 0x1e34679]		4
-0026E0F0	0209A6F0	4	read	movss xmm0, dword ptr [rip + 0x1e2c5f8]		1
-0027E9D0	0209AC30	8	read	mov rax, qword ptr [rip + 0x1e1c259]	mov rax, qword ptr [rax + 0xa0]	1
-00286000	0209AC10	4	read	mov eax, dword ptr [rip + 0x1e14c0a]		1
-002878A0	0209AC50	4	read	mov eax, dword ptr [rip + 0x1e133aa]		4
-0028F740	0209BE80	8	read	mov rax, qword ptr [rip + 0x1e0c739]	movzx eax, word ptr [rax + 0x10fac]	1
-0028F800	0209BE80	8	read	mov rax, qword ptr [rip + 0x1e0c679]	mov rax, qword ptr [rax + 0x10f78]	4
-002962C0	0209C240	0	address	lea rax, [rip + 0x1e05f79]		2
-0029CB50	0209AC30	8	read	mov rax, qword ptr [rip + 0x1dfe0d9]	mov rax, qword ptr [rax]	1
-0029CB60	0209AC30	8	read	mov rax, qword ptr [rip + 0x1dfe0c9]	mov rax, qword ptr [rax + 0xb0]	1
-0029CB70	0209AC30	8	read	mov rax, qword ptr [rip + 0x1dfe0b9]	mov rax, qword ptr [rax + 0x88]	1
-0029E0B0	0209C498	8	read	mov rax, qword ptr [rip + 0x1dfe3e1]		0
-002AC280	0091654C	0	address	lea rax, [rip + 0x66a2c5]		2
-002AC290	00916558	0	address	lea rax, [rip + 0x66a2c1]		5
-002AC2A0	00916544	0	address	lea rax, [rip + 0x66a29d]		2
-002AC2B0	0091655C	0	address	lea rax, [rip + 0x66a2a5]		2
-002AC2E0	00916550	0	address	lea rax, [rip + 0x66a269]		14
-002B6650	01E0CE50	4	read	movss xmm0, dword ptr [rip + 0x1b567f8]		2
-002B6660	01E0CE54	4	read	movss xmm0, dword ptr [rip + 0x1b567ec]		2
-002B66B0	01E0CE58	4	read	movss xmm0, dword ptr [rip + 0x1b567a0]		2
-002B66C0	01E0CE5C	4	read	movss xmm0, dword ptr [rip + 0x1b56794]		2
-002CC9B0	0209AC30	8	read	mov rax, qword ptr [rip + 0x1dce279]	mov eax, dword ptr [rax + 0xdf0]	4
-002D4F50	01E0CF84	4	read	mov eax, dword ptr [rip + 0x1b3802e]		2
-002D4F60	01E0CF88	4	read	mov eax, dword ptr [rip + 0x1b38022]		2
-002DD4B0	0215E6D0	4	read	mov eax, dword ptr [rip + 0x1e8121a]		10
-002DE350	0215EF4D	1	read	movzx eax, byte ptr [rip + 0x1e80bf6]		2
-002DEBA0	0215EFD0	4	read	movss xmm0, dword ptr [rip + 0x1e80428]		4
-002DEBD0	0215EF4E	1	read	movsx eax, byte ptr [rip + 0x1e80377]		4
-002DEBF0	0215EF48	4	read	mov eax, dword ptr [rip + 0x1e80352]		2
-002DEC00	0215EF44	4	read	mov eax, dword ptr [rip + 0x1e8033e]		16
-002E0F80	0215F1AE	1	read	movsx eax, byte ptr [rip + 0x1e7e227]		2
-002E0F90	0215F1AF	1	read	movsx eax, byte ptr [rip + 0x1e7e218]		1
-002E1030	0215F1A2	1	read	movsx eax, byte ptr [rip + 0x1e7e16b]		1
-002E12D0	0215F1A0	1	read	movzx eax, byte ptr [rip + 0x1e7dec9]		3
-002E15F0	0215F1B2	1	read	movsx eax, byte ptr [rip + 0x1e7dbbb]		1
-002E1600	0215F1A3	1	read	movsx eax, byte ptr [rip + 0x1e7db9c]		1
-002E9770	021641FC	4	read	mov eax, dword ptr [rip + 0x1e7aa86]		1
-002EDA30	021641F4	4	read	movss xmm0, dword ptr [rip + 0x1e767bc]		2
-002EDA40	021641F8	4	read	movss xmm0, dword ptr [rip + 0x1e767b0]		2
-002EDA50	00D0F8EC	4	read	movss xmm0, dword ptr [rip + 0xa21e94]		1
-002EDA60	01CEBC70	4	read	movss xmm0, dword ptr [rip + 0x19fe208]		1
-002EEED0	0215FD40	4	read	movss xmm0, dword ptr [rip + 0x1e70e68]		1
-002EF620	021BA940	0	address	lea rax, [rip + 0x1ecb319]		5
-002EF630	02211000	0	address	lea rax, [rip + 0x1f219c9]		1
-002EF640	02164280	0	address	lea rax, [rip + 0x1e74c39]		28
-002F1A20	022BE7C8	4	read	mov eax, dword ptr [rip + 0x1fccda2]		3
-002FBA40	022BE950	4	read	mov eax, dword ptr [rip + 0x1fc2f0a]		2
-00309460	022BE960	4	read	mov eax, dword ptr [rip + 0x1fb54fa]		1
-00309470	022BE964	4	read	mov eax, dword ptr [rip + 0x1fb54ee]		1
-003137E0	02EBF190	8	read	mov rax, qword ptr [rip + 0x2bab9a9]	movzx eax, byte ptr [rax + 0x5ad4]	5
-003137F0	02EBF190	8	read	mov rax, qword ptr [rip + 0x2bab999]	movzx eax, byte ptr [rax + 0x5ad5]	6
-00314840	022C253D	1	read	movzx eax, byte ptr [rip + 0x1fadcf6]		1
-00314890	022C252C	4	read	mov eax, dword ptr [rip + 0x1fadc96]		1
-003148A0	022C2540	4	read	mov eax, dword ptr [rip + 0x1fadc9a]		1
-00314930	022C2528	4	read	mov eax, dword ptr [rip + 0x1fadbf2]		1
-00314960	022C2548	4	read	mov eax, dword ptr [rip + 0x1fadbe2]		12
-00318380	022C3164	4	read	mov eax, dword ptr [rip + 0x1faadde]		1
-00318390	022C315C	4	read	mov eax, dword ptr [rip + 0x1faadc6]		1
-0031A8E0	022C314C	4	read	mov eax, dword ptr [rip + 0x1fa8866]		1
-003271D0	02EBF190	8	read	mov rax, qword ptr [rip + 0x2b97fb9]	movzx eax, byte ptr [rax + 0x5aa4]	7
-003278C0	022C25A0	4	read	mov eax, dword ptr [rip + 0x1f9acda]	and eax, 1	2
-00327BA0	0208D301	1	read	movzx eax, byte ptr [rip + 0x1d6575a]		1
-00327BB0	0208D300	1	read	movzx eax, byte ptr [rip + 0x1d65749]		1
-00327BC0	0208D311	1	read	movzx eax, byte ptr [rip + 0x1d6574a]		1
-00327BD0	0208D310	1	read	movzx eax, byte ptr [rip + 0x1d65739]		1
-0032A150	0208D45C	4	read	mov eax, dword ptr [rip + 0x1d63306]		12
-0032A690	02AEDEF0	0	address	lea rax, [rip + 0x27c3859]		1
-0032A6B0	0209A670	8	read	mov rax, qword ptr [rip + 0x1d6ffb9]	mov eax, dword ptr [rax + 0x22c]	1
-0032E3F0	00D10900	0	address	lea rax, [rip + 0x9e2509]		2
-00357770	022C7F88	4	read	mov eax, dword ptr [rip + 0x1f70812]		1
-00357780	022C7F80	4	read	mov eax, dword ptr [rip + 0x1f707fa]		2
-00358320	022C7F98	1	read	movsx eax, byte ptr [rip + 0x1f6fc71]		17
-00358370	022C7F92	2	read	movzx eax, word ptr [rip + 0x1f6fc1b]	and eax, 1	1
-00358410	022C7F99	1	read	movsx eax, byte ptr [rip + 0x1f6fb82]		1
-003590A0	01EF9220	4	read	movss xmm0, dword ptr [rip + 0x1ba0178]		2
-003590D0	022C7FE0	4	read	mov eax, dword ptr [rip + 0x1f6ef0a]		78
-0035A090	022C8010	2	read	movsx eax, word ptr [rip + 0x1f6df79]		1
-0035BAD0	022C806C	4	read	mov eax, dword ptr [rip + 0x1f6c596]		14
-0035BAE0	022C8074	2	read	movsx eax, word ptr [rip + 0x1f6c58d]		2
-0035BAF0	022C8078	8	read	mov rax, qword ptr [rip + 0x1f6c581]		4
-0035BB50	022C8076	2	read	movsx eax, word ptr [rip + 0x1f6c51f]		2
-0035BB60	022C8064	2	read	movsx eax, word ptr [rip + 0x1f6c4fd]		13
-0035C6F0	022C83EC	4	read	mov eax, dword ptr [rip + 0x1f6bcf6]		5
-0035C760	022C83E8	4	read	mov eax, dword ptr [rip + 0x1f6bc82]	and eax, 1	1
-0035D320	022C8060	0	address	lea rax, [rip + 0x1f6ad39]		10
-0035D3D0	0209AC30	8	read	mov rax, qword ptr [rip + 0x1d3d859]	mov rax, qword ptr [rax + 0x350]	10
-0035D3E0	022C83F0	0	address	lea rax, [rip + 0x1f6b009]		4
-0035D3F0	0209AC30	8	read	mov rax, qword ptr [rip + 0x1d3d839]	mov rax, qword ptr [rax + 0x20]	3
-0035D460	0209AC30	8	read	mov rax, qword ptr [rip + 0x1d3d7c9]	mov rax, qword ptr [rax + 0x338]	17
-0035D470	0209AC30	8	read	mov rax, qword ptr [rip + 0x1d3d7b9]	mov rax, qword ptr [rax + 0x360]	3
-0035D480	0209AC30	8	read	mov rax, qword ptr [rip + 0x1d3d7a9]	mov rax, qword ptr [rax + 0x368]	4
-0035D4E0	022C8478	0	address	lea rax, [rip + 0x1f6af91]		3
-0035D4F0	022C8700	0	address	lea rax, [rip + 0x1f6b209]		3
-0035D500	022C8500	0	address	lea rax, [rip + 0x1f6aff9]		2
-0035D510	022C8B00	2	read	movzx eax, word ptr [rip + 0x1f6b5e9]		2
-0035D520	0209AC30	8	read	mov rax, qword ptr [rip + 0x1d3d709]	mov rax, qword ptr [rax + 0x3a0]	1
-0035E550	022CA438	0	address	lea rax, [rip + 0x1f6bee1]		2
-0035E790	022CA624	4	read	mov eax, dword ptr [rip + 0x1f6be8e]		2
-0035E810	022CA5E0	8	read	mov rax, qword ptr [rip + 0x1f6bdc9]		5
-003603B0	022CB728	2	read	movzx eax, word ptr [rip + 0x1f6b371]		3
-003603C0	022CB726	1	read	movsx eax, byte ptr [rip + 0x1f6b35f]		15
-003604C0	022CB9B0	4	read	mov eax, dword ptr [rip + 0x1f6b4ea]		2
-003606A0	022CB9BC	1	read	movsx eax, byte ptr [rip + 0x1f6b315]		1
-003616F0	022CBB20	4	read	movss xmm0, dword ptr [rip + 0x1f6a428]		2
-00362DA0	022CBA9B	1	read	movzx eax, byte ptr [rip + 0x1f68cf4]		1
-00362DB0	022CBB28	4	read	movss xmm0, dword ptr [rip + 0x1f68d70]		1
-00362F60	022CBAF8	8	read	mov rax, qword ptr [rip + 0x1f68b91]		2
-003641F0	022CBBA4	4	read	mov eax, dword ptr [rip + 0x1f679ae]		2
-00364200	022CBB9C	4	read	mov eax, dword ptr [rip + 0x1f67996]		1
-00368240	022CBE62	1	read	movzx eax, byte ptr [rip + 0x1f63c1b]		7
-00368260	022CBE68	8	read	mov rax, qword ptr [rip + 0x1f63c01]		1
-00368C70	022D7FB0	4	read	mov eax, dword ptr [rip + 0x1f6f33a]		1
-00369160	022CFF10	0	address	lea rax, [rip + 0x1f66da9]		2
-003691D0	01CEBBA8	4	read	movss xmm0, dword ptr [rip + 0x19829d0]		1
-003692C0	022D7FCC	4	read	mov eax, dword ptr [rip + 0x1f6ed06]		1
-0036FD50	02AD9E00	1	read	movsx eax, byte ptr [rip + 0x276a0a9]		1
-0036FF70	02AD9E04	2	read	movzx eax, word ptr [rip + 0x2769e8d]		6
-0036FF80	02AD9E18	2	read	movzx eax, word ptr [rip + 0x2769e91]		0
-0036FF90	02AD9E06	2	read	movzx eax, word ptr [rip + 0x2769e6f]		1
-0036FFA0	02AD9E0A	2	read	movzx eax, word ptr [rip + 0x2769e63]		1
-0036FFB0	02AD9E0E	2	read	movzx eax, word ptr [rip + 0x2769e57]		1
-0036FFC0	02AD9E08	2	read	movzx eax, word ptr [rip + 0x2769e41]		3
-0036FFD0	02AD9E0C	2	read	movzx eax, word ptr [rip + 0x2769e35]		5
-0036FFE0	02AD9E10	2	read	movzx eax, word ptr [rip + 0x2769e29]		4
-00377860	02ADD0E8	1	read	movsx eax, byte ptr [rip + 0x2765881]		1
-00377B90	02ADD058	8	read	mov rax, qword ptr [rip + 0x27654c1]		1
-00377C10	02ADD0C0	8	read	mov rax, qword ptr [rip + 0x27654a9]		1
-00377DB0	02ADD0D8	4	read	mov eax, dword ptr [rip + 0x2765322]		8
-0037B370	02ADD933	1	read	movzx eax, byte ptr [rip + 0x27625bc]		2
-0037B380	02ADD932	1	read	movzx eax, byte ptr [rip + 0x27625ab]		1
-0037F180	02AED498	4	read	mov eax, dword ptr [rip + 0x276e312]		1
-003829C0	02AED4A0	0	address	lea rax, [rip + 0x276aad9]		1
-00383840	02AEDFB0	8	read	mov rax, qword ptr [rip + 0x276a769]		4
-00394420	01EFAC12	1	read	movzx eax, byte ptr [rip + 0x1b667eb]		1
-00394430	01EFAC11	1	read	movzx eax, byte ptr [rip + 0x1b667da]		1
-00394440	01EFAC10	1	read	movzx eax, byte ptr [rip + 0x1b667c9]		1
-00394450	02AEE4D8	1	read	movzx eax, byte ptr [rip + 0x275a081]		5
-0039BB20	02AEE888	8	read	mov rax, qword ptr [rip + 0x2752d61]		2
-0039C0F0	02AEE894	4	read	mov eax, dword ptr [rip + 0x275279e]		1
-0039D1D0	02AEEB20	0	address	lea rax, [rip + 0x2751949]		1
-0039D1E0	02AEEBA4	4	read	movss xmm0, dword ptr [rip + 0x27519bc]		3
-0039D1F0	02AEEBA0	4	read	movss xmm0, dword ptr [rip + 0x27519a8]		3
-003A3D20	02AEF418	4	read	mov eax, dword ptr [rip + 0x274b6f2]		16
-003B7720	02EBCC70	4	read	mov eax, dword ptr [rip + 0x2b0554a]		1
-003B7750	02EBCBE0	0	address	lea rax, [rip + 0x2b05489]		1
-003B7760	02EBCC60	4	read	mov eax, dword ptr [rip + 0x2b054fa]		1
-003BB400	02B40554	4	read	mov eax, dword ptr [rip + 0x278514e]		1
-003BB410	02B40550	4	read	mov eax, dword ptr [rip + 0x278513a]		1
-003BB420	02B40E18	4	read	mov eax, dword ptr [rip + 0x27859f2]		9
-003BB430	02B40E10	4	read	mov eax, dword ptr [rip + 0x27859da]		6
-003C4AD0	02B45A50	0	address	lea rax, [rip + 0x2780f79]		4
-003C5E40	02B45A00	0	address	lea rax, [rip + 0x277fbb9]		1
-003C5FF0	02B45A00	4	read	mov eax, dword ptr [rip + 0x277fa0a]	and eax, 1	1
-003C8060	02B457F0	0	address	lea rax, [rip + 0x277d789]		4
-003D9FA0	02B4E4A0	4	read	mov eax, dword ptr [rip + 0x27744fa]		2
-003D9FD0	02B4E4A4	1	read	movsx eax, byte ptr [rip + 0x27744cd]		1
-003D9FE0	02B4E4A6	1	read	movsx eax, byte ptr [rip + 0x27744bf]		3
-003D9FF0	02B4E4A5	1	read	movsx eax, byte ptr [rip + 0x27744ae]		1
-003DAE20	02B57CC8	8	read	mov rax, qword ptr [rip + 0x277cea1]		1
-003DE150	02B58C48	4	read	mov eax, dword ptr [rip + 0x277aaf2]		1
-003E7DE0	02B59D71	1	read	movzx eax, byte ptr [rip + 0x2771f8a]		5
-00402220	02B62D78	8	read	mov rax, qword ptr [rip + 0x2760b51]		4
-00408B00	02B62DB9	1	read	movzx eax, byte ptr [rip + 0x275a2b2]		4
-00408B10	02B62DA8	1	read	movzx eax, byte ptr [rip + 0x275a291]		5
-00408B20	02B62DC0	2	read	movzx eax, word ptr [rip + 0x275a299]		2
-00408B30	02B62DAB	1	read	movzx eax, byte ptr [rip + 0x275a274]		5
-00408B40	02B62DB6	1	read	movzx eax, byte ptr [rip + 0x275a26f]		1
-00408B50	02B62DAA	1	read	movzx eax, byte ptr [rip + 0x275a253]		1
-00408B60	02B62DB4	2	read	movzx eax, word ptr [rip + 0x275a24d]		2
-00408B70	02B62DB1	1	read	movzx eax, byte ptr [rip + 0x275a23a]		1
-00408B80	02B62DAC	1	read	movzx eax, byte ptr [rip + 0x275a225]		1
-00408B90	02B62DAD	1	read	movzx eax, byte ptr [rip + 0x275a216]		2
-00467A90	02CA5FF8	4	read	mov eax, dword ptr [rip + 0x283e562]		1
-0046E0E0	0215EFF4	4	read	mov eax, dword ptr [rip + 0x1cf0f0e]		1
-0055F730	01F2CAF0	4	read	movss xmm0, dword ptr [rip + 0x19cd3b8]		1
-00583920	02CA99E8	4	read	mov eax, dword ptr [rip + 0x27260c2]		4
-005A0B30	02CACE18	0	address	lea rax, [rip + 0x270c2e1]		0
-005BED30	02CACF14	4	read	movss xmm0, dword ptr [rip + 0x26ee1dc]		0
-005C3B00	02CB5C38	0	address	lea rax, [rip + 0x26f2131]		0
-005C4BF0	02CAD440	0	address	lea rax, [rip + 0x26e8849]		0
-005C4C00	02CADE50	0	address	lea rax, [rip + 0x26e9249]		0
-005C4C10	02CAD640	0	address	lea rax, [rip + 0x26e8a29]		0
-005C4C20	02CADC50	0	address	lea rax, [rip + 0x26e9029]		0
-005C4C30	02CAE350	0	address	lea rax, [rip + 0x26e9719]		0
-005C4C40	02CAE050	0	address	lea rax, [rip + 0x26e9409]		0
-005C4C50	02CAE450	0	address	lea rax, [rip + 0x26e97f9]		0
-005C4C60	02CAE860	0	address	lea rax, [rip + 0x26e9bf9]		0
-005C4C70	02CAE960	0	address	lea rax, [rip + 0x26e9ce9]		0
-005C4C80	02CAE760	0	address	lea rax, [rip + 0x26e9ad9]		0
-005C4C90	02CAD040	0	address	lea rax, [rip + 0x26e83a9]		0
-005C4CB0	02CAD840	0	address	lea rax, [rip + 0x26e8b89]		0
-005C5180	005BF0E0	0	address	lea rax, [rip - 0x60a7]		0
-005C5190	005BF290	0	address	lea rax, [rip - 0x5f07]		0
-005C51A0	005C5230	0	address	lea rax, [rip + 0x89]		0
-005C51B0	005BFC40	0	address	lea rax, [rip - 0x5577]		0
-005C51C0	005BFE70	0	address	lea rax, [rip - 0x5357]		0
-005C51D0	005BFEA0	0	address	lea rax, [rip - 0x5337]		0
-00604440	02CB6780	0	address	lea rax, [rip + 0x26b2339]		0
-00604460	02E5A6C0	0	address	lea rax, [rip + 0x2856259]		0
-00604470	02CB79A0	0	address	lea rax, [rip + 0x26b3529]		0
-00604490	02CB7BA0	0	address	lea rax, [rip + 0x26b3709]		0
-006044A0	02CB6A80	0	address	lea rax, [rip + 0x26b25d9]		0
-006044C0	02CB6D80	0	address	lea rax, [rip + 0x26b28b9]		0
-006044D0	02CB7280	0	address	lea rax, [rip + 0x26b2da9]		0
-006044E0	02CB9000	0	address	lea rax, [rip + 0x26b4b19]		0
-006044F0	02CB9100	0	address	lea rax, [rip + 0x26b4c09]		0
-00604500	02CB9300	0	address	lea rax, [rip + 0x26b4df9]		0
-00604510	02CB9400	0	address	lea rax, [rip + 0x26b4ee9]		0
-00604520	02CB9500	0	address	lea rax, [rip + 0x26b4fd9]		0
-00604530	02CB9A00	0	address	lea rax, [rip + 0x26b54c9]		0
-00604540	02CB7AA0	0	address	lea rax, [rip + 0x26b3559]		0
-00604550	02CBAE00	0	address	lea rax, [rip + 0x26b68a9]		0
-00604560	02E4D630	0	address	lea rax, [rip + 0x28490c9]		0
-00604570	02CB6C80	0	address	lea rax, [rip + 0x26b2709]		0
-00623D60	02CF1640	0	address	lea rax, [rip + 0x26cd8d9]		0
-006372A0	02CF8270	0	address	lea rax, [rip + 0x26c0fc9]		248
-0063B5D0	02CF97E8	0	address	lea rax, [rip + 0x26be211]		0
-00653B00	02D34740	0	address	lea rax, [rip + 0x26e0c39]		0
-00670CF0	02D39C40	0	address	lea rax, [rip + 0x26c8f49]		0
-00670D00	02D3A040	0	address	lea rax, [rip + 0x26c9339]		0
-00670D10	02D3A940	0	address	lea rax, [rip + 0x26c9c29]		0
-00670D20	02D3A540	0	address	lea rax, [rip + 0x26c9819]		0
-00670D30	02D3A740	0	address	lea rax, [rip + 0x26c9a09]		0
-00670D40	02D3ADE0	0	address	lea rax, [rip + 0x26ca099]		0
-00670D50	02CB6B80	0	address	lea rax, [rip + 0x2645e29]		0
-00670D60	02D39B40	0	address	lea rax, [rip + 0x26c8dd9]		0
-00670D70	02D39940	0	address	lea rax, [rip + 0x26c8bc9]		0
-0067E130	02E3F960	0	address	lea rax, [rip + 0x27c1829]		0
-00685770	02E42A30	0	address	lea rax, [rip + 0x27bd2b9]		0
-00685780	02E42A38	0	address	lea rax, [rip + 0x27bd2b1]		0
-006A3760	02E48DD0	0	address	lea rax, [rip + 0x27a5669]		0
-006A3B10	00D7A918	0	address	lea rax, [rip + 0x6d6e01]		0
-006A3B20	00D7AAB8	0	address	lea rax, [rip + 0x6d6f91]		0
-006A9140	02E5C710	0	address	lea rax, [rip + 0x27b35c9]		0
-006AA340	01F2EB30	4	read	mov eax, dword ptr [rip + 0x18847ea]		1
-006BE220	02E57F60	0	address	lea rax, [rip + 0x2799d39]		0
-006BE230	02E5DE30	0	address	lea rax, [rip + 0x279fbf9]		0
-006C25A0	02E59CC0	0	address	lea rax, [rip + 0x2797719]		0
-006C7760	02E5AD00	0	address	lea rax, [rip + 0x2793599]		0
-006C7770	02CB6E80	0	address	lea rax, [rip + 0x25ef709]		0
-006D4E90	02E5E030	0	address	lea rax, [rip + 0x2789199]		0
-006D4EA0	02E5DF30	0	address	lea rax, [rip + 0x2789089]		0
-006D4EB0	02E5DD30	0	address	lea rax, [rip + 0x2788e79]		0
-006DF410	02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1759]		1
-006DF420	02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1749]	mov rax, qword ptr [rax + 0x108]	1
-006DF440	02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1729]	mov rax, qword ptr [rax + 0x110]	1
-00727390	02EA19A0	4	read	mov eax, dword ptr [rip + 0x277a60a]		1
-007273A0	02EA19A0	4	read	mov eax, dword ptr [rip + 0x277a5fa]		1
-0072F910	02EA1C50	0	address	lea rax, [rip + 0x2772339]		5
-0072F920	02EA1A50	0	address	lea rax, [rip + 0x2772129]		1
-00796E20	02EA5368	8	read	mov rax, qword ptr [rip + 0x270e541]		55
-0079C730	02EACE58	0	address	lea rax, [rip + 0x2710721]		0
-0079D8A0	02E4E430	0	address	lea rax, [rip + 0x26b0b89]		0
-007A52B0	02EACF8D	1	read	movzx eax, byte ptr [rip + 0x2707cd6]		1
-007A5AF0	02EACFF8	4	read	mov eax, dword ptr [rip + 0x2707502]		3
-007AD670	02EAD0C0	8	read	mov rax, qword ptr [rip + 0x26ffa49]		2
-007AECD0	02EAD350	4	read	mov eax, dword ptr [rip + 0x26fe67a]		4
-007AECE0	02EAD34C	4	read	mov eax, dword ptr [rip + 0x26fe666]		13
-007AECF0	02EAD354	4	read	mov eax, dword ptr [rip + 0x26fe65e]		5
-007AED00	02EAD348	4	read	mov eax, dword ptr [rip + 0x26fe642]		19
-007B24F0	02EAD418	0	address	lea rax, [rip + 0x26faf21]		13
-007B44B0	02EAD4C8	0	address	lea rax, [rip + 0x26f9011]		12
-007B7950	02EADC40	0	address	lea rax, [rip + 0x26f62e9]		12
-007B8050	02EADD00	0	address	lea rax, [rip + 0x26f5ca9]		10
-007B8220	02EADC74	1	read	movzx eax, byte ptr [rip + 0x26f5a4d]		3
-007BB610	02EADE08	8	read	mov rax, qword ptr [rip + 0x26f27f1]		10
-007BC2A0	02EADEB0	0	address	lea rax, [rip + 0x26f1c09]		13
-00809C78	02F974E8	0	address	lea rax, [rip + 0x278d869]		1
-00809C80	02F974E0	0	address	lea rax, [rip + 0x278d859]		1
-00832CC0	01CCD828	0	address	lea rax, [rip + 0x149ab61]		0
-00833B20	01CCDA10	0	address	lea rax, [rip + 0x1499ee9]		0
-00834FF0	01CCDC08	0	address	lea rax, [rip + 0x1498c11]		0
-00835C90	01CCDD08	0	address	lea rax, [rip + 0x1498071]		0
-00836D10	01CCDF90	0	address	lea rax, [rip + 0x1497279]		0
-00837870	01CCE080	0	address	lea rax, [rip + 0x1496809]		0
-00841D20	01CCEA08	0	address	lea rax, [rip + 0x148cce1]		0
-00847890	01CB2848	0	address	lea rax, [rip + 0x146afb1]		0
-00862BF0	01F7F4D8	8	read	mov rax, qword ptr [rip + 0x171c8e1]	mov eax, dword ptr [rax + 0x94]	2
-00862C00	01F7F4D8	8	read	mov rax, qword ptr [rip + 0x171c8d1]	mov eax, dword ptr [rax + 0x90]	1
-00873BF0	02EB6CF0	0	address	lea rax, [rip + 0x26430f9]		0
-00873C00	02EB52F0	0	address	lea rax, [rip + 0x26416e9]		0
-0087A6C0	02EB6DF0	0	address	lea rax, [rip + 0x263c729]		0
+0016D670	02EBA3D0	0	address	lea rax, [rip + 2D4CD59h]		23
+0016D690	01CDAE78	0	address	lea rax, [rip + 1B6D7E1h]		0
+0016F070	01CDB290	0	address	lea rax, [rip + 1B6C219h]		1
+0017D270	01F7F4B0	8	read	movsd xmm0, qword ptr [rip + 1E02238h]		2
+0017D8F0	01F82D20	8	read	mov rax, qword ptr [rip + 1E05429h]	mov eax, dword ptr [rax + 48h]	2
+0017D980	01F7F4B8	4	read	mov eax, dword ptr [rip + 1E01B32h]		4
+0017E210	01F82D20	8	read	mov rax, qword ptr [rip + 1E04B09h]	mov eax, dword ptr [rax + 64h]	4
+0017E260	01F82D20	8	read	mov rax, qword ptr [rip + 1E04AB9h]	mov eax, dword ptr [rax + 58h]	9
+0017E420	01F82D20	8	read	mov rax, qword ptr [rip + 1E048F9h]	mov eax, dword ptr [rax + 60h]	2
+0017E430	01F82D20	8	read	mov rax, qword ptr [rip + 1E048E9h]	mov eax, dword ptr [rax + 5Ch]	2
+0017ECE0	01DF08F8	4	read	mov eax, dword ptr [rip + 1C71C12h]		2
+0017FE10	01DF08F4	4	read	mov eax, dword ptr [rip + 1C70ADEh]		5
+0017FE20	01F7F504	4	read	mov eax, dword ptr [rip + 1DFF6DEh]		1
+0017FE50	01F7F50E	1	read	movzx eax, byte ptr [rip + 1DFF6B7h]		2
+0017FF90	01DF08F0	4	read	mov eax, dword ptr [rip + 1C7095Ah]		1
+0017FFA0	01F7F4FC	4	read	mov eax, dword ptr [rip + 1DFF556h]		1
+00182560	01F7F538	4	read	mov eax, dword ptr [rip + 1DFCFD2h]		2
+00184950	01F3DA18	4	read	mov eax, dword ptr [rip + 1DB90C2h]		12
+00189120	01F7F598	8	read	mov rax, qword ptr [rip + 1DF6471h]		117
+0018A320	01F7F5B0	0	address	lea rax, [rip + 1DF5289h]		5
+0018CA40	01F7F5E8	8	read	mov rax, qword ptr [rip + 1DF2BA1h]		46
+00194AF0	01F7FFD8	8	read	mov rax, qword ptr [rip + 1DEB4E1h]		2
+00198790	01F7FFE0	8	read	mov rax, qword ptr [rip + 1DE7849h]		46
+001997D0	01F810F0	8	read	mov rax, qword ptr [rip + 1DE7919h]		7
+0019A170	01F810F8	8	read	mov rax, qword ptr [rip + 1DE6F81h]		3
+0019A180	01F81100	8	read	mov rax, qword ptr [rip + 1DE6F79h]		2
+0019B1F0	01F81110	8	read	mov rax, qword ptr [rip + 1DE5F19h]		3
+0019CE20	01F81150	8	read	mov rax, qword ptr [rip + 1DE4329h]		14
+0019EF80	01F81158	8	read	mov rax, qword ptr [rip + 1DE21D1h]		9
+001A1220	01F81160	8	read	mov rax, qword ptr [rip + 1DDFF39h]		19
+001A9930	01F81168	8	read	mov rax, qword ptr [rip + 1DD7831h]		47
+001AD440	01F811C8	8	read	mov rax, qword ptr [rip + 1DD3D81h]		20
+001B1620	01F811E0	1	read	movzx eax, byte ptr [rip + 1DCFBB9h]		23
+001B1C00	01F811E8	8	read	mov rax, qword ptr [rip + 1DCF5E1h]		56
+001B31D0	01F811F0	8	read	mov rax, qword ptr [rip + 1DCE019h]		4
+001B5FA0	01F811F8	8	read	mov rax, qword ptr [rip + 1DCB251h]		23
+001B6C40	01F81210	8	read	mov rax, qword ptr [rip + 1DCA5C9h]		6
+001B7F20	01F81218	8	read	mov rax, qword ptr [rip + 1DC92F1h]		17
+001BC000	01F81240	8	read	mov rax, qword ptr [rip + 1DC5239h]		11
+001BDAB0	01F81248	8	read	mov rax, qword ptr [rip + 1DC3791h]		13
+001BE420	01F81250	8	read	mov rax, qword ptr [rip + 1DC2E29h]		5
+001C0DA0	01F81258	8	read	mov rax, qword ptr [rip + 1DC04B1h]		6
+001C18E0	01F81260	8	read	mov rax, qword ptr [rip + 1DBF979h]		10
+001C1990	01F81268	8	read	mov rax, qword ptr [rip + 1DBF8D1h]		6
+001C2F40	01F81270	8	read	mov rax, qword ptr [rip + 1DBE329h]		6
+001D8D30	01F82CE0	8	read	mov rax, qword ptr [rip + 1DA9FA9h]		7
+001DADA0	01F82CF0	8	read	mov rax, qword ptr [rip + 1DA7F49h]		10
+001DB210	01F82CF8	8	read	mov rax, qword ptr [rip + 1DA7AE1h]		1
+001DD110	008C5B38	4	read	movss xmm0, dword ptr [rip + 6E8A20h]		3
+001DDAB0	01F82D18	8	read	mov rax, qword ptr [rip + 1DA5261h]		26
+001E05E0	01F82D30	1	read	movzx eax, byte ptr [rip + 1DA2749h]		2
+001EB920	01F82E28	0	address	lea rax, [rip + 1D97501h]		0
+001EB930	01DFE0A0	0	address	lea rax, [rip + 1C12769h]		0
+001EDE70	01F82E38	4	read	mov eax, dword ptr [rip + 1D94FC2h]		22
+001FBE20	01F83068	4	read	mov eax, dword ptr [rip + 1D87242h]		3
+001FBE30	01F83060	4	read	mov eax, dword ptr [rip + 1D8722Ah]		6
+0020AA30	01F832E9	1	read	movzx eax, byte ptr [rip + 1D788B2h]		1
+0020AA40	01F832E8	1	read	movzx eax, byte ptr [rip + 1D788A1h]		1
+0020C700	01F83438	8	read	mov rax, qword ptr [rip + 1D76D31h]		11
+0020C710	01F83440	1	read	movzx eax, byte ptr [rip + 1D76D29h]		1
+0020C720	01F83441	1	read	movzx eax, byte ptr [rip + 1D76D1Ah]		1
+0020CE00	01F83450	8	read	mov rax, qword ptr [rip + 1D76649h]		3
+002105C0	01FD3698	1	read	movzx eax, byte ptr [rip + 1DC30D1h]		2
+002125E0	01FD36A8	8	read	mov rax, qword ptr [rip + 1DC10C1h]		3
+00221710	01FD4138	8	read	mov rax, qword ptr [rip + 1DB2A21h]		15
+002286F0	01FD4948	8	read	mov rax, qword ptr [rip + 1DAC251h]		2
+00229D50	02064AD1	1	read	movzx eax, byte ptr [rip + 1E3AD7Ah]		1
+00229DF0	02064AD2	1	read	movzx eax, byte ptr [rip + 1E3ACDBh]		12
+00229E20	01FD4A98	4	read	mov eax, dword ptr [rip + 1DAAC72h]		4
+00229E30	01E02818	4	read	mov eax, dword ptr [rip + 1BD89E2h]		1
+00229E40	01E02814	4	read	mov eax, dword ptr [rip + 1BD89CEh]		16
+00229EA0	02064AD3	1	read	movsx eax, byte ptr [rip + 1E3AC2Ch]		22
+00229EB0	02064AD0	1	read	movzx eax, byte ptr [rip + 1E3AC19h]		3
+00229F90	01FD49ED	1	read	movzx eax, byte ptr [rip + 1DAAA56h]		1
+0022A030	02064AA8	4	read	mov eax, dword ptr [rip + 1E3AA72h]		1
+0022A080	02064AD8	4	read	mov eax, dword ptr [rip + 1E3AA52h]		1
+0022BE90	02064ADC	4	read	mov eax, dword ptr [rip + 1E38C46h]		1
+0022BEA0	02064AE0	4	read	mov eax, dword ptr [rip + 1E38C3Ah]		1
+00235330	0208936C	4	read	mov eax, dword ptr [rip + 1E54036h]		1
+002361A0	0208E6B4	4	read	mov eax, dword ptr [rip + 1E5850Eh]		1
+00236850	0208E6A0	4	read	mov eax, dword ptr [rip + 1E57E4Ah]		27
+002441D0	0208EA90	8	read	mov rax, qword ptr [rip + 1E4A8B9h]		1
+002441E0	0208EAB8	8	read	mov rax, qword ptr [rip + 1E4A8D1h]		1
+002441F0	0208EAA8	8	read	mov rax, qword ptr [rip + 1E4A8B1h]		0
+00244620	0208ED5C	4	read	mov eax, dword ptr [rip + 1E4A736h]		1
+00244820	0208EBC0	8	read	mov rax, qword ptr [rip + 1E4A399h]		2
+002465C0	0208ED10	0	address	lea rax, [rip + 1E48749h]		1
+00246780	0208ED58	4	read	mov eax, dword ptr [rip + 1E485D2h]	and eax, 1	1
+00246790	0208F568	4	read	mov eax, dword ptr [rip + 1E48DD2h]		5
+002498A0	02F97364	4	read	mov eax, dword ptr [rip + 2D4DABEh]	and eax, 800h	1
+0024AC00	02091094	4	read	mov eax, dword ptr [rip + 1E4648Eh]		1
+0024DE20	02092700	4	read	mov eax, dword ptr [rip + 1E448DAh]		1
+0024DED0	020926F6	2	read	movzx eax, word ptr [rip + 1E4481Fh]		1
+00250000	02092724	4	read	mov eax, dword ptr [rip + 1E4271Eh]		11
+00253690	02092758	8	read	mov rax, qword ptr [rip + 1E3F0C1h]	mov eax, dword ptr [rax + 8]	19
+002536A0	020927C0	8	read	mov rax, qword ptr [rip + 1E3F119h]		26
+002544B0	020927EC	4	read	mov eax, dword ptr [rip + 1E3E336h]		16
+00254A00	009155D8	4	read	movss xmm0, dword ptr [rip + 6C0BD0h]		9
+00254A70	0209AC30	8	read	mov rax, qword ptr [rip + 1E461B9h]	movsx eax, byte ptr [rax + DEFh]	4
+00259170	020972E0	8	read	mov rax, qword ptr [rip + 1E3E169h]		1
+00259AF0	02098DEC	4	read	mov eax, dword ptr [rip + 1E3F2F6h]		1
+00259B00	02098DE8	1	read	movzx eax, byte ptr [rip + 1E3F2E1h]		1
+0025A850	02098354	4	read	mov eax, dword ptr [rip + 1E3DAFEh]		2
+0025A860	02098348	4	read	movss xmm0, dword ptr [rip + 1E3DAE0h]		1
+0025A870	02098344	4	read	mov eax, dword ptr [rip + 1E3DACEh]		1
+00263E10	02099DA8	4	read	mov eax, dword ptr [rip + 1E35F92h]		0
+00263E20	02099DAC	4	read	mov eax, dword ptr [rip + 1E35F86h]		0
+00263FB0	02099DA3	1	read	movsx eax, byte ptr [rip + 1E35DECh]		1
+002640C0	02099D70	8	read	mov rax, qword ptr [rip + 1E35CA9h]		138
+002640D0	02099D70	8	read	mov rax, qword ptr [rip + 1E35C99h]	mov eax, dword ptr [rax + 28h]	1
+00264150	0209A2A9	1	read	movsx eax, byte ptr [rip + 1E36152h]		21
+00264160	02099DE1	1	read	movsx eax, byte ptr [rip + 1E35C7Ah]		2
+00264170	02099DE2	1	read	movsx eax, byte ptr [rip + 1E35C6Bh]		8
+00264180	02099DB8	4	read	mov eax, dword ptr [rip + 1E35C32h]		2
+002647D0	0209A2C0	4	read	mov eax, dword ptr [rip + 1E35AEAh]		5
+00264D50	02099DBC	4	read	mov eax, dword ptr [rip + 1E35066h]		1
+00265450	02099DB4	4	read	mov eax, dword ptr [rip + 1E3495Eh]		1
+00265460	0209A2C5	1	read	movsx eax, byte ptr [rip + 1E34E5Eh]		4
+002654D0	0209A2AC	4	read	mov eax, dword ptr [rip + 1E34DD6h]		1
+00265760	02099DE0	1	read	movsx eax, byte ptr [rip + 1E34679h]		4
+0026E0F0	0209A6F0	4	read	movss xmm0, dword ptr [rip + 1E2C5F8h]		1
+0027E9D0	0209AC30	8	read	mov rax, qword ptr [rip + 1E1C259h]	mov rax, qword ptr [rax + A0h]	1
+00286000	0209AC10	4	read	mov eax, dword ptr [rip + 1E14C0Ah]		1
+002878A0	0209AC50	4	read	mov eax, dword ptr [rip + 1E133AAh]		4
+0028F740	0209BE80	8	read	mov rax, qword ptr [rip + 1E0C739h]	movzx eax, word ptr [rax + 10FACh]	1
+0028F800	0209BE80	8	read	mov rax, qword ptr [rip + 1E0C679h]	mov rax, qword ptr [rax + 10F78h]	4
+002962C0	0209C240	0	address	lea rax, [rip + 1E05F79h]		2
+0029CB50	0209AC30	8	read	mov rax, qword ptr [rip + 1DFE0D9h]	mov rax, qword ptr [rax]	1
+0029CB60	0209AC30	8	read	mov rax, qword ptr [rip + 1DFE0C9h]	mov rax, qword ptr [rax + B0h]	1
+0029CB70	0209AC30	8	read	mov rax, qword ptr [rip + 1DFE0B9h]	mov rax, qword ptr [rax + 88h]	1
+0029E0B0	0209C498	8	read	mov rax, qword ptr [rip + 1DFE3E1h]		0
+002AC280	0091654C	0	address	lea rax, [rip + 66A2C5h]		2
+002AC290	00916558	0	address	lea rax, [rip + 66A2C1h]		5
+002AC2A0	00916544	0	address	lea rax, [rip + 66A29Dh]		2
+002AC2B0	0091655C	0	address	lea rax, [rip + 66A2A5h]		2
+002AC2E0	00916550	0	address	lea rax, [rip + 66A269h]		14
+002B6650	01E0CE50	4	read	movss xmm0, dword ptr [rip + 1B567F8h]		2
+002B6660	01E0CE54	4	read	movss xmm0, dword ptr [rip + 1B567ECh]		2
+002B66B0	01E0CE58	4	read	movss xmm0, dword ptr [rip + 1B567A0h]		2
+002B66C0	01E0CE5C	4	read	movss xmm0, dword ptr [rip + 1B56794h]		2
+002CC9B0	0209AC30	8	read	mov rax, qword ptr [rip + 1DCE279h]	mov eax, dword ptr [rax + DF0h]	4
+002D4F50	01E0CF84	4	read	mov eax, dword ptr [rip + 1B3802Eh]		2
+002D4F60	01E0CF88	4	read	mov eax, dword ptr [rip + 1B38022h]		2
+002DD4B0	0215E6D0	4	read	mov eax, dword ptr [rip + 1E8121Ah]		10
+002DE350	0215EF4D	1	read	movzx eax, byte ptr [rip + 1E80BF6h]		2
+002DEBA0	0215EFD0	4	read	movss xmm0, dword ptr [rip + 1E80428h]		4
+002DEBD0	0215EF4E	1	read	movsx eax, byte ptr [rip + 1E80377h]		4
+002DEBF0	0215EF48	4	read	mov eax, dword ptr [rip + 1E80352h]		2
+002DEC00	0215EF44	4	read	mov eax, dword ptr [rip + 1E8033Eh]		16
+002E0F80	0215F1AE	1	read	movsx eax, byte ptr [rip + 1E7E227h]		2
+002E0F90	0215F1AF	1	read	movsx eax, byte ptr [rip + 1E7E218h]		1
+002E1030	0215F1A2	1	read	movsx eax, byte ptr [rip + 1E7E16Bh]		1
+002E12D0	0215F1A0	1	read	movzx eax, byte ptr [rip + 1E7DEC9h]		3
+002E15F0	0215F1B2	1	read	movsx eax, byte ptr [rip + 1E7DBBBh]		1
+002E1600	0215F1A3	1	read	movsx eax, byte ptr [rip + 1E7DB9Ch]		1
+002E9770	021641FC	4	read	mov eax, dword ptr [rip + 1E7AA86h]		1
+002EDA30	021641F4	4	read	movss xmm0, dword ptr [rip + 1E767BCh]		2
+002EDA40	021641F8	4	read	movss xmm0, dword ptr [rip + 1E767B0h]		2
+002EDA50	00D0F8EC	4	read	movss xmm0, dword ptr [rip + A21E94h]		1
+002EDA60	01CEBC70	4	read	movss xmm0, dword ptr [rip + 19FE208h]		1
+002EEED0	0215FD40	4	read	movss xmm0, dword ptr [rip + 1E70E68h]		1
+002EF620	021BA940	0	address	lea rax, [rip + 1ECB319h]		5
+002EF630	02211000	0	address	lea rax, [rip + 1F219C9h]		1
+002EF640	02164280	0	address	lea rax, [rip + 1E74C39h]		28
+002F1A20	022BE7C8	4	read	mov eax, dword ptr [rip + 1FCCDA2h]		3
+002FBA40	022BE950	4	read	mov eax, dword ptr [rip + 1FC2F0Ah]		2
+00309460	022BE960	4	read	mov eax, dword ptr [rip + 1FB54FAh]		1
+00309470	022BE964	4	read	mov eax, dword ptr [rip + 1FB54EEh]		1
+003137E0	02EBF190	8	read	mov rax, qword ptr [rip + 2BAB9A9h]	movzx eax, byte ptr [rax + 5AD4h]	5
+003137F0	02EBF190	8	read	mov rax, qword ptr [rip + 2BAB999h]	movzx eax, byte ptr [rax + 5AD5h]	6
+00314840	022C253D	1	read	movzx eax, byte ptr [rip + 1FADCF6h]		1
+00314890	022C252C	4	read	mov eax, dword ptr [rip + 1FADC96h]		1
+003148A0	022C2540	4	read	mov eax, dword ptr [rip + 1FADC9Ah]		1
+00314930	022C2528	4	read	mov eax, dword ptr [rip + 1FADBF2h]		1
+00314960	022C2548	4	read	mov eax, dword ptr [rip + 1FADBE2h]		12
+00318380	022C3164	4	read	mov eax, dword ptr [rip + 1FAADDEh]		1
+00318390	022C315C	4	read	mov eax, dword ptr [rip + 1FAADC6h]		1
+0031A8E0	022C314C	4	read	mov eax, dword ptr [rip + 1FA8866h]		1
+003271D0	02EBF190	8	read	mov rax, qword ptr [rip + 2B97FB9h]	movzx eax, byte ptr [rax + 5AA4h]	7
+003278C0	022C25A0	4	read	mov eax, dword ptr [rip + 1F9ACDAh]	and eax, 1	2
+00327BA0	0208D301	1	read	movzx eax, byte ptr [rip + 1D6575Ah]		1
+00327BB0	0208D300	1	read	movzx eax, byte ptr [rip + 1D65749h]		1
+00327BC0	0208D311	1	read	movzx eax, byte ptr [rip + 1D6574Ah]		1
+00327BD0	0208D310	1	read	movzx eax, byte ptr [rip + 1D65739h]		1
+0032A150	0208D45C	4	read	mov eax, dword ptr [rip + 1D63306h]		12
+0032A690	02AEDEF0	0	address	lea rax, [rip + 27C3859h]		1
+0032A6B0	0209A670	8	read	mov rax, qword ptr [rip + 1D6FFB9h]	mov eax, dword ptr [rax + 22Ch]	1
+0032E3F0	00D10900	0	address	lea rax, [rip + 9E2509h]		2
+00357770	022C7F88	4	read	mov eax, dword ptr [rip + 1F70812h]		1
+00357780	022C7F80	4	read	mov eax, dword ptr [rip + 1F707FAh]		2
+00358320	022C7F98	1	read	movsx eax, byte ptr [rip + 1F6FC71h]		17
+00358370	022C7F92	2	read	movzx eax, word ptr [rip + 1F6FC1Bh]	and eax, 1	1
+00358410	022C7F99	1	read	movsx eax, byte ptr [rip + 1F6FB82h]		1
+003590A0	01EF9220	4	read	movss xmm0, dword ptr [rip + 1BA0178h]		2
+003590D0	022C7FE0	4	read	mov eax, dword ptr [rip + 1F6EF0Ah]		78
+0035A090	022C8010	2	read	movsx eax, word ptr [rip + 1F6DF79h]		1
+0035BAD0	022C806C	4	read	mov eax, dword ptr [rip + 1F6C596h]		14
+0035BAE0	022C8074	2	read	movsx eax, word ptr [rip + 1F6C58Dh]		2
+0035BAF0	022C8078	8	read	mov rax, qword ptr [rip + 1F6C581h]		4
+0035BB50	022C8076	2	read	movsx eax, word ptr [rip + 1F6C51Fh]		2
+0035BB60	022C8064	2	read	movsx eax, word ptr [rip + 1F6C4FDh]		13
+0035C6F0	022C83EC	4	read	mov eax, dword ptr [rip + 1F6BCF6h]		5
+0035C760	022C83E8	4	read	mov eax, dword ptr [rip + 1F6BC82h]	and eax, 1	1
+0035D320	022C8060	0	address	lea rax, [rip + 1F6AD39h]		10
+0035D3D0	0209AC30	8	read	mov rax, qword ptr [rip + 1D3D859h]	mov rax, qword ptr [rax + 350h]	10
+0035D3E0	022C83F0	0	address	lea rax, [rip + 1F6B009h]		4
+0035D3F0	0209AC30	8	read	mov rax, qword ptr [rip + 1D3D839h]	mov rax, qword ptr [rax + 20h]	3
+0035D460	0209AC30	8	read	mov rax, qword ptr [rip + 1D3D7C9h]	mov rax, qword ptr [rax + 338h]	17
+0035D470	0209AC30	8	read	mov rax, qword ptr [rip + 1D3D7B9h]	mov rax, qword ptr [rax + 360h]	3
+0035D480	0209AC30	8	read	mov rax, qword ptr [rip + 1D3D7A9h]	mov rax, qword ptr [rax + 368h]	4
+0035D4E0	022C8478	0	address	lea rax, [rip + 1F6AF91h]		3
+0035D4F0	022C8700	0	address	lea rax, [rip + 1F6B209h]		3
+0035D500	022C8500	0	address	lea rax, [rip + 1F6AFF9h]		2
+0035D510	022C8B00	2	read	movzx eax, word ptr [rip + 1F6B5E9h]		2
+0035D520	0209AC30	8	read	mov rax, qword ptr [rip + 1D3D709h]	mov rax, qword ptr [rax + 3A0h]	1
+0035E550	022CA438	0	address	lea rax, [rip + 1F6BEE1h]		2
+0035E790	022CA624	4	read	mov eax, dword ptr [rip + 1F6BE8Eh]		2
+0035E810	022CA5E0	8	read	mov rax, qword ptr [rip + 1F6BDC9h]		5
+003603B0	022CB728	2	read	movzx eax, word ptr [rip + 1F6B371h]		3
+003603C0	022CB726	1	read	movsx eax, byte ptr [rip + 1F6B35Fh]		15
+003604C0	022CB9B0	4	read	mov eax, dword ptr [rip + 1F6B4EAh]		2
+003606A0	022CB9BC	1	read	movsx eax, byte ptr [rip + 1F6B315h]		1
+003616F0	022CBB20	4	read	movss xmm0, dword ptr [rip + 1F6A428h]		2
+00362DA0	022CBA9B	1	read	movzx eax, byte ptr [rip + 1F68CF4h]		1
+00362DB0	022CBB28	4	read	movss xmm0, dword ptr [rip + 1F68D70h]		1
+00362F60	022CBAF8	8	read	mov rax, qword ptr [rip + 1F68B91h]		2
+003641F0	022CBBA4	4	read	mov eax, dword ptr [rip + 1F679AEh]		2
+00364200	022CBB9C	4	read	mov eax, dword ptr [rip + 1F67996h]		1
+00368240	022CBE62	1	read	movzx eax, byte ptr [rip + 1F63C1Bh]		7
+00368260	022CBE68	8	read	mov rax, qword ptr [rip + 1F63C01h]		1
+00368C70	022D7FB0	4	read	mov eax, dword ptr [rip + 1F6F33Ah]		1
+00369160	022CFF10	0	address	lea rax, [rip + 1F66DA9h]		2
+003691D0	01CEBBA8	4	read	movss xmm0, dword ptr [rip + 19829D0h]		1
+003692C0	022D7FCC	4	read	mov eax, dword ptr [rip + 1F6ED06h]		1
+0036FD50	02AD9E00	1	read	movsx eax, byte ptr [rip + 276A0A9h]		1
+0036FF70	02AD9E04	2	read	movzx eax, word ptr [rip + 2769E8Dh]		6
+0036FF80	02AD9E18	2	read	movzx eax, word ptr [rip + 2769E91h]		0
+0036FF90	02AD9E06	2	read	movzx eax, word ptr [rip + 2769E6Fh]		1
+0036FFA0	02AD9E0A	2	read	movzx eax, word ptr [rip + 2769E63h]		1
+0036FFB0	02AD9E0E	2	read	movzx eax, word ptr [rip + 2769E57h]		1
+0036FFC0	02AD9E08	2	read	movzx eax, word ptr [rip + 2769E41h]		3
+0036FFD0	02AD9E0C	2	read	movzx eax, word ptr [rip + 2769E35h]		5
+0036FFE0	02AD9E10	2	read	movzx eax, word ptr [rip + 2769E29h]		4
+00377860	02ADD0E8	1	read	movsx eax, byte ptr [rip + 2765881h]		1
+00377B90	02ADD058	8	read	mov rax, qword ptr [rip + 27654C1h]		1
+00377C10	02ADD0C0	8	read	mov rax, qword ptr [rip + 27654A9h]		1
+00377DB0	02ADD0D8	4	read	mov eax, dword ptr [rip + 2765322h]		8
+0037B370	02ADD933	1	read	movzx eax, byte ptr [rip + 27625BCh]		2
+0037B380	02ADD932	1	read	movzx eax, byte ptr [rip + 27625ABh]		1
+0037F180	02AED498	4	read	mov eax, dword ptr [rip + 276E312h]		1
+003829C0	02AED4A0	0	address	lea rax, [rip + 276AAD9h]		1
+00383840	02AEDFB0	8	read	mov rax, qword ptr [rip + 276A769h]		4
+00394420	01EFAC12	1	read	movzx eax, byte ptr [rip + 1B667EBh]		1
+00394430	01EFAC11	1	read	movzx eax, byte ptr [rip + 1B667DAh]		1
+00394440	01EFAC10	1	read	movzx eax, byte ptr [rip + 1B667C9h]		1
+00394450	02AEE4D8	1	read	movzx eax, byte ptr [rip + 275A081h]		5
+0039BB20	02AEE888	8	read	mov rax, qword ptr [rip + 2752D61h]		2
+0039C0F0	02AEE894	4	read	mov eax, dword ptr [rip + 275279Eh]		1
+0039D1D0	02AEEB20	0	address	lea rax, [rip + 2751949h]		1
+0039D1E0	02AEEBA4	4	read	movss xmm0, dword ptr [rip + 27519BCh]		3
+0039D1F0	02AEEBA0	4	read	movss xmm0, dword ptr [rip + 27519A8h]		3
+003A3D20	02AEF418	4	read	mov eax, dword ptr [rip + 274B6F2h]		16
+003B7720	02EBCC70	4	read	mov eax, dword ptr [rip + 2B0554Ah]		1
+003B7750	02EBCBE0	0	address	lea rax, [rip + 2B05489h]		1
+003B7760	02EBCC60	4	read	mov eax, dword ptr [rip + 2B054FAh]		1
+003BB400	02B40554	4	read	mov eax, dword ptr [rip + 278514Eh]		1
+003BB410	02B40550	4	read	mov eax, dword ptr [rip + 278513Ah]		1
+003BB420	02B40E18	4	read	mov eax, dword ptr [rip + 27859F2h]		9
+003BB430	02B40E10	4	read	mov eax, dword ptr [rip + 27859DAh]		6
+003C4AD0	02B45A50	0	address	lea rax, [rip + 2780F79h]		4
+003C5E40	02B45A00	0	address	lea rax, [rip + 277FBB9h]		1
+003C5FF0	02B45A00	4	read	mov eax, dword ptr [rip + 277FA0Ah]	and eax, 1	1
+003C8060	02B457F0	0	address	lea rax, [rip + 277D789h]		4
+003D9FA0	02B4E4A0	4	read	mov eax, dword ptr [rip + 27744FAh]		2
+003D9FD0	02B4E4A4	1	read	movsx eax, byte ptr [rip + 27744CDh]		1
+003D9FE0	02B4E4A6	1	read	movsx eax, byte ptr [rip + 27744BFh]		3
+003D9FF0	02B4E4A5	1	read	movsx eax, byte ptr [rip + 27744AEh]		1
+003DAE20	02B57CC8	8	read	mov rax, qword ptr [rip + 277CEA1h]		1
+003DE150	02B58C48	4	read	mov eax, dword ptr [rip + 277AAF2h]		1
+003E7DE0	02B59D71	1	read	movzx eax, byte ptr [rip + 2771F8Ah]		5
+00402220	02B62D78	8	read	mov rax, qword ptr [rip + 2760B51h]		4
+00408B00	02B62DB9	1	read	movzx eax, byte ptr [rip + 275A2B2h]		4
+00408B10	02B62DA8	1	read	movzx eax, byte ptr [rip + 275A291h]		5
+00408B20	02B62DC0	2	read	movzx eax, word ptr [rip + 275A299h]		2
+00408B30	02B62DAB	1	read	movzx eax, byte ptr [rip + 275A274h]		5
+00408B40	02B62DB6	1	read	movzx eax, byte ptr [rip + 275A26Fh]		1
+00408B50	02B62DAA	1	read	movzx eax, byte ptr [rip + 275A253h]		1
+00408B60	02B62DB4	2	read	movzx eax, word ptr [rip + 275A24Dh]		2
+00408B70	02B62DB1	1	read	movzx eax, byte ptr [rip + 275A23Ah]		1
+00408B80	02B62DAC	1	read	movzx eax, byte ptr [rip + 275A225h]		1
+00408B90	02B62DAD	1	read	movzx eax, byte ptr [rip + 275A216h]		2
+00467A90	02CA5FF8	4	read	mov eax, dword ptr [rip + 283E562h]		1
+0046E0E0	0215EFF4	4	read	mov eax, dword ptr [rip + 1CF0F0Eh]		1
+0055F730	01F2CAF0	4	read	movss xmm0, dword ptr [rip + 19CD3B8h]		1
+00583920	02CA99E8	4	read	mov eax, dword ptr [rip + 27260C2h]		4
+005A0B30	02CACE18	0	address	lea rax, [rip + 270C2E1h]		0
+005BED30	02CACF14	4	read	movss xmm0, dword ptr [rip + 26EE1DCh]		0
+005C3B00	02CB5C38	0	address	lea rax, [rip + 26F2131h]		0
+005C4BF0	02CAD440	0	address	lea rax, [rip + 26E8849h]		0
+005C4C00	02CADE50	0	address	lea rax, [rip + 26E9249h]		0
+005C4C10	02CAD640	0	address	lea rax, [rip + 26E8A29h]		0
+005C4C20	02CADC50	0	address	lea rax, [rip + 26E9029h]		0
+005C4C30	02CAE350	0	address	lea rax, [rip + 26E9719h]		0
+005C4C40	02CAE050	0	address	lea rax, [rip + 26E9409h]		0
+005C4C50	02CAE450	0	address	lea rax, [rip + 26E97F9h]		0
+005C4C60	02CAE860	0	address	lea rax, [rip + 26E9BF9h]		0
+005C4C70	02CAE960	0	address	lea rax, [rip + 26E9CE9h]		0
+005C4C80	02CAE760	0	address	lea rax, [rip + 26E9AD9h]		0
+005C4C90	02CAD040	0	address	lea rax, [rip + 26E83A9h]		0
+005C4CB0	02CAD840	0	address	lea rax, [rip + 26E8B89h]		0
+005C5180	005BF0E0	0	address	lea rax, [rip - 60A7h]		0
+005C5190	005BF290	0	address	lea rax, [rip - 5F07h]		0
+005C51A0	005C5230	0	address	lea rax, [rip + 89h]		0
+005C51B0	005BFC40	0	address	lea rax, [rip - 5577h]		0
+005C51C0	005BFE70	0	address	lea rax, [rip - 5357h]		0
+005C51D0	005BFEA0	0	address	lea rax, [rip - 5337h]		0
+00604440	02CB6780	0	address	lea rax, [rip + 26B2339h]		0
+00604460	02E5A6C0	0	address	lea rax, [rip + 2856259h]		0
+00604470	02CB79A0	0	address	lea rax, [rip + 26B3529h]		0
+00604490	02CB7BA0	0	address	lea rax, [rip + 26B3709h]		0
+006044A0	02CB6A80	0	address	lea rax, [rip + 26B25D9h]		0
+006044C0	02CB6D80	0	address	lea rax, [rip + 26B28B9h]		0
+006044D0	02CB7280	0	address	lea rax, [rip + 26B2DA9h]		0
+006044E0	02CB9000	0	address	lea rax, [rip + 26B4B19h]		0
+006044F0	02CB9100	0	address	lea rax, [rip + 26B4C09h]		0
+00604500	02CB9300	0	address	lea rax, [rip + 26B4DF9h]		0
+00604510	02CB9400	0	address	lea rax, [rip + 26B4EE9h]		0
+00604520	02CB9500	0	address	lea rax, [rip + 26B4FD9h]		0
+00604530	02CB9A00	0	address	lea rax, [rip + 26B54C9h]		0
+00604540	02CB7AA0	0	address	lea rax, [rip + 26B3559h]		0
+00604550	02CBAE00	0	address	lea rax, [rip + 26B68A9h]		0
+00604560	02E4D630	0	address	lea rax, [rip + 28490C9h]		0
+00604570	02CB6C80	0	address	lea rax, [rip + 26B2709h]		0
+00623D60	02CF1640	0	address	lea rax, [rip + 26CD8D9h]		0
+006372A0	02CF8270	0	address	lea rax, [rip + 26C0FC9h]		248
+0063B5D0	02CF97E8	0	address	lea rax, [rip + 26BE211h]		0
+00653B00	02D34740	0	address	lea rax, [rip + 26E0C39h]		0
+00670CF0	02D39C40	0	address	lea rax, [rip + 26C8F49h]		0
+00670D00	02D3A040	0	address	lea rax, [rip + 26C9339h]		0
+00670D10	02D3A940	0	address	lea rax, [rip + 26C9C29h]		0
+00670D20	02D3A540	0	address	lea rax, [rip + 26C9819h]		0
+00670D30	02D3A740	0	address	lea rax, [rip + 26C9A09h]		0
+00670D40	02D3ADE0	0	address	lea rax, [rip + 26CA099h]		0
+00670D50	02CB6B80	0	address	lea rax, [rip + 2645E29h]		0
+00670D60	02D39B40	0	address	lea rax, [rip + 26C8DD9h]		0
+00670D70	02D39940	0	address	lea rax, [rip + 26C8BC9h]		0
+0067E130	02E3F960	0	address	lea rax, [rip + 27C1829h]		0
+00685770	02E42A30	0	address	lea rax, [rip + 27BD2B9h]		0
+00685780	02E42A38	0	address	lea rax, [rip + 27BD2B1h]		0
+006A3760	02E48DD0	0	address	lea rax, [rip + 27A5669h]		0
+006A3B10	00D7A918	0	address	lea rax, [rip + 6D6E01h]		0
+006A3B20	00D7AAB8	0	address	lea rax, [rip + 6D6F91h]		0
+006A9140	02E5C710	0	address	lea rax, [rip + 27B35C9h]		0
+006AA340	01F2EB30	4	read	mov eax, dword ptr [rip + 18847EAh]		1
+006BE220	02E57F60	0	address	lea rax, [rip + 2799D39h]		0
+006BE230	02E5DE30	0	address	lea rax, [rip + 279FBF9h]		0
+006C25A0	02E59CC0	0	address	lea rax, [rip + 2797719h]		0
+006C7760	02E5AD00	0	address	lea rax, [rip + 2793599h]		0
+006C7770	02CB6E80	0	address	lea rax, [rip + 25EF709h]		0
+006D4E90	02E5E030	0	address	lea rax, [rip + 2789199h]		0
+006D4EA0	02E5DF30	0	address	lea rax, [rip + 2789089h]		0
+006D4EB0	02E5DD30	0	address	lea rax, [rip + 2788E79h]		0
+006DF410	02EA0B70	8	read	mov rax, qword ptr [rip + 27C1759h]		1
+006DF420	02EA0B70	8	read	mov rax, qword ptr [rip + 27C1749h]	mov rax, qword ptr [rax + 108h]	1
+006DF440	02EA0B70	8	read	mov rax, qword ptr [rip + 27C1729h]	mov rax, qword ptr [rax + 110h]	1
+00727390	02EA19A0	4	read	mov eax, dword ptr [rip + 277A60Ah]		1
+007273A0	02EA19A0	4	read	mov eax, dword ptr [rip + 277A5FAh]		1
+0072F910	02EA1C50	0	address	lea rax, [rip + 2772339h]		5
+0072F920	02EA1A50	0	address	lea rax, [rip + 2772129h]		1
+00796E20	02EA5368	8	read	mov rax, qword ptr [rip + 270E541h]		55
+0079C730	02EACE58	0	address	lea rax, [rip + 2710721h]		0
+0079D8A0	02E4E430	0	address	lea rax, [rip + 26B0B89h]		0
+007A52B0	02EACF8D	1	read	movzx eax, byte ptr [rip + 2707CD6h]		1
+007A5AF0	02EACFF8	4	read	mov eax, dword ptr [rip + 2707502h]		3
+007AD670	02EAD0C0	8	read	mov rax, qword ptr [rip + 26FFA49h]		2
+007AECD0	02EAD350	4	read	mov eax, dword ptr [rip + 26FE67Ah]		4
+007AECE0	02EAD34C	4	read	mov eax, dword ptr [rip + 26FE666h]		13
+007AECF0	02EAD354	4	read	mov eax, dword ptr [rip + 26FE65Eh]		5
+007AED00	02EAD348	4	read	mov eax, dword ptr [rip + 26FE642h]		19
+007B24F0	02EAD418	0	address	lea rax, [rip + 26FAF21h]		13
+007B44B0	02EAD4C8	0	address	lea rax, [rip + 26F9011h]		12
+007B7950	02EADC40	0	address	lea rax, [rip + 26F62E9h]		12
+007B8050	02EADD00	0	address	lea rax, [rip + 26F5CA9h]		10
+007B8220	02EADC74	1	read	movzx eax, byte ptr [rip + 26F5A4Dh]		3
+007BB610	02EADE08	8	read	mov rax, qword ptr [rip + 26F27F1h]		10
+007BC2A0	02EADEB0	0	address	lea rax, [rip + 26F1C09h]		13
+00809C78	02F974E8	0	address	lea rax, [rip + 278D869h]		1
+00809C80	02F974E0	0	address	lea rax, [rip + 278D859h]		1
+00832CC0	01CCD828	0	address	lea rax, [rip + 149AB61h]		0
+00833B20	01CCDA10	0	address	lea rax, [rip + 1499EE9h]		0
+00834FF0	01CCDC08	0	address	lea rax, [rip + 1498C11h]		0
+00835C90	01CCDD08	0	address	lea rax, [rip + 1498071h]		0
+00836D10	01CCDF90	0	address	lea rax, [rip + 1497279h]		0
+00837870	01CCE080	0	address	lea rax, [rip + 1496809h]		0
+00841D20	01CCEA08	0	address	lea rax, [rip + 148CCE1h]		0
+00847890	01CB2848	0	address	lea rax, [rip + 146AFB1h]		0
+00862BF0	01F7F4D8	8	read	mov rax, qword ptr [rip + 171C8E1h]	mov eax, dword ptr [rax + 94h]	2
+00862C00	01F7F4D8	8	read	mov rax, qword ptr [rip + 171C8D1h]	mov eax, dword ptr [rax + 90h]	1
+00873BF0	02EB6CF0	0	address	lea rax, [rip + 26430F9h]		0
+00873C00	02EB52F0	0	address	lea rax, [rip + 26416E9h]		0
+0087A6C0	02EB6DF0	0	address	lea rax, [rip + 263C729h]		0

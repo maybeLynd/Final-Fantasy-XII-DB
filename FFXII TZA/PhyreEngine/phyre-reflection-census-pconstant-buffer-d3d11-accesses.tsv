@@ -1,0 +1,13 @@
+function	name	site	disp	kind	instruction	route	note
+005DBF20	FUN_005dbf20	005DBF22	0h	w	mov qword ptr [rcx], rax	ctorrdx-seeded 00611D60	
+005DBF20	FUN_005dbf20	005DBF25	8h	w	mov byte ptr [rcx + 8], al	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611D8B	10h	w	mov qword ptr [rbx + 10h], rcx	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611D8F	18h	w	mov dword ptr [rbx + 18h], ecx	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611D9B	20h	w	mov qword ptr [rax], rcx	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611D9E	28h	w	mov dword ptr [rax + 8], ecx	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611DA1	2Ch	w	mov dword ptr [rax + Ch], ecx	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611DA4	18h	w	mov dword ptr [rbx + 18h], 1	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611DAB	48h	w	mov dword ptr [rbx + 48h], ecx	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611DB0	30h	w	mov qword ptr [rbx + 30h], rax	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611DB4	38h	w	mov qword ptr [rbx + 38h], rax	ctorrdx-seeded 00611D60	
+00611D60	FUN_00611d60	00611DB8	40h	w	mov qword ptr [rbx + 40h], rax	ctorrdx-seeded 00611D60	

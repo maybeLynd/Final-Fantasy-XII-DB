@@ -1,0 +1,72 @@
+function	name	site	disp	kind	instruction	route	note
+0032E070	FUN_0032e070	0032E153	0h	wr	add qword ptr [rbx], rax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E229	0h	w	mov qword ptr [rbx], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E590	FUN_0032e590	0032E594	1h	a	lea eax, [rcx + 1]	the cancel path for a request not yet issued	
+0032E070	FUN_0032e070	0032E0FB	8h	w	mov qword ptr [rbx + 8], rax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E123	8h	w	mov qword ptr [rbx + 8], rax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E156	8h	w	mov qword ptr [rbx + 8], rax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032EC40	FUN_0032ec40	0032EC44	10h	r	mov rdx, qword ptr [rcx + 10h]	unlink and push back on the free list - 0032EC40(slot)	
+0032EC40	FUN_0032ec40	0032EC7B	10h	r	mov rax, qword ptr [rcx + 10h]	unlink and push back on the free list - 0032EC40(slot)	
+0032EC40	FUN_0032ec40	0032ECBA	10h	w	mov qword ptr [rcx + 10h], rax	unlink and push back on the free list - 0032EC40(slot)	
+0032EC40	FUN_0032ec40	0032EC40	18h	r	mov r8, qword ptr [rcx + 18h]	unlink and push back on the free list - 0032EC40(slot)	
+0032EC40	FUN_0032ec40	0032EC8D	18h	r	mov rax, qword ptr [rcx + 18h]	unlink and push back on the free list - 0032EC40(slot)	
+0032EC40	FUN_0032ec40	0032EC95	18h	r	mov rax, qword ptr [rcx + 18h]	unlink and push back on the free list - 0032EC40(slot)	
+0032EC40	FUN_0032ec40	0032ECA9	18h	w	mov qword ptr [rcx + 18h], 0	unlink and push back on the free list - 0032EC40(slot)	
+0032E070	FUN_0032e070	0032E0A0	20h	r	movzx eax, byte ptr [rbx + 20h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E0FF	20h	w	mov byte ptr [rbx + 20h], 2	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E127	20h	w	mov byte ptr [rbx + 20h], 2	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E13B	20h	w	mov byte ptr [rbx + 20h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E15A	20h	w	mov byte ptr [rbx + 20h], 3	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E170	20h	r	cmp byte ptr [rbx + 20h], 4	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E18E	20h	w	mov byte ptr [rbx + 20h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1A8	20h	w	mov byte ptr [rbx + 20h], al	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1CD	20h	r	cmp byte ptr [rbx + 20h], 6	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1DF	20h	w	mov byte ptr [rbx + 20h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E236	20h	w	mov byte ptr [rbx + 20h], 1	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E266	20h	r	cmp byte ptr [rbx + 20h], 5	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E277	20h	w	mov byte ptr [rbx + 20h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E28D	20h	w	mov byte ptr [rbx + 20h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E0D3	21h	r	movzx eax, byte ptr [rbx + 21h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E330	FUN_0032e330	0032E351	21h	r	cmp byte ptr [rbx + 21h], FFh	the delivery callback dispatcher - 0032E330(slot)	
+0032E370	FUN_0032e370	0032E394	21h	r	cmp byte ptr [rbx + 21h], FFh	the failure callback dispatcher - 0032E370(slot)	
+0032E070	FUN_0032e070	0032E1AB	22h	r	movzx ecx, byte ptr [rbx + 22h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1C0	23h	r	cmp byte ptr [rbx + 23h], 2	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1DB	23h	w	mov byte ptr [rbx + 23h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E20D	23h	w	mov byte ptr [rbx + 23h], al	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E23C	23h	w	mov byte ptr [rbx + 23h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E252	23h	w	mov byte ptr [rbx + 23h], al	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E0DB	24h	r	mov edx, dword ptr [rbx + 24h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E105	24h	r	movsxd rcx, dword ptr [rbx + 24h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E330	FUN_0032e330	0032E357	24h	r	movsxd rcx, dword ptr [rbx + 24h]	the delivery callback dispatcher - 0032E330(slot)	
+0032E370	FUN_0032e370	0032E39A	24h	r	movsxd rcx, dword ptr [rbx + 24h]	the failure callback dispatcher - 0032E370(slot)	
+0032E070	FUN_0032e070	0032E0CA	28h	r	mov r8d, dword ptr [rbx + 28h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E182	28h	w	mov dword ptr [rbx + 28h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1ED	28h	r	movsxd rax, dword ptr [rbx + 28h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E222	28h	w	mov dword ptr [rbx + 28h], eax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E370	FUN_0032e370	0032E382	28h	r	cmp dword ptr [rcx + 28h], -1	the failure callback dispatcher - 0032E370(slot)	
+0032E070	FUN_0032e070	0032E0E1	2Ch	r	mov r8d, dword ptr [rbx + 2Ch]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E109	2Ch	r	mov r9d, dword ptr [rbx + 2Ch]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E201	2Ch	wr	add dword ptr [rbx + 2Ch], eax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E225	2Ch	r	mov eax, dword ptr [rbx + 2Ch]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E245	2Ch	w	mov dword ptr [rbx + 2Ch], eax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E218	30h	r	mov eax, dword ptr [rbx + 30h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E259	30h	r	mov eax, dword ptr [rbx + 30h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1F1	34h	wr	sub dword ptr [rbx + 34h], eax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E1F4	34h	r	cmp dword ptr [rbx + 34h], 0	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E21B	34h	r	cmp dword ptr [rbx + 34h], eax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E21E	34h	r	cmovl eax, dword ptr [rbx + 34h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E25C	34h	r	cmp dword ptr [rbx + 34h], eax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E261	34h	r	mov eax, dword ptr [rbx + 34h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E0E8	38h	r	mov rax, qword ptr [rbx + 38h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E10D	38h	r	mov rdx, qword ptr [rbx + 38h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E070	FUN_0032e070	0032E204	38h	wr	add qword ptr [rbx + 38h], rax	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E330	FUN_0032e330	0032E336	40h	r	mov rax, qword ptr [rcx + 40h]	the delivery callback dispatcher - 0032E330(slot)	
+0032E370	FUN_0032e370	0032E376	40h	r	mov rax, qword ptr [rcx + 40h]	the failure callback dispatcher - 0032E370(slot)	
+0032E070	FUN_0032e070	0032E176	48h	r	mov rax, qword ptr [rbx + 48h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E3B0	FUN_0032e3b0	0032E3B4	50h	r	mov rax, qword ptr [rcx + 50h]	the part callback dispatcher - 0032E3B0(slot)	
+0032E070	FUN_0032e070	0032E17F	60h	r	mov ecx, dword ptr [rbx + 60h]	the pump, seeded from the pending head 022C51C0 it reloads in its own loop	
+0032E330	FUN_0032e330	0032E34C	60h	r	mov ecx, dword ptr [rcx + 60h]	the delivery callback dispatcher - 0032E330(slot)	
+0032E370	FUN_0032e370	0032E38F	60h	r	mov ecx, dword ptr [rcx + 60h]	the failure callback dispatcher - 0032E370(slot)	
+0032EC40	FUN_0032ec40	0032ECC5	64h	w	mov dword ptr [rcx + 64h], FFFFFFFFh	unlink and push back on the free list - 0032EC40(slot)	
+0032E330	FUN_0032e330	0032E342	70h	r	mov rdx, qword ptr [rcx + 70h]	the delivery callback dispatcher - 0032E330(slot)	
+0032E370	FUN_0032e370	0032E388	70h	r	mov rdx, qword ptr [rcx + 70h]	the failure callback dispatcher - 0032E370(slot)	

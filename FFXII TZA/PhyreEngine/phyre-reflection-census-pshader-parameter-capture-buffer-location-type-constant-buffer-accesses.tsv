@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+005D7DE0	FUN_005d7de0	005D7DE7	0h	w	mov word ptr [rdx], ax	ctorrdx-seeded 005D7DE0	
+005D7DE0	FUN_005d7de0	005D7DEA	4h	w	mov qword ptr [rdx + 4], rax	ctorrdx-seeded 005D7DE0	
+005D7DE0	FUN_005d7de0	005D7DEE	Ch	w	mov byte ptr [rdx + Ch], 34h	ctorrdx-seeded 005D7DE0	

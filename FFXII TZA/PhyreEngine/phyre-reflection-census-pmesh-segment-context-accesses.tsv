@@ -1,0 +1,6 @@
+function	name	site	disp	kind	instruction	route	note
+006B6AB0	FUN_006b6ab0	006B6AB7	20h	w	mov dword ptr [rdx + 20h], 0	ctorrdx-seeded 006B6AB0	
+006B6AB0	FUN_006b6ab0	006B6ABE	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 006B6AB0	
+006B6AB0	FUN_006b6ab0	006B6AC1	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 006B6AB0	
+006B6AB0	FUN_006b6ab0	006B6AC5	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 006B6AB0	
+006B6AB0	FUN_006b6ab0	006B6AC9	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 006B6AB0	

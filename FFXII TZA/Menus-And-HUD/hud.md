@@ -149,7 +149,7 @@ The selection marker is drawn after them (`0028C970`, `0028EDC9`).
 
 ### The target ring
 
-`00290370(unit, other, style)` asks for the ring (`00290370`-`002903C5`):
+`00290370(unit, other, style)` asks for the ring (`00290370`-`002903C8`):
 
 - with `other` set it moves the selection marker to the unit instead (`0028CA40`);
 - otherwise it stores the unit at `+10F6C`<sub>h</sub>, 0 at `+10F70`<sub>h</sub> and the style at `+10F72`<sub>h</sub>, and sets flag bit 3.
@@ -312,5 +312,3 @@ The Escape Mode register and arming are on [Escape](../Controls-And-Input/escape
 - [Subsystem update flags](../Engine-Core/subsystem-update-flags.md) - the pump that steps each part.
 - [Menu sprites](menu-sprites.md) - the `targetline_p` picture.
 - [Widgets](widgets.md) - the widget model the parts use.
-</content>
-</invoke>

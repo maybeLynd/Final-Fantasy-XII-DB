@@ -1,0 +1,17 @@
+function	name	site	disp	kind	instruction	route	note
+006C5180	FUN_006c5180	006C5180	0h	w	mov dword ptr [rcx], 7F7FFFFFh	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C518A	4h	w	mov dword ptr [rcx + 4], 7F7FFFFFh	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C5193	8h	w	mov dword ptr [rcx + 8], 7F7FFFFFh	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C519A	10h	w	mov dword ptr [rcx + 10h], FF7FFFFFh	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51A1	14h	w	mov dword ptr [rcx + 14h], FF7FFFFFh	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51A8	18h	w	mov dword ptr [rcx + 18h], FF7FFFFFh	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51AF	20h	w	mov dword ptr [rcx + 20h], edx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51B7	28h	w	mov dword ptr [rax], edx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51B9	20h	w	mov dword ptr [rcx + 20h], 1	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51C7	30h	w	mov dword ptr [rcx + 30h], 3F800000h	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51CE	40h	w	mov qword ptr [rcx + 40h], rax	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51D9	48h	w	mov qword ptr [rcx + 48h], rax	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51E0	34h	w	mov qword ptr [rcx + 34h], 447A0000h	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51E8	50h	w	mov dword ptr [rcx + 50h], edx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51EB	58h	w	mov qword ptr [rcx + 58h], rdx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51EF	60h	w	mov byte ptr [rcx + 60h], 1	ctorrdx-seeded 006C4D60	

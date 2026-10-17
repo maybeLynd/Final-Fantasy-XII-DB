@@ -130,7 +130,7 @@ whole file into a stream and hands it to `00200E60`; the screen-layout files are
 
 ## Layouts
 
-Eastl::basic_string<char>   `20`<sub>h</sub> bytes:
+Eastl::basic_string&lt;char&gt;   `20`<sub>h</sub> bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -139,7 +139,7 @@ Eastl::basic_string<char>   `20`<sub>h</sub> bytes:
 | `10`<sub>h</sub> | `void*` | capacityEnd | one past the block; `02EBA2E1` for an empty string |
 | `18`<sub>h</sub> | `void*` | allocator | the allocator object itself (its vtable pointer) |
 
-Eastl::vector<T>:
+Eastl::vector&lt;T&gt;:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

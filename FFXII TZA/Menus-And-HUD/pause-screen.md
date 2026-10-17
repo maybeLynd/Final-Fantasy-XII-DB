@@ -122,5 +122,3 @@ its `+26D`<sub>h</sub> is set.
 - [Widgets](widgets.md) - the focus, the roots and the release.
 - [Audio manager](../Sound-And-Music/audio-manager.md) - the paused kinds.
 - [Game application](../Engine-Core/game-application.md) - the framework pause byte and the running object.
-</content>
-</invoke>

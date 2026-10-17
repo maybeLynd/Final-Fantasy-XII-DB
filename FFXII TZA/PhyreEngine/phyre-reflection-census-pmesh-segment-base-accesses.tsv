@@ -1,0 +1,9 @@
+function	name	site	disp	kind	instruction	route	note
+0065EA30	FUN_0065ea30	0065EA37	4h	w	mov dword ptr [rdx + 4], FFFFFFFFh	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA3E	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA40	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA43	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA47	18h	w	mov dword ptr [rdx + 18h], 6	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA4E	1Ch	w	mov qword ptr [rdx + 1Ch], FFFFFFFFFFFFFFFFh	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA56	24h	w	mov dword ptr [rdx + 24h], FFFFFFFFh	ctorrdx-seeded 0065EA30	
+0065EA30	FUN_0065ea30	0065EA5D	28h	w	mov dword ptr [rdx + 28h], eax	ctorrdx-seeded 0065EA30	

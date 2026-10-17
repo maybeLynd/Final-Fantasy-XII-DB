@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+0086CE50	FUN_0086ce50	0086CE69	0h	w	mov qword ptr [rcx], rax	vtable-seeded 01CD6268	

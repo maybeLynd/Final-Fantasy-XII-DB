@@ -25,7 +25,7 @@ phase byte `+6B4`<sub>h</sub>; one-shot handlers set it to 2 and return 1 at onc
 ### Availability
 
 `00301830(unit, record)` refuses an id outside the table or an empty slot, then applies these
-id-specific rules (`003018DD`-`0030199A`); every other id passes:
+id-specific rules (`003018DD`-`00301AA5`); every other id passes:
 
 | Ids | Rule |
 |---|---|

@@ -237,7 +237,7 @@ The render pass list `00187950` services two captures through the render manager
    clears `+CD4`<sub>h</sub>.
 
 Only the constructor (0), `00186010` (2) and `00187550` (0) store to `+CD8`<sub>h</sub>; `00186010` and `00188730`
-(`0018874A`) read it.
+(`00188748`) read it.
 
 With the boot byte `+DB8`<sub>h</sub> set, `00187860` also runs a 3840 × 2160 capture, keyed by the state
 `+DAC`<sub>h</sub>:
