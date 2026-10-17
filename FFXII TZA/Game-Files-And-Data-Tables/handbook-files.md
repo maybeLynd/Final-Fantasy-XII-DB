@@ -190,8 +190,18 @@ A request names a family, a file number and an entry or page. `00575C30` builds 
 - slot 1 starts with offset 2 (`005759E2`), so file number `n` is `menuhandbook_<family>NNN.dat` with `NNN = n`;
 - slot 2 gets `textBundles + 2` once the catalog has loaded (`005773D2`), so its file numbers count from the first picture file.
 
-A request for the file a slot already holds only changes the entry or page (`00575A50`); otherwise the
-slot frees its buffer and loads the new file, and a request made while it loads waits in its queue.
+`00575A50` treats a request for the slot's own file (the same family `+D2`<sub>h</sub> and, when the slot byte
+`+C8`<sub>h</sub> is 1 or 2, the same file number `+CC`<sub>h</sub>; `00575A60`-`00575A92`) by the slot's state `+C9`<sub>h</sub>:
+
+- loaded (1): it only changes the entry or page `+CE`<sub>h</sub> and returns 1 (`00575B58`-`00575B63`);
+- loading (2): the request is dropped, with no write (`00575B4B`);
+- loading with the buffer to be freed when it finishes (3): the state goes back to 2 (`00575B44`), so the
+  finishing load is kept. The completion message `10`<sub>h</sub> of `00575870` turns state 2 into 1, and state 3
+  into 0 after freeing the buffer.
+
+Any other request, including one for a different file while a load is pending, frees the slot's buffer and
+loads the new file (`00575640` at `00575B20`, `00575C30` at `00575B2B`). The queue at `+D3`<sub>h</sub> / `+D6`<sub>h</sub> is
+written only by code that no path reaches (`00575ACC`-`00575B10`), so no request waits.
 
 ### The unlock tables
 
