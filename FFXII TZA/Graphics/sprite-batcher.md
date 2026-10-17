@@ -116,8 +116,9 @@ the index to -1.
 ### Sprite mode and the GS packets
 
 The menu draw `002450B0` (and `00245110`) brackets the widget tree with `002DD4C0` and `002DD420`. The first
-closes the current GS command buffer, flips it (`003A1DB0`), sets the text painter's byte `+1103`<sub>h</sub> and
-sets `0215E6D0` to 1; the second clears both. `002DD4B0` returns `0215E6D0`, and the emitters that test it
+closes the current GS command buffer and flips it twice: once directly (`003A1DB0`, `002DD52F`) and once
+inside `002B4710` (`002DD534`), which also sets the text painter's byte `+1103`<sub>h</sub>. Then it sets
+`0215E6D0` to 1; the second clears both. `002DD4B0` returns `0215E6D0`, and the emitters that test it
 draw nothing outside the bracket. `002DD4A0` clears it alone.
 
 The menu frames reach it through `002529F0`: `GiBeginScene(1)` (`001FBD80`), `002450B0` on `[0208EA48]`,

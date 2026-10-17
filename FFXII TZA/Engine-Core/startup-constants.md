@@ -179,16 +179,25 @@ when their pointer is null:
 | `003AC890` | allocates `3800`<sub>h</sub> at `02B3F528`; `02B3F518` = 1.0; `003ABB60` clears its 128 records, takes the first as a type-7 record with the next serial from `02B3F504` (1 to `FFFFFF`<sub>h</sub>), and makes it the list `02B3F508` / `02B3F510`; per frame `003AC870` resets the factor `02B3F51C` to 1.0 and `003AC900(f)` multiplies it by f |
 | `003B4790` | allocates `1800`<sub>h</sub> at `02B404E0`; sets the pairs (3, `00D11520`) and (5, `00D11538`); clears 64 records |
 | `00376A80` | clears `02ADBB30`, `02ADBB34` and the first word of 8 records at `02ADBB40` (stride `90`<sub>h</sub>) |
+| `0024C970` | clears `1670`<sub>h</sub> bytes from `020910A0`; sets the five u16 `0209215E` to `02092166` to `3FF`<sub>h</sub> and `020926F4` = `4003C`<sub>h</sub>; under arena 8 clears the four soft-particle tables and reads them and `softparticle_bg.csv` ([Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md)); `02092700` = −1 |
 | `003D7F10` | clears a word in each of 32 records from `02EBBA00` (stride `84`<sub>h</sub>) |
 | `003D8C30` | points `02B4E3D0` to `02B4E3E8` at the four data blocks `01EFE3A0`, `01EFE510`, `01EFE690`, `01EFE810` and runs `0050C450` over each; `02B4D7B8` = 1.0; clears 32 records |
 | `003773C0`, `003B3E10` | clear 128 records ending at `02ADCFC0`, and the 8-byte records from `02EBCC80` to `02EBCD84` |
 | `00259250` | resets the block at `02096810` to `02096D28` (white at `02096810`, 0.5 at `020968BC`, `80808080`<sub>h</sub> at `020968B0`) |
 | `0039CD50` | allocates `20000`<sub>h</sub> at `02AEED50`; `0039AED0(2048.0, 2048.0)` and `0039AF20(512.0)`, which store `02EBEFFC`, `02EBEFF8`, `02EBF000` and copy 64 bytes from `02AEDD30` to `02AEE5A0`; `02AEE910` = 8 |
+| `003A3670` | under arena 9, and every time rather than only when null: allocates `190000`<sub>h</sub> at `02F8F2F8`, `C8028`<sub>h</sub> at `02F8F300`, and `[02F8F2C0]` = `0036B080(9)` bytes at `02F8F2D0` (also `02F8F308`), with `02F8F2D8` = that buffer plus its size rounded down to a multiple of 16; `02F8F2E0` = `[01FD4A78]`; clears `02F8F2C5`, `02F8F2C6`, `02F8F2CC`, `02F8F2E8`, `02F8F2F0` and the low two bits of `02F8F310` |
 | `00375120` | clears 32 records at `02EBFA48`; writes a 16-step grey ramp (step `11`<sub>h</sub>, alpha `80`<sub>h</sub>) at `02ADB6E0` and eight 32-step ramps after it |
 | `002FC200` | chains the 48 records of `38`<sub>h</sub> bytes at `02EC32E0` into a list (`02EC3D70`); clears `02EC19C0` (`1000`<sub>h</sub> bytes) and copies 401 five-bit values from `01EEBB10` into it, one per 8 bytes |
+| `003B0660` | zeroes `+00`<sub>h</sub>-`+03`<sub>h</sub>, `+08`<sub>h</sub>-`+0F`<sub>h</sub> and `+11`<sub>h</sub> of the 36 records of `18`<sub>h</sub> bytes from `02EBEC00` and clears the low three bits of each `+13`<sub>h</sub>; clears bit 0 of `02EBEF68` and the word `02EBEF60`; runs `0024C460` for 5, 6 and 9; then, when `0032E400(10)` returns n > 0, calls `0032E620(10, 0, [01FD4A30], n, 0)` and `0032E520(0)`, passes a zeroed `890`<sub>h</sub>-byte request with type 5 to `0024B3A0`, and calls `003EDAD0([01FD4A30], its word +Ch)` |
 | `003B16B0` | clears the 32 records of `30`<sub>h</sub> at `02EBE5E0` and `02EBEBE0` / `02EBEBE4` |
 | `0026F9F0` | fills 96 bytes at `02F8F23C` with 3 and sets `02F8F29C` = `100`<sub>h</sub> |
+| `003B3160` | links two lists of 32 records of `38`<sub>h</sub> bytes, at `02EBCD80` (head `02EBDB88`) and `02EBD480` (head `02EBDBA0`): each record's first word takes its index and `30000000`<sub>h</sub>, `+20`<sub>h</sub> points to the next and `+28`<sub>h</sub> to the previous; clears `02EBDB80`, `02EBDB90`, `02EBDB98`, `02EBDBA8`, `02EBDBB0`, `02EBDBB4`; then `0024C550(3)` |
+| `003CBFF0(02096ED0)` | (call at `002591F2`) clears `+C0`<sub>h</sub> of the camera `02096ED0` and runs `003CBBE0` on it |
 | `0025A600(0.1, 1000.0)` | stores the two floats `02098DE0` / `02098DE4` |
+
+After the last call it stores three words directly: `022D92E0` = `01EF93E8` = `458DC800`<sub>h</sub> (4537.0)
+and `022D9138` = 1 (`0025920C`, `00259216`, `00259220`). They are the presentation generator's last
+sample, its state and its enable word ([Random number generators](../Random-Numbers/random-number-generators.md)).
 
 `00266D10`, the actor-system reset, runs among others `00314940` (`022C2544` = 1.0), `002556F0`
 (five groups of four `2E0`<sub>h</sub>-byte records from `02092810`, plus one more, each through `003CBFF0`;
