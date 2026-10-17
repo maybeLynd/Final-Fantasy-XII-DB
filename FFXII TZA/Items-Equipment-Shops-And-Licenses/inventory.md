@@ -122,8 +122,13 @@ one indirect call is `00316F82`, to `00300B80` or `00300490`.
 
 ### Writes that bypass the change function
 
-- The clear-all `003047F0` stores 0 in every count and bit word (`0030482A`); the party block reset `002370E5` and
+- The clear-all `003047F0` stores 0 in every count and bit word (`0030482A`) and ends by tail-jumping to
+  `00253480` (`0030483D`), which empties all twelve derived inventory lists (`00253240(i, 1)`: every id `FFFF`<sub>h</sub>,
+  the count at `[020927C0] + 47B8h + 4i` = 0) and clears every bit of `[020927C0] + 3244h` but bit 0 and bit 0
+  of `+3245`<sub>h</sub>; the party block reset `002370E5` and
   the scenario presets `00239B22` call it.
+  - `0035C560` calls `00253480` directly (`0035C584`), right after the HUD reset `0028F8B0`
+    ([HUD](../Menus-And-HUD/hud.md)).
 - The rebaser clears every loot sold tally (`0030B702`-`0030B737`).
 - `takeaway_item_and_equip` copies the item and equipment counts to backups at `+4F84`<sub>h</sub> and `+5004`<sub>h</sub>
   (`0030FC6F`, `0030FCCF`), and `giveback_item_and_equip` adds them back and clears the backups

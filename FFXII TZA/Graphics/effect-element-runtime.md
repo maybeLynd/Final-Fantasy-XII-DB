@@ -36,7 +36,13 @@ records are on [effect files](effect-files-efx-efb.md). Running it takes three l
 `02F97340`, then the context's record tables and the instance's lists: `02EBEF70` = context
 `+18`<sub>h</sub> (the `B00`<sub>h</sub> record store), `02EBEFA8` = `+38`<sub>h</sub>, `02EBEFA0` = `+840`<sub>h</sub>, `02EBEF90` = `+848`<sub>h</sub>
 (emitter records), `02EBEF78` = `+850`<sub>h</sub> (definitions), `02EBEF98` = instance `+120`<sub>h</sub>, `02EBEFB0` =
-`+130`<sub>h</sub> and `02EBEF88` = `+1B8`<sub>h</sub> (`0024ED80`–`0024EDFF`). All the code below reads these globals.
+`+130`<sub>h</sub> and `02EBEF88` = `+1B8`<sub>h</sub> (`0024ED80`–`0024EDFF`).
+
+It then tail-jumps to `0024FCF0` (`0024EDFF`), which publishes the instance's draw state:
+byte `+3` at `02096800`, the colour `+320`<sub>h</sub> scaled by `+39C`<sub>h</sub> with alpha 1.0 at `02096810`, `+310`<sub>h</sub> at
+`02096820` (zero when `+378`<sub>h</sub> has bit `800`<sub>h</sub>), `+300`<sub>h</sub> at `02096830`, `+330`<sub>h</sub> at `02096840` and the depth
+offset `+338`<sub>h</sub> at `02AEE7F4` (`0024FD05`-`0024FD86`; [menu effects](menu-effects.md)). All the code below
+reads these globals.
 
 ### The element pool
 

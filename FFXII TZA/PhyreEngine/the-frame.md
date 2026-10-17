@@ -131,9 +131,11 @@ non-null, then read without a null check) to `+48`<sub>h</sub>;
 (`+B8`<sub>h</sub>) and far (`+BC`<sub>h</sub>): with element `+3C`<sub>h</sub> non-zero, `+28h = 1 / (n − f)` and
 `+38h = n / (n − f)`; otherwise `+28h = f / (n − f)` and `+38h = n·f / (n − f)`.
 
-Slot 1 (execute, `00864E90`) hands `+08`<sub>h</sub> and the two floats to `00210520`, which stores them at
+Slot 1 (execute, `00864E90`) first calls the device's slot `+B0`<sub>h</sub> with 0 (`00864EB5`) and stores `80`<sub>h</sub> in
+`01E027B8` (`002105A0`, `00864EBD`), then hands `+08`<sub>h</sub> and the two floats to `00210520`, which stores them at
 `01FD3620`–`01FD365F`, `01FD3660` and `01FD3664` (the GS replay's vertex matrix and depth bounds),
-passes `+48`<sub>h</sub> to the device's slot `+30`<sub>h</sub>, and sets two device values to 3.0.
+passes `+48`<sub>h</sub> to the device's slot `+30`<sub>h</sub>, sets two device values to 3.0 (slots `+D8`<sub>h</sub> and `+D0`<sub>h</sub>), and
+ends by tail-jumping to the device's slot `+138`<sub>h</sub> with 0 (`00864F22`).
 
 ## Layouts
 

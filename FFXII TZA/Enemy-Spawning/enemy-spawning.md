@@ -209,7 +209,13 @@ sets bit 3, runs `00239E10`, sets bit 49, sets the record's flag bit 1 for a kin
 (`00233BA8`), and publishes the position (`00311F70(0, unit, 1)`) when bit 26 is clear, the status
 gate passes and `003278C0()` is 0. For an inactive unit it clears bit 26.
 
-`00239E10` writes the placement-height byte `+1F6`<sub>h</sub>: 1 for a kind-0 stats record; for any other
+`00239E10` loads twelve unit parameters through `003204D0` (`00239E78`-`00239F5B`), ten of them into fields
+between `+164`<sub>h</sub> and `+1B0`<sub>h</sub> and numbers 24 and 26 into locals the later writes use, with alternate parameter numbers for a kind-1 unit whose definition byte `+13`<sub>h</sub> is not `FF`<sub>h</sub>; it also sets
+`+1F0`<sub>h</sub> bit 2, `+1F5`<sub>h</sub>, `+17C`<sub>h</sub>, `+150`<sub>h</sub>, `+19C`<sub>h</sub> and `+1F4`<sub>h</sub>, pushes `+184`<sub>h</sub> into the render record
+(`002E86B0`), and ends with the battle-unit refresh `00236300`.
+
+Among those writes is the placement-height
+byte `+1F6`<sub>h</sub>: 1 for a kind-0 stats record; for any other
 kind, or no stats record, from the definition record's byte `+18`<sub>h</sub> (`[unit + E68h]`): 8 when bit
 4 is set, else 2 when bit 5 is set, else 1, with 4 added when bit 6 is set. For a kind-1 unit with
 the probe bit it also stores `00236210(unit)` at `+188`<sub>h</sub>, the vertical lift; otherwise `+188`<sub>h</sub> = 0.

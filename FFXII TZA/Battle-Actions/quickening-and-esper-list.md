@@ -50,6 +50,10 @@ that action. Its two callers never pass a `C000`<sub>h</sub> id:
 2. The only function that adds an id to a category list is `00252E60`, reached from `00325F40`. It chooses the
    list from the id's top nibble through the table at `01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
    (`00D1066E`, `00D1066F`), and it returns at once for a nibble above 10 (`00325F40`).
+   - An id already in the list is not added again
+   (`00252EE5`); after appending, it calls `002CD650` (`00252F18`), which sets the save-wide category bit
+   (`[020927C0] + 3244h`, `00252D40`) of each inventory category whose list is now non-empty
+   ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).
 3. The other writers of the lists, `002530E0`, `002534C0`, `002535D0` and `00253240`, only move, remove or clear
    ids.
 

@@ -99,6 +99,8 @@ A timed lip flap ends exactly as `setkutipakustatus(0)` would, and a zero timer 
 On (`004718D0`) sets the active byte `+0` and the running byte `+3` and remaps the counter `+2` through `01F227A0`; off
 (`00471640`) clears `+0` and remaps `+2` through `01F22760`. The update `004716A0`:
 
+- first, on every call, the record's secondary-context base offset `+144`<sub>h</sub> is set to 0 and the shape is re-sized
+  (`003E4350` → `00269E40` → `00268380`, `004716BF`; [Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md));
 - active: the envelope `+10`<sub>h</sub> rises by `0.125 × [01DFE0BC]` to 1.0; the phase `+1` steps round the 60-entry cycle
   `01F223B0`; the height `+14`<sub>h</sub> = cycle[phase] × envelope; `+18`<sub>h</sub> = 0.3 × the 28-entry rise curve `01F22590` at
   `+2`, held at its last entry;
@@ -127,7 +129,13 @@ is non-zero it counts down and adds the acceleration to the speed (at 60 fps onl
 Two authored presentation commands of the bank `0041D6C0` registers drive the rig
 ([Authored presentation commands](authored-presentation-commands.md)):
 
-- `13`<sub>h</sub> (`00520430`) copies command bytes `+2`-`+5` to render record `+3F4`<sub>h</sub>-`+3F6`<sub>h</sub>. With bit `40`<sub>h</sub> of `+3F4`<sub>h</sub>
+- `13`<sub>h</sub> (`00520430`), only while render record `+2F2`<sub>h</sub> is 0, copies command bytes `+2`-`+5` to `+3F4`<sub>h</sub>-`+3F6`<sub>h</sub>
+  and broadcasts the switch at once through `00429500(record, 1)` (`005204D1`), holding bit 9 of `+290`<sub>h</sub>
+  meanwhile.
+  - When byte `+2 & B9h` is `80`<sub>h</sub> it instead runs `004288B0(record, byte +3)` and `0042B580(record)`
+  and clears bit 10 of `+290`<sub>h</sub> (`005204EC`-`005204F9`).
+  - With no command it resets `+3F4`<sub>h</sub> to `11`<sub>h</sub> and broadcasts (`0052047B`).
+  - With bit `40`<sub>h</sub> of `+3F4`<sub>h</sub>
   set, the dirty-pass wrapper `0042BED0` switches controller 11 by bit 0 when the target word `+3F6`<sub>h</sub> is 1, the lip
   flap when it is 2, and the nod when it is 4 and `+3F5`<sub>h</sub> is 0 or the record's piece number plus 1.
 - `24`<sub>h</sub> (`005201B0`) calls `003DFE70(rig, index, target, frames)`, which sets the entry's counter to

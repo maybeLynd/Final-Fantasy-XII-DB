@@ -118,7 +118,11 @@ the index to -1.
 The menu draw `002450B0` (and `00245110`) brackets the widget tree with `002DD4C0` and `002DD420`. The first
 closes the current GS command buffer and flips it twice: once directly (`003A1DB0`, `002DD52F`) and once
 inside `002B4710` (`002DD534`), which also sets the text painter's byte `+1103`<sub>h</sub>. Then it sets
-`0215E6D0` to 1; the second clears both. `002DD4B0` returns `0215E6D0`, and the emitters that test it
+`0215E6D0` to 1.
+
+The second, `002DD420`, also closes the current buffer with the packet word `11000000`<sub>h</sub> and flips it
+once (`003A1DB0`, `002DD476`), then clears both: the painter byte through `002B4700` (`002DD47B`) and
+`0215E6D0` (`002DD485`). `002DD4B0` returns `0215E6D0`, and the emitters that test it
 draw nothing outside the bracket. `002DD4A0` clears it alone.
 
 The menu frames reach it through `002529F0`: `GiBeginScene(1)` (`001FBD80`), `002450B0` on `[0208EA48]`,

@@ -352,8 +352,12 @@ with `00504450`: a `{10000000h, 0}` record, then the flip `003A1DB0`. `00504490`
 ### Palettes
 
 - `00504D30(row, index, sub, out)` makes a palette resource of `bytes / 4` colours for palette
-  `index` (below `+0C`<sub>h</sub> and 16), keeps it in the row's 16 slots at `+140`<sub>h</sub>, and records the pair
-  `(index << 4) | sub` in the row's 20-byte map at `+180`<sub>h</sub>.
+  `index` (below `+0C`<sub>h</sub> and 16), keeps it in the row's 16 slots at `+140`<sub>h</sub>, and, when the pair
+  `(index << 4) | sub` is not yet in the row's 20-byte map at `+180`<sub>h</sub> and the map has a free byte, records it
+  there.
+  - For such a new pair it also files the caller's `50`<sub>h</sub>-byte animation entry on that palette through `003CCC20` (`00504E3C`; one of
+  128 slots at `[02B47798]`, linked into the palette's record by its priority byte `+2`) and keeps the returned
+  handle at `+194h + 4n` (`00504E41`).
 - `005044D0(row, index)` returns the page in use: data offset + `row[+BAh]` × palette bytes.
 - `00504D20(row, page)` sets `+BA`<sub>h</sub>. `00428CD0` sets it on a render record, its partner and their
   children; the status step `00470780` passes 3 (`0047082A`, `0047091B`, `00470A43`), other callers 0

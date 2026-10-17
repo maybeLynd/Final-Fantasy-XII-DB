@@ -124,7 +124,11 @@ Last, the rebuild limits three values without going through the HP write (`00310
 | Mist pool `+06`<sub>h</sub> | max MP times the MP bars `+37`<sub>h</sub> (0 counting as 1), or 0 under effect 39 |
 
 The values only go down. Then `0030E060` sets the charge count `+4E`<sub>h</sub> to `+06`<sub>h</sub> / `+28`<sub>h</sub> when `+37`<sub>h</sub> is
-not 0, and to 0 otherwise (`0030E0AF`-`0030E0C3`, `0031059C`).
+not 0, and to 0 otherwise (`0030E0AF`-`0030E0C3`, `0031059C`); it does nothing when max MP `+28`<sub>h</sub> is 0 or less
+(`0030E093`). When the rebuild's flags have `400`<sub>h</sub> without `10`<sub>h</sub> and the record has a battle unit (`0031B860`),
+a changed count is posted as a hit or heal reaction with the difference (`003283D0`, `0030E102`;
+[HP and KO](hp-and-ko.md)), which `003283D0` posts as a battle number through `003BBD00` (`00328462`,
+[Battle numbers](../Menus-And-HUD/battle-numbers.md)).
 
 ## Shipped data
 

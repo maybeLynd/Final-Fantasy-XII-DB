@@ -15,7 +15,9 @@ pointer is empty and rebases the inventory class descriptors, and checks the mag
 With an empty pointer or a wrong magic `00233C10` then runs the battle-state reset `00237DF0`,
 whose first step `0023AF50` resets the block and adds the starting inventory
 ([Starting inventory](starting-inventory.md)). With the magic in place it rebuilds the gambit order set of all forty
-members with `00327F80`, the loop form of `00327DE0` (`00233CAD`; [Gambits](../Enemy-AI-And-Gambits/gambits.md)). The reset `002370C0` clears all `7410`<sub>h</sub> bytes, writes the magic, empties map 0's seats
+members with `00327F80`, the loop form of `00327DE0` (`00233CAD`; [Gambits](../Enemy-AI-And-Gambits/gambits.md)).
+
+The reset `002370C0` clears all `7410`<sub>h</sub> bytes, writes the magic, clears the inventory counts and empties the menu category lists of `[020927C0]` (`003047F0`, `002370E5`; [Save data](../Saving-Loading-And-Settings/save-data-fields.md)), empties map 0's seats
 and zeroes the walked distance (`002370CD`-`0023712E`).
 
 The block holds:

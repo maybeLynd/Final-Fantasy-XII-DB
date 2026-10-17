@@ -70,9 +70,12 @@ bit 0.
 The argument is the 16-bit word `01E0C2B0`. `00253970`, the interface start-up, stores
 `F`<sub>h</sub>. `00226280`, the world-lock apply that runs at the end of every field frame, stores through
 `002547C0` the value `F`<sub>h</sub> when the AND of the lock table's first words has bit 36, else `E`<sub>h</sub>,
-with bits 2 and 3 cleared when that AND lacks bit 37; `0036D840(on)` sets or clears bits 2 and 3
-through the same setter. So a lock record that clears bit 36 skips group 6 for every frame it is
-held, while the other fifteen groups keep running.
+with bits 2 and 3 cleared when that AND lacks bit 37. So a lock record that clears bit 36 skips group 6 for
+every frame it is held, while the other fifteen groups keep running.
+
+`0036D840(on)` sets or clears bits 2 and 3 of two remembered words, `02EC0B24` and `02EC0B28`, and stores the
+first through the same setter and the second as the HUD draw word `01E0C2AC` (`00254840`, `0036D873`;
+[HUD](../Menus-And-HUD/hud.md)).
 
 Script verbs call `0036D840`: `setmenuhptargetshowstatus` (`2A7`<sub>h</sub>, `0034D700`), and `003B7BB0`,
 `003B7C60` and `003B7E20`, the bodies of `resumeposbattletarget` (`195`<sub>h</sub>), `resumepartyinfo_spattack`

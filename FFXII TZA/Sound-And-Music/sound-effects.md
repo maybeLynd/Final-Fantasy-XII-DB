@@ -21,7 +21,7 @@ The play calls sit in `002DEE80`-`002DF530` and reach the audio manager through 
 | Call | Arguments | Does |
 |---|---|---|
 | `002DF220` | id, pan, volume | plays from a block bank; answers 0 for id -1 (`002DF236`-`002DF244`), else a play handle |
-| `002DEF40` | id, pan, volume | plays from a block bank when id bit 31 is set and from a six-digit bank when it is clear (`002DEF77`-`002DEF83`) |
+| `002DEF40` | id, pan, volume | answers 0 without playing while `022CB726` is set (`003603C0`, `002DEF56`; [Game over](../World-Areas-And-Travel/game-over.md)); otherwise plays through `001DBDB0` from a block bank when id bit 31 is set and from a six-digit bank when it is clear (`002DEF77`-`002DEF83`) |
 | `002DF010` | id | as `002DEF40` with pan `40`<sub>h</sub> and volume `7F`<sub>h</sub> (`002DF02B`) |
 | `002DEE80` | handle | answers whether the sound with that handle still plays |
 | `002DF0F0` | handle, id | stops the sound with that handle on either side, or every block-bank sound for id -1 |

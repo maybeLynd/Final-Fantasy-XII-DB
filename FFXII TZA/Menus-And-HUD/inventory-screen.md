@@ -129,8 +129,12 @@ cursor. The tab of a pane is `00564380`.
 
 `00565BD0` stores the new place in the tab's list (`002530E0(list 00D23960[tab], item, item at the target)`), shifts
 the rows between the two places by one and puts the held row at the target, then redraws (`002D1AC0`). While an item
-is held, message `1A`<sub>h</sub> slides each row between the two places by 4 a frame. `00564650` ends the move: it clears the
-row offsets, leaves move mode, restores the tab strip (`00567690`) and resets `+17C`<sub>h</sub> to `-1`.
+is held, message `1A`<sub>h</sub> slides each row between the two places by 4 a frame.
+
+`00564650` ends the move: it clears the
+row offsets, leaves move mode, restores the tab strip (`00567690`), shows the key-guide entries again
+(`00295D50(1)`, `00564741`), resets `+17C`<sub>h</sub> to `-1` and clears `+178`<sub>h</sub> and `+181`<sub>h</sub>, zeroes `022CBE36`
+(`00368A60`) and re-allows the list bounce (`00368830(1)`, `00564773`; [Menu lists](menu-lists.md)).
 
 ### The tab strip
 

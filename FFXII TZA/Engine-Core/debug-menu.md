@@ -174,8 +174,12 @@ Most stepped fields are in the render settings block ([graphics settings](graphi
 `001D1660` has one caller (the data references at `01D5D550` and `01D5D560` are exception
 records, not a call table), the adapter `001CD040(ctx, dir, id)`, whose one caller is `0017DB90`,
 whose two callers are the message procedures `0023B330` and `0023B6F0` of the retail Config
-screen's rows. `0017DB90(kind, value, dir)` maps a row kind to a console id and dispatches it,
-then returns the row's new value from `0017E070(kind)`, a read of `[01F82D20] + offset`:
+screen's rows.
+
+`0017DB90(kind, value, dir)` maps a row kind to a console id and dispatches it,
+then returns the row's new value from `0017E070(kind)`, a read of `[01F82D20] + offset` for most kinds;
+kind 5 reads the display object through `001DD050(001DDAB0())` (its `+38`<sub>h</sub> when its `+18`<sub>h</sub> is 0, else
+`+24`<sub>h</sub>), kind 6 reads `+08`<sub>h</sub>, and any kind not in the table returns -1:
 
 | Row kind | Console id | Label | Value read |
 |---|---|---|---|

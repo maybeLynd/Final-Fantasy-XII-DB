@@ -203,7 +203,7 @@ record's `+10`<sub>h</sub> bit 0.
 | `5C`<sub>h</sub>, `74`<sub>h</sub> | `00264390`, modes 0 and 1 | a pointer to `1C`<sub>h</sub>-byte record `index` |
 | `60`<sub>h</sub> | `002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `00264260` |
 | `64`<sub>h</sub> | `002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
-| `68`<sub>h</sub> | `003B7210` | binds the first list's actors through `00262F50` |
+| `68`<sub>h</sub> | `003B7210` | first runs `002E6420` (`003B7231`), which calls `00428FE0(record, 0)` on the character render record of every actor of managers 0 to 2 that has one, then binds the first list's actors through `00262F50` (`003B72C1`): entry 0 to `[02EBCC68]`, entry i to `[02EBCAC0 + 8 × (i − 1)]` while `i − 1 < [02EBCBC0]` |
 | `6C`<sub>h</sub> | `002641B0` | base of the reference's class (`00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
 | `70`<sub>h</sub> | `00264AE0` | image + entry `index` of the five offsets |
 | `80`<sub>h</sub> | `0035A270` | for each `{id, mask}` whose id resolves, `002ECAB0(id, bit, 1)` for each set bit 1 to 31 |

@@ -113,9 +113,12 @@ handed to it, then loops while its run word `+50`<sub>h</sub> is non-zero, calli
 
 - slot 0, `007A3110`: returns 9 when the quit byte `+69`<sub>h</sub> is set; otherwise `SteamAPI_RunCallbacks`
   and the input poll `007A2440` on the application's input object `+DF8`<sub>h</sub>;
-- slot 1, `007A0340`: applies a pending drawing-area size change queued by the window procedure, returns 9
-  on the quit byte, and otherwise jumps through the application's `+D18`<sub>h</sub> (`007A03C4`). `00793E8C`
+- slot 1, `007A0340`: moves a drawing-area size parked by the window procedure into the `+48`<sub>h</sub> queue as
+  request 0 (`007A3BD0`, `007A0372`, under the lock at `+20`<sub>h</sub>), runs the screen-mode state step
+  `007A3FC0(+48h, ScreenMode)` (`007A0395`), returns 9 on the quit byte, and otherwise jumps through the application's `+D18`<sub>h</sub> (`007A03C4`). `00793E8C`
   there tail-jumps to slot 28, the per-frame update `0079C140`.
+  - In the state step the current state's slots `+30`<sub>h</sub> and `+38`<sub>h</sub> run; a result n other than -1 leaves the
+    old state, makes entry n current, logs `[Screen Mode]=======Change State %d` and enters it.
 
 A non-zero result sets the thread's byte `+29`<sub>h</sub> and the loop goes on. When the run word is cleared
 the thread posts `WM_CLOSE` with `wParam` 3 to the window (`007A436D`) and runs the game's

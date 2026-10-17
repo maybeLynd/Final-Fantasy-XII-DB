@@ -16,6 +16,10 @@ addresses: "001B44A0, 001B4D70, 001B5230, 001FDC10, 001FDDD0, 001B4C00, 002AC2F0
 
 ### The font list
 
+Before its list request `001B44A0` stores its third argument in the font display's path byte
+`[01F811F8] + 2378h` (`001E9F30`, `001B4544`), and it ends by tail-jumping to `001E98A0` (`001B4587`), which
+loads every palette entry `fontclut_0` to `fontclut_27` not yet loaded through `001C5F20`.
+
 `001B44A0` picks the language's list and folder from the language id `[01E02814]` (`00229E40`):
 
 | Language id | Folder |

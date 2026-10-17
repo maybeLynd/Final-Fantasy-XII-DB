@@ -70,7 +70,7 @@ the dismount task stops that track again.
 | `enable_by_chocobo(v)` | `40A`<sub>h</sub> | `0033F650` | bit 0 of byte `+0B`<sub>h</sub> of the calling actor = `v != 0` |
 | `btlAtelSetChocoboTurboMode(v)` | `302F`<sub>h</sub> | `0050F8A0` | `00303F00(v != 0)` |
 | `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `430`<sub>h</sub> / `431`<sub>h</sub> | `0034EE20` / `0034DD90` | `0032AB60(id, 1)` / `(id, 0)`: a primary persistent flag ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md)) |
-| `setflystatus(v)` | `1E0`<sub>h</sub> | `00342E50` → `0026A7F0` | bit 0 of the actor's secondary context `+151`<sub>h</sub>, and `+152`<sub>h</sub> 1 ↔ 2 |
+| `setflystatus(v)` | `1E0`<sub>h</sub> | `00342E50` → `0026A7F0` | bit 0 of the actor's secondary context `+151`<sub>h</sub>, and `+152`<sub>h</sub> 1 ↔ 2 with the mode word refreshed (`002681E0`, `0026A85A`) when it flips; then bits 0 and 1 of `+151`<sub>h</sub> are copied to bits 0 and 1 of `+90`<sub>h</sub> of the record at context `+138`<sub>h</sub> (`002682D0`, `0026A862`) |
 
 No instruction in the image tests bit 0 of the actor byte `+0B`<sub>h</sub> with an immediate mask; the byte
 is cleared to its top two bits by the record initialiser and has bit 6 cleared by the movement

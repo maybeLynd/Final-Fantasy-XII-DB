@@ -221,6 +221,9 @@ the save layer itself does to it:
 
 - `002370C0` resets the block: all `7410`<sub>h</sub> bytes zeroed, the magic written, the words
   `+5A48`<sub>h</sub>-`+5A58`<sub>h</sub> set to `FFFF`<sub>h</sub> and the dwords `+5AC8`<sub>h</sub> and `+5ACC`<sub>h</sub> cleared.
+  - It also clears the inventory counts and empties the twelve menu category lists of `[020927C0]` (`003047F0`
+    at `002370E5`, ending in `00253480`: each list filled with `FFFF`<sub>h</sub> and its count zeroed through
+    `00253240(i, 1)`, the category bits of `+3244`<sub>h</sub> other than bit 0 and bit 0 of `+3245`<sub>h</sub> cleared).
 - Both binders then call `0030B6A0`, which rebases the descriptor table at `01EEBCC0` (fifteen rows
   of `58`<sub>h</sub> bytes outside the image: each non-zero offset at `+00`<sub>h</sub>, `+18`<sub>h</sub> and `+28`<sub>h</sub> becomes the
   32-bit truncated sum of the block's address and the offset at `+08`<sub>h</sub>, `+20`<sub>h</sub> and `+30`<sub>h</sub>, and

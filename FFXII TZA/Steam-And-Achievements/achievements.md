@@ -90,7 +90,8 @@ from the handbook's arm 7 (`005775B2`). It does four things:
 
 1. It calls `00283270(1)`, which rebuilds the party status records.
 2. For each monster in the handbook list with a non-negative short in `01EED130`, it sets the monster's
-   defeat count to 1 when it is still 0 and `00315DC0(short)` passes: that quest is cleared (`0046B1A0`)
+   defeat count to 1 when it is at most 0 (state byte `+3404h + id` 0 or 1, `003169E0`-`003169FA`; the byte is
+   set to 2) and `00315DC0(short)` passes: that quest is cleared (`0046B1A0`)
    or its scenario byte reaches the handbook's value for it.
 3. It evaluates descriptors 0-29 (`00316A36`-`00316A43`).
 4. It tail-jumps `003162E0`.

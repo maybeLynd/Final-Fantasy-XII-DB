@@ -191,6 +191,8 @@ After each manager's records, when its list is non-empty:
   `0024FBF0(list, n, 0.0, fade + 1)` (the global ramp `020926E8` toward `020926EC` = 0.0
   over `020926E6` = fade + 1 frames, stepped by `0024BFD0`), then `002E8B10(actor, 0.0, fade +
   1)` for each listed actor;
+  - `0024FBF0` also raises bit `4`<sub>h</sub> of `+368`<sub>h</sub> on every kind-1 active effect (`002FD090`, `0024FC58`) and, by a
+    tail jump to `003B1050(list, n)` (`0024FC6C`), on the kind-5 effects owned by the listed actors;
 - with `allExempt` set: `0024FC80` (mask `3FF`<sub>h</sub>), `0024FB90(1.0, fade + 1)` and `002E8B10(actor,
   1.0, fade + 1)`.
 

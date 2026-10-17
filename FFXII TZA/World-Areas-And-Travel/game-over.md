@@ -121,8 +121,14 @@ helpers (`003EF770`) moves it: payload 1 puts it in state 1, payload 2 spawns th
    `00285EC0(0Ch)` (`003EFB32`).
 
 The teardown message `12`<sub>h</sub> unregisters the two textures (`00393900`, `003938B0`), releases the
-input locks `00254850(0)` and `00254940(0)` and runs `0027F2E0`, which rewrites the low byte of
-`[0209AC30] + 400h` from its bits 9 and 10 (2 when bit 9 is clear, 1 when bit 9 is set and bit 10
+input locks `00254850(0)` and `00254940(0)` and runs `0027F2E0`.
+
+`0027F2E0` takes a length of 1 when bit 11 of `[0209AC30] + 400h` is set and 200
+otherwise (`0027F2ED`-`0027F301`), closes menu slot 0 over it (`002C98C0` at `0027F306`), steps the
+mode-screen backdrop `020927F0` toward its fade (`00250F30` at `0027F30B`), fades fade slot 3 in over length × 60 / 1000 frames when the
+length is above 1 and slot 3 is active (`002CC960` at `0027F312`; `002EFD20(3)`, `002EFA70(3, n, 1)`).
+
+It then rewrites the low byte of `[0209AC30] + 400h` from its bits 9 and 10 (2 when bit 9 is clear, 1 when bit 9 is set and bit 10
 clear, 2 when both are set) and clears bit 11.
 
 ### The request for the title map, and what it really does

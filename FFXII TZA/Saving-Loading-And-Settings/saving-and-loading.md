@@ -98,7 +98,8 @@ with its flag bit 0 (`+E0`<sub>h</sub>) every row is drawn as status 5:
 | 5 | `872`<sub>h</sub> "Unused file." |
 | any other | empty |
 
-Every row then gets its slot number (`00393160`), except slot 0's row in load mode, which hides the
+Every row then gets a draw mode through `00393240` (`0057F965`): 0 when byte `+EA`<sub>h</sub> is 0 and dword `+4` of the
+row's status record is non-zero, else 1 (`0057F947`-`0057F957`). It also gets its slot number (`00393160`), except slot 0's row in load mode, which hides the
 six number parts listed at `01F2CD10` and shows its own part `+D0`<sub>h</sub>.
 
 `0057FB00(row, list, header)` fills a status-2 row from the cached header:

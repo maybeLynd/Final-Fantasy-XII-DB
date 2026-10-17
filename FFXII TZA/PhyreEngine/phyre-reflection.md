@@ -31,7 +31,12 @@ which derives from `Phyre::PType`.
 load time for a class no code registers. Its attach slot
 `00639290` counts accepted members in the two words at `+100`<sub>h</sub> and `+102`<sub>h</sub>, and when they differ
 first rebuilds the descriptor through `0063D550` (empty the six lists, copy the parent's size and
-alignment, recompute the offsets).
+alignment, recompute the offsets through `0063E410`).
+
+Rebuilt or not, `0063D550` then refreshes the name
+pointer `+30`<sub>h</sub> from `+138`<sub>h</sub> and tail-jumps to `0063AE50` (`0063D634`), which grows the default instance
+`+110`<sub>h</sub> and the two mask buffers `+120`<sub>h</sub> and `+130`<sub>h</sub> to the instance size `+38`<sub>h</sub>, zeroes the added bytes
+and points `+C0`<sub>h</sub>, `+C8`<sub>h</sub> and `+D0`<sub>h</sub> at them; it returns `D`<sub>h</sub> when the allocation fails.
 
 A dynamic class's members are placed one after another. `0063C630`, called from `006393A0`, takes
 the member's width and alignment from its type (8 and 8 for attribute bit `2`<sub>h</sub>), aligns the running

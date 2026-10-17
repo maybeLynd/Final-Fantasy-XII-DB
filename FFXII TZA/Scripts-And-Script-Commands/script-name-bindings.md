@@ -53,7 +53,9 @@ Every entry is on exactly one doubly linked list through `+00`<sub>h</sub> (prev
 - **live**, head `0215FD58`. The request pump moves each requested entry here once its load is filed.
 - **retired**, head `0215FD88`. The re-lister moves an entry here when its last holder lets go.
 
-`002EA320` (called from `00266D10`) also clears the other heads, fills the lane records, and
+`002EA320` (called from `00266D10`) also clears the other heads, loads the ten character SE tables through
+`002EA530` (`002EA34F`; [character SE tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)),
+fills the lane records, and
 registers the binding callbacks with `0041D6C0` (kinds 5, 4, 6, `C`<sub>h</sub>, `26`<sub>h</sub>) and installs the retire
 step `002E6D60` as the allocation-pressure callback of memory arenas 6 and 10 (`0036C5A0`, arena
 record `+A0`<sub>h</sub>).
@@ -323,6 +325,12 @@ and 4 force link `7FFF`<sub>h</sub>) and calls `002EE050(slot, 1.0, 1.0, 1.0)`. 
 | `charcachedispose` | `146`<sub>h</sub> | `00340450`, `00340800` | releases this script's holds |
 | `charcachedisposeall` | `3C8`<sub>h</sub> | `00340EC0`, `00340800` | releases every hold |
 | `debug_bindp` | `2000`<sub>h</sub> | `0050D660`, `0050D710`, `0050D810` | binds a model with a free lane, sets `+F0`<sub>h</sub> = `1001`<sub>h</sub> |
+
+The result callback `00342640` of `bindp`, `bindp2_d4` and `unkCall_5cb` ends the same way after its bind: it
+refreshes the lane index (`002EAC90`, `003426C1`) after either bind, and on every path, bound or not, it reads the
+body weight `00265950(actor)`, float `[[actor + C0h] + 148h]` (`003426C9`), and tail-jumps to
+`0025B470(actor, weight)` (`003426DE`), which re-applies the body mask's bit 4
+([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)).
 
 Every begin that creates a binding does nothing when the script manager's byte at
 `02099011 + manager × 288h` is set (`00267310`, manager = actor `+15`<sub>h</sub>); the begins of

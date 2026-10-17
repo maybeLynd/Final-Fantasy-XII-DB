@@ -231,8 +231,13 @@ and `02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor, 
 entry with the higher priority byte, the first on a tie, or 0 when none is active or bit 0 or 1 of
 `02B40518` is set; `003B53C0` clears both entries before the read.
 
-- `0036FBB0` turns record `effect − 1`'s scale A into the floats at `0209A3C0`..`0209A3C8` and scale B into `0209A3D0`..`0209A3D8` (each byte × 0.01), or sets all six to
-  1.0 when no effect is active.
+- `0036FBB0` first runs `003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
+  `+284`<sub>h</sub> = 0; state 2, `003B4EFE`, `003B4F5D`) and calls `003B4FD0` when the winner changes (`003B4FBF`).
+  - It then
+    turns record `effect − 1`'s scale A into the floats at `0209A3C0`..`0209A3C8` and scale B into `0209A3D0`..`0209A3D8`
+  (each byte × 0.01) and sets bit `8`<sub>h</sub> of the light mask `02B3F520` (`003ACA60`, `0036FCB7`), or sets all six to 1.0
+  and clears that bit (`003ACA70`, `0036FC05`) when no effect is active
+  ([Character lighting](../Graphics/character-lighting-and-shadows.md)).
 - `0036F9F0` copies the record's colour into the tint packet at `02AE9690` and its copies, with the tail
   floats at `+280`<sub>h</sub> and `+284`<sub>h</sub>, sets a 256 × 224 rectangle and submits the packet through
   `003A35E0`; `0036F550` builds the layered form from the tail fields at `+288`<sub>h</sub> to `+294`<sub>h</sub>.

@@ -134,14 +134,24 @@ Where a site calls `0036F2C0` afterwards, the wait runs twice.
 ### The vertical-sync callback
 
 After its clear, each frame state hands `0022BFD0` to `0035E9A0` (`0022AE7E` in the field frame,
-and in `0022B6E0`, `0022B7E0`, `0022B8C0`, `0022BC20`), which stores it at `022CA5C8`. The
-vertical-sync set-up `0035E820` registers `0035EC90` as handler 0 with `00369070` (`0035E93A`), and
+and in `0022B6E0`, `0022B7E0`, `0022B8C0`, `0022BC20`), which stores it at `022CA5C8`.
+
+The vertical-sync set-up `0035E820` registers `0035EC90` as handler 0 with `00369070` (`0035E93A`), and
 the thread body `00369100` (created by `00368DD0` under the name `TkSyncvThread%d`) waits on its
-event and calls the handlers in the table `022CFF10`.
+semaphore `[022CFEEC + 4n]` (`00369128`), calls handler n of the table `022CFF10` (`0036913A`) and then,
+unless `0017D3E0` reports the debug byte `+D07`<sub>h</sub> of `[001D50D0()]` set, releases the next semaphore
+`[022CFEF0 + 4n]` (`0036914D`), without end.
 
 `0035EC90` counts vertical syncs in `022CA5F0`. When the count reaches `022CA5F4` and its mode
 test passes it sets `022CA600` (`0035ECFE`); while `022CA600` is set it calls the pending callback
-and clears `022CA5C8` (`0035ED12`–`0035ED20`). The callback `0022BFD0` runs
+and clears `022CA5C8` (`0035ED12`–`0035ED20`).
+
+On every call `0035EC90` also increments the tick counter `022CA5E0`
+(and `022CA5E8` while `022CA5FC` is 0), polls the input channels through `0035FCA0` (`0035ED2B`), and ends by
+tail-jumping to `003690F0` (`0035ED34`), which releases the semaphore `[022D7F90]` (`00863800`) that
+`00369170` waits on.
+
+The callback `0022BFD0` runs
 `00368A70` and then `0036D7E0`, which stores 0 in the word (`0036D7E7`) and points `022D8EA0` at
 the `28`<sub>h</sub>-byte display record `022D8E50 + 28h × [022D8EA8]`. This store comes from the TkSyncv
 thread, so a settle-spin on the frame thread can see the word change between its two loads.

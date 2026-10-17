@@ -239,6 +239,10 @@ words of every member record. The string pool is left as it is.
   then `0059B090` copies each member present in both the file and the runtime class from its file
   position to its runtime position. A header class (runtime flag bit 2) also keeps the bytes after
   its file size, up to `m_objectsSize`.
+  - When the load context's byte `+18`<sub>h</sub> is set it then runs the runtime
+  class's descriptor slot `+00`<sub>h</sub> forwards over every object (`0059FDB0(descriptor, objects, count, 1)` at
+  `0059D674`), the byte-order walk of [reflection](phyre-reflection.md). It returns `13`<sub>h</sub> for an out-of-range or
+  unbound class and `11`<sub>h</sub> when the list has no object area.
 
 ### User fixups
 

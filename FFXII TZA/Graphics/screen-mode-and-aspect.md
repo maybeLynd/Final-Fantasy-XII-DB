@@ -35,6 +35,10 @@ window-event handler `007A3C10` (event 0, a packed new size), the screen-mode sw
 the window-size list in windowed mode and of the display-mode list otherwise, then stores the
 mode's refresh rate (`001DC76F`).
 
+`001DC730` then tail-jumps to `007A04F0` (`001DC78C`), which queues request 1 with
+the WindowSize (windowed) or the Resolution on the game window's `+48`<sub>h</sub> queue (`007A3BD0`, `007A0530`;
+[Phyre application](../PhyreEngine/phyre-application.md)).
+
 ### The fit
 
 `001DDAC0(record, W, H)` first stores `W` at `+10`<sub>h</sub> and `H` at `+14`<sub>h</sub> and computes
@@ -102,7 +106,12 @@ outside the fit and the constructor.
 
 ### The display-mode list
 
-The constructor `001DC5C0` calls `001DD420`, which enumerates the outputs of the adapter
+The constructor `001DC5C0` first calls `001DD170` (`001DC636`), which enumerates the adapters into a table
+of `140`<sub>h</sub>-byte entries at `+78`<sub>h</sub> (count `+50`<sub>h</sub>), takes `+4C`<sub>h</sub> as the adapter `+48`<sub>h</sub>, and stores that
+adapter's DeviceID and LUID halves (entry `+104`<sub>h</sub>, `+128`<sub>h</sub>, `+12C`<sub>h</sub>) as settings 19, 20 and 21 through
+`001DF340` (`001DD384`, `001DD3AC`, `001DD3D4`).
+
+It then calls `001DD420` (`001DC63E`), which enumerates the outputs of the adapter
 (`IDXGIAdapter::EnumOutputs`, vtable `+38`<sub>h</sub>) and asks each for its modes with
 `IDXGIOutput::GetDisplayModeList` (vtable `+40`<sub>h</sub>) in format 28, `R8G8B8A8_UNORM` (`006242C0`).
 Each 28-byte entry is a `DXGI_MODE_DESC`. The list keeps a mode only when:

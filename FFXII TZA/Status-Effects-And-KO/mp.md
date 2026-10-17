@@ -50,8 +50,10 @@ Both gains need the two units on opposite sides: exactly one of them a party rec
 
 ### Gain from being hit
 
-`002F91A0(attacker, target, hpDelta)` gives the target the ladder value for the damage when it has Martyr
-(augment 21) in either layer, byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub> bit 5 (`002F9204`-`002F921E`).
+`002F91A0(attacker, target, hpDelta)` gives 0 for a heal (`hpDelta` not below 0) or two units on the same side
+(`002F91AB`-`002F91FB`); otherwise it gives the target the ladder value for the damage when it has Martyr
+(augment 21) in either layer, byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub> bit 5 (`002F9204`-`002F921E`), tripled in an area with MP
+regime 2 or 3 (`00320160`, `002F9220`-`002F9234`).
 
 ### Gain from dealing damage
 
