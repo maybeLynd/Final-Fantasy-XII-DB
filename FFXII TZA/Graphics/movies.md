@@ -130,11 +130,15 @@ movie fills whatever target it is drawn into. Before each write it waits, 1 ms a
 ### The update
 
 `001B8400(player, dt)` runs once a frame from the game application's pump
-([Game application](../Engine-Core/game-application.md)):
+([Game application](../Engine-Core/game-application.md)). First, in every state, when `0017D980()`
+(`[01F7F4B8]`) and `[01FD4A68]` are both 0 it releases the kept frames: `0067AB40(player + 678h)` calls
+`006CC860(q)` with the queue `q` at `+A8`<sub>h</sub>, which passes each frame on the list `q + 60h + 20h x side` (`side =
+[q + A0h]`) to the free function at `q + 58h`, empties the list and sets `side = (side == 0)` (`001B8411`-`001B8429`).
+Then, by state:
 
 | State | Meaning | What the update does |
 |---|---|---|
-| 0 | idle | nothing |
+| 0 | idle | nothing more |
 | 1 | opening | once `+08`<sub>h</sub> is set, fetches a frame (`0067ABF0`) into `+09`<sub>h</sub>; when one arrives it reads the position and duration and calls `0067A440` |
 | 2 | ready | entered through `001B7D30` when `+08`<sub>h</sub> and `+09`<sub>h</sub> are both set |
 | 3 | playing | entered through `001B82A0` when `+08`<sub>h</sub> is set; keeps fetching frames; moves to state 4 when the position reaches the duration minus `E9`<sub>h</sub> |

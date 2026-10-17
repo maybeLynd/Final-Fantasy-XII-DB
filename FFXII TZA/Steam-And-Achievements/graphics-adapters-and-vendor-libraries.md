@@ -89,7 +89,8 @@ nothing reads `02CED884`.
   writes `02EAE120`, so it never waits.
 - `00158EC0(i)` loads `nvapi64.dll` for `i` = 0 and `nvpowerapi.dll` for 1 through the driver-DLL
   search `0015BB30` ([Driver DLL search](driver-dll-search.md)), returns -2 when that fails, and frees
-  the library when `00158DE0` fails. Every caller passes 0.
+  the library when `00158DE0` fails; on success it stores the handle at `02EAE100 + 8i` and sets the count
+  `02EAE138 + 4i` to 1 (`00158F31`, `00158F39`). Every caller passes 0.
 - `00158DE0` resolves `nvapi_QueryInterface`, asks it for interface `0150E828`<sub>h</sub> and calls it; a
   non-zero result clears the query function and is returned. It then asks for `33C7358C`<sub>h</sub> and
   `593E8644`<sub>h</sub> as a pre-call and post-call hook pair, keeping them only when the first exists and
@@ -254,7 +255,7 @@ at `01F83460` (vtable `009064B8`) share the first `30`<sub>h</sub> bytes:
 | `02EAE100` | NVAPI library handles, two |
 | `02EAE0E0` | `nvapi_QueryInterface` |
 | `02EAE128` | NVAPI in-call counter |
-| `02EAE138` | NVAPI reference counts |
+| `02EAE138` | NVAPI reference counts: set to 1 by a load in `00158EC0` (`00158F39`), raised by `00159340` |
 | `02CED884` | NVAPI initialised, written only |
 | `[01F82D20] + 44Ch` | the MSAA mask |
 
