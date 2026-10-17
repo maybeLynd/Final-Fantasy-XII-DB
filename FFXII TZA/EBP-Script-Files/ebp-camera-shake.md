@@ -22,10 +22,10 @@ from the low four bits of its argument.
 
 | Section | Handler | Steps | Pending bit |
 |---|---|---|---|
-| 11, SHK1 | `003316B0` | stores the section at `022C6DD0[manager]` and in manager record `+F8`<sub>h</sub> (`0026D3C0`), clears the four shake entries (`0037DC30(manager, 0..3)`), runs the loader `0037DA90` | 10 |
-| 10, CML1 | `00331610` | stores the section at `022C6DF8[manager]` and in record `+F0`<sub>h</sub> (`0026D3A0`), runs `003DD120` on the record | 11 |
+| 11, SHK1 | `003316B0` | stores the section at `022C6DD0[manager]` and in manager record `+0xF8` (`0026D3C0`), clears the four shake entries (`0037DC30(manager, 0..3)`), runs the loader `0037DA90` | 10 |
+| 10, CML1 | `00331610` | stores the section at `022C6DF8[manager]` and in record `+0xF0` (`0026D3A0`), runs `003DD120` on the record | 11 |
 
-The teardown `0032ED80` runs `0037DA70`, which nulls `02ADD980 + manager * 3D0h` for a manager
+The teardown `0032ED80` runs `0037DA70`, which nulls `02ADD980 + manager * 0x3D0` for a manager
 below 5, then clears both globals and both record fields (`0032F060`, `0032F06A`, `0032F0A8`,
 `0032F0B2`); the free beside each clear is gated on `005C5230(5)`, which returns 0.
 
@@ -60,9 +60,9 @@ SHK1 (section 11)
 dataOffset: curve[curves], each starting with an i32 length
 ```
 
-A curve has the ease-curve layout of the camera tables (`+00`<sub>h</sub> length `18h + 24h * keys`,
-`+04`<sub>h</sub> keys, start time and value, end time and value, then keys of `a`, `b`, `c`, `d` and span
-at `+10`<sub>h</sub>-`+20`<sub>h</sub>); [EBP camera tables](ebp-camera-tables.md) has it in full. `003CC5F0` skips
+A curve has the ease-curve layout of the camera tables (`+0x00` length `0x18 + 0x24 * keys`,
+`+0x04` keys, start time and value, end time and value, then keys of `a`, `b`, `c`, `d` and span
+at `+0x10`-`+0x20`); [EBP camera tables](ebp-camera-tables.md) has it in full. `003CC5F0` skips
 the first 16 bytes of each key.
 
 ## Shipped data
@@ -75,12 +75,12 @@ Every count is per language tree; section 11 is byte-identical in all nine trees
 | shakes | 299; 1 to 13 per file |
 | curves, keys | 1,839 curves of 1 to 85 keys, 5,103 keys; 2 to 127 curves per file |
 | CML1 rows | 300; one row is -1 and names no shake; the others are a permutation of the file's records, each row's name equal to its record's |
-| `dataOffset` | `10h + 60h * records` in every file, `70`<sub>h</sub> to `4F0`<sub>h</sub> |
+| `dataOffset` | `0x10 + 0x60 * records` in every file, `0x70` to `0x4F0` |
 | names | 4 to 20 bytes, NUL-padded to 24 |
 | durations | 10 to 1,000; most often 150 (32 shakes), 120 (27), 30 (24), 300 (17), 180 (15), 60 and 1,000 (14 each) |
 | curve slots | in every file the non-zero slots number the curves 1 to `curves` in order, once each |
 | slot use, k = 0 to 31 | 74, 38, 76, 33, 138, 79, 139, 62, 37, 16, 37, 13, 106, 72, 105, 66, 160, 93, 157, 73, 46, 11, 46, 7, 31, 13, 31, 11, 23, 12, 23, 11 |
-| curve checks | every length is `18h + 24h * keys`, every curve's spans sum to 1.0, each key starts at the previous key's end value (3,264 of 3,264 joints), and the chain ends on the zero padding |
+| curve checks | every length is `0x18 + 0x24 * keys`, every curve's spans sum to 1.0, each key starts at the previous key's end value (3,264 of 3,264 joints), and the chain ends on the zero padding |
 
 ## Loader behaviour
 
@@ -88,31 +88,31 @@ Every count is per language tree; section 11 is byte-identical in all nine trees
 
 `0037DA90(section, manager)`:
 
-1. Returns unless `+00`<sub>h</sub> is `SHK1` (`0037DA96`).
-2. Stores the section at `02ADD980 + manager * 3D0h` (`0037DAC0`).
+1. Returns unless `+0x00` is `SHK1` (`0037DA96`).
+2. Stores the section at `02ADD980 + manager * 0x3D0` (`0037DAC0`).
 3. Returns when `records` is 0 (`0037DAC4`).
-4. Allocates `curves * 8` bytes for the curve table at `02ADD988 + manager * 3D0h` and walks
+4. Allocates `curves * 8` bytes for the curve table at `02ADD988 + manager * 0x3D0` and walks
    `curves` steps from `section + dataOffset`, storing each curve's address and adding its
    signed length (`0037DB10`-`0037DB25`). Nothing is compared with the section's length.
 
 ### CML1 at load
 
-`003DD120(record)` sets record `+1C`<sub>h</sub> and `+1E`<sub>h</sub> to -1 and the four shake entries to idle, then
-zeroes each row's `+08`<sub>h</sub> and the low byte of `+0C`<sub>h</sub> (`003DD1C2`, `003DD1C6`). Its name lookup
+`003DD120(record)` sets record `+0x1C` and `+0x1E` to -1 and the four shake entries to idle, then
+zeroes each row's `+0x08` and the low byte of `+0x0C` (`003DD1C2`, `003DD1C6`). Its name lookup
 `0037DB80` runs only when `0032F3D0(1, name)` returns non-zero, which it never does (kind 1 ends in
 `005C5230(5)`): the authored `shake` column is used as shipped.
 
 ### Starting a shake
 
 `camerashakestart_1a2` (`003492F0`) and `camerashakestart_1a3` (`00349730`) reach `003DD230`, which
-checks the row number against `count`, takes row `+04`<sub>h</sub> (`003DD29F`) and binds it to one of the
+checks the row number against `count`, takes row `+0x04` (`003DD29F`) and binds it to one of the
 four shake entries with a rate ([actor managers](../Characters-And-Objects/actor-managers.md)).
 
 ### Each frame
 
 `003DCFB0(record)` runs every bound entry of the manager:
 
-1. When the record's byte `+201`<sub>h</sub> is set, `0037DD50` puts the shake's clock at its duration + 1.
+1. When the record's byte `+0x201` is set, `0037DD50` puts the shake's clock at its duration + 1.
 2. `0037D1F0(manager, shake, clock, entry)` marks a shake of -1 finished at once. Otherwise
    `0037D130` evaluates every curve slot at the clock with `003CC5F0` (a slot of 0 gives 0).
 3. Slot `k` is value `k mod 4` of oscillator `k div 4`: the speed, the speed's random range, the
@@ -122,10 +122,10 @@ four shake entries with a rate ([actor managers](../Characters-And-Objects/actor
    then the entry is finished.
 5. The clock grows by the entry's rate times `02B58190` and the frame factor.
 
-The entries are `F0`<sub>h</sub> bytes, four to each `3D0`<sub>h</sub>-byte manager from `02ADDA78`. Before the steps,
-`003DCFB0` stores `003DA190` of the record's word `+174h + 8 x i` in word `+04`<sub>h</sub> of each entry whose record word
-`+178h + 8 x i` is non-zero (`003DD007`-`003DD010`)
-through `0037DB40(manager, entry, value)` (`003DD026`). After step 2 it reads the entry's word `+00`<sub>h</sub> through
+The entries are `0xF0` bytes, four to each `0x3D0`-byte manager from `02ADDA78`. Before the steps,
+`003DCFB0` stores `003DA190` of the record's word `+0x174 + 8 x i` in word `+0x04` of each entry whose record word
+`+0x178 + 8 x i` is non-zero (`003DD007`-`003DD010`)
+through `0037DB40(manager, entry, value)` (`003DD026`). After step 2 it reads the entry's word `+0x00` through
 `0037DCC0(manager, entry)` (`003DD075`).
 
 The outputs are a three-part offset from oscillators 0-2, a second from oscillators 3-5 added to
@@ -134,7 +134,7 @@ shake bound to the current camera frame and hands them through `00382B70` to `00
 
 - adds the first offset to the camera's position and the second to the point it looks at, both
   turned into the camera's frame by the matrix `02AED5C0`;
-- adds the third value to the view angle `+C4`<sub>h</sub> that `003CBD60` turns the view about its
+- adds the third value to the view angle `+0xC4` that `003CBD60` turns the view about its
   forward axis by;
 - adds the fourth to the field-of-view angle (`02AED568`).
 

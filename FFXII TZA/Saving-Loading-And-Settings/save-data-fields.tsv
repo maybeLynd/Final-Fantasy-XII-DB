@@ -1,1039 +1,1039 @@
 offset	region	function	site	kind	instruction	via
-0h	script operand bank	002EF2D0	002EF2E1	addr	lea rcx, [rax + 200h]	
-A00h	script globals	002EF390	002EF3A0	r	cmp byte ptr [rax + rbx + C00h], 1	
-1000h	quest ordered bits	0046B0F0	0046B105	r	movzx r8d, byte ptr [rax + rdi + 1000h]	
-1000h	quest ordered bits	0046B240	0046B274	r	test byte ptr [rax + rdi + 1000h], dl	
-1000h	quest ordered bits	0046B3F0	0046B42D	r	test byte ptr [rax + rdi + 1000h], bl	
-1000h	quest ordered bits	0046B3F0	0046B43B	rw	or byte ptr [rax + rdi + 1000h], bl	
-1000h	quest ordered bits	0046B3F0	0046B470	rw	and byte ptr [rax + rcx + 1000h], bl	
-1020h	quest cleared bits	0046B020	0046B035	r	movzx r8d, byte ptr [rax + rdi + 1020h]	
-1020h	quest cleared bits	0046B1A0	0046B1D4	r	test byte ptr [rax + rdi + 1020h], dl	
-1020h	quest cleared bits	0046B290	0046B2E8	rw	or byte ptr [rax + rcx + 1020h], bl	
-1020h	quest cleared bits	0046B290	0046B33C	rw	and byte ptr [rax + rcx + 1020h], bl	
-1040h	quest clear counter	0046B0B0	0046B0B9	r	mov eax, dword ptr [rax + 1040h]	
-1040h	quest clear counter	0046B290	0046B2C9	r	cmp dword ptr [rax + 1040h], FFFFh	
-1040h	quest clear counter	0046B290	0046B2DA	rw	inc dword ptr [rax + 1040h]	
-1044h	zone transition record	00314530	0031456F	r	mov edx, dword ptr [rax + 1044h]	
-1044h	zone transition record	003145E0	0031466E	r	mov ecx, dword ptr [rbx + 1044h]	
-1044h	zone transition record	003145E0	00314685	w	mov dword ptr [rax + 1044h], esi	
-1044h	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 1044h]	
-1044h	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 1044h]	arg0 from 00377C20 at 00377C24
-1044h	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 1044h]	arg1 from 00377C20 at 00377C24
-1044h	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 1044h]	arg2 from 00377C20 at 00377C24
-1044h	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 1044h]	arg1 from 00377C20 at 00377C24
-1044h	zone transition record	00314970	0031498D	w	mov dword ptr [rax + 1044h], FFFFFFFFh	
-1044h	zone transition record	00314DC0	00314DCD	w	mov dword ptr [rax + 1044h], ebx	
-1044h	zone transition record	00584210	0058427B	r	mov eax, dword ptr [rbx + 1244h]	
-1044h	zone transition record	00584210	00584332	w	mov dword ptr [rbx + 1244h], eax	
-1048h	zone transition record	003145E0	00314698	r	mov ecx, dword ptr [rbx + 1048h]	
-1048h	zone transition record	003145E0	003146A9	w	mov dword ptr [rax + 1048h], edi	
-1048h	zone transition record	003148B0	003148B9	r	mov eax, dword ptr [rax + 1048h]	
-1048h	zone transition record	00314970	0031499C	w	mov dword ptr [rax + 1048h], FFFFFFFFh	
-1048h	zone transition record	00314D80	00314D8D	w	mov dword ptr [rax + 1048h], ebx	
-1048h	zone transition record	00584210	00584287	r	mov eax, dword ptr [rbx + 1248h]	
-1048h	zone transition record	00584210	005842B7	w	mov dword ptr [rbx + 1248h], esi	
-1048h	zone transition record	00584210	0058433E	w	mov dword ptr [rbx + 1248h], eax	
-104Ch	zone transition record	003145E0	00314674	w	mov dword ptr [rax + 104Ch], ecx	
-104Ch	zone transition record	00314870	00314879	r	mov eax, dword ptr [rax + 104Ch]	
-104Ch	zone transition record	00314970	003149AB	w	mov dword ptr [rax + 104Ch], 0	
-104Ch	zone transition record	00584210	00584293	r	mov eax, dword ptr [rbx + 124Ch]	
-104Ch	zone transition record	00584210	0058434A	w	mov dword ptr [rbx + 124Ch], eax	
-1050h	zone transition record	003145E0	0031469E	w	mov dword ptr [rax + 1050h], ecx	
-1050h	zone transition record	00314850	00314859	r	mov eax, dword ptr [rax + 1050h]	
-1050h	zone transition record	00314970	003149BA	w	mov dword ptr [rax + 1050h], 0	
-1050h	zone transition record	00584210	0058429F	r	mov eax, dword ptr [rbx + 1250h]	
-1050h	zone transition record	00584210	00584356	w	mov dword ptr [rbx + 1250h], eax	
-1054h	zone transition record	003145E0	003146B6	w	mov dword ptr [rax + 1054h], ebp	
-1054h	zone transition record	003148D0	003148D9	r	mov eax, dword ptr [rax + 1054h]	
-1054h	zone transition record	00314970	003149C9	w	mov dword ptr [rax + 1054h], 0	
-1054h	zone transition record	00314DA0	00314DAD	w	mov dword ptr [rax + 1054h], ebx	
-1054h	zone transition record	00584210	005842AB	r	mov eax, dword ptr [rbx + 1254h]	
-1054h	zone transition record	00584210	00584362	w	mov dword ptr [rbx + 1254h], eax	
-1058h	zone transition record	003145E0	003146C8	w	mov dword ptr [rax + 1058h], ebx	
-105Ch	zone transition record	00314530	00314586	w	mov dword ptr [rax + 105Ch], edx	
-105Ch	zone transition record	003145E0	003146D3	w	mov dword ptr [rax + 105Ch], esi	
-105Ch	zone transition record	00314910	00314919	r	mov eax, dword ptr [rax + 105Ch]	
-1060h	zone transition record	0025ACA0	0025ACC1	r	movsx ebx, byte ptr [rax + 1060h]	
-1060h	zone transition record	002620E0	00262123	r	movsx eax, byte ptr [rax + 1060h]	
-1060h	zone transition record	002620E0	0026214E	r	movsx eax, byte ptr [rax + 1060h]	
-1060h	zone transition record	002620E0	0026217C	r	movsx eax, byte ptr [rax + 1060h]	
-1060h	zone transition record	00265920	0026593B	r	movsx eax, byte ptr [rax + 1060h]	
-1060h	zone transition record	0026D910	0026D95E	w	mov byte ptr [rax + 1060h], dil	
-1060h	zone transition record	0026D910	0026D96F	r	movsx ecx, byte ptr [rax + 1060h]	
-1060h	zone transition record	0026D910	0026D9BB	r	movzx r9d, byte ptr [rax + 1060h]	
-1061h	zone transition record	00268320	0026836C	w	mov byte ptr [rax + 1061h], 1	
-1061h	zone transition record	0026D8F0	0026D8F9	w	mov byte ptr [rax + 1061h], 1	
-1061h	zone transition record	0026D910	0026D951	r	cmp byte ptr [rax + 1061h], bl	
-1061h	zone transition record	0026D910	0026DA92	w	mov byte ptr [rax + 1061h], 0	
-1061h	zone transition record	00280140	00280213	w	mov byte ptr [rax + 1061h], dil	
-1062h	zone transition record	0026DB30	0026DBF4	r	test byte ptr [rax + 1062h], 20h	
-1062h	zone transition record	00314530	00314563	rw	or byte ptr [rax + 1062h], 20h	
-1062h	zone transition record	003145E0	003146DE	rw	and byte ptr [rax + 1062h], DFh	
-1062h	zone transition record	003149E0	003149E9	rw	and byte ptr [rax + 1062h], FBh	
-1062h	zone transition record	00314A00	00314A09	rw	and byte ptr [rax + 1062h], FEh	
-1062h	zone transition record	00314A00	00314A15	rw	and byte ptr [rax + 1062h], FDh	
-1062h	zone transition record	00314A00	00314A21	rw	and byte ptr [rax + 1062h], BFh	
-1062h	zone transition record	00314A00	00314A2D	rw	and byte ptr [rax + 1062h], 7Fh	
-1062h	zone transition record	00314A60	00314A69	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314A80	00314A89	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314AA0	00314AA9	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314B00	00314B09	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314B20	00314B29	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314B40	00314B49	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314B60	00314B69	r	movzx eax, byte ptr [rax + 1062h]	
-1062h	zone transition record	00314B80	00314B8D	rw	and byte ptr [rax + 1062h], FEh	
-1062h	zone transition record	00314B80	00314B99	rw	or byte ptr [rax + 1062h], cl	
-1062h	zone transition record	00314BB0	00314BBD	rw	and byte ptr [rax + 1062h], BFh	
-1062h	zone transition record	00314BB0	00314BCC	rw	or byte ptr [rax + 1062h], cl	
-1062h	zone transition record	00314BE0	00314BF1	rw	and byte ptr [rax + 1062h], 7Fh	
-1062h	zone transition record	00314BE0	00314C0F	rw	or byte ptr [rax + 1062h], 80h	
-1062h	zone transition record	00314C70	00314C7D	rw	and byte ptr [rax + 1062h], F7h	
-1062h	zone transition record	00314C70	00314C8C	rw	or byte ptr [rax + 1062h], cl	
-1062h	zone transition record	00314CA0	00314CAD	rw	and byte ptr [rax + 1062h], EFh	
-1062h	zone transition record	00314CA0	00314CBC	rw	or byte ptr [rax + 1062h], cl	
-1062h	zone transition record	00314CD0	00314CDD	rw	and byte ptr [rax + 1062h], FDh	
-1062h	zone transition record	00314CD0	00314CEB	rw	or byte ptr [rax + 1062h], cl	
-1062h	zone transition record	00314D00	00314D0D	rw	and byte ptr [rax + 1062h], FBh	
-1062h	zone transition record	00314D00	00314D1C	rw	or byte ptr [rax + 1062h], cl	
-1063h	zone transition record	0025D9E0	0025DBA8	r	test byte ptr [rax + 1063h], 40h	
-1063h	zone transition record	00261F90	0026201B	r	test byte ptr [rax + 1063h], 40h	
-1063h	zone transition record	002628B0	00262A6A	rw	and byte ptr [rax + 1063h], BFh	
-1063h	zone transition record	0026A720	0026A731	rw	and byte ptr [rax + 1063h], BFh	
-1063h	zone transition record	0026A720	0026A74F	rw	or byte ptr [rax + 1063h], 40h	
-1063h	zone transition record	0026DE20	0026DE33	r	test byte ptr [rax + 1063h], 40h	
-1063h	zone transition record	00314A00	00314A39	rw	and byte ptr [rax + 1063h], CFh	
-1063h	zone transition record	00314A00	00314A45	rw	and byte ptr [rax + 1063h], FCh	
-1063h	zone transition record	00314A00	00314A51	rw	and byte ptr [rax + 1063h], F3h	
-1063h	zone transition record	00314AC0	00314AC9	r	movzx eax, byte ptr [rax + 1063h]	
-1063h	zone transition record	00314AE0	00314AE9	r	movzx eax, byte ptr [rax + 1063h]	
-1063h	zone transition record	00314BE0	00314BFD	rw	and byte ptr [rax + 1063h], CFh	
-1063h	zone transition record	00314BE0	00314C21	rw	and byte ptr [rax + 1063h], CFh	
-1063h	zone transition record	00314BE0	00314C28	rw	or byte ptr [rax + 1063h], bl	
-1063h	zone transition record	00314C40	00314C50	rw	and byte ptr [rax + 1063h], FCh	
-1063h	zone transition record	00314C40	00314C57	rw	or byte ptr [rax + 1063h], bl	
-1064h	quest scenario flags	0046B180	0046B18E	r	movzx eax, byte ptr [rax + rbx + 1064h]	
-1064h	quest scenario flags	0046B490	0046B4A4	w	mov byte ptr [rax + rbx + 1064h], dil	
-1164h	quest order field ids	0046B0D0	0046B0DE	r	movzx eax, word ptr [rax + rbx*2 + 1164h]	
-1164h	quest order field ids	0046B350	0046B364	w	mov word ptr [rax + rbx*2 + 1164h], di	
-1164h	quest order field ids	0046B3F0	0046B44E	w	mov word ptr [rax + rsi*2 + 1164h], bx	
-1364h	quest ok bits	0046B1F0	0046B224	r	test byte ptr [rax + rdi + 1364h], dl	
-1364h	quest ok bits	0046B380	0046B3B5	rw	or byte ptr [rax + rcx + 1364h], bl	
-1364h	quest ok bits	0046B380	0046B3D1	rw	and byte ptr [rax + rcx + 1364h], bl	
-1384h	flag bank 64A	0032A9A0	0032A9E4	r	test byte ptr [rax + rdi + 1384h], dl	
-1384h	flag bank 64A	0032AC70	0032ACB3	rw	or byte ptr [rax + rcx + 1384h], bl	
-1384h	flag bank 64A	0032AC70	0032ACD3	rw	and byte ptr [rax + rcx + 1384h], bl	
-138Ch	flag bank 64B	0032AA00	0032AA44	r	test byte ptr [rax + rdi + 138Ch], dl	
-138Ch	flag bank 64B	0032ACF0	0032AD33	rw	or byte ptr [rax + rcx + 138Ch], bl	
-138Ch	flag bank 64B	0032ACF0	0032AD53	rw	and byte ptr [rax + rcx + 138Ch], bl	
-13B4h	flag bank 2048	0032A930	0032A97B	r	test byte ptr [rax + rdi + 13B4h], dl	
-13B4h	flag bank 2048	0032ABF0	0032AC36	rw	or byte ptr [rax + rcx + 13B4h], bl	
-13B4h	flag bank 2048	0032ABF0	0032AC56	rw	and byte ptr [rax + rcx + 13B4h], bl	
-14B4h	flag bank 512	0032AA60	0032AAAB	r	test byte ptr [rax + rdi + 14B4h], dl	
-14B4h	flag bank 512	0032AAD0	0032AB1F	r	test byte ptr [rax + rdi + 14B4h], dl	
-14B4h	flag bank 512	0032AD70	0032ADB6	rw	or byte ptr [rax + rcx + 14B4h], bl	
-14B4h	flag bank 512	0032AD70	0032ADD6	rw	and byte ptr [rax + rcx + 14B4h], bl	
-14B4h	flag bank 512	0032ADF0	0032AE3A	rw	or byte ptr [rax + rcx + 14B4h], bl	
-14B4h	flag bank 512	0032ADF0	0032AE5A	rw	and byte ptr [rax + rcx + 14B4h], bl	
-14F4h	primary flag bank	0032A8A0	0032A900	r	test byte ptr [rax + rbx + 14F4h], dl	
-14F4h	primary flag bank	0032AB60	0032ABA8	rw	or byte ptr [rax + rcx + 14F4h], bl	
-14F4h	primary flag bank	0032AB60	0032ABC8	rw	and byte ptr [rax + rcx + 14F4h], bl	
-1534h	music override	0025D9E0	0025DBB6	r	movzx esi, byte ptr [rax + 1534h]	
-1534h	music override	00261F90	00262029	r	movzx edi, byte ptr [rax + 1534h]	
-1534h	music override	002628B0	00262A76	w	mov byte ptr [rax + 1534h], bpl	
-1534h	music override	0026A720	0026A73D	w	mov byte ptr [rax + 1534h], 0	
-1534h	music override	0026A720	0026A75B	w	mov byte ptr [rax + 1534h], bl	
-1534h	music override	0026DE20	0026DE41	r	movzx ebx, byte ptr [rax + 1534h]	
-1535h	options apply byte	002EF370	002EF37D	w	mov byte ptr [rax + 1735h], bl	
-2000h	battle block copy	00229B40	00229BA2	w	movups xmmword ptr [rax - 80h], xmm0	
-2000h	battle block copy	00235AF0	00235B00	addr	lea rdx, [rax + 2200h]	
-2000h	battle block copy	00235AF0	00235B1C	r	cmp dword ptr [rdx], ecx	
-2000h	battle block copy	005844A0	00584515	addr	lea rax, [rdi + 2200h]	
-2000h	battle block copy	005844A0	00584532	w	movups xmmword ptr [rax - 80h], xmm0	
-2004h	battle block copy	00235AF0	00235B24	r	cmp dword ptr [rdx + 4], ecx	
-2010h	battle block copy	00229B40	00229BAA	w	movups xmmword ptr [rax - 70h], xmm1	
-2010h	battle block copy	005844A0	0058453A	w	movups xmmword ptr [rax - 70h], xmm1	
-2020h	battle block copy	00229B40	00229BB2	w	movups xmmword ptr [rax - 60h], xmm0	
-2020h	battle block copy	005844A0	00584542	w	movups xmmword ptr [rax - 60h], xmm0	
-2030h	battle block copy	00229B40	00229BBA	w	movups xmmword ptr [rax - 50h], xmm1	
-2030h	battle block copy	005844A0	0058454A	w	movups xmmword ptr [rax - 50h], xmm1	
-2040h	battle block copy	00229B40	00229BC2	w	movups xmmword ptr [rax - 40h], xmm0	
-2040h	battle block copy	005844A0	00584552	w	movups xmmword ptr [rax - 40h], xmm0	
-2050h	battle block copy	00229B40	00229BCA	w	movups xmmword ptr [rax - 30h], xmm1	
-2050h	battle block copy	005844A0	0058455A	w	movups xmmword ptr [rax - 30h], xmm1	
-2060h	battle block copy	00229B40	00229BD2	w	movups xmmword ptr [rax - 20h], xmm0	
-2060h	battle block copy	005844A0	00584562	w	movups xmmword ptr [rax - 20h], xmm0	
-2070h	battle block copy	00229B40	00229BDA	w	movups xmmword ptr [rax - 10h], xmm1	
-2070h	battle block copy	005844A0	0058456A	w	movups xmmword ptr [rax - 10h], xmm1	
-2080h	battle block copy	00229B40	00229B91	addr	lea rax, [rax + 80h]	
-2080h	battle block copy	005844A0	00584521	addr	lea rax, [rax + 80h]	
-7B12h	battle block copy	00235AF0	00235B41	r	cmp word ptr [rdx + 5B12h], ax	
-7B42h	battle block copy	00235AF0	00235B31	r	cmp byte ptr [rdx + 5B42h], al	
-8000h	image-backed block	00252E60	00252EB5	addr	lea rdi, [rax + rcx*4]	
-8000h	image-backed block	00252F70	00252F8F	addr	lea rax, [rax + rcx*4]	
-8000h	image-backed block	00252FF0	00253020	addr	lea rsi, [rax + rdx*4]	
-8000h	image-backed block	002530E0	00253145	addr	lea rdi, [rax + rcx*4]	
-8000h	image-backed block	00253240	002532AB	addr	lea r14, [rcx + rax*4]	
-8000h	image-backed block	002534C0	00253512	addr	lea r14, [rax + rcx*4]	
-8000h	image-backed block	002535D0	0025362D	addr	lea r14, [rax + rdx*4]	
-8008h	image-backed block	00394130	0039423B	w	movups xmmword ptr [rax + 8], xmm0	
-8008h	image-backed block	00394130	003942CA	r	movups xmm0, xmmword ptr [rax + 8]	
-8018h	image-backed block	00394130	00394246	w	movups xmmword ptr [rax + 18h], xmm1	
-8018h	image-backed block	00394130	003942D5	r	movups xmm1, xmmword ptr [rax + 18h]	
-8028h	image-backed block	00394130	00394252	w	movsd qword ptr [rax + 28h], xmm0	
-8028h	image-backed block	00394130	003942E0	r	movsd xmm0, qword ptr [rax + 28h]	
-8030h	image-backed block	00252610	002526AA	w	mov word ptr [r9 + rax*2 + 30h], r8w	
-8030h	image-backed block	002526F0	00252793	r	movsx eax, word ptr [rbp + rax*2 + 30h]	
-8030h	image-backed block	002527B0	00252819	w	mov word ptr [r9 + rax*2 + 30h], r8w	
-8030h	image-backed block	002527B0	0025282D	w	mov word ptr [r9 + rax*2 + 30h], r8w	
-8030h	image-backed block	00253A80	00253B3E	addr	lea rcx, [rbx + 30h]	
-8090h	image-backed block	00252610	0025265B	w	mov dword ptr [r9 + rax*4 + 90h], r8d	
-8090h	image-backed block	00252610	0025266E	w	mov dword ptr [r9 + rax*4 + 90h], r8d	
-8090h	image-backed block	002526F0	0025273B	r	mov eax, dword ptr [rbp + rax*4 + 90h]	
-8090h	image-backed block	002526F0	00252751	r	mov eax, dword ptr [rbp + rax*4 + 90h]	
-8090h	image-backed block	002527B0	002527CF	w	mov dword ptr [r9 + rax*4 + 90h], r8d	
-8090h	image-backed block	002527B0	002527E5	w	mov dword ptr [r9 + rax*4 + 90h], r8d	
-8224h	image-backed block	002551B0	002551E3	r	movups xmm0, xmmword ptr [rax]	
-8224h	image-backed block	003C5E50	003C5E8D	w	movups xmmword ptr [rax], xmm0	
-8224h	image-backed block	003C60F0	003C611D	w	movups xmmword ptr [rax], xmm0	
-8224h	image-backed block	003C8670	003C869C	w	movups xmmword ptr [rax], xmm0	
-8234h	image-backed block	002551B0	002551E9	r	movups xmm1, xmmword ptr [rax + 10h]	
-8234h	image-backed block	003C5E50	003C5E97	w	movups xmmword ptr [rax + 10h], xmm1	
-8234h	image-backed block	003C60F0	003C6127	w	movups xmmword ptr [rax + 10h], xmm1	
-8234h	image-backed block	003C8670	003C86A6	w	movups xmmword ptr [rax + 10h], xmm1	
-B244h	image-backed block	00252D40	00252D67	rw	and byte ptr [r9 + 3244h], al	
-B244h	image-backed block	00252D40	00252D6E	r	movzx eax, byte ptr [r9 + 3244h]	
-B244h	image-backed block	00252D40	00252D7D	w	mov byte ptr [r9 + 3244h], al	
-B244h	image-backed block	00253480	002534AA	rw	and byte ptr [rax + 3244h], 1	
-B244h	image-backed block	00253A80	00253B1C	rw	and byte ptr [rax + 3244h], 1	
-B244h	image-backed block	00253A80	00253B47	addr	lea rcx, [rbx + 3244h]	
-B245h	image-backed block	00253480	002534B1	rw	and byte ptr [rax + 3245h], FEh	
-B245h	image-backed block	00253A80	00253B23	rw	and byte ptr [rax + 3245h], FEh	
-B2C4h	image-backed block	00253A80	00253B5D	w	mov qword ptr [rbx + 32C4h], rax	
-B2C4h	image-backed block	00254E00	00254E27	rw	and byte ptr [r9 + 32C4h], al	
-B2C4h	image-backed block	00254E00	00254E2E	r	movzx eax, byte ptr [r9 + 32C4h]	
-B2C4h	image-backed block	00254E00	00254E3D	w	mov byte ptr [r9 + 32C4h], al	
-B2CCh	image-backed block	003154B0	003154FD	r	movzx edx, byte ptr [rax + rcx + 32CCh]	
-B2CCh	image-backed block	00315910	00315965	r	movzx ebx, byte ptr [rax + rdi + 32CCh]	
-B2CCh	image-backed block	00315910	00315975	w	mov byte ptr [rax + rdi + 32CCh], bl	
-B2CCh	image-backed block	00315910	00315994	r	movzx ebx, byte ptr [rax + rdi + 32CCh]	
-B2CCh	image-backed block	00315910	003159A4	w	mov byte ptr [rax + rdi + 32CCh], bl	
-B30Ch	image-backed block	003156E0	00315737	r	movzx edx, byte ptr [rax + rcx + 330Ch]	
-B30Ch	image-backed block	00315B50	00315BA4	r	movzx ebx, byte ptr [rax + rdi + 330Ch]	
-B30Ch	image-backed block	00315B50	00315BB8	w	mov byte ptr [rax + rdi + 330Ch], bl	
-B30Ch	image-backed block	00315B50	00315BCC	w	mov byte ptr [rax + rdi + 330Ch], bl	
-B34Ch	image-backed block	00315620	00315647	r	movzx edx, byte ptr [rax + rcx + 334Ch]	
-B34Ch	image-backed block	00315A20	00315A4B	r	movzx ebx, byte ptr [rax + rdi + 334Ch]	
-B34Ch	image-backed block	00315A20	00315A60	r	movzx ebx, byte ptr [rax + rdi + 334Ch]	
-B34Ch	image-backed block	00315A20	00315A70	w	mov byte ptr [rax + rdi + 334Ch], bl	
-B36Ch	image-backed block	00315470	00315493	r	movzx eax, byte ptr [rax + rcx + 336Ch]	
-B36Ch	image-backed block	00315CD0	00315D00	r	movzx ebx, byte ptr [rax + rbp + 336Ch]	
-B36Ch	image-backed block	00315CD0	00315D29	w	mov byte ptr [rax + rbp + 336Ch], bl	
-B3F4h	image-backed block	003156E0	0031577E	r	movzx edx, byte ptr [rax + rcx + 33F4h]	
-B3F4h	image-backed block	00315B50	00315BF2	r	movzx ebx, byte ptr [rax + rdi + 33F4h]	
-B3F4h	image-backed block	00315B50	00315C06	w	mov byte ptr [rax + rdi + 33F4h], bl	
-B3F4h	image-backed block	00315B50	00315C1A	w	mov byte ptr [rax + rdi + 33F4h], bl	
-B404h	image-backed block	00315420	00315440	r	cmp byte ptr [rax + rbx + 3404h], 0	
-B404h	image-backed block	00315420	0031545C	r	movzx eax, byte ptr [rax + rbx + 3404h]	
-B404h	image-backed block	00315820	0031583E	r	cmp byte ptr [rax + rsi + 3404h], 0	
-B404h	image-backed block	00315820	0031584D	r	cmp byte ptr [rax + rsi + 3404h], 0	
-B404h	image-backed block	00315820	00315861	r	movzx ebx, byte ptr [rax + rsi + 3404h]	
-B404h	image-backed block	00315820	0031588E	w	mov byte ptr [rax + rsi + 3404h], bl	
-B404h	image-backed block	00315A90	00315AA8	r	cmp byte ptr [rax + rbx + 3404h], 0	
-B404h	image-backed block	00315A90	00315AB7	w	mov byte ptr [rax + rbx + 3404h], 1	
-B404h	image-backed block	00316930	003169E0	r	cmp byte ptr [rax + rsi + 3404h], bl	
-B404h	image-backed block	00316930	003169EE	r	movzx edx, byte ptr [rax + rsi + 3404h]	
-B404h	image-backed block	00316930	00316A0C	w	mov byte ptr [rax + rsi + 3404h], 2	
-B604h	image-backed block	00315670	00315697	r	movzx r8d, byte ptr [rax + rbx + 3604h]	
-B604h	image-backed block	003156E0	003157B7	r	test byte ptr [rax + rdi + 3604h], dl	
-B604h	image-backed block	00315AD0	00315B06	r	movzx ebx, byte ptr [rax + rsi + 3604h]	
-B604h	image-backed block	00315AD0	00315B1D	r	movzx ebx, byte ptr [rax + rsi + 3604h]	
-B604h	image-backed block	00315AD0	00315B2D	w	mov byte ptr [rax + rsi + 3604h], bl	
-B604h	image-backed block	00315B50	00315C43	r	movzx ebx, byte ptr [rax + rsi + 3604h]	
-B604h	image-backed block	00315B50	00315C55	r	movzx ebx, byte ptr [rax + rsi + 3604h]	
-B604h	image-backed block	00315B50	00315C65	w	mov byte ptr [rax + rsi + 3604h], bl	
-B844h	image-backed block	003154B0	00315612	r	movzx edx, byte ptr [rax + rcx + 3844h]	
-B844h	image-backed block	00315910	003159D9	r	movzx ebx, byte ptr [rax + rdi + 3844h]	
-B844h	image-backed block	00315910	003159EE	r	movzx ebx, byte ptr [rax + rdi + 3844h]	
-B844h	image-backed block	00315910	003159FE	w	mov byte ptr [rax + rdi + 3844h], bl	
-B844h	image-backed block	00315E90	00315EC5	r	movzx r8d, byte ptr [rax + rdx + 3844h]	
-B844h	image-backed block	00315E90	00316059	r	movzx ebx, byte ptr [rax + rdi + 3844h]	
-B844h	image-backed block	00315E90	00316069	w	mov byte ptr [rax + rdi + 3844h], bl	
-B844h	image-backed block	00316670	003166AF	r	movzx edx, byte ptr [rcx + rax + 3844h]	
-B844h	image-backed block	00316A50	00316ACB	r	movzx ebx, byte ptr [rax + rdi + 3844h]	
-B844h	image-backed block	00316A50	00316ADB	w	mov byte ptr [rax + rdi + 3844h], bl	
-B844h	image-backed block	00316A50	00316B28	r	movzx ebx, byte ptr [rax + rdi + 3844h]	
-B844h	image-backed block	00316A50	00316B38	w	mov byte ptr [rax + rdi + 3844h], bl	
-B845h	image-backed block	00316440	00316449	r	movzx ecx, byte ptr [rax + 3845h]	
-B848h	image-backed block	003156E0	00315805	r	movzx edx, byte ptr [rax + rcx + 3848h]	
-B848h	image-backed block	00315B50	00315C8E	r	movzx ebx, byte ptr [rax + rdi + 3848h]	
-B848h	image-backed block	00315B50	00315CA7	w	mov byte ptr [rax + rdi + 3848h], bl	
-B84Ch	image-backed block	003162E0	0031631C	addr	lea ecx, [rax + 384Ch]	
-B84Ch	image-backed block	003162E0	00316353	r	mov ebx, dword ptr [rax]	
-B84Ch	image-backed block	003162E0	0031635F	r	movsx ebx, word ptr [rax]	
-B84Ch	image-backed block	003166F0	00316705	addr	lea edx, [rax + 384Ch]	
-B84Ch	image-backed block	003166F0	0031673B	r	mov ebx, dword ptr [rax]	
-B84Ch	image-backed block	003166F0	00316750	r	movsx ebx, word ptr [rax]	
-B84Ch	image-backed block	00316810	00316878	addr	lea edx, [rax + 384Ch]	
-B84Ch	image-backed block	00316810	0031689D	w	mov dword ptr [rax], 7FFFFFFEh	
-B84Ch	image-backed block	00316810	003168B3	w	mov word ptr [rax], r15w	
-B84Ch	image-backed block	00316810	003168CB	addr	lea edx, [rax + 384Ch]	
-B84Ch	image-backed block	00316810	003168F0	w	mov dword ptr [rax], ebp	
-B84Ch	image-backed block	00316810	003168FC	w	mov word ptr [rax], bp	
-B84Ch	image-backed block	00316BF0	00316C04	addr	lea r8d, [rax + 384Ch]	
-B84Ch	image-backed block	00316BF0	00316C30	w	mov dword ptr [rax], ebx	
-B84Ch	image-backed block	00316BF0	00316C45	w	mov word ptr [rax], bx	
-B84Ch	image-backed block	00316C60	00316C79	addr	lea edx, [rax + 384Ch]	
-B84Ch	image-backed block	00316C60	00316CA3	w	mov dword ptr [rax], 1869Fh	
-B84Ch	image-backed block	00316C60	00316CBC	w	mov word ptr [rcx], ax	
-B868h	image-backed block	00315390	003153A4	r	mov ebx, dword ptr [rax]	
-C7B8h	image-backed block	00250270	002502D9	r	cmp dword ptr [rdx + r10*4 + 47B8h], eax	
-C7B8h	image-backed block	00250270	002503D9	r	cmp r15d, dword ptr [rdx + r10*4 + 47B8h]	
-C7B8h	image-backed block	00252FA0	00252FD7	r	mov eax, dword ptr [rax + rcx*4 + 47B8h]	
-C7E8h	image-backed block	002542B0	002542D1	r	mov r11, qword ptr [rax + 47E8h]	
-C7E8h	image-backed block	00254CC0	00254D06	rw	add qword ptr [rbx + 47E8h], rcx	
-C7E8h	image-backed block	00254CC0	00254D0F	r	mov rax, qword ptr [rbx + 47E8h]	
-C7E8h	image-backed block	00254CC0	00254D1D	w	mov qword ptr [rbx + 47E8h], rax	
-C7E8h	image-backed block	00255040	00255047	w	mov qword ptr [rax + 47E8h], 0	
-E000h	checksum	00583D60	00583F99	w	mov dword ptr [rdi + E200h], eax	
-E040h	group bank A	00229B40	00229CDF	addr	lea rcx, [rdi + E240h]	
-E040h	group bank A	0025D8E0	0025D901	w	movups xmmword ptr [rcx - 80h], xmm0	arg0 from 00229B40 at 00229CE6
-E040h	group bank A	00269A20	00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 00584210 at 00584368
-E040h	group bank A	00584210	0058432B	addr	lea rcx, [rbx + E240h]	
-E040h	group bank A	005843E0	00584428	addr	lea rcx, [rdi + E240h]	
-E040h	group bank A	005844A0	005844DA	addr	lea rcx, [rax + E240h]	
-E040h	group bank A	00584580	00584597	addr	lea rcx, [rbx + E240h]	
-E050h	group bank A	0025D8E0	0025D909	w	movups xmmword ptr [rcx - 70h], xmm1	arg0 from 00229B40 at 00229CE6
-E050h	group bank A	00269A20	00269A45	r	movups xmm1, xmmword ptr [rcx - 70h]	arg0 from 00584210 at 00584368
-E060h	group bank A	0025D8E0	0025D911	w	movups xmmword ptr [rcx - 60h], xmm0	arg0 from 00229B40 at 00229CE6
-E060h	group bank A	00269A20	00269A4D	r	movups xmm0, xmmword ptr [rcx - 60h]	arg0 from 00584210 at 00584368
-E070h	group bank A	0025D8E0	0025D919	w	movups xmmword ptr [rcx - 50h], xmm1	arg0 from 00229B40 at 00229CE6
-E070h	group bank A	00269A20	00269A55	r	movups xmm1, xmmword ptr [rcx - 50h]	arg0 from 00584210 at 00584368
-E080h	group bank A	0025D8E0	0025D921	w	movups xmmword ptr [rcx - 40h], xmm0	arg0 from 00229B40 at 00229CE6
-E080h	group bank A	00269A20	00269A5D	r	movups xmm0, xmmword ptr [rcx - 40h]	arg0 from 00584210 at 00584368
-E090h	group bank A	0025D8E0	0025D929	w	movups xmmword ptr [rcx - 30h], xmm1	arg0 from 00229B40 at 00229CE6
-E090h	group bank A	00269A20	00269A65	r	movups xmm1, xmmword ptr [rcx - 30h]	arg0 from 00584210 at 00584368
-E0A0h	group bank A	0025D8E0	0025D931	w	movups xmmword ptr [rcx - 20h], xmm0	arg0 from 00229B40 at 00229CE6
-E0A0h	group bank A	00269A20	00269A6D	r	movups xmm0, xmmword ptr [rcx - 20h]	arg0 from 00584210 at 00584368
-E0B0h	group bank A	0025D8E0	0025D939	w	movups xmmword ptr [rcx - 10h], xmm1	arg0 from 00229B40 at 00229CE6
-E0B0h	group bank A	00269A20	00269A75	r	movups xmm1, xmmword ptr [rcx - 10h]	arg0 from 00584210 at 00584368
-E0C0h	group bank A	0025D8E0	0025D8F0	addr	lea rcx, [rcx + 80h]	arg0 from 00229B40 at 00229CE6
-E0C0h	group bank A	00269A20	00269A3A	addr	lea rcx, [rcx + 80h]	arg0 from 00584210 at 00584368
-E240h	spawn-keep image A	00229B40	00229CEB	addr	lea rcx, [rdi + E440h]	
-E240h	spawn-keep image A	00233440	00233530	w	mov word ptr [rbx], ax	arg0 from 00229B40 at 00229CF2
-E240h	spawn-keep image A	00233550	002335B9	r	movzx eax, word ptr [rcx]	arg0 from 005843E0 at 0058443B
-E240h	spawn-keep image A	005843E0	00584434	addr	lea rcx, [rdi + E440h]	
-E240h	spawn-keep image A	00584580	005845A3	addr	lea rcx, [rbx + E440h]	
-E242h	spawn-keep image A	00233440	0023353A	w	mov word ptr [rbx + 2], ax	arg0 from 00229B40 at 00229CF2
-E242h	spawn-keep image A	00233550	002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 005843E0 at 0058443B
-E250h	spawn-keep image A	00233440	00233468	addr	lea rdx, [rbx + 10h]	arg0 from 00229B40 at 00229CF2
-E250h	spawn-keep image A	00233440	00233481	w	movups xmmword ptr [rdx - 80h], xmm0	arg0 from 00229B40 at 00229CF2
-E250h	spawn-keep image A	00233550	0023355C	addr	lea rdx, [rcx + 10h]	arg0 from 005843E0 at 0058443B
-E250h	spawn-keep image A	00233550	0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 005843E0 at 0058443B
-E260h	spawn-keep image A	00233440	00233489	w	movups xmmword ptr [rdx - 70h], xmm1	arg0 from 00229B40 at 00229CF2
-E260h	spawn-keep image A	00233550	0023357B	r	movups xmm1, xmmword ptr [rdx - 70h]	arg0 from 005843E0 at 0058443B
-E270h	spawn-keep image A	00233440	00233491	w	movups xmmword ptr [rdx - 60h], xmm0	arg0 from 00229B40 at 00229CF2
-E270h	spawn-keep image A	00233550	00233583	r	movups xmm0, xmmword ptr [rdx - 60h]	arg0 from 005843E0 at 0058443B
-E280h	spawn-keep image A	00233440	00233499	w	movups xmmword ptr [rdx - 50h], xmm1	arg0 from 00229B40 at 00229CF2
-E280h	spawn-keep image A	00233550	0023358B	r	movups xmm1, xmmword ptr [rdx - 50h]	arg0 from 005843E0 at 0058443B
-E290h	spawn-keep image A	00233440	002334A1	w	movups xmmword ptr [rdx - 40h], xmm0	arg0 from 00229B40 at 00229CF2
-E290h	spawn-keep image A	00233550	00233593	r	movups xmm0, xmmword ptr [rdx - 40h]	arg0 from 005843E0 at 0058443B
-E2A0h	spawn-keep image A	00233440	002334A9	w	movups xmmword ptr [rdx - 30h], xmm1	arg0 from 00229B40 at 00229CF2
-E2A0h	spawn-keep image A	00233550	0023359B	r	movups xmm1, xmmword ptr [rdx - 30h]	arg0 from 005843E0 at 0058443B
-E2B0h	spawn-keep image A	00233440	002334B1	w	movups xmmword ptr [rdx - 20h], xmm0	arg0 from 00229B40 at 00229CF2
-E2B0h	spawn-keep image A	00233550	002335A3	r	movups xmm0, xmmword ptr [rdx - 20h]	arg0 from 005843E0 at 0058443B
-E2C0h	spawn-keep image A	00233440	002334B9	w	movups xmmword ptr [rdx - 10h], xmm1	arg0 from 00229B40 at 00229CF2
-E2C0h	spawn-keep image A	00233550	002335AB	r	movups xmm1, xmmword ptr [rdx - 10h]	arg0 from 005843E0 at 0058443B
-E2D0h	spawn-keep image A	00233440	00233470	addr	lea rdx, [rdx + 80h]	arg0 from 00229B40 at 00229CF2
-E2D0h	spawn-keep image A	00233550	00233570	addr	lea rdx, [rdx + 80h]	arg0 from 005843E0 at 0058443B
-1E250h	spawn-keep image A	00233440	002334CF	addr	lea rcx, [rbx + 10010h]	arg0 from 00229B40 at 00229CF2
-1E250h	spawn-keep image A	00233440	002334E7	w	movups xmmword ptr [rcx - 80h], xmm0	arg0 from 00229B40 at 00229CF2
-1E260h	spawn-keep image A	00233440	002334EF	w	movups xmmword ptr [rcx - 70h], xmm1	arg0 from 00229B40 at 00229CF2
-1E270h	spawn-keep image A	00233440	002334F7	w	movups xmmword ptr [rcx - 60h], xmm0	arg0 from 00229B40 at 00229CF2
-1E280h	spawn-keep image A	00233440	002334FF	w	movups xmmword ptr [rcx - 50h], xmm1	arg0 from 00229B40 at 00229CF2
-1E290h	spawn-keep image A	00233440	00233507	w	movups xmmword ptr [rcx - 40h], xmm0	arg0 from 00229B40 at 00229CF2
-1E2A0h	spawn-keep image A	00233440	0023350F	w	movups xmmword ptr [rcx - 30h], xmm1	arg0 from 00229B40 at 00229CF2
-1E2B0h	spawn-keep image A	00233440	00233517	w	movups xmmword ptr [rcx - 20h], xmm0	arg0 from 00229B40 at 00229CF2
-1E2C0h	spawn-keep image A	00233440	0023351F	w	movups xmmword ptr [rcx - 10h], xmm1	arg0 from 00229B40 at 00229CF2
-1E2D0h	spawn-keep image A	00233440	002334D6	addr	lea rcx, [rcx + 80h]	arg0 from 00229B40 at 00229CF2
-2E250h	group bank B	00229B40	00229CCA	addr	lea rcx, [rdi + 2E450h]	
-2E250h	group bank B	0025D8E0	0025D901	w	movups xmmword ptr [rcx - 80h], xmm0	arg0 from 00229B40 at 00229CD1
-2E250h	group bank B	00269A20	00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 005843E0 at 00584452
-2E250h	group bank B	005843E0	0058444B	addr	lea rcx, [rdi + 2E450h]	
-2E260h	group bank B	0025D8E0	0025D909	w	movups xmmword ptr [rcx - 70h], xmm1	arg0 from 00229B40 at 00229CD1
-2E260h	group bank B	00269A20	00269A45	r	movups xmm1, xmmword ptr [rcx - 70h]	arg0 from 005843E0 at 00584452
-2E270h	group bank B	0025D8E0	0025D911	w	movups xmmword ptr [rcx - 60h], xmm0	arg0 from 00229B40 at 00229CD1
-2E270h	group bank B	00269A20	00269A4D	r	movups xmm0, xmmword ptr [rcx - 60h]	arg0 from 005843E0 at 00584452
-2E280h	group bank B	0025D8E0	0025D919	w	movups xmmword ptr [rcx - 50h], xmm1	arg0 from 00229B40 at 00229CD1
-2E280h	group bank B	00269A20	00269A55	r	movups xmm1, xmmword ptr [rcx - 50h]	arg0 from 005843E0 at 00584452
-2E290h	group bank B	0025D8E0	0025D921	w	movups xmmword ptr [rcx - 40h], xmm0	arg0 from 00229B40 at 00229CD1
-2E290h	group bank B	00269A20	00269A5D	r	movups xmm0, xmmword ptr [rcx - 40h]	arg0 from 005843E0 at 00584452
-2E2A0h	group bank B	0025D8E0	0025D929	w	movups xmmword ptr [rcx - 30h], xmm1	arg0 from 00229B40 at 00229CD1
-2E2A0h	group bank B	00269A20	00269A65	r	movups xmm1, xmmword ptr [rcx - 30h]	arg0 from 005843E0 at 00584452
-2E2B0h	group bank B	0025D8E0	0025D931	w	movups xmmword ptr [rcx - 20h], xmm0	arg0 from 00229B40 at 00229CD1
-2E2B0h	group bank B	00269A20	00269A6D	r	movups xmm0, xmmword ptr [rcx - 20h]	arg0 from 005843E0 at 00584452
-2E2C0h	group bank B	0025D8E0	0025D939	w	movups xmmword ptr [rcx - 10h], xmm1	arg0 from 00229B40 at 00229CD1
-2E2C0h	group bank B	00269A20	00269A75	r	movups xmm1, xmmword ptr [rcx - 10h]	arg0 from 005843E0 at 00584452
-2E2D0h	group bank B	0025D8E0	0025D8F0	addr	lea rcx, [rcx + 80h]	arg0 from 00229B40 at 00229CD1
-2E2D0h	group bank B	00269A20	00269A3A	addr	lea rcx, [rcx + 80h]	arg0 from 005843E0 at 00584452
-2E450h	spawn-keep image B	00229B40	00229CD6	addr	lea rcx, [rdi + 2E650h]	
-2E450h	spawn-keep image B	00233550	002335B9	r	movzx eax, word ptr [rcx]	arg0 from 005843E0 at 0058445E
-2E450h	spawn-keep image B	005843E0	00584457	addr	lea rcx, [rdi + 2E650h]	
-2E452h	spawn-keep image B	00233550	002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 005843E0 at 0058445E
-2E460h	spawn-keep image B	00233550	0023355C	addr	lea rdx, [rcx + 10h]	arg0 from 005843E0 at 0058445E
-2E460h	spawn-keep image B	00233550	0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 005843E0 at 0058445E
-2E470h	spawn-keep image B	00233550	0023357B	r	movups xmm1, xmmword ptr [rdx - 70h]	arg0 from 005843E0 at 0058445E
-2E480h	spawn-keep image B	00233550	00233583	r	movups xmm0, xmmword ptr [rdx - 60h]	arg0 from 005843E0 at 0058445E
-2E490h	spawn-keep image B	00233550	0023358B	r	movups xmm1, xmmword ptr [rdx - 50h]	arg0 from 005843E0 at 0058445E
-2E4A0h	spawn-keep image B	00233550	00233593	r	movups xmm0, xmmword ptr [rdx - 40h]	arg0 from 005843E0 at 0058445E
-2E4B0h	spawn-keep image B	00233550	0023359B	r	movups xmm1, xmmword ptr [rdx - 30h]	arg0 from 005843E0 at 0058445E
-2E4C0h	spawn-keep image B	00233550	002335A3	r	movups xmm0, xmmword ptr [rdx - 20h]	arg0 from 005843E0 at 0058445E
-2E4D0h	spawn-keep image B	00233550	002335AB	r	movups xmm1, xmmword ptr [rdx - 10h]	arg0 from 005843E0 at 0058445E
-2E4E0h	spawn-keep image B	00233550	00233570	addr	lea rdx, [rdx + 80h]	arg0 from 005843E0 at 0058445E
-4E460h	transition metadata	00229B40	00229CF7	addr	lea rcx, [rdi + 4E660h]	
-4E460h	transition metadata	002EF540	002EF547	w	movups xmmword ptr [rcx], xmm0	arg0 from 00229B40 at 00229CFE
-4E460h	transition metadata	00584210	00584371	addr	lea rcx, [rbx + 4E660h]	
-4E460h	transition metadata	005843E0	0058441C	addr	lea rcx, [rdi + 4E660h]	
-4E460h	transition metadata	005843E0	00584471	r	movzx eax, byte ptr [rdi + 4E660h]	
-4E460h	transition metadata	00584580	005845AF	addr	lea rcx, [rbx + 4E660h]	
-4E460h	transition metadata	00584580	005845C2	w	mov dword ptr [rbx + 4E660h], eax	
-4E464h	transition metadata	002EF3C0	002EF3C9	w	mov dword ptr [rcx + 4], eax	arg0 from 00584580 at 005845B6
-4E464h	transition metadata	003145E0	00314731	w	mov dword ptr [rax + 4E664h], ecx	
-4E468h	transition metadata	002EF3C0	002EF3DA	w	movups xmmword ptr [rcx + 8], xmm0	arg0 from 00584580 at 005845B6
-4E468h	transition metadata	002EF410	002EF420	r	movups xmm0, xmmword ptr [rcx + 8]	arg0 from 00584210 at 00584378
-4E468h	transition metadata	002EF410	002EF45D	r	test byte ptr [rbx + 8], 1	arg0 from 00584210 at 00584378
-4E46Ch	transition metadata	002EF410	002EF463	r	movss xmm0, dword ptr [rbx + Ch]	arg0 from 00584210 at 00584378
-4E470h	transition metadata	002EF410	002EF46D	r	movss xmm0, dword ptr [rbx + 10h]	arg0 from 00584210 at 00584378
-4E470h	transition metadata	002EF540	002EF551	w	movups xmmword ptr [rcx + 10h], xmm1	arg0 from 00229B40 at 00229CFE
-4E478h	transition metadata	002EF3C0	002EF3EC	w	movups xmmword ptr [rcx + 18h], xmm0	arg0 from 00584580 at 005845B6
-4E478h	transition metadata	002EF410	002EF43B	r	test byte ptr [rcx + 18h], 2	arg0 from 00584210 at 00584378
-4E478h	transition metadata	002EF410	002EF441	r	movups xmm0, xmmword ptr [rcx + 18h]	arg0 from 00584210 at 00584378
-4E480h	transition metadata	002EF410	002EF453	r	movss xmm0, dword ptr [rcx + 20h]	arg0 from 00584210 at 00584378
-4E480h	transition metadata	002EF540	002EF55D	w	movsd qword ptr [rcx + 20h], xmm0	arg0 from 00229B40 at 00229CFE
-4E488h	transition metadata	002EF3C0	002EF3FD	w	mov dword ptr [rdx + 28h], ecx	arg0 from 00584580 at 005845B6
-4E488h	transition metadata	002EF410	002EF432	r	mov edx, dword ptr [rcx + 28h]	arg0 from 00584210 at 00584378
-4E488h	transition metadata	002EF540	002EF568	w	mov dword ptr [rcx + 28h], eax	arg0 from 00229B40 at 00229CFE
-4E48Ch	battle-state block	00229B40	00229B81	addr	lea rdx, [rax + 4E68Ch]	
-4E48Ch	battle-state block	00229B40	00229B98	r	movups xmm0, xmmword ptr [rcx]	
-4E48Ch	battle-state block	00229B40	00229BE4	addr	lea rax, [rdi + 4E68Ch]	
-4E48Ch	battle-state block	00229B40	00229BF7	r	movups xmm0, xmmword ptr [rdx]	
-4E48Ch	battle-state block	00229B40	00229C01	w	movups xmmword ptr [rax - 80h], xmm0	
-4E48Ch	battle-state block	00235AF0	00235B19	r	mov ecx, dword ptr [r8]	
-4E48Ch	battle-state block	002370C0	002370DF	w	mov dword ptr [rax], 5071901h	
-4E48Ch	battle-state block	0030AA00	0030AA39	r	cmp word ptr [rax + rbp], r15w	
-4E48Ch	battle-state block	00327C40	00327C81	r	movups xmm0, xmmword ptr [rax]	
-4E48Ch	battle-state block	005691E0	005699FE	addr	lea r8, [rax + rcx*4]	
-4E48Ch	battle-state block	005691E0	00569AFF	addr	lea r8, [rax + rcx*4]	
-4E48Ch	battle-state block	005844A0	00584504	addr	lea rbx, [rax + 4E68Ch]	
-4E48Ch	battle-state block	005844A0	0058450B	r	cmp byte ptr [rbx], 0	
-4E48Ch	battle-state block	005844A0	00584528	r	movups xmm0, xmmword ptr [rbx]	
-4E490h	battle-state block	00233C10	00233CA6	rw	and dword ptr [rax + 4], FFFFEFFFh	
-4E490h	battle-state block	00235AF0	00235B20	r	mov ecx, dword ptr [r8 + 4]	
-4E490h	battle-state block	00236740	00236747	r	mov eax, dword ptr [rax + 4]	
-4E490h	battle-state block	00236760	00236767	r	mov eax, dword ptr [rax + 4]	
-4E490h	battle-state block	00236780	00236787	r	mov eax, dword ptr [rax + 4]	
-4E490h	battle-state block	00239960	002399D7	r	mov ebx, dword ptr [rax + 4]	
-4E490h	battle-state block	00239960	002399FB	rw	or dword ptr [rax + 4], 2000h	
-4E490h	battle-state block	00239960	00239A04	rw	and dword ptr [rax + 4], FFFFDFFFh	
-4E490h	battle-state block	00239960	00239A18	rw	or dword ptr [rax + 4], 4000h	
-4E490h	battle-state block	00239960	00239A21	rw	and dword ptr [rax + 4], FFFFBFFFh	
-4E490h	battle-state block	00239960	00239A35	rw	or dword ptr [rax + 4], 1000h	
-4E490h	battle-state block	00239960	00239A3E	rw	and dword ptr [rax + 4], FFFFEFFFh	
-4E490h	battle-state block	00239960	00239A56	rw	or dword ptr [rax + 4], 2000h	
-4E490h	battle-state block	00239960	00239A77	rw	or dword ptr [rax + 4], 4000h	
-4E490h	battle-state block	0023A2C0	0023A2CB	rw	or dword ptr [rax + 4], 2000h	
-4E490h	battle-state block	0023A2C0	0023A2D3	rw	and dword ptr [rax + 4], FFFFDFFFh	
-4E490h	battle-state block	0023A390	0023A39B	rw	or dword ptr [rax + 4], 1000h	
-4E490h	battle-state block	0023A390	0023A3A3	rw	and dword ptr [rax + 4], FFFFEFFFh	
-4E490h	battle-state block	003008A0	003009C1	rw	or dword ptr [rax + 4], 100h	
-4E490h	battle-state block	003008A0	003009D4	rw	or dword ptr [rax + 4], 80h	
-4E490h	battle-state block	003008A0	003009E7	rw	or dword ptr [rax + 4], 40h	
-4E490h	battle-state block	003008A0	003009F7	rw	or dword ptr [rax + 4], 1	
-4E490h	battle-state block	003008A0	00300B5A	rw	or dword ptr [rcx + 4], eax	
-4E490h	battle-state block	00311B20	00311BD7	rw	or dword ptr [rax + 4], 800h	
-4E490h	battle-state block	00318CD0	00318D21	r	test dword ptr [rax + 4], ecx	
-4E490h	battle-state block	00318CD0	00318DA5	r	test byte ptr [rax + 4], 41h	
-4E490h	battle-state block	00318CD0	00318DD4	r	test byte ptr [rax + 4], 1	
-4E490h	battle-state block	00318CD0	00318E46	r	test byte ptr [rax + 4], 40h	
-4E490h	battle-state block	00318CD0	00318EEE	r	test dword ptr [rax + 4], 180h	
-4E490h	battle-state block	00318CD0	00318F01	r	test dword ptr [rax + 4], 100h	
-4E490h	battle-state block	00318CD0	00318F74	r	test byte ptr [rax + 4], 80h	
-4E490h	battle-state block	0031EB20	0031EBDA	r	test dword ptr [rax + 4], 800h	
-4E494h	battle-state block	00239960	00239D89	rw	or dword ptr [rbx], 4	
-4E494h	battle-state block	00239960	00239D94	rw	and dword ptr [rbx], FFFFFFFBh	
-4E494h	battle-state block	00309B40	00309B53	r	mov eax, dword ptr [rax]	
-4E494h	battle-state block	00311AF0	00311B06	rw	or dword ptr [rax], 4	
-4E494h	battle-state block	00311AF0	00311B0F	rw	and dword ptr [rax], FFFFFFFBh	
-4E494h	battle-state block	00317480	00317548	r	test byte ptr [rax], 10h	
-4E494h	battle-state block	0031A410	0031A48B	addr	lea rdi, [rsi + r14*2]	
-4E494h	battle-state block	0031A510	0031A568	addr	lea rsi, [rdx + 8]	
-4E494h	battle-state block	0031A510	0031A5B3	addr	lea rdi, [rsi + r15*2]	
-4E494h	battle-state block	0031AC00	0031AC44	addr	lea r8, [rdx + 8]	
-4E494h	battle-state block	0031BAC0	0031BBC0	addr	lea rbx, [rdx + 8]	
-4E494h	battle-state block	0031C0F0	0031C136	addr	lea rdi, [r9 + 8]	
-4E494h	battle-state block	0031EB20	0031F487	addr	lea rbp, [rdx + 8]	
-4E494h	battle-state block	00323630	00323646	addr	lea rdx, [rax + 8]	
-4E494h	battle-state block	00323670	00323686	addr	lea rdx, [rax + 8]	
-4E494h	battle-state block	003236B0	003236C6	addr	lea rdx, [rax + 8]	
-4E494h	battle-state block	00324280	003242B2	addr	lea rcx, [r10 + 8]	
-4E494h	battle-state block	00324280	003242BB	r	test byte ptr [rcx], 8	
-4E494h	battle-state block	00326110	00326193	addr	lea r9, [r10 + 8]	
-4E494h	battle-state block	00326D60	003270CE	addr	lea rdi, [rax + 8]	
-4E494h	battle-state block	00327150	0032716B	addr	lea rdi, [rdx + 8]	
-4E494h	battle-state block	00327240	0032725F	addr	lea rax, [rdx + 8]	
-4E494h	battle-state block	003273D0	0032750A	addr	lea rsi, [rdx + 8]	
-4E494h	battle-state block	00327930	00327949	addr	lea r9, [r8 + 8]	
-4E494h	battle-state block	003282D0	003282F2	addr	lea r11, [r9 + 8]	
-4E494h	battle-state block	003288F0	0032896B	addr	lea r8, [r9 + 8]	
-4E494h	battle-state block	00328B20	00328B9F	addr	lea r8, [r9 + 8]	
-4E498h	battle-state block	002371B0	0023721F	r	cmp byte ptr [rax + 4], 6	
-4E498h	battle-state block	002372E0	0023735F	r	cmp byte ptr [rax + 4], 6	
-4E498h	battle-state block	002F9F20	002F9F88	r	movzx r12d, byte ptr [rax + 4]	
-4E498h	battle-state block	00304180	003041CD	r	movzx ecx, byte ptr [rax + 4]	
-4E498h	battle-state block	00304180	00304241	r	cmp byte ptr [rbx + 4], 6	
-4E498h	battle-state block	0030A7C0	0030A838	r	cmp byte ptr [rbx + 4], 6	
-4E498h	battle-state block	0030D160	0030D231	r	movzx ecx, byte ptr [rax + 4]	
-4E498h	battle-state block	0030FAA0	0030FB8A	r	movzx eax, byte ptr [rax + 4]	
-4E498h	battle-state block	0030FBE0	0030FC0A	r	movzx ecx, byte ptr [rax + 4]	
-4E498h	battle-state block	0030FD10	0030FD6E	r	cmp byte ptr [rbx + 4], 6	
-4E498h	battle-state block	00317480	00317553	r	cmp byte ptr [rax + 4], 6	
-4E498h	battle-state block	0031EB20	0031F507	r	movzx ecx, byte ptr [rbp + 4]	
-4E498h	battle-state block	0031EB20	0031F8D1	r	cmp byte ptr [rcx + 4], 6	
-4E498h	battle-state block	0031EB20	0031F8DF	r	movzx eax, byte ptr [rcx + 4]	
-4E498h	battle-state block	00323630	00323655	r	cmp byte ptr [rdx + 4], 6	
-4E498h	battle-state block	00323670	00323695	r	cmp byte ptr [rdx + 4], 6	
-4E498h	battle-state block	003236B0	003236D5	r	cmp byte ptr [rdx + 4], 6	
-4E498h	battle-state block	003236F0	00323716	r	cmp byte ptr [r8 + 4], 6	
-4E498h	battle-state block	00323740	00323766	r	cmp byte ptr [r8 + 4], 6	
-4E498h	battle-state block	003242F0	00324315	r	cmp byte ptr [rdx + 4], 6	
-4E498h	battle-state block	00327930	00327960	r	movzx ecx, byte ptr [r9 + 4]	
-4E498h	battle-state block	0050FD00	0050FD24	r	movzx edx, byte ptr [rax + 4]	
-4E498h	battle-state block	0050FF20	0050FF66	r	cmp byte ptr [rax + 4], 1Ah	
-4E498h	battle-state block	0050FF20	0050FF70	r	movzx eax, byte ptr [rax + 4]	
-4E498h	battle-state block	0050FF20	0050FF83	r	movzx eax, byte ptr [rdx + 4]	
-4E499h	battle-state block	002371B0	00237214	r	cmp byte ptr [rax + 5], 0	
-4E499h	battle-state block	002372E0	00237354	r	cmp byte ptr [rax + 5], 0	
-4E499h	battle-state block	00304180	003041C1	r	movzx ecx, byte ptr [rax + 5]	
-4E499h	battle-state block	00304180	0030423B	r	cmp byte ptr [rbx + 5], bpl	
-4E499h	battle-state block	0030A7C0	0030A832	r	cmp byte ptr [rbx + 5], 0	
-4E499h	battle-state block	0030FAA0	0030FB84	r	cmp byte ptr [rax + 5], 0	
-4E499h	battle-state block	0030FBE0	0030FC04	r	cmp byte ptr [rax + 5], dil	
-4E499h	battle-state block	0030FD10	0030FD68	r	cmp byte ptr [rbx + 5], 0	
-4E499h	battle-state block	00317480	0031754D	r	cmp byte ptr [rax + 5], dil	
-4E499h	battle-state block	0031EB20	0031F8C5	r	movzx eax, byte ptr [rcx + 5]	
-4E499h	battle-state block	00323630	0032364F	r	cmp byte ptr [rdx + 5], 0	
-4E499h	battle-state block	00323670	0032368F	r	cmp byte ptr [rdx + 5], 0	
-4E499h	battle-state block	003236B0	003236CF	r	cmp byte ptr [rdx + 5], 0	
-4E499h	battle-state block	003236F0	0032370F	r	cmp byte ptr [r8 + 5], 0	
-4E499h	battle-state block	00323740	0032375F	r	cmp byte ptr [r8 + 5], 0	
-4E499h	battle-state block	003242F0	0032430F	r	cmp byte ptr [rdx + 5], 0	
-4E499h	battle-state block	00327930	00327952	r	cmp byte ptr [r9 + 5], 0	
-4E499h	battle-state block	00328BD0	00328CDC	r	cmp byte ptr [rdx + 5], 0	
-4E499h	battle-state block	0050FF20	0050FF54	r	movzx ecx, byte ptr [rax + 5]	
-4E49Ch	battle-state block	00229B40	00229BA6	r	movups xmm1, xmmword ptr [rcx - 70h]	
-4E49Ch	battle-state block	00229B40	00229C05	r	movups xmm1, xmmword ptr [rdx - 70h]	
-4E49Ch	battle-state block	00229B40	00229C09	w	movups xmmword ptr [rax - 70h], xmm1	
-4E49Ch	battle-state block	00327C40	00327C88	r	movups xmm1, xmmword ptr [rax + 10h]	
-4E49Ch	battle-state block	005844A0	00584536	r	movups xmm1, xmmword ptr [rbx - 70h]	
-4E4ACh	battle-state block	00229B40	00229BAE	r	movups xmm0, xmmword ptr [rcx - 60h]	
-4E4ACh	battle-state block	00229B40	00229C0D	r	movups xmm0, xmmword ptr [rdx - 60h]	
-4E4ACh	battle-state block	00229B40	00229C11	w	movups xmmword ptr [rax - 60h], xmm0	
-4E4ACh	battle-state block	00327C40	00327C91	r	movups xmm0, xmmword ptr [rax + 20h]	
-4E4ACh	battle-state block	005844A0	0058453E	r	movups xmm0, xmmword ptr [rbx - 60h]	
-4E4B4h	battle-state block	00239960	00239BF6	w	mov byte ptr [rbx + 20h], cl	
-4E4B4h	battle-state block	00328BD0	00328D4A	w	mov byte ptr [rdi + 20h], dl	
-4E4BCh	battle-state block	00229B40	00229BB6	r	movups xmm1, xmmword ptr [rcx - 50h]	
-4E4BCh	battle-state block	00229B40	00229C15	r	movups xmm1, xmmword ptr [rdx - 50h]	
-4E4BCh	battle-state block	00229B40	00229C19	w	movups xmmword ptr [rax - 50h], xmm1	
-4E4BCh	battle-state block	00239960	00239CD8	r	movsx eax, word ptr [rbx + 28h]	
-4E4BCh	battle-state block	00327C40	00327C9A	r	mov ecx, dword ptr [rax + 30h]	
-4E4BCh	battle-state block	0050FE20	0050FE50	r	movsx edx, word ptr [rax + 28h]	
-4E4BCh	battle-state block	005844A0	00584546	r	movups xmm1, xmmword ptr [rbx - 50h]	
-4E4C0h	battle-state block	003064F0	00306511	addr	lea ecx, [rax + 2Ch]	
-4E4CBh	battle-state block	00328BD0	00328D44	w	mov byte ptr [rdi + 37h], dl	
-4E4CCh	battle-state block	00229B40	00229BBE	r	movups xmm0, xmmword ptr [rcx - 40h]	
-4E4CCh	battle-state block	00229B40	00229C1D	r	movups xmm0, xmmword ptr [rdx - 40h]	
-4E4CCh	battle-state block	00229B40	00229C21	w	movups xmmword ptr [rax - 40h], xmm0	
-4E4CCh	battle-state block	005844A0	0058454E	r	movups xmm0, xmmword ptr [rbx - 40h]	
-4E4D0h	battle-state block	002371B0	00237228	r	or eax, dword ptr [rcx + 3Ch]	
-4E4D0h	battle-state block	002372E0	00237368	r	or eax, dword ptr [rcx + 3Ch]	
-4E4D0h	battle-state block	00304180	00304227	r	or ecx, dword ptr [rax + 3Ch]	
-4E4D0h	battle-state block	0030A6E0	0030A722	r	or eax, dword ptr [rcx + 3Ch]	
-4E4D0h	battle-state block	0030A7C0	0030A819	r	or eax, dword ptr [rbx + 3Ch]	
-4E4D0h	battle-state block	0030C300	0030C347	r	or eax, dword ptr [rbp + 3Ch]	
-4E4D0h	battle-state block	0030FD10	0030FD54	r	or ecx, dword ptr [rax + 3Ch]	
-4E4D0h	battle-state block	00310DB0	0031118A	r	or ecx, dword ptr [rax + 3Ch]	
-4E4D0h	battle-state block	00312280	00312377	r	or ecx, dword ptr [rax + 3Ch]	
-4E4D0h	battle-state block	0031AC00	0031AC58	r	or eax, dword ptr [r8 + 3Ch]	
-4E4D0h	battle-state block	00321F10	00321FBE	r	or eax, dword ptr [rdx + 3Ch]	
-4E4D0h	battle-state block	003266C0	00326B77	r	or eax, dword ptr [rdx + 3Ch]	
-4E4D0h	battle-state block	0050FD50	0050FD77	r	or edx, dword ptr [rax + 3Ch]	
-4E4D0h	battle-state block	0050FED0	0050FEFA	r	or edx, dword ptr [rax + 3Ch]	
-4E4DCh	battle-state block	00229B40	00229BC6	r	movups xmm1, xmmword ptr [rcx - 30h]	
-4E4DCh	battle-state block	00229B40	00229C25	r	movups xmm1, xmmword ptr [rdx - 30h]	
-4E4DCh	battle-state block	00229B40	00229C29	w	movups xmmword ptr [rax - 30h], xmm1	
-4E4DCh	battle-state block	0050FD50	0050FD80	r	mov edx, dword ptr [rax + 48h]	
-4E4DCh	battle-state block	0050FDD0	0050FDF4	r	mov edx, dword ptr [rax + 48h]	
-4E4DCh	battle-state block	005844A0	00584556	r	movups xmm1, xmmword ptr [rbx - 30h]	
-4E4E0h	battle-state block	00239960	00239D7F	w	mov word ptr [rbx + 4Ch], dx	
-4E4E0h	battle-state block	0050FE80	0050FEA4	r	movsx edx, word ptr [rax + 4Ch]	
-4E4E2h	battle-state block	00328BD0	00328D47	w	mov byte ptr [rdi + 4Eh], dl	
-4E4E4h	battle-state block	002F9F20	002F9F8D	r	movzx eax, word ptr [rax + 50h]	
-4E4E4h	battle-state block	0030A4E0	0030A565	r	cmp ax, word ptr [rbp + 50h]	
-4E4E4h	battle-state block	0030A4E0	0030A688	r	movzx eax, word ptr [rbp + 50h]	
-4E4E4h	battle-state block	0030A4E0	0030A6A6	addr	lea rax, [rbp + 50h]	
-4E4E4h	battle-state block	0030FBE0	0030FC1F	r	movsd xmm0, qword ptr [rax + 50h]	
-4E4E4h	battle-state block	00317B70	00317B9A	addr	lea rdx, [rcx + 50h]	
-4E4E4h	battle-state block	0031A410	0031A468	addr	lea rdx, [rsi + 50h]	
-4E4E4h	battle-state block	0031A410	0031A47D	r	movzx ebx, word ptr [rsi + r14*2 + 50h]	
-4E4E4h	battle-state block	0031A410	0031A49C	addr	lea rcx, [rsi + 50h]	
-4E4E4h	battle-state block	0031A510	0031A586	addr	lea rdx, [rsi + 50h]	
-4E4E4h	battle-state block	0031A510	0031A5A5	r	movzx ebx, word ptr [rsi + r15*2 + 50h]	
-4E4E4h	battle-state block	0031A510	0031A5C4	addr	lea rcx, [rsi + 50h]	
-4E4E4h	battle-state block	0031C0F0	0031C173	addr	lea rcx, [rdi + 50h]	
-4E4E4h	battle-state block	003231F0	0032322A	addr	lea rdi, [rdx + 50h]	
-4E4E4h	battle-state block	003231F0	0032322E	r	movzx ecx, word ptr [rdi]	
-4E4E6h	battle-state block	002F9F20	002F9F94	r	movzx eax, word ptr [r13 + 52h]	
-4E4E6h	battle-state block	0030A4E0	0030A585	r	cmp r15w, word ptr [rbp + 52h]	
-4E4E6h	battle-state block	0030A4E0	0030A67F	r	movzx eax, word ptr [rbp + 52h]	
-4E4E8h	battle-state block	002F9F20	002F9F9D	r	movzx eax, word ptr [r13 + 54h]	
-4E4E8h	battle-state block	0030A4E0	0030A59A	r	cmp r12w, word ptr [rbp + 54h]	
-4E4EAh	battle-state block	002F9F20	002F9FA6	r	movzx eax, word ptr [r13 + 56h]	
-4E4EAh	battle-state block	0030A4E0	0030A5A8	r	cmp r13w, word ptr [rbp + 56h]	
-4E4ECh	battle-state block	00229B40	00229BCE	r	movups xmm0, xmmword ptr [rcx - 20h]	
-4E4ECh	battle-state block	00229B40	00229C2D	r	movups xmm0, xmmword ptr [rdx - 20h]	
-4E4ECh	battle-state block	00229B40	00229C31	w	movups xmmword ptr [rax - 20h], xmm0	
-4E4ECh	battle-state block	002F9F20	002F9FAF	r	movzx eax, word ptr [r13 + 58h]	
-4E4ECh	battle-state block	0030A4E0	0030A5BA	r	cmp ax, word ptr [rbp + 58h]	
-4E4ECh	battle-state block	0030FBE0	0030FC16	r	movzx ecx, word ptr [rax + 58h]	
-4E4ECh	battle-state block	005844A0	0058455E	r	movups xmm0, xmmword ptr [rbx - 20h]	
-4E4EEh	battle-state block	0030FBE0	0030FC24	w	movsd qword ptr [rax + 5Ah], xmm0	
-4E4F6h	battle-state block	0030FBE0	0030FC29	w	mov word ptr [rax + 62h], cx	
-4E4F8h	battle-state block	002371B0	00237225	r	mov eax, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	002372E0	00237365	r	mov eax, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	00304180	00304224	r	mov ecx, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	0030A6E0	0030A71F	r	mov eax, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	0030A7C0	0030A816	r	mov eax, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	0030C300	0030C344	r	mov eax, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	0030FD10	0030FD51	r	mov ecx, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	00310DB0	00311187	r	mov ecx, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	00312280	00312374	r	mov ecx, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	0031AC00	0031AC54	r	mov eax, dword ptr [r8 + 64h]	
-4E4F8h	battle-state block	00321F10	00321FBB	r	mov eax, dword ptr [rdx + 64h]	
-4E4F8h	battle-state block	003266C0	00326B74	r	mov eax, dword ptr [rdx + 64h]	
-4E4F8h	battle-state block	0050FD50	0050FD74	r	mov edx, dword ptr [rax + 64h]	
-4E4F8h	battle-state block	0050FED0	0050FEF4	r	mov edx, dword ptr [rax + 64h]	
-4E4FCh	battle-state block	00229B40	00229BD6	r	movups xmm1, xmmword ptr [rcx - 10h]	
-4E4FCh	battle-state block	00229B40	00229C35	r	movups xmm1, xmmword ptr [rdx - 10h]	
-4E4FCh	battle-state block	00229B40	00229C39	w	movups xmmword ptr [rax - 10h], xmm1	
-4E4FCh	battle-state block	00328BD0	00328D30	w	mov byte ptr [rax - 10h], 0	
-4E4FCh	battle-state block	005844A0	00584566	r	movups xmm1, xmmword ptr [rbx - 10h]	
-4E500h	battle-state block	00239960	00239CC4	r	cmp byte ptr [rbx + 6Ch], sil	
-4E500h	battle-state block	0050FE20	0050FE44	r	cmp byte ptr [rax + 6Ch], 0	
-4E50Ch	battle-state block	00229B40	00229B9B	addr	lea rcx, [rcx + 80h]	
-4E50Ch	battle-state block	00229B40	00229BF0	addr	lea rax, [rax + 80h]	
-4E50Ch	battle-state block	00229B40	00229BFA	addr	lea rdx, [rdx + 80h]	
-4E50Ch	battle-state block	00328BD0	00328D23	addr	lea rax, [rdi + 78h]	
-4E50Ch	battle-state block	00328BD0	00328D34	w	mov byte ptr [rax], 0	
-4E50Ch	battle-state block	005844A0	0058452B	addr	lea rbx, [rbx + 80h]	
-4E50Dh	battle-state block	00328BD0	00328D37	addr	lea rax, [rax + 1]	
-4E510h	battle-state block	00239960	00239CCE	r	cmp byte ptr [rbx + 7Ch], sil	
-4E510h	battle-state block	0050FE20	0050FE4A	r	cmp byte ptr [rax + 7Ch], 0	
-4E51Ch	battle-state block	00327BE0	00327BFF	r	movups xmm0, xmmword ptr [r8 + 88h]	
-4E52Ch	battle-state block	00327BE0	00327C0A	r	movups xmm1, xmmword ptr [r8 + 98h]	
-4E53Ch	battle-state block	00327BE0	00327C16	r	movups xmm0, xmmword ptr [r8 + A8h]	
-4E54Ch	battle-state block	00327BE0	00327C22	r	mov eax, dword ptr [r8 + B8h]	
-4E54Eh	battle-state block	00328BD0	00328CE2	r	movzx eax, byte ptr [rdx + BAh]	
-4E54Eh	battle-state block	00328BD0	00328CF5	w	mov byte ptr [rdx + BAh], al	
-4E624h	battle-state block	00239960	00239C05	w	mov dword ptr [rbx + 190h], esi	
-4E628h	battle-state block	00239960	00239C0D	w	mov qword ptr [rbx + 194h], rax	
-4E630h	battle-state block	00239960	00239C17	w	mov qword ptr [rbx + 19Ch], rax	
-4E638h	battle-state block	00239960	00239C1E	w	mov qword ptr [rbx + 1A4h], rax	
-4E640h	battle-state block	00239960	00239C25	w	mov qword ptr [rbx + 1ACh], rax	
-4E648h	battle-state block	00239960	00239C2C	w	mov qword ptr [rbx + 1B4h], rax	
-4E650h	battle-state block	00239960	00239C33	w	mov dword ptr [rbx + 1BCh], eax	
-4E654h	battle-state block	00239960	00239C39	w	mov word ptr [rbx + 1C0h], ax	
-4E656h	battle-state block	0030C620	0030C63F	r	movzx eax, byte ptr [rax + 1C2h]	
-4E656h	battle-state block	00317480	00317580	r	cmp byte ptr [rax + 1C2h], cl	
-4E657h	battle-state block	00293310	0029379D	r	movzx ecx, byte ptr [rbx + 1C3h]	
-4E657h	battle-state block	00293FE0	002943D6	r	movzx ecx, byte ptr [rbx + 1C3h]	
-4E657h	battle-state block	00294B50	00294F4A	r	movzx ecx, byte ptr [rbx + 1C3h]	
-4E657h	battle-state block	00295390	00295560	r	movzx ecx, byte ptr [rbx + 1C3h]	
-4E657h	battle-state block	00295900	00295AD7	r	movzx ecx, byte ptr [rbx + 1C3h]	
-4E657h	battle-state block	00323670	0032369B	r	movzx eax, byte ptr [rdx + 1C3h]	
-4E657h	battle-state block	00323740	00323772	w	mov byte ptr [r8 + 1C3h], dl	
-4E657h	battle-state block	003242F0	0032431B	r	movzx eax, byte ptr [rdx + 1C3h]	
-4E657h	battle-state block	00328BD0	00328C16	r	movsx r8d, byte ptr [rdi + 1C3h]	
-4E657h	battle-state block	00328BD0	00328D52	w	mov word ptr [rdi + 1C3h], FFFFh	
-4E657h	battle-state block	0032A7A0	0032A7C6	r	cmp byte ptr [rax + 1C3h], FFh	
-4E658h	battle-state block	00293310	002937B0	r	movzx ecx, byte ptr [rbx + 1C4h]	
-4E658h	battle-state block	00293FE0	002943EA	r	movzx ecx, byte ptr [rbx + 1C4h]	
-4E658h	battle-state block	00294B50	00294F5E	r	movzx ecx, byte ptr [rbx + 1C4h]	
-4E658h	battle-state block	00295390	00295573	r	movzx ecx, byte ptr [rbx + 1C4h]	
-4E658h	battle-state block	00295900	00295AEA	r	movzx ecx, byte ptr [rbx + 1C4h]	
-4E658h	battle-state block	00323630	0032365B	r	movzx eax, byte ptr [rdx + 1C4h]	
-4E658h	battle-state block	003236F0	00323722	w	mov byte ptr [r8 + 1C4h], dl	
-4E658h	battle-state block	003242F0	0032432A	r	movzx ecx, byte ptr [rdx + 1C4h]	
-4E658h	battle-state block	00328BD0	00328C28	r	movsx r8d, byte ptr [rdi + 1C4h]	
-4E658h	battle-state block	0032A7A0	0032A7CF	r	cmp byte ptr [rax + 1C4h], FFh	
-4E659h	battle-state block	003236B0	003236DB	r	movzx eax, byte ptr [rdx + 1C5h]	
-4E659h	battle-state block	003236F0	00323729	w	mov byte ptr [r8 + 1C5h], dl	
-4E659h	battle-state block	00323740	00323779	w	mov byte ptr [r8 + 1C5h], dl	
-4E659h	battle-state block	003242F0	00324336	r	cmp byte ptr [rdx + 1C5h], al	
-4E659h	battle-state block	003242F0	00324341	w	mov byte ptr [rdx + 1C5h], al	
-4E659h	battle-state block	003242F0	0032434B	w	mov byte ptr [rdx + 1C5h], al	
-4E659h	battle-state block	00328BD0	00328D5D	w	mov byte ptr [rdi + 1C5h], FFh	
-52BD4h	battle-state block	0030FBE0	0030FC67	r	movzx eax, word ptr [rcx + rdx*2 + 4748h]	
-52C54h	battle-state block	0030FBE0	0030FCC7	r	movzx eax, word ptr [rcx + rdx*2 + 47C8h]	
-53410h	battle-state block	0030FAA0	0030FAE7	r	movsx edx, word ptr [rax + rcx*2 + 4F84h]	
-53410h	battle-state block	0030FBE0	0030FC6F	w	mov word ptr [rcx + rdx*2 + 4F84h], ax	
-53490h	battle-state block	0030FAA0	0030FB37	r	movsx edx, word ptr [rax + rcx*2 + 5004h]	
-53490h	battle-state block	0030FBE0	0030FCCF	w	mov word ptr [rcx + rdx*2 + 5004h], ax	
-53E54h	battle-state block	0030B180	0030B203	rw	and byte ptr [rsi + 59C8h], FDh	
-53E54h	battle-state block	0030B270	0030B345	r	test byte ptr [rdi + 59C8h], 1	
-53E54h	battle-state block	0030B270	0030B352	r	test byte ptr [rdi + 59C8h], 2	
-53E54h	battle-state block	0030B270	0030B461	rw	or byte ptr [rdi + 59C8h], 3	
-53E54h	battle-state block	0031C5D0	0031DA69	r	movzx eax, byte ptr [r14 + 59C8h]	
-53E54h	battle-state block	0031C5D0	0031DA7A	r	movzx ecx, byte ptr [r14 + 59C8h]	
-53E54h	battle-state block	0031C5D0	0031DA8E	r	movzx eax, byte ptr [r14 + 59C8h]	
-53ED4h	battle-state block	0030A970	0030A994	r	cmp word ptr [r8 + 5A48h], r9w	
-53ED4h	battle-state block	003170E0	00317100	r	cmp byte ptr [rcx + rax*2 + 5A48h], sil	
-53ED4h	battle-state block	003172E0	00317310	r	cmp byte ptr [rdx + rax*2 + 5A48h], dil	
-53ED4h	battle-state block	003172E0	00317343	r	movups xmm0, xmmword ptr [r8 + 5A48h]	
-53ED4h	battle-state block	0031B9F0	0031BAAA	r	movzx eax, byte ptr [rax + rdi*2 + 5A48h]	
-53ED4h	battle-state block	00320890	003208A3	r	cmp byte ptr [r8 + rax*2 + 5A48h], dl	
-53ED4h	battle-state block	00326110	00326129	r	movups xmm0, xmmword ptr [r10 + 5A48h]	
-53ED4h	battle-state block	003261D0	00326220	r	cmp byte ptr [r8 + rax*2 + 5A48h], dl	
-53ED4h	battle-state block	003266C0	00326714	r	movups xmm0, xmmword ptr [rdi]	
-53ED4h	battle-state block	003266C0	003267A0	r	cmp byte ptr [rdx + rax*2 + 5A48h], cl	
-53ED4h	battle-state block	003266C0	00326857	r	cmp byte ptr [rdx + rax*2 + 5A48h], cl	
-53ED4h	battle-state block	00327200	00327220	r	cmp byte ptr [r8 + rax*2 + 5A48h], dl	
-53ED4h	battle-state block	003273D0	003274F0	r	cmp byte ptr [rdx + rax*2 + 5A48h], cl	
-53ED4h	battle-state block	00327870	00327899	r	movzx eax, byte ptr [rdx + rbx*2 + 5A48h]	
-53ED4h	battle-state block	003286E0	00328701	r	cmp byte ptr [rdx + rax*2 + 5A48h], cl	
-53ED4h	battle-state block	003286E0	00328751	r	movups xmm0, xmmword ptr [rax + 5A48h]	
-53ED4h	battle-state block	003287A0	003287D0	r	cmp byte ptr [rdx + rax*2 + 5A48h], sil	
-53ED4h	battle-state block	003287A0	00328805	r	movups xmm0, xmmword ptr [rdx + 5A48h]	
-53ED4h	battle-state block	003288F0	00328910	r	cmp byte ptr [r9 + rax*2 + 5A48h], cl	
-53ED4h	battle-state block	003288F0	00328938	r	movups xmm0, xmmword ptr [r9 + 5A48h]	
-53ED4h	battle-state block	00328B20	00328B44	r	cmp byte ptr [r9 + rax*2 + 5A48h], dl	
-53ED4h	battle-state block	00328B20	00328B6C	r	movups xmm0, xmmword ptr [r9 + 5A48h]	
-53ED4h	battle-state block	00328DB0	00328EB0	r	cmp byte ptr [r11 + rax*2 + 5A48h], dl	
-53ED4h	battle-state block	00328DB0	00328EED	r	movups xmm0, xmmword ptr [r11 + 5A48h]	
-53ED4h	battle-state block	00329080	003290E4	r	movzx ecx, byte ptr [rdx + rsi*2 + 5A48h]	
-53ED4h	battle-state block	00329080	00329122	w	mov word ptr [rdx + rsi*2 + 5A48h], di	
-53ED4h	battle-state block	00329080	00329176	w	mov word ptr [rdx + rsi*2 + 5A48h], di	
-53ED4h	battle-state block	00329CC0	00329DE3	r	movups xmm0, xmmword ptr [rcx + 5A48h]	
-53ED6h	battle-state block	0030A970	0030A9A7	r	cmp word ptr [r8 + 5A4Ah], r9w	
-53ED8h	battle-state block	0030A970	0030A9B8	r	cmp word ptr [r8 + 5A4Ch], r9w	
-53EDAh	battle-state block	0030A970	0030A9C7	r	cmp word ptr [r8 + 5A4Eh], r9w	
-53EE4h	battle-state block	003172E0	00317352	r	movzx eax, word ptr [r8 + 5A58h]	
-53EE4h	battle-state block	00326110	00326138	r	movzx eax, word ptr [r10 + 5A58h]	
-53EE4h	battle-state block	003266C0	003266F8	r	movzx eax, word ptr [rdi + 10h]	
-53EE4h	battle-state block	003286E0	0032875F	r	movzx eax, word ptr [rax + 5A58h]	
-53EE4h	battle-state block	003287A0	0032882D	r	movzx eax, word ptr [rdx + 5A58h]	
-53EE4h	battle-state block	003288F0	00328947	r	movzx eax, word ptr [r9 + 5A58h]	
-53EE4h	battle-state block	00328B20	00328B7B	r	movzx eax, word ptr [r9 + 5A58h]	
-53EE4h	battle-state block	00328DB0	00328EFC	r	movzx eax, word ptr [r11 + 5A58h]	
-53EE4h	battle-state block	00329CC0	00329DEA	r	movzx eax, word ptr [rcx + 5A58h]	
-53EE6h	battle-state block	0031B810	0031B841	r	movzx eax, byte ptr [rax + rbx*2 + 5A5Ah]	
-53EE6h	battle-state block	0031B9F0	0031BA8B	r	movzx eax, byte ptr [rax + rdi*2 + 5A5Ah]	
-53EE6h	battle-state block	0031BAC0	0031BBB0	r	movzx ecx, byte ptr [rdx + rdi*2 + 5A5Ah]	
-53EE6h	battle-state block	0031BAC0	0031BC43	r	cmp byte ptr [rax + rdi*2 + 5A5Ah], FFh	
-53EE6h	battle-state block	0031E7B0	0031E7D6	r	movzx eax, byte ptr [rax + rbx*2 + 5A5Ah]	
-53EE6h	battle-state block	0031FEC0	0031FF10	r	cmp byte ptr [rdx + rax*2 + 5A5Ah], cl	
-53EE6h	battle-state block	0031FF70	0031FFD0	r	cmp byte ptr [rdx + rax*2 + 5A5Ah], cl	
-53EE6h	battle-state block	00326620	00326640	r	cmp byte ptr [rdx + rax*2 + 5A5Ah], cl	
-53EE6h	battle-state block	003266C0	003266FC	addr	lea r15, [rdi + 12h]	
-53EE6h	battle-state block	003266C0	00326717	w	movups xmmword ptr [r15], xmm0	
-53EE6h	battle-state block	003266C0	00326735	r	movups xmm0, xmmword ptr [r15]	
-53EE6h	battle-state block	003266C0	00326818	w	mov word ptr [r14 - 12h], r8w	
-53EE6h	battle-state block	003266C0	00326950	w	mov word ptr [rcx], r8w	
-53EE6h	battle-state block	003266C0	00326976	w	mov word ptr [rcx], r13w	
-53EE6h	battle-state block	003266C0	003269B6	w	mov word ptr [rdi + rax*2 + 12h], r13w	
-53EE6h	battle-state block	003266C0	00326A19	w	mov word ptr [rdi + rcx*2 + 12h], r13w	
-53EE6h	battle-state block	003266C0	00326A7B	r	movzx esi, word ptr [r15]	
-53EE6h	battle-state block	00329CC0	00329DF6	w	movups xmmword ptr [rcx + 5A5Ah], xmm0	
-53EE8h	battle-state block	003266C0	003268BD	w	mov word ptr [r14 - 12h], r8w	
-53EECh	battle-state block	003266C0	003269A7	w	mov word ptr [rdi + 18h], dx	
-53EECh	battle-state block	003266C0	003269F2	w	mov word ptr [rdi + 18h], dx	
-53EEEh	battle-state block	003266C0	00326728	w	mov qword ptr [rdi + 1Ah], FFFFFFFFFFFFFFFFh	
-53EF6h	battle-state block	003266C0	0032671B	w	mov word ptr [r15 + 10h], ax	
-53EF6h	battle-state block	003266C0	00326730	w	mov word ptr [rdi + 22h], r13w	
-53EF6h	battle-state block	003266C0	00326739	r	movzx eax, word ptr [r15 + 10h]	
-53EF6h	battle-state block	00329CC0	00329DFD	w	mov word ptr [rcx + 5A6Ah], ax	
-53EF8h	battle-state block	0031B9F0	0031BA71	r	movzx eax, byte ptr [rax + rdi*2 + 5A6Ch]	
-53EF8h	battle-state block	003266C0	00326705	addr	lea r14, [rdi + 24h]	
-53EF8h	battle-state block	003266C0	0032673E	w	movups xmmword ptr [r14], xmm0	
-53EF8h	battle-state block	003266C0	00326829	w	mov word ptr [r14], r8w	
-53EF8h	battle-state block	003266C0	0032695F	w	mov word ptr [rcx + 12h], r8w	
-53EF8h	battle-state block	003266C0	0032697A	w	mov word ptr [rcx + 12h], r13w	
-53EF8h	battle-state block	003266C0	003269C1	w	mov word ptr [rdi + rax*2 + 24h], r13w	
-53EF8h	battle-state block	003266C0	00326A1F	w	mov word ptr [rdi + rcx*2 + 24h], r13w	
-53EF8h	battle-state block	00329CC0	00329E04	w	movups xmmword ptr [rcx + 5A6Ch], xmm0	
-53EFAh	battle-state block	003266C0	003268CD	w	mov word ptr [r14], r8w	
-53EFEh	battle-state block	003266C0	003269AB	w	mov word ptr [rdi + 2Ah], r13w	
-53EFEh	battle-state block	003266C0	00326A00	w	mov word ptr [rdi + 2Ah], dx	
-53F08h	battle-state block	003266C0	00326742	w	mov word ptr [r14 + 10h], ax	
-53F08h	battle-state block	00329CC0	00329E0B	w	mov word ptr [rcx + 5A7Ch], ax	
-53F0Ah	battle-state block	0031A510	0031A554	r	movzx ecx, byte ptr [rdx + rbx*2 + 5A7Eh]	
-53F0Ah	battle-state block	0031B9F0	0031BA57	r	movzx eax, byte ptr [rax + rdi*2 + 5A7Eh]	
-53F0Ah	battle-state block	0031C4C0	0031C4ED	r	movzx eax, byte ptr [rax + rbx*2 + 5A7Eh]	
-53F0Ah	battle-state block	0031EB20	0031F473	r	movzx ecx, byte ptr [rdx + rax*2 + 5A7Eh]	
-53F0Ah	battle-state block	003266C0	00326720	w	movups xmmword ptr [rdi + 36h], xmm0	
-53F0Ah	battle-state block	00329CC0	00329E12	w	movups xmmword ptr [rcx + 5A7Eh], xmm0	
-53F1Ah	battle-state block	003266C0	00326724	w	mov word ptr [rdi + 46h], ax	
-53F1Ah	battle-state block	00329CC0	00329E19	w	mov word ptr [rcx + 5A8Eh], ax	
-53F1Ch	battle-state block	0031B950	0031B981	r	movzx eax, byte ptr [rax + rbx*2 + 5A90h]	
-53F1Ch	battle-state block	0031B9F0	0031BA3D	r	movzx eax, byte ptr [rax + rdi*2 + 5A90h]	
-53F1Ch	battle-state block	0031C0F0	0031C125	r	movzx ecx, byte ptr [r9 + rbx*2 + 5A90h]	
-53F1Ch	battle-state block	0031C250	0031C2C7	r	movzx edx, byte ptr [rax + rcx*2 + 5A90h]	
-53F1Ch	battle-state block	0031C470	0031C492	r	movzx edx, byte ptr [rax + rbx*2 + 5A90h]	
-53F1Ch	battle-state block	00320230	003202A3	r	movzx ecx, byte ptr [rdx + rbx*2 + 5A90h]	
-53F1Ch	battle-state block	003266C0	003266F4	r	movups xmm0, xmmword ptr [rdi + 48h]	
-53F1Ch	battle-state block	003266C0	00326747	w	movups xmmword ptr [rdi + 48h], xmm0	
-53F1Ch	battle-state block	003266C0	003267F3	w	movups xmmword ptr [rdi + 48h], xmm0	
-53F1Ch	battle-state block	003266C0	003268FD	w	movups xmmword ptr [rdi + 48h], xmm0	
-53F1Ch	battle-state block	003266C0	00326916	r	cmp byte ptr [rdx + rcx*2 + 5A90h], al	
-53F1Ch	battle-state block	003266C0	0032696F	w	mov word ptr [rcx + 36h], r8w	
-53F1Ch	battle-state block	003266C0	00326A25	w	mov word ptr [rdi + rcx*2 + 48h], r13w	
-53F1Ch	battle-state block	00329CC0	00329E20	w	movups xmmword ptr [rcx + 5A90h], xmm0	
-53F1Eh	battle-state block	003266C0	003268DC	w	mov word ptr [r14 + 24h], r8w	
-53F22h	battle-state block	003266C0	003269B0	w	mov word ptr [rdi + 4Eh], dx	
-53F22h	battle-state block	003266C0	00326A0E	w	mov word ptr [rdi + 4Eh], dx	
-53F2Ch	battle-state block	003266C0	00326700	r	movzx r12d, word ptr [rdi + 58h]	
-53F2Ch	battle-state block	003266C0	0032674B	w	mov word ptr [rdi + 58h], ax	
-53F2Ch	battle-state block	003266C0	003267F7	w	mov word ptr [rdi + 58h], r12w	
-53F2Ch	battle-state block	003266C0	00326901	w	mov word ptr [rdi + 58h], r12w	
-53F2Ch	battle-state block	00329CC0	00329E27	w	mov word ptr [rcx + 5AA0h], ax	
-53F30h	battle-state block	003220E0	00322173	w	mov dword ptr [rax + 5AA4h], ecx	
-53F30h	battle-state block	003261D0	0032620A	r	movzx edx, byte ptr [r8 + 5AA4h]	
-53F30h	battle-state block	00326500	00326542	r	movzx ebx, byte ptr [rax + 5AA4h]	
-53F30h	battle-state block	00326620	0032662D	r	movzx ecx, byte ptr [rdx + 5AA4h]	
-53F30h	battle-state block	00326620	003266A3	w	mov dword ptr [rax + 5AA4h], ecx	
-53F30h	battle-state block	003266C0	0032678A	r	movzx ecx, byte ptr [rdx + 5AA4h]	
-53F30h	battle-state block	003266C0	003267E1	r	movzx edx, byte ptr [rax + 5AA4h]	
-53F30h	battle-state block	003266C0	00326846	r	movzx ecx, byte ptr [rdx + 5AA4h]	
-53F30h	battle-state block	003266C0	00326898	r	movzx edx, byte ptr [rax + 5AA4h]	
-53F30h	battle-state block	00326BB0	00326CCD	r	movzx ecx, byte ptr [rax + 5AA4h]	
-53F30h	battle-state block	00327150	0032715D	r	movzx eax, byte ptr [rdx + 5AA4h]	
-53F30h	battle-state block	003271D0	003271D7	r	movzx eax, byte ptr [rax + 5AA4h]	
-53F30h	battle-state block	00327200	00327207	r	movzx edx, byte ptr [r8 + 5AA4h]	
-53F30h	battle-state block	00327240	00327247	r	movzx eax, byte ptr [rdx + 5AA4h]	
-53F30h	battle-state block	003273D0	003274DF	r	movzx ecx, byte ptr [rdx + 5AA4h]	
-53F30h	battle-state block	00327810	00327836	w	mov dword ptr [rax + 5AA4h], ecx	
-53F30h	battle-state block	00327850	0032785A	w	mov dword ptr [rax + 5AA4h], edx	
-53F30h	battle-state block	00327870	003278A4	w	mov dword ptr [rdx + 5AA4h], eax	
-53F30h	battle-state block	00329CC0	00329DC2	w	mov dword ptr [rax + 5AA4h], ecx	
-53F54h	battle-state block	002370C0	0023712E	w	mov dword ptr [rax + 5AC8h], ecx	
-53F54h	battle-state block	00317230	00317243	r	movss xmm1, dword ptr [rcx + 5AC8h]	
-53F54h	battle-state block	00317230	0031726B	w	movss dword ptr [rcx + 5AC8h], xmm1	
-53F54h	battle-state block	00317230	0031728B	r	movss xmm1, dword ptr [rcx + 5AC8h]	
-53F54h	battle-state block	00317230	0031729C	w	movss dword ptr [rcx + 5AC8h], xmm1	
-53F54h	battle-state block	00317230	003172CD	w	mov dword ptr [rax + 5AC8h], 0	
-53F54h	battle-state block	00320D50	00320D57	r	cvttss2si eax, dword ptr [rcx + 5AC8h]	
-53F54h	battle-state block	00322200	00322216	w	mov dword ptr [rax + 5AC8h], ecx	
-53F54h	battle-state block	00329E40	00329E54	w	mov dword ptr [rax + 5AC8h], 0	
-53F58h	battle-state block	002370C0	00237121	w	mov dword ptr [rax + 5ACCh], ecx	
-53F58h	battle-state block	00317230	0031724F	r	add eax, dword ptr [rcx + 5ACCh]	
-53F58h	battle-state block	00317230	0031727C	rw	add dword ptr [rcx + 5ACCh], eax	
-53F58h	battle-state block	00317230	003172AF	r	add eax, dword ptr [rcx + 5ACCh]	
-53F58h	battle-state block	00317230	003172BC	w	mov dword ptr [rcx + 5ACCh], 5F5E0FFh	
-53F58h	battle-state block	00320D50	00320D5F	r	add eax, dword ptr [rcx + 5ACCh]	
-53F58h	battle-state block	00322200	00322209	w	mov dword ptr [rax + 5ACCh], ecx	
-53F58h	battle-state block	00329E40	00329E47	w	mov dword ptr [rax + 5ACCh], ecx	
-53F5Ch	battle-state block	002EF3C0	002EF3E5	r	movups xmm0, xmmword ptr [rax + 5AD0h]	
-53F5Ch	battle-state block	002EF410	002EF44C	w	movups xmmword ptr [rax + 5AD0h], xmm0	
-53F5Ch	battle-state block	002EF510	002EF517	r	movups xmm0, xmmword ptr [rax + 5AD0h]	
-53F5Ch	battle-state block	00306760	00306A44	r	test byte ptr [rax + 5AD0h], 1	
-53F5Ch	battle-state block	00311CF0	00311D5E	rw	and word ptr [rax + 5AD0h], cx	
-53F5Ch	battle-state block	00313600	00313638	rw	or word ptr [rax + 5AD0h], 2	
-53F5Ch	battle-state block	00313730	0031373C	rw	and word ptr [rax + 5AD0h], cx	
-53F5Ch	battle-state block	00313760	0031376B	r	test byte ptr [rax + 5AD0h], 2	
-53F5Ch	battle-state block	00313840	0031388B	rw	and word ptr [rax + 5AD0h], cx	
-53F5Ch	battle-state block	00313840	0031389E	rw	and word ptr [rax + 5AD0h], cx	
-53F5Ch	battle-state block	003138D0	00313973	r	movzx eax, word ptr [rcx + 5AD0h]	
-53F5Ch	battle-state block	003138D0	00313981	rw	xor word ptr [rcx + 5AD0h], ax	
-53F5Ch	battle-state block	003139A0	003139AA	r	xor cx, word ptr [rax + 5AD0h]	
-53F5Ch	battle-state block	003139A0	003139B5	rw	xor word ptr [rax + 5AD0h], cx	
-53F60h	battle-state block	00306760	003067EC	r	movzx r8d, byte ptr [rax + 5AD4h]	
-53F60h	battle-state block	00306760	0030697F	w	mov byte ptr [rax + 5AD4h], cl	
-53F60h	battle-state block	00306760	00306A5B	r	movzx r8d, byte ptr [rax + 5AD4h]	
-53F60h	battle-state block	003137E0	003137E7	r	movzx eax, byte ptr [rax + 5AD4h]	
-53F60h	battle-state block	00313840	0031387D	w	mov byte ptr [rax + 5AD4h], 1Bh	
-53F60h	battle-state block	003139C0	003139C7	w	mov byte ptr [rax + 5AD4h], cl	
-53F61h	battle-state block	00300FC0	0030110B	r	movzx ecx, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00306760	00306966	w	mov byte ptr [rdx + 5AD5h], cl	
-53F61h	battle-state block	0030A970	0030A9D7	r	movzx ecx, byte ptr [r8 + 5AD5h]	
-53F61h	battle-state block	0030AA00	0030AA89	r	movzx ecx, byte ptr [rcx + 5AD5h]	
-53F61h	battle-state block	00310DB0	00310E6C	r	movzx ecx, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00310DB0	00310E84	r	movzx ecx, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00310DB0	00310E9C	r	movzx ecx, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00310DB0	00310EB9	r	movzx edi, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00313730	0031374A	r	movzx ecx, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	003137F0	003137F7	r	movzx eax, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00313800	00313807	r	movzx ecx, byte ptr [rax + 5AD5h]	
-53F61h	battle-state block	00313840	0031386A	w	mov byte ptr [rcx + 5AD5h], 0	
-53F64h	battle-state block	00301AD0	00303543	r	movss xmm0, dword ptr [rax + 5AD8h]	
-53F64h	battle-state block	00306760	003069A8	w	movss dword ptr [rax + 5AD8h], xmm0	
-53F64h	battle-state block	00313600	00313616	r	maxss xmm1, dword ptr [rax + 5AD8h]	
-53F64h	battle-state block	00313760	0031378A	w	mov dword ptr [rcx + 5AD8h], eax	
-53F64h	battle-state block	00313760	003137A3	w	movss dword ptr [rax + 5AD8h], xmm0	
-53F64h	battle-state block	00313820	00313827	r	movss xmm0, dword ptr [rax + 5AD8h]	
-53F64h	battle-state block	00313840	003138AE	w	mov dword ptr [rax + 5AD8h], ecx	
-53F68h	battle-state block	00306760	003069B7	w	movss dword ptr [rax + 5ADCh], xmm0	
-53F68h	battle-state block	00313760	00313784	r	mov eax, dword ptr [rcx + 5ADCh]	
-53F68h	battle-state block	00313830	00313837	r	movss xmm0, dword ptr [rax + 5ADCh]	
-53F68h	battle-state block	00313840	003138BB	w	mov dword ptr [rax + 5ADCh], ecx	
-53F6Ch	battle-state block	002EF3C0	002EF3D3	r	movups xmm0, xmmword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	002EF410	002EF424	w	movups xmmword ptr [rax + 5AE0h], xmm0	
-53F6Ch	battle-state block	00303D90	00303DC6	rw	or dword ptr [rax + 5AE0h], Ch	
-53F6Ch	battle-state block	00303D90	00303E03	r	mov ebx, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00303D90	00303E5C	r	mov eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00303D90	00303E68	r	xor eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00303D90	00303E71	rw	xor dword ptr [rcx + 5AE0h], eax	
-53F6Ch	battle-state block	00303F00	00303F24	r	mov edi, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00303F00	00303F76	r	mov ebx, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00303F00	00303FDD	rw	or dword ptr [rax + 5AE0h], Ch	
-53F6Ch	battle-state block	00303F00	00303FF4	r	xor eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00303F00	00303FFD	rw	xor dword ptr [rcx + 5AE0h], eax	
-53F6Ch	battle-state block	00303F00	00304026	r	mov eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00303F00	00304032	r	xor eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00303F00	0030403B	rw	xor dword ptr [rcx + 5AE0h], eax	
-53F6Ch	battle-state block	00304060	00304115	r	mov ecx, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00304060	00304131	rw	or dword ptr [rax + 5AE0h], 1	
-53F6Ch	battle-state block	00304400	0030440B	rw	and dword ptr [rax + 5AE0h], FFFFFFFEh	
-53F6Ch	battle-state block	00304440	0030444B	r	test byte ptr [rax + 5AE0h], 1	
-53F6Ch	battle-state block	00304440	0030450A	r	mov edi, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00304440	0030456F	r	mov eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00304440	0030457B	r	xor eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00304440	00304584	rw	xor dword ptr [rcx + 5AE0h], eax	
-53F6Ch	battle-state block	003045A0	003045B2	r	mov ebx, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	003045F0	003045F7	r	mov eax, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00304610	00304617	r	mov eax, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00304680	003046A2	r	mov ebx, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00304680	003046F4	r	mov eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00304680	00304700	r	xor eax, dword ptr [rcx + 5AE0h]	
-53F6Ch	battle-state block	00304680	00304709	rw	xor dword ptr [rcx + 5AE0h], eax	
-53F6Ch	battle-state block	00304680	00304718	rw	and dword ptr [rax + 5AE0h], FFFFFFFEh	
-53F6Ch	battle-state block	00304680	00304726	rw	and dword ptr [rax + 5AE0h], FFFFFFF3h	
-53F6Ch	battle-state block	00304770	00304777	r	xor ecx, dword ptr [rax + 5AE0h]	
-53F6Ch	battle-state block	00304770	00304780	rw	xor dword ptr [rax + 5AE0h], ecx	
-53F6Ch	battle-state block	00305080	003050BA	r	test byte ptr [rax + 5AE0h], 2	
-53F6Ch	battle-state block	00306760	00306A23	rw	or dword ptr [rax + 5AE0h], Ch	
-53F70h	battle-state block	00303D90	00303DD4	w	mov dword ptr [rax + 5AE4h], 43340000h	
-53F70h	battle-state block	00304060	003040CE	r	maxss xmm1, dword ptr [rax + 5AE4h]	
-53F70h	battle-state block	00304440	00304468	w	mov dword ptr [rax + 5AE4h], 43340000h	
-53F70h	battle-state block	00304440	00304485	w	movss dword ptr [rax + 5AE4h], xmm0	
-53F70h	battle-state block	00304660	00304667	r	movss xmm0, dword ptr [rax + 5AE4h]	
-53F70h	battle-state block	00304680	00304734	w	mov dword ptr [rax + 5AE4h], esi	
-53F70h	battle-state block	00306760	00306A31	w	mov dword ptr [rax + 5AE4h], 43340000h	
-53F74h	battle-state block	00303F00	00303FB6	w	movss dword ptr [rax + 5AE8h], xmm1	
-53F74h	battle-state block	00304060	003040F3	r	movss xmm1, dword ptr [rax + 5AE8h]	
-53F74h	battle-state block	00304440	0030449E	w	movss dword ptr [rax + 5AE8h], xmm0	
-53F74h	battle-state block	00304670	00304677	r	movss xmm0, dword ptr [rax + 5AE8h]	
-53F74h	battle-state block	00304680	00304741	w	mov dword ptr [rax + 5AE8h], esi	
-53F78h	battle-state block	00303D90	00303E37	w	mov dword ptr [rcx + 5AECh], 0	
-53F78h	battle-state block	00303F00	00303F59	w	mov dword ptr [rcx + 5AECh], esi	
-53F78h	battle-state block	00304440	00304546	w	mov dword ptr [rcx + 5AECh], 0	
-53F78h	battle-state block	00304680	003046D0	w	mov dword ptr [rcx + 5AECh], esi	
-53F78h	battle-state block	00304680	0030474E	w	mov dword ptr [rax + 5AECh], esi	
-53F8Ch	battle-state block	00233C10	00233C9E	w	mov dword ptr [rax + 5B00h], ebx	
-53F8Ch	battle-state block	00385BA0	00385BEA	w	mov dword ptr [rax + 5B00h], ecx	
-53F8Ch	battle-state block	0038EBE0	0038EC70	r	sub edi, dword ptr [rax + 5B00h]	
-53F90h	battle-state block	002EF3C0	002EF3F7	r	mov ecx, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	002EF410	002EF435	w	mov dword ptr [rax + 5B04h], edx	
-53F90h	battle-state block	002EF410	002EF47E	rw	or dword ptr [rax + 5B04h], 2	
-53F90h	battle-state block	002EF410	002EF48C	rw	and dword ptr [rax + 5B04h], FFFFFFFEh	
-53F90h	battle-state block	00303D90	00303D9B	r	mov edx, dword ptr [r8 + 5B04h]	
-53F90h	battle-state block	00303D90	00303DB8	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	00303D90	00303DEB	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	00303EE0	00303EE7	r	mov eax, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	00304140	0030415E	r	test byte ptr [rax + 5B04h], 2	
-53F90h	battle-state block	00306760	00306938	r	mov ecx, dword ptr [rdx + 5B04h]	
-53F90h	battle-state block	00306760	00306949	w	mov dword ptr [rdx + 5B04h], ecx	
-53F90h	battle-state block	00306760	003069FF	r	mov ecx, dword ptr [rdx + 5B04h]	
-53F90h	battle-state block	00306760	00306A16	w	mov dword ptr [rdx + 5B04h], ecx	
-53F90h	battle-state block	00306760	00306A74	r	mov eax, dword ptr [rcx + 5B04h]	
-53F90h	battle-state block	00306760	00306A81	w	mov dword ptr [rcx + 5B04h], eax	
-53F90h	battle-state block	00307200	00307207	r	mov edx, dword ptr [r8 + 5B04h]	
-53F90h	battle-state block	00307200	00307221	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	00307200	0030722C	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	00307240	00307247	r	mov edx, dword ptr [r8 + 5B04h]	
-53F90h	battle-state block	00307240	00307261	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	00307240	0030726C	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	003072A0	003072A7	r	mov eax, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	003072E0	003072E7	r	mov eax, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	0030D9A0	0030D9AB	r	mov ecx, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	0030D9A0	0030D9E9	r	mov ecx, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	0030DA10	0030DA19	w	mov dword ptr [rax + 5B04h], ecx	
-53F90h	battle-state block	00313550	00313557	r	mov edx, dword ptr [r8 + 5B04h]	
-53F90h	battle-state block	00313550	0031356E	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	00313550	0031357D	w	mov dword ptr [r8 + 5B04h], edx	
-53F90h	battle-state block	003135E0	003135E7	r	mov eax, dword ptr [rax + 5B04h]	
-53F90h	battle-state block	00313650	00313657	r	test byte ptr [rax + 5B04h], 1	
-53F90h	battle-state block	00313840	0031384B	r	mov eax, dword ptr [rcx + 5B04h]	
-53F90h	battle-state block	00313840	00313858	w	mov dword ptr [rcx + 5B04h], eax	
-53F90h	battle-state block	00584210	005842C4	rw	and dword ptr [rax + 5B04h], FFFFFFFEh	
-53F90h	battle-state block	00584210	0058438C	rw	and dword ptr [rax + 5B04h], FFFFFFFEh	
-53F90h	battle-state block	005843E0	0058446A	rw	and dword ptr [rax + 5B04h], FFFFFFFDh	
-53F94h	battle-state block	0030D8B0	0030D8DB	r	movsxd rsi, dword ptr [rdx + 5B08h]	
-53F94h	battle-state block	0030D8B0	0030D97C	w	mov dword ptr [rax + 5B08h], edi	
-53F94h	battle-state block	0030DA10	0030DA26	w	mov dword ptr [rax + 5B08h], ecx	
-53F98h	battle-state block	00233C10	00233C83	w	mov word ptr [rax + 5B0Ch], bx	
-53F98h	battle-state block	002FA210	002FA219	w	mov word ptr [rax + 5B0Ch], cx	
-53F98h	battle-state block	0038D970	0038D9DE	r	movzx eax, word ptr [r8 + 5B0Ch]	
-53F98h	battle-state block	0038D970	0038D9F2	w	mov word ptr [r8 + 5B0Ch], dx	
-53F98h	battle-state block	0038DA00	0038DA56	r	movzx eax, word ptr [rcx + 5B0Ch]	
-53F98h	battle-state block	0038DA00	0038DA61	w	mov word ptr [rcx + 5B0Ch], ax	
-53F9Ah	battle-state block	00233C10	00233C91	w	mov byte ptr [rax + 5B0Eh], bl	
-53F9Ah	battle-state block	002FA210	002FA227	w	mov byte ptr [rax + 5B0Eh], cl	
-53F9Ah	battle-state block	00385BA0	00385BD1	w	mov byte ptr [rax + 5B0Eh], cl	
-53F9Ah	battle-state block	00389C60	00389CC4	r	movzx edi, byte ptr [rax + 5B0Eh]	
-53F9Ah	battle-state block	0038EAF0	0038EB03	r	movzx ecx, byte ptr [rax + 5B0Eh]	
-53F9Ch	battle-state block	00235AF0	00235BCC	w	movups xmmword ptr [rcx + 5B10h], xmm0	
-53F9Ch	battle-state block	00235AF0	00235CE0	w	mov word ptr [rbx + r8*4], cx	
-53F9Ch	battle-state block	00235AF0	00235D17	addr	lea rdx, [rbx + r8*4]	
-53F9Ch	battle-state block	00327DE0	00327E2F	addr	lea rdi, [rdx + 5B10h]	
-53F9Ch	battle-state block	00327DE0	00327E6B	r	movzx ebp, word ptr [rdi]	
-53F9Ch	battle-state block	00327F80	00327FBC	addr	lea rsi, [rdx + 5B10h]	
-53F9Ch	battle-state block	00327F80	0032800B	r	movzx ebp, word ptr [rsi]	
-53F9Ch	battle-state block	003282D0	0032830A	addr	lea rdx, [r9 + 5B10h]	
-53F9Ch	battle-state block	003282D0	0032832E	w	movups xmmword ptr [rdx], xmm0	
-53F9Eh	battle-state block	00235AF0	00235B39	r	movzx eax, word ptr [r8 + 5B12h]	
-53F9Eh	battle-state block	00235AF0	00235CEC	w	mov word ptr [rbx + r8*4 + 2], cx	
-53F9Eh	battle-state block	00327DE0	00327E6E	r	movzx r14d, word ptr [rdi + 2]	
-53F9Eh	battle-state block	00327F80	0032800E	r	movzx r14d, word ptr [rsi + 2]	
-53FACh	battle-state block	00235AF0	00235BDB	w	movups xmmword ptr [rcx + 5B20h], xmm1	
-53FACh	battle-state block	003282D0	00328336	w	movups xmmword ptr [rdx + 10h], xmm1	
-53FBCh	battle-state block	00235AF0	00235BEA	w	movups xmmword ptr [rcx + 5B30h], xmm0	
-53FBCh	battle-state block	003282D0	0032833F	w	movups xmmword ptr [rdx + 20h], xmm0	
-53FCCh	battle-state block	00235AF0	00235BF8	w	mov dword ptr [rcx + 5B40h], eax	
-53FCCh	battle-state block	00235AF0	00235CF5	r	movzx ecx, word ptr [rbx + 30h]	
-53FCCh	battle-state block	00235AF0	00235CFE	w	mov word ptr [rbx + 30h], cx	
-53FCCh	battle-state block	00235AF0	00235D2A	r	movzx ecx, word ptr [rbx + 30h]	
-53FCCh	battle-state block	00235AF0	00235D33	w	mov word ptr [rbx + 30h], cx	
-53FCCh	battle-state block	00327DE0	00327E51	addr	lea rax, [rdi + 30h]	
-53FCCh	battle-state block	00327DE0	00327E60	r	movzx eax, word ptr [rax]	
-53FCCh	battle-state block	00327F80	00327FE6	addr	lea rax, [rsi + 30h]	
-53FCCh	battle-state block	00327F80	00328000	r	movzx eax, word ptr [rax]	
-53FCCh	battle-state block	003282D0	00328347	w	mov dword ptr [rdx + 30h], eax	
-53FCEh	battle-state block	00235AF0	00235B29	r	movzx eax, byte ptr [r8 + 5B42h]	
-53FCEh	battle-state block	00235AF0	00235D0F	w	mov byte ptr [rbx + 32h], cl	
-53FCEh	battle-state block	003279B0	003279E7	r	movzx eax, byte ptr [rdx + 5B42h]	
-53FCEh	battle-state block	003279B0	00327A01	w	mov byte ptr [rdx + 5B42h], al	
-557FCh	battle-state block	00327C40	00327C63	r	movsxd rcx, dword ptr [rdx + rax*4 + 7370h]	
-557FCh	battle-state block	00327DE0	00327E27	r	movsxd rcx, dword ptr [rdx + rax*4 + 7370h]	
-557FCh	battle-state block	00327F80	00327FCD	r	movsxd rcx, dword ptr [rdx + rax*4 + 7370h]	
-557FCh	battle-state block	003282D0	00328311	r	movsxd rcx, dword ptr [r9 + rax*4 + 7370h]	
-557FCh	battle-state block	00567AE0	00567B09	r	movsxd r9, dword ptr [rax + r10*4 + 7370h]	
-557FCh	battle-state block	00568230	0056824C	r	movsxd rcx, dword ptr [rax + rdx*4 + 7370h]	
-557FCh	battle-state block	005683F0	0056840C	r	movsxd rcx, dword ptr [rax + rdx*4 + 7370h]	
-557FCh	battle-state block	00568460	00568493	r	movsxd r9, dword ptr [rax + r10*4 + 7370h]	
-557FCh	battle-state block	005685B0	005685E8	r	movsxd r9, dword ptr [rax + r10*4 + 7370h]	
-557FCh	battle-state block	005688D0	005688F9	r	movsxd rcx, dword ptr [rax + rdx*4 + 7370h]	
-557FCh	battle-state block	00568940	0056895C	r	movsxd rcx, dword ptr [rax + rdx*4 + 7370h]	
-557FCh	battle-state block	00568990	005689B3	r	movsxd rdx, dword ptr [rax + r8*4 + 7370h]	
-557FCh	battle-state block	00568A30	00568A4C	r	movsxd rdx, dword ptr [rax + r8*4 + 7370h]	
-557FCh	battle-state block	005691E0	005692C3	r	mov r9d, dword ptr [rax + rcx*4 + 7370h]	
-557FCh	battle-state block	0056A140	0056A176	r	movsxd r8, dword ptr [rax + r9*4 + 7370h]	
-557FCh	battle-state block	0056C3A0	0056C3CE	r	mov edx, dword ptr [rax + rdx*4 + 7370h]	
+0x0	script operand bank	002EF2D0	002EF2E1	addr	lea rcx, [rax + 0x200]	
+0xA00	script globals	002EF390	002EF3A0	r	cmp byte ptr [rax + rbx + 0xc00], 1	
+0x1000	quest ordered bits	0046B0F0	0046B105	r	movzx r8d, byte ptr [rax + rdi + 0x1000]	
+0x1000	quest ordered bits	0046B240	0046B274	r	test byte ptr [rax + rdi + 0x1000], dl	
+0x1000	quest ordered bits	0046B3F0	0046B42D	r	test byte ptr [rax + rdi + 0x1000], bl	
+0x1000	quest ordered bits	0046B3F0	0046B43B	rw	or byte ptr [rax + rdi + 0x1000], bl	
+0x1000	quest ordered bits	0046B3F0	0046B470	rw	and byte ptr [rax + rcx + 0x1000], bl	
+0x1020	quest cleared bits	0046B020	0046B035	r	movzx r8d, byte ptr [rax + rdi + 0x1020]	
+0x1020	quest cleared bits	0046B1A0	0046B1D4	r	test byte ptr [rax + rdi + 0x1020], dl	
+0x1020	quest cleared bits	0046B290	0046B2E8	rw	or byte ptr [rax + rcx + 0x1020], bl	
+0x1020	quest cleared bits	0046B290	0046B33C	rw	and byte ptr [rax + rcx + 0x1020], bl	
+0x1040	quest clear counter	0046B0B0	0046B0B9	r	mov eax, dword ptr [rax + 0x1040]	
+0x1040	quest clear counter	0046B290	0046B2C9	r	cmp dword ptr [rax + 0x1040], 0xffff	
+0x1040	quest clear counter	0046B290	0046B2DA	rw	inc dword ptr [rax + 0x1040]	
+0x1044	zone transition record	00314530	0031456F	r	mov edx, dword ptr [rax + 0x1044]	
+0x1044	zone transition record	003145E0	0031466E	r	mov ecx, dword ptr [rbx + 0x1044]	
+0x1044	zone transition record	003145E0	00314685	w	mov dword ptr [rax + 0x1044], esi	
+0x1044	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 0x1044]	
+0x1044	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg0 from 00377C20 at 00377C24
+0x1044	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 00377C20 at 00377C24
+0x1044	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg2 from 00377C20 at 00377C24
+0x1044	zone transition record	003148F0	003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 00377C20 at 00377C24
+0x1044	zone transition record	00314970	0031498D	w	mov dword ptr [rax + 0x1044], 0xffffffff	
+0x1044	zone transition record	00314DC0	00314DCD	w	mov dword ptr [rax + 0x1044], ebx	
+0x1044	zone transition record	00584210	0058427B	r	mov eax, dword ptr [rbx + 0x1244]	
+0x1044	zone transition record	00584210	00584332	w	mov dword ptr [rbx + 0x1244], eax	
+0x1048	zone transition record	003145E0	00314698	r	mov ecx, dword ptr [rbx + 0x1048]	
+0x1048	zone transition record	003145E0	003146A9	w	mov dword ptr [rax + 0x1048], edi	
+0x1048	zone transition record	003148B0	003148B9	r	mov eax, dword ptr [rax + 0x1048]	
+0x1048	zone transition record	00314970	0031499C	w	mov dword ptr [rax + 0x1048], 0xffffffff	
+0x1048	zone transition record	00314D80	00314D8D	w	mov dword ptr [rax + 0x1048], ebx	
+0x1048	zone transition record	00584210	00584287	r	mov eax, dword ptr [rbx + 0x1248]	
+0x1048	zone transition record	00584210	005842B7	w	mov dword ptr [rbx + 0x1248], esi	
+0x1048	zone transition record	00584210	0058433E	w	mov dword ptr [rbx + 0x1248], eax	
+0x104C	zone transition record	003145E0	00314674	w	mov dword ptr [rax + 0x104c], ecx	
+0x104C	zone transition record	00314870	00314879	r	mov eax, dword ptr [rax + 0x104c]	
+0x104C	zone transition record	00314970	003149AB	w	mov dword ptr [rax + 0x104c], 0	
+0x104C	zone transition record	00584210	00584293	r	mov eax, dword ptr [rbx + 0x124c]	
+0x104C	zone transition record	00584210	0058434A	w	mov dword ptr [rbx + 0x124c], eax	
+0x1050	zone transition record	003145E0	0031469E	w	mov dword ptr [rax + 0x1050], ecx	
+0x1050	zone transition record	00314850	00314859	r	mov eax, dword ptr [rax + 0x1050]	
+0x1050	zone transition record	00314970	003149BA	w	mov dword ptr [rax + 0x1050], 0	
+0x1050	zone transition record	00584210	0058429F	r	mov eax, dword ptr [rbx + 0x1250]	
+0x1050	zone transition record	00584210	00584356	w	mov dword ptr [rbx + 0x1250], eax	
+0x1054	zone transition record	003145E0	003146B6	w	mov dword ptr [rax + 0x1054], ebp	
+0x1054	zone transition record	003148D0	003148D9	r	mov eax, dword ptr [rax + 0x1054]	
+0x1054	zone transition record	00314970	003149C9	w	mov dword ptr [rax + 0x1054], 0	
+0x1054	zone transition record	00314DA0	00314DAD	w	mov dword ptr [rax + 0x1054], ebx	
+0x1054	zone transition record	00584210	005842AB	r	mov eax, dword ptr [rbx + 0x1254]	
+0x1054	zone transition record	00584210	00584362	w	mov dword ptr [rbx + 0x1254], eax	
+0x1058	zone transition record	003145E0	003146C8	w	mov dword ptr [rax + 0x1058], ebx	
+0x105C	zone transition record	00314530	00314586	w	mov dword ptr [rax + 0x105c], edx	
+0x105C	zone transition record	003145E0	003146D3	w	mov dword ptr [rax + 0x105c], esi	
+0x105C	zone transition record	00314910	00314919	r	mov eax, dword ptr [rax + 0x105c]	
+0x1060	zone transition record	0025ACA0	0025ACC1	r	movsx ebx, byte ptr [rax + 0x1060]	
+0x1060	zone transition record	002620E0	00262123	r	movsx eax, byte ptr [rax + 0x1060]	
+0x1060	zone transition record	002620E0	0026214E	r	movsx eax, byte ptr [rax + 0x1060]	
+0x1060	zone transition record	002620E0	0026217C	r	movsx eax, byte ptr [rax + 0x1060]	
+0x1060	zone transition record	00265920	0026593B	r	movsx eax, byte ptr [rax + 0x1060]	
+0x1060	zone transition record	0026D910	0026D95E	w	mov byte ptr [rax + 0x1060], dil	
+0x1060	zone transition record	0026D910	0026D96F	r	movsx ecx, byte ptr [rax + 0x1060]	
+0x1060	zone transition record	0026D910	0026D9BB	r	movzx r9d, byte ptr [rax + 0x1060]	
+0x1061	zone transition record	00268320	0026836C	w	mov byte ptr [rax + 0x1061], 1	
+0x1061	zone transition record	0026D8F0	0026D8F9	w	mov byte ptr [rax + 0x1061], 1	
+0x1061	zone transition record	0026D910	0026D951	r	cmp byte ptr [rax + 0x1061], bl	
+0x1061	zone transition record	0026D910	0026DA92	w	mov byte ptr [rax + 0x1061], 0	
+0x1061	zone transition record	00280140	00280213	w	mov byte ptr [rax + 0x1061], dil	
+0x1062	zone transition record	0026DB30	0026DBF4	r	test byte ptr [rax + 0x1062], 0x20	
+0x1062	zone transition record	00314530	00314563	rw	or byte ptr [rax + 0x1062], 0x20	
+0x1062	zone transition record	003145E0	003146DE	rw	and byte ptr [rax + 0x1062], 0xdf	
+0x1062	zone transition record	003149E0	003149E9	rw	and byte ptr [rax + 0x1062], 0xfb	
+0x1062	zone transition record	00314A00	00314A09	rw	and byte ptr [rax + 0x1062], 0xfe	
+0x1062	zone transition record	00314A00	00314A15	rw	and byte ptr [rax + 0x1062], 0xfd	
+0x1062	zone transition record	00314A00	00314A21	rw	and byte ptr [rax + 0x1062], 0xbf	
+0x1062	zone transition record	00314A00	00314A2D	rw	and byte ptr [rax + 0x1062], 0x7f	
+0x1062	zone transition record	00314A60	00314A69	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314A80	00314A89	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314AA0	00314AA9	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314B00	00314B09	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314B20	00314B29	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314B40	00314B49	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314B60	00314B69	r	movzx eax, byte ptr [rax + 0x1062]	
+0x1062	zone transition record	00314B80	00314B8D	rw	and byte ptr [rax + 0x1062], 0xfe	
+0x1062	zone transition record	00314B80	00314B99	rw	or byte ptr [rax + 0x1062], cl	
+0x1062	zone transition record	00314BB0	00314BBD	rw	and byte ptr [rax + 0x1062], 0xbf	
+0x1062	zone transition record	00314BB0	00314BCC	rw	or byte ptr [rax + 0x1062], cl	
+0x1062	zone transition record	00314BE0	00314BF1	rw	and byte ptr [rax + 0x1062], 0x7f	
+0x1062	zone transition record	00314BE0	00314C0F	rw	or byte ptr [rax + 0x1062], 0x80	
+0x1062	zone transition record	00314C70	00314C7D	rw	and byte ptr [rax + 0x1062], 0xf7	
+0x1062	zone transition record	00314C70	00314C8C	rw	or byte ptr [rax + 0x1062], cl	
+0x1062	zone transition record	00314CA0	00314CAD	rw	and byte ptr [rax + 0x1062], 0xef	
+0x1062	zone transition record	00314CA0	00314CBC	rw	or byte ptr [rax + 0x1062], cl	
+0x1062	zone transition record	00314CD0	00314CDD	rw	and byte ptr [rax + 0x1062], 0xfd	
+0x1062	zone transition record	00314CD0	00314CEB	rw	or byte ptr [rax + 0x1062], cl	
+0x1062	zone transition record	00314D00	00314D0D	rw	and byte ptr [rax + 0x1062], 0xfb	
+0x1062	zone transition record	00314D00	00314D1C	rw	or byte ptr [rax + 0x1062], cl	
+0x1063	zone transition record	0025D9E0	0025DBA8	r	test byte ptr [rax + 0x1063], 0x40	
+0x1063	zone transition record	00261F90	0026201B	r	test byte ptr [rax + 0x1063], 0x40	
+0x1063	zone transition record	002628B0	00262A6A	rw	and byte ptr [rax + 0x1063], 0xbf	
+0x1063	zone transition record	0026A720	0026A731	rw	and byte ptr [rax + 0x1063], 0xbf	
+0x1063	zone transition record	0026A720	0026A74F	rw	or byte ptr [rax + 0x1063], 0x40	
+0x1063	zone transition record	0026DE20	0026DE33	r	test byte ptr [rax + 0x1063], 0x40	
+0x1063	zone transition record	00314A00	00314A39	rw	and byte ptr [rax + 0x1063], 0xcf	
+0x1063	zone transition record	00314A00	00314A45	rw	and byte ptr [rax + 0x1063], 0xfc	
+0x1063	zone transition record	00314A00	00314A51	rw	and byte ptr [rax + 0x1063], 0xf3	
+0x1063	zone transition record	00314AC0	00314AC9	r	movzx eax, byte ptr [rax + 0x1063]	
+0x1063	zone transition record	00314AE0	00314AE9	r	movzx eax, byte ptr [rax + 0x1063]	
+0x1063	zone transition record	00314BE0	00314BFD	rw	and byte ptr [rax + 0x1063], 0xcf	
+0x1063	zone transition record	00314BE0	00314C21	rw	and byte ptr [rax + 0x1063], 0xcf	
+0x1063	zone transition record	00314BE0	00314C28	rw	or byte ptr [rax + 0x1063], bl	
+0x1063	zone transition record	00314C40	00314C50	rw	and byte ptr [rax + 0x1063], 0xfc	
+0x1063	zone transition record	00314C40	00314C57	rw	or byte ptr [rax + 0x1063], bl	
+0x1064	quest scenario flags	0046B180	0046B18E	r	movzx eax, byte ptr [rax + rbx + 0x1064]	
+0x1064	quest scenario flags	0046B490	0046B4A4	w	mov byte ptr [rax + rbx + 0x1064], dil	
+0x1164	quest order field ids	0046B0D0	0046B0DE	r	movzx eax, word ptr [rax + rbx*2 + 0x1164]	
+0x1164	quest order field ids	0046B350	0046B364	w	mov word ptr [rax + rbx*2 + 0x1164], di	
+0x1164	quest order field ids	0046B3F0	0046B44E	w	mov word ptr [rax + rsi*2 + 0x1164], bx	
+0x1364	quest ok bits	0046B1F0	0046B224	r	test byte ptr [rax + rdi + 0x1364], dl	
+0x1364	quest ok bits	0046B380	0046B3B5	rw	or byte ptr [rax + rcx + 0x1364], bl	
+0x1364	quest ok bits	0046B380	0046B3D1	rw	and byte ptr [rax + rcx + 0x1364], bl	
+0x1384	flag bank 64A	0032A9A0	0032A9E4	r	test byte ptr [rax + rdi + 0x1384], dl	
+0x1384	flag bank 64A	0032AC70	0032ACB3	rw	or byte ptr [rax + rcx + 0x1384], bl	
+0x1384	flag bank 64A	0032AC70	0032ACD3	rw	and byte ptr [rax + rcx + 0x1384], bl	
+0x138C	flag bank 64B	0032AA00	0032AA44	r	test byte ptr [rax + rdi + 0x138c], dl	
+0x138C	flag bank 64B	0032ACF0	0032AD33	rw	or byte ptr [rax + rcx + 0x138c], bl	
+0x138C	flag bank 64B	0032ACF0	0032AD53	rw	and byte ptr [rax + rcx + 0x138c], bl	
+0x13B4	flag bank 2048	0032A930	0032A97B	r	test byte ptr [rax + rdi + 0x13b4], dl	
+0x13B4	flag bank 2048	0032ABF0	0032AC36	rw	or byte ptr [rax + rcx + 0x13b4], bl	
+0x13B4	flag bank 2048	0032ABF0	0032AC56	rw	and byte ptr [rax + rcx + 0x13b4], bl	
+0x14B4	flag bank 512	0032AA60	0032AAAB	r	test byte ptr [rax + rdi + 0x14b4], dl	
+0x14B4	flag bank 512	0032AAD0	0032AB1F	r	test byte ptr [rax + rdi + 0x14b4], dl	
+0x14B4	flag bank 512	0032AD70	0032ADB6	rw	or byte ptr [rax + rcx + 0x14b4], bl	
+0x14B4	flag bank 512	0032AD70	0032ADD6	rw	and byte ptr [rax + rcx + 0x14b4], bl	
+0x14B4	flag bank 512	0032ADF0	0032AE3A	rw	or byte ptr [rax + rcx + 0x14b4], bl	
+0x14B4	flag bank 512	0032ADF0	0032AE5A	rw	and byte ptr [rax + rcx + 0x14b4], bl	
+0x14F4	primary flag bank	0032A8A0	0032A900	r	test byte ptr [rax + rbx + 0x14f4], dl	
+0x14F4	primary flag bank	0032AB60	0032ABA8	rw	or byte ptr [rax + rcx + 0x14f4], bl	
+0x14F4	primary flag bank	0032AB60	0032ABC8	rw	and byte ptr [rax + rcx + 0x14f4], bl	
+0x1534	music override	0025D9E0	0025DBB6	r	movzx esi, byte ptr [rax + 0x1534]	
+0x1534	music override	00261F90	00262029	r	movzx edi, byte ptr [rax + 0x1534]	
+0x1534	music override	002628B0	00262A76	w	mov byte ptr [rax + 0x1534], bpl	
+0x1534	music override	0026A720	0026A73D	w	mov byte ptr [rax + 0x1534], 0	
+0x1534	music override	0026A720	0026A75B	w	mov byte ptr [rax + 0x1534], bl	
+0x1534	music override	0026DE20	0026DE41	r	movzx ebx, byte ptr [rax + 0x1534]	
+0x1535	options apply byte	002EF370	002EF37D	w	mov byte ptr [rax + 0x1735], bl	
+0x2000	battle block copy	00229B40	00229BA2	w	movups xmmword ptr [rax - 0x80], xmm0	
+0x2000	battle block copy	00235AF0	00235B00	addr	lea rdx, [rax + 0x2200]	
+0x2000	battle block copy	00235AF0	00235B1C	r	cmp dword ptr [rdx], ecx	
+0x2000	battle block copy	005844A0	00584515	addr	lea rax, [rdi + 0x2200]	
+0x2000	battle block copy	005844A0	00584532	w	movups xmmword ptr [rax - 0x80], xmm0	
+0x2004	battle block copy	00235AF0	00235B24	r	cmp dword ptr [rdx + 4], ecx	
+0x2010	battle block copy	00229B40	00229BAA	w	movups xmmword ptr [rax - 0x70], xmm1	
+0x2010	battle block copy	005844A0	0058453A	w	movups xmmword ptr [rax - 0x70], xmm1	
+0x2020	battle block copy	00229B40	00229BB2	w	movups xmmword ptr [rax - 0x60], xmm0	
+0x2020	battle block copy	005844A0	00584542	w	movups xmmword ptr [rax - 0x60], xmm0	
+0x2030	battle block copy	00229B40	00229BBA	w	movups xmmword ptr [rax - 0x50], xmm1	
+0x2030	battle block copy	005844A0	0058454A	w	movups xmmword ptr [rax - 0x50], xmm1	
+0x2040	battle block copy	00229B40	00229BC2	w	movups xmmword ptr [rax - 0x40], xmm0	
+0x2040	battle block copy	005844A0	00584552	w	movups xmmword ptr [rax - 0x40], xmm0	
+0x2050	battle block copy	00229B40	00229BCA	w	movups xmmword ptr [rax - 0x30], xmm1	
+0x2050	battle block copy	005844A0	0058455A	w	movups xmmword ptr [rax - 0x30], xmm1	
+0x2060	battle block copy	00229B40	00229BD2	w	movups xmmword ptr [rax - 0x20], xmm0	
+0x2060	battle block copy	005844A0	00584562	w	movups xmmword ptr [rax - 0x20], xmm0	
+0x2070	battle block copy	00229B40	00229BDA	w	movups xmmword ptr [rax - 0x10], xmm1	
+0x2070	battle block copy	005844A0	0058456A	w	movups xmmword ptr [rax - 0x10], xmm1	
+0x2080	battle block copy	00229B40	00229B91	addr	lea rax, [rax + 0x80]	
+0x2080	battle block copy	005844A0	00584521	addr	lea rax, [rax + 0x80]	
+0x7B12	battle block copy	00235AF0	00235B41	r	cmp word ptr [rdx + 0x5b12], ax	
+0x7B42	battle block copy	00235AF0	00235B31	r	cmp byte ptr [rdx + 0x5b42], al	
+0x8000	image-backed block	00252E60	00252EB5	addr	lea rdi, [rax + rcx*4]	
+0x8000	image-backed block	00252F70	00252F8F	addr	lea rax, [rax + rcx*4]	
+0x8000	image-backed block	00252FF0	00253020	addr	lea rsi, [rax + rdx*4]	
+0x8000	image-backed block	002530E0	00253145	addr	lea rdi, [rax + rcx*4]	
+0x8000	image-backed block	00253240	002532AB	addr	lea r14, [rcx + rax*4]	
+0x8000	image-backed block	002534C0	00253512	addr	lea r14, [rax + rcx*4]	
+0x8000	image-backed block	002535D0	0025362D	addr	lea r14, [rax + rdx*4]	
+0x8008	image-backed block	00394130	0039423B	w	movups xmmword ptr [rax + 8], xmm0	
+0x8008	image-backed block	00394130	003942CA	r	movups xmm0, xmmword ptr [rax + 8]	
+0x8018	image-backed block	00394130	00394246	w	movups xmmword ptr [rax + 0x18], xmm1	
+0x8018	image-backed block	00394130	003942D5	r	movups xmm1, xmmword ptr [rax + 0x18]	
+0x8028	image-backed block	00394130	00394252	w	movsd qword ptr [rax + 0x28], xmm0	
+0x8028	image-backed block	00394130	003942E0	r	movsd xmm0, qword ptr [rax + 0x28]	
+0x8030	image-backed block	00252610	002526AA	w	mov word ptr [r9 + rax*2 + 0x30], r8w	
+0x8030	image-backed block	002526F0	00252793	r	movsx eax, word ptr [rbp + rax*2 + 0x30]	
+0x8030	image-backed block	002527B0	00252819	w	mov word ptr [r9 + rax*2 + 0x30], r8w	
+0x8030	image-backed block	002527B0	0025282D	w	mov word ptr [r9 + rax*2 + 0x30], r8w	
+0x8030	image-backed block	00253A80	00253B3E	addr	lea rcx, [rbx + 0x30]	
+0x8090	image-backed block	00252610	0025265B	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
+0x8090	image-backed block	00252610	0025266E	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
+0x8090	image-backed block	002526F0	0025273B	r	mov eax, dword ptr [rbp + rax*4 + 0x90]	
+0x8090	image-backed block	002526F0	00252751	r	mov eax, dword ptr [rbp + rax*4 + 0x90]	
+0x8090	image-backed block	002527B0	002527CF	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
+0x8090	image-backed block	002527B0	002527E5	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
+0x8224	image-backed block	002551B0	002551E3	r	movups xmm0, xmmword ptr [rax]	
+0x8224	image-backed block	003C5E50	003C5E8D	w	movups xmmword ptr [rax], xmm0	
+0x8224	image-backed block	003C60F0	003C611D	w	movups xmmword ptr [rax], xmm0	
+0x8224	image-backed block	003C8670	003C869C	w	movups xmmword ptr [rax], xmm0	
+0x8234	image-backed block	002551B0	002551E9	r	movups xmm1, xmmword ptr [rax + 0x10]	
+0x8234	image-backed block	003C5E50	003C5E97	w	movups xmmword ptr [rax + 0x10], xmm1	
+0x8234	image-backed block	003C60F0	003C6127	w	movups xmmword ptr [rax + 0x10], xmm1	
+0x8234	image-backed block	003C8670	003C86A6	w	movups xmmword ptr [rax + 0x10], xmm1	
+0xB244	image-backed block	00252D40	00252D67	rw	and byte ptr [r9 + 0x3244], al	
+0xB244	image-backed block	00252D40	00252D6E	r	movzx eax, byte ptr [r9 + 0x3244]	
+0xB244	image-backed block	00252D40	00252D7D	w	mov byte ptr [r9 + 0x3244], al	
+0xB244	image-backed block	00253480	002534AA	rw	and byte ptr [rax + 0x3244], 1	
+0xB244	image-backed block	00253A80	00253B1C	rw	and byte ptr [rax + 0x3244], 1	
+0xB244	image-backed block	00253A80	00253B47	addr	lea rcx, [rbx + 0x3244]	
+0xB245	image-backed block	00253480	002534B1	rw	and byte ptr [rax + 0x3245], 0xfe	
+0xB245	image-backed block	00253A80	00253B23	rw	and byte ptr [rax + 0x3245], 0xfe	
+0xB2C4	image-backed block	00253A80	00253B5D	w	mov qword ptr [rbx + 0x32c4], rax	
+0xB2C4	image-backed block	00254E00	00254E27	rw	and byte ptr [r9 + 0x32c4], al	
+0xB2C4	image-backed block	00254E00	00254E2E	r	movzx eax, byte ptr [r9 + 0x32c4]	
+0xB2C4	image-backed block	00254E00	00254E3D	w	mov byte ptr [r9 + 0x32c4], al	
+0xB2CC	image-backed block	003154B0	003154FD	r	movzx edx, byte ptr [rax + rcx + 0x32cc]	
+0xB2CC	image-backed block	00315910	00315965	r	movzx ebx, byte ptr [rax + rdi + 0x32cc]	
+0xB2CC	image-backed block	00315910	00315975	w	mov byte ptr [rax + rdi + 0x32cc], bl	
+0xB2CC	image-backed block	00315910	00315994	r	movzx ebx, byte ptr [rax + rdi + 0x32cc]	
+0xB2CC	image-backed block	00315910	003159A4	w	mov byte ptr [rax + rdi + 0x32cc], bl	
+0xB30C	image-backed block	003156E0	00315737	r	movzx edx, byte ptr [rax + rcx + 0x330c]	
+0xB30C	image-backed block	00315B50	00315BA4	r	movzx ebx, byte ptr [rax + rdi + 0x330c]	
+0xB30C	image-backed block	00315B50	00315BB8	w	mov byte ptr [rax + rdi + 0x330c], bl	
+0xB30C	image-backed block	00315B50	00315BCC	w	mov byte ptr [rax + rdi + 0x330c], bl	
+0xB34C	image-backed block	00315620	00315647	r	movzx edx, byte ptr [rax + rcx + 0x334c]	
+0xB34C	image-backed block	00315A20	00315A4B	r	movzx ebx, byte ptr [rax + rdi + 0x334c]	
+0xB34C	image-backed block	00315A20	00315A60	r	movzx ebx, byte ptr [rax + rdi + 0x334c]	
+0xB34C	image-backed block	00315A20	00315A70	w	mov byte ptr [rax + rdi + 0x334c], bl	
+0xB36C	image-backed block	00315470	00315493	r	movzx eax, byte ptr [rax + rcx + 0x336c]	
+0xB36C	image-backed block	00315CD0	00315D00	r	movzx ebx, byte ptr [rax + rbp + 0x336c]	
+0xB36C	image-backed block	00315CD0	00315D29	w	mov byte ptr [rax + rbp + 0x336c], bl	
+0xB3F4	image-backed block	003156E0	0031577E	r	movzx edx, byte ptr [rax + rcx + 0x33f4]	
+0xB3F4	image-backed block	00315B50	00315BF2	r	movzx ebx, byte ptr [rax + rdi + 0x33f4]	
+0xB3F4	image-backed block	00315B50	00315C06	w	mov byte ptr [rax + rdi + 0x33f4], bl	
+0xB3F4	image-backed block	00315B50	00315C1A	w	mov byte ptr [rax + rdi + 0x33f4], bl	
+0xB404	image-backed block	00315420	00315440	r	cmp byte ptr [rax + rbx + 0x3404], 0	
+0xB404	image-backed block	00315420	0031545C	r	movzx eax, byte ptr [rax + rbx + 0x3404]	
+0xB404	image-backed block	00315820	0031583E	r	cmp byte ptr [rax + rsi + 0x3404], 0	
+0xB404	image-backed block	00315820	0031584D	r	cmp byte ptr [rax + rsi + 0x3404], 0	
+0xB404	image-backed block	00315820	00315861	r	movzx ebx, byte ptr [rax + rsi + 0x3404]	
+0xB404	image-backed block	00315820	0031588E	w	mov byte ptr [rax + rsi + 0x3404], bl	
+0xB404	image-backed block	00315A90	00315AA8	r	cmp byte ptr [rax + rbx + 0x3404], 0	
+0xB404	image-backed block	00315A90	00315AB7	w	mov byte ptr [rax + rbx + 0x3404], 1	
+0xB404	image-backed block	00316930	003169E0	r	cmp byte ptr [rax + rsi + 0x3404], bl	
+0xB404	image-backed block	00316930	003169EE	r	movzx edx, byte ptr [rax + rsi + 0x3404]	
+0xB404	image-backed block	00316930	00316A0C	w	mov byte ptr [rax + rsi + 0x3404], 2	
+0xB604	image-backed block	00315670	00315697	r	movzx r8d, byte ptr [rax + rbx + 0x3604]	
+0xB604	image-backed block	003156E0	003157B7	r	test byte ptr [rax + rdi + 0x3604], dl	
+0xB604	image-backed block	00315AD0	00315B06	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
+0xB604	image-backed block	00315AD0	00315B1D	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
+0xB604	image-backed block	00315AD0	00315B2D	w	mov byte ptr [rax + rsi + 0x3604], bl	
+0xB604	image-backed block	00315B50	00315C43	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
+0xB604	image-backed block	00315B50	00315C55	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
+0xB604	image-backed block	00315B50	00315C65	w	mov byte ptr [rax + rsi + 0x3604], bl	
+0xB844	image-backed block	003154B0	00315612	r	movzx edx, byte ptr [rax + rcx + 0x3844]	
+0xB844	image-backed block	00315910	003159D9	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
+0xB844	image-backed block	00315910	003159EE	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
+0xB844	image-backed block	00315910	003159FE	w	mov byte ptr [rax + rdi + 0x3844], bl	
+0xB844	image-backed block	00315E90	00315EC5	r	movzx r8d, byte ptr [rax + rdx + 0x3844]	
+0xB844	image-backed block	00315E90	00316059	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
+0xB844	image-backed block	00315E90	00316069	w	mov byte ptr [rax + rdi + 0x3844], bl	
+0xB844	image-backed block	00316670	003166AF	r	movzx edx, byte ptr [rcx + rax + 0x3844]	
+0xB844	image-backed block	00316A50	00316ACB	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
+0xB844	image-backed block	00316A50	00316ADB	w	mov byte ptr [rax + rdi + 0x3844], bl	
+0xB844	image-backed block	00316A50	00316B28	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
+0xB844	image-backed block	00316A50	00316B38	w	mov byte ptr [rax + rdi + 0x3844], bl	
+0xB845	image-backed block	00316440	00316449	r	movzx ecx, byte ptr [rax + 0x3845]	
+0xB848	image-backed block	003156E0	00315805	r	movzx edx, byte ptr [rax + rcx + 0x3848]	
+0xB848	image-backed block	00315B50	00315C8E	r	movzx ebx, byte ptr [rax + rdi + 0x3848]	
+0xB848	image-backed block	00315B50	00315CA7	w	mov byte ptr [rax + rdi + 0x3848], bl	
+0xB84C	image-backed block	003162E0	0031631C	addr	lea ecx, [rax + 0x384c]	
+0xB84C	image-backed block	003162E0	00316353	r	mov ebx, dword ptr [rax]	
+0xB84C	image-backed block	003162E0	0031635F	r	movsx ebx, word ptr [rax]	
+0xB84C	image-backed block	003166F0	00316705	addr	lea edx, [rax + 0x384c]	
+0xB84C	image-backed block	003166F0	0031673B	r	mov ebx, dword ptr [rax]	
+0xB84C	image-backed block	003166F0	00316750	r	movsx ebx, word ptr [rax]	
+0xB84C	image-backed block	00316810	00316878	addr	lea edx, [rax + 0x384c]	
+0xB84C	image-backed block	00316810	0031689D	w	mov dword ptr [rax], 0x7ffffffe	
+0xB84C	image-backed block	00316810	003168B3	w	mov word ptr [rax], r15w	
+0xB84C	image-backed block	00316810	003168CB	addr	lea edx, [rax + 0x384c]	
+0xB84C	image-backed block	00316810	003168F0	w	mov dword ptr [rax], ebp	
+0xB84C	image-backed block	00316810	003168FC	w	mov word ptr [rax], bp	
+0xB84C	image-backed block	00316BF0	00316C04	addr	lea r8d, [rax + 0x384c]	
+0xB84C	image-backed block	00316BF0	00316C30	w	mov dword ptr [rax], ebx	
+0xB84C	image-backed block	00316BF0	00316C45	w	mov word ptr [rax], bx	
+0xB84C	image-backed block	00316C60	00316C79	addr	lea edx, [rax + 0x384c]	
+0xB84C	image-backed block	00316C60	00316CA3	w	mov dword ptr [rax], 0x1869f	
+0xB84C	image-backed block	00316C60	00316CBC	w	mov word ptr [rcx], ax	
+0xB868	image-backed block	00315390	003153A4	r	mov ebx, dword ptr [rax]	
+0xC7B8	image-backed block	00250270	002502D9	r	cmp dword ptr [rdx + r10*4 + 0x47b8], eax	
+0xC7B8	image-backed block	00250270	002503D9	r	cmp r15d, dword ptr [rdx + r10*4 + 0x47b8]	
+0xC7B8	image-backed block	00252FA0	00252FD7	r	mov eax, dword ptr [rax + rcx*4 + 0x47b8]	
+0xC7E8	image-backed block	002542B0	002542D1	r	mov r11, qword ptr [rax + 0x47e8]	
+0xC7E8	image-backed block	00254CC0	00254D06	rw	add qword ptr [rbx + 0x47e8], rcx	
+0xC7E8	image-backed block	00254CC0	00254D0F	r	mov rax, qword ptr [rbx + 0x47e8]	
+0xC7E8	image-backed block	00254CC0	00254D1D	w	mov qword ptr [rbx + 0x47e8], rax	
+0xC7E8	image-backed block	00255040	00255047	w	mov qword ptr [rax + 0x47e8], 0	
+0xE000	checksum	00583D60	00583F99	w	mov dword ptr [rdi + 0xe200], eax	
+0xE040	group bank A	00229B40	00229CDF	addr	lea rcx, [rdi + 0xe240]	
+0xE040	group bank A	0025D8E0	0025D901	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 00229B40 at 00229CE6
+0xE040	group bank A	00269A20	00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 00584210 at 00584368
+0xE040	group bank A	00584210	0058432B	addr	lea rcx, [rbx + 0xe240]	
+0xE040	group bank A	005843E0	00584428	addr	lea rcx, [rdi + 0xe240]	
+0xE040	group bank A	005844A0	005844DA	addr	lea rcx, [rax + 0xe240]	
+0xE040	group bank A	00584580	00584597	addr	lea rcx, [rbx + 0xe240]	
+0xE050	group bank A	0025D8E0	0025D909	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 00229B40 at 00229CE6
+0xE050	group bank A	00269A20	00269A45	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0 from 00584210 at 00584368
+0xE060	group bank A	0025D8E0	0025D911	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 00229B40 at 00229CE6
+0xE060	group bank A	00269A20	00269A4D	r	movups xmm0, xmmword ptr [rcx - 0x60]	arg0 from 00584210 at 00584368
+0xE070	group bank A	0025D8E0	0025D919	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 00229B40 at 00229CE6
+0xE070	group bank A	00269A20	00269A55	r	movups xmm1, xmmword ptr [rcx - 0x50]	arg0 from 00584210 at 00584368
+0xE080	group bank A	0025D8E0	0025D921	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 00229B40 at 00229CE6
+0xE080	group bank A	00269A20	00269A5D	r	movups xmm0, xmmword ptr [rcx - 0x40]	arg0 from 00584210 at 00584368
+0xE090	group bank A	0025D8E0	0025D929	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 00229B40 at 00229CE6
+0xE090	group bank A	00269A20	00269A65	r	movups xmm1, xmmword ptr [rcx - 0x30]	arg0 from 00584210 at 00584368
+0xE0A0	group bank A	0025D8E0	0025D931	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 00229B40 at 00229CE6
+0xE0A0	group bank A	00269A20	00269A6D	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0 from 00584210 at 00584368
+0xE0B0	group bank A	0025D8E0	0025D939	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 00229B40 at 00229CE6
+0xE0B0	group bank A	00269A20	00269A75	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0 from 00584210 at 00584368
+0xE0C0	group bank A	0025D8E0	0025D8F0	addr	lea rcx, [rcx + 0x80]	arg0 from 00229B40 at 00229CE6
+0xE0C0	group bank A	00269A20	00269A3A	addr	lea rcx, [rcx + 0x80]	arg0 from 00584210 at 00584368
+0xE240	spawn-keep image A	00229B40	00229CEB	addr	lea rcx, [rdi + 0xe440]	
+0xE240	spawn-keep image A	00233440	00233530	w	mov word ptr [rbx], ax	arg0 from 00229B40 at 00229CF2
+0xE240	spawn-keep image A	00233550	002335B9	r	movzx eax, word ptr [rcx]	arg0 from 005843E0 at 0058443B
+0xE240	spawn-keep image A	005843E0	00584434	addr	lea rcx, [rdi + 0xe440]	
+0xE240	spawn-keep image A	00584580	005845A3	addr	lea rcx, [rbx + 0xe440]	
+0xE242	spawn-keep image A	00233440	0023353A	w	mov word ptr [rbx + 2], ax	arg0 from 00229B40 at 00229CF2
+0xE242	spawn-keep image A	00233550	002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 005843E0 at 0058443B
+0xE250	spawn-keep image A	00233440	00233468	addr	lea rdx, [rbx + 0x10]	arg0 from 00229B40 at 00229CF2
+0xE250	spawn-keep image A	00233440	00233481	w	movups xmmword ptr [rdx - 0x80], xmm0	arg0 from 00229B40 at 00229CF2
+0xE250	spawn-keep image A	00233550	0023355C	addr	lea rdx, [rcx + 0x10]	arg0 from 005843E0 at 0058443B
+0xE250	spawn-keep image A	00233550	0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 005843E0 at 0058443B
+0xE260	spawn-keep image A	00233440	00233489	w	movups xmmword ptr [rdx - 0x70], xmm1	arg0 from 00229B40 at 00229CF2
+0xE260	spawn-keep image A	00233550	0023357B	r	movups xmm1, xmmword ptr [rdx - 0x70]	arg0 from 005843E0 at 0058443B
+0xE270	spawn-keep image A	00233440	00233491	w	movups xmmword ptr [rdx - 0x60], xmm0	arg0 from 00229B40 at 00229CF2
+0xE270	spawn-keep image A	00233550	00233583	r	movups xmm0, xmmword ptr [rdx - 0x60]	arg0 from 005843E0 at 0058443B
+0xE280	spawn-keep image A	00233440	00233499	w	movups xmmword ptr [rdx - 0x50], xmm1	arg0 from 00229B40 at 00229CF2
+0xE280	spawn-keep image A	00233550	0023358B	r	movups xmm1, xmmword ptr [rdx - 0x50]	arg0 from 005843E0 at 0058443B
+0xE290	spawn-keep image A	00233440	002334A1	w	movups xmmword ptr [rdx - 0x40], xmm0	arg0 from 00229B40 at 00229CF2
+0xE290	spawn-keep image A	00233550	00233593	r	movups xmm0, xmmword ptr [rdx - 0x40]	arg0 from 005843E0 at 0058443B
+0xE2A0	spawn-keep image A	00233440	002334A9	w	movups xmmword ptr [rdx - 0x30], xmm1	arg0 from 00229B40 at 00229CF2
+0xE2A0	spawn-keep image A	00233550	0023359B	r	movups xmm1, xmmword ptr [rdx - 0x30]	arg0 from 005843E0 at 0058443B
+0xE2B0	spawn-keep image A	00233440	002334B1	w	movups xmmword ptr [rdx - 0x20], xmm0	arg0 from 00229B40 at 00229CF2
+0xE2B0	spawn-keep image A	00233550	002335A3	r	movups xmm0, xmmword ptr [rdx - 0x20]	arg0 from 005843E0 at 0058443B
+0xE2C0	spawn-keep image A	00233440	002334B9	w	movups xmmword ptr [rdx - 0x10], xmm1	arg0 from 00229B40 at 00229CF2
+0xE2C0	spawn-keep image A	00233550	002335AB	r	movups xmm1, xmmword ptr [rdx - 0x10]	arg0 from 005843E0 at 0058443B
+0xE2D0	spawn-keep image A	00233440	00233470	addr	lea rdx, [rdx + 0x80]	arg0 from 00229B40 at 00229CF2
+0xE2D0	spawn-keep image A	00233550	00233570	addr	lea rdx, [rdx + 0x80]	arg0 from 005843E0 at 0058443B
+0x1E250	spawn-keep image A	00233440	002334CF	addr	lea rcx, [rbx + 0x10010]	arg0 from 00229B40 at 00229CF2
+0x1E250	spawn-keep image A	00233440	002334E7	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 00229B40 at 00229CF2
+0x1E260	spawn-keep image A	00233440	002334EF	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 00229B40 at 00229CF2
+0x1E270	spawn-keep image A	00233440	002334F7	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 00229B40 at 00229CF2
+0x1E280	spawn-keep image A	00233440	002334FF	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 00229B40 at 00229CF2
+0x1E290	spawn-keep image A	00233440	00233507	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 00229B40 at 00229CF2
+0x1E2A0	spawn-keep image A	00233440	0023350F	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 00229B40 at 00229CF2
+0x1E2B0	spawn-keep image A	00233440	00233517	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 00229B40 at 00229CF2
+0x1E2C0	spawn-keep image A	00233440	0023351F	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 00229B40 at 00229CF2
+0x1E2D0	spawn-keep image A	00233440	002334D6	addr	lea rcx, [rcx + 0x80]	arg0 from 00229B40 at 00229CF2
+0x2E250	group bank B	00229B40	00229CCA	addr	lea rcx, [rdi + 0x2e450]	
+0x2E250	group bank B	0025D8E0	0025D901	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 00229B40 at 00229CD1
+0x2E250	group bank B	00269A20	00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 005843E0 at 00584452
+0x2E250	group bank B	005843E0	0058444B	addr	lea rcx, [rdi + 0x2e450]	
+0x2E260	group bank B	0025D8E0	0025D909	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 00229B40 at 00229CD1
+0x2E260	group bank B	00269A20	00269A45	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0 from 005843E0 at 00584452
+0x2E270	group bank B	0025D8E0	0025D911	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 00229B40 at 00229CD1
+0x2E270	group bank B	00269A20	00269A4D	r	movups xmm0, xmmword ptr [rcx - 0x60]	arg0 from 005843E0 at 00584452
+0x2E280	group bank B	0025D8E0	0025D919	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 00229B40 at 00229CD1
+0x2E280	group bank B	00269A20	00269A55	r	movups xmm1, xmmword ptr [rcx - 0x50]	arg0 from 005843E0 at 00584452
+0x2E290	group bank B	0025D8E0	0025D921	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 00229B40 at 00229CD1
+0x2E290	group bank B	00269A20	00269A5D	r	movups xmm0, xmmword ptr [rcx - 0x40]	arg0 from 005843E0 at 00584452
+0x2E2A0	group bank B	0025D8E0	0025D929	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 00229B40 at 00229CD1
+0x2E2A0	group bank B	00269A20	00269A65	r	movups xmm1, xmmword ptr [rcx - 0x30]	arg0 from 005843E0 at 00584452
+0x2E2B0	group bank B	0025D8E0	0025D931	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 00229B40 at 00229CD1
+0x2E2B0	group bank B	00269A20	00269A6D	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0 from 005843E0 at 00584452
+0x2E2C0	group bank B	0025D8E0	0025D939	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 00229B40 at 00229CD1
+0x2E2C0	group bank B	00269A20	00269A75	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0 from 005843E0 at 00584452
+0x2E2D0	group bank B	0025D8E0	0025D8F0	addr	lea rcx, [rcx + 0x80]	arg0 from 00229B40 at 00229CD1
+0x2E2D0	group bank B	00269A20	00269A3A	addr	lea rcx, [rcx + 0x80]	arg0 from 005843E0 at 00584452
+0x2E450	spawn-keep image B	00229B40	00229CD6	addr	lea rcx, [rdi + 0x2e650]	
+0x2E450	spawn-keep image B	00233550	002335B9	r	movzx eax, word ptr [rcx]	arg0 from 005843E0 at 0058445E
+0x2E450	spawn-keep image B	005843E0	00584457	addr	lea rcx, [rdi + 0x2e650]	
+0x2E452	spawn-keep image B	00233550	002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 005843E0 at 0058445E
+0x2E460	spawn-keep image B	00233550	0023355C	addr	lea rdx, [rcx + 0x10]	arg0 from 005843E0 at 0058445E
+0x2E460	spawn-keep image B	00233550	0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 005843E0 at 0058445E
+0x2E470	spawn-keep image B	00233550	0023357B	r	movups xmm1, xmmword ptr [rdx - 0x70]	arg0 from 005843E0 at 0058445E
+0x2E480	spawn-keep image B	00233550	00233583	r	movups xmm0, xmmword ptr [rdx - 0x60]	arg0 from 005843E0 at 0058445E
+0x2E490	spawn-keep image B	00233550	0023358B	r	movups xmm1, xmmword ptr [rdx - 0x50]	arg0 from 005843E0 at 0058445E
+0x2E4A0	spawn-keep image B	00233550	00233593	r	movups xmm0, xmmword ptr [rdx - 0x40]	arg0 from 005843E0 at 0058445E
+0x2E4B0	spawn-keep image B	00233550	0023359B	r	movups xmm1, xmmword ptr [rdx - 0x30]	arg0 from 005843E0 at 0058445E
+0x2E4C0	spawn-keep image B	00233550	002335A3	r	movups xmm0, xmmword ptr [rdx - 0x20]	arg0 from 005843E0 at 0058445E
+0x2E4D0	spawn-keep image B	00233550	002335AB	r	movups xmm1, xmmword ptr [rdx - 0x10]	arg0 from 005843E0 at 0058445E
+0x2E4E0	spawn-keep image B	00233550	00233570	addr	lea rdx, [rdx + 0x80]	arg0 from 005843E0 at 0058445E
+0x4E460	transition metadata	00229B40	00229CF7	addr	lea rcx, [rdi + 0x4e660]	
+0x4E460	transition metadata	002EF540	002EF547	w	movups xmmword ptr [rcx], xmm0	arg0 from 00229B40 at 00229CFE
+0x4E460	transition metadata	00584210	00584371	addr	lea rcx, [rbx + 0x4e660]	
+0x4E460	transition metadata	005843E0	0058441C	addr	lea rcx, [rdi + 0x4e660]	
+0x4E460	transition metadata	005843E0	00584471	r	movzx eax, byte ptr [rdi + 0x4e660]	
+0x4E460	transition metadata	00584580	005845AF	addr	lea rcx, [rbx + 0x4e660]	
+0x4E460	transition metadata	00584580	005845C2	w	mov dword ptr [rbx + 0x4e660], eax	
+0x4E464	transition metadata	002EF3C0	002EF3C9	w	mov dword ptr [rcx + 4], eax	arg0 from 00584580 at 005845B6
+0x4E464	transition metadata	003145E0	00314731	w	mov dword ptr [rax + 0x4e664], ecx	
+0x4E468	transition metadata	002EF3C0	002EF3DA	w	movups xmmword ptr [rcx + 8], xmm0	arg0 from 00584580 at 005845B6
+0x4E468	transition metadata	002EF410	002EF420	r	movups xmm0, xmmword ptr [rcx + 8]	arg0 from 00584210 at 00584378
+0x4E468	transition metadata	002EF410	002EF45D	r	test byte ptr [rbx + 8], 1	arg0 from 00584210 at 00584378
+0x4E46C	transition metadata	002EF410	002EF463	r	movss xmm0, dword ptr [rbx + 0xc]	arg0 from 00584210 at 00584378
+0x4E470	transition metadata	002EF410	002EF46D	r	movss xmm0, dword ptr [rbx + 0x10]	arg0 from 00584210 at 00584378
+0x4E470	transition metadata	002EF540	002EF551	w	movups xmmword ptr [rcx + 0x10], xmm1	arg0 from 00229B40 at 00229CFE
+0x4E478	transition metadata	002EF3C0	002EF3EC	w	movups xmmword ptr [rcx + 0x18], xmm0	arg0 from 00584580 at 005845B6
+0x4E478	transition metadata	002EF410	002EF43B	r	test byte ptr [rcx + 0x18], 2	arg0 from 00584210 at 00584378
+0x4E478	transition metadata	002EF410	002EF441	r	movups xmm0, xmmword ptr [rcx + 0x18]	arg0 from 00584210 at 00584378
+0x4E480	transition metadata	002EF410	002EF453	r	movss xmm0, dword ptr [rcx + 0x20]	arg0 from 00584210 at 00584378
+0x4E480	transition metadata	002EF540	002EF55D	w	movsd qword ptr [rcx + 0x20], xmm0	arg0 from 00229B40 at 00229CFE
+0x4E488	transition metadata	002EF3C0	002EF3FD	w	mov dword ptr [rdx + 0x28], ecx	arg0 from 00584580 at 005845B6
+0x4E488	transition metadata	002EF410	002EF432	r	mov edx, dword ptr [rcx + 0x28]	arg0 from 00584210 at 00584378
+0x4E488	transition metadata	002EF540	002EF568	w	mov dword ptr [rcx + 0x28], eax	arg0 from 00229B40 at 00229CFE
+0x4E48C	battle-state block	00229B40	00229B81	addr	lea rdx, [rax + 0x4e68c]	
+0x4E48C	battle-state block	00229B40	00229B98	r	movups xmm0, xmmword ptr [rcx]	
+0x4E48C	battle-state block	00229B40	00229BE4	addr	lea rax, [rdi + 0x4e68c]	
+0x4E48C	battle-state block	00229B40	00229BF7	r	movups xmm0, xmmword ptr [rdx]	
+0x4E48C	battle-state block	00229B40	00229C01	w	movups xmmword ptr [rax - 0x80], xmm0	
+0x4E48C	battle-state block	00235AF0	00235B19	r	mov ecx, dword ptr [r8]	
+0x4E48C	battle-state block	002370C0	002370DF	w	mov dword ptr [rax], 0x5071901	
+0x4E48C	battle-state block	0030AA00	0030AA39	r	cmp word ptr [rax + rbp], r15w	
+0x4E48C	battle-state block	00327C40	00327C81	r	movups xmm0, xmmword ptr [rax]	
+0x4E48C	battle-state block	005691E0	005699FE	addr	lea r8, [rax + rcx*4]	
+0x4E48C	battle-state block	005691E0	00569AFF	addr	lea r8, [rax + rcx*4]	
+0x4E48C	battle-state block	005844A0	00584504	addr	lea rbx, [rax + 0x4e68c]	
+0x4E48C	battle-state block	005844A0	0058450B	r	cmp byte ptr [rbx], 0	
+0x4E48C	battle-state block	005844A0	00584528	r	movups xmm0, xmmword ptr [rbx]	
+0x4E490	battle-state block	00233C10	00233CA6	rw	and dword ptr [rax + 4], 0xffffefff	
+0x4E490	battle-state block	00235AF0	00235B20	r	mov ecx, dword ptr [r8 + 4]	
+0x4E490	battle-state block	00236740	00236747	r	mov eax, dword ptr [rax + 4]	
+0x4E490	battle-state block	00236760	00236767	r	mov eax, dword ptr [rax + 4]	
+0x4E490	battle-state block	00236780	00236787	r	mov eax, dword ptr [rax + 4]	
+0x4E490	battle-state block	00239960	002399D7	r	mov ebx, dword ptr [rax + 4]	
+0x4E490	battle-state block	00239960	002399FB	rw	or dword ptr [rax + 4], 0x2000	
+0x4E490	battle-state block	00239960	00239A04	rw	and dword ptr [rax + 4], 0xffffdfff	
+0x4E490	battle-state block	00239960	00239A18	rw	or dword ptr [rax + 4], 0x4000	
+0x4E490	battle-state block	00239960	00239A21	rw	and dword ptr [rax + 4], 0xffffbfff	
+0x4E490	battle-state block	00239960	00239A35	rw	or dword ptr [rax + 4], 0x1000	
+0x4E490	battle-state block	00239960	00239A3E	rw	and dword ptr [rax + 4], 0xffffefff	
+0x4E490	battle-state block	00239960	00239A56	rw	or dword ptr [rax + 4], 0x2000	
+0x4E490	battle-state block	00239960	00239A77	rw	or dword ptr [rax + 4], 0x4000	
+0x4E490	battle-state block	0023A2C0	0023A2CB	rw	or dword ptr [rax + 4], 0x2000	
+0x4E490	battle-state block	0023A2C0	0023A2D3	rw	and dword ptr [rax + 4], 0xffffdfff	
+0x4E490	battle-state block	0023A390	0023A39B	rw	or dword ptr [rax + 4], 0x1000	
+0x4E490	battle-state block	0023A390	0023A3A3	rw	and dword ptr [rax + 4], 0xffffefff	
+0x4E490	battle-state block	003008A0	003009C1	rw	or dword ptr [rax + 4], 0x100	
+0x4E490	battle-state block	003008A0	003009D4	rw	or dword ptr [rax + 4], 0x80	
+0x4E490	battle-state block	003008A0	003009E7	rw	or dword ptr [rax + 4], 0x40	
+0x4E490	battle-state block	003008A0	003009F7	rw	or dword ptr [rax + 4], 1	
+0x4E490	battle-state block	003008A0	00300B5A	rw	or dword ptr [rcx + 4], eax	
+0x4E490	battle-state block	00311B20	00311BD7	rw	or dword ptr [rax + 4], 0x800	
+0x4E490	battle-state block	00318CD0	00318D21	r	test dword ptr [rax + 4], ecx	
+0x4E490	battle-state block	00318CD0	00318DA5	r	test byte ptr [rax + 4], 0x41	
+0x4E490	battle-state block	00318CD0	00318DD4	r	test byte ptr [rax + 4], 1	
+0x4E490	battle-state block	00318CD0	00318E46	r	test byte ptr [rax + 4], 0x40	
+0x4E490	battle-state block	00318CD0	00318EEE	r	test dword ptr [rax + 4], 0x180	
+0x4E490	battle-state block	00318CD0	00318F01	r	test dword ptr [rax + 4], 0x100	
+0x4E490	battle-state block	00318CD0	00318F74	r	test byte ptr [rax + 4], 0x80	
+0x4E490	battle-state block	0031EB20	0031EBDA	r	test dword ptr [rax + 4], 0x800	
+0x4E494	battle-state block	00239960	00239D89	rw	or dword ptr [rbx], 4	
+0x4E494	battle-state block	00239960	00239D94	rw	and dword ptr [rbx], 0xfffffffb	
+0x4E494	battle-state block	00309B40	00309B53	r	mov eax, dword ptr [rax]	
+0x4E494	battle-state block	00311AF0	00311B06	rw	or dword ptr [rax], 4	
+0x4E494	battle-state block	00311AF0	00311B0F	rw	and dword ptr [rax], 0xfffffffb	
+0x4E494	battle-state block	00317480	00317548	r	test byte ptr [rax], 0x10	
+0x4E494	battle-state block	0031A410	0031A48B	addr	lea rdi, [rsi + r14*2]	
+0x4E494	battle-state block	0031A510	0031A568	addr	lea rsi, [rdx + 8]	
+0x4E494	battle-state block	0031A510	0031A5B3	addr	lea rdi, [rsi + r15*2]	
+0x4E494	battle-state block	0031AC00	0031AC44	addr	lea r8, [rdx + 8]	
+0x4E494	battle-state block	0031BAC0	0031BBC0	addr	lea rbx, [rdx + 8]	
+0x4E494	battle-state block	0031C0F0	0031C136	addr	lea rdi, [r9 + 8]	
+0x4E494	battle-state block	0031EB20	0031F487	addr	lea rbp, [rdx + 8]	
+0x4E494	battle-state block	00323630	00323646	addr	lea rdx, [rax + 8]	
+0x4E494	battle-state block	00323670	00323686	addr	lea rdx, [rax + 8]	
+0x4E494	battle-state block	003236B0	003236C6	addr	lea rdx, [rax + 8]	
+0x4E494	battle-state block	00324280	003242B2	addr	lea rcx, [r10 + 8]	
+0x4E494	battle-state block	00324280	003242BB	r	test byte ptr [rcx], 8	
+0x4E494	battle-state block	00326110	00326193	addr	lea r9, [r10 + 8]	
+0x4E494	battle-state block	00326D60	003270CE	addr	lea rdi, [rax + 8]	
+0x4E494	battle-state block	00327150	0032716B	addr	lea rdi, [rdx + 8]	
+0x4E494	battle-state block	00327240	0032725F	addr	lea rax, [rdx + 8]	
+0x4E494	battle-state block	003273D0	0032750A	addr	lea rsi, [rdx + 8]	
+0x4E494	battle-state block	00327930	00327949	addr	lea r9, [r8 + 8]	
+0x4E494	battle-state block	003282D0	003282F2	addr	lea r11, [r9 + 8]	
+0x4E494	battle-state block	003288F0	0032896B	addr	lea r8, [r9 + 8]	
+0x4E494	battle-state block	00328B20	00328B9F	addr	lea r8, [r9 + 8]	
+0x4E498	battle-state block	002371B0	0023721F	r	cmp byte ptr [rax + 4], 6	
+0x4E498	battle-state block	002372E0	0023735F	r	cmp byte ptr [rax + 4], 6	
+0x4E498	battle-state block	002F9F20	002F9F88	r	movzx r12d, byte ptr [rax + 4]	
+0x4E498	battle-state block	00304180	003041CD	r	movzx ecx, byte ptr [rax + 4]	
+0x4E498	battle-state block	00304180	00304241	r	cmp byte ptr [rbx + 4], 6	
+0x4E498	battle-state block	0030A7C0	0030A838	r	cmp byte ptr [rbx + 4], 6	
+0x4E498	battle-state block	0030D160	0030D231	r	movzx ecx, byte ptr [rax + 4]	
+0x4E498	battle-state block	0030FAA0	0030FB8A	r	movzx eax, byte ptr [rax + 4]	
+0x4E498	battle-state block	0030FBE0	0030FC0A	r	movzx ecx, byte ptr [rax + 4]	
+0x4E498	battle-state block	0030FD10	0030FD6E	r	cmp byte ptr [rbx + 4], 6	
+0x4E498	battle-state block	00317480	00317553	r	cmp byte ptr [rax + 4], 6	
+0x4E498	battle-state block	0031EB20	0031F507	r	movzx ecx, byte ptr [rbp + 4]	
+0x4E498	battle-state block	0031EB20	0031F8D1	r	cmp byte ptr [rcx + 4], 6	
+0x4E498	battle-state block	0031EB20	0031F8DF	r	movzx eax, byte ptr [rcx + 4]	
+0x4E498	battle-state block	00323630	00323655	r	cmp byte ptr [rdx + 4], 6	
+0x4E498	battle-state block	00323670	00323695	r	cmp byte ptr [rdx + 4], 6	
+0x4E498	battle-state block	003236B0	003236D5	r	cmp byte ptr [rdx + 4], 6	
+0x4E498	battle-state block	003236F0	00323716	r	cmp byte ptr [r8 + 4], 6	
+0x4E498	battle-state block	00323740	00323766	r	cmp byte ptr [r8 + 4], 6	
+0x4E498	battle-state block	003242F0	00324315	r	cmp byte ptr [rdx + 4], 6	
+0x4E498	battle-state block	00327930	00327960	r	movzx ecx, byte ptr [r9 + 4]	
+0x4E498	battle-state block	0050FD00	0050FD24	r	movzx edx, byte ptr [rax + 4]	
+0x4E498	battle-state block	0050FF20	0050FF66	r	cmp byte ptr [rax + 4], 0x1a	
+0x4E498	battle-state block	0050FF20	0050FF70	r	movzx eax, byte ptr [rax + 4]	
+0x4E498	battle-state block	0050FF20	0050FF83	r	movzx eax, byte ptr [rdx + 4]	
+0x4E499	battle-state block	002371B0	00237214	r	cmp byte ptr [rax + 5], 0	
+0x4E499	battle-state block	002372E0	00237354	r	cmp byte ptr [rax + 5], 0	
+0x4E499	battle-state block	00304180	003041C1	r	movzx ecx, byte ptr [rax + 5]	
+0x4E499	battle-state block	00304180	0030423B	r	cmp byte ptr [rbx + 5], bpl	
+0x4E499	battle-state block	0030A7C0	0030A832	r	cmp byte ptr [rbx + 5], 0	
+0x4E499	battle-state block	0030FAA0	0030FB84	r	cmp byte ptr [rax + 5], 0	
+0x4E499	battle-state block	0030FBE0	0030FC04	r	cmp byte ptr [rax + 5], dil	
+0x4E499	battle-state block	0030FD10	0030FD68	r	cmp byte ptr [rbx + 5], 0	
+0x4E499	battle-state block	00317480	0031754D	r	cmp byte ptr [rax + 5], dil	
+0x4E499	battle-state block	0031EB20	0031F8C5	r	movzx eax, byte ptr [rcx + 5]	
+0x4E499	battle-state block	00323630	0032364F	r	cmp byte ptr [rdx + 5], 0	
+0x4E499	battle-state block	00323670	0032368F	r	cmp byte ptr [rdx + 5], 0	
+0x4E499	battle-state block	003236B0	003236CF	r	cmp byte ptr [rdx + 5], 0	
+0x4E499	battle-state block	003236F0	0032370F	r	cmp byte ptr [r8 + 5], 0	
+0x4E499	battle-state block	00323740	0032375F	r	cmp byte ptr [r8 + 5], 0	
+0x4E499	battle-state block	003242F0	0032430F	r	cmp byte ptr [rdx + 5], 0	
+0x4E499	battle-state block	00327930	00327952	r	cmp byte ptr [r9 + 5], 0	
+0x4E499	battle-state block	00328BD0	00328CDC	r	cmp byte ptr [rdx + 5], 0	
+0x4E499	battle-state block	0050FF20	0050FF54	r	movzx ecx, byte ptr [rax + 5]	
+0x4E49C	battle-state block	00229B40	00229BA6	r	movups xmm1, xmmword ptr [rcx - 0x70]	
+0x4E49C	battle-state block	00229B40	00229C05	r	movups xmm1, xmmword ptr [rdx - 0x70]	
+0x4E49C	battle-state block	00229B40	00229C09	w	movups xmmword ptr [rax - 0x70], xmm1	
+0x4E49C	battle-state block	00327C40	00327C88	r	movups xmm1, xmmword ptr [rax + 0x10]	
+0x4E49C	battle-state block	005844A0	00584536	r	movups xmm1, xmmword ptr [rbx - 0x70]	
+0x4E4AC	battle-state block	00229B40	00229BAE	r	movups xmm0, xmmword ptr [rcx - 0x60]	
+0x4E4AC	battle-state block	00229B40	00229C0D	r	movups xmm0, xmmword ptr [rdx - 0x60]	
+0x4E4AC	battle-state block	00229B40	00229C11	w	movups xmmword ptr [rax - 0x60], xmm0	
+0x4E4AC	battle-state block	00327C40	00327C91	r	movups xmm0, xmmword ptr [rax + 0x20]	
+0x4E4AC	battle-state block	005844A0	0058453E	r	movups xmm0, xmmword ptr [rbx - 0x60]	
+0x4E4B4	battle-state block	00239960	00239BF6	w	mov byte ptr [rbx + 0x20], cl	
+0x4E4B4	battle-state block	00328BD0	00328D4A	w	mov byte ptr [rdi + 0x20], dl	
+0x4E4BC	battle-state block	00229B40	00229BB6	r	movups xmm1, xmmword ptr [rcx - 0x50]	
+0x4E4BC	battle-state block	00229B40	00229C15	r	movups xmm1, xmmword ptr [rdx - 0x50]	
+0x4E4BC	battle-state block	00229B40	00229C19	w	movups xmmword ptr [rax - 0x50], xmm1	
+0x4E4BC	battle-state block	00239960	00239CD8	r	movsx eax, word ptr [rbx + 0x28]	
+0x4E4BC	battle-state block	00327C40	00327C9A	r	mov ecx, dword ptr [rax + 0x30]	
+0x4E4BC	battle-state block	0050FE20	0050FE50	r	movsx edx, word ptr [rax + 0x28]	
+0x4E4BC	battle-state block	005844A0	00584546	r	movups xmm1, xmmword ptr [rbx - 0x50]	
+0x4E4C0	battle-state block	003064F0	00306511	addr	lea ecx, [rax + 0x2c]	
+0x4E4CB	battle-state block	00328BD0	00328D44	w	mov byte ptr [rdi + 0x37], dl	
+0x4E4CC	battle-state block	00229B40	00229BBE	r	movups xmm0, xmmword ptr [rcx - 0x40]	
+0x4E4CC	battle-state block	00229B40	00229C1D	r	movups xmm0, xmmword ptr [rdx - 0x40]	
+0x4E4CC	battle-state block	00229B40	00229C21	w	movups xmmword ptr [rax - 0x40], xmm0	
+0x4E4CC	battle-state block	005844A0	0058454E	r	movups xmm0, xmmword ptr [rbx - 0x40]	
+0x4E4D0	battle-state block	002371B0	00237228	r	or eax, dword ptr [rcx + 0x3c]	
+0x4E4D0	battle-state block	002372E0	00237368	r	or eax, dword ptr [rcx + 0x3c]	
+0x4E4D0	battle-state block	00304180	00304227	r	or ecx, dword ptr [rax + 0x3c]	
+0x4E4D0	battle-state block	0030A6E0	0030A722	r	or eax, dword ptr [rcx + 0x3c]	
+0x4E4D0	battle-state block	0030A7C0	0030A819	r	or eax, dword ptr [rbx + 0x3c]	
+0x4E4D0	battle-state block	0030C300	0030C347	r	or eax, dword ptr [rbp + 0x3c]	
+0x4E4D0	battle-state block	0030FD10	0030FD54	r	or ecx, dword ptr [rax + 0x3c]	
+0x4E4D0	battle-state block	00310DB0	0031118A	r	or ecx, dword ptr [rax + 0x3c]	
+0x4E4D0	battle-state block	00312280	00312377	r	or ecx, dword ptr [rax + 0x3c]	
+0x4E4D0	battle-state block	0031AC00	0031AC58	r	or eax, dword ptr [r8 + 0x3c]	
+0x4E4D0	battle-state block	00321F10	00321FBE	r	or eax, dword ptr [rdx + 0x3c]	
+0x4E4D0	battle-state block	003266C0	00326B77	r	or eax, dword ptr [rdx + 0x3c]	
+0x4E4D0	battle-state block	0050FD50	0050FD77	r	or edx, dword ptr [rax + 0x3c]	
+0x4E4D0	battle-state block	0050FED0	0050FEFA	r	or edx, dword ptr [rax + 0x3c]	
+0x4E4DC	battle-state block	00229B40	00229BC6	r	movups xmm1, xmmword ptr [rcx - 0x30]	
+0x4E4DC	battle-state block	00229B40	00229C25	r	movups xmm1, xmmword ptr [rdx - 0x30]	
+0x4E4DC	battle-state block	00229B40	00229C29	w	movups xmmword ptr [rax - 0x30], xmm1	
+0x4E4DC	battle-state block	0050FD50	0050FD80	r	mov edx, dword ptr [rax + 0x48]	
+0x4E4DC	battle-state block	0050FDD0	0050FDF4	r	mov edx, dword ptr [rax + 0x48]	
+0x4E4DC	battle-state block	005844A0	00584556	r	movups xmm1, xmmword ptr [rbx - 0x30]	
+0x4E4E0	battle-state block	00239960	00239D7F	w	mov word ptr [rbx + 0x4c], dx	
+0x4E4E0	battle-state block	0050FE80	0050FEA4	r	movsx edx, word ptr [rax + 0x4c]	
+0x4E4E2	battle-state block	00328BD0	00328D47	w	mov byte ptr [rdi + 0x4e], dl	
+0x4E4E4	battle-state block	002F9F20	002F9F8D	r	movzx eax, word ptr [rax + 0x50]	
+0x4E4E4	battle-state block	0030A4E0	0030A565	r	cmp ax, word ptr [rbp + 0x50]	
+0x4E4E4	battle-state block	0030A4E0	0030A688	r	movzx eax, word ptr [rbp + 0x50]	
+0x4E4E4	battle-state block	0030A4E0	0030A6A6	addr	lea rax, [rbp + 0x50]	
+0x4E4E4	battle-state block	0030FBE0	0030FC1F	r	movsd xmm0, qword ptr [rax + 0x50]	
+0x4E4E4	battle-state block	00317B70	00317B9A	addr	lea rdx, [rcx + 0x50]	
+0x4E4E4	battle-state block	0031A410	0031A468	addr	lea rdx, [rsi + 0x50]	
+0x4E4E4	battle-state block	0031A410	0031A47D	r	movzx ebx, word ptr [rsi + r14*2 + 0x50]	
+0x4E4E4	battle-state block	0031A410	0031A49C	addr	lea rcx, [rsi + 0x50]	
+0x4E4E4	battle-state block	0031A510	0031A586	addr	lea rdx, [rsi + 0x50]	
+0x4E4E4	battle-state block	0031A510	0031A5A5	r	movzx ebx, word ptr [rsi + r15*2 + 0x50]	
+0x4E4E4	battle-state block	0031A510	0031A5C4	addr	lea rcx, [rsi + 0x50]	
+0x4E4E4	battle-state block	0031C0F0	0031C173	addr	lea rcx, [rdi + 0x50]	
+0x4E4E4	battle-state block	003231F0	0032322A	addr	lea rdi, [rdx + 0x50]	
+0x4E4E4	battle-state block	003231F0	0032322E	r	movzx ecx, word ptr [rdi]	
+0x4E4E6	battle-state block	002F9F20	002F9F94	r	movzx eax, word ptr [r13 + 0x52]	
+0x4E4E6	battle-state block	0030A4E0	0030A585	r	cmp r15w, word ptr [rbp + 0x52]	
+0x4E4E6	battle-state block	0030A4E0	0030A67F	r	movzx eax, word ptr [rbp + 0x52]	
+0x4E4E8	battle-state block	002F9F20	002F9F9D	r	movzx eax, word ptr [r13 + 0x54]	
+0x4E4E8	battle-state block	0030A4E0	0030A59A	r	cmp r12w, word ptr [rbp + 0x54]	
+0x4E4EA	battle-state block	002F9F20	002F9FA6	r	movzx eax, word ptr [r13 + 0x56]	
+0x4E4EA	battle-state block	0030A4E0	0030A5A8	r	cmp r13w, word ptr [rbp + 0x56]	
+0x4E4EC	battle-state block	00229B40	00229BCE	r	movups xmm0, xmmword ptr [rcx - 0x20]	
+0x4E4EC	battle-state block	00229B40	00229C2D	r	movups xmm0, xmmword ptr [rdx - 0x20]	
+0x4E4EC	battle-state block	00229B40	00229C31	w	movups xmmword ptr [rax - 0x20], xmm0	
+0x4E4EC	battle-state block	002F9F20	002F9FAF	r	movzx eax, word ptr [r13 + 0x58]	
+0x4E4EC	battle-state block	0030A4E0	0030A5BA	r	cmp ax, word ptr [rbp + 0x58]	
+0x4E4EC	battle-state block	0030FBE0	0030FC16	r	movzx ecx, word ptr [rax + 0x58]	
+0x4E4EC	battle-state block	005844A0	0058455E	r	movups xmm0, xmmword ptr [rbx - 0x20]	
+0x4E4EE	battle-state block	0030FBE0	0030FC24	w	movsd qword ptr [rax + 0x5a], xmm0	
+0x4E4F6	battle-state block	0030FBE0	0030FC29	w	mov word ptr [rax + 0x62], cx	
+0x4E4F8	battle-state block	002371B0	00237225	r	mov eax, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	002372E0	00237365	r	mov eax, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	00304180	00304224	r	mov ecx, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	0030A6E0	0030A71F	r	mov eax, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	0030A7C0	0030A816	r	mov eax, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	0030C300	0030C344	r	mov eax, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	0030FD10	0030FD51	r	mov ecx, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	00310DB0	00311187	r	mov ecx, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	00312280	00312374	r	mov ecx, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	0031AC00	0031AC54	r	mov eax, dword ptr [r8 + 0x64]	
+0x4E4F8	battle-state block	00321F10	00321FBB	r	mov eax, dword ptr [rdx + 0x64]	
+0x4E4F8	battle-state block	003266C0	00326B74	r	mov eax, dword ptr [rdx + 0x64]	
+0x4E4F8	battle-state block	0050FD50	0050FD74	r	mov edx, dword ptr [rax + 0x64]	
+0x4E4F8	battle-state block	0050FED0	0050FEF4	r	mov edx, dword ptr [rax + 0x64]	
+0x4E4FC	battle-state block	00229B40	00229BD6	r	movups xmm1, xmmword ptr [rcx - 0x10]	
+0x4E4FC	battle-state block	00229B40	00229C35	r	movups xmm1, xmmword ptr [rdx - 0x10]	
+0x4E4FC	battle-state block	00229B40	00229C39	w	movups xmmword ptr [rax - 0x10], xmm1	
+0x4E4FC	battle-state block	00328BD0	00328D30	w	mov byte ptr [rax - 0x10], 0	
+0x4E4FC	battle-state block	005844A0	00584566	r	movups xmm1, xmmword ptr [rbx - 0x10]	
+0x4E500	battle-state block	00239960	00239CC4	r	cmp byte ptr [rbx + 0x6c], sil	
+0x4E500	battle-state block	0050FE20	0050FE44	r	cmp byte ptr [rax + 0x6c], 0	
+0x4E50C	battle-state block	00229B40	00229B9B	addr	lea rcx, [rcx + 0x80]	
+0x4E50C	battle-state block	00229B40	00229BF0	addr	lea rax, [rax + 0x80]	
+0x4E50C	battle-state block	00229B40	00229BFA	addr	lea rdx, [rdx + 0x80]	
+0x4E50C	battle-state block	00328BD0	00328D23	addr	lea rax, [rdi + 0x78]	
+0x4E50C	battle-state block	00328BD0	00328D34	w	mov byte ptr [rax], 0	
+0x4E50C	battle-state block	005844A0	0058452B	addr	lea rbx, [rbx + 0x80]	
+0x4E50D	battle-state block	00328BD0	00328D37	addr	lea rax, [rax + 1]	
+0x4E510	battle-state block	00239960	00239CCE	r	cmp byte ptr [rbx + 0x7c], sil	
+0x4E510	battle-state block	0050FE20	0050FE4A	r	cmp byte ptr [rax + 0x7c], 0	
+0x4E51C	battle-state block	00327BE0	00327BFF	r	movups xmm0, xmmword ptr [r8 + 0x88]	
+0x4E52C	battle-state block	00327BE0	00327C0A	r	movups xmm1, xmmword ptr [r8 + 0x98]	
+0x4E53C	battle-state block	00327BE0	00327C16	r	movups xmm0, xmmword ptr [r8 + 0xa8]	
+0x4E54C	battle-state block	00327BE0	00327C22	r	mov eax, dword ptr [r8 + 0xb8]	
+0x4E54E	battle-state block	00328BD0	00328CE2	r	movzx eax, byte ptr [rdx + 0xba]	
+0x4E54E	battle-state block	00328BD0	00328CF5	w	mov byte ptr [rdx + 0xba], al	
+0x4E624	battle-state block	00239960	00239C05	w	mov dword ptr [rbx + 0x190], esi	
+0x4E628	battle-state block	00239960	00239C0D	w	mov qword ptr [rbx + 0x194], rax	
+0x4E630	battle-state block	00239960	00239C17	w	mov qword ptr [rbx + 0x19c], rax	
+0x4E638	battle-state block	00239960	00239C1E	w	mov qword ptr [rbx + 0x1a4], rax	
+0x4E640	battle-state block	00239960	00239C25	w	mov qword ptr [rbx + 0x1ac], rax	
+0x4E648	battle-state block	00239960	00239C2C	w	mov qword ptr [rbx + 0x1b4], rax	
+0x4E650	battle-state block	00239960	00239C33	w	mov dword ptr [rbx + 0x1bc], eax	
+0x4E654	battle-state block	00239960	00239C39	w	mov word ptr [rbx + 0x1c0], ax	
+0x4E656	battle-state block	0030C620	0030C63F	r	movzx eax, byte ptr [rax + 0x1c2]	
+0x4E656	battle-state block	00317480	00317580	r	cmp byte ptr [rax + 0x1c2], cl	
+0x4E657	battle-state block	00293310	0029379D	r	movzx ecx, byte ptr [rbx + 0x1c3]	
+0x4E657	battle-state block	00293FE0	002943D6	r	movzx ecx, byte ptr [rbx + 0x1c3]	
+0x4E657	battle-state block	00294B50	00294F4A	r	movzx ecx, byte ptr [rbx + 0x1c3]	
+0x4E657	battle-state block	00295390	00295560	r	movzx ecx, byte ptr [rbx + 0x1c3]	
+0x4E657	battle-state block	00295900	00295AD7	r	movzx ecx, byte ptr [rbx + 0x1c3]	
+0x4E657	battle-state block	00323670	0032369B	r	movzx eax, byte ptr [rdx + 0x1c3]	
+0x4E657	battle-state block	00323740	00323772	w	mov byte ptr [r8 + 0x1c3], dl	
+0x4E657	battle-state block	003242F0	0032431B	r	movzx eax, byte ptr [rdx + 0x1c3]	
+0x4E657	battle-state block	00328BD0	00328C16	r	movsx r8d, byte ptr [rdi + 0x1c3]	
+0x4E657	battle-state block	00328BD0	00328D52	w	mov word ptr [rdi + 0x1c3], 0xffff	
+0x4E657	battle-state block	0032A7A0	0032A7C6	r	cmp byte ptr [rax + 0x1c3], 0xff	
+0x4E658	battle-state block	00293310	002937B0	r	movzx ecx, byte ptr [rbx + 0x1c4]	
+0x4E658	battle-state block	00293FE0	002943EA	r	movzx ecx, byte ptr [rbx + 0x1c4]	
+0x4E658	battle-state block	00294B50	00294F5E	r	movzx ecx, byte ptr [rbx + 0x1c4]	
+0x4E658	battle-state block	00295390	00295573	r	movzx ecx, byte ptr [rbx + 0x1c4]	
+0x4E658	battle-state block	00295900	00295AEA	r	movzx ecx, byte ptr [rbx + 0x1c4]	
+0x4E658	battle-state block	00323630	0032365B	r	movzx eax, byte ptr [rdx + 0x1c4]	
+0x4E658	battle-state block	003236F0	00323722	w	mov byte ptr [r8 + 0x1c4], dl	
+0x4E658	battle-state block	003242F0	0032432A	r	movzx ecx, byte ptr [rdx + 0x1c4]	
+0x4E658	battle-state block	00328BD0	00328C28	r	movsx r8d, byte ptr [rdi + 0x1c4]	
+0x4E658	battle-state block	0032A7A0	0032A7CF	r	cmp byte ptr [rax + 0x1c4], 0xff	
+0x4E659	battle-state block	003236B0	003236DB	r	movzx eax, byte ptr [rdx + 0x1c5]	
+0x4E659	battle-state block	003236F0	00323729	w	mov byte ptr [r8 + 0x1c5], dl	
+0x4E659	battle-state block	00323740	00323779	w	mov byte ptr [r8 + 0x1c5], dl	
+0x4E659	battle-state block	003242F0	00324336	r	cmp byte ptr [rdx + 0x1c5], al	
+0x4E659	battle-state block	003242F0	00324341	w	mov byte ptr [rdx + 0x1c5], al	
+0x4E659	battle-state block	003242F0	0032434B	w	mov byte ptr [rdx + 0x1c5], al	
+0x4E659	battle-state block	00328BD0	00328D5D	w	mov byte ptr [rdi + 0x1c5], 0xff	
+0x52BD4	battle-state block	0030FBE0	0030FC67	r	movzx eax, word ptr [rcx + rdx*2 + 0x4748]	
+0x52C54	battle-state block	0030FBE0	0030FCC7	r	movzx eax, word ptr [rcx + rdx*2 + 0x47c8]	
+0x53410	battle-state block	0030FAA0	0030FAE7	r	movsx edx, word ptr [rax + rcx*2 + 0x4f84]	
+0x53410	battle-state block	0030FBE0	0030FC6F	w	mov word ptr [rcx + rdx*2 + 0x4f84], ax	
+0x53490	battle-state block	0030FAA0	0030FB37	r	movsx edx, word ptr [rax + rcx*2 + 0x5004]	
+0x53490	battle-state block	0030FBE0	0030FCCF	w	mov word ptr [rcx + rdx*2 + 0x5004], ax	
+0x53E54	battle-state block	0030B180	0030B203	rw	and byte ptr [rsi + 0x59c8], 0xfd	
+0x53E54	battle-state block	0030B270	0030B345	r	test byte ptr [rdi + 0x59c8], 1	
+0x53E54	battle-state block	0030B270	0030B352	r	test byte ptr [rdi + 0x59c8], 2	
+0x53E54	battle-state block	0030B270	0030B461	rw	or byte ptr [rdi + 0x59c8], 3	
+0x53E54	battle-state block	0031C5D0	0031DA69	r	movzx eax, byte ptr [r14 + 0x59c8]	
+0x53E54	battle-state block	0031C5D0	0031DA7A	r	movzx ecx, byte ptr [r14 + 0x59c8]	
+0x53E54	battle-state block	0031C5D0	0031DA8E	r	movzx eax, byte ptr [r14 + 0x59c8]	
+0x53ED4	battle-state block	0030A970	0030A994	r	cmp word ptr [r8 + 0x5a48], r9w	
+0x53ED4	battle-state block	003170E0	00317100	r	cmp byte ptr [rcx + rax*2 + 0x5a48], sil	
+0x53ED4	battle-state block	003172E0	00317310	r	cmp byte ptr [rdx + rax*2 + 0x5a48], dil	
+0x53ED4	battle-state block	003172E0	00317343	r	movups xmm0, xmmword ptr [r8 + 0x5a48]	
+0x53ED4	battle-state block	0031B9F0	0031BAAA	r	movzx eax, byte ptr [rax + rdi*2 + 0x5a48]	
+0x53ED4	battle-state block	00320890	003208A3	r	cmp byte ptr [r8 + rax*2 + 0x5a48], dl	
+0x53ED4	battle-state block	00326110	00326129	r	movups xmm0, xmmword ptr [r10 + 0x5a48]	
+0x53ED4	battle-state block	003261D0	00326220	r	cmp byte ptr [r8 + rax*2 + 0x5a48], dl	
+0x53ED4	battle-state block	003266C0	00326714	r	movups xmm0, xmmword ptr [rdi]	
+0x53ED4	battle-state block	003266C0	003267A0	r	cmp byte ptr [rdx + rax*2 + 0x5a48], cl	
+0x53ED4	battle-state block	003266C0	00326857	r	cmp byte ptr [rdx + rax*2 + 0x5a48], cl	
+0x53ED4	battle-state block	00327200	00327220	r	cmp byte ptr [r8 + rax*2 + 0x5a48], dl	
+0x53ED4	battle-state block	003273D0	003274F0	r	cmp byte ptr [rdx + rax*2 + 0x5a48], cl	
+0x53ED4	battle-state block	00327870	00327899	r	movzx eax, byte ptr [rdx + rbx*2 + 0x5a48]	
+0x53ED4	battle-state block	003286E0	00328701	r	cmp byte ptr [rdx + rax*2 + 0x5a48], cl	
+0x53ED4	battle-state block	003286E0	00328751	r	movups xmm0, xmmword ptr [rax + 0x5a48]	
+0x53ED4	battle-state block	003287A0	003287D0	r	cmp byte ptr [rdx + rax*2 + 0x5a48], sil	
+0x53ED4	battle-state block	003287A0	00328805	r	movups xmm0, xmmword ptr [rdx + 0x5a48]	
+0x53ED4	battle-state block	003288F0	00328910	r	cmp byte ptr [r9 + rax*2 + 0x5a48], cl	
+0x53ED4	battle-state block	003288F0	00328938	r	movups xmm0, xmmword ptr [r9 + 0x5a48]	
+0x53ED4	battle-state block	00328B20	00328B44	r	cmp byte ptr [r9 + rax*2 + 0x5a48], dl	
+0x53ED4	battle-state block	00328B20	00328B6C	r	movups xmm0, xmmword ptr [r9 + 0x5a48]	
+0x53ED4	battle-state block	00328DB0	00328EB0	r	cmp byte ptr [r11 + rax*2 + 0x5a48], dl	
+0x53ED4	battle-state block	00328DB0	00328EED	r	movups xmm0, xmmword ptr [r11 + 0x5a48]	
+0x53ED4	battle-state block	00329080	003290E4	r	movzx ecx, byte ptr [rdx + rsi*2 + 0x5a48]	
+0x53ED4	battle-state block	00329080	00329122	w	mov word ptr [rdx + rsi*2 + 0x5a48], di	
+0x53ED4	battle-state block	00329080	00329176	w	mov word ptr [rdx + rsi*2 + 0x5a48], di	
+0x53ED4	battle-state block	00329CC0	00329DE3	r	movups xmm0, xmmword ptr [rcx + 0x5a48]	
+0x53ED6	battle-state block	0030A970	0030A9A7	r	cmp word ptr [r8 + 0x5a4a], r9w	
+0x53ED8	battle-state block	0030A970	0030A9B8	r	cmp word ptr [r8 + 0x5a4c], r9w	
+0x53EDA	battle-state block	0030A970	0030A9C7	r	cmp word ptr [r8 + 0x5a4e], r9w	
+0x53EE4	battle-state block	003172E0	00317352	r	movzx eax, word ptr [r8 + 0x5a58]	
+0x53EE4	battle-state block	00326110	00326138	r	movzx eax, word ptr [r10 + 0x5a58]	
+0x53EE4	battle-state block	003266C0	003266F8	r	movzx eax, word ptr [rdi + 0x10]	
+0x53EE4	battle-state block	003286E0	0032875F	r	movzx eax, word ptr [rax + 0x5a58]	
+0x53EE4	battle-state block	003287A0	0032882D	r	movzx eax, word ptr [rdx + 0x5a58]	
+0x53EE4	battle-state block	003288F0	00328947	r	movzx eax, word ptr [r9 + 0x5a58]	
+0x53EE4	battle-state block	00328B20	00328B7B	r	movzx eax, word ptr [r9 + 0x5a58]	
+0x53EE4	battle-state block	00328DB0	00328EFC	r	movzx eax, word ptr [r11 + 0x5a58]	
+0x53EE4	battle-state block	00329CC0	00329DEA	r	movzx eax, word ptr [rcx + 0x5a58]	
+0x53EE6	battle-state block	0031B810	0031B841	r	movzx eax, byte ptr [rax + rbx*2 + 0x5a5a]	
+0x53EE6	battle-state block	0031B9F0	0031BA8B	r	movzx eax, byte ptr [rax + rdi*2 + 0x5a5a]	
+0x53EE6	battle-state block	0031BAC0	0031BBB0	r	movzx ecx, byte ptr [rdx + rdi*2 + 0x5a5a]	
+0x53EE6	battle-state block	0031BAC0	0031BC43	r	cmp byte ptr [rax + rdi*2 + 0x5a5a], 0xff	
+0x53EE6	battle-state block	0031E7B0	0031E7D6	r	movzx eax, byte ptr [rax + rbx*2 + 0x5a5a]	
+0x53EE6	battle-state block	0031FEC0	0031FF10	r	cmp byte ptr [rdx + rax*2 + 0x5a5a], cl	
+0x53EE6	battle-state block	0031FF70	0031FFD0	r	cmp byte ptr [rdx + rax*2 + 0x5a5a], cl	
+0x53EE6	battle-state block	00326620	00326640	r	cmp byte ptr [rdx + rax*2 + 0x5a5a], cl	
+0x53EE6	battle-state block	003266C0	003266FC	addr	lea r15, [rdi + 0x12]	
+0x53EE6	battle-state block	003266C0	00326717	w	movups xmmword ptr [r15], xmm0	
+0x53EE6	battle-state block	003266C0	00326735	r	movups xmm0, xmmword ptr [r15]	
+0x53EE6	battle-state block	003266C0	00326818	w	mov word ptr [r14 - 0x12], r8w	
+0x53EE6	battle-state block	003266C0	00326950	w	mov word ptr [rcx], r8w	
+0x53EE6	battle-state block	003266C0	00326976	w	mov word ptr [rcx], r13w	
+0x53EE6	battle-state block	003266C0	003269B6	w	mov word ptr [rdi + rax*2 + 0x12], r13w	
+0x53EE6	battle-state block	003266C0	00326A19	w	mov word ptr [rdi + rcx*2 + 0x12], r13w	
+0x53EE6	battle-state block	003266C0	00326A7B	r	movzx esi, word ptr [r15]	
+0x53EE6	battle-state block	00329CC0	00329DF6	w	movups xmmword ptr [rcx + 0x5a5a], xmm0	
+0x53EE8	battle-state block	003266C0	003268BD	w	mov word ptr [r14 - 0x12], r8w	
+0x53EEC	battle-state block	003266C0	003269A7	w	mov word ptr [rdi + 0x18], dx	
+0x53EEC	battle-state block	003266C0	003269F2	w	mov word ptr [rdi + 0x18], dx	
+0x53EEE	battle-state block	003266C0	00326728	w	mov qword ptr [rdi + 0x1a], 0xffffffffffffffff	
+0x53EF6	battle-state block	003266C0	0032671B	w	mov word ptr [r15 + 0x10], ax	
+0x53EF6	battle-state block	003266C0	00326730	w	mov word ptr [rdi + 0x22], r13w	
+0x53EF6	battle-state block	003266C0	00326739	r	movzx eax, word ptr [r15 + 0x10]	
+0x53EF6	battle-state block	00329CC0	00329DFD	w	mov word ptr [rcx + 0x5a6a], ax	
+0x53EF8	battle-state block	0031B9F0	0031BA71	r	movzx eax, byte ptr [rax + rdi*2 + 0x5a6c]	
+0x53EF8	battle-state block	003266C0	00326705	addr	lea r14, [rdi + 0x24]	
+0x53EF8	battle-state block	003266C0	0032673E	w	movups xmmword ptr [r14], xmm0	
+0x53EF8	battle-state block	003266C0	00326829	w	mov word ptr [r14], r8w	
+0x53EF8	battle-state block	003266C0	0032695F	w	mov word ptr [rcx + 0x12], r8w	
+0x53EF8	battle-state block	003266C0	0032697A	w	mov word ptr [rcx + 0x12], r13w	
+0x53EF8	battle-state block	003266C0	003269C1	w	mov word ptr [rdi + rax*2 + 0x24], r13w	
+0x53EF8	battle-state block	003266C0	00326A1F	w	mov word ptr [rdi + rcx*2 + 0x24], r13w	
+0x53EF8	battle-state block	00329CC0	00329E04	w	movups xmmword ptr [rcx + 0x5a6c], xmm0	
+0x53EFA	battle-state block	003266C0	003268CD	w	mov word ptr [r14], r8w	
+0x53EFE	battle-state block	003266C0	003269AB	w	mov word ptr [rdi + 0x2a], r13w	
+0x53EFE	battle-state block	003266C0	00326A00	w	mov word ptr [rdi + 0x2a], dx	
+0x53F08	battle-state block	003266C0	00326742	w	mov word ptr [r14 + 0x10], ax	
+0x53F08	battle-state block	00329CC0	00329E0B	w	mov word ptr [rcx + 0x5a7c], ax	
+0x53F0A	battle-state block	0031A510	0031A554	r	movzx ecx, byte ptr [rdx + rbx*2 + 0x5a7e]	
+0x53F0A	battle-state block	0031B9F0	0031BA57	r	movzx eax, byte ptr [rax + rdi*2 + 0x5a7e]	
+0x53F0A	battle-state block	0031C4C0	0031C4ED	r	movzx eax, byte ptr [rax + rbx*2 + 0x5a7e]	
+0x53F0A	battle-state block	0031EB20	0031F473	r	movzx ecx, byte ptr [rdx + rax*2 + 0x5a7e]	
+0x53F0A	battle-state block	003266C0	00326720	w	movups xmmword ptr [rdi + 0x36], xmm0	
+0x53F0A	battle-state block	00329CC0	00329E12	w	movups xmmword ptr [rcx + 0x5a7e], xmm0	
+0x53F1A	battle-state block	003266C0	00326724	w	mov word ptr [rdi + 0x46], ax	
+0x53F1A	battle-state block	00329CC0	00329E19	w	mov word ptr [rcx + 0x5a8e], ax	
+0x53F1C	battle-state block	0031B950	0031B981	r	movzx eax, byte ptr [rax + rbx*2 + 0x5a90]	
+0x53F1C	battle-state block	0031B9F0	0031BA3D	r	movzx eax, byte ptr [rax + rdi*2 + 0x5a90]	
+0x53F1C	battle-state block	0031C0F0	0031C125	r	movzx ecx, byte ptr [r9 + rbx*2 + 0x5a90]	
+0x53F1C	battle-state block	0031C250	0031C2C7	r	movzx edx, byte ptr [rax + rcx*2 + 0x5a90]	
+0x53F1C	battle-state block	0031C470	0031C492	r	movzx edx, byte ptr [rax + rbx*2 + 0x5a90]	
+0x53F1C	battle-state block	00320230	003202A3	r	movzx ecx, byte ptr [rdx + rbx*2 + 0x5a90]	
+0x53F1C	battle-state block	003266C0	003266F4	r	movups xmm0, xmmword ptr [rdi + 0x48]	
+0x53F1C	battle-state block	003266C0	00326747	w	movups xmmword ptr [rdi + 0x48], xmm0	
+0x53F1C	battle-state block	003266C0	003267F3	w	movups xmmword ptr [rdi + 0x48], xmm0	
+0x53F1C	battle-state block	003266C0	003268FD	w	movups xmmword ptr [rdi + 0x48], xmm0	
+0x53F1C	battle-state block	003266C0	00326916	r	cmp byte ptr [rdx + rcx*2 + 0x5a90], al	
+0x53F1C	battle-state block	003266C0	0032696F	w	mov word ptr [rcx + 0x36], r8w	
+0x53F1C	battle-state block	003266C0	00326A25	w	mov word ptr [rdi + rcx*2 + 0x48], r13w	
+0x53F1C	battle-state block	00329CC0	00329E20	w	movups xmmword ptr [rcx + 0x5a90], xmm0	
+0x53F1E	battle-state block	003266C0	003268DC	w	mov word ptr [r14 + 0x24], r8w	
+0x53F22	battle-state block	003266C0	003269B0	w	mov word ptr [rdi + 0x4e], dx	
+0x53F22	battle-state block	003266C0	00326A0E	w	mov word ptr [rdi + 0x4e], dx	
+0x53F2C	battle-state block	003266C0	00326700	r	movzx r12d, word ptr [rdi + 0x58]	
+0x53F2C	battle-state block	003266C0	0032674B	w	mov word ptr [rdi + 0x58], ax	
+0x53F2C	battle-state block	003266C0	003267F7	w	mov word ptr [rdi + 0x58], r12w	
+0x53F2C	battle-state block	003266C0	00326901	w	mov word ptr [rdi + 0x58], r12w	
+0x53F2C	battle-state block	00329CC0	00329E27	w	mov word ptr [rcx + 0x5aa0], ax	
+0x53F30	battle-state block	003220E0	00322173	w	mov dword ptr [rax + 0x5aa4], ecx	
+0x53F30	battle-state block	003261D0	0032620A	r	movzx edx, byte ptr [r8 + 0x5aa4]	
+0x53F30	battle-state block	00326500	00326542	r	movzx ebx, byte ptr [rax + 0x5aa4]	
+0x53F30	battle-state block	00326620	0032662D	r	movzx ecx, byte ptr [rdx + 0x5aa4]	
+0x53F30	battle-state block	00326620	003266A3	w	mov dword ptr [rax + 0x5aa4], ecx	
+0x53F30	battle-state block	003266C0	0032678A	r	movzx ecx, byte ptr [rdx + 0x5aa4]	
+0x53F30	battle-state block	003266C0	003267E1	r	movzx edx, byte ptr [rax + 0x5aa4]	
+0x53F30	battle-state block	003266C0	00326846	r	movzx ecx, byte ptr [rdx + 0x5aa4]	
+0x53F30	battle-state block	003266C0	00326898	r	movzx edx, byte ptr [rax + 0x5aa4]	
+0x53F30	battle-state block	00326BB0	00326CCD	r	movzx ecx, byte ptr [rax + 0x5aa4]	
+0x53F30	battle-state block	00327150	0032715D	r	movzx eax, byte ptr [rdx + 0x5aa4]	
+0x53F30	battle-state block	003271D0	003271D7	r	movzx eax, byte ptr [rax + 0x5aa4]	
+0x53F30	battle-state block	00327200	00327207	r	movzx edx, byte ptr [r8 + 0x5aa4]	
+0x53F30	battle-state block	00327240	00327247	r	movzx eax, byte ptr [rdx + 0x5aa4]	
+0x53F30	battle-state block	003273D0	003274DF	r	movzx ecx, byte ptr [rdx + 0x5aa4]	
+0x53F30	battle-state block	00327810	00327836	w	mov dword ptr [rax + 0x5aa4], ecx	
+0x53F30	battle-state block	00327850	0032785A	w	mov dword ptr [rax + 0x5aa4], edx	
+0x53F30	battle-state block	00327870	003278A4	w	mov dword ptr [rdx + 0x5aa4], eax	
+0x53F30	battle-state block	00329CC0	00329DC2	w	mov dword ptr [rax + 0x5aa4], ecx	
+0x53F54	battle-state block	002370C0	0023712E	w	mov dword ptr [rax + 0x5ac8], ecx	
+0x53F54	battle-state block	00317230	00317243	r	movss xmm1, dword ptr [rcx + 0x5ac8]	
+0x53F54	battle-state block	00317230	0031726B	w	movss dword ptr [rcx + 0x5ac8], xmm1	
+0x53F54	battle-state block	00317230	0031728B	r	movss xmm1, dword ptr [rcx + 0x5ac8]	
+0x53F54	battle-state block	00317230	0031729C	w	movss dword ptr [rcx + 0x5ac8], xmm1	
+0x53F54	battle-state block	00317230	003172CD	w	mov dword ptr [rax + 0x5ac8], 0	
+0x53F54	battle-state block	00320D50	00320D57	r	cvttss2si eax, dword ptr [rcx + 0x5ac8]	
+0x53F54	battle-state block	00322200	00322216	w	mov dword ptr [rax + 0x5ac8], ecx	
+0x53F54	battle-state block	00329E40	00329E54	w	mov dword ptr [rax + 0x5ac8], 0	
+0x53F58	battle-state block	002370C0	00237121	w	mov dword ptr [rax + 0x5acc], ecx	
+0x53F58	battle-state block	00317230	0031724F	r	add eax, dword ptr [rcx + 0x5acc]	
+0x53F58	battle-state block	00317230	0031727C	rw	add dword ptr [rcx + 0x5acc], eax	
+0x53F58	battle-state block	00317230	003172AF	r	add eax, dword ptr [rcx + 0x5acc]	
+0x53F58	battle-state block	00317230	003172BC	w	mov dword ptr [rcx + 0x5acc], 0x5f5e0ff	
+0x53F58	battle-state block	00320D50	00320D5F	r	add eax, dword ptr [rcx + 0x5acc]	
+0x53F58	battle-state block	00322200	00322209	w	mov dword ptr [rax + 0x5acc], ecx	
+0x53F58	battle-state block	00329E40	00329E47	w	mov dword ptr [rax + 0x5acc], ecx	
+0x53F5C	battle-state block	002EF3C0	002EF3E5	r	movups xmm0, xmmword ptr [rax + 0x5ad0]	
+0x53F5C	battle-state block	002EF410	002EF44C	w	movups xmmword ptr [rax + 0x5ad0], xmm0	
+0x53F5C	battle-state block	002EF510	002EF517	r	movups xmm0, xmmword ptr [rax + 0x5ad0]	
+0x53F5C	battle-state block	00306760	00306A44	r	test byte ptr [rax + 0x5ad0], 1	
+0x53F5C	battle-state block	00311CF0	00311D5E	rw	and word ptr [rax + 0x5ad0], cx	
+0x53F5C	battle-state block	00313600	00313638	rw	or word ptr [rax + 0x5ad0], 2	
+0x53F5C	battle-state block	00313730	0031373C	rw	and word ptr [rax + 0x5ad0], cx	
+0x53F5C	battle-state block	00313760	0031376B	r	test byte ptr [rax + 0x5ad0], 2	
+0x53F5C	battle-state block	00313840	0031388B	rw	and word ptr [rax + 0x5ad0], cx	
+0x53F5C	battle-state block	00313840	0031389E	rw	and word ptr [rax + 0x5ad0], cx	
+0x53F5C	battle-state block	003138D0	00313973	r	movzx eax, word ptr [rcx + 0x5ad0]	
+0x53F5C	battle-state block	003138D0	00313981	rw	xor word ptr [rcx + 0x5ad0], ax	
+0x53F5C	battle-state block	003139A0	003139AA	r	xor cx, word ptr [rax + 0x5ad0]	
+0x53F5C	battle-state block	003139A0	003139B5	rw	xor word ptr [rax + 0x5ad0], cx	
+0x53F60	battle-state block	00306760	003067EC	r	movzx r8d, byte ptr [rax + 0x5ad4]	
+0x53F60	battle-state block	00306760	0030697F	w	mov byte ptr [rax + 0x5ad4], cl	
+0x53F60	battle-state block	00306760	00306A5B	r	movzx r8d, byte ptr [rax + 0x5ad4]	
+0x53F60	battle-state block	003137E0	003137E7	r	movzx eax, byte ptr [rax + 0x5ad4]	
+0x53F60	battle-state block	00313840	0031387D	w	mov byte ptr [rax + 0x5ad4], 0x1b	
+0x53F60	battle-state block	003139C0	003139C7	w	mov byte ptr [rax + 0x5ad4], cl	
+0x53F61	battle-state block	00300FC0	0030110B	r	movzx ecx, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00306760	00306966	w	mov byte ptr [rdx + 0x5ad5], cl	
+0x53F61	battle-state block	0030A970	0030A9D7	r	movzx ecx, byte ptr [r8 + 0x5ad5]	
+0x53F61	battle-state block	0030AA00	0030AA89	r	movzx ecx, byte ptr [rcx + 0x5ad5]	
+0x53F61	battle-state block	00310DB0	00310E6C	r	movzx ecx, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00310DB0	00310E84	r	movzx ecx, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00310DB0	00310E9C	r	movzx ecx, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00310DB0	00310EB9	r	movzx edi, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00313730	0031374A	r	movzx ecx, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	003137F0	003137F7	r	movzx eax, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00313800	00313807	r	movzx ecx, byte ptr [rax + 0x5ad5]	
+0x53F61	battle-state block	00313840	0031386A	w	mov byte ptr [rcx + 0x5ad5], 0	
+0x53F64	battle-state block	00301AD0	00303543	r	movss xmm0, dword ptr [rax + 0x5ad8]	
+0x53F64	battle-state block	00306760	003069A8	w	movss dword ptr [rax + 0x5ad8], xmm0	
+0x53F64	battle-state block	00313600	00313616	r	maxss xmm1, dword ptr [rax + 0x5ad8]	
+0x53F64	battle-state block	00313760	0031378A	w	mov dword ptr [rcx + 0x5ad8], eax	
+0x53F64	battle-state block	00313760	003137A3	w	movss dword ptr [rax + 0x5ad8], xmm0	
+0x53F64	battle-state block	00313820	00313827	r	movss xmm0, dword ptr [rax + 0x5ad8]	
+0x53F64	battle-state block	00313840	003138AE	w	mov dword ptr [rax + 0x5ad8], ecx	
+0x53F68	battle-state block	00306760	003069B7	w	movss dword ptr [rax + 0x5adc], xmm0	
+0x53F68	battle-state block	00313760	00313784	r	mov eax, dword ptr [rcx + 0x5adc]	
+0x53F68	battle-state block	00313830	00313837	r	movss xmm0, dword ptr [rax + 0x5adc]	
+0x53F68	battle-state block	00313840	003138BB	w	mov dword ptr [rax + 0x5adc], ecx	
+0x53F6C	battle-state block	002EF3C0	002EF3D3	r	movups xmm0, xmmword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	002EF410	002EF424	w	movups xmmword ptr [rax + 0x5ae0], xmm0	
+0x53F6C	battle-state block	00303D90	00303DC6	rw	or dword ptr [rax + 0x5ae0], 0xc	
+0x53F6C	battle-state block	00303D90	00303E03	r	mov ebx, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00303D90	00303E5C	r	mov eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00303D90	00303E68	r	xor eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00303D90	00303E71	rw	xor dword ptr [rcx + 0x5ae0], eax	
+0x53F6C	battle-state block	00303F00	00303F24	r	mov edi, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00303F00	00303F76	r	mov ebx, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00303F00	00303FDD	rw	or dword ptr [rax + 0x5ae0], 0xc	
+0x53F6C	battle-state block	00303F00	00303FF4	r	xor eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00303F00	00303FFD	rw	xor dword ptr [rcx + 0x5ae0], eax	
+0x53F6C	battle-state block	00303F00	00304026	r	mov eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00303F00	00304032	r	xor eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00303F00	0030403B	rw	xor dword ptr [rcx + 0x5ae0], eax	
+0x53F6C	battle-state block	00304060	00304115	r	mov ecx, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00304060	00304131	rw	or dword ptr [rax + 0x5ae0], 1	
+0x53F6C	battle-state block	00304400	0030440B	rw	and dword ptr [rax + 0x5ae0], 0xfffffffe	
+0x53F6C	battle-state block	00304440	0030444B	r	test byte ptr [rax + 0x5ae0], 1	
+0x53F6C	battle-state block	00304440	0030450A	r	mov edi, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00304440	0030456F	r	mov eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00304440	0030457B	r	xor eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00304440	00304584	rw	xor dword ptr [rcx + 0x5ae0], eax	
+0x53F6C	battle-state block	003045A0	003045B2	r	mov ebx, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	003045F0	003045F7	r	mov eax, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00304610	00304617	r	mov eax, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00304680	003046A2	r	mov ebx, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00304680	003046F4	r	mov eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00304680	00304700	r	xor eax, dword ptr [rcx + 0x5ae0]	
+0x53F6C	battle-state block	00304680	00304709	rw	xor dword ptr [rcx + 0x5ae0], eax	
+0x53F6C	battle-state block	00304680	00304718	rw	and dword ptr [rax + 0x5ae0], 0xfffffffe	
+0x53F6C	battle-state block	00304680	00304726	rw	and dword ptr [rax + 0x5ae0], 0xfffffff3	
+0x53F6C	battle-state block	00304770	00304777	r	xor ecx, dword ptr [rax + 0x5ae0]	
+0x53F6C	battle-state block	00304770	00304780	rw	xor dword ptr [rax + 0x5ae0], ecx	
+0x53F6C	battle-state block	00305080	003050BA	r	test byte ptr [rax + 0x5ae0], 2	
+0x53F6C	battle-state block	00306760	00306A23	rw	or dword ptr [rax + 0x5ae0], 0xc	
+0x53F70	battle-state block	00303D90	00303DD4	w	mov dword ptr [rax + 0x5ae4], 0x43340000	
+0x53F70	battle-state block	00304060	003040CE	r	maxss xmm1, dword ptr [rax + 0x5ae4]	
+0x53F70	battle-state block	00304440	00304468	w	mov dword ptr [rax + 0x5ae4], 0x43340000	
+0x53F70	battle-state block	00304440	00304485	w	movss dword ptr [rax + 0x5ae4], xmm0	
+0x53F70	battle-state block	00304660	00304667	r	movss xmm0, dword ptr [rax + 0x5ae4]	
+0x53F70	battle-state block	00304680	00304734	w	mov dword ptr [rax + 0x5ae4], esi	
+0x53F70	battle-state block	00306760	00306A31	w	mov dword ptr [rax + 0x5ae4], 0x43340000	
+0x53F74	battle-state block	00303F00	00303FB6	w	movss dword ptr [rax + 0x5ae8], xmm1	
+0x53F74	battle-state block	00304060	003040F3	r	movss xmm1, dword ptr [rax + 0x5ae8]	
+0x53F74	battle-state block	00304440	0030449E	w	movss dword ptr [rax + 0x5ae8], xmm0	
+0x53F74	battle-state block	00304670	00304677	r	movss xmm0, dword ptr [rax + 0x5ae8]	
+0x53F74	battle-state block	00304680	00304741	w	mov dword ptr [rax + 0x5ae8], esi	
+0x53F78	battle-state block	00303D90	00303E37	w	mov dword ptr [rcx + 0x5aec], 0	
+0x53F78	battle-state block	00303F00	00303F59	w	mov dword ptr [rcx + 0x5aec], esi	
+0x53F78	battle-state block	00304440	00304546	w	mov dword ptr [rcx + 0x5aec], 0	
+0x53F78	battle-state block	00304680	003046D0	w	mov dword ptr [rcx + 0x5aec], esi	
+0x53F78	battle-state block	00304680	0030474E	w	mov dword ptr [rax + 0x5aec], esi	
+0x53F8C	battle-state block	00233C10	00233C9E	w	mov dword ptr [rax + 0x5b00], ebx	
+0x53F8C	battle-state block	00385BA0	00385BEA	w	mov dword ptr [rax + 0x5b00], ecx	
+0x53F8C	battle-state block	0038EBE0	0038EC70	r	sub edi, dword ptr [rax + 0x5b00]	
+0x53F90	battle-state block	002EF3C0	002EF3F7	r	mov ecx, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	002EF410	002EF435	w	mov dword ptr [rax + 0x5b04], edx	
+0x53F90	battle-state block	002EF410	002EF47E	rw	or dword ptr [rax + 0x5b04], 2	
+0x53F90	battle-state block	002EF410	002EF48C	rw	and dword ptr [rax + 0x5b04], 0xfffffffe	
+0x53F90	battle-state block	00303D90	00303D9B	r	mov edx, dword ptr [r8 + 0x5b04]	
+0x53F90	battle-state block	00303D90	00303DB8	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	00303D90	00303DEB	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	00303EE0	00303EE7	r	mov eax, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	00304140	0030415E	r	test byte ptr [rax + 0x5b04], 2	
+0x53F90	battle-state block	00306760	00306938	r	mov ecx, dword ptr [rdx + 0x5b04]	
+0x53F90	battle-state block	00306760	00306949	w	mov dword ptr [rdx + 0x5b04], ecx	
+0x53F90	battle-state block	00306760	003069FF	r	mov ecx, dword ptr [rdx + 0x5b04]	
+0x53F90	battle-state block	00306760	00306A16	w	mov dword ptr [rdx + 0x5b04], ecx	
+0x53F90	battle-state block	00306760	00306A74	r	mov eax, dword ptr [rcx + 0x5b04]	
+0x53F90	battle-state block	00306760	00306A81	w	mov dword ptr [rcx + 0x5b04], eax	
+0x53F90	battle-state block	00307200	00307207	r	mov edx, dword ptr [r8 + 0x5b04]	
+0x53F90	battle-state block	00307200	00307221	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	00307200	0030722C	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	00307240	00307247	r	mov edx, dword ptr [r8 + 0x5b04]	
+0x53F90	battle-state block	00307240	00307261	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	00307240	0030726C	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	003072A0	003072A7	r	mov eax, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	003072E0	003072E7	r	mov eax, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	0030D9A0	0030D9AB	r	mov ecx, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	0030D9A0	0030D9E9	r	mov ecx, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	0030DA10	0030DA19	w	mov dword ptr [rax + 0x5b04], ecx	
+0x53F90	battle-state block	00313550	00313557	r	mov edx, dword ptr [r8 + 0x5b04]	
+0x53F90	battle-state block	00313550	0031356E	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	00313550	0031357D	w	mov dword ptr [r8 + 0x5b04], edx	
+0x53F90	battle-state block	003135E0	003135E7	r	mov eax, dword ptr [rax + 0x5b04]	
+0x53F90	battle-state block	00313650	00313657	r	test byte ptr [rax + 0x5b04], 1	
+0x53F90	battle-state block	00313840	0031384B	r	mov eax, dword ptr [rcx + 0x5b04]	
+0x53F90	battle-state block	00313840	00313858	w	mov dword ptr [rcx + 0x5b04], eax	
+0x53F90	battle-state block	00584210	005842C4	rw	and dword ptr [rax + 0x5b04], 0xfffffffe	
+0x53F90	battle-state block	00584210	0058438C	rw	and dword ptr [rax + 0x5b04], 0xfffffffe	
+0x53F90	battle-state block	005843E0	0058446A	rw	and dword ptr [rax + 0x5b04], 0xfffffffd	
+0x53F94	battle-state block	0030D8B0	0030D8DB	r	movsxd rsi, dword ptr [rdx + 0x5b08]	
+0x53F94	battle-state block	0030D8B0	0030D97C	w	mov dword ptr [rax + 0x5b08], edi	
+0x53F94	battle-state block	0030DA10	0030DA26	w	mov dword ptr [rax + 0x5b08], ecx	
+0x53F98	battle-state block	00233C10	00233C83	w	mov word ptr [rax + 0x5b0c], bx	
+0x53F98	battle-state block	002FA210	002FA219	w	mov word ptr [rax + 0x5b0c], cx	
+0x53F98	battle-state block	0038D970	0038D9DE	r	movzx eax, word ptr [r8 + 0x5b0c]	
+0x53F98	battle-state block	0038D970	0038D9F2	w	mov word ptr [r8 + 0x5b0c], dx	
+0x53F98	battle-state block	0038DA00	0038DA56	r	movzx eax, word ptr [rcx + 0x5b0c]	
+0x53F98	battle-state block	0038DA00	0038DA61	w	mov word ptr [rcx + 0x5b0c], ax	
+0x53F9A	battle-state block	00233C10	00233C91	w	mov byte ptr [rax + 0x5b0e], bl	
+0x53F9A	battle-state block	002FA210	002FA227	w	mov byte ptr [rax + 0x5b0e], cl	
+0x53F9A	battle-state block	00385BA0	00385BD1	w	mov byte ptr [rax + 0x5b0e], cl	
+0x53F9A	battle-state block	00389C60	00389CC4	r	movzx edi, byte ptr [rax + 0x5b0e]	
+0x53F9A	battle-state block	0038EAF0	0038EB03	r	movzx ecx, byte ptr [rax + 0x5b0e]	
+0x53F9C	battle-state block	00235AF0	00235BCC	w	movups xmmword ptr [rcx + 0x5b10], xmm0	
+0x53F9C	battle-state block	00235AF0	00235CE0	w	mov word ptr [rbx + r8*4], cx	
+0x53F9C	battle-state block	00235AF0	00235D17	addr	lea rdx, [rbx + r8*4]	
+0x53F9C	battle-state block	00327DE0	00327E2F	addr	lea rdi, [rdx + 0x5b10]	
+0x53F9C	battle-state block	00327DE0	00327E6B	r	movzx ebp, word ptr [rdi]	
+0x53F9C	battle-state block	00327F80	00327FBC	addr	lea rsi, [rdx + 0x5b10]	
+0x53F9C	battle-state block	00327F80	0032800B	r	movzx ebp, word ptr [rsi]	
+0x53F9C	battle-state block	003282D0	0032830A	addr	lea rdx, [r9 + 0x5b10]	
+0x53F9C	battle-state block	003282D0	0032832E	w	movups xmmword ptr [rdx], xmm0	
+0x53F9E	battle-state block	00235AF0	00235B39	r	movzx eax, word ptr [r8 + 0x5b12]	
+0x53F9E	battle-state block	00235AF0	00235CEC	w	mov word ptr [rbx + r8*4 + 2], cx	
+0x53F9E	battle-state block	00327DE0	00327E6E	r	movzx r14d, word ptr [rdi + 2]	
+0x53F9E	battle-state block	00327F80	0032800E	r	movzx r14d, word ptr [rsi + 2]	
+0x53FAC	battle-state block	00235AF0	00235BDB	w	movups xmmword ptr [rcx + 0x5b20], xmm1	
+0x53FAC	battle-state block	003282D0	00328336	w	movups xmmword ptr [rdx + 0x10], xmm1	
+0x53FBC	battle-state block	00235AF0	00235BEA	w	movups xmmword ptr [rcx + 0x5b30], xmm0	
+0x53FBC	battle-state block	003282D0	0032833F	w	movups xmmword ptr [rdx + 0x20], xmm0	
+0x53FCC	battle-state block	00235AF0	00235BF8	w	mov dword ptr [rcx + 0x5b40], eax	
+0x53FCC	battle-state block	00235AF0	00235CF5	r	movzx ecx, word ptr [rbx + 0x30]	
+0x53FCC	battle-state block	00235AF0	00235CFE	w	mov word ptr [rbx + 0x30], cx	
+0x53FCC	battle-state block	00235AF0	00235D2A	r	movzx ecx, word ptr [rbx + 0x30]	
+0x53FCC	battle-state block	00235AF0	00235D33	w	mov word ptr [rbx + 0x30], cx	
+0x53FCC	battle-state block	00327DE0	00327E51	addr	lea rax, [rdi + 0x30]	
+0x53FCC	battle-state block	00327DE0	00327E60	r	movzx eax, word ptr [rax]	
+0x53FCC	battle-state block	00327F80	00327FE6	addr	lea rax, [rsi + 0x30]	
+0x53FCC	battle-state block	00327F80	00328000	r	movzx eax, word ptr [rax]	
+0x53FCC	battle-state block	003282D0	00328347	w	mov dword ptr [rdx + 0x30], eax	
+0x53FCE	battle-state block	00235AF0	00235B29	r	movzx eax, byte ptr [r8 + 0x5b42]	
+0x53FCE	battle-state block	00235AF0	00235D0F	w	mov byte ptr [rbx + 0x32], cl	
+0x53FCE	battle-state block	003279B0	003279E7	r	movzx eax, byte ptr [rdx + 0x5b42]	
+0x53FCE	battle-state block	003279B0	00327A01	w	mov byte ptr [rdx + 0x5b42], al	
+0x557FC	battle-state block	00327C40	00327C63	r	movsxd rcx, dword ptr [rdx + rax*4 + 0x7370]	
+0x557FC	battle-state block	00327DE0	00327E27	r	movsxd rcx, dword ptr [rdx + rax*4 + 0x7370]	
+0x557FC	battle-state block	00327F80	00327FCD	r	movsxd rcx, dword ptr [rdx + rax*4 + 0x7370]	
+0x557FC	battle-state block	003282D0	00328311	r	movsxd rcx, dword ptr [r9 + rax*4 + 0x7370]	
+0x557FC	battle-state block	00567AE0	00567B09	r	movsxd r9, dword ptr [rax + r10*4 + 0x7370]	
+0x557FC	battle-state block	00568230	0056824C	r	movsxd rcx, dword ptr [rax + rdx*4 + 0x7370]	
+0x557FC	battle-state block	005683F0	0056840C	r	movsxd rcx, dword ptr [rax + rdx*4 + 0x7370]	
+0x557FC	battle-state block	00568460	00568493	r	movsxd r9, dword ptr [rax + r10*4 + 0x7370]	
+0x557FC	battle-state block	005685B0	005685E8	r	movsxd r9, dword ptr [rax + r10*4 + 0x7370]	
+0x557FC	battle-state block	005688D0	005688F9	r	movsxd rcx, dword ptr [rax + rdx*4 + 0x7370]	
+0x557FC	battle-state block	00568940	0056895C	r	movsxd rcx, dword ptr [rax + rdx*4 + 0x7370]	
+0x557FC	battle-state block	00568990	005689B3	r	movsxd rdx, dword ptr [rax + r8*4 + 0x7370]	
+0x557FC	battle-state block	00568A30	00568A4C	r	movsxd rdx, dword ptr [rax + r8*4 + 0x7370]	
+0x557FC	battle-state block	005691E0	005692C3	r	mov r9d, dword ptr [rax + rcx*4 + 0x7370]	
+0x557FC	battle-state block	0056A140	0056A176	r	movsxd r8, dword ptr [rax + r9*4 + 0x7370]	
+0x557FC	battle-state block	0056C3A0	0056C3CE	r	mov edx, dword ptr [rax + rdx*4 + 0x7370]	

@@ -18,15 +18,15 @@ initialiser builds a static map, and one event-path check uses `std::regex`.
 ### Two red-black trees in one image
 
 The image holds two balanced-tree runtimes with different node layouts. EASTL's node keeps right,
-left and parent links at `+00`<sub>h</sub>, `+08`<sub>h</sub> and `+10`<sub>h</sub>. The Microsoft node keeps left, parent and
-right there, and adds a byte at `+19`<sub>h</sub> that is 1 only in the head node. Every walk in this family
-stops on that byte (`cmp byte ptr [node+19h], 0`); the EASTL runtime has no member there.
+left and parent links at `+0x00`, `+0x08` and `+0x10`. The Microsoft node keeps left, parent and
+right there, and adds a byte at `+0x19` that is 1 only in the head node. Every walk in this family
+stops on that byte (`cmp byte ptr [node+0x19], 0`); the EASTL runtime has no member there.
 
 ### The container and its head node
 
 A tree object is 16 bytes: a pointer to its head node and an element count. `00714800` makes the
-head: it allocates `30`<sub>h</sub> bytes through `00210EC0` (which forwards to `malloc`), points the head's
-left, parent and right links at the head itself, and writes `0101`<sub>h</sub> at `+18`<sub>h</sub>, so the head's colour
+head: it allocates `0x30` bytes through `00210EC0` (which forwards to `malloc`), points the head's
+left, parent and right links at the head itself, and writes `0x0101` at `+0x18`, so the head's colour
 is 1 (black) and its nil byte is 1 (`00714848`).
 
 Once the tree has elements, the head's parent link is the root, its left link the smallest node and
@@ -34,22 +34,22 @@ its right link the largest. Real nodes have nil byte 0.
 
 ### Lookup
 
-`0070D360` is a lookup over the tree at `+C8`<sub>h</sub> of its object. It starts at the root (`[head+8]`),
-compares the 64-bit key at node `+20`<sub>h</sub> without sign (`0070D380`), goes left and remembers the node
+`0070D360` is a lookup over the tree at `+0xC8` of its object. It starts at the root (`[head+8]`),
+compares the 64-bit key at node `+0x20` without sign (`0070D380`), goes left and remembers the node
 when the node's key is not below the search key, and goes right otherwise, until it reaches a node
-whose nil byte is set. It returns the qword at `+28`<sub>h</sub> of the remembered node when that node's key
+whose nil byte is set. It returns the qword at `+0x28` of the remembered node when that node's key
 equals the search key, and 0 otherwise.
 
 ### Insert
 
-`00712F60` links a new `30`<sub>h</sub>-byte node and rebalances. It first compares the count at `+8` with
-`0555555555555554`<sub>h</sub> (`00712F6D`), one less than the largest count of `30`<sub>h</sub>-byte nodes. When the
+`00712F60` links a new `0x30`-byte node and rebalances. It first compares the count at `+8` with
+`0x0555555555555554` (`00712F6D`), one less than the largest count of `0x30`-byte nodes. When the
 count has reached it, it frees the node through `00210EB0` and calls `_Xlength_error` (slot
 `008C2618`) with `map/set<T> too long` (`00D8E138`). The rotations are inline, and the last store
-paints the root black (`007131FD`, `mov byte ptr [root+18h], 1`).
+paints the root black (`007131FD`, `mov byte ptr [root+0x18], 1`).
 
-`0071E500` is the same routine for `60`<sub>h</sub>-byte nodes (limit `02AAAAAAAAAAAAA9`<sub>h</sub>). On the length
-failure it first destroys the node's value at `+20`<sub>h</sub> (`0071E528`, `call 0071EE70`).
+`0071E500` is the same routine for `0x60`-byte nodes (limit `0x02AAAAAAAAAAAAA9`). On the length
+failure it first destroys the node's value at `+0x20` (`0071E528`, `call 0071EE70`).
 
 ### Erase and clear
 
@@ -68,9 +68,9 @@ The full list of these routines is in `msvc-containers-ordered-container-runtime
 
 | Tree | Node | Built by | Holds |
 |---|---:|---|---|
-| A: three maps at `+A8`<sub>h</sub>, `+B8`<sub>h</sub> and `+C8`<sub>h</sub> of the post-effect state block | `30`<sub>h</sub> | `006FF5D0`, which makes the heads with `00714800`, `007147A0` and `00714740` | a 64-bit key at node `+20`<sub>h</sub> and a pointer at `+28`<sub>h</sub> |
-| B: one map | `60`<sub>h</sub> | node builder `0071F180` | two strings, at node `+20`<sub>h</sub> and `+40`<sub>h</sub> |
-| C: a static map at `02EA5550` | `28`<sub>h</sub> head | `00169270` at start-up | nothing: no code inserts into it |
+| A: three maps at `+0xA8`, `+0xB8` and `+0xC8` of the post-effect state block | `0x30` | `006FF5D0`, which makes the heads with `00714800`, `007147A0` and `00714740` | a 64-bit key at node `+0x20` and a pointer at `+0x28` |
+| B: one map | `0x60` | node builder `0071F180` | two strings, at node `+0x20` and `+0x40` |
+| C: a static map at `02EA5550` | `0x28` head | `00169270` at start-up | nothing: no code inserts into it |
 
 - A is cleared by `006FF840`, which erases each map's whole range (`00714CE0`, `00715110`,
   `007151F0`) and frees its head. All three use the one insert `00712F60` and the one node erase
@@ -79,9 +79,9 @@ The full list of these routines is in `msvc-containers-ordered-container-runtime
   calls `0071D170`. That routine parses the text into the map (`0071CE10`, inserting through
   `0071EA80` and `0071E500`) and looks fields up by name: `FeatureId` (`00D9B190`), `BeginYear`
   (`00D9B19C`) and the other date fields, `MacAddress` (`00D9B1E4`) and `License`.
-- `0071EE70` destroys a B element: two strings, the mapped one at `+20`<sub>h</sub> of the pair first, then the
-  key at `+00`<sub>h</sub>.
-- C is built by the dynamic initialiser `00169270` (head from `00799B20`, `28`<sub>h</sub> bytes) and its
+- `0071EE70` destroys a B element: two strings, the mapped one at `+0x20` of the pair first, then the
+  key at `+0x00`.
+- C is built by the dynamic initialiser `00169270` (head from `00799B20`, `0x28` bytes) and its
   destructor `008B7940` is registered with `atexit` (`00808B90`). Only those two routines refer to
   `02EA5550` and `02EA5558`.
 
@@ -91,13 +91,13 @@ The full list of these routines is in `msvc-containers-ordered-container-runtime
 from capacity 16 on, they hold a pointer to a heap buffer of capacity + 1 bytes. `0071EE70` and the
 catch funclet `00896993` show the release sequence:
 
-1. When the capacity at `+18`<sub>h</sub> is 16 or more, free the buffer with `001DFA10`.
+1. When the capacity at `+0x18` is 16 or more, free the buffer with `001DFA10`.
 2. Store capacity 15 and size 0.
 3. Store a terminating zero in the first character.
 
-`001DFA10` handles large buffers before calling `free`: when the byte count is `1000`<sub>h</sub> or more, the
+`001DFA10` handles large buffers before calling `free`: when the byte count is `0x1000` or more, the
 pointer must be 32-byte aligned and the real block start is the qword just before it, between 8 and
-`27`<sub>h</sub> bytes lower. When any of these checks fails it calls `_invalid_parameter_noinfo_noreturn`
+`0x27` bytes lower. When any of these checks fails it calls `_invalid_parameter_noinfo_noreturn`
 (slot `008C2DA8`).
 
 ### std::regex
@@ -135,7 +135,7 @@ Both follow the library's introsort:
    `006B6F30` for the 32-bit values.
 2. A longer range is partitioned around a median guess (`006B7800`, `006B7660`): of three elements
    below 41, of nine from 41 on. The 8-byte partition `006B7800` takes the guess from `006B6D70`
-   (`cmp rax, 28h` at `006B6D8D`), which orders each group of three with the comparator through
+   (`cmp rax, 0x28` at `006B6D8D`), which orders each group of three with the comparator through
    `006B7560`; the 32-bit partition takes it from `006B6C20`. The smaller side is sorted by
    recursion and the larger by the loop.
 3. Each partition cuts the budget to `budget/2 + budget/4`. When it reaches 0 the range is
@@ -149,7 +149,7 @@ imported. `msvc-containers-library-members.tsv` names each with the import, vtab
 that identifies it:
 
 - `std::string` and `std::wstring` growth, append, assign, erase, find, compare, `operator+` and move. `00195670` grows a
-  string: it rounds the capacity up with `or Fh`, grows it by half, and fails through `_Xbad_alloc`.
+  string: it rounds the capacity up with `or 0xF`, grows it by half, and fails through `_Xbad_alloc`.
 - The file streams: the `basic_ifstream<wchar_t>`, `basic_ofstream<wchar_t>` and
   `basic_ofstream<char>` destructor bodies (`00195440`, `001954B0`, `0019B480`) and the
   `basic_filebuf` open (`00197A50`, `0019B990`), `_Endwrite` (`00195940`, `0019B580`) and close (`001969D0`,
@@ -158,18 +158,18 @@ that identifies it:
 - The string streams: the `basic_stringbuf` constructor `001DDFD0`, its `str()` `001E0100` (the stream's `001E0360`) and the
   destructors of `basic_istringstream`, `basic_ostringstream` and `basic_stringstream`.
 - The six streams' deleting destructors (each vtable's slot 0, reached through an adjustor that subtracts the
-  virtual-base offset first). Each steps back to the whole object, runs its destructor and, when bit `1`<sub>h</sub> of
+  virtual-base offset first). Each steps back to the whole object, runs its destructor and, when bit `0x1` of
   the flag is set, frees the object with the sized `delete` `00809950`; the string streams also run the
   `basic_ios` destructor through import slot `008C25E8`:
 
   | Deleting destructor | Stream | Steps back | Frees |
   |---|---|---|---|
-  | `00195570` | `basic_ifstream<wchar_t>` | `B0`<sub>h</sub> | `110`<sub>h</sub> |
-  | `001955B0` | `basic_ofstream<wchar_t>` | `A8`<sub>h</sub> | `108`<sub>h</sub> |
-  | `0019B540` | `basic_ofstream<char>` | `A8`<sub>h</sub> | `108`<sub>h</sub> |
-  | `001DE3B0` | `basic_istringstream<char>` | `90`<sub>h</sub> | `F0`<sub>h</sub> |
-  | `001DE400` | `basic_ostringstream<char>` | `88`<sub>h</sub> | `E8`<sub>h</sub> |
-  | `001DE4A0` | `basic_stringstream<char>` | `98`<sub>h</sub> | `F8`<sub>h</sub> |
+  | `00195570` | `basic_ifstream<wchar_t>` | `0xB0` | `0x110` |
+  | `001955B0` | `basic_ofstream<wchar_t>` | `0xA8` | `0x108` |
+  | `0019B540` | `basic_ofstream<char>` | `0xA8` | `0x108` |
+  | `001DE3B0` | `basic_istringstream<char>` | `0x90` | `0xF0` |
+  | `001DE400` | `basic_ostringstream<char>` | `0x88` | `0xE8` |
+  | `001DE4A0` | `basic_stringstream<char>` | `0x98` | `0xF8` |
 - The inserters `00194CD0` (wide string) and `001DDE10` (narrow), `std::endl` `00194EB0`, the
   `std::exception` and `std::bad_cast` copy constructors, and two vector members (`001A4D20`,
   `0020E420`), and `001A1EA0`, the header's `sprintf_s` into a 32-byte buffer.
@@ -193,52 +193,52 @@ their sentry destructors appear.
 
 ## Layouts
 
-`MsvcTree` (`10`<sub>h</sub> bytes, offsets from the start of the record):
+`MsvcTree` (`0x10` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u64` | head | pointer to the head node |
-| `08`<sub>h</sub> | `u64` | count | number of elements |
+| `+0x00` | `u64` | head | pointer to the head node |
+| `+0x08` | `u64` | count | number of elements |
 
 `MsvcTreeNode` (offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u64` | left | smaller child; in the head, the smallest node |
-| `08`<sub>h</sub> | `u64` | parent | parent; in the head, the root |
-| `10`<sub>h</sub> | `u64` | right | larger child; in the head, the largest node |
-| `18`<sub>h</sub> | `u8` | color | 0 red, 1 black |
-| `19`<sub>h</sub> | `u8` | isNil | 1 in the head node only |
-| `20`<sub>h</sub> | `...` | the element, key first: `10`<sub>h</sub> bytes in tree A, `40`<sub>h</sub> in tree B, 8 in tree C |  |
+| `+0x00` | `u64` | left | smaller child; in the head, the smallest node |
+| `+0x08` | `u64` | parent | parent; in the head, the root |
+| `+0x10` | `u64` | right | larger child; in the head, the largest node |
+| `+0x18` | `u8` | color | 0 red, 1 black |
+| `+0x19` | `u8` | isNil | 1 in the head node only |
+| `+0x20` | `...` | the element, key first: 0x10 bytes in tree A, 0x40 in tree B, 8 in tree C |  |
 
-`MsvcString` (`20`<sub>h</sub> bytes, offsets from the start of the record):
+`MsvcString` (`0x20` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8[16]` | chars | the characters while capacity is below 16; otherwise a heap pointer in the first 8 bytes |
-| `10`<sub>h</sub> | `u64` | size | characters in use |
-| `18`<sub>h</sub> | `u64` | capacity | 15 for the inline buffer |
+| `+0x00` | `u8[16]` | chars | the characters while capacity is below 16; otherwise a heap pointer in the first 8 bytes |
+| `+0x10` | `u64` | size | characters in use |
+| `+0x18` | `u64` | capacity | 15 for the inline buffer |
 
 ## Shipped data
 
 | Fact | Value |
 |---|---|
-| tree node sizes in use | `30`<sub>h</sub> (tree A), `60`<sub>h</sub> (tree B), `28`<sub>h</sub> head of tree C |
-| insert length limits | `0555555555555554`<sub>h</sub> (`00712F60`), `02AAAAAAAAAAAAA9`<sub>h</sub> (`0071E500`) |
+| tree node sizes in use | `0x30` (tree A), `0x60` (tree B), `0x28` head of tree C |
+| insert length limits | `0x0555555555555554` (`00712F60`), `0x02AAAAAAAAAAAAA9` (`0071E500`) |
 | `std::regex` node classes | 12, vtables `009058C0` to `00905A28` |
 | `MSVCP140.dll` import slots | 115 |
 | `_Xlength_error` call sites | 59 |
 | further `std::regex` bodies (`msvc-containers-stl-regex-char-members.tsv`) | 92 |
 | other library bodies compiled in (`msvc-containers-library-members.tsv`) | 50 |
-| `std::sort` insertion-sort limit | 32 elements (`cmp rax, 20h` at `006B81AA`) |
+| `std::sort` insertion-sort limit | 32 elements (`cmp rax, 0x20` at `006B81AA`) |
 
 ## Modding notes
 
-- Check `+19`<sub>h</sub> before treating a node pointer as a tree node of either library: a Microsoft node has
-  a nil byte there, and its parent link is at `+08`<sub>h</sub>, where EASTL keeps the left child.
+- Check `+0x19` before treating a node pointer as a tree node of either library: a Microsoft node has
+  a nil byte there, and its parent link is at `+0x08`, where EASTL keeps the left child.
 - Walking a Microsoft tree ends at the node whose nil byte is 1, which is the head; the head is never
   an element.
-- A buffer of `1000`<sub>h</sub> bytes or more that is handed to `001DFA10` must come from the matching
+- A buffer of `0x1000` bytes or more that is handed to `001DFA10` must come from the matching
   allocation, with the real start stored just before it, or the game stops in
   `_invalid_parameter_noinfo_noreturn`.
 - Tree C is built and freed but never filled, so changing it has no effect on the game.

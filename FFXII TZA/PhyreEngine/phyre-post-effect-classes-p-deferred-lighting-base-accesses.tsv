@@ -1,236 +1,236 @@
 function	name	site	disp	kind	instruction	route	note
-00646590	FUN_00646590	006465A9	0h	w	mov qword ptr [rcx], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00646590	FUN_00646590	006465C6	0h	w	mov qword ptr [rbx], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00646600	FUN_00646600	00646619	0h	w	mov qword ptr [rcx], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00657150	FUN_00657150	0065715A	0h	r	mov rax, qword ptr [rcx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B43B	0h	r	mov rax, qword ptr [rcx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B472	0h	r	mov rax, qword ptr [rbx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B8F0	FUN_0065b8f0	0065B90F	0h	r	mov rax, qword ptr [rcx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00653B10	FUN_00653b10	00653B10	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B6A	10h	r	mov rdx, qword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006571C0	FUN_006571c0	006571C0	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006572C0	FUN_006572c0	006572C6	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006572C0	FUN_006572c0	006572F3	10h	r	mov rax, qword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006575E0	FUN_006575e0	006575E0	10h	r	mov rax, qword ptr [rcx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B44F	10h	r	mov rax, qword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B47B	10h	r	mov rax, qword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006572C0	FUN_006572c0	006572F9	18h	w	mov qword ptr [rbx + 18h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006575E0	FUN_006575e0	006575E4	18h	w	mov qword ptr [rcx + 18h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B453	18h	r	cmp rax, qword ptr [rbx + 18h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006572C0	FUN_006572c0	0065730B	20h	w	mov qword ptr [rbx + 20h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006575E0	FUN_006575e0	006575F1	20h	w	mov qword ptr [rcx + 20h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B462	20h	r	cmp rcx, qword ptr [rbx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006572C0	FUN_006572c0	00657318	28h	w	mov qword ptr [rbx + 28h], rcx	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006575E0	FUN_006575e0	006575FE	28h	w	mov qword ptr [rcx + 28h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006575E0	FUN_006575e0	00657605	28h	w	mov qword ptr [rcx + 28h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B468	28h	r	mov rax, qword ptr [rbx + 28h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00646590	FUN_00646590	006465C9	30h	r	mov ecx, dword ptr [rbx + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00646590	FUN_00646590	006465F5	30h	w	mov dword ptr [rbx + 30h], eax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B9A	30h	r	mov edx, dword ptr [rbx + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B9D	30h	addr	lea rax, [rbx + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A353	30h	addr	lea rax, [rbx + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A555	30h	addr	lea rax, [rbx + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B1D4	30h	addr	lea rax, [rdi + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00646590	FUN_00646590	006465E0	38h	r	mov rcx, qword ptr [rbx + 38h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00646590	FUN_00646590	006465F1	38h	w	mov qword ptr [rbx + 38h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654BB8	38h	r	mov rcx, qword ptr [rax + 8]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+30h	
-00654B00	FUN_00654b00	00654BC0	38h	addr	lea rcx, [rax + 8]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+30h	
-00655AC0	FUN_00655ac0	00655B5C	40h	w	mov byte ptr [rdi + 40h], 1	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655DC0	FUN_00655dc0	00655E15	40h	w	mov byte ptr [rsi + 40h], 1	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00657690	FUN_00657690	0065769F	40h	r	cmp byte ptr [rcx + 40h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B400	FUN_0065b400	0065B414	40h	r	cmp byte ptr [rcx + 40h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065B8F0	FUN_0065b8f0	0065B8F4	40h	r	cmp byte ptr [rcx + 40h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006571C0	FUN_006571c0	006571CF	41h	r	cmp byte ptr [rcx + 41h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00653CD0	FUN_00653cd0	00653CD0	44h	r	mov eax, dword ptr [rcx + 44h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655AC0	FUN_00655ac0	00655B53	44h	w	mov dword ptr [rdi + 44h], r14d	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655DC0	FUN_00655dc0	00655E12	44h	w	mov dword ptr [rsi + 44h], edi	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00657680	FUN_00657680	00657680	44h	w	mov dword ptr [rcx + 44h], edx	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00657690	FUN_00657690	006576B6	44h	w	mov dword ptr [rbx + 44h], esi	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00653B20	FUN_00653b20	00653B20	48h	r	mov eax, dword ptr [rcx + 48h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655AC0	FUN_00655ac0	00655B59	48h	w	mov dword ptr [rdi + 48h], ebx	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655DC0	FUN_00655dc0	00655E08	48h	w	mov dword ptr [rsi + 48h], ebx	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00657680	FUN_00657680	00657685	48h	w	mov dword ptr [rcx + 48h], r8d	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00657690	FUN_00657690	006576BB	48h	w	mov dword ptr [rbx + 48h], edi	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A497	50h	addr	lea r8, [rbx + 50h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A46C	4050h	addr	lea r8, [rbx + 4050h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AB05	4050h	r	movss xmm13, dword ptr [rbx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AD47	4050h	r	mulss xmm3, dword ptr [rbx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB0A	4054h	r	movss xmm15, dword ptr [rbx + 4]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AD42	4054h	r	mulss xmm2, dword ptr [rbx + 4]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB10	4058h	r	movss xmm0, dword ptr [rbx + 8]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ABEF	4058h	r	movss xmm6, dword ptr [rbx + 8]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AD3A	4058h	r	mulss xmm1, dword ptr [rbx + 8]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AAE6	405Ch	r	movss xmm12, dword ptr [rbx + Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ADE5	405Ch	r	mulss xmm1, dword ptr [rbx + Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	00651872	4060h	r	movss xmm2, dword ptr [rbx + 4060h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AA6D	4060h	r	movss xmm0, dword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB2D	4060h	r	movss xmm0, dword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AC4D	4060h	r	movss xmm12, dword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ACC2	4060h	r	mulss xmm7, dword ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	0065186A	4064h	r	movss xmm5, dword ptr [rbx + 4064h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AA68	4064h	r	movss xmm1, dword ptr [rbx + 14h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB32	4064h	r	movss xmm1, dword ptr [rbx + 14h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AC39	4064h	r	movss xmm4, dword ptr [rbx + 14h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ACBD	4064h	r	mulss xmm4, dword ptr [rbx + 14h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	00651861	4068h	r	movss xmm9, dword ptr [rbx + 4068h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AA63	4068h	r	movss xmm2, dword ptr [rbx + 18h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB37	4068h	r	movss xmm2, dword ptr [rbx + 18h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AC2A	4068h	r	movss xmm0, dword ptr [rbx + 18h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ACB5	4068h	r	mulss xmm3, dword ptr [rbx + 18h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AAE0	406Ch	r	movss xmm9, dword ptr [rbx + 1Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ADD3	406Ch	r	movss xmm10, dword ptr [rbx + 1Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065A9F8	4070h	r	movss xmm0, dword ptr [r8 + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB52	4070h	r	movss xmm0, dword ptr [rbx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AC82	4070h	r	movss xmm14, dword ptr [rbx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ACFC	4070h	r	movss xmm2, dword ptr [rbx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065A9F2	4074h	r	movss xmm1, dword ptr [r8 + 24h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB57	4074h	r	movss xmm14, dword ptr [rbx + 24h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ACED	4074h	r	movss xmm1, dword ptr [rbx + 24h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065A9EC	4078h	r	movss xmm2, dword ptr [r8 + 28h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AB5D	4078h	r	movss xmm11, dword ptr [rbx + 28h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ACDE	4078h	r	movss xmm0, dword ptr [rbx + 28h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AADA	407Ch	r	movss xmm8, dword ptr [rbx + 2Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ADC8	407Ch	r	movss xmm9, dword ptr [rbx + 2Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	0065182E	4080h	r	movss xmm0, dword ptr [rbx + 4080h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00651954	4080h	r	mov eax, dword ptr [rbx + 4080h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AF32	4080h	addr	lea r10, [rbx + 30h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AF3B	4081h	addr	lea eax, [r10 + 1]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4080h	
-006515C0	FUN_006515c0	00651843	4084h	r	movss xmm0, dword ptr [rbx + 4084h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	0065195C	4084h	r	movss xmm0, dword ptr [rbx + 4084h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00651850	4088h	r	movss xmm0, dword ptr [rbx + 4088h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00651969	4088h	r	movss xmm1, dword ptr [rbx + 4088h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00651976	408Ch	r	movss xmm0, dword ptr [rbx + 408Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065ABB5	40A0h	r	cmp dword ptr [rbx + 50h], 2	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065B109	40A0h	r	mov eax, dword ptr [rbx + 50h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065B02D	40A4h	r	movss xmm0, dword ptr [rbx + 54h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ABA1	40A8h	r	movss xmm6, dword ptr [rbx + 58h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065B028	40A8h	r	movss xmm1, dword ptr [rbx + 58h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AFAA	40ACh	r	movss xmm7, dword ptr [rbx + 5Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065ABBB	40B0h	r	movss xmm0, dword ptr [rbx + 60h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-0065A960	FUN_0065a960	0065AF8E	40B0h	r	movss xmm9, dword ptr [rbx + 60h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	0065198D	40B4h	r	cmp dword ptr [rbx + 40B4h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B09D	40B4h	r	cmp dword ptr [rbx + 64h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	00651996	40B8h	r	mov eax, dword ptr [rbx + 40B8h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B0A3	40B8h	r	mov eax, dword ptr [rbx + 68h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4050h	
-006515C0	FUN_006515c0	00652336	40D0h	addr	lea r8, [rbx + 40D0h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A43D	40D0h	r	movss xmm1, dword ptr [rbx + 40D0h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A435	40D4h	r	movss xmm2, dword ptr [rbx + 40D4h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A42D	40D8h	r	movss xmm3, dword ptr [rbx + 40D8h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A41F	40DCh	r	movss xmm0, dword ptr [rbx + 40DCh]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A26B	40E0h	addr	lea r8, [rbx + 40E0h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A1D0	40F0h	r	movss xmm2, dword ptr [rbx + 40F0h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A1D8	40F4h	r	movss xmm1, dword ptr [rbx + 40F4h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A1F3	40F8h	r	movss xmm0, dword ptr [rbx + 40F8h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A17D	4108h	addr	lea r8, [rbx + 4108h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A1A8	410Ch	addr	lea r8, [rbx + 410Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	006519D3	4110h	r	cmp dword ptr [rbx + 4110h], r14d	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00651B65	4110h	r	cmp r13d, dword ptr [rbx + 4110h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00651C7D	4110h	r	cmp dword ptr [rbx + 4110h], r14d	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00652110	4110h	r	cmp r13d, dword ptr [rbx + 4110h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A488	4110h	r	cmp dword ptr [rbx + 4110h], eax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A4B6	4110h	r	cmp r14d, dword ptr [rbx + 4110h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006553D0	FUN_006553d0	006553DA	4114h	r	cmp dword ptr [rcx + 4114h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006553D0	FUN_006553d0	006555AC	4114h	w	mov dword ptr [rbx + 4114h], 3	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655690	FUN_00655690	0065569D	4114h	r	cmp dword ptr [rcx + 4114h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	00659EF8	4114h	r	cmp dword ptr [rcx + 4114h], 3	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065C330	FUN_0065c330	0065C345	4114h	r	mov ecx, dword ptr [rcx + 4114h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00650D40	FUN_00650d40	00650E9D	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00650D40	FUN_00650d40	00650F85	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00650D40	FUN_00650d40	0065102F	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	0065218C	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	0065221D	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	0065228B	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	006522DD	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	0065232F	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00652381	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	006523FC	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00652475	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006515C0	FUN_006515c0	00652537	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006525F0	FUN_006525f0	00652635	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006525F0	FUN_006525f0	006526F1	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006525F0	FUN_006525f0	0065277E	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006525F0	FUN_006525f0	0065282E	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006525F0	FUN_006525f0	006528E0	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B41	4118h	r	mov rdx, qword ptr [rcx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B6E	4118h	w	mov qword ptr [rbx + 4118h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654BA1	4118h	r	mov r8, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	00659F85	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	00659FD2	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A026	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A07A	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A0C9	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A122	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A176	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A1A1	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A20F	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A264	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A2BB	4118h	r	mov rax, qword ptr [rbx + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AA0D	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AA89	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AED5	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AF27	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AFD5	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B044	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B0B6	4118h	r	mov rax, qword ptr [rdi + 4118h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B0F	4120h	r	cmp qword ptr [rcx + 4120h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654BCB	4120h	r	mov rdx, qword ptr [rbx + 4120h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655EC0	FUN_00655ec0	00655EE2	4120h	w	mov qword ptr [rdi + 4120h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006568D0	FUN_006568d0	006568DA	4120h	r	cmp qword ptr [rcx + 4120h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B11E	4120h	r	mov rdx, qword ptr [rdi + 4120h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065D2A0	FUN_0065d2a0	0065D2C2	4120h	r	mov rcx, qword ptr [rbx + 4120h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065D2A0	FUN_0065d2a0	0065D2D6	4120h	w	mov qword ptr [rbx + 4120h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654B37	4128h	r	cmp qword ptr [rcx + 4128h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654BE7	4128h	r	mov rcx, qword ptr [rbx + 4128h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00655EC0	FUN_00655ec0	00655EF6	4128h	w	mov qword ptr [rdi + 4128h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006568D0	FUN_006568d0	006568FA	4128h	r	cmp qword ptr [rcx + 4128h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065B177	4128h	r	mov rdx, qword ptr [rdi + 4128h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065D2A0	FUN_0065d2a0	0065D2E1	4128h	r	mov rcx, qword ptr [rbx + 4128h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065D2A0	FUN_0065d2a0	0065D2F5	4128h	w	mov qword ptr [rbx + 4128h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0061D9C0	FUN_0061d9c0	0061DA1A	4130h	r	movzx ecx, byte ptr [rbx]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-00646590	FUN_00646590	006465B2	4130h	addr	lea rcx, [rbx + 4130h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654D41	4130h	addr	lea rbp, [rbx + 4130h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0061D9C0	FUN_0061d9c0	0061DA16	4131h	r	movzx edx, byte ptr [rbx + 1]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DA48	4132h	r	movzx edx, byte ptr [rbx + 2]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DA86	4133h	r	movzx edx, byte ptr [rbx + 3]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DAB9	4134h	r	movzx edx, byte ptr [rbx + 4]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DAFC	4138h	r	movss xmm0, dword ptr [rbx + 8]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DA22	413Ch	r	cvttss2si rbp, dword ptr [rbx + Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DAF5	4140h	r	movzx eax, byte ptr [rbx + 10h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DB18	4141h	r	movzx eax, byte ptr [rbx + 11h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DB36	4142h	r	movzx eax, byte ptr [rbx + 12h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DB41	4143h	r	movzx eax, byte ptr [rbx + 13h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-006167C0	FUN_006167c0	006167EA	414Ch	rw	and dword ptr [rbx + 1Ch], FFFFFF7Fh	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DA02	414Ch	r	mov r11d, dword ptr [rbx + 1Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DBA8	414Ch	rw	or dword ptr [rbx + 1Ch], 80h	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0062BA00	FUN_0062ba00	0062BA20	414Ch	rw	and dword ptr [rbx + 1Ch], FFFFFF7Fh	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0065D2A0	FUN_0065d2a0	0065D2A6	414Ch	r	mov eax, dword ptr [rcx + 414Ch]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006167C0	FUN_006167c0	006167D2	4150h	r	mov rcx, qword ptr [rcx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-006167C0	FUN_006167c0	006167E2	4150h	w	mov qword ptr [rbx + 20h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061D9DE	4150h	r	cmp qword ptr [rcx + 20h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DB1C	4150h	addr	lea r8, [rbx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DB86	4150h	r	mov rcx, qword ptr [rbx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0061D9C0	FUN_0061d9c0	0061DBA1	4150h	r	cmp qword ptr [rbx + 20h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0062BA00	FUN_0062ba00	0062BA09	4150h	r	mov rcx, qword ptr [rcx + 20h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-0062BA00	FUN_0062ba00	0062BA18	4150h	w	mov qword ptr [rbx + 20h], 0	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+4130h	
-00654B00	FUN_00654b00	00654C14	4158h	w	mov qword ptr [rbx + 4158h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	00659FEE	4158h	r	mov rdx, qword ptr [rbx + 4158h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654C2A	4160h	w	mov qword ptr [rbx + 4160h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	00659FA8	4160h	r	mov rdx, qword ptr [rbx + 4160h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654C40	4168h	w	mov qword ptr [rbx + 4168h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-0065A960	FUN_0065a960	0065AAC7	4168h	r	mov r14, qword ptr [rdi + 4168h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654C56	4170h	w	mov qword ptr [rbx + 4170h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654C6C	4178h	w	mov qword ptr [rbx + 4178h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654CC4	4180h	w	mov qword ptr [rbx + 4180h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654CDA	4188h	w	mov qword ptr [rbx + 4188h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654CF0	4190h	w	mov qword ptr [rbx + 4190h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654D06	4198h	w	mov qword ptr [rbx + 4198h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654D1C	41A0h	w	mov qword ptr [rbx + 41A0h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654C98	41A8h	w	mov qword ptr [rbx + 41A8h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654CAE	41B0h	w	mov qword ptr [rbx + 41B0h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654C82	41B8h	w	mov qword ptr [rbx + 41B8h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A0E5	41B8h	r	mov rcx, qword ptr [rbx + 41B8h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654D32	41C0h	w	mov qword ptr [rbx + 41C0h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A1C0	41C0h	r	mov rcx, qword ptr [rbx + 41C0h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00654B00	FUN_00654b00	00654D48	41C8h	w	mov qword ptr [rbx + 41C8h], rax	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-00659EC0	FUN_00659ec0	0065A258	41C8h	r	mov rdx, qword ptr [rbx + 41C8h]	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
-006553D0	FUN_006553d0	0065565E	41D0h	rw	and byte ptr [rbx + 41D0h], al	route-seeded VTABLE 00D61EA0h | VTABLE 00D61F40h base+0h	
+00646590	FUN_00646590	006465A9	0x0	w	mov qword ptr [rcx], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00646590	FUN_00646590	006465C6	0x0	w	mov qword ptr [rbx], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00646600	FUN_00646600	00646619	0x0	w	mov qword ptr [rcx], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00657150	FUN_00657150	0065715A	0x0	r	mov rax, qword ptr [rcx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B43B	0x0	r	mov rax, qword ptr [rcx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B472	0x0	r	mov rax, qword ptr [rbx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B8F0	FUN_0065b8f0	0065B90F	0x0	r	mov rax, qword ptr [rcx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00653B10	FUN_00653b10	00653B10	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B6A	0x10	r	mov rdx, qword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006571C0	FUN_006571c0	006571C0	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006572C0	FUN_006572c0	006572C6	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006572C0	FUN_006572c0	006572F3	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006575E0	FUN_006575e0	006575E0	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B44F	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B47B	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006572C0	FUN_006572c0	006572F9	0x18	w	mov qword ptr [rbx + 0x18], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006575E0	FUN_006575e0	006575E4	0x18	w	mov qword ptr [rcx + 0x18], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B453	0x18	r	cmp rax, qword ptr [rbx + 0x18]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006572C0	FUN_006572c0	0065730B	0x20	w	mov qword ptr [rbx + 0x20], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006575E0	FUN_006575e0	006575F1	0x20	w	mov qword ptr [rcx + 0x20], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B462	0x20	r	cmp rcx, qword ptr [rbx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006572C0	FUN_006572c0	00657318	0x28	w	mov qword ptr [rbx + 0x28], rcx	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006575E0	FUN_006575e0	006575FE	0x28	w	mov qword ptr [rcx + 0x28], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006575E0	FUN_006575e0	00657605	0x28	w	mov qword ptr [rcx + 0x28], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B468	0x28	r	mov rax, qword ptr [rbx + 0x28]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00646590	FUN_00646590	006465C9	0x30	r	mov ecx, dword ptr [rbx + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00646590	FUN_00646590	006465F5	0x30	w	mov dword ptr [rbx + 0x30], eax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B9A	0x30	r	mov edx, dword ptr [rbx + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B9D	0x30	addr	lea rax, [rbx + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A353	0x30	addr	lea rax, [rbx + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A555	0x30	addr	lea rax, [rbx + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B1D4	0x30	addr	lea rax, [rdi + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00646590	FUN_00646590	006465E0	0x38	r	mov rcx, qword ptr [rbx + 0x38]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00646590	FUN_00646590	006465F1	0x38	w	mov qword ptr [rbx + 0x38], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654BB8	0x38	r	mov rcx, qword ptr [rax + 8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x30	
+00654B00	FUN_00654b00	00654BC0	0x38	addr	lea rcx, [rax + 8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x30	
+00655AC0	FUN_00655ac0	00655B5C	0x40	w	mov byte ptr [rdi + 0x40], 1	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655DC0	FUN_00655dc0	00655E15	0x40	w	mov byte ptr [rsi + 0x40], 1	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00657690	FUN_00657690	0065769F	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B400	FUN_0065b400	0065B414	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065B8F0	FUN_0065b8f0	0065B8F4	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006571C0	FUN_006571c0	006571CF	0x41	r	cmp byte ptr [rcx + 0x41], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00653CD0	FUN_00653cd0	00653CD0	0x44	r	mov eax, dword ptr [rcx + 0x44]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655AC0	FUN_00655ac0	00655B53	0x44	w	mov dword ptr [rdi + 0x44], r14d	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655DC0	FUN_00655dc0	00655E12	0x44	w	mov dword ptr [rsi + 0x44], edi	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00657680	FUN_00657680	00657680	0x44	w	mov dword ptr [rcx + 0x44], edx	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00657690	FUN_00657690	006576B6	0x44	w	mov dword ptr [rbx + 0x44], esi	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00653B20	FUN_00653b20	00653B20	0x48	r	mov eax, dword ptr [rcx + 0x48]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655AC0	FUN_00655ac0	00655B59	0x48	w	mov dword ptr [rdi + 0x48], ebx	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655DC0	FUN_00655dc0	00655E08	0x48	w	mov dword ptr [rsi + 0x48], ebx	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00657680	FUN_00657680	00657685	0x48	w	mov dword ptr [rcx + 0x48], r8d	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00657690	FUN_00657690	006576BB	0x48	w	mov dword ptr [rbx + 0x48], edi	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A497	0x50	addr	lea r8, [rbx + 0x50]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A46C	0x4050	addr	lea r8, [rbx + 0x4050]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AB05	0x4050	r	movss xmm13, dword ptr [rbx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AD47	0x4050	r	mulss xmm3, dword ptr [rbx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB0A	0x4054	r	movss xmm15, dword ptr [rbx + 4]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AD42	0x4054	r	mulss xmm2, dword ptr [rbx + 4]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB10	0x4058	r	movss xmm0, dword ptr [rbx + 8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ABEF	0x4058	r	movss xmm6, dword ptr [rbx + 8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AD3A	0x4058	r	mulss xmm1, dword ptr [rbx + 8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AAE6	0x405C	r	movss xmm12, dword ptr [rbx + 0xc]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ADE5	0x405C	r	mulss xmm1, dword ptr [rbx + 0xc]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	00651872	0x4060	r	movss xmm2, dword ptr [rbx + 0x4060]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AA6D	0x4060	r	movss xmm0, dword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB2D	0x4060	r	movss xmm0, dword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AC4D	0x4060	r	movss xmm12, dword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ACC2	0x4060	r	mulss xmm7, dword ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	0065186A	0x4064	r	movss xmm5, dword ptr [rbx + 0x4064]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AA68	0x4064	r	movss xmm1, dword ptr [rbx + 0x14]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB32	0x4064	r	movss xmm1, dword ptr [rbx + 0x14]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AC39	0x4064	r	movss xmm4, dword ptr [rbx + 0x14]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ACBD	0x4064	r	mulss xmm4, dword ptr [rbx + 0x14]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	00651861	0x4068	r	movss xmm9, dword ptr [rbx + 0x4068]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AA63	0x4068	r	movss xmm2, dword ptr [rbx + 0x18]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB37	0x4068	r	movss xmm2, dword ptr [rbx + 0x18]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AC2A	0x4068	r	movss xmm0, dword ptr [rbx + 0x18]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ACB5	0x4068	r	mulss xmm3, dword ptr [rbx + 0x18]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AAE0	0x406C	r	movss xmm9, dword ptr [rbx + 0x1c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ADD3	0x406C	r	movss xmm10, dword ptr [rbx + 0x1c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065A9F8	0x4070	r	movss xmm0, dword ptr [r8 + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB52	0x4070	r	movss xmm0, dword ptr [rbx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AC82	0x4070	r	movss xmm14, dword ptr [rbx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ACFC	0x4070	r	movss xmm2, dword ptr [rbx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065A9F2	0x4074	r	movss xmm1, dword ptr [r8 + 0x24]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB57	0x4074	r	movss xmm14, dword ptr [rbx + 0x24]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ACED	0x4074	r	movss xmm1, dword ptr [rbx + 0x24]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065A9EC	0x4078	r	movss xmm2, dword ptr [r8 + 0x28]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AB5D	0x4078	r	movss xmm11, dword ptr [rbx + 0x28]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ACDE	0x4078	r	movss xmm0, dword ptr [rbx + 0x28]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AADA	0x407C	r	movss xmm8, dword ptr [rbx + 0x2c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ADC8	0x407C	r	movss xmm9, dword ptr [rbx + 0x2c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	0065182E	0x4080	r	movss xmm0, dword ptr [rbx + 0x4080]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00651954	0x4080	r	mov eax, dword ptr [rbx + 0x4080]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AF32	0x4080	addr	lea r10, [rbx + 0x30]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AF3B	0x4081	addr	lea eax, [r10 + 1]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4080	
+006515C0	FUN_006515c0	00651843	0x4084	r	movss xmm0, dword ptr [rbx + 0x4084]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	0065195C	0x4084	r	movss xmm0, dword ptr [rbx + 0x4084]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00651850	0x4088	r	movss xmm0, dword ptr [rbx + 0x4088]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00651969	0x4088	r	movss xmm1, dword ptr [rbx + 0x4088]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00651976	0x408C	r	movss xmm0, dword ptr [rbx + 0x408c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065ABB5	0x40A0	r	cmp dword ptr [rbx + 0x50], 2	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065B109	0x40A0	r	mov eax, dword ptr [rbx + 0x50]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065B02D	0x40A4	r	movss xmm0, dword ptr [rbx + 0x54]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ABA1	0x40A8	r	movss xmm6, dword ptr [rbx + 0x58]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065B028	0x40A8	r	movss xmm1, dword ptr [rbx + 0x58]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AFAA	0x40AC	r	movss xmm7, dword ptr [rbx + 0x5c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065ABBB	0x40B0	r	movss xmm0, dword ptr [rbx + 0x60]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+0065A960	FUN_0065a960	0065AF8E	0x40B0	r	movss xmm9, dword ptr [rbx + 0x60]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	0065198D	0x40B4	r	cmp dword ptr [rbx + 0x40b4], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B09D	0x40B4	r	cmp dword ptr [rbx + 0x64], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	00651996	0x40B8	r	mov eax, dword ptr [rbx + 0x40b8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B0A3	0x40B8	r	mov eax, dword ptr [rbx + 0x68]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4050	
+006515C0	FUN_006515c0	00652336	0x40D0	addr	lea r8, [rbx + 0x40d0]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A43D	0x40D0	r	movss xmm1, dword ptr [rbx + 0x40d0]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A435	0x40D4	r	movss xmm2, dword ptr [rbx + 0x40d4]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A42D	0x40D8	r	movss xmm3, dword ptr [rbx + 0x40d8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A41F	0x40DC	r	movss xmm0, dword ptr [rbx + 0x40dc]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A26B	0x40E0	addr	lea r8, [rbx + 0x40e0]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A1D0	0x40F0	r	movss xmm2, dword ptr [rbx + 0x40f0]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A1D8	0x40F4	r	movss xmm1, dword ptr [rbx + 0x40f4]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A1F3	0x40F8	r	movss xmm0, dword ptr [rbx + 0x40f8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A17D	0x4108	addr	lea r8, [rbx + 0x4108]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A1A8	0x410C	addr	lea r8, [rbx + 0x410c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	006519D3	0x4110	r	cmp dword ptr [rbx + 0x4110], r14d	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00651B65	0x4110	r	cmp r13d, dword ptr [rbx + 0x4110]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00651C7D	0x4110	r	cmp dword ptr [rbx + 0x4110], r14d	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00652110	0x4110	r	cmp r13d, dword ptr [rbx + 0x4110]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A488	0x4110	r	cmp dword ptr [rbx + 0x4110], eax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A4B6	0x4110	r	cmp r14d, dword ptr [rbx + 0x4110]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006553D0	FUN_006553d0	006553DA	0x4114	r	cmp dword ptr [rcx + 0x4114], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006553D0	FUN_006553d0	006555AC	0x4114	w	mov dword ptr [rbx + 0x4114], 3	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655690	FUN_00655690	0065569D	0x4114	r	cmp dword ptr [rcx + 0x4114], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	00659EF8	0x4114	r	cmp dword ptr [rcx + 0x4114], 3	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065C330	FUN_0065c330	0065C345	0x4114	r	mov ecx, dword ptr [rcx + 0x4114]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00650D40	FUN_00650d40	00650E9D	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00650D40	FUN_00650d40	00650F85	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00650D40	FUN_00650d40	0065102F	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	0065218C	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	0065221D	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	0065228B	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	006522DD	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	0065232F	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00652381	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	006523FC	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00652475	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006515C0	FUN_006515c0	00652537	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006525F0	FUN_006525f0	00652635	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006525F0	FUN_006525f0	006526F1	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006525F0	FUN_006525f0	0065277E	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006525F0	FUN_006525f0	0065282E	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006525F0	FUN_006525f0	006528E0	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B41	0x4118	r	mov rdx, qword ptr [rcx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B6E	0x4118	w	mov qword ptr [rbx + 0x4118], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654BA1	0x4118	r	mov r8, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	00659F85	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	00659FD2	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A026	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A07A	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A0C9	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A122	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A176	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A1A1	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A20F	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A264	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A2BB	0x4118	r	mov rax, qword ptr [rbx + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AA0D	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AA89	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AED5	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AF27	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AFD5	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B044	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B0B6	0x4118	r	mov rax, qword ptr [rdi + 0x4118]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B0F	0x4120	r	cmp qword ptr [rcx + 0x4120], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654BCB	0x4120	r	mov rdx, qword ptr [rbx + 0x4120]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655EC0	FUN_00655ec0	00655EE2	0x4120	w	mov qword ptr [rdi + 0x4120], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006568D0	FUN_006568d0	006568DA	0x4120	r	cmp qword ptr [rcx + 0x4120], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B11E	0x4120	r	mov rdx, qword ptr [rdi + 0x4120]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065D2A0	FUN_0065d2a0	0065D2C2	0x4120	r	mov rcx, qword ptr [rbx + 0x4120]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065D2A0	FUN_0065d2a0	0065D2D6	0x4120	w	mov qword ptr [rbx + 0x4120], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654B37	0x4128	r	cmp qword ptr [rcx + 0x4128], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654BE7	0x4128	r	mov rcx, qword ptr [rbx + 0x4128]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00655EC0	FUN_00655ec0	00655EF6	0x4128	w	mov qword ptr [rdi + 0x4128], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006568D0	FUN_006568d0	006568FA	0x4128	r	cmp qword ptr [rcx + 0x4128], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065B177	0x4128	r	mov rdx, qword ptr [rdi + 0x4128]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065D2A0	FUN_0065d2a0	0065D2E1	0x4128	r	mov rcx, qword ptr [rbx + 0x4128]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065D2A0	FUN_0065d2a0	0065D2F5	0x4128	w	mov qword ptr [rbx + 0x4128], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0061D9C0	FUN_0061d9c0	0061DA1A	0x4130	r	movzx ecx, byte ptr [rbx]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+00646590	FUN_00646590	006465B2	0x4130	addr	lea rcx, [rbx + 0x4130]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654D41	0x4130	addr	lea rbp, [rbx + 0x4130]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0061D9C0	FUN_0061d9c0	0061DA16	0x4131	r	movzx edx, byte ptr [rbx + 1]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DA48	0x4132	r	movzx edx, byte ptr [rbx + 2]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DA86	0x4133	r	movzx edx, byte ptr [rbx + 3]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DAB9	0x4134	r	movzx edx, byte ptr [rbx + 4]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DAFC	0x4138	r	movss xmm0, dword ptr [rbx + 8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DA22	0x413C	r	cvttss2si rbp, dword ptr [rbx + 0xc]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DAF5	0x4140	r	movzx eax, byte ptr [rbx + 0x10]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DB18	0x4141	r	movzx eax, byte ptr [rbx + 0x11]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DB36	0x4142	r	movzx eax, byte ptr [rbx + 0x12]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DB41	0x4143	r	movzx eax, byte ptr [rbx + 0x13]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+006167C0	FUN_006167c0	006167EA	0x414C	rw	and dword ptr [rbx + 0x1c], 0xffffff7f	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DA02	0x414C	r	mov r11d, dword ptr [rbx + 0x1c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DBA8	0x414C	rw	or dword ptr [rbx + 0x1c], 0x80	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0062BA00	FUN_0062ba00	0062BA20	0x414C	rw	and dword ptr [rbx + 0x1c], 0xffffff7f	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0065D2A0	FUN_0065d2a0	0065D2A6	0x414C	r	mov eax, dword ptr [rcx + 0x414c]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006167C0	FUN_006167c0	006167D2	0x4150	r	mov rcx, qword ptr [rcx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+006167C0	FUN_006167c0	006167E2	0x4150	w	mov qword ptr [rbx + 0x20], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061D9DE	0x4150	r	cmp qword ptr [rcx + 0x20], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DB1C	0x4150	addr	lea r8, [rbx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DB86	0x4150	r	mov rcx, qword ptr [rbx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0061D9C0	FUN_0061d9c0	0061DBA1	0x4150	r	cmp qword ptr [rbx + 0x20], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0062BA00	FUN_0062ba00	0062BA09	0x4150	r	mov rcx, qword ptr [rcx + 0x20]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+0062BA00	FUN_0062ba00	0062BA18	0x4150	w	mov qword ptr [rbx + 0x20], 0	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x4130	
+00654B00	FUN_00654b00	00654C14	0x4158	w	mov qword ptr [rbx + 0x4158], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	00659FEE	0x4158	r	mov rdx, qword ptr [rbx + 0x4158]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654C2A	0x4160	w	mov qword ptr [rbx + 0x4160], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	00659FA8	0x4160	r	mov rdx, qword ptr [rbx + 0x4160]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654C40	0x4168	w	mov qword ptr [rbx + 0x4168], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+0065A960	FUN_0065a960	0065AAC7	0x4168	r	mov r14, qword ptr [rdi + 0x4168]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654C56	0x4170	w	mov qword ptr [rbx + 0x4170], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654C6C	0x4178	w	mov qword ptr [rbx + 0x4178], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654CC4	0x4180	w	mov qword ptr [rbx + 0x4180], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654CDA	0x4188	w	mov qword ptr [rbx + 0x4188], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654CF0	0x4190	w	mov qword ptr [rbx + 0x4190], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654D06	0x4198	w	mov qword ptr [rbx + 0x4198], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654D1C	0x41A0	w	mov qword ptr [rbx + 0x41a0], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654C98	0x41A8	w	mov qword ptr [rbx + 0x41a8], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654CAE	0x41B0	w	mov qword ptr [rbx + 0x41b0], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654C82	0x41B8	w	mov qword ptr [rbx + 0x41b8], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A0E5	0x41B8	r	mov rcx, qword ptr [rbx + 0x41b8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654D32	0x41C0	w	mov qword ptr [rbx + 0x41c0], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A1C0	0x41C0	r	mov rcx, qword ptr [rbx + 0x41c0]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00654B00	FUN_00654b00	00654D48	0x41C8	w	mov qword ptr [rbx + 0x41c8], rax	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+00659EC0	FUN_00659ec0	0065A258	0x41C8	r	mov rdx, qword ptr [rbx + 0x41c8]	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	
+006553D0	FUN_006553d0	0065565E	0x41D0	rw	and byte ptr [rbx + 0x41d0], al	route-seeded VTABLE 0x00D61EA0 | VTABLE 0x00D61F40 base+0x0	

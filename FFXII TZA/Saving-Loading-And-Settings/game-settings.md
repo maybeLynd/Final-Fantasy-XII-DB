@@ -24,14 +24,14 @@ Two sets of options exist.
 
 ### The settings object
 
-`007980A0`, the program's main routine, allocates `65C`<sub>h</sub> bytes, builds the object with
+`007980A0`, the program's main routine, allocates `0x65C` bytes, builds the object with
 `001DE050(object, path)` (`00798257`) and keeps it at `01F82D20` (`00798261`). The path is the
 save directory (see the [saving and loading page](saving-and-loading.md)) joined with
-`GameSetting.ini` (`01CB35F8`, `00798218`) and stored at `+450`<sub>h</sub> as a wide string.
+`GameSetting.ini` (`01CB35F8`, `00798218`) and stored at `+0x450` as a wide string.
 
 `001DE050` fills the object in three steps:
 
-1. column 0 of the defaults table `00900CE0` (31 rows of 16 bytes) into the 31 dwords at `+00`<sub>h</sub>;
+1. column 0 of the defaults table `00900CE0` (31 rows of 16 bytes) into the 31 dwords at `+0x00`;
 2. Resolution and WindowSize from the desktop size (`GetSystemMetrics(0) << 16 |
    GetSystemMetrics(1)`);
 3. Language from the Windows LANGID (see the [languages page](languages.md)).
@@ -48,7 +48,7 @@ presets control.
 | # | Key (`01DFD050`) | Defaults Low, Medium, High, Custom | Preset | Value names (`01DFD150`) |
 |---|---|---|---|---|
 | 0 | Language | 1 | no | jp, en, fr, de, it, es, kr, ch, cn |
-| 1 | Resolution | `07800438`<sub>h</sub> (1920 x 1080) | no | `width*height` |
+| 1 | Resolution | `0x07800438` (1920 x 1080) | no | `width*height` |
 | 2 | ScreenMode | 1 | no | SM_WINDOW, SM_FULLSCREEN, SM_BORDERLESS |
 | 3 | Quality | 1, 1, 2, 3 | no | VQ_LOW, VQ_MEDIUM, VQ_HIGH, VQ_CUSTOM |
 | 4 | Brightness | 50 | no | number |
@@ -127,17 +127,17 @@ its current value (`DecideButton=Circle`). It builds the text in a string stream
 ### The quality presets
 
 `001DE4F0(object, quality)` returns at once when Quality already equals the argument; otherwise it
-stores it at `+0C`<sub>h</sub> and, for every setting whose reset flag is set, copies the defaults table's
+stores it at `+0x0C` and, for every setting whose reset flag is set, copies the defaults table's
 column `quality` unless the quality is 3. Its one caller is `001D5120` (`001D5139`), the
 graphics-settings apply, which then pushes five settings to their consumers in this order:
 
-1. WaterQuality (`+40`<sub>h</sub>) to `001A5B00(001A9930(), value)`.
-2. Shadow (`+1C`<sub>h</sub>) as the pair `00900F00[Shadow % 3]` (`001DE5A0`), the shadow map size for Low,
+1. WaterQuality (`+0x40`) to `001A5B00(001A9930(), value)`.
+2. Shadow (`+0x1C`) as the pair `00900F00[Shadow % 3]` (`001DE5A0`), the shadow map size for Low,
    Medium and High: 512, 1024 and 2048 on each axis, to `001EF520(001F0850(), high, low)`.
-3. MSAA (`+20`<sub>h</sub>) as a non-zero flag to byte `+DBA`<sub>h</sub> of `00189120()`, and as the sample count
+3. MSAA (`+0x20`) as a non-zero flag to byte `+0xDBA` of `00189120()`, and as the sample count
    `00900EE8[MSAA % 5]` = 1, 2, 4, 8 or 9 (`001DE570`) to `00189520`.
-4. PostAA (`+24`<sub>h</sub>) == 1 to byte `+4A3`<sub>h</sub> of `00193D50()`.
-5. SoftParticle (`+38`<sub>h</sub>) == 1 to the virtual slot `+60`<sub>h</sub> of the object at the caller's `+A80`<sub>h</sub>.
+4. PostAA (`+0x24`) == 1 to byte `+0x4A3` of `00193D50()`.
+5. SoftParticle (`+0x38`) == 1 to the virtual slot `+0x60` of the object at the caller's `+0xA80`.
 
 | Setting | Low | Medium | High |
 |---|---|---|---|
@@ -150,11 +150,11 @@ graphics-settings apply, which then pushes five settings to their consumers in t
 
 ### The supported MSAA modes
 
-The dword `+44C`<sub>h</sub> is a bit set of the MSAA values the display adapter supports. The constructor
+The dword `+0x44C` is a bit set of the MSAA values the display adapter supports. The constructor
 sets it to 1 (bit 0, Off), and `0017D9C0(bit)` adds one more bit through `001DF2B0(object, bit)`.
 
-The device setup `00628690` asks the device at its `+108`<sub>h</sub> for the quality level count of format
-`1C`<sub>h</sub> (`R8G8B8A8_UNORM`) at sample counts 2 to 32 (virtual slot `+F0`<sub>h</sub>, `CheckMultisampleQualityLevels`
+The device setup `00628690` asks the device at its `+0x108` for the quality level count of format
+`0x1C` (`R8G8B8A8_UNORM`) at sample counts 2 to 32 (virtual slot `+0xF0`, `CheckMultisampleQualityLevels`
 in the `ID3D11Device` layout). For every count with a non-zero level count it sets:
 
 | Sample count | Bit, MSAA value |
@@ -165,14 +165,14 @@ in the `ID3D11Device` layout). For every count with a non-zero level count it se
 | 16 | 5, CSAA16XQ |
 
 `001DF2C0(object, value, forward)` steps from `value` to the next value (or, with `forward` 0, the
-previous one) in 0-4 whose bit is set, wrapping around, and stores it as MSAA (`+20`<sub>h</sub>) of the
+previous one) in 0-4 whose bit is set, wrapping around, and stores it as MSAA (`+0x20`) of the
 object at `01F82D20`. Its one caller is the Graphics Settings dispatcher `001D1660` (`001D4A53`), which the
 Config screen's Anti-Aliasing row reaches through `0017DB90` and `001CD040` ([Config screen](../Menus-And-HUD/config-screen.md));
-it then sets byte `+DBA`<sub>h</sub> of `00189120()` to whether the result is non-zero.
+it then sets byte `+0xDBA` of `00189120()` to whether the result is non-zero.
 
 ### FrameLimit
 
-`0017D8F0` returns FrameLimit (`+48`<sub>h</sub>). `0022BDF0`, the first call of the boot frame mode
+`0017D8F0` returns FrameLimit (`+0x48`). `0022BDF0`, the first call of the boot frame mode
 `0022A0B0`, reads it, scans the command line for `-nologo` (which calls `00314DE0(1)`), and calls
 `001EDDC0(FrameLimit == 1)`:
 
@@ -192,15 +192,15 @@ and per-frame fades by `01DFE0BC`, so durations keep their wall-clock length at 
 
 ### DecideButton
 
-The Config screen's command `26`<sub>h</sub> calls `0017E6E0(value)`: `001DF340(object, 25, value)`, then
+The Config screen's command `0x26` calls `0017E6E0(value)`: `001DF340(object, 25, value)`, then
 `00198960(00198790(), value == 0)` for the input manager, then `0022A4F0`, which sets the confirm
-mask `01E0C2A0` and the cancel mask `01E0C2A4` to `2000`<sub>h</sub> and `4000`<sub>h</sub> for value 0 and the
+mask `01E0C2A0` and the cancel mask `01E0C2A4` to `0x2000` and `0x4000` for value 0 and the
 reverse otherwise, and `01FD4A64` to whether the value is non-zero. The same masks are set at boot
 (see the [languages page](languages.md)).
 
 The Controls screen's Default calls `0017E520`, which runs `001DEE70` on the object: CameraRevise
-(`+58`<sub>h</sub>) = 1, MouseSensityX (`+5C`<sub>h</sub>) = 4, and one 8-byte store that sets MouseSensityY (`+60`<sub>h</sub>) to
-4 and DecideButton (`+64`<sub>h</sub>) to 0. Its caller `0023E020` then applies the masks with `0022A4F0`.
+(`+0x58`) = 1, MouseSensityX (`+0x5C`) = 4, and one 8-byte store that sets MouseSensityY (`+0x60`) to
+4 and DecideButton (`+0x64`) to 0. Its caller `0023E020` then applies the masks with `0022A4F0`.
 
 ### The Config screen's commands
 
@@ -218,8 +218,8 @@ normalise), switching on the id through their index tables at `002407C0` and `00
 | 4 | 38 | `v != 1` |
 | 3, 5 | 17; every other id | unchanged |
 
-The in-game options are an `28`<sub>h</sub>-byte record inside the save image: `002DDE60` sets `0215E6E0`
-to `002536A0() + 8`, writes the template `{00000035h, 00620400h}` and patches it (bit 17 of
+The in-game options are an `0x28`-byte record inside the save image: `002DDE60` sets `0215E6E0`
+to `002536A0() + 8`, writes the template `{0x00000035, 0x00620400}` and patches it (bit 17 of
 dword 0 from `005C5230() == 2`; bit 12 of dword 0 set for locale ids 1 and 6; bit 10 of dword 1
 set for locale ids 0, 7, 8, 10 and 11), clears the camera-axis bits and pushes them to `001E1020`
 and `001E0FF0`, sets the music version to 1 (`002DF530(1, 1)`), clears the speed-mode field, sets
@@ -238,8 +238,8 @@ the three volumes to 100 (`001DBA60(1.0, channel)`), and runs the platform appli
 | 13 | Camera X-Axis | `002DE160` | dword 1 bit 9, pushed to `001E0FF0` | `002DDD00` |
 | 14 | Speed Mode Multiplier | `002DE250`, `0023B2E0` | dword 1 bits 23-26 | `002DDDA0` |
 | 16 | Voice language | `002DE2F0` | dword 1 bit 10 | `002DDE20` |
-| 17 | Music version | `002DE110` | `+0E`<sub>h</sub> u16, pushed to `002DF530` | `002DDCA0` |
-| 19, 20, 21 | Music, Sound Effects, Voice volume | `002DE0B0`, `002DE290`, `002DE310` | `+08`<sub>h</sub>, `+0A`<sub>h</sub>, `+0C`<sub>h</sub> u16, at most 100, pushed to `002DF2B0` on channels 1-3 | `002DDC70`, `002DDDE0`, `002DDE40` |
+| 17 | Music version | `002DE110` | `+0x0E` u16, pushed to `002DF530` | `002DDCA0` |
+| 19, 20, 21 | Music, Sound Effects, Voice volume | `002DE0B0`, `002DE290`, `002DE310` | `+0x08`, `+0x0A`, `+0x0C` u16, at most 100, pushed to `002DF2B0` on channels 1-3 | `002DDC70`, `002DDDE0`, `002DDE40` |
 | 28 | Camera Auto-Rotation | `0017E740` | `001DF340(object, 22)` CameraRevise | `0017E260` |
 | 29, 30 | Mouse Sensitivity | `0032E020`, `0032E030` | `001DF340(object, 24)`, `001DF340(object, 23)`, values 1-6 | `0017E420`, `0017E430` |
 | 38 | Confirm Button | `0017E6E0` | `001DF340(object, 25)` DecideButton | `0017E210` |
@@ -255,9 +255,9 @@ Active). `00255290(mode)` maps a UI mode to a halt class, -1 meaning no halt:
 |---|---|
 | 1 | -1 when the bit is set, 0 when clear |
 | 4 | 0 when the bit is set, -1 when clear |
-| 2, 6, `F`<sub>h</sub>, `11`<sub>h</sub>, `12`<sub>h</sub>, `13`<sub>h</sub>, `16`<sub>h</sub> | `D`<sub>h</sub> |
-| 3, `18`<sub>h</sub> | 2 |
-| `14`<sub>h</sub> | 0 |
+| 2, 6, `0xF`, `0x11`, `0x12`, `0x13`, `0x16` | `0xD` |
+| 3, `0x18` | 2 |
+| `0x14` | 0 |
 | other | -1 |
 
 `00254740(mode)` applies a class other than -1 through `00226BE0`, which sets that halt bit on every
@@ -267,14 +267,14 @@ readers are the Config getter, `00254740`, `00255290`, `00225CD0`, `00225EB0` an
 ### The FF12CONFIG file
 
 `003692D0` resets the block at `02B62DA8` with `00408BA0` (`00369323`) and then runs `00408C30`
-(`0036943F`), which reads `PS2Data/SQUARE_FF12/FF12CONFIG` from the archive (`001D6F20`, `800`<sub>h</sub>
+(`0036943F`), which reads `PS2Data/SQUARE_FF12/FF12CONFIG` from the archive (`001D6F20`, `0x800`
 bytes) and copies its bytes into the globals listed in the layout below.
 
-- The u16 at file `+0A`<sub>h</sub> goes to `02B62DB4` unless the dword `01E02804` is not negative, in which
+- The u16 at file `+0x0A` goes to `02B62DB4` unless the dword `01E02804` is not negative, in which
   case its low word is stored instead.
 - `02B62DAB` is always set to 1, and `02B62DB4` is zeroed when the second command-line argument is
   `debug`. The arguments come from `0017D240(&vector, &count)`, which returns the pointer and count
-  the application object keeps at `01F7F480` and `01F7F488` (its `+1130`<sub>h</sub> and `+1138`<sub>h</sub>, stored by
+  the application object keeps at `01F7F480` and `01F7F488` (its `+0x1130` and `+0x1138`, stored by
   `0017CEB0`).
 - When the file loads, `02B62DAD` is first set to `01E02804 >= 0`.
 - The `01E02810` branch (a `FFXII_%03d` or `PS2Data//oldsave//new%03d` probe that sets `02B62DAD`
@@ -284,44 +284,44 @@ bytes) and copies its bytes into the globals listed in the layout below.
 
 ## Layouts
 
-`GameSettingObject` (`65C`<sub>h</sub> bytes, offsets from the start of the record):
+`GameSettingObject` (`0x65C` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000`<sub>h</sub> | `u32[31] settings` | the 31 settings, offset = index * 4; 001DE050, 001DF350, 001DF340 |  |
-| `07C`<sub>h</sub> | `u8[972] tables` | the value tables 001DF240 fills from 01DFD850, 01DFD9A0 and 01DFDAF0 (81 dwords each at `+7C`<sub>h</sub>, `+1C0`<sub>h</sub> and `+304`<sub>h</sub>) |  |
-| `448`<sub>h</sub> | `u32` | count | 81 after `001DF240` |
-| `44C`<sub>h</sub> | `u32` | msaa | bit set of the supported MSAA values: 1 from `001DE050`, more bits from `001DF2B0`; read by `001DF2C0` |
-| `450`<sub>h</sub> | `u16[260] path` | the ini path, wcscpy_s by 001DE050 |  |
-| `658`<sub>h</sub> | `u16` | fresh | `0101`<sub>h</sub> from `001DE050`, 0 after a file load (`001DED50`) |
-| `65A`<sub>h</sub> | `u8` | fresh2 | 1 from `001DE050`, 0 after a file load |
-| `65B`<sub>h</sub> | `u8` | pad | not written by `001DE050`, `001DED50` or `001DF240` |
+| `+0x000` | `u32[31] settings` | the 31 settings, offset = index * 4; 001DE050, 001DF350, 001DF340 |  |
+| `+0x07C` | `u8[972] tables` | the value tables 001DF240 fills from 01DFD850, 01DFD9A0 and 01DFDAF0 (81 dwords each at +0x7C, +0x1C0 and +0x304) |  |
+| `+0x448` | `u32` | count | 81 after `001DF240` |
+| `+0x44C` | `u32` | msaa | bit set of the supported MSAA values: 1 from `001DE050`, more bits from `001DF2B0`; read by `001DF2C0` |
+| `+0x450` | `u16[260] path` | the ini path, wcscpy_s by 001DE050 |  |
+| `+0x658` | `u16` | fresh | `0x0101` from `001DE050`, 0 after a file load (`001DED50`) |
+| `+0x65A` | `u8` | fresh2 | 1 from `001DE050`, 0 after a file load |
+| `+0x65B` | `u8` | pad | not written by `001DE050`, `001DED50` or `001DF240` |
 
-`Ff12Config` (`17`<sub>h</sub> bytes, offsets from the start of the file):
+`Ff12Config` (`0x17` bytes, offsets from the start of the file):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | unread00 | not copied by `00408C30` |
-| `01`<sub>h</sub> | `u8` | unread01 | not copied |
-| `02`<sub>h</sub> | `u8` | opt02 | to `02B62DA8` (reset value 3) |
-| `03`<sub>h</sub> | `u8` | opt03 | to `02B62DA9` |
-| `04`<sub>h</sub> | `u8` | opt04 | to `02B62DAA` |
-| `05`<sub>h</sub> | `u8` | unread05 | not copied |
-| `06`<sub>h</sub> | `u8` | opt06 | to `02B62DAC` |
-| `07`<sub>h</sub> | `u8` | unread07 | not copied |
-| `08`<sub>h</sub> | `u8` | opt08 | to `02B62DAE` |
-| `09`<sub>h</sub> | `u8` | opt09 | to `02B62DAF` (reset value 1) |
-| `0A`<sub>h</sub> | `u16` | fieldId | to `02B62DB4` unless `01E02804` is not negative |
-| `0C`<sub>h</sub> | `u8` | opt0C | to `02B62DB0` |
-| `0D`<sub>h</sub> | `u8` | opt0D | to `02B62DB1` |
-| `0E`<sub>h</sub> | `u8` | opt0E | to `02B62DB2` |
-| `0F`<sub>h</sub> | `u8` | opt0F | to `02B62DB3` |
-| `10`<sub>h</sub> | `u8` | opt10 | to `02B62DB6` |
-| `11`<sub>h</sub> | `u8` | opt11 | to `02B62DB7` |
-| `12`<sub>h</sub> | `u8` | opt12 | to `02B62DB8` |
-| `13`<sub>h</sub> | `u8[2] unread13` | not copied |  |
-| `15`<sub>h</sub> | `u8` | opt15 | to `02B62DBB` (not reset by `00408BA0`) |
-| `16`<sub>h</sub> | `u8` | opt16 | to `02B62DBC` |
+| `+0x00` | `u8` | unread00 | not copied by `00408C30` |
+| `+0x01` | `u8` | unread01 | not copied |
+| `+0x02` | `u8` | opt02 | to `02B62DA8` (reset value 3) |
+| `+0x03` | `u8` | opt03 | to `02B62DA9` |
+| `+0x04` | `u8` | opt04 | to `02B62DAA` |
+| `+0x05` | `u8` | unread05 | not copied |
+| `+0x06` | `u8` | opt06 | to `02B62DAC` |
+| `+0x07` | `u8` | unread07 | not copied |
+| `+0x08` | `u8` | opt08 | to `02B62DAE` |
+| `+0x09` | `u8` | opt09 | to `02B62DAF` (reset value 1) |
+| `+0x0A` | `u16` | fieldId | to `02B62DB4` unless `01E02804` is not negative |
+| `+0x0C` | `u8` | opt0C | to `02B62DB0` |
+| `+0x0D` | `u8` | opt0D | to `02B62DB1` |
+| `+0x0E` | `u8` | opt0E | to `02B62DB2` |
+| `+0x0F` | `u8` | opt0F | to `02B62DB3` |
+| `+0x10` | `u8` | opt10 | to `02B62DB6` |
+| `+0x11` | `u8` | opt11 | to `02B62DB7` |
+| `+0x12` | `u8` | opt12 | to `02B62DB8` |
+| `+0x13` | `u8[2] unread13` | not copied |  |
+| `+0x15` | `u8` | opt15 | to `02B62DBB` (not reset by `00408BA0`) |
+| `+0x16` | `u8` | opt16 | to `02B62DBC` |
 
 ## Operations
 

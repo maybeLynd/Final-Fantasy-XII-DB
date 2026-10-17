@@ -34,7 +34,7 @@ entry	size	does	references
 0012B860	136	the same sum for a 4x8 block after averaging the reference with a second prediction (arg 5, 4 bytes per row) by pavgb	none
 0012B8F0	136	the same sum for a 4x4 block after averaging the reference with a second prediction (arg 5, 4 bytes per row) by pavgb	none
 0012C030	959	8x8 inverse transform of a block whose non-zero coefficients lie in its top-left 4x4 (it reads only the first four coefficients of rows 0 to 3 at arg 1), pmulhrsw with the 14-bit cosine constants at 03001380 and 030018A0 to 030018E0, rounding +16 and >> 5, added to the 8x8 destination (arg 2, stride arg 3)	none
-0012C3F0	7891	32x32 inverse transform added to the destination (arg 2, stride arg 3): pmaddwd passes with 14-bit rounding (03001570) through a AA8h-byte stack frame; the first pass transforms only the first 8 columns of the coefficient block (arg 1)	none
+0012C3F0	7891	32x32 inverse transform added to the destination (arg 2, stride arg 3): pmaddwd passes with 14-bit rounding (03001570) through a 0xAA8-byte stack frame; the first pass transforms only the first 8 columns of the coefficient block (arg 1)	none
 0012E2D0	9149	the 32x32 inverse transform of 0012C3F0 whose first pass transforms the first 16 columns (two 8-column strips, 0012E33C)	none
 00130690	12223	the 32x32 inverse transform of 0012C3F0 whose first pass transforms all 32 columns (four strips, 001306FC)	none
 00133650	190	16x16 intra prediction into arg 1 (stride arg 2): 45-degree (down-left) prediction from the 16 pixels above (arg 3): each row is the row above shifted one pixel, each pixel the 3-tap (a + 2b + c + 2) >> 2 average of neighbours (pavgb with the 03001930 rounding mask)	none

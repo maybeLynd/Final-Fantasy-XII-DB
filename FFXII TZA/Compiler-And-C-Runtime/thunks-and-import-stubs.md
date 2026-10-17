@@ -115,9 +115,9 @@ their target:
 | `xor edx, edx ; jmp T` | 7 | 13 | second argument forced to 0 (`0025E3F0`) |
 | `mov rcx, [0209BE80] ; add rcx, imm ; jmp T` | 19 | 5 | calls `T` on a sub-object of the object `0209BE80` points to |
 
-The five receiver binders are `0028E220` (`+8FA0`<sub>h</sub>, to `002BDCE0`), `0028E860` (`+7EA0`<sub>h</sub>, to
-`0028CA30`), `0028E8B0` (`+8FA0`<sub>h</sub>, to `002BE020`), `0028FB40` (`+A0`<sub>h</sub>, to `003F8D20`) and `0028FB60`
-(`+5380`<sub>h</sub>, to `0028A080`).
+The five receiver binders are `0028E220` (`+0x8FA0`, to `002BDCE0`), `0028E860` (`+0x7EA0`, to
+`0028CA30`), `0028E8B0` (`+0x8FA0`, to `002BE020`), `0028FB40` (`+0xA0`, to `003F8D20`) and `0028FB60`
+(`+0x5380`, to `0028A080`).
 
 The member lists `thunks-and-import-stubs-forward-second-argument-tail-calls.tsv` (72 entries) and
 `thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv` (29 entries) hold part of the first
@@ -135,37 +135,37 @@ counts and whether a jump counts as a call. `00313F60` is `jmp 00377C20`:
   `00377C20`; one that counts instructions reports 79 calls and one jump.
 
 A chain can also change a register on the way. `00291D40` is `jmp 0028E8B0`, and `0028E8B0` loads
-`[0209BE80]`, adds `8FA0`<sub>h</sub> and jumps to `002BE020`. Its six callers therefore reach `002BE020` with a
+`[0209BE80]`, adds `0x8FA0` and jumps to `002BE020`. Its six callers therefore reach `002BE020` with a
 different `rcx` from the one they passed, while the four call sites that name `002BE020` directly
 pass their own.
 
 ## Layouts
 
-`ImportDescriptor` (`14`<sub>h</sub> bytes, offsets from the start of the record):
+`ImportDescriptor` (`0x14` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | lookupTable | RVA of the name-lookup qwords (.idata$4) |
-| `04`<sub>h</sub> | `u32` | timeStamp | 0 |
-| `08`<sub>h</sub> | `u32` | chain | forwarder chain |
-| `0C`<sub>h</sub> | `u32` | name | RVA of the DLL name |
-| `10`<sub>h</sub> | `u32` | firstThunk | RVA of the DLL's first slot in the import address table |
+| `+0x00` | `u32` | lookupTable | RVA of the name-lookup qwords (.idata$4) |
+| `+0x04` | `u32` | timeStamp | 0 |
+| `+0x08` | `u32` | chain | forwarder chain |
+| `+0x0C` | `u32` | name | RVA of the DLL name |
+| `+0x10` | `u32` | firstThunk | RVA of the DLL's first slot in the import address table |
 
-`ImportStub` (`6`<sub>h</sub> bytes, offsets from the start of the record):
+`ImportStub` (`0x6` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8[2]` | opcode | FF 25 |
-| `02`<sub>h</sub> | `i32` | disp | slot address minus the address of the next instruction |
+| `+0x00` | `u8[2]` | opcode | FF 25 |
+| `+0x02` | `i32` | disp | slot address minus the address of the next instruction |
 
 The seven-byte form puts a `48` prefix before `FF 25`, and its displacement counts from `+7`.
 
-`JumpForwarder` (`5`<sub>h</sub> bytes, offsets from the start of the record):
+`JumpForwarder` (`0x5` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | opcode | E9 |
-| `01`<sub>h</sub> | `i32` | disp | target minus (forwarder + 5) |
+| `+0x00` | `u8` | opcode | E9 |
+| `+0x01` | `i32` | disp | target minus (forwarder + 5) |
 
 ## Shipped data
 

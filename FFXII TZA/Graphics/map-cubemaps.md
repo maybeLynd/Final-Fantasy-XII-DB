@@ -16,33 +16,33 @@ walks from one part of a map to another.
 
 ### The probe manager
 
-`001AD440` returns the probe manager `[01F811C8]`. Its probes are a vector of pointers at `+F0`<sub>h</sub>. When a
+`001AD440` returns the probe manager `[01F811C8]`. Its probes are a vector of pointers at `+0xF0`. When a
 probe index is asked for that does not exist yet, `001AC810(manager, index)` appends probes up to it, each
-built by `001AA840(probe, index, 80.0, 2.0, 60.0, 1, 0)`: position (80, 2, 60) at `+20`<sub>h</sub>, radius 0 at
-`+2C`<sub>h</sub>, weight 1 at `+30`<sub>h</sub>, its index at `+38`<sub>h</sub>, enabled byte `+40`<sub>h</sub> = 1 and variant 0 at `+44`<sub>h</sub>.
-A probe owns a vector of `30`<sub>h</sub>-byte variants (`001AD0C0`), each with a vector of six texture pointers.
+built by `001AA840(probe, index, 80.0, 2.0, 60.0, 1, 0)`: position (80, 2, 60) at `+0x20`, radius 0 at
+`+0x2C`, weight 1 at `+0x30`, its index at `+0x38`, enabled byte `+0x40` = 1 and variant 0 at `+0x44`.
+A probe owns a vector of 0x30-byte variants (`001AD0C0`), each with a vector of six texture pointers.
 
-`001AD3E0`, from the start-up burst `0017D4C0`, builds the manager on first use: `258`<sub>h</sub> bytes,
+`001AD3E0`, from the start-up burst `0017D4C0`, builds the manager on first use: `0x258` bytes,
 constructed by `001AA9E0`, which:
 
-- empties the map at `+08`<sub>h</sub> and the vectors at `+F0`<sub>h</sub>, `+110`<sub>h</sub> and `+140`<sub>h</sub>, and clears the bytes
-  `+130`<sub>h</sub>, `+244`<sub>h</sub> and `+250`<sub>h</sub>;
-- lays down the developer capture settings: step `+A8`<sub>h</sub> = −2, `+B8`<sub>h</sub> = 12, `+BC`<sub>h</sub> = 1, `+1E0`<sub>h</sub> =
-  180, `+1E4`<sub>h</sub> = 3, `+1E8`<sub>h</sub> = 0.785 and `+24C`<sub>h</sub> = `400`<sub>h</sub>, with five status strings at `+44`<sub>h</sub>,
-  `+64`<sub>h</sub>, `+84`<sub>h</sub>, `+204`<sub>h</sub> and `+224`<sub>h</sub> (`"None"`, `"Original"`, `"Final"`, `"Current status"`);
-- ends with `001AD510(manager, manager + F0h)`, which keeps the probe vector at `+E8`<sub>h</sub> and sets each
-  probe's variant `+44`<sub>h</sub> to the manager's `+C0`<sub>h</sub>, or 0 when that is negative or not below the
+- empties the map at `+0x08` and the vectors at `+0xF0`, `+0x110` and `+0x140`, and clears the bytes
+  `+0x130`, `+0x244` and `+0x250`;
+- lays down the developer capture settings: step `+0xA8` = −2, `+0xB8` = 12, `+0xBC` = 1, `+0x1E0` =
+  180, `+0x1E4` = 3, `+0x1E8` = 0.785 and `+0x24C` = `0x400`, with five status strings at `+0x44`,
+  `+0x64`, `+0x84`, `+0x204` and `+0x224` (`"None"`, `"Original"`, `"Final"`, `"Current status"`);
+- ends with `001AD510(manager, manager + 0xF0)`, which keeps the probe vector at `+0xE8` and sets each
+  probe's variant `+0x44` to the manager's `+0xC0`, or 0 when that is negative or not below the
   probe's variant count.
 
-While the step `+A8`<sub>h</sub> stays negative the capture code does nothing to the picture. The render pass
-`00187950` runs `001AC7C0` each frame, which, when byte `+A4`<sub>h</sub> is set and the step is −2, sets the
+While the step `+0xA8` stays negative the capture code does nothing to the picture. The render pass
+`00187950` runs `001AC7C0` each frame, which, when byte `+0xA4` is set and the step is −2, sets the
 step to −1 and calls `001EF540(1)` on the shadow object (`001F0850`). `001ACF10(manager, format)`, from
-`00186CD0`, keeps the format at `+248`<sub>h</sub> and creates two 512 × 512 targets at `+D0`<sub>h</sub> and `+C8`<sub>h</sub>
+`00186CD0`, keeps the format at `+0x248` and creates two 512 × 512 targets at `+0xD0` and `+0xC8`
 (`001EE040`).
 
 ### Registering the textures
 
-When a map's art loads, `001A5B30` walks the textures of the map's asset list (context `+78`<sub>h</sub>) and looks
+When a map's art loads, `001A5B30` walks the textures of the map's asset list (context `+0x78`) and looks
 for `cubemap_` in each name (`001A5D3E`). The name is matched against four forms:
 
 | Name | Registered by | Slot |
@@ -59,24 +59,24 @@ variant record. The irradiance map is the texture the shader reads as `IrrCubeMa
 ### cubeMapConfigs.txt
 
 After the scan, `001A5B30` runs `001AC480` on the manager, which calls `001AD130(manager, manager +
-16Ch)` with the map name kept there and sets the manager's byte `+250`<sub>h</sub>; `01DFE191` then records whether
+0x16C)` with the map name kept there and sets the manager's byte `+0x250`; `01DFE191` then records whether
 any probe exists. `001AD130`
 files a whole-file read of `/GameData/D3D11/ArtData/map/<map>/cubeMapConfigs.txt` (`008F6D08`, through
 `001A1220` and `001A0BB0`) with the completion `001AD450`, which runs `001ACF80`. That finds the pending
-request whose name matches the map name at context `+241`<sub>h</sub>, parses the text with `001AC4B0`, sets the
-manager's byte `+130`<sub>h</sub> and frees the text.
+request whose name matches the map name at context `+0x241`, parses the text with `001AC4B0`, sets the
+manager's byte `+0x130` and frees the text.
 
 `001AC4B0(manager, text)` reads with `%d` and `%f` (`008F6D3C`, `008F6D40`), skipping the CR and LF
 after each value:
 
 1. the probe count; when it exceeds the probes already registered, nothing is read;
-2. per probe, in index order: x, y, z (`+20`<sub>h</sub>), the weight (`%d`, `+30`<sub>h</sub>, raised to 1 when below 1)
-   and the radius (`%f`, `+2C`<sub>h</sub>). A failed read stops the parse.
+2. per probe, in index order: x, y, z (`+0x20`), the weight (`%d`, `+0x30`, raised to 1 when below 1)
+   and the radius (`%f`, `+0x2C`). A failed read stops the parse.
 
 ### Picking probes for a point
 
 `001ABF50(manager, indices[4], weights[4], point)` returns indices and weights of 0 while the manager's
-byte `+244`<sub>h</sub> is set or its `+A8`<sub>h</sub> is −1 or above. Otherwise the indices start at 4 (none) and the
+byte `+0x244` is set or its `+0xA8` is −1 or above. Otherwise the indices start at 4 (none) and the
 weights at 0, and every enabled probe is weighed, with `d` the distance from the point in the horizontal
 plane (x and z):
 
@@ -84,55 +84,55 @@ plane (x and z):
 - a probe with a radius gets `1 − min(d, radius) / radius`.
 
 When the radius probes sum above 1 they are scaled to sum to 1. The radius-0 probes then share what is
-left, `1 − sum`, in proportion to their values. The probe pointers are copied to the vector `+110`<sub>h</sub> (sized by
+left, `1 − sum`, in proportion to their values. The probe pointers are copied to the vector `+0x110` (sized by
 `001AB0F0`) and sorted by weight, highest first (quicksort `001AA3D0` with the comparator `001AD470`), and the first four are returned with their
-indices `+38`<sub>h</sub> and weights `+34`<sub>h</sub>. A probe whose byte `+40`<sub>h</sub> is clear is returned with weight 0.
+indices `+0x38` and weights `+0x34`. A probe whose byte `+0x40` is clear is returned with weight 0.
 
 `001AC670(manager, i)` and `001AC720(manager, i)` return probe `i`'s environment and irradiance texture
 for the current weather slot (`00265920`, [weather](../World-Areas-And-Travel/weather.md)) in its variant
-`+44`<sub>h</sub>. `001AC6F0` returns its radius.
+`+0x44`. `001AC6F0` returns its radius.
 
 ### Binding to map materials
 
-`001E4000`, called from the map-art load, builds a `220`<sub>h</sub>-byte record of shader parameter handles for
+`001E4000`, called from the map-art load, builds a 0x220-byte record of shader parameter handles for
 every material of every mesh of a map model: 67 lookups by name through `0018D240`, among them
 `EnableCubeMap`, `CubeMap0`-`CubeMap3`, `CubeMapWeight0`-`CubeMapWeight3`, `IrrCubeMap0`-`IrrCubeMap3`,
-`cubemapIntensity` and `cubemapFactor`. It marks the model ready (`+250`<sub>h</sub>).
+`cubemapIntensity` and `cubemapFactor`. It marks the model ready (`+0x250`).
 
-`001AD670(manager, off)` stores `off` in the manager's byte `+244`<sub>h</sub> and runs `001E6480` on every map model
+`001AD670(manager, off)` stores `off` in the manager's byte `+0x244` and runs `001E6480` on every map model
 of the map-art context (`001A7600`). For each mesh of a ready model, `001E6480`:
 
 1. takes the centre of the mesh's bounds (`006045E0`) and asks `001ABF50` for four probes, kept at the
-   model's `+220`<sub>h</sub> (weights) and `+230`<sub>h</sub> (indices);
+   model's `+0x220` (weights) and `+0x230` (indices);
 2. adds up the weights of the four probes that have both textures, and remembers the last of them whose
    doubled radius is below 0.01, so a radius-0 probe;
 3. when it found one and every probe with both textures has a doubled radius of at most 0.01, or not above
-   the mesh object's `+18`<sub>h</sub> or `+20`<sub>h</sub>, or the object has `+18`<sub>h</sub>, `+1C`<sub>h</sub> or `+20`<sub>h</sub> above 30, that
+   the mesh object's `+0x18` or `+0x20`, or the object has `+0x18`, `+0x1C` or `+0x20` above 30, that
    probe gets weight 1 and the other three 0;
 4. otherwise divides each weight by the total, or sets it to 0 when the total is 0.01 or less;
 5. binds `CubeMapN` and `IrrCubeMapN` for each material through `001E6040` and writes `CubeMapWeightN`
-   into the material's parameter buffer at the handle's offset (`u16 +10h`), or 0 while `+244`<sub>h</sub> is set.
+   into the material's parameter buffer at the handle's offset (`u16 +0x10`), or 0 while `+0x244` is set.
 
 `001E6040(model, buffer, handle)` binds a texture with a sampler state built by `001E3EB0`, or, when the
-model's byte `+218`<sub>h</sub> is set, one of four presets of `[01F7E340]` (`0018AA00`) chosen by the filter
+model's byte `+0x218` is set, one of four presets of `[01F7E340]` (`0018AA00`) chosen by the filter
 mode.
 
 ## Layouts
 
-Probe (`001AA840`), pointed to from manager +`F0`<sub>h</sub>:
+Probe (`001AA840`), pointed to from manager +`0xF0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `vec` | variants | `30`<sub>h</sub> bytes each; +`08`<sub>h</sub> vector of six texture pointers |
-| `20`<sub>h</sub> | `f32` | x | cubeMapConfigs.txt; default 80 |
-| `24`<sub>h</sub> | `f32` | y | default 2 |
-| `28`<sub>h</sub> | `f32` | z | default 60 |
-| `2C`<sub>h</sub> | `f32` | radius | 0 = inverse-distance probe |
-| `30`<sub>h</sub> | `i32` | weight | at least 1 |
-| `34`<sub>h</sub> | `f32` | current weight | `001ABF50` |
-| `38`<sub>h</sub> | `u32` | index |  |
-| `40`<sub>h</sub> | `u8` | enabled | 1 |
-| `44`<sub>h</sub> | `u32` | variant | the _e&lt;v&gt; set in use |
+| `+0x00` | `vec` | variants | `0x30` bytes each; +`0x08` vector of six texture pointers |
+| `+0x20` | `f32` | x | cubeMapConfigs.txt; default 80 |
+| `+0x24` | `f32` | y | default 2 |
+| `+0x28` | `f32` | z | default 60 |
+| `+0x2C` | `f32` | radius | 0 = inverse-distance probe |
+| `+0x30` | `i32` | weight | at least 1 |
+| `+0x34` | `f32` | current weight | `001ABF50` |
+| `+0x38` | `u32` | index |  |
+| `+0x40` | `u8` | enabled | 1 |
+| `+0x44` | `u32` | variant | the _e&lt;v&gt; set in use |
 
 ```python
 cubeMapConfigs.txt, CRLF text

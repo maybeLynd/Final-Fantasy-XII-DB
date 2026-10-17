@@ -1,33 +1,33 @@
 id	name	kind	name_word	action_rows	licence_node	word_02	word_04	word_06	explanation
-C000h	Red Spiral	Quickening	00D0h	208	0	265	0	0	Red Spiral: the id Quickening action 208 names at +22h; licence node 0
-C001h	White Whorl	Quickening	00D1h	209	1	266	1	0	White Whorl: the id Quickening action 209 names at +22h; licence node 1
-C002h	Pyroclasm	Quickening	00D2h	210	2	267	2	0	Pyroclasm: the id Quickening action 210 names at +22h; licence node 2
-C003h	Feral Strike	Quickening	00D3h	211	3	268	3	0	Feral Strike: the id Quickening action 211 names at +22h; licence node 3
-C004h	Whip Kick	Quickening	00D4h	212	4	269	4	0	Whip Kick: the id Quickening action 212 names at +22h; licence node 4
-C005h	Shatterheart	Quickening	00D5h	213	5	270	5	0	Shatterheart: the id Quickening action 213 names at +22h; licence node 5
-C006h	Fires of War	Quickening	00D6h	214	6	271	6	0	Fires of War: the id Quickening action 214 names at +22h; licence node 6
-C007h	Tides of Fate	Quickening	00D7h	215	7	272	7	0	Tides of Fate: the id Quickening action 215 names at +22h; licence node 7
-C008h	Element of Treachery	Quickening	00D8h	216	8	273	8	0	Element of Treachery: the id Quickening action 216 names at +22h; licence node 8
-C009h	Fulminating Darkness	Quickening	00D9h	217	9	274	9	0	Fulminating Darkness: the id Quickening action 217 names at +22h; licence node 9
-C00Ah	Ruin Impendent	Quickening	00DAh	218	10	275	10	0	Ruin Impendent: the id Quickening action 218 names at +22h; licence node 10
-C00Bh	Flame Purge	Quickening	00DBh	219	11	276	11	0	Flame Purge: the id Quickening action 219 names at +22h; licence node 11
-C00Ch	Nordswain's Glow	Quickening	00DCh	220	12	277	12	0	Nordswain's Glow: the id Quickening action 220 names at +22h; licence node 12
-C00Dh	Heaven's Wrath	Quickening	00DDh	221	13	278	13	0	Heaven's Wrath: the id Quickening action 221 names at +22h; licence node 13
-C00Eh	Maelstrom's Bolt	Quickening	00DEh	222	14	279	14	0	Maelstrom's Bolt: the id Quickening action 222 names at +22h; licence node 14
-C00Fh	Intercession	Quickening	00DFh	223	15	280	15	0	Intercession: the id Quickening action 223 names at +22h; licence node 15
-C010h	Evanescence	Quickening	00E0h	224	16	281	16	0	Evanescence: the id Quickening action 224 names at +22h; licence node 16
-C011h	Resplendence	Quickening	00E1h	225	17	282	17	0	Resplendence: the id Quickening action 225 names at +22h; licence node 17
-C012h	Belias	Esper	0106h	262	18	283	18	0	Belias: the id summon action 262 names at +22h; its presence bit lets licence node 18 be taken
-C013h	Mateus	Esper	0107h	263	19	284	19	0	Mateus: the id summon action 263 names at +22h; its presence bit lets licence node 19 be taken
-C014h	Adrammelech	Esper	0108h	264	20	285	20	0	Adrammelech: the id summon action 264 names at +22h; its presence bit lets licence node 20 be taken
-C015h	Hashmal	Esper	0109h	265	21	286	25	0	Hashmal: the id summon action 265 names at +22h; its presence bit lets licence node 21 be taken
-C016h	Cúchulainn	Esper	010Ah	266	22	287	22	0	Cúchulainn: the id summon action 266 names at +22h; its presence bit lets licence node 22 be taken
-C017h	Famfrit	Esper	010Bh	267	23	288	27	0	Famfrit: the id summon action 267 names at +22h; its presence bit lets licence node 23 be taken
-C018h	Zalera	Esper	010Ch	268	24	289	21	0	Zalera: the id summon action 268 names at +22h; its presence bit lets licence node 24 be taken
-C019h	Shemhazai	Esper	010Dh	269	25	290	23	0	Shemhazai: the id summon action 269 names at +22h; its presence bit lets licence node 25 be taken
-C01Ah	Chaos	Esper	010Eh	270	26	291	28	0	Chaos: the id summon action 270 names at +22h; its presence bit lets licence node 26 be taken
-C01Bh	Zeromus	Esper	010Fh	271	27	292	26	0	Zeromus: the id summon action 271 names at +22h; its presence bit lets licence node 27 be taken
-C01Ch	Exodus	Esper	0110h	272	28	293	24	0	Exodus: the id summon action 272 names at +22h; its presence bit lets licence node 28 be taken
-C01Dh	Ultima	Esper	0111h	273	29	294	29	0	Ultima: the id summon action 273 names at +22h; its presence bit lets licence node 29 be taken
-C01Eh	Zodiark	Esper	0112h	274	30	295	30	0	Zodiark: the id summon action 274 names at +22h; its presence bit lets licence node 30 be taken
-C01Fh	SecondJob	Second Board	0220h		360	296	31	0	SecondJob: its presence bit lets the Second Board square, node 360, be taken
+0xC000	Red Spiral	Quickening	0x00D0	208	0	265	0	0	Red Spiral: the id Quickening action 208 names at +0x22; licence node 0
+0xC001	White Whorl	Quickening	0x00D1	209	1	266	1	0	White Whorl: the id Quickening action 209 names at +0x22; licence node 1
+0xC002	Pyroclasm	Quickening	0x00D2	210	2	267	2	0	Pyroclasm: the id Quickening action 210 names at +0x22; licence node 2
+0xC003	Feral Strike	Quickening	0x00D3	211	3	268	3	0	Feral Strike: the id Quickening action 211 names at +0x22; licence node 3
+0xC004	Whip Kick	Quickening	0x00D4	212	4	269	4	0	Whip Kick: the id Quickening action 212 names at +0x22; licence node 4
+0xC005	Shatterheart	Quickening	0x00D5	213	5	270	5	0	Shatterheart: the id Quickening action 213 names at +0x22; licence node 5
+0xC006	Fires of War	Quickening	0x00D6	214	6	271	6	0	Fires of War: the id Quickening action 214 names at +0x22; licence node 6
+0xC007	Tides of Fate	Quickening	0x00D7	215	7	272	7	0	Tides of Fate: the id Quickening action 215 names at +0x22; licence node 7
+0xC008	Element of Treachery	Quickening	0x00D8	216	8	273	8	0	Element of Treachery: the id Quickening action 216 names at +0x22; licence node 8
+0xC009	Fulminating Darkness	Quickening	0x00D9	217	9	274	9	0	Fulminating Darkness: the id Quickening action 217 names at +0x22; licence node 9
+0xC00A	Ruin Impendent	Quickening	0x00DA	218	10	275	10	0	Ruin Impendent: the id Quickening action 218 names at +0x22; licence node 10
+0xC00B	Flame Purge	Quickening	0x00DB	219	11	276	11	0	Flame Purge: the id Quickening action 219 names at +0x22; licence node 11
+0xC00C	Nordswain's Glow	Quickening	0x00DC	220	12	277	12	0	Nordswain's Glow: the id Quickening action 220 names at +0x22; licence node 12
+0xC00D	Heaven's Wrath	Quickening	0x00DD	221	13	278	13	0	Heaven's Wrath: the id Quickening action 221 names at +0x22; licence node 13
+0xC00E	Maelstrom's Bolt	Quickening	0x00DE	222	14	279	14	0	Maelstrom's Bolt: the id Quickening action 222 names at +0x22; licence node 14
+0xC00F	Intercession	Quickening	0x00DF	223	15	280	15	0	Intercession: the id Quickening action 223 names at +0x22; licence node 15
+0xC010	Evanescence	Quickening	0x00E0	224	16	281	16	0	Evanescence: the id Quickening action 224 names at +0x22; licence node 16
+0xC011	Resplendence	Quickening	0x00E1	225	17	282	17	0	Resplendence: the id Quickening action 225 names at +0x22; licence node 17
+0xC012	Belias	Esper	0x0106	262	18	283	18	0	Belias: the id summon action 262 names at +0x22; its presence bit lets licence node 18 be taken
+0xC013	Mateus	Esper	0x0107	263	19	284	19	0	Mateus: the id summon action 263 names at +0x22; its presence bit lets licence node 19 be taken
+0xC014	Adrammelech	Esper	0x0108	264	20	285	20	0	Adrammelech: the id summon action 264 names at +0x22; its presence bit lets licence node 20 be taken
+0xC015	Hashmal	Esper	0x0109	265	21	286	25	0	Hashmal: the id summon action 265 names at +0x22; its presence bit lets licence node 21 be taken
+0xC016	Cúchulainn	Esper	0x010A	266	22	287	22	0	Cúchulainn: the id summon action 266 names at +0x22; its presence bit lets licence node 22 be taken
+0xC017	Famfrit	Esper	0x010B	267	23	288	27	0	Famfrit: the id summon action 267 names at +0x22; its presence bit lets licence node 23 be taken
+0xC018	Zalera	Esper	0x010C	268	24	289	21	0	Zalera: the id summon action 268 names at +0x22; its presence bit lets licence node 24 be taken
+0xC019	Shemhazai	Esper	0x010D	269	25	290	23	0	Shemhazai: the id summon action 269 names at +0x22; its presence bit lets licence node 25 be taken
+0xC01A	Chaos	Esper	0x010E	270	26	291	28	0	Chaos: the id summon action 270 names at +0x22; its presence bit lets licence node 26 be taken
+0xC01B	Zeromus	Esper	0x010F	271	27	292	26	0	Zeromus: the id summon action 271 names at +0x22; its presence bit lets licence node 27 be taken
+0xC01C	Exodus	Esper	0x0110	272	28	293	24	0	Exodus: the id summon action 272 names at +0x22; its presence bit lets licence node 28 be taken
+0xC01D	Ultima	Esper	0x0111	273	29	294	29	0	Ultima: the id summon action 273 names at +0x22; its presence bit lets licence node 29 be taken
+0xC01E	Zodiark	Esper	0x0112	274	30	295	30	0	Zodiark: the id summon action 274 names at +0x22; its presence bit lets licence node 30 be taken
+0xC01F	SecondJob	Second Board	0x0220		360	296	31	0	SecondJob: its presence bit lets the Second Board square, node 360, be taken

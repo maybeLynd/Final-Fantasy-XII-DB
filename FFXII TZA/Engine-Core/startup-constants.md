@@ -25,23 +25,23 @@ archive mount. It runs these in order:
 2. `02064AA4` = 0 (the shared stub's result); `01E02814` = the language index `0017E270()`;
    `01E0281C` = 10 (`0017E410`); `002AB7D0()`;
 3. the confirm mapping: `01FD4A64` = whether DecideButton (`0017E210`, the settings object's
-   `+64`<sub>h</sub>) is non-zero; the masks `01E0C2A0`/`01E0C2A4` = `4000`<sub>h</sub>/`2000`<sub>h</sub>, swapped to
-   `2000`<sub>h</sub>/`4000`<sub>h</sub> when it is zero ([game settings](../Saving-Loading-And-Settings/game-settings.md));
+   `+0x64`) is non-zero; the masks `01E0C2A0`/`01E0C2A4` = `0x4000`/`0x2000`, swapped to
+   `0x2000`/`0x4000` when it is zero ([game settings](../Saving-Loading-And-Settings/game-settings.md));
 4. `00184660([01E0280C])`, the PS2 emulation reset `0036D990` (the `vf00` image `01EF93F0` =
    `{0, 0, 0, 1}` and two log lines through `0017D280`), `0022CB90`, `0037DF90`, `0037E0F0`;
-   `01FD4A78` = `1FE0000`<sub>h</sub>; `002DF9A0(language)`; `00184960(1)` (the time-base suppressor, below);
+   `01FD4A78` = `0x1FE0000`; `002DF9A0(language)`; `00184960(1)` (the time-base suppressor, below);
    `00862BD0(language)`; the build-id files (below);
-5. a call to the return stub `0016D6A0` with `7D`<sub>h</sub> after `00184960(1)`, a compiled-out hook; two
+5. a call to the return stub `0016D6A0` with `0x7D` after `00184960(1)`, a compiled-out hook; two
    more such calls follow the state cells and precede `00266D10`;
 6. the main state machine's cells: `02064AD2` = 0, `02064AD4` = 1.0, the state `02064AD3` = 0,
    the ticks-per-frame constant `02064ACC = 2 / [01DFE0B4]`, `02064AD1` = 0, `02064AC0`, `02064AC4`
    and `02064AC8` = 1.0 ([frame update order](frame-update-order.md));
-7. `00368A90` (`02EC0B39` = 0, `02EC0B38` = `FF`<sub>h</sub>), then the memory budget (below);
+7. `00368A90` (`02EC0B39` = 0, `02EC0B38` = `0xFF`), then the memory budget (below);
 8. `0037B390`, `00360370`, `00358510`, `00379D40`, `003692D0` (its byte result goes to
    `003694D0(byte, 0, 0)` after `0036D260`, `00368ED0`, `0036ECE0` and `00379D00`), `0032EAE0`,
    `0036FD70` (the stub returns 0, so always), `0036EFD0`, `0036D8B0`, a ret-stub call, the actor
    system `00266D10`, `0036F4D0`, `003325C0`, `00259180`;
-9. the seed `00379CF0(11B9h)` (below); `00253970`, the spawn banks `002368D0`, `002EA520`,
+9. the seed `00379CF0(0x11B9)` (below); `00253970`, the spawn banks `002368D0`, `002EA520`,
    `00259DF0`, `0035B270` (the vibration slot reset, [vibration](../Controls-And-Input/vibration.md)), `00379E90`, `00379D20`, `0036E310`, `0037CCC0`, `0036FFF0`; the game-step
    count `02064AD0` = 0; a drain loop over `00364200` / `0032E040` / `0035EA30(0)` gated on
    `005C5230()` being non-zero never runs.
@@ -49,20 +49,20 @@ archive mount. It runs these in order:
 ### The random seed
 
 `00379CF0` is a five-byte thunk to `00863D30(seed)`, the Mersenne Twister seeder: with the first-use
-latch `02EB4234` clear it seeds the 624-word state at `02EB3870` with `1571`<sub>h</sub> (5489, the library
+latch `02EB4234` clear it seeds the 624-word state at `02EB3870` with `0x1571` (5489, the library
 default), sets the latch, and then seeds with the argument ([random number
-generators](../Random-Numbers/random-number-generators.md)). Boot passes `11B9`<sub>h</sub> (4537),
+generators](../Random-Numbers/random-number-generators.md)). Boot passes `0x11B9` (4537),
 a literal in the instruction stream: no clock, no entropy, no input. So the stream is identical
 on every launch until a save is loaded.
 
 The thunk's only other caller is the save-load normaliser `00584210`, which ends with
-`_time64(NULL)` and seeds `(((low + 2B5A5h) * 21h + high) & 7FFFFFFFh) + [01FD4A80] * 600`,
+`_time64(NULL)` and seeds `(((low + 0x2B5A5) * 0x21 + high) & 0x7FFFFFFF) + [01FD4A80] * 600`,
 `low` and `high` the two halves of the clock value. Loading a save therefore rerolls the generator
 from the wall clock, not from the save; loading the same save twice does not give the same stream.
 
 ### The frame-rate constants
 
-`0022BDF0(argc, argv)` reads FrameLimit (`0017D8F0`, the settings object's `+48`<sub>h</sub>), scans every
+`0022BDF0(argc, argv)` reads FrameLimit (`0017D8F0`, the settings object's `+0x48`), scans every
 command-line argument for the eight bytes `"-nologo"` with its terminator (`00314DE0(1)` stores 1
 at `022C2528` on a match; the loop does not stop at one), and calls `001EDDC0(FrameLimit == 1)`.
 
@@ -79,14 +79,14 @@ of pacer ticks the field frame waits per frame (`0035EC80([02064ACC], 0)`, an id
 `0035EB70`, at the end of `0022A770`; the second argument is the stub's 0).
 
 It has a second writer, the setter `00229F10`: the manager-unload reset `002695A0` (its only caller is the unload
-`002628B0`) rewrites `2 / [01DFE0B4]`, and the verb `mainloopallsyncv` (`18F`<sub>h</sub>, `003464B0` →
+`002628B0`) rewrites `2 / [01DFE0B4]`, and the verb `mainloopallsyncv` (`0x18F`, `003464B0` →
 `0026DB10`) stores its popped value divided by `[01DFE0B4]`, so the verb speaks in 30 fps ticks.
 
 `00184960(mode)` sets the suppressor `01DFE0C0` to 1 (`001EDEF0`) and reads the mode flag
 `01F82E38` (`001EDE70`): with the flag clear it keeps the suppressor and hands `mode` on; with it
 set and `mode` not 1 it clears the suppressor; with `mode` 1 and `02092748` non-zero it runs the
 `00229EA0` gate and clears the suppressor when the gate does not return 1, otherwise it keeps the
-suppressor only while byte `+118`<sub>h</sub> of `001EBA40()` is zero. Every path then passes `mode` (1 on
+suppressor only while byte `+0x118` of `001EBA40()` is zero. Every path then passes `mode` (1 on
 the clearing paths and at boot) to `00798E90` and, with a render manager, to `005FEA50`.
 
 ### The confirm button and the language
@@ -112,22 +112,22 @@ as arenas with `00369D30(id, block, size, slotCount)`:
 
 | Id | Block | Allocated | Registered size | Slots |
 |---|---|---|---|---|
-| 2 | `01FD49F8` | `1DC0010`<sub>h</sub> | `1DC0000`<sub>h</sub> (29.75 MiB) | `10`<sub>h</sub> |
-| 3 | `01FD4A00` | `D20100`<sub>h</sub> | `D20000`<sub>h</sub> (13.12 MiB) | `100`<sub>h</sub> |
-| 4 | `01FD4A08` | `100010`<sub>h</sub> | `100000`<sub>h</sub> (1 MiB) | `10`<sub>h</sub> |
-| 5 | `01FD49F0` | `1C0100`<sub>h</sub> | `1C0000`<sub>h</sub> (1.75 MiB) | `100`<sub>h</sub> |
-| 6 | `01FD4A10` | `6C00400`<sub>h</sub> | `6C00000`<sub>h</sub> (108 MiB) | `400`<sub>h</sub> |
-| 7 | `01FD4A30` | `3000100`<sub>h</sub> | `3000000`<sub>h</sub> (48 MiB) | `100`<sub>h</sub> |
-| 8 | `01FD4A38` | `2000100`<sub>h</sub> | `2000000`<sub>h</sub> (32 MiB) | `100`<sub>h</sub> |
-| 9 | `01FD4A40` | `1200010`<sub>h</sub> | `1200000`<sub>h</sub> (18 MiB) | `10`<sub>h</sub> |
-| 11 | `01FD4A18` | `400100`<sub>h</sub> | `400000`<sub>h</sub> (4 MiB) | `100`<sub>h</sub> |
-| none | `01FD4A20` | `80000`<sub>h</sub> | not registered | |
-| none | `01FD4A90` | `100000`<sub>h</sub> | not registered | |
+| 2 | `01FD49F8` | `0x1DC0010` | `0x1DC0000` (29.75 MiB) | `0x10` |
+| 3 | `01FD4A00` | `0xD20100` | `0xD20000` (13.12 MiB) | `0x100` |
+| 4 | `01FD4A08` | `0x100010` | `0x100000` (1 MiB) | `0x10` |
+| 5 | `01FD49F0` | `0x1C0100` | `0x1C0000` (1.75 MiB) | `0x100` |
+| 6 | `01FD4A10` | `0x6C00400` | `0x6C00000` (108 MiB) | `0x400` |
+| 7 | `01FD4A30` | `0x3000100` | `0x3000000` (48 MiB) | `0x100` |
+| 8 | `01FD4A38` | `0x2000100` | `0x2000000` (32 MiB) | `0x100` |
+| 9 | `01FD4A40` | `0x1200010` | `0x1200000` (18 MiB) | `0x10` |
+| 11 | `01FD4A18` | `0x400100` | `0x400000` (4 MiB) | `0x100` |
+| none | `01FD4A20` | `0x80000` | not registered | |
+| none | `01FD4A90` | `0x100000` | not registered | |
 
 Every allocation is its registered size plus the slot count in bytes.
 
 The registrar (ids below
-15) records the arena in its table at `022D7FD0` (stride `A8`<sub>h</sub>), zeroes the block's first 64
+15) records the arena in its table at `022D7FD0` (stride `0xA8`), zeroes the block's first 64
 bytes and writes the arena's name there (`sprintf`), lays a bitmap and a word table at the head of
 the block (64-byte aligned, sized from the registered size), then the handle slots: `slotCount`
 records of 16 bytes chained by index when the count is non-zero, and finally the arena's free
@@ -135,20 +135,20 @@ region, half-split, handed to `0036A490` ([memory and
 allocation](../Compiler-And-C-Runtime/memory-and-allocation.md)).
 
 Id 10 is never registered; `0037B3D0` re-sizes id 11 when `02ADD931` differs from `02ADD930`,
-freeing the block (`0036D250`) and registering a new one of `3C0000`<sub>h</sub> when `02ADD930` is 3, else
-`400000`<sub>h</sub>; ids 12 to 14 are registered elsewhere. The unregistered 1 MiB block at `01FD4A90` is the per-model oscillator table; the
+freeing the block (`0036D250`) and registering a new one of `0x3C0000` when `02ADD930` is 3, else
+`0x400000`; ids 12 to 14 are registered elsewhere. The unregistered 1 MiB block at `01FD4A90` is the per-model oscillator table; the
 0.5 MiB block at `01FD4A20` is stored and never read. `0036B060(id)` returns an arena's table
-entry, `022D7FD0 + id × A8h`, or null for an id of 15 or more.
+entry, `022D7FD0 + id × 0xA8`, or null for an id of 15 or more.
 
 ### The PS2 boot shims
 
 Step 8 replays the PlayStation 2 boot against stubs. `003692D0` walks seven module records at
-`01EF9290` (stride `18`<sub>h</sub>, the first `sio2man.irx`). `00369510(name, out, host, demo)` builds each
+`01EF9290` (stride `0x18`, the first `sio2man.irx`). `00369510(name, out, host, demo)` builds each
 path: the prefix `host0:/image/FF12/modules/` when `host` is set, another prefix otherwise, `DEMO/`
 when `demo` is set, then the name, upper-cased with `/` turned into `\` unless `host` is set.
 
 The loader `008628E0` stores 0 through its fourth argument and returns 0, so every module counts as
-loaded and the walk sets `022D7FCC |= 1 << b` for the record's signed byte `b` at `+12`<sub>h</sub> when `b`
+loaded and the walk sets `022D7FCC |= 1 << b` for the record's signed byte `b` at `+0x12` when `b`
 is not negative (`003694A5`-`003694B8`).
 
 Before the walk, `00369650` performs the I/O processor
@@ -164,7 +164,7 @@ behind ratio `0215EFD0` ([spatial sound](../Sound-And-Music/spatial-sound.md)).
 `0036FD70` clears `02AD9E00` and runs `003696D0`, which releases the three handles at `022D7FC0` to
 `022D7FC8` (retrying while the stub reports busy) and sets each to -1. `003694D0` fills the two
 256-byte tables `022C5AF0` (`0032EAF0`) and `022C59F0` (`0032EB10`, which also sets bit 7 of its
-byte `1F`<sub>h</sub>) with -1 for a non-zero argument, else 0.
+byte `0x1F`) with -1 for a non-zero argument, else 0.
 
 ### The subsystem resets
 
@@ -175,52 +175,52 @@ when their pointer is null:
 
 | Reset | What it does |
 |---|---|
-| `003CD6E0` | allocates `800`<sub>h</sub> at `02B47790` and `2800`<sub>h</sub> at `02B47798`; clears 32 and 128 records in them |
-| `003AC890` | allocates `3800`<sub>h</sub> at `02B3F528`; `02B3F518` = 1.0; `003ABB60` clears its 128 records, takes the first as a type-7 record with the next serial from `02B3F504` (1 to `FFFFFF`<sub>h</sub>), and makes it the list `02B3F508` / `02B3F510`; per frame `003AC870` resets the factor `02B3F51C` to 1.0 and `003AC900(f)` multiplies it by f |
-| `003B4790` | allocates `1800`<sub>h</sub> at `02B404E0`; sets the pairs (3, `00D11520`) and (5, `00D11538`); clears 64 records |
-| `00376A80` | clears `02ADBB30`, `02ADBB34` and the first word of 8 records at `02ADBB40` (stride `90`<sub>h</sub>) |
-| `0024C970` | clears `1670`<sub>h</sub> bytes from `020910A0`; sets the five u16 `0209215E` to `02092166` to `3FF`<sub>h</sub> and `020926F4` = `4003C`<sub>h</sub>; under arena 8 clears the four soft-particle tables and reads them and `softparticle_bg.csv` ([Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md)); `02092700` = −1 |
-| `003D7F10` | clears a word in each of 32 records from `02EBBA00` (stride `84`<sub>h</sub>) |
+| `003CD6E0` | allocates `0x800` at `02B47790` and `0x2800` at `02B47798`; clears 32 and 128 records in them |
+| `003AC890` | allocates `0x3800` at `02B3F528`; `02B3F518` = 1.0; `003ABB60` clears its 128 records, takes the first as a type-7 record with the next serial from `02B3F504` (1 to `0xFFFFFF`), and makes it the list `02B3F508` / `02B3F510`; per frame `003AC870` resets the factor `02B3F51C` to 1.0 and `003AC900(f)` multiplies it by f |
+| `003B4790` | allocates `0x1800` at `02B404E0`; sets the pairs (3, `00D11520`) and (5, `00D11538`); clears 64 records |
+| `00376A80` | clears `02ADBB30`, `02ADBB34` and the first word of 8 records at `02ADBB40` (stride `0x90`) |
+| `0024C970` | clears `0x1670` bytes from `020910A0`; sets the five u16 `0209215E` to `02092166` to `0x3FF` and `020926F4` = `0x4003C`; under arena 8 clears the four soft-particle tables and reads them and `softparticle_bg.csv` ([Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md)); `02092700` = −1 |
+| `003D7F10` | clears a word in each of 32 records from `02EBBA00` (stride `0x84`) |
 | `003D8C30` | points `02B4E3D0` to `02B4E3E8` at the four data blocks `01EFE3A0`, `01EFE510`, `01EFE690`, `01EFE810` and runs `0050C450` over each; `02B4D7B8` = 1.0; clears 32 records |
 | `003773C0`, `003B3E10` | clear 128 records ending at `02ADCFC0`, and the 8-byte records from `02EBCC80` to `02EBCD84` |
-| `00259250` | resets the block at `02096810` to `02096D28` (white at `02096810`, 0.5 at `020968BC`, `80808080`<sub>h</sub> at `020968B0`) |
-| `0039CD50` | allocates `20000`<sub>h</sub> at `02AEED50`; `0039AED0(2048.0, 2048.0)` and `0039AF20(512.0)`, which store `02EBEFFC`, `02EBEFF8`, `02EBF000` and copy 64 bytes from `02AEDD30` to `02AEE5A0`; `02AEE910` = 8 |
-| `003A3670` | under arena 9, and every time rather than only when null: allocates `190000`<sub>h</sub> at `02F8F2F8`, `C8028`<sub>h</sub> at `02F8F300`, and `[02F8F2C0]` = `0036B080(9)` bytes at `02F8F2D0` (also `02F8F308`), with `02F8F2D8` = `[02F8F2D0]` + (s / 16) × 16 for s = `[02F8F2C0]`, the division signed and toward zero; `02F8F2E0` = `[01FD4A78]`; clears `02F8F2C5`, `02F8F2C6`, `02F8F2CC`, `02F8F2E8`, `02F8F2F0` and the low two bits of `02F8F310` |
-| `00375120` | clears 32 records at `02EBFA48`; writes a 16-step grey ramp (step `11`<sub>h</sub>, alpha `80`<sub>h</sub>) at `02ADB6E0` and eight 32-step ramps after it |
-| `002FC200` | chains the 48 records of `38`<sub>h</sub> bytes at `02EC32E0` into a list (`02EC3D70`); clears `02EC19C0` (`1000`<sub>h</sub> bytes) and copies 401 five-bit values from `01EEBB10` into it, one per 8 bytes |
-| `003B0660` | zeroes `+00`<sub>h</sub>-`+03`<sub>h</sub>, `+08`<sub>h</sub>-`+0F`<sub>h</sub> and `+11`<sub>h</sub> of the 36 records of `18`<sub>h</sub> bytes from `02EBEC00` and clears the low three bits of each `+13`<sub>h</sub>; clears bit 0 of `02EBEF68` and the word `02EBEF60`; runs `0024C460` for 5, 6 and 9; then, when `0032E400(10)` returns n > 0, calls `0032E620(10, 0, [01FD4A30], n, 0)` and `0032E520(0)`, passes a zeroed `890`<sub>h</sub>-byte request with type 5 to `0024B3A0`, and calls `003EDAD0([01FD4A30], its word +Ch)` |
-| `003B16B0` | clears the 32 records of `30`<sub>h</sub> at `02EBE5E0` and `02EBEBE0` / `02EBEBE4` |
-| `0026F9F0` | fills 96 bytes at `02F8F23C` with 3 and sets `02F8F29C` = `100`<sub>h</sub> |
-| `003B3160` | links two lists of 32 records of `38`<sub>h</sub> bytes, at `02EBCD80` (head `02EBDB88`) and `02EBD480` (head `02EBDBA0`): each record's first word takes its index and `30000000`<sub>h</sub>, `+20`<sub>h</sub> points to the next and `+28`<sub>h</sub> to the previous; clears `02EBDB80`, `02EBDB90`, `02EBDB98`, `02EBDBA8`, `02EBDBB0`, `02EBDBB4`; then `0024C550(3)` |
-| `003CBFF0(02096ED0)` | (call at `002591F2`) clears `+C0`<sub>h</sub> of the camera `02096ED0` and runs `003CBBE0` on it |
+| `00259250` | resets the block at `02096810` to `02096D28` (white at `02096810`, 0.5 at `020968BC`, `0x80808080` at `020968B0`) |
+| `0039CD50` | allocates `0x20000` at `02AEED50`; `0039AED0(2048.0, 2048.0)` and `0039AF20(512.0)`, which store `02EBEFFC`, `02EBEFF8`, `02EBF000` and copy 64 bytes from `02AEDD30` to `02AEE5A0`; `02AEE910` = 8 |
+| `003A3670` | under arena 9, and every time rather than only when null: allocates `0x190000` at `02F8F2F8`, `0xC8028` at `02F8F300`, and `[02F8F2C0]` = `0036B080(9)` bytes at `02F8F2D0` (also `02F8F308`), with `02F8F2D8` = `[02F8F2D0]` + (s / 16) × 16 for s = `[02F8F2C0]`, the division signed and toward zero; `02F8F2E0` = `[01FD4A78]`; clears `02F8F2C5`, `02F8F2C6`, `02F8F2CC`, `02F8F2E8`, `02F8F2F0` and the low two bits of `02F8F310` |
+| `00375120` | clears 32 records at `02EBFA48`; writes a 16-step grey ramp (step `0x11`, alpha `0x80`) at `02ADB6E0` and eight 32-step ramps after it |
+| `002FC200` | chains the 48 records of `0x38` bytes at `02EC32E0` into a list (`02EC3D70`); clears `02EC19C0` (`0x1000` bytes) and copies 401 five-bit values from `01EEBB10` into it, one per 8 bytes |
+| `003B0660` | zeroes `+0x00`-`+0x03`, `+0x08`-`+0x0F` and `+0x11` of the 36 records of `0x18` bytes from `02EBEC00` and clears the low three bits of each `+0x13`; clears bit 0 of `02EBEF68` and the word `02EBEF60`; runs `0024C460` for 5, 6 and 9; then, when `0032E400(10)` returns n > 0, calls `0032E620(10, 0, [01FD4A30], n, 0)` and `0032E520(0)`, passes a zeroed `0x890`-byte request with type 5 to `0024B3A0`, and calls `003EDAD0([01FD4A30], its word +0xC)` |
+| `003B16B0` | clears the 32 records of `0x30` at `02EBE5E0` and `02EBEBE0` / `02EBEBE4` |
+| `0026F9F0` | fills 96 bytes at `02F8F23C` with 3 and sets `02F8F29C` = `0x100` |
+| `003B3160` | links two lists of 32 records of `0x38` bytes, at `02EBCD80` (head `02EBDB88`) and `02EBD480` (head `02EBDBA0`): each record's first word takes its index and `0x30000000`, `+0x20` points to the next and `+0x28` to the previous; clears `02EBDB80`, `02EBDB90`, `02EBDB98`, `02EBDBA8`, `02EBDBB0`, `02EBDBB4`; then `0024C550(3)` |
+| `003CBFF0(02096ED0)` | (call at `002591F2`) clears `+0xC0` of the camera `02096ED0` and runs `003CBBE0` on it |
 | `0025A600(0.1, 1000.0)` | stores the two floats `02098DE0` / `02098DE4` |
 
-After the last call it stores three words directly: `022D92E0` = `01EF93E8` = `458DC800`<sub>h</sub> (4537.0)
+After the last call it stores three words directly: `022D92E0` = `01EF93E8` = `0x458DC800` (4537.0)
 and `022D9138` = 1 (`0025920C`, `00259216`, `00259220`). They are the presentation generator's last
 sample, its state and its enable word ([Random number generators](../Random-Numbers/random-number-generators.md)).
 
 `00266D10`, the actor-system reset, runs among others `00314940` (`022C2544` = 1.0), `002556F0`
-(five groups of four `2E0`<sub>h</sub>-byte records from `02092810`, plus one more, each through `003CBFF0`;
-`020964FC` = 1.0, `02096514` = `20`<sub>h</sub>), `002F1A00` (zeroes `022BE7C0`, `022BE7C8`, `022BE7D0`),
+(five groups of four `0x2E0`-byte records from `02092810`, plus one more, each through `003CBFF0`;
+`020964FC` = 1.0, `02096514` = `0x20`), `002F1A00` (zeroes `022BE7C0`, `022BE7C8`, `022BE7D0`),
 `003DD7E0`, `003DDD10`, `003DE710`, `003DF030`, `003E7DF0`, `003EBAB0` and `003EBE40`.
 
 Those last seven number and clear the tables from `02B581A0` to `02B5EC88`: 5 × 16 slots, four records with
-`13602`<sub>h</sub> and colour `80FFFFFF`<sub>h</sub>, 16 records, 5 × 8 slots, 32 records numbered `20`<sub>h</sub> to `3F`<sub>h</sub>
-with a 28-node list, and eight pairs of 0 and `100`<sub>h</sub>.
+`0x13602` and colour `0x80FFFFFF`, 16 records, 5 × 8 slots, 32 records numbered `0x20` to `0x3F`
+with a 28-node list, and eight pairs of 0 and `0x100`.
 
-`0036F4D0` runs `00382910`, which clears 8 records at `02AED700` (stride `E0`<sub>h</sub>) and builds two
+`0036F4D0` runs `00382910`, which clears 8 records at `02AED700` (stride `0xE0`) and builds two
 view records with `004679C0(record, width, height)`: `02AED4A0` for the frame size
 `[022D8EAC]` × `[022D8EB4]` and `02AED500` for 2000 × 2000.
 
-A view record holds the integer size at `+44`<sub>h</sub> / `+48`<sub>h</sub>, the depth limits `near` = 1024 and `far` =
-16,776,191 at `+4C`<sub>h</sub> / `+50`<sub>h</sub>, and `00229D20()` at `+40`<sub>h</sub>. It sets `+00h = width × 0.5` and
-`+14h = height × -0.5` (`00467A0F`-`00467A26`), the depth scale `+28h = (far - near) × -0.5` and
-offset `+38h = (far + near) × 0.5` (`00467A2B`-`00467A62`), 2048 at `+30`<sub>h</sub> / `+34`<sub>h</sub> as the
-screen offset and 1.0 at `+3C`<sub>h</sub>.
+A view record holds the integer size at `+0x44` / `+0x48`, the depth limits `near` = 1024 and `far` =
+16,776,191 at `+0x4C` / `+0x50`, and `00229D20()` at `+0x40`. It sets `+0x00 = width × 0.5` and
+`+0x14 = height × -0.5` (`00467A0F`-`00467A26`), the depth scale `+0x28 = (far - near) × -0.5` and
+offset `+0x38 = (far + near) × 0.5` (`00467A2B`-`00467A62`), 2048 at `+0x30` / `+0x34` as the
+screen offset and 1.0 at `+0x3C`.
 
 Step 4's `00184660` ends with `00248410`, which sets `0208ECC0` / `0208ECC4` to minus half of
 `[01E0C1D8]` / `[01E0C1DC]` and writes that size into the four objects at `0208EA20` to `0208EA38`
-(`+9C`<sub>h</sub> / `+9E`<sub>h</sub>), and `0024B100`, which copies the size into the halfwords `01E0C1D4` /
+(`+0x9C` / `+0x9E`), and `0024B100`, which copies the size into the halfwords `01E0C1D4` /
 `01E0C1D6`.
 
 ## Layouts
@@ -244,11 +244,11 @@ globals written by the boot fixer
 
 | Fact | Value |
 |---|---|
-| default seed, boot seed | `1571`<sub>h</sub> (5489), `11B9`<sub>h</sub> (4537) |
-| reload seed | `(((low + 2B5A5h) * 21h + high) & 7FFFFFFFh) + [01FD4A80] * 600` from `_time64` |
+| default seed, boot seed | `0x1571` (5489), `0x11B9` (4537) |
+| reload seed | `(((low + 0x2B5A5) * 0x21 + high) & 0x7FFFFFFF) + [01FD4A80] * 600` from `_time64` |
 | time base at 60 fps | `01DFE0B4` 2, `01DFE0B8` 2.0 (`01CEBC08`), `01DFE0BC` 0.5 (`01CEBB70`) |
 | ticks per frame | 2 at 30 fps, 1 at 60 |
-| masks | confirm `4000`<sub>h</sub>, cancel `2000`<sub>h</sub>; swapped when DecideButton is 0 |
+| masks | confirm `0x4000`, cancel `0x2000`; swapped when DecideButton is 0 |
 | registered arenas | 255.6 MiB in nine; 257.1 MiB allocated in eleven |
 | command line | only `-nologo` is honoured, as an exact eight-byte match |
 

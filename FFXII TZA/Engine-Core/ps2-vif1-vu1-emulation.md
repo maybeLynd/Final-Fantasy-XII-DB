@@ -27,23 +27,23 @@ cases are VIF1 commands with VIF1's field layout:
 
 | Code | VIF1 command | What `0022C970` does |
 |---|---|---|
-| `01`<sub>h</sub> | STCYCL | low byte to CYCLE `02088E40`, next byte to WL `02088E3C` |
-| `02`<sub>h</sub> | OFFSET | `data & 3FFh` to `02088E34`, clears bit 6 of the status word `02088E38`, copies BASE to TOPS `02064E28` |
-| `03`<sub>h</sub> | BASE | `data & 3FFh` to `02088E30` |
-| `14`<sub>h</sub>, `15`<sub>h</sub> | MSCAL, MSCALF | runs `0022C8D0`, then the program installed at the largest address not above the requested one |
-| `4A`<sub>h</sub> | MPG | the next 8 bytes are an x64 function pointer, stored at `02068E30 + imm16 × 8`; the address is appended to the list `02088E50` (count `02088E44`) |
-| `50`<sub>h</sub>, `51`<sub>h</sub> | DIRECT, DIRECTHL | calls the callback with the data pointer, the context and the flag, then skips `count × 16` bytes |
-| `60`<sub>h</sub> to `7F`<sub>h</sub> | UNPACK | `0022BFF0` with the format from bits 24 to 27, the unsigned flag bit 14, the add-TOPS flag bit 15, NUM from bits 16 to 23 and the address from the low ten bits; the mask flag bit 28 has no effect |
+| `0x01` | STCYCL | low byte to CYCLE `02088E40`, next byte to WL `02088E3C` |
+| `0x02` | OFFSET | `data & 0x3FF` to `02088E34`, clears bit 6 of the status word `02088E38`, copies BASE to TOPS `02064E28` |
+| `0x03` | BASE | `data & 0x3FF` to `02088E30` |
+| `0x14`, `0x15` | MSCAL, MSCALF | runs `0022C8D0`, then the program installed at the largest address not above the requested one |
+| `0x4A` | MPG | the next 8 bytes are an x64 function pointer, stored at `02068E30 + imm16 × 8`; the address is appended to the list `02088E50` (count `02088E44`) |
+| `0x50`, `0x51` | DIRECT, DIRECTHL | calls the callback with the data pointer, the context and the flag, then skips `count × 16` bytes |
+| `0x60` to `0x7F` | UNPACK | `0022BFF0` with the format from bits 24 to 27, the unsigned flag bit 14, the add-TOPS flag bit 15, NUM from bits 16 to 23 and the address from the low ten bits; the mask flag bit 28 has no effect |
 | anything else | NOP, FLUSH, FLUSHE, FLUSHA, STMASK, STROW … | advances four bytes |
 
 On the console MPG uploads microcode. Here it uploads a pointer to a function that already is
 that microcode, compiled, and MSCAL calls it with the callback and context as arguments. The MPG
 address is stored unmasked; the table holds 16,384 entries up to `02088E30`, so an address of
-`4000`<sub>h</sub> or more would overrun into the VIF registers, and every shipped packet uses address 0.
+`0x4000` or more would overrun into the VIF registers, and every shipped packet uses address 0.
 
-The code tests are looser than the names: UNPACK is any code with bits 5 and 6 set (so `E0`<sub>h</sub> to
-`FF`<sub>h</sub>, the interrupt forms, decode as UNPACK too), DIRECT is `code - 50h < 2` and MSCAL
-`code - 14h < 2`, so MSCNT (`17`<sub>h</sub>) takes the four-byte default.
+The code tests are looser than the names: UNPACK is any code with bits 5 and 6 set (so `0xE0` to
+`0xFF`, the interrupt forms, decode as UNPACK too), DIRECT is `code - 0x50 < 2` and MSCAL
+`code - 0x14 < 2`, so MSCNT (`0x17`) takes the four-byte default.
 
 `0022C8D0` is the double-buffer step the console does on MSCAL: it copies TOPS into TOP
 `02064E1C`, then sets TOPS to BASE and clears status bit 6 if that bit was set, or to
@@ -54,12 +54,12 @@ it before every packet list, so programs live only for the list that installed t
 
 | Address | Size | Role |
 |---|---|---|
-| `02064E30` to `02068E2F` | `4000`<sub>h</sub> | VU memory, 1,024 cells of 16 bytes |
-| `02068E30` to `02088E2F` | `20000`<sub>h</sub> | the installed-program table, one x64 pointer per VU address |
+| `02064E30` to `02068E2F` | `0x4000` | VU memory, 1,024 cells of 16 bytes |
+| `02068E30` to `02088E2F` | `0x20000` | the installed-program table, one x64 pointer per VU address |
 | `02088E30` to `02088E53` | — | BASE, OFFSET, status, WL, CYCLE, installed count, installed list |
 | `02064E1C`, `02064E28` | 4 each | TOP and TOPS |
 | `02064B00` to `02064E2F` | — | the microprograms' own working words: 16-bit cell indices (`02064B0C`, `02064DB0`, `02064DB4`, `02064DB8`, `02064DD0`) and float scratch |
-| `02064DEC` | u16 | the sticky status flags: `0022CC40` sets `40`<sub>h</sub> (zero) and `0022CC30` sets `80`<sub>h</sub> (sign); they are its only writers, and 40 microprograms call them at 116 sites each |
+| `02064DEC` | u16 | the sticky status flags: `0022CC40` sets `0x40` (zero) and `0022CC30` sets `0x80` (sign); they are its only writers, and 40 microprograms call them at 116 sites each |
 
 The boot routine `0022CB90` zeroes the VU memory, TOP, TOPS, the status word and the words
 `02088E30` to `02088E38`, and `0017D6E0` runs it again on every restart pass
@@ -75,8 +75,8 @@ The thirteen formats are `vn` = S, V2, V3, V4 by `vl` = 32, 16, 8, with V4-5 as 
 
 - S broadcasts one value to all four lanes; V2 writes x and y and leaves z and w; V3 writes
   three lanes; V4 four;
-- V4-5 expands a 16-bit colour as `r = (v & 1Fh) << 3`, `g = (v >> 2) & F8h`,
-  `b = (v >> 7) & F8h`, `a = (v >> 8) & 80h`;
+- V4-5 expands a 16-bit colour as `r = (v & 0x1F) << 3`, `g = (v >> 2) & 0xF8`,
+  `b = (v >> 7) & 0xF8`, `a = (v >> 8) & 0x80`;
 - the 16- and 8-bit formats sign-extend unless the unsigned flag is set;
 - the return value is the packed size rounded up to whole 32-bit words,
   `((32 >> vl) × (vn + 1) × num + 31) / 32 × 4`, which the decoder adds to its cursor.
@@ -89,9 +89,9 @@ V4-32, so neither arm runs on shipped content.
 
 A microprogram is an x64 function that reads and writes VU memory through the 16-bit index words
 above and hands each finished GS packet to the callback. `004EF860` is the leaf most of them end
-in: it writes `word[02064DB8] + 8000h` into the cell at `02064DB0`, copies twelve bytes of the
-cell at `02064DD0` beside it (staged at `02064C60`), sets `02064DB4` to `02064B0C + 2A8h`, or
-`+ 168h` when `02064B0C` differs from `02064DB0 - 168h`, calls the callback with the cell's
+in: it writes `word[02064DB8] + 0x8000` into the cell at `02064DB0`, copies twelve bytes of the
+cell at `02064DD0` beside it (staged at `02064C60`), sets `02064DB4` to `02064B0C + 0x2A8`, or
+`+ 0x168` when `02064B0C` differs from `02064DB0 - 0x168`, calls the callback with the cell's
 address, then sets `02064DB0` to `02064B0C + 02064DB4` and `02064DB4` one past it.
 
 The image installs 57 distinct programs at 141 call sites ([ps2-vif1-vu1-emulation-programs.tsv]
@@ -105,10 +105,10 @@ argument). Three routes build the packets that carry them:
   [ps2-vif1-vu1-emulation-templates.tsv](ps2-vif1-vu1-emulation-templates.tsv) and the GIF tags
   they carry in [ps2-vif1-vu1-emulation-gif-tags.tsv](ps2-vif1-vu1-emulation-gif-tags.tsv).
 - **Template headers.** 37 builders start with `008631E0(object, program, 0)`, which stamps kind
-  `30`<sub>h</sub> at `+3`, appends `{4A000000h | addr, program}` to the record table `02EAF930` (count
+  `0x30` at `+3`, appends `{0x4A000000 | addr, program}` to the record table `02EAF930` (count
   `02EB37B0`) and stores the record's handle at `+4`; `008631D0(object, count)` stamps the plain
-  kind `10`<sub>h</sub> header. The templates install 35 programs.
-- **Per-draw registrars.** `003A34D0` (45 sites) and `003A33B0` (22) append a `28`<sub>h</sub>-byte record
+  kind `0x10` header. The templates install 35 programs.
+- **Per-draw registrars.** `003A34D0` (45 sites) and `003A33B0` (22) append a `0x28`-byte record
   to the sorted draw list `[02F8F2F8]` (count `02F8F2C6`) and hold the command for a later
   submit; `003A35E0` (27) and `003A2F70` (10) submit it at once through `0020E630(node, 2)`. All
   four build through `001DB840` and together install 44 programs, 22 of them shared with the
@@ -131,37 +131,37 @@ The programs share 33 subroutines, listed with their callers in
   and the random generator `01E02828` (`004B97F0`), which returns 1.0 while `02064AFC` is 0.
 
 `00476C80` is a template read end to end: `008631E0` with program `004758E0`, BASE 0 and OFFSET 0
-(`03000000`<sub>h</sub>, `02000000`<sub>h</sub>), a sub-header, STCYCL 4,4 (`01000404`<sub>h</sub>), UNPACK V4-32 of 66
-quadwords (`6C420000`<sub>h</sub>) whose payload starts with the GS screen centre 2048.0 (`45000000`<sub>h</sub>)
-and holds, four times, a vertex block and an A+D GIF tag (NLOOP 5, NREG 1, REGS `E`<sub>h</sub>) writing
-CLAMP_1, TEX0_1, ALPHA_1 and TEST_1 to 0 and PRIM to `5D`<sub>h</sub>; then the register pairs ST, CLAMP_1,
-RGBAQ, XYZF2 = 0, MSCALF 0 (`15000000`<sub>h</sub> at `+440`<sub>h</sub>) and FLUSHA (`13000000`<sub>h</sub> at `+444`<sub>h</sub>).
+(`0x03000000`, `0x02000000`), a sub-header, STCYCL 4,4 (`0x01000404`), UNPACK V4-32 of 66
+quadwords (`0x6C420000`) whose payload starts with the GS screen centre 2048.0 (`0x45000000`)
+and holds, four times, a vertex block and an A+D GIF tag (NLOOP 5, NREG 1, REGS `0xE`) writing
+CLAMP_1, TEX0_1, ALPHA_1 and TEST_1 to 0 and PRIM to `0x5D`; then the register pairs ST, CLAMP_1,
+RGBAQ, XYZF2 = 0, MSCALF 0 (`0x15000000` at `+0x440`) and FLUSHA (`0x13000000` at `+0x444`).
 
 ### The GiVmax render command
 
 `001DB840(node, word1, word2, program, payload, size, payload2, size2, flag, ctx)` allocates the
-`640`<sub>h</sub>-byte `GiVmax` command (RTTI `.?AVGiVmax@@`, vtable `009007E8`) and fills its chunk list
+`0x640`-byte `GiVmax` command (RTTI `.?AVGiVmax@@`, vtable `009007E8`) and fills its chunk list
 with pointer and length pairs: `01F82D08` for 8 bytes (the two VIF words, rewritten there on
-every call), `01DFD038` for 16 bytes (the image constant `4A000000`<sub>h</sub>, MPG, with the program
+every call), `01DFD038` for 16 bytes (the image constant `0x4A000000`, MPG, with the program
 pointer stored at `01DFD040`), then the payloads through `001DB340`. Both scratch chunks are
 image-wide and `001DB840` is their only writer, so the packet must be consumed inside the call.
 
 It is: `001DB840` ends by calling `001FB840(node)`, which tail-jumps the command's vtable slot 0,
 `001DB550`. That runs the packet list at emit time: it zeroes the two output counts, stores the
-flag `02EC3ECC == 0` at `+639`<sub>h</sub>, resets the installed count, and calls `0022C940` once per chunk
+flag `02EC3ECC == 0` at `+0x639`, resets the installed count, and calls `0022C940` once per chunk
 with the callback `001DB640`.
 
 The callback's body `001DB660` sizes the GS output with `0020F310`,
 copies it into a buffer from the allocator at `01F82D00`, and appends the pointer to the paged
-list at `+228`<sub>h</sub> (count `+224`<sub>h</sub>, page size `+220`<sub>h</sub> = 1,024) and the callback's flag byte to the
-list at `+430`<sub>h</sub> (count `+42C`<sub>h</sub>, page size `+428`<sub>h</sub> = 1,024). The constructor `001DB220` sets all
-three page sizes to 1,024 and allocates the first page of each list (`4000`<sub>h</sub>, `2000`<sub>h</sub> and
-`400`<sub>h</sub> bytes).
+list at `+0x228` (count `+0x224`, page size `+0x220` = 1,024) and the callback's flag byte to the
+list at `+0x430` (count `+0x42C`, page size `+0x428` = 1,024). The constructor `001DB220` sets all
+three page sizes to 1,024 and allocates the first page of each list (`0x4000`, `0x2000` and
+`0x400` bytes).
 
 Slot 1, `001DB3D0`, replays later, when the frame's render pass list drains the command: device
-slot `+58`<sub>h</sub> with the bytes `+630`<sub>h</sub> and `+634`<sub>h</sub>, `00210510` and `00210560(51001h)` when `+8` is
-set, `002105B0(+638h)`, `002104D0(+639h)`, then `00210320(copy, device, flag)` for every
-collected copy, then `002104E0`, `002105B0(0)` and the device slot `+58`<sub>h</sub> again with (0, 0.1).
+slot `+0x58` with the bytes `+0x630` and `+0x634`, `00210510` and `00210560(0x51001)` when `+8` is
+set, `002105B0(+0x638)`, `002104D0(+0x639)`, then `00210320(copy, device, flag)` for every
+collected copy, then `002104E0`, `002105B0(0)` and the device slot `+0x58` again with (0, 0.1).
 
 ### GIF packets and the GS replay
 
@@ -178,7 +178,7 @@ runs `0020F3E0`. A REGLIST tag with NLOOP above 0 ends the walk through the flus
 skips `NLOOP × 16` bytes. EOP ends the walk, and a final `0020EC80` flushes.
 
 `0020F3E0` handles a PACKED tag register by register, flushing the batch first for any descriptor
-other than 1 to 5 or `E`<sub>h</sub>. The descriptors with handlers are PRIM, RGBAQ, ST, UV, XYZF2, XYZ2,
+other than 1 to 5 or `0xE`. The descriptors with handlers are PRIM, RGBAQ, ST, UV, XYZF2, XYZ2,
 TEX0_1, TEX0_2, CLAMP_1, CLAMP_2, FOG and A+D.
 
 ST sets Q from its third float and stores S/Q and
@@ -189,9 +189,9 @@ register numbers as arms a 4-bit descriptor can never reach.
 
 The A+D handler `0020FCA0` flushes the batch before any register other than 1 to 5, then honours
 PRIM, TEX0_1,
-TEX0_2, CLAMP_1, CLAMP_2, TEXA (`3B`<sub>h</sub>), FOGCOL (`3D`<sub>h</sub>), TEXFLUSH (`3F`<sub>h</sub>, device slot
-`+128`<sub>h</sub>), ALPHA_1, ALPHA_2 (`42`<sub>h</sub>, `43`<sub>h</sub>), TEST_1, TEST_2 (`47`<sub>h</sub>, `48`<sub>h</sub>) and ZBUF_1, ZBUF_2
-(`4E`<sub>h</sub>, `4F`<sub>h</sub>). Twenty registers in all; FRAME, SCISSOR, XYOFFSET, TEX1, PRMODE, COLCLAMP,
+TEX0_2, CLAMP_1, CLAMP_2, TEXA (`0x3B`), FOGCOL (`0x3D`), TEXFLUSH (`0x3F`, device slot
+`+0x128`), ALPHA_1, ALPHA_2 (`0x42`, `0x43`), TEST_1, TEST_2 (`0x47`, `0x48`) and ZBUF_1, ZBUF_2
+(`0x4E`, `0x4F`). Twenty registers in all; FRAME, SCISSOR, XYOFFSET, TEX1, PRMODE, COLCLAMP,
 DTHE, FBA, PABE, DIMX, TEXCLUT, MIPTBP and PRIM's AA1 bit 7 are ignored.
 
 PRIM (`0020FE70`) stores the type at `01F83562` and the IIP, TME, FGE, ABE, FST, CTXT and FIX bits
@@ -218,9 +218,9 @@ the second qword, clamped to the upper bound `01FD3664` and then the lower `01FD
 `01FD3611` set three floats are taken directly.
 
 `0020EA50` then builds `(X, Y, Z, 1)`, writes the
-four RGBAQ bytes `01FC361C` to `01FC361F` as unnormalised floats at `+10`<sub>h</sub>, multiplies by the
+four RGBAQ bytes `01FC361C` to `01FC361F` as unnormalised floats at `+0x10`, multiplies by the
 matrix at `01FD3620` through `00202B70`, divides x, y, z and w by w, and copies the UV pair
-selected by the FST bit from `01FCB600` to `01FCB60C` into `+20`<sub>h</sub>.
+selected by the FST bit from `01FCB600` to `01FCB60C` into `+0x20`.
 
 The vertex counts only when bit 47 of its second qword (ADC) is clear and the phase has reached
 the requirement; the phase then drops to the carry and the index arm runs, appending 16-bit
@@ -236,14 +236,14 @@ vertex 0).
 Among the state `0020ED30` selects, `0020FF10` decodes the GS TEST register of the current context
 (`01FC35C8`, or `01FC35D0` while `01FC3601` is set): ATE bit 0, ATST bits 1 to 3, AREF bits 4 to 11,
 AFAIL bits 12 and 13, DATE bit 14, DATM bit 15, ZTE bit 16, ZTST bits 17 and 18, into `01FD3668` to
-`01FD3684`. It hands the device (its vtable `+88`<sub>h</sub>) the alpha test with AREF / 255 and the method
+`01FD3684`. It hands the device (its vtable `+0x88`) the alpha test with AREF / 255 and the method
 `0020F2A0(ATST)`, which maps 1 to 7 onto 7, 4, 6, 3, 2, 1, 5 and anything else onto 0.
 
 `0020EB60` looks TEX0_1 or TEX0_2 (by the CTXT bit `01FC3601`) up in the 16-byte texture table
 `01F83580` by
-`(TEX0 >> 37) & 3FFFh` when TME is set and the format field is at least `300000`<sub>h</sub>, copies the
-vertices and indices into buffers from the device object's slots `+0` and `+10`<sub>h</sub>, and draws
-through its slot `+28`<sub>h</sub> with the index kind. The device object is the one `00210320` stored at
+`(TEX0 >> 37) & 0x3FFF` when TME is set and the format field is at least `0x300000`, copies the
+vertices and indices into buffers from the device object's slots `+0` and `+0x10`, and draws
+through its slot `+0x28` with the index kind. The device object is the one `00210320` stored at
 `01FC35F8`, the embedded `PrimitiveRendererD3D11` at `02CC1CD0`.
 
 ## Layouts
@@ -273,7 +273,7 @@ vertex (48 B)        +0 x y z w (after the divide), +0x10 r g b a, +0x20 u v; bu
 | distinct microprograms | 57: 35 by template, 44 by registrar, 22 by both |
 | programs calling the sticky-flag helpers | 40 |
 | GS registers honoured | 20 |
-| vertex batch | 682 slots of 48 bytes; only the fan arm range-checks the index count (`8000`<sub>h</sub> bytes) |
+| vertex batch | 682 slots of 48 bytes; only the fan arm range-checks the index count (`0x8000` bytes) |
 | GS coordinate scale | 0.0625 |
 
 ## Operations

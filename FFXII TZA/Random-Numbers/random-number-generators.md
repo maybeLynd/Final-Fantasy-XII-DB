@@ -35,7 +35,7 @@ through a jump thunk:
 | `00863D30` | `00379CF0` | seed with the argument |
 
 Every one of the three first checks the flag `02EB4234`; when it is 0 it seeds with 5489
-(`1571`<sub>h</sub>, `00863C13`, `00863CA3`, `00863D57`) and sets the flag. A draw then refills the state when
+(`0x1571`, `00863C13`, `00863CA3`, `00863D57`) and sets the flag. A draw then refills the state when
 the index is 624 (`00866B90`), takes `state[index]`, advances the index, and tempers it:
 
 ```c
@@ -46,16 +46,16 @@ return y ^ (y >> 18);             // 00863BF0; 00863C80 then multiplies by 1 / 4
 ```
 
 The seed `00866D60(seed)` is the textbook initialisation: `state[0] = seed`,
-`state[i] = 6C078965h * (state[i-1] ^ (state[i-1] >> 30)) + i` for `i` = 1..623, and the index is
+`state[i] = 0x6C078965 * (state[i-1] ^ (state[i-1] >> 30)) + i` for `i` = 1..623, and the index is
 set to 624 so that the first draw refills (`00866D98`). The refill `00866B90` is the standard twist
-with `9908B0DF`<sub>h</sub> (written as `* -66F74F21h`), in a four-lane SSE form when `01F44858` is 2 or more
+with `0x9908B0DF` (written as `* -0x66F74F21`), in a four-lane SSE form when `01F44858` is 2 or more
 and a scalar form otherwise, and ends with the index at 0 (`00866D31`).
 
 ### Seeding the gameplay Mersenne Twister
 
 The seed function has exactly two callers:
 
-1. **Boot.** The application's first frame mode `0022A0B0` seeds with `11B9`<sub>h</sub> = 4537 (`0022A40B`-
+1. **Boot.** The application's first frame mode `0022A0B0` seeds with `0x11B9` = 4537 (`0022A40B`-
    `0022A410`), after `00259180` has initialised the presentation generator. So the 5489 lazy seed is
    overwritten before any gameplay draw.
 2. **Loading a save.** `00584210` seeds from the clock at `005843A5`-`005843D3`:
@@ -86,7 +86,7 @@ draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3F
 
 `00328370` is the out-of-line draw; it has 23 call sites in 15 functions. Seven more functions
 carry the same three steps inline, reading and writing `022C256C` directly, so an instruction
-census of the multiplier `41C64E6D`<sub>h</sub> finds 24 sites in 8 functions: `00328370`, `00317ED0`,
+census of the multiplier `0x41C64E6D` finds 24 sites in 8 functions: `00328370`, `00317ED0`,
 `003183D0`, `00318510`, `003185D0`, `003186F0`, `00318820` and `00319530` (three sites each). All
 eight advance the same word, so every draw by any of them moves the others along.
 
@@ -101,7 +101,7 @@ initialisations. Loading a save does not touch the word or the counter.
 ### The graphics-noise Mersenne Twister
 
 A second MT19937 instance lives in a caller-supplied block at `01F7F600`: 624 words, then a cursor
-pointer at `+9C0`<sub>h</sub> (`01F7FFC0`) and a remaining count at `+9C8`<sub>h</sub> (`01F7FFC8`). Its seed
+pointer at `+0x9C0` (`01F7FFC0`) and a remaining count at `+0x9C8` (`01F7FFC8`). Its seed
 `0018D740(block, seed)` runs the same initialisation recurrence as `00866D60` (SSE form when
 `01F44858` is 2 or more), and its refill `0018EE20(block)` is the same twist, ending with the
 count at 624 and the cursor at the array start.
@@ -137,7 +137,7 @@ state = (((state & 0x003FFFFF) | 0x1FC00000) << 1) | feedback;   // the bits for
 | `003D8E50(A)` | 7 when enabled: 5 before the sample, 2 after (`003D8E95`-`003D8FBE`); 0 when `A` is 0 or the enable word is 0 | `f32(sample × A) − f32(A × vf00.w)`, with `vf00.w` at `01EF93FC` |
 | `004005E0()` | 1 when enabled | `sample − 1.0`, in [0, 1); the sample is kept at `022D92E0` and copied to `022D8F90` |
 
-`00259180` seeds it: `01EF93E8` = `022D92E0` = `458DC800`<sub>h</sub> and `022D9138` = 1 (`00259216`);
+`00259180` seeds it: `01EF93E8` = `022D92E0` = `0x458DC800` and `022D9138` = 1 (`00259216`);
 it runs from the boot frame mode `0022A0B0` (`0022A406`). Ten functions touch the state directly:
 the two above, the seed, and seven that step the recurrence inline (`003CCC20`, `003A6E60`,
 `00515DA0`, `004010A0`, `0044B960`, `0044BAC0`, `00515FE0`). `003D8E50` has 220 call sites in 49
@@ -162,7 +162,7 @@ value in every run.
 
 The post-processing routine `0074BDE0` builds stratified unit-disk sample kernels with Marsaglia's
 xorshift128, seeded from a counter: `c = ++[01F3CD6C]` (`0074BFE0`-`0074BFF5`; 1 in the image), then
-`x, y, z, w` from four rounds of `6C078965h * (v ^ v >> 30) + i`. Each draw is
+`x, y, z, w` from four rounds of `0x6C078965 * (v ^ v >> 30) + i`. Each draw is
 
 ```python
 t = x ^ (x << 11);  x = y; y = z; z = w;
@@ -175,23 +175,23 @@ set. The counter and the kernels (`02EA24A0`) are referenced only from this rout
 
 ## Layouts
 
-`Mt19937State` (`9C8`<sub>h</sub> bytes, offsets from the start of the record):
+`Mt19937State` (`0x9C8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000`<sub>h</sub> | `u32[624] state` | the MT19937 state vector; 00866D60 (seed), 00866B90 (twist) |  |
-| `9C0`<sub>h</sub> | `i32` | index | next word to draw, 624 = refill needed; `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
-| `9C4`<sub>h</sub> | `u8` | seeded | 0 until the first seed; `00863BF0`, `00863C80`, `00863D30` |
-| `9C5`<sub>h</sub> | `u8[3]` | pad | not written by the five functions |
+| `+0x000` | `u32[624] state` | the MT19937 state vector; 00866D60 (seed), 00866B90 (twist) |  |
+| `+0x9C0` | `i32` | index | next word to draw, 624 = refill needed; `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
+| `+0x9C4` | `u8` | seeded | 0 until the first seed; `00863BF0`, `00863C80`, `00863D30` |
+| `+0x9C5` | `u8[3]` | pad | not written by the five functions |
 
-`GraphicsNoiseMtState` (`9D0`<sub>h</sub> bytes, offsets from the start of the record):
+`GraphicsNoiseMtState` (`0x9D0` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000`<sub>h</sub> | `u32[624] state` | the MT19937 state vector; 0018D740 (seed), 0018EE20 (twist) |  |
-| `9C0`<sub>h</sub> | `u64` | cursor | pointer to the next word; `0018EE20`, `001946E0` |
-| `9C8`<sub>h</sub> | `u32` | count | words left before a refill; `0018EE20`, `001946E0` |
-| `9CC`<sub>h</sub> | `u32` | pad | not written by the three functions |
+| `+0x000` | `u32[624] state` | the MT19937 state vector; 0018D740 (seed), 0018EE20 (twist) |  |
+| `+0x9C0` | `u64` | cursor | pointer to the next word; `0018EE20`, `001946E0` |
+| `+0x9C8` | `u32` | count | words left before a refill; `0018EE20`, `001946E0` |
+| `+0x9CC` | `u32` | pad | not written by the three functions |
 
 ## Operations
 
@@ -220,7 +220,7 @@ set. The counter and the kernels (`02EA24A0`) are referenced only from this rout
 | `022C256C` | `u32` | shared LCG state | `00328370`, the seven inline sites, `00328D80` |
 | `0208E6B0` | `u32` | shared LCG seed counter | `002342F0` |
 | `01FD4A80` | `u32` | application frame counter, mixed into the save-load seed | `0022A580` |
-| `01F7F600` | `9D0`<sub>h</sub> | graphics-noise MT block | `0018D740`, `0018EE20`, `001946E0` |
+| `01F7F600` | `0x9D0` | graphics-noise MT block | `0018D740`, `0018EE20`, `001946E0` |
 | `01F7FFD0` | `u32` | graphics seed call counter | `0018D680` |
 | `01EF93E8` | `u32` | presentation generator state | `00259180`, the ten functions above |
 | `022D9138` | `u32` | presentation generator enable | `00259180` |

@@ -1,10 +1,10 @@
 function	name	site	disp	kind	instruction	route	note
-005A2060	FUN_005a2060	005A2085	0h	w	mov qword ptr [rbx], rax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A208A	8h	w	mov qword ptr [rbx + 8], rax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A208E	10h	w	mov qword ptr [rbx + 10h], rax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A2092	18h	w	mov qword ptr [rbx + 18h], rax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A2096	20h	w	mov dword ptr [rbx + 20h], eax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A2099	28h	w	mov qword ptr [rbx + 28h], rax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A209D	30h	w	mov dword ptr [rbx + 30h], eax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A20A0	38h	w	mov qword ptr [rbx + 38h], rax	ctorrdx-seeded 005A2060	
-005A2060	FUN_005a2060	005A20A4	40h	w	mov dword ptr [rbx + 40h], eax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A2085	0x0	w	mov qword ptr [rbx], rax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A208A	0x8	w	mov qword ptr [rbx + 8], rax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A208E	0x10	w	mov qword ptr [rbx + 0x10], rax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A2092	0x18	w	mov qword ptr [rbx + 0x18], rax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A2096	0x20	w	mov dword ptr [rbx + 0x20], eax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A2099	0x28	w	mov qword ptr [rbx + 0x28], rax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A209D	0x30	w	mov dword ptr [rbx + 0x30], eax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A20A0	0x38	w	mov qword ptr [rbx + 0x38], rax	ctorrdx-seeded 005A2060	
+005A2060	FUN_005a2060	005A20A4	0x40	w	mov dword ptr [rbx + 0x40], eax	ctorrdx-seeded 005A2060	

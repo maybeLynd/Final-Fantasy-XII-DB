@@ -1,331 +1,331 @@
 class_leaf	descriptor	instance_size	parent_descriptor	parent_class	parent_instance_size	first_registered_member
-CD3D11_BLEND_DESC	02CF6320h	108h		(no parent / root)		0h
-CD3D11_DEPTH_STENCIL_DESC	02CF5A80h	34h		(no parent / root)		0h
-CD3D11_RASTERIZER_DESC	02CF52C0h	28h		(no parent / root)		8h
-D3D11_DEPTH_STENCILOP_DESC	02CF57B0h	10h		(no parent / root)		
-D3D11_RENDER_TARGET_BLEND_DESC	02CF5EB0h	20h		(no parent / root)		0h
-Matrix3	02E51050h	30h		(no parent / root)		
-Matrix4	02E511D0h	40h		(no parent / root)		
-PAnimatableComponent	02CAD140h	108h	02E4E720h	PComponent	18h	20h
-PAnimationAdditiveBlenderController	02CAD240h	38h	02CAD340h	PAnimationBlenderController	28h	
-PAnimationBlenderController	02CAD340h	28h	02CADE50h	PAnimationDataSource	18h	
-PAnimationChannel	02CAD440h	68h	02CAD540h	PAnimationChannelBase	48h	48h
-PAnimationChannelBase	02CAD540h	48h	02CAD640h	PAnimationChannelTarget	38h	38h
-PAnimationChannelTarget	02CAD640h	38h		(no parent / root)		0h
-PAnimationChannelTimes	02CAD740h	18h		(no parent / root)		0h
-PAnimationClip	02CAD840h	38h		(no parent / root)		0h
-PAnimationClipBinding	02CADB40h	8h		(no parent / root)		0h
-PAnimationClipBindingChannelMap	02CAD940h	4h		(no parent / root)		0h
-PAnimationClipBindingDataBlockCache	02CADA40h	18h		(no parent / root)		10h
-PAnimationConstantChannel	02CADC50h	58h	02CAD540h	PAnimationChannelBase	48h	48h
-PAnimationController	02CADD50h	28h	02CADE50h	PAnimationDataSource	18h	18h
-PAnimationDataSource	02CADE50h	18h	02CAE250h	PAnimationHierarchyNode	10h	10h
-PAnimationDataSourceListEntry	02CAE350h	98h		(no parent / root)		0h
-PAnimationEvent	02CAE050h	8h		(no parent / root)		0h
-PAnimationEventController	02CADF50h	28h	02CADE50h	PAnimationDataSource	18h	18h
-PAnimationEventList	02CAE150h	10h		(no parent / root)		
-PAnimationHierarchyNode	02CAE250h	10h		(no parent / root)		
-PAnimationNetworkInstance	02CAE550h	78h		(no parent / root)		30h
-PAnimationNetworkInstanceTarget	02CAE450h	30h		(no parent / root)		
-PAnimationSet	02CAE660h	30h		(no parent / root)		
-PAnimationSlotArray	02CAE860h	8h		(no parent / root)		
-PAnimationSlotFilter	02CAEA60h	40h	02CADE50h	PAnimationDataSource	18h	28h
-PAnimationSlotFilterDeferredLoad	02CAE960h	10h		(no parent / root)		0h
-PAnimationSlotListIndex	02CAE760h	18h		(no parent / root)		0h
-PAnimationSpuTargetBlenderController	02CAEBE0h	20h	02CADE50h	PAnimationDataSource	18h	18h
-PAnimationTargetBlenderController	02CAECE0h	20h	02CADE50h	PAnimationDataSource	18h	18h
-PAnimationWeightedBlenderController	02CAEDE0h	38h	02CAD340h	PAnimationBlenderController	28h	
-PApplication	02EA5660h	1130h		(no parent / root)		
-PApplicationViewport	02EA5380h	38h		(no parent / root)		
-PAssetReference	02D3E680h	50h		(no parent / root)		30h
-PAssetReferenceImport	02D3E780h	18h		(no parent / root)		0h
-PAsyncProcessHeader	02E41270h	28h		(no parent / root)		
-PAtmospherics	02D368A0h	288h	02D369A0h	PAtmosphericsD3D11	288h	
-PAtmosphericsBase	02D367A0h	288h	02D34740h	PPostEffectBase	50h	61h
-PAtmosphericsD3D11	02D369A0h	288h	02D367A0h	PAtmosphericsBase	288h	
-PBitmapFont	02E3FA60h	38h		(no parent / root)		0h
-PBitmapFontCharInfo	02E3F960h	30h		(no parent / root)		0h
-PBlendableAnimationSource	02CAD040h	80h		(no parent / root)		0h
-PCamera	02D3F210h	C0h		(no parent / root)		0h
-PCameraOrthographic	02E4F290h	D8h	02D3F310h	PCameraProjection	D0h	D0h
-PCameraPerspective	02E4F710h	D8h	02D3F310h	PCameraProjection	D0h	D0h
-PCameraProjection	02D3F310h	D0h	02D3F210h	PCamera	C0h	C8h
-PCelShading	02D362A0h	C0h	02D363A0h	PCelShadingD3D11	C0h	
-PCelShadingBase	02D361A0h	C0h	02D34740h	PPostEffectBase	50h	58h
-PCelShadingD3D11	02D363A0h	C0h	02D361A0h	PCelShadingBase	C0h	
-PClassCallableMethodScript	02E41070h	68h	02CF8680h	(descriptor not in this set)		50h
-PClusterHeader	02CAA0A0h	54h	02CA9DA0h	PClusterHeaderD3D11	54h	
-PClusterHeaderBase	02CA9FA0h	48h		(no parent / root)		0h
-PClusterHeaderD3D11	02CA9DA0h	54h	02CA9FA0h	PClusterHeaderBase	48h	48h
-PComponent	02E4E720h	18h		(no parent / root)		0h
-PConstantBuffer	02CB6480h	50h	02CF2440h	PConstantBufferD3D11	50h	
-PConstantBufferBase	02CB6380h	Ch		(no parent / root)		0h
-PConstantBufferD3D11	02CF2440h	50h	02CB6380h	PConstantBufferBase	Ch	
-PContextVariantFoldingTable	02CB7BA0h	14h		(no parent / root)		0h
-PDataBlock	02D39E40h	88h	02D39C40h	PDataBlockD3D11	88h	
-PDataBlockBase	02D39D40h	20h		(no parent / root)		0h
-PDataBlockBufferD3D11	02D39B40h	48h		(no parent / root)		
-PDataBlockD3D11	02D39C40h	88h	02D39D40h	PDataBlockBase	20h	70h
-PDebugUtils	02EA9400h	58h		(no parent / root)		50h
-PDeferredLighting	02D34940h	4330h	02D34A40h	PDeferredLightingD3D11	4330h	
-PDeferredLightingBase	02D34840h	41D8h	02D34740h	PPostEffectBase	50h	40D0h
-PDeferredLightingD3D11	02D34A40h	4330h	02D34840h	PDeferredLightingBase	41D8h	
-PDepthOfField	02D34C40h	D0h	02D34D40h	PDepthOfFieldD3D11	D0h	
-PDepthOfFieldBase	02D34B40h	80h	02D34740h	PPostEffectBase	50h	50h
-PDepthOfFieldD3D11	02D34D40h	D0h	02D34B40h	PDepthOfFieldBase	80h	
-PDynamicDataBlock	02D39F40h	28h		(no parent / root)		0h
-PDynamicMesh	02D3A140h	38h		(no parent / root)		8h
-PDynamicMeshInstance	02CB6580h	18h		(no parent / root)		8h
-PDynamicSegmentDesc	02D3A040h	10h		(no parent / root)		0h
-PEffect	02CB6680h	78h		(no parent / root)		0h
-PEffectVariant	02CB6780h	68h		(no parent / root)		0h
-PEntity	02E4EAF0h	38h		(no parent / root)		0h
-PFXAA	02D35FA0h	70h	02D360A0h	PFXAAD3D11	70h	
-PFXAABase	02D35EA0h	70h	02D34740h	PPostEffectBase	50h	
-PFXAAD3D11	02D360A0h	70h	02D35EA0h	PFXAABase	70h	
-PForwardShadowRenderer	02CBB400h	10h	02CBB300h	PShadowRenderer	10h	
-PGameConfig	02EB9E60h	18h		(no parent / root)		10h
-PGlow	02D35CA0h	D8h	02D35DA0h	PGlowD3D11	D8h	
-PGlowBase	02D35AA0h	A0h	02D34740h	PPostEffectBase	50h	5Ch
-PGlowD3D11	02D35DA0h	D8h	02D35BA0h	PGlowGPUBase	D8h	
-PGlowGPUBase	02D35BA0h	D8h	02D35AA0h	PGlowBase	A0h	
-PIndexDataBlock	02D3A340h	80h	02D39A40h	PIndexDataBlockD3D11	80h	
-PIndexDataBlockBase	02D3A240h	14h		(no parent / root)		0h
-PIndexDataBlockBufferD3D11	02D39940h	48h		(no parent / root)		
-PIndexDataBlockD3D11	02D39A40h	80h	02D3A240h	PIndexDataBlockBase	14h	68h
-PIndirectArgsBuffer	02CB6980h	28h	02CF2340h	PIndirectArgsBufferD3D11	28h	
-PIndirectArgsBufferBase	02CB6880h	8h		(no parent / root)		
-PIndirectArgsBufferD3D11	02CF2340h	28h	02CB6880h	PIndirectArgsBufferBase	8h	
-PInputAction	02EB6CF0h	28h		(no parent / root)		8h
-PInputMap	02EB6DF0h	18h		(no parent / root)		
-PInputMapper	02EA5560h	2C8h		(no parent / root)		0h
-PInputSource	02EB52F0h	28h		(no parent / root)		10h
-PInputSourceJoypadAxis	02EB55F0h	38h	02EB52F0h	PInputSource	28h	30h
-PInputSourceJoypadButton	02EB54F0h	40h	02EB52F0h	PInputSource	28h	30h
-PInputSourceKey	02EB53F0h	40h	02EB52F0h	PInputSource	28h	30h
-PInputSourceMotionAngularVelocityX	02EB63F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionAngularVelocityY	02EB64F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionAngularVelocityZ	02EB65F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionLinearAccelerationX	02EB66F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionLinearAccelerationY	02EB67F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionLinearAccelerationZ	02EB68F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionQuatW	02EB62F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionQuatX	02EB5FF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionQuatY	02EB60F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMotionQuatZ	02EB61F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceMouseButton	02EB56F0h	38h	02EB52F0h	PInputSource	28h	30h
-PInputSourceMouseDeltaX	02EB57F0h	40h	02EB52F0h	PInputSource	28h	30h
-PInputSourceMouseDeltaY	02EB58F0h	40h	02EB52F0h	PInputSource	28h	30h
-PInputSourceTouchDragX	02EB5BF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceTouchDragY	02EB5CF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceTouchPinch	02EB5AF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceTouchRotate	02EB59F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceTouchTwoFingerDragX	02EB5DF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceTouchTwoFingerDragY	02EB5EF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceVisionTrackerX	02EB69F0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceVisionTrackerY	02EB6AF0h	28h	02EB52F0h	PInputSource	28h	
-PInputSourceVisionTrackerZ	02EB6BF0h	28h	02EB52F0h	PInputSource	28h	
-PInstanceListHeader	02CA9EA0h	24h		(no parent / root)		0h
-PInstancesComponent	02E4F900h	28h	02E4E720h	PComponent	18h	
-PLODGroup	02E5AE00h	68h		(no parent / root)		0h
-PLODLevel	02E5AD00h	38h		(no parent / root)		0h
-PLight	02E58DB0h	40h		(no parent / root)		0h
-PLowResParticles	02D36AA0h	50h	02D34740h	PPostEffectBase	50h	
-PMLAA	02D357A0h	B0h	02D358A0h	PMLAAD3D11	B0h	
-PMLAABase	02D356A0h	B0h	02D34740h	PPostEffectBase	50h	
-PMLAAD3D11	02D358A0h	B0h	02D356A0h	PMLAABase	B0h	
-PMaterial	02CB6B80h	28h		(no parent / root)		0h
-PMaterialPostEffect	02D36BA0h	68h	02D34740h	PPostEffectBase	50h	
-PMaterialSet	02D3A440h	10h		(no parent / root)		
-PMaterialSwitch	02CB6A80h	10h		(no parent / root)		0h
-PMatrix4	02E51350h	40h		(no parent / root)		
-PMatrix4x3	02E51570h	30h		(no parent / root)		
-PMesh	02D3A640h	80h		(no parent / root)		60h
-PMeshInstance	02CB6E80h	C8h		(no parent / root)		0h
-PMeshInstanceAttachPoint	02CB6F80h	18h		(no parent / root)		0h
-PMeshInstanceBounds	02CB7080h	30h		(no parent / root)		10h
-PMeshInstanceSegmentContext	02CB6D80h	48h	02E522F0h	PMeshSegmentContext	28h	
-PMeshInstanceSegmentStreamBinding	02CB6C80h	18h		(no parent / root)		0h
-PMeshParticleSystemBase	02D359A0h	3248h	02D34740h	PPostEffectBase	50h	
-PMeshSegment	02D3A940h	C0h	02D39840h	PMeshSegmentD3D11	C0h	
-PMeshSegmentBase	02D3A840h	30h		(no parent / root)		0h
-PMeshSegmentContext	02E522F0h	28h		(no parent / root)		
-PMeshSegmentD3D11	02D39840h	C0h	02D3A840h	PMeshSegmentBase	30h	40h
-PModifierAndInputs	02E5E030h	20h		(no parent / root)		0h
-PModifierNetwork	02E5E540h	70h		(no parent / root)		0h
-PModifierNetworkBuffer	02E5DF30h	18h		(no parent / root)		0h
-PModifierNetworkDynamicMesh	02E58060h	78h	02D3A140h	PDynamicMesh	38h	
-PModifierNetworkDynamicMeshInstance	02CB7180h	28h	02CB6580h	PDynamicMeshInstance	18h	
-PModifierNetworkDynamicMeshSegment	02E57F60h	18h		(no parent / root)		0h
-PModifierNetworkInfoPacket	02E5E430h	20h		(no parent / root)		0h
-PModifierNetworkInfoPacket_Buffer	02E5E330h	2h		(no parent / root)		0h
-PModifierNetworkInfoPacket_ModifierCode	02E5E130h	20h		(no parent / root)		0h
-PModifierNetworkInfoPacket_ModifierInstance	02E5E230h	20h		(no parent / root)		0h
-PModifierNetworkInstance	02E5A6C0h	28h		(no parent / root)		0h
-PModifierNetworkInstanceInput	02E5A4C0h	20h	02E5DD30h	PRenderStreamInput	8h	8h
-PModifierNetworkInstancePacketInput	02E5A5C0h	8h		(no parent / root)		0h
-PMorphModifierWeightsUserDataObject	02E9FDF0h	10h		(no parent / root)		
-PMotionBlur	02D34F40h	D70h	02D35040h	PMotionBlurD3D11	D70h	
-PMotionBlurBase	02D34E40h	D68h	02D34740h	PPostEffectBase	50h	D10h
-PMotionBlurD3D11	02D35040h	D70h	02D34E40h	PMotionBlurBase	D68h	
-PNameComponent	02E4FF60h	30h	02E4E720h	PComponent	18h	28h
-PNode	02E518D0h	68h		(no parent / root)		0h
-PNodeContext	02CB7280h	10h		(no parent / root)		
-POccluderGeometryInstance	02E5BBB0h	10h		(no parent / root)		0h
-POccluderGeometryObject	02EA0850h	30h		(no parent / root)		0h
-POctree	02EB9070h	50h		(no parent / root)		0h
-POctreeChildren	02EB9370h	288h		(no parent / root)		8h
-POctreeData	02EB9170h	38h		(no parent / root)		0h
-POctreeWorld	02EB9270h	C8h		(no parent / root)		0h
-PParameterBuffer	02CB7480h	20h	02CB7380h	PParameterBufferBase	4h	8h
-PParameterBufferBase	02CB7380h	4h		(no parent / root)		0h
-PPhysicsBox	02E479D0h	88h	02E496D0h	PPhysicsBoxBullet	88h	
-PPhysicsBoxBase	02E478D0h	80h	02E48DD0h	PPhysicsShape	70h	70h
-PPhysicsBoxBullet	02E496D0h	88h	02E478D0h	PPhysicsBoxBase	80h	
-PPhysicsCallbackData	02E48AD0h	28h		(no parent / root)		0h
-PPhysicsCapsule	02E47BD0h	90h	02E497D0h	PPhysicsCapsuleBullet	90h	
-PPhysicsCapsuleBase	02E47AD0h	88h	02E48DD0h	PPhysicsShape	70h	78h
-PPhysicsCapsuleBullet	02E497D0h	90h	02E47AD0h	PPhysicsCapsuleBase	88h	
-PPhysicsCharacterCamera	02E47CD0h	208h		(no parent / root)		10h
-PPhysicsCharacterController	02E47ED0h	190h	02E49FD0h	PPhysicsCharacterControllerBullet	190h	
-PPhysicsCharacterControllerBase	02E47DD0h	130h		(no parent / root)		0h
-PPhysicsCharacterControllerBullet	02E49FD0h	190h	02E47DD0h	PPhysicsCharacterControllerBase	130h	
-PPhysicsCylinder	02E480D0h	88h	02E498D0h	PPhysicsCylinderBullet	88h	
-PPhysicsCylinderBase	02E47FD0h	80h	02E48DD0h	PPhysicsShape	70h	78h
-PPhysicsCylinderBullet	02E498D0h	88h	02E47FD0h	PPhysicsCylinderBase	80h	
-PPhysicsInterface	02E482D0h	A0h	02E49ED0h	PPhysicsInterfaceBullet	A0h	
-PPhysicsInterfaceBase	02E481D0h	18h		(no parent / root)		
-PPhysicsInterfaceBullet	02E49ED0h	A0h	02E481D0h	PPhysicsInterfaceBase	18h	
-PPhysicsMaterial	02E483D0h	Ch		(no parent / root)		0h
-PPhysicsMesh	02E485D0h	90h	02E499D0h	PPhysicsMeshBullet	90h	
-PPhysicsMeshBase	02E484D0h	78h	02E48DD0h	PPhysicsShape	70h	70h
-PPhysicsMeshBullet	02E499D0h	90h	02E484D0h	PPhysicsMeshBase	78h	
-PPhysicsModel	02E486D0h	18h		(no parent / root)		0h
-PPhysicsPlane	02E488D0h	88h	02E49AD0h	PPhysicsPlaneBullet	88h	
-PPhysicsPlaneBase	02E487D0h	80h	02E48DD0h	PPhysicsShape	70h	70h
-PPhysicsPlaneBullet	02E49AD0h	88h	02E487D0h	PPhysicsPlaneBase	80h	
-PPhysicsRigidBody	02E48BD0h	128h	02E49CD0h	PPhysicsRigidBodyBullet	128h	
-PPhysicsRigidBodyBase	02E489D0h	118h		(no parent / root)		0h
-PPhysicsRigidBodyBullet	02E49CD0h	128h	02E489D0h	PPhysicsRigidBodyBase	118h	
-PPhysicsShape	02E48DD0h	70h	02E495D0h	PPhysicsShapeBullet	70h	
-PPhysicsShapeBase	02E48CD0h	68h		(no parent / root)		8h
-PPhysicsShapeBullet	02E495D0h	70h	02E48CD0h	PPhysicsShapeBase	68h	
-PPhysicsSphere	02E48FD0h	80h	02E49BD0h	PPhysicsSphereBullet	80h	
-PPhysicsSphereBase	02E48ED0h	78h	02E48DD0h	PPhysicsShape	70h	70h
-PPhysicsSphereBullet	02E49BD0h	80h	02E48ED0h	PPhysicsSphereBase	78h	
-PPhysicsTaperedCapsule	02E490D0h	88h	02E48DD0h	PPhysicsShape	70h	80h
-PPhysicsTaperedCylinder	02E491D0h	88h	02E48DD0h	PPhysicsShape	70h	80h
-PPhysicsWorld	02E494D0h	E8h	02E49DD0h	PPhysicsWorldBullet	E8h	
-PPhysicsWorldBase	02E492D0h	60h		(no parent / root)		0h
-PPhysicsWorldBullet	02E49DD0h	E8h	02E492D0h	PPhysicsWorldBase	60h	
-PPostEffectBase	02D34740h	50h		(no parent / root)		10h
-PPostEffectManager	02D36CA0h	28h		(no parent / root)		
-PQuarryComponent	02E4E1E0h	68h	02E4E720h	PComponent	18h	18h
-PRandomGenerator	02E50160h	1h		(no parent / root)		
-PRaycastResult	02E493D0h	30h		(no parent / root)		0h
-PRenderStream	02E5DE30h	10h		(no parent / root)		0h
-PRenderStreamInput	02E5DD30h	8h		(no parent / root)		0h
-PRenderTarget	02CB76A0h	50h	02CF2040h	PRenderTargetD3D11	50h	
-PRenderTargetBase	02CB75A0h	10h		(no parent / root)		9h
-PRenderTargetD3D11	02CF2040h	50h	02CB75A0h	PRenderTargetBase	10h	
-PSamplerState	02CB78A0h	28h	02CF2140h	PSamplerStateD3D11	28h	
-PSamplerStateBase	02CB77A0h	20h		(no parent / root)		0h
-PSamplerStateD3D11	02CF2140h	28h	02CB77A0h	PSamplerStateBase	20h	
-PSceneRenderPass	02CB79A0h	50h		(no parent / root)		0h
-PSceneWideParameterBuffer	02CB7CA0h	8h	02CB7380h	PParameterBufferBase	4h	
-PScheduler	02E41370h	2F8h		(no parent / root)		
-PScreenSpaceAmbientOcclusion	02D35400h	68h	02D35500h	PScreenSpaceAmbientOcclusionD3D11	68h	
-PScreenSpaceAmbientOcclusionBase	02D35300h	68h	02D34740h	PPostEffectBase	50h	
-PScreenSpaceAmbientOcclusionD3D11	02D35500h	68h	02D35300h	PScreenSpaceAmbientOcclusionBase	68h	
-PScreenSpaceReflection	02D365A0h	B0h	02D366A0h	PScreenSpaceReflectionD3D11	B0h	
-PScreenSpaceReflectionBase	02D364A0h	B0h	02D34740h	PPostEffectBase	50h	50h
-PScreenSpaceReflectionD3D11	02D366A0h	B0h	02D364A0h	PScreenSpaceReflectionBase	B0h	
-PScript	02E41470h	58h		(no parent / root)		30h
-PScriptCallbackHandler	02E41170h	18h		(no parent / root)		0h
-PScriptableComponent	02E5C050h	40h	02E4E720h	PComponent	18h	20h
-PShader	02CB9000h	40h		(no parent / root)		0h
-PShaderComputeProgram	02CBB200h	90h	02CF1C40h	PShaderComputeProgramD3D11	90h	
-PShaderComputeProgramD3D11	02CF1C40h	90h	02CF1840h	PShaderProgramD3D11	78h	80h
-PShaderFragmentProgram	02CBB000h	80h	02CF1A40h	PShaderFragmentProgramD3D11	80h	
-PShaderFragmentProgramD3D11	02CF1A40h	80h	02CF1840h	PShaderProgramD3D11	78h	
-PShaderGeometryProgram	02CBB100h	80h	02CF1B40h	PShaderGeometryProgramD3D11	80h	
-PShaderGeometryProgramD3D11	02CF1B40h	80h	02CF1840h	PShaderProgramD3D11	78h	
-PShaderParameterCaptureBufferByteAddressBuffer	02CBA500h	20h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferDataBlock	02CBA700h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferIndexDataBlock	02CBA800h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferLocation	02CB9100h	2h		(no parent / root)		0h
-PShaderParameterCaptureBufferLocationSize	02CB9200h	4h	02CB9100h	PShaderParameterCaptureBufferLocation	2h	2h
-PShaderParameterCaptureBufferLocationType	02CB9300h	4h	02CB9100h	PShaderParameterCaptureBufferLocation	2h	2h
-PShaderParameterCaptureBufferLocationTypeConstantBuffer	02CB9400h	10h	02CB9100h	PShaderParameterCaptureBufferLocation	2h	4h
-PShaderParameterCaptureBufferRWByteAddressBuffer	02CBA600h	28h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferRWStructuredBuffer	02CBA400h	20h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferRWTexture2D	02CBA900h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferRWTexture3D	02CBAA00h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferSampler	02CBA200h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferStream	02CB9C00h	18h		(no parent / root)		
-PShaderParameterCaptureBufferStructuredBuffer	02CBA300h	20h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferTexture2D	02CB9F00h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferTexture3D	02CBA000h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureBufferTextureBase	02CB9D00h	10h		(no parent / root)		0h
-PShaderParameterCaptureBufferTextureCubeMap	02CBA100h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterCaptureConstantBuffer	02CB9E00h	18h	02CB9D00h	PShaderParameterCaptureBufferTextureBase	10h	10h
-PShaderParameterDefinition	02CB9500h	18h		(no parent / root)		0h
-PShaderPass	02CB9A00h	2C0h	02CF1440h	PShaderPassD3D11	2C0h	
-PShaderPassBase	02CB9900h	30h		(no parent / root)		0h
-PShaderPassD3D11	02CF1440h	2C0h	02CB9900h	PShaderPassBase	30h	30h
-PShaderPassInfo	02CB7AA0h	30h		(no parent / root)		0h
-PShaderPassParameterLocationTypes	02CB9700h	20h	02CB9600h	PShaderPassParameterLocationTypesBase	10h	
-PShaderPassParameterLocationTypesBase	02CB9600h	10h		(no parent / root)		0h
-PShaderPassParameterLocationTypesConstantBuffer	02CB9800h	20h	02CB9600h	PShaderPassParameterLocationTypesBase	10h	
-PShaderPassStateBase	02CB9B00h	4h		(no parent / root)		0h
-PShaderPassStateD3D11	02CF1540h	190h	02CB9B00h	PShaderPassStateBase	4h	4h
-PShaderProgramBase	02CBAD00h	1h		(no parent / root)		
-PShaderProgramD3D11	02CF1840h	78h	02CBAD00h	PShaderProgramBase	1h	28h
-PShaderProgramParamsAndStreams	02CBAC00h	20h		(no parent / root)		
-PShaderSource	02CBAB00h	28h		(no parent / root)		0h
-PShaderStreamDefinition	02CBAE00h	18h		(no parent / root)		0h
-PShaderVertexProgram	02CBAF00h	98h	02CF1940h	PShaderVertexProgramD3D11	98h	
-PShaderVertexProgramD3D11	02CF1940h	98h	02CF1840h	PShaderProgramD3D11	78h	78h
-PShadowCaster	02E59DC0h	80h		(no parent / root)		0h
-PShadowRenderer	02CBB300h	10h		(no parent / root)		
-PShadowSplit	02E59CC0h	E8h		(no parent / root)		C8h
-PShape	02D3ACE0h	38h		(no parent / root)		0h
-PSkeletonJointBounds	02D3A540h	20h		(no parent / root)		Ch
-PSkinBoneRemap	02D3A740h	4h		(no parent / root)		0h
-PStreamInputDescD3D11	02CF1640h	20h		(no parent / root)		0h
-PStreamInputLayoutD3D11	02CF1740h	18h		(no parent / root)		
-PString	02E4D630h	8h		(no parent / root)		
-PStructuredBuffer	02CBB600h	68h	02CF2240h	PStructuredBufferD3D11	68h	
-PStructuredBufferBase	02CBB500h	14h		(no parent / root)		0h
-PStructuredBufferD3D11	02CF2240h	68h	02CBB500h	PStructuredBufferBase	14h	
-PTexture2D	02CBB900h	188h	02CF1D40h	PTexture2DD3D11	188h	
-PTexture2DBase	02CBB800h	30h	02CBB700h	PTextureCommonBase	28h	28h
-PTexture2DD3D11	02CF1D40h	188h	02CBB800h	PTexture2DBase	30h	
-PTexture3D	02CBBB00h	90h	02CF1E40h	PTexture3DD3D11	90h	
-PTexture3DBase	02CBBA00h	38h	02CBB700h	PTextureCommonBase	28h	28h
-PTexture3DD3D11	02CF1E40h	90h	02CBBA00h	PTexture3DBase	38h	
-PTextureCommonBase	02CBB700h	28h		(no parent / root)		0h
-PTextureCubeMap	02CBBD00h	350h	02CF1F40h	PTextureCubeMapD3D11	350h	
-PTextureCubeMapBase	02CBBC00h	30h	02CBB700h	PTextureCommonBase	28h	28h
-PTextureCubeMapD3D11	02CF1F40h	350h	02CBBC00h	PTextureCubeMapBase	30h	
-PTimeController	02CAEEE0h	10h	02CAE250h	PAnimationHierarchyNode	10h	
-PTimeIntervalController	02CAEFE0h	28h	02CAEEE0h	PTimeController	10h	10h
-PTimeScaleOffsetController	02CAF0E0h	20h	02CAEEE0h	PTimeController	10h	10h
-PTimer	02CACCB0h	1h		(no parent / root)		
-PTrigger	02E4D940h	58h		(no parent / root)		0h
-PTriggerReceiverComponent	02E5C710h	58h	02E4E720h	PComponent	18h	18h
-PTriggerReceiverTypeCallbackData	02E5C370h	28h		(no parent / root)		0h
-PTypedObject	02E4E430h	10h		(no parent / root)		0h
-PVertexStream	02D3ADE0h	18h		(no parent / root)		0h
-PVisionMoveTracker	02EB7CD0h	8h	02EB7DD0h	PVisionMoveTrackerWin32	8h	
-PVisionMoveTrackerBase	02EB7BD0h	8h		(no parent / root)		
-PVisionMoveTrackerWin32	02EB7DD0h	8h	02EB7BD0h	PVisionMoveTrackerBase	8h	
-PVisionTracker	02EB8060h	8h	02EB8160h	PVisionTrackerWin32	8h	
-PVisionTrackerBase	02EB7F60h	8h		(no parent / root)		
-PVisionTrackerWin32	02EB8160h	8h	02EB7F60h	PVisionTrackerBase	8h	
-PWorldMatrix	02E404B0h	30h		(no parent / root)		0h
-Point3	02E507B0h	10h		(no parent / root)		
-Quat	02E50D50h	10h		(no parent / root)		
-Vector2	02E502D0h	8h		(no parent / root)		
-Vector3	02E50510h	10h		(no parent / root)		
-Vector4	02E50A50h	10h		(no parent / root)		
+CD3D11_BLEND_DESC	0x02CF6320	0x108		(no parent / root)		0x0
+CD3D11_DEPTH_STENCIL_DESC	0x02CF5A80	0x34		(no parent / root)		0x0
+CD3D11_RASTERIZER_DESC	0x02CF52C0	0x28		(no parent / root)		0x8
+D3D11_DEPTH_STENCILOP_DESC	0x02CF57B0	0x10		(no parent / root)		
+D3D11_RENDER_TARGET_BLEND_DESC	0x02CF5EB0	0x20		(no parent / root)		0x0
+Matrix3	0x02E51050	0x30		(no parent / root)		
+Matrix4	0x02E511D0	0x40		(no parent / root)		
+PAnimatableComponent	0x02CAD140	0x108	0x02E4E720	PComponent	0x18	0x20
+PAnimationAdditiveBlenderController	0x02CAD240	0x38	0x02CAD340	PAnimationBlenderController	0x28	
+PAnimationBlenderController	0x02CAD340	0x28	0x02CADE50	PAnimationDataSource	0x18	
+PAnimationChannel	0x02CAD440	0x68	0x02CAD540	PAnimationChannelBase	0x48	0x48
+PAnimationChannelBase	0x02CAD540	0x48	0x02CAD640	PAnimationChannelTarget	0x38	0x38
+PAnimationChannelTarget	0x02CAD640	0x38		(no parent / root)		0x0
+PAnimationChannelTimes	0x02CAD740	0x18		(no parent / root)		0x0
+PAnimationClip	0x02CAD840	0x38		(no parent / root)		0x0
+PAnimationClipBinding	0x02CADB40	0x8		(no parent / root)		0x0
+PAnimationClipBindingChannelMap	0x02CAD940	0x4		(no parent / root)		0x0
+PAnimationClipBindingDataBlockCache	0x02CADA40	0x18		(no parent / root)		0x10
+PAnimationConstantChannel	0x02CADC50	0x58	0x02CAD540	PAnimationChannelBase	0x48	0x48
+PAnimationController	0x02CADD50	0x28	0x02CADE50	PAnimationDataSource	0x18	0x18
+PAnimationDataSource	0x02CADE50	0x18	0x02CAE250	PAnimationHierarchyNode	0x10	0x10
+PAnimationDataSourceListEntry	0x02CAE350	0x98		(no parent / root)		0x0
+PAnimationEvent	0x02CAE050	0x8		(no parent / root)		0x0
+PAnimationEventController	0x02CADF50	0x28	0x02CADE50	PAnimationDataSource	0x18	0x18
+PAnimationEventList	0x02CAE150	0x10		(no parent / root)		
+PAnimationHierarchyNode	0x02CAE250	0x10		(no parent / root)		
+PAnimationNetworkInstance	0x02CAE550	0x78		(no parent / root)		0x30
+PAnimationNetworkInstanceTarget	0x02CAE450	0x30		(no parent / root)		
+PAnimationSet	0x02CAE660	0x30		(no parent / root)		
+PAnimationSlotArray	0x02CAE860	0x8		(no parent / root)		
+PAnimationSlotFilter	0x02CAEA60	0x40	0x02CADE50	PAnimationDataSource	0x18	0x28
+PAnimationSlotFilterDeferredLoad	0x02CAE960	0x10		(no parent / root)		0x0
+PAnimationSlotListIndex	0x02CAE760	0x18		(no parent / root)		0x0
+PAnimationSpuTargetBlenderController	0x02CAEBE0	0x20	0x02CADE50	PAnimationDataSource	0x18	0x18
+PAnimationTargetBlenderController	0x02CAECE0	0x20	0x02CADE50	PAnimationDataSource	0x18	0x18
+PAnimationWeightedBlenderController	0x02CAEDE0	0x38	0x02CAD340	PAnimationBlenderController	0x28	
+PApplication	0x02EA5660	0x1130		(no parent / root)		
+PApplicationViewport	0x02EA5380	0x38		(no parent / root)		
+PAssetReference	0x02D3E680	0x50		(no parent / root)		0x30
+PAssetReferenceImport	0x02D3E780	0x18		(no parent / root)		0x0
+PAsyncProcessHeader	0x02E41270	0x28		(no parent / root)		
+PAtmospherics	0x02D368A0	0x288	0x02D369A0	PAtmosphericsD3D11	0x288	
+PAtmosphericsBase	0x02D367A0	0x288	0x02D34740	PPostEffectBase	0x50	0x61
+PAtmosphericsD3D11	0x02D369A0	0x288	0x02D367A0	PAtmosphericsBase	0x288	
+PBitmapFont	0x02E3FA60	0x38		(no parent / root)		0x0
+PBitmapFontCharInfo	0x02E3F960	0x30		(no parent / root)		0x0
+PBlendableAnimationSource	0x02CAD040	0x80		(no parent / root)		0x0
+PCamera	0x02D3F210	0xC0		(no parent / root)		0x0
+PCameraOrthographic	0x02E4F290	0xD8	0x02D3F310	PCameraProjection	0xD0	0xD0
+PCameraPerspective	0x02E4F710	0xD8	0x02D3F310	PCameraProjection	0xD0	0xD0
+PCameraProjection	0x02D3F310	0xD0	0x02D3F210	PCamera	0xC0	0xC8
+PCelShading	0x02D362A0	0xC0	0x02D363A0	PCelShadingD3D11	0xC0	
+PCelShadingBase	0x02D361A0	0xC0	0x02D34740	PPostEffectBase	0x50	0x58
+PCelShadingD3D11	0x02D363A0	0xC0	0x02D361A0	PCelShadingBase	0xC0	
+PClassCallableMethodScript	0x02E41070	0x68	0x02CF8680	(descriptor not in this set)		0x50
+PClusterHeader	0x02CAA0A0	0x54	0x02CA9DA0	PClusterHeaderD3D11	0x54	
+PClusterHeaderBase	0x02CA9FA0	0x48		(no parent / root)		0x0
+PClusterHeaderD3D11	0x02CA9DA0	0x54	0x02CA9FA0	PClusterHeaderBase	0x48	0x48
+PComponent	0x02E4E720	0x18		(no parent / root)		0x0
+PConstantBuffer	0x02CB6480	0x50	0x02CF2440	PConstantBufferD3D11	0x50	
+PConstantBufferBase	0x02CB6380	0xC		(no parent / root)		0x0
+PConstantBufferD3D11	0x02CF2440	0x50	0x02CB6380	PConstantBufferBase	0xC	
+PContextVariantFoldingTable	0x02CB7BA0	0x14		(no parent / root)		0x0
+PDataBlock	0x02D39E40	0x88	0x02D39C40	PDataBlockD3D11	0x88	
+PDataBlockBase	0x02D39D40	0x20		(no parent / root)		0x0
+PDataBlockBufferD3D11	0x02D39B40	0x48		(no parent / root)		
+PDataBlockD3D11	0x02D39C40	0x88	0x02D39D40	PDataBlockBase	0x20	0x70
+PDebugUtils	0x02EA9400	0x58		(no parent / root)		0x50
+PDeferredLighting	0x02D34940	0x4330	0x02D34A40	PDeferredLightingD3D11	0x4330	
+PDeferredLightingBase	0x02D34840	0x41D8	0x02D34740	PPostEffectBase	0x50	0x40D0
+PDeferredLightingD3D11	0x02D34A40	0x4330	0x02D34840	PDeferredLightingBase	0x41D8	
+PDepthOfField	0x02D34C40	0xD0	0x02D34D40	PDepthOfFieldD3D11	0xD0	
+PDepthOfFieldBase	0x02D34B40	0x80	0x02D34740	PPostEffectBase	0x50	0x50
+PDepthOfFieldD3D11	0x02D34D40	0xD0	0x02D34B40	PDepthOfFieldBase	0x80	
+PDynamicDataBlock	0x02D39F40	0x28		(no parent / root)		0x0
+PDynamicMesh	0x02D3A140	0x38		(no parent / root)		0x8
+PDynamicMeshInstance	0x02CB6580	0x18		(no parent / root)		0x8
+PDynamicSegmentDesc	0x02D3A040	0x10		(no parent / root)		0x0
+PEffect	0x02CB6680	0x78		(no parent / root)		0x0
+PEffectVariant	0x02CB6780	0x68		(no parent / root)		0x0
+PEntity	0x02E4EAF0	0x38		(no parent / root)		0x0
+PFXAA	0x02D35FA0	0x70	0x02D360A0	PFXAAD3D11	0x70	
+PFXAABase	0x02D35EA0	0x70	0x02D34740	PPostEffectBase	0x50	
+PFXAAD3D11	0x02D360A0	0x70	0x02D35EA0	PFXAABase	0x70	
+PForwardShadowRenderer	0x02CBB400	0x10	0x02CBB300	PShadowRenderer	0x10	
+PGameConfig	0x02EB9E60	0x18		(no parent / root)		0x10
+PGlow	0x02D35CA0	0xD8	0x02D35DA0	PGlowD3D11	0xD8	
+PGlowBase	0x02D35AA0	0xA0	0x02D34740	PPostEffectBase	0x50	0x5C
+PGlowD3D11	0x02D35DA0	0xD8	0x02D35BA0	PGlowGPUBase	0xD8	
+PGlowGPUBase	0x02D35BA0	0xD8	0x02D35AA0	PGlowBase	0xA0	
+PIndexDataBlock	0x02D3A340	0x80	0x02D39A40	PIndexDataBlockD3D11	0x80	
+PIndexDataBlockBase	0x02D3A240	0x14		(no parent / root)		0x0
+PIndexDataBlockBufferD3D11	0x02D39940	0x48		(no parent / root)		
+PIndexDataBlockD3D11	0x02D39A40	0x80	0x02D3A240	PIndexDataBlockBase	0x14	0x68
+PIndirectArgsBuffer	0x02CB6980	0x28	0x02CF2340	PIndirectArgsBufferD3D11	0x28	
+PIndirectArgsBufferBase	0x02CB6880	0x8		(no parent / root)		
+PIndirectArgsBufferD3D11	0x02CF2340	0x28	0x02CB6880	PIndirectArgsBufferBase	0x8	
+PInputAction	0x02EB6CF0	0x28		(no parent / root)		0x8
+PInputMap	0x02EB6DF0	0x18		(no parent / root)		
+PInputMapper	0x02EA5560	0x2C8		(no parent / root)		0x0
+PInputSource	0x02EB52F0	0x28		(no parent / root)		0x10
+PInputSourceJoypadAxis	0x02EB55F0	0x38	0x02EB52F0	PInputSource	0x28	0x30
+PInputSourceJoypadButton	0x02EB54F0	0x40	0x02EB52F0	PInputSource	0x28	0x30
+PInputSourceKey	0x02EB53F0	0x40	0x02EB52F0	PInputSource	0x28	0x30
+PInputSourceMotionAngularVelocityX	0x02EB63F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionAngularVelocityY	0x02EB64F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionAngularVelocityZ	0x02EB65F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionLinearAccelerationX	0x02EB66F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionLinearAccelerationY	0x02EB67F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionLinearAccelerationZ	0x02EB68F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionQuatW	0x02EB62F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionQuatX	0x02EB5FF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionQuatY	0x02EB60F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMotionQuatZ	0x02EB61F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceMouseButton	0x02EB56F0	0x38	0x02EB52F0	PInputSource	0x28	0x30
+PInputSourceMouseDeltaX	0x02EB57F0	0x40	0x02EB52F0	PInputSource	0x28	0x30
+PInputSourceMouseDeltaY	0x02EB58F0	0x40	0x02EB52F0	PInputSource	0x28	0x30
+PInputSourceTouchDragX	0x02EB5BF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceTouchDragY	0x02EB5CF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceTouchPinch	0x02EB5AF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceTouchRotate	0x02EB59F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceTouchTwoFingerDragX	0x02EB5DF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceTouchTwoFingerDragY	0x02EB5EF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceVisionTrackerX	0x02EB69F0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceVisionTrackerY	0x02EB6AF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInputSourceVisionTrackerZ	0x02EB6BF0	0x28	0x02EB52F0	PInputSource	0x28	
+PInstanceListHeader	0x02CA9EA0	0x24		(no parent / root)		0x0
+PInstancesComponent	0x02E4F900	0x28	0x02E4E720	PComponent	0x18	
+PLODGroup	0x02E5AE00	0x68		(no parent / root)		0x0
+PLODLevel	0x02E5AD00	0x38		(no parent / root)		0x0
+PLight	0x02E58DB0	0x40		(no parent / root)		0x0
+PLowResParticles	0x02D36AA0	0x50	0x02D34740	PPostEffectBase	0x50	
+PMLAA	0x02D357A0	0xB0	0x02D358A0	PMLAAD3D11	0xB0	
+PMLAABase	0x02D356A0	0xB0	0x02D34740	PPostEffectBase	0x50	
+PMLAAD3D11	0x02D358A0	0xB0	0x02D356A0	PMLAABase	0xB0	
+PMaterial	0x02CB6B80	0x28		(no parent / root)		0x0
+PMaterialPostEffect	0x02D36BA0	0x68	0x02D34740	PPostEffectBase	0x50	
+PMaterialSet	0x02D3A440	0x10		(no parent / root)		
+PMaterialSwitch	0x02CB6A80	0x10		(no parent / root)		0x0
+PMatrix4	0x02E51350	0x40		(no parent / root)		
+PMatrix4x3	0x02E51570	0x30		(no parent / root)		
+PMesh	0x02D3A640	0x80		(no parent / root)		0x60
+PMeshInstance	0x02CB6E80	0xC8		(no parent / root)		0x0
+PMeshInstanceAttachPoint	0x02CB6F80	0x18		(no parent / root)		0x0
+PMeshInstanceBounds	0x02CB7080	0x30		(no parent / root)		0x10
+PMeshInstanceSegmentContext	0x02CB6D80	0x48	0x02E522F0	PMeshSegmentContext	0x28	
+PMeshInstanceSegmentStreamBinding	0x02CB6C80	0x18		(no parent / root)		0x0
+PMeshParticleSystemBase	0x02D359A0	0x3248	0x02D34740	PPostEffectBase	0x50	
+PMeshSegment	0x02D3A940	0xC0	0x02D39840	PMeshSegmentD3D11	0xC0	
+PMeshSegmentBase	0x02D3A840	0x30		(no parent / root)		0x0
+PMeshSegmentContext	0x02E522F0	0x28		(no parent / root)		
+PMeshSegmentD3D11	0x02D39840	0xC0	0x02D3A840	PMeshSegmentBase	0x30	0x40
+PModifierAndInputs	0x02E5E030	0x20		(no parent / root)		0x0
+PModifierNetwork	0x02E5E540	0x70		(no parent / root)		0x0
+PModifierNetworkBuffer	0x02E5DF30	0x18		(no parent / root)		0x0
+PModifierNetworkDynamicMesh	0x02E58060	0x78	0x02D3A140	PDynamicMesh	0x38	
+PModifierNetworkDynamicMeshInstance	0x02CB7180	0x28	0x02CB6580	PDynamicMeshInstance	0x18	
+PModifierNetworkDynamicMeshSegment	0x02E57F60	0x18		(no parent / root)		0x0
+PModifierNetworkInfoPacket	0x02E5E430	0x20		(no parent / root)		0x0
+PModifierNetworkInfoPacket_Buffer	0x02E5E330	0x2		(no parent / root)		0x0
+PModifierNetworkInfoPacket_ModifierCode	0x02E5E130	0x20		(no parent / root)		0x0
+PModifierNetworkInfoPacket_ModifierInstance	0x02E5E230	0x20		(no parent / root)		0x0
+PModifierNetworkInstance	0x02E5A6C0	0x28		(no parent / root)		0x0
+PModifierNetworkInstanceInput	0x02E5A4C0	0x20	0x02E5DD30	PRenderStreamInput	0x8	0x8
+PModifierNetworkInstancePacketInput	0x02E5A5C0	0x8		(no parent / root)		0x0
+PMorphModifierWeightsUserDataObject	0x02E9FDF0	0x10		(no parent / root)		
+PMotionBlur	0x02D34F40	0xD70	0x02D35040	PMotionBlurD3D11	0xD70	
+PMotionBlurBase	0x02D34E40	0xD68	0x02D34740	PPostEffectBase	0x50	0xD10
+PMotionBlurD3D11	0x02D35040	0xD70	0x02D34E40	PMotionBlurBase	0xD68	
+PNameComponent	0x02E4FF60	0x30	0x02E4E720	PComponent	0x18	0x28
+PNode	0x02E518D0	0x68		(no parent / root)		0x0
+PNodeContext	0x02CB7280	0x10		(no parent / root)		
+POccluderGeometryInstance	0x02E5BBB0	0x10		(no parent / root)		0x0
+POccluderGeometryObject	0x02EA0850	0x30		(no parent / root)		0x0
+POctree	0x02EB9070	0x50		(no parent / root)		0x0
+POctreeChildren	0x02EB9370	0x288		(no parent / root)		0x8
+POctreeData	0x02EB9170	0x38		(no parent / root)		0x0
+POctreeWorld	0x02EB9270	0xC8		(no parent / root)		0x0
+PParameterBuffer	0x02CB7480	0x20	0x02CB7380	PParameterBufferBase	0x4	0x8
+PParameterBufferBase	0x02CB7380	0x4		(no parent / root)		0x0
+PPhysicsBox	0x02E479D0	0x88	0x02E496D0	PPhysicsBoxBullet	0x88	
+PPhysicsBoxBase	0x02E478D0	0x80	0x02E48DD0	PPhysicsShape	0x70	0x70
+PPhysicsBoxBullet	0x02E496D0	0x88	0x02E478D0	PPhysicsBoxBase	0x80	
+PPhysicsCallbackData	0x02E48AD0	0x28		(no parent / root)		0x0
+PPhysicsCapsule	0x02E47BD0	0x90	0x02E497D0	PPhysicsCapsuleBullet	0x90	
+PPhysicsCapsuleBase	0x02E47AD0	0x88	0x02E48DD0	PPhysicsShape	0x70	0x78
+PPhysicsCapsuleBullet	0x02E497D0	0x90	0x02E47AD0	PPhysicsCapsuleBase	0x88	
+PPhysicsCharacterCamera	0x02E47CD0	0x208		(no parent / root)		0x10
+PPhysicsCharacterController	0x02E47ED0	0x190	0x02E49FD0	PPhysicsCharacterControllerBullet	0x190	
+PPhysicsCharacterControllerBase	0x02E47DD0	0x130		(no parent / root)		0x0
+PPhysicsCharacterControllerBullet	0x02E49FD0	0x190	0x02E47DD0	PPhysicsCharacterControllerBase	0x130	
+PPhysicsCylinder	0x02E480D0	0x88	0x02E498D0	PPhysicsCylinderBullet	0x88	
+PPhysicsCylinderBase	0x02E47FD0	0x80	0x02E48DD0	PPhysicsShape	0x70	0x78
+PPhysicsCylinderBullet	0x02E498D0	0x88	0x02E47FD0	PPhysicsCylinderBase	0x80	
+PPhysicsInterface	0x02E482D0	0xA0	0x02E49ED0	PPhysicsInterfaceBullet	0xA0	
+PPhysicsInterfaceBase	0x02E481D0	0x18		(no parent / root)		
+PPhysicsInterfaceBullet	0x02E49ED0	0xA0	0x02E481D0	PPhysicsInterfaceBase	0x18	
+PPhysicsMaterial	0x02E483D0	0xC		(no parent / root)		0x0
+PPhysicsMesh	0x02E485D0	0x90	0x02E499D0	PPhysicsMeshBullet	0x90	
+PPhysicsMeshBase	0x02E484D0	0x78	0x02E48DD0	PPhysicsShape	0x70	0x70
+PPhysicsMeshBullet	0x02E499D0	0x90	0x02E484D0	PPhysicsMeshBase	0x78	
+PPhysicsModel	0x02E486D0	0x18		(no parent / root)		0x0
+PPhysicsPlane	0x02E488D0	0x88	0x02E49AD0	PPhysicsPlaneBullet	0x88	
+PPhysicsPlaneBase	0x02E487D0	0x80	0x02E48DD0	PPhysicsShape	0x70	0x70
+PPhysicsPlaneBullet	0x02E49AD0	0x88	0x02E487D0	PPhysicsPlaneBase	0x80	
+PPhysicsRigidBody	0x02E48BD0	0x128	0x02E49CD0	PPhysicsRigidBodyBullet	0x128	
+PPhysicsRigidBodyBase	0x02E489D0	0x118		(no parent / root)		0x0
+PPhysicsRigidBodyBullet	0x02E49CD0	0x128	0x02E489D0	PPhysicsRigidBodyBase	0x118	
+PPhysicsShape	0x02E48DD0	0x70	0x02E495D0	PPhysicsShapeBullet	0x70	
+PPhysicsShapeBase	0x02E48CD0	0x68		(no parent / root)		0x8
+PPhysicsShapeBullet	0x02E495D0	0x70	0x02E48CD0	PPhysicsShapeBase	0x68	
+PPhysicsSphere	0x02E48FD0	0x80	0x02E49BD0	PPhysicsSphereBullet	0x80	
+PPhysicsSphereBase	0x02E48ED0	0x78	0x02E48DD0	PPhysicsShape	0x70	0x70
+PPhysicsSphereBullet	0x02E49BD0	0x80	0x02E48ED0	PPhysicsSphereBase	0x78	
+PPhysicsTaperedCapsule	0x02E490D0	0x88	0x02E48DD0	PPhysicsShape	0x70	0x80
+PPhysicsTaperedCylinder	0x02E491D0	0x88	0x02E48DD0	PPhysicsShape	0x70	0x80
+PPhysicsWorld	0x02E494D0	0xE8	0x02E49DD0	PPhysicsWorldBullet	0xE8	
+PPhysicsWorldBase	0x02E492D0	0x60		(no parent / root)		0x0
+PPhysicsWorldBullet	0x02E49DD0	0xE8	0x02E492D0	PPhysicsWorldBase	0x60	
+PPostEffectBase	0x02D34740	0x50		(no parent / root)		0x10
+PPostEffectManager	0x02D36CA0	0x28		(no parent / root)		
+PQuarryComponent	0x02E4E1E0	0x68	0x02E4E720	PComponent	0x18	0x18
+PRandomGenerator	0x02E50160	0x1		(no parent / root)		
+PRaycastResult	0x02E493D0	0x30		(no parent / root)		0x0
+PRenderStream	0x02E5DE30	0x10		(no parent / root)		0x0
+PRenderStreamInput	0x02E5DD30	0x8		(no parent / root)		0x0
+PRenderTarget	0x02CB76A0	0x50	0x02CF2040	PRenderTargetD3D11	0x50	
+PRenderTargetBase	0x02CB75A0	0x10		(no parent / root)		0x9
+PRenderTargetD3D11	0x02CF2040	0x50	0x02CB75A0	PRenderTargetBase	0x10	
+PSamplerState	0x02CB78A0	0x28	0x02CF2140	PSamplerStateD3D11	0x28	
+PSamplerStateBase	0x02CB77A0	0x20		(no parent / root)		0x0
+PSamplerStateD3D11	0x02CF2140	0x28	0x02CB77A0	PSamplerStateBase	0x20	
+PSceneRenderPass	0x02CB79A0	0x50		(no parent / root)		0x0
+PSceneWideParameterBuffer	0x02CB7CA0	0x8	0x02CB7380	PParameterBufferBase	0x4	
+PScheduler	0x02E41370	0x2F8		(no parent / root)		
+PScreenSpaceAmbientOcclusion	0x02D35400	0x68	0x02D35500	PScreenSpaceAmbientOcclusionD3D11	0x68	
+PScreenSpaceAmbientOcclusionBase	0x02D35300	0x68	0x02D34740	PPostEffectBase	0x50	
+PScreenSpaceAmbientOcclusionD3D11	0x02D35500	0x68	0x02D35300	PScreenSpaceAmbientOcclusionBase	0x68	
+PScreenSpaceReflection	0x02D365A0	0xB0	0x02D366A0	PScreenSpaceReflectionD3D11	0xB0	
+PScreenSpaceReflectionBase	0x02D364A0	0xB0	0x02D34740	PPostEffectBase	0x50	0x50
+PScreenSpaceReflectionD3D11	0x02D366A0	0xB0	0x02D364A0	PScreenSpaceReflectionBase	0xB0	
+PScript	0x02E41470	0x58		(no parent / root)		0x30
+PScriptCallbackHandler	0x02E41170	0x18		(no parent / root)		0x0
+PScriptableComponent	0x02E5C050	0x40	0x02E4E720	PComponent	0x18	0x20
+PShader	0x02CB9000	0x40		(no parent / root)		0x0
+PShaderComputeProgram	0x02CBB200	0x90	0x02CF1C40	PShaderComputeProgramD3D11	0x90	
+PShaderComputeProgramD3D11	0x02CF1C40	0x90	0x02CF1840	PShaderProgramD3D11	0x78	0x80
+PShaderFragmentProgram	0x02CBB000	0x80	0x02CF1A40	PShaderFragmentProgramD3D11	0x80	
+PShaderFragmentProgramD3D11	0x02CF1A40	0x80	0x02CF1840	PShaderProgramD3D11	0x78	
+PShaderGeometryProgram	0x02CBB100	0x80	0x02CF1B40	PShaderGeometryProgramD3D11	0x80	
+PShaderGeometryProgramD3D11	0x02CF1B40	0x80	0x02CF1840	PShaderProgramD3D11	0x78	
+PShaderParameterCaptureBufferByteAddressBuffer	0x02CBA500	0x20	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferDataBlock	0x02CBA700	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferIndexDataBlock	0x02CBA800	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferLocation	0x02CB9100	0x2		(no parent / root)		0x0
+PShaderParameterCaptureBufferLocationSize	0x02CB9200	0x4	0x02CB9100	PShaderParameterCaptureBufferLocation	0x2	0x2
+PShaderParameterCaptureBufferLocationType	0x02CB9300	0x4	0x02CB9100	PShaderParameterCaptureBufferLocation	0x2	0x2
+PShaderParameterCaptureBufferLocationTypeConstantBuffer	0x02CB9400	0x10	0x02CB9100	PShaderParameterCaptureBufferLocation	0x2	0x4
+PShaderParameterCaptureBufferRWByteAddressBuffer	0x02CBA600	0x28	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferRWStructuredBuffer	0x02CBA400	0x20	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferRWTexture2D	0x02CBA900	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferRWTexture3D	0x02CBAA00	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferSampler	0x02CBA200	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferStream	0x02CB9C00	0x18		(no parent / root)		
+PShaderParameterCaptureBufferStructuredBuffer	0x02CBA300	0x20	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferTexture2D	0x02CB9F00	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferTexture3D	0x02CBA000	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureBufferTextureBase	0x02CB9D00	0x10		(no parent / root)		0x0
+PShaderParameterCaptureBufferTextureCubeMap	0x02CBA100	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterCaptureConstantBuffer	0x02CB9E00	0x18	0x02CB9D00	PShaderParameterCaptureBufferTextureBase	0x10	0x10
+PShaderParameterDefinition	0x02CB9500	0x18		(no parent / root)		0x0
+PShaderPass	0x02CB9A00	0x2C0	0x02CF1440	PShaderPassD3D11	0x2C0	
+PShaderPassBase	0x02CB9900	0x30		(no parent / root)		0x0
+PShaderPassD3D11	0x02CF1440	0x2C0	0x02CB9900	PShaderPassBase	0x30	0x30
+PShaderPassInfo	0x02CB7AA0	0x30		(no parent / root)		0x0
+PShaderPassParameterLocationTypes	0x02CB9700	0x20	0x02CB9600	PShaderPassParameterLocationTypesBase	0x10	
+PShaderPassParameterLocationTypesBase	0x02CB9600	0x10		(no parent / root)		0x0
+PShaderPassParameterLocationTypesConstantBuffer	0x02CB9800	0x20	0x02CB9600	PShaderPassParameterLocationTypesBase	0x10	
+PShaderPassStateBase	0x02CB9B00	0x4		(no parent / root)		0x0
+PShaderPassStateD3D11	0x02CF1540	0x190	0x02CB9B00	PShaderPassStateBase	0x4	0x4
+PShaderProgramBase	0x02CBAD00	0x1		(no parent / root)		
+PShaderProgramD3D11	0x02CF1840	0x78	0x02CBAD00	PShaderProgramBase	0x1	0x28
+PShaderProgramParamsAndStreams	0x02CBAC00	0x20		(no parent / root)		
+PShaderSource	0x02CBAB00	0x28		(no parent / root)		0x0
+PShaderStreamDefinition	0x02CBAE00	0x18		(no parent / root)		0x0
+PShaderVertexProgram	0x02CBAF00	0x98	0x02CF1940	PShaderVertexProgramD3D11	0x98	
+PShaderVertexProgramD3D11	0x02CF1940	0x98	0x02CF1840	PShaderProgramD3D11	0x78	0x78
+PShadowCaster	0x02E59DC0	0x80		(no parent / root)		0x0
+PShadowRenderer	0x02CBB300	0x10		(no parent / root)		
+PShadowSplit	0x02E59CC0	0xE8		(no parent / root)		0xC8
+PShape	0x02D3ACE0	0x38		(no parent / root)		0x0
+PSkeletonJointBounds	0x02D3A540	0x20		(no parent / root)		0xC
+PSkinBoneRemap	0x02D3A740	0x4		(no parent / root)		0x0
+PStreamInputDescD3D11	0x02CF1640	0x20		(no parent / root)		0x0
+PStreamInputLayoutD3D11	0x02CF1740	0x18		(no parent / root)		
+PString	0x02E4D630	0x8		(no parent / root)		
+PStructuredBuffer	0x02CBB600	0x68	0x02CF2240	PStructuredBufferD3D11	0x68	
+PStructuredBufferBase	0x02CBB500	0x14		(no parent / root)		0x0
+PStructuredBufferD3D11	0x02CF2240	0x68	0x02CBB500	PStructuredBufferBase	0x14	
+PTexture2D	0x02CBB900	0x188	0x02CF1D40	PTexture2DD3D11	0x188	
+PTexture2DBase	0x02CBB800	0x30	0x02CBB700	PTextureCommonBase	0x28	0x28
+PTexture2DD3D11	0x02CF1D40	0x188	0x02CBB800	PTexture2DBase	0x30	
+PTexture3D	0x02CBBB00	0x90	0x02CF1E40	PTexture3DD3D11	0x90	
+PTexture3DBase	0x02CBBA00	0x38	0x02CBB700	PTextureCommonBase	0x28	0x28
+PTexture3DD3D11	0x02CF1E40	0x90	0x02CBBA00	PTexture3DBase	0x38	
+PTextureCommonBase	0x02CBB700	0x28		(no parent / root)		0x0
+PTextureCubeMap	0x02CBBD00	0x350	0x02CF1F40	PTextureCubeMapD3D11	0x350	
+PTextureCubeMapBase	0x02CBBC00	0x30	0x02CBB700	PTextureCommonBase	0x28	0x28
+PTextureCubeMapD3D11	0x02CF1F40	0x350	0x02CBBC00	PTextureCubeMapBase	0x30	
+PTimeController	0x02CAEEE0	0x10	0x02CAE250	PAnimationHierarchyNode	0x10	
+PTimeIntervalController	0x02CAEFE0	0x28	0x02CAEEE0	PTimeController	0x10	0x10
+PTimeScaleOffsetController	0x02CAF0E0	0x20	0x02CAEEE0	PTimeController	0x10	0x10
+PTimer	0x02CACCB0	0x1		(no parent / root)		
+PTrigger	0x02E4D940	0x58		(no parent / root)		0x0
+PTriggerReceiverComponent	0x02E5C710	0x58	0x02E4E720	PComponent	0x18	0x18
+PTriggerReceiverTypeCallbackData	0x02E5C370	0x28		(no parent / root)		0x0
+PTypedObject	0x02E4E430	0x10		(no parent / root)		0x0
+PVertexStream	0x02D3ADE0	0x18		(no parent / root)		0x0
+PVisionMoveTracker	0x02EB7CD0	0x8	0x02EB7DD0	PVisionMoveTrackerWin32	0x8	
+PVisionMoveTrackerBase	0x02EB7BD0	0x8		(no parent / root)		
+PVisionMoveTrackerWin32	0x02EB7DD0	0x8	0x02EB7BD0	PVisionMoveTrackerBase	0x8	
+PVisionTracker	0x02EB8060	0x8	0x02EB8160	PVisionTrackerWin32	0x8	
+PVisionTrackerBase	0x02EB7F60	0x8		(no parent / root)		
+PVisionTrackerWin32	0x02EB8160	0x8	0x02EB7F60	PVisionTrackerBase	0x8	
+PWorldMatrix	0x02E404B0	0x30		(no parent / root)		0x0
+Point3	0x02E507B0	0x10		(no parent / root)		
+Quat	0x02E50D50	0x10		(no parent / root)		
+Vector2	0x02E502D0	0x8		(no parent / root)		
+Vector3	0x02E50510	0x10		(no parent / root)		
+Vector4	0x02E50A50	0x10		(no parent / root)		

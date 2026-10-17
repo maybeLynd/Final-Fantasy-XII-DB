@@ -22,11 +22,11 @@ The PE entry point is `00808EE4`. Everything before the game's `WinMain` happens
 3. It reads the start-up state `02EAECF8`. A value of 1 (start-up already running) fast-fails with code
    7 (`00808DB5`); a value of 0 is set to 1 (`00808DC3`).
 4. It runs the C table through `_initterm_e` (`00808DDB`). A non-zero result ends start-up with exit
-   code `FF`<sub>h</sub> (`00808DE4`).
+   code `0xFF` (`00808DE4`).
 5. It runs the C++ table through `_initterm` (`00808DFC`), which returns nothing to test, and sets the
    state to 2 (`00808E01`).
 6. It releases the lock, checks two dynamic-TLS callback slots (`00809C78`, `00809C80`, both null in
-   the image), fetches the command line and calls `007A3770` with the image base `00120000`<sub>h</sub>
+   the image), fetches the command line and calls `007A3770` with the image base `0x00120000`
    (`00808E8A`).
 
 `007A3770` is `WinMain`: it calls `IsDebuggerPresent` and then the game's main routine `007980A0` on
@@ -39,7 +39,7 @@ between are runtime set-up:
 
 - `00808C90` sets the application type and file modes, initialises the module's exit tables
   (`00808988`), registers `00809CD4` with `atexit`, and prepares the command line and environment.
-- `00808D4C` sets `4`<sub>h</sub> in the stdio option word returned by `0016D670` and `2`<sub>h</sub> in the one returned
+- `00808D4C` sets `0x4` in the stdio option word returned by `0016D670` and `0x2` in the one returned
   by `0018A320`.
 - `00809124` creates the lock and the condition variable or event behind thread-safe local statics,
   and registers `00809244` to delete them; see
@@ -81,7 +81,7 @@ Grouped by the first function each entry calls, from a census of every entry's b
 | 419 | others | 362 further first callees, none used by more than 11 entries |
 
 The registry inserts share one shape: the routine refuses an object whose name pointer is null
-(returns `11`<sub>h</sub>) or whose name is already present (returns `12`<sub>h</sub>), and otherwise pushes the object onto
+(returns `0x11`) or whose name is already present (returns `0x12`), and otherwise pushes the object onto
 a singly linked list headed by a global (`00879570` uses `02EB9D80`, `00876C80` `02EB83B8`, `008768A0`
 `02EB8348`, and the render-pass insert `005FDCB0` uses `02CBF998`).
 
@@ -95,7 +95,7 @@ Every registration in the image goes through `atexit` (`00808B90`), which calls 
 
 - `00808C90` calls `00808988` with 1 (an executable), which fills the module's two exit tables
   `02EAED08` and `02EAED20` with the encoded value -1 instead of initialising them.
-- `_onexit` decodes the first qword of `02EAED08` (`ror64(cookie xor value, cookie & 3Fh)`, cookie
+- `_onexit` decodes the first qword of `02EAED08` (`ror64(cookie xor value, cookie & 0x3F)`, cookie
   `01F44830`); it is -1, so it hands the function to the runtime's `_crt_atexit` (`00808B68`), and the
   `_register_onexit_function` path at `00808B79` is never taken.
 
@@ -106,7 +106,7 @@ first.
 |---:|---|
 | 1,084 | C++ initialisers |
 | 1,541 | functions holding thread-safe local statics, inside the guarded block |
-| 2 | `00159340`, one critical-section static at `02EAEA70` built behind bit `1`<sub>h</sub> of the plain flag word `02EAEA98`, its accessor inlined twice; both register the teardown `008B9040` (`00159384`, `001593F1`), which stores `01CC6B60` at `02EAEA68` and hands `02EAEA70` to the import at `008C20D0` |
+| 2 | `00159340`, one critical-section static at `02EAEA70` built behind bit `0x1` of the plain flag word `02EAEA98`, its accessor inlined twice; both register the teardown `008B9040` (`00159384`, `001593F1`), which stores `01CC6B60` at `02EAEA68` and hands `02EAEA70` to the import at `008C20D0` |
 | 1 | `005A08E0`, the engine set-up, registering the engine shutdown `005A0840` |
 | 2 | the runtime's own `00808C90` and `00809124` |
 
@@ -126,16 +126,16 @@ depends on what ran first.
   `0016D6A0` and do nothing (see [image hardening](image-hardening.md)).
 - 405 more are short tail jumps of up to four instructions.
 - 224, nearly all 82 bytes, are list unlinks registered by lazy statics: they splice a node out of an intrusive
-  doubly linked list, point the node at itself, and free `+18`<sub>h</sub> through `00584730` only when bit 0 of
-  `+20`<sub>h</sub> is set (`008A8D40`).
+  doubly linked list, point the node at itself, and free `+0x18` through `00584730` only when bit 0 of
+  `+0x20` is set (`008A8D40`).
 - 327 are 95-byte registry unlinks registered by C++ initialisers: they store the base vtable back
-  into the object and remove it from a singly linked registry list by its `+10`<sub>h</sub> link (`008B76B0`,
+  into the object and remove it from a singly linked registry list by its `+0x10` link (`008B76B0`,
   list `02EA06D8`).
 - The rest destroy their object inline.
 
 ### The normal quit does not run the teardowns
 
-`007980A0` runs the game's message loop until it receives `WM_QUIT` (`12`<sub>h</sub>). It then calls `0061C540`,
+`007980A0` runs the game's message loop until it receives `WM_QUIT` (`0x12`). It then calls `0061C540`,
 `005FE190` and the engine shutdown `005A0840`, closes its handles, frees its argument list, optionally
 relaunches the executable with `CreateProcessA`, and calls `ExitProcess(0)` at `0079887F`. It does not
 return to `WinMain`, so the runtime's `exit` at `00808E9C` and the teardown table are not reached on
@@ -147,7 +147,7 @@ routine with `atexit`, so the shutdown runs once on either path.
 The TLS directory (`01CEBED8`, 40 bytes) gives raw data `03004000`–`03004008`, the index `02EAED3C` and
 the callback array `008C56B0`, whose first qword is null. Nothing runs from TLS callbacks before the
 entry point. The TLS block itself is used: the thread-safe local statics keep each thread's epoch at
-`+04`<sub>h</sub>.
+`+0x04`.
 
 ## Layouts
 
@@ -204,10 +204,10 @@ function address in its first column:
 | `record-ctor-00616210-initialisers` | 33 C++ entries (texture-format records) |
 | `record-ctor-00662c00-initialisers` | 28 C++ entries (vertex-format records) |
 | `record-ctor-006d58d0-initialisers` | 9 C++ entries (morph records) |
-| `counter-append-initialisers` | 19 C++ entries, `00160BF0` to `00161070` at a `40`<sub>h</sub> stride, that append the static to a counted pointer table |
+| `counter-append-initialisers` | 19 C++ entries, `00160BF0` to `00161070` at a 0x40 stride, that append the static to a counted pointer table |
 | `zeroinit-record-initialisers`, `zeroinit-3q-initialisers` | 16 and 3 C++ entries that zero a record |
 | `alloc-record-0067ffb0-initialisers`, `grow-helper-initialisers` | 8 and 6 C++ entries |
-| `ctor-00808fe4-initialisers` | 5 C++ entries that construct an array through `00808FE4`; `00162B30` passes the element constructor `005DC890`, which stores `34460000`<sub>h</sub> and zeroes two qwords, for 23 elements of `18`<sub>h</sub> bytes at `02CB7DA0` |
+| `ctor-00808fe4-initialisers` | 5 C++ entries that construct an array through `00808FE4`; `00162B30` passes the element constructor `005DC890`, which stores `0x34460000` and zeroes two qwords, for 23 elements of `0x18` bytes at `02CB7DA0` |
 | `ctor-0060df70-initialisers` | 2 C++ entries |
 | `callback-record-006155b0-registrars` | 6 C++ entries that tail-jump `006155B0` with three code pointers |
 | `xc-initializer-leftovers` | 83 C++ entries, each of its own form |
@@ -215,9 +215,9 @@ function address in its first column:
 | `static-intrusive-list-teardowns`, `static-intrusive-list-teardown-owners` | the 224 list unlinks, and the class descriptor owning each list |
 | `registry-unlink-teardowns` | the 327 registry unlinks |
 | `xc-registered-library-teardowns`, `xc-registered-static-teardowns` | 190 and 107 teardowns that C++ entries register |
-| `intrusive-list-node-teardowns-115b` | 43 list-clearing loops that release each node through its allocator's slot `+18`<sub>h</sub> |
+| `intrusive-list-node-teardowns-115b` | 43 list-clearing loops that release each node through its allocator's slot `+0x18` |
 | `scalar-deleting-destructors-free`, `-shared-base`, `-inlined-dtor` | 65, 37 and 24 deleting destructors freeing through `00809950` |
-| `two-deallocator-deleting-destructors` | 12 deleting destructors testing bits `1`<sub>h</sub> and `4`<sub>h</sub> |
+| `two-deallocator-deleting-destructors` | 12 deleting destructors testing bits `0x1` and `0x4` |
 
 The deleting-destructor idiom is on [object construction and destruction](object-construction-and-destruction.md).
 

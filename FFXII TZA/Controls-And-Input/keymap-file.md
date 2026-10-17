@@ -21,7 +21,7 @@ The reader and the writer both use that one path.
 
 `InputManager_Initialize` (`00195060`, from `0019877E`) reads the file once, at start-up (`001950A9`-`001950EB`):
 
-1. It clears the three profiles, `150`<sub>h</sub> bytes at `01F80F90`.
+1. It clears the three profiles, `0x150` bytes at `01F80F90`.
 2. It builds the path and reads the file into the profiles (`00198000`).
 3. It checks that no code repeats and none is reserved (`00196550`), and that profile 1 is filled with legal codes
    (`001965E0`).
@@ -35,17 +35,17 @@ down (`0017D670`, from `0017CDC0`). A first run with no file therefore ends by w
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32[16]` | buttons | group 0: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle, Circle, Cross, Square |
-| `40`<sub>h</sub> | `u32[8]` | sticks | group 1: RX_P, RX_N, RY_P, RY_N, LX_P, LX_N, LY_P, LY_N |
-| `60`<sub>h</sub> | `u32[4]` | extras | group 2: Speed1, Speed2, Speed3, WalkMode |
+| `+0x00` | `u32[16]` | buttons | group 0: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle, Circle, Cross, Square |
+| `+0x40` | `u32[8]` | sticks | group 1: RX_P, RX_N, RY_P, RY_N, LX_P, LX_N, LY_P, LY_N |
+| `+0x60` | `u32[4]` | extras | group 2: Speed1, Speed2, Speed3, WalkMode |
 
-The three profiles sit at `01F80F90`, `70`<sub>h</sub> bytes apart, and the file's `[Keyboard1]`-`[Keyboard3]` fill them in
+The three profiles sit at `01F80F90`, `0x70` bytes apart, and the file's `[Keyboard1]`-`[Keyboard3]` fill them in
 order. A slot's name is its place in the three name groups at `01DF11E0`, sixteen pointers per group, read by both
 the reader and the writer; the `.tsv` lists them in slot order.
 
 ### Reading
 
-`00198000` opens the file with mode `23`<sub>h</sub>, read and write without creating it, so a missing file reads as
+`00198000` opens the file with mode `0x23`, read and write without creating it, so a missing file reads as
 nothing, and skips an empty one. Then,
 line by line, at most 127 characters each:
 
@@ -64,8 +64,8 @@ The reader and the writer go through a wide-character file buffer whose vtable i
 (`001982FB`, `0019840F`), which grows the string's buffer with `00195820`.
 
 The profile starts at -1, before any header, and is never checked against 0-2: a binding is stored at
-`01F80F90 + 70h * profile + 4 * slot`. So a binding before the first header, or under `[Keyboard0]`, lands
-`70`<sub>h</sub> bytes below the profiles, in the end of the path buffer at `01F80D90`, and a large profile number lands past
+`01F80F90 + 0x70 * profile + 4 * slot`. So a binding before the first header, or under `[Keyboard0]`, lands
+`0x70` bytes below the profiles, in the end of the path buffer at `01F80D90`, and a large profile number lands past
 them.
 
 ### The two checks
@@ -78,7 +78,7 @@ The reserved codes are 2, 81, 82, 84, 85, 88, 89, 90, 119, 122, 123, 125 and 130
 
 ### Writing
 
-`001993B0` opens the file with mode `26`<sub>h</sub>, creating it anew, and writes, for each profile, `[KeyboardN]` and then every name as `Name=code`, 28
+`001993B0` opens the file with mode `0x26`, creating it anew, and writes, for each profile, `[KeyboardN]` and then every name as `Name=code`, 28
 lines, in slot order, one per line with a bare line feed: 87 lines.
 
 ### Codes
@@ -92,7 +92,7 @@ code of 1-3 as one of the mouse device's three button bytes and any other code a
 ### Circle and Cross
 
 When the published profiles are built from the file or from the defaults, the Circle and Cross codes, slots 13 and
-14, are exchanged when the confirm-button setting `+64`<sub>h</sub> of the game settings is not 0: `001DFA70` answers whether it
+14, are exchanged when the confirm-button setting `+0x64` of the game settings is not 0: `001DFA70` answers whether it
 is 0 (`001DFA70`-`001DFA77`), and the swap runs when it is not (`00195F03`-`00195F24`, `00198B60`). The file keeps them as written.
 
 ## Shipped data

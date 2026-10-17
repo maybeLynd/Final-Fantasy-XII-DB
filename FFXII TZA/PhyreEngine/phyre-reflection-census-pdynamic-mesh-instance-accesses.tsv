@@ -1,2 +1,2 @@
 function	name	site	disp	kind	instruction	route	note
-005E2AA0	FUN_005e2aa0	005E2AB9	0h	w	mov qword ptr [rcx], rax	vtable-seeded 00D498B0	
+005E2AA0	FUN_005e2aa0	005E2AB9	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 00D498B0	

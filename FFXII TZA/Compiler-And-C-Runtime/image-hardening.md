@@ -16,14 +16,14 @@ own.
 
 ### Load address and relocations
 
-The optional header asks for image base `00120000`<sub>h</sub>. `DllCharacteristics` is `8120`<sub>h</sub>:
-`HIGH_ENTROPY_VA` (`0020`<sub>h</sub>), `NX_COMPAT` (`0100`<sub>h</sub>) and `TERMINAL_SERVER_AWARE` (`8000`<sub>h</sub>).
-`DYNAMIC_BASE` (`0040`<sub>h</sub>) is clear, so the loader maps the image at its preferred base and
-`HIGH_ENTROPY_VA` has no effect. Every address in this database is `00120000`<sub>h</sub> plus the RVA and is the
+The optional header asks for image base `0x00120000`. `DllCharacteristics` is `0x8120`:
+`HIGH_ENTROPY_VA` (`0x0020`), `NX_COMPAT` (`0x0100`) and `TERMINAL_SERVER_AWARE` (`0x8000`).
+`DYNAMIC_BASE` (`0x0040`) is clear, so the loader maps the image at its preferred base and
+`HIGH_ENTROPY_VA` has no effect. Every address in this database is `0x00120000` plus the RVA and is the
 address in the running game.
 
-The file header's `Characteristics` is `0022`<sub>h</sub>, so `RELOCS_STRIPPED` is clear, and the base-relocation
-directory (`39360`<sub>h</sub> bytes) is shipped. The image could be rebased by a tool; the Windows loader has no
+The file header's `Characteristics` is `0x0022`, so `RELOCS_STRIPPED` is clear, and the base-relocation
+directory (`0x39360` bytes) is shipped. The image could be rebased by a tool; the Windows loader has no
 reason to rebase it.
 
 ### Data execution prevention
@@ -35,8 +35,8 @@ a mod needs `VirtualProtect` or an executable `VirtualAlloc` before it can run.
 ### Control Flow Guard is present but never switched on
 
 The load configuration directory is 148 bytes. It names a check slot `008C31C0` and a dispatch slot
-`008C31C8`, gives no guard function table (table and count 0), and its `GuardFlags` is `00000100`<sub>h</sub>
-(`CF_INSTRUMENTED` alone, no `CF_FUNCTION_TABLE_PRESENT`). `GUARD_CF` (`4000`<sub>h</sub>) is clear in
+`008C31C8`, gives no guard function table (table and count 0), and its `GuardFlags` is `0x00000100`
+(`CF_INSTRUMENTED` alone, no `CF_FUNCTION_TABLE_PRESENT`). `GUARD_CF` (`0x4000`) is clear in
 `DllCharacteristics`, so the loader never enables the feature and the slots keep their on-disk values:
 
 - the check slot holds `0016D6A0`, whose whole body is `C2 00 00` (`ret 0`);
@@ -50,7 +50,7 @@ all.
 
 The `.gfids` section holds twelve dwords (`49 48 19 10 13 16 69 113 10 98 55 11`, 48 bytes of a
 512-byte raw section). The load configuration does not point at them, and the image's own section
-contribution record lists them as a `.gfids$y` input of `30`<sub>h</sub> bytes; none of them is an RVA.
+contribution record lists them as a `.gfids$y` input of `0x30` bytes; none of them is an RVA.
 
 ### The shared do-nothing body at 0016D6A0
 
@@ -62,13 +62,13 @@ check slot. A body that "calls `0016D6A0`" does nothing at that point.
 ### Stack cookies
 
 The cookie is the qword at `01F44830`, named by the load configuration's `SecurityCookie` field. On disk
-it holds `00002B992DDFA232`<sub>h</sub>. The entry point `00808EE4` calls `__security_init_cookie` (`00809B8C`)
+it holds `0x00002B992DDFA232`. The entry point `00808EE4` calls `__security_init_cookie` (`00809B8C`)
 before anything else, then jumps to the runtime start-up `00808D78`.
 
 1. If the cookie still holds the on-disk value (`00809BAF`), it builds a new one: the system time
    (`GetSystemTimeAsFileTime`) xor the thread id xor the process id xor
    `(counter.high << 32) xor counter` from `QueryPerformanceCounter` xor the address of a stack local,
-   masked to 48 bits; a result equal to the on-disk value becomes `00002B992DDFA233`<sub>h</sub>. It is stored at
+   masked to 48 bits; a result equal to the on-disk value becomes `0x00002B992DDFA233`. It is stored at
    `00809C1C`, the cookie's only writer.
 2. In both cases the complement of the cookie is stored at `01F44838` (`00809C2B`).
 
@@ -79,15 +79,15 @@ zero (`00808C4A`). On either failure it jumps to `__report_gsfailure` (`00809654
 first on the second path (`00808C58`).
 
 `__report_gsfailure` asks `IsProcessorFeaturePresent(23)` and, when fast fail is available, executes
-`int 29h` with code 2 (`00809670`): the process ends with no exception raised. Otherwise it builds a
-`C0000409`<sub>h</sub> exception record and calls `00809620`, which first calls `SetUnhandledExceptionFilter(NULL)`
-(`0080962B`), then `UnhandledExceptionFilter`, then `TerminateProcess(GetCurrentProcess(), C0000409h)`.
+`int 0x29` with code 2 (`00809670`): the process ends with no exception raised. Otherwise it builds a
+`0xC0000409` exception record and calls `00809620`, which first calls `SetUnhandledExceptionFilter(NULL)`
+(`0080962B`), then `UnhandledExceptionFilter`, then `TerminateProcess(GetCurrentProcess(), 0xC0000409)`.
 Either way the game's own crash filter never runs.
 
 ### Range-check failures
 
 `__report_rangecheckfailure` (`00809728`) calls `0080973C` with code 8, which fast-fails the same way
-(`int 29h` at `00809758`) or takes the same filter-clearing fallback. The compiler emits a call to it
+(`int 0x29` at `00809758`) or takes the same filter-clearing fallback. The compiler emits a call to it
 where an index into a fixed-size array could not be proved in range.
 
 ### Teardowns that end in the do-nothing body
@@ -122,9 +122,9 @@ pairing follows from the arithmetic:
   use `cvtsi2ss`, `cvtsi2sd`, `cvtdq2ps` or `cvtdq2pd` (18 routines); 30 routines move integers only.
 
 One of the other 41 tears down the event record `02D3E880`. Its initialiser `00165F80` zeroes the record
-(`005CC8A0`) and registers `008B1B00`. `00677450` creates it: when `+00`<sub>h</sub> is 0 it calls `005CD0A0`,
-which stores a `CreateEventA` handle (auto-reset, initially unsignalled) at `+08`<sub>h</sub> and sets `+10`<sub>h</sub>
-and `+00`<sub>h</sub>. `00677520` closes it through `005CD6D0` (`CloseHandle`). The empty teardown never closes
+(`005CC8A0`) and registers `008B1B00`. `00677450` creates it: when `+0x00` is 0 it calls `005CD0A0`,
+which stores a `CreateEventA` handle (auto-reset, initially unsignalled) at `+0x08` and sets `+0x10`
+and `+0x00`. `00677520` closes it through `005CD6D0` (`CloseHandle`). The empty teardown never closes
 the handle.
 
 ### What the image records about its build
@@ -141,19 +141,19 @@ IMAGE_OPTIONAL_HEADER64 (fields used here):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `18`<sub>h</sub> | `u64` | ImageBase | `00120000`<sub>h</sub> |
-| `46`<sub>h</sub> | `u16` | DllCharacteristics | `8120`<sub>h</sub> |
+| `+0x18` | `u64` | ImageBase | `0x00120000` |
+| `+0x46` | `u16` | DllCharacteristics | `0x8120` |
 
 IMAGE_LOAD_CONFIG_DIRECTORY64, 148 bytes at `01CEBE40`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `58`<sub>h</sub> | `u64` | SecurityCookie | `01F44830`<sub>h</sub> |
-| `70`<sub>h</sub> | `u64` | GuardCFCheckFunctionPointer | `008C31C0`<sub>h</sub> |
-| `78`<sub>h</sub> | `u64` | GuardCFDispatchFunctionPointer | `008C31C8`<sub>h</sub> |
-| `80`<sub>h</sub> | `u64` | GuardCFFunctionTable | 0 |
-| `88`<sub>h</sub> | `u64` | GuardCFFunctionCount | 0 |
-| `90`<sub>h</sub> | `u32` | GuardFlags | `00000100`<sub>h</sub> |
+| `+0x58` | `u64` | SecurityCookie | `0x01F44830` |
+| `+0x70` | `u64` | GuardCFCheckFunctionPointer | `0x008C31C0` |
+| `+0x78` | `u64` | GuardCFDispatchFunctionPointer | `0x008C31C8` |
+| `+0x80` | `u64` | GuardCFFunctionTable | 0 |
+| `+0x88` | `u64` | GuardCFFunctionCount | 0 |
+| `+0x90` | `u32` | GuardFlags | `0x00000100` |
 
 ```
 section   address    virtual size   raw size    access
@@ -169,37 +169,37 @@ _RDATA    03005000   0x000A250      0x000A400   R--
 .reloc    0305C000   0x0039360      0x0039400   R--
 ```
 
-Scalar-conversion tree node, `30`<sub>h</sub> bytes, guard dword at +`30`<sub>h</sub> (`02CAAD10`..02CACC58):
+Scalar-conversion tree node, `0x30` bytes, guard dword at +`0x30` (`02CAAD10`..02CACC58):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u64` | link0 | self-linked until inserted |
-| `08`<sub>h</sub> | `u64` | link1 |  |
-| `10`<sub>h</sub> | `u64` | parent | low bit is the node colour |
-| `18`<sub>h</sub> | `u64` | source | type descriptor (lookup key, first) |
-| `20`<sub>h</sub> | `u64` | destination | type descriptor (lookup key, second) |
-| `28`<sub>h</sub> | `u64` | routine | conversion routine |
+| `+0x00` | `u64` | link0 | self-linked until inserted |
+| `+0x08` | `u64` | link1 |  |
+| `+0x10` | `u64` | parent | low bit is the node colour |
+| `+0x18` | `u64` | source | type descriptor (lookup key, first) |
+| `+0x20` | `u64` | destination | type descriptor (lookup key, second) |
+| `+0x28` | `u64` | routine | conversion routine |
 
-Event record `02D3E880`, `28`<sub>h</sub> bytes:
+Event record `02D3E880`, `0x28` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | created |  |
-| `08`<sub>h</sub> | `u64` | handle | CreateEventA result |
-| `10`<sub>h</sub> | `u8` | flag | set by `005CD0A0`, cleared by `005CD6D0` |
-| `18`<sub>h</sub> | `u32` | (zeroed by 005CC8A0) |  |
-| `20`<sub>h</sub> | `u32` | (zeroed by 005CC8A0) |  |
-| `24`<sub>h</sub> | `u32` | (zeroed by 005CC8A0) |  |
+| `+0x00` | `u8` | created |  |
+| `+0x08` | `u64` | handle | CreateEventA result |
+| `+0x10` | `u8` | flag | set by `005CD0A0`, cleared by `005CD6D0` |
+| `+0x18` | `u32` | (zeroed by 005CC8A0) |  |
+| `+0x20` | `u32` | (zeroed by 005CC8A0) |  |
+| `+0x24` | `u32` | (zeroed by 005CC8A0) |  |
 
 ## Shipped data
 
 | Fact | Value |
 |---|---|
-| image base | `00120000`<sub>h</sub>; entry point RVA `6E8EE4`<sub>h</sub> (`00808EE4`) |
-| `DllCharacteristics` | `8120`<sub>h</sub>: `HIGH_ENTROPY_VA`, `NX_COMPAT`, `TERMINAL_SERVER_AWARE` |
-| file `Characteristics` | `0022`<sub>h</sub>; relocations shipped, `39360`<sub>h</sub> bytes |
-| `GuardFlags` | `00000100`<sub>h</sub>; guard function table 0, count 0 |
-| cookie on disk | `00002B992DDFA232`<sub>h</sub> at `01F44830` |
+| image base | `0x00120000`; entry point RVA `0x6E8EE4` (`00808EE4`) |
+| `DllCharacteristics` | `0x8120`: `HIGH_ENTROPY_VA`, `NX_COMPAT`, `TERMINAL_SERVER_AWARE` |
+| file `Characteristics` | `0x0022`; relocations shipped, `0x39360` bytes |
+| `GuardFlags` | `0x00000100`; guard function table 0, count 0 |
+| cookie on disk | `0x00002B992DDFA232` at `01F44830` |
 | cookie checks | 2,390 call sites of `00808C40` in 2,209 functions |
 | cookie reads | 2,216, one per function: 2,208 prologue loads in functions that call the check, plus runtime code |
 | range-check calls | 237 call sites of `00809728` in 114 functions |

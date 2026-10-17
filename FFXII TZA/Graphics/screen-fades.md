@@ -16,9 +16,9 @@ opens and closes with its own authored fade, some of them to white.
 
 ### The seven fade layers
 
-There are seven fade records of `30`<sub>h</sub> bytes at `022BDD60`, one per layer 0 to 6. Every accessor
+There are seven fade records of 0x30 bytes at `022BDD60`, one per layer 0 to 6. Every accessor
 clamps the layer into 0..6 (for example `002EFA90`). A record holds the handle of the screen effect
-that draws it, a state (0 free, 1 running, 2 finished), the direction and a `28`<sub>h</sub>-byte effect
+that draws it, a state (0 free, 1 running, 2 finished), the direction and a 0x28-byte effect
 descriptor (see Layouts). Layers are independent: fades on different layers run and draw at the
 same time.
 
@@ -29,10 +29,10 @@ colour; direction 1 fades in, back to the scene.
 
 1. It keeps the old descriptor's colour and bytes `+1` and `+3`, then clears the descriptor.
 2. A running or finished record releases its old effect through `0024CFF0` and is freed.
-3. It picks the colour (next section), stores the direction in record `+05`<sub>h</sub>, and builds the
+3. It picks the colour (next section), stores the direction in record `+0x05`, and builds the
    descriptor: kind 1, stage `022BDEB4` in the low nibble of `+1`, blend `022BDD5D` in the high
-   nibble, class 1 in `+2`, priority `022BDEB0` in `+3`, bit 0 of `+1C`<sub>h</sub> set for a fade-in, and
-   the duration `2 × frames` at `+24`<sub>h</sub> (`002EFAF3`).
+   nibble, class 1 in `+2`, priority `022BDEB0` in `+3`, bit 0 of `+0x1C` set for a fade-in, and
+   the duration `2 × frames` at `+0x24` (`002EFAF3`).
 4. `00375900` files the descriptor and returns its handle; `003B0F80(handle, 1)` registers it, and
    a non-zero handle marks the record running (`002EFCE7`).
 5. It resets the three selectors: blend 3, priority 0, stage 6 (`002EFCF4`-`002EFD05`).
@@ -48,29 +48,29 @@ In order (`002EFBD5`-`002EFC6F`):
   the byte is cleared. `002EFE10(r, g, b, a)` arms it.
 - Otherwise a fade-in on a layer that was running or finished keeps the previous colour, and also
   takes the previous fade's stage, blend and priority.
-- Otherwise the colour is `80000000`<sub>h</sub> (black) or, with `white` = 1, `80FFFFFF`<sub>h</sub> (white). Alpha
-  `80`<sub>h</sub> is full strength.
+- Otherwise the colour is `0x80000000` (black) or, with `white` = 1, `0x80FFFFFF` (white). Alpha
+  `0x80` is full strength.
 
 ### The screen-effect descriptor pool
 
-Fades are one kind of screen effect. The pool holds 32 records of `70`<sub>h</sub> bytes at `02EBF9E0`: the
-`68`<sub>h</sub>-byte descriptor, the handle at `+68`<sub>h</sub> and an elapsed counter at `+6C`<sub>h</sub>.
+Fades are one kind of screen effect. The pool holds 32 records of 0x70 bytes at `02EBF9E0`: the
+0x68-byte descriptor, the handle at `+0x68` and an elapsed counter at `+0x6C`.
 
 - `00375900(descriptor)` returns 0 when all 32 hold a handle. Otherwise `00375A20(stage, priority)`
   finds the insertion point, before the first record of a higher stage or of the same stage and a
   higher priority, and moves the later records down one slot. The handle is
-  `80000000h | (++counter & 0FFFFFFFh)` (counter `02EC07E8`), the counter starts at 0, and `68`<sub>h</sub>
+  `0x80000000 | (++counter & 0x0FFFFFFF)` (counter `02EC07E8`), the counter starts at 0, and 0x68
   bytes are copied from the descriptor (`003759C9`-`00375A01`).
 - The pool is kept packed and in draw order. `00375470(handle)` removes a record by moving every
   later record up one slot and clearing the last handle.
 - A handle's top nibble is its class; class 8 is this pool. `0024DE70` (state) and `0024CFF0`
   (release) dispatch on it and reach `00375AE0` and `00375470`.
 
-- `00374930` clears the handle `+68`<sub>h</sub> of all 32 records, which empties the pool. It runs when
+- `00374930` clears the handle `+0x68` of all 32 records, which empties the pool. It runs when
   effect group 8 is emptied (`0024C550(8)`).
 
 `00375500(stage)` draws, in pool order, every record of that stage whose class byte is enabled in
-`02EC07E0` and whose `+10`<sub>h</sub> bit 0 is clear; kind 1 goes to `003740B0`. The frame bodies call it
+`02EC07E0` and whose `+0x10` bit 0 is clear; kind 1 goes to `003740B0`. The frame bodies call it
 for stages 2, 3, 5 and 6 in the scene draw `0022B0B0` and stage 7 after `00376470`, so the stage,
 then the priority, sets the order in which fades and other screen effects cover each other.
 
@@ -84,13 +84,13 @@ register:
 
 | Blend | Word | Result |
 |---|---|---|
-| 0, 3 | `44`<sub>h</sub> | `(Cs − Cd) × As + Cd`, ordinary alpha blend (the default) |
-| 1 | `48`<sub>h</sub> | `Cs × As + Cd`, additive |
-| 2 | `42`<sub>h</sub> | `Cd − Cs × As`, subtractive |
-| 4 | `49`<sub>h</sub> | `Cd × As + Cd` |
-| 5 | `46`<sub>h</sub> | `Cd − Cd × As` |
-| 6 | `A8`<sub>h</sub>, fix `80`<sub>h</sub> | `Cs`, opaque |
-| 7 | `04`<sub>h</sub> | `(Cs − Cd) × As + Cs` |
+| 0, 3 | `0x44` | `(Cs − Cd) × As + Cd`, ordinary alpha blend (the default) |
+| 1 | `0x48` | `Cs × As + Cd`, additive |
+| 2 | `0x42` | `Cd − Cs × As`, subtractive |
+| 4 | `0x49` | `Cd × As + Cd` |
+| 5 | `0x46` | `Cd − Cd × As` |
+| 6 | `0xA8`, fix `0x80` | `Cs`, opaque |
+| 7 | `0x04` | `(Cs − Cd) × As + Cs` |
 
 ### Timing
 
@@ -101,14 +101,14 @@ thirtieths of a second at either frame rate. The state query `00375AE0` answers 
 record while the counter is below the duration and 5 once it reaches it.
 
 The tick also asks `00374060(record)` about every kind-1 record and removes the record
-(`00375470`) when it answers 0. It answers 1 while byte `+DEF`<sub>h</sub> of `[0209AC30]` is 0 (`00254A70`),
-bit `800`<sub>h</sub> of `020926E4` is set and the record is not layer 3's, whose handle `002EF9F0(3)`
+(`00375470`) when it answers 0. It answers 1 while byte `+0xDEF` of `[0209AC30]` is 0 (`00254A70`),
+bit `0x800` of `020926E4` is set and the record is not layer 3's, whose handle `002EF9F0(3)`
 returns (`002EF9F0(layer)` reads a fade record's first dword, the layer clamped into 0..6).
-Otherwise it answers 0 once the record has `+1C`<sub>h</sub> bit 1 set and its counter `+6C`<sub>h</sub> above
-`+24`<sub>h</sub>, and 1 before that.
+Otherwise it answers 0 once the record has `+0x1C` bit 1 set and its counter `+0x6C` above
+`+0x24`, and 1 before that.
 
 `0022A040` answers 1 when a fade layer other than 3 is running (`002EFD20(layer)` = 1 for one of
-layers 0–2 and 4–6). The render thread's block `19`<sub>h</sub> arm `006234A0` asks it.
+layers 0–2 and 4–6). The render thread's block `0x19` arm `006234A0` asks it.
 
 ### The per-tick poll
 
@@ -119,27 +119,27 @@ layers 0–2 and 4–6). The render thread's block `19`<sub>h</sub> arm `006234A
 - 5, fade-out: the record becomes finished and its effect stays in the pool, so the screen stays
   black or white.
 - 5, fade-in: the effect is released and the record freed. For layers 0, 2, 4, 5 and 6
-  (`bt 75h`, `002EF9AF`) it then calls `001D6C80`, which runs the map prefetch step `001DA290`
+  (`bt 0x75`, `002EF9AF`) it then calls `001D6C80`, which runs the map prefetch step `001DA290`
   ([prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
 
-`002EF840(layer)` frees one layer and `002EF890()` all seven; the `mapjump` verb (`008D`<sub>h</sub>, poll
+`002EF840(layer)` frees one layer and `002EF890()` all seven; the `mapjump` verb (`0x008D`, poll
 `00355350`) calls `002EF890`.
 
 ### The script verbs
 
 | Verb | Id | Handler | Start |
 |---|---|---|---|
-| `fadeout(frames)` | `00B6`<sub>h</sub> | `00356650` | `002EFA70(0, frames, 0, 0)` |
-| `whiteout(frames)` | `00B7`<sub>h</sub> | `00356FE0` | `002EFA70(0, frames, 0, 1)` |
-| `fadein(frames)` | `00B8`<sub>h</sub> | `00355EB0` | `002EFA70(0, frames, 1, 0)` |
-| `fadeout_d0(layer, frames)` | `00D0`<sub>h</sub> | `00356270` | `002EFA70(layer, frames, 0, 0)` |
-| `whiteout_d1(layer, frames)` | `00D1`<sub>h</sub> | `00356A50` | `002EFA70(layer, frames, 0, 1)` |
-| `fadein_d2(layer, frames)` | `00D2`<sub>h</sub> | `003559B0` | `002EFA70(layer, frames, 1, 0)` |
-| `fadetrans(blend)` | `00BC`<sub>h</sub> | `00340580` | `002EFE60(blend)` for the next start |
+| `fadeout(frames)` | `0x00B6` | `00356650` | `002EFA70(0, frames, 0, 0)` |
+| `whiteout(frames)` | `0x00B7` | `00356FE0` | `002EFA70(0, frames, 0, 1)` |
+| `fadein(frames)` | `0x00B8` | `00355EB0` | `002EFA70(0, frames, 1, 0)` |
+| `fadeout_d0(layer, frames)` | `0x00D0` | `00356270` | `002EFA70(layer, frames, 0, 0)` |
+| `whiteout_d1(layer, frames)` | `0x00D1` | `00356A50` | `002EFA70(layer, frames, 0, 1)` |
+| `fadein_d2(layer, frames)` | `0x00D2` | `003559B0` | `002EFA70(layer, frames, 1, 0)` |
+| `fadetrans(blend)` | `0x00BC` | `00340580` | `002EFE60(blend)` for the next start |
 
 The one-argument forms push 0 under the popped frame count and pop it back as the layer, so they
 always use layer 0. The two fade-in handlers first call `00183070` and `001D6C20`, which clears byte
-`+88`<sub>h</sub> of the prefetch manager, the cache backfill gate of
+`+0x88` of the prefetch manager, the cache backfill gate of
 [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md). A `fadein` after
 a `whiteout` on the same layer fades back from white, because a fade-in keeps the colour.
 
@@ -162,12 +162,12 @@ Read from the arguments at each call of `002EFA70`:
 | 4 | `003603F0`, `00360480` | in over 8 frames |
 
 The field transition `00314440` (also reached from `mapjump`) fades layer 2 out over 8 frames or at
-once, black or white by its flags, after `002EFE50(FFh)` (`003144C2`-`003144E5`).
+once, black or white by its flags, after `002EFE50(0xFF)` (`003144C2`-`003144E5`).
 
 ### The cutscene skip
 
 `skipexec` reaches `00360710`, which after its teardown calls, when `00267310` reports 0,
-`002EFE40(6)`, `002EFE50(FFh)` and `002EFA70(4, 0, 0, 0)` (`00360832`-`0036084F`): layer 4 goes to
+`002EFE40(6)`, `002EFE50(0xFF)` and `002EFA70(4, 0, 0, 0)` (`00360832`-`0036084F`): layer 4 goes to
 black in zero frames, at priority 255 so it covers every other stage-6 effect. The skip itself is
 on [cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md).
 
@@ -178,11 +178,11 @@ player object `01F81218` `+4`):
 
 - In state 1 or 2 (opening, ready) it clears the two issued bits (`02ADEDC0` bits 3 and 4), stores
   the movie's end mark and elapsed frames, and selects row `id` of the table behind registry slot
-  `02EBF008` (`+0C`<sub>h</sub> the data, `+08`<sub>h</sub> the stride) into `02ADED98`; with no table the row is null.
+  `02EBF008` (`+0x0C` the data, `+0x08` the stride) into `02ADED98`; with no table the row is null.
 - In state 3 (playing) it updates the elapsed frames and calls `0037DEA0(02ADECD0)`.
 
-The elapsed frames are the player's counter `+18`<sub>h</sub> times 0.033366665 (`001B77B0`). The end mark
-is its counter `+20`<sub>h</sub> times the same, less 30, or less 8 for movie id 43 (`001B77E0`).
+The elapsed frames are the player's counter `+0x18` times 0.033366665 (`001B77B0`). The end mark
+is its counter `+0x20` times the same, less 30, or less 8 for movie id 43 (`001B77E0`).
 `0037DEA0` issues each fade once, both on layer 0 after `002EFE40(5)`, so movie fades draw in stage 5:
 
 ```
@@ -196,32 +196,32 @@ A late first check shortens the fade by the frames already passed, so the fade s
 
 ### The effect fade
 
-`efffadein(n)` (`0268`<sub>h</sub>, `00354670`) and `efffadeout(n)` (`0269`<sub>h</sub>, `00354090`) play the effect
+`efffadein(n)` (`0x0268`, `00354670`) and `efffadeout(n)` (`0x0269`, `00354090`) play the effect
 that entry `n` of the table at `01EF9400` names, through `0036E750(0, 0, params, n, 9)` and
 `003B02A0`. Both first release the handle held at `022BDEB8`. `efffadein` (`002EFD80`) keeps no
 handle, so its effect runs to its own end; `efffadeout` (`002EFDC0`) keeps the handle, so its effect
-holds until `efffadecancel` (`02A6`<sub>h</sub>, `002EFD50`) or the next effect fade releases it.
+holds until `efffadecancel` (`0x02A6`, `002EFD50`) or the next effect fade releases it.
 
 ### The screen picture
 
-The verb `5A3`<sub>h</sub> (`0034EA10`) passes its argument (`00267E10`) to `00473E60(n)`, which first dismisses the
+The verb `0x5A3` (`0034EA10`) passes its argument (`00267E10`) to `00473E60(n)`, which first dismisses the
 loading icon (`00183070`) and then runs `00182F10(n)` on the screen picture `[01F82CE0]` (`001D8D30`):
 
-1. `001D8FC0` sets `+08`<sub>h</sub> to `n x [01DFE0B4] + [+18h] + [+14h]` and the mode `+30`<sub>h</sub> to 1, or 2 when `n` is 0;
-2. `001D8F50` starts the picture when it holds one (`+28`<sub>h</sub>): it logs `[ScreenImage]:playDPic`, sets `+00`<sub>h</sub> to 1
-   and either fades the level `+1C`<sub>h</sub> in from 0 by `255 / [+14h]` per step or, with no fade length, shows it at
-   255 and sets `+10`<sub>h</sub> to 2.
+1. `001D8FC0` sets `+0x08` to `n x [01DFE0B4] + [+0x18] + [+0x14]` and the mode `+0x30` to 1, or 2 when `n` is 0;
+2. `001D8F50` starts the picture when it holds one (`+0x28`): it logs `[ScreenImage]:playDPic`, sets `+0x00` to 1
+   and either fades the level `+0x1C` in from 0 by `255 / [+0x14]` per step or, with no fade length, shows it at
+   255 and sets `+0x10` to 2.
 
 ## Layouts
 
-FadeLayer[7] at `022BDD60`, stride `30`<sub>h</sub>:
+FadeLayer[7] at `022BDD60`, stride `0x30`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | handle | class-8 screen-effect handle, 0 when free |
-| `04`<sub>h</sub> | `u8` | state | 0 free, 1 running, 2 finished |
-| `05`<sub>h</sub> | `u8` | direction | 0 out, 1 in |
-| `08`<sub>h</sub> | `...` | descriptor | `28`<sub>h</sub> bytes, below |
+| `+0x00` | `u32` | handle | class-8 screen-effect handle, 0 when free |
+| `+0x04` | `u8` | state | 0 free, 1 running, 2 finished |
+| `+0x05` | `u8` | direction | 0 out, 1 in |
+| `+0x08` | `...` | descriptor | `0x28` bytes, below |
 
 ```
 Kind-1 descriptor (record +0x08; pool record +0x00)
@@ -237,32 +237,32 @@ pool record only:
 +0x6C  u32   counter
 ```
 
-The pool copies `68`<sub>h</sub> bytes, more than the `28`<sub>h</sub> a fade record has; the bytes past `+28`<sub>h</sub> come
+The pool copies 0x68 bytes, more than the 0x28 a fade record has; the bytes past `+0x28` come
 from the next layer's record and the kind-1 code reads none of them.
 
 Movie fade row (registry slot `02EBF008`, stride 8):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | id | equals the row index |
-| `01`<sub>h</sub> | `u8` | inStart | frame the fade-in starts |
-| `02`<sub>h</sub> | `u8` | inLength | fade-in frames, 0 for none |
-| `03`<sub>h</sub> | `u8` | outLead | frames between the fade-out's end and the end mark |
-| `04`<sub>h</sub> | `u8` | outLength | fade-out frames, 0 for none |
-| `05`<sub>h</sub> | `u8` | unused | 0 in every row |
-| `06`<sub>h</sub> | `u8` | unused | 0 in every row |
-| `07`<sub>h</sub> | `u8` | flags | bit 0 white fade-in, bit 1 white fade-out |
+| `+0x00` | `u8` | id | equals the row index |
+| `+0x01` | `u8` | inStart | frame the fade-in starts |
+| `+0x02` | `u8` | inLength | fade-in frames, 0 for none |
+| `+0x03` | `u8` | outLead | frames between the fade-out's end and the end mark |
+| `+0x04` | `u8` | outLength | fade-out frames, 0 for none |
+| `+0x05` | `u8` | unused | 0 in every row |
+| `+0x06` | `u8` | unused | 0 in every row |
+| `+0x07` | `u8` | flags | bit 0 white fade-in, bit 1 white fade-out |
 
 ## Shipped data
 
-The schedule is `battle_pack.bin` directory entry `+118`<sub>h</sub>, an `st2e` section whose header
-declares 49 rows of 8 bytes; each row's id is a movie code of path kind `1C`<sub>h</sub> (`01ECB4D0`, entry
+The schedule is `battle_pack.bin` directory entry `+0x118`, an `st2e` section whose header
+declares 49 rows of 8 bytes; each row's id is a movie code of path kind `0x1C` (`01ECB4D0`, entry
 `2 × id`), the name the player opens as `<code>.webm`. The per-row listing is
 `screen-fades-movie-fade-schedule-names.tsv` beside this page.
 
 | Fact | Value |
 |---|---|
-| section | `us` copy at `443E8`<sub>h</sub>-`44598`<sub>h</sub>, 432 bytes; identical in all nine language copies |
+| section | `us` copy at `0x443E8`-`0x44598`, 432 bytes; identical in all nine language copies |
 | rows | 49; 32 fade in, 37 fade out, 11 do neither (ids 0, 32, 37-41, 44-47) |
 | commonest row | in at frame 30 over 30, out over 60 ending 60 before the end mark: 11 rows |
 | fade-in starts | frame 30 in 20 rows, frame 0 in 12 |

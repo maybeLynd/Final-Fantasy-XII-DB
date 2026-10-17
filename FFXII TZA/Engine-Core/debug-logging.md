@@ -17,9 +17,9 @@ into a 16 KB stack buffer before the sink discards it.
 ### The log call
 
 `005CDAA0(channel, format, …)` is the log call of the PhyreEngine layer and the game code built
-on it: 135 functions call it at 245 sites. It reserves a `4050`<sub>h</sub>-byte frame, fetches the C
+on it: 135 functions call it at 245 sites. It reserves a `0x4050`-byte frame, fetches the C
 runtime options word through `0016D670`, and formats into its 16 KB buffer with
-`__stdio_common_vsnprintf_s(options, buffer, 4000h, -1, format, 0, args)`; the `-1` count is
+`__stdio_common_vsnprintf_s(options, buffer, 0x4000, -1, format, 0, args)`; the `-1` count is
 `_TRUNCATE`, so a longer message is cut, never dropped. It then makes sure the sink exists and
 calls the sink's virtual slot 1 with the channel and the buffer. The function has one exit and no
 test that could skip the formatting.
@@ -49,7 +49,7 @@ and screen messages on 1 and 2, and unexpected-value errors on 3.
 Among its callers in other layers:
 
 - The path resolver `0059EE90` logs the name it resolves as `[FFXII_data] %s` or
-  `[FFXII_data_notcache] %s` unless the stream's selector byte `+18`<sub>h</sub> is 3 to 5, and a failed
+  `[FFXII_data_notcache] %s` unless the stream's selector byte `+0x18` is 3 to 5, and a failed
   open as `[FFXII_ERROR] Big file open failed %s`
   ([File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md)).
 - The prefetch manager writes the `[FileCache]` lines, `001DA090` on each map jump and
@@ -104,7 +104,7 @@ writes either, so every formatter above passes the value 4.
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `005CDAA0` | `frame` | `4050`<sub>h</sub> bytes: a `4000`<sub>h</sub>-byte message buffer, the va_list and the cookie |  |
+| `005CDAA0` | `frame` | 0x4050 bytes: a 0x4000-byte message buffer, the va_list and the cookie |  |
 | `02CB6140` | `u64` | the sink object: its vtable pointer, Phyre::PTTYCallback 00D360A0 |  |
 | `02CB6148` | `i32` | guard of the sink object (005CDA30) |  |
 | `02CB6150` | `void*` | the sink pointer the log call uses |  |

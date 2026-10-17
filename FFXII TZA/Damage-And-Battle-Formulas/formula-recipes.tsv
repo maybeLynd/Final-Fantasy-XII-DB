@@ -1,24 +1,24 @@
 recipe	preview_slots	committed_slots	action_rows	actions	weapon_rows	weapons
-0			73	51h NOT USED; 92h Do nothing.; 93h Reserve; 94h Mount; 95h Dismount; 96h Attack; 97h actstop; 98h sousachange; 99h escapestop; 9Ah escape; 9Bh Reserve; 9Ch Reserve; 9Dh Reserve; F2h Mist Charge; F3h Mist Charge; F4h Mist Charge; 113h Dismiss; 114h Reserve; 115h Reserve; 143h Reserve; 1C2h Reserve; 1C3h Reserve; 1C4h Reserve; 1C5h Reserve; 1E2h Reserve; 1E3h Reserve; 1E4h Reserve; 1F1h Reserve; 1F2h Reserve; 1F3h Reserve; 1F4h Reserve; 1F5h Reserve; 1F6h Reserve; 1F7h Reserve; 1F8h Reserve; 1F9h Reserve; 1FAh Reserve; 1FBh Reserve; 1FCh Reserve; 1FDh Reserve; 1FEh Reserve; 1FFh Reserve; 200h Reserve; 201h Reserve; 202h Reserve; 203h Reserve; 204h Reserve; 205h Reserve; 206h Reserve; 207h Reserve; 208h Reserve; 209h Reserve; 20Ah Reserve; 20Bh Reserve; 20Ch Reserve; 20Dh Reserve; 20Eh Reserve; 20Fh Reserve; 210h Reserve; 211h Reserve; 212h Reserve; 213h Reserve; 214h Reserve; 215h Reserve; 216h Reserve; 217h Reserve; 218h Reserve; 219h Reserve; 21Ah Reserve; 21Bh Reserve; 21Ch Reserve; 21Dh Reserve; 21Eh Reserve	0	
-1		180	12	1h Blindna; 2h Vox; 3h Poisona; 7h Stona; 9h Cleanse; Ah Esuna; Ch Dispel; Dh Dispelga; 10h Esunaga; 87h Dispel Mote; 134h Purify; 1BDh Piercing Dispelga	0	
-2		20 30 32 40 181	18	8h Regen; 24h Haste; 25h Float; 26h Hastega; 2Fh Reflect; 30h Reflectga; 33h Protect; 34h Shell; 35h Bravery; 36h Faith; 37h Protectga; 38h Shellga; 47h Vanish; 48h Vanishga; 8Bh Hastega Mote; 8Ch Reflectga Mote; 8Dh Vanishga Mote; 8Eh Float Mote	0	
-3	2	21 31 32 40 181	26	27h Slow; 28h Immobilize; 29h Disable; 2Ah Bleed; 2Bh Break; 2Ch Stop; 2Dh Slowga; 2Eh Countdown; 39h Blind; 3Ah Oil; 3Bh Poison; 3Ch Silence; 3Dh Sleep; 3Eh Blindga; 3Fh Toxify; 40h Silencega; 41h Sleepga; 42h Reverse; 43h Berserk; 45h Confuse; 46h Decoy; 7Ch Reverse Mote; 126h Disablega; 127h Immobilizega; 128h Curse; 129h Pox	0	
-4		60 90 91 110	6	0h Cure; 4h Cura; 6h Curaga; Bh Curaja; 86h Cura Mote; 180h Boon	0	
-5		3 111	1	Eh Renew	0	
-6		3 4 61 90 91 112 180	2	5h Raise; Fh Arise	0	
-7	2	62 92 93 94 95 113 170 175 182	56	11h Holy; 12h Fire; 13h Thunder; 14h Blizzard; 15h Aqua; 16h Aero; 17h Fira; 18h Thundara; 19h Blizzara; 1Ah Bio; 1Bh Aeroga; 1Ch Firaga; 1Dh Thundaga; 1Eh Blizzaga; 1Fh Shock; 20h Scourge; 21h Flare; 22h Ardor; 23h Scathe; 4Ch Dark; 4Dh Darkra; 4Eh Darkga; 7Dh Dark Mote; 7Eh Aero Mote; 7Fh Aquara Mote; 80h Bio Mote; 81h Shock Mote; 82h Holy Mote; 83h Scathe Mote; 88h Aeroga Mote; 8Fh Eksir Berries; B6h Painflare; B8h Flash-Freeze; BAh Flash Arc; BCh Roxxor; C0h Briny Cannonade; C6h Whirlwind; CCh Redemption; CEh Banish Ray; 11Bh Aerora; 11Ch Aquara; 11Dh Aquaga; 11Eh Quakeja; 11Fh Firaja; 120h Blizzaja; 121h Aquaja; 122h Aeroja; 123h Darkja; 124h Thundaja; 125h Holyja; 1BEh Piercing Holy; 1BFh Piercing Firaga; 1C0h Piercing Thundaga; 1C1h Piercing Blizzaga; 1DFh S-27 Tokamak; 1E0h S-85 Cyclotrone	0	
-8	2	21 31 32 40 64 114	3	31h Balance; 84h Balance Mote; C8h Gravity Well	0	
-9	0 2	21 31 32 40 190	3	32h Warp; 89h Warp Mote; C2h Kill	0	
-10	0 2	1 21 31 32 40 115	2	44h Death; 1BCh Death Strike	0	
-11	2	62 92 93 116	2	49h Drain; BEh Malaise	0	
-12	0 2	21 31 32 40 63 117	1	4Ah Syphon	0	
-13		0 20 30 32 40 181	2	4Bh Bubble; 8Ah Bubble Mote	0	
-14	0 2	21 31 32 40 64 94 95 119 170 175 182	4	4Fh Gravity; 50h Graviga; 85h Gravity Mote; 1BBh Piercing Graviga	0	
+0			73	0x51 NOT USED; 0x92 Do nothing.; 0x93 Reserve; 0x94 Mount; 0x95 Dismount; 0x96 Attack; 0x97 actstop; 0x98 sousachange; 0x99 escapestop; 0x9A escape; 0x9B Reserve; 0x9C Reserve; 0x9D Reserve; 0xF2 Mist Charge; 0xF3 Mist Charge; 0xF4 Mist Charge; 0x113 Dismiss; 0x114 Reserve; 0x115 Reserve; 0x143 Reserve; 0x1C2 Reserve; 0x1C3 Reserve; 0x1C4 Reserve; 0x1C5 Reserve; 0x1E2 Reserve; 0x1E3 Reserve; 0x1E4 Reserve; 0x1F1 Reserve; 0x1F2 Reserve; 0x1F3 Reserve; 0x1F4 Reserve; 0x1F5 Reserve; 0x1F6 Reserve; 0x1F7 Reserve; 0x1F8 Reserve; 0x1F9 Reserve; 0x1FA Reserve; 0x1FB Reserve; 0x1FC Reserve; 0x1FD Reserve; 0x1FE Reserve; 0x1FF Reserve; 0x200 Reserve; 0x201 Reserve; 0x202 Reserve; 0x203 Reserve; 0x204 Reserve; 0x205 Reserve; 0x206 Reserve; 0x207 Reserve; 0x208 Reserve; 0x209 Reserve; 0x20A Reserve; 0x20B Reserve; 0x20C Reserve; 0x20D Reserve; 0x20E Reserve; 0x20F Reserve; 0x210 Reserve; 0x211 Reserve; 0x212 Reserve; 0x213 Reserve; 0x214 Reserve; 0x215 Reserve; 0x216 Reserve; 0x217 Reserve; 0x218 Reserve; 0x219 Reserve; 0x21A Reserve; 0x21B Reserve; 0x21C Reserve; 0x21D Reserve; 0x21E Reserve	0	
+1		180	12	0x1 Blindna; 0x2 Vox; 0x3 Poisona; 0x7 Stona; 0x9 Cleanse; 0xA Esuna; 0xC Dispel; 0xD Dispelga; 0x10 Esunaga; 0x87 Dispel Mote; 0x134 Purify; 0x1BD Piercing Dispelga	0	
+2		20 30 32 40 181	18	0x8 Regen; 0x24 Haste; 0x25 Float; 0x26 Hastega; 0x2F Reflect; 0x30 Reflectga; 0x33 Protect; 0x34 Shell; 0x35 Bravery; 0x36 Faith; 0x37 Protectga; 0x38 Shellga; 0x47 Vanish; 0x48 Vanishga; 0x8B Hastega Mote; 0x8C Reflectga Mote; 0x8D Vanishga Mote; 0x8E Float Mote	0	
+3	2	21 31 32 40 181	26	0x27 Slow; 0x28 Immobilize; 0x29 Disable; 0x2A Bleed; 0x2B Break; 0x2C Stop; 0x2D Slowga; 0x2E Countdown; 0x39 Blind; 0x3A Oil; 0x3B Poison; 0x3C Silence; 0x3D Sleep; 0x3E Blindga; 0x3F Toxify; 0x40 Silencega; 0x41 Sleepga; 0x42 Reverse; 0x43 Berserk; 0x45 Confuse; 0x46 Decoy; 0x7C Reverse Mote; 0x126 Disablega; 0x127 Immobilizega; 0x128 Curse; 0x129 Pox	0	
+4		60 90 91 110	6	0x0 Cure; 0x4 Cura; 0x6 Curaga; 0xB Curaja; 0x86 Cura Mote; 0x180 Boon	0	
+5		3 111	1	0xE Renew	0	
+6		3 4 61 90 91 112 180	2	0x5 Raise; 0xF Arise	0	
+7	2	62 92 93 94 95 113 170 175 182	56	0x11 Holy; 0x12 Fire; 0x13 Thunder; 0x14 Blizzard; 0x15 Aqua; 0x16 Aero; 0x17 Fira; 0x18 Thundara; 0x19 Blizzara; 0x1A Bio; 0x1B Aeroga; 0x1C Firaga; 0x1D Thundaga; 0x1E Blizzaga; 0x1F Shock; 0x20 Scourge; 0x21 Flare; 0x22 Ardor; 0x23 Scathe; 0x4C Dark; 0x4D Darkra; 0x4E Darkga; 0x7D Dark Mote; 0x7E Aero Mote; 0x7F Aquara Mote; 0x80 Bio Mote; 0x81 Shock Mote; 0x82 Holy Mote; 0x83 Scathe Mote; 0x88 Aeroga Mote; 0x8F Eksir Berries; 0xB6 Painflare; 0xB8 Flash-Freeze; 0xBA Flash Arc; 0xBC Roxxor; 0xC0 Briny Cannonade; 0xC6 Whirlwind; 0xCC Redemption; 0xCE Banish Ray; 0x11B Aerora; 0x11C Aquara; 0x11D Aquaga; 0x11E Quakeja; 0x11F Firaja; 0x120 Blizzaja; 0x121 Aquaja; 0x122 Aeroja; 0x123 Darkja; 0x124 Thundaja; 0x125 Holyja; 0x1BE Piercing Holy; 0x1BF Piercing Firaga; 0x1C0 Piercing Thundaga; 0x1C1 Piercing Blizzaga; 0x1DF S-27 Tokamak; 0x1E0 S-85 Cyclotrone	0	
+8	2	21 31 32 40 64 114	3	0x31 Balance; 0x84 Balance Mote; 0xC8 Gravity Well	0	
+9	0 2	21 31 32 40 190	3	0x32 Warp; 0x89 Warp Mote; 0xC2 Kill	0	
+10	0 2	1 21 31 32 40 115	2	0x44 Death; 0x1BC Death Strike	0	
+11	2	62 92 93 116	2	0x49 Drain; 0xBE Malaise	0	
+12	0 2	21 31 32 40 63 117	1	0x4A Syphon	0	
+13		0 20 30 32 40 181	2	0x4B Bubble; 0x8A Bubble Mote	0	
+14	0 2	21 31 32 40 64 94 95 119 170 175 182	4	0x4F Gravity; 0x50 Graviga; 0x85 Gravity Mote; 0x1BB Piercing Graviga	0	
 15	0 2	21 31 32 40 120	0		0	
-16		121	2	91h Knot of Rust; C4h Devour Soul	0	
-17		122	2	90h Dark Matter; C5h Soul Purge	0	
-18		123	2	6Dh Meteorite; CAh Comet	0	
-19		124	2	6Eh Meteorite; CBh Meteor	0	
+16		121	2	0x91 Knot of Rust; 0xC4 Devour Soul	0	
+17		122	2	0x90 Dark Matter; 0xC5 Soul Purge	0	
+18		123	2	0x6D Meteorite; 0xCA Comet	0	
+19		124	2	0x6E Meteorite; 0xCB Meteor	0	
 20	5 6 7 8 9 10 22 33 34 41	28 65 96 97 98 99 125 165 171 176 182	0		106	class 0: 9 (unnamed rows); class 1: 47 (Broadsword, Longsword, Iron Sword); class 2: 25 (Claymore, Defender, Save the Queen); class 5: 18 (Javelin, Spear, Partisan); class 6: 1 (unnamed rows); class 13: 6 (Rod, Serpent Rod, Gaia Rod)
 21	5 6 7 8 9 10 22 33 34 41	28 66 96 97 98 99 125 165 171 176 182	0		21	class 4: 8 (Ashura, Sakura-saezuri, Kagenui); class 12: 13 (Dagger, Mage Masher, Assassin's Dagger)
 22	5 6 7 8 9 10 22 33 34 41	28 67 96 97 98 99 125 165 171 176 182	0		22	class 1: 1 (Kumbha); class 3: 10 (Kotetsu, Osafune, Kogarasumaru); class 14: 11 (Oak Staff, Cherry Staff, Wizard's Staff)
@@ -29,82 +29,82 @@ recipe	preview_slots	committed_slots	action_rows	actions	weapon_rows	weapons
 27	5 6 22 33 34 44	29 70 96 97 98 99 125 165 171 176 182	0		25	class 2: 1 (Excalipur); class 9: 15 (Altair, Capella, Vega); class 13: 2 (Healing Rod, Rod of Faith); class 15: 1 (Bonebreaker); class 16: 6 (Gilt Measure, Arc Scale, Multiscale)
 28	5 6 7 8 9 10 22 33 34 41	28 71 96 97 98 99 125 165 171 176 182	0		0	
 29	5 6 7 8 9 10 22 33 34 41	28 72 96 97 98 125 165	0		1	class 0: 1 (Unarmed)
-30	16 6	76 103	1	189h Wild Charge	0	
-31		23 45 74 101 127	3	52h Potion; 53h Hi-Potion; 54h X-Potion	0	
-32		23 45 74 101 128	2	55h Ether; 56h Hi-Ether	0	
-33		129	2	57h Elixir; 67h Megalixir	0	
-34		191	10	59h Gold Needle; 5Ah Echo Herbs; 5Bh Antidote; 5Ch Eye Drops; 5Dh Prince's Kiss; 5Eh Handkerchief; 5Fh Chronos Tear; 60h Nu Khai Sand; 61h Serum; 62h Remedy	0	
-35		192	5	66h Bacchus's Wine; 68h Baltoro Seed; 69h Domaine Calvados; 6Bh Meteorite; 6Ch Meteorite	0	
-36		15 4 130 180	1	58h Phoenix Down	0	
-37		0 24 46 75 94 95 101 119	3	63h Soleil Fang; 64h Rime Fang; 65h Lightning Fang	0	
-38		132	1	9Eh First Aid	0	
-39	193		1	9Fh Shades of Black	0	
-40		47 133	1	A0h Horology	0	
-41		47 185	1	A1h Stamp	0	
-42		0 11 47 194	1	A2h Achilles	0	
-43		48 134	1	A3h Charge	0	
+30	16 6	76 103	1	0x189 Wild Charge	0	
+31		23 45 74 101 127	3	0x52 Potion; 0x53 Hi-Potion; 0x54 X-Potion	0	
+32		23 45 74 101 128	2	0x55 Ether; 0x56 Hi-Ether	0	
+33		129	2	0x57 Elixir; 0x67 Megalixir	0	
+34		191	10	0x59 Gold Needle; 0x5A Echo Herbs; 0x5B Antidote; 0x5C Eye Drops; 0x5D Prince's Kiss; 0x5E Handkerchief; 0x5F Chronos Tear; 0x60 Nu Khai Sand; 0x61 Serum; 0x62 Remedy	0	
+35		192	5	0x66 Bacchus's Wine; 0x68 Baltoro Seed; 0x69 Domaine Calvados; 0x6B Meteorite; 0x6C Meteorite	0	
+36		15 4 130 180	1	0x58 Phoenix Down	0	
+37		0 24 46 75 94 95 101 119	3	0x63 Soleil Fang; 0x64 Rime Fang; 0x65 Lightning Fang	0	
+38		132	1	0x9E First Aid	0	
+39	193		1	0x9F Shades of Black	0	
+40		47 133	1	0xA0 Horology	0	
+41		47 185	1	0xA1 Stamp	0	
+42		0 11 47 194	1	0xA2 Achilles	0	
+43		48 134	1	0xA3 Charge	0	
 44		47 181	0		0	
-45		65 135	1	A5h Souleater	0	
-46		11 47 136	1	A6h Wither	0	
-47		11 47 137	1	A7h Addle	0	
-48		0 47 140	1	A8h Bonecrusher	0	
-49		195	1	A9h Steal	0	
-50		12 47 141	1	AAh Telekinesis	0	
-51		11 47 138	1	ABh Expose	0	
-52		11 47 139	1	ACh Shear	0	
-53		0 11 47 181	1	ADh Charm	0	
-54		142 180	1	AEh Revive	0	
-55		0 13 47 143	1	AFh Sight Unseeing	0	
-56		49 144	1	B0h Numerology	0	
-57		181	1	B1h Libra	0	
-58		0 14 47 196	1	B2h Poach	0	
-59		47 145	1	B3h 1000 Needles	0	
-60		146	1	B4h Traveler	0	
-61	18	147	1	B5h Gil Toss	0	
-62			13	106h Belias; 107h Mateus; 108h Adrammelech; 109h Hashmal; 10Ah Cúchulainn; 10Bh Famfrit; 10Ch Zalera; 10Dh Shemhazai; 10Eh Chaos; 10Fh Zeromus; 110h Exodus; 111h Ultima; 112h Zodiark	0	
-63	2	62 92 93 94 95 89 113 170 175 182	1	11Ah Breakart Pentagram	0	
+45		65 135	1	0xA5 Souleater	0	
+46		11 47 136	1	0xA6 Wither	0	
+47		11 47 137	1	0xA7 Addle	0	
+48		0 47 140	1	0xA8 Bonecrusher	0	
+49		195	1	0xA9 Steal	0	
+50		12 47 141	1	0xAA Telekinesis	0	
+51		11 47 138	1	0xAB Expose	0	
+52		11 47 139	1	0xAC Shear	0	
+53		0 11 47 181	1	0xAD Charm	0	
+54		142 180	1	0xAE Revive	0	
+55		0 13 47 143	1	0xAF Sight Unseeing	0	
+56		49 144	1	0xB0 Numerology	0	
+57		181	1	0xB1 Libra	0	
+58		0 14 47 196	1	0xB2 Poach	0	
+59		47 145	1	0xB3 1000 Needles	0	
+60		146	1	0xB4 Traveler	0	
+61	18	147	1	0xB5 Gil Toss	0	
+62			13	0x106 Belias; 0x107 Mateus; 0x108 Adrammelech; 0x109 Hashmal; 0x10A Cúchulainn; 0x10B Famfrit; 0x10C Zalera; 0x10D Shemhazai; 0x10E Chaos; 0x10F Zeromus; 0x110 Exodus; 0x111 Ultima; 0x112 Zodiark	0	
+63	2	62 92 93 94 95 89 113 170 175 182	1	0x11A Breakart Pentagram	0	
 64	5 6 7 8 9 10 22 33 34 41	28 76 96 97 98 99 125 165 166 171 176 182	0		58	class 0: 57 (unnamed rows); class 9: 1 (unnamed rows)
-65	16 6 25 33 34 41	77 102 97 95 113 170 175 182	85	147h Darkness; 148h Ice Break; 149h Water Spout; 14Ah Shining Ray; 14Bh Tremor; 14Ch Tempest; 14Dh Sandstorm; 14Eh Pyromania; 153h Fangs; 154h Sonic Fangs; 155h Crushing Fangs; 156h Screech; 157h Scream; 158h Wail; 159h Eerie Soundwave; 165h Aqua Bubbles; 166h Mythril Bubbles; 167h Gust; 168h Gale; 169h Remora Strike; 16Ah Breath; 16Bh White Breath; 16Ch Stone Breath; 16Dh Poison Breath; 16Eh Ember Breath; 16Fh Fireball; 170h Mucus; 171h Bile; 172h Water Cannon; 173h Water Ray; 174h Blast Wave; 175h Shock Wave; 176h Pulsar Wave; 181h Jump; 182h Mach Punch; 183h Goblin Attack; 184h Smite of Rage; 186h Spinkick; 187h Stomp; 18Ah Spiral Cut; 18Bh Spike Cutter; 18Ch Heave; 18Dh Mind Lash; 18Eh Snake Lash; 18Fh Sonic Turn; 190h Sonic Spin; 191h Flank Attack; 192h Stone Stomp; 193h Flatten; 194h Tail Swipe; 195h Tail Spear; 196h Screwtail; 19Eh Maser Eye; 1A2h Rage; 1A3h Bunny Slam; 1A4h Blitz Tongue; 1A5h Wing Spear; 1A6h Discharge; 1A9h Bone Toss; 1AAh Choco-Comet; 1B5h Flurry Kick; 1B6h Power Stun; 1B9h Flame Breath; 1BAh Power Spin; 1C8h Ground Shaker; 1C9h Shockstorm; 1CAh Bushfire; 1CCh Crown; 1CDh Sword Dance; 1D1h Slice Thrice; 1D2h Ultimate Illusion; 1D5h Dash; 1D7h Circle of Judgment; 1D8h Sentence; 1D9h Guilt; 1DAh Innocence; 1DBh Eviscerator; 1DCh High Jump; 1DDh Nectar Volley; 1DEh Pollen Dance; 1E1h Gatling Gun; 1E5h Pummel; 1E7h Mach Wave; 1ECh Tree of Sephira; 1F0h Gigaflare Sword	0	
-66	16 6 26 41	77 102 97 95 113 170 175 182	11	19Ah Temblor; 19Bh Judgment; 19Ch Cyclone; 1D3h Bitter End; 1D4h Monarch Sword; 1E6h Force of Will; 1EAh Contempt; 1EBh Inviolable Will; 1EDh Megaflare; 1EEh Teraflare; 1EFh Ascension	0	
-67		76 148	1	19Fh Leech	0	
-68		0 21 40 64 95 119 170 175 182	6	15Bh Blaster; 15Ch Hell Blaster; 17Bh Stone Touch; 17Ch Poison Touch; 17Dh Sleep Touch; 185h Tri-Attack	0	
-69		11 149	1	15Fh Warsong	0	
-70		11 150	1	160h Vespersong	0	
+65	16 6 25 33 34 41	77 102 97 95 113 170 175 182	85	0x147 Darkness; 0x148 Ice Break; 0x149 Water Spout; 0x14A Shining Ray; 0x14B Tremor; 0x14C Tempest; 0x14D Sandstorm; 0x14E Pyromania; 0x153 Fangs; 0x154 Sonic Fangs; 0x155 Crushing Fangs; 0x156 Screech; 0x157 Scream; 0x158 Wail; 0x159 Eerie Soundwave; 0x165 Aqua Bubbles; 0x166 Mythril Bubbles; 0x167 Gust; 0x168 Gale; 0x169 Remora Strike; 0x16A Breath; 0x16B White Breath; 0x16C Stone Breath; 0x16D Poison Breath; 0x16E Ember Breath; 0x16F Fireball; 0x170 Mucus; 0x171 Bile; 0x172 Water Cannon; 0x173 Water Ray; 0x174 Blast Wave; 0x175 Shock Wave; 0x176 Pulsar Wave; 0x181 Jump; 0x182 Mach Punch; 0x183 Goblin Attack; 0x184 Smite of Rage; 0x186 Spinkick; 0x187 Stomp; 0x18A Spiral Cut; 0x18B Spike Cutter; 0x18C Heave; 0x18D Mind Lash; 0x18E Snake Lash; 0x18F Sonic Turn; 0x190 Sonic Spin; 0x191 Flank Attack; 0x192 Stone Stomp; 0x193 Flatten; 0x194 Tail Swipe; 0x195 Tail Spear; 0x196 Screwtail; 0x19E Maser Eye; 0x1A2 Rage; 0x1A3 Bunny Slam; 0x1A4 Blitz Tongue; 0x1A5 Wing Spear; 0x1A6 Discharge; 0x1A9 Bone Toss; 0x1AA Choco-Comet; 0x1B5 Flurry Kick; 0x1B6 Power Stun; 0x1B9 Flame Breath; 0x1BA Power Spin; 0x1C8 Ground Shaker; 0x1C9 Shockstorm; 0x1CA Bushfire; 0x1CC Crown; 0x1CD Sword Dance; 0x1D1 Slice Thrice; 0x1D2 Ultimate Illusion; 0x1D5 Dash; 0x1D7 Circle of Judgment; 0x1D8 Sentence; 0x1D9 Guilt; 0x1DA Innocence; 0x1DB Eviscerator; 0x1DC High Jump; 0x1DD Nectar Volley; 0x1DE Pollen Dance; 0x1E1 Gatling Gun; 0x1E5 Pummel; 0x1E7 Mach Wave; 0x1EC Tree of Sephira; 0x1F0 Gigaflare Sword	0	
+66	16 6 26 41	77 102 97 95 113 170 175 182	11	0x19A Temblor; 0x19B Judgment; 0x19C Cyclone; 0x1D3 Bitter End; 0x1D4 Monarch Sword; 0x1E6 Force of Will; 0x1EA Contempt; 0x1EB Inviolable Will; 0x1ED Megaflare; 0x1EE Teraflare; 0x1EF Ascension	0	
+67		76 148	1	0x19F Leech	0	
+68		0 21 40 64 95 119 170 175 182	6	0x15B Blaster; 0x15C Hell Blaster; 0x17B Stone Touch; 0x17C Poison Touch; 0x17D Sleep Touch; 0x185 Tri-Attack	0	
+69		11 149	1	0x15F Warsong	0	
+70		11 150	1	0x160 Vespersong	0	
 71		60 90 91 151	0		0	
-72		21 40 181	14	14Fh Stone Gaze; 150h Phantasmal Gaze; 151h Flash; 152h Hawk Glare; 163h Time Requiem; 177h Dark Shock; 178h Cloying Breath; 179h Bad Breath; 17Ah Putrid Breath; 17Eh Doom; 1A8h Pollen; 1CBh Sporefall; 1CEh Telega; 1D6h Growl	0	
-73		181	3	138h Provoke; 15Dh Angelsong; 162h Hero's March	0	
-74		152	1	119h Invert	0	
-75		153	3	116h Fear; 117h Fearga; 17Fh Annul	0	
-76		154	2	118h Fog; 15Eh Magick Ballad	0	
-77		155	1	164h Soul Etude	0	
-78		156	1	1A7h Charge	0	
-79		11 187	14	12Ah Wall; 135h Magick Barrier; 136h Force Barrier; 137h Greater Barrier; 139h Battle Cry; 13Ah Shift; 13Bh Saber; 13Ch Mana Spring; 13Dh Enrage; 13Eh Chain Magick; 140h Limit Break; 141h Unleash; 142h Perfect Defense; 199h Chain Reaction	0	
+72		21 40 181	14	0x14F Stone Gaze; 0x150 Phantasmal Gaze; 0x151 Flash; 0x152 Hawk Glare; 0x163 Time Requiem; 0x177 Dark Shock; 0x178 Cloying Breath; 0x179 Bad Breath; 0x17A Putrid Breath; 0x17E Doom; 0x1A8 Pollen; 0x1CB Sporefall; 0x1CE Telega; 0x1D6 Growl	0	
+73		181	3	0x138 Provoke; 0x15D Angelsong; 0x162 Hero's March	0	
+74		152	1	0x119 Invert	0	
+75		153	3	0x116 Fear; 0x117 Fearga; 0x17F Annul	0	
+76		154	2	0x118 Fog; 0x15E Magick Ballad	0	
+77		155	1	0x164 Soul Etude	0	
+78		156	1	0x1A7 Charge	0	
+79		11 187	14	0x12A Wall; 0x135 Magick Barrier; 0x136 Force Barrier; 0x137 Greater Barrier; 0x139 Battle Cry; 0x13A Shift; 0x13B Saber; 0x13C Mana Spring; 0x13D Enrage; 0x13E Chain Magick; 0x140 Limit Break; 0x141 Unleash; 0x142 Perfect Defense; 0x199 Chain Reaction	0	
 80		11 188	0		0	
 81			0		0	
-82		17 181	5	12Bh Lv.2 Sleep; 12Ch Lv.3 Disable; 12Dh Lv.4 Break; 12Eh Lv.5 Reverse; 12Fh Prime Lv. Death	0	
-83		157 60 92 93 94 95 113 170 175 182	4	188h Self-Sacrifice; 197h Self-Destruct; 198h Mass-Destruct; 1B7h Kamikaze	0	
-84		158	6	130h Restore; 131h Renew; 15Ah Joyous Soundwave; 1C6h Breath of Life; 1CFh Fly, Enkidu!; 1E8h Azure Vortice	0	
-85		159	4	132h Focus; 133h Meditate; 1D0h Now, Enkidu!; 1E9h Crimson Vortice	0	
-86		0 160	1	19Dh Dimensional Rift	0	
-87		11 161	2	13Fh Growing Threat; 161h Mystery Waltz	0	
-88		0 162	1	144h Cannibalize	0	
+82		17 181	5	0x12B Lv.2 Sleep; 0x12C Lv.3 Disable; 0x12D Lv.4 Break; 0x12E Lv.5 Reverse; 0x12F Prime Lv. Death	0	
+83		157 60 92 93 94 95 113 170 175 182	4	0x188 Self-Sacrifice; 0x197 Self-Destruct; 0x198 Mass-Destruct; 0x1B7 Kamikaze	0	
+84		158	6	0x130 Restore; 0x131 Renew; 0x15A Joyous Soundwave; 0x1C6 Breath of Life; 0x1CF Fly, Enkidu!; 0x1E8 Azure Vortice	0	
+85		159	4	0x132 Focus; 0x133 Meditate; 0x1D0 Now, Enkidu!; 0x1E9 Crimson Vortice	0	
+86		0 160	1	0x19D Dimensional Rift	0	
+87		11 161	2	0x13F Growing Threat; 0x161 Mystery Waltz	0	
+88		0 162	1	0x144 Cannibalize	0	
 89			0		0	
-90		198	4	145h Cry for Help; 146h Raise; 1A0h Necromancy; 1C7h Spawn	0	
-91		199	2	1A1h Divide; 1B4h Divide	0	
-92		104	19	C3h Condemnation; D0h Red Spiral; D1h White Whorl; D2h Pyroclasm; D3h Feral Strike; D4h Whip Kick; D5h Shatterheart; D6h Fires of War; D7h Tides of Fate; D8h Element of Treachery; D9h Fulminating Darkness; DAh Ruin Impendent; DBh Flame Purge; DCh Nordswain's Glow; DDh Heaven's Wrath; DEh Maelstrom's Bolt; DFh Intercession; E0h Evanescence; E1h Resplendence	0	
-93		105	16	E2h Inferno; E3h Cataclysm; E4h Torrent; E5h Windburst; E6h NOT USED; E7h Luminescence; E8h NOT USED; E9h NOT USED; EAh Ark Blast; EBh NOT USED; ECh NOT USED; EDh Whiteout; EEh NOT USED; EFh NOT USED; F0h NOT USED; F1h Black Hole	0	
-94		106	3	F6h explosion; F7h sten needle; F8h fusillade	0	
-95		107	2	F9h wizardsbane; 101h leech	0	
-96		108	1	104h rejuvenation	0	
-97		109	1	105h manafont	0	
-98		181	8	FAh choking gas; FBh befuddling gas; FCh stone gas; FDh blinding smoke; FEh silence gas; FFh stasis; 100h swarm; 102h oil bug	0	
-99		163	1	103h gil bug	0	
-100		0 164	1	A4h Infuse	0	
-101		200	13	6Fh Reserve; 70h Reserve; 71h Reserve; 72h Reserve; 73h Reserve; 74h Reserve; 75h Reserve; 76h Reserve; 77h Reserve; 78h Reserve; 79h Reserve; 7Ah Reserve; 7Bh Reserve	0	
-102		201	1	F5h Chain Bonus	0	
-103	5 6 7 8 9 10 22 33 34 41	28 78 96 97 98 99 125 165 166 171 176 182	10	1ABh Ram; 1ACh Gnaw; 1ADh Lunge; 1AEh Rake; 1AFh Slap; 1B0h Kick; 1B1h Rush; 1B2h Snap; 1B3h Poke; 1B8h Divine Sword	0	
+90		198	4	0x145 Cry for Help; 0x146 Raise; 0x1A0 Necromancy; 0x1C7 Spawn	0	
+91		199	2	0x1A1 Divide; 0x1B4 Divide	0	
+92		104	19	0xC3 Condemnation; 0xD0 Red Spiral; 0xD1 White Whorl; 0xD2 Pyroclasm; 0xD3 Feral Strike; 0xD4 Whip Kick; 0xD5 Shatterheart; 0xD6 Fires of War; 0xD7 Tides of Fate; 0xD8 Element of Treachery; 0xD9 Fulminating Darkness; 0xDA Ruin Impendent; 0xDB Flame Purge; 0xDC Nordswain's Glow; 0xDD Heaven's Wrath; 0xDE Maelstrom's Bolt; 0xDF Intercession; 0xE0 Evanescence; 0xE1 Resplendence	0	
+93		105	16	0xE2 Inferno; 0xE3 Cataclysm; 0xE4 Torrent; 0xE5 Windburst; 0xE6 NOT USED; 0xE7 Luminescence; 0xE8 NOT USED; 0xE9 NOT USED; 0xEA Ark Blast; 0xEB NOT USED; 0xEC NOT USED; 0xED Whiteout; 0xEE NOT USED; 0xEF NOT USED; 0xF0 NOT USED; 0xF1 Black Hole	0	
+94		106	3	0xF6 explosion; 0xF7 sten needle; 0xF8 fusillade	0	
+95		107	2	0xF9 wizardsbane; 0x101 leech	0	
+96		108	1	0x104 rejuvenation	0	
+97		109	1	0x105 manafont	0	
+98		181	8	0xFA choking gas; 0xFB befuddling gas; 0xFC stone gas; 0xFD blinding smoke; 0xFE silence gas; 0xFF stasis; 0x100 swarm; 0x102 oil bug	0	
+99		163	1	0x103 gil bug	0	
+100		0 164	1	0xA4 Infuse	0	
+101		200	13	0x6F Reserve; 0x70 Reserve; 0x71 Reserve; 0x72 Reserve; 0x73 Reserve; 0x74 Reserve; 0x75 Reserve; 0x76 Reserve; 0x77 Reserve; 0x78 Reserve; 0x79 Reserve; 0x7A Reserve; 0x7B Reserve	0	
+102		201	1	0xF5 Chain Bonus	0	
+103	5 6 7 8 9 10 22 33 34 41	28 78 96 97 98 99 125 165 166 171 176 182	10	0x1AB Ram; 0x1AC Gnaw; 0x1AD Lunge; 0x1AE Rake; 0x1AF Slap; 0x1B0 Kick; 0x1B1 Rush; 0x1B2 Snap; 0x1B3 Poke; 0x1B8 Divine Sword	0	
 104	5 6 7 8 9 10 22 33 34 41	28 79 96 97 98 99 125 165 171 176 182	0		15	class 1: 1 (Joyeuse); class 15: 14 (Mace, Bronze Mace, Bhuj)
-105		62 92 93 94 95 113	8	B7h Hellfire; B9h Frostwave; BBh Judgment Bolt; BDh Gaia's Wrath; BFh Blight; C1h Tsunami; C7h Tornado; CDh Eschaton	0	
+105		62 92 93 94 95 113	8	0xB7 Hellfire; 0xB9 Frostwave; 0xBB Judgment Bolt; 0xBD Gaia's Wrath; 0xBF Blight; 0xC1 Tsunami; 0xC7 Tornado; 0xCD Eschaton	0	
 106		64 94 95 119	0		0	
-107		145	2	6Ah Dark Energy; CFh Final Eclipse	0	
-108		64 114	1	C9h Big Bang	0	
+107		145	2	0x6A Dark Energy; 0xCF Final Eclipse	0	
+108		64 114	1	0xC9 Big Bang	0	

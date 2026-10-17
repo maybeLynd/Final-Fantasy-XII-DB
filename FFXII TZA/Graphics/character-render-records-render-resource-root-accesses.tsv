@@ -1,32 +1,32 @@
 function	name	site	disp	kind	instruction	route	note
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3DA	60h	addr	lea rax, [rsi + 60h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3EF	F0h	addr	lea rax, [rsi + F0h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3FD	160h	addr	lea rax, [rsi + 160h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3B4	D90h	w	mov qword ptr [rcx + D90h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3DE	D90h	w	mov qword ptr [rsi + D90h], rsi	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E439	D90h	r	mov rcx, qword ptr [rsi + D90h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E500	FUN_0041e500	0041E510	D90h	r	mov rcx, qword ptr [rcx + D90h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E550	FUN_0041e550	0041E552	D90h	w	mov qword ptr [rcx + D90h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-003323B0	FUN_003323b0	003323B7	D98h	r	mov rcx, qword ptr [rcx + D98h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E340	RenderResourceRoot_UpdatePresentationAndSkeletonContainers	0041E369	D98h	r	mov rcx, qword ptr [rbx + D98h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3BD	D98h	w	mov qword ptr [rcx + D98h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3E5	D98h	w	mov qword ptr [rsi + D98h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E410	D98h	r	mov rcx, qword ptr [rsi + D98h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E447	D98h	r	mov rcx, qword ptr [rsi + D98h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E500	FUN_0041e500	0041E523	D98h	r	mov rcx, qword ptr [rbx + D98h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E550	FUN_0041e550	0041E559	D98h	w	mov qword ptr [rcx + D98h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E340	RenderResourceRoot_UpdatePresentationAndSkeletonContainers	0041E375	DA0h	r	mov rcx, qword ptr [rbx + DA0h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3C7	DA0h	w	mov qword ptr [rcx + DA0h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3F6	DA0h	w	mov qword ptr [rsi + DA0h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E41C	DA0h	r	mov rcx, qword ptr [rsi + DA0h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E459	DA0h	r	mov rcx, qword ptr [rsi + DA0h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E4D0	RenderResourceRoot_RunPhase2ModelInstancePass	0041E4DE	DA0h	r	mov rcx, qword ptr [rbx + DA0h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E500	FUN_0041e500	0041E53B	DA0h	r	mov rcx, qword ptr [rbx + DA0h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E550	FUN_0041e550	0041E560	DA0h	w	mov qword ptr [rcx + DA0h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E340	RenderResourceRoot_UpdatePresentationAndSkeletonContainers	0041E35D	DA8h	r	mov rcx, qword ptr [rbx + DA8h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3CE	DA8h	w	mov qword ptr [rcx + DA8h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E404	DA8h	w	mov qword ptr [rsi + DA8h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E428	DA8h	r	mov rcx, qword ptr [rsi + DA8h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E469	DA8h	r	mov rcx, qword ptr [rsi + DA8h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E500	FUN_0041e500	0041E52F	DA8h	r	mov rcx, qword ptr [rbx + DA8h]	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h	
-0041E550	FUN_0041e550	0041E567	DA8h	w	mov qword ptr [rcx + DA8h], rax	route-seeded STATIC 022C6F30h | PTR 022C6F20h base+0h zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3DA	0x60	addr	lea rax, [rsi + 0x60]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3EF	0xF0	addr	lea rax, [rsi + 0xf0]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3FD	0x160	addr	lea rax, [rsi + 0x160]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3B4	0xD90	w	mov qword ptr [rcx + 0xd90], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3DE	0xD90	w	mov qword ptr [rsi + 0xd90], rsi	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E439	0xD90	r	mov rcx, qword ptr [rsi + 0xd90]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E500	FUN_0041e500	0041E510	0xD90	r	mov rcx, qword ptr [rcx + 0xd90]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E550	FUN_0041e550	0041E552	0xD90	w	mov qword ptr [rcx + 0xd90], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+003323B0	FUN_003323b0	003323B7	0xD98	r	mov rcx, qword ptr [rcx + 0xd98]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E340	RenderResourceRoot_UpdatePresentationAndSkeletonContainers	0041E369	0xD98	r	mov rcx, qword ptr [rbx + 0xd98]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3BD	0xD98	w	mov qword ptr [rcx + 0xd98], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3E5	0xD98	w	mov qword ptr [rsi + 0xd98], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E410	0xD98	r	mov rcx, qword ptr [rsi + 0xd98]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E447	0xD98	r	mov rcx, qword ptr [rsi + 0xd98]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E500	FUN_0041e500	0041E523	0xD98	r	mov rcx, qword ptr [rbx + 0xd98]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E550	FUN_0041e550	0041E559	0xD98	w	mov qword ptr [rcx + 0xd98], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E340	RenderResourceRoot_UpdatePresentationAndSkeletonContainers	0041E375	0xDA0	r	mov rcx, qword ptr [rbx + 0xda0]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3C7	0xDA0	w	mov qword ptr [rcx + 0xda0], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3F6	0xDA0	w	mov qword ptr [rsi + 0xda0], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E41C	0xDA0	r	mov rcx, qword ptr [rsi + 0xda0]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E459	0xDA0	r	mov rcx, qword ptr [rsi + 0xda0]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E4D0	RenderResourceRoot_RunPhase2ModelInstancePass	0041E4DE	0xDA0	r	mov rcx, qword ptr [rbx + 0xda0]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E500	FUN_0041e500	0041E53B	0xDA0	r	mov rcx, qword ptr [rbx + 0xda0]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E550	FUN_0041e550	0041E560	0xDA0	w	mov qword ptr [rcx + 0xda0], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E340	RenderResourceRoot_UpdatePresentationAndSkeletonContainers	0041E35D	0xDA8	r	mov rcx, qword ptr [rbx + 0xda8]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E3CE	0xDA8	w	mov qword ptr [rcx + 0xda8], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E404	0xDA8	w	mov qword ptr [rsi + 0xda8], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E428	0xDA8	r	mov rcx, qword ptr [rsi + 0xda8]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E3A0	RenderResourceRoot_InitializeSubcontainers	0041E469	0xDA8	r	mov rcx, qword ptr [rsi + 0xda8]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E500	FUN_0041e500	0041E52F	0xDA8	r	mov rcx, qword ptr [rbx + 0xda8]	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0	
+0041E550	FUN_0041e550	0041E567	0xDA8	w	mov qword ptr [rcx + 0xda8], rax	route-seeded STATIC 0x022C6F30 | PTR 0x022C6F20 base+0x0 zeroclear	

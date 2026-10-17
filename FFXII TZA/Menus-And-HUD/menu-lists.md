@@ -18,26 +18,26 @@ addresses: "002D14E0, 002D2DB0, 002D1420, 002D3BA0, 002D4B70, 002D4A40, 002D1870
 
 ### Building a list
 
-`002D14E0(record)` builds a list: a `150`<sub>h</sub>-byte widget with procedure `002D2DB0` and, at `+C0`<sub>h</sub>, a `C0`<sub>h</sub>-byte
+`002D14E0(record)` builds a list: a `0x150`-byte widget with procedure `002D2DB0` and, at `+0xC0`, a `0xC0`-byte
 content widget with procedure `002D1420` that holds the rows (`002D14FC`, `002D1513`). From the record it takes:
 
 | Record | List | Meaning |
 |---|---|---|
-| `+00`<sub>h</sub> bit 0 | `+E0`<sub>h</sub> bit 23 | a scroll-only list, with no cursor (`002D165D`) |
-| `+08`<sub>h</sub> | `+D8`<sub>h</sub> | the rows' data |
-| `+10`<sub>h</sub> | `+E8`<sub>h</sub> | the item count, a `u16`, which also sizes the content widget (`002D14E0`) |
-| `+14`<sub>h</sub> | `+EC`<sub>h</sub> | columns |
-| `+18`<sub>h</sub> | `+EA`<sub>h</sub> | column width |
-| `+1C`<sub>h</sub> | `+100`<sub>h</sub> | row height |
-| `+20`<sub>h</sub> | `+120`<sub>h</sub> | the row painter, called for each shown row |
-| `+28`<sub>h</sub> | `+C8`<sub>h</sub> | the owner, who gets the list's notices |
+| `+0x00` bit 0 | `+0xE0` bit 23 | a scroll-only list, with no cursor (`002D165D`) |
+| `+0x08` | `+0xD8` | the rows' data |
+| `+0x10` | `+0xE8` | the item count, a `u16`, which also sizes the content widget (`002D14E0`) |
+| `+0x14` | `+0xEC` | columns |
+| `+0x18` | `+0xEA` | column width |
+| `+0x1C` | `+0x100` | row height |
+| `+0x20` | `+0x120` | the row painter, called for each shown row |
+| `+0x28` | `+0xC8` | the owner, who gets the list's notices |
 
-It also copies the confirm and cancel masks `01E0C2A0` and `01E0C2A4` to `+110`<sub>h</sub> and `+112`<sub>h</sub>. The message window's
+It also copies the confirm and cancel masks `01E0C2A0` and `01E0C2A4` to `+0x110` and `+0x112`. The message window's
 choice list, for example, is such a list with the painter `002A1B00` ([Message windows](message-windows.md)).
 
 ### The grid
 
-A list of `+E8`<sub>h</sub> items lays them out row by row in `+EC`<sub>h</sub> columns:
+A list of `+0xE8` items lays them out row by row in `+0xEC` columns:
 
 ```python
 rows = ceil(items / columns)                         (002D48C0, kept at +0xF0)
@@ -46,7 +46,7 @@ item = (top row +0xF2 + cursor row +0xF4) x columns + left column +0xED + cursor
 ```
 
 `002D48C0(list, items)` sets the count and sizes the content widget to the rows and columns. The cursor position on
-screen is the pair `+F4`<sub>h</sub>, `+EE`<sub>h</sub>; the view's first row and column are `+F2`<sub>h</sub>, `+ED`<sub>h</sub>.
+screen is the pair `+0xF4`, `+0xEE`; the view's first row and column are `+0xF2`, `+0xED`.
 
 ### Moving the cursor
 
@@ -57,8 +57,8 @@ screen is the pair `+F4`<sub>h</sub>, `+EE`<sub>h</sub>; the view's first row an
   to keep `last` shown, and puts the cursor on `last`'s row, or on the last shown row when the view is held at the end
   of the list.
 - `002D46F0(list, item)` runs `002D4B70` and, when the view moved, places the content at once at
-  `(-left x column width, -top x row height)`; it then posts `8000`<sub>h</sub> with the item to the owner.
-- `002D4840(list, first, last, notify)` runs `002D4D60`, scrolls there with animation 4 (`002D4A40`) and posts `8000`<sub>h</sub>
+  `(-left x column width, -top x row height)`; it then posts `0x8000` with the item to the owner.
+- `002D4840(list, first, last, notify)` runs `002D4D60`, scrolls there with animation 4 (`002D4A40`) and posts `0x8000`
   when `notify` is set.
 
 The notices are listed on [widget messages](widget-messages.md).
@@ -68,7 +68,7 @@ The notices are listed on [widget messages](widget-messages.md).
 `002D4A40(list, kind, rows, columns)` moves the content widget to the view's position with the position tween
 `002468A0` ([Widgets](widgets.md)). It does nothing when the content is already there. Kind 1 places it at once;
 otherwise the run lasts the frames `002D1870` gives, as `frames x 1000 / 60` ms, with curve 1, curve 5 for kind 7
-(which also sets `+E0`<sub>h</sub> bit 24) and curve 0 for kinds 3, 9 and 10 (`002D4AE4`-`002D4B2B`).
+(which also sets `+0xE0` bit 24) and curve 0 for kinds 3, 9 and 10 (`002D4AE4`-`002D4B2B`).
 
 `002D1870(list, kind, rows, columns)` gives the frames, with `n` the rows moved and `h` the row height:
 
@@ -87,30 +87,30 @@ The channel record `022CAE90` is described on [Controls](../Controls-And-Input/c
 ### The step
 
 `002D3BA0` steps the list from the pad each turn. It uses `002D1B10` for a scroll-only list and `002D1DB0` for a list
-with a cursor, then animates the move and plays its sound. Holding Up or Down (`50`<sub>h</sub>) counts at `+10B`<sub>h</sub>, one per tick
-with no gap of 3 ticks or more, and at 80 it sets `+E4`<sub>h</sub> bit 13 and steps again in the same turn
+with a cursor, then animates the move and plays its sound. Holding Up or Down (`0x50`) counts at `+0x10B`, one per tick
+with no gap of 3 ticks or more, and at 80 it sets `+0xE4` bit 13 and steps again in the same turn
 (`002D3CDF`-`002D3D4D`).
 
 `002D1B10(list, pressed, repeat, held)` moves a scroll-only list's view and answers how:
 
 | Input | View | Answer |
 |---|---|---|
-| Triangle held with Up or Down | a page up or down, unless `+E4`<sub>h</sub> bit 13 is set | `4` |
+| Triangle held with Up or Down | a page up or down, unless `+0xE4` bit 13 is set | `4` |
 | Up, Down | one row | `2` |
-| Up at the top, Down at the bottom, on a fresh press | wraps round, unless `+E4`<sub>h</sub> bit 24 is set | `3` |
+| Up at the top, Down at the bottom, on a fresh press | wraps round, unless `+0xE4` bit 24 is set | `3` |
 | Left, Right | one column, wrapping the same way | 2 or 3 |
 
-Bits `1000`<sub>h</sub>, `2000`<sub>h</sub>, `4000`<sub>h</sub> and `8000`<sub>h</sub> of the answer say up, down, left or right.
+Bits `0x1000`, `0x2000`, `0x4000` and `0x8000` of the answer say up, down, left or right.
 
 When its fifth argument is non-zero, `002D3BA0` uses `002D0A20(list, pressed, repeat, held)` instead (`002D3CAE`),
-a cursor move that keeps margins: the cursor stays `+109`<sub>h</sub> rows from the top and `+10A`<sub>h</sub> from the bottom of
-the view while the view can still scroll, and a page stops `+107`<sub>h</sub> rows from the start or `+108`<sub>h</sub> from the end.
+a cursor move that keeps margins: the cursor stays `+0x109` rows from the top and `+0x10A` from the bottom of
+the view while the view can still scroll, and a page stops `+0x107` rows from the start or `+0x108` from the end.
 
 | Input | Move | Answer |
 |---|---|---|
-| Triangle held with Up or Down | the view by one page less a row, the cursor too when the view is held at its margin; at the margin, the cursor to the first or last shown row unless `+E4`<sub>h</sub> bit 24 is set; nothing when bit 13 is set | `4`, `5`, `6` |
+| Triangle held with Up or Down | the view by one page less a row, the cursor too when the view is held at its margin; at the margin, the cursor to the first or last shown row unless `+0xE4` bit 24 is set; nothing when bit 13 is set | `4`, `5`, `6` |
 | Up, Down, with at least two rows | the cursor row, or the view once the cursor is at its margin | `1`, `2` |
-| Up at the top, Down at the bottom, on a fresh press | wraps to the other end and one column on, unless `+E4`<sub>h</sub> bit 24 is set | `3` |
+| Up at the top, Down at the bottom, on a fresh press | wraps to the other end and one column on, unless `+0xE4` bit 24 is set | `3` |
 | Left, Right | the cursor column, or the view's column, wrapping the same way into the next row | `1`, `2`, `3` |
 
 After a move the cursor is pulled back onto the last item, and the direction bit is set only when something moved.
@@ -119,32 +119,32 @@ After a move the cursor is pulled back onto the last item, and the direction bit
 
 `002D2D40(list, answer)` plays the step's sound:
 
-- answers 1-3, a move: the list's sound `+FF`<sub>h</sub>, 1 when it is 0 and none when it is -1; nothing while `+E0`<sub>h</sub> bit 22
-  is set; with `+E4`<sub>h</sub> bit 29 the block-bank sound `003A11F0` gives, played through `002DF220(id, 40h, 7Fh)` while
+- answers 1-3, a move: the list's sound `+0xFF`, 1 when it is 0 and none when it is -1; nothing while `+0xE0` bit 22
+  is set; with `+0xE4` bit 29 the block-bank sound `003A11F0` gives, played through `002DF220(id, 0x40, 0x7F)` while
   `02091098` is 0 ([Sound effects](../Sound-And-Music/sound-effects.md));
-- answers 4-6, a jump: sound `17`<sub>h</sub> through `00249C60`, or `00249CA0` with `+E4`<sub>h</sub> bit 29.
+- answers 4-6, a jump: sound `0x17` through `00249C60`, or `00249CA0` with `+0xE4` bit 29.
 
 ### Other switches
 
-- `002D45C0(list, on)` sets `+E0`<sub>h</sub> bit 16 and, when the focus widget is the list or one of its ancestors and every
+- `002D45C0(list, on)` sets `+0xE0` bit 16 and, when the focus widget is the list or one of its ancestors and every
   one of them is active, can take the focus and is not mid-run, calls `003689E0(on)`.
-- `002D49C0(list, on)` sets `+E4`<sub>h</sub> bit 21 and clears `+118`<sub>h</sub> when it is turned off; the gambit editor and its
+- `002D49C0(list, on)` sets `+0xE4` bit 21 and clears `+0x118` when it is turned off; the gambit editor and its
   condition list use it (`00569812`, `0056AB7F`).
-- `002D49F0(list, kind)`, used by the Clan Primer's family index, scrolls with `002D4A40` and, when it scrolled, `+E4`<sub>h</sub>
+- `002D49F0(list, kind)`, used by the Clan Primer's family index, scrolls with `002D4A40` and, when it scrolled, `+0xE4`
   bit 27 is set and the kind is 8-10, passes the frames to `00368860`.
 
 ### The hand cursor
 
-The menus share one hand cursor, a `70`<sub>h</sub>-byte state block at `022CBE30`: the mode `022CBE30` (0 off, 1 resting,
-2 sliding), the flags `022CBE32`, positions with `8000`<sub>h</sub> for none, the bounce at `022CBE3D`-`022CBE43`, the
+The menus share one hand cursor, a `0x70`-byte state block at `022CBE30`: the mode `022CBE30` (0 off, 1 resting,
+2 sliding), the flags `022CBE32`, positions with `0x8000` for none, the bounce at `022CBE3D`-`022CBE43`, the
 holder `022CBE68`, a four-point trail from `022CBE76`, and the fade `022CBE87` (0 shown, 1 fading in, 2 fading
 out, 3 hidden) with its count `022CBE8A` out of `022CBE88`. `00368360` moves it ([Battle menu](battle-menu.md)).
 
-- `00368270()` resets the block: every position to none, mode 1 and flags `115`<sub>h</sub>.
+- `00368270()` resets the block: every position to none, mode 1 and flags `0x115`.
 - `00368010(pos, widget, plain)`, from `00368360`, adds up a widget's position and its ancestors' (next at
-  `+10`<sub>h</sub>, `00246480`): with flag bit 5 through each widget's rotation and scale (`00398910`, `003985B0`,
-  `00398C50`) about its centre, with flag bit 9 from a widget's `+84`<sub>h</sub>/`+8C`<sub>h</sub> while its `+80`<sub>h</sub> bit 0 is set,
-  and with flag bit 6 it scales the alpha byte `+0E`<sub>h</sub> by each widget's `+24`<sub>h</sub> / 128. `plain` skips all three.
+  `+0x10`, `00246480`): with flag bit 5 through each widget's rotation and scale (`00398910`, `003985B0`,
+  `00398C50`) about its centre, with flag bit 9 from a widget's `+0x84`/`+0x8C` while its `+0x80` bit 0 is set,
+  and with flag bit 6 it scales the alpha byte `+0x0E` by each widget's `+0x24` / 128. `plain` skips all three.
 - `00367820(widget, pos)`, from `00368360`, answers whether a request starts a slide. A widget other than the
   holder clears flag bit 7 and gets 1; while the fade is 2 or 3 it answers 1; an unchanged target answers 0, and
   a held target (`pos` flag bit 8) is recorded without a slide.
@@ -169,35 +169,35 @@ out, 3 hidden) with its count `022CBE8A` out of `022CBE88`. `00368360` moves it 
 
 ## Layouts
 
-`MenuList`, the list widget, `150`<sub>h</sub> bytes, after the widget header ([Widgets](widgets.md)):
+`MenuList`, the list widget, `0x150` bytes, after the widget header ([Widgets](widgets.md)):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0C0`<sub>h</sub> | `void*` | content | the content widget that holds the rows |
-| `0C8`<sub>h</sub> | `void*` | owner | gets `8000`<sub>h</sub> and the other notices |
-| `0D8`<sub>h</sub> | `void*` | data | the rows' data |
-| `0E0`<sub>h</sub> | `u32` | flags | bit 16 from `002D45C0`, 22 silent, 23 scroll-only, 24 a wrap is running |
-| `0E4`<sub>h</sub> | `u32` | flags2 | bit 13 fast or no paging, 21 from `002D49C0`, 24 no wrap, 27 Clan Primer hook, 29 block-bank sounds |
-| `0E8`<sub>h</sub> | `u16` | items | item count |
-| `0EA`<sub>h</sub> | `u16` | colWidth | column width |
-| `0EC`<sub>h</sub> | `u8` | columns | columns |
-| `0ED`<sub>h</sub> | `i8` | left | first shown column |
-| `0EE`<sub>h</sub> | `i8` | cursorCol | cursor column on screen |
-| `0F0`<sub>h</sub> | `u16` | rows | rows of items |
-| `0F2`<sub>h</sub> | `i16` | top | first shown row |
-| `0F4`<sub>h</sub> | `i16` | cursorRow | cursor row on screen |
-| `0FF`<sub>h</sub> | `i8` | sound | cursor sound, 0 for 1, -1 for none |
-| `100`<sub>h</sub> | `u16` | rowHeight | row height |
-| `10B`<sub>h</sub> | `u8` | hold | hold counter |
-| `10C`<sub>h</sub> | `u32` | holdTime | frame of the last held tick (`0208F574`) |
-| `110`<sub>h</sub> | `u16[2]` | masks | confirm and cancel masks |
-| `120`<sub>h</sub> | `fn*` | painter | the row painter |
-| `13C`<sub>h</sub> | `i32` | margin | top margin |
+| `+0x0C0` | `void*` | content | the content widget that holds the rows |
+| `+0x0C8` | `void*` | owner | gets `0x8000` and the other notices |
+| `+0x0D8` | `void*` | data | the rows' data |
+| `+0x0E0` | `u32` | flags | bit 16 from `002D45C0`, 22 silent, 23 scroll-only, 24 a wrap is running |
+| `+0x0E4` | `u32` | flags2 | bit 13 fast or no paging, 21 from `002D49C0`, 24 no wrap, 27 Clan Primer hook, 29 block-bank sounds |
+| `+0x0E8` | `u16` | items | item count |
+| `+0x0EA` | `u16` | colWidth | column width |
+| `+0x0EC` | `u8` | columns | columns |
+| `+0x0ED` | `i8` | left | first shown column |
+| `+0x0EE` | `i8` | cursorCol | cursor column on screen |
+| `+0x0F0` | `u16` | rows | rows of items |
+| `+0x0F2` | `i16` | top | first shown row |
+| `+0x0F4` | `i16` | cursorRow | cursor row on screen |
+| `+0x0FF` | `i8` | sound | cursor sound, 0 for 1, -1 for none |
+| `+0x100` | `u16` | rowHeight | row height |
+| `+0x10B` | `u8` | hold | hold counter |
+| `+0x10C` | `u32` | holdTime | frame of the last held tick (`0208F574`) |
+| `+0x110` | `u16[2]` | masks | confirm and cancel masks |
+| `+0x120` | `fn*` | painter | the row painter |
+| `+0x13C` | `i32` | margin | top margin |
 
 ## Modding notes
 
-- A row painter is any function the record's `+20`<sub>h</sub> names; the list calls it for each shown row.
-- Setting `+E4`<sub>h</sub> bit 24 stops a list from wrapping round.
+- A row painter is any function the record's `+0x20` names; the list calls it for each shown row.
+- Setting `+0xE4` bit 24 stops a list from wrapping round.
 
 ## Related
 

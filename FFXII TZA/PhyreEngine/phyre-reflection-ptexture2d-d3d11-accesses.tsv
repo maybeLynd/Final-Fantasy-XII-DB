@@ -1,25 +1,25 @@
 function	name	site	disp	kind	instruction	route	note
-005DCBE0	FUN_005dcbe0	005DCBE7	0h	w	mov qword ptr [rcx], rax	ctor-seeded 006160B0	
-005DCBE0	FUN_005dcbe0	005DCBEC	8h	w	mov word ptr [rcx + 8], 300h	ctor-seeded 006160B0	
-005DCBE0	FUN_005dcbe0	005DCBF2	Ch	w	mov qword ptr [rcx + Ch], rax	ctor-seeded 006160B0	
-005DCBE0	FUN_005dcbe0	005DCBF6	14h	w	mov dword ptr [rcx + 14h], eax	ctor-seeded 006160B0	
-005DCBE0	FUN_005dcbe0	005DCBF9	20h	w	mov qword ptr [rcx + 20h], rax	ctor-seeded 006160B0	
-005DCBE0	FUN_005dcbe0	005DCBFD	28h	w	mov qword ptr [rcx + 28h], rax	ctor-seeded 006160B0	
-005DCBE0	FUN_005dcbe0	005DCC04	18h	w	mov dword ptr [rcx + 18h], 2	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160CA	30h	w	mov dword ptr [rbx + 30h], edx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160D6	38h	w	mov qword ptr [rax], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160D9	40h	w	mov qword ptr [rax + 8], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160DD	48h	w	mov qword ptr [rax + 10h], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160E1	50h	w	mov qword ptr [rax + 18h], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160E5	58h	w	mov qword ptr [rax + 20h], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160E9	60h	w	mov qword ptr [rax + 28h], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160ED	68h	w	mov qword ptr [rax + 30h], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160F1	70h	w	mov dword ptr [rax + 38h], edx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160FB	78h	w	mov qword ptr [rax + 40h], rcx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	006160FF	30h	w	mov dword ptr [rbx + 30h], 1	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	00616106	B8h	w	mov qword ptr [rbx + B8h], rdx	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	0061610F	90h	w	mov qword ptr [rbx + 90h], rax	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	00616116	98h	w	mov qword ptr [rbx + 98h], rax	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	0061611D	A0h	w	mov qword ptr [rbx + A0h], rax	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	00616124	A8h	w	mov qword ptr [rbx + A8h], rax	ctor-seeded 006160B0	
-006160B0	FUN_006160b0	0061612B	B0h	w	mov qword ptr [rbx + B0h], rax	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCBE7	0x0	w	mov qword ptr [rcx], rax	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCBEC	0x8	w	mov word ptr [rcx + 8], 0x300	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCBF2	0xc	w	mov qword ptr [rcx + 0xc], rax	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCBF6	0x14	w	mov dword ptr [rcx + 0x14], eax	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCBF9	0x20	w	mov qword ptr [rcx + 0x20], rax	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCBFD	0x28	w	mov qword ptr [rcx + 0x28], rax	ctor-seeded 006160B0	
+005DCBE0	FUN_005dcbe0	005DCC04	0x18	w	mov dword ptr [rcx + 0x18], 2	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160CA	0x30	w	mov dword ptr [rbx + 0x30], edx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160D6	0x38	w	mov qword ptr [rax], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160D9	0x40	w	mov qword ptr [rax + 8], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160DD	0x48	w	mov qword ptr [rax + 0x10], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160E1	0x50	w	mov qword ptr [rax + 0x18], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160E5	0x58	w	mov qword ptr [rax + 0x20], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160E9	0x60	w	mov qword ptr [rax + 0x28], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160ED	0x68	w	mov qword ptr [rax + 0x30], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160F1	0x70	w	mov dword ptr [rax + 0x38], edx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160FB	0x78	w	mov qword ptr [rax + 0x40], rcx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	006160FF	0x30	w	mov dword ptr [rbx + 0x30], 1	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	00616106	0xb8	w	mov qword ptr [rbx + 0xb8], rdx	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	0061610F	0x90	w	mov qword ptr [rbx + 0x90], rax	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	00616116	0x98	w	mov qword ptr [rbx + 0x98], rax	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	0061611D	0xa0	w	mov qword ptr [rbx + 0xa0], rax	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	00616124	0xa8	w	mov qword ptr [rbx + 0xa8], rax	ctor-seeded 006160B0	
+006160B0	FUN_006160b0	0061612B	0xb0	w	mov qword ptr [rbx + 0xb0], rax	ctor-seeded 006160B0	

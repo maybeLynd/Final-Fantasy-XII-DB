@@ -22,62 +22,62 @@ one of those lists is the number with all its bits set.
 ### The id space
 
 An encoded id is sixteen bits: the top nibble `id >> 12` picks a class and the low twelve bits
-`id & FFFh` are the index inside it. `00309440(id)` returns the class: nibble `F`<sub>h</sub> gives -1,
-otherwise the `+38`<sub>h</sub> field of the descriptor at `01EEBCC0 + nibble × 58h`, which holds 5 for
-nibble 0 up to 19 for nibble `E`<sub>h</sub>. So the class is the nibble plus five, and the descriptor
-table at `01EEBCC0` has fifteen records of `58`<sub>h</sub> bytes:
+`id & 0xFFF` are the index inside it. `00309440(id)` returns the class: nibble `0xF` gives -1,
+otherwise the `+0x38` field of the descriptor at `01EEBCC0 + nibble × 0x58`, which holds 5 for
+nibble 0 up to 19 for nibble `0xE`. So the class is the nibble plus five, and the descriptor
+table at `01EEBCC0` has fifteen records of `0x58` bytes:
 
 | Offset | Field |
 |---|---|
-| `+00`<sub>h</sub> / `+08`<sub>h</sub> | region A: offset into the battle state block `[02EBF190]`, and the pointer the rebaser derives from it |
-| `10`<sub>h</sub> | region A length in 16-bit words |
-| `+18`<sub>h</sub> / `+20`<sub>h</sub>, `+28`<sub>h</sub> / `+30`<sub>h</sub> | regions B and C the same way (0 = none) |
-| `38`<sub>h</sub> | class, 5 to 19 |
-| `3C`<sub>h</sub> | id count; an index at or past it is invalid |
-| `40`<sub>h</sub> | cumulative id base, the running sum of the earlier counts (written at run time) |
-| `48`<sub>h</sub> | mutate handler `(id, delta, absolute, channel, flags)` or 0 |
-| `50`<sub>h</sub> | query handler `(id, mode)` or 0 |
+| `+0x00` / `+0x08` | region A: offset into the battle state block `[02EBF190]`, and the pointer the rebaser derives from it |
+| `+0x10` | region A length in 16-bit words |
+| `+0x18` / `+0x20`, `+0x28` / `+0x30` | regions B and C the same way (0 = none) |
+| `+0x38` | class, 5 to 19 |
+| `+0x3C` | id count; an index at or past it is invalid |
+| `+0x40` | cumulative id base, the running sum of the earlier counts (written at run time) |
+| `+0x48` | mutate handler `(id, delta, absolute, channel, flags)` or 0 |
+| `+0x50` | query handler `(id, mode)` or 0 |
 
 The rebaser `0030B6A0(state)` adds the state block's address to every non-zero offset, writes
-the cumulative bases, zeroes `200`<sub>h</sub> bytes at state `+57C8`<sub>h</sub> and masks `80`<sub>h</sub> bytes at `+59C8`<sub>h</sub>
-with `F8`<sub>h</sub>. It runs from `00233C10` and from `00238A80`, which first points `02EBF190` at
-`002EF640() + 4E68Ch` in the save runtime buffer and is called only by the payload reset
+the cumulative bases, zeroes `0x200` bytes at state `+0x57C8` and masks `0x80` bytes at `+0x59C8`
+with `0xF8`. It runs from `00233C10` and from `00238A80`, which first points `02EBF190` at
+`002EF640() + 0x4E68C` in the save runtime buffer and is called only by the payload reset
 `002EF650` ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)). The fifteen
 records, read from the image:
 
 | Nibble | Class | Count | Region A (words) | B | C | Handlers | What it holds |
 |---|---|---|---|---|---|---|---|
-| 0 | 5 | 64 | `+4748`<sub>h</sub> (64) | | `+57C0`<sub>h</sub> | packed count | items |
-| 1 | 6 | 420 | `+47C8`<sub>h</sub> (420) | | | packed count | equipment |
-| 2 | 7 | 512 | `+4B10`<sub>h</sub> (512) | `+57C8`<sub>h</sub> | | packed count | loot |
-| 3 | 8 | 81 | `+4F10`<sub>h</sub> (6) | | | bitset | magicks |
-| 4 | 9 | 24 | `+4F1C`<sub>h</sub> (2) | | | bitset | technicks |
+| 0 | 5 | 64 | `+0x4748` (64) | | `+0x57C0` | packed count | items |
+| 1 | 6 | 420 | `+0x47C8` (420) | | | packed count | equipment |
+| 2 | 7 | 512 | `+0x4B10` (512) | `+0x57C8` | | packed count | loot |
+| 3 | 8 | 81 | `+0x4F10` (6) | | | bitset | magicks |
+| 4 | 9 | 24 | `+0x4F1C` (2) | | | bitset | technicks |
 | 5 | 10 | 0 | | | | none | unused |
-| 6 | 11 | 256 | `+4F20`<sub>h</sub> (16) | | | bitset | gambit conditions |
+| 6 | 11 | 256 | `+0x4F20` (16) | | | bitset | gambit conditions |
 | 7 | 12 | 0 | | | | none | unused |
-| 8 | 13 | 512 | `+4F40`<sub>h</sub> (32) | | | bitset | key items |
+| 8 | 13 | 512 | `+0x4F40` (32) | | | bitset | key items |
 | 9 | 14 | 512 | | | | mutate only `002FD530` | reward packages |
 | A | 15 | 256 | | | | mutate only `002FD640` | package selectors |
 | B | 16 | 0 | | | | none | unused |
-| C | 17 | 32 | `+4F80`<sub>h</sub> (2) | | | bitset | quickenings |
+| C | 17 | 32 | `+0x4F80` (2) | | | bitset | quickenings |
 | D | 18 | 128 | | | | mutate only `002FD780` | bazaar goods |
 | E | 19 | 4,095 | | | | mutate only `002FD880` | gil amounts |
 
-The regions abut: each region A ends where the next begins, which is what makes `+10`<sub>h</sub> a word
+The regions abut: each region A ends where the next begins, which is what makes `+0x10` a word
 count. The counts sum to 6,892.
 
 ### Owning things: the two handler pairs
 
 `003008A0(id, delta, absolute, channel, flags)` is the one entry that changes what the party
-owns. It refuses `FFFF`<sub>h</sub>, `1000`<sub>h</sub> (the Unarmed row) and nibbles above `E`<sub>h</sub>, returns -1 for an
+owns. It refuses `0xFFFF`, `0x1000` (the Unarmed row) and nibbles above `0xE`, returns -1 for an
 index at or past the class's count, reads the channel's value through `00309F30(id, channel)`,
 calls the descriptor's mutate handler with the same five arguments, and returns the value after.
 
 When the channel is 1 and the value went from nothing to something it also sets bits of the
 state block's flag dword `[02EBF190] + 4`: bit 0 for a magick, plus a school bit found in two
-hops (byte `+2` of the magick's row in `02EBF0F0`, `id - 3000h`, is an action index; word
-`+2Ch & 7` of that row in `02EBF138` is k, and `01EECF98[k]` is ORed in when k < 5); `40`<sub>h</sub> for a
-technick; `80`<sub>h</sub> for a quickening `C000`<sub>h</sub> to `C011`<sub>h</sub> and `100`<sub>h</sub> for `C012`<sub>h</sub> to `C01E`<sub>h</sub>.
+hops (byte `+2` of the magick's row in `02EBF0F0`, `id - 0x3000`, is an action index; word
+`+0x2C & 7` of that row in `02EBF138` is k, and `01EECF98[k]` is ORed in when k < 5); `0x40` for a
+technick; `0x80` for a quickening `0xC000` to `0xC011` and `0x100` for `0xC012` to `0xC01E`.
 
 The packed-count classes (items, equipment, loot) keep one 16-bit word per id in region A: bits
 0 to 9 the owned total, capped at 99, bits 10 to 15 the reserved copies. The query handler
@@ -86,17 +86,17 @@ for mode 1, the reserved count for mode 2 and the region-B byte for mode 3. The 
 `002FD150` by channel:
 
 - channel 1 sets or adds the total, clamped between the reserved count and 99; when the total
-  rose it sets the id's bit in region C (items' ever-owned bitset at `+57C0`<sub>h</sub>, byte `index >> 3`,
+  rose it sets the id's bit in region C (items' ever-owned bitset at `+0x57C0`, byte `index >> 3`,
   bit `index & 7`); then the derived-index hook `00325F40(id, old total, new total)` and, for a
   relative change with flag bit 0, the "You obtain" line `0046A630(id, delta)`;
 - channel 0 subtracts `delta` from the reserved count (absolute: reserved = total - `delta`),
   clamped to 0 to total, and returns total minus reserved; channel 2 adds `delta` to it
   (absolute: reserved = `delta`), clamped the same way, and returns the reserved count;
 - channel 3 sets or adds the region-B byte, clamped to 0 to 99 (loot's bazaar-sold tally at
-  `+57C8`<sub>h</sub>).
+  `+0x57C8`).
 
 The bitset classes (magicks, technicks, gambit conditions, key items, quickenings) keep one bit
-per id in region A: word `index >> 4`, bit `index & Fh`. `002FD970(id, mode)` returns that bit
+per id in region A: word `index >> 4`, bit `index & 0xF`. `002FD970(id, mode)` returns that bit
 for modes 0 and 1, 0 for mode 2, and the byte-addressed bit of region B or C for modes 3 and 4.
 `002FD420` ignores the channel: the new value is `delta` (absolute) or the bit plus `delta`, a
 negative clears it and anything above 1 saturates to 1; the hook and the obtain line follow.
@@ -105,14 +105,14 @@ The four handler-only classes act on other classes, only for `absolute` 0 and ch
 
 - class 14 (`002FD530`): row `{u32 gil, u16 item, u16 count, u16 item, u16 count}` of the table at
   `02EBF070`; gil through `00254EE0(00253690() + gil × delta)` clamped at 0, with the gil
-  "obtain" line `00469E80(gained)` when flag bit 0 is set, then each item that is not `FFFF`<sub>h</sub>
+  "obtain" line `00469E80(gained)` when flag bit 0 is set, then each item that is not `0xFFFF`
   through `003008A0(item, count × delta, 0, 1, flags)`;
 - class 15 (`002FD640`): six `u16` ids in the row of `02EBF068`, the first triple, or the second
-  when flag bit 1 is set, each granted with `delta`; the first triple tests each id for `FFFF`<sub>h</sub>
-  on its own, the second grants its sixth id whenever its fifth is not `FFFF`<sub>h</sub>;
-- class 18 (`002FD780`): three `(u16 item, u8 count)` pairs at `+4`, `+8` and `+C`<sub>h</sub> of the row of
+  when flag bit 1 is set, each granted with `delta`; the first triple tests each id for `0xFFFF`
+  on its own, the second grants its sixth id whenever its fifth is not `0xFFFF`;
+- class 18 (`002FD780`): three `(u16 item, u8 count)` pairs at `+4`, `+8` and `+0xC` of the row of
   `02EBF058`, each with a non-zero count granted as `count × delta`;
-- class 19 (`002FD880`): gil through `00254EE0(00253690() + (id & FFFh) × delta)`, clamped at 0:
+- class 19 (`002FD880`): gil through `00254EE0(00253690() + (id & 0xFFF) × delta)`, clamped at 0:
   the id is the amount.
 
 `00325F40(id, old, new)` runs on a 0 to non-zero or non-zero to 0 transition: it validates the
@@ -127,28 +127,28 @@ lists are what the menus page through.
 `00322C50(class, id)` answers whether an id is valid for a class. Classes 1 to 32 dispatch
 through the 32-entry table at `00323054`, and every arm ends in the shared test `lo ≤ id ≤ hi -
 1`, so a bound is a count and the valid set is `[lo, lo + count)`. The count comes from the
-`+4` word of an authored table (`st2e`: `+4` rows, `+8` stride, rows from `+20`<sub>h</sub>, bound at area
+`+4` word of an authored table (`st2e`: `+4` rows, `+8` stride, rows from `+0x20`, bound at area
 load by `00236C30` through `003845F0`), except for four arms:
 
 - class 1 derives the class from the id with `00309440` and re-enters the switch;
-- class 19 uses `E000`<sub>h</sub> to `EFFF`<sub>h</sub> compiled in, so the last valid id is `EFFE`<sub>h</sub>;
+- class 19 uses `0xE000` to `0xEFFF` compiled in, so the last valid id is `0xEFFE`;
 - class 22 uses a literal 4 and class 23 a literal 9 (ids 0 to 3 and 0 to 8).
 
 | Class | Base | Table | Class | Base | Table |
 |---|---|---|---|---|---|
-| 2 | 0 | `02EBF130` party definitions | 18 | `D000`<sub>h</sub> | `02EBF058` bazaar goods |
+| 2 | 0 | `02EBF130` party definitions | 18 | `0xD000` | `02EBF058` bazaar goods |
 | 3 | 0 | `02EBF120` | 20 | 0 | `02EBF138` actions |
 | 4 | 0 | `02EBF150` | 21 | 0 | `02EBF128` battle commands |
 | 5 | 0 | `02EBF100` items | 24 | 0 | `02EBF110` magick schools |
-| 6 | `1000`<sub>h</sub> | `02EBF0F8` equipment | 25, 32 | 0 | `02EBF038` licence nodes |
-| 7 | `2000`<sub>h</sub> | `02EBF098` loot | 26 | 0 | `02EBF118` statuses |
-| 8 | `3000`<sub>h</sub> | `02EBF0F0` magicks | 27 | 0 | `02EBF050` elements |
-| 9 | `4000`<sub>h</sub> | `02EBF0E8` technicks | 28 | 0 | `02EBF0B0` equipment categories |
-| 10 | `5000`<sub>h</sub> | `02EBF0E0` gambit presets | 29 | 0 | `02EBF040` augments |
-| 11 | `6000`<sub>h</sub> | `02EBF0D8` gambit conditions | 13 | `8000`<sub>h</sub> | `02EBF090` + `02EBF088` + `02EBF080` + `02EBF078`, the four key-item sub-tables summed |
-| 12 | `7000`<sub>h</sub> | `02EBF0D0` | 14 | `9000`<sub>h</sub> | `02EBF070` reward packages |
-| 15, 30, 31 | `A000`<sub>h</sub> | `02EBF068` package selectors | 16 | `B000`<sub>h</sub> | `02EBF060` |
-| 17 | `C000`<sub>h</sub> | `02EBF0C8` quickenings | | | |
+| 6 | `0x1000` | `02EBF0F8` equipment | 25, 32 | 0 | `02EBF038` licence nodes |
+| 7 | `0x2000` | `02EBF098` loot | 26 | 0 | `02EBF118` statuses |
+| 8 | `0x3000` | `02EBF0F0` magicks | 27 | 0 | `02EBF050` elements |
+| 9 | `0x4000` | `02EBF0E8` technicks | 28 | 0 | `02EBF0B0` equipment categories |
+| 10 | `0x5000` | `02EBF0E0` gambit presets | 29 | 0 | `02EBF040` augments |
+| 11 | `0x6000` | `02EBF0D8` gambit conditions | 13 | `0x8000` | `02EBF090` + `02EBF088` + `02EBF080` + `02EBF078`, the four key-item sub-tables summed |
+| 12 | `0x7000` | `02EBF0D0` | 14 | `0x9000` | `02EBF070` reward packages |
+| 15, 30, 31 | `0xA000` | `02EBF068` package selectors | 16 | `0xB000` | `02EBF060` |
+| 17 | `0xC000` | `02EBF0C8` quickenings | | | |
 
 The table has 29 distinct arms for 32 classes: 15, 30 and 31 share one, 25 and 32 another. For
 the fifteen inventory classes the arm's base equals `(class - 5) << 12`, the same structure the
@@ -156,16 +156,16 @@ descriptors carry. A missing table counts as zero rows, so a null-guarded arm ac
 
 ### The query record
 
-`0031C5D0(record)` fills a `98`<sub>h</sub>-byte record whose `+0` is the class and whose `+4` is the row
+`0031C5D0(record)` fills a `0x98`-byte record whose `+0` is the class and whose `+4` is the row
 (classes 2 to 4 and 19 to 29, 32) or whose `+6` is the id (classes 1, 5 to 11, 13 to 18, 30, 31).
-It clears the name pointer at `+18`<sub>h</sub> and dispatches through the 32-entry table at `0031E598` by
+It clears the name pointer at `+0x18` and dispatches through the 32-entry table at `0031E598` by
 `class - 1`. Each arm validates with `00322C50` and writes its own fields:
 
-- the name pointer `+18`<sub>h</sub>, the description `+10`<sub>h</sub>, and an auxiliary text `+08`<sub>h</sub> for actions,
+- the name pointer `+0x18`, the description `+0x10`, and an auxiliary text `+0x08` for actions,
   commands and schools;
-- the two inventory channels `+20`<sub>h</sub> and `+24`<sub>h</sub> (`00309EC0(id)` and `0030AE30(id)`, the
+- the two inventory channels `+0x20` and `+0x24` (`00309EC0(id)` and `0030AE30(id)`, the
   descriptor's query handler with modes 0 and 1);
-- class-specific scalars from `+28`<sub>h</sub> on.
+- class-specific scalars from `+0x28` on.
 
 Every arm's failed validation returns -2 (`0031C650`). Class 1 derives the class from the id,
 stores it at `+0` and re-dispatches; class 12 returns -2 at once; class 19 and any class above
@@ -174,7 +174,7 @@ return 0 with no other output. A successful fill leaves fields it did not write 
 the record is partial, not a fresh value.
 
 Two static records serve most callers: `0035D330(class, row)` writes the row form into
-`022CA520` and `0035D380(class, id)` the id form into `022CA480`; both zero all `98`<sub>h</sub> bytes
+`022CA520` and `0035D380(class, id)` the id form into `022CA480`; both zero all `0x98` bytes
 when the fill returns negative and return the record's address either way. The row form has
 159 call sites in 75 functions and the id form 15; `0035E070` fills the row record itself for
 class 1 with the id in the high word of `+4`, and eleven other functions hand `0031C5D0` their
@@ -185,22 +185,22 @@ The menus are those callers: the gambit screen's row and page builders (`00567B6
 `0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),
 [menu screens](../Menus-And-HUD/menu-screens.md)).
 
-The name at `+18`<sub>h</sub> is the field half of the callers read and nothing else; the equipment block
-`+3C`<sub>h</sub> to `+60`<sub>h</sub> is read by the equip menus, the licence bytes `+21`<sub>h</sub> to `+25`<sub>h</sub> by the
+The name at `+0x18` is the field half of the callers read and nothing else; the equipment block
+`+0x3C` to `+0x60` is read by the equip menus, the licence bytes `+0x21` to `+0x25` by the
 licence board. String pointers point into the loaded text banks; the record never allocates or
 copies them.
 
 ### The empty id
 
-`FFFF`<sub>h</sub> is the empty id. The dispatchers refuse it before the nibble test, `003008A0` refuses it,
+`0xFFFF` is the empty id. The dispatchers refuse it before the nibble test, `003008A0` refuses it,
 the bundle rows use it for "no item", a derived-index list blanks a removed entry with it and
-compacts past it, an equipment slot holds it when empty and a unit's reserved item at `+DC8`<sub>h</sub>
+compacts past it, an equipment slot holds it when empty and a unit's reserved item at `+0xDC8`
 when none is reserved.
 
-One-byte fields use `FF`<sub>h</sub> the same way: the relation pool at `02CA81F0` links its 16-byte
-records through byte indices at `+D`<sub>h</sub> and `+E`<sub>h</sub>, and `00512CD0` unlinks a record by writing
-`FF`<sub>h</sub> into its neighbours' links (then clears the low nibble of its `+F`<sub>h</sub> and decrements the
-owner's count byte `+E`<sub>h</sub> and the pool count `02EBA481`), because index 0 is a real record and
+One-byte fields use `0xFF` the same way: the relation pool at `02CA81F0` links its 16-byte
+records through byte indices at `+0xD` and `+0xE`, and `00512CD0` unlinks a record by writing
+`0xFF` into its neighbours' links (then clears the low nibble of its `+0xF` and decrements the
+owner's count byte `+0xE` and the pool count `02EBA481`), because index 0 is a real record and
 the only free value is the largest the byte can hold.
 
 ## Layouts
@@ -228,12 +228,12 @@ bazaar good row (36): u16 name, u16 desc, (u16 item, u8 count, u8)[3], u32 price
 
 | Fact | Value |
 |---|---|
-| inventory classes | 15 (nibbles 0 to `E`<sub>h</sub>), 11 with handlers, 3 empty |
+| inventory classes | 15 (nibbles 0 to `0xE`), 11 with handlers, 3 empty |
 | id counts | items 64, equipment 420, loot 512, magicks 81, technicks 24, gambit conditions 256, key items 512 (64 + 32 + 416 + 0), quickenings 32, reward packages 512, selectors 256, bazaar goods 128, gil 4,095; sum 6,892 |
 | validator classes | 32, 29 arms; four without a table (1, 19, 22, 23) |
 | query classes | 32, 28 arms |
 | owned-count cap | 99; reserved field 6 bits |
-| refused ids | `FFFF`<sub>h</sub>, `1000`<sub>h</sub> (Unarmed) in the modify path |
+| refused ids | `0xFFFF`, `0x1000` (Unarmed) in the modify path |
 
 ## Operations
 
@@ -257,10 +257,10 @@ records.
   handler clamps at 99 whatever the delta.
 - Granting a reward package or a bazaar good is a grant of its parts: the package's own id never
   appears in an inventory region, so a save shows only the items it gave.
-- Gil ids `E000`<sub>h</sub> to `EFFE`<sub>h</sub> carry their amount in the low twelve bits; an amount above 4,094
+- Gil ids `0xE000` to `0xEFFE` carry their amount in the low twelve bits; an amount above 4,094
   needs the gil setter, not an id.
 - Classes 10, 12 and 16 are holes in the nibble space: a count of 0 and no handler, so any id with
-  top nibble 5, 7 or `B`<sub>h</sub> is refused everywhere.
+  top nibble 5, 7 or `0xB` is refused everywhere.
 
 ## Related
 

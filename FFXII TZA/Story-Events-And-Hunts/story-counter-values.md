@@ -16,8 +16,8 @@ The table lists every value a script writes to it, from the 1,114 `us` scripts u
 
 ### How a write is found
 
-A script names the counter through the variable descriptor `30000000`<sub>h</sub>, class 0, offset 0, a signed 16-bit value,
-in its descriptor table (header `+28`<sub>h</sub>). 513 scripts declare it as a variable of its own.
+A script names the counter through the variable descriptor `0x30000000`, class 0, offset 0, a signed 16-bit value,
+in its descriptor table (header `+0x28`). 513 scripts declare it as a variable of its own.
 
 1. Every write is `PUSHII <value>` followed by `POPV <counter>`: 1,759 writes, and no write takes a value that is not
    a literal.
@@ -35,7 +35,7 @@ in its descriptor table (header `+28`<sub>h</sub>). 513 scripts declare it as a 
 | developer menus, the `evt_t` scripts | 1,398 | 9 |
 
 A write is reached when a walk from any function entry of its actor gets to it through fall-through and jump-table
-targets, stopping at returns and at unconditional jumps (`51`<sub>h</sub>, `5A`<sub>h</sub>). The nine developer scripts are
+targets, stopping at returns and at unconditional jumps (`0x51`, `0x5A`). The nine developer scripts are
 `evt_t0081`-`evt_t0085`, `evt_t0090`, `evt_t0096`, `evt_t0500` and `evt_t0505`, whose actors are debug menus; 781
 of their writes are in `evt_t0505`.
 
@@ -55,8 +55,8 @@ Montblanc's `モンブラン.talk` in `rbn_a14`, hold a ladder that writes 290, 
 3,000, 3,250, 4,100, 5,150, 6,100 and 11,000; Montblanc's leaves out 670, 1,950 and 3,250 and repeats 5,150, 6,100
 and 11,000.
 
-An unconditional jump passes over the ladder (actor code offsets `alc_f04` `+453`<sub>h</sub> to `+522`<sub>h</sub>, `rbn_a14`
-`+15A2`<sub>h</sub> to `+1671`<sub>h</sub>), and no instruction names its dispatcher's jump-table entry. So 91 of
+An unconditional jump passes over the ladder (actor code offsets `alc_f04` `+0x453` to `+0x522`, `rbn_a14`
+`+0x15A2` to `+0x1671`), and no instruction names its dispatcher's jump-table entry. So 91 of
 the 93 unreached writes are this ladder. The other two, 710 and 720, are a choice menu in `byu_a18`
 `配置監督.main`, which jumps over it at its first instruction.
 
@@ -111,7 +111,7 @@ Actor and function names are the ones the scripts carry.
 
 - [Story flags](story-flags.md) - the menus and map groups the counter unlocks, and the save payload it starts.
 - [Quests](quests.md) - the quest state kept beside the flag banks.
-- [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload's first `200`<sub>h</sub> bytes, the script word
+- [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload's first `0x200` bytes, the script word
   bank the counter opens.
 - [Script bytecode](../EBP-Script-Files/ebp-script-image.md) - `PUSHII`, `POPV`
   and the jump opcodes.

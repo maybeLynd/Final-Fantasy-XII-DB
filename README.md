@@ -19,13 +19,11 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 
 ## How numbers are written
 
-- A hexadecimal number carries a small h: `1C`<sub>h</sub> is 28, `+1C`<sub>h</sub> is an offset of 28 bytes,
-  `FFFF`<sub>h</sub> is 65535. Inside an expression or an instruction the h is part of the code: `[rcx+414h]`.
-- A number without the h is decimal.
-- Addresses are always 8 hexadecimal digits, `0046FAE0`, and carry no h.
-- Formula and pseudocode blocks follow programming notation, where `0x` marks hexadecimal.
-- In the `.tsv` data files, which GitHub shows as plain tables, a hexadecimal value ends in a plain h: `4000h`
-  is 16384, `[rsp+10h]` is an offset of 16 bytes. Addresses there are 8 digits without an h, as on the pages.
+- A hexadecimal number starts with `0x`: `0x1C` is 28, `+0x1C` is an offset of 28 bytes, `0xFFFF` is 65535,
+  and inside an expression or an instruction it is written the same way: `[rcx+0x414]`.
+- A number without `0x` is decimal.
+- Addresses are always 8 hexadecimal digits, `0046FAE0`, and carry no `0x`.
+- The `.tsv` data files write numbers the same way: `0x4000` is 16384, and addresses are 8 digits without `0x`.
 
 ## Categories
 

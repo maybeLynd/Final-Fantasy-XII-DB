@@ -1,6 +1,6 @@
 function	name	site	disp	kind	instruction	route	note
-0065EC80	FUN_0065ec80	0065EC87	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0065EC80	
-0065EC80	FUN_0065ec80	0065EC8A	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0065EC80	
-0065EC80	FUN_0065ec80	0065EC8D	Ch	w	mov word ptr [rdx + Ch], 334h	ctorrdx-seeded 0065EC80	
-0065EC80	FUN_0065ec80	0065EC93	Eh	w	mov byte ptr [rdx + Eh], al	ctorrdx-seeded 0065EC80	
-0065EC80	FUN_0065ec80	0065EC96	10h	w	mov dword ptr [rdx + 10h], eax	ctorrdx-seeded 0065EC80	
+0065EC80	FUN_0065ec80	0065EC87	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0065EC80	
+0065EC80	FUN_0065ec80	0065EC8A	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0065EC80	
+0065EC80	FUN_0065ec80	0065EC8D	0xc	w	mov word ptr [rdx + 0xc], 0x334	ctorrdx-seeded 0065EC80	
+0065EC80	FUN_0065ec80	0065EC93	0xe	w	mov byte ptr [rdx + 0xe], al	ctorrdx-seeded 0065EC80	
+0065EC80	FUN_0065ec80	0065EC96	0x10	w	mov dword ptr [rdx + 0x10], eax	ctorrdx-seeded 0065EC80	

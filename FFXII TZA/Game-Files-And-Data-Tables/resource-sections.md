@@ -17,13 +17,13 @@ offsets are off is not found, and whatever needed it does not appear.
 
 `00409C30(header, tag, name)` decides whether a section header matches:
 
-- the tag matches when the query tag is 0, when it is `4C4C4140`<sub>h</sub> (the bytes `@ALL`), or when it
-  equals the header's dword `+00`<sub>h</sub>;
+- the tag matches when the query tag is 0, when it is `0x4C4C4140` (the bytes `@ALL`), or when it
+  equals the header's dword `+0x00`;
 - the name matches when the query name is NULL, or when all eight dwords of the header's 32-byte name
-  at `+10`<sub>h</sub> equal the query's.
+  at `+0x10` equal the query's.
 
 A searcher first copies the query name into the shared buffer `02B62E20` with `00409210`: it zeroes
-32 bytes, copies at most 32 with `strncpy`, and forces byte `1F`<sub>h</sub> to 0. A query is therefore an
+32 bytes, copies at most 32 with `strncpy`, and forces byte `0x1F` to 0. A query is therefore an
 ordinary C string, a stored name must be zero-padded to match, and a name of 32 characters can never
 match, because its last byte is cleared in the query but not in the header. The buffer is a single
 global, so a by-name search is not re-entrant.
@@ -33,21 +33,21 @@ global, so a by-name search is not re-entrant.
 `00409780(entry, tag, name, &index, &offset)` sets both outputs to −1, resolves the entry's base (below)
 and returns when it is null. Then:
 
-- **`@FRP` container** (first dword `50524640`<sub>h</sub>). With version 0 (`+04`<sub>h</sub> = 0) a matching container
-  header gives offset 0 and index 0; otherwise it walks the `count` (`+0C`<sub>h</sub>) dwords of the offset
-  table at `+30`<sub>h</sub> and the first section `30h + table[i]` that matches gives offset `table[i] + 30h`
-  and index i. Version 1 does the same with the table at `+40`<sub>h</sub> and offsets `+ 40h`, skipping zero
+- **`@FRP` container** (first dword `0x50524640`). With version 0 (`+0x04` = 0) a matching container
+  header gives offset 0 and index 0; otherwise it walks the `count` (`+0x0C`) dwords of the offset
+  table at `+0x30` and the first section `0x30 + table[i]` that matches gives offset `table[i] + 0x30`
+  and index i. Version 1 does the same with the table at `+0x40` and offsets `+ 0x40`, skipping zero
   entries. Any other version finds nothing.
 - **Any other header.** A match gives offset 0 and index 0.
 
 Its callers are `00409660` (find and resolve to a pointer), `00409930` (the index alone), `00409A30`
-(the offset alone) and `00409960`. A found offset is 0 or a stored table entry plus `30`<sub>h</sub> or
-`40`<sub>h</sub>, so a −1 that is not "not found" needs a stored entry of `−31h` or `−41h`, a section placed
+(the offset alone) and `00409960`. A found offset is 0 or a stored table entry plus `0x30` or
+`0x40`, so a −1 that is not "not found" needs a stored entry of `−0x31` or `−0x41`, a section placed
 before its container.
 
 `00408F90` (from index 0) and `00408FA0(container, tag, name, start)` search an `@FRP` container
 directly: a section matches on its exact tag (no wildcards) and, when a name is given, on `00408F30`, an
-eight-dword compare that takes the container's own name at `+10`<sub>h</sub>, not the section's. They return the
+eight-dword compare that takes the container's own name at `+0x10`, not the section's. They return the
 index, or −1.
 
 ### Resolving an offset
@@ -61,59 +61,59 @@ same. A base above 4 GB does not survive, and nothing tests the base: an entry w
 
 `00409600(entry)`:
 
-- mode `+04`<sub>h</sub> = 0: `0051EE00(entry + 10h)`, which decodes the handle at `entry + 18h`;
-- mode 1: while the byte `02B62E10` is set, it decodes the handle at `+30`<sub>h</sub> and stores the result at
-  `+38`<sub>h</sub>; otherwise it returns `+38`<sub>h</sub> as cached;
+- mode `+0x04` = 0: `0051EE00(entry + 0x10)`, which decodes the handle at `entry + 0x18`;
+- mode 1: while the byte `02B62E10` is set, it decodes the handle at `+0x30` and stores the result at
+  `+0x38`; otherwise it returns `+0x38` as cached;
 - any other mode: 0.
 
 `003AB7F0(h)` decodes a handle: 0 gives 0; a value with its low two bits clear is a plain pointer;
-otherwise `0036B130` looks up the low 32 bits (for `h ≥ 100000h` with low bits set it returns
-`[(h & ~3) + 8] + 40h`), and a result whose low 32 bits are `40`<sub>h</sub> or less gives 0.
+otherwise `0036B130` looks up the low 32 bits (for `h ≥ 0x100000` with low bits set it returns
+`[(h & ~3) + 8] + 0x40`), and a result whose low 32 bits are `0x40` or less gives 0.
 
 `0041E500(root)`, the only writer of `02B62E10`, sets it, refreshes every row of the descriptor at
-`root + D90h` (`00409F70`), clears it, and then refreshes the other three containers at `+D98`<sub>h</sub>,
-`+DA8`<sub>h</sub> and `+DA0`<sub>h</sub>.
+`root + 0xD90` (`00409F70`), clears it, and then refreshes the other three containers at `+0xD98`,
+`+0xDA8` and `+0xDA0`.
 
 ### The @FRP child selector
 
 `004090D0(container, row, col)` returns NULL for NULL and the input unchanged for anything that is not
-`@FRP`. Version 0: the child `low32(container) + 30h + table[col]`, or the first child when `col` is
-at or past the count. Version 1: the index is `row × [+30h] + col` when `row` is below `[+34h]`,
+`@FRP`. Version 0: the child `low32(container) + 0x30 + table[col]`, or the first child when `col` is
+at or past the count. Version 1: the index is `row × [+0x30] + col` when `row` is below `[+0x34]`,
 otherwise `col`; a zero table entry gives NULL, an index at or past the count gives NULL, else
-`low32(container) + 40h + table[index]`. Both return the sum zero-extended, unlike the sign-extending
+`low32(container) + 0x40 + table[index]`. Both return the sum zero-extended, unlike the sign-extending
 section helpers.
 
 ### Banked resource tables
 
 A resource entry is a row in a bank owned by a table descriptor. `002ED570(descriptor, index)`:
 
-1. refreshes the slot table `+38`<sub>h</sub> from its handle `+30`<sub>h</sub>, and the bank directory `+10`<sub>h</sub> from its
-   handle `+08`<sub>h</sub>, when those handles are set;
-2. reads the bank address from the directory record `index >> bankShift` (`+10`<sub>h</sub> of a 32-byte record,
+1. refreshes the slot table `+0x38` from its handle `+0x30`, and the bank directory `+0x10` from its
+   handle `+0x08`, when those handles are set;
+2. reads the bank address from the directory record `index >> bankShift` (`+0x10` of a 32-byte record,
    decoded with `0020E600`), before any test;
 3. returns NULL when the slot `index` (16 bytes) has key −1;
 4. otherwise returns `bank + sign32((index & rowMask) × rowStride)`.
 
-Nothing bounds the index against the capacity `+54`<sub>h</sub> or against 0.
+Nothing bounds the index against the capacity `+0x54` or against 0.
 
-`00409F50(descriptor, id)` returns NULL for an id word of `FFFF`<sub>h</sub> and otherwise passes the word,
-sign-extended, to `002ED570`, so ids `8000`<sub>h</sub> to `FFFE`<sub>h</sub> become negative indices that read before the
-slot table and the directory. `0051FF30(descriptor, fn)` walks the slot list from `+40`<sub>h</sub> through each
-slot's `+08`<sub>h</sub> until −1 and calls `fn` on each row; `00409F70` uses it with `0040A210`, which re-decodes
-each row's handle `+30`<sub>h</sub> into `+38`<sub>h</sub>.
+`00409F50(descriptor, id)` returns NULL for an id word of `0xFFFF` and otherwise passes the word,
+sign-extended, to `002ED570`, so ids `0x8000` to `0xFFFE` become negative indices that read before the
+slot table and the directory. `0051FF30(descriptor, fn)` walks the slot list from `+0x40` through each
+slot's `+0x08` until −1 and calls `fn` on each row; `00409F70` uses it with `0040A210`, which re-decodes
+each row's handle `+0x30` into `+0x38`.
 
 `0051F9F0(descriptor, rowStride, bankShift, bankCount, directory, slots)` is the only writer of the
 geometry: it stores the stride and shift, derives `rowMask` = `(1 << shift) − 1` and the capacity
 `(1 << shift) × bankCount`, clears the directory and slot buffers, allocates one blob of
-`(bankCount << shift) × rowStride` bytes in arena 6 into `+28`<sub>h</sub>, points each directory record at its
+`(bankCount << shift) × rowStride` bytes in arena 6 into `+0x28`, points each directory record at its
 bank, and sets flag bit 0. Its three callers are inside the render root builder `0041E3A0` (called from
 `0033263C`):
 
 | Builder | Descriptor | Row stride | Shift | Banks | Capacity | Directory | Slots |
 |---|---|---|---|---|---|---|---|
-| `00409F10` | root `+D90`<sub>h</sub> | `50`<sub>h</sub> | 5 | 10 | 320 | `02B62E40` | `02B62F80` |
-| `0046E250` | root `+D98`<sub>h</sub> | `C0`<sub>h</sub> | 5 | 5 | 160 | `02CA61B0` | `02CA6250` |
-| `00477EE0` | root `+DA0`<sub>h</sub> | `260`<sub>h</sub> | 5 | 5 | 160 | `02CA74A0` | `02CA7540` |
+| `00409F10` | root `+0xD90` | `0x50` | 5 | 10 | 320 | `02B62E40` | `02B62F80` |
+| `0046E250` | root `+0xD98` | `0xC0` | 5 | 5 | 160 | `02CA61B0` | `02CA6250` |
+| `00477EE0` | root `+0xDA0` | `0x260` | 5 | 5 | 160 | `02CA74A0` | `02CA7540` |
 
 ## Layouts
 

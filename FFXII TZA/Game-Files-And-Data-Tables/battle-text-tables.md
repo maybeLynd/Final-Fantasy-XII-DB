@@ -14,7 +14,7 @@ loads when it first needs them.
 
 ## Where it comes from
 
-- **Word banks:** entry `+F8`<sub>h</sub> of `battle_pack.bin` (`word.bin`), bound to the registry slot
+- **Word banks:** entry `+0xF8` of `battle_pack.bin` (`word.bin`), bound to the registry slot
   `02EBF170` at start-up ([authored data tables](authored-data-tables.md)).
 - **Text groups:** kind-2 files under `ps2data/image/ff12/test_battle/<language>/binaryfile/`, one
   per group, listed by the byte table `01E09F68`. 26 ship; group 27's file, `menu05`, is named but
@@ -74,22 +74,22 @@ The `us` word banks, with their first rows:
 All 3,837 rows use the packed form. Two `us` text groups, for scale: `menu_command` has 428 strings
 (`Yes`, `No`, `-`, …) and `listhelp_ability` 64 (`Improves chance to hit.` at row 2).
 
-Strings are glyph codes, not ASCII. A byte `20`<sub>h</sub> or above is glyph `byte − 20h` of the language's
-font, and a lead byte `10`<sub>h</sub>–`1F`<sub>h</sub> with the byte after it is a two-byte glyph
-([fonts](../Menus-And-HUD/fonts.md)); `02`<sub>h</sub> is a line break, `04`<sub>h</sub> a space and `0F`<sub>h</sub> starts an escape
+Strings are glyph codes, not ASCII. A byte `0x20` or above is glyph `byte − 0x20` of the language's
+font, and a lead byte `0x10`–`0x1F` with the byte after it is a two-byte glyph
+([fonts](../Menus-And-HUD/fonts.md)); `0x02` is a line break, `0x04` a space and `0x0F` starts an escape
 ([text codes](../Menus-And-HUD/text-codes.md)).
 
-In the `us` text, `20`<sub>h</sub>–`39`<sub>h</sub> are `A`–`Z`, `3A`<sub>h</sub>–`53`<sub>h</sub>
-`a`–`z`, `A0`<sub>h</sub> `&`, `A7`<sub>h</sub> `,`, `A8`<sub>h</sub> `.` and `AA`<sub>h</sub> `:`. In `listhelp_daijinamono`, the Korean and
-Chinese text is two-byte codes with lead bytes `10`<sub>h</sub>–`18`<sub>h</sub>, and the Japanese text mixes single-byte
-codes, many at `80`<sub>h</sub> and above, with two-byte ones.
+In the `us` text, `0x20`–`0x39` are `A`–`Z`, `0x3A`–`0x53`
+`a`–`z`, `0xA0` `&`, `0xA7` `,`, `0xA8` `.` and `0xAA` `:`. In `listhelp_daijinamono`, the Korean and
+Chinese text is two-byte codes with lead bytes `0x10`–`0x18`, and the Japanese text mixes single-byte
+codes, many at `0x80` and above, with two-byte ones.
 
 ## Loader behaviour
 
 ### Word banks
 
 `003846F0` binds the word block at depth 1, so every bank offset and every row offset becomes an
-address. `003214B0(word)` takes bank `(word >> 11) & 1Fh` and row `word & 7FFh`, returns 0 when
+address. `003214B0(word)` takes bank `(word >> 11) & 0x1F` and row `word & 0x7FF`, returns 0 when
 either is past its count, and otherwise the row's address. Many readers instead index the banks
 inline with no bounds test, among them the unit name lookup in `0023A570`.
 
@@ -104,8 +104,8 @@ and the party list `002986E0` among them ([gambit screen](../Menus-And-HUD/gambi
 
 `002F9860(id)` splits the id into group `id / 1000` and row `id % 1000`. It returns the string when the
 group is below 28, its file is resident (`02EC3D80[group]`), and the row is below the table's
-`+04`<sub>h</sub>; otherwise, or when the table or its `+14`<sub>h</sub> sub-directory is null, it returns the empty string at
-`01CEB638`. The string is entry `row` of the text block that the table's `+14`<sub>h</sub> sub-directory names.
+`+0x04`; otherwise, or when the table or its `+0x14` sub-directory is null, it returns the empty string at
+`01CEB638`. The string is entry `row` of the text block that the table's `+0x14` sub-directory names.
 
 `002F9920(id)` is the second form: group `id / 10000`, then a linear search of the table's rows for a
 row equal to `id`, returning the text-block string at that row's position, or `01CEB638`. A row's
@@ -116,7 +116,7 @@ or less for `002F9860` (`id / 1000`), and of −10000 or less for `002F9920` (`i
 
 A group is loaded on demand:
 
-1. `002FA560(group)` passes the group's setter (`002F7660` and its neighbours, `20`<sub>h</sub> bytes apart) to
+1. `002FA560(group)` passes the group's setter (`002F7660` and its neighbours, `0x20` bytes apart) to
    `002385D0`, which requests kind-2 file `01E09F68[group]` (`00384420`); group 0 has no file.
 2. On delivery the setter stores the file at `02EC3D80[group]` and jumps to `00238640`, which binds
    it into `02F973C0[group]` with `003845F0`.
@@ -135,7 +135,7 @@ its file at `02EC3D80[group]` and jumps to `00238640` with the group in `ecx`:
 | 14-20 | `002F7780`, `002F77A0`, `002F7820`, `002F77C0`, `002F7920`, `002F7940`, `002F7760` |
 | 21-27 | `002F79C0`, `002F7840`, `002F7860`, `002F7880`, `002F78A0`, `002F78C0`, `002F78E0` |
 
-`002491B0(request group, group)` hands a group to that handler (`00244F50(D0h, 00248700, ...)`) and counts
+`002491B0(request group, group)` hands a group to that handler (`00244F50(0xD0, 00248700, ...)`) and counts
 it on the request group. `00292260` asks for groups 10, 20 and 14, `002922C0` (from `00556500`) for 17, and
 `00292190` (from `0057B780`) for 10, 20, 14 and 16, each only when `002F8040(group)` finds
 `02EC3D80[group]` empty. At start-up `0022A4B0` runs `00563520`, which takes a request group with the

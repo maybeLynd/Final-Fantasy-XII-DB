@@ -1,9 +1,9 @@
 function	name	site	disp	kind	instruction	route	note
-005D3C60	FUN_005d3c60	005D3C67	0h	w	mov dword ptr [rdx], Fh	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C6D	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C70	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C74	18h	w	mov dword ptr [rdx + 18h], eax	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C77	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C7B	28h	w	mov dword ptr [rdx + 28h], eax	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C7E	30h	w	mov qword ptr [rdx + 30h], rax	ctorrdx-seeded 005D3C60	
-005D3C60	FUN_005d3c60	005D3C82	38h	w	mov dword ptr [rdx + 38h], eax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C67	0x0	w	mov dword ptr [rdx], 0xf	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C6D	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C70	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C74	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C77	0x20	w	mov qword ptr [rdx + 0x20], rax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C7B	0x28	w	mov dword ptr [rdx + 0x28], eax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C7E	0x30	w	mov qword ptr [rdx + 0x30], rax	ctorrdx-seeded 005D3C60	
+005D3C60	FUN_005d3c60	005D3C82	0x38	w	mov dword ptr [rdx + 0x38], eax	ctorrdx-seeded 005D3C60	

@@ -21,15 +21,15 @@ whole or in part as its authors published it.
 It is `PVideoPlaybackWin32`'s open, the class its two thread names carry:
 
 1. It counts the processors in the process affinity mask, or asks `GetSystemInfo` when the mask is
-   empty, and builds the VP8 decoder configuration `{threads, 780h, 438h}` (1920 x 1080).
+   empty, and builds the VP8 decoder configuration `{threads, 0x780, 0x438}` (1920 x 1080).
 2. It starts the VP8 decoder: `0016DEC0` (`vpx_codec_dec_init_ver`) with the interface `0016F070`
    returns, that configuration, flags 0 and ABI version 10 (call at `0067A57D`).
 3. It opens the file with the game's own `mkvparser::IMkvReader`, `006CCB00`, which reads through the
    engine's file stream (`00597930`).
 4. It parses the container: the segment is created (`00801210`) and loaded (`00803190`), and each
    track is read from the track list (`008028E0`, `008028F0`, `00802880`).
-5. A track of type 1 becomes the video track (`+478`<sub>h</sub>). A track of type 2 becomes the audio track
-   (`+480`<sub>h</sub>) when its language equals "eng" (`00D6CDC0`) exactly as the player's flag `+538`<sub>h</sub>
+5. A track of type 1 becomes the video track (`+0x478`). A track of type 2 becomes the audio track
+   (`+0x480`) when its language equals "eng" (`00D6CDC0`) exactly as the player's flag `+0x538`
    asks (0 for English, 1 for another language), or when the file has fewer than three tracks.
    The loop does not stop at a match: with three or more tracks, the last audio track that passes
    the language test wins.
@@ -44,26 +44,26 @@ What the movie files hold is on
 
 ### Reading the movie's blocks
 
-`00679ED0` loops until the player's `+258`<sub>h</sub> is 1, waiting on the event at `+4F8`<sub>h</sub>; while the play
-state `+268`<sub>h</sub> is 1 or 2 and `+25C`<sub>h</sub> is not 2, it runs `00679BF0`, which reads the whole file:
+`00679ED0` loops until the player's `+0x258` is 1, waiting on the event at `+0x4F8`; while the play
+state `+0x268` is 1 or 2 and `+0x25C` is not 2, it runs `00679BF0`, which reads the whole file:
 
-1. It sets `+25C`<sub>h</sub> to 1 and walks the clusters from the segment's first (`008022F0`, next with
-   `008025B0`) and the blocks of each, stopping early when `+268`<sub>h</sub> becomes 3.
+1. It sets `+0x25C` to 1 and walks the clusters from the segment's first (`008022F0`, next with
+   `008025B0`) and the blocks of each, stopping early when `+0x268` becomes 3.
 2. A block whose track number names no track is skipped after a log line (`00D6CDA0`, through `0017D280`).
    A failed step to the next block logs "Error parsing next block of cluster" and returns.
 3. Video blocks (type 1) always pass. Audio blocks (type 2) pass the same language test the open
-   applies: language "eng" (`00D6CDC0`) matching flag `+538`<sub>h</sub>, or fewer than three tracks.
-4. Each frame of a passing block gets a slot in a queue, video at `+00`<sub>h</sub> and audio at `+150`<sub>h</sub> when
-   the movie has an audio track (`+480`<sub>h</sub>): `006CC6A0` reserves the frame length rounded down to
-   16 plus 16 bytes, the reader's slot 0 (`+290`<sub>h</sub>) reads the frame into the slot's data, and a
+   applies: language "eng" (`00D6CDC0`) matching flag `+0x538`, or fewer than three tracks.
+4. Each frame of a passing block gets a slot in a queue, video at `+0x00` and audio at `+0x150` when
+   the movie has an audio track (`+0x480`): `006CC6A0` reserves the frame length rounded down to
+   16 plus 16 bytes, the reader's slot 0 (`+0x290`) reads the frame into the slot's data, and a
    read that returns 0 commits the slot (`006CC710`).
-5. At the end it starts again from the first cluster when the byte `+26C`<sub>h</sub> is set and the state is
-   not 3. Otherwise it stops both queues (`006CC670`), sets `+25C`<sub>h</sub> to 2 and signals `+508`<sub>h</sub>.
+5. At the end it starts again from the first cluster when the byte `+0x26C` is set and the state is
+   not 3. Otherwise it stops both queues (`006CC670`), sets `+0x25C` to 2 and signals `+0x508`.
 
 ### The frame queues
 
-The player holds three `A8`<sub>h</sub>-byte ring queues: compressed video at `+00`<sub>h</sub>, decoded pictures at
-`+A8`<sub>h</sub> and compressed audio at `+150`<sub>h</sub> (see Layouts). Each entry is a 16-byte header, the slot size
+The player holds three `0xA8`-byte ring queues: compressed video at `+0x00`, decoded pictures at
+`+0xA8` and compressed audio at `+0x150` (see Layouts). Each entry is a 16-byte header, the slot size
 and the data length, followed by the data; an entry takes its slot size plus 16 bytes. One function
 per step:
 
@@ -74,15 +74,15 @@ per step:
 | `006CC4F0` | reader: wait for an entry and return its header |
 | `006CC550` | reader: release; count it, move the read offset, signal the space event when the writer waits |
 | `006CC7C0` | the shared wait: blocks on the queue's event (`005CD840`) until the end offset fits, wraps it at the capacity, and returns false once the queue is stopped |
-| `006CC580` | entries waiting: written minus read, 0 while `+20`<sub>h</sub> is clear |
+| `006CC580` | entries waiting: written minus read, 0 while `+0x20` is clear |
 | `006CC920` | waits on the space event and sets it again; false once the queue is stopped |
-| `006CC670` | stop: clear `+48`<sub>h</sub> and set both events, so every waiter returns |
+| `006CC670` | stop: clear `+0x48` and set both events, so every waiter returns |
 
 The video work `0067A010` takes each packet from the first queue, passes it to `vpx_codec_decode`
 (`0016DFE0`), releases it, and copies the three planes of every decoded image (`00679570`) into a
-reserved slot of the picture queue. While that queue holds more than `+2F0`<sub>h</sub> minus 3 pictures it
+reserved slot of the picture queue. While that queue holds more than `+0x2F0` minus 3 pictures it
 waits through `006CC920`. When the movie closes, `0067A9B0` closes the reader with `006CCA70`
-(`0067AA59`), which closes the `30`<sub>h</sub>-byte file stream at reader `+10`<sub>h</sub> (`0059BD80`) and frees it.
+(`0067AA59`), which closes the `0x30`-byte file stream at reader `+0x10` (`0059BD80`) and frees it.
 
 ### libwebm mkvparser
 
@@ -112,10 +112,10 @@ movie player uses four libvpx calls, each a thin wrapper that calls through the 
 
 | Function | libvpx call | Calls interface slot | Called from |
 |---|---|---|---|
-| `0016DEC0` | `vpx_codec_dec_init_ver` (ABI 10 required) | `+10`<sub>h</sub> init | `0067A57D` |
-| `0016DFE0` | `vpx_codec_decode` | `+38`<sub>h</sub> decode | `0067A091` |
-| `0016E040` | `vpx_codec_get_frame` | `+40`<sub>h</sub> get frame | `0067A0AF`, `0067A1C5` |
-| `0016DDD0` | `vpx_codec_destroy` | `+18`<sub>h</sub> destroy | `0067AAAB` |
+| `0016DEC0` | `vpx_codec_dec_init_ver` (ABI 10 required) | `+0x10` init | `0067A57D` |
+| `0016DFE0` | `vpx_codec_decode` | `+0x38` decode | `0067A091` |
+| `0016E040` | `vpx_codec_get_frame` | `+0x40` get frame | `0067A0AF`, `0067A1C5` |
+| `0016DDD0` | `vpx_codec_destroy` | `+0x18` destroy | `0067AAAB` |
 
 The decoder's SIMD kernels lie before it, from `00125740` (`emms; ret`). `0016F080` reads the
 processor's features with `cpuid` and installs kernels by address (`0016F144` to `0016F167`:
@@ -124,34 +124,34 @@ processor's features with `cpuid` and installs kernels by address (`0016F144` to
 ### Creating the decoder instance
 
 `0016F2A0` is libvpx's decoder create. Its one caller is the VP8 decode body `0016E4A0`, which calls
-it while the dword at `+1A8`<sub>h</sub> of its context is 0 and stores the instance at `+1B0`<sub>h</sub>. In order:
+it while the dword at `+0x1A8` of its context is 0 and stores the instance at `+0x1B0`. In order:
 
-1. It allocates `44A7`<sub>h</sub> bytes, rounds the block up to 32-byte alignment, keeps the raw pointer just
-   below it and clears `4480`<sub>h</sub> bytes.
-2. It arms the error handler: `setjmp` into `+1320`<sub>h</sub>, with the armed flag `+1318`<sub>h</sub> set to 1.
-3. `00172C30(+12C0h)` sets up the common decoder state (below).
-4. It sets `+4440`<sub>h</sub> to 1 and `+34DC`<sub>h</sub> to 0, builds the dequantiser tables (`00174540`) and the loop
-   filter (`00173640`, `001735C0` on `+1ED0`<sub>h</sub>), clears four 16-byte entries at `+2AD0`<sub>h</sub>, and
+1. It allocates `0x44A7` bytes, rounds the block up to 32-byte alignment, keeps the raw pointer just
+   below it and clears `0x4480` bytes.
+2. It arms the error handler: `setjmp` into `+0x1320`, with the armed flag `+0x1318` set to 1.
+3. `00172C30(+0x12C0)` sets up the common decoder state (below).
+4. It sets `+0x4440` to 1 and `+0x34DC` to 0, builds the dequantiser tables (`00174540`) and the loop
+   filter (`00173640`, `001735C0` on `+0x1ED0`), clears four 16-byte entries at `+0x2AD0`, and
    disarms the handler.
 5. The first instance runs the one-time table setup `0016F1F0`, guarded by `02EBA2EC`; a later
    instance spins on `Sleep(0)` until that word reads 2.
 
-When the `setjmp` returns non-zero it frees the state with `00172750(+12C0h)` and the block, and
+When the `setjmp` returns non-zero it frees the state with `00172750(+0x12C0)` and the block, and
 returns 0.
 
 `00172C30` (176 bytes, called only at `0016F357`) fills the common state: `00179B70` stores the
-processor count (`GetNativeSystemInfo`, at least 1) at `+2228`<sub>h</sub> and the SIMD feature bits from
-`cpuid` at `+2E70`<sub>h</sub>; it copies default probabilities from `01CDBC88` (9 bytes, to `+1DC2`<sub>h</sub>),
-`01CDC058` (4, to `+1DCB`<sub>h</sub>), `01CDC034` (3, to `+1DCF`<sub>h</sub>) and `01CDC054` (3, to `+1DD2`<sub>h</sub>); it
-writes the qword `+BC0`<sub>h</sub> = 1 (`00172CA1`) and zeroes `+BC8`<sub>h</sub>, `+C00`<sub>h</sub>, `+2224`<sub>h</sub>, `+770`<sub>h</sub>,
-`+1938`<sub>h</sub>, `+1944`<sub>h</sub> and `+194C`<sub>h</sub>.
+processor count (`GetNativeSystemInfo`, at least 1) at `+0x2228` and the SIMD feature bits from
+`cpuid` at `+0x2E70`; it copies default probabilities from `01CDBC88` (9 bytes, to `+0x1DC2`),
+`01CDC058` (4, to `+0x1DCB`), `01CDC034` (3, to `+0x1DCF`) and `01CDC054` (3, to `+0x1DD2`); it
+writes the qword `+0xBC0` = 1 (`00172CA1`) and zeroes `+0xBC8`, `+0xC00`, `+0x2224`, `+0x770`,
+`+0x1938`, `+0x1944` and `+0x194C`.
 
 ### Decoder bodies and kernels outside the member lists
 
 Five bodies the decoder calls are in neither libvpx list:
 
 - `0016FE80` and `00174790` decode one macroblock, called from `00170370` (`001709E6`) and
-  `00175070` (`00175572`). Both read the macroblock's mode info through `+F00`<sub>h</sub> and, for mode 4,
+  `00175070` (`00175572`). Both read the macroblock's mode info through `+0xF00` and, for mode 4,
   predict each 4x4 subblock (`001790A0`) before adding its residual.
 - `001294D0` is VP8's 4x4 inverse transform. It loads the constants 20091 and 35468 (stored as -30068)
   from `03001350` and `03001340`, and is called from `0016FE80` (`0017027C`) and `00174790`
@@ -183,8 +183,8 @@ arguments and what it computes in
 
 ### The VP8 control map
 
-The interface's `+20`<sub>h</sub> points at the control map `01CDB320`, `{u64 id, handler}` pairs ending with
-id `FFFFFFFF`<sub>h</sub> (`01CDB3D0`). The ids are libvpx 1.6.0's VP8 decoder controls:
+The interface's `+0x20` points at the control map `01CDB320`, `{u64 id, handler}` pairs ending with
+id `0xFFFFFFFF` (`01CDB3D0`). The ids are libvpx 1.6.0's VP8 decoder controls:
 
 | Id | Handler | Control |
 |---|---|---|
@@ -192,10 +192,10 @@ id `FFFFFFFF`<sub>h</sub> (`01CDB3D0`). The ids are libvpx 1.6.0's VP8 decoder c
 | 2 | `0016ECE0` | copy reference frame |
 | 3 | `0016EE40` | set post-processing |
 | 4 to 7 | `0016EE70` | the four debug-display controls; the one shared body is `mov eax, 4; ret`, "incapable" |
-| `100`<sub>h</sub> | `0016EE80` | last reference updates |
-| `101`<sub>h</sub> | `0016EFF0` | frame corrupted |
-| `102`<sub>h</sub> | `0016EEC0` | last reference used |
-| `103`<sub>h</sub> | `0016F030` | set decryptor |
+| `0x100` | `0016EE80` | last reference updates |
+| `0x101` | `0016EFF0` | frame corrupted |
+| `0x102` | `0016EEC0` | last reference used |
+| `0x103` | `0016F030` | set decryptor |
 
 No instruction in the image refers to any of the handlers. `0016EC20`, `0016ECE0`, `0016EE40`,
 `0016EE80`, `0016EFF0`, `0016EEC0` and `0016F030` appear only in the map. `0016EE70` is a body the
@@ -220,7 +220,7 @@ The audio thread `00679A40` runs `00679600`, which decodes packet by packet (`00
 state. Only these three movie-player functions call into libvorbis.
 
 This is the floating-point Vorbis decoder: `00882AC0` unpacks codebook floats with mantissa
-`& 1FFFFFh`, exponent `(v >> 21) & 3FFh` and bias 788 through `ldexp`. Its
+`& 0x1FFFFF`, exponent `(v >> 21) & 0x3FF` and bias 788 through `ldexp`. Its
 `_book_maptype1_quantvals` (`00882850`) has none of the guards libvorbis 1.3.6 added, so the copy
 predates 1.3.6.
 
@@ -232,7 +232,7 @@ Ver.2.05.00 Build:Jul 31 2015 16:45:20" (`01CBA5D0`) sits directly before its co
 
 `00121DB0` is the decoder's start-up. It counts calls in `02EAE0C8`, and on the first it checks
 that every character of the copyright text is printable and that its checksum (`001248B0`, over
-`32`<sub>h</sub> bytes) is `64F5`<sub>h</sub>; if either fails it loops forever. Only the sound driver (`007A0000` to
+`0x32` bytes) is `0x64F5`; if either fails it loops forever. Only the sound driver (`007A0000` to
 `007F1FFF`) calls the decoder, apart from `001243B0`, a three-byte `ret 0` body inside it that the
 linker shares with the game's code. The entry points it uses, and the bank materials they decode, are on
 [Sound engine](../Sound-And-Music/sound-engine.md).
@@ -246,8 +246,8 @@ For an Ogg Vorbis material the sound driver uses Tremor, the integer Vorbis deco
 |---|---|---|
 | `007F5970` | `ov_open_callbacks` | `_ov_open1` (`007F5580`), then `_ov_open2` (`007F5770`) when that succeeds |
 | `007F59C0` | `ov_pcm_seek` | |
-| `007F6280` | `ov_pcm_tell` | -131 when the state `+80`<sub>h</sub> is below 2, else `+78`<sub>h</sub> |
-| `007F6730` | `ov_raw_tell` | -131 when the state is below 2, else `+10`<sub>h</sub> |
+| `007F6280` | `ov_pcm_tell` | -131 when the state `+0x80` is below 2, else `+0x78` |
+| `007F6730` | `ov_raw_tell` | -131 when the state is below 2, else `+0x10` |
 | `007F6750` | `ov_read` | 16-bit output: each integer sample shifted right by 9 and clipped |
 | `007F5850` | `ov_clear` | |
 
@@ -257,9 +257,9 @@ signature (`007F807E`) after the packet's type byte and dispatches on that type:
 
 | Type | Accepted when | Unpacker |
 |---:|---|---|
-| 1 | the packet starts the stream (`+C`<sub>h</sub> of the packet) and the info has no channels yet (`+8` is 0) | `007F7B70`, the info |
+| 1 | the packet starts the stream (`+0xC` of the packet) and the info has no channels yet (`+8` is 0) | `007F7B70`, the info |
 | 3 | the info has channels | `007F79C0`, the comment |
-| 5 | the info has channels and the comment has a vendor string (`+18`<sub>h</sub>) | `007F7680`, the codebooks |
+| 5 | the info has channels and the comment has a vendor string (`+0x18`) | `007F7680`, the codebooks |
 
 A null packet and any other case return -133 (`OV_EBADHEADER`); a wrong signature returns -132 (`OV_ENOTVORBIS`).
 
@@ -283,51 +283,51 @@ The VP8 codec interface at `01CDB290`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*` | 01CEB698 | "WebM Project VP8 Decoder v1.6.0" |
-| `08`<sub>h</sub> | `i32` | 5 | interface ABI version |
-| `0C`<sub>h</sub> | `u32` | `140001`<sub>h</sub> | capabilities: decoder, post-processing, input fragments |
-| `10`<sub>h</sub> | `void*` | 0016E110 | init |
-| `18`<sub>h</sub> | `void*` | 0016E210 | destroy |
-| `20`<sub>h</sub> | `void*` | 01CDB320 | control map |
-| `28`<sub>h</sub> | `void*` | 0016E380 | peek stream info |
-| `30`<sub>h</sub> | `void*` | 0016E3A0 | get stream info |
-| `38`<sub>h</sub> | `void*` | 0016E4A0 | decode |
-| `40`<sub>h</sub> | `void*` | 0016EA80 | get frame |
-| `48`<sub>h</sub> | `...` | 0 | every later field, the encoder half among them |
+| `+0x00` | `void*` | 01CEB698 | "WebM Project VP8 Decoder v1.6.0" |
+| `+0x08` | `i32` | 5 | interface ABI version |
+| `+0x0C` | `u32` | 0x140001 | capabilities: decoder, post-processing, input fragments |
+| `+0x10` | `void*` | 0016E110 | init |
+| `+0x18` | `void*` | 0016E210 | destroy |
+| `+0x20` | `void*` | 01CDB320 | control map |
+| `+0x28` | `void*` | 0016E380 | peek stream info |
+| `+0x30` | `void*` | 0016E3A0 | get stream info |
+| `+0x38` | `void*` | 0016E4A0 | decode |
+| `+0x40` | `void*` | 0016EA80 | get frame |
+| `+0x48` | `...` | 0 | every later field, the encoder half among them |
 
 The decoder configuration `0067A480` builds on its stack:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | threads | the processor count |
-| `04`<sub>h</sub> | `u32` | `780`<sub>h</sub> | width, 1920 |
-| `08`<sub>h</sub> | `u32` | `438`<sub>h</sub> | height, 1080 |
+| `+0x00` | `u32` | threads | the processor count |
+| `+0x04` | `u32` | 0x780 | width, 1920 |
+| `+0x08` | `u32` | 0x438 | height, 1080 |
 
 One of the player's three frame queues, as the queue functions use it:
 
-`FrameQueue` (`A8`<sub>h</sub> bytes, offsets from the start of the record):
+`FrameQueue` (`0xA8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `08`<sub>h</sub> | `u64` | buffer | pointer to the ring storage |
-| `10`<sub>h</sub> | `u32` | readOffset | start of the next entry to read |
-| `14`<sub>h</sub> | `u32` | writeOffset | start of the next entry to write |
-| `18`<sub>h</sub> | `u32` | reservedEnd | end of the slot the writer has reserved |
-| `1C`<sub>h</sub> | `u32` | readEnd | end of the entry the reader holds |
-| `20`<sub>h</sub> | `u8` | counted | `006CC580` returns 0 while clear |
-| `28`<sub>h</sub> | `u64` | spaceEvent | event handle; the writer waits on it |
-| `38`<sub>h</sub> | `u64` | dataEvent | event handle; the reader waits on it |
-| `48`<sub>h</sub> | `u8` | running | cleared by `006CC670` |
-| `4C`<sub>h</sub> | `u32` | capacity | offsets wrap here |
-| `50`<sub>h</sub> | `u32` | readCount | entries released |
-| `54`<sub>h</sub> | `u32` | writeCount | entries committed |
+| `+0x08` | `u64` | buffer | pointer to the ring storage |
+| `+0x10` | `u32` | readOffset | start of the next entry to read |
+| `+0x14` | `u32` | writeOffset | start of the next entry to write |
+| `+0x18` | `u32` | reservedEnd | end of the slot the writer has reserved |
+| `+0x1C` | `u32` | readEnd | end of the entry the reader holds |
+| `+0x20` | `u8` | counted | `006CC580` returns 0 while clear |
+| `+0x28` | `u64` | spaceEvent | event handle; the writer waits on it |
+| `+0x38` | `u64` | dataEvent | event handle; the reader waits on it |
+| `+0x48` | `u8` | running | cleared by `006CC670` |
+| `+0x4C` | `u32` | capacity | offsets wrap here |
+| `+0x50` | `u32` | readCount | entries released |
+| `+0x54` | `u32` | writeCount | entries committed |
 
-`FrameQueueEntry` (`10`<sub>h</sub> bytes, offsets from the start of the record):
+`FrameQueueEntry` (`0x10` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | slotSize | data space reserved after the header |
-| `04`<sub>h</sub> | `u32` | length | the data length; the data follows the header |
+| `+0x00` | `u32` | slotSize | data space reserved after the header |
+| `+0x04` | `u32` | length | the data length; the data follows the header |
 
 ## Shipped data
 
@@ -349,7 +349,7 @@ One of the player's three frame queues, as the queue functions use it:
 - A replacement movie must be WebM with a VP8 video track; its sound must be a Vorbis track, since
   the player starts libvorbis and nothing else for audio.
 - In a movie with three or more tracks, the audio track is chosen by its language tag: "eng" when
-  the player's flag `+538`<sub>h</sub> is 0, any other tag when it is 1.
+  the player's flag `+0x538` is 0, any other tag when it is 1.
 - A movie whose Vorbis headers do not parse plays without sound.
 - libvpx 1.6.0, libwebm and the Xiph decoders are published source; the functions on this page follow
   that source, so it can be read in place of decompiled code.

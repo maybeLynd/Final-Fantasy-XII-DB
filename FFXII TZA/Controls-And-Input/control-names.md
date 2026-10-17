@@ -17,8 +17,8 @@ At start-up one small static initialiser per node passes the node to a registry 
 and `00879570` for the channel names, then registers its destructor with `atexit`. The insert
 (`00879570`-`008795F3`):
 
-1. returns `11`<sub>h</sub> when the node has no name (`00879574`-`00879588`);
-2. returns `12`<sub>h</sub> when a node with the same name is already in the list (`0087958D`-`008795CE`, `008795E6`);
+1. returns `0x11` when the node has no name (`00879574`-`00879588`);
+2. returns `0x12` when a node with the same name is already in the list (`0087958D`-`008795CE`, `008795E6`);
 3. otherwise puts the node at the front of the list whose head is `02EB9D80` for channels, `02EB83B8` for keys
    (`008795D0`-`008795DA`).
 
@@ -27,10 +27,10 @@ sets the node's type pointer to `01CD89D8` and unlinks it from the key list `02E
 
 | Node offset | Field |
 |---|---|
-| `00`<sub>h</sub> | type pointer |
-| `08`<sub>h</sub> | the name, an ASCII string |
-| `10`<sub>h</sub> | the next node, linked at start-up |
-| `18`<sub>h</sub> | the code, a 32-bit integer |
+| `+0x00` | type pointer |
+| `+0x08` | the name, an ASCII string |
+| `+0x10` | the next node, linked at start-up |
+| `+0x18` | the code, a 32-bit integer |
 
 ### What the codes are
 

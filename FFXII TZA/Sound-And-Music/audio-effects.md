@@ -16,12 +16,12 @@ addresses: "007D1500, 007D1C80, 007D9770, 007D9C60, 007DA2E0, 007DACF0, 007D8BE0
 
 ### The effect classes
 
-An effect is a `SQEX::Sd::Driver` object with two vtables: its own, and the `ICoreEffect` interface at `+08`<sub>h</sub>.
+An effect is a `SQEX::Sd::Driver` object with two vtables: its own, and the `ICoreEffect` interface at `+0x08`.
 Slot 1 of its own vtable returns its type, the number a bus record names ([Sound engine configuration](sound-engine-config.md)):
 
 | Type | Class | Vtable | Built by | Block body |
 |---:|---|---|---|---|
-| 0 | `EmptyEffect` | | `007AC4F0` itself, `18`<sub>h</sub> bytes | |
+| 0 | `EmptyEffect` | | `007AC4F0` itself, `0x18` bytes | |
 | 1 | `SurroundReverb` | `01CB7528` | `007D2150` | `007D3CB0` |
 | 2 | `Compressor` | `01CB7710` | `007D85E0` | `007D8BE0` |
 | 3 | `Filter` | `01CB7078` | `007D0AC0` | `007D1500` |
@@ -33,12 +33,12 @@ Slot 1 of its own vtable returns its type, the number a bus record names ([Sound
 | 10 | `BuildReverb` | `01CB7998` | `007DAFF0` | `007DB8D0` |
 
 The type slots are `007BD590` (1), `007E3260` (2), `007D14C0` (3), `007D82A0` (4), `007D9730` (5), `007D9C20` (6),
-`007DA2A0` (7), `007DACB0` (8) and `007DB8C0` (10). Byte `+10`<sub>h</sub> is a bypass flag that interface slot 1 `007ACD20` reads.
+`007DA2A0` (7), `007DACB0` (8) and `007DB8C0` (10). Byte `+0x10` is a bypass flag that interface slot 1 `007ACD20` reads.
 
 ### Running an effect
 
 Slot 3 of the interface runs the effect on one block. It passes the buffer as both input and output, so every effect
-works in place, with the frame count at `+08`<sub>h</sub> and the channel count at `+0C`<sub>h</sub> of its argument (`007D14D0`,
+works in place, with the frame count at `+0x08` and the channel count at `+0x0C` of its argument (`007D14D0`,
 `007DACC0`). Each thunk hands its body the effect's state block: `007D14D0` (Filter), `007D3C90` (SurroundReverb),
 `007D8BB0` (Compressor), `007D82B0` (SideChainInput), `007D9740` (SimpleFilter), `007D9C30` (Flanger), `007DA2B0`
 (GranularPitchShift) and `007DACC0` (HilbertFilter).
@@ -51,7 +51,7 @@ Other slots of an effect's own vtable, where they were read:
 | Slot | Does | Read in |
 |---:|---|---|
 | `2` | sets a parameter by id, with a ramp time | `007D1840` (Filter), `007D8E40` (Compressor) |
-| `3` | reads a parameter back | `007DA1C0` (`600`<sub>h</sub>, `601`<sub>h</sub>), `007DAC30` (`700`<sub>h</sub>) |
+| `3` | reads a parameter back | `007DA1C0` (`0x600`, `0x601`), `007DAC30` (`0x700`) |
 | `5` | advances the parameter ramps and recomputes when one moved | `007D1A10` (Filter), `007DA970` (GranularPitchShift) |
 | `6` | re-applies the four filter parameters; a null argument returns -1 | `007D1970` (Filter) |
 | `8` | recomputes the coefficients from the current ramp values | `007D1C80`, `007D9200`, `007D98F0`, `007D9EA0`, `007DAA00`, `007DAF70` |
@@ -73,14 +73,14 @@ cos = s * (1 + y2*(-0.5 + y2*(0.041666638 + y2*(-0.0013888378 + y2*(0.0000247604
 ### The filter
 
 `Filter` is a biquad, run by `007D1500` in direct form 1 on each of the eight channels, with its coefficients at
-`+D0`<sub>h</sub> and its histories after them:
+`+0xD0` and its histories after them:
 
 ```python
 y = b0*x + b1*x1 + b2*x2 - a1*y1 - a2*y2
 ```
 
-`007D1840` takes four parameters. `200`<sub>h</sub> ramps the frequency, with curve 5 when it falls and 4 when it rises; `201`<sub>h</sub>
-ramps the reciprocal of Q, a value of 0 counting as 1; `202`<sub>h</sub> ramps the gain; `203`<sub>h</sub> changes the shape. With a time above 0,
+`007D1840` takes four parameters. `0x200` ramps the frequency, with curve 5 when it falls and 4 when it rises; `0x201`
+ramps the reciprocal of Q, a value of 0 counting as 1; `0x202` ramps the gain; `0x203` changes the shape. With a time above 0,
 `007D16C0` ramps the old shape towards a neutral setting over half the time, and `007D1A10` then switches the shape and
 ramps from neutral to the stored values. A time of 0 recomputes at once.
 
@@ -124,7 +124,7 @@ each of the eight channels:
 y = b * x + a * y1
 ```
 
-`007D98F0` sets `a` (`+50`<sub>h</sub>) and `b` (`+54`<sub>h</sub>) from the frequency ramp and the mode `+48`<sub>h</sub>, with `w = f * 2pi *
+`007D98F0` sets `a` (`+0x50`) and `b` (`+0x54`) from the frequency ramp and the mode `+0x48`, with `w = f * 2pi *
 [01F41D20]`:
 
 | Mode | `a` | `b` |
@@ -139,7 +139,7 @@ puts back the base vtables of the voice's embedded filter when the voice is torn
 
 ### The flanger
 
-`Flanger` mixes each frame with a copy read from a 2,048-frame eight-channel ring (`+130`<sub>h</sub>, write index `+10130`<sub>h</sub>).
+`Flanger` mixes each frame with a copy read from a 2,048-frame eight-channel ring (`+0x130`, write index `+0x10130`).
 `007D9C60` reads the copy at:
 
 ```python
@@ -153,16 +153,16 @@ The subtracted constant at `01CB7898` is not 2pi, so the sweep is not a whole si
 
 | Value | From | Note |
 |---|---|---|
-| delay `+110`<sub>h</sub> | ramp 1 | whole frames, at most 1,023 |
-| depth `+124`<sub>h</sub> | ramp 2 | times the delay |
-| step `+120`<sub>h</sub> | ramp 3 | `rate * 2pi / device rate` |
-| dry `+114`<sub>h</sub> | ramp 4 | built at 1.0 |
-| wet `+118`<sub>h</sub> | ramp 5 | |
+| delay `+0x110` | ramp 1 | whole frames, at most 1,023 |
+| depth `+0x124` | ramp 2 | times the delay |
+| step `+0x120` | ramp 3 | `rate * 2pi / device rate` |
+| dry `+0x114` | ramp 4 | built at 1.0 |
+| wet `+0x118` | ramp 5 | |
 
 ### The pitch shifter
 
-`GranularPitchShift` changes pitch with two read heads moving through a 14,400-frame ring (`+98`<sub>h</sub>, write index
-`+70898`<sub>h</sub>). `007DA2E0` advances a grain clock by its step each frame and wraps it at 1:
+`GranularPitchShift` changes pitch with two read heads moving through a 14,400-frame ring (`+0x98`, write index
+`+0x70898`). `007DA2E0` advances a grain clock by its step each frame and wraps it at 1:
 
 1. When the clock passes 0.25 the first head restarts, and at 0.75 the second: its delay starts at `(pitch - 1)`
    grain lengths when the pitch is above 1, and at 0 otherwise.
@@ -170,12 +170,12 @@ The subtracted constant at `01CB7898` is not 2pi, so the sweep is not a whole si
 3. Each head reads its delay with linear interpolation, and the output is `w * head2 + (1 - w) * head1`, with
    `w = (sin(2pi * clock) + 1) / 2`.
 
-`007DAA00` takes the pitch (parameter `600`<sub>h</sub>, built at 1.0) into `+78`<sub>h</sub> and the grain rate (`601`<sub>h</sub>, built at
-10.0) as rate over the device rate into `+7C`<sub>h</sub>; `007DA1C0` reads either back. A music voice gets one
+`007DAA00` takes the pitch (parameter `0x600`, built at 1.0) into `+0x78` and the grain rate (`0x601`, built at
+10.0) as rate over the device rate into `+0x7C`; `007DA1C0` reads either back. A music voice gets one
 ([Interactive music](interactive-music.md)).
 
 `007EA850(voice, on)` switches a voice's shifter: it looks for an effect of type 7 among effects 1 onward
-(`+108`<sub>h</sub>, count `+74`<sub>h</sub>) and works on effect 1. When switching on a bypassed shifter it first sets `600`<sub>h</sub> to 1.0,
+(`+0x108`, count `+0x74`) and works on effect 1. When switching on a bypassed shifter it first sets `0x600` to 1.0,
 and it then stores the opposite of `on` in the bypass flag. It returns -1 for an ended voice or when no effect matches.
 
 ### The frequency shifter
@@ -189,8 +189,8 @@ out = cos(phase) * x[n-4] - sin(phase) * h
 phase += 2pi * f / device rate                 ; wrapped at 2pi
 ```
 
-The taps are `+-2/pi` and `+-2/(3pi)`, which `007DAAB0` stores at `+58`<sub>h</sub>-`+70`<sub>h</sub>. The shift `f` is parameter
-`700`<sub>h</sub>, built at 1 Hz; `007DAF70` turns it into the step `+4C`<sub>h</sub>, and `007DAC30` reads it back.
+The taps are `+-2/pi` and `+-2/(3pi)`, which `007DAAB0` stores at `+0x58`-`+0x70`. The shift `f` is parameter
+`0x700`, built at 1 Hz; `007DAF70` turns it into the step `+0x4C`, and `007DAC30` reads it back.
 
 ### The compressor
 
@@ -198,15 +198,15 @@ The taps are `+-2/pi` and `+-2/(3pi)`, which `007DAAB0` stores at `+58`<sub>h</s
 
 | Id | Value | Stored as |
 |---|---|---|
-| `100`<sub>h</sub> | threshold in dB, built at -6 | `10^(dB/20)`, by `exp(x * 0.115129255)` |
-| `101`<sub>h</sub> | slope | as given |
-| `102`<sub>h</sub>, `103`<sub>h</sub> | input and output gain in dB | `10^(dB/20)` |
-| `104`<sub>h</sub>, `105`<sub>h</sub> | attack and release in ms | seconds |
-| `106`<sub>h</sub>, `107`<sub>h</sub> | the bus and the effect index of a side-chain input | whole numbers |
+| `0x100` | threshold in dB, built at -6 | `10^(dB/20)`, by `exp(x * 0.115129255)` |
+| `0x101` | slope | as given |
+| `0x102`, `0x103` | input and output gain in dB | `10^(dB/20)` |
+| `0x104`, `0x105` | attack and release in ms | seconds |
+| `0x106`, `0x107` | the bus and the effect index of a side-chain input | whole numbers |
 
-`007D9200` turns them into its block: threshold `+148`<sub>h</sub>, slope `+14C`<sub>h</sub>, gains `+150`<sub>h</sub> and `+154`<sub>h</sub>, attack
-`exp(-2 / (attack * rate))` at `+158`<sub>h</sub> and release `exp(-1 / (release * rate))` at `+15C`<sub>h</sub>. The rate `+138`<sub>h</sub> is
-the builder's argument. It looks the side chain up (`007AC3E0`) and keeps it at `+168`<sub>h</sub> only when its type is 4.
+`007D9200` turns them into its block: threshold `+0x148`, slope `+0x14C`, gains `+0x150` and `+0x154`, attack
+`exp(-2 / (attack * rate))` at `+0x158` and release `exp(-1 / (release * rate))` at `+0x15C`. The rate `+0x138` is
+the builder's argument. It looks the side chain up (`007AC3E0`) and keeps it at `+0x168` only when its type is 4.
 
 `007D8BE0` works on each channel with an eight-value gain state, built at 1.0:
 
@@ -223,24 +223,24 @@ The zero and one vectors it compares with live at `02EAE040`-`02EAE07F`, which t
 ### The side-chain input
 
 `SideChainInput` is a pass-through effect that keeps a copy for a compressor to listen to. `007D82E0` copies the
-block into its buffer (`+48`<sub>h</sub>, sized by `007AECD0` at build) and to the output, then scales every sample in the
-buffer by `+54`<sub>h</sub> and adds `+58`<sub>h</sub>.
+block into its buffer (`+0x48`, sized by `007AECD0` at build) and to the output, then scales every sample in the
+buffer by `+0x54` and adds `+0x58`.
 
 ### The surround reverb
 
-`SurroundReverb` keeps its state block at `+7D0`<sub>h</sub>, and `007D3CB0` runs it once per frame:
+`SurroundReverb` keeps its state block at `+0x7D0`, and `007D3CB0` runs it once per frame:
 
-1. It writes the input frame into a 24,000-frame eight-channel history (`+10`<sub>h</sub> of the block; wrap at `007D5682`).
-2. For each output channel (count `+0C`<sub>h</sub>), it sums 19 taps of that history, each with its own delay and gain. The
+1. It writes the input frame into a 24,000-frame eight-channel history (`+0x10` of the block; wrap at `007D5682`).
+2. For each output channel (count `+0x0C`), it sums 19 taps of that history, each with its own delay and gain. The
    byte table `01CB73E0` picks one of two delay sets per channel (`007D482F`).
 3. It reads 16 delay lines, damps each with a one-pole filter, and mixes them with a 16-point Hadamard transform after
-   scaling each line (`007D3B80`, called at `007D4D98`): line `i` times the state block's `[+418h][i]`, then unnormalised
+   scaling each line (`007D3B80`, called at `007D4D98`): line `i` times the state block's `[+0x418][i]`, then unnormalised
    butterflies `a + b`, `a - b` at strides 1, 2, 4 and 8.
 4. It writes the mixed lines back: each sample `k` of line `i` becomes `mixed[i][k] + v[i] x s[k]`
-   (`007D4DB2`-`007D4DF2`), `v[i] = [+410h][i]` (the pointer `007D3D0E` reads is parked at `[rbp+18h]` by
+   (`007D4DB2`-`007D4DF2`), `v[i] = [+0x410][i]` (the pointer `007D3D0E` reads is parked at `[rbp+0x18]` by
    `007D3D7E` and reloaded at `007D4DA8`), with the same eight samples `s` for every line.
 5. `s = 0.125 x (p + a + r)` per sample (`[00D90640]`, `007D4CBC`-`007D4CC6`): `p` the quad pair formed at
-   `007D4B6D` and `007D4B81`, `a` the output of the third allpass stage (coefficient `[+12Ch]`, `007D4C6A`,
+   `007D4B6D` and `007D4B81`, `a` the output of the third allpass stage (coefficient `[+0x12C]`, `007D4C6A`,
    `007D4C7A`) and `r` the ring sample read at `007D4C9F`, added at `007D4CB0`.
 6. It runs the output through three filter stages, `007D3200` twice and `007D33B0` (`007D54A7`-`007D54EF`).
 7. It moves every line's position on, wrapping each at its length, and moves on four further rings.
@@ -250,8 +250,8 @@ The rings are 16,384, 1,024, 2,048 and 2,048 frames long, the last three read 36
 frame with both feedback terms taken from the input history (`y = b0*x + (b1 - a1)*x1 + (b2 - a2)*x2`). With their
 flags set, both flush tiny values by adding and subtracting 1.0.
 
-`007D6CD0` recomputes the reverb's ten equaliser biquads, `A0`<sub>h</sub> bytes apart from `+BF0`<sub>h</sub>, from parameter ramps
-`30`<sub>h</sub> bytes apart from `+230`<sub>h</sub>. They are a high-pass, three peaking filters and a low-pass, then a low shelf, three
+`007D6CD0` recomputes the reverb's ten equaliser biquads, `0xA0` bytes apart from `+0xBF0`, from parameter ramps
+`0x30` bytes apart from `+0x230`. They are a high-pass, three peaking filters and a low-pass, then a low shelf, three
 peaking filters and a high shelf (`007D0EA0`, `007D1330`, `007D1080`, `007D1140`, `007D0F60`). The builder calls it
 (`007D2DE1`), as do slots 5 and 6.
 
@@ -260,8 +260,8 @@ buffers and per-channel tap tables and puts back the base vtables; `007D31B0` ca
 
 ### The build reverb
 
-`BuildReverb` runs its own body in slot 3 of its interface (`007DB8D0`). `007DB650` frees its buffers at `+18`<sub>h</sub>,
-`+28`<sub>h</sub>, `+30`<sub>h</sub>, six at `+280`<sub>h</sub> and two at `+400`<sub>h</sub>, `40`<sub>h</sub> bytes apart, and `+480`<sub>h</sub>, and puts back the base vtables.
+`BuildReverb` runs its own body in slot 3 of its interface (`007DB8D0`). `007DB650` frees its buffers at `+0x18`,
+`+0x28`, `+0x30`, six at `+0x280` and two at `+0x400`, `0x40` bytes apart, and `+0x480`, and puts back the base vtables.
 
 ## Shipped data
 
@@ -273,7 +273,7 @@ except three that a voice builds for itself:
 |---|---|---|
 | `007D9530` `SimpleFilter` | `007EA003` | every voice, as effect 0 |
 | `007D99E0` `Flanger` | `007ED01F` | a sound effect of type 6 |
-| `007DA0A0` `GranularPitchShift` | `007ED1B6` | a music voice whose header is not version 0 and sets bit 0 of `+0A`<sub>h</sub>, built bypassed (`+10`<sub>h</sub> = 1) until `007EA850` switches it on; all 116 shipped musics are version 11 with that bit clear |
+| `007DA0A0` `GranularPitchShift` | `007ED1B6` | a music voice whose header is not version 0 and sets bit 0 of `+0x0A`, built bypassed (`+0x10` = 1) until `007EA850` switches it on; all 116 shipped musics are version 11 with that bit clear |
 
 So the reverbs, the compressor, the side-chain input, the biquad filter, the pitch shifter and the frequency shifter
 are not built by the shipped game.

@@ -9,19 +9,19 @@ addresses: "00345080, 003449A0, 0034A6D0, 0034B1E0, 00346930, 00346E30, 003459C0
 
 The table has one row for every give or take in the shipping scripts under `plan_master/us`: 5,198 rows in 355
 scripts. Item ids are the encoded ids of [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md), so a
-reward package (`9XXXh`) gives its gil and items together.
+reward package (`0x9xxx`) gives its gil and items together.
 
 ### The verbs
 
 | Verb | Id | Arguments | What it does | Rows |
 |---|---|---|---|---:|
-| `additemmes` | `480`<sub>h</sub> | item, count | opens the "obtained" window (`0034A6D0`), waits for it to close, then adds the item (`0034B1E0`) | 2,486 |
-| `additem_47f` | `47F`<sub>h</sub> | item, count, window | adds the item, opening the window first when the third argument is non-zero (`003449A0`) | 2,123 |
-| `additem` | `2E5`<sub>h</sub> | item, count | opens the window and adds the item (`00345080`) | 220 |
-| `subitem` | `2F2`<sub>h</sub> | item, count | takes the count away (`003459C0`) | 284 |
-| `setitemnum` | `55C`<sub>h</sub> | item, count | sets the count held (`00345520`) | 5 |
-| `addgill` | `2E7`<sub>h</sub> | amount | adds gil (`00346930`) | 17 |
-| `subgill` | `2E8`<sub>h</sub> | amount | takes gil (`00346E30`) | 63 |
+| `additemmes` | `0x480` | item, count | opens the "obtained" window (`0034A6D0`), waits for it to close, then adds the item (`0034B1E0`) | 2,486 |
+| `additem_47f` | `0x47F` | item, count, window | adds the item, opening the window first when the third argument is non-zero (`003449A0`) | 2,123 |
+| `additem` | `0x2E5` | item, count | opens the window and adds the item (`00345080`) | 220 |
+| `subitem` | `0x2F2` | item, count | takes the count away (`003459C0`) | 284 |
+| `setitemnum` | `0x55C` | item, count | sets the count held (`00345520`) | 5 |
+| `addgill` | `0x2E7` | amount | adds gil (`00346930`) | 17 |
+| `subgill` | `0x2E8` | amount | takes gil (`00346E30`) | 63 |
 
 Every item verb goes through `0032A810` or `0032A830`, which call the inventory change `00300B80` or `00300BA0` and
 floor the count they return at 0 (`0032A81C`-`0032A820`, `0032A83C`-`0032A840`); the gil verbs go through
@@ -37,7 +37,7 @@ floor the count they return at 0 (`0032A81C`-`0032A820`, `0032A83C`-`0032A840`);
 | an element of a script table | 4 |
 | none: a gil row | 80 |
 
-The four set rows are Montblanc's talk in `rbn_a14`, which gives one of the packages `902F`<sub>h</sub>-`9036`<sub>h</sub>. The four
+The four set rows are Montblanc's talk in `rbn_a14`, which gives one of the packages `0x902F`-`0x9036`. The four
 table rows are three `subitem` calls in `fon_b01` and one `additemmes` there.
 
 ### The shared give routines
@@ -45,7 +45,7 @@ table rows are three `subitem` calls in `fon_b01` and one `additemmes` there.
 230 shipping scripts carry a copy of a shared routine actor that gives, `イベント特殊効果画面`, or its variants `_EV`
 and `_RRP`. A
 routine function shows the "obtained" window and gives the value of one variable: one of three script globals at
-`C88`<sub>h</sub>, `C8C`<sub>h</sub> and `CF0`<sub>h</sub>, or a variable of the script itself. A caller stores the item in that variable and
+`0xC88`, `0xC8C` and `0xCF0`, or a variable of the script itself. A caller stores the item in that variable and
 then requests the routine function.
 
 1. The routine copies hold 2,072 give calls. These are not rows; a copy gives nothing until a caller requests it.
@@ -83,8 +83,8 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 - A zone script is the field whose entry in the `us` zone path table (`01EE23A0`, three paths per field id)
   names it. The map name is the area name at that field id in `planmapname.bin`, and the region the name at the
   field's group word in `map_ref.bin`. A name that is only a zone code is left out and the region kept.
-- An event script is the scene of every zone script that loads it with `eventread` (`0E7`<sub>h</sub>) or `eventread_e8`
-  (`0E8`<sub>h</sub>) and a literal id; the id names the event through the `us` event path table, four paths per id.
+- An event script is the scene of every zone script that loads it with `eventread` (`0x0E7`) or `eventread_e8`
+  (`0x0E8`) and a literal id; the id names the event through the `us` event path table, four paths per id.
 - `mic_b07` has no field id in the path table, so no map loads it.
 
 Actor and function names are the ones the scripts carry.

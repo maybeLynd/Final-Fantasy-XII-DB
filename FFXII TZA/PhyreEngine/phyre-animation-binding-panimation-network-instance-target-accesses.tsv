@@ -1,7 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
-005A3550	FUN_005a3550	005A3557	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 005A3550	
-005A3550	FUN_005a3550	005A3559	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 005A3550	
-005A3550	FUN_005a3550	005A355D	10h	w	mov dword ptr [rdx + 10h], eax	ctorrdx-seeded 005A3550	
-005A3550	FUN_005a3550	005A3560	18h	w	mov qword ptr [rdx + 18h], rax	ctorrdx-seeded 005A3550	
-005A3550	FUN_005a3550	005A3564	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 005A3550	
-005A3550	FUN_005a3550	005A3568	28h	w	mov qword ptr [rdx + 28h], rax	ctorrdx-seeded 005A3550	
+005A3550	FUN_005a3550	005A3557	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 005A3550	
+005A3550	FUN_005a3550	005A3559	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 005A3550	
+005A3550	FUN_005a3550	005A355D	0x10	w	mov dword ptr [rdx + 0x10], eax	ctorrdx-seeded 005A3550	
+005A3550	FUN_005a3550	005A3560	0x18	w	mov qword ptr [rdx + 0x18], rax	ctorrdx-seeded 005A3550	
+005A3550	FUN_005a3550	005A3564	0x20	w	mov qword ptr [rdx + 0x20], rax	ctorrdx-seeded 005A3550	
+005A3550	FUN_005a3550	005A3568	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 005A3550	

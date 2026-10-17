@@ -29,7 +29,7 @@ language; see [file path resolution](../Game-Files-And-Data-Tables/file-path-res
 |---|---|---|---|
 | 0 (zone) | 5 | id × 3 | `.ebp`, `.mot`, `.fpk` |
 | 1 to 3 (events) | 8 | id × 4 | `.ebp`, `.mot`, `.snd`, `.vpc` |
-| 4 | 1 | id + `6B`<sub>h</sub> | the script only |
+| 4 | 1 | id + `0x6B` | the script only |
 
 The zone script is requested from `00314020` (`003140BA`, manager 0, the id held at `01EED064`).
 Event scripts go to managers 1 to 3: `003522C0` and `00353080` add 1 to their argument and clamp
@@ -41,12 +41,12 @@ it to 1 to 3, and `00353590`, `003CA07C` and `00306BD0` use manager 3.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | magic | 'EBP2' in every shipped container |
-| `04`<sub>h</sub> | `u32` | slotCount | 20; slot n is dispatched only when slotCount > n |
-| `08`<sub>h</sub> | `u32` | reserved | 0 |
-| `0C`<sub>h</sub> | `u32` | reserved | 0 |
-| `10`<sub>h</sub> | `u32[20]` | sectionOff | indexed by section number; file-relative offset, 0 = absent |
-| `60`<sub>h</sub> | `u8[32]` | padding | 0; the first section starts at +`80`<sub>h</sub> |
+| `+0x00` | `u32` | magic | 'EBP2' in every shipped container |
+| `+0x04` | `u32` | slotCount | 20; slot n is dispatched only when slotCount > n |
+| `+0x08` | `u32` | reserved | 0 |
+| `+0x0C` | `u32` | reserved | 0 |
+| `+0x10` | `u32[20]` | sectionOff | indexed by section number; file-relative offset, 0 = absent |
+| `+0x60` | `u8[32]` | padding | 0; the first section starts at +`0x80` |
 
 A section has no stored length: it runs to the next present offset, and the last one to the end of
 the file. The walker passes each section on as `fileBase + offset` with the manager index in the
@@ -56,7 +56,7 @@ low four bits, so every offset must be a multiple of 16.
 
 | Slot | First bytes | Handler, then binder | Kept in | Documented in |
 |---|---|---|---|---|
-| 0 | `8000000B`<sub>h</sub> | `0032F850` → `0026C8C0` | `022C6C28` | [script image](ebp-script-image.md) |
+| 0 | `0x8000000B` | `0032F850` → `0026C8C0` | `022C6C28` | [script image](ebp-script-image.md) |
 | 2 | | `00330190` → `0026C880` | `022C6CA0` | [script text](ebp-text-sections.md) |
 | 3 | | `00330220` → `0026C8A0` | `022C6CC8` | [script text](ebp-text-sections.md) |
 | 4 | `NAVI` | `00332100` → `003DFDC0` | | [navigation icons](ebp-navigation-icons.md) |
@@ -82,10 +82,10 @@ Measured over every `.ebp` in `FFXII_TZA.vbf`.
 | Fact | Value |
 |---|---|
 | `.ebp` files | 10,045: 1,115 per language tree (`kr` and `cn` 1,116), plus the 8 control scripts |
-| containers | 10,036; the 9 others are `event/evt_t/evt_t0020/evt_t0020.ebp` in each tree, 2,416 bytes beginning with the word `80000007`<sub>h</sub> and no header |
+| containers | 10,036; the 9 others are `event/evt_t/evt_t0020/evt_t0020.ebp` in each tree, 2,416 bytes beginning with the word `0x80000007` and no header |
 | `us` tree | 1,114 containers: 769 zone scripts and 345 event scripts |
-| header | magic `EBP2`, slot count 20, both reserved words 0, padding zero, first offset `80`<sub>h</sub>: all 10,036 |
-| section offsets | 50,912, every one a multiple of `40`<sub>h</sub>, ascending and inside the file in every container |
+| header | magic `EBP2`, slot count 20, both reserved words 0, padding zero, first offset `0x80`: all 10,036 |
+| section offsets | 50,912, every one a multiple of `0x40`, ascending and inside the file in every container |
 | container size | 640 to 468,352 bytes (`us` 640 to 421,184) |
 | slots never present | 1, 5, 7, 13, 15, 17 and 18, in all 10,036 |
 | `us` occupancy | 0: 1,114; 2: 828; 3: 359; 4: 209; 6: 67; 8 and 9: 423; 10 and 11: 113; 12: 842; 14: 140; 16: 517; 19: 271 |
@@ -105,12 +105,12 @@ word. `0032FCA0`:
 1. tears down the manager's previous script (`0032ED80`, below) and records the id at `022C6D28`
    and `022C6D40`;
 2. picks the namespace and index from the table above;
-3. for managers 0 to 3, requests the companion files: index + 1 into the `88`<sub>h</sub>-byte buffer
+3. for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer
    `022C6E70` (pending bit 13), and, for managers 1 to 3, index + 2 into `022C6E98` (bit 12);
-4. for managers 1 to 3, requests index + 3 of namespace 8 into the `208`<sub>h</sub>-byte buffer `022C6EE8`
+4. for managers 1 to 3, requests index + 3 of namespace 8 into the `0x208`-byte buffer `022C6EE8`
    (bit 15) and the same index of namespace 37 into `022C6EC0` (bit 14); each request is made only
    when `0032E400` reports a size;
-5. pushes the arena the image will live in: 5 for manager 0, `D`<sub>h</sub> for managers 1 and 2 and `E`<sub>h</sub>
+5. pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE`
    for manager 3 when that arena is enabled (`0036B200`), otherwise 5;
 6. calls `00330310` to read the script itself.
 
@@ -126,22 +126,22 @@ for all five managers, by `0032F430`.
 1. takes the size from `0032E400`, which rounds the size table's figure up to a multiple of 64;
 2. sets pending bit 17;
 3. allocates that many bytes with `0036A100` in the current arena and labels the block with
-   `0036C660` (source name `atelload.c`, tag `95C`<sub>h</sub>);
-4. stores the buffer at `022C6C00[manager]`, sets the manager record's `+11`<sub>h</sub> bit 3, and forms the
+   `0036C660` (source name `atelload.c`, tag `0x95C`);
+4. stores the buffer at `022C6C00[manager]`, sets the manager record's `+0x11` bit 3, and forms the
    packed value `buffer | manager`;
 5. calls `00332250`, which for namespaces 5, 8 and 37 cuts a folder name out of the path (such as
    `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value (`0017FA90`);
 6. files an asynchronous whole-file read (`0032E620`) whose completion is `003304A0(packed)`;
-7. for manager 0, files a `800`<sub>h</sub>-byte pre-read of the zone's index + 2, its `.fpk` (`0032EB40`), which no
+7. for manager 0, files a `0x800`-byte pre-read of the zone's index + 2, its `.fpk` (`0032EB40`), which no
    zone ships, so it reads nothing.
 
-Script id `D4`<sub>h</sub> (namespace 8 index `350`<sub>h</sub>, `event/pre_z/pre_z0000` in the `us` tables) is
+Script id `0xD4` (namespace 8 index `0x350`, `event/pre_z/pre_z0000` in the `us` tables) is
 preloaded once by `0032F430` into `022C6F10`; a request for it copies that image into the new
 buffer and walks it at once instead of reading the file.
 
 ### The directory walk
 
-`003304A0` (570 bytes) recovers the file base with `and rdi, FFFFFFF0h` (`003304D9`) and the
+`003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0` (`003304D9`) and the
 manager from the low nibble. It sets pending bit 1, and bit 9 when slot 12 is present
 (`003304DE`–`003304F5`). It then tests each slot in a fixed order with the same five steps:
 `slotCount > n` (unsigned), offset non-zero, `base + offset`, `or` the manager into the low nibble,
@@ -153,7 +153,7 @@ manager 0 (`0033066B`). The first four calls are bracketed by the text-layer cal
 `0017FBE0`. The walk reads nothing else: not the magic, not the reserved words and not the padding.
 
 The packed value is carried in 32 bits (`00330510 or eax, ebx`, `00330512 mov ecx, eax`), and each
-handler masks it back with `FFFFFFF0`<sub>h</sub>, so the buffer must lie below 4 GiB and every section offset
+handler masks it back with `0xFFFFFFF0`, so the buffer must lie below 4 GiB and every section offset
 must keep the low four bits clear.
 
 ### Handlers
@@ -177,7 +177,7 @@ and are not tracked per manager. Section 14 is only stored; `0032F1B0` binds it.
 
 The other handlers clear bits 4 to 8, 10, 11 and 16, which nothing on this route sets. Every
 clearer applies the same rule: when the word without bit 0 becomes zero it clears the record's
-`+11`<sub>h</sub> bit 3; when the whole word goes from non-zero to zero it runs `0032F1B0(manager)`.
+`+0x11` bit 3; when the whole word goes from non-zero to zero it runs `0032F1B0(manager)`.
 
 `0032F1B0` binds section 14 through `0037AA90` for managers above 0, with its light bookkeeping
 (`0037B230`, `003DE920`, `0037B290`), then runs `0026CE60`, which builds the manager's actors from the

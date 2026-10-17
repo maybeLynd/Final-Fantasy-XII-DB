@@ -1,4 +1,4 @@
-object	name	key_words	authored_24h	after_init_24h	vtable	installer	xc_slot	atexit_teardown	deleting_dtor	value_domain	evaluator	defines
+object	name	key_words	authored_0x24	after_init_0x24	vtable	installer	xc_slot	atexit_teardown	deleting_dtor	value_domain	evaluator	defines
 (dynamic)	(from the asset)	1	-	1	00D80EA8	-	-	-	006B86D0	006B9B90	006B9050	006B94C0
 01F2EBC8	NUM_LIGHTS	3	1	1	00D80ED0	001670F0	008C43E8	008B5930	006B8790	006B9CF0	006B9120	006B9630
 01F2EBF0	LOD_BLEND	1	1	1	00D80EF8	001670A0	008C43F0	008B58B0	006B8750	006B9B90	006B90A0	006B94C0

@@ -41,7 +41,7 @@ In the shipped executable:
 | `computes` | what the body does, from its instructions |
 | `reads`, `writes` | the fields it reads and writes: `S+` and `T+` for the source's and target's stats record, `act+` for the action row, `wpn+` for the main-hand weapon row, `res+` for the result record, `ctx+` for the context, and scratch globals by address |
 | `statuses_tested` | the source's (`ctx+4`) or target's (`ctx+8`) statuses it tests, by name |
-| `effects_tested` | the merged effect bits (`ctx+1Ah`...) and the layer bits (`+68`<sub>h</sub>, `+78`<sub>h</sub>) it tests, with the effect's augment text, or "(no augment text)" when the augment text bank holds none |
+| `effects_tested` | the merged effect bits (`ctx+0x1A`...) and the layer bits (`+0x68`, `+0x78`) it tests, with the effect's augment text, or "(no augment text)" when the augment text bank holds none |
 | `sites` | the instructions that show the row |
 
 Two formulas the rows use often are written once in them:

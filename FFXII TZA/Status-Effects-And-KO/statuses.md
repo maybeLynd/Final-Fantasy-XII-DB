@@ -7,15 +7,15 @@ addresses: "02EBF118, 00236D94, 00387730, 003876D0, 0030E68A, 00387E5D, 0030E8C4
 
 ## What it lists
 
-A unit's statuses are 32 bits, status *s* being bit `1 << s`, held in its stats record's words `+64`<sub>h</sub> and
-`+3C`<sub>h</sub>, with immunities in `+38`<sub>h</sub> ([Gaining and losing statuses](status-changes.md)). Each status has a
+A unit's statuses are 32 bits, status *s* being bit `1 << s`, held in its stats record's words `+0x64` and
+`+0x3C`, with immunities in `+0x38` ([Gaining and losing statuses](status-changes.md)). Each status has a
 40-byte row in `battle_pack.bin` section 15, bound to `02EBF118` (`00236D94`). The name is entry *s* of text bank
-5 (row word `+00`<sub>h</sub> = `2800`<sub>h</sub> + *s*), and the help line is entry *s* of `listhelp_status.bin` (row word `+0A`<sub>h</sub>,
+5 (row word `+0x00` = `0x2800` + *s*), and the help line is entry *s* of `listhelp_status.bin` (row word `+0x0A`,
 text id 12,000 + *s*, `0031E288`).
 
 ### Duration and beat
 
-The default duration comes from row byte `+08`<sub>h</sub> through `00387730` (`00387740`-`00387992`):
+The default duration comes from row byte `+0x08` through `00387730` (`00387740`-`00387992`):
 
 ```python
 b = row +0x08            (0xFF: no duration)
@@ -25,9 +25,9 @@ beneficial:  v = trunc(b + b * vit / 100), times 1.5 with Spellbound (augment 30
 duration timer = v * 300 * frame base
 ```
 
-The beat timer is row byte `+09`<sub>h</sub> times 30 times the frame base (`003876D0`). The periodic step takes 10 off both
-every frame ([Status timers](status-timers.md)), so `+08`<sub>h</sub> is in seconds and `+09`<sub>h</sub> in tenths of a second at 30
-and at 60 frames per second. Petrify and Doom have no duration in their rows (`+08`<sub>h</sub> is `FF`<sub>h</sub>); instead
+The beat timer is row byte `+0x09` times 30 times the frame base (`003876D0`). The periodic step takes 10 off both
+every frame ([Status timers](status-timers.md)), so `+0x08` is in seconds and `+0x09` in tenths of a second at 30
+and at 60 frames per second. Petrify and Doom have no duration in their rows (`+0x08` is `0xFF`); instead
 `00387730` returns a count of 11 for them before it reads the row (`00387740`), and the count steps down on each
 beat; the player sees 10. Augment 30's text is "Increases duration of status effects."
 
@@ -35,21 +35,21 @@ beat; the player sees 10. Augment 30's text is "Increases duration of status eff
 
 Two masks over status ids sit in each row:
 
-- **cancels**, row `+0C`<sub>h</sub>: when the status lands, each status in the mask is removed from the timed word
+- **cancels**, row `+0x0C`: when the status lands, each status in the mask is removed from the timed word
   (`0030E63D`-`0030E6D7`);
-- **blocked by**, row `+20`<sub>h</sub>: the status is not applied while the target already has any status in the mask
+- **blocked by**, row `+0x20`: the status is not applied while the target already has any status in the mask
   (`00387E5D`-`00387E63`, `0038FE0D`, `003909DC`).
 
 ### The flag word
 
-Row word `+06`<sub>h</sub> holds these bits:
+Row word `+0x06` holds these bits:
 
 | Bit | Meaning | Sites |
 |---|---|---|
 | `13` | harmful: Vitality shortens it, a removal posts "is cured of" rather than "fades from", and augment 57 blocks it | `00387806`, `0046A34D`, `00387D25`-`00387D76` |
 | `10` | Remedy always cures it | `003873FE`, `0038540C` |
 | `14`, `12`, `11` | Remedy cures it with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) | `0038746E`, `003874DE`, `0038754D` |
-| `5` | it can be applied again while present in the timed word, restarting its timers; one held in `+3C`<sub>h</sub> is still refused | `00387DA1`-`00387DC6`, `00390953` |
+| `5` | it can be applied again while present in the timed word, restarting its timers; one held in `+0x3C` is still refused | `00387DA1`-`00387DC6`, `00390953` |
 | `8` | it is refused on a target that is not a party record | `00387E17`, `0038FDC6`, `003909A5` |
 
 The augment texts (bank 10, entries 116-118) are "Remedies remove Stop, Doom, and Disease.", "Remedies remove
@@ -57,19 +57,19 @@ Petrify, Confuse, and Oil." and "Remedies remove Sleep, Sap, Immobilize, and Dis
 
 ### Statuses the game checks together
 
-Code tests the two status words together: it loads `+64`<sub>h</sub>, ORs `+3C`<sub>h</sub> into it and tests a mask. Over every
+Code tests the two status words together: it loads `+0x64`, ORs `+0x3C` into it and tests a mask. Over every
 function of the image this happens at 248 sites in 167 functions (`003868F1`-`003868F7` is one). The masks group the
 statuses by what they stop:
 
 | Mask | Statuses | Sites | What it stops |
 |---|---|---:|---|
-| `80000003`<sub>h</sub> | KO, Stone, X-Zone | 127 | taking HP damage (`00300530`), and the defeat and slot-release steps, which run their full work only for a unit without them (`00233AD0`, `00234200`) |
-| `00010000`<sub>h</sub> | Disease | 44 | HP recovery and the HP checks of gambits and targeting (`0030F340`, `00385B10`, `00301AD0`, `003083B0`) |
-| `08000020`<sub>h</sub> | Confuse, Berserk | 7 | following orders: stance, engagement and moving under the player's control (`00307D10`, `00308130`, `00325D90`) |
-| `8800203B`<sub>h</sub> | KO, Stone, Stop, Sleep, Confuse, Disable, Berserk, X-Zone | 3 | issuing a command (`00311CF0`, `00307E70`) |
-| `8000001B`<sub>h</sub> | KO, Stone, Stop, Sleep, X-Zone | 2 | continuing or queueing an action (`002FFB60`, `00313CD0`) |
-| `8000201B`<sub>h</sub>, `8000401B`<sub>h</sub> | the same with Disable, or with Immobilize | 3 | stance and movement queries (`00307DF0`, `0030BFB0`, `00325D90`) |
-| `00010010`<sub>h</sub> | Sleep, Disease | 1 | the periodic HP credit (`00386860`) |
+| `0x80000003` | KO, Stone, X-Zone | 127 | taking HP damage (`00300530`), and the defeat and slot-release steps, which run their full work only for a unit without them (`00233AD0`, `00234200`) |
+| `0x00010000` | Disease | 44 | HP recovery and the HP checks of gambits and targeting (`0030F340`, `00385B10`, `00301AD0`, `003083B0`) |
+| `0x08000020` | Confuse, Berserk | 7 | following orders: stance, engagement and moving under the player's control (`00307D10`, `00308130`, `00325D90`) |
+| `0x8800203B` | KO, Stone, Stop, Sleep, Confuse, Disable, Berserk, X-Zone | 3 | issuing a command (`00311CF0`, `00307E70`) |
+| `0x8000001B` | KO, Stone, Stop, Sleep, X-Zone | 2 | continuing or queueing an action (`002FFB60`, `00313CD0`) |
+| `0x8000201B`, `0x8000401B` | the same with Disable, or with Immobilize | 3 | stance and movement queries (`00307DF0`, `0030BFB0`, `00325D90`) |
+| `0x00010010` | Sleep, Disease | 1 | the periodic HP credit (`00386860`) |
 
 Nine more masks are each used at one to three sites, and 48 sites test the combined word some other way.
 
@@ -82,10 +82,10 @@ Nine more masks are each used at one to three sites, and 48 sites test the combi
 | `id` | the status id, 0-31 |
 | `name` | the name the game shows, from text bank 5 |
 | `help_text` | the help line, from `listhelp_status.bin` |
-| `duration` | the default duration before Vitality, from row `+08`<sub>h</sub>; `-` for none; `count 11` for Petrify and Doom, from the code, not the row |
-| `beat` | the interval of the status's periodic step, from row `+09`<sub>h</sub>; `-` for none |
-| `cancels` | the statuses it removes when it lands, from row `+0C`<sub>h</sub> |
-| `blocked_by` | the statuses that keep it from landing, from row `+20`<sub>h</sub> |
+| `duration` | the default duration before Vitality, from row `+0x08`; `-` for none; `count 11` for Petrify and Doom, from the code, not the row |
+| `beat` | the interval of the status's periodic step, from row `+0x09`; `-` for none |
+| `cancels` | the statuses it removes when it lands, from row `+0x0C` |
+| `blocked_by` | the statuses that keep it from landing, from row `+0x20` |
 | `class` | harmful or beneficial, from flag bit 13 |
 | `remedy` | whether Remedy cures it: always, or with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) |
 | `refresh` | `yes` when it can be applied again while present (flag bit 5) |

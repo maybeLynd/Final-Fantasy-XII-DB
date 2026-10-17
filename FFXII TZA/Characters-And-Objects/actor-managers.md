@@ -18,21 +18,21 @@ manager ([field runtime](field-runtime.md)).
 
 ### The slot array
 
-A manager slot is a `288`<sub>h</sub>-byte block; five of them sit at `02098E10`, so slot `n` is
-`02098E10 + n * 288h` and the array ends at `02099AB7`. `02099D70` holds the slot being worked on:
+A manager slot is a `0x288`-byte block; five of them sit at `02098E10`, so slot `n` is
+`02098E10 + n * 0x288` and the array ends at `02099AB7`. `02099D70` holds the slot being worked on:
 the bind and the pass store it there, `002640C0` returns it and `002640D0` returns that slot's index
-`+28`<sub>h</sub>. Three one-byte getters take a slot index: `002673F0` returns `+13`<sub>h</sub>, `00267310` returns
-`+201`<sub>h</sub>, and the field pass reads `+10`<sub>h</sub>.
+`+0x28`. Three one-byte getters take a slot index: `002673F0` returns `+0x13`, `00267310` returns
+`+0x201`, and the field pass reads `+0x10`.
 
 ### The bind
 
 `0026C8C0(slot, payload, callback)` binds a loaded definition payload to a slot (its stack frame
 holds the slot pointer in `02099D70` for the duration):
 
-1. it zeroes the eight qwords `+244`<sub>h</sub>-`+27C`<sub>h</sub>, clears `+200`<sub>h</sub> bit 2, writes the slot index to
-   `+28`<sub>h</sub> and the payload pointer to `+00`<sub>h</sub>;
-2. on slot 0 it also runs `00238B00`, zeroes `+204`<sub>h</sub>-`+243`<sub>h</sub> of slots 0-3, runs `002EF350(1)` and
-   releases the two kind `D`<sub>h</sub> and `E`<sub>h</sub> registrations at `02099DD0` and `02099DD8` (`00369760`,
+1. it zeroes the eight qwords `+0x244`-`+0x27C`, clears `+0x200` bit 2, writes the slot index to
+   `+0x28` and the payload pointer to `+0x00`;
+2. on slot 0 it also runs `00238B00`, zeroes `+0x204`-`+0x243` of slots 0-3, runs `002EF350(1)` and
+   releases the two kind `0xD` and `0xE` registrations at `02099DD0` and `02099DD8` (`00369760`,
    `0036D160`, `003697F0`);
 3. still on slot 0: `0025A990` when `00377440(field)` is non-zero and `0025AA30` when
    `00377480(field)` is 0, then `003ACA90(8)`, `00360110`, `002E24B0`, `00408AD0`, `0036E3B0`,
@@ -40,40 +40,40 @@ holds the slot pointer in `02099D70` for the duration):
    `0209A2A0[0..7]`, and `0042ED30`;
 4. between the slot-0 extras and the pointer block it makes one indirect call through a checked
    function pointer with the slot index as its argument;
-5. it fills the pointer block: `+88`<sub>h</sub> = the callback or `00267930` when none was given, `+48`<sub>h</sub> =
-   the persistent save payload (`002EF2B0()`), `+50`<sub>h</sub> = payload + payload `+48`<sub>h</sub>, `+58`<sub>h</sub> =
-   `02099DF0`, `+60`<sub>h</sub> = `02099FF0`, `+98`<sub>h</sub> = `00264E30`;
-6. it sets `+68`<sub>h</sub>, `+70`<sub>h</sub>, `+78`<sub>h</sub> and `+80`<sub>h</sub> = payload + its dwords `+20`<sub>h</sub>, `+24`<sub>h</sub>, `+28`<sub>h</sub> and
-   `+2C`<sub>h</sub>, and zeroes `+40`<sub>h</sub>, `+1E0`<sub>h</sub>, `+1F0`<sub>h</sub> and `+1F8`<sub>h</sub>;
-7. it sums the `u16` entries of the payload's table at payload `+[14h]` (a count followed by the
-   entries, added in pairs with the odd tail) into `+20`<sub>h</sub>, the record count;
-8. it resets the flag bytes: `+10`<sub>h</sub> = `82`<sub>h</sub> (bits 1 and 7 only), `+11`<sub>h</sub> = `(old & F8h) | 1` (bit 0
-   set, bits 1 and 2 cleared, so a bind un-suspends the slot), `+13`<sub>h</sub> and `+14`<sub>h</sub> = 1, `+15`<sub>h</sub> =
-   (slot index is not 3), `+16`<sub>h</sub> = 1, `+17`<sub>h</sub> = `(old & 40h) | 23h` with bit 7 set only on slot 0;
-9. it sets `+12`<sub>h</sub> = (the payload's `i16 +50h` is not negative), `+200`<sub>h</sub> bit 0, and bit 1 on slot 0
-   (cleared elsewhere), and zeroes `+201`<sub>h</sub>, `+24`<sub>h</sub>, `+30`<sub>h</sub> and `+38`<sub>h</sub>;
-10. it zeroes `+A0`<sub>h</sub>-`+B8`<sub>h</sub>, `+C8`<sub>h</sub>-`+F8`<sub>h</sub>, `+100`<sub>h</sub>, `+108`<sub>h</sub>, `+1D0`<sub>h</sub>, `+1E8`<sub>h</sub> and `+1FC`<sub>h</sub>,
+5. it fills the pointer block: `+0x88` = the callback or `00267930` when none was given, `+0x48` =
+   the persistent save payload (`002EF2B0()`), `+0x50` = payload + payload `+0x48`, `+0x58` =
+   `02099DF0`, `+0x60` = `02099FF0`, `+0x98` = `00264E30`;
+6. it sets `+0x68`, `+0x70`, `+0x78` and `+0x80` = payload + its dwords `+0x20`, `+0x24`, `+0x28` and
+   `+0x2C`, and zeroes `+0x40`, `+0x1E0`, `+0x1F0` and `+0x1F8`;
+7. it sums the `u16` entries of the payload's table at payload `+[0x14]` (a count followed by the
+   entries, added in pairs with the odd tail) into `+0x20`, the record count;
+8. it resets the flag bytes: `+0x10` = `0x82` (bits 1 and 7 only), `+0x11` = `(old & 0xF8) | 1` (bit 0
+   set, bits 1 and 2 cleared, so a bind un-suspends the slot), `+0x13` and `+0x14` = 1, `+0x15` =
+   (slot index is not 3), `+0x16` = 1, `+0x17` = `(old & 0x40) | 0x23` with bit 7 set only on slot 0;
+9. it sets `+0x12` = (the payload's `i16 +0x50` is not negative), `+0x200` bit 0, and bit 1 on slot 0
+   (cleared elsewhere), and zeroes `+0x201`, `+0x24`, `+0x30` and `+0x38`;
+10. it zeroes `+0xA0`-`+0xB8`, `+0xC8`-`+0xF8`, `+0x100`, `+0x108`, `+0x1D0`, `+0x1E8` and `+0x1FC`,
    runs `00263660` and `003DDC20(index, 0)`, and on slot 3 `00359200(1)` after a `0026D6F0` on the
    focus actor;
-11. `02099DA1` becomes 1 when any slot's `+17`<sub>h</sub> bit 3 is set; on slot 0 the field state is reset
+11. `02099DA1` becomes 1 when any slot's `+0x17` bit 3 is set; on slot 0 the field state is reset
    (`0026DB30`, `002EBDB0(0)`, `002ECB70(0)`, `0209A2C4[1..3]` = 1, `002EDA60`, `002EDA80`, `002EDA50`,
    `002EDA70`, `002EDA40`, `002E83A0`, `002EDA30`, `002EBC30`); `003DD790(index)` ends the bind.
 
 ### The record pool
 
-`0026CE60(slot)` runs after the bind for a slot whose `+10`<sub>h</sub> bit 0 is clear and `+13`<sub>h</sub> is set:
+`0026CE60(slot)` runs after the bind for a slot whose `+0x10` bit 0 is clear and `+0x13` is set:
 
-1. it allocates the record pool with `002679F0(slot)` and stores it at `+08`<sub>h</sub>
+1. it allocates the record pool with `002679F0(slot)` and stores it at `+0x08`
    ([the actor record](actor-record.md)), then runs `00266C50`,
    `002342F0` on slot 0, and `00265A20` ([battle units](battle-units.md));
 2. on slot 0 it makes one checked indirect call, clears the sixteen party-slot pointers at
    `0209A210`, zeroes `02099DA6`, runs `002EA870(0)`, `002EA690` and `003DD220(1)`, then runs the
    stamping loops below and `00314010`, `00314DF0(-1)` and `00358BC0`;
-3. it clears `+13`<sub>h</sub>, fills `+40`<sub>h</sub> with payload + payload `+38`<sub>h</sub> when still 0, runs
-   `0026D3E0(slot, payload)`, sets `+10`<sub>h</sub> bit 0 and runs `00263660` on slot 3;
-4. it recomputes `02099DB4` as the sum of slots 0, 1 and 2's `+1E0`<sub>h</sub> counters (each under its own
-   `+10`<sub>h</sub> bit 0) and runs `002572E0(slot)` when both `+D8`<sub>h</sub> and `+E0`<sub>h</sub> are set (it fills the
-   camera driver block's per-row effect handles from the camera-shot rows' `+20`<sub>h</sub> words through
+3. it clears `+0x13`, fills `+0x40` with payload + payload `+0x38` when still 0, runs
+   `0026D3E0(slot, payload)`, sets `+0x10` bit 0 and runs `00263660` on slot 3;
+4. it recomputes `02099DB4` as the sum of slots 0, 1 and 2's `+0x1E0` counters (each under its own
+   `+0x10` bit 0) and runs `002572E0(slot)` when both `+0xD8` and `+0xE0` are set (it fills the
+   camera driver block's per-row effect handles from the camera-shot rows' `+0x20` words through
    `00257AD0`);
 5. it runs the resource pass `003DB1F0(slot)` and, on slot 0, ends with `00253A30`, `002EA650` and
    `00233CF0`.
@@ -81,12 +81,12 @@ holds the slot pointer in `02099D70` for the duration):
 The stamping loops of step 2 walk the slot's records and, through `003587C0(ordinal)`, store into
 each record:
 
-- the words `+C8`<sub>h</sub>, `+D6`<sub>h</sub>, `+E4`<sub>h</sub> and `+DC`<sub>h</sub>, read from four lists in the payload, zeroing the
-  record's word `+F6`<sub>h</sub> in every loop;
-- in the `+DC`<sub>h</sub> loop, `+1C`<sub>h</sub> bit 10 set when the stamp is not negative (a stamp of `FFFF`<sub>h</sub> is
-  replaced by the payload word `+16`<sub>h</sub> of a row with more than 10 entries) and cleared otherwise,
-  `00268EA0` when `+0B`<sub>h</sub> bit 3 is set, and `+1C`<sub>h</sub> bit 2 cleared;
-- in a last loop, `+F6`<sub>h</sub> zeroed once more.
+- the words `+0xC8`, `+0xD6`, `+0xE4` and `+0xDC`, read from four lists in the payload, zeroing the
+  record's word `+0xF6` in every loop;
+- in the `+0xDC` loop, `+0x1C` bit 10 set when the stamp is not negative (a stamp of `0xFFFF` is
+  replaced by the payload word `+0x16` of a row with more than 10 entries) and cleared otherwise,
+  `00268EA0` when `+0x0B` bit 3 is set, and `+0x1C` bit 2 cleared;
+- in a last loop, `+0xF6` zeroed once more.
 
 The pool is a count dword followed by the record pointers: `00358940(slot, ordinal)` returns
 `[pool + 8 + ordinal * 8]` for an ordinal from 0 to count - 1 and null otherwise.
@@ -98,123 +98,123 @@ storage class through these pointers ([script variables](../Scripts-And-Script-C
 
 | Slot field offset | Points at | Accessors on slot 0 |
 |---|---|---|
-| `40`<sub>h</sub> | payload + payload `+38`<sub>h</sub> | |
-| `48`<sub>h</sub> | the persistent save payload: the `i16[256]` operand bank, then the script globals ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)) | `00264640(i)` reads and `0026ABA0(i, v)` writes entry `i < 100h`; `00265270()` reads and `0026B730(v)` writes entry 0 |
-| `50`<sub>h</sub> | payload + payload `+48`<sub>h</sub> | |
-| `58`<sub>h</sub> | `02099DF0`, 64 words | `00264D20(i)` reads and `0026ADC0(i, v)` writes entry `i < 40h` |
-| `60`<sub>h</sub> | `02099FF0`, 32 words: the group persistent bank the save carries | `00264800(i)` reads and `0026AD10(i, v)` writes entry `i < 20h` |
-| `78`<sub>h</sub> | payload + payload `+28`<sub>h</sub>: the variable descriptor table | |
-| `98`<sub>h</sub> | `00264E30`, the resolver | |
+| `+0x40` | payload + payload `+0x38` | |
+| `+0x48` | the persistent save payload: the `i16[256]` operand bank, then the script globals ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)) | `00264640(i)` reads and `0026ABA0(i, v)` writes entry `i < 0x100`; `00265270()` reads and `0026B730(v)` writes entry 0 |
+| `+0x50` | payload + payload `+0x48` | |
+| `+0x58` | `02099DF0`, 64 words | `00264D20(i)` reads and `0026ADC0(i, v)` writes entry `i < 0x40` |
+| `+0x60` | `02099FF0`, 32 words: the group persistent bank the save carries | `00264800(i)` reads and `0026AD10(i, v)` writes entry `i < 0x20` |
+| `+0x78` | payload + payload `+0x28`: the variable descriptor table | |
+| `+0x98` | `00264E30`, the resolver | |
 
-Every accessor requires slot 0's `+10`<sub>h</sub> bit 0 and a non-null pointer, and returns 0 or does
+Every accessor requires slot 0's `+0x10` bit 0 and a non-null pointer, and returns 0 or does
 nothing otherwise; a rejected write is indistinguishable from a successful one.
 
 ### The camera entry tables
 
-`+110`<sub>h</sub> and `+170`<sub>h</sub> are two arrays of four 24-byte entries: side A at `+110`<sub>h</sub> is bound against
-the camera-shot table `[slot + D8h]` and side B at `+170`<sub>h</sub> against the camera-shake table
-`[slot + F0h]`. Each table is checked for a null pointer and the record index against its count at
-`+04`<sub>h</sub>; the entry index must be below 4.
+`+0x110` and `+0x170` are two arrays of four 24-byte entries: side A at `+0x110` is bound against
+the camera-shot table `[slot + 0xD8]` and side B at `+0x170` against the camera-shake table
+`[slot + 0xF0]`. Each table is checked for a null pointer and the record index against its count at
+`+0x04`; the entry index must be below 4.
 
 | Operation | Side A | Side B |
 |---|---|---|
-| bind `(slot, record, clock, entry, lookup)` | `003DA400`: `+0C`<sub>h</sub> = clock, `+0A`<sub>h</sub> = record, `+00`<sub>h</sub> = the table row's `+14`<sub>h</sub> (16-byte rows), `+04`<sub>h</sub> = max(lookup, 0), `+08`<sub>h</sub> = 1, `+10`<sub>h</sub> = 1.0, `+14`<sub>h</sub> = 0, then `00257230(index, value, entry)` and the reverse lookup `+18h[lookup]` = entry | `003DD230`: the same into `+17C`<sub>h</sub>, `+17A`<sub>h</sub>, `+170`<sub>h</sub>, `+174`<sub>h</sub> (a negative lookup is replaced by `005C5230()`, which returns 0), `+178`<sub>h</sub> = 1, `+180`<sub>h</sub> = 1.0, then `0037DCF0(index, value, entry)` and `+1Ch[lookup]` = entry |
-| reset all | `003DA000(slot)`: lookups `+18`<sub>h</sub>, `+1A`<sub>h</sub> = -1, each entry's `+08`<sub>h</sub> = 0 and `+0A`<sub>h</sub> = -1; `003DA370` does the same on the current slot and tail-calls `00257830` | `003DCF60(slot)`: lookups `+1C`<sub>h</sub>, `+1E`<sub>h</sub> = -1 and the four entries likewise |
-| clear one | `003DA4D0(slot, entry)`: `+08`<sub>h</sub> = 0 | |
-| republish | `003DA570(slot, entry)`: `+18h[entry +04h]` = entry | |
-| set rate | `003DA2D0(slot, entry, rate)`: writes `+120h + entry * 18h` with no bound or table test | `003DD1F0(slot, entry, rate)`: the same at `+180h + entry * 18h` |
+| bind `(slot, record, clock, entry, lookup)` | `003DA400`: `+0x0C` = clock, `+0x0A` = record, `+0x00` = the table row's `+0x14` (16-byte rows), `+0x04` = max(lookup, 0), `+0x08` = 1, `+0x10` = 1.0, `+0x14` = 0, then `00257230(index, value, entry)` and the reverse lookup `+0x18[lookup]` = entry | `003DD230`: the same into `+0x17C`, `+0x17A`, `+0x170`, `+0x174` (a negative lookup is replaced by `005C5230()`, which returns 0), `+0x178` = 1, `+0x180` = 1.0, then `0037DCF0(index, value, entry)` and `+0x1C[lookup]` = entry |
+| reset all | `003DA000(slot)`: lookups `+0x18`, `+0x1A` = -1, each entry's `+0x08` = 0 and `+0x0A` = -1; `003DA370` does the same on the current slot and tail-calls `00257830` | `003DCF60(slot)`: lookups `+0x1C`, `+0x1E` = -1 and the four entries likewise |
+| clear one | `003DA4D0(slot, entry)`: `+0x08` = 0 | |
+| republish | `003DA570(slot, entry)`: `+0x18[entry +0x04]` = entry | |
+| set rate | `003DA2D0(slot, entry, rate)`: writes `+0x120 + entry * 0x18` with no bound or table test | `003DD1F0(slot, entry, rate)`: the same at `+0x180 + entry * 0x18` |
 
-`00257230(index, value, entry)` initialises the camera driver block `02092830 + index * BB0h + entry * 2E0h`
-(or `02096520` for a negative entry): its `+178`<sub>h</sub> = the value's row `[02092810[index * 176h] + 18h + value * 40h]`
-or 0, and its clocks and scales reset (`+FC`<sub>h</sub> and `+10C`<sub>h</sub> = 1.0). `0037DCF0(index, value, entry)`
-writes into the `1E`<sub>h</sub>-byte shake entry `02ADD980 + index * 7Ah + entry * 1Eh`: byte `+03`<sub>h</sub>, dword
-`+04`<sub>h</sub>, bytes `+1B`<sub>h</sub>-`+1E`<sub>h</sub> and a dword at `+1F`<sub>h</sub> are zeroed, so the last store runs into the next
+`00257230(index, value, entry)` initialises the camera driver block `02092830 + index * 0xBB0 + entry * 0x2E0`
+(or `02096520` for a negative entry): its `+0x178` = the value's row `[02092810[index * 0x176] + 0x18 + value * 0x40]`
+or 0, and its clocks and scales reset (`+0xFC` and `+0x10C` = 1.0). `0037DCF0(index, value, entry)`
+writes into the `0x1E`-byte shake entry `02ADD980 + index * 0x7A + entry * 0x1E`: byte `+0x03`, dword
+`+0x04`, bytes `+0x1B`-`+0x1E` and a dword at `+0x1F` are zeroed, so the last store runs into the next
 entry's first bytes.
 
-The binds are reached from the camera verbs: `camerastart` `7D`<sub>h</sub> (`0034F2F0`) and
-`camerashakestart` `1A2`<sub>h</sub> (`003492F0`) pass clock 0, the record index masked to 24 bits, the entry
-and a popped lookup; `camerastart` `7E`<sub>h</sub> (`0034F930`) and `camerashakestart` `1A3`<sub>h</sub> (`00349730`)
+The binds are reached from the camera verbs: `camerastart` `0x7D` (`0034F2F0`) and
+`camerashakestart` `0x1A2` (`003492F0`) pass clock 0, the record index masked to 24 bits, the entry
+and a popped lookup; `camerastart` `0x7E` (`0034F930`) and `camerashakestart` `0x1A3` (`00349730`)
 pass a lookup of -1, which side A clamps to 0 and side B replaces with `005C5230()` = 0. The lookup
 subscript is not bounded above by either bind: a lookup of 110, the largest literal a shipped script
-passes, stores the entry index at slot `+F4`<sub>h</sub>, inside the pointer `+F0`<sub>h</sub>.
+passes, stores the entry index at slot `+0xF4`, inside the pointer `+0xF0`.
 
-`003DA500` exchanges the two halves of both reverse lookups of every live slot (`+18`<sub>h</sub> with `+1A`<sub>h</sub>,
-`+1C`<sub>h</sub> with `+1E`<sub>h</sub>) and then sets `+1A`<sub>h</sub> and `+1E`<sub>h</sub> to -1. It runs from `002F1950`, the callback
-the `crossfade` task (`002F1A90`, verb `016F`<sub>h</sub>) stores at task `+08`<sub>h</sub>, only for a crossfade
-opened with mode bit 2 (task `+28`<sub>h</sub>).
+`003DA500` exchanges the two halves of both reverse lookups of every live slot (`+0x18` with `+0x1A`,
+`+0x1C` with `+0x1E`) and then sets `+0x1A` and `+0x1E` to -1. It runs from `002F1950`, the callback
+the `crossfade` task (`002F1A90`, verb `0x016F`) stores at task `+0x08`, only for a crossfade
+opened with mode bit 2 (task `+0x28`).
 
 ### The step-point bits
 
-Each slot carries two 512-bit arrays, sixteen dwords each: the status bits at `+204`<sub>h</sub> and the mark
-bits at `+244`<sub>h</sub>. Point `n` is clamped to 0-511 and lives in dword `n >> 5`, bit `n & 31`. The verbs
-pass the calling actor's manager (record `+15`<sub>h</sub>) as the slot:
+Each slot carries two 512-bit arrays, sixteen dwords each: the status bits at `+0x204` and the mark
+bits at `+0x244`. Point `n` is clamped to 0-511 and lives in dword `n >> 5`, bit `n & 31`. The verbs
+pass the calling actor's manager (record `+0x15`) as the slot:
 
 | Verb | Id | Handler | Writes |
 |---|---|---|---|
-| `steppoint(n)` | `04EE`<sub>h</sub> | `00342D80` | mark bit `n` set (`0026B790(slot, n, 1)`), after `005C5230(slot, n)` |
-| `setsteppointmarkstatus(n, v)` | `04F3`<sub>h</sub> | `00343570` | mark bit `n` = `v != 0` (`0026B790`) |
-| `setsteppointstatus(n, v)` | `04EF`<sub>h</sub> | `003431B0` | status bit `n` = `v != 0` (`0026B800`) |
-| `setsteppointstatusall(v)` | `04F0`<sub>h</sub> | `00343980` | all sixteen status dwords to all ones for a non-zero `v`, else 0 (`0026B870`) |
+| `steppoint(n)` | `0x04EE` | `00342D80` | mark bit `n` set (`0026B790(slot, n, 1)`), after `005C5230(slot, n)` |
+| `setsteppointmarkstatus(n, v)` | `0x04F3` | `00343570` | mark bit `n` = `v != 0` (`0026B790`) |
+| `setsteppointstatus(n, v)` | `0x04EF` | `003431B0` | status bit `n` = `v != 0` (`0026B800`) |
+| `setsteppointstatusall(v)` | `0x04F0` | `00343980` | all sixteen status dwords to all ones for a non-zero `v`, else 0 (`0026B870`) |
 
 The bind zeroes the mark bits of the slot it binds and, on slot 0, the status bits of slots 0-3.
 
 ## Layouts
 
-Struct ActorManagerSlot base=`02098E10` size=`288`<sub>h</sub> count=5:
+Struct ActorManagerSlot base=`02098E10` size=`0x288` count=5:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000`<sub>h</sub> | `u8*` | payload | the bound definition payload (`0026C8C0`) |
-| `008`<sub>h</sub> | `u8*` | recordPool | count dword then record pointers (`0026CE60`, `00358940`) |
-| `010`<sub>h</sub> | `u8` | flags | bit 0 live (`0026CE60` sets), bit 2 field initialised, bits 3-4 the slot-0 request steps, bit 5 hold, bit 7 field busy |
-| `011`<sub>h</sub> | `u8` | flags2 | bit 0 copy of flags bit 7, bit 1 trigger, bit 2 suspended, bit 3 blocks the request path |
-| `012`<sub>h</sub> | `u8` | drivePending | 1 at bind when the payload's i16 +`50`<sub>h</sub> is not negative |
-| `013`<sub>h</sub> | `u8` | requestFlag | 1 at bind, cleared by `0026CE60` (`002673F0`) |
-| `014`<sub>h</sub> | `u8` | bindFlag | 1 at bind |
-| `015`<sub>h</sub> | `u8` | notSlot3 | 1 unless the slot index is 3 |
-| `016`<sub>h</sub> | `u8` | bindFlag2 | 1 at bind |
-| `017`<sub>h</sub> | `u8` | flags3 | bit 2, bit 3 (`02099DA1`), bit 4 frozen pass, bit 5 set at bind, bit 7 set at bind on slot 0 |
-| `018`<sub>h</sub> | `i16[2]` | lookupA | side A reverse lookup, -1 when unbound |
-| `01C`<sub>h</sub> | `i16[2]` | lookupB | side B reverse lookup |
-| `020`<sub>h</sub> | `i32` | recordCount | the sum of the payload's u16 table at +[`14`<sub>h</sub>] |
-| `024`<sub>h</sub> | `i32` | passCounter | zeroed at bind, incremented by the pass |
-| `028`<sub>h</sub> | `i32` | slotIndex |  |
-| `030`<sub>h</sub> | `i32` | bindCounter | zeroed at bind |
-| `038`<sub>h</sub> | `i32` | passCounter2 | zeroed at bind, incremented by the pass |
-| `040`<sub>h</sub> | `u8*` | fileHome | payload + payload +`38`<sub>h</sub> (`0026CE60`) |
-| `048`<sub>h</sub> | `u8*` | globalHome | the persistent save payload |
-| `050`<sub>h</sub> | `u8*` | localBase | payload + payload +`48`<sub>h</sub> |
-| `058`<sub>h</sub> | `u8*` | scratch1 | `02099DF0` |
-| `060`<sub>h</sub> | `u8*` | scratch2 | `02099FF0` |
-| `068`<sub>h</sub> | `u8*` | section20 | payload + payload +`20`<sub>h</sub> |
-| `070`<sub>h</sub> | `u8*` | section24 | payload + payload +`24`<sub>h</sub> |
-| `078`<sub>h</sub> | `u8*` | descriptors | payload + payload +`28`<sub>h</sub> |
-| `080`<sub>h</sub> | `u8*` | section2C | payload + payload +`2C`<sub>h</sub> |
-| `088`<sub>h</sub> | `void*` | callback | the bind's third argument or `00267930` |
-| `098`<sub>h</sub> | `void*` | resolver | `00264E30` |
-| `0D8`<sub>h</sub> | `u8*` | cameraShotTable | side A's definition table (setter `0026CE00`) |
-| `0E0`<sub>h</sub> | `u8*` | cameraSection | set by `0026CE20`; `0026CE60` runs `002572E0` when this and +`D8`<sub>h</sub> are set |
-| `0F0`<sub>h</sub> | `u8*` | cameraShakeTable side B's definition table (setter 0026D3A0) |  |
-| `100`<sub>h</sub> | `u8*` | section100 | set by `0026CE40` |
-| `110`<sub>h</sub> | `u8[96]` | entriesA | four 24-byte camera-shot drivers |
-| `170`<sub>h</sub> | `u8[96]` | entriesB | four 24-byte camera-shake drivers |
-| `1E0`<sub>h</sub> | `i32` | liveCounter | summed into `02099DB4` |
-| `200`<sub>h</sub> | `u8` | rosterFlags | bit 0 set at bind, bit 1 the party roster pending (slot 0), bit 2 cleared at bind |
-| `201`<sub>h</sub> | `u8` | stepRequest | the tick's sub-step gate (`00267310`) |
-| `204`<sub>h</sub> | `u32[16]` | stepPointStatus | 512 status bits (`0026B800`, `0026B870`); zeroed by a slot-0 bind on slots 0-3 |
-| `244`<sub>h</sub> | `u32[16]` | stepPointMarks | 512 mark bits (`0026B790`); zeroed at bind |
+| `+0x000` | `u8*` | payload | the bound definition payload (`0026C8C0`) |
+| `+0x008` | `u8*` | recordPool | count dword then record pointers (`0026CE60`, `00358940`) |
+| `+0x010` | `u8` | flags | bit 0 live (`0026CE60` sets), bit 2 field initialised, bits 3-4 the slot-0 request steps, bit 5 hold, bit 7 field busy |
+| `+0x011` | `u8` | flags2 | bit 0 copy of flags bit 7, bit 1 trigger, bit 2 suspended, bit 3 blocks the request path |
+| `+0x012` | `u8` | drivePending | 1 at bind when the payload's i16 +`0x50` is not negative |
+| `+0x013` | `u8` | requestFlag | 1 at bind, cleared by `0026CE60` (`002673F0`) |
+| `+0x014` | `u8` | bindFlag | 1 at bind |
+| `+0x015` | `u8` | notSlot3 | 1 unless the slot index is 3 |
+| `+0x016` | `u8` | bindFlag2 | 1 at bind |
+| `+0x017` | `u8` | flags3 | bit 2, bit 3 (`02099DA1`), bit 4 frozen pass, bit 5 set at bind, bit 7 set at bind on slot 0 |
+| `+0x018` | `i16[2]` | lookupA | side A reverse lookup, -1 when unbound |
+| `+0x01C` | `i16[2]` | lookupB | side B reverse lookup |
+| `+0x020` | `i32` | recordCount | the sum of the payload's u16 table at +[`0x14`] |
+| `+0x024` | `i32` | passCounter | zeroed at bind, incremented by the pass |
+| `+0x028` | `i32` | slotIndex |  |
+| `+0x030` | `i32` | bindCounter | zeroed at bind |
+| `+0x038` | `i32` | passCounter2 | zeroed at bind, incremented by the pass |
+| `+0x040` | `u8*` | fileHome | payload + payload +`0x38` (`0026CE60`) |
+| `+0x048` | `u8*` | globalHome | the persistent save payload |
+| `+0x050` | `u8*` | localBase | payload + payload +`0x48` |
+| `+0x058` | `u8*` | scratch1 | `02099DF0` |
+| `+0x060` | `u8*` | scratch2 | `02099FF0` |
+| `+0x068` | `u8*` | section20 | payload + payload +`0x20` |
+| `+0x070` | `u8*` | section24 | payload + payload +`0x24` |
+| `+0x078` | `u8*` | descriptors | payload + payload +`0x28` |
+| `+0x080` | `u8*` | section2C | payload + payload +`0x2C` |
+| `+0x088` | `void*` | callback | the bind's third argument or `00267930` |
+| `+0x098` | `void*` | resolver | `00264E30` |
+| `+0x0D8` | `u8*` | cameraShotTable | side A's definition table (setter `0026CE00`) |
+| `+0x0E0` | `u8*` | cameraSection | set by `0026CE20`; `0026CE60` runs `002572E0` when this and +`0xD8` are set |
+| `+0x0F0` | `u8*` | cameraShakeTable side B's definition table (setter 0026D3A0) |  |
+| `+0x100` | `u8*` | section100 | set by `0026CE40` |
+| `+0x110` | `u8[96]` | entriesA | four 24-byte camera-shot drivers |
+| `+0x170` | `u8[96]` | entriesB | four 24-byte camera-shake drivers |
+| `+0x1E0` | `i32` | liveCounter | summed into `02099DB4` |
+| `+0x200` | `u8` | rosterFlags | bit 0 set at bind, bit 1 the party roster pending (slot 0), bit 2 cleared at bind |
+| `+0x201` | `u8` | stepRequest | the tick's sub-step gate (`00267310`) |
+| `+0x204` | `u32[16]` | stepPointStatus | 512 status bits (`0026B800`, `0026B870`); zeroed by a slot-0 bind on slots 0-3 |
+| `+0x244` | `u32[16]` | stepPointMarks | 512 mark bits (`0026B790`); zeroed at bind |
 
-Struct ActorManagerSlotEntry size=`18`<sub>h</sub>:
+Struct ActorManagerSlotEntry size=`0x18`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | definitionValue | the table row's +`14`<sub>h</sub> |
-| `04`<sub>h</sub> | `i32` | lookupIndex | the reverse-lookup subscript, clamped non-negative on side A |
-| `08`<sub>h</sub> | `u16` | bound | 1 at bind, 0 on reset and clear |
-| `0A`<sub>h</sub> | `i16` | recordIndex | -1 when unbound |
-| `0C`<sub>h</sub> | `f32` | clock |  |
-| `10`<sub>h</sub> | `f32` | rate | 1.0 at bind, set by the rate setters |
-| `14`<sub>h</sub> | `u8` | clockRunning | cleared by side A's bind only |
+| `+0x00` | `u32` | definitionValue | the table row's +`0x14` |
+| `+0x04` | `i32` | lookupIndex | the reverse-lookup subscript, clamped non-negative on side A |
+| `+0x08` | `u16` | bound | 1 at bind, 0 on reset and clear |
+| `+0x0A` | `i16` | recordIndex | -1 when unbound |
+| `+0x0C` | `f32` | clock |  |
+| `+0x10` | `f32` | rate | 1.0 at bind, set by the rate setters |
+| `+0x14` | `u8` | clockRunning | cleared by side A's bind only |
 
 ## Operations
 
@@ -222,16 +222,16 @@ Struct ActorManagerSlotEntry size=`18`<sub>h</sub>:
   `actor-managers-slot-accesses.tsv`, `actor-managers-entry-accesses.tsv`) list every reach into a
   slot through the bound-slot pointer, through a literal slot address, through the array route and
   into the entry arrays; every row's instruction was checked against the executable.
-- The world tick runs the field pass per slot, reads `+201`<sub>h</sub> to decide which slots get a further
-  sub-step, and the pass reads `+10`<sub>h</sub>, `+11`<sub>h</sub>, `+12`<sub>h</sub>, `+13`<sub>h</sub>, `+17`<sub>h</sub>, `+20`<sub>h</sub> and `+200`<sub>h</sub>
+- The world tick runs the field pass per slot, reads `+0x201` to decide which slots get a further
+  sub-step, and the pass reads `+0x10`, `+0x11`, `+0x12`, `+0x13`, `+0x17`, `+0x20` and `+0x200`
   ([field runtime](field-runtime.md)).
 
 ## Modding notes
 
-- Script globals live behind slot 0's `+48`<sub>h</sub>, which is the save payload: a value written there is
+- Script globals live behind slot 0's `+0x48`, which is the save payload: a value written there is
   saved with the game.
-- The two scratch banks at `+58`<sub>h</sub> and `+60`<sub>h</sub> are shared by every slot; only the second one is in
-  the save image (payload `+E040`<sub>h</sub> and `+2E250`<sub>h</sub> as the group persistent bank).
+- The two scratch banks at `+0x58` and `+0x60` are shared by every slot; only the second one is in
+  the save image (payload `+0xE040` and `+0x2E250` as the group persistent bank).
 - A bind on slot 0 resets the field state and the camera and shake registrations; binding a scene
   payload to slots 1-4 leaves them alone.
 

@@ -22,17 +22,17 @@ addresses: "00300FC0, 002372E0, 00237260, 002371B0, 00237140, 00234590, 0035C7B0
 Adding KO, Stone or X-Zone runs `00300FC0(unit, 0)` ([Gaining and losing statuses](status-changes.md)), and
 tearing a unit down runs `00300FC0(unit, 1)` (`00300E59`). It does (`00300FC0`-`00301132`):
 
-1. **A summoned Esper** (a party record of type `1B`<sub>h</sub>-`27`<sub>h</sub>) with argument 0 has its action cancelled
+1. **A summoned Esper** (a party record of type `0x1B`-`0x27`) with argument 0 has its action cancelled
    (`003105D0`) and is dismissed (`003138D0(0)`), and nothing else happens (`00300FD3`-`00301005`).
 2. **Anyone else** loses its target relations (`00310780`), has unit flag bits 1, 19, 20 and 33 and bit 34 cleared,
    and stops moving (`0030100D`-`00301043`). Then `003219D0(type, 0, null, 1)` sets every living enemy's
    grudge against its party type to 1 where it was above 0 (`00301048`-`0030105E`;
    [Enmity](../Enemy-AI-And-Gambits/enmity.md)).
-3. Then the KO-time wipe tests run, below. On a wipe it sets battle flag `400`<sub>h</sub> or `200`<sub>h</sub>, runs the survivors'
+3. Then the KO-time wipe tests run, below. On a wipe it sets battle flag `0x400` or `0x200`, runs the survivors'
    pass `003001D0`, arms the request and recomputes party control with `0023B040`
    ([Party leader](../Party/party-leader.md)) (`00301063`-`003010C0`).
-4. Otherwise a fallen summoner sets battle flag `800`<sub>h</sub> (`002373C0`, `003010C5`-`003010CE`), and a fallen
-   controlled character sets `100`<sub>h</sub> and arms request `17`<sub>h</sub> (`003010D8`-`003010F1`).
+4. Otherwise a fallen summoner sets battle flag `0x800` (`002373C0`, `003010C5`-`003010CE`), and a fallen
+   controlled character sets `0x100` and arms request `0x17` (`003010D8`-`003010F1`).
 5. With argument 0, in summon mode, when the fallen unit is the summoner, the Esper is dismissed and party
    control recomputed (`003010F6`-`00301123`).
 
@@ -47,10 +47,10 @@ record of type 0-6; a guest is a party record of type 7-25. Each test returns 0 
 
 | Test | Returns 1 when | Used |
 |---|---|---|
-| `002372E0` | no main character in the four or in the roster is up | at the KO, latch `400`<sub>h</sub> |
-| `00237260` | none of the four is up and not a guest | at the KO, latch `200`<sub>h</sub>; every frame |
+| `002372E0` | no main character in the four or in the roster is up | at the KO, latch `0x400` |
+| `00237260` | none of the four is up and not a guest | at the KO, latch `0x200`; every frame |
 | `002371B0` | no main character in the four is not torn down, and none in the roster is up | every frame, Game Over |
-| `00237140` | none of the four that is not a guest is not torn down | every frame, the `18`<sub>h</sub> screen |
+| `00237140` | none of the four that is not a guest is not torn down | every frame, the `0x18` screen |
 
 Torn down is unit flag bit 1, set when a party member's body is torn down (below). So the frame tests count a
 fallen character as gone only once its body has been torn down.
@@ -61,9 +61,9 @@ fallen character as gone only once its body has been torn down.
 
 | Kind | Flag in `022C83E8` | Input lock |
 |---|---|---|
-| `0B`<sub>h</sub>, Game Over | `02`<sub>h</sub> | `00254850(1)`: bit 8 of ten input groups |
-| `18`<sub>h</sub>, the active party down | `01`<sub>h</sub> | `00254940(1)` |
-| `17`<sub>h</sub>, the controlled character down | `10`<sub>h</sub> | `002548F0(1)` |
+| `0x0B`, Game Over | `0x02` | `00254850(1)`: bit 8 of ten input groups |
+| `0x18`, the active party down | `0x01` | `00254940(1)` |
+| `0x17`, the controlled character down | `0x10` | `002548F0(1)` |
 
 While Game Over is armed (bit 1 of `022C83E8`, read by `0035C740`) or a mode request is stored in `0215F1A0`
 (`002E12D0`), or `00228380` answers non-zero (`00253CC3`), the input arbiter `00253C70` returns before reading
@@ -71,39 +71,39 @@ any field button (`00253C97`-`00253CCC`,
 [Controls](../Controls-And-Input/controls.md)).
 
 Every field frame, `00234590` posts one (`002345EF`-`0023461F`). Unless a request is pending (`0035C700`: flag
-`100`<sub>h</sub>, mode `02092730` already `0B`<sub>h</sub> or `18`<sub>h</sub>, or `002E12D0`) or a special-sequence scene is running
+`0x100`, mode `02092730` already `0x0B` or `0x18`, or `002E12D0`) or a special-sequence scene is running
 (`00306BB0`, [Field frame](../Engine-Core/frame-update-order.md)), it
-posts `0B`<sub>h</sub> when `002371B0` is 1, else `18`<sub>h</sub> when `00237140` is 1, through `0035C7A0`, which calls
+posts `0x0B` when `002371B0` is 1, else `0x18` when `00237140` is 1, through `0035C7A0`, which calls
 `0035C7B0(kind, 1)` (`0023461F`, `0035C7A5`):
 
-- **`0B`<sub>h</sub>**: flag `100`<sub>h</sub>; `00227370` halts the actors by starting time-stop request 22 (`00226BE0(16h, ...)`,
-  [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), unless bit 22 of `01FD46D4` is set; `002E1B10(0Bh, 0)`
+- **`0x0B`**: flag `0x100`; `00227370` halts the actors by starting time-stop request 22 (`00226BE0(0x16, ...)`,
+  [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), unless bit 22 of `01FD46D4` is set; `002E1B10(0x0B, 0)`
   stores the mode request at `0215F1A0`-`0215F1A8`, unless `0215F1A1` refuses it; then the arming above
   (`0035C806`-`0035C870`).
-- **`18`<sub>h</sub>**: `00254B40` opens the mode-`18`<sub>h</sub> screen, then the arming (`0035C7FD`, `0035C832`-`0035C844`).
+- **`0x18`**: `00254B40` opens the mode-`0x18` screen, then the arming (`0035C7FD`, `0035C832`-`0035C844`).
 
-`0035C7B0(0Bh)` has one other caller, for a wipe that lands outside the field frame: `0027EFA0`, run from the
+`0035C7B0(0x0B)` has one other caller, for a wipe that lands outside the field frame: `0027EFA0`, run from the
 main loop through `00254E50` (`0022AC73`, `00254E61`). It posts Game Over when `002805D0` allows it: Game Over is
-armed (`022C83E8` bit 1, `0035C740`), the screen object's `+D4`<sub>h</sub> is 0, and the mode `02092730` is 6, 10,
-`0F`<sub>h</sub>, `11`<sub>h</sub>, `12`<sub>h</sub> or `13`<sub>h</sub>, or 2 with its `+C4`<sub>h</sub> state past `42`<sub>h</sub>. It then also runs `00252B40(0Bh)`.
+armed (`022C83E8` bit 1, `0035C740`), the screen object's `+0xD4` is 0, and the mode `02092730` is 6, 10,
+`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state past `0x42`. It then also runs `00252B40(0x0B)`.
 
-Later in the same frame the field frame keeps three latches current (`0023471C`-`0023483F`): `200`<sub>h</sub> from
-`00237260`, arming `18`<sub>h</sub> when it rises; `100`<sub>h</sub> while the party leader is missing or down, arming `17`<sub>h</sub> when it
-rises and disarming it with `0035C8E0` when it falls; and `800`<sub>h</sub> from the summoner test. The falling edge of
-`200`<sub>h</sub> also calls `0035C8E0`, with `18`<sub>h</sub>, which that function ignores, so the `18`<sub>h</sub> arming stays
+Later in the same frame the field frame keeps three latches current (`0023471C`-`0023483F`): `0x200` from
+`00237260`, arming `0x18` when it rises; `0x100` while the party leader is missing or down, arming `0x17` when it
+rises and disarming it with `0035C8E0` when it falls; and `0x800` from the summoner test. The falling edge of
+`0x200` also calls `0035C8E0`, with `0x18`, which that function ignores, so the `0x18` arming stays
 (`0023475B`).
 
 ### The two signals from the fall
 
 A fallen body is torn down only after two unit flag bits are set:
 
-1. **Bit 33, the fall has played.** `003250F0` sets it when a unit with flag bit 2 gets animation event `2007`<sub>h</sub>,
-   `2008`<sub>h</sub>, `200C`<sub>h</sub> or `200E`<sub>h</sub> (`00325136`-`0032519F`). Those are the death clips the HP write and the Stone
+1. **Bit 33, the fall has played.** `003250F0` sets it when a unit with flag bit 2 gets animation event `0x2007`,
+   `0x2008`, `0x200C` or `0x200E` (`00325136`-`0032519F`). Those are the death clips the HP write and the Stone
    and X-Zone arms start ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)).
 2. **Bit 34, hide the body.** `00319F50` sets it on actor timeline code 4 for a unit with KO, Stone or X-Zone
    without the field's bit 15, together with flag bit 10, and on code 6 for any unit, then refreshes visibility
    (`0031A100`-`0031A159`, `0031A198`-`0031A1A4`). Code 4 is ignored while the unit is carrying out Revive
-   (`AE`<sub>h</sub>) on itself.
+   (`0xAE`) on itself.
 
 Bit 33 has a second setter: `00319F50` sets it on actor timeline code 2, which first sets the HP of a unit that is
 not down to 0 (`00300520`), unless it is carrying out Revive on itself (`0031A042`-`0031A0AA`).
@@ -113,8 +113,8 @@ Timeline codes reach `00319F50` through `002EB740` from two senders: the battle 
 of the list `02EC3D60` and then code 0 (`002FC103`, `002FC158`).
 
 The fall also starts an effect. On action timeline events 2 and 6, a unit with KO, Stone or X-Zone starts battle
-effect `78`<sub>h</sub> on itself and keeps its handle in `+74`<sub>h</sub>, unless it is an enemy whose class row byte
-`+18h & 0Eh` is 4 (`003255DB`-`00325649`). Event 9 sets bit 19, the drop of a hovering body
+effect `0x78` on itself and keeps its handle in `+0x74`, unless it is an enemy whose class row byte
+`+0x18 & 0x0E` is 4 (`003255DB`-`00325649`). Event 9 sets bit 19, the drop of a hovering body
 (`003256FB`).
 
 ### Hiding the body
@@ -124,10 +124,10 @@ effect `78`<sub>h</sub> on itself and keeps its handle in `+74`<sub>h</sub>, unl
 
 | Mask bit | Condition |
 |---|---|
-| `10`<sub>h</sub> | KO, Stone or X-Zone without the field's bit 15, and torn down (flag bit 1) |
-| `20`<sub>h</sub> | bit 34 |
-| `02`<sub>h</sub>, `04`<sub>h</sub>, `08`<sub>h</sub> | flag bits 11, 10, 9 |
-| `40`<sub>h</sub>, `80`<sub>h</sub> | an enemy whose spawn record has bit 4 or bit 3 |
+| `0x10` | KO, Stone or X-Zone without the field's bit 15, and torn down (flag bit 1) |
+| `0x20` | bit 34 |
+| `0x02`, `0x04`, `0x08` | flag bits 11, 10, 9 |
+| `0x40`, `0x80` | an enemy whose spawn record has bit 4 or bit 3 |
 
 The unit frame refreshes it every frame (`00234034`, `00234112`, `00234133`). The switch is on or off; there is
 no fade.
@@ -140,24 +140,24 @@ target and builds its target line through `00290320` only when it returns 1 (`00
 `00233F70` runs a different frame for an active unit with KO, Stone or X-Zone that is not torn down
 (`00234039`-`00234112`):
 
-- an enemy whose class row byte `+18h & 0Eh` is 4 only keeps its position up to date;
+- an enemy whose class row byte `+0x18 & 0x0E` is 4 only keeps its position up to date;
 - anyone else sets battle flag 2 (unless a group completion is pending), stops moving, runs the drop below, and is
   torn down with `00300E40(unit, 0)` once bits 33 and 34 are both set and the presentation test on its slot
   `0030CA50` allows it: `00322310` non-zero, or `003228E0` zero (`002340BC`-`00234100`).
 
 The drop `003057D0` runs while the unit is down, has bit 19 and not bit 20, and its actor passes `00264490`. Each
-frame it lowers the body's height offset by an amount that grows by 0.02 per frame (`+19C`<sub>h</sub>), stops at 0, and
+frame it lowers the body's height offset by an amount that grows by 0.02 per frame (`+0x19C`), stops at 0, and
 then sets bit 20 (`003057E5`-`00305896`).
 
 ### Tearing down
 
 `00300E40(unit, keep)` runs the defeat cleanup with argument 1, cancels the action and clears the issued command,
-sets bit 53 and removes the unit's effect `+74`<sub>h</sub> (`00300E54`-`00300ED5`). Then:
+sets bit 53 and removes the unit's effect `+0x74` (`00300E54`-`00300ED5`). Then:
 
-- **A party member** keeps its unit. With no attackers left (`+EA0`<sub>h</sub> 0) it also runs `00322050` and `00301310`
+- **A party member** keeps its unit. With no attackers left (`+0xEA0` 0) it also runs `00322050` and `00301310`
   and clears bit 26. Then bits 34, 19, 20 and 33 are cleared and **bit 1 is set**, and visibility is refreshed,
-  so the hide mask's `10`<sub>h</sub> keeps the model hidden (`00300EEE`-`00300F45`).
-- **Anyone else** loses its definition (`0023A570(unit, FFFFh)`) and its actor (`0025AB30`, `002697E0`), unless a
+  so the hide mask's `0x10` keeps the model hidden (`00300EEE`-`00300F45`).
+- **Anyone else** loses its definition (`0023A570(unit, 0xFFFF)`) and its actor (`0025AB30`, `002697E0`), unless a
   spawn group holds it (`00300F5D`-`00300FA4`).
 
 ### Standing up again
@@ -166,12 +166,12 @@ Removing the last of KO, Stone and X-Zone runs `00301140(unit)` (`0030E811`;
 [Gaining and losing statuses](status-changes.md)). With none of the three left (`00301146`-`003012F6`):
 
 1. A body that is hidden, and not already placed (flag bit 26), is placed with `00311F70` (`0030116B`-`00301185`).
-   The hidden test is `002E9600(actor)` returning 0; it returns bit 3 of byte `+10`<sub>h</sub> of `[actor+C0h]`
-   for an actor whose byte `+3` has `60`<sub>h</sub> in its top three bits, and 0 otherwise (`002E9600`-`002E9623`).
+   The hidden test is `002E9600(actor)` returning 0; it returns bit 3 of byte `+0x10` of `[actor+0xC0]`
+   for an actor whose byte `+3` has `0x60` in its top three bits, and 0 otherwise (`002E9600`-`002E9623`).
 2. The actor is refreshed from the definition, the action cancelled and the issued command cleared.
-3. Revive effect `7B`<sub>h</sub> starts on the unit (`003011F5`-`00301216`), and the re-plan set is installed
+3. Revive effect `0x7B` starts on the unit (`003011F5`-`00301216`), and the re-plan set is installed
    ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)).
-4. The stand-up clip, event `200D`<sub>h</sub>, plays (`0030127A`-`00301282`); it clears bit 24 when it lands (`0032517C`).
+4. The stand-up clip, event `0x200D`, plays (`0030127A`-`00301282`); it clears bit 24 when it lands (`0032517C`).
 5. Bits 34, 8-10, 1, 19, 20 and 33 are cleared, bits 24 and 30 set, the old effect removed, and visibility
    refreshed, so the model is shown.
 
@@ -183,7 +183,7 @@ records the anchor from the actor of the character under control (`0033CA15`-`00
 
 ## Modding notes
 
-- Game Over is posted only through `0035C7B0`, from the field frame and from `0027EFA0`; refusing `0B`<sub>h</sub> there
+- Game Over is posted only through `0035C7B0`, from the field frame and from `0027EFA0`; refusing `0x0B` there
   keeps the game running, but the KO-time arming has already locked input.
 - A party member's body is never removed, only hidden; a revive shows it again.
 

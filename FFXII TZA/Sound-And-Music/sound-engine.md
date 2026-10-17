@@ -45,24 +45,24 @@ The mixer is a graph of three `Driver::Core` voice classes. Slot 1 of each retur
 | `CoreSubmixVoice` | `01CB82D0` (7) | 2 (`007E3260`) | a bus that sources send into |
 | `CoreMasterVoice` | `01CB8290` (7) | 1 (`007BD590`) | the final mix |
 
-A source voice holds up to eight send slots (destination and gain, 16 bytes each, `+218`<sub>h</sub>) and a list of effects
-(`+270`<sub>h</sub>). Its open call `007E0980(voice, rate, channels, format, buffer, callback, sends, effects)` refuses more than
+A source voice holds up to eight send slots (destination and gain, 16 bytes each, `+0x218`) and a list of effects
+(`+0x270`). Its open call `007E0980(voice, rate, channels, format, buffer, callback, sends, effects)` refuses more than
 eight channels or format 0 and sets state 1.
 
 ### One tick of a source voice
 
 The voice pass calls `007E0B60` once per 256-frame block for every live source voice:
 
-1. It renders silence unless the voice is playing (state 3, `007E0B8C`) and holds a queued buffer (`+B0`<sub>h</sub>,
+1. It renders silence unless the voice is playing (state 3, `007E0B8C`) and holds a queued buffer (`+0xB0`,
    `007E0B9C`).
-2. The step is the source rate over the device rate (`007AED00`), times the pitch `+108`<sub>h</sub> (`007E0C0D`); a step of 0 or
+2. The step is the source rate over the device rate (`007AED00`), times the pitch `+0x108` (`007E0C0D`); a step of 0 or
    less renders silence.
-3. When a marker sample `+A8`<sub>h</sub> falls inside this block, it calls the producer's marker callback once and clears the
+3. When a marker sample `+0xA8` falls inside this block, it calls the producer's marker callback once and clears the
    marker (`007E0C81`-`007E0CC5`).
-4. It builds the gain rows: for each source channel, eight output gains from the matrix at `+10C`<sub>h</sub>, times the sample
+4. It builds the gain rows: for each source channel, eight output gains from the matrix at `+0x10C`, times the sample
    scale, which is 1/32767 (`01CB83E8`) for 16-bit input and 1.0 for float (`007E0CE1`-`007E0DA4`).
-5. A negative start offset `+A0`<sub>h</sub> is a start delay: the voice renders zeros and counts it up (`007E0DA9`-`007E0E6F`).
-6. It ramps the gain from the current `+104`<sub>h</sub> to the target `+100`<sub>h</sub> across the block (`007E0E71`-`007E0EBE`). A step
+5. A negative start offset `+0xA0` is a start delay: the voice renders zeros and counts it up (`007E0DA9`-`007E0E6F`).
+6. It ramps the gain from the current `+0x104` to the target `+0x100` across the block (`007E0E71`-`007E0EBE`). A step
    of exactly 1.0 copies samples; any other step resamples linearly (`007E0EDC`).
 7. When a buffer runs out, it retires it (`007E0F21`-`007E0F6A`) and calls the producer's buffer callback, slot 1
    (`007E0F70`-`007E0F99`). That callback decodes and queues the next buffer, so decoding runs on the device thread.
@@ -87,24 +87,24 @@ the HCA decoder (`00123870`, `00123A50`) or the Vorbis stream (`007F5970`). The 
 
 Any other codec prints "Voice::Initialize failed no support format!!! %d" (`007EC6BA`) and the voice does not play.
 Every voice gets a `SimpleFilter` as effect 0 (`007EA003`); a sound effect of type 6 adds a `Flanger` (`007D99E0`),
-and a music whose header is version 1 or later with bit 0 of `+0A`<sub>h</sub> set adds a `GranularPitchShift`
+and a music whose header is version 1 or later with bit 0 of `+0x0A` set adds a `GranularPitchShift`
 (`007DA0A0`, `007ED186`-`007ED19A`), built bypassed; no shipped music sets that bit. The sends go to the bus the sound header names, or to a master
 port, falling back to port 1 (`007EA460`).
 
 The feed `007EAA60` runs from the voice's buffer callback `007ED4C0`:
 
-1. While the source voice holds fewer than two buffers and the end flag `+12C`<sub>h</sub> is clear, it decodes one buffer.
-2. It queues the buffer with the running sample position `+130`<sub>h</sub> (`007EB95B` on failure).
-3. With the loop flag `+120`<sub>h</sub> set it wraps over the material's loop region `+C`<sub>h</sub>-`+10`<sub>h</sub>; otherwise the end of the
-   data sets `+12C`<sub>h</sub>.
-4. For an in-memory HCA material whose header byte `+D`<sub>h</sub> is set, each frame byte is first XORed with the 256-byte table
+1. While the source voice holds fewer than two buffers and the end flag `+0x12C` is clear, it decodes one buffer.
+2. It queues the buffer with the running sample position `+0x130` (`007EB95B` on failure).
+3. With the loop flag `+0x120` set it wraps over the material's loop region `+0xC`-`+0x10`; otherwise the end of the
+   data sets `+0x12C`.
+4. For an in-memory HCA material whose header byte `+0xD` is set, each frame byte is first XORed with the 256-byte table
    `01F41D30`.
 
 When the voice has ended and its source voice is empty, `007ED4C0` sets the voice's state to 4.
 
 ### The voice's controls
 
-A `Voice` keeps its source voice at `+68`<sub>h</sub> and a state at `+70`<sub>h</sub>: 1 once open, 2 playing, 3 paused and 4 ended.
+A `Voice` keeps its source voice at `+0x68` and a state at `+0x70`: 1 once open, 2 playing, 3 paused and 4 ended.
 `007EBAB0` reports it as 0, 1, 2 or 3 (3 for state 4), and every control below refuses an ended voice:
 
 | Control | Function | Does |
@@ -112,14 +112,14 @@ A `Voice` keeps its source voice at `+68`<sub>h</sub> and a state at `+70`<sub>h
 | play | `007EDA60` | from state 1 only: fills the source voice (`007EAA60`) and runs its slot 3, or ends the voice when that fails |
 | resume | `007EDAB0` | runs the source voice's slot 3 and sets state 2 |
 | pause | `007EE6F0` | runs its slot 4 and sets state 3 |
-| stop | `007EE670` | runs its slot 4 and sets state 4, or for a looping type 5 or 6 material only marks the end at `+12C`<sub>h</sub> (`007EE6AF`) |
+| stop | `007EE670` | runs its slot 4 and sets state 4, or for a looping type 5 or 6 material only marks the end at `+0x12C` (`007EE6AF`) |
 | volume | `007EE500` | clamps to 0-1 |
 | pitch | `007EE300` | clamps to 1/512-2 and sets the source voice's pitch (slot 7) |
-| low-pass | `007EDD20` | clamps to 0-1 and sets the `SimpleFilter`'s parameter `400`<sub>h</sub> through `007D99A0` |
+| low-pass | `007EDD20` | clamps to 0-1 and sets the `SimpleFilter`'s parameter `0x400` through `007D99A0` |
 | granular pitch | `007EDB60` | clamps to 0.5-512 on the voice's `GranularPitchShift` effect |
-| filter reset | `007EA9C0` | with a true flag sets the filter's parameter `400`<sub>h</sub> to half the device rate (`007AED00`); stores the opposite flag at `+90`<sub>h</sub> |
-| loop | `007EA920`, `007EBA90` | set the loop flag `+120`<sub>h</sub>, and answer whether the material has a loop region and the flag is set |
-| effect value | `007EDB10` | sets a value of effect 1, 2 or 3 at `+108`<sub>h</sub> |
+| filter reset | `007EA9C0` | with a true flag sets the filter's parameter `0x400` to half the device rate (`007AED00`); stores the opposite flag at `+0x90` |
+| loop | `007EA920`, `007EBA90` | set the loop flag `+0x120`, and answer whether the material has a loop region and the flag is set |
+| effect value | `007EDB10` | sets a value of effect 1, 2 or 3 at `+0x108` |
 | sends | `007EDAF0`, `007EDE70`, `007EE470` | set a send level on the source voice (its slot 16); `007EE470` can scale the current one |
 
 A value that is not a finite number prints "set invalid volume!!", "set invalid pitch!!", "set invalid lowpass value!!"
@@ -127,14 +127,14 @@ or "set invalid granular pitch value!!". `007EBA40` gives a time read from the s
 `007EE450` pass two values on to it (`007E2660`, `007E2680`).
 
 The decoders read an in-memory material through three callbacks `Voice::Initialize` hands them: `007EE730` copies
-whole frames from the read position `+138`<sub>h</sub>, `007EE7F0` sets that position and `007EE900` returns it. A streamed
+whole frames from the read position `+0x138`, `007EE7F0` sets that position and `007EE900` returns it. A streamed
 material is read through `007EE800`, which takes the bank's stream for this voice (`007E2EB0`, `007E31B0`).
 
 ### The HCA mixer
 
 `HCAMixerVoice` (slot 1 `007DD040`) mixes several HCA inputs through the CRI mixer `00121D40` into one source voice.
 It is built only by `007DCD70`, the only writer of `[02EAE088]`, when the configuration's `hcam` flag is set. A voice
-joins it instead of opening its own source voice only when its HCA header byte `+C`<sub>h</sub> is set (`007DCAA0`).
+joins it instead of opening its own source voice only when its HCA header byte `+0xC` is set (`007DCAA0`).
 
 `007DC6B0` builds the mixer voice, and `007DC730` frees its CRI mixer (`00121030`), buffers and inputs. `007DCAC0`
 joins an input: it registers the voice with the CRI mixer (`00121770`) and appends it to the input list (`007DCB50`),
@@ -146,17 +146,17 @@ whose nodes `007DCC60` builds.
 `006794D0` is its only creator; it opens it at 48000 Hz with three buffers of 48000 frames each
 (`006794FC`-`00679533`).
 
-`007A4930` is the driver call behind it: it allocates `520`<sub>h</sub> bytes, builds the object (`007B8D40`; `007B8E50` puts
-back its base vtables) and opens it (`007B9050`), returning its `IExternalSourceVoice` interface at `+08`<sub>h</sub> or freeing
-it on failure. `007B9590` moves queued caller blocks, from a 32-entry queue at `+78`<sub>h</sub>, into the source voice's buffers
+`007A4930` is the driver call behind it: it allocates `0x520` bytes, builds the object (`007B8D40`; `007B8E50` puts
+back its base vtables) and opens it (`007B9050`), returning its `IExternalSourceVoice` interface at `+0x08` or freeing
+it on failure. `007B9590` moves queued caller blocks, from a 32-entry queue at `+0x78`, into the source voice's buffers
 while it holds fewer than two, and `007B9AF0`, run for each external source by the update pass, advances its volume
 and pitch ramps.
 
-The movie player's `ExternalVoice` wraps it. `00679130` builds the wrapper with two events at `+30`<sub>h</sub> and `+48`<sub>h</sub>,
+The movie player's `ExternalVoice` wraps it. `00679130` builds the wrapper with two events at `+0x30` and `+0x48`,
 and `006792C0` closes them (`005CD700`) and puts back the driver's `ExternalVoiceCallback` vtable.
-`0067A240(voice, samples, bytes)`, from the movie audio feed `00679600`, waits on `+48`<sub>h</sub> (`005CD840`) and copies
-the block into buffer `count % 3` of `+10`<sub>h</sub>, `+18`<sub>h</sub> and `+20`<sub>h</sub>. The first time, with `+40`<sub>h</sub> clear, it queues the
-buffer at `+10`<sub>h</sub> on the source (slot 1), signals `+30`<sub>h</sub> (`005CD5E0`) and sets `+40`<sub>h</sub>.
+`0067A240(voice, samples, bytes)`, from the movie audio feed `00679600`, waits on `+0x48` (`005CD840`) and copies
+the block into buffer `count % 3` of `+0x10`, `+0x18` and `+0x20`. The first time, with `+0x40` clear, it queues the
+buffer at `+0x10` on the source (slot 1), signals `+0x30` (`005CD5E0`) and sets `+0x40`.
 
 ### Output format and the device
 
@@ -167,9 +167,9 @@ The driver's start-up `007AEF30` fixes the mix format:
 | rate | 48000 Hz (`007AC691`) |
 | channels | 8 (`007AC698`); any other count is refused with "enable SIMD, need rendering channel 8" |
 | frames per block | 256 (`007A4F46`) |
-| source voice pool | the sum of three start-up counts, each capped: `min(+20h, 2 x ([02EAD3E8] + 32)) + min(+24h, 128) + min(+28h, 32)` of the start-up block, unsigned (`007A4EC0`-`007A4EFD`) |
+| source voice pool | the sum of three start-up counts, each capped: `min(+0x20, 2 x ([02EAD3E8] + 32)) + min(+0x24, 128) + min(+0x28, 32)` of the start-up block, unsigned (`007A4EC0`-`007A4EFD`) |
 | buses | one submix per `bus ` chunk record |
-| masters | one (`02EAD358`); a second (`02EAD360`) only with start-up byte `+1C`<sub>h</sub> set, which is 0 |
+| masters | one (`02EAD358`); a second (`02EAD360`) only with start-up byte `+0x1C` set, which is 0 |
 
 The device asks for each block through `007DF690`, which runs `007AF740` under the lock `02EAE0B0`:
 
@@ -193,7 +193,7 @@ port's four output buffers for 1.1 blocks at the new rate and channel count, cut
 ### The voice factory, pass and lifecycle
 
 `007AEA20(out, rate, channels, format, callback, ..., heap)` builds a source voice. With `heap` 0 it takes one from
-the pool `02EAD250` and links it into the list `02EAD2A0`; with `heap` 1 it allocates `2B8`<sub>h</sub> bytes (`007AD460`) and
+the pool `02EAD250` and links it into the list `02EAD2A0`; with `heap` 1 it allocates 0x2B8 bytes (`007AD460`) and
 links it into `02EAD300` (`007AF490`). `Voice::Initialize` (`007ED303`) and the HCA mixer (`007DCE64`) give 0; the external source
 (`007B91BC`) gives 1. `007E0650` builds a source voice and `007E0720` tears one down; `007AED10` and `007AEE20` build
 the two fixed source lists.
@@ -220,18 +220,18 @@ drains the queue in order in `007AB5C0`, by the action's type through the 54-ent
 
 | Types | Arms | Does |
 |---|---|---|
-| `00`<sub>h</sub>-`08`<sub>h</sub> | `007AAA20` with `007AA5B0`, `007AA570`, `007AAD90`, `007AAC80` and others | category volume and pitch |
-| `09`<sub>h</sub> | `007B2470`, `007D0A20` | bank |
-| `0A`<sub>h</sub> | `007B44C0`, `007BDFA0` | play a sound |
-| `0B`<sub>h</sub>-`1B`<sub>h</sub> | `007AB1E0`, then an `ISound` method | stop `007BED30`, pause `007BEF30`, resume `007BE0B0`, volume `007BEAF0`, pitch `007BE8A0`, panning `007BE590`, low-pass `007BE3F0`, and the rest |
-| `1C`<sub>h</sub>-`2D`<sub>h</sub> | `007B77E0`, then a `Magi::Music` method | music, from `007C8370` to `007CEF60` |
-| `2E`<sub>h</sub>, `2F`<sub>h</sub>, `31`<sub>h</sub> | `007AC3E0` | mixer bus |
-| `30`<sub>h</sub> | `007ACD30` | effect preset |
-| `32`<sub>h</sub>, `33`<sub>h</sub> | `007B1210`; `007B6350`, `007AE550` | two further driver arms |
-| `34`<sub>h</sub>, `35`<sub>h</sub> | `007B4A00(0)` then `007AF560`, a jump to `007DF620`; `007B48F0(0)` then `007AF540`, a jump to `007DF560` | two arms that reach the output renderer |
+| `0x00`-`0x08` | `007AAA20` with `007AA5B0`, `007AA570`, `007AAD90`, `007AAC80` and others | category volume and pitch |
+| `0x09` | `007B2470`, `007D0A20` | bank |
+| `0x0A` | `007B44C0`, `007BDFA0` | play a sound |
+| `0x0B`-`0x1B` | `007AB1E0`, then an `ISound` method | stop `007BED30`, pause `007BEF30`, resume `007BE0B0`, volume `007BEAF0`, pitch `007BE8A0`, panning `007BE590`, low-pass `007BE3F0`, and the rest |
+| `0x1C`-`0x2D` | `007B77E0`, then a `Magi::Music` method | music, from `007C8370` to `007CEF60` |
+| `0x2E`, `0x2F`, `0x31` | `007AC3E0` | mixer bus |
+| `0x30` | `007ACD30` | effect preset |
+| `0x32`, `0x33` | `007B1210`; `007B6350`, `007AE550` | two further driver arms |
+| `0x34`, `0x35` | `007B4A00(0)` then `007AF560`, a jump to `007DF620`; `007B48F0(0)` then `007AF540`, a jump to `007DF560` | two arms that reach the output renderer |
 
-The busiest posters are stop `007A84A0` (20 call sites), resume `007A7A20` (8), play `007A78B0` (7, type `0A`<sub>h</sub> for a
-sound and `1C`<sub>h</sub> for music), pause `007A8590` (5) and set volume `007A81F0` (5).
+The busiest posters are stop `007A84A0` (20 call sites), resume `007A7A20` (8), play `007A78B0` (7, type `0x0A` for a
+sound and `0x1C` for music), pause `007A8590` (5) and set volume `007A81F0` (5).
 
 ### Threads
 
@@ -243,8 +243,8 @@ sound and `1C`<sub>h</sub> for music), pause `007A8590` (5) and set volume `007A
 | mock device | `007DEB80`, created at `007DE19C` | a 5 ms timer standing in for the device when the WASAPI device fails to start (`007DD9F0`) |
 | job worker | `007B6D40`, started at `007B6FE4` | runs the jobs of a 48-entry ring (`02EAD8B0`) |
 
-The update thread takes its priority from start-up block `+44`<sub>h</sub> (`SetThreadPriority`, `007A524E`) and its affinity
-mask from `+4C`<sub>h</sub> (`SetThreadAffinityMask`, `007A5263`); the spatial thread's mask is `7C`<sub>h</sub> (`002108D6`). The sample
+The update thread takes its priority from start-up block `+0x44` (`SetThreadPriority`, `007A524E`) and its affinity
+mask from `+0x4C` (`SetThreadAffinityMask`, `007A5263`); the spatial thread's mask is `0x7C` (`002108D6`). The sample
 thread's priority comes from the device's start-up block (`007DEA45`).
 
 ### Identity and diagnostics
@@ -271,15 +271,15 @@ places in 90 functions; `Voice::Initialize` alone has 27. Each is formatted (`00
 ### The time-unit converter
 
 `007F31F0(meter, value, from, to)` converts a music time between units through a sample count. A value of 0, or a
-meter rate `+30`<sub>h</sub> of 0 or less, gives 0. The units are:
+meter rate `+0x30` of 0 or less, gives 0. The units are:
 
-| Unit | To samples | Without the meter's counts (byte `+18`<sub>h</sub>) |
+| Unit | To samples | Without the meter's counts (byte `+0x18`) |
 |---:|---|---|
 | 0 | seconds x rate | - |
 | 1 | samples | - |
-| 2 | x `[+24h]` | 0.125 s |
-| 3 | x `[+28h]` | 0.5 s |
-| 4 | x `[+2Ch]` | 2 s |
+| 2 | x `[+0x24]` | 0.125 s |
+| 3 | x `[+0x28]` | 0.5 s |
+| 4 | x `[+0x2C]` | 2 s |
 
 The sample count is truncated to a whole number (`007F3321`); on the way out units 2 and 3 divide by the whole
 numbers `rate / 8` and `rate / 2` (`007F33CB`, `007F339B`). A unit above 4 gives 0. The music commands `007C92F0` and
@@ -297,8 +297,8 @@ Over the `mtrl` chunks of all 4,609 `.sab` and 116 `.mab` banks:
 | `.mab` | 7 (HCA) | 348 |
 
 The game names its banks with the `.win.sab` suffix (`00908998`), so every material it loads is HCA; the `.orb`
-copies use codec 4, which `Voice::Initialize` does not accept. HCA header byte `+C`<sub>h</sub> is 0 in all 10,184 HCA materials, so the HCA mixer is
-never used; byte `+D`<sub>h</sub> is 1 in the 348 music materials and 0 in the rest. 11,374 materials are 48000 Hz and 139 are
+copies use codec 4, which `Voice::Initialize` does not accept. HCA header byte `+0xC` is 0 in all 10,184 HCA materials, so the HCA mixer is
+never used; byte `+0xD` is 1 in the 348 music materials and 0 in the rest. 11,374 materials are 48000 Hz and 139 are
 44100 Hz; 7,759 are mono and 3,754 stereo.
 
 ## Modding notes
@@ -306,7 +306,7 @@ never used; byte `+D`<sub>h</sub> is 1 in the 348 music materials and 0 in the r
 - A replacement sound can be 16-bit PCM (codec 1), Microsoft ADPCM (2), Ogg Vorbis (3) or HCA (7); the driver plays
   all four.
 - The mix is always 48 kHz in eight channels; a material at another rate is resampled per voice.
-- Setting HCA header byte `+D`<sub>h</sub> turns on the XOR table `01F41D30` for an in-memory material.
+- Setting HCA header byte `+0xD` turns on the XOR table `01F41D30` for an in-memory material.
 - The driver's messages can be read with a debug-output viewer while the game runs.
 
 ## Related

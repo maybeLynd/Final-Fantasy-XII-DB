@@ -1,3 +1,3 @@
 function	name	site	disp	kind	instruction	route	note
-0066FE10	FUN_0066fe10	0066FE17	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0066FE10	
-0066FE10	FUN_0066fe10	0066FE19	8h	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0066FE10	
+0066FE10	FUN_0066fe10	0066FE17	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0066FE10	
+0066FE10	FUN_0066fe10	0066FE19	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0066FE10	

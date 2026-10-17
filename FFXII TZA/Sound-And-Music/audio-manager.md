@@ -16,16 +16,16 @@ addresses: "00210AF0, 002105E0, 00212710, 0021E570, 00221D60, 00211840, 00212970
 
 ### The manager
 
-`00210AF0` allocates the manager, `40`<sub>h</sub> bytes, once and keeps it at `01FD36A0`; `00210B30` returns that pointer to
+`00210AF0` allocates the manager, `0x40` bytes, once and keeps it at `01FD36A0`; `00210B30` returns that pointer to
 every caller. Its builder `002105E0` creates one controller per bank family:
 
 | Manager offset | Controller | Built by | Bank class | Bank size | Pool |
 |---|---|---|---|---|---:|
-| `00`<sub>h</sub> | `MusicAudioController` | `00217FD0` | `MusicAudioBank` | `58`<sub>h</sub> | 2 |
-| `08`<sub>h</sub> | `SebAudioController` | `0021A9F0` | `SebAudioBank` | `A0`<sub>h</sub> | 96 |
-| `10`<sub>h</sub> | `SepAudioController` | `00219400` | `SepAudioBank` | `68`<sub>h</sub> | 256 |
-| `18`<sub>h</sub> | `StreamAudioController` | `0021CC10` | `StreamAudioBank` | `48`<sub>h</sub> | 4 |
-| `20`<sub>h</sub> | `ShoutAudioController` | `0021BDB0` | `ShoutAudioBank` | `68`<sub>h</sub> | 6 |
+| `+0x00` | `MusicAudioController` | `00217FD0` | `MusicAudioBank` | `0x58` | 2 |
+| `+0x08` | `SebAudioController` | `0021A9F0` | `SebAudioBank` | `0xA0` | 96 |
+| `+0x10` | `SepAudioController` | `00219400` | `SepAudioBank` | `0x68` | 256 |
+| `+0x18` | `StreamAudioController` | `0021CC10` | `StreamAudioBank` | `0x48` | 4 |
+| `+0x20` | `ShoutAudioController` | `0021BDB0` | `ShoutAudioBank` | `0x68` | 6 |
 
 The pool counts are immediate operands of the five builders. The bank families and their files are on
 [Sound banks](sound-banks.md).
@@ -33,7 +33,7 @@ The pool counts are immediate operands of the five builders. The bank families a
 ### Controllers and the live list
 
 Every controller starts from the base `00212710`, which installs the `AudioController` vtable `00906CD0` and an empty
-EASTL list at `+08`<sub>h</sub>. That list holds the controller's loaded banks, and every per-bank request walks it:
+EASTL list at `+0x08`. That list holds the controller's loaded banks, and every per-bank request walks it:
 
 - `00212910` asks each bank to drop its finished sounds (`00222050`);
 - `00212B80` stops the sound with one handle in each bank over 0.1 s (`00222390`);
@@ -41,7 +41,7 @@ EASTL list at `+08`<sub>h</sub>. That list holds the controller's loaded banks, 
 
 ### Bank pools
 
-Each controller owns a pool at `+20`<sub>h</sub>: an EASTL vector of its bank objects and two EASTL sets of bank pointers. The
+Each controller owns a pool at `+0x20`: an EASTL vector of its bank objects and two EASTL sets of bank pointers. The
 reserve step puts every bank in the first set, the free set (`00218990`). Taking a bank moves the set's first node to
 the second set and rebuilds the bank in place: `0021C280` does this for battle voices and calls the
 `ShoutAudioBank` builder `00224BF0` on it. Each pool is its own template instance:
@@ -54,27 +54,27 @@ the second set and rebuilds the bank in place: `0021C280` does this for battle v
 | `ShoutAudioBank` | `0021BCB0`, `0021C450`, `0021C4F0`, `0021BFD0`, `0021C330` | `0021B8F0`, `0021B9B0`, `0021BA60`, `0021BB20`, `0021BBF0`, `0021BE80` |
 | `StreamAudioBank` | `0021CB10`, `0021D440`, `0021D580`, `0021CE30`, `0021D330` | `0021C8D0`, `0021C960`, `0021C9F0`, `0021CA90`, `0021CCE0` |
 
-Every bank class starts from `AudioBank`: `00221780` builds it with a family number at `+34`<sub>h</sub> and an empty sound
-list at `+08`<sub>h</sub>. `00217F10` copies one, appending its list through `00217B10`, and the element copies assign one
+Every bank class starts from `AudioBank`: `00221780` builds it with a family number at `+0x34` and an empty sound
+list at `+0x08`. `00217F10` copies one, appending its list through `00217B10`, and the element copies assign one
 list to another through `002181A0`. The class builders are `002226A0` (music, family 1), `002235F0` (block, 2),
 `00222CB0` (six-digit, 4), `00225160` (spoken line, 6) and `00224BF0` (battle voice, 8). The block bank's destructor
-`00223730` frees its slot map at `+58`<sub>h</sub> through `002236B0`.
+`00223730` frees its slot map at `+0x58` through `002236B0`.
 
 ### The object manager
 
-`002216B0` builds the object manager, `8D8`<sub>h</sub> bytes at `01FD4138`, from the sound start-up `00210760` with 1,024 bank
+`002216B0` builds the object manager, `0x8D8` bytes at `01FD4138`, from the sound start-up `00210760` with 1,024 bank
 objects and 1,024 sound objects (`0021088E`); `00221710` returns it. Its constructor `0021E570` lays out five pools of
 the same vector-and-sets shape:
 
 | Offset | Holds | Element | Count | Taken by |
 |---|---|---|---:|---|
-| `008`<sub>h</sub> | `AudioSeadObjectBank` | `30`<sub>h</sub> | 1,024 | `00220CE0`, under the lock at `+300`<sub>h</sub> |
-| `0A0`<sub>h</sub> | `AudioSeadObjectSound` | `30`<sub>h</sub> | 1,024 | `00220D30` |
-| `138`<sub>h</sub> | slot nodes of block banks | 10 bytes | 2,048 | `00220CD0` |
-| `1D0`<sub>h</sub> | `MemoryStreamingReader` | `28`<sub>h</sub> | 32 | `00220D40`, under the lock at `+350`<sub>h</sub> |
-| `268`<sub>h</sub> | `MusicStreamingReader` | `218`<sub>h</sub> | 5 | `00220C70`, under the lock at `+378`<sub>h</sub> |
+| `+0x008` | `AudioSeadObjectBank` | `0x30` | 1,024 | `00220CE0`, under the lock at `+0x300` |
+| `+0x0A0` | `AudioSeadObjectSound` | `0x30` | 1,024 | `00220D30` |
+| `+0x138` | slot nodes of block banks | 10 bytes | 2,048 | `00220CD0` |
+| `+0x1D0` | `MemoryStreamingReader` | `0x28` | 32 | `00220D40`, under the lock at `+0x350` |
+| `+0x268` | `MusicStreamingReader` | `0x218` | 5 | `00220C70`, under the lock at `+0x378` |
 
-The resume table of [Music](music.md) follows at `+3D8`<sub>h</sub> and `+7D8`<sub>h</sub>. Each pool's template code:
+The resume table of [Music](music.md) follows at `+0x3D8` and `+0x7D8`. Each pool's template code:
 
 | Pool | Build | Insert, erase | Element copies and destroy |
 |---|---|---|---|
@@ -86,21 +86,21 @@ The resume table of [Music](music.md) follows at `+3D8`<sub>h</sub> and `+7D8`<s
 
 ### Bank objects and sound objects
 
-A bank keeps its driver bank object at `+20`<sub>h</sub>. `00221D10` returns it, taking one from the pool on first use, and
+A bank keeps its driver bank object at `+0x20`. `00221D10` returns it, taking one from the pool on first use, and
 `00221C70` does the same and passes it to the driver with a sound object and its slot (`007A87C0`). A sound object
 is the game's handle on one driver `Sound`, kept in the bank's sound list:
 
 1. `00221D60` takes a sound object (`00220D30`) and appends it to the bank's list. When the pool is empty it first
    sweeps finished sounds from every bank of the block, six-digit and battle-voice controllers (`00210A60`) and tries
    once more.
-2. `00221E60`, `00221ED0` and `00221F40` find a bank's sound by slot `+14`<sub>h</sub>, handle `+18`<sub>h</sub> or id `+24`<sub>h</sub>.
+2. `00221E60`, `00221ED0` and `00221F40` find a bank's sound by slot `+0x14`, handle `+0x18` or id `+0x24`.
    `00221E00` sweeps, then returns the sound for a slot or takes a new one.
 3. `00222050` sweeps the bank's list and the pending list at `01FD4140`; `00222280` returns each sound in state 0 or 2
    to the pool (`00221210`).
 4. `00222080` and `002225B0` stop every sound of a bank, over 0.1 s or `frames / 60` s, and park them on the pending
    list until they finish; `00222410` stops only the sounds with one id over 0.1 s.
 
-`002256B0` resets a sound object to slot -1, volume `7F`<sub>h</sub>, pan `40`<sub>h</sub> and state 2. `002255B0` and `00225CC0` store a
+`002256B0` resets a sound object to slot -1, volume `0x7F`, pan `0x40` and state 2. `002255B0` and `00225CC0` store a
 bank object's two data pointers and a memory reader's data and size.
 
 ### Bank methods
@@ -115,9 +115,9 @@ Every bank class answers the same requests through its own methods:
 | `ShoutAudioBank` | language `00224C40`, keep one language's data `00224DC0`, play at a point `00224E40` (kind 9), play `00224F10` (kind 8), stop `00225000`, release `00225030` |
 | `StreamAudioBank` | open `002251B0`, play or resume `002252C0` (kind 6), pan `00225280`, is playing `002253D0`, volume `00225400` |
 
-The kind is stored at sound `+2C`<sub>h</sub> (`002256E0`). For a six-digit or block bank, `00222170` answers whether a handle,
+The kind is stored at sound `+0x2C` (`002256E0`). For a six-digit or block bank, `00222170` answers whether a handle,
 or with 0 any sound, still plays; `0021B2F0` asks it of every bank of one controller. A battle-voice bank holds both
-language copies, at `+50`<sub>h</sub> (language 0) and `+48`<sub>h</sub>, and `00224C40` loads the chosen one into its driver bank.
+language copies, at `+0x50` (language 0) and `+0x48`, and `00224C40` loads the chosen one into its driver bank.
 `00225030(bank, language)` releases the driver bank and keeps fresh copies of the other language, or of both for
 -1. A music bank's reader opens its file and keeps its name through `00225C40`.
 
@@ -133,8 +133,8 @@ fetches the manager with `00210B30` and calls one method:
 | `001DBFA0` | `00210E10` | block `0021B870`, then six-digit `0021A2C0` | sets a volume over frames | `002DF1A0`, `002DF1E0` |
 | `001DC000` | `00210F60` | the spatial layer | posts `Lay` action 1 with a position and a target | `002DF2C0` |
 | `001DC390` | `00211340` | the spatial layer | posts `Lay` action 2, the listener ([Spatial sound](spatial-sound.md)) | `002DF560` |
-| `001DC040` | `002110C0` | the mixer | posts driver action `2E`<sub>h</sub> for parameter 0 with two values over 127 | `002DE360` |
-| `001DC090` | `00211140` | the mixer | posts action `2E`<sub>h</sub> for parameter 7 at `volume / 127` over `frames / 60` s | `002DF410` |
+| `001DC040` | `002110C0` | the mixer | posts driver action `0x2E` for parameter 0 with two values over 127 | `002DE360` |
+| `001DC090` | `00211140` | the mixer | posts action `0x2E` for parameter 7 at `volume / 127` over `frames / 60` s | `002DF410` |
 | `001DC190` | `00211200` | battle voice `0021C760` | plays a battle-voice line at a point | `002DF460` |
 | `001DC1E0` | `00211210` | battle voice `0021C7E0` | plays a battle-voice line | `002DF4D0` |
 | `001DC2E0` | `00211270` | spoken line `0021D770` | opens a line's stream | `002DF660` |
@@ -157,7 +157,7 @@ of flag bit 6.
 
 A load is tracked by an id in the 128-entry table `01FD36C0`, eight bytes per entry: the id and a count:
 
-1. `002129F0(out, count)` asks `00212970` for an entry. It takes the next id from `01FD36B0`, 1 to `7FFFFFFF`<sub>h</sub>
+1. `002129F0(out, count)` asks `00212970` for an entry. It takes the next id from `01FD36B0`, 1 to `0x7FFFFFFF`
    and then 1 again, writes it to out and stores it in the first free entry from the rotating cursor `01E027D0`.
    With no free entry out is 0.
 2. `00212A70(index)` frees the entry, for example once a battle-voice bank's data is in (`00224DC0`); an index of
@@ -170,16 +170,16 @@ waiting.
 
 ### The file load thread
 
-The `AudioFileLoadManager` object, `158`<sub>h</sub> bytes at `01FD36A8`, reads bank files on its own thread:
+The `AudioFileLoadManager` object, `0x158` bytes at `01FD36A8`, reads bank files on its own thread:
 
-1. `00211840` builds it with 1,024 request records of `128`<sub>h</sub> bytes (`002116B0`), and `00212130` starts the thread
+1. `00211840` builds it with 1,024 request records of `0x128` bytes (`002116B0`), and `00212130` starts the thread
    named `AudioFileLoadManager`.
 2. `002120E0` takes a free record and `002121C0` queues it, or runs it at once.
 3. The thread `00212600` takes the request at the tail of the queue, the one queued last, or sleeps 1 ms when there
    is none.
-4. `00212050` runs it: kind 1 reads the whole file named at `+20`<sub>h</sub> into a new buffer (`00212260`), then the record's
+4. `00212050` runs it: kind 1 reads the whole file named at `+0x20` into a new buffer (`00212260`), then the record's
    callback runs and the record goes back to the free set.
-5. A bank's callback `00222200` calls bank slot 8 when the bank is still loading (`+30`<sub>h</sub> = 1). Otherwise it cancels
+5. A bank's callback `00222200` calls bank slot 8 when the bank is still loading (`+0x30` = 1). Otherwise it cancels
    the bank's other queued requests (`00212300`) and releases the bank.
 
 The request vector's own code is `002123E0`, `00211BC0`, `00211530`, `00211600`, `00211480` and `002113D0`, and
@@ -188,61 +188,61 @@ The request vector's own code is `002123E0`, `00211BC0`, `00211530`, `00211600`,
 ### Pausing by kind
 
 `002DF370(mask, on, force)` keeps the paused kinds at `0215EFD8` and passes a change to `00210FF0`
-(through `001DBA90`), which stores the mask at manager `+3C`<sub>h</sub> and the switch at `+38`<sub>h</sub>:
+(through `001DBA90`), which stores the mask at manager `+0x3C` and the switch at `+0x38`:
 
 | Mask bit | Pauses |
 |---|---|
-| `01`<sub>h</sub> | music banks, bank slot 0 |
-| `02`<sub>h</sub> | every block and six-digit bank, slot 0 |
-| `04`<sub>h</sub> | every spoken line and battle-voice bank, slot 0 |
-| `08`<sub>h</sub>, `10`<sub>h</sub>, `20`<sub>h</sub> | without `02`<sub>h</sub>: block and six-digit banks' slots 3, 4 and 5 |
+| `0x01` | music banks, bank slot 0 |
+| `0x02` | every block and six-digit bank, slot 0 |
+| `0x04` | every spoken line and battle-voice bank, slot 0 |
+| `0x08`, `0x10`, `0x20` | without `0x02`: block and six-digit banks' slots 3, 4 and 5 |
 
 Slot 0 of the other classes, `00222550`, runs slot 9 on each sound, `00222340`: pause (`007A8590`) or resume with a
 0.1 s fade (`007A7A20`). The music bank's slot 0, `00222C00`, does the same with 0.1 s both ways. The block bank's
-slot 9, `00223F40`, never pauses slots 2 and `59`<sub>h</sub> of block 0. `00229AB0(on)` pauses or resumes all six bits.
+slot 9, `00223F40`, never pauses slots 2 and `0x59` of block 0. `00229AB0(on)` pauses or resumes all six bits.
 
 `00224B30` pauses a new block sound at once when the switch is on, the game mode `00229EA0` is 5 or 6 (`002287A0`)
-and the bank is not block 0. `02`<sub>h</sub> pauses it; `08`<sub>h</sub>, `10`<sub>h</sub> and `20`<sub>h</sub> pause it by its slot's flag byte (copy `+9`):
+and the bank is not block 0. `0x02` pauses it; `0x08`, `0x10` and `0x20` pause it by its slot's flag byte (copy `+9`):
 
 | Bit | Function | Pauses when |
 |---|---|---|
-| `08`<sub>h</sub> | `00224290` | flag bit 0 set and bits 3, 5 and 6 clear |
-| `10`<sub>h</sub> | `002240B0` | flags `69`<sub>h</sub> all clear |
-| `20`<sub>h</sub> | `00224470` | flag bit 0 clear and the sound id over 1,000 is 150 |
+| `0x08` | `00224290` | flag bit 0 set and bits 3, 5 and 6 clear |
+| `0x10` | `002240B0` | flags `0x69` all clear |
+| `0x20` | `00224470` | flag bit 0 clear and the sound id over 1,000 is 150 |
 
-The id test reads sound `+24`<sub>h</sub>, which a block sound holds with bit 31 set (`002245ED`, `00224789`). Divided by 1,000
-as a signed number (`00224493`-`002244A5`) it is never 150, so bit `20`<sub>h</sub> pauses no new block sound, and the id test
-of bits `08`<sub>h</sub> and `10`<sub>h</sub> never excludes one.
+The id test reads sound `+0x24`, which a block sound holds with bit 31 set (`002245ED`, `00224789`). Divided by 1,000
+as a signed number (`00224493`-`002244A5`) it is never 150, so bit `0x20` pauses no new block sound, and the id test
+of bits `0x08` and `0x10` never excludes one.
 
 ## Layouts
 
-The sound object, `AudioSeadObjectSound`, `30`<sub>h</sub> bytes, in the object manager's pool at `+0A0`<sub>h</sub>:
+The sound object, `AudioSeadObjectSound`, `0x30` bytes, in the object manager's pool at `+0x0A0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*` | vtable | `AudioSeadObjectSound` |
-| `08`<sub>h</sub> | `void*` | sound | the driver `Sound` the play, stop and ramp calls act on |
-| `10`<sub>h</sub> | `i32` | state | 1 once started, 2 when the start fails; `00222280` returns states 0 and 2 to the pool |
-| `14`<sub>h</sub> | `i32` | slot | the block slot, or 0 for a line (`002257D0`) |
-| `18`<sub>h</sub> | `i32` | handle | the play handle (`00225580`) |
-| `1C`<sub>h</sub> | `i32` | volume | 0-127 |
-| `20`<sub>h</sub> | `i32` | pan | the pan byte (`002256F0`) |
-| `24`<sub>h</sub> | `i32` | id | the sound id (`002257C0`) |
-| `2C`<sub>h</sub> | `i32` | kind | 6 line, 8 battle voice, 9 placed battle voice (`002256E0`) |
+| `+0x00` | `void*` | vtable | `AudioSeadObjectSound` |
+| `+0x08` | `void*` | sound | the driver `Sound` the play, stop and ramp calls act on |
+| `+0x10` | `i32` | state | 1 once started, 2 when the start fails; `00222280` returns states 0 and 2 to the pool |
+| `+0x14` | `i32` | slot | the block slot, or 0 for a line (`002257D0`) |
+| `+0x18` | `i32` | handle | the play handle (`00225580`) |
+| `+0x1C` | `i32` | volume | 0-127 |
+| `+0x20` | `i32` | pan | the pan byte (`002256F0`) |
+| `+0x24` | `i32` | id | the sound id (`002257C0`) |
+| `+0x2C` | `i32` | kind | 6 line, 8 battle voice, 9 placed battle voice (`002256E0`) |
 
-The manager, `40`<sub>h</sub> bytes at `01FD36A0`:
+The manager, `0x40` bytes at `01FD36A0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `MusicAudioController*` | music | |
-| `08`<sub>h</sub> | `SebAudioController*` | block | |
-| `10`<sub>h</sub> | `SepAudioController*` | sixDigit | |
-| `18`<sub>h</sub> | `StreamAudioController*` | line | |
-| `20`<sub>h</sub> | `ShoutAudioController*` | battleVoice | |
-| `28`<sub>h</sub> | `void*` | callback | the `AudioCallback` vtable the driver reports to |
-| `30`<sub>h</sub> | `i32` | musicVersion | -1 when built; 0-2 from the Config option ([Music](music.md)) |
-| `38`<sub>h</sub> | `u32` | pauseOn | the last pause switch |
-| `3C`<sub>h</sub> | `u32` | pauseMask | the paused kinds |
+| `+0x00` | `MusicAudioController*` | music | |
+| `+0x08` | `SebAudioController*` | block | |
+| `+0x10` | `SepAudioController*` | sixDigit | |
+| `+0x18` | `StreamAudioController*` | line | |
+| `+0x20` | `ShoutAudioController*` | battleVoice | |
+| `+0x28` | `void*` | callback | the `AudioCallback` vtable the driver reports to |
+| `+0x30` | `i32` | musicVersion | -1 when built; 0-2 from the Config option ([Music](music.md)) |
+| `+0x38` | `u32` | pauseOn | the last pause switch |
+| `+0x3C` | `u32` | pauseMask | the paused kinds |
 
 ## Modding notes
 

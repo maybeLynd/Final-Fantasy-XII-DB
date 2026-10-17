@@ -16,9 +16,9 @@ whose record is built in the delivering function.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | id | message id |
-| `08`<sub>h</sub> | `u32[2]` | a | first argument |
-| `10`<sub>h</sub> | `u32[2]` | b | second argument |
+| `+0x00` | `u32` | id | message id |
+| `+0x08` | `u32[2]` | a | first argument |
+| `+0x10` | `u32[2]` | b | second argument |
 
 A procedure is called as `procedure(widget, message)` and returns a value that some senders read. Most procedures
 dispatch through a jump table and send any other id to `005C5230`, which returns 0; 51 procedures have table arms that
@@ -57,16 +57,16 @@ dialog posts to its owner:
 
 | `a` | Means | Sent by |
 |---|---|---|
-| `8000`<sub>h</sub> | the cursor moved; `b` is the row | the list `002D3BA0` (`002D4199`) |
-| `8001`<sub>h</sub> | the row was confirmed; a non-zero reply stops the list's own handling | `002D40FF` |
-| `8002`<sub>h</sub> | cancel | the list owners, for example `0057C480`, `00557B90` |
-| `8003`<sub>h</sub> | clear | `00561390` and the gambit editor's list ([Gambits screen](gambit-screen.md)) |
-| `8004`<sub>h</sub> | a move has ended | `002D2DB0` (`002D38B5`) |
-| `8005`<sub>h</sub> | posted right after `8000`<sub>h</sub> with the same row | `002D41E8` |
-| `8100`<sub>h</sub>-`8103`<sub>h</sub> | the confirmation window's yes, no, cancel and cursor row | `0057C480` ([Dialogs](dialogs.md)) |
-| `8102`<sub>h</sub>-`8106`<sub>h</sub> | the item sort bar's close, help and three sorts | `00566680` ([Dialogs](dialogs.md)) |
+| `0x8000` | the cursor moved; `b` is the row | the list `002D3BA0` (`002D4199`) |
+| `0x8001` | the row was confirmed; a non-zero reply stops the list's own handling | `002D40FF` |
+| `0x8002` | cancel | the list owners, for example `0057C480`, `00557B90` |
+| `0x8003` | clear | `00561390` and the gambit editor's list ([Gambits screen](gambit-screen.md)) |
+| `0x8004` | a move has ended | `002D2DB0` (`002D38B5`) |
+| `0x8005` | posted right after `0x8000` with the same row | `002D41E8` |
+| `0x8100`-`0x8103` | the confirmation window's yes, no, cancel and cursor row | `0057C480` ([Dialogs](dialogs.md)) |
+| `0x8102`-`0x8106` | the item sort bar's close, help and three sorts | `00566680` ([Dialogs](dialogs.md)) |
 
-Screens also use small codes `E`<sub>h</sub>-`1D`<sub>h</sub> among themselves, most often `12`<sub>h</sub> (21 calls) and `F`<sub>h</sub> (17).
+Screens also use small codes `0xE`-`0x1D` among themselves, most often `0x12` (21 calls) and `0xF` (17).
 
 ### Private ids
 

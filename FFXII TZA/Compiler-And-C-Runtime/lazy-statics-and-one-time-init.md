@@ -20,8 +20,8 @@ outcome follows from the code below.
 Each function-local static with a dynamic initialiser has a 32-bit guard in `.data` and an inline gate.
 From `00189CE0`, guard `01F7F5C8`:
 
-1. Read this thread's epoch: the TLS block for index `_tls_index` (`02EAED3C`) through `gs:[58h]`, dword
-   `+04`<sub>h</sub> (`00189D22`–`00189D3A`).
+1. Read this thread's epoch: the TLS block for index `_tls_index` (`02EAED3C`) through `gs:[0x58]`, dword
+   `+0x04` (`00189D22`–`00189D3A`).
 2. `cmp [guard], epoch; jle` (`00189D3D`): when the guard is not greater, the static is ready and the
    block is skipped without any call.
 3. Otherwise call `_Init_thread_header(&guard)` (`00189D4C`).
@@ -29,7 +29,7 @@ From `00189CE0`, guard `01F7F5C8`:
    `_Init_thread_footer(&guard)`; any other value means another thread finished it.
 
 The accessor `005C3B10` is the smallest complete case (115 bytes): it returns the static `02CB5D48`
-whose guard sits at `+10`<sub>h</sub> (`02CB5D58`), and on first use stores the class descriptor `02CAD140` with
+whose guard sits at `+0x10` (`02CB5D58`), and on first use stores the class descriptor `02CAD140` with
 bit 0 set and a zero beside it.
 
 ### Guard and epoch values
@@ -37,9 +37,9 @@ bit 0 set and a zero beside it.
 - A guard starts at 0 (all lie in the zero-filled part of `.data`, `01F7F5C8`–`02EBA258`).
 - The header sets it to -1 while one thread builds the object.
 - The footer increments the global epoch `01F44850` and stores the new value in the guard and in the
-  thread's epoch. The global epoch starts at `80000000`<sub>h</sub>, so a finished guard holds `80000001`<sub>h</sub> or more
+  thread's epoch. The global epoch starts at `0x80000000`, so a finished guard holds `0x80000001` or more
   and is negative as a signed number.
-- The TLS template (`03004000`) starts every thread's epoch at `80000000`<sub>h</sub>, below every finished
+- The TLS template (`03004000`) starts every thread's epoch at `0x80000000`, below every finished
   guard, so a thread's first pass over a finished guard calls the header, which copies the global epoch
   into the thread and returns.
 
@@ -60,7 +60,7 @@ All of them hold the critical section `02EAED40` only briefly:
 `02EAED70` it calls `SleepConditionVariableCS(02EAED68, 02EAED40, 100)`, which releases the lock while
 asleep; otherwise it leaves the lock, waits on the event and re-enters. `_Init_thread_notify` wakes all
 sleepers (`WakeAllConditionVariable`), or sets and resets the event. Both decode their function pointer
-from `02EAED78` or `02EAED80` as `ror64(cookie xor value, cookie & 3Fh)`.
+from `02EAED78` or `02EAED80` as `ror64(cookie xor value, cookie & 0x3F)`.
 
 ### Setting up the lock
 

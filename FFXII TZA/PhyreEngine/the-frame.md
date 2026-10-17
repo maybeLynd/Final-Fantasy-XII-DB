@@ -57,20 +57,20 @@ pass (`00377230`) and the bit-0 pass, then `00332420(0)` when bit 6 or bit 1 is 
 The named scopes, in order, are `mask border 0`; `AO render` (when `0017FE10()` and `01FD49E8`);
 `Water effect` (when `0017FE20()` and `01FD49E8`, at one of two places); `post-processing render`
 (at one of two places chosen by `00180040()`, at most once per draw through `02064AE0`, and in draw 1
-only when bits `1`<sub>h</sub>, `8`<sub>h</sub> and `10`<sub>h</sub> of `020926E4` are clear); `PS2 DOF`; `Gaussian Filter`; and
+only when bits `0x1`, `0x8` and `0x10` of `020926E4` are clear); `PS2 DOF`; `Gaussian Filter`; and
 `mask border 2`. In draw 1, `01FD49E8` is 0 unless bit 0 is set, which removes AO, water and
 post-processing from the second draw.
 
 ### The pass mask
 
 `022C7F90` holds one dword per draw: the low `u16` is the pass bits read above, the high `u16` a second
-set of flags. Bytes follow at `022C7F98` (`+8`), `022C7F99` (`+9`) and `022C7F9A` (`+A`<sub>h</sub>, the speed
+set of flags. Bytes follow at `022C7F98` (`+8`), `022C7F99` (`+9`) and `022C7F9A` (`+0xA`, the speed
 permit byte of [frame update order](../Engine-Core/frame-update-order.md)).
 
 `00358450(draw, on)`
 sets bits 0–7 of that draw's pass bits to `on`, clears bit 8 and sets bits 0–3 of its upper word. The
 reset `00358510` (called from `0022A0B0`) runs it with on for draw 0 and off for draw 1, then stores
-0, 0 and 1 at `+8`, `+9` and `+A`<sub>h</sub>. The other writers, their 105 call sites and the values they store
+0, 0 and 1 at `+8`, `+9` and `+0xA`. The other writers, their 105 call sites and the values they store
 are listed in [the-frame-drawmask-callers.tsv](the-frame-drawmask-callers.tsv).
 
 ### The GS register batch
@@ -91,15 +91,15 @@ the GIF tag format and the GS replay are on
 ### The two command buffers
 
 `003A1D50` (called from `0036F4D0`) sets up the two 24-byte buffer records `02EBEFC0` and `02EBEFD8`
-through `004FE420`, each with 512 (`200`<sub>h</sub>) 16-byte records in the arena at `[01FD4A78]`; `02EBEFF0`
+through `004FE420`, each with 512 (`0x200`) 16-byte records in the arena at `[01FD4A78]`; `02EBEFF0`
 is the index of the buffer being filled. `003A1DB0` flips the index and hands the old buffer's start
 and record count to `0036F360`.
 
 `0036F360` does nothing for an empty buffer. Otherwise, when the last record's first dword has bits
-`70000000`<sub>h</sub> equal to `30000000`<sub>h</sub>, it writes the record `{10000000h, 0}` after it (over it when the
-buffer is full). It then stores the buffer address & `3FF0`<sub>h</sub> (`0036F3A6`) and the record count
+`0x70000000` equal to `0x30000000`, it writes the record `{0x10000000, 0}` after it (over it when the
+buffer is full). It then stores the buffer address & `0x3FF0` (`0036F3A6`) and the record count
 (`0036F3AC`) into the command-state word `02EBA3F8`, reloads that word three times per pass of a
-compare loop (`0036F3B2`-`0036F3E9`), and stores `100`<sub>h</sub> to it (`0036F3EB`).
+compare loop (`0036F3B2`-`0036F3E9`), and stores `0x100` to it (`0036F3EB`).
 
 The buffers are on
 [the ordered render command list](../17-Presentation-Rendering/render-command-list.md
@@ -115,67 +115,67 @@ the word on
 width by device width / reference width, or, when `001DD8C0` reports aspect correction, by device
 height × aspect (from `001DD110`, default 1.7777778) / reference width with x centred. It passes the
 result to `001B23E0` and `001E9F00`. The full-menu state `0022B8C0` calls it with `[01E0C1D8]` and
-`[01E0C1DC]`, which hold `200`<sub>h</sub> and `1C0`<sub>h</sub>.
+`[01E0C1DC]`, which hold `0x200` and `0x1C0`.
 
 ### The camera snapshot
 
-`00864F30` is slot 0 (prepare) of the `GiBeginEff` render command (vtable `01CCFB78`, `90`<sub>h</sub>
+`00864F30` is slot 0 (prepare) of the `GiBeginEff` render command (vtable `01CCFB78`, `0x90`
 bytes). It copies:
 
-- 64 bytes from `02AEEB20` (returned by `0039D1D0`) to `+08`<sub>h</sub>;
-- the 64-byte projection matrix at `+30`<sub>h</sub> of the camera object from `00186670` on the render manager (adjusted by `+8` when
-non-null, then read without a null check) to `+48`<sub>h</sub>;
-- the floats `02AEEBA0` and `02AEEBA4` to `+88`<sub>h</sub> and `+8C`<sub>h</sub>.
+- 64 bytes from `02AEEB20` (returned by `0039D1D0`) to `+0x08`;
+- the 64-byte projection matrix at `+0x30` of the camera object from `00186670` on the render manager (adjusted by `+8` when
+non-null, then read without a null check) to `+0x48`;
+- the floats `02AEEBA0` and `02AEEBA4` to `+0x88` and `+0x8C`.
 
 `00678B50` then rewrites two entries of the copied matrix from the camera's near
-(`+B8`<sub>h</sub>) and far (`+BC`<sub>h</sub>): with element `+3C`<sub>h</sub> non-zero, `+28h = 1 / (n − f)` and
-`+38h = n / (n − f)`; otherwise `+28h = f / (n − f)` and `+38h = n·f / (n − f)`.
+(`+0xB8`) and far (`+0xBC`): with element `+0x3C` non-zero, `+0x28 = 1 / (n − f)` and
+`+0x38 = n / (n − f)`; otherwise `+0x28 = f / (n − f)` and `+0x38 = n·f / (n − f)`.
 
-Slot 1 (execute, `00864E90`) first calls the device's slot `+B0`<sub>h</sub> with 0 (`00864EB5`) and stores `80`<sub>h</sub> in
-`01E027B8` (`002105A0`, `00864EBD`), then hands `+08`<sub>h</sub> and the two floats to `00210520`, which stores them at
+Slot 1 (execute, `00864E90`) first calls the device's slot `+0xB0` with 0 (`00864EB5`) and stores `0x80` in
+`01E027B8` (`002105A0`, `00864EBD`), then hands `+0x08` and the two floats to `00210520`, which stores them at
 `01FD3620`–`01FD365F`, `01FD3660` and `01FD3664` (the GS replay's vertex matrix and depth bounds),
-passes `+48`<sub>h</sub> to the device's slot `+30`<sub>h</sub>, sets two device values to 3.0 (slots `+D8`<sub>h</sub> and `+D0`<sub>h</sub>), and
-ends by tail-jumping to the device's slot `+138`<sub>h</sub> with 0 (`00864F22`).
+passes `+0x48` to the device's slot `+0x30`, sets two device values to 3.0 (slots `+0xD8` and `+0xD0`), and
+ends by tail-jumping to the device's slot `+0x138` with 0 (`00864F22`).
 
 ## Layouts
 
-Command buffer record (`02EBEFC0`, `02EBEFD8`), `18`<sub>h</sub> bytes:
+Command buffer record (`02EBEFC0`, `02EBEFD8`), `0x18` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*` | begin |  |
-| `08`<sub>h</sub> | `void*` | write | advanced by `10`<sub>h</sub> per record |
-| `10`<sub>h</sub> | `u32` | capacity | `200`<sub>h</sub> records |
-| `14`<sub>h</sub> | `u32` | ready | set by `004FE420` |
+| `+0x00` | `void*` | begin |  |
+| `+0x08` | `void*` | write | advanced by `0x10` per record |
+| `+0x10` | `u32` | capacity | `0x200` records |
+| `+0x14` | `u32` | ready | set by `004FE420` |
 
-Command record, `10`<sub>h</sub> bytes:
+Command record, `0x10` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u64` | value | register data |
-| `08`<sub>h</sub> | `u64` | register | GS register number |
+| `+0x00` | `u64` | value | register data |
+| `+0x08` | `u64` | register | GS register number |
 
 Pass mask (`022C7F90`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u16` | draw 0 pass bits |  |
-| `02`<sub>h</sub> | `u16` | draw 0 upper flags |  |
-| `04`<sub>h</sub> | `u16` | draw 1 pass bits |  |
-| `06`<sub>h</sub> | `u16` | draw 1 upper flags |  |
-| `08`<sub>h</sub> | `u8` | current draw byte (00358640) |  |
-| `09`<sub>h</sub> | `u8` | capture byte |  |
-| `0A`<sub>h</sub> | `u8` | speed permit byte |  |
+| `+0x00` | `u16` | draw 0 pass bits |  |
+| `+0x02` | `u16` | draw 0 upper flags |  |
+| `+0x04` | `u16` | draw 1 pass bits |  |
+| `+0x06` | `u16` | draw 1 upper flags |  |
+| `+0x08` | `u8` | current draw byte (00358640) |  |
+| `+0x09` | `u8` | capture byte |  |
+| `+0x0A` | `u8` | speed permit byte |  |
 
-GiBeginEff render command, `90`<sub>h</sub> bytes:
+GiBeginEff render command, `0x90` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*` | vtable | `01CCFB78` |
-| `08`<sub>h</sub> | `f32[16] block` | from 02AEEB20 |  |
-| `48`<sub>h</sub> | `f32[16] projection` | camera `+30`<sub>h</sub>, depth terms rewritten by 00678B50 |  |
-| `88`<sub>h</sub> | `f32` | near bound | `02AEEBA0` |
-| `8C`<sub>h</sub> | `f32` | far bound | `02AEEBA4` |
+| `+0x00` | `void*` | vtable | `01CCFB78` |
+| `+0x08` | `f32[16] block` | from 02AEEB20 |  |
+| `+0x48` | `f32[16] projection` | camera +0x30, depth terms rewritten by 00678B50 |  |
+| `+0x88` | `f32` | near bound | `02AEEBA0` |
+| `+0x8C` | `f32` | far bound | `02AEEBA4` |
 
 Instruction-level access tables beside this page:
 
@@ -183,7 +183,7 @@ Instruction-level access tables beside this page:
 |---|---|
 | the two command buffer records | [the-frame-render-command-buffer-pair-accesses.tsv](the-frame-render-command-buffer-pair-accesses.tsv) |
 | a command buffer record | [the-frame-render-command-buffer-accesses.tsv](the-frame-render-command-buffer-accesses.tsv) |
-| the 64 records of `60`<sub>h</sub> bytes at `02B404E0` | [the-frame-handle-slot-record-accesses.tsv](the-frame-handle-slot-record-accesses.tsv) |
+| the 64 records of `0x60` bytes at `02B404E0` | [the-frame-handle-slot-record-accesses.tsv](the-frame-handle-slot-record-accesses.tsv) |
 | pass mask writers | [the-frame-drawmask-callers.tsv](the-frame-drawmask-callers.tsv) |
 | `PCameraOrthographic` | [the-frame-pcamera-orthographic-accesses.tsv](the-frame-pcamera-orthographic-accesses.tsv) |
 | `PCameraProjection` | [the-frame-pcamera-projection-accesses.tsv](the-frame-pcamera-projection-accesses.tsv) |

@@ -24,12 +24,12 @@ Healing gives no MP, and neither does damage between two units on the same side.
 
 ### The MP write
 
-`00300CE0(stats, delta, flags)` changes current MP `+4C`<sub>h</sub> (`00300D69`-`00300E25`):
+`00300CE0(stats, delta, flags)` changes current MP `+0x4C` (`00300D69`-`00300E25`):
 
 1. With flags bit 0 clear, the battle and unit eligibility masks of [Gaining and losing
    statuses](status-changes.md) refuse the change on any low bit (`00300D42`-`00300D63`).
-2. The new value is floored at 0 and capped at max MP `+28`<sub>h</sub>. With augment 39 in either layer (byte
-   `+6C`<sub>h</sub> or `+7C`<sub>h</sub>, bit 7) the cap is 0, so MP stays at 0 (`00300D6D`-`00300D9F`).
+2. The new value is floored at 0 and capped at max MP `+0x28`. With augment 39 in either layer (byte
+   `+0x6C` or `+0x7C`, bit 7) the cap is 0, so MP stays at 0 (`00300D6D`-`00300D9F`).
 3. Unless flags bit 4 is set, `003283D0` shows the change; unless bit 7 is set, `0028F1F0` reports it
    (`00300DA6`-`00300DD3`). `003283D0` posts a battle number through `003BBD00` (`00328462`,
    [Battle numbers](../Menus-And-HUD/battle-numbers.md)); `0028F1F0` finds the member's counter pair with `00296280`
@@ -42,8 +42,8 @@ Healing gives no MP, and neither does damage between two units on the same side.
 ### What gives MP for damage
 
 `00307300` is the only caller of the two gain functions (`00307B0D`-`00307B8C`). It runs them when the
-result changed HP by a delta, `+2C`<sub>h</sub> bit 8 set and bit 3 (an absolute HP) clear. The target's gain is written
-with flags `10`<sub>h</sub>, then the attacker's.
+result changed HP by a delta, `+0x2C` bit 8 set and bit 3 (an absolute HP) clear. The target's gain is written
+with flags `0x10`, then the attacker's.
 
 Both gains need the two units on opposite sides: exactly one of them a party record (`002F91EB`-`002F91FB`,
 `002F92A8`-`002F92B8`). Both return 0 for a heal.
@@ -52,7 +52,7 @@ Both gains need the two units on opposite sides: exactly one of them a party rec
 
 `002F91A0(attacker, target, hpDelta)` gives 0 for a heal (`hpDelta` not below 0) or two units on the same side
 (`002F91AB`-`002F91FB`); otherwise it gives the target the ladder value for the damage when it has Martyr
-(augment 21) in either layer, byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub> bit 5 (`002F9204`-`002F921E`), tripled in an area with MP
+(augment 21) in either layer, byte `+0x6A` or `+0x7A` bit 5 (`002F9204`-`002F921E`), tripled in an area with MP
 regime 2 or 3 (`00320160`, `002F9220`-`002F9234`).
 
 ### Gain from dealing damage
@@ -61,12 +61,12 @@ regime 2 or 3 (`00320160`, `002F9220`-`002F9234`).
 (`002F9240`-`002F93D6`):
 
 1. A heal (`hpDelta` not below 0) or two units on the same side gives 0.
-2. With Inquisitor (augment 86: attacker byte `+72`<sub>h</sub> or `+82`<sub>h</sub>, bit 6) and the action row's `+2C`<sub>h</sub> bit 3
+2. With Inquisitor (augment 86: attacker byte `+0x72` or `+0x82`, bit 6) and the action row's `+0x2C` bit 3
    set, the gain is the ladder value for the damage.
-3. Otherwise, with Warmage (augment 20: byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub>, bit 4) and `+2C`<sub>h</sub> bit 4 set, the gain is the
+3. Otherwise, with Warmage (augment 20: byte `+0x6A` or `+0x7A`, bit 4) and `+0x2C` bit 4 set, the gain is the
    ladder value; without either pair it is 0 (`002F9329`-`002F9389`).
-4. With Headsman (augment 23: byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub>, bit 7) and a kill, it adds `max(target level >> 2, 1)`,
-   the level being target byte `+1C2`<sub>h</sub> (`002F938B`-`002F93C0`). A kill here is a target that now has KO,
+4. With Headsman (augment 23: byte `+0x6A` or `+0x7A`, bit 7) and a kill, it adds `max(target level >> 2, 1)`,
+   the level being target byte `+0x1C2` (`002F938B`-`002F93C0`). A kill here is a target that now has KO,
    Stone or X-Zone without the field's bit 15 (`00307B3F`-`00307B61`).
 5. In an area with MP regime 2 or 3 the total is tripled (`002F93C2`-`002F93D6`).
 
@@ -79,7 +79,7 @@ for i = 1 .. 19: if damage < row[i].threshold: return row[i - 1].factor
 return row[19].factor
 ```
 
-The factor is row byte `+03`<sub>h</sub> for a summoned Esper (a party record of type `1B`<sub>h</sub>-`27`<sub>h</sub>) and byte `+02`<sub>h</sub>
+The factor is row byte `+0x03` for a summoned Esper (a party record of type `0x1B`-`0x27`) and byte `+0x02`
 for everyone else (`002FB752`-`002FB7FE`). A damage of 0 gives 0.
 
 ### Rich areas
@@ -91,35 +91,35 @@ replaces it ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 ### MP from walking
 
 While a unit is active and has none of KO, Stone and X-Zone (or the field's bit 15 is set), the distance its
-actor moves each frame is added to unit `+70`<sub>h</sub>: on the ground plane, or in three dimensions for an actor with
+actor moves each frame is added to unit `+0x70`: on the ground plane, or in three dimensions for an actor with
 byte `+8` bit 2 (`002E5290`-`002E5337`, `00329A80`).
 
 `002F9400(unit)`, run by the periodic step `00310DB0` (`003110C3`), turns that distance into MP
 (`002F9400`-`002F95AE`):
 
-1. It takes the distance from `+70`<sub>h</sub> and compares it with the unit's last stored value, the 32-bit value at
-   `+18`<sub>h</sub> of its 64-byte record. When the two are equal it stores the value back and gives nothing. A unit that
+1. It takes the distance from `+0x70` and compares it with the unit's last stored value, the 32-bit value at
+   `+0x18` of its 64-byte record. When the two are equal it stores the value back and gives nothing. A unit that
    is inactive or has KO, Stone or X-Zone without the field's bit 15 gets 0 and loses its progress
    (`00320450`-`00320492`).
-2. It picks the first of rows 20-24 whose MP limit `+04`<sub>h</sub> is at least current MP, or row 24.
-3. The row's distance `+00`<sub>h</sub>, divided by 3 in a rich area, is the walk for one point. A longer distance gives
+2. It picks the first of rows 20-24 whose MP limit `+0x04` is at least current MP, or row 24.
+3. The row's distance `+0x00`, divided by 3 in a rich area, is the walk for one point. A longer distance gives
    1 MP and starts again from 0.
-4. The remaining distance goes back into `+70`<sub>h</sub>.
+4. The remaining distance goes back into `+0x70`.
 
-`00310DB0` writes the point with flags `90`<sub>h</sub>, so the gain is neither shown nor reported (`003110C8`-`003110D7`).
+`00310DB0` writes the point with flags `0x90`, so the gain is neither shown nor reported (`003110C8`-`003110D7`).
 
 ### What an action costs
 
 `00309110(unit, action)` gives the MP an action costs (`00309110`-`003091A3`):
 
-1. An id above `21E`<sub>h</sub>, or an action of kind 5 or 6 (row `+1E`<sub>h</sub>), costs nothing.
-2. Without a unit the cost is the action row's byte `+0A`<sub>h</sub>.
+1. An id above `0x21E`, or an action of kind 5 or 6 (row `+0x1E`), costs nothing.
+2. Without a unit the cost is the action row's byte `+0x0A`.
 3. A unit on the gil channel pays no MP (`002F9820`): one that is not an enemy-table record and has
-   augment 32 in either layer, byte `+6C`<sub>h</sub> / `+7C`<sub>h</sub> bit 0.
-4. Otherwise `002F95D0` adjusts row `+0A`<sub>h</sub> (`002F962B`-`002F9808`).
+   augment 32 in either layer, byte `+0x6C` / `+0x7C` bit 0.
+4. Otherwise `002F95D0` adjusts row `+0x0A` (`002F962B`-`002F9808`).
 
-`002F95D0` leaves the cost unchanged for a party record's Quickenings (`D0`<sub>h</sub>-`E1`<sub>h</sub>, `002F9646`-`002F9655`)
-and Esper summons (`106`<sub>h</sub>-`112`<sub>h</sub>); the Concurrences (`E2`<sub>h</sub>-`F1`<sub>h</sub>) are adjusted like other actions. For
+`002F95D0` leaves the cost unchanged for a party record's Quickenings (`0xD0`-`0xE1`, `002F9646`-`002F9655`)
+and Esper summons (`0x106`-`0x112`); the Concurrences (`0xE2`-`0xF1`) are adjusted like other actions. For
 every other action, in this order:
 
 | Augment | Cost | Sites |
@@ -135,7 +135,7 @@ Each augment counts in either layer. The action pays when it runs: `00305640` su
 (`0030571A`, `0030572B`; [Gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
 
 The battle menu's list builder `0031EB20` runs the same `002F9820` and `002F95D0` for each action it lists and
-keeps the adjusted cost in the entry's word `+52`<sub>h</sub>, with entry flag 8 for the gil channel and 2 otherwise
+keeps the adjusted cost in the entry's word `+0x52`, with entry flag 8 for the gil channel and 2 otherwise
 (`0031F00C`-`0031F072`, [Battle menu](../Menus-And-HUD/battle-menu.md)).
 
 ## Shipped data
@@ -145,9 +145,9 @@ damage ladder:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u16` | damage | damage from |
-| `02`<sub>h</sub> | `u8` | factor | MP factor |
-| `03`<sub>h</sub> | `u8` | esperFactor | Esper MP factor |
+| `+0x00` | `u16` | damage | damage from |
+| `+0x02` | `u8` | factor | MP factor |
+| `+0x03` | `u8` | esperFactor | Esper MP factor |
 
 The shipped rows:
 
@@ -179,8 +179,8 @@ Rows 20-24 are the walking ladder. The range is fixed in the code, not by the fi
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `i32` | distance | distance per point |
-| `04`<sub>h</sub> | `i32` | mpLimit | current MP up to |
+| `+0x00` | `i32` | distance | distance per point |
+| `+0x04` | `i32` | mpLimit | current MP up to |
 
 The shipped rows:
 
@@ -198,13 +198,13 @@ Augment rows 91, 92 and 93 each carry 10 in word `+4`, so the three together cut
 
 - Both ladders are data in section 3; the code reads exactly 20 damage rows and 5 walking rows, whatever the
   table's count says.
-- An action gives MP on a hit only through the two `+2C`<sub>h</sub> bits; setting them on an action row makes it count.
+- An action gives MP on a hit only through the two `+0x2C` bits; setting them on an action row makes it count.
 - The cost cuts come from augment rows 91-93's word `+4`, so the percentage is data.
 
 ## Related
 
 - [Gaining and losing statuses](status-changes.md) - the eligibility masks.
 - [Augments](../Damage-And-Battle-Formulas/augments.md) - the augment layers, max MP and the Mist charges.
-- [Action definition row](../Battle-Actions/action-definition-row.md) - `+0A`<sub>h</sub>, `+1E`<sub>h</sub> and `+2C`<sub>h</sub>.
+- [Action definition row](../Battle-Actions/action-definition-row.md) - `+0x0A`, `+0x1E` and `+0x2C`.
 - [Action phases](../Battle-Actions/action-phases.md) - when an action pays.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the MP regime.

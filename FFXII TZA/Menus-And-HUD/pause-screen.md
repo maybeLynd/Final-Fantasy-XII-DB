@@ -29,23 +29,23 @@ The field's input arbiter calls `00228380` before it reads a button and reads no
 5. Otherwise, while the inactive-window task exists, it builds the overlay through `002282F0(argument)`; with no task
    it answers 0.
 
-`002282F0` builds the `D0`<sub>h</sub>-byte overlay `00229590` into `01FD4940` when that is empty (`00228303`-`00228352`).
+`002282F0` builds the `0xD0`-byte overlay `00229590` into `01FD4940` when that is empty (`00228303`-`00228352`).
 `01FD46FC` is set to 5 when an overlay is destroyed, so a new one cannot open for five calls.
 
 ### The inactive-window task
 
-`00228490` builds the `D0`<sub>h</sub>-byte task `002284F0` into `01FD4948` ([Action availability](../Controls-And-Input/action-availability.md)).
+`00228490` builds the `0xD0`-byte task `002284F0` into `01FD4948` ([Action availability](../Controls-And-Input/action-availability.md)).
 `00228480` answers whether it exists.
 
 | Message | What the task does |
 |---|---|
-| `1`, built | runs `00196710` on the input manager (`001E0980`), runs the drain over the root `0208EA40` (`00248030`), takes the focus unless `[0209AC30] + 308h` is set, attaches under `0208EA48`, and while a movie plays clears the active bit of message window 3 (`002E2570(3, 0)`) |
+| `1`, built | runs `00196710` on the input manager (`001E0980`), runs the drain over the root `0208EA40` (`00248030`), takes the focus unless `[0209AC30] + 0x308` is set, attaches under `0208EA48`, and while a movie plays clears the active bit of message window 3 (`002E2570(3, 0)`) |
 | `10`, its input turn | sets `022CBE34` to 5 (`00368810`); when channel 0's newest word from `0035EF10(0, 0)` equals the cancel mask `01E0C2A4`, writes 0 to `022CA5F0` (`0035ED40`), moves to state 1 and, while a movie plays, sets message window 3 active again |
-| `2`, each tick | in state 1: posts window message `8002`<sub>h</sub> with 0 (`0017E500`), closes the overlay (`00244DD0`) and releases itself, state 3; then clears the mouse wheel (`001E0F20`), and while `[0209AC30] + 308h` is set treats the cancel word the same way, clearing the input words `02F97360`-`02F9739B` |
-| `18`, destroyed | clears `01FD4948` and the wheel; gives the focus to `+C8`<sub>h</sub> when set |
+| `2`, each tick | in state 1: posts window message `0x8002` with 0 (`0017E500`), closes the overlay (`00244DD0`) and releases itself, state 3; then clears the mouse wheel (`001E0F20`), and while `[0209AC30] + 0x308` is set treats the cancel word the same way, clearing the input words `02F97360`-`02F9739B` |
+| `18`, destroyed | clears `01FD4948` and the wheel; gives the focus to `+0xC8` when set |
 
 `001EC5A0` answers whether a movie plays: the movie player's status `+4` is 3 (`001B7F20`, `001B7D20`,
-[Movies](../Graphics/movies.md)). `0017E500(on)` sends the message `8002`<sub>h</sub> with 1 or 0 to the game
+[Movies](../Graphics/movies.md)). `0017E500(on)` sends the message `0x8002` with 1 or 0 to the game
 window `02EA5248`, the handle the window procedure `00798FF0` stores (`007990FF`).
 
 ### Building the overlay
@@ -54,11 +54,11 @@ On message 1 the overlay (`00229961`-`00229A98`):
 
 1. prints `PauseMenu Create` (`0017DB70`) and clears bytes 0, 1 and 2 of the running object (`00183200(0)`,
    `00182FF0(0)`), below;
-2. keeps its argument at `+C8`<sub>h</sub>, sets state `+C0`<sub>h</sub> to 0, and takes the 1920 x 1080 frame from `01E0C1D8` and
+2. keeps its argument at `+0xC8`, sets state `+0xC0` to 0, and takes the 1920 x 1080 frame from `01E0C1D8` and
    `01E0C1DC` as its size;
 3. sets bits 1, 0, 20 and 9 of action policy row 15 (`002E1C20`): bits 0, 1 and 9 keep the main menu, the battle
    menu and Escape Mode shut, and no reader tests bit 20;
-4. builds button legend scenes `12`<sub>h</sub> and `0C`<sub>h</sub> (`0029DA70`) and formats text `467C`<sub>h</sub>, which holds only size and baseline codes,
+4. builds button legend scenes `0x12` and `0x0C` (`0029DA70`) and formats text `0x467C`, which holds only size and baseline codes,
    with it into `01FD4960` (`002B4090`);
 5. attaches under `0208EA48` with priority -9.
 
@@ -80,34 +80,34 @@ Each tick (message 2) moves the overlay through its states:
 
 | State | Waits for | Then |
 |---:|---|---|
-| `0` | `01FD4954`, which `00229AE0` sets for the movie player (`001B7690`, `001B7F30`, `001B82A0`, `001B8400`) and `002CEB40` | clears it, opens layer 3 with `00908B50`, sets `+C8`<sub>h</sub> to 1, state 1 |
-| `1` | layer 3's widget reports `+E8`<sub>h</sub> (`002CCC70(3)`) | pauses, below; state 2 |
+| `0` | `01FD4954`, which `00229AE0` sets for the movie player (`001B7690`, `001B7F30`, `001B82A0`, `001B8400`) and `002CEB40` | clears it, opens layer 3 with `00908B50`, sets `+0xC8` to 1, state 1 |
+| `1` | layer 3's widget reports `+0xE8` (`002CCC70(3)`) | pauses, below; state 2 |
 | `2` | message 15, the close | state 3 |
 | `3` | nothing | resumes, below; closes layer 3 (`002CCBC0(3)`), state 4 |
-| `4` | layer 3's widget at `[0209AC30] + 2A8h` to be gone | clears the four policy bits (`002E1CA0`), turns the framework pause byte off (`0017E720(0)`) and releases itself |
+| `4` | layer 3's widget at `[0209AC30] + 0x2A8` to be gone | clears the four policy bits (`002E1CA0`), turns the framework pause byte off (`0017E720(0)`) and releases itself |
 
-On message 4 it draws, once paused with `+C8`<sub>h</sub> set, a sprite of the battle atlas (`0035D460`) centred on the frame
+On message 4 it draws, once paused with `+0xC8` set, a sprite of the battle atlas (`0035D460`) centred on the frame
 (`002D8CB0`), and in every state the text at `01FD4960` (`002D8910`).
 
 ### What pausing does
 
 At state 1 the overlay prints `PauseMenu Open` and (`0022986B`-`002298F2`):
 
-- saves the behind-camera switch `02098354` at `+C4`<sub>h</sub> and clears it (`0025A850`, `0025A880(0)`); the script verbs
-  `tutorial_get_behindcameraenable` (`3A0`<sub>h</sub>) and `tutorial_set_behindcameraenable` (`3A1`<sub>h</sub>) read and write it;
-- pauses the audio kinds `3F`<sub>h</sub> (`002DF370(3Fh, 1, 1)`, [Audio manager](../Sound-And-Music/audio-manager.md)) unless world
+- saves the behind-camera switch `02098354` at `+0xC4` and clears it (`0025A850`, `0025A880(0)`); the script verbs
+  `tutorial_get_behindcameraenable` (`0x3A0`) and `tutorial_set_behindcameraenable` (`0x3A1`) read and write it;
+- pauses the audio kinds `0x3F` (`002DF370(0x3F, 1, 1)`, [Audio manager](../Sound-And-Music/audio-manager.md)) unless world
   lock 15 is held or `01E027FC` is 0, then sets `01E027FC` to 1;
 - turns on the framework pause byte at `[01F810F0]` (`0017E720(1)`, `001997E0`;
   [Game application](../Engine-Core/game-application.md));
 - unless the frame mode `00229EA0` is 5, sets byte 0 (`00183200(1)`, `0018A820`) and byte 2 (`00182FF0(1)`,
   `0018A830`) of the three-byte running object `[01F7F5D8]` (`0018A7D0`), whose byte 0 the frame tick reads to
   choose the pump's mode;
-- when the monster viewer's settings byte `+118`<sub>h</sub> is set (`00181DD0`, `001EBA40`), sets its `+26E`<sub>h</sub> and the flag
-  `800000`<sub>h</sub> of the render record of its id `+134`<sub>h</sub> (`00181E10(1)`, `001EBC70`, `002EF250`).
+- when the monster viewer's settings byte `+0x118` is set (`00181DD0`, `001EBA40`), sets its `+0x26E` and the flag
+  `0x800000` of the render record of its id `+0x134` (`00181E10(1)`, `001EBC70`, `002EF250`).
 
 State 3 undoes each in turn (`002297F9`-`00229833`): audio on again unless lock 15 is held, the two bytes cleared
 (`0018A820` with 0 also clears bytes 1 and 2), the behind-camera switch restored, and the viewer flag cleared unless
-its `+26D`<sub>h</sub> is set.
+its `+0x26D` is set.
 
 ## Modding notes
 

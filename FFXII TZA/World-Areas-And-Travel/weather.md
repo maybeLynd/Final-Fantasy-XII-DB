@@ -22,15 +22,15 @@ some map models exist in only one weather.
 
 ### An area has three weather slots
 
-The durable state is one byte in the save payload, `+1060`<sub>h</sub>: the committed slot, 0 to 2. Every
-runtime query returns it as 1 to 3: `00265920` returns `payload[1060h] + 1`, unless the debug
-override is positive, in which case it returns the override instead. The byte next to it, `+1061`<sub>h</sub>,
+The durable state is one byte in the save payload, `+0x1060`: the committed slot, 0 to 2. Every
+runtime query returns it as 1 to 3: `00265920` returns `payload[0x1060] + 1`, unless the debug
+override is positive, in which case it returns the override instead. The byte next to it, `+0x1061`,
 is the restore flag that makes the next apply keep the committed slot (see the apply below).
 
-The debug override is the dword at `+AAC`<sub>h</sub> of the debug singleton `001D50D0()`, read by `0017D490`.
+The debug override is the dword at `+0xAAC` of the debug singleton `001D50D0()`, read by `0017D490`.
 Its two readers are `0017D490` and the overlay `001CD0E0`, which prints it with the format
 `%s%s %d %s, Weather Slot:%d (Triangle/Cross to toggle)` at `008FFC80`. No instruction in the image
-stores to `[reg + AACh]` (instruction search over the whole program: the two reads only), so the
+stores to `[reg + 0xAAC]` (instruction search over the whole program: the two reads only), so the
 shipped build never sets it.
 
 ### The probabilities the zone script authors
@@ -40,7 +40,7 @@ shipped build never sets it.
 1. The slot is clamped to 0 to 2 after subtracting one (`002658B8`-`002658C8`).
 2. The zone's script container must be loaded: bit 0 of `02098E20` set, the pointer `02098E10` non-null
    and the container's first word above 6 (every shipped script has version 11).
-3. The dword at container `+64`<sub>h</sub> is resolved through `0020E600` and the signed byte at
+3. The dword at container `+0x64` is resolved through `0020E600` and the signed byte at
    `section + 1 + slot` is returned. The section is a count byte, always 3 in the shipped scripts, then
    one byte per slot: the high-level `option weatherProbability = {a, b, c}`.
 4. When the container is not loaded the answer is 33 for every slot (`00265910`).
@@ -48,20 +48,20 @@ shipped build never sets it.
 ### The roll when a zone starts
 
 `002620E0(managerRecord)` runs once per zone start, from the field runtime pass `0025D9E0`. It
-returns at once unless the manager index at `+28`<sub>h</sub> is 0 (the zone's own manager), and it skips its
-body when bit 2 of the byte at `+10`<sub>h</sub> is already set; it sets that bit itself at the end. The body:
+returns at once unless the manager index at `+0x28` is 0 (the zone's own manager), and it skips its
+body when bit 2 of the byte at `+0x10` is already set; it sets that bit itself at the end. The body:
 
 1. `00259B30()` and `003E8980(0)`.
 2. `0025ACA0()`, the roll, which tail-calls the apply.
-3. `0026FAD0(0, slot, 0)` and `0026FAD0(1Fh, slot, 0)`: the field's effect rows for channels 0 and
-   `1F`<sub>h</sub> are instantiated for the slot (see the map section).
+3. `0026FAD0(0, slot, 0)` and `0026FAD0(0x1F, slot, 0)`: the field's effect rows for channels 0 and
+   `0x1F` are instantiated for the slot (see the map section).
 4. `00379860(slot)`, `00379290()`, `003DE920(0, 1)`, `00363B40()`.
-5. Bit 2 of `+10`<sub>h</sub> is set.
-6. `003601C0(Bh)` and `003601C0(Ch)` run on every pass, latched or not; they clear bits 11 and
+5. Bit 2 of `+0x10` is set.
+6. `003601C0(0xB)` and `003601C0(0xC)` run on every pass, latched or not; they clear bits 11 and
    12 of the flag word the world tick page names.
 
 The slot passed in steps 3 and 4 is read fresh each time: the override when positive, else
-`payload[1060h] + 1` (`0026210E`-`00262187`).
+`payload[0x1060] + 1` (`0026210E`-`00262187`).
 
 `0025ACA0` decides whether the current slot `s` is kept:
 
@@ -104,13 +104,13 @@ roll is 0, 1 or 2 depending on the branch, and a reimplementation must draw the 
 2. `req = clamp(requested - 1, 0, 2)` (`0026D936`-`0026D943`): an out-of-range request saturates and
    nothing reports it.
 3. `02099DBC` is zeroed (`0026D946`).
-4. When `payload[1061h]` is 0 the request is committed: `payload[1060h] = req` (`0026D95E`).
+4. When `payload[0x1061]` is 0 the request is committed: `payload[0x1060] = req` (`0026D95E`).
    Otherwise the request is dropped and the committed slot is kept.
-5. `00180620(payload[1060h])` selects the shadow parameter set of the committed slot (the lighting
+5. `00180620(payload[0x1060])` selects the shadow parameter set of the committed slot (the lighting
    pages own it).
 6. The area's `map_ref.bin` row is read for the field `003148F0()` and the four globals of the next
    section are published, when the table is bound.
-7. `payload[1061h]` is cleared (`0026DA92`) on every path, including the bail-out when the table is
+7. `payload[0x1061]` is cleared (`0026DA92`) on every path, including the bail-out when the table is
    not bound.
 8. The tail jump `002E3D40(0, 0, 0, 0)` (`0026DAAD`) refreshes the sky.
 
@@ -135,14 +135,14 @@ slot. Lane 0 is never read because the slot index is biased by one.
 | `02099DB0` | `lane[2]` | `0026DA5B` | none (the store is the global's only reference) |
 | `02099DBC` | `u8 table18[lane[0]]`, 0 or 1; 0 when out of range | `0026D946`, `0026DA7D` | `00264D50`; also written by `0026AB40` as `(arg != 0)` |
 
-The two lookup tables are the count-prefixed arrays at `header[+10h]` and `header[+18h]`; the
+The two lookup tables are the count-prefixed arrays at `header[+0x10]` and `header[+0x18]`; the
 bound is a signed compare against each count dword, so a patched table moves it. The lane byte `+0`
 also drives the target-local terrain class `00263DD0`, which reads `[02099D90] + 4 + group * 4` with
-the group word `+8A`<sub>h</sub> of the unit's field record.
+the group word `+0x8A` of the unit's field record.
 
 ### The MWeather table
 
-The resource `MWeather` is bound by `00378540` (kind 9, id `27`<sub>h</sub>) and its completion `00378F70`
+The resource `MWeather` is bound by `00378540` (kind 9, id `0x27`) and its completion `00378F70`
 stores the image at `02ADD0B0`. The image is `GRMI01` plus a `u16` selector count at `+6` (776 in the
 shipped file) and packed bits from `+8`: nine bits per (selector, slot) pair. `003777C0(selector,
 slot, bitOffset, width)` extracts a field:
@@ -186,7 +186,7 @@ way it tail-calls `0040AAD0(preset, azimuth, elevation)`:
 
 The six wind presets (`01EFFA30`, floats then a mode dword):
 
-| preset | +0 | +4 | +8 | `+C`<sub>h</sub> | `+10`<sub>h</sub> | `+14`<sub>h</sub> | mode |
+| preset | +0 | +4 | +8 | +0xC | +0x10 | +0x14 | mode |
 |---|---|---|---|---|---|---|---|
 | 1 | 0.002 | 0.005 | 0.004 | 0.15 | 0.2 | 1.0 | 1 |
 | 2 | 0.005 | 0.015 | 0.002 | 0.05 | 0.3 | 2.0 | 1 |
@@ -203,11 +203,11 @@ code pointers.
 Three readers take the published classes into combat:
 
 - The combat stage `0038B220` multiplies the pending damage factor `02AEE054` by 0.5 or 1.2 when a
-  bit of the action row's byte `+13`<sub>h</sub> matches the environment class (`00263E10`), the target's
+  bit of the action row's byte `+0x13` matches the environment class (`00263E10`), the target's
   terrain class (`003210E0`) or the wind class 2 (`00263E20`); the weather and terrain element
   scaling page gives the rule table.
 - `003895D0` scales `02AEDFE0` by 0.8 and `00389610` by 0.5 when the wind class is 2 and bit 2 of
-  the action's `+1A`<sub>h</sub> is clear.
+  the action's `+0x1A` is clear.
 - The AI selector `00301AD0` compares the environment class with an operand for equality
   (`00303059`-`00303063`).
 
@@ -224,45 +224,45 @@ rebuild `00379630`. `0026E8D0(slot)`:
 - stores the slot in `0209A6E8` and sets the dirty flag `0209A708`;
 - recomputes the lighting constants `0209A2D0` to `0209A370` through `003ED0B0`, `003ED020`,
   `003ECFD0`, `003ED140` and `003B6BA0`;
-- `003ED7B0(slot - 1)` copies the slot's `180`<sub>h</sub>-byte environment record of `[02EBB7F0]` (`+10`<sub>h</sub>,
-  `+14`<sub>h</sub>, `+1C`<sub>h</sub>) to `02EBB7F8`, `02EBB7FC` and `02EBB804`, which `003ECCA0` reads each frame.
+- `003ED7B0(slot - 1)` copies the slot's 0x180-byte environment record of `[02EBB7F0]` (`+0x10`,
+  `+0x14`, `+0x1C`) to `02EBB7F8`, `02EBB7FC` and `02EBB804`, which `003ECCA0` reads each frame.
 
 The preset rebuild `00379630`, for an area without a light set, makes the map's lights from those
 constants:
 
 1. it frees the three light handles at `02ADD120` to `02ADD128` and the handle `02ADD11C`
    (`003ABCA0`) and applies the slot with `0026E8D0`;
-2. for each of the first `0209A2D0` records at `0209A2E0` (at most three, `30`<sub>h</sub> bytes apart) it files a
-   light request of type 1 (first dword `1002001`<sub>h</sub>, the record's `+20`<sub>h</sub> vector at request `+10`<sub>h</sub>
-   and its `+00`<sub>h</sub> vector at `+30`<sub>h</sub>) through `003AB960` and keeps the handle at `02ADD120` onwards;
-3. `00379760` files a type-6 request (`1042006`<sub>h</sub>) whose colour is `0209A370` to `0209A378` times the
-   three floats at `02EBF460`, the `+40`<sub>h</sub> of light group 0 (`0037AD10`), with `0209A37C` as the
+2. for each of the first `0209A2D0` records at `0209A2E0` (at most three, 0x30 bytes apart) it files a
+   light request of type 1 (first dword `0x1002001`, the record's `+0x20` vector at request `+0x10`
+   and its `+0x00` vector at `+0x30`) through `003AB960` and keeps the handle at `02ADD120` onwards;
+3. `00379760` files a type-6 request (`0x1042006`) whose colour is `0209A370` to `0209A378` times the
+   three floats at `02EBF460`, the `+0x40` of light group 0 (`0037AD10`), with `0209A37C` as the
    fourth value, and keeps it at `02ADD11C`.
 
-`0037ACA0(group)`, run from the refresh `003DE920`, clears the group's byte `+4C`<sub>h</sub>; for group 0
+`0037ACA0(group)`, run from the refresh `003DE920`, clears the group's byte `+0x4C`; for group 0
 while `02EBF420` is empty it tail-jumps to `003774C0`, which frees the same four handles.
 
 `0209A6E8` is read by the draw-list build `002F5550` (a model is drawn only when bit `23 + slot` of
 its flag word is set, `002F5616`), by the texture page rebuild `002F7380` (`002F738E`), which
 `0026E290` runs once while the dirty flag is set, and by the five lighting passes above. `00379860`
 stores `slot - 1` at `02EBF408` when `02ADD090` exists, and `0037AD40` uses it to pick the slot's
-effect preset rows (`+4 + slot * 8` and the three at `+6 + slot * 8`) of each `50`<sub>h</sub>-byte preset bank.
+effect preset rows (`+4 + slot * 8` and the three at `+6 + slot * 8`) of each 0x50-byte preset bank.
 
 `0026FAD0(channel, slot, manager)` instantiates effect rows through `0026F470`: a row of the field's
-effect table (`A0`<sub>h</sub> bytes, type 3 or others at `+0`) is created only when its byte `+7 + slot` is
-non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+A`<sub>h</sub>.
+effect table (`0xA0` bytes, type 3 or others at `+0`) is created only when its byte `+7 + slot` is
+non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0xA`.
 
 ### The verbs
 
 | id | name | handler | what it does |
 |---|---|---|---|
-| `21A`<sub>h</sub> | `setweatherslot(n)` | `003565C0` | when the running manager (`002640C0()`) has `+28`<sub>h</sub> = 0, byte `+12`<sub>h</sub> non-zero and the actor's word matches `[manager] + 50h`: clamps `n` to 1 to 3, calls `0026D910(n)` and then `0026D8F0()`, which sets `payload[1061h]` to 1 so the next zone entry keeps this slot |
-| `40C`<sub>h</sub> | `getweatherslot()` | `00356250` | returns `00265920()` |
-| `481`<sub>h</sub> | `setmapwind(elevation, azimuth, preset)` | `0034B6C0` | `002E3D40(1, preset, azimuth, elevation)`: the sky from the operands, the table bypassed |
-| `482`<sub>h</sub> | `defaultmapwind()` | `0034BD10` | `002E3D40(0, 0, 0, 0)`: the sky from the table for the committed slot |
-| `3DD`<sub>h</sub> | `changeenvsoundweather(n)` | `0034D900` | `00363A20(n)`, the environment sound |
-| `2024`<sub>h</sub> | `debug_setweather` | `0050C7F0` | pops one operand and returns |
-| `209F`<sub>h</sub> | `debug_setlockweatherslot(n)` | `00510720` | pops one operand and runs a guard check; writes nothing |
+| 0x21A | `setweatherslot(n)` | `003565C0` | when the running manager (`002640C0()`) has `+0x28` = 0, byte `+0x12` non-zero and the actor's word matches `[manager] + 0x50`: clamps `n` to 1 to 3, calls `0026D910(n)` and then `0026D8F0()`, which sets `payload[0x1061]` to 1 so the next zone entry keeps this slot |
+| 0x40C | `getweatherslot()` | `00356250` | returns `00265920()` |
+| 0x481 | `setmapwind(elevation, azimuth, preset)` | `0034B6C0` | `002E3D40(1, preset, azimuth, elevation)`: the sky from the operands, the table bypassed |
+| 0x482 | `defaultmapwind()` | `0034BD10` | `002E3D40(0, 0, 0, 0)`: the sky from the table for the committed slot |
+| 0x3DD | `changeenvsoundweather(n)` | `0034D900` | `00363A20(n)`, the environment sound |
+| 0x2024 | `debug_setweather` | `0050C7F0` | pops one operand and returns |
+| 0x209F | `debug_setlockweatherslot(n)` | `00510720` | pops one operand and runs a guard check; writes nothing |
 
 The verb's guard means a script running on an actor other than the zone's own calls
 `setweatherslot` and nothing happens, without any report.
@@ -276,59 +276,59 @@ the map-side globals, and `002628B0` (`00262B53`) sets `0209A6FC` to 1 at the zo
 
 ## Layouts
 
-`MapRefHeader` (`30`<sub>h</sub> bytes, offsets from the start of the mapref):
+`MapRefHeader` (`0x30` bytes, offsets from the start of the mapref):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8[4]` | magic | "MRF" and the version byte 2 |
-| `04`<sub>h</sub> | `i32` | rowsOff | image-relative offset of the field rows, 8 bytes each (`0026D910`, `00264F10`) |
-| `08`<sub>h</sub> | `i32` | blocksOff | offset of the 16-byte weather blocks (`0026D910`) |
-| `0C`<sub>h</sub> | `i32` | unused | zero in the shipped file; not read by the functions on this page |
-| `10`<sub>h</sub> | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0026DA10-0026DA26) |  |
-| `14`<sub>h</sub> | `i32` | table14Off count dword then u32[count]; not read by the functions on this page |  |
-| `18`<sub>h</sub> | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0026DA66-0026DA7D) |  |
-| `1C`<sub>h</sub> | `i32[5] unused2` | zero in the shipped file; not read by the functions on this page |  |
+| `+0x00` | `u8[4]` | magic | "MRF" and the version byte 2 |
+| `+0x04` | `i32` | rowsOff | image-relative offset of the field rows, 8 bytes each (`0026D910`, `00264F10`) |
+| `+0x08` | `i32` | blocksOff | offset of the 16-byte weather blocks (`0026D910`) |
+| `+0x0C` | `i32` | unused | zero in the shipped file; not read by the functions on this page |
+| `+0x10` | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0026DA10-0026DA26) |  |
+| `+0x14` | `i32` | table14Off count dword then u32[count]; not read by the functions on this page |  |
+| `+0x18` | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0026DA66-0026DA7D) |  |
+| `+0x1C` | `i32[5] unused2` | zero in the shipped file; not read by the functions on this page |  |
 
-`MapRefFieldRow` (`8`<sub>h</sub> bytes, offsets from the start of the row):
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `00`<sub>h</sub> | `u16` | selector | the MWeather selector, 1 to 775 in the shipped file (`00264F10`) |
-| `02`<sub>h</sub> | `i16` | block | index of the 16-byte weather block, 0 to 92 (`0026D9BB`) |
-| `04`<sub>h</sub> | `u16` | area | the area index (`00264EF9`; the map pack page) |
-| `06`<sub>h</sub> | `u16` | group | the field group (`00264FB9`) |
-
-`MapRefWeatherBlock` (`10`<sub>h</sub> bytes, offsets from the start of the block):
+`MapRefFieldRow` (`0x8` bytes, offsets from the start of the row):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8[4]` | lane0 | never read by the weather functions (the slot index is biased by one) |
-| `04`<sub>h</sub> | `u8[4]` | slot1 | lane for weather slot 1: +0 environment index, +1 not read here, +2 published to `02099DB0`, +3 not read here |
-| `08`<sub>h</sub> | `u8[4]` | slot2 | lane for weather slot 2, same layout |
-| `0C`<sub>h</sub> | `u8[4]` | slot3 | lane for weather slot 3, same layout |
+| `+0x00` | `u16` | selector | the MWeather selector, 1 to 775 in the shipped file (`00264F10`) |
+| `+0x02` | `i16` | block | index of the 16-byte weather block, 0 to 92 (`0026D9BB`) |
+| `+0x04` | `u16` | area | the area index (`00264EF9`; the map pack page) |
+| `+0x06` | `u16` | group | the field group (`00264FB9`) |
 
-`MWeatherImage` (`8`<sub>h</sub> bytes, offsets from the start of the mweather):
+`MapRefWeatherBlock` (`0x10` bytes, offsets from the start of the block):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8[6]` | magic | "GRMI01" |
-| `06`<sub>h</sub> | `u16` | count | selector count, 776 shipped; `003777C0` refuses a selector at or above it |
+| `+0x00` | `u8[4]` | lane0 | never read by the weather functions (the slot index is biased by one) |
+| `+0x04` | `u8[4]` | slot1 | lane for weather slot 1: +0 environment index, +1 not read here, +2 published to `02099DB0`, +3 not read here |
+| `+0x08` | `u8[4]` | slot2 | lane for weather slot 2, same layout |
+| `+0x0C` | `u8[4]` | slot3 | lane for weather slot 3, same layout |
+
+`MWeatherImage` (`0x8` bytes, offsets from the start of the mweather):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[6]` | magic | "GRMI01" |
+| `+0x06` | `u16` | count | selector count, 776 shipped; `003777C0` refuses a selector at or above it |
 
 The bits follow from `+8`: entry `3 * selector + slot - 1` occupies 9 bits, low bit first; bits 0 to 2
 the wind preset, 3 to 6 the azimuth sector, 7 to 8 the elevation class.
 
-`WindPreset` (`20`<sub>h</sub> bytes, offsets from the start of the 01EFFA30):
+`WindPreset` (`0x20` bytes, offsets from the start of the 01EFFA30):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `f32` | a | copied to `02CA4388` by `0040B3B0` |
-| `04`<sub>h</sub> | `f32` | b | copied to `02CA4380` |
-| `08`<sub>h</sub> | `f32` | c | copied to `02CA4384` |
-| `0C`<sub>h</sub> | `f32` | d | copied to `02CA4398` |
-| `10`<sub>h</sub> | `f32` | e | copied to `02CA439C` |
-| `14`<sub>h</sub> | `f32` | f | copied to `02CA438C` |
-| `18`<sub>h</sub> | `u32` | mode | copied to `02CA4394` |
-| `1C`<sub>h</sub> | `u32` | pad | not read by `0040B3B0` |
+| `+0x00` | `f32` | a | copied to `02CA4388` by `0040B3B0` |
+| `+0x04` | `f32` | b | copied to `02CA4380` |
+| `+0x08` | `f32` | c | copied to `02CA4384` |
+| `+0x0C` | `f32` | d | copied to `02CA4398` |
+| `+0x10` | `f32` | e | copied to `02CA439C` |
+| `+0x14` | `f32` | f | copied to `02CA438C` |
+| `+0x18` | `u32` | mode | copied to `02CA4394` |
+| `+0x1C` | `u32` | pad | not read by `0040B3B0` |
 
 ## Shipped data
 
@@ -339,8 +339,8 @@ bytes) decoded with the header offsets above:
 |---|---|
 | field rows | 1,315; 531 distinct selectors, 1 to 775; block indices 0 to 92 |
 | weather blocks | 93, so 279 lanes |
-| table at `+10`<sub>h</sub> | 16 entries: 4, 4, 4, 0, 0, 1, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0 |
-| table at `+18`<sub>h</sub> | 16 entries: 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 |
+| table at `+0x10` | 16 entries: 4, 4, 4, 0, 0, 1, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0 |
+| table at `+0x18` | 16 entries: 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 |
 | lane environment index | 0 on 163 lanes, 1 on 64, 2 on 19, 3 on 7, 4 on 4, 5 on 1, 6 on 2, 7 on 2, 8 on 16, 9 on 1 |
 | `02099DA8` reachable | 4 on 246 lanes, 3 on 16, 0 on 12, 2 on 4, 1 on 1 |
 | `02099DBC` reachable | 1 on 12 lanes, 0 on 267 |
@@ -352,7 +352,7 @@ on 1, so the strong-wind class 2 covers 178 entries; the elevation class is 0 on
 2 on 249; sector 0 holds 1,603 of the azimuths and sector 8 (180 degrees) 217.
 
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
-the script section at `+80`<sub>h</sub>, its `+64`<sub>h</sub> section a count of 3 then three bytes) author 17
+the script section at `+0x80`, its `+0x64` section a count of 3 then three bytes) author 17
 distinct probability triples:
 
 | triple | zones | what it means |
@@ -397,15 +397,15 @@ A story script forcing the weather:
 
 | address | contents | written by |
 |---|---|---|
-| payload `+1060`<sub>h</sub> | committed slot 0 to 2 | `0026D910` (`0026D95E`) |
-| payload `+1061`<sub>h</sub> | restore flag | `0026D8F0` sets; `0026D910` clears (`0026DA92`) |
+| payload `+0x1060` | committed slot 0 to 2 | `0026D910` (`0026D95E`) |
+| payload `+0x1061` | restore flag | `0026D8F0` sets; `0026D910` clears (`0026DA92`) |
 | `02099D88`, `02099D90` | the `map_ref.bin` image and its loaded guard | the map_ref loader |
 | `02ADD0B0` | the MWeather image | `00378F70`, `00378540` (zeroed) |
 | `02099DA8`, `02099DAC`, `02099DB0`, `02099DBC` | the published variant | `0026D910`; `0026AB40` for the last |
 | `0209A6E8`, `0209A708` | the map's slot and dirty flag | `0026E8D0`; `0026E290` clears the flag |
 | `02EBF408` | the effect preset slot | `00379860` |
 | `02CA4380`-`02CA439C`, `02CA43A0`, `02CA43B0` | wind preset row, sun direction, tangent | `0040B3B0`, `0040B430` |
-| debug `+AAC`<sub>h</sub> | slot override | no writer in the image |
+| debug `+0xAAC` | slot override | no writer in the image |
 
 Nothing on this path allocates, and no lock or thread check appears in any body named here. The
 in-image routes to `0026D910` are the boot setup, the field runtime pass and the script verb.

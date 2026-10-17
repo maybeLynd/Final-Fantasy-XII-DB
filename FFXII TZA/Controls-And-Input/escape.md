@@ -49,7 +49,7 @@ does not flip the toggle.
 3. A `020927CC` of 1 does the same (`00252BB6`-`00252BC1`).
 4. The battle mode register `0035C6F0` can replace the toggle, in the next two steps.
 5. With bit 2 or 3 of the register set, the toggle becomes input snapshot bit 9, or 0 when policy bit 10 is set
-   (`00252BCD`-`00252BEC`). It writes `0035C880(Ch, (register & 4) * 2)`, then `0035C880(Ch, 0)` when the toggle
+   (`00252BCD`-`00252BEC`). It writes `0035C880(0xC, (register & 4) * 2)`, then `0035C880(0xC, 0)` when the toggle
    is 0, and sets the quiet bit (`00252BEF`-`00252C0C`).
 6. Otherwise, with bit 0 of the register set, the toggle becomes the register's bit 1 (`00252C13`-`00252C25`).
 7. Only when `003603B0` and `003603C0` both answer 0 does it arm (`00252C28`-`00252C5D`). While the toggle is 1 it
@@ -64,7 +64,7 @@ flag, which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when the 
 (`003BA2E0`). Without `force` it writes only when the flag would change, and not at all while `003603B0` or
 `003603C0` answers non-zero.
 
-The flag has one other writer. `00254EA0(v)` is the body of the script verb `334`<sub>h</sub> `setforcefightmode` (handler
+The flag has one other writer. `00254EA0(v)` is the body of the script verb `0x334` `setforcefightmode` (handler
 `003444D0`, call `003444E2`): it writes 1 when `v` is non-zero and `003BA2E0` answers non-zero (`00254EB1`), and 0
 otherwise (`00254EC5`).
 
@@ -74,11 +74,11 @@ The arming state is the word `022CBE1A`. Both steps return at once when the batt
 (`00366874`-`0036687B`, `003667E4`-`003667EB`).
 
 1. `00366870` counts frames in `022CBE18`. On the first frame, bit 0 clear, it restarts the count and starts a
-   repeating sound, block slot `52`<sub>h</sub>, and sets bit 4 (`0036688D`-`003668E0`).
+   repeating sound, block slot `0x52`, and sets bit 4 (`0036688D`-`003668E0`).
 2. When the count reaches `022CBE08` it pins the count there and sets the armed bit, bit 2, and on that frame only
    also bit 3 (`00366902`-`00366918`).
 3. Every frame it clears bits 1 and 6 and sets bit 0 (`0036691C`-`00366928`).
-4. `003667E0` plays the disarm cue, block slot `2A`<sub>h</sub> through `00249C60`, when the armed bit is set, `00265680`
+4. `003667E0` plays the disarm cue, block slot `0x2A` through `00249C60`, when the armed bit is set, `00265680`
    answers non-zero and the quiet bit, bit 6, is clear (`003667ED`-`0036680D`).
 5. It then stops the repeating sound if it plays, clears bits 0, 2, 3, 4, 5 and 6, and sets bit 1
    (`00366812`-`0036685B`).
@@ -87,12 +87,12 @@ The arming state is the word `022CBE1A`. Both steps return at once when the batt
 of frames. Until it is reached `003669F0` answers 0, the applier passes 0, and the flag does not change.
 
 Two setters skip the count. `00366960(on)`, run by `0028E580`, writes the count word `022CBE18` with the full
-delay and the arming word `022CBE1A` with `25`<sub>h</sub> (bits 0, 2 and 5: armed at once), or clears both for 0.
+delay and the arming word `022CBE1A` with `0x25` (bits 0, 2 and 5: armed at once), or clears both for 0.
 `003667B0(on)`, run by `00280140`, sets or clears bit 7 of the arming word.
 
 The escape widget `00366B80`, built by `00366740` from `00253A30`, draws its parts with two helpers: `00367110(points,
 node, x)` writes five points through `00862980`: (0, 0), (x - w, top / 2), (left - w / 2, top + h / 2),
-(left + w / 4, top) and (left, top), with left, top, w and h the node's `+0C`<sub>h</sub>, `+0E`<sub>h</sub>, `+10`<sub>h</sub> and `+12`<sub>h</sub>;
+(left + w / 4, top) and (left, top), with left, top, w and h the node's `+0x0C`, `+0x0E`, `+0x10` and `+0x12`;
 and `00366A30(sprite, node, x, y, scale, cx, cy)` draws
 a node's picture cell at (x, y) through `002D8D10`, scaling it and its offset from (cx, cy) by `scale / 256`
 when `scale` is not 0.

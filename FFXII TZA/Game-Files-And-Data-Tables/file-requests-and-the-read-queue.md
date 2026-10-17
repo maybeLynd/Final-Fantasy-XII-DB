@@ -15,9 +15,9 @@ the queue until a slot frees up, which can lengthen a load.
 
 ### The slots
 
-`0032E450` builds 64 slots of `80`<sub>h</sub> bytes at `022C31C0` at boot: each gets its index at `+58`<sub>h</sub>,
-id `+64`<sub>h</sub> = −1, state word `+20`<sub>h</sub> = 0 and `+28`<sub>h</sub> = 0, and the slots are chained through `+10`<sub>h</sub>
-(next) and `+18`<sub>h</sub> (previous) into the free list headed at `022C51D0`. The pending list's head and
+`0032E450` builds 64 slots of `0x80` bytes at `022C31C0` at boot: each gets its index at `+0x58`,
+id `+0x64` = −1, state word `+0x20` = 0 and `+0x28` = 0, and the slots are chained through `+0x10`
+(next) and `+0x18` (previous) into the free list headed at `022C51D0`. The pending list's head and
 tail (`022C51C0`, `022C51C8`) start empty and the request counter `01EED498` starts at 1.
 `0032EA90` calls it, resets the BGM stream reader (`003EB050`) and zero-clears the 256 per-kind size
 override pointers at `022C51F0`.
@@ -28,8 +28,8 @@ list, pushes it on the free list and sets its id to −1. Neither clears the res
 
 ### Sizes
 
-`0032E400(kind, index)` returns −1 for kind `FF`<sub>h</sub>. When the override pointer for the kind is non-null
-and the index is below `400`<sub>h</sub>, it returns that table's dword as it is. Otherwise it asks `002DF960`
+`0032E400(kind, index)` returns −1 for kind `0xFF`. When the override pointer for the kind is non-null
+and the index is below `0x400`, it returns that table's dword as it is. Otherwise it asks `002DF960`
 and rounds a positive result up to a multiple of 64. The override table's only static writer is
 `0032EA90`'s zero-clear (its readers are `0032E400` and `0032EB40`), so every shipped size comes from
 `002DF960`. A caller passes the size it gets as the request's byte count.
@@ -39,27 +39,27 @@ and rounds a positive result up to a multiple of 64. The override table's only s
 `0032E620(kind, index, dest, bytes, descriptor)` stores the kind and index in `022C51D8` /
 `022C51DC` and returns −1 for a negative index.
 
-- When the BGM stream reader is not armed (`003EB0D0`: byte `+31`<sub>h</sub> of `02B5E0E0`), it calls
+- When the BGM stream reader is not armed (`003EB0D0`: byte `+0x31` of `02B5E0E0`), it calls
   `0032E870(kind, index, dest, bytes, descriptor, 1)` for the whole file.
-- When it is armed, it copies the descriptor with `80000`<sub>h</sub> in its second dword and, on a non-zero id,
-  makes the request chunked: `+22`<sub>h</sub> = 1, part cap `+30`<sub>h</sub> = `80000`<sub>h</sub>, remaining `+34`<sub>h</sub> = bytes,
-  first part `+28`<sub>h</sub> = `min(bytes, 80000h)`, `+50`<sub>h</sub> = 0, `+00`<sub>h</sub> = 0, and the offset `+2C`<sub>h</sub>
-  truncated again to a multiple of `800`<sub>h</sub>.
+- When it is armed, it copies the descriptor with `0x80000` in its second dword and, on a non-zero id,
+  makes the request chunked: `+0x22` = 1, part cap `+0x30` = `0x80000`, remaining `+0x34` = bytes,
+  first part `+0x28` = `min(bytes, 0x80000)`, `+0x50` = 0, `+0x00` = 0, and the offset `+0x2C`
+  truncated again to a multiple of `0x800`.
 
 `0032E780(kind, index, …)` refuses a negative index and otherwise calls `0032E870` directly; its
 only caller is the BGM stream reader `003EADE0`. `0032E7C0(path, dest, bytes, descriptor)` copies the
-path into arena 8 (`0036A190`) and requests it as kind `FF`<sub>h</sub> with the low 32 bits of the copy's
+path into arena 8 (`0036A190`) and requests it as kind `0xFF` with the low 32 bits of the copy's
 address as the index.
 
 `0032E870` first stalls while the free list is empty, calling the pump `0032E070(0)`, `0046DFE0` and
 `0035EA30` in a loop. It then takes a slot at the tail of the pending list and fills it:
 
-- `+24`<sub>h</sub> index, `+21`<sub>h</sub> kind, `+28`<sub>h</sub> bytes, `+20`<sub>h</sub> state 1;
-- `+2C`<sub>h</sub> the descriptor's first dword (the file offset) truncated toward zero to a multiple of
-  `800`<sub>h</sub> (`cdq`, `and edx, 7FFh`, `add`, `and FFFFF800h`: a non-negative offset is floored);
-- `+38`<sub>h</sub> and `+70`<sub>h</sub> the destination, `+40`<sub>h</sub> and `+48`<sub>h</sub> the descriptor's `+10`<sub>h</sub> and `+18`<sub>h</sub>,
-  `+60`<sub>h</sub> its `+08`<sub>h</sub>, `+50`<sub>h</sub> = 0, and `+00`<sub>h</sub>, `+22`<sub>h</sub> and `+5C`<sub>h</sub> zeroed;
-- the id `+64`<sub>h</sub> = counter × 64 + slot index; the counter then advances and wraps from `FFFFFF`<sub>h</sub>
+- `+0x24` index, `+0x21` kind, `+0x28` bytes, `+0x20` state 1;
+- `+0x2C` the descriptor's first dword (the file offset) truncated toward zero to a multiple of
+  `0x800` (`cdq`, `and edx, 0x7FF`, `add`, `and 0xFFFFF800`: a non-negative offset is floored);
+- `+0x38` and `+0x70` the destination, `+0x40` and `+0x48` the descriptor's `+0x10` and `+0x18`,
+  `+0x60` its `+0x08`, `+0x50` = 0, and `+0x00`, `+0x22` and `+0x5C` zeroed;
+- the id `+0x64` = counter × 64 + slot index; the counter then advances and wraps from `0xFFFFFF`
   back to 1.
 
 It returns the id. A null descriptor gives offset 0 and no callbacks.
@@ -83,21 +83,21 @@ ends the pass:
 
 | State | Meaning | What the pass does |
 |---|---|---|
-| 1 | queued | if the BGM stream reader takes this pass (`003EADD0` returns 1), end the pass. A zero byte count: delivery callback, state 0, release. Kind `FF`<sub>h</sub>: `002DF6C0(path, dest, bytes, offset)`, which always returns 0, then `+08`<sub>h</sub> = `0035E810()` and state 2. Any other kind: `0046E030(kind, index, offset, bytes, dest)` → `002DF780`, then `+08`<sub>h</sub> = `0035E810()` and state 2 |
-| 2 | issued | `+00`<sub>h</sub> += `0035E810()`, `+08`<sub>h</sub> = the same value, state 3 |
+| 1 | queued | if the BGM stream reader takes this pass (`003EADD0` returns 1), end the pass. A zero byte count: delivery callback, state 0, release. Kind `0xFF`: `002DF6C0(path, dest, bytes, offset)`, which always returns 0, then `+0x08` = `0035E810()` and state 2. Any other kind: `0046E030(kind, index, offset, bytes, dest)` → `002DF780`, then `+0x08` = `0035E810()` and state 2 |
+| 2 | issued | `+0x00` += `0035E810()`, `+0x08` = the same value, state 3 |
 | 3 | waiting | while the read status `0215EFF4` is −1 (`0046DFE0` returns 2), end the pass; otherwise state 5 when the status is 0 or more (`0046E0E0`), 6 when negative, and continue with that state |
-| 4 | cancelled | while the read is in flight, end the pass; then the cancel callback with `+28`<sub>h</sub> = 0 when one is set, state 0, release |
-| 5 | delivered | not chunked: delivery callback and release. Chunked: remaining `+34`<sub>h</sub> −= the part; when something is left, the offset `+2C`<sub>h</sub> and destination `+38`<sub>h</sub> advance by the part and the part callback decides; when nothing is left, delivery callback and release |
+| 4 | cancelled | while the read is in flight, end the pass; then the cancel callback with `+0x28` = 0 when one is set, state 0, release |
+| 5 | delivered | not chunked: delivery callback and release. Chunked: remaining `+0x34` −= the part; when something is left, the offset `+0x2C` and destination `+0x38` advance by the part and the part callback decides; when nothing is left, delivery callback and release |
 | 6 | failed | not chunked: failure callback and release. Chunked: failure callback and release |
 
-In a chunked request a part-callback result of 1 sizes the next part as `min(+30h, +34h)`, zeroes
-`+00`<sub>h</sub>, truncates the offset to `800`<sub>h</sub> again and requeues it in state 1; any other result is stored
-at `+23`<sub>h</sub> and ends the pass, and a stored 2 makes the next pass ask again. `0032E3B0` returns 1 when
-no part callback is set, and the part callback slot `+50`<sub>h</sub> is only ever written as 0 (`0032E6FF`,
+In a chunked request a part-callback result of 1 sizes the next part as `min(+0x30, +0x34)`, zeroes
+`+0x00`, truncates the offset to `0x800` again and requeues it in state 1; any other result is stored
+at `+0x23` and ends the pass, and a stored 2 makes the next pass ask again. `0032E3B0` returns 1 when
+no part callback is set, and the part callback slot `+0x50` is only ever written as 0 (`0032E6FF`,
 `0032E959`), so in the shipped game every chunked request runs part after part.
 
 `0035E810` returns the 64-bit tick counter `022CA5E0`, which only `0035EC90` increments (the callback
-`0035E820` registers). Slot `+00`<sub>h</sub> therefore sums counter readings; nothing reads it.
+`0035E820` registers). Slot `+0x00` therefore sums counter readings; nothing reads it.
 
 After the queue, every pass ends the same way: `0046DD50` (the read layer's tick), `003E9780`, and
 `003BB790` when `0036FD50()` is non-zero. When the pending list is empty the pass also steps the
@@ -105,14 +105,14 @@ BGM stream reader (`003EADD0`) first.
 
 ### Callbacks
 
-- **Delivery** `0032E330(slot)`: `+40h(+60h, +70h, 1)` when set; for kind `FF`<sub>h</sub>, frees the path
+- **Delivery** `0032E330(slot)`: `+0x40(+0x60, +0x70, 1)` when set; for kind `0xFF`, frees the path
   (`003697F0`).
-- **Failure** `0032E370(slot)`: `+40h(+60h, +70h, 0)` only when the byte count `+28`<sub>h</sub> is −1; then
-  frees a kind-`FF`<sub>h</sub> path. A failed read with any other byte count calls nothing, and a −1-size request
+- **Failure** `0032E370(slot)`: `+0x40(+0x60, +0x70, 0)` only when the byte count `+0x28` is −1; then
+  frees a kind-`0xFF` path. A failed read with any other byte count calls nothing, and a −1-size request
   reaches this only when the previous read had failed.
-- **Cancel** `0032E2F0(slot)`: `+48h(+60h)` with `+28`<sub>h</sub> = 0 when set, then state 0.
+- **Cancel** `0032E2F0(slot)`: `+0x48(+0x60)` with `+0x28` = 0 when set, then state 0.
 
-The first argument is the descriptor's `+08`<sub>h</sub> word, not the buffer; a requester reads its bytes at
+The first argument is the descriptor's `+0x08` word, not the buffer; a requester reads its bytes at
 the destination.
 
 ### Waiting, asking and cancelling
@@ -120,51 +120,51 @@ the destination.
 - `0032E520(0)` drains: it pumps, and while the pending list is non-empty or a read is in flight it
   waits (`0035EA30`) and pumps again. `0032E520` with a non-zero argument only answers 1 when the
   pending list is non-empty or a read is in flight, without pumping.
-- `0032E4D0(id)` answers 1 when the slot `id & 3Fh` still carries that id and a non-zero state; 0 and
+- `0032E4D0(id)` answers 1 when the slot `id & 0x3F` still carries that id and a non-zero state; 0 and
   −1 are refused.
 - `0032E590(id)` cancels a request whose slot still carries the id: it clears the delivery callback
-  `+40`<sub>h</sub> and frees a kind-`FF`<sub>h</sub> path at once; a request in states 2 or 3 goes to state 4 for the
+  `+0x40` and frees a kind-`0xFF` path at once; a request in states 2 or 3 goes to state 4 for the
   pump to finish; state 4 is left alone; any other state runs the cancel callback and is released at
   once. Its callers are `002FC3C0`, `003B1310`, `003B1710` and `003B18E0`.
 - `00379E30(h)`, run by the slot handlers `003DEC90` (`003DED09`, its state 2) and `003DEE10` (`003DEEB9`), pumps
-  (`0032E040`, then `0035EA30(0)`) while `00379E60(h)` holds. For `h` other than 0 that is: the dword `+28`<sub>h</sub> of
-  record `h & Fh` of the sixteen `70`<sub>h</sub>-byte records at `02ADD170` still equals `h`; for 0, the qword `02ADD870`
-  is non-zero. `00379D60` clears the records, numbers each `+28`<sub>h</sub> as `10h + i`, and clears `02ADD870`.
+  (`0032E040`, then `0035EA30(0)`) while `00379E60(h)` holds. For `h` other than 0 that is: the dword `+0x28` of
+  record `h & 0xF` of the sixteen `0x70`-byte records at `02ADD170` still equals `h`; for 0, the qword `02ADD870`
+  is non-zero. `00379D60` clears the records, numbers each `+0x28` as `0x10 + i`, and clears `02ADD870`.
 
 `0035EA30(n)` is `0035EB70(n, 0)`: off the thread `00368C70` names it spins until the tick counter
 has advanced by `max(n, 1)`; on that thread it only updates the frame bookkeeping and does not wait.
 
 ### The BGM stream reader
 
-`003EADD0` steps the BGM stream reader, whose state lives at `02B5E0E0` (`+31`<sub>h</sub> active, `+30`<sub>h</sub> state 1-8), which
+`003EADD0` steps the BGM stream reader, whose state lives at `02B5E0E0` (`+0x31` active, `+0x30` state 1-8), which
 files its own requests through `0032E780`. It returns 1 only in states 1 and 7, on the call where it
 submits, and 0 when inactive, while waiting (states 2 and 8 test its request with `0032E4D0`, state 4
 tests `002DEE90`) and when it finishes. The pump's state 1 gives up the pass when it returns 1, so the
 reader's request goes first.
 
-Only `003EB100` arms the reader (kind `24`<sub>h</sub>, index = its argument, `+30`<sub>h</sub> = 1, `+31`<sub>h</sub> = 1, and only
-when its buffer `+08`<sub>h</sub> exists); its only caller is `bgmstreamread` (`0448`<sub>h</sub>, `00354690`). `003EB010`
-releases it (`003EAD10`, then frees `+08`<sub>h</sub>; callers `usebgmstream` `003557C0` and `002628B0`),
+Only `003EB100` arms the reader (kind `0x24`, index = its argument, `+0x30` = 1, `+0x31` = 1, and only
+when its buffer `+0x08` exists); its only caller is `bgmstreamread` (`0x0448`, `00354690`). `003EB010`
+releases it (`003EAD10`, then frees `+0x08`; callers `usebgmstream` `003557C0` and `002628B0`),
 `003EB050` resets it at init (from `0032EA90`), and `003EB0D0` is the query (callers `0032E620`,
 `bgmstreamplaysync` `003550F0` and `getbgmstreamstatus` `00355FB0`).
 
 Of the 10,036 decompiled
 scripts, only the two ATEL control scripts `ps2data_image_ff12_ch_bin_ctrl` and
 `ps2data_image_ff12_in_bin_ctrl` use the BGM stream verbs, so in normal play the reader is never
-armed, no request is chunked, and `003EADD0` never takes a pass. Kind `24`<sub>h</sub> is also one of the
+armed, no request is chunked, and `003EADD0` never takes a pass. Kind `0x24` is also one of the
 unsized kinds of the size table.
 
 ### The read-source switches
 
 Two 256-byte bit tables, one bit per resource kind, survive from the PS2 build: `022C5AF0` (read from
 the hard disk) and `022C59F0` (read from the PC). Boot (`0022A0B0` → `003694D0`) clears both
-(`0032EAF0(0)`, `0032EB10(0)`); `0032EB10` then sets kind `FF`<sub>h</sub>'s bit in the PC table.
+(`0032EAF0(0)`, `0032EB10(0)`); `0032EB10` then sets kind `0xFF`'s bit in the PC table.
 
 | Verb | Native | Body |
 |---|---|---|
-| `getreadfromhdd` `037A`<sub>h</sub> | `00342DD0` | `0032EA50(kind)`: the kind's bit in `022C5AF0` |
-| `setreadfromhdd` `0379`<sub>h</sub> | `00342960` | `0032ECE0(kind, flag)`: sets or clears the kind's bit in `022C5AF0` |
-| `setreadfrompc` `0377`<sub>h</sub> | `003420B0` | `0032ED20(kind, flag)`: the same in `022C59F0`; kind `FF`<sub>h</sub> is always set |
+| `getreadfromhdd` `0x037A` | `00342DD0` | `0032EA50(kind)`: the kind's bit in `022C5AF0` |
+| `setreadfromhdd` `0x0379` | `00342960` | `0032ECE0(kind, flag)`: sets or clears the kind's bit in `022C5AF0` |
+| `setreadfrompc` `0x0377` | `003420B0` | `0032ED20(kind, flag)`: the same in `022C59F0`; kind `0xFF` is always set |
 
 Nothing else reads either table: the builder, the pump and the read issuer route every request the same
 way whatever the bits say.
@@ -172,10 +172,10 @@ way whatever the bits say.
 ### Which kinds are requested
 
 `0032E620` has 51 call sites in 38 functions. 38 pass a fixed kind: an immediate, a constant folded
-through a register, one of a closed set (`002FC96F`: `B`<sub>h</sub> or `26`<sub>h</sub>; `0032FCA0`: 5, 8, 1 or `25`<sub>h</sub>),
-or a kind from `002ED6F0`'s class table, none of them `FF`<sub>h</sub>. Nine pass a caller's parameter and three
+through a register, one of a closed set (`002FC96F`: `0xB` or `0x26`; `0032FCA0`: 5, 8, 1 or `0x25`),
+or a kind from `002ED6F0`'s class table, none of them `0xFF`. Nine pass a caller's parameter and three
 a signed word of a record (a word of −1 sign-extends to −1, which the builder refuses first).
-`debug_fileread` (`2007`<sub>h</sub>, `0050DFE0`) passes a kind popped from the script.
+`debug_fileread` (`0x2007`, `0050DFE0`) passes a kind popped from the script.
 
 ## Layouts
 
@@ -203,7 +203,7 @@ The fields are listed access by access in
 lists 238 call sites of the request and size entries (`0032E620` 65, `0032E400` 86, `00249210` 52,
 `002493D0` 21, `00249180` 11, `0032E3F0` 2, `00249350` 1) with the kind, id and file name where they
 are constant. 203 sites carry a constant kind: 121 of kind 7, 34 of kind 9, 18 path requests
-(`FF`<sub>h</sub>), 8 of kind 5 and 22 over eleven other kinds. No decompiled script in any locale calls
+(`0xFF`), 8 of kind 5 and 22 over eleven other kinds. No decompiled script in any locale calls
 `debug_fileread`.
 
 ## Operations

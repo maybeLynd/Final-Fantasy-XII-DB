@@ -20,7 +20,7 @@ handler	parent	funcinfo	bytes	calls	ends
 00899570	00204230	009055D8	77	00209B50	rethrows
 008995C0	00204820	00905380	77	00209AD0	rethrows
 00899610	00204950	00905600	77	00209B50	rethrows
-00899670	00205C70	00905588	41	slot 0 of the object at frame +60h with edx 1 (deleting destructor), when non-null	rethrows
+00899670	00205C70	00905588	41	slot 0 of the object at frame +0x60 with edx 1 (deleting destructor), when non-null	rethrows
 008996A0	00206AD0	00905538	35	00206CD0	rethrows
 008996D0	00206B70	00905358	77	00209AD0	rethrows
 00899820	00208F70	009053D0	39	00209AD0	rethrows

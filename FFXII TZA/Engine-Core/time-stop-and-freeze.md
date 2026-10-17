@@ -22,9 +22,9 @@ the actor a cutscene names are the exemptions the records carve out.
 
 ### The request slots
 
-There are twenty-eight request ids. Each has two records, A at `01FD4160 + id × 18h` and B at
-`01FD4400 + id × 18h`: a qword of permission bits at `+0`, a fade length at B `+10`<sub>h</sub> and a flag
-byte at `+14`<sub>h</sub>. The bitset `01FD46D4` holds the active ids, the dirty byte `01FD46D0` tells the
+There are twenty-eight request ids. Each has two records, A at `01FD4160 + id × 0x18` and B at
+`01FD4400 + id × 0x18`: a qword of permission bits at `+0`, a fade length at B `+0x10` and a flag
+byte at `+0x14`. The bitset `01FD46D4` holds the active ids, the dirty byte `01FD46D0` tells the
 apply step that something changed, and `01FD46A0` / `01FD46B8` hold the last combined A and B.
 
 A set bit in a record is an exemption. For a category `c` from 0 to 6: A bit `c` exempts the
@@ -37,8 +37,8 @@ The categories:
 - 0: the party focus actor (`003590D0()` through `003588B0`);
 - 1: the other roster entries (`00263750(0..3)` minus the focus);
 - 5: the request's own actor; 6: the request's handle list;
-- 2, 3, 4: every other managed actor not in a party slot (`002647B0`: byte `+12`<sub>h</sub> below 4), by
-  the type class `00263BE0` gives from the low nibble of byte `+0E`<sub>h</sub>: 3 for types 1, 2 and 7, 4
+- 2, 3, 4: every other managed actor not in a party slot (`002647B0`: byte `+0x12` below 4), by
+  the type class `00263BE0` gives from the low nibble of byte `+0x0E`: 3 for types 1, 2 and 7, 4
   for type 3, and 2 for anything else.
 
 ### Starting a request
@@ -46,13 +46,13 @@ The categories:
 `00226BE0(id, actor, count, handles, fade, flag)` returns at once when the id's bit is set.
 Otherwise:
 
-1. the fade goes to B `+10`<sub>h</sub>; `00227680(id, A, B, max(flag, 0))` builds the records, the flag
-   landing at B `+14`<sub>h</sub>; the bit and the dirty byte are set;
+1. the fade goes to B `+0x10`; `00227680(id, A, B, max(flag, 0))` builds the records, the flag
+   landing at B `+0x14`; the bit and the dirty byte are set;
 2. one actor manager is walked when A bit 31 is set, three when it is clear (`00263FF0(m)`, live
-   when its `+10`<sub>h</sub> bit 0 holds): every record from `+1DE`<sub>h</sub> for `+1D6`<sub>h</sub> entries (`00358940`)
+   when its `+0x10` bit 0 holds): every record from `+0x1DE` for `+0x1D6` entries (`00358940`)
    gets the id's bit OR-ed into its seven pending-set words and cleared from its seven
    pending-clear words;
-3. for a manager whose `+28`<sub>h</sub> is 0, the exemptions: for each category the id's bit is removed
+3. for a manager whose `+0x28` is 0, the exemptions: for each category the id's bit is removed
    again from the pending-set word of every set whose record bit is set.
 
 Nothing stops yet: the apply does that.
@@ -64,8 +64,8 @@ and 21, 17 to 19, 23 and 25, 24 and 26 are pairs; id 0 runs `00182D10` unless th
 (`002DDC30`, the Battle Mode setting, [game settings](../Saving-Loading-And-Settings/game-settings.md))
 is set, id 12 and 17 run `00182CF0`, 13 and 15 run `00182CD0`.
 
-Those side calls set one bit of the input manager's movement-key mode byte `+3A`<sub>h</sub> and mark
-`+3B`<sub>h</sub>: `00182D10` bit 1 (`00198690`), `00182CF0` bit 0 (`001986B0`) and `00182CD0` bit 2
+Those side calls set one bit of the input manager's movement-key mode byte `+0x3A` and mark
+`+0x3B`: `00182D10` bit 1 (`00198690`), `00182CF0` bit 0 (`001986B0`) and `00182CD0` bit 2
 (`00198670`); the cancel side calls below, `00182DA0`, `00182D60` and `00182D40`, clear the same
 bits ([controls](../Controls-And-Input/controls.md)).
 
@@ -86,7 +86,7 @@ bits ([controls](../Controls-And-Input/controls.md)).
 | 17 | `ucon` / `ucon_4a5` (`0026C5D0`), `0026C3E0`, `00263660` (from the area unload `002628B0`, the drive pass `0025D9E0`, the tick `00314020`, `0026CE60`, `0026B8A0`, `0026B8C0` and `0026C8C0`): raised when `00265680()` is 0, else released, each followed by the apply | the same bodies |
 | 18 | `0025C830` (← `0025C170`) through `00227420`, with apply | `0025B500` through `00226100` once its count `02099DB8` reaches 0, then `002E1CD0(1)`; the apply is left to the field frame |
 | 19 | the definition load `002678C0`, with apply | `clearmapjumpstatus` (`0033F940` → `0025D580`), with apply |
-| 22 | `0035C7B0(0Bh)` on the game-over route `0027EFA0` ([game over](../World-Areas-And-Travel/game-over.md)), with apply | UI request 11's close (`002260A0`) |
+| 22 | `0035C7B0(0x0B)` on the game-over route `0027EFA0` ([game over](../World-Areas-And-Travel/game-over.md)), with apply | UI request 11's close (`002260A0`) |
 | 23, 24 | `setstatuserrordispdenystatus(1)` (`00227550`), `setstatuserrorctrldenystatus(1)` (`00227510`), with apply | the same verbs with 0 (`002261B0`, `00226180`), with apply |
 | 25, 26 | `…dispdenystatus_by_menu(1)` (`002275D0`), `…ctrldenystatus_by_menu(1)` (`00227590`), with apply | the same verbs with 0 (`00226210`, `002261E0`), with apply |
 | 27 | `skipexec` (`0034ECF0` → `00360710` → `002273E0`) | `skipend` (`0034E6D0` → `002260E0`), the area unload `003603F0` |
@@ -142,7 +142,7 @@ Read as behaviour:
 
 `00226280` runs only while the dirty byte is set and clears it at the end. It ANDs the first
 qword of every A and every B record over all twenty-eight slots into one combined pair (a
-cancelled slot holds all-ones, the identity), takes the smallest non-negative B `+10`<sub>h</sub> as the
+cancelled slot holds all-ones, the identity), takes the smallest non-negative B `+0x10` as the
 fade and resets each such slot to -1, and ORs bit 41 into every slot's B. Then:
 
 - `00226640(allExempt, fade, 0)`, the per-actor pass below, with `allExempt` set when combined B
@@ -151,21 +151,21 @@ fade and resets each such slot to -1, and ORs bit 41 into every slot's B. Then:
   bytes `0215FD44` / `0215FD45` ([party control modes](party-control-modes.md) writes their bit 2);
   the status-error verbs name them: the `ctrldeny` verbs clear A24, the `dispdeny` verbs B24;
 - A and B bits 25 to 27: two 16-bit group masks `0209215E` / `02092162` for the effect system
-  (`0024B9B0` reads the first; `0024C970` initialises both to `3FF`<sub>h</sub>): bit 25 set gives `3FF`<sub>h</sub>
-  (else 0 for A, `3EE`<sub>h</sub> for B), bit 26 clear ORs `76`<sub>h</sub>, bit 27 sets or clears bit 1, then
-  `108`<sub>h</sub> is ORed; when A's word is exactly `108`<sub>h</sub> and B's lacks bit 4, A's becomes `10C`<sub>h</sub> and
+  (`0024B9B0` reads the first; `0024C970` initialises both to `0x3FF`): bit 25 set gives `0x3FF`
+  (else 0 for A, `0x3EE` for B), bit 26 clear ORs `0x76`, bit 27 sets or clears bit 1, then
+  `0x108` is ORed; when A's word is exactly `0x108` and B's lacks bit 4, A's becomes `0x10C` and
   B's gains bit 2;
-- A bit 29: `0035B510(FFh)` when set, else `0035B4B0(5)`;
+- A bit 29: `0035B510(0xFF)` when set, else `0035B4B0(5)`;
 - A bit 30 clear: `0025A5D0(1)` sets `02098DEB`; set: clears it;
-- A bits 36 and 37: `002547C0` gets `F`<sub>h</sub> when bit 36 is set, else `E`<sub>h</sub>, with bits 2 and 3
+- A bits 36 and 37: `002547C0` gets `0xF` when bit 36 is set, else `0xE`, with bits 2 and 3
   cleared when bit 37 is clear, the pump argument of [subsystem update
   flags](subsystem-update-flags.md); B bit 36 the same through `00254840` (`01E0C2AC`);
 - A bit 39: `002E24C0(0)` sets bit 0 of `0215F1B3` when clear, `002E24E0(0)` clears it when set;
 - unless the skip byte `01FD46D1` is set (`00227D30` sets it; the apply clears it instead of
   running this block): the audio group mask from B bits 32, 33 and 40 to 44 through `002DF370`
-  and `002DF640` (`01E0CF98` = 0 or `100`<sub>h</sub>);
+  and `002DF640` (`01E0CF98` = 0 or `0x100`);
 - B bit 35: `002EBBF0(1, B35)`, bit 1 of `0215FD56`, whose zero state sets bit 0 of the render
-  table's `+48818`<sub>h</sub> (character distance culling);
+  table's `+0x48818` (character distance culling);
 - the combined A and B are stored at `01FD46A0` and `01FD46B8`; `01FD46B0` and `01FD46C8` receive
   two stack slots the apply never writes, and nothing reads them.
 
@@ -177,23 +177,23 @@ folds them (`live |= set; live &= ~clear;` both zeroed) and fires the set's hook
 
 | Set | Live | Pending set / clear | On change | What the live set stops |
 |---|---|---|---|---|
-| 1 | battle unit `+40`<sub>h</sub> (`00359B80`: `[record + 30h] + ED0h`) | `+54`<sub>h</sub> / `+60`<sub>h</sub> | becoming non-zero: `0026D6D0` → `0026D6F0(actor, 0.0, 2)`, the movement speed written to 0 | movement |
-| 2 | record `+10C`<sub>h</sub> | `+110`<sub>h</sub> / `+114`<sub>h</sub> | none | the actor's per-step tail in the drive pass `0025DF00`: the animation-driven step `003E6EF0`, the mode word `002681E0`, the movement step `002E5030` and the facing integrator `002E5750` run only when the set is 0 and byte `+13`<sub>h</sub> bit 0 is clear, or byte `+0B`<sub>h</sub> bit 5 is set; otherwise `002E6310` runs instead; the interpreter refuses at `0025E524` and `00264DF0` refuses the stick |
-| 3 | controller `[record + C0h] + 170h` | `+174`<sub>h</sub> / `+178`<sub>h</sub> | `002E92F0`: `00428FE0(render record, 00264DC0(actor) = 0)`, which writes `+304`<sub>h</sub> bit 4 and queues `+290`<sub>h</sub> bit 26 or 27 | the additive motions of the character |
-| 4 | controller `+164`<sub>h</sub> | `+168`<sub>h</sub> / `+16C`<sub>h</sub> | none | presence: `002E9FE0` and `002E7E90` treat a kind-3 actor with a non-zero set as absent |
-| 5 | controller `+158`<sub>h</sub> | `+15C`<sub>h</sub> / `+160`<sub>h</sub> | `002269A0` appends the actor's id to the manager's list `+1F0`<sub>h</sub> (count `+1F8`<sub>h</sub>) | the fade (below) |
-| 6 | battle unit `+44`<sub>h</sub> | `+4C`<sub>h</sub> / `+58`<sub>h</sub> | `00238B40(actor, live ≠ 0 or record byte `+9` bit 5)` → battle unit `+4` bit 5 (`0031B760`) | the unit's stop flag |
-| 7 | battle unit `+48`<sub>h</sub> | `+50`<sub>h</sub> / `+5C`<sub>h</sub> | `00312130(actor, live = 0 and that bit clear)` → unit flag bit 36 set while stopped | the unit's flag word |
+| 1 | battle unit `+0x40` (`00359B80`: `[record + 0x30] + 0xED0`) | `+0x54` / `+0x60` | becoming non-zero: `0026D6D0` → `0026D6F0(actor, 0.0, 2)`, the movement speed written to 0 | movement |
+| 2 | record `+0x10C` | `+0x110` / `+0x114` | none | the actor's per-step tail in the drive pass `0025DF00`: the animation-driven step `003E6EF0`, the mode word `002681E0`, the movement step `002E5030` and the facing integrator `002E5750` run only when the set is 0 and byte `+0x13` bit 0 is clear, or byte `+0x0B` bit 5 is set; otherwise `002E6310` runs instead; the interpreter refuses at `0025E524` and `00264DF0` refuses the stick |
+| 3 | controller `[record + 0xC0] + 0x170` | `+0x174` / `+0x178` | `002E92F0`: `00428FE0(render record, 00264DC0(actor) = 0)`, which writes `+0x304` bit 4 and queues `+0x290` bit 26 or 27 | the additive motions of the character |
+| 4 | controller `+0x164` | `+0x168` / `+0x16C` | none | presence: `002E9FE0` and `002E7E90` treat a kind-3 actor with a non-zero set as absent |
+| 5 | controller `+0x158` | `+0x15C` / `+0x160` | `002269A0` appends the actor's id to the manager's list `+0x1F0` (count `+0x1F8`) | the fade (below) |
+| 6 | battle unit `+0x44` | `+0x4C` / `+0x58` | `00238B40(actor, live ≠ 0 or record byte `+9` bit 5)` → battle unit `+4` bit 5 (`0031B760`) | the unit's stop flag |
+| 7 | battle unit `+0x48` | `+0x50` / `+0x5C` | `00312130(actor, live = 0 and that bit clear)` → unit flag bit 36 set while stopped | the unit's flag word |
 
 After each manager's records, when its list is non-empty:
 
-- with `allExempt` clear: `0024FCA0(list)` (mask `3FE`<sub>h</sub> to `02092160`, `003B3BA0`, `003B1180`),
+- with `allExempt` clear: `0024FCA0(list)` (mask `0x3FE` to `02092160`, `003B3BA0`, `003B1180`),
   `0024FBF0(list, n, 0.0, fade + 1)` (the global ramp `020926E8` toward `020926EC` = 0.0
   over `020926E6` = fade + 1 frames, stepped by `0024BFD0`), then `002E8B10(actor, 0.0, fade +
   1)` for each listed actor;
-  - `0024FBF0` also raises bit `4`<sub>h</sub> of `+368`<sub>h</sub> on every kind-1 active effect (`002FD090`, `0024FC58`) and, by a
+  - `0024FBF0` also raises bit `0x4` of `+0x368` on every kind-1 active effect (`002FD090`, `0024FC58`) and, by a
     tail jump to `003B1050(list, n)` (`0024FC6C`), on the kind-5 effects owned by the listed actors;
-- with `allExempt` set: `0024FC80` (mask `3FF`<sub>h</sub>), `0024FB90(1.0, fade + 1)` and `002E8B10(actor,
+- with `allExempt` set: `0024FC80` (mask `0x3FF`), `0024FB90(1.0, fade + 1)` and `002E8B10(actor,
   1.0, fade + 1)`.
 
 `002E8B10` ramps channel 2 of the actor's character render record (`00428940(record, 2, value,
@@ -202,21 +202,21 @@ frames)`). `00226A50` and `00226AB0` fold sets 6 and 7 for one actor outside the
 `02099DE6`, also zeroing their movement speed.
 
 At run time only `0026A290` writes `02099DE3`: it is the handler of the verb `setmutekiparty`
-(`0337`<sub>h</sub>, through `003452B0`), stores the popped value there and runs `00263560`. With manager 0
+(`0x0337`, through `003452B0`), stores the popped value there and runs `00263560`. With manager 0
 active (`02098E20` bit 0) a non-zero
 value raises the battle-unit stop flag and flag bit 36 of every roster member and sets their
-record byte `+09`<sub>h</sub> bit 7, and 0 clears them again while the other hold bytes are 0.
+record byte `+0x09` bit 7, and 0 clears them again while the other hold bytes are 0.
 
 ### Cancel, unload and reset
 
 `00225CD0(id, fade)` sets the dirty byte, clears the id's bit, and over all three managers ORs
 the bit into every record's seven pending-clear words and removes it from the pending-set words;
-then both records' first qwords become all-ones, both `+14`<sub>h</sub> bytes 0, and B `+10`<sub>h</sub> = fade. Side
+then both records' first qwords become all-ones, both `+0x14` bytes 0, and B `+0x10` = fade. Side
 calls: id 0 runs `00182DA0` unless the options bit is set, 12 and 17 run `00182D60`, 13 clears
 bit 41 of its B and runs `00182D40`, 15 runs `00182D40`.
 
 `00225EB0` cancels every active id with fade -1 the same way (the area unload). `00226B30` resets
-everything: bitset, dirty and skip bytes 0, every record's first qword all-ones and `+14`<sub>h</sub> 0,
+everything: bitset, dirty and skip bytes 0, every record's first qword all-ones and `+0x14` 0,
 the combined pair all-ones; it does not write the fades, which are 0 from the image until the
 first apply resets them to -1.
 
@@ -244,12 +244,12 @@ manager: +0x10 bit 0 live, +0x28 exemptions skipped when non-zero, +0x1D6 count,
 
 | Fact | Value |
 |---|---|
-| request ids | 28, slots of `18`<sub>h</sub> bytes |
-| default record | A `34FD000000`<sub>h</sub>, B `00001F3A09001F1F`<sub>h</sub> (ids 0 to 3, 15, 22 drop A bits 24, 27, 29 and set B bit 24) |
+| request ids | 28, slots of `0x18` bytes |
+| default record | A `0x34FD000000`, B `0x00001F3A09001F1F` (ids 0 to 3, 15, 22 drop A bits 24, 27, 29 and set B bit 24) |
 | records per id | the table above, all 28 cases of `00227680` |
 | ids never raised | 1, 3, 8, 9, 14, 20, 21 |
 | fades passed | 4 (an event taking an actor, its removal), -1 (every other engine site), the verbs' arguments |
-| effect masks | `3FF`<sub>h</sub> at init, `3FE`<sub>h</sub> / `3FF`<sub>h</sub> during the fade, `76`<sub>h</sub>, `108`<sub>h</sub>, `10C`<sub>h</sub>, `3EE`<sub>h</sub> from the apply |
+| effect masks | `0x3FF` at init, `0x3FE` / `0x3FF` during the fade, `0x76`, `0x108`, `0x10C`, `0x3EE` from the apply |
 
 ## Operations
 

@@ -1,77 +1,77 @@
 function	name	site	disp	kind	instruction	route	note
-0042FDB0	FUN_0042fdb0	0042FE23	0h	r	mov ecx, dword ptr [rbx]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FEA0	0h	r	mov ecx, dword ptr [rbx]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FFFC	0h	r	mov ecx, dword ptr [rbx]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310AE	0h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	00431505	0h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FE4F	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FECC	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FFC6	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310BB	4h	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	0043153A	4h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FE11	Ch	r	movzx eax, byte ptr [rbx + Ch]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FE8E	Ch	r	movzx eax, byte ptr [rbx + Ch]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FFB5	Ch	r	movzx eax, byte ptr [rbx + Ch]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	004314EF	Ch	r	movzx eax, byte ptr [rcx + Ch]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FE3E	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FEBB	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FFA2	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	0043151B	Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310B5	Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310C3	Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431350	FUN_00431350	00431368	Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431350	FUN_00431350	004313E9	Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431430	FUN_00431430	0043143D	Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431430	FUN_00431430	00431492	Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FDD6	10h	addr	lea rcx, [rbx + 10h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FF18	10h	addr	lea rcx, [rbx + 10h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FF29	10h	addr	lea rcx, [rbx + 10h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	00430039	10h	r	mov ecx, dword ptr [rbx + 10h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	00430046	10h	addr	lea rcx, [rbx + 10h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310AE	10h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-004314E0	FUN_004314e0	00431505	10h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-0042FDB0	FUN_0042fdb0	0042FF0B	14h	r	mov ecx, dword ptr [rbx + 14h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310BB	14h	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-004314E0	FUN_004314e0	0043153A	14h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-0042FDB0	FUN_0042fdb0	00430028	1Ch	r	movzx eax, byte ptr [rbx + 1Ch]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	004314EF	1Ch	r	movzx eax, byte ptr [rcx + Ch]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-0042FDB0	FUN_0042fdb0	0042FEFA	1Dh	r	movzx eax, byte ptr [rbx + 1Dh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	0043151B	1Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-00431080	FUN_00431080	004310B5	1Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-00431080	FUN_00431080	004310C3	1Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-00431350	FUN_00431350	00431368	1Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-00431350	FUN_00431350	004313E9	1Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+10h exposed	
-0042FDB0	FUN_0042fdb0	0042FDE4	20h	addr	lea rcx, [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FF45	20h	addr	lea rcx, [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FF66	20h	addr	lea rcx, [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FF7D	20h	addr	lea rcx, [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	0042FF8E	20h	addr	lea rcx, [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	00430078	20h	r	mov ecx, dword ptr [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	00430085	20h	addr	lea rcx, [rbx + 20h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310AE	20h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-004314E0	FUN_004314e0	00431505	20h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-0042FDB0	FUN_0042fdb0	0042FF5E	24h	r	mov ecx, dword ptr [rbx + 24h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310BB	24h	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-004314E0	FUN_004314e0	0043153A	24h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-0042FDB0	FUN_0042fdb0	00430067	2Ch	r	movzx eax, byte ptr [rbx + 2Ch]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	004314EF	2Ch	r	movzx eax, byte ptr [rcx + Ch]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-0042FDB0	FUN_0042fdb0	0042FF3B	2Dh	r	movzx eax, byte ptr [rbx + 2Dh]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-004314E0	FUN_004314e0	0043151B	2Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-00431080	FUN_00431080	004310B5	2Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-00431080	FUN_00431080	004310C3	2Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-00431350	FUN_00431350	00431368	2Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-00431350	FUN_00431350	004313E9	2Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+20h exposed	
-0042FDB0	FUN_0042fdb0	0042FDF2	30h	addr	lea rcx, [rbx + 30h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	004300A8	30h	addr	lea rcx, [rbx + 30h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-00431080	FUN_00431080	004310AE	30h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-004314E0	FUN_004314e0	00431505	30h	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-00431080	FUN_00431080	004310BB	34h	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-004314E0	FUN_004314e0	0043153A	34h	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-004314E0	FUN_004314e0	004314EF	3Ch	r	movzx eax, byte ptr [rcx + Ch]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-004314E0	FUN_004314e0	0043151B	3Dh	r	movzx eax, byte ptr [rbx + Dh]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-00431080	FUN_00431080	004310B5	3Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-00431080	FUN_00431080	004310C3	3Eh	r	movzx ecx, word ptr [rsi + Eh]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-00431350	FUN_00431350	00431368	3Eh	r	movzx eax, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-00431350	FUN_00431350	004313E9	3Eh	r	movzx ecx, word ptr [rcx + Eh]	route-seeded ARG rcx 0042FDB0h base+30h exposed	
-0042FDB0	FUN_0042fdb0	0042FDC1	40h	r	movzx ecx, byte ptr [rcx + 40h]	route-seeded ARG rcx 0042FDB0h base+0h exposed	
-0042FDB0	FUN_0042fdb0	004300BE	40h	r	test byte ptr [rbx + 40h], 4	route-seeded ARG rcx 0042FDB0h base+0h exposed	
+0042FDB0	FUN_0042fdb0	0042FE23	0x0	r	mov ecx, dword ptr [rbx]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FEA0	0x0	r	mov ecx, dword ptr [rbx]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FFFC	0x0	r	mov ecx, dword ptr [rbx]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310AE	0x0	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	00431505	0x0	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FE4F	0x4	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FECC	0x4	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FFC6	0x4	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310BB	0x4	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	0043153A	0x4	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FE11	0xC	r	movzx eax, byte ptr [rbx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FE8E	0xC	r	movzx eax, byte ptr [rbx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FFB5	0xC	r	movzx eax, byte ptr [rbx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	004314EF	0xC	r	movzx eax, byte ptr [rcx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FE3E	0xD	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FEBB	0xD	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FFA2	0xD	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	0043151B	0xD	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310B5	0xE	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310C3	0xE	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431350	FUN_00431350	00431368	0xE	r	movzx eax, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431350	FUN_00431350	004313E9	0xE	r	movzx ecx, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431430	FUN_00431430	0043143D	0xE	r	movzx eax, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431430	FUN_00431430	00431492	0xE	r	movzx ecx, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FDD6	0x10	addr	lea rcx, [rbx + 0x10]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FF18	0x10	addr	lea rcx, [rbx + 0x10]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FF29	0x10	addr	lea rcx, [rbx + 0x10]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	00430039	0x10	r	mov ecx, dword ptr [rbx + 0x10]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	00430046	0x10	addr	lea rcx, [rbx + 0x10]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310AE	0x10	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+004314E0	FUN_004314e0	00431505	0x10	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+0042FDB0	FUN_0042fdb0	0042FF0B	0x14	r	mov ecx, dword ptr [rbx + 0x14]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310BB	0x14	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+004314E0	FUN_004314e0	0043153A	0x14	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+0042FDB0	FUN_0042fdb0	00430028	0x1C	r	movzx eax, byte ptr [rbx + 0x1c]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	004314EF	0x1C	r	movzx eax, byte ptr [rcx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+0042FDB0	FUN_0042fdb0	0042FEFA	0x1D	r	movzx eax, byte ptr [rbx + 0x1d]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	0043151B	0x1D	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+00431080	FUN_00431080	004310B5	0x1E	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+00431080	FUN_00431080	004310C3	0x1E	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+00431350	FUN_00431350	00431368	0x1E	r	movzx eax, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+00431350	FUN_00431350	004313E9	0x1E	r	movzx ecx, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x10 exposed	
+0042FDB0	FUN_0042fdb0	0042FDE4	0x20	addr	lea rcx, [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FF45	0x20	addr	lea rcx, [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FF66	0x20	addr	lea rcx, [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FF7D	0x20	addr	lea rcx, [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	0042FF8E	0x20	addr	lea rcx, [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	00430078	0x20	r	mov ecx, dword ptr [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	00430085	0x20	addr	lea rcx, [rbx + 0x20]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310AE	0x20	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+004314E0	FUN_004314e0	00431505	0x20	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+0042FDB0	FUN_0042fdb0	0042FF5E	0x24	r	mov ecx, dword ptr [rbx + 0x24]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310BB	0x24	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+004314E0	FUN_004314e0	0043153A	0x24	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+0042FDB0	FUN_0042fdb0	00430067	0x2C	r	movzx eax, byte ptr [rbx + 0x2c]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	004314EF	0x2C	r	movzx eax, byte ptr [rcx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+0042FDB0	FUN_0042fdb0	0042FF3B	0x2D	r	movzx eax, byte ptr [rbx + 0x2d]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+004314E0	FUN_004314e0	0043151B	0x2D	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+00431080	FUN_00431080	004310B5	0x2E	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+00431080	FUN_00431080	004310C3	0x2E	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+00431350	FUN_00431350	00431368	0x2E	r	movzx eax, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+00431350	FUN_00431350	004313E9	0x2E	r	movzx ecx, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x20 exposed	
+0042FDB0	FUN_0042fdb0	0042FDF2	0x30	addr	lea rcx, [rbx + 0x30]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	004300A8	0x30	addr	lea rcx, [rbx + 0x30]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+00431080	FUN_00431080	004310AE	0x30	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+004314E0	FUN_004314e0	00431505	0x30	r	mov ecx, dword ptr [rcx]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+00431080	FUN_00431080	004310BB	0x34	r	mov ecx, dword ptr [rcx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+004314E0	FUN_004314e0	0043153A	0x34	r	mov ecx, dword ptr [rbx + 4]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+004314E0	FUN_004314e0	004314EF	0x3C	r	movzx eax, byte ptr [rcx + 0xc]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+004314E0	FUN_004314e0	0043151B	0x3D	r	movzx eax, byte ptr [rbx + 0xd]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+00431080	FUN_00431080	004310B5	0x3E	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+00431080	FUN_00431080	004310C3	0x3E	r	movzx ecx, word ptr [rsi + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+00431350	FUN_00431350	00431368	0x3E	r	movzx eax, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+00431350	FUN_00431350	004313E9	0x3E	r	movzx ecx, word ptr [rcx + 0xe]	route-seeded ARG rcx 0x0042FDB0 base+0x30 exposed	
+0042FDB0	FUN_0042fdb0	0042FDC1	0x40	r	movzx ecx, byte ptr [rcx + 0x40]	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	
+0042FDB0	FUN_0042fdb0	004300BE	0x40	r	test byte ptr [rbx + 0x40], 4	route-seeded ARG rcx 0x0042FDB0 base+0x0 exposed	

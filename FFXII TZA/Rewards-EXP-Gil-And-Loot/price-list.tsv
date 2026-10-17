@@ -1,129 +1,129 @@
 id	price	script_calls	scripts	explanation
-B000h	500	3	rbn_a17, rbn_a18, rbn_a19	500 gil; asked for by rbn_a17, rbn_a18, rbn_a19
-B001h	1	0		1 gil; no us script asks for it by a written id
-B002h	200	1	rbn_b01	200 gil; asked for by rbn_b01
-B003h	200	1	rbn_b01	200 gil; asked for by rbn_b01
-B004h	200	1	rbn_b01	200 gil; asked for by rbn_b01
-B005h	210	1	nac_b01	210 gil; asked for by nac_b01
-B006h	210	1	nac_b01	210 gil; asked for by nac_b01
-B007h	210	1	nac_b01	210 gil; asked for by nac_b01
-B008h	250	1	byu_b01	250 gil; asked for by byu_b01
-B009h	250	1	byu_b01	250 gil; asked for by byu_b01
-B00Ah	200	1	alc_e01	200 gil; asked for by alc_e01
-B00Bh	200	1	alc_e01	200 gil; asked for by alc_e01
-B00Ch	200	1	alc_e01	200 gil; asked for by alc_e01
-B00Dh	180	1	var_b01	180 gil; asked for by var_b01
-B00Eh	180	1	var_b01	180 gil; asked for by var_b01
-B00Fh	180	1	var_b01	180 gil; asked for by var_b01
-B010h	70	2	byu_a01, byu_a04	70 gil; asked for by byu_a01, byu_a04
-B011h	30	3	glf_a01	30 gil; asked for by glf_a01
-B012h	60	1	vic_a03	60 gil; asked for by vic_a03
-B013h	230	1	alc_b06	230 gil; asked for by alc_b06
-B014h	80	1	var_a01	80 gil; asked for by var_a01
-B015h	1700	1	glf_a01	1700 gil; asked for by glf_a01
-B016h	1	4	rbn_a03	1 gil; asked for by rbn_a03
-B017h	3200	1	bul_b02	3200 gil; asked for by bul_b02
-B018h	4100	1	var_a01	4100 gil; asked for by var_a01
-B019h	15	1	bul_b02	15 gil; asked for by bul_b02
-B01Ah	50	2	dst_b01, rbn_a04	50 gil; asked for by dst_b01, rbn_a04
-B01Bh	550	1	rbn_a04	550 gil; asked for by rbn_a04
-B01Ch	30	2	rbn_a04, sav_b01	30 gil; asked for by rbn_a04, sav_b01
-B01Dh	1	0		1 gil; no us script asks for it by a written id
-B01Eh	1	0		1 gil; no us script asks for it by a written id
-B01Fh	2400	2	dst_b02, mnt_d01	2400 gil; asked for by dst_b02, mnt_d01
-B020h	1	0		1 gil; no us script asks for it by a written id
-B021h	1	0		1 gil; no us script asks for it by a written id
-B022h	1800	1	fon_b01	1800 gil; asked for by fon_b01
-B023h	3300	1	alc_b06	3300 gil; asked for by alc_b06
-B024h	1	0		1 gil; no us script asks for it by a written id
-B025h	1	0		1 gil; no us script asks for it by a written id
-B026h	650	2	byu_a01, byu_a04	650 gil; asked for by byu_a01, byu_a04
-B027h	1	0		1 gil; no us script asks for it by a written id
-B028h	800	1	nac_a01	800 gil; asked for by nac_a01
-B029h	350	0		350 gil; no us script asks for it by a written id
-B02Ah	600	3	bul_b02	600 gil; asked for by bul_b02
-B02Bh	800	1	var_a01	800 gil; asked for by var_a01
-B02Ch	1	0		1 gil; no us script asks for it by a written id
-B02Dh	1	0		1 gil; no us script asks for it by a written id
-B02Eh	1400	1	fon_b01	1400 gil; asked for by fon_b01
-B02Fh	1	0		1 gil; no us script asks for it by a written id
-B030h	1	0		1 gil; no us script asks for it by a written id
-B031h	100	1	dst_a07	100 gil; asked for by dst_a07
-B032h	100000	1	ald_a02	100000 gil; asked for by ald_a02
-B033h	1	0		1 gil; no us script asks for it by a written id
-B034h	200000	0		200000 gil; no us script asks for it by a written id
-B035h	9450	0		9450 gil; no us script asks for it by a written id
-B036h	8370	0		8370 gil; no us script asks for it by a written id
-B037h	3600	0		3600 gil; no us script asks for it by a written id
-B038h	13050	0		13050 gil; no us script asks for it by a written id
-B039h	11160	0		11160 gil; no us script asks for it by a written id
-B03Ah	10200	0		10200 gil; no us script asks for it by a written id
-B03Bh	13500	0		13500 gil; no us script asks for it by a written id
-B03Ch	21750	0		21750 gil; no us script asks for it by a written id
-B03Dh	19200	0		19200 gil; no us script asks for it by a written id
-B03Eh	29250	0		29250 gil; no us script asks for it by a written id
-B03Fh	57600	0		57600 gil; no us script asks for it by a written id
-B040h	5400	0		5400 gil; no us script asks for it by a written id
-B041h	70200	0		70200 gil; no us script asks for it by a written id
-B042h	49500	0		49500 gil; no us script asks for it by a written id
-B043h	117000	0		117000 gil; no us script asks for it by a written id
-B044h	36000	0		36000 gil; no us script asks for it by a written id
-B045h	20400	0		20400 gil; no us script asks for it by a written id
-B046h	75000	0		75000 gil; no us script asks for it by a written id
-B047h	123750	0		123750 gil; no us script asks for it by a written id
-B048h	47520	0		47520 gil; no us script asks for it by a written id
-B049h	447000	0		447000 gil; no us script asks for it by a written id
-B04Ah	700000	0		700000 gil; no us script asks for it by a written id
-B04Bh	162000	0		162000 gil; no us script asks for it by a written id
-B04Ch	360000	0		360000 gil; no us script asks for it by a written id
-B04Dh	999999	0		999999 gil; no us script asks for it by a written id
-B04Eh	104000	0		104000 gil; no us script asks for it by a written id
-B04Fh	132000	0		132000 gil; no us script asks for it by a written id
-B050h	60000	0		60000 gil; no us script asks for it by a written id
-B051h	61600	0		61600 gil; no us script asks for it by a written id
-B052h	18600	0		18600 gil; no us script asks for it by a written id
-B053h	11160	0		11160 gil; no us script asks for it by a written id
-B054h	1	0		1 gil; no us script asks for it by a written id
-B055h	1	0		1 gil; no us script asks for it by a written id
-B056h	1	0		1 gil; no us script asks for it by a written id
-B057h	1	0		1 gil; no us script asks for it by a written id
-B058h	1	0		1 gil; no us script asks for it by a written id
-B059h	1	0		1 gil; no us script asks for it by a written id
-B05Ah	1	0		1 gil; no us script asks for it by a written id
-B05Bh	1	0		1 gil; no us script asks for it by a written id
-B05Ch	1	0		1 gil; no us script asks for it by a written id
-B05Dh	1	0		1 gil; no us script asks for it by a written id
-B05Eh	1	0		1 gil; no us script asks for it by a written id
-B05Fh	1	0		1 gil; no us script asks for it by a written id
-B060h	1	0		1 gil; no us script asks for it by a written id
-B061h	1	0		1 gil; no us script asks for it by a written id
-B062h	1	0		1 gil; no us script asks for it by a written id
-B063h	1	0		1 gil; no us script asks for it by a written id
-B064h	1	0		1 gil; no us script asks for it by a written id
-B065h	1	0		1 gil; no us script asks for it by a written id
-B066h	1	0		1 gil; no us script asks for it by a written id
-B067h	1	0		1 gil; no us script asks for it by a written id
-B068h	1	0		1 gil; no us script asks for it by a written id
-B069h	1	0		1 gil; no us script asks for it by a written id
-B06Ah	1	0		1 gil; no us script asks for it by a written id
-B06Bh	1	0		1 gil; no us script asks for it by a written id
-B06Ch	1	0		1 gil; no us script asks for it by a written id
-B06Dh	1	0		1 gil; no us script asks for it by a written id
-B06Eh	1	0		1 gil; no us script asks for it by a written id
-B06Fh	1	0		1 gil; no us script asks for it by a written id
-B070h	1	0		1 gil; no us script asks for it by a written id
-B071h	1	0		1 gil; no us script asks for it by a written id
-B072h	1	0		1 gil; no us script asks for it by a written id
-B073h	1500	5	ald_a01, ald_a0180	1500 gil; asked for by ald_a01, ald_a0180
-B074h	2500	5	alc_a0280, alc_f01	2500 gil; asked for by alc_a0280, alc_f01
-B075h	20000	20	alc_b05, alc_b06, alc_f03, alc_f04, alc_f05	20000 gil; asked for by alc_b05, alc_b06, alc_f03, alc_f04, alc_f05
-B076h	1118	0		1118 gil; no us script asks for it by a written id
-B077h	1119	0		1119 gil; no us script asks for it by a written id
-B078h	1120	0		1120 gil; no us script asks for it by a written id
-B079h	1121	0		1121 gil; no us script asks for it by a written id
-B07Ah	1122	0		1122 gil; no us script asks for it by a written id
-B07Bh	1123	0		1123 gil; no us script asks for it by a written id
-B07Ch	1124	0		1124 gil; no us script asks for it by a written id
-B07Dh	1125	0		1125 gil; no us script asks for it by a written id
-B07Eh	1126	0		1126 gil; no us script asks for it by a written id
-B07Fh	1127	0		1127 gil; no us script asks for it by a written id
+0xB000	500	3	rbn_a17, rbn_a18, rbn_a19	500 gil; asked for by rbn_a17, rbn_a18, rbn_a19
+0xB001	1	0		1 gil; no us script asks for it by a written id
+0xB002	200	1	rbn_b01	200 gil; asked for by rbn_b01
+0xB003	200	1	rbn_b01	200 gil; asked for by rbn_b01
+0xB004	200	1	rbn_b01	200 gil; asked for by rbn_b01
+0xB005	210	1	nac_b01	210 gil; asked for by nac_b01
+0xB006	210	1	nac_b01	210 gil; asked for by nac_b01
+0xB007	210	1	nac_b01	210 gil; asked for by nac_b01
+0xB008	250	1	byu_b01	250 gil; asked for by byu_b01
+0xB009	250	1	byu_b01	250 gil; asked for by byu_b01
+0xB00A	200	1	alc_e01	200 gil; asked for by alc_e01
+0xB00B	200	1	alc_e01	200 gil; asked for by alc_e01
+0xB00C	200	1	alc_e01	200 gil; asked for by alc_e01
+0xB00D	180	1	var_b01	180 gil; asked for by var_b01
+0xB00E	180	1	var_b01	180 gil; asked for by var_b01
+0xB00F	180	1	var_b01	180 gil; asked for by var_b01
+0xB010	70	2	byu_a01, byu_a04	70 gil; asked for by byu_a01, byu_a04
+0xB011	30	3	glf_a01	30 gil; asked for by glf_a01
+0xB012	60	1	vic_a03	60 gil; asked for by vic_a03
+0xB013	230	1	alc_b06	230 gil; asked for by alc_b06
+0xB014	80	1	var_a01	80 gil; asked for by var_a01
+0xB015	1700	1	glf_a01	1700 gil; asked for by glf_a01
+0xB016	1	4	rbn_a03	1 gil; asked for by rbn_a03
+0xB017	3200	1	bul_b02	3200 gil; asked for by bul_b02
+0xB018	4100	1	var_a01	4100 gil; asked for by var_a01
+0xB019	15	1	bul_b02	15 gil; asked for by bul_b02
+0xB01A	50	2	dst_b01, rbn_a04	50 gil; asked for by dst_b01, rbn_a04
+0xB01B	550	1	rbn_a04	550 gil; asked for by rbn_a04
+0xB01C	30	2	rbn_a04, sav_b01	30 gil; asked for by rbn_a04, sav_b01
+0xB01D	1	0		1 gil; no us script asks for it by a written id
+0xB01E	1	0		1 gil; no us script asks for it by a written id
+0xB01F	2400	2	dst_b02, mnt_d01	2400 gil; asked for by dst_b02, mnt_d01
+0xB020	1	0		1 gil; no us script asks for it by a written id
+0xB021	1	0		1 gil; no us script asks for it by a written id
+0xB022	1800	1	fon_b01	1800 gil; asked for by fon_b01
+0xB023	3300	1	alc_b06	3300 gil; asked for by alc_b06
+0xB024	1	0		1 gil; no us script asks for it by a written id
+0xB025	1	0		1 gil; no us script asks for it by a written id
+0xB026	650	2	byu_a01, byu_a04	650 gil; asked for by byu_a01, byu_a04
+0xB027	1	0		1 gil; no us script asks for it by a written id
+0xB028	800	1	nac_a01	800 gil; asked for by nac_a01
+0xB029	350	0		350 gil; no us script asks for it by a written id
+0xB02A	600	3	bul_b02	600 gil; asked for by bul_b02
+0xB02B	800	1	var_a01	800 gil; asked for by var_a01
+0xB02C	1	0		1 gil; no us script asks for it by a written id
+0xB02D	1	0		1 gil; no us script asks for it by a written id
+0xB02E	1400	1	fon_b01	1400 gil; asked for by fon_b01
+0xB02F	1	0		1 gil; no us script asks for it by a written id
+0xB030	1	0		1 gil; no us script asks for it by a written id
+0xB031	100	1	dst_a07	100 gil; asked for by dst_a07
+0xB032	100000	1	ald_a02	100000 gil; asked for by ald_a02
+0xB033	1	0		1 gil; no us script asks for it by a written id
+0xB034	200000	0		200000 gil; no us script asks for it by a written id
+0xB035	9450	0		9450 gil; no us script asks for it by a written id
+0xB036	8370	0		8370 gil; no us script asks for it by a written id
+0xB037	3600	0		3600 gil; no us script asks for it by a written id
+0xB038	13050	0		13050 gil; no us script asks for it by a written id
+0xB039	11160	0		11160 gil; no us script asks for it by a written id
+0xB03A	10200	0		10200 gil; no us script asks for it by a written id
+0xB03B	13500	0		13500 gil; no us script asks for it by a written id
+0xB03C	21750	0		21750 gil; no us script asks for it by a written id
+0xB03D	19200	0		19200 gil; no us script asks for it by a written id
+0xB03E	29250	0		29250 gil; no us script asks for it by a written id
+0xB03F	57600	0		57600 gil; no us script asks for it by a written id
+0xB040	5400	0		5400 gil; no us script asks for it by a written id
+0xB041	70200	0		70200 gil; no us script asks for it by a written id
+0xB042	49500	0		49500 gil; no us script asks for it by a written id
+0xB043	117000	0		117000 gil; no us script asks for it by a written id
+0xB044	36000	0		36000 gil; no us script asks for it by a written id
+0xB045	20400	0		20400 gil; no us script asks for it by a written id
+0xB046	75000	0		75000 gil; no us script asks for it by a written id
+0xB047	123750	0		123750 gil; no us script asks for it by a written id
+0xB048	47520	0		47520 gil; no us script asks for it by a written id
+0xB049	447000	0		447000 gil; no us script asks for it by a written id
+0xB04A	700000	0		700000 gil; no us script asks for it by a written id
+0xB04B	162000	0		162000 gil; no us script asks for it by a written id
+0xB04C	360000	0		360000 gil; no us script asks for it by a written id
+0xB04D	999999	0		999999 gil; no us script asks for it by a written id
+0xB04E	104000	0		104000 gil; no us script asks for it by a written id
+0xB04F	132000	0		132000 gil; no us script asks for it by a written id
+0xB050	60000	0		60000 gil; no us script asks for it by a written id
+0xB051	61600	0		61600 gil; no us script asks for it by a written id
+0xB052	18600	0		18600 gil; no us script asks for it by a written id
+0xB053	11160	0		11160 gil; no us script asks for it by a written id
+0xB054	1	0		1 gil; no us script asks for it by a written id
+0xB055	1	0		1 gil; no us script asks for it by a written id
+0xB056	1	0		1 gil; no us script asks for it by a written id
+0xB057	1	0		1 gil; no us script asks for it by a written id
+0xB058	1	0		1 gil; no us script asks for it by a written id
+0xB059	1	0		1 gil; no us script asks for it by a written id
+0xB05A	1	0		1 gil; no us script asks for it by a written id
+0xB05B	1	0		1 gil; no us script asks for it by a written id
+0xB05C	1	0		1 gil; no us script asks for it by a written id
+0xB05D	1	0		1 gil; no us script asks for it by a written id
+0xB05E	1	0		1 gil; no us script asks for it by a written id
+0xB05F	1	0		1 gil; no us script asks for it by a written id
+0xB060	1	0		1 gil; no us script asks for it by a written id
+0xB061	1	0		1 gil; no us script asks for it by a written id
+0xB062	1	0		1 gil; no us script asks for it by a written id
+0xB063	1	0		1 gil; no us script asks for it by a written id
+0xB064	1	0		1 gil; no us script asks for it by a written id
+0xB065	1	0		1 gil; no us script asks for it by a written id
+0xB066	1	0		1 gil; no us script asks for it by a written id
+0xB067	1	0		1 gil; no us script asks for it by a written id
+0xB068	1	0		1 gil; no us script asks for it by a written id
+0xB069	1	0		1 gil; no us script asks for it by a written id
+0xB06A	1	0		1 gil; no us script asks for it by a written id
+0xB06B	1	0		1 gil; no us script asks for it by a written id
+0xB06C	1	0		1 gil; no us script asks for it by a written id
+0xB06D	1	0		1 gil; no us script asks for it by a written id
+0xB06E	1	0		1 gil; no us script asks for it by a written id
+0xB06F	1	0		1 gil; no us script asks for it by a written id
+0xB070	1	0		1 gil; no us script asks for it by a written id
+0xB071	1	0		1 gil; no us script asks for it by a written id
+0xB072	1	0		1 gil; no us script asks for it by a written id
+0xB073	1500	5	ald_a01, ald_a0180	1500 gil; asked for by ald_a01, ald_a0180
+0xB074	2500	5	alc_a0280, alc_f01	2500 gil; asked for by alc_a0280, alc_f01
+0xB075	20000	20	alc_b05, alc_b06, alc_f03, alc_f04, alc_f05	20000 gil; asked for by alc_b05, alc_b06, alc_f03, alc_f04, alc_f05
+0xB076	1118	0		1118 gil; no us script asks for it by a written id
+0xB077	1119	0		1119 gil; no us script asks for it by a written id
+0xB078	1120	0		1120 gil; no us script asks for it by a written id
+0xB079	1121	0		1121 gil; no us script asks for it by a written id
+0xB07A	1122	0		1122 gil; no us script asks for it by a written id
+0xB07B	1123	0		1123 gil; no us script asks for it by a written id
+0xB07C	1124	0		1124 gil; no us script asks for it by a written id
+0xB07D	1125	0		1125 gil; no us script asks for it by a written id
+0xB07E	1126	0		1126 gil; no us script asks for it by a written id
+0xB07F	1127	0		1127 gil; no us script asks for it by a written id

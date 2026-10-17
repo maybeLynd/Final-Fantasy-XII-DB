@@ -18,27 +18,27 @@ addresses: "01EEBCC0, 003008A0, 002FD150, 002FD420, 00300B80, 0030B6A0, 003047F0
 ### Ids and classes
 
 Every thing the party can own has a 16-bit id whose top nibble is its class ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
-Each class has a `58`<sub>h</sub>-byte descriptor in the table at `01EEBCC0`, fifteen rows indexed by the nibble.
+Each class has a `0x58`-byte descriptor in the table at `01EEBCC0`, fifteen rows indexed by the nibble.
 
-A descriptor holds three region offsets into the party block (`+00`<sub>h</sub>, `+18`<sub>h</sub>, `+28`<sub>h</sub>), the length of the first
-region in words (`+10`<sub>h</sub>), the id count (`+3C`<sub>h</sub>), a change handler (`+48`<sub>h</sub>) and a query handler (`+50`<sub>h</sub>). The
-rebaser `0030B6A0` turns the offsets into pointers at `+08`<sub>h</sub>, `+20`<sub>h</sub> and `+30`<sub>h</sub> whenever the party block is
+A descriptor holds three region offsets into the party block (`+0x00`, `+0x18`, `+0x28`), the length of the first
+region in words (`+0x10`), the id count (`+0x3C`), a change handler (`+0x48`) and a query handler (`+0x50`). The
+rebaser `0030B6A0` turns the offsets into pointers at `+0x08`, `+0x20` and `+0x30` whenever the party block is
 bound (`0030B6C0`-`0030B6ED`; [Party data](../Party/party-data.md)).
 
 | Nibble | Ids | Class | Storage |
 |---|---|---|---|
-| 0 | `0000`<sub>h</sub>-`003F`<sub>h</sub> | items | a count word each at `+4748`<sub>h</sub>, and one ever-owned bit each at `+57C0`<sub>h</sub> |
-| 1 | `1000`<sub>h</sub>-`11A3`<sub>h</sub> | equipment | a count word each at `+47C8`<sub>h</sub> |
-| 2 | `2000`<sub>h</sub>-`21FF`<sub>h</sub> | loot | a count word each at `+4B10`<sub>h</sub>, and one sold-tally byte each at `+57C8`<sub>h</sub> |
-| 3 | `3000`<sub>h</sub>-`3050`<sub>h</sub> | magicks | one bit each at `+4F10`<sub>h</sub> |
-| 4 | `4000`<sub>h</sub>-`4017`<sub>h</sub> | technicks | one bit each at `+4F1C`<sub>h</sub> |
-| 6 | `6000`<sub>h</sub>-`60FF`<sub>h</sub> | gambits | one bit each at `+4F20`<sub>h</sub> |
-| 8 | `8000`<sub>h</sub>-`81FF`<sub>h</sub> | key items and maps | one bit each at `+4F40`<sub>h</sub> |
-| 9 | `9000`<sub>h</sub>-`91FF`<sub>h</sub> | reward packages: gil and two nested grants | none (`002FD530`) |
-| A | `A000`<sub>h</sub>-`A0FF`<sub>h</sub> | package selectors: two triples of ids | none (`002FD640`) |
-| C | `C000`<sub>h</sub>-`C01F`<sub>h</sub> | Quickenings `C000`<sub>h</sub>-`C011`<sub>h</sub>, Espers `C012`<sub>h</sub>-`C01E`<sub>h</sub>, Second Board `C01F`<sub>h</sub> | one bit each at `+4F80`<sub>h</sub> |
-| D | `D000`<sub>h</sub>-`D07F`<sub>h</sub> | bazaar goods: three granted pairs | none (`002FD780`) |
-| E | `E000`<sub>h</sub>-`EFFE`<sub>h</sub> | gil carried as an id, `(id & FFFh) * count` | none (`002FD880`) |
+| 0 | `0x0000`-`0x003F` | items | a count word each at `+0x4748`, and one ever-owned bit each at `+0x57C0` |
+| 1 | `0x1000`-`0x11A3` | equipment | a count word each at `+0x47C8` |
+| 2 | `0x2000`-`0x21FF` | loot | a count word each at `+0x4B10`, and one sold-tally byte each at `+0x57C8` |
+| 3 | `0x3000`-`0x3050` | magicks | one bit each at `+0x4F10` |
+| 4 | `0x4000`-`0x4017` | technicks | one bit each at `+0x4F1C` |
+| 6 | `0x6000`-`0x60FF` | gambits | one bit each at `+0x4F20` |
+| 8 | `0x8000`-`0x81FF` | key items and maps | one bit each at `+0x4F40` |
+| 9 | `0x9000`-`0x91FF` | reward packages: gil and two nested grants | none (`002FD530`) |
+| A | `0xA000`-`0xA0FF` | package selectors: two triples of ids | none (`002FD640`) |
+| C | `0xC000`-`0xC01F` | Quickenings `0xC000`-`0xC011`, Espers `0xC012`-`0xC01E`, Second Board `0xC01F` | one bit each at `+0x4F80` |
+| D | `0xD000`-`0xD07F` | bazaar goods: three granted pairs | none (`002FD780`) |
+| E | `0xE000`-`0xEFFE` | gil carried as an id, `(id & 0xFFF) * count` | none (`002FD880`) |
 
 Rows 5, 7 and 11 are empty, and nibble F is refused.
 
@@ -53,9 +53,9 @@ its query `002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 3 
 
 `003008A0(id, delta, absolute, channel, flags)` makes every change (`003008A0`-`00300B62`):
 
-1. It refuses `FFFF`<sub>h</sub>, Unarmed `1000`<sub>h</sub>, nibble F, and an index not below the class's id count
+1. It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the class's id count
    (`003008C0`-`0030092C`).
-2. It reads the old value and calls the class's change handler, `+48`<sub>h</sub> (`00300931`-`00300960`).
+2. It reads the old value and calls the class's change handler, `+0x48` (`00300931`-`00300960`).
 3. On channel 1, when the value goes from 0 or less to more than 0, it sets the first-acquisition marks in the
    party block's flag word `+4`, below (`00300968`-`00300B5A`).
 
@@ -76,7 +76,7 @@ Neither handler has a channel 4: the packed handler returns 0 without writing
 (`002FD1B5`-`002FD1B9`), and the bit handler sets or clears the bit as for any channel. The bit handler
 ignores the channel: a result below 1 clears the bit and 1 or more sets it (`002FD49D`-`002FD4E5`). The bundle and
 gil classes act only on a relative channel-1 change and call `003008A0` again for each nested grant
-(`002FD53F`-`002FD8B4`). A package selector, `AXXXh`, gives its second triple when `flags` bit 1 is set and its
+(`002FD53F`-`002FD8B4`). A package selector, `0xAxxx`, gives its second triple when `flags` bit 1 is set and its
 first otherwise (`002FD6BA`).
 
 Most callers use three wrappers. `00300B80(id, delta, flags)` is a relative channel-1 change, for adding and
@@ -90,7 +90,7 @@ and it writes no count (`00316F62`-`00316F82`).
 
 | Id | Bits of the party flag word `+4` | Sites |
 |---|---|---|
-| a magick | bit 0, and one of bits 1-5 for its school, the action row's `+2Ch & 7` through the table `01EECF98` | `003009F7`, `00300A47`-`00300B5A` |
+| a magick | bit 0, and one of bits 1-5 for its school, the action row's `+0x2C & 7` through the table `01EECF98` | `003009F7`, `00300A47`-`00300B5A` |
 | a technick | bit 6 | `003009E7` |
 | a Quickening | bit 7 | `003009D4` |
 | an Esper | bit 8 | `003009C1` |
@@ -104,18 +104,18 @@ and it writes no count (`00316F62`-`00316F82`).
 | bazaar purchase: the sold tallies of its three loots set to 0 | `0030B220`-`0030B256` |
 | steal and poach | `00311457`, `003114A8` |
 | an enemy's loot bag picked up | `00319965` |
-| a chest | `0050FBA0` (verb `3037`<sub>h</sub> `btlAtelOpenTreasureMessage`) |
-| a quest or hunt reward | `003F4AEA`, `003F4B1A` (verb `37C`<sub>h</sub> `questresultwindow`) |
+| a chest | `0050FBA0` (verb `0x3037` `btlAtelOpenTreasureMessage`) |
+| a quest or hunt reward | `003F4AEA`, `003F4B1A` (verb `0x37C` `questresultwindow`) |
 | an item given in a message window | `002A541B` |
-| the item verbs `additem` `2E5`<sub>h</sub>, `additem_47f` `47F`<sub>h</sub>, `additemmes` `480`<sub>h</sub>, `subitem` `2F2`<sub>h</sub>, through `0032A810`, and `setitemnum` `55C`<sub>h</sub>, through `0032A830`; both floor the result at 0 | `003450DC`, `003449EF`, `0034B252`, `003459ED`, `0034554B` |
+| the item verbs `additem` `0x2E5`, `additem_47f` `0x47F`, `additemmes` `0x480`, `subitem` `0x2F2`, through `0032A810`, and `setitemnum` `0x55C`, through `0032A830`; both floor the result at 0 | `003450DC`, `003449EF`, `0034B252`, `003459ED`, `0034554B` |
 | an item used in battle: reserved at commit, refunded on cancel | `0030EFB0`, `003002CB` |
 | a member joining or leaving ([Party members](../Party/party-members.md)) | `00316E9C`-`00317009`, `00323586`-`00323594` |
 | a Quickening square bought ([Licenses](licenses.md)) | `00323B0D` |
 | equipping and unequipping | `0030C410` and `0030F9A0` from `00318B40`, `0031A410`, `0031A510`, `0031A630` |
-| `takeaway_item_and_equip` `388`<sub>h</sub> and `giveback_item_and_equip` `387`<sub>h</sub> | `0030FC7F`, `0030FCE2`, `0030FAF5`, `0030FB48` |
+| `takeaway_item_and_equip` `0x388` and `giveback_item_and_equip` `0x387` | `0030FC7F`, `0030FCE2`, `0030FAF5`, `0030FB48` |
 | the scenario presets and the starting inventory | `00239B4F`, `0023AFFF` |
-| the developer verbs `btlAtelGetAll*` `3070`<sub>h</sub>-`3077`<sub>h</sub> | `0030DCE4`-`0030DF74` |
-| the developer verb `btlAtelSetRealBattleMode` `3024`<sub>h</sub>: 99 of every piece of equipment and every gambit | `00308E14`, `00308E54` (`00308DE0`, from `0050F39E`) |
+| the developer verbs `btlAtelGetAll*` `0x3070`-`0x3077` | `0030DCE4`-`0030DF74` |
+| the developer verb `btlAtelSetRealBattleMode` `0x3024`: 99 of every piece of equipment and every gambit | `00308E14`, `00308E54` (`00308DE0`, from `0050F39E`) |
 
 These are every call of `003008A0` and its wrappers in a scan of all call and jump instructions of the image; the
 one indirect call is `00316F82`, to `00300B80` or `00300490`.
@@ -123,14 +123,14 @@ one indirect call is `00316F82`, to `00300B80` or `00300490`.
 ### Writes that bypass the change function
 
 - The clear-all `003047F0` stores 0 in every count and bit word (`0030482A`) and ends by tail-jumping to
-  `00253480` (`0030483D`), which empties all twelve derived inventory lists (`00253240(i, 1)`: every id `FFFF`<sub>h</sub>,
-  the count at `[020927C0] + 47B8h + 4i` = 0) and clears every bit of `[020927C0] + 3244h` but bit 0 and bit 0
-  of `+3245`<sub>h</sub>; the party block reset `002370E5` and
+  `00253480` (`0030483D`), which empties all twelve derived inventory lists (`00253240(i, 1)`: every id `0xFFFF`,
+  the count at `[020927C0] + 0x47B8 + 4i` = 0) and clears every bit of `[020927C0] + 0x3244` but bit 0 and bit 0
+  of `+0x3245`; the party block reset `002370E5` and
   the scenario presets `00239B22` call it.
   - `0035C560` calls `00253480` directly (`0035C584`), right after the HUD reset `0028F8B0`
     ([HUD](../Menus-And-HUD/hud.md)).
 - The rebaser clears every loot sold tally (`0030B702`-`0030B737`).
-- `takeaway_item_and_equip` copies the item and equipment counts to backups at `+4F84`<sub>h</sub> and `+5004`<sub>h</sub>
+- `takeaway_item_and_equip` copies the item and equipment counts to backups at `+0x4F84` and `+0x5004`
   (`0030FC6F`, `0030FCCF`), and `giveback_item_and_equip` adds them back and clears the backups
   (`0030FBBA`-`0030FBC7`).
 - The party block reset `002370C0` clears the whole block.
@@ -146,13 +146,13 @@ loss (`00316A50`, `00254EF1`-`00254F02`), then keeps the value between 0 and 99,
 `00300500` sets, floored at 0.
 
 Shops, the bazaar, kill rewards, chests, quest rewards, member joins, the gil
-verbs `addgill` `2E7`<sub>h</sub> and `subgill` `2E8`<sub>h</sub>, battle actions that cost gil and the gil-stealing trap change it
+verbs `addgill` `0x2E7` and `subgill` `0x2E8`, battle actions that cost gil and the gil-stealing trap change it
 through these.
 
 ## Modding notes
 
 - The 99 cap is a clamp in the change function; the count word itself has room for 1,023.
-- A bundle id (`9XXXh`, `AXXXh`, `DXXXh`) or a gil id (`EXXXh`) can be given anywhere an item id is accepted,
+- A bundle id (`0x9xxx`, `0xAxxx`, `0xDxxx`) or a gil id (`0xExxx`) can be given anywhere an item id is accepted,
   and expands into its grants.
 - The loot sold tallies are cleared whenever the party block is bound.
 

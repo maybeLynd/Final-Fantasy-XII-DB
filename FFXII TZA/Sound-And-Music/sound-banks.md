@@ -22,13 +22,13 @@ each controller's bank class names the family in its run-time type name.
 
 | Family | Files | Name | Opened by | Manager |
 |---|---:|---|---|---|
-| block banks, `SebAudioBank` | 248 | `se/sead_data_win/se<n>/se<n>.win.sab`, three digits | `00223AD0`, format `"%s/se%03d/se%03d%s"` (`00908A38`) | `+08`<sub>h</sub> |
-| six-digit banks, `SepAudioBank` | 4,097 | `se/sead_data_win/se<id/1000>/se<id>.win.sab`, six digits | `00222DC0`, format `"%s/se%03d/se%06d%s"` (`009089A8`) | `+10`<sub>h</sub> |
-| battle voices, `ShoutAudioBank` | 66 per language | `shout/<us or jp>/shoutNN/shoutNN.win.sab` | `0036ED50`, by index from the path arrays of kinds 33 and 39 | `+20`<sub>h</sub> |
-| music, `MusicAudioBank` | 116 | `music/magi_data/win/musicNNN.win.mab` | `00222740`, format `"%s%03d%s"` from `PS2Data/sound/music/magi_data/win/music` (`009088E0`) | `+00`<sub>h</sub> |
+| block banks, `SebAudioBank` | 248 | `se/sead_data_win/se<n>/se<n>.win.sab`, three digits | `00223AD0`, format `"%s/se%03d/se%03d%s"` (`00908A38`) | `+0x08` |
+| six-digit banks, `SepAudioBank` | 4,097 | `se/sead_data_win/se<id/1000>/se<id>.win.sab`, six digits | `00222DC0`, format `"%s/se%03d/se%06d%s"` (`009089A8`) | `+0x10` |
+| battle voices, `ShoutAudioBank` | 66 per language | `shout/<us or jp>/shoutNN/shoutNN.win.sab` | `0036ED50`, by index from the path arrays of kinds 33 and 39 | `+0x20` |
+| music, `MusicAudioBank` | 116 | `music/magi_data/win/musicNNN.win.mab` | `00222740`, format `"%s%03d%s"` from `PS2Data/sound/music/magi_data/win/music` (`009088E0`) | `+0x00` |
 | block indexes | 248 | `se/block/se<n>.seb` | `002E60F0`, kind 32 | - |
 
-The manager's fifth controller, at `+18`<sub>h</sub>, is `StreamAudioController`. The two SE folders' root is
+The manager's fifth controller, at `+0x18`, is `StreamAudioController`. The two SE folders' root is
 `PS2Data/sound/se/sead_data_win` (`00908950`), and `.win.sab` comes from `00908998`. Music ids run 7, 15-92,
 94-116 and 200-213.
 
@@ -51,26 +51,26 @@ their own number, and `se007` by id 1. The index file is read into a block (`002
 
 ### The block registry
 
-`003A0C90(block)` keeps 64 records of `18`<sub>h</sub> bytes at `02AEEDC0`, sorted by block number at `+04`<sub>h</sub>:
+`003A0C90(block)` keeps 64 records of `0x18` bytes at `02AEEDC0`, sorted by block number at `+0x04`:
 
-1. A block already registered adds one to the use count at `+0E`<sub>h</sub>, and the new copy of the file is freed.
-2. A new block takes a free record, marks it in the bitmap at `02AEF3F0`, and is passed to `002DEF00(slot & 3Fh,
+1. A block already registered adds one to the use count at `+0x0E`, and the new copy of the file is freed.
+2. A new block takes a free record, marks it in the bitmap at `02AEF3F0`, and is passed to `002DEF00(slot & 0x3F,
    file)`, which builds a `SebAudioBank` through `001DBD20`, `00210B60` and `0021B430` (`003A1650`).
-3. `00223AD0` reads the index, stores the registry slot at bank `+3C`<sub>h</sub> and the block number at `+38`<sub>h</sub>, and opens the
+3. `00223AD0` reads the index, stores the registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the
    block's `.win.sab` (`00223CB1`-`00223D05`).
 
-`002DEC10` reads an index's block number, the `i16` at `+08`<sub>h</sub>, for `003A1650`. A record's handle is its generation
-`+0A`<sub>h</sub> over its index `+08`<sub>h</sub>, and every user compares the whole handle before it trusts a record:
+`002DEC10` reads an index's block number, the `i16` at `+0x08`, for `003A1650`. A record's handle is its generation
+`+0x0A` over its index `+0x08`, and every user compares the whole handle before it trusts a record:
 
-- `003A0F80(handle)` counts a use down. At 0, unless the record is permanent (`+0D`<sub>h</sub>), it frees the slot's bank
+- `003A0F80(handle)` counts a use down. At 0, unless the record is permanent (`+0x0D`), it frees the slot's bank
   (`002DEEF0`, which hands `0021B430` no file), adds one to the generation, unlinks the record (`003A1750`) and puts
   it at the head of the free list `02AEF3D8`.
-- `003A1750` takes a record out of its list through the links `+00`<sub>h</sub> (next) and `+02`<sub>h</sub> (previous) and sets both to
-  `FFFF`<sub>h</sub>.
-- `003A0EA0`, run by `0036D890`, walks the records marked in the bitmap `02AEF3F0`. A record whose `+10`<sub>h</sub> is set
-  and for which `002DEE90` answers 0 gets state 2 at `+0C`<sub>h</sub>, `+10`<sub>h</sub> = 0 and its bitmap bit (by `+08`<sub>h</sub>)
-  cleared, and its file handle `+14`<sub>h</sub> is released (`0036D200`) and freed (`00369800`).
-- `003A1290(handle)` answers the record's byte `+0C`<sub>h</sub> for `002E60F0`.
+- `003A1750` takes a record out of its list through the links `+0x00` (next) and `+0x02` (previous) and sets both to
+  `0xFFFF`.
+- `003A0EA0`, run by `0036D890`, walks the records marked in the bitmap `02AEF3F0`. A record whose `+0x10` is set
+  and for which `002DEE90` answers 0 gets state 2 at `+0x0C`, `+0x10` = 0 and its bitmap bit (by `+0x08`)
+  cleared, and its file handle `+0x14` is released (`0036D200`) and freed (`00369800`).
+- `003A1290(handle)` answers the record's byte `+0x0C` for `002E60F0`.
 
 `003A13F0` loads three blocks once at start-up: blocks 0, 1 and 2, which `002ED8C0` maps to `se000`, `se007` and
 `se002`. Their callbacks `003A1390`, `003A1330` and `003A12D0` register each one (`003A1650`), keep its handle at
@@ -86,19 +86,19 @@ record does not match (`003A11AB`-`003A11D1`).
 from the blocks at `02AEF400` and `02AEF404`; both answer -1 while `02AEF400` is -1, so `003A1070` gives nothing until
 block 1 is loaded even when block 2 is.
 
-`0021B5B0(id)` finds the bank whose `+3C`<sub>h</sub> equals `id / 512` (`0021B5DF`-`0021B5FA`). An index file has 128 slots,
+`0021B5B0(id)` finds the bank whose `+0x3C` equals `id / 512` (`0021B5DF`-`0021B5FA`). An index file has 128 slots,
 so slots 128-511 of each id range name nothing.
 
 ### Six-digit banks
 
 Effect and sound files carry `SeSep` records that name six-digit banks; 4,318 files hold them (2,304 `.snd`, 1,461
 `.efx`, 545 `.mpk`, 7 `.cm`, 1 `.spp`). `002DF070` walks the records while each starts with `SeSep` and fits, and
-calls `001DBE60(id, record + 10h)` for each. `0021A040` skips an id already loaded, and `00222DC0` stores the id and
-`id / 1000` and copies the record's `u32` and `u8` twice into the bank (`+40`<sub>h</sub>/`+44`<sub>h</sub>, `+45`<sub>h</sub>/`+49`<sub>h</sub>).
+calls `001DBE60(id, record + 0x10)` for each. `0021A040` skips an id already loaded, and `00222DC0` stores the id and
+`id / 1000` and copies the record's `u32` and `u8` twice into the bank (`+0x40`/`+0x44`, `+0x45`/`+0x49`).
 
-The sound records of effect files open their banks through the table of 32 entries of `84`<sub>h</sub> bytes at `02EBBA00`.
+The sound records of effect files open their banks through the table of 32 entries of `0x84` bytes at `02EBBA00`.
 The effect loader `00504060` adds an entry for a kind-1 record and opens its banks, or adds a reference to it
-(`003D7CE0`); an entry holds the kind, a reference count `+02`<sub>h</sub>, the bank id `+04`<sub>h</sub> and up to 30 play handles:
+(`003D7CE0`); an entry holds the kind, a reference count `+0x02`, the bank id `+0x04` and up to 30 play handles:
 
 - `003D7C50(kind, id, handle)` keeps a handle in the entry's first empty cell.
 - `003D7E90(entry)` counts the handles that still play (`002DEE80`) and clears the rest.
@@ -107,13 +107,13 @@ The effect loader `00504060` adds an entry for a kind-1 record and opens its ban
 
 ### Battle voices
 
-`0036ED50` loads both languages of one voice bank. The index is the record's `i16` at `+14`<sub>h</sub>.
+`0036ED50` loads both languages of one voice bank. The index is the record's `i16` at `+0x14`.
 
 - The kind-33 array at `01E127D0` holds the 64 `us` paths and ends there: the cell at `01E129D0` is 0.
 - The kind-39 array at `01ECB7E0` starts with the 64 `jp` paths and goes on to other files: the cell at `01ECBBE0` is
   a live pointer.
-- Each finished load finds its record by the handle, in `022D9AB0` when `handle & F0h` is 0 and otherwise in
-  `022D9AE0`, at `handle & Fh` times `18`<sub>h</sub>. It registers the bank through `001DC130` with 1 for `us` (`0036EAB0`)
+- Each finished load finds its record by the handle, in `022D9AB0` when `handle & 0xF0` is 0 and otherwise in
+  `022D9AE0`, at `handle & 0xF` times `0x18`. It registers the bank through `001DC130` with 1 for `us` (`0036EAB0`)
   and 0 for `jp` (`0036E9F0`).
 
 `0036F000` answers 1 only when no record of either table is in state 1 or 2, so every voice load has finished.
@@ -122,45 +122,45 @@ The effect loader `00504060` adds an entry for a kind-1 record and opens its ban
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[4]` | magic | "sabf" in a .sab, "mabf" in a .mab |
-| `04`<sub>h</sub> | `u8` | version | 2; below 2 the directory is at +dirDelta |
-| `05`<sub>h</sub> | `u8` | flag | 1 in a six-digit bank and in every .mab, 0 in the others |
-| `06`<sub>h</sub> | `u16` | dirDelta | `10`<sub>h</sub> |
-| `08`<sub>h</sub> | `u8` | chunkCount | 4 in a .sab, 3 in a .mab |
-| `09`<sub>h</sub> | `u8` | nameLength | length of the bank name at `+10`<sub>h</sub> |
-| `0A`<sub>h</sub> | `u16` | param | 1 makes the voice mixer drop the front-back pan |
-| `0C`<sub>h</sub> | `u32` | fileSize | the file's length |
+| `+0x00` | `char[4]` | magic | "sabf" in a .sab, "mabf" in a .mab |
+| `+0x04` | `u8` | version | 2; below 2 the directory is at +dirDelta |
+| `+0x05` | `u8` | flag | 1 in a six-digit bank and in every .mab, 0 in the others |
+| `+0x06` | `u16` | dirDelta | `0x10` |
+| `+0x08` | `u8` | chunkCount | 4 in a .sab, 3 in a .mab |
+| `+0x09` | `u8` | nameLength | length of the bank name at `+0x10` |
+| `+0x0A` | `u16` | param | 1 makes the voice mixer drop the front-back pan |
+| `+0x0C` | `u32` | fileSize | the file's length |
 
-The bank name follows at `+10`<sub>h</sub>, `nameLength` bytes and a zero. The chunk directory starts at
-`((10h + nameLength) & F0h) + dirDelta`, which is `20`<sub>h</sub> in every shipped file.
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `00`<sub>h</sub> | `char[4]` | tag | "snd " "seq " "trk " "mtrl" in a .sab; "musc" "inst" "mtrl" in a .mab |
-| `04`<sub>h</sub> | `u32` | flags | `00100000`<sub>h</sub> |
-| `08`<sub>h</sub> | `u32` | offset | from the start of the file |
-| `0C`<sub>h</sub> | `u32` | pad | 0 |
+The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk directory starts at
+`((0x10 + nameLength) & 0xF0) + dirDelta`, which is `0x20` in every shipped file.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[8]` | magic | "SeBlock " |
-| `08`<sub>h</sub> | `i16` | block | the number in the file name |
-| `0A`<sub>h</sub> | `i16` | slotCount | 128 |
-| `0C`<sub>h</sub> | `u32` | fileSize | the file's length |
-| `10`<sub>h</sub> | `i32[128]` | slotOffset from `+210`<sub>h</sub>; -1 for an empty slot |  |
+| `+0x00` | `char[4]` | tag | "snd " "seq " "trk " "mtrl" in a .sab; "musc" "inst" "mtrl" in a .mab |
+| `+0x04` | `u32` | flags | `0x00100000` |
+| `+0x08` | `u32` | offset | from the start of the file |
+| `+0x0C` | `u32` | pad | 0 |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | word | copied twice into the slot's node, read by no bank method |
-| `04`<sub>h</sub> | `u8` | flags | the slot's start flags, read when the sound starts (`00224570`) |
+| `+0x00` | `char[8]` | magic | "SeBlock " |
+| `+0x08` | `i16` | block | the number in the file name |
+| `+0x0A` | `i16` | slotCount | 128 |
+| `+0x0C` | `u32` | fileSize | the file's length |
+| `+0x10` | `i32[128]` | slotOffset from +0x210; -1 for an empty slot |  |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[5]` | magic | "SeSep" |
-| `08`<sub>h</sub> | `i32` | id | the six-digit bank id |
-| `0C`<sub>h</sub> | `u32` | size | record length in bit 0-30 |
-| `10`<sub>h</sub> | `u32` | word | copied to bank `+40`<sub>h</sub> and `+45`<sub>h</sub> |
-| `14`<sub>h</sub> | `u8` | flags | copied to bank `+44`<sub>h</sub> and `+49`<sub>h</sub> |
+| `+0x00` | `u32` | word | copied twice into the slot's node, read by no bank method |
+| `+0x04` | `u8` | flags | the slot's start flags, read when the sound starts (`00224570`) |
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[5]` | magic | "SeSep" |
+| `+0x08` | `i32` | id | the six-digit bank id |
+| `+0x0C` | `u32` | size | record length in bit 0-30 |
+| `+0x10` | `u32` | word | copied to bank `+0x40` and `+0x45` |
+| `+0x14` | `u8` | flags | copied to bank `+0x44` and `+0x49` |
 
 ## Shipped data
 
@@ -168,11 +168,11 @@ Every value below holds in all 4,609 `.sab`, 116 `.mab` and 248 `.seb` files:
 
 | Field | `.sab` | `.mab` |
 |---|---|---|
-| magic, version, `dirDelta` | `sabf`, 2, `10`<sub>h</sub> | `mabf`, 2, `10`<sub>h</sub> |
+| magic, version, `dirDelta` | `sabf`, 2, `0x10` | `mabf`, 2, `0x10` |
 | chunks | `snd `, `seq `, `trk `, `mtrl` | `musc`, `inst`, `mtrl` |
 | name length | 5 for `se` banks, 7 for `shout` banks | 5 |
-| `+05`<sub>h</sub> | 1 in the 4,097 six-digit banks, 0 in the 248 block banks and 264 voice banks | 1 |
-| `+0A`<sub>h</sub> | 350 values; 1 in 157 banks, starting `se001001` | 10,000 |
+| `+0x05` | 1 in the 4,097 six-digit banks, 0 in the 248 block banks and 264 voice banks | 1 |
+| `+0x0A` | 350 values; 1 in 157 banks, starting `se001001` | 10,000 |
 | `fileSize` equals the length; chunk offsets rising, the first at the directory's end | yes | yes |
 
 The `.seb` files are `se000`, `se002`, `se007`, `se200`-`se434` and `se700`-`se709`, 708 to 24,968 bytes, with
@@ -201,17 +201,17 @@ both languages.
    that is not there gives a null chunk (`007CF710`).
 3. A chunk's offset is added to the file's base (`007D05A9`). Nothing compares an offset or `chunkCount` with
    `fileSize`.
-4. The voice path `007EDE90` reads `+0A`<sub>h</sub> (`007EE01D`) and, when it is 1, passes zero as the front-back pan
+4. The voice path `007EDE90` reads `+0x0A` (`007EE01D`) and, when it is 1, passes zero as the front-back pan
    (`007EE02B`-`007EE031`).
 5. `00223AD0` checks the index's block number against the one asked for only through `_guard_check_icall`
    (`00223B53`-`00223B5F`), which does not branch.
 6. It walks `slotCount` slots (`00223B72`), skips an offset of -1,
-   and copies each slot's `u32` and `u8` into a 10-byte node at `+00`<sub>h</sub>/`+04`<sub>h</sub> and again at `+05`<sub>h</sub>/`+09`<sub>h</sub>. It reads
+   and copies each slot's `u32` and `u8` into a 10-byte node at `+0x00`/`+0x04` and again at `+0x05`/`+0x09`. It reads
    nothing past the slot's fifth byte. The `SeBlock` string does not occur in the executable, so no code compares
    the magic.
 7. The driver reads every record through small wrapper classes, named by their run-time types. A chunk wrapper skips
-   the chunk's name padding (`(byte +09h + 10h) & F0h` from version 2) and indexes its offset table at `u16`
-   `+02`<sub>h</sub>; the record accessors that check the index refuse one at or past the count `u16` `+04`<sub>h</sub>:
+   the chunk's name padding (`(byte +0x09 + 0x10) & 0xF0` from version 2) and indexes its offset table at `u16`
+   `+0x02`; the record accessors that check the index refuse one at or past the count `u16` `+0x04`:
 
 | Class | Accessor |
 |---|---|
@@ -220,16 +220,16 @@ both languages.
 | `TrackChunk`, `Track` | `007CFC70`, `007CFC20` |
 | `MaterialChunk`, `Material` | `007CF8B0`, `007CF860`; `007CF940` reads a material's offset and `007CF960` the offset table's size rounded up to 16 |
 | `SoundEffect`, `SoundEffectFlangerParam` | `007CF780`, `007CF810` |
-| `ZeroOne`, `SoundZeroOneParam` | `007CFE60`, `007CFF40` (from sound version 12, `20`<sub>h</sub>-byte records at `u16` `+4C`<sub>h</sub>) |
+| `ZeroOne`, `SoundZeroOneParam` | `007CFE60`, `007CFF40` (from sound version 12, `0x20`-byte records at `u16` `+0x4C`) |
 
 `007CF540` and `007CF560` build the `AudioBinaryFile` and `SabFile` wrappers, `007CF580` drops one, `007CF740` gives
-the address a version-dependent `u16` of a record points to (`+02`<sub>h</sub>, `+0E`<sub>h</sub>, `+16`<sub>h</sub> or `+06`<sub>h</sub> for versions 0, 1, 2
-and later), `007CF980` a record's zero-one count (2 below version 3, byte `+08`<sub>h</sub> after) and `007CFD00` a zero-one
+the address a version-dependent `u16` of a record points to (`+0x02`, `+0x0E`, `+0x16` or `+0x06` for versions 0, 1, 2
+and later), `007CF980` a record's zero-one count (2 below version 3, byte `+0x08` after) and `007CFD00` a zero-one
 curve's value at a point: the input scaled into 0-1 by the curve's range, then a binary search over its 16-byte
 points.
 
-In `007CFD00`, with the curve header's count `u16 +04h` (0 gives 0), range `+08`<sub>h</sub>..`+0C`<sub>h</sub> and points at
-`u16 +02h` past the header, moved on by `(byte +01h + 10h) & F0h` when byte `+00`<sub>h</sub> is above 3 (`x +00h`, `y +04h`, ease byte `+08`<sub>h</sub>): `x = clamp((input - min) / (max - min), 0, 1)` when the
+In `007CFD00`, with the curve header's count `u16 +0x04` (0 gives 0), range `+0x08`..`+0x0C` and points at
+`u16 +0x02` past the header, moved on by `(byte +0x01 + 0x10) & 0xF0` when byte `+0x00` is above 3 (`x +0x00`, `y +0x04`, ease byte `+0x08`): `x = clamp((input - min) / (max - min), 0, 1)` when the
 header's first byte is non-zero (0 when `max <= min`), the search finds the last point `k` with `x[k] <= x`, and the
 value is `y[k] + 007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] - y[k])`, or `y[k]` at the last point
 (`007CFD00`-`007CFE5B`).
@@ -246,5 +246,5 @@ value is `y[k] + 007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] -
 
 ## Related
 
-- [Escape Mode](../Controls-And-Input/escape.md) - plays block slot `52`<sub>h</sub> and `2A`<sub>h</sub> through `003A1180`.
+- [Escape Mode](../Controls-And-Input/escape.md) - plays block slot `0x52` and `0x2A` through `003A1180`.
 - [Sound engine configuration](sound-engine-config.md) - the configuration file beside the banks.

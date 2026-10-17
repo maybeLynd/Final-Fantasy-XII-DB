@@ -1,55 +1,55 @@
 id	label	arm	kind	field	step	bound	note	slice
 12	Read Json Data:	001D16B1	toggle	01DF6E48	-	0/1	flips the byte that makes the cutscene JSON sidecar readers parse on the next pass	A
 13	Reread Json Data: Press Circle to reread json data	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
-14	Invincible:	001D16C4	cycle	obj+C20h	±1	wraps at 3 (0..2)	sil steps up, bl down; read by the battle target-eligibility getter 0017D470	A
-15	Load ps2 savedata from slot:	001D17D8	cycle	obj+AA8h	±1	wraps mod 200	inc or add C7h; signed modulo 200 through the 51EB851Fh reciprocal	A
+14	Invincible:	001D16C4	cycle	obj+0xC20	±1	wraps at 3 (0..2)	sil steps up, bl down; read by the battle target-eligibility getter 0017D470	A
+15	Load ps2 savedata from slot:	001D17D8	cycle	obj+0xAA8	±1	wraps mod 200	inc or add 0xC7; signed modulo 200 through the 0x51EB851F reciprocal	A
 16	Convert PS2 Savedata	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
 17	Save autosave to common save data:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
 18	Jump To:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
-19	Load sample chr:	001D1740	int-step	obj+DA0h	±1	clamp 0..12h	cmov ±1	A
-20	Load chr:	001D170E	call	obj+C40h	±1	-	passes the current id and ±1 to 002EEEE0 and stores the returned id	A
-21	Variation:	001D177E	int-step	obj+C44h	±1	floor 0	cmov ±1	A
-22	CLUT:	001D17AB	int-step	obj+C48h	±1	floor 0	cmov ±1; also writes obj+C44h	A
+19	Load sample chr:	001D1740	int-step	obj+0xDA0	±1	clamp 0..0x12	cmov ±1	A
+20	Load chr:	001D170E	call	obj+0xC40	±1	-	passes the current id and ±1 to 002EEEE0 and stores the returned id	A
+21	Variation:	001D177E	int-step	obj+0xC44	±1	floor 0	cmov ±1	A
+22	CLUT:	001D17AB	int-step	obj+0xC48	±1	floor 0	cmov ±1; also writes obj+0xC44	A
 23	Set chr rotation:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	A
-24	Change cast shadow object:	001D1818	call	obj+AB8h	-	-	calls 001F0850, then 001EF500 on its result, and stores the return value	A
-25	Shadow Level:	001D1830	cycle	001F0850()+138h	±1	wraps 0..4	cmov ±1 on a field of the 001F0850 object	A
-26	Debug high model skeleton:	001D1867	nudge	obj+CF4h	±1.0	-	addss of 1.0 or -1.0 selected by sil; the only float arm in slice A	A
-27	Force town face:	001D1893	cycle	001BE420()+20h	±1	wraps 0..2	sil steps up, otherwise down	A
-28	Use PS2 lighting:	001D18E0	toggle	obj+C72h	-	0/1	on edge saves 02CB8130/8134/8138 and map-art fields into obj+C74h..C98h and zeroes them; off edge restores	A
-29	Use normal map:	001D1B11	toggle	obj+C71h	-	0/1	cmp/sete; read by the character render path	A
+24	Change cast shadow object:	001D1818	call	obj+0xAB8	-	-	calls 001F0850, then 001EF500 on its result, and stores the return value	A
+25	Shadow Level:	001D1830	cycle	001F0850()+0x138	±1	wraps 0..4	cmov ±1 on a field of the 001F0850 object	A
+26	Debug high model skeleton:	001D1867	nudge	obj+0xCF4	±1.0	-	addss of 1.0 or -1.0 selected by sil; the only float arm in slice A	A
+27	Force town face:	001D1893	cycle	001BE420()+0x20	±1	wraps 0..2	sil steps up, otherwise down	A
+28	Use PS2 lighting:	001D18E0	toggle	obj+0xC72	-	0/1	on edge saves 02CB8130/8134/8138 and map-art fields into obj+0xC74..0xC98 and zeroes them; off edge restores	A
+29	Use normal map:	001D1B11	toggle	obj+0xC71	-	0/1	cmp/sete; read by the character render path	A
 30	Display normal only:	001D1B26	toggle	02CB8148	-	0/1	byte; read together with id 31 by the map ordered-object draw 001E2AF0	A
 31	Use vertex color:	001D1B39	toggle	02CB8150	-	0/1	dword set to (value == 0)	A
-32	Display texture density:	001D1B50	int-step	obj+C2Ch	±1	0..4	inc/dec; also writes 02CB814C	A
-33	Switch diffuse texture:	001D1BBA	toggle	obj+CF0h	-	0/1	cmp/sete	A
-34	Enable Map Display:	001D1BCF	toggle	obj+ABCh	-	0/1	then two helper calls	A
-35	Enable Character Display:	001D1C0B	toggle	obj+ABDh	-	0/1	then two helper calls	A
-36	Character Skeletons:	001D2ADE	toggle	001BDAB0()+F8h	-	0/1	flips a byte of the 001BDAB0 object	A
-37	Enable UI Display:	001D1C47	toggle	obj+ABEh	-	0/1	then two helper calls	A
-38	Enable VFX Display:	001D1C83	cycle	obj+AC0h	+1	wraps mod 3	inc only, no direction test; then 0018B0A0(obj, value != 0)	A
-39	Draw VFX when capturing:	001D1CCE	toggle	001AD440()+0h	-	0/1	flips the first byte of the 001AD440 object; skipped when the object is null	A
-40	Enable Shadow Display:	001D1CE9	toggle	obj+AC4h	-	0/1	then one helper call	A
-41	Enable AO:	001D1D17	toggle	00193D50()+198h	-	0/1	flips a byte of the render-parameter block	A
-42	Display AO Only:	001D1D36	toggle	00193D50()+199h	-	0/1	flips the byte, then 00193F80(block, value)	A
-43	HBAO NumSteps:	001D1D5A	int-step	obj+C04h	±1	clamp 2..13h	inc/dec	A
-44	HBAO NumDir:	001D1DB4	int-step	obj+C08h	±1	clamp 2..13h	inc/dec	B
-45	HBAO Full Resolution:	001D4AC0	toggle	00193D50()+1E8h	-	0/1	render-parameter block byte	B
-46	HBAO Depth Full Res:	001D4ADF	toggle	00193D50()+1E9h	-	0/1	passes the negated byte to the setter 00193F70	B
+32	Display texture density:	001D1B50	int-step	obj+0xC2C	±1	0..4	inc/dec; also writes 02CB814C	A
+33	Switch diffuse texture:	001D1BBA	toggle	obj+0xCF0	-	0/1	cmp/sete	A
+34	Enable Map Display:	001D1BCF	toggle	obj+0xABC	-	0/1	then two helper calls	A
+35	Enable Character Display:	001D1C0B	toggle	obj+0xABD	-	0/1	then two helper calls	A
+36	Character Skeletons:	001D2ADE	toggle	001BDAB0()+0xF8	-	0/1	flips a byte of the 001BDAB0 object	A
+37	Enable UI Display:	001D1C47	toggle	obj+0xABE	-	0/1	then two helper calls	A
+38	Enable VFX Display:	001D1C83	cycle	obj+0xAC0	+1	wraps mod 3	inc only, no direction test; then 0018B0A0(obj, value != 0)	A
+39	Draw VFX when capturing:	001D1CCE	toggle	001AD440()+0x0	-	0/1	flips the first byte of the 001AD440 object; skipped when the object is null	A
+40	Enable Shadow Display:	001D1CE9	toggle	obj+0xAC4	-	0/1	then one helper call	A
+41	Enable AO:	001D1D17	toggle	00193D50()+0x198	-	0/1	flips a byte of the render-parameter block	A
+42	Display AO Only:	001D1D36	toggle	00193D50()+0x199	-	0/1	flips the byte, then 00193F80(block, value)	A
+43	HBAO NumSteps:	001D1D5A	int-step	obj+0xC04	±1	clamp 2..0x13	inc/dec	A
+44	HBAO NumDir:	001D1DB4	int-step	obj+0xC08	±1	clamp 2..0x13	inc/dec	B
+45	HBAO Full Resolution:	001D4AC0	toggle	00193D50()+0x1E8	-	0/1	render-parameter block byte	B
+46	HBAO Depth Full Res:	001D4ADF	toggle	00193D50()+0x1E9	-	0/1	passes the negated byte to the setter 00193F70	B
 47	early AO:	001D1E0E	toggle	-	-	0/1	getter/setter pair 0017FE10 / 00182FD0	B
-48	Post AA enable:	001D1E2A	toggle	00193D50()+3E8h	-	0/1	render-parameter block byte	B
-49	SMAA level	001D1E68	int-step	00193D50()+184h	±1	-	lea ±1 on the render-parameter block dword; no bound	B
-50	Mask Border	001D1E49	toggle	00193D50()+498h	-	0/1	render-parameter block byte	B
+48	Post AA enable:	001D1E2A	toggle	00193D50()+0x3E8	-	0/1	render-parameter block byte	B
+49	SMAA level	001D1E68	int-step	00193D50()+0x184	±1	-	lea ±1 on the render-parameter block dword; no bound	B
+50	Mask Border	001D1E49	toggle	00193D50()+0x498	-	0/1	render-parameter block byte	B
 51	Draw Chr Names:	001D18CA	call	-	-	-	001D5230(001C2F40(), direction bit)	B
 52	Draw UI WithOut Scale :	001D1F46	toggle	-	-	0/1	getter/setter pair 001B1620 / 00184660	B
 53	Debug Cubemap:	001D3988	cycle	02CB813C	±1	wraps 0..2	inc/dec	B
-54	Toggle event cubemap:	001D39CD	int-step	obj+D08h	±1	floor 0 (down)	down floors at 0 then 001AC390(001AD440(), v); up stores 001AC390's return value	B
+54	Toggle event cubemap:	001D39CD	int-step	obj+0xD08	±1	floor 0 (down)	down floors at 0 then 001AC390(001AD440(), v); up stores 001AC390's return value	B
 55	Toggle cube map probes mode:	001D3A2A	call	-	-	-	calls the ret stub 0016D6A0 on the 001AD440 object; no effect	B
 56	Capture cube map. (L/R to toggle SkyBox)	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	B
-57	Operate cube map	001D3A4A	int-step	001AD440()+168h	±1	-	passes value ±1 to 001AD4D0; skipped when the object is null	B
+57	Operate cube map	001D3A4A	int-step	001AD440()+0x168	±1	-	passes value ±1 to 001AD4D0; skipped when the object is null	B
 58	Set cube map properties:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	B
 59	Recapture cube maps:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	B
-60	Capture panorama:	001D1F5A	int-step	obj+C28h	±1	0..12	cmov ±1; also writes obj+C0Ch	B
+60	Capture panorama:	001D1F5A	int-step	obj+0xC28	±1	0..12	cmov ±1; also writes obj+0xC0C	B
 61	Camera Light enable:	001D213D	toggle	01DFE192	-	0/1	global byte	B
-62	After Water fix enable:	001D2150	toggle	obj+10D9h	-	0/1	cmp/sete	B
+62	After Water fix enable:	001D2150	toggle	obj+0x10D9	-	0/1	cmp/sete	B
 63	Hair Camera Light Direction X Bias:	001D2165	nudge	02CB80B0	±0.01	-	subss/addss, one constant; hair/eye lighting slot copied to the staged shader constants by 006084B0	B
 64	Hair Camera Light Direction Y Bias:	001D219B	nudge	02CB80B4	±0.01	-	subss/addss, one constant; hair/eye lighting slot copied to the staged shader constants by 006084B0	B
 65	Hair Camera Light Direction Z Bias:	001D21D1	nudge	02CB80B8	±0.01	-	subss/addss, one constant; hair/eye lighting slot copied to the staged shader constants by 006084B0	B
@@ -90,10 +90,10 @@ id	label	arm	kind	field	step	bound	note	slice
 100	Camera Pose:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	C
 101	Advanced panorama:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	C
 102	Current GPU Temperature:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	C
-103	Camera Over Write (O to capture):	001D2AFD	toggle	obj+C0Ch	-	0/1	off edge copies live engine fields +CC4h/+CC8h/+CCCh into obj+C10h/C14h/C18h (ids 104-106)	C
-104	FOV:	001D2B4D	nudge	obj+C10h	±0.00555556	-	subss/addss, one constant	C
-105	Aspect Ratio:	001D2B83	nudge	obj+C14h	±0.01	-	subss/addss, one constant	C
-106	Camera scale:	001D2BB9	nudge	obj+C18h	×0.99 / ×1.01	-	mulss by two different constants; a down-up round trip multiplies by 0.9999	C
+103	Camera Over Write (O to capture):	001D2AFD	toggle	obj+0xC0C	-	0/1	off edge copies live engine fields +0xCC4/+0xCC8/+0xCCC into obj+0xC10/0xC14/0xC18 (ids 104-106)	C
+104	FOV:	001D2B4D	nudge	obj+0xC10	±0.00555556	-	subss/addss, one constant	C
+105	Aspect Ratio:	001D2B83	nudge	obj+0xC14	±0.01	-	subss/addss, one constant	C
+106	Camera scale:	001D2BB9	nudge	obj+0xC18	×0.99 / ×1.01	-	mulss by two different constants; a down-up round trip multiplies by 0.9999	C
 107	Cube map factor:	001D1FB0	nudge	02CB8140	±0.05	-	subss/addss, one constant	C
 108	Diffuse intensity:	001D1FE6	nudge	02CB8130	±0.02	-	subss/addss, one constant	D
 109	Specular intensity:	001D201C	nudge	02CB8134	±0.02	-	subss/addss, one constant	D
@@ -101,11 +101,11 @@ id	label	arm	kind	field	step	bound	note	slice
 111	IBL Diffuse/Classic Ambient factor:	001D2881	nudge	01DFE194	±0.02	-	subss/addss, one constant	D
 112	IBL Diffuse limit:	001D28B7	nudge	01F82ED0	±0.02	-	subss/addss, one constant	D
 113	IBL Diffuse intensity:	001D28ED	nudge	02CB8144	±0.02	-	subss/addss, one constant	D
-114	Map Specular Intensity:	001D2E18	nudge	001A9930()+2D0h	±0.05	clamp [0.0, 1.0]	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-115	Map CubeMap Intensity:	001D2E61	nudge	001A9930()+2D4h	±0.05	clamp [0.0, 10.0]	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-116	Map CubeMap Factor:	001D2EAA	nudge	001A9930()+2D8h	±0.05	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-117	Map IBL Diffuse Factor:	001D38C8	nudge	001A9930()+2DCh	±0.05	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-118	Map IBL Diffuse Limit:	001D390D	nudge	001A9930()+2E0h	±0.05	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+114	Map Specular Intensity:	001D2E18	nudge	001A9930()+0x2D0	±0.05	clamp [0.0, 1.0]	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+115	Map CubeMap Intensity:	001D2E61	nudge	001A9930()+0x2D4	±0.05	clamp [0.0, 10.0]	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+116	Map CubeMap Factor:	001D2EAA	nudge	001A9930()+0x2D8	±0.05	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+117	Map IBL Diffuse Factor:	001D38C8	nudge	001A9930()+0x2DC	±0.05	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+118	Map IBL Diffuse Limit:	001D390D	nudge	001A9930()+0x2E0	±0.05	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
 119	Map IBL Diffuse Intensity:	001D3952	nudge	02CB806C	±0.05	-	signed pair: addss -K down, addss +K up	D
 120	Water Refraction Factor:	001D2EEF	nudge	02CB8044	±0.05	-	signed pair: addss -K down, addss +K up	D
 121	Water Specular Factor:	001D2F25	nudge	02CB8048	±0.05	-	signed pair: addss -K down, addss +K up	D
@@ -114,14 +114,14 @@ id	label	arm	kind	field	step	bound	note	slice
 124	Water Extra Debug Roughness Factor	001D2FFD	nudge	02CB8058	±0.03	-	signed pair: addss -K down, addss +K up	D
 125	Water Parallax Occlusion Debug Factor	001D3033	nudge	02CB805C	±0.01	-	signed pair: addss -K down, addss +K up	D
 126	Water Fresnel Factor	001D3069	nudge	02CB8060	±0.03	-	signed pair: addss -K down, addss +K up	D
-127	Water texture U Factor	001D309F	nudge	001A9930()+2E8h	±0.02	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-128	Water texture V Factor	001D30E4	nudge	001A9930()+2ECh	±0.02	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-129	Water Min Z	001D3129	nudge	001A9930()+2F0h	±0.001	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-130	Sample step size	001D316E	nudge	001A9930()+2F4h	±0.5	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-131	Total Num of Pixels	001D31B3	nudge	001A9930()+2FCh	±1.0	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-132	Reflection blend	001D31F8	nudge	001A9930()+300h	±0.01	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-133	Reflection strength	001D323D	nudge	001A9930()+304h	±0.02	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
-134	Water Quality	001D3282	cycle	[01F82D20]+40h	±1	wraps 0..1	GameSetting property 16 written through 001DF340, then 001A5B00(001A9930(), value)	D
+127	Water texture U Factor	001D309F	nudge	001A9930()+0x2E8	±0.02	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+128	Water texture V Factor	001D30E4	nudge	001A9930()+0x2EC	±0.02	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+129	Water Min Z	001D3129	nudge	001A9930()+0x2F0	±0.001	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+130	Sample step size	001D316E	nudge	001A9930()+0x2F4	±0.5	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+131	Total Num of Pixels	001D31B3	nudge	001A9930()+0x2FC	±1.0	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+132	Reflection blend	001D31F8	nudge	001A9930()+0x300	±0.01	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+133	Reflection strength	001D323D	nudge	001A9930()+0x304	±0.02	-	signed pair: addss -K down, addss +K up; the object is fetched again for the store	D
+134	Water Quality	001D3282	cycle	[01F82D20]+0x40	±1	wraps 0..1	GameSetting property 16 written through 001DF340, then 001A5B00(001A9930(), value)	D
 135	Water Texture Reflection Factor	001D2F5B	nudge	02CB804C	±0.01	-	signed pair: addss -K down, addss +K up	D
 136	Map Eye Specular Power Modifier:	001D32CA	nudge	02CB7FE8	±0.01	-	signed pair: addss -K down, addss +K up	D
 137	Map Eye Specular Power Eye Camera Distance Factor:	001D3300	nudge	02CB7FEC	±0.01	-	signed pair: addss -K down, addss +K up	D
@@ -153,49 +153,49 @@ id	label	arm	kind	field	step	bound	note	slice
 163	Map Hair Camera Light Y Modifier:	001D385C	nudge	02CB803C	±0.01	-	two constants: addss -0.01 down, addss +0.01 up; shipped default -0.13	E
 164	Map Hair Camera Light Z Modifier:	001D3892	nudge	02CB8040	±0.01	-	two constants: addss -0.01 down, addss +0.01 up; shipped default 0.0	E
 165	Re-read soft particle config	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	E
-166	Use soft particle:	001D2923	call	[01F82D20]+38h	-	-	sets GameSetting property 14 = (field != 1) via 001DF340, then the same flag through vtable slot +60h of obj+A80h	E
+166	Use soft particle:	001D2923	call	[01F82D20]+0x38	-	-	sets GameSetting property 14 = (field != 1) via 001DF340, then the same flag through vtable slot +0x60 of obj+0xA80	E
 167	SSS enable:	001D2983	toggle	02CB8434	-	0/1	cmp/sete; shipped default 1	E
 168	SSS Width:	001D2996	nudge	02CB8438	±0.1	-	subss/addss, one constant; shipped default 7.0	E
 169	SSS Diffuse a:	001D29CC	nudge	01DFE1AC	±0.1	-	subss/addss, one constant; shipped default 1.0	E
 170	SSS Diffuse b:	001D2A02	nudge	01F82EE4	±0.1	-	subss/addss, one constant	E
-171	SSS Blur:	001D2A38	nudge	00193D50()+1ECh	±0.1	-	subss/addss, one constant; the object is fetched again for the store	E
-172	Gaussian Filter big kernel (15x15 or 7x7):	001D1E9D	cycle	00193D50()+19Ch	±1	wraps 0..3	cmove ±1	F
-173	Gaussian Filter factor:	001D1ED4	nudge	00193D50()+1A0h	±0.005	-	signed constant loaded into a register, then addss reg,reg	F
-174	Gaussian Filter blend amount:	001D1F0D	nudge	00193D50()+1A4h	±0.005	-	signed constant loaded into a register, then addss reg,reg	F
-175	Yebis enable:	001D2A7D	cycle	obj+D78h	±1	wraps 0..2	cmovne ±1; then dispatches on the result	F
-176	Show Map Hide Group:	001D2BEF	toggle	obj+AC6h	-	0/1	ignores the direction flags; then one call	F
-177	Particle Draw Type Range Start:	001D2C25	cycle	obj+AC8h	±1	wraps at obj+AD0h	cursor over a runtime count; keeps the second cursor obj+ACCh from exceeding it	F
-178	Particle Draw Type Range End:	001D2C91	cycle	obj+AC8h	±1	wraps at obj+AD0h	as id 177, then one call	F
-179	Color Correction Position:	001D2964	toggle	00193D50()+4A0h	-	0/1	ignores the direction flags	F
-180	Map render DisplayList Id Start:	001D2CFC	cycle	obj+AD4h	±1	wraps at obj+ADCh	cursor over a runtime count; tracks obj+AD8h	F
-181	Map render DisplayList Id End:	001D2D68	cycle	obj+AD4h	±1	wraps at obj+ADCh	as id 180, then 002F4510(start, end) stores obj+AD4h at 022BE7DC and obj+AD8h at 01EEBAE4	F
-182	Fusion Technique Select:	001D2DD3	int-step	obj+AE0h	±1	clamp 0..8	does not wrap; then 002F7A00(value - 1)	F
+171	SSS Blur:	001D2A38	nudge	00193D50()+0x1EC	±0.1	-	subss/addss, one constant; the object is fetched again for the store	E
+172	Gaussian Filter big kernel (15x15 or 7x7):	001D1E9D	cycle	00193D50()+0x19C	±1	wraps 0..3	cmove ±1	F
+173	Gaussian Filter factor:	001D1ED4	nudge	00193D50()+0x1A0	±0.005	-	signed constant loaded into a register, then addss reg,reg	F
+174	Gaussian Filter blend amount:	001D1F0D	nudge	00193D50()+0x1A4	±0.005	-	signed constant loaded into a register, then addss reg,reg	F
+175	Yebis enable:	001D2A7D	cycle	obj+0xD78	±1	wraps 0..2	cmovne ±1; then dispatches on the result	F
+176	Show Map Hide Group:	001D2BEF	toggle	obj+0xAC6	-	0/1	ignores the direction flags; then one call	F
+177	Particle Draw Type Range Start:	001D2C25	cycle	obj+0xAC8	±1	wraps at obj+0xAD0	cursor over a runtime count; keeps the second cursor obj+0xACC from exceeding it	F
+178	Particle Draw Type Range End:	001D2C91	cycle	obj+0xAC8	±1	wraps at obj+0xAD0	as id 177, then one call	F
+179	Color Correction Position:	001D2964	toggle	00193D50()+0x4A0	-	0/1	ignores the direction flags	F
+180	Map render DisplayList Id Start:	001D2CFC	cycle	obj+0xAD4	±1	wraps at obj+0xADC	cursor over a runtime count; tracks obj+0xAD8	F
+181	Map render DisplayList Id End:	001D2D68	cycle	obj+0xAD4	±1	wraps at obj+0xADC	as id 180, then 002F4510(start, end) stores obj+0xAD4 at 022BE7DC and obj+0xAD8 at 01EEBAE4	F
+182	Fusion Technique Select:	001D2DD3	int-step	obj+0xAE0	±1	clamp 0..8	does not wrap; then 002F7A00(value - 1)	F
 183	Print Magic Info:	001D2E04	toggle	-	-	0/1	read and written through a call pair; ignores the direction flags	F
 184	Set All Enemy HP One:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F
-185	Huge Damage:	001D3A91	toggle	obj+C34h	-	0/1	ignores the direction flags	F
-186	Camera speed:	001D3AE5	cycle	obj+C38h	±1	wraps mod 4	two-button: bl down, sil up	F
-187	Enable mouse control camera:	001D3AA6	toggle	obj+C35h	-	0/1	ignores the direction flags	F
-188	Enable reading key mapping from file:	001D3ABB	toggle	obj+C3Ch	-	0/1	ignores the direction flags	F
+185	Huge Damage:	001D3A91	toggle	obj+0xC34	-	0/1	ignores the direction flags	F
+186	Camera speed:	001D3AE5	cycle	obj+0xC38	±1	wraps mod 4	two-button: bl down, sil up	F
+187	Enable mouse control camera:	001D3AA6	toggle	obj+0xC35	-	0/1	ignores the direction flags	F
+188	Enable reading key mapping from file:	001D3ABB	toggle	obj+0xC3C	-	0/1	ignores the direction flags	F
 189	Navi Map Scale :	001D3C3C	nudge	-	±0.01	-	float via getter 001B0F90 / setter 001B1FF0 on the 001B1C00 object; subss/addss, one constant	F
-190	Adjust tracmap center x (L/R)	001D3CBD	nudge	-	±0.002	-	getter 002B6650 / setter 002B6670; step x obj+C58h/5 when that selector exceeds 20; two-button	F
-191	Adjust tracmap center y (L/R):	001D3D17	nudge	-	±0.002	-	getter 002B6660 / setter 002B6680; step x obj+C58h/5 when that selector exceeds 20; two-button; then 001C7360	F
-192	Adjust tracmap Super Wide Mul (L/R)	001D3D84	nudge	-	±0.002	-	getter 002B66B0 / setter 002B6690; step x obj+C58h/5 when that selector exceeds 20; two-button	F
-193	Adjust tracmap Super Wide MidPoint (L/R):	001D3DE5	nudge	-	±0.1	refused outside [15.9, 48.0]	getter 002B66C0 / setter 002B66A0; step x obj+C58h/5 when that selector exceeds 20; a step past a limit is refused	F
+190	Adjust tracmap center x (L/R)	001D3CBD	nudge	-	±0.002	-	getter 002B6650 / setter 002B6670; step x obj+0xC58/5 when that selector exceeds 20; two-button	F
+191	Adjust tracmap center y (L/R):	001D3D17	nudge	-	±0.002	-	getter 002B6660 / setter 002B6680; step x obj+0xC58/5 when that selector exceeds 20; two-button; then 001C7360	F
+192	Adjust tracmap Super Wide Mul (L/R)	001D3D84	nudge	-	±0.002	-	getter 002B66B0 / setter 002B6690; step x obj+0xC58/5 when that selector exceeds 20; two-button	F
+193	Adjust tracmap Super Wide MidPoint (L/R):	001D3DE5	nudge	-	±0.1	refused outside [15.9, 48.0]	getter 002B66C0 / setter 002B66A0; step x obj+0xC58/5 when that selector exceeds 20; a step past a limit is refused	F
 194	Procedural texture: Toggle Usage	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F
 195	Procedural texture: Toggle Management	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F
-196	Procedural texture rotation ratio	001D454A	cycle	obj+D90h	±1	wraps 0..2	two-button	F
-197	100% Spawn Rare Monster :	001D3E7A	toggle	obj+C70h	-	0/1	sil gates the bl-clear path	F
+196	Procedural texture rotation ratio	001D454A	cycle	obj+0xD90	±1	wraps 0..2	two-button	F
+197	100% Spawn Rare Monster :	001D3E7A	toggle	obj+0xC70	-	0/1	sil gates the bl-clear path	F
 198	Save My Memory Leak Table	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F
-199	Set gill to max:	001D3E9C	toggle	obj+CECh	-	0/1	first calls Debug_SetGilToMaximum 003058B0, which is the command; the byte is a marker	F
-200	Set LP to max:	001D3EB6	toggle	obj+CEDh	-	0/1	first calls 00305A00 (LP = 99999 for each party member) then 00316C60; the byte is a marker	F
-201	Set level to max:	001D3ED0	toggle	obj+CEEh	-	0/1	first calls 00305960 (level 99 growth) and 003058C0 (exp 99999999) per party member; byte is a marker	F
-202	File Cache Enable :	001D3C77	toggle	obj+C3Eh	-	0/1	sil gates the bl-clear path	F
+199	Set gill to max:	001D3E9C	toggle	obj+0xCEC	-	0/1	first calls Debug_SetGilToMaximum 003058B0, which is the command; the byte is a marker	F
+200	Set LP to max:	001D3EB6	toggle	obj+0xCED	-	0/1	first calls 00305A00 (LP = 99999 for each party member) then 00316C60; the byte is a marker	F
+201	Set level to max:	001D3ED0	toggle	obj+0xCEE	-	0/1	first calls 00305960 (level 99 growth) and 003058C0 (exp 99999999) per party member; byte is a marker	F
+202	File Cache Enable :	001D3C77	toggle	obj+0xC3E	-	0/1	sil gates the bl-clear path	F
 203	File Cache Reset Memory	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F
 204	File Cache Info :	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	G
-205	Music :	001D3EEF	toggle	obj+CF9h	-	0/1	then 001DBB00(1, byte): music category volume 1.0 or 0.0; both directions act	G
-206	Voice:	001D3F1E	toggle	obj+CFAh	-	0/1	then 001DBB00(3, byte): voice category volume 1.0 or 0.0; both directions act	G
-207	Sound Effect:	001D3F4D	toggle	obj+CFBh	-	0/1	then 001DBB00(2, byte): sound-effect category volume 1.0 or 0.0; both directions act	G
-208	60fps input :	001D3C99	toggle	obj+D07h	-	0/1	sil gates the bl-clear path	G
+205	Music :	001D3EEF	toggle	obj+0xCF9	-	0/1	then 001DBB00(1, byte): music category volume 1.0 or 0.0; both directions act	G
+206	Voice:	001D3F1E	toggle	obj+0xCFA	-	0/1	then 001DBB00(3, byte): voice category volume 1.0 or 0.0; both directions act	G
+207	Sound Effect:	001D3F4D	toggle	obj+0xCFB	-	0/1	then 001DBB00(2, byte): sound-effect category volume 1.0 or 0.0; both directions act	G
+208	60fps input :	001D3C99	toggle	obj+0xD07	-	0/1	sil gates the bl-clear path	G
 209	Load Debug Menu Settings	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 210	Save Debug Menu Settings	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 211	Debug Menu Text Shadow UVOffset X:	001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail	G
@@ -205,34 +205,34 @@ id	label	arm	kind	field	step	bound	note	slice
 215	Debug Menu Text Shadow Dimension Offset X:	001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail	G
 216	Debug Menu Text Shadow Dimension Offset Y:	001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail	G
 217	3D Sound Behind Ratio:	001D4006	nudge	0215EFD0	±0.1	-	getter 002DEBA0 / setter 002DF2A0; two constants -0.1 / +0.1; initialised to 0.3 by 002DE360	G
-218	Scene Item Debug Text Offset X:	001D3F7C	nudge	001C2F40()+4664h	±0.1	-	subss/addss, one constant; MultipleDebugDisplay float	G
-219	Scene Item Debug Text Offset Y:	001D3FC1	nudge	001C2F40()+4668h	±0.1	-	subss/addss, one constant; MultipleDebugDisplay float	G
+218	Scene Item Debug Text Offset X:	001D3F7C	nudge	001C2F40()+0x4664	±0.1	-	subss/addss, one constant; MultipleDebugDisplay float	G
+219	Scene Item Debug Text Offset Y:	001D3FC1	nudge	001C2F40()+0x4668	±0.1	-	subss/addss, one constant; MultipleDebugDisplay float	G
 220	Extra BGM status:	001D4033	call	01DF0010	±1	wraps 0..2	passes ±1 to 0017E7A0, which steps the forced-BGM state: Not forced / Forced on / Forced off	G
 221	PS2 Far Plane:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 222	Control character position:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 223	Unlock All license: Press Circle	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 224	Unlock all item: Press Circle	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
-225	Set clan point:	001D405C	int-step	obj+DB4h	±1	each digit mod 10	8-digit decimal editor: digits obj+DB8h..DD4h, cursor obj+DD8h, value recomposed into obj+DB4h	G
-226	Set step count:	001D4155	int-step	obj+DE0h	±1	each digit mod 10	8-digit decimal editor: digits obj+DE4h..E00h, cursor obj+E04h, value recomposed into obj+DE0h	G
-227	Set play time:	001D424E	int-step	obj+E08h	±1	obj+E08h mod obj+E18h; E0Ch, E10h mod 60	time entry: selector obj+E14h picks obj+E08h, E0Ch or E10h; two-button	G
-228	Enable infinite summon time:	001D3B1C	toggle	obj+E1Ch	-	0/1	ignores the direction flags	G
-229	Enable infinite chocobo time:	001D3B31	toggle	obj+E1Dh	-	0/1	ignores the direction flags	G
-230	Enable infinite chocobo turbo time:	001D3B46	toggle	obj+E1Eh	-	0/1	ignores the direction flags	G
-231	Set scenario flag:	001D4362	cycle	obj+E2Ch	±1 or ±10	wraps mod 311	step 10 when obj+E30h is set (always 0 in this image); index into the 311-entry scenario table 01DFC0D0	G
+225	Set clan point:	001D405C	int-step	obj+0xDB4	±1	each digit mod 10	8-digit decimal editor: digits obj+0xDB8..0xDD4, cursor obj+0xDD8, value recomposed into obj+0xDB4	G
+226	Set step count:	001D4155	int-step	obj+0xDE0	±1	each digit mod 10	8-digit decimal editor: digits obj+0xDE4..0xE00, cursor obj+0xE04, value recomposed into obj+0xDE0	G
+227	Set play time:	001D424E	int-step	obj+0xE08	±1	obj+0xE08 mod obj+0xE18; 0xE0C, 0xE10 mod 60	time entry: selector obj+0xE14 picks obj+0xE08, 0xE0C or 0xE10; two-button	G
+228	Enable infinite summon time:	001D3B1C	toggle	obj+0xE1C	-	0/1	ignores the direction flags	G
+229	Enable infinite chocobo time:	001D3B31	toggle	obj+0xE1D	-	0/1	ignores the direction flags	G
+230	Enable infinite chocobo turbo time:	001D3B46	toggle	obj+0xE1E	-	0/1	ignores the direction flags	G
+231	Set scenario flag:	001D4362	cycle	obj+0xE2C	±1 or ±10	wraps mod 311	step 10 when obj+0xE30 is set (always 0 in this image); index into the 311-entry scenario table 01DFC0D0	G
 232	Count of battle:	001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action	G
 233	Count of magic:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	G
 234	Count of tech:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	G
 235	Count of steal:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	G
 236	Count of killed monsters:	001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action	H
 237	Current LP:	001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action	H
-238	Set count of battle:	001D43C9	int-step	obj+E34h	±1 or ±10	floor 0	step 10 when the flag obj+E38h is set; two-button; no ceiling	H
-239	Set count of magic:	001D4416	int-step	obj+E3Ch	±1 or ±10	floor 0	step 10 when the flag obj+E40h is set; two-button; no ceiling	H
-240	Set count of tech:	001D4463	int-step	obj+E44h	±1 or ±10	floor 0	step 10 when the flag obj+E48h is set; two-button; no ceiling	H
-241	Set count of steal:	001D44B0	int-step	obj+E4Ch	±1 or ±10	floor 0	step 10 when the flag obj+E50h is set; two-button; no ceiling	H
-242	Set count of killed monsters:	001D44FD	int-step	obj+E54h	±1 or ±10	floor 0	step 10 when the flag obj+E58h is set; two-button; no ceiling	H
-243	Enable 100% successful steal:	001D3B5B	cycle	obj+E5Ch	±1	cycles -1..2	down is signed mod 4, up is inc; reaching 3 wraps to -1	H
-244	Enable 100% successful poach:	001D3BA2	cycle	obj+E60h	±1	cycles -1..1	down is signed mod 3, up is inc; reaching 2 wraps to -1	H
-245	Enable 100% successful drop:	001D3BEE	cycle	obj+E64h	±1	cycles -1..3	down is signed mod 5, up is inc; reaching 4 wraps to -1	H
+238	Set count of battle:	001D43C9	int-step	obj+0xE34	±1 or ±10	floor 0	step 10 when the flag obj+0xE38 is set; two-button; no ceiling	H
+239	Set count of magic:	001D4416	int-step	obj+0xE3C	±1 or ±10	floor 0	step 10 when the flag obj+0xE40 is set; two-button; no ceiling	H
+240	Set count of tech:	001D4463	int-step	obj+0xE44	±1 or ±10	floor 0	step 10 when the flag obj+0xE48 is set; two-button; no ceiling	H
+241	Set count of steal:	001D44B0	int-step	obj+0xE4C	±1 or ±10	floor 0	step 10 when the flag obj+0xE50 is set; two-button; no ceiling	H
+242	Set count of killed monsters:	001D44FD	int-step	obj+0xE54	±1 or ±10	floor 0	step 10 when the flag obj+0xE58 is set; two-button; no ceiling	H
+243	Enable 100% successful steal:	001D3B5B	cycle	obj+0xE5C	±1	cycles -1..2	down is signed mod 4, up is inc; reaching 3 wraps to -1	H
+244	Enable 100% successful poach:	001D3BA2	cycle	obj+0xE60	±1	cycles -1..1	down is signed mod 3, up is inc; reaching 2 wraps to -1	H
+245	Enable 100% successful drop:	001D3BEE	cycle	obj+0xE64	±1	cycles -1..3	down is signed mod 5, up is inc; reaching 4 wraps to -1	H
 246	Chara Name:	001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action	H
 247	Level:	001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action	H
 248	HP:	001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action	H
@@ -247,37 +247,37 @@ id	label	arm	kind	field	step	bound	note	slice
 257	WPR:	001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action	H
 258	SPD:	001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action	H
 259	Reset Parameter: Press Circle	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	H
-260	Master Volume Ratio:	001D4590	nudge	obj+10B8h	±0.01	-	subss/addss, one constant; then 002DF2B0(1, value); can leave [0, 1]	H
+260	Master Volume Ratio:	001D4590	nudge	obj+0x10B8	±0.01	-	subss/addss, one constant; then 002DF2B0(1, value); can leave [0, 1]	H
 261	Set Leather Count to 2: Press Circle	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	H
 262	Print Memory stats: Press Circle	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	H
-263	Game Window Mode:	001D45E9	cycle	obj+10BCh	±1	wraps mod 3	mirrors [01F82D20]+8; bl only; then pushes the mode through a string-taking call	H
+263	Game Window Mode:	001D45E9	cycle	obj+0x10BC	±1	wraps mod 3	mirrors [01F82D20]+8; bl only; then pushes the mode through a string-taking call	H
 264	Game Display Resolution:	001D46DD	call	-	-	acts only when window mode <= 1	00182E10 with argument 0 or 1 chosen by bl; reads [01F82D20]+8 first	H
-265	Game Monitor :	001D4712	call	001DDAB0()+60h	-	-	re-applies the current monitor through 001DC7A0(obj, monitor, 0); neither direction is read	H
-266	System Adapter:	001D464B	int-step	001DDAB0()+60h	±1	runtime count from 001DD090	monitor cursor carrying into the adapter index at +48h through 001DC650	H
-267	Mouse Control Vertical Camera Speed:	001D4766	int-step	[01F82D20]+5Ch	±1	setter forwards only 1..6	GameSetting property 23 via getter 0032E010 / setter 0032E030; mirrored in obj+10C4h	H
-268	Mouse Control Horizon Camera Speed:	001D4731	int-step	obj+10C4h	±1	-	getter 0032E000 / setter 0032E020; the mirror slot is shared with id 267	I
-269	Mouse Wheel Control Scroll Table Frequency:	001D47FD	int-step	obj+10CCh	±1	-	getter 002D4F60 / setter 002D4F90	I
-270	Mouse Wheel Control Scroll Table Buffer Size:	001D4832	int-step	obj+10D0h	±1	-	getter 002D4F50 / setter 002D4F70	I
-271	Camera Revise Enable:	001D47B5	toggle	[01F82D20]+58h	-	0/1	GameSetting property 22 via 001DF340; value becomes (field == 0)	I
-272	Brightness:	001D4867	int-step	[01F82D20]+10h	±1	clamp 0..100	GameSetting property 4 via 001DF340	I
-273	Vsync :	001D48AD	cycle	[01F82D20]+14h	±1	wraps 0..2	GameSetting property 5: Off / On / Adaptive	I
-274	Anisotropic filtering :	001D4972	int-step	[01F82D20]+18h	±1	0..4	GameSetting property 6: 1 / 2 / 4 / 8 / 16	I
-275	Shadows Quality :	001D49C1	int-step	[01F82D20]+1Ch	±1	0..2	GameSetting property 7: Low / Medium / High	I
-276	Character self-shadow :	001D4A28	toggle	[01F82D20]+3Ch	-	0/1	GameSetting property 15; jumps into id 281's body for the setter call	I
-277	Anti-aliasing :	001D4A3D	toggle	[01F82D20]+20h	-	0/1	setne through a different gateway; then two further calls	I
-278	Post process AA :	001D4A8A	int-step	[01F82D20]+24h	±1	0..1	GameSetting property 9: FXAA / SMAA_1x	I
-279	Ambient Occlusion :	001D4B03	int-step	[01F82D20]+28h	±1	0..2	GameSetting property 10 on both paths: Off / HalfResolution / FullResolution	I
-280	Depth of Field :	001D4B37	toggle	[01F82D20]+30h	-	0/1	GameSetting property 12; jumps into id 281's body for the setter call	I
-281	Glare :	001D4B49	toggle	[01F82D20]+34h	-	0/1	GameSetting property 13, then writes property 3 = 3 (VQ_CUSTOM)	I
+265	Game Monitor :	001D4712	call	001DDAB0()+0x60	-	-	re-applies the current monitor through 001DC7A0(obj, monitor, 0); neither direction is read	H
+266	System Adapter:	001D464B	int-step	001DDAB0()+0x60	±1	runtime count from 001DD090	monitor cursor carrying into the adapter index at +0x48 through 001DC650	H
+267	Mouse Control Vertical Camera Speed:	001D4766	int-step	[01F82D20]+0x5C	±1	setter forwards only 1..6	GameSetting property 23 via getter 0032E010 / setter 0032E030; mirrored in obj+0x10C4	H
+268	Mouse Control Horizon Camera Speed:	001D4731	int-step	obj+0x10C4	±1	-	getter 0032E000 / setter 0032E020; the mirror slot is shared with id 267	I
+269	Mouse Wheel Control Scroll Table Frequency:	001D47FD	int-step	obj+0x10CC	±1	-	getter 002D4F60 / setter 002D4F90	I
+270	Mouse Wheel Control Scroll Table Buffer Size:	001D4832	int-step	obj+0x10D0	±1	-	getter 002D4F50 / setter 002D4F70	I
+271	Camera Revise Enable:	001D47B5	toggle	[01F82D20]+0x58	-	0/1	GameSetting property 22 via 001DF340; value becomes (field == 0)	I
+272	Brightness:	001D4867	int-step	[01F82D20]+0x10	±1	clamp 0..100	GameSetting property 4 via 001DF340	I
+273	Vsync :	001D48AD	cycle	[01F82D20]+0x14	±1	wraps 0..2	GameSetting property 5: Off / On / Adaptive	I
+274	Anisotropic filtering :	001D4972	int-step	[01F82D20]+0x18	±1	0..4	GameSetting property 6: 1 / 2 / 4 / 8 / 16	I
+275	Shadows Quality :	001D49C1	int-step	[01F82D20]+0x1C	±1	0..2	GameSetting property 7: Low / Medium / High	I
+276	Character self-shadow :	001D4A28	toggle	[01F82D20]+0x3C	-	0/1	GameSetting property 15; jumps into id 281's body for the setter call	I
+277	Anti-aliasing :	001D4A3D	toggle	[01F82D20]+0x20	-	0/1	setne through a different gateway; then two further calls	I
+278	Post process AA :	001D4A8A	int-step	[01F82D20]+0x24	±1	0..1	GameSetting property 9: FXAA / SMAA_1x	I
+279	Ambient Occlusion :	001D4B03	int-step	[01F82D20]+0x28	±1	0..2	GameSetting property 10 on both paths: Off / HalfResolution / FullResolution	I
+280	Depth of Field :	001D4B37	toggle	[01F82D20]+0x30	-	0/1	GameSetting property 12; jumps into id 281's body for the setter call	I
+281	Glare :	001D4B49	toggle	[01F82D20]+0x34	-	0/1	GameSetting property 13, then writes property 3 = 3 (VQ_CUSTOM)	I
 282	Save Config File :	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	I
-283	Apply Graphic Quality Default :	001D4B7D	cycle	[01F82D20]+0Ch	±1	wraps 0..2	GameSetting property 3 preset: VQ_LOW / VQ_MEDIUM / VQ_HIGH; VQ_CUSTOM is not reachable here	I
-284	BackBufferCount :	001D4907	toggle	[01F82D20]+44h	-	0/1	GameSetting property 17: DoubleBuffer / TripleBuffer; then a vtable call	I
-285	Frame Limit (Apply save config file & restart game) :	001D494F	toggle	[01F82D20]+48h	-	0/1	GameSetting property 18: frame limit 30 / 60	I
+283	Apply Graphic Quality Default :	001D4B7D	cycle	[01F82D20]+0x0C	±1	wraps 0..2	GameSetting property 3 preset: VQ_LOW / VQ_MEDIUM / VQ_HIGH; VQ_CUSTOM is not reachable here	I
+284	BackBufferCount :	001D4907	toggle	[01F82D20]+0x44	-	0/1	GameSetting property 17: DoubleBuffer / TripleBuffer; then a vtable call	I
+285	Frame Limit (Apply save config file & restart game) :	001D494F	toggle	[01F82D20]+0x48	-	0/1	GameSetting property 18: frame limit 30 / 60	I
 286	Clear Achievements :	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	I
 287	FrameSkip Enabled:	001D47EA	toggle	01E02801	-	0/1	global byte; ignores the direction flags	I
-288	Mouse Control Camera Max Move:	001D479B	int-step	obj+10D4h	±1	-	two-button; unbounded	I
+288	Mouse Control Camera Max Move:	001D479B	int-step	obj+0x10D4	±1	-	two-button; unbounded	I
 289	Disable PauseMenu :	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	I
 290	Game Time Stop is	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	I
-291	Save Load Message Debug State :	001D4BB7	cycle	obj+10DCh	±1	wraps 0..3	sub/inc with wrap at both ends	I
-292	Super wide Mask Debug Enable :	001D4BEA	toggle	obj+10E0h	-	0/1	ignores the direction flags	I
-293	Key Board Debug For Japanese Keyboard:	001D3AD0	toggle	obj+C3Dh	-	0/1	ignores the direction flags	I
+291	Save Load Message Debug State :	001D4BB7	cycle	obj+0x10DC	±1	wraps 0..3	sub/inc with wrap at both ends	I
+292	Super wide Mask Debug Enable :	001D4BEA	toggle	obj+0x10E0	-	0/1	ignores the direction flags	I
+293	Key Board Debug For Japanese Keyboard:	001D3AD0	toggle	obj+0xC3D	-	0/1	ignores the direction flags	I

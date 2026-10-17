@@ -61,10 +61,10 @@ caller	caller_name	site	setter	writes	ecx	edx
 002F1A90	FUN_002f1a90	002F1B8A	00358780	bit4	0	ebx
 002F1A90	FUN_002f1a90	002F1B93	00358610	bit5	ebx	ebx
 002F1A90	FUN_002f1a90	002F1BA7	00358640	byte+8 (value in ecx)	ebx	-
-00358420	FUN_00358420	0035842B	00358450	bits0-7 together (bit8 cleared, upper word |= Fh)	0	1
-00358420	FUN_00358420	00358435	00358450	bits0-7 together (bit8 cleared, upper word |= Fh)	1	0
-00358510	FUN_00358510	0035851B	00358450	bits0-7 together (bit8 cleared, upper word |= Fh)	0	1
-00358510	FUN_00358510	00358525	00358450	bits0-7 together (bit8 cleared, upper word |= Fh)	1	0
+00358420	FUN_00358420	0035842B	00358450	bits0-7 together (bit8 cleared, upper word |= 0xF)	0	1
+00358420	FUN_00358420	00358435	00358450	bits0-7 together (bit8 cleared, upper word |= 0xF)	1	0
+00358510	FUN_00358510	0035851B	00358450	bits0-7 together (bit8 cleared, upper word |= 0xF)	0	1
+00358510	FUN_00358510	00358525	00358450	bits0-7 together (bit8 cleared, upper word |= 0xF)	1	0
 0035B7D0	FUN_0035b7d0	0035B7DB	00358750	bit8	0	1
 0035B7D0	FUN_0035b7d0	0035B7E4	003586E0	bit0	0	0
 0035B7D0	FUN_0035b7d0	0035B7ED	00358580	bit1	0	0

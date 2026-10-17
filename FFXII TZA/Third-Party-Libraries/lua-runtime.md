@@ -17,7 +17,7 @@ Everything scripted in the game runs on Square Enix's own script machine instead
 
 The image carries Lua's own banner, `$LuaVersion: Lua 5.2.1  Copyright (C) 1994-2012 Lua.org,
 PUC-Rio $` (`01CCA080`), the 5.2-only names `LUA_PATH_5_2` (`01CCCB48`) and `_ENV` (`01CCB6BC`), and
-the 5.2-only library `bit32`. The chunk-header check below confirms version byte `52`<sub>h</sub>.
+the 5.2-only library `bit32`. The chunk-header check below confirms version byte `0x52`.
 
 ### Numbers are single precision
 
@@ -31,9 +31,9 @@ pushes the result back as a float. Thirteen `math` functions share that one shap
 
 PhyreEngine loads a chunk through `00683C30(L, script)`:
 
-1. When the script's data pointer `+18`<sub>h</sub> is null it returns false without touching Lua.
-2. Otherwise it calls `luaL_loadbufferx` (`00812F70`) with the data, the length `+10`<sub>h</sub> with bit 31
-   cleared, the chunk name `+48`<sub>h</sub> with its low bit cleared, and a null mode.
+1. When the script's data pointer `+0x18` is null it returns false without touching Lua.
+2. Otherwise it calls `luaL_loadbufferx` (`00812F70`) with the data, the length `+0x10` with bit 31
+   cleared, the chunk name `+0x48` with its low bit cleared, and a null mode.
 3. On success it returns true. On failure it reads the error message (`00811530` on index -1),
    pops it (`00811130` with -2) and returns false; the message is not reported.
 
@@ -45,7 +45,7 @@ parser through `luaD_protectedparser` (`0081DF50`). That function takes the addr
 
 `f_parser` looks at the first byte of the chunk:
 
-- `1B`<sub>h</sub> (the start of `\x1bLua`): the binary loader `luaU_undump` (`0082E910`), which first checks
+- `0x1B` (the start of `\x1bLua`): the binary loader `luaU_undump` (`0082E910`), which first checks
   the header (`0082E490`).
 - anything else: the source parser `luaY_parser` (`0082BE30`).
 
@@ -69,12 +69,12 @@ an entry of the buffer pool at `02E41050`; none of the three creates one.
 
 ### The buffer pool
 
-When the pool exists, `00684D10` takes its next free entry: entries are `28`<sub>h</sub> bytes from the
-pointer at pool `+50`<sub>h</sub>, `+58`<sub>h</sub> counts the entries in use and `+48`<sub>h</sub> (bit 31 cleared) is the
-capacity. It copies entry `+10`<sub>h</sub> bytes (bit 31 cleared) from the buffer at entry `+18`<sub>h</sub> to the one
-at entry `+08`<sub>h</sub> and runs the script on the state at entry `+20`<sub>h</sub>.
+When the pool exists, `00684D10` takes its next free entry: entries are `0x28` bytes from the
+pointer at pool `+0x50`, `+0x58` counts the entries in use and `+0x48` (bit 31 cleared) is the
+capacity. It copies entry `+0x10` bytes (bit 31 cleared) from the buffer at entry `+0x18` to the one
+at entry `+0x08` and runs the script on the state at entry `+0x20`.
 
-On its way out it gives the entry back by decrementing `+58`<sub>h</sub>, but only when the entry is still the
+On its way out it gives the entry back by decrementing `+0x58`, but only when the entry is still the
 last one taken. `00681840` is the same release as a separate function; the only callers are two
 exception-unwind funclets, `008A0030` and `008A0070`, which pass it the pool and entry they find in
 their parent's frame.
@@ -146,16 +146,16 @@ The precompiled-chunk header `0082E490` compares, 18 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8[4]` | signature | 1B 4C 75 61  "\x1bLua" |
-| `04`<sub>h</sub> | `u8` | version | 52  (5.2) |
-| `05`<sub>h</sub> | `u8` | format | 00 |
-| `06`<sub>h</sub> | `u8` | endianness | 01  little-endian |
-| `07`<sub>h</sub> | `u8` | sizeofInt | 04 |
-| `08`<sub>h</sub> | `u8` | sizeofSizeT | 08 |
-| `09`<sub>h</sub> | `u8` | sizeofInstr | 04 |
-| `0A`<sub>h</sub> | `u8` | sizeofNumber | 04  float |
-| `0B`<sub>h</sub> | `u8` | integralNumbers | 00 |
-| `0C`<sub>h</sub> | `u8[6]` | tail | 19 93 0D 0A 1A 0A  (`01CCD300`) |
+| `+0x00` | `u8[4]` | signature | 1B 4C 75 61  "\x1bLua" |
+| `+0x04` | `u8` | version | 52  (5.2) |
+| `+0x05` | `u8` | format | 00 |
+| `+0x06` | `u8` | endianness | 01  little-endian |
+| `+0x07` | `u8` | sizeofInt | 04 |
+| `+0x08` | `u8` | sizeofSizeT | 08 |
+| `+0x09` | `u8` | sizeofInstr | 04 |
+| `+0x0A` | `u8` | sizeofNumber | 04  float |
+| `+0x0B` | `u8` | integralNumbers | 00 |
+| `+0x0C` | `u8[6]` | tail | 19 93 0D 0A 1A 0A  (`01CCD300`) |
 
 It reads 17 bytes after the signature byte the parser has already taken (`0082E4CC`) and compares all
 18 with the expected header it builds from immediates (`0082E4C7` to `0082E4EA`).
@@ -164,9 +164,9 @@ The `PScript` fields `00683C30` reads:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `10`<sub>h</sub> | `u32` | length | bit 31 is a flag and is cleared |
-| `18`<sub>h</sub> | `void*` | data | null: nothing is loaded |
-| `48`<sub>h</sub> | `void*` | name | low bit is a flag and is cleared |
+| `+0x10` | `u32` | length | bit 31 is a flag and is cleared |
+| `+0x18` | `void*` | data | null: nothing is loaded |
+| `+0x48` | `void*` | name | low bit is a flag and is cleared |
 
 ## Shipped data
 

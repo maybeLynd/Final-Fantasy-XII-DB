@@ -23,36 +23,36 @@ Matrices are 16 floats, row-major, with the translation in the last row.
 | `005DFCD0(m, out, p)` | transforms the point `p` (w = 1): `out = p.x·row0 + p.y·row1 + p.z·row2 + row3`, three floats |
 | `005DFDE0(m, out, v)` | transforms the 4-vector `v` through the first three columns and copies `v.w` |
 | `005EB670(out, m)`, `006107F0(out, m)` | transpose a 4×4 matrix |
-| `001871B0(out, m)` | affine inverse: inverts the upper 3×3 through its cofactors and determinant and negates the translation through it. It writes only the three float lanes of each row; the w lanes (`+0C`<sub>h</sub>, `+1C`<sub>h</sub>, `+2C`<sub>h</sub>, `+3C`<sub>h</sub>) are copied from stack slots it never sets (`00187417`–`00187448`), so its output must not be used as a full 4×4 |
+| `001871B0(out, m)` | affine inverse: inverts the upper 3×3 through its cofactors and determinant and negates the translation through it. It writes only the three float lanes of each row; the w lanes (`+0x0C`, `+0x1C`, `+0x2C`, `+0x3C`) are copied from stack slots it never sets (`00187417`–`00187448`), so its output must not be used as a full 4×4 |
 | `00185AF0(out, m)` | that inverse as a 4×4 matrix with the last column `(0, 0, 0, 1)` |
-| `0018A4A0(out, camera)` | copies the `C0`<sub>h</sub> bytes of a `PCamera`; the script getter `00678140` uses it |
+| `0018A4A0(out, camera)` | copies the `0xC0` bytes of a `PCamera`; the script getter `00678140` uses it |
 
 ### The renderer's camera
 
-`0060CE50(renderer, camera)` stores the camera at `+A8`<sub>h</sub> and builds two matrices:
+`0060CE50(renderer, camera)` stores the camera at `+0xA8` and builds two matrices:
 
-1. The camera-to-world matrix at `+B0`<sub>h</sub>: the camera's `m_localToWorldMatrix` (`+B0`<sub>h</sub> of the
+1. The camera-to-world matrix at `+0xB0`: the camera's `m_localToWorldMatrix` (`+0xB0` of the
    camera) when it has one, expanded from 4×3 to 4×4; otherwise the affine inverse (`00185AF0`) of its
-   `m_viewMatrix` (`+00`<sub>h</sub>).
-2. The view matrix at `+F0`<sub>h</sub>: the affine inverse of the first (`00187460`).
+   `m_viewMatrix` (`+0x00`).
+2. The view matrix at `+0xF0`: the affine inverse of the first (`00187460`).
 
-It then clears `+A0`<sub>h</sub>. Six game functions call it, among them `00187950`, `001E2AF0` and
+It then clears `+0xA0`. Six game functions call it, among them `00187950`, `001E2AF0` and
 `001F06D0`.
 
 ### Node world matrices
 
-`006A0E10(node, out)` copies the node's `m_localMatrix` (`+20`<sub>h</sub>) and multiplies it by the local
-matrix of each parent in turn (`m_parent` at `+08`<sub>h</sub>, `00185100`), so the result is the node's
+`006A0E10(node, out)` copies the node's `m_localMatrix` (`+0x20`) and multiplies it by the local
+matrix of each parent in turn (`m_parent` at `+0x08`, `00185100`), so the result is the node's
 matrix in world space.
 
 ### Mesh-instance bounds
 
-A `PMeshInstanceBounds` keeps a minimum corner at `+00`<sub>h</sub>, a size at `+18`<sub>h</sub>, the world matrix at
-`+10`<sub>h</sub> (`m_worldMatrix`) and its mesh instance at `+28`<sub>h</sub>.
+A `PMeshInstanceBounds` keeps a minimum corner at `+0x00`, a size at `+0x18`, the world matrix at
+`+0x10` (`m_worldMatrix`) and its mesh instance at `+0x28`.
 
 - `005DC040(bounds, meshInstance)` attaches new bounds: it takes the instance's world matrix
-  (`+08`<sub>h</sub>) and the instance, copies corner and size from the bounds the instance already has
-  (`m_bounds`, `+38`<sub>h</sub>) or zeroes them, and becomes the instance's `m_bounds`.
+  (`+0x08`) and the instance, copies corner and size from the bounds the instance already has
+  (`m_bounds`, `+0x38`) or zeroes them, and becomes the instance's `m_bounds`.
 - `0060E410(bounds, corner, size)` sets the corner and size.
 - `006045E0(bounds, &min, &max)` gives the world-space box: it expands the 4×3 world matrix to 4×4
   (identity when there is none) and transforms the box with `005FD810`, which puts all eight corners
@@ -61,7 +61,7 @@ A `PMeshInstanceBounds` keeps a minimum corner at `+00`<sub>h</sub>, a size at `
 ### Look-at
 
 `0067F280(matrix, target)` is a `PWorldMatrix` script method registered by `0067E6C0`. It rebuilds
-the 4×3 matrix with the look-at builder `001EB4B0`, aimed at the point at `+20`<sub>h</sub> of its second
+the 4×3 matrix with the look-at builder `001EB4B0`, aimed at the point at `+0x20` of its second
 argument. `001EB4B0(out, eye, target, up)` normalises the direction from eye to target, takes the
 side axis as the normalised cross product of that direction and `up`, the new up axis as the cross
 product of side and direction, and writes side, up, the negated direction and the eye as the four
@@ -73,10 +73,10 @@ rows.
 
 - Range: for a point light (type object `01F2ED48`, `PointLight`) or a spot light (`01F2EDA8`,
   `SpotLight`), `a = −1 / (outer² − inner²)` and `b = 1 + inner² / (outer² − inner²)`, from
-  `m_innerRange` (`+34`<sub>h</sub>) and `m_outerRange` (`+38`<sub>h</sub>), so `a·d² + b` is 1 at the inner range and 0
+  `m_innerRange` (`+0x34`) and `m_outerRange` (`+0x38`), so `a·d² + b` is 1 at the inner range and 0
   at the outer. Other lights get `a = 0`, `b = 1`.
-- Cone: for a spot light, with `ci = cos(m_innerConeAngle − 1e-6)` (`+28`<sub>h</sub>) and
-  `co = cos(m_outerConeAngle + 1e-6)` (`+2C`<sub>h</sub>), `c = −1 / (co − ci)` and `d = co / (co − ci)`, so
+- Cone: for a spot light, with `ci = cos(m_innerConeAngle − 1e-6)` (`+0x28`) and
+  `co = cos(m_outerConeAngle + 1e-6)` (`+0x2C`), `c = −1 / (co − ci)` and `d = co / (co − ci)`, so
   `c·cosθ + d` is 1 at the inner angle and 0 at the outer. Other lights get `c = 0`, `d = 1`.
 
 ### Lights and shadow types
@@ -89,15 +89,15 @@ rows.
 ### Shadow-split distances
 
 `00606BE0(shadowCaster, out)` writes the far planes of up to four shadow splits as one 4-vector:
-the splits are the caster's `PShadowSplit` records (`+10`<sub>h</sub> count, `+18`<sub>h</sub> data, `E8`<sub>h</sub> bytes each)
-and `m_farPlane` is the split's `+C8`<sub>h</sub>. A split the caster does not have gives 100000.0. The
-shader-parameter evaluator `00600F30` uses it for parameter type `D8`<sub>h</sub>, passing the light's
-`m_shadowCaster` (`+18`<sub>h</sub>).
+the splits are the caster's `PShadowSplit` records (`+0x10` count, `+0x18` data, `0xE8` bytes each)
+and `m_farPlane` is the split's `+0xC8`. A split the caster does not have gives 100000.0. The
+shader-parameter evaluator `00600F30` uses it for parameter type `0xD8`, passing the light's
+`m_shadowCaster` (`+0x18`).
 
 ### LOD blend weight
 
 `006073D0(lod, i)` returns the address of element `i` of the array of 12-byte elements at
-`+20`<sub>h</sub>/`+28`<sub>h</sub> (the inline slot when there is one element). The shader-parameter evaluator
+`+0x20`/`+0x28` (the inline slot when there is one element). The shader-parameter evaluator
 `00600F30` reads its first float as the LOD blend weight, the value the `LOD_BLEND` context switch
 tests.
 
@@ -107,19 +107,19 @@ tests.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `A0`<sub>h</sub> | `u64` | cleared | zeroed by `0060CE50` |
-| `A8`<sub>h</sub> | `void*` | camera | the PCamera |
-| `B0`<sub>h</sub> | `f32[16]` | cameraToWorld | camera space to world |
-| `F0`<sub>h</sub> | `f32[16]` | view | world to camera space |
+| `+0xA0` | `u64` | cleared | zeroed by `0060CE50` |
+| `+0xA8` | `void*` | camera | the PCamera |
+| `+0xB0` | `f32[16]` | cameraToWorld | camera space to world |
+| `+0xF0` | `f32[16]` | view | world to camera space |
 
-`PMeshInstanceBounds` (`30`<sub>h</sub> bytes, offsets from the start of the record):
+`PMeshInstanceBounds` (`0x30` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `f32[3]` | corner | minimum corner, object space |
-| `10`<sub>h</sub> | `void*` | m_worldMatrix | the instance's world matrix |
-| `18`<sub>h</sub> | `f32[3]` | size | extent along each axis |
-| `28`<sub>h</sub> | `void*` | m_meshInstance | owning PMeshInstance |
+| `+0x00` | `f32[3]` | corner | minimum corner, object space |
+| `+0x10` | `void*` | m_worldMatrix | the instance's world matrix |
+| `+0x18` | `f32[3]` | size | extent along each axis |
+| `+0x28` | `void*` | m_meshInstance | owning PMeshInstance |
 
 ## State
 

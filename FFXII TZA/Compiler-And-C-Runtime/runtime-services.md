@@ -55,17 +55,17 @@ Its two `WideCharToMultiByte` calls are the only ones in the image.
 `<module path>.YYYYMMDD_HHMMSS.dmp` from `GetModuleFileNameA` and `GetLocalTime` and calls
 `005CCD00(exception, name)`, which:
 
-1. sets `SymSetOptions(16h)` and `SymInitialize`, walks the faulting stack with `StackWalk64`,
+1. sets `SymSetOptions(0x16)` and `SymInitialize`, walks the faulting stack with `StackWalk64`,
    and prints each frame with `SymFromAddr` and `SymGetLineFromAddr64` through the log call
    `005CDAA0`;
 2. starts a thread at `005CCAB0` and waits for it: that thread creates the file and calls
-   `MiniDumpWriteDump` with type `1B27`<sub>h</sub> and the exception information, then logs
+   `MiniDumpWriteDump` with type `0x1B27` and the exception information, then logs
    `Minidump file saved to %s`;
 3. returns 1.
 
 So the filter returns 1 (`EXCEPTION_EXECUTE_HANDLER`) and the `__try` in `WinMain` takes the
 exception. Threads started through the trampoline `005CCBA0` get the same arrangement: the
-trampoline calls `fn(arg)` from its context `+8` and `+10`<sub>h</sub> directly under a debugger, and
+trampoline calls `fn(arg)` from its context `+8` and `+0x10` directly under a debugger, and
 otherwise inside a `__try` (`005CCBC3`-`005CCBCC`) with the same filter `008A5AD0`.
 
 ### The unhandled-exception filter
@@ -78,13 +78,13 @@ instruction writes:
    with year, month, day, hour + 8, minute and second, created in the working folder; when the
    create fails it shows `MessageBoxA` "Create dump file filed,Please check your remain size of
    hard disk" titled `CRASH`;
-2. calls `MiniDumpWriteDump(process, pid, file, 1826h, &info, 0, 0)` and closes the file;
-3. loads string `7837`<sub>h</sub> through `0019A510`, copies it into a `BSTR`, calls `ShowCursor(1)` and
+2. calls `MiniDumpWriteDump(process, pid, file, 0x1826, &info, 0, 0)` and closes the file;
+3. loads string `0x7837` through `0019A510`, copies it into a `BSTR`, calls `ShowCursor(1)` and
    `MessageBoxW(NULL, text, L"error", MB_ICONERROR)`;
 4. returns 1.
 
-Both dump types include `MiniDumpWithFullMemory` (`2`<sub>h</sub>): `1826`<sub>h</sub> adds handle data, unloaded
-modules, full memory information and thread information; `1B27`<sub>h</sub> adds data segments, process
+Both dump types include `MiniDumpWithFullMemory` (`0x2`): `0x1826` adds handle data, unloaded
+modules, full memory information and thread information; `0x1B27` adds data segments, process
 thread data and private read-write memory to those.
 
 ### Threads
@@ -95,14 +95,14 @@ thread data and private read-write memory to those.
    the trampoline `005CCBA0` and the requested stack size; on failure it formats the error with
    `FormatMessageA`, frees it and returns 9;
 2. calls `SetThreadAffinityMask` with the requested mask;
-3. names the thread for a debugger by raising exception `406D1388`<sub>h</sub> with the requested name, or
+3. names the thread for a debugger by raising exception `0x406D1388` with the requested name, or
    `PhyreEngineThread` when none is given, inside a `__try` (`005CD2C8`-`005CD2E0`) whose filter
    `0089BEF0` continues execution;
 4. sets the priority: mode 0 gives 1, mode 2 gives -1, mode 3 the requested value; any other
    mode leaves it.
 
 `00863430` creates the thread of a `crossThreadImpl` object: `CreateThread` with the start
-`00863500` (suspended unless its fourth argument is 1), `SetThreadPriority(handle, (20h - p) / 2)`,
+`00863500` (suspended unless its fourth argument is 1), `SetThreadPriority(handle, (0x20 - p) / 2)`,
 and the same naming exception under a `__try` whose filter is the constant 1. `00863500` calls
 the object's slot 1 and passes its result to `ExitThread`.
 
@@ -111,12 +111,12 @@ the object's slot 1 and passes its result to `ExitThread`.
 and `007DE8D0` create the sound library's `MockDeviceThread` and `AudioSampleThread`.
 
 The game's own threads are made by the start-up step `00368ED0`, which keeps `GetCurrentThread()` at
-`022D7FB0` with priority `20`<sub>h</sub> (`00863520`), runs `00368F70`, `00368DD0` and `00368C80`, makes the semaphore
+`022D7FB0` with priority `0x20` (`00863520`), runs `00368F70`, `00368DD0` and `00368C80`, makes the semaphore
 `022D7F90` (`00863540`) and calls `0035E820`:
 
-- `00368C80` creates a worker thread with the start `00368C10` and a `4000`<sub>h</sub>-byte stack at `022D3F20`.
+- `00368C80` creates a worker thread with the start `00368C10` and a `0x4000`-byte stack at `022D3F20`.
   `00368C10` waits on the semaphore `[022D7F68 + 8 x n]` (`00863650`), runs the job at `022D7F70 + 8 x n` when
-  one is set, clears it and lowers its priority to `24`<sub>h</sub>, without end. `00368F30(n)`, for `0046DD50`, answers
+  one is set, clears it and lowers its priority to `0x24`, without end. `00368F30(n)`, for `0046DD50`, answers
   whether job n, or any job for a negative n, is pending.
 - `00368F70` creates, when `003692C0` reports bit 2, a thread with the start `00368AE0` and stores the stub
   call `005C5230(00368AD0, ...)` at `022CFF18`; `00368AD0` releases the semaphore it is given (`00863800`). `00368AE0` waits on its semaphore and calls `00368B00`, whose
@@ -126,30 +126,30 @@ The game's own threads are made by the start-up step `00368ED0`, which keeps `Ge
 
 ### The PhyreEngine lock
 
-The PhyreEngine layer builds its lock from a Win32 event and two counters, in a `28`<sub>h</sub>-byte record
+The PhyreEngine layer builds its lock from a Win32 event and two counters, in a `0x28`-byte record
 (layout below):
 
-- `005CC8A0` constructs the record by zeroing `+00`<sub>h</sub>, `+08`<sub>h</sub>, `+10`<sub>h</sub>, `+18`<sub>h</sub>, `+20`<sub>h</sub> and `+24`<sub>h</sub>.
+- `005CC8A0` constructs the record by zeroing `+0x00`, `+0x08`, `+0x10`, `+0x18`, `+0x20` and `+0x24`.
   The lock at `01F7F510` is built this way by the C++ initialiser `0015BCD0`, which then registers
   `008A6990` with `atexit`; that teardown only jumps to the `ret 0` body `0016D6A0`.
 - `005CD0A0` creates the event once: `005CD0E0` calls `CreateEventA` with auto-reset and an initial
-  state of not signalled, stores the handle at `+08`<sub>h</sub> and sets the byte at `+10`<sub>h</sub>; the byte at
-  `+00`<sub>h</sub> is set when the handle is valid. `005CD6D0` closes the handle and clears both bytes.
-- `005CD4F0` locks through `005CD450`: it counts itself at `+18`<sub>h</sub> as a waiter, swaps the state at
-  `+20`<sub>h</sub> from 0 to 1, and waits on the event (`WaitForSingleObject`, no time-out) while the swap
-  fails. It then adds 1 to `+24`<sub>h</sub>. 61 sites take it.
+  state of not signalled, stores the handle at `+0x08` and sets the byte at `+0x10`; the byte at
+  `+0x00` is set when the handle is valid. `005CD6D0` closes the handle and clears both bytes.
+- `005CD4F0` locks through `005CD450`: it counts itself at `+0x18` as a waiter, swaps the state at
+  `+0x20` from 0 to 1, and waits on the event (`WaitForSingleObject`, no time-out) while the swap
+  fails. It then adds 1 to `+0x24`. 61 sites take it.
 - `005CD370` locks through `005CD380`, the re-entrant form: the state holds the owner's thread id
-  (`GetCurrentThreadId`), and a thread that already owns the lock only adds 1 to `+24`<sub>h</sub>. Its one
-  caller, `0017ED20`, first creates the lock at `01F7F510` with `005CD0A0` while its byte `+00`<sub>h</sub>
+  (`GetCurrentThreadId`), and a thread that already owns the lock only adds 1 to `+0x24`. Its one
+  caller, `0017ED20`, first creates the lock at `01F7F510` with `005CD0A0` while its byte `+0x00`
   is 0.
-- `005CD820` releases the plain lock: it subtracts 1 from `+24`<sub>h</sub>, swaps the state from 1 to 0, and
+- `005CD820` releases the plain lock: it subtracts 1 from `+0x24`, swaps the state from 1 to 0, and
   signals the event through `005CD570` (`SetEvent`) when the waiter count is above 0.
 - `005CD7D0` releases the re-entrant lock. Only when the state equals the caller's thread id does it
-  subtract 1 from `+24`<sub>h</sub>, and only when that reaches 0 does it swap the state from the thread id
+  subtract 1 from `+0x24`, and only when that reaches 0 does it swap the state from the thread id
   to 0. It signals the event through `005CD570` whenever the waiter count is above 0. It has 20 call
   and jump sites; `0017F760` tail-jumps to it for `01F7F510`.
 
-A wait that returns `WAIT_ABANDONED` (`80`<sub>h</sub>) formats the error with `FormatMessageA`, frees the
+A wait that returns `WAIT_ABANDONED` (`0x80`) formats the error with `FormatMessageA`, frees the
 text and leaves the lock untaken.
 
 ### The debug channel
@@ -177,7 +177,7 @@ before the call, and 761 of those strings carry the post-effect library's tags, 
 
 `005CC980` sets up the timer: `timeBeginPeriod(5)`, `Sleep(0)`, a `timeGetTime` sample,
 `QueryPerformanceFrequency` into `02CB6120` with its reciprocal in `02CB6128`, and a
-`QueryPerformanceCounter` start sample. It returns `17`<sub>h</sub> only when both `timeBeginPeriod` and
+`QueryPerformanceCounter` start sample. It returns `0x17` only when both `timeBeginPeriod` and
 `QueryPerformanceFrequency` fail. `005CC930` returns the current counter divided by the
 frequency, in seconds.
 
@@ -227,33 +227,33 @@ The parameter block `005CD1E0` reads (its second argument):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*` | start | thread function |
-| `08`<sub>h</sub> | `u32` | stackSize | passed to CreateThread |
-| `10`<sub>h</sub> | `void*` | arg | argument for the thread function |
-| `18`<sub>h</sub> | `i32` | priorityMode 0: priority 1, 2: priority -1, 3: priority from `+2C`<sub>h</sub> |  |
-| `20`<sub>h</sub> | `void*` | name | thread name for the debugger; null gives "PhyreEngineThread" |
-| `2C`<sub>h</sub> | `i32` | priority | used with mode 3 |
-| `30`<sub>h</sub> | `u64` | affinity | SetThreadAffinityMask argument |
+| `+0x00` | `void*` | start | thread function |
+| `+0x08` | `u32` | stackSize | passed to CreateThread |
+| `+0x10` | `void*` | arg | argument for the thread function |
+| `+0x18` | `i32` | priorityMode 0: priority 1, 2: priority -1, 3: priority from +0x2C |  |
+| `+0x20` | `void*` | name | thread name for the debugger; null gives "PhyreEngineThread" |
+| `+0x2C` | `i32` | priority | used with mode 3 |
+| `+0x30` | `u64` | affinity | SetThreadAffinityMask argument |
 
 The thread record it fills (its first argument), which `005CCBA0` receives:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*` | handle | from CreateThread |
-| `08`<sub>h</sub> | `void*` | start | copied from the parameters |
-| `10`<sub>h</sub> | `void*` | arg | copied from the parameters |
+| `+0x00` | `void*` | handle | from CreateThread |
+| `+0x08` | `void*` | start | copied from the parameters |
+| `+0x10` | `void*` | arg | copied from the parameters |
 
-The PhyreEngine lock, `28`<sub>h</sub> bytes (constructor `005CC8A0`; plain lock `005CD450` and release
+The PhyreEngine lock, `0x28` bytes (constructor `005CC8A0`; plain lock `005CD450` and release
 `005CD820`; re-entrant lock `005CD380` and release `005CD7D0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | created | set by `005CD0A0` when `CreateEventA` succeeds, cleared by `005CD6D0` |
-| `08`<sub>h</sub> | `void*` | event | the auto-reset event the waiters block on |
-| `10`<sub>h</sub> | `u8` | flag | set by `005CD0A0`, cleared by `005CD6D0` |
-| `18`<sub>h</sub> | `i32` | waiters | changed with lock-prefixed adds around each attempt |
-| `20`<sub>h</sub> | `u32` | state | `0` free; `1` taken (plain form); the owner's thread id (re-entrant form) |
-| `24`<sub>h</sub> | `i32` | depth | times the owner has taken it |
+| `+0x00` | `u8` | created | set by `005CD0A0` when `CreateEventA` succeeds, cleared by `005CD6D0` |
+| `+0x08` | `void*` | event | the auto-reset event the waiters block on |
+| `+0x10` | `u8` | flag | set by `005CD0A0`, cleared by `005CD6D0` |
+| `+0x18` | `i32` | waiters | changed with lock-prefixed adds around each attempt |
+| `+0x20` | `u32` | state | `0` free; `1` taken (plain form); the owner's thread id (re-entrant form) |
+| `+0x24` | `i32` | depth | times the owner has taken it |
 
 ## Shipped data
 
@@ -269,7 +269,7 @@ The PhyreEngine lock, `28`<sub>h</sub> bytes (constructor `005CC8A0`; plain lock
 | `SHELL32` / `d3d11` / `XINPUT9_1_0` | 2 / 2 / 2 |
 | `IPHLPAPI` / `D3DCOMPILER_47` / `DINPUT8` / `dwmapi` / `dxgi` | 1 each |
 | busiest `call [slot]` imports (sites / functions) | `_invalid_parameter_noinfo_noreturn` 434 / 80, `LeaveCriticalSection` 310 / 126, `EnterCriticalSection` 286 / 134, `memmove` 244 / 169, `OutputDebugStringA` 150 / 93, `strstr` 61 / 20, `std::_Xlength_error` 59 / 46, `_stricmp` 56 / 15, `GetProcAddress` 51 / 16, `rand` 48 / 30 |
-| fatal-error string `7837`<sub>h</sub> | languages `0407`<sub>h</sub>, `0409`<sub>h</sub>, `040A`<sub>h</sub>, `040C`<sub>h</sub>, `0410`<sub>h</sub>, `0411`<sub>h</sub>, `0412`<sub>h</sub>, `0804`<sub>h</sub>, `7C04`<sub>h</sub>; English "Fatal error encountered." |
+| fatal-error string `0x7837` | languages `0x0407`, `0x0409`, `0x040A`, `0x040C`, `0x0410`, `0x0411`, `0x0412`, `0x0804`, `0x7C04`; English "Fatal error encountered." |
 | dump file names | `<module path>.YYYYMMDD_HHMMSS.dmp` (local time) and `Dump_Y_M_D_H_M_S.dmp` (UTC hour + 8, with no wrap or date carry, so the hour runs from 8 to 31) |
 
 ## Operations
@@ -277,9 +277,9 @@ The PhyreEngine lock, `28`<sub>h</sub> bytes (constructor `005CC8A0`; plain lock
 - Every boot: the C runtime entry, `WinMain`, the main body; the unhandled-exception filter is
   installed before the main body's other work.
 - A fault on the main thread, or on a thread started through `005CCBA0`, with no debugger: the
-  stack is logged and a `1B27`<sub>h</sub> dump is written by a helper thread, and the `__try` takes the
+  stack is logged and a `0x1B27` dump is written by a helper thread, and the `__try` takes the
   exception.
-- A fault nothing else handles: a `1826`<sub>h</sub> dump and the fatal-error box.
+- A fault nothing else handles: a `0x1826` dump and the fatal-error box.
 - Every `006DF480` call: format into the static buffer and hand it to the hook or to
   `OutputDebugStringA`.
 

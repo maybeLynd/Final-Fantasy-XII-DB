@@ -18,28 +18,28 @@ they are invisible.
 
 ### The trap table in the zone script
 
-Every trap belongs to the field's zone script. The script header's word `+6C`<sub>h</sub> points at
+Every trap belongs to the field's zone script. The script header's word `+0x6C` points at
 `{u32 count = 1; u32 packedRef}`, and `002641B0(slot, index)` resolves entry `index` of that list
 for manager `slot` ([section 000](../EBP-Script-Files/ebp-script-image.md)):
 
 1. the reference's tag (bits 24-26) must not be 2, and a zero reference means the script has no
    table;
-2. the table is `00265770(slot, tag) + (reference & FFFFFFh)`; for tag 3, every shipped
-   reference, the base is the script image plus its header word `+40`<sub>h</sub>
+2. the table is `00265770(slot, tag) + (reference & 0xFFFFFF)`; for tag 3, every shipped
+   reference, the base is the script image plus its header word `+0x40`
    ([the storage classes](../Scripts-And-Script-Commands/script-variables.md));
 3. the table is `{u32 count; u32 offset[count]}`, each offset relative to the table's own start,
    and each record is twelve bytes (Layouts).
 
 ### Arming the traps
 
-The script verb `settrapresource` (`53B`<sub>h</sub>, handler `00355400`) arms a field's traps. It pops one
-operand, resolves it through `002E9A60` (a packed reference `1000000`<sub>h</sub> or above goes through the
-manager's `+100`<sub>h</sub> table by `00263F80`; a small number is mapped by `002EB7A0`: 0 and 1 to
-`630000`<sub>h</sub>, 8 and 9 to `6E0001`<sub>h</sub>, 12 and 13 to `770002`<sub>h</sub>) and calls `003EC630(resource)`:
+The script verb `settrapresource` (`0x53B`, handler `00355400`) arms a field's traps. It pops one
+operand, resolves it through `002E9A60` (a packed reference `0x1000000` or above goes through the
+manager's `+0x100` table by `00263F80`; a small number is mapped by `002EB7A0`: 0 and 1 to
+`0x630000`, 8 and 9 to `0x6E0001`, 12 and 13 to `0x770002`) and calls `003EC630(resource)`:
 
 1. the previous marker resource `02B5EC94`, if any, is released (`002EBD60(prev, 0)`,
    `002E3DC0(prev)`);
-2. the new resource is stored, its load flag set (`002EBD60(resource, 1)`: bit 0 of byte `+19`<sub>h</sub>
+2. the new resource is stored, its load flag set (`002EBD60(resource, 1)`: bit 0 of byte `+0x19`
    of the matching entry in the resource lists at `0215FD58` and `0215FD78`), and the arming walk
    `002FA740` runs (its only caller, `003EC679`).
 
@@ -47,9 +47,9 @@ manager's `+100`<sub>h</sub> table by `00263F80`; a small number is mapped by `0
 
 1. clears the Libra state byte `022BE944`, takes the current field id (`003148F0`) and binds the
    table `002641B0(0, 0)` to `022BE948`; with no table it returns;
-2. for each record `i` below `min(count, 32)`: the record is skipped when its flag id (`+04`<sub>h</sub>)
-   is not `FF`<sub>h</sub> and that flag is set (`0032AA60`); otherwise it rolls `00379CD0() % 100`, and
-   when the roll is below the arm chance (`+05`<sub>h</sub>) it sets bit `i` of the mask and places marker
+2. for each record `i` below `min(count, 32)`: the record is skipped when its flag id (`+0x04`)
+   is not `0xFF` and that flag is set (`0032AA60`); otherwise it rolls `00379CD0() % 100`, and
+   when the roll is below the arm chance (`+0x05`) it sets bit `i` of the mask and places marker
    `i` at `(x / 10, z / 10)` (`002FB560`);
 3. it stores the mask for the field in the ring at `02EC3EA0` (below): over the field's existing
    entry when there is one, else at the write index `02EC3EC4`, which then advances modulo 3, with
@@ -68,7 +68,7 @@ unload `002695A0`.
 The live mask of a field is one `u32`, and the engine keeps three of them: a ring of `{field,
 mask}` records at `02EC3EA0`. `002FB3B0(ring, field, mask)` stores a mask: when the field is already
 present the mask is replaced and 1 is returned; otherwise the record is written at the write index
-`+24`<sub>h</sub> (`02EC3EC4`), the count `+28`<sub>h</sub> (`02EC3EC8`) is incremented and capped at 3, and the index
+`+0x24` (`02EC3EC4`), the count `+0x28` (`02EC3EC8`) is incremented and capped at 3, and the index
 advances modulo 3. `002FA230` zeroes the whole ring; it runs from the battle runtime reset
 `00237DF0` and from the battle-state block bind `00233C10` (`00233CC0`).
 
@@ -85,11 +85,11 @@ member (kind 0) outside the Esper band 27-39, outside a town (`00377C20`), while
 `022C2160` is neither 5 nor 6, when `00265680()` is non-zero, `0030B770()` and `0030B7F0(unit)` are
 0 and unit flag bit 36 is clear. `002F8060` itself refuses, returning -1, when the unit's stats:
 
-- carry bit 26 in the combined status words `+3Ch | +64h`;
-- carry bit 5 in either layer byte `+6C`<sub>h</sub> or `+7C`<sub>h</sub>: effect id 37, "Move safely past traps",
+- carry bit 26 in the combined status words `+0x3C | +0x64`;
+- carry bit 5 in either layer byte `+0x6C` or `+0x7C`: effect id 37, "Move safely past traps",
   the Float status's effect ([the two layers](../Status-Effects-And-KO/statuses.md),
   [battle text banks](../Game-Files-And-Data-Tables/battle-text-tables.md));
-- have kind 1, or kind 0 with the type byte `+04`<sub>h</sub> in 27-39.
+- have kind 1, or kind 0 with the type byte `+0x04` in 27-39.
 
 ### The proximity test
 
@@ -106,26 +106,26 @@ one beside it.
 On a hit, in order:
 
 1. `00379CD0()`, the Mersenne Twister draw, is reduced modulo 100; below 75 (`002F8231 cmp r8d,
-   4Bh`) the action is the record's `+06`<sub>h</sub>, otherwise its `+08`<sub>h</sub>;
-2. when the flag id `+04`<sub>h</sub> is not `FF`<sub>h</sub>, `0032AD70(id, 1)` sets that persistent flag
+   0x4B`) the action is the record's `+0x06`, otherwise its `+0x08`;
+2. when the flag id `+0x04` is not `0xFF`, `0032AD70(id, 1)` sets that persistent flag
    ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md));
-3. `002FB8C0(record, unit, out)` gathers the units the trap reaches: with radius `+0A`<sub>h</sub> = 0 only
+3. `002FB8C0(record, unit, out)` gathers the units the trap reaches: with radius `+0x0A` = 0 only
    the triggering unit; otherwise each of the four party members (`0031B810(0..3)`) whose stats
-   pass the same three refusals plus the out-of-play mask `80000003`<sub>h</sub>, and whose position
+   pass the same three refusals plus the out-of-play mask `0x80000003`, and whose position
    (height zeroed) is within the radius of the point;
-4. `0046A9D0(stats, action)` posts the battle message: row 3 for action `103`<sub>h</sub>, row 1 for
-   `104`<sub>h</sub>, row 2 for `105`<sub>h</sub>, row 0 for anything else ([battle log](../Battle-Actions/battle-log.md));
-5. `003EC700(i, 3)` retires marker `i` (`002E7410`: render record `+294`<sub>h</sub> bit 27 set, `+304`<sub>h</sub>
+4. `0046A9D0(stats, action)` posts the battle message: row 3 for action `0x103`, row 1 for
+   `0x104`, row 2 for `0x105`, row 0 for anything else ([battle log](../Battle-Actions/battle-log.md));
+5. `003EC700(i, 3)` retires marker `i` (`002E7410`: render record `+0x294` bit 27 set, `+0x304`
    top five bits = 3);
 6. the bit is cleared in the ring (`002FB3B0`) and the walk returns the action id. At most one
    trap fires per call, and the first in index order wins when two overlap.
 
 ### What a trap does
 
-The tick takes the returned action id and, when `00322C50(14h, id)` accepts it, applies it to
+The tick takes the returned action id and, when `00322C50(0x14, id)` accepts it, applies it to
 every gathered unit ([the action definition row](../Battle-Actions/action-definition-row.md)):
 
-1. `002EACD0(handle, 1, &handle, row word +24h & 7FFFh)` plays the row's effect;
+1. `002EACD0(handle, 1, &handle, row word +0x24 & 0x7FFF)` plays the row's effect;
 2. `00385F60(id, 0, stats, result)` and `003112F0(result, 0, stats, id)` resolve and apply the
    action on a zeroed result record.
 
@@ -134,35 +134,35 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 
 | Rows | Slot | Effect |
 |---|---|---|
-| 246, 247, 248 | 106 (`0038CD60`) | HP damage `(1 + roll % power) × (1 + roll % level)`, `power` the row's `+10`<sub>h</sub> (30, 90, 180), `level` the target's `+1C2`<sub>h</sub>, into `02AEE004` |
+| 246, 247, 248 | 106 (`0038CD60`) | HP damage `(1 + roll % power) × (1 + roll % level)`, `power` the row's `+0x10` (30, 90, 180), `level` the target's `+0x1C2`, into `02AEE004` |
 | 249, 257 | 107 (`0038CE40`) | the same product into the MP loss slot `02AEE00C` (power 20, 100) |
 | 260 | 108 (`0038CF20`) | the same product into the HP gain slot `02AEE008` (power 80): "healing nearby allies" |
 | 261 | 109 (`0038D000`) | the same product into the MP gain slot `02AEE010` (power 50): "energizing nearby allies" |
 | 259 | 163 (`0038F6F0`) | gil loss `(1 + roll % 99) × (1 + roll % level)`: "Your pockets feel lighter" |
-| 250 to 256, 258 | 181 | the row's `+18`<sub>h</sub> status mask: Sap; Confuse and Berserk; Petrify; Blind; Silence; Reverse and Disable; Disease; Oil |
+| 250 to 256, 258 | 181 | the row's `+0x18` status mask: Sap; Confuse and Berserk; Petrify; Blind; Silence; Reverse and Disable; Disease; Oil |
 
 ### Marking the trap's effect
 
 Between steps 1 and 2 above, the tick hands the effect handle `002EACD0` returned to `0024ED50`
-(`00311070`-`00311072`). `0024ED50` routes it by the handle's top four bits and sets bit 11 (`800`<sub>h</sub>)
-of the effect record's `u16` at `+36A`<sub>h</sub>:
+(`00311070`-`00311072`). `0024ED50` routes it by the handle's top four bits and sets bit 11 (`0x800`)
+of the effect record's `u16` at `+0x36A`:
 
 | Top four bits | Body | Record lookup |
 |---:|---|---|
-| 1 | `002FCFB0` | slot = the handle's low six bits, below 48; the slot's dword at `02EC32E0` + slot·`38`<sub>h</sub> must equal the handle, and its pointer at `+10`<sub>h</sub> must be set (`002FCFE1`) |
-| 5, 6, 9 | `003B0F30` | the 36 entries of 24 bytes at `02EBEC00`, walked until the first dword equals the handle; a zero first dword ends the walk; the entry's pointer `+08`<sub>h</sub> must be set (`003B0F76`) |
+| 1 | `002FCFB0` | slot = the handle's low six bits, below 48; the slot's dword at `02EC32E0` + slot·`0x38` must equal the handle, and its pointer at `+0x10` must be set (`002FCFE1`) |
+| 5, 6, 9 | `003B0F30` | the 36 entries of 24 bytes at `02EBEC00`, walked until the first dword equals the handle; a zero first dword ends the walk; the entry's pointer `+0x08` must be set (`003B0F76`) |
 | any other | none | returns (`0024ED76`) |
 
 The only other caller, `00319E40`, does the same for the handle `0030CA50()` returns, after passing it
-with the ids of the units in the list at `+780`<sub>h</sub> (count `+77C`<sub>h</sub>) to `002EAD00`, when `00237420()` is
+with the ids of the units in the list at `+0x780` (count `+0x77C`) to `002EAD00`, when `00237420()` is
 non-zero (`00319F10`).
 
 ### Showing the markers
 
-`settrapshowstatus(v)` (`547`<sub>h</sub>, handler `00355E00` → `003EC6C0`) shows or hides all sixteen
+`settrapshowstatus(v)` (`0x547`, handler `00355E00` → `003EC6C0`) shows or hides all sixteen
 marker slots at once outside a town: `002ED3A0(003EB720(i), v)` sets bit 1 of the marker's render
-record `+304`<sub>h</sub> to `v` and bit 4 of `+290`<sub>h</sub>. `003EB720(i)` returns slot `i` of the marker table
-`02B5EA20` (`i` below 32, byte `+40`<sub>h</sub> set) plus `10`<sub>h</sub>.
+record `+0x304` to `v` and bit 4 of `+0x290`. `003EB720(i)` returns slot `i` of the marker table
+`02B5EA20` (`i` below 32, byte `+0x40` set) plus `0x10`.
 
 Libra reveals the live traps. `002F82F0`, run from the world tick's per-slot pre-pass `00234590`
 (`00234861`), tests `0030C300()`: any of the nine party slots (`00320AB0(i, 1)`) alive or in a
@@ -172,31 +172,31 @@ back it becomes 0 and the markers get mode 2.
 
 ## Layouts
 
-Struct TrapRecord base=trapTable+offset[i] size=`0C`<sub>h</sub>:
+Struct TrapRecord base=trapTable+offset[i] size=`0x0C`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `i16` | x | tenths of a world unit (`002F81BE`, `002FA82C`) |
-| `02`<sub>h</sub> | `i16` | z | tenths of a world unit |
-| `04`<sub>h</sub> | `u8` | flagId | persistent flag set on firing and tested at arming; `FF`<sub>h</sub> = none (`002F8243`, `002FA7E8`) |
-| `05`<sub>h</sub> | `u8` | armChance | percent; roll % 100 below it arms the trap (`002FA7FC`) |
-| `06`<sub>h</sub> | `u16` | action75 | the action row chosen below 75 (`002F8237`) |
-| `08`<sub>h</sub> | `u16` | action25 | the action row chosen at 75 and above (`002F823E`) |
-| `0A`<sub>h</sub> | `u8` | radius | world units; 0 = the triggering unit alone (`002FB8E0`) |
-| `0B`<sub>h</sub> | `u8` | zero | 0 in every shipped record |
+| `+0x00` | `i16` | x | tenths of a world unit (`002F81BE`, `002FA82C`) |
+| `+0x02` | `i16` | z | tenths of a world unit |
+| `+0x04` | `u8` | flagId | persistent flag set on firing and tested at arming; `0xFF` = none (`002F8243`, `002FA7E8`) |
+| `+0x05` | `u8` | armChance | percent; roll % 100 below it arms the trap (`002FA7FC`) |
+| `+0x06` | `u16` | action75 | the action row chosen below 75 (`002F8237`) |
+| `+0x08` | `u16` | action25 | the action row chosen at 75 and above (`002F823E`) |
+| `+0x0A` | `u8` | radius | world units; 0 = the triggering unit alone (`002FB8E0`) |
+| `+0x0B` | `u8` | zero | 0 in every shipped record |
 
-Struct TrapRing base=`02EC3EA0` size=`2C`<sub>h</sub>:
+Struct TrapRing base=`02EC3EA0` size=`0x2C`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `i32` | field0 | the field id of entry 0 |
-| `04`<sub>h</sub> | `u32` | mask0 | its live mask, bit i = trap i armed |
-| `0C`<sub>h</sub> | `i32` | field1 |  |
-| `10`<sub>h</sub> | `u32` | mask1 |  |
-| `18`<sub>h</sub> | `i32` | field2 |  |
-| `1C`<sub>h</sub> | `u32` | mask2 |  |
-| `24`<sub>h</sub> | `i32` | writeIndex | next entry to fill, 0 to 2 (`002FB3B0`, `002FA740`) |
-| `28`<sub>h</sub> | `i32` | count | entries in use, at most 3 |
+| `+0x00` | `i32` | field0 | the field id of entry 0 |
+| `+0x04` | `u32` | mask0 | its live mask, bit i = trap i armed |
+| `+0x0C` | `i32` | field1 |  |
+| `+0x10` | `u32` | mask1 |  |
+| `+0x18` | `i32` | field2 |  |
+| `+0x1C` | `u32` | mask2 |  |
+| `+0x24` | `i32` | writeIndex | next entry to fill, 0 to 2 (`002FB3B0`, `002FA740`) |
+| `+0x28` | `i32` | count | entries in use, at most 3 |
 
 ```python
 fires(unit, trap) = eligible(unit) && armed(field, trap) && sqrt((trap.x/10 - unit.x)^2 + (trap.z/10 - unit.z)^2) <= 1.2999999523
@@ -218,10 +218,10 @@ Over the 1,114 `us` zone and event scripts (one file is not an `EBP2` container)
 | real traps | 489 |
 
 Every table reference is tag 3. Tables hold 1 to 16 records; 285 hold one. All 489 real traps
-have flag id `FF`<sub>h</sub>, so no shipped trap ever sets a persistent flag and none is ever skipped at
+have flag id `0xFF`, so no shipped trap ever sets a persistent flag and none is ever skipped at
 arming: a field's traps are rolled afresh at every load, and the persistent-flag path exists only
 for authored data that does not ship. The arm chance is 100 in 487 traps and 60 in the two traps
-of `rbl_n02` (rows 260 and 261 twice over). Byte `+0B`<sub>h</sub> is 0 everywhere.
+of `rbl_n02` (rows 260 and 261 twice over). Byte `+0x0B` is 0 everywhere.
 
 | Radius | Traps | Radius | Traps |
 |---|---|---|---|
@@ -273,7 +273,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - `002F8060` is one of two functions in the image that both draw the generator and call a
   persistent-flag setter (the other is the treasure chest resolver `002FAFD0`,
   [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)); with every
-  shipped flag id `FF`<sub>h</sub>, the trap's setter never runs in shipped play.
+  shipped flag id `0xFF`, the trap's setter never runs in shipped play.
 
 - The two access tables beside this page, `traps-live-entry-accesses.tsv` and
   `traps-live-set-accesses.tsv`, list every reach into the ring's entries and into the live set,
@@ -295,12 +295,12 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - To add a trap, add a twelve-byte record and its offset to the zone script's table (count at
   most 32) and make sure the script calls `settrapresource`; the coordinates are tenths of a unit
   and the height is ignored.
-- To make a trap one-shot across saves, give it a flag id below 256 in `+04`<sub>h</sub>: the arming walk
+- To make a trap one-shot across saves, give it a flag id below 256 in `+0x04`: the arming walk
   then skips it once the flag is set. No shipped trap does this.
 - The odds cannot be authored per trap; a trap with one outcome names the same row twice, as 129
   shipped traps do. The arm chance can, and two shipped traps use 60.
 - A trap's effect is an ordinary action row (246 to 261 ship); naming another row works when
-  `00322C50(14h, id)` accepts it.
+  `00322C50(0x14, id)` accepts it.
 
 ## Related
 
@@ -309,6 +309,6 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - [What the periodic tick does](../Status-Effects-And-KO/status-timers.md): the caller of the trigger walk.
 - [Battle log](../Battle-Actions/battle-log.md): the four trap messages.
 - [The action definition row](../Battle-Actions/action-definition-row.md) and [the count clock and bank recipes](../Damage-And-Battle-Formulas/weapon-formulas.md): the rows and their slots.
-- [Section 000 of the script container](../EBP-Script-Files/ebp-script-image.md): the header word `+6C`<sub>h</sub> and the tag-3 region.
+- [Section 000 of the script container](../EBP-Script-Files/ebp-script-image.md): the header word `+0x6C` and the tag-3 region.
 - [Area flags](area-flags-navimapdata.md): the town flag that disables arming, markers and triggering.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the tick's per-slot pre-pass that runs the Libra toggle.

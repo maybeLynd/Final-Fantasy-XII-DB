@@ -34,41 +34,41 @@ callers: action selection `00305AB0` (`00305B2F`, `00305C9B`), the AI order step
 1. With `reset` non-zero it first calls `003105D0`, the action cancel and reset (`0030F788`).
 2. The target handle is resolved with `0031B7E0`; a handle that does not resolve leaves the target
    null and the commit still goes ahead (`0030F78F`-`0030F79E`).
-3. **Action ids.** An id up to `21E`<sub>h</sub> clears the target list at unit `+778`<sub>h</sub> (`00316CF0`) and
-   appends the target's `+10`<sub>h</sub> object, or 0 (`00316CD0`) (`0030F7A1`-`0030F7D7`). An id above it is
-   accepted only when `(u16)(id - 4000h) <= 166h`, that is `4000`<sub>h</sub>-`4166`<sub>h</sub>, and then the list is
+3. **Action ids.** An id up to `0x21E` clears the target list at unit `+0x778` (`00316CF0`) and
+   appends the target's `+0x10` object, or 0 (`00316CD0`) (`0030F7A1`-`0030F7D7`). An id above it is
+   accepted only when `(u16)(id - 0x4000) <= 0x166`, that is `0x4000`-`0x4166`, and then the list is
    left alone; any other id returns 0 (`0030F7D9`-`0030F7EC`).
-4. **The commit block.** It clears bits 0 and 1 of `+700`<sub>h</sub>, stores `actionData` at `+708`<sub>h</sub>, the
-   handle at `+710`<sub>h</sub> and the id at `+714`<sub>h</sub>, zeroes the phase byte `+6B4`<sub>h</sub>, and copies `+700`<sub>h</sub>-`+717`<sub>h</sub>
-   to `+718`<sub>h</sub>-`+72F`<sub>h</sub> (`0030F7F2`-`0030F82A`).
-5. `+770`<sub>h</sub> is kept when the unit is on the enemy side (stats `+05`<sub>h</sub> = 1), or on the party side with an
-   id equal to `+744`<sub>h</sub> and a handle equal to `+740`<sub>h</sub>; otherwise it is zeroed (`0030F832`-`0030F85F`).
-6. When bit 1 of the action-context word `+6B0`<sub>h</sub> is set it is cleared, and the stats-record list gets
-   one entry: `+6B9`<sub>h</sub> = the byte at `022C1DB8 + 12 * [unit+EA9h]`, `+6B6`<sub>h</sub> = 1 (`0030F865`-`0030F894`).
-7. `+24`<sub>h</sub> holds the handle of the unit's group leader (see
+4. **The commit block.** It clears bits 0 and 1 of `+0x700`, stores `actionData` at `+0x708`, the
+   handle at `+0x710` and the id at `+0x714`, zeroes the phase byte `+0x6B4`, and copies `+0x700`-`+0x717`
+   to `+0x718`-`+0x72F` (`0030F7F2`-`0030F82A`).
+5. `+0x770` is kept when the unit is on the enemy side (stats `+0x05` = 1), or on the party side with an
+   id equal to `+0x744` and a handle equal to `+0x740`; otherwise it is zeroed (`0030F832`-`0030F85F`).
+6. When bit 1 of the action-context word `+0x6B0` is set it is cleared, and the stats-record list gets
+   one entry: `+0x6B9` = the byte at `022C1DB8 + 12 * [unit+0xEA9]`, `+0x6B6` = 1 (`0030F865`-`0030F894`).
+7. `+0x24` holds the handle of the unit's group leader (see
    [the battle unit field map](../Characters-And-Objects/battle-unit-fields.md)); a unit
-   is its group's leader when its own id `+08`<sub>h</sub> equals it, and a group is the units sharing that
-   handle. When the unit is not its group's leader, `+750`<sub>h</sub> is zeroed (`0030F89B`-`0030F8A3`).
-8. For a resolved target and an id up to `21E`<sub>h</sub> (`0030F8A9`-`0030F8B6`):
+   is its group's leader when its own id `+0x08` equals it, and a group is the units sharing that
+   handle. When the unit is not its group's leader, `+0x750` is zeroed (`0030F89B`-`0030F8A3`).
+8. For a resolved target and an id up to `0x21E` (`0030F8A9`-`0030F8B6`):
    - **Hostile target** (`0030AB40(unit, target, 0)` above 1, see [Area of effect](area-of-effect.md)):
-     `+754`<sub>h</sub> = the handle. If the unit is its group's leader, every slot unit that has a stats record,
-     is not KO, Stone or X-Zone (unless `00377C20()` is non-zero) and has the same group-leader handle `+24`<sub>h</sub> gets
-     `+754`<sub>h</sub> = the handle, and the leader's `+750`<sub>h</sub> = the handle (`0030F8BC`-`0030F931`).
-   - **Any target**, unless unit bit 22 is set: with `bit = 1 << [unit+EA9h]`, if the target's mask
-     `+EA4`<sub>h</sub> does not have it, the target's count `+EA8`<sub>h</sub> goes up by 1, the bit is set, and
+     `+0x754` = the handle. If the unit is its group's leader, every slot unit that has a stats record,
+     is not KO, Stone or X-Zone (unless `00377C20()` is non-zero) and has the same group-leader handle `+0x24` gets
+     `+0x754` = the handle, and the leader's `+0x750` = the handle (`0030F8BC`-`0030F931`).
+   - **Any target**, unless unit bit 22 is set: with `bit = 1 << [unit+0xEA9]`, if the target's mask
+     `+0xEA4` does not have it, the target's count `+0xEA8` goes up by 1, the bit is set, and
      `00313B30(unit, target, 1)` reports it (`0030F937`-`0030F975`).
 9. It returns 1 (`0030F97A`).
 
 ### Release
 
 The action reset `003105D0` calls `00310780` first (`00310605`). For a unit with a stats
-record whose target `+710`<sub>h</sub> resolves and whose bit 22 is clear, `00310780` removes the unit's bit from
-the target's `+EA4`<sub>h</sub>, decrements `+EA8`<sub>h</sub>, reports it with `00313B30(unit, target, 0)` and calls
+record whose target `+0x710` resolves and whose bit 22 is clear, `00310780` removes the unit's bit from
+the target's `+0xEA4`, decrements `+0xEA8`, reports it with `00313B30(unit, target, 0)` and calls
 `002FEAD0(target)` (`0031079F`-`003107FE`). `00310780` is also called from `00300FC0` (`0030100D`). Both
 fields are zeroed when a unit is reset for reuse (`00236AD8`-`00236ADF`) and by `00322050` and `00322080`.
 
-For any unit with a stats record, `00310780` then releases the presentation slot `+694`<sub>h</sub>
-([Action phases](action-phases.md); `00310812`-`00310825`). For the order id `414E`<sub>h</sub> it calls
+For any unit with a stats record, `00310780` then releases the presentation slot `+0x694`
+([Action phases](action-phases.md); `00310812`-`00310825`). For the order id `0x414E` it calls
 `00317E50`, which is `0025AAD0(1, 0)`: with handle 0 `003588B0` resolves nothing and the non-zero
 first argument skips the rest, so the call changes nothing (`0031084D`-`00310856`, `003588B4`,
 `0025AAE1`).
@@ -90,7 +90,7 @@ record to `003E6B50`. The record holds:
 
 ### The idle-unit queue
 
-Queueing happens in the combat frame `00308610`, for a unit whose `+708`<sub>h</sub> is null and whose bit 5 is
+Queueing happens in the combat frame `00308610`, for a unit whose `+0x708` is null and whose bit 5 is
 clear (`0030868B`-`003086DA`):
 
 1. When unit bit 22 is set, `00308270` is called.
@@ -109,7 +109,7 @@ entry from the read index `022BE980` (an empty ring yields handle 0). For each u
 still has bit 5, it clears the bit and calls `00305AB0(unit, 0)` when the unit:
 
 - has a stats record and is not KO, Stone or X-Zone (unless `00377C20()` is non-zero);
-- has none of status bits 0, 1, 3, 4 and 31 (`8000001B`<sub>h</sub>);
+- has none of status bits 0, 1, 3, 4 and 31 (`0x8000001B`);
 - gets 0 from `0030DA30(unit)`.
 
 `0030FE60` resets both indices.
@@ -118,14 +118,14 @@ still has bit 5, it clears the bit and calls `00305AB0(unit, 0)` when the unit:
 
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
-| unit `+708`<sub>h</sub> | `void*` | committed action data | `0030F7F9` |
-| unit `+710`<sub>h</sub> | `u32` | committed target handle | `0030F800` |
-| unit `+714`<sub>h</sub> | `u16` | committed action id | `0030F806` |
-| unit `+718`<sub>h</sub>-`+72F`<sub>h</sub> | `u8[24]` | copy of `+700`<sub>h</sub>-`+717`<sub>h</sub> at commit | `0030F823`, `0030F82A` |
-| unit `+750`<sub>h</sub> | `u32` | the leader's own hostile target; read by `00301AD0` (`0030314F`, `00303176`) | `0030F931`; zeroed at `0030F8A3`; `00305E70` copies `+754`<sub>h</sub> into it |
-| unit `+754`<sub>h</sub> | `u32` | the group leader's hostile target | `0030F8CF`, `0030F920` |
-| unit `+EA4`<sub>h</sub> | `u32` | attacker mask, one bit per `+EA9`<sub>h</sub> index | `0030F962`; `003107EA` |
-| unit `+EA8`<sub>h</sub> | `u8` | attacker count | `0030F959` (+1); `003107DD` (-1) |
+| unit `+0x708` | `void*` | committed action data | `0030F7F9` |
+| unit `+0x710` | `u32` | committed target handle | `0030F800` |
+| unit `+0x714` | `u16` | committed action id | `0030F806` |
+| unit `+0x718`-`+0x72F` | `u8[24]` | copy of `+0x700`-`+0x717` at commit | `0030F823`, `0030F82A` |
+| unit `+0x750` | `u32` | the leader's own hostile target; read by `00301AD0` (`0030314F`, `00303176`) | `0030F931`; zeroed at `0030F8A3`; `00305E70` copies `+0x754` into it |
+| unit `+0x754` | `u32` | the group leader's hostile target | `0030F8CF`, `0030F920` |
+| unit `+0xEA4` | `u32` | attacker mask, one bit per `+0xEA9` index | `0030F962`; `003107EA` |
+| unit `+0xEA8` | `u8` | attacker count | `0030F959` (+1); `003107DD` (-1) |
 | `022BE980` / `022BE981` | `u8` | idle-queue read and write indices | `00313D1E` / `003086DA`; both zeroed by `0030FE60` (`0030FE7B`) |
 
 ## Related
@@ -134,4 +134,4 @@ still has bit 5, it clears the bit and calls `00305AB0(unit, 0)` when the unit:
 - [Target selection](target-selection.md) - how the menu's target is chosen before the commit.
 - [Combos](combos.md) - the commit repeated for every extra hit.
 - [Gambits and enmity](../Enemy-AI-And-Gambits/gambits.md) - the gambit
-  target selector that reads `+750`<sub>h</sub>.
+  target selector that reads `+0x750`.

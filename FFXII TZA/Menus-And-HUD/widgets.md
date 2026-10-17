@@ -18,7 +18,7 @@ addresses: "002465F0, 00244F50, 00245000, 00248220, 00248030, 00244640, 00246AD0
 Every widget is built by `002465F0(object, size, procedure, record, borrowed)`:
 
 1. It clears the object (`00246612`-`00246626`).
-2. It installs the procedure at `+00`<sub>h</sub>, or `005C5230` (`xor eax, eax` / `ret`) when none is given
+2. It installs the procedure at `+0x00`, or `005C5230` (`xor eax, eax` / `ret`) when none is given
    (`0024662B`-`00246641`).
 3. It writes the header (below).
 4. It calls the procedure once with message 1 and the creator's two arguments (`00246721`-`00246748`).
@@ -27,61 +27,61 @@ There are three ways in:
 
 | Entry | Does |
 |---|---|
-| `00244F50(size, procedure, record)` | the factory: size 0 becomes `C0`<sub>h</sub>; up to `120`<sub>h</sub> bytes it takes a free slot of the 112-slot pool at `*0208EA58` (`00244F7F`-`00244FAE`), otherwise or when the pool is full it allocates from the heap (`002497B0`) |
+| `00244F50(size, procedure, record)` | the factory: size 0 becomes `0xC0`; up to `0x120` bytes it takes a free slot of the 112-slot pool at `*0208EA58` (`00244F7F`-`00244FAE`), otherwise or when the pool is full it allocates from the heap (`002497B0`) |
 | `00245000(object, size, procedure, record)` | builds in memory the caller provides, usually inside the parent |
 | `002465F0` directly | 7 sites, in `00241BF0`, `00241C90` and `00247AE0` |
 
-A pool or in-place widget is marked borrowed (`+40`<sub>h</sub> bit 14): the release then frees only the pool slot
+A pool or in-place widget is marked borrowed (`+0x40` bit 14): the release then frees only the pool slot
 (`002483E5`-`002483F0`), while a heap widget is freed (`002483DE`).
 
 ### Sizes
 
-Over the image there are 296 construction sites in 235 functions, building 267 procedures at 83 sizes, from `C0`<sub>h</sub> to
-`179E0`<sub>h</sub>. No procedure is built at two sizes, so a widget's size identifies its type.
+Over the image there are 296 construction sites in 235 functions, building 267 procedures at 83 sizes, from `0xC0` to
+`0x179E0`. No procedure is built at two sizes, so a widget's size identifies its type.
 
 | Size | Procedure | Widget |
 |---|---|---|
-| `61F0`<sub>h</sub> | `00279E20` | the battle menu ([Battle menu](battle-menu.md)) |
-| `179E0`<sub>h</sub> | `002B7590`, `002BA700`, `003CB650` | the map containers ([Map screens](map-screens.md)) |
-| `BC08`<sub>h</sub> | `002B7B80`, `002BAF80` | the map pages |
-| `640`<sub>h</sub> | `0057C480` | the confirmation window ([Dialogs](dialogs.md)) |
+| `0x61F0` | `00279E20` | the battle menu ([Battle menu](battle-menu.md)) |
+| `0x179E0` | `002B7590`, `002BA700`, `003CB650` | the map containers ([Map screens](map-screens.md)) |
+| `0xBC08` | `002B7B80`, `002BAF80` | the map pages |
+| `0x640` | `0057C480` | the confirmation window ([Dialogs](dialogs.md)) |
 
-A parent can hold its children inside itself: the battle menu builds two `3010`<sub>h</sub> panels at `+C0`<sub>h</sub> and `+30D0`<sub>h</sub>, the
-Dismiss confirmation in a panel slot, and the `D0`<sub>h</sub> target tabs at `+60E0`<sub>h</sub>, all with `00245000`
+A parent can hold its children inside itself: the battle menu builds two `0x3010` panels at `+0xC0` and `+0x30D0`, the
+Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, all with `00245000`
 (`0027A12F`-`0027A42D`).
 
 ### The header
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32[2]` | proc | procedure(self, message); `005C5230` when none |
-| `08`<sub>h</sub> | `u32[2]` | cont | continuation the release jumps to after freeing (`00248405`) |
-| `10`<sub>h</sub> | `u32[2]` | parent | set by the attach `00248220` (`00248267`) |
-| `18`<sub>h</sub> | `u32[2]` | child | first child (`00248239`) |
-| `20`<sub>h</sub> | `u32[2]` | next | next sibling (`0024825C`) |
-| `28`<sub>h</sub> | `u32[2]` | prev | previous sibling (`00248260`) |
-| `30`<sub>h</sub> | `u32` | nchild | number of children (`00248264`) |
-| `38`<sub>h</sub> | `u32[2]` | draw | draw record while the draw pass is on this widget |
-| `40`<sub>h</sub> | `u32` | flags | below; `80A`<sub>h</sub> plus the generation and borrowed bits when built (`00246653`) |
-| `44`<sub>h</sub> | `u16` | w44 | 100 (`002466FA`) |
-| `48`<sub>h</sub> | `u32[2]` | trans | animation descriptor, default `00915198` (`00246687`) |
-| `50`<sub>h</sub> | `u32` | flags2 | bit 0 clip, bit 1 owns the array at `+60`<sub>h</sub> |
-| `60`<sub>h</sub> | `u32[2]` | arr | array freed by the release (`0024838A`) |
-| `68`<sub>h</sub> | `u32[2]` | half | the descriptor half of the current run |
-| `70`<sub>h</sub> | `u32` | frames | run length in frames |
-| `74`<sub>h</sub> | `u32` | start | frame the run started (`0208F570`) |
-| `78`<sub>h</sub> | `u32` | t78 | 0 forward, 1.0 backward |
-| `7C`<sub>h</sub> | `u32` | state | low nibble: run state 0-4 |
-| `80`<sub>h</sub> | `u32` | tween | bits 0-2: tween channels running |
-| `98`<sub>h</sub> | `u16[2]` | pos | tween channel 0 output |
-| `9C`<sub>h</sub> | `u16[2]` | ext | tween channel 1 output |
-| `A0`<sub>h</sub> | `u8` | alpha | `80`<sub>h</sub> when built |
-| `A1`<sub>h</sub> | `u8` | rgb | `80`<sub>h</sub> when built |
-| `A2`<sub>h</sub> | `u8` | slot | pool slot marker; 0 frees it (`002483E9`) |
-| `B4`<sub>h</sub> | `u32` | phase | half-rate phase counter |
-| `B8`<sub>h</sub> | `f32` | rate | 1.0, or 1 / steps at game speed (`00246B49`) |
+| `+0x00` | `u32[2]` | proc | procedure(self, message); `005C5230` when none |
+| `+0x08` | `u32[2]` | cont | continuation the release jumps to after freeing (`00248405`) |
+| `+0x10` | `u32[2]` | parent | set by the attach `00248220` (`00248267`) |
+| `+0x18` | `u32[2]` | child | first child (`00248239`) |
+| `+0x20` | `u32[2]` | next | next sibling (`0024825C`) |
+| `+0x28` | `u32[2]` | prev | previous sibling (`00248260`) |
+| `+0x30` | `u32` | nchild | number of children (`00248264`) |
+| `+0x38` | `u32[2]` | draw | draw record while the draw pass is on this widget |
+| `+0x40` | `u32` | flags | below; `0x80A` plus the generation and borrowed bits when built (`00246653`) |
+| `+0x44` | `u16` | w44 | 100 (`002466FA`) |
+| `+0x48` | `u32[2]` | trans | animation descriptor, default `00915198` (`00246687`) |
+| `+0x50` | `u32` | flags2 | bit 0 clip, bit 1 owns the array at `+0x60` |
+| `+0x60` | `u32[2]` | arr | array freed by the release (`0024838A`) |
+| `+0x68` | `u32[2]` | half | the descriptor half of the current run |
+| `+0x70` | `u32` | frames | run length in frames |
+| `+0x74` | `u32` | start | frame the run started (`0208F570`) |
+| `+0x78` | `u32` | t78 | 0 forward, 1.0 backward |
+| `+0x7C` | `u32` | state | low nibble: run state 0-4 |
+| `+0x80` | `u32` | tween | bits 0-2: tween channels running |
+| `+0x98` | `u16[2]` | pos | tween channel 0 output |
+| `+0x9C` | `u16[2]` | ext | tween channel 1 output |
+| `+0xA0` | `u8` | alpha | `0x80` when built |
+| `+0xA1` | `u8` | rgb | `0x80` when built |
+| `+0xA2` | `u8` | slot | pool slot marker; 0 frees it (`002483E9`) |
+| `+0xB4` | `u32` | phase | half-rate phase counter |
+| `+0xB8` | `f32` | rate | 1.0, or 1 / steps at game speed (`00246B49`) |
 
-| `+40`<sub>h</sub> bit | Meaning |
+| `+0x40` bit | Meaning |
 |---:|---|
 | 0 | active (`002473F0`) |
 | 1 | may be activated |
@@ -89,7 +89,7 @@ Dismiss confirmation in a panel slot, and the `D0`<sub>h</sub> target tabs at `+
 | 4 | has the focus (`00244865`) |
 | 5 | passed to children on attach (`00248271`) |
 | 6 | close requested (`00244F0A`) |
-| 7 | the byte offsets at `+A4`<sub>h</sub>-`+AD`<sub>h</sub> move the draw box (`00246480`) |
+| 7 | the byte offsets at `+0xA4`-`+0xAD` move the draw box (`00246480`) |
 | 9 | a run was started |
 | 10 | release deferred to the next tick (`00245097`) |
 | 13 | has had a child attached, or a child's priority changed: the children are re-sorted (`00244990`) |
@@ -98,7 +98,7 @@ Dismiss confirmation in a panel slot, and the `D0`<sub>h</sub> target tabs at `+
 | 17 | generation parity |
 | 18 | skip the per-tick update |
 | 24 | drawn in the second draw pass (`00247730`) |
-| 27 | `+AE`<sub>h</sub>/`+AF`<sub>h</sub> also widen the draw box |
+| 27 | `+0xAE`/`+0xAF` also widen the draw box |
 
 ### The tree
 
@@ -125,7 +125,7 @@ The message record and every id are in [Widget messages](widget-messages.md).
 
 ### Draw order and the two draw passes
 
-`00247930(widget, priority)` stores a widget's draw priority at `+44`<sub>h</sub> (100 when built) and sets bit 13 on its
+`00247930(widget, priority)` stores a widget's draw priority at `+0x44` (100 when built) and sets bit 13 on its
 parent. When the walker `00244980` reaches a widget with bit 13, it re-sorts that widget's children with `002479B0`
 and clears the bit (`00244990`-`0024499F`):
 
@@ -137,62 +137,62 @@ and clears the bit (`00244990`-`0024499F`):
 3. The children are relinked in that order (`00247A51`-`00247AB1`).
 
 The root draw passes `002450B0` and `00245110` set `0208F564` to 0 and to 1 and walk the tree with `00245E60`. A
-widget's own content is drawn only in the pass equal to its `+40`<sub>h</sub> bit 24, with bit 28 clear (`0024623A`-`0024624B`);
-its box is drawn in that pass when `+40`<sub>h</sub> bit 7 is also set (`002461BB`-`002461CE`).
+widget's own content is drawn only in the pass equal to its `+0x40` bit 24, with bit 28 clear (`0024623A`-`0024624B`);
+its box is drawn in that pass when `+0x40` bit 7 is also set (`002461BB`-`002461CE`).
 `00247730(widget, pass)` sets that bit on a widget and every descendant.
 
 `00245E60` takes each widget's box from `00246480(widget, box)` (`00245F50`):
 
-- the position and size from `+98`<sub>h</sub>, an inner rectangle the size of the widget, scale 1.0 at box `+1C`<sub>h</sub> and
-  `+20`<sub>h</sub>, and the alpha `+A0`<sub>h</sub>;
-- with bit 7, the signed bytes `+AC`<sub>h</sub>/`+AD`<sub>h</sub> added to the position, the inner offset from `+A4`<sub>h</sub>/`+A5`<sub>h</sub>, and
-  `+A6`<sub>h</sub>/`+A7`<sub>h</sub> added to the inner size, plus `+AE`<sub>h</sub>/`+AF`<sub>h</sub> with bit 27;
+- the position and size from `+0x98`, an inner rectangle the size of the widget, scale 1.0 at box `+0x1C` and
+  `+0x20`, and the alpha `+0xA0`;
+- with bit 7, the signed bytes `+0xAC`/`+0xAD` added to the position, the inner offset from `+0xA4`/`+0xA5`, and
+  `+0xA6`/`+0xA7` added to the inner size, plus `+0xAE`/`+0xAF` with bit 27;
 - then the running opening or closing run, through `00244A20`.
 
-It returns 1 when a float at box `+10`<sub>h</sub>-`+18`<sub>h</sub> is not 0 or the scale is not 1.0. `00246450` returns the position
+It returns 1 when a float at box `+0x10`-`+0x18` is not 0 or the scale is not 1.0. `00246450` returns the position
 alone, with the same bit 7 offset.
 
 The box itself is a nine-piece panel. `00245E60` sets up a draw record (`002D8530`) and calls `002455A0` when
-`+40`<sub>h</sub> bit 8 is set, otherwise `00245170` (`002461D9`-`002461F0`). `00245170(widget, record)` draws nothing while
+`+0x40` bit 8 is set, otherwise `00245170` (`002461D9`-`002461F0`). `00245170(widget, record)` draws nothing while
 `002DD4B0()` (the dword `0215E6D0`) is 0. Otherwise:
 
-1. It takes the atlas `0208EAA0` (`cm_win_c`), or `0208EAB0` with `+40`<sub>h</sub> bit 22, and nine consecutive 8-byte
-   pieces from the index its header gives at `+44`<sub>h</sub>: `i16` x and y, then 12-bit width and height.
-2. The middle column is the widget width `+9C`<sub>h</sub> less the two corner widths plus `+A6`<sub>h</sub>; the middle row the height
-   `+9E`<sub>h</sub> less the two corner heights plus `+A7`<sub>h</sub>. The panel starts at `+A4`<sub>h</sub>, `+A5`<sub>h</sub>.
-3. Its colour is `80808080`<sub>h</sub> for a style byte `+A3`<sub>h</sub> below 2, else colour-table entry `+A3h + 92h`
-   (`002DD7E0`); its palette byte is the first piece's byte `+7` for a style below 10, else `002DD7B0(+A3h +
-   92h)`.
+1. It takes the atlas `0208EAA0` (`cm_win_c`), or `0208EAB0` with `+0x40` bit 22, and nine consecutive 8-byte
+   pieces from the index its header gives at `+0x44`: `i16` x and y, then 12-bit width and height.
+2. The middle column is the widget width `+0x9C` less the two corner widths plus `+0xA6`; the middle row the height
+   `+0x9E` less the two corner heights plus `+0xA7`. The panel starts at `+0xA4`, `+0xA5`.
+3. Its colour is `0x80808080` for a style byte `+0xA3` below 2, else colour-table entry `+0xA3 + 0x92`
+   (`002DD7E0`); its palette byte is the first piece's byte `+7` for a style below 10, else `002DD7B0(+0xA3 +
+   0x92)`.
 4. It draws the nine pieces row by row with `002DA7C0` between `002DAF30` and `002DAC70`, leaving out the
    middle row or column when its size is not above 0.
 
 `00272310(widget, out)` gives a widget's place on screen: its own box position
-(`00246480`) plus that of every ancestor up the `+10`<sub>h</sub> chain, for `003EE420` (`003EE511`, `003EE51F`).
+(`00246480`) plus that of every ancestor up the `+0x10` chain, for `003EE420` (`003EE511`, `003EE51F`).
 `003EE420` also steps four fades of its object with `003EEBD0(object, up)` (`003EE6A4`). Each moves by
-`1 / ([01DFE0B4] x 9600 / 1000)` and is clamped to 0-1: `+1D0`<sub>h</sub> up when `up` is non-zero, `+88`<sub>h</sub> up with `+1D4`<sub>h</sub>
-bit 8, and `+188`<sub>h</sub> and `+1B8`<sub>h</sub> up with `+1D4`<sub>h</sub> bit 9; each goes down otherwise.
+`1 / ([01DFE0B4] x 9600 / 1000)` and is clamped to 0-1: `+0x1D0` up when `up` is non-zero, `+0x88` up with `+0x1D4`
+bit 8, and `+0x188` and `+0x1B8` up with `+0x1D4` bit 9; each goes down otherwise.
 
-`003EE8C0(object, text, a, b)` sets those fades up for a new text. The object holds two `1E0`<sub>h</sub>-byte
-text entries at `+C0`<sub>h</sub>, and the index `+4B0`<sub>h</sub> toggles between them:
+`003EE8C0(object, text, a, b)` sets those fades up for a new text. The object holds two 0x1E0-byte
+text entries at `+0xC0`, and the index `+0x4B0` toggles between them:
 
-1. It clears bits 8 and 9 of the old entry's `+1D4`<sub>h</sub>, moves the index and sets both bits on the new one.
-2. It copies up to `80`<sub>h</sub> bytes of `text` into the entry (`00254F30`); a null or empty text leaves it empty.
-3. It clears bit 9 again when `a` and `b` are both 0, zeroes `+1D0`<sub>h</sub>, `+88`<sub>h</sub>, `+188`<sub>h</sub> and `+1B8`<sub>h</sub>,
-   keeps `a` at `+18C`<sub>h</sub> and `b` at `+1BC`<sub>h</sub>, and runs `002B3400(entry + A0h, 0, 0)`.
+1. It clears bits 8 and 9 of the old entry's `+0x1D4`, moves the index and sets both bits on the new one.
+2. It copies up to 0x80 bytes of `text` into the entry (`00254F30`); a null or empty text leaves it empty.
+3. It clears bit 9 again when `a` and `b` are both 0, zeroes `+0x1D0`, `+0x88`, `+0x188` and `+0x1B8`,
+   keeps `a` at `+0x18C` and `b` at `+0x1BC`, and runs `002B3400(entry + 0xA0, 0, 0)`.
 
-The battle menu's title writer `0027D480` (`0027D52F`) and `00298250` (`002984C0`, on its `+C0`<sub>h</sub>) call it.
+The battle menu's title writer `0027D480` (`0027D52F`) and `00298250` (`002984C0`, on its `+0xC0`) call it.
 
 Two helpers set those offset bytes:
 
-- `002476E0(widget, d)` adds the low bytes of the four words at `d` to `+A4`<sub>h</sub>-`+A7`<sub>h</sub> when bit 7 is set and bit 8
+- `002476E0(widget, d)` adds the low bytes of the four words at `d` to `+0xA4`-`+0xA7` when bit 7 is set and bit 8
   clear; `002A70B0` calls it.
-- `00247810(widget)` reads the three bits 16-18 of `+44`<sub>h</sub>. With bit 18 clear it sets `+AD`<sub>h</sub> to -7 when bit 17 is
-  set and to 6 otherwise, and `+AC`<sub>h</sub> the same way from bit 16; with bit 18 set it writes only the -7 values.
+- `00247810(widget)` reads the three bits 16-18 of `+0x44`. With bit 18 clear it sets `+0xAD` to -7 when bit 17 is
+  set and to 6 otherwise, and `+0xAC` the same way from bit 16; with bit 18 set it writes only the -7 values.
   `00227EE0`, `002A6A80` and the confirmation window `0057C480` call it.
 - `002478D0(widget, on)` sets or clears bit 18, the per-tick skip, on a widget and every descendant (first child
-  `+18`<sub>h</sub>, next sibling `+20`<sub>h</sub>); `00285290` calls it.
+  `+0x18`, next sibling `+0x20`); `00285290` calls it.
 
-`00247780(on)` sets bit 0 of `0208ED58`. While it is set, both passes also call `00245510` for a root whose `+C0`<sub>h</sub>
+`00247780(on)` sets bit 0 of `0208ED58`. While it is set, both passes also call `00245510` for a root whose `+0xC0`
 is 1, which hands the root's position and alpha to `00367940` (`002450D7`-`002450F5`, `00245137`-`00245149`); the
 first pass does so only while `0208F568` is 0. The script verbs `fsmenu_showcursor` and `fsmenu_hidecursor` set and
 clear the bit (`00510964`, `005109A3`).
@@ -236,11 +236,11 @@ Five UI tick functions (`00250540`, `002506D0`, `00250730`, `002507C0`, `002508E
 4. From state 4 it reverses a closing run in place (`00246B72`-`00246B90`).
 5. It sets state 2 and sends message 14 (`00246BFF`).
 
-`00247570(widget, descriptor)` installs a widget's descriptor at `+48`<sub>h</sub>, or the default `00915198` for 0. HUD and menu
-code takes most of theirs from the table of `28`<sub>h</sub>-byte descriptors at `009158C0`, entry `i` through `002735E0(i)`
+`00247570(widget, descriptor)` installs a widget's descriptor at `+0x48`, or the default `00915198` for 0. HUD and menu
+code takes most of theirs from the table of `0x28`-byte descriptors at `009158C0`, entry `i` through `002735E0(i)`
 (for example `0029BEE8`, `0028B92A`).
 
-`00244DD0(widget)` closes it, the mirror image: a backward run from descriptor `+14`<sub>h</sub>, length 0 when `00181C90`
+`00244DD0(widget)` closes it, the mirror image: a backward run from descriptor `+0x14`, length 0 when `00181C90`
 returns 1, state 4, then message 15 (`00244EF5`).
 
 Every tick the walker `00244970` steps each active widget with `00246C20`, which sends message 25 first, steps one tween
@@ -251,21 +251,21 @@ channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) o
 
 ### Tweens
 
-Besides its opening and closing runs, a widget has four animated values, one per bit of `+80`<sub>h</sub>. Each starter
+Besides its opening and closing runs, a widget has four animated values, one per bit of `+0x80`. Each starter
 refuses while any of the other three bits is set, records the start value, the change and the length
 `ms x 60 / 1000` frames, and stores a curve in bits 10-13:
 
 | Bit | Starter | Animates | Message per step |
 |---:|---|---|---|
-| `0` | `002468A0(widget, x, y, curve, ms)` | the position `+98`<sub>h</sub>/`+9A`<sub>h</sub> | 22, and 17 at the end |
-| `1` | `00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+9C`<sub>h</sub>/`+9E`<sub>h</sub>; anchor bit 0 or 1 keeps the right or bottom edge in place (`00246EAE`-`00246EDE`) | 21 |
-| `2` | `00247300(widget, from, to, curve, ms)` | the float `+8C`<sub>h</sub> | 23 |
-| `3` | `002472A0(widget, value, slot)` | nothing: the float `+84`<sub>h</sub> is copied into the draw box's float at `+10`<sub>h</sub>, `+14`<sub>h</sub> or `+18`<sub>h</sub> for slot 0, 1 or 2 (`00244D74`-`00244DC1`) | none |
+| `0` | `002468A0(widget, x, y, curve, ms)` | the position `+0x98`/`+0x9A` | 22, and 17 at the end |
+| `1` | `00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit 0 or 1 keeps the right or bottom edge in place (`00246EAE`-`00246EDE`) | 21 |
+| `2` | `00247300(widget, from, to, curve, ms)` | the float `+0x8C` | 23 |
+| `3` | `002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`00244D74`-`00244DC1`) | none |
 
 `00247260` starts bit 1 like `00247130` and then replaces the curve with its sixth argument. `002468A0` sends 17
 twice instead of starting when the widget is already at the target (`002468DE`-`00246922`).
 
-Each tick `00246C20` steps the lowest running bit. The elapsed frames are multiplied by the rate `+B8`<sub>h</sub> while the
+Each tick `00246C20` steps the lowest running bit. The elapsed frames are multiplied by the rate `+0xB8` while the
 game runs at speed (`00246C58`-`00246C7D`); `002418F0` sets that rate the way the opening run does: 1.0, or one over
 the speed steps (`00229E70`) when `00229DF0` is set and `00229EA0` returns 2.
 
@@ -281,12 +281,12 @@ The curve function `00248F40(curve, length, t)` returns 1.0 once `t` reaches `le
 | 4 | `0.6 + 0.4 x sqrt(p)` (`003A1D30`) |
 | 5 | `0.4 + 0.3 x sin(p x pi / 2) + 0.3 x p` |
 
-Many menu rows fade their alpha `+A0`<sub>h</sub> or colour byte `+A1`<sub>h</sub> with a pair of helpers that keep their state in the row
-widget's own `+C0`<sub>h</sub>-`+D3`<sub>h</sub>:
+Many menu rows fade their alpha `+0xA0` or colour byte `+0xA1` with a pair of helpers that keep their state in the row
+widget's own `+0xC0`-`+0xD3`:
 
-- `002D04F0(widget, to, which, curve, ms)` starts the fade: bit 0 of `+C0`<sub>h</sub> running, bits 2-5 the curve, bits 6-7
-  `which` (above 0 for `+A1`<sub>h</sub>), the start value at `+C4`<sub>h</sub>, the change at `+C8`<sub>h</sub>, the length `ms x 60 / 1000`
-  frames at `+CC`<sub>h</sub> and the start frame `0208F570` at `+D0`<sub>h</sub>.
+- `002D04F0(widget, to, which, curve, ms)` starts the fade: bit 0 of `+0xC0` running, bits 2-5 the curve, bits 6-7
+  `which` (above 0 for `+0xA1`), the start value at `+0xC4`, the change at `+0xC8`, the length `ms x 60 / 1000`
+  frames at `+0xCC` and the start frame `0208F570` at `+0xD0`.
 - `002D0410(widget)`, run each tick by the row, writes `start + change x 00248F40(curve, length, now - start)` to the
   byte and clears the running bits when the curve reaches 1.0.
 
@@ -300,19 +300,19 @@ The Party Menu's member rows, the Status and Equip rows and the license board us
 2. `00245020` gives up the focus, sends message 18 to the widget and every descendant (`002473B0`), and releases it. A
    widget with bit 5 is instead deactivated and marked for release on the next tick (`00245072`-`0024509B`).
 3. The release `002482E0` releases the children, unlinks the widget, frees its array, sends message 24, clears the
-   procedure, frees the storage and jumps to `+08`<sub>h</sub> when set (`00248308`-`00248405`).
+   procedure, frees the storage and jumps to `+0x08` when set (`00248308`-`00248405`).
 
 ### The half-rate phase counter
 
-`+B4`<sub>h</sub> lets a widget work on every other tick. The constructor sets it to 1 when `001EDDA0` returns 0 and
+`+0xB4` lets a widget work on every other tick. The constructor sets it to 1 when `001EDDA0` returns 0 and
 `00314960` is non-zero (`0024674A`-`0024675C`); the drain clears it when `001EDDA0` returns non-zero and counts it up
 otherwise (`00248044`-`00248059`). `001EDEC0(phase)` answers 1 always when `01DFE0C0` is set or `01F82E38` is clear,
-and the phase's low bit inverted otherwise; 43 functions call it on their `+B4`<sub>h</sub> (`0024218B`, `002521DD`,
+and the phase's low bit inverted otherwise; 43 functions call it on their `+0xB4` (`0024218B`, `002521DD`,
 `00580356` and others) before doing their gated work.
 
 ### The widget that registers itself once
 
-`00565DD0` builds the `200`<sub>h</sub>-byte widget `00565E00` only while `[0209AC30] + 168h` is empty (`00565DD7`); its message 1
+`00565DD0` builds the `0x200`-byte widget `00565E00` only while `[0209AC30] + 0x168` is empty (`00565DD7`); its message 1
 stores itself there and its message 18 clears it (`00565E50`, `0056622D`). So at most one exists at a time, always from
 the heap.
 
@@ -320,25 +320,25 @@ the heap.
 
 | Widget | Factory | Size | Procedure | Kept at |
 |---|---|---|---|---|
-| title asset | `00394460` | `D8`<sub>h</sub> | `00394070` | `02AEE4C0` |
-| its consumer | `00394530` | `1D0`<sub>h</sub> | `003939B0` | `02AEE4C8` |
+| title asset | `00394460` | `0xD8` | `00394070` | `02AEE4C0` |
+| its consumer | `00394530` | `0x1D0` | `003939B0` | `02AEE4C8` |
 
 The script verbs `fsttl_initialize` (`00511EA0`) and `fsttl_opencommand` (`00511F90`) build them. The asset publishes
-itself on message 1 and sets `+C0`<sub>h</sub> bit 0 on message 16. The consumer refuses to be built before the asset exists
-(`00394543`), and each tick it waits for that bit (`00393A88`-`00393A9F`) and passes the asset's `+D0`<sub>h</sub> on to
+itself on message 1 and sets `+0xC0` bit 0 on message 16. The consumer refuses to be built before the asset exists
+(`00394543`), and each tick it waits for that bit (`00393A88`-`00393A9F`) and passes the asset's `+0xD0` on to
 `003946B0`.
 
-The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+C0`<sub>h</sub> bit 0 (`00394500`),
-`fsttl_opencommandsync` waits through `003944D0`, which answers 0 while `01EFAC12` is 2 and the consumer's `+C4`<sub>h</sub>
-bit 1 is clear, and `fsttl_closecommand` sets the consumer's `+C4`<sub>h</sub> bit 2 (`00394350`). The consumer opens its
+The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+0xC0` bit 0 (`00394500`),
+`fsttl_opencommandsync` waits through `003944D0`, which answers 0 while `01EFAC12` is 2 and the consumer's `+0xC4`
+bit 1 is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit 2 (`00394350`). The consumer opens its
 confirm through `00394380` and paints its rows with `00393950`, which, when `00264150`
 answers non-zero, recolours row 0 with colour 1 and the others with colour 0 (`00393240`), and sets each row's picture cell.
 
 ## Modding notes
 
 - A new widget needs a procedure that answers message 1 and returns 0 for the rest; `005C5230` is the shared default.
-- Widgets of `120`<sub>h</sub> bytes or less come from a 112-slot pool; more than 112 at once fall back to the heap.
-- Animation lengths are milliseconds in the descriptor at `+48`<sub>h</sub>; the run converts them to frames at 60 per second.
+- Widgets of `0x120` bytes or less come from a 112-slot pool; more than 112 at once fall back to the heap.
+- Animation lengths are milliseconds in the descriptor at `+0x48`; the run converts them to frames at 60 per second.
 
 ## Related
 

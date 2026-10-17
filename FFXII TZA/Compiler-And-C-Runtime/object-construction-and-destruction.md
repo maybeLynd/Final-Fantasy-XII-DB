@@ -27,14 +27,14 @@ class; see [class hierarchy](../Engine-Core/class-hierarchy.md).
 ### The scalar deleting destructor
 
 Slot 0 of a class with a virtual destructor is its scalar deleting destructor. It takes the object in
-`rcx` and a flag in `edx`, destroys the object, frees it when bit `1`<sub>h</sub> is set, and returns the object
+`rcx` and a flag in `edx`, destroys the object, frees it when bit `0x1` is set, and returns the object
 in `rax`. The size it passes to the deallocator is the class size. The flag is tested where it arrives
 or, when the destructor calls another function first, in the register it was saved to:
 
 - `001D70A0` stores `ExtraUI`'s vtable, tests `dl, 1` (`001D70B3`) and calls `00809950` with
-  `edx = 90h`.
+  `edx = 0x90`.
 - `00195530` copies `edx` to `ebx` (`0019553A`), calls the inner destructor `00195180`, then tests
-  `bl, 1` (`00195544`) and calls `00809950` with `edx = 98h`.
+  `bl, 1` (`00195544`) and calls `00809950` with `edx = 0x98`.
 
 `00809950` jumps to `00210EB0`, which jumps to `0019C590`, the `free` import stub; the size is ignored.
 
@@ -42,20 +42,20 @@ or, when the destructor calls another function first, in the register it was sav
 
 Most destructors test a second bit. `0086CE50` is the whole pattern:
 
-1. Store the vtable, then test bit `1`<sub>h</sub> (`0086CE6C`); when clear, return the object.
-2. Test bit `4`<sub>h</sub> (`0086CE71`).
+1. Store the vtable, then test bit `0x1` (`0086CE6C`); when clear, return the object.
+2. Test bit `0x4` (`0086CE71`).
 3. Clear: call `00584730`, which is `if (p) _aligned_free(p)` (`0019C570` is the `_aligned_free` import
    stub).
-4. Set: load the size (`edx = 28h`) and call `0016D6A0`, which is `ret 0`.
+4. Set: load the size (`edx = 0x28`) and call `0016D6A0`, which is `ret 0`.
 
-A caller passing `5`<sub>h</sub> therefore destroys the object and keeps its storage. Two other deallocators sit
+A caller passing `0x5` therefore destroys the object and keeps its storage. Two other deallocators sit
 on the bit-clear side: `007AD450` frees the block whose base is stored 8 bytes before the object,
 through the function pointer at `02EAD0B8`, and `0085E710` counts the free in `02EAF6C8` and jumps
 through the pointer at `01F44CF8`.
 
 ### Destructors rewind to the base vtable
 
-The 26 vtables at `01CD6268`, one every `20`<sub>h</sub> bytes, are `Phyre::PInputs::PInputSource` and its 25
+The 26 vtables at `01CD6268`, one every `0x20` bytes, are `Phyre::PInputs::PInputSource` and its 25
 subclasses; each one's own RTTI locator names it. Every slot-0 destructor stores the base vtable
 `01CD6268` into the object before testing the flags, and then passes its own class's size to the
 sized-delete call. A destructor's vtable store therefore names the class whose destructor runs next,
@@ -63,32 +63,32 @@ not the class it belongs to; the class comes from where the destructor's address
 
 | Vtable | Class | Destructor | Size |
 |---|---|---|---|
-| `01CD6268` | `PInputSource` | `0086CE50` | `28`<sub>h</sub> |
-| `01CD6288` | `PInputSourceKey` | `0086CF40` | `40`<sub>h</sub> |
-| `01CD62A8` | `PInputSourceJoypadButton` | `0086CEF0` | `40`<sub>h</sub> |
-| `01CD62C8` | `PInputSourceJoypadAxis` | `0086CEA0` | `38`<sub>h</sub> |
-| `01CD62E8` | `PInputSourceMouseButton` | `0086D2B0` | `38`<sub>h</sub> |
-| `01CD6308` | `PInputSourceMouseDeltaX` | `0086D300` | `40`<sub>h</sub> |
-| `01CD6328` | `PInputSourceMouseDeltaY` | `0086D350` | `40`<sub>h</sub> |
-| `01CD6348` | `PInputSourceTouchRotate` | `0086D490` | `28`<sub>h</sub> |
-| `01CD6368` | `PInputSourceTouchPinch` | `0086D440` | `28`<sub>h</sub> |
-| `01CD6388` | `PInputSourceTouchTwoFingerDragX` | `0086D4E0` | `28`<sub>h</sub> |
-| `01CD63A8` | `PInputSourceTouchTwoFingerDragY` | `0086D530` | `28`<sub>h</sub> |
-| `01CD63C8` | `PInputSourceTouchDragX` | `0086D3A0` | `28`<sub>h</sub> |
-| `01CD63E8` | `PInputSourceTouchDragY` | `0086D3F0` | `28`<sub>h</sub> |
-| `01CD6408` | `PInputSourceMotionQuatX` | `0086D1C0` | `28`<sub>h</sub> |
-| `01CD6428` | `PInputSourceMotionQuatY` | `0086D210` | `28`<sub>h</sub> |
-| `01CD6448` | `PInputSourceMotionQuatZ` | `0086D260` | `28`<sub>h</sub> |
-| `01CD6468` | `PInputSourceMotionQuatW` | `0086D170` | `28`<sub>h</sub> |
-| `01CD6488` | `PInputSourceMotionAngularVelocityX` | `0086CF90` | `28`<sub>h</sub> |
-| `01CD64A8` | `PInputSourceMotionAngularVelocityY` | `0086CFE0` | `28`<sub>h</sub> |
-| `01CD64C8` | `PInputSourceMotionAngularVelocityZ` | `0086D030` | `28`<sub>h</sub> |
-| `01CD64E8` | `PInputSourceMotionLinearAccelerationX` | `0086D080` | `28`<sub>h</sub> |
-| `01CD6508` | `PInputSourceMotionLinearAccelerationY` | `0086D0D0` | `28`<sub>h</sub> |
-| `01CD6528` | `PInputSourceMotionLinearAccelerationZ` | `0086D120` | `28`<sub>h</sub> |
-| `01CD6548` | `PInputSourceVisionTrackerX` | `0086D580` | `28`<sub>h</sub> |
-| `01CD6568` | `PInputSourceVisionTrackerY` | `0086D5D0` | `28`<sub>h</sub> |
-| `01CD6588` | `PInputSourceVisionTrackerZ` | `0086D620` | `28`<sub>h</sub> |
+| `01CD6268` | `PInputSource` | `0086CE50` | `0x28` |
+| `01CD6288` | `PInputSourceKey` | `0086CF40` | `0x40` |
+| `01CD62A8` | `PInputSourceJoypadButton` | `0086CEF0` | `0x40` |
+| `01CD62C8` | `PInputSourceJoypadAxis` | `0086CEA0` | `0x38` |
+| `01CD62E8` | `PInputSourceMouseButton` | `0086D2B0` | `0x38` |
+| `01CD6308` | `PInputSourceMouseDeltaX` | `0086D300` | `0x40` |
+| `01CD6328` | `PInputSourceMouseDeltaY` | `0086D350` | `0x40` |
+| `01CD6348` | `PInputSourceTouchRotate` | `0086D490` | `0x28` |
+| `01CD6368` | `PInputSourceTouchPinch` | `0086D440` | `0x28` |
+| `01CD6388` | `PInputSourceTouchTwoFingerDragX` | `0086D4E0` | `0x28` |
+| `01CD63A8` | `PInputSourceTouchTwoFingerDragY` | `0086D530` | `0x28` |
+| `01CD63C8` | `PInputSourceTouchDragX` | `0086D3A0` | `0x28` |
+| `01CD63E8` | `PInputSourceTouchDragY` | `0086D3F0` | `0x28` |
+| `01CD6408` | `PInputSourceMotionQuatX` | `0086D1C0` | `0x28` |
+| `01CD6428` | `PInputSourceMotionQuatY` | `0086D210` | `0x28` |
+| `01CD6448` | `PInputSourceMotionQuatZ` | `0086D260` | `0x28` |
+| `01CD6468` | `PInputSourceMotionQuatW` | `0086D170` | `0x28` |
+| `01CD6488` | `PInputSourceMotionAngularVelocityX` | `0086CF90` | `0x28` |
+| `01CD64A8` | `PInputSourceMotionAngularVelocityY` | `0086CFE0` | `0x28` |
+| `01CD64C8` | `PInputSourceMotionAngularVelocityZ` | `0086D030` | `0x28` |
+| `01CD64E8` | `PInputSourceMotionLinearAccelerationX` | `0086D080` | `0x28` |
+| `01CD6508` | `PInputSourceMotionLinearAccelerationY` | `0086D0D0` | `0x28` |
+| `01CD6528` | `PInputSourceMotionLinearAccelerationZ` | `0086D120` | `0x28` |
+| `01CD6548` | `PInputSourceVisionTrackerX` | `0086D580` | `0x28` |
+| `01CD6568` | `PInputSourceVisionTrackerY` | `0086D5D0` | `0x28` |
+| `01CD6588` | `PInputSourceVisionTrackerZ` | `0086D620` | `0x28` |
 
 Slot 2 of the base is `_purecall` (`00861EC6`) and every subclass fills it. Slot 1 of the base and of
 the 19 touch, motion and vision-tracker classes is `0016D6A0`; the key, joypad and mouse classes fill it.
@@ -102,13 +102,13 @@ same test before storing the new one (`00672990`). `005CA130` stores a borrowed 
 with the count.
 
 In some records a count of 0 or 1 keeps the element inline in the pointer field: `00627750` and the
-accessor `00623F50` use the field itself as the element when `count & 7FFFFFFFh` is below 2, and
+accessor `00623F50` use the field itself as the element when `count & 0x7FFFFFFF` is below 2, and
 dereference it otherwise. A tagged-pointer variant marks borrowed storage with bit 0 of the pointer
 instead (`005A17A0`).
 
 ### Allocator-owned containers
 
-EASTL containers carry an allocator object whose vtable slot `+18`<sub>h</sub> frees `(pointer, bytes)`.
+EASTL containers carry an allocator object whose vtable slot `+0x18` frees `(pointer, bytes)`.
 `001EDF00` installs the `eastl::allocator_memory_log` vtable; containers pass it a name such as
 `EASTL vector` or `EASTL set` (`0019C630`). A vector release calls the allocator with its buffer and
 capacity in bytes (`0019CA20`); list clears walk the nodes and release each through the same slot
@@ -119,25 +119,25 @@ The compiler generates the container operations once per element type. 76 such b
 with the operation and element size of each: vector reserve, insert, erase, copy, fill and release,
 tree copy, erase and node creation, list insert and clear, and element copy constructors.
 
-Two examples: `001AF000` inserts `n` copies into a vector of `40`<sub>h</sub>-byte elements, growing the buffer to
+Two examples: `001AF000` inserts `n` copies into a vector of `0x40`-byte elements, growing the buffer to
 the larger of twice the old count (1 when empty) and the new count, and `001BA990` erases a range of
-`2A8`<sub>h</sub>-byte `ChrModel` elements, destroying each through slot 0 of its vtable.
+`0x2A8`-byte `ChrModel` elements, destroying each through slot 0 of its vtable.
 
 Five of them are destructors of one class template that pairs these containers with a lock:
 `00199A80`, `0019C870`, `0019DAD0`, `001B3AF0` and `001E74F0`. Each destroys the PhyreEngine lock
-record at `+90`<sub>h</sub> (`28`<sub>h</sub> bytes; see [runtime services](runtime-services.md)) through `005CD6D0`,
-which closes the event at lock `+08`<sub>h</sub>, when the byte at `+B8`<sub>h</sub> is set. It then erases the trees at
-`+58`<sub>h</sub> and `+20`<sub>h</sub> (`28`<sub>h</sub>-byte nodes; `001E7560` for `001E74F0`) and frees the vector at `+00`<sub>h</sub>,
-whose elements are `10`<sub>h</sub>, `18`<sub>h</sub>, `118`<sub>h</sub>, `20`<sub>h</sub> and `10`<sub>h</sub> bytes.
+record at `+0x90` (`0x28` bytes; see [runtime services](runtime-services.md)) through `005CD6D0`,
+which closes the event at lock `+0x08`, when the byte at `+0xB8` is set. It then erases the trees at
+`+0x58` and `+0x20` (`0x28`-byte nodes; `001E7560` for `001E74F0`) and frees the vector at `+0x00`,
+whose elements are `0x10`, `0x18`, `0x118`, `0x20` and `0x10` bytes.
 
 The template is the record pool that [game application](../Engine-Core/game-application.md)
-describes: its constructor `001997F0` builds the lock at `+90`<sub>h</sub> with `005CC8A0` and stores the
-flag at `+B8`<sub>h</sub>, and `00199A80` is the destructor that the unwind funclet `00896C60` of
-`001999D0` runs on the `AsyncJobManager` pool at `+90`<sub>h</sub>.
+describes: its constructor `001997F0` builds the lock at `+0x90` with `005CC8A0` and stores the
+flag at `+0xB8`, and `00199A80` is the destructor that the unwind funclet `00896C60` of
+`001999D0` runs on the `AsyncJobManager` pool at `+0x90`.
 
 `001E74F0` is reached only from the unwind funclet `008985BE` of `001E71B0`. `001E76B0`, from the
-unwind funclet `00898660` of `001E7480`, releases a vector of `3C`<sub>h</sub>-byte elements: it divides the
-byte span by 60 and multiplies by `3C`<sub>h</sub>.
+unwind funclet `00898660` of `001E7480`, releases a vector of `0x3C`-byte elements: it divides the
+byte span by 60 and multiplies by `0x3C`.
 
 `00210EC0` is a one-argument allocation entry: it sets `r8d = -1` and `edx = 0` and
 jumps to the `malloc` import stub `0085E730`; the lazy singleton `0018A620` allocates its object through it.
@@ -166,10 +166,10 @@ PInputSource vtable, 0x20 bytes per class from 01CD6260
 
 | Fact | Value |
 |---|---|
-| deleting destructors | about 2,000 bodies under 400 bytes that test bit `1`<sub>h</sub> of the incoming flag and then call a deallocator (1,985 to 2,008 depending on how chained entries and register moves are followed) |
+| deleting destructors | about 2,000 bodies under 400 bytes that test bit `0x1` of the incoming flag and then call a deallocator (1,985 to 2,008 depending on how chained entries and register moves are followed) |
 | one-bit form | about 400, most through `00809950`, the rest through `00584730` |
 | two-bit form | about 1,600; bit-clear side mostly `00584730`, then `007AD450` and `0085E710`; bit-set side `0016D6A0` in all |
-| `PInputSource` family | 26 vtables at `01CD6268`–`01CD6588`; sizes `28`<sub>h</sub> (20), `40`<sub>h</sub> (4), `38`<sub>h</sub> (2) |
+| `PInputSource` family | 26 vtables at `01CD6268`–`01CD6588`; sizes `0x28` (20), `0x40` (4), `0x38` (2) |
 
 The member lists beside this page, each named `object-construction-and-destruction-<list>.tsv`, list
 compiler and library forms by function address; each was profiled against the image:
@@ -190,15 +190,15 @@ compiler and library forms by function address; each was profiled against the im
 | `nativeadapter-multirecordvtableinit` | 4 constructors building EASTL containers with named allocators |
 | `nativeadapter-containerpopfront`, `-countedemberloop`, `-boundedrangecopycompare` | 4 each: container pops, loops and keyed lookups |
 | `nativeadapter-flaggedteardownchain` | 4 teardowns that close an event record only when its flag is set |
-| `intrusive-virtual-node-dispose-loop`, `nativeleaf-listwalkvcallslot3` | 12 and 4 list clears through the allocator's slot `+18`<sub>h</sub> |
+| `intrusive-virtual-node-dispose-loop`, `nativeleaf-listwalkvcallslot3` | 12 and 4 list clears through the allocator's slot `+0x18` |
 | `nativeleaf-vectorbufferrelease`, `-vectordestroydeallocloop` | 5 and 5 vector releases, the second destroying each element first |
-| `nativeleaf-bumpallocpop` | 2 cursor steps that copy `+10`<sub>h</sub> to `+18`<sub>h</sub> and advance `+10`<sub>h</sub> by `10`<sub>h</sub> |
+| `nativeleaf-bumpallocpop` | 2 cursor steps that copy `+0x10` to `+0x18` and advance `+0x10` by `0x10` |
 | `eastl-container-instances` | 76 vector, tree and list operations generated per element type, with the operation and element size of each |
 
 ## Modding notes
 
-- Keep `edx` intact through a hook on a deleting destructor: bit `1`<sub>h</sub> decides whether the storage is
-  freed, and bit `4`<sub>h</sub> whether it is kept.
+- Keep `edx` intact through a hook on a deleting destructor: bit `0x1` decides whether the storage is
+  freed, and bit `0x4` whether it is kept.
 - An object built by the game must be freed by the deallocator its destructor names. Memory from
   another heap passed to `00584730` or `00809950` corrupts the runtime heap.
 - To find a class's size, read the `edx` value its destructor passes to the deallocator.

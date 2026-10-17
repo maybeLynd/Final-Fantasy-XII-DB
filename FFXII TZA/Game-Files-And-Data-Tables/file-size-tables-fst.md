@@ -87,7 +87,7 @@ Populated kinds in the US table, with the first sized path of each kind's array:
 All paths begin `PS2Data\`. Kind 5 holds each area's script set, three files per area: id `3a` its
 global `.ebp`, `3a + 1` its `.mot` and `3a + 2` its `.fpk`. The area loader `0032FCA0` asks for kind
 5, index `area × 3`, for area slot 0 (and slots above 4), kind 8 with index `area × 4` for slots 1 to
-3, and kind 1 with index `area + 6Bh` for slot 4.
+3, and kind 1 with index `area + 0x6B` for slot 4.
 
 Of the ten empty kinds, six (3, 17, 18, 29, 36, 40) point at runtime slots rather than path arrays.
 Four have arrays the table never sizes: kind 6 (`image\FF12\isowaki\ousi00.bin` and `dummy.bin`
@@ -101,11 +101,11 @@ with nothing read. No call site of `0032E620` passes kind 6, 27 or 31.
 - **Boot.** A failed `fopen` or a short `fread` prints through the CRT and then writes to address 0, a
   deliberate crash.
 - **The size.** `002DF960(kind, id)` returns `size[kind][id]`. The request builder's size `0032E400`
-  returns −1 for kind `FF`<sub>h</sub>, consults a per-kind override pointer at `022C51F0` first (which only
+  returns −1 for kind `0xFF`, consults a per-kind override pointer at `022C51F0` first (which only
   `0032EA90`'s zero-clear writes, so it is always null), and otherwise rounds a positive table size up
   to a multiple of 64.
 - **The staged head read.** `0032EB40(slot, kind, id)` takes the same size and, when it is above
-  `800`<sub>h</sub>, requests only the first 2 KB into `022C5C00 + slot × 800h`.
+  `0x800`, requests only the first 2 KB into `022C5C00 + slot × 0x800`.
 - **The read.** The read issuer `002DF780(kind, id, dest, bytes, offset)` does nothing for an entry of
   −1 and leaves the read status `0215EFF4` as the previous read left it; otherwise it takes the path at
   the kind's array position and reads it through the file cache or the archive (`001D6D90` and
@@ -116,9 +116,9 @@ with nothing read. No call site of `0032E620` passes kind 6, 27 or 31.
 
 ### Behind the staged head read
 
-`0032EB40` first clears read-layer slot `slot` (`0046DE50`: its destination `+10`<sub>h</sub>) and gives its request the
+`0032EB40` first clears read-layer slot `slot` (`0046DE50`: its destination `+0x10`) and gives its request the
 word `slot << 24 | kind << 16 | id` and the delivery callback `0032EC20`, which unpacks that word into
-`0046E050(slot, kind, id, dest)`. That fills one of two `A0`<sub>h</sub>-byte slots at `02CA6070`: the kind, the
+`0046E050(slot, kind, id, dest)`. That fills one of two `0xA0`-byte slots at `02CA6070`: the kind, the
 destination, and a sector that `0046DE80(kind, id)` computes from a sector directory at
 `02EBA508`.
 
@@ -130,7 +130,7 @@ The expansion the tick would hand to `00369050` therefore never runs: `00536F30`
 bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by the low two bits of `+4`
 copies the data, expands it with `00536DD0`, or with `00537030`. In `00536DD0` an even control byte b
 copies `b >> 1` literal bytes, and an odd one with the next byte copies `(next >> 4) + 3` bytes from
-`((word >> 1) & 7FFh) + 1` bytes back.
+`((word >> 1) & 0x7FF) + 1` bytes back.
 
 ## Modding notes
 

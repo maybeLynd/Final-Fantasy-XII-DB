@@ -18,7 +18,7 @@ script author chose decides what the game forgets.
 ### The descriptor
 
 A script image carries a table of 8-byte variable records, bound into the manager slot at
-`+78`<sub>h</sub> by `0026C8C0` from the image header's `+28`<sub>h</sub>. The opcodes `PUSHV`, `POPV`, `PUSHDBG` and
+`+0x78` by `0026C8C0` from the image header's `+0x28`. The opcodes `PUSHV`, `POPV`, `PUSHDBG` and
 `PUSHP` carry a 16-bit variable index, and the resolver `00262440(slot, actor, stack, index,
 out)` reads the record's first dword at `table + 4 + index × 8`:
 
@@ -40,20 +40,20 @@ stack, last dimension `d[n − 1]` first, and folds them row-major with `stride 
 It then resolves the element descriptor's class as above. The flat index is returned separately and
 the caller scales it by the element width.
 
-The resolver fills a `30`<sub>h</sub>-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int,
-2 float, from bit 27), `+A`<sub>h</sub> the variable index, `+C`<sub>h</sub> the descriptor, `+10`<sub>h</sub> the base address
-plus offset, `+18`<sub>h</sub> the element descriptor and `+1C`<sub>h</sub> the flat index.
+The resolver fills a `0x30`-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int,
+2 float, from bit 27), `+0xA` the variable index, `+0xC` the descriptor, `+0x10` the base address
+plus offset, `+0x18` the element descriptor and `+0x1C` the flat index.
 
 ### The six homes
 
 | Class | Base pointer in the slot | Set by | What it is |
 |---|---|---|---|
-| 0 `global` | `+48`<sub>h</sub> | the binder `0026C8C0`, from `002EF2B0()` | the save payload: offsets `0` to `CF4`<sub>h</sub> of the persistent save image |
-| 1 `file` | `+40`<sub>h</sub> | `0026CE60`, `image + [image + 38h]`, when the binder left it null | an area inside the loaded script image |
-| 2 `local` | the callback `+98`<sub>h</sub> = `00264E30` | the binder | `[slot + 50h] + [[actor + 40h] + 1Ch]`: the actor's own slice of the image's `+48`<sub>h</sub> region |
-| 3 msp | `image + [image + 40h]` | inline | the image's msp area; no shipped script declares a variable here |
-| 4 `scratch1` | `+58`<sub>h</sub> = `02099DF0` | the binder | a 512-byte static bank |
-| 5 `scratch2` | `+60`<sub>h</sub> = `02099FF0` | the binder | a 512-byte static bank that rides the save image |
+| 0 `global` | `+0x48` | the binder `0026C8C0`, from `002EF2B0()` | the save payload: offsets `0` to `0xCF4` of the persistent save image |
+| 1 `file` | `+0x40` | `0026CE60`, `image + [image + 0x38]`, when the binder left it null | an area inside the loaded script image |
+| 2 `local` | the callback `+0x98` = `00264E30` | the binder | `[slot + 0x50] + [[actor + 0x40] + 0x1C]`: the actor's own slice of the image's `+0x48` region |
+| 3 msp | `image + [image + 0x40]` | inline | the image's msp area; no shipped script declares a variable here |
+| 4 `scratch1` | `+0x58` = `02099DF0` | the binder | a 512-byte static bank |
+| 5 `scratch2` | `+0x60` = `02099FF0` | the binder | a 512-byte static bank that rides the save image |
 
 A class-6 descriptor has no case in either resolver and falls to base 0, the bare offset as an
 address; no shipped script declares one.
@@ -74,7 +74,7 @@ silently and, for a float variable, calls `008620C0` first; a missing array inde
 65,535, `s32` and `f32` copied as the raw dword, widths 6 and 7 not stored at all. The `s16` arm
 clamps into −32,767 to +32,768 and stores the low word, so a script that stores 32,768 reads back
 −32,768 and one that stores −32,768 reads back −32,767. A float at or above 2³¹ truncates to
-`80000000`<sub>h</sub> first, which the `u8` arm then clamps to 0.
+`0x80000000` first, which the `u8` arm then clamps to 0.
 
 ### References
 
@@ -93,7 +93,7 @@ writes the result there.
 `0026DB30`, run on every field transition, zeroes `scratch1` unconditionally. It then compares
 the persistence group word (`+6` of the map-reference row at `[02099D88] + [header + 4] +
 field × 8`) of the previous field (`00314870`) with the current one (`003148F0`): when they differ
-it zeroes `scratch2` and, unless the payload's `+1062`<sub>h</sub> has bit 5, runs `003149E0`; it also
+it zeroes `scratch2` and, unless the payload's `+0x1062` has bit 5, runs `003149E0`; it also
 zeroes `scratch2` when the transition options (`003148D0`) have bit 3.
 
 So `scratch2` lives as long
@@ -105,9 +105,9 @@ controller `00582860`. The boot `00266D10` zeroes both banks, and the teardown `
 tagged pointers at `0209A210`.
 
 `00268320` is the other reset: it zeroes `scratch1` always, zeroes `scratch2` only when the load
-flag `0209AC10` is 0 and `01E0C3EC` is set, and marks the payload's `+1061`<sub>h</sub> when the flag is 0.
-The save controller sets the flag to 1 at `00582E98`, the script verb `05BF`<sub>h</sub> (start `00355E80`)
-clears it through `00287D00`, and the verb `05BE`<sub>h</sub> (start `00355940`) reads it through
+flag `0209AC10` is 0 and `01E0C3EC` is set, and marks the payload's `+0x1061` when the flag is 0.
+The save controller sets the flag to 1 at `00582E98`, the script verb `0x05BF` (start `00355E80`)
+clears it through `00287D00`, and the verb `0x05BE` (start `00355940`) reads it through
 `00286000`; in the shipped scripts only the Trial Mode
 director uses the pair, to skip its entry sequences once after a load.
 
@@ -134,7 +134,7 @@ banks             02099DF0 scratch1 (0x200), 02099FF0 scratch2 (0x200)
 | Fact | Value |
 |---|---|
 | descriptors in the 1,114 decoded scripts | 43,466: global 9,448, file 9,995, local 15,766, scratch1 2,292, scratch2 2,343, array 3,622, msp 0 ([script-variables-by-script.tsv](script-variables-by-script.tsv)) |
-| save-payload offsets a script declares | 620, `0`<sub>h</sub> to `CF4`<sub>h</sub>; one offset shared by 575 scripts ([script-variables-global-offsets.tsv](script-variables-global-offsets.tsv), [script-variables-global-by-script.tsv](script-variables-global-by-script.tsv)) |
+| save-payload offsets a script declares | 620, `0x0` to `0xCF4`; one offset shared by 575 scripts ([script-variables-global-offsets.tsv](script-variables-global-offsets.tsv), [script-variables-global-by-script.tsv](script-variables-global-by-script.tsv)) |
 | global arrays | 34 ([script-variables-global-arrays.tsv](script-variables-global-arrays.tsv)) |
 | bank size | 512 bytes each |
 | resolver callers | 4: `PUSHV`, `POPV`, `PUSHP`, `PUSHDBG` |
@@ -147,7 +147,7 @@ controller sets `0209AC10`.
 
 ## State
 
-The save payload bytes `0` to `CF4`<sub>h</sub>, the script image's file and local areas, and the two banks.
+The save payload bytes `0` to `0xCF4`, the script image's file and local areas, and the two banks.
 
 ## Modding notes
 

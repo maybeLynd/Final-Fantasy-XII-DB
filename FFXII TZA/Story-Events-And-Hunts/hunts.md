@@ -26,14 +26,14 @@ script call to one of the item and gil verbs that [Scene rewards](scene-rewards.
 
 `Database/Tools/catalogues/hunts.py`, with the shared readers in `ffxii_text.py`:
 
-1. the 66 records of `menuquest.dat` from `+0C`<sub>h</sub>; a hunt is a record whose key byte 0 is 1 (`0037E5B0`), and its
+1. the 66 records of `menuquest.dat` from `+0x0C`; a hunt is a record whose key byte 0 is 1 (`0037E5B0`), and its
    position is the number of earlier group-1 records (`0037E5B0`, `0037EE10`);
 2. the name through `002F9920`: text group `id / 10000` (21, `questtitle`), the row whose id equals the record's
    text id;
-3. the first `menuquest.lst` entry with the quest id: the petitioner line and the low nibble of `+04`<sub>h</sub>
+3. the first `menuquest.lst` entry with the quest id: the petitioner line and the low nibble of `+0x04`
    (`0037EFC0`, `0037E5B0`);
-4. the hunt's record in `menuquest01.bin` at `10h + 20 x position`, section 2 at `sectionAt[2] + item[2]`
-   (`0037E8D0`), cut at each `03`<sub>h</sub> into at most 12 parts (`00578450`);
+4. the hunt's record in `menuquest01.bin` at `0x10 + 20 x position`, section 2 at `sectionAt[2] + item[2]`
+   (`0037E8D0`), cut at each `0x03` into at most 12 parts (`00578450`);
 5. the position's 28-byte section-5 row: value `k` is the number of parts shown while the progress byte divided by
    5 is `k` (`0037EF70`, `0037EE10`);
 6. each code `0F 38` in the text replaced by the name it stands for: `003FFB00` turns its payload into a name id
@@ -53,11 +53,11 @@ strings of each pair are the same, so the flag changes nothing in these texts.
   and 168. Every progress row is non-decreasing, and sections 0 and 1 are empty for every hunt.
 - Two runs over the same files give byte-identical output.
 - No text field keeps an undecoded `{hh}` byte.
-- Hunt 128 compared with its scripts: `rbn_a16` sets its progress to 30 (`setquestscenarioflag`, verb `2B3`<sub>h</sub>,
-  handler `00351140`, at script-section offset `1D224`<sub>h</sub>), which shows two parts, the bill and the accepted hunt, and to 70
-  with the clear (`setquestclear` at `1DA5E`<sub>h</sub>), which shows all four.
-- Hunt 147 compared with its scripts: the actor `HUNT07` in `alc_f03` sets 50 (`27B8E`<sub>h</sub>), two parts, and with the
-  clear 150 (`27D02`<sub>h</sub>), all four; the row is marked done from 100, the defeat part.
+- Hunt 128 compared with its scripts: `rbn_a16` sets its progress to 30 (`setquestscenarioflag`, verb `0x2B3`,
+  handler `00351140`, at script-section offset `0x1D224`), which shows two parts, the bill and the accepted hunt, and to 70
+  with the clear (`setquestclear` at `0x1DA5E`), which shows all four.
+- Hunt 147 compared with its scripts: the actor `HUNT07` in `alc_f03` sets 50 (`0x27B8E`), two parts, and with the
+  clear 150 (`0x27D02`), all four; the row is marked done from 100, the defeat part.
 - Hunt 172 is record 59 and position 40, between 167 and 168, so its text is the 41st record of
   `menuquest01.bin`.
 
@@ -68,18 +68,18 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `quest` | the quest id, key bits 8-17 | `0037E5B0`, `0037EE10` |
 | `record`, `position` | the record's index in `menuquest.dat` and its position among the group's records | `0037E5B0`, `0037EE10` |
 | `group` | key bits 0-7, 1 for every hunt | `0037EAA0`, `00577C30` |
-| `name` | the name text, record `+00`<sub>h</sub> | `002F9920` from `0037E5B0` |
+| `name` | the name text, record `+0x00` | `002F9920` from `0037E5B0` |
 | `picture` | key bits 20-27 | `0037E5B0` |
 | `picture_sheet`, `picture_cell` | the sheet `2 x (picture / 24)`, plus 1 once done, and the cell `picture % 24` | `00577C30` |
 | `petitioner` | the `.lst` line, petitioner and town | `0037EFC0`, `0037E5B0` |
-| `threshold` | the `.lst` threshold, the low nibble of `+04`<sub>h</sub>: the row is done once this many parts show | `0037E5B0`, `00577C30` |
+| `threshold` | the `.lst` threshold, the low nibble of `+0x04`: the row is done once this many parts show | `0037E5B0`, `00577C30` |
 | `parts` | the parts of the section-2 text | `00578450` |
 | `part_from` | for each part, the lowest progress byte at which it shows | `0037EF70`, `00578450` |
 | `done_from` | the lowest progress byte at which the row is marked done | `0037EE10`, `00577C30` |
-| `part_1`-`part_5` | the text of each part; `02`<sub>h</sub> line breaks become spaces | `0037E8D0`, `00578450` |
+| `part_1`-`part_5` | the text of each part; `0x02` line breaks become spaces | `0037E8D0`, `00578450` |
 | `explanation` | a one-line summary: the name, the petitioner, the progress of each part and of the done mark | |
 
-The progress byte is the quest's scenario byte, save `+1064h + quest` (`0046B180`), set by the scripts'
+The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0046B180`), set by the scripts'
 `setquestscenarioflag` ([Quests](quests.md)).
 
 ## Related

@@ -1,55 +1,55 @@
 code	char	arm	parser	bytes	does	st2e	st2e-in-ard	bank	hdat	ebp-002	ebp-003	msb	npcdic	total	of_which_nested	in_malformed_lists	languages_with_any	per_language
 01		002ACB96	none	1	blank: width 0017F920(0); counts 1 (002ACC04-002ACCE3)	100	0	15	5450	40219	200	1152	0	47136	30632	0	9	us:3654 de:3658 es:3658 fr:4062 it:3668 in:9818 kr:5712 cn:5729 ch:7177
-02		002AC6D1	none	1	line break: re-justify (002B2150/002B1F20/002B2C50), y += line height + gap, indent +AAh, sets painter +1102h	9178	0	21	71570	335751	0	406	0	416926	0	46	9	us:49875 de:53915 es:51038 fr:49545 it:48273 in:40439 kr:43486 cn:39949 ch:40406
-03		002AC6AE	none	1	end of page: clears painter +10FCh, 0017FAE0(0), returns 0; the markup parser 002A8C50 starts the page wait at 002A8DC7 -> 002A97CD	0	0	0	5616	45647	0	0	0	51263	0	0	9	us:5802 de:6004 es:6438 fr:5636 it:5501 in:5473 kr:5476 cn:5462 ch:5471
-04		002ACB96	none	1	space: width 0017F920(1), +[01CEBBA8] under +44h bit 11; counts 1	90342	0	29824	215035	1432385	17234	2510	9729	1797059	71011	2290	9	us:331390 de:300473 es:324035 fr:349702 it:269967 in:6859 kr:202551 cn:5385 ch:6697
-05		002ACCF3	none	1	column mark 1: blank of 0024ABA0()*15 (00916314); records widths at painter +10ECh/+10F4h	0	0	0	0	3087	0	0	0	3087	2997	0	9	us:343 de:343 es:343 fr:343 it:343 in:343 kr:343 cn:343 ch:343
+02		002AC6D1	none	1	line break: re-justify (002B2150/002B1F20/002B2C50), y += line height + gap, indent +0xAA, sets painter +0x1102	9178	0	21	71570	335751	0	406	0	416926	0	46	9	us:49875 de:53915 es:51038 fr:49545 it:48273 in:40439 kr:43486 cn:39949 ch:40406
+03		002AC6AE	none	1	end of page: clears painter +0x10FC, 0017FAE0(0), returns 0; the markup parser 002A8C50 starts the page wait at 002A8DC7 -> 002A97CD	0	0	0	5616	45647	0	0	0	51263	0	0	9	us:5802 de:6004 es:6438 fr:5636 it:5501 in:5473 kr:5476 cn:5462 ch:5471
+04		002ACB96	none	1	space: width 0017F920(1), +[01CEBBA8] under +0x44 bit 11; counts 1	90342	0	29824	215035	1432385	17234	2510	9729	1797059	71011	2290	9	us:331390 de:300473 es:324035 fr:349702 it:269967 in:6859 kr:202551 cn:5385 ch:6697
+05		002ACCF3	none	1	column mark 1: blank of 0024ABA0()*15 (00916314); records widths at painter +0x10EC/+0x10F4	0	0	0	0	3087	0	0	0	3087	2997	0	9	us:343 de:343 es:343 fr:343 it:343 in:343 kr:343 cn:343 ch:343
 06		002ACB96	none	1	blank: fixed width 10.0 ([008F8180])	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 07		002ACB96	none	1	blank: 0024ABA0()*10, or 26 when 00254A10()==0 and 00229E40()==7	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 08		002AD011	none	3	skipped: cursor += 3, nothing else	0	0	1436	0	0	0	0	0	1436	0	0	5	us:29 de:124 es:452 fr:423 it:408 in:0 kr:0 cn:0 ch:0
 09		002AD008	none	1	skipped: cursor += 1, nothing else	0	0	2265	0	0	0	0	0	2265	0	0	5	us:661 de:556 es:222 fr:379 it:447 in:0 kr:0 cn:0 ch:0
-0A		002ACE25	none	1	column mark 2: measures to the next 02/05 (002ACF10-002ACF34), right-aligns: painter +10F0h max, +10F8h = max - width	0	0	0	0	1989	0	0	0	1989	1908	0	9	us:221 de:221 es:221 fr:221 it:221 in:221 kr:221 cn:221 ch:221
+0A		002ACE25	none	1	column mark 2: measures to the next 02/05 (002ACF10-002ACF34), right-aligns: painter +0x10F0 max, +0x10F8 = max - width	0	0	0	0	1989	0	0	0	1989	1908	0	9	us:221 de:221 es:221 fr:221 it:221 in:221 kr:221 cn:221 ch:221
 0B		002AC6CA	none	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 0C		002AC6CA	none	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 0D		002AC6CA	none	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
-0E		002AC825	003FFDF0	5 + (b4&1 ? ceil(n/7) : 0) + sum(1+len&7Fh), cursor left on the list's 00	selection list: n = b1&7Fh options, each length-prefixed text drawn through 002B43C0/002A9F00; b4 bit0 = a hidden-option bitmask follows	0	0	0	0	33151	0	224	0	33375	0	57	9	us:3659 de:3661 es:3658 fr:3657 it:3660 in:3882 kr:3658 cn:3658 ch:3882
-0F 20	space	002AD041	003FFAB0	4	fixed-advance switch: +40h = (int8)v/90 (009166FC), 0 = off; emits a compensating advance on change	60	0	0	343	7421	0	0	0	7824	2	0	9	us:4615 de:2330 es:361 fr:171 it:327 in:5 kr:5 cn:5 ch:5
-0F 21	!	002AD151	none (inc)	2	alternate font record: +68h = 0039BA30(+A6h, 1); with 00254A10()==0 binds font 7 (0017FD30) and sets +44h bit 11	0	0	0	0	27979	0	0	0	27979	0	0	9	us:3109 de:3109 es:3103 fr:3109 it:3110 in:3110 kr:3109 cn:3110 ch:3110
-0F 22	quote	002AD1ED	003FFEE0	4	+9Eh = b2&1Fh (interpreter); the markup parser also sets +50h = 1/+9Eh and +90h (002A9442-002A94C1)	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
-0F 23	#	002AD205	003FFAB0	4	page wait: v>0 -> +88h = 30v ticks; v=0 -> +88h = 10000 (wait for decide), +B0h mode 5, bits 19+26; +9Bh = 1	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
-0F 24	$	002AD252	003FFAB0	4	letter spacing: +4Ch = (int8)v unless +B0h bit 25	87	0	0	0	69705	9253	388	0	79433	0	16	9	us:12 de:12 es:10 fr:10 it:12 in:20039 kr:19650 cn:19650 ch:20038
-0F 25	%	002AD289	003FFAB0	4	justify left: +99h = margin v, +9Ah = '%' (002B1F20)	0	0	0	4	20	0	20	0	44	0	0	4	us:1 de:3 es:0 fr:0 it:0 in:20 kr:0 cn:0 ch:20
-0F 26	&	002AD289	003FFAB0	4	justify right: x = (+94h - width) + v	0	0	0	314	217	0	0	0	531	0	0	9	us:75 de:130 es:75 fr:75 it:72 in:26 kr:26 cn:26 ch:26
-0F 27	'	002AD289	003FFAB0	4	centre: x = (+94h - width)/2 + v	78	0	0	0	16406	0	20	0	16504	0	0	9	us:3210 de:3226 es:3180 fr:3212 it:3216 in:125 kr:105 cn:105 ch:125
-0F 28	(	002AD2F4	003FFAB0	4	size in 24ths: +34h = (int8)v/24 (008F3128); +44h low byte = (v-24)*0.25 when 00254A10()==0	0	0	0	0	15526	0	968	0	16494	12364	4	9	us:1622 de:1622 es:1594 fr:1622 it:1622 in:2585 kr:1621 cn:1621 ch:2585
-0F 29	)	002AD3F7	003FFBC0	2 + max(b1&7,1) + 1	colour: RGB into +30h, alpha kept, 0 -> 80808080h; copied to painter +10D0h; closes the glyph packet via '+' tail	4470	0	5347	6793	67954	0	1894	0	86458	28864	28	9	us:8630 de:9423 es:8431 fr:8990 it:8355 in:11615 kr:9701 cn:9712 ch:11601
-0F 2A	*	002AD47C	003FFD70	(b2&7Fh) + 4	ruby: inline text of b2&7Fh bytes drawn at 0.65x size (009166F0) centred above the next b1&7Fh bytes (002AD532-002AD728)	0	0	0	0	51	0	0	0	51	0	0	2	us:0 de:0 es:0 fr:0 it:0 in:33 kr:18 cn:0 ch:0
-0F 2B	+	002AD76B	003FFAB0	4	render-state byte +9Fh (FFh -> 0); emits a GS state command from its high nibble (002AD821-002AD86F)	14	0	0	0	0	0	0	0	14	0	0	7	us:0 de:2 es:2 fr:2 it:0 in:2 kr:2 cn:2 ch:2
+0E		002AC825	003FFDF0	5 + (b4&1 ? ceil(n/7) : 0) + sum(1+len&0x7F), cursor left on the list's 00	selection list: n = b1&0x7F options, each length-prefixed text drawn through 002B43C0/002A9F00; b4 bit0 = a hidden-option bitmask follows	0	0	0	0	33151	0	224	0	33375	0	57	9	us:3659 de:3661 es:3658 fr:3657 it:3660 in:3882 kr:3658 cn:3658 ch:3882
+0F 20	space	002AD041	003FFAB0	4	fixed-advance switch: +0x40 = (int8)v/90 (009166FC), 0 = off; emits a compensating advance on change	60	0	0	343	7421	0	0	0	7824	2	0	9	us:4615 de:2330 es:361 fr:171 it:327 in:5 kr:5 cn:5 ch:5
+0F 21	!	002AD151	none (inc)	2	alternate font record: +0x68 = 0039BA30(+0xA6, 1); with 00254A10()==0 binds font 7 (0017FD30) and sets +0x44 bit 11	0	0	0	0	27979	0	0	0	27979	0	0	9	us:3109 de:3109 es:3103 fr:3109 it:3110 in:3110 kr:3109 cn:3110 ch:3110
+0F 22	quote	002AD1ED	003FFEE0	4	+0x9E = b2&0x1F (interpreter); the markup parser also sets +0x50 = 1/+0x9E and +0x90 (002A9442-002A94C1)	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
+0F 23	#	002AD205	003FFAB0	4	page wait: v>0 -> +0x88 = 30v ticks; v=0 -> +0x88 = 10000 (wait for decide), +0xB0 mode 5, bits 19+26; +0x9B = 1	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
+0F 24	$	002AD252	003FFAB0	4	letter spacing: +0x4C = (int8)v unless +0xB0 bit 25	87	0	0	0	69705	9253	388	0	79433	0	16	9	us:12 de:12 es:10 fr:10 it:12 in:20039 kr:19650 cn:19650 ch:20038
+0F 25	%	002AD289	003FFAB0	4	justify left: +0x99 = margin v, +0x9A = '%' (002B1F20)	0	0	0	4	20	0	20	0	44	0	0	4	us:1 de:3 es:0 fr:0 it:0 in:20 kr:0 cn:0 ch:20
+0F 26	&	002AD289	003FFAB0	4	justify right: x = (+0x94 - width) + v	0	0	0	314	217	0	0	0	531	0	0	9	us:75 de:130 es:75 fr:75 it:72 in:26 kr:26 cn:26 ch:26
+0F 27	'	002AD289	003FFAB0	4	centre: x = (+0x94 - width)/2 + v	78	0	0	0	16406	0	20	0	16504	0	0	9	us:3210 de:3226 es:3180 fr:3212 it:3216 in:125 kr:105 cn:105 ch:125
+0F 28	(	002AD2F4	003FFAB0	4	size in 24ths: +0x34 = (int8)v/24 (008F3128); +0x44 low byte = (v-24)*0.25 when 00254A10()==0	0	0	0	0	15526	0	968	0	16494	12364	4	9	us:1622 de:1622 es:1594 fr:1622 it:1622 in:2585 kr:1621 cn:1621 ch:2585
+0F 29	)	002AD3F7	003FFBC0	2 + max(b1&7,1) + 1	colour: RGB into +0x30, alpha kept, 0 -> 0x80808080; copied to painter +0x10D0; closes the glyph packet via '+' tail	4470	0	5347	6793	67954	0	1894	0	86458	28864	28	9	us:8630 de:9423 es:8431 fr:8990 it:8355 in:11615 kr:9701 cn:9712 ch:11601
+0F 2A	*	002AD47C	003FFD70	(b2&0x7F) + 4	ruby: inline text of b2&0x7F bytes drawn at 0.65x size (009166F0) centred above the next b1&0x7F bytes (002AD532-002AD728)	0	0	0	0	51	0	0	0	51	0	0	2	us:0 de:0 es:0 fr:0 it:0 in:33 kr:18 cn:0 ch:0
+0F 2B	+	002AD76B	003FFAB0	4	render-state byte +0x9F (0xFF -> 0); emits a GS state command from its high nibble (002AD821-002AD86F)	14	0	0	0	0	0	0	0	14	0	0	7	us:0 de:2 es:2 fr:2 it:0 in:2 kr:2 cn:2 ch:2
 0F 2C	,	002AE308	003FFAB0	4	skipped by the interpreter	14	0	0	0	16	0	0	0	30	0	0	9	us:2 de:4 es:2 fr:4 it:2 in:4 kr:4 cn:4 ch:4
-0F 2D	-	002AD8AB	003FFC60	4	number: digits of ctx +54h via 002AE610 when b1&7Fh == 7Fh; +A1h = min(b2&Fh, 8) digits; out2 = 0	379	0	0	0	317	0	20	0	716	0	0	9	us:75 de:79 es:63 fr:78 it:63 in:102 kr:82 cn:77 ch:97
-0F 2E	.	002AD8F9	003FFC60	4	insert argument b1&7Fh from the +70h array: kinds 1/2 a string, kind 0 a number (002AE610)	0	0	0	0	34696	0	142	0	34838	22994	4	9	us:3632 de:3763 es:3613 fr:3619 it:3814 in:4170 kr:4029 cn:4028 ch:4170
-0F 2F	/	002AE308	003FFAB0	4	skipped by the interpreter; type-out speed in 002A8C50 (002A91EA-002A93AE: +9Ch/+A0h)	293	0	0	0	77002	0	380	0	77675	8	14	9	us:8552 de:8475 es:8550 fr:8553 it:8564 in:8936 kr:8555 cn:8555 ch:8935
+0F 2D	-	002AD8AB	003FFC60	4	number: digits of ctx +0x54 via 002AE610 when b1&0x7F == 0x7F; +0xA1 = min(b2&0xF, 8) digits; out2 = 0	379	0	0	0	317	0	20	0	716	0	0	9	us:75 de:79 es:63 fr:78 it:63 in:102 kr:82 cn:77 ch:97
+0F 2E	.	002AD8F9	003FFC60	4	insert argument b1&0x7F from the +0x70 array: kinds 1/2 a string, kind 0 a number (002AE610)	0	0	0	0	34696	0	142	0	34838	22994	4	9	us:3632 de:3763 es:3613 fr:3619 it:3814 in:4170 kr:4029 cn:4028 ch:4170
+0F 2F	/	002AE308	003FFAB0	4	skipped by the interpreter; type-out speed in 002A8C50 (002A91EA-002A93AE: +0x9C/+0xA0)	293	0	0	0	77002	0	380	0	77675	8	14	9	us:8552 de:8475 es:8550 fr:8553 it:8564 in:8936 kr:8555 cn:8555 ch:8935
 0F 30	0	002ACFC2	none	1 (selector then printed)	no arm: cursor left on '0', which is drawn as a character	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 0F 31	1	002ADBF5	003FFF10	5	skipped (all three outputs NULL)	1329	0	0	0	0	0	0	0	1329	0	0	9	us:155 de:154 es:142 fr:127 it:139 in:155 kr:155 cn:151 ch:151
-0F 32	2	002ADC71	003FFAB0	4	tab: v=0 stores x as painter +10E0h; v>0 advances to +10E0h + 2v (forward only)	16	0	0	0	0	0	0	0	16	0	0	8	us:2 de:0 es:2 fr:2 it:2 in:2 kr:2 cn:2 ch:2
-0F 33	3	002ADC5A	003FFDA0	4	x/y scale: +38h = (b1&7Fh)/10, +3Ch = (b2&7Fh)/10 (008F8180)	27	0	0	0	0	0	0	0	27	0	0	9	us:3 de:3 es:3 fr:3 it:3 in:3 kr:3 cn:3 ch:3
-0F 34	4	002ADD03	003FFAB0	4	next glyph advance: +A9h = v; 002AC2F0/002AEB20 use (int8)+A9h as the advance once, then clear it	6	0	0	0	771	0	0	0	777	0	0	9	us:1 de:1 es:1 fr:1 it:1 in:769 kr:1 cn:1 ch:1
-0F 35	5	002ADD19	003FFAB0	4	indent +v: +AAh and painter +10FDh; at a line start also pen x	248	0	0	0	0	0	0	0	248	0	0	9	us:28 de:24 es:28 fr:28 it:28 in:28 kr:28 cn:28 ch:28
+0F 32	2	002ADC71	003FFAB0	4	tab: v=0 stores x as painter +0x10E0; v>0 advances to +0x10E0 + 2v (forward only)	16	0	0	0	0	0	0	0	16	0	0	8	us:2 de:0 es:2 fr:2 it:2 in:2 kr:2 cn:2 ch:2
+0F 33	3	002ADC5A	003FFDA0	4	x/y scale: +0x38 = (b1&0x7F)/10, +0x3C = (b2&0x7F)/10 (008F8180)	27	0	0	0	0	0	0	0	27	0	0	9	us:3 de:3 es:3 fr:3 it:3 in:3 kr:3 cn:3 ch:3
+0F 34	4	002ADD03	003FFAB0	4	next glyph advance: +0xA9 = v; 002AC2F0/002AEB20 use (int8)+0xA9 as the advance once, then clear it	6	0	0	0	771	0	0	0	777	0	0	9	us:1 de:1 es:1 fr:1 it:1 in:769 kr:1 cn:1 ch:1
+0F 35	5	002ADD19	003FFAB0	4	indent +v: +0xAA and painter +0x10FD; at a line start also pen x	248	0	0	0	0	0	0	0	248	0	0	9	us:28 de:24 es:28 fr:28 it:28 in:28 kr:28 cn:28 ch:28
 0F 36	6	002ADD62	003FFAB0	4	indent -v (negated)	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
-0F 37	7	002AD38A	003FFAB0	4	size in percent: +34h = v/100 (008F3134); +44h low byte = (v-100)/16.6	395	0	0	0	5107	0	160	0	5662	747	13	9	us:595 de:592 es:595 fr:597 it:595 in:752 kr:592 cn:592 ch:752
+0F 37	7	002AD38A	003FFAB0	4	size in percent: +0x34 = v/100 (008F3134); +0x44 low byte = (v-100)/16.6	395	0	0	0	5107	0	160	0	5662	747	13	9	us:595 de:592 es:595 fr:597 it:595 in:752 kr:592 cn:592 ch:752
 0F 38	8	002ADD96	003FFB00	4 or 5 (b1&7 ? 5 : 4)	insert name for i16 id via 002639E0 (NPC dictionary)	0	0	0	0	68789	0	0	0	68789	5	0	9	us:7466 de:7692 es:7436 fr:7437 it:7663 in:7774 kr:7774 cn:7773 ch:7774
-0F 39	9	002AE190	003FFAB0	4	+A7h = v and +B0h bit 21	0	0	0	0	18	0	0	0	18	18	0	9	us:2 de:2 es:2 fr:2 it:2 in:2 kr:2 cn:2 ch:2
-0F 3A	:	002AE1B1	003FFAB0	4	payload discarded; clears 0209E598 and 0017FAE0(0) (the 03h reset without ending the run)	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
+0F 39	9	002AE190	003FFAB0	4	+0xA7 = v and +0xB0 bit 21	0	0	0	0	18	0	0	0	18	18	0	9	us:2 de:2 es:2 fr:2 it:2 in:2 kr:2 cn:2 ch:2
+0F 3A	:	002AE1B1	003FFAB0	4	payload discarded; clears 0209E598 and 0017FAE0(0) (the 0x03 reset without ending the run)	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 0F 3B	;	002AE308	003FFAB0	4	skipped by the interpreter; read by 002A8C50 at 002A94CD	0	0	0	0	67188	0	0	0	67188	0	0	9	us:7471 de:7477 es:7462 fr:7438 it:7470 in:7462 kr:7469 cn:7470 ch:7469
-0F 3C	<	002AE1C5	003FFAB0	4	baseline shift: +ABh = v, added to glyph y	1354	0	0	74	1568	0	4	0	3000	0	0	9	us:373 de:413 es:348 fr:310 it:304 in:315 kr:311 cn:311 ch:315
-0F 3D	=	002AE1DB	003FFAB0	4	+AEh = v (also 002A8C50 at 002A96EA)	0	0	0	0	1595	0	0	0	1595	0	0	9	us:177 de:179 es:177 fr:177 it:177 in:177 kr:177 cn:177 ch:177
-0F 3E	>	002ADE90	003FFAB0	4	insert the display name of ctx +78h's actor (00263990)	0	0	0	0	21809	0	2	0	21811	0	0	9	us:2424 de:2425 es:2423 fr:2410 it:2425 in:2427 kr:2425 cn:2425 ch:2427
+0F 3C	<	002AE1C5	003FFAB0	4	baseline shift: +0xAB = v, added to glyph y	1354	0	0	74	1568	0	4	0	3000	0	0	9	us:373 de:413 es:348 fr:310 it:304 in:315 kr:311 cn:311 ch:315
+0F 3D	=	002AE1DB	003FFAB0	4	+0xAE = v (also 002A8C50 at 002A96EA)	0	0	0	0	1595	0	0	0	1595	0	0	9	us:177 de:179 es:177 fr:177 it:177 in:177 kr:177 cn:177 ch:177
+0F 3E	>	002ADE90	003FFAB0	4	insert the display name of ctx +0x78's actor (00263990)	0	0	0	0	21809	0	2	0	21811	0	0	9	us:2424 de:2425 es:2423 fr:2410 it:2425 in:2427 kr:2425 cn:2425 ch:2427
 0F 3F	?	002AE03E	003FFAB0	4	one glyph through 002AE450, payload bands <10, 10-19, >=20; counts 1, alpha fades	151	0	0	41	0	0	0	0	192	0	0	9	us:39 de:35 es:48 fr:17 it:17 in:9 kr:9 cn:9 ch:9
-0F 40..6B	@-k minus V _ (42)	002AE1F1	002AEB20 returns 2	3	inline icon sprite: letter-40h picks the entry, b1 bit1 a variant; pad-dependent for R S Z [ \ (002AEB20); counts 1	762	0	0	55	5138	0	78	0	6033	0	0	9	us:649 de:646 es:649 fr:647 it:647 in:739 kr:658 cn:660 ch:738
+0F 40..6B	@-k minus V _ (42)	002AE1F1	002AEB20 returns 2	3	inline icon sprite: letter-0x40 picks the entry, b1 bit1 a variant; pad-dependent for R S Z [ \ (002AEB20); counts 1	762	0	0	55	5138	0	78	0	6033	0	0	9	us:649 de:646 es:649 fr:647 it:647 in:739 kr:658 cn:660 ch:738
 0F 56	V	002AE2F0	003FFAB0	4	skipped; out2 = 0	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 0F 5F	_	002ACFC2	none	1 (selector then printed)	no arm: cursor left on '_', which is drawn	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0
 0F 6C	l	002ADC34	003FFCE0	5	skipped (all outputs NULL)	23	0	0	0	0	0	0	0	23	0	0	5	us:3 de:5 es:5 fr:5 it:5 in:0 kr:0 cn:0 ch:0
 0F 6D	m	002ADC0C	003FFB90	4	skipped (outputs NULL)	23	0	0	0	0	0	0	0	23	0	0	5	us:3 de:5 es:5 fr:5 it:5 in:0 kr:0 cn:0 ch:0
 0F 6E	n	002ADC20	003FFB90	4	skipped (outputs NULL)	16	0	0	0	0	0	0	0	16	0	0	5	us:7 de:2 es:3 fr:2 it:2 in:0 kr:0 cn:0 ch:0
-0F 6F	o	002ADCDD	003FFB00	4 or 5	pen x = (i16)v (arg3), then the 03h-style reset (002ACFB4)	27	0	0	205	0	0	0	0	232	0	0	9	us:192 de:7 es:7 fr:7 it:7 in:3 kr:3 cn:3 ch:3
-0F 70	p	002AE308	003FFAB0	4	skipped by the interpreter; 002A8C50 sets +B0h bit 20 (002A9670)	0	0	0	0	125	0	0	0	125	0	0	9	us:14 de:14 es:14 fr:14 it:13 in:14 kr:14 cn:14 ch:14
+0F 6F	o	002ADCDD	003FFB00	4 or 5	pen x = (i16)v (arg3), then the 0x03-style reset (002ACFB4)	27	0	0	205	0	0	0	0	232	0	0	9	us:192 de:7 es:7 fr:7 it:7 in:3 kr:3 cn:3 ch:3
+0F 70	p	002AE308	003FFAB0	4	skipped by the interpreter; 002A8C50 sets +0xB0 bit 20 (002A9670)	0	0	0	0	125	0	0	0	125	0	0	9	us:14 de:14 es:14 fr:14 it:13 in:14 kr:14 cn:14 ch:14

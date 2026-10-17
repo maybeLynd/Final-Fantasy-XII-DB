@@ -21,7 +21,7 @@ A separate option, DecideButton, swaps which of two buttons confirms and which c
 ### The setting
 
 Every option lives in the GameSetting.ini object whose address is held at `01F82D20`, stored once
-by `00798261` after the constructor `001DE050` runs (`00798257`). Field `+00`<sub>h</sub> is the Language
+by `00798261` after the constructor `001DE050` runs (`00798257`). Field `+0x00` is the Language
 setting: an index into the code table at `01DF0030`, ten pointers to the strings packed at
 `008C5904` on a 4-byte pitch:
 
@@ -34,7 +34,7 @@ setting: an index into the code table at `01DF0030`, ten pointers to the strings
 | 4 | `it` | 9 | `none` |
 
 The Config screen's value names for the setting (row 0 of the table at `01DFD150`) point at the
-same strings. `0017E210` reads the sibling field `+64`<sub>h</sub>, the DecideButton setting.
+same strings. `0017E210` reads the sibling field `+0x64`, the DecideButton setting.
 
 ### The default on a fresh install
 
@@ -44,18 +44,18 @@ setting; Language's default is 1, `en`) and then overwrites the Language index f
 
 | Windows LANGID | Index |
 |---|---|
-| `0404`<sub>h</sub>, `0C04`<sub>h</sub>, `1404`<sub>h</sub> (Traditional Chinese; `1C04`<sub>h</sub> is excluded) | 7 `ch` |
-| primary language `0C`<sub>h</sub> (French) | 2 `fr` |
-| primary `07`<sub>h</sub> (German) | 3 `de` |
-| primary `10`<sub>h</sub> (Italian) | 4 `it` |
-| primary `0A`<sub>h</sub> (Spanish) | 5 `es` |
-| primary `11`<sub>h</sub> (Japanese) | 0 `jp` |
-| primary `12`<sub>h</sub> (Korean) | 6 `kr` |
-| primary `04`<sub>h</sub> (other Chinese) | 8 `cn` |
+| `0x0404`, `0x0C04`, `0x1404` (Traditional Chinese; `0x1C04` is excluded) | 7 `ch` |
+| primary language `0x0C` (French) | 2 `fr` |
+| primary `0x07` (German) | 3 `de` |
+| primary `0x10` (Italian) | 4 `it` |
+| primary `0x0A` (Spanish) | 5 `es` |
+| primary `0x11` (Japanese) | 0 `jp` |
+| primary `0x12` (Korean) | 6 `kr` |
+| primary `0x04` (other Chinese) | 8 `cn` |
 | anything else | 1 `en` |
 
-The Traditional test runs first on the whole LANGID (`(id - 404h) & FFFFE7FFh == 0` and
-`id != 1C04h`); the primary language is `id & 3Fh`.
+The Traditional test runs first on the whole LANGID (`(id - 0x404) & 0xFFFFE7FF == 0` and
+`id != 0x1C04`); the primary language is `id & 0x3F`.
 
 ### From code to locale id
 
@@ -83,7 +83,7 @@ Ids 0, 6 and 9 are never produced. The two last arms are branchless arithmetic
 The first boot frame mode `0022A0B0` calls `0017E270` and stores the result at `01E02814`
 (`0022A0C6`-`0022A0CB`); that store is the only write to the word in the image. `00229E40` returns
 it (36 call sites in 16 functions), and `00229E50` returns 0 for the ids 0, 7, 8, 10 and 11 (mask
-`D81`<sub>h</sub>) and 1 otherwise; `00254A10` is the same test with the result inverted (1 for those ids).
+`0xD81`) and 1 otherwise; `00254A10` is the same test with the result inverted (1 for those ids).
 The same boot mode stores the constant 10 from `0017E410` at `01E0281C`.
 
 ### The data folder and the file size table
@@ -111,29 +111,29 @@ writes a zero dword to address 0 (`002E0462`, `002E048B`).
 
 - The kill chain cap and display: `00317ED0` caps the length at 998 and posts it plus one whenever
   the id is non-zero, which it always is (see the kill chain page).
-- `002AB7D0`: for ids 7, 8 and 11 (`(id - 7) & FFFFFFFAh == 0` and `id != 12`, so Korean and the
+- `002AB7D0`: for ids 7, 8 and 11 (`(id - 7) & 0xFFFFFFFA == 0` and `id != 12`, so Korean and the
   two Chinese languages, not Japanese) it sets `01E0CDF8` to 28 and `0209CC38` to 1; otherwise
   `01E0CDF8` = 24.
 - `002ABAA0(flag)` reads the id but has no language dependence in the shipped game: every id
   returns `0024ABA0()` scaled by 15.0 (`00916314`) with the flag set or 10.0 (`008F8180`) with it
   clear; its 26.0 arm (`00916484`) needs id 7 after `00254A10` returned 0, which that id never
   does.
-- Script verbs: `5C6`<sub>h</sub> (`0033FED0`) returns the id with 10 read as 0; `59C`<sub>h</sub> (`0034BA00`) returns
-  the id with 7, 8, 10 and 11 read as 0; `5AA`<sub>h</sub> (`0034C010`) returns `00229E50()`.
+- Script verbs: `0x5C6` (`0033FED0`) returns the id with 10 read as 0; `0x59C` (`0034BA00`) returns
+  the id with 7, 8, 10 and 11 read as 0; `0x5AA` (`0034C010`) returns `00229E50()`.
 - `0029CE40` passes the id to `0017F9E0` at area setup; `002DDE60` and `003B1BA0` read it seven and
   eight times for text layout; `002AC5F0`, the text control-code interpreter, reads it at
   `002ACBD3`, `002ACCFC` and `002ACE2E`.
 
 ### Confirm and cancel
 
-In the same boot mode, `0017E210` returns DecideButton (`+64`<sub>h</sub>). The confirm mask `01E0C2A0` and
+In the same boot mode, `0017E210` returns DecideButton (`+0x64`). The confirm mask `01E0C2A0` and
 the cancel mask `01E0C2A4` are set from it (`0022A0E1`-`0022A119`), and `01FD4A64` records whether
 it was non-zero:
 
 | DecideButton | Confirm `01E0C2A0` | Cancel `01E0C2A4` |
 |---|---|---|
-| 0 | `2000`<sub>h</sub> | `4000`<sub>h</sub> |
-| non-zero | `4000`<sub>h</sub> | `2000`<sub>h</sub> |
+| 0 | `0x2000` | `0x4000` |
+| non-zero | `0x4000` | `0x2000` |
 
 The battle menu `002778C0` treats the two differently: the confirm branch tests its handler's
 result and plays sound 2 only on failure (`00277EB8`-`00277ECE`), the cancel branch discards the
@@ -155,8 +155,8 @@ result and always plays sound 3 (`00277E36`-`00277E53`).
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `[01F82D20] + 00h` | `i32` | Language index 0-9 | `001DE050`, the Config screen |
-| `[01F82D20] + 64h` | `i32` | DecideButton | the Config screen |
+| `[01F82D20] + 0x00` | `i32` | Language index 0-9 | `001DE050`, the Config screen |
+| `[01F82D20] + 0x64` | `i32` | DecideButton | the Config screen |
 | `01E02814` | `i32` | locale id | `0022A0B0` (`0022A0CB`) |
 | `01E0281C` | `i32` | the constant 10 from `0017E410` | `0022A0B0` (`0022A0D6`) |
 | `01E0C2A0` / `01E0C2A4` | `u16` | confirm and cancel button masks | `0022A0B0` (`0022A119`, `0022A10C`) |

@@ -1,3 +1,3 @@
 function	name	site	disp	kind	instruction	route	note
-005D7530	FUN_005d7530	005D7537	0h	w	mov dword ptr [rdx], eax	ctorrdx-seeded 005D7530	
-005D7530	FUN_005d7530	005D7539	4h	w	mov dword ptr [rdx + 4], eax	ctorrdx-seeded 005D7530	
+005D7530	FUN_005d7530	005D7537	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 005D7530	
+005D7530	FUN_005d7530	005D7539	0x4	w	mov dword ptr [rdx + 4], eax	ctorrdx-seeded 005D7530	

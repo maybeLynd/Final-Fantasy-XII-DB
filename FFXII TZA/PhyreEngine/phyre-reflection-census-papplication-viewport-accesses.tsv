@@ -1,7 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
-00794030	FUN_00794030	00794049	0h	w	mov qword ptr [rcx], rax	vtable-seeded 01CB2608	
-007A02F0	FUN_007a02f0	007A0300	30h	r	mov eax, dword ptr [rcx + 30h]	vtable-seeded 01CB2608	
-007A02F0	FUN_007a02f0	007A030A	28h	r	sub r8d, dword ptr [rcx + 28h]	vtable-seeded 01CB2608	
-007A02F0	FUN_007a02f0	007A030E	2Ch	r	mov r9d, dword ptr [rcx + 2Ch]	vtable-seeded 01CB2608	
-007A02F0	FUN_007a02f0	007A0315	24h	r	mov edx, dword ptr [rcx + 24h]	vtable-seeded 01CB2608	
-007A02F0	FUN_007a02f0	007A0318	18h	r	mov rcx, qword ptr [rcx + 18h]	vtable-seeded 01CB2608	
+00794030	FUN_00794030	00794049	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 01CB2608	
+007A02F0	FUN_007a02f0	007A0300	0x30	r	mov eax, dword ptr [rcx + 0x30]	vtable-seeded 01CB2608	
+007A02F0	FUN_007a02f0	007A030A	0x28	r	sub r8d, dword ptr [rcx + 0x28]	vtable-seeded 01CB2608	
+007A02F0	FUN_007a02f0	007A030E	0x2c	r	mov r9d, dword ptr [rcx + 0x2c]	vtable-seeded 01CB2608	
+007A02F0	FUN_007a02f0	007A0315	0x24	r	mov edx, dword ptr [rcx + 0x24]	vtable-seeded 01CB2608	
+007A02F0	FUN_007a02f0	007A0318	0x18	r	mov rcx, qword ptr [rcx + 0x18]	vtable-seeded 01CB2608	

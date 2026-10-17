@@ -1,7 +1,7 @@
 address	name	evidence
 0080F2E0		
 0080F2F0		
-0080F300	index2addr (lapi)	positive index from the call's func, past L->top the shared nil object; negative ones tested against LUA_REGISTRYINDEX FFF0B9D8h (code, not a string)
+0080F300	index2addr (lapi)	positive index from the call's func, past L->top the shared nil object; negative ones tested against LUA_REGISTRYINDEX 0xFFF0B9D8 (code, not a string)
 0080F370		
 0080F3A0		
 0080F420		
@@ -11,7 +11,7 @@ address	name	evidence
 0080F740		
 0080F7B0		
 0080F7F0		
-0080F800	lua_gc	G(L) from +18h, then a switch on 'what' over 0..11 (LUA_GCSTOP..LUA_GCINC) (code, not a string)
+0080F800	lua_gc	G(L) from +0x18, then a switch on 'what' over 0..11 (LUA_GCSTOP..LUA_GCINC) (code, not a string)
 0080FA30		
 0080FA50		
 0080FB20	lua_getglobal	registry entry 2 (the globals table, luaH_getint), pushes the name as a new string, tail-jumps to luaV_gettable 00822BC0 (code, not a string)
@@ -27,7 +27,7 @@ address	name	evidence
 008100E0		
 00810240		
 00810290		
-00810340	lua_pcallk	errfunc 0 test, index2addr for it, then the 16-bit L->nny test at +44h before the continuation; six-argument callers (L, nargs, nresults, errfunc, ctx, k) (code, not a string)
+00810340	lua_pcallk	errfunc 0 test, index2addr for it, then the 16-bit L->nny test at +0x44 before the continuation; six-argument callers (L, nargs, nresults, errfunc, ctx, k) (code, not a string)
 00810450		
 00810470	lua_pushcclosure	named on 22 ../PhyreEngine/phyre-lua-bindings.md (called only by the library openers)
 00810540		

@@ -1,277 +1,277 @@
 block_off	address	shader_constant	cbuffer_off	config_key	default	menu_ids	menu_labels
-+000h	02CB7FD0	mapFresnelRefEnabled	184h	-	1	28,147	Map BGNPC Fresnel Enabled; Use PS2 lighting
-+004h	02CB7FD4	mapFresnelSpecularIntensity	188h	-	3.9	148	Map BGNPC Fresnel Intensity
-+008h	02CB7FD8	mapFresnelSpecularPower	18Ch	-	2.7	149	Map BGNPC Fresnel Power
-+00Ch	02CB7FDC	mapFresnelSpecularClampValue	190h	-	-0.8	150	Map BGNPC Fresnel Clamp Value
-+010h	02CB7FE0	mapFresnelSpecularSkinIntensity	194h	-	2	151	Map BGNPC Fresnel Skin Intensity
-+014h	02CB7FE4	eMapCameraLightEnabled	198h	-	1	28,152	Map Camera Light Enabled; Use PS2 lighting
-+018h	02CB7FE8	eMapSpecularPowerModifier	19Ch	-	5.01	136	Map Eye Specular Power Modifier
-+01Ch	02CB7FEC	eMapSpecularPowerEyeCameraDistanceFactor	1A0h	-	0.05	137	Map Eye Specular Power Eye Camera Distance Factor
-+020h	02CB7FF0	eMapSpeIntenBefClpModifier	1A4h	-	0.2	138	Map Eye Specular Intensity Before Clamp Modifier
-+024h	02CB7FF4	eMapSpeIntenBefClpEyeCameraDistanceFactor	1A8h	-	0.08	139	Map Eye Specular Intensity Before Clamp Eye Camera Distance Factor
-+028h	02CB7FF8	eMapSpeIntenAftClpModifier	1ACh	mEyeMapSpecularIntensityAfterClampModifier	1.1	140	Map Eye Specular Intensity After Clamp Modifier
-+02Ch	02CB7FFC	eMapSpeIntenAftClpEyeCameraDistanceFactor	1B0h	-	0.05	141	Map Eye Specular Intensity After Clamp Eye Camera Distance Factor
-+030h	02CB8000	eMapCubeMapIntensityModifier	1B4h	-	0.5	142	Map Eye CubeMap Intensity Modifier
-+034h	02CB8004	eMapSpculrBlndMdifir	1B8h	-	1.3	143	Map Eye Specular Blend Modifier
-+038h	02CB8008	eMapCameraLightXModifier	1BCh	-	0	153	Map Eye Camera Light X Modifier
-+03Ch	02CB800C	eMapCameraLightYModifier	1C0h	-	0.43	154	Map Eye Camera Light Y Modifier
-+040h	02CB8010	eMapCameraLightZModifier	1C4h	-	0	155	Map Eye Camera Light Z Modifier
-+044h	02CB8014	eMapShdwMdifir	1C8h	-	1.3	144	Map Eye Diffuse Modifier
-+048h	02CB8018	eMapAmbientMdifir	1CCh	-	0	145	Map Eye Ambient Modifier
-+04Ch	02CB801C	eMapAmbientBnd	1D0h	-	0.6	146	Map Eye Ambient Bound
-+050h	02CB8020	hMapSpculrPwrMdifir	1E0h	-	1.5	156	Map Hair Specular Power Modifier
-+054h	02CB8024	hMapSpculrPwryCmrDistncFctr	1E4h	-	0.03	157	Map Hair Specular Power Eye Camera Distance Factor
-+058h	02CB8028	hMapSpIntnBfClpMdifir	1E8h	-	1.8	158	Map Hair Specular Intensity Before Clamp Modifier
-+05Ch	02CB802C	hMapSpIntnBfClpyCmrDistncFctr	1ECh	-	0.5	159	Map Hair Specular Intensity Before Clamp Eye Camera Distance Factor
-+060h	02CB8030	hMapSpIntnAftClpMdifir	1F0h	-	0.31	160	Map Hair Specular Intensity After Clamp Modifier
-+064h	02CB8034	hMapSpIntnAftClpyCmrDistncFctr	1F4h	-	0.04	161	Map Hair Specular Intensity After Clamp Eye Camera Distance Factor
-+068h	02CB8038	hMapCmrLghtXMdifir	1D4h	-	0	162	Map Hair Camera Light X Modifier
-+06Ch	02CB803C	hMapCmrLghtYMdifir	1D8h	-	-0.13	163	Map Hair Camera Light Y Modifier
-+070h	02CB8040	hMapCmrLghtZMdifir	1DCh	-	0	164	Map Hair Camera Light Z Modifier
-+074h	02CB8044	mapRefractionFactor	1F8h	mDebugRefractionFactor	2	120	Water Refraction Factor
-+078h	02CB8048	mapWaterSpecFactor	1FCh	mDebugWaterSpecFactor	3.59	121	Water Specular Factor
-+07Ch	02CB804C	mapWaterTexBlendFactor	200h	mDebugWaterTexBlendFactor	1	135	Water Texture Reflection Factor
-+080h	02CB8050	mapWaterExtraFactorTwo	204h	mDebugWaterExtraFactorTwo	1	122	Water Extra Debug Factor Two
-+084h	02CB8054	mapWaterCubemapFactor	208h	mDebugWaterCubemapFactor	0.88	123	Water Extra Debug Cubemap Factor
-+088h	02CB8058	mapWaterRoughnessFactor	20Ch	mDebugWaterRoughnessFactor	1	124	Water Extra Debug Roughness Factor
-+08Ch	02CB805C	mapWaterParallaxFactor	210h	mDebugWaterParallaxFactor	0.04	125	Water Parallax Occlusion Debug Factor
-+090h	02CB8060	mapWaterFresnelFactor	214h	mDebugWaterFresnelFactor	3.81	126	Water Fresnel Factor
-+094h	02CB8064	mapParallaxEnabled	21Ch	-	1	-	-
-+098h	02CB8068	mapWaterBias	218h	-	0	-	-
-+09Ch	02CB806C	mapIrrCubeMapIntensity	234h	mMapIrrCubemapIntensity	2	119	Map IBL Diffuse Intensity
-+0A0h	02CB8070	vMapAmbientColor	220h	-	1	-	-
-+0A4h	02CB8074	vMapAmbientColor[1]	224h	-	1	-	-
-+0A8h	02CB8078	vMapAmbientColor[2]	228h	-	1	-	-
-+0ACh	02CB807C	vMapAmbientColor[3]	22Ch	-	1	-	-
-+0B0h	02CB8080	vMapAmbColorCutPercent	230h	mMapAmbientColorCutPercent	0.3	28	Use PS2 lighting
-+0B8h	02CB8088	mapIrrCubeMapFactor	578h	-	0	-	-
-+0BCh	02CB808C	mapSoftParticleFactor	57Ch	-	0.1	-	-
-+0C0h	02CB8090	rtWidth	580h	-	1920	-	-
-+0C4h	02CB8094	rtHeight	584h	-	1080	-	-
-+0D0h	02CB80A0	chrFresnelSpecularIntensity	238h	chrFresnelSpecularIntensity	3.9	95	Fresnel Specular intensity
-+0D4h	02CB80A4	chrFresnelSpecularPower	23Ch	chrFresnelSpecularPower	2.7	96	Fresnel Specular power
-+0D8h	02CB80A8	chrFresnelSpecularClampValue	240h	chrFresnelSpecularClampValue	-0.8	97	Fresnel Specular Clamp Value
-+0DCh	02CB80AC	chrFresnelSpecularSkinIntensity	244h	chrFresnelSpecularSkinIntensity	2	98	Fresnel Specular Skin Intensity
-+0E0h	02CB80B0	hChrCmrLghtXMdifir	248h	-	0	63	Hair Camera Light Direction X Bias
-+0E4h	02CB80B4	hChrCmrLghtYMdifir	24Ch	-	0.001	64	Hair Camera Light Direction Y Bias
-+0E8h	02CB80B8	hChrCmrLghtZMdifir	250h	-	0	65	Hair Camera Light Direction Z Bias
-+0ECh	02CB80BC	hChrSpculrPwrMdifir	254h	-	0.45	66	Hair Specular Power Modifier
-+0F0h	02CB80C0	hChrSpculrPwryCmrDistncFctr	258h	-	0.03	67	Hair Specular Power Eye-Camera Distance Factor
-+0F4h	02CB80C4	hChrSpIntnBfClpMdifir	25Ch	-	0.4	68	Hair Specular Intensity Before Clamp Modifier
-+0F8h	02CB80C8	hChrSpIntnBfClpyCmrDistncFctr	260h	-	0.1	69	Hair Specular Intensity Before Clamp Eye-Camera Distance Factor
-+0FCh	02CB80CC	hChrSpIntnAftClpMdifir	264h	-	0.3	70	Hair Specular Intensity After Clamp Modifier
-+100h	02CB80D0	hChrSpIntnAftClpyCmrDistncFctr	268h	-	0.02	71	Hair Specular Intensity After Clamp Eye-Camera Distance Factor
-+104h	02CB80D4	eChrCubeMapIntensityModifier	26Ch	mEyeABCubeMapBlendFactor	0.5	90	Eye A and B Cube Map Blend Factor
-+108h	02CB80D8	eChrSpculrBlndMdifir	270h	mEyeABSpecularBlendModifier	1	91	Eye A and B Specular Blend Modifier
-+10Ch	02CB80DC	eChrAmbientMdifir	274h	-	0	92	Eye A and B Ambient Scale
-+110h	02CB80E0	eChrAmbientBnd	278h	-	0.65	93	Eye A and B Ambient Bound
-+114h	02CB80E4	eChrShdwMdifir	27Ch	mEyeABSpecularShadowModifier	1.15	94	Eye A and B Specular Shadow Modifier
-+118h	02CB80E8	xChrCmrLghtXMdifir	280h	-	0.24	72	Eye Type A Camera Light Direction X Bias
-+11Ch	02CB80EC	xChrCmrLghtYMdifir	284h	-	0.05	73	Eye Type A Camera Light Direction Y Bias
-+120h	02CB80F0	xChrCmrLghtZMdifir	288h	-	-0.13	74	Eye Type A Camera Light Direction Z Bias
-+124h	02CB80F4	xChrSpculrPwrMdifir	28Ch	-	5.029	75	Eye Type A Specular Power Modifier
-+128h	02CB80F8	xChrSpculrPwryCmrDistncFctr	290h	-	0.031	76	Eye Type A Specular Power Eye-Camera Distance Factor
-+12Ch	02CB80FC	xChrSpIntnBfClpMdifir	294h	-	0.03	77	Eye Type A Specular Intensity Before Clamp Modifier
-+130h	02CB8100	xChrSpIntnBfClpyCmrDistncFctr	298h	-	0.02	78	Eye Type A Specular Intensity Before Clamp Eye-Camera Distance Factor
-+134h	02CB8104	xChrSpIntnAftClpMdifir	29Ch	mEyeASpecularIntensityAfterClampModifier	0.66	79	Eye Type A Specular Intensity After Clamp Modifier
-+138h	02CB8108	xChrSpIntnAftClpyCmrDistncFctr	2A0h	-	0.03	80	Eye Type A Specular Intensity After Clamp Eye-Camera Distance Factor
-+13Ch	02CB810C	yChrCmrLghtXMdifir	2A4h	-	0.25	81	Eye Type B Camera Light Direction X Bias
-+140h	02CB8110	yChrCmrLghtYMdifir	2A8h	-	-0.05	82	Eye Type B Camera Light Direction Y Bias
-+144h	02CB8114	yChrCmrLghtZMdifir	2ACh	-	0.12	83	Eye Type B Camera Light Direction Z Bias
-+148h	02CB8118	yChrSpculrPwrMdifir	2B0h	-	5.029	84	Eye Type B Specular Power Modifier
-+14Ch	02CB811C	yChrSpculrPwryCmrDistncFctr	2B4h	-	0.031	85	Eye Type B Specular Power Eye-Camera Distance Factor
-+150h	02CB8120	yChrSpIntnBfClpMdifir	2B8h	-	0.03	86	Eye Type B Specular Intensity Before Clamp Modifier
-+154h	02CB8124	yChrSpIntnBfClpyCmrDistncFctr	2BCh	-	0.02	87	Eye Type B Specular Intensity Before Clamp Eye-Camera Distance Factor
-+158h	02CB8128	yChrSpIntnAftClpMdifir	2C0h	mEyeBSpecularIntensityAfterClampModifier	0.66	88	Eye Type B Specular Intensity After Clamp Modifier
-+15Ch	02CB812C	yChrSpIntnAftClpyCmrDistncFctr	2C4h	-	0.03	89	Eye Type B Specular Intensity After Clamp Eye-Camera Distance Factor
-+160h	02CB8130	chrDiffuseIntensity	2C8h	-	0.5	28,108	Diffuse intensity; Use PS2 lighting
-+164h	02CB8134	chrSpecularIntensity	2CCh	-	0.4	28,109	Specular intensity; Use PS2 lighting
-+168h	02CB8138	chrCubemapIntensity	2D0h	mCubemapIntensity	0.6	28,110	Cube map intensity; Use PS2 lighting
-+16Ch	02CB813C	chrDebugCubemap	2D4h	-	0	53	Debug Cubemap
-+170h	02CB8140	chrCubeMapFactor	2D8h	-	0.8	107	Cube map factor
-+174h	02CB8144	chrIrrCubeMapIntensity	2DCh	-	2.2	113	IBL Diffuse intensity
-+178h	02CB8148	drawNormal	2E0h	-	0	30	Display normal only
-+17Ch	02CB814C	chrDebugTextureDensity	2E4h	-	-	32	Display texture density
-+180h	02CB8150	chrUseVertexColor	2E8h	-	1	31	Use vertex color
-+184h	02CB8154	chrIrrCubeMapFactor	588h	-	-	-	-
-+190h	02CB8160	mShadowCascadeProjection0	2F0h	-	-	-	-
-+194h	02CB8164	mShadowCascadeProjection0[4]	300h	-	-	-	-
-+198h	02CB8168	mShadowCascadeProjection0[8]	310h	-	-	-	-
-+19Ch	02CB816C	mShadowCascadeProjection0[12]	320h	-	-	-	-
-+1A0h	02CB8170	mShadowCascadeProjection0[1]	2F4h	-	-	-	-
-+1A4h	02CB8174	mShadowCascadeProjection0[5]	304h	-	-	-	-
-+1A8h	02CB8178	mShadowCascadeProjection0[9]	314h	-	-	-	-
-+1ACh	02CB817C	mShadowCascadeProjection0[13]	324h	-	-	-	-
-+1B0h	02CB8180	mShadowCascadeProjection0[2]	2F8h	-	-	-	-
-+1B4h	02CB8184	mShadowCascadeProjection0[6]	308h	-	-	-	-
-+1B8h	02CB8188	mShadowCascadeProjection0[10]	318h	-	-	-	-
-+1BCh	02CB818C	mShadowCascadeProjection0[14]	328h	-	-	-	-
-+1C0h	02CB8190	mShadowCascadeProjection0[3]	2FCh	-	-	-	-
-+1C4h	02CB8194	mShadowCascadeProjection0[7]	30Ch	-	-	-	-
-+1C8h	02CB8198	mShadowCascadeProjection0[11]	31Ch	-	-	-	-
-+1CCh	02CB819C	mShadowCascadeProjection0[15]	32Ch	-	-	-	-
-+1D0h	02CB81A0	mShadowCascadeProjection1	330h	-	-	-	-
-+1D4h	02CB81A4	mShadowCascadeProjection1[4]	340h	-	-	-	-
-+1D8h	02CB81A8	mShadowCascadeProjection1[8]	350h	-	-	-	-
-+1DCh	02CB81AC	mShadowCascadeProjection1[12]	360h	-	-	-	-
-+1E0h	02CB81B0	mShadowCascadeProjection1[1]	334h	-	-	-	-
-+1E4h	02CB81B4	mShadowCascadeProjection1[5]	344h	-	-	-	-
-+1E8h	02CB81B8	mShadowCascadeProjection1[9]	354h	-	-	-	-
-+1ECh	02CB81BC	mShadowCascadeProjection1[13]	364h	-	-	-	-
-+1F0h	02CB81C0	mShadowCascadeProjection1[2]	338h	-	-	-	-
-+1F4h	02CB81C4	mShadowCascadeProjection1[6]	348h	-	-	-	-
-+1F8h	02CB81C8	mShadowCascadeProjection1[10]	358h	-	-	-	-
-+1FCh	02CB81CC	mShadowCascadeProjection1[14]	368h	-	-	-	-
-+200h	02CB81D0	mShadowCascadeProjection1[3]	33Ch	-	-	-	-
-+204h	02CB81D4	mShadowCascadeProjection1[7]	34Ch	-	-	-	-
-+208h	02CB81D8	mShadowCascadeProjection1[11]	35Ch	-	-	-	-
-+20Ch	02CB81DC	mShadowCascadeProjection1[15]	36Ch	-	-	-	-
-+210h	02CB81E0	mShadowCascadeProjection2	370h	-	-	-	-
-+214h	02CB81E4	mShadowCascadeProjection2[4]	380h	-	-	-	-
-+218h	02CB81E8	mShadowCascadeProjection2[8]	390h	-	-	-	-
-+21Ch	02CB81EC	mShadowCascadeProjection2[12]	3A0h	-	-	-	-
-+220h	02CB81F0	mShadowCascadeProjection2[1]	374h	-	-	-	-
-+224h	02CB81F4	mShadowCascadeProjection2[5]	384h	-	-	-	-
-+228h	02CB81F8	mShadowCascadeProjection2[9]	394h	-	-	-	-
-+22Ch	02CB81FC	mShadowCascadeProjection2[13]	3A4h	-	-	-	-
-+230h	02CB8200	mShadowCascadeProjection2[2]	378h	-	-	-	-
-+234h	02CB8204	mShadowCascadeProjection2[6]	388h	-	-	-	-
-+238h	02CB8208	mShadowCascadeProjection2[10]	398h	-	-	-	-
-+23Ch	02CB820C	mShadowCascadeProjection2[14]	3A8h	-	-	-	-
-+240h	02CB8210	mShadowCascadeProjection2[3]	37Ch	-	-	-	-
-+244h	02CB8214	mShadowCascadeProjection2[7]	38Ch	-	-	-	-
-+248h	02CB8218	mShadowCascadeProjection2[11]	39Ch	-	-	-	-
-+24Ch	02CB821C	mShadowCascadeProjection2[15]	3ACh	-	-	-	-
-+250h	02CB8220	mShadowCascadeProjection3	3B0h	-	-	-	-
-+254h	02CB8224	mShadowCascadeProjection3[4]	3C0h	-	-	-	-
-+258h	02CB8228	mShadowCascadeProjection3[8]	3D0h	-	-	-	-
-+25Ch	02CB822C	mShadowCascadeProjection3[12]	3E0h	-	-	-	-
-+260h	02CB8230	mShadowCascadeProjection3[1]	3B4h	-	-	-	-
-+264h	02CB8234	mShadowCascadeProjection3[5]	3C4h	-	-	-	-
-+268h	02CB8238	mShadowCascadeProjection3[9]	3D4h	-	-	-	-
-+26Ch	02CB823C	mShadowCascadeProjection3[13]	3E4h	-	-	-	-
-+270h	02CB8240	mShadowCascadeProjection3[2]	3B8h	-	-	-	-
-+274h	02CB8244	mShadowCascadeProjection3[6]	3C8h	-	-	-	-
-+278h	02CB8248	mShadowCascadeProjection3[10]	3D8h	-	-	-	-
-+27Ch	02CB824C	mShadowCascadeProjection3[14]	3E8h	-	-	-	-
-+280h	02CB8250	mShadowCascadeProjection3[3]	3BCh	-	-	-	-
-+284h	02CB8254	mShadowCascadeProjection3[7]	3CCh	-	-	-	-
-+288h	02CB8258	mShadowCascadeProjection3[11]	3DCh	-	-	-	-
-+28Ch	02CB825C	mShadowCascadeProjection3[15]	3ECh	-	-	-	-
-+290h	02CB8260	mShadowCascadeProjection4	3F0h	-	-	-	-
-+294h	02CB8264	mShadowCascadeProjection4[4]	400h	-	-	-	-
-+298h	02CB8268	mShadowCascadeProjection4[8]	410h	-	-	-	-
-+29Ch	02CB826C	mShadowCascadeProjection4[12]	420h	-	-	-	-
-+2A0h	02CB8270	mShadowCascadeProjection4[1]	3F4h	-	-	-	-
-+2A4h	02CB8274	mShadowCascadeProjection4[5]	404h	-	-	-	-
-+2A8h	02CB8278	mShadowCascadeProjection4[9]	414h	-	-	-	-
-+2ACh	02CB827C	mShadowCascadeProjection4[13]	424h	-	-	-	-
-+2B0h	02CB8280	mShadowCascadeProjection4[2]	3F8h	-	-	-	-
-+2B4h	02CB8284	mShadowCascadeProjection4[6]	408h	-	-	-	-
-+2B8h	02CB8288	mShadowCascadeProjection4[10]	418h	-	-	-	-
-+2BCh	02CB828C	mShadowCascadeProjection4[14]	428h	-	-	-	-
-+2C0h	02CB8290	mShadowCascadeProjection4[3]	3FCh	-	-	-	-
-+2C4h	02CB8294	mShadowCascadeProjection4[7]	40Ch	-	-	-	-
-+2C8h	02CB8298	mShadowCascadeProjection4[11]	41Ch	-	-	-	-
-+2CCh	02CB829C	mShadowCascadeProjection4[15]	42Ch	-	-	-	-
-+2D0h	02CB82A0	mShadowCascadeProjection5	430h	-	-	-	-
-+2D4h	02CB82A4	mShadowCascadeProjection5[4]	440h	-	-	-	-
-+2D8h	02CB82A8	mShadowCascadeProjection5[8]	450h	-	-	-	-
-+2DCh	02CB82AC	mShadowCascadeProjection5[12]	460h	-	-	-	-
-+2E0h	02CB82B0	mShadowCascadeProjection5[1]	434h	-	-	-	-
-+2E4h	02CB82B4	mShadowCascadeProjection5[5]	444h	-	-	-	-
-+2E8h	02CB82B8	mShadowCascadeProjection5[9]	454h	-	-	-	-
-+2ECh	02CB82BC	mShadowCascadeProjection5[13]	464h	-	-	-	-
-+2F0h	02CB82C0	mShadowCascadeProjection5[2]	438h	-	-	-	-
-+2F4h	02CB82C4	mShadowCascadeProjection5[6]	448h	-	-	-	-
-+2F8h	02CB82C8	mShadowCascadeProjection5[10]	458h	-	-	-	-
-+2FCh	02CB82CC	mShadowCascadeProjection5[14]	468h	-	-	-	-
-+300h	02CB82D0	mShadowCascadeProjection5[3]	43Ch	-	-	-	-
-+304h	02CB82D4	mShadowCascadeProjection5[7]	44Ch	-	-	-	-
-+308h	02CB82D8	mShadowCascadeProjection5[11]	45Ch	-	-	-	-
-+30Ch	02CB82DC	mShadowCascadeProjection5[15]	46Ch	-	-	-	-
-+310h	02CB82E0	mShadowCascadeProjection6	470h	-	-	-	-
-+314h	02CB82E4	mShadowCascadeProjection6[4]	480h	-	-	-	-
-+318h	02CB82E8	mShadowCascadeProjection6[8]	490h	-	-	-	-
-+31Ch	02CB82EC	mShadowCascadeProjection6[12]	4A0h	-	-	-	-
-+320h	02CB82F0	mShadowCascadeProjection6[1]	474h	-	-	-	-
-+324h	02CB82F4	mShadowCascadeProjection6[5]	484h	-	-	-	-
-+328h	02CB82F8	mShadowCascadeProjection6[9]	494h	-	-	-	-
-+32Ch	02CB82FC	mShadowCascadeProjection6[13]	4A4h	-	-	-	-
-+330h	02CB8300	mShadowCascadeProjection6[2]	478h	-	-	-	-
-+334h	02CB8304	mShadowCascadeProjection6[6]	488h	-	-	-	-
-+338h	02CB8308	mShadowCascadeProjection6[10]	498h	-	-	-	-
-+33Ch	02CB830C	mShadowCascadeProjection6[14]	4A8h	-	-	-	-
-+340h	02CB8310	mShadowCascadeProjection6[3]	47Ch	-	-	-	-
-+344h	02CB8314	mShadowCascadeProjection6[7]	48Ch	-	-	-	-
-+348h	02CB8318	mShadowCascadeProjection6[11]	49Ch	-	-	-	-
-+34Ch	02CB831C	mShadowCascadeProjection6[15]	4ACh	-	-	-	-
-+350h	02CB8320	mShadowCascadeProjection7	4B0h	-	-	-	-
-+354h	02CB8324	mShadowCascadeProjection7[4]	4C0h	-	-	-	-
-+358h	02CB8328	mShadowCascadeProjection7[8]	4D0h	-	-	-	-
-+35Ch	02CB832C	mShadowCascadeProjection7[12]	4E0h	-	-	-	-
-+360h	02CB8330	mShadowCascadeProjection7[1]	4B4h	-	-	-	-
-+364h	02CB8334	mShadowCascadeProjection7[5]	4C4h	-	-	-	-
-+368h	02CB8338	mShadowCascadeProjection7[9]	4D4h	-	-	-	-
-+36Ch	02CB833C	mShadowCascadeProjection7[13]	4E4h	-	-	-	-
-+370h	02CB8340	mShadowCascadeProjection7[2]	4B8h	-	-	-	-
-+374h	02CB8344	mShadowCascadeProjection7[6]	4C8h	-	-	-	-
-+378h	02CB8348	mShadowCascadeProjection7[10]	4D8h	-	-	-	-
-+37Ch	02CB834C	mShadowCascadeProjection7[14]	4E8h	-	-	-	-
-+380h	02CB8350	mShadowCascadeProjection7[3]	4BCh	-	-	-	-
-+384h	02CB8354	mShadowCascadeProjection7[7]	4CCh	-	-	-	-
-+388h	02CB8358	mShadowCascadeProjection7[11]	4DCh	-	-	-	-
-+38Ch	02CB835C	mShadowCascadeProjection7[15]	4ECh	-	-	-	-
-+390h	02CB8360	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1	4F0h	-	-	-	-
-+394h	02CB8364	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1[1]	4F4h	-	-	-	-
-+398h	02CB8368	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1[2]	4F8h	-	-	-	-
-+39Ch	02CB836C	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1[3]	4FCh	-	-	-	-
-+3A0h	02CB8370	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2	500h	-	-	-	-
-+3A4h	02CB8374	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2[1]	504h	-	-	-	-
-+3A8h	02CB8378	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2[2]	508h	-	-	-	-
-+3ACh	02CB837C	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2[3]	50Ch	-	-	-	-
-+3B0h	02CB8380	m_shadowLightDir	510h	-	-	-	-
-+3B4h	02CB8384	m_shadowLightDir[1]	514h	-	-	-	-
-+3B8h	02CB8388	m_shadowLightDir[2]	518h	-	-	-	-
-+3BCh	02CB838C	m_shadowLightDir[3]	51Ch	-	-	-	-
-+3C0h	02CB8390	mSpecialShadowColor	530h	-	-	-	-
-+3C4h	02CB8394	mSpecialShadowColor[1]	534h	-	-	-	-
-+3C8h	02CB8398	mSpecialShadowColor[2]	538h	-	-	-	-
-+3CCh	02CB839C	mSpecialShadowColor[3]	53Ch	-	-	-	-
-+3D0h	02CB83A0	mShadowColor	520h	-	-	-	-
-+3D4h	02CB83A4	mShadowColor[1]	524h	-	-	-	-
-+3D8h	02CB83A8	mShadowColor[2]	528h	-	-	-	-
-+3E0h	02CB83B0	m_objMaxHeight	5A4h	-	-	-	-
-+3E4h	02CB83B4	iShadowCascadesUseCount	2ECh	-	-	-	-
-+3E8h	02CB83B8	m_fShadowMinBorderPadding	540h	-	-	-	-
-+3ECh	02CB83BC	m_fShadowMaxBorderPadding	544h	-	-	-	-
-+3F0h	02CB83C0	m_fShadowCascadeBlendArea	548h	-	-	-	-
-+3F4h	02CB83C4	m_fShadowBiasFromGUI	54Ch	-	-	-	-
-+3F8h	02CB83C8	m_fShadowPartitionSize	550h	-	-	-	-
-+3FCh	02CB83CC	m_fShadowTexelSize	554h	-	-	-	-
-+400h	02CB83D0	m_fShadowNativeTexelSizeInX	558h	-	-	-	-
-+404h	02CB83D4	mShadowDecayDistance	55Ch	-	-	-	-
-+408h	02CB83D8	mShadowEnableDecay	560h	-	-	-	-
-+40Ch	02CB83DC	shadowLevel	564h	-	-	-	-
-+410h	02CB83E0	iShadowCascade_selection	568h	-	-	-	-
-+414h	02CB83E4	iShadowBlend_between_cascade	56Ch	-	-	-	-
-+418h	02CB83E8	m_iShadowVisualizeCascades	570h	-	-	-	-
-+41Ch	02CB83EC	m_iChrPCFBlurForLoopStart	5B0h	-	-	-	-
-+420h	02CB83F0	m_iChrPCFBlurForLoopEnd	5B4h	-	-	-	-
-+424h	02CB83F4	m_iMapPCFBlurForLoopStart	5A8h	-	-	-	-
-+428h	02CB83F8	m_iMapPCFBlurForLoopEnd	5ACh	-	-	-	-
-+42Ch	02CB83FC	mMapEnableHeightFade	5B8h	-	0	-	-
-+42Dh	02CB83FD	mChrEnableHeightFade	5BCh	-	-	-	-
-+430h	02CB8400	mMapShadowValueLerpMin	5C0h	-	-	-	-
-+434h	02CB8404	mChrShadowValueLerpMin	5C4h	-	-	-	-
-+438h	02CB8408	mShadowFadeSpeed	5D0h	-	0	-	-
-+43Ch	02CB840C	mShadowFadeRange	5D8h	-	0	-	-
-+440h	02CB8410	mShadowFlyingFadeSpeed	5D4h	-	0	-	-
-+444h	02CB8414	mShadowFlyingFadeRange	5DCh	-	0	-	-
-+448h	02CB8418	m_mapFadeHeight	5E0h	-	1	-	-
-+450h	02CB8420	ssssb	590h	-	0	-	-
-+454h	02CB8424	ssssb[1]	594h	-	-0.5	-	-
-+458h	02CB8428	ssssb[2]	598h	-	0.5	-	-
-+460h	02CB8430	sssFarPlane	59Ch	-	0.5	-	-
-+464h	02CB8434	sssEnable	5A0h	-	1	167	SSS enable
-+468h	02CB8438	sssWidthInternal	58Ch	-	7	168	SSS Width
++0x000	02CB7FD0	mapFresnelRefEnabled	0x184	-	1	28,147	Map BGNPC Fresnel Enabled; Use PS2 lighting
++0x004	02CB7FD4	mapFresnelSpecularIntensity	0x188	-	3.9	148	Map BGNPC Fresnel Intensity
++0x008	02CB7FD8	mapFresnelSpecularPower	0x18C	-	2.7	149	Map BGNPC Fresnel Power
++0x00C	02CB7FDC	mapFresnelSpecularClampValue	0x190	-	-0.8	150	Map BGNPC Fresnel Clamp Value
++0x010	02CB7FE0	mapFresnelSpecularSkinIntensity	0x194	-	2	151	Map BGNPC Fresnel Skin Intensity
++0x014	02CB7FE4	eMapCameraLightEnabled	0x198	-	1	28,152	Map Camera Light Enabled; Use PS2 lighting
++0x018	02CB7FE8	eMapSpecularPowerModifier	0x19C	-	5.01	136	Map Eye Specular Power Modifier
++0x01C	02CB7FEC	eMapSpecularPowerEyeCameraDistanceFactor	0x1A0	-	0.05	137	Map Eye Specular Power Eye Camera Distance Factor
++0x020	02CB7FF0	eMapSpeIntenBefClpModifier	0x1A4	-	0.2	138	Map Eye Specular Intensity Before Clamp Modifier
++0x024	02CB7FF4	eMapSpeIntenBefClpEyeCameraDistanceFactor	0x1A8	-	0.08	139	Map Eye Specular Intensity Before Clamp Eye Camera Distance Factor
++0x028	02CB7FF8	eMapSpeIntenAftClpModifier	0x1AC	mEyeMapSpecularIntensityAfterClampModifier	1.1	140	Map Eye Specular Intensity After Clamp Modifier
++0x02C	02CB7FFC	eMapSpeIntenAftClpEyeCameraDistanceFactor	0x1B0	-	0.05	141	Map Eye Specular Intensity After Clamp Eye Camera Distance Factor
++0x030	02CB8000	eMapCubeMapIntensityModifier	0x1B4	-	0.5	142	Map Eye CubeMap Intensity Modifier
++0x034	02CB8004	eMapSpculrBlndMdifir	0x1B8	-	1.3	143	Map Eye Specular Blend Modifier
++0x038	02CB8008	eMapCameraLightXModifier	0x1BC	-	0	153	Map Eye Camera Light X Modifier
++0x03C	02CB800C	eMapCameraLightYModifier	0x1C0	-	0.43	154	Map Eye Camera Light Y Modifier
++0x040	02CB8010	eMapCameraLightZModifier	0x1C4	-	0	155	Map Eye Camera Light Z Modifier
++0x044	02CB8014	eMapShdwMdifir	0x1C8	-	1.3	144	Map Eye Diffuse Modifier
++0x048	02CB8018	eMapAmbientMdifir	0x1CC	-	0	145	Map Eye Ambient Modifier
++0x04C	02CB801C	eMapAmbientBnd	0x1D0	-	0.6	146	Map Eye Ambient Bound
++0x050	02CB8020	hMapSpculrPwrMdifir	0x1E0	-	1.5	156	Map Hair Specular Power Modifier
++0x054	02CB8024	hMapSpculrPwryCmrDistncFctr	0x1E4	-	0.03	157	Map Hair Specular Power Eye Camera Distance Factor
++0x058	02CB8028	hMapSpIntnBfClpMdifir	0x1E8	-	1.8	158	Map Hair Specular Intensity Before Clamp Modifier
++0x05C	02CB802C	hMapSpIntnBfClpyCmrDistncFctr	0x1EC	-	0.5	159	Map Hair Specular Intensity Before Clamp Eye Camera Distance Factor
++0x060	02CB8030	hMapSpIntnAftClpMdifir	0x1F0	-	0.31	160	Map Hair Specular Intensity After Clamp Modifier
++0x064	02CB8034	hMapSpIntnAftClpyCmrDistncFctr	0x1F4	-	0.04	161	Map Hair Specular Intensity After Clamp Eye Camera Distance Factor
++0x068	02CB8038	hMapCmrLghtXMdifir	0x1D4	-	0	162	Map Hair Camera Light X Modifier
++0x06C	02CB803C	hMapCmrLghtYMdifir	0x1D8	-	-0.13	163	Map Hair Camera Light Y Modifier
++0x070	02CB8040	hMapCmrLghtZMdifir	0x1DC	-	0	164	Map Hair Camera Light Z Modifier
++0x074	02CB8044	mapRefractionFactor	0x1F8	mDebugRefractionFactor	2	120	Water Refraction Factor
++0x078	02CB8048	mapWaterSpecFactor	0x1FC	mDebugWaterSpecFactor	3.59	121	Water Specular Factor
++0x07C	02CB804C	mapWaterTexBlendFactor	0x200	mDebugWaterTexBlendFactor	1	135	Water Texture Reflection Factor
++0x080	02CB8050	mapWaterExtraFactorTwo	0x204	mDebugWaterExtraFactorTwo	1	122	Water Extra Debug Factor Two
++0x084	02CB8054	mapWaterCubemapFactor	0x208	mDebugWaterCubemapFactor	0.88	123	Water Extra Debug Cubemap Factor
++0x088	02CB8058	mapWaterRoughnessFactor	0x20C	mDebugWaterRoughnessFactor	1	124	Water Extra Debug Roughness Factor
++0x08C	02CB805C	mapWaterParallaxFactor	0x210	mDebugWaterParallaxFactor	0.04	125	Water Parallax Occlusion Debug Factor
++0x090	02CB8060	mapWaterFresnelFactor	0x214	mDebugWaterFresnelFactor	3.81	126	Water Fresnel Factor
++0x094	02CB8064	mapParallaxEnabled	0x21C	-	1	-	-
++0x098	02CB8068	mapWaterBias	0x218	-	0	-	-
++0x09C	02CB806C	mapIrrCubeMapIntensity	0x234	mMapIrrCubemapIntensity	2	119	Map IBL Diffuse Intensity
++0x0A0	02CB8070	vMapAmbientColor	0x220	-	1	-	-
++0x0A4	02CB8074	vMapAmbientColor[1]	0x224	-	1	-	-
++0x0A8	02CB8078	vMapAmbientColor[2]	0x228	-	1	-	-
++0x0AC	02CB807C	vMapAmbientColor[3]	0x22C	-	1	-	-
++0x0B0	02CB8080	vMapAmbColorCutPercent	0x230	mMapAmbientColorCutPercent	0.3	28	Use PS2 lighting
++0x0B8	02CB8088	mapIrrCubeMapFactor	0x578	-	0	-	-
++0x0BC	02CB808C	mapSoftParticleFactor	0x57C	-	0.1	-	-
++0x0C0	02CB8090	rtWidth	0x580	-	1920	-	-
++0x0C4	02CB8094	rtHeight	0x584	-	1080	-	-
++0x0D0	02CB80A0	chrFresnelSpecularIntensity	0x238	chrFresnelSpecularIntensity	3.9	95	Fresnel Specular intensity
++0x0D4	02CB80A4	chrFresnelSpecularPower	0x23C	chrFresnelSpecularPower	2.7	96	Fresnel Specular power
++0x0D8	02CB80A8	chrFresnelSpecularClampValue	0x240	chrFresnelSpecularClampValue	-0.8	97	Fresnel Specular Clamp Value
++0x0DC	02CB80AC	chrFresnelSpecularSkinIntensity	0x244	chrFresnelSpecularSkinIntensity	2	98	Fresnel Specular Skin Intensity
++0x0E0	02CB80B0	hChrCmrLghtXMdifir	0x248	-	0	63	Hair Camera Light Direction X Bias
++0x0E4	02CB80B4	hChrCmrLghtYMdifir	0x24C	-	0.001	64	Hair Camera Light Direction Y Bias
++0x0E8	02CB80B8	hChrCmrLghtZMdifir	0x250	-	0	65	Hair Camera Light Direction Z Bias
++0x0EC	02CB80BC	hChrSpculrPwrMdifir	0x254	-	0.45	66	Hair Specular Power Modifier
++0x0F0	02CB80C0	hChrSpculrPwryCmrDistncFctr	0x258	-	0.03	67	Hair Specular Power Eye-Camera Distance Factor
++0x0F4	02CB80C4	hChrSpIntnBfClpMdifir	0x25C	-	0.4	68	Hair Specular Intensity Before Clamp Modifier
++0x0F8	02CB80C8	hChrSpIntnBfClpyCmrDistncFctr	0x260	-	0.1	69	Hair Specular Intensity Before Clamp Eye-Camera Distance Factor
++0x0FC	02CB80CC	hChrSpIntnAftClpMdifir	0x264	-	0.3	70	Hair Specular Intensity After Clamp Modifier
++0x100	02CB80D0	hChrSpIntnAftClpyCmrDistncFctr	0x268	-	0.02	71	Hair Specular Intensity After Clamp Eye-Camera Distance Factor
++0x104	02CB80D4	eChrCubeMapIntensityModifier	0x26C	mEyeABCubeMapBlendFactor	0.5	90	Eye A and B Cube Map Blend Factor
++0x108	02CB80D8	eChrSpculrBlndMdifir	0x270	mEyeABSpecularBlendModifier	1	91	Eye A and B Specular Blend Modifier
++0x10C	02CB80DC	eChrAmbientMdifir	0x274	-	0	92	Eye A and B Ambient Scale
++0x110	02CB80E0	eChrAmbientBnd	0x278	-	0.65	93	Eye A and B Ambient Bound
++0x114	02CB80E4	eChrShdwMdifir	0x27C	mEyeABSpecularShadowModifier	1.15	94	Eye A and B Specular Shadow Modifier
++0x118	02CB80E8	xChrCmrLghtXMdifir	0x280	-	0.24	72	Eye Type A Camera Light Direction X Bias
++0x11C	02CB80EC	xChrCmrLghtYMdifir	0x284	-	0.05	73	Eye Type A Camera Light Direction Y Bias
++0x120	02CB80F0	xChrCmrLghtZMdifir	0x288	-	-0.13	74	Eye Type A Camera Light Direction Z Bias
++0x124	02CB80F4	xChrSpculrPwrMdifir	0x28C	-	5.029	75	Eye Type A Specular Power Modifier
++0x128	02CB80F8	xChrSpculrPwryCmrDistncFctr	0x290	-	0.031	76	Eye Type A Specular Power Eye-Camera Distance Factor
++0x12C	02CB80FC	xChrSpIntnBfClpMdifir	0x294	-	0.03	77	Eye Type A Specular Intensity Before Clamp Modifier
++0x130	02CB8100	xChrSpIntnBfClpyCmrDistncFctr	0x298	-	0.02	78	Eye Type A Specular Intensity Before Clamp Eye-Camera Distance Factor
++0x134	02CB8104	xChrSpIntnAftClpMdifir	0x29C	mEyeASpecularIntensityAfterClampModifier	0.66	79	Eye Type A Specular Intensity After Clamp Modifier
++0x138	02CB8108	xChrSpIntnAftClpyCmrDistncFctr	0x2A0	-	0.03	80	Eye Type A Specular Intensity After Clamp Eye-Camera Distance Factor
++0x13C	02CB810C	yChrCmrLghtXMdifir	0x2A4	-	0.25	81	Eye Type B Camera Light Direction X Bias
++0x140	02CB8110	yChrCmrLghtYMdifir	0x2A8	-	-0.05	82	Eye Type B Camera Light Direction Y Bias
++0x144	02CB8114	yChrCmrLghtZMdifir	0x2AC	-	0.12	83	Eye Type B Camera Light Direction Z Bias
++0x148	02CB8118	yChrSpculrPwrMdifir	0x2B0	-	5.029	84	Eye Type B Specular Power Modifier
++0x14C	02CB811C	yChrSpculrPwryCmrDistncFctr	0x2B4	-	0.031	85	Eye Type B Specular Power Eye-Camera Distance Factor
++0x150	02CB8120	yChrSpIntnBfClpMdifir	0x2B8	-	0.03	86	Eye Type B Specular Intensity Before Clamp Modifier
++0x154	02CB8124	yChrSpIntnBfClpyCmrDistncFctr	0x2BC	-	0.02	87	Eye Type B Specular Intensity Before Clamp Eye-Camera Distance Factor
++0x158	02CB8128	yChrSpIntnAftClpMdifir	0x2C0	mEyeBSpecularIntensityAfterClampModifier	0.66	88	Eye Type B Specular Intensity After Clamp Modifier
++0x15C	02CB812C	yChrSpIntnAftClpyCmrDistncFctr	0x2C4	-	0.03	89	Eye Type B Specular Intensity After Clamp Eye-Camera Distance Factor
++0x160	02CB8130	chrDiffuseIntensity	0x2C8	-	0.5	28,108	Diffuse intensity; Use PS2 lighting
++0x164	02CB8134	chrSpecularIntensity	0x2CC	-	0.4	28,109	Specular intensity; Use PS2 lighting
++0x168	02CB8138	chrCubemapIntensity	0x2D0	mCubemapIntensity	0.6	28,110	Cube map intensity; Use PS2 lighting
++0x16C	02CB813C	chrDebugCubemap	0x2D4	-	0	53	Debug Cubemap
++0x170	02CB8140	chrCubeMapFactor	0x2D8	-	0.8	107	Cube map factor
++0x174	02CB8144	chrIrrCubeMapIntensity	0x2DC	-	2.2	113	IBL Diffuse intensity
++0x178	02CB8148	drawNormal	0x2E0	-	0	30	Display normal only
++0x17C	02CB814C	chrDebugTextureDensity	0x2E4	-	-	32	Display texture density
++0x180	02CB8150	chrUseVertexColor	0x2E8	-	1	31	Use vertex color
++0x184	02CB8154	chrIrrCubeMapFactor	0x588	-	-	-	-
++0x190	02CB8160	mShadowCascadeProjection0	0x2F0	-	-	-	-
++0x194	02CB8164	mShadowCascadeProjection0[4]	0x300	-	-	-	-
++0x198	02CB8168	mShadowCascadeProjection0[8]	0x310	-	-	-	-
++0x19C	02CB816C	mShadowCascadeProjection0[12]	0x320	-	-	-	-
++0x1A0	02CB8170	mShadowCascadeProjection0[1]	0x2F4	-	-	-	-
++0x1A4	02CB8174	mShadowCascadeProjection0[5]	0x304	-	-	-	-
++0x1A8	02CB8178	mShadowCascadeProjection0[9]	0x314	-	-	-	-
++0x1AC	02CB817C	mShadowCascadeProjection0[13]	0x324	-	-	-	-
++0x1B0	02CB8180	mShadowCascadeProjection0[2]	0x2F8	-	-	-	-
++0x1B4	02CB8184	mShadowCascadeProjection0[6]	0x308	-	-	-	-
++0x1B8	02CB8188	mShadowCascadeProjection0[10]	0x318	-	-	-	-
++0x1BC	02CB818C	mShadowCascadeProjection0[14]	0x328	-	-	-	-
++0x1C0	02CB8190	mShadowCascadeProjection0[3]	0x2FC	-	-	-	-
++0x1C4	02CB8194	mShadowCascadeProjection0[7]	0x30C	-	-	-	-
++0x1C8	02CB8198	mShadowCascadeProjection0[11]	0x31C	-	-	-	-
++0x1CC	02CB819C	mShadowCascadeProjection0[15]	0x32C	-	-	-	-
++0x1D0	02CB81A0	mShadowCascadeProjection1	0x330	-	-	-	-
++0x1D4	02CB81A4	mShadowCascadeProjection1[4]	0x340	-	-	-	-
++0x1D8	02CB81A8	mShadowCascadeProjection1[8]	0x350	-	-	-	-
++0x1DC	02CB81AC	mShadowCascadeProjection1[12]	0x360	-	-	-	-
++0x1E0	02CB81B0	mShadowCascadeProjection1[1]	0x334	-	-	-	-
++0x1E4	02CB81B4	mShadowCascadeProjection1[5]	0x344	-	-	-	-
++0x1E8	02CB81B8	mShadowCascadeProjection1[9]	0x354	-	-	-	-
++0x1EC	02CB81BC	mShadowCascadeProjection1[13]	0x364	-	-	-	-
++0x1F0	02CB81C0	mShadowCascadeProjection1[2]	0x338	-	-	-	-
++0x1F4	02CB81C4	mShadowCascadeProjection1[6]	0x348	-	-	-	-
++0x1F8	02CB81C8	mShadowCascadeProjection1[10]	0x358	-	-	-	-
++0x1FC	02CB81CC	mShadowCascadeProjection1[14]	0x368	-	-	-	-
++0x200	02CB81D0	mShadowCascadeProjection1[3]	0x33C	-	-	-	-
++0x204	02CB81D4	mShadowCascadeProjection1[7]	0x34C	-	-	-	-
++0x208	02CB81D8	mShadowCascadeProjection1[11]	0x35C	-	-	-	-
++0x20C	02CB81DC	mShadowCascadeProjection1[15]	0x36C	-	-	-	-
++0x210	02CB81E0	mShadowCascadeProjection2	0x370	-	-	-	-
++0x214	02CB81E4	mShadowCascadeProjection2[4]	0x380	-	-	-	-
++0x218	02CB81E8	mShadowCascadeProjection2[8]	0x390	-	-	-	-
++0x21C	02CB81EC	mShadowCascadeProjection2[12]	0x3A0	-	-	-	-
++0x220	02CB81F0	mShadowCascadeProjection2[1]	0x374	-	-	-	-
++0x224	02CB81F4	mShadowCascadeProjection2[5]	0x384	-	-	-	-
++0x228	02CB81F8	mShadowCascadeProjection2[9]	0x394	-	-	-	-
++0x22C	02CB81FC	mShadowCascadeProjection2[13]	0x3A4	-	-	-	-
++0x230	02CB8200	mShadowCascadeProjection2[2]	0x378	-	-	-	-
++0x234	02CB8204	mShadowCascadeProjection2[6]	0x388	-	-	-	-
++0x238	02CB8208	mShadowCascadeProjection2[10]	0x398	-	-	-	-
++0x23C	02CB820C	mShadowCascadeProjection2[14]	0x3A8	-	-	-	-
++0x240	02CB8210	mShadowCascadeProjection2[3]	0x37C	-	-	-	-
++0x244	02CB8214	mShadowCascadeProjection2[7]	0x38C	-	-	-	-
++0x248	02CB8218	mShadowCascadeProjection2[11]	0x39C	-	-	-	-
++0x24C	02CB821C	mShadowCascadeProjection2[15]	0x3AC	-	-	-	-
++0x250	02CB8220	mShadowCascadeProjection3	0x3B0	-	-	-	-
++0x254	02CB8224	mShadowCascadeProjection3[4]	0x3C0	-	-	-	-
++0x258	02CB8228	mShadowCascadeProjection3[8]	0x3D0	-	-	-	-
++0x25C	02CB822C	mShadowCascadeProjection3[12]	0x3E0	-	-	-	-
++0x260	02CB8230	mShadowCascadeProjection3[1]	0x3B4	-	-	-	-
++0x264	02CB8234	mShadowCascadeProjection3[5]	0x3C4	-	-	-	-
++0x268	02CB8238	mShadowCascadeProjection3[9]	0x3D4	-	-	-	-
++0x26C	02CB823C	mShadowCascadeProjection3[13]	0x3E4	-	-	-	-
++0x270	02CB8240	mShadowCascadeProjection3[2]	0x3B8	-	-	-	-
++0x274	02CB8244	mShadowCascadeProjection3[6]	0x3C8	-	-	-	-
++0x278	02CB8248	mShadowCascadeProjection3[10]	0x3D8	-	-	-	-
++0x27C	02CB824C	mShadowCascadeProjection3[14]	0x3E8	-	-	-	-
++0x280	02CB8250	mShadowCascadeProjection3[3]	0x3BC	-	-	-	-
++0x284	02CB8254	mShadowCascadeProjection3[7]	0x3CC	-	-	-	-
++0x288	02CB8258	mShadowCascadeProjection3[11]	0x3DC	-	-	-	-
++0x28C	02CB825C	mShadowCascadeProjection3[15]	0x3EC	-	-	-	-
++0x290	02CB8260	mShadowCascadeProjection4	0x3F0	-	-	-	-
++0x294	02CB8264	mShadowCascadeProjection4[4]	0x400	-	-	-	-
++0x298	02CB8268	mShadowCascadeProjection4[8]	0x410	-	-	-	-
++0x29C	02CB826C	mShadowCascadeProjection4[12]	0x420	-	-	-	-
++0x2A0	02CB8270	mShadowCascadeProjection4[1]	0x3F4	-	-	-	-
++0x2A4	02CB8274	mShadowCascadeProjection4[5]	0x404	-	-	-	-
++0x2A8	02CB8278	mShadowCascadeProjection4[9]	0x414	-	-	-	-
++0x2AC	02CB827C	mShadowCascadeProjection4[13]	0x424	-	-	-	-
++0x2B0	02CB8280	mShadowCascadeProjection4[2]	0x3F8	-	-	-	-
++0x2B4	02CB8284	mShadowCascadeProjection4[6]	0x408	-	-	-	-
++0x2B8	02CB8288	mShadowCascadeProjection4[10]	0x418	-	-	-	-
++0x2BC	02CB828C	mShadowCascadeProjection4[14]	0x428	-	-	-	-
++0x2C0	02CB8290	mShadowCascadeProjection4[3]	0x3FC	-	-	-	-
++0x2C4	02CB8294	mShadowCascadeProjection4[7]	0x40C	-	-	-	-
++0x2C8	02CB8298	mShadowCascadeProjection4[11]	0x41C	-	-	-	-
++0x2CC	02CB829C	mShadowCascadeProjection4[15]	0x42C	-	-	-	-
++0x2D0	02CB82A0	mShadowCascadeProjection5	0x430	-	-	-	-
++0x2D4	02CB82A4	mShadowCascadeProjection5[4]	0x440	-	-	-	-
++0x2D8	02CB82A8	mShadowCascadeProjection5[8]	0x450	-	-	-	-
++0x2DC	02CB82AC	mShadowCascadeProjection5[12]	0x460	-	-	-	-
++0x2E0	02CB82B0	mShadowCascadeProjection5[1]	0x434	-	-	-	-
++0x2E4	02CB82B4	mShadowCascadeProjection5[5]	0x444	-	-	-	-
++0x2E8	02CB82B8	mShadowCascadeProjection5[9]	0x454	-	-	-	-
++0x2EC	02CB82BC	mShadowCascadeProjection5[13]	0x464	-	-	-	-
++0x2F0	02CB82C0	mShadowCascadeProjection5[2]	0x438	-	-	-	-
++0x2F4	02CB82C4	mShadowCascadeProjection5[6]	0x448	-	-	-	-
++0x2F8	02CB82C8	mShadowCascadeProjection5[10]	0x458	-	-	-	-
++0x2FC	02CB82CC	mShadowCascadeProjection5[14]	0x468	-	-	-	-
++0x300	02CB82D0	mShadowCascadeProjection5[3]	0x43C	-	-	-	-
++0x304	02CB82D4	mShadowCascadeProjection5[7]	0x44C	-	-	-	-
++0x308	02CB82D8	mShadowCascadeProjection5[11]	0x45C	-	-	-	-
++0x30C	02CB82DC	mShadowCascadeProjection5[15]	0x46C	-	-	-	-
++0x310	02CB82E0	mShadowCascadeProjection6	0x470	-	-	-	-
++0x314	02CB82E4	mShadowCascadeProjection6[4]	0x480	-	-	-	-
++0x318	02CB82E8	mShadowCascadeProjection6[8]	0x490	-	-	-	-
++0x31C	02CB82EC	mShadowCascadeProjection6[12]	0x4A0	-	-	-	-
++0x320	02CB82F0	mShadowCascadeProjection6[1]	0x474	-	-	-	-
++0x324	02CB82F4	mShadowCascadeProjection6[5]	0x484	-	-	-	-
++0x328	02CB82F8	mShadowCascadeProjection6[9]	0x494	-	-	-	-
++0x32C	02CB82FC	mShadowCascadeProjection6[13]	0x4A4	-	-	-	-
++0x330	02CB8300	mShadowCascadeProjection6[2]	0x478	-	-	-	-
++0x334	02CB8304	mShadowCascadeProjection6[6]	0x488	-	-	-	-
++0x338	02CB8308	mShadowCascadeProjection6[10]	0x498	-	-	-	-
++0x33C	02CB830C	mShadowCascadeProjection6[14]	0x4A8	-	-	-	-
++0x340	02CB8310	mShadowCascadeProjection6[3]	0x47C	-	-	-	-
++0x344	02CB8314	mShadowCascadeProjection6[7]	0x48C	-	-	-	-
++0x348	02CB8318	mShadowCascadeProjection6[11]	0x49C	-	-	-	-
++0x34C	02CB831C	mShadowCascadeProjection6[15]	0x4AC	-	-	-	-
++0x350	02CB8320	mShadowCascadeProjection7	0x4B0	-	-	-	-
++0x354	02CB8324	mShadowCascadeProjection7[4]	0x4C0	-	-	-	-
++0x358	02CB8328	mShadowCascadeProjection7[8]	0x4D0	-	-	-	-
++0x35C	02CB832C	mShadowCascadeProjection7[12]	0x4E0	-	-	-	-
++0x360	02CB8330	mShadowCascadeProjection7[1]	0x4B4	-	-	-	-
++0x364	02CB8334	mShadowCascadeProjection7[5]	0x4C4	-	-	-	-
++0x368	02CB8338	mShadowCascadeProjection7[9]	0x4D4	-	-	-	-
++0x36C	02CB833C	mShadowCascadeProjection7[13]	0x4E4	-	-	-	-
++0x370	02CB8340	mShadowCascadeProjection7[2]	0x4B8	-	-	-	-
++0x374	02CB8344	mShadowCascadeProjection7[6]	0x4C8	-	-	-	-
++0x378	02CB8348	mShadowCascadeProjection7[10]	0x4D8	-	-	-	-
++0x37C	02CB834C	mShadowCascadeProjection7[14]	0x4E8	-	-	-	-
++0x380	02CB8350	mShadowCascadeProjection7[3]	0x4BC	-	-	-	-
++0x384	02CB8354	mShadowCascadeProjection7[7]	0x4CC	-	-	-	-
++0x388	02CB8358	mShadowCascadeProjection7[11]	0x4DC	-	-	-	-
++0x38C	02CB835C	mShadowCascadeProjection7[15]	0x4EC	-	-	-	-
++0x390	02CB8360	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1	0x4F0	-	-	-	-
++0x394	02CB8364	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1[1]	0x4F4	-	-	-	-
++0x398	02CB8368	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1[2]	0x4F8	-	-	-	-
++0x39C	02CB836C	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_1[3]	0x4FC	-	-	-	-
++0x3A0	02CB8370	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2	0x500	-	-	-	-
++0x3A4	02CB8374	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2[1]	0x504	-	-	-	-
++0x3A8	02CB8378	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2[2]	0x508	-	-	-	-
++0x3AC	02CB837C	m_fShadowCascadeFrustumsEyeSpaceDepthsFloat4_2[3]	0x50C	-	-	-	-
++0x3B0	02CB8380	m_shadowLightDir	0x510	-	-	-	-
++0x3B4	02CB8384	m_shadowLightDir[1]	0x514	-	-	-	-
++0x3B8	02CB8388	m_shadowLightDir[2]	0x518	-	-	-	-
++0x3BC	02CB838C	m_shadowLightDir[3]	0x51C	-	-	-	-
++0x3C0	02CB8390	mSpecialShadowColor	0x530	-	-	-	-
++0x3C4	02CB8394	mSpecialShadowColor[1]	0x534	-	-	-	-
++0x3C8	02CB8398	mSpecialShadowColor[2]	0x538	-	-	-	-
++0x3CC	02CB839C	mSpecialShadowColor[3]	0x53C	-	-	-	-
++0x3D0	02CB83A0	mShadowColor	0x520	-	-	-	-
++0x3D4	02CB83A4	mShadowColor[1]	0x524	-	-	-	-
++0x3D8	02CB83A8	mShadowColor[2]	0x528	-	-	-	-
++0x3E0	02CB83B0	m_objMaxHeight	0x5A4	-	-	-	-
++0x3E4	02CB83B4	iShadowCascadesUseCount	0x2EC	-	-	-	-
++0x3E8	02CB83B8	m_fShadowMinBorderPadding	0x540	-	-	-	-
++0x3EC	02CB83BC	m_fShadowMaxBorderPadding	0x544	-	-	-	-
++0x3F0	02CB83C0	m_fShadowCascadeBlendArea	0x548	-	-	-	-
++0x3F4	02CB83C4	m_fShadowBiasFromGUI	0x54C	-	-	-	-
++0x3F8	02CB83C8	m_fShadowPartitionSize	0x550	-	-	-	-
++0x3FC	02CB83CC	m_fShadowTexelSize	0x554	-	-	-	-
++0x400	02CB83D0	m_fShadowNativeTexelSizeInX	0x558	-	-	-	-
++0x404	02CB83D4	mShadowDecayDistance	0x55C	-	-	-	-
++0x408	02CB83D8	mShadowEnableDecay	0x560	-	-	-	-
++0x40C	02CB83DC	shadowLevel	0x564	-	-	-	-
++0x410	02CB83E0	iShadowCascade_selection	0x568	-	-	-	-
++0x414	02CB83E4	iShadowBlend_between_cascade	0x56C	-	-	-	-
++0x418	02CB83E8	m_iShadowVisualizeCascades	0x570	-	-	-	-
++0x41C	02CB83EC	m_iChrPCFBlurForLoopStart	0x5B0	-	-	-	-
++0x420	02CB83F0	m_iChrPCFBlurForLoopEnd	0x5B4	-	-	-	-
++0x424	02CB83F4	m_iMapPCFBlurForLoopStart	0x5A8	-	-	-	-
++0x428	02CB83F8	m_iMapPCFBlurForLoopEnd	0x5AC	-	-	-	-
++0x42C	02CB83FC	mMapEnableHeightFade	0x5B8	-	0	-	-
++0x42D	02CB83FD	mChrEnableHeightFade	0x5BC	-	-	-	-
++0x430	02CB8400	mMapShadowValueLerpMin	0x5C0	-	-	-	-
++0x434	02CB8404	mChrShadowValueLerpMin	0x5C4	-	-	-	-
++0x438	02CB8408	mShadowFadeSpeed	0x5D0	-	0	-	-
++0x43C	02CB840C	mShadowFadeRange	0x5D8	-	0	-	-
++0x440	02CB8410	mShadowFlyingFadeSpeed	0x5D4	-	0	-	-
++0x444	02CB8414	mShadowFlyingFadeRange	0x5DC	-	0	-	-
++0x448	02CB8418	m_mapFadeHeight	0x5E0	-	1	-	-
++0x450	02CB8420	ssssb	0x590	-	0	-	-
++0x454	02CB8424	ssssb[1]	0x594	-	-0.5	-	-
++0x458	02CB8428	ssssb[2]	0x598	-	0.5	-	-
++0x460	02CB8430	sssFarPlane	0x59C	-	0.5	-	-
++0x464	02CB8434	sssEnable	0x5A0	-	1	167	SSS enable
++0x468	02CB8438	sssWidthInternal	0x58C	-	7	168	SSS Width

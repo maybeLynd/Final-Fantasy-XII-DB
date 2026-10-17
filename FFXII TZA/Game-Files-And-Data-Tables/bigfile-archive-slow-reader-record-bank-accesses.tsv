@@ -1,15 +1,15 @@
 function	name	site	disp	kind	instruction	route	note
-0019A660	FUN_0019a660	0019A66C	0h	r	mov rcx, qword ptr [rcx + 8]	route-seeded EMBED SlowReaderManager +08h base+0x-8	
-0019A9B0	FUN_0019a9b0	0019A9EF	0h	r	mov rcx, qword ptr [rsi + 8]	route-seeded EMBED SlowReaderManager +08h base+0x-8	
-0019B200	FUN_0019b200	0019B2B4	0h	r	mov rcx, qword ptr [rdi]	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019B200	FUN_0019b200	0019B2C2	0h	w	mov qword ptr [rdi], 0	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019B200	FUN_0019b200	0019B2DA	0h	w	mov qword ptr [rdi], rax	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019A660	FUN_0019a660	0019A680	8h	r	cmp dword ptr [rbx + 10h], edx	route-seeded EMBED SlowReaderManager +08h base+0x-8	
-0019A660	FUN_0019a660	0019A6AD	8h	r	cmp edx, dword ptr [rbx + 10h]	route-seeded EMBED SlowReaderManager +08h base+0x-8	
-0019B200	FUN_0019b200	0019B219	8h	w	mov dword ptr [rcx + 8], edx	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019B200	FUN_0019b200	0019B254	8h	r	mov esi, dword ptr [rdi + 8]	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019B200	FUN_0019b200	0019B2C9	8h	r	mov edx, dword ptr [rdi + 8]	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019A660	FUN_0019a660	0019A690	10h	r	mov rcx, qword ptr [rbx + 18h]	route-seeded EMBED SlowReaderManager +08h base+0x-8	
-0019A660	FUN_0019a660	0019A6BF	10h	r	mov r8, qword ptr [rbx + 18h]	route-seeded EMBED SlowReaderManager +08h base+0x-8	
-0019B200	FUN_0019b200	0019B21C	10h	r	mov rcx, qword ptr [rcx + 10h]	route-seeded EMBED SlowReaderManager +08h base+0h	
-0019B200	FUN_0019b200	0019B2B0	10h	w	mov qword ptr [rdi + 10h], rbx	route-seeded EMBED SlowReaderManager +08h base+0h	
+0019A660	FUN_0019a660	0019A66C	0x0	r	mov rcx, qword ptr [rcx + 8]	route-seeded EMBED SlowReaderManager +0x08 base+0x-8	
+0019A9B0	FUN_0019a9b0	0019A9EF	0x0	r	mov rcx, qword ptr [rsi + 8]	route-seeded EMBED SlowReaderManager +0x08 base+0x-8	
+0019B200	FUN_0019b200	0019B2B4	0x0	r	mov rcx, qword ptr [rdi]	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019B200	FUN_0019b200	0019B2C2	0x0	w	mov qword ptr [rdi], 0	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019B200	FUN_0019b200	0019B2DA	0x0	w	mov qword ptr [rdi], rax	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019A660	FUN_0019a660	0019A680	0x8	r	cmp dword ptr [rbx + 0x10], edx	route-seeded EMBED SlowReaderManager +0x08 base+0x-8	
+0019A660	FUN_0019a660	0019A6AD	0x8	r	cmp edx, dword ptr [rbx + 0x10]	route-seeded EMBED SlowReaderManager +0x08 base+0x-8	
+0019B200	FUN_0019b200	0019B219	0x8	w	mov dword ptr [rcx + 8], edx	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019B200	FUN_0019b200	0019B254	0x8	r	mov esi, dword ptr [rdi + 8]	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019B200	FUN_0019b200	0019B2C9	0x8	r	mov edx, dword ptr [rdi + 8]	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019A660	FUN_0019a660	0019A690	0x10	r	mov rcx, qword ptr [rbx + 0x18]	route-seeded EMBED SlowReaderManager +0x08 base+0x-8	
+0019A660	FUN_0019a660	0019A6BF	0x10	r	mov r8, qword ptr [rbx + 0x18]	route-seeded EMBED SlowReaderManager +0x08 base+0x-8	
+0019B200	FUN_0019b200	0019B21C	0x10	r	mov rcx, qword ptr [rcx + 0x10]	route-seeded EMBED SlowReaderManager +0x08 base+0x0	
+0019B200	FUN_0019b200	0019B2B0	0x10	w	mov qword ptr [rdi + 0x10], rbx	route-seeded EMBED SlowReaderManager +0x08 base+0x0	

@@ -1,17 +1,17 @@
 function	name	site	disp	kind	instruction	route	note
-006C5180	FUN_006c5180	006C5180	0h	w	mov dword ptr [rcx], 7F7FFFFFh	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C518A	4h	w	mov dword ptr [rcx + 4], 7F7FFFFFh	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C5193	8h	w	mov dword ptr [rcx + 8], 7F7FFFFFh	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C519A	10h	w	mov dword ptr [rcx + 10h], FF7FFFFFh	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51A1	14h	w	mov dword ptr [rcx + 14h], FF7FFFFFh	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51A8	18h	w	mov dword ptr [rcx + 18h], FF7FFFFFh	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51AF	20h	w	mov dword ptr [rcx + 20h], edx	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51B7	28h	w	mov dword ptr [rax], edx	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51B9	20h	w	mov dword ptr [rcx + 20h], 1	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51C7	30h	w	mov dword ptr [rcx + 30h], 3F800000h	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51CE	40h	w	mov qword ptr [rcx + 40h], rax	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51D9	48h	w	mov qword ptr [rcx + 48h], rax	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51E0	34h	w	mov qword ptr [rcx + 34h], 447A0000h	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51E8	50h	w	mov dword ptr [rcx + 50h], edx	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51EB	58h	w	mov qword ptr [rcx + 58h], rdx	ctorrdx-seeded 006C4D60	
-006C5180	FUN_006c5180	006C51EF	60h	w	mov byte ptr [rcx + 60h], 1	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C5180	0x0	w	mov dword ptr [rcx], 0x7f7fffff	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C518A	0x4	w	mov dword ptr [rcx + 4], 0x7f7fffff	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C5193	0x8	w	mov dword ptr [rcx + 8], 0x7f7fffff	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C519A	0x10	w	mov dword ptr [rcx + 0x10], 0xff7fffff	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51A1	0x14	w	mov dword ptr [rcx + 0x14], 0xff7fffff	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51A8	0x18	w	mov dword ptr [rcx + 0x18], 0xff7fffff	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51AF	0x20	w	mov dword ptr [rcx + 0x20], edx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51B7	0x28	w	mov dword ptr [rax], edx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51B9	0x20	w	mov dword ptr [rcx + 0x20], 1	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51C7	0x30	w	mov dword ptr [rcx + 0x30], 0x3f800000	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51CE	0x40	w	mov qword ptr [rcx + 0x40], rax	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51D9	0x48	w	mov qword ptr [rcx + 0x48], rax	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51E0	0x34	w	mov qword ptr [rcx + 0x34], 0x447a0000	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51E8	0x50	w	mov dword ptr [rcx + 0x50], edx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51EB	0x58	w	mov qword ptr [rcx + 0x58], rdx	ctorrdx-seeded 006C4D60	
+006C5180	FUN_006c5180	006C51EF	0x60	w	mov byte ptr [rcx + 0x60], 1	ctorrdx-seeded 006C4D60	

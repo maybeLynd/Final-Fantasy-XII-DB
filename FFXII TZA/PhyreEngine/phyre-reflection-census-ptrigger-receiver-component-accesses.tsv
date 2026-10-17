@@ -1,12 +1,12 @@
 function	name	site	disp	kind	instruction	route	note
-00681640	FUN_00681640	00681658	28h	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006CDF00	
-00681640	FUN_00681640	00681658	40h	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006CDF00	
-00681640	FUN_00681640	0068165B	30h	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006CDF00	
-00681640	FUN_00681640	0068165B	48h	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006CDF00	
-00681640	FUN_00681640	00681664	38h	w	mov qword ptr [rbx + 10h], rax	ctorrdx-seeded 006CDF00	
-00681640	FUN_00681640	00681664	50h	w	mov qword ptr [rbx + 10h], rax	ctorrdx-seeded 006CDF00	
-006AAA20	FUN_006aaa20	006AAA22	0h	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006CDF00	
-006AAA20	FUN_006aaa20	006AAA25	8h	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006CDF00	
-006AAA20	FUN_006aaa20	006AAA2C	10h	w	mov qword ptr [rcx + 10h], rdx	ctorrdx-seeded 006CDF00	
-006CDF00	FUN_006cdf00	006CDF32	18h	w	mov qword ptr [rbx + 18h], rax	ctorrdx-seeded 006CDF00	
-006CDF00	FUN_006cdf00	006CDF36	20h	w	mov dword ptr [rbx + 20h], eax	ctorrdx-seeded 006CDF00	
+00681640	FUN_00681640	00681658	0x28	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006CDF00	
+00681640	FUN_00681640	00681658	0x40	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006CDF00	
+00681640	FUN_00681640	0068165B	0x30	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006CDF00	
+00681640	FUN_00681640	0068165B	0x48	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006CDF00	
+00681640	FUN_00681640	00681664	0x38	w	mov qword ptr [rbx + 0x10], rax	ctorrdx-seeded 006CDF00	
+00681640	FUN_00681640	00681664	0x50	w	mov qword ptr [rbx + 0x10], rax	ctorrdx-seeded 006CDF00	
+006AAA20	FUN_006aaa20	006AAA22	0x0	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006CDF00	
+006AAA20	FUN_006aaa20	006AAA25	0x8	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006CDF00	
+006AAA20	FUN_006aaa20	006AAA2C	0x10	w	mov qword ptr [rcx + 0x10], rdx	ctorrdx-seeded 006CDF00	
+006CDF00	FUN_006cdf00	006CDF32	0x18	w	mov qword ptr [rbx + 0x18], rax	ctorrdx-seeded 006CDF00	
+006CDF00	FUN_006cdf00	006CDF36	0x20	w	mov dword ptr [rbx + 0x20], eax	ctorrdx-seeded 006CDF00	

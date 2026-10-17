@@ -1,11 +1,11 @@
 function	name	site	disp	kind	instruction	route	note
-005D27B0	FUN_005d27b0	005D27BC	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27C1	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27C4	10h	w	mov qword ptr [rdx + 10h], rax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27C8	18h	w	mov dword ptr [rdx + 18h], eax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27CB	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27CF	28h	w	mov dword ptr [rdx + 28h], eax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27D2	30h	w	mov qword ptr [rdx + 30h], rax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27D6	38h	w	mov dword ptr [rdx + 38h], eax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27D9	40h	w	mov qword ptr [rdx + 40h], rax	ctorrdx-seeded 005D27B0	
-005D27B0	FUN_005d27b0	005D27DD	48h	w	mov byte ptr [rdx + 48h], al	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27BC	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27C1	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27C4	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27C8	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27CB	0x20	w	mov qword ptr [rdx + 0x20], rax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27CF	0x28	w	mov dword ptr [rdx + 0x28], eax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27D2	0x30	w	mov qword ptr [rdx + 0x30], rax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27D6	0x38	w	mov dword ptr [rdx + 0x38], eax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27D9	0x40	w	mov qword ptr [rdx + 0x40], rax	ctorrdx-seeded 005D27B0	
+005D27B0	FUN_005d27b0	005D27DD	0x48	w	mov byte ptr [rdx + 0x48], al	ctorrdx-seeded 005D27B0	

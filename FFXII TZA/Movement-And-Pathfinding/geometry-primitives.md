@@ -19,16 +19,16 @@ walker that hugs a wall it should clear or a trigger that fires a step early.
 ### The shape record and the segment test
 
 Collision shapes are unit solids in their own frame: a unit sphere, a unit cylinder of radius 1 and
-height 2, or a unit cube of half-extent 1. A shape record holds its type at `+00`<sub>h</sub> (0 sphere, 1
-cylinder, 2 box), a forward transform at `+10`<sub>h</sub> and its inverse at `+50`<sub>h</sub>; size, position and
+height 2, or a unit cube of half-extent 1. A shape record holds its type at `+0x00` (0 sphere, 1
+cylinder, 2 box), a forward transform at `+0x10` and its inverse at `+0x50`; size, position and
 orientation live only in the transform pair. The collision mesh's wall records are such shapes
-(`90`<sub>h</sub> bytes each, [doors and gates](../World-Areas-And-Travel/doors-gates-and-map-changes.md)).
+(0x90 bytes each, [doors and gates](../World-Areas-And-Travel/doors-gates-and-map-changes.md)).
 
 `00380FA0(out, shape, A, B)` solves a segment against a shape: `A` and then `B` are mapped into the
-shape's frame through the inverse at `+50`<sub>h</sub> (`00202B70`), the type picks a primitive below, and a
+shape's frame through the inverse at `+0x50` (`00202B70`), the type picks a primitive below, and a
 type other than 0, 1 or 2 (tested after both points are mapped), or a primitive that reports no
 hit, returns -1.0. A hit is mapped back
-through `+10`<sub>h</sub> into `out`, and the return value is the three-dimensional distance from `A` to
+through `+0x10` into `out`, and the return value is the three-dimensional distance from `A` to
 `out`. Each primitive takes `(out, A, B)` in the unit frame, writes `out` with `B`'s `w`, and
 returns 1 for a hit.
 
@@ -61,7 +61,7 @@ becomes the new best. The nearest accepted face is the hit.
 distance along the segment to the plane through `p` with normal `n`. `00382020(p)` is 1 when
 `-1 < p.y < 1` and `sqrt(p.x^2 + p.z^2) < 1`; `0046DB50` reuses it on the records of the list
 `003DAE20` returns, the body placements linked each frame by `003DB0D0` (heading at
-`+10`<sub>h</sub>/`+18`<sub>h</sub>, the inner shape's radii at `+70`<sub>h</sub>/`+74`<sub>h</sub> and height at `+78`<sub>h</sub>), to find the
+`+0x10`/`+0x18`, the inner shape's radii at `+0x70`/`+0x74` and height at `+0x78`), to find the
 highest record top above a point.
 
 ### Point in shape
@@ -69,15 +69,15 @@ highest record top above a point.
 `00381EB0(shape, p)` maps `p` through the inverse and tests membership strictly: type 0 `|local| <
 1`; type 1 `-1 < y < 1` and `sqrt(x^2 + z^2) < 1`; type 2 every coordinate in `(-1, 1)`; any other
 type is outside. Its one caller is `0022F8B0`, the per-cell wall contact test of the collision
-walker: for each id in the cell's list that names a wall record (`4000`<sub>h</sub> to `4FFF`<sub>h</sub>), and, when
-the query's `+24`<sub>h</sub> is set, whose effective attribute word has bit 31 clear, it tests the point at
-the query's `+18`<sub>h</sub> and raises the query's `+20`<sub>h</sub> on the first hit.
+walker: for each id in the cell's list that names a wall record (`0x4000` to `0x4FFF`), and, when
+the query's `+0x24` is set, whose effective attribute word has bit 31 clear, it tests the point at
+the query's `+0x18` and raises the query's `+0x20` on the first hit.
 
 ### The polygon predicates
 
-Collision polygons are `20`<sub>h</sub>-byte records at the mesh part's `[+10h]`: a plane normal at `+00`<sub>h</sub>,
-the attribute word at `+0C`<sub>h</sub> and three vertex indices at `+10`<sub>h</sub>, `+12`<sub>h</sub>, `+14`<sub>h</sub> into the
-`10`<sub>h</sub>-byte vertices at `[+08h]`. `0022E6D0(A, d, {polygon, vertex})` returns `-|d| ((A - vertex) .
+Collision polygons are 0x20-byte records at the mesh part's `[+0x10]`: a plane normal at `+0x00`,
+the attribute word at `+0x0C` and three vertex indices at `+0x10`, `+0x12`, `+0x14` into the
+0x10-byte vertices at `[+0x08]`. `0022E6D0(A, d, {polygon, vertex})` returns `-|d| ((A - vertex) .
 n) / (d . n)`, the distance along the segment to the polygon's plane, through the vertex the
 caller hands it.
 
@@ -88,18 +88,18 @@ edges that are zero or positive answer 1, so a point on an edge counts as inside
 ### The collision-mesh ray cast
 
 `0022D4B0(part, q)` is the per-cell callback of the walker below, planted only by `002315E0`. It
-takes the ids listed for the cell (`[part + 28h]` from `q.+3Eh`, `q.+40h` of them) and skips an
-id at or above `5000`<sub>h</sub>. Each polygon's attribute word (`+0C`<sub>h</sub>) and each wall record's (`+04`<sub>h</sub>)
+takes the ids listed for the cell (`[part + 0x28]` from `q.+0x3E`, `q.+0x40` of them) and skips an
+id at or above `0x5000`. Each polygon's attribute word (`+0x0C`) and each wall record's (`+0x04`)
 is first overlaid with the override table: `eff = (word & ~mask) | (value & mask)` from the entry
 `0209A3E0 + 8 (32 + group)`, the group being bits 13-17 of the word.
 
 The low three bits of `eff` then decide: 0 is tested; 1 is tested unless bit 31 is set, and with bit 30 set only when the query
-kind `q.+46h` is not 4; 4 is tested only for kind 4; 2, 3, 5, 6 and 7 are skipped.
+kind `q.+0x46` is not 4; 4 is tested only for kind 4; 2, 3, 5, 6 and 7 are skipped.
 
 A tested polygon gets `t = 0022E6D0(start, delta, {polygon, v[0]})`; when `0 <= t < best` the point
 `start + delta t / length` is put to the winding test. A tested wall record gets `t = 00380FA0(&hit,
 record, start, end)` with the same bound. An accepted hit with bit 23 of `eff` clear becomes the
-new best: `q.best = t`, the hit point goes to `[q.+20h]`, `q.+42h = id`, `q.state = 2`. With bit
+new best: `q.best = t`, the hit point goes to `[q.+0x20]`, `q.+0x42 = id`, `q.state = 2`. With bit
 23 set the hit only raises `q.state` from 0 to 1, a marker that something was crossed without
 stopping the ray.
 
@@ -107,36 +107,36 @@ Struct MeshQuery  (the walker's record, built on the caller's stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `f32[4]` | delta = end - start (w from end) | +`10`<sub>h</sub>  ptr  start point |
-| `18`<sub>h</sub> | `void*` | end point | +`20`<sub>h</sub>  ptr  the hit point written |
-| `28`<sub>h</sub> | `void*` | per-cell callback | +`30`<sub>h</sub>  f32  best t (starts at the length) |
-| `34`<sub>h</sub> | `f32` | segment length | +`38`<sub>h</sub>  i32  stop at the first hit when set |
-| `3C`<sub>h</sub> | `i16` | current cell | +`3E`<sub>h</sub>  i16  cell list start |
-| `40`<sub>h</sub> | `i16` | cell list count | +`42`<sub>h</sub>  i16  hit id (`FFFF`<sub>h</sub> none) |
-| `44`<sub>h</sub> | `i16` | state: 0 none, 1 marker only, 2 hit | +`46`<sub>h</sub>  i16  query kind |
+| `+0x00` | `f32[4]` | delta = end - start (w from end) | +`0x10`  ptr  start point |
+| `+0x18` | `void*` | end point | +`0x20`  ptr  the hit point written |
+| `+0x28` | `void*` | per-cell callback | +`0x30`  f32  best t (starts at the length) |
+| `+0x34` | `f32` | segment length | +`0x38`  i32  stop at the first hit when set |
+| `+0x3C` | `i16` | current cell | +`0x3E`  i16  cell list start |
+| `+0x40` | `i16` | cell list count | +`0x42`  i16  hit id (`0xFFFF` none) |
+| `+0x44` | `i16` | state: 0 none, 1 marker only, 2 hit | +`0x46`  i16  query kind |
 
 `0022F430(part, q)` walks the segment through the collision grid. The cell of a point is
 `00233050`: column `(x + originX) / cellW`, row `(z + originZ) / cellH` after subtracting half a
-cell height on odd columns (the grid is staggered), `FFFF`<sub>h</sub> outside. `002330D0(part, point, k)` returns that
+cell height on odd columns (the grid is staggered), `0xFFFF` outside. `002330D0(part, point, k)` returns that
 cell plus `k × (stride + 1)`, or the negative answer as it is. `002F67C0`, which fades the background NPCs
 listed in a point's cell in or out by their distance from the point, uses it with `k` = 1 (`002F67F0`).
 
 From the start cell it loops:
 the delta, length and best are reset to the whole remaining segment, the callback runs over the
 cell's list and the lists at `cell + k (stride + 1)` for `k = 1, 2` (`00908DF8`, `stride` the
-mesh part's short at `+40`<sub>h</sub>), and a hit shortens the segment to the hit point, keeping the earlier
-hit when it was nearer and stopping at once when `q.+38h` is set.
+mesh part's short at `+0x40`), and a hit shortens the segment to the hit point, keeping the earlier
+hit when it was nearer and stopping at once when `q.+0x38` is set.
 
 When the current cell is the end point's cell the walk stops. Otherwise `0022D0D0` clips the
 segment against the cell's rectangle widened by 0.1 on each side (with an exit margin of 1.8 on the
 main mesh part `0026E500(0)`, 0.09 on any other), keeping the nearest crossing with `0.0001 < t <
 length`, and returns the exit side (0 `+x`, 1 `+z`, 2 `-x`, 3 `-z`) or -1 when the segment ends
 inside; the exit point becomes the new start and its cell the next cell. A hit shortens the
-segment by writing the hit point into the caller's end vector through `+18`<sub>h</sub>.
+segment by writing the hit point into the caller's end vector through `+0x18`.
 
 `002315E0(part, &start, &end)` is the ray cast as a function: it builds the query with this
-callback, kind `FFFF`<sub>h</sub> and the stop flag clear, runs the walker and returns the state (0 clear, 1
-marker only, 2 blocked); it answers `FFFF`<sub>h</sub> without a mesh part, and it copies its end argument
+callback, kind `0xFFFF` and the stop flag clear, runs the walker and returns the state (0 clear, 1
+marker only, 2 blocked); it answers `0xFFFF` without a mesh part, and it copies its end argument
 to a local first, so only direct walker callers see the end vector overwritten. Its callers are
 `0032A4D0` and `00318CA0`. The walker's three other call sites, in `00230B60` (`00230BD8`) and
 `00230C10` (`00230E1D`, `00231123`), plant the sphere sweep and the other ray casts of the doors
@@ -146,7 +146,7 @@ page.
 
 The sound-emitter section of the map pack ([map pack](../World-Areas-And-Travel/mpk-map-pack.md))
 carries volume records, reached as offsets from `[022CBAF0]`, and the emitter walk `003631B0`
-dispatches on each record's kind byte `+09h & 7Fh`: 0 the ellipse clamp, 1 the rectangle clamp,
+dispatches on each record's kind byte `+0x09 & 0x7F`: 0 the ellipse clamp, 1 the rectangle clamp,
 2 the segment chain, anything else leaves the point unchanged. All three take `(point, out,
 record)` and write a four-float `out` with `w = 1.0`.
 
@@ -154,16 +154,16 @@ Struct EmitterVolume  base=[`022CBAF0`] + offset:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `09`<sub>h</sub> | `u8` | kind (& `7F`<sub>h</sub>): 0 ellipse, 1 rectangle, 2 segment chain |  |
-| `14`<sub>h</sub> | `u32` | segment count (kind 2) |  |
-| `20`<sub>h</sub> | `f32[4]` | centre |  |
-| `30`<sub>h</sub> | `f32` | extent a | +`34`<sub>h</sub>  f32  extent b |
-| `40`<sub>h</sub> | `f32[8]` | segments (kind 2): start f32[4], direction f32[4], `20`<sub>h</sub> bytes each |  |
-| `50`<sub>h</sub> | `f32` | rotation angle |  |
+| `+0x09` | `u8` | kind (& 0x7F): 0 ellipse, 1 rectangle, 2 segment chain |  |
+| `+0x14` | `u32` | segment count (kind 2) |  |
+| `+0x20` | `f32[4]` | centre |  |
+| `+0x30` | `f32` | extent a | +`0x34`  f32  extent b |
+| `+0x40` | `f32[8]` | segments (kind 2): start f32[4], direction f32[4], 0x20 bytes each |  |
+| `+0x50` | `f32` | rotation angle |  |
 
 Both clamps collapse to the centre when either extent is at or below 0: `out = centre`. Otherwise
 `d = point - centre` is rotated into the volume's frame, `u = d.x cos(a) - d.z sin(a)` and `v =
-d.x sin(a) + d.z cos(a)` with `a = +50h`; the vertical component takes no part in either test.
+d.x sin(a) + d.z cos(a)` with `a = +0x50`; the vertical component takes no part in either test.
 
 The ellipse, `00361DE0`: `S = u^2 + v^2`, `R = sqrt(|S / (u^2 / a^2 + v^2 / b^2)|)` is the ellipse's
 radius in the point's direction (0 when `S` is 0) and `D = sqrt(|S|)` the point's distance. When
@@ -182,24 +182,24 @@ The segment chain, `00362230`, calls `00363FD0(point, start, dir)` for each segm
 - point) . dir) / |dir|^2` clamped to `[0, 1]`, 0 when `|dir|^2` is not positive, with the squared
 distance `|start - point + t dir|^2` left at `022D92D4` (and `022D92E4`). The segment with the
 smallest squared distance wins (the first always, a later one only when strictly nearer) and `out =
-start + t dir`; with no segments `out = point`. It returns the record's `+30`<sub>h</sub>.
+start + t dir`; with no segments `out = point`. It returns the record's `+0x30`.
 
 The emitter walk is one reader. The other is the actor-record proximity test `0025C830` (run per
 record by `0025C170` from the field tick, [field runtime](../Characters-And-Objects/field-runtime.md)):
 it measures each of the four party-slot actors (`0209A1F0`) against two rectangles authored in the
-record's movement context (centres `+00`<sub>h</sub> and `+10`<sub>h</sub>, extents `+30`<sub>h</sub>/`+34`<sub>h</sub> and `+40`<sub>h</sub>/
-`+44`<sub>h</sub>, angles `+38`<sub>h</sub> and `+48`<sub>h</sub>).
+record's movement context (centres `+0x00` and `+0x10`, extents `+0x30`/`+0x34` and `+0x40`/
+`+0x44`, angles `+0x38` and `+0x48`).
 
 It calls `0025A8E0` twice per rectangle, once with the x
 extent and one with the z extent as the test radius, and recovers the x bits from the older CLIP
 generation (`>> 6`) and the z bits from the newer.
 
-With record byte `+0D`<sub>h</sub> bit 3 the same test uses the capsule separation `003DA5A0` ([movement
+With record byte `+0x0D` bit 3 the same test uses the capsule separation `003DA5A0` ([movement
 bodies](movement-bodies-and-separation.md)) instead of the rectangles.
 
 `0025A8E0(p, rec)`, its only caller that test, is the outcode without the clamp: the CLIP word is
 shifted left 6 and takes bits 0/1 for `p.x` above `e` or below `-e`, bits 2/3 for `p.y`, bits 4/5
-for `p.z`, with `e = |rec.+0Ch|`, and the word is copied to `022D9478`. The history is what lets
+for `p.z`, with `e = |rec.+0x0C|`, and the word is copied to `022D9478`. The history is what lets
 one function clamp a point and the next read the outcome of the clamp before it.
 
 ### The workbench
@@ -248,7 +248,7 @@ globals
 | Fact | Value |
 |---|---|
 | unit-cube faces at `00D11200` | `(1,0,0,1)`, `(-1,0,0,1)`, `(0,1,0,1)`, `(0,-1,0,1)`, `(0,0,1,1)`, `(0,0,-1,1)` |
-| box face margin `00D112A4` | 1.001 (`3F8020C5`<sub>h</sub>); `00D112A0` 0.999, `00D112A8` -0.999 |
+| box face margin `00D112A4` | 1.001 (`0x3F8020C5`); `00D112A0` 0.999, `00D112A8` -0.999 |
 | sphere and cylinder tolerance | `1e-6` on the direction length before the divide |
 | ray-cast cell margin | 0.1 on each side; exit margin 1.8 on the main part, 0.09 elsewhere |
 | `vf00` image `01EF93F0` | `{0, 0, 0, 1}` in the image and after every `0036DD80` |
@@ -271,7 +271,7 @@ image and the status word; the emitter record base `022CBAF0`.
   matrices; the inverse is not recomputed by the engine.
 - The box test accepts points up to 1.001 of a half-extent outside a face, and the ray cast's
   `-0.001` lower bound accepts a face the segment starts a hair behind.
-- The ray cast stops at the first hit only when the query's `+38`<sub>h</sub> is set; `002315E0` leaves it
+- The ray cast stops at the first hit only when the query's `+0x38` is set; `002315E0` leaves it
   clear and reports the nearest hit's state, not its position.
 - Bit 23 of a polygon's attribute word turns it into a marker: the ray reports it crossed (state 1)
   but is not stopped by it.

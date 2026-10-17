@@ -43,7 +43,7 @@ A change is a request and a later commit:
 The commit runs from the main-loop frames `0022A770`, `0022B8C0` and `0022BC20`, which call it through the thunk
 `00358BB0` (`0022AE3C`, `0022BAF9`, `0022BD49`; [Frame update order](../Engine-Core/frame-update-order.md)).
 
-Kind 2 comes only from the script verb `205`<sub>h</sub> `changetosummonparty`, which raises a pending request's kind
+Kind 2 comes only from the script verb `0x205` `changetosummonparty`, which raises a pending request's kind
 (`003594C0`-`003594D3`). Between request and commit every reader still sees the old leader, so the formation
 follows the new one from the frame of the commit.
 
@@ -54,18 +54,18 @@ Three functions call `003594B0`:
 1. `00326500` picks the default controlled member and requests it (`003265F6`). The party refreshes call it
    (`00326620`, `003266C0`, `00327850`, `00327870`, `00329CC0`).
 2. `00269C70` requests the actor it installs in a roster slot when no leader is set (`00269D34`).
-3. The developer verb `2021`<sub>h</sub> `debug_setpc` (`0050C610`) installs an actor in a roster slot. For slots 0-3 it
+3. The developer verb `0x2021` `debug_setpc` (`0050C610`) installs an actor in a roster slot. For slots 0-3 it
    requests the actor, commits at once through `00358BB0`, re-seats the camera with `0025A690` and sends the
    roster-role notice `002681D0` (`0050C62C`-`0050C65D`).
 
 `00237F40`, run by `0025C830` (`0025D41F`) and `0026C3E0` (`0026C59E`), replaces a fallen leader through the
 first of them. It does nothing while bit 9 or bit 10 of `02089340` is set, or while the leader `003272A0` has unit
-bit 2 and a stats record whose status words `+64`<sub>h</sub> | `+3C`<sub>h</sub> are clear of KO, Stone and X-Zone (`80000003`<sub>h</sub>),
+bit 2 and a stats record whose status words `+0x64` | `+0x3C` are clear of KO, Stone and X-Zone (`0x80000003`),
 or carry them while `00377C20()` holds.
 
 Otherwise it lists fighting seats 0-3 with `0030A880(list, 3)`: units
-standing (or with `00377C20()`), of kind `+05`<sub>h</sub> 0 and type `+04`<sub>h</sub> below 7. The first becomes the selector
-`+5AA4`<sub>h</sub> through `00327810`, which then runs `00326500`.
+standing (or with `00377C20()`), of kind `+0x05` 0 and type `+0x04` below 7. The first becomes the selector
+`+0x5AA4` through `00327810`, which then runs `00326500`.
 
 A summon goes the same way: the summon arm of `00306760` passes the summoner to `00327810` (`0030696F`), so the
 summoner becomes the controlled member ([Quickenings and summons](../Battle-Actions/quickenings-and-summons.md)).
@@ -73,12 +73,12 @@ summoner becomes the controlled member ([Quickenings and summons](../Battle-Acti
 ### The default controlled member
 
 `00326500` turns the party's leader selector into the leader handle; [Party slots](party-slots.md) and
-[Party data](party-data.md) call the selector at `+5AA4`<sub>h</sub> of the party block "the leader" too. The member it
+[Party data](party-data.md) call the selector at `+0x5AA4` of the party block "the leader" too. The member it
 picks depends on the battle mode (`00326516`-`00326542`):
 
 | Battle mode | Member |
 |---|---|
-| 0 and 1 (normal, summon) | the party block's leader selector, `+5AA4`<sub>h</sub> |
+| 0 and 1 (normal, summon) | the party block's leader selector, `+0x5AA4` |
 | 2 (chocobo) | party row 26, the chocobo |
 | 3 (town) | the area's default leader, `00377C70` |
 | 4 and 5 (event party) | none, so the fallback below |
@@ -90,13 +90,13 @@ and otherwise the actor in roster slot 0 (`00326571`-`003265D9`).
 
 The four active actors are pointers at `0209A1F0`; `00263750(slot)` returns one for slots 0-3 and none above
 (`00263750`-`00263766`); the compare is unsigned, so a negative slot gives none too. `00269C70(actor, slot)` installs an actor in a slot, clearing the actor's previous slot, recording the slot in the
-actor's byte `+12`<sub>h</sub>, and requesting it as leader when no leader is set ([Party slots](party-slots.md)).
+actor's byte `+0x12`, and requesting it as leader when no leader is set ([Party slots](party-slots.md)).
 
 ### The follow formation
 
 `00338490` places every follower each frame (`003385CD`-`00338686`). It walks fighting seats 0-3 (`0031B810`) and
 skips a member that is missing, down (KO, Stone or X-Zone), or the leader itself. Each follower gets an entry in
-the four `60`<sub>h</sub>-byte formation slots at `022C7E00`, keyed by its unit's slot byte `+EA9`<sub>h</sub>, with its angle around
+the four 0x60-byte formation slots at `022C7E00`, keyed by its unit's slot byte `+0xEA9`, with its angle around
 the leader.
 
 `00339A60(unit)` returns a follower's destination (`00339A70`-`00339AC1`). It gives none when there is no leader,
@@ -111,7 +111,7 @@ every lock bit, and nothing waives it (`0023B050`-`0023B063`).
 
 The rest comes from the leader's state, and is skipped when the battle mode is chocobo (`00303EC0`) or the area's
 town bit is set (`0023B065`-`0023B079`). The lock is raised when the leader is down, when a party wipe is latched
-(battle flags `600`<sub>h</sub>), on several of the leader's action and status states (`0023B0CA`-`0023B179`), and in
+(battle flags `0x600`), on several of the leader's action and status states (`0023B0CA`-`0023B179`), and in
 summon mode when the summoner is down (`0023B17C`-`0023B1B8`). It is published three ways:
 
 | Lock bit | Published to | Effect |

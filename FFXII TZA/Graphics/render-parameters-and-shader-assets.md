@@ -27,7 +27,7 @@ The executable names 18 `.phyre` assets for the post-process chain, text and vid
 | `/GameData/D3D11/ArtData/map/%s/tex/%s.dds.phyre` | `001A6FF0` (`001A712D`), the map textures |
 
 `0018D850` walks the twelve entries of `01DF0910`, requests each path (`0019CB20`, `0018D8BE`) and
-keeps the result at `+218h + 8 x i` of the render-parameter block, then configures each
+keeps the result at `+0x218 + 8 x i` of the render-parameter block, then configures each
 (`0018D160`). The twelve entries are ten shaders and the two SMAA lookup textures. The twelve pass
 functions on [Post-processing](post-processing.md) draw with them.
 
@@ -36,7 +36,7 @@ render-manager installer `00186CD0` loads the first, with `D3D11` as the folder,
 `001EEC80` for the colour-buffer copy pass. The model asset cache's constructor `001B9370` loads
 the second through `001BB190`, which makes the asset ready (`0063DA50`, `0063B010`), finds its
 first object list whose class is `PTexture2D` (`02CBB900`) or derives from it, and stores at the
-cache's `+00`<sub>h</sub> the object address it computes from the list's `+60`<sub>h</sub> and the class's `+F8`<sub>h</sub>.
+cache's `+0x00` the object address it computes from the list's `+0x60` and the class's `+0xF8`.
 
 ### The scene-parameter documents
 
@@ -55,7 +55,7 @@ three largest readers are `001C7940`, `001CA600` and `001C3D50`.
 `001C7940` never spells `mCascadePartition0_1` and its kin. At `001C9190` it formats
 `"mCascadePartition%d_%d"` (`008FB2D8`) for columns 0 to 2 and rows 1 to 3, reads each value (with
 the defaults as fallback) and stores it through `001A9B00(map-art context, row - 1, column, v)`.
-`001A9B00` refuses an index of 3 or more and writes `+350h + (row x 3 + column) x 4` of the object
+`001A9B00` refuses an index of 3 or more and writes `+0x350 + (row x 3 + column) x 4` of the object
 `001A9930` returns: a 3 x 3 float matrix. No code looks up `mCascadeNumber`, which the files also carry;
 the loop is fixed at three.
 

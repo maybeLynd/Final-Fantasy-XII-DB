@@ -1,257 +1,257 @@
 id	first	second	explanation
-A000h			an empty selector: all six ids are FFFFh
-A001h			an empty selector: all six ids are FFFFh
-A002h			an empty selector: all six ids are FFFFh
-A003h			an empty selector: all six ids are FFFFh
-A004h			an empty selector: all six ids are FFFFh
-A005h			an empty selector: all six ids are FFFFh
-A006h			an empty selector: all six ids are FFFFh
-A007h			an empty selector: all six ids are FFFFh
-A008h			an empty selector: all six ids are FFFFh
-A009h			an empty selector: all six ids are FFFFh
-A00Ah			an empty selector: all six ids are FFFFh
-A00Bh			an empty selector: all six ids are FFFFh
-A00Ch			an empty selector: all six ids are FFFFh
-A00Dh			an empty selector: all six ids are FFFFh
-A00Eh			an empty selector: all six ids are FFFFh
-A00Fh			an empty selector: all six ids are FFFFh
-A010h			an empty selector: all six ids are FFFFh
-A011h			an empty selector: all six ids are FFFFh
-A012h			an empty selector: all six ids are FFFFh
-A013h			an empty selector: all six ids are FFFFh
-A014h			an empty selector: all six ids are FFFFh
-A015h			an empty selector: all six ids are FFFFh
-A016h			an empty selector: all six ids are FFFFh
-A017h			an empty selector: all six ids are FFFFh
-A018h			an empty selector: all six ids are FFFFh
-A019h			an empty selector: all six ids are FFFFh
-A01Ah			an empty selector: all six ids are FFFFh
-A01Bh			an empty selector: all six ids are FFFFh
-A01Ch			an empty selector: all six ids are FFFFh
-A01Dh			an empty selector: all six ids are FFFFh
-A01Eh			an empty selector: all six ids are FFFFh
-A01Fh			an empty selector: all six ids are FFFFh
-A020h			an empty selector: all six ids are FFFFh
-A021h			an empty selector: all six ids are FFFFh
-A022h			an empty selector: all six ids are FFFFh
-A023h			an empty selector: all six ids are FFFFh
-A024h			an empty selector: all six ids are FFFFh
-A025h			an empty selector: all six ids are FFFFh
-A026h			an empty selector: all six ids are FFFFh
-A027h			an empty selector: all six ids are FFFFh
-A028h			an empty selector: all six ids are FFFFh
-A029h			an empty selector: all six ids are FFFFh
-A02Ah			an empty selector: all six ids are FFFFh
-A02Bh			an empty selector: all six ids are FFFFh
-A02Ch			an empty selector: all six ids are FFFFh
-A02Dh			an empty selector: all six ids are FFFFh
-A02Eh			an empty selector: all six ids are FFFFh
-A02Fh			an empty selector: all six ids are FFFFh
-A030h			an empty selector: all six ids are FFFFh
-A031h			an empty selector: all six ids are FFFFh
-A032h			an empty selector: all six ids are FFFFh
-A033h			an empty selector: all six ids are FFFFh
-A034h			an empty selector: all six ids are FFFFh
-A035h			an empty selector: all six ids are FFFFh
-A036h			an empty selector: all six ids are FFFFh
-A037h			an empty selector: all six ids are FFFFh
-A038h			an empty selector: all six ids are FFFFh
-A039h			an empty selector: all six ids are FFFFh
-A03Ah			an empty selector: all six ids are FFFFh
-A03Bh			an empty selector: all six ids are FFFFh
-A03Ch			an empty selector: all six ids are FFFFh
-A03Dh			an empty selector: all six ids are FFFFh
-A03Eh			an empty selector: all six ids are FFFFh
-A03Fh			an empty selector: all six ids are FFFFh
-A040h			an empty selector: all six ids are FFFFh
-A041h			an empty selector: all six ids are FFFFh
-A042h			an empty selector: all six ids are FFFFh
-A043h			an empty selector: all six ids are FFFFh
-A044h			an empty selector: all six ids are FFFFh
-A045h			an empty selector: all six ids are FFFFh
-A046h			an empty selector: all six ids are FFFFh
-A047h			an empty selector: all six ids are FFFFh
-A048h			an empty selector: all six ids are FFFFh
-A049h			an empty selector: all six ids are FFFFh
-A04Ah			an empty selector: all six ids are FFFFh
-A04Bh			an empty selector: all six ids are FFFFh
-A04Ch			an empty selector: all six ids are FFFFh
-A04Dh			an empty selector: all six ids are FFFFh
-A04Eh			an empty selector: all six ids are FFFFh
-A04Fh			an empty selector: all six ids are FFFFh
-A050h			an empty selector: all six ids are FFFFh
-A051h			an empty selector: all six ids are FFFFh
-A052h			an empty selector: all six ids are FFFFh
-A053h			an empty selector: all six ids are FFFFh
-A054h			an empty selector: all six ids are FFFFh
-A055h			an empty selector: all six ids are FFFFh
-A056h			an empty selector: all six ids are FFFFh
-A057h			an empty selector: all six ids are FFFFh
-A058h			an empty selector: all six ids are FFFFh
-A059h			an empty selector: all six ids are FFFFh
-A05Ah			an empty selector: all six ids are FFFFh
-A05Bh			an empty selector: all six ids are FFFFh
-A05Ch			an empty selector: all six ids are FFFFh
-A05Dh			an empty selector: all six ids are FFFFh
-A05Eh			an empty selector: all six ids are FFFFh
-A05Fh			an empty selector: all six ids are FFFFh
-A060h			an empty selector: all six ids are FFFFh
-A061h			an empty selector: all six ids are FFFFh
-A062h			an empty selector: all six ids are FFFFh
-A063h			an empty selector: all six ids are FFFFh
-A064h			an empty selector: all six ids are FFFFh
-A065h			an empty selector: all six ids are FFFFh
-A066h			an empty selector: all six ids are FFFFh
-A067h			an empty selector: all six ids are FFFFh
-A068h			an empty selector: all six ids are FFFFh
-A069h			an empty selector: all six ids are FFFFh
-A06Ah			an empty selector: all six ids are FFFFh
-A06Bh			an empty selector: all six ids are FFFFh
-A06Ch			an empty selector: all six ids are FFFFh
-A06Dh			an empty selector: all six ids are FFFFh
-A06Eh			an empty selector: all six ids are FFFFh
-A06Fh			an empty selector: all six ids are FFFFh
-A070h			an empty selector: all six ids are FFFFh
-A071h			an empty selector: all six ids are FFFFh
-A072h			an empty selector: all six ids are FFFFh
-A073h			an empty selector: all six ids are FFFFh
-A074h			an empty selector: all six ids are FFFFh
-A075h			an empty selector: all six ids are FFFFh
-A076h			an empty selector: all six ids are FFFFh
-A077h			an empty selector: all six ids are FFFFh
-A078h			an empty selector: all six ids are FFFFh
-A079h			an empty selector: all six ids are FFFFh
-A07Ah			an empty selector: all six ids are FFFFh
-A07Bh			an empty selector: all six ids are FFFFh
-A07Ch			an empty selector: all six ids are FFFFh
-A07Dh			an empty selector: all six ids are FFFFh
-A07Eh			an empty selector: all six ids are FFFFh
-A07Fh			an empty selector: all six ids are FFFFh
-A080h	9003h		first: 9003h: 300 gil + Potion x2 + Teleport Stone x1
-A081h	9004h		first: 9004h: 500 gil + Headguard x1 + Teleport Stone x1
-A082h	9005h		first: 9005h: 500 gil + Potion x10
-A083h	9006h		first: 9006h: 500 gil + Ether x1 + Gauntlets x1
-A084h	9007h		first: 9007h: 600 gil + Rose Corsage x1 + Balaclava x1
-A085h	9008h		first: 9008h: 2800 gil + Burning Bow x1
-A086h	9009h		first: 9009h: 200 gil + Moon Ring x1 + Icebrand x1
-A087h	900Ah		first: 900Ah: 1000 gil + Elfin Bow x1 + Shell Shield x1
-A088h	900Bh		first: 900Bh: 2200 gil + Serpent Eye x1 + Teleport Stone x3
-A089h	900Ch		first: 900Ch: 1100 gil + Ether x1 + Golden Amulet x1
-A08Ah	900Dh		first: 900Dh: 1200 gil + Serpent Rod x1 + Teleport Stone x1
-A08Bh	900Eh		first: 900Eh: 1300 gil + Ether x1 + Soul Powder x1
-A08Ch	900Fh		first: 900Fh: 1500 gil + Hunting Crossbow x1 + Teleport Stone x2
-A08Dh	9010h		first: 9010h: 2000 gil + Lightning Arrows x1 + Gillie Boots x1
-A08Eh	9011h		first: 9011h: 2200 gil + Carmagnole x1
-A08Fh	9012h		first: 9012h: 2400 gil + Stun Bombs x1 + Vampyr Fang x1
-A090h	9013h		first: 9013h: 1800 gil + Gaia Rod x1 + Platinum Shield x1
-A091h	9014h		first: 9014h: 3100 gil + Giant's Helmet x1 + Mythril x1
-A092h	9015h		first: 9015h: 1700 gil + Caliper x1 + Hi-Ether x1
-A093h	9016h		first: 9016h: 3000 gil + Lead Bolts x1 + Adamantite x1
-A094h	9017h		first: 9017h: 3500 gil + Halberd x1 + Aegis Shield x1
-A095h	9018h		first: 9018h: 4200 gil + Minerva Bustier x1 + Hi-Ether x1
-A096h	9019h		first: 9019h: 3500 gil + Hi-Ether x2 + Teleport Stone x1
-A097h	901Ah		first: 901Ah: 3600 gil + Save the Queen x1 + Einherjarium x1
-A098h	901Bh		first: 901Bh: 2800 gil + Hi-Ether x2 + Soul of Thamasa x1
-A099h	901Ch		first: 901Ch: 3400 gil + Elixir x2
-A09Ah	901Dh		first: 901Dh: 2600 gil + Demon Shield x1 + Zeus Mace x1
-A09Bh	901Eh		first: 901Eh: 3800 gil + Dark Shot x1 + Scathe Mote x1
-A09Ch	901Fh		first: 901Fh: 4600 gil + Euclid's Sextant x1
-A09Dh	9020h		first: 9020h: 3200 gil + Volcano x1 + Arctic Wind x1
-A09Eh	9021h		first: 9021h: 7000 gil + Assassin's Arrows x1 + Teleport Stone x1
-A09Fh	9022h		first: 9022h: 8000 gil + Grand Mace x1 + Scathe Mote x2
-A0A0h	9023h		first: 9023h: 1000 gil + Amber Armlet x1 + Rainbow Egg x1
-A0A1h	9024h		first: 9024h: 1200 gil + Hi-Potion x2 + Survival Vest x1
-A0A2h	9025h		first: 9025h: 3800 gil + Horakhty's Flame x1 + Unpurified Ether x1
-A0A3h	9026h		first: 9026h: 3000 gil + Phobos Glaze x1
-A0A4h	9027h		first: 9027h: 4800 gil + Deimos Clay x1
-A0A5h	9028h		first: 9028h: 4300 gil + Bubble Belt x1 + Sickle-Blade x1
-A0A6h	9029h		first: 9029h: 5200 gil + Stink Bombs x1 + Putrid Liquid x1
-A0A7h	902Ah		first: 902Ah: 10000 gil + Excalipur x1
-A0A8h	902Bh		first: 902Bh: 250 gil + Bacchus's Wine x2
-A0A9h	902Ch		first: 902Ch: 3000 gil + Sapping Bolts x1 + Ragnarok x1
-A0AAh	902Dh		first: 902Dh: 20000 gil + Megalixir x2
-A0ABh	902Eh		first: 902Eh: 30000 gil + Godslayer's Badge x1
-A0ACh	9122h		first: 9122h: 5100 gil + Megalixir x1
-A0ADh			an empty selector: all six ids are FFFFh
-A0AEh			an empty selector: all six ids are FFFFh
-A0AFh			an empty selector: all six ids are FFFFh
-A0B0h			an empty selector: all six ids are FFFFh
-A0B1h			an empty selector: all six ids are FFFFh
-A0B2h			an empty selector: all six ids are FFFFh
-A0B3h			an empty selector: all six ids are FFFFh
-A0B4h			an empty selector: all six ids are FFFFh
-A0B5h			an empty selector: all six ids are FFFFh
-A0B6h			an empty selector: all six ids are FFFFh
-A0B7h			an empty selector: all six ids are FFFFh
-A0B8h			an empty selector: all six ids are FFFFh
-A0B9h			an empty selector: all six ids are FFFFh
-A0BAh			an empty selector: all six ids are FFFFh
-A0BBh			an empty selector: all six ids are FFFFh
-A0BCh			an empty selector: all six ids are FFFFh
-A0BDh			an empty selector: all six ids are FFFFh
-A0BEh			an empty selector: all six ids are FFFFh
-A0BFh			an empty selector: all six ids are FFFFh
-A0C0h			an empty selector: all six ids are FFFFh
-A0C1h			an empty selector: all six ids are FFFFh
-A0C2h			an empty selector: all six ids are FFFFh
-A0C3h			an empty selector: all six ids are FFFFh
-A0C4h			an empty selector: all six ids are FFFFh
-A0C5h			an empty selector: all six ids are FFFFh
-A0C6h			an empty selector: all six ids are FFFFh
-A0C7h			an empty selector: all six ids are FFFFh
-A0C8h			an empty selector: all six ids are FFFFh
-A0C9h			an empty selector: all six ids are FFFFh
-A0CAh			an empty selector: all six ids are FFFFh
-A0CBh			an empty selector: all six ids are FFFFh
-A0CCh			an empty selector: all six ids are FFFFh
-A0CDh			an empty selector: all six ids are FFFFh
-A0CEh			an empty selector: all six ids are FFFFh
-A0CFh			an empty selector: all six ids are FFFFh
-A0D0h			an empty selector: all six ids are FFFFh
-A0D1h			an empty selector: all six ids are FFFFh
-A0D2h			an empty selector: all six ids are FFFFh
-A0D3h			an empty selector: all six ids are FFFFh
-A0D4h			an empty selector: all six ids are FFFFh
-A0D5h			an empty selector: all six ids are FFFFh
-A0D6h			an empty selector: all six ids are FFFFh
-A0D7h			an empty selector: all six ids are FFFFh
-A0D8h			an empty selector: all six ids are FFFFh
-A0D9h			an empty selector: all six ids are FFFFh
-A0DAh			an empty selector: all six ids are FFFFh
-A0DBh			an empty selector: all six ids are FFFFh
-A0DCh			an empty selector: all six ids are FFFFh
-A0DDh			an empty selector: all six ids are FFFFh
-A0DEh			an empty selector: all six ids are FFFFh
-A0DFh			an empty selector: all six ids are FFFFh
-A0E0h			an empty selector: all six ids are FFFFh
-A0E1h			an empty selector: all six ids are FFFFh
-A0E2h			an empty selector: all six ids are FFFFh
-A0E3h			an empty selector: all six ids are FFFFh
-A0E4h			an empty selector: all six ids are FFFFh
-A0E5h			an empty selector: all six ids are FFFFh
-A0E6h			an empty selector: all six ids are FFFFh
-A0E7h			an empty selector: all six ids are FFFFh
-A0E8h			an empty selector: all six ids are FFFFh
-A0E9h			an empty selector: all six ids are FFFFh
-A0EAh			an empty selector: all six ids are FFFFh
-A0EBh			an empty selector: all six ids are FFFFh
-A0ECh			an empty selector: all six ids are FFFFh
-A0EDh			an empty selector: all six ids are FFFFh
-A0EEh			an empty selector: all six ids are FFFFh
-A0EFh			an empty selector: all six ids are FFFFh
-A0F0h			an empty selector: all six ids are FFFFh
-A0F1h			an empty selector: all six ids are FFFFh
-A0F2h			an empty selector: all six ids are FFFFh
-A0F3h			an empty selector: all six ids are FFFFh
-A0F4h			an empty selector: all six ids are FFFFh
-A0F5h			an empty selector: all six ids are FFFFh
-A0F6h			an empty selector: all six ids are FFFFh
-A0F7h			an empty selector: all six ids are FFFFh
-A0F8h			an empty selector: all six ids are FFFFh
-A0F9h			an empty selector: all six ids are FFFFh
-A0FAh			an empty selector: all six ids are FFFFh
-A0FBh			an empty selector: all six ids are FFFFh
-A0FCh			an empty selector: all six ids are FFFFh
-A0FDh			an empty selector: all six ids are FFFFh
-A0FEh			an empty selector: all six ids are FFFFh
-A0FFh			an empty selector: all six ids are FFFFh
+0xA000			an empty selector: all six ids are 0xFFFF
+0xA001			an empty selector: all six ids are 0xFFFF
+0xA002			an empty selector: all six ids are 0xFFFF
+0xA003			an empty selector: all six ids are 0xFFFF
+0xA004			an empty selector: all six ids are 0xFFFF
+0xA005			an empty selector: all six ids are 0xFFFF
+0xA006			an empty selector: all six ids are 0xFFFF
+0xA007			an empty selector: all six ids are 0xFFFF
+0xA008			an empty selector: all six ids are 0xFFFF
+0xA009			an empty selector: all six ids are 0xFFFF
+0xA00A			an empty selector: all six ids are 0xFFFF
+0xA00B			an empty selector: all six ids are 0xFFFF
+0xA00C			an empty selector: all six ids are 0xFFFF
+0xA00D			an empty selector: all six ids are 0xFFFF
+0xA00E			an empty selector: all six ids are 0xFFFF
+0xA00F			an empty selector: all six ids are 0xFFFF
+0xA010			an empty selector: all six ids are 0xFFFF
+0xA011			an empty selector: all six ids are 0xFFFF
+0xA012			an empty selector: all six ids are 0xFFFF
+0xA013			an empty selector: all six ids are 0xFFFF
+0xA014			an empty selector: all six ids are 0xFFFF
+0xA015			an empty selector: all six ids are 0xFFFF
+0xA016			an empty selector: all six ids are 0xFFFF
+0xA017			an empty selector: all six ids are 0xFFFF
+0xA018			an empty selector: all six ids are 0xFFFF
+0xA019			an empty selector: all six ids are 0xFFFF
+0xA01A			an empty selector: all six ids are 0xFFFF
+0xA01B			an empty selector: all six ids are 0xFFFF
+0xA01C			an empty selector: all six ids are 0xFFFF
+0xA01D			an empty selector: all six ids are 0xFFFF
+0xA01E			an empty selector: all six ids are 0xFFFF
+0xA01F			an empty selector: all six ids are 0xFFFF
+0xA020			an empty selector: all six ids are 0xFFFF
+0xA021			an empty selector: all six ids are 0xFFFF
+0xA022			an empty selector: all six ids are 0xFFFF
+0xA023			an empty selector: all six ids are 0xFFFF
+0xA024			an empty selector: all six ids are 0xFFFF
+0xA025			an empty selector: all six ids are 0xFFFF
+0xA026			an empty selector: all six ids are 0xFFFF
+0xA027			an empty selector: all six ids are 0xFFFF
+0xA028			an empty selector: all six ids are 0xFFFF
+0xA029			an empty selector: all six ids are 0xFFFF
+0xA02A			an empty selector: all six ids are 0xFFFF
+0xA02B			an empty selector: all six ids are 0xFFFF
+0xA02C			an empty selector: all six ids are 0xFFFF
+0xA02D			an empty selector: all six ids are 0xFFFF
+0xA02E			an empty selector: all six ids are 0xFFFF
+0xA02F			an empty selector: all six ids are 0xFFFF
+0xA030			an empty selector: all six ids are 0xFFFF
+0xA031			an empty selector: all six ids are 0xFFFF
+0xA032			an empty selector: all six ids are 0xFFFF
+0xA033			an empty selector: all six ids are 0xFFFF
+0xA034			an empty selector: all six ids are 0xFFFF
+0xA035			an empty selector: all six ids are 0xFFFF
+0xA036			an empty selector: all six ids are 0xFFFF
+0xA037			an empty selector: all six ids are 0xFFFF
+0xA038			an empty selector: all six ids are 0xFFFF
+0xA039			an empty selector: all six ids are 0xFFFF
+0xA03A			an empty selector: all six ids are 0xFFFF
+0xA03B			an empty selector: all six ids are 0xFFFF
+0xA03C			an empty selector: all six ids are 0xFFFF
+0xA03D			an empty selector: all six ids are 0xFFFF
+0xA03E			an empty selector: all six ids are 0xFFFF
+0xA03F			an empty selector: all six ids are 0xFFFF
+0xA040			an empty selector: all six ids are 0xFFFF
+0xA041			an empty selector: all six ids are 0xFFFF
+0xA042			an empty selector: all six ids are 0xFFFF
+0xA043			an empty selector: all six ids are 0xFFFF
+0xA044			an empty selector: all six ids are 0xFFFF
+0xA045			an empty selector: all six ids are 0xFFFF
+0xA046			an empty selector: all six ids are 0xFFFF
+0xA047			an empty selector: all six ids are 0xFFFF
+0xA048			an empty selector: all six ids are 0xFFFF
+0xA049			an empty selector: all six ids are 0xFFFF
+0xA04A			an empty selector: all six ids are 0xFFFF
+0xA04B			an empty selector: all six ids are 0xFFFF
+0xA04C			an empty selector: all six ids are 0xFFFF
+0xA04D			an empty selector: all six ids are 0xFFFF
+0xA04E			an empty selector: all six ids are 0xFFFF
+0xA04F			an empty selector: all six ids are 0xFFFF
+0xA050			an empty selector: all six ids are 0xFFFF
+0xA051			an empty selector: all six ids are 0xFFFF
+0xA052			an empty selector: all six ids are 0xFFFF
+0xA053			an empty selector: all six ids are 0xFFFF
+0xA054			an empty selector: all six ids are 0xFFFF
+0xA055			an empty selector: all six ids are 0xFFFF
+0xA056			an empty selector: all six ids are 0xFFFF
+0xA057			an empty selector: all six ids are 0xFFFF
+0xA058			an empty selector: all six ids are 0xFFFF
+0xA059			an empty selector: all six ids are 0xFFFF
+0xA05A			an empty selector: all six ids are 0xFFFF
+0xA05B			an empty selector: all six ids are 0xFFFF
+0xA05C			an empty selector: all six ids are 0xFFFF
+0xA05D			an empty selector: all six ids are 0xFFFF
+0xA05E			an empty selector: all six ids are 0xFFFF
+0xA05F			an empty selector: all six ids are 0xFFFF
+0xA060			an empty selector: all six ids are 0xFFFF
+0xA061			an empty selector: all six ids are 0xFFFF
+0xA062			an empty selector: all six ids are 0xFFFF
+0xA063			an empty selector: all six ids are 0xFFFF
+0xA064			an empty selector: all six ids are 0xFFFF
+0xA065			an empty selector: all six ids are 0xFFFF
+0xA066			an empty selector: all six ids are 0xFFFF
+0xA067			an empty selector: all six ids are 0xFFFF
+0xA068			an empty selector: all six ids are 0xFFFF
+0xA069			an empty selector: all six ids are 0xFFFF
+0xA06A			an empty selector: all six ids are 0xFFFF
+0xA06B			an empty selector: all six ids are 0xFFFF
+0xA06C			an empty selector: all six ids are 0xFFFF
+0xA06D			an empty selector: all six ids are 0xFFFF
+0xA06E			an empty selector: all six ids are 0xFFFF
+0xA06F			an empty selector: all six ids are 0xFFFF
+0xA070			an empty selector: all six ids are 0xFFFF
+0xA071			an empty selector: all six ids are 0xFFFF
+0xA072			an empty selector: all six ids are 0xFFFF
+0xA073			an empty selector: all six ids are 0xFFFF
+0xA074			an empty selector: all six ids are 0xFFFF
+0xA075			an empty selector: all six ids are 0xFFFF
+0xA076			an empty selector: all six ids are 0xFFFF
+0xA077			an empty selector: all six ids are 0xFFFF
+0xA078			an empty selector: all six ids are 0xFFFF
+0xA079			an empty selector: all six ids are 0xFFFF
+0xA07A			an empty selector: all six ids are 0xFFFF
+0xA07B			an empty selector: all six ids are 0xFFFF
+0xA07C			an empty selector: all six ids are 0xFFFF
+0xA07D			an empty selector: all six ids are 0xFFFF
+0xA07E			an empty selector: all six ids are 0xFFFF
+0xA07F			an empty selector: all six ids are 0xFFFF
+0xA080	0x9003		first: 0x9003: 300 gil + Potion x2 + Teleport Stone x1
+0xA081	0x9004		first: 0x9004: 500 gil + Headguard x1 + Teleport Stone x1
+0xA082	0x9005		first: 0x9005: 500 gil + Potion x10
+0xA083	0x9006		first: 0x9006: 500 gil + Ether x1 + Gauntlets x1
+0xA084	0x9007		first: 0x9007: 600 gil + Rose Corsage x1 + Balaclava x1
+0xA085	0x9008		first: 0x9008: 2800 gil + Burning Bow x1
+0xA086	0x9009		first: 0x9009: 200 gil + Moon Ring x1 + Icebrand x1
+0xA087	0x900A		first: 0x900A: 1000 gil + Elfin Bow x1 + Shell Shield x1
+0xA088	0x900B		first: 0x900B: 2200 gil + Serpent Eye x1 + Teleport Stone x3
+0xA089	0x900C		first: 0x900C: 1100 gil + Ether x1 + Golden Amulet x1
+0xA08A	0x900D		first: 0x900D: 1200 gil + Serpent Rod x1 + Teleport Stone x1
+0xA08B	0x900E		first: 0x900E: 1300 gil + Ether x1 + Soul Powder x1
+0xA08C	0x900F		first: 0x900F: 1500 gil + Hunting Crossbow x1 + Teleport Stone x2
+0xA08D	0x9010		first: 0x9010: 2000 gil + Lightning Arrows x1 + Gillie Boots x1
+0xA08E	0x9011		first: 0x9011: 2200 gil + Carmagnole x1
+0xA08F	0x9012		first: 0x9012: 2400 gil + Stun Bombs x1 + Vampyr Fang x1
+0xA090	0x9013		first: 0x9013: 1800 gil + Gaia Rod x1 + Platinum Shield x1
+0xA091	0x9014		first: 0x9014: 3100 gil + Giant's Helmet x1 + Mythril x1
+0xA092	0x9015		first: 0x9015: 1700 gil + Caliper x1 + Hi-Ether x1
+0xA093	0x9016		first: 0x9016: 3000 gil + Lead Bolts x1 + Adamantite x1
+0xA094	0x9017		first: 0x9017: 3500 gil + Halberd x1 + Aegis Shield x1
+0xA095	0x9018		first: 0x9018: 4200 gil + Minerva Bustier x1 + Hi-Ether x1
+0xA096	0x9019		first: 0x9019: 3500 gil + Hi-Ether x2 + Teleport Stone x1
+0xA097	0x901A		first: 0x901A: 3600 gil + Save the Queen x1 + Einherjarium x1
+0xA098	0x901B		first: 0x901B: 2800 gil + Hi-Ether x2 + Soul of Thamasa x1
+0xA099	0x901C		first: 0x901C: 3400 gil + Elixir x2
+0xA09A	0x901D		first: 0x901D: 2600 gil + Demon Shield x1 + Zeus Mace x1
+0xA09B	0x901E		first: 0x901E: 3800 gil + Dark Shot x1 + Scathe Mote x1
+0xA09C	0x901F		first: 0x901F: 4600 gil + Euclid's Sextant x1
+0xA09D	0x9020		first: 0x9020: 3200 gil + Volcano x1 + Arctic Wind x1
+0xA09E	0x9021		first: 0x9021: 7000 gil + Assassin's Arrows x1 + Teleport Stone x1
+0xA09F	0x9022		first: 0x9022: 8000 gil + Grand Mace x1 + Scathe Mote x2
+0xA0A0	0x9023		first: 0x9023: 1000 gil + Amber Armlet x1 + Rainbow Egg x1
+0xA0A1	0x9024		first: 0x9024: 1200 gil + Hi-Potion x2 + Survival Vest x1
+0xA0A2	0x9025		first: 0x9025: 3800 gil + Horakhty's Flame x1 + Unpurified Ether x1
+0xA0A3	0x9026		first: 0x9026: 3000 gil + Phobos Glaze x1
+0xA0A4	0x9027		first: 0x9027: 4800 gil + Deimos Clay x1
+0xA0A5	0x9028		first: 0x9028: 4300 gil + Bubble Belt x1 + Sickle-Blade x1
+0xA0A6	0x9029		first: 0x9029: 5200 gil + Stink Bombs x1 + Putrid Liquid x1
+0xA0A7	0x902A		first: 0x902A: 10000 gil + Excalipur x1
+0xA0A8	0x902B		first: 0x902B: 250 gil + Bacchus's Wine x2
+0xA0A9	0x902C		first: 0x902C: 3000 gil + Sapping Bolts x1 + Ragnarok x1
+0xA0AA	0x902D		first: 0x902D: 20000 gil + Megalixir x2
+0xA0AB	0x902E		first: 0x902E: 30000 gil + Godslayer's Badge x1
+0xA0AC	0x9122		first: 0x9122: 5100 gil + Megalixir x1
+0xA0AD			an empty selector: all six ids are 0xFFFF
+0xA0AE			an empty selector: all six ids are 0xFFFF
+0xA0AF			an empty selector: all six ids are 0xFFFF
+0xA0B0			an empty selector: all six ids are 0xFFFF
+0xA0B1			an empty selector: all six ids are 0xFFFF
+0xA0B2			an empty selector: all six ids are 0xFFFF
+0xA0B3			an empty selector: all six ids are 0xFFFF
+0xA0B4			an empty selector: all six ids are 0xFFFF
+0xA0B5			an empty selector: all six ids are 0xFFFF
+0xA0B6			an empty selector: all six ids are 0xFFFF
+0xA0B7			an empty selector: all six ids are 0xFFFF
+0xA0B8			an empty selector: all six ids are 0xFFFF
+0xA0B9			an empty selector: all six ids are 0xFFFF
+0xA0BA			an empty selector: all six ids are 0xFFFF
+0xA0BB			an empty selector: all six ids are 0xFFFF
+0xA0BC			an empty selector: all six ids are 0xFFFF
+0xA0BD			an empty selector: all six ids are 0xFFFF
+0xA0BE			an empty selector: all six ids are 0xFFFF
+0xA0BF			an empty selector: all six ids are 0xFFFF
+0xA0C0			an empty selector: all six ids are 0xFFFF
+0xA0C1			an empty selector: all six ids are 0xFFFF
+0xA0C2			an empty selector: all six ids are 0xFFFF
+0xA0C3			an empty selector: all six ids are 0xFFFF
+0xA0C4			an empty selector: all six ids are 0xFFFF
+0xA0C5			an empty selector: all six ids are 0xFFFF
+0xA0C6			an empty selector: all six ids are 0xFFFF
+0xA0C7			an empty selector: all six ids are 0xFFFF
+0xA0C8			an empty selector: all six ids are 0xFFFF
+0xA0C9			an empty selector: all six ids are 0xFFFF
+0xA0CA			an empty selector: all six ids are 0xFFFF
+0xA0CB			an empty selector: all six ids are 0xFFFF
+0xA0CC			an empty selector: all six ids are 0xFFFF
+0xA0CD			an empty selector: all six ids are 0xFFFF
+0xA0CE			an empty selector: all six ids are 0xFFFF
+0xA0CF			an empty selector: all six ids are 0xFFFF
+0xA0D0			an empty selector: all six ids are 0xFFFF
+0xA0D1			an empty selector: all six ids are 0xFFFF
+0xA0D2			an empty selector: all six ids are 0xFFFF
+0xA0D3			an empty selector: all six ids are 0xFFFF
+0xA0D4			an empty selector: all six ids are 0xFFFF
+0xA0D5			an empty selector: all six ids are 0xFFFF
+0xA0D6			an empty selector: all six ids are 0xFFFF
+0xA0D7			an empty selector: all six ids are 0xFFFF
+0xA0D8			an empty selector: all six ids are 0xFFFF
+0xA0D9			an empty selector: all six ids are 0xFFFF
+0xA0DA			an empty selector: all six ids are 0xFFFF
+0xA0DB			an empty selector: all six ids are 0xFFFF
+0xA0DC			an empty selector: all six ids are 0xFFFF
+0xA0DD			an empty selector: all six ids are 0xFFFF
+0xA0DE			an empty selector: all six ids are 0xFFFF
+0xA0DF			an empty selector: all six ids are 0xFFFF
+0xA0E0			an empty selector: all six ids are 0xFFFF
+0xA0E1			an empty selector: all six ids are 0xFFFF
+0xA0E2			an empty selector: all six ids are 0xFFFF
+0xA0E3			an empty selector: all six ids are 0xFFFF
+0xA0E4			an empty selector: all six ids are 0xFFFF
+0xA0E5			an empty selector: all six ids are 0xFFFF
+0xA0E6			an empty selector: all six ids are 0xFFFF
+0xA0E7			an empty selector: all six ids are 0xFFFF
+0xA0E8			an empty selector: all six ids are 0xFFFF
+0xA0E9			an empty selector: all six ids are 0xFFFF
+0xA0EA			an empty selector: all six ids are 0xFFFF
+0xA0EB			an empty selector: all six ids are 0xFFFF
+0xA0EC			an empty selector: all six ids are 0xFFFF
+0xA0ED			an empty selector: all six ids are 0xFFFF
+0xA0EE			an empty selector: all six ids are 0xFFFF
+0xA0EF			an empty selector: all six ids are 0xFFFF
+0xA0F0			an empty selector: all six ids are 0xFFFF
+0xA0F1			an empty selector: all six ids are 0xFFFF
+0xA0F2			an empty selector: all six ids are 0xFFFF
+0xA0F3			an empty selector: all six ids are 0xFFFF
+0xA0F4			an empty selector: all six ids are 0xFFFF
+0xA0F5			an empty selector: all six ids are 0xFFFF
+0xA0F6			an empty selector: all six ids are 0xFFFF
+0xA0F7			an empty selector: all six ids are 0xFFFF
+0xA0F8			an empty selector: all six ids are 0xFFFF
+0xA0F9			an empty selector: all six ids are 0xFFFF
+0xA0FA			an empty selector: all six ids are 0xFFFF
+0xA0FB			an empty selector: all six ids are 0xFFFF
+0xA0FC			an empty selector: all six ids are 0xFFFF
+0xA0FD			an empty selector: all six ids are 0xFFFF
+0xA0FE			an empty selector: all six ids are 0xFFFF
+0xA0FF			an empty selector: all six ids are 0xFFFF

@@ -41,14 +41,14 @@ The game supplies its own global `new` and `delete`, each a forwarder to the C r
 
 - `00210EC0` is `new`: it presets `r8d = -1` and `edx = 0`, which nothing reads, and jumps to the
   `malloc` stub `0085E730`. A `new` expression calls it and tests the result before the constructor
-  runs: `001D50D0` calls `00210EC0(10E8h)`, stores the result, and calls the constructor `001CCB20`
+  runs: `001D50D0` calls `00210EC0(0x10E8)`, stores the result, and calls the constructor `001CCB20`
   only when it is not null (`001D50FB`). It returns null on failure and throws nothing.
 - `00210EB0` is `delete(void*)`: a jump to the `free` stub `0019C590`.
 - `00809950` is the sized `delete(void*, size_t)`: a jump to `00210EB0`. Scalar deleting
   destructors call it after `test dl, 1` with the object's size in `edx`, for example
-  `0018D11D` (`mov edx, 8`) and `00195551` (`mov edx, 98h`).
+  `0018D11D` (`mov edx, 8`) and `00195551` (`mov edx, 0x98`).
 - 48 call sites call the `malloc` stub `0085E730` directly after clearing `edx`, the same setup as
-  `00210EC0` (`0017E92C`: `or r8d, -1; xor edx, edx; mov ecx, 188h`).
+  `00210EC0` (`0017E92C`: `or r8d, -1; xor edx, edx; mov ecx, 0x188`).
 - `00221770` takes an `int` size, sign-extends it and jumps to `00210EC0`.
 
 ### Aligned blocks
@@ -58,7 +58,7 @@ methods below. `0019C580` is `mov edx, edx` (the alignment as a 32-bit value) an
 
 - `0017D260(size, alignment)` presets `r9d = -1` and `r8d = 0` and jumps to `0019C580`, so it
   allocates with the caller's alignment.
-- `00584740(size)` does the same with the alignment materialised as `lea edx, [r9 + 11h]` from the
+- `00584740(size)` does the same with the alignment materialised as `lea edx, [r9 + 0x11]` from the
   `-1` already in `r9d`, which is 16.
 - `00584730(p)` frees: `test rcx, rcx` and, when the pointer is not null, a jump to the
   `_aligned_free` stub `0019C570`. It is the most called function of this page.
@@ -72,10 +72,10 @@ EASTL logging allocator go back through `00584730`, `0019C570` or `001EDFE0`; bl
 The MSVC standard library's allocator reaches `new` and `delete`, not the aligned pair, and aligns
 large blocks itself. `002099D0(this, count)` allocates `count` 16-byte elements:
 
-1. a count of 0 returns null, and a count above `0FFFFFFFFFFFFFFF`<sub>h</sub> calls `_Xbad_alloc`
+1. a count of 0 returns null, and a count above `0x0FFFFFFFFFFFFFFF` calls `_Xbad_alloc`
    (`002099EF`);
 2. below 4 KiB it returns `00210EC0(bytes)`;
-3. from 4 KiB it allocates `bytes + 27h` (`00209A03`), rounds the result up to 32 bytes
+3. from 4 KiB it allocates `bytes + 0x27` (`00209A03`), rounds the result up to 32 bytes
    (`00209A27`, `00209A2B`) and stores the raw pointer in the qword just below the returned address
    (`00209A2F`).
 
@@ -85,7 +85,7 @@ Either path that gets null from `00210EC0` calls `_invalid_parameter_noinfo_nore
 
 The matching release `001A5A80(this, p, count)` for 8-byte elements repeats the size test: from 4 KiB it
 requires `p` to be 32-byte aligned, reads the raw pointer from `p - 8`, requires the difference to
-lie between 8 and `27`<sub>h</sub>, and frees the raw pointer through `00210EB0`; any failed test calls
+lie between 8 and `0x27`, and frees the raw pointer through `00210EB0`; any failed test calls
 `_invalid_parameter_noinfo_noreturn`.
 
 ### The two EASTL allocator classes
@@ -108,21 +108,21 @@ dropped. The containers construct the logging class through `001EDF00`, which st
 `001A99B0`, `001E1670` and `00676BD0` and at `006CC33D`.
 
 The site at `001A99D5`, in `001A9940`, builds a guarded local static at `01F81188`: an EASTL tree
-whose `60`<sub>h</sub>-byte nodes hold two `std::string`s at `+20`<sub>h</sub> and `+40`<sub>h</sub>, with the plain allocator at
-`+30`<sub>h</sub>. On first use `001A9940` passes it with `/GameData/D3D11/ArtData/shared/phyremaps.txt` to
+whose `0x60`-byte nodes hold two `std::string`s at `+0x20` and `+0x40`, with the plain allocator at
+`+0x30`. On first use `001A9940` passes it with `/GameData/D3D11/ArtData/shared/phyremaps.txt` to
 `00677030`, through the jump thunk `00677340` (`001A998D`). Its `atexit` teardown `008A69A0` hands the root to `001A49C0`, which walks the nodes,
 frees both strings and returns each node through slot 3 of the allocator.
 
 ### The memory log that logs nothing
 
 Each of the three memory methods of `allocator_memory_log` begins by testing the pointer
-`01F82E48`. When it is null, the method takes `malloc(20h)` and, when that succeeds, writes
-`2000000`<sub>h</sub> at `+00`<sub>h</sub>, `200000`<sub>h</sub> at `+04`<sub>h</sub>, a zero qword at `+10`<sub>h</sub> and a zero dword at `+18`<sub>h</sub>
+`01F82E48`. When it is null, the method takes `malloc(0x20)` and, when that succeeds, writes
+`0x2000000` at `+0x00`, `0x200000` at `+0x04`, a zero qword at `+0x10` and a zero dword at `+0x18`
 (`001EDF3A` to `001EDF4F`), then stores the result at `01F82E48`, null or not.
 
 The only six instructions that address `01F82E48` are these three tests and three stores. No code
-reads the record, so the two sizes are never used, the counters never change, and `+08`<sub>h</sub>, `+0C`<sub>h</sub>
-and `+1C`<sub>h</sub> keep whatever `malloc` returned. A failed `malloc(20h)` leaves the pointer null, and the
+reads the record, so the two sizes are never used, the counters never change, and `+0x08`, `+0x0C`
+and `+0x1C` keep whatever `malloc` returned. A failed `malloc(0x20)` leaves the pointer null, and the
 next call tries again.
 
 ### Big blocks at boot
@@ -135,14 +135,14 @@ page, and what an arena does with its block is on the
 routine passes each result to the registrar with no null test.
 
 `0036D250` is the matching release: `free` when the pointer is not null. Its one caller, `0037B3D0`,
-frees arena 11's block and takes a new one of `3C0000`<sub>h</sub> or `400000`<sub>h</sub> bytes. Arena 7's block is
+frees arena 11's block and takes a new one of `0x3C0000` or `0x400000` bytes. Arena 7's block is
 also used raw: `003B0660`, `002FC860` and `003B2334` pass the block in `01FD4A30` itself as the
 destination of their resource requests through `0032E620`.
 
 The later arenas take their memory from other arenas, not from the heap:
 
-- `0025A990` selects arena 5, takes `100000`<sub>h</sub> bytes top-down with `0036A190`, labels the block
-  `EVTMEM` and registers it as arena 13; `0025AA30` does the same with `19000`<sub>h</sub> bytes labelled
+- `0025A990` selects arena 5, takes `0x100000` bytes top-down with `0036A190`, labels the block
+  `EVTMEM` and registers it as arena 13; `0025AA30` does the same with `0x19000` bytes labelled
   `SMNMEM` for arena 14. Each first releases the block it built before, and skips the registration
   when the allocation returns null.
 - `003E9AA0(arena, size)` takes arena 12's block top-down from the arena it is given, or from arena 6
@@ -152,17 +152,17 @@ The later arenas take their memory from other arenas, not from the heap:
 
 `001D6BE0`, called once from `0017D6B0`, runs `0020C610` and then `0020C6B0`. `0020C610` reads
 `GlobalMemoryStatusEx` and sets the budget `01F83448` to a third of the physical memory, at least
-`2000000`<sub>h</sub> (32 MiB) and capped at `100000000`<sub>h</sub> (4 GiB) when the third exceeds `FFFFFFFF`<sub>h</sub>. It sets
+`0x2000000` (32 MiB) and capped at `0x100000000` (4 GiB) when the third exceeds `0xFFFFFFFF`. It sets
 `01F83441` to 1 when the physical memory is below 1 GiB and to 0 otherwise, and sets `01F83440` to 1.
 
-`0020C6B0` creates the RAM file cache manager once: `00210EC0(158h)`, constructed by
+`0020C6B0` creates the RAM file cache manager once: `00210EC0(0x158)`, constructed by
 `0020B2E0(manager, budget)` and kept at `01F83438`. The constructor stores the budget as the
-manager's limit `+00`<sub>h</sub> and builds its pool of `18`<sub>h</sub>-byte cache entries at `+98`<sub>h</sub> with
+manager's limit `+0x00` and builds its pool of `0x18`-byte cache entries at `+0x98` with
 `(budget >> 31) × 10,000` entries, at least 10,000 and at most 1,000,000; with a budget of at most
 4 GiB that is 10,000, or 20,000 when the budget is 4 GiB.
 
 The cache's own allocator sits on `malloc`: `0020B130(manager, size)` returns null when the usage
-`+10`<sub>h</sub> is above the limit, and otherwise adds the size to the usage with `lock xadd` and jumps to
+`+0x10` is above the limit, and otherwise adds the size to the usage with `lock xadd` and jumps to
 `malloc`; `0020B0F0(manager, p)` subtracts `_msize(p)` (the only `_msize` call in the image,
 `0020B103`) and jumps to `free`. How the cache evicts when this allocator refuses, and how the two
 flags steer file reads, is on the
@@ -170,7 +170,7 @@ flags steer file reads, is on the
 
 The second reader of `GlobalMemoryStatusEx` is `00792F10`, the constructor of
 `Phyre::PFramework::PWindowWin32Base`. It sets the process priority class to
-`ABOVE_NORMAL_PRIORITY_CLASS` (`8000`<sub>h</sub>, `00792F80`), reads the page size and the physical memory,
+`ABOVE_NORMAL_PRIORITY_CLASS` (`0x8000`, `00792F80`), reads the page size and the physical memory,
 and calls `SetProcessWorkingSetSize` with the current minimum (50 pages when
 `GetProcessWorkingSetSize` fails) and a maximum of the physical memory less 512 pages, less 1
 (`00792FD9` to `00792FE8`).
@@ -178,8 +178,8 @@ and calls `SetProcessWorkingSetSize` with the current minimum (50 pages when
 ### The actor record pool
 
 An actor manager carves all its records out of one block. `002679F0(manager)`, called once from
-`0026CE60`, reads the definition data `L` at manager `+00`<sub>h</sub>: a row count (u16 at
-`L + [L + 14h]`) followed by one u16 record count per row. Each row's record size comes from the
+`0026CE60`, reads the definition data `L` at manager `+0x00`: a row count (u16 at
+`L + [L + 0x14]`) followed by one u16 record count per row. Each row's record size comes from the
 eight-row table at `01E0C328`. The block size is
 
 ```python
@@ -187,26 +187,26 @@ header = (n * 8 + 0x17) & ~0xF            ; n = manager +0x20, the total record 
 total = 2 * header + sum over rows of round16(size[row]) * count[row]
 ```
 
-It takes the block through the function pointer at manager `+88`<sub>h</sub> (`00267A79`), clears it with
-`memset` (`00267A8B`) without a null test, writes `n` at `+00`<sub>h</sub> and points manager `+1F0`<sub>h</sub> at
+It takes the block through the function pointer at manager `+0x88` (`00267A79`), clears it with
+`memset` (`00267A8B`) without a null test, writes `n` at `+0x00` and points manager `+0x1F0` at
 `block + header`. The records follow from `block + 2 * header`, each rounded up to 16 bytes, and
-the record pointers fill `block + 08h` onward.
+the record pointers fill `block + 0x08` onward.
 
-Every record's byte `+3` is set to `(row & 1Fh) | (class << 5)`, the class being the table's byte
+Every record's byte `+3` is set to `(row & 0x1F) | (class << 5)`, the class being the table's byte
 `+0`; an earlier write of the same byte in the loop is overwritten at once. The record counts per
-class are added to the four words at manager `+1D0`<sub>h</sub>, and `+1D8`<sub>h</sub> receives their running starts.
+class are added to the four words at manager `+0x1D0`, and `+0x1D8` receives their running starts.
 `00266530` then initialises each record. A record is an interior pointer: only the block itself can
 be freed.
 
 The block function is installed by `0026C8C0`, which stores `00267930` or its third argument at
-manager `+88`<sub>h</sub> (`0026CAE6`). Its one caller, `0032F850`, passes one of three hooks. Each selects an
+manager `+0x88` (`0026CAE6`). Its one caller, `0032F850`, passes one of three hooks. Each selects an
 arena, allocates with `0036A100`, labels the block with `0036C660` and the source file name
 `ateldecode.c`, and pops the selection:
 
-- `00267930` uses arena 5 and the label tag `1676`<sub>h</sub>;
+- `00267930` uses arena 5 and the label tag `0x1676`;
 - `00267BB0` uses arena 13 when it is enabled (`0036B200(13)` tests its bit in `022D89B8`), else
-  arena 5, with tag `16C1`<sub>h</sub>;
-- `00267C20` uses arena 14 when enabled, else arena 5, with tag `16E6`<sub>h</sub>.
+  arena 5, with tag `0x16C1`;
+- `00267C20` uses arena 14 when enabled, else arena 5, with tag `0x16E6`.
 
 `0032F850` picks the hook from the low four bits of its argument: 1 and 2 give `00267BB0` and 3
 gives `00267C20` when arena 13 or 14 is enabled; every other case gives `00267930`.
@@ -214,21 +214,21 @@ gives `00267C20` when arena 13 or 14 is enabled; every other case gives `0026793
 ### The movie player's ring buffers
 
 `006CC5A0(ring, size, extra, alloc, free)` builds a ring buffer that takes its allocator as
-arguments. It stores `size + 20h` at `+4C`<sub>h</sub> and the release function at `+58`<sub>h</sub> (`00584730` when
-none is given), allocates `size + 20h + extra + Fh` bytes with `alloc` (`00584740` when none is
-given) into `+08`<sub>h</sub>, sets `+10`<sub>h</sub> to `size + 10h` and zeroes the dword there, and returns whether
+arguments. It stores `size + 0x20` at `+0x4C` and the release function at `+0x58` (`00584730` when
+none is given), allocates `size + 0x20 + extra + 0xF` bytes with `alloc` (`00584740` when none is
+given) into `+0x08`, sets `+0x10` to `size + 0x10` and zeroes the dword there, and returns whether
 the block is non-null.
 
 Its three calls pass the pair held in the static cells `01F2EAA8` (`00584740`) and `01F2EAB0`
 (`00584730`), so the rings come from the 16-byte aligned heap. The
 [movie player](../Third-Party-Libraries/media-decoder-libraries.md) makes them:
 
-- `00679A50`, the Vorbis start, builds an `800000`<sub>h</sub>-byte ring at `+150`<sub>h</sub> with `extra` =
-  `[+324h] << 13` (`00679B93`), then takes `[+324h] × 48,000 × 4` bytes directly from `00584740`
-  for its output buffer at `+4E8`<sub>h</sub> and clears it (`00679BA5`).
-- The movie open `0067A480` builds a `2000000`<sub>h</sub>-byte ring at `+00`<sub>h</sub> (`0067A826`) and a second one
-  at `+A8`<sub>h</sub> (`0067A857`), both with `extra` = `[+524h] + [+524h] / 2`; the second ring's size is
-  `(extra + 10h) × [+2F0h]`.
+- `00679A50`, the Vorbis start, builds an `0x800000`-byte ring at `+0x150` with `extra` =
+  `[+0x324] << 13` (`00679B93`), then takes `[+0x324] × 48,000 × 4` bytes directly from `00584740`
+  for its output buffer at `+0x4E8` and clears it (`00679BA5`).
+- The movie open `0067A480` builds a `0x2000000`-byte ring at `+0x00` (`0067A826`) and a second one
+  at `+0xA8` (`0067A857`), both with `extra` = `[+0x524] + [+0x524] / 2`; the second ring's size is
+  `(extra + 0x10) × [+0x2F0]`.
 
 The cells are initialised data in the image; no instruction writes them.
 
@@ -237,17 +237,17 @@ The cells are initialised data in the image; no instruction writes them.
 The six qwords at `01F2EA70`, just before the pair, are the head of an ordered tree of named Phyre
 `PAssetReference` objects; its accesses are listed in
 [`memory-and-allocation-p-asset-reference-registry-01f2ea70-accesses.tsv`](memory-and-allocation-p-asset-reference-registry-01f2ea70-accesses.tsv).
-The head is six qwords that point at `01F2EA70` when the tree is empty, with the root at `+18`<sub>h</sub>.
+The head is six qwords that point at `01F2EA70` when the tree is empty, with the root at `+0x18`.
 It is built on first use, under the lock `02D3E880`, by a guarded one-time initialiser
 (`02D3EC9C`) that also registers `008B1C00` with `atexit`; that destructor clears the tree through
 `0067F580`.
 
-- `00677BA0(object)` registers one object. A null name at `+30`<sub>h</sub> (bit 0 masked off) returns `15`<sub>h</sub>.
-  Otherwise it resets the node at `+08`<sub>h</sub>, stores the name's hash (`00677350`, seed `7B5`<sub>h</sub>) at
-  `+20`<sub>h</sub> and the name at `+28`<sub>h</sub>, looks the object up with `006750C0`, and inserts it with
-  `0067F700`; an object whose name is already present returns `12`<sub>h</sub>.
+- `00677BA0(object)` registers one object. A null name at `+0x30` (bit 0 masked off) returns `0x15`.
+  Otherwise it resets the node at `+0x08`, stores the name's hash (`00677350`, seed `0x7B5`) at
+  `+0x20` and the name at `+0x28`, looks the object up with `006750C0`, and inserts it with
+  `0067F700`; an object whose name is already present returns `0x12`.
 - `00675460(object)` removes one: when the object is linked it erases the node under the same lock
-  (`0067FE20`), then frees an owned name at `+30`<sub>h</sub> (bit 0 clear) with `00584730`. It is reached
+  (`0067FE20`), then frees an owned name at `+0x30` (bit 0 clear) with `00584730`. It is reached
   through `00674A30`, slot 11 of the three `PAssetReference` class-descriptor vtables `00D6BA78`,
   `00D6BB00` and `00D6BB88`.
 
@@ -272,51 +272,51 @@ value as the length of its `"\r\n"` comparison when it splits the text into line
 
 ## Layouts
 
-Memory log record   `01F82E48` -> malloc(`20`<sub>h</sub>):
+Memory log record   `01F82E48` -> malloc(`0x20`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | budget | `2000000`<sub>h</sub>, never read |
-| `04`<sub>h</sub> | `u32` | block | `200000`<sub>h</sub>, never read |
-| `08`<sub>h</sub> | `u32` | (none) | never written |
-| `0C`<sub>h</sub> | `u32` | (none) | never written |
-| `10`<sub>h</sub> | `u64` | total | 0, never read |
-| `18`<sub>h</sub> | `u32` | count | 0, never read |
-| `1C`<sub>h</sub> | `u32` | (none) | never written |
+| `+0x00` | `u32` | budget | `0x2000000`, never read |
+| `+0x04` | `u32` | block | `0x200000`, never read |
+| `+0x08` | `u32` | (none) | never written |
+| `+0x0C` | `u32` | (none) | never written |
+| `+0x10` | `u64` | total | 0, never read |
+| `+0x18` | `u32` | count | 0, never read |
+| `+0x1C` | `u32` | (none) | never written |
 
 Actor record size table   `01E0C328`, 8 rows of 4 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | class | 0 to 3; indexes the manager's words +`1D0`<sub>h</sub> and the record's byte +3 |
-| `01`<sub>h</sub> | `u8` | (none) | 0 or 1; read by nothing |
-| `02`<sub>h</sub> | `u16` | size | record bytes before rounding to 16 rows   0: class 0 `328`<sub>h</sub>   1: class 1 `3A8`<sub>h</sub>   2: class 1 `330`<sub>h</sub>   3: class 2 `348`<sub>h</sub> 4: class 2 `2D0`<sub>h</sub>   5: class 3 `6E0`<sub>h</sub>   6: class 3 `6E0`<sub>h</sub>   7: class 3 `668`<sub>h</sub> |
+| `+0x00` | `u8` | class | 0 to 3; indexes the manager's words +`0x1D0` and the record's byte +3 |
+| `+0x01` | `u8` | (none) | 0 or 1; read by nothing |
+| `+0x02` | `u16` | size | record bytes before rounding to 16 rows   0: class 0 `0x328`   1: class 1 `0x3A8`   2: class 1 `0x330`   3: class 2 `0x348` 4: class 2 `0x2D0`   5: class 3 `0x6E0`   6: class 3 `0x6E0`   7: class 3 `0x668` |
 
 Actor pool block:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | n, the record count |  |
-| `08`<sub>h</sub> | `void*` | record pointers, n entries | +header           -    manager +`1F0`<sub>h</sub> points here +2*header         -    records, each round16(size) bytes, in row order |
+| `+0x00` | `u32` | n, the record count |  |
+| `+0x08` | `void*` | record pointers, n entries | +header           -    manager +`0x1F0` points here +2*header         -    records, each round16(size) bytes, in row order |
 
 Ring buffer (`006CC5A0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `08`<sub>h</sub> | `void*` | block | from the alloc argument |
-| `10`<sub>h</sub> | `u32` | size + `10`<sub>h</sub> | the dword at block + this value is zeroed |
-| `14`<sub>h</sub> | `u32` | 0 | +`28`<sub>h</sub>, +`38`<sub>h</sub>               two objects set up by `005CD0E0`(p, 1) |
-| `4C`<sub>h</sub> | `u32` | size + `20`<sub>h</sub> |  |
-| `58`<sub>h</sub> | `void*` | release function |  |
+| `+0x08` | `void*` | block | from the alloc argument |
+| `+0x10` | `u32` | size + 0x10 | the dword at block + this value is zeroed |
+| `+0x14` | `u32` | 0 | +`0x28`, +`0x38`               two objects set up by `005CD0E0`(p, 1) |
+| `+0x4C` | `u32` | size + 0x20 |  |
+| `+0x58` | `void*` | release function |  |
 
 Static block `01F2EA70`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `void*[6]` | registry tree head, self-pointing when empty; root at `+18`<sub>h</sub> |  |
-| `30`<sub>h</sub> | `u64` | 2, the line-terminator length read by 00677030 |  |
-| `38`<sub>h</sub> | `void*` | 00584740, allocate 16-byte aligned |  |
-| `40`<sub>h</sub> | `void*` | 00584730, aligned free |  |
+| `+0x00` | `void*[6]` | registry tree head, self-pointing when empty; root at +0x18 |  |
+| `+0x30` | `u64` | 2, the line-terminator length read by 00677030 |  |
+| `+0x38` | `void*` | 00584740, allocate 16-byte aligned |  |
+| `+0x40` | `void*` | 00584730, aligned free |  |
 
 The file cache manager's other fields are on the
 [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md) page.
@@ -343,7 +343,7 @@ disassembly of `.text` restarted at every `.pdata` entry; functions are counted 
 | `calloc` stub `00861FBC` | 30 calls, in 16 functions from `00880230` to `00893E80` |
 | `realloc` / `_msize` | 5 / 1 direct calls |
 | `_Xbad_alloc` | 23 calls, in 14 functions |
-| Boot blocks | 11, `10120930`<sub>h</sub> bytes (257.1 MiB) |
+| Boot blocks | 11, `0x10120930` bytes (257.1 MiB) |
 | Actor record size rows | 8 |
 
 ## State

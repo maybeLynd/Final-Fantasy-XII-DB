@@ -92,7 +92,7 @@ In borderless mode the resolution box shows the size of the screen that holds th
 measured with `LastX` for both coordinates, and with no screen at all it falls back to `Resolution` or the primary
 screen's size (`ConfigForm.UpdateResolutionComboBoxItems`).
 
-A full disk (HRESULT `80070027`<sub>h</sub> or `80070070`<sub>h</sub>) shows the `msg_ErrorDiskFull` text; any other write error
+A full disk (HRESULT `0x80070027` or `0x80070070`) shows the `msg_ErrorDiskFull` text; any other write error
 shows the exception's message.
 
 ### Reset, OK, Apply and Cancel

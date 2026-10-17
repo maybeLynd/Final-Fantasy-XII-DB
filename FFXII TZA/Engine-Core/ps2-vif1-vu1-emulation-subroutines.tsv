@@ -1,16 +1,16 @@
 function	size	called_from	does
 004753B0	1322	004758E0, 0047A9C0	clips an edge at a screen boundary: scales the colour words 02064BD0 and 02064C00 by 100, takes t = (boundary - start) / (end - start) on x or y (chosen by 02064DDC), interpolates position, texture and colour words by t and scales the colour back by 0.01
 0047BFB0	944	0047C360, 00482860, 00485790, 0048AF70, 0048D4B0, 0048F8C0, 004930A0, 004B1190	sine of two angles: wraps 02064CB0 into range with the 4.712389 and 6.2831855 bounds, then evaluates x - x^3 x 0.16666657 + x^5 x 0.0083330255 - x^7 x 0.00019807414 + x^9 x 2.601887e-06 into 02064CB0 and 02064CB4
-004825F0	619	0047C360, 00482860, 0048AF70, 0048F8C0	frame lookup: wraps the time 02064CB0 by the loop length 02064CB4, then subtracts the y-lane counts of the cells from table cell D2h on until the remainder is negative; the cell's x lane is the result in 02064DCC
+004825F0	619	0047C360, 00482860, 0048AF70, 0048F8C0	frame lookup: wraps the time 02064CB0 by the loop length 02064CB4, then subtracts the y-lane counts of the cells from table cell 0xD2 on until the remainder is negative; the cell's x lane is the result in 02064DCC
 00487D60	551	00488340	the frame lookup of 004825F0 with the comparison masked by 02064DE0, ending with the found cell's x lane as a float
 00487F90	937	00488340	the same sine series as 0047BFB0 after subtracting 02064CC0 from the angle 02064CB0, with the bounds in 02064CC0-02064CC8
-0048D240	619	0048D4B0	the frame lookup of 004825F0 with the table at cell 1C2h
+0048D240	619	0048D4B0	the frame lookup of 004825F0 with the table at cell 0x1C2
 0048F790	291	0047C360, 00482860, 00485790, 00488340, 0048AF70, 0048F8C0, 004930A0, 004B1190	wraps the angle 02064CB0 by whole turns of 6.2831855 (floor of angle x 0.15915494) and leaves 2 pi in 02064B04
 004A6780	1172	00499A20, 0049B9E0, 0049D540, 004A0090, 004A33B0, 004A4410, 004A6C20, 004A8B00, 004AAFC0, 004B0230, 004B1190, 004B9EA0, 004BC320, 004BF500	clears the unit's state: every float word 02064B30-02064D1F from the constant vector (0, 0, 0, 1) at 01E02830 doubled, which gives 0, and every index word 02064DB0-02064DE8 to 02064B0C (0)
-004AD9E0	813	004ADD10	clips an edge against one of six planes (argument 0 to 5): reads three cells from cell index + 13h, takes t = |a - w| / (|a - w| + |b - w|) on the plane's axis, interpolates and writes the three cells back
-004B0CF0	619	004B1190	the frame lookup of 004825F0 with the table at cell 10Eh
-004B0F60	553	004B1190	the frame lookup of 004825F0 with the table at cell 118h, comparing time and length through 02064B10
-004B97F0	66	004B1190	returns the next random float: 1.0 when 02064AFC is 0, otherwise steps the generator 01E02828 (bit = ((r >> 18) ^ r) >> 4 & 1; r = ((r & 3FFFFFh) << 1 | 3F800000h) | bit), a float in [1, 2)
+004AD9E0	813	004ADD10	clips an edge against one of six planes (argument 0 to 5): reads three cells from cell index + 0x13, takes t = |a - w| / (|a - w| + |b - w|) on the plane's axis, interpolates and writes the three cells back
+004B0CF0	619	004B1190	the frame lookup of 004825F0 with the table at cell 0x10E
+004B0F60	553	004B1190	the frame lookup of 004825F0 with the table at cell 0x118, comparing time and length through 02064B10
+004B97F0	66	004B1190	returns the next random float: 1.0 when 02064AFC is 0, otherwise steps the generator 01E02828 (bit = ((r >> 18) ^ r) >> 4 & 1; r = ((r & 0x3FFFFF) << 1 | 0x3F800000) | bit), a float in [1, 2)
 004B9840	46	004B1190	out.xyz = a.xyz + b.xyz
 004B9890	55	004B1190	out.xyz = a.xyz x 16 as integers (12.4 fixed point)
 004B98F0	21	004B1190	loads the low 16 bits of lane y of VU cell n (02064E34 + n x 16)
@@ -31,4 +31,4 @@ function	size	called_from	does
 004CF230	78	004C8320	per-lane minimum of a vector and a scalar
 004CF280	197	004C8320	stores the sign and zero flags of the accumulator 02064B20-02064B28 less the cross product of its two vectors as a 6-bit word
 004EB910	1387	004EBE80	builds one sprite: rotates two corner offsets by the 2 x 2 matrix 02064D00-02064D14 round the centre in cell 2, converts the corners to 12.4 fixed point (x 16) and writes six cells at the output index 02064DB4, which advances by 6; 02064DB8 counts up
-004ECB70	216	00478280, 004ECC50	emits a GS packet like 004EF860 with the buffer offsets 200h and 40h instead of 2A8h and 168h: writes word 02064DB8 + 8000h and the cell at 02064DD0 into the cell at 02064DB0, calls the callback with it and moves 02064DB0 and 02064DB4 on
+004ECB70	216	00478280, 004ECC50	emits a GS packet like 004EF860 with the buffer offsets 0x200 and 0x40 instead of 0x2A8 and 0x168: writes word 02064DB8 + 0x8000 and the cell at 02064DD0 into the cell at 02064DB0, calls the callback with it and moves 02064DB0 and 02064DB4 on

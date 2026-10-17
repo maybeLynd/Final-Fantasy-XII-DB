@@ -17,19 +17,19 @@ language and in Japanese.
 The packages sit beside each area's script in the archive, `<area>.mot`, `<area>.snd`, `<area>.vpc` and
 `<area>.vpcjp`. They are files of the per-area records in the resource kinds the area loader uses
 ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)): kind 5 records are
-`{ebp, mot, fpk}` (three files per area, index `3a`), kind 8 records `{ebp, mot, snd, vpc}` and kind `25`<sub>h</sub>
+`{ebp, mot, fpk}` (three files per area, index `3a`), kind 8 records `{ebp, mot, snd, vpc}` and kind `0x25`
 records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `002DF980(kind, index)`.
 
 ## Layouts
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[4]` | 'PKFL' | only byte 0 is tested, for non-zero |
-| `04`<sub>h</sub> | `u32` | slotCount | 16 (.mot, .snd) or 64 (.vpc, .vpcjp); not read |
-| `08`<sub>h</sub> | `{u32 offset, u32 size}[slotCount]` | offsets from the file start; {0, 0} = slot empty |  |
+| `+0x00` | `char[4]` | 'PKFL' | only byte 0 is tested, for non-zero |
+| `+0x04` | `u32` | slotCount | 16 (.mot, .snd) or 64 (.vpc, .vpcjp); not read |
+| `+0x08` | `{u32 offset, u32 size}[slotCount]` | offsets from the file start; {0, 0} = slot empty |  |
 
-The directory ends at `88`<sub>h</sub> for 16 slots and `208`<sub>h</sub> for 64. Every payload starts on a `800`<sub>h</sub> boundary,
-the first at `800`<sub>h</sub>.
+The directory ends at `0x88` for 16 slots and `0x208` for 64. Every payload starts on a `0x800` boundary,
+the first at `0x800`.
 
 ## Shipped data
 
@@ -37,7 +37,7 @@ the first at `800`<sub>h</sub>.
 |---|---|
 | packages | 10,314: 4,392 `.mot`, 2,304 `.snd`, 1,809 `.vpc`, 1,809 `.vpcjp` |
 | empty packages | 27: 9 `.mot`, 9 `.vpc`, 9 `.vpcjp`, every pair `{0, 0}` |
-| layout | in all 10,287 others: every pair inside the file, offsets ascending, the first at `800`<sub>h</sub>, each next payload at the first `800`<sub>h</sub> boundary after the one before, zero bytes in the gaps, file size a multiple of `800`<sub>h</sub> |
+| layout | in all 10,287 others: every pair inside the file, offsets ascending, the first at `0x800`, each next payload at the first `0x800` boundary after the one before, zero bytes in the gaps, file size a multiple of `0x800` |
 | `.mot` slots | 0-15 used (1,539, 3,186, 1,737, 1,134, 774, 540, 378, 270, 108, 54, 54, 36, 36, 27, 18, 18 packages); every payload is an `@FRP` container |
 | `.snd` slots | 0-7 in every package, payloads starting with the dword 2; slots 8-15 in 9, 1,809, 324, 225, 153, 99, 45 and 18 packages, payloads starting `WD` |
 | `.vpc` and `.vpcjp` slots | 0-13 of 64 used, the same occupancy in both (1,782 down to 9); every payload is a `VSP1` voice set |
@@ -46,18 +46,18 @@ the first at `800`<sub>h</sub>.
 
 ### The directory tables
 
-`0032F430`, at start-up, allocates four `88`<sub>h</sub>- or `208`<sub>h</sub>-byte tables per area slot: `.mot` at `022C6E70`,
+`0032F430`, at start-up, allocates four `0x88`- or `0x208`-byte tables per area slot: `.mot` at `022C6E70`,
 `.snd` at `022C6E98`, `.vpc` at `022C6EE8` and `.vpcjp` at `022C6EC0`. When an area slot
 loads, `0032FCA0` (from `0032FC30`) reads into them:
 
-- for area slots 0 to 3, the first `88`<sub>h</sub> bytes of the `.mot` (record index + 1);
-- for area slots 1 to 3 (kind 8), also the first `88`<sub>h</sub> bytes of the `.snd` (+ 2) and `208`<sub>h</sub> of the
-  `.vpc` (kind 8, + 3) and `.vpcjp` (kind `25`<sub>h</sub>, + 3);
+- for area slots 0 to 3, the first `0x88` bytes of the `.mot` (record index + 1);
+- for area slots 1 to 3 (kind 8), also the first `0x88` bytes of the `.snd` (+ 2) and `0x208` of the
+  `.vpc` (kind 8, + 3) and `.vpcjp` (kind `0x25`, + 3);
 - for area slot 4, none of them.
 
 A table it does not fill, or a file with no size, gets byte 0 cleared. Each request it files sets a pending
-bit in the slot's word `022C6E48[g]`: `2000`<sub>h</sub> for the `.mot` (completion `003302B0`), `1000`<sub>h</sub> for the
-`.snd` (`00331760`), `8000`<sub>h</sub> for the `.vpc` (`00331820`) and `4000`<sub>h</sub> for the `.vpcjp` (`003317C0`).
+bit in the slot's word `022C6E48[g]`: `0x2000` for the `.mot` (completion `003302B0`), `0x1000` for the
+`.snd` (`00331760`), `0x8000` for the `.vpc` (`00331820`) and `0x4000` for the `.vpcjp` (`003317C0`).
 
 ### The slot readers
 
@@ -81,14 +81,14 @@ otherwise.
 
 A consumer allocates the slot's size and files the area file's kind and index with the slot's offset as
 the read's file offset (`003E9EF0` passes it in the request record), so only that payload is read. The
-read queue rounds the offset down to a `800`<sub>h</sub> boundary
+read queue rounds the offset down to a `0x800` boundary
 ([file requests](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)). A size of 0
 loads nothing.
 
 ## Modding notes
 
 - Keep byte 0 non-zero; nothing else in the header is checked, and `slotCount` is never read.
-- Put every payload on a `800`<sub>h</sub> boundary: the read starts at the offset rounded down.
+- Put every payload on a `0x800` boundary: the read starts at the offset rounded down.
 - `.mot` and `.snd` directories are read as 16 slots and `.vpc` and `.vpcjp` as 64; a slot number from a
   script has no bound, so a `.mot` or `.snd` slot of 16 or more reads past the table.
 - Keep the `.vpc` and `.vpcjp` of an area in step: the voice language picks which one plays.

@@ -30,8 +30,8 @@ Only when slot 0, the field, is bound (`0026C95D`-`0026C95F`) does it handle two
 
 | Heap | Pointer | Size | Name | Made by |
 |---|---|---|---|---|
-| 13 | `02099DD0` | `100000`<sub>h</sub>, 1 MiB | `EVTMEM` | `0025A990` (`0025A9D5`-`0025AA21`) |
-| 14 | `02099DD8` | `19000`<sub>h</sub>, 100 KiB | `SMNMEM` | `0025AA30` |
+| 13 | `02099DD0` | `0x100000`, 1 MiB | `EVTMEM` | `0025A990` (`0025A9D5`-`0025AA21`) |
+| 14 | `02099DD8` | `0x19000`, 100 KiB | `SMNMEM` | `0025AA30` |
 
 Each maker releases an existing heap first, allocates the block from pool 5, names it (`0036C660`) and registers
 it under its heap number with `00369D30`. The slot reset `002628B0` releases both heaps the same way when slot 0
@@ -50,20 +50,20 @@ So the summon memory heap is made only for fields that are not towns.
 
 ### The list file
 
-The list is `common/eventmemorylist.bin`, kind 9 file `29`<sub>h</sub>, requested by `00378540` under the name `EVTMEM`
+The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `00378540` under the name `EVTMEM`
 (`003787E6`-`00378841`); its completion `00378A50` stores the pointer in `02ADD0A8`.
 
 The buffer comes from `00267990(size)` (`003787FB`), which allocates the file's size in arena 5 (`0036C1D0(5)`,
 `0036A190`) and labels the block with the file name cut from `..\..\katano\ateldecode.c` (`0036C750`) and the tag
-`1698`<sub>h</sub> (`0036C660`). `00378540` then labels it again with the name `EVTMEM` and tag 0 (`00378810`).
+`0x1698` (`0036C660`). `00378540` then labels it again with the name `EVTMEM` and tag 0 (`00378810`).
 
 ## Layouts
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[8]` | magic | "EVMEMLST" |
-| `08`<sub>h</sub> | `u16` | count | 8 |
-| `0A`<sub>h</sub> | `u16[8]` | ids | the field ids that get no event memory |
+| `+0x00` | `char[8]` | magic | "EVMEMLST" |
+| `+0x08` | `u16` | count | 8 |
+| `+0x0A` | `u16[8]` | ids | the field ids that get no event memory |
 
 ## Shipped data
 

@@ -22,14 +22,14 @@ Every enemy remembers how much each party member has bothered it.
 
 ### The table
 
-The table lives in the enemy's spawn record at unit `+6A0`<sub>h</sub>, from `+19`<sub>h</sub> (`00321553`-`0032156D`):
+The table lives in the enemy's spawn record at unit `+0x6A0`, from `+0x19` (`00321553`-`0032156D`):
 
 | Byte | Meaning |
 |---|---|
-| `+19`<sub>h</sub> | the decay timer |
-| `+1A`<sub>h</sub> + *id* | the enemy's enmity toward party table row *id*, 0-255, for *id* 0-39 |
+| `+0x19` | the decay timer |
+| `+0x1A` + *id* | the enemy's enmity toward party table row *id*, 0-255, for *id* 0-39 |
 
-The row id is a party member's type byte (stats `+04`<sub>h</sub>). An id counts only when
+The row id is a party member's type byte (stats `+0x04`). An id counts only when
 `00322C50(2, id, 1)` accepts it, that is when it is below the 40 rows of the party table `02EBF130`
 (`00322C9A`, `0032302A`-`0032303B`). The readers return -1 for an invalid id or a missing table
 (`003215C0`-`0032161D`).
@@ -38,7 +38,7 @@ The row id is a party member's type byte (stats `+04`<sub>h</sub>). An id counts
 
 `00321850(enemy, id, value, mode)` changes one entry (`00321850`-`003219CC`):
 
-1. It does nothing unless the enemy is an enemy-table unit (stats `+05`<sub>h</sub> = 1, `003218D0`) that is not KO,
+1. It does nothing unless the enemy is an enemy-table unit (stats `+0x05` = 1, `003218D0`) that is not KO,
    Stone or X-Zone, unless bit 15 of the active field record waives that (`003218A6`-`003218BA`).
 2. The new value is `old + value` for mode 0 or `value` for mode 1 (`00321914`-`0032191A`).
 3. A new value of 0 or less becomes 1 when the old value was above 0 (`0032191D`-`00321923`).
@@ -52,15 +52,15 @@ So no write takes a held grudge back to 0, and the first grudge seeds a grudge o
 
 ### What an action does
 
-`003216E0(caster, target, actionRow)` runs for a party record caster only (stats `+05`<sub>h</sub> = 0,
+`003216E0(caster, target, actionRow)` runs for a party record caster only (stats `+0x05` = 0,
 `0032170D`-`00321714`). With `id` the caster's type byte, it makes three calls with the action row's three
 enmity bytes ([Action definition row](../Battle-Actions/action-definition-row.md)):
 
 | Call | Row byte | Effect | Site |
 |---|---|---|---|
-| `00321850(target, id, +1Dh, 0)` | `+1D`<sub>h</sub> | the target's enmity toward the caster rises | `0032172E` |
-| `003219D0(id, +1Fh, target, 0)` | `+1F`<sub>h</sub> | spread to other enemies, below | `0032173F` |
-| `00321B00(target, -[+20h], caster, 0)` | `+20`<sub>h</sub> | the target's enmity toward every other active party member falls | `00321753` |
+| `00321850(target, id, +0x1D, 0)` | `+0x1D` | the target's enmity toward the caster rises | `0032172E` |
+| `003219D0(id, +0x1F, target, 0)` | `+0x1F` | spread to other enemies, below | `0032173F` |
+| `00321B00(target, -[+0x20], caster, 0)` | `+0x20` | the target's enmity toward every other active party member falls | `00321753` |
 
 It is called from `Battle_ProcessActionTarget` (`0030760A`) and from the special-sequence target loop
 (`0030ECF2`).
@@ -72,8 +72,8 @@ an enemy's entry for `id` when all of these hold:
 
 - the unit is an enemy-table unit other than the target (`00321A33`-`00321A40`);
 - its entry for `id` is already above 0 (`00321A73`-`00321A7B`);
-- with a target, the target's actor (`+10`<sub>h</sub>) is in the enemy's AI candidate list, the 16-byte entries
-  from unit `+BC8`<sub>h</sub> counted by `+BC4`<sub>h</sub> (`00321A82`-`00321AB8`).
+- with a target, the target's actor (`+0x10`) is in the enemy's AI candidate list, the 16-byte entries
+  from unit `+0xBC8` counted by `+0xBC4` (`00321A82`-`00321AB8`).
 
 ### Drawing threat off the rest of the party
 
@@ -104,11 +104,11 @@ Two more callers change the table:
 - **KO, Stone and X-Zone.** The status write calls `00300FC0` with flag 0 when one of them is set: its
   side-effect switch (`0030E737`-`0030E759`, byte table `0030E8C4`) sends statuses 0, 1 and 31 to
   `0030E80A`, `0030E850` and `0030E85E`, which reach `0030E877` when the status is being set.
-- **Espers keep the table.** With flag 0, an Esper record (party type `1B`<sub>h</sub>-`27`<sub>h</sub>) leaves `00300FC0`
+- **Espers keep the table.** With flag 0, an Esper record (party type `0x1B`-`0x27`) leaves `00300FC0`
   early through `003105D0` and `003138D0` (`00300FCF`-`00301005`), before the reset. The status write's
   own Esper call at `0030E497` takes that exit too.
-- **Battle orders `4163`<sub>h</sub> and `4164`<sub>h</sub>.** The direct state orders call `00321B00` on the committing
-  enemy: `4163`<sub>h</sub> sets every active party member's entry to 1 and `4164`<sub>h</sub> adds the order's parameter
+- **Battle orders `0x4163` and `0x4164`.** The direct state orders call `00321B00` on the committing
+  enemy: `0x4163` sets every active party member's entry to 1 and `0x4164` adds the order's parameter
   (`002FE4F1`-`002FE507`, [Battle orders](../Battle-Actions/battle-orders.md)).
 
 ### How the AI reads it
@@ -121,7 +121,7 @@ holds any grudge above 0 (`0030BDA0`).
 
 ## Modding notes
 
-- An action's enmity is the three bytes `+1D`<sub>h</sub>, `+1F`<sub>h</sub> and `+20`<sub>h</sub> of its row; an action with all three
+- An action's enmity is the three bytes `+0x1D`, `+0x1F` and `+0x20` of its row; an action with all three
   at 0 leaves the table alone.
 - The decay step and interval are `-10` (`0032159F`) and the 30.0 at `008F8D80`, shared with other code.
 - Only party records generate enmity, and only enemy-table units hold it.
@@ -129,6 +129,6 @@ holds any grudge above 0 (`0030BDA0`).
 ## Related
 
 - [Action definition row](../Battle-Actions/action-definition-row.md) - the three enmity bytes.
-- [Battle orders](../Battle-Actions/battle-orders.md) - orders `4163`<sub>h</sub> and `4164`<sub>h</sub>.
+- [Battle orders](../Battle-Actions/battle-orders.md) - orders `0x4163` and `0x4164`.
 - [Action phases](../Battle-Actions/action-phases.md) - the frame base.
 - [Area of effect](../Battle-Actions/area-of-effect.md) - the 16-byte list layout the AI candidate list shares.

@@ -7,15 +7,15 @@ addresses: "002FEF30, 0030FED0, 0030E360, 00300530, 0030C470"
 
 ## What it lists
 
-Every battle unit has a combat stats record at unit `+698`<sub>h</sub>. Party records sit in the battle state block
-at `[02EBF190] + 8 + k * 1C8h`; an enemy's record is the stats page of its spawn record. Byte `+05`<sub>h</sub> says
+Every battle unit has a combat stats record at unit `+0x698`. Party records sit in the battle state block
+at `[02EBF190] + 8 + k * 0x1C8`; an enemy's record is the stats page of its spawn record. Byte `+0x05` says
 which kind a record is, and several fields mean different things for the two kinds:
 
-- for a party record (kind 0), `+08`<sub>h</sub>-`+20`<sub>h</sub> hold the base values the stats are grown from;
+- for a party record (kind 0), `+0x08`-`+0x20` hold the base values the stats are grown from;
 - for an enemy record (kind 1), the same bytes hold signed adjustments added to the enemy's area table
   values ([Stats](stats.md)).
 
-The computed stats `+24`<sub>h</sub>-`+44`<sub>h</sub> are rewritten from these by `002FEF30`, and the augment layer `+78`<sub>h</sub>
+The computed stats `+0x24`-`+0x44` are rewritten from these by `002FEF30`, and the augment layer `+0x78`
 by `0030FED0` ([Augments](augments.md)). Statuses are added and removed by `0030E360`
 ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)), the level is reset to 0 by the
 grower `0030C470` (`0030C496`) and raised by the level change `0030C650`
@@ -36,9 +36,9 @@ field that means different things has a party row and an enemy row at the same o
 | `writers`, `readers` | how many functions write or read the offset, and up to six of them with one site each; a party row and an enemy row at one offset share these |
 
 The writers and readers come from an access census of the record: every function that loads unit
-`+698`<sub>h</sub> or the party array, followed through register copies and through calls that pass the record,
+`+0x698` or the party array, followed through register copies and through calls that pass the record,
 three calls deep. A store counts for every field its width covers, so the word store at `0023AD8E`
-writes both `+04`<sub>h</sub> and `+05`<sub>h</sub>.
+writes both `+0x04` and `+0x05`.
 
 The census misses accesses through a computed base or index (the effect layers in `0030E130`, the
 License bits in `00323910` and `0030FED0`), records passed in a register it does not follow (the gambit
@@ -48,8 +48,8 @@ count of 0 means "none on the census routes".
 
 ## Related
 
-- [Stats](stats.md) - how `+24`<sub>h</sub>-`+37`<sub>h</sub> are computed.
+- [Stats](stats.md) - how `+0x24`-`+0x37` are computed.
 - [Augments](augments.md) - the augment layer, the immunity word and the clamps.
-- [Elements](elements.md) - the affinity bytes `+40`<sub>h</sub>-`+44`<sub>h</sub>.
-- [HP and KO](hp-and-ko.md) - current HP `+48`<sub>h</sub>.
+- [Elements](elements.md) - the affinity bytes `+0x40`-`+0x44`.
+- [HP and KO](hp-and-ko.md) - current HP `+0x48`.
 - [Action results](../Battle-Actions/action-results.md) - the applier that writes the enemy adjustments.

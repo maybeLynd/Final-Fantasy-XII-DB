@@ -1,24 +1,24 @@
 function	name	site	disp	kind	instruction	route	note
-005DCBD0	FUN_005dcbd0	005DCBD2	0h	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006127C0	
-005DCBD0	FUN_005dcbd0	005DCBD5	8h	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006127C0	
-005DCBD0	FUN_005dcbd0	005DCBD9	10h	w	mov byte ptr [rcx + 10h], al	ctorrdx-seeded 006127C0	
-006127C0	FUN_006127c0	006127ED	18h	w	mov dword ptr [rcx], 0	ctorrdx-seeded 006127C0	
-006127C0	FUN_006127c0	006127FD	60h	w	mov dword ptr [rbx + 60h], 0	ctorrdx-seeded 006127C0	
-006127C0	FUN_006127c0	00612806	48h	w	mov qword ptr [rbx + 48h], rax	ctorrdx-seeded 006127C0	
-006127C0	FUN_006127c0	0061280A	50h	w	mov qword ptr [rbx + 50h], rax	ctorrdx-seeded 006127C0	
-006127C0	FUN_006127c0	0061280E	58h	w	mov qword ptr [rbx + 58h], rax	ctorrdx-seeded 006127C0	
-0061CF20	FUN_0061cf20	0061CF6E	20h	w	mov qword ptr [rax], r9	ctorrdx-seeded 006127C0	
-0061CF20	FUN_0061cf20	0061CF6E	48h	w	mov qword ptr [rax], r9	ctorrdx-seeded 006127C0	enumerated-base
-0061CF20	FUN_0061cf20	0061CF71	28h	w	mov qword ptr [rcx - 8], r9	ctorrdx-seeded 006127C0	
-0061CF20	FUN_0061cf20	0061CF71	50h	w	mov qword ptr [rcx - 8], r9	ctorrdx-seeded 006127C0	enumerated-base
-0061CF20	FUN_0061cf20	0061CF75	30h	w	mov qword ptr [rcx], r9	ctorrdx-seeded 006127C0	
-0061CF20	FUN_0061cf20	0061CF75	58h	w	mov qword ptr [rcx], r9	ctorrdx-seeded 006127C0	enumerated-base
-0061CF20	FUN_0061cf20	0061CF78	38h	w	mov qword ptr [rcx + 8], r9	ctorrdx-seeded 006127C0	
-0061CF20	FUN_0061cf20	0061CF78	60h	w	mov qword ptr [rcx + 8], r9	ctorrdx-seeded 006127C0	enumerated-base
-0061CF20	FUN_0061cf20	0061CF7C	40h	w	mov dword ptr [rcx + 10h], r9d	ctorrdx-seeded 006127C0	
-00627750	FUN_00627750	00627769	18h	r	mov ecx, dword ptr [rcx]	ctorrdx-seeded 006127C0	
-00627750	FUN_00627750	0062776F	18h	r	cmp edx, dword ptr [rbx]	ctorrdx-seeded 006127C0	
-00627750	FUN_00627750	00627778	20h	r	mov rdi, qword ptr [rbx + 8]	ctorrdx-seeded 006127C0	
-00627750	FUN_00627750	006277B6	18h	r	mov eax, dword ptr [rbx]	ctorrdx-seeded 006127C0	
-00627750	FUN_00627750	006277D3	20h	w	mov qword ptr [r14], rsi	ctorrdx-seeded 006127C0	
-00627750	FUN_00627750	006277DB	18h	w	mov dword ptr [rbx], ebp	ctorrdx-seeded 006127C0	
+005DCBD0	FUN_005dcbd0	005DCBD2	0x0	w	mov qword ptr [rcx], rax	ctorrdx-seeded 006127C0	
+005DCBD0	FUN_005dcbd0	005DCBD5	0x8	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 006127C0	
+005DCBD0	FUN_005dcbd0	005DCBD9	0x10	w	mov byte ptr [rcx + 0x10], al	ctorrdx-seeded 006127C0	
+006127C0	FUN_006127c0	006127ED	0x18	w	mov dword ptr [rcx], 0	ctorrdx-seeded 006127C0	
+006127C0	FUN_006127c0	006127FD	0x60	w	mov dword ptr [rbx + 0x60], 0	ctorrdx-seeded 006127C0	
+006127C0	FUN_006127c0	00612806	0x48	w	mov qword ptr [rbx + 0x48], rax	ctorrdx-seeded 006127C0	
+006127C0	FUN_006127c0	0061280A	0x50	w	mov qword ptr [rbx + 0x50], rax	ctorrdx-seeded 006127C0	
+006127C0	FUN_006127c0	0061280E	0x58	w	mov qword ptr [rbx + 0x58], rax	ctorrdx-seeded 006127C0	
+0061CF20	FUN_0061cf20	0061CF6E	0x20	w	mov qword ptr [rax], r9	ctorrdx-seeded 006127C0	
+0061CF20	FUN_0061cf20	0061CF6E	0x48	w	mov qword ptr [rax], r9	ctorrdx-seeded 006127C0	enumerated-base
+0061CF20	FUN_0061cf20	0061CF71	0x28	w	mov qword ptr [rcx - 8], r9	ctorrdx-seeded 006127C0	
+0061CF20	FUN_0061cf20	0061CF71	0x50	w	mov qword ptr [rcx - 8], r9	ctorrdx-seeded 006127C0	enumerated-base
+0061CF20	FUN_0061cf20	0061CF75	0x30	w	mov qword ptr [rcx], r9	ctorrdx-seeded 006127C0	
+0061CF20	FUN_0061cf20	0061CF75	0x58	w	mov qword ptr [rcx], r9	ctorrdx-seeded 006127C0	enumerated-base
+0061CF20	FUN_0061cf20	0061CF78	0x38	w	mov qword ptr [rcx + 8], r9	ctorrdx-seeded 006127C0	
+0061CF20	FUN_0061cf20	0061CF78	0x60	w	mov qword ptr [rcx + 8], r9	ctorrdx-seeded 006127C0	enumerated-base
+0061CF20	FUN_0061cf20	0061CF7C	0x40	w	mov dword ptr [rcx + 0x10], r9d	ctorrdx-seeded 006127C0	
+00627750	FUN_00627750	00627769	0x18	r	mov ecx, dword ptr [rcx]	ctorrdx-seeded 006127C0	
+00627750	FUN_00627750	0062776F	0x18	r	cmp edx, dword ptr [rbx]	ctorrdx-seeded 006127C0	
+00627750	FUN_00627750	00627778	0x20	r	mov rdi, qword ptr [rbx + 8]	ctorrdx-seeded 006127C0	
+00627750	FUN_00627750	006277B6	0x18	r	mov eax, dword ptr [rbx]	ctorrdx-seeded 006127C0	
+00627750	FUN_00627750	006277D3	0x20	w	mov qword ptr [r14], rsi	ctorrdx-seeded 006127C0	
+00627750	FUN_00627750	006277DB	0x18	w	mov dword ptr [rbx], ebp	ctorrdx-seeded 006127C0	

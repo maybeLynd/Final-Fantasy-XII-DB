@@ -16,16 +16,16 @@ addresses: "001E8070, 001E8580, 002142A0, 00213FE0, 00212E70, 00213140, 00214210
 
 ### From a glyph to a batch
 
-1. The glyph loop `002A9F00` ([Fonts](fonts.md)) fills a `A0`<sub>h</sub>-byte draw record with the glyph's atlas box, its four
+1. The glyph loop `002A9F00` ([Fonts](fonts.md)) fills a 0xA0-byte draw record with the glyph's atlas box, its four
    corners, their colours and alpha, and a palette index, and calls `0017F7C0` (`002AA678`).
 2. `0017F7C0` hands it to the emitter `001E8070([01F811F8], record)` (`0017F838`).
-3. The emitter picks palette entry `index mod 28` (`001E94E0`), or the default entry at `+1358`<sub>h</sub> for a negative index,
-   and writes six `3C`<sub>h</sub>-byte vertices, corners 0, 1, 2 and 1, 2, 3 (`001E8140`-`001E8477`).
-4. Each vertex carries two colours: the glyph colour from the palette's `+14`<sub>h</sub>-`+20`<sub>h</sub> and the border colour from
-   `+04`<sub>h</sub>-`+10`<sub>h</sub>. Each red, green and blue is `palette channel x (c / 128) / 255`, with `c` the record's integer at
-   `+5C`<sub>h</sub>, `+6C`<sub>h</sub> or `+7C`<sub>h</sub> plus 4 x corner.
-   - The border alpha is `+10h / 128`; the glyph alpha is `+20h / 128`, times `[record +8Ch + 4 x corner] / 128`
-     and the corner factor below unless the line's byte `+2348`<sub>h</sub> is set (`001E81AA`-`001E834D`, 1/128 at
+3. The emitter picks palette entry `index mod 28` (`001E94E0`), or the default entry at `+0x1358` for a negative index,
+   and writes six 0x3C-byte vertices, corners 0, 1, 2 and 1, 2, 3 (`001E8140`-`001E8477`).
+4. Each vertex carries two colours: the glyph colour from the palette's `+0x14`-`+0x20` and the border colour from
+   `+0x04`-`+0x10`. Each red, green and blue is `palette channel x (c / 128) / 255`, with `c` the record's integer at
+   `+0x5C`, `+0x6C` or `+0x7C` plus 4 x corner.
+   - The border alpha is `+0x10 / 128`; the glyph alpha is `+0x20 / 128`, times `[record +0x8C + 4 x corner] / 128`
+     and the corner factor below unless the line's byte `+0x2348` is set (`001E81AA`-`001E834D`, 1/128 at
      `008C5B34`, 255.0 at `008C5B40`).
 5. The vertices go into the open batch of the current font (`001E8361`-`001E838C`). `001E9D20` picks that batch from
    the font id, one batch per font in each of two groups of 32 (`001E9E26`-`001E9E46`). The line's box and origin are
@@ -34,8 +34,8 @@ addresses: "001E8070, 001E8580, 002142A0, 00213FE0, 00212E70, 00213140, 00214210
 The palette entries are named `fontclut_%d` (`001E9533`). When a language's font folder is chosen (`001B44A0`),
 `001E98A0` loads every entry from 0 to 27 that is not loaded yet through the reader `001C5F20`.
 
-The font display's constructor `001E71B0` builds the 64 batches, `38`<sub>h</sub> bytes each, with `001E7480`, which reserves
-room for `400`<sub>h</sub> vertices of `3C`<sub>h</sub> bytes through `001E9AE0`; `001E7710` frees a batch's vertices. `001E74F0` and
+The font display's constructor `001E71B0` builds the 64 batches, `0x38` bytes each, with `001E7480`, which reserves
+room for `0x400` vertices of `0x3C` bytes through `001E9AE0`; `001E7710` frees a batch's vertices. `001E74F0` and
 `001E76B0` release partly built members when the constructor unwinds (`008985CC`, `0089866B`).
 
 ### The text flush
@@ -53,10 +53,10 @@ from the arena `[01F7F4C0]` at five sites:
 
 The flush chooses a path per line record (`001E85ED`-`001E8659`):
 
-1. Byte `+2378`<sub>h</sub> of the font display chooses between the Special classes and `DynGeoFontTextInstance`. It is
+1. Byte `+0x2378` of the font display chooses between the Special classes and `DynGeoFontTextInstance`. It is
    `[01E02818] > 0` (`001E9F30`, `0029CE4A`-`0029CE55`); the shipped value is 1, and the image holds no direct,
    image-base-relative or pointer writer of that cell.
-2. The record's offscreen byte `+28`<sub>h</sub> chooses between the offscreen path and `Final`. Every text painter call passes 1
+2. The record's offscreen byte `+0x28` chooses between the offscreen path and `Final`. Every text painter call passes 1
    to the begin call `001E9920` through `0017FA10` (`002AA52A`, `002AC801` and seven more), so menu text takes the
    offscreen path.
 
@@ -107,9 +107,9 @@ The shared body `002142A0` walks the ten layers. For each layer with a texture a
   (`0021446D`, `0021453C`).
 
 Draw types are those of `006DA5A0`: 2 a triangle list, 3 a strip, 4 a fan. A strip and a fan of `n` vertices become
-`3 x (n - 2)` triangle-list indices from the batch's base vertex word `+8010`<sub>h</sub>, through `006DA790` (strip, the winding
+`3 x (n - 2)` triangle-list indices from the batch's base vertex word `+0x8010`, through `006DA790` (strip, the winding
 alternating) and `006DA6F0` (fan, every triangle sharing the first vertex), written into the batch's index buffer of
-`4000`<sub>h</sub> words (count `+08`<sub>h</sub>); both refuse a draw that would overflow it (`006DA61A`, `006DA62B`).
+0x4000 words (count `+0x08`); both refuse a draw that would overflow it (`006DA61A`, `006DA62B`).
 
 ### How menu text is drawn
 
@@ -118,7 +118,7 @@ On the offscreen path, each line is drawn in five ordered steps (`001E8664`-`001
 1. A render target from the size ladder is bound: the smallest of ten sizes from 50 x 60 to 1920 x 1080 that holds the
    line (`001E97B0`, table `009018F0`).
 2. A `Shadow` instance draws every glyph in white (`00213E30` with flag 1, `001E87B6`), a mask of the line.
-   `002147B0` sets each `Shadow` instance's viewport to the target's width and height, target `+28`<sub>h</sub> and `+2C`<sub>h</sub>
+   `002147B0` sets each `Shadow` instance's viewport to the target's width and height, target `+0x28` and `+0x2C`
    (`001E86D3`, `001E88DC`).
 3. A `FontBorderOrderedGaussObject` filters the mask in two passes (`00212E70`, `00190260`): first across, with
    `SingleStepOffset` one texel wide, from the ladder target into its partner (`00186800`, `001867E0`), then down, one
@@ -127,10 +127,10 @@ On the offscreen path, each line is drawn in five ordered steps (`001E8664`-`001
 5. A `FontBorderOrderedResetObject` restores the screen target (`00213040`), and a `ShadowFinal` instance draws the
    target onto the screen as one quad (`00214930`), with the line's first alpha on its left corners and its latest
    alpha on its right ones (`00214A67`-`00214AA8`). `002148F0` makes the target its layer-0 texture (`001E8AAF`), and
-   `002145A0` maps each corner through the matrix `+11C`<sub>h</sub> into clip space (`00214A62`).
+   `002145A0` maps each corner through the matrix `+0x11C` into clip space (`00214A62`).
 
 The font display's constructor `001E71B0` builds the reset object through `00212D60`, which writes its vtable and
-clears `+18`<sub>h</sub>.
+clears `+0x18`.
 
 The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`
 (`001902FF`-`00190352`). The colour is the palette's border colour, and `FontBorderSetting` is the border width from
@@ -143,8 +143,8 @@ So the border is a shader pass over a white mask, and the glyphs are drawn once 
 
 Each font also loads `<name>_shadow.dds.phyre` beside its atlas (`001B6212`). Only `DynGeoFontTextInstance` uses it:
 its draw `00213140` draws the line twice through `002133D0`, first with the shadow atlas in the border colour, then
-with the glyph atlas in the glyph colour. The flush copies the 16 bytes at font display `+13A0`<sub>h</sub> into its `+40`<sub>h</sub>
-(`00213520`, `001E924E`) and the matrix `+E30`<sub>h</sub> into its `+54`<sub>h</sub> (`002134B0`, `001E928A`). With the shipped
+with the glyph atlas in the glyph colour. The flush copies the 16 bytes at font display `+0x13A0` into its `+0x40`
+(`00213520`, `001E924E`) and the matrix `+0xE30` into its `+0x54` (`002134B0`, `001E928A`). With the shipped
 `[01E02818]` of 1, the flush does not take this path.
 
 ### How a draw reaches the renderer
@@ -167,7 +167,7 @@ Menu code measures a string without drawing it:
 - `002B3E30(line)`, called from the line layout `002AF340`, closes a measured line: it adds the line's height to the
   total, keeps the widest line, and resets the line's values.
 - `002B3E90(context, text)` measures `text` with `002AF340` under the terminator `00916544` and moves the context's
-  shown count `+8C`<sub>h</sub> on by that many, at most what `002B43C0` counts ([Message windows](message-windows.md)).
+  shown count `+0x8C` on by that many, at most what `002B43C0` counts ([Message windows](message-windows.md)).
 
 ### Drawing text into a widget
 
@@ -181,9 +181,9 @@ with `ex` is UTF-16 (`00364980`), as the credits strings are ([Text codes](text-
 | `0029CCF0(out, size, plus, x, utf16)`, a sign | the glyph code of `+` or `-` (`002B5A20`) | `ex00` and the UTF-16 `+` or `-`, 8 bytes |
 | `0029CCD0(x, font)`, a blank's width | the width of token 7 (`002ABAA0(0)`) | the advance of `0` in UTF-16 font `font - 1` (`003655F0`) |
 
-`002DD680` hands the record's palette byte `+5C`<sub>h</sub>, size `+60`<sub>h</sub> and letter spacing `+65`<sub>h</sub> to the context, and its
-colour to `+30`<sub>h</sub> (also kept at record `+94`<sub>h</sub>): `rgb = (byte +90h..+92h x s16 +5Ah) >> 7` and
-`a = (byte +93h x s16 +58h) >> 7` (`002DD6DD`-`002DD738`). It places the text at
+`002DD680` hands the record's palette byte `+0x5C`, size `+0x60` and letter spacing `+0x65` to the context, and its
+colour to `+0x30` (also kept at record `+0x94`): `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and
+`a = (byte +0x93 x s16 +0x58) >> 7` (`002DD6DD`-`002DD738`). It places the text at
 (x, y) through `00397910` and draws it with `002B0280`. `002D8550` sets up the same and draws through `002AF960`, for
 the confirm windows and the pause task (`0057C92A`, `00242373`, `00227F39`).
 
@@ -191,20 +191,20 @@ the confirm windows and the pause task (`0057C92A`, `00242373`, `00227F39`).
 
 `002B0280` also fills a VIF1 packet for VU1 in the GS command buffers, as the map screens do
 ([Legacy PS2 GS layer](../Graphics/legacy-ps2-gs-layer.md)). It counts its glyphs in the painter's
-`+10D4`<sub>h</sub> (`[0209CC40]`) and closes the packet with `002B1C90` at 20 (`002B0CFA`) and when it ends (`002B1B60`):
+`+0x10D4` (`[0209CC40]`) and closes the packet with `002B1C90` at 20 (`002B0CFA`) and when it ends (`002B1B60`):
 
 1. `002B1C90` moves the data end `0209CC50` back 16 bytes and stores 1 in the last dword before the old end.
-2. It writes the header at the cursor `0209E5A0`: `n | 10000000h`, 0, `10000000`<sub>h</sub> and the UNPACK code
-   `6C008150h | n << 16`, with `n` the 16-byte records from the cursor to the data end.
-3. After those records it appends `10000000`<sub>h</sub>, 0, MSCALF `15000000`<sub>h</sub> and FLUSHA `13000000`<sub>h</sub>, and moves the
+2. It writes the header at the cursor `0209E5A0`: `n | 0x10000000`, 0, `0x10000000` and the UNPACK code
+   `0x6C008150 | n << 16`, with `n` the 16-byte records from the cursor to the data end.
+3. After those records it appends `0x10000000`, 0, MSCALF `0x15000000` and FLUSHA `0x13000000`, and moves the
    cursor past them.
-4. It moves the cursor `+08`<sub>h</sub> of the buffer record `[0209CC48]` up to the new cursor, in whole 16 bytes, and flips
+4. It moves the cursor `+0x08` of the buffer record `[0209CC48]` up to the new cursor, in whole 16 bytes, and flips
    the buffer (`003A1DB0`).
 
 ### Picking the batch
 
 The interpreter `002AC5F0` sets the painter's base size with `002B1ED0`: `0017F980` and `0017F960` for a context with
-the alternate font (bit 11 of `+44`<sub>h</sub>), otherwise `0017F8A0` and `0017F880`, stored at `0209CC70` and `0209CC74`. It
+the alternate font (bit 11 of `+0x44`), otherwise `0017F8A0` and `0017F880`, stored at `0209CC70` and `0209CC74`. It
 opens a font's batch with `002AB820(font, group)`, which calls `001E9D20` through `0017FD30` with the painter
 `[0209D480]` and keeps the pair at `0209CC30` and `0209CC34`.
 
@@ -214,22 +214,22 @@ The text drawers reach the font display `[01F811F8]` (`001B5FA0`) through small 
 
 | Entry | Body | What the body does |
 |---|---|---|
-| `0017FB00(matrix)` | `001E9C80` (157 bytes) | copies the 64-byte 4x4 matrix to `+E30`<sub>h</sub>-`+E6F`<sub>h</sub>, unless byte `+2379`<sub>h</sub> is non-zero (`001E9C80`); called from the drawers `002B0280`, `002AF960`, `002AC5F0`, `002A9F00`, `002AA800`, `002AAE40`, `002D28E0` and `003649A0` |
-| `0017FC90(a, b, c, d)` | `001E9C40` | stores four corner factors for the next glyph: `+137C`<sub>h</sub> = b·c, `+1380`<sub>h</sub> = a·c, `+1384`<sub>h</sub> = b·d, `+1388`<sub>h</sub> = a·d (`001E9C5A`-`001E9C72`); called from `002B0280`, `002A9F00`, `002AA800`, `002AAE40`, `002AFDC0` and `002AEB20` |
-| `0017F880` | `001E93C0` | font 1's `+30`<sub>h</sub>, 23.0 when font 1 is not registered |
-| `0017F8A0` | `001E9450` | font 1's `+2C`<sub>h</sub>, 20.0 when not registered |
-| `0017F960` | `001E9580` | font 3's `+30`<sub>h</sub>, 23.0 when not registered |
-| `0017F980` | `001E9610` | font 3's `+2C`<sub>h</sub>, 20.0 when not registered |
+| `0017FB00(matrix)` | `001E9C80` (157 bytes) | copies the 64-byte 4x4 matrix to `+0xE30`-`+0xE6F`, unless byte `+0x2379` is non-zero (`001E9C80`); called from the drawers `002B0280`, `002AF960`, `002AC5F0`, `002A9F00`, `002AA800`, `002AAE40`, `002D28E0` and `003649A0` |
+| `0017FC90(a, b, c, d)` | `001E9C40` | stores four corner factors for the next glyph: `+0x137C` = b·c, `+0x1380` = a·c, `+0x1384` = b·d, `+0x1388` = a·d (`001E9C5A`-`001E9C72`); called from `002B0280`, `002A9F00`, `002AA800`, `002AAE40`, `002AFDC0` and `002AEB20` |
+| `0017F880` | `001E93C0` | font 1's `+0x30`, 23.0 when font 1 is not registered |
+| `0017F8A0` | `001E9450` | font 1's `+0x2C`, 20.0 when not registered |
+| `0017F960` | `001E9580` | font 3's `+0x30`, 23.0 when not registered |
+| `0017F980` | `001E9610` | font 3's `+0x2C`, 20.0 when not registered |
 
 The glyph emitter `001E8070` multiplies each of the six vertices' alpha by one of the four corner factors
-(`+137C`<sub>h</sub> + 4·i, unless the line's byte `+2348`<sub>h</sub> is set), then sets all four back to 1.0
+(`+0x137C` + 4·i, unless the line's byte `+0x2348` is set), then sets all four back to 1.0
 (`001E8563`), so a gradient set with `0017FC90` covers one glyph.
 
 The four size bodies find the font in the registry `[01F81200]` (`001B5FB0`) with `001B51C0(registry,
-slot)`, an ordered-tree lookup: from the root `+40`<sub>h</sub> it walks nodes keyed by the `u32` at `+20`<sub>h</sub> and
-returns the node's `+28`<sub>h</sub> for an exact match, or 0 (the header `+30`<sub>h</sub>). The value is returned as it is
+slot)`, an ordered-tree lookup: from the root `+0x40` it walks nodes keyed by the `u32` at `+0x20` and
+returns the node's `+0x28` for an exact match, or 0 (the header `+0x30`). The value is returned as it is
 while the byte `01F811E0` is set (`001B1620`, written by `001B24B0`), and otherwise divided by the font's
-scale `+34`<sub>h</sub> (`001FDDB0`) and rounded up with `ceilf`. The batch opener `001E9D20` uses the same lookup
+scale `+0x34` (`001FDDB0`) and rounded up with `ceilf`. The batch opener `001E9D20` uses the same lookup
 (`001E9DB9`).
 
 ### The colour table
@@ -239,12 +239,12 @@ HUD root's load callback `0029CED0` requests the file (`00249210`, `0029CEF6`), 
 `0215E6C0`. `002DD840`, run from `0029CF10` once the root's resources are in, publishes the count at `0215E6B8` and the
 entries at `0215E6C8`.
 
-`002DD7E0(n)` returns entry n's colour, or `80808080`<sub>h</sub> for an index out of range or before the table is published,
+`002DD7E0(n)` returns entry n's colour, or `0x80808080` for an index out of range or before the table is published,
 and `002DD7B0(n)` its byte.
 
 The battle log's formatter `00536410` takes a line's colour and byte for a category 0-7
-and a side 0-1 through `0035D430` and `0035D400`, from the entry numbers at `00D10C60`: `18`<sub>h</sub>-`1B`<sub>h</sub>, `14`<sub>h</sub>-`17`<sub>h</sub>,
-`1D`<sub>h</sub>, `1D`<sub>h</sub>, `1C`<sub>h</sub>, `1C`<sub>h</sub>, `1E`<sub>h</sub>, `1E`<sub>h</sub>, `1F`<sub>h</sub>, `1F`<sub>h</sub>; a category above 7 reads the first entry. `0029CF10` also fills the painter's rows from the two packs `0029CB50` and `0029CB60`
+and a side 0-1 through `0035D430` and `0035D400`, from the entry numbers at `00D10C60`: `0x18`-`0x1B`, `0x14`-`0x17`,
+`0x1D`, `0x1D`, `0x1C`, `0x1C`, `0x1E`, `0x1E`, `0x1F`, `0x1F`; a category above 7 reads the first entry. `0029CF10` also fills the painter's rows from the two packs `0029CB50` and `0029CB60`
 (`002B3480`, through `002432B0`). The `fontcolor.bin` copies under `myoshiok` in the extract are 2,108 bytes, 263
 entries.
 
@@ -252,74 +252,74 @@ entries.
 
 | Object | Where | Holds |
 |---|---|---|
-| font display | `[01F811F8]`, `2380`<sub>h</sub> bytes (`001B5F6D`) | the current font `+00`<sub>h</sub>, the 64 batches `+30`<sub>h</sub>, the matrix `+E30`<sub>h</sub>, 28 palette entries `+F68`<sub>h</sub>, the target ladder `+13C0`<sub>h</sub>, the 64 border objects `+1500`<sub>h</sub>, the reset object `+2300`<sub>h</sub>, the two line records `+2320`<sub>h</sub>, the path byte `+2378`<sub>h</sub> |
-| the display's `+28`<sub>h</sub> | `0017F940()`, through `001B5FA0` and `005C52D0` | read by the text interpreter and drawers `002AC2F0`, `002AC5F0`, `002AE610`, `002AF340`, `002B0280` and `002B2150` |
-| text painter | `0209D490`, `1108`<sub>h</sub> bytes, published in `[0209CC40]` by `002B3550` | the terminator `+10C8`<sub>h</sub>, tab stop `+10E0`<sub>h</sub>, columns `+10EC`<sub>h</sub>, line state `+10FC`<sub>h</sub>, justification `+1104`<sub>h</sub> ([Text codes](text-codes.md)) |
+| font display | `[01F811F8]`, 0x2380 bytes (`001B5F6D`) | the current font `+0x00`, the 64 batches `+0x30`, the matrix `+0xE30`, 28 palette entries `+0xF68`, the target ladder `+0x13C0`, the 64 border objects `+0x1500`, the reset object `+0x2300`, the two line records `+0x2320`, the path byte `+0x2378` |
+| the display's `+0x28` | `0017F940()`, through `001B5FA0` and `005C52D0` | read by the text interpreter and drawers `002AC2F0`, `002AC5F0`, `002AE610`, `002AF340`, `002B0280` and `002B2150` |
+| text painter | `0209D490`, 0x1108 bytes, published in `[0209CC40]` by `002B3550` | the terminator `+0x10C8`, tab stop `+0x10E0`, columns `+0x10EC`, line state `+0x10FC`, justification `+0x1104` ([Text codes](text-codes.md)) |
 | text context | the interpreter's argument (`002AC5F0`) | size, spacing, colour and pager state |
 
 ## Layouts
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000`<sub>h</sub> | `u32[2]` | vftable | the family's table |
-| `008`<sub>h</sub> | `u32[20]` | layerTexture | ten texture pointers (slot 4, read `002142D0`) |
-| `058`<sub>h</sub> | `u32[20]` | layerVertices | ten pointers to `30`<sub>h</sub>-byte vertices (slot 5, read `00214332`) |
-| `0A8`<sub>h</sub> | `u32[10]` | layerCount | vertex capacity per layer (slot 5) |
-| `0D0`<sub>h</sub> | `i32[10]` | layerCursor | next vertex per layer |
-| `0F8`<sub>h</sub> | `u32[2]` | blendCode | slot 7; decoded by `001EE650` |
-| `100`<sub>h</sub> | `u32[2]` | stateCode | slot 8; decoded by `001EE7C0` |
-| `108`<sub>h</sub> | `i32` | viewX | slot 9 |
-| `10C`<sub>h</sub> | `i32` | viewY | slot 9 |
-| `110`<sub>h</sub> | `i32` | viewW | slot 9; the target width on the offscreen path |
-| `114`<sub>h</sub> | `i32` | viewH | slot 9 |
-| `118`<sub>h</sub> | `u32` | viewFlag | slot 9 |
-| `11C`<sub>h</sub> | `f32[16]` | matrix | slot 3; identity when built |
+| `+0x000` | `u32[2]` | vftable | the family's table |
+| `+0x008` | `u32[20]` | layerTexture | ten texture pointers (slot 4, read `002142D0`) |
+| `+0x058` | `u32[20]` | layerVertices | ten pointers to `0x30`-byte vertices (slot 5, read `00214332`) |
+| `+0x0A8` | `u32[10]` | layerCount | vertex capacity per layer (slot 5) |
+| `+0x0D0` | `i32[10]` | layerCursor | next vertex per layer |
+| `+0x0F8` | `u32[2]` | blendCode | slot 7; decoded by `001EE650` |
+| `+0x100` | `u32[2]` | stateCode | slot 8; decoded by `001EE7C0` |
+| `+0x108` | `i32` | viewX | slot 9 |
+| `+0x10C` | `i32` | viewY | slot 9 |
+| `+0x110` | `i32` | viewW | slot 9; the target width on the offscreen path |
+| `+0x114` | `i32` | viewH | slot 9 |
+| `+0x118` | `u32` | viewFlag | slot 9 |
+| `+0x11C` | `f32[16]` | matrix | slot 3; identity when built |
 
-`Shadow` adds the line origin at `+160`<sub>h</sub>/`+164`<sub>h</sub> (`00214B10`), `ShadowFinal` the target index at `+160`<sub>h</sub>
-(`002147A0`), and `Final` a byte at `+168`<sub>h</sub> (`0021394D`).
+`Shadow` adds the line origin at `+0x160`/`+0x164` (`00214B10`), `ShadowFinal` the target index at `+0x160`
+(`002147A0`), and `Final` a byte at `+0x168` (`0021394D`).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `f32` | x | clip space; (x - 2048) x 2 / 1920 (`00213D31`-`00213D61`) |
-| `04`<sub>h</sub> | `f32` | y | (y - 2048) x -2 / 1080 |
-| `08`<sub>h</sub> | `f32` | z |  |
-| `0C`<sub>h</sub> | `f32` | w |  |
-| `10`<sub>h</sub> | `f32` | r |  |
-| `14`<sub>h</sub> | `f32` | g |  |
-| `18`<sub>h</sub> | `f32` | b |  |
-| `1C`<sub>h</sub> | `f32` | a |  |
-| `20`<sub>h</sub> | `f32` | u |  |
-| `24`<sub>h</sub> | `f32` | v |  |
+| `+0x00` | `f32` | x | clip space; (x - 2048) x 2 / 1920 (`00213D31`-`00213D61`) |
+| `+0x04` | `f32` | y | (y - 2048) x -2 / 1080 |
+| `+0x08` | `f32` | z |  |
+| `+0x0C` | `f32` | w |  |
+| `+0x10` | `f32` | r |  |
+| `+0x14` | `f32` | g |  |
+| `+0x18` | `f32` | b |  |
+| `+0x1C` | `f32` | a |  |
+| `+0x20` | `f32` | u |  |
+| `+0x24` | `f32` | v |  |
 
 The byte `[01F811E0]` is set from `[01E0280C]`, shipped 1 (`0022A113`-`0022A120`, `001B24B0`); with it clear the
 mapping divides by 512 and 448 instead (`001B1620`, `00213D38`).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | loaded | set by `001E9515` |
-| `04`<sub>h</sub> | `u32` | r2 | border or shadow colour |
-| `08`<sub>h</sub> | `u32` | g2 |  |
-| `0C`<sub>h</sub> | `u32` | b2 |  |
-| `10`<sub>h</sub> | `u32` | a2 | over 128 |
-| `14`<sub>h</sub> | `u32` | r1 | glyph colour |
-| `18`<sub>h</sub> | `u32` | g1 |  |
-| `1C`<sub>h</sub> | `u32` | b1 |  |
-| `20`<sub>h</sub> | `u32` | a1 | over 128 |
+| `+0x00` | `u8` | loaded | set by `001E9515` |
+| `+0x04` | `u32` | r2 | border or shadow colour |
+| `+0x08` | `u32` | g2 |  |
+| `+0x0C` | `u32` | b2 |  |
+| `+0x10` | `u32` | a2 | over 128 |
+| `+0x14` | `u32` | r1 | glyph colour |
+| `+0x18` | `u32` | g1 |  |
+| `+0x1C` | `u32` | b1 |  |
+| `+0x20` | `u32` | a1 | over 128 |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | ownerKey | `001E9E2A` |
-| `04`<sub>h</sub> | `u8` | emitted | set by `001E83A3` |
-| `08`<sub>h</sub> | `f32` | minX | 1920 when reset |
-| `0C`<sub>h</sub> | `f32` | minY | 1080 when reset |
-| `10`<sub>h</sub> | `f32` | maxX |  |
-| `14`<sub>h</sub> | `f32` | maxY |  |
-| `18`<sub>h</sub> | `f32` | originX |  |
-| `1C`<sub>h</sub> | `f32` | originY |  |
-| `20`<sub>h</sub> | `f32` | firstAlpha | `001E84F9` |
-| `24`<sub>h</sub> | `f32` | latestAlpha | `001E8523` |
-| `28`<sub>h</sub> | `u8` | offscreen | set by begin `001E99AA` |
-| `29`<sub>h</sub> | `u8` | firstPending cleared 001E84D0 |  |
+| `+0x00` | `u32` | ownerKey | `001E9E2A` |
+| `+0x04` | `u8` | emitted | set by `001E83A3` |
+| `+0x08` | `f32` | minX | 1920 when reset |
+| `+0x0C` | `f32` | minY | 1080 when reset |
+| `+0x10` | `f32` | maxX |  |
+| `+0x14` | `f32` | maxY |  |
+| `+0x18` | `f32` | originX |  |
+| `+0x1C` | `f32` | originY |  |
+| `+0x20` | `f32` | firstAlpha | `001E84F9` |
+| `+0x24` | `f32` | latestAlpha | `001E8523` |
+| `+0x28` | `u8` | offscreen | set by begin `001E99AA` |
+| `+0x29` | `u8` | firstPending cleared 001E84D0 |  |
 
 ## Modding notes
 

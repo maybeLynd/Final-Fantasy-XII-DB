@@ -23,9 +23,9 @@ row blocks that bit's actions.
 |---|---|
 | `002E1C20(row, bit)` | sets one bit (`002E1C20`-`002E1C23` tests the row) |
 | `002E1CA0(row, bit)` | clears one bit, with the same test |
-| `002E1CD0(clear, row)` | sets the mask `139203`<sub>h</sub>, bits 0, 1, 9, 12, 15, 16, 17 and 20, or clears it (`002E1CE3`) |
+| `002E1CD0(clear, row)` | sets the mask `0x139203`, bits 0, 1, 9, 12, 15, 16, 17 and 20, or clears it (`002E1CE3`) |
 | `002E1BE0(index, on)` | sets or clears row 1 bit `index` for indexes 0-18 (`002E1BFE`, `002E1C0B`) |
-| direct `or` and `and` | row 4 (`002E245F`, `002E2417`, `002E06C3`) and row 7 (`002E2248`, `002E2265`, `002E0D2A`), with the mask `100203`<sub>h</sub> |
+| direct `or` and `and` | row 4 (`002E245F`, `002E2417`, `002E06C3`) and row 7 (`002E2248`, `002E2265`, `002E0D2A`), with the mask `0x100203` |
 
 The row test in the first three is signed, so only rows 16 and up are refused. The slot-0 unload, the `param_1 == 0`
 block of `002628B0`, clears all 16 rows through `002E0670` (`00262CCA`); other slots' unloads leave the table. Field
@@ -34,7 +34,7 @@ start `00266D10` clears them through `002E1450` (`00267155`).
 ### The combined mask
 
 `002E0FA0` returns the OR of the 16 rows (`002E0FA9`-`002E1005`). While bit 16 of the busy word `022CB720` is set,
-it clears bit 19 from the answer (`002E1009`, `00360360(10h)`). The movie verb `moviestandby` sets that busy bit (`0035B840`)
+it clears bit 19 from the answer (`002E1009`, `00360360(0x10)`). The movie verb `moviestandby` sets that busy bit (`0035B840`)
 and `movieend` clears it (`0035B8D0`), so event skip is refused for the whole movie. 29 call sites in 25 functions
 read the combined mask, and `002E1020(row)` reads one row for three of them.
 
@@ -42,15 +42,15 @@ read the combined mask, and `002E1020(row)` reads one row for three of them.
 
 | Row | Holder | Bits |
 |---:|---|---|
-| `0` | the movie verbs `moviestandby` `368`<sub>h</sub> (its handler `00356460` is a jump to `0035B840` at `00356467`; `0035B861`, `0035B86D`), `movieplay` `36A`<sub>h</sub> and `movieend` `36D`<sub>h</sub> (mask, `0035B816`, `0035B967`); the event-skip arm `00360980`, from verb `skipstart` `51A`<sub>h</sub> (`0034D3BB`; `003609A7`, `003609B3`), and its release `00360A50`, from `003603F0` and `00360A20` (`00360B06`, `00360B12`); the title screen (`00394112`, `003940CB`); actor and field loads (`002678EB`, `0025D41A`, `0025D5A9`) | `0`, `1`, `9`, `12`, `13`, `15`-`17`, `19`, `20`, `21` |
-| `1` | verb `setmenudisablestatus` `3A5`<sub>h</sub> through `002E1BE0` (`0035276D`); bit 21 for the movie player (`001B82E4`, `001B76C8`, `001B80A4`, `001B84BE`), saving and loading (`0058252C`, `005823F8`, `005828B4`, `00582F1B`), the title screen (`00393A29`, `00393E07`), a Config screen widget (`0023FC78`, `0024024B`) and the callback `002CEB40` that `002CEFA0` installs (`002CEDE5`, `002CEBB6`) | `0`-`18`, `21` |
+| `0` | the movie verbs `moviestandby` `0x368` (its handler `00356460` is a jump to `0035B840` at `00356467`; `0035B861`, `0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0035B816`, `0035B967`); the event-skip arm `00360980`, from verb `skipstart` `0x51A` (`0034D3BB`; `003609A7`, `003609B3`), and its release `00360A50`, from `003603F0` and `00360A20` (`00360B06`, `00360B12`); the title screen (`00394112`, `003940CB`); actor and field loads (`002678EB`, `0025D41A`, `0025D5A9`) | `0`, `1`, `9`, `12`, `13`, `15`-`17`, `19`, `20`, `21` |
+| `1` | verb `setmenudisablestatus` `0x3A5` through `002E1BE0` (`0035276D`); bit 21 for the movie player (`001B82E4`, `001B76C8`, `001B80A4`, `001B84BE`), saving and loading (`0058252C`, `005823F8`, `005828B4`, `00582F1B`), the title screen (`00393A29`, `00393E07`), a Config screen widget (`0023FC78`, `0024024B`) and the callback `002CEB40` that `002CEFA0` installs (`002CEDE5`, `002CEBB6`) | `0`-`18`, `21` |
 | `2` | battle selection, `00313A00`, below | `0`-`8`, `10`-`12`, `20` |
-| `3` | verbs `questresultwindow` `37C`<sub>h</sub> and `queststartwindow` `386`<sub>h</sub> (`00344C84`, `00345704`, `0034515F`, `003464E8`) and `00268D10`/`00263050` | the mask |
-| `4` | the screen-mask verbs `maskopen` `08A`<sub>h</sub>, `maskopenfast` `3B5`<sub>h</sub>, `mesvmaskopen` `446`<sub>h</sub>, `mesvmaskopenfast` `447`<sub>h</sub>, `maskclose` `08B`<sub>h</sub>, `maskclosefast` `3B6`<sub>h</sub> | `0`, `1`, `9`, `20` |
+| `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`00344C84`, `00345704`, `0034515F`, `003464E8`) and `00268D10`/`00263050` | the mask |
+| `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0`, `1`, `9`, `20` |
 | `6` | user control, verbs `ucon` and `ucon_4a5` (`0026C70C`, `0026C80C`, `0026C82C`) and `00263660`, `0026C3E0` | the mask |
 | `7` | the full-screen frame modes: set by `00228930` and `002E09A0`, cleared by the main loop (`0022BBA1`-`0022BBC5`) | `0`, `1`, `9`, `20` |
 | `8` | the menu-request family, below | `0`-`2`, `4`-`9`, `11`, `12`, `20` |
-| `9` | verb `crossfade` `16F`<sub>h</sub> (`002F1AD4`, `002F1AE1`) and its completion (`002F19D3`, `002F19E0`) | `0`, `20` |
+| `9` | verb `crossfade` `0x16F` (`002F1AD4`, `002F1AE1`) and its completion (`002F19D3`, `002F19E0`) | `0`, `20` |
 | `10` | a timed hold after a menu request (`002F1C8B`, `002F18AC`) | `1` |
 | `12` | user control (`0026C738`) and a spawn group's last member dying (`00306F9A`), through `00307140` | `0`, `3`-`8`, `11`, `12`, `20` |
 | `13` | cleared only: `0025B500` jumps to `002E1CD0` with clear 1 and row 13 (`0025B567`-`0025B573`) | - |
@@ -115,9 +115,9 @@ at all (`002288F6`), which is why the movie busy bit clears it. Inside the Start
 through `00360710`.
 
 `00228380`, which holds the bit-21 test, first starts the task `00228490` when `0017E4C0` answers 0
-(`0022839B`-`002283AE`). `0017E4C0` reads the application's byte `+27`<sub>h</sub>, the window-active byte: application slot 14
+(`0022839B`-`002283AE`). `0017E4C0` reads the application's byte `+0x27`, the window-active byte: application slot 14
 (`007A0B40`) stores it, called by the window procedure with 1 when a new window is in front (`0079914C`) and by
-`007A4150`, which also posts message `8001`<sub>h</sub> to show or hide the cursor. The task's pointer `01FD4948` is the cell
+`007A4150`, which also posts message `0x8001` to show or hide the cursor. The task's pointer `01FD4948` is the cell
 `00228480` tests.
 
 ### Menu requests
@@ -140,7 +140,7 @@ that bit's word of `01E0C2C0` (`00254500`-`0025453C`). The menu router refuses t
 - To keep a menu shut from a script, `setmenudisablestatus` owns row 1 bits 0-18; the other rows are rewritten by
   their holders.
 - A row number below 0 passes the signed test and writes below the table at `0215F1C0`.
-- In row 0 the movie verbs and the actor and field loads all write the mask `139203`<sub>h</sub>, so one holder's clear also
+- In row 0 the movie verbs and the actor and field loads all write the mask `0x139203`, so one holder's clear also
   removes the bits another holder set there.
 
 ## Related

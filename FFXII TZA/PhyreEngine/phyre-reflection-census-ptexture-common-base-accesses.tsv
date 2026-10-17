@@ -1,7 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
-005D7B60	FUN_005d7b60	005D7B6C	0h	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005D7B60	
-005D7B60	FUN_005d7b60	005D7B71	8h	w	mov word ptr [rdx + 8], 300h	ctorrdx-seeded 005D7B60	
-005D7B60	FUN_005d7b60	005D7B77	Ch	w	mov qword ptr [rdx + Ch], rax	ctorrdx-seeded 005D7B60	
-005D7B60	FUN_005d7b60	005D7B7B	14h	w	mov dword ptr [rdx + 14h], eax	ctorrdx-seeded 005D7B60	
-005D7B60	FUN_005d7b60	005D7B7E	20h	w	mov qword ptr [rdx + 20h], rax	ctorrdx-seeded 005D7B60	
-005D7B60	FUN_005d7b60	005D7B82	18h	w	mov dword ptr [rdx + 18h], 2	ctorrdx-seeded 005D7B60	
+005D7B60	FUN_005d7b60	005D7B6C	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005D7B60	
+005D7B60	FUN_005d7b60	005D7B71	0x8	w	mov word ptr [rdx + 8], 0x300	ctorrdx-seeded 005D7B60	
+005D7B60	FUN_005d7b60	005D7B77	0xc	w	mov qword ptr [rdx + 0xc], rax	ctorrdx-seeded 005D7B60	
+005D7B60	FUN_005d7b60	005D7B7B	0x14	w	mov dword ptr [rdx + 0x14], eax	ctorrdx-seeded 005D7B60	
+005D7B60	FUN_005d7b60	005D7B7E	0x20	w	mov qword ptr [rdx + 0x20], rax	ctorrdx-seeded 005D7B60	
+005D7B60	FUN_005d7b60	005D7B82	0x18	w	mov dword ptr [rdx + 0x18], 2	ctorrdx-seeded 005D7B60	

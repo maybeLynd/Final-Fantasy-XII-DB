@@ -1,7 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
-005D5FE0	FUN_005d5fe0	005D5FE5	0h	w	mov dword ptr [rdx], 1010105h	ctorrdx-seeded 005D5FE0	
-005D5FE0	FUN_005d5fe0	005D5FED	4h	w	mov byte ptr [rdx + 4], 1	ctorrdx-seeded 005D5FE0	
-005D5FE0	FUN_005d5fe0	005D5FF1	8h	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005D5FE0	
-005D5FE0	FUN_005d5fe0	005D5FF4	Ch	w	mov qword ptr [rdx + Ch], 3F800000h	ctorrdx-seeded 005D5FE0	
-005D5FE0	FUN_005d5fe0	005D5FFC	14h	w	mov dword ptr [rdx + 14h], eax	ctorrdx-seeded 005D5FE0	
-005D5FE0	FUN_005d5fe0	005D5FFF	18h	w	mov qword ptr [rdx + 18h], 400h	ctorrdx-seeded 005D5FE0	
+005D5FE0	FUN_005d5fe0	005D5FE5	0x0	w	mov dword ptr [rdx], 0x1010105	ctorrdx-seeded 005D5FE0	
+005D5FE0	FUN_005d5fe0	005D5FED	0x4	w	mov byte ptr [rdx + 4], 1	ctorrdx-seeded 005D5FE0	
+005D5FE0	FUN_005d5fe0	005D5FF1	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005D5FE0	
+005D5FE0	FUN_005d5fe0	005D5FF4	0xc	w	mov qword ptr [rdx + 0xc], 0x3f800000	ctorrdx-seeded 005D5FE0	
+005D5FE0	FUN_005d5fe0	005D5FFC	0x14	w	mov dword ptr [rdx + 0x14], eax	ctorrdx-seeded 005D5FE0	
+005D5FE0	FUN_005d5fe0	005D5FFF	0x18	w	mov qword ptr [rdx + 0x18], 0x400	ctorrdx-seeded 005D5FE0	

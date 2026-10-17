@@ -60,13 +60,13 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
   - The high shelf `007D0F60` has `a0 = P - M C + k`, `b0 = A (P + M C + k)`, `b1 = -2A (M + P C)`,
     `b2 = A (P + M C - k)`, `a1 = 2 (M - P C)` and `a2 = P - M C - k`. Both store each times `0.9999 / a0`, in
     the order `a1`, `a2`, `b0`, `b1`, `b2`.
-- `007E9184` in `007E9030`, which advances a time value at `+3C0`<sub>h</sub> and interpolates between control
+- `007E9184` in `007E9030`, which advances a time value at `+0x3C0` and interpolates between control
   points linearly or as a cubic.
-  - With the curve `[+3B8h]`, `t = min(time x 999.99994 / u32 [+24h], 1)` (1 for a zero duration). Mode byte
-    `+28`<sub>h</sub> 0 gives `p = p0 + (p3 - p0) t`, mode 1 the cubic Bezier `(1 - t)^3 p0 + 3(1 - t)^2 t p1 + 3(1 - t) t^2 p2
-    + t^3 p3`, with the points `(x, y)` at `+04`<sub>h</sub>, `+0C`<sub>h</sub>, `+14`<sub>h</sub> and `+1C`<sub>h</sub>.
-  - `r = sqrt(x^2 + y^2)`, with `p` scaled to length 1 when `r > 1`; the ramp at `+B8`<sub>h</sub> gets `atan2(x, y) / pi`
-    (0 when `p` is zero) and the ramp at `+E8`<sub>h</sub> gets `min(r, 1)` (`007E9030`).
+  - With the curve `[+0x3B8]`, `t = min(time x 999.99994 / u32 [+0x24], 1)` (1 for a zero duration). Mode byte
+    `+0x28` 0 gives `p = p0 + (p3 - p0) t`, mode 1 the cubic Bezier `(1 - t)^3 p0 + 3(1 - t)^2 t p1 + 3(1 - t) t^2 p2
+    + t^3 p3`, with the points `(x, y)` at `+0x04`, `+0x0C`, `+0x14` and `+0x1C`.
+  - `r = sqrt(x^2 + y^2)`, with `p` scaled to length 1 when `r > 1`; the ramp at `+0xB8` gets `atan2(x, y) / pi`
+    (0 when `p` is zero) and the ramp at `+0xE8` gets `min(r, 1)` (`007E9030`).
 
 ### The sound engine's vector routines
 
@@ -74,7 +74,7 @@ Fourteen `sqrtps` and ten `rsqrtps` sit in `007EF1E0` to `007F74E0`, in virtual 
 sound engine's source classes: `007F25E0` is slot 34 of `SQEX::Sd::Lay::PolygonSound` (`01CB9F18`)
 and `007F1EC0` slot 7 of `SQEX::Sd::Lay::DirectionSound` (`01CB9DD0`). `007EF1E0` shows the pattern:
 
-1. A cross product from two shuffles, `C9`<sub>h</sub> (y, z, x) and `D2`<sub>h</sub> (z, x, y) (`007EF1F5` to `007EF242`).
+1. A cross product from two shuffles, `0xC9` (y, z, x) and `0xD2` (z, x, y) (`007EF1F5` to `007EF242`).
 2. A squared length: the product with itself, times the mask `1, 1, 1, 0` (`00D11570`), summed with
    two `haddps` (`007EF24F`).
 3. A reciprocal square root, `rsqrtps` (`007EF257`), refined once:
@@ -119,7 +119,7 @@ inverses.
 ### A power in the battle formulas
 
 `0038EAF0` is reached through a pointer at `01EFAA40`. It computes `pow(2.0, n)` with the `double`
-routine, where `n` is the byte at `+5B0E`<sub>h</sub> of the object `02EBF190` points to, truncates the result
+routine, where `n` is the byte at `+0x5B0E` of the object `02EBF190` points to, truncates the result
 to an integer and stores it at `02AEE004`. What that value is in the damage step is on
 [formula-slots.md](../Damage-And-Battle-Formulas/formula-slots.md).
 
@@ -127,19 +127,19 @@ to an integer and stores it at `02AEE004`. What that value is in the damage step
 
 No instruction in the code section loads or stores `MXCSR`. `_controlfp` (slot `008C2D18`) is called
 at six sites in two post-effect routines, `006E5A20` and `0077A8C0`. Each reads the control word with
-`_controlfp(0, 0)`, sets `10000`<sub>h</sub> under the mask `30000`<sub>h</sub> (`006E5AF3`), and at the end restores the
+`_controlfp(0, 0)`, sets `0x10000` under the mask `0x30000` (`006E5AF3`), and at the end restores the
 saved bits under the same mask (`006E97D8`). Two x87 helpers at `00125743` (`fldcw`) and `00125753`
 (`fstcw`) have no references.
 
 ## Layouts
 
-`Vec3Xz` (`C`<sub>h</sub> bytes, offsets from the start of the record):
+`Vec3Xz` (`0xC` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `f32` | x | read by the distance helpers |
-| `04`<sub>h</sub> | `f32` | y | not read by `004686D0` or `003A1960` |
-| `08`<sub>h</sub> | `f32` | z | read by the distance helpers |
+| `+0x00` | `f32` | x | read by the distance helpers |
+| `+0x04` | `f32` | y | not read by `004686D0` or `003A1960` |
+| `+0x08` | `f32` | z | read by the distance helpers |
 
 ## Shipped data
 

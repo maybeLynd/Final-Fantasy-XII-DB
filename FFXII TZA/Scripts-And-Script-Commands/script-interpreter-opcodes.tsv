@@ -1,101 +1,101 @@
 opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
-00h	NOP	0	0025E613	0	0	0	0	advance the pc by the instruction length; nothing else (the common tail every handler returns through)
-01h	LABEL	0	0025E60A	8	0	0	0	inert: shares the invalid-opcode target 0025E60A (marks the tick finished and advances)
-02h	TAG	0	0025E60A	7	0	0	0	inert, as 01h
-03h	SYSHALT	1	0025E5EA	0	0	0	0	halt: set actor +14h bit 6 and rewind the pc, so the instruction repeats every tick
-04h	SYSTEM	1	0025E649	0	0	1	1	pop one value and discard it
-05h	OPLOR	1	0025E664	0	0	1	1	logical OR: pop b, pop a (int, floats truncated), push (a != 0 or b != 0)
-06h	OPLAND	1	0025E6D8	0	0	1	1	logical AND: push (a != 0 and b != 0)
-07h	OPOR	1	0025E7E7	0	0	1	1	bitwise OR: push a | b
-08h	OPEOR	1	0025E8A2	0	0	1	1	bitwise XOR: push a ^ b
-09h	OPAND	1	0025E95D	0	0	2	1	bitwise AND: push a & b
-0Ah	OPEQ	1	0025EA18	0	0	2	1	compare equal through 0025D740, push 0/1
-0Bh	OPNE	1	0025EA30	0	0	2	1	compare not-equal, push 0/1
-0Ch	OPGT	1	0025EA48	0	0	2	1	compare greater, push 0/1
-0Dh	OPLS	1	0025EA60	0	0	2	1	compare less, push 0/1
-0Eh	OPGTE	1	0025EA78	0	0	2	1	compare greater-or-equal, push 0/1
-0Fh	OPLSE	1	0025EA90	0	0	1	1	compare less-or-equal, push 0/1
-10h	OPSLL	1	0025EAA8	0	0	1	1	shift left: push a << b
-11h	OPSRL	1	0025EB86	0	0	2	2	arithmetic shift right: push a >> b (sar)
-12h	OPADD	1	0025EC64	0	0	2	2	add: int + int as int, otherwise float (addss)
-13h	OPSUB	1	0025EE79	0	0	2	2	subtract: int or float path (00267560 selects)
-14h	OPMUL	1	0025EF92	0	0	2	2	multiply: int or float path
-15h	OPDIV	1	0025F0AC	0	0	2	2	divide: int (idiv) or float (divss); a zero divisor is tested on both paths and yields 0; the float test is ordered (a NaN divisor divides) and INT_MIN / -1 is not tested
-16h	OPMOD	1	0025F1D6	0	0	1	1	remainder: int idiv only, with NO zero test - MOD 0 faults; INT_MIN MOD -1 faults too, because nothing is tested before the idiv
-17h	OPNOT	1	0025F232	0	0	1	1	logical NOT: push (a == 0)
-18h	OPBNOT	1	0025F2B8	0	0	0	0	bitwise NOT: push ~a
-19h	OPUMINUS	1	0025E60A	0	0	0	0	inert (shares 0025E60A) - unary minus is not implemented
-1Ah	OPFIXADRS	1	0025E60A	0	0	0	0	inert (shares 0025E60A)
-1Bh	PUSHA	1	0025F322	0	0	0	0	push register A (context +10h)
-1Ch	POPA	1	0025F32A	0	0	0	0	pop into register A
-1Dh	PUSHX	1	0025F39D	0	0	0	0	push register X (context +8)
-1Eh	PUSHY	1	0025F3A5	0	0	0	0	push register Y (context +Ch)
-1Fh	POPX	1	0025F3AD	0	0	0	0	pop into register X
-20h	POPY	1	0025F420	0	0	0	0	pop into register Y
-21h	REQ	1	0025F493	0	0	0	0	request: pop (channel, function id, actor) and file a kind-0, mode-1 request
-22h	FREQ	1	0025F7F2	0	0	0	0	request, kind 2 (F), mode 1
-23h	TREQ	1	0025FBC9	0	0	0	0	request, kind 4 (T), mode 1
-24h	REQSW	1	0025FFA0	0	0	0	0	request kind 0, mode 2 (start-wait: the requester parks as wait kind 4 until the target starts)
-25h	FREQSW	1	00260300	0	0	0	0	request kind 2, mode 2
-26h	TREQSW	1	002606C3	0	0	0	0	request kind 4, mode 2
-27h	REQEW	1	00260A86	0	0	0	0	request kind 0, mode 3 (end-wait: parks until the target's function returns)
-28h	FREQEW	1	00260DBE	0	0	0	0	request kind 2, mode 3
-29h	TREQEW	1	002610B5	0	0	0	0	request kind 4, mode 3
-2Ah	PREQ	1	0026121A	0	0	0	0	pop three values; no request is filed
-2Bh	PREQSW	1	0026121A	0	0	0	0	as 2Ah (shared handler)
-2Ch	PREQEW	1	0026121A	0	0	0	0	as 2Ah (shared handler)
-2Dh	RET	1	00261239	0	0	0	0	return: retire the active entry, select the next pending one, and resume the caller's wait slot (or service the wait state when none is outstanding)
-2Eh	RETN	1	0026131C	0	0	0	0	return N: pop a depth and recycle the entry range above it, then resume as RET
-2Fh	RETT	1	002613DD	0	0	0	0	return and transfer: as RET, and start the next entry's script (003DBDC0)
-30h	RETTN	1	0026147B	0	0	0	0	return N and transfer
-31h	DRET	1	0025E60A	0	0	0	0	inert (shares 0025E60A)
-32h	REQWAIT	1	00261539	0	0	0	0	wait for a request: pop (function id, actor); if that actor has the entry active, park as wait kind 3 on it
-33h	PREQWAIT	1	002615A6	0	0	0	0	pop two values; no wait is armed
-34h	REQCHG	1	002615BA	0	0	0	0	set an actor's resource-override slot: pop (value, actor, slot) into 0025AF60; slots 10h-11h re-arm the EH-5 countdown when the target's +0Bh bit 3 is set
-35h	REQCANCEL	1	00261301	0	0	0	0	cancel: pop an index and recycle the entry range above it (003DB420)
-36h	POPI0	1	0026161C	0	0	0	0	pop into per-actor int register I0 (record +64h)
-37h	POPI1	1	0026162D	0	0	0	0	pop into I1
-38h	POPI2	1	0026163E	0	0	0	0	pop into I2
-39h	POPI3	1	0026164F	0	0	0	0	pop into I3
-3Ah	POPF0	1	00261660	0	0	0	0	pop into float register F0
-3Bh	POPF1	1	00261673	0	0	0	0	pop into F1
-3Ch	POPF2	1	00261686	0	0	0	0	pop into F2
-3Dh	POPF3	1	00261699	0	0	0	0	pop into F3
-3Eh	PUSHI0	1	002616AF	0	0	0	0	push I0
-3Fh	PUSHI1	1	002616C0	0	0	0	0	push I1
-40h	PUSHI2	1	002616D1	0	0	0	0	push I2
-41h	PUSHI3	1	002616E2	0	0	0	0	push I3
-42h	PUSHF0	1	002616F3	0	0	0	0	push F0
-43h	PUSHF1	1	00261706	0	0	0	0	push F1
-44h	PUSHF2	1	00261719	0	0	0	0	push F2
-45h	PUSHF3	1	0026172C	0	0	0	0	push F3
-46h	DVAR	1	00261742	0	0	0	0	pop one value and hand it to the ret-0 stub 0016D6A0 - inert
-47h	LONGCODESTART	1	0025E60A	0	0	0	0	inert (shares 0025E60A)
-48h	PUSHV	3	00261761	3	0	0	0	push a variable (resolved by descriptor; width and int/float from the descriptor)
-49h	POPV	3	00261778	3	0	0	0	pop into a variable, coerced to its kind
-4Ah	PUSHDBG	3	0026178F	3	0	0	0	resolve a variable for the debug print path
-4Bh	PUSHP	3	002617B2	3	0	0	0	push a variable reference (how an array element is passed)
-4Ch	PUSHTAG	3	002617C9	2	0	0	0	push tag k of the actor the latest PUSHACT named: 02099AB8 selects entry (index + 1) x 16 of the slot's +80h table, [slot + 0] + its dword is that actor's tag table, dword [k x 8 + 8] is pushed (8000h past its count)
-4Dh	PUSHACT	3	00261806	2	0	0	0	push the packed actor handle of the operand's actor index ((word << 16) | index | bit 14; 8000h when out of range)
-4Eh	PUSHI	3	00261855	2	0	0	0	push the int constant the operand indexes in the slot's pool (+68h)
-4Fh	PUSHII	3	0026186D	1	0	0	0	push the operand itself, sign-extended
-50h	PUSHF	3	0026187D	5	0	0	0	push the float constant the operand indexes in the slot's pool (+70h)
-51h	JMP	3	002618A8	8	0	0	0	jump to bytecode base + the script's jump table[operand]
-52h	POPCMPYEQJMP	3	00261897	8	0	0	0	pop v; jump if v == Y
-53h	POPCMPYLOWJMP	3	002618DD	8	0	0	0	pop v; jump if v > Y
-54h	POPCMPYLOWEQJMP	3	002618F0	8	0	0	0	pop v; jump if v >= Y
-55h	POPCMPYHIGHJMP	3	00261903	8	0	0	0	pop v; jump if v < Y
-56h	POPCMPYHIGHEQJMP	3	00261916	8	0	0	0	pop v; jump if v <= Y
-57h	POP2CMPYBTWNJMP	3	0026192C	8	0	0	0	pop two bounds, order them, jump if Y lies between them
-58h	CALL	3	0026199D	4	0	0	0	call native verb [operand] with X = the actor's own index; if the verb yields, rewind and save the pc so the call repeats next tick
-59h	CALLACT	3	002619EF	4	0	0	0	as CALL, but first pop the target actor into X (skipped while the context is resuming, +15h)
-5Ah	POPXJMP	3	00261A52	8	0	0	0	pop into X, then jump
-5Bh	POPXCJMP	3	00261A91	8	0	0	0	pop into X; jump if non-zero
-5Ch	POPXNCJMP	3	00261AA6	8	0	0	0	pop into X; jump if zero (the for-loop idiom)
-5Dh	CALLPOPA	3	00261ABB	4	0	0	0	as CALL, and when the verb completes pop its result into register A
-5Eh	CALLACTPOPA	3	00261AFE	4	0	0	0	as CALLACT, and when the verb completes pop its result into register A
-5Fh	REQALL	3	00261B15	6	0	0	0	request on a whole actor list (waits while any listed actor still has the channel active)
-60h	JMPINTERNAL	3	002618A8	8	0	0	0	jump - JMP's own handler
-61h	REQWAITALL	3	00261CCD	6	0	0	0	wait on a whole actor list (wait kind 5)
-62h	INCINITTAG	3	00261D36	0	0	0	0	peek three values (pop and push back) and mark the target's channel as requested (002659F0: +24h bit, +10h count) without filing a request
-63h	REQIALL	3	00261C12	6	0	0	0	REQALL with the immediate-mark flag
+0x00	NOP	0	0025E613	0	0	0	0	advance the pc by the instruction length; nothing else (the common tail every handler returns through)
+0x01	LABEL	0	0025E60A	8	0	0	0	inert: shares the invalid-opcode target 0025E60A (marks the tick finished and advances)
+0x02	TAG	0	0025E60A	7	0	0	0	inert, as 0x01
+0x03	SYSHALT	1	0025E5EA	0	0	0	0	halt: set actor +0x14 bit 6 and rewind the pc, so the instruction repeats every tick
+0x04	SYSTEM	1	0025E649	0	0	1	1	pop one value and discard it
+0x05	OPLOR	1	0025E664	0	0	1	1	logical OR: pop b, pop a (int, floats truncated), push (a != 0 or b != 0)
+0x06	OPLAND	1	0025E6D8	0	0	1	1	logical AND: push (a != 0 and b != 0)
+0x07	OPOR	1	0025E7E7	0	0	1	1	bitwise OR: push a | b
+0x08	OPEOR	1	0025E8A2	0	0	1	1	bitwise XOR: push a ^ b
+0x09	OPAND	1	0025E95D	0	0	2	1	bitwise AND: push a & b
+0x0A	OPEQ	1	0025EA18	0	0	2	1	compare equal through 0025D740, push 0/1
+0x0B	OPNE	1	0025EA30	0	0	2	1	compare not-equal, push 0/1
+0x0C	OPGT	1	0025EA48	0	0	2	1	compare greater, push 0/1
+0x0D	OPLS	1	0025EA60	0	0	2	1	compare less, push 0/1
+0x0E	OPGTE	1	0025EA78	0	0	2	1	compare greater-or-equal, push 0/1
+0x0F	OPLSE	1	0025EA90	0	0	1	1	compare less-or-equal, push 0/1
+0x10	OPSLL	1	0025EAA8	0	0	1	1	shift left: push a << b
+0x11	OPSRL	1	0025EB86	0	0	2	2	arithmetic shift right: push a >> b (sar)
+0x12	OPADD	1	0025EC64	0	0	2	2	add: int + int as int, otherwise float (addss)
+0x13	OPSUB	1	0025EE79	0	0	2	2	subtract: int or float path (00267560 selects)
+0x14	OPMUL	1	0025EF92	0	0	2	2	multiply: int or float path
+0x15	OPDIV	1	0025F0AC	0	0	2	2	divide: int (idiv) or float (divss); a zero divisor is tested on both paths and yields 0; the float test is ordered (a NaN divisor divides) and INT_MIN / -1 is not tested
+0x16	OPMOD	1	0025F1D6	0	0	1	1	remainder: int idiv only, with NO zero test - MOD 0 faults; INT_MIN MOD -1 faults too, because nothing is tested before the idiv
+0x17	OPNOT	1	0025F232	0	0	1	1	logical NOT: push (a == 0)
+0x18	OPBNOT	1	0025F2B8	0	0	0	0	bitwise NOT: push ~a
+0x19	OPUMINUS	1	0025E60A	0	0	0	0	inert (shares 0025E60A) - unary minus is not implemented
+0x1A	OPFIXADRS	1	0025E60A	0	0	0	0	inert (shares 0025E60A)
+0x1B	PUSHA	1	0025F322	0	0	0	0	push register A (context +0x10)
+0x1C	POPA	1	0025F32A	0	0	0	0	pop into register A
+0x1D	PUSHX	1	0025F39D	0	0	0	0	push register X (context +8)
+0x1E	PUSHY	1	0025F3A5	0	0	0	0	push register Y (context +0xC)
+0x1F	POPX	1	0025F3AD	0	0	0	0	pop into register X
+0x20	POPY	1	0025F420	0	0	0	0	pop into register Y
+0x21	REQ	1	0025F493	0	0	0	0	request: pop (channel, function id, actor) and file a kind-0, mode-1 request
+0x22	FREQ	1	0025F7F2	0	0	0	0	request, kind 2 (F), mode 1
+0x23	TREQ	1	0025FBC9	0	0	0	0	request, kind 4 (T), mode 1
+0x24	REQSW	1	0025FFA0	0	0	0	0	request kind 0, mode 2 (start-wait: the requester parks as wait kind 4 until the target starts)
+0x25	FREQSW	1	00260300	0	0	0	0	request kind 2, mode 2
+0x26	TREQSW	1	002606C3	0	0	0	0	request kind 4, mode 2
+0x27	REQEW	1	00260A86	0	0	0	0	request kind 0, mode 3 (end-wait: parks until the target's function returns)
+0x28	FREQEW	1	00260DBE	0	0	0	0	request kind 2, mode 3
+0x29	TREQEW	1	002610B5	0	0	0	0	request kind 4, mode 3
+0x2A	PREQ	1	0026121A	0	0	0	0	pop three values; no request is filed
+0x2B	PREQSW	1	0026121A	0	0	0	0	as 0x2A (shared handler)
+0x2C	PREQEW	1	0026121A	0	0	0	0	as 0x2A (shared handler)
+0x2D	RET	1	00261239	0	0	0	0	return: retire the active entry, select the next pending one, and resume the caller's wait slot (or service the wait state when none is outstanding)
+0x2E	RETN	1	0026131C	0	0	0	0	return N: pop a depth and recycle the entry range above it, then resume as RET
+0x2F	RETT	1	002613DD	0	0	0	0	return and transfer: as RET, and start the next entry's script (003DBDC0)
+0x30	RETTN	1	0026147B	0	0	0	0	return N and transfer
+0x31	DRET	1	0025E60A	0	0	0	0	inert (shares 0025E60A)
+0x32	REQWAIT	1	00261539	0	0	0	0	wait for a request: pop (function id, actor); if that actor has the entry active, park as wait kind 3 on it
+0x33	PREQWAIT	1	002615A6	0	0	0	0	pop two values; no wait is armed
+0x34	REQCHG	1	002615BA	0	0	0	0	set an actor's resource-override slot: pop (value, actor, slot) into 0025AF60; slots 0x10-0x11 re-arm the EH-5 countdown when the target's +0x0B bit 3 is set
+0x35	REQCANCEL	1	00261301	0	0	0	0	cancel: pop an index and recycle the entry range above it (003DB420)
+0x36	POPI0	1	0026161C	0	0	0	0	pop into per-actor int register I0 (record +0x64)
+0x37	POPI1	1	0026162D	0	0	0	0	pop into I1
+0x38	POPI2	1	0026163E	0	0	0	0	pop into I2
+0x39	POPI3	1	0026164F	0	0	0	0	pop into I3
+0x3A	POPF0	1	00261660	0	0	0	0	pop into float register F0
+0x3B	POPF1	1	00261673	0	0	0	0	pop into F1
+0x3C	POPF2	1	00261686	0	0	0	0	pop into F2
+0x3D	POPF3	1	00261699	0	0	0	0	pop into F3
+0x3E	PUSHI0	1	002616AF	0	0	0	0	push I0
+0x3F	PUSHI1	1	002616C0	0	0	0	0	push I1
+0x40	PUSHI2	1	002616D1	0	0	0	0	push I2
+0x41	PUSHI3	1	002616E2	0	0	0	0	push I3
+0x42	PUSHF0	1	002616F3	0	0	0	0	push F0
+0x43	PUSHF1	1	00261706	0	0	0	0	push F1
+0x44	PUSHF2	1	00261719	0	0	0	0	push F2
+0x45	PUSHF3	1	0026172C	0	0	0	0	push F3
+0x46	DVAR	1	00261742	0	0	0	0	pop one value and hand it to the ret-0 stub 0016D6A0 - inert
+0x47	LONGCODESTART	1	0025E60A	0	0	0	0	inert (shares 0025E60A)
+0x48	PUSHV	3	00261761	3	0	0	0	push a variable (resolved by descriptor; width and int/float from the descriptor)
+0x49	POPV	3	00261778	3	0	0	0	pop into a variable, coerced to its kind
+0x4A	PUSHDBG	3	0026178F	3	0	0	0	resolve a variable for the debug print path
+0x4B	PUSHP	3	002617B2	3	0	0	0	push a variable reference (how an array element is passed)
+0x4C	PUSHTAG	3	002617C9	2	0	0	0	push tag k of the actor the latest PUSHACT named: 02099AB8 selects entry (index + 1) x 16 of the slot's +0x80 table, [slot + 0] + its dword is that actor's tag table, dword [k x 8 + 8] is pushed (0x8000 past its count)
+0x4D	PUSHACT	3	00261806	2	0	0	0	push the packed actor handle of the operand's actor index ((word << 16) | index | bit 14; 0x8000 when out of range)
+0x4E	PUSHI	3	00261855	2	0	0	0	push the int constant the operand indexes in the slot's pool (+0x68)
+0x4F	PUSHII	3	0026186D	1	0	0	0	push the operand itself, sign-extended
+0x50	PUSHF	3	0026187D	5	0	0	0	push the float constant the operand indexes in the slot's pool (+0x70)
+0x51	JMP	3	002618A8	8	0	0	0	jump to bytecode base + the script's jump table[operand]
+0x52	POPCMPYEQJMP	3	00261897	8	0	0	0	pop v; jump if v == Y
+0x53	POPCMPYLOWJMP	3	002618DD	8	0	0	0	pop v; jump if v > Y
+0x54	POPCMPYLOWEQJMP	3	002618F0	8	0	0	0	pop v; jump if v >= Y
+0x55	POPCMPYHIGHJMP	3	00261903	8	0	0	0	pop v; jump if v < Y
+0x56	POPCMPYHIGHEQJMP	3	00261916	8	0	0	0	pop v; jump if v <= Y
+0x57	POP2CMPYBTWNJMP	3	0026192C	8	0	0	0	pop two bounds, order them, jump if Y lies between them
+0x58	CALL	3	0026199D	4	0	0	0	call native verb [operand] with X = the actor's own index; if the verb yields, rewind and save the pc so the call repeats next tick
+0x59	CALLACT	3	002619EF	4	0	0	0	as CALL, but first pop the target actor into X (skipped while the context is resuming, +0x15)
+0x5A	POPXJMP	3	00261A52	8	0	0	0	pop into X, then jump
+0x5B	POPXCJMP	3	00261A91	8	0	0	0	pop into X; jump if non-zero
+0x5C	POPXNCJMP	3	00261AA6	8	0	0	0	pop into X; jump if zero (the for-loop idiom)
+0x5D	CALLPOPA	3	00261ABB	4	0	0	0	as CALL, and when the verb completes pop its result into register A
+0x5E	CALLACTPOPA	3	00261AFE	4	0	0	0	as CALLACT, and when the verb completes pop its result into register A
+0x5F	REQALL	3	00261B15	6	0	0	0	request on a whole actor list (waits while any listed actor still has the channel active)
+0x60	JMPINTERNAL	3	002618A8	8	0	0	0	jump - JMP's own handler
+0x61	REQWAITALL	3	00261CCD	6	0	0	0	wait on a whole actor list (wait kind 5)
+0x62	INCINITTAG	3	00261D36	0	0	0	0	peek three values (pop and push back) and mark the target's channel as requested (002659F0: +0x24 bit, +0x10 count) without filing a request
+0x63	REQIALL	3	00261C12	6	0	0	0	REQALL with the immediate-mark flag

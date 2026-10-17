@@ -1,8 +1,8 @@
 function	name	site	disp	kind	instruction	route	note
-006AB4A0	FUN_006ab4a0	006AB4AB	0h	w	mov qword ptr [rdx], rcx	ctorrdx-seeded 006AB4A0	
-006AB4A0	FUN_006ab4a0	006AB4AE	8h	w	mov qword ptr [rdx + 8], rcx	ctorrdx-seeded 006AB4A0	
-006AB4A0	FUN_006ab4a0	006AB4B2	10h	w	mov qword ptr [rax], rcx	ctorrdx-seeded 006AB4A0	
-006AB4A0	FUN_006ab4a0	006AB4B5	18h	w	mov qword ptr [rax + 8], rcx	ctorrdx-seeded 006AB4A0	
-006AB4A0	FUN_006ab4a0	006AB4B9	20h	w	mov qword ptr [rax + 10h], rcx	ctorrdx-seeded 006AB4A0	
-006AB4A0	FUN_006ab4a0	006AB4BD	28h	w	mov qword ptr [rax + 18h], rcx	ctorrdx-seeded 006AB4A0	
-006AB4A0	FUN_006ab4a0	006AB4C1	30h	w	mov qword ptr [rax + 20h], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4AB	0x0	w	mov qword ptr [rdx], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4AE	0x8	w	mov qword ptr [rdx + 8], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4B2	0x10	w	mov qword ptr [rax], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4B5	0x18	w	mov qword ptr [rax + 8], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4B9	0x20	w	mov qword ptr [rax + 0x10], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4BD	0x28	w	mov qword ptr [rax + 0x18], rcx	ctorrdx-seeded 006AB4A0	
+006AB4A0	FUN_006ab4a0	006AB4C1	0x30	w	mov qword ptr [rax + 0x20], rcx	ctorrdx-seeded 006AB4A0	

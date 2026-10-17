@@ -64,23 +64,23 @@ stem by the rules above, whether that stem ships, and how many `us` containers u
 - The walker sets pending bit 9 of the manager's word in `022C6E48` when slot 12 is present
   (`003304F0`), then calls `0032FB70` (`003305FA`).
 - `0032FB70` splits the argument into manager index (low four bits) and pointer, stores the pointer
-  at `022C6DA8 + index × 8` (`0032FB9B`) and passes it to `0026CE40`, which stores it at `+100`<sub>h</sub> of
-  the manager's `288`<sub>h</sub>-byte record (`0026CE51`;
+  at `022C6DA8 + index × 8` (`0032FB9B`) and passes it to `0026CE40`, which stores it at `+0x100` of
+  the manager's `0x288`-byte record (`0026CE51`;
   [actor managers](../Characters-And-Objects/actor-managers.md)).
 - It clears bit 9 (`0032FBB3`) and, when the pending word has emptied, runs the manager's finaliser
   `0032F1B0`.
-- When the pending word holds no bit other than bit 0, it also clears bit `08`<sub>h</sub> of byte `+11`<sub>h</sub> of the
+- When the pending word holds no bit other than bit 0, it also clears bit `0x08` of byte `+0x11` of the
   manager record that `00263FF0` returns.
-- For manager 0, when bits `202`<sub>h</sub> of the pending word are clear, it runs `0025AFC0(0)` and
+- For manager 0, when bits `0x202` of the pending word are clear, it runs `0025AFC0(0)` and
   `002EACC0(00331990, [022C6D28])`.
 - Nothing is parsed, copied or checked at load. The pointer refers into the loaded file, so the table
   is live for as long as the script stays loaded.
-- The manager bind `0026C8C0` zeroes `+100`<sub>h</sub> (`0026CC31`) and the manager reset `0032ED80` reads and
+- The manager bind `0026C8C0` zeroes `+0x100` (`0026CC31`) and the manager reset `0032ED80` reads and
   clears the `022C6DA8` copy (`0032F0B7`, `0032F0F0`).
 
 ### Reading
 
-`002E9A60` turns a script's model argument into a bound id. An argument above `FFFFFF`<sub>h</sub> is a table
+`002E9A60` turns a script's model argument into a bound id. An argument above `0xFFFFFF` is a table
 reference: it calls `00263F80` with the current manager record (`002640C0` returns `[02099D70]`),
 which keeps the low 24 bits as the index and:
 
@@ -89,7 +89,7 @@ which keeps the low 24 bits as the index and:
 - returns 0 when the index is at or past `count`;
 - returns the low 24 bits unchanged when the manager has no table.
 
-Arguments up to `FFFFFF`<sub>h</sub> skip the table and go through `002EB7A0`. The bind verbs that reach
+Arguments up to `0xFFFFFF` skip the table and go through `002EB7A0`. The bind verbs that reach
 `002E9A60` and what they do with the bound id are on the script name bindings page.
 
 ## Modding notes
@@ -106,5 +106,5 @@ Arguments up to `FFFFFF`<sub>h</sub> skip the table and go through `002EB7A0`. T
 
 - [EBP script container](ebp-script-container.md): the directory and the walker.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): bound ids, the letter table and the bind verbs.
-- [Actor managers](../Characters-And-Objects/actor-managers.md): the manager record and its `+100`<sub>h</sub> field.
+- [Actor managers](../Characters-And-Objects/actor-managers.md): the manager record and its `+0x100` field.
 - [Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md): how a bound model is applied to an actor.

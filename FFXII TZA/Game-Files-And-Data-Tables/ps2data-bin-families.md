@@ -76,26 +76,26 @@ wrappers `00249180`, `00249210`, `00249320`, `00249350`, `00249380`, `002493D0` 
 
 | Loader | Id | Family |
 |---|---|---|
-| `002385D0` | the byte table `01E09F68[group]` (`FF`<sub>h</sub>, 20-23, 1, 43-56, 24, 25, 62-67) | text groups 1 to 27 |
-| `00238260` | `47h +` board | `board_1.bin` to `board_12.bin` |
-| `002EA530` | `0Bh +` i, i = 0 to 9 | `charseinfo_*.bin` |
-| `002CEAE0` | `10h +` byte `[0209AC30] + B2Dh` | `face_guest#.bin` |
-| `003C9950` | `0Eh +` byte `+C1`<sub>h</sub> of its object | `map_efe#.bin` |
-| `00291C80` | `98`<sub>h</sub> to `A1`<sub>h</sub> | `itemgra_c.tm2`, `item_clut.bin`, `Item_Gra00` to `07.as7` |
-| `002C8EE0` | `74`<sub>h</sub>, `75`<sub>h</sub> | `monotone_chr.bin`, `Char_Silhouette.as7` |
-| `003800D0` | `12Ah +` n, or `129`<sub>h</sub> | `menuquest#.bin`, `menuquest.nfs` |
+| `002385D0` | the byte table `01E09F68[group]` (`0xFF`, 20-23, 1, 43-56, 24, 25, 62-67) | text groups 1 to 27 |
+| `00238260` | `0x47 +` board | `board_1.bin` to `board_12.bin` |
+| `002EA530` | `0x0B +` i, i = 0 to 9 | `charseinfo_*.bin` |
+| `002CEAE0` | `0x10 +` byte `[0209AC30] + 0xB2D` | `face_guest#.bin` |
+| `003C9950` | `0x0E +` byte `+0xC1` of its object | `map_efe#.bin` |
+| `00291C80` | `0x98` to `0xA1` | `itemgra_c.tm2`, `item_clut.bin`, `Item_Gra00` to `07.as7` |
+| `002C8EE0` | `0x74`, `0x75` | `monotone_chr.bin`, `Char_Silhouette.as7` |
+| `003800D0` | `0x12A +` n, or `0x129` | `menuquest#.bin`, `menuquest.nfs` |
 | `00575C30` | the six-entry table `00D23740` | the six `hctg` handbook files |
-| `003C1DF0` | `496h +` n | `menumap_guide#.bin` |
-| `003C1F00` | `142h +` n | `menumap_sub#.bin` |
+| `003C1DF0` | `0x496 +` n | `menumap_guide#.bin` |
+| `003C1F00` | `0x142 +` n | `menumap_sub#.bin` |
 
 The kind-2 entry `00384420` has three callers: the battle-pack load (`003843F0` from `002368D0` and
-`00236C30`, id `13`<sub>h</sub>), the board load and the text-group load. No call site passes another kind-2 id,
+`00236C30`, id `0x13`), the board load and the text-group load. No call site passes another kind-2 id,
 so the loose battle tables have no loader.
 
 ### Pack directories
 
 The six `packfiles/*.bin` files share one container: a fixed directory of `u32` offsets from the file
-start, padded with `FFFFFFFF`<sub>h</sub>, then the sub-files.
+start, padded with `0xFFFFFFFF`, then the sub-files.
 
 ```python
 +0x00  u32[16] or u32[32]  offset of each sub-file; the first entry equals the directory size
@@ -105,14 +105,14 @@ start, padded with `FFFFFFFF`<sub>h</sub>, then the sub-files.
 | File | Directory | Used entries | Contents | Binder and destination |
 |---|---|---|---|---|
 | `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `00246A10` binds entries 0-4 through `0024A1D0` into the five texture objects `002467A0` set up |
-| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `00280670` binds entries 0-9 into `[0209AC30] + 338h`..`380`<sub>h</sub>; entry 10 is stored unbound at `+388`<sub>h</sub> |
+| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `00280670` binds entries 0-9 into `[0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388` |
 | `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `00280980` stores entries 0-22 at `[0209AC30] + 8 × i` and relocates each with `002A00F0` |
-| `clutpack_ys.bin` | 16 | 4 | CLT2 | `00280AD0` stores entries 0-3 at `[0209AC30] + 390h`..`3A8`<sub>h</sub> |
-| `fontpack_fs.bin` | 16 | 7 | font tables | `003643A0`: entry 0 to `+08`<sub>h</sub> (rebased by `00366080`), 1 to `+190`<sub>h</sub>, 2, 4, 5, 6 to `+110`<sub>h</sub>, `+120`<sub>h</sub>, `+128`<sub>h</sub>, `+130`<sub>h</sub> for faces `B`<sub>h</sub>, `D`<sub>h</sub>, `E`<sub>h</sub>, `F`<sub>h</sub>; the binder skips entry 3, which repeats entry 2's offset in all six files |
-| `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0039C150`: entries 0-5 to `02AEE810`, `02AEE850`, `02AEE870`, `02AEE878`, `02AEE880`, `02AEE888`; entries 6 and 7, both `FFFFFFFF`<sub>h</sub> in every file, would go to `02AEE848` and over `02AEE880` |
+| `clutpack_ys.bin` | 16 | 4 | CLT2 | `00280AD0` stores entries 0-3 at `[0209AC30] + 0x390`..`0x3A8` |
+| `fontpack_fs.bin` | 16 | 7 | font tables | `003643A0`: entry 0 to `+0x08` (rebased by `00366080`), 1 to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130` for faces `0xB`, `0xD`, `0xE`, `0xF`; the binder skips entry 3, which repeats entry 2's offset in all six files |
+| `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0039C150`: entries 0-5 to `02AEE810`, `02AEE850`, `02AEE870`, `02AEE878`, `02AEE880`, `02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `02AEE848` and over `02AEE880` |
 
 The font-table destinations are relative to the font object `[022CBE00]`. No binder checks an entry
-against `FFFFFFFF`<sub>h</sub> except `0039C150`'s entry 6, so a directory must keep every entry its binder reads.
+against `0xFFFFFFFF` except `0039C150`'s entry 6, so a directory must keep every entry its binder reads.
 `002808D0` requests `mrppack_ys.bin` and `clutpack_ys.bin` without a callback; `00253780` calls
 `00280980`, which ends by calling `00280AD0`.
 
@@ -121,7 +121,7 @@ against `FFFFFFFF`<sub>h</sub> except `0039C150`'s entry 6, so a directory must 
 20 families, 41 files, whose names occur nowhere in the executable and whose kind and id no array gives:
 
 - **Script sections.** `btlctrl.bin`, `ctrl.bin`, `evctrl.bin` and `mapctrl.bin` (`ch`, `in`) begin with
-  `8000000B`<sub>h</sub>, the dword at the first section offset of every `.ebp` file: bare script sections without
+  `0x8000000B`, the dword at the first section offset of every `.ebp` file: bare script sections without
   the `EBP2` wrapper.
 - **`filelistlocalin.bin`.** The `ch` and `in` copies are identical: 38 section offsets, each section a
   count and string offsets, over 24,358 PS2 disc paths rooted at `%`. Section 0 starts with
@@ -149,13 +149,13 @@ The `ashd` scheme of `katano/event.bin`, decoded by the measurement script:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[4]` | "ashd" |  |
-| `04`<sub>h</sub> | `u32` | `2509`<sub>h</sub> | unused by the decoding |
-| `08`<sub>h</sub> | `u32` | decoded size |  |
-| `0C`<sub>h</sub> | `tokens` | even byte t: | copy the next t / 2 bytes odd byte t:   u16 w = t \| next << 8; copy (w >> 12) + 3 bytes from ((w >> 1) & `7FF`<sub>h</sub>) + 1 bytes back |
+| `+0x00` | `char[4]` | "ashd" |  |
+| `+0x04` | `u32` | 0x2509 | unused by the decoding |
+| `+0x08` | `u32` | decoded size |  |
+| `+0x0C` | `tokens` | even byte t: | copy the next t / 2 bytes odd byte t:   u16 w = t \| next << 8; copy (w >> 12) + 3 bytes from ((w >> 1) & `0x7FF`) + 1 bytes back |
 
-The file decodes to exactly `B10`<sub>h</sub> bytes, which are another `ashd` stream; that decodes to exactly
-`23E0`<sub>h</sub> bytes, a script section tagged `80000002`<sub>h</sub> with the time stamp `09/18 20:20:10` and the source name
+The file decodes to exactly `0xB10` bytes, which are another `ashd` stream; that decodes to exactly
+`0x23E0` bytes, a script section tagged `0x80000002` with the time stamp `09/18 20:20:10` and the source name
 `event.src`.
 
 ### Loose battle tables

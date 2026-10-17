@@ -17,9 +17,9 @@ cleared a bit would freeze that part of the interface while the rest kept moving
 
 ### The word and its reader
 
-`01E0C464` is a dword that holds `FFFFFFFF`<sub>h</sub> in the image. Its sixteen read sites are all inside
+`01E0C464` is a dword that holds `0xFFFFFFFF` in the image. Its sixteen read sites are all inside
 `0028E290`, the interface pump, and no instruction in the image writes it. The pump tests bits
-0 to 3, 5, 6 and 7 as byte tests and bits 8 to 15 as dword tests; bit 4 (`0010`<sub>h</sub>) is tested
+0 to 3, 5, 6 and 7 as byte tests and bits 8 to 15 as dword tests; bit 4 (`0x0010`) is tested
 nowhere. Bit 1 is tested twice, so sixteen tests gate sixteen groups over fifteen distinct bits.
 
 ### Where the pump runs
@@ -46,30 +46,30 @@ condition the pump adds, and the sub-object or field the handler receives.
 
 | # | Mask | Width | Extra gate | Handler and argument |
 |---|---|---|---|---|
-| 1 | `0001`<sub>h</sub> | byte | | `00289970(manager + 5380h)` |
-| 2 | `0002`<sub>h</sub> | byte | `001EDE80()` non-zero | `003F8B40(manager + 80h)` |
-| 3 | `0004`<sub>h</sub> | byte | | `002917E0(manager, [+10F6Ch], [+10F70h], [+10F72h])` only with `+10F68`<sub>h</sub> bit 3; then, under the enable bit alone, with `[+10F00h]` set `0028C4C0` and `+10F00h = 0028D1C0([+10F00h])`, else `+10EF0`<sub>h</sub> = 0 |
-| 4 | `0008`<sub>h</sub> | byte | `[+10F30h]` set | `003F6BB0`, then `+10F30h = 003F7050([+10F30h])` |
-| 5 | `0020`<sub>h</sub> | byte | `[+10F78h]` set | `003F9F40(manager + 57E0h)` |
-| 6 | `0002`<sub>h</sub> | byte | the pump argument's bit 0 | `00291B90(manager)`, `003F6100([+10F10h])`, and with `[+10F20h]` set `003F24D0()` rebuilds `+10F20`<sub>h</sub> and `003F24A0` runs on the new object |
-| 7 | `1000`<sub>h</sub> | dword | | `+10F68`<sub>h</sub> bit 1 = bit 0 of `0030C300()` |
-| 8 | `0040`<sub>h</sub> | byte | | `003F80D0(manager + A0D0h)` |
-| 9 | `0080`<sub>h</sub> | byte | | `00296860(manager + 7FB0h, 6)` |
-| 10 | `2000`<sub>h</sub> | dword | | `00290CF0(manager)` |
-| 11 | `4000`<sub>h</sub> | dword | | `00290EB0(manager)` |
-| 12 | `0100`<sub>h</sub> | dword | `+10F68`<sub>h</sub> bit 8 | `003F8EC0(manager + A0h)` |
-| 13 | `0200`<sub>h</sub> | dword | `[+10F40h]` set | `+10F40h = 003F31B0([+10F40h], 00290DF0)` |
-| 14 | `0400`<sub>h</sub> | dword | | `003FA790(manager + 57E0h)` |
-| 15 | `8000`<sub>h</sub> | dword | `[+10F80h]` set | `002C6180()` |
-| 16 | `0800`<sub>h</sub> | dword | | `0028C870(manager + 7EA0h)`, the pump's last act |
+| 1 | `0x0001` | byte | | `00289970(manager + 0x5380)` |
+| 2 | `0x0002` | byte | `001EDE80()` non-zero | `003F8B40(manager + 0x80)` |
+| 3 | `0x0004` | byte | | `002917E0(manager, [+0x10F6C], [+0x10F70], [+0x10F72])` only with `+0x10F68` bit 3; then, under the enable bit alone, with `[+0x10F00]` set `0028C4C0` and `+0x10F00 = 0028D1C0([+0x10F00])`, else `+0x10EF0` = 0 |
+| 4 | `0x0008` | byte | `[+0x10F30]` set | `003F6BB0`, then `+0x10F30 = 003F7050([+0x10F30])` |
+| 5 | `0x0020` | byte | `[+0x10F78]` set | `003F9F40(manager + 0x57E0)` |
+| 6 | `0x0002` | byte | the pump argument's bit 0 | `00291B90(manager)`, `003F6100([+0x10F10])`, and with `[+0x10F20]` set `003F24D0()` rebuilds `+0x10F20` and `003F24A0` runs on the new object |
+| 7 | `0x1000` | dword | | `+0x10F68` bit 1 = bit 0 of `0030C300()` |
+| 8 | `0x0040` | byte | | `003F80D0(manager + 0xA0D0)` |
+| 9 | `0x0080` | byte | | `00296860(manager + 0x7FB0, 6)` |
+| 10 | `0x2000` | dword | | `00290CF0(manager)` |
+| 11 | `0x4000` | dword | | `00290EB0(manager)` |
+| 12 | `0x0100` | dword | `+0x10F68` bit 8 | `003F8EC0(manager + 0xA0)` |
+| 13 | `0x0200` | dword | `[+0x10F40]` set | `+0x10F40 = 003F31B0([+0x10F40], 00290DF0)` |
+| 14 | `0x0400` | dword | | `003FA790(manager + 0x57E0)` |
+| 15 | `0x8000` | dword | `[+0x10F80]` set | `002C6180()` |
+| 16 | `0x0800` | dword | | `0028C870(manager + 0x7EA0)`, the pump's last act |
 
 The order is not the bit order: bit 12 runs seventh, bits 13 and 14 before bit 8, and bit 11 last.
 Bit 1 gates two groups at two points of the frame, the second only when the pump's argument has
 bit 0.
 
 The argument is the 16-bit word `01E0C2B0`. `00253970`, the interface start-up, stores
-`F`<sub>h</sub>. `00226280`, the world-lock apply that runs at the end of every field frame, stores through
-`002547C0` the value `F`<sub>h</sub> when the AND of the lock table's first words has bit 36, else `E`<sub>h</sub>,
+`0xF`. `00226280`, the world-lock apply that runs at the end of every field frame, stores through
+`002547C0` the value `0xF` when the AND of the lock table's first words has bit 36, else `0xE`,
 with bits 2 and 3 cleared when that AND lacks bit 37. So a lock record that clears bit 36 skips group 6 for
 every frame it is held, while the other fifteen groups keep running.
 
@@ -77,9 +77,9 @@ every frame it is held, while the other fifteen groups keep running.
 first through the same setter and the second as the HUD draw word `01E0C2AC` (`00254840`, `0036D873`;
 [HUD](../Menus-And-HUD/hud.md)).
 
-Script verbs call `0036D840`: `setmenuhptargetshowstatus` (`2A7`<sub>h</sub>, `0034D700`), and `003B7BB0`,
-`003B7C60` and `003B7E20`, the bodies of `resumeposbattletarget` (`195`<sub>h</sub>), `resumepartyinfo_spattack`
-(`2A4`<sub>h</sub>) and `setpossummonspace` (`191`<sub>h</sub>, `003482E0`)
+Script verbs call `0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0034D700`), and `003B7BB0`,
+`003B7C60` and `003B7E20`, the bodies of `resumeposbattletarget` (`0x195`), `resumepartyinfo_spattack`
+(`0x2A4`) and `setpossummonspace` (`0x191`, `003482E0`)
 ([cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md)).
 
 ## Layouts
@@ -102,7 +102,7 @@ Script verbs call `0036D840`: `setmenuhptargetshowstatus` (`2A7`<sub>h</sub>, `0
 
 | Fact | Value |
 |---|---|
-| the enable word | `FFFFFFFF`<sub>h</sub> in the image, no writer |
+| the enable word | `0xFFFFFFFF` in the image, no writer |
 | groups, distinct bits | 16, 15 (bit 4 unused) |
 | test widths | 8 byte tests (bits 0 to 7), 8 dword tests (bits 8 to 15) |
 | `00296860`'s second argument | 6 |
@@ -115,7 +115,7 @@ order, ending in the tail jump to `0028C870`.
 
 ## State
 
-The enable word; the pump argument word; the UI manager object's flag word `+10F68`<sub>h</sub> and the
+The enable word; the pump argument word; the UI manager object's flag word `+0x10F68` and the
 object pointers the gates test.
 
 ## Modding notes

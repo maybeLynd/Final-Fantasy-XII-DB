@@ -26,37 +26,37 @@ The verb `initgauge` (`0034DC70`) passes its kind to `003E9020`, which closes a 
 | 3 | 4 | none |
 | other | 0 | counter, procedure `00407590`, layout `0051EDC0(0)` |
 
-`00408300` creates the gauge window `00406E80` (`E8`<sub>h</sub> bytes) only while `02B62D80` is null. On creation the
-window stores itself in `02B62D80`, builds the child (`278`<sub>h</sub> or `1F8`<sub>h</sub> bytes) at `+C0`<sub>h</sub> and loads the layout's
-pictures into the list at `+D8`<sub>h</sub> (`0024A440`). For type 4 it builds no child and reads the layout record
+`00408300` creates the gauge window `00406E80` (0xE8 bytes) only while `02B62D80` is null. On creation the
+window stores itself in `02B62D80`, builds the child (0x278 or 0x1F8 bytes) at `+0xC0` and loads the layout's
+pictures into the list at `+0xD8` (`0024A440`). For type 4 it builds no child and reads the layout record
 through a null pointer (`00407018`-`0040701F`).
 
-`00407F90(counter)` gives a new counter its defaults: flags `+D8`<sub>h</sub> = `10`<sub>h</sub>, maximum `+E0`<sub>h</sub> = 100, value 0,
-the colours `805A5A20`<sub>h</sub>, `80276742`<sub>h</sub>, `80206266`<sub>h</sub> and `800A2A7E`<sub>h</sub> at `+F8`<sub>h</sub>-`+104`<sub>h</sub>, and the widgets it
-draws with at `+C8`<sub>h</sub> and `+D0`<sub>h</sub>, which depend on the mode byte `+C0`<sub>h</sub>.
+`00407F90(counter)` gives a new counter its defaults: flags `+0xD8` = `0x10`, maximum `+0xE0` = 100, value 0,
+the colours `0x805A5A20`, `0x80276742`, `0x80206266` and `0x800A2A7E` at `+0xF8`-`+0x104`, and the widgets it
+draws with at `+0xC8` and `+0xD0`, which depend on the mode byte `+0xC0`.
 
 ### The verbs
 
 Each verb reaches the child of `[02B62D80]` through a one-jump stub, and does nothing while the window's
-`+C8`<sub>h</sub> bit 1 is set:
+`+0xC8` bit 1 is set:
 
 | Verb | Body | Effect |
 |---|---|---|
-| `setgaugecountermax`, `setgaugetimermax`, `setgaugeracemax` | `00347F20` → `00408830` → `004073B0` | sets the maximum `+E0`<sub>h</sub> (times 60 for a timer) and the thresholds to a quarter, a half and three quarters of it, `+F0`<sub>h</sub> to the maximum |
+| `setgaugecountermax`, `setgaugetimermax`, `setgaugeracemax` | `00347F20` → `00408830` → `004073B0` | sets the maximum `+0xE0` (times 60 for a timer) and the thresholds to a quarter, a half and three quarters of it, `+0xF0` to the maximum |
 | `setgaugecounter` | `0034EA90` → `004085B0` | sets the value of a counter (mode 0) and redraws it |
 | `setgaugetimer` | `0034ED90` → `004088D0` | sets the value of a timer (mode 1) in seconds, stored times 60 |
 | `changegaugecounterbyratio` | `003502C0` → `004084C0` → `00407290` | moves the value toward the target over a ramp |
 | `setgaugecountercondition`, `setgaugetimercondition`, `setgaugeracecondition` | `003514F0` → `00408560` → `00407300` | sets the three thresholds |
-| `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `00354190` → `00408A20` | sets the type `+DC`<sub>h</sub> |
+| `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `00354190` → `00408A20` | sets the type `+0xDC` |
 | `setgaugecolor` | `00357270` → `00408780` | sets the four colours |
-| `stopgaugetimer` | `003521F0` → `004083B0` | sets the window's `+C8`<sub>h</sub> bit 2 |
+| `stopgaugetimer` | `003521F0` → `004083B0` | sets the window's `+0xC8` bit 2 |
 | `resetgaugetimer` | `00351C80` → `004083E0` | see below |
 
 ### Value, ramps and thresholds
 
-`00408140(counter, v)` stops a running ramp, stores `v` at `+E4`<sub>h</sub> and redraws by mode: 0 through `00407450`,
+`00408140(counter, v)` stops a running ramp, stores `v` at `+0xE4` and redraws by mode: 0 through `00407450`,
 1 through `00407720`, 3 through `00225580` on the value widget, with `v` less the maximum once it passes the
-maximum. A ramp lives at `+114`<sub>h</sub>-`+128`<sub>h</sub> and is stepped once per frame by `004076B0`:
+maximum. A ramp lives at `+0x114`-`+0x128` and is stepped once per frame by `004076B0`:
 
 ```python
 elapsed = elapsed + 1
@@ -64,55 +64,55 @@ value = start + delta * elapsed / length      while elapsed < length
 value = start + delta, length = 0             at the end; 004076B0 returns -1 when length is 0
 ```
 
-- `00407290(counter, target)` starts a ramp of `|target - value| x [+10Ch] / [+110h]` frames, at least 1,
-  and only when `+110`<sub>h</sub> is not 0.
-- `00407240(counter, target)` starts a ramp of `+108`<sub>h</sub> frames, or 1 when that is 0; its only caller is
+- `00407290(counter, target)` starts a ramp of `|target - value| x [+0x10C] / [+0x110]` frames, at least 1,
+  and only when `+0x110` is not 0.
+- `00407240(counter, target)` starts a ramp of `+0x108` frames, or 1 when that is 0; its only caller is
   the boss gauge's bar (`00406552`).
-- The counter child steps its ramp only while the window's `+C8`<sub>h</sub> bits 2 and 3 are both clear
+- The counter child steps its ramp only while the window's `+0xC8` bits 2 and 3 are both clear
   (`00407631`-`00407639`).
 
-`00407300(counter, a, b, c)` sets `a = a x 60`, `b = b x 60` and `c = c x 60` when the mode byte `+C0`<sub>h</sub> is 1,
-a timer (`0040730C`-`0040731C`), and stores them at `+EA`<sub>h</sub>,
-`+EC`<sub>h</sub> and `+EE`<sub>h</sub>: in that order for types 1 and 3, in reverse order for types 2 and 4, and not at all for
+`00407300(counter, a, b, c)` sets `a = a x 60`, `b = b x 60` and `c = c x 60` when the mode byte `+0xC0` is 1,
+a timer (`0040730C`-`0040731C`), and stores them at `+0xEA`,
+`+0xEC` and `+0xEE`: in that order for types 1 and 3, in reverse order for types 2 and 4, and not at all for
 type 0. A `-1` keeps a threshold. `00408A20(type)` stores the type and sets bit 25 of the value widget's
-`+20`<sub>h</sub> for types 2 and 4, clearing it for 1 and 3. `00408780(c0, c1, c2, c3)` stores the colours, `-1`
+`+0x20` for types 2 and 4, clearing it for 1 and 3. `00408780(c0, c1, c2, c3)` stores the colours, `-1`
 keeping one.
 
 ### The timer text
 
-`00407720(counter)` writes the timer's value, in frames at 60 per second, into the text at `+134`<sub>h</sub>
+`00407720(counter)` writes the timer's value, in frames at 60 per second, into the text at `+0x134`
 (`002B4090`) and hands it to the label widget:
 
 | Flags | Format id | Shown as |
 |---|---|---|
-| `+130`<sub>h</sub> bit 0 clear | `4B3C`<sub>h</sub> | hours (value / 216,000), minutes, seconds and hundredths; above 9 hours it shows 99, 59, 59, 99 |
-| `+130`<sub>h</sub> bit 0 set, `+D8`<sub>h</sub> bit 1 clear | `4B3D`<sub>h</sub> | seconds `value / 60` and the hundredths below; when the seconds exceed 999 it shows 999 and 99 (`00407774`-`004077B5`) |
-| `+130`<sub>h</sub> bit 0 set, `+D8`<sub>h</sub> bit 1 set | `4B3E`<sub>h</sub> | the same |
+| `+0x130` bit 0 clear | `0x4B3C` | hours (value / 216,000), minutes, seconds and hundredths; above 9 hours it shows 99, 59, 59, 99 |
+| `+0x130` bit 0 set, `+0xD8` bit 1 clear | `0x4B3D` | seconds `value / 60` and the hundredths below; when the seconds exceed 999 it shows 999 and 99 (`00407774`-`004077B5`) |
+| `+0x130` bit 0 set, `+0xD8` bit 1 set | `0x4B3E` | the same |
 
 The hundredths are `(value mod 60) x 100 / 60`.
 
 ### `resetgaugetimer`
 
 `004083E0` takes the child of `[02B62D80]` when its mode is 1 and then acts only when that is null: it reads
-the type byte from the absolute address `DC`<sub>h</sub> (`0040841E`) and would store 0 or the maximum at `E4`<sub>h</sub>. With a
+the type byte from the absolute address `0xDC` (`0040841E`) and would store 0 or the maximum at `0xE4`. With a
 timer open the verb therefore changes nothing, and with none open it reads unmapped memory. The shipped US
 scripts never call it (`us_calls` 0 in the [verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
 `00407150(window, on)`, reached through `004088A0`, `004088B0` and `00408190`, is the working reset: on a
-change of the window's `+C8`<sub>h</sub> bit 1 it ends a counter's ramp at its target, or sets a timer to its maximum
+change of the window's `+0xC8` bit 1 it ends a counter's ramp at its target, or sets a timer to its maximum
 for type 1 and to 0 for the others.
 
 ### Pause, hide and restore
 
 - The byte `0215F1B3` is a mask of pause reasons ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
   Whenever it is written, `00404D70` (non-zero) or `00404DC0` (zero) sets or clears bit 3 of the gauge
-  window's `+C8`<sub>h</sub> and bit 7 of the boss gauge's `+C8`<sub>h</sub> (`002E0D67`, `002E15A3`, `002E24B7`-`002E24F8`),
-  skipping a gauge whose `+C8`<sub>h</sub> bit 1 (script) or bit 5 (boss) is set.
+  window's `+0xC8` and bit 7 of the boss gauge's `+0xC8` (`002E0D67`, `002E15A3`, `002E24B7`-`002E24F8`),
+  skipping a gauge whose `+0xC8` bit 1 (script) or bit 5 (boss) is set.
 - The HUD switch hides the message windows through `0035D0E0` and shows them through `0035D1B0`
   ([HUD](hud.md)). `0035D0E0` also runs `004082D0`, which starts the gauge child's closing run with the
   message at `01E0C0F8`.
 - `0035D1B0` runs `00408AA0`, which restarts its opening run with message 14
-  (`01E0C0E0`) when the child is hidden (`+D8`<sub>h</sub> bit 2 set, bit 3 clear). Both set the run speed `+B8`<sub>h</sub>
+  (`01E0C0E0`) when the child is hidden (`+0xD8` bit 2 set, bit 3 clear). Both set the run speed `+0xB8`
   to `1 / 00229E70()` when `00229DF0` is non-zero and `00229EA0` returns 2.
 
 ### Placing the gauge
@@ -120,44 +120,44 @@ for type 1 and to 0 for the others.
 `00407B70` reads the positions of two layout children of the window (`00394690`), the second named by its third
 argument. When `003C5FB0` (the
 minimap status test of [Map screens](map-screens.md)) returns 0 it takes the second, calls `002E04E0(6)` and
-moves every widget under the root `[0208EA28]` whose `+44`<sub>h</sub> bits 19 and 20 are `100000`<sub>h</sub> by the difference,
-from its base `+54`<sub>h</sub>/`+56`<sub>h</sub> (`00407C90` walks the tree through `+18`<sub>h</sub> and `+20`<sub>h</sub>). The window's widget
-`+C8`<sub>h</sub> gets the chosen position at `+98`<sub>h</sub>/`+9A`<sub>h</sub>.
+moves every widget under the root `[0208EA28]` whose `+0x44` bits 19 and 20 are `0x100000` by the difference,
+from its base `+0x54`/`+0x56` (`00407C90` walks the tree through `+0x18` and `+0x20`). The window's widget
+`+0xC8` gets the chosen position at `+0x98`/`+0x9A`.
 
 ## Layouts
 
-`GaugeCounter` (`1F8`<sub>h</sub> bytes, offsets from the start of the record):
+`GaugeCounter` (`0x1F8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0C0`<sub>h</sub> | `u8` | mode | 0 counter, 1 timer, 3 drawn by the value widget (`00408140`) |
-| `0C8`<sub>h</sub> | `void*` | frame | the frame widget (`00407F90`) |
-| `0D0`<sub>h</sub> | `void*` | value | the value widget |
-| `0D8`<sub>h</sub> | `u32` | flags | `10`<sub>h</sub> at creation; bit 1 picks format `4B3E`<sub>h</sub>; bit 5 set by `00407150` |
-| `0DC`<sub>h</sub> | `u8` | type | 0 to 4 (`00408A20`); 2 and 4 reverse the thresholds |
-| `0E0`<sub>h</sub> | `i32` | max | default 100; frames for a timer |
-| `0E4`<sub>h</sub> | `i32` | current | the value shown |
-| `0EA`<sub>h</sub> | `i16` | cond1 | first threshold |
-| `0EC`<sub>h</sub> | `i16` | cond2 | second threshold |
-| `0EE`<sub>h</sub> | `i16` | cond3 | third threshold |
-| `0F0`<sub>h</sub> | `i16` | limit | the maximum again (`004073B0`) |
-| `0F8`<sub>h</sub> | `u32[4]` | colour | four colours (`00408780`) |
-| `108`<sub>h</sub> | `i16` | frames | ramp length for `00407240` |
-| `10C`<sub>h</sub> | `i32` | ratio_num | ramp frames per unit, numerator (`00407290`) |
-| `110`<sub>h</sub> | `i32` | ratio_den | ramp denominator; 0 disables `00407290` |
-| `114`<sub>h</sub> | `i32` | elapsed | ramp frames done (`004076B0`) |
-| `118`<sub>h</sub> | `i32` | length | ramp length; 0 when no ramp runs |
-| `11C`<sub>h</sub> | `i32` | start | ramp start value |
-| `120`<sub>h</sub> | `i32` | delta | ramp distance |
-| `124`<sub>h</sub> | `i32` | now | ramp result |
-| `130`<sub>h</sub> | `u32` | style | bit 0 picks the seconds-only timer format (`00407720`) |
-| `134`<sub>h</sub> | `char[64] text` | the formatted timer (00407720) |  |
+| `+0x0C0` | `u8` | mode | 0 counter, 1 timer, 3 drawn by the value widget (`00408140`) |
+| `+0x0C8` | `void*` | frame | the frame widget (`00407F90`) |
+| `+0x0D0` | `void*` | value | the value widget |
+| `+0x0D8` | `u32` | flags | `0x10` at creation; bit 1 picks format `0x4B3E`; bit 5 set by `00407150` |
+| `+0x0DC` | `u8` | type | 0 to 4 (`00408A20`); 2 and 4 reverse the thresholds |
+| `+0x0E0` | `i32` | max | default 100; frames for a timer |
+| `+0x0E4` | `i32` | current | the value shown |
+| `+0x0EA` | `i16` | cond1 | first threshold |
+| `+0x0EC` | `i16` | cond2 | second threshold |
+| `+0x0EE` | `i16` | cond3 | third threshold |
+| `+0x0F0` | `i16` | limit | the maximum again (`004073B0`) |
+| `+0x0F8` | `u32[4]` | colour | four colours (`00408780`) |
+| `+0x108` | `i16` | frames | ramp length for `00407240` |
+| `+0x10C` | `i32` | ratio_num | ramp frames per unit, numerator (`00407290`) |
+| `+0x110` | `i32` | ratio_den | ramp denominator; 0 disables `00407290` |
+| `+0x114` | `i32` | elapsed | ramp frames done (`004076B0`) |
+| `+0x118` | `i32` | length | ramp length; 0 when no ramp runs |
+| `+0x11C` | `i32` | start | ramp start value |
+| `+0x120` | `i32` | delta | ramp distance |
+| `+0x124` | `i32` | now | ramp result |
+| `+0x130` | `u32` | style | bit 0 picks the seconds-only timer format (`00407720`) |
+| `+0x134` | `char[64] text` | the formatted timer (00407720) |  |
 
 ## Modding notes
 
 - `initgauge 3` leaves the gauge without a child and reads a null layout record; use kinds 0 to 2. No shipped
   script passes 3: the 268 calls in the `us` scripts push the literal kinds 0 (85), 1 (2) and 2 (181)
-  (`Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py --verbs 1ABh`, a complete run).
+  (`Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py --verbs 0x1AB`, a complete run).
 - `resetgaugetimer` does nothing to an open timer; set the timer with `setgaugetimer` instead.
 - The long format shows up to 9:59:59.99 and then a fixed 99:59:59.99 while the value keeps counting; the
   short one stops at 999.99 seconds.

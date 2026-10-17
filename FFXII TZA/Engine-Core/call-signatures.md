@@ -27,8 +27,8 @@ the register, so `mov cl, 1` followed by a read of `rcx` still reads the incomin
 
 An MSVC `switch` ends in `jmp reg` after a bounds check and a load from a table of 32-bit offsets.
 The walk reads the table and follows every arm. `0079D730` reads `edx` at entry
-(`dec edx; cmp edx, 11h; ja`), dispatches through the table at `0079D745`, and reads `rcx` only
-inside the arms (`0079D752 movd xmm0, [rcx+414h]`); it lists as `rcx,rdx`, arity 2.
+(`dec edx; cmp edx, 0x11; ja`), dispatches through the table at `0079D745`, and reads `rcx` only
+inside the arms (`0079D752 movd xmm0, [rcx+0x414]`); it lists as `rcx,rdx`, arity 2.
 
 ### Positions, not register counts
 
@@ -44,15 +44,15 @@ Only register slots are counted. A body that leaves through a tail jump hands it
 argument registers to the target, so its arity is a floor. `0079D620` is `mov ecx, 2` and
 `jmp 00796FC0`; `0026D6D0` sets `xmm1`, `xmm0` and `r8d` and jumps to `0026D6F0`. Both list
 arity 0 with `lower_bound` 1. An indirect jump that is not a switch also sets the flag:
-`00309EC0` loads a handler from `[rdx+50h]` and leaves through `00309F20 jmp rax`.
+`00309EC0` loads a handler from `[rdx+0x50]` and leaves through `00309F20 jmp rax`.
 
 ### Stack arguments
 
 A fifth or later argument arrives on the stack, above the caller's 32-byte home area, and the
 main table does not count it. A second table, `call-signatures-stack-args.tsv`, reads each body for
-loads from `[entry rsp + 28h]` and above. Twelve rows read one. `008628F0` reads
-`[rsp+28h]`, position 5, as its first instruction although its register arity is 2, and
-`0085DDE0` reads positions 7, 8 and 9 (`0085DDF8 mov r15, [rsp+A0h]` under a `58`<sub>h</sub>-byte frame).
+loads from `[entry rsp + 0x28]` and above. Twelve rows read one. `008628F0` reads
+`[rsp+0x28]`, position 5, as its first instruction although its register arity is 2, and
+`0085DDE0` reads positions 7, 8 and 9 (`0085DDF8 mov r15, [rsp+0xA0]` under a 0x58-byte frame).
 
 ## Columns
 
@@ -64,7 +64,7 @@ loads from `[entry rsp + 28h]` and above. Twelve rows read one. `008628F0` reads
 | `arity` | the highest argument position read before written, 0 to 4; register slots only |
 | `int_regs` | the integer argument registers read before written, `-` for none |
 | `flt_regs` | the float argument registers `xmm0` to `xmm3` read before written |
-| `home_spill` | integer argument registers the entry block stores, unchanged, into their own home slot (`[entry rsp + 8]` for `rcx` up to `+20`<sub>h</sub> for `r9`) |
+| `home_spill` | integer argument registers the entry block stores, unchanged, into their own home slot (`[entry rsp + 8]` for `rcx` up to `+0x20` for `r9`) |
 | `lower_bound` | 1 when the body tail-jumps out with an integer argument register untouched, or leaves through an indirect jump that is not a switch; `arity` is then a floor |
 | `unresolved_jump` | 1 when the body has an indirect jump that is not a switch |
 | `call_passthrough` | argument registers still neither read nor written at some call, so possibly handed to the callee unchanged |
@@ -72,7 +72,7 @@ loads from `[entry rsp + 28h]` and above. Twelve rows read one. `008628F0` reads
 
 `home_spill` is a store at the entry, before anything changes the register. A store of an
 argument register elsewhere does not count: `0030FE60` zeroes `ecx` and writes it to a table
-through `rax`, and `00311CD0` stores `r9d` at `[rsp+20h]` after `sub rsp, 38h`, which is the
+through `rax`, and `00311CD0` stores `r9d` at `[rsp+0x20]` after `sub rsp, 0x38`, which is the
 fifth argument of its own call to `00311B20`. Neither is a home spill. Five rows have one,
 among them `0018D680`, which then reads its argument's bytes back from the slot.
 
@@ -87,13 +87,13 @@ returns its result through the pointer in `rdx`.
 | `addr` | the function's entry address |
 | `derived_arity` | `arity` from the main table |
 | `all_reads_placed` | 0 when some stack read could not be placed because the frame moved by a register amount; the row is then a floor |
-| `stack_positions` | the argument positions read from the stack: 5 is `[entry rsp + 28h]`, eight bytes per position |
+| `stack_positions` | the argument positions read from the stack: 5 is `[entry rsp + 0x28]`, eight bytes per position |
 | `max_position` | the highest of them |
 | `first_read` | one instruction that reads a stack argument, not necessarily the earliest in the body (`0085DDE0` lists `0085DFE9` though `0085DDF8` comes first) |
 
 The frame size is followed through `push`, `sub rsp` and `add rsp` by an immediate, and frame
 pointers set from `rsp`. Loads, compares and tests count; stores do not, and the home slots
-`+08`<sub>h</sub> to `+20`<sub>h</sub> belong to the four register arguments.
+`+0x08` to `+0x20` belong to the four register arguments.
 
 `call-signatures-this-types.tsv`, one row for each function that sits in a class's virtual table,
 so that its first argument is that class's `this`:

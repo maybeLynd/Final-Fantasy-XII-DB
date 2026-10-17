@@ -28,15 +28,15 @@ Packed namespace (at m_size):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | `01020304`<sub>h</sub>, byte-order mark |  |
-| `04`<sub>h</sub> | `u32` | namespace size (equals m_packedNamespaceSize) |  |
-| `08`<sub>h</sub> | `u32` | nTypes |  |
-| `0C`<sub>h</sub> | `u32` | nClasses |  |
-| `10`<sub>h</sub> | `u32` | nMembers |  |
-| `14`<sub>h</sub> | `u32` | stringPoolSize |  |
-| `18`<sub>h</sub> | `u32` | 0 in every shipped file |  |
-| `1C`<sub>h</sub> | `u32` | size of an optional block, 0 in every shipped file |  |
-| `20`<sub>h</sub> | `u32` | string-pool offset of each type name [nTypes] | ...  class records, 9 u32 each [nClasses] ...  member records, 6 u32 each [nMembers] ...  NUL-separated string pool [stringPoolSize] |
+| `+0x00` | `u32` | 0x01020304, byte-order mark |  |
+| `+0x04` | `u32` | namespace size (equals m_packedNamespaceSize) |  |
+| `+0x08` | `u32` | nTypes |  |
+| `+0x0C` | `u32` | nClasses |  |
+| `+0x10` | `u32` | nMembers |  |
+| `+0x14` | `u32` | stringPoolSize |  |
+| `+0x18` | `u32` | 0 in every shipped file |  |
+| `+0x1C` | `u32` | size of an optional block, 0 in every shipped file |  |
+| `+0x20` | `u32` | string-pool offset of each type name [nTypes] | ...  class records, 9 u32 each [nClasses] ...  member records, 6 u32 each [nMembers] ...  NUL-separated string pool [stringPoolSize] |
 
 ```
 class record (9 u32)
@@ -65,8 +65,8 @@ w5  element count of a fixed-size array, otherwise 0
 ```
 
 The attribute word in `w4`, with bit 31 masked off, is the run-time member's attribute word: bit
-`2`<sub>h</sub> a pointer, `4`<sub>h</sub> a dynamic-type helper, `20`<sub>h</sub> an enum, `40`<sub>h</sub> an inline counted buffer, and
-the per-class bits `08`<sub>h</sub> and `10`<sub>h</sub>.
+`0x2` a pointer, `0x4` a dynamic-type helper, `0x20` an enum, `0x40` an inline counted buffer, and
+the per-class bits `0x08` and `0x10`.
 
 ```python
 registration call (00632960), Win64 arguments
@@ -81,8 +81,8 @@ r9          member name
 ```
 
 `00632A10` adds the array kind and element size as arguments 7 and 8, `00632A70` the element count
-as argument 7, and `00632BE0` ORs `20`<sub>h</sub> into the attribute word. A registering function may OR
-`08`<sub>h</sub>, `10`<sub>h</sub> or `40`<sub>h</sub> into the record afterwards, and `00633100` adds `4`<sub>h</sub>.
+as argument 7, and `00632BE0` ORs `0x20` into the attribute word. A registering function may OR
+`0x08`, `0x10` or `0x40` into the record afterwards, and `00633100` adds `0x4`.
 
 ### File layout against run-time layout
 
@@ -90,7 +90,7 @@ The file offset is not the run-time offset. Of the 527 class and member pairs sh
 250 have the same offset in both; of the 154 classes with members, 41 have every member at its
 run-time offset, for example `PClusterHeaderBase`, whose 18 fields sit at 0 to 68 in both. The other
 113 are packed: in `PAssetReference`, `m_id`, `m_asset` and `m_assetType` sit at file offsets 0, 1
-and 2 with width 1, against run-time offsets inside a `50`<sub>h</sub>-byte object. An object pointer has
+and 2 with width 1, against run-time offsets inside a `0x50`-byte object. An object pointer has
 width 1 and a `PArray` member width 5 in a packed class.
 
 ## Shipped data
@@ -99,16 +99,16 @@ width 1 and a `PArray` member width 5 in a packed class.
 |---|---|
 | `.phyre` files | 35,984; `m_size` 84 in all |
 | namespaces passing the byte-order mark and the size identity | 35,984 |
-| `+18`<sub>h</sub> and `+1C`<sub>h</sub> | 0 in every file |
+| `+0x18` and `+0x1C` | 0 in every file |
 | records | 201,576 type entries, 684,244 class records, 2,192,621 member records |
 | distinct names | 19 type-table names, 177 class names, 349 member names, 527 class and member pairs |
 | type-table names | `PAnimationKeyDataType`, `PChar`, `PContextSwitch`, `PInt16`, `PInt32`, `PLODBlendType`, `PLODMetricType`, `PLightType`, `PModifier`, `PRenderDataType`, `PSceneRenderPassType`, `PShadowCasterType`, `PTextureFormatBase`, `PUInt128`, `PUInt16`, `PUInt32`, `PUInt8`, `bool`, `float` |
-| class records with `w7` bit `1`<sub>h</sub> | 0 |
+| class records with `w7` bit `0x1` | 0 |
 | `w7` values | 0 (523,918), 8 (66,379), 32 (49,068), 2 (38,322), 12, 34 and 40 (2,184 each), 20 (5) |
 | fixed-size arrays (`w5` non-zero) | 16 pairs, counts 2 to 23 |
 | class names with a registered descriptor of that name | 177 of 177 (`PBase` and `PClassDescriptor` from `006318A0` and `00631C40`) |
 | pairs registered statically under that class | 527 of 527 |
-| member records whose `w4` & `7FFFFFFF`<sub>h</sub> equals the run-time attribute word | 2,192,621 of 2,192,621 |
+| member records whose `w4` & `0x7FFFFFFF` equals the run-time attribute word | 2,192,621 of 2,192,621 |
 | static member registrations in the executable | 895 (680 plain, 165 array, 29 fixed-size, 21 enum) over 278 descriptors |
 
 `PArray<T>` and `PSharray<T>` appear in files under their full instantiation names
@@ -125,9 +125,9 @@ width 1 and a `PArray` member width 5 in a packed class.
 
 ### Checking the namespace
 
-`0059E070` returns `15`<sub>h</sub> when the byte at `02CA9D90` is clear and `B`<sub>h</sub> when the stream's slot
-`+10`<sub>h</sub> check fails. After the header it accepts the namespace only when it starts with `01020304`<sub>h</sub> and
-`+04h == +1Ch + 20h + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + stringPoolSize`; otherwise it
+`0059E070` returns `0x15` when the byte at `02CA9D90` is clear and `0xB` when the stream's slot
+`+0x10` check fails. After the header it accepts the namespace only when it starts with `0x01020304` and
+`+0x04 == +0x1C + 0x20 + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + stringPoolSize`; otherwise it
 returns 6. It then matches the tables (`0059B430`), handles dynamic classes (`0059AC00`) and reads
 the instances (`0059E300`).
 
@@ -138,7 +138,7 @@ the instances (`0059E300`).
 - **Types.** Each type-table name is hashed and looked up in the global type tree; a miss logs
   "Unable to find type".
 - **Classes.** Each class name is looked up in the type tree and must belong to the target
-  namespace, then in the namespace itself (`0063BA10`). A miss with `w7` bit `1`<sub>h</sub> clear logs "File
+  namespace, then in the namespace itself (`0063BA10`). A miss with `w7` bit `0x1` clear logs "File
   refers to compiled class … which does not exist in the current runtime".
 - **Members.** Each member name is searched in the matched class's member list and then its
   ancestors', with an exact comparison, so a file member can land on a base-class member.
@@ -152,7 +152,7 @@ the instances (`0059E300`).
 - a parent that was added, removed or changed;
 - a member in the file but not in the executable, or the reverse;
 - a member whose type changed;
-- a member whose attribute word differs (run-time word without bit `1`<sub>h</sub> against `w4` without bit
+- a member whose attribute word differs (run-time word without bit `0x1` against `w4` without bit
   31);
 - a fixed-size array whose element count differs from `w5`.
 
@@ -173,10 +173,10 @@ None of these stops the load.
 
 ### Dynamic classes
 
-For a class record with `w7` bit `1`<sub>h</sub> and no registered match, `0059AC00` takes the parent from
+For a class record with `w7` bit `0x1` and no registered match, `0059AC00` takes the parent from
 `w0`, refuses an abstract parent or one without a default constructor, and builds a
 `PClassDescriptorDynamic` (`00632E80`). Its file members become `PClassDataMemberDynamic` records
-through `006393A0` and `00632B30`. A flagged class still without a descriptor returns `13`<sub>h</sub>. No
+through `006393A0` and `00632B30`. A flagged class still without a descriptor returns `0x13`. No
 shipped file sets the flag.
 
 ## Modding notes
@@ -185,7 +185,7 @@ shipped file sets the flag.
   and only logged, and the log is never shown in the shipped game.
 - File offsets need not match run-time offsets; the loader copies member by member. Keep each
   member's type and width (`w3`) equal to the registered ones, or its data is dropped.
-- Setting `w7` bit `1`<sub>h</sub> on a class the executable does not have makes the loader build it from the
+- Setting `w7` bit `0x1` on a class the executable does not have makes the loader build it from the
   file's members, under a parent that is concrete and has a default constructor.
 - The attribute word in a file must equal the registered one apart from bit 31; a different word
   only logs a message.

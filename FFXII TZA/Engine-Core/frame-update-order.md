@@ -32,7 +32,7 @@ progress returns 1 after `0020E4E0()`), counts `01FD4A80`, runs `00183100`, `001
 
 | State | Handler | What it is |
 |---|---|---|
-| 0 | `0022B6E0` | start-up: after `0032E520(1)` reports no load pending and `0209273C` is 5 it moves to state 1 and runs the first-screen set-up (`0035EA30(0)`, `0053DD10(1Ch)`, `00236A40`, `00253A10`, `002EF650` (the new-game payload reset `002EF2D0` and the save-image binding `00253A80`, [save data fields](../Saving-Loading-And-Settings/save-data-fields.md)), `003318C0`, `0037CB30`) |
+| 0 | `0022B6E0` | start-up: after `0032E520(1)` reports no load pending and `0209273C` is 5 it moves to state 1 and runs the first-screen set-up (`0035EA30(0)`, `0053DD10(0x1C)`, `00236A40`, `00253A10`, `002EF650` (the new-game payload reset `002EF2D0` and the save-image binding `00253A80`, [save data fields](../Saving-Loading-And-Settings/save-data-fields.md)), `003318C0`, `0037CB30`) |
 | 1 | `0022B7E0` | title and loading: moves to state 2 when `0032E520(1)` and `0037C2E0()` are both 0, then `00184960(2)` |
 | 2 | `0022A770` | the field frame (below); the default for any other value |
 | 3 | `0022B8C0` | the full menu frame: pad, UI effects, `00314020(1)` under its `ATEL CONTROL` label, sound, the menu's own update; when `002E05C0()` is 0 it closes (`CLOSE FULLMENU`): `00263560`, state 2, `00182D40`, `002E1BA0`, `0024F980(0)`, four `002E1CA0(7)`, `0037CF00`, `003323D0`, `00332660`, `003323B0`, `00376BE0`, `00226280` |
@@ -46,16 +46,16 @@ and from `002E2240`); `00229EA0` is the getter. `01FD4A68` is 1 in states 4 and 
 and `0035E9B0(-16.0)` run before the dispatch; `02064AD8` toggles in every state but 4 and 6;
 states 4 and 6 call `001E0580` first.
 
-`0022BFB0(v)`, the handler of verb `05CA`<sub>h</sub> (through `00340B70`), sets `01FD49E0` and stores `v` at
+`0022BFB0(v)`, the handler of verb `0x05CA` (through `00340B70`), sets `01FD49E0` and stores `v` at
 `01FD49E4`; on the next pass `0022A580` calls `00182810(v)` (`0022A5E3`) and clears the request.
-`00182810` writes `v != 0` to byte `+1E9`<sub>h</sub> of the post-process parameter object (`00193D50`,
+`00182810` writes `v != 0` to byte `+0x1E9` of the post-process parameter object (`00193D50`,
 `00193F70`).
 
 State 1's gate `0037C2E0` walks the entries of the table `[02EBF0A8]` (`003204B0` the count,
 `00320B30` an entry) and resolves each to a record (`002EAE20`) at `02ADD948`. A record with bit
-`4`<sub>h</sub> of `+19`<sub>h</sub> set (`002E4C70` returns 0) goes to `002EAF70`. Any other holds the gate (it returns
-1 and resumes there next frame) until bit `2`<sub>h</sub> of its `+18`<sub>h</sub> is set (`002E4C20`), and then gets bit
-`2`<sub>h</sub> of `+19`<sub>h</sub> (`002EBE20(record, 1)`). The gate returns 0 once every entry is through.
+`0x4` of `+0x19` set (`002E4C70` returns 0) goes to `002EAF70`. Any other holds the gate (it returns
+1 and resumes there next frame) until bit `0x2` of its `+0x18` is set (`002E4C20`), and then gets bit
+`0x2` of `+0x19` (`002EBE20(record, 1)`). The gate returns 0 once every entry is through.
 
 After the handler, with `01FD4A84` set and `00184950()` = 2, `0035E9F0` and `0035E9B0(17.0)` run;
 `001E0560` arms the pump's second pass when `01F82D31` was set; with `01FD4A68` clear,
@@ -65,8 +65,8 @@ pending at `02064AEC` is called and cleared.
 ### The menu frame and the monster viewer
 
 The full menu frame `0022B8C0` (state 3) runs a few steps that only matter for the Bestiary's
-monster viewer, the object at `01F82E18` (`001EBA40`, `2E0`<sub>h</sub> bytes, constructor `001EB190`;
-[Clan Primer](../Menus-And-HUD/clan-primer.md)). `00181DD0` reads its byte `+118`<sub>h</sub>, set while a monster is
+monster viewer, the object at `01F82E18` (`001EBA40`, `0x2E0` bytes, constructor `001EB190`;
+[Clan Primer](../Menus-And-HUD/clan-primer.md)). `00181DD0` reads its byte `+0x118`, set while a monster is
 shown:
 
 1. without a monster shown it starts with `00182370` (`00186110` on the render manager);
@@ -75,30 +75,30 @@ shown:
 3. it installs `0022BEB0` as the menu draw callback (`002D0570` stores it at `0209E630`);
 4. after `OTHER`, with a monster shown, `00181B20` posts a `CopyBufferObj` (`0018B8B0`,
    `001F1810`) between the first entry of `00186910(render manager, 0)` (null when that entry's byte `+8`
-   is set) and the viewer's `+278`<sub>h</sub>; `00181E50` then steps the viewer's fade at `+20`<sub>h</sub> (`001EC000`);
+   is set) and the viewer's `+0x278`; `00181E50` then steps the viewer's fade at `+0x20` (`001EC000`);
 5. with a monster shown it sets `02064AE8` and runs `003323D0`, `00314370(0)` and `0036F510`, and
    when `00181DB0()` is 0 and `00358340()` holds, `00258E40`; `00181DB0` is `001EB990`, which holds
-   while the viewer's byte `+26D`<sub>h</sub> or `+26E`<sub>h</sub> is set. Without a monster, a set `02064AE8` is
+   while the viewer's byte `+0x26D` or `+0x26E` is set. Without a monster, a set `02064AE8` is
    cleared and `00314370(1)` and `0036F510` run.
 
 The draw callback `0022BEB0` brackets the frame's own draws with `001FBE50` and `001FBD80(1)`.
-With a monster shown it posts the same copy for the viewer's `+270`<sub>h</sub> (`00181AB0`) and, when
+With a monster shown it posts the same copy for the viewer's `+0x270` (`00181AB0`) and, when
 `002EF030()` is 1, interleaves `00258EE0(1)` to `00258EE0(5)` and `00375500(2)` / `(3)`, each behind
 `003583F0(0)` or `00358350(0)`, with the viewer's turn `00184690` (`001EC060`).
 
 It starts the viewer's 80-frame fade (`00181C10`, `001EBCF0`:
-halved when `001EDE70()` is 0, from 200 down by 200 / frames) once `00181C70()` (`+284`<sub>h</sub>) is 0,
-and steps that fade, the one at `+00`<sub>h</sub>, with `00181E30` (`001EBF90`). Both fades draw through `001EB800`.
+halved when `001EDE70()` is 0, from 200 down by 200 / frames) once `00181C70()` (`+0x284`) is 0,
+and steps that fade, the one at `+0x00`, with `00181E30` (`001EBF90`). Both fades draw through `001EB800`.
 
 The two capture states share their tail. `0022AF50` (state 4) and `0022B000` (state 6) both run
 `00332590`, which points `022C6F20` at `022C6F30`, runs `0041E500` and `00426950`, and clears
-arena 6's byte `+62`<sub>h</sub> in the table at `022D7FD0` when bit 6 of `022D89B8` is set (`003697C0(6)`).
-They also run `00376D80`, which for each of the eight records at `02ADBB40` (stride `90`<sub>h</sub>) with
-a non-zero first word sets bit 3 of `+54`<sub>h</sub> and copies `+08`<sub>h</sub>, `+10`<sub>h</sub>, `+18`<sub>h</sub> and `+20`<sub>h</sub> into
+arena 6's byte `+0x62` in the table at `022D7FD0` when bit 6 of `022D89B8` is set (`003697C0(6)`).
+They also run `00376D80`, which for each of the eight records at `02ADBB40` (stride `0x90`) with
+a non-zero first word sets bit 3 of `+0x54` and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into
 the word after each.
 
 State 6 also runs `00375F20`, which sets bit 0 of the first word of the
-records at `02EBF9F0` (stride `70`<sub>h</sub>) up to the first whose `+58`<sub>h</sub> is 0.
+records at `02EBF9F0` (stride `0x70`) up to the first whose `+0x58` is 0.
 
 ### The field frame
 
@@ -109,7 +109,7 @@ among others reads: once when `001EC760` returns 0, and in the pass loop's first
 pusher `0020AF10` zeroes it (`0020AFAA`).
 
 Before the pad, once per `01E02824` with `00264610(0)` non-null, the deferred `0026B730(01E02808
-& FFFFh)` runs. Each pass of the loop then:
+& 0xFFFF)` runs. Each pass of the loop then:
 
 - runs the speed-mode pad block (below);
 - sets the speed factor `02064AC4` to 1.0 or, with the speed permit `02064AD2` set, the entry of
@@ -126,8 +126,8 @@ Before the pad, once per `01E02824` with `00264610(0)` non-null, the deferred `0
   value `(acc - [02AD9B50]) * 30 / ([01DFE0B8] * 30)` for the accumulator `acc` (`0036F472`,
   `0036F4A1`-`0036F4B9`), and stores in `02AD9B50` `acc`, less 1.0 repeatedly while it is 1.0 or more
   (`0036F47A`-`0036F499`);
-- `0036F460` ends with `00468520`, which runs `003CD820` on `+14`<sub>h</sub> of each record of the table
-  `[02CA6010]` (count `[02CA6020]`, stride `40`<sub>h</sub>) whose `+4` is 0.
+- `0036F460` ends with `00468520`, which runs `003CD820` on `+0x14` of each record of the table
+  `[02CA6010]` (count `[02CA6020]`, stride `0x40`) whose `+4` is 0.
 
 While the accumulator is at least 1.0, one simulation step runs:
 
@@ -168,15 +168,15 @@ With `0017E4E0()` non-zero the frame runs `002506D0` and, when `001EC560()`, the
 - The permit byte `022C7F9A` is set to 1 at boot (`00358510`) and by `00358280` at the end of
   every step; during the step `003586A0(k, 1)` sets bit 1 when `002361A0()`, bit 3 when
   `00265760()`, bit 2 unless `00226BC0()` and bit 4 unless `002F1A20()`; `00358550()` is
-  `byte == 1Fh`: every precondition held this step.
+  `byte == 0x1F`: every precondition held this step.
 - The speed index `01FD4A98` (0 to 2) is written only by `00229ED0`: `00233700` on a press of pad
   bit 10 (0 to 1, or 0 to 2 when `002DDDA0()` is 1; any other value back to 0), `00233640` while
   held (through `002335D0`), and the resets `002370A0` (from `003603C0`), `00239790`, `00237DF0`,
   `00233C10` and `0023B2E0`.
 - When `00233700` or `00233640` raises the index to 1 or 2 it also calls `00182FB0(index)`, as do
   `00239790` and `0023B2E0`. That runs `001D85C0` on the `ExtraUI` object `[01F82CD0]` (`001D8210`,
-  built by `001D8150`): `+60`<sub>h</sub> = 255.0, `+64`<sub>h</sub> = 6.0, `+69`<sub>h</sub> = 1, `+6C`<sub>h</sub> = 1.5, and `+40`<sub>h</sub> copied
-  from `+58`<sub>h</sub> for index 2, else from `+48`<sub>h</sub>.
+  built by `001D8150`): `+0x60` = 255.0, `+0x64` = 6.0, `+0x69` = 1, `+0x6C` = 1.5, and `+0x40` copied
+  from `+0x58` for index 2, else from `+0x48`.
 - The pad block at the top of each pass clears the latch `01FD4A74` when `00265760()` is 0 or
   `00226BC0()`, `002F1A20()` or `0028F6A0()` holds; otherwise, with `0017DEA0()` 0, bit 10 of
   `0036FF70()` and `0036FFD0()` sets the latch and runs `0023B200` (the edge through `0208E6B8`:
@@ -195,18 +195,18 @@ L, except that below L, outside frame mode 3 (`00229EA0`), it returns 2L - a.
 
 ### The ExtraUI overlay
 
-The `ExtraUI` object `[01F82CD0]` (`90`<sub>h</sub> bytes, built once by `001D8150`) draws two pictures through the sprite
+The `ExtraUI` object `[01F82CD0]` (`0x90` bytes, built once by `001D8150`) draws two pictures through the sprite
 batcher, each as a four-vertex quad on a screen of 1920 x 1080, or 512 x 448 when `001B1620` answers 0 or the
-batcher's byte `+3A98`<sub>h</sub> is set (`001D7110` and `001D70D0` return the width and height):
+batcher's byte `+0x3A98` is set (`001D7110` and `001D70D0` return the width and height):
 
-- the speed mark (picture `+30`<sub>h</sub>/`+38`<sub>h</sub>, cell `+40`<sub>h</sub>), whose alpha `+60`<sub>h</sub> `001D8520` swings between 63 and
+- the speed mark (picture `+0x30`/`+0x38`, cell `+0x40`), whose alpha `+0x60` `001D8520` swings between 63 and
   255 by 1.0 a frame (0.5 when `00184950` is not 2); after a speed change it starts at 1.5 times its size
-  (`001D82D0`, scale `+6C`<sub>h</sub>) and shrinks by 0.1 a frame (0.05 when `00184950` is 1) until it reaches 1;
-- a second picture (`+70`<sub>h</sub>, `+78`<sub>h</sub>, `+80`<sub>h</sub>) whose alpha `+88`<sub>h</sub> `001D8240` swings the same way at
-  `+8C`<sub>h</sub> per 1/60 second (`0017D270`).
+  (`001D82D0`, scale `+0x6C`) and shrinks by 0.1 a frame (0.05 when `00184950` is 1) until it reaches 1;
+- a second picture (`+0x70`, `+0x78`, `+0x80`) whose alpha `+0x88` `001D8240` swings the same way at
+  `+0x8C` per 1/60 second (`0017D270`).
 
-`001D7280` draws the second picture when `001C18E0()`'s byte `+40`<sub>h</sub> is set or `00583920` answers non-zero
-(`001D72F0`), and the speed mark while `00229DF0` answers non-zero and `+68`<sub>h</sub> is set (`001D7DD0`).
+`001D7280` draws the second picture when `001C18E0()`'s byte `+0x40` is set or `00583920` answers non-zero
+(`001D72F0`), and the speed mark while `00229DF0` answers non-zero and `+0x68` is set (`001D7DD0`).
 `001829C0(x, y)`, from `00474100`, draws the second picture at a given place (`001D76A0`), and `00182A40`
 restarts its swing at 255 (`001D85A0`).
 
@@ -232,11 +232,11 @@ zeroes the four party-roster pointers `0209A1F0`-`0209A20F`; then, with or witho
 runs the unload `002628B0` for each set bit from 4 down to 0, clearing each bit after its call. A
 menu frame therefore never stops queued area preparation or the roster clear.
 
-The slot loops work on the five actor-manager slots at `02098E10`, stride `288`<sub>h</sub>, and their
+The slot loops work on the five actor-manager slots at `02098E10`, stride `0x288`, and their
 shape depends on the mode:
 
 - mode 0: `003DF760(0, n, 0, 0, 0)` for n = 1 to 5; then sixteen sub-steps: for each slot, when
-  the sub-step is 0 or the slot's byte `+201`<sub>h</sub> (`00267310`) is set, the orchestrator
+  the sub-step is 0 or the slot's byte `+0x201` (`00267310`) is set, the orchestrator
   `00234590(slot)`, the actor drive pass `0025D9E0(slot)` ([field
   runtime](../Characters-And-Objects/field-runtime.md)) and `00234520(slot)`; after sub-step 0's first
   loop `00253C50` and `00268D10`; then, under the same gate, the post-pass `003DB1F0(slot)`;
@@ -244,7 +244,7 @@ shape depends on the mode:
   `00234520`, then `00253C50`;
 - any other mode: no slot work.
 
-Sub-steps 1 to 15 repeat the same three calls and the post-pass for a slot whose `+201`<sub>h</sub> byte is
+Sub-steps 1 to 15 repeat the same three calls and the post-pass for a slot whose `+0x201` byte is
 non-zero; nothing receives the step number. The byte is a bit set: `0026A5B0(slot, on, bit)` sets
 or clears one bit, the script-skip begin `00360710(bit, slot)` sets it for a non-zero slot and the
 skip end `00360A50` clears it, and `00267310` returns the whole byte, so any pending skip opts the
@@ -252,8 +252,8 @@ slot in.
 
 Slot 0 never gets a bit, so the field never fast-forwards: the repeats exist for the
 cutscene managers during `skipexec`. The post-pass `003DB1F0` walks a live slot's records:
-for a record whose byte `+63`<sub>h</sub> is set it turns every `1` at `+11`<sub>h</sub> of the `+89`<sub>h</sub> entries of
-stride `14`<sub>h</sub> at `[+A0h]` into `2`, then runs `003DB6E0` on every record and shifts `+63`<sub>h</sub> right
+for a record whose byte `+0x63` is set it turns every `1` at `+0x11` of the `+0x89` entries of
+stride `0x14` at `[+0xA0]` into `2`, then runs `003DB6E0` on every record and shifts `+0x63` right
 by one.
 
 The tail, every mode: `022C252C` and `022C2530` increment; the separation pass
@@ -283,22 +283,22 @@ behind the menu:
 2. the clock: `0032A150()` before and after `0032A100` ([enemy
    respawning](../Enemy-Spawning/enemy-respawning.md)); bit 2 = the counter did not
    move;
-3. unless `0035C700()` or `00306BB0()`: UI request `0B`<sub>h</sub> when `002371B0()` holds, else `18`<sub>h</sub> when
+3. unless `0035C700()` or `00306BB0()`: UI request `0x0B` when `002371B0()` holds, else `0x18` when
    `00237140()` holds (`0035C7A0`);
 4. `00313A00` (row 2 of [action availability](../Controls-And-Input/action-availability.md)); then, when the force-fight predicate `00253B90()` differs from the inverse of bit 3,
    the unit reset loop: for every unit `0030A880(buffer, 1)` lists, `00300140(unit, keep)` with `keep` = unit
-   bit 24 clear, and (`+714`<sub>h</sub> above `21E`<sub>h</sub> or `+6B4`<sub>h</sub> below 9), and `+714`<sub>h</sub> not `113`<sub>h</sub>, and
-   the status words `+3Ch | +64h` clear of `8000020`<sub>h</sub>; then bit 3 is toggled;
+   bit 24 clear, and (`+0x714` above `0x21E` or `+0x6B4` below 9), and `+0x714` not `0x113`, and
+   the status words `+0x3C | +0x64` clear of `0x8000020`; then bit 3 is toggled;
 5. bit 1 cleared; the lock evaluator `0023B040`; `0032A650`; `003226C0`; `0030CBE0`, which walks the action chain ([action phases](../Battle-Actions/action-phases.md)); `003065D0`;
    `00325060`, which steps the generation `022C2578` that the per-unit `003247F0` compares ([enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)); `00307E70`; `00319600`; `00313760`; `00304440`; the group completion `00307030`;
-6. the `18`<sub>h</sub> latch: when `00237260()` holds, bit 9 is set and request `18`<sub>h</sub> raised once
-   (`0035C8A0`) and the rest is skipped; otherwise bit 9 is cleared (`0035C8E0(18h)` when it was
+6. the `0x18` latch: when `00237260()` holds, bit 9 is set and request `0x18` raised once
+   (`0035C8A0`) and the rest is skipped; otherwise bit 9 is cleared (`0035C8E0(0x18)` when it was
    set);
-7. the `17`<sub>h</sub> latch: with no leader, no leader record, or a leader whose status words hold
-   `80000003`<sub>h</sub> without `00377C20()`, bit 8 is set and request `17`<sub>h</sub> raised once; otherwise bit 8
-   is cleared (`0035C8E0(17h)` when it was set);
+7. the `0x17` latch: with no leader, no leader record, or a leader whose status words hold
+   `0x80000003` without `00377C20()`, bit 8 is set and request `0x17` raised once; otherwise bit 8
+   is cleared (`0035C8E0(0x17)` when it was set);
 8. bit 11: with the party-control level at 1 (`003135C0()`) bit 11 is set unless the unit of
-   `003137F0()` exists, has a record, and that record's status words are clear of `80000003`<sub>h</sub> or
+   `003137F0()` exists, has a record, and that record's status words are clear of `0x80000003` or
    `00377C20()` holds; at any other level it is cleared;
 9. the obstacle grid `00392740` ([navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)),
    `0033B6D0`, `003246C0` when a navigation dataset is loaded, and `002F82F0`.
@@ -310,26 +310,26 @@ dataset is loaded.
 
 ### The per-unit frame
 
-`00233F70(slot, record)` has no caller: `00265A20(manager)` stores its address at record `+38`<sub>h</sub>
-for every record whose byte `+14`<sub>h</sub> is at or above `80`<sub>h</sub>, only while the manager's `+28`<sub>h</sub> is 0,
+`00233F70(slot, record)` has no caller: `00265A20(manager)` stores its address at record `+0x38`
+for every record whose byte `+0x14` is at or above `0x80`, only while the manager's `+0x28` is 0,
 up to 32 of them (`00234480(0, record)`
-first, `00234A00` on the record's `+30`<sub>h</sub>, class-3 flag bits cleared, byte `+0E`<sub>h</sub> low bits set,
-`00238FA0` for a party row), clearing bit 4 of `+14`<sub>h</sub> on the 33rd and beyond, and keeps the
-count at the manager's `+1E8`<sub>h</sub>. The actor drive pass calls the callback per record ([field
+first, `00234A00` on the record's `+0x30`, class-3 flag bits cleared, byte `+0x0E` low bits set,
+`00238FA0` for a party row), clearing bit 4 of `+0x14` on the 33rd and beyond, and keeps the
+count at the manager's `+0x1E8`. The actor drive pass calls the callback per record ([field
 runtime](../Characters-And-Objects/field-runtime.md)).
 
 Inside, the unit (`0031B760(record)`) must exist, `002671C0()` must hold (slot 0 active with
 `02098E21` bit 0 and `02098E20` bit 7 clear and `02099DA1` zero), a navigation dataset must be
 loaded, unit flag bit 3 must be set and bit 16 clear. Then:
 
-- bit 4 clear: when `00267240(record)` holds (byte `+10`<sub>h</sub> zero and `+14`<sub>h</sub> bit 6 or `+0C`<sub>h</sub> bit 0)
-  and the unit's `+698`<sub>h</sub> record exists, bit 4 is set: the unit is simulated from the next frame;
-- bit 4 set, with a `+698`<sub>h</sub> record whose status words `+3Ch | +64h` are clear of `80000003`<sub>h</sub>
+- bit 4 clear: when `00267240(record)` holds (byte `+0x10` zero and `+0x14` bit 6 or `+0x0C` bit 0)
+  and the unit's `+0x698` record exists, bit 4 is set: the unit is simulated from the next frame;
+- bit 4 set, with a `+0x698` record whose status words `+0x3C | +0x64` are clear of `0x80000003`
   or with `00377C20()`: the active frame `00307C70`, `00236300`, `00310DB0` (the periodic status step, [status timers](../Status-Effects-And-KO/status-timers.md)), `003247F0`, `00308610`,
-  `0023A070`, `002350C0(unit + 10h)`, then `00312700`;
+  `0023A070`, `002350C0(unit + 0x10)`, then `00312700`;
 - bit 4 set, the gate failed, bit 1 set: `00312700` only;
 - bit 4 set, the gate failed, bit 1 clear, a spawn-backed unit (record byte `+5` = 1 and
-  `[+E68h]+18h & Eh` = 4): `00236300`, `0033A240(unit + 80h)`, `0023A070`, `00312700`;
+  `[+0xE68]+0x18 & 0xE` = 4): `00236300`, `0033A240(unit + 0x80)`, `0023A070`, `00312700`;
 - otherwise idle: bit 1 of the battle-state word is set when `003070E0()` is 0; `0026A330(actor,
   0)`; `003057D0`; `r = 0030CA50(unit)`; with unit bits 33 and 34 set and not (`00322310(r)` = 0
   and `003228E0(r)` non-zero) the unit is torn down (`00300E40(unit, 0)`); then `00312700`.
@@ -338,7 +338,7 @@ loaded, unit flag bit 3 must be set and bit 16 clear. Then:
 
 `02089340` is one dword the frame and the battle layer share. `002341C0`, the area teardown reset
 (`0030FE60`, `00383A20`, `00306570(0)`, `00392710`, `002FAEC0`, `0031BD60`, `00325080`, `00319B10` (resets the loot pickup pool, [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)),
-`002FA470`), clears bit 4. The area initialisation `002342F0` writes `(word & FFFFC01Eh) | 10h`:
+`002FA470`), clears bit 4. The area initialisation `002342F0` writes `(word & 0xFFFFC01E) | 0x10`:
 bit 4 set, bits 0 and 5 to 13 cleared at once. The boot's battle work init `002368D0` zeroes the
 word.
 
@@ -346,7 +346,7 @@ The area initialisation also runs three resets: `00307FF0` (`00234432`) clears `
 2 and zeroes `022C1F40`, as the engagement update does ([force-fight mode](force-fight-mode.md));
 `00322190` (`00234437`) zeroes the sixteen `u16` words at `0208D334` that `0031B4F0` reads and
 `00328D90` writes; `0030C3F0` (`0023445E`) zeroes the 32 records of 12 bytes at `022C1DB0`, one per
-unit slot byte `+EA9`<sub>h</sub>, where `00312FA0` saves a unit's `+DC8`<sub>h</sub> word and `+E58`<sub>h</sub> dword and
+unit slot byte `+0xEA9`, where `00312FA0` saves a unit's `+0xDC8` word and `+0xE58` dword and
 `00308270` restores them.
 
 | Bit | Set by | Cleared by | Meaning |
@@ -356,12 +356,12 @@ unit slot byte `+EA9`<sub>h</sub>, where `00312FA0` saves a unit's `+DC8`<sub>h<
 | 2 | the orchestrator when the clock counter did not move | the orchestrator | the clock stood still this step |
 | 3 | toggled by the orchestrator's reset loop | the same | reset-loop parity against `00253B90` |
 | 4 | the area initialisation `002342F0` | `002341C0`; `002368D0` | an area is live; the party and menu resolvers test it |
-| 5 | `00238B70(1)`, which also posts message `30B`<sub>h</sub> (`002E7C10`) to every unit with byte bit 4 in the unit table at `[0208E688]` (stride `F50`<sub>h</sub>, count `0208E6A0`); called from `00306F00`, `00359A30`, `0035A6F0` and `0035AB20` | `00238B70(0)`; `002342F0` | |
+| 5 | `00238B70(1)`, which also posts message `0x30B` (`002E7C10`) to every unit with byte bit 4 in the unit table at `[0208E688]` (stride `0xF50`, count `0208E6A0`); called from `00306F00`, `00359A30`, `0035A6F0` and `0035AB20` | `00238B70(0)`; `002342F0` | |
 | 6 | `0032A200`, which also runs `003B0770` when `0208CD1C` is not -1 and sets it to -1 | `0032A170`, the treasure verb's close, when `0208CD18` is 0 (the same `003B0770` tail); `002342F0` | the treasure-open verb's begin |
 | 7 | `00238AE0(1)`, from the same four callers as bit 5 | `00238AE0(0)`; `002342F0` | |
-| 8 | `00300FC0` when the torn-down unit's id is `003590D0()` (request `17`<sub>h</sub>); the orchestrator's `17`<sub>h</sub> latch | the latch; `002342F0` | the leader is incapacitated |
-| 9 | `00300FC0` when `00237260()` (request `18`<sub>h</sub>); the `18`<sub>h</sub> latch | the latch; `002342F0` | every active low-type party member is down |
-| 10 | `00300FC0` when `002372E0()` (request `0B`<sub>h</sub>) | `002342F0` | the whole roster is down |
+| 8 | `00300FC0` when the torn-down unit's id is `003590D0()` (request `0x17`); the orchestrator's `0x17` latch | the latch; `002342F0` | the leader is incapacitated |
+| 9 | `00300FC0` when `00237260()` (request `0x18`); the `0x18` latch | the latch; `002342F0` | every active low-type party member is down |
+| 10 | `00300FC0` when `002372E0()` (request `0x0B`) | `002342F0` | the whole roster is down |
 | 11 | `00300FC0` when `002373C0()`; the orchestrator's bit-11 test | the orchestrator; `002342F0` | the summoner of `003137F0()` is out of play |
 | 12 | `00238B00(1)`, from `002628B0`, `002678C0`, `0026C8C0` and `0025D580` | `00238B00(0)`; `002342F0` | brackets a definition load or unload |
 | 13 | `00238B20(1)`, from `0025B740` only | `00238B20(0)`; the orchestrator at the top of every step; `002342F0` | |
@@ -369,16 +369,16 @@ unit slot byte `+EA9`<sub>h</sub>, where `00312FA0` saves a unit's `+DC8`<sub>h<
 | 26 | the verb `btlSetViewCheckMode` (`0050F170`) | the same verb with 0 | a script mode flag |
 | 29 | the verb `btlAtelSetRealBattleMode` (`0050F380`, which also runs `00308DE0`) | the same verb with 0 | a script mode flag |
 
-`00300FC0(unit, mode)` is the unit teardown. For a kind-0 record of type `1B`<sub>h</sub> to `27`<sub>h</sub> in mode
+`00300FC0(unit, mode)` is the unit teardown. For a kind-0 record of type `0x1B` to `0x27` in mode
 0 it runs `003105D0` and `003138D0(0)` only. Otherwise:
 
 1. `00310780`, `002ED180`, the flag clears (`*unit &= ~(bits 1, 19, 20 and 33)`, `+4 &= ~4`),
    `0026DAC0(actor, -1.0)`, `0026A330(actor, 0)`, `003219D0(type, 0, 0, 1)`;
-2. `002372E0()`: bit 10, `003001D0`, request `0B`<sub>h</sub>, the lock evaluator `0023B040`, return;
-3. else `00237260()`: bit 9, `003001D0`, request `18`<sub>h</sub>, the evaluator, return;
+2. `002372E0()`: bit 10, `003001D0`, request `0x0B`, the lock evaluator `0023B040`, return;
+3. else `00237260()`: bit 9, `003001D0`, request `0x18`, the evaluator, return;
 4. else `002373C0()` sets bit 11 alone; then an id equal to `003590D0()` sets bit 8 and raises
-   `17`<sub>h</sub>; and in mode 0 at party-control level 1, when the unit is the one of the summoner's row
-   `[02EBF190] + 5AD5h` (`0031B770`), `003138D0(0)` and the evaluator run.
+   `0x17`; and in mode 0 at party-control level 1, when the unit is the one of the summoner's row
+   `[02EBF190] + 0x5AD5` (`0031B770`), `003138D0(0)` and the evaluator run.
 
 ## Layouts
 
@@ -390,7 +390,7 @@ Main loop cells (`02064AA0` ..):
 | `02064AA8` | `u32` | steps this pass | `02064AC0`  f32  time accumulator |
 | `02064AC4` | `f32` | speed factor | `02064AC8`  f32  step gain (1.0) |
 | `02064ACC` | `u32` | pacer ticks per frame | `02064AD0`  u8   game-step count |
-| `02064AD1` | `u8` | 02064AD2 | u8   speed permit (`00358550`: `022C7F9A` == `1F`<sub>h</sub>) |
+| `02064AD1` | `u8` | 02064AD2 | u8   speed permit (`00358550`: `022C7F9A` == `0x1F`) |
 | `02064AD3` | `u8` | state 0-6 | `02064AD4`  f32  1.0 |
 | `01FD4A68` | `u32` | 1 in states 4 and 6 | `01FD4A84`  u32  1 in states 2, 3 and 5 |
 | `01FD4A80` | `u32` | frame counter | `01FD4A74`  u32  speed pad latch   `01FD4A8C`  u32  one-shot 1.0 accumulator reload |
@@ -405,7 +405,7 @@ Tick globals:
 | `022C2548` | `u32` | tick in progress | `022C252C` / `022C2530`  u32 tick counters |
 | `01EED060` | `/ 01EED064` | i32 | the deferred mode request (-1 none) |
 | `02099ABC` | `u32` | manager request mask (bits 0-4) |  |
-| `02098E10` | `actor-manager` | slots, | 5 x `288`<sub>h</sub>: +`201`<sub>h</sub> u8 sub-step opt-in |
+| `02098E10` | `actor-manager` | slots, | 5 x `0x288`: +`0x201` u8 sub-step opt-in |
 | `02089340` | `u32` | the battle-state word | `0208E6A8` / `0208E6A4`  the one-shot callback and its handle |
 
 ## Shipped data
@@ -415,7 +415,7 @@ Tick globals:
 | slots, sub-steps | 5 and 16, both immediates at every loop |
 | state handlers | 7, states 0 to 6 |
 | accumulator gain | `02064AC8` 1.0 at boot; `02064AC4` 1.0 or the `00908BA8` entry {1.0, 2.0, 4.0} at speed index 0 to 2 |
-| speed permit | `022C7F9A` must read `1F`<sub>h</sub> after the step |
+| speed permit | `022C7F9A` must read `0x1F` after the step |
 | console markers | two strings at `00D103E0` and `00D10420` printed before a deferred mode request |
 | unit callbacks | at most 32 per manager (`00265A20`) |
 
@@ -430,7 +430,7 @@ unit frame per bound record.
 
 The state byte and the main-loop cells; the tick-active word, the two tick counters, the
 deferred request and the manager request mask; the battle-state word, its one-shot callback, the
-slots' `+201`<sub>h</sub> bytes.
+slots' `+0x201` bytes.
 
 ## Modding notes
 

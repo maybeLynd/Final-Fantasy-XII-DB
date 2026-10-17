@@ -16,7 +16,7 @@ addresses: "00379D20, 003EAB60, 003EAB90, 003EAA70, 02B5E0D0, 00360C70, 022CBA50
 
 ### The music control file
 
-`musicctrl.bin` is kind 9 file `20`<sub>h</sub>, `PS2Data\image\ff12\in\common\musicctrl.bin` in the `in` path table
+`musicctrl.bin` is kind 9 file `0x20`, `PS2Data\image\ff12\in\common\musicctrl.bin` in the `in` path table
 (`01E12660`); a `ch` copy holds the same bytes. The boot loader `00379D20` reaches `003EAB60` with a jump
 (`00379D32`), and `003EAB60` requests the whole file and keeps the pointer at `02B5E0D0`. The completion
 `003EAB90` adds the file's own address to every non-zero page offset (`003EAB90`-`003EABD6`).
@@ -31,27 +31,27 @@ track's first byte, or 0 for a negative track or no file.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `char[4]` | magic | "MUS0" |
-| `04`<sub>h</sub> | `u32` | maxField | 1311, the highest field id |
-| `08`<sub>h</sub> | `u32[11]` | pageOffset | one page per 128 field ids; 0 for a page with no runs |
+| `+0x00` | `char[4]` | magic | "MUS0" |
+| `+0x04` | `u32` | maxField | 1311, the highest field id |
+| `+0x08` | `u32[11]` | pageOffset | one page per 128 field ids; 0 for a page with no runs |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u16` | fields | bits 0-10 the first field id, bits 11-15 how many more follow |
-| `02`<sub>h</sub> | `u8` | rungs | ladder steps after the run |
-| `03`<sub>h</sub> | `u8` | track | the track, 0 for none |
+| `+0x00` | `u16` | fields | bits 0-10 the first field id, bits 11-15 how many more follow |
+| `+0x02` | `u8` | rungs | ladder steps after the run |
+| `+0x03` | `u8` | track | the track, 0 for none |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u16` | above | a story counter value |
-| `02`<sub>h</sub> | `u8` | track | the track once the counter is above it, 0 for none |
+| `+0x00` | `u16` | above | a story counter value |
+| `+0x02` | `u8` | track | the track once the counter is above it, 0 for none |
 
 `musicinfo.bin` is 256 entries of two bytes, one per track:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u8` | flags | bit 0 boss music |
-| `01`<sub>h</sub> | `u8` | b01 | read by no code: `00361010` is the only reader of the file's pointer |
+| `+0x00` | `u8` | flags | bit 0 boss music |
+| `+0x01` | `u8` | b01 | read by no code: `00361010` is the only reader of the file's pointer |
 
 ### The lookup
 

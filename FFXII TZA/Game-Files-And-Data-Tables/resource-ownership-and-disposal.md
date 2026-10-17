@@ -23,18 +23,18 @@ released by its own routine, in a fixed order.
 ### The render resource bank
 
 Every loaded source that renders goes through one door: `0041E580(manager, source)` loads the bank at
-`manager + D90h` and jumps to `00409FE0`. The manager is `[[022C6F28] + 48830h]` decoded with
-`0020E600`. The bank holds `50`<sub>h</sub>-byte entries (layout below).
+`manager + 0xD90` and jumps to `00409FE0`. The manager is `[[022C6F28] + 0x48830]` decoded with
+`0020E600`. The bank holds `0x50`-byte entries (layout below).
 
 `00409FE0` first looks for an entry with the same tag and name. A match returns that entry unchanged:
 its source is not replaced and its data is not parsed again. Otherwise it takes a new slot and fills
 it with `00409A60`, which picks the mode from the source value (`003AB860`):
 
 - **Mode 0, owned copy** (an untagged pointer): the entry reserves a buffer of the size in the
-  source's header `+8`, copies the bytes into it, and from then on uses only the copy (`+10`<sub>h</sub>). The
+  source's header `+8`, copies the bytes into it, and from then on uses only the copy (`+0x10`). The
   caller still owns the original.
-- **Mode 1, retained source** (a tagged handle): the entry stores the handle at `+30`<sub>h</sub> and the
-  resolved pointer at `+38`<sub>h</sub> and copies nothing. The bytes stay owned by whoever allocated them.
+- **Mode 1, retained source** (a tagged handle): the entry stores the handle at `+0x30` and the
+  resolved pointer at `+0x38` and copies nothing. The bytes stay owned by whoever allocated them.
 
 Both modes pad the root and child section names to 32 bytes inside the input before the split, so
 the input is written to either way.
@@ -43,12 +43,12 @@ the input is written to either way.
 
 When the source is an `@FRP` container with an `@FEF` section (`00409A30`), `00409FE0` also makes an
 effect ticket. It looks up a configuration pointer in the table at `02B64380`, indexed by the source
-entry name's last five characters: the letter's code × `500`<sub>h</sub> plus the four digits as a number. A NULL entry writes to
+entry name's last five characters: the letter's code × `0x500` plus the four digits as a number. A NULL entry writes to
 address 0 and ends the game. It then calls `003B38B0(source, offset)` with the section offset from the
 footer, and for a name containing `chara\h` it parses `%d.efx` and stores the number in the ticket
 (`003B3B10`; −1 when it does not parse).
 
-The tickets are 32 records of `38`<sub>h</sub> bytes at `02EBCD80` (`003B3160` builds them at start-up), with a
+The tickets are 32 records of `0x38` bytes at `02EBCD80` (`003B3160` builds them at start-up), with a
 free list (`02EBDB88`) and an in-use list (`02EBDB80` head, `02EBDB90` tail). A ticket id is the slot
 in bits 0–5, a 22-bit counter (`02EBDBB0`) in bits 6–27 and 3 in bits 28–31, so a recycled slot gets a
 new id.
@@ -56,33 +56,33 @@ new id.
 The record is found by the id's low six bits; an id with slot bits 32–63 would land in the
 instance-handle records at `02EBD480`, which follow the tickets, but no ticket id has them.
 `003B38B0` returns 0 with no context when the free list is empty, and `00409FE0` stores that 0 in the
-entry's `+44`<sub>h</sub> (`0040A17C`). Otherwise it:
+entry's `+0x44` (`0040A17C`). Otherwise it:
 
 1. resolves the source (`003AB7F0`) and adds the offset;
-2. fills a stack template: type 3, flags `+2` `|= 0Ch`, the resolved base at `+858`<sub>h</sub>, the source
-   at `+860`<sub>h</sub> and the offset at `+864`<sub>h</sub>;
-3. builds the context with `0024B3A0` and stores it in the ticket `+18`<sub>h</sub>;
-4. parses the effect data with `003EDAD0(base, dword [base + 0Ch])`.
+2. fills a stack template: type 3, flags `+2` `|= 0x0C`, the resolved base at `+0x858`, the source
+   at `+0x860` and the offset at `+0x864`;
+3. builds the context with `0024B3A0` and stores it in the ticket `+0x18`;
+4. parses the effect data with `003EDAD0(base, dword [base + 0x0C])`.
 
 ### Effect contexts
 
-`0024B3A0(template)` allocates `890`<sub>h</sub> bytes, copies the template, links the copy at the head of the
-list `020910A0[type]`, clears `+870`<sub>h</sub>..`+888`<sub>h</sub>, makes it current (`02F97340`) and builds its lookup
-tables, among them the 320-slot `+848`<sub>h</sub> table and the 768-slot `+850`<sub>h</sub> table. Its other callers are
-`0026FB90` (type 2, also flags `|= 0Ch`), `002FC4A0` (type 1), `003B0660`, `003B2220` (type 7) and
+`0024B3A0(template)` allocates `0x890` bytes, copies the template, links the copy at the head of the
+list `020910A0[type]`, clears `+0x870`..`+0x888`, makes it current (`02F97340`) and builds its lookup
+tables, among them the 320-slot `+0x848` table and the 768-slot `+0x850` table. Its other callers are
+`0026FB90` (type 2, also flags `|= 0x0C`), `002FC4A0` (type 1), `003B0660`, `003B2220` (type 7) and
 `003B29B0`.
 
-Flag bit `4`<sub>h</sub> decides whether the context borrows or copies its two large runs of effect records.
+Flag bit `0x4` decides whether the context borrows or copies its two large runs of effect records.
 At `003EE018` and `003EE117` `003EDAD0` tests it:
 
 - **Clear (copy):** allocate the run in arena 8 and copy it, the length truncated toward zero to a
-  multiple of 16; the copy goes to `+878`<sub>h</sub> or `+870`<sub>h</sub>.
-- **Set (borrow):** store the input pointer itself at `+878`<sub>h</sub> or `+870`<sub>h</sub>.
+  multiple of 16; the copy goes to `+0x878` or `+0x870`.
+- **Set (borrow):** store the input pointer itself at `+0x878` or `+0x870`.
 
 A borrowed run is written in place. Each record starts with a `u16` id and a subtype byte, followed by
-its payload. `003A9730` copies them into the payload at `+280`<sub>h</sub> and `+282`<sub>h</sub> and stores the payload's
-address in the `+848`<sub>h</sub> table at the id; `003A9A70` does the same at `+42`<sub>h</sub> and `+44`<sub>h</sub> with the
-`+850`<sub>h</sub> table. Both then relocate the payload's stored offsets. For a mode 0 entry this rewrites the bank's copy; for a
+its payload. `003A9730` copies them into the payload at `+0x280` and `+0x282` and stores the payload's
+address in the `+0x848` table at the id; `003A9A70` does the same at `+0x42` and `+0x44` with the
+`+0x850` table. Both then relocate the payload's stored offsets. For a mode 0 entry this rewrites the bank's copy; for a
 mode 1 entry it rewrites the original source.
 
 ### The four loaders that register sources
@@ -104,16 +104,16 @@ registers a block nothing was read into.
 
 ### Script motion slots
 
-`motionread` (`00A2`<sub>h</sub>, `003492A0`), `motionreadsync` (`00A3`<sub>h</sub>, poll `003499C0`) and `motiondispose`
-(`00A4`<sub>h</sub>, `0034A6A0`) work on 80 records of `1C`<sub>h</sub> bytes at `02B581A0`, five area slots of sixteen.
-The area slot is the running script's (`[[02099D70] + 28h]`), the motion number is the verb argument.
-A record moves through these states (`+04`<sub>h</sub>):
+`motionread` (`0x00A2`, `003492A0`), `motionreadsync` (`0x00A3`, poll `003499C0`) and `motiondispose`
+(`0x00A4`, `0034A6A0`) work on 80 records of `0x1C` bytes at `02B581A0`, five area slots of sixteen.
+The area slot is the running script's (`[[02099D70] + 0x28]`), the motion number is the verb argument.
+A record moves through these states (`+0x04`):
 
 | State | Meaning | Entered by |
 |---|---|---|
 | 0 | idle | reset, a failed sweep, a completed dispose |
 | 2 | armed | `003DDA20`, from state 0 only, also sets bit `i` of `02B58A60[g]` |
-| 1 | allocated but held; never read | the sweep, when the area slot's hold byte `02099011 + g × 288h` is set |
+| 1 | allocated but held; never read | the sweep, when the area slot's hold byte `02099011 + g × 0x288` is set |
 | 3 | read in flight | `003DDA70` |
 | 4 | registered | the completion `003DD850` |
 | 5 | dispose requested while in flight | `003DD420` on state 3 |
@@ -122,12 +122,12 @@ The sweep `003DD4C0` runs over every record with its pending bit and state 2:
 
 1. The area slot's file comes from `0032F240` (enable byte `022C6D18 + g`, selector `022C6D28 + 4g`)
    and `0032F170`: kind 5, index `3s` for slot 0; kind 8, index `4s` for slots 1–3; kind 1, index
-   `s + 6Bh` for slot 4. The motion is read from index + 1, the area's `.mot`.
-2. The offset and length come from the first `88`<sub>h</sub> bytes of that `.mot`, which the area loader keeps
+   `s + 0x6B` for slot 4. The motion is read from index + 1, the area's `.mot`.
+2. The offset and length come from the first `0x88` bytes of that `.mot`, which the area loader keeps
    at `022C6E70[g]`: byte 0 is an active flag, then sixteen `{u32 offset, u32 length}` pairs from `+8`
    (`0032F260`, `0032F290`). Area slot 4 and an inactive header give −1, so slot 4 never loads.
 3. It allocates the length in arena 6, or first in arena 11 when `0037B330()` is 2 and the area slot's
-   byte `+17`<sub>h</sub> has bit `40`<sub>h</sub> (route byte `+0D`<sub>h</sub> = 1; `0037B330` answers only 0 or 4, so this
+   byte `+0x17` has bit `0x40` (route byte `+0x0D` = 1; `0037B330` answers only 0 or 4, so this
    route is never taken), pins the block and stores the handle, length,
    offset, kind and index + 1.
 4. A held area slot goes to state 1; otherwise `003DDA70` files the read (`0032E620`) with the record's
@@ -168,20 +168,20 @@ the movable tree so compaction cannot move it. The sum is `low32(base) + offset`
 a count: one release ends every pin on the block. The only user is `0041FCF0`, which opens a view at
 `0041FFA0` and ends it at `0041FFF8`.
 
-`005371C0(array, fn, first)` uses the same view on a strided array (stride `+20`<sub>h</sub>, count `+24`<sub>h</sub>): it
+`005371C0(array, fn, first)` uses the same view on a strided array (stride `+0x20`, count `+0x24`): it
 opens it (`0051EE30`, `006B5C70`), calls `fn` on `count - first` elements counted from element 0,
 not from `first`, and ends it (`0051EF80`). Its one caller `00537270(array, stride, count, fn)` sizes
 the array (`0051F020`), stores the stride and count, and runs it with `first` 0 when `fn` is set.
 
 ### Disposal order
 
-`0041E490(manager, source)` pins and unpins the source once, then calls `00409D60(manager + D90h,
+`0041E490(manager, source)` pins and unpins the source once, then calls `00409D60(manager + 0xD90,
 source)`. `00409D60` loops while the bank finds an entry for the source (`0051FE30` with the test `004095B0`,
 below), and for each:
 
-1. clears every render record of `[022C6F28]` (`740`<sub>h</sub> bytes each, chained by the word `+4`) whose
-   decoded `+68`<sub>h</sub>, `+E0`<sub>h</sub>, `+F8`<sub>h</sub>, `+42C`<sub>h</sub>, `+430`<sub>h</sub> or `+390`<sub>h</sub> is the source;
-2. cancels the entry's ticket when `+44`<sub>h</sub> is not −1 (`003B37E0`; a 0 there matches no ticket);
+1. clears every render record of `[022C6F28]` (`0x740` bytes each, chained by the word `+4`) whose
+   decoded `+0x68`, `+0xE0`, `+0xF8`, `+0x42C`, `+0x430` or `+0x390` is the source;
+2. cancels the entry's ticket when `+0x44` is not −1 (`003B37E0`; a 0 there matches no ticket);
 3. resets the entry (`00409730`);
 4. removes the slot (`0051FCF0`); when that empties the slot's page, `0051F880` unlinks the page from the
    bank's page list and resets it.
@@ -191,37 +191,37 @@ and name (`0051FE30` with the test `0040A1E0`, which asks `00409A30`); `00504C40
 `@FDM` entries of an object. `00409FE0`'s lookup for an existing entry uses the same test.
 
 The source test `004095B0(entry, source)`, passed through its thunk `0040A200`, compares by the entry's mode
-`+04`<sub>h</sub>: a mode-0 entry holds the source when its decoded handle (`0051EE00(entry + 10h)`) is the source, a
-mode-1 entry when its raw handle `+30`<sub>h</sub> is, and any other mode never. `00409FD0(bank, source)` runs one search
+`+0x04`: a mode-0 entry holds the source when its decoded handle (`0051EE00(entry + 0x10)`) is the source, a
+mode-1 entry when its raw handle `+0x30` is, and any other mode never. `00409FD0(bank, source)` runs one search
 with it and returns the entry's slot or −1; the motion start `00424D80` asks it for the manager's bank
-`+D90`<sub>h</sub> (`004250CC`).
+`+0xD90` (`004250CC`).
 
 `003B37E0(id)` acts only when the slot's whole id matches, so a stale id does nothing. It sets the
-ticket `+30`<sub>h</sub> to −1, then:
+ticket `+0x30` to −1, then:
 
 - detaches the context's effect instances (`0024F4D0`): each instance in the type's list that points
-  to the context (`+340`<sub>h</sub>) is unlinked, its three substructures are released, its deferred block
-  `+380`<sub>h</sub> is queued (256 entries at `02091950`; when full it goes to `00182CA0`), and the instance is
+  to the context (`+0x340`) is unlinked, its three substructures are released, its deferred block
+  `+0x380` is queued (256 entries at `02091950`; when full it goes to `00182CA0`), and the instance is
   freed;
-- frees the context (`0024F410`): unlinks it, releases its five tables, among them `003A9600` (`+848`<sub>h</sub>)
-  and `003A9950` (`+850`<sub>h</sub>), runs `0024F4D0` again and frees the `890`<sub>h</sub> bytes; `02F97340` may be
+- frees the context (`0024F410`): unlinks it, releases its five tables, among them `003A9600` (`+0x848`)
+  and `003A9950` (`+0x850`), runs `0024F4D0` again and frees the `0x890` bytes; `02F97340` may be
   left pointing at it;
 - recycles the instance handles that carry the ticket (`003B39E0`, the 32 records at `02EBD480`);
 - puts the ticket back on the free list with its slot bits and top nibble only.
 
-`003A9600` and `003A9950` depend on the context's byte `+3` bit `1`<sub>h</sub>. When it is set they free the
-run origin (`+870`<sub>h</sub> or `+878`<sub>h</sub>) only if the context copied the run. When it is clear they free every
+`003A9600` and `003A9950` depend on the context's byte `+3` bit `0x1`. When it is set they free the
+run origin (`+0x870` or `+0x878`) only if the context copied the run. When it is clear they free every
 non-null table entry from index 1, whatever the borrow flag. Either way they then free the table.
-`003A7D30` releases the `+840`<sub>h</sub> table the same way, except that with the bit clear it frees all 128
-entries from index 0, and with it set it frees the block at `+880`<sub>h</sub>.
+`003A7D30` releases the `+0x840` table the same way, except that with the bit clear it frees all 128
+entries from index 0, and with it set it frees the block at `+0x880`.
 
 `004096F0(entry)` returns an entry's source: the copy's data for mode 0 (`006B5C70`), the handle
-`+30`<sub>h</sub> for mode 1, and 0 for any other mode.
+`+0x30` for mode 1, and 0 for any other mode.
 
-`00409730(entry)` calls `00427B00` with the entry's `+30`<sub>h</sub>, which clears the render records'
-`+68`<sub>h</sub> (and `+69C`<sub>h</sub>), `+D8`<sub>h</sub>/`+E0`<sub>h</sub> and `+F0`<sub>h</sub>/`+F8`<sub>h</sub> that decode to it, then releases the
-inline buffer (`0051EE80`, which frees a mode 0 copy through `003AB7C0`) and resets `+00`<sub>h</sub> to
-`FFFF`<sub>h</sub>, `+04`<sub>h</sub>, `+30`<sub>h</sub>, `+40`<sub>h</sub> and `+44`<sub>h</sub> (to −1). The cached pointer `+38`<sub>h</sub> is not cleared. A
+`00409730(entry)` calls `00427B00` with the entry's `+0x30`, which clears the render records'
+`+0x68` (and `+0x69C`), `+0xD8`/`+0xE0` and `+0xF0`/`+0xF8` that decode to it, then releases the
+inline buffer (`0051EE80`, which frees a mode 0 copy through `003AB7C0`) and resets `+0x00` to
+`0xFFFF`, `+0x04`, `+0x30`, `+0x40` and `+0x44` (to −1). The cached pointer `+0x38` is not cleared. A
 mode 1 source is not freed here; its loader frees it afterwards.
 
 ### After a source moves
@@ -231,7 +231,7 @@ Compaction can move a mode 1 source. Nothing that moves it repairs the effect da
 (`0024FE70`), first runs `003B3480`, which repairs a borrowing context against the source's new
 address. The repair walks are on the
 [arena page](resource-arena-and-relocation.md#repairing-effect-data-after-its-source-moves). The run
-origins `+870`<sub>h</sub> and `+878`<sub>h</sub> are not in those walks.
+origins `+0x870` and `+0x878` are not in those walks.
 
 ## Layouts
 
@@ -264,7 +264,7 @@ The fields are listed access by access in
 
 ## State
 
-The bank at manager `+D90`<sub>h</sub>, the 32 effect tickets and 32 instance handles with their lists and
+The bank at manager `+0xD90`, the 32 effect tickets and 32 instance handles with their lists and
 counter, the context lists `020910A0`, the current context `02F97340`, and the 80 motion slots with
 their five pending masks at `02B58A60`.
 
@@ -276,7 +276,7 @@ their five pending masks at `02B58A60`.
   effect context.
 - Every `.cm` file with an `@FEF` section needs a non-NULL entry in the `02B64380` table for its name,
   or loading it ends the game.
-- `motionread` loads only motions 0–15 of area slots 0–3, from the offsets in the first `88`<sub>h</sub> bytes of
+- `motionread` loads only motions 0–15 of area slots 0–3, from the offsets in the first `0x88` bytes of
   the area's `.mot`; give each a length of at least 1.
 - Call `motiondispose` before reusing a motion number: `motionread` does nothing unless the slot is
   idle.
