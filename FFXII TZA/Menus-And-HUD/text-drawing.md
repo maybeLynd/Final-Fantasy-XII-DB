@@ -182,12 +182,50 @@ colour `+90`<sub>h</sub> scaled by the alpha `+5A`<sub>h</sub> (and `+58`<sub>h<
 (x, y) through `00397910` and draws it with `002B0280`. `002D8550` sets up the same and draws through `002AF960`, for
 the confirm windows and the pause task (`0057C92A`, `00242373`, `00227F39`).
 
+### The drawer's VIF packet
+
+`002B0280` also fills a VIF1 packet for VU1 in the GS command buffers, as the map screens do
+([Legacy PS2 GS layer](../Graphics/legacy-ps2-gs-layer.md)). It counts its glyphs in the painter's
+`+10D4`<sub>h</sub> (`[0209CC40]`) and closes the packet with `002B1C90` at 20 (`002B0CFA`) and when it ends (`002B1B60`):
+
+1. `002B1C90` moves the data end `0209CC50` back 16 bytes and stores 1 in the last dword before the old end.
+2. It writes the header at the cursor `0209E5A0`: `n | 10000000h`, 0, `10000000`<sub>h</sub> and the UNPACK code
+   `6C008150h | n << 16`, with `n` the 16-byte records from the cursor to the data end.
+3. After those records it appends `10000000`<sub>h</sub>, 0, MSCALF `15000000`<sub>h</sub> and FLUSHA `13000000`<sub>h</sub>, and moves the
+   cursor past them.
+4. It moves the cursor `+08`<sub>h</sub> of the buffer record `[0209CC48]` up to the new cursor, in whole 16 bytes, and flips
+   the buffer (`003A1DB0`).
+
 ### Picking the batch
 
 The interpreter `002AC5F0` sets the painter's base size with `002B1ED0`: `0017F980` and `0017F960` for a context with
 the alternate font (bit 11 of `+44`<sub>h</sub>), otherwise `0017F8A0` and `0017F880`, stored at `0209CC70` and `0209CC74`. It
 opens a font's batch with `002AB820(font, group)`, which calls `001E9D20` through `0017FD30` with the painter
 `[0209D480]` and keeps the pair at `0209CC30` and `0209CC34`.
+
+### The font display's setters and base sizes
+
+The text drawers reach the font display `[01F811F8]` (`001B5FA0`) through small entry points:
+
+| Entry | Body | What the body does |
+|---|---|---|
+| `0017FB00(matrix)` | `001E9C80` (157 bytes) | copies the 64-byte 4x4 matrix to `+E30`<sub>h</sub>-`+E6F`<sub>h</sub>, unless byte `+2379`<sub>h</sub> is non-zero (`001E9C80`); called from the drawers `002B0280`, `002AF960`, `002AC5F0`, `002A9F00`, `002AA800`, `002AAE40`, `002D28E0` and `003649A0` |
+| `0017FC90(a, b, c, d)` | `001E9C40` | stores four corner factors for the next glyph: `+137C`<sub>h</sub> = b·c, `+1380`<sub>h</sub> = a·c, `+1384`<sub>h</sub> = b·d, `+1388`<sub>h</sub> = a·d (`001E9C5A`-`001E9C72`); called from `002B0280`, `002A9F00`, `002AA800`, `002AAE40`, `002AFDC0` and `002AEB20` |
+| `0017F880` | `001E93C0` | font 1's `+30`<sub>h</sub>, 23.0 when font 1 is not registered |
+| `0017F8A0` | `001E9450` | font 1's `+2C`<sub>h</sub>, 20.0 when not registered |
+| `0017F960` | `001E9580` | font 3's `+30`<sub>h</sub>, 23.0 when not registered |
+| `0017F980` | `001E9610` | font 3's `+2C`<sub>h</sub>, 20.0 when not registered |
+
+The glyph emitter `001E8070` multiplies each of the six vertices' alpha by one of the four corner factors
+(`+137C`<sub>h</sub> + 4·i, unless the line's byte `+2348`<sub>h</sub> is set), then sets all four back to 1.0
+(`001E8563`), so a gradient set with `0017FC90` covers one glyph.
+
+The four size bodies find the font in the registry `[01F81200]` (`001B5FB0`) with `001B51C0(registry,
+slot)`, an ordered-tree lookup: from the root `+40`<sub>h</sub> it walks nodes keyed by the `u32` at `+20`<sub>h</sub> and
+returns the node's `+28`<sub>h</sub> for an exact match, or 0 (the header `+30`<sub>h</sub>). The value is returned as it is
+while the byte `01F811E0` is set (`001B1620`, written by `001B24B0`), and otherwise divided by the font's
+scale `+34`<sub>h</sub> (`001FDDB0`) and rounded up with `ceilf`. The batch opener `001E9D20` uses the same lookup
+(`001E9DB9`).
 
 ### The colour table
 

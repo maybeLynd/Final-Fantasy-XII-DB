@@ -105,6 +105,10 @@ two items' query records (`0035D330(1, id << 16)`,
 
 `002CFDA0` orders by `+38`<sub>h</sub>, then `+30`<sub>h</sub>, then the id, and `002D01A0` by `+30`<sub>h</sub>, then the id, all lowest first.
 
+`002D0070` and `002CFE40` are `002CFFE0` and `002CFDA0` for rows that carry the item id in the word `+8`
+instead of `+0`. `002C38B0` (`002C3AF8`) and `002C4720` (`002C4947`, `002C4AF7`, `002C4E4E`, `002C4FCB`)
+pass `002D0070` to `00249CE0`.
+
 Auto-sort is always offered; the other two rows depend on `00564380`. Message 18 clears the row highlights, sets the parent's sort-changed bit
 `+180h |= 40000000h` and clears the root's `+2F0`<sub>h</sub> (`005666D4`). Message 15 frees its backdrop through `0057C340`
 (`00566771`).

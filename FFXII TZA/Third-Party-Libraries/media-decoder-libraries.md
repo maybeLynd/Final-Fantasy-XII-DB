@@ -121,6 +121,31 @@ The decoder's SIMD kernels lie before it, from `00125740` (`emms; ret`). `0016F0
 processor's features with `cpuid` and installs kernels by address (`0016F144` to `0016F167`:
 `00126E10`, `001260E7`, `00127104`, `001263AD`).
 
+### Creating the decoder instance
+
+`0016F2A0` is libvpx's decoder create. Its one caller is the VP8 decode body `0016E4A0`, which calls
+it while the dword at `+1A8`<sub>h</sub> of its context is 0 and stores the instance at `+1B0`<sub>h</sub>. In order:
+
+1. It allocates `44A7`<sub>h</sub> bytes, rounds the block up to 32-byte alignment, keeps the raw pointer just
+   below it and clears `4480`<sub>h</sub> bytes.
+2. It arms the error handler: `setjmp` into `+1320`<sub>h</sub>, with the armed flag `+1318`<sub>h</sub> set to 1.
+3. `00172C30(+12C0h)` sets up the common decoder state (below).
+4. It sets `+4440`<sub>h</sub> to 1 and `+34DC`<sub>h</sub> to 0, builds the dequantiser tables (`00174540`) and the loop
+   filter (`00173640`, `001735C0` on `+1ED0`<sub>h</sub>), clears four 16-byte entries at `+2AD0`<sub>h</sub>, and
+   disarms the handler.
+5. The first instance runs the one-time table setup `0016F1F0`, guarded by `02EBA2EC`; a later
+   instance spins on `Sleep(0)` until that word reads 2.
+
+When the `setjmp` returns non-zero it frees the state with `00172750(+12C0h)` and the block, and
+returns 0.
+
+`00172C30` (176 bytes, called only at `0016F357`) fills the common state: `00179B70` stores the
+processor count (`GetNativeSystemInfo`, at least 1) at `+2228`<sub>h</sub> and the SIMD feature bits from
+`cpuid` at `+2E70`<sub>h</sub>; it copies default probabilities from `01CDBC88` (9 bytes, to `+1DC2`<sub>h</sub>),
+`01CDC058` (4, to `+1DCB`<sub>h</sub>), `01CDC034` (3, to `+1DCF`<sub>h</sub>) and `01CDC054` (3, to `+1DD2`<sub>h</sub>); it
+writes the qword `+BC0`<sub>h</sub> = 1 (`00172CA1`) and zeroes `+BC8`<sub>h</sub>, `+C00`<sub>h</sub>, `+2224`<sub>h</sub>, `+770`<sub>h</sub>,
+`+1938`<sub>h</sub>, `+1944`<sub>h</sub> and `+194C`<sub>h</sub>.
+
 ### Decoder bodies and kernels outside the member lists
 
 Five bodies the decoder calls are in neither libvpx list:
@@ -145,6 +170,16 @@ to them:
 - `0012B980` and `00147B00` are 8x8 transforms built on 14-bit cosine constants: the pairs 15137 and
   6270, 16069 and 3196, 13623 and 9102 (tables from `030015A0` and from `03001A60`), and 23170, twice
   11585 (`03001380`, `03001A20`). VP8 itself uses only the 4x4 transform.
+
+The other kernels from `00125770` to `00158C97` that are in neither list are not reached either:
+no rel32 call, jump or conditional branch in `.text`, no rip-relative operand in any listed function and
+no 8-byte pointer in any section has one of them as its target, while the same scan finds the four
+installs at `0016F144` to `0016F167`.
+
+They are sums of absolute differences, quantizers, 8x8 and 32x32 inverse transforms, intra predictors,
+VP8 loop filters, two- and eight-tap filters and sub-pixel variance kernels. Each is listed with its
+arguments and what it computes in
+[media-decoder-libraries-libvpx-unreferenced-kernels.tsv](media-decoder-libraries-libvpx-unreferenced-kernels.tsv).
 
 ### The VP8 control map
 
@@ -217,7 +252,16 @@ For an Ogg Vorbis material the sound driver uses Tremor, the integer Vorbis deco
 | `007F5850` | `ov_clear` | |
 
 Their callers are the driver's voice code: `Voice::Initialize` (`007EBAD0`), the feed `007EAA60` and
-`007EA050`. Tremor's own header reader compares the same "vorbis" signature (`007F807E`).
+`007EA050`. Tremor's own header reader, `vorbis_synthesis_headerin` (`007F7FF0`), compares the same "vorbis"
+signature (`007F807E`) after the packet's type byte and dispatches on that type:
+
+| Type | Accepted when | Unpacker |
+|---:|---|---|
+| 1 | the packet starts the stream (`+C`<sub>h</sub> of the packet) and the info has no channels yet (`+8` is 0) | `007F7B70`, the info |
+| 3 | the info has channels | `007F79C0`, the comment |
+| 5 | the info has channels and the comment has a vendor string (`+18`<sub>h</sub>) | `007F7680`, the codebooks |
+
+A null packet and any other case return -133 (`OV_EBADHEADER`); a wrong signature returns -132 (`OV_ENOTVORBIS`).
 
 Tremor's inverse MDCT works in fixed point, keeping the high 32 bits of each 64-bit product. Its
 entry `007FF1C0`, called from `007FDC60`, rotates the input with the sine and cosine table
@@ -292,6 +336,7 @@ One of the player's three frame queues, as the queue functions use it:
 | libwebm `mkvparser` | `007FFBC0` to `00808887` and three scattered vtable bodies; 104 functions in `media-decoder-libraries-libwebm-mkvparser.tsv` |
 | libvpx VP8 decoder | `0016DDD0` to `0017C88F`; 116 functions in `media-decoder-libraries-libvpx-vp8-decoder.tsv`, and the four control handlers the function list does not hold (`0016EE40`, `0016EE80`, `0016EFF0`, `0016F030`) in `media-decoder-libraries-libvpx-vp8-control-handlers.tsv` |
 | libvpx kernels | 63 in `media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`, `00125740` to `00158C09` |
+| libvpx kernels nothing reaches | `media-decoder-libraries-libvpx-unreferenced-kernels.tsv`, entries `00125770` to `00158C97` |
 | libvorbis | `008800C0` to `008958AF`; 118 functions in `media-decoder-libraries-libvorbis.tsv` |
 | CRI HCA decoder | `00121000` to `0012573F`; 53 functions in `media-decoder-libraries-cri-hca-decoder.tsv` |
 | Tremor with `vorbisfile` | `007F41A0` to `007F6FAF` and `007F7680` to `007FFBBF`; 103 functions in `media-decoder-libraries-tremor-vorbisfile.tsv` |

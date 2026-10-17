@@ -187,6 +187,7 @@ The selection marker is drawn after them (`0028C970`, `0028EDC9`).
 | `003F1A60(sprite, batch)` | draws one sprite at alpha `80`<sub>h</sub>; with `+EA`<sub>h</sub> bit 0 the alpha drops when the camera looks at it from behind the focus unit (`003590D0`, a dot product below -0.9, eased over distances 1 to 20). It starts a new batch after 24 sprites or a picture change, then runs `003F0610` |
 | `003F0610(batch, sprite)` | computes the four corners and the texture rectangle; the kind `+F0`<sub>h</sub> picks the picture: -1 `chain_item` (1024 x 1024), -2 `targetline_p`, -3 `chainflash` (1024 x 512), any other the picture at `+E0`<sub>h</sub> |
 | `003F1530(list)` | the screen-space list: projects each entry (from the list's `+40`<sub>h</sub>, next at `+F8`<sub>h</sub>) unless `+EC`<sub>h</sub> bit 0 is set, clips it (`00249EE0`), sorts by depth `+120`<sub>h</sub> (`003F1940`; links `+108`<sub>h</sub>, `+110`<sub>h</sub>, `+118`<sub>h</sub>) and draws each with `002B0280`; `003BBB60` also calls it |
+| `003FAB60(..., list, picture, a, b, c, d, ..., type)` | makes one such sprite (`003F0040(list)`; none gives 0): `a` at `+00`<sub>h</sub>, `c` at `+10`<sub>h</sub> and `d` at `+40`<sub>h</sub>. For a `type` below 4 the kind `+F0`<sub>h</sub> is -1 and `+30`<sub>h</sub> takes 16-byte entry `type` of `00D11EE0`; for 4 and 5 the kind is -3 with entry `type - 4` of `00D11F20`; otherwise the kind is 0 with `b` at `+30`<sub>h</sub>. It writes the picture's TEX0 `+30`<sub>h</sub> with a palette offset at `+20`<sub>h</sub> and register 6 at `+28`<sub>h</sub>, sets `+EA`<sub>h</sub> bit 0, keeps the picture at `+E0`<sub>h</sub> and links the sprite (`003F1290`). `003FB3E0` (`003FB648`), from `003FA570`, calls it |
 | `003F12E0(sprite, picture, code, frame)` | binds a sprite to a picture cell found through the picture header's tables (`+40`<sub>h</sub>, `+42`<sub>h</sub>, `+44`<sub>h</sub>): the picture at `+E0`<sub>h</sub>, the texture rectangle (`00271140`) at `+30`<sub>h</sub>-`+3C`<sub>h</sub>. `003F1430` adds a frame offset; the selection marker's `0028D260` and `0028D460` use it |
 
 `003F1530` (`003F15B4`) and the widget draw `00247AE0` (`00247B84`, `00247C32`) take their projection from
@@ -249,6 +250,8 @@ A ring is two halves of six segments. `0028C590` draws each ring with `+D4C`<sub
 | `0028D030(ring)` | for a ring with `+D50`<sub>h</sub> = 1: copies the six 13-record segments of each half (`+000`<sub>h</sub>, `+5D0`<sub>h</sub>) through the VIF writer, after `003F3010` puts the view `02AEDDB0` and the camera `02AED5F0` into each half's matrix block (`+4E0`<sub>h</sub>, `+AB0`<sub>h</sub>) |
 | `0028D980(ring)` | for other rings: the same with 10-record segments, through the sprite batcher too, binding `targetline_p` at the cell `+D7C`<sub>h</sub> + 2 x `+D78`<sub>h</sub>; `0028DC00` draws each segment |
 | `003F26F0(segments, out, n, ...)`, `003F2A70(segments, out, n, ...)` | build `n` segments round the circle, 360 / `n` degrees each, as 13-record (`D0`<sub>h</sub>) or 10-record (`A0`<sub>h</sub>) packets, and copy them out (`00271290`); `0028C620` uses both |
+| `003F5260(block)` | the same matrix copy for `003FBA80`'s block (`003FBDC2`): the 64-byte view `02AEDDB0` to `+10`<sub>h</sub> (`00202C70`) and the 16-byte camera `02AED5F0` to `+50`<sub>h</sub> (`00202C90`); `003F3010` writes them to `+50`<sub>h</sub> and `+90`<sub>h</sub> |
+| `003F5BE0(block)` | writes the VU1 chunk around `003FBA80`'s block (`003FBD52`) for the record count `n` in `+5C`<sub>h</sub>: three `10000000`<sub>h</sub> and an UNPACK header for `n + 5` records, a GIF tag with A+D and two PRIM records (`5B`<sub>h</sub>, `5C`<sub>h</sub>), a GIF tag with end-of-packet, NLOOP `4n + 2` and the registers ST, RGBAQ, XYZF2 (`412`<sub>h</sub>), and after the `n` records FLUSHA and MSCNT (`17000000`<sub>h</sub>); it returns the chunk's length |
 | `0028CF80(ring, v)` | the pulse `0028BB50` runs: for `+D50`<sub>h</sub> = 1 it writes sin(2 pi / (2 x `+D48`<sub>h</sub>)) x v into `+A0`<sub>h</sub> of each `D0`<sub>h</sub> segment (`003F3050`), otherwise v into `+80`<sub>h</sub> of each `A0`<sub>h</sub> segment (`003F25D0`) |
 
 ### The selection marker
@@ -355,6 +358,11 @@ blending along the last segment.
 `002C6DC0(out, keys, n, t)` does it for the overhead display (`002C7F90`, `002C84E0`) over 8-byte keys
 `{i8, i8, u8 curve, u8, i16 time, i16}`, blending through `002752E0`.
 
+`003FB8F0(out, keys, n, t)`, called twice by `003FAF10` (`003FAFE6`, `003FB004`), does it over 12-byte keys
+`{i16, i16 time, i16, i16, i32 curve}`: the first pair of keys with start time <= `t` < end time, else the last
+pair; the later key's curve picks the same blends as a 0-256 ratio, and `002752E0` blends the three `i16`
+values into a word and two bytes at `out`.
+
 ### Vector helpers
 
 The HUD parts and the screens around them share a few small vector helpers:
@@ -368,6 +376,7 @@ The HUD parts and the screens around them share a few small vector helpers:
 | `00270720(out, q)` | the rotation matrix of the quaternion (x, y, z, w) |
 | `00270A10(out, dir)` | the orientation facing a direction: pitch -atan2(y, max(abs x, abs z)) and yaw atan2(x, z), each kept in (-pi, pi], as a quaternion (`00270B40`) |
 | `00270CF0(out, a, b, t)` | spherical interpolation from a (t = 0) to b (t of 1 or more), the short way round |
+| `00270590(out, p, a, b)` | the point nearest `b` on the line through `p` and `a`: it takes the plane of `p`, `a`, `b` (normal `(a - p) x (b - p)`), a second plane through `p` and `a` at right angles to it, and moves `b` along the second plane's normal onto it (`002708E0`, a line and plane intersection); `out` is `b` with w = 1 when that line is parallel to the plane. The world objects call it (`003F9078`), and `003F9720` (`003F9C0F`) |
 | `00270420(out, points, n)`, `00270500(lengths, n, d)` | the n - 1 segment lengths of a chain of points; and the fractional segment index at which their running sum reaches d, or -1.0 past the end. `005621A0`, which draws the `w_line01` path, uses both |
 
 ### The active log
@@ -407,6 +416,18 @@ are both set (`00251F51`). Among the parts it switches are the minimap (`003C5E0
 (`002B61B0`, `002B6140`; [Map screens](map-screens.md)) and the message windows (`0035D1B0`, `0035D0E0`;
 [Message windows](message-windows.md)).
 
+The switch (`00252011`), `00255330` (`00255371`) and `00254AC0` (`00254B05`) also close the widget at `[02B47740]`
+with `003C9900`: when it exists, its `+40`<sub>h</sub> bit 16 is set to whether `002544B0()` answers 1, then `00244DD0` runs.
+The switch opens it with `003C9F80` (`00251FCD`): with the widget present it sets `+40`<sub>h</sub> bit 15 to whether
+`002544B0()` (`[020927EC]`) answers 1 and runs `00246AC0`; without it, `003C99D0` creates it (`00244F50(D8h,
+003C9A30, 0)`) and does the same.
+
+That widget's procedure `003C9A30` stores the widget at `02B47740` when it is created (`003C9AE3`) and closes its
+child `+C8`<sub>h</sub> with `003C98A0` (`003C9BA8`, `003C9D37`): the child's `+7C`<sub>h</sub> becomes `(v & 3FF7FFh) | 4B000800h`,
+`00244DD0` closes it, and bit 1 of the widget's `+C4`<sub>h</sub> is cleared. The same procedure places that child with
+`003C9840` (`003C9B6D`, `003C9CB8`): it copies the words `+0C`<sub>h</sub> and `+0E`<sub>h</sub> of layout entry 2 (1 when `003C5FB0()`
+answers 0) of the widget (`00394690`) to the child's `+98`<sub>h</sub> and `+9A`<sub>h</sub>.
+
 On show it also sets bit 0 of the word `+1D7A`<sub>h</sub> of the part at `+10F80`<sub>h</sub>
 through `00290280(0, v)`: `0035D560` gives v = 1 when bit 21 of the options word is set (`002DDDC0`) and bit 10 of
 the script hold mask is clear (`002E0FA0`), and `0035D550` gives 0 otherwise.
@@ -430,6 +451,11 @@ Scripts reach it through a word of hide bits, one per verb family:
 | Function | Does |
 |---|---|
 | `00254E70` | runs the HUD switch `00251F40` with the saved value `[020927E8]` |
+| `00290EB0(hud)` | while `+10F90`<sub>h</sub> holds a caption index (not -1): when the `E8`<sub>h</sub>-byte widget at `+10D20`<sub>h</sub> or `+10E08`<sub>h</sub> (chosen by `+10F68`<sub>h</sub> bit 7) still exists (`00273A20`) it only calls `00245020`; otherwise it opens it with the procedure `003F8250`, places it at `+10F94`<sub>h</sub>/`+10F96`<sub>h</sub>, sets its text with `003F8030`, sets `+10F90`<sub>h</sub> back to -1 and flips bit 7 |
+| `003F8030(widget, n)` | the text `002F9860([00D11E30 + 16n])` at `+C0`<sub>h</sub>; the box is the measured text (`0029CD90`) plus 4 |
+| `003F8790(widget, mode)` | run by `003F8250` (`003F8362`, `003F83F3`): matches the four children at `+C0`<sub>h</sub>-`+D8`<sub>h</sub> against the four ids at `[+E0h] + 740h`. A child whose id `+E0`<sub>h</sub> is still listed moves to that id's slot, sliding to y = (3 - slot) x `12`<sub>h</sub> (`002468A0`) when the slot changed; any other child is closed (`00244F00`); a listed id with no child gets one from `003F8640(widget, id, slot)`, opened with `00244960` for mode 0 or `00246AD0` otherwise. Every child then takes the widest `+D0`<sub>h</sub>, and it returns the number of listed ids |
+| `003F8490(widget)` | finds a free slot among the eight `E8`<sub>h</sub>-byte child slots from `+000`<sub>h</sub>: it steps the index `+750`<sub>h</sub>, wrapping from 7 to 0, and returns the first slot for which `00273A20` answers 0, or 0 after eight; `003F8640` takes its slot this way (`003F8688`) |
+| `003F8140(widget)` | run by `003F8250` on each message 2 (`003F83B0`): while `+100`<sub>h</sub> is below 1.0 it adds 1/6 (to at most 1.0) and moves the four `i16` at `+E8`<sub>h</sub>-`+EE`<sub>h</sub> from `+F8`<sub>h</sub>-`+FE`<sub>h</sub> towards `+F0`<sub>h</sub>-`+F6`<sub>h</sub> by that fraction |
 | `002509A0` | `0035C880(Ch, 1)`, which clears bits 2 and 3 of the battle mode register `022C83EC` and sets bit 0 (`002509B6`), then `0028E5F0`; run by `002678C0` and `0026E0D0` while `02099DA7` is 0, which then set it to 1 |
 | `0028E5F0` | sets or clears the battle mode register's bit 1 from the Escape Mode arming (`003669D0`), stops the arming sound (`00366990`) and closes the widget at `[0209C300]` (`002970C0`) |
 | `0028E110(text, kind, colour, arg)` | posts a help message: colour `80808080`<sub>h</sub> when none is given, two times from `002BDB20` (kinds 1-5 from the bytes at `0209E610`, else 30 x `01DFE0B4`; and 150 x `01DFE0B4`), through `002BDB00`; called by `0035B990` |

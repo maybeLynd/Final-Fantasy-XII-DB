@@ -73,6 +73,10 @@ shipped pack fills them.
 | `10`<sub>h</sub> | `u32` | count | 17 in all 461 sections; `002F6AB0` reads it at [base + `10`<sub>h</sub>] |
 | `14`<sub>h</sub> | `u32[]` | index | count + 1 entries of {u24 offset in 16-byte units from +`10`<sub>h</sub>, u8 tag}; the last is the end sentinel with tag `FF`<sub>h</sub> |
 
+Before the walk `002F6AB0` sets `+120`<sub>h</sub> to 1 and `+110`<sub>h</sub> to 0, and clears the first `48`<sub>h</sub> bytes of
+the two `68`<sub>h</sub>-byte sub-records at `+40`<sub>h</sub> and `+A8`<sub>h</sub> with `00231F50`, nine qword stores of 0
+(`002F6AEA`-`002F6B14`).
+
 `002F6AB0(object, kind)` walks the index: an entry whose offset equals the next entry's is skipped,
 otherwise its tag selects an arm (`cmp eax, 21h`, a 34-case jump table). The arms that store or
 parse a chunk:

@@ -716,6 +716,37 @@ storing the calling script's actor (`00263F10`, `003589B0`):
 
 The manager is the issuer's byte `+15`<sub>h</sub>. A clear stores 0.
 
+### Raw owner and target reads
+
+Two more readers take the current instance `[02F97348]` without the `002E9B80` step:
+
+- `003A6D90(slot)`: with `+378`<sub>h</sub> bit `200`<sub>h</sub> clear, −1 for a kind-3 instance, the `+10`<sub>h</sub> entry for
+  any slot other than −1 with no compare against the count `+372`<sub>h</sub>, and for −1 the `+90`<sub>h</sub> entry, or
+  the first `+10`<sub>h</sub> entry when that is 0. With the bit set, entry `slot` (0 for −1) of `02096A24`
+  while it is below `02096B24`, else −1.
+- `0024B6F0`, `0024C870` and `0024F9B0` call `003A6D90` with 0, and `003B99D0` with the byte `+10`<sub>h</sub> of
+  `[02EBA4F0]` (`003B9A5F`).
+- `003A4070(slot)`: with the bit set, `[02096A20]`. Otherwise −1 for a kind-3 instance, and for a
+  kind-5, 6 or 9 instance whose request (`003B0BF0(+04h)`) is missing or has target test `+11`<sub>h</sub> =
+  1; else the slot's `+90`<sub>h</sub> entry, or the owner `+08`<sub>h</sub> for slot −1 or a zero entry. `003B99D0`
+  calls it (`003B9AA1`).
+
+### Renaming an owner or target
+
+`0024C600(old, new)` does nothing unless both ids are non-zero. It then replaces `old` by `new` in
+the owner `+08`<sub>h</sub> and in both target arrays `+10`<sub>h</sub> and `+90`<sub>h</sub> (count `+372`<sub>h</sub>) of three sets of
+instances:
+
+- `002FBFA0`: every instance on the kind-1 list `020910F0[1]` (`020910F8`), through `+348`<sub>h</sub>;
+- `003B0190`: the instance `+08`<sub>h</sub> of each of the 36 request entries at `02EBEC00` whose handle is
+  non-zero and whose target test `+11`<sub>h</sub> is not 1;
+- `003B14F0`: every instance on the kind-7 list `020910F0[7]` (`02091128`).
+
+Its one caller is the party snapshot read `00326D60` (`00327117`,
+[party slots](../Party/party-slots.md)). For each staged member it passes the unit id saved at
+record `+4` and the handle `+08`<sub>h</sub> of the unit that now holds the member's party record, when the
+two differ.
+
 
 ### Numbered effects on actors
 
@@ -743,6 +774,9 @@ The requests sit in 36 entries of `18`<sub>h</sub> bytes at `02EBEC00`, packed f
 - `003B0BF0(handle)` returns the entry, `003B0940(handle)` its effect number or −1, and
   `003B0FD0(handle, v)` stores `v` at `+04`<sub>h</sub>. `003B0C30(owner, number)` is
   `003B02A0(owner, 0, 0, number, 5)`.
+- `003B0820(v)`, with arena 8 selected, ends the instance (`0024EE60`) of every entry whose `+04`<sub>h</sub>
+  equals `v`, closes each gap and clears `02EBEF48`. `002FCB60(handle)` calls it with its own
+  handle first (`002FCB79`).
 - `003B1260(handle, kind)`, for a kind of 1 to 10, calls `0024FE70(instance, kind)` with arena 8
   selected.
 - `003B1050(targets, n)`, from `0024FBF0`, raises bit `4`<sub>h</sub> of `+368`<sub>h</sub> on every kind-5 instance
@@ -776,6 +810,8 @@ list `02EC3D70`; the active list runs from `02EC3D60` to `02EC3D68` through `+28
   `02EBEBE4`). It asks the file size in class `0B`<sub>h</sub>, or `26`<sub>h</sub> when `002DEBB0()` is 0
   (`0032E400`); a missing number `78`<sub>h</sub>–`89`<sub>h</sub> falls back to `78`<sub>h</sub>, `8A`<sub>h</sub>–`99`<sub>h</sub> to `8A`<sub>h</sub>, and
   any other to 0. It queues the read (`0032E620`) and sets state 2.
+- the read's completion `002FC830(handle)`: when the handle's low six bits name a slot below 48 whose word
+  `+00`<sub>h</sub> is the handle, it sets the state's low nibble to 3 (`002FC830`-`002FC854`).
 - the size cache: `002FCFF0` (through the stub `0036DDB0`) asks the size of all 512 numbers once, keeps them
   at `02EC19C0` (8 bytes each) and sets `02EC3D7D`; the reset `002FC200` clears it (`002FC2FF`). While it is
   set, state 1 takes the size from the cache (`002FC8AD`), and a missing number falls back to entry 0, not

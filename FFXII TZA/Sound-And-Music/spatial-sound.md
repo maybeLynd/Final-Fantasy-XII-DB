@@ -121,6 +121,11 @@ volumes to 0-127 with `0046C8D0`. `00361BF0` and `00361CF0` work out a pan byte 
 `022CBB00` (`00361810`), and scale the volume by `022CBA94 / 127`. `00332FA0` stops every sound of an effect
 element's list that still plays, through a 16-frame delayed stop (`003B3EA0`), and empties the list.
 
+`00361750` is the same template copy except for two floats: `003617B0` stores its fifth argument at
+`+10`<sub>h</sub> and its sixth at `+1C`<sub>h</sub>, while `00361750` stores the float `022CBB24` at `+10`<sub>h</sub> and its
+reciprocal at `+1C`<sub>h</sub>. The character sounds call it, `0046C8F0` at `0046CA4F` and `0046CC70` at
+`0046CF71`; `0046C8F0` also calls `003617B0` (`0046CB1D`).
+
 ### The layer's pools
 
 `007A5B50` starts the layer from the block `00210760` fills (`002108AD`-`002108BD`): one page, 128 sources and 512

@@ -114,6 +114,7 @@ Two shortcuts use the main root `[0208EA28]`:
 - `00247950(widget, on)` attaches a widget that has no parent to it with bit 1 set to `on`. For a widget that has a
   parent it sets bit 1 to `on` through `00247870`, which also runs the activation `002473F0` when bit 5 is set
   (`0024795C`-`0024797A`).
+- `00247980(parent, widget, on)` does the same under a parent the caller gives; `00228130` calls it.
 
 Messages travel along the tree:
 
@@ -131,7 +132,8 @@ and clears the bit (`00244990`-`0024499F`):
 1. Each child's priority, position in the list and pointer go into the scratch table `0208ED60`
    (`00247A0A`-`00247A2D`).
 2. The sort `00249CE0` orders them with the comparator `00244610`: a larger priority first, equal priorities in
-   their old order.
+   their old order. `00249CE0` jumps to `00249680(scratch, base, size, n, compare)`, an insertion sort that
+   takes each element in turn into `scratch` and moves larger ones up by `size` bytes.
 3. The children are relinked in that order (`00247A51`-`00247AB1`).
 
 The root draw passes `002450B0` and `00245110` set `0208F564` to 0 and to 1 and walk the tree with `00245E60`. A
@@ -148,8 +150,47 @@ its box is drawn in that pass when `+40`<sub>h</sub> bit 7 is also set (`002461B
 - then the running opening or closing run, through `00244A20`.
 
 It returns 1 when a float at box `+10`<sub>h</sub>-`+18`<sub>h</sub> is not 0 or the scale is not 1.0. `00246450` returns the position
-alone, with the same bit 7 offset. `00272310(widget, out)` gives a widget's place on screen: its own box position
+alone, with the same bit 7 offset.
+
+The box itself is a nine-piece panel. `00245E60` sets up a draw record (`002D8530`) and calls `002455A0` when
+`+40`<sub>h</sub> bit 8 is set, otherwise `00245170` (`002461D9`-`002461F0`). `00245170(widget, record)` draws nothing while
+`002DD4B0()` (the dword `0215E6D0`) is 0. Otherwise:
+
+1. It takes the atlas `0208EAA0` (`cm_win_c`), or `0208EAB0` with `+40`<sub>h</sub> bit 22, and nine consecutive 8-byte
+   pieces from the index its header gives at `+44`<sub>h</sub>: `i16` x and y, then 12-bit width and height.
+2. The middle column is the widget width `+9C`<sub>h</sub> less the two corner widths plus `+A6`<sub>h</sub>; the middle row the height
+   `+9E`<sub>h</sub> less the two corner heights plus `+A7`<sub>h</sub>. The panel starts at `+A4`<sub>h</sub>, `+A5`<sub>h</sub>.
+3. Its colour is `80808080`<sub>h</sub> for a style byte `+A3`<sub>h</sub> below 2, else colour-table entry `+A3h + 92h`
+   (`002DD7E0`); its palette byte is the first piece's byte `+7` for a style below 10, else `002DD7B0(+A3h +
+   92h)`.
+4. It draws the nine pieces row by row with `002DA7C0` between `002DAF30` and `002DAC70`, leaving out the
+   middle row or column when its size is not above 0.
+
+`00272310(widget, out)` gives a widget's place on screen: its own box position
 (`00246480`) plus that of every ancestor up the `+10`<sub>h</sub> chain, for `003EE420` (`003EE511`, `003EE51F`).
+`003EE420` also steps four fades of its object with `003EEBD0(object, up)` (`003EE6A4`). Each moves by
+`1 / ([01DFE0B4] x 9600 / 1000)` and is clamped to 0-1: `+1D0`<sub>h</sub> up when `up` is non-zero, `+88`<sub>h</sub> up with `+1D4`<sub>h</sub>
+bit 8, and `+188`<sub>h</sub> and `+1B8`<sub>h</sub> up with `+1D4`<sub>h</sub> bit 9; each goes down otherwise.
+
+`003EE8C0(object, text, a, b)` sets those fades up for a new text. The object holds two `1E0`<sub>h</sub>-byte
+text entries at `+C0`<sub>h</sub>, and the index `+4B0`<sub>h</sub> toggles between them:
+
+1. It clears bits 8 and 9 of the old entry's `+1D4`<sub>h</sub>, moves the index and sets both bits on the new one.
+2. It copies up to `80`<sub>h</sub> bytes of `text` into the entry (`00254F30`); a null or empty text leaves it empty.
+3. It clears bit 9 again when `a` and `b` are both 0, zeroes `+1D0`<sub>h</sub>, `+88`<sub>h</sub>, `+188`<sub>h</sub> and `+1B8`<sub>h</sub>,
+   keeps `a` at `+18C`<sub>h</sub> and `b` at `+1BC`<sub>h</sub>, and runs `002B3400(entry + A0h, 0, 0)`.
+
+The battle menu's title writer `0027D480` (`0027D52F`) and `00298250` (`002984C0`, on its `+C0`<sub>h</sub>) call it.
+
+Two helpers set those offset bytes:
+
+- `002476E0(widget, d)` adds the low bytes of the four words at `d` to `+A4`<sub>h</sub>-`+A7`<sub>h</sub> when bit 7 is set and bit 8
+  clear; `002A70B0` calls it.
+- `00247810(widget)` reads the three bits 16-18 of `+44`<sub>h</sub>. With bit 18 clear it sets `+AD`<sub>h</sub> to -7 when bit 17 is
+  set and to 6 otherwise, and `+AC`<sub>h</sub> the same way from bit 16; with bit 18 set it writes only the -7 values.
+  `00227EE0`, `002A6A80` and the confirmation window `0057C480` call it.
+- `002478D0(widget, on)` sets or clears bit 18, the per-tick skip, on a widget and every descendant (first child
+  `+18`<sub>h</sub>, next sibling `+20`<sub>h</sub>); `00285290` calls it.
 
 `00247780(on)` sets bit 0 of `0208ED58`. While it is set, both passes also call `00245510` for a root whose `+C0`<sub>h</sub>
 is 1, which hands the root's position and alpha to `00367940` (`002450D7`-`002450F5`, `00245137`-`00245149`); the
@@ -286,6 +327,12 @@ The script verbs `fsttl_initialize` (`00511EA0`) and `fsttl_opencommand` (`00511
 itself on message 1 and sets `+C0`<sub>h</sub> bit 0 on message 16. The consumer refuses to be built before the asset exists
 (`00394543`), and each tick it waits for that bit (`00393A88`-`00393A9F`) and passes the asset's `+D0`<sub>h</sub> on to
 `003946B0`.
+
+The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+C0`<sub>h</sub> bit 0 (`00394500`),
+`fsttl_opencommandsync` waits through `003944D0`, which answers 0 while `01EFAC12` is 2 and the consumer's `+C4`<sub>h</sub>
+bit 1 is clear, and `fsttl_closecommand` sets the consumer's `+C4`<sub>h</sub> bit 2 (`00394350`). The consumer opens its
+confirm through `00394380` and paints its rows with `00393950`, which, when `00264150`
+answers non-zero, recolours row 0 with colour 1 and the others with colour 0 (`00393240`), and sets each row's picture cell.
 
 ## Modding notes
 

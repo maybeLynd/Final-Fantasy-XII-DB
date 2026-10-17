@@ -117,7 +117,9 @@ Struct MeshQuery  (the walker's record, built on the caller's stack):
 
 `0022F430(part, q)` walks the segment through the collision grid. The cell of a point is
 `00233050`: column `(x + originX) / cellW`, row `(z + originZ) / cellH` after subtracting half a
-cell height on odd columns (the grid is staggered), `FFFF`<sub>h</sub> outside.
+cell height on odd columns (the grid is staggered), `FFFF`<sub>h</sub> outside. `002330D0(part, point, k)` returns that
+cell plus `k × (stride + 1)`, or the negative answer as it is. `002F67C0`, which fades the background NPCs
+listed in a point's cell in or out by their distance from the point, uses it with `k` = 1 (`002F67F0`).
 
 From the start cell it loops:
 the delta, length and best are reset to the whole remaining segment, the callback runs over the

@@ -119,6 +119,21 @@ and, when the bit changes: on requires ladder 2 and a non-zero charge count; it 
 configuration byte `+E1E`<sub>h</sub> (`0017D3A0`) is set, and requests animation `2010`<sub>h</sub>; off requests
 `2001`<sub>h</sub>; either way bit 1 is toggled.
 
+### The turbo charge marks
+
+The party menu task `003CA860` shows the charges as up to three marks in its child `003CB150`, which keeps the
+record `[0209AC30] + 28h` at `+1C8`<sub>h</sub> on message 1:
+
+1. Message 16 sets `+1D4`<sub>h</sub> bit 0, decodes the child's layout from that record (`002432B0`) and runs
+   `003CB320`. It gives the three `58`<sub>h</sub>-byte mark records at `+C0`<sub>h</sub> their nodes (`+40`<sub>h</sub>, from the table
+   `00D11758`) and shows the marks below the charge count, `+14`<sub>h</sub> of `003200A0` (bits 2-3 of `+5AE0`<sub>h</sub>,
+   `00304610`); the count, at most 3, goes to `+1D0`<sub>h</sub>.
+2. Message 2, while `+1D4`<sub>h</sub> bit 0 is set, runs `003CAED0`. When the count has dropped, the last shown mark
+   gets two tweens (`002726C0`, `002727C0`): the alpha of its four vertex colours over 32 steps and their
+   colour over 16.
+3. While a tween runs, `003CAED0` writes its value (`00271960`) into the node's colours; a mark whose
+   tweens have both ended (`00272710`) is hidden.
+
 ### Where a dismount is allowed
 
 `00303CC0()` returns 1 only when the ladder is 2, the chocobo exists and `00336390(position,

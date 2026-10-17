@@ -283,11 +283,29 @@ descriptors from the pool, undoes the pass-mask calls for flag bit 2, clears `[0
 `+D18`<sub>h</sub> (`00182610(0)`). `0024B240(target)` appends a released target to the list `02091950` while
 its count `0209216A` is below 256 and otherwise frees it at once (`001B68D0`).
 
+### Screen capture
+
+`setcapturescreenmode(on)` (`02DF`<sub>h</sub>, `00340B90`) keeps a still of the picture in a target. A non-zero
+argument runs `0024E0F0`: it sets the two-bit capture mode in bits 1-2 of `020926E4` to 1, hands back
+any target at `020926D8` and takes a full-size one (`00182B40`), clears the handle `020926E0`, and
+drops the mode again when no target came back. Zero runs `0024E070`, which clears the mode, hands the
+target back and removes the descriptor `020926E0` (`00375470`).
+
+The per-frame driver `0024D540` calls `0024DEE0(draw)` (`0024D6E6`), which acts in draw 0 only:
+
+1. In mode 1 it files a kind-3 descriptor (`00375900`) with bytes `+1C`<sub>h</sub> = 1, `+1D`<sub>h</sub> = 1,
+   `+1E`<sub>h</sub> = 2 and the target at `+38`<sub>h</sub>, keeps its handle in `020926E0` and moves to mode 2
+   (`0024DFCE`-`0024E045`).
+2. In mode 2 it files each frame a kind-4 descriptor that binds the target's texture
+   (`00182B20`, at `+50`<sub>h</sub>) with `+1C`<sub>h</sub> = `19`<sub>h</sub>; the block address in its qword `+30`<sub>h</sub> is bits 0-8
+   of the dword at `022D8E60 + 28h × [022D8EA8]`, shifted left by 5 (`0024DF2E`-`0024DFC6`).
+
 ## Layouts
 
 ```
 Flag word 020926E4 (bits this page uses)
 bit 0  soft focus up
+bits 1-2  screen capture mode: 0 off, 1 capture on the next draw 0, 2 bound each frame
 bit 3  cut-in up
 bit 4  motion blur up
 bit 5  motion blur: capture on the next frame

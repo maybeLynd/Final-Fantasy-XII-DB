@@ -53,6 +53,10 @@ So the summon memory heap is made only for fields that are not towns.
 The list is `common/eventmemorylist.bin`, kind 9 file `29`<sub>h</sub>, requested by `00378540` under the name `EVTMEM`
 (`003787E6`-`00378841`); its completion `00378A50` stores the pointer in `02ADD0A8`.
 
+The buffer comes from `00267990(size)` (`003787FB`), which allocates the file's size in arena 5 (`0036C1D0(5)`,
+`0036A190`) and labels the block with the file name cut from `..\..\katano\ateldecode.c` (`0036C750`) and the tag
+`1698`<sub>h</sub> (`0036C660`). `00378540` then labels it again with the name `EVTMEM` and tag 0 (`00378810`).
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |

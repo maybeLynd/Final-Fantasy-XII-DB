@@ -266,13 +266,50 @@ The helpers the arms call:
   (`00273A20`) and the object's `+2E0`<sub>h</sub> bit 4 is set.
 - `002F1710` finishes the entry in `022BE7D0`: it copies the entry's second word over its first, calls its callback
   at `+08`<sub>h</sub>, sets `+1C`<sub>h</sub> to 1 and clears the entry's bit, numbered by `+18`<sub>h</sub>, in `022BE7C0`.
+- `002F1C50(n)` arms that entry: it takes one (`002F16B0`) into `022BE7D0` with the callback `002F18A0`, sets bit 1
+  of hold word 10 (`002E1C20(10, 1)`, the words at `0215F1C0`), and sets the count to 0 and the length to n x
+  `[01DFE0B4]` (n alone while `001EDDA0()` answers). `002F18A0` clears that bit (`002E1CA0(10, 1)`) and `022BE7D0`.
 - `00267720` answers 1 only when `0209A2AA` is set, the controlled character exists (`003590D0`, `003588B0`), its record is not one that `002373A0` accepts and
 `00233D70` refuses, no
   menu is open (`002E05C0`), `00265680` answers non-zero and `02099DB4` is 0.
+- `00273950()`, asked before the interaction (`0025412B`) and by `002C6F70` and `002736B0`, answers 0 while policy
+  bit 1 is set without bit 21 (the policy word `00254500`, the OR of the `01E0C2C0` masks of the set hold-mask bits);
+  otherwise 1 when `02092730` is not 1, Escape Mode is not armed (`003669D0`) and hold-mask bit 4 is clear.
+- `002736B0()`, from the HUD's `002C6F70` and `002C64C0`, answers 1 only when `00267720()` answers 1, hold-mask
+  bit 4 is clear, `0028FA00()` and `00273950()` pass, and `0209A2C0` holds no handle or one whose class-1 or class-3
+  actor has `+0C`<sub>h</sub> bit 1 set (`0025B4C0`).
+- `0028FA00()` needs the HUD part `+10F80`<sub>h</sub> with word `+1D7A`<sub>h</sub> bit 3 and `+1D78`<sub>h</sub> times the controlled character's
+  byte `+14`<sub>h</sub> in the part's list `+1D70`<sub>h</sub> above `3FFF`<sub>h</sub>, or `+1D78`<sub>h</sub> above `7F`<sub>h</sub> when the character is not
+  listed.
 - `00252DE0`, from the area unload `002628B0`, clears `02092730` and `02092734` and sets `020927C8` and `020927CC`
   to 1 (`00252DF5`-`00252E0B`).
 
 The R2 toggle after the arms is on [Escape Mode](escape.md).
+
+### The field target cycle
+
+The field's target cursor is the object in `02B47730`: `+C4`<sub>h</sub> the chosen target's handle, `+C8`<sub>h</sub> the handle it
+shows, `+CC`<sub>h</sub> the pick and `+C0`<sub>h</sub> its state bits. `003C9250(mode)`, called from `003C87B0` and `003C8B70`, chooses
+from the target list at `022C83F0` (a count, then handles from `+8`) for the controlled character `0035BAD0()`
+(`022C806C`), and gives 0 without a cursor, a character or a list:
+
+1. `0035DCC0` fills one 12-byte entry per handle (the handle, its screen x through `00249110`, its index) and
+   returns the handle nearest the character (`sqrtf` of the summed squares); mode 0 returns that one.
+2. `0035DEB0` sorts the entries by screen x; mode 3 returns the leftmost and mode 4 the rightmost.
+3. Modes 1 and 2 find the current `+C4`<sub>h</sub> with `0035DC90(entries, n, handle)`, the index of the entry holding that
+   handle or -1, and return the entry before or after it, or 0 at either end.
+
+The cursor's setters:
+
+- `003C9420(h)` (`003C88CB`, `003C8CC8`) stores `h` at `+C4`<sub>h</sub>, after `0028FE40(6, h)` and, for a new non-zero
+  `h`, sound 1 (`00249C60(1)`); then it sets `+C8`<sub>h</sub> as `003C93E0` does.
+- `003C93E0(h)` stores `h` at `+C8`<sub>h</sub>, or 0 when `00273710(h)` refuses it or it is the controlled character.
+- `003C94A0()` (`003C90BB`) re-shows the target of the record `0035BAF0()` returns (`022C8078`): nothing when its
+  bit 15 is set, `003C93E0(+8)` when its `+4` and `+8` differ (`003C94DD`), otherwise `+C8`<sub>h</sub> = 0.
+- `003C94F0()` does the same only while `+C0`<sub>h</sub> bit 2 is set, and otherwise clears `+C8`<sub>h</sub>; the menu steps
+  `00276D30`, `002778C0`, `00279E20` and `0027B880` call it.
+- `003C9370(h)` answers 1 when `h` is one of the handles of the target list `022C83F0` (`0035D3E0`) and 0
+  otherwise; `003C87B0` (`003C8847`) and `003C8B70` (`003C8FB2`) call it.
 
 ## Modding notes
 

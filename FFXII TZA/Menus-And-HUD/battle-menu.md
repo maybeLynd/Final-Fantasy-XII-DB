@@ -168,6 +168,11 @@ matrix, point)` projects a point and divides by its depth; `00272250` turns the 
 
 `0035BC50` sorts its list `1A`<sub>h</sub> at `022C83F0` by distance in the same way (`00272B40`, `0035BD19`).
 
+Both sorts end in `002748E0(n, rows, ascending)` (`00272AC5`, `00272C0F`, each passing 1). It orders `n`
+eight-byte rows by their signed dword `+0`: a quicksort with its own stack of ranges leaves ranges of 11
+rows or fewer, and one insertion pass over the whole array finishes; a zero third argument sorts in
+descending order.
+
 ### The target cursor
 
 `0027CD00(cursor, widget)` draws the hand over the target unit (`002780DC`): it projects the unit's position
@@ -179,6 +184,17 @@ The list's row hook `0027E4E0(page, widget, unit)` (`00279C26`) pulses a row whi
 the radius `+1540`<sub>h</sub> of the cursor's unit (`0027B3B0`), neither row greyed: `0027AF00` sets the draw's `+58`<sub>h</sub> to half
 of the page's `+A0`<sub>h</sub> and swings its `+5A`<sub>h</sub> by `sin(frame x pi / 7)` times half its value. `0027BD80(actor, action)` returns the value `0031AB80`
 reports for a kind 1 answer, or 0 (`00279ABF`).
+
+The grid list draw `00367AA0` pulses its cells the same way through a hook. `00368A50(widget, hook)`
+keeps the two at `022CBE90` and `022CBE98`; for each visible cell the draw calls
+`hook(widget +D8h, sprite, cell, first)` and draws the sprite over the cell when it answers non-zero
+(`00367DC5`). The list widget `002778C0` installs one of two hooks, both ending in the `0027B770` test
+for the cell's row id `+510h + 8 x cell`:
+
+- `0027D700` (`002794DF`, while `+1528`<sub>h</sub> bit 21 is set) first runs `0027B200` for cell 0;
+- `0027E7B0` (`00279AEC`) answers 0 while `+1528`<sub>h</sub> bit 15 is set and runs `0027B200` on a draw's
+  first call. `0027B200(page, sprite)` passes the sprite's `+3C`<sub>h</sub> x 4 to `002030E0` and calls
+  `0027AF00`.
 
 The target lines and marks the list asks for while it is open (`0027DE30`, `0027DC10`) are on [HUD](hud.md).
 

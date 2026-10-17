@@ -161,6 +161,9 @@ helpers:
 
 - `004026B0(list, id)` finds the element whose byte `+1` is `id`; `00402200` the first with `+28`<sub>h</sub> bit 5;
   `00402230` the first with bit 0, or the head.
+- `003C4AB0()` (`002B8435`, `002BBD60`) passes the block at `02EBA488` to `002DD550(block, -4)`, which writes it
+  into the GS command buffer being filled (`02EBEFC8 + 18h x [02EBEFF0]`) and flips the buffer (`003A1DB0`)
+  ([Render command list](../Graphics/render-command-list.md)).
 - `00402DB0(element, buttons)` moves the cursor (`002BBBD4`): bits `10`<sub>h</sub>, `40`<sub>h</sub>, `80`<sub>h</sub> and `20`<sub>h</sub> take the
   element named by bytes `+8`, `+9`, `+A`<sub>h</sub> and `+B`<sub>h</sub>, and the element stays put when that id is `-1` or absent.
 - `004023D0(lines, line)` returns 1 when the line list (linked through `+98`<sub>h</sub>) already holds a line with the same
@@ -192,7 +195,8 @@ width.
 
 `002BA1B0(v)` gives the location container a y from the menu bars: the screen height `01E0C1DC`, less
 `002C9430(81h)` when `002C9430(80h) + v` is not 0. `002BA1F0` is the location map's exit callback: when the location container `0209E5F0` is gone
-and `00402220` answers 0, it returns to the menu with `002814E0(417h)`.
+and `00402220` answers 0, it returns to the menu with `002814E0(417h)`. `002BC2C0`, the exit callback `002BAF80` installs
+(`002BB202`), does the same when neither `0209E5F0` nor `0209E5F8` is set, after `00285F00(0209E608)`.
 
 ### What is shown
 
@@ -225,10 +229,47 @@ The minimap is the widget `003C5910`, at `02B476B0` (`003C80C0`):
 4. While the map is jammed (`00377780`, verb `setnavimapjamming`), `004001D0` draws its jamming passes over the
    picture (`00401620`, `004014E0`, `004010A0`) and `003C4070` leaves out the ring, the party marker and the icons.
 
+The ring takes its entry count from `00264AC0(list)` (`003C350B`), the first dword of that per-class table of the zone
+script's image (header `+70`<sub>h</sub>, `00264AE0`), and gets a 6-byte style for each entry from `002648F0(entry, out)`
+(`003C35D5`, `003C36BA`):
+
+- the defaults are bytes 1, 1, 1, 1 and the word `FFFF`<sub>h</sub>;
+- for an entry, `00264920` refills them from record `+1D`<sub>h</sub> of the image's table at header `+8C`<sub>h</sub> (`00264870`):
+  the story-flag gate `0032A8A0` of its words 0, 1, a mode word (4 on a chocobo, `00303EC0`; 3 while `003135C0`
+  answers; else 2) and 6, then its word 5.
+
+The minimap's other small state:
+
+- `003C5060`, from the tick (`003C609B`), keeps a trail of party positions while `0035D600()` answers 1 (bit 5 of
+  `022C83E8`, which `0035D610(v)` sets to v): when the party is more than 3.0 from the last point `02B45850`/`02B45858`
+  in x and z, it writes the position to `02B45860 + 16 x [02B45960]`, makes it the last point, counts `02B45962` up
+  to 16 and moves the index on modulo 16.
+- `003C5030` clears that block (`120`<sub>h</sub> bytes from `02B45850`) and the live marker list (`1430`<sub>h</sub> bytes from
+  `02B46280`); Ghidra's references to it are only its unwind entry.
+- `003C5400(i, v)` and `003C53E0(i)` set and clear the dword `02B45970 + 4i`; `003FFF70` sets slot 1 to the
+  controlled character's record `+8` (`00272E10`) when that is non-zero, and clears it otherwise.
+- `003C5720(box, item, angle, &x, &y)`, from the widget's draw (`003C5CE7`, `003C5D21`), returns the item's position,
+  turned by `angle` about the centre of the box `+0C`<sub>h</sub>-`+12`<sub>h</sub> when the angle is not 0.
+
+The tick also uncovers the map around the party: `003C6000` calls `003C5500` (`003C6096`).
+
+1. It works only while `0035D630()` answers 1, bit 7 of `022C83E8` clear (`0035D640(v)` sets the bit for v = 0 and
+   clears it otherwise, through the thunk `002E23D0`).
+2. It works only when the party position `02B45810`/`02B45818` or the angle `02AEDF94` has changed since its last run.
+3. It turns a 6 by 6 grid of points, -24 to 16 in steps of 8 around the party, by the angle.
+4. For each point inside the map (width `02B45A58`, height `02B45A5A`) it sets the bit of the point's 16-unit cell in
+   the explored mask `02B45A50` (row stride `02B45A60` bytes), the mask the map pictures are drawn through
+   ([Menu map files](../Game-Files-And-Data-Tables/menu-map-files.md)).
+
 The picture comes from the zone's map pack: `003C63A0` registers it and `00379870` places it, chosen by
 `setnavimapindex` (`00377400`) ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 
 ### Minimap markers
+
+The actors come from a list the minimap tick rebuilds first: `003C6000` calls `0035D070` (`003C6013`), which runs
+`0035E5F0(022C8060)`. That builds the lists of actor managers 0 to 2 (`0046B560(2)`) and copies them in order, at most
+128: handles to `022C8500` (`0035D500`), actors to `022C8700` (`0035D4F0`), the total at `022C8B00` (`0035D510`),
+and each manager's start and count at `022C8B02 + i` and `022C8B04 + i`.
 
 `003C5130` rebuilds the minimap's marker list: one 32-byte entry per actor at `02B45A80` (count `02B45A70`), then the
 navigation icons (`00400550`), then `004000E0` merges them into the live list at `02B46280`:
@@ -245,6 +286,10 @@ navigation icons (`00400550`), then `004000E0` merges them into the live list at
 The draw `003C6B70` scales each marker's colour by `+22`<sub>h</sub> (`80`<sub>h</sub> is full) and its size by `+24`<sub>h</sub>. It finds the
 sprite with `00400420(out, entry)`: kinds 5 to 7 use the entry's byte `+1`; other kinds look up the byte table
 `00D120E0` by kind, plus 6 when bit 19 is set, in the shared atlas `0035D460`.
+
+The routines below these draws, the trail, ring and marker quads, the picture binds and colour records written
+into the VIF packets, the explored-mask set-up and the page helpers, are listed with their callers in
+[map-screens-subroutines.tsv](map-screens-subroutines.tsv).
 
 ### The World Map host
 

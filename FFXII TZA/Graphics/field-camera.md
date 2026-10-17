@@ -60,8 +60,9 @@ applies `02098DFC` and `02098E00` again the same way.
 
 ### The camera types
 
-At start-up `0022A0B0` runs `00259DF0`, which files a read of file kind 9 (`0032E400`, `0032E620`); its completion keeps
-the table at `02098DF0`, or 0 when the file is empty.
+At start-up `0022A0B0` runs `00259DF0`, which files a read of file kind 9 (`0032E400`, `0032E620`); its completion
+`00259370(table)` keeps the table at `02098DF0`, or 0 when the file is empty, and when the table's count `+04`<sub>h</sub> is
+above 0 sets `02098DF8` to type 0 and copies it with `00259FE0` (`00259370`-`0025938D`).
 
 `setbehindcameratype` (`01CB`<sub>h</sub>, `00356CB0`), `00304060` and `00304140` call `0025A160(type)`: for a type below the table's count `+04`<sub>h</sub> it sets
 `02098DF8` and `00259FE0` copies the type's 64-byte entry (from table `+10`<sub>h</sub>) into both controllers:

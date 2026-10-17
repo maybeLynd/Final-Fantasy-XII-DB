@@ -79,6 +79,20 @@ moving them up by `(width - 200h) x 540h / 64` for a width above `200`<sub>h</su
 | `02F8F200` | `= 3B00h` | 02F8F204 = `2A00`<sub>h</sub> + d | `02F8F208` = `3C00`<sub>h</sub> + d |
 | `02F8F20C` | `=` | `3B00`<sub>h</sub> | + d `02F8F210` = `3C00`<sub>h</sub> + d |
 
+### The surfaces as textures
+
+`0039D200`, run by the same frame set-up (`0024D560`), rewrites six 16-byte entries at `02AEECF0`, each
+a pair of values in the layout of the GS registers TEX0 and CLAMP, for draws that sample the surfaces:
+
+| Entries | TEX0 value | CLAMP value | Base page (TEX0 bits 0-13) |
+|---|---|---|---|
+| `02AEECF0`, `02AEED00` | `664100000`<sub>h</sub> with `width / 64` in bits 14-19: PSM 1, 512 × 512, TCC 1 | `10` (region clamp in u and v), maximum u = width − 1, v = height − 1 | `width × height / 64` in one of the two, 0 in the other |
+| `02AEED10` to `02AEED40` | `620110000`<sub>h</sub>: PSM 1, 256 × 256, TCC 1 | `10` with half the width and height | `3C00`<sub>h</sub>, `3700`<sub>h</sub>, `3300`<sub>h</sub>, `3FFF`<sub>h</sub> |
+
+The full-size base goes into the first entry when bits 0-8 of the FRAME_1 value `022D8EC8` are 0, and
+into the second otherwise. Readers of the entries include `0024B7B0`, `0036F550`, `0036F9F0`,
+`00374280`, `003745C0`, `00431830` and `004FD4B0`.
+
 ### GS screen coordinates
 
 The map draw still builds the screen transform of the PS2 drawing area. `00467940(view)` writes into

@@ -170,8 +170,21 @@ table of 24-byte entries:
   `46B4`<sub>h</sub> with `+142`<sub>h</sub> bit 2 or `plain`, followed by the member's name (`00296600`).
 - `002D53F0(window, value, max)` writes value x 100 into node 1 (`0029F6E0`, grey `80808080`<sub>h</sub>) and gives node
   0's gauge value x 100 / max (`00225580`), 0 for a max of 0.
+- On opening (message 1, `002D5F30`) the time `+740`<sub>h</sub> and its maximum `+744`<sub>h</sub> both take the value `00309E40`
+  stores: `022C2188 = min(4.0, 022C2184 + (022C2188 - 022C2184) x 0.5)` (`002F8B90`). `0030D720` sets both
+  globals to 4.0, and `0030DB70` writes `022C2184` (`0030DC8B`). Each message 2 takes 1/30 off `+740`<sub>h</sub>; at 0 the
+  window plays sound `5B`<sub>h</sub>, calls `0030DB70(0, 0)` and closes (`00244DD0`).
 - `002D5500(window, n)` shows the first n of three marks in the child list of node 2, and `002D5C30(window)`
   runs it with the entry's count `+13`<sub>h</sub>.
+- The child `0028B860`, built by `002899A0` under the window, takes its box from the HUD sprite set
+  (`0035D460()`) on message 1. On message 2, 90 frames after the time `+C0`<sub>h</sub> that message 6 stamps, it
+  closes (`00244DD0`, or `00245020` with `+C4`<sub>h</sub> bit 1), unless message 15 has set `+C4`<sub>h</sub> bit 0.
+- Its draw (message 4) scales a value from `00915E10` by the time (`00271AB0`) and draws the set's piece
+  `+88`<sub>h</sub> twice with it, the second time from 16/256 of the 90 frames on.
+- `0028B700(draw, set, piece, x, y, s)` draws a piece one source row at a time, centred on `x` and starting
+  half the piece's height above `y`. Each row is one pixel high and its half width alternates between
+  `w - (w x s >> 8)` and `w + (w x s >> 8)`, with `w` half the piece's width; `002D8C80` draws each row.
+  It first sets the draw's palette byte `+5C`<sub>h</sub> from the set's table and the piece's byte `+7`.
 - `002D50B0(window, keep)` closes every row widget (`158`<sub>h</sub> bytes from `+180`<sub>h</sub>, `+748`<sub>h</sub> of them) except row
   `keep`, which is marked to stay, and then the window (`00244DD0`).
 

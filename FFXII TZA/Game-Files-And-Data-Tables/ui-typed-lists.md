@@ -269,6 +269,20 @@ bits 2-5. Types 1, 3, 6 and 8 have no arm.
   then the fill strip at `fill length × value / maximum`, then the overlay over the fill. `002A0180` draws a strip
   as left cap, middle stretched to the remaining length, and right cap; when the length is shorter than both
   caps it shrinks the caps in proportion.
+- `002A0180` emits each piece with `002D8D40(writer, draw, picture, source, x, y, w, h, flags)` (`002A0209` to
+  `002A0410`). Into the VIF packet go the picture bind (TEX0_1 with the palette offset from the draw's `+5C`<sub>h</sub>;
+  a PSM `14`<sub>h</sub> picture is bound as `13`<sub>h</sub> with its palette entry in a second record for register `16`<sub>h</sub>),
+  register `14`<sub>h</sub> = 0, CLAMP_1 (register 8) to the source box, and four vertices.
+- The vertices carry the draw's colour `+90`<sub>h</sub>-`+93`<sub>h</sub>, the source corners as texture coordinates and the
+  destination corners at depth `+70`<sub>h</sub>; flag bit 1 is added when the two sizes differ. `002D8D40` then hands the
+  same quad to the renderer (`00181890` with the source box, `001813F0`).
+- With `+20`<sub>h</sub> bit 26 set and an overlay atlas at `+90`<sub>h</sub>, `0029ED50` then draws the overlay along the fill
+  with `002A0440` (`0029F0BF`); the bar drawer `0029E840` calls it too (`0029EC7C`). `002A0440` emits each
+  vertex with `002A1900(vertex, u, v, x, y, alpha, dx, dy, du, dv, draw)`, at twenty sites passing an alpha of
+  `10`<sub>h</sub> or `80`<sub>h</sub>.
+- `002A1900` takes the colour from the draw's `+94`<sub>h</sub>-`+96`<sub>h</sub> and the alpha `+97h x alpha / 128`. Its texture
+  coordinates are `(u + du + 8) / 16` and `(v + dv + 8) / 16`, and the point `(x + dx, y + dy, [+70h])` goes
+  through the draw's matrix (`00202B70`, `00202CA0`); `00181350(vertex, 1)` takes the vertex.
 
 The sprite size and source come from the sub-image record at `+20h + frame × 8`: `u16` x, `u16` y, then width
 and height as 12-bit fields of the dword at `+4`. The palette selector's high nibble indexes a per-atlas byte table

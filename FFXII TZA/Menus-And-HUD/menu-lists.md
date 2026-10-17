@@ -102,6 +102,19 @@ with no gap of 3 ticks or more, and at 80 it sets `+E4`<sub>h</sub> bit 13 and s
 
 Bits `1000`<sub>h</sub>, `2000`<sub>h</sub>, `4000`<sub>h</sub> and `8000`<sub>h</sub> of the answer say up, down, left or right.
 
+When its fifth argument is non-zero, `002D3BA0` uses `002D0A20(list, pressed, repeat, held)` instead (`002D3CAE`),
+a cursor move that keeps margins: the cursor stays `+109`<sub>h</sub> rows from the top and `+10A`<sub>h</sub> from the bottom of
+the view while the view can still scroll, and a page stops `+107`<sub>h</sub> rows from the start or `+108`<sub>h</sub> from the end.
+
+| Input | Move | Answer |
+|---|---|---|
+| Triangle held with Up or Down | the view by one page less a row, the cursor too when the view is held at its margin; at the margin, the cursor to the first or last shown row unless `+E4`<sub>h</sub> bit 24 is set; nothing when bit 13 is set | `4`, `5`, `6` |
+| Up, Down, with at least two rows | the cursor row, or the view once the cursor is at its margin | `1`, `2` |
+| Up at the top, Down at the bottom, on a fresh press | wraps to the other end and one column on, unless `+E4`<sub>h</sub> bit 24 is set | `3` |
+| Left, Right | the cursor column, or the view's column, wrapping the same way into the next row | `1`, `2`, `3` |
+
+After a move the cursor is pulled back onto the last item, and the direction bit is set only when something moved.
+
 ### Cursor sounds
 
 `002D2D40(list, answer)` plays the step's sound:
@@ -138,6 +151,11 @@ out, 3 hidden) with its count `022CBE8A` out of `022CBE88`. `00368360` moves it 
 - `00367200(frames)`, the step, slides in mode 2 (`00367ED0`) and fills the trail, returning to mode 1 at the
   end; in mode 1 it ages the trail and counts down the hold `022CBE34`, then starts the fade out. It runs the
   bounce while flag bit 4 is set and steps the fade.
+- `003676D0()`, from the step (`00367340`), moves the cursor in mode 2. With flag bit 2 it takes the progress
+  `00248F40(022CBE5C, 022CBE60, 022CBE5E)`, shifts both the start `022CBE48`/`022CBE4A` and the target
+  `022CBE4C`/`022CBE4E` by `022CBE58`/`022CBE5A` when either is non-zero, and sets the position `022CBE38`/`022CBE3A`
+  to start + (target - start) x progress.
+- Without flag bit 2, `003676D0` jumps to the target (`00368940`) and clears `022CBE5E` and `022CBE70`.
 - `003676B0()` sets flag bit 11 and calls the step; the widget draw passes `00250540`, `002506D0` and `002508E0`
   run it.
 - `00368300()` answers whether the hand is drawn: a mode, flag bit 1 or a fade other than hidden, a position,

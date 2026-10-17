@@ -131,6 +131,14 @@ A sale of loot also counts `00316A50(Eh, quantity)`, and every purchase counts `
 | equipment bought | the equip offer `0057A620` (`0057A980`); a sale of equipment rebuilds the list |
 | anything else | the list is rebuilt with the cursor kept on its row (`0056E410`) |
 
+The grant window's list `003F4840` (from `shop_new.mrp`, kept at `02B5F1F8`) draws its rows through the child
+`003F4330`, which installs the row painter `003F41C0` (`003F45AB`). For row i it reads an item id at `+CCh + 8i`
+and an amount at `+D0h + 8i`:
+
+- for an id it shows the item's icon (record `+2C`<sub>h</sub>, through `002FABD0`, `003933B0` and `0035D380`), its name
+  (`002B58B0`) and the amount (`0029FF60`);
+- for -1 it shows text `7D3`<sub>h</sub> with the amount, formatted into `+E4`<sub>h</sub> (`002B4090`).
+
 ### Row painters and the list state
 
 `0056D370` installs four row painters (`0056D66E`-`0056D6AC`), each with its own label layout: `0056CBC0` (`00D23568`),
@@ -178,6 +186,9 @@ and bit 3 when it is not 1, and passes both to the list.
 - `0057B680(i)` returns the grant window's child `+158`<sub>h</sub> for `i` below 1, and `0057B6A0` closes the grant window's
   parts (`0057A5C0`): the list (`002CA110`), the panel `[02CA9798]`, the help lines (`00291D80`, `00293110`) and the
   window itself, returning `C`<sub>h</sub>.
+- `0057C010` is the grant window's other callback; `0057A4E0` installs it beside `0057B6A0` (`0057A5CC`). It passes the
+  name id of the shop byte `+C0`<sub>h</sub> of `[02CA9790]` (`002FAE40`) through `003EABE0` to `002CA150(…, 0)`, runs
+  `002CE7A0(1)` and `0056E580([02CA9798], 0)`, re-attaches `[02CA9790]` (`00246AD0`) and returns `C`<sub>h</sub>.
 - `0057CD00(table, id)` returns the index of `id` among the 16-byte entries at `+5B8`<sub>h</sub> (count `+636`<sub>h</sub>), or 0, for
   the sort strip (`005669A5`).
 
