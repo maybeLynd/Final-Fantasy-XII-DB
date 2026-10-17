@@ -61,6 +61,11 @@ manager 0 last, so the lowest manager wins a conflict. For each player with a fr
   sets its mode to 3 (`0025A500`);
 - frame 1 copies it into the sub view `02097B80` (`0025A3D0`).
 
+Once the field is loaded (`[02ADD0D8]` through `00377DB0`), both copies then replace the view's floats `+00`<sub>h</sub>
+and `+04`<sub>h</sub>: with `02098DE0` / `02098DE4` while byte `02098DE8` is set, else with `0209A6EC` / `0209A6F0`,
+dwords 2 and 3 of the map pack's section 11 (`0025A359`-`0025A3A0`, `0025A45F`-`0025A47A`;
+[MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
+
 Then the two transition cameras: when `00257520` is blending it writes record 5 from `02096410`
 with mode 3, and when `00255850` is moving it writes record 5 from `02096290`. Last,
 `0025A520(5, any)` sets bit 5 of the active mask `02098DEC` when any of these wrote, and clears it
@@ -318,6 +323,8 @@ Camera (`D0`<sub>h</sub>), as the update reads it:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `00`<sub>h</sub> | `f32` | value0 | 0.1 after a rebuild (`003CBBE0`); replaced by the copies `0025A2C0` / `0025A3D0` |
+| `04`<sub>h</sub> | `f32` | value1 | 1000.0 after a rebuild; replaced by the same copies |
 | `08`<sub>h</sub> | `f32` | fov | radians |
 | `0C`<sub>h</sub> | `f32` | fovCopy | the second copy's field of view |
 | `10`<sub>h</sub> | `f32` | projScale | 1 / tan(fov / 2) |
