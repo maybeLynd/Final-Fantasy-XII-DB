@@ -155,6 +155,18 @@ the `PrimitiveRendererD3D11` vtable `00D86960` at `+00`<sub>h</sub> and its seco
 `+08`<sub>h</sub>. The first table has 45 slots (`006CA760` to `006CB540`, followed by the locator
 `01D38180` at `00D86AC8`); the second has one slot, `006C88A0`.
 
+Slots `+B8`<sub>h</sub> and `+E8`<sub>h</sub> (`006CAC90`, `006CAFB0`) step to the state description at `+208`<sub>h</sub> and edit
+it. Its dword `+00`<sub>h</sub> marks what changed, with the bit meanings of the `0061DE20` mask below (`1`<sub>h</sub>
+rasterizer, `4`<sub>h</sub> depth-stencil); a `D3D11_RASTERIZER_DESC` follows at `+04`<sub>h</sub> and a
+`D3D11_DEPTH_STENCIL_DESC` at `+2C`<sub>h</sub>:
+
+- slot `+B8`<sub>h</sub>, `00629560(desc, wire)`, sets the fill mode: 2 (wireframe) when `wire` is 1, else 3
+  (solid), and sets bit `1`<sub>h</sub>;
+- slot `+E8`<sub>h</sub>, `0062A9E0`, sets the stencil half: the enable at `+38`<sub>h</sub>, the read and write masks at
+  `+3C`<sub>h</sub> and `+3D`<sub>h</sub>, the front face's three operations and its comparison at `+40`<sub>h</sub> to `+4C`<sub>h</sub> and the
+  back face's at `+50`<sub>h</sub> to `+5C`<sub>h</sub>, and sets bit `4`<sub>h</sub>. `0061C010` turns each comparison and `0061C150`
+  each operation from a code 0 to 7 into the D3D11 value.
+
 ### The context's draw blocks
 
 After it has the D3D11 device and swap chain, the context initialiser `00625830` builds three

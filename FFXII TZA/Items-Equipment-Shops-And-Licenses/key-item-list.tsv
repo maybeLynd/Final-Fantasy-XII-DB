@@ -1,0 +1,513 @@
+id	table	row	name	sort_order	icon_frame	b00	text_id	description	explanation
+8000h	m_daiji	0	Rabanastre	0	112	0	20000		a key item from m_daiji; its description text is empty
+8001h	m_daiji	1	Nalbina Fortress	1	112	1	20001		a key item from m_daiji; its description text is empty
+8002h	m_daiji	2	Bhujerba	2	112	2	20002		a key item from m_daiji; its description text is empty
+8003h	m_daiji	3	Jahara	3	112	3	20003		a key item from m_daiji; its description text is empty
+8004h	m_daiji	4	Eruyt Village	4	112	4	20004		a key item from m_daiji; its description text is empty
+8005h	m_daiji	5	Mt Bur-Omisace	5	112	5	20005		a key item from m_daiji; its description text is empty
+8006h	m_daiji	6	Archades	6	112	6	20006		a key item from m_daiji; its description text is empty
+8007h	m_daiji	7	Balfonheim Port	7	112	7	20007		a key item from m_daiji; its description text is empty
+8008h	m_daiji	8	Dalmasca Estersand	8	112	8	20008		a key item from m_daiji; its description text is empty
+8009h	m_daiji	9	Dalmasca Westersand	9	112	9	20009		a key item from m_daiji; its description text is empty
+800Ah	m_daiji	10	Giza Plains	10	112	10	20010		a key item from m_daiji; its description text is empty
+800Bh	m_daiji	11	Ogir-Yensa Sandsea	11	112	11	20011		a key item from m_daiji; its description text is empty
+800Ch	m_daiji	12	Nam-Yensa Sandsea	12	112	12	20012		a key item from m_daiji; its description text is empty
+800Dh	m_daiji	13	Mosphoran Highwaste	13	112	13	20013		a key item from m_daiji; its description text is empty
+800Eh	m_daiji	14	Salikawood	14	112	14	20014		a key item from m_daiji; its description text is empty
+800Fh	m_daiji	15	Nabreus Deadlands	15	112	15	20015		a key item from m_daiji; its description text is empty
+8010h	m_daiji	16	Ozmone Plain	16	112	16	20016		a key item from m_daiji; its description text is empty
+8011h	m_daiji	17	Golmore Jungle	17	112	17	20017		a key item from m_daiji; its description text is empty
+8012h	m_daiji	18	Feywood	18	112	18	20018		a key item from m_daiji; its description text is empty
+8013h	m_daiji	19	Paramina Rift	19	112	19	20019		a key item from m_daiji; its description text is empty
+8014h	m_daiji	20	Phon Coast	20	112	20	20020		a key item from m_daiji; its description text is empty
+8015h	m_daiji	21	Tchita Uplands	21	112	21	20021		a key item from m_daiji; its description text is empty
+8016h	m_daiji	22	Cerobi Steppe	22	112	22	20022		a key item from m_daiji; its description text is empty
+8017h	m_daiji	23	Ridorana Cataract	23	112	23	20023		a key item from m_daiji; its description text is empty
+8018h	m_daiji	24	Garamsythe Waterway	24	112	24	20024		a key item from m_daiji; its description text is empty
+8019h	m_daiji	25	Barheim Passage	25	112	25	20025		a key item from m_daiji; its description text is empty
+801Ah	m_daiji	26	Zertinan Caverns	26	112	26	20026		a key item from m_daiji; its description text is empty
+801Bh	m_daiji	27	Lhusu Mines	27	112	27	20027		a key item from m_daiji; its description text is empty
+801Ch	m_daiji	28	Tomb of Raithwall	28	112	28	20028		a key item from m_daiji; its description text is empty
+801Dh	m_daiji	29	Necrohol of Nabudis	29	112	29	20029		a key item from m_daiji; its description text is empty
+801Eh	m_daiji	30	Henne Mines	30	112	30	20030		a key item from m_daiji; its description text is empty
+801Fh	m_daiji	31	Giruvegan	31	112	31	20031		a key item from m_daiji; its description text is empty
+8020h	m_daiji	32	Stilshrine of Miriam	32	112	32	20032		a key item from m_daiji; its description text is empty
+8021h	m_daiji	33	Sochen Cave Palace	33	112	33	20033		a key item from m_daiji; its description text is empty
+8022h	m_daiji	34	Draklor Laboratories	34	112	34	20034		a key item from m_daiji; its description text is empty
+8023h	m_daiji	35	Reserve	35	112	35	20035		a Reserve row
+8024h	m_daiji	36	Leviathan	36	112	36	20036		a key item from m_daiji; its description text is empty
+8025h	m_daiji	37	Bahamut	37	112	37	20037		a key item from m_daiji; its description text is empty
+8026h	m_daiji	38	Royal Palace of Rabanastre	38	112	38	20038		a key item from m_daiji; its description text is empty
+8027h	m_daiji	39	Garamsythe Candle	39	112	39	20039		a key item from m_daiji; its description text is empty
+8028h	m_daiji	40	Barheim Candle	40	112	40	20040		a key item from m_daiji; its description text is empty
+8029h	m_daiji	41	Lhusu Candle	41	112	41	20041		a key item from m_daiji; its description text is empty
+802Ah	m_daiji	42	Henne Candle	42	112	42	20042		a key item from m_daiji; its description text is empty
+802Bh	m_daiji	43	Feywood Candle	43	112	43	20043		a key item from m_daiji; its description text is empty
+802Ch	m_daiji	44	Nalbina Dungeons	44	112	44	20044		a key item from m_daiji; its description text is empty
+802Dh	m_daiji	45	Pharos: First Ascent	45	112	45	20045		a key item from m_daiji; its description text is empty
+802Eh	m_daiji	46	Pharos: Second Ascent	46	112	46	20046		a key item from m_daiji; its description text is empty
+802Fh	m_daiji	47	Pharos: Third Ascent	47	112	47	20047		a key item from m_daiji; its description text is empty
+8030h	m_daiji	48	Reserve	48	0	0	20048		a Reserve row
+8031h	m_daiji	49	Reserve	49	0	0	20049		a Reserve row
+8032h	m_daiji	50	Reserve	50	0	0	20050		a Reserve row
+8033h	m_daiji	51	Reserve	51	0	0	20051		a Reserve row
+8034h	m_daiji	52	Reserve	52	0	0	20052		a Reserve row
+8035h	m_daiji	53	Reserve	53	0	0	20053		a Reserve row
+8036h	m_daiji	54	Reserve	54	0	0	20054		a Reserve row
+8037h	m_daiji	55	Reserve	55	0	0	20055		a Reserve row
+8038h	m_daiji	56	Reserve	56	0	0	20056		a Reserve row
+8039h	m_daiji	57	Reserve	57	0	0	20057		a Reserve row
+803Ah	m_daiji	58	Reserve	58	0	0	20058		a Reserve row
+803Bh	m_daiji	59	Reserve	59	0	0	20059		a Reserve row
+803Ch	m_daiji	60	Reserve	60	0	0	20060		a Reserve row
+803Dh	m_daiji	61	Reserve	61	0	0	20061		a Reserve row
+803Eh	m_daiji	62	Reserve	62	0	0	20062		a Reserve row
+803Fh	m_daiji	63	Reserve	63	0	0	20063		a Reserve row
+8040h	g_daiji	0	Rabanastre	0	113	64	20064		a key item from g_daiji; its description text is empty
+8041h	g_daiji	1	Reserve	1	0	0	20065		a Reserve row
+8042h	g_daiji	2	Nalbina Fortress	2	113	66	20066		a key item from g_daiji; its description text is empty
+8043h	g_daiji	3	Barheim Passage	3	113	67	20067		a key item from g_daiji; its description text is empty
+8044h	g_daiji	4	The Salikawood	4	113	68	20068		a key item from g_daiji; its description text is empty
+8045h	g_daiji	5	Nabreus Deadlands	5	113	69	20069		a key item from g_daiji; its description text is empty
+8046h	g_daiji	6	Reserve	6	113	70	20070		a Reserve row
+8047h	g_daiji	7	Archades	7	113	71	20071		a key item from g_daiji; its description text is empty
+8048h	g_daiji	8	The Sochen Cave Palace	8	113	72	20072		a key item from g_daiji; its description text is empty
+8049h	g_daiji	9	The Henne Mines	9	113	73	20073		a key item from g_daiji; its description text is empty
+804Ah	g_daiji	10	Bhujerba	10	113	74	20074		a key item from g_daiji; its description text is empty
+804Bh	g_daiji	11	The Lhusu Mines	11	113	75	20075		a key item from g_daiji; its description text is empty
+804Ch	g_daiji	12	The Tomb of Raithwall	12	113	76	20076		a key item from g_daiji; its description text is empty
+804Dh	g_daiji	13	Zertinan Caverns	13	113	77	20077		a key item from g_daiji; its description text is empty
+804Eh	g_daiji	14	Golmore Jungle	14	113	78	20078		a key item from g_daiji; its description text is empty
+804Fh	g_daiji	15	The Feywood	15	113	79	20079		a key item from g_daiji; its description text is empty
+8050h	g_daiji	16	Giruvegan	16	113	80	20080		a key item from g_daiji; its description text is empty
+8051h	g_daiji	17	The Stilshrine of Miriam	17	113	81	20081		a key item from g_daiji; its description text is empty
+8052h	g_daiji	18	The Port at Balfonheim	18	113	82	20082		a key item from g_daiji; its description text is empty
+8053h	g_daiji	19	The Pharos at Ridorana	19	113	83	20083		a key item from g_daiji; its description text is empty
+8054h	g_daiji	20	Jahara	20	113	83	20084		a key item from g_daiji; its description text is empty
+8055h	g_daiji	21	Eruyt Village	21	113	84	20085		a key item from g_daiji; its description text is empty
+8056h	g_daiji	22	Mt Bur-Omisace	22	113	85	20086		a key item from g_daiji; its description text is empty
+8057h	g_daiji	23	Dalmasca Estersand	23	113	86	20087		a key item from g_daiji; its description text is empty
+8058h	g_daiji	24	Dalmasca Westersand	24	113	87	20088		a key item from g_daiji; its description text is empty
+8059h	g_daiji	25	Mosphoran Highwaste	25	113	88	20089		a key item from g_daiji; its description text is empty
+805Ah	g_daiji	26	Ogir-Yensa Sandsea	26	113	89	20090		a key item from g_daiji; its description text is empty
+805Bh	g_daiji	27	The Phon Coast	27	113	90	20091		a key item from g_daiji; its description text is empty
+805Ch	g_daiji	28	Tchita Uplands	28	113	91	20092		a key item from g_daiji; its description text is empty
+805Dh	g_daiji	29	Reserve	29	0	0	20093		a Reserve row
+805Eh	g_daiji	30	Reserve	30	0	0	20094		a Reserve row
+805Fh	g_daiji	31	Reserve	31	0	0	20095		a Reserve row
+8060h	q_daiji	0	Blue Bottle	73	114	96	20096	"This small bottle contains a message: ""Truth lies just beyond falsehood. CDZCKZMCRANZS"""	a key item from q_daiji
+8061h	q_daiji	1	Green Bottle	75	114	97	20097	"This small bottle contains a message: ""Skip on stones to far bank's shore, by skipping stones return once more. SSADLNIAKLADHAUETDNREA"""	a key item from q_daiji
+8062h	q_daiji	2	Red Bottle	77	114	98	20098	"This small bottle contains a message: ""Foothills rise in mountains' shadow. nhIiQsTUrEe"""	a key item from q_daiji
+8063h	q_daiji	3	Yellow Bottle	79	114	99	20099	"This small bottle contains a message: ""Dragons stir among the eaters of the wind. 1 2 - - 5 - 7 - 9 -"""	a key item from q_daiji
+8064h	q_daiji	4	Black Bottle	81	114	100	20100	"This small bottle contains a message: ""Easy as a, b, c, so count yourself lucky. 19-12-21-9-3-5-7-1-20-5-18-1-20-19"""	a key item from q_daiji
+8065h	q_daiji	5	Sage's Monograph	0	114	101	20101	Possession of this text enables the acquisition of superior loot from elementals.	a key item from q_daiji
+8066h	q_daiji	6	Hunter's Monograph	1	114	102	20102	Possession of this text enables the acquisition of superior loot from beasts and avions.	a key item from q_daiji
+8067h	q_daiji	7	Knight's Monograph	2	114	103	20103	Possession of this text enables the acquisition of superior loot from giants and insects.	a key item from q_daiji
+8068h	q_daiji	8	Dragoon's Monograph	3	114	104	20104	Possession of this text enables the acquisition of superior loot from dragons and plants.	a key item from q_daiji
+8069h	q_daiji	9	Mage's Monograph	4	114	105	20105	Possession of this text enables the acquisition of superior loot from fiends.	a key item from q_daiji
+806Ah	q_daiji	10	Warmage's Monograph	5	114	106	20106	Possession of this text enables the acquisition of superior loot from amorphs and undead.	a key item from q_daiji
+806Bh	q_daiji	11	Scholar's Monograph	6	114	107	20107	Possession of this text enables the acquisition of superior loot from constructs.	a key item from q_daiji
+806Ch	q_daiji	12	Canopic Jar	7	114	108	20108	A cursed jar said to hold the power to entrap a beast's soul, forever binding it as an arcana.	a key item from q_daiji
+806Dh	q_daiji	13	Available	8	114	109	20109		a key item from q_daiji; its description text is empty
+806Eh	q_daiji	14	Accepted	9	114	110	20110		a key item from q_daiji; its description text is empty
+806Fh	q_daiji	15	Complete!	10	114	111	20111		a key item from q_daiji; its description text is empty
+8070h	q_daiji	16	Writ of Transit	12	114	112	20112	A writ given you by Tomaj granting its bearer right of passage through the east gate for the acquisition of foodstuffs.	a key item from q_daiji
+8071h	q_daiji	17	Clan Primer	11	114	113	20113	A reference containing clan exploits, hunt log, bestiary, and adventuring tips.	a key item from q_daiji
+8072h	q_daiji	18	Galbana Lilies	13	114	114	20114	Red flowers that grow only in Dalmasca. You found them after defeating the Rogue Tomato.	a key item from q_daiji
+8073h	q_daiji	19	Cactus Flower	34	114	115	20115	A rare flower that comes into bloom once every few years. Its petals have medicinal value, with those harvested from cacti turned cactoid said to be particularly potent.	a key item from q_daiji
+8074h	q_daiji	20	Tube Fuse	18	114	116	20116	A tube fuse pieced together from scavenged parts. It may not be much to look at, but it is well crafted.	a key item from q_daiji
+8075h	q_daiji	21	Sword of the Order	19	114	117	20117	A sword signifying a place among the Order of the Knights of Dalmasca. Dalan has tasked you with its delivery.	a key item from q_daiji
+8076h	q_daiji	22	No. 1 Brig Key	20	114	118	20118	This key opens the bulkhead of a brig aboard Leviathan.	a key item from q_daiji
+8077h	q_daiji	23	Systems Access Key	21	114	119	20119	This key grants access to Leviathan's security system, which controls the ship's internal alarm.	a key item from q_daiji
+8078h	q_daiji	24	Dawn Shard	23	51	120	20120	A piece of magicite left by King Raithwall. It signifies descent from the Dynast-King.	a key item from q_daiji
+8079h	q_daiji	25	Shadestone	14	114	121	20121	A dark, fist-sized stone. When exposed to the energies of the sun, it becomes a type of magicite known as sunstone.	a key item from q_daiji
+807Ah	q_daiji	26	Sunstone	15	114	122	20122	A piece of magicite made from shadestone that has been imbued with the power of the sun. Sunstone is commonly used as a source of heat and light.	a key item from q_daiji
+807Bh	q_daiji	27	Feather of the Flock	61	114	123	20123	A legendary cockatrice feather with a brilliant white sheen. Touching the feather, you feel a strange bond with the cockatrices...	a key item from q_daiji
+807Ch	q_daiji	28	Ring of the Toad	45	114	124	20124	A jade ring bearing the likeness of a toad. The ring holds special meaning to the villagers who call Giza Plains their home.	a key item from q_daiji
+807Dh	q_daiji	29	Silent Urn	55	114	125	20125	An urn given you by the villagers of Giza Plains. It is used to entrap the souls of beasts.	a key item from q_daiji
+807Eh	q_daiji	30	Site 3 Key	56	114	126	20126	This key grants access to Site 3 of the Lhusu Mines.	a key item from q_daiji
+807Fh	q_daiji	31	Site 11 Key	57	114	127	20127	This key grants access to Site 11 of the Lhusu Mines.	a key item from q_daiji
+8080h	q_daiji	32	Crescent Stone	16	114	128	20128	A stone cutting given you by Dalan. It is needed to reach the treasury in the Royal Palace. A lion is emblazoned on its face.	a key item from q_daiji
+8081h	q_daiji	33	Medallion of Bravery	70	114	129	20129	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji
+8082h	q_daiji	34	Medallion of Might	66	114	130	20130	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji
+8083h	q_daiji	35	Medallion of Love	72	114	131	20131	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji
+8084h	q_daiji	36	Lusterless Medallion	65	114	132	20132	A medallion that opens a door within the Palace of Nabudis. It is inert, its magicks long lost.	a key item from q_daiji
+8085h	q_daiji	37	Stone of the Condemner	64	114	133	20133	"A piece of magicite said to open the way to a forbidden place. An inscription carved in the stone's back reads: ""He with power, trust it not."""	a key item from q_daiji
+8086h	q_daiji	38	Errmonea Leaf	44	114	134	20134	A medicinal herb found on Ozmone Plain. It has long been used in the treatment of fevers.	a key item from q_daiji
+8087h	q_daiji	39	Rabbit's Tail	46	114	135	20135	The tail of a vorpal bunny, a legendary black dreamhare found in Golmore Jungle. It is a prized reagent.	a key item from q_daiji
+8088h	q_daiji	40	Ann's Letter	58	114	136	20136	A letter written by Ann, chief steward aboard one of the East Ivalice Company's airships. It is addressed to her six sisters, each of whom works a different airship route.	a key item from q_daiji
+8089h	q_daiji	41	Manufacted Nethicite	22	49	137	20137	A special kind of magicite developed by the Archadian Empire. Unlike ordinary magicite, this absorbs magicks.	a key item from q_daiji
+808Ah	q_daiji	42	Rusted Scrap of Armor	50	114	138	20138	A scrap of metal that looks as though it may once have been part of a piece of armor. You found it lodged between the claws of the Lindwyrm.	a key item from q_daiji
+808Bh	q_daiji	43	Sword of Kings	25	52	139	20139	The sword left by King Raithwall. It is capable of destroying nethicite.	a key item from q_daiji
+808Ch	q_daiji	44	Treaty-Blade	33	53	140	20140	The blade given Ashe by the Occuria. It has the power to cut new shards of nethicite.	a key item from q_daiji
+808Dh	q_daiji	45	Dusty Letter	40	114	141	20141	"A letter left in a deserted building in Lowtown. ""East South- east East Southwest Southeast"" is scrawled across the page."	a key item from q_daiji
+808Eh	q_daiji	46	Serpentwyne Must	43	114	142	20142	A liquid base used in the fermentation of the finest serpentwyne. You obtained it after defeating the Marilith.	a key item from q_daiji
+808Fh	q_daiji	47	Dull Fragment	67	114	143	20143	One of four pieces of a broken medallion. You obtained it beyond the sluice gates in the Garamsythe Waterway.	a key item from q_daiji
+8090h	q_daiji	48	Blackened Fragment	68	114	144	20144	One of four pieces of a broken medallion. You received it as a reward for finding and returning Samal's stolen articles.	a key item from q_daiji
+8091h	q_daiji	49	Grimy Fragment	69	114	145	20145	One of four pieces of a broken medallion. You obtained it with the help of Filo and Kytes.	a key item from q_daiji
+8092h	q_daiji	50	Stolen Articles	54	114	146	20146	A bundle of articles stolen by the contrite thief, only to be stolen once again by Orthros. Don't tease the...flan?	a key item from q_daiji
+8093h	q_daiji	51	Barheim Key	35	114	147	20147	An oddly shaped key received from the leader of a band of thieves. The key opens a door into the Barheim Passage.	a key item from q_daiji
+8094h	q_daiji	52	Muramata	36	114	148	20148	A fishing rod crafted by a master swordsmith. The rod is light, easily handled, and surpassingly strong.	a key item from q_daiji
+8095h	q_daiji	53	Matamune	37	114	149	20149	A cursed fishing rod that drinks the lifeblood of the fish it hooks. You obtained it from Gilgamesh, ancient man of mystery.	a key item from q_daiji
+8096h	q_daiji	54	Cactoid Compact	38	114	150	20150	A symbol of friendship conveyed upon trusted allies of the cactoids. They hold the bearers of such compacts in high honor.	a key item from q_daiji
+8097h	q_daiji	55	Cactoid Commendation	39	114	151	20151	A token given to cactoids who have distinguished themselves among the grove. The other races of Ivalice take little notice.	a key item from q_daiji
+8098h	q_daiji	56	Merchant's Armband	52	114	152	20152	An armband worn by the staff at Clio's Technicks in Bhujerba. The store's name is neatly embroidered on its surface.	a key item from q_daiji
+8099h	q_daiji	57	Pilika's Diary	53	114	153	20153	A diary kept by Pilika, a member of the staff at Clio's Technicks in Bhujerba. It chronicles her day-to-day affairs.	a key item from q_daiji
+809Ah	q_daiji	58	Ring of the Light	51	114	154	20154	A ring worn by followers of the Light of Kiltia. The crest of Faram, the Father, is etched in its band.	a key item from q_daiji
+809Bh	q_daiji	59	Viera Rucksack	47	114	155	20155	A bundle dropped by a viera traveler as she fled a vyraal. The cloth is dyed with an intricate pattern of trees.	a key item from q_daiji
+809Ch	q_daiji	60	Time-worn Necklace	63	114	156	20156	A beautiful necklace in the Galtean style. You found it in Nalbina and took it as your own.	a key item from q_daiji
+809Dh	q_daiji	61	Reserve	27	0	157	20157		a Reserve row
+809Eh	q_daiji	62	Lab Access Card	28	114	158	20158	A Draklor Laboratory security card. It bears the seal of the Archadian Empire.	a key item from q_daiji
+809Fh	q_daiji	63	Reserve	29	0	159	20159		a Reserve row
+80A0h	q_daiji	64	Reserve	30	0	160	20160		a Reserve row
+80A1h	q_daiji	65	Reserve	31	0	161	20161		a Reserve row
+80A2h	q_daiji	66	Reserve	32	0	162	20162		a Reserve row
+80A3h	q_daiji	67	Moonsilver Medallion	71	114	163	20163	A medallion made of moonsilver, a very rare metal. These medallions are traditionally given to loved ones as a token of affection.	a key item from q_daiji
+80A4h	q_daiji	68	Wanly Limned Message	74	114	164	20164	"The message contained in the blue bottle. Pallid letters shimmer on the page: ""River...unde...o"""	a key item from q_daiji
+80A5h	q_daiji	69	Green-hued Message	76	114	165	20165	"The message contained in the green bottle. Emerald letters shimmer on the page: ""Forest...rgro...w"""	a key item from q_daiji
+80A6h	q_daiji	70	Vermillion Message	78	114	166	20166	"The message contained in the red bottle. Vermillion letters shimmer on the page: ""Fire...undb...h"""	a key item from q_daiji
+80A7h	q_daiji	71	Auric Message	80	114	167	20167	"The message contained in the yellow bottle. Gilt letters shimmer on the page: ""Ash...ridg...er"""	a key item from q_daiji
+80A8h	q_daiji	72	Onyx Message	82	114	168	20168	"The message contained in the black bottle. Jet-black letters shimmer on the page: ""Darkness...eton...e"""	a key item from q_daiji
+80A9h	q_daiji	73	Reserve	114	0	169	20169		a Reserve row
+80AAh	q_daiji	74	Reserve	115	0	170	20170		a Reserve row
+80ABh	q_daiji	75	Reserve	116	0	171	20171		a Reserve row
+80ACh	q_daiji	76	Goddess's Magicite	17	50	172	20172	A piece of magicite you found in the treasury of the Royal Palace of Rabanastre. It must be extremely valuable.	a key item from q_daiji
+80ADh	q_daiji	77	Gift of the Great-chief	62	114	173	20173	A gift prepared by the garif Great-chief in hopes of acquiring some Giza cockatrices. It is addressed to Brunoa, the nomad elder in the Giza Plains.	a key item from q_daiji
+80AEh	q_daiji	78	Broken Key	41	114	174	20174	A broken, useless key. Sorbet had been meaning to get it fixed.	a key item from q_daiji
+80AFh	q_daiji	79	Sluice Gate Key	42	114	175	20175	A key needed to operate the sluice gates. It used to be broken, but Sorbet had his brother repair it.	a key item from q_daiji
+80B0h	q_daiji	80	Reserve	117	0	176	20176		a Reserve row
+80B1h	q_daiji	81	Wind Globe	59	114	177	20177	A globe fashioned of silver rings decorated with arcane patterns.	a key item from q_daiji
+80B2h	q_daiji	82	Windvane	60	114	178	20178	A device for reading the winds. It is used to navigate through sandstorms on the open desert.	a key item from q_daiji
+80B3h	q_daiji	83	Reserve	118	0	179	20179		a Reserve row
+80B4h	q_daiji	84	Dragon Scale	48	114	180	20180	A scale found on the corpse of a vyraal. Natural philosophers studying wyrms and their kin are known to pay well for such.	a key item from q_daiji
+80B5h	q_daiji	85	Ageworn Key	49	114	181	20181	A key bartered in exchange for a dragon scale. It is said to open the way to the lair of a great wyrm.	a key item from q_daiji
+80B6h	q_daiji	86	Soul Ward Key	26	114	182	20182	A key to a door in the Sochen Cave Palace. Dire beasts are imprisoned within.	a key item from q_daiji
+80B7h	q_daiji	87	Lente's Tear	24	114	183	20183	A charm made by the viera. It grants passage through the barriers of Golmore Jungle.	a key item from q_daiji
+80B8h	q_daiji	88	Shelled Trophy	83	114	184	20184	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80B9h	q_daiji	89	Fur-scaled Trophy	84	114	185	20185	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80BAh	q_daiji	90	Bony Trophy	85	114	186	20186	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80BBh	q_daiji	91	Fanged Trophy	86	114	187	20187	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80BCh	q_daiji	92	Hide-covered Trophy	87	114	188	20188	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80BDh	q_daiji	93	Maned Trophy	88	114	189	20189	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80BEh	q_daiji	94	Fell Trophy	89	114	190	20190	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80BFh	q_daiji	95	Accursed Trophy	90	114	191	20191	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C0h	q_daiji	96	Beaked Trophy	91	114	192	20192	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C1h	q_daiji	97	Maverick Trophy	92	114	193	20193	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C2h	q_daiji	98	Soulless Trophy	93	114	194	20194	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C3h	q_daiji	99	Leathern Trophy	94	114	195	20195	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C4h	q_daiji	100	Sickle Trophy	95	114	196	20196	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C5h	q_daiji	101	Vengeful Trophy	96	114	197	20197	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C6h	q_daiji	102	Gravesoil Trophy	97	114	198	20198	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C7h	q_daiji	103	Metallic Trophy	98	114	199	20199	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C8h	q_daiji	104	Slimy Trophy	99	114	200	20200	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80C9h	q_daiji	105	Scythe Trophy	100	114	201	20201	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80CAh	q_daiji	106	Feathered Trophy	101	114	202	20202	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80CBh	q_daiji	107	Skull Trophy	102	114	203	20203	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80CCh	q_daiji	108	Mind Trophy	103	114	204	20204	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80CDh	q_daiji	109	Eternal Trophy	104	114	205	20205	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80CEh	q_daiji	110	Clawed Trophy	105	114	206	20206	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80CFh	q_daiji	111	Odiferous Trophy	106	114	207	20207	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D0h	q_daiji	112	Whiskered Trophy	107	114	208	20208	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D1h	q_daiji	113	Frigid Trophy	108	114	209	20209	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D2h	q_daiji	114	Ensanguined Trophy	109	114	210	20210	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D3h	q_daiji	115	Cruel Trophy	110	114	211	20211	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D4h	q_daiji	116	Adamantine Trophy	111	114	212	20212	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D5h	q_daiji	117	Reptilian Trophy	112	114	213	20213	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D6h	q_daiji	118	Vile Trophy	113	114	214	20214	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
+80D7h	q_daiji	119	Reserve	119	0	0	20215		a Reserve row
+80D8h	q_daiji	120	Reserve	120	0	0	20216		a Reserve row
+80D9h	q_daiji	121	Reserve	121	0	0	20217		a Reserve row
+80DAh	q_daiji	122	Reserve	122	0	0	20218		a Reserve row
+80DBh	q_daiji	123	Reserve	123	0	0	20219		a Reserve row
+80DCh	q_daiji	124	Reserve	124	0	0	20220		a Reserve row
+80DDh	q_daiji	125	Reserve	125	0	0	20221		a Reserve row
+80DEh	q_daiji	126	Reserve	126	0	0	20222		a Reserve row
+80DFh	q_daiji	127	Reserve	127	0	0	20223		a Reserve row
+80E0h	q_daiji	128	Reserve	128	0	0	20224		a Reserve row
+80E1h	q_daiji	129	Reserve	129	0	0	20225		a Reserve row
+80E2h	q_daiji	130	Reserve	130	0	0	20226		a Reserve row
+80E3h	q_daiji	131	Reserve	131	0	0	20227		a Reserve row
+80E4h	q_daiji	132	Reserve	132	0	0	20228		a Reserve row
+80E5h	q_daiji	133	Reserve	133	0	0	20229		a Reserve row
+80E6h	q_daiji	134	Reserve	134	0	0	20230		a Reserve row
+80E7h	q_daiji	135	Reserve	135	0	0	20231		a Reserve row
+80E8h	q_daiji	136	Reserve	136	0	0	20232		a Reserve row
+80E9h	q_daiji	137	Reserve	137	0	0	20233		a Reserve row
+80EAh	q_daiji	138	Reserve	138	0	0	20234		a Reserve row
+80EBh	q_daiji	139	Reserve	139	0	0	20235		a Reserve row
+80ECh	q_daiji	140	Reserve	140	0	0	20236		a Reserve row
+80EDh	q_daiji	141	Reserve	141	0	0	20237		a Reserve row
+80EEh	q_daiji	142	Reserve	142	0	0	20238		a Reserve row
+80EFh	q_daiji	143	Reserve	143	0	0	20239		a Reserve row
+80F0h	q_daiji	144	Reserve	144	0	0	20240		a Reserve row
+80F1h	q_daiji	145	Reserve	145	0	0	20241		a Reserve row
+80F2h	q_daiji	146	Reserve	146	0	0	20242		a Reserve row
+80F3h	q_daiji	147	Reserve	147	0	0	20243		a Reserve row
+80F4h	q_daiji	148	Reserve	148	0	0	20244		a Reserve row
+80F5h	q_daiji	149	Reserve	149	0	0	20245		a Reserve row
+80F6h	q_daiji	150	Reserve	150	0	0	20246		a Reserve row
+80F7h	q_daiji	151	Reserve	151	0	0	20247		a Reserve row
+80F8h	q_daiji	152	Reserve	152	0	0	20248		a Reserve row
+80F9h	q_daiji	153	Reserve	153	0	0	20249		a Reserve row
+80FAh	q_daiji	154	Reserve	154	0	0	20250		a Reserve row
+80FBh	q_daiji	155	Reserve	155	0	0	20251		a Reserve row
+80FCh	q_daiji	156	Reserve	156	0	0	20252		a Reserve row
+80FDh	q_daiji	157	Reserve	157	0	0	20253		a Reserve row
+80FEh	q_daiji	158	Reserve	158	0	0	20254		a Reserve row
+80FFh	q_daiji	159	Reserve	159	0	0	20255		a Reserve row
+8100h	q_daiji	160	Reserve	160	0	0	20256		a Reserve row
+8101h	q_daiji	161	Reserve	161	0	0	20257		a Reserve row
+8102h	q_daiji	162	Reserve	162	0	0	20258		a Reserve row
+8103h	q_daiji	163	Reserve	163	0	0	20259		a Reserve row
+8104h	q_daiji	164	Reserve	164	0	0	20260		a Reserve row
+8105h	q_daiji	165	Reserve	165	0	0	20261		a Reserve row
+8106h	q_daiji	166	Reserve	166	0	0	20262		a Reserve row
+8107h	q_daiji	167	Reserve	167	0	0	20263		a Reserve row
+8108h	q_daiji	168	Reserve	168	0	0	20264		a Reserve row
+8109h	q_daiji	169	Reserve	169	0	0	20265		a Reserve row
+810Ah	q_daiji	170	Reserve	170	0	0	20266		a Reserve row
+810Bh	q_daiji	171	Reserve	171	0	0	20267		a Reserve row
+810Ch	q_daiji	172	Reserve	172	0	0	20268		a Reserve row
+810Dh	q_daiji	173	Reserve	173	0	0	20269		a Reserve row
+810Eh	q_daiji	174	Reserve	174	0	0	20270		a Reserve row
+810Fh	q_daiji	175	Reserve	175	0	0	20271		a Reserve row
+8110h	q_daiji	176	Reserve	176	0	0	20272		a Reserve row
+8111h	q_daiji	177	Reserve	177	0	0	20273		a Reserve row
+8112h	q_daiji	178	Reserve	178	0	0	20274		a Reserve row
+8113h	q_daiji	179	Reserve	179	0	0	20275		a Reserve row
+8114h	q_daiji	180	Reserve	180	0	0	20276		a Reserve row
+8115h	q_daiji	181	Reserve	181	0	0	20277		a Reserve row
+8116h	q_daiji	182	Reserve	182	0	0	20278		a Reserve row
+8117h	q_daiji	183	Reserve	183	0	0	20279		a Reserve row
+8118h	q_daiji	184	Reserve	184	0	0	20280		a Reserve row
+8119h	q_daiji	185	Reserve	185	0	0	20281		a Reserve row
+811Ah	q_daiji	186	Reserve	186	0	0	20282		a Reserve row
+811Bh	q_daiji	187	Reserve	187	0	0	20283		a Reserve row
+811Ch	q_daiji	188	Reserve	188	0	0	20284		a Reserve row
+811Dh	q_daiji	189	Reserve	189	0	0	20285		a Reserve row
+811Eh	q_daiji	190	Reserve	190	0	0	20286		a Reserve row
+811Fh	q_daiji	191	Reserve	191	0	0	20287		a Reserve row
+8120h	q_daiji	192	Reserve	192	0	0	20288		a Reserve row
+8121h	q_daiji	193	Reserve	193	0	0	20289		a Reserve row
+8122h	q_daiji	194	Reserve	194	0	0	20290		a Reserve row
+8123h	q_daiji	195	Reserve	195	0	0	20291		a Reserve row
+8124h	q_daiji	196	Reserve	196	0	0	20292		a Reserve row
+8125h	q_daiji	197	Reserve	197	0	0	20293		a Reserve row
+8126h	q_daiji	198	Reserve	198	0	0	20294		a Reserve row
+8127h	q_daiji	199	Reserve	199	0	0	20295		a Reserve row
+8128h	q_daiji	200	Reserve	200	0	0	20296		a Reserve row
+8129h	q_daiji	201	Reserve	201	0	0	20297		a Reserve row
+812Ah	q_daiji	202	Reserve	202	0	0	20298		a Reserve row
+812Bh	q_daiji	203	Reserve	203	0	0	20299		a Reserve row
+812Ch	q_daiji	204	Reserve	204	0	0	20300		a Reserve row
+812Dh	q_daiji	205	Reserve	205	0	0	20301		a Reserve row
+812Eh	q_daiji	206	Reserve	206	0	0	20302		a Reserve row
+812Fh	q_daiji	207	Reserve	207	0	0	20303		a Reserve row
+8130h	q_daiji	208	Reserve	208	0	0	20304		a Reserve row
+8131h	q_daiji	209	Reserve	209	0	0	20305		a Reserve row
+8132h	q_daiji	210	Reserve	210	0	0	20306		a Reserve row
+8133h	q_daiji	211	Reserve	211	0	0	20307		a Reserve row
+8134h	q_daiji	212	Reserve	212	0	0	20308		a Reserve row
+8135h	q_daiji	213	Reserve	213	0	0	20309		a Reserve row
+8136h	q_daiji	214	Reserve	214	0	0	20310		a Reserve row
+8137h	q_daiji	215	Reserve	215	0	0	20311		a Reserve row
+8138h	q_daiji	216	Reserve	216	0	0	20312		a Reserve row
+8139h	q_daiji	217	Reserve	217	0	0	20313		a Reserve row
+813Ah	q_daiji	218	Reserve	218	0	0	20314		a Reserve row
+813Bh	q_daiji	219	Reserve	219	0	0	20315		a Reserve row
+813Ch	q_daiji	220	Reserve	220	0	0	20316		a Reserve row
+813Dh	q_daiji	221	Reserve	221	0	0	20317		a Reserve row
+813Eh	q_daiji	222	Reserve	222	0	0	20318		a Reserve row
+813Fh	q_daiji	223	Reserve	223	0	0	20319		a Reserve row
+8140h	q_daiji	224	Reserve	224	0	0	20320		a Reserve row
+8141h	q_daiji	225	Reserve	225	0	0	20321		a Reserve row
+8142h	q_daiji	226	Reserve	226	0	0	20322		a Reserve row
+8143h	q_daiji	227	Reserve	227	0	0	20323		a Reserve row
+8144h	q_daiji	228	Reserve	228	0	0	20324		a Reserve row
+8145h	q_daiji	229	Reserve	229	0	0	20325		a Reserve row
+8146h	q_daiji	230	Reserve	230	0	0	20326		a Reserve row
+8147h	q_daiji	231	Reserve	231	0	0	20327		a Reserve row
+8148h	q_daiji	232	Reserve	232	0	0	20328		a Reserve row
+8149h	q_daiji	233	Reserve	233	0	0	20329		a Reserve row
+814Ah	q_daiji	234	Reserve	234	0	0	20330		a Reserve row
+814Bh	q_daiji	235	Reserve	235	0	0	20331		a Reserve row
+814Ch	q_daiji	236	Reserve	236	0	0	20332		a Reserve row
+814Dh	q_daiji	237	Reserve	237	0	0	20333		a Reserve row
+814Eh	q_daiji	238	Reserve	238	0	0	20334		a Reserve row
+814Fh	q_daiji	239	Reserve	239	0	0	20335		a Reserve row
+8150h	q_daiji	240	Reserve	240	0	0	20336		a Reserve row
+8151h	q_daiji	241	Reserve	241	0	0	20337		a Reserve row
+8152h	q_daiji	242	Reserve	242	0	0	20338		a Reserve row
+8153h	q_daiji	243	Reserve	243	0	0	20339		a Reserve row
+8154h	q_daiji	244	Reserve	244	0	0	20340		a Reserve row
+8155h	q_daiji	245	Reserve	245	0	0	20341		a Reserve row
+8156h	q_daiji	246	Reserve	246	0	0	20342		a Reserve row
+8157h	q_daiji	247	Reserve	247	0	0	20343		a Reserve row
+8158h	q_daiji	248	Reserve	248	0	0	20344		a Reserve row
+8159h	q_daiji	249	Reserve	249	0	0	20345		a Reserve row
+815Ah	q_daiji	250	Reserve	250	0	0	20346		a Reserve row
+815Bh	q_daiji	251	Reserve	251	0	0	20347		a Reserve row
+815Ch	q_daiji	252	Reserve	252	0	0	20348		a Reserve row
+815Dh	q_daiji	253	Reserve	253	0	0	20349		a Reserve row
+815Eh	q_daiji	254	Reserve	254	0	0	20350		a Reserve row
+815Fh	q_daiji	255	Reserve	255	0	0	20351		a Reserve row
+8160h	q_daiji	256	Reserve	256	0	0	20352		a Reserve row
+8161h	q_daiji	257	Reserve	257	0	0	20353		a Reserve row
+8162h	q_daiji	258	Reserve	258	0	0	20354		a Reserve row
+8163h	q_daiji	259	Reserve	259	0	0	20355		a Reserve row
+8164h	q_daiji	260	Reserve	260	0	0	20356		a Reserve row
+8165h	q_daiji	261	Reserve	261	0	0	20357		a Reserve row
+8166h	q_daiji	262	Reserve	262	0	0	20358		a Reserve row
+8167h	q_daiji	263	Reserve	263	0	0	20359		a Reserve row
+8168h	q_daiji	264	Reserve	264	0	0	20360		a Reserve row
+8169h	q_daiji	265	Reserve	265	0	0	20361		a Reserve row
+816Ah	q_daiji	266	Reserve	266	0	0	20362		a Reserve row
+816Bh	q_daiji	267	Reserve	267	0	0	20363		a Reserve row
+816Ch	q_daiji	268	Reserve	268	0	0	20364		a Reserve row
+816Dh	q_daiji	269	Reserve	269	0	0	20365		a Reserve row
+816Eh	q_daiji	270	Reserve	270	0	0	20366		a Reserve row
+816Fh	q_daiji	271	Reserve	271	0	0	20367		a Reserve row
+8170h	q_daiji	272	Reserve	272	0	0	20368		a Reserve row
+8171h	q_daiji	273	Reserve	273	0	0	20369		a Reserve row
+8172h	q_daiji	274	Reserve	274	0	0	20370		a Reserve row
+8173h	q_daiji	275	Reserve	275	0	0	20371		a Reserve row
+8174h	q_daiji	276	Reserve	276	0	0	20372		a Reserve row
+8175h	q_daiji	277	Reserve	277	0	0	20373		a Reserve row
+8176h	q_daiji	278	Reserve	278	0	0	20374		a Reserve row
+8177h	q_daiji	279	Reserve	279	0	0	20375		a Reserve row
+8178h	q_daiji	280	Reserve	280	0	0	20376		a Reserve row
+8179h	q_daiji	281	Reserve	281	0	0	20377		a Reserve row
+817Ah	q_daiji	282	Reserve	282	0	0	20378		a Reserve row
+817Bh	q_daiji	283	Reserve	283	0	0	20379		a Reserve row
+817Ch	q_daiji	284	Reserve	284	0	0	20380		a Reserve row
+817Dh	q_daiji	285	Reserve	285	0	0	20381		a Reserve row
+817Eh	q_daiji	286	Reserve	286	0	0	20382		a Reserve row
+817Fh	q_daiji	287	Reserve	287	0	0	20383		a Reserve row
+8180h	q_daiji	288	Reserve	288	0	0	20384		a Reserve row
+8181h	q_daiji	289	Reserve	289	0	0	20385		a Reserve row
+8182h	q_daiji	290	Reserve	290	0	0	20386		a Reserve row
+8183h	q_daiji	291	Reserve	291	0	0	20387		a Reserve row
+8184h	q_daiji	292	Reserve	292	0	0	20388		a Reserve row
+8185h	q_daiji	293	Reserve	293	0	0	20389		a Reserve row
+8186h	q_daiji	294	Reserve	294	0	0	20390		a Reserve row
+8187h	q_daiji	295	Reserve	295	0	0	20391		a Reserve row
+8188h	q_daiji	296	Reserve	296	0	0	20392		a Reserve row
+8189h	q_daiji	297	Reserve	297	0	0	20393		a Reserve row
+818Ah	q_daiji	298	Reserve	298	0	0	20394		a Reserve row
+818Bh	q_daiji	299	Reserve	299	0	0	20395		a Reserve row
+818Ch	q_daiji	300	Reserve	300	0	0	20396		a Reserve row
+818Dh	q_daiji	301	Reserve	301	0	0	20397		a Reserve row
+818Eh	q_daiji	302	Reserve	302	0	0	20398		a Reserve row
+818Fh	q_daiji	303	Reserve	303	0	0	20399		a Reserve row
+8190h	q_daiji	304	Reserve	304	0	0	20400		a Reserve row
+8191h	q_daiji	305	Reserve	305	0	0	20401		a Reserve row
+8192h	q_daiji	306	Reserve	306	0	0	20402		a Reserve row
+8193h	q_daiji	307	Reserve	307	0	0	20403		a Reserve row
+8194h	q_daiji	308	Reserve	308	0	0	20404		a Reserve row
+8195h	q_daiji	309	Reserve	309	0	0	20405		a Reserve row
+8196h	q_daiji	310	Reserve	310	0	0	20406		a Reserve row
+8197h	q_daiji	311	Reserve	311	0	0	20407		a Reserve row
+8198h	q_daiji	312	Reserve	312	0	0	20408		a Reserve row
+8199h	q_daiji	313	Reserve	313	0	0	20409		a Reserve row
+819Ah	q_daiji	314	Reserve	314	0	0	20410		a Reserve row
+819Bh	q_daiji	315	Reserve	315	0	0	20411		a Reserve row
+819Ch	q_daiji	316	Reserve	316	0	0	20412		a Reserve row
+819Dh	q_daiji	317	Reserve	317	0	0	20413		a Reserve row
+819Eh	q_daiji	318	Reserve	318	0	0	20414		a Reserve row
+819Fh	q_daiji	319	Reserve	319	0	0	20415		a Reserve row
+81A0h	q_daiji	320	Reserve	320	0	0	20416		a Reserve row
+81A1h	q_daiji	321	Reserve	321	0	0	20417		a Reserve row
+81A2h	q_daiji	322	Reserve	322	0	0	20418		a Reserve row
+81A3h	q_daiji	323	Reserve	323	0	0	20419		a Reserve row
+81A4h	q_daiji	324	Reserve	324	0	0	20420		a Reserve row
+81A5h	q_daiji	325	Reserve	325	0	0	20421		a Reserve row
+81A6h	q_daiji	326	Reserve	326	0	0	20422		a Reserve row
+81A7h	q_daiji	327	Reserve	327	0	0	20423		a Reserve row
+81A8h	q_daiji	328	Reserve	328	0	0	20424		a Reserve row
+81A9h	q_daiji	329	Reserve	329	0	0	20425		a Reserve row
+81AAh	q_daiji	330	Reserve	330	0	0	20426		a Reserve row
+81ABh	q_daiji	331	Reserve	331	0	0	20427		a Reserve row
+81ACh	q_daiji	332	Reserve	332	0	0	20428		a Reserve row
+81ADh	q_daiji	333	Reserve	333	0	0	20429		a Reserve row
+81AEh	q_daiji	334	Reserve	334	0	0	20430		a Reserve row
+81AFh	q_daiji	335	Reserve	335	0	0	20431		a Reserve row
+81B0h	q_daiji	336	Reserve	336	0	0	20432		a Reserve row
+81B1h	q_daiji	337	Reserve	337	0	0	20433		a Reserve row
+81B2h	q_daiji	338	Reserve	338	0	0	20434		a Reserve row
+81B3h	q_daiji	339	Reserve	339	0	0	20435		a Reserve row
+81B4h	q_daiji	340	Reserve	340	0	0	20436		a Reserve row
+81B5h	q_daiji	341	Reserve	341	0	0	20437		a Reserve row
+81B6h	q_daiji	342	Reserve	342	0	0	20438		a Reserve row
+81B7h	q_daiji	343	Reserve	343	0	0	20439		a Reserve row
+81B8h	q_daiji	344	Reserve	344	0	0	20440		a Reserve row
+81B9h	q_daiji	345	Reserve	345	0	0	20441		a Reserve row
+81BAh	q_daiji	346	Reserve	346	0	0	20442		a Reserve row
+81BBh	q_daiji	347	Reserve	347	0	0	20443		a Reserve row
+81BCh	q_daiji	348	Reserve	348	0	0	20444		a Reserve row
+81BDh	q_daiji	349	Reserve	349	0	0	20445		a Reserve row
+81BEh	q_daiji	350	Reserve	350	0	0	20446		a Reserve row
+81BFh	q_daiji	351	Reserve	351	0	0	20447		a Reserve row
+81C0h	q_daiji	352	Reserve	352	0	0	20448		a Reserve row
+81C1h	q_daiji	353	Reserve	353	0	0	20449		a Reserve row
+81C2h	q_daiji	354	Reserve	354	0	0	20450		a Reserve row
+81C3h	q_daiji	355	Reserve	355	0	0	20451		a Reserve row
+81C4h	q_daiji	356	Reserve	356	0	0	20452		a Reserve row
+81C5h	q_daiji	357	Reserve	357	0	0	20453		a Reserve row
+81C6h	q_daiji	358	Reserve	358	0	0	20454		a Reserve row
+81C7h	q_daiji	359	Reserve	359	0	0	20455		a Reserve row
+81C8h	q_daiji	360	Reserve	360	0	0	20456		a Reserve row
+81C9h	q_daiji	361	Reserve	361	0	0	20457		a Reserve row
+81CAh	q_daiji	362	Reserve	362	0	0	20458		a Reserve row
+81CBh	q_daiji	363	Reserve	363	0	0	20459		a Reserve row
+81CCh	q_daiji	364	Reserve	364	0	0	20460		a Reserve row
+81CDh	q_daiji	365	Reserve	365	0	0	20461		a Reserve row
+81CEh	q_daiji	366	Reserve	366	0	0	20462		a Reserve row
+81CFh	q_daiji	367	Reserve	367	0	0	20463		a Reserve row
+81D0h	q_daiji	368	Reserve	368	0	0	20464		a Reserve row
+81D1h	q_daiji	369	Reserve	369	0	0	20465		a Reserve row
+81D2h	q_daiji	370	Reserve	370	0	0	20466		a Reserve row
+81D3h	q_daiji	371	Reserve	371	0	0	20467		a Reserve row
+81D4h	q_daiji	372	Reserve	372	0	0	20468		a Reserve row
+81D5h	q_daiji	373	Reserve	373	0	0	20469		a Reserve row
+81D6h	q_daiji	374	Reserve	374	0	0	20470		a Reserve row
+81D7h	q_daiji	375	Reserve	375	0	0	20471		a Reserve row
+81D8h	q_daiji	376	Reserve	376	0	0	20472		a Reserve row
+81D9h	q_daiji	377	Reserve	377	0	0	20473		a Reserve row
+81DAh	q_daiji	378	Reserve	378	0	0	20474		a Reserve row
+81DBh	q_daiji	379	Reserve	379	0	0	20475		a Reserve row
+81DCh	q_daiji	380	Reserve	380	0	0	20476		a Reserve row
+81DDh	q_daiji	381	Reserve	381	0	0	20477		a Reserve row
+81DEh	q_daiji	382	Reserve	382	0	0	20478		a Reserve row
+81DFh	q_daiji	383	Reserve	383	0	0	20479		a Reserve row
+81E0h	q_daiji	384	Reserve	384	0	0	20480		a Reserve row
+81E1h	q_daiji	385	Reserve	385	0	0	20481		a Reserve row
+81E2h	q_daiji	386	Reserve	386	0	0	20482		a Reserve row
+81E3h	q_daiji	387	Reserve	387	0	0	20483		a Reserve row
+81E4h	q_daiji	388	Reserve	388	0	0	20484		a Reserve row
+81E5h	q_daiji	389	Reserve	389	0	0	20485		a Reserve row
+81E6h	q_daiji	390	Reserve	390	0	0	20486		a Reserve row
+81E7h	q_daiji	391	Reserve	391	0	0	20487		a Reserve row
+81E8h	q_daiji	392	Reserve	392	0	0	20488		a Reserve row
+81E9h	q_daiji	393	Reserve	393	0	0	20489		a Reserve row
+81EAh	q_daiji	394	Reserve	394	0	0	20490		a Reserve row
+81EBh	q_daiji	395	Reserve	395	0	0	20491		a Reserve row
+81ECh	q_daiji	396	Reserve	396	0	0	20492		a Reserve row
+81EDh	q_daiji	397	Reserve	397	0	0	20493		a Reserve row
+81EEh	q_daiji	398	Reserve	398	0	0	20494		a Reserve row
+81EFh	q_daiji	399	Reserve	399	0	0	20495		a Reserve row
+81F0h	q_daiji	400	Reserve	400	0	0	20496		a Reserve row
+81F1h	q_daiji	401	Reserve	401	0	0	20497		a Reserve row
+81F2h	q_daiji	402	Reserve	402	0	0	20498		a Reserve row
+81F3h	q_daiji	403	Reserve	403	0	0	20499		a Reserve row
+81F4h	q_daiji	404	Reserve	404	0	0	20500		a Reserve row
+81F5h	q_daiji	405	Reserve	405	0	0	20501		a Reserve row
+81F6h	q_daiji	406	Reserve	406	0	0	20502		a Reserve row
+81F7h	q_daiji	407	Reserve	407	0	0	20503		a Reserve row
+81F8h	q_daiji	408	Reserve	408	0	0	20504		a Reserve row
+81F9h	q_daiji	409	Reserve	409	0	0	20505		a Reserve row
+81FAh	q_daiji	410	Reserve	410	0	0	20506		a Reserve row
+81FBh	q_daiji	411	Reserve	411	0	0	20507		a Reserve row
+81FCh	q_daiji	412	Reserve	412	0	0	20508		a Reserve row
+81FDh	q_daiji	413	Reserve	413	0	0	20509		a Reserve row
+81FEh	q_daiji	414	Reserve	414	0	0	20510		a Reserve row
+81FFh	q_daiji	415	Reserve	415	0	0	20511		a Reserve row

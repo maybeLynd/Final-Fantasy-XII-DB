@@ -226,7 +226,9 @@ on the chain at `+10`<sub>h</sub>, frees the storage when the list owns it (`+7C
 Descriptor slot `+00`<sub>h</sub> walks the members of a class and its ancestors (`0063E2E0`) and hands each
 to `0063CE80`, which applies the member type's own slot `+00`<sub>h</sub> to every element through `0059FDB0`.
 The flag argument picks the order: non-zero walks each `+80`<sub>h</sub> list forwards, zero backwards, and the
-flag is passed on to the member types.
+flag is passed on to the member types. A type's slot `+00`<sub>h</sub> is the step applied to one element; for
+`PQWord` (`PTypeDefault<PQWord>`, `0063E170`) it reverses the value's sixteen bytes in place (`00637E10`)
+and returns 1.
 
 Eight core classes carry the walk inlined for their own descriptor, one copy per order, and their
 slot `+00`<sub>h</sub> adapters only choose between the two copies and return 1:
@@ -387,6 +389,16 @@ Descriptor vtable slots (PClassDescriptorConcrete&lt;PAnimatableComponent&gt;, `
 | `50`<sub>h</sub> | `construct` | in | place; returns false for a class without one (`00657140`) |
 | `58`<sub>h</sub> | `destruct` | in | place (`0063FC60`) |
 | `60`<sub>h</sub> | `register` | the | members (_purecall in ForType&lt;T&gt;) |
+| `68`<sub>h</sub> | `push` | the | object's held objects of a named class to a script and count them; -1 by default (`00660570`) |
+
+One class overrides slot `+68`<sub>h</sub>: `PEntity` (`006AB3F0`, which reorders the arguments for `006AB540`). It looks the
+name up in the namespace (`0063BA10`), returns -1 unless that class is `PComponent` or derives from it, and
+otherwise pushes every component of the entity whose class is that class or derives from it (`00684090`)
+and returns how many it pushed.
+
+For a `PMatrix4x3` the wrapper's slot `+20`<sub>h</sub> (`006B3A90` to `006B3610`) builds a 64-byte matrix from the
+twelve floats, as (`+C`<sub>h</sub>, `+1C`<sub>h</sub>, `+2C`<sub>h</sub>, 0), (`+0`, `+4`, `+8`, 0), (`+10`<sub>h</sub>, `+14`<sub>h</sub>, `+18`<sub>h</sub>, 0) and
+(`+20`<sub>h</sub>, `+24`<sub>h</sub>, `+28`<sub>h</sub>, 1.0 from `01CEBBA8`), and pushes it as a script `Matrix` (`00684130`).
 
 ## Shipped data
 
