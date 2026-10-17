@@ -42,7 +42,9 @@ current value beside the label.
 `001C7940` (an area's scene config) and `001C3D50` (a cutscene's) read settings out of a
 string-keyed map. `001FF740(map, "key")` finds the entry, `00200BE0` tests its type tag for 6
 ("absent"), `00200B50` reads it as a float (tag 2 `cvtpd2ps`, tag 1 `cvtdq2ps`, else 0) or
-`00200B80` as an integer, and the value is stored.
+`00200B80` as an integer, and the value is stored. `00200BA0` reads it as a string: the string object at
+`+8` for tag 0, otherwise `01F83130`, an empty string that the initialiser `0015D2F0` builds at start-up
+on the shared byte `02EBA2E0` ([EASTL strings](../Third-Party-Libraries/eastl-strings-and-containers.md)).
 
 The area loader inlines a two-level lookup:
 the given map, then the global defaults at `01F813C8` when the tag is 6. The cutscene loader

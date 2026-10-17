@@ -1,0 +1,41 @@
+id	lines	conditions	actions	line_text	used_by	explanation
+5000h	1	6000h	150	1. Foe: party leader's target: Attack	0 Vaan	1 line; loaded by 0 Vaan
+5001h	2	60B5h, 6001h	82, 150	1. Ally: HP < 50%: Potion; 2. Foe: nearest visible: Attack	1 Ashe	2 lines; loaded by 1 Ashe
+5002h	2	6000h, 6001h	150, 150	1. Foe: party leader's target: Attack; 2. Foe: nearest visible: Attack	2 Fran	2 lines; loaded by 2 Fran
+5003h	2	60A3h, 6001h	158, 150	1. Ally: any: First Aid; 2. Foe: nearest visible: Attack	3 Balthier	2 lines; loaded by 3 Balthier
+5004h	2	6000h, 6001h	150, 150	1. Foe: party leader's target: Attack; 2. Foe: nearest visible: Attack	4 Basch	2 lines; loaded by 4 Basch
+5005h	1	6000h	150	1. Foe: party leader's target: Attack	5 Penelo	1 line; loaded by 5 Penelo
+5006h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5007h	2	60B5h, 6001h	0, 150	1. Ally: HP < 50%: Cure; 2. Foe: nearest visible: Attack	7 Amalia	2 lines; loaded by 7 Amalia
+5008h	2	6000h, 6001h	150, 150	1. Foe: party leader's target: Attack; 2. Foe: nearest visible: Attack	8 Basch	2 lines; loaded by 8 Basch
+5009h	2	6000h, 6001h	150, 150	1. Foe: party leader's target: Attack; 2. Foe: nearest visible: Attack	9 Basch	2 lines; loaded by 9 Basch
+500Ah	8	60B7h, 60B5h, 607Bh, 6004h, 6001h, 60A3h, 60A3h, 60A3h	4, 0, 82, 150, 150, 3, 1, 2	1. Ally: HP < 30%: Cura; 2. Ally: HP < 50%: Cure; 3. Self: HP < 70%: Potion; 4. Foe: targeting self: Attack; 5. Foe: nearest visible: Attack; 6. Ally: any: Poisona; 7. Ally: any: Blindna; 8. Ally: any: Vox	10 Lamont	8 lines; loaded by 10 Lamont
+500Bh	6	605Ah, 6000h, 6004h, 6005h, 6001h, 6002h	170, 150, 150, 150, 150, 150	1. Foe: flying: Telekinesis; 2. Foe: party leader's target: Attack; 3. Foe: targeting self: Attack; 4. Foe: targeting ally: Attack; 5. Foe: nearest visible: Attack; 6. Foe: any: Attack	11 Vossler	6 lines; loaded by 11 Vossler
+500Ch	7	605Ah, 6000h, 6004h, 6005h, 6001h, 6002h, 60A3h	170, 150, 150, 150, 150, 150, 88	1. Foe: flying: Telekinesis; 2. Foe: party leader's target: Attack; 3. Foe: targeting self: Attack; 4. Foe: targeting ally: Attack; 5. Foe: nearest visible: Attack; 6. Foe: any: Attack; 7. Ally: any: Phoenix Down	12 Vossler	7 lines; loaded by 12 Vossler
+500Dh	8	60B5h, 607Bh, 6000h, 6001h, 6002h, 60A3h, 60A3h, 60A3h	4, 82, 150, 150, 150, 3, 1, 2	1. Ally: HP < 50%: Cura; 2. Self: HP < 70%: Potion; 3. Foe: party leader's target: Attack; 4. Foe: nearest visible: Attack; 5. Foe: any: Attack; 6. Ally: any: Poisona; 7. Ally: any: Blindna; 8. Ally: any: Vox	13 Larsa	8 lines; loaded by 13 Larsa
+500Eh	10	6000h, 6005h, 6004h, 6001h, 6002h, 60A3h, 60A3h, 60A3h, 60A3h, 607Fh	150, 150, 150, 150, 150, 15, 97, 89, 90, 105	1. Foe: party leader's target: Attack; 2. Foe: targeting ally: Attack; 3. Foe: targeting self: Attack; 4. Foe: nearest visible: Attack; 5. Foe: any: Attack; 6. Ally: any: Arise; 7. Ally: any: Serum; 8. Ally: any: Gold Needle; 9. Ally: any: Echo Herbs; 10. Self: HP < 30%: Domaine Calvados	14 Reddas, 16 Reddas	10 lines; loaded by 14 Reddas, 16 Reddas
+500Fh	1	6001h	150	1. Foe: nearest visible: Attack	15 Basch	1 line; loaded by 15 Basch
+5010h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5011h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5012h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5013h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5014h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5015h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5016h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5017h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5018h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+5019h	1	6001h	150	1. Foe: nearest visible: Attack		1 line; no party row names it
+501Ah	12	6001h, 6001h, 6001h, 6001h, 6001h, 6001h, 6001h, 6001h, 6001h, 6001h, 6001h, 6001h	150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150	1. Foe: nearest visible: Attack; 2. Foe: nearest visible: Attack; 3. Foe: nearest visible: Attack; 4. Foe: nearest visible: Attack; 5. Foe: nearest visible: Attack; 6. Foe: nearest visible: Attack; 7. Foe: nearest visible: Attack; 8. Foe: nearest visible: Attack; 9. Foe: nearest visible: Attack; 10. Foe: nearest visible: Attack; 11. Foe: nearest visible: Attack; 12. Foe: nearest visible: Attack		12 lines; no party row names it
+501Bh	4	60FFh, 6051h, 6001h, 60B0h	183, 182, 150, 4	1. NOT USED no_chip: Hellfire; 2. Foe: fire-vulnerable: Painflare; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Cura	27 Belias	4 lines; loaded by 27 Belias
+501Ch	4	60FFh, 6053h, 6001h, 60B0h	185, 184, 150, 4	1. NOT USED no_chip: Frostwave; 2. Foe: ice-vulnerable: Flash-Freeze; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Cura	28 Mateus	4 lines; loaded by 28 Mateus
+501Dh	4	60FFh, 6052h, 6001h, 60B0h	187, 186, 150, 4	1. NOT USED no_chip: Judgment Bolt; 2. Foe: lightning-vulnerable: Flash Arc; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Cura	29 Adrammelech	4 lines; loaded by 29 Adrammelech
+501Eh	4	60FFh, 6054h, 6001h, 60B0h	189, 188, 150, 11	1. NOT USED no_chip: Gaia's Wrath; 2. Foe: earth-vulnerable: Roxxor; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Curaja	30 Hashmal	4 lines; loaded by 30 Hashmal
+501Fh	5	60FFh, 6059h, 6001h, 6001h, 60B0h	191, 150, 190, 150, 11	1. NOT USED no_chip: Blight; 2. Foe: undead: Attack; 3. Foe: nearest visible: Malaise; 4. Foe: nearest visible: Attack; 5. Ally: HP < 100%: Curaja	31 Cúchulainn	5 lines; loaded by 31 Cúchulainn
+5020h	4	60FFh, 6055h, 6001h, 60B0h	193, 192, 150, 14	1. NOT USED no_chip: Tsunami; 2. Foe: water-vulnerable: Briny Cannonade; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Renew	32 Famfrit	4 lines; loaded by 32 Famfrit
+5021h	4	60FFh, 6001h, 6001h, 60B0h	195, 194, 150, 4	1. NOT USED no_chip: Condemnation; 2. Foe: nearest visible: Kill; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Cura	33 Zalera	4 lines; loaded by 33 Zalera
+5022h	4	60FFh, 6001h, 6001h, 60B0h	197, 196, 150, 11	1. NOT USED no_chip: Soul Purge; 2. Foe: nearest visible: Devour Soul; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Curaja	34 Shemhazai	4 lines; loaded by 34 Shemhazai
+5023h	4	60FFh, 6056h, 6001h, 60B0h	199, 198, 150, 14	1. NOT USED no_chip: Tornado; 2. Foe: wind-vulnerable: Whirlwind; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Renew	35 Chaos	4 lines; loaded by 35 Chaos
+5024h	3	60FFh, 6001h, 6001h	201, 200, 150	1. NOT USED no_chip: Big Bang; 2. Foe: nearest visible: Gravity Well; 3. Foe: nearest visible: Attack	36 Zeromus	3 lines; loaded by 36 Zeromus
+5025h	4	60FFh, 6001h, 6001h, 60B0h	203, 202, 150, 11	1. NOT USED no_chip: Meteor; 2. Foe: nearest visible: Comet; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Curaja	37 Exodus	4 lines; loaded by 37 Exodus
+5026h	4	60FFh, 6057h, 6001h, 60B0h	205, 204, 150, 14	1. NOT USED no_chip: Eschaton; 2. Foe: holy-vulnerable: Redemption; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Renew	38 Ultima	4 lines; loaded by 38 Ultima
+5027h	4	60FFh, 6058h, 6001h, 60B0h	207, 206, 150, 14	1. NOT USED no_chip: Final Eclipse; 2. Foe: dark-vulnerable: Banish Ray; 3. Foe: nearest visible: Attack; 4. Ally: HP < 100%: Renew	39 Zodiark	4 lines; loaded by 39 Zodiark

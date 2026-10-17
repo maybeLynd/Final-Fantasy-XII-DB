@@ -236,6 +236,11 @@ The presets are `battle_pack.bin` section 8, 40 rows of 64 bytes. 29 party table
 `5010`<sub>h</sub>-`501A`<sub>h</sub> are named by no party row. Party rows 0-5 are Vaan, Ashe, Fran, Balthier, Basch and Penelo,
 the characters the "Ally: Vaan" to "Ally: Penelo" conditions test, and rows 27-39 are the Espers.
 
+All 40 rows, with their condition ids and action rows, are in [gambit-preset-list.tsv](gambit-preset-list.tsv),
+which `Database/Tools/catalogues/gambit_presets.py` writes from the shipped file (two runs give byte-identical
+output). The twelve presets no party row names hold "Foe: nearest visible → Attack": once in `5006`<sub>h</sub> and
+`5010`<sub>h</sub>-`5019`<sub>h</sub>, twelve times in `501A`<sub>h</sub>.
+
 | Preset | Party rows | Lines, top first |
 |---|---|---|
 | `5000`<sub>h</sub> | 0 | Foe: party leader's target → Attack |

@@ -254,4 +254,4 @@ condition_id	row	name	help_text	target	test	also_needs	pick	menu_position	sites
 60FCh	252	Foe: HP < 30%	Target any foe with less than 30% HP.	Foe	HP < 30 % of max HP	-	lowest HP %	3, 8	00302203; 00302292; 003022C7; 0030BD00
 60FDh	253	Foe: HP < 10%	Target any foe with less than 10% HP.	Foe	HP < 10 % of max HP	-	lowest HP %	3, 9	00302203; 00302292; 003022C7; 0030BD00
 60FEh	254	Foe: targeted by ally	Target any foe targeted by an ally.	Foe	highest number of units whose committed action targets it (unit +EA8h)	-	nearest of the equal ones	0, 3	00302123; 0030BD00
-60FFh	255	NOT USED no-chip	-	Foe	highest max HP (stats +24h, doubled under Bubble; current HP under Disease)	the character: summon timer below 20 (battle state +5AD8h)	nearest of the equal ones	-	00301FCB; 00303523; 00303540; 0030BD00
+60FFh	255	NOT USED no_chip	-	Foe	highest max HP (stats +24h, doubled under Bubble; current HP under Disease)	the character: summon timer below 20 (battle state +5AD8h)	nearest of the equal ones	-	00301FCB; 00303523; 00303540; 0030BD00

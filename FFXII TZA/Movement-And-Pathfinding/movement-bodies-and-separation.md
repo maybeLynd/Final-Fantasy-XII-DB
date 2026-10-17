@@ -166,6 +166,8 @@ context or a class-1 object's is written, any other actor is left alone.
 | `settalkheight(h)` | `018D`<sub>h</sub> | `0034CAC0` | `0026BA00(h)`, then `0026B9D0(h * 0.25)` | the talk height (above), then the talk depth = `h / 4` |
 | `settalkunderheight(v)` | `018E`<sub>h</sub> | `0034CE60` | `0026B9D0` | the talk depth: class 3 `+CC`<sub>h</sub>, class 1 `+6C`<sub>h</sub> |
 | `getdefaultheight()` | `02B0`<sub>h</sub> | `003503D0` | `00263810` | a float result (`0026B4C0`): for class 3 the model's parameter `09001D1E`<sub>h</sub> (`002E9630`, 0 without a render record), for class 1 `+68`<sub>h</sub>, else 0 |
+| `getdefaultradiusw()` | `02B1`<sub>h</sub> | `00350910` | `00263860` | a float result (`0026B4C0`): for class 3 the model's parameter `01002143`<sub>h</sub>, or `01002D4F`<sub>h</sub> when `00377C20` reports the field flag (`002E9660`, 0 without a render record); for other classes the unset dword in its argument home slot `[rsp+8]`, so an undefined value |
+| `getdefaultradiusd()` | `02B2`<sub>h</sub> | `00350910` | `00263860` | the same handler, so the same value as `getdefaultradiusw` |
 | `setwalkspeed(v)` | `020E`<sub>h</sub> | `00352530` | `0026A560` | class 3 only: `+E0`<sub>h</sub> = `v` |
 | `setwalkthresholdspeed(v)` | `0247`<sub>h</sub> | `0034CEA0` | `0026BE00` | class 3 only: `+E4`<sub>h</sub> = `v`, then the render record's copy (`002E86B0`) |
 | `setfreetargetw(n)` | `0264`<sub>h</sub> | `00352500` | `0026AB60` | the integer `n` as a float, at least 0.01: class 3 the margin `+FC`<sub>h</sub>, class 1 `+70`<sub>h</sub> |

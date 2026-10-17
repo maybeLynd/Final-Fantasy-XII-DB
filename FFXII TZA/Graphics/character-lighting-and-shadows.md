@@ -212,6 +212,7 @@ entry's `+360`<sub>h</sub>.
 | Handle | counter `02B40520` << 8 \| slot, checked at entry `+10`<sub>h</sub> | counter `02B3F550` << 8 \| slot, checked at entry `+04`<sub>h</sub> |
 | Freed by | `003B6000` | `003AFBE0` |
 | Mode | byte `+41`<sub>h</sub>, `003B6900(handle, v)` = `(v >> 2 & old) \| (v & 3)` | low nibble of `+20`<sub>h</sub>, `003AFD00` |
+| Stored value | - | 16 bytes at `02B3F560`, copied in by `003AFD40` (called from `00378120` and `00379610`; the map pack's tag-11 colour); no code reads it back |
 
 A first-pool entry keeps the owner's index at `+04`<sub>h</sub>, its strength at `+14`<sub>h</sub> (1.0) and two bones,
 `+3C`<sub>h</sub> and `+3E`<sub>h</sub>, from the model's special bones `104`<sub>h</sub> and `106`<sub>h</sub> (`003E5AD0`).

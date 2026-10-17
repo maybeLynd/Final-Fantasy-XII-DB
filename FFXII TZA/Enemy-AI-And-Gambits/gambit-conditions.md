@@ -103,7 +103,7 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
   list (`+BC4`<sub>h</sub>, `003031C4`-`00303216`), for the Ally and Foe forms too.
 - **Ally: item AMT >= 10**, **Foe: item AMT >= 10** and **Self: item AMT >= 10** count the item the line's
   action uses (`003032C0`-`003032F5`).
-- Row 255, `60FF`<sub>h</sub>, is named "NOT USED no-chip" and is not on the menu. It takes the foe with the highest max
+- Row 255, `60FF`<sub>h</sub>, is named "NOT USED no_chip" and is not on the menu. It takes the foe with the highest max
   HP while the summon timer, battle state `+5AD8`<sub>h</sub>, is below 20 (`00303523`-`00303554`); every Esper's
   preset starts with it ([Gambits](gambits.md)).
 
@@ -115,7 +115,7 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 |---|---|
 | `condition_id` | `6000`<sub>h</sub> + row |
 | `row` | the row of section 7, 0-255 |
-| `name` | the name the gambit menu shows |
+| `name` | the name the gambit menu shows; the font glyph `≧` (byte `C4`<sub>h</sub>) is written `>=` |
 | `help_text` | the help line, or `-` |
 | `target` | Foe, Ally or Self: which units the first test looks at |
 | `test` | what the first test keeps; stats offsets are the unit's stats record ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) |
