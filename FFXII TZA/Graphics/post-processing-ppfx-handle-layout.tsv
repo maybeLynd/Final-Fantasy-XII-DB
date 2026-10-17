@@ -336,18 +336,18 @@ FFD0h	r14	numbered-family	17	tech_DepthOfField_ForegroundLayerMaskMakeColorT1_Sn
 22190h	r14	inline 60h	1	tech_RenderSceneRect_InLinearDepth	0072D55E
 22194h	r14	inline 60h	1	tech_RenderSceneRect_InLinearDepth_OutReinhard	0072D575
 221D8h	r14	inline 60h	1	tech_HybridLogGamma	0072D7D5
-?	?	inline 60h	1	(built string)	0072BAFF
-?	?	inline 60h	1	(built string)	0072BB43
-?	?	inline 60h	1	(built string)	0072BB86
-?	?	inline 60h	1	(built string)	0072BF63
-?	?	inline 60h	1	(built string)	0072BFEB
-?	?	inline 60h	1	%s%d	0072CA18
-?	?	inline 60h	1	%s%d	0072CAA8
-?	?	inline 60h	1	%s%d	0072CB38
-?	?	inline 48h	1	(built string)	0072D10C
-?	?	inline 48h	1	(built string)	0072D121
-?	?	inline 60h	1	%s%d	0072D21A
-?	?	inline 60h	1	%s%d	0072D5D8
-?	?	inline 60h	1	%s%d	0072D668
-?	?	inline 60h	1	%s%d	0072D6F8
-?	?	inline 60h	1	%s%d	0072D788
+1A9C0h + 4*i (i 0-4)	rsi	inline 60h	1	(built string)	0072BAFF
+1AA10h + 4*i (i 0-4)	rsi	inline 60h	1	(built string)	0072BB43
+1A9E8h + 4*i (i 0-4)	rsi	inline 60h	1	(built string)	0072BB86
+1A9D4h + 4*i (i 0-4)	rsi	inline 60h	1	(built string)	0072BF63
+1A9FCh + 4*i (i 0-4)	rsi	inline 60h	1	(built string)	0072BFEB
+1AD48h + 4*i (i 0-7)	r14	inline 60h	1	%s%d	0072CA18
+1AD68h + 4*i (i 0-7)	r14	inline 60h	1	%s%d	0072CAA8
+1AD88h + 4*i (i 0-7)	r14	inline 60h	1	%s%d	0072CB38
+8h	r14	inline 48h	1	(built string)	0072D10C
+Ch	r14	inline 48h	1	(built string)	0072D121
+220E4h + 4*i (i 0-3)	rdi	inline 60h	1	%s%d	0072D21A
+22198h + 4*i (i 0-3)	r14	inline 60h	1	%s%d	0072D5D8
+221A8h + 4*i (i 0-3)	r14	inline 60h	1	%s%d	0072D668
+221B8h + 4*i (i 0-3)	r14	inline 60h	1	%s%d	0072D6F8
+221C8h + 4*i (i 0-3)	r14	inline 60h	1	%s%d	0072D788

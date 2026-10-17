@@ -184,8 +184,9 @@ The largest technique family is `tech_DepthOfField` (53 names), then
 name's last character, appends `1` to `n`, and fetches each of those under 22 suffixes: none, and 21
 HDR conversions such as `_REINHARDRGB_RGB` and `_LOGRGBLUM_RGBFAST` (table `02EA2250`).
 
-Handles are 32-bit values stored from `this + 8` (`0072A496`), with one run from `this + 1AA10h`
-(`0072BA97`); the last is at `+221D8`<sub>h</sub>. The placed slots are in
+Handles are 32-bit values stored from `this + 8` (`0072A496`). One run is addressed from `this + 1AA10h`
+(`0072BA97`): a five-pass loop (`0072BAB0`-`0072C5C3`) fills 25 slots from `+1A9C0`<sub>h</sub> to `+1AA20`<sub>h</sub>, and
+other loops fill arrays of 8 and 4. The last slot is at `+221D8`<sub>h</sub>. The placed slots are in
 [the handle layout](post-processing-ppfx-handle-layout.tsv).
 
 ### The render-pass registries

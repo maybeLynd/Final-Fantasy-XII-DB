@@ -1,0 +1,362 @@
+node	name	kind_text	lp_cost	category	requirement_kind	rule	starts_with	grant_ids	grants	boards	explanation
+0	Quickening	Quickening	50	19	action	Quickening				all twelve	a Quickening square: it grants the member's next Quickening; 50 LP
+1	Quickening	Quickening	75	19	action	Quickening				all twelve	a Quickening square: it grants the member's next Quickening; 75 LP
+2	Quickening	Quickening	100	19	action	Quickening				all twelve	a Quickening square: it grants the member's next Quickening; 100 LP
+3	Quickening	Quickening	125	19	action	Quickening				all twelve	a Quickening square: it grants the member's next Quickening; 125 LP
+4	Quickening	Quickening	150	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 150 LP
+5	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+6	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+7	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+8	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+9	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+10	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+11	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+12	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+13	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+14	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+15	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+16	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+17	Quickening	Quickening	125	19	action	Quickening					a Quickening square: it grants the member's next Quickening; 125 LP
+18	Belias	Esper	20	20	action	Esper		0106h	Belias	all twelve	20 LP; grants Belias
+19	Mateus	Esper	30	20	action	Esper		0107h	Mateus	all twelve	30 LP; grants Mateus
+20	Adrammelech	Esper	35	20	action	Esper		0108h	Adrammelech	all twelve	35 LP; grants Adrammelech
+21	Hashmal	Esper	50	20	action	Esper		0109h	Hashmal	all twelve	50 LP; grants Hashmal
+22	Cúchulainn	Esper	50	20	action	Esper		010Ah	Cúchulainn	all twelve	50 LP; grants Cúchulainn
+23	Famfrit	Esper	100	20	action	Esper		010Bh	Famfrit	all twelve	100 LP; grants Famfrit
+24	Zalera	Esper	30	20	action	Esper		010Ch	Zalera	all twelve	30 LP; grants Zalera
+25	Shemhazai	Esper	50	20	action	Esper		010Dh	Shemhazai	all twelve	50 LP; grants Shemhazai
+26	Chaos	Esper	100	20	action	Esper		010Eh	Chaos	all twelve	100 LP; grants Chaos
+27	Zeromus	Esper	65	20	action	Esper		010Fh	Zeromus	all twelve	65 LP; grants Zeromus
+28	Exodus	Esper	65	20	action	Esper		0110h	Exodus	all twelve	65 LP; grants Exodus
+29	Ultima	Esper	115	20	action	Esper		0111h	Ultima	all twelve	115 LP; grants Ultima
+30	Zodiark	Esper	200	20	action	Esper		0112h	Zodiark	all twelve	200 LP; grants Zodiark
+31	Essentials	Weapon	1	18	augment	ordinary	Vaan, Ashe, Fran, Balthier, Basch, Penelo, Reks	0072h	Attack Items	all twelve	1 LP; grants Attack Items
+32	Swords 1	Weapon	15	1	equipment	ordinary	Reks	1001h	Broadsword	Knight	15 LP; grants Broadsword
+33	Swords 2	Weapon	25	1	equipment	ordinary	Ashe, Basch	1002h, 1003h	Longsword, Iron Sword	Knight	25 LP; grants Longsword, Iron Sword
+34	Swords 3	Weapon	35	1	equipment	ordinary		1004h, 1005h	Zwill Blade, Ancient Sword	Knight	35 LP; grants Zwill Blade, Ancient Sword
+35	Swords 4	Weapon	50	1	equipment	ordinary		1007h, 1008h	Lohengrin, Flametongue	Knight	50 LP; grants Lohengrin, Flametongue
+36	Swords 5	Weapon	55	1	equipment	ordinary		1009h, 100Ah	Demonsbane, Icebrand	Knight	55 LP; grants Demonsbane, Icebrand
+37	Swords 6	Weapon	60	1	equipment	ordinary		100Bh, 100Ch	Platinum Sword, Bastard Sword	Knight	60 LP; grants Platinum Sword, Bastard Sword
+38	Swords 7	Weapon	70	1	equipment	ordinary		100Dh, 100Eh	Diamond Sword, Runeblade	Knight, Time Battlemage	70 LP; grants Diamond Sword, Runeblade
+39	Blood Sword	Weapon	50	1	equipment	ordinary		1006h	Blood Sword	Knight, Bushi	50 LP; grants Blood Sword
+40	Greatswords 1	Weapon	50	1	equipment	ordinary		1012h	Claymore	White Mage, Red Battlemage, Knight	50 LP; grants Claymore
+41	Greatswords 2	Weapon	70	1	equipment	ordinary		1013h, 1014h	Defender, Save the Queen	White Mage, Red Battlemage, Knight	70 LP; grants Defender, Save the Queen
+42	Greatswords 3	Weapon	80	1	equipment	ordinary		1016h	Ultima Blade	Red Battlemage, Knight	80 LP; grants Ultima Blade
+43	Excalibur	Weapon	135	1	equipment	ordinary		1017h	Excalibur	Knight	135 LP; grants Excalibur
+44	Tournesol	Weapon	225	1	equipment	ordinary		1018h	Tournesol	Knight	225 LP; grants Tournesol
+45	Katana 1	Weapon	35	1	equipment	ordinary		1019h, 101Ah	Kotetsu, Osafune	Bushi	35 LP; grants Kotetsu, Osafune
+46	Katana 2	Weapon	50	1	equipment	ordinary		101Bh, 101Ch	Kogarasumaru, Magoroku	Bushi	50 LP; grants Kogarasumaru, Magoroku
+47	Katana 3	Weapon	70	1	equipment	ordinary		101Dh, 101Eh	Murasame, Kiku-ichimonji	Bushi	70 LP; grants Murasame, Kiku-ichimonji
+48	Katana 4	Weapon	90	1	equipment	ordinary		101Fh, 1020h	Yakei, Ame-no-Murakumo	Bushi	90 LP; grants Yakei, Ame-no-Murakumo
+49	Masamune	Weapon	130	1	equipment	ordinary		1022h	Masamune	Bushi	130 LP; grants Masamune
+50	Ninja Swords 1	Weapon	100	3	equipment	ordinary		1023h, 1024h, 1025h, 1028h	Ashura, Sakura-saezuri, Kagenui, Orochi	Shikari	100 LP; grants Ashura, Sakura-saezuri, Kagenui, Orochi
+51	Ninja Swords 2	Weapon	120	3	equipment	ordinary		1027h	Iga Blade	Shikari	120 LP; grants Iga Blade
+52	Yagyu Darkblade & Mesa	Weapon	180	3	equipment	ordinary		1029h, 10ABh	Yagyu Darkblade, Mesa	Shikari	180 LP; grants Yagyu Darkblade, Mesa
+53	Spears 1	Weapon	20	1	equipment	ordinary		102Ah, 102Bh	Javelin, Spear	Uhlan	20 LP; grants Javelin, Spear
+54	Spears 2	Weapon	25	1	equipment	ordinary		102Ch, 102Dh	Partisan, Heavy Lance	Uhlan	25 LP; grants Partisan, Heavy Lance
+55	Spears 3	Weapon	35	1	equipment	ordinary		102Eh, 102Fh	Storm Spear, Obelisk	Uhlan	35 LP; grants Storm Spear, Obelisk
+56	Spears 4	Weapon	50	1	equipment	ordinary		1030h, 1031h	Halberd, Trident	Uhlan	50 LP; grants Halberd, Trident
+57	Spears 5	Weapon	60	1	equipment	ordinary		1032h, 1033h	Holy Lance, Gungnir	Uhlan	60 LP; grants Holy Lance, Gungnir
+58	Dragon Whisker	Weapon	70	1	equipment	ordinary		1034h	Dragon Whisker	Uhlan	70 LP; grants Dragon Whisker
+59	Zodiac Spear	Weapon	240	1	equipment	ordinary		1035h	Zodiac Spear	Uhlan	240 LP; grants Zodiac Spear
+60	Poles 1	Weapon	20	3	equipment	ordinary		1036h	Oaken Pole	Monk	20 LP; grants Oaken Pole
+61	Poles 2	Weapon	30	3	equipment	ordinary		1037h, 1038h	Cypress Pole, Battle Bamboo	Monk	30 LP; grants Cypress Pole, Battle Bamboo
+62	Poles 3	Weapon	35	3	equipment	ordinary		1039h, 103Ah	Musk Stick, Iron Pole	Monk	35 LP; grants Musk Stick, Iron Pole
+63	Poles 4	Weapon	40	3	equipment	ordinary		103Bh, 103Ch	Six-fluted Pole, Gokuu Pole	Monk	40 LP; grants Six-fluted Pole, Gokuu Pole
+64	Poles 5	Weapon	50	3	equipment	ordinary		103Dh, 103Eh	Zephyr Pole, Ivory Pole	Monk	50 LP; grants Zephyr Pole, Ivory Pole
+65	Whale Whisker	Weapon	90	3	equipment	ordinary		1041h	Whale Whisker	Monk	90 LP; grants Whale Whisker
+66	Bows 1	Weapon	20	1	equipment	ordinary	Fran	1042h	Shortbow	Archer	20 LP; grants Shortbow
+67	Bows 2	Weapon	30	1	equipment	ordinary		1043h, 1044h	Silver Bow, Aevis Killer	Archer	30 LP; grants Silver Bow, Aevis Killer
+68	Bows 3	Weapon	35	1	equipment	ordinary		1045h, 1046h	Killer Bow, Longbow	Archer	35 LP; grants Killer Bow, Longbow
+69	Bows 4	Weapon	45	1	equipment	ordinary		1047h, 1048h	Elfin Bow, Loxley Bow	Archer	45 LP; grants Elfin Bow, Loxley Bow
+70	Bows 5	Weapon	60	1	equipment	ordinary		1049h, 104Ah	Giant Stonebow, Burning Bow	Archer	60 LP; grants Giant Stonebow, Burning Bow
+71	Bows 6	Weapon	70	1	equipment	ordinary		104Bh, 104Ch	Traitor's Bow, Yoichi Bow	Archer	70 LP; grants Traitor's Bow, Yoichi Bow
+72	Sagittarius	Weapon	130	1	equipment	ordinary		104Fh	Sagittarius	Archer	130 LP; grants Sagittarius
+73	Crossbows 1	Weapon	25	3	equipment	ordinary		1050h, 1051h	Bowgun, Crossbow	Time Battlemage	25 LP; grants Bowgun, Crossbow
+74	Crossbows 2	Weapon	40	3	equipment	ordinary		1052h, 1053h	Paramina Crossbow, Recurve Crossbow	Time Battlemage	40 LP; grants Paramina Crossbow, Recurve Crossbow
+75	Crossbows 3	Weapon	60	3	equipment	ordinary		1054h, 1055h	Hunting Crossbow, Penetrator Crossbow	Time Battlemage	60 LP; grants Hunting Crossbow, Penetrator Crossbow
+76	Crossbows 4	Weapon	115	3	equipment	ordinary		1056h, 10B0h	Gastrophetes, Tula	Time Battlemage	115 LP; grants Gastrophetes, Tula
+77	Guns 1	Weapon	30	3	equipment	ordinary	Balthier	1057h	Altair	Machinist	30 LP; grants Altair
+78	Guns 2	Weapon	50	3	equipment	ordinary		1058h, 1059h	Capella, Vega	Machinist	50 LP; grants Capella, Vega
+79	Guns 3	Weapon	60	3	equipment	ordinary		105Ah, 105Bh	Sirius, Betelgeuse	Machinist	60 LP; grants Sirius, Betelgeuse
+80	Guns 4	Weapon	70	3	equipment	ordinary		105Ch, 105Dh	Ras Algethi, Aldebaran	Machinist	70 LP; grants Ras Algethi, Aldebaran
+81	Guns 5	Weapon	90	3	equipment	ordinary		105Eh, 105Fh	Spica, Antares	Machinist, Shikari	90 LP; grants Spica, Antares
+82	Guns 6	Weapon	110	3	equipment	ordinary		1060h, 1061h	Arcturus, Fomalhaut	Machinist, Shikari	110 LP; grants Arcturus, Fomalhaut
+83	Axes & Hammers 1	Weapon	20	1	equipment	ordinary		1062h	Handaxe	Foebreaker	20 LP; grants Handaxe
+84	Axes & Hammers 2	Weapon	25	1	equipment	ordinary		1069h, 1063h	Iron Hammer, Broadaxe	Foebreaker	25 LP; grants Iron Hammer, Broadaxe
+85	Axes & Hammers 3	Weapon	35	1	equipment	ordinary		106Ah, 1064h	War Hammer, Slasher	Foebreaker	35 LP; grants War Hammer, Slasher
+86	Axes & Hammers 4	Weapon	50	1	equipment	ordinary		106Bh, 1065h	Sledgehammer, Hammerhead	Foebreaker	50 LP; grants Sledgehammer, Hammerhead
+87	Axes & Hammers 5	Weapon	60	1	equipment	ordinary		1066h, 106Ch	Francisca, Morning Star	Foebreaker	60 LP; grants Francisca, Morning Star
+88	Axes & Hammers 6	Weapon	65	1	equipment	ordinary		1067h, 1068h	Greataxe, Golden Axe	Foebreaker	65 LP; grants Greataxe, Golden Axe
+89	Axes & Hammers 7	Weapon	85	1	equipment	ordinary		106Dh	Scorpion Tail	Foebreaker	85 LP; grants Scorpion Tail
+90	Daggers 1	Weapon	15	3	equipment	ordinary	Vaan, Penelo	106Eh	Dagger	Shikari	15 LP; grants Dagger
+91	Daggers 2	Weapon	20	3	equipment	ordinary		106Fh, 1070h	Mage Masher, Assassin's Dagger	Shikari	20 LP; grants Mage Masher, Assassin's Dagger
+92	Daggers 3	Weapon	35	3	equipment	ordinary		1071h, 1072h	Chopper, Main Gauche	Shikari	35 LP; grants Chopper, Main Gauche
+93	Daggers 4	Weapon	45	3	equipment	ordinary		1073h, 1074h	Gladius, Avenger	Shikari	45 LP; grants Gladius, Avenger
+94	Daggers 5	Weapon	60	3	equipment	ordinary		1075h, 1076h	Orichalcum Dirk, Platinum Dagger	White Mage, Shikari	60 LP; grants Orichalcum Dirk, Platinum Dagger
+95	Shikari Nagasa & Mina	Weapon	220	3	equipment	ordinary		1078h, 10ACh	Shikari Nagasa, Mina	Shikari	220 LP; grants Shikari Nagasa, Mina
+96	Rods 1	Weapon	20	2	equipment	ordinary		1079h, 107Ah	Rod, Serpent Rod	White Mage	20 LP; grants Rod, Serpent Rod
+97	Rods 2	Weapon	30	2	equipment	ordinary		107Bh, 107Ch	Healing Rod, Gaia Rod	White Mage	30 LP; grants Healing Rod, Gaia Rod
+98	Rods 3	Weapon	40	2	equipment	ordinary		107Dh, 107Eh	Power Rod, Empyrean Rod	White Mage	40 LP; grants Power Rod, Empyrean Rod
+99	Rods 4	Weapon	50	2	equipment	ordinary		107Fh	Holy Rod	White Mage	50 LP; grants Holy Rod
+100	Rod of Faith	Weapon	130	2	equipment	ordinary		1080h	Rod of Faith	White Mage	130 LP; grants Rod of Faith
+101	Staves 1	Weapon	15	2	equipment	ordinary		1081h	Oak Staff	Black Mage	15 LP; grants Oak Staff
+102	Staves 2	Weapon	25	2	equipment	ordinary		1082h, 1083h	Cherry Staff, Wizard's Staff	Black Mage	25 LP; grants Cherry Staff, Wizard's Staff
+103	Staves 3	Weapon	30	2	equipment	ordinary		1084h, 1085h	Flame Staff, Storm Staff	Black Mage	30 LP; grants Flame Staff, Storm Staff
+104	Staves 4	Weapon	40	2	equipment	ordinary		1086h, 1087h	Glacial Staff, Golden Staff	Black Mage	40 LP; grants Glacial Staff, Golden Staff
+105	Staff of the Magi	Weapon	110	2	equipment	ordinary		108Ah	Staff of the Magi	Black Mage	110 LP; grants Staff of the Magi
+106	Maces 1	Weapon	30	2	equipment	ordinary		108Bh, 108Ch	Mace, Bronze Mace	Red Battlemage	30 LP; grants Mace, Bronze Mace
+107	Maces 2	Weapon	40	2	equipment	ordinary		108Dh, 108Eh	Bhuj, Miter	Red Battlemage	40 LP; grants Bhuj, Miter
+108	Maces 3	Weapon	60	2	equipment	ordinary		108Fh, 1090h	Thorned Mace, Chaos Mace	Red Battlemage	60 LP; grants Thorned Mace, Chaos Mace
+109	Maces 4	Weapon	80	2	equipment	ordinary		1091h, 1092h	Doom Mace, Zeus Mace	Red Battlemage	80 LP; grants Doom Mace, Zeus Mace
+110	Maces 5	Weapon	130	2	equipment	ordinary		1093h, 10AFh	Grand Mace, Bone of Byblos	Red Battlemage	130 LP; grants Grand Mace, Bone of Byblos
+111	Measures 1	Weapon	40	2	equipment	ordinary		1094h	Gilt Measure	Machinist	40 LP; grants Gilt Measure
+112	Measures 2	Weapon	50	2	equipment	ordinary		1095h, 1096h	Arc Scale, Multiscale	Machinist	50 LP; grants Arc Scale, Multiscale
+113	Measures 3	Weapon	70	2	equipment	ordinary		1097h, 1098h	Cross Scale, Caliper	Machinist	70 LP; grants Cross Scale, Caliper
+114	Hand-bombs 1	Weapon	35	3	equipment	ordinary		109Ah	Hornito	Foebreaker	35 LP; grants Hornito
+115	Hand-bombs 2	Weapon	55	3	equipment	ordinary		109Bh, 109Ch	Fumarole, Tumulus	Foebreaker, Black Mage	55 LP; grants Fumarole, Tumulus
+116	Hand-bombs 3	Weapon	75	3	equipment	ordinary		109Dh, 109Eh	Caldera, Volcano	Machinist, Foebreaker, Black Mage	75 LP; grants Caldera, Volcano
+117	Shields 1	Shield	15	7	equipment	ordinary	Ashe, Basch, Reks	10C9h, 10CAh	Leather Shield, Buckler	Red Battlemage, Knight, Foebreaker	15 LP; grants Leather Shield, Buckler
+118	Shields 2	Shield	20	7	equipment	ordinary		10CBh, 10CCh	Bronze Shield, Round Shield	Red Battlemage, Knight, Foebreaker, Shikari	20 LP; grants Bronze Shield, Round Shield
+119	Shields 3	Shield	25	7	equipment	ordinary		10CEh, 10CFh, 10D0h	Golden Shield, Ice Shield, Flame Shield	Red Battlemage, Knight, Foebreaker, Shikari	25 LP; grants Golden Shield, Ice Shield, Flame Shield
+120	Shields 4	Shield	30	7	equipment	ordinary		10D1h, 10D2h, 10D3h	Diamond Shield, Platinum Shield, Dragon Shield	Red Battlemage, Knight, Foebreaker, Shikari	30 LP; grants Diamond Shield, Platinum Shield, Dragon Shield
+121	Shields 5	Shield	35	7	equipment	ordinary		10D4h, 10D6h	Crystal Shield, Kaiser Shield	Red Battlemage, Knight, Foebreaker, Shikari	35 LP; grants Crystal Shield, Kaiser Shield
+122	Shields 6	Shield	40	7	equipment	ordinary		10D7h, 10D8h	Aegis Shield, Demon Shield	Red Battlemage, Knight, Foebreaker, Shikari	40 LP; grants Aegis Shield, Demon Shield
+123	Ensanguined Shield	Shield	100	7	equipment	ordinary		10DBh	Ensanguined Shield	Red Battlemage, Knight, Foebreaker	100 LP; grants Ensanguined Shield
+124	Shell Shield	Shield	90	7	equipment	ordinary		10CDh	Shell Shield	Red Battlemage, Knight, Foebreaker	90 LP; grants Shell Shield
+125	Zodiac Escutcheon	Shield	235	7	equipment	ordinary		10DAh	Zodiac Escutcheon	Red Battlemage, Knight, Foebreaker	235 LP; grants Zodiac Escutcheon
+126	Heavy Armor 1	Armor	25	4	equipment	ordinary	Ashe, Basch, Reks	1106h, 1107h, 1142h, 1143h	Leather Helm, Bronze Helm, Leather Armor, Bronze Armor	Uhlan, Knight, Time Battlemage, Foebreaker	25 LP; grants Leather Helm, Bronze Helm, Leather Armor, Bronze Armor
+127	Heavy Armor 2	Armor	30	4	equipment	ordinary		1108h, 1109h, 1144h, 1145h	Sallet, Iron Helm, Scale Armor, Iron Armor	Uhlan, Knight, Time Battlemage, Foebreaker	30 LP; grants Sallet, Iron Helm, Scale Armor, Iron Armor
+128	Heavy Armor 3	Armor	35	4	equipment	ordinary		110Ah, 110Bh, 1146h, 1147h	Barbut, Winged Helm, Linen Cuirass, Chainmail	Uhlan, Knight, Time Battlemage, Foebreaker	35 LP; grants Barbut, Winged Helm, Linen Cuirass, Chainmail
+129	Heavy Armor 4	Armor	40	4	equipment	ordinary		110Ch, 110Dh, 1148h, 1149h	Golden Helm, Burgonet, Golden Armor, Shielded Armor	Uhlan, Knight, Time Battlemage, Foebreaker	40 LP; grants Golden Helm, Burgonet, Golden Armor, Shielded Armor
+130	Heavy Armor 5	Armor	50	4	equipment	ordinary		110Eh, 110Fh, 114Ah, 114Bh	Close Helmet, Bone Helm, Demon Mail, Bone Mail	Uhlan, Knight, Time Battlemage, Foebreaker	50 LP; grants Close Helmet, Bone Helm, Demon Mail, Bone Mail
+131	Heavy Armor 6	Armor	55	4	equipment	ordinary		1110h, 114Ch	Diamond Helm, Diamond Armor	Uhlan, Knight, Time Battlemage, Foebreaker	55 LP; grants Diamond Helm, Diamond Armor
+132	Heavy Armor 7	Armor	60	4	equipment	ordinary		1111h, 114Dh	Steel Mask, Mirror Mail	Uhlan, Knight, Time Battlemage, Foebreaker, Black Mage	60 LP; grants Steel Mask, Mirror Mail
+133	Heavy Armor 8	Armor	65	4	equipment	ordinary		1112h, 114Eh	Platinum Helm, Platinum Armor	Uhlan, Red Battlemage, Knight, Time Battlemage, Foebreaker, Black Mage	65 LP; grants Platinum Helm, Platinum Armor
+134	Heavy Armor 9	Armor	70	4	equipment	ordinary		1113h, 114Fh	Giant's Helmet, Carabineer Mail	Uhlan, Red Battlemage, Knight, Time Battlemage, Foebreaker, Black Mage, Bushi	70 LP; grants Giant's Helmet, Carabineer Mail
+135	Heavy Armor 10	Armor	80	4	equipment	ordinary		1114h, 1150h	Dragon Helm, Dragon Mail	Uhlan, Red Battlemage, Knight, Time Battlemage, Foebreaker, Archer, Bushi	80 LP; grants Dragon Helm, Dragon Mail
+136	Genji Armor	Armor	190	4	equipment	ordinary		10D5h, 1115h, 1151h, 1164h	Genji Shield, Genji Helm, Genji Armor, Genji Gloves	Knight, Foebreaker, Bushi	190 LP; grants Genji Shield, Genji Helm, Genji Armor, Genji Gloves
+137	Light Armor 1	Armor	10	6	equipment	ordinary	Vaan, Reks	10DCh, 1118h	Leather Cap, Leather Clothing	Machinist, Monk, Archer, Shikari	10 LP; grants Leather Cap, Leather Clothing
+138	Light Armor 2	Armor	15	6	equipment	ordinary	Fran, Balthier	10DDh, 10DEh, 1119h, 111Ah	Headgear, Headguard, Chromed Leathers, Leather Breastplate	Machinist, Monk, Archer, Shikari	15 LP; grants Headgear, Headguard, Chromed Leathers, Leather Breastplate
+139	Light Armor 3	Armor	20	6	equipment	ordinary		10DFh, 10E0h, 111Bh, 111Ch	Leather Headgear, Horned Hat, Bronze Chestplate, Ringmail	Machinist, Monk, Archer, Shikari	20 LP; grants Leather Headgear, Horned Hat, Bronze Chestplate, Ringmail
+140	Light Armor 4	Armor	25	6	equipment	ordinary		10E1h, 10E2h, 111Dh, 111Eh	Balaclava, Soldier's Cap, Windbreaker, Heavy Coat	Machinist, Monk, Archer, Shikari	25 LP; grants Balaclava, Soldier's Cap, Windbreaker, Heavy Coat
+141	Light Armor 5	Armor	30	6	equipment	ordinary		10E3h, 10E4h, 111Fh, 1120h	Green Beret, Red Cap, Survival Vest, Brigandine	Machinist, Monk, Archer, Shikari	30 LP; grants Green Beret, Red Cap, Survival Vest, Brigandine
+142	Light Armor 6	Armor	40	6	equipment	ordinary		10E5h, 10E6h, 1121h, 1122h	Headband, Pirate Hat, Jujitsu Gi, Viking Coat	Machinist, Monk, Archer, Shikari	40 LP; grants Headband, Pirate Hat, Jujitsu Gi, Viking Coat
+143	Light Armor 7	Armor	50	6	equipment	ordinary		10E7h, 10E8h, 1123h, 1124h	Goggle Mask, Adamant Hat, Metal Jerkin, Adamant Vest	Machinist, Monk, Archer, Shikari	50 LP; grants Goggle Mask, Adamant Hat, Metal Jerkin, Adamant Vest
+144	Light Armor 8	Armor	60	6	equipment	ordinary		10E9h, 10EAh, 1125h, 1126h	Officer's Hat, Chakra Band, Barrel Coat, Power Vest	Machinist, Monk, Archer, Shikari	60 LP; grants Officer's Hat, Chakra Band, Barrel Coat, Power Vest
+145	Light Armor 9	Armor	70	6	equipment	ordinary		10EBh, 10ECh, 1127h, 1128h	Thief's Cap, Gigas Hat, Ninja Gear, Gigas Chestplate	Machinist, Monk, Archer, Shikari	70 LP; grants Thief's Cap, Gigas Hat, Ninja Gear, Gigas Chestplate
+146	Light Armor 10	Armor	75	6	equipment	ordinary		10EDh, 1129h	Chaperon, Minerva Bustier	Machinist, Monk, Archer, Shikari	75 LP; grants Chaperon, Minerva Bustier
+147	Light Armor 11	Armor	80	6	equipment	ordinary		10EEh, 112Ah	Crown of Laurels, Rubber Suit	Machinist, Monk, Archer, Shikari	80 LP; grants Crown of Laurels, Rubber Suit
+148	Light Armor 12	Armor	90	6	equipment	ordinary		10EFh, 112Bh	Renewing Morion, Mirage Vest	Machinist, Monk, Archer, Shikari	90 LP; grants Renewing Morion, Mirage Vest
+149	Mystic Armor 1	Armor	10	5	equipment	ordinary	Penelo	10F1h, 10F2h, 112Dh, 112Eh	Cotton Cap, Magick Curch, Cotton Shirt, Light Woven Shirt	White Mage, Red Battlemage, Black Mage, Bushi	10 LP; grants Cotton Cap, Magick Curch, Cotton Shirt, Light Woven Shirt
+150	Mystic Armor 2	Armor	15	5	equipment	ordinary		10F3h, 10F4h, 112Fh, 1130h	Pointy Hat, Topkapi Hat, Silken Shirt, Kilimweave Shirt	White Mage, Red Battlemage, Black Mage, Bushi	15 LP; grants Pointy Hat, Topkapi Hat, Silken Shirt, Kilimweave Shirt
+151	Mystic Armor 3	Armor	20	5	equipment	ordinary		10F5h, 10F6h, 1131h, 1132h	Calot Hat, Wizard's Hat, Shepherd's Bolero, Wizard's Robes	White Mage, Red Battlemage, Black Mage, Bushi	20 LP; grants Calot Hat, Wizard's Hat, Shepherd's Bolero, Wizard's Robes
+152	Mystic Armor 4	Armor	25	5	equipment	ordinary		10F7h, 10F8h, 1133h, 1134h	Lambent Hat, Feathered Cap, Chanter's Djellaba, Traveler's Vestment	White Mage, Red Battlemage, Black Mage, Bushi	25 LP; grants Lambent Hat, Feathered Cap, Chanter's Djellaba, Traveler's Vestment
+153	Mystic Armor 5	Armor	30	5	equipment	ordinary		10F9h, 10FAh, 1135h, 1136h	Mage's Hat, Lamia's Tiara, Mage's Habit, Enchanter's Habit	White Mage, Red Battlemage, Black Mage, Bushi	30 LP; grants Mage's Hat, Lamia's Tiara, Mage's Habit, Enchanter's Habit
+154	Mystic Armor 6	Armor	40	5	equipment	ordinary		10FBh, 10FCh, 1137h, 1138h	Sorcerer's Hat, Black Cowl, Sorcerer's Habit, Black Garb	White Mage, Red Battlemage, Black Mage, Bushi	40 LP; grants Sorcerer's Hat, Black Cowl, Sorcerer's Habit, Black Garb
+155	Mystic Armor 7	Armor	50	5	equipment	ordinary		10FDh, 10FEh, 1139h, 113Ah	Astrakhan Hat, Gaia Hat, Carmagnole, Maduin Gear	White Mage, Red Battlemage, Black Mage, Bushi	50 LP; grants Astrakhan Hat, Gaia Hat, Carmagnole, Maduin Gear
+156	Mystic Armor 8	Armor	60	5	equipment	ordinary		10FFh, 1100h, 113Bh, 113Ch	Hypnocrown, Gold Hairpin, Jade Gown, Gaia Gear	White Mage, Red Battlemage, Black Mage, Bushi	60 LP; grants Hypnocrown, Gold Hairpin, Jade Gown, Gaia Gear
+157	Mystic Armor 9	Armor	70	5	equipment	ordinary		1101h, 113Dh	Celebrant's Miter, Cleric's Robes	White Mage, Red Battlemage, Black Mage, Bushi	70 LP; grants Celebrant's Miter, Cleric's Robes
+158	Mystic Armor 10	Armor	75	5	equipment	ordinary		1102h, 113Fh	Black Mask, Black Robes	White Mage, Red Battlemage, Black Mage, Bushi	75 LP; grants Black Mask, Black Robes
+159	Mystic Armor 11	Armor	80	5	equipment	ordinary		1103h, 113Eh	White Mask, White Robes	White Mage, Red Battlemage, Black Mage, Bushi	80 LP; grants White Mask, White Robes
+160	Mystic Armor 12	Armor	90	5	equipment	ordinary		1104h, 1140h	Golden Skullcap, Glimmering Robes	White Mage, Red Battlemage, Black Mage, Bushi	90 LP; grants Golden Skullcap, Glimmering Robes
+161	Accessories 1	Accessory	5	8	equipment	ordinary		115Bh	Orrachea Armlet	all twelve	5 LP; grants Orrachea Armlet
+162	Accessories 2	Accessory	20	8	equipment	ordinary	Ashe	1171h, 115Ah	Firefly, Bangle	all twelve	20 LP; grants Firefly, Bangle
+163	Accessories 3	Accessory	25	8	equipment	ordinary		115Eh, 115Dh	Diamond Armlet, Argyle Armlet	all twelve	25 LP; grants Diamond Armlet, Argyle Armlet
+164	Accessories 4	Accessory	35	8	equipment	ordinary		1177h, 116Bh	Battle Harness, Steel Gorget	all twelve	35 LP; grants Battle Harness, Steel Gorget
+165	Accessories 5	Accessory	35	8	equipment	ordinary		1168h, 1156h	Embroidered Tippet, Tourmaline Ring	all twelve	35 LP; grants Embroidered Tippet, Tourmaline Ring
+166	Accessories 6	Accessory	35	8	equipment	ordinary		116Fh, 1169h	Golden Amulet, Leather Gorget	all twelve	35 LP; grants Golden Amulet, Leather Gorget
+167	Accessories 7	Accessory	40	8	equipment	ordinary		1166h, 116Ch	Turtleshell Choker, Rose Corsage	all twelve	40 LP; grants Turtleshell Choker, Rose Corsage
+168	Accessories 8	Accessory	45	8	equipment	ordinary		1162h, 1165h	Thief's Cuffs, Gauntlets	all twelve	45 LP; grants Thief's Cuffs, Gauntlets
+169	Accessories 9	Accessory	30	8	equipment	ordinary		115Fh, 1176h	Amber Armlet, Black Belt	all twelve	30 LP; grants Amber Armlet, Black Belt
+170	Accessories 10	Accessory	40	8	equipment	ordinary		116Ah, 1175h	Jade Collar, Nishijin Belt	all twelve	40 LP; grants Jade Collar, Nishijin Belt
+171	Accessories 11	Accessory	45	8	equipment	ordinary		116Dh, 1163h	Pheasant Netsuke, Blazer Gloves	all twelve	45 LP; grants Pheasant Netsuke, Blazer Gloves
+172	Accessories 12	Accessory	60	8	equipment	ordinary		117Ah, 117Bh	Gillie Boots, Steel Poleyns	all twelve	60 LP; grants Gillie Boots, Steel Poleyns
+173	Accessories 13	Accessory	60	8	equipment	ordinary		1160h, 1161h	Berserker Bracers, Magick Gloves	all twelve	60 LP; grants Berserker Bracers, Magick Gloves
+174	Accessories 14	Accessory	70	8	equipment	ordinary		1157h, 1159h	Sage's Ring, Agate Ring	all twelve	70 LP; grants Sage's Ring, Agate Ring
+175	Accessories 15	Accessory	70	8	equipment	ordinary		1155h, 1170h	Ruby Ring, Bowline Sash	all twelve	70 LP; grants Ruby Ring, Bowline Sash
+176	Accessories 16	Accessory	70	8	equipment	ordinary		1174h, 117Fh	Cameo Belt, Cat-ear Hood	all twelve	70 LP; grants Cameo Belt, Cat-ear Hood
+177	Accessories 17	Accessory	80	8	equipment	ordinary		1173h, 1180h	Bubble Belt, Fuzzy Miter	all twelve	80 LP; grants Bubble Belt, Fuzzy Miter
+178	Accessories 18	Accessory	80	8	equipment	ordinary		1172h, 115Ch	Sash, Power Armlet	all twelve	80 LP; grants Sash, Power Armlet
+179	Accessories 19	Accessory	100	8	equipment	ordinary		116Eh, 117Ch	Indigo Pendant, Winged Boots	all twelve	100 LP; grants Indigo Pendant, Winged Boots
+180	Accessories 20	Accessory	115	8	equipment	ordinary		1154h, 1179h	Opal Ring, Hermes Sandals	all twelve	115 LP; grants Opal Ring, Hermes Sandals
+181	Ribbon	Accessory	215	8	equipment	ordinary		1181h	Ribbon	all twelve	215 LP; grants Ribbon
+182	White Magick 1	Magick	15	9	action	ordinary	Ashe, Fran, Penelo, Reks	0000h, 0001h	Cure, Blindna	White Mage	15 LP; grants Cure, Blindna
+183	White Magick 2	Magick	20	9	action	ordinary		0002h, 0003h	Vox, Poisona	White Mage, Red Battlemage	20 LP; grants Vox, Poisona
+184	White Magick 3	Magick	25	9	action	ordinary		0033h, 0034h	Protect, Shell	White Mage, Red Battlemage	25 LP; grants Protect, Shell
+185	White Magick 4	Magick	30	9	action	ordinary		0004h, 0005h	Cura, Raise	White Mage, Red Battlemage, Monk, Time Battlemage, Archer	30 LP; grants Cura, Raise
+186	White Magick 5	Magick	40	9	action	ordinary		000Ch, 0007h	Dispel, Stona	White Mage, Red Battlemage	40 LP; grants Dispel, Stona
+187	White Magick 6	Magick	50	9	action	ordinary		0006h, 0008h	Curaga, Regen	White Mage, Red Battlemage, Knight	50 LP; grants Curaga, Regen
+188	White Magick 7	Magick	60	9	action	ordinary		0009h, 000Ah	Cleanse, Esuna	White Mage, Red Battlemage, Knight	60 LP; grants Cleanse, Esuna
+189	White Magick 8	Magick	70	9	action	ordinary		0045h, 0036h	Confuse, Faith	White Mage, Knight	70 LP; grants Confuse, Faith
+190	Black Magick 1	Magick	15	10	action	ordinary	Fran, Reks	0012h, 0013h	Fire, Thunder	Black Mage	15 LP; grants Fire, Thunder
+191	Black Magick 2	Magick	20	10	action	ordinary	Reks	0014h, 0039h	Blizzard, Blind	Black Mage	20 LP; grants Blizzard, Blind
+192	Black Magick 3	Magick	25	10	action	ordinary		0015h, 003Ch	Aqua, Silence	Red Battlemage, Black Mage	25 LP; grants Aqua, Silence
+193	Black Magick 4	Magick	30	10	action	ordinary		0016h, 003Dh	Aero, Sleep	Red Battlemage, Black Mage	30 LP; grants Aero, Sleep
+194	Black Magick 5	Magick	40	10	action	ordinary		0017h, 003Bh	Fira, Poison	Uhlan, Red Battlemage, Black Mage	40 LP; grants Fira, Poison
+195	Black Magick 6	Magick	50	10	action	ordinary		0018h, 0019h	Thundara, Blizzara	Uhlan, Red Battlemage, Black Mage	50 LP; grants Thundara, Blizzara
+196	Black Magick 7	Magick	60	10	action	ordinary		001Ah, 003Eh	Bio, Blindga	Uhlan, Black Mage	60 LP; grants Bio, Blindga
+197	Black Magick 8	Magick	70	10	action	ordinary		001Bh, 0040h	Aeroga, Silencega	Uhlan, Black Mage	70 LP; grants Aeroga, Silencega
+198	Time Magick 1	Magick	20	11	action	ordinary		0027h, 0028h	Slow, Immobilize	Red Battlemage, Time Battlemage	20 LP; grants Slow, Immobilize
+199	Time Magick 2	Magick	30	11	action	ordinary		002Fh, 0029h	Reflect, Disable	Red Battlemage, Time Battlemage	30 LP; grants Reflect, Disable
+200	Time Magick 3	Magick	40	11	action	ordinary		0047h, 0031h	Vanish, Balance	Red Battlemage, Time Battlemage	40 LP; grants Vanish, Balance
+201	Time Magick 4	Magick	50	11	action	ordinary		004Fh, 0024h	Gravity, Haste	Time Battlemage	50 LP; grants Gravity, Haste
+202	Time Magick 5	Magick	60	11	action	ordinary		002Ch, 002Ah	Stop, Bleed	Time Battlemage	60 LP; grants Stop, Bleed
+203	Time Magick 6	Magick	70	11	action	ordinary		002Bh, 002Eh	Break, Countdown	Time Battlemage	70 LP; grants Break, Countdown
+204	Time Magick 7	Magick	80	11	action	ordinary		0025h, 0043h	Float, Berserk	Time Battlemage	80 LP; grants Float, Berserk
+205	Green Magick 1	Magick	40	12	action	ordinary		0046h, 003Ah	Decoy, Oil	White Mage, Machinist, Red Battlemage, Time Battlemage, Black Mage	40 LP; grants Decoy, Oil
+206	Green Magick 2	Magick	50	12	action	ordinary		0049h, 0042h	Drain, Reverse	White Mage, Red Battlemage, Time Battlemage, Black Mage	50 LP; grants Drain, Reverse
+207	Green Magick 3	Magick	90	12	action	ordinary		004Bh, 004Ah	Bubble, Syphon	White Mage, Red Battlemage, Time Battlemage, Black Mage	90 LP; grants Bubble, Syphon
+208	White Magick 10	Magick	90	12	action	ordinary		000Dh, 000Fh	Dispelga, Arise	White Mage, Monk	90 LP; grants Dispelga, Arise
+209	White Magick 11	Magick	100	12	action	ordinary		0011h, 0010h	Holy, Esunaga	White Mage, Monk	100 LP; grants Holy, Esunaga
+210	White Magick 12	Magick	110	12	action	ordinary		0037h, 0038h	Protectga, Shellga	White Mage, Monk, Shikari	110 LP; grants Protectga, Shellga
+211	White Magick 13	Magick	155	12	action	ordinary		000Eh	Renew	White Mage, Monk	155 LP; grants Renew
+212	Arcane Magick 1	Magick	40	13	action	ordinary		004Ch, 004Dh	Dark, Darkra	Red Battlemage	40 LP; grants Dark, Darkra
+213	Arcane Magick 2	Magick	50	13	action	ordinary		0044h, 004Eh	Death, Darkga	Red Battlemage	50 LP; grants Death, Darkga
+214	Arcane Magick 3	Magick	110	13	action	ordinary		0022h	Ardor	Red Battlemage	110 LP; grants Ardor
+215	Black Magick 11	Magick	100	13	action	ordinary		001Fh, 003Fh	Shock, Toxify	Black Mage	100 LP; grants Shock, Toxify
+216	Black Magick 12	Magick	120	13	action	ordinary		0020h, 0021h	Scourge, Flare	Black Mage	120 LP; grants Scourge, Flare
+217	Black Magick 13	Magick	165	13	action	ordinary		0023h	Scathe	Black Mage	165 LP; grants Scathe
+218	Time Magick 9	Magick	100	13	action	ordinary		0030h, 002Dh	Reflectga, Slowga	Machinist, Time Battlemage	100 LP; grants Reflectga, Slowga
+219	Warmage	Augment	30	15	augment	ordinary		0014h	Gain MP after dealing magick damage.	White Mage, Red Battlemage, Time Battlemage, Black Mage	30 LP; grants Gain MP after dealing magick damage.
+220	Martyr	Augment	30	15	augment	ordinary		0015h	Gain MP after taking damage.	all twelve	30 LP; grants Gain MP after taking damage.
+221	Inquisitor	Augment	30	15	augment	ordinary		0056h	Gain MP after dealing damage.	all twelve	30 LP; grants Gain MP after dealing damage.
+222	Headsman	Augment	30	15	augment	ordinary		0017h	Gain MP after defeating a foe.	all twelve	30 LP; grants Gain MP after defeating a foe.
+223	Adrenaline	Augment	65	15	augment	ordinary		000Ah	Increases strength when HP Critical.	Uhlan, Knight, Monk, Foebreaker, Shikari	65 LP; grants Increases strength when HP Critical.
+224	Spellbreaker	Augment	65	15	augment	ordinary		0008h	Increases magick power when HP Critical.	White Mage, Red Battlemage, Time Battlemage, Black Mage, Bushi	65 LP; grants Increases magick power when HP Critical.
+225	Focus	Augment	70	15	augment	ordinary		000Bh	Increases strength when HP is full.	Uhlan, Knight, Monk, Foebreaker, Archer, Shikari	70 LP; grants Increases strength when HP is full.
+226	Serenity	Augment	70	15	augment	ordinary		0067h	Increases magick power when HP is full.	White Mage, Red Battlemage, Time Battlemage, Black Mage, Bushi	70 LP; grants Increases magick power when HP is full.
+227	Last Stand	Augment	70	15	augment	ordinary		0005h	Increases defense when HP Critical.	Uhlan, Machinist, Knight, Monk, Time Battlemage, Foebreaker, Archer, Bushi, Shikari	70 LP; grants Increases defense when HP Critical.
+228	Spellbound	Augment	30	15	augment	ordinary		001Eh	Increases duration of status effects.	all twelve	30 LP; grants Increases duration of status effects.
+229	Brawler	Augment	90	15	augment	ordinary		0009h	Increases attack power when fighting empty-handed.	Monk, Bushi, Shikari	90 LP; grants Increases attack power when fighting empty-handed.
+230	Shield Block	Augment	25	16	augment	ordinary		005Ah	Increases chance to block with a shield.	Knight, Foebreaker, Bushi, Shikari	25 LP; grants Increases chance to block with a shield.
+231	Shield Block	Augment	45	16	augment	ordinary		0059h	Increases chance to block with a shield.	Knight, Foebreaker, Shikari	45 LP; grants Increases chance to block with a shield.
+232	Shield Block	Augment	75	16	augment	ordinary		0058h	Increases chance to block with a shield.	Knight, Foebreaker	75 LP; grants Increases chance to block with a shield.
+233	Channeling	Augment	30	16	augment	ordinary		005Dh	Reduces magick MP cost by 10%.	White Mage, Red Battlemage, Time Battlemage, Black Mage	30 LP; grants Reduces magick MP cost by 10%.
+234	Channeling	Augment	50	16	augment	ordinary		005Ch	Reduces magick MP cost by 10%.	White Mage, Red Battlemage, Time Battlemage, Black Mage	50 LP; grants Reduces magick MP cost by 10%.
+235	Channeling	Augment	80	16	augment	ordinary		005Bh	Reduces magick MP cost by 10%.	White Mage, Red Battlemage, Time Battlemage, Black Mage	80 LP; grants Reduces magick MP cost by 10%.
+236	Swiftness	Augment	30	16	augment	ordinary		0060h	Reduces action time by 10%.	all twelve	30 LP; grants Reduces action time by 10%.
+237	Swiftness	Augment	50	16	augment	ordinary		005Fh	Reduces action time by 10%.	White Mage, Uhlan, Machinist, Monk, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	50 LP; grants Reduces action time by 10%.
+238	Swiftness	Augment	80	16	augment	ordinary		005Eh	Reduces action time by 10%.	Machinist, Monk, Time Battlemage, Foebreaker, Archer, Bushi, Shikari	80 LP; grants Reduces action time by 10%.
+239	Remedy Lore 1	Augment	20	16	augment	ordinary		0076h	Remedies remove Sleep, Sap, Immobilize, and Disable.	Uhlan, Machinist, Time Battlemage, Archer, Black Mage, Bushi, Shikari	20 LP; grants Remedies remove Sleep, Sap, Immobilize, and Disable.
+240	Remedy Lore 2	Augment	30	16	augment	ordinary		0075h	Remedies remove Petrify, Confuse, and Oil.	Uhlan, Machinist, Time Battlemage, Archer, Black Mage, Bushi, Shikari	30 LP; grants Remedies remove Petrify, Confuse, and Oil.
+241	Remedy Lore 3	Augment	70	16	augment	ordinary		0074h	Remedies remove Stop, Doom, and Disease.	Machinist, Archer, Shikari	70 LP; grants Remedies remove Stop, Doom, and Disease.
+242	Potion Lore 1	Augment	20	16	augment	ordinary		0079h	Potions restore more HP.	Uhlan, Machinist, Knight, Monk, Archer, Shikari	20 LP; grants Potions restore more HP.
+243	Potion Lore 2	Augment	35	16	augment	ordinary		0078h	Potions restore more HP.	Uhlan, Machinist, Knight, Monk, Archer, Shikari	35 LP; grants Potions restore more HP.
+244	Potion Lore 3	Augment	70	16	augment	ordinary		0077h	Potions restore more HP.	Uhlan, Machinist, Monk, Archer, Shikari	70 LP; grants Potions restore more HP.
+245	Ether Lore 1	Augment	20	16	augment	ordinary		007Ch	Ethers restore more MP.	White Mage, Machinist, Red Battlemage, Time Battlemage, Black Mage	20 LP; grants Ethers restore more MP.
+246	Ether Lore 2	Augment	35	16	augment	ordinary		007Bh	Ethers restore more MP.	White Mage, Time Battlemage, Black Mage	35 LP; grants Ethers restore more MP.
+247	Ether Lore 3	Augment	70	16	augment	ordinary		007Ah	Ethers restore more MP.	Time Battlemage, Black Mage	70 LP; grants Ethers restore more MP.
+248	Phoenix Lore	Augment	30	16	augment	ordinary		007Fh	Phoenix Down restores more HP.	Uhlan, Machinist, Monk, Archer, Shikari	30 LP; grants Phoenix Down restores more HP.
+249	Phoenix Lore	Augment	50	16	augment	ordinary		007Eh	Phoenix Down restores more HP.	Uhlan, Monk, Archer, Shikari	50 LP; grants Phoenix Down restores more HP.
+250	Phoenix Lore	Augment	90	16	augment	ordinary		007Dh	Phoenix Down restores more HP.	Archer	90 LP; grants Phoenix Down restores more HP.
+251	Battle Lore	Augment	30	17	augment	ordinary		0040h	Increases physical attack damage.	White Mage, Uhlan, Machinist, Red Battlemage, Knight, Monk, Time Battlemage, Foebreaker, Archer, Bushi, Shikari	30 LP; grants Increases physical attack damage.
+252	Battle Lore	Augment	30	17	augment	ordinary		0041h	Increases physical attack damage.	White Mage, Uhlan, Machinist, Red Battlemage, Knight, Monk, Time Battlemage, Foebreaker, Archer, Bushi, Shikari	30 LP; grants Increases physical attack damage.
+253	Battle Lore	Augment	30	17	augment	ordinary		0042h	Increases physical attack damage.	White Mage, Uhlan, Machinist, Red Battlemage, Knight, Monk, Time Battlemage, Foebreaker, Bushi, Shikari	30 LP; grants Increases physical attack damage.
+254	Battle Lore	Augment	30	17	augment	ordinary		0043h	Increases physical attack damage.	White Mage, Uhlan, Knight, Monk, Time Battlemage, Foebreaker, Bushi, Shikari	30 LP; grants Increases physical attack damage.
+255	Battle Lore	Augment	50	17	augment	ordinary		0044h	Increases physical attack damage.	White Mage, Uhlan, Knight, Monk, Time Battlemage, Foebreaker, Bushi, Shikari	50 LP; grants Increases physical attack damage.
+256	Magick Lore	Augment	30	17	augment	ordinary		0045h	Increases magick potency.	White Mage, Uhlan, Machinist, Red Battlemage, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	30 LP; grants Increases magick potency.
+257	Magick Lore	Augment	30	17	augment	ordinary		0046h	Increases magick potency.	White Mage, Uhlan, Machinist, Red Battlemage, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	30 LP; grants Increases magick potency.
+258	Magick Lore	Augment	30	17	augment	ordinary		0047h	Increases magick potency.	White Mage, Uhlan, Machinist, Red Battlemage, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	30 LP; grants Increases magick potency.
+259	Magick Lore	Augment	30	17	augment	ordinary		0048h	Increases magick potency.	White Mage, Uhlan, Machinist, Red Battlemage, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	30 LP; grants Increases magick potency.
+260	Magick Lore	Augment	50	17	augment	ordinary		0049h	Increases magick potency.	White Mage, Uhlan, Machinist, Red Battlemage, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	50 LP; grants Increases magick potency.
+261	+30 HP	Augment	20	17	augment	ordinary		004Ah	Increases max HP by 30.	White Mage, Uhlan, Machinist, Knight, Monk, Foebreaker, Archer, Shikari	20 LP; grants Increases max HP by 30.
+262	+70 HP	Augment	30	17	augment	ordinary		004Bh	Increases max HP by 70.	White Mage, Uhlan, Machinist, Knight, Monk, Foebreaker, Archer, Black Mage, Bushi, Shikari	30 LP; grants Increases max HP by 70.
+263	+110 HP	Augment	40	17	augment	ordinary		004Ch	Increases max HP by 110.	White Mage, Uhlan, Machinist, Red Battlemage, Knight, Monk, Time Battlemage, Foebreaker, Archer, Bushi, Shikari	40 LP; grants Increases max HP by 110.
+264	+150 HP	Augment	50	17	augment	ordinary		004Dh	Increases max HP by 150.	White Mage, Uhlan, Machinist, Knight, Monk, Time Battlemage, Foebreaker, Archer, Black Mage, Bushi, Shikari	50 LP; grants Increases max HP by 150.
+265	+190 HP	Augment	60	17	augment	ordinary		004Eh	Increases max HP by 190.	all twelve	60 LP; grants Increases max HP by 190.
+266	Gambit Slot	Gambit	15	18	augment	ordinary		0068h	Adds an additional gambit slot.	all twelve	15 LP; grants Adds an additional gambit slot.
+267	Gambit Slot	Gambit	20	18	augment	ordinary		0069h	Adds an additional gambit slot.	all twelve	20 LP; grants Adds an additional gambit slot.
+268	Gambit Slot	Gambit	25	18	augment	ordinary		006Ah	Adds an additional gambit slot.	all twelve	25 LP; grants Adds an additional gambit slot.
+269	Gambit Slot	Gambit	30	18	augment	ordinary		006Bh	Adds an additional gambit slot.	all twelve	30 LP; grants Adds an additional gambit slot.
+270	Gambit Slot	Gambit	35	18	augment	ordinary		006Ch	Adds an additional gambit slot.	all twelve	35 LP; grants Adds an additional gambit slot.
+271	Gambit Slot	Gambit	40	18	augment	ordinary		006Dh	Adds an additional gambit slot.	all twelve	40 LP; grants Adds an additional gambit slot.
+272	Gambit Slot	Gambit	45	18	augment	ordinary		006Eh	Adds an additional gambit slot.	all twelve	45 LP; grants Adds an additional gambit slot.
+273	Gambit Slot	Gambit	50	18	augment	ordinary		006Fh	Adds an additional gambit slot.	all twelve	50 LP; grants Adds an additional gambit slot.
+274	Gambit Slot	Gambit	70	18	augment	ordinary		0070h	Adds an additional gambit slot.	all twelve	70 LP; grants Adds an additional gambit slot.
+275	Gambit Slot	Gambit	100	18	augment	ordinary		0071h	Adds an additional gambit slot.	all twelve	100 LP; grants Adds an additional gambit slot.
+276	Steal	Technick	20	14	action	ordinary	Vaan, Fran, Balthier	00A9h	Steal	Machinist, Red Battlemage, Archer, Black Mage	20 LP; grants Steal
+277	Libra	Technick	25	14	action	ordinary	Basch	00B1h	Libra	White Mage, Machinist, Monk, Archer, Bushi, Shikari	25 LP; grants Libra
+278	First Aid	Technick	20	14	action	ordinary	Balthier, Penelo	009Eh	First Aid	Uhlan, Knight, Monk, Archer, Shikari	20 LP; grants First Aid
+279	Poach	Technick	30	14	action	ordinary		00B2h	Poach	Uhlan, Machinist, Time Battlemage, Archer, Black Mage	30 LP; grants Poach
+280	Charge	Technick	30	14	action	ordinary		00A3h	Charge	White Mage, Red Battlemage, Time Battlemage, Black Mage	30 LP; grants Charge
+281	Horology	Technick	50	14	action	ordinary		00A0h	Horology	Machinist, Time Battlemage, Foebreaker	50 LP; grants Horology
+282	Souleater	Technick	35	14	action	ordinary		00A5h	Souleater	White Mage, Uhlan, Red Battlemage, Knight, Monk, Bushi	35 LP; grants Souleater
+283	Traveler	Technick	50	14	action	ordinary		00B4h	Traveler	Machinist, Monk, Foebreaker, Archer, Shikari	50 LP; grants Traveler
+284	Numerology	Technick	40	14	action	ordinary		00B0h	Numerology	White Mage, Machinist, Monk, Time Battlemage	40 LP; grants Numerology
+285	Shear	Technick	50	14	action	ordinary		00ACh	Shear	Time Battlemage, Foebreaker, Archer	50 LP; grants Shear
+286	Achilles	Technick	40	14	action	ordinary		00A2h	Achilles	White Mage, Uhlan, Machinist, Monk, Archer	40 LP; grants Achilles
+287	Gil Toss	Technick	30	14	action	ordinary		00B5h	Gil Toss	Machinist, Archer, Bushi, Shikari	30 LP; grants Gil Toss
+288	Charm	Technick	30	14	action	ordinary		00ADh	Charm	Uhlan, Machinist, Archer, Black Mage	30 LP; grants Charm
+289	Sight Unseeing	Technick	40	14	action	ordinary		00AFh	Sight Unseeing	Knight, Monk, Foebreaker, Bushi	40 LP; grants Sight Unseeing
+290	Infuse	Technick	30	14	action	ordinary		00A4h	Infuse	Uhlan, Knight, Foebreaker, Archer, Bushi	30 LP; grants Infuse
+291	Addle	Technick	50	14	action	ordinary		00A7h	Addle	Time Battlemage, Foebreaker, Archer	50 LP; grants Addle
+292	Bonecrusher	Technick	30	14	action	ordinary		00A8h	Bonecrusher	Uhlan, Monk, Bushi, Shikari	30 LP; grants Bonecrusher
+293	Shades of Black	Technick	70	14	action	ordinary		009Fh	Shades of Black	Uhlan, Monk, Foebreaker, Archer, Bushi, Shikari	70 LP; grants Shades of Black
+294	Stamp	Technick	40	14	action	ordinary		00A1h	Stamp	White Mage, Machinist, Time Battlemage, Bushi, Shikari	40 LP; grants Stamp
+295	Expose	Technick	50	14	action	ordinary		00ABh	Expose	Uhlan, Monk, Foebreaker	50 LP; grants Expose
+296	Revive	Technick	40	14	action	ordinary		00AEh	Revive	Uhlan, Knight, Monk, Archer, Shikari	40 LP; grants Revive
+297	1000 Needles	Technick	35	14	action	ordinary		00B3h	1000 Needles	Archer, Bushi, Shikari	35 LP; grants 1000 Needles
+298	Wither	Technick	50	14	action	ordinary		00A6h	Wither	Uhlan, Monk, Foebreaker	50 LP; grants Wither
+299	Telekinesis	Technick	80	14	action	ordinary		00AAh	Telekinesis	Knight, Black Mage, Shikari	80 LP; grants Telekinesis
+300	+230 HP	Augment	70	17	augment	ordinary		004Fh	Increases max HP by 230.	all twelve	70 LP; grants Increases max HP by 230.
+301	+270 HP	Augment	80	17	augment	ordinary		0050h	Increases max HP by 270.	all twelve	80 LP; grants Increases max HP by 270.
+302	+310 HP	Augment	90	17	augment	ordinary		0051h	Increases max HP by 310.	White Mage, Uhlan, Machinist, Knight, Monk, Foebreaker, Archer, Black Mage, Bushi, Shikari	90 LP; grants Increases max HP by 310.
+303	+350 HP	Augment	100	17	augment	ordinary		0052h	Increases max HP by 350.	Uhlan, Machinist, Knight, Monk, Foebreaker, Bushi, Shikari	100 LP; grants Increases max HP by 350.
+304	+390 HP	Augment	115	17	augment	ordinary		0053h	Increases max HP by 390.	Machinist, Knight, Monk, Foebreaker, Archer, Black Mage, Bushi, Shikari	115 LP; grants Increases max HP by 390.
+305	+435 HP	Augment	130	17	augment	ordinary		0054h	Increases max HP by 435.	Red Battlemage, Monk, Archer, Bushi, Shikari	130 LP; grants Increases max HP by 435.
+306	+500 HP	Augment	220	17	augment	ordinary		0055h	Increases max HP by 500.	Monk, Bushi	220 LP; grants Increases max HP by 500.
+307	Battle Lore	Augment	50	17	augment	ordinary		0023h	Increases physical attack damage.	White Mage, Uhlan, Knight, Monk, Time Battlemage, Foebreaker, Bushi, Shikari	50 LP; grants Increases physical attack damage.
+308	Battle Lore	Augment	50	17	augment	ordinary		002Ah	Increases physical attack damage.	White Mage, Uhlan, Knight, Monk, Time Battlemage, Foebreaker, Bushi	50 LP; grants Increases physical attack damage.
+309	Battle Lore	Augment	50	17	augment	ordinary		002Bh	Increases physical attack damage.	Uhlan, Knight, Monk, Time Battlemage, Foebreaker, Bushi	50 LP; grants Increases physical attack damage.
+310	Battle Lore	Augment	70	17	augment	ordinary		002Ch	Increases physical attack damage.	Uhlan, Knight, Monk, Time Battlemage, Foebreaker	70 LP; grants Increases physical attack damage.
+311	Battle Lore	Augment	70	17	augment	ordinary		002Dh	Increases physical attack damage.	Uhlan, Knight, Monk, Time Battlemage, Foebreaker	70 LP; grants Increases physical attack damage.
+312	Battle Lore	Augment	70	17	augment	ordinary		002Eh	Increases physical attack damage.	Uhlan, Knight, Monk, Time Battlemage, Foebreaker	70 LP; grants Increases physical attack damage.
+313	Battle Lore	Augment	70	17	augment	ordinary		002Fh	Increases physical attack damage.	Uhlan, Knight, Monk, Foebreaker	70 LP; grants Increases physical attack damage.
+314	Battle Lore	Augment	100	17	augment	ordinary		003Ch	Increases physical attack damage.	Uhlan, Monk, Foebreaker	100 LP; grants Increases physical attack damage.
+315	Battle Lore	Augment	100	17	augment	ordinary		003Dh	Increases physical attack damage.	Uhlan, Monk	100 LP; grants Increases physical attack damage.
+316	Battle Lore	Augment	100	17	augment	ordinary		003Eh	Increases physical attack damage.	Monk	100 LP; grants Increases physical attack damage.
+317	Battle Lore	Augment	100	17	augment	ordinary		003Fh	Increases physical attack damage.	Monk	100 LP; grants Increases physical attack damage.
+318	Magick Lore	Augment	50	17	augment	ordinary		0057h	Increases magick potency.	White Mage, Uhlan, Machinist, Red Battlemage, Time Battlemage, Archer, Black Mage, Bushi	50 LP; grants Increases magick potency.
+319	Magick Lore	Augment	50	17	augment	ordinary		0061h	Increases magick potency.	White Mage, Machinist, Red Battlemage, Time Battlemage, Black Mage, Bushi	50 LP; grants Increases magick potency.
+320	Magick Lore	Augment	50	17	augment	ordinary		0062h	Increases magick potency.	White Mage, Red Battlemage, Time Battlemage, Black Mage, Bushi	50 LP; grants Increases magick potency.
+321	Magick Lore	Augment	70	17	augment	ordinary		0063h	Increases magick potency.	White Mage, Red Battlemage, Time Battlemage, Black Mage, Bushi	70 LP; grants Increases magick potency.
+322	Magick Lore	Augment	70	17	augment	ordinary		0064h	Increases magick potency.	White Mage, Red Battlemage, Black Mage, Bushi	70 LP; grants Increases magick potency.
+323	Magick Lore	Augment	70	17	augment	ordinary		0065h	Increases magick potency.	White Mage, Red Battlemage, Black Mage, Bushi	70 LP; grants Increases magick potency.
+324	Magick Lore	Augment	70	17	augment	ordinary		0066h	Increases magick potency.	White Mage, Red Battlemage, Black Mage, Bushi	70 LP; grants Increases magick potency.
+325	Magick Lore	Augment	100	17	augment	ordinary		0013h	Increases magick potency.	White Mage, Black Mage, Bushi	100 LP; grants Increases magick potency.
+326	Magick Lore	Augment	100	17	augment	ordinary		0016h	Increases magick potency.	White Mage, Black Mage, Bushi	100 LP; grants Increases magick potency.
+327	Magick Lore	Augment	100	17	augment	ordinary		0018h	Increases magick potency.	White Mage, Black Mage	100 LP; grants Increases magick potency.
+328	Magick Lore	Augment	100	17	augment	ordinary		001Ah	Increases magick potency.	Black Mage	100 LP; grants Increases magick potency.
+329	Swords 8	Weapon	80	1	equipment	ordinary		100Fh, 1010h	Deathbringer, Stoneblade	Knight, Time Battlemage	80 LP; grants Deathbringer, Stoneblade
+330	Swords 9	Weapon	90	1	equipment	ordinary		1011h, 10C2h	Durandal, Simha	Knight, Time Battlemage	90 LP; grants Durandal, Simha
+331	Karkata	Weapon	80	1	equipment	ordinary		10C0h	Karkata	Knight, Bushi	80 LP; grants Karkata
+332	Greatswords 4	Weapon	100	1	equipment	ordinary		1015h	Ragnarok	Red Battlemage, Knight	100 LP; grants Ragnarok
+333	Excalipur	Weapon	150	1	equipment	ordinary		10C1h	Excalipur	Knight	150 LP; grants Excalipur
+334	Katana 5	Weapon	100	1	equipment	ordinary		1021h	Muramasa	Bushi	100 LP; grants Muramasa
+335	Kumbha	Weapon	200	1	equipment	ordinary		10AAh	Kumbha	Bushi	200 LP; grants Kumbha
+336	Ninja Swords 3	Weapon	120	3	equipment	ordinary		1026h	Koga Blade	Shikari	120 LP; grants Koga Blade
+337	Vrsabha	Weapon	100	1	equipment	ordinary		10AEh	Vrsabha	Uhlan	100 LP; grants Vrsabha
+338	Poles 6	Weapon	60	3	equipment	ordinary		103Fh, 1040h	Sweep, Eight-fluted Pole	Monk	60 LP; grants Sweep, Eight-fluted Pole
+339	Kanya	Weapon	180	3	equipment	ordinary		10C6h	Kanya	Monk	180 LP; grants Kanya
+340	Bows 7	Weapon	90	1	equipment	ordinary		104Dh, 104Eh	Perseus Bow, Artemis Bow	Archer	90 LP; grants Perseus Bow, Artemis Bow
+341	Dhanusha	Weapon	200	1	equipment	ordinary		10C7h	Dhanusha	Archer	200 LP; grants Dhanusha
+342	Mithuna	Weapon	190	3	equipment	ordinary		10C5h	Mithuna	Machinist	190 LP; grants Mithuna
+343	Vrscika	Weapon	175	1	equipment	ordinary		10C4h	Vrscika	Foebreaker	175 LP; grants Vrscika
+344	Daggers 6	Weapon	80	3	equipment	ordinary		1077h	Zwill Crossblade	Shikari	80 LP; grants Zwill Crossblade
+345	Staves 5	Weapon	65	2	equipment	ordinary		1088h, 1089h	Judicer's Staff, Cloud Staff	Black Mage	65 LP; grants Judicer's Staff, Cloud Staff
+346	Measures 4	Weapon	100	2	equipment	ordinary		1099h	Euclid's Sextant	Machinist	100 LP; grants Euclid's Sextant
+347	Makara	Weapon	105	3	equipment	ordinary		10C3h	Makara	Machinist, Foebreaker, Black Mage	105 LP; grants Makara
+348	Shields 7	Shield	65	7	equipment	ordinary		10D9h	Venetian Shield	Red Battlemage, Knight, Foebreaker, Shikari	65 LP; grants Venetian Shield
+349	Heavy Armor 11	Armor	90	4	equipment	ordinary		1116h, 1152h	Magepower Shishak, Maximillian	Uhlan, Knight, Time Battlemage, Foebreaker, Archer, Bushi	90 LP; grants Magepower Shishak, Maximillian
+350	Heavy Armor 12	Armor	110	4	equipment	ordinary		1117h, 1153h	Grand Helm, Grand Armor	Uhlan, Knight, Time Battlemage, Foebreaker, Archer	110 LP; grants Grand Helm, Grand Armor
+351	Light Armor 13	Armor	110	6	equipment	ordinary		10F0h, 112Ch	Dueling Mask, Brave Suit	Machinist, Monk, Archer, Shikari	110 LP; grants Dueling Mask, Brave Suit
+352	Mystic Armor 13	Armor	110	5	equipment	ordinary		1105h, 1141h	Circlet, Lordly Robes	White Mage, Red Battlemage, Black Mage, Bushi	110 LP; grants Circlet, Lordly Robes
+353	Accessories 21	Accessory	130	8	equipment	ordinary		117Dh, 1167h	Quasimodo Boots, Nihopalaoa	all twelve	130 LP; grants Quasimodo Boots, Nihopalaoa
+354	Accessories 22	Accessory	160	8	equipment	ordinary		1178h, 1158h	Germinas Boots, Ring of Renewal	all twelve	160 LP; grants Germinas Boots, Ring of Renewal
+355	White Magick 9	Magick	80	9	action	ordinary		0035h, 000Bh	Bravery, Curaja	White Mage, Knight, Monk	80 LP; grants Bravery, Curaja
+356	Black Magick 9	Magick	90	10	action	ordinary		001Ch, 001Dh	Firaga, Thundaga	Red Battlemage, Black Mage	90 LP; grants Firaga, Thundaga
+357	Time Magick 8	Magick	90	11	action	ordinary		0048h, 0032h	Vanishga, Warp	Machinist, Time Battlemage	90 LP; grants Vanishga, Warp
+358	Black Magick 10	Magick	90	12	action	ordinary		001Eh, 0041h	Blizzaga, Sleepga	Red Battlemage, Black Mage	90 LP; grants Blizzaga, Sleepga
+359	Time Magick 10	Magick	125	13	action	ordinary		0050h, 0026h	Graviga, Hastega	Machinist, Time Battlemage	125 LP; grants Graviga, Hastega
+360	Second Board	Magick	30	30	Second Board	ordinary		0080h		all twelve	30 LP; the Second Board square

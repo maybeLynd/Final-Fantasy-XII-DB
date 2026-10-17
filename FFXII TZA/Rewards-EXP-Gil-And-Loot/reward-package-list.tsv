@@ -1,0 +1,513 @@
+id	gil	item1	item1_name	count1	item2	item2_name	count2	selectors	script_gives	explanation
+9000h	0	115Bh	Orrachea Armlet	1					1	gives Orrachea Armlet x1
+9001h	0	0000h	Potion	3	0006h	Phoenix Down	2		0	gives Potion x3 + Phoenix Down x2
+9002h	0	0000h	Potion	3	0006h	Phoenix Down	2		1	gives Potion x3 + Phoenix Down x2
+9003h	300	0000h	Potion	2	2000h	Teleport Stone	1	A080h	0	gives 300 gil + Potion x2 + Teleport Stone x1
+9004h	500	10DEh	Headguard	1	2000h	Teleport Stone	1	A081h	0	gives 500 gil + Headguard x1 + Teleport Stone x1
+9005h	500	0000h	Potion	10				A082h	0	gives 500 gil + Potion x10
+9006h	500	0003h	Ether	1	1165h	Gauntlets	1	A083h	0	gives 500 gil + Ether x1 + Gauntlets x1
+9007h	600	116Ch	Rose Corsage	1	10E1h	Balaclava	1	A084h	0	gives 600 gil + Rose Corsage x1 + Balaclava x1
+9008h	2800	104Ah	Burning Bow	1				A085h	0	gives 2800 gil + Burning Bow x1
+9009h	200	20A2h	Moon Ring	1	100Ah	Icebrand	1	A086h	0	gives 200 gil + Moon Ring x1 + Icebrand x1
+900Ah	1000	1047h	Elfin Bow	1	10CDh	Shell Shield	1	A087h	0	gives 1000 gil + Elfin Bow x1 + Shell Shield x1
+900Bh	2200	20C4h	Serpent Eye	1	2000h	Teleport Stone	3	A088h	0	gives 2200 gil + Serpent Eye x1 + Teleport Stone x3
+900Ch	1100	0003h	Ether	1	116Fh	Golden Amulet	1	A089h	0	gives 1100 gil + Ether x1 + Golden Amulet x1
+900Dh	1200	107Ah	Serpent Rod	1	2000h	Teleport Stone	1	A08Ah	0	gives 1200 gil + Serpent Rod x1 + Teleport Stone x1
+900Eh	1300	0003h	Ether	1	20CDh	Soul Powder	1	A08Bh	0	gives 1300 gil + Ether x1 + Soul Powder x1
+900Fh	1500	1054h	Hunting Crossbow	1	2000h	Teleport Stone	2	A08Ch	0	gives 1500 gil + Hunting Crossbow x1 + Teleport Stone x2
+9010h	2000	1188h	Lightning Arrows	1	117Ah	Gillie Boots	1	A08Dh	0	gives 2000 gil + Lightning Arrows x1 + Gillie Boots x1
+9011h	2200	1139h	Carmagnole	1				A08Eh	0	gives 2200 gil + Carmagnole x1
+9012h	2400	119Eh	Stun Bombs	1	20B0h	Vampyr Fang	1	A08Fh	0	gives 2400 gil + Stun Bombs x1 + Vampyr Fang x1
+9013h	1800	107Ch	Gaia Rod	1	10D2h	Platinum Shield	1	A090h	0	gives 1800 gil + Gaia Rod x1 + Platinum Shield x1
+9014h	3100	1113h	Giant's Helmet	1	20B8h	Mythril	1	A091h	0	gives 3100 gil + Giant's Helmet x1 + Mythril x1
+9015h	1700	1098h	Caliper	1	0004h	Hi-Ether	1	A092h	0	gives 1700 gil + Caliper x1 + Hi-Ether x1
+9016h	3000	118Fh	Lead Bolts	1	20B9h	Adamantite	1	A093h	0	gives 3000 gil + Lead Bolts x1 + Adamantite x1
+9017h	3500	1030h	Halberd	1	10D7h	Aegis Shield	1	A094h	0	gives 3500 gil + Halberd x1 + Aegis Shield x1
+9018h	4200	1129h	Minerva Bustier	1	0004h	Hi-Ether	1	A095h	0	gives 4200 gil + Minerva Bustier x1 + Hi-Ether x1
+9019h	3500	0004h	Hi-Ether	2	2000h	Teleport Stone	1	A096h	0	gives 3500 gil + Hi-Ether x2 + Teleport Stone x1
+901Ah	3600	1014h	Save the Queen	1	20BEh	Einherjarium	1	A097h	0	gives 3600 gil + Save the Queen x1 + Einherjarium x1
+901Bh	2800	0004h	Hi-Ether	2	20AEh	Soul of Thamasa	1	A098h	0	gives 2800 gil + Hi-Ether x2 + Soul of Thamasa x1
+901Ch	3400	0005h	Elixir	2				A099h	0	gives 3400 gil + Elixir x2
+901Dh	2600	10D8h	Demon Shield	1	1092h	Zeus Mace	1	A09Ah	0	gives 2600 gil + Demon Shield x1 + Zeus Mace x1
+901Eh	3800	119Ah	Dark Shot	1	0031h	Scathe Mote	1	A09Bh	0	gives 3800 gil + Dark Shot x1 + Scathe Mote x1
+901Fh	4600	1099h	Euclid's Sextant	1				A09Ch	0	gives 4600 gil + Euclid's Sextant x1
+9020h	3200	109Eh	Volcano	1	20DBh	Arctic Wind	1	A09Dh	0	gives 3200 gil + Volcano x1 + Arctic Wind x1
+9021h	7000	1189h	Assassin's Arrows	1	2000h	Teleport Stone	1	A09Eh	0	gives 7000 gil + Assassin's Arrows x1 + Teleport Stone x1
+9022h	8000	1093h	Grand Mace	1	0031h	Scathe Mote	2	A09Fh	0	gives 8000 gil + Grand Mace x1 + Scathe Mote x2
+9023h	1000	115Fh	Amber Armlet	1	20E5h	Rainbow Egg	1	A0A0h	0	gives 1000 gil + Amber Armlet x1 + Rainbow Egg x1
+9024h	1200	0001h	Hi-Potion	2	111Fh	Survival Vest	1	A0A1h	0	gives 1200 gil + Hi-Potion x2 + Survival Vest x1
+9025h	3800	20F1h	Horakhty's Flame	1	20CAh	Unpurified Ether	1	A0A2h	0	gives 3800 gil + Horakhty's Flame x1 + Unpurified Ether x1
+9026h	3000	20F2h	Phobos Glaze	1				A0A3h	0	gives 3000 gil + Phobos Glaze x1
+9027h	4800	20F3h	Deimos Clay	1				A0A4h	0	gives 4800 gil + Deimos Clay x1
+9028h	4300	1173h	Bubble Belt	1	20E2h	Sickle-Blade	1	A0A5h	0	gives 4300 gil + Bubble Belt x1 + Sickle-Blade x1
+9029h	5200	11A1h	Stink Bombs	1	20C7h	Putrid Liquid	1	A0A6h	0	gives 5200 gil + Stink Bombs x1 + Putrid Liquid x1
+902Ah	10000	10C1h	Excalipur	1				A0A7h	0	gives 10000 gil + Excalipur x1
+902Bh	250	0014h	Bacchus's Wine	2				A0A8h	0	gives 250 gil + Bacchus's Wine x2
+902Ch	3000	1192h	Sapping Bolts	1	1015h	Ragnarok	1	A0A9h	0	gives 3000 gil + Sapping Bolts x1 + Ragnarok x1
+902Dh	20000	0015h	Megalixir	2				A0AAh	0	gives 20000 gil + Megalixir x2
+902Eh	30000	20F4h	Godslayer's Badge	1				A0ABh	0	gives 30000 gil + Godslayer's Badge x1
+902Fh	0	0000h	Potion	3					4	gives Potion x3
+9030h	0	0037h	Warp Mote	2	2000h	Teleport Stone	2		4	gives Warp Mote x2 + Teleport Stone x2
+9031h	0	0010h	Remedy	3	2000h	Teleport Stone	2		4	gives Remedy x3 + Teleport Stone x2
+9032h	0	0001h	Hi-Potion	3	2000h	Teleport Stone	2		4	gives Hi-Potion x3 + Teleport Stone x2
+9033h	0	0003h	Ether	2	2000h	Teleport Stone	2		4	gives Ether x2 + Teleport Stone x2
+9034h	0	0002h	X-Potion	2	2000h	Teleport Stone	2		4	gives X-Potion x2 + Teleport Stone x2
+9035h	0	0004h	Hi-Ether	2	2000h	Teleport Stone	3		4	gives Hi-Ether x2 + Teleport Stone x3
+9036h	0	0005h	Elixir	2	2000h	Teleport Stone	3		4	gives Elixir x2 + Teleport Stone x3
+9037h	0	204Dh	High Arcana	1	2000h	Teleport Stone	3		4	gives High Arcana x1 + Teleport Stone x3
+9038h	0	20EDh	Empyreal Soul	1	2000h	Teleport Stone	3		4	gives Empyreal Soul x1 + Teleport Stone x3
+9039h	0	0015h	Megalixir	2	2000h	Teleport Stone	3		4	gives Megalixir x2 + Teleport Stone x3
+903Ah	0	20F0h	Centurio Hero's Badge	1	2000h	Teleport Stone	3		4	gives Centurio Hero's Badge x1 + Teleport Stone x3
+903Bh	150								4	gives 150 gil
+903Ch	200								4	gives 200 gil
+903Dh	1200								4	gives 1200 gil
+903Eh	300								4	gives 300 gil
+903Fh	1200	20BFh	Electrum	1					4	gives 1200 gil + Electrum x1
+9040h	600	0037h	Warp Mote	1					4	gives 600 gil + Warp Mote x1
+9041h	800								4	gives 800 gil
+9042h	900								4	gives 900 gil
+9043h	1100								4	gives 1100 gil
+9044h	1300	20A5h	Mallet	1					4	gives 1300 gil + Mallet x1
+9045h	1600								4	gives 1600 gil
+9046h	1600								4	gives 1600 gil
+9047h	50000								4	gives 50000 gil
+9048h	1800								4	gives 1800 gil
+9049h	1900								4	gives 1900 gil
+904Ah	1900								4	gives 1900 gil
+904Bh	2000								4	gives 2000 gil
+904Ch	2100								4	gives 2100 gil
+904Dh	2100	0014h	Bacchus's Wine	1					4	gives 2100 gil + Bacchus's Wine x1
+904Eh	0	204Ch	Arcana	2	2000h	Teleport Stone	2		1	gives Arcana x2 + Teleport Stone x2
+904Fh	0	204Dh	High Arcana	1	2000h	Teleport Stone	2		1	gives High Arcana x1 + Teleport Stone x2
+9050h	0	20EFh	Gemsteel	1	2000h	Teleport Stone	2		1	gives Gemsteel x1 + Teleport Stone x2
+9051h	0	20EEh	Serpentarius	1	2000h	Teleport Stone	2		1	gives Serpentarius x1 + Teleport Stone x2
+9052h	1000	0010h	Remedy	3					2	gives 1000 gil + Remedy x3
+9053h	0	0001h	Hi-Potion	1					1	gives Hi-Potion x1
+9054h	0	0000h	Potion	2	000Ah	Eye Drops	4		2	gives Potion x2 + Eye Drops x4
+9055h	500000	1080h	Rod of Faith	1					1	gives 500000 gil + Rod of Faith x1
+9056h	0	1048h	Loxley Bow	1	0001h	Hi-Potion	2		1	gives Loxley Bow x1 + Hi-Potion x2
+9057h	0	1048h	Loxley Bow	1					1	gives Loxley Bow x1
+9058h	0	100Eh	Runeblade	1					1	gives Runeblade x1
+9059h	0	1054h	Hunting Crossbow	1					2	gives Hunting Crossbow x1
+905Ah	0	1180h	Fuzzy Miter	1					1	gives Fuzzy Miter x1
+905Bh	0	1171h	Firefly	1					1	gives Firefly x1
+905Ch	0	0003h	Ether	1	0001h	Hi-Potion	3		4	gives Ether x1 + Hi-Potion x3
+905Dh	50	0000h	Potion	2	2000h	Teleport Stone	2		1	gives 50 gil + Potion x2 + Teleport Stone x2
+905Eh	200	0000h	Potion	2	2026h	Holy Stone	1		3	gives 200 gil + Potion x2 + Holy Stone x1
+905Fh	150	2026h	Holy Stone	1					3	gives 150 gil + Holy Stone x1
+9060h	100								3	gives 100 gil
+9061h	50								3	gives 50 gil
+9062h	0	0010h	Remedy	2					1	gives Remedy x2
+9063h	0	100Fh	Deathbringer	1					1	gives Deathbringer x1
+9064h	0	1076h	Platinum Dagger	1					2	gives Platinum Dagger x1
+9065h	0	1013h	Defender	1					1	gives Defender x1
+9066h	0	1026h	Koga Blade	1					2	gives Koga Blade x1
+9067h	0	104Ch	Yoichi Bow	1					2	gives Yoichi Bow x1
+9068h	0	109Ch	Tumulus	1					1	gives Tumulus x1
+9069h	0	0004h	Hi-Ether	2					1	gives Hi-Ether x2
+906Ah	0	0005h	Elixir	1	003Fh	Knot of Rust	1		1	gives Elixir x1 + Knot of Rust x1
+906Bh	0	2044h	Salamand Halcyon	1					1	gives Salamand Halcyon x1
+906Ch	0	1158h	Ring of Renewal	1					1	gives Ring of Renewal x1
+906Dh	0	000Bh	Prince's Kiss	2					1	gives Prince's Kiss x2
+906Eh	1								2	gives 1 gil
+906Fh	3								3	gives 3 gil
+9070h	5								3	gives 5 gil
+9071h	0	2000h	Teleport Stone	1					1	gives Teleport Stone x1
+9072h	0	0001h	Hi-Potion	1					1	gives Hi-Potion x1
+9073h	0	2022h	Water Stone	1					1	gives Water Stone x1
+9074h	100								1	gives 100 gil
+9075h	0	202Ah	Water Magicite	1					1	gives Water Magicite x1
+9076h	0	2058h	Fish Scale	1					1	gives Fish Scale x1
+9077h	0	204Eh	Turtle Shell	1					1	gives Turtle Shell x1
+9078h	0	20D5h	Frogspawn	1					1	gives Frogspawn x1
+9079h	0	0001h	Hi-Potion	1					1	gives Hi-Potion x1
+907Ah	0	20B9h	Adamantite	1					1	gives Adamantite x1
+907Bh	0	20BAh	Scarletite	1					2	gives Scarletite x1
+907Ch	0	20F5h	Lu Shang's Badge	1					1	gives Lu Shang's Badge x1
+907Dh	10								1	gives 10 gil
+907Eh	100								1	gives 100 gil
+907Fh	200								1	gives 200 gil
+9080h	0	20BFh	Electrum	1					1	gives Electrum x1
+9081h	0	20A3h	Bundle of Needles	1					4	gives Bundle of Needles x1
+9082h	0	0032h	Balance Mote	1					1	gives Balance Mote x1
+9083h	0	1161h	Magick Gloves	1					1	gives Magick Gloves x1
+9084h	0	116Fh	Golden Amulet	1					1	gives Golden Amulet x1
+9085h	0	0002h	X-Potion	1					4	gives X-Potion x1
+9086h	0	0039h	Hastega Mote	1					4	gives Hastega Mote x1
+9087h	0	0030h	Holy Mote	1					4	gives Holy Mote x1
+9088h	0	0004h	Hi-Ether	1					10	gives Hi-Ether x1
+9089h	0	0005h	Elixir	1					4	gives Elixir x1
+908Ah	1000	1197h	Wyrmfire Shot	1					1	gives 1000 gil + Wyrmfire Shot x1
+908Bh	1000								14	gives 1000 gil
+908Ch	0	115Ah	Bangle	1					1	gives Bangle x1
+908Dh	0	116Ah	Jade Collar	1					1	gives Jade Collar x1
+908Eh	0	1172h	Sash	1					1	gives Sash x1
+908Fh	0	0000h	Potion	1					11	gives Potion x1
+9090h	0	0006h	Phoenix Down	1					11	gives Phoenix Down x1
+9091h	0	000Ah	Eye Drops	1					11	gives Eye Drops x1
+9092h	0	0009h	Antidote	1					11	gives Antidote x1
+9093h	10	0008h	Echo Herbs	1					11	gives 10 gil + Echo Herbs x1
+9094h	0	0007h	Gold Needle	1					11	gives Gold Needle x1
+9095h	0	000Bh	Prince's Kiss	1					11	gives Prince's Kiss x1
+9096h	0	000Ch	Handkerchief	1					11	gives Handkerchief x1
+9097h	0	0014h	Bacchus's Wine	1					11	gives Bacchus's Wine x1
+9098h	100	0032h	Balance Mote	2					11	gives 100 gil + Balance Mote x2
+9099h	0	0000h	Potion	2					11	gives Potion x2
+909Ah	0	0006h	Phoenix Down	2					11	gives Phoenix Down x2
+909Bh	0	000Ah	Eye Drops	2					11	gives Eye Drops x2
+909Ch	0	0009h	Antidote	2					11	gives Antidote x2
+909Dh	20	0008h	Echo Herbs	2					11	gives 20 gil + Echo Herbs x2
+909Eh	0	0007h	Gold Needle	2					11	gives Gold Needle x2
+909Fh	0	000Bh	Prince's Kiss	2					11	gives Prince's Kiss x2
+90A0h	0	000Ch	Handkerchief	2					11	gives Handkerchief x2
+90A1h	0	0014h	Bacchus's Wine	2					11	gives Bacchus's Wine x2
+90A2h	300	003Ch	Float Mote	2					11	gives 300 gil + Float Mote x2
+90A3h	0	0000h	Potion	3					11	gives Potion x3
+90A4h	0	0006h	Phoenix Down	3					11	gives Phoenix Down x3
+90A5h	0	000Ah	Eye Drops	3					11	gives Eye Drops x3
+90A6h	0	0009h	Antidote	3					11	gives Antidote x3
+90A7h	30	0008h	Echo Herbs	3					11	gives 30 gil + Echo Herbs x3
+90A8h	0	0007h	Gold Needle	3					11	gives Gold Needle x3
+90A9h	0	000Bh	Prince's Kiss	3					11	gives Prince's Kiss x3
+90AAh	0	000Ch	Handkerchief	3					11	gives Handkerchief x3
+90ABh	0	0014h	Bacchus's Wine	3					11	gives Bacchus's Wine x3
+90ACh	800	2000h	Teleport Stone	3					11	gives 800 gil + Teleport Stone x3
+90ADh	0	0000h	Potion	4					11	gives Potion x4
+90AEh	0	0006h	Phoenix Down	4					11	gives Phoenix Down x4
+90AFh	0	000Ah	Eye Drops	4					11	gives Eye Drops x4
+90B0h	0	0009h	Antidote	4					11	gives Antidote x4
+90B1h	40	0008h	Echo Herbs	4					11	gives 40 gil + Echo Herbs x4
+90B2h	0	0007h	Gold Needle	4					11	gives Gold Needle x4
+90B3h	0	000Bh	Prince's Kiss	4					11	gives Prince's Kiss x4
+90B4h	0	000Ch	Handkerchief	4					11	gives Handkerchief x4
+90B5h	0	0014h	Bacchus's Wine	4					11	gives Bacchus's Wine x4
+90B6h	1500	003Bh	Vanishga Mote	2					11	gives 1500 gil + Vanishga Mote x2
+90B7h	0	0000h	Potion	5					11	gives Potion x5
+90B8h	0	0006h	Phoenix Down	5					11	gives Phoenix Down x5
+90B9h	0	000Ah	Eye Drops	5					11	gives Eye Drops x5
+90BAh	0	0009h	Antidote	5					11	gives Antidote x5
+90BBh	50	0008h	Echo Herbs	5					11	gives 50 gil + Echo Herbs x5
+90BCh	0	0007h	Gold Needle	5					11	gives Gold Needle x5
+90BDh	0	000Bh	Prince's Kiss	5					11	gives Prince's Kiss x5
+90BEh	0	000Ch	Handkerchief	5					11	gives Handkerchief x5
+90BFh	0	0014h	Bacchus's Wine	5					11	gives Bacchus's Wine x5
+90C0h	2500	003Ah	Reflectga Mote	2					11	gives 2500 gil + Reflectga Mote x2
+90C1h	0	0000h	Potion	6					11	gives Potion x6
+90C2h	0	0006h	Phoenix Down	6					11	gives Phoenix Down x6
+90C3h	0	000Ah	Eye Drops	6					11	gives Eye Drops x6
+90C4h	0	0009h	Antidote	6					11	gives Antidote x6
+90C5h	60	0008h	Echo Herbs	6					11	gives 60 gil + Echo Herbs x6
+90C6h	0	0007h	Gold Needle	6					11	gives Gold Needle x6
+90C7h	0	000Bh	Prince's Kiss	6					11	gives Prince's Kiss x6
+90C8h	0	000Ch	Handkerchief	6					11	gives Handkerchief x6
+90C9h	0	0014h	Bacchus's Wine	6					11	gives Bacchus's Wine x6
+90CAh	3500	0004h	Hi-Ether	2					11	gives 3500 gil + Hi-Ether x2
+90CBh	0	0000h	Potion	7					11	gives Potion x7
+90CCh	0	0006h	Phoenix Down	7					11	gives Phoenix Down x7
+90CDh	0	000Ah	Eye Drops	7					11	gives Eye Drops x7
+90CEh	0	0009h	Antidote	7					11	gives Antidote x7
+90CFh	70	0008h	Echo Herbs	7					11	gives 70 gil + Echo Herbs x7
+90D0h	0	0007h	Gold Needle	7					11	gives Gold Needle x7
+90D1h	0	000Bh	Prince's Kiss	7					11	gives Prince's Kiss x7
+90D2h	0	000Ch	Handkerchief	7					11	gives Handkerchief x7
+90D3h	0	0014h	Bacchus's Wine	7					11	gives Bacchus's Wine x7
+90D4h	4500	0030h	Holy Mote	2					11	gives 4500 gil + Holy Mote x2
+90D5h	0	0000h	Potion	8					11	gives Potion x8
+90D6h	0	0006h	Phoenix Down	8					11	gives Phoenix Down x8
+90D7h	0	000Ah	Eye Drops	8					11	gives Eye Drops x8
+90D8h	0	0009h	Antidote	8					11	gives Antidote x8
+90D9h	80	0008h	Echo Herbs	8					11	gives 80 gil + Echo Herbs x8
+90DAh	0	0007h	Gold Needle	8					11	gives Gold Needle x8
+90DBh	0	000Bh	Prince's Kiss	8					11	gives Prince's Kiss x8
+90DCh	0	000Ch	Handkerchief	8					11	gives Handkerchief x8
+90DDh	0	0014h	Bacchus's Wine	8					11	gives Bacchus's Wine x8
+90DEh	6000	0039h	Hastega Mote	2	20C8h	Caramel	1		11	gives 6000 gil + Hastega Mote x2 + Caramel x1
+90DFh	0	0000h	Potion	9					11	gives Potion x9
+90E0h	0	0006h	Phoenix Down	9					11	gives Phoenix Down x9
+90E1h	0	000Ah	Eye Drops	9					11	gives Eye Drops x9
+90E2h	0	0009h	Antidote	9					11	gives Antidote x9
+90E3h	90	0008h	Echo Herbs	9					11	gives 90 gil + Echo Herbs x9
+90E4h	0	0007h	Gold Needle	9					11	gives Gold Needle x9
+90E5h	0	000Bh	Prince's Kiss	9					11	gives Prince's Kiss x9
+90E6h	0	000Ch	Handkerchief	9					11	gives Handkerchief x9
+90E7h	0	0014h	Bacchus's Wine	9					11	gives Bacchus's Wine x9
+90E8h	8000	0031h	Scathe Mote	2	20C9h	Slime Oil	1		11	gives 8000 gil + Scathe Mote x2 + Slime Oil x1
+90E9h	0	0000h	Potion	10					11	gives Potion x10
+90EAh	0	0006h	Phoenix Down	10					11	gives Phoenix Down x10
+90EBh	0	000Ah	Eye Drops	10					11	gives Eye Drops x10
+90ECh	0	0009h	Antidote	10					11	gives Antidote x10
+90EDh	100	0008h	Echo Herbs	10					11	gives 100 gil + Echo Herbs x10
+90EEh	0	0007h	Gold Needle	10					11	gives Gold Needle x10
+90EFh	0	000Bh	Prince's Kiss	10					11	gives Prince's Kiss x10
+90F0h	0	000Ch	Handkerchief	10					11	gives Handkerchief x10
+90F1h	0	0014h	Bacchus's Wine	10					11	gives Bacchus's Wine x10
+90F2h	10000	0005h	Elixir	2	20CAh	Unpurified Ether	1		11	gives 10000 gil + Elixir x2 + Unpurified Ether x1
+90F3h	0	1035h	Zodiac Spear	1					1	gives Zodiac Spear x1
+90F4h	0	108Ah	Staff of the Magi	1					1	gives Staff of the Magi x1
+90F5h	0	10DAh	Zodiac Escutcheon	1					1	gives Zodiac Escutcheon x1
+90F6h	0	10DBh	Ensanguined Shield	1					1	gives Ensanguined Shield x1
+90F7h	0	1181h	Ribbon	1					1	gives Ribbon x1
+90F8h	0	1157h	Sage's Ring	1					1	gives Sage's Ring x1
+90F9h	0	2038h	Aries Gem	1	203Eh	Libra Gem	1		1	gives Aries Gem x1 + Libra Gem x1
+90FAh	0	2039h	Taurus Gem	1	203Fh	Scorpio Gem	1		1	gives Taurus Gem x1 + Scorpio Gem x1
+90FBh	0	203Ah	Gemini Gem	1	2040h	Sagittarius Gem	1		1	gives Gemini Gem x1 + Sagittarius Gem x1
+90FCh	0	203Bh	Cancer Gem	1	2041h	Capricorn Gem	1		1	gives Cancer Gem x1 + Capricorn Gem x1
+90FDh	0	203Ch	Leo Gem	1	2042h	Aquarius Gem	1		1	gives Leo Gem x1 + Aquarius Gem x1
+90FEh	0	203Dh	Virgo Gem	1	2043h	Pisces Gem	1		1	gives Virgo Gem x1 + Pisces Gem x1
+90FFh	0	101Eh	Kiku-ichimonji	1					0	gives Kiku-ichimonji x1
+9100h	0	114Eh	Platinum Armor	1					0	gives Platinum Armor x1
+9101h	0	1162h	Thief's Cuffs	1					0	gives Thief's Cuffs x1
+9102h	0	1032h	Holy Lance	1					0	gives Holy Lance x1
+9103h	0	1129h	Minerva Bustier	1					0	gives Minerva Bustier x1
+9104h	0	1155h	Ruby Ring	1					0	gives Ruby Ring x1
+9105h	0	1020h	Ame-no-Murakumo	1					0	gives Ame-no-Murakumo x1
+9106h	0	1103h	White Mask	1					0	gives White Mask x1
+9107h	0	1154h	Opal Ring	1					0	gives Opal Ring x1
+9108h	0	1010h	Stoneblade	1					0	gives Stoneblade x1
+9109h	0	10D7h	Aegis Shield	1					0	gives Aegis Shield x1
+910Ah	0	116Fh	Golden Amulet	1					0	gives Golden Amulet x1
+910Bh	0	1040h	Eight-fluted Pole	1					0	gives Eight-fluted Pole x1
+910Ch	0	1028h	Orochi	1					0	gives Orochi x1
+910Dh	0	10F0h	Dueling Mask	1					0	gives Dueling Mask x1
+910Eh	0	117Fh	Cat-ear Hood	1					0	gives Cat-ear Hood x1
+910Fh	0	1152h	Maximillian	1					0	gives Maximillian x1
+9110h	0	1016h	Ultima Blade	1					0	gives Ultima Blade x1
+9111h	0	1117h	Grand Helm	1					0	gives Grand Helm x1
+9112h	0	1173h	Bubble Belt	1					0	gives Bubble Belt x1
+9113h	0	1164h	Genji Gloves	1					0	gives Genji Gloves x1
+9114h	0	1022h	Masamune	1					0	gives Masamune x1
+9115h	0	1153h	Grand Armor	1					0	gives Grand Armor x1
+9116h	0	1167h	Nihopalaoa	1					0	gives Nihopalaoa x1
+9117h	0	1035h	Zodiac Spear	1	10DAh	Zodiac Escutcheon	1		0	gives Zodiac Spear x1 + Zodiac Escutcheon x1
+9118h	0	10B0h	Tula	1	1193h	Grand Bolts	1		0	gives Tula x1 + Grand Bolts x1
+9119h	0	1141h	Lordly Robes	1					0	gives Lordly Robes x1
+911Ah	0	116Eh	Indigo Pendant	1					0	gives Indigo Pendant x1
+911Bh	0	104Eh	Artemis Bow	1	118Bh	Artemis Arrows	1		0	gives Artemis Bow x1 + Artemis Arrows x1
+911Ch	0	1102h	Black Mask	1					0	gives Black Mask x1
+911Dh	0	1166h	Turtleshell Choker	1					0	gives Turtleshell Choker x1
+911Eh	0	1045h	Killer Bow	1	1184h	Onion Arrows	1		2	gives Killer Bow x1 + Onion Arrows x1
+911Fh	0	1053h	Recurve Crossbow	1	118Ch	Onion Bolts	1		1	gives Recurve Crossbow x1 + Onion Bolts x1
+9120h	0	0014h	Bacchus's Wine	3	0015h	Megalixir	2		2	gives Bacchus's Wine x3 + Megalixir x2
+9121h	0	0001h	Hi-Potion	3	0003h	Ether	1		1	gives Hi-Potion x3 + Ether x1
+9122h	5100	0015h	Megalixir	1				A0ACh	0	gives 5100 gil + Megalixir x1
+9123h	1000	0001h	Hi-Potion	10	000Ch	Handkerchief	15		100	gives 1000 gil + Hi-Potion x10 + Handkerchief x15
+9124h	2000	0006h	Phoenix Down	10	0017h	Domaine Calvados	5		100	gives 2000 gil + Phoenix Down x10 + Domaine Calvados x5
+9125h	3000	0003h	Ether	10	0008h	Echo Herbs	15		100	gives 3000 gil + Ether x10 + Echo Herbs x15
+9126h	4000	0006h	Phoenix Down	10	002Ah	Reverse Mote	3		100	gives 4000 gil + Phoenix Down x10 + Reverse Mote x3
+9127h	5000	0002h	X-Potion	10	000Dh	Chronos Tear	15		100	gives 5000 gil + X-Potion x10 + Chronos Tear x15
+9128h	6000	0006h	Phoenix Down	10	0031h	Scathe Mote	3		100	gives 6000 gil + Phoenix Down x10 + Scathe Mote x3
+9129h	7000	0004h	Hi-Ether	10	000Fh	Serum	15		100	gives 7000 gil + Hi-Ether x10 + Serum x15
+912Ah	8000	0005h	Elixir	3	0038h	Bubble Mote	3		100	gives 8000 gil + Elixir x3 + Bubble Mote x3
+912Bh	9000	0015h	Megalixir	2	0010h	Remedy	15		100	gives 9000 gil + Megalixir x2 + Remedy x15
+912Ch	0								0	an empty package: no gil and no item
+912Dh	0								0	an empty package: no gil and no item
+912Eh	0								0	an empty package: no gil and no item
+912Fh	0								0	an empty package: no gil and no item
+9130h	0								0	an empty package: no gil and no item
+9131h	0								0	an empty package: no gil and no item
+9132h	0								0	an empty package: no gil and no item
+9133h	0								0	an empty package: no gil and no item
+9134h	0								0	an empty package: no gil and no item
+9135h	0								0	an empty package: no gil and no item
+9136h	0								0	an empty package: no gil and no item
+9137h	0								0	an empty package: no gil and no item
+9138h	0								0	an empty package: no gil and no item
+9139h	0								0	an empty package: no gil and no item
+913Ah	0								0	an empty package: no gil and no item
+913Bh	0								0	an empty package: no gil and no item
+913Ch	0								0	an empty package: no gil and no item
+913Dh	0								0	an empty package: no gil and no item
+913Eh	0								0	an empty package: no gil and no item
+913Fh	0								0	an empty package: no gil and no item
+9140h	0								0	an empty package: no gil and no item
+9141h	0								0	an empty package: no gil and no item
+9142h	0								0	an empty package: no gil and no item
+9143h	0								0	an empty package: no gil and no item
+9144h	0								0	an empty package: no gil and no item
+9145h	0								0	an empty package: no gil and no item
+9146h	0								0	an empty package: no gil and no item
+9147h	0								0	an empty package: no gil and no item
+9148h	0								0	an empty package: no gil and no item
+9149h	0								0	an empty package: no gil and no item
+914Ah	0								0	an empty package: no gil and no item
+914Bh	0								0	an empty package: no gil and no item
+914Ch	0								0	an empty package: no gil and no item
+914Dh	0								0	an empty package: no gil and no item
+914Eh	0								0	an empty package: no gil and no item
+914Fh	0								0	an empty package: no gil and no item
+9150h	0								0	an empty package: no gil and no item
+9151h	0								0	an empty package: no gil and no item
+9152h	0								0	an empty package: no gil and no item
+9153h	0								0	an empty package: no gil and no item
+9154h	0								0	an empty package: no gil and no item
+9155h	0								0	an empty package: no gil and no item
+9156h	0								0	an empty package: no gil and no item
+9157h	0								0	an empty package: no gil and no item
+9158h	0								0	an empty package: no gil and no item
+9159h	0								0	an empty package: no gil and no item
+915Ah	0								0	an empty package: no gil and no item
+915Bh	0								0	an empty package: no gil and no item
+915Ch	0								0	an empty package: no gil and no item
+915Dh	0								0	an empty package: no gil and no item
+915Eh	0								0	an empty package: no gil and no item
+915Fh	0								0	an empty package: no gil and no item
+9160h	0								0	an empty package: no gil and no item
+9161h	0								0	an empty package: no gil and no item
+9162h	0								0	an empty package: no gil and no item
+9163h	0								0	an empty package: no gil and no item
+9164h	0								0	an empty package: no gil and no item
+9165h	0								0	an empty package: no gil and no item
+9166h	0								0	an empty package: no gil and no item
+9167h	0								0	an empty package: no gil and no item
+9168h	0								0	an empty package: no gil and no item
+9169h	0								0	an empty package: no gil and no item
+916Ah	0								0	an empty package: no gil and no item
+916Bh	0								0	an empty package: no gil and no item
+916Ch	0								0	an empty package: no gil and no item
+916Dh	0								0	an empty package: no gil and no item
+916Eh	0								0	an empty package: no gil and no item
+916Fh	0								0	an empty package: no gil and no item
+9170h	0								0	an empty package: no gil and no item
+9171h	0								0	an empty package: no gil and no item
+9172h	0								0	an empty package: no gil and no item
+9173h	0								0	an empty package: no gil and no item
+9174h	0								0	an empty package: no gil and no item
+9175h	0								0	an empty package: no gil and no item
+9176h	0								0	an empty package: no gil and no item
+9177h	0								0	an empty package: no gil and no item
+9178h	0								0	an empty package: no gil and no item
+9179h	0								0	an empty package: no gil and no item
+917Ah	0								0	an empty package: no gil and no item
+917Bh	0								0	an empty package: no gil and no item
+917Ch	0								0	an empty package: no gil and no item
+917Dh	0								0	an empty package: no gil and no item
+917Eh	0								0	an empty package: no gil and no item
+917Fh	0								0	an empty package: no gil and no item
+9180h	0								0	an empty package: no gil and no item
+9181h	0								0	an empty package: no gil and no item
+9182h	0								0	an empty package: no gil and no item
+9183h	0								0	an empty package: no gil and no item
+9184h	0								0	an empty package: no gil and no item
+9185h	0								0	an empty package: no gil and no item
+9186h	0								0	an empty package: no gil and no item
+9187h	0								0	an empty package: no gil and no item
+9188h	0								0	an empty package: no gil and no item
+9189h	0								0	an empty package: no gil and no item
+918Ah	0								0	an empty package: no gil and no item
+918Bh	0								0	an empty package: no gil and no item
+918Ch	0								0	an empty package: no gil and no item
+918Dh	0								0	an empty package: no gil and no item
+918Eh	0								0	an empty package: no gil and no item
+918Fh	0								0	an empty package: no gil and no item
+9190h	0								0	an empty package: no gil and no item
+9191h	0								0	an empty package: no gil and no item
+9192h	0								0	an empty package: no gil and no item
+9193h	0								0	an empty package: no gil and no item
+9194h	0								0	an empty package: no gil and no item
+9195h	0								0	an empty package: no gil and no item
+9196h	0								0	an empty package: no gil and no item
+9197h	0								0	an empty package: no gil and no item
+9198h	0								0	an empty package: no gil and no item
+9199h	0								0	an empty package: no gil and no item
+919Ah	0								0	an empty package: no gil and no item
+919Bh	0								0	an empty package: no gil and no item
+919Ch	0								0	an empty package: no gil and no item
+919Dh	0								0	an empty package: no gil and no item
+919Eh	0								0	an empty package: no gil and no item
+919Fh	0								0	an empty package: no gil and no item
+91A0h	0								0	an empty package: no gil and no item
+91A1h	0								0	an empty package: no gil and no item
+91A2h	0								0	an empty package: no gil and no item
+91A3h	0								0	an empty package: no gil and no item
+91A4h	0								0	an empty package: no gil and no item
+91A5h	0								0	an empty package: no gil and no item
+91A6h	0								0	an empty package: no gil and no item
+91A7h	0								0	an empty package: no gil and no item
+91A8h	0								0	an empty package: no gil and no item
+91A9h	0								0	an empty package: no gil and no item
+91AAh	0								0	an empty package: no gil and no item
+91ABh	0								0	an empty package: no gil and no item
+91ACh	0								0	an empty package: no gil and no item
+91ADh	0								0	an empty package: no gil and no item
+91AEh	0								0	an empty package: no gil and no item
+91AFh	0								0	an empty package: no gil and no item
+91B0h	0								0	an empty package: no gil and no item
+91B1h	0								0	an empty package: no gil and no item
+91B2h	0								0	an empty package: no gil and no item
+91B3h	0								0	an empty package: no gil and no item
+91B4h	0								0	an empty package: no gil and no item
+91B5h	0								0	an empty package: no gil and no item
+91B6h	0								0	an empty package: no gil and no item
+91B7h	0								0	an empty package: no gil and no item
+91B8h	0								0	an empty package: no gil and no item
+91B9h	0								0	an empty package: no gil and no item
+91BAh	0								0	an empty package: no gil and no item
+91BBh	0								0	an empty package: no gil and no item
+91BCh	0								0	an empty package: no gil and no item
+91BDh	0								0	an empty package: no gil and no item
+91BEh	0								0	an empty package: no gil and no item
+91BFh	0								0	an empty package: no gil and no item
+91C0h	0								0	an empty package: no gil and no item
+91C1h	0								0	an empty package: no gil and no item
+91C2h	0								0	an empty package: no gil and no item
+91C3h	0								0	an empty package: no gil and no item
+91C4h	0								0	an empty package: no gil and no item
+91C5h	0								0	an empty package: no gil and no item
+91C6h	0								0	an empty package: no gil and no item
+91C7h	0								0	an empty package: no gil and no item
+91C8h	0								0	an empty package: no gil and no item
+91C9h	0								0	an empty package: no gil and no item
+91CAh	0								0	an empty package: no gil and no item
+91CBh	0								0	an empty package: no gil and no item
+91CCh	0								0	an empty package: no gil and no item
+91CDh	0								0	an empty package: no gil and no item
+91CEh	0								0	an empty package: no gil and no item
+91CFh	0								0	an empty package: no gil and no item
+91D0h	0								0	an empty package: no gil and no item
+91D1h	0								0	an empty package: no gil and no item
+91D2h	0								0	an empty package: no gil and no item
+91D3h	0								0	an empty package: no gil and no item
+91D4h	0								0	an empty package: no gil and no item
+91D5h	0								0	an empty package: no gil and no item
+91D6h	0								0	an empty package: no gil and no item
+91D7h	0								0	an empty package: no gil and no item
+91D8h	0								0	an empty package: no gil and no item
+91D9h	0								0	an empty package: no gil and no item
+91DAh	0								0	an empty package: no gil and no item
+91DBh	0								0	an empty package: no gil and no item
+91DCh	0								0	an empty package: no gil and no item
+91DDh	0								0	an empty package: no gil and no item
+91DEh	0								0	an empty package: no gil and no item
+91DFh	0								0	an empty package: no gil and no item
+91E0h	0								0	an empty package: no gil and no item
+91E1h	0								0	an empty package: no gil and no item
+91E2h	0								0	an empty package: no gil and no item
+91E3h	0								0	an empty package: no gil and no item
+91E4h	0								0	an empty package: no gil and no item
+91E5h	0								0	an empty package: no gil and no item
+91E6h	0								0	an empty package: no gil and no item
+91E7h	0								0	an empty package: no gil and no item
+91E8h	0								0	an empty package: no gil and no item
+91E9h	0								0	an empty package: no gil and no item
+91EAh	0								0	an empty package: no gil and no item
+91EBh	0								0	an empty package: no gil and no item
+91ECh	0								0	an empty package: no gil and no item
+91EDh	0								0	an empty package: no gil and no item
+91EEh	0								0	an empty package: no gil and no item
+91EFh	0								0	an empty package: no gil and no item
+91F0h	0								0	an empty package: no gil and no item
+91F1h	0								0	an empty package: no gil and no item
+91F2h	0								0	an empty package: no gil and no item
+91F3h	0								0	an empty package: no gil and no item
+91F4h	0								0	an empty package: no gil and no item
+91F5h	0								0	an empty package: no gil and no item
+91F6h	0								0	an empty package: no gil and no item
+91F7h	0								0	an empty package: no gil and no item
+91F8h	0								0	an empty package: no gil and no item
+91F9h	0								0	an empty package: no gil and no item
+91FAh	0								0	an empty package: no gil and no item
+91FBh	0								0	an empty package: no gil and no item
+91FCh	0								0	an empty package: no gil and no item
+91FDh	0								0	an empty package: no gil and no item
+91FEh	0								0	an empty package: no gil and no item
+91FFh	0								0	an empty package: no gil and no item

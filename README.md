@@ -24,7 +24,8 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - A number without the h is decimal.
 - Addresses are always 8 hexadecimal digits, `0046FAE0`, and carry no h.
 - Formula and pseudocode blocks follow programming notation, where `0x` marks hexadecimal.
-- In the `.tsv` data files, hexadecimal values keep their `0x` prefix.
+- In the `.tsv` data files, which GitHub shows as plain tables, a hexadecimal value ends in a plain h: `4000h`
+  is 16384, `[rsp+10h]` is an offset of 16 bytes. Addresses there are 8 digits without an h, as on the pages.
 
 ## Categories
 

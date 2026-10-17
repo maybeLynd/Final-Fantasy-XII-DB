@@ -157,6 +157,19 @@ that identifies it:
   `001993B0` calls `001969D0`.
 - The string streams: the `basic_stringbuf` constructor `001DDFD0`, its `str()` `001E0100` (the stream's `001E0360`) and the
   destructors of `basic_istringstream`, `basic_ostringstream` and `basic_stringstream`.
+- The six streams' deleting destructors (each vtable's slot 0, reached through an adjustor that subtracts the
+  virtual-base offset first). Each steps back to the whole object, runs its destructor and, when bit `1`<sub>h</sub> of
+  the flag is set, frees the object with the sized `delete` `00809950`; the string streams also run the
+  `basic_ios` destructor through import slot `008C25E8`:
+
+  | Deleting destructor | Stream | Steps back | Frees |
+  |---|---|---|---|
+  | `00195570` | `basic_ifstream<wchar_t>` | `B0`<sub>h</sub> | `110`<sub>h</sub> |
+  | `001955B0` | `basic_ofstream<wchar_t>` | `A8`<sub>h</sub> | `108`<sub>h</sub> |
+  | `0019B540` | `basic_ofstream<char>` | `A8`<sub>h</sub> | `108`<sub>h</sub> |
+  | `001DE3B0` | `basic_istringstream<char>` | `90`<sub>h</sub> | `F0`<sub>h</sub> |
+  | `001DE400` | `basic_ostringstream<char>` | `88`<sub>h</sub> | `E8`<sub>h</sub> |
+  | `001DE4A0` | `basic_stringstream<char>` | `98`<sub>h</sub> | `F8`<sub>h</sub> |
 - The inserters `00194CD0` (wide string) and `001DDE10` (narrow), `std::endl` `00194EB0`, the
   `std::exception` and `std::bad_cast` copy constructors, and two vector members (`001A4D20`,
   `0020E420`), and `001A1EA0`, the header's `sprintf_s` into a 32-byte buffer.
