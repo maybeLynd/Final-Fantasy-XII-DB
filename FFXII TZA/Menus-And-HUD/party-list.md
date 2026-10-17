@@ -44,6 +44,15 @@ four member cells (`0028F830`), and sets bit 6 of `+B4A`<sub>h</sub>; once they 
 
 The member records are the `C0`<sub>h</sub>-byte records at `022C8080 + i x C0h` (`0035BB20`), described on
 [Party member status record](../Characters-And-Objects/party-member-status-record.md).
+`0035BB00(i)` returns record i's actor handle, the dword at `022C8084 + i x C0h`.
+
+`0035BB70`, run by the field set-up `00253A30` (`00253A3E`) and the teardown `003C5E50` (`003C5EA7`), clears the
+whole `348`<sub>h</sub>-byte block from `022C8060`, keeps only the bits `FFFC02EC`<sub>h</sub> of the mode word `022C83E8`, runs
+`002419B0(1)`, closes the leader-choice window in `022CA428` and the window `0035E070` keeps in `022CA430`
+(`00244F00`), and ends in `002A1E90`, which closes the widget in `[0209C4C8]`.
+
+`0035D570(unit)` returns 1 when the unit's handle is one of the `[022C83F0]` words at `022C83F8`; the overhead
+gauge `002C6F70` gives a unit an entry when `00273320(unit)` is not negative or `0035D570(unit)` is 1.
 
 ### What a row shows
 
@@ -151,6 +160,19 @@ at `022C8B08 + 1500h`, `+1600`<sub>h</sub>, `+1700`<sub>h</sub> and `+1800`<sub>
 
 `002D02A0(entry, mask)` answers whether an entry is a real status with a byte and set in a mask. The member row shows
 at most 11 entries and skips status `1D`<sub>h</sub> (`00284058`-`00284070`).
+
+The Status pane `002C59D0` keeps 32 such entries at `+C8`<sub>h</sub> and its mask at `+148`<sub>h</sub>:
+
+- `002C5810(pane, dir)` moves the pane's cursor `+14D`<sub>h</sub> to the next entry that passes `002D02A0`: dir 0 and 1
+  step back and forward, 2 and 3 by the list's column count (`+EC`<sub>h</sub>), wrapping round the 32 entries. It
+  answers 1 when the cursor moved. `002C5EC0(pane, dir)` answers whether such a move finds an entry without
+  wrapping.
+- `002C5900(pane, row, ..., i)` is the row painter the pane installs (`002C5A7F`). For an empty entry it hides
+  both of the row's elements; otherwise it gives the first the status's sprite cell and the second the text at
+  `+18`<sub>h</sub> of the status's class `1A`<sub>h</sub> record (`002B58B0`), in colour 4 when the entry's third byte is set and
+  5 otherwise (`002DD7E0`).
+- `002C5660()` returns the widest text at `+10`<sub>h</sub> of those records (`002B3050`) among the statuses that the
+  nine party records hold (`00282DF0`: `+60`<sub>h</sub> not negative, the mask `+44`<sub>h</sub>).
 
 The HP number's colour comes from the statuses present, in order 0 (`00271FB0`, `00297D62`): colour `B5`<sub>h</sub> when one
 has bit 4 at `+25`<sub>h</sub> and `B6`<sub>h</sub> for bit 3, pulsing by `128 + 32 x sin(frame x pi / 30)` (`00271EF0`); a status with

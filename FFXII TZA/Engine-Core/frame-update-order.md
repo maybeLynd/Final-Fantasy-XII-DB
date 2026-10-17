@@ -191,6 +191,23 @@ Between the fold and the reset (`022CA5C4` = 0) the pacer stores at `022CA5DC` t
 L of 314, or 264 when `00290180()` is 2: it returns the distance from a up to the next multiple of
 L, except that below L, outside frame mode 3 (`00229EA0`), it returns 2L - a.
 
+### The ExtraUI overlay
+
+The `ExtraUI` object `[01F82CD0]` (`90`<sub>h</sub> bytes, built once by `001D8150`) draws two pictures through the sprite
+batcher, each as a four-vertex quad on a screen of 1920 x 1080, or 512 x 448 when `001B1620` answers 0 or the
+batcher's byte `+3A98`<sub>h</sub> is set (`001D7110` and `001D70D0` return the width and height):
+
+- the speed mark (picture `+30`<sub>h</sub>/`+38`<sub>h</sub>, cell `+40`<sub>h</sub>), whose alpha `+60`<sub>h</sub> `001D8520` swings between 63 and
+  255 by 1.0 a frame (0.5 when `00184950` is not 2); after a speed change it starts at 1.5 times its size
+  (`001D82D0`, scale `+6C`<sub>h</sub>) and shrinks by 0.1 a frame (0.05 when `00184950` is 1) until it reaches 1;
+- a second picture (`+70`<sub>h</sub>, `+78`<sub>h</sub>, `+80`<sub>h</sub>) whose alpha `+88`<sub>h</sub> `001D8240` swings the same way at
+  `+8C`<sub>h</sub> per 1/60 second (`0017D270`).
+
+`001D7280` draws the second picture when `001C18E0()`'s byte `+40`<sub>h</sub> is set or `00583920` answers non-zero
+(`001D72F0`), and the speed mark while `00229DF0` answers non-zero and `+68`<sub>h</sub> is set (`001D7DD0`).
+`001829C0(x, y)`, from `00474100`, draws the second picture at a given place (`001D76A0`), and `00182A40`
+restarts its swing at 255 (`001D85A0`).
+
 ### The simulation tick
 
 `00314020(mode, arg)` has three callers: the field frame with mode 0 and the two menu frames with

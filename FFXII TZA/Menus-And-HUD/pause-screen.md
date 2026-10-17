@@ -66,6 +66,10 @@ With a non-zero argument it then opens screen layer 3, `002CCD40({3, descriptor,
 The descriptor is `00908B40` when `00180120` answers 0, `022C7F84` is 0 and world lock 15 is not held
 (`00226BD0(15)`), and `00908B50` otherwise.
 
+`002CCCA0(descriptor, value)` and `002CCCF0(descriptor, value)` make the same call for layers 1 and 0. The
+first serves `00241D40`, `003939B0`, `003F3E40`, `005704E0`, `00572890`, `00573980`, the shop `0057A620`,
+`0057CD40` and the Save and Load screen `0057F7D0`; the second serves `002C19E0`.
+
 `00180120` answers 1 while the event classification byte `01F832E9` is set (`001EC5C0`, a `spc_` event,
 [Debug menu](../Engine-Core/debug-menu.md)) and `001EC560` holds: an event slot has queued events and
 `00265680` answers 0.

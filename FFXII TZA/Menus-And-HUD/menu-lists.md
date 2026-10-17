@@ -120,6 +120,34 @@ Bits `1000`<sub>h</sub>, `2000`<sub>h</sub>, `4000`<sub>h</sub> and `8000`<sub>h
 - `002D49F0(list, kind)`, used by the Clan Primer's family index, scrolls with `002D4A40` and, when it scrolled, `+E4`<sub>h</sub>
   bit 27 is set and the kind is 8-10, passes the frames to `00368860`.
 
+### The hand cursor
+
+The menus share one hand cursor, a `70`<sub>h</sub>-byte state block at `022CBE30`: the mode `022CBE30` (0 off, 1 resting,
+2 sliding), the flags `022CBE32`, positions with `8000`<sub>h</sub> for none, the bounce at `022CBE3D`-`022CBE43`, the
+holder `022CBE68`, a four-point trail from `022CBE76`, and the fade `022CBE87` (0 shown, 1 fading in, 2 fading
+out, 3 hidden) with its count `022CBE8A` out of `022CBE88`. `00368360` moves it ([Battle menu](battle-menu.md)).
+
+- `00368270()` resets the block: every position to none, mode 1 and flags `115`<sub>h</sub>.
+- `00368010(pos, widget, plain)`, from `00368360`, adds up a widget's position and its ancestors' (next at
+  `+10`<sub>h</sub>, `00246480`): with flag bit 5 through each widget's rotation and scale (`00398910`, `003985B0`,
+  `00398C50`) about its centre, with flag bit 9 from a widget's `+84`<sub>h</sub>/`+8C`<sub>h</sub> while its `+80`<sub>h</sub> bit 0 is set,
+  and with flag bit 6 it scales the alpha byte `+0E`<sub>h</sub> by each widget's `+24`<sub>h</sub> / 128. `plain` skips all three.
+- `00367820(widget, pos)`, from `00368360`, answers whether a request starts a slide. A widget other than the
+  holder clears flag bit 7 and gets 1; while the fade is 2 or 3 it answers 1; an unchanged target answers 0, and
+  a held target (`pos` flag bit 8) is recorded without a slide.
+- `00367200(frames)`, the step, slides in mode 2 (`00367ED0`) and fills the trail, returning to mode 1 at the
+  end; in mode 1 it ages the trail and counts down the hold `022CBE34`, then starts the fade out. It runs the
+  bounce while flag bit 4 is set and steps the fade.
+- `003676B0()` sets flag bit 11 and calls the step; the widget draw passes `00250540`, `002506D0` and `002508E0`
+  run it.
+- `00368300()` answers whether the hand is drawn: a mode, flag bit 1 or a fade other than hidden, a position,
+  and flag bit 2 or a target.
+- `00368830(on)` sets or clears flag bit 4, which allows the bounce (`005641F0`, `00564650`, `005680E0`,
+  `005687F0`). `003688A0(n)`, from `002D3BA0`, and `003687C0(flags, n)`, from `00368360`, start a bounce whose
+  first phase lasts n frames (2 for -1) while bit 4 is set; `003687C0` stops it when the request's bit 1 is set.
+- `003688E0(frames)`, from `00368360` and `003689E0`, starts a fade in over `frames`: from a fade out it keeps
+  the progress, scaled; from hidden it starts at the full count.
+
 ## Layouts
 
 `MenuList`, the list widget, `150`<sub>h</sub> bytes, after the widget header ([Widgets](widgets.md)):

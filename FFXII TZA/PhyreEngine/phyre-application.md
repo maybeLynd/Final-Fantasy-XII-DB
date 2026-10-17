@@ -141,6 +141,9 @@ Inherited unchanged by `GameApplication` (slot 28 holds the same address in both
    (`0079C655`). When `01FD4A68` is clear and render returned 0, it also runs `00600C20` on the render
    context and the context's slot 2.
 
+One branch of the deferred window requests (`0079C4B1`) clears `+20`<sub>h</sub>, sets the bytes `+1E`<sub>h</sub> and `+23`<sub>h</sub> and
+calls `00183260`, which sets byte `+02`<sub>h</sub> of the game's render manager (`00189120`) when one exists.
+
 A non-zero result from animate, resize, a viewport or render is logged (`App failed during animate`,
 `resize`, `viewport render`, `render`) and returned. The game's own slots behind these calls are on
 [the game application page](../Engine-Core/game-application.md).
@@ -164,6 +167,55 @@ on `WM_MOVE`, and slot 17 with 1 or 0 around a mouse press on the title bar or b
 (`00798F80`) for its duration. Activation changes go to the update thread through `007A3BD0` on the
 window's `+48`<sub>h</sub> queue, and a new drawing-area size is parked in the window's `+1C`<sub>h</sub> (`007A07C0`) for the
 window's slot 1 to apply.
+
+### Window helpers
+
+- `007A0FC0` (`00798277`) sets the thread's interface language from the language setting `[01F82D20]` `+00`<sub>h</sub>
+  (`SetThreadUILanguage`): 1 `409`<sub>h</sub>, 2 `40C`<sub>h</sub>, 3 `407`<sub>h</sub>, 4 `410`<sub>h</sub>, 5 `40A`<sub>h</sub>, 6 `412`<sub>h</sub>, 7 `7C04`<sub>h</sub>,
+  8 `804`<sub>h</sub>, any other `411`<sub>h</sub>.
+- `0079F750` is the size callback (`0079C558`). By ScreenMode (`+08`<sub>h</sub> of the settings) it gives the window the style
+  `CF0000`<sub>h</sub> and the WindowSize at the saved position `+6C`<sub>h</sub>/`+70`<sub>h</sub> (0, windowed), only logs (1, full screen), or
+  gives it `WS_POPUP` over the monitor rectangle `0017E220` or the screen (2), each time logging
+  `[Screen Mode]onSizeCallBack ...` ([Screen mode and aspect](../Graphics/screen-mode-and-aspect.md)).
+- `007A04F0` (`001DC78C`) queues request 1 with the WindowSize or the Resolution, by ScreenMode, on the window
+  object's queue `+48`<sub>h</sub> (`007A3BD0`).
+- `00796310(full)` maximises the window (`ShowWindow` 3), or for 0 maximises and restores it (9)
+  (`007A3CE2`, `007A3D41`, `007A4069`, `007A408F`).
+- `0079B0B0` stores in `02EA5213` whether the game window `02EA5248` is the foreground window (`007A3E27`,
+  `007A3EFF`, `007A40EC`); `0079EC80` brings it forward (`AttachThreadInput`, topmost and back, `SetForegroundWindow`,
+  `SwitchToThisWindow`; `00799123`, `007A3F19`); `0079ED60(free)` clips the cursor to the drawing area, or frees it
+  (`007A0A89`).
+- `00798EB0` is a hook procedure the window procedure installs (`00799264`): on code 5 it centres any other window
+  that activates on the screen `01F3DA1C` by `01F3DA20`, then passes the call on (`CallNextHookEx`, `02EA5258`).
+- `0079F740` and `0079F9D0` set the window object's bytes `+1E`<sub>h</sub> and `+1F`<sub>h</sub>, and `007A0FA0(v)` stores `02EA5247`,
+  from the window-event code `007A3A60`-`007A40B0`; `007A3D70(obj, i)` makes one of the three objects at `+00`<sub>h</sub>,
+  `+08`<sub>h</sub>, `+10`<sub>h</sub> current at `+30`<sub>h</sub> and calls its slots `+10`<sub>h</sub> and `+18`<sub>h</sub> (`0079E614`).
+- `007A1320` (`0079F0AA`, at shutdown) unlinks the input object's devices, the one at `+150`<sub>h</sub> and the 18 at `+88`<sub>h</sub>,
+  from their listener lists.
+- `007A37B0` is a `swscanf` (`__stdio_common_vswscanf`) for the XInput test `00797AD0` (`00797D4F`, `00797D8C`;
+  [Controllers](../Controls-And-Input/controllers.md)); `0079DA10` (`0079E31B`) builds the input layer's sources, objects
+  with the type tags `01F44D90` to `01F44FD0`, two thresholds taken with `sqrtf` and `cosf`.
+
+### Script and replay helpers
+
+These serve the script-file and input-replay options, so they never run in the shipped game:
+
+- `0079BDF0` runs the next command line (`007A08D6`): a pending `Frames` count steps down and runs `Frames` again;
+  otherwise it parses `name(arguments)` (`0079BFD0`) and calls the handler, or logs `Unrecognised command %s(%s)`.
+- `0079BFD0` splits a line at its parentheses (`Badly formed command %s`); `007A1230` skips spaces and `#` comment
+  lines (`0079C0D0` finds the line end), `0079C0F0` finds the next space, and `0079D9A0(text, end, quote)` returns the
+  text between two quote characters.
+- `007A08F0` maps the `Buttonpress` names to pad bytes of `[+DF8h] + 88h`: `Square` `30`<sub>h</sub>, `Cross` `31`<sub>h</sub>,
+  `Circle` `32`<sub>h</sub>, `Triangle` `33`<sub>h</sub>, `Select` `38`<sub>h</sub>, `Start` `39`<sub>h</sub>, `Up` `3C`<sub>h</sub>, `Right` `3D`<sub>h</sub>, `Down` `3E`<sub>h</sub>,
+  `Left` `3F`<sub>h</sub>; any other name logs and returns 5.
+- `00798AC0` is `RenderFrame`'s screenshot: it logs `PApplication::screenshot: %s`, reads the frame back under the
+  render lock (`00615BC0`, `00624960`, `0061EE30`, `00616700`), swaps red and blue and writes a 24-bit BMP.
+- `0079A120` replays one record, logged as `INPUT:...`: kind 1 sets a pad byte, kind 2 an action found by name
+  (`00873C50`, `00873C40`), kind 3 runs a command; `0079A550` and `00799C90` append a `40`<sub>h</sub>-byte record, and
+  `0079D430(file)` reads the replay file's `%d:` lines and returns the last number.
+
+The engine's smaller helpers (threads, locks, arrays, pools and the D3D11 resource accessors) are listed with their
+callers in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv).
 
 ### Close, shutdown and restart
 

@@ -39,6 +39,8 @@ string of its name, so the game does not read it.
 The byte `[01F811E0]` comes from `[01E0280C]`, shipped 1, through `00184660` and `001B24B0` at start-up
 (`0022A113`-`0022A120`). The same call sets the layout frame `01E0C1D8` x `01E0C1DC` to 1920 x 1080 (`0024B124`,
 `0024B12E`), or 512 x 448 when clear. So the shipped game loads `UISize.json` into a 1920 x 1080 frame.
+`0024ABC0()` returns the frame width over 512 (`01E0C1D8` x `[008C5B30]`, 1/512), 3.75 in the 1920 frame; it has
+24 call sites, among them the HUD draw `003F0610` and `00505570`.
 
 ## Layouts
 

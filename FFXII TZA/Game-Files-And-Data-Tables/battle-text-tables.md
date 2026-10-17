@@ -122,7 +122,14 @@ A group is loaded on demand:
 it is not yet resident, and from `0053EB90` for groups 25 and 26.
 
 The setters are not in group order: `002F7680` serves group 4 and `002F79C0` group 21. Each stores
-its file at `02EC3D80[group]` and jumps to `00238640` with the group in `ecx`.
+its file at `02EC3D80[group]` and jumps to `00238640` with the group in `ecx`:
+
+| Groups | Setters |
+|---|---|
+| 0-6 | `002F7660`, `002F7900`, `002F7980`, `002F76A0`, `002F7680`, `002F76E0`, `002F7960` |
+| 7-13 | `002F79A0`, `002F76C0`, `002F7740`, `002F7720`, `002F77E0`, `002F7800`, `002F7700` |
+| 14-20 | `002F7780`, `002F77A0`, `002F7820`, `002F77C0`, `002F7920`, `002F7940`, `002F7760` |
+| 21-27 | `002F79C0`, `002F7840`, `002F7860`, `002F7880`, `002F78A0`, `002F78C0`, `002F78E0` |
 
 `002491B0(request group, group)` hands a group to that handler (`00244F50(D0h, 00248700, ...)`) and counts
 it on the request group. `00292260` asks for groups 10, 20 and 14, `002922C0` (from `00556500`) for 17, and

@@ -29,6 +29,8 @@ Cut-in, motion blur and soft focus follow one pattern:
   `0024C7C0`, which writes the ordinary draw mask back.
 - A released target is appended to a 256-entry list at `02091950` (count `0209216A`) and freed
   later; only a full list frees it at once (`00182CA0`).
+- The users read a target through `00182B20(target)`, which returns its texture `+00`<sub>h</sub> while the byte `+08`<sub>h</sub>
+  is 0 and 0 otherwise (`0024B7B0`, `0024CBE0`, `002512B0`, `003756B0`, `003AAA50`, `003AB500` among them).
 - The target allocator `00182B40` ignores its two scale arguments. It always asks for the render
   width by the render height × 512 / 448 (`00186AA0`, `00186A90`), so every target is full size.
 
@@ -200,6 +202,10 @@ by `00251F20`) then 6; 7 a pulse of `+129`<sub>h</sub> strength over `+12A`<sub>
 backdrop or its state is 0, 6 or 8. `00251EE0` sets the fade-out frames. `00250E90(palette)` swaps in
 another palette (`+40`<sub>h</sub> past its header) through `00183760`, or, for types other than 2 and 3, restores
 type 0's palette.
+
+Both it (`00250ED7`) and the backdrop's procedure `002509D0` (`00250C26`, with `+F8`<sub>h</sub>) go
+through `002553C0(palette)`. It creates the palette texture `0209AC48` with `00183760(palette, 100h, 1)` when there
+is none, and otherwise rewrites it through `00183640` with the same arguments.
 
 ### The screen blur sprites
 

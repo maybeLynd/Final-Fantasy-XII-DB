@@ -127,6 +127,11 @@ so that its first argument is that class's `this`:
 Of the 40 virtual-table rows, `0053DD10` (`mov eax, 1; ret`) is held by 24 classes' tables, and
 most of the rest are methods of the Phyre framework's application and input-device classes.
 
+It is also called directly: `002DDC50()` answers whether `0053DD10()` returns 1, so it always answers 1, and every
+test on it in its eleven callers passes. They include the HUD's depth-list draw `003F0170`, the overhead status
+mark `002C7B10`, the text icon parser `002AEB20`, the ExFont drawer `003649A0`, `003656A0`, `00366110`,
+`002847C0`, `002856B0`, `00505570`, `00505E00` and `0053E380`.
+
 ## Related
 
 - [Vtable methods](vtable-methods.md): every virtual slot with its class, the source of `this`

@@ -62,6 +62,8 @@ with 256 slots (`00369D30`).
 - `0024AC30(n, wait)` acts only when `0037B330()` is 0: it sets mode 3 and requests kind 35, index `n + 7`,
   straight into the block `01FD4A18` with the completion `0024ACF0`, which sets `02091094`; with `wait` it
   drains the queue (`0032E520(0)`). Otherwise it only calls the do-nothing body `0016D6A0`.
+- `0024AC10(n)`, called by the menu request host `0027FB70`, stores 1 in `02091094` and returns 0 for n = 1, and
+  runs `0024AC30(n, 0)` for any other n.
 - `0024AB60` sets mode 0 and clears `02091094` when it is set. `0024AB30`, called from the menu handler
   `00280140`, does nothing whatever it finds: it returns at once when `02091094` is 0 or `0037B330` answers
   4, and otherwise jumps to the empty body `0016D6A0` with `ecx` = `80000`<sub>h</sub>.
@@ -166,6 +168,10 @@ hang off `+48`<sub>h</sub>.
 - `0036B130(handle)` returns `[slot + 8] + 40h` with no check word test, so a stale handle resolves
   to whatever the slot holds now. `003AB7F0` wraps it and returns 0 when the low 32 bits of the
   result are `40`<sub>h</sub> or less.
+- `0036A0B0(handle)` checks only the tag bits and the `100000`<sub>h</sub> floor, sets the block's `+15`<sub>h</sub> bit 2 when it
+  is clear, zeroing `+3E`<sub>h</sub>, and returns the payload `+40`<sub>h</sub>, or 0; `0036D200(handle)` clears that bit and
+  `+3E`<sub>h</sub> again. The sound-bank loaders `002E60F0`, `0036E9F0`, `0036EAB0`, `0036ED50` and `003A1650` use the
+  first, `002E60F0` and `003A0EA0` the second.
 - `00369800(handle)` frees the slot (`0036A9C0`: unlinks it, takes the block out of the tree, zeroes
   the slot) and then the block (`00369860`).
 - `0036B160(size)` allocates a block with a handle in the current arena: bottom-up (`0036BC60`, then

@@ -1,0 +1,49 @@
+function	size	referenced_from	does
+00599460	60	0079F242 in 0079F150	allocates 50h bytes (00584740) and constructs the object with 00597A70(object, a, c, d); 0 when the allocation fails
+0059F200	590	007926F7 in 00792690, 0079D4A5 in 0079D430, 0079FB91 in 0079FB10	reads the rest of a stream into a growable buffer: a known length (+1Ch less the position +18h) in one read through the stream's slot +28h, otherwise 800h-byte chunks chained and joined; adds a terminating 0 when asked; Dh when memory runs out
+0059F450	58	00798CF1 in 00798AC0, 0079EA24 in 0079E880, 0079EA84 in 0079E880, 0079EB16 in 0079E880, 0079F2D8 in 0079F150	reads through the stream's slot +28h and advances the position +18h by the count on success; 9 on failure
+005A0820	22	0035EAD7 in 0035EA40, 005A0431 in 005A02D0	returns the time since the start stamp 02CB60E8 (005CC930 less the stamp) as a double
+005CC8C0	55	00199F90 in 00199F60, 001A0B52 in 001A0AF0, 001DAAD5 in 001DAAC0, 00212163 in 00212130, 00607DB4 in 00607D20, 0067A3BB in 0067A350 and 4 more	"fills a thread descriptor: entry, stack size 10000h, name ""PhyreEngineThread"", priority and affinity defaults (+18h = 1, +28h = 1, +30h = -1)"
+005CD500	98	00606667 in 00606600, 00610743 in 006106A0, 0061077F in 006106A0, 00679562 in 006794D0, 0067A456 in 0067A440	resets an event (ResetEvent); 9 on failure, after formatting the error (FormatMessageA)
+005CD650	121	0060759B in 00607410, 00610774 in 006106A0, 006107A3 in 006106A0, 006BAEB1 in 006BADF0, 006BAF7D in 006BAED0, 006BB25C in 006BB110	releases a semaphore by n and returns the previous count (ReleaseSemaphore); 9 on failure
+005CD720	174	00615C40 in 00615BC0	takes a recursive lock with a timeout: owner thread id +20h (compare-and-swap), recursion count +24h, waiters +18h, waiting on the handle +08h; 1 when taken
+005CD8B0	49	00600C53 in 00600C20, 00600C7A in 00600C20	waits for a handle with a timeout (WaitForSingleObject); 5 on timeout, abandon or failure
+005DBEE0	60	0060A4A9 in 0060A410	constructs a 214h-byte record: clears +00h, +08h, 32 pairs from +10h and +210h; passed as the element constructor by 0060A410 (0060A4A9)
+005DBFC0	29	0061CEA4 in 0061CE30	constructs an element (00615790) and clears its word +28h; 0061CE30 runs it on each new element
+005FE200	325	00610658 in 00610630, 0062B5D1 in 0062B5A0	tears down the table at 02CB8448-02CB8478 under the lock 02CB8480 (005CD6D0): frees the 50h-byte entries, releasing each live one (00625EC0, 0062B7B0, 00616420)
+005FE9C0	130	0060AB46 in 0060AB10, 0060AB7C in 0060AB10	"grows a vector of 8-byte elements to hold n more (one and a half times the old capacity at least; ""vector<T> too long"" past the limit) through 005FE930"
+00606600	127	00610240 in 00610210	takes one of 16 event slots from the bit mask +28A0h with a compare-and-swap, creates its event on first use (005CD0E0) and resets it (005CD500)
+00607D10	12	00625D0F in 00625830, 00625D28 in 00625830, 00627B3B in 006278B0, 00627B54 in 006278B0	stores two words and a pointer at +18h, +1Ch and +20h
+0060AB10	144	0060B73A in 0060B720	appends a pointer to a vector, growing it first (005FE9C0); safe when the value lives inside the vector
+00610350	204	0064ADB1 in 0064AD60	frees an object's four arrays (+10h/+18h, +48h/+50h through 001B70E0, +A0h/+A8h, +B0h/+B8h)
+00615BC0	197	0018E2A9 in 0018D850, 00193C74 in 00193AD0, 001D15F5 in 001D0390, 001D5A05 in 001D5970, 001DD1B2 in 001DD170, 001DD465 in 001DD420 and 29 more	takes the global render lock 02CC03D8 (built once, 005CC8A0), waiting 1 s at a time and running the callback [02CEDA18] between waits, then 005FD050 when 00225690(005FCF20()) is 1
+00616700	59	0018E445 in 0018D850, 00193D3C in 00193AD0, 001D1619 in 001D0390, 001D5F94 in 001D5970, 001DD3DF in 001DD170, 001DD887 in 001DD420 and 42 more	the matching release: 005FD050 when 00225690(005FCF20()) is 1, then 005CD7D0
+0061CE30	233	0079F507 in 0079F150	resizes the element array at +6F8h/+700h to n elements of 30h bytes (0017D260, each built by 005DBFC0, the old one freed by 00618FD0) and mirrors it at +E8h/+F0h; Dh when memory runs out
+00624090	65	00621061 in 00620F60, 0062112D in 00620F60, 00622C8D in 00622BA0	returns word +00h of entry i (58h bytes) of the array at +30h/+38h, which keeps a single entry in place; 0 out of range
+006240E0	65	0062123E in 00620F60	the same for 28h-byte entries at +38h/+40h
+00624130	71	00621317 in 00620F60, 0062132A in 00620F60, 006213C7 in 00620F60, 006213DA in 00620F60, 00621476 in 00620F60, 00621489 in 00620F60 and 2 more	the same for 40h-byte entries at +30h/+38h
+00624270	67	00621073 in 00620F60, 00621082 in 00620F60, 0062113F in 00620F60, 0062114E in 00620F60, 00622C5E in 00622BA0, 00622C80 in 00622BA0	returns word +08h of entry i (58h bytes) of the array at +30h/+38h
+00625F30	215	0079C340 in 0079C140	answers 1 when the resource +1880h no longer matches the cached size +18A0h and pointer +1898h (slots +38h and +40h of the device object)
+0062B250	57	0079C36F in 0079C140	answers 0 only when +1890h is 1 and the object +118h reports 0 through its slot +58h
+0062B290	168	0062B626 in 0062B5A0	releases seven held interfaces (+00h, +10h to +38h, slot +10h of each) after clearing the list at +58h (0062BA30)
+00631180	65	00639625 in 00639510	frees a pool's blocks (0063B3E0), its list +10h (00680030) and the pool (00680200)
+006343E0	179	0063C76B in 0063C730	allocates n 20h-byte list heads (0017D260), copying the first m from a source and making the rest empty self-linked heads with -1 at +18h
+00639320	118	00639617 in 00639510	adds a pool's block size +70h to the statistics entry of each heap listed from +50h (index +ECh, link +78h), linking the pool in once
+00639780	198	006395E8 in 00639510	initialises a pool of n blocks of the heap's block size over a given or new buffer (0017D260); refuses a size too small, or several blocks on a heap with +FCh bit 2
+0063B4D0	250	0063AC5A in 0063ABF0	frees a pool block: 5 outside the pool or for blocks under 8 bytes, 14h when misaligned, 12h when already free; otherwise calls the heap's slot +58h when +7Dh is set and inserts the block into the sorted free list (006800F0)
+0063D8B0	123	0063A5FA in 0063A570, 0063ACD3 in 0063ABF0	the reverse of 00639320: unlinks the pool and subtracts its block size
+0064AD60	308	0079F05E in 0079EDD0	releases the post-effect targets at shutdown (0079F05E): re-creates the two surfaces 02D351F0 and 02D35278 at size 0 (00671B10, 00674230, 00671690), frees the arrays of 02D35170 (00673860) and 01F2E8E0 (00610350), and clears the lists 02D34718 and 02D35140 when their bit 7 is set (0062BA00)
+00673860	305	00646538 in 00646510, 0064ADA5 in 0064AD60, 0065D2D1 in 0065D2A0, 0065D2F0 in 0065D2A0, 0067B3B7 in 0067B3A0	frees an object's six arrays (+00h/+08h through 001B7170, +10h, +30h, +40h through 001C2720, +50h, and +60h, which keeps a single entry in place)
+00679110	15	00678AF0 in 006788C0	stores a float at +C4h and calls the object's slot +08h; installed as a field setter by 006788C0 (00678AF0)
+00679120	15	00678A18 in 006788C0	the same for +C0h (00678A18)
+0067ADD0	89	001C2406 in 001C22A0	copies a byte array (count +10h, data +08h) into another, resizing it first (0067B100)
+006800F0	10	0063B594 in 0063B4D0	inserts a node after another in a singly linked list
+00793490	71	008A5640 in 008A5632	frees an array's heap storage when it holds more than one entry and owns it, and clears it
+00793640	83	008A55E1 in 008A55D3	tears down an object: the call at +200h, the eight 18h-byte entries from +140h, then 005DDBA0
+0079CFF0	13	0079A285 in 0079A120, 0079A2A5 in 0079A120, 0079A374 in 0079A120	returns the first of an object's two pointers +00h, +08h that is not null
+007A0540	132	0079FC7F in 0079FB10	resizes an array of 98h-byte entries to n (0017D260); Dh when memory runs out
+007A11A0	144	0079B156 in 0079B150	shrinks an array of 40h-byte entries to n, moving a single remaining entry into the in-place slot
+00873C40	15	0079A2BB in 0079A120, 0079E9D6 in 0079E880, 0079EA38 in 0079E880	returns an object's name pointer, its word +08h less the tag bit 0
+00873C50	27	0079A2B0 in 0079A120, 0079E992 in 0079E880	returns entry i of a pointer array (count +00h, data +08h), or null out of range
+00873C70	125	0079CFCE in 0079CFB0	finds the entry of a pointer array whose name (00873C40) equals a string
+00874490	84	008A6607 in 008A65FC, 008A6626 in 008A6618, 008A6645 in 008A6637, 008A6664 in 008A6656	releases an object's view +188h when it holds one (00625ED0, 0062B890), then runs 005DDB00 and 005DE250 on it

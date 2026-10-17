@@ -168,7 +168,7 @@ id	label	arm	kind	field	step	bound	note	slice
 178	Particle Draw Type Range End:	001D2C91	cycle	obj+AC8h	±1	wraps at obj+AD0h	as id 177, then one call	F
 179	Color Correction Position:	001D2964	toggle	00193D50()+4A0h	-	0/1	ignores the direction flags	F
 180	Map render DisplayList Id Start:	001D2CFC	cycle	obj+AD4h	±1	wraps at obj+ADCh	cursor over a runtime count; tracks obj+AD8h	F
-181	Map render DisplayList Id End:	001D2D68	cycle	obj+AD4h	±1	wraps at obj+ADCh	as id 180, then one call	F
+181	Map render DisplayList Id End:	001D2D68	cycle	obj+AD4h	±1	wraps at obj+ADCh	as id 180, then 002F4510(start, end) stores obj+AD4h at 022BE7DC and obj+AD8h at 01EEBAE4	F
 182	Fusion Technique Select:	001D2DD3	int-step	obj+AE0h	±1	clamp 0..8	does not wrap; then 002F7A00(value - 1)	F
 183	Print Magic Info:	001D2E04	toggle	-	-	0/1	read and written through a call pair; ignores the direction flags	F
 184	Set All Enemy HP One:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F

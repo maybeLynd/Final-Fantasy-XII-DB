@@ -203,6 +203,18 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
 - **Showing.** `0029E330(scene)` builds the legend and `0029DDF0` copies it into the HUD object
   `[0209C498] + 158h` at `+D0`<sub>h</sub> only when it differs. Its callers are menu screens (`00295D20`,
   `0029E110`, `002B7B80`, `002BAF80`, `002D5EB0`, `005789D0`).
+- **Panes.** `0029E3B0(legend)`, run by `0029DDF0`, closes the old pane (`0029DF20`) and opens the next of the
+  object's panes, `[0209C498] + 160h + 148h x [+3F0h]`, under it (`00246AD0`). It copies up to four entries,
+  their two strings, flags `& 3FFFh` and byte `+13`<sub>h</sub>, and measures the names (`0029CD90`) for the widest,
+  `+C1`<sub>h</sub>, while the pane's `+C0`<sub>h</sub> is 0.
+- **Repeats.** An entry whose two strings equal one of the old legend's gets bit `8000`<sub>h</sub>, and the old one bit
+  `4000`<sub>h</sub>, before `0029DCE0` runs. `0029DFB0()`, from `0029DCE0`, returns the smallest difference between the
+  first entry's width, with the argument of a leading `0F 5` code (`003FFAB0`), and each entry's width.
+- **Colours.** `0029D9D0(pane, entry, node)`, from the pane's `0029D550`, colours a node by the entry's flags:
+  bit 0 colour 3, bit 1 colour 7, bit 3 colour `106`<sub>h</sub>, else 0 (`002DD7E0`); unless bit 15 is set it scales
+  the alpha by the pane's `+140`<sub>h</sub> / 128.
+- `0029E770(a, b)` writes the two words at `[0209C498] + C0h` and `+C2`<sub>h</sub>; the location map `002BA700`, the
+  special-attack window `002D5EB0` and `0055E9E0` call it.
 
 ### Quest window texts
 

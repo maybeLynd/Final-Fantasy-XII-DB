@@ -32,6 +32,10 @@ string is empty), 293 names in all.
 Hole`, `Luminescence`, `Ark Blast`, `Whiteout`, `Windburst`, `Torrent`, `Cataclysm`, `Inferno`),
 the concurrence names an information row prints.
 
+Before those strings it runs `002F79E0` (`001D03DC`), which writes the eight words `F1`<sub>h</sub>, `E7`<sub>h</sub>, `EA`<sub>h</sub>, `ED`<sub>h</sub>,
+`E5`<sub>h</sub>, `E4`<sub>h</sub>, `E3`<sub>h</sub> and `E2`<sub>h</sub> at `022BE930`. `002F8D60` returns word `[01EEBAF0]` of that table whenever
+`01EEBAF0` is not negative.
+
 The open byte `+A70`<sub>h</sub> is written once, to 0, by the constructor; no other instruction in the
 image writes it. The page cursor is `+A88`<sub>h</sub>, the row count `+A90`<sub>h</sub>, the information-page flag
 `+C56`<sub>h</sub>, the weather-slot override `+AAC`<sub>h</sub> (read through `0017D490` by the field runtime,

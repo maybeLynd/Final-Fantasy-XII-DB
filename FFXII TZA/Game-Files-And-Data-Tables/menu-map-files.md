@@ -296,6 +296,19 @@ The widget frees the three tables and the guide file at `+F8`<sub>h</sub> in its
 palette at `+118`<sub>h</sub> and both slots when it is released (`003C2210`). `menumap_area.bin` is loaded separately
 by `00253780` into `020927D0`.
 
+Small queries on the widget:
+
+- `003BC2C0()` answers whether no map-data widget exists; the location map's procedure `002BA700` and the
+  field-time container `003CB650` ask it.
+- `003BD860()` returns the guide picture at `+108`<sub>h</sub> once the widget's bit `40`<sub>h</sub> is set and the guide file
+  `+F8`<sub>h</sub> is held, otherwise 0 (`002BA700`).
+- `003C0CC0()` returns bit `40`<sub>h</sub> of `+D0`<sub>h</sub> while its bit `4`<sub>h</sub> is set, and 1 when that bit is clear or
+  no widget exists (`002B7590`, `002BA700`).
+- `003C20D0()` clears the `clutpack_ys.bin` table pointer `+110`<sub>h</sub> and returns 1, or 0 with no widget
+  (`002BA700`, `003CB650`).
+- `003BC3E0(owner, value)` sends `{10h, value}` to an owner through its handler; `003BC4E0` and
+  `003BC9F0` use it.
+
 ### Sub-location slots and pictures
 
 The widget holds up to two sloc files, in two `A8`<sub>h</sub>-byte slots at `+120`<sub>h</sub>: data pointer `+0`, key array
@@ -313,6 +326,8 @@ The widget holds up to two sloc files, in two `A8`<sub>h</sub>-byte slots at `+1
    when the entry names a `.cl2`, otherwise the third table of `clutpack_ys.bin` at `+110`<sub>h</sub>
    ([Cl2 menu colour tables](cl2-menu-colour-tables.md)). `003C0CF0` reports 0 (absent), 1 (loading) or 2
    (ready).
+5. `003C22B0(slot)`, run by `003C21C0`, empties a slot: it releases each registered picture
+   (`0024A680`), sets the count `+13`<sub>h</sub> to 0 and frees the file (`003697F0`).
 
 ### Readers of sloc
 
@@ -353,6 +368,25 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - `003BDFF0` picks the one zone of a zone group that stands for the group; `003BED70` and `003BCDE0` use it.
 - `003BE680(n)` returns the three zoom levels. The pages keep the remembered level (`0209E5B8`) when it is
   one of them, otherwise the first, and scale by 3200 / level (`002B7FFA`-`002B8067`).
+- `003BE1E0(n, group, out)` returns the point that stands for zone group `group` of record n (`003BDFF0`),
+  with its index in `out`, -1 when there is none; `003BDDE0`, `003BED70`, `003C12B0` and `003C1A20` use it.
+- `003BE700(n, dest)` returns the first marker of record n whose destination byte `+11`<sub>h</sub> is `dest`, or -1
+  (`003C2320`).
+- `003C0D30(n, i)` runs point i's gate test, `003C18A0` for a zone and `003C0F70` for a marker
+  (`003BDDE0`, `003BDFF0`).
+- `003C0740(out, n, i)` lists, as 16-byte rows, the links of record n that `003BCDE0` keeps for zone point
+  i, when the point passes its gate and its draw state (`003BCBA0`) lacks bit 11; it returns the count.
+  `003C0890`, called by `00402A40`, first stores its fourth argument at the widget's `+CA`<sub>h</sub>.
+- `003C1A20(out, n, kind, x, y)` lists record n's points for the location page `003BE3A0`: zones for kind
+  0 (at most 20), markers for 1 (at most 16), both for 2 (at most 24). A zone group appears once, through
+  `003BE1E0`; other points only when their gate passes or the widget's `+D0`<sub>h</sub> has bit `800`<sub>h</sub>.
+- Each of its `18`<sub>h</sub>-byte rows holds the point index, the point and its kind, and `x`, `y` receive the
+  smallest zone position.
+- `003BE950(row, dir, rows, n)` picks the next cursor point in direction dir (0 up, 1 down, 2 left, 3
+  right) for `003C2320`. It measures from the centres of the points, a zone's from its picture size
+  (`003BF5E0`), a marker's from its label size (`0029CD00`), and takes the point on that side that
+  `003BD6F0` scores lowest with the direction vector `01EFE330`, skipping zones with draw bit 11; `FF`<sub>h</sub>
+  when none.
 
 ### Readers of cmap
 
@@ -364,6 +398,14 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   the name text through `002F9920` or null for -1, and `003C05F0(index)`) and returns the count.
   `003C12B0(n)` refuses an entry whose gate is set and does not pass (`0032A8A0`) and accepts it at
   once when the area map is owned (`002543F0`).
+- `003BF8E0(n)` returns directory entry n's group byte, 0 past the count (`002BA700`, `002BAF80`), and
+  `003C0F00(group)` answers 1 when every entry of the group is explored (`003C1680`), for `003BF6C0`.
+- `003BF7C0(out, area, mode)` lists persistence groups for the World Map (`00551800`, `00551930`,
+  `00551B30`, `005528C0`): a `18`<sub>h</sub>-byte row (`003BF6C0`) for each group 0 to 58 whose area (`00254380`) is
+  `area`. It stores `mode` at the widget's `+CA`<sub>h</sub>.
+- With a non-zero mode a group other than the current field's (`003148F0`, `00264F90`) needs an entry that
+  `003C12B0` accepts. In mode 6 a row gets bit `20`<sub>h</sub> when the selected quest marks the group
+  (`003C0E30`). It returns the count.
 
 - The directory's group byte joins a sub-location to its persistence group (`003C0380`, `003BD480`), and its
   name id gives the marker label fallback (`003C2320`) and the location entry (`003C02B0`).
@@ -402,6 +444,32 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - `003C0250(area)` returns the destination value of an area; `002901D0` stores it at `[0209BE80] + 10FACh`,
   which a script reads back after opening the World Map as a destination picker (menu states `11`<sub>h</sub> and
   `12`<sub>h</sub>, `00254710`).
+- `003BD1B0(out, region, mode)` builds the World Map's area list for its host `00550A00`: a `28`<sub>h</sub>-byte
+  entry (`003BD040`) for every area of the region, or of all regions for -1, that is shown (`003C08B0`) or
+  passes `003C0C50`. In mode 6, with `+D0`<sub>h</sub> bit `400`<sub>h</sub>, an entry with bit `20`<sub>h</sub> takes its labels from
+  the selected quest's `QHT0` entry (`00473CC0`).
+- It then fills each entry's four neighbours: `003BFB60(entry, dir, list, n, none)` follows the authored
+  neighbour chain until it meets a listed area, giving -1 for no neighbour (`none` = 1), a loop or the
+  chain's end. When the chain leads nowhere, `003BFC70(entry, dir, list, n)` takes the listed area on that
+  side (0 up, 1 down, 2 left, 3 right) that `003BD6F0` scores lowest, `FF`<sub>h</sub> for none.
+- `003BCAF0(type)`, for the World Map host `00552250`: with a non-zero type it clears the bit set `+270`<sub>h</sub>,
+  and when byte `+C8`<sub>h</sub> is 1 it stores the type at `+C9`<sub>h</sub> and sets the bits of both areas of every route
+  of that type (state bit 8 of `003BD480`).
+- `003BFEA0(region)` answers whether the current field's area (`003148F0`, `00264F90`, `00254380`) is in
+  the region, or, for an area outside the table, whether the region is 0; `003BFE10` uses it.
+- `003C0BE0(area)` answers whether a shown area's map key item `+16`<sub>h</sub> is owned (`00309EC0`), for
+  `003C08B0`.
+
+### Quest steps on the maps
+
+While the widget's `+D0`<sub>h</sub> has bits 8 and 9, the maps read the selected quest's `QHD0` entry through
+`00473BB0`, `+CB`<sub>h</sub> steps ([Quest menu files](quest-menu-files.md)):
+
+- `003C0E30(group)` answers whether a type-1 step's location lies in persistence group `group`
+  (`00264F90`), and `003C15B0(n)` whether it lies in sub-location n (`003C0380`); `003C05F0` uses the second.
+- `003BD9F0(location, kind, out)`, for the location page `003BE3A0`, counts the shown steps at a location:
+  the unlabelled ones for kind 0, the labelled ones for 1, all for any other. It copies into `out` the
+  step whose ordinal is `out[0]`, and returns 0 at the first step that is not of type 1.
 
 ### Readers of amap
 

@@ -62,6 +62,35 @@ scenario presets set the slots with `update` 0.
 No battle action calls a setter, and ammunition is never used up: the battle's item reservation takes only item
 actions ([Using an item](item-use.md)).
 
+### The equip screen
+
+The equip pane `003FF360` shows the member's five slots, the list of pieces for the chosen slot and the stat
+rows:
+
+- `003FF1F0`, the slot row painter (`003FF648`), shows the name of the piece in slot i (`[0209AC30] + D48h +
+  20h x i`) with its icon; in the Optimise preview (`+178`<sub>h</sub> = `402`<sub>h</sub>) a slot whose preview id at
+  `02B5F210` differs shows that piece in colour 5, and an empty one shows text `3EA`<sub>h</sub> in colour 4.
+- `003FE490`, the stat row painter that `003FE5D0` installs (`003FE69C`), shows row i's name (text `4A90`<sub>h</sub> + i),
+  the current value `+C8`<sub>h</sub> and, when the new value `+EC`<sub>h</sub> differs, the new one in colour 5 when it is at
+  least the current and 4 when it is lower.
+- `003FF040(pane, slot)` empties a slot: in mode `400`<sub>h</sub> it hands over to `003FDA20`; otherwise, when the slot
+  holds something other than empty or Unarmed (`1000`<sub>h</sub>), it removes the piece (`003FFA20(slot, FFFFh)`),
+  refreshes the list (`003FF920`) and returns 0.
+- `003FCEE0()` returns the widest description line (`00292B70`, `002B3050`) over the equipment in inventory
+  lists 1 to 4, for sizing the help window.
+- `003FCDE0(pane)`, run by `003FCD20`, hides every member mark and shows those of the nine party records that
+  `00282FA0` passes, one spacing apart.
+
+The list marks a piece through `0027F030`: bit 0 when `00317B70` refuses it, and bit 2 for an ammunition
+mismatch. The helpers:
+
+- `002CCA10(class)` answers whether a class is an ammunition weapon, 7, 8, 9 or 17; `002CCA00` whether it is
+  ammunition, 23 to 26; `002CCA30` whether it is a shield, 18.
+- `002CA430(id)` gives a weapon's ammunition class from its class: 7 gives 23, 8 gives 24, 9 gives 25, 17
+  gives 26 and any other 0.
+- `002CCA40(ammo, current)` answers whether inventory list 4 holds a piece of that ammunition class that is
+  the one in the off hand (`current`, slot 1 at `[0209AC30] + D68h`) or owned in a count above 0.
+
 ### Can it be worn
 
 `00317930(record, loadout, slot, id, freeCopy)` returns 1 or 0 (`00317930`-`00317AE5`), testing in order:

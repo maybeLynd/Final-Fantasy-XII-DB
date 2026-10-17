@@ -56,6 +56,23 @@ wide, and clears eight option rows at `+5B0`<sub>h</sub>-`+62C`<sub>h</sub> (`00
 
 `00241D40`, installed by `00241BF0` and `00241C90`, is a second confirm procedure that reads the same layout keys.
 Its row callback `00241D00` draws Yes (`menu_command.bin` `3E8`<sub>h</sub>) on row 0 and No (`3E9`<sub>h</sub>) on the other.
+`00241B40(window)` answers a pick: message 12 with `8100`<sub>h</sub> to the owner `+D0`<sub>h</sub> for row 0 of the list `+C8`<sub>h</sub>
+and `8101`<sub>h</sub> for any other. `00241A70(window)` answers a cancel by the mode byte `+3BE`<sub>h</sub>: 1 sends `8101`<sub>h</sub>, 2
+sends `8102`<sub>h</sub>, and 0 moves the list back to the row `+C0`<sub>h</sub> (`002D4650`), first posting `8104`<sub>h</sub> to the owner
+when `+3C4`<sub>h</sub> bit 11 is set.
+
+Four builders fill the record `00241C90` takes and open the window:
+
+- `00394380(text, owner)`, from `003939B0`, turns the second draw pass on (`00247780(1)`) and opens it with text
+  `002F9860(text)` under the root `[0208EA28]`, flags `1002`<sub>h</sub> and mode 2.
+- `003948B0(text, owner, flags, options)` opens it under `[0208EA28]` with the options' bits 0-4 (`+48`<sub>h</sub>) turned
+  into window bits `8`<sub>h</sub>, else `200`<sub>h</sub> (with the default row from `+44`<sub>h</sub>), then `10`<sub>h</sub>, `800`<sub>h</sub> and `400`<sub>h</sub>; flags with
+  `& FF0h` of `70`<sub>h</sub> or `D0`<sub>h</sub> give style 1 or 2. `0023E020`, `0023E560`, `00252030`, `0057AA00`, `00583990`
+  and `00583FD0` call it.
+- `003949B0(text, owner, options)` and `00394A90` do the same from the options' word `+14`<sub>h</sub> (bit 2 to `20`<sub>h</sub>, bit 4
+  to `8`<sub>h</sub> or else bit 3 to `200`<sub>h</sub>, bit 5 to `10`<sub>h</sub>, bit 6 to `800`<sub>h</sub>, bit 7 to `100`<sub>h</sub>, bit 8 to `400`<sub>h</sub>) in
+  style 2, under `[0208EA28]` or, for `00394A90`, the
+  root `[0208EA50]` (slot 4); `00394A90` serves `00583FD0`.
 
 The procedure registers itself in the table `0208EA60` under slot 2 when its creator's root is `[0208EA38]`, 4 for `[0208EA50]`
 and 1 otherwise (`00241E11`-`00241E48`), and clears the slot when it closes (`0024257E`). `00241A50(slot)` answers

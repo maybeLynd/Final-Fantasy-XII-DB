@@ -110,7 +110,7 @@ It also sets `022C7F88` to 1 (`0035780F`).
 `002E08C0(slot)` closes a slot's window: it starts the window's closing run (`002A2720`), sets state 6, calls
 `002F1C50([0215F1B6])` when `+40`<sub>h</sub> is -1, and writes `FE`<sub>h</sub> to `+40`<sub>h</sub>. Once the window reports its run over
 (`002A28B0`, bit 9 of its `+40`<sub>h</sub> clear), the drain destroys it with `002A2830`, clears the slot and sets state 7
-(`002E0A2E`-`002E0A63`).
+(`002E0A2E`-`002E0A64`).
 
 `002E06F0` closes all eight slots the same way. The script unload `0032ED80(n)` calls `002E0780(n)`, which closes and
 destroys at once every window whose `+3F`<sub>h</sub> is n (`0032EEBF`).
@@ -123,7 +123,7 @@ frames.
 
 ### The window object
 
-`002A2C00(request)` builds the window as a `410`<sub>h</sub>-byte widget with procedure `002A6190` (`002A2C14`). Message 1
+`002A2C00(request)` builds the window as a `410`<sub>h</sub>-byte widget with procedure `002A6190` (`002A2C10`). Message 1
 registers it in the first free entry of the eight pointers at `0209C4D0` and keeps the index at `+3B8`<sub>h</sub>
 (`002A6202`-`002A623E`). Every entry point first checks that the entry still holds the window (`002A2720`,
 `002A27C0`, `002A2830`, `002A28B0`, `002A2BB0`).
@@ -196,7 +196,7 @@ When the list starts (`002A9066`), the start row is option `+A4`<sub>h</sub> and
 - Cancel with bit 18 set plays 3 and moves the cursor to the cancel row without answering; with no
   cancel row it plays 5 (`002A9D3A`-`002A9D9C`).
 
-The window answers the list's messages (`002A66F0`-`002A6800`): `8000`<sub>h</sub> keeps the option under the cursor at
+The window answers the list's messages (`002A66E7`-`002A6801`): `8000`<sub>h</sub> keeps the option under the cursor at
 `+124`<sub>h</sub>, `8001`<sub>h</sub> sets pager state 6 with that option, and `8002`<sub>h</sub> gives the list its cancel mode in `+FE`<sub>h</sub> (`FF`<sub>h</sub>
 without bit 18, 3 with a cancel row, after moving the list there with `002D4840`, and 5 without one).
 
@@ -218,6 +218,10 @@ bits 8-10 of `+3E8`<sub>h</sub>:
 `002A3DF0(open, ms)` tweens the mask's two colours from their current values over `ms x 60 / 1000` frames, and does
 nothing when they already match. `002A69E0` resizes the window's height to its text, at least three lines, with a
 150 ms tween that keeps the bottom edge (`00247260`); `002B27E0` and `002B28B0` measure the height of the text shown.
+
+`002B27E0` cuts the text with `002B20B0(text, n)` (`002B280B`). That walks the text a token at a time (`002B1FB0`),
+adding each token's `002B41F0(token, 0)`. It returns the byte offset where the sum has reached n and the next byte
+is `10`<sub>h</sub> or above, or where the text ends. `002ABB20` also calls it (`002ABCEC`).
 
 ### Signals
 
@@ -266,6 +270,10 @@ While any actor-manager slot has a skip pending (`00267310` for slots 0-4), the 
 until a page end, a choice list or an answer, and `002A36A0` finishes every part's animation and tweens at once
 (`002A7D30`) and freezes the parts (bit 7 of `+3F3`<sub>h</sub>). `002A38C0(0)` clears the freeze and `+3C5`<sub>h</sub>.
 
+`002A3730` also calls `002B3950(text)` (`002A37C9`). It moves the page counter `+8C`<sub>h</sub> on by one, keeping the old
+value at `+8E`<sub>h</sub> and the new one at `+90`<sub>h</sub>. It clears `+88`<sub>h</sub>, the low byte of `+B0`<sub>h</sub> and bit 19 of `+B0`<sub>h</sub>, and
+sets `+9B`<sub>h</sub> and `+9D`<sub>h</sub> to 1.
+
 ### Captions and sizes
 
 Kinds 13 and 14 build caption windows (bit 13 of `+3E8`<sub>h</sub>) with `002A70B0`. A kind 14 window matches its width to the
@@ -274,7 +282,9 @@ measures a caption's text plus 4, and `002A5520` gives the y of a style-3 captio
 `01E0C1DC` when that is negative, less 5 font sizes and 38 times `0024ABA0`. `002A6F80` places the caption window of
 style 0 or 3.
 
-`002B39D0` and `002B3A80` find a string inside the window's text, the second stopping at a given character
+`002B39A0(text, c)` returns the first byte c in a zero-terminated string, or null; the message windows (`002A3250`,
+`002A5590`, `002A6C40`, `002A70B0`) and the Clan Primer (`00573BE0`) use it. `002B39D0` and `002B3A80` find a string inside
+the window's text, the second stopping at a given character
 (`002A2E52`, `002A3438`).
 
 ### The letterbox mask

@@ -45,6 +45,30 @@ then asks for two more files:
 | `0` | `<name>.ker` | `001B5750` (`001B5040`) | `001B5230`, through `001B6080` |
 | `1` | `<name>.fex` | `001B5480` (`001B5061`) | `001B4C00`, through `001B6030` |
 
+The font object keeps its tables in maps keyed by code:
+
+- the builder's filer `001FDCC0` takes each glyph record from `001FC580(font, key)`, which returns the record in
+  the map at `+08`<sub>h</sub>, inserting an empty one for a new key; `001E9860` looks glyphs up through `001FDEC0(font,
+  key)` in the map at `+40`<sub>h</sub>, which returns null for a missing key;
+- the `.fex` reader `001B4C00` adds a list of n entries for a key with `001FDB90(font, key, n)`, which returns 0
+  when the map at `+A8`<sub>h</sub> already holds the key, and writes entry i with `001FDB50(font, key, i, v)`;
+- `001B4D70` stores the atlas and shadow names at `+100`<sub>h</sub> and `+E0`<sub>h</sub> with `001FE020` and `001FE080`, which
+  free the string they are given, and tests `001FDF80(font)`, whether `+60`<sub>h</sub> equals `+18`<sub>h</sub>.
+
+The font manager is the `378`<sub>h</sub>-byte object `[01F81200]`, built by `001B5F10` with the text renderer `[01F811F8]`
+(`2380`<sub>h</sub> bytes, `001E71B0`); its constructor `001B3940` sets up a name vector, three maps keyed by font id
+(`+28`<sub>h</sub>, `+60`<sub>h</sub>, `+98`<sub>h</sub>), two pools (`001B36D0`, `001B3540`) and 16 slots from `+278`<sub>h</sub>.
+
+- `001B58E0(manager, id)`, from `001B4D70`, requests the font's atlas through the asynchronous loader
+  (`001A1220`, `001A0A90`, `001A0BB0`; the path from `001FDF10`) with the completion `001B6230`, and, unless
+  `001E9A20([01F811F8])` answers non-zero, its shadow atlas (`001FDE60`) with `001B6110`, each request filed
+  in its map by the font id.
+- `001B6230(font, ...)` finds the texture of the loaded atlas (`0019CE20`, `0019CA80`, a resource of type
+  `02CBB900` in its `+38`<sub>h</sub> list) and hands it to the font (`00213560`).
+- `001B60D0()` asks for the fonts again: `001B5140([01F81200])` requests every listed name.
+- `001B5CC0(manager, id)`, from `0017FA70`, frees the slot registered under the key `[manager] x 32 + id`
+  (`002124C0`, `001E9A30`).
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |
@@ -138,6 +162,14 @@ whatever the digit. The shipped fonts agree: every `font00` gives the ten digits
 a negative value gives only the padding (`003EFD20`).
 
 ### Character mapping
+
+The text code reaches the font sheet through `0039C4A0(alt)`, which returns `[02AEE808]` when `alt` is non-zero
+and that pointer is set, and `[02AEE800]` otherwise. Its 24 callers include the character mapping `002AC2F0`, the
+number writer `002B3770`, the encoders `002B5AB0` and `002B5A20`, the text drawers `002AC5F0`, `002AE610` and
+`002B0280`, and the font pack binder `0039C150`.
+
+Two more lookups sit beside it: `0039C100()` returns entry `[02AEE894]` of the 26-entry table `02AEE898`, and
+`0039C120(n)` entry n - 1 with n clamped to 1-26; the battle menu's `0027E530` reads both.
 
 `002AC2F0` turns a text code into a glyph index:
 

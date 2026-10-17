@@ -82,7 +82,8 @@ and the behind camera's view `02097C50` the same way.
 
 `0025A890`, from the render manager's target rebuild `00188B10`, sets the field of view of the eight
 record views, `02097B80` and `02097C50` back to π/4 at `+08`<sub>h</sub> and `+0C`<sub>h</sub>, with `+10`<sub>h</sub> =
-`1 / tan(π/8)` (`003CBAD0`).
+`1 / tan(π/8)` (`003CBAD0`). `00258130`, from the same rebuild (`00188B27`), runs `003CBAD0` on twenty more
+views from `02092A40`: five groups `BB0`<sub>h</sub> apart, four views `2E0`<sub>h</sub> apart in each.
 
 The debug verbs `debug_camerasrc` (`2013`<sub>h</sub>, `0050E5B0`) and `debug_cameradst` (`2012`<sub>h</sub>, `0050E530`)
 pop three floats each and write them, with w 1.0, as record 1's eye (`0025A4A0`) or target
@@ -286,6 +287,11 @@ chosen by the manager's byte `+1C`<sub>h</sub> (`338`<sub>h</sub> bytes apart):
 
 Each value it sets on a camera (aspect `+C8`<sub>h</sub>, field of view `+D0`<sub>h</sub>, zoom `+D4`<sub>h</sub>, near `+C0`<sub>h</sub>,
 far `+C4`<sub>h</sub>) is followed by the camera's slot `+08`<sub>h</sub>, and `0018A120` rebuilds the camera last.
+
+`0018A680(holder, camera)` copies a camera object into the holder's camera at `+E0`<sub>h</sub> the same way: the
+first eight words of the matrix `[camera + B8h]` into `+1B8`<sub>h</sub> (with its word 11 at `+1E4`<sub>h</sub>), the aspect,
+field of view, zoom and near distance, and the far distance raised to at least 1000, each followed by slot
+`+08`<sub>h</sub>, then `0018A120(+E8h)`. `00186670`, `00187950` and `00189570` call it.
 
 ## Layouts
 

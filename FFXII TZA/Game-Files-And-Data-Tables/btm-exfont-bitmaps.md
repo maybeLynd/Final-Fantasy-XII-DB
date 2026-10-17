@@ -126,7 +126,17 @@ first dword of the object at `[01F81200]`) and files it under the key `(2 << 32)
 `00364380` ORs `1 << (slot - 1)` into the ready word (`00364393`) and returns at once when the state pointer is
 null. `003657E0(slot)` reads that bit. `00365810` does not request a face whose buffer is already set.
 
+`00365570(slot)`, run by `0053EEA0`, gives a face back: it frees the sheet (`003697F0`), clears its ready bit
+and unregisters the font id `slot + 10` (`0017FC70`). `00365990()`, run by `00252840`, `002528A0`,
+`00252990`, `00252A20` and the frame's UI step `00252A70`, acts only while bit 30 of the ready word is set:
+it calls `0039BD50(34E0h)` and uploads the buffer at state `+190`<sub>h</sub> with `00474600(buffer, 3500h, 0, 10h,
+[+244h])`.
+
 ### The glyph tables
+
+`00365DD0()`, run by `00364950`, allocates the glyph cache: `A00`<sub>h</sub> bytes, 64 entries of `28`<sub>h</sub> bytes linked
+both ways, each with `FF0000`<sub>h</sub> at `+10`<sub>h</sub>, kept at `+220`<sub>h</sub>, with the first entry at `+228`<sub>h</sub> and the last at
+`+230`<sub>h</sub>.
 
 `00364950` points `022CBE00` at the state block and calls `003658F0`, which requests `fontpack_fs.bin` with the
 completion `003643A0`. That completion stores the font block pointer and calls `00366080`, which stores each

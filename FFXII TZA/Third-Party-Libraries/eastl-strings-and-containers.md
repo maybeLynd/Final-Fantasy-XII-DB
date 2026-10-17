@@ -106,7 +106,7 @@ and registers `008A8050`.
 ### Code instantiated per element type
 
 The compiler emits the string, vector and tree operations once for each element type, so the same
-operation appears many times with different element sizes. 32 such bodies are listed in
+operation appears many times with different element sizes. 55 such bodies are listed in
 `eastl-strings-and-containers-template-instances.tsv` with the operation and the element or node
 size of each; the other 75 are on
 [object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).

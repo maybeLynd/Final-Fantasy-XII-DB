@@ -45,6 +45,15 @@ selector, is:
 Token `08`<sub>h</sub> is 3 bytes (`002AD011`), tokens `0B`<sub>h</sub>-`0D`<sub>h</sub> move nothing (`002AC6CA`), and every other token is 1
 byte.
 
+The parsers `003FFAB0`, `003FFB00` and `003FFBC0` look their argument up through `0039BA00(v)`, which returns the
+5-byte record `v & 1FFh` of the table at `[02AEE870]` (`fontpack_it.bin` entry 2), counting from its byte 1, and
+record 0 when that is 0.
+
+`003937C0(out, size, text)` copies at most `size` - 1 bytes of a string and a terminator: for a template that
+starts with `ex` (`00364980`) it stops at a zero two-byte unit and writes a two-byte terminator, otherwise it
+stops at a zero byte and writes one. The battle log's
+`00393740` and `00408640`, `00408700` and `00408960` use it.
+
 ### Choice lists
 
 Token `0E`<sub>h</sub> (`002AC825`, parser `003FFDF0`) is a choice list. Bits 0-6 of its first byte give the option count;
@@ -154,6 +163,51 @@ Three writers build codes for menu strings:
 - `002AC2C0(n)` returns the static code `0F ? 81 n` at `01E0CDFC`;
 - `002B5240(record)` copies a string, replacing each `0F 8` with the name it stands for (`002639E0`), and
   `002B5680(size, out, in)` copies one without its line breaks `02`<sub>h</sub> and baseline codes `0F <`.
+
+### Two-byte number templates
+
+Some screens fill a template of two-byte units that starts with the bytes `ex`. `00365B30(size, out,
+template, args)` forwards to `00365B50`, which copies the 4-byte head and then each unit. A unit `{` followed
+by `i` is a 4-unit escape whose low bytes give a field width and flags. It takes the next 8-byte argument as
+an integer and writes it through `00365E50`.
+
+`00365E50(out, value, width, zeros, length)` writes the digits as units `'0'` + d. With a width it pads them
+on the left with `01`<sub>h</sub> blanks; with `zeros` it starts with `02`<sub>h</sub>, pads with `'0'` units and marks the first
+significant digit with `03`<sub>h</sub>. It returns the digit count and the byte length through `length`.
+
+`0029CC00(id, n)` fills the template of text id with n (at least 0) into the next of eight 32-byte buffers
+at `0209C390`, rotating through `01E0C560`, and `0029CC70(out, id, n)` into the caller's buffer; an id below
+100,000 is read with `002F9860`, a larger one with `002F9920(id - 100000)`. `0029CB80(id, arg)` does the same
+with the formatter `002B4090` instead; the magick and equipment description builders use it.
+
+`00365B50` returns the length written plus 2, or 0 when the template lacks the head or the result does not
+fit. Its callers include `0029FF60`, `002D66D0`, `002D7A90`, `00407450`, `00407720` and `0055BAC0`.
+
+### Description lines
+
+`00292B70(out, entry)` writes the description line of a list entry, `{kind, id in the high word}`, into a
+`1F8`<sub>h</sub>-byte buffer. It takes the kind's template from `00295C20`, runs the kind's handler from the 16-entry
+table `01E0C490`, closes the gaps in the argument list and formats it (`002B4090`). The shops (`0057BEE0`), the
+equip list (`003FCEE0`), `00293170` and `00564430` call it.
+
+Three kinds are narrowed first:
+
+- kind 3, equipment: ammunition (`002CCA00`) becomes 2; otherwise the row's `+4C`<sub>h</sub> gives 1 for 0, 3 for 1,
+  4 for 2 and 3, and 5 for 4, the mapping `00292F60` also gives the equip menu (`003FF920`);
+- kind 6 with an id from `4000`<sub>h</sub> to `4017`<sub>h</sub> (`002CCB00`) becomes 7;
+- kind 10 needs an id from `8060`<sub>h</sub> to `81FF`<sub>h</sub>.
+
+| Kind | Handler | What it reads |
+|---|---|---|
+| 1 to 5 | `00295900`, `00295390`, `00294B50`, `00293FE0`, `00293310` | equipment by slot: weapon, ammunition, off hand, head and body, accessory |
+| 6 | `00294860` | a magick: class 8, its action row (class 20), the school name (class 24), the action's `+24`<sub>h</sub>, a text from `4B27`<sub>h</sub> plus the lowest set bit of the action's byte `+30`<sub>h</sub> (`232D`<sub>h</sub> when it is 0), and `002960B0` |
+| 7 | `002957C0` | a technick: class 9 and its action row's description, and `002960B0` |
+| 8 | `00293E10` | an item: class 5 and its action row's description, with the same `4B27`<sub>h</sub> text |
+| 9, 10, 12, 14, 15 | `00293F40`, `00294AB0`, `00295720`, `002956B0`, `002947F0` | the description `+10`<sub>h</sub> of class 7, 13, 11, 26 or 18: loot, key items, gambit conditions, statuses, bazaar goods |
+
+`00293CE0(list, bits, text, count, n, flag)` adds to an argument list a text `4B27`<sub>h</sub> + b for each set bit b
+of a byte, with `text` before or after them depending on the language (`00254A10`, `00264150`); the kind 3, 4
+and 5 handlers use it.
 
 ### Codes no shipped text uses
 

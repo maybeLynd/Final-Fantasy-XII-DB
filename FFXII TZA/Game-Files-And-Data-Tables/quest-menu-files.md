@@ -187,6 +187,14 @@ state byte (1 loaded, 2 loading, 3 dropped on arrival) and the buffer at `+10`<s
   every listed buffer and empties the list.
 - `0037F340(widget)` sends `{10h, 8}` to the owner's handler at `+C0`<sub>h</sub>, then sets bit `1`<sub>h</sub> of `+E0`<sub>h</sub>
   and `+E5`<sub>h</sub> = 2. `0037F190(owner, entry)` sends `{10h, entry byte 1, its word +4 when that byte is 2}`.
+- `0037F050()` answers whether no quest data widget exists, and `0037F160()` returns `+E0`<sub>h</sub> bit 7, or 0
+  with none; the map-data widget's `003BBFB0` reads both.
+- `0037E4F0(owner)` closes the widget for an owner. While `+E0`<sub>h</sub> bit 7 is set it sends `{10h, 10}` to the
+  owner at once. Otherwise it unregisters the glyph sheet (`0037F860`), keeps the owner at `+C0`<sub>h</sub> and sets
+  `+E5`<sub>h</sub> to 3 when that returns 0, or to 4 with a close request (`00244F00`) and `{10h, 9}` to the owner.
+  With no widget the owner gets `{10h, 9}`. `0037E350`, `003F4E70` and `00579420` call it.
+- `0037EDB0(id)` returns the index of the `menuquest.dat` record whose key holds quest id `id`, or -1, and
+  `0037E8A0(i)` returns record i's name, or the empty string `01CEB638` past the count.
 
 ### Hunt rows
 
@@ -229,6 +237,10 @@ when no widget exists; the map-data widget's procedure `003BC4E0` reads it.
   and takes its `second` label from `QHT0` (`00473CC0`).
 - `0037EB90` returns the location of the first step that applies, and `0037EC70` whether that step is type
   0 or type 1, which `0037E350` hands back to its caller.
+- `0037ED80()` returns that type, or 2 when no step applies; `003BC160`, `003C18A0` and `00578F50` call it.
+- The map-data widget's `003BCAB0(widget)` turns the quest id at `+CC`<sub>h</sub> into a record index
+  (`0037EDB0`), keeps it at `+CE`<sub>h</sub> and loads that quest's group file (`0037FD50`); with no such quest it
+  returns 0.
 
 ### Address width
 

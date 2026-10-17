@@ -66,6 +66,9 @@ their own number, and `se007` by id 1. The index file is read into a block (`002
   it at the head of the free list `02AEF3D8`.
 - `003A1750` takes a record out of its list through the links `+00`<sub>h</sub> (next) and `+02`<sub>h</sub> (previous) and sets both to
   `FFFF`<sub>h</sub>.
+- `003A0EA0`, run by `0036D890`, walks the records marked in the bitmap `02AEF3F0`. A record whose `+10`<sub>h</sub> is set
+  and for which `002DEE90` answers 0 gets state 2 at `+0C`<sub>h</sub>, `+10`<sub>h</sub> = 0 and its bitmap bit (by `+08`<sub>h</sub>)
+  cleared, and its file handle `+14`<sub>h</sub> is released (`0036D200`) and freed (`00369800`).
 - `003A1290(handle)` answers the record's byte `+0C`<sub>h</sub> for `002E60F0`.
 
 `003A13F0` loads three blocks once at start-up: blocks 0, 1 and 2, which `002ED8C0` maps to `se000`, `se007` and

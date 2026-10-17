@@ -23,7 +23,7 @@ addresses: "00254B50, 0215F1A0, 002E1B10, 002E1A60, 002E0DA0, 002E09A0, 00280A00
 3. It refuses when the combined action policy has a bit whose word in `01E0C2C0` holds the id (`00254B80`-`00254BC1`);
    that can refuse ids 1, 2, 3, 5, 14 and 21 ([Action availability](../Controls-And-Input/action-availability.md)).
 4. It closes what is open (`0017E7D0`, `0035DA80`, `003C8990`) and dispatches through the byte map `00254C70`
-   (`00254BD6`-`00254BF9`).
+   (`00254BD6`-`00254BF9`). The same three calls are `00254FC0`, which `0026C3E0` runs (`0026C4EC`).
 
 ### The requests
 
@@ -112,11 +112,12 @@ The router is also called directly, without the mailbox:
 | `tutorial_sync_partymenu` | `3A6`<sub>h</sub> | waits until the next menu closes | none |
 | `clear_callpartymenu_status`, `is_callpartymenu_status` | `561`<sub>h</sub>, `562`<sub>h</sub> | clear and read mailbox `+F`<sub>h</sub> | 1 each |
 
-Four more verbs read or set menu state through helpers of their own:
+Six more verbs read or set menu state through helpers of their own:
 
 | Verb | Id | Helper | Does |
 |---|---|---|---|
 | `spattackwindowsync` | `2A9`<sub>h</sub> | `002E1660` | keeps waiting while `0028F7C0` answers 1 or 2; it answers 3 with no special-attack window at `[0209BE80] + 10FB0h`, or when the window's `+752`<sub>h</sub> is 1 or bit 0 of its `+749`<sub>h</sub> is set, and 1 otherwise |
+| `open_interventionmenu`, `close_interventionmenu` | `455`<sub>h</sub>, `456`<sub>h</sub> | `0033F860`, `002E22F0`, `0035D030` | both run the same result handler: `0028E940(1)` stores id 1 at `[0209BE80] + 10F60h` and sets bits 4 and 10 of `+10F68`<sub>h</sub>, then sound 4 plays (`00249C60`) |
 | `get_interventionmenu_status` | `457`<sub>h</sub> | `002E2340` | 0 without the battle menu (`[0209BE80] + AB30h`, refused by bit 13 of `+10F68`<sub>h</sub>), otherwise 1 with bit 4 of `+10F68`<sub>h</sub> set and 2 without (`0028F6A0`) |
 | `get_interventionmenu_commandstatus` | `45A`<sub>h</sub> | `002E2320`, `002E0E30` | the battle menu's current command (`002767C0`, through `0028F5F0`) plus 1 for 0-7, the same value for 9-17, 18 and 19 swapped, and 0 for any other |
 | `setpartymenustatus` | `45F`<sub>h</sub> | `002E23E0`, `002E13C0` | sets or clears one bit of `[020927C0] + 32C4h` (`00254E00`): kinds 0-7 give bits 0, 1, 9 and `12`<sub>h</sub>-`16`<sub>h</sub>, kind 9 bit `1E`<sub>h</sub>, any other `1D`<sub>h</sub> |

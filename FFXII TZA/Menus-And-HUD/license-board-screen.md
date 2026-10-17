@@ -179,6 +179,55 @@ mover is `0055AA00`, on `+563`<sub>h</sub>.
 
 Obtaining the Second Board ends with the chooser opening for the member's second board (`0055F3E0` stage 4).
 
+### Grid helpers
+
+- `0055E3F0(view, state, test)` gives state 4 to squares next to one passing `00556580` (bit 13, owned) and state 1
+  to those passing `00556570` (a node other than `FFFF`<sub>h</sub>) (`0055C3E5`, `0055C3F6`).
+- `00556590(square)` returns the art row's word `+22`<sub>h</sub> of `[02CA9670]` for a state-4 square, or the default at
+  `+5A62`<sub>h</sub> when it has no art row; 0 for other states.
+- `0055EF10(view)` runs every square's transition (`0055F010`) and fade (alpha `+25`<sub>h</sub> from `+26`<sub>h</sub>/`+27`<sub>h</sub>, rising or
+  falling by `+29`<sub>h</sub>), and plays sound `4A`<sub>h</sub> once when a transition returns `10`<sub>h</sub>. `0055B2B0(view)` returns 1 while
+  any square still fades or counts down.
+- `0055B8C0(view)` starts a 6-frame pan toward the cursor square (`+550`<sub>h</sub>/`+551`<sub>h</sub> times the cell size `+554`<sub>h</sub>) when
+  the view is not there; `0055F1C0` runs the pan (`00248F40`) and the cursor's pulse `+191`<sub>h</sub> in five steps.
+- `0055B960(view, dx, dy, now)` gives the scroll that keeps the cursor inside the view, a sixteenth per frame (rounded
+  to an even step) unless `now`; `00561F20` clamps a scroll to its limits.
+- `0055AB20` tiles the background picture `+180`<sub>h</sub> over the screen in batches of 12 (`002D9380`); `0055B6D0` draws
+  the cursor frame `+188`<sub>h</sub>, inset by the pulse.
+
+### Detail panel and member switch
+
+- `0055A180(view, square)` fills the four detail panes (`+140`<sub>h</sub>) through `00559E30`, or closes the panel when it is
+  open (`0055A1F0`). `005597C0` closes the panes (`00244F00`) and `00559800(view, v)` hides or shows them.
+- `00559E30(pane)` shows the square's name and LP cost (`0029FF60`), its kind icon (`12`<sub>h</sub> for category `1E`<sub>h</sub>) and up
+  to eight contents from the node record `0035D330(19h, node)` `+26`<sub>h</sub>, by its list type `+23`<sub>h</sub>: class 1 records
+  for type 0, class `14`<sub>h</sub> records for type 1 (with the icon of the class 1 record each names), and class `1D`<sub>h</sub>
+  names for types 2 and 3.
+- `0055AE00` and `0055B840` step to another member that has a board (`0027EDA0` or `0027F430` with the test
+  `005617E0`), play sound `51`<sub>h</sub> and rebuild the view (`0055DBD0`); `00557A40` and `00557A90` do the same in the chooser
+  (`00558760`).
+
+### Chooser helpers
+
+- `00556380(slot, board1, board2, current)` builds the line of one or two board names (`menu_command.bin` `3ED`<sub>h</sub> +
+  board, joined by `3F9`<sub>h</sub>) into `02CA8FF0` + slot x 256, colouring one name with colour 3 (`002AB870`);
+  `00558E70` shows it for the member, and `00556F50` hands the text of a row to its label.
+- `005587E0(chooser)` lists, for up to six members (`00282DF0`, `00282FA0`), which board each holds as first
+  (`00323670`) and second board (`00323630`).
+- `00558A10(chooser, board, curve, frames)` turns the board wheel to `board` (30 degrees a board, crossing 360 between
+  boards 0 and 11), and `00558AF0` steps it (`00248F40`) into the angle `+34C`<sub>h</sub>.
+- `005574C0` draws a chooser picture as four mirrored quarters at 0.8 scale (`002DB080`).
+- `00561020` releases the chooser's five widgets and two buffers.
+- `002CE280(window)` puts a window, its child `+C0`<sub>h</sub> and that child's `+D8`<sub>h</sub> into the second draw pass
+  (`00247730(widget, 1)`); the chooser (`005584CE`), the board view (`0055D71E`, `0055D784`), `0055E9E0` and
+  `0055F3E0` call it.
+
+### The member picker
+
+`00560910` lists the members with `00561100`: the roster slot of each one `00282FA0` accepts and its portrait
+(`002526F0(8, id + 4Dh, 1)`). `00560610` draws a member's board in miniature, one cell per square of the board table
+`[02EBF1A0 + board]` coloured `002DD7E0(DBh + value)`, and `0055FA50` frees the six cell arrays at `+150`<sub>h</sub>.
+
 ## Shipped data
 
 | | |

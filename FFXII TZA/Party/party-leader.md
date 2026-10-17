@@ -53,6 +53,15 @@ Three functions call `003594B0`:
    requests the actor, commits at once through `00358BB0`, re-seats the camera with `0025A690` and sends the
    roster-role notice `002681D0` (`0050C62C`-`0050C65D`).
 
+`00237F40`, run by `0025C830` (`0025D41F`) and `0026C3E0` (`0026C59E`), replaces a fallen leader through the
+first of them. It does nothing while bit 9 or bit 10 of `02089340` is set, or while the leader `003272A0` has unit
+bit 2 and a stats record whose status words `+64`<sub>h</sub> | `+3C`<sub>h</sub> are clear of KO, Stone and X-Zone (`80000003`<sub>h</sub>),
+or carry them while `00377C20()` holds.
+
+Otherwise it lists fighting seats 0-3 with `0030A880(list, 3)`: units
+standing (or with `00377C20()`), of kind `+05`<sub>h</sub> 0 and type `+04`<sub>h</sub> below 7. The first becomes the selector
+`+5AA4`<sub>h</sub> through `00327810`, which then runs `00326500`.
+
 ### The default controlled member
 
 `00326500` turns the party's leader selector into the leader handle; [Party slots](party-slots.md) and

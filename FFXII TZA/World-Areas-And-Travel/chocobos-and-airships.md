@@ -131,6 +131,13 @@ menu task `003CA860` while chocobo mode is on, shows text `832`<sub>h</sub> "Dis
 and `87C`<sub>h</sub> "You cannot dismount here." when it does not, and on a confirmed `8100`<sub>h</sub> result it
 calls `0035CFA0(0)`.
 
+The dialog's open message runs `0035CF10` (`003CA43E`): it clears `022CA45C`, resets the battle menu
+(`00252B40(14h)`) and takes two holds through `002E1C20(8)`. A confirmed Dismount then calls `0035D010(1)`
+(`003CA3B5`), which stores 0 in `022CA45C`; a refused test or any answer other than `8100`<sub>h</sub> and the cancel
+`8102`<sub>h</sub> calls `0035D010(0)` (`003CA3DE`), which stores 1. The close message runs `0035CF50` (`003CA360`): with
+no dismount task in `022CA468`, or with `022CA45C` set, it releases both holds (`002E1CA0(8)`), runs
+`00252D90` and clears `022CA45C`.
+
 ### The dismount task
 
 `0035CFA0(fromTimer)` spawns a `D0`<sub>h</sub>-byte task on `0035C960` when the field is live (`00265680`)
@@ -253,7 +260,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 | `[02EBF190] + 5AE0h`-`+5AEF`<sub>h</sub> | struct | the ride state above |
 | `02B5EBC0` | TimerSlot[] | slot 1 the ride, slot 2 turbo |
 | `022CA468` | ptr | the running dismount task, 0 when none |
-| `022CA45C` | u32 | cleared when a timer dismount starts |
+| `022CA45C` | u32 | cleared when a timer dismount starts; 1 after a refused Dismount (`0035D010`), read by `0035CF50` |
 | `01CEBC08` | f32 | 2.0, the restore floor for slot 1 |
 | `01DFE0B8` | f32 | the frame base the turbo length multiplies, image value 1.0 |
 | `[001D50D0()] + E1Dh`, `+E1E`<sub>h</sub> | u8 | configuration bytes: endless ride, endless turbo charges |

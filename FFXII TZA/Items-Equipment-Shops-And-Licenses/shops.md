@@ -89,7 +89,8 @@ output buffer, used to count. Mode 2 lists the bazaar goods on offer instead (`0
 | gambits | 9 |
 
 The shop screens `0057B500`, `0057B6F0`, `0057CF20` and `0057D620` call it; the first two pass the shop number
-held at byte `+C0`<sub>h</sub> of the shop menu (`0057B5F4`, `0057B715`).
+held at byte `+C0`<sub>h</sub> of the shop menu (`0057B5F4`, `0057B715`). `003933D0(id)` answers 1 for categories 0-3,
+the equipment; the shop's transaction function `0056D370` asks it (`0056D630`).
 
 ### The shop's name
 

@@ -213,6 +213,19 @@ during an event (`001EC560`): 0.5 at story progress `15AE`<sub>h</sub> (`0026527
 slot's count (`01DFE40C`, `01F832B0`) at 1 and `g0111` in the name, and −1.0 at progress `15E0`<sub>h</sub>
 with the count at 15 and `c1006` in the name.
 
+`00418880` also rounds the frame down to a whole frame (`floorf`, `004192FE`) in two cases, both only in 60 fps
+mode (`01F82E38`):
+
+- `001ED240(name, motion, id, frame)` answers 1 (`004192C9`), with `motion` the stream's text `+2EC`<sub>h</sub>. Outside
+  an event (`001EC560`) it does so at frame 10.5 of `n1120_32` or a `n1129` name and at frame 21 of `m1072_10`.
+  During one it checks a fixed list of story progress values (`00265270`: `177`<sub>h</sub>, `222`<sub>h</sub>, `262`<sub>h</sub>, `33E`<sub>h</sub>,
+  `560`<sub>h</sub>, `6DC`<sub>h</sub>, `7C2`<sub>h</sub>, `7CE`<sub>h</sub>, `D48`<sub>h</sub>, `D70`<sub>h</sub>, `15AE`<sub>h</sub>, `15E0`<sub>h</sub>, `1AF4`<sub>h</sub>).
+- With those it checks the event slot counts (`01DFE40C`, `01F832B0`, `01F832C4`), names and frames, and, in the
+  progress-0 field `112`<sub>h</sub> and elsewhere, the effect names `mrm_g0100`, `bds_f0100`, `sum_j0001`, `sum_a0001`,
+  `sum_f0001` and `sum_i0001` (`001C50C0`).
+- The frame is one frame step (`01DFE0BC`) before the end `+16`<sub>h</sub> and `001EC6B0(motion)` finds `m1009`, `m1266`,
+  `m1222`, `m1223`, `m1151` or `m1267` in the motion's name.
+
 At frame 0 `00418880` writes, for each row with a bone, the first value of each of the nine
 channels the record's mask names and that has data (`0041A7F0`, then `00418650`, `00418700` or
 `004186A0`), or the channel's bias from the `@FMW` table at `+54`<sub>h</sub> when it has none, after clearing bit 0 of

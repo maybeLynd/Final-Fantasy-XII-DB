@@ -285,6 +285,35 @@ palette block and entry for 4-bit ones (`002D9380`, `002DB8A0`-`002DB8D3`).
   colour gives 0. A type 2 node gets the value in all four vertex colours (`+28`<sub>h</sub>-`+34`<sub>h</sub>); a type 5 node
   gets it as its colour `+24`<sub>h</sub> (`00392F30`).
 
+- `00394690(widget, i)` returns node i of the widget's list (`+50`<sub>h</sub> count, `+60`<sub>h</sub> block) or null past the
+  count, and `00394660(widget, i)` returns a type 1 node's child widget `+18`<sub>h</sub>, or 0. `00285F40(widget, i)`
+  returns node i of `+60`<sub>h</sub> with no count test, or 0 for a null widget; ten on-screen keyboard functions from `00286010` to `00288A60` and `00559E30` call it.
+- `00394800(widget, i, a, b)` and `00394850(widget, i, j, a, b)` write a number (`0029F6E0`) into node i, or,
+  when node i is type 1, into node 0 or node j of its child widget; the Clan Primer, quest and Save pages call
+  them (`0056FCB0`, `005789D0`, `0057EFE0`).
+- `0029F480(node, colour, which)` writes a colour to `+88`<sub>h</sub> and `+64`<sub>h</sub> for which 0, `+88`<sub>h</sub> alone for 1 and
+  `+64`<sub>h</sub> alone for 2; the party list (`002986E0`), the battle menu (`0029A930`) and `00570530`, `00581490`,
+  `00581930` use it.
+- `0029F580(ref, picture)` binds a picture: the picture at `ref + 18h` and, at `+20`<sub>h</sub>, the cell record that
+  the frame code at the item's `+0E`<sub>h</sub> selects through the picture header's tables (`+40`<sub>h</sub>, `+44`<sub>h</sub>); the list
+  item `00292390` calls it.
+- `0029FA40(node)` centres a text node: it measures the text `+18`<sub>h</sub> (`002D8B00`) and sets x `+0A`<sub>h</sub> to the
+  node's left `+0C`<sub>h</sub> plus half its width less half the text width times the scale `+28`<sub>h</sub>; `0029FAD0(node)`
+  sets `+0A`<sub>h</sub> to the scaled text width instead and sets `+2D`<sub>h</sub> bit 2.
+- The on-screen keyboard (`00286010`,
+  `002862A0`, `00286500`, `00287E60`, `002880B0`) and `0056C490` use the first, the Graphics Settings rows
+  (`0023B6F0`) and `0023CAF0` the second.
+- `00393190(list, on)` sets or clears the drawn bit 0 of every node of a list; `00393220(node)` returns the
+  item's bit 28 for a drawn node, else 0 (`00407450`, `00407720`).
+- `00243260(list, i, out)` copies node i's x, y, width and height (`+0C`<sub>h</sub>-`+12`<sub>h</sub>) into `out` and returns
+  1, or returns 0 when i reaches the header's count. The verb `fsmenu_getrectlist` (`701D`<sub>h</sub>, through
+  `005685B0`) and `0056C490`, `0056D940`, `00579230` and `0057AC10` use it.
+- `00243580(list)` clears the drawn bit 0 of every node; the gambit screen (`00568BB0`), `003FCFE0`, `003FDDE0`
+  and five other callers use it. `00243E90(list)` gives every node its item's bit 28 back as the drawn bit
+  (`00283E40`, `00292390`, `002D28E0`).
+- `00243EE0(list)` puts every node back at its item's x and y (item `+4`, `+6`): types 2, 5 and 9 into node
+  `+0C`<sub>h</sub>/`+0E`<sub>h</sub>, type 8 into its grid widget's position `+98`<sub>h</sub>/`+9A`<sub>h</sub>; `002C4720` calls it.
+
 ### Release
 
 `002482E0` releases a widget. When bit 1 of the list header at its `+50`<sub>h</sub> is set, it clears the bit, frees the

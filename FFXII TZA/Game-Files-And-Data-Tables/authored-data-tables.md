@@ -92,7 +92,8 @@ The twelve slots `02EBF1A0`–`02EBF1F8` hold `board_1.bin` to `board_12.bin` (k
   `00233E00(k)` allows it; `00233E00` says yes when the board is already resident or fewer than six
   of the twelve are.
 - A slot fills only when its read completes, through the setters `00238390` + `30h·k`, which free
-  any old board (`003844F0`) and store the new one.
+  any old board (`003844F0`) and store the new one; `002383C0` is board 2's, slot `02EBF1A8`. Each setter
+  stores its 32-bit argument sign-extended (`movsxd`, `00238396`, `002383C6`).
 - The boot loop is the only caller of `00238260` and files the twelve requests back to back, so the
   six-board test passes for every board unless six reads finish while it is still filing.
 

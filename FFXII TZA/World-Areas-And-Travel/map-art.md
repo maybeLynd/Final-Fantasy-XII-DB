@@ -79,7 +79,9 @@ count - 1 skips it. For a match:
 - The draw key `+4C8h[index]` is `m_specialRenderOrder` (`+78`<sub>h</sub>) times `10000`<sub>h</sub> plus the index when
   the order is positive, else the index times `10000`<sub>h</sub>.
 - The first instance of an index gets two `MapRenderObject`s of `268`<sub>h</sub> bytes (`001E1670`), one per
-  view; a later instance with the same index is appended to both (`001A7850`).
+  view; a later instance with the same index is appended to both (`001A7850`). Its destructor `001E1C90`
+  (from `001E1D90`) unregisters it from `01F82D60` (`001F8B30`), frees its five vectors (`+18`<sub>h</sub>, `+38`<sub>h</sub>,
+  `+58`<sub>h</sub>, `+78`<sub>h</sub>, `+98`<sub>h</sub>) and ends with `00212C80`.
 
 ### Material extras for each model
 
@@ -207,6 +209,10 @@ the same plane.
 The probe binding (`001E6480`) and `001E2AF0` take an instance's world box from `006045E0`, which
 hands the bounds' origin, extents and matrix (identity without one) to `005FD810`; that transforms
 the eight corners and returns their minimum and maximum.
+
+`001E2AF0` then runs `001E4F70(object, bounds)`: with no matrix at the object's `+10`<sub>h</sub> it tests the bounds as they
+are, otherwise it rebuilds them from that matrix's columns through `001854C0` first, and in both cases passes
+them to the clip test `001E4B80`.
 
 ### Drawing an instance
 

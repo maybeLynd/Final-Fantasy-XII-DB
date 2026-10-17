@@ -90,7 +90,7 @@ Besides the script verbs:
 The new-game reset `002EF2D0` clears the first `1538`<sub>h</sub> bytes of the payload, which hold every bank, and jumps to
 `00379160` (`002EF2D4`-`002EF2F1`). `00379160` sets each id listed in `mapjumpgroupinit.bin` with `0032AB60(id, 1)`
 (`00379160`-`003791B5`). `002EF2D0` is called by `00266D10` (`00266DC4`) and by the save-image reset `002EF650`
-(`002EF674`). The list is kind 9 file `28`<sub>h</sub>, requested by `00378540` under the name `MJGPINIT`, kept at `02ADD0D0`.
+(`002EF674`). The list is kind 9 file `28`<sub>h</sub>, requested by `00378540` under the name `MJGPINIT`, kept at `02ADD0D0` by its completion `00378B90` (`003787BD`).
 
 ## Layouts
 

@@ -86,6 +86,17 @@ The arming state is the word `022CBE1A`. Both steps return at once when the batt
 `022CBE08` is 30 times the frame-time base `01DFE0B4`, set once by `00366B80` (`003670A6`-`003670B7`): one second
 of frames. Until it is reached `003669F0` answers 0, the applier passes 0, and the flag does not change.
 
+Two setters skip the count. `00366960(on)`, run by `0028E580`, writes the count word `022CBE18` with the full
+delay and the arming word `022CBE1A` with `25`<sub>h</sub> (bits 0, 2 and 5: armed at once), or clears both for 0.
+`003667B0(on)`, run by `00280140`, sets or clears bit 7 of the arming word.
+
+The escape widget `00366B80`, built by `00366740` from `00253A30`, draws its parts with two helpers: `00367110(points,
+node, x)` writes five points through `00862980`: (0, 0), (x - w, top / 2), (left - w / 2, top + h / 2),
+(left + w / 4, top) and (left, top), with left, top, w and h the node's `+0C`<sub>h</sub>, `+0E`<sub>h</sub>, `+10`<sub>h</sub> and `+12`<sub>h</sub>;
+and `00366A30(sprite, node, x, y, scale, cx, cy)` draws
+a node's picture cell at (x, y) through `002D8D10`, scaling it and its offset from (cx, cy) by `scale / 256`
+when `scale` is not 0.
+
 ### What reads the flag
 
 `00253B90` answers true when the flag is 0, Escape Mode on. Its readers are command availability `002FFCF0`, the

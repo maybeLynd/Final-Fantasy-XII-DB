@@ -125,6 +125,9 @@ if (now >= stamp - step * (60 - (7 - state))) { state += 1; 0028F000(handle, 2, 
 if (now >= stamp - step * 60) { unlink; 0028F000(handle, 4, ...); 002FB2A0(slot); zero }         // 00319664-003196E1
 ```
 
+The landing position comes from `0028EFC0(handle, out)` (`0031975E`), which forwards to the world-object part,
+`003FA6E0([0209BE80] + 57E0h, handle, out)`, before `002FB2D0` publishes it.
+
 The comparisons are unsigned (`jc` at `00319718` and `00319682`). With the scalar at 1.0 the
 thresholds are:
 

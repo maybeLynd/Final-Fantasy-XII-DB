@@ -78,13 +78,14 @@ emitters also write into their packets:
 
 | Wrapper | Body | Stores |
 |---|---|---|
-| `00181800`, `00181930`, `001819A0` | `001B2410` | width `+3930`<sub>h</sub>, height `+3934`<sub>h</sub>, texture name `+3938`<sub>h</sub>, `+3AA0`<sub>h</sub>, palette `+3A38`<sub>h</sub>, and `+3A3C`<sub>h</sub>, `+3A40`<sub>h</sub>, `+3A44`<sub>h</sub>, `+3A48`<sub>h</sub> |
+| `00181800`, `00181930`, `001819A0`, `00181A10` | `001B2410` | width `+3930`<sub>h</sub>, height `+3934`<sub>h</sub>, texture name `+3938`<sub>h</sub>, `+3AA0`<sub>h</sub>, palette `+3A38`<sub>h</sub>, and `+3A3C`<sub>h</sub>, `+3A40`<sub>h</sub>, `+3A44`<sub>h</sub>, `+3A48`<sub>h</sub> |
 | `001816F0` | `001B1F80` | the colour `+3A4C`<sub>h</sub> to `+3A58`<sub>h</sub> |
 | `00181870` | `001B2490` | `+3A60`<sub>h</sub> from the table `008F80F8` (0, 1, 6, 2, 3, 4, 5) |
 | `001816B0` | `001B22D0` | the ALPHA_1 value `+3A68`<sub>h</sub> |
 | `00181910` | `001B22E0` | the TEST_1 value `+3A70`<sub>h</sub> |
 | `00181740` | `001B1FA0` | `+3A8C`<sub>h</sub> |
 | `001817A0` | `001B1FE0` | `+3A94`<sub>h</sub> |
+| `001817D0` | `001B1FF0` | the float `+3AFC`<sub>h</sub> |
 | `00181890` | `001B22F0` | the clamp region of the current batch |
 | `00181390`, `001813F0` | `001B0A20`, `001B0CE0` | a textured strip |
 
@@ -162,6 +163,10 @@ and the same quad to the batcher as a four-vertex strip (`00181460`).
   strip runs top left, bottom left, top right, bottom right.
 - `002DC7F0` with flag `8`<sub>h</sub> draws two strips meeting at the patch centre, coloured with the average of the
   four corners; the vertex flags at `+28`<sub>h</sub> carry the flags with `8`<sub>h</sub> or `4`<sub>h</sub> cleared.
+
+`002DD8B0(quad, left, right, top, bottom)` writes the corner positions of a four-vertex quad as floats at
+`+20`<sub>h</sub>/`+24`<sub>h</sub>, `+50`<sub>h</sub>/`+54`<sub>h</sub>, `+80`<sub>h</sub>/`+84`<sub>h</sub> and `+B0`<sub>h</sub>/`+B4`<sub>h</sub>: top left, bottom left, top right,
+bottom right. The text icons (`002AEB20`), `002AFDC0` and the HUD billboards (`003F0610`) fill quads with it.
 
 Three more emitters set state around them:
 

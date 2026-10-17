@@ -122,6 +122,16 @@ of `02F8F310`.
 range at `+88`<sub>h</sub>/`+90`<sub>h</sub>, and writes opcode `2F`<sub>h</sub> at `+00`<sub>h</sub>, the function at `+08`<sub>h</sub> and the
 command at `+10`<sub>h</sub> (`005FEAEE`–`005FEAF8`).
 
+Other render-thread callbacks are posted the same way; each is called with the block, whose `+10`<sub>h</sub> holds the
+value posted:
+
+| Callback | Posted by | Does |
+|---|---|---|
+| `0017ECB0` | `00184960` | stores the posted dword at `01DF08F8` |
+| `0017ECC0` | `00183720` | calls `005DE250` and frees the pointer it is called with |
+| `00189090` | `00186130` | clears byte `+09`<sub>h</sub> of the posted object |
+| `00189110` | `00186410`, `00187950` | copies the posted object's byte `+08`<sub>h</sub> into byte `+09`<sub>h</sub> of the object it points at |
+
 `00607D20` builds a 256-slot block queue with semaphores and per-slot events and starts the thread
 `005FE1F0` (`CreateThread` through `005CD1E0`, 64 KB stack); its name string is
 `PhyreEngineRenderThread`. `005FE1F0` jumps to `006106A0`, which waits on each slot's event in

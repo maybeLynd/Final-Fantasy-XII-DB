@@ -134,6 +134,18 @@ The frame routine `001F3300` first calls `00194A30`, which applies a delayed `En
 returns non-null and `001FDF70` returns 1 for that result, it calls `00193A00` and `00193A80` on the
 block and sets `+19B`<sub>h</sub>.
 
+`001DC510()` returns the `18`<sub>h</sub>-byte object `[01F82D10]`, made once when `001DDAB0` answers non-zero, with the
+defaults 1.0, 0.5 and 0.6 at `+0C`<sub>h</sub>, `+10`<sub>h</sub> and `+14`<sub>h</sub>, then filled by `001DC3D0`; `001FDF70` returns its
+first word. The setup copies its values into the block, each reader falling back to the default unless the
+first or second word is 1 (the last needs the first word):
+
+| Block field offset | Reader | Value | Clamp |
+|---|---|---|---|
+| `19C`<sub>h</sub> | `00193940` through `001DC460` | `+08`<sub>h</sub>, else 0 | 0 to 3; a negative value gives 0 |
+| `1A0`<sub>h</sub> | `00193A00` through `001DC4A0` | `+0C`<sub>h</sub>, else 1.0 | at least 0 |
+| `1A4`<sub>h</sub> | `001939A0` through `001DC480` | `+10`<sub>h</sub>, else 0.5 | 0 to 1.0 |
+| `1EC`<sub>h</sub> | `00193A80` through `001DC4C0` | `+14`<sub>h</sub>, else 0.6 | at least 0 |
+
 The frame routine then asks `0018E470`, which is true when the integration object is ready and the render
 parameter block's byte `+A0`<sub>h</sub> is set. Only then does it build the post-process command (`0018EEE0`)
 whose work is `00193DA0`:

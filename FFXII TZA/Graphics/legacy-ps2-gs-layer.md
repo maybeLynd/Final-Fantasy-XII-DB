@@ -70,6 +70,15 @@ Each pass of the slot handler `002F4520` starts with `00467A70` (`002F45D9`), wh
 cursor `02CA5FF8` back to the reservation `02CA5FF4` and zeroes `02CA5FFC` and `02CA6000`;
 `00467A90` returns the cursor.
 
+`002D7FC0`, run by the frame set-up `0024D540`, clears the two `1800`<sub>h</sub>-byte blocks at `02F8DA00` and
+`02F8C200`, keeps the width `022D8EAC` at `02F8F214` and places five block addresses after the surfaces,
+moving them up by `(width - 200h) x 540h / 64` for a width above `200`<sub>h</sub> (0 at the shipped 512):
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `02F8F200` | `= 3B00h` | 02F8F204 = `2A00`<sub>h</sub> + d | `02F8F208` = `3C00`<sub>h</sub> + d |
+| `02F8F20C` | `=` | `3B00`<sub>h</sub> | + d `02F8F210` = `3C00`<sub>h</sub> + d |
+
 ### GS screen coordinates
 
 The map draw still builds the screen transform of the PS2 drawing area. `00467940(view)` writes into
@@ -77,6 +86,12 @@ the first 64 bytes of a view block a matrix that maps x to `x × w / 2 + 2048`, 
 2048` and z to `−z × (far − near) / 2 + (far + near) / 2`. The width `w` and height `h` are the
 integers at `+44`<sub>h</sub> and `+48`<sub>h</sub> of the same block and the two depths are at `+4C`<sub>h</sub> and `+50`<sub>h</sub>;
 2048 is the centre of the GS drawing coordinates.
+
+`00276430(…, widget, x, y, u, v, rect, scale)`, run by `00272590`, sets the same kind of transform for a 2D
+widget draw: an identity matrix at `0209AB90` scaled by `scale`, the offset `2048 - screen / 2 + x` and
+`+ y` from the screen size `01E0C1D8`, `01E0C1DC`, the widget's position `/ 4096`, its colour bytes `/ 128`
+and the four-word rectangle; it first writes the widget's colour scaled by its brightness `+5A`<sub>h</sub> and alpha
+`+58`<sub>h</sub> into `+94`<sub>h</sub>.
 
 The draw-list build `002F5550` calls it (`002F5AB0`) on a stack copy of the view block at
 `02AED500` whose depths it has replaced by `003B40B0` results, and copies the matrix to `+80`<sub>h</sub> of
@@ -151,6 +166,11 @@ it to `008620B0`, a body that returns at once; nothing is printed.
 and TRXDIR again (`00244355`–`0024439C`). It reads the frame index and the height to place the
 transfer. The GS replay honours none of these four registers.
 
+`002443D0(widget, node)`, also called from `002D2DB0` (`002D2F30`), sets node `+38`<sub>h</sub> bit 8, clears bits 9-13,
+and stores at node `+30`<sub>h</sub> a TEX0 word: the constant `40010333C`<sub>h</sub> (base `333C`<sub>h</sub>, format 1, TCC set) with the
+buffer width `022D8EAC` / 64, TW the highest set bit of 2 x width - 1 (9 for the shipped `200`<sub>h</sub>) and TH 5, from
+`3F`<sub>h</sub>. It then writes TEXA (`3B`<sub>h</sub>) = `80`<sub>h</sub> under one A+D GIF tag (`00248EB0`, `00248E10`).
+
 `003A22A0(packet, base, format, width, height, data)` builds a whole upload into a packet. It opens an
 A+D GIF tag (`003A2090`) and writes BITBLTBUF with the destination base in bits 32–45, the buffer
 width from `003A1FE0` in bits 48–53 and the format in bits 56–61, then TRXPOS 0, TRXREG
@@ -219,6 +239,14 @@ The content helpers write fixed packets:
 - Both, and `00271870(w, data, bytes)`, store back the cursor value they read and nothing between
   moves it, so the next write lands on the same records. `00271870` passes `bytes / 16` and `data`
   to `0016D6A0`, so it copies nothing.
+- Three helpers write records at a plain pointer and return the pointer past them; the HUD's target rings
+  and `+10F30`<sub>h</sub> marks use them (`0028C620`, `003F7CC0`).
+- `00271530(p, eop, flat)` writes a four-register A+D packet: TEST_1 `53001`<sub>h</sub>, ALPHA_1 `44`<sub>h</sub>,
+  PRMODECONT 1 and PRIM `5C`<sub>h</sub> (a textured, blended, shaded triangle strip), or `54`<sub>h</sub> without shading
+  when `flat` is non-zero.
+- `00271650(p, picture, row, half, eop)` writes a two-register picture bind, CLAMP_1 = 5 and TEX0_1 from
+  the picture's `+30`<sub>h</sub> with the palette offset `(half + row x 2) x 2` in bits 37 up.
+- `002716C0(p, end)` writes FLUSHA, NOP and a DIRECT header counting the records from `p + 10h` to `end`.
 - `002724A0(w)` ends a VU1 draw: the record at `[w + 38h]` gets a GIF tag with end-of-packet, NLOOP
   `[w + 40h]` and the registers ST, RGBAQ, XYZF2 (`412`<sub>h</sub>); it completes the UNPACK header at
   `[w + 20h]`, appends FLUSHA and MSCNT (`17000000`<sub>h</sub>), closes the chunk and ends the packet.
@@ -244,7 +272,7 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
   `004B895F`, `004B8A12`): for those two programs it plays the VU's Q register.
 - `01E02830` holds `(0, 0, 0, 1.0)`, the fixed contents of the VU's register vf00. `004B1190` loads
   its address 17 times as the second operand of its lane helpers, which include `004B9D80`,
-  `004B9E60` and `004B9A10`.
+  `004B9E60` and `004B9A10`. `0022CC20` writes those four words again; 63 functions call it.
 - `004ADD10`, another installed program, reads VU memory cells directly through `02064E30`.
 
 - Two shared subroutines of the recompiled programs work on the register cell `02064CB0`.

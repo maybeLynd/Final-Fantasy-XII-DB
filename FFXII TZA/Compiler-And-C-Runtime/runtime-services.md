@@ -110,6 +110,20 @@ the object's slot 1 and passes its result to `ExitThread`.
 `007A5B50`, `007B6F70`, `007DE120`, `007DE8D0`), four of which log `[sead]` messages; `007DE120`
 and `007DE8D0` create the sound library's `MockDeviceThread` and `AudioSampleThread`.
 
+The game's own threads are made by the start-up step `00368ED0`, which keeps `GetCurrentThread()` at
+`022D7FB0` with priority `20`<sub>h</sub> (`00863520`), runs `00368F70`, `00368DD0` and `00368C80`, makes the semaphore
+`022D7F90` (`00863540`) and calls `0035E820`:
+
+- `00368C80` creates a worker thread with the start `00368C10` and a `4000`<sub>h</sub>-byte stack at `022D3F20`.
+  `00368C10` waits on the semaphore `[022D7F68 + 8 x n]` (`00863650`), runs the job at `022D7F70 + 8 x n` when
+  one is set, clears it and lowers its priority to `24`<sub>h</sub>, without end. `00368F30(n)`, for `0046DD50`, answers
+  whether job n, or any job for a negative n, is pending.
+- `00368F70` creates, when `003692C0` reports bit 2, a thread with the start `00368AE0` and stores the stub
+  call `005C5230(00368AD0, ...)` at `022CFF18`; `00368AD0` releases the semaphore it is given (`00863800`). `00368AE0` waits on its semaphore and calls `00368B00`, whose
+  calls all reach `005C5230`, which returns 0, so its last polling loop never ends.
+- `003691B0(n)` releases the semaphore `[022CFEEC + 4 x n]` (`00863800`) for `0035E760`, `0035EA40` and
+  `0035EB70`.
+
 ### The PhyreEngine lock
 
 The PhyreEngine layer builds its lock from a Win32 event and two counters, in a `28`<sub>h</sub>-byte record

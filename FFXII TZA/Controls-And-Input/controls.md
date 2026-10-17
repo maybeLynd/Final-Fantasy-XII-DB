@@ -182,6 +182,17 @@ The Config screen's lists (`0023F240`, `00240DE0`), the clan primer's (`00570CE0
 `002C2F90` and `002C4220` repeat the same pacing with their own code. The debug menu code `001D1660` can change the
 pacing through `002D4F70` (1-10) and `002D4F90` (1-5).
 
+`002C2F90` and `002C4220` move grid cursors for `002C1A80`, the input step shared by the Party Menu's member list
+(`00284EC0`), the Status and Equip screen (`002C2320`, `002C59D0`, `003FF360`, `003FDAD0`), the gambit editor
+(`005691E0`) and `0055C740`:
+
+- `002C2F90` moves one cursor `+AE8`<sub>h</sub> with `002C2DA0(grid, dir, wrap)`: cells `20`<sub>h</sub> apart from `+C8`<sub>h</sub>,
+  bounded by `+AEC`<sub>h</sub> and `+AEE`<sub>h</sub>, columns from the list's `+EC`<sub>h</sub>, skipping empty cells. `002C3C80(grid, dir)`
+  answers whether a move would leave the grid.
+- `002C4220` moves a cursor `+7A0`<sub>h</sub>, 0 to 53, over four panels at `+C0`<sub>h</sub> with `002C3D70(grid, dir, wrap)`.
+  Each panel's first and last cells come from the 12-byte rows of `00916D30`, and a move off a panel's edge
+  enters the next shown panel (`+40`<sub>h</sub> bit 0). `002C54B0(grid, dir)` answers whether a move would leave them.
+
 ### Pad or keyboard prompts
 
 The input manager's byte `+38`<sub>h</sub> records whether the pad was used last:

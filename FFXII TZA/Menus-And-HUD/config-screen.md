@@ -87,6 +87,21 @@ A row:
 Every row reaches `00240750(command, index)` and the setter switch `002407F0` (`00240818`-`00240959`). The options record
 is `*0215E6E0`, inside the save image. The labels are `menu_command.bin` and the help lines `help_menu.bin`.
 
+`0023EFC0(screen)`, run by `0023FBE0` (`0023FCB6`), sets up Config's list widget. The row count comes from list
+`01E0BF60[origin]` (`+C2`<sub>h</sub> 0-2, any other as 0), the row painter `0023F8B0` goes to list `+120`<sub>h</sub> (`0023F06E`),
+and the cursor starts on the row saved as cursor kind 6 (`002526F0`). When that row's command names a kind-`0B`<sub>h</sub>
+list, the cursor goes to the first row whose command does not, or to row 0.
+
+The painter `0023F8B0(screen, row widget, -, row)` reads the layout kind of the list the row's command names:
+
+- kind `0B`<sub>h</sub>: the eight parts listed at `00914CA0` show, and of the seven at `00914CA8` only entry n, with n = 1-6
+  for commands 7, `0F`<sub>h</sub>, `16`<sub>h</sub>, `1F`<sub>h</sub>, `22`<sub>h</sub> and `23`<sub>h</sub> and 0 for any other; part 1 is then placed after that
+  entry's text width (`0029FE20`);
+- any other kind: the part at `00914C98` shows unless the kind is `0C`<sub>h</sub>, and part 2 takes the label (`002F9860`)
+  unless it is `FFFF`<sub>h</sub>. Part 2 is recoloured by `00393240(part, 1)` while the row's lock bit is set, and with 0
+  otherwise: bit `1E`<sub>h</sub> for command 4, `1F`<sub>h</sub> for 5, `23`<sub>h</sub> for 6, `22`<sub>h</sub> for 8, `20`<sub>h</sub> for 9, `21`<sub>h</sub> for 10
+  (`00254DD0`).
+
 ### Restore Defaults, Max. LP and Max. Gil
 
 - Restore Defaults asks "Restore all settings to their default values?" (`0023E560`) and Yes rebuilds the options
@@ -124,7 +139,15 @@ headings. A press runs `0017DB90(row, value, direction)`, which calls the settin
 | `20` | Ambient Occlusion | Off, Half-Resolution, Full Resolution | HDAO | - |
 | `21`-`23` | Depth of Field, Glare, Soft Particles | Off, On | DepthofField, Glare, SoftParticle | Soft Particles: `[manager + A80h]` vtable `+60`<sub>h</sub> |
 
+The row painter `0023BB20`, which `0023BD40` installs (`0023BEDD`), hides parts 0-17 of the row widget and
+shows the one whose number is the row's class. For a heading (kind 0) it places part 14 after the class part's text
+width (`0029FE20`). For any other row it puts the label (`002F9860`) in the class part and colours it with
+`002DD7E0(2)` when the row's bit in screen `+720`<sub>h</sub> is set, `002DD7E0(0)` otherwise.
+
 The settings are `GameSetting.ini` keys at `[01F82D20]` ([Game settings](../Saving-Loading-And-Settings/game-settings.md)).
+
+The samplers take the anisotropy from `001DE540(settings)`: entry `+18h % 5` of `00900ED0`, the floats 1, 2, 4, 8
+and 16 (`0018A840`, `0018AC50`, `001BC9D0`, `001BD940`).
 
 - The preset `001D5120` copies column `q` of `00900CE0` into every preset setting, unless `q` is Custom, and pushes
   anisotropic filtering, water, shadow size, MSAA, post-process anti-aliasing and soft particles again (`001DE4F0`).
@@ -202,7 +225,10 @@ Config moves its list cursor with `0023F240` (`0023FE31`), and Graphics Settings
 
 For Config, `0023F190(screen)` decides: the row under the cursor may take it unless its command is `12`<sub>h</sub>, or its
 command names a row list in `01E0BF60` whose layout kind is `0B`<sub>h</sub> or `0C`<sub>h</sub>. The other two screens pass their own
-test, kept at `+728`<sub>h</sub> on Graphics Settings and `+4B8`<sub>h</sub> on Controls; a non-zero answer skips the row. With `hold` set
+test, kept at `+728`<sub>h</sub> on Graphics Settings and `+4B8`<sub>h</sub> on Controls; a non-zero answer skips the row.
+
+Graphics Settings' test `00241840` skips a row whose kind (`00914714` + 20 x row) is 0, a heading; Controls' test
+`00241890` skips a row whose type (`0208E6E4` + 20 x row) is not 2, 3 or 4. With `hold` set
 and a direction pressed, `00240DE0` posts `8003`<sub>h</sub> to the list (`002D1AC0`) instead of moving; Graphics Settings sets
 it while a row's `+C8`<sub>h</sub> differs from its `+C4`<sub>h</sub> (`0023C25F`-`0023C26B`).
 

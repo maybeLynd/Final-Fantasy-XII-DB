@@ -144,7 +144,7 @@ Both follow the library's introsort:
 
 ### Library members compiled into the image
 
-Beside the tree, 49 more bodies of the Microsoft library are compiled from its headers rather than
+Beside the tree, 50 more bodies of the Microsoft library are compiled from its headers rather than
 imported. `msvc-containers-library-members.tsv` names each with the import, vtable or failure string
 that identifies it:
 

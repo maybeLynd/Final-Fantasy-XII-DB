@@ -52,6 +52,11 @@ calls `001C51D0(map, "key")` (its only caller), a three-level chain: the given m
 `Common` section of the current scene map (`01F813D8 + 01F813F8 × 10h` when `01F81418` is set,
 else `01DF6E50`'s), then `01F81328`, then `01F813C8`.
 
+`001C52C0(map, section, key)` is the same chain for a
+key inside a section, used three times by the cutscene loader (`001C4760`-`001C47BA`).
+`001CC9A0(out, n)` makes the decimal string of n (`"%d"`, `008F6D3C`) that `001C5570` and `001CC600` append to
+their key names.
+
 Thirty keys land in the block, twenty-nine through the float reader and `mMapEnableShadowFade`
 as `value == 1` at `+42C`<sub>h</sub> through the integer reader (`001C8F2B`); `mMapShadowFadeRange` at
 `+43C`<sub>h</sub> is raised to 0.9 when the file gives less (`001C8FAB`):
@@ -120,6 +125,8 @@ The three per-slot shadow sets are stored by slot index and applied for the curr
 - `lightHeight` and `lightOrientation` 1 to 3, read only when the area's own file has both, become
   a direction (`001C4F50`, the two angles in degrees) that `001C78D0` hands to `001A9B30(ctx, i, x, y, z)`
   at `+374h + i × Ch`, setting the byte `+398`<sub>h</sub>; without them the loader clears `+398`<sub>h</sub>;
+- the cutscene loader's `001C7850(height, orientation)` makes the same direction and passes it, with y negated, straight to
+  the shadow object (`001F0850`, `001F08A0`);
 - the cascade rows of `mCascadePartition%d_%d` sit at `+350h + i × Ch`.
 
 After each of these the setter (or `001AA3B0` after the cascade loop and after each light)
@@ -136,6 +143,10 @@ an object, else 0. It writes `rtWidth` / `rtHeight` (`+0C0`<sub>h</sub> / `+0C4`
 manager's target (`001867B0`, its `+28`<sub>h</sub> and `+2C`<sub>h</sub> as floats), and `m_mapFadeHeight` (`+448`<sub>h</sub>)
 = the context's `+32C`<sub>h</sub> while `+328`<sub>h</sub> is set, else 1.0.
 
+The character render-object manager's constructor `001BC9D0` registers `001BD9D0` the same way (`001BCC6C`). It
+writes the block's `+184`<sub>h</sub> (`02CB8154`): 0 while byte `+118`<sub>h</sub> of `001EBA40()` is set, otherwise `01DFE194`
+when `01DFE190` is set and that value is at least 0.001 in size, else 0.
+
 ### The shadow matrices
 
 `+190`<sub>h</sub> to `+38F`<sub>h</sub> is an array of eight 64-byte matrices and `+390`<sub>h</sub> to `+434`<sub>h</sub> the shadow
@@ -148,6 +159,17 @@ It copies the matrices out of the shadow object at `[01F82EA8]`: entry n of the 
 `object + 1C0h + n × D8h`, after `001EF6D0` has retargeted each of the object's eight slot
 cameras (`+148h + n × D8h`, vtable at `+0`, matrix at `+78`<sub>h</sub>). `001EF6D0` also writes the
 last slot's far plane to `+460`<sub>h</sub> (`001F045C`).
+
+For a slot camera `001EF6D0` takes the eight corners of its view volume from `001EF560(out, fov, aspect, near,
+far)`: four at the depth `-2 x near x far / (near + far)` and four at `-far`, each with y = ±depth / tan(pi/2 -
+fov/2), x = ±y x aspect and w = 1. `001F0A00`, from `00169580`, `001EF280` and `006ACEE0`, builds an
+orthographic matrix with `001F05B0(out, left, right, bottom, top, near, far)`: scales `2 / (right - left)`,
+`2 / (top - bottom)` and `1 / (near - far)`, offsets `-(left + right) / (right - left)`, `-(top + bottom) /
+(top - bottom)` and `near / (near - far)`.
+
+At start-up the application set-up `00186CD0` gives the shadow object (`001F0850`) its map size through
+`001F0570`: the Shadows setting's pair (`001DE5A0` on `[01F82D20]`) as its high half at `+844`<sub>h</sub> and its low
+half at `+848`<sub>h</sub>.
 
 The shadow scalars are written in the same pass. `+390`<sub>h</sub> to `+3AF`<sub>h</sub> is a copy of object
 `+850`<sub>h</sub> to `+86F`<sub>h</sub>; the rest is derived, with h = the map size at object `+848`<sub>h</sub>:

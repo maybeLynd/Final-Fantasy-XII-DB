@@ -74,6 +74,63 @@ command read in `0056F810` and `00574D00`.
 The family index lists rows of three types, blank, entry and group caption (`00571A50`, `00571710`, `00576A50`).
 Confirming an entry opens the entry page through `0056EC10`. The cursor of each page is saved in bank 6 (`002527B0`).
 
+### The family index rows
+
+`00571F60(page)` builds the index rows for the page's kind (`+E8`<sub>h</sub>) after updating the unlocks (`00577550`). Each row
+is a word at `+F0`<sub>h</sub>: bits 0-3 the type (0 blank, 1 entry, 2 group caption), bits 4-13 the entry or group, bit 14 set
+for an entry not fully read, bit 15 for the right column of the Bestiary's two. `00570930(page, entry)` appends an
+entry row (the read test is `00576D20`). The Bestiary keeps its captions on the left by padding with blanks.
+
+- `00571900` paints a row: a blank or caption row through `005722E0` and `005723C0` (which show or hide up to six and
+  four of the row's nodes) and the caption's text (`00576A50`), an entry through `00571710` (`005760A0`).
+- `005709E0(page, forward)` finds the first entry of the next group, or of the current group's start going back;
+  `005713C0` jumps there on the buttons of mask `C50`<sub>h</sub> (Traveler's Tips) or `CF0`<sub>h</sub> (Bestiary), `400`<sub>h</sub> back and
+  `800`<sub>h</sub> on, stepping the list (`002D3BA0`) until the cursor reaches it.
+- `005715E0` runs one list step and reports when the cursor lands on an entry row.
+- `00576D20(kind, entry)` answers whether an entry is fully read: the family's read bit (`003156E0`) or, for the
+  Bestiary, every unlocked slot of the seven read (`00576E30`, `00315670`; the loop runs 0-7, and slot 7 is the
+  mode marker `00576860` returns, not a text). `005779E0(kind)` marks a family seen
+  (`00315B50` of `00D23750[kind]`).
+
+### The entry page
+
+- `00573BE0(page, n)` lays out page `n` of the entry's text from the text bundle (`005766B0`): for the Bestiary it
+  splits off the title before code 3 (`002B39A0`), then breaks the text into lines (`002B5240`, `002B5390`), keeping
+  each line's start, colour, width and flags at `+41E0`<sub>h</sub>.
+- `00574160` paints one text line into `+4120`<sub>h</sub>, with the line's colour code first (`002AB870`) and right-aligned
+  when its flag says so; `00574080` and `00574770` size the page from the layout.
+- `0056FEA0` closes the entry page and its two panes, and `00577A00` records the current pane on the data manager.
+- `00574A90(kind)` sets the current-entry pane's title, `002F9860([00D236A0 + 6 x kind])`.
+
+### The back panel
+
+- `0056ECC0(pane, event)` saves the page's place in bank 6 (`002527B0(6, 18h, state)`, `00252610(6, [00D236A4 + 6 x
+  kind], 1)`) when a page opens (7), closes (8, which also restores the title through `00574A90`), loses its help window
+  (11, `002CCB10`) or ends (15).
+- `0056F470` draws the clan rank (`00315390`, name `003153F0`) and the counter `003166F0(11h)`, capped at 99,999,999.
+- `005704A0` frees the back panel's help window `+110`<sub>h</sub>; `005749B0` closes its pane `+100`<sub>h</sub>; `005755D0(on)` shows
+  or hides the atlases `icons_c` and `navi_Load`.
+
+### Sky Pirate's Den
+
+`00572BD0(page, direction)` picks the statue nearest the current one in a direction (0 up, 1 down, 2 left, 3 right),
+by the distance `003BD6F0` weighted by `01F2CB50 + 16 x direction`; `005733F0` puts the cursor on it (`00368360`), and
+`00572890` opens the statue's help window (`002CCCA0(00D236E0, 200)`, `002CD150(37h)`).
+
+### The hunt list
+
+The hunt host `[02CA9748]` (`00579AF0`) shows two lists, open and cleared:
+
+- `00579FA0(list)` counts the list's hunts from `0037E760(list, 4)`, `(list, 2)` and `(list, 0)`
+  ([Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)); `005791B0(host, row)` gives a row's
+  quest through `0037EAA0` and `0037E5B0`, counting cleared lists from the bottom.
+- `005792F0` paints a row (`00577C30`), or "no hunts" `868`<sub>h</sub>/`869`<sub>h</sub> for an empty list; `00579230` gives a row's
+  position, and `00577E10` slides the cursor marker there over 200 ms (`002468A0`).
+- `005780D0(row)` selects a row and fills the detail pane (`00577C30`, `00D23888`); `00578860(host, list)` switches
+  between the two lists; `005790D0` closes the panes.
+- `00578120(text, parts)` splits a hunt text at code 2 and counts the parts.
+- `00578F50` keeps the host's place at `+130`<sub>h</sub>-`+13F`<sub>h</sub> (the lists, rows and selection) and sets `+D0`<sub>h</sub> bit 3.
+
 ### The data manager
 
 `005771F0`, at `02CA9738`, loads what the pages show:
@@ -90,6 +147,20 @@ Confirming an entry opens the entry page through `0056EC10`. The cursor of each 
    for a picture (`00575B80` skips kind 4), so its eight picture files ship unused.
 5. A request to a busy slot waits in its queue (`00575A50`). Each slot reports to the back panel when its content is
    ready or freed.
+
+The slots are at `+108`<sub>h</sub>, `+110`<sub>h</sub> and `+118`<sub>h</sub> of `[02CA9738]`, each with a state byte `+C9`<sub>h</sub> (1 ready, 2 and 3
+busy):
+
+- `005766B0` and `00576C70` return the text and picture bundles (`+F8`<sub>h</sub>) of slots 1 and 2 when ready, and
+  `005766E0(i)` the bundle word `+4` of catalog record `i` of slot 0; `00576DA0` answers whether any slot is busy.
+- `00577880(entry)` asks slot 0 for a load (`00575A50`) unless the manager is closing (`+100`<sub>h</sub> bit 6); `005776D0`
+  cancels every slot (busy ones are marked 3, idle ones reset by `00575640`) and sets bit 6; `00575F10` releases every
+  slot the same way and sets bit 3.
+- `00575A10(slot)` frees a slot's content `+F8`<sub>h</sub> (`0024A680`) and resets its id `+D0`<sub>h</sub> to `FFFF`<sub>h</sub>.
+- `005777C0(manager)` tears down: it unregisters the glyph sheets (`002F83E0(7)`, `002F83E0(8)`) and frees the six
+  bound tables and `+F8`<sub>h</sub>.
+- `005770A0(widget, v)` and `00577180` send message 16 to a widget, the latter after re-attaching it; `00577BD0` sends
+  it to `[02CA9730]`.
 
 A catalog record is 12 bytes (below), with text -1 for none (`00575D10`,
 `005778F0`, `005760A0`).
@@ -182,7 +253,8 @@ closes (`0057032C`, `00570350`).
 - `motionIndex` to `001EBC20`, which keeps it modulo 80 at `+224`<sub>h</sub>;
 - `cameraFov` to `001EBA90` (`+250`<sub>h</sub>, `+110`<sub>h</sub>);
 - the ambient light and the two lights, colours and directions, in one `D0`<sub>h</sub>-byte block to `001EBB70`, which copies
-  it to `+144`<sub>h</sub> (`001C694D`).
+  it to `+144`<sub>h</sub> (`001C694D`);
+- `eyeVfxZBias` (`008FB498`) to `002F1690` (`001C659B`), which stores the value less 1000.0 at `022BDEBC`.
 
 ## Shipped data
 
