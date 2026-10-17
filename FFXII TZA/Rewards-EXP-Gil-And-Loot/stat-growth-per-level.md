@@ -65,6 +65,9 @@ MP   += b + (int)bonus;                     // 0 .. b - 1 extra
 `MT()` is `00863BF0`, the Mersenne Twister whose state starts at `02EB3870` (index `02EB4230`). On its
 first use it seeds itself with 5489 (`1571`<sub>h</sub>, `00866D60`).
 
+All 99 rows, with the smallest and largest gain each formula allows, are in [hp-mp-growth.tsv](hp-mp-growth.tsv),
+which `Database/Tools/catalogues/hpmp_growth.py` writes from the shipped file (two runs give byte-identical output).
+
 ### Strength, Magick Power, Vitality and Speed
 
 The four stats grow by `002F9BD0`: `value + byte / 128`, and a result above 100.0 becomes

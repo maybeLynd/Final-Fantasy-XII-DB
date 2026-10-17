@@ -469,7 +469,7 @@ solver context (stack, 0x110 bytes)
 | 60 | frames | the stall counter's limit |
 | 5.0 (`009146E4`), 0.5 (`01CEBB70`), 3.0 (`008F311C`) | | the detour range and the pair margins |
 | `3FB4FDF4`<sub>h</sub> = 1.414 | | the navigation radius factor |
-| `move_support` (`02EBF010`) | 120 rows; caps 1.5 (6 rows), 2.0 (102), 2.5 (12); one narrow row (map 311); map 290 listed twice, the first row (1.5) wins | the heading search field row |
+| `move_support` (`02EBF010`) | 120 rows; caps 1.5 (6 rows), 2.0 (102), 2.5 (12); one narrow row (map 311); map 290 listed twice, the first row (1.5) wins; every row is in [move-support.tsv](move-support.tsv) (`Database/Tools/catalogues/move_support.py`) | the heading search field row |
 | `01EED4C0`, by byte `+175`<sub>h</sub> | 0: above 120 degrees mode 3, below 90 (45 in the fast band) mode 2, else 1; 1: always 1; 2 and 4: always 2; 3: above 45 mode 3, else 2; 5: below 30 mode 1, else 2; 6: above 0.01 rad mode 3, else 2; 7: 2, or 1 in the slow band; the halves for flag bit 3 are identical | the steering mode table |
 
 ## Operations
