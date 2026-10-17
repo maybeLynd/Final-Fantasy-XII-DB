@@ -402,6 +402,17 @@ index)` finds one. Each subtype has an initialiser, run through `004FF110`, and 
   `004FEAD0` turns the point into the object's matrix.
 - The aim queries `00537C50`, `00537EE0`, `00537F40` and `00538780` hand the anchor at `+D0`<sub>h</sub>,
   `+E0`<sub>h</sub>, `+170`<sub>h</sub> or `+160`<sub>h</sub> to the anchor query `003A4290`, for the aim modes of `004FEAD0`.
+- `004FF080(object)` resets a new object (`003A80A3`, `003A82E4`): it clears `+103`<sub>h</sub> bit 0, `+100`<sub>h</sub> and
+  `+E0`<sub>h</sub> to `+FF`<sub>h</sub>, then stores the answer of `00250000` in `+103`<sub>h</sub> bit 1.
+- Every subtype's step starts with `004FE930(object, dt)` (`00537BC3`, `00537CE3`, `0053801F`, `005383DF`). It adds
+  `dt` to the time `+F8`<sub>h</sub>, takes the frame `+FC`<sub>h</sub> as the whole time less the record's start `+C6`<sub>h</sub>, and does
+  nothing (returning 0) before the start or past the record's length `+C8`<sub>h</sub> when that is not 0.
+- Inside that window `004FE930` samples the record's tracks (`00430B90`): the point into `+80`<sub>h</sub> (keeping the last
+  one at `+C0`<sub>h</sub> when the record's `+C3`<sub>h</sub> is set), the track at record `+40`<sub>h</sub> into `+90`<sub>h</sub> and the one at `+80`<sub>h</sub>
+  into `+B0`<sub>h</sub>, and sets `+103`<sub>h</sub> bit 0.
+- `004FF1B0` and `004FF1F0` choose a query by the record's subtype `+C2`<sub>h</sub> for `0052F560` (`0052F76A`, `0052F6B4`):
+  `004FF1B0` calls `00537F10` for subtype 1 and `005382F0` for the others; `004FF1F0` calls `005382F0` for 0,
+  `00537F70` for 1 and `00538320` for 2 and 3.
 
 ### Timeline tracks
 
@@ -733,6 +744,8 @@ The requests sit in 36 entries of `18`<sub>h</sub> bytes at `02EBEC00`, packed f
 - `003B1050(targets, n)`, from `0024FBF0`, raises bit `4`<sub>h</sub> of `+368`<sub>h</sub> on every kind-5 instance
   whose request kind is 0, or is 1 or 3 and whose owner `+08`<sub>h</sub> equals an id of the list (`+11`<sub>h</sub>
   = 0) or the value `002E9B80` returns for one (`+11`<sub>h</sub> = 1).
+- `002FD090()`, from the same `0024FBF0` (`0024FC58`), raises bit `4`<sub>h</sub> of `+368`<sub>h</sub> on the instance `+10`<sub>h</sub> of
+  every handle on the kind-1 active list `02EC3D60`, without a test.
 
 ### Battle effect files
 

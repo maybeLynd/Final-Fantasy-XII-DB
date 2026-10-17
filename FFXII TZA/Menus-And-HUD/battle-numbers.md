@@ -45,7 +45,7 @@ sets the step `+3A`<sub>h</sub> to 1 and the kind `+3C`<sub>h</sub> from the req
 
 | Kind | Posted by | Record |
 |---:|---|---|
-| 0, number | `003283D0(unit, amount, isHeal, b)` for HP ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)) and MP ([MP](../Status-Effects-And-KO/mp.md)) | the digits of `|amount|` (`003EFD00`) at `+40`<sub>h</sub>, their count `+3F`<sub>h</sub>, the atlas `battle_4_c` (`0024A5A0`), the colour `002DD7E0(00D227A8[colour])` at `+0C`<sub>h</sub> and its palette `002DD7B0` at `+3D`<sub>h</sub> |
+| 0, number | `003283D0(unit, amount, isHeal, b)` for HP ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)) and MP ([MP](../Status-Effects-And-KO/mp.md)) | the digits of the absolute amount (`003EFD00`) at `+40`<sub>h</sub>, their count `+3F`<sub>h</sub>, the atlas `battle_4_c` (`0024A5A0`), the colour `002DD7E0(00D227A8[colour])` at `+0C`<sub>h</sub> and its palette `002DD7B0` at `+3D`<sub>h</sub> |
 | 1, picture | `00328480(unit, frame)`, from the result reactions `00307300` (frames 0, 2, 4 and 5) and the auto-attack start `00312FA0` (frame 3) | the frame `+3F`<sub>h</sub>, the atlas `battle_4_p`, two colours from the byte pairs at `00D22780` |
 | 2, status word | `003284D0(unit, status)` ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)) | step 3, the status's name (`002B58B0` of the record's `+18`<sub>h</sub>) laid out by `002B3050`, palette 4, and the colour by the record's `+25`<sub>h</sub>: bit 1 colour 1, bit 2 `12`<sub>h</sub>, bit 3 `B6`<sub>h</sub>, bit 4 `F3`<sub>h</sub>, else grey `80808080`<sub>h</sub> |
 
