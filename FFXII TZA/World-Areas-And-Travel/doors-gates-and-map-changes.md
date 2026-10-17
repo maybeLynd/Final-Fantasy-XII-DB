@@ -217,6 +217,10 @@ The ground field also picks an effect: the presentation command `18`<sub>h</sub>
 103 for 11, 12 and 15, 148 for 16 and 18, and nothing for the others (`003B02A0`). A
 `setmapgroundtype` write lasts until the body's next move or placement rewrites `+8A`<sub>h</sub>.
 
+Two of those effects carry a float, stored at the new effect's `+36C`<sub>h</sub> with bit `800`<sub>h</sub> set in its word
+`+368`<sub>h</sub>: 148 takes the actor's `+144`<sub>h</sub>, and 103 takes the float `+C0`<sub>h</sub> of the record at qword `+138`<sub>h</sub>
+of the actor's `+C0`<sub>h</sub> record (`002E98C0`) when bit 3 of that record's dword `+90`<sub>h</sub> is set (`002E9860`).
+
 ### Asking whether a bit is overridden
 
 `0026E300(entry, kind)`, reached through the thunk `0032A780`, maps the kind through the table

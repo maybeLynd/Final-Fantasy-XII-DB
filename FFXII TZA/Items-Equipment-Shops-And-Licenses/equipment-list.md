@@ -11,13 +11,17 @@ addresses: "02EBF0F8, 0031C5D0, 0031C911, 0031C981, 002FEF30, 0031E9F0, 00388409
 reaches (`battle_pack.bin` directory entry `+38`<sub>h</sub>). The meaning of every field, and the code that reads it, is on
 [Equipment row](equipment-row.md); this page is the shipped content of that table.
 
-- Rows 0-419 are the items equipment ids `1000`<sub>h</sub>-`11A3`<sub>h</sub> name: 200 main-hand weapons, 52 off-hand items (shields and
-  ammunition), 60 head pieces, 60 body pieces and 48 accessories.
+- Rows 0-419 are the equipment the party can hold, ids `1000`<sub>h</sub>-`11A3`<sub>h</sub>, the 420 counts of the inventory's
+  equipment class ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): 200 main-hand
+  weapons, 52 off-hand items (shields and ammunition), 60 head pieces, 60 body pieces and 48 accessories.
 - Thirteen of the main-hand rows, 179-191, are named Reserve: classes 5, 0 and 8 and a price of 1, with weapon
   stats (Attack 61-201, reach, recipe, knockback on three) and element sets of their own, and empty bonus stats. An
-  item id reaches them; their explanation says so and lists their Attack and element sets.
-- Rows 420-556 are past the id space. Their names are "NOT USED" (124 rows) or "Reserve" (13 rows), and no item id
-  reaches them.
+  inventory count reaches them; their explanation says so and lists their Attack and element sets.
+- Rows 420-556, ids `11A4`<sub>h</sub>-`122C`<sub>h</sub>, are past the inventory's 420 counts, so the party cannot hold them. Their
+  names are "NOT USED" (124 rows) or "Reserve" (13 rows). The id check `00322C50` still accepts them, since it
+  bounds class 6 by the table's own 557 rows (`1000`<sub>h</sub> to `1000`<sub>h</sub> + 557 - 1).
+- Enemies are given these ids: 958 of the 1,146 enemy definitions hold one of them in their main-hand word
+  `+16`<sub>h</sub>, which `0023AC80` installs ([Bestiary](../Enemy-Spawning/bestiary.md)).
 
 ### How it is built
 
@@ -82,7 +86,7 @@ as the stats rebuild `002FEF30` reads them ([Equipment row](equipment-row.md), "
 | `attack_effect` | weapons (classes 0-17): `+2C`<sub>h</sub>, the effect a plain Attack shows in its low 15 bits (`0030AD56`) |
 | `bonus_record` | the bonus record's index: `+28`<sub>h</sub> / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+30`<sub>h</sub> |
-| `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the id space, what the row is |
+| `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
 
 ## Related
 

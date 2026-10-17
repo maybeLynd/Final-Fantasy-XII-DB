@@ -81,9 +81,11 @@ The status write `0030E360` picks its word by mode (jump table `0030E88C`): mode
 Two script commands set an enemy's two masks:
 
 - **`btlAtelSetAbility(a, b)`**: the handler `00510440` pops two numbers and jumps to `002390B0`, which
-  clears `+E80`<sub>h</sub> and sets the augments of the two words in reverse bit order: bit *j* of the second
-  argument sets augment 31 - *j*, bit *j* of the first sets augment 63 - *j* (`002390D8`-`00239161`). Only
-  augments 0-63 can be set this way.
+  clears `+E80`<sub>h</sub> and sets the augments of the two words in reverse bit order: bit *j* of the first argument
+  sets augment 31 - *j*, bit *j* of the second sets augment 63 - *j* (`002390D8`-`00239161`). Only augments 0-63
+  can be set this way.
+  - The handler's first pop (`00267E10`) is the word pushed last, the second argument, and it is `002390B0`'s
+    first word.
 - **`btlAtelSetStatus(table)`**: the handler `005103B0` resolves its argument to 8 bytes of script data and
   jumps to `002394C0`, which reads 32 two-bit codes, one per status (`00239504`-`00239527`):
 

@@ -1,0 +1,254 @@
+---
+title: "Bestiary: every enemy definition of every area with its name, level, stats, elements, statuses, loot and rewards"
+kind: "reference"
+category: "Enemy spawning"
+addresses: "02EBF120, 02EBF150, 02EBF148, 02EBF140, 003EA710, 0023A570, 0023AC80, 002FEF30, 0030C470, 002398F0, 002394C0, 002390B0, 0023A3B0, 002F8BB0, 002F90C0, 00312280, 00317090, 00390390, 00390680, 003180F0, 00238BF0, 0031C2F0, 002ED6F0, 002DF9A0, 00264ED0"
+---
+
+## What it lists
+
+`bestiary.tsv` holds one line for each of the 1,146 enemy definitions in the 166 shipped area files (`.ard`): the
+rows of directory slot 2 that `003EA710` binds to registry slot `02EBF120` when the area loads
+([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)).
+
+Four of the 166 files have no slot 2 rows (`asp_a` 94, `mrm_a` 187, `slm_a` 217 and `dor_f` 280), so the lines
+come from 162 areas. Each line joins the definition to
+its class row (slot 0, `02EBF150`), its base stat row (slot 5, `02EBF148`) and its growth stat row (slot 6,
+`02EBF140`), and to the zone-script calls that place it.
+
+- One monster has many definitions: one per area it appears in and one per variant inside an area. The 1,146 lines
+  carry 457 distinct names; Imperial Swordsman has 51 definitions, Flan 5 and Wolf 2. Every definition is kept.
+- The level, the status immunities, the starting statuses and the augments are not in the area file. Each placement
+  sets them through four script verbs (below), so a definition placed several ways lists every combination.
+- 1,143 definitions are placed by the us map scripts, 6,229 times in all. Three are placed by none: Dead Bones
+  (`bog_a` row 3), Axebeak (`enw_b` row 8) and Omega Mark XII (`gil_i` row 7).
+
+The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
+installer `0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
+
+### How it is built
+
+`Database/Tools/catalogues/bestiary.py` reads the files the way the game reads them:
+
+1. The area files. The executable's kind-21 path array `01EDC280`, which `002DF9A0` installs at `0215F0A8` for every
+   language but Korean and Chinese, names area *a*'s file at position 2*a* under `plan_master/in`. 215 positions name
+   a file and 166 of those ship. Each section is an `st2e` table whose rows start at the section's `+0C`<sub>h</sub>.
+2. The placements. A map's script is entry 3*n* of the US kind-5 array `01EE23A0` (`002DF9A0`, language 1), and its
+   area is the word `+4` of row *n* of `map_ref.bin`, as `00264ED0` reads it. The decoder walks every function of
+   those 708 scripts.
+3. The names: the definition's name word `+08`<sub>h</sub> through the word banks of the `us` `battle_pack.bin`, as `0023A570`
+   resolves it through `02EBF170`.
+4. The item names: ids through the [Item list](../Items-Equipment-Shops-And-Licenses/item-list.md),
+   [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md),
+   [Loot list](../Items-Equipment-Shops-And-Licenses/loot-list.md) and key-item list, and `E000`<sub>h</sub> + *n* as *n* gil
+   ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
+5. The model: the class row's dword `+00`<sub>h</sub> is a bound id (letter class in bits 16-23, number in bits 0-15).
+   `002ED6F0` turns it into a resource kind and file index, and the decoder takes the file name from that kind's path
+   array ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
+
+The 31 `bts_` test-battle scripts under `plan_map` hold the other 517 placements of the shipped scripts. The US
+kind-5 array names none of them, so no area load runs them, and the decoder leaves them out.
+
+### The placement verbs
+
+Every placement in the shipped scripts is one script function calling these four verbs, each with immediate
+arguments (`PUSHII`, a pooled int or a pooled float):
+
+| Verb | Handler | What it sets |
+|---|---|---|
+| `btlAtelSetUnit(row)` | `00510160` → `0023A3B0` | installs definition `100`<sub>h</sub> + *row* with `0023A570` |
+| `btlAtelSetLevel(base, range)` | `0050F910` → `002398F0` | level `base + rand % (range + 1)` and reference level `+88`<sub>h</sub> = `base`, through `0030C470` |
+| `btlAtelSetStatus(table)` | `005103B0` → `002394C0` | 32 two-bit codes: 3 immune, 2 added at a fresh spawn, 1 added when an LCG draw is odd ([Augments](../Damage-And-Battle-Formulas/augments.md)) |
+| `btlAtelSetAbility(a, b)` | `00510440` → `002390B0` | the enemy augment mask `+E80`<sub>h</sub>: bit *j* of `a` sets augment 31 - *j*, bit *j* of `b` sets augment 63 - *j* |
+
+The status table argument is an msp reference (tag 3, resolved by `002650B0`): 8 bytes at the script image's
+`[+40h]` plus the offset. `0023A570` has two other callers: `00300E40` passes `FFFF`<sub>h</sub> (`00300F6D`), and `003266C0`
+clears unit flag bit 26 first (`00326AFD`), which the enemy path requires.
+
+Because the reference level is the placement's own base level, every stat and reward is the base row's value at
+that level and grows by the growth row's value for each level above it ([Stats](../Damage-And-Battle-Formulas/stats.md)):
+
+```python
+stat = growth[field] * (level - base) + base[field] + order adjustment  # 002FEF30
+reward = per-level[field] * (level - base) + base[field]  # 002F8BB0, 002F90C0, 00312280, 00317090
+```
+
+So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at their lowest level.
+
+### The enemy definition (slot 2, 88 bytes)
+
+| Offset | Type | Field | Read by |
+|---|---|---|---|
+| `00`<sub>h</sub> | `u16` | class row | `0023A570`, `002FEF30`; `0031C2F0` reads its low byte for the model ([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)) |
+| `02`<sub>h</sub> | `u8` | spawn counter slot, `FF`<sub>h</sub> none | `0023A570` |
+| `03`<sub>h</sub> | `u8` | flags: bits 0-1 the tracked-HP class (`00328FF0`); bit 4 the height and AI tests below; bit 5 the shadow kind | `0023A570`, `00238BF0`, `00236210`, `00301AD0` |
+| `04`<sub>h</sub> | `u8[4]` | 0 in every row | no reader (scope below) |
+| `08`<sub>h</sub> | `u16` | name word | `0023A570`, `0031C5D0` (`0031DD5A`), `00536310` |
+| `0A`<sub>h</sub> | `i16[3]` | model scale in percent, 0 meaning 100 | `00238BF0` (`00238D1B`-`00238D68`), handed to `002E5FD0` |
+| `10`<sub>h</sub> | `u8` | 0, or 55 on two rows | no reader (scope below) |
+| `11`<sub>h</sub> | `u8[2]` | the model's variant bytes: `+12`<sub>h</sub> first, `+11`<sub>h</sub> second | `0031C540` (`0031C5AB`, `0031C5B1`) |
+| `13`<sub>h</sub> | `u8` | animation set, `FF`<sub>h</sub> for the weapon's | `003202F0` ([Action phases](../Battle-Actions/action-phases.md)) |
+| `14`<sub>h</sub> | `u8` | 0 in every row | no reader (scope below) |
+| `15`<sub>h</sub> | `u8` | flags: bit 0 Attack and weapon evade from the rows; bit 1 shield and magick evade from the rows; bit 2 unit flag bit 43; bits 3-4 the target-information query | `002FEF30`, `0023A570`, `0031AA30` |
+| `16`<sub>h</sub> | `u16` | main-hand equipment id | `0023AC80` (slot 0) |
+| `18`<sub>h</sub> | `u32` | starting HP, 0 for none | `0023A410` ([Enemy spawning](enemy-spawning.md)) |
+| `1C`<sub>h</sub> | `u16` | off-hand equipment id | `0023AC80` (slot 1) |
+| `22`<sub>h</sub> | `u16` | base stat row | `0023A570`, `002FEF30` |
+| `24`<sub>h</sub> | `u16` | growth stat row | `0023A570`, `002FEF30` |
+| `26`<sub>h</sub> | `i16` | voice bank, negative for the model's | `003212E0` ([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)) |
+| `28`<sub>h</sub> | `u16[5]` | drop slots 1-5 | `003180F0` ([Loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md)) |
+| `32`<sub>h</sub> | `u16[3]` | steal: common, uncommon, rare | `00390390`, `0023A570` ([Steal](../Damage-And-Battle-Formulas/steal.md)) |
+| `38`<sub>h</sub> | `u32[2]` | the ids of the model's part 8 entries 0 and 1, 0 for none; 0 in every row | `0031C000` through `0031BEC0` ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), states 13-15) |
+| `40`<sub>h</sub> | `u8[2]` | those entries' attach links, through the table at `00D107F8`; 0 in every row | `0031BE30` |
+| `42`<sub>h</sub> | `u8[2]` | Monograph drop chances | `003180F0` |
+| `44`<sub>h</sub> | `u16[2]` | poach: common (95 %), rare (5 %) | `00390680` ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) |
+| `48`<sub>h</sub> | `u16[4]` | Monograph pairs: key item, item | `003180F0` |
+| `50`<sub>h</sub> | `u16[4]` | order sets for orders 0-3 | `0023A570` (set 0), `00239040`, `002FDDA0` ([Battle orders](../Battle-Actions/battle-orders.md)) |
+
+The `+03`<sub>h</sub> and `+15`<sub>h</sub> bits, by their readers:
+
+- `+03`<sub>h</sub> bit 4: `00238BF0` raises the unit byte `+58`<sub>h</sub> to 7 ([Battle units](../Characters-And-Objects/battle-units.md));
+  `00236210` returns the motion height without its random part (`002362A4`); the gambit target selector
+  `00301AD0` tests it (`0030268D`).
+- `+03`<sub>h</sub> bit 5: `00238BF0` passes it to `002E8A10`, which stores it as the render record's shadow kind, bits 12-13
+  of `+304`<sub>h</sub> ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
+- `+15`<sub>h</sub> bit 3: `0031AA30` leaves the target-kind word at 0 for an enemy (`0031AACF`); bits 3 or 4: it leaves the
+  reach word at -1 instead of `01EED2D0[action kind]` (`0031AB39`). `0031AA30` runs from `00321060` and `00328530`.
+
+### The class row (slot 0, 84 bytes)
+
+| Offset | Type | Field | Read by |
+|---|---|---|---|
+| `00`<sub>h</sub> | `u32` | model, a bound id | `0031C2F0` |
+| `04`<sub>h</sub> | `u8` | type, unit `+55`<sub>h</sub> | `0023A570` |
+| `05`<sub>h</sub> | `u8` | class, unit `+56`<sub>h</sub>, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)) | `0023A570` |
+| `06`<sub>h</sub> | `u16` | unit `+52`<sub>h</sub>; 0 in every row | `0023A570` |
+| `10`<sub>h</sub> | `i16` | separation weight in tenths; a positive value is divided by 10 | `00238BF0` (`00238CEB`) → `0026DAC0` ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)) |
+| `12`<sub>h</sub> | `u8` | flags: bits 0-2 the effect column; bit 4 actor `+09`<sub>h</sub> bit 6; bit 5 the view query; bit 6 actor `+08`<sub>h</sub> bit 3 and `+09`<sub>h</sub> bit 6; bit 7 the pair clearance | below |
+| `18`<sub>h</sub> | `u8` | bits 1-3 a movement group; bits 4-6 the placement height | `00239E10`, `003247F0`, the locomotion functions below |
+| `20`<sub>h</sub> | `u8` | combo cap: hits at most this value minus 1 | `00388660` (`00388845`, [Combos](../Battle-Actions/combos.md)) |
+| `21`<sub>h</sub> | `u8` | bit 1: an enemy may back off from its target | `003341A0` (`00334204`, [Action range](../Battle-Actions/action-range.md)) |
+| `22`<sub>h</sub> | `u8` | facing in degrees, unit `+64`<sub>h</sub> | `0023A570` |
+| `23`<sub>h</sub> | `u8` | unit `+68`<sub>h</sub> | `0023A570` |
+| `25`<sub>h</sub> | `u8` | sight radius | `003247F0` ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)) |
+| `26`<sub>h</sub> | `u8` | radius for units below 40 % HP | `003247F0` |
+| `27`<sub>h</sub> | `u8` | unit `+6C`<sub>h</sub> | `0023A570` |
+| `28`<sub>h</sub> | `u8` | bit 0 the view query's height; bit 1 the kill chain skips it | `0031ADB0` (`0031B08D`), `00317ED0` (`00317F09`) |
+| `29`<sub>h</sub> | `u8[5]` | absorb, halve, nullify, weak, potency | `002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
+| `30`<sub>h</sub> | `u16[8]` | `FFFF`<sub>h</sub> or `0100`<sub>h</sub>-`01FF`<sub>h</sub> | no reader (scope below) |
+| `40`<sub>h</sub> | `u16` | model family, the same-model run | `00317ED0` (`00317F77`) |
+| `52`<sub>h</sub> | `u16` | species, `FFFF`<sub>h</sub> none | `003171C0`, `0031B9A0`, `00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
+
+The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) are 0 in every row.
+
+The `+12`<sub>h</sub> and `+18`<sub>h</sub> bits, by their readers:
+
+- `+12`<sub>h</sub> bits 0-2: `00329F80` picks the action effect from the table at `00D10720`, five values per effect class,
+  and starts none for a value above 4 (`00329FB3`).
+- `+12`<sub>h</sub> bits 4 and 6: `00238BF0` hands bit 4 to `0026A3A0` (actor `+09`<sub>h</sub> bit 6) and bit 6 to `0026A430`
+  (actor `+08`<sub>h</sub> bit 3 and `+09`<sub>h</sub> bit 6), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
+- `+12`<sub>h</sub> bit 5: the view builder `0031ADB0` reports kind 1 instead of 2 for a target with it (`0031B394`).
+- `+12`<sub>h</sub> bit 7: `003879C0`, `00390AB0` (`00390B93`, `00390C16`) and the pair clearance `0033D660` (`0033D794`)
+  ([Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
+- `+18`<sub>h</sub> bits 1-3, the value 4: the target list notices every unit (`003248F8`), actor `+13`<sub>h</sub> bit 7 is set
+  (`00238E23`), and `00233EA0`, `00233F70`, `0031E880` and `00325260` test it too.
+- `+18`<sub>h</sub> bits 1-3, other values: the locomotion functions `003357B0`, `00336710`, `00336CE0`, `00337470`,
+  `003377C0`, `00337C10`, `00337D90`, `00338490`, `0033A240`, `0033C310` and `0033E1F0` compare the group with 0, 1,
+  2, 4 and 5.
+- `+18`<sub>h</sub> bits 4-6: the placement height byte `+1F6`<sub>h</sub> (`00239E10`, [Enemy spawning](enemy-spawning.md)).
+
+### The base and growth stat rows (slots 5 and 6, 56 bytes)
+
+| Offset | Type | Field | Read by |
+|---|---|---|---|
+| `00`<sub>h</sub> | `u16` | clan points, statistics counter 17 | `00317090` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
+| `02`<sub>h</sub> | `u8` | shield evade, with `+15`<sub>h</sub> bit 1 | `002FEF30` |
+| `03`<sub>h</sub> | `u8` | magick evade, with `+15`<sub>h</sub> bit 1 | `002FEF30` |
+| `20`<sub>h</sub> | `u32` | max HP | `002FEF30` |
+| `24`<sub>h</sub> | `i16` | max MP | `002FEF30` |
+| `26`<sub>h</sub> | `u8[4]` | Strength, Magick Power, Vitality, Speed | `002FEF30` |
+| `2A`<sub>h</sub> | `u8` | innate evade | `002FEF30` |
+| `2B`<sub>h</sub> | `u8` | Defense | `002FEF30` |
+| `2C`<sub>h</sub> | `u8` | Magick Resist | `002FEF30` |
+| `2D`<sub>h</sub> | `u8` | Attack, with `+15`<sub>h</sub> bit 0 | `002FEF30` |
+| `2E`<sub>h</sub> | `u8` | weapon evade, with `+15`<sub>h</sub> bit 0 | `002FEF30` |
+| `2F`<sub>h</sub> | `u8` | LP | `002F90C0` ([EXP, LP and level-ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md)) |
+| `30`<sub>h</sub> | `u32` | gil | `00312280` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)) |
+| `34`<sub>h</sub> | `i32` | EXP | `002F8BB0` |
+
+Bytes `04`-`1F`, `32`-`33` and `36`-`37` are 0 in every row of both slots.
+
+### The scope of "no reader"
+
+The search covered every reference to the four slots and every load of the unit's two row pointers:
+
+- `02EBF120` is read by `0023A570`, `0023AC80`, `002FEF30`, `0031C2F0`, `0031C5D0` and `00322C50`; `02EBF150` by
+  `0023A570`, `002FEF30`, `0031C2F0` and `00322C50`; `02EBF148` and `02EBF140` by `0023A570` and `002FEF30`. All
+  were decompiled; the image holds no image-base-relative form of the four addresses.
+- The definition pointer unit `+E60`<sub>h</sub> is loaded at 27 sites in 21 functions and the class row pointer `+E68`<sub>h</sub> at
+  47 sites in 31 functions; each load was followed to the fields it reads. `00313120` and `00317400` read only party
+  rows.
+- `+E70`<sub>h</sub> and `+E78`<sub>h</sub> (the stat rows) are loaded only by `002F8BB0`, `002F90C0`, `00312280` and `00317090`.
+
+No instruction in that set reads the definition's `+04`<sub>h</sub>-`+07`<sub>h</sub>, `+10`<sub>h</sub> or `+14`<sub>h</sub>, or the class row's
+`+30`<sub>h</sub>-`+3F`<sub>h</sub>, so the TSV gives those raw.
+
+### Checks
+
+- The 166 files' own slot 2 headers give 1,146 rows in all, and the TSV has 1,146 data lines; the slot 0, 5 and 6
+  headers give 954, 1,119 and 619 rows, the counts on the area file page.
+- Two runs over the same files give byte-identical output.
+- The 708 us map scripts hold 6,229 `btlAtelSetUnit` calls, each followed in the same function by one
+  `btlAtelSetLevel`, one `btlAtelSetStatus` and one `btlAtelSetAbility` with immediate arguments, and each naming a
+  row below its area's slot 2 count; the decoder asserts all three. With the 517 of the `bts_` scripts they are the
+  6,746 calls of each verb in the us scripts.
+- The `in` and `ch` area files are byte-identical (166 of 166), and the 708 us map scripts place every enemy exactly
+  as the `fr` and `in` copies do. Only the names differ by language: 986 of the 1,146 differ in the `de`
+  `battle_pack.bin`. The TSV keeps the `us` names.
+- No text field keeps an undecoded `{hh}` byte.
+
+Five definitions compared with the code that reads them:
+
+| Definition | Field | Shipped bytes | Reader and result |
+|---|---|---|---|
+| Wolf, `dst_a` row 2 | HP, base row 2 and growth row 1 | `+20`<sub>h</sub> = `5E`<sub>h</sub>, `14`<sub>h</sub> | `002FEF30`: 94 + 20 per level above the placement's base |
+| Wolf | level, script `dst_a01` | `btlAtelSetLevel(2, 1)` | `002398F0`: level 2 or 3, reference level 2 |
+| Wolf | steal | `+32`<sub>h</sub> = `2021`<sub>h</sub>, `2069`<sub>h</sub>, `10F3`<sub>h</sub> | `00390390`: Wind Stone, Wolf Pelt, Pointy Hat |
+| Flan, `mic_a` row 4 | EXP, LP | base `+34`<sub>h</sub> = 200, `+2F`<sub>h</sub> = 1; growth 7, 0 | `002F8BB0`, `002F90C0`: 200 EXP + 7 per level, 1 LP |
+| Flan | weak | class row 4 `+2C`<sub>h</sub> = `01`<sub>h</sub> | `002FEF30` copies it to stats `+40`<sub>h</sub>: fire |
+| Malboro, `lus_d` row 3 | poach | `+44`<sub>h</sub> = `207E`<sub>h</sub>, `+46`<sub>h</sub> = `207F`<sub>h</sub> | `00390680`: Malboro Fruit at 95 %, Malboro Flower at 5 % |
+| Malboro | clan points | base `+00`<sub>h</sub> = 330, growth 85 | `00317090`: 330 + 85 per level |
+| Basch, `naf_a` row 2 | evades | `+15`<sub>h</sub> = `03`<sub>h</sub>, base `+02`<sub>h</sub> = 25, `+03`<sub>h</sub> = 10 | `002FEF30`: shield evade 25 and magick evade 10 from the row, not the Buckler |
+| Omega Mark XII, `gil_i` row 7 | absorb | class row 6 `+29`<sub>h</sub> = `FF`<sub>h</sub> | `002FEF30`: absorbs all eight elements |
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `area`, `area_id`, `row`, `id` | the area file, its area number, the definition's row and its id `100`<sub>h</sub> + row |
+| `name` | the shipped name |
+| `placements`, `level` | how many placements the us map scripts make, and the level ranges `base`-`base + range` they set |
+| `class_row`, `model`, `model_id` | the class row, its model's file name and bound id |
+| `type`, `class`, `species`, `model_family` | class row `+04`<sub>h</sub>, `+05`<sub>h</sub>, `+52`<sub>h</sub> (empty for none), `+40`<sub>h</sub> |
+| `base_row`, `growth_row` | definition `+22`<sub>h</sub>, `+24`<sub>h</sub> |
+| `hp` ... `magick_evade` | the stats `002FEF30` builds at a placement's base level without order adjustments: the base row plus the gear's bonus records, Attack and evades from the gear unless `+15`<sub>h</sub> says otherwise, capped as on [Stats](../Damage-And-Battle-Formulas/stats.md) |
+| `*_per_level` | the growth row's value added per level above the base |
+| `exp`, `lp`, `gil`, `clan_points` and their `_per_level` | the base and growth rows' rewards |
+| `weak`, `absorb`, `halve`, `nullify`, `potency` | the class row's affinity bytes ORed with the gear's attribute records |
+| `immune`, `auto_status`, `auto_status_half` | the status codes 3, 2 and 1 of the placements' `btlAtelSetStatus` tables |
+| `augments` | the augments `btlAtelSetAbility` sets, with the augment's shipped text when it has one |
+| `steal_*`, `drop_1`-`drop_5`, `poach_*` | the items by name |
+| `monograph_1`, `monograph_2` | item, chance and the key item that must be held |
+| `weapon`, `weapon_element`, `weapon_status`, `off_hand` | the two equipment ids by name; the main-hand row's element and on-hit status |
+| `start_hp` ... `class_words30` | the remaining fields as the layout tables above name them, raw |
+| `explanation` | a one-line summary of the placements, HP, elements, rewards and steals |
+
+A value that differs between placements of one definition is listed once per variant, separated by ` / `.
+
+## Related
+
+- [Area battle data (.ard and .nmb): the per-area file of enemy definitions, class rows, stat rows, gambit order sets, motion overrides and preloaded models, and its companion](../Game-Files-And-Data-Tables/ard-area-battle-data.md)
+- [Battle unit construction: the party and enemy definition tables, the stats record a unit gets, the kind byte and the type partition](../Characters-And-Objects/battle-unit-construction.md)
+- [Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps](../Damage-And-Battle-Formulas/stats.md)
+- [Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script](../Damage-And-Battle-Formulas/augments.md)
+- [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](../Rewards-EXP-Gil-And-Loot/loot-drops.md)

@@ -163,17 +163,28 @@ Struct EnemyRow table=`02EBF120` (stride at table +`08`<sub>h</sub>):
 |---|---|---|---|
 | `00`<sub>h</sub> | `u16` | classRow | row of `02EBF150` (the class row at unit +`E68`<sub>h</sub>) |
 | `02`<sub>h</sub> | `u8` | counterSlot | spawn counter index, `FF`<sub>h</sub> for none |
-| `03`<sub>h</sub> | `u8` | flags | bits 0-1 the tracked-HP class (`00328FF0`, flag bit 43) |
+| `03`<sub>h</sub> | `u8` | flags | bits 0-1 the tracked-HP class (`00328FF0`, flag bit 43); bit 4: unit +`58`<sub>h</sub> = 7 (`00238BF0`), the motion height without its random part (`002362A4`), a test of the gambit selector (`0030268D`); bit 5: the shadow kind, through `002E8A10` |
 | `08`<sub>h</sub> | `u16` | nameRef | bank << 11 \| entry into `02EBF170` |
-| `15`<sub>h</sub> | `u8` | flags2 | bit 2 also sets flag bit 43 |
+| `0A`<sub>h</sub> | `i16[3] scalePercent` | 0 means 100; divided by 100 and handed to 002E5FD0 (00238D1B-00238D68) |  |
+| `11`<sub>h</sub> | `u8[2] variant` | `+12`<sub>h</sub> then `+11`<sub>h</sub>, the model's variant bytes (0031C5AB, 0031C5B1) |  |
+| `13`<sub>h</sub> | `u8` | animSet | `FF`<sub>h</sub> for the weapon's (`003202F0`) |
+| `15`<sub>h</sub> | `u8` | flags2 | bit 0 Attack and weapon evade, bit 1 shield and magick evade from the stat rows (`002FEF30`); bit 2 also sets flag bit 43; bit 3 (`0031AACF`) and bits 3-4 (`0031AB39`) in the target-information query `0031AA30` |
 | `16`<sub>h</sub> | `u16` | equipment0 |  |
+| `18`<sub>h</sub> | `u32` | startHp | 0 for none (`0023A410`) |
 | `1C`<sub>h</sub> | `u16` | equipment1 |  |
 | `22`<sub>h</sub> | `u16` | rewardRow | row of `02EBF148` (unit +`E70`<sub>h</sub>) |
 | `24`<sub>h</sub> | `u16` | rewardLevelRow | row of `02EBF140` (unit +`E78`<sub>h</sub>) |
+| `26`<sub>h</sub> | `i16` | voiceBank | negative for the model's (`003212E0`) |
+| `28`<sub>h</sub> | `u16[5] drops` | the five drop slots (003180F0) |  |
 | `32`<sub>h</sub> | `u16` | steal0 | `FFFF`<sub>h</sub> for none; record +`14`<sub>h</sub> bit 0 |
 | `34`<sub>h</sub> | `u16` | steal1 | bit 1 |
 | `36`<sub>h</sub> | `u16` | steal2 | bit 2 |
-| `50`<sub>h</sub> | `u16` | logicRow | row of `02EBF168` (unit +`6E0`<sub>h</sub>) |
+| `38`<sub>h</sub> | `u32[2] partIds` | part 8 entries 0 and 1 of the model rebuild (0031C000 through 0031BEC0) |  |
+| `40`<sub>h</sub> | `u8[2] partLinks` | their attach links, 00D107F8[byte] (0031BE30) |  |
+| `42`<sub>h</sub> | `u8[2] extraChance` | the two Monograph drop chances (003180F0) |  |
+| `44`<sub>h</sub> | `u16[2] poach` | 95 % and 5 % (00390680) |  |
+| `48`<sub>h</sub> | `u16[4] extraDrops` | key item, item, key item, item (003180F0) |  |
+| `50`<sub>h</sub> | `u16[4] logicRows` | rows of 02EBF168 for orders 0-3; `+50`<sub>h</sub> at install (unit `+6E0`<sub>h</sub>), all four | through `002FDDA0` and `00239040` |
 
 Struct PartyRow table=`02EBF130` (stride at table +`08`<sub>h</sub>):
 
@@ -196,12 +207,25 @@ Class row (`02EBF150`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `00`<sub>h</sub> | `u32` | model | a bound id, letter class in bits 16-23 (`0031C2F0`) |
 | `04`<sub>h</sub> | `u8` | type | unit +`55`<sub>h</sub> |
 | `05`<sub>h</sub> | `u8` | kind | unit +`56`<sub>h</sub> |
 | `06`<sub>h</sub> | `u16` | clanEntry | unit +`52`<sub>h</sub> |
+| `10`<sub>h</sub> | `i16` | separation | tenths; a positive value / 10 to `0026DAC0` (`00238CEB`) |
+| `12`<sub>h</sub> | `u8` | flags | bits 0-2 the effect column (`00329FB3`); bit 4 actor +`09`<sub>h</sub> bit 6 (`0026A3A0`); bit 5 the view query's kind (`0031B394`); bit 6 actor +`08`<sub>h</sub> bit 3 and +`09`<sub>h</sub> bit 6 (`0026A430`); bit 7 `003879C0`, `00390AB0`, `0033D660` |
+| `18`<sub>h</sub> | `u8` | group | bits 1-3 a movement group, 4 noticing every unit (`003248F8`); bits 4-6 the placement height (`00239E10`) |
+| `20`<sub>h</sub> | `u8` | comboCap | hits at most this - 1 (`00388845`) |
+| `21`<sub>h</sub> | `u8` | flags21 | bit 1 an enemy may back off (`00334204`) |
 | `22`<sub>h</sub> | `u8` | facing | unit +`64`<sub>h</sub> = value * 2π / 360 |
 | `23`<sub>h</sub> | `u8` | scale | unit +`68`<sub>h</sub> |
+| `25`<sub>h</sub> | `u8` | sightRadius | `003247F0` |
+| `26`<sub>h</sub> | `u8` | lowHpRadius | units below 40 % HP (`003247F0`) |
 | `27`<sub>h</sub> | `u8` | scale2 | unit +`6C`<sub>h</sub> |
+| `28`<sub>h</sub> | `u8` | flags28 | bit 0 the view query's height (`0031B08D`); bit 1 no chain (`00317F09`) |
+| `29`<sub>h</sub> | `u8[5] affinity` | absorb, halve, nullify, weak, potency (002FEF30) |  |
+| `30`<sub>h</sub> | `u16[8] words30` | no reader among the four readers of 02EBF150 and the 47 loads of unit | +`E68`<sub>h</sub>, each followed to its fields |
+| `40`<sub>h</sub> | `u16` | modelFamily | the same-model run (`00317F77`) |
+| `52`<sub>h</sub> | `u16` | species | `FFFF`<sub>h</sub> none (`003171C0`) |
 
 ## Modding notes
 
@@ -219,3 +243,4 @@ Class row (`02EBF150`):
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the stats record field by field.
 - [EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md) and [stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md): the curve and the grower.
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record and the lane map.
+- [Bestiary](../Enemy-Spawning/bestiary.md): every shipped enemy definition with these fields decoded.
