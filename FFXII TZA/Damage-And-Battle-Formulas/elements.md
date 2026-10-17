@@ -109,6 +109,14 @@ The finishing slot `0038D280` (slots 113 and 125) turns the scale and the two fl
    With absorb it is an HP gain (`02AEE008`).
 4. A target with Reverse (status 12, context `+8` bit 12) swaps the two: a loss becomes a gain and an
    absorbed hit becomes a loss (`0038D2E1`, `0038D302`).
+5. Except on the paths of steps 1 and 2 and the absorbed-and-Reverse path, which return at `0038D2A2`,
+   `0038D2CB` and `0038D301`, the slot ends by testing a dword against -1 (`0038D32A`): the value `t` on the absorb path and on the Reverse path, and the gain
+   `02AEE008` as it stood on the plain path (`0038D324`). Any other value tail-jumps to `00387B00` with the
+   slot's first two arguments `a` and `b` (`0038D32D`).
+6. `00387B00` ORs `1 << (bit & 31)` into the dword `+0C`<sub>h</sub> of `a`'s 64-byte record:
+   - the record is `0208D480 + byte(a + 4) * 64` when byte `a + 5` is 0, else `0208DE80` indexed by byte
+     `+EA9`<sub>h</sub> of the block `0031B860` returns;
+   - the bit is byte `b + 4`, or that block's `+EA9`<sub>h</sub> for a `b` that `0031B860` maps.
 
 ### Oil and Float
 

@@ -211,7 +211,7 @@ reads `+18`<sub>h</sub> of each roster pointer without testing it for null (`002
 
 | Verb | Id | Callbacks | Effect |
 |---|---|---|---|
-| `moviestandby(id)` | `0368`<sub>h</sub> | `003567F0` / `00356050` / `00356460` (→ `0035B840(id, manager)`) | waits until `0035B7A0` says no fade or load is active, then denies user control, raises busy bit 16, frees `022C8058` and opens the movie (`001848A0`) |
+| `moviestandby(id)` | `0368`<sub>h</sub> | `003567F0` / `00356050` / `00356460` (→ `0035B840(id, manager)`) | waits until `0035B7A0` says no fade or load is active, then denies user control, sets the arena mode to 1 (`0037B450(1)`, `0035B877`, [resource arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)), raises busy bit 16, frees `022C8058`, opens the movie (`001848A0`) and dismisses the loading page `[01F82CD8]` through its tail jump to `00183070` (`0035B8C4`, [game application](../Engine-Core/game-application.md)) |
 | `movieplay(v)` | `036A`<sub>h</sub> | `00356D20` (pops a value it ignores, then `0035B7D0`) | switches off the field systems (`00358750` and its siblings, `002E1CD0(0, 0)`, `002E1C40(0, 4)`) and starts playback `001848C0` |
 | `getmoviestatus` | `036F`<sub>h</sub> | `00340870` (→ `0035B740`) | returns the player's state `00184860` when it is 1, 2 or 3, else 0, and pumps the opening player (`00184880`) while it is 1 |
 | `moviecancel` | `036E`<sub>h</sub> | `0033FEC0` (→ `0035B720`) / `00357300` / `0033FA20` | asks the player to stop, waits while the status is 1 to 3, then ends |
