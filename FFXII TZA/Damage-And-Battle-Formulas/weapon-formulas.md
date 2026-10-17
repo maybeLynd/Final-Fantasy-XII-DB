@@ -18,11 +18,12 @@ then multiplies by a scale built from the wielder's level and one or two stats:
 | axes, hammers, hand-bombs | Strength and Vitality, with a random share | Defense |
 | poles | Strength and Strength | Magick Resist |
 | maces | Magick Power and Magick Power | Defense |
-| guns, measures | Attack Power alone | nothing |
+| guns, measures, and the Healing Rod, Rod of Faith, Excalipur and Bonebreaker | Attack Power alone | nothing |
 | unarmed | Strength and Strength, without the base of 1 | Defense |
 
 - **Guns and measures** ignore Defense, and their hit is not tested against block, parry or evade.
-- **Bows and crossbows** lose accuracy in the heaviest weather (weather class 2, MWeather presets 4 and above) unless the wielder has augment 2, which the Cameo
+- **Bows and crossbows** lose accuracy in strong wind (wind class 2: the area's MWeather wind preset is 4 or more;
+  [Weather](../World-Areas-And-Travel/weather.md)) unless the wielder has augment 2, which the Cameo
   Belt carries, and they can score critical hits that double the damage, as guns can.
 - **Axes, hammers and hand-bombs** deal a random share, from nothing up to the full amount.
 
@@ -114,10 +115,10 @@ With that augment and nothing in the off hand (word `+52`<sub>h</sub> is `1000`<
 half of `Lv + Str` plus a 12.5 % variance (`0038A6B1`-`0038A77B`). Otherwise it is Attack Power plus the
 variance (`0038A785`-`0038A7EE`).
 
-### Bows and crossbows in heavy weather
+### Bows and crossbows in strong wind
 
 The first list of recipe 25 runs slot 35 (`003895D0`) and that of recipe 26 slot 36 (`00389610`). When
-the wielder lacks effect 2 (context `+1A`<sub>h</sub> bit 2) and the weather class `02099DAC` is 2, they scale the hit
+the wielder lacks effect 2 (context `+1A`<sub>h</sub> bit 2) and the wind class `02099DAC` is 2, they scale the hit
 chance `02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte `+1A`<sub>h</sub> = 2:
 
 | Slot | Weapons | Hit chance factor | Sites |
@@ -192,7 +193,7 @@ its committed list:
 - The 12.5 % variance and the 1/256 and 1/218 factors are constants in `.rdata` (`00915508`, `009088D8`,
   `00D112D0`) that other slots share.
 - A weapon's critical chance is byte `+1C`<sub>h</sub> of its row; only recipes 25-27 read it.
-- The heavy-weather factors are the floats at `008F3108` and `01CEBB70`, both shared.
+- The strong-wind factors are the floats at `008F3108` and `01CEBB70`, both shared.
 
 ## Related
 

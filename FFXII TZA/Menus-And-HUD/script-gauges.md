@@ -159,7 +159,8 @@ from its base `+54`<sub>h</sub>/`+56`<sub>h</sub> (`00407C90` walks the tree thr
   script passes 3: the 268 calls in the `us` scripts push the literal kinds 0 (85), 1 (2) and 2 (181)
   (`Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py --verbs 1ABh`, a complete run).
 - `resetgaugetimer` does nothing to an open timer; set the timer with `setgaugetimer` instead.
-- A timer is limited to 9 hours 59 minutes in the long format and 999.99 seconds in the short one.
+- The long format shows up to 9:59:59.99 and then a fixed 99:59:59.99 while the value keeps counting; the
+  short one stops at 999.99 seconds.
 - The thresholds default to the quarters of the maximum each time the maximum is set, so set the conditions
   after the maximum.
 

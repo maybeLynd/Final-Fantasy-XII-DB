@@ -108,7 +108,7 @@ and registers `008A8050`.
 The compiler emits the string, vector and tree operations once for each element type, so the same
 operation appears many times with different element sizes. 55 such bodies are listed in
 `eastl-strings-and-containers-template-instances.tsv` with the operation and the element or node
-size of each; the other 75 are on
+size of each; the other 76 are on
 [object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).
 
 - `001A52A0` appends a character range to a string. When the result does not fit, the new capacity

@@ -7,8 +7,8 @@ addresses: "0030FED0, 0030E130, 0030E360, 002390B0, 002394C0, 0030E060, 00323890
 
 ## What the player sees
 
-Augments are the passive abilities from the License Board and from gear, such as "Increases max HP
-by 30" from a license or the extra Steal rolls of Thief's Cuffs. Some gear also keeps a status on its wearer or
+Augments are the passive abilities from the License Board and from gear, such as the +30 HP license
+(augment 74) or the extra Steal rolls of Thief's Cuffs. Some gear also keeps a status on its wearer or
 makes the wearer immune to statuses.
 
 - Equipping an item gives its augment at once, and removing it takes the augment away: the set is worked

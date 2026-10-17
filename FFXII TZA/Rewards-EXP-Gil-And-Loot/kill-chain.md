@@ -21,7 +21,8 @@ previous flip landed: 5 % after a failure, 60 % after a success. A long run of f
 one success moves it to 60 % until the next failure. The coin is independent of chain length. While it
 is up, the chain number on screen pulses grey.
 
-The chain number shown is capped at 999, or 998 in every language except Japanese.
+The chain number shown stops at 999 in every language: the stored length stops at 998 and the display
+adds 1.
 
 The chain also has a **level**, 0 to 3, and the level is what improves drops. It rises when enough
 kills have been added since the last rise; picking up loot in the meantime makes the next rise less

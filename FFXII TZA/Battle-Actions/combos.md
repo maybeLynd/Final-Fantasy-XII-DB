@@ -11,8 +11,8 @@ A weapon attack can turn into a **combo**: the same attack lands again and again
 Whether a combo happens, and how many hits it has, is decided once, on the first hit.
 
 - **The chance** comes from the weapon: a combo byte on the weapon's equipment row, times 0.7 as a
-  percentage (a byte of 20 gives a 14 % chance). With the augment whose help text reads "Improves
-  chance of scoring multiple hits" the byte is multiplied by 1.8 instead, so a byte of 56 or more
+  percentage (a byte of 20 gives a 14 % chance). With the Genji Gloves equipped (augment 13) the byte is
+  multiplied by 1.8 instead, so a byte of 56 or more
   makes every attack a combo.
 - **The length** is rolled at the same moment: the combo starts with 1 extra hit, and eleven more
   rolls can each add one. Each of those rolls succeeds 8 % of the time at more than a quarter of

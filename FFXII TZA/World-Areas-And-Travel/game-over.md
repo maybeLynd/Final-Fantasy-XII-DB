@@ -7,7 +7,8 @@ addresses: "00234590, 0035C7A0, 0035C7B0, 00227370, 002E1B10, 00254850, 00254E50
 
 ## What the player sees
 
-When the last standing party member falls, everyone on the field stops where they are, the
+When the last main character still standing falls (guests do not count, and a standing reserve member
+opens the party screen instead), everyone on the field stops where they are, the
 screen dims, the music fades and the GAME OVER image appears. After a while, or as soon as a
 button is pressed once the image has settled, the screen fades to black and the title screen
 comes up. Nothing is reloaded along the way: the field, the party and everything that happened

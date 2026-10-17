@@ -26,9 +26,9 @@ matching arm of `0031C5D0` does.
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `u32` | gil | added to the party's gil, clamped at 0 (`002FD530`) |
+| `00`<sub>h</sub> | `u32` | gil | times the give's count, added to the party's gil and floored at 0 (`002FD530`) |
 | `04`<sub>h</sub> | `u16` | item1 | an inventory id, `FFFF`<sub>h</sub> for none |
-| `06`<sub>h</sub> | `u16` | count1 | given as count × the give's sign |
+| `06`<sub>h</sub> | `u16` | count1 | given as count1 times the give's count (negative for a take) |
 | `08`<sub>h</sub> | `u16` | item2 | an inventory id, `FFFF`<sub>h</sub> for none |
 | `0A`<sub>h</sub> | `u16` | count2 | as `count1` |
 

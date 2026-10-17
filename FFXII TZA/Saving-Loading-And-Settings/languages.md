@@ -170,7 +170,9 @@ result and always plays sound 3 (`00277E36`-`00277E53`).
   and `ASIA` are free.
 - Everything downstream reads the id from `01E02814` through `00229E40`; writing that word after
   boot changes the language-dependent rules without reloading the data folder.
-- DecideButton is a plain setting: the masks are rebuilt only in boot mode 0.
+- DecideButton is a plain setting read at boot (`0022A0B0`) and again whenever the Config screen's Confirm
+  Button row or the Controls screen's Default changes it: `0017E6E0` and `0023E020` both rebuild the masks
+  through `0022A4F0`.
 
 ## Related
 

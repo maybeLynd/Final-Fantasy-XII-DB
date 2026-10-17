@@ -11,7 +11,9 @@ addresses: "003272A0, 003594B0, 00358BC0, 00326500, 00263750, 00338490, 00339A60
 - The members who are not controlled walk in a formation around the leader.
 - While the leader is KO'd, turned to stone or in X-Zone, the stick stops responding until the leader recovers;
   areas whose town flag is set waive this (`00377C20`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
-- Some scenes lock the stick, or parts of steering, on purpose.
+- Scripts lock the stick (`setuclockstatus`) or only moving, turning or heading
+  (`setucpcmovelockstatus`), and the controls lock when the last member of an enemy group falls
+  ([Boss fights](../Battle-Actions/boss-fights.md)).
 
 ## How it works
 

@@ -7,8 +7,8 @@ addresses: "00226BE0, 00227680, 00226280, 00226640, 002269A0, 00225CD0, 00225EB0
 
 ## What the player sees
 
-Open the main menu in the field and everyone stops mid-step. Cast Stop, or let a target cursor
-sit on an enemy, and the rest of the field holds while the one you picked keeps acting. Enter a
+Open the main menu in the field and everyone stops mid-step. When an action is shown on its own,
+the rest of the field holds while the acting unit keeps moving. Enter a
 conversation and the talking actors play while the scene around them waits. Skip a scene and the
 world resumes cleanly. Each of these is a different request to one registry, and the differences
 between them, who keeps moving, whether only scripts freeze or animation too, which sound groups
@@ -77,7 +77,7 @@ bits ([controls](../Controls-And-Input/controls.md)).
 | 2 | UI requests 3 and 24 | the same |
 | 4, 5, 7 | the field hold `00263480(actor, mode)`: mode 1 raises 4, mode 0 raises 5, mode 2 raises 7 with the actor as a one-entry handle list (an empty list when the actor is null); the flag is `02099DE7` = 0; the boot `00266D10` raises 4 and 5 from the hold bytes `02099DE6` / `02099DE5`; `0026A1D0(on, flag)` raises 5 | `00263480` with both hold bytes clear, `0026A1D0` with `on` clear and the boot cancel 5, 4 and 7 |
 | 6 | an event script taking an actor (`00263230`, fade 4, flag `00377700()`) and the verb `talkfadeout(fade)` (`0026B980`) | the entry's removal (`00263050`, fade 4) and `talkfadein(fade)` (`0026B970`) |
-| 10 | `settimestopmagic` (`00350400` → `00227460`, with apply) and the target cursor `00313DB0` (the selected unit's id as the actor; at party-control level 2 the rider's entry as the handle list) | `cleartimestopmagic` (`00350940` → `00226120`, fade -1) and the cursor's close |
+| 10 | `settimestopmagic` (`00350400` → `00227460`, with apply) and the action display `00313DB0`, which raises it for the unit whose action is being shown one at a time ([Action phases](../Battle-Actions/action-phases.md); the acting unit's id as the actor; at party-control level 2 the rider's entry as the handle list) | `cleartimestopmagic` (`00350940` → `00226120`, fade -1) and the display's release |
 | 11 | `seteventtimestop(1)` (`0034DC30` → `002273B0`, no apply) | `seteventtimestop(0)` (`002260C0`) |
 | 12 | `settutorial00timestop(1)` (`00343CE0` → `00227610`) | the same verb with 0 (`00226240`) |
 | 13 | UI requests 2, 6, 15, 17, 18, 19 and 22 (the full-screen menus) | the UI close |
@@ -130,7 +130,7 @@ Read as behaviour:
 
 - the menus, the game-over route and `002E2240` freeze every actor's movement, scripts and both
   battle-unit sets, and queue only the request's own actor for the fade;
-- Stop and the target cursor stop everyone but the chosen actor and leave set 6 alone;
+- `settimestopmagic` and the action display stop everyone but the chosen actor and leave set 6 alone;
 - `seteventtimestop` is the only request that walks all three managers;
 - the full-screen menus stop scripts and set 3 only, with record B bits 8 to 14 all set, which
   selects the apply's 1.0 fade;
@@ -285,7 +285,7 @@ masks and the fade ramp; the source bytes.
 - [Subsystem update flags](subsystem-update-flags.md): the pump argument the combined A bits 36
   and 37 set.
 - [Party control modes](party-control-modes.md): the source bytes' other writer and the rider's
-  entry the target cursor passes.
+  entry the action display passes.
 - [Game over](../World-Areas-And-Travel/game-over.md): the route that raises id 22.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the options bit that chooses
   between UI requests 1 and 4.

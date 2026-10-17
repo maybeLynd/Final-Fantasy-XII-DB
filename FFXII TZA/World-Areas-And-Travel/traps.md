@@ -9,9 +9,9 @@ addresses: "002F8060, 002FB8C0, 002FB3B0, 002FA230, 002FA740, 002FAEC0, 002341C0
 
 Some fields hide traps. Walking onto one makes it go off: the party member who stepped on it, or
 everyone near it, takes damage, loses MP, catches a status, loses gil, or is healed, and a line in
-the battle log says that someone triggered a trap. A trap that has gone off stays spent while the
-party remains in that area and the two most recently visited ones; it is set again when the field
-is next loaded. With Libra on a party member, the traps show as markers on the ground; without it
+the battle log says that someone triggered a trap. A trap that has gone off stays spent until the
+field is loaded again; every load rolls each trap's arm chance afresh, whether or not it went off
+before. With Libra on a party member, the traps show as markers on the ground; without it
 they are invisible.
 
 ## How it works
@@ -72,9 +72,10 @@ present the mask is replaced and 1 is returned; otherwise the record is written 
 advances modulo 3. `002FA230` zeroes the whole ring; it runs from the battle runtime reset
 `00237DF0` and from the battle-state block bind `00233C10` (`00233CC0`).
 
-A cleared bit therefore stays cleared only while the field keeps its ring entry: a fourth field
-fired in overwrites the oldest, and the next `settrapresource` in the evicted field rolls every
-trap again.
+A cleared bit therefore stays cleared only until the next `settrapresource` for the field, which
+rolls every trap again and replaces the field's ring entry without reading the old mask
+(`002FA740`); the ring keeps the three most recent fields' masks, but nothing restores a spent trap
+from it.
 
 ### Who can spring a trap
 

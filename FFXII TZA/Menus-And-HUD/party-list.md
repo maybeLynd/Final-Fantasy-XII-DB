@@ -339,7 +339,7 @@ The status cycle record at the row's `+F0`<sub>h</sub>:
 ## Modding notes
 
 - A roll always takes 10 to 50 frames however large the change, in proportion to the change over the maximum.
-- More statuses show faster: six or more get 12 frames each.
+- More statuses show faster: one shows for 30 frames, two for 24, three for 18, and four or more for 12 each.
 - The leader can be changed only to a member who has a handle, is not KO and passes the status check of `002739D0`.
 - Kind 3 rows (types 27-39, the Espers) have no MP display.
 

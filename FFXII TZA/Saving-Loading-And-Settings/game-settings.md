@@ -48,7 +48,7 @@ presets control.
 | # | Key (`01DFD050`) | Defaults Low, Medium, High, Custom | Preset | Value names (`01DFD150`) |
 |---|---|---|---|---|
 | 0 | Language | 1 | no | jp, en, fr, de, it, es, kr, ch, cn |
-| 1 | Resolution | `07800438`<sub>h</sub> (1920 x 1080) | no | `width,height` |
+| 1 | Resolution | `07800438`<sub>h</sub> (1920 x 1080) | no | `width*height` |
 | 2 | ScreenMode | 1 | no | SM_WINDOW, SM_FULLSCREEN, SM_BORDERLESS |
 | 3 | Quality | 1, 1, 2, 3 | no | VQ_LOW, VQ_MEDIUM, VQ_HIGH, VQ_CUSTOM |
 | 4 | Brightness | 50 | no | number |
@@ -58,7 +58,7 @@ presets control.
 | 8 | MSAA | 1, 2, 3, 0 | yes | Off, MSAA2X, MSAA4X, MSAA8X, CSAA16x, CSAA16XQ, MSAA16x |
 | 9 | PostAA | 1, 1, 1, 0 | yes | FXAA, SMAA_1x |
 | 10 | HDAO | 1, 1, 2, 0 | yes | Off, HalfResolution, FullResolution |
-| 11 | WindowSize | 0 | no | `width,height` |
+| 11 | WindowSize | 0 | no | `width*height` |
 | 12 | DepthofField | 1, 1, 1, 0 | yes | Off, On |
 | 13 | Glare | 1, 1, 1, 0 | yes | Off, On |
 | 14 | SoftParticle | 1, 1, 1, 0 | yes | Off, On |
@@ -91,7 +91,8 @@ onward. The old value-name rows for the numeric settings hold only the `none` po
 2. The key is matched case-insensitively against the 31 keys; a key outside the table is logged
    as `[ConfigFile] invalid key`.
 3. `001DF350(object, index, value)` stores the value:
-   - Resolution and WindowSize take `width,height`, each clamped to at least 640 x 360, packed as
+   - Resolution and WindowSize take `width*height` (split at the `*` that `00900B10` holds; a value without
+     one is logged as `[ConfigFile] invalid Resolution`), each clamped to at least 640 x 360, packed as
      `width << 16 | height`;
    - a setting whose row holds exactly one name (the numeric settings' `none`) takes
      `atoi(value)`;
@@ -110,7 +111,7 @@ string's characters (the heap copy once its capacity is above 15) and `001DF760`
 ### Writing the file
 
 `001DEE90` serialises all 31 settings as `Key=Value`: Resolution and WindowSize as
-`width,height`, a setting with one value name as its number, and any other setting as the name of
+`width*height`, a setting with one value name as its number, and any other setting as the name of
 its current value (`DecideButton=Circle`). It builds the text in a string stream, takes it out with
 `001E00D0` (which calls `001E0100` on the stream's buffer at `+8`), and releases the buffer with
 `001DF8C0`. `001DFD40` writes that text to the ini path with `_wfopen_s("wb")`.
@@ -165,8 +166,9 @@ in the `ID3D11Device` layout). For every count with a non-zero level count it se
 
 `001DF2C0(object, value, forward)` steps from `value` to the next value (or, with `forward` 0, the
 previous one) in 0-4 whose bit is set, wrapping around, and stores it as MSAA (`+20`<sub>h</sub>) of the
-object at `01F82D20`. Its one caller is the debug menu (`001D4A53`), which then sets byte `+DBA`<sub>h</sub>
-of `00189120()` to whether the result is non-zero.
+object at `01F82D20`. Its one caller is the Graphics Settings dispatcher `001D1660` (`001D4A53`), which the
+Config screen's Anti-Aliasing row reaches through `0017DB90` and `001CD040` ([Config screen](../Menus-And-HUD/config-screen.md));
+it then sets byte `+DBA`<sub>h</sub> of `00189120()` to whether the result is non-zero.
 
 ### FrameLimit
 

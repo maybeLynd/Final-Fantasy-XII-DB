@@ -12,15 +12,16 @@ AI before they pick an action, and again while the action runs. A command the me
 refused by gambits for the same reason. The check goes through its tests in order and stops at the
 first that refuses:
 
-1. **The character cannot act at all** - KO, Stone or X-Zone (except in areas whose map flag waives
-   this), or not active in battle.
+1. **The character cannot act at all** - KO, Stone or X-Zone (except in towns, the areas whose town flag is
+   set; [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)), or not active in battle.
 2. **FLEEING.** While the FLEEING mode is on, a party member who is not Confused or Berserk can use
    nothing except Dismiss and Dismount.
 3. **Summoning while an Esper is out.** The summon actions are refused while a summoned Esper is in
    the battle (in the plain battle state; in a town or while riding a chocobo this test does not apply).
-4. **Statuses.** Stop, Sleep and Disable refuse every action; Silence refuses Magicks (and any other action with
-   one particular flag); KO, Stone and X-Zone refuse everything - even where the map flag lets such a
-   unit pass the first test.
+4. **Statuses.** Stop, Sleep and Disable refuse every action; Silence refuses Magicks and every action whose row sets bit 19 of
+   `+0C`<sub>h</sub>, which the shipped data sets on 16 enemy Foecraft actions such as Fear, Fog, Aquaga, Curse and
+   Necromancy; KO, Stone and X-Zone refuse everything - even where the town flag lets such a unit pass
+   the first test.
 5. **Commands disabled by the battle.** A battle can switch off the Attack, Magicks, Technicks or
    Items command for the party.
 6. **Not owned.** A party member must own the magick, technick, summon or Quickening; guests and

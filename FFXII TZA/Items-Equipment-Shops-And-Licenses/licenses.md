@@ -81,19 +81,20 @@ Setting or clearing node 229, Brawler, also refreshes the unit's held model and 
 
 ### Why a square is refused
 
-`00323D10` returns a reason, 0 when the square may be taken (`00323D10`-`00323EBB`). The node's byte `+06`<sub>h</sub>
-picks the rule:
+`00323D10` returns a reason, 0 when the square may be taken (`00323D10`-`00323EBB`). It tests in this order:
 
-| Reason | When | Sites |
-|---:|---|---|
-| `6` | no record | `00323D2C`-`00323D43` |
-| `7` | the node number is not below the table's count | `00323D44`-`00323D6A` |
-| `1` | the member already owns it | `00323D6B`-`00323DAB` |
-| `4` | a byte `+06`<sub>h</sub> = 2 square while the member owns three of nodes 0-17 | `00323E61`-`00323E76` |
-| `3` | a byte `+06`<sub>h</sub> = 1 or 3 square that any of party rows 0-6 that has been active owns (`00324280`) | `00323E2C`-`00323E3C`, `00323E78`-`00323E86` |
-| `5` | a byte `+06`<sub>h</sub> = 3 square whose node *n*, 18-30, does not yet have presence bit `C000h + n` set, or any other node | `00323E3E`-`00323E5F` |
-| `8` | a category 30 square while presence bit `C01F`<sub>h</sub> is not set | `00323E88`-`00323EA3` |
-| `2`, `9` | a byte `+06`<sub>h</sub> of 4 or more: 2 when LP is charged and the cost is above the LP, else 9 | `00323E0B`-`00323E25` |
+1. No record: 6 (`00323D2C`-`00323D43`).
+2. The node number is not below the table's count: 7 (`00323D44`-`00323D6A`).
+3. The member already owns it: 1 (`00323D6B`-`00323DAB`).
+4. Otherwise the node's byte `+06`<sub>h</sub> picks one rule (`00323DF0`):
+   - 0: a category 30 square (byte `+05`<sub>h</sub>) gives 8 while presence bit `C01F`<sub>h</sub> is not set; any other square
+     passes (`00323E88`-`00323EA3`);
+   - 1: 3 when any of party rows 0-6 that has been active owns it (`00324280`), else it passes
+     (`00323E78`-`00323E86`);
+   - 2: 4 when the member owns three of nodes 0-17, else it passes (`00323E61`-`00323E76`);
+   - 3: 3 when an active party row owns it, as rule 1; otherwise it passes only for a node *n* of 18-30 whose
+     presence bit `C000h + n` is set, and any other gives 5 (`00323E2C`-`00323E5F`);
+   - 4 or more: 2 when LP is charged and the cost is above the LP, else 9 (`00323E0B`-`00323E25`).
 
 The presence bits are the class `C`<sub>h</sub> bits of the inventory, read through `0030B0E0`. On the shipped nodes, byte
 `+06`<sub>h</sub> is 2 on nodes 0-17, the Quickenings, 3 on nodes 18-30, the Espers, and 0 elsewhere; node 360, Second

@@ -8,8 +8,9 @@ addresses: "005C0820, 005C1160, 005C0C90, 005C0B60, 005C72A0, 005A7E90, 005C6020
 ## What the player sees
 
 A PhyreEngine animation is a set of channels, each steering one property of one object. Rotation,
-scale and translation channels of one target are combined into that target's matrix, and a target
-whose animation has no scale channel keeps whatever scale it already had. In the shipped game this
+scale and translation channels of one target are combined into that target's matrix, and a rotation
+channel without a scale channel writes an unscaled rotation, so only a target animated by translation
+alone keeps the rotation and scale it already had. In the shipped game this
 path is used by two map models, where an animation switches one node's visibility; no character,
 monster or weapon cluster carries a PhyreEngine animation.
 

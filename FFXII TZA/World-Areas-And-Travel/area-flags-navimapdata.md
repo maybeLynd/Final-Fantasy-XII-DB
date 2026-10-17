@@ -157,9 +157,11 @@ of the party hold request the time-stop registry receives; see the time stop pag
 Bits 4-6 of the third byte are read by `00377C70` (`00377C99 shr eax, 4`, `00377C9C and eax, 7`). Its
 callers are `00326500`, `003266C0` and `0031C000`. `00326500` picks the party member the game follows
 when control returns: the saved leader at `[02EBF190] + 5AA4h` at control levels 0 and 1, id `1A`<sub>h</sub>
-at level 2, and this field at level 3, the town level (`0030D9A0`). Every shipped record has these
-bits at 0 (census below), so in a town the lookup fails and the function falls back to the first of
-the four active slots with a unit, then to `00263750(0)`.
+at level 2, and this field at level 3, the town level (`0030D9A0`).
+
+Every shipped record has these bits at 0 (census below), and 0 is party row 0, Vaan, so in every town the game hands control to
+Vaan; only when he has no battle unit does the function fall back to the first of the four active
+slots with a unit, then to `00263750(0)`.
 
 ### What a missing table returns
 

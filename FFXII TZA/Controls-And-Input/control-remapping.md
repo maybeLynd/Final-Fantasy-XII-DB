@@ -174,7 +174,7 @@ to `01F80130` (`00198960`-`001989C6`); it does not read the new value, so it alw
 
 `00198B60` copies the shipped defaults: group 0 from `01DF09C0`, the stick entries from `01DF0A80` and group 2 from
 `01DF1470`. Only the first profile has stick keys (the arrow keys and W, A, S, D) and group 2 keys (F1, F2, F3 and Left
-Shift); profiles 2 and 3 bind only the directions, Circle, Cross, R3 and Select. [keymap.ini](keymap-file.md) lists
+Shift); profile 2 binds the four directions, Circle, Cross, R3 and Select, and profile 3 the same without Up and Down. [keymap.ini](keymap-file.md) lists
 every default.
 
 ## Modding notes

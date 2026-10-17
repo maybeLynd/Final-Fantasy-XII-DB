@@ -18,8 +18,8 @@ frame.
    charge time is rolled, and **Invisible wears off** - starting any ordinary action removes it.
 3. **Approach and charge.** The unit walks into reach while the charge bar fills. The charge time
    comes from the action (or the weapon, for weapon-flag actions) and the unit's speed, with a random
-   part, and the augments whose text reads "Reduces action time by N%" shorten it by that
-   percentage.
+   part, and each of the three Swiftness licenses (augments 94-96) shortens it by 12 %, the value at
+   `+4` of its augment row (the help text says 10 %).
 4. **Charge speed.** Haste makes the bar fill 1.5 times as fast, Slow half as fast, Berserk twice as
    fast, and the Battle Speed setting scales everything from 1.0 to 2.0 times.
 5. **Arrival** when the unit is in reach **and** fully charged.
@@ -62,7 +62,7 @@ unless it has to wait (returning 0). Phase 12 returns 1: the action is finished.
 | `6` | `00304DA5` | for action `9F`<sub>h</sub> unit bit 35 set; presentation event; the phase-0 flag clears again, bit 7 of `+04`<sub>h</sub> set; a presentation slot acquired (`0030CFB0`) | at once |
 | `7` | `00304E2C` | `0030CA80` checks the slot; when it asks for the unit to be shown, the unit id goes into the 64-entry ring at `022BEDA4` (write index `022BEDA1`) and unit bit 12 is set; presentation event | slot ready and unit bit 12 clear |
 | `8` | `00304EB3` | `00319420(unit+6B0h)` | at once |
-| `9` | `00304EBE` | `+770`<sub>h</sub> = 0; targets built (`0030D160`); `00305430`; unit bit 46 set; for ids other than `D0`<sub>h</sub>-`F1`<sub>h</sub>, previews `00303830`; a scene action (row `+0C`<sub>h</sub> bit 30) pays its costs (`00305640`) and starts its scene (`00306760`); any other action posts its resolved presentation event (`0030FE10`) | at once |
+| `9` | `00304EBE` | `+770`<sub>h</sub> = 0; targets built (`0030D160`); `00305430`; unit bit 46 set; for ids other than `D0`<sub>h</sub>-`F1`<sub>h</sub> (the Quickenings and Concurrences, which skip both), the previews `00303830` and, for a scene action (row `+0C`<sub>h</sub> bit 30), the cost payment `00305640`; a scene action then starts its scene (`00306760`); any other action posts its resolved presentation event (`0030FE10`) | at once |
 | `10` | `00304F62` | a scene action waits while the scene state `022C2160` is 5 or 6, then moves on; any other action: once `+690`<sub>h</sub> has bits 1 and 3, unit bit 46 is cleared and, for the controlled member with unit bit 18, bit 0 of `+690`<sub>h</sub> set; bit 0 of `+690`<sub>h</sub> posts event `2001`<sub>h</sub> | scene actions: scene over; others: `0030BC40` returns 1 (`+690`<sub>h</sub> bits 0 and 2) |
 | `11` | `00304FE9` | unit bit 13 cleared | at once |
 | `12` | `00304FF3` | returns 1 | - |

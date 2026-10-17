@@ -8,7 +8,8 @@ addresses: "007CFF90, 007CF6B0, 00223AD0, 00222DC0, 00222740, 0036ED50, 002E60F0
 ## What the player sees
 
 - Every sword hit, menu blip, spell and footstep plays from a sound bank; the game ships no loose sound files.
-- 66 characters call out in battle, each with ten lines: three for attacking, three for taking damage, two for a
+- 64 characters call out in battle (66 banks ship per language; the path arrays name only `shout00`-`shout63`),
+  each with ten lines: three for attacking, three for taking damage, two for a
   critical and two for being knocked out.
 - Music plays from much larger bank files, one per track.
 

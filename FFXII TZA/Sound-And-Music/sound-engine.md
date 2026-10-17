@@ -87,7 +87,8 @@ the HCA decoder (`00123870`, `00123A50`) or the Vorbis stream (`007F5970`). The 
 
 Any other codec prints "Voice::Initialize failed no support format!!! %d" (`007EC6BA`) and the voice does not play.
 Every voice gets a `SimpleFilter` as effect 0 (`007EA003`); a sound effect of type 6 adds a `Flanger` (`007D99E0`),
-and music adds a `GranularPitchShift` (`007DA0A0`). The sends go to the bus the sound header names, or to a master
+and a music whose header is version 1 or later with bit 0 of `+0A`<sub>h</sub> set adds a `GranularPitchShift`
+(`007DA0A0`, `007ED186`-`007ED19A`), built bypassed; no shipped music sets that bit. The sends go to the bus the sound header names, or to a master
 port, falling back to port 1 (`007EA460`).
 
 The feed `007EAA60` runs from the voice's buffer callback `007ED4C0`:

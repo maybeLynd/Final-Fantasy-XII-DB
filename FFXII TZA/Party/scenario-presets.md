@@ -16,7 +16,8 @@ sets come from gives the pack its folder name, `test_battle`.
 ### Applying a set
 
 `00239960` reads the number and sets it back to -1, so a set is applied once (`00239966`-`0023997B`). -2 resets
-the battle state instead (`00237DF0`), and a number past the 50 scenarios does nothing (`002399BB`). Otherwise
+the battle state instead (`00237DF0`), and any other negative number, or a number at or above the scenario table's row count
+(`[02EBF030]+4`, 50 in the shipped section 60), does nothing (`00239993`-`002399BB`). Otherwise
 (`002399E9`-`00239DE8`):
 
 1. The party block is reset, keeping bits 12-14 of its flag word and taking bits 1 and 2 of the battle flags

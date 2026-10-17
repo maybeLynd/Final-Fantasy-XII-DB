@@ -72,7 +72,7 @@ handle is returned even when no bank owns the id, and is kept in the voice at `+
 | Flag bit | Effect |
 |---|---|
 | 3 (`08`<sub>h</sub>) | not started while slot 7 of the same bank plays, unless this is slot 7 (`00224657`-`0022467E`) |
-| 5 (`20`<sub>h</sub>) | one at a time: a playing copy of the same id fades to the new volume over 4.8 s, and any other such sound fades out over 4.8 s (`0022468A`-`002246A4`, `002238F0`) |
+| 5 (`20`<sub>h</sub>) | before starting, every playing block or six-digit sound whose own slot flags have bit 6 (`40`<sub>h</sub>) is checked: one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0022468A`-`002246A4`, `00210710`, `002238F0`) |
 | 7 (`80`<sub>h</sub>) | a voice already playing this slot is reused with the new pan and volume (`002246E3`-`00224756`) |
 
 A six-digit bank's start `00223190` reads one flag byte for the whole bank, `+44`<sub>h</sub>, and a bank with bit 5 starts its
@@ -151,7 +151,8 @@ it instead calls `003B3E40`, which stops every queued handle at once and empties
 ## Modding notes
 
 - A sound's pan byte above `7F`<sub>h</sub> puts it behind the listener.
-- Flag bit 5 of a slot makes the sound exclusive with a 4.8 s cross-fade; bit 3 makes it wait for slot 7.
+- Flag bit 5 of a slot cross-fades it over 4.8 s against the playing sounds whose flags have bit 6; bit 3 makes
+  it wait for slot 7.
 - Changing a voice fade's shape needs a curve argument other than 0 at its `007CA560` call; no data selects it for
   voice volume, pan, pitch or stop ramps.
 - Stop a sound by the handle its play call returned.

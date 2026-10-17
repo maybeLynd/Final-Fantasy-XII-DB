@@ -27,8 +27,9 @@ Where the numbers come from depends on one flag of the action:
   that kind of weapon.
 - Equipment kind 2 has no such parameters, and an action whose own near or middle value is 0 has none
   either; then near is 60 % of the reach and middle 80 %.
-- An unarmed weapon-flag action has a reach of 0 from the weapon, so it reaches near plus middle from
-  the character's bare-hand parameters (or only the two body sizes when either of those is 0).
+- An unarmed character holds Unarmed (`1000`<sub>h</sub>, reach byte 10), so its weapon-flag actions take a
+  weapon reach of 1.0 (`00309300`), like any other weapon; only a unit whose main-hand id is `FFFF`<sub>h</sub>
+  gets a weapon reach of 0.
 
 A unit further away than its middle distance plus 2.0 (or its reach, if that is smaller) walks in; a
 unit closer than its near distance may back off. When two units target each other, the one with the

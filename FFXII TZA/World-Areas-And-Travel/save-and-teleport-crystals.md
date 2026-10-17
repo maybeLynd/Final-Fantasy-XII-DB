@@ -110,12 +110,12 @@ The crystal's `talk` function suspends battle, waits seven frames, calls `healal
 
 `healall(n)` is verb `3AF`<sub>h</sub>, handler `00356500`: it maps `n` through `00359C60` and calls
 `0030F4B0(-1, mask)`, which is `0030F3F0(mask)` for the nine party records (slot table 3 through
-`00320AB0`) and `0030F4D0(mask)` for the thirteen guest records `1B`<sub>h</sub> to `27`<sub>h</sub> whose id
+`00320AB0`) and `0030F4D0(mask)` for the thirteen Esper records `1B`<sub>h</sub> to `27`<sub>h</sub> whose id
 `C012h + i` passes `0030B0E0`. The mask bits:
 
 | Mask bit | What is restored | Function |
 |---|---|---|
-| 1 | HP to its maximum (`+24`<sub>h</sub>, doubled under status bit 28; `max(HP, 1)` under status bit 16); a guest-type record at or below 0 HP also gets `003243F0(unit)` | `0030F340` via `00300530(record, delta, 0, 217h)` |
+| 1 | HP to its maximum (`+24`<sub>h</sub>, doubled under status bit 28; `max(HP, 1)` under status bit 16); an Esper record at or below 0 HP also gets `003243F0(unit)` | `0030F340` via `00300530(record, delta, 0, 217h)` |
 | 2 | MP to its capacity (`+28`<sub>h</sub>, 0 while layer bytes `+6C`<sub>h</sub> or `+7C`<sub>h</sub> carry bit 7) and the secondary word `+06`<sub>h</sub> to capacity times `+37`<sub>h</sub> | `0030F5A0` via `00300CE0` and `00300BC0` |
 | 4 | the statuses in set A, `[0208D320]` | `0030F690` → `0030E360(record, 0, status, 0, 0, 217h, 0)` per bit, then `0030FED0(record, 217h)` |
 | 8 | the statuses in set B, `[0208D324]` | the same |

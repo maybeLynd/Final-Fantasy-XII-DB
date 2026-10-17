@@ -58,7 +58,7 @@ Two paths set `+68`<sub>h</sub> in shipped play:
 
 | Id | Set by | Effect | Sites |
 |---:|---|---|---|
-| `2` | order `4094`<sub>h</sub> | an attacker with it removes the target's evade bands and ignores the weather penalty on ranged hits | `00389548`, `003895D4`, `00389614` |
+| `2` | order `4094`<sub>h</sub> | an attacker with it removes the target's evade bands and ignores the strong-wind penalty on bow and crossbow hits (wind class `02099DAC` = 2, [Weather](../World-Areas-And-Travel/weather.md)) | `00389548`, `003895D4`, `00389614` |
 | `4` | order `4096`<sub>h</sub> | the holder's innate evade band gains 25, or 30 on the party side | `0038937F`-`003893BF` |
 | `6` | order `4098`<sub>h</sub> | the holder parries at half its Speed | `0038849A`-`003884CB` |
 | `7` | order `4099`<sub>h</sub> | with id 6, it parries at twice its Speed instead | `003884B3`-`003884D8` |

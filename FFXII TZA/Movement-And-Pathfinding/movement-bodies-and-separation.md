@@ -166,7 +166,7 @@ context or a class-1 object's is written, any other actor is left alone.
 | `settalkheight(h)` | `018D`<sub>h</sub> | `0034CAC0` | `0026BA00(h)`, then `0026B9D0(h * 0.25)` | the talk height (above), then the talk depth = `h / 4` |
 | `settalkunderheight(v)` | `018E`<sub>h</sub> | `0034CE60` | `0026B9D0` | the talk depth: class 3 `+CC`<sub>h</sub>, class 1 `+6C`<sub>h</sub> |
 | `getdefaultheight()` | `02B0`<sub>h</sub> | `003503D0` | `00263810` | a float result (`0026B4C0`): for class 3 the model's parameter `09001D1E`<sub>h</sub> (`002E9630`, 0 without a render record), for class 1 `+68`<sub>h</sub>, else 0 |
-| `getdefaultradiusw()` | `02B1`<sub>h</sub> | `00350910` | `00263860` | a float result (`0026B4C0`): for class 3 the model's parameter `01002143`<sub>h</sub>, or `01002D4F`<sub>h</sub> when `00377C20` reports the field flag (`002E9660`, 0 without a render record); for other classes the unset dword in its argument home slot `[rsp+8]`, so an undefined value |
+| `getdefaultradiusw()` | `02B1`<sub>h</sub> | `00350910` | `00263860` | a float result (`0026B4C0`): for class 3 the model's parameter `01002143`<sub>h</sub>, or `01002D4F`<sub>h</sub> in a town (`00377C20`, `002E9660`, 0 without a render record); for other classes the unset dword in its argument home slot `[rsp+8]`, so an undefined value |
 | `getdefaultradiusd()` | `02B2`<sub>h</sub> | `00350910` | `00263860` | the same handler, so the same value as `getdefaultradiusw` |
 | `setwalkspeed(v)` | `020E`<sub>h</sub> | `00352530` | `0026A560` | class 3 only: `+E0`<sub>h</sub> = `v` |
 | `setwalkthresholdspeed(v)` | `0247`<sub>h</sub> | `0034CEA0` | `0026BE00` | class 3 only: `+E4`<sub>h</sub> = `v`, then the render record's copy (`002E86B0`) |
@@ -331,8 +331,8 @@ and `+0C`<sub>h</sub> bit 4 is clear, stores it at the context's `+EC`<sub>h</su
 ### The mask word
 
 `0025B470(record, w)`, run by the verbs `bindp`, `bindhitobj` and `setweight`, keeps only bit 4 of
-the body's mask word `+110`<sub>h</sub> (`002E9BB0`, `002EC5B0`) and, for a negative `w` outside a cutscene
-(`00377C20`) with actor byte `+15`<sub>h</sub> zero, sets bit 4.
+the body's mask word `+110`<sub>h</sub> (`002E9BB0`, `002EC5B0`) and, for a negative `w` outside a town
+(the town flag `00377C20`) with actor byte `+15`<sub>h</sub> zero, sets bit 4.
 
 ## Layouts
 

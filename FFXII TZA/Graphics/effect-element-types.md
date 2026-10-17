@@ -25,7 +25,8 @@ definition's `+44`<sub>h</sub> by `003A9A70` and to the element's byte `+0` at b
 The tables give 65 types an arm, with 248 distinct handlers. Types `00`<sub>h</sub>–`0A`<sub>h</sub>, `40`<sub>h</sub>, `41`<sub>h</sub>,
 `60`<sub>h</sub>–`67`<sub>h</sub>, `80`<sub>h</sub>–`97`<sub>h</sub>, `A0`<sub>h</sub>–`A2`<sub>h</sub>, `A5`<sub>h</sub>, `D0`<sub>h</sub> and `D1`<sub>h</sub>, except `09`<sub>h</sub>, `63`<sub>h</sub>, `64`<sub>h</sub>
 and `93`<sub>h</sub>, are main-range types (47);
-`42`<sub>h</sub>, `68`<sub>h</sub>–`74`<sub>h</sub> and `A3`<sub>h</sub>–`AB`<sub>h</sub> are reached only through the sub-range tables (18). The
+`42`<sub>h</sub>, `68`<sub>h</sub>–`6B`<sub>h</sub>, `70`<sub>h</sub>–`74`<sub>h</sub>, `A3`<sub>h</sub>, `A4`<sub>h</sub> and `A6`<sub>h</sub>–`AB`<sub>h</sub> are reached only through the
+sub-range tables (18); `6C`<sub>h</sub>–`6F`<sub>h</sub> have no arm in either range (`0043EBF0`, byte map `0043ECC4`). The
 full decode is in `effect-element-types-effect-type-methods.tsv`.
 
 Every birth method except `70`<sub>h</sub>'s calls the base birth `002F2D60`, and every update method except

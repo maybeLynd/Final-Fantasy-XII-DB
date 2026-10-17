@@ -10,9 +10,11 @@ addresses: "0030C650, 002F9A60, 002F9B20, 002F9BD0, 0030C470, 00863BF0"
 Each level adds a fixed amount of Strength, Magick Power, Vitality and Speed that depends on the
 character, and an amount of max HP and max MP that is the same for everyone at a given level plus a
 small random bonus. A big kill can raise several levels at once; the stats grow once per level gained,
-and the notice, popup and sound play once, for the last level. Levels stop at 99. A summoned Esper is
-grown on the spot to its summoner's level with its own growth values; the Chocobo's four stats are at
-the cap from its first level. Neither gains levels from kills, because kills give them no EXP.
+and the notice, popup and sound play once, for the last level. Levels stop at 99.
+
+A summoned Esper is grown on the spot to its summoner's level with its own growth values and never gains levels from kills,
+because the EXP formula pays the Esper types `1B`<sub>h</sub>-`27`<sub>h</sub> nothing. The Chocobo's four stats are at the cap
+from its first level, and it is left out when a kill's EXP is divided ([EXP, LP and level-ups](exp-lp-and-level-ups.md)).
 
 ## How it works
 

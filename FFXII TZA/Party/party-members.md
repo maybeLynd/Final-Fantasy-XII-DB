@@ -10,8 +10,9 @@ addresses: "003172E0, 003170E0, 00328B20, 003288F0, 00316DF0, 00317480, 00323540
 - Characters join and leave as the story goes on, and guests travel with the party for a while.
 - A character who joins brings their equipment into the inventory, and on their first join also brings items and
   gil.
-- A character who joins catches up: their level and LP are set from the two strongest members already in the
-  party.
+- A character who joins may catch up, as its party row says: on the first join only for Ashe, Fran,
+  Balthier, Basch and the guests, on every join for Penelo, never for Vaan and Reks. Catching up sets
+  level and LP from the two strongest members already in the party.
 - A character who joins arrives with full HP, unless they have Disease.
 - A character who leaves takes their equipment with them.
 - Some scenes decide who fights, for example leaving Vaan to fight alone.
@@ -66,8 +67,8 @@ staging map, empties the member's seat with `FFFF`<sub>h</sub>, deactivates the 
    to 90 with `0030C470(record, 90, 0)` (`00316E25`-`00316E3D`).
 3. For a main character, each of the five equipment words is added to the inventory, and to the count of equipped
    pieces (`00316E87`-`00316EB1`).
-4. On the record's first activation, flag bit 3 clear, each enabled gambit slot's action is added, and for a main
-   character also the id the action row names at `+22`<sub>h</sub>, the magick or technick it uses (`00316EC3`-`00316F92`).
+4. On the record's first activation, flag bit 3 clear, each enabled gambit slot's condition is added, and for a main
+   character also the id the slot's action row names at `+22`<sub>h</sub>, the magick or technick it uses (`00316EC3`-`00316F92`).
    An item id there goes to the unused channel 4 and adds nothing ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
 5. On that first activation the up to ten ids the party row lists at `+58`<sub>h</sub> are added, with counts at
    `+34`<sub>h</sub> (`00316FE1`-`00317019`), and the gil at row `+3E`<sub>h</sub> (`0031701B`-`00317034`).

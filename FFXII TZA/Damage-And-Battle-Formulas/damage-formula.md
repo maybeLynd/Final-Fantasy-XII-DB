@@ -16,8 +16,9 @@ with a little randomness.
   sleeping target takes 50 % more.
 - **Magicks** scale with Magick Power against Magick Resist; Faith raises them, Shell lowers them, and a
   sleeping target takes 50 % more.
-- **Augments** such as Adrenaline's (augment 10) add their own multipliers, and elements,
-  Oil and Float apply last ([Elements](elements.md)).
+- **Augments** such as Adrenaline's (augment 10) add their own multipliers after the status
+  multipliers, Oil's ×3 and Float's miss among them, and the element stages apply last
+  ([Elements](elements.md)).
 
 ## How it works
 

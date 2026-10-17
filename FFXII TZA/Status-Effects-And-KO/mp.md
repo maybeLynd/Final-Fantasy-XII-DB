@@ -116,8 +116,9 @@ byte `+8` bit 2 (`002E5290`-`002E5337`, `00329A80`).
    augment 32 in either layer, byte `+6C`<sub>h</sub> / `+7C`<sub>h</sub> bit 0.
 4. Otherwise `002F95D0` adjusts row `+0A`<sub>h</sub> (`002F962B`-`002F9808`).
 
-`002F95D0` leaves the cost unchanged for a party record's Quickenings and Concurrences (`D0`<sub>h</sub>-`E1`<sub>h</sub>) and Esper
-summons (`106`<sub>h</sub>-`112`<sub>h</sub>). For every other action, in this order:
+`002F95D0` leaves the cost unchanged for a party record's Quickenings (`D0`<sub>h</sub>-`E1`<sub>h</sub>, `002F9646`-`002F9655`)
+and Esper summons (`106`<sub>h</sub>-`112`<sub>h</sub>); the Concurrences (`E2`<sub>h</sub>-`F1`<sub>h</sub>) are adjusted like other actions. For
+every other action, in this order:
 
 | Augment | Cost | Sites |
 |---|---|---|

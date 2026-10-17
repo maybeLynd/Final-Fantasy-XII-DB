@@ -52,7 +52,8 @@ then requests the routine function.
 2. 164 requests in shipping scripts reach a routine function that gives, and each becomes a row for every give in
    that function: 168 rows, with the routine in the `through` column.
 3. 154 of those items are a literal stored just before the request. The other 14 come from the requesting actor's
-   own table, for the map vendors and a few others.
+   own table: the map vendors (地図屋) of alc_b06, ald_a02, fon_b01, glf_a01, mnt_d01, rbn_a04, var_a01 and
+   vic_a03, NPC01 of bul_b02, byu_a01, byu_a04, dst_b01 and dst_b02, and ５０ナッツ of sav_b01.
 4. The three globals are stored 249 times. 191 stores lead to a routine that gives. The other 58 lead to
    `システムメッセージ表示` and `システムメッセージ表示_FADE付`, which show the value as a message id, not an item.
 

@@ -21,7 +21,7 @@ character's own decision-making does the rest.
 `0030F760(unit, orderContext, actionId, targetFocus, mode)` is the only place an action becomes
 the unit's current action. With a non-zero mode it first calls `003105D0`. An id below `21F`<sub>h</sub>
 refreshes the target link at `+778`<sub>h</sub> (`00316CF0`, `00316CD0`); any other id outside
-`C000h..C166h` is refused (return 0).
+the battle orders `4000h..4166h` is refused (return 0, `0030F7D9`-`0030F7EC`).
 
 It then clears `+700`<sub>h</sub> bits 0-1, stores the context at `+708`<sub>h</sub>, the target at `+710`<sub>h</sub> and the id
 at `+714`<sub>h</sub>, zeroes byte `+6B4`<sub>h</sub>, and copies the `18`<sub>h</sub> bytes `+700h..+717h` to `+718h..+72Fh`.
@@ -47,7 +47,7 @@ a map whose word in `[02ADD100]` has bit 15 set (`00377C20`).
 
 1. Flag bit 22 set: `00308270` first. Flag `4000`<sub>h</sub>: the flag is cleared and the issued command
    `+BA0`<sub>h</sub> commits with context `unit + BA0h` and target `+BB8`<sub>h</sub> when its id is in
-   `C000h..C166h` or `002FFCF0(id, unit)` is 0.
+   `4000h..4166h` or `002FFCF0(id, unit)` is 0.
 2. In a town with a party record (`[+698h] + 5` = 0): straight to step 6.
 3. Outside a town with status `20`<sub>h</sub>, or a non-party record (`+5` = 1) with status `08000000`<sub>h</sub>:
    scan `01EEC320`, then step 6.

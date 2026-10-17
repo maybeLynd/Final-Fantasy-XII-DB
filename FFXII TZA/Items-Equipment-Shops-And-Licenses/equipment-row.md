@@ -163,7 +163,7 @@ placeholder rows named "NOT USED" and "Reserve".
 | Field | Values in rows 0-419 |
 |---|---|
 | `+12`<sub>h</sub> price | 0 to 56,000; Unarmed 0, Broadsword 390, Flametongue 4,000; Excalibur, Gendarme and the Genji Shield 1; Ribbon 10 |
-| `+07`<sub>h</sub> bit 1 | set on Hero's Blade, Treaty-Blade, Sword of Kings, Joyeuse, Chirijiraden, Manufacted Nethicite, Goddess's Magicite and Dawn Shard, among others |
+| `+07`<sub>h</sub> bit 1 | set on 21 rows: Hero's Blade, Treaty-Blade, Sword of Kings, Joyeuse, Chirijiraden, both Nightmare rows, Flimsy Blade, Manufacted Nethicite, Goddess's Magicite, Dawn Shard and ten Reserve rows (the `cannot_sell` column of `equipment-list.tsv`) |
 | `+10`<sub>h</sub> | 0 on 260 rows, 1 on 72, 2 on 84, 3 on 1, 5 on 3 |
 | `+18`<sub>h</sub> on weapons | 10 on 144, 100 on 42, 20 on 10, 30 on 3, 200 on 1 |
 | `+19`<sub>h</sub> on weapons | 20-29, and 104 on maces |

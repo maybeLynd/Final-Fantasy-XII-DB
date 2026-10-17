@@ -14,7 +14,7 @@ addresses: "00520C50, 00520D00, 0046CC70, 0046C250, 0046C6E0, 0046C8F0, 002E9D90
 
 ## How it works
 
-### The two commands
+### The three commands
 
 Animations carry the commands; the character's sound emitter, the render record's sub-object at `+5F0`<sub>h</sub>, plays them
 through `0046CC70(emitter, mode, type, volume)`:
@@ -23,10 +23,11 @@ through `0046CC70(emitter, mode, type, volume)`:
 |---|---|---|
 | `05`<sub>h</sub> | `00520C50`, through `0046CBA0` | word `+2` as `mode << 12 \| type`, volume 0 for full |
 | `29`<sub>h</sub> | `00520D00` | mode 0, type 1, volume the signed word `+2` out of 128 |
+| `19`<sub>h</sub> | `00520CE0` | mode 0, type 1, volume 0 for full: the footstep with no volume word |
 
 ### The sound types
 
-The animation containers (`.ca` under `obj_finish`) hold 23,783 `05`<sub>h</sub> and 47,472 `29`<sub>h</sub> commands. Only modes 0 and 4
+The animation containers (`.ca` under `obj_finish`) hold 23,783 `05`<sub>h</sub> and 47,472 `29`<sub>h</sub> commands; no `.ca` under `ps2data` authors `19`<sub>h</sub>. Only modes 0 and 4
 are authored, and mode-0 types are 1-12:
 
 | Type | Commands | Authored in blocks | Heard from |

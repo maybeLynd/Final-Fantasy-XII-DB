@@ -334,7 +334,7 @@ no anchor and nothing recorded, the copy is the stack as it was.
 
 `00310920(point, angle)` is the body of the zone-jump party placement (`0037D000`). It collects the
 party's battle units (`0031B810` for slots 0-3) that have a status record free of `80000003`<sub>h</sub>, or
-any of them in a cutscene (`00377C20`), into `022C1788` (four at most):
+any of them in a town (the town flag `00377C20`), into `022C1788` (four at most):
 
 - with none, the character `00327270()` names is placed at the point and turned to the angle;
 - with no leader (`003272A0`), `00310D30` does the same and every collected unit is placed at the

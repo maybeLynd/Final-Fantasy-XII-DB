@@ -82,7 +82,7 @@ location map's accessors; they never read `02B59D58`.
 |---|---|---|
 | 1, 2 | `00264A40` | entry `i` of list 0 in the zone script's image |
 | 3, 5, 8 | `00264CA0` | entry `i` of list 2, 3 or 4 (`00264E40`) |
-| 6 | `00264CA0` → `003DFAC0` | entry `i` of table 6 of section 16, the position block at `02B59D48` |
+| 6 | `00264CA0` → `003DFAC0` | an older-layout table that `003DFAC0` looks for in section 16 at the offset in its `+08`<sub>h</sub>; in an `FF12POS3` section that word is `size`, so the lookup reads past the records ([Position entries](ebp-position-entries.md)) |
 | 4, 7, 9 | none | nothing, so `003DFBE0` refuses every entry |
 
 The lists are the per-class tables of manager 0's bound script image, found through its header
@@ -119,8 +119,8 @@ the object's four words and runs `setpos2_20d` (`00350C30`), placing the actor a
   every kind.
 - An icon must name an existing entry of its kind's list; the minimap draws it at that entry's
   position, and moving `at` changes nothing.
-- Use kinds 3, 5 or 8 for minimap markers; kind 6 only serves `setposbynaviicon`, and kinds 4, 7
-  and 9 resolve to nothing.
+- Use kinds 3, 5 or 8 for minimap markers and for `setposbynaviicon`; kind 6 resolves through `003DFAC0`,
+  which does not read `FF12POS3` records, and kinds 4, 7 and 9 resolve to nothing.
 - Icon 14, icon 0, gate 1 and a negative icon are never drawn on the minimap.
 - The minimap holds at most 64 icons.
 - Only one block is live: a script loaded later for another manager replaces the field's block.

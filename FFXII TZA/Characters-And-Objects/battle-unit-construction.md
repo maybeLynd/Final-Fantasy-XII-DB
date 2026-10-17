@@ -130,24 +130,24 @@ row index, and for kind 0 it is the type the code partitions:
 |---|---|---|---|---|
 | 0-6 | the main characters | 0 | yes | yes |
 | 7-25 | the guest range | 1 | yes | no |
-| 26 | a single value | 3 | yes, but not counted in the split | yes |
-| 27-39 | the band of thirteen | 2 | no | no |
+| 26 | the Chocobo | 3 | yes, but not counted in the split | yes |
+| 27-39 | the thirteen Espers, Belias to Zodiark | 2 | no | no |
 | 40 and above | | 0 | yes | yes |
 
-- `002F8E90(record)` classifies a record: kind 0 gives 2 for the band and 1 otherwise; kind 1 gives
+- `002F8E90(record)` classifies a record: kind 0 gives 2 for an Esper and 1 otherwise; kind 1 gives
   4 when the owning unit's actor class nibble (`00263C20`) is 3, 8 when it is 1, 2 or 7, else 16.
 - `002F8BB0(recipient, source)` pays experience only for a kind-0 recipient with a unit, outside the
-  band (type 26 included), without a terminal status, from a kind-1 source. The amount is
+  Espers (the Chocobo, type 26, included), without a terminal status, from a kind-1 source. The amount is
   `(source level +1C2h - +88h) * [source +E78h] +34h + [source +E70h] +34h`.
 - When `003135C0()` is 0 that amount becomes `amount / n` (`idiv`, `002F8D1C`-`002F8D1D`; 0 when
-  `n` is 0) for the count `n` of party members (`0031B810(0..3)`) that are alive, outside the band
-  and not type 26; otherwise it is paid whole to the `00313800` member. It is doubled when
+  `n` is 0) for the count `n` of party members (`0031B810(0..3)`) that are alive, not Espers
+  and not the Chocobo (type 26); otherwise it is paid whole to the `00313800` member. It is doubled when
   `(+6Bh | +7Bh) & 08h` and zeroed when `(+6Bh | +7Bh) & 20h` (`002F8D26`-`002F8D40`).
 - `002F90C0(recipient, source)` pays licence points, when `00264150()` is 0, for a kind-0 recipient
-  of type 26, below 7 or above 39 without a terminal status, from a kind-1 source: `(level - +88h) * [source +E78h] +2Fh + [source +E70h] +2Fh`,
+  of type 26 (the Chocobo), below 7 or above 39 without a terminal status, from a kind-1 source: `(level - +88h) * [source +E78h] +2Fh + [source +E70h] +2Fh`,
   doubled when `(+6Bh | +7Bh) & 10h` (`002F914B`-`002F9157`).
 - `00309230(unit, actionRow)` returns the row's word `+24`<sub>h</sub> as the presentation code, except for
-  action row `113`<sub>h</sub>, where a band type gets `42 + 3 * (type - 27)`.
+  action row `113`<sub>h</sub>, where an Esper type gets `42 + 3 * (type - 27)`.
 - `0050FF20`, a script verb's handler, resolves its operand through `00320AB0(value, 3)` and pushes
   -2 for no record, -1 for kind 1, and the class above for kind 0.
 
@@ -236,7 +236,7 @@ Class row (`02EBF150`):
 - Giving a party member a starting level sets its experience to exactly that level's threshold
   and strips every status in the two masks; the MP starts at the row's percentage of capacity.
 - A type between 27 and 39 earns nothing and is tested by one predicate (`type - 27 <= 12`)
-  wherever the band matters; type 26 is a separate test with its own rule.
+  wherever the Espers matter; the Chocobo, type 26, is a separate test with its own rule.
 
 ## Related
 

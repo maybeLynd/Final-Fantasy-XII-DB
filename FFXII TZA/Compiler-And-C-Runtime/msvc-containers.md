@@ -229,7 +229,7 @@ their sentry destructors appear.
 | `MSVCP140.dll` import slots | 115 |
 | `_Xlength_error` call sites | 59 |
 | further `std::regex` bodies (`msvc-containers-stl-regex-char-members.tsv`) | 92 |
-| other library bodies compiled in (`msvc-containers-library-members.tsv`) | 49 |
+| other library bodies compiled in (`msvc-containers-library-members.tsv`) | 50 |
 | `std::sort` insertion-sort limit | 32 elements (`cmp rax, 20h` at `006B81AA`) |
 
 ## Modding notes

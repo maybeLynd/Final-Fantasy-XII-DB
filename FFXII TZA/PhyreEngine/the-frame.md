@@ -39,17 +39,18 @@ bit 4 is set, and sets the mask's byte `+8` to 1 (`00358640`).
 The draw opens a `mainLoopDraw` scope (`001EB150`) and returns at once when `01FD4A70` is set (clearing
 it and setting `02064AE4`). While `02064AE4` is clear it writes the GS register batch (`0036D400`,
 below), with both arguments forced to 1 in the alternate draw. It then runs these passes in order, each
-behind one bit of its mask entry:
+behind one bit of its mask entry. `00332420(3)` runs first when bit 6 or bit 1 is set, then the bit-2
+pass (`00377230`) and the bit-0 pass, then `00332420(0)` when bit 6 or bit 1 is set:
 
 | Bit | Accessor | What it gates in `0022B0B0` |
 |---|---|---|
 | 0 | `00358380` | `003769E0`, `00377520`, `0036F410`; later `0036FBB0`, `0036F430`, `0036F450` and `00475390` |
-| 1 | `003582A0` | `0017F2F0`, `0017F070`, `00332420(2)`; with bit 6, `00332420(3)` and `00332420(0)` |
+| 1 | `003582A0` | `0017F2F0`, `0017F070`, `00332420(2)`; this bit or bit 6: `00332420(3)` and `00332420(0)` |
 | 2 | `00358350` | `00377230`; `00258EE0(4)` |
 | 3 | `003583B0` | `00252A70`, and `002450B0` when `00357780()`, after the Gaussian filter (normal draw); inside the filter `0017FD70` runs only when bit 3 is clear or in the alternate draw |
 | 4 | `003583F0` | `00258EE0` with 1, 2, 3, 5 and 6; `00375500` with 2, 3, 5 and 6; the `mask border 2` scope |
 | 5 | `00358300` | the first argument of `0036D400` |
-| 6 | `003582C0` | `00332420(1)`; with bit 1, `00332420(3)` and `00332420(0)` |
+| 6 | `003582C0` | `00332420(1)`; this bit or bit 1: `00332420(3)` and `00332420(0)` |
 | 7 | `003582E0` | the second argument of `0036D400` |
 | 8 | `003583D0` | a mid-draw block: `0036F2C0`, `00184900`, `0036F2F0` |
 
@@ -199,8 +200,9 @@ Instruction-level access tables beside this page:
 
 ## Modding notes
 
-- Clearing a bit of `022C7F90` for a draw removes that pass from the next draw; bit 4 removes every
-  `00258EE0` and `00375500` call. The routines in the callers table rewrite the mask, so a change can
+- Clearing a bit of `022C7F90` for a draw removes that pass from the next draw; bit 4 removes the
+  `00258EE0` calls with 1, 2, 3, 5 and 6 and the `00375500` calls with 2, 3, 5 and 6; `00258EE0(4)` follows
+  bit 2. The routines in the callers table rewrite the mask, so a change can
   be overwritten.
 - A non-zero draw-1 entry makes the field frame draw twice.
 - The 512-record capacity appears twice: in `003A1D50` and in `0036F360`'s full-buffer test.

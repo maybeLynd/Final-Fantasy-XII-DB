@@ -117,8 +117,11 @@ without that flag it returns the heading unchanged.
 So the three angles are one hysteresis loop: entry at 45, escalation past 120 only for a unit
 whose model authors `@FCP` slot 41, whose flag bit 23 is up and which is mid-cast of something
 other than Attack (the three bits the navigation step maintains), release inside 20. The same
-error produces different behaviour depending on history. `0033CB70` normalises by repeated `2pi`
-steps within `+-4pi` and leaves larger values alone; `00334120(cur, target, rate)` is the
+error produces different behaviour depending on history.
+
+`0033CB70` normalises by repeated `2pi`
+steps within `+-4pi`; beyond that it returns `x - 2pi * trunc(x / 2pi)` once
+(`0033CBCD`-`0033CBE8`), whose magnitude is below `2pi` but can be above `pi`; `00334120(cur, target, rate)` is the
 approach helper the modes use: snap within the rate, else step by it and wrap.
 
 ### The steering modes

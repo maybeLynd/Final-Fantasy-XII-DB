@@ -26,7 +26,8 @@ moment.
   user is on: Fira on an enemy spreads to its allies, Cura on a party member spreads to the party.
   Confuse on the target does not turn this around. Self-Destruct spreads to the other side from its
   target, and Mass Destruct hits everyone in range.
-- **Who is skipped.** Units that are KO, Stone or X-Zone (except in areas whose map flag waives this)
+- **Who is skipped.** Units that are KO, Stone or X-Zone (except in towns, whose town flag waives this;
+  [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md))
   and units failing the other targeting checks below are not added. An Invisible enemy is not
   skipped by this test.
 - An action hits at most 32 units.

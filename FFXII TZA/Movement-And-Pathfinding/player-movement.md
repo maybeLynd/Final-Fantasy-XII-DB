@@ -10,8 +10,8 @@ addresses: "00358C60, 00358CB0, 003594E0, 00358A20, 004742A0, 00264DF0, 0026D810
 Push the stick and your character walks, then runs as you push further, turning toward the
 direction you push relative to the camera, quickly but not instantly. Let go and they stop. A light
 push walks, a hard push runs, and a key on the keyboard toggles walking so the character never
-breaks into a run. During a conversation, a scene, a status that holds the body or while riding, the
-stick does nothing. The other party members never respond to the stick: they follow or fight on
+breaks into a run. During a conversation, a scene or a status that holds the body, the stick does
+nothing; while riding a chocobo it steers the chocobo at the chocobo's own speed. The other party members never respond to the stick: they follow or fight on
 their own.
 
 ## How it works
@@ -164,8 +164,9 @@ is `0026D6F0(actor, 0, 2)`) when the result holds:
 
 The evaluator `0023B040`, from the field frame (`00234533`, `002346E5`) and three battle sites
 (`0030108F`, `003010C0`, `00301123`), starts a mask as all ones when `02089340` has bit 6, else 0,
-and derives it from the leader's unit only while not riding (`00303EC0`), not in a cutscene
-(`00377C20`) and with a leader unit (`003272A0`); riding, the cutscene bit or no leader leave the
+and derives it from the leader's unit only while not riding (`00303EC0`), not in a town
+(the town flag `00377C20`, through its thunk `00313F60`) and with a leader unit (`003272A0`); riding,
+the town flag or no leader leave the
 start value, which then clears the evaluator's locks.
 
 Inside the derivation every bit is set by: no `+698`<sub>h</sub> record, or its status words `+3Ch | +64h`

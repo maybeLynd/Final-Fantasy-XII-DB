@@ -147,12 +147,12 @@ Otherwise it tests nine rules in order, each multiplying `02AEE054` once (0.5 fr
 
 | Element | x0.5 when | x1.2 when | Sites |
 |---|---|---|---|
-| fire | environment class 0 | weather class 2 | `0038B295`-`0038B2B8`, `0038B5FE`-`0038B61A` |
+| fire | environment class 0 | wind class 2 | `0038B295`-`0038B2B8`, `0038B5FE`-`0038B61A` |
 | lightning | - | environment 0 or terrain 0 | `0038B3E1`-`0038B424` |
 | ice | - | environment 2 or terrain 2 | `0038B46D`-`0038B4AA` |
 | earth | terrain 0 | environment 1 or terrain 1 | `0038B301`-`0038B333`, `0038B4F3`-`0038B530` |
-| water | weather class 2 | environment 3 or terrain 0 | `0038B37C`-`0038B398`, `0038B579`-`0038B5B5` |
-| wind | - | weather class 2 | `0038B65E`-`0038B67F` |
+| water | wind class 2 | environment 3 or terrain 0 | `0038B37C`-`0038B398`, `0038B579`-`0038B5B5` |
+| wind | - | wind class 2 | `0038B65E`-`0038B67F` |
 
 An "or" rule multiplies once even when both of its tests hold. A ×0.5 and a ×1.2 rule for the same
 element both apply, giving 0.6. A terrain test needs the target's battle unit (`0031B860`); without one
@@ -160,12 +160,13 @@ it fails.
 
 ### The three classes
 
-The environment and weather classes belong to the area, and the terrain class to the target:
+The environment and wind classes belong to the area, and the terrain class to the target:
 
 - **Environment class** `02099DA8` (read through `00321490`): `0026D910` looks up the active weather
   lane's index byte in the 16-entry table at `map_ref.bin` header `+10`<sub>h</sub> (`0026DA10`-`0026DA26`).
-- **Weather class** `02099DAC` (read through `003214A0`): `0026D910` takes the lane's weather preset from
-  `00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for presets 4 and above
+- **Wind class** `02099DAC` (read through `003214A0`): `0026D910` takes the lane's wind preset, bits
+  0-2 of its MWeather entry, from `00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for the
+  strong-wind presets 4 and above ([Weather](../World-Areas-And-Travel/weather.md))
   (`0026DA31`-`0026DA4E`).
 - **Terrain class** (`003210E0`, then `00263DD0`): the target actor's ground index, the `i16` at `+8A`<sub>h</sub>
   of the record its `+C0`<sub>h</sub> and `+138`<sub>h</sub> pointers reach (index 0 when either is missing), looked up in the
@@ -249,4 +250,4 @@ ground indices 0-17 and 0 for indices 18-31. Classes 3 and 4 match no rule.
 - [Steal](steal.md) - how an equipped item's augment byte reaches the effect layers.
 - [Evaluation context](damage-formula.md) - the merged effect bits.
 - [Choosing the field environment variant](../World-Areas-And-Travel/weather.md)
-  - where the environment and weather classes are published.
+  - where the environment and wind classes are published.

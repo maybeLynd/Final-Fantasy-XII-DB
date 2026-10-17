@@ -239,11 +239,11 @@ profile's code, read from `01F80F90` (`0019775A`-`0019776F`), and test it on the
 ### The field buttons
 
 The input arbiter `00253C70` reads the field's presses once per field frame. It returns before reading a button
-when bit 1 of the battle mode register `022C83E8` is set (`0035C740`), when the byte `0215F1A0` is set (`002E12D0`),
+while Game Over is armed, bit 1 of the mode word `022C83E8` (`0035C740`; [Game over](../World-Areas-And-Travel/game-over.md)), when the byte `0215F1A0` is set (`002E12D0`),
 or when `00228380` or the Start handler `002287D0` answers non-zero (`00253C97`-`00253CCC`). The buttons are read
 only while `00265680` answers non-zero (`00253D0D`), from held and pressed of set 0.
 
-While `003135E0` (bit 0 of `+5B04`<sub>h</sub> of `02EBF190`) and `0035C750` (bit 4 of `022C83E8`) both answer non-zero, the
+While `003135E0` (bit 0 of `+5B04`<sub>h</sub> of `02EBF190`) and `0035C750` (bit 4 of the mode word `022C83E8`, not the battle mode register `022C83EC` of [Escape Mode](escape.md)) both answer non-zero, the
 confirm button, the four directions and Square are dropped from the presses (`00253D3D`-`00253D5E`). The arms then
 run in this order, and the policy bits are those of [Action availability](action-availability.md):
 
