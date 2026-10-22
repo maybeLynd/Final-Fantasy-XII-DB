@@ -55,13 +55,19 @@ With kind 1 the unit must have flag bit 26 set. The installer then:
    writes back `old + 1`, or 1 once `old` reaches `0x00254A40()`; with a byte of `0xFF` it stores 0 at
    `+0x12`;
 4. resolves the name text: the row's word `+0x08` split as bank (high 5 bits) and entry (low 11
-   bits) through `0x02EBF170`, then `0x002B58B0(block, 0)`;
+   bits) through `0x02EBF170`, then `0x002B58B0(block, 0)`. `0x00269F20` stores that text and the `+0x12` ordinal at the
+   actor's `+0xF8` and `+0x100` (`0x00238EB8`);
 5. stores `+0xE60` = the enemy row, `+0xE68` = the class row, `+0x6E0` = the `0x02EBF168` row named by
    word `+0x50`, `+0xE70` = the `0x02EBF148` row named by word `+0x22`, `+0xE78` = the `0x02EBF140` row
    named by word `+0x24`;
 6. registers the unit (`0x00328FF0(0, row byte +0x03 & 3, unit +0xEA9)`: the class to `0x02EC1384` and
    the slot to `0x02EC1380`, written only when the class is not 0 or the slot is negative), and sets
    flag bit 43 when `row byte +0x03 & 3` or `row byte +0x15` bit 2 is set, else clears it.
+
+The name drawer `0x00272CE0` adds a letter to that name when the actor's word `+0x102` is negative, so that the
+name is the text at `+0xF8` (`0x00263990`, `0x00263A10`), and the ordinal is not 0 (`0x00272D3A`). `0x002B58F0`, through
+`0x0024ABE0`, writes entry `0x21` + (ordinal - 1) mod 26 of the text the font sheet names at `+0x14`, or at `+0x18`
+when the language test `0x00254A10` is true (`0x002B5957`-`0x002B5997`).
 
 The common stores then take, from the class row: `+0x64` = byte `+0x22` times 2π/360, `+0x55` =
 byte `+0x04`, `+0x68` = float(byte `+0x23`), `+0x56` = byte `+0x05`, `+0x6C` = float(byte `+0x27`),

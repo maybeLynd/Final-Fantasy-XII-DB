@@ -130,6 +130,20 @@ a changed count is posted as a hit or heal reaction with the difference (`0x0032
 [HP and KO](hp-and-ko.md)), which `0x003283D0` posts as a battle number through `0x003BBD00` (`0x00328462`,
 [Battle numbers](../Menus-And-HUD/battle-numbers.md)).
 
+### Saboteur
+
+Augment 18 (Saboteur) has one reader. The hit-rate slot 21 of the calculator, `0x00388F20`, tests it in the
+merged context (`+0x1C` bit `0x4`, `0x00388F2A`) and sets the hit chance `0x02AEDFE0` to 100 when it is set
+(`0x00388F37`); otherwise the chance is the action row's `+0x12` less the target's Vitality plus the user's Magick
+Power (`0x00388F8C`-`0x00388FA1`). The recipes whose lists hold slot 21 are 3, 8, 9, 10, 12, 14, 15, 68 and 72
+([Formula slots](formula-slots.md)).
+
+No other instruction tests the bit: none in the layers (`+0x6A` or `+0x7A`, bit `0x4`) and none in a context.
+The four readers that take an augment id from data (the stat lists of the rebuild, the enemy-order selector
+`0x00302494`, the context merge `0x00384827` and the timer pass `0x003855CD`) reach it only through that data. The
+other `test byte ptr [reg + 0x1C], 4` sites in the image (`0x0025B997`, `0x0025BA33`, `0x0059C0E3`, `0x0059D836`) are on
+field records and asset lists, not combat contexts.
+
 ## Shipped data
 
 | Source | Count in the `us` data |

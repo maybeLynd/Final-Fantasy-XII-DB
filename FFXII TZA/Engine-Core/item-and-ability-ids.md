@@ -190,6 +190,12 @@ The name at `+0x18` is the field half of the callers read and nothing else; the 
 licence board. String pointers point into the loaded text banks; the record never allocates or
 copies them.
 
+`0x003933B0(category)` turns a shop category (`0x002FABD0`, [Shops](../Items-Equipment-Shops-And-Licenses/shops.md))
+into the class for a query through the twelve-byte map at `0x00D113B8`: categories 0-3 give class 6 (equipment), 4
+gives 5 (items), 5 gives 9 (technicks), 6 gives 8 (magicks), 7 gives 7 (loot), 8 gives 10 (gambit presets), 9
+gives 11 (gambit conditions), 10 gives 12 and 11 gives 18 (bazaar goods); a category of 12 or more gives -1. The
+shop rows (`0x0056E410`, `0x0056E49D`) and the hunt pane (`0x003F41C0`, `0x003F4210`) take that class to `0x0035D380`.
+
 ### The empty id
 
 `0xFFFF` is the empty id. The dispatchers refuse it before the nibble test, `0x003008A0` refuses it,

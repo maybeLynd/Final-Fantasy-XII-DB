@@ -99,6 +99,11 @@ The US kind 1 array `0x01ED7630` names ids 4 to 8 (the `wave0480`-`wave0483` and
 size table sizes 24 kind 1 ids: 24 and 32, whose files ship; 1 and 2, which the array leaves null; and the 20 ids
 109 to 132, which lie past its end, so the US array names no kind 1 file for them.
 
+`0x002ED6F0` gives kind 1 to every bound id whose letter is none of its twelve (`0x002ED840`: index = number, one
+lane); `0x002E98F0` adds `0x33` to that index and the lane loader `0x002E6EB0` adds `0x43` (`0x002E6F99`-`0x002E6FA2`,
+[Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)). The bestiary, the party table and
+the actor manifests name only the twelve letters, so no shipped bound id reaches kind 1.
+
 ### Checks
 
 - The table's 10,521 sized entries are exactly the entries of `FileSizeTable_US.fst` that are not `0xFFFFFFFF`.

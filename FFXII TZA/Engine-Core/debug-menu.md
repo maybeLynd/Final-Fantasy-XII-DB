@@ -169,6 +169,15 @@ Most stepped fields are in the render settings block ([graphics settings](graphi
 `0x003058B0`, which hands 99,999,999 to the ordinary setter `0x00254EE0`
 ([gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
 
+Row 20, Load chr, steps a bound model id with `0x002EEEE0(id, step)`, step 1 or -1 (`0x001D171B`, `0x001D1730`). It
+adds the step to the id's number; when that goes below 0 it takes the letter before the id's in the eight-letter
+table at `0x00D0F870` (pairs of two dwords `{letter, kind}`: `b` 22, `s` 23, `t` 25, `g` 13, `w` 16, `c` 14, `m` 34,
+`n` 19; only the letters are read, and no instruction refers to the 8 at `0x00D0F860`) and restarts the number at 0.
+
+The stepper then takes the kind and file index from `0x002ED6F0` ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)),
+moves the number on by the step again while the file has no size (`0x002DF980`, `0x002DF8E0`), and returns the id
+when its path ends in `.cm`, else 0.
+
 ### Who reaches the dispatcher
 
 `0x001D1660` has one caller (the data references at `0x01D5D550` and `0x01D5D560` are exception
