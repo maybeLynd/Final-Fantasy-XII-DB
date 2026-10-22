@@ -2,7 +2,7 @@
 title: "Settings launcher: FFXII_TZA_GameSetting.exe, the options it writes to GameSetting.ini, the display list it builds, its reset button, and every other file the game ships beside the executable"
 kind: "system"
 category: "Saving, loading and settings"
-addresses: "001DE050, 001F3ED0, 0079813C, 0078AD20, 007911D0, 00862C70"
+addresses: "0x001DE050, 0x001F3ED0, 0x0079813C, 0x0078AD20, 0x007911D0, 0x00862C70"
 ---
 
 ## What the player sees
@@ -18,19 +18,19 @@ addresses: "001DE050, 001F3ED0, 0079813C, 0078AD20, 007911D0, 00862C70"
 
 The launcher is `FFXII_TZA_GameSetting.exe`, a 32-bit .NET Windows Forms program with the namespace
 `GameSettings`; it never starts the game itself. The game reads what it writes when it starts
-([Game settings](game-settings.md), `001DE050`). The method names below are those of its own metadata.
+([Game settings](game-settings.md), `0x001DE050`). The method names below are those of its own metadata.
 
 ### Where the files live
 
 `Program.InitGlobalConfig` reads the file names from the embedded resource `PathConfig`: `IniFile` is
 `GameSetting.ini` and `ResetFile` is `keymap.ini`. It places both in `Documents\My Games\FINAL FANTASY XII THE
 ZODIAC AGE\`, followed by the Steam account id when `SteamAPI.Init` succeeds, and creates the folder with
-`SHCreateDirectory`. That is the folder the game uses for the same files (`001F3ED0`;
+`SHCreateDirectory`. That is the folder the game uses for the same files (`0x001F3ED0`;
 [Keymap file](../Controls-And-Input/keymap-file.md)).
 
 Before it goes on, `SteamAPI.RestartAppIfNecessary(595520)` decides whether the program must be restarted
 through Steam; on true the launcher exits at once. The game makes the same check with the same app id
-(`0079813C`; [Steam integration](../Steam-And-Achievements/steam-integration.md)).
+(`0x0079813C`; [Steam integration](../Steam-And-Achievements/steam-integration.md)).
 
 ### The language
 
@@ -133,10 +133,10 @@ The game's folder holds the archive `FFXII_TZA.vbf`, the `FileSizeTables` folder
 | `CSteamworks.dll` | a 32-bit native bridge that imports `steam_api.dll` | `Steamworks.NET.dll` |
 | `steam_api.dll` | the 32-bit Steam API | `CSteamworks.dll` |
 | `steam_api64.dll` | the 64-bit Steam API, nine imports | the game |
-| `d3dcompiler_47.dll` | the Direct3D shader compiler library | the game, for one import, `D3DReflect` (`007911D0`) |
-| `xinput1_3.dll` | the XInput 1.3 controller library | the game's XInput controller, which loads `.\xinput1_3.dll` from the working folder when an XInput pad is built and keeps only its ordinal-100 export (`00862C70`; [Controllers](../Controls-And-Input/controllers.md)); the game's own `XInputGetState` and `XInputSetState` come from the system's `XINPUT9_1_0.dll` |
+| `d3dcompiler_47.dll` | the Direct3D shader compiler library | the game, for one import, `D3DReflect` (`0x007911D0`) |
+| `xinput1_3.dll` | the XInput 1.3 controller library | the game's XInput controller, which loads `.\xinput1_3.dll` from the working folder when an XInput pad is built and keeps only its ordinal-100 export (`0x00862C70`; [Controllers](../Controls-And-Input/controllers.md)); the game's own `XInputGetState` and `XInputSetState` come from the system's `XINPUT9_1_0.dll` |
 
-The game imports nothing else from `d3dcompiler_47.dll`: its one caller, `0078AD20` in the post-effect library's
+The game imports nothing else from `d3dcompiler_47.dll`: its one caller, `0x0078AD20` in the post-effect library's
 `TinyEffect` code, reflects already compiled shader bytecode to list its constant buffers and resources
 ([Yebis post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md)). No shader is compiled at run
 time. The shipped install has no `steam_appid.txt`.

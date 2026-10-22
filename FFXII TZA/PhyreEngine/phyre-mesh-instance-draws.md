@@ -2,7 +2,7 @@
 title: "Phyre mesh-instance draws: the segment loop, the bone palette, the per-draw parameter blocks, the light and shadow parameter values and the preprocess ring buffer"
 kind: "system"
 category: "PhyreEngine"
-addresses: "0060B980, 005FF090, 005FF200, 005EB370, 00600B30, 005FECF0, 00600F30, 00670920, 00600BE0, 00606C60, 02CB6360, 006B6410, 006B64F0, 006B6510, 006B6690, 006B64C0, 007A12B0, 02E52270, 005DDAE0, 0060EC30"
+addresses: "0x0060B980, 0x005FF090, 0x005FF200, 0x005EB370, 0x00600B30, 0x005FECF0, 0x00600F30, 0x00670920, 0x00600BE0, 0x00606C60, 0x02CB6360, 0x006B6410, 0x006B64F0, 0x006B6510, 0x006B6690, 0x006B64C0, 0x007A12B0, 0x02E52270, 0x005DDAE0, 0x0060EC30"
 ---
 
 ## What the player sees
@@ -17,7 +17,7 @@ shader build for the current pass is not drawn.
 
 ### The mesh-instance draw
 
-`0060B980(renderer, instance, selector, instancing, value, flag)` draws one `PMeshInstance`:
+`0x0060B980(renderer, instance, selector, instancing, value, flag)` draws one `PMeshInstance`:
 
 1. It returns `0x16` unless bit `0x1` of the renderer's `+0x08` is set, and `0x15` when the renderer has
    no pass record at `+0x80`.
@@ -26,7 +26,7 @@ shader build for the current pass is not drawn.
 4. It walks the mesh's segments (`0xC0` bytes each; count at mesh `+0x00`, array at `+0x08`) and
    draws each one, as the next sections describe.
 5. It releases the palette's ring block, if it took one, by clearing the block's busy word. When an
-   exception leaves the function, the unwind action `005DDAE0` does the same.
+   exception leaves the function, the unwind action `0x005DDAE0` does the same.
 
 ### Choosing the segment's shader build
 
@@ -40,7 +40,7 @@ For each segment:
    empty, the first `0x50`-byte record at `+0x20` (count `+0x18`) whose `+0x00` is the pass type.
 4. The shader build is the `0x40`-byte variant entry at technique `+0x10` + index × `0x40`. The index
    comes from the instance's `0x48`-byte record for the segment (array at `+0x50`) when that record's
-   `+0x30` is this effect variant (index at `+0x28`), and otherwise from `00606A20`, which also fills
+   `+0x30` is this effect variant (index at `+0x28`), and otherwise from `0x00606A20`, which also fills
    the light record (see [Shader variant selection](shader-variant-selection.md)).
 
 A segment with no technique or no variant is skipped.
@@ -66,61 +66,61 @@ A null override leaves the renderer's pass record in use.
 
 The palette holds one 64-byte matrix per mesh matrix (mesh `+0x30`, bit 31 masked) after one
 leading slot. Up to `0x80` entries it lies on the stack; above that it is a block of the preprocess
-ring buffer (`006B6410`, `006B64F0`), whose data starts `0x10` bytes in.
+ring buffer (`0x006B6410`, `0x006B64F0`), whose data starts `0x10` bytes in.
 
-- `005FF090(instance, palette)` writes the instance's world matrix into the leading slot (the 64
-  bytes before `palette`): `m_localToWorldMatrix` (`+0x08`) expanded from 4×3 to 4×4 as `006045E0`
+- `0x005FF090(instance, palette)` writes the instance's world matrix into the leading slot (the 64
+  bytes before `palette`): `m_localToWorldMatrix` (`+0x08`) expanded from 4×3 to 4×4 as `0x006045E0`
   does, or the identity when there is none or bit `0x1` of `m_flags` (`+0x58`) is set. It then jumps to
-  `005FF200`.
-- `005FF200(instance, palette)` fills entry *i* from the instance's matrix array at `+0x18`. With bit
+  `0x005FF200`.
+- `0x005FF200(instance, palette)` fills entry *i* from the instance's matrix array at `+0x18`. With bit
   `0x2` of `m_flags` set it copies the matrices as they are. Otherwise entry *i* is the product
-  (`00185100`) of the palette entry named by the mesh's index *i* (an `i32` array at mesh `+0x58`;
+  (`0x00185100`) of the palette entry named by the mesh's index *i* (an `i32` array at mesh `+0x58`;
   −1 names the world matrix) and the instance's matrix *i*.
 
 A segment's matrix is palette entry `m_matrixIndex` (segment `+0x04`).
 
 ### Sizing the draw
 
-`005EB370(&total, &dynamic, &table, flags, parameterBuffer, effectVariant, variantEntry, segment,
+`0x005EB370(&total, &dynamic, &table, flags, parameterBuffer, effectVariant, variantEntry, segment,
 dynamicInstance)` adds up what one segment's draw needs. `flags` is the variant entry's first word:
 
 - bit `0x2`: the material's parameter buffer size (its first `u32`), rounded up to 16;
 - bit `0x4`: the `u16` at effect variant `+0x62`;
 - bit `0x8`: the per-instance block size at variant entry `+0x38`;
-- a dynamic mesh instance whose `+0x08` is set adds `dynamic`: `00670E00(that object, segment)` ×
+- a dynamic mesh instance whose `+0x08` is set adds `dynamic`: `0x00670E00(that object, segment)` ×
   `0x88`, rounded up to 16, plus `0x80` when the segment's 16-byte record in its `+0x28` array has a
   non-zero `+0x0C`.
 
 `table` is `(n + 1) × 8 + 0x10` bytes rounded up to 16, where `n` is the variant entry's count at
-`+0x28`, plus the resource parameters (`005FD5F0`) among the parameter buffer's definitions
+`+0x28`, plus the resource parameters (`0x005FD5F0`) among the parameter buffer's definitions
 (`+0x10` count, `+0x18` data) and among the variant entry's (`+0x18`, `+0x20`), plus 2 with a
 dynamic object. `total` includes `table`.
 
-`00600B30(renderer, total, blocks)` returns false when `total` bytes from the renderer's parameter
+`0x00600B30(renderer, total, blocks)` returns false when `total` bytes from the renderer's parameter
 ring (`+0x28` start, `+0x30` end, `+0x38` cursor) or `blocks` × `0x80` bytes from its render-block
 ring (`+0x50`, `+0x58`, `+0x60`) would pass the ring's limit (`+0x40`, `+0x68`). `blocks` is the
-variant entry's `+0x08` count. On false, `0060B980` first calls the renderer's slot 2, `00600D20` for
+variant entry's `+0x08` count. On false, `0x0060B980` first calls the renderer's slot 2, `0x00600D20` for
 `PRenderer`, which posts the pending blocks to the render thread and moves both limits on
-(`0060FA10`).
+(`0x0060FA10`).
 
 ### The parameter blocks
 
-`005FECF0(renderer, out, flags, parameterBuffer, draw, …)` fills five pointers for the segment:
+`0x005FECF0(renderer, out, flags, parameterBuffer, draw, …)` fills five pointers for the segment:
 
 | `out` | Flag | Source |
 |---|---|---|
-| `[0]` | `0x1` | the renderer's per-camera block `+0xA0`, built on first use by `00604750` from `+0x98`, the camera `+0xA8` and `+0x20` |
-| `[1]` | `0x2` | `00602A40(renderer, parameterBuffer)` |
-| `[2]` | `0x4` | `00602EA0(renderer, draw)` |
-| `[3]` | `0x8` | the per-instance block from `00600F30`, then passed to `0060A010` (after `00609D80` for a dynamic mesh instance) |
+| `[0]` | `0x1` | the renderer's per-camera block `+0xA0`, built on first use by `0x00604750` from `+0x98`, the camera `+0xA8` and `+0x20` |
+| `[1]` | `0x2` | `0x00602A40(renderer, parameterBuffer)` |
+| `[2]` | `0x4` | `0x00602EA0(renderer, draw)` |
+| `[3]` | `0x8` | the per-instance block from `0x00600F30`, then passed to `0x0060A010` (after `0x00609D80` for a dynamic mesh instance) |
 | `[4]` | none | for a dynamic mesh instance whose slot 1 reports a size: a preprocess ring block of that size, filled by its slot 2 |
 
-A non-zero result from `0060A010` is returned. `0060B980` then reserves `table` bytes from the
-parameter ring and passes everything to `0060C020`, which writes the segment's render blocks.
+A non-zero result from `0x0060A010` is returned. `0x0060B980` then reserves `table` bytes from the
+parameter ring and passes everything to `0x0060C020`, which writes the segment's render blocks.
 
 ### The per-instance shader parameters
 
-`00600F30(renderer, draw, lights, extra)` takes `variant entry +0x38` + `extra` bytes from the
+`0x00600F30(renderer, draw, lights, extra)` takes `variant entry +0x38` + `extra` bytes from the
 renderer's parameter ring (wrapping to the start when the cursor would pass the end), writes the
 block's size (`+0x38`, without `extra`) into its first `u32`, and returns it, or null when it does
 not fit. It then walks the variant entry's parameter definitions (`PShaderParameterDefinition`,
@@ -146,10 +146,10 @@ With the light present (`PLight`; matrix floats taken from its `m_localToWorldMa
 | `0xC6`, `0xC7` | the cosines of those two angles |
 | `0xC8` | inner angle, inner + max(outer − inner, 0.001), cos inner, cos inner − max(cos inner − cos outer, 0.001) |
 | `0xC9` | the direction (matrix floats 4–6) through the upper 3×3 of the draw record's object matrix (`+0x50`), normalised, w 0 |
-| `0xCA` | the position (matrix floats 8–10) through that matrix (`005DFCD0`), w 1 |
+| `0xCA` | the position (matrix floats 8–10) through that matrix (`0x005DFCD0`), w 1 |
 | `0xCB`, `0xCC` | the direction normalised and the position, in world space |
 | `0xCD`, `0xCE` | the direction and the position through the renderer's view matrix (`+0xF0`) |
-| `0xD8` | the four split far planes, `00606BE0` on `m_shadowCaster` (`+0x18`) |
+| `0xD8` | the four split far planes, `0x00606BE0` on `m_shadowCaster` (`+0x18`) |
 
 A light without a matrix uses the identity. For any light type not in the table, and for types
 `0xC0`–`0xCE` with no light, the copy takes the evaluator's 16-byte scratch vector, which is zero
@@ -159,7 +159,7 @@ until a vector-valued parameter has been written.
 
 These do not depend on the record's light slot:
 
-- `0xCF`–`0xD2`: the terms `a`, `b`, `c` and `d` of `005FF5A0` as one vector, one float per light
+- `0xCF`–`0xD2`: the terms `a`, `b`, `c` and `d` of `0x005FF5A0` as one vector, one float per light
   0–3. They are computed once per call for each of lights 0–3 that is present and within the light
   record's count, and default to `a = 0`, `b = 1`, `c = 0`, `d = 1`.
 - `0xDE`–`0xE1`: the vertex data block holding the stream `Vertex`, `Normal`, `Color` or `ST` of the
@@ -168,7 +168,7 @@ These do not depend on the record's light slot:
 - `0xE2`: the segment's `m_indexData` (`+0x40`); on the same empty-slot path, none logs `Could not
   find index data block on mesh instance for shader parameter '%s'.`.
 - `0xE3`: the LOD blend weight, the first float of the element of the instance's `m_lodLevel`
-  (`+0x40`) that draw `+0x18` names (`006073D0`), in all four floats; 1.0 without a LOD level.
+  (`+0x40`) that draw `+0x18` names (`0x006073D0`), in all four floats; 1.0 without a LOD level.
 
 The shadow types read the light's `m_shadowCaster` and its `PShadowSplit` records (`+0x10` count,
 `+0x18` data, `0xE8` bytes each):
@@ -180,7 +180,7 @@ The shadow types read the light's `m_shadowCaster` and its `PShadowSplit` record
   the block at the offset, 4×3 or 4×4 the same way.
 - `0xD9`–`0xDC`: the shadow map of split 0–3 as a texture capture record `{0x42, map texture +0x0C,
   caster +0x58, texture}`, the map taken from split `+0xC0`. A split with no map logs `Error: shadow
-  caster has no shadow map for this split.` once (byte `02CE9D9D`); a map whose byte `+0x08` is set
+  caster has no shadow map for this split.` once (byte `0x02CE9D9D`); a map whose byte `+0x08` is set
   gives a null texture.
 
 With no light, `0xD3`–`0xD6` write the identity, `0xD7` writes identity matrices for the whole array,
@@ -188,58 +188,58 @@ and `0xD9`–`0xDC` a record with a null texture.
 
 ### Finding a stream by data type
 
-`00670920(segment, &block, type)` walks the segment's vertex data blocks (`0x88` bytes; count `+0x30`,
+`0x00670920(segment, &block, type)` walks the segment's vertex data blocks (`0x88` bytes; count `+0x30`,
 array `+0x38`) and, in each, its `0x18`-byte stream records (count `+0x08`, array `+0x10`), and
 returns the first stream whose `m_renderDataType` (`+0x08`) is `type`, with its block in `block`; null
 when none matches.
 
-The data types are static objects named before `main`: `Vertex` `02D3AB18`
-(`00165E10`), `Normal` `02D3AB30` (`00165B70`), `ST` `02D3AB48` (`00165BA0`) and `Color` `02D3AB78`
-(`001659C0`), each built by `00662C00(object, name, 0)`. `00671670` returns whether a segment has a
+The data types are static objects named before `main`: `Vertex` `0x02D3AB18`
+(`0x00165E10`), `Normal` `0x02D3AB30` (`0x00165B70`), `ST` `0x02D3AB48` (`0x00165BA0`) and `Color` `0x02D3AB78`
+(`0x001659C0`), each built by `0x00662C00(object, name, 0)`. `0x00671670` returns whether a segment has a
 stream of a type, the test `SKINNING_ENABLED` uses.
 
-`00600BE0(list, type)` returns the first `0x18`-byte record of a list (count `+0x28`, array `+0x30`)
-whose `+0x00` is `type`, or null for a null type; `006718B0` uses it to decide which of a segment's
+`0x00600BE0(list, type)` returns the first `0x18`-byte record of a list (count `+0x28`, array `+0x30`)
+whose `+0x00` is `type`, or null for a null type; `0x006718B0` uses it to decide which of a segment's
 stream groups get a data block of their own.
 
 ### The variant usage counter
 
-After choosing a variant entry, `0060B980` and `006007B0` increment a counter for it when the static
-`02CB6360` is non-null: `00606C60(tree, technique, entry)` finds the technique in an ordered tree
+After choosing a variant entry, `0x0060B980` and `0x006007B0` increment a counter for it when the static
+`0x02CB6360` is non-null: `0x00606C60(tree, technique, entry)` finds the technique in an ordered tree
 (key at node `+0x18`) and returns the address of `u32` number `(entry − technique +0x10) / 0x40` of
-the node's array at `+0x28`. `02CB6360` is zero in the image and no instruction writes it, so the
+the node's array at `+0x28`. `0x02CB6360` is zero in the image and no instruction writes it, so the
 counter never runs.
 
 ### The preprocess ring buffer
 
-`006B6410` returns the one `PPreprocessRingBuffer`, the static `02E52270`, built on first use. The run
-setup `0079F150` gives it the 2 MiB block it allocates (`+0xDF0` of the application): start, end,
+`0x006B6410` returns the one `PPreprocessRingBuffer`, the static `0x02E52270`, built on first use. The run
+setup `0x0079F150` gives it the 2 MiB block it allocates (`+0xDF0` of the application): start, end,
 capacity `0x200000`, and write and oldest positions at the start; then it creates the lock
-(`005CD0A0`).
+(`0x005CD0A0`).
 
-`006B6510(ring, size)` takes a block of `size` rounded up to 16, plus a 16-byte header:
+`0x006B6510(ring, size)` takes a block of `size` rounded up to 16, plus a 16-byte header:
 
 1. It returns null when that is not below the capacity (`+0x38`) or the ring has no write position.
-2. Under the lock (`005CD4F0`, `005CD820`), while the new block would overlap the oldest live block
-   (`006B6690`), it moves the oldest position past every block whose busy word is 0, sleeps 1 ms and
+2. Under the lock (`0x005CD4F0`, `0x005CD820`), while the new block would overlap the oldest live block
+   (`0x006B6690`), it moves the oldest position past every block whose busy word is 0, sleeps 1 ms and
    tries again, logging `Trying to make space in PPreprocessRingBuffer, waiting on
    PPreprocessRingBufferBlock %p (size %d) to be not busy` every 1024 waits.
 3. A block that would run past the end is turned into a filler up to the end and the write position
    wraps to the start; otherwise the header gets the next block's address, busy 0 and the requested
    size, and the write position moves on.
 
-`006B64F0` calls it and sets the block's busy word to 1; the user clears it when done. `006B6690`
+`0x006B64F0` calls it and sets the block's busy word to 1; the user clears it when done. `0x006B6690`
 reports an overlap when the oldest block lies ahead of the write position within `size` bytes, or
 the block would reach the end while the oldest block is at the start. `PAsyncProcessBuffer`'s
-allocator `00684860` uses the same test.
+allocator `0x00684860` uses the same test.
 
-At shutdown, `0079EDD0` calls `007A12B0`, which closes the lock and, until the oldest position
-reaches the write position, advances it past free blocks (`006B64C0`), sleeping 1 ms between tries;
+At shutdown, `0x0079EDD0` calls `0x007A12B0`, which closes the lock and, until the oldest position
+reaches the write position, advances it past free blocks (`0x006B64C0`), sleeping 1 ms between tries;
 then it clears the ring's positions and capacity, so later requests return null.
 
 ## Layouts
 
-`DrawRecord` (`0xA0` bytes, offsets from the start of the 0060B980-stack):
+`DrawRecord` (`0xA0` bytes, offsets from the start of the 0x0060B980-stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -253,7 +253,7 @@ then it clears the ring's positions and capacity, so later requests return null.
 | `+0x38` | `void*` | segment | the `0xC0`-byte mesh segment |
 | `+0x40` | `u32` | segmentIndex |  |
 | `+0x48` | `void*` | segmentMatrix | palette entry m_matrixIndex |
-| `+0x50` | `f32[16]` | objectMatrix | inverse of the segment matrix (`00187460`) |
+| `+0x50` | `f32[16]` | objectMatrix | inverse of the segment matrix (`0x00187460`) |
 | `+0x90` | `void*` | effectVariant |  |
 | `+0x98` | `void*` | variantEntry | the `0x40`-byte variant entry |
 
@@ -280,11 +280,11 @@ then it clears the ring's positions and capacity, so later requests return null.
 | `+0x12` | `u16` | sizeAndLight | low 13 bits size, top 3 bits light slot |
 | `+0x14` | `u32` | m_constantBufferLocation |  |
 
-`PPreprocessRingBuffer` (`0x58` bytes, offsets from the start of the 02E52270):
+`PPreprocessRingBuffer` (`0x58` bytes, offsets from the start of the 0x02E52270):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[40]` | lock | `005CC8A0` initialises, `005CD0A0` creates |
+| `+0x00` | `u8[40]` | lock | `0x005CC8A0` initialises, `0x005CD0A0` creates |
 | `+0x28` | `void*` | start |  |
 | `+0x30` | `void*` | end |  |
 | `+0x38` | `u32` | capacity | `0x200000` |
@@ -297,22 +297,22 @@ then it clears the ring's positions and capacity, so later requests return null.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | next | the following block |
-| `+0x08` | `u32` | busy | 1 from `006B64F0` until the user clears it |
+| `+0x08` | `u32` | busy | 1 from `0x006B64F0` until the user clears it |
 | `+0x0C` | `u32` | size | requested size; a filler holds the bytes to the end |
 
 ## Operations
 
-- `0060EC30(instance, value)` writes `value` to `+0x28` of every segment of the mesh at the object's
-  `+0x00`. The game's `001E5540` calls it for each object in its list at `+0x18`.
+- `0x0060EC30(instance, value)` writes `value` to `+0x28` of every segment of the mesh at the object's
+  `+0x00`. The game's `0x001E5540` calls it for each object in its list at `+0x18`.
 
 ## State
 
 | Address | What |
 |---|---|
-| `02E52270` | the `PPreprocessRingBuffer` (guard `02E522C8`) |
-| `02CB6360` | variant usage tree; zero, never written |
-| `02CE9D9D` | set once the missing-shadow-map error is logged |
-| `02D3AB18`, `02D3AB30`, `02D3AB48`, `02D3AB78` | the `Vertex`, `Normal`, `ST` and `Color` data types |
+| `0x02E52270` | the `PPreprocessRingBuffer` (guard `0x02E522C8`) |
+| `0x02CB6360` | variant usage tree; zero, never written |
+| `0x02CE9D9D` | set once the missing-shadow-map error is logged |
+| `0x02D3AB18`, `0x02D3AB30`, `0x02D3AB48`, `0x02D3AB78` | the `Vertex`, `Normal`, `ST` and `Color` data types |
 
 ## Modding notes
 
@@ -327,7 +327,7 @@ then it clears the ring's positions and capacity, so later requests return null.
 
 ## Related
 
-- [Shader variant selection](shader-variant-selection.md): the variant key and the light record `00606A20` fills.
+- [Shader variant selection](shader-variant-selection.md): the variant key and the light record `0x00606A20` fills.
 - [Phyre frame](the-frame.md): the frame's draw routine and camera snapshot.
-- [Phyre post-effect classes](phyre-post-effect-classes.md): the post effects that draw through `0060B980`.
+- [Phyre post-effect classes](phyre-post-effect-classes.md): the post effects that draw through `0x0060B980`.
 - [Phyre field schema](phyre-field-schema.md): the `PMeshInstance`, `PLight` and `PShaderParameterDefinition` members.

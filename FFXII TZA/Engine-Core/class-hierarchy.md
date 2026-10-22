@@ -2,7 +2,7 @@
 title: "Class hierarchy: the C++ classes the executable names through RTTI and what they are"
 kind: "system"
 category: "Engine core"
-addresses: "008C5760, 00D86960, 00903B68, 009007E8, 009010B8, 00904328, 00D360A0, 005C5230, 0016D6A0, 0016D680, 008F9B80, 008F3640"
+addresses: "0x008C5760, 0x00D86960, 0x00903B68, 0x009007E8, 0x009010B8, 0x00904328, 0x00D360A0, 0x005C5230, 0x0016D6A0, 0x0016D680, 0x008F9B80, 0x008F3640"
 ---
 
 ## What the player sees
@@ -50,7 +50,7 @@ The namespace is the outermost component of the decorated name, so an enclosing 
 
 The game's own classes fall into a few families:
 
-- the application root `GameApplication` (vtable `008C5760`, 31 slots, derived from
+- the application root `GameApplication` (vtable `0x008C5760`, 31 slots, derived from
   `Phyre::PFramework::PApplication`, `PBase` and `PMemoryBase`, [game
   application](game-application.md)) and the managers `InputManager`, `AsyncJobManager`,
   `AsyncLoadManager`, `AssetListManager`, `SaveloadManager`, `ExtraUI`, `LoadingPage` and
@@ -61,7 +61,7 @@ The game's own classes fall into a few families:
 - the ordered draw objects (`OrderedObject`, `MapOrderedObject`, `CharacterOrderedObject`,
   `FontBorderOrderedObject` and siblings), the eight `DynGeo…` dynamic geometry instances
   (`DynGeoTextureInstance` with 21 slots), `CharacterRenderObject` (31 slots), `MapRenderObject`,
-  `ChrModel` and `PrimitiveRendererD3D11` (vtable `00D86960`, 45 slots);
+  `ChrModel` and `PrimitiveRendererD3D11` (vtable `0x00D86960`, 45 slots);
 - the 17 audio classes (the banks and controllers `AudioBank`, `MusicAudioController`,
   `StreamAudioBank` and their siblings, `AudioCallback`, `AudioFileLoadManager` and the three
   `AudioSeadObject…` classes) and the two Mersenne twister classes `MTRand_int32` and
@@ -78,28 +78,28 @@ PhyreEngine classes carry the engine's own reflection as well: 1,199 of the Phyr
 2,101 of the 2,242 primary vtables name at least one base, up to 13 deep through the Phyre
 descriptor templates. 34 classes have more than one vtable (44 secondary vtables at a non-zero
 object offset), which is multiple inheritance: `PrimitiveRendererD3D11` carries a second vtable
-at `+8` for `IBatchMergerEvent` (`00D86AD0`, one slot), and the `std` stream classes carry theirs
+at `+8` for `IBatchMergerEvent` (`0x00D86AD0`, one slot), and the `std` stream classes carry theirs
 for their virtual bases.
 
 A derived class copies every base method it does not override, so one function appears in many
 vtables: 2,611 of the 6,886 functions sit in more than one class and 4,275 in exactly one. The
-linker also folded identical bodies across unrelated classes: `005C5230` (`return 0`) fills 2,514
-slots, `0016D6A0` (`ret`, also the Control Flow Guard stub, [jump thunks](jump-thunks.md)) 1,386
-and `0016D680` (`return this`) 1,349. A method is attributable to a class only when it appears in
+linker also folded identical bodies across unrelated classes: `0x005C5230` (`return 0`) fills 2,514
+slots, `0x0016D6A0` (`ret`, also the Control Flow Guard stub, [jump thunks](jump-thunks.md)) 1,386
+and `0x0016D680` (`return this`) 1,349. A method is attributable to a class only when it appears in
 that class alone, and a hook on a shared body reaches every class that folded onto it.
 
 ### How an object gets its class
 
 A constructor stamps the vtable address into the object's first qword with
 `lea reg, [vtable]; mov [object], reg`. 2,282 of the 2,286 vtables are loaded by such a `lea` in
-`.text`, at 5,786 sites; the four that no `lea` loads are `AdapterInfoBase` (`00906868`),
-`Phyre::PClassDataMemberDynamicType<PClassDataMemberDynamic>` (`00D58468`),
-`SoundObjectManagerCallbackHandler` (`01CB4328`) and `SQEX::Sd::HashTable` (`01CB4AE8`), bases
+`.text`, at 5,786 sites; the four that no `lea` loads are `AdapterInfoBase` (`0x00906868`),
+`Phyre::PClassDataMemberDynamicType<PClassDataMemberDynamic>` (`0x00D58468`),
+`SoundObjectManagerCallbackHandler` (`0x01CB4328`) and `SQEX::Sd::HashTable` (`0x01CB4AE8`), bases
 that are never constructed on their own.
 
 Static objects get theirs from the C++ initializers that
-run before the game's entry point or, like the debug-log sink at `02CB6140`, on first use
-(`Phyre::PTTYCallback`'s vtable `00D360A0`, [debug logging](debug-logging.md)); either way a
+run before the game's entry point or, like the debug-log sink at `0x02CB6140`, on first use
+(`Phyre::PTTYCallback`'s vtable `0x00D360A0`, [debug logging](debug-logging.md)); either way a
 global that is zero in the image file has a class fixed at link time.
 
 ## Layouts

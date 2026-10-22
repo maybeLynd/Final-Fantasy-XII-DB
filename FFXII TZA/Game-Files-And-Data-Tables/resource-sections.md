@@ -2,7 +2,7 @@
 title: "Resource sections: how a section inside a loaded resource is found by tag and name, the @FRP container, resource entries and their two storage modes, and the banked resource tables"
 kind: "system"
 category: "Game files and data tables"
-addresses: "00409C30, 00409210, 02B62E20, 00409780, 00409660, 00409930, 00409A30, 004096C0, 00409600, 0051EE00, 003AB7F0, 0036B130, 02B62E10, 0041E500, 004090D0, 00409F50, 002ED570, 0051FF30, 00409F70, 0040A210, 0051F9F0, 00409F10, 0046E250, 00477EE0, 0041E3A0, 0033263C, 00408F30, 00408FA0"
+addresses: "0x00409C30, 0x00409210, 0x02B62E20, 0x00409780, 0x00409660, 0x00409930, 0x00409A30, 0x004096C0, 0x00409600, 0x0051EE00, 0x003AB7F0, 0x0036B130, 0x02B62E10, 0x0041E500, 0x004090D0, 0x00409F50, 0x002ED570, 0x0051FF30, 0x00409F70, 0x0040A210, 0x0051F9F0, 0x00409F10, 0x0046E250, 0x00477EE0, 0x0041E3A0, 0x0033263C, 0x00408F30, 0x00408FA0"
 ---
 
 ## What the player sees
@@ -15,14 +15,14 @@ offsets are off is not found, and whatever needed it does not appear.
 
 ### Matching a section
 
-`00409C30(header, tag, name)` decides whether a section header matches:
+`0x00409C30(header, tag, name)` decides whether a section header matches:
 
 - the tag matches when the query tag is 0, when it is `0x4C4C4140` (the bytes `@ALL`), or when it
   equals the header's dword `+0x00`;
 - the name matches when the query name is NULL, or when all eight dwords of the header's 32-byte name
   at `+0x10` equal the query's.
 
-A searcher first copies the query name into the shared buffer `02B62E20` with `00409210`: it zeroes
+A searcher first copies the query name into the shared buffer `0x02B62E20` with `0x00409210`: it zeroes
 32 bytes, copies at most 32 with `strncpy`, and forces byte `0x1F` to 0. A query is therefore an
 ordinary C string, a stored name must be zero-padded to match, and a name of 32 characters can never
 match, because its last byte is cleared in the query but not in the header. The buffer is a single
@@ -30,7 +30,7 @@ global, so a by-name search is not re-entrant.
 
 ### Searching a resource
 
-`00409780(entry, tag, name, &index, &offset)` sets both outputs to −1, resolves the entry's base (below)
+`0x00409780(entry, tag, name, &index, &offset)` sets both outputs to −1, resolves the entry's base (below)
 and returns when it is null. Then:
 
 - **`@FRP` container** (first dword `0x50524640`). With version 0 (`+0x04` = 0) a matching container
@@ -40,43 +40,43 @@ and returns when it is null. Then:
   entries. Any other version finds nothing.
 - **Any other header.** A match gives offset 0 and index 0.
 
-Its callers are `00409660` (find and resolve to a pointer), `00409930` (the index alone), `00409A30`
-(the offset alone) and `00409960`. A found offset is 0 or a stored table entry plus `0x30` or
+Its callers are `0x00409660` (find and resolve to a pointer), `0x00409930` (the index alone), `0x00409A30`
+(the offset alone) and `0x00409960`. A found offset is 0 or a stored table entry plus `0x30` or
 `0x40`, so a −1 that is not "not found" needs a stored entry of `−0x31` or `−0x41`, a section placed
 before its container.
 
-`00408F90` (from index 0) and `00408FA0(container, tag, name, start)` search an `@FRP` container
-directly: a section matches on its exact tag (no wildcards) and, when a name is given, on `00408F30`, an
+`0x00408F90` (from index 0) and `0x00408FA0(container, tag, name, start)` search an `@FRP` container
+directly: a section matches on its exact tag (no wildcards) and, when a name is given, on `0x00408F30`, an
 eight-dword compare that takes the container's own name at `+0x10`, not the section's. They return the
 index, or −1.
 
 ### Resolving an offset
 
-`004096C0(entry, offset)` returns NULL for a null entry or an offset of −1. Otherwise it adds the
-offset to the low 32 bits of the entry's base and sign-extends the 32-bit sum, and `00409660` does the
+`0x004096C0(entry, offset)` returns NULL for a null entry or an offset of −1. Otherwise it adds the
+offset to the low 32 bits of the entry's base and sign-extends the 32-bit sum, and `0x00409660` does the
 same. A base above 4 GB does not survive, and nothing tests the base: an entry whose base resolves to
 0 still returns the offset itself as a pointer.
 
 ### Resource entries and their base
 
-`00409600(entry)`:
+`0x00409600(entry)`:
 
-- mode `+0x04` = 0: `0051EE00(entry + 0x10)`, which decodes the handle at `entry + 0x18`;
-- mode 1: while the byte `02B62E10` is set, it decodes the handle at `+0x30` and stores the result at
+- mode `+0x04` = 0: `0x0051EE00(entry + 0x10)`, which decodes the handle at `entry + 0x18`;
+- mode 1: while the byte `0x02B62E10` is set, it decodes the handle at `+0x30` and stores the result at
   `+0x38`; otherwise it returns `+0x38` as cached;
 - any other mode: 0.
 
-`003AB7F0(h)` decodes a handle: 0 gives 0; a value with its low two bits clear is a plain pointer;
-otherwise `0036B130` looks up the low 32 bits (for `h ≥ 0x100000` with low bits set it returns
+`0x003AB7F0(h)` decodes a handle: 0 gives 0; a value with its low two bits clear is a plain pointer;
+otherwise `0x0036B130` looks up the low 32 bits (for `h ≥ 0x100000` with low bits set it returns
 `[(h & ~3) + 8] + 0x40`), and a result whose low 32 bits are `0x40` or less gives 0.
 
-`0041E500(root)`, the only writer of `02B62E10`, sets it, refreshes every row of the descriptor at
-`root + 0xD90` (`00409F70`), clears it, and then refreshes the other three containers at `+0xD98`,
+`0x0041E500(root)`, the only writer of `0x02B62E10`, sets it, refreshes every row of the descriptor at
+`root + 0xD90` (`0x00409F70`), clears it, and then refreshes the other three containers at `+0xD98`,
 `+0xDA8` and `+0xDA0`.
 
 ### The @FRP child selector
 
-`004090D0(container, row, col)` returns NULL for NULL and the input unchanged for anything that is not
+`0x004090D0(container, row, col)` returns NULL for NULL and the input unchanged for anything that is not
 `@FRP`. Version 0: the child `low32(container) + 0x30 + table[col]`, or the first child when `col` is
 at or past the count. Version 1: the index is `row × [+0x30] + col` when `row` is below `[+0x34]`,
 otherwise `col`; a zero table entry gives NULL, an index at or past the count gives NULL, else
@@ -85,35 +85,35 @@ section helpers.
 
 ### Banked resource tables
 
-A resource entry is a row in a bank owned by a table descriptor. `002ED570(descriptor, index)`:
+A resource entry is a row in a bank owned by a table descriptor. `0x002ED570(descriptor, index)`:
 
 1. refreshes the slot table `+0x38` from its handle `+0x30`, and the bank directory `+0x10` from its
    handle `+0x08`, when those handles are set;
 2. reads the bank address from the directory record `index >> bankShift` (`+0x10` of a 32-byte record,
-   decoded with `0020E600`), before any test;
+   decoded with `0x0020E600`), before any test;
 3. returns NULL when the slot `index` (16 bytes) has key −1;
 4. otherwise returns `bank + sign32((index & rowMask) × rowStride)`.
 
 Nothing bounds the index against the capacity `+0x54` or against 0.
 
-`00409F50(descriptor, id)` returns NULL for an id word of `0xFFFF` and otherwise passes the word,
-sign-extended, to `002ED570`, so ids `0x8000` to `0xFFFE` become negative indices that read before the
-slot table and the directory. `0051FF30(descriptor, fn)` walks the slot list from `+0x40` through each
-slot's `+0x08` until −1 and calls `fn` on each row; `00409F70` uses it with `0040A210`, which re-decodes
+`0x00409F50(descriptor, id)` returns NULL for an id word of `0xFFFF` and otherwise passes the word,
+sign-extended, to `0x002ED570`, so ids `0x8000` to `0xFFFE` become negative indices that read before the
+slot table and the directory. `0x0051FF30(descriptor, fn)` walks the slot list from `+0x40` through each
+slot's `+0x08` until −1 and calls `fn` on each row; `0x00409F70` uses it with `0x0040A210`, which re-decodes
 each row's handle `+0x30` into `+0x38`.
 
-`0051F9F0(descriptor, rowStride, bankShift, bankCount, directory, slots)` is the only writer of the
+`0x0051F9F0(descriptor, rowStride, bankShift, bankCount, directory, slots)` is the only writer of the
 geometry: it stores the stride and shift, derives `rowMask` = `(1 << shift) − 1` and the capacity
 `(1 << shift) × bankCount`, clears the directory and slot buffers, allocates one blob of
 `(bankCount << shift) × rowStride` bytes in arena 6 into `+0x28`, points each directory record at its
-bank, and sets flag bit 0. Its three callers are inside the render root builder `0041E3A0` (called from
-`0033263C`):
+bank, and sets flag bit 0. Its three callers are inside the render root builder `0x0041E3A0` (called from
+`0x0033263C`):
 
 | Builder | Descriptor | Row stride | Shift | Banks | Capacity | Directory | Slots |
 |---|---|---|---|---|---|---|---|
-| `00409F10` | root `+0xD90` | `0x50` | 5 | 10 | 320 | `02B62E40` | `02B62F80` |
-| `0046E250` | root `+0xD98` | `0xC0` | 5 | 5 | 160 | `02CA61B0` | `02CA6250` |
-| `00477EE0` | root `+0xDA0` | `0x260` | 5 | 5 | 160 | `02CA74A0` | `02CA7540` |
+| `0x00409F10` | root `+0xD90` | `0x50` | 5 | 10 | 320 | `0x02B62E40` | `0x02B62F80` |
+| `0x0046E250` | root `+0xD98` | `0xC0` | 5 | 5 | 160 | `0x02CA61B0` | `0x02CA6250` |
+| `0x00477EE0` | root `+0xDA0` | `0x260` | 5 | 5 | 160 | `0x02CA74A0` | `0x02CA7540` |
 
 ## Layouts
 
@@ -137,7 +137,7 @@ one multiply.
 
 ## State
 
-The name buffer `02B62E20`, the re-resolve byte `02B62E10`, and each descriptor's directory, slots and
+The name buffer `0x02B62E20`, the re-resolve byte `0x02B62E10`, and each descriptor's directory, slots and
 bank blob.
 
 ## Modding notes
@@ -146,7 +146,7 @@ bank blob.
 - `@ALL` is a query wildcard and `@FRP` marks a container; every other tag, `@FEF` included, matches
   only exactly.
 - An entry whose base does not resolve still yields `0 + offset`; test the base, not only the result.
-- A relocated mode-1 resource keeps a stale cached base until `0041E500` runs.
+- A relocated mode-1 resource keeps a stale cached base until `0x0041E500` runs.
 
 ## Related
 

@@ -2,7 +2,7 @@
 title: "Add-motion tables: .adm, skeletonmapping.bin and highmodelreplace.bin"
 kind: "format"
 category: "Graphics"
-addresses: "001BDC40, 001BDD20, 001BE1A0, 01F81250, 001BE420, 001BE430, 00863110, 002EDF90, 003714A0, 00377C20, 0017FFB0, 004776D0, 0046D380, 0036FFF0, 02AD9E30, 02AD9E38, 00372820, 003703A0, 0037CCC0, 02ADD940, 02ADD938, 0037CB90"
+addresses: "0x001BDC40, 0x001BDD20, 0x001BE1A0, 0x01F81250, 0x001BE420, 0x001BE430, 0x00863110, 0x002EDF90, 0x003714A0, 0x00377C20, 0x0017FFB0, 0x004776D0, 0x0046D380, 0x0036FFF0, 0x02AD9E30, 0x02AD9E38, 0x00372820, 0x003703A0, 0x0037CCC0, 0x02ADD940, 0x02ADD938, 0x0037CB90"
 ---
 
 ## What the player sees
@@ -18,11 +18,11 @@ model's bones, and some models are swapped for others as the story advances.
 The files are in the archive at `ps2data/add_motion/`. All three readers run once at start-up and
 read their files whole:
 
-- `001BDC40`, the registry made by `001BE3E0` (kept at `01F81250`), runs `001BDD20`, which reads
+- `0x001BDC40`, the registry made by `0x001BE3E0` (kept at `0x01F81250`), runs `0x001BDD20`, which reads
   `./PS2Data/add_motion/add_motion_list.txt` and, for each name, `./PS2Data/add_motion/%s.adm` and
   `./PS2Data/add_motion/%s_town.adm` when present;
-- the first boot frame `0022A0B0` runs `0036FFF0` (`./PS2Data/add_motion/SkeletonMapping.bin`) and
-  `0037CCC0` (`./PS2Data/add_motion/HighModelReplace.bin`).
+- the first boot frame `0x0022A0B0` runs `0x0036FFF0` (`./PS2Data/add_motion/SkeletonMapping.bin`) and
+  `0x0037CCC0` (`./PS2Data/add_motion/HighModelReplace.bin`).
 
 ## Layouts
 
@@ -48,7 +48,7 @@ record (0x1C):
   +0x10  f32[3]  copied by the parser; the pose code does not read them
 ```
 
-The parser `001BE1A0` keeps a 32-byte record per file (`+0x00` name, `+0x14` track count, `+0x18`
+The parser `0x001BE1A0` keeps a 32-byte record per file (`+0x00` name, `+0x14` track count, `+0x18`
 tracks), 16 bytes per track (`+0x00` the u16 at file `+0x02`, `+0x02` records, `+0x04` groups,
 `+0x06` kind, `+0x07` angle, `+0x08` groups), `0x28` bytes per group (the header, then the record
 array at `+0x20`) and the records as they are.
@@ -88,8 +88,8 @@ the file ends with a -1 where a record would start
 
 ### add_motion_list.txt and .adm
 
-- `001BDD20` reads the list into a stack buffer of the file size plus 1, rounded up to 16
-  (`001BDDBA`–`001BDDDE`), and cuts it at each CRLF with `strstr`; a name is taken only when a CRLF
+- `0x001BDD20` reads the list into a stack buffer of the file size plus 1, rounded up to 16
+  (`0x001BDDBA`–`0x001BDDDE`), and cuts it at each CRLF with `strstr`; a name is taken only when a CRLF
   follows it. Nothing writes a zero byte after the text, so the search after the last CRLF runs past
   the file's last byte into uninitialised stack bytes, up to the first zero.
 - The shipped list therefore yields 22 names only while those stack bytes hold no CRLF before a zero.
@@ -98,57 +98,57 @@ the file ends with a -1 where a record would start
   `<name>_town.adm` and names it `<name>_town` with `sprintf`. Both go into the registry's list.
 - The name is written over the parsed record, whose track count sits at `+0x14`: a name of 20
   characters or more, `_town` included, overwrites the count and the track pointer.
-- `001BE1A0` trusts every count: nothing is checked against the file size. It allocates
+- `0x001BE1A0` trusts every count: nothing is checked against the file size. It allocates
   `track count x 0x10`, `group count x 0x28` and `records per group x 0x1C` bytes, each a 64-bit `mul`
-  whose result becomes `0xFFFFFFFFFFFFFFFF` on overflow (`cmovo`, `001BE210`, `001BE299`, `001BE319`).
+  whose result becomes `0xFFFFFFFFFFFFFFFF` on overflow (`cmovo`, `0x001BE210`, `0x001BE299`, `0x001BE319`).
 
 ### Which table a model uses
 
-- `002EDF90(record, request, resource)` keeps a state at render record `+0x6C8` (0 unbound, 1 and 2
-  bound, 3 and 4 released). Request 2 on an unbound record runs `00863110`; request 0 releases, and 1
-  or 2 restores a released state. Its caller is `002E3110`, the part attach of the
+- `0x002EDF90(record, request, resource)` keeps a state at render record `+0x6C8` (0 unbound, 1 and 2
+  bound, 3 and 4 released). Request 2 on an unbound record runs `0x00863110`; request 0 releases, and 1
+  or 2 restores a released state. Its caller is `0x002E3110`, the part attach of the
   [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- `00863110` takes the file name of the resource between the last backslash and the first dot into
-  a 16-byte buffer and calls `001BE430`, which stores the record with that name at `+0x6E8` and the one
+- `0x00863110` takes the file name of the resource between the last backslash and the first dot into
+  a 16-byte buffer and calls `0x001BE430`, which stores the record with that name at `+0x6E8` and the one
   named `<name>_town` at `+0x6F0`.
-- `003714A0`, run for every skeleton while its pose is composed, uses `+0x6F0` when it is set and
-  bit 15 of the current field's word in the table at `02ADD100` is set (`00377C20`); the registry's
-  `+0x20` (`0017FFB0`) forces the town table with 1 and the base table with 2.
+- `0x003714A0`, run for every skeleton while its pose is composed, uses `+0x6F0` when it is set and
+  bit 15 of the current field's word in the table at `0x02ADD100` is set (`0x00377C20`); the registry's
+  `+0x20` (`0x0017FFB0`) forces the town table with 1 and the base table with 2.
 
 ### Applying a track
 
-`003714A0` builds two tables per skeleton bone, from group 0's records: the track and the record that
+`0x003714A0` builds two tables per skeleton bone, from group 0's records: the track and the record that
 name that bone. Then for each track:
 
 - **Kind 0** (needs two groups or more). The driving bone is looked up in the skeleton that the posed
   skeleton's `+0x0C` names. It takes that bone's angle `+0x190 + 4 × angle` and
-  the same angle of the bone's matrix at `+0x230` (`003719F7`–`00371A4A`) and uses their difference
-  in degrees; `00180060` / `00180090` can replace it with a set value.
+  the same angle of the bone's matrix at `+0x230` (`0x003719F7`–`0x00371A4A`) and uses their difference
+  in degrees; `0x00180060` / `0x00180090` can replace it with a set value.
 - Kind 0 then finds the pair of groups `k`, `k + 1` whose keys (group `+0x00`, groups `0x28` bytes apart)
   hold the value `v`, the first or last pair when `v` lies outside them. With
   `t = (v - key[k]) / (key[k + 1] - key[k])` each record's three angles (record `+0x04`-`+0x0C`) become
-  `(1 - t) x a[k] + t x a[k + 1]`, so `t` runs past 0 or 1 beyond the end keys (`00371B13`-`00371C82`).
-- **Kind 1**. It asks `004776D0` for the value of sequencer slot `+0x02` (`00371F64`) and applies the
+  `(1 - t) x a[k] + t x a[k + 1]`, so `t` runs past 0 or 1 beyond the end keys (`0x00371B13`-`0x00371C82`).
+- **Kind 1**. It asks `0x004776D0` for the value of sequencer slot `+0x02` (`0x00371F64`) and applies the
   group whose id equals it; with no such group nothing is applied.
 - Either way the angles are turned into radians, written to bone `+0x190`–`+0x198` and every bone
-  linked through `+0x278`, and rebuilt into the bone's rotation with `0046D380` (`00371D27`,
-  `00372087`).
+  linked through `+0x278`, and rebuilt into the bone's rotation with `0x0046D380` (`0x00371D27`,
+  `0x00372087`).
 - Switching between the base and town tables saves and restores the affected bones' state through
   the arrays at record `+0x720`.
 
 ### skeletonmapping.bin
 
-`0036FFF0` copies each name (32 bytes, `strncpy`) into a `0x30`-byte record at `[02AD9E30]` (count
-`02AD9E38`) with the value array at `+0x28`. `00372820` keeps the last record whose name matches the
+`0x0036FFF0` copies each name (32 bytes, `strncpy`) into a `0x30`-byte record at `[0x02AD9E30]` (count
+`0x02AD9E38`) with the value array at `+0x28`. `0x00372820` keeps the last record whose name matches the
 model at skeleton `+0xB0`. While the render record's add-motion state is 2 and the record has a
-partner skeleton, `003703A0` builds the skinning matrix of each mapped bone from the partner's bone
-(`0037065D`–`0037078C`).
+partner skeleton, `0x003703A0` builds the skinning matrix of each mapped bone from the partner's bone
+(`0x0037065D`–`0x0037078C`).
 
 ### highmodelreplace.bin
 
-`0037CCC0` counts the records, then fills `0x30`-byte rows at `[02ADD940]` (count `02ADD938`): model,
+`0x0037CCC0` counts the records, then fills `0x30`-byte rows at `[0x02ADD940]` (count `0x02ADD938`): model,
 b and c at `+0x00`, the pair count at `+0x0C`, replacements from `+0x10` and progress values from
-`+0x20`. Nothing limits a record to four pairs. `0037CB90` looks a model up; its use is described with
+`+0x20`. Nothing limits a record to four pairs. `0x0037CB90` looks a model up; its use is described with
 the binding verbs in [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
 against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
 

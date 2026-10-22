@@ -22,8 +22,8 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - A hexadecimal number starts with `0x`: `0x1C` is 28, `+0x1C` is an offset of 28 bytes, `0xFFFF` is 65535,
   and inside an expression or an instruction it is written the same way: `[rcx+0x414]`.
 - A number without `0x` is decimal.
-- Addresses are always 8 hexadecimal digits, `0046FAE0`, and carry no `0x`.
-- The `.tsv` data files write numbers the same way: `0x4000` is 16384, and addresses are 8 digits without `0x`.
+- Addresses are hexadecimal too, always with 8 digits: `0x0046FAE0`.
+- The `.tsv` data files write numbers the same way: `0x4000` is 16384, and an address is `0x0046FAE0`.
 
 ## Categories
 

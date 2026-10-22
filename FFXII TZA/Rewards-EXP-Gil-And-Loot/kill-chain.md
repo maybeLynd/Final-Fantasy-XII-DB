@@ -2,7 +2,7 @@
 title: "Kill chain: chain count, chain level, the chain coin and resets"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-addresses: "00317ED0, 003183D0, 0028EF00, 0028EF70, 003F9E50"
+addresses: "0x00317ED0, 0x003183D0, 0x0028EF00, 0x0028EF70, 0x003F9E50"
 ---
 
 ## What the player sees
@@ -34,65 +34,65 @@ inventory state. Moving between ordinary areas keeps the chain.
 
 ## How it works
 
-`EnemyChain_UpdateOnDefeat` (`00317ED0`, 529 bytes) has one caller, the defeat-reward routine
-`00312280`, which calls it (`003122CD`) only when the defeated unit's stats record (`[unit+0x698]`) has
+`EnemyChain_UpdateOnDefeat` (`0x00317ED0`, 529 bytes) has one caller, the defeat-reward routine
+`0x00312280`, which calls it (`0x003122CD`) only when the defeated unit's stats record (`[unit+0x698]`) has
 byte `+0x05` equal to 1 (an enemy) and the credited unit's record has byte `+0x05` equal to 0 (the
-party side) (`003122B9`-`003122C8`). The function checks the enemy side again: it does nothing for a
-null actor, for a missing stats record or one whose byte `+0x05` is not 1 (`00317EF8`), or when bit 1
-of byte `+0x28` of the actor's `[actor+0xE68]` record is set (`00317F09`).
+party side) (`0x003122B9`-`0x003122C8`). The function checks the enemy side again: it does nothing for a
+null actor, for a missing stats record or one whose byte `+0x05` is not 1 (`0x00317EF8`), or when bit 1
+of byte `+0x28` of the actor's `[actor+0xE68]` record is set (`0x00317F09`).
 
-It compares the enemy's class byte `actor+0x56` with the previous kill's class at `022C3168`
-(`00317F21`). The class byte is the class record's type byte; the shipped areas use sixty-four values.
+It compares the enemy's class byte `actor+0x56` with the previous kill's class at `0x022C3168`
+(`0x00317F21`). The class byte is the class record's type byte; the shipped areas use sixty-four values.
 
 ### First kill
 
-When `022C3168` is negative (`00317F1B`) there is no chain yet. The update clears the coin bit and
-stores the class (`003180BB`-`003180D0`).
+When `0x022C3168` is negative (`0x00317F1B`) there is no chain yet. The update clears the coin bit and
+stores the class (`0x003180BB`-`0x003180D0`).
 
 ### Same class - the chain continues
 
-When the class matches, the chain continues (`00317F2D`-`00318065`):
+When the class matches, the chain continues (`0x00317F2D`-`0x00318065`):
 
-1. Chain length `022C315C` += 1, capped at 999 (`0x3E7`), or at 998 (`0x3E6`) when `00229E40()` is
-   non-zero (`00317F2D`-`00317F64`). `00229E40` returns the locale id at `01E02814`, which is never 0
-   in the shipped game: `0017E270` maps every language code, Japanese included, to an id of 1 or
+1. Chain length `0x022C315C` += 1, capped at 999 (`0x3E7`), or at 998 (`0x3E6`) when `0x00229E40()` is
+   non-zero (`0x00317F2D`-`0x00317F64`). `0x00229E40` returns the locale id at `0x01E02814`, which is never 0
+   in the shipped game: `0x0017E270` maps every language code, Japanese included, to an id of 1 or
    more (see the [languages page](../Saving-Loading-And-Settings/languages.md)), so the cap is 998 and the
    999 arm never runs.
-2. Breaks in a row `022C3164` = 0 (`00317F6A`).
-3. The same-model run `022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
-   share) equals the previous one at `022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
-   stores the new model id (`00317F70`-`00317FB6`). This run chooses the loot quantity table.
-4. `EnemyChain_TryAdvanceRank` (`003183D0`, 315 bytes) tries to raise the chain level (`00317FBC`); see
+2. Breaks in a row `0x022C3164` = 0 (`0x00317F6A`).
+3. The same-model run `0x022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
+   share) equals the previous one at `0x022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
+   stores the new model id (`0x00317F70`-`0x00317FB6`). This run chooses the loot quantity table.
+4. `EnemyChain_TryAdvanceRank` (`0x003183D0`, 315 bytes) tries to raise the chain level (`0x00317FBC`); see
    below.
-5. The coin: three LCG steps on the shared gameplay generator `022C256C` (multiplier `0x41C64E6D`,
-   increment `0x3039`) give `r` in 0-99 (`00317FC1`-`00318032`). If coin bit 0 of `022C3178` is set,
-   success is `r >= 40` (60 %); otherwise success is `r < 5` (5 %) (`00318034`-`00318048`).
-6. `0028EF70(length, coin, level)` posts the update to the chain display, adding 1 to the length passed
-   when `00229E40()` is non-zero (`0031804B`-`00318065`), which it always is, so the display shows
+5. The coin: three LCG steps on the shared gameplay generator `0x022C256C` (multiplier `0x41C64E6D`,
+   increment `0x3039`) give `r` in 0-99 (`0x00317FC1`-`0x00318032`). If coin bit 0 of `0x022C3178` is set,
+   success is `r >= 40` (60 %); otherwise success is `r < 5` (5 %) (`0x00318034`-`0x00318048`).
+6. `0x0028EF70(length, coin, level)` posts the update to the chain display, adding 1 to the length passed
+   when `0x00229E40()` is non-zero (`0x0031804B`-`0x00318065`), which it always is, so the display shows
    the stored length plus one.
-7. The coin result becomes the new bit 0 of `022C3178` (`003180BB`-`003180C6`), and the class is stored.
+7. The coin result becomes the new bit 0 of `0x022C3178` (`0x003180BB`-`0x003180C6`), and the class is stored.
 
 ### Different class - the chain breaks
 
-When the class differs, the chain breaks (`0031806C`-`003180B5`):
+When the class differs, the chain breaks (`0x0031806C`-`0x003180B5`):
 
-1. `0028EF00(length, level)` posts the break to the display (again the stored length plus one).
-2. Breaks in a row `022C3164` += 1, capped at 999.
-3. Zeroed together: `022C3170`/`022C3174` (one qword store, `00318091`), chain level `022C3158` and
-   length `022C315C` (one qword store, `00318098`), and the same-model run `022C3160`.
-4. The coin bit is cleared and the class stored (`003180BB`-`003180D0`). The break path draws nothing.
+1. `0x0028EF00(length, level)` posts the break to the display (again the stored length plus one).
+2. Breaks in a row `0x022C3164` += 1, capped at 999.
+3. Zeroed together: `0x022C3170`/`0x022C3174` (one qword store, `0x00318091`), chain level `0x022C3158` and
+   length `0x022C315C` (one qword store, `0x00318098`), and the same-model run `0x022C3160`.
+4. The coin bit is cleared and the class stored (`0x003180BB`-`0x003180D0`). The break path draws nothing.
 
 ### The level rise
 
-`003183D0` decides whether the level rises. Nothing happens at level 3 (`003183ED`). Otherwise,
-with `d = length - 022C3170`, the kills added since the last rise:
+`0x003183D0` decides whether the level rises. Nothing happens at level 3 (`0x003183ED`). Otherwise,
+with `d = length - 0x022C3170`, the kills added since the last rise:
 
-1. If `d` is above the level's threshold at `00D107D4` (30, 50, 80 for levels 0, 1, 2) the level
-   rises outright (`00318403`-`00318417`).
-2. If not, and the coin is down, `d` is reduced by `(level + 1) * 022C3174`, the loot pickups since
-   the last rise (`0031841D`-`00318431`).
+1. If `d` is above the level's threshold at `0x00D107D4` (30, 50, 80 for levels 0, 1, 2) the level
+   rises outright (`0x00318403`-`0x00318417`).
+2. If not, and the coin is down, `d` is reduced by `(level + 1) * 0x022C3174`, the loot pickups since
+   the last rise (`0x0031841D`-`0x00318431`).
 3. `d` is clamped to 0-10, a fresh three-step LCG roll `r` in 0-99 is taken, and the level rises
-   when `r` is below the byte at `00D106F8 + level*11 + d` (`0031844A`-`003184D7`):
+   when `r` is below the byte at `0x00D106F8 + level*11 + d` (`0x0031844A`-`0x003184D7`):
 
 | `d` | 0-5 | 6 | 7 | 8 | 9 | 10 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -100,51 +100,51 @@ with `d = length - 022C3170`, the kills added since the last rise:
 | level 1 | 0 % | 20 % | 30 % | 50 % | 60 % | 100 % |
 | level 2 | 0 % | 10 % | 20 % | 30 % | 40 % | 100 % |
 
-On a rise: level += 1, `022C3170` = the current length, `022C3174` = 0, and `0028EF50(level)` tells the
-display (`003184D9`-`003184F6`). The pickup count `022C3174` is incremented by every loot pickup
-(`00319974`).
+On a rise: level += 1, `0x022C3170` = the current length, `0x022C3174` = 0, and `0x0028EF50(level)` tells the
+display (`0x003184D9`-`0x003184F6`). The pickup count `0x022C3174` is incremented by every loot pickup
+(`0x00319974`).
 
 ### Reset
 
-`003183A0` (42 bytes) clears the coin bit and zeroes `022C3158`-`022C3167` and
-`022C3170`-`022C3177`, and sets `022C3168` and `022C316C` to -1 (`003183A0`-`003183BE`). It is reached
+`0x003183A0` (42 bytes) clears the coin bit and zeroes `0x022C3158`-`0x022C3167` and
+`0x022C3170`-`0x022C3177`, and sets `0x022C3168` and `0x022C316C` to -1 (`0x003183A0`-`0x003183BE`). It is reached
 four ways:
 
-1. **Save crystals.** The script verb `btladjustsystem` (`0x517`, handler `0034AAB0`) passes its
-   argument to `002FEAC0`, which jumps to `003183A0` when bit 0 is set (`002FEAC3`). The save crystal's
+1. **Save crystals.** The script verb `btladjustsystem` (`0x517`, handler `0x0034AAB0`) passes its
+   argument to `0x002FEAC0`, which jumps to `0x003183A0` when bit 0 is set (`0x002FEAC3`). The save crystal's
    talk function calls `btladjustsystem(1)` (see [teleport and save crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
-2. **Entering a town.** The area initialisation `002342F0` resets the chain when the town flag is
+2. **Entering a town.** The area initialisation `0x002342F0` resets the chain when the town flag is
    set (see the town reset below).
-3. **A preset party state.** `002342F0` calls `00239960` (`00234349`), which consumes the pending
-   preset byte `0208D455` and sets it back to -1 (`00239966`-`0023997B`). For a preset index in range
-   it applies that preset and calls `003183A0` (`00239A85`); for -2 it jumps to `00237DF0` instead
-   (`0023998E`), which resets the chain at `00237E3C`; for -1 it does nothing.
-4. **The battle-state reset** `00237DF0`, which also runs from `00233C10` (three calls), `00238A80`
-   and `00394460`.
+3. **A preset party state.** `0x002342F0` calls `0x00239960` (`0x00234349`), which consumes the pending
+   preset byte `0x0208D455` and sets it back to -1 (`0x00239966`-`0x0023997B`). For a preset index in range
+   it applies that preset and calls `0x003183A0` (`0x00239A85`); for -2 it jumps to `0x00237DF0` instead
+   (`0x0023998E`), which resets the chain at `0x00237E3C`; for -1 it does nothing.
+4. **The battle-state reset** `0x00237DF0`, which also runs from `0x00233C10` (three calls), `0x00238A80`
+   and `0x00394460`.
 
-The pending preset byte `0208D455` is written by the script verb `btlAtelSetNextSetSaveData`
-(`0050F810`), by `0023A110` (called from `003942F9`), from the save image's `+0x4E660` when a save is
-restored (`00584482`), and to -1 by `002368D0`.
+The pending preset byte `0x0208D455` is written by the script verb `btlAtelSetNextSetSaveData`
+(`0x0050F810`), by `0x0023A110` (called from `0x003942F9`), from the save image's `+0x4E660` when a save is
+restored (`0x00584482`), and to -1 by `0x002368D0`.
 
 ### The town reset
 
-When the new area's actor manager 0 finishes loading, `00332130(0)` calls `0032F1B0(0)`, which calls
-`0026CE60(0)`; that runs once per load (manager byte `+0x10` bit 0 clear and byte `+0x13` set) and
-calls the area initialisation `002342F0` (`0026CEC6`). `002342F0` is also called by `00266D10`
-(`00267136`). It does nothing unless `02089300` is non-zero (`002342F4`; set to 1 at `00236A44`,
-cleared by the battle-work setup `002368D0`).
+When the new area's actor manager 0 finishes loading, `0x00332130(0)` calls `0x0032F1B0(0)`, which calls
+`0x0026CE60(0)`; that runs once per load (manager byte `+0x10` bit 0 clear and byte `+0x13` set) and
+calls the area initialisation `0x002342F0` (`0x0026CEC6`). `0x002342F0` is also called by `0x00266D10`
+(`0x00267136`). It does nothing unless `0x02089300` is non-zero (`0x002342F4`; set to 1 at `0x00236A44`,
+cleared by the battle-work setup `0x002368D0`).
 
-Near its end `002342F0` calls `00377C20` and resets the chain only when that returns non-zero
-(`00234446`-`0023444F`). `00377C20` returns bit 15 of the 16-bit word at `+8 + id*3` in the map-info
-table `02ADD100` (`navimapdata.bin`), where `id` is the current field id from the save payload's
-`+0x1044` (`003148F0`, negative ids read as 0). It returns 0 for an id at or past the table's count
+Near its end `0x002342F0` calls `0x00377C20` and resets the chain only when that returns non-zero
+(`0x00234446`-`0x0023444F`). `0x00377C20` returns bit 15 of the 16-bit word at `+8 + id*3` in the map-info
+table `0x02ADD100` (`navimapdata.bin`), where `id` is the current field id from the save payload's
+`+0x1044` (`0x003148F0`, negative ids read as 0). It returns 0 for an id at or past the table's count
 at `+4`, or when the table is absent. Bit 15 is the town flag (see
 [the field record table](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
 ### Script access
 
-The script verb `btlAtelGetChainCount` (`00510100`) returns the breaks in a row for
-argument 0 (`00318380`), the chain length for 1 (`00318390`), and -1 otherwise. No script verb writes
+The script verb `btlAtelGetChainCount` (`0x00510100`) returns the breaks in a row for
+argument 0 (`0x00318380`), the chain length for 1 (`0x00318390`), and -1 otherwise. No script verb writes
 the chain.
 
 ### The display
@@ -152,63 +152,63 @@ the chain.
 The chain counter is a widget in the HUD sub-object at `+0x57E0`. The HUD keeps chain flags at
 `+0x7C7C`, the pending count at `+0x7C78` and the level at `+0x7C82`.
 
-- `0028EF00` (79 B), the break or continue notice, resets the flags to bits 3 and 0 and stores the
+- `0x0028EF00` (79 B), the break or continue notice, resets the flags to bits 3 and 0 and stores the
   pending count and level.
-- `0028EF70` (70 B) calls `0028F0C0()`, keeps the flags and sets bit 1 to the coin.
-- `0028EF50(level)` (29 B), called on a level rise, sets flag bit 2.
+- `0x0028EF70` (70 B) calls `0x0028F0C0()`, keeps the flags and sets bit 1 to the coin.
+- `0x0028EF50(level)` (29 B), called on a level rise, sets flag bit 2.
 
-The widget update `003F9F40` reads those flags each frame:
+The widget update `0x003F9F40` reads those flags each frame:
 
-- Flag bit 1 is copied into the widget's `+0xC4` bit 1 (`003FA069`-`003FA07E`), which makes the
+- Flag bit 1 is copied into the widget's `+0xC4` bit 1 (`0x003FA069`-`0x003FA07E`), which makes the
   number redraw every frame in a pulsing grey.
-- `003F9E50(widget, count, playSound)` (229 B) hides the widget for a count of 0, does not show a
-  count of 1 (the test is on `00229E40()` being non-zero, which it always is), and otherwise draws
+- `0x003F9E50(widget, count, playSound)` (229 B) hides the widget for a count of 0, does not show a
+  count of 1 (the test is on `0x00229E40()` being non-zero, which it always is), and otherwise draws
   `min(count, 999)` in three digits (unsigned compare), playing sound `0x30` when asked.
 - With flag bit 2 set, it counts frames at widget `+0x24A0` and, once the count passes 15 times the
-  frame base `01DFE0B4`, starts a second element at widget `+0xD0` with the handler `003FACF0` and
-  clears the bit (`003F9F51`-`003F9FB5`).
+  frame base `0x01DFE0B4`, starts a second element at widget `+0xD0` with the handler `0x003FACF0` and
+  clears the bit (`0x003F9F51`-`0x003F9FB5`).
 
 That second element is a one-shot sprite: on creation it takes element `0x59` of the layout at
-`00D11FC8` and sits at the counter's x position; it plays sound `0x6C` (`00249C60`) and removes
-itself after 30 times the frame base (`003FACF0`).
+`0x00D11FC8` and sits at the counter's x position; it plays sound `0x6C` (`0x00249C60`) and removes
+itself after 30 times the frame base (`0x003FACF0`).
 
 When the count is redrawn and is non-zero (unless widget `+0xC4` bit 2 was set before the redraw and
-still is, `003FA092`-`003FA0AB`), the digits take their colour from the colour table
-`0215E6C8` (`002DD7E0`, grey `0x80808080` when the table is absent): entry `0xC0`, `0xC1` or `0xC2`
-for levels 1-3 and `0xBF` for level 0 (`003FA0AD`-`003FA0DD`), applied to the three digits by
-`003FAAF0`, so the number's colour shows
+still is, `0x003FA092`-`0x003FA0AB`), the digits take their colour from the colour table
+`0x0215E6C8` (`0x002DD7E0`, grey `0x80808080` when the table is absent): entry `0xC0`, `0xC1` or `0xC2`
+for levels 1-3 and `0xBF` for level 0 (`0x003FA0AD`-`0x003FA0DD`), applied to the three digits by
+`0x003FAAF0`, so the number's colour shows
 the chain level.
 
 ### The coin and loot share one generator
 
 The coin's three LCG steps advance the same state
-`022C256C` the loot rolls use, so the two are correlated through that state. The clock-based seed
-computed when a save loads (`00584210`, see [boot fixups](../Engine-Core/startup-constants.md))
-goes to a different generator, the Mersenne Twister whose state starts at `02EB3870` (624 words, index
-`02EB4230`), seeded through `00863D30` (reached by the thunk `00379CF0`): its first use seeds 5489 and
-then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
+`0x022C256C` the loot rolls use, so the two are correlated through that state. The clock-based seed
+computed when a save loads (`0x00584210`, see [boot fixups](../Engine-Core/startup-constants.md))
+goes to a different generator, the Mersenne Twister whose state starts at `0x02EB3870` (624 words, index
+`0x02EB4230`), seeded through `0x00863D30` (reached by the thunk `0x00379CF0`): its first use seeds 5489 and
+then the clock value (`0x00863D4D`-`0x00863D6A`). It does not touch `0x022C256C`.
 
 ## State
 
 | Global | Width | Meaning | Written by |
 |---|---|---|---|
-| `022C3158` | `u32` | chain level 0-3 | `003183D0` (rise); zeroed on a break (`00318098`) |
-| `022C315C` | `u32` | chain length, cap 999 or 998 | `00317F64`; zeroed on a break |
-| `022C3160` | `u32` | same-model run, cap 999 | `00317F70`-`00317FB6`; zeroed on a break (`0031809F`) |
-| `022C3164` | `u32` | breaks in a row, cap 999 | `003180B5`; zeroed by a continuing kill (`00317F6A`) |
-| `022C3168` | `i32` | previous kill's class byte; negative before the first kill | `003180D0` |
-| `022C316C` | `u32` | previous kill's model id | `00317FB6` |
-| `022C3170` | `u32` | chain length at the last level rise | `003184DC`; zeroed on a break (`00318091`) |
-| `022C3174` | `u32` | loot pickups since the last level rise | `00319974` (+1); `003184EC` (0); zeroed on a break |
-| `022C3178` | `u32` | bit 0: the coin | `003180C6` |
+| `0x022C3158` | `u32` | chain level 0-3 | `0x003183D0` (rise); zeroed on a break (`0x00318098`) |
+| `0x022C315C` | `u32` | chain length, cap 999 or 998 | `0x00317F64`; zeroed on a break |
+| `0x022C3160` | `u32` | same-model run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) |
+| `0x022C3164` | `u32` | breaks in a row, cap 999 | `0x003180B5`; zeroed by a continuing kill (`0x00317F6A`) |
+| `0x022C3168` | `i32` | previous kill's class byte; negative before the first kill | `0x003180D0` |
+| `0x022C316C` | `u32` | previous kill's model id | `0x00317FB6` |
+| `0x022C3170` | `u32` | chain length at the last level rise | `0x003184DC`; zeroed on a break (`0x00318091`) |
+| `0x022C3174` | `u32` | loot pickups since the last level rise | `0x00319974` (+1); `0x003184EC` (0); zeroed on a break |
+| `0x022C3178` | `u32` | bit 0: the coin | `0x003180C6` |
 
 ## Modding notes
 
-- The coin's odds are the two immediates at `0031803D` (`cmp ecx, 0x28`: success on 40-99) and
-  `00318045` (`cmp ecx, 5`: success on 0-4).
-- The coin's effect: while bit 0 of `022C3178` is set, loot pickups do not slow the level rise
-  (`0031841D`).
-- The level thresholds (`00D107D4`) and the rise chances (`00D106F8`) are tables in the executable, not
+- The coin's odds are the two immediates at `0x0031803D` (`cmp ecx, 0x28`: success on 40-99) and
+  `0x00318045` (`cmp ecx, 5`: success on 0-4).
+- The coin's effect: while bit 0 of `0x022C3178` is set, loot pickups do not slow the level rise
+  (`0x0031841D`).
+- The level thresholds (`0x00D107D4`) and the rise chances (`0x00D106F8`) are tables in the executable, not
   in game data.
 - The 999 / 998 cap is chosen by locale, not by data.
 - To change what the chain does to drops, see [Loot drops](loot-drops.md):

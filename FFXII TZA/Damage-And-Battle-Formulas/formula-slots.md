@@ -2,29 +2,29 @@
 title: "Formula slots: every calculator slot with what it computes, what it reads and which recipes run it"
 kind: "reference"
 category: "Damage and battle formulas"
-addresses: "01EFA5C0, 01EF96C0, 00385F60, 00385680, 003847C0, 0016D6A0"
+addresses: "0x01EFA5C0, 0x01EF96C0, 0x00385F60, 0x00385680, 0x003847C0, 0x0016D6A0"
 ---
 
 ## What it lists
 
-Every number a battle action produces comes from calculator slots. The table at `01EFA5C0` holds 202
+Every number a battle action produces comes from calculator slots. The table at `0x01EFA5C0` holds 202
 function pointers; a recipe names slots by their index ([Formula recipes](formula-recipes.md)). Both
-runners call a slot as `slot(source, target, &context)`: `00385680` for a recipe's first list (`003859FF`)
-and `00385F60` for its committed list (`003863D0`). No other code calls a slot body directly: an `E8`/`E9`
+runners call a slot as `slot(source, target, &context)`: `0x00385680` for a recipe's first list (`0x003859FF`)
+and `0x00385F60` for its committed list (`0x003863D0`). No other code calls a slot body directly: an `E8`/`E9`
 scan of the code section finds no call to any of them, and no other pointer to one exists outside the
 table.
 
-The context is built by `003847C0` ([Damage formula](damage-formula.md)). The slots pass their answer to
-the resolver through scratch globals such as the scale `02AEE054` and the HP loss `02AEE004`
+The context is built by `0x003847C0` ([Damage formula](damage-formula.md)). The slots pass their answer to
+the resolver through scratch globals such as the scale `0x02AEE054` and the HP loss `0x02AEE004`
 ([Elements](elements.md) shows one finisher).
 
 In the shipped executable:
 
-- 202 slots point to 152 functions. One of them, `0016D6A0`, is a single `ret 0`, and it fills 42 slots.
-- Seven functions fill more than one slot: `00388FE0` (23, 24), `00389670` (40, 45, 46), `00389F80` (60, 63),
-  `0038AA90` (61, 64, 75), `0038AAF0` (65, 76), `0038D280` (113, 125) and `0038F5A0` (115, 160).
+- 202 slots point to 152 functions. One of them, `0x0016D6A0`, is a single `ret 0`, and it fills 42 slots.
+- Seven functions fill more than one slot: `0x00388FE0` (23, 24), `0x00389670` (40, 45, 46), `0x00389F80` (60, 63),
+  `0x0038AA90` (61, 64, 75), `0x0038AAF0` (65, 76), `0x0038D280` (113, 125) and `0x0038F5A0` (115, 160).
 - 42 slots are in no shipped recipe. 38 of them are the `ret 0` slot; slots 37 and 118 run only when other
-  slots call them through the table (37 from 15, 191 and 192; 118 from 185 and from `00387CB0`, behind
+  slots call them through the table (37 from 15, 191 and 192; 118 from 185 and from `0x00387CB0`, behind
   181 and 182), and 73 and 131 are called by nothing.
 - Four `ret 0` slots do appear in shipped recipes: 28, 193, 198 and 199.
 
@@ -41,7 +41,7 @@ In the shipped executable:
 | `computes` | what the body does, from its instructions |
 | `reads`, `writes` | the fields it reads and writes: `S+` and `T+` for the source's and target's stats record, `act+` for the action row, `wpn+` for the main-hand weapon row, `res+` for the result record, `ctx+` for the context, and scratch globals by address |
 | `statuses_tested` | the source's (`ctx+4`) or target's (`ctx+8`) statuses it tests, by name |
-| `effects_tested` | the merged effect bits (`ctx+0x1A`...) and the layer bits (`+0x68`, `+0x78`) it tests, with the effect's augment text, or "(no augment text)" when the augment text bank holds none |
+| `effects_tested` | the merged augment bits (`ctx+0x1A`...) and the layer bits (`+0x68`, `+0x78`) it tests, each written `augment <n> (<term>)` with its term on [Augment list](augment-list.md) |
 | `sites` | the instructions that show the row |
 
 Two formulas the rows use often are written once in them:

@@ -1,601 +1,601 @@
 address	name	evidence
-0080F2E0		
-0080F2F0		
-0080F300	index2addr (lapi)	positive index from the call's func, past L->top the shared nil object; negative ones tested against LUA_REGISTRYINDEX 0xFFF0B9D8 (code, not a string)
-0080F370		
-0080F3A0		
-0080F420		
-0080F4C0		
-0080F620		
-0080F690		
-0080F740		
-0080F7B0		
-0080F7F0		
-0080F800	lua_gc	G(L) from +0x18, then a switch on 'what' over 0..11 (LUA_GCSTOP..LUA_GCINC) (code, not a string)
-0080FA30		
-0080FA50		
-0080FB20	lua_getglobal	registry entry 2 (the globals table, luaH_getint), pushes the name as a new string, tail-jumps to luaV_gettable 00822BC0 (code, not a string)
-0080FBA0		
-0080FC70		
-0080FD00		
-0080FD20		
-0080FE30		
-0080FEE0		
-0080FF90		
-00810020		
-008100C0		
-008100E0		
-00810240		
-00810290		
-00810340	lua_pcallk	errfunc 0 test, index2addr for it, then the 16-bit L->nny test at +0x44 before the continuation; six-argument callers (L, nargs, nresults, errfunc, ctx, k) (code, not a string)
-00810450		
-00810470	lua_pushcclosure	named on 22 ../PhyreEngine/phyre-lua-bindings.md (called only by the library openers)
-00810540		
-00810580		
-008105A0		
-008105C0		
-00810620		
-00810640		
-00810660		
-008106D0		
-00810700		
-00810730		
-008107C0		
-00810810		
-00810940		
-008109F0		
-00810AA0		
-00810B60		
-00810C50		
-00810D20		
-00810DC0		
-00810DF0		
-00810ED0	lua_setglobal	named on 22 ../PhyreEngine/phyre-lua-bindings.md (sets phyre_pscript in 00684F60)
-00811090		
-00811180		
-008112E0		
-008113C0		
-008113D0		
-00811470		
-00811530		
-00811640		
-00811700		
-00811800		
-00811890		
-00811950		
-008119F0		
-00811A70		
-00811A90		
-00811BD0		
-00811D10		
-00811D30		
-00811D90		
-00811E60		
-00811F50	errfile (lauxlib)	"""cannot %s %s: %s"""
-00811FD0		
-008120F0		
-00812170		
-00812190		
-008121E0		
-00812240		
-008122D0	luaL_argerror	"""bad argument #%d to '%s' (%s)"", ""calling '%s' on bad self"""
-008123E0		
-00812400		
-00812430	luaL_checkany	"""value expected"""
-00812470		
-00812500		
-00812590		
-00812620	luaL_checkoption	"""invalid option '%s'"""
-008126E0	luaL_checkstack	"""stack overflow (%s)"""
-00812740		
-00812780		
-00812800		
-00812890	luaL_checkversion_	"""multiple Lua VMs detected"""
-00812960		
-008129C0		
-00812A50		
-00812AF0		
-00812B70		
-00812C10		
-00812F10	luaL_len	"""object length is not a number"""
-00812FA0	luaL_loadfilex	"""=stdin"", ""@%s"", ""reopen"""
-008132B0		
-00813330		
-00813380		
-00813400		
-00813450		
-00813510		
-00813560		
-008135B0	luaL_setfuncs	"""too many upvalues"""
-00813680		
-008136B0		
-00813740	luaL_tolstring	"""__tostring"", ""%s: %p"""
-008138A0	luaL_traceback	"""stack traceback:"""
-00813B60	luaL_where	"""%s:%d: """
-00813BF0		
-00813C90		
-00813D00		
-00813D90		
-00813E10		
-00813E50		
-00813EB0		
-00813F00		
-00813F10		
-00813F20		
-00813FF0		
-008140A0	pcall	luaL_Reg table entry
-00814120	xpcall	luaL_Reg table entry
-008141C0	tostring	luaL_Reg table entry
-008141F0	print	luaL_Reg table entry
-00814340	tonumber	luaL_Reg table entry
-008144D0	error	luaL_Reg table entry
-00814550	getmetatable	luaL_Reg table entry
-008145B0	setmetatable	luaL_Reg table entry
-00814650	rawequal	luaL_Reg table entry
-008146A0	rawlen	luaL_Reg table entry
-00814700	rawget	luaL_Reg table entry
-00814750	rawset	luaL_Reg table entry
-008147B0	collectgarbage	luaL_Reg table entry
-008148B0	type	luaL_Reg table entry
-008148F0	next	luaL_Reg table entry
-00814950	pairs	luaL_Reg table entry
-008149E0	ipairs	luaL_Reg table entry
-00814A70	loadfile	luaL_Reg table entry
-00814B30	load	luaL_Reg table entry
-00814C50	dofile	luaL_Reg table entry
-00814CD0	assert	luaL_Reg table entry
-00814D20	select	luaL_Reg table entry
-00814DD0		
-00814DE0		
-00814E60	generic_reader (lbaselib)	"""reader function must return a string"""
-00814F20		
-00814F90	luaopen_base	luaL_Reg table entry
-00815020		
-00815050	coroutine.resume	luaL_Reg table entry
-008150F0	coroutine.create	luaL_Reg table entry
-00815150	coroutine.wrap	luaL_Reg table entry
-008151C0	coroutine.yield	luaL_Reg table entry
-008151F0	coroutine.status	luaL_Reg table entry
-00815300	coroutine.running	luaL_Reg table entry
-00815330	auxresume (lcorolib)	"""cannot resume dead coroutine"", ""too many results to resume"""
-00815470		
-00815500	luaopen_coroutine	luaL_Reg table entry
-00815540	table.insert	luaL_Reg table entry
-00815610	table.remove	luaL_Reg table entry
-008156F0	table.concat	luaL_Reg table entry
-008158A0	table.pack	luaL_Reg table entry
-00815950	table.unpack	luaL_Reg table entry
-00815A40	table.sort	luaL_Reg table entry
-00815AD0	auxsort (ltablib)	"""invalid order function for sorting"""
-00815E30	luaopen_table	luaL_Reg table entry
-00815E70		
-00815F20	string.find	luaL_Reg table entry
-00815F30	string.match	luaL_Reg table entry
-00815F40	string.gmatch	luaL_Reg table entry
-00815FA0	string.gsub	luaL_Reg table entry
-00816790	string.len	luaL_Reg table entry
-008167C0	string.sub	luaL_Reg table entry
-008168A0	string.reverse	luaL_Reg table entry
-00816940	string.lower	luaL_Reg table entry
-00816A00	string.upper	luaL_Reg table entry
-00816AC0	string.rep	luaL_Reg table entry
-00816C50	string.byte	luaL_Reg table entry
-00816D70	string.char	luaL_Reg table entry
-00816E50	string.dump	luaL_Reg table entry
-00816EF0	add_s (lstrlib)	"""invalid use of '%c' in replacement string"""
-00817000	addquoted (lstrlib)	"""\\%d"", ""\\%03d"""
-00817180	classEnd (lstrlib)	"""malformed pattern (ends with '%%')"", ""(missing ']')"""
-00817230		
-008172B0	capture_to_close (lstrlib)	"""invalid pattern capture"""
-00817360		
-00817490		
-00817550	luaopen_string	luaL_Reg table entry
-00817590	match (lstrlib)	"""missing '[' after '%%f' in pattern"""
-00817850	check_capture (lstrlib)	"""invalid capture index %%%d"""
-008178F0		
-00817A60	matchbalance (lstrlib)	"""malformed pattern (missing arguments to '%%b')"""
-00817B00		
-00817D20		
-00817DF0		
-00817EB0		
-00817FC0		
-00818080	scanformat (lstrlib)	"""invalid format (repeated flags)"""
-00818190	start_capture (lstrlib)	"""too many captures"" (alone)"
-00818220		
-00818490		
-008184B0	bit32.band	luaL_Reg table entry
-00818520	bit32.btest	luaL_Reg table entry
-00818590	bit32.bor	luaL_Reg table entry
-00818600	bit32.bxor	luaL_Reg table entry
-00818670	bit32.bnot	luaL_Reg table entry
-008186A0	bit32.lshift	luaL_Reg table entry
-00818700	bit32.rshift	luaL_Reg table entry
-00818760	bit32.arshift	luaL_Reg table entry
-008187E0	bit32.lrotate	luaL_Reg table entry
-00818830	bit32.rrotate	luaL_Reg table entry
-00818880	bit32.extract	luaL_Reg table entry
-00818950	bit32.replace	luaL_Reg table entry
-00818A40	luaopen_bit32	luaL_Reg table entry
-00818A80	math.abs	luaL_Reg table entry
-00818D00	math.atan2	luaL_Reg table entry
-00818DE0	math.fmod	luaL_Reg table entry
-00818E40	math.modf	luaL_Reg table entry
-00818EE0	math.pow	luaL_Reg table entry
-00818F40	math.log	luaL_Reg table entry
-00819040	math.deg	luaL_Reg table entry
-00819080	math.rad	luaL_Reg table entry
-008190C0	math.frexp	luaL_Reg table entry
-00819110	math.ldexp	luaL_Reg table entry
-00819170	math.min	luaL_Reg table entry
-008191F0	math.max	luaL_Reg table entry
-00819270	math.random	luaL_Reg table entry
-008193E0	math.randomseed	luaL_Reg table entry
-00819410	luaopen_math	luaL_Reg table entry
-00819490		
-00819610		
-008197F0		
-00819990		
-00819A60		
-00819B90		
-00819C10		
-00819C30		
-00819C90		
-00819D80		
-00819E50		
-0081A140		
-0081A170		
-0081A190		
-0081A1F0		
-0081A260		
-0081A350		
-0081A3A0		
-0081A410		
-0081A4F0		
-0081A620		
-0081A690		
-0081A8A0		
-0081A8C0		
-0081AA30		
-0081ABC0		
-0081AC40		
-0081AD40		
-0081AE20		
-0081AFC0		
-0081B050		
-0081B1A0		
-0081B310		
-0081B4C0		
-0081B680		
-0081B7F0		
-0081B960		
-0081B9E0		
-0081BAC0		
-0081BBE0		
-0081BCF0		
-0081BE10		
-0081BE40	luaO_chunkid	"""[string \"""""
-0081BF80		
-0081BFA0		
-0081BFC0		
-0081BFF0		
-0081C020	luaO_pushvfstring	"""invalid option '%%%c' to 'lua_pushfstring'"""
-0081C300		
-0081C3C0		
-0081C5D0		
-0081C620		
-0081C640		
-0081C6A0		
-0081C760		
-0081C830		
-0081CA00		
-0081CB00		
-0081CB30	findlocal (ldebug)	"""(*vararg)"", ""(*temporary)"""
-0081CC40		
-0081CD70	funcinfo (ldebug)	"""=[C]"", ""main"", ""Lua"""
-0081CE00	getfuncname (ldebug)	"""for iterator"", ""metamethod"""
-0081CF80	getobjname (ldebug)	"""_ENV"", ""global"", ""field"", ""upvalue"""
-0081D1E0		
-0081D240	luaG_aritherror	"""perform arithmetic on"""
-0081D280	luaG_concaterror	"""concatenate"""
-0081D2B0		
-0081D350	luaG_ordererror	"""attempt to compare two %s values"""
-0081D3A0		
-0081D3E0	luaG_typeerror	"""attempt to %s a %s value"""
-0081D520		
-0081D530		
-0081D540		
-0081D550		
-0081D640		
-0081D6C0		
-0081D700		
-0081D740		
-0081D900		
-0081D9A0		
-0081DA20		
-0081DB20		
-0081DC10		
-0081DCD0		
-0081E050		
-0081E100		
-0081E260		
-0081E2C0		
-0081E350		
-0081E420	lua_yieldk	"""attempt to yield from outside a coroutine"""
-0081E4B0		
-0081E5A0	lua_resume	"""cannot resume non-suspended coroutine"""
-0081E760	seterrorobj (ldo)	"""error in error handling"""
-0081E800		
-0081E920		
-0081E9C0		
-0081EAA0		
-0081EB50		
-0081EC10		
-0081EC40		
-0081ECA0		
-0081ECD0		
-0081ED30		
-0081ED90		
-0081EDC0		
-0081EEB0		
-0081EEF0		
-0081EF50		
-0081EF90		
-0081EFB0		
-0081F050		
-0081F0A0		
-0081F1F0		
-0081F2A0	findindex (ltable)	"""invalid key to 'next'"""
-0081F3B0		
-0081F420		
-0081F4A0		
-0081F580		
-0081F5E0		
-0081F660		
-0081F6B0		
-0081F700	luaH_newkey	"""table index is nil"", ""table index is NaN"""
-0081F890		
-0081F9B0		
-0081FB50		
-0081FB80		
-0081FBD0		
-0081FCA0		
-0081FE20		
-00820020		
-008201D0		
-00820260	setnodevector (ltable)	"""table overflow"""
-00820370		
-00820600		
-00820770		
-008209D0		
-00820B20		
-00820BA0		
-00820C70		
-00820D00		
-00820E00		
-00820E90		
-00820F60		
-00820FF0		
-00821090		
-008211B0	luaV_concat	"""string length overflow"""
-00821520		
-008229F0		
-00822BC0	luaV_gettable	"""loop in gettable"""
-00822CE0		
-00822E30		
-00822F10	luaV_objlen	"""get length of"""
-00823030	luaV_settable	"""loop in settable"""
-00823220		
-00823280		
-00823310		
-008233F0		
-00823520		
-00823560		
-008235B0	luaM_growaux_	"""too many %s (limit is %d)"", ""block too big"""
-00823670		
-00823710	luaM_toobig	"""memory allocation error: block too big"" (alone, 16 bytes)"
-00823730		
-008237B0	inclinenumber (llex)	"""chunk has too many lines"""
-00823860	lexerror (llex)	"""%s near %s"""
-00823910		
-008241A0		
-008241C0		
-00824260		
-008242A0		
-00824330		
-00824340	luaX_token2str	"""char(%d)"""
-008243C0	read_long_string (llex)	"""unfinished long string"", ""unfinished long comment"""
-008245F0		
-00824900		
-00824E00		
-00825000		
-008251F0		
-00825280		
-008253D0		
-00825490	io.type	luaL_Reg table entry
-00825510	file:__tostring	luaL_Reg table entry
-00825570	file:close / io.close	luaL_Reg table entry
-00825600	file:__gc	luaL_Reg table entry
-00825660	io.open	luaL_Reg table entry
-00825770	io.popen	luaL_Reg table entry
-00825820	io.tmpfile	luaL_Reg table entry
-008258A0	io.input	luaL_Reg table entry
-00825930	io.output	luaL_Reg table entry
-008259C0	file:lines	luaL_Reg table entry
-00825A10	io.lines	luaL_Reg table entry
-00825AF0	io.read	luaL_Reg table entry
-00825B60	file:read	luaL_Reg table entry
-00825BC0	io.write	luaL_Reg table entry
-00825C30	file:write	luaL_Reg table entry
-00825CA0	file:seek	luaL_Reg table entry
-00825DA0	file:setvbuf	luaL_Reg table entry
-00825E50	io.flush	luaL_Reg table entry
-00825EC0	file:flush	luaL_Reg table entry
-00825F20		
-00825FC0		
-00826010		
-00826200		
-008262E0		
-00826320	io_noclose (liolib)	"""cannot close standard file"""
-00826370		
-008263B0		
-00826500	luaopen_io	luaL_Reg table entry
-008266D0	opencheckfile (liolib)	"""cannot open file '%s' (%s)"""
-00826770		
-00826850		
-008268E0		
-008269F0		
-00826A50	os.execute	luaL_Reg table entry
-00826AB0	os.remove	luaL_Reg table entry
-00826B00	os.rename	luaL_Reg table entry
-00826B60	os.tmpname	luaL_Reg table entry
-00826BD0	os.getenv	luaL_Reg table entry
-00826C10	os.clock	luaL_Reg table entry
-00826C50	os.date	luaL_Reg table entry
-00826F50	os.time	luaL_Reg table entry
-00827200	os.difftime	luaL_Reg table entry
-00827260	os.setlocale	luaL_Reg table entry
-008272D0	os.exit	luaL_Reg table entry
-00827350	checkoption (loslib)	"""invalid conversion specifier '%%%s'"""
-00827430	luaopen_os	luaL_Reg table entry
-00827470	debug.getregistry	luaL_Reg table entry
-00827490	debug.getmetatable	luaL_Reg table entry
-008274D0	debug.setmetatable	luaL_Reg table entry
-00827530	debug.getuservalue	luaL_Reg table entry
-00827570	debug.setuservalue	luaL_Reg table entry
-00827A10	debug.getlocal	luaL_Reg table entry
-00827B60	debug.setlocal	luaL_Reg table entry
-00827C60	debug.getupvalue	luaL_Reg table entry
-00827CE0	debug.setupvalue	luaL_Reg table entry
-00827D60	debug.upvalueid	luaL_Reg table entry
-00827DA0	debug.upvaluejoin	luaL_Reg table entry
-00827E50	debug.sethook	luaL_Reg table entry
-00828000	debug.gethook	luaL_Reg table entry
-00828140	debug.debug	luaL_Reg table entry
-00828330	debug.traceback	luaL_Reg table entry
-008283F0	checkupval (ldblib)	"""invalid upvalue index"""
-008284A0		
-00828540	luaopen_debug	luaL_Reg table entry
-00828580	package.loadlib	luaL_Reg table entry
-00828610	package.searchpath	luaL_Reg table entry
-008286D0		
-008287F0	checkload (loadlib)	"""error loading module '%s' from file '%s'"""
-00828870		
-00828920	findloader (loadlib)	"""'package.searchers' must be a table"", ""module '%s' not found:%s"""
-00828A80		
-00828AF0		
-00828B80		
-00828C70	loadfunc (loadlib)	"""luaopen_%s"""
-00828D30	luaopen_package	luaL_Reg table entry
-00829030	pusherror (loadlib, Windows)	"""system error %d\n"""
-008290D0	searcher_C (loadlib)	"""cpath"", ""'package.%s' must be a string"""
-008291A0	searcher_Croot (loadlib)	"""\n\tno module '%s' in file '%s'"""
-00829320	searcher_Lua (loadlib)	"""path"", ""'package.%s' must be a string"""
-008293F0	searcher_preload (loadlib)	"""\n\tno field package.preload['%s']"""
-00829460	searchpath (loadlib)	"""\n\tno file '%s'"""
-008295D0	setprogdir (loadlib, Windows)	"""unable to get ModuleFileName"""
-00829680		
-00829770		
-00829810		
-00829A70		
-00829AE0		
-00829B10		
-00829D70	check_match (lparser)	"""%s expected (to close %s at line %d)"""
-00829E10	errorlimit (lparser)	"""too many %s (limit is %d) in %s"", ""function at line %d"""
-00829E90	checkrepeated (lparser)	"""label '%s' already defined on line %d"""
-00829F50		
-0082A170		
-0082A280		
-0082A5D0		
-0082A660		
-0082A700		
-0082A7C0		
-0082A920		
-0082AAD0		
-0082AD40	forlist (lparser)	"""(for generator)"", ""(for state)"", ""(for control)"""
-0082AFA0	fornum (lparser)	"""(for index)"", ""(for limit)"", ""(for step)"""
-0082B180	forstat (lparser)	"""'=' or 'in' expected"""
-0082B2A0	funcargs (lparser)	"""function arguments expected"""
-0082B420		
-0082B570		
-0082B730		
-0082B7F0		
-0082B890		
-0082B9A0	undefgoto (lparser)	"""<%s> at line %d not inside a loop"", ""no visible label"""
-0082BB40		
-0082BC50		
-0082BE30		
-0082C0B0		
-0082C220		
-0082C310	newlabelentry (lparser)	"""labels/gotos"""
-0082C3D0	newupvalue (lparser)	"""upvalues"""
-0082C540	parlist (lparser)	"""<name> or '...' expected"""
-0082C650	primaryexp (lparser)	"""unexpected symbol"""
-0082C6E0		
-0082C8C0		
-0082C9A0		
-0082CB10		
-0082CC40		
-0082CCC0	simpleexp (lparser)	"""cannot use '...' outside a vararg function"""
-0082CF20		
-0082D010		
-0082D130		
-0082D3B0		
-0082D410		
-0082D470		
-0082D5C0		
-0082D8A0		
-0082DA80		
-0082DC30		
-0082DCE0		
-0082E050		
-0082E350		
-0082E640		
-0082E6C0		
-0082E790		
-0082E8E0		
-0082E910	luaU_undump	"""binary string"""
-0082EA10	addk (lcode)	"""constants"""
-0082EB70		
-0082ECC0		
-0082EDA0		
-0082EE90		
-0082EEF0		
-0082F000		
-0082F1D0		
-0082F230		
-0082F320		
-0082F360	luaK_code	"""opcodes"""
-0082F450		
-0082F470		
-0082F490		
-0082F500		
-0082F5A0		
-0082F660		
-0082F780		
-0082F7F0		
-0082F860		
-0082F8E0		
-0082F960		
-0082F980		
-0082F990		
-0082FA10		
-0082FAA0		
-0082FAE0		
-0082FB30		
-0082FBF0		
-0082FCB0		
-0082FD80		
-0082FDE0		
-0082FE20		
-0082FE40		
-00830010		
-008300E0		
-00830120		
-00830140		
-00830250	luaK_setlist	"""constructor too long"""
-00830300		
-00830350		
-00830410		
-00830510		
-00830540		
-008306C0		
+0x0080F2E0		
+0x0080F2F0		
+0x0080F300	index2addr (lapi)	positive index from the call's func, past L->top the shared nil object; negative ones tested against LUA_REGISTRYINDEX 0xFFF0B9D8 (code, not a string)
+0x0080F370		
+0x0080F3A0		
+0x0080F420		
+0x0080F4C0		
+0x0080F620		
+0x0080F690		
+0x0080F740		
+0x0080F7B0		
+0x0080F7F0		
+0x0080F800	lua_gc	G(L) from +0x18, then a switch on 'what' over 0..11 (LUA_GCSTOP..LUA_GCINC) (code, not a string)
+0x0080FA30		
+0x0080FA50		
+0x0080FB20	lua_getglobal	registry entry 2 (the globals table, luaH_getint), pushes the name as a new string, tail-jumps to luaV_gettable 0x00822BC0 (code, not a string)
+0x0080FBA0		
+0x0080FC70		
+0x0080FD00		
+0x0080FD20		
+0x0080FE30		
+0x0080FEE0		
+0x0080FF90		
+0x00810020		
+0x008100C0		
+0x008100E0		
+0x00810240		
+0x00810290		
+0x00810340	lua_pcallk	errfunc 0 test, index2addr for it, then the 16-bit L->nny test at +0x44 before the continuation; six-argument callers (L, nargs, nresults, errfunc, ctx, k) (code, not a string)
+0x00810450		
+0x00810470	lua_pushcclosure	named on 22 ../PhyreEngine/phyre-lua-bindings.md (called only by the library openers)
+0x00810540		
+0x00810580		
+0x008105A0		
+0x008105C0		
+0x00810620		
+0x00810640		
+0x00810660		
+0x008106D0		
+0x00810700		
+0x00810730		
+0x008107C0		
+0x00810810		
+0x00810940		
+0x008109F0		
+0x00810AA0		
+0x00810B60		
+0x00810C50		
+0x00810D20		
+0x00810DC0		
+0x00810DF0		
+0x00810ED0	lua_setglobal	named on 22 ../PhyreEngine/phyre-lua-bindings.md (sets phyre_pscript in 0x00684F60)
+0x00811090		
+0x00811180		
+0x008112E0		
+0x008113C0		
+0x008113D0		
+0x00811470		
+0x00811530		
+0x00811640		
+0x00811700		
+0x00811800		
+0x00811890		
+0x00811950		
+0x008119F0		
+0x00811A70		
+0x00811A90		
+0x00811BD0		
+0x00811D10		
+0x00811D30		
+0x00811D90		
+0x00811E60		
+0x00811F50	errfile (lauxlib)	"""cannot %s %s: %s"""
+0x00811FD0		
+0x008120F0		
+0x00812170		
+0x00812190		
+0x008121E0		
+0x00812240		
+0x008122D0	luaL_argerror	"""bad argument #%d to '%s' (%s)"", ""calling '%s' on bad self"""
+0x008123E0		
+0x00812400		
+0x00812430	luaL_checkany	"""value expected"""
+0x00812470		
+0x00812500		
+0x00812590		
+0x00812620	luaL_checkoption	"""invalid option '%s'"""
+0x008126E0	luaL_checkstack	"""stack overflow (%s)"""
+0x00812740		
+0x00812780		
+0x00812800		
+0x00812890	luaL_checkversion_	"""multiple Lua VMs detected"""
+0x00812960		
+0x008129C0		
+0x00812A50		
+0x00812AF0		
+0x00812B70		
+0x00812C10		
+0x00812F10	luaL_len	"""object length is not a number"""
+0x00812FA0	luaL_loadfilex	"""=stdin"", ""@%s"", ""reopen"""
+0x008132B0		
+0x00813330		
+0x00813380		
+0x00813400		
+0x00813450		
+0x00813510		
+0x00813560		
+0x008135B0	luaL_setfuncs	"""too many upvalues"""
+0x00813680		
+0x008136B0		
+0x00813740	luaL_tolstring	"""__tostring"", ""%s: %p"""
+0x008138A0	luaL_traceback	"""stack traceback:"""
+0x00813B60	luaL_where	"""%s:%d: """
+0x00813BF0		
+0x00813C90		
+0x00813D00		
+0x00813D90		
+0x00813E10		
+0x00813E50		
+0x00813EB0		
+0x00813F00		
+0x00813F10		
+0x00813F20		
+0x00813FF0		
+0x008140A0	pcall	luaL_Reg table entry
+0x00814120	xpcall	luaL_Reg table entry
+0x008141C0	tostring	luaL_Reg table entry
+0x008141F0	print	luaL_Reg table entry
+0x00814340	tonumber	luaL_Reg table entry
+0x008144D0	error	luaL_Reg table entry
+0x00814550	getmetatable	luaL_Reg table entry
+0x008145B0	setmetatable	luaL_Reg table entry
+0x00814650	rawequal	luaL_Reg table entry
+0x008146A0	rawlen	luaL_Reg table entry
+0x00814700	rawget	luaL_Reg table entry
+0x00814750	rawset	luaL_Reg table entry
+0x008147B0	collectgarbage	luaL_Reg table entry
+0x008148B0	type	luaL_Reg table entry
+0x008148F0	next	luaL_Reg table entry
+0x00814950	pairs	luaL_Reg table entry
+0x008149E0	ipairs	luaL_Reg table entry
+0x00814A70	loadfile	luaL_Reg table entry
+0x00814B30	load	luaL_Reg table entry
+0x00814C50	dofile	luaL_Reg table entry
+0x00814CD0	assert	luaL_Reg table entry
+0x00814D20	select	luaL_Reg table entry
+0x00814DD0		
+0x00814DE0		
+0x00814E60	generic_reader (lbaselib)	"""reader function must return a string"""
+0x00814F20		
+0x00814F90	luaopen_base	luaL_Reg table entry
+0x00815020		
+0x00815050	coroutine.resume	luaL_Reg table entry
+0x008150F0	coroutine.create	luaL_Reg table entry
+0x00815150	coroutine.wrap	luaL_Reg table entry
+0x008151C0	coroutine.yield	luaL_Reg table entry
+0x008151F0	coroutine.status	luaL_Reg table entry
+0x00815300	coroutine.running	luaL_Reg table entry
+0x00815330	auxresume (lcorolib)	"""cannot resume dead coroutine"", ""too many results to resume"""
+0x00815470		
+0x00815500	luaopen_coroutine	luaL_Reg table entry
+0x00815540	table.insert	luaL_Reg table entry
+0x00815610	table.remove	luaL_Reg table entry
+0x008156F0	table.concat	luaL_Reg table entry
+0x008158A0	table.pack	luaL_Reg table entry
+0x00815950	table.unpack	luaL_Reg table entry
+0x00815A40	table.sort	luaL_Reg table entry
+0x00815AD0	auxsort (ltablib)	"""invalid order function for sorting"""
+0x00815E30	luaopen_table	luaL_Reg table entry
+0x00815E70		
+0x00815F20	string.find	luaL_Reg table entry
+0x00815F30	string.match	luaL_Reg table entry
+0x00815F40	string.gmatch	luaL_Reg table entry
+0x00815FA0	string.gsub	luaL_Reg table entry
+0x00816790	string.len	luaL_Reg table entry
+0x008167C0	string.sub	luaL_Reg table entry
+0x008168A0	string.reverse	luaL_Reg table entry
+0x00816940	string.lower	luaL_Reg table entry
+0x00816A00	string.upper	luaL_Reg table entry
+0x00816AC0	string.rep	luaL_Reg table entry
+0x00816C50	string.byte	luaL_Reg table entry
+0x00816D70	string.char	luaL_Reg table entry
+0x00816E50	string.dump	luaL_Reg table entry
+0x00816EF0	add_s (lstrlib)	"""invalid use of '%c' in replacement string"""
+0x00817000	addquoted (lstrlib)	"""\\%d"", ""\\%03d"""
+0x00817180	classEnd (lstrlib)	"""malformed pattern (ends with '%%')"", ""(missing ']')"""
+0x00817230		
+0x008172B0	capture_to_close (lstrlib)	"""invalid pattern capture"""
+0x00817360		
+0x00817490		
+0x00817550	luaopen_string	luaL_Reg table entry
+0x00817590	match (lstrlib)	"""missing '[' after '%%f' in pattern"""
+0x00817850	check_capture (lstrlib)	"""invalid capture index %%%d"""
+0x008178F0		
+0x00817A60	matchbalance (lstrlib)	"""malformed pattern (missing arguments to '%%b')"""
+0x00817B00		
+0x00817D20		
+0x00817DF0		
+0x00817EB0		
+0x00817FC0		
+0x00818080	scanformat (lstrlib)	"""invalid format (repeated flags)"""
+0x00818190	start_capture (lstrlib)	"""too many captures"" (alone)"
+0x00818220		
+0x00818490		
+0x008184B0	bit32.band	luaL_Reg table entry
+0x00818520	bit32.btest	luaL_Reg table entry
+0x00818590	bit32.bor	luaL_Reg table entry
+0x00818600	bit32.bxor	luaL_Reg table entry
+0x00818670	bit32.bnot	luaL_Reg table entry
+0x008186A0	bit32.lshift	luaL_Reg table entry
+0x00818700	bit32.rshift	luaL_Reg table entry
+0x00818760	bit32.arshift	luaL_Reg table entry
+0x008187E0	bit32.lrotate	luaL_Reg table entry
+0x00818830	bit32.rrotate	luaL_Reg table entry
+0x00818880	bit32.extract	luaL_Reg table entry
+0x00818950	bit32.replace	luaL_Reg table entry
+0x00818A40	luaopen_bit32	luaL_Reg table entry
+0x00818A80	math.abs	luaL_Reg table entry
+0x00818D00	math.atan2	luaL_Reg table entry
+0x00818DE0	math.fmod	luaL_Reg table entry
+0x00818E40	math.modf	luaL_Reg table entry
+0x00818EE0	math.pow	luaL_Reg table entry
+0x00818F40	math.log	luaL_Reg table entry
+0x00819040	math.deg	luaL_Reg table entry
+0x00819080	math.rad	luaL_Reg table entry
+0x008190C0	math.frexp	luaL_Reg table entry
+0x00819110	math.ldexp	luaL_Reg table entry
+0x00819170	math.min	luaL_Reg table entry
+0x008191F0	math.max	luaL_Reg table entry
+0x00819270	math.random	luaL_Reg table entry
+0x008193E0	math.randomseed	luaL_Reg table entry
+0x00819410	luaopen_math	luaL_Reg table entry
+0x00819490		
+0x00819610		
+0x008197F0		
+0x00819990		
+0x00819A60		
+0x00819B90		
+0x00819C10		
+0x00819C30		
+0x00819C90		
+0x00819D80		
+0x00819E50		
+0x0081A140		
+0x0081A170		
+0x0081A190		
+0x0081A1F0		
+0x0081A260		
+0x0081A350		
+0x0081A3A0		
+0x0081A410		
+0x0081A4F0		
+0x0081A620		
+0x0081A690		
+0x0081A8A0		
+0x0081A8C0		
+0x0081AA30		
+0x0081ABC0		
+0x0081AC40		
+0x0081AD40		
+0x0081AE20		
+0x0081AFC0		
+0x0081B050		
+0x0081B1A0		
+0x0081B310		
+0x0081B4C0		
+0x0081B680		
+0x0081B7F0		
+0x0081B960		
+0x0081B9E0		
+0x0081BAC0		
+0x0081BBE0		
+0x0081BCF0		
+0x0081BE10		
+0x0081BE40	luaO_chunkid	"""[string \"""""
+0x0081BF80		
+0x0081BFA0		
+0x0081BFC0		
+0x0081BFF0		
+0x0081C020	luaO_pushvfstring	"""invalid option '%%%c' to 'lua_pushfstring'"""
+0x0081C300		
+0x0081C3C0		
+0x0081C5D0		
+0x0081C620		
+0x0081C640		
+0x0081C6A0		
+0x0081C760		
+0x0081C830		
+0x0081CA00		
+0x0081CB00		
+0x0081CB30	findlocal (ldebug)	"""(*vararg)"", ""(*temporary)"""
+0x0081CC40		
+0x0081CD70	funcinfo (ldebug)	"""=[C]"", ""main"", ""Lua"""
+0x0081CE00	getfuncname (ldebug)	"""for iterator"", ""metamethod"""
+0x0081CF80	getobjname (ldebug)	"""_ENV"", ""global"", ""field"", ""upvalue"""
+0x0081D1E0		
+0x0081D240	luaG_aritherror	"""perform arithmetic on"""
+0x0081D280	luaG_concaterror	"""concatenate"""
+0x0081D2B0		
+0x0081D350	luaG_ordererror	"""attempt to compare two %s values"""
+0x0081D3A0		
+0x0081D3E0	luaG_typeerror	"""attempt to %s a %s value"""
+0x0081D520		
+0x0081D530		
+0x0081D540		
+0x0081D550		
+0x0081D640		
+0x0081D6C0		
+0x0081D700		
+0x0081D740		
+0x0081D900		
+0x0081D9A0		
+0x0081DA20		
+0x0081DB20		
+0x0081DC10		
+0x0081DCD0		
+0x0081E050		
+0x0081E100		
+0x0081E260		
+0x0081E2C0		
+0x0081E350		
+0x0081E420	lua_yieldk	"""attempt to yield from outside a coroutine"""
+0x0081E4B0		
+0x0081E5A0	lua_resume	"""cannot resume non-suspended coroutine"""
+0x0081E760	seterrorobj (ldo)	"""error in error handling"""
+0x0081E800		
+0x0081E920		
+0x0081E9C0		
+0x0081EAA0		
+0x0081EB50		
+0x0081EC10		
+0x0081EC40		
+0x0081ECA0		
+0x0081ECD0		
+0x0081ED30		
+0x0081ED90		
+0x0081EDC0		
+0x0081EEB0		
+0x0081EEF0		
+0x0081EF50		
+0x0081EF90		
+0x0081EFB0		
+0x0081F050		
+0x0081F0A0		
+0x0081F1F0		
+0x0081F2A0	findindex (ltable)	"""invalid key to 'next'"""
+0x0081F3B0		
+0x0081F420		
+0x0081F4A0		
+0x0081F580		
+0x0081F5E0		
+0x0081F660		
+0x0081F6B0		
+0x0081F700	luaH_newkey	"""table index is nil"", ""table index is NaN"""
+0x0081F890		
+0x0081F9B0		
+0x0081FB50		
+0x0081FB80		
+0x0081FBD0		
+0x0081FCA0		
+0x0081FE20		
+0x00820020		
+0x008201D0		
+0x00820260	setnodevector (ltable)	"""table overflow"""
+0x00820370		
+0x00820600		
+0x00820770		
+0x008209D0		
+0x00820B20		
+0x00820BA0		
+0x00820C70		
+0x00820D00		
+0x00820E00		
+0x00820E90		
+0x00820F60		
+0x00820FF0		
+0x00821090		
+0x008211B0	luaV_concat	"""string length overflow"""
+0x00821520		
+0x008229F0		
+0x00822BC0	luaV_gettable	"""loop in gettable"""
+0x00822CE0		
+0x00822E30		
+0x00822F10	luaV_objlen	"""get length of"""
+0x00823030	luaV_settable	"""loop in settable"""
+0x00823220		
+0x00823280		
+0x00823310		
+0x008233F0		
+0x00823520		
+0x00823560		
+0x008235B0	luaM_growaux_	"""too many %s (limit is %d)"", ""block too big"""
+0x00823670		
+0x00823710	luaM_toobig	"""memory allocation error: block too big"" (alone, 16 bytes)"
+0x00823730		
+0x008237B0	inclinenumber (llex)	"""chunk has too many lines"""
+0x00823860	lexerror (llex)	"""%s near %s"""
+0x00823910		
+0x008241A0		
+0x008241C0		
+0x00824260		
+0x008242A0		
+0x00824330		
+0x00824340	luaX_token2str	"""char(%d)"""
+0x008243C0	read_long_string (llex)	"""unfinished long string"", ""unfinished long comment"""
+0x008245F0		
+0x00824900		
+0x00824E00		
+0x00825000		
+0x008251F0		
+0x00825280		
+0x008253D0		
+0x00825490	io.type	luaL_Reg table entry
+0x00825510	file:__tostring	luaL_Reg table entry
+0x00825570	file:close / io.close	luaL_Reg table entry
+0x00825600	file:__gc	luaL_Reg table entry
+0x00825660	io.open	luaL_Reg table entry
+0x00825770	io.popen	luaL_Reg table entry
+0x00825820	io.tmpfile	luaL_Reg table entry
+0x008258A0	io.input	luaL_Reg table entry
+0x00825930	io.output	luaL_Reg table entry
+0x008259C0	file:lines	luaL_Reg table entry
+0x00825A10	io.lines	luaL_Reg table entry
+0x00825AF0	io.read	luaL_Reg table entry
+0x00825B60	file:read	luaL_Reg table entry
+0x00825BC0	io.write	luaL_Reg table entry
+0x00825C30	file:write	luaL_Reg table entry
+0x00825CA0	file:seek	luaL_Reg table entry
+0x00825DA0	file:setvbuf	luaL_Reg table entry
+0x00825E50	io.flush	luaL_Reg table entry
+0x00825EC0	file:flush	luaL_Reg table entry
+0x00825F20		
+0x00825FC0		
+0x00826010		
+0x00826200		
+0x008262E0		
+0x00826320	io_noclose (liolib)	"""cannot close standard file"""
+0x00826370		
+0x008263B0		
+0x00826500	luaopen_io	luaL_Reg table entry
+0x008266D0	opencheckfile (liolib)	"""cannot open file '%s' (%s)"""
+0x00826770		
+0x00826850		
+0x008268E0		
+0x008269F0		
+0x00826A50	os.execute	luaL_Reg table entry
+0x00826AB0	os.remove	luaL_Reg table entry
+0x00826B00	os.rename	luaL_Reg table entry
+0x00826B60	os.tmpname	luaL_Reg table entry
+0x00826BD0	os.getenv	luaL_Reg table entry
+0x00826C10	os.clock	luaL_Reg table entry
+0x00826C50	os.date	luaL_Reg table entry
+0x00826F50	os.time	luaL_Reg table entry
+0x00827200	os.difftime	luaL_Reg table entry
+0x00827260	os.setlocale	luaL_Reg table entry
+0x008272D0	os.exit	luaL_Reg table entry
+0x00827350	checkoption (loslib)	"""invalid conversion specifier '%%%s'"""
+0x00827430	luaopen_os	luaL_Reg table entry
+0x00827470	debug.getregistry	luaL_Reg table entry
+0x00827490	debug.getmetatable	luaL_Reg table entry
+0x008274D0	debug.setmetatable	luaL_Reg table entry
+0x00827530	debug.getuservalue	luaL_Reg table entry
+0x00827570	debug.setuservalue	luaL_Reg table entry
+0x00827A10	debug.getlocal	luaL_Reg table entry
+0x00827B60	debug.setlocal	luaL_Reg table entry
+0x00827C60	debug.getupvalue	luaL_Reg table entry
+0x00827CE0	debug.setupvalue	luaL_Reg table entry
+0x00827D60	debug.upvalueid	luaL_Reg table entry
+0x00827DA0	debug.upvaluejoin	luaL_Reg table entry
+0x00827E50	debug.sethook	luaL_Reg table entry
+0x00828000	debug.gethook	luaL_Reg table entry
+0x00828140	debug.debug	luaL_Reg table entry
+0x00828330	debug.traceback	luaL_Reg table entry
+0x008283F0	checkupval (ldblib)	"""invalid upvalue index"""
+0x008284A0		
+0x00828540	luaopen_debug	luaL_Reg table entry
+0x00828580	package.loadlib	luaL_Reg table entry
+0x00828610	package.searchpath	luaL_Reg table entry
+0x008286D0		
+0x008287F0	checkload (loadlib)	"""error loading module '%s' from file '%s'"""
+0x00828870		
+0x00828920	findloader (loadlib)	"""'package.searchers' must be a table"", ""module '%s' not found:%s"""
+0x00828A80		
+0x00828AF0		
+0x00828B80		
+0x00828C70	loadfunc (loadlib)	"""luaopen_%s"""
+0x00828D30	luaopen_package	luaL_Reg table entry
+0x00829030	pusherror (loadlib, Windows)	"""system error %d\n"""
+0x008290D0	searcher_C (loadlib)	"""cpath"", ""'package.%s' must be a string"""
+0x008291A0	searcher_Croot (loadlib)	"""\n\tno module '%s' in file '%s'"""
+0x00829320	searcher_Lua (loadlib)	"""path"", ""'package.%s' must be a string"""
+0x008293F0	searcher_preload (loadlib)	"""\n\tno field package.preload['%s']"""
+0x00829460	searchpath (loadlib)	"""\n\tno file '%s'"""
+0x008295D0	setprogdir (loadlib, Windows)	"""unable to get ModuleFileName"""
+0x00829680		
+0x00829770		
+0x00829810		
+0x00829A70		
+0x00829AE0		
+0x00829B10		
+0x00829D70	check_match (lparser)	"""%s expected (to close %s at line %d)"""
+0x00829E10	errorlimit (lparser)	"""too many %s (limit is %d) in %s"", ""function at line %d"""
+0x00829E90	checkrepeated (lparser)	"""label '%s' already defined on line %d"""
+0x00829F50		
+0x0082A170		
+0x0082A280		
+0x0082A5D0		
+0x0082A660		
+0x0082A700		
+0x0082A7C0		
+0x0082A920		
+0x0082AAD0		
+0x0082AD40	forlist (lparser)	"""(for generator)"", ""(for state)"", ""(for control)"""
+0x0082AFA0	fornum (lparser)	"""(for index)"", ""(for limit)"", ""(for step)"""
+0x0082B180	forstat (lparser)	"""'=' or 'in' expected"""
+0x0082B2A0	funcargs (lparser)	"""function arguments expected"""
+0x0082B420		
+0x0082B570		
+0x0082B730		
+0x0082B7F0		
+0x0082B890		
+0x0082B9A0	undefgoto (lparser)	"""<%s> at line %d not inside a loop"", ""no visible label"""
+0x0082BB40		
+0x0082BC50		
+0x0082BE30		
+0x0082C0B0		
+0x0082C220		
+0x0082C310	newlabelentry (lparser)	"""labels/gotos"""
+0x0082C3D0	newupvalue (lparser)	"""upvalues"""
+0x0082C540	parlist (lparser)	"""<name> or '...' expected"""
+0x0082C650	primaryexp (lparser)	"""unexpected symbol"""
+0x0082C6E0		
+0x0082C8C0		
+0x0082C9A0		
+0x0082CB10		
+0x0082CC40		
+0x0082CCC0	simpleexp (lparser)	"""cannot use '...' outside a vararg function"""
+0x0082CF20		
+0x0082D010		
+0x0082D130		
+0x0082D3B0		
+0x0082D410		
+0x0082D470		
+0x0082D5C0		
+0x0082D8A0		
+0x0082DA80		
+0x0082DC30		
+0x0082DCE0		
+0x0082E050		
+0x0082E350		
+0x0082E640		
+0x0082E6C0		
+0x0082E790		
+0x0082E8E0		
+0x0082E910	luaU_undump	"""binary string"""
+0x0082EA10	addk (lcode)	"""constants"""
+0x0082EB70		
+0x0082ECC0		
+0x0082EDA0		
+0x0082EE90		
+0x0082EEF0		
+0x0082F000		
+0x0082F1D0		
+0x0082F230		
+0x0082F320		
+0x0082F360	luaK_code	"""opcodes"""
+0x0082F450		
+0x0082F470		
+0x0082F490		
+0x0082F500		
+0x0082F5A0		
+0x0082F660		
+0x0082F780		
+0x0082F7F0		
+0x0082F860		
+0x0082F8E0		
+0x0082F960		
+0x0082F980		
+0x0082F990		
+0x0082FA10		
+0x0082FAA0		
+0x0082FAE0		
+0x0082FB30		
+0x0082FBF0		
+0x0082FCB0		
+0x0082FD80		
+0x0082FDE0		
+0x0082FE20		
+0x0082FE40		
+0x00830010		
+0x008300E0		
+0x00830120		
+0x00830140		
+0x00830250	luaK_setlist	"""constructor too long"""
+0x00830300		
+0x00830350		
+0x00830410		
+0x00830510		
+0x00830540		
+0x008306C0		

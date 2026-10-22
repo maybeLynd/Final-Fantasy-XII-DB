@@ -2,14 +2,14 @@
 title: "Augment list: every augment with its name, text, value, the code that reads the value, and its timer"
 kind: "reference"
 category: "Damage and battle formulas"
-addresses: "02EBF040, 0031C5D0, 002FEF30, 002F95D0, 002F8410, 00387FD0, 0038DD20, 0038DF00, 0038E2D0, 0030EA40"
+addresses: "0x02EBF040, 0x0031C5D0, 0x002FEF30, 0x002F95D0, 0x002F8410, 0x00387FD0, 0x0038DD20, 0x0038DF00, 0x0038E2D0, 0x0030EA40"
 ---
 
 ## What it lists
 
-`augment-list.tsv` holds one line for each of the 129 rows of the augment table that registry slot `02EBF040`
+`augment-list.tsv` holds one line for each of the 129 rows of the augment table that registry slot `0x02EBF040`
 reaches (`battle_pack.bin` directory entry `+0xEC`). Row *n* is augment id *n*, the id whose bit
-[Augments](augments.md) sets in a unit's two effect layers.
+[Augments](augments.md) sets in a unit's two augment layers.
 
 - 89 rows carry a shipped name and 40 are named `NOT USED`. 19 of those 40 have no other text; three of the 19 are
   the timed effects 55-57.
@@ -17,51 +17,77 @@ reaches (`battle_pack.bin` directory entry `+0xEC`). Row *n* is augment id *n*, 
   default timers of the three timed effects, and 11 (the ten gambit-slot rows 104-113 and row 128) are read by no
   function, as the scope below states.
 
+### The name of each augment
+
+The `term` column is the name every catalogue in the database uses for an augment (the party table, the
+bestiary, the enemy orders):
+
+- **88 augments are granted by a license**, and the license's name is the game's name for them: Brawler (9),
+  Martyr (21), Battle Lore, Magick Lore, Potion Lore and the rest. Each is granted by exactly one license.
+- **Which licenses grant augments.** License data (entry `+0x34`) grants augment rows through its node types 15 to
+  18 (byte `+0x05`: types 15-17 are group `0x1B` and 18 group `0x1C` in `0x003241D0`'s table `0x00324260`, both class
+  2 in `0x00323890`). Type 30, the Second Board node 360, names augment 128 (group `0x1E`, class 3, so the rebuild
+  never applies it as an augment).
+- **The other 41 have no English name in the game.** They are the augments only equipment, a party table row or a
+  foe's script gives, such as the Steel Poleyns' (37) or the Esper rows' (18, 31). The English, French,
+  German, Italian and Spanish `battle_pack.bin` name these rows `NOT USED`, `Unused`, `dummy` or `DUMMY`, and the
+  menus show only their help text.
+- **The Japanese build (`in`) names every row**: 37 is トラップ回避, 1 セーフティ, 13 殺陣. For the 41 the term is an
+  English rendering of the Japanese name ("Trap Evasion", "Safety", "Swordplay"), and `name_jp` keeps the Japanese
+  text.
+
+`name` stays the English name word: for the licensed augments it is a sentence ("Increases attack power when
+fighting empty-handed.").
+
 ### How it is built
 
-`Database/Tools/catalogues/augments.py`, with the shared readers in `ffxii_text.py`:
+`Database/Tools/catalogues/augments.py`, with the shared readers in `ffxii_text.py` and `ids.py`:
 
 1. the `st2e` table at entry `+0xEC`: 129 rows of 8 bytes from the section's `+0x20`;
 2. the name word `+0x02` through the word banks at entry `+0xF8`, and the text id `+0x00` through the text groups,
-   both as `0031C5D0`'s class-29 arm reads them (`0031E494`-`0031E559`);
-3. the reader of `+0x04` for each row, from the functions that load `02EBF040` (below);
+   both as `0x0031C5D0`'s class-29 arm reads them (`0x0031E494`-`0x0031E559`);
+3. the reader of `+0x04` for each row, from the functions that load `0x02EBF040` (below);
 4. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
-   ([Fonts](../Menus-And-HUD/fonts.md)).
+   ([Fonts](../Menus-And-HUD/fonts.md));
+5. the license that grants each augment, from license data (`ids.augment_license`);
+6. the Japanese name: the same name word in the `in` `battle_pack.bin`, decoded with the `jp` `font00.dat` as
+   `0x002AC2F0` reads a code: a byte from `0x20` is glyph byte − `0x20`, and a lead byte `0x10`-`0x1F` with the next
+   byte is glyph `[0x00916570 + 4 × (lead & 0xF)]` + next − `0x20` ([Fonts](../Menus-And-HUD/fonts.md)).
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | textId | an extra text, through `002F9860`; 0 for none |
+| `+0x00` | `u16` | textId | an extra text, through `0x002F9860`; 0 for none |
 | `+0x02` | `u16` | nameWord | the name: bank 10, row = the augment id, on every row |
 | `+0x04` | `u16` | value | the augment's number; its reader decides what it means (table below) |
-| `+0x06` | `u8` | timerSlot | 3, 4 and 5 on ids 55-57, `0xFF` (no timer) on the others ([Battle buffs](../Status-Effects-And-KO/battle-buffs.md), `0030EA40`) |
+| `+0x06` | `u8` | timerSlot | 3, 4 and 5 on ids 55-57, `0xFF` (no timer) on the others ([Battle buffs](../Status-Effects-And-KO/battle-buffs.md), `0x0030EA40`) |
 | `+0x07` | `u8` | | 0 on every row |
 
 The readers of `+0x04`:
 
 | Rows | Reader | What the value does |
 |---|---|---|
-| 35, 42-47, 60-68 | `002FEF30` | added to Strength, [Stats](stats.md) (`002FF581`-`002FF77A`) |
-| 19, 22, 24, 26, 69-73, 87, 97-102 | `002FEF30` | added to Magick Power, [Stats](stats.md) |
-| 74-85 | `002FEF30` | added to max HP, [Stats](stats.md) |
-| 91-93 | `002F95D0` | percent taken off a magick's MP cost ([MP](../Status-Effects-And-KO/mp.md)) |
-| 94-96 | `002F8410` | percent taken off the charge time ([Action phases](../Battle-Actions/action-phases.md)) |
-| 3, 88-90 | `00387FD0`, `00389370` | added to the shield-block chance ([Damage formula](damage-formula.md)) |
-| 119-121 | `0038DD20` | added to 100 percent of the heal it computes (`02AEE054` × `02AEE058`), for each of the user's bits 119-121 set in the bitset at its third argument's `+0x1A` (`0038DD3A`-`0038DE0B`) |
-| 122-124 | `0038DF00` | the same, for bits 122-124, into `02AEE010` (`0038DF1A`-`0038DFEB`) |
-| 125-127 | `0038E2D0` | added to the action's power `+0x10` for bits 125-127, the percent of the target's max HP it restores, capped at 100 (`0038E335`-`0038E3F6`) |
-| 55-57 | `00387020` | the default timer, value × 30 × the frame base `01DFE0B4`, which `0030EA40` and `0038FF20` store in the slot `+0x06` names |
+| 35, 42-47, 60-68 | `0x002FEF30` | added to Strength, [Stats](stats.md) (`0x002FF581`-`0x002FF77A`) |
+| 19, 22, 24, 26, 69-73, 87, 97-102 | `0x002FEF30` | added to Magick Power, [Stats](stats.md) |
+| 74-85 | `0x002FEF30` | added to max HP, [Stats](stats.md) |
+| 91-93 | `0x002F95D0` | percent taken off a magick's MP cost ([MP](../Status-Effects-And-KO/mp.md)) |
+| 94-96 | `0x002F8410` | percent taken off the charge time ([Action phases](../Battle-Actions/action-phases.md)) |
+| 3, 88-90 | `0x00387FD0`, `0x00389370` | added to the shield-block chance ([Damage formula](damage-formula.md)) |
+| 119-121 | `0x0038DD20` | added to 100 percent of the heal it computes (`0x02AEE054` × `0x02AEE058`), for each of the user's bits 119-121 set in the bitset at its third argument's `+0x1A` (`0x0038DD3A`-`0x0038DE0B`) |
+| 122-124 | `0x0038DF00` | the same, for bits 122-124, into `0x02AEE010` (`0x0038DF1A`-`0x0038DFEB`) |
+| 125-127 | `0x0038E2D0` | added to the action's power `+0x10` for bits 125-127, the percent of the target's max HP it restores, capped at 100 (`0x0038E335`-`0x0038E3F6`) |
+| 55-57 | `0x00387020` | the default timer, value × 30 × the frame base `0x01DFE0B4`, which `0x0030EA40` and `0x0038FF20` store in the slot `+0x06` names |
 
 ### The scope of "read by no function"
 
-Fifteen functions load `02EBF040` (111 references): `002FEF30`, `002F95D0`, `002F8410`, `00387FD0`,
-`00389370`, `0038DD20`, `0038DF00`, `0038E2D0`, `0030EA40`, `00387020`, `00385570`, `0038FF20`, the query filler
-`0031C5D0`, the validator `00322C50` and the loader `00236C30`.
+Fifteen functions load `0x02EBF040` (111 references): `0x002FEF30`, `0x002F95D0`, `0x002F8410`, `0x00387FD0`,
+`0x00389370`, `0x0038DD20`, `0x0038DF00`, `0x0038E2D0`, `0x0030EA40`, `0x00387020`, `0x00385570`, `0x0038FF20`, the query filler
+`0x0031C5D0`, the validator `0x00322C50` and the loader `0x00236C30`.
 
 - The first eight pick their rows by number and name only the rows in the table above.
-- `0030EA40`, `00385570` and `0038FF20` take any id. `0030EA40` reads `+0x04` through `00387020` and `0038FF20`
-  computes the same product inline (`0039005D`-`00390088`), both only for a slot `+0x06` below 8; `00385570` reads
+- `0x0030EA40`, `0x00385570` and `0x0038FF20` take any id. `0x0030EA40` reads `+0x04` through `0x00387020` and `0x0038FF20`
+  computes the same product inline (`0x0039005D`-`0x00390088`), both only for a slot `+0x06` below 8; `0x00385570` reads
   `+0x06` only.
-- `0031C5D0` reads `+0x00` and `+0x02`.
+- `0x0031C5D0` reads `+0x00` and `+0x02`.
 
 So no function reads the value of rows 104-113 (1 each) or 128 (20).
 
@@ -72,7 +98,7 @@ So no function reads the value of rows 104-113 (1 each) or 128 (20).
 - The decoder asserts byte `+0x07` = 0, the name word = bank 10, row *n*, and that only ids 55-57 have a timer
   slot.
 - Rows compared with their readers: row 74 "Increases max HP by 30." has value 30, the bonus [Stats](stats.md)
-  lists for it; rows 94-96 have value 12, the percentage `002F8410` sums for "Reduces action time by 10%";
+  lists for it; rows 94-96 have value 12, the percentage `0x002F8410` sums for "Reduces action time by 10%";
   rows 55-57 have slots 3, 4 and 5 and value 120, the two minutes [Battle buffs](../Status-Effects-And-KO/battle-buffs.md)
   states.
 - No text field keeps an undecoded `{hh}` byte.
@@ -81,7 +107,9 @@ So no function reads the value of rows 104-113 (1 each) or 128 (20).
 
 | Column | Meaning |
 |---|---|
-| `id`, `name` | the augment id (the row) and its shipped name |
+| `id`, `term` | the augment id (the row) and its name in the database: its license's name, or the English rendering of `name_jp` (above) |
+| `name`, `name_jp` | the English name word `+0x02`, and the same word in the Japanese build |
+| `license` | the license that grants the augment, empty for none |
 | `text_id`, `text` | `+0x00` and its shipped text; empty for 0 |
 | `value` | `+0x04` |
 | `value_reader`, `value_use` | the function that reads this row's value and what it does with it; empty when none does |

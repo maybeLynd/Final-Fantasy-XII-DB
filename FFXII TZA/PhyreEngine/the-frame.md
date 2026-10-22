@@ -2,7 +2,7 @@
 title: "Phyre frame: from the frame tick to the drawn picture, the draw-layer mask and the GS register stream"
 kind: "system"
 category: "PhyreEngine"
-addresses: "0022B0B0, 022C7F90, 00358450, 00358510, 0036D400, 003A1D50, 004FE420, 003A1DB0, 0036F360, 02EBEFC0, 00184460, 00864F30, 00864E90, 00678B50, 0016D6A0"
+addresses: "0x0022B0B0, 0x022C7F90, 0x00358450, 0x00358510, 0x0036D400, 0x003A1D50, 0x004FE420, 0x003A1DB0, 0x0036F360, 0x02EBEFC0, 0x00184460, 0x00864F30, 0x00864E90, 0x00678B50, 0x0016D6A0"
 ---
 
 ## What the player sees
@@ -23,64 +23,64 @@ and [frame update order](../Engine-Core/frame-update-order.md). The framework si
 [Phyre application](phyre-application.md). This page covers the draw the frame states call and what it
 writes.
 
-The frame bodies mark their phases by passing a label to `0016D6A0`, whose whole body is `ret`: for
-example `"[PS2]main loop draw"` at the top of `0022B0B0`, and `PAD CONTROL`, `[PS2]draw`, `CAMERA`,
+The frame bodies mark their phases by passing a label to `0x0016D6A0`, whose whole body is `ret`: for
+example `"[PS2]main loop draw"` at the top of `0x0022B0B0`, and `PAD CONTROL`, `[PS2]draw`, `CAMERA`,
 `FAST MODE`, `ATEL CONTROL` and `SCREEN CAPTURE` in the state handlers. The labels do nothing at run
 time.
 
 ### The draw and its two passes per frame
 
-`0022B0B0(draw, alternate)` is called three times: with (0, 0) at `0022A82D` and (1, 0) at `0022A8B8`
-in the field frame `0022A770`, and with (0, 1) at `0022AF8A` in the screen-capture state. The field
-frame runs draw 1 only when entry 1 of the pass mask is non-zero (`00358330(1)` at `0022A83B`); between
-the two it waits on the command-state word, runs `00376470` and `00375500(7)` when draw 0's
-bit 4 is set, and sets the mask's byte `+8` to 1 (`00358640`).
+`0x0022B0B0(draw, alternate)` is called three times: with (0, 0) at `0x0022A82D` and (1, 0) at `0x0022A8B8`
+in the field frame `0x0022A770`, and with (0, 1) at `0x0022AF8A` in the screen-capture state. The field
+frame runs draw 1 only when entry 1 of the pass mask is non-zero (`0x00358330(1)` at `0x0022A83B`); between
+the two it waits on the command-state word, runs `0x00376470` and `0x00375500(7)` when draw 0's
+bit 4 is set, and sets the mask's byte `+8` to 1 (`0x00358640`).
 
-The draw opens a `mainLoopDraw` scope (`001EB150`) and returns at once when `01FD4A70` is set (clearing
-it and setting `02064AE4`). While `02064AE4` is clear it writes the GS register batch (`0036D400`,
+The draw opens a `mainLoopDraw` scope (`0x001EB150`) and returns at once when `0x01FD4A70` is set (clearing
+it and setting `0x02064AE4`). While `0x02064AE4` is clear it writes the GS register batch (`0x0036D400`,
 below), with both arguments forced to 1 in the alternate draw. It then runs these passes in order, each
-behind one bit of its mask entry. `00332420(3)` runs first when bit 6 or bit 1 is set, then the bit-2
-pass (`00377230`) and the bit-0 pass, then `00332420(0)` when bit 6 or bit 1 is set:
+behind one bit of its mask entry. `0x00332420(3)` runs first when bit 6 or bit 1 is set, then the bit-2
+pass (`0x00377230`) and the bit-0 pass, then `0x00332420(0)` when bit 6 or bit 1 is set:
 
-| Bit | Accessor | What it gates in `0022B0B0` |
+| Bit | Accessor | What it gates in `0x0022B0B0` |
 |---|---|---|
-| 0 | `00358380` | `003769E0`, `00377520`, `0036F410`; later `0036FBB0`, `0036F430`, `0036F450` and `00475390` |
-| 1 | `003582A0` | `0017F2F0`, `0017F070`, `00332420(2)`; this bit or bit 6: `00332420(3)` and `00332420(0)` |
-| 2 | `00358350` | `00377230`; `00258EE0(4)` |
-| 3 | `003583B0` | `00252A70`, and `002450B0` when `00357780()`, after the Gaussian filter (normal draw); inside the filter `0017FD70` runs only when bit 3 is clear or in the alternate draw |
-| 4 | `003583F0` | `00258EE0` with 1, 2, 3, 5 and 6; `00375500` with 2, 3, 5 and 6; the `mask border 2` scope |
-| 5 | `00358300` | the first argument of `0036D400` |
-| 6 | `003582C0` | `00332420(1)`; this bit or bit 1: `00332420(3)` and `00332420(0)` |
-| 7 | `003582E0` | the second argument of `0036D400` |
-| 8 | `003583D0` | a mid-draw block: `0036F2C0`, `00184900`, `0036F2F0` |
+| 0 | `0x00358380` | `0x003769E0`, `0x00377520`, `0x0036F410`; later `0x0036FBB0`, `0x0036F430`, `0x0036F450` and `0x00475390` |
+| 1 | `0x003582A0` | `0x0017F2F0`, `0x0017F070`, `0x00332420(2)`; this bit or bit 6: `0x00332420(3)` and `0x00332420(0)` |
+| 2 | `0x00358350` | `0x00377230`; `0x00258EE0(4)` |
+| 3 | `0x003583B0` | `0x00252A70`, and `0x002450B0` when `0x00357780()`, after the Gaussian filter (normal draw); inside the filter `0x0017FD70` runs only when bit 3 is clear or in the alternate draw |
+| 4 | `0x003583F0` | `0x00258EE0` with 1, 2, 3, 5 and 6; `0x00375500` with 2, 3, 5 and 6; the `mask border 2` scope |
+| 5 | `0x00358300` | the first argument of `0x0036D400` |
+| 6 | `0x003582C0` | `0x00332420(1)`; this bit or bit 1: `0x00332420(3)` and `0x00332420(0)` |
+| 7 | `0x003582E0` | the second argument of `0x0036D400` |
+| 8 | `0x003583D0` | a mid-draw block: `0x0036F2C0`, `0x00184900`, `0x0036F2F0` |
 
-The named scopes, in order, are `mask border 0`; `AO render` (when `0017FE10()` and `01FD49E8`);
-`Water effect` (when `0017FE20()` and `01FD49E8`, at one of two places); `post-processing render`
-(at one of two places chosen by `00180040()`, at most once per draw through `02064AE0`, and in draw 1
-only when bits `0x1`, `0x8` and `0x10` of `020926E4` are clear); `PS2 DOF`; `Gaussian Filter`; and
-`mask border 2`. In draw 1, `01FD49E8` is 0 unless bit 0 is set, which removes AO, water and
+The named scopes, in order, are `mask border 0`; `AO render` (when `0x0017FE10()` and `0x01FD49E8`);
+`Water effect` (when `0x0017FE20()` and `0x01FD49E8`, at one of two places); `post-processing render`
+(at one of two places chosen by `0x00180040()`, at most once per draw through `0x02064AE0`, and in draw 1
+only when bits `0x1`, `0x8` and `0x10` of `0x020926E4` are clear); `PS2 DOF`; `Gaussian Filter`; and
+`mask border 2`. In draw 1, `0x01FD49E8` is 0 unless bit 0 is set, which removes AO, water and
 post-processing from the second draw.
 
 ### The pass mask
 
-`022C7F90` holds one dword per draw: the low `u16` is the pass bits read above, the high `u16` a second
-set of flags. Bytes follow at `022C7F98` (`+8`), `022C7F99` (`+9`) and `022C7F9A` (`+0xA`, the speed
+`0x022C7F90` holds one dword per draw: the low `u16` is the pass bits read above, the high `u16` a second
+set of flags. Bytes follow at `0x022C7F98` (`+8`), `0x022C7F99` (`+9`) and `0x022C7F9A` (`+0xA`, the speed
 permit byte of [frame update order](../Engine-Core/frame-update-order.md)).
 
-`00358450(draw, on)`
+`0x00358450(draw, on)`
 sets bits 0–7 of that draw's pass bits to `on`, clears bit 8 and sets bits 0–3 of its upper word. The
-reset `00358510` (called from `0022A0B0`) runs it with on for draw 0 and off for draw 1, then stores
+reset `0x00358510` (called from `0x0022A0B0`) runs it with on for draw 0 and off for draw 1, then stores
 0, 0 and 1 at `+8`, `+9` and `+0xA`. The other writers, their 105 call sites and the values they store
 are listed in [the-frame-drawmask-callers.tsv](the-frame-drawmask-callers.tsv).
 
 ### The GS register batch
 
-`0036D400(a, b)` is called by the draw and by the state handlers `0022B6E0`, `0022B7E0`, `0022B8C0`,
-`0022BC20` and `0022B000`. It writes one A+D GIF packet of PS2 Graphics Synthesizer register
-settings sized from the width `022D8EAC` and height `022D8EB4`: FRAME_1, ZBUF_1, XYOFFSET_1,
+`0x0036D400(a, b)` is called by the draw and by the state handlers `0x0022B6E0`, `0x0022B7E0`, `0x0022B8C0`,
+`0x0022BC20` and `0x0022B000`. It writes one A+D GIF packet of PS2 Graphics Synthesizer register
+settings sized from the width `0x022D8EAC` and height `0x022D8EB4`: FRAME_1, ZBUF_1, XYOFFSET_1,
 SCISSOR_1, PRMODECONT, COLCLAMP and DTHE, a screen clear when the value its two arguments select
-from the table `00D10F88` is non-zero, and a closing TEST_1. It then flips the command buffers
-through `003A1DB0`.
+from the table `0x00D10F88` is non-zero, and a closing TEST_1. It then flips the command buffers
+through `0x003A1DB0`.
 
 The packet and the hand-off are on
 [the shared command-state word](../17-Presentation-Rendering/graphics-thread-handshake.md
@@ -90,16 +90,16 @@ the GIF tag format and the GS replay are on
 
 ### The two command buffers
 
-`003A1D50` (called from `0036F4D0`) sets up the two 24-byte buffer records `02EBEFC0` and `02EBEFD8`
-through `004FE420`, each with 512 (`0x200`) 16-byte records in the arena at `[01FD4A78]`; `02EBEFF0`
-is the index of the buffer being filled. `003A1DB0` flips the index and hands the old buffer's start
-and record count to `0036F360`.
+`0x003A1D50` (called from `0x0036F4D0`) sets up the two 24-byte buffer records `0x02EBEFC0` and `0x02EBEFD8`
+through `0x004FE420`, each with 512 (`0x200`) 16-byte records in the arena at `[0x01FD4A78]`; `0x02EBEFF0`
+is the index of the buffer being filled. `0x003A1DB0` flips the index and hands the old buffer's start
+and record count to `0x0036F360`.
 
-`0036F360` does nothing for an empty buffer. Otherwise, when the last record's first dword has bits
+`0x0036F360` does nothing for an empty buffer. Otherwise, when the last record's first dword has bits
 `0x70000000` equal to `0x30000000`, it writes the record `{0x10000000, 0}` after it (over it when the
-buffer is full). It then stores the buffer address & `0x3FF0` (`0036F3A6`) and the record count
-(`0036F3AC`) into the command-state word `02EBA3F8`, reloads that word three times per pass of a
-compare loop (`0036F3B2`-`0036F3E9`), and stores `0x100` to it (`0036F3EB`).
+buffer is full). It then stores the buffer address & `0x3FF0` (`0x0036F3A6`) and the record count
+(`0x0036F3AC`) into the command-state word `0x02EBA3F8`, reloads that word three times per pass of a
+compare loop (`0x0036F3B2`-`0x0036F3E9`), and stores `0x100` to it (`0x0036F3EB`).
 
 The buffers are on
 [the ordered render command list](../17-Presentation-Rendering/render-command-list.md
@@ -110,43 +110,43 @@ the word on
 
 ### The menu viewport
 
-`00184460(x, y, w, h, flag)` maps a rectangle from a reference size (512 × 448, or 1920 × 1080 when
-`001B1620()` holds) to the device: y and height scale by device height / reference height; x and
-width by device width / reference width, or, when `001DD8C0` reports aspect correction, by device
-height × aspect (from `001DD110`, default 1.7777778) / reference width with x centred. It passes the
-result to `001B23E0` and `001E9F00`. The full-menu state `0022B8C0` calls it with `[01E0C1D8]` and
-`[01E0C1DC]`, which hold `0x200` and `0x1C0`.
+`0x00184460(x, y, w, h, flag)` maps a rectangle from a reference size (512 × 448, or 1920 × 1080 when
+`0x001B1620()` holds) to the device: y and height scale by device height / reference height; x and
+width by device width / reference width, or, when `0x001DD8C0` reports aspect correction, by device
+height × aspect (from `0x001DD110`, default 1.7777778) / reference width with x centred. It passes the
+result to `0x001B23E0` and `0x001E9F00`. The full-menu state `0x0022B8C0` calls it with `[0x01E0C1D8]` and
+`[0x01E0C1DC]`, which hold `0x200` and `0x1C0`.
 
 ### The camera snapshot
 
-`00864F30` is slot 0 (prepare) of the `GiBeginEff` render command (vtable `01CCFB78`, `0x90`
+`0x00864F30` is slot 0 (prepare) of the `GiBeginEff` render command (vtable `0x01CCFB78`, `0x90`
 bytes). It copies:
 
-- 64 bytes from `02AEEB20` (returned by `0039D1D0`) to `+0x08`;
-- the 64-byte projection matrix at `+0x30` of the camera object from `00186670` on the render manager (adjusted by `+8` when
+- 64 bytes from `0x02AEEB20` (returned by `0x0039D1D0`) to `+0x08`;
+- the 64-byte projection matrix at `+0x30` of the camera object from `0x00186670` on the render manager (adjusted by `+8` when
 non-null, then read without a null check) to `+0x48`;
-- the floats `02AEEBA0` and `02AEEBA4` to `+0x88` and `+0x8C`.
+- the floats `0x02AEEBA0` and `0x02AEEBA4` to `+0x88` and `+0x8C`.
 
-`00678B50` then rewrites two entries of the copied matrix from the camera's near
+`0x00678B50` then rewrites two entries of the copied matrix from the camera's near
 (`+0xB8`) and far (`+0xBC`): with element `+0x3C` non-zero, `+0x28 = 1 / (n − f)` and
 `+0x38 = n / (n − f)`; otherwise `+0x28 = f / (n − f)` and `+0x38 = n·f / (n − f)`.
 
-Slot 1 (execute, `00864E90`) first calls the device's slot `+0xB0` with 0 (`00864EB5`) and stores `0x80` in
-`01E027B8` (`002105A0`, `00864EBD`), then hands `+0x08` and the two floats to `00210520`, which stores them at
-`01FD3620`–`01FD365F`, `01FD3660` and `01FD3664` (the GS replay's vertex matrix and depth bounds),
+Slot 1 (execute, `0x00864E90`) first calls the device's slot `+0xB0` with 0 (`0x00864EB5`) and stores `0x80` in
+`0x01E027B8` (`0x002105A0`, `0x00864EBD`), then hands `+0x08` and the two floats to `0x00210520`, which stores them at
+`0x01FD3620`–`0x01FD365F`, `0x01FD3660` and `0x01FD3664` (the GS replay's vertex matrix and depth bounds),
 passes `+0x48` to the device's slot `+0x30`, sets two device values to 3.0 (slots `+0xD8` and `+0xD0`), and
-ends by tail-jumping to the device's slot `+0x138` with 0 (`00864F22`).
+ends by tail-jumping to the device's slot `+0x138` with 0 (`0x00864F22`).
 
 ## Layouts
 
-Command buffer record (`02EBEFC0`, `02EBEFD8`), `0x18` bytes:
+Command buffer record (`0x02EBEFC0`, `0x02EBEFD8`), `0x18` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | begin |  |
 | `+0x08` | `void*` | write | advanced by `0x10` per record |
 | `+0x10` | `u32` | capacity | `0x200` records |
-| `+0x14` | `u32` | ready | set by `004FE420` |
+| `+0x14` | `u32` | ready | set by `0x004FE420` |
 
 Command record, `0x10` bytes:
 
@@ -155,7 +155,7 @@ Command record, `0x10` bytes:
 | `+0x00` | `u64` | value | register data |
 | `+0x08` | `u64` | register | GS register number |
 
-Pass mask (`022C7F90`):
+Pass mask (`0x022C7F90`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -163,7 +163,7 @@ Pass mask (`022C7F90`):
 | `+0x02` | `u16` | draw 0 upper flags |  |
 | `+0x04` | `u16` | draw 1 pass bits |  |
 | `+0x06` | `u16` | draw 1 upper flags |  |
-| `+0x08` | `u8` | current draw byte (00358640) |  |
+| `+0x08` | `u8` | current draw byte (0x00358640) |  |
 | `+0x09` | `u8` | capture byte |  |
 | `+0x0A` | `u8` | speed permit byte |  |
 
@@ -171,11 +171,11 @@ GiBeginEff render command, `0x90` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | vtable | `01CCFB78` |
-| `+0x08` | `f32[16] block` | from 02AEEB20 |  |
-| `+0x48` | `f32[16] projection` | camera +0x30, depth terms rewritten by 00678B50 |  |
-| `+0x88` | `f32` | near bound | `02AEEBA0` |
-| `+0x8C` | `f32` | far bound | `02AEEBA4` |
+| `+0x00` | `void*` | vtable | `0x01CCFB78` |
+| `+0x08` | `f32[16] block` | from 0x02AEEB20 |  |
+| `+0x48` | `f32[16] projection` | camera +0x30, depth terms rewritten by 0x00678B50 |  |
+| `+0x88` | `f32` | near bound | `0x02AEEBA0` |
+| `+0x8C` | `f32` | far bound | `0x02AEEBA4` |
 
 Instruction-level access tables beside this page:
 
@@ -183,7 +183,7 @@ Instruction-level access tables beside this page:
 |---|---|
 | the two command buffer records | [the-frame-render-command-buffer-pair-accesses.tsv](the-frame-render-command-buffer-pair-accesses.tsv) |
 | a command buffer record | [the-frame-render-command-buffer-accesses.tsv](the-frame-render-command-buffer-accesses.tsv) |
-| the 64 records of `0x60` bytes at `02B404E0` | [the-frame-handle-slot-record-accesses.tsv](the-frame-handle-slot-record-accesses.tsv) |
+| the 64 records of `0x60` bytes at `0x02B404E0` | [the-frame-handle-slot-record-accesses.tsv](the-frame-handle-slot-record-accesses.tsv) |
 | pass mask writers | [the-frame-drawmask-callers.tsv](the-frame-drawmask-callers.tsv) |
 | `PCameraOrthographic` | [the-frame-pcamera-orthographic-accesses.tsv](the-frame-pcamera-orthographic-accesses.tsv) |
 | `PCameraProjection` | [the-frame-pcamera-projection-accesses.tsv](the-frame-pcamera-projection-accesses.tsv) |
@@ -192,23 +192,23 @@ Instruction-level access tables beside this page:
 
 | Address | What |
 |---|---|
-| `022C7F90` | the pass mask, two draws and three bytes |
-| `02EBEFC0`, `02EBEFD8` | the two command buffer records |
-| `02EBEFF0` | index of the buffer `0036D400` fills |
-| `01FD4A78` | the arena both buffers point into |
-| `02EBA3F8` | the command-state word `0036F360` writes |
-| `02064AE0` | post-processing already drawn in this draw |
-| `01E0C1D8`, `01E0C1DC` | the menu viewport size, 512 and 448 |
+| `0x022C7F90` | the pass mask, two draws and three bytes |
+| `0x02EBEFC0`, `0x02EBEFD8` | the two command buffer records |
+| `0x02EBEFF0` | index of the buffer `0x0036D400` fills |
+| `0x01FD4A78` | the arena both buffers point into |
+| `0x02EBA3F8` | the command-state word `0x0036F360` writes |
+| `0x02064AE0` | post-processing already drawn in this draw |
+| `0x01E0C1D8`, `0x01E0C1DC` | the menu viewport size, 512 and 448 |
 
 ## Modding notes
 
-- Clearing a bit of `022C7F90` for a draw removes that pass from the next draw; bit 4 removes the
-  `00258EE0` calls with 1, 2, 3, 5 and 6 and the `00375500` calls with 2, 3, 5 and 6; `00258EE0(4)` follows
+- Clearing a bit of `0x022C7F90` for a draw removes that pass from the next draw; bit 4 removes the
+  `0x00258EE0` calls with 1, 2, 3, 5 and 6 and the `0x00375500` calls with 2, 3, 5 and 6; `0x00258EE0(4)` follows
   bit 2. The routines in the callers table rewrite the mask, so a change can
   be overwritten.
 - A non-zero draw-1 entry makes the field frame draw twice.
-- The 512-record capacity appears twice: in `003A1D50` and in `0036F360`'s full-buffer test.
-- The menu viewport is given in 512 × 448 coordinates; a changed reference size must match `01E0C1D8`.
+- The 512-record capacity appears twice: in `0x003A1D50` and in `0x0036F360`'s full-buffer test.
+- The menu viewport is given in 512 × 448 coordinates; a changed reference size must match `0x01E0C1D8`.
 
 ## Related
 

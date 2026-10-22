@@ -2,35 +2,35 @@
 title: "Scenario presets: every numbered save-data set a script can load, with its party, levels, gear, gambits, licenses, gil and items"
 kind: "reference"
 category: "Party"
-addresses: "0050F810, 00239960, 02EBF030, 02EBF028, 00236FA2, 00236FBC"
+addresses: "0x0050F810, 0x00239960, 0x02EBF030, 0x02EBF028, 0x00236FA2, 0x00236FBC"
 ---
 
 ## What it lists
 
-A script verb can ask for a numbered set of save data: `0050F810`, the handler of verb `0x302B`
-`btlAtelSetNextSetSaveData` (entry `0x2B` of the family-3 table at `01F281B0`), pops the number and stores it at
-`0208D455`.
-The next area start applies it once, from `BattleSystem_InitializeAreaState` (`00234349`), and the table the
+A script verb can ask for a numbered set of save data: `0x0050F810`, the handler of verb `0x302B`
+`btlAtelSetNextSetSaveData` (entry `0x2B` of the family-3 table at `0x01F281B0`), pops the number and stores it at
+`0x0208D455`.
+The next area start applies it once, from `BattleSystem_InitializeAreaState` (`0x00234349`), and the table the
 sets come from gives the pack its folder name, `test_battle`.
 
 ### Applying a set
 
-`00239960` reads the number and sets it back to -1, so a set is applied once (`00239966`-`0023997B`). -2 resets
-the battle state instead (`00237DF0`), and any other negative number, or a number at or above the scenario table's row count
-(`[02EBF030]+4`, 50 in the shipped section 60), does nothing (`00239993`-`002399BB`). Otherwise
-(`002399E9`-`00239DE8`):
+`0x00239960` reads the number and sets it back to -1, so a set is applied once (`0x00239966`-`0x0023997B`). -2 resets
+the battle state instead (`0x00237DF0`), and any other negative number, or a number at or above the scenario table's row count
+(`[0x02EBF030]+4`, 50 in the shipped section 60), does nothing (`0x00239993`-`0x002399BB`). Otherwise
+(`0x002399E9`-`0x00239DE8`):
 
 1. The party block is reset, keeping bits 12-14 of its flag word and taking bits 1 and 2 of the battle flags
-   `02089344` into its bits 13 and 14; all forty member records are set up again from the party table with
-   `0023AC80` ([Party data](party-data.md), [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md);
-   `002399E9`-`00239ACE`).
-2. The scenario's gil is set with `00300500` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)), the inventory
-   emptied, and up to 64 entries granted, each an id and a count set with `00300BA0`
-   ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `00239B11`-`00239B5F`).
+   `0x02089344` into its bits 13 and 14; all forty member records are set up again from the party table with
+   `0x0023AC80` ([Party data](party-data.md), [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md);
+   `0x002399E9`-`0x00239ACE`).
+2. The scenario's gil is set with `0x00300500` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)), the inventory
+   emptied, and up to 64 entries granted, each an id and a count set with `0x00300BA0`
+   ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `0x00239B11`-`0x00239B5F`).
 3. Each party-preset row with this scenario number sets up the member in its record slot: level, gambit preset,
-   License Points, the five pieces of gear and the MP share (`00239BBC`-`00239D7F`).
-4. The nine seats are filled from the scenario row with `00329080(seat, member, 3)`, and the leader is the member
-   in seat `+0x0A` (`00239DC0`-`00239DE0`; [Party slots](party-slots.md)).
+   License Points, the five pieces of gear and the MP share (`0x00239BBC`-`0x00239D7F`).
+4. The nine seats are filled from the scenario row with `0x00329080(seat, member, 3)`, and the leader is the member
+   in seat `+0x0A` (`0x00239DC0`-`0x00239DE0`; [Party slots](party-slots.md)).
 
 ### Which scripts ask for a set
 
@@ -42,13 +42,13 @@ script variable. The other eight language folders make the same calls.
 
 | Field | Effect | Sites |
 |---|---|---|
-| level | the member's level, through the level writer `0030C470` | `00239BE3`-`00239BED` |
-| gambit preset | loaded into the member's gambits by `00327CB0` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)) | `00239BF9`-`00239C00` |
-| MP bars | the record's byte `+0x20`, the MP bars source ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | `00239BF2`-`00239BF6` |
-| License Points | added to the member's License Points `+0x190`, zeroed just before (65,535 for `0xFFFF`); for one of the six main characters a value other than `0xFFFF` also learns every license square whose row byte `+7` has the member's bit, through `00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)) | `00239C05`-`00239D63` |
-| gear | the five equipment slots, each set with `0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)) | `00239C62`-`00239CBF` |
-| MP share | current MP = max MP × share / 100, or 0 with augment 39 | `00239CC4`-`00239D7F` |
-| gambit mark | the member's record flag bit 2, taken from bit 0 of the first byte of the **next** preset row | `00239D83`-`00239D94` |
+| level | the member's level, through the level writer `0x0030C470` | `0x00239BE3`-`0x00239BED` |
+| gambit preset | loaded into the member's gambits by `0x00327CB0` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)) | `0x00239BF9`-`0x00239C00` |
+| MP bars | the record's byte `+0x20`, the MP bars source ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | `0x00239BF2`-`0x00239BF6` |
+| License Points | added to the member's License Points `+0x190`, zeroed just before (65,535 for `0xFFFF`); for one of the six main characters a value other than `0xFFFF` also learns every license square whose row byte `+7` has the member's bit, through `0x00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)) | `0x00239C05`-`0x00239D63` |
+| gear | the five equipment slots, each set with `0x0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)) | `0x00239C62`-`0x00239CBF` |
+| MP share | current MP = max MP × share / 100, or 0 with augment 39 | `0x00239CC4`-`0x00239D7F` |
+| gambit mark | the member's record flag bit 2, taken from bit 0 of the first byte of the **next** preset row | `0x00239D83`-`0x00239D94` |
 
 ## Columns
 
@@ -64,8 +64,8 @@ script variable. The other eight language folders make the same calls.
 | `members` | each member the set sets up: name, level, gear, gambit preset, License Points, licenses, MP bars, MP share, and the gambit mark |
 | `sites` | the scenario row's file offset in `battle_pack.bin`, and how many preset rows it has |
 
-Scenario rows are section 60 (50 × 208 bytes, bound to `02EBF030` at `00236FA2`); preset rows are section 59
-(226 × 44 bytes, bound to `02EBF028` at `00236FBC`). Names come from each id's class table and text bank.
+Scenario rows are section 60 (50 × 208 bytes, bound to `0x02EBF030` at `0x00236FA2`); preset rows are section 59
+(226 × 44 bytes, bound to `0x02EBF028` at `0x00236FBC`). Names come from each id's class table and text bank.
 
 ## Related
 

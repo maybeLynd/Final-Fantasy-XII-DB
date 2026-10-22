@@ -2,7 +2,7 @@
 title: "Music table: the file that names each area's music track, how the story changes it, and the boss-music flags"
 kind: "format"
 category: "Sound and music"
-addresses: "00379D20, 003EAB60, 003EAB90, 003EAA70, 02B5E0D0, 00360C70, 022CBA50, 00361010"
+addresses: "0x00379D20, 0x003EAB60, 0x003EAB90, 0x003EAA70, 0x02B5E0D0, 0x00360C70, 0x022CBA50, 0x00361010"
 ---
 
 ## What the player sees
@@ -17,14 +17,14 @@ addresses: "00379D20, 003EAB60, 003EAB90, 003EAA70, 02B5E0D0, 00360C70, 022CBA50
 ### The music control file
 
 `musicctrl.bin` is kind 9 file `0x20`, `PS2Data\image\ff12\in\common\musicctrl.bin` in the `in` path table
-(`01E12660`); a `ch` copy holds the same bytes. The boot loader `00379D20` reaches `003EAB60` with a jump
-(`00379D32`), and `003EAB60` requests the whole file and keeps the pointer at `02B5E0D0`. The completion
-`003EAB90` adds the file's own address to every non-zero page offset (`003EAB90`-`003EABD6`).
+(`0x01E12660`); a `ch` copy holds the same bytes. The boot loader `0x00379D20` reaches `0x003EAB60` with a jump
+(`0x00379D32`), and `0x003EAB60` requests the whole file and keeps the pointer at `0x02B5E0D0`. The completion
+`0x003EAB90` adds the file's own address to every non-zero page offset (`0x003EAB90`-`0x003EABD6`).
 
 ### The track flag file
 
-`musicinfo.bin` is kind 9 file 6 (`PS2Data\image\ff12\in\common\musicinfo.bin`). `00360C70` requests it into heap 5
-(`00360C70`), and its completion `00360B40` keeps the pointer at `022CBA50`. `00361010(track)` answers bit 0 of the
+`musicinfo.bin` is kind 9 file 6 (`PS2Data\image\ff12\in\common\musicinfo.bin`). `0x00360C70` requests it into heap 5
+(`0x00360C70`), and its completion `0x00360B40` keeps the pointer at `0x022CBA50`. `0x00361010(track)` answers bit 0 of the
 track's first byte, or 0 for a negative track or no file.
 
 ## Layouts
@@ -51,11 +51,11 @@ track's first byte, or 0 for a negative track or no file.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | flags | bit 0 boss music |
-| `+0x01` | `u8` | b01 | read by no code: `00361010` is the only reader of the file's pointer |
+| `+0x01` | `u8` | b01 | read by no code: `0x00361010` is the only reader of the file's pointer |
 
 ### The lookup
 
-`003EAA70(field)` gives the track for a field id:
+`0x003EAA70(field)` gives the track for a field id:
 
 1. A field above `maxField` gives -1 (none).
 2. The page is `field / 128`; a page offset of 0 gives -1.
@@ -65,7 +65,7 @@ track's first byte, or 0 for a negative track or no file.
    rung's track replaces it.
 5. Track 0 becomes -1.
 
-The story counter is read through `FieldData_GetVariable0` (`003EAA78`).
+The story counter is read through `FieldData_GetVariable0` (`0x003EAA78`).
 
 ## Shipped data
 
@@ -90,7 +90,7 @@ One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; a
 | Column | Meaning |
 |---|---|
 | `first_field`, `last_field` | the field ids the run covers |
-| `zones` | one zone name per field id, in order, from the `us` zone path table at `01EE23A0`; `-` for an id with no zone |
+| `zones` | one zone name per field id, in order, from the `us` zone path table at `0x01EE23A0`; `-` for an id with no zone |
 | `track` | the run's track, or `none` |
 | `ladder` | the rungs as `above <counter>: <track>`, in order |
 | `kept_in_modes` | the run's boss-music tracks, which chocobo and summon music do not replace |

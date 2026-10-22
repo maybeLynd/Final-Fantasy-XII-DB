@@ -2,7 +2,7 @@
 title: "JSON configs: every key of the jsondata documents, the code that reads it and what it sets, and the monster viewer's entries"
 kind: "reference"
 category: "Game files and data tables"
-addresses: "00200BF0, 001FF740, 001C7940, 001C3D50, 001C6320, 001C6C00, 001CA600, 001C76E0, 001C3760, 00194400, 001EBB60, 002C530B"
+addresses: "0x00200BF0, 0x001FF740, 0x001C7940, 0x001C3D50, 0x001C6320, 0x001C6C00, 0x001CA600, 0x001C76E0, 0x001C3760, 0x00194400, 0x001EBB60, 0x002C530B"
 ---
 
 ## What it lists
@@ -11,12 +11,12 @@ addresses: "00200BF0, 001FF740, 001C7940, 001C3D50, 001C6320, 001C6C00, 001CA600
 
 | Family | Documents | Keys | Keys the executable names | Read by |
 |---|---:|---:|---:|---|
-| `maps/` | 459 | 176 | 134 | `001C7940`, an area's scene settings |
-| `cutscenes/` | 337 | 84 | 70 | `001C3D50`, a cutscene's scene settings |
-| `init.json` | 1 | 176 | 165 | `001C7940` and `001C3D50`, as the last fallback; `001C3760` reads `ModelsToPreload` and the four `TrackingMapScreen*` keys itself |
-| `uisize/` | 2 | 231 | 226 | `001CA600`, the UI layout cells |
-| `fontcluts/` | 28 | 10 | 9 | `001C76E0`, the text palettes |
-| `monstergallery.json` | 1 | 38 | 38 | `001C6320`, the monster viewer |
+| `maps/` | 459 | 176 | 134 | `0x001C7940`, an area's scene settings |
+| `cutscenes/` | 337 | 84 | 70 | `0x001C3D50`, a cutscene's scene settings |
+| `init.json` | 1 | 176 | 165 | `0x001C7940` and `0x001C3D50`, as the last fallback; `0x001C3760` reads `ModelsToPreload` and the four `TrackingMapScreen*` keys itself |
+| `uisize/` | 2 | 231 | 226 | `0x001CA600`, the UI layout cells |
+| `fontcluts/` | 28 | 10 | 9 | `0x001C76E0`, the text palettes |
+| `monstergallery.json` | 1 | 38 | 38 | `0x001C6320`, the monster viewer |
 | `monstertoweapon.json` | 1 | 2 | 0 | never opened |
 
 `0.json` is `{}` and holds no key. [json-monster-gallery.tsv](json-monster-gallery.tsv) holds the 385 entries of
@@ -28,25 +28,25 @@ The file formats, the parser and the order in which the loaders look keys up are
 
 ### How a key is read
 
-`00200BF0` parses a document. A loader then asks for each key by its name with `001FF740` and reads the value as a
+`0x00200BF0` parses a document. A loader then asks for each key by its name with `0x001FF740` and reads the value as a
 number or a string. 75 keys have no string of their own in the executable, and 63 of them are never asked for,
 authored and ignored: among them the 27 `...CheckBoxCheckState` keys of the map files and both keys of
 `monstertoweapon.json`, a file whose name no string in the executable holds.
 
 The other twelve are `mCascadePartition<a>_2` and `mCascadePartition<a>_3` of the map and `init.json` documents:
-`001C7940` builds those names from the format `"mCascadePartition%d_%d"` (`001C9199`) and reads them. In cutscene
-documents the same keys are never asked for, because `001C3D50` reads only the `_1` names.
+`0x001C7940` builds those names from the format `"mCascadePartition%d_%d"` (`0x001C9199`) and reads them. In cutscene
+documents the same keys are never asked for, because `0x001C3D50` reads only the `_1` names.
 
-`001C3760` parses `init.json` into the global document `01F813C8`, which the area and cutscene loaders fall back
+`0x001C3760` parses `init.json` into the global document `0x01F813C8`, which the area and cutscene loaders fall back
 to. A scene setting is looked up in order: an area's in its map document and then in
 `init.json`, a cutscene's in its cut section, its `Common` section, the current map document and `init.json`
-(`001C3D50`).
+(`0x001C3D50`).
 
-The monster viewer reads entry `MonsterId<n>` (`001C6320`). For nine keys it falls back to `Common`
+The monster viewer reads entry `MonsterId<n>` (`0x001C6320`). For nine keys it falls back to `Common`
 when the entry lacks them: `eyeVfxZBias`, `lightAmbientA`, `variation`, `clut`, `motionRate`, `bgColorR`, `bgColorG`,
-`bgColorB` and `drawBgColor` (`001C6563`-`001C6B72`). `monsterWeaponIndex2` is read only when the entry has it
-(`001C6419`), and the other 28 keys are read from the entry alone, so a missing one reads as 0 (`001C63E7`,
-`001C6450`).
+`bgColorB` and `drawBgColor` (`0x001C6563`-`0x001C6B72`). `monsterWeaponIndex2` is read only when the entry has it
+(`0x001C6419`), and the other 28 keys are read from the entry alone, so a missing one reads as 0 (`0x001C63E7`,
+`0x001C6450`).
 
 ### How it is built
 
@@ -70,12 +70,12 @@ when the entry lacks them: `eyeVfxZBias`, `lightAmbientA`, `variation`, `clut`, 
   same 717.
 - `monstergallery.json` has 385 entries and the gallery TSV 385 data lines.
 - Two runs over the same files give byte-identical output.
-- `lightShaftColorR`, `G` and `B` compared with the code: `001C7940` reads the three and `lightShaftColorA` into
-  four floats and passes them to `00194400` (`001C8AF5`), which stores the first three at `+0xC4`, `+0xC8` and
+- `lightShaftColorR`, `G` and `B` compared with the code: `0x001C7940` reads the three and `lightShaftColorA` into
+  four floats and passes them to `0x00194400` (`0x001C8AF5`), which stores the first three at `+0xC4`, `+0xC8` and
   `+0xCC` of the post-process parameter object and 0 at `+0xD0`.
-- `modelScale` compared with the code: its setter `001EBB60` stores the value at `+0x23C` of the monster viewer.
-- `ActionListMistLineOffset` compared with the code: the battle menu adds the global `01E0CEA0` it sets to the
-  word it reads at `+0x9E` (`002C5304`, `002C530B`).
+- `modelScale` compared with the code: its setter `0x001EBB60` stores the value at `+0x23C` of the monster viewer.
+- `ActionListMistLineOffset` compared with the code: the battle menu adds the global `0x01E0CEA0` it sets to the
+  word it reads at `+0x9E` (`0x002C5304`, `0x002C530B`).
 - Where a row says a value is only written, the sweep it rests on is named in the row: every access to the field
   in the object's own methods, the functions that load the object's pointer, and the callers of its getter.
 

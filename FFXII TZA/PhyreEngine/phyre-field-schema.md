@@ -2,7 +2,7 @@
 title: "Phyre field schema: the class and member tables in every .phyre file and how the loader matches them to registered members"
 kind: "format"
 category: "PhyreEngine"
-addresses: "0059E070, 0059A3B0, 0059B430, 0059BA40, 0059D2D0, 0059AC00, 006393A0, 00632B30, 00632E80, 0063BA10, 00597220, 00632960, 00632A10, 00632A70, 00632BE0, 0062EFD0, 00633100, 006318A0, 00631C40, 00599390, 00595E70, 0059A030, 0016D6A0, 005CDAA0"
+addresses: "0x0059E070, 0x0059A3B0, 0x0059B430, 0x0059BA40, 0x0059D2D0, 0x0059AC00, 0x006393A0, 0x00632B30, 0x00632E80, 0x0063BA10, 0x00597220, 0x00632960, 0x00632A10, 0x00632A70, 0x00632BE0, 0x0062EFD0, 0x00633100, 0x006318A0, 0x00631C40, 0x00599390, 0x00595E70, 0x0059A030, 0x0016D6A0, 0x005CDAA0"
 ---
 
 ## What the player sees
@@ -16,10 +16,10 @@ field name, every asset loads through the plain path.
 
 Every `.phyre` file starts with a cluster header whose marker is `RYHP` and whose size `m_size` is
 84 in every shipped file; the packed namespace follows at byte 84 and is `m_packedNamespaceSize`
-bytes long. `0059E070` reads the header through `0059A3B0`, then the namespace.
+bytes long. `0x0059E070` reads the header through `0x0059A3B0`, then the namespace.
 
 The other half is the executable's own registrations: every reflected member is registered by one
-of four constructors (`00632960` plain, `00632A10` array, `00632A70` fixed-size array, `00632BE0`
+of four constructors (`0x00632960` plain, `0x00632A10` array, `0x00632A70` fixed-size array, `0x00632BE0`
 enum), each passing the class descriptor, the member's type, name, byte offset and attribute word.
 
 ## Layouts
@@ -69,7 +69,7 @@ The attribute word in `w4`, with bit 31 masked off, is the run-time member's att
 the per-class bits `0x08` and `0x10`.
 
 ```python
-registration call (00632960), Win64 arguments
+registration call (0x00632960), Win64 arguments
 rcx         record
 rdx         class descriptor
 r8          type (a PType or class descriptor)
@@ -80,9 +80,9 @@ r9          member name
 [rsp+0x38]  context passed to the attach slot
 ```
 
-`00632A10` adds the array kind and element size as arguments 7 and 8, `00632A70` the element count
-as argument 7, and `00632BE0` ORs `0x20` into the attribute word. A registering function may OR
-`0x08`, `0x10` or `0x40` into the record afterwards, and `00633100` adds `0x4`.
+`0x00632A10` adds the array kind and element size as arguments 7 and 8, `0x00632A70` the element count
+as argument 7, and `0x00632BE0` ORs `0x20` into the attribute word. A registering function may OR
+`0x08`, `0x10` or `0x40` into the record afterwards, and `0x00633100` adds `0x4`.
 
 ### File layout against run-time layout
 
@@ -106,7 +106,7 @@ width 1 and a `PArray` member width 5 in a packed class.
 | class records with `w7` bit `0x1` | 0 |
 | `w7` values | 0 (523,918), 8 (66,379), 32 (49,068), 2 (38,322), 12, 34 and 40 (2,184 each), 20 (5) |
 | fixed-size arrays (`w5` non-zero) | 16 pairs, counts 2 to 23 |
-| class names with a registered descriptor of that name | 177 of 177 (`PBase` and `PClassDescriptor` from `006318A0` and `00631C40`) |
+| class names with a registered descriptor of that name | 177 of 177 (`PBase` and `PClassDescriptor` from `0x006318A0` and `0x00631C40`) |
 | pairs registered statically under that class | 527 of 527 |
 | member records whose `w4` & `0x7FFFFFFF` equals the run-time attribute word | 2,192,621 of 2,192,621 |
 | static member registrations in the executable | 895 (680 plain, 165 array, 29 fixed-size, 21 enum) over 278 descriptors |
@@ -125,20 +125,20 @@ width 1 and a `PArray` member width 5 in a packed class.
 
 ### Checking the namespace
 
-`0059E070` returns `0x15` when the byte at `02CA9D90` is clear and `0xB` when the stream's slot
+`0x0059E070` returns `0x15` when the byte at `0x02CA9D90` is clear and `0xB` when the stream's slot
 `+0x10` check fails. After the header it accepts the namespace only when it starts with `0x01020304` and
 `+0x04 == +0x1C + 0x20 + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + stringPoolSize`; otherwise it
-returns 6. It then matches the tables (`0059B430`), handles dynamic classes (`0059AC00`) and reads
-the instances (`0059E300`).
+returns 6. It then matches the tables (`0x0059B430`), handles dynamic classes (`0x0059AC00`) and reads
+the instances (`0x0059E300`).
 
 ### Matching by name
 
-`0059B430` resolves everything by name:
+`0x0059B430` resolves everything by name:
 
 - **Types.** Each type-table name is hashed and looked up in the global type tree; a miss logs
   "Unable to find type".
 - **Classes.** Each class name is looked up in the type tree and must belong to the target
-  namespace, then in the namespace itself (`0063BA10`). A miss with `w7` bit `0x1` clear logs "File
+  namespace, then in the namespace itself (`0x0063BA10`). A miss with `w7` bit `0x1` clear logs "File
   refers to compiled class … which does not exist in the current runtime".
 - **Members.** Each member name is searched in the matched class's member list and then its
   ancestors', with an exact comparison, so a file member can land on a base-class member.
@@ -147,7 +147,7 @@ the instances (`0059E300`).
 
 ### Reporting differences
 
-`0059BA40` compares each matched class with its file record and logs, through `005CDAA0`:
+`0x0059BA40` compares each matched class with its file record and logs, through `0x005CDAA0`:
 
 - a parent that was added, removed or changed;
 - a member in the file but not in the executable, or the reverse;
@@ -160,23 +160,23 @@ None of these stops the load.
 
 ### Choosing a copy routine
 
-`0059D2D0` gives every file member a routine, walking the parent records first:
+`0x0059D2D0` gives every file member a routine, walking the parent records first:
 
-- no matching run-time member: the empty `0016D6A0`, so the bytes are skipped;
-- same type, and the run-time width (the type's size, or 8 for a pointer) equals `w3`: `00599390`,
-  or `00595E70` for a one-byte member that is not an array;
+- no matching run-time member: the empty `0x0016D6A0`, so the bytes are skipped;
+- same type, and the run-time width (the type's size, or 8 for a pointer) equals `w3`: `0x00599390`,
+  or `0x00595E70` for a one-byte member that is not an array;
 - same type with a different width, or a fixed-size array whose count differs while offset and
   attribute word match: skipped;
-- different type: the conversion `0059A030` returns, or skipped when there is none. `0059A030` runs the 144
-  conversion registrars `005850F0`-`00592770` once (guard byte `02CA9D91`), then looks the `(source, destination)`
+- different type: the conversion `0x0059A030` returns, or skipped when there is none. `0x0059A030` runs the 144
+  conversion registrars `0x005850F0`-`0x00592770` once (guard byte `0x02CA9D91`), then looks the `(source, destination)`
   pair up in the tree they fill ([Image hardening](../Compiler-And-C-Runtime/image-hardening.md)).
 
 ### Dynamic classes
 
-For a class record with `w7` bit `0x1` and no registered match, `0059AC00` takes the parent from
+For a class record with `w7` bit `0x1` and no registered match, `0x0059AC00` takes the parent from
 `w0`, refuses an abstract parent or one without a default constructor, and builds a
-`PClassDescriptorDynamic` (`00632E80`). Its file members become `PClassDataMemberDynamic` records
-through `006393A0` and `00632B30`. A flagged class still without a descriptor returns `0x13`. No
+`PClassDescriptorDynamic` (`0x00632E80`). Its file members become `PClassDataMemberDynamic` records
+through `0x006393A0` and `0x00632B30`. A flagged class still without a descriptor returns `0x13`. No
 shipped file sets the flag.
 
 ## Modding notes

@@ -1,8 +1,8 @@
 function	name	site	disp	kind	instruction	route	note
-006611F0	FUN_006611f0	006611F7	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 006611F0	
-006611F0	FUN_006611f0	006611F9	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 006611F0	
-006611F0	FUN_006611f0	006611FC	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 006611F0	
-006611F0	FUN_006611f0	00661200	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 006611F0	
-006611F0	FUN_006611f0	00661203	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 006611F0	
-006611F0	FUN_006611f0	00661206	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 006611F0	
-006611F0	FUN_006611f0	0066120A	0x30	w	mov word ptr [rdx + 0x30], 0x3434	ctorrdx-seeded 006611F0	
+0x006611F0	FUN_006611f0	0x006611F7	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0x006611F0	
+0x006611F0	FUN_006611f0	0x006611F9	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0x006611F0	
+0x006611F0	FUN_006611f0	0x006611FC	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0x006611F0	
+0x006611F0	FUN_006611f0	0x00661200	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 0x006611F0	
+0x006611F0	FUN_006611f0	0x00661203	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 0x006611F0	
+0x006611F0	FUN_006611f0	0x00661206	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 0x006611F0	
+0x006611F0	FUN_006611f0	0x0066120A	0x30	w	mov word ptr [rdx + 0x30], 0x3434	ctorrdx-seeded 0x006611F0	

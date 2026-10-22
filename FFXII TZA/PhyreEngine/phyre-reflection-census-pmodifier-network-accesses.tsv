@@ -1,15 +1,15 @@
 function	name	site	disp	kind	instruction	route	note
-006CFA50	FUN_006cfa50	006CFA57	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA5A	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA5E	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA61	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA65	0x30	w	mov dword ptr [rdx + 0x30], eax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA68	0x38	w	mov qword ptr [rdx + 0x38], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA6C	0x60	w	mov dword ptr [rdx + 0x60], eax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA6F	0x68	w	mov qword ptr [rdx + 0x68], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA73	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA76	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA78	0x40	w	mov qword ptr [rdx + 0x40], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA7C	0x48	w	mov qword ptr [rdx + 0x48], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA80	0x50	w	mov qword ptr [rdx + 0x50], rax	ctorrdx-seeded 006CFA50	
-006CFA50	FUN_006cfa50	006CFA84	0x58	w	mov byte ptr [rdx + 0x58], al	ctorrdx-seeded 006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA57	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA5A	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA5E	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA61	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA65	0x30	w	mov dword ptr [rdx + 0x30], eax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA68	0x38	w	mov qword ptr [rdx + 0x38], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA6C	0x60	w	mov dword ptr [rdx + 0x60], eax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA6F	0x68	w	mov qword ptr [rdx + 0x68], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA73	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA76	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA78	0x40	w	mov qword ptr [rdx + 0x40], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA7C	0x48	w	mov qword ptr [rdx + 0x48], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA80	0x50	w	mov qword ptr [rdx + 0x50], rax	ctorrdx-seeded 0x006CFA50	
+0x006CFA50	FUN_006cfa50	0x006CFA84	0x58	w	mov byte ptr [rdx + 0x58], al	ctorrdx-seeded 0x006CFA50	

@@ -2,7 +2,7 @@
 title: "EBP text sections: the message bank and the field-sign caption bank a script's text ids index"
 kind: "format"
 category: "EBP script files"
-addresses: "00330190, 00330220, 0026C880, 0026C8A0, 00264D60, 00264D90, 002673A0, 01CEB638, 00348DF0, 0034ADA0, 0050EAB0, 002E1E00, 002E0540, 00265680, 002E16B0, 002A2C00, 002B32D0, 00269F20, 00355A00, 00357120, 00356B70, 022C6CA0, 022C6CC8"
+addresses: "0x00330190, 0x00330220, 0x0026C880, 0x0026C8A0, 0x00264D60, 0x00264D90, 0x002673A0, 0x01CEB638, 0x00348DF0, 0x0034ADA0, 0x0050EAB0, 0x002E1E00, 0x002E0540, 0x00265680, 0x002E16B0, 0x002A2C00, 0x002B32D0, 0x00269F20, 0x00355A00, 0x00357120, 0x00356B70, 0x022C6CA0, 0x022C6CC8"
 ---
 
 ## What the player sees
@@ -18,16 +18,16 @@ zone says without touching the bytecode.
 
 Both banks are sections of the `.ebp` container ([EBP script container](ebp-script-container.md)):
 section 2 at directory slot 2 and section 3 at slot 3. When a script file loads for an actor
-manager, the directory walker `003304A0` dispatches each present slot:
+manager, the directory walker `0x003304A0` dispatches each present slot:
 
-| Section | Gate in `003304A0` | Handler | Per-manager global | Manager record field | Pending bit |
+| Section | Gate in `0x003304A0` | Handler | Per-manager global | Manager record field | Pending bit |
 |---|---|---|---|---|---|
-| 2 | `00330519` (count above 2, offset non-zero) | `00330190` | `022C6CA0` | `+0xA0` (`0026C880`) | 4 |
-| 3 | `00330534` (count above 3, offset non-zero) | `00330220` | `022C6CC8` | `+0xA8` (`0026C8A0`) | 5 |
+| 2 | `0x00330519` (count above 2, offset non-zero) | `0x00330190` | `0x022C6CA0` | `+0xA0` (`0x0026C880`) | 4 |
+| 3 | `0x00330534` (count above 3, offset non-zero) | `0x00330220` | `0x022C6CC8` | `+0xA8` (`0x0026C8A0`) | 5 |
 
 The handler takes the manager index from the low four bits of its argument and the section
-address from the rest. The manager bind `0026C8C0` zeroes both record fields (`0026CC49`,
-`0026CC50`), so a script without a bank leaves a null pointer, not a stale one
+address from the rest. The manager bind `0x0026C8C0` zeroes both record fields (`0x0026CC49`,
+`0x0026CC50`), so a script without a bank leaves a null pointer, not a stale one
 ([actor managers](../Characters-And-Objects/actor-managers.md)).
 
 ## Layouts
@@ -76,14 +76,14 @@ The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy
 
 ### Looking up a string
 
-`00264D60(manager, id)` reads section 2 and `00264D90(manager, id)` section 3; the two differ only
+`0x00264D60(manager, id)` reads section 2 and `0x00264D90(manager, id)` section 3; the two differ only
 in the record field (`+0xA0`, `+0xA8`):
 
-1. A null bank returns `01CEB638`, an empty string.
-2. The id is masked to 24 bits (`00264D77`), so bits 24-31 of a text id do nothing.
-3. The count is the whole first dword, sign-extended and shifted right by 2 (`00264D74`,
-   `00264D7D`); an id at or above it returns `01CEB638` (`00264D83`).
-4. Otherwise the result is the section address plus the entry's low 16 bits (`00264D85`).
+1. A null bank returns `0x01CEB638`, an empty string.
+2. The id is masked to 24 bits (`0x00264D77`), so bits 24-31 of a text id do nothing.
+3. The count is the whole first dword, sign-extended and shifted right by 2 (`0x00264D74`,
+   `0x00264D7D`); an id at or above it returns `0x01CEB638` (`0x00264D83`).
+4. Otherwise the result is the section address plus the entry's low 16 bits (`0x00264D85`).
 
 Step 3 reads the flag as part of the count. In the 1,929 sections whose entry 0 is flagged the
 count is at least 16,384, and an id past the real table returns whatever the bytes there
@@ -91,46 +91,46 @@ point to. Nothing compares the table with the section's length.
 
 ### The flag
 
-`002673A0(manager, id)` applies the same mask and bound to section 2 (`[manager + 0xA0]` only) and
-returns bit 0 of the entry's upper half (`002673C0`, `002673C6`). Section 3 has no such reader.
+`0x002673A0(manager, id)` applies the same mask and bound to section 2 (`[manager + 0xA0]` only) and
+returns bit 0 of the entry's upper half (`0x002673C0`, `0x002673C6`). Section 3 has no such reader.
 
-- `mes` (`0x461`, `00348DF0`) stores the flag in the message slot's byte `+0x38` through
-  `002E1E00` (slot record `0215F200 + slot * 0x68`), returns it in the call record, and opens the
-  window through `002E16B0` only when the flag is clear.
-- `aask_1ff` (`0034ADA0`) does the same but opens the window only when the flag is set.
-- `debug_mesask_43` (`0050EAB0`) always opens the window, stores the flag at `+0x38` through
-  `002E1D90`, and returns 1 in the call record when it is clear.
-- `unkCall_5b6` (`003545B0`) hands the string to `00474070` only when the flag is clear.
+- `mes` (`0x461`, `0x00348DF0`) stores the flag in the message slot's byte `+0x38` through
+  `0x002E1E00` (slot record `0x0215F200 + slot * 0x68`), returns it in the call record, and opens the
+  window through `0x002E16B0` only when the flag is clear.
+- `aask_1ff` (`0x0034ADA0`) does the same but opens the window only when the flag is set.
+- `debug_mesask_43` (`0x0050EAB0`) always opens the window, stores the flag at `+0x38` through
+  `0x002E1D90`, and returns 1 in the call record when it is clear.
+- `unkCall_5b6` (`0x003545B0`) hands the string to `0x00474070` only when the flag is clear.
 
-While a slot holds a window with `+0x38` set, `002E0540` returns 1 and `00265680` returns 0
-(`002656F2`). The bodies that raise hold request 17 when `00265680` returns 0, among them `ucon`,
+While a slot holds a window with `+0x38` set, `0x002E0540` returns 1 and `0x00265680` returns 0
+(`0x002656F2`). The bodies that raise hold request 17 when `0x00265680` returns 0, among them `ucon`,
 then keep the field held ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
-until a close path clears the byte (`002E0780`).
+until a close path clears the byte (`0x002E0780`).
 
 ### Readers
 
 | Verb | Id | Handler | Bank | What it does with the string |
 |---|---|---|---|---|
-| `mes` | `0x461` | `00348DF0` | 2 | message window, as above |
-| `aask_1ff` | `0x1FF` | `0034ADA0` | 2 | message window, as above |
-| `debug_mesask_43` | `0x2043` | `0050EAB0` | 2 | message window, as above |
-| `unkCall_5b6` | `0x5B6` | `003545B0` | 2 | `00474070` |
-| `setgaugecounterlabel`, `setgaugecounterunit`, `setgaugetimerlabel` | `0x1BC`-`0x1BE` | `00352A50`, `00352EC0`, `003534F0` | 2 | the gauge, through `003E8F50`, `003E8FC0`, `003E9000` |
-| `setfieldsign`, `setfieldsignonce` | `0x174`, `0x175` | `00354F20`, `003555F0` | 2 | the field-sign table `02B59C80` (`003DF760`), entries 6-7 and 4-5 |
-| `fieldsignmes` | `0x178` | `00356B70` | 2 | the actor's name text (`00269F20`) |
-| `fieldsign` | `0x176` | `00355A00` | 3 | the actor's name text, from the caption id in the sign record `002642C0` returns |
-| `fieldsignmesbyid` | `0x179` | `00357120` | 3 | the actor's name text |
+| `mes` | `0x461` | `0x00348DF0` | 2 | message window, as above |
+| `aask_1ff` | `0x1FF` | `0x0034ADA0` | 2 | message window, as above |
+| `debug_mesask_43` | `0x2043` | `0x0050EAB0` | 2 | message window, as above |
+| `unkCall_5b6` | `0x5B6` | `0x003545B0` | 2 | `0x00474070` |
+| `setgaugecounterlabel`, `setgaugecounterunit`, `setgaugetimerlabel` | `0x1BC`-`0x1BE` | `0x00352A50`, `0x00352EC0`, `0x003534F0` | 2 | the gauge, through `0x003E8F50`, `0x003E8FC0`, `0x003E9000` |
+| `setfieldsign`, `setfieldsignonce` | `0x174`, `0x175` | `0x00354F20`, `0x003555F0` | 2 | the field-sign table `0x02B59C80` (`0x003DF760`), entries 6-7 and 4-5 |
+| `fieldsignmes` | `0x178` | `0x00356B70` | 2 | the actor's name text (`0x00269F20`) |
+| `fieldsign` | `0x176` | `0x00355A00` | 3 | the actor's name text, from the caption id in the sign record `0x002642C0` returns |
+| `fieldsignmesbyid` | `0x179` | `0x00357120` | 3 | the actor's name text |
 
-`00269F20(actor, text, 0)` stores the text at the actor's `+0xF8` and 0 at `+0x100`; that is the
+`0x00269F20(actor, text, 0)` stores the text at the actor's `+0xF8` and 0 at `+0x100`; that is the
 literal name an actor with a negative name id shows ([NPC names](../Characters-And-Objects/npc-names.md)).
 
 ### From the message window to the screen
 
-`002E16B0` places the string at `+0x38` of the request for a new window (`002A2C00`). On the
-window's ordinary layout path `002A2C00` passes it to `002A6A80`, which hands it to the window's
-text object at `+0xD0` (`002B32D0`); the
-text object keeps it at `+0x28` and measures it with `002B2150` (`002B3D50`, `002B3C30`), the
-routine that sends every byte below `0x10` to the text interpreter `002AC5F0`. Section 2 text is
+`0x002E16B0` places the string at `+0x38` of the request for a new window (`0x002A2C00`). On the
+window's ordinary layout path `0x002A2C00` passes it to `0x002A6A80`, which hands it to the window's
+text object at `+0xD0` (`0x002B32D0`); the
+text object keeps it at `+0x28` and measures it with `0x002B2150` (`0x002B3D50`, `0x002B3C30`), the
+routine that sends every byte below `0x10` to the text interpreter `0x002AC5F0`. Section 2 text is
 therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-codes.md).
 
 ## Modding notes

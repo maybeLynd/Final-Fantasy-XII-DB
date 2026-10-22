@@ -1,5 +1,5 @@
 function	name	site	disp	kind	instruction	route	note
-006CE820	FUN_006ce820	006CE827	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 006CE820	
-006CE820	FUN_006ce820	006CE82A	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 006CE820	
-006CE820	FUN_006ce820	006CE82E	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 006CE820	
-006CE820	FUN_006ce820	006CE832	0x18	w	mov qword ptr [rdx + 0x18], rax	ctorrdx-seeded 006CE820	
+0x006CE820	FUN_006ce820	0x006CE827	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0x006CE820	
+0x006CE820	FUN_006ce820	0x006CE82A	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0x006CE820	
+0x006CE820	FUN_006ce820	0x006CE82E	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0x006CE820	
+0x006CE820	FUN_006ce820	0x006CE832	0x18	w	mov qword ptr [rdx + 0x18], rax	ctorrdx-seeded 0x006CE820	

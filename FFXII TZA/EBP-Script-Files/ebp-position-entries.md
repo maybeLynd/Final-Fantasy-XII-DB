@@ -2,7 +2,7 @@
 title: "Position entries (FF12POS3): a zone's authored points, boxes and ellipses, the accessor that copies them and the systems that read them"
 kind: "format"
 category: "EBP script files"
-addresses: "003320E0, 003DFE60, 02B59D48, 003DFD00, 00320940, 003209C0, 00236450, 00319390, 00312DF0, 00312730, 00301AD0, 003394A0, 0033DB60, 00354FB0, 003DFAC0, 00264CA0, 003DFA50"
+addresses: "0x003320E0, 0x003DFE60, 0x02B59D48, 0x003DFD00, 0x00320940, 0x003209C0, 0x00236450, 0x00319390, 0x00312DF0, 0x00312730, 0x00301AD0, 0x003394A0, 0x0033DB60, 0x00354FB0, 0x003DFAC0, 0x00264CA0, 0x003DFA50"
 ---
 
 ## What the player sees
@@ -15,9 +15,9 @@ are why monsters gather in particular parts of a field.
 ## Where it comes from
 
 Slot 16 of the [EBP script container](ebp-script-container.md) directory, in zone scripts only. The
-walker `003304A0` calls `003320E0` (`00330615`), which clears the pointer's low four bits and tail
-calls `003DFE60(0, section)`: the section is stored as field root 0 at `02B59D48` (`003DFE6A`). Slot 17
-would go to root 1 (`00332110`) in the same way; no shipped container has a slot 17. `003DFA50`
+walker `0x003304A0` calls `0x003320E0` (`0x00330615`), which clears the pointer's low four bits and tail
+calls `0x003DFE60(0, section)`: the section is stored as field root 0 at `0x02B59D48` (`0x003DFE6A`). Slot 17
+would go to root 1 (`0x00332110`) in the same way; no shipped container has a slot 17. `0x003DFA50`
 releases the roots.
 
 ## Layouts
@@ -70,13 +70,13 @@ records are read from the loaded file whenever they are needed.
 
 ### The accessor
 
-`003DFD00(class, index, out)` zeroes a 0x30-byte output (`003DFD10` to `003DFD23`) and returns 0 when
+`0x003DFD00(class, index, out)` zeroes a 0x30-byte output (`0x003DFD10` to `0x003DFD23`) and returns 0 when
 the root is null. Then:
 
-- when byte 7 of the magic is `'3'` or above (`003DFD2C`), it returns 0 for an index at or past
-  `count` (`003DFD33`) and otherwise copies record `index` whole (`003DFD48` to `003DFD63`);
+- when byte 7 of the magic is `'3'` or above (`0x003DFD2C`), it returns 0 for an index at or past
+  `count` (`0x003DFD33`) and otherwise copies record `index` whole (`0x003DFD48` to `0x003DFD63`);
 - below `'3'` it reads 16-byte records at `+0x10 + index × 0x10` into output `+0x10` to `+0x1C` with
-  the type byte 0 (`003DFD69` to `003DFD9A`).
+  the type byte 0 (`0x003DFD69` to `0x003DFD9A`).
 
 Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 
@@ -84,24 +84,24 @@ Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 
 | Reader | What it takes |
 |---|---|
-| `00320940(index, out)` | x, y and z of class-0 record `index`; -1 when absent |
-| `003209C0(index, out)` | the whole record; spawn candidates (`00234AF0`) and region placement |
-| `00236450` | spawn placement: type 0 the point; type 1 a random offset within half of each extent; type 2 a random x, then z bounded by the ellipse; `00319390` rotates the offset by the heading and adds it to x and z |
-| `00312DF0` via `00312730` | orders `0x4000` to `0x401F` wander within a radius of entry `order - 0x3FFF` |
-| `00301AD0` (`00302C93`) | the AI distance condition, entry operand + 1 |
-| `002350C0` | range retirement mode 2: entry `+0x51` of the spawn record |
-| `003394A0` (`003394DB`) | the class steering solver tests the distance from entry 8 |
-| `0033DB60` (`0033DB90`) | steers relative to a point 11.0 units from entry 32 |
-| `setentrypos` (`00354FB0`) | pushes the entry's x, y, z and heading and runs `00350510` |
-| `btlAtelGetPositionDataX`, `Y`, `Z` (`0050F960`, `0050F9B0`, `0050FA00`) | one coordinate to a script |
-| `debug_positioninfo` (`0050EBA0`) | the accessor with a class from its argument |
+| `0x00320940(index, out)` | x, y and z of class-0 record `index`; -1 when absent |
+| `0x003209C0(index, out)` | the whole record; spawn candidates (`0x00234AF0`) and region placement |
+| `0x00236450` | spawn placement: type 0 the point; type 1 a random offset within half of each extent; type 2 a random x, then z bounded by the ellipse; `0x00319390` rotates the offset by the heading and adds it to x and z |
+| `0x00312DF0` via `0x00312730` | orders `0x4000` to `0x401F` wander within a radius of entry `order - 0x3FFF` |
+| `0x00301AD0` (`0x00302C93`) | the AI distance condition, entry operand + 1 |
+| `0x002350C0` | range retirement mode 2: entry `+0x51` of the spawn record |
+| `0x003394A0` (`0x003394DB`) | the class steering solver tests the distance from entry 8 |
+| `0x0033DB60` (`0x0033DB90`) | steers relative to a point 11.0 units from entry 32 |
+| `setentrypos` (`0x00354FB0`) | pushes the entry's x, y, z and heading and runs `0x00350510` |
+| `btlAtelGetPositionDataX`, `Y`, `Z` (`0x0050F960`, `0x0050F9B0`, `0x0050FA00`) | one coordinate to a script |
+| `debug_positioninfo` (`0x0050EBA0`) | the accessor with a class from its argument |
 
 ### The older-layout reader
 
-`getcrystalid` (`00352C80`) and `getanchorid` (`003532D0`) call `00264CA0`, which for a kind of 6 or
-9 calls `003DFAC0(kind, index)`. That routine reads root 0 as an earlier layout:
+`getcrystalid` (`0x00352C80`) and `getanchorid` (`0x003532D0`) call `0x00264CA0`, which for a kind of 6 or
+9 calls `0x003DFAC0(kind, index)`. That routine reads root 0 as an earlier layout:
 
-- it needs byte 7 at least `'2'` (`003DFAE1`) and decodes `+0x08` as an offset (`0020E600`, base 0)
+- it needs byte 7 at least `'2'` (`0x003DFAE1`) and decodes `+0x08` as an offset (`0x0020E600`, base 0)
   to a table: `u32 n` at `+0`, then for each kind a `s32` offset at `+8 + kind × 16` and a `s32`
   count at `+0x10 + kind × 16`;
 - for `kind < n` and `index < count` it returns `root + offset + 32 × index`, else 0.
@@ -115,8 +115,8 @@ past the records. In the 517 `us` tables that count lies inside the section, and
 - Keep `size = 0x10 + 0x30 × count` and the `0x0000000A` after the records, and leave byte 7 of the
   magic `'3'`: a lower digit switches the accessor to 16-byte records.
 - Fixed indices carry meaning: wander orders and AI conditions use entry `n + 1`, the class steering
-  solver entry 8 and the routine at `0033DB60` entry 32. Append new entries rather than reorder.
-- An index at or past `count` yields an all-zero record (the accessor) or -1 (`00320940`), not a
+  solver entry 8 and the routine at `0x0033DB60` entry 32. Append new entries rather than reorder.
+- An index at or past `count` yields an all-zero record (the accessor) or -1 (`0x00320940`), not a
   crash.
 - The extents of a box are full sizes; placement uses half of each on either side of the point, in
   the frame the heading rotates. Type 0 ignores both.

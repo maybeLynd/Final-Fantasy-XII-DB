@@ -2,13 +2,13 @@
 title: "Call signatures: the argument registers a function reads, from its own body"
 kind: "reference"
 category: "Engine core"
-addresses: "0079D730, 00309EC0, 0026D6D0, 0079D620, 00311CD0, 00197710, 008628F0, 0085DDE0, 00325EA0, 0030FE60"
+addresses: "0x0079D730, 0x00309EC0, 0x0026D6D0, 0x0079D620, 0x00311CD0, 0x00197710, 0x008628F0, 0x0085DDE0, 0x00325EA0, 0x0030FE60"
 ---
 
 ## What it lists
 
-One row for each of 562 functions drawn from across the executable, from `0015BCF0` to
-`008628F0` and from two-instruction stubs to a body of 898 instructions (`007A2440`). The set is
+One row for each of 562 functions drawn from across the executable, from `0x0015BCF0` to
+`0x008628F0` and from two-instruction stubs to a body of 898 instructions (`0x007A2440`). The set is
 a selection, not every function in the image. For each, the table gives the argument registers
 the body itself reads, and from them the argument count.
 
@@ -26,33 +26,33 @@ the register, so `mov cl, 1` followed by a read of `rcx` still reads the incomin
 ### Switches are followed
 
 An MSVC `switch` ends in `jmp reg` after a bounds check and a load from a table of 32-bit offsets.
-The walk reads the table and follows every arm. `0079D730` reads `edx` at entry
-(`dec edx; cmp edx, 0x11; ja`), dispatches through the table at `0079D745`, and reads `rcx` only
-inside the arms (`0079D752 movd xmm0, [rcx+0x414]`); it lists as `rcx,rdx`, arity 2.
+The walk reads the table and follows every arm. `0x0079D730` reads `edx` at entry
+(`dec edx; cmp edx, 0x11; ja`), dispatches through the table at `0x0079D745`, and reads `rcx` only
+inside the arms (`0x0079D752 movd xmm0, [rcx+0x414]`); it lists as `rcx,rdx`, arity 2.
 
 ### Positions, not register counts
 
 The x64 convention gives each argument a position: `rcx` or `xmm0` is the first, `rdx` or `xmm1`
 the second, `r8` or `xmm2` the third, `r9` or `xmm3` the fourth. Arity is the highest position read.
-A function can leave a lower position unread: `00197710` overwrites `ecx` with `movzx ecx, r8b`
+A function can leave a lower position unread: `0x00197710` overwrites `ecx` with `movzx ecx, r8b`
 before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 56 rows
 have such an unread position below their arity.
 
 ### Lower bounds
 
 Only register slots are counted. A body that leaves through a tail jump hands its untouched
-argument registers to the target, so its arity is a floor. `0079D620` is `mov ecx, 2` and
-`jmp 00796FC0`; `0026D6D0` sets `xmm1`, `xmm0` and `r8d` and jumps to `0026D6F0`. Both list
+argument registers to the target, so its arity is a floor. `0x0079D620` is `mov ecx, 2` and
+`jmp 0x00796FC0`; `0x0026D6D0` sets `xmm1`, `xmm0` and `r8d` and jumps to `0x0026D6F0`. Both list
 arity 0 with `lower_bound` 1. An indirect jump that is not a switch also sets the flag:
-`00309EC0` loads a handler from `[rdx+0x50]` and leaves through `00309F20 jmp rax`.
+`0x00309EC0` loads a handler from `[rdx+0x50]` and leaves through `0x00309F20 jmp rax`.
 
 ### Stack arguments
 
 A fifth or later argument arrives on the stack, above the caller's 32-byte home area, and the
 main table does not count it. A second table, `call-signatures-stack-args.tsv`, reads each body for
-loads from `[entry rsp + 0x28]` and above. Twelve rows read one. `008628F0` reads
+loads from `[entry rsp + 0x28]` and above. Twelve rows read one. `0x008628F0` reads
 `[rsp+0x28]`, position 5, as its first instruction although its register arity is 2, and
-`0085DDE0` reads positions 7, 8 and 9 (`0085DDF8 mov r15, [rsp+0xA0]` under a 0x58-byte frame).
+`0x0085DDE0` reads positions 7, 8 and 9 (`0x0085DDF8 mov r15, [rsp+0xA0]` under a 0x58-byte frame).
 
 ## Columns
 
@@ -71,13 +71,13 @@ loads from `[entry rsp + 0x28]` and above. Twelve rows read one. `008628F0` read
 | `insns` | instructions in the body |
 
 `home_spill` is a store at the entry, before anything changes the register. A store of an
-argument register elsewhere does not count: `0030FE60` zeroes `ecx` and writes it to a table
-through `rax`, and `00311CD0` stores `r9d` at `[rsp+0x20]` after `sub rsp, 0x38`, which is the
-fifth argument of its own call to `00311B20`. Neither is a home spill. Five rows have one,
-among them `0018D680`, which then reads its argument's bytes back from the slot.
+argument register elsewhere does not count: `0x0030FE60` zeroes `ecx` and writes it to a table
+through `rax`, and `0x00311CD0` stores `r9d` at `[rsp+0x20]` after `sub rsp, 0x38`, which is the
+fifth argument of its own call to `0x00311B20`. Neither is a home spill. Five rows have one,
+among them `0x0018D680`, which then reads its argument's bytes back from the slot.
 
 The table has no return-value column. Whether a body writes `rax` before every `ret` does not
-say whether `rax` holds a result: `00325EA0` writes `eax` as scratch (`00325EEF cvttss2si`) and
+say whether `rax` holds a result: `0x00325EA0` writes `eax` as scratch (`0x00325EEF cvttss2si`) and
 returns its result through the pointer in `rdx`.
 
 `call-signatures-stack-args.tsv`, one row for each of the same 562 functions:
@@ -89,7 +89,7 @@ returns its result through the pointer in `rdx`.
 | `all_reads_placed` | 0 when some stack read could not be placed because the frame moved by a register amount; the row is then a floor |
 | `stack_positions` | the argument positions read from the stack: 5 is `[entry rsp + 0x28]`, eight bytes per position |
 | `max_position` | the highest of them |
-| `first_read` | one instruction that reads a stack argument, not necessarily the earliest in the body (`0085DDE0` lists `0085DFE9` though `0085DDF8` comes first) |
+| `first_read` | one instruction that reads a stack argument, not necessarily the earliest in the body (`0x0085DDE0` lists `0x0085DFE9` though `0x0085DDF8` comes first) |
 
 The frame size is followed through `push`, `sub rsp` and `add rsp` by an immediate, and frame
 pointers set from `rsp`. Loads, compares and tests count; stores do not, and the home slots
@@ -124,13 +124,13 @@ so that its first argument is that class's `this`:
 | Stack reads not all placed | 29 |
 | Sit in a class's virtual table | 40 |
 
-Of the 40 virtual-table rows, `0053DD10` (`mov eax, 1; ret`) is held by 24 classes' tables, and
+Of the 40 virtual-table rows, `0x0053DD10` (`mov eax, 1; ret`) is held by 24 classes' tables, and
 most of the rest are methods of the Phyre framework's application and input-device classes.
 
-It is also called directly: `002DDC50()` answers whether `0053DD10()` returns 1, so it always answers 1, and every
-test on it in its eleven callers passes. They include the HUD's depth-list draw `003F0170`, the overhead status
-mark `002C7B10`, the text icon parser `002AEB20`, the ExFont drawer `003649A0`, `003656A0`, `00366110`,
-`002847C0`, `002856B0`, `00505570`, `00505E00` and `0053E380`.
+It is also called directly: `0x002DDC50()` answers whether `0x0053DD10()` returns 1, so it always answers 1, and every
+test on it in its eleven callers passes. They include the HUD's depth-list draw `0x003F0170`, the overhead status
+mark `0x002C7B10`, the text icon parser `0x002AEB20`, the ExFont drawer `0x003649A0`, `0x003656A0`, `0x00366110`,
+`0x002847C0`, `0x002856B0`, `0x00505570`, `0x00505E00` and `0x0053E380`.
 
 ## Related
 

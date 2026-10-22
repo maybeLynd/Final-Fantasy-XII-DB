@@ -2,7 +2,7 @@
 title: "Story flag ids: every flag id the shipped scripts set, release or test, by bank, with the scripts that touch it"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0032AB60, 0032A8A0, 0032ABF0, 0032ADF0, 0032AAD0, 00377970"
+addresses: "0x0032AB60, 0x0032A8A0, 0x0032ABF0, 0x0032ADF0, 0x0032AAD0, 0x00377970"
 ---
 
 ## What it lists
@@ -39,9 +39,9 @@ Nine calls have a computed id:
 ### What the ids show
 
 - Primary: 328 flag ids, from `0x2` to `0x166`, and the two schedule ids below. 250 of the flag ids are set but never
-  tested by a script; the game's own readers of the gate `0032A8A0` are listed on [Story flags](story-flags.md).
+  tested by a script; the game's own readers of the gate `0x0032A8A0` are listed on [Story flags](story-flags.md).
 - The schedule ids `0x4022` and `0x402A` are tested only. They read story schedule records `0x22`, true from story
-  counter 5,150, and `0x2A`, true from 1,540, through `00377970`.
+  counter 5,150, and `0x2A`, true from 1,540, through `0x00377970`.
 - Bank2048: 58 name ids, 23 of them named only by the developer menus; the one test is id `0xF0` in `sav_b01`.
 - Bank512, second half: 26 ids, `0x0`-`0x21`, each set once and tested once by shipping scripts; the seven releases
   are in the developer scripts.
@@ -70,11 +70,11 @@ Nine calls have a computed id:
 - **Two script flags.** Id `0x73` is the chocobo riding flag, and the aerodrome counter scripts set `0x5E` before
   the airship-deck and attack jumps ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
 - **Schedule ids.** `0x4022` and `0x402A` read records `0x22` and `0x2A` of `mapjumpgroupflagrom.bin`, each a
-  one-value record (5,150 and 1,540), as [Story flags](story-flags.md) describes the reader `00377970`.
+  one-value record (5,150 and 1,540), as [Story flags](story-flags.md) describes the reader `0x00377970`.
 - **Bank2048.** The name pair the id selects in `us` `npcdic.bin`, entries `2 × id` and `2 × id + 1`
   ([NPC names](../Characters-And-Objects/npc-names.md)).
 - **Places.** Each script in `set_in` and `tested_in` is the field whose entry in the `us` zone path table
-  (`01EE23A0`) names it, with the area name from `planmapname.bin` and the region from `map_ref.bin`.
+  (`0x01EE23A0`) names it, with the area name from `planmapname.bin` and the region from `map_ref.bin`.
 
 ## Related
 

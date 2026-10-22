@@ -1,40 +1,40 @@
 address	size	role	evidence
-001ED0D0	94	frame-scalar helper called from 00416FB0 tail; calls 001EC560	call-signature
-001EDCD0	203	the 60 fps exception list (already census-known); called with 02EBB750+0x3C at 0040AF53	call-signature
-001EDE70	7	HALFRATE — the half-rate predicate (already census-known); tested at 0040AF1D	named
-00202D50	5	thunk_FUN_00217610 — tail jmp to 00217610	full body
-00217610	383	leaf vector/matrix math over a record (fields +0x4..+0x38); no calls	call-signature
-0036DD90	11	VU0-bank helper (census family 0036DD80)	family member
-0036DDA0	8	VU0-bank helper (census family 0036DD80)	family member
-00380260	420	transform-math helper; two 00861F14 calls, fields +0x4..+0x58	call-signature
-00380410	575	transform-math helper; calls 00861F0E/00861F56 family, fields to +0xE0	call-signature
-00380650	427	pure math leaf (no calls), fields +0x4..+0x3C	call-signature
-0040AAD0	286	parameter-block setup: 0040B3B0 + 003D8E50 perturbation pairs + 0046D160/0046D200 + 00202B90 + 0040B430	call-signature
-0040ACF0	1153	per-frame oscillator driver — bank stores, two phase accumulators, per-entry mode dispatch	body read (this page §3)
-0040B3B0	118	small record helper, fields +0x4..+0x18, no calls	call-signature
-0040B430	416	record math helper; 00861F14 ×2, 00202E10, 00808C40	call-signature
-0040B780	8458	per-node apply — blend variant (called when 0 < entry+0x20 < 1); VU0-translated, node-matrix loads into bank rows	head + call shape
-0040D890	610	sub-stepped driver twin of 0040ACF0 — same preamble, runs heavy triple count times, applies on pass 0xB	body read (this page §3)
-0040DBB0	4557	per-node apply — direct variant; loads 4x4 at 0x290-record +0x80..+0xB0 into VU rows 1-4, second matrix +0x150..+0x180 into rows 5-8, delta vectors into 022D9310	head + store map
-0040ED80	5	flag thunk on record +0x3F (the [obj+6]==0 path of 003DFFE0)	full body (5 B)
-0040EE70	21	flag thunk on record +0x3F (003DFFE0 prologue)	full body
-0040F390	2900	entry init/reset pass: per entry sets +0x20 = 1.0 if +0x2A bit0 else 0, clears +0x29/+0x3F low nibbles	head + call shape
-0040FEF0	53	wrapper — calls the heavy triple 0040FF30 -> 00413C80 -> 00411650 once	full body
-0040FF30	5919	heavy path stage 1 (VU0-translated): iterates [entry+8]-resolved array at +0x28 by [entry] count; constants 6.28319, +/-32768, 0.2	head + body sketch
-00411650	7405	heavy path stage 3 (VU0-translated): iterates [entry+4]-counted list, 0036DD80 vf00 reloads, 00861F14	head + call shape
-00413340	2355	light path stage (VU0-translated): 00861EC0 memsets + id-resolved walks	head + call shape
-00413C80	7253	heavy path stage 2 (VU0-translated): resolves [entry+0x24] id, dense bank traffic	head + call shape
-00415EE0	911	begin/end scope call — arg 1 opens (02CA43C0 <- 01FD4A90), arg 0 closes after 00416FB0	body read at call sites
-00416270	471	sub-helper of 00415EE0 family; 0020E620 id-variant calls + 00861EBA	call-signature
-00416450	420	sub-helper of 00415EE0 family; fields to +0xA8	call-signature
-00416600	436	sub-helper of 00415EE0 family; fields to +0xA8	call-signature
-004167C0	332	sub-helper of 00415EE0 family; fields to +0x80	call-signature
-00416910	447	sub-helper of 00415EE0 family; fields to +0xA8	call-signature
-00416AD0	260	post-step A — called after 00413340 or the heavy triple on the esi!=1 arm	call-signature
-00416BE0	967	helper inside 00416AD0; seven 0020E600 resolves	call-signature
-00416FB0	347	post-step B — called on the non-halfrate arm; calls 001ED0D0	call-signature
-0046D160	147	param helper inside 0040AAD0 (with 00202C70)	call-signature
-0046D200	149	param helper inside 0040AAD0 (with 00202C70)	call-signature
-0046FAE0	84	mode setter — pure leaf, writes from the r13 nibble map (0->0, 1->2, 2->1)	full body (84 B)
-0054B1F0	423	parameter-install API — writes amplitude/speed floats into 0x50-stride arrays + record +0x20/+0x24/+0x28, runs 0040AA20 and conditionally 0040FEF0	body read (this page §5)
-00861F56	6	data row inside the 00861F14 math family (not a function)	non-function
+0x001ED0D0	94	frame-scalar helper called from 0x00416FB0 tail; calls 0x001EC560	call-signature
+0x001EDCD0	203	the 60 fps exception list (already census-known); called with 0x02EBB750+0x3C at 0x0040AF53	call-signature
+0x001EDE70	7	HALFRATE — the half-rate predicate (already census-known); tested at 0x0040AF1D	named
+0x00202D50	5	thunk_FUN_00217610 — tail jmp to 0x00217610	full body
+0x00217610	383	leaf vector/matrix math over a record (fields +0x4..+0x38); no calls	call-signature
+0x0036DD90	11	VU0-bank helper (census family 0x0036DD80)	family member
+0x0036DDA0	8	VU0-bank helper (census family 0x0036DD80)	family member
+0x00380260	420	transform-math helper; two 0x00861F14 calls, fields +0x4..+0x58	call-signature
+0x00380410	575	transform-math helper; calls 0x00861F0E/0x00861F56 family, fields to +0xE0	call-signature
+0x00380650	427	pure math leaf (no calls), fields +0x4..+0x3C	call-signature
+0x0040AAD0	286	parameter-block setup: 0x0040B3B0 + 0x003D8E50 perturbation pairs + 0x0046D160/0x0046D200 + 0x00202B90 + 0x0040B430	call-signature
+0x0040ACF0	1153	per-frame oscillator driver — bank stores, two phase accumulators, per-entry mode dispatch	body read (this page §3)
+0x0040B3B0	118	small record helper, fields +0x4..+0x18, no calls	call-signature
+0x0040B430	416	record math helper; 0x00861F14 ×2, 0x00202E10, 0x00808C40	call-signature
+0x0040B780	8458	per-node apply — blend variant (called when 0 < entry+0x20 < 1); VU0-translated, node-matrix loads into bank rows	head + call shape
+0x0040D890	610	sub-stepped driver twin of 0x0040ACF0 — same preamble, runs heavy triple count times, applies on pass 0xB	body read (this page §3)
+0x0040DBB0	4557	per-node apply — direct variant; loads 4x4 at 0x290-record +0x80..+0xB0 into VU rows 1-4, second matrix +0x150..+0x180 into rows 5-8, delta vectors into 0x022D9310	head + store map
+0x0040ED80	5	flag thunk on record +0x3F (the [obj+6]==0 path of 0x003DFFE0)	full body (5 B)
+0x0040EE70	21	flag thunk on record +0x3F (0x003DFFE0 prologue)	full body
+0x0040F390	2900	entry init/reset pass: per entry sets +0x20 = 1.0 if +0x2A bit0 else 0, clears +0x29/+0x3F low nibbles	head + call shape
+0x0040FEF0	53	wrapper — calls the heavy triple 0x0040FF30 -> 0x00413C80 -> 0x00411650 once	full body
+0x0040FF30	5919	heavy path stage 1 (VU0-translated): iterates [entry+8]-resolved array at +0x28 by [entry] count; constants 6.28319, +/-32768, 0.2	head + body sketch
+0x00411650	7405	heavy path stage 3 (VU0-translated): iterates [entry+4]-counted list, 0x0036DD80 vf00 reloads, 0x00861F14	head + call shape
+0x00413340	2355	light path stage (VU0-translated): 0x00861EC0 memsets + id-resolved walks	head + call shape
+0x00413C80	7253	heavy path stage 2 (VU0-translated): resolves [entry+0x24] id, dense bank traffic	head + call shape
+0x00415EE0	911	begin/end scope call — arg 1 opens (0x02CA43C0 <- 0x01FD4A90), arg 0 closes after 0x00416FB0	body read at call sites
+0x00416270	471	sub-helper of 0x00415EE0 family; 0x0020E620 id-variant calls + 0x00861EBA	call-signature
+0x00416450	420	sub-helper of 0x00415EE0 family; fields to +0xA8	call-signature
+0x00416600	436	sub-helper of 0x00415EE0 family; fields to +0xA8	call-signature
+0x004167C0	332	sub-helper of 0x00415EE0 family; fields to +0x80	call-signature
+0x00416910	447	sub-helper of 0x00415EE0 family; fields to +0xA8	call-signature
+0x00416AD0	260	post-step A — called after 0x00413340 or the heavy triple on the esi!=1 arm	call-signature
+0x00416BE0	967	helper inside 0x00416AD0; seven 0x0020E600 resolves	call-signature
+0x00416FB0	347	post-step B — called on the non-halfrate arm; calls 0x001ED0D0	call-signature
+0x0046D160	147	param helper inside 0x0040AAD0 (with 0x00202C70)	call-signature
+0x0046D200	149	param helper inside 0x0040AAD0 (with 0x00202C70)	call-signature
+0x0046FAE0	84	mode setter — pure leaf, writes from the r13 nibble map (0->0, 1->2, 2->1)	full body (84 B)
+0x0054B1F0	423	parameter-install API — writes amplitude/speed floats into 0x50-stride arrays + record +0x20/+0x24/+0x28, runs 0x0040AA20 and conditionally 0x0040FEF0	body read (this page §5)
+0x00861F56	6	data row inside the 0x00861F14 math family (not a function)	non-function

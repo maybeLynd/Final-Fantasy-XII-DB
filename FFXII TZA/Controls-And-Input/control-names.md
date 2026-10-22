@@ -2,7 +2,7 @@
 title: "Control names: every key and button name the game registers, the code each one stands for, and which names are aliases of one another"
 kind: "reference"
 category: "Controls and input"
-addresses: "00876C80, 00879570, 02EB83B8, 02EB9D80"
+addresses: "0x00876C80, 0x00879570, 0x02EB83B8, 0x02EB9D80"
 ---
 
 ## What it lists
@@ -13,17 +13,17 @@ that [keymap.ini](keymap-file.md) stores for that key or button.
 
 ### How the registries are built
 
-At start-up one small static initialiser per node passes the node to a registry insert, `00876C80` for the key names
-and `00879570` for the channel names, then registers its destructor with `atexit`. The insert
-(`00879570`-`008795F3`):
+At start-up one small static initialiser per node passes the node to a registry insert, `0x00876C80` for the key names
+and `0x00879570` for the channel names, then registers its destructor with `atexit`. The insert
+(`0x00879570`-`0x008795F3`):
 
-1. returns `0x11` when the node has no name (`00879574`-`00879588`);
-2. returns `0x12` when a node with the same name is already in the list (`0087958D`-`008795CE`, `008795E6`);
-3. otherwise puts the node at the front of the list whose head is `02EB9D80` for channels, `02EB83B8` for keys
-   (`008795D0`-`008795DA`).
+1. returns `0x11` when the node has no name (`0x00879574`-`0x00879588`);
+2. returns `0x12` when a node with the same name is already in the list (`0x0087958D`-`0x008795CE`, `0x008795E6`);
+3. otherwise puts the node at the front of the list whose head is `0x02EB9D80` for channels, `0x02EB83B8` for keys
+   (`0x008795D0`-`0x008795DA`).
 
-For example, `0016BDE0` inserts the key node of `Key_Numpad_8` (`01F458C8`) and registers `008BCF20`, which at exit
-sets the node's type pointer to `01CD89D8` and unlinks it from the key list `02EB83B8` (`008BCF20`-`008BCF7A`).
+For example, `0x0016BDE0` inserts the key node of `Key_Numpad_8` (`0x01F458C8`) and registers `0x008BCF20`, which at exit
+sets the node's type pointer to `0x01CD89D8` and unlinks it from the key list `0x02EB83B8` (`0x008BCF20`-`0x008BCF7A`).
 
 | Node offset | Field |
 |---|---|

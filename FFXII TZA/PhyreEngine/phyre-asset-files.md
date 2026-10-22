@@ -2,7 +2,7 @@
 title: "PhyreEngine asset files: the .phyre cluster header, the packed namespace, the instance data and how the loader reads and fixes up a cluster"
 kind: "format"
 category: "PhyreEngine"
-addresses: "0019CB20, 00637C50, 0059E070, 0059A3B0, 0059A6F0, 0059C180, 00686D00, 0069E780, 0059D550, 02CA9D90, 0059AAE0, 0059B430, 00599500, 0059AC00, 0059E300, 0059E780, 0059D6A0, 0059F500, 0059D590, 0059E880, 0059D940, 0059CE30, 0059C700, 0059C250, 00686DE0, 02CAA0A0, 00676450, 00675EF0, 00676BD0, 006753A0, 00675580, 006D4CF0, 006DA380"
+addresses: "0x0019CB20, 0x00637C50, 0x0059E070, 0x0059A3B0, 0x0059A6F0, 0x0059C180, 0x00686D00, 0x0069E780, 0x0059D550, 0x02CA9D90, 0x0059AAE0, 0x0059B430, 0x00599500, 0x0059AC00, 0x0059E300, 0x0059E780, 0x0059D6A0, 0x0059F500, 0x0059D590, 0x0059E880, 0x0059D940, 0x0059CE30, 0x0059C700, 0x0059C250, 0x00686DE0, 0x02CAA0A0, 0x00676450, 0x00675EF0, 0x00676BD0, 0x006753A0, 0x00675580, 0x006D4CF0, 0x006DA380"
 ---
 
 ## What the player sees
@@ -17,14 +17,14 @@ The files sit in the archive under `gamedata/d3d11/artdata/`, as `<name>.dae.phy
 meshes, `<name>.dds.phyre` for textures and `<name>.fx.phyre` for shaders. The `.ah` lists beside them
 name, in order, the files each model, map or font loads.
 
-A load request of kind 1 from such a list reaches `0019CB20(manager, path)` through `001A07B0`. It
-hashes the path (`00674A00`: 5381, × 33 plus each byte, masked to 31 bits) and looks it up in the
+A load request of kind 1 from such a list reaches `0x0019CB20(manager, path)` through `0x001A07B0`. It
+hashes the path (`0x00674A00`: 5381, × 33 plus each byte, masked to 31 bits) and looks it up in the
 manager's loaded set. A hit raises the entry's reference count and returns the loaded cluster; a miss
-loads the file through `00637C50` and records it.
+loads the file through `0x00637C50` and records it.
 
-`00637C50` opens the path as a `PStreamReaderFile` (`00597970`),
+`0x00637C50` opens the path as a `PStreamReaderFile` (`0x00597970`),
 returns 1 for a null path and 10 when the file does not open, and then calls the cluster reader
-`0059E070` repeatedly, one cluster after another, until the stream position reaches the file size.
+`0x0059E070` repeatedly, one cluster after another, until the stream position reaches the file size.
 Each cluster gets its own `0xA0`-byte container, chained through `+0x98`.
 
 ## Layouts
@@ -50,8 +50,8 @@ D3D11 data                 index buffer, vertex buffer, then texture images
 
 ### The cluster header
 
-Twenty-one `u32` fields. `005983E0` registers the first eighteen as `PClusterHeaderBase`,
-`00598C50` the last three as `PClusterHeaderD3D11`, and `00598DF0` the nine of `PInstanceListHeader`;
+Twenty-one `u32` fields. `0x005983E0` registers the first eighteen as `PClusterHeaderBase`,
+`0x00598C50` the last three as `PClusterHeaderD3D11`, and `0x00598DF0` the nine of `PInstanceListHeader`;
 the namespace of every file declares the same names in the same places.
 
 | Offset | Type | Name | Meaning |
@@ -95,8 +95,8 @@ the namespace of every file declares the same names in the same places.
 ### The packed namespace
 
 The namespace is the file's own schema: every type, class and member it uses, by name. Its layout is
-the one the byte-swap routine `0059C180` walks (eight header words, then `nTypes` words, `nClasses`
-nine-word records and `nMembers` six-word records) and the one the validator `0059E070` checks.
+the one the byte-swap routine `0x0059C180` walks (eight header words, then `nTypes` words, `nClasses`
+nine-word records and `nMembers` six-word records) and the one the validator `0x0059E070` checks.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -111,7 +111,7 @@ nine-word records and `nMembers` six-word records) and the one the validator `00
 | `+0x20` | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 
 The loader requires `size == 0x20 + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`
-(`0059E070`), which places the extra block after the pool.
+(`0x0059E070`), which places the extra block after the pool.
 
 Class record:
 
@@ -173,159 +173,159 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 
 ### Preconditions
 
-`0059E070` returns `0x15` when the byte `02CA9D90` is zero and `0xB` when the stream is not open. The
-byte is set by `0059D550`, which registers the cluster-header and instance-list classes; it is slot 1
-of the module vtable `00D26C40`, a module that static-initialiser code links into the module list
-(`0016035C` stores the vtable), and the engine's start-up `005A08E0` calls slot 1 of every listed module before any asset loads.
-Slot 2 of the same vtable, the module's shutdown `0059FE20`, clears the byte again at `0059FF14`; after
-the shutdown walk `0059E070` returns `0x15` again.
+`0x0059E070` returns `0x15` when the byte `0x02CA9D90` is zero and `0xB` when the stream is not open. The
+byte is set by `0x0059D550`, which registers the cluster-header and instance-list classes; it is slot 1
+of the module vtable `0x00D26C40`, a module that static-initialiser code links into the module list
+(`0x0016035C` stores the vtable), and the engine's start-up `0x005A08E0` calls slot 1 of every listed module before any asset loads.
+Slot 2 of the same vtable, the module's shutdown `0x0059FE20`, clears the byte again at `0x0059FF14`; after
+the shutdown walk `0x0059E070` returns `0x15` again.
 
 ### The header check
 
-`0059A3B0` is the only header reader; its one caller `0059E070` seeds the buffer with `RYHP` and 84,
+`0x0059A3B0` is the only header reader; its one caller `0x0059E070` seeds the buffer with `RYHP` and 84,
 zeroes the rest and passes platform checking as the constant 1.
 
 1. It reads 84 bytes; fewer returns 9.
-2. If the marker is not `RYHP` it byte-swaps the whole header (`0063E2E0` with descriptor
-   `02CAA0A0`) and tests again: still wrong returns 6; right sets the swapped flag, so a big-endian
+2. If the marker is not `RYHP` it byte-swaps the whole header (`0x0063E2E0` with descriptor
+   `0x02CAA0A0`) and tests again: still wrong returns 6; right sets the swapped flag, so a big-endian
    file is accepted.
-3. It calls `00686D00` (`0x44583131`) and `0069E780` (`0x424C4C54`); a different platform, or a physics
+3. It calls `0x00686D00` (`0x44583131`) and `0x0069E780` (`0x424C4C54`); a different platform, or a physics
    id that is neither Bullet nor 0, returns 6.
 4. It gives the namespace buffer `m_packedNamespaceSize` bytes (`0xD` when that fails) and returns 6
    when the buffer is null, which is what a zero-size namespace leaves.
-5. With `m_size` 84 it reads the namespace (`0059A6F0`: one read, 9 when short, then `0059C180` when
+5. With `m_size` 84 it reads the namespace (`0x0059A6F0`: one read, 9 when short, then `0x0059C180` when
    the file was swapped). A shorter header takes the surplus already read as the start of the
    namespace (6 when the surplus is larger than the namespace); a longer one is read on into a
    second buffer (`0xD`, 9).
 
-`0059E070` then requires the byte-order mark and the size identity, or returns 6.
+`0x0059E070` then requires the byte-order mark and the size identity, or returns 6.
 
-`0059C180` swaps the namespace of a big-endian file in place: its eight header words, every word of
-the type-name table (`0059A8B0`), the nine words of every class record (`0059A780`) and the six
+`0x0059C180` swaps the namespace of a big-endian file in place: its eight header words, every word of
+the type-name table (`0x0059A8B0`), the nine words of every class record (`0x0059A780`) and the six
 words of every member record. The string pool is left as it is.
 
 ### Binding the schema
 
-- `0059AAE0` allocates one table entry per type (`0x18` bytes), class (`0x30`) and member (`0x38`).
-- `0059B430` finds each type and class name in the engine's registry (`006373D0`, keyed by a hash of
+- `0x0059AAE0` allocates one table entry per type (`0x18` bytes), class (`0x30`) and member (`0x38`).
+- `0x0059B430` finds each type and class name in the engine's registry (`0x006373D0`, keyed by a hash of
   1973, × 33 plus the low five bits of each byte), sets each class's parent from word 0, and matches
   each member to the runtime class's member of the same name, walking its bases. A class name is
-  also looked up in the tree passed as its third argument (`0059BE00`, by each entry's descriptor
+  also looked up in the tree passed as its third argument (`0x0059BE00`, by each entry's descriptor
   name).
 - Names the registry lacks are logged
   (`"Unable to find type '%s' on load"`, `"File refers to compiled class '%s' which does not exist
   in the current runtime"`) and do not stop the load.
-- `00599500` finds the class bound to `PClusterHeader` (`0x13` when none), converts the header
+- `0x00599500` finds the class bound to `PClusterHeader` (`0x13` when none), converts the header
   through the file's schema, and checks the platform again (6).
-- `0059AC00` builds a dynamic class (`00632E80`) for each class record with flag `0x01` and no
+- `0x0059AC00` builds a dynamic class (`0x00632E80`) for each class record with flag `0x01` and no
   runtime class, under its parent; one left unbuilt returns `0x13`.
 
 ### Reading the instance data
 
-`0059E300` runs the rest in stream order.
+`0x0059E300` runs the rest in stream order.
 
-- `00686D10` copies the three D3D11 sizes into the load record, and `0059E780` reads the list
-  headers (`00596FC0`), returning 6 for a `m_classID` outside the class table.
-- `0059D6A0` sizes and allocates each list's objects. A list whose class has no runtime counterpart
+- `0x00686D10` copies the three D3D11 sizes into the load record, and `0x0059E780` reads the list
+  headers (`0x00596FC0`), returning 6 for a `m_classID` outside the class table.
+- `0x0059D6A0` sizes and allocates each list's objects. A list whose class has no runtime counterpart
   is skipped with a log line, unless its class carries flag `0x04`, which returns 6.
-- `0063DD30` allocates the cluster's one block (alignment `0x20`): a `0x20`-byte header, the objects' size
+- `0x0063DD30` allocates the cluster's one block (alignment `0x20`): a `0x20`-byte header, the objects' size
   rounded up to 8 and one `0x80`-byte list record per list. It links the block on the cluster's
-  chain at `+0x48` and gives the records to its pool at `+0x50` (`00680100`); a second block gets
+  chain at `+0x48` and gives the records to its pool at `+0x50` (`0x00680100`); a second block gets
   `0x16`.
-- `0059F500` reads each list's `m_objectsSize` bytes into a scratch buffer and its `m_arraysSize`
+- `0x0059F500` reads each list's `m_objectsSize` bytes into a scratch buffer and its `m_arraysSize`
   bytes straight into the list's array area, 9 on a short read; a skipped list's `m_size` bytes are
   passed over.
-- `0059D590` converts every object: `00599670` fills each with its runtime class's default instance,
-  then `0059B090` copies each member present in both the file and the runtime class from its file
+- `0x0059D590` converts every object: `0x00599670` fills each with its runtime class's default instance,
+  then `0x0059B090` copies each member present in both the file and the runtime class from its file
   position to its runtime position. A header class (runtime flag bit 2) also keeps the bytes after
   its file size, up to `m_objectsSize`.
   - When the load context's byte `+0x18` is set it then runs the runtime
-  class's descriptor slot `+0x00` forwards over every object (`0059FDB0(descriptor, objects, count, 1)` at
-  `0059D674`), the byte-order walk of [reflection](phyre-reflection.md). It returns `0x13` for an out-of-range or
+  class's descriptor slot `+0x00` forwards over every object (`0x0059FDB0(descriptor, objects, count, 1)` at
+  `0x0059D674`), the byte-order walk of [reflection](phyre-reflection.md). It returns `0x13` for an out-of-range or
   unbound class and `0x11` when the list has no object area.
 
 ### User fixups
 
-`0059E880` reads the user-fixup data and the 12-byte records (`00597130`). Each record's type is a
+`0x0059E880` reads the user-fixup data and the 12-byte records (`0x00597130`). Each record's type is a
 type-table or class entry; one without a bound descriptor returns `0x13`. A `PAssetReferenceImport`
-record (descriptor `02D3E780`) is kept as raw bytes; any other is resolved through its descriptor
-(`0063DC30`). A null result is logged (`"Resolving fixup for '%s' returned NULL pointer"`, with a hex
+record (descriptor `0x02D3E780`) is kept as raw bytes; any other is resolved through its descriptor
+(`0x0063DC30`). A null result is logged (`"Resolving fixup for '%s' returned NULL pointer"`, with a hex
 dump of data under 32 bytes) and the load goes on.
 
 ### Header classes and the fixup tables
 
-- `0059D940` reads the header-class words and the 16-byte child records (`00597070`) and fixes up
+- `0x0059D940` reads the header-class words and the 16-byte child records (`0x00597070`) and fixes up
   the header-class objects and their child objects, logging a child whose class has no runtime
   version and a runtime class larger than the file's.
-- Two header classes carry arrays after their fixed part, and their static initialisers (`00167DB0`,
-  `001688F0`) set flag `0x4` at `+0xFC` and store a function at descriptor `+0x100` that hands each
+- Two header classes carry arrays after their fixed part, and their static initialisers (`0x00167DB0`,
+  `0x001688F0`) set flag `0x4` at `+0xFC` and store a function at descriptor `+0x100` that hands each
   array to a visitor's slot `+0x08` with its element type.
-- `006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
+- `0x006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
   slot `+0x18` answers true: `+0x04` modifier codes and `+0x08` modifier instances (`0x20` bytes
   each), then `+0x0C` + `+0x0E` two-byte buffer entries.
-- `006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
+- `0x006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
   `+0x04` `Point3`, then `+0x08` × 4 bytes.
-- `0059CE30`, `0059C700` and `0059C250` then read the pointer-array, pointer and array tables. Each
+- `0x0059CE30`, `0x0059C700` and `0x0059C250` then read the pointer-array, pointer and array tables. Each
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
-  pointer-array entries, `0x1C` for pointer entries; `00595EF0`, `00596890`, built on the 7-bit
-  varint reader `00597400`), so a size is a packed byte length and a count an entry count.
-- `0059FF40` reads an entry's two varints; the first has its low bit moved to bit 31.
+  pointer-array entries, `0x1C` for pointer entries; `0x00595EF0`, `0x00596890`, built on the 7-bit
+  varint reader `0x00597400`), so a size is a packed byte length and a count an entry count.
+- `0x0059FF40` reads an entry's two varints; the first has its low bit moved to bit 31.
 - The entries patch pointers and arrays inside the converted objects. One that names a member the
   runtime lacks is logged (`"Unable to find a data member in class '%s' offset at %d bytes"`).
-- An entry names an object by instance list and index. `0063BFA0` turns that into the object's
+- An entry names an object by instance list and index. `0x0063BFA0` turns that into the object's
   address plus the class's layout base `+0xF8`, or null when the index is not below the list's
   count (`+0x70`) or the slot lies on the list's chain at `+0x10`.
 
 ### D3D11 data and completion
 
-`00686DE0` reads the index buffer into the cluster's `PIndexDataBlockD3D11` and `PMeshSegmentD3D11`
+`0x00686DE0` reads the index buffer into the cluster's `PIndexDataBlockD3D11` and `PMeshSegmentD3D11`
 objects, the vertex buffer into its `PDataBlockD3D11` objects, and then texture data for each
 `PTexture2D`, `PTexture3D` and `PTextureCubeMap` through a staging buffer sized from
-`m_maxTextureBufferSize`. `0059E300` then marks every list loaded (`+0x7D`), calls slot `+0x70` of the
+`m_maxTextureBufferSize`. `0x0059E300` then marks every list loaded (`+0x7D`), calls slot `+0x70` of the
 `PAssetReference` and `PClassDescriptorDynamic` descriptors for their lists (a non-zero result ends the
-load), and runs `0059F7A0`, which builds the cluster's `PMapPair` records.
+load), and runs `0x0059F7A0`, which builds the cluster's `PMapPair` records.
 
-`0059F7A0` keeps those records in a local ordered map: a tree head with a `PMapPair` pool of
-`0x28`-byte nodes `0x30` bytes after it (`0067FFB0`). It clears the map on return; when an exception
-leaves it, the unwind action `00597F30` does the same: it resets the head's links (`0067F6F0`),
-frees the pool's blocks (`006803D0`, `00680030`) and calls `0067F580` on the head twice.
+`0x0059F7A0` keeps those records in a local ordered map: a tree head with a `PMapPair` pool of
+`0x28`-byte nodes `0x30` bytes after it (`0x0067FFB0`). It clears the map on return; when an exception
+leaves it, the unwind action `0x00597F30` does the same: it resets the head's links (`0x0067F6F0`),
+frees the pool's blocks (`0x006803D0`, `0x00680030`) and calls `0x0067F580` on the head twice.
 
-For the `PClassDescriptorDynamic` lists, `0059BDC0` finds the `0x30`-byte class entry whose `+0x10`
-is a given descriptor. `00686DE0` steps through the objects with `00686D40`, which skips the slots on a list's chain at
-`+0x10` and moves to the next list when one is used up. `00670070` creates each ring buffer of a
+For the `PClassDescriptorDynamic` lists, `0x0059BDC0` finds the `0x30`-byte class entry whose `+0x10`
+is a given descriptor. `0x00686DE0` steps through the objects with `0x00686D40`, which skips the slots on a list's chain at
+`+0x10` and moves to the next list when one is used up. `0x00670070` creates each ring buffer of a
 loaded `PDataBlockD3D11` as an immutable buffer (bind flags 9, misc flags `0x20`) of the block's data
 size, initialised from the file data at the block's offset; 9 when creation fails.
 
-`0059E300` starts by zeroing its `0x28`-byte list cursor (`00686C20`). When it returns, `0059E070` frees the four arrays at `+0x20`–`+0x58` of the load record it passed
-(`00597F80`). `0059FC20` copies the text between two pointers into new memory with `005994A0`
+`0x0059E300` starts by zeroing its `0x28`-byte list cursor (`0x00686C20`). When it returns, `0x0059E070` frees the four arrays at `+0x20`–`+0x58` of the load record it passed
+(`0x00597F80`). `0x0059FC20` copies the text between two pointers into new memory with `0x005994A0`
 (alignment 2) and terminates it; 5 when the end lies before the start, `0xD` without memory.
 
 ### Asset references and idmaps.txt
 
 Every `.phyre` file has a `PAssetReference` list; a reference names the file's contents by an id string at
-`+0x30`. These objects are kept in the asset-name registry at `01F2EA70` (see the memory page under
+`+0x30`. These objects are kept in the asset-name registry at `0x01F2EA70` (see the memory page under
 Related).
 
-- The constructor `006753A0(reference, name, a, b)`, called by the descriptor's construct slot
-  `00674BE0`, sets up the node at `+0x08`, copies the name (`001C26B0`), stores `a` and `b` at
-  `+0x38` and `+0x40`, clears `+0x48` and registers the object (`00677BA0`).
-- For a loaded list, slot `+0x70` (`00674B50`) runs `00676450`: each reference gets the list's
-  cluster at `+0x48`, its name hash (`00677350`, seed `0x7B5`) and name in its key, and is inserted
-  under the lock `02D3E880`. A reference without a name returns `0x15` and a name already
+- The constructor `0x006753A0(reference, name, a, b)`, called by the descriptor's construct slot
+  `0x00674BE0`, sets up the node at `+0x08`, copies the name (`0x001C26B0`), stores `a` and `b` at
+  `+0x38` and `+0x40`, clears `+0x48` and registers the object (`0x00677BA0`).
+- For a loaded list, slot `+0x70` (`0x00674B50`) runs `0x00676450`: each reference gets the list's
+  cluster at `+0x48`, its name hash (`0x00677350`, seed `0x7B5`) and name in its key, and is inserted
+  under the lock `0x02D3E880`. A reference without a name returns `0x15` and a name already
   registered `0x12`, which ends the load.
-- The registry orders keys with `00675EF0`: by hash, then, when both names contain `#`, by the text
+- The registry orders keys with `0x00675EF0`: by hash, then, when both names contain `#`, by the text
   after the last `#` (case-sensitive) and then by the part before it (length first, then
   case-insensitive), and otherwise by the whole names case-insensitively.
 
-`00676BD0(id)` finds a reference by id. On first use it loads
-`/GameData/D3D11/ArtData/shared/idmaps.txt` into a map of id pairs with `00677030` (alternate CRLF
-lines as key and value) and registers its teardown `008B1B10`. An id found as a key is replaced by
-its value; the result is hashed and looked up in the registry (`00674F60`) under the same lock.
-`0063B040`, which works through a cluster's `PAssetReferenceImport` lists, and `00677CE0` call it.
+`0x00676BD0(id)` finds a reference by id. On first use it loads
+`/GameData/D3D11/ArtData/shared/idmaps.txt` into a map of id pairs with `0x00677030` (alternate CRLF
+lines as key and value) and registers its teardown `0x008B1B10`. An id found as a key is replaced by
+its value; the result is hashed and looked up in the registry (`0x00674F60`) under the same lock.
+`0x0063B040`, which works through a cluster's `PAssetReferenceImport` lists, and `0x00677CE0` call it.
 
-The map is a tree of `std::string` pairs: `00675580` returns the value for a key, inserting an empty
-one when the key is missing; `00677AD0` finds the first node not below a key; `00675300` copies a
-pair and `00675440` destroys one.
+The map is a tree of `std::string` pairs: `0x00675580` returns the value for a key, inserting an empty
+one when the key is missing; `0x00677AD0` finds the first node not below a key; `0x00675300` copies a
+pair and `0x00675440` destroys one.
 
 
 ## Modding notes
@@ -345,7 +345,7 @@ pair and `00675440` destroys one.
 - An asset id listed as a key in `idmaps.txt` is looked up under its value instead, so one line pair
   redirects every import of that id; a later pair with the same key replaces an earlier one. The id and its value are copied into a
   256-byte buffer without a bound, so both must stay under 256 bytes.
-- The path hash `00674A00` adds each byte as a signed char, so a path byte of `0x80` or above
+- The path hash `0x00674A00` adds each byte as a signed char, so a path byte of `0x80` or above
   subtracts: "× 33 plus each byte" holds for ASCII paths only. Every shipped path is ASCII; a modded
   path with non-ASCII bytes hashes to a different value than an unsigned reading gives.
 
@@ -354,5 +354,5 @@ pair and `00675440` destroys one.
 - [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md): the `.ah` lists that name the `.phyre` files and file their load requests.
 - [Texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md): frame lists that bind already loaded `.phyre` textures.
 - [File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md): how an asset path becomes an archive file.
-- [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the asset-name registry at `01F2EA70` that holds the asset references.
+- [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the asset-name registry at `0x01F2EA70` that holds the asset references.
 - [Phyre entities and components](phyre-entities-and-components.md): the entity and component hooks behind slot `+0x70`.

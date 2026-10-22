@@ -2,41 +2,41 @@
 title: "Key item list: every key item id with its name, sort order, icon and description"
 kind: "reference"
 category: "Items, equipment, shops and licenses"
-addresses: "02EBF090, 02EBF088, 02EBF080, 02EBF078, 0031C5D0, 0031D1B6, 0031D218, 0031D26B, 0031D631, 0031D63E"
+addresses: "0x02EBF090, 0x02EBF088, 0x02EBF080, 0x02EBF078, 0x0031C5D0, 0x0031D1B6, 0x0031D218, 0x0031D26B, 0x0031D631, 0x0031D63E"
 ---
 
 ## What it lists
 
 `key-item-list.tsv` holds one line for each of the 512 key-item ids `0x8000`-`0x81FF`, inventory class 13
-([Item and ability ids](../Engine-Core/item-and-ability-ids.md)). The class-13 arm of `0031C5D0` splits
+([Item and ability ids](../Engine-Core/item-and-ability-ids.md)). The class-13 arm of `0x0031C5D0` splits
 the range over three tables of 10-byte rows:
 
 | Ids | Table | Entry | Slot | Rows | Named | Icon frame |
 |---|---|---|---|---:|---:|---|
-| `0x8000`-`0x803F` | m_daiji_data | `+0x88` | `02EBF090` | 64 | 47 | 112 |
-| `0x8040`-`0x805F` | g_daiji_data | `+0x8C` | `02EBF088` | 32 | 27 | 113 |
-| `0x8060`-`0x81FF` | q_daiji_data | `+0x90` | `02EBF080` | 416 | 109 | 114, and 49-53 on five rows |
+| `0x8000`-`0x803F` | m_daiji_data | `+0x88` | `0x02EBF090` | 64 | 47 | 112 |
+| `0x8040`-`0x805F` | g_daiji_data | `+0x8C` | `0x02EBF088` | 32 | 27 | 113 |
+| `0x8060`-`0x81FF` | q_daiji_data | `+0x90` | `0x02EBF080` | 416 | 109 | 114, and 49-53 on five rows |
 
-The fourth sub-table the class counts, s_daiji_data (entry `+0x94`, `02EBF078`), has no rows. The other 329 rows are
+The fourth sub-table the class counts, s_daiji_data (entry `+0x94`, `0x02EBF078`), has no rows. The other 329 rows are
 named Reserve. The five q_daiji rows with their own icon frame are Dawn Shard, Manufacted Nethicite, Sword of Kings,
 Treaty-Blade and Goddess's Magicite.
 
 ### How it is built
 
 `Database/Tools/catalogues/keyitems.py`, with the shared readers in `ffxii_text.py`, reads the three `st2e` tables
-and decodes each row as the arm does. The m_daiji arm is quoted below; the g_daiji arm (`0031D2C5`-`0031D460`) and
-the q_daiji arm (`0031D488`-`0031D61B`, base `0x8060` at `0031D622`) read the same offsets.
+and decodes each row as the arm does. The m_daiji arm is quoted below; the g_daiji arm (`0x0031D2C5`-`0x0031D460`) and
+the q_daiji arm (`0x0031D488`-`0x0031D61B`, base `0x8060` at `0x0031D622`) read the same offsets.
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | b00 | no function reads it: the three tables are loaded only by `0031C5D0`, the validator `00322C50` and the loader `00236C30`, and the arm reads `+0x02`-`+0x09` |
-| `+0x02` | `u16` | sortOrder | query record `+0x30` (`0031D631`-`0031D635`), the key Auto-sort `002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)) |
-| `+0x04` | `u8` | iconFrame | query record `+0x2C` (`0031D26B`-`0031D26F`) |
+| `+0x00` | `u8[2]` | b00 | read and written by no function, so nothing fixes its width: the three tables are loaded only by `0x0031C5D0`, the validator `0x00322C50` and the loader `0x00236C30`, and the arm reads `+0x02`-`+0x09` |
+| `+0x02` | `u16` | sortOrder | query record `+0x30` (`0x0031D631`-`0x0031D635`), the key Auto-sort `0x002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)) |
+| `+0x04` | `u8` | iconFrame | query record `+0x2C` (`0x0031D26B`-`0x0031D26F`) |
 | `+0x05` | `u8` | | 0 on every row |
-| `+0x06` | `u16` | textId | the description, through `002F9860` into query record `+0x10` (`0031D218`-`0031D221`) |
-| `+0x08` | `u16` | nameWord | the name (`0031D1B6`) |
+| `+0x06` | `u16` | textId | the description, through `0x002F9860` into query record `+0x10` (`0x0031D218`-`0x0031D221`) |
+| `+0x08` | `u16` | nameWord | the name (`0x0031D1B6`) |
 
-The arm sets the record's price `+0x28` to -1 for every key item (`0031D63E`). Every one-byte text code goes through
+The arm sets the record's price `+0x28` to -1 for every key item (`0x0031D63E`). Every one-byte text code goes through
 the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)). The 47 named m_daiji rows, the
 27 named g_daiji rows and q_daiji rows 13-15 ("Available", "Accepted" and "Complete!") have empty description texts:
 rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.

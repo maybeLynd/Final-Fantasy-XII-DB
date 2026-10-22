@@ -1,7 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
-0065F690	FUN_0065f690	0065F697	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0065F690	
-0065F690	FUN_0065f690	0065F69A	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0065F690	
-0065F690	FUN_0065f690	0065F69E	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0065F690	
-0065F690	FUN_0065f690	0065F6A2	0x18	w	mov qword ptr [rdx + 0x18], rax	ctorrdx-seeded 0065F690	
-0065F690	FUN_0065f690	0065F6A6	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 0065F690	
-0065F690	FUN_0065f690	0065F6B0	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 0065F690	
+0x0065F690	FUN_0065f690	0x0065F697	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0x0065F690	
+0x0065F690	FUN_0065f690	0x0065F69A	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0x0065F690	
+0x0065F690	FUN_0065f690	0x0065F69E	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0x0065F690	
+0x0065F690	FUN_0065f690	0x0065F6A2	0x18	w	mov qword ptr [rdx + 0x18], rax	ctorrdx-seeded 0x0065F690	
+0x0065F690	FUN_0065f690	0x0065F6A6	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 0x0065F690	
+0x0065F690	FUN_0065f690	0x0065F6B0	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 0x0065F690	

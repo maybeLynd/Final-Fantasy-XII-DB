@@ -1,6 +1,6 @@
 function	name	site	disp	kind	instruction	route	note
-006C0A80	FUN_006c0a80	006C0A87	0xc8	w	mov qword ptr [rdx + 0xc8], 0x41200000	ctorrdx-seeded 006C0A80	
-006C0A80	FUN_006c0a80	006C0A92	0xc0	w	mov qword ptr [rdx + 0xc0], rax	ctorrdx-seeded 006C0A80	
-006C0A80	FUN_006c0a80	006C0A99	0xd0	w	mov qword ptr [rdx + 0xd0], 0x41200000	ctorrdx-seeded 006C0A80	
-006C0A80	FUN_006c0a80	006C0AA4	0xd8	w	mov qword ptr [rdx + 0xd8], rax	ctorrdx-seeded 006C0A80	
-006C0A80	FUN_006c0a80	006C0AAB	0xe0	w	mov dword ptr [rdx + 0xe0], eax	ctorrdx-seeded 006C0A80	
+0x006C0A80	FUN_006c0a80	0x006C0A87	0xc8	w	mov qword ptr [rdx + 0xc8], 0x41200000	ctorrdx-seeded 0x006C0A80	
+0x006C0A80	FUN_006c0a80	0x006C0A92	0xc0	w	mov qword ptr [rdx + 0xc0], rax	ctorrdx-seeded 0x006C0A80	
+0x006C0A80	FUN_006c0a80	0x006C0A99	0xd0	w	mov qword ptr [rdx + 0xd0], 0x41200000	ctorrdx-seeded 0x006C0A80	
+0x006C0A80	FUN_006c0a80	0x006C0AA4	0xd8	w	mov qword ptr [rdx + 0xd8], rax	ctorrdx-seeded 0x006C0A80	
+0x006C0A80	FUN_006c0a80	0x006C0AAB	0xe0	w	mov dword ptr [rdx + 0xe0], eax	ctorrdx-seeded 0x006C0A80	

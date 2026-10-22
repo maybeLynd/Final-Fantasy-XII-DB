@@ -1,80 +1,80 @@
 address	form	role	element
-001B7210	-	default n elements: +0x04 = 0xFFFFFFFF, +0x18 = 6, +0x1C..+0x27 = 0xFFFFFFFF, the rest 0, an index data block at +0x40 (00662A80)	0xC0 bytes
-001B80C0	PSharray	store a pointer at element n; 3 when n is not below the count	8 bytes
-001EF1A0	PSharray	resize without keeping the old elements: new storage is zeroed, old owned storage freed; called by 001EE1D0	8 bytes
-00598360	PArray	allocate (alignment 4), copy, the rest left as allocated	4 bytes
-0059FB10	PArray	resize; one body for the int and unsigned int vtables (thunk 005C9720)	4 bytes
-0059FCA0	PArray	set external, called by the loader 0059AAE0, 0059E300 and 0059E880	-
-005A5B40	-	copy n elements	4 bytes
-005A5BD0	-	copy n elements, duplicating the PString at +0x28	PAnimationChannelTarget (0x38)
-005A5CC0	-	copy n elements, duplicating the PString at +0x28	PAnimationConstantChannel (0x58)
-005A5DC0	-	copy n elements	PAnimationDataSourceListEntry (0x98)
-005AA3C0	PArray	copy-assign (copy 005A5B40)	4 bytes
-005AD2B0	PArray	allocate count elements, copy the kept ones (005A5BD0), default the rest (005BED40)	PAnimationChannelTarget (0x38)
-005AD330	PArray	allocate, copy (005A5CC0), default (005BEDC0)	PAnimationConstantChannel (0x58)
-005AD3B0	PArray	allocate, copy (005A5DC0), default (005BEE50)	PAnimationDataSourceListEntry (0x98)
-005AD440	PArray	allocate, copy, zero the rest	PAnimationEvent (8)
-005AD4E0	PArray	allocate, copy, zero the rest	PAnimationNetworkInstanceTarget (0x30)
-005AD840	PArray	allocate (alignment 16), copy, zero the rest	PQWord (16)
-005BED40	-	default n elements: +0x00 = 02CF8270, the rest 0	PAnimationChannelTarget (0x38)
-005BEDC0	-	default n elements: +0x00 = 02CF8270, the rest 0	PAnimationConstantChannel (0x58)
-005BEE50	-	default n elements: all 0	PAnimationDataSourceListEntry (0x98)
-005C0090	PArray	append one {qword, dword} element to the array at object +0x100; 1, or 0 when allocation fails	16 bytes
-005C8BF0	PArray	resize	float (4 bytes, alignment 4)
-005C8CA0	PArray	resize; frees owned old elements through 005B7E10	PAnimationChannelTarget (0x38)
-005C8D30	PArray	resize; frees owned old elements through 005B7FD0	PAnimationConstantChannel (0x58)
-005C8DC0	PArray	resize	PAnimationDataSourceListEntry (0x98)
-005C8E50	PArray	resize	PAnimationEvent (8)
-005C8EE0	PArray	resize	PAnimationNetworkInstanceTarget (0x30)
-005C91E0	PArray	resize	PQWord (16, alignment 16)
-005D8340	-	copy n elements; the PSharray at +0x38 through 006C5020	PMeshInstanceSegmentContext (0x48)
-005D87E0	-	copy n elements, duplicating the PString at +0x08	PShaderParameterDefinition (0x18)
-005DCD10	PArray	destroy: element destructor 00662EA0 on each owned element, free, zero	0x88 bytes
-005DE8C0	PArray	copy-assign, duplicating each string (001C19A0) and freeing owned old ones (001C2720)	PString (8)
-005DE950	PSharray	copy-assign (005FEE80)	4 bytes
-005E3040	PArray	allocate, copy, zero the rest	pointer (8)
-005E3250	PArray	allocate (alignment 4) and copy; the rest is left as allocated	PMatrix4 (0x40)
-005E32F0	PArray	allocate, copy (005D8340), default (005FD170)	PMeshInstanceSegmentContext (0x48)
-005E3820	PArray	allocate, copy (005D87E0), default (005FD240)	PShaderParameterDefinition (0x18)
-005E3AE0	PArray	allocate, duplicate the kept strings (001C19A0), zero the rest	PString (8)
-005FD170	-	default n elements: 0, with +0x28 = 0xFFFFFFFF	PMeshInstanceSegmentContext (0x48)
-005FD240	-	default n elements: 0, with the u16 at +0x02 = 0x3446	PShaderParameterDefinition (0x18)
-005FEE80	PSharray	storage for count elements (inline for 1), copy count	4 bytes
-005FEF00	PSharray	storage for count elements (inline for 1), copy m	unsigned int (4)
-0060C3F0	PArray	resize; one body shared by 14 pointer-element vtables	pointer (8)
-0060C5A0	PArray	resize	PMatrix4 (0x40, alignment 4)
-0060C630	PArray	resize; frees owned old elements through 001B70E0	PMeshInstanceSegmentContext (0x48)
-0060C990	PArray	resize; frees owned old elements through 005F03A0	PShaderParameterDefinition (0x18)
-0060CBD0	PArray	resize; frees owned old strings through 001C2720	PString (8)
-0060CC60	PSharray	resize	unsigned int (4)
-0060EDB0	PArray	set external, called by 0059E300 and 005F0720	-
-0060F2D0	PSharray	member-record +0x70 hook installed by 005EFB10 for PSharray<PUInt32>; calls 006C7D00	unsigned int (4)
-0061D030	PSharray	storage, copy m, zero the rest	16 bytes
-0061D100	PSharray	storage, copy m (00613770), default the rest (0061C250)	0x58 bytes
-00627CF0	PSharray	resize, called by 00628050	16 bytes
-00627DA0	PSharray	resize (storage 0061D100)	0x58 bytes
-00633880	PSharray	copy-assign (00639650), releasing the old storage through 0063DCA0	PString (8)
-00634350	-	allocate count entries of {0, 0, -1, -1}; called by 00638AE0	0x18 bytes
-00639650	PSharray	storage, duplicate count strings (001C19A0)	PString (8)
-006396C0	PSharray	storage, duplicate m strings, zero the rest	PString (8)
-0063D9C0	PSharray	resize; releases the old storage through 0063DCA0	PString (8)
-00646C00	PSharray	copy-assign (006A8C90)	8 bytes
-00671250	PSharray	element pointer: member-record +0x68 hook stored by the PSharray registrars such as 005EFB10	-
-00673130	PArray	set external: member-record +0x70 hook installed by 005B4E00 for PArray<unsigned int,4>	-
-0067AFD0	-	allocate count bytes (alignment 1) and copy the first m; called by 00627BD0	1 byte
-00691A60	PSharray	clear: free owned heap storage (count above 1), zero count and storage	-
-006A8C90	PSharray	storage for count elements (inline for 1), copy count	8 bytes
-006AE270	PArray	allocate, copy, default the rest to {0, 02CF8270}	PTypedObject (16)
-006AF6B0	PArray	resize	PTypedObject (16)
-006AF760	PArray	set external: member-record +0x70 hook	-
-006BA4D0	PArray	truncate to at most n, keeping bit 31; when owned, clear each dropped element's own array and free the storage at 0	nested array (16)
-006C0BA0	-	copy n elements	PShadowSplit (0xE8)
-006C1540	PArray	allocate, copy (006C0BA0), default (006C2320)	PShadowSplit (0xE8)
-006C2320	-	default the last 0x28 bytes of n elements: 0, with +0xC8 and +0xD0 = 10.0	PShadowSplit (0xE8)
-006C26E0	PArray	resize	PShadowSplit (0xE8)
-006C5020	PSharray	copy-construct: zero the count, then copy-assign (006A8C90)	8 bytes
-006C52D0	PSharray	clear, same body as 00691A60	-
-006C7450	PSharray	storage, copy m, zero the rest	pointer (8)
-006C7A40	PSharray	resize; one body shared by 6 pointer-element vtables, also called by 005C0320	pointer (8)
-006C7D00	PSharray	set external; a count of 1 is copied into the inline slot and stays owned	8 bytes
-00879B00	PArray	copy-assign through 006BC4C0, then copy the qword at +0x10	-
+0x001B7210	-	default n elements: +0x04 = 0xFFFFFFFF, +0x18 = 6, +0x1C..+0x27 = 0xFFFFFFFF, the rest 0, an index data block at +0x40 (0x00662A80)	0xC0 bytes
+0x001B80C0	PSharray	store a pointer at element n; 3 when n is not below the count	8 bytes
+0x001EF1A0	PSharray	resize without keeping the old elements: new storage is zeroed, old owned storage freed; called by 0x001EE1D0	8 bytes
+0x00598360	PArray	allocate (alignment 4), copy, the rest left as allocated	4 bytes
+0x0059FB10	PArray	resize; one body for the int and unsigned int vtables (thunk 0x005C9720)	4 bytes
+0x0059FCA0	PArray	set external, called by the loader 0x0059AAE0, 0x0059E300 and 0x0059E880	-
+0x005A5B40	-	copy n elements	4 bytes
+0x005A5BD0	-	copy n elements, duplicating the PString at +0x28	PAnimationChannelTarget (0x38)
+0x005A5CC0	-	copy n elements, duplicating the PString at +0x28	PAnimationConstantChannel (0x58)
+0x005A5DC0	-	copy n elements	PAnimationDataSourceListEntry (0x98)
+0x005AA3C0	PArray	copy-assign (copy 0x005A5B40)	4 bytes
+0x005AD2B0	PArray	allocate count elements, copy the kept ones (0x005A5BD0), default the rest (0x005BED40)	PAnimationChannelTarget (0x38)
+0x005AD330	PArray	allocate, copy (0x005A5CC0), default (0x005BEDC0)	PAnimationConstantChannel (0x58)
+0x005AD3B0	PArray	allocate, copy (0x005A5DC0), default (0x005BEE50)	PAnimationDataSourceListEntry (0x98)
+0x005AD440	PArray	allocate, copy, zero the rest	PAnimationEvent (8)
+0x005AD4E0	PArray	allocate, copy, zero the rest	PAnimationNetworkInstanceTarget (0x30)
+0x005AD840	PArray	allocate (alignment 16), copy, zero the rest	PQWord (16)
+0x005BED40	-	default n elements: +0x00 = 0x02CF8270, the rest 0	PAnimationChannelTarget (0x38)
+0x005BEDC0	-	default n elements: +0x00 = 0x02CF8270, the rest 0	PAnimationConstantChannel (0x58)
+0x005BEE50	-	default n elements: all 0	PAnimationDataSourceListEntry (0x98)
+0x005C0090	PArray	append one {qword, dword} element to the array at object +0x100; 1, or 0 when allocation fails	16 bytes
+0x005C8BF0	PArray	resize	float (4 bytes, alignment 4)
+0x005C8CA0	PArray	resize; frees owned old elements through 0x005B7E10	PAnimationChannelTarget (0x38)
+0x005C8D30	PArray	resize; frees owned old elements through 0x005B7FD0	PAnimationConstantChannel (0x58)
+0x005C8DC0	PArray	resize	PAnimationDataSourceListEntry (0x98)
+0x005C8E50	PArray	resize	PAnimationEvent (8)
+0x005C8EE0	PArray	resize	PAnimationNetworkInstanceTarget (0x30)
+0x005C91E0	PArray	resize	PQWord (16, alignment 16)
+0x005D8340	-	copy n elements; the PSharray at +0x38 through 0x006C5020	PMeshInstanceSegmentContext (0x48)
+0x005D87E0	-	copy n elements, duplicating the PString at +0x08	PShaderParameterDefinition (0x18)
+0x005DCD10	PArray	destroy: element destructor 0x00662EA0 on each owned element, free, zero	0x88 bytes
+0x005DE8C0	PArray	copy-assign, duplicating each string (0x001C19A0) and freeing owned old ones (0x001C2720)	PString (8)
+0x005DE950	PSharray	copy-assign (0x005FEE80)	4 bytes
+0x005E3040	PArray	allocate, copy, zero the rest	pointer (8)
+0x005E3250	PArray	allocate (alignment 4) and copy; the rest is left as allocated	PMatrix4 (0x40)
+0x005E32F0	PArray	allocate, copy (0x005D8340), default (0x005FD170)	PMeshInstanceSegmentContext (0x48)
+0x005E3820	PArray	allocate, copy (0x005D87E0), default (0x005FD240)	PShaderParameterDefinition (0x18)
+0x005E3AE0	PArray	allocate, duplicate the kept strings (0x001C19A0), zero the rest	PString (8)
+0x005FD170	-	default n elements: 0, with +0x28 = 0xFFFFFFFF	PMeshInstanceSegmentContext (0x48)
+0x005FD240	-	default n elements: 0, with the u16 at +0x02 = 0x3446	PShaderParameterDefinition (0x18)
+0x005FEE80	PSharray	storage for count elements (inline for 1), copy count	4 bytes
+0x005FEF00	PSharray	storage for count elements (inline for 1), copy m	unsigned int (4)
+0x0060C3F0	PArray	resize; one body shared by 14 pointer-element vtables	pointer (8)
+0x0060C5A0	PArray	resize	PMatrix4 (0x40, alignment 4)
+0x0060C630	PArray	resize; frees owned old elements through 0x001B70E0	PMeshInstanceSegmentContext (0x48)
+0x0060C990	PArray	resize; frees owned old elements through 0x005F03A0	PShaderParameterDefinition (0x18)
+0x0060CBD0	PArray	resize; frees owned old strings through 0x001C2720	PString (8)
+0x0060CC60	PSharray	resize	unsigned int (4)
+0x0060EDB0	PArray	set external, called by 0x0059E300 and 0x005F0720	-
+0x0060F2D0	PSharray	member-record +0x70 hook installed by 0x005EFB10 for PSharray<PUInt32>; calls 0x006C7D00	unsigned int (4)
+0x0061D030	PSharray	storage, copy m, zero the rest	16 bytes
+0x0061D100	PSharray	storage, copy m (0x00613770), default the rest (0x0061C250)	0x58 bytes
+0x00627CF0	PSharray	resize, called by 0x00628050	16 bytes
+0x00627DA0	PSharray	resize (storage 0x0061D100)	0x58 bytes
+0x00633880	PSharray	copy-assign (0x00639650), releasing the old storage through 0x0063DCA0	PString (8)
+0x00634350	-	allocate count entries of {0, 0, -1, -1}; called by 0x00638AE0	0x18 bytes
+0x00639650	PSharray	storage, duplicate count strings (0x001C19A0)	PString (8)
+0x006396C0	PSharray	storage, duplicate m strings, zero the rest	PString (8)
+0x0063D9C0	PSharray	resize; releases the old storage through 0x0063DCA0	PString (8)
+0x00646C00	PSharray	copy-assign (0x006A8C90)	8 bytes
+0x00671250	PSharray	element pointer: member-record +0x68 hook stored by the PSharray registrars such as 0x005EFB10	-
+0x00673130	PArray	set external: member-record +0x70 hook installed by 0x005B4E00 for PArray<unsigned int,4>	-
+0x0067AFD0	-	allocate count bytes (alignment 1) and copy the first m; called by 0x00627BD0	1 byte
+0x00691A60	PSharray	clear: free owned heap storage (count above 1), zero count and storage	-
+0x006A8C90	PSharray	storage for count elements (inline for 1), copy count	8 bytes
+0x006AE270	PArray	allocate, copy, default the rest to {0, 0x02CF8270}	PTypedObject (16)
+0x006AF6B0	PArray	resize	PTypedObject (16)
+0x006AF760	PArray	set external: member-record +0x70 hook	-
+0x006BA4D0	PArray	truncate to at most n, keeping bit 31; when owned, clear each dropped element's own array and free the storage at 0	nested array (16)
+0x006C0BA0	-	copy n elements	PShadowSplit (0xE8)
+0x006C1540	PArray	allocate, copy (0x006C0BA0), default (0x006C2320)	PShadowSplit (0xE8)
+0x006C2320	-	default the last 0x28 bytes of n elements: 0, with +0xC8 and +0xD0 = 10.0	PShadowSplit (0xE8)
+0x006C26E0	PArray	resize	PShadowSplit (0xE8)
+0x006C5020	PSharray	copy-construct: zero the count, then copy-assign (0x006A8C90)	8 bytes
+0x006C52D0	PSharray	clear, same body as 0x00691A60	-
+0x006C7450	PSharray	storage, copy m, zero the rest	pointer (8)
+0x006C7A40	PSharray	resize; one body shared by 6 pointer-element vtables, also called by 0x005C0320	pointer (8)
+0x006C7D00	PSharray	set external; a count of 1 is copied into the inline slot and stays owned	8 bytes
+0x00879B00	PArray	copy-assign through 0x006BC4C0, then copy the qword at +0x10	-

@@ -2,7 +2,7 @@
 title: "PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds"
 kind: "reference"
 category: "Game files and data tables"
-addresses: "002DF9A0, 01E0280C, 0032E400, 0032E620, 00249210, 00249180, 00384420, 002368D0, 00238260, 002385D0, 01E09F68, 00378540, 00268750, 002467A0, 00246A10, 00280750, 00280670, 002808D0, 00280980, 00280AD0, 003658F0, 003643A0, 0039C3F0, 0039C150, 0036FFF0, 0037CCC0, 00259DF0, 003DCBC0, 0029CED0, 002C8EE0, 00291C80, 00561390"
+addresses: "0x002DF9A0, 0x01E0280C, 0x0032E400, 0x0032E620, 0x00249210, 0x00249180, 0x00384420, 0x002368D0, 0x00238260, 0x002385D0, 0x01E09F68, 0x00378540, 0x00268750, 0x002467A0, 0x00246A10, 0x00280750, 0x00280670, 0x002808D0, 0x00280980, 0x00280AD0, 0x003658F0, 0x003643A0, 0x0039C3F0, 0x0039C150, 0x0036FFF0, 0x0037CCC0, 0x00259DF0, 0x003DCBC0, 0x0029CED0, 0x002C8EE0, 0x00291C80, 0x00561390"
 ---
 
 ## What it lists
@@ -24,7 +24,7 @@ in the sections below. The six small tables are on [their own page](small-bin-ta
 | `locales` | language folders the family ships in; `common` when the path has none |
 | `bytes` | total size of the family's files |
 | `lead` | the first four bytes as ASCII when printable, else as a little-endian dword; `varies` when the copies differ |
-| `kind_id` | resource kind and ids, `kind/ids`, from the path arrays `002DF9A0` installs, counting only entries whose `.fst` size equals the shipped file |
+| `kind_id` | resource kind and ids, `kind/ids`, from the path arrays `0x002DF9A0` installs, counting only entries whose `.fst` size equals the shipped file |
 | `named` | locale copies whose path occurs as a string in the executable |
 | `read_by` | for each copy, the languages whose arrays and size table resolve to it; `—` when none does |
 | `loader` | the function that requests the file, with the id base when the id is computed; `literal path` for a loader that opens a path string; `—` when no call site passes the family's kind and id as a constant or a constant base |
@@ -49,7 +49,7 @@ in the sections below. The six small tables are on [their own page](small-bin-ta
 
 ### How a family is reached
 
-- **Path arrays.** `002DF9A0` installs 41 path-array pointers at `0215F000`. Kinds 1, 2, 5, 7, 8, 9 and
+- **Path arrays.** `0x002DF9A0` installs 41 path-array pointers at `0x0215F000`. Kinds 1, 2, 5, 7, 8, 9 and
   12 get a per-language array; the others are shared. The `.fst` gives each entry's size, and the
   request path takes a file by kind and id ([file size tables](file-size-tables-fst.md)).
 - **Which copy.** In 47 families only the `in` copy is named, read by most languages, and the `ch`
@@ -63,33 +63,33 @@ in the sections below. The six small tables are on [their own page](small-bin-ta
   groups, `npcdic.bin`, `planmapname.bin` and the menu-map files. No `uk` folder ships and the UK size
   table marks those entries −1, so in UK those files are never read.
 - **`in_sdver`.** The `in_sdver` copies of the four `*pack_ys` files, like the other `in_sdver` paths,
-  are named only in a replacement list `002DF9A0` writes over the kind 7 array when its second argument is 0.
-  That argument is the dword `01E0280C`, which the image initialises to 1 and no instruction writes
-  (its readers are `0022A0B0`, which passes it, and `002465D0`); the replacement never runs.
+  are named only in a replacement list `0x002DF9A0` writes over the kind 7 array when its second argument is 0.
+  That argument is the dword `0x01E0280C`, which the image initialises to 1 and no instruction writes
+  (its readers are `0x0022A0B0`, which passes it, and `0x002465D0`); the replacement never runs.
 
 ### Request entries
 
 The `loader` column comes from every call of the request entries, with kind and id followed back to
-their constants: `0032E400` (size) and `0032E620` (request), `0051ED10`, `0024AB90`, the menu-set
-wrappers `00249180`, `00249210`, `00249320`, `00249350`, `00249380`, `002493D0` (kind in `edx`, id in
-`r8d`), and the kind-2 entry `00384420` (id in `ecx`). Computed ids were read from the callers' bodies:
+their constants: `0x0032E400` (size) and `0x0032E620` (request), `0x0051ED10`, `0x0024AB90`, the menu-set
+wrappers `0x00249180`, `0x00249210`, `0x00249320`, `0x00249350`, `0x00249380`, `0x002493D0` (kind in `edx`, id in
+`r8d`), and the kind-2 entry `0x00384420` (id in `ecx`). Computed ids were read from the callers' bodies:
 
 | Loader | Id | Family |
 |---|---|---|
-| `002385D0` | the byte table `01E09F68[group]` (`0xFF`, 20-23, 1, 43-56, 24, 25, 62-67) | text groups 1 to 27 |
-| `00238260` | `0x47 +` board | `board_1.bin` to `board_12.bin` |
-| `002EA530` | `0x0B +` i, i = 0 to 9 | `charseinfo_*.bin` |
-| `002CEAE0` | `0x10 +` byte `[0209AC30] + 0xB2D` | `face_guest#.bin` |
-| `003C9950` | `0x0E +` byte `+0xC1` of its object | `map_efe#.bin` |
-| `00291C80` | `0x98` to `0xA1` | `itemgra_c.tm2`, `item_clut.bin`, `Item_Gra00` to `07.as7` |
-| `002C8EE0` | `0x74`, `0x75` | `monotone_chr.bin`, `Char_Silhouette.as7` |
-| `003800D0` | `0x12A +` n, or `0x129` | `menuquest#.bin`, `menuquest.nfs` |
-| `00575C30` | the six-entry table `00D23740` | the six `hctg` handbook files |
-| `003C1DF0` | `0x496 +` n | `menumap_guide#.bin` |
-| `003C1F00` | `0x142 +` n | `menumap_sub#.bin` |
+| `0x002385D0` | the byte table `0x01E09F68[group]` (`0xFF`, 20-23, 1, 43-56, 24, 25, 62-67) | text groups 1 to 27 |
+| `0x00238260` | `0x47 +` board | `board_1.bin` to `board_12.bin` |
+| `0x002EA530` | `0x0B +` i, i = 0 to 9 | `charseinfo_*.bin` |
+| `0x002CEAE0` | `0x10 +` byte `[0x0209AC30] + 0xB2D` | `face_guest#.bin` |
+| `0x003C9950` | `0x0E +` byte `+0xC1` of its object | `map_efe#.bin` |
+| `0x00291C80` | `0x98` to `0xA1` | `itemgra_c.tm2`, `item_clut.bin`, `Item_Gra00` to `07.as7` |
+| `0x002C8EE0` | `0x74`, `0x75` | `monotone_chr.bin`, `Char_Silhouette.as7` |
+| `0x003800D0` | `0x12A +` n, or `0x129` | `menuquest#.bin`, `menuquest.nfs` |
+| `0x00575C30` | the six-entry table `0x00D23740` | the six `hctg` handbook files |
+| `0x003C1DF0` | `0x496 +` n | `menumap_guide#.bin` |
+| `0x003C1F00` | `0x142 +` n | `menumap_sub#.bin` |
 
-The kind-2 entry `00384420` has three callers: the battle-pack load (`003843F0` from `002368D0` and
-`00236C30`, id `0x13`), the board load and the text-group load. No call site passes another kind-2 id,
+The kind-2 entry `0x00384420` has three callers: the battle-pack load (`0x003843F0` from `0x002368D0` and
+`0x00236C30`, id `0x13`), the board load and the text-group load. No call site passes another kind-2 id,
 so the loose battle tables have no loader.
 
 ### Pack directories
@@ -104,17 +104,17 @@ start, padded with `0xFFFFFFFF`, then the sub-files.
 
 | File | Directory | Used entries | Contents | Binder and destination |
 |---|---|---|---|---|
-| `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `00246A10` binds entries 0-4 through `0024A1D0` into the five texture objects `002467A0` set up |
-| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `00280670` binds entries 0-9 into `[0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388` |
-| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `00280980` stores entries 0-22 at `[0209AC30] + 8 × i` and relocates each with `002A00F0` |
-| `clutpack_ys.bin` | 16 | 4 | CLT2 | `00280AD0` stores entries 0-3 at `[0209AC30] + 0x390`..`0x3A8` |
-| `fontpack_fs.bin` | 16 | 7 | font tables | `003643A0`: entry 0 to `+0x08` (rebased by `00366080`), 1 to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130` for faces `0xB`, `0xD`, `0xE`, `0xF`; the binder skips entry 3, which repeats entry 2's offset in all six files |
-| `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0039C150`: entries 0-5 to `02AEE810`, `02AEE850`, `02AEE870`, `02AEE878`, `02AEE880`, `02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `02AEE848` and over `02AEE880` |
+| `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `0x00246A10` binds entries 0-4 through `0x0024A1D0` into the five texture objects `0x002467A0` set up |
+| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `0x00280670` binds entries 0-9 into `[0x0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388` |
+| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `0x00280980` stores entries 0-22 at `[0x0209AC30] + 8 × i` and relocates each with `0x002A00F0` |
+| `clutpack_ys.bin` | 16 | 4 | CLT2 | `0x00280AD0` stores entries 0-3 at `[0x0209AC30] + 0x390`..`0x3A8` |
+| `fontpack_fs.bin` | 16 | 7 | font tables | `0x003643A0`: entry 0 to `+0x08` (rebased by `0x00366080`), 1 to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130` for faces `0xB`, `0xD`, `0xE`, `0xF`; the binder skips entry 3, which repeats entry 2's offset in all six files |
+| `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0x0039C150`: entries 0-5 to `0x02AEE810`, `0x02AEE850`, `0x02AEE870`, `0x02AEE878`, `0x02AEE880`, `0x02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `0x02AEE848` and over `0x02AEE880` |
 
-The font-table destinations are relative to the font object `[022CBE00]`. No binder checks an entry
-against `0xFFFFFFFF` except `0039C150`'s entry 6, so a directory must keep every entry its binder reads.
-`002808D0` requests `mrppack_ys.bin` and `clutpack_ys.bin` without a callback; `00253780` calls
-`00280980`, which ends by calling `00280AD0`.
+The font-table destinations are relative to the font object `[0x022CBE00]`. No binder checks an entry
+against `0xFFFFFFFF` except `0x0039C150`'s entry 6, so a directory must keep every entry its binder reads.
+`0x002808D0` requests `mrppack_ys.bin` and `clutpack_ys.bin` without a callback; `0x00253780` calls
+`0x00280980`, which ends by calling `0x00280AD0`.
 
 ### Families no path names
 

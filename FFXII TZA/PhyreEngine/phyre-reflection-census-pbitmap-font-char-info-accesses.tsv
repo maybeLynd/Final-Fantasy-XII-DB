@@ -1,8 +1,8 @@
 function	name	site	disp	kind	instruction	route	note
-0067C660	FUN_0067c660	0067C667	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0067C660	
-0067C660	FUN_0067c660	0067C66A	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0067C660	
-0067C660	FUN_0067c660	0067C66E	0x14	w	mov qword ptr [rdx + 0x14], rax	ctorrdx-seeded 0067C660	
-0067C660	FUN_0067c660	0067C672	0x2c	w	mov byte ptr [rdx + 0x2c], al	ctorrdx-seeded 0067C660	
-0067C660	FUN_0067c660	0067C675	0x10	w	mov dword ptr [rdx + 0x10], eax	ctorrdx-seeded 0067C660	
-0067C660	FUN_0067c660	0067C678	0x1c	w	mov qword ptr [rdx + 0x1c], rax	ctorrdx-seeded 0067C660	
-0067C660	FUN_0067c660	0067C67C	0x24	w	mov qword ptr [rdx + 0x24], rax	ctorrdx-seeded 0067C660	
+0x0067C660	FUN_0067c660	0x0067C667	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0x0067C660	
+0x0067C660	FUN_0067c660	0x0067C66A	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0x0067C660	
+0x0067C660	FUN_0067c660	0x0067C66E	0x14	w	mov qword ptr [rdx + 0x14], rax	ctorrdx-seeded 0x0067C660	
+0x0067C660	FUN_0067c660	0x0067C672	0x2c	w	mov byte ptr [rdx + 0x2c], al	ctorrdx-seeded 0x0067C660	
+0x0067C660	FUN_0067c660	0x0067C675	0x10	w	mov dword ptr [rdx + 0x10], eax	ctorrdx-seeded 0x0067C660	
+0x0067C660	FUN_0067c660	0x0067C678	0x1c	w	mov qword ptr [rdx + 0x1c], rax	ctorrdx-seeded 0x0067C660	
+0x0067C660	FUN_0067c660	0x0067C67C	0x24	w	mov qword ptr [rdx + 0x24], rax	ctorrdx-seeded 0x0067C660	

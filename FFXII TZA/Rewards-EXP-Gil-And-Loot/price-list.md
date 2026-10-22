@@ -2,12 +2,12 @@
 title: "Price list: every script price id with its gil amount and the scripts that ask for it"
 kind: "reference"
 category: "Rewards: EXP, LP, gil and loot"
-addresses: "02EBF060, 0031C5D0, 0031D7B0, 0034B000, 0032A880, 0030A0F0"
+addresses: "0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0F0"
 ---
 
 ## What it lists
 
-`price-list.tsv` holds one line for each of the 128 rows of the price table that registry slot `02EBF060` reaches
+`price-list.tsv` holds one line for each of the 128 rows of the price table that registry slot `0x02EBF060` reaches
 (`battle_pack.bin` directory entry `+0x74`). Row *n* is price id `0xB000` + *n*, inventory class 16
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): a gil amount with no item behind it,
 which an event script reads with `getprice`. The aerodrome counters of
@@ -30,11 +30,11 @@ script section's int pool (`+0x20`, [EBP script image](../EBP-Script-Files/ebp-s
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | price | gil; `0031C5D0`'s class-16 arm copies it to the query record's price `+0x28` (`0031D7B0`-`0031D7F4`) |
+| `+0x00` | `u32` | price | gil; `0x0031C5D0`'s class-16 arm copies it to the query record's price `+0x28` (`0x0031D7B0`-`0x0031D7F4`) |
 
-`getprice(id)` (verb `0x2F0`, `0034B000`) pops the id and returns `0032A880(id)`: `0030A0F0` fills a class-1 query
-record for the id and returns its `+0x28`, and `0032A880` turns a failed fill (-1) into 0. The table is read only
-by that arm, the validator `00322C50` and the loader `00236C30`.
+`getprice(id)` (verb `0x2F0`, `0x0034B000`) pops the id and returns `0x0032A880(id)`: `0x0030A0F0` fills a class-1 query
+record for the id and returns its `+0x28`, and `0x0032A880` turns a failed fill (-1) into 0. The table is read only
+by that arm, the validator `0x00322C50` and the loader `0x00236C30`.
 
 ### Checks
 

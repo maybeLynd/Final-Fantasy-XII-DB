@@ -1,13 +1,13 @@
 function	name	site	disp	kind	instruction	route	note
-005DBF20	FUN_005dbf20	005DBF22	0x0	w	mov qword ptr [rcx], rax	ctorrdx-seeded 00611D60	
-005DBF20	FUN_005dbf20	005DBF25	0x8	w	mov byte ptr [rcx + 8], al	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611D8B	0x10	w	mov qword ptr [rbx + 0x10], rcx	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611D8F	0x18	w	mov dword ptr [rbx + 0x18], ecx	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611D9B	0x20	w	mov qword ptr [rax], rcx	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611D9E	0x28	w	mov dword ptr [rax + 8], ecx	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611DA1	0x2c	w	mov dword ptr [rax + 0xc], ecx	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611DA4	0x18	w	mov dword ptr [rbx + 0x18], 1	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611DAB	0x48	w	mov dword ptr [rbx + 0x48], ecx	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611DB0	0x30	w	mov qword ptr [rbx + 0x30], rax	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611DB4	0x38	w	mov qword ptr [rbx + 0x38], rax	ctorrdx-seeded 00611D60	
-00611D60	FUN_00611d60	00611DB8	0x40	w	mov qword ptr [rbx + 0x40], rax	ctorrdx-seeded 00611D60	
+0x005DBF20	FUN_005dbf20	0x005DBF22	0x0	w	mov qword ptr [rcx], rax	ctorrdx-seeded 0x00611D60	
+0x005DBF20	FUN_005dbf20	0x005DBF25	0x8	w	mov byte ptr [rcx + 8], al	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611D8B	0x10	w	mov qword ptr [rbx + 0x10], rcx	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611D8F	0x18	w	mov dword ptr [rbx + 0x18], ecx	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611D9B	0x20	w	mov qword ptr [rax], rcx	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611D9E	0x28	w	mov dword ptr [rax + 8], ecx	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611DA1	0x2c	w	mov dword ptr [rax + 0xc], ecx	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611DA4	0x18	w	mov dword ptr [rbx + 0x18], 1	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611DAB	0x48	w	mov dword ptr [rbx + 0x48], ecx	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611DB0	0x30	w	mov qword ptr [rbx + 0x30], rax	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611DB4	0x38	w	mov qword ptr [rbx + 0x38], rax	ctorrdx-seeded 0x00611D60	
+0x00611D60	FUN_00611d60	0x00611DB8	0x40	w	mov qword ptr [rbx + 0x40], rax	ctorrdx-seeded 0x00611D60	

@@ -1,687 +1,687 @@
 class_leaf	class	member	offset	type	attrs	class_obj	type_obj	site	caller
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_phyreMarker	0x0	unsigned int	0x08	02CA9FA0	01F2E5A0	0059846E	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_size	0x4	unsigned int	0x08	02CA9FA0	01F2E5A0	005984E1	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_instanceListCount	0x10	unsigned int	0x08	02CA9FA0	01F2E5A0	00598554	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_packedNamespaceSize	0x8	unsigned int	0x08	02CA9FA0	01F2E5A0	005985C7	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_arrayFixupSize	0x14	unsigned int	0x08	02CA9FA0	01F2E5A0	0059863A	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_arrayFixupCount	0x18	unsigned int	0x08	02CA9FA0	01F2E5A0	005986AD	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerFixupSize	0x1C	unsigned int	0x08	02CA9FA0	01F2E5A0	00598720	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerFixupCount	0x20	unsigned int	0x08	02CA9FA0	01F2E5A0	00598793	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerArrayFixupSize	0x24	unsigned int	0x08	02CA9FA0	01F2E5A0	00598806	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerArrayFixupCount	0x28	unsigned int	0x08	02CA9FA0	01F2E5A0	00598879	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointersInArraysCount	0x2C	unsigned int	0x08	02CA9FA0	01F2E5A0	005988EC	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_userFixupCount	0x30	unsigned int	0x08	02CA9FA0	01F2E5A0	0059895F	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_userFixupDataSize	0x34	unsigned int	0x08	02CA9FA0	01F2E5A0	005989D2	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_totalDataSize	0x38	unsigned int	0x08	02CA9FA0	01F2E5A0	00598A45	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_headerClassInstanceCount	0x3C	unsigned int	0x08	02CA9FA0	01F2E5A0	00598AB8	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_headerClassChildCount	0x40	unsigned int	0x08	02CA9FA0	01F2E5A0	00598B2B	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_platformID	0xC	unsigned int	0x08	02CA9FA0	01F2E5A0	00598B9E	005983E0
-PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_physicsEngineID	0x44	unsigned int	0x08	02CA9FA0	01F2E5A0	00598C11	005983E0
-PClusterHeaderD3D11	PSerialization::PBinary::VPClusterHeaderD3D11	m_indexBufferSize	0x48	unsigned int	0x00	02CA9DA0	01F2E5A0	00598CDE	00598C50
-PClusterHeaderD3D11	PSerialization::PBinary::VPClusterHeaderD3D11	m_vertexBufferSize	0x4C	unsigned int	0x00	02CA9DA0	01F2E5A0	00598D4D	00598C50
-PClusterHeaderD3D11	PSerialization::PBinary::VPClusterHeaderD3D11	m_maxTextureBufferSize	0x50	unsigned int	0x00	02CA9DA0	01F2E5A0	00598DBC	00598C50
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_classID	0x0	unsigned int	0x08	02CA9EA0	01F2E5A0	00598E7E	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_count	0x4	unsigned int	0x08	02CA9EA0	01F2E5A0	00598EF1	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_size	0x8	unsigned int	0x08	02CA9EA0	01F2E5A0	00598F64	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_objectsSize	0xC	unsigned int	0x08	02CA9EA0	01F2E5A0	00598FD7	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_arraysSize	0x10	unsigned int	0x08	02CA9EA0	01F2E5A0	0059904A	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_pointersInArraysCount	0x14	unsigned int	0x08	02CA9EA0	01F2E5A0	005990BD	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_arrayFixupCount	0x18	unsigned int	0x08	02CA9EA0	01F2E5A0	00599130	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_pointerFixupCount	0x1C	unsigned int	0x08	02CA9EA0	01F2E5A0	005991A3	00598DF0
-PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_pointerArrayFixupCount	0x20	unsigned int	0x08	02CA9EA0	01F2E5A0	00599216	00598DF0
-PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationSet	0x20	PAnimation::VPAnimationSet	0x12	02CAD140	02CAE660	005AD994	005AD8F0
-PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationWeightedBlenderController	0x38	PAnimation::VPAnimationWeightedBlenderController	0x10	02CAD140	02CAEDE0	005ADA9F	005AD8F0
-PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationTargetBlenderController	0x70	PAnimation::VPAnimationTargetBlenderController	0x10	02CAD140	02CAECE0	005ADB11	005AD8F0
-PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationNetworkInstance	0x90	PAnimation::VPAnimationNetworkInstance	0x10	02CAD140	02CAE550	005ADB83	005AD8F0
-PAnimationChannel	PAnimation::VPAnimationChannel	m_times	0x48	PAnimation::VPAnimationChannelTimes	0x12	02CAD440	02CAD740	005AF131	005AF0A0
-PAnimationChannel	PAnimation::VPAnimationChannel	m_keyCount	0x60	unsigned int	0x10	02CAD440	01F2E5A0	005AF242	005AF0A0
-PAnimationChannelBase	PAnimation::VPAnimationChannelBase	m_keyType	0x38	PAnimation::VPAnimationKeyDataType	0x12	02CAD540	02CB2950	005AF30D	005AF280
-PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_instanceObjectType	0x0	PClassDescriptorForClassDescriptor	0x12	02CAD640	02CF8470	005AF76F	005AF3B0
-PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_instanceObject	0x8	PClassDescriptorBase	0x12	02CAD640	02CF8270	005AF7E2	005AF3B0
-PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_baseObjectType	0x10	PClassDescriptorForClassDescriptor	0x12	02CAD640	02CF8470	005AF854	005AF3B0
-PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_baseObject	0x18	PClassDescriptorBase	0x12	02CAD640	02CF8270	005AF8C7	005AF3B0
-PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_name	0x28	VPString	0x10	02CAD640	02E4D630	005AF9AB	005AF3B0
-PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_index	0x30	unsigned int	0x10	02CAD640	01F2E5A0	005AFA1E	005AF3B0
-PAnimationChannelTimes	PAnimation::VPAnimationChannelTimes	m_keyCount	0x0	unsigned int	0x10	02CAD740	01F2E5A0	005AFB8C	005AFA60
-PAnimationClip	PAnimation::VPAnimationClip	m_constantChannelStartTime	0x28	float	0x10	02CAD840	01F2E690	005B0569	005AFBC0
-PAnimationClip	PAnimation::VPAnimationClip	m_constantChannelEndTime	0x2C	float	0x10	02CAD840	01F2E690	005B05DC	005AFBC0
-PAnimationClip	PAnimation::VPAnimationClip	m_binding	0x0	PAnimation::VPAnimationClipBinding	0x12	02CAD840	02CADB40	005B064A	005AFBC0
-PAnimationClip	PAnimation::VPAnimationClip	m_name	0x30	VPString	0x10	02CAD840	02E4D630	005B06BC	005AFBC0
-PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_spuBindingSize	0x0	unsigned short	0x10	02CADB40	01F2E500	005B0795	005B0700
-PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_channelCount	0x2	unsigned short	0x10	02CADB40	01F2E500	005B0808	005B0700
-PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_constantChannelCount	0x4	unsigned short	0x10	02CADB40	01F2E500	005B087B	005B0700
-PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_interpCountLength	0x6	unsigned short	0x10	02CADB40	01F2E500	005B08EE	005B0700
-PAnimationClipBindingChannelMap	PAnimation::PAnimationClipBinding::VPAnimationClipBindingChannelMap	m_destSlotArrayIndex	0x0	short	0x10	02CAD940	01F2E4B0	005B09C5	005B0930
-PAnimationClipBindingChannelMap	PAnimation::PAnimationClipBinding::VPAnimationClipBindingChannelMap	m_interp	0x2	unsigned short	0x10	02CAD940	01F2E500	005B0A38	005B0930
-PAnimationClipBindingDataBlockCache	PAnimation::PAnimationClipBinding::VPAnimationClipBindingDataBlockCache	m_sourceChannelIndex	0x14	unsigned short	0x10	02CADA40	01F2E500	005B0B09	005B0A70
-PAnimationClipBindingDataBlockCache	PAnimation::PAnimationClipBinding::VPAnimationClipBindingDataBlockCache	m_valueWidthAndKeyCount	0x10	unsigned int	0x10	02CADA40	01F2E5A0	005B0B7C	005B0A70
-PAnimationController	PAnimation::VPAnimationController	m_animationClip	0x18	PAnimation::VPAnimationClip	0x12	02CADD50	02CAD840	005B0D01	005B0C70
-PAnimationController	PAnimation::VPAnimationController	m_timeController	0x20	PAnimation::VPTimeController	0x12	02CADD50	02CAEEE0	005B0D73	005B0C70
-PAnimationDataSource	PAnimation::VPAnimationDataSource	m_animationSet	0x10	PAnimation::VPAnimationSet	0x12	02CADE50	02CAE660	005B0E38	005B0DB0
-PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_dataSource	0x0	PAnimation::VPAnimationDataSource	0x12	02CAE350	02CADE50	005B0EFD	005B0E70
-PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_inputCount	0x8	unsigned int	0x10	02CAE350	01F2E5A0	005B0F70	005B0E70
-PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_destSlotArray	0x8C	unsigned int	0x10	02CAE350	01F2E5A0	005B1058	005B0E70
-PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_persistentBufferOffset	0x90	unsigned int	0x10	02CAE350	01F2E5A0	005B10CB	005B0E70
-PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_preprocessBufferOffset	0x94	unsigned int	0x10	02CAE350	01F2E5A0	005B113E	005B0E70
-PAnimationEvent	PAnimation::VPAnimationEvent	m_time	0x0	float	0x10	02CAE050	01F2E690	005B120E	005B1180
-PAnimationEvent	PAnimation::VPAnimationEvent	m_id	0x4	unsigned int	0x10	02CAE050	01F2E5A0	005B1281	005B1180
-PAnimationEventController	PAnimation::VPAnimationEventController	m_animationEventList	0x18	PAnimation::VPAnimationEventList	0x12	02CADF50	02CAE150	005B1351	005B12C0
-PAnimationEventController	PAnimation::VPAnimationEventController	m_timeController	0x20	PAnimation::VPTimeController	0x12	02CADF50	02CAEEE0	005B13C3	005B12C0
-PAnimationNetworkInstance	PAnimation::VPAnimationNetworkInstance	m_targetBlender	0x30	PAnimation::VPAnimationTargetBlenderController	0x12	02CAE550	02CAECE0	005B16A3	005B14E0
-PAnimationNetworkInstance	PAnimation::VPAnimationNetworkInstance	m_slotArrayElementsRequired	0x38	unsigned int	0x10	02CAE550	01F2E5A0	005B1716	005B14E0
-PAnimationNetworkInstance	PAnimation::VPAnimationNetworkInstance	m_preprocessBufferSize	0x50	unsigned int	0x10	02CAE550	01F2E5A0	005B1827	005B14E0
-PAnimationSlotFilter	PAnimation::VPAnimationSlotFilter	m_animDataSource	0x28	PAnimation::VPAnimationDataSource	0x12	02CAEA60	02CADE50	005B1EBF	005B1D90
-PAnimationSlotFilterDeferredLoad	PAnimation::VPAnimationSlotFilterDeferredLoad	m_keyType	0x0	PAnimation::VPAnimationKeyDataType	0x12	02CAE960	02CB2950	005B201E	005B1F90
-PAnimationSlotFilterDeferredLoad	PAnimation::VPAnimationSlotFilterDeferredLoad	m_nodeName	0x8	VPString	0x10	02CAE960	02E4D630	005B2090	005B1F90
-PAnimationSlotListIndex	PAnimation::VPAnimationSlotListIndex	m_animKeyType	0x0	PAnimation::VPAnimationKeyDataType	0x12	02CAE760	02CB2950	005B215E	005B20D0
-PAnimationSlotListIndex	PAnimation::VPAnimationSlotListIndex	m_targetIndex	0xC	unsigned int	0x10	02CAE760	01F2E5A0	005B2243	005B20D0
-PAnimationSlotListIndex	PAnimation::VPAnimationSlotListIndex	m_nodeCentricReIndex	0x10	unsigned int	0x10	02CAE760	01F2E5A0	005B22B6	005B20D0
-PAnimationSpuTargetBlenderController	PAnimation::VPAnimationSpuTargetBlenderController	m_animDataSource	0x18	PAnimation::VPAnimationDataSource	0x12	02CAEBE0	02CADE50	005B2378	005B22F0
-PAnimationTargetBlenderController	PAnimation::VPAnimationTargetBlenderController	m_animDataSource	0x18	PAnimation::VPAnimationDataSource	0x12	02CAECE0	02CADE50	005B2438	005B23B0
-PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_animationClip	0x0	PAnimation::VPAnimationClip	0x12	02CAD040	02CAD840	005B25ED	005B2560
-PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_timeIntervalController	0x10	PAnimation::VPTimeIntervalController	0x10	02CAD040	02CAEFE0	005B265F	005B2560
-PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_timeScaleOffsetController	0x38	PAnimation::VPTimeScaleOffsetController	0x10	02CAD040	02CAF0E0	005B26D1	005B2560
-PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_animationController	0x58	PAnimation::VPAnimationController	0x10	02CAD040	02CADD50	005B2743	005B2560
-PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_speed	0xC	float	0x10	02CAD040	01F2E690	005B27B6	005B2560
-PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_weight	0x8	float	0x10	02CAD040	01F2E690	005B2829	005B2560
-PTimeIntervalController	PAnimation::VPTimeIntervalController	m_parent	0x10	PAnimation::VPTimeController	0x12	02CAEFE0	02CAEEE0	005B2A21	005B2990
-PTimeIntervalController	PAnimation::VPTimeIntervalController	m_parentBase	0x18	float	0x10	02CAEFE0	01F2E690	005B2A94	005B2990
-PTimeIntervalController	PAnimation::VPTimeIntervalController	m_localBase	0x1C	float	0x10	02CAEFE0	01F2E690	005B2B07	005B2990
-PTimeIntervalController	PAnimation::VPTimeIntervalController	m_localRange	0x20	float	0x10	02CAEFE0	01F2E690	005B2B7A	005B2990
-PTimeScaleOffsetController	PAnimation::VPTimeScaleOffsetController	m_parent	0x10	PAnimation::VPTimeController	0x12	02CAF0E0	02CAEEE0	005B2C41	005B2BB0
-PTimeScaleOffsetController	PAnimation::VPTimeScaleOffsetController	m_scale	0x18	float	0x10	02CAF0E0	01F2E690	005B2CB4	005B2BB0
-PTimeScaleOffsetController	PAnimation::VPTimeScaleOffsetController	m_offset	0x1C	float	0x10	02CAF0E0	01F2E690	005B2D27	005B2BB0
-PArray	I$03::V?$PArray	m_count	0x0	unsigned int	0x00	02CB3B50	01F2E5A0	005B4F9A	005B4E00
-PArray	M$03::V?$PArray	m_count	0x0	unsigned int	0x00	02CB3920	01F2E5A0	005B52CA	005B5130
-PArray	$07::Phyre::PAnimation::PEAVPAnimationChannel::V?$PArray	m_count	0x0	unsigned int	0x00	02CB3FB0	01F2E5A0	005B55FA	005B5460
-PArray	$07::Phyre::PAnimation::PEAVPAnimationDataSource::V?$PArray	m_count	0x0	unsigned int	0x00	02CB4F00	01F2E5A0	005B593A	005B57A0
-PArray	$07::Phyre::PAnimation::VPAnimationChannelTarget::V?$PArray	m_count	0x0	unsigned int	0x00	02CB4640	01F2E5A0	005B5C7A	005B5AE0
-PArray	$07::Phyre::PAnimation::VPAnimationConstantChannel::V?$PArray	m_count	0x0	unsigned int	0x00	02CB41E0	01F2E5A0	005B5FAA	005B5E10
-PArray	$07::Phyre::PAnimation::VPAnimationDataSourceListEntry::V?$PArray	m_count	0x0	unsigned int	0x00	02CB5130	01F2E5A0	005B62DA	005B6140
-PArray	$03::Phyre::PAnimation::VPAnimationEvent::V?$PArray	m_count	0x0	unsigned int	0x00	02CB4AA0	01F2E5A0	005B660A	005B6470
-PArray	$07::Phyre::PAnimation::VPAnimationNetworkInstanceTarget::V?$PArray	m_count	0x0	unsigned int	0x00	02CB5360	01F2E5A0	005B693A	005B67A0
-PArray	$07::Phyre::PAnimation::VPAnimationSlotArray::V?$PArray	m_count	0x0	unsigned int	0x00	02CB5590	01F2E5A0	005B6C6A	005B6AD0
-PArray	$07::Phyre::PAnimation::VPAnimationSlotFilterDeferredLoad::V?$PArray	m_count	0x0	unsigned int	0x00	02CB4CD0	01F2E5A0	005B6F9A	005B6E00
-PArray	$07::Phyre::PAnimation::VPAnimationSlotListIndex::V?$PArray	m_count	0x0	unsigned int	0x00	02CB4870	01F2E5A0	005B72CA	005B7130
-PArray	$07::Phyre::PAnimation::VPBlendableAnimationSource::V?$PArray	m_count	0x0	unsigned int	0x00	02CB57C0	01F2E5A0	005B75FA	005B7460
-PArray	$0BA::Phyre::VPQWord::V?$PArray	m_count	0x0	unsigned int	0x00	02CB3D80	01F2E5A0	005B792A	005B7790
-PSharray	Phyre::PAnimation::PEAVPAnimationClip::V?$PSharray	m_count	0x0	unsigned int	0x00	02CB4410	01F2E5A0	005B7D28	005B7AC0
-PConstantBufferBase	PRendering::VPConstantBufferBase	m_size	0x0	unsigned int	0x10	02CB6380	01F2E5A0	005E3BF5	005E3B70
-PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantIndex	0x0	unsigned int	0x00	02CB7BA0	01F2E5A0	005E3CBA	005E3C30
-PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantVpIndex	0x4	unsigned int	0x00	02CB7BA0	01F2E5A0	005E3D29	005E3C30
-PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantFpIndex	0x8	unsigned int	0x00	02CB7BA0	01F2E5A0	005E3D98	005E3C30
-PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantGsIndex	0xC	unsigned int	0x00	02CB7BA0	01F2E5A0	005E3E07	005E3C30
-PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantCsIndex	0x10	unsigned int	0x00	02CB7BA0	01F2E5A0	005E3E76	005E3C30
-PDynamicMeshInstance	PRendering::VPDynamicMeshInstance	m_dynamicMesh	0x8	PGeometry::VPDynamicMesh	0x0A	02CB6580	02D3A140	005E3F38	005E3EB0
-PEffect	PRendering::VPEffect	m_supportedLightMask	0x0	unsigned int	0x00	02CB6680	01F2E5A0	005E3FFA	005E3F70
-PEffect	PRendering::VPEffect	m_supportedShadowCasterMask	0x4	unsigned int	0x00	02CB6680	01F2E5A0	005E4069	005E3F70
-PEffect	PRendering::VPEffect	m_effectFile	0x8	VPString	0x00	02CB6680	02E4D630	005E40D7	005E3F70
-PEffect	PRendering::VPEffect	m_effectFileFromBasePath	0x10	VPString	0x00	02CB6680	02E4D630	005E4145	005E3F70
-PEffect	PRendering::VPEffect	m_effectSource	0x68	VPString	0x00	02CB6680	02E4D630	005E41B3	005E3F70
-PEffect	PRendering::VPEffect	m_maxLightCount	0x70	unsigned int	0x00	02CB6680	01F2E5A0	005E450B	005E3F70
-PEffect	PRendering::VPEffect	m_numSupportedShaderLODLevels	0x74	unsigned int	0x00	02CB6680	01F2E5A0	005E457A	005E3F70
-PEffectVariant	PRendering::VPEffectVariant	m_effect	0x0	PRendering::VPEffect	0x02	02CB6780	02CB6680	005E4642	005E45B0
-PEffectVariant	PRendering::VPEffectVariant	m_largestShaderPassCount	0x38	unsigned short	0x00	02CB6780	01F2E500	005E4867	005E45B0
-PEffectVariant	PRendering::VPEffectVariant	m_tweakableParameterBufferSize	0x60	unsigned short	0x00	02CB6780	01F2E500	005E49F3	005E45B0
-PEffectVariant	PRendering::VPEffectVariant	m_untweakableParameterBufferSize	0x62	unsigned short	0x00	02CB6780	01F2E500	005E4A62	005E45B0
-PMaterial	PRendering::VPMaterial	m_effectVariant	0x0	PRendering::VPEffectVariant	0x02	02CB6B80	02CB6780	005E4B37	005E4AA0
-PMaterial	PRendering::VPMaterial	m_parameterBuffer	0x8	PRendering::VPParameterBuffer	0x02	02CB6B80	02CB7480	005E4BA9	005E4AA0
-PMaterial	PRendering::VPMaterial	m_flag	0x10	unsigned int	0x00	02CB6B80	01F2E5A0	005E4C18	005E4AA0
-PMaterial	PRendering::VPMaterial	m_remapFrom	0x18	PRendering::VPSceneRenderPassType	0x02	02CB6B80	02CE7900	005E4C8B	005E4AA0
-PMaterial	PRendering::VPMaterial	m_remapTo	0x20	PRendering::VPSceneRenderPassType	0x02	02CB6B80	02CE7900	005E4CFE	005E4AA0
-PMaterialSwitch	PRendering::VPMaterialSwitch	m_name	0x0	VPString	0x00	02CB6A80	02E4D630	005E5359	005E52D0
-PMaterialSwitch	PRendering::VPMaterialSwitch	m_value	0x8	VPString	0x00	02CB6A80	02E4D630	005E53C7	005E52D0
-PMeshInstance	PRendering::VPMeshInstance	m_mesh	0x0	PGeometry::VPMesh	0x0A	02CB6E80	02D3A640	005E5497	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_localToWorldMatrix	0x8	VPWorldMatrix	0x0A	02CB6E80	02E404B0	005E5509	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_materialSet	0x20	PGeometry::VPMaterialSet	0x0A	02CB6E80	02D3A440	005E5619	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_instanceSegment	0x28	PGeometry::VPMeshSegment	0x0A	02CB6E80	02D3A940	005E568B	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_dynamicMeshInstance	0x30	PRendering::VPDynamicMeshInstance	0x0A	02CB6E80	02CB6580	005E56FD	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_bounds	0x38	PRendering::VPMeshInstanceBounds	0x0A	02CB6E80	02CB7080	005E576F	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_lodLevel	0x40	PLOD::VPLODLevel	0x0A	02CB6E80	02E5AD00	005E57E1	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_flags	0x58	unsigned int	0x08	02CB6E80	01F2E5A0	005E58ED	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_extraFlag	0x5C	unsigned int	0x08	02CB6E80	01F2E5A0	005E5960	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_extraZBias	0x60	int	0x08	02CB6E80	01F2E550	005E59D3	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_farPlane	0x64	float	0x08	02CB6E80	01F2E690	005E5A46	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_specularIntensity	0x68	float	0x08	02CB6E80	01F2E690	005E5AB9	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_cubeMapIntensity	0x6C	float	0x08	02CB6E80	01F2E690	005E5B2C	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_cubeMapFactor	0x70	float	0x08	02CB6E80	01F2E690	005E5B9F	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_alphaThreshold	0x74	float	0x08	02CB6E80	01F2E690	005E5C12	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_specialRenderOrder	0x78	int	0x08	02CB6E80	01F2E550	005E5C85	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_specialTextureWrapType	0x7C	int	0x08	02CB6E80	01F2E550	005E5CF8	005E5400
-PMeshInstance	PRendering::VPMeshInstance	m_name	0x80	VPString	0x08	02CB6E80	02E4D630	005E5D6A	005E5400
-PMeshInstanceAttachPoint	PRendering::VPMeshInstanceAttachPoint	m_destination	0x0	VPWorldMatrix	0x02	02CB6F80	02E404B0	005E648D	005E6400
-PMeshInstanceAttachPoint	PRendering::VPMeshInstanceAttachPoint	m_source	0x8	PRendering::VPMeshInstance	0x02	02CB6F80	02CB6E80	005E64FF	005E6400
-PMeshInstanceAttachPoint	PRendering::VPMeshInstanceAttachPoint	m_sourceMatrixIndex	0x10	unsigned int	0x00	02CB6F80	01F2E5A0	005E656E	005E6400
-PMeshInstanceBounds	PRendering::VPMeshInstanceBounds	m_meshInstance	0x28	PRendering::VPMeshInstance	0x02	02CB7080	02CB6E80	005E6641	005E65B0
-PMeshInstanceBounds	PRendering::VPMeshInstanceBounds	m_worldMatrix	0x10	VPWorldMatrix	0x02	02CB7080	02E404B0	005E66B3	005E65B0
-PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_renderDataType	0x0	PGeometry::VPRenderDataType	0x0A	02CB6C80	02D3C460	005E693E	005E68B0
-PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_name	0x8	VPString	0x08	02CB6C80	02E4D630	005E69B0	005E68B0
-PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_nameHash	0x10	unsigned short	0x08	02CB6C80	01F2E500	005E6A23	005E68B0
-PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_index	0x12	unsigned char	0x08	02CB6C80	01F2E460	005E6A96	005E68B0
-PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_inputSet	0x13	unsigned char	0x08	02CB6C80	01F2E460	005E6B09	005E68B0
-PParameterBuffer	PRendering::VPParameterBuffer	m_effectVariant	0x8	PRendering::VPEffectVariant	0x02	02CB7480	02CB6780	005E6DA2	005E6D10
-PParameterBufferBase	PRendering::VPParameterBufferBase	m_parameterBufferSize	0x0	unsigned int	0x00	02CB7380	01F2E5A0	005E6EF8	005E6E70
-PRenderTargetBase	PRendering::VPRenderTargetBase	m_msaaType	0x9	unsigned char	0x10	02CB75A0	01F2E460	005E6FC2	005E6F30
-PRenderTargetBase	PRendering::VPRenderTargetBase	m_renderTargetFlags	0xC	int	0x10	02CB75A0	01F2E550	005E7035	005E6F30
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_minFilter	0x0	unsigned char	0x10	02CB77A0	01F2E460	005E710D	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_magFilter	0x1	unsigned char	0x10	02CB77A0	01F2E460	005E7180	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_wrapS	0x2	unsigned char	0x10	02CB77A0	01F2E460	005E71F3	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_wrapT	0x3	unsigned char	0x10	02CB77A0	01F2E460	005E7266	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_wrapR	0x4	unsigned char	0x10	02CB77A0	01F2E460	005E72D9	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_lodBias	0x8	float	0x10	02CB77A0	01F2E690	005E734C	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_maxAnisotropy	0xC	float	0x10	02CB77A0	01F2E690	005E73BF	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_borderColor	0x10	unsigned int	0x10	02CB77A0	01F2E5A0	005E7432	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_baseLevel	0x14	unsigned int	0x10	02CB77A0	01F2E5A0	005E74A5	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_maxLevel	0x18	unsigned int	0x10	02CB77A0	01F2E5A0	005E7518	005E7070
-PSamplerStateBase	PRendering::VPSamplerStateBase	m_flags	0x1C	unsigned int	0x10	02CB77A0	01F2E5A0	005E758B	005E7070
-PSceneRenderPass	PRendering::VPSceneRenderPass	m_passType	0x0	PRendering::VPSceneRenderPassType	0x02	02CB79A0	02CE7900	005E7EEE	005E7E60
-PSceneRenderPass	PRendering::VPSceneRenderPass	m_platformsAreInclude	0x48	bool	0x00	02CB79A0	01F2E3C0	005E81A5	005E7E60
-PShader	PRendering::VPShader	m_parameterBufferSize	0x38	unsigned int	0x00	02CB9000	01F2E5A0	005E8424	005E81E0
-PShader	PRendering::VPShader	m_parameterBufferFrequenciesRequired	0x0	unsigned int	0x00	02CB9000	01F2E5A0	005E848F	005E81E0
-PShaderParameterCaptureBufferByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferByteAddressBuffer	m_structuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	02CBA500	02CBB600	005E8568	005E84D0
-PShaderParameterCaptureBufferByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferByteAddressBuffer	m_dataBlock	0x18	PGeometry::VPDataBlock	0x12	02CBA500	02D39E40	005E85DA	005E84D0
-PShaderParameterCaptureBufferDataBlock	PRendering::VPShaderParameterCaptureBufferDataBlock	m_dataBlock	0x10	PGeometry::VPDataBlock	0x12	02CBA700	02D39E40	005E869F	005E8610
-PShaderParameterCaptureBufferIndexDataBlock	PRendering::VPShaderParameterCaptureBufferIndexDataBlock	m_indexDataBlock	0x10	PGeometry::VPIndexDataBlock	0x12	02CBA800	02D3A340	005E875F	005E86D0
-PShaderParameterCaptureBufferLocation	PRendering::VPShaderParameterCaptureBufferLocation	m_offset	0x0	unsigned short	0x00	02CB9100	01F2E500	005E8811	005E8790
-PShaderParameterCaptureBufferLocationSize	PRendering::VPShaderParameterCaptureBufferLocationSize	m_size	0x2	unsigned short	0x00	02CB9200	01F2E500	005E88C5	005E8840
-PShaderParameterCaptureBufferLocationType	PRendering::VPShaderParameterCaptureBufferLocationType	m_type	0x2	unsigned char	0x00	02CB9300	01F2E460	005E8985	005E8900
-PShaderParameterCaptureBufferLocationTypeConstantBuffer	PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer	m_constantBufferLocation	0x4	unsigned int	0x00	02CB9400	01F2E5A0	005E8A4E	005E89C0
-PShaderParameterCaptureBufferLocationTypeConstantBuffer	PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer	m_size	0x8	unsigned int	0x00	02CB9400	01F2E5A0	005E8ABD	005E89C0
-PShaderParameterCaptureBufferLocationTypeConstantBuffer	PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer	m_type	0xC	unsigned char	0x00	02CB9400	01F2E460	005E8B2C	005E89C0
-PShaderParameterCaptureBufferRWByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferRWByteAddressBuffer	m_rwStructuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	02CBA600	02CBB600	005E8BF8	005E8B60
-PShaderParameterCaptureBufferRWByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferRWByteAddressBuffer	m_rwDataBlock	0x18	PGeometry::VPDataBlock	0x12	02CBA600	02D39E40	005E8C6A	005E8B60
-PShaderParameterCaptureBufferRWByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferRWByteAddressBuffer	m_rwIndirectArgsBuffer	0x20	PRendering::VPIndirectArgsBuffer	0x12	02CBA600	02CB6980	005E8CDC	005E8B60
-PShaderParameterCaptureBufferRWStructuredBuffer	PRendering::VPShaderParameterCaptureBufferRWStructuredBuffer	m_rwStructuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	02CBA400	02CBB600	005E8DA8	005E8D10
-PShaderParameterCaptureBufferRWStructuredBuffer	PRendering::VPShaderParameterCaptureBufferRWStructuredBuffer	m_rwDataBlock	0x18	PGeometry::VPDataBlock	0x12	02CBA400	02D39E40	005E8E1A	005E8D10
-PShaderParameterCaptureBufferRWTexture2D	PRendering::VPShaderParameterCaptureBufferRWTexture2D	m_texture	0x10	PRendering::VPTexture2D	0x12	02CBA900	02CBB900	005E8EDF	005E8E50
-PShaderParameterCaptureBufferRWTexture3D	PRendering::VPShaderParameterCaptureBufferRWTexture3D	m_texture	0x10	PRendering::VPTexture3D	0x12	02CBAA00	02CBBB00	005E8F9F	005E8F10
-PShaderParameterCaptureBufferSampler	PRendering::VPShaderParameterCaptureBufferSampler	m_unusedPointer	0x10	PRendering::VPTextureCommonBase	0x12	02CBA200	02CBB700	005E905F	005E8FD0
-PShaderParameterCaptureBufferStructuredBuffer	PRendering::VPShaderParameterCaptureBufferStructuredBuffer	m_structuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	02CBA300	02CBB600	005E9128	005E9090
-PShaderParameterCaptureBufferStructuredBuffer	PRendering::VPShaderParameterCaptureBufferStructuredBuffer	m_dataBlock	0x18	PGeometry::VPDataBlock	0x12	02CBA300	02D39E40	005E919A	005E9090
-PShaderParameterCaptureBufferTexture2D	PRendering::VPShaderParameterCaptureBufferTexture2D	m_texture	0x10	PRendering::VPTexture2D	0x12	02CB9F00	02CBB900	005E925F	005E91D0
-PShaderParameterCaptureBufferTexture3D	PRendering::VPShaderParameterCaptureBufferTexture3D	m_texture	0x10	PRendering::VPTexture3D	0x12	02CBA000	02CBBB00	005E931F	005E9290
-PShaderParameterCaptureBufferTextureBase	PRendering::VPShaderParameterCaptureBufferTextureBase	m_parameterType	0x0	unsigned int	0x10	02CB9D00	01F2E5A0	005E93E5	005E9350
-PShaderParameterCaptureBufferTextureBase	PRendering::VPShaderParameterCaptureBufferTextureBase	m_samplerState	0x8	PRendering::VPSamplerState	0x12	02CB9D00	02CB78A0	005E9457	005E9350
-PShaderParameterCaptureBufferTextureBase	PRendering::VPShaderParameterCaptureBufferTextureBase	m_textureBufferIndex	0x4	unsigned int	0x10	02CB9D00	01F2E5A0	005E94CA	005E9350
-PShaderParameterCaptureBufferTextureCubeMap	PRendering::VPShaderParameterCaptureBufferTextureCubeMap	m_texture	0x10	PRendering::VPTextureCubeMap	0x12	02CBA100	02CBBD00	005E958F	005E9500
-PShaderParameterCaptureConstantBuffer	PRendering::VPShaderParameterCaptureConstantBuffer	m_constantBuffer	0x10	PRendering::VPConstantBuffer	0x12	02CB9E00	02CB6480	005E964F	005E95C0
-PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_name	0x8	VPString	0x00	02CB9500	02E4D630	005E970D	005E9680
-PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_parameterType	0x2	unsigned char	0x00	02CB9500	01F2E460	005E977C	005E9680
-PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_dataType	0x3	unsigned char	0x00	02CB9500	01F2E460	005E97EB	005E9680
-PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_arrayElementCount	0x0	unsigned short	0x00	02CB9500	01F2E500	005E9856	005E9680
-PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_bufferLoc	0x10	PRendering::VPShaderParameterCaptureBufferLocationSize	0x00	02CB9500	02CB9200	005E98C4	005E9680
-PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_constantBufferLocation	0x14	unsigned int	0x00	02CB9500	01F2E5A0	005E9933	005E9680
-PShaderPassBase	PRendering::VPShaderPassBase	m_vertexProgram	0x0	PRendering::VPShaderVertexProgram	0x12	02CB9900	02CBAF00	005E99FD	005E9970
-PShaderPassBase	PRendering::VPShaderPassBase	m_fragmentProgram	0x8	PRendering::VPShaderFragmentProgram	0x12	02CB9900	02CBB000	005E9A6F	005E9970
-PShaderPassBase	PRendering::VPShaderPassBase	m_geometryProgram	0x10	PRendering::VPShaderGeometryProgram	0x12	02CB9900	02CBB100	005E9AE1	005E9970
-PShaderPassBase	PRendering::VPShaderPassBase	m_computeProgram	0x18	PRendering::VPShaderComputeProgram	0x12	02CB9900	02CBB200	005E9B53	005E9970
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_vertexEntryPoint	0x0	VPString	0x00	02CB7AA0	02E4D630	005E9CA9	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_vertexProfile	0x20	unsigned int	0x00	02CB7AA0	01F2E5A0	005E9D18	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_fragmentEntryPoint	0x8	VPString	0x00	02CB7AA0	02E4D630	005E9D86	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_fragmentProfile	0x24	unsigned int	0x00	02CB7AA0	01F2E5A0	005E9DF5	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_geometryEntryPoint	0x10	VPString	0x00	02CB7AA0	02E4D630	005E9E63	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_geometryProfile	0x28	unsigned int	0x00	02CB7AA0	01F2E5A0	005E9ED2	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_computeEntryPoint	0x18	VPString	0x00	02CB7AA0	02E4D630	005E9F40	005E9C20
-PShaderPassInfo	PRendering::VPShaderPassInfo	m_computeProfile	0x2C	unsigned int	0x00	02CB7AA0	01F2E5A0	005E9FAF	005E9C20
-PShaderPassStateBase	PRendering::VPShaderPassStateBase	m_importantState	0x0	unsigned int	0x10	02CB9B00	01F2E5A0	005EA395	005EA310
-PShaderSource	PRendering::VPShaderSource	m_code	0x0	VPString	0x12	02CBAB00	02E4D630	005EA5ED	005EA560
-PShaderSource	PRendering::VPShaderSource	m_entry	0x8	VPString	0x10	02CBAB00	02E4D630	005EA65F	005EA560
-PShaderSource	PRendering::VPShaderSource	m_profile	0x20	unsigned int	0x10	02CBAB00	01F2E5A0	005EA76B	005EA560
-PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_name	0x8	VPString	0x10	02CBAE00	02E4D630	005EA831	005EA7A0
-PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_dataType	0x16	unsigned char	0x10	02CBAE00	01F2E460	005EA8A4	005EA7A0
-PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_renderType	0x0	PGeometry::VPRenderDataType	0x12	02CBAE00	02D3C460	005EA913	005EA7A0
-PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_bufferLoc	0x10	PRendering::VPShaderParameterCaptureBufferLocationSize	0x10	02CBAE00	02CB9200	005EA985	005EA7A0
-PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_nameHash	0x14	unsigned short	0x10	02CBAE00	01F2E500	005EA9F8	005EA7A0
-PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_index	0x17	unsigned char	0x10	02CBAE00	01F2E460	005EAA6B	005EA7A0
-PStructuredBufferBase	PRendering::VPStructuredBufferBase	m_elementCount	0x0	unsigned int	0x10	02CBB500	01F2E5A0	005EAB2E	005EAAA0
-PStructuredBufferBase	PRendering::VPStructuredBufferBase	m_elementSize	0x4	unsigned int	0x10	02CBB500	01F2E5A0	005EABA1	005EAAA0
-PStructuredBufferBase	PRendering::VPStructuredBufferBase	m_flags	0x8	unsigned int	0x10	02CBB500	01F2E5A0	005EAC14	005EAAA0
-PTexture2DBase	PRendering::VPTexture2DBase	m_width	0x28	unsigned int	0x10	02CBB800	01F2E5A0	005EACE2	005EAC50
-PTexture2DBase	PRendering::VPTexture2DBase	m_height	0x2C	unsigned int	0x10	02CBB800	01F2E5A0	005EAD55	005EAC50
-PTexture3DBase	PRendering::VPTexture3DBase	m_width	0x28	unsigned int	0x10	02CBBA00	01F2E5A0	005EAE22	005EAD90
-PTexture3DBase	PRendering::VPTexture3DBase	m_height	0x2C	unsigned int	0x10	02CBBA00	01F2E5A0	005EAE95	005EAD90
-PTexture3DBase	PRendering::VPTexture3DBase	m_depth	0x30	unsigned int	0x10	02CBBA00	01F2E5A0	005EAF08	005EAD90
-PTextureCommonBase	PRendering::VPTextureCommonBase	m_format	0x0	PRendering::VPTextureFormatBase	0x12	02CBB700	02CF7A70	005EAFD3	005EAF40
-PTextureCommonBase	PRendering::VPTextureCommonBase	m_memoryType	0x9	unsigned char	0x10	02CBB700	01F2E460	005EB046	005EAF40
-PTextureCommonBase	PRendering::VPTextureCommonBase	m_mipmapCount	0x10	unsigned int	0x10	02CBB700	01F2E5A0	005EB0B9	005EAF40
-PTextureCommonBase	PRendering::VPTextureCommonBase	m_maxMipLevel	0x14	unsigned int	0x10	02CBB700	01F2E5A0	005EB12C	005EAF40
-PTextureCommonBase	PRendering::VPTextureCommonBase	m_textureFlags	0x18	int	0x10	02CBB700	01F2E550	005EB19F	005EAF40
-PTextureCubeMapBase	PRendering::VPTextureCubeMapBase	m_size	0x28	unsigned int	0x10	02CBBC00	01F2E5A0	005EB339	005EB2B0
-PArray	$07::Phyre::PRendering::PEAVPEffectVariant::V?$PArray	m_count	0x0	unsigned int	0x00	02CEBEA0	01F2E5A0	005EB95A	005EB7C0
-PArray	$07::Phyre::PDynamicGeometry::PEAVPModifierNetworkInstance::V?$PArray	m_count	0x0	unsigned int	0x00	02CECDF0	01F2E5A0	005EBC9A	005EBB00
-PArray	$07::Phyre::PRendering::PEAVPSceneRenderPass::V?$PArray	m_count	0x0	unsigned int	0x00	02CEBC70	01F2E5A0	005EBFDA	005EBE40
-PArray	$07::Phyre::PRendering::PEBVPContextSwitch::V?$PArray	m_count	0x0	unsigned int	0x00	02CEC530	01F2E5A0	005EC31A	005EC180
-PArray	$07::Phyre::PRendering::PEBVPLightType::V?$PArray	m_count	0x0	unsigned int	0x00	02CEC0D0	01F2E5A0	005EC65A	005EC4C0
-PArray	$07::Phyre::PRendering::PEBVPShadowCasterType::V?$PArray	m_count	0x0	unsigned int	0x00	02CEC300	01F2E5A0	005EC99A	005EC800
-PArray	$03::Phyre::PRendering::VPContextVariantFoldingTable::V?$PArray	m_count	0x0	unsigned int	0x00	02CEB5E0	01F2E5A0	005ECCDA	005ECB40
-PArray	$07::Phyre::PRendering::VPMaterialSwitch::V?$PArray	m_count	0x0	unsigned int	0x00	02CEB810	01F2E5A0	005ED00A	005ECE70
-PArray	$03::Phyre::VPMatrix4::V?$PArray	m_count	0x0	unsigned int	0x00	02CEA000	01F2E5A0	005ED33A	005ED1A0
-PArray	$07::Phyre::PRendering::VPMeshInstanceSegmentContext::V?$PArray	m_count	0x0	unsigned int	0x00	02CECBC0	01F2E5A0	005ED66A	005ED4D0
-PArray	$07::Phyre::PRendering::VPNodeContext::V?$PArray	m_count	0x0	unsigned int	0x00	02CEC760	01F2E5A0	005ED99A	005ED800
-PArray	$07::Phyre::PRendering::VPSceneRenderPass::V?$PArray	m_count	0x0	unsigned int	0x00	02CEBA40	01F2E5A0	005EDCCA	005EDB30
-PArray	$07::Phyre::PRendering::VPShader::V?$PArray	m_count	0x0	unsigned int	0x00	02CEB180	01F2E5A0	005EDFFA	005EDE60
-PArray	$01::Phyre::PRendering::VPShaderParameterCaptureBufferLocation::V?$PArray	m_count	0x0	unsigned int	0x00	02CEAAF0	01F2E5A0	005EE32A	005EE190
-PArray	$01::Phyre::PRendering::VPShaderParameterCaptureBufferLocationType::V?$PArray	m_count	0x0	unsigned int	0x00	02CEA690	01F2E5A0	005EE65A	005EE4C0
-PArray	$03::Phyre::PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer::V?$PArray	m_count	0x0	unsigned int	0x00	02CEA8C0	01F2E5A0	005EE98A	005EE7F0
-PArray	$07::Phyre::PRendering::VPShaderParameterDefinition::V?$PArray	m_count	0x0	unsigned int	0x00	02CEA460	01F2E5A0	005EECBA	005EEB20
-PArray	$07::Phyre::PRendering::VPShaderPass::V?$PArray	m_count	0x0	unsigned int	0x00	02CEAD20	01F2E5A0	005EEFEA	005EEE50
-PArray	$07::Phyre::PRendering::VPShaderPassInfo::V?$PArray	m_count	0x0	unsigned int	0x00	02CEB3B0	01F2E5A0	005EF31A	005EF180
-PArray	$07::Phyre::PRendering::VPShaderStreamDefinition::V?$PArray	m_count	0x0	unsigned int	0x00	02CEA230	01F2E5A0	005EF64A	005EF4B0
-PArray	$07::Phyre::VPString::V?$PArray	m_count	0x0	unsigned int	0x00	02CE9DD0	01F2E5A0	005EF97A	005EF7E0
-PSharray	I::V?$PSharray	m_count	0x0	unsigned int	0x00	02CEAF50	01F2E5A0	005EFD76	005EFB10
-PSharray	Phyre::PRendering::PEBVPMeshInstanceSegmentStreamBinding::V?$PSharray	m_count	0x0	unsigned int	0x00	02CEC990	01F2E5A0	005F00C8	005EFE60
-CD3D11_BLEND_DESC	UCD3D11_BLEND_DESC	AlphaToCoverageEnable	0x0	int	0x10	02CF6320	01F2E550	00613902	00613800
-CD3D11_BLEND_DESC	UCD3D11_BLEND_DESC	IndependentBlendEnable	0x4	int	0x10	02CF6320	01F2E550	00613971	00613800
-CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	DepthEnable	0x0	int	0x10	02CF5A80	01F2E550	00613B32	00613A30
-CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	StencilEnable	0xC	int	0x10	02CF5A80	01F2E550	00613C7D	00613A30
-CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	StencilReadMask	0x10	unsigned char	0x10	02CF5A80	01F2E460	00613CEC	00613A30
-CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	StencilWriteMask	0x11	unsigned char	0x10	02CF5A80	01F2E460	00613D5B	00613A30
-CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	FrontFace	0x14	UD3D11_DEPTH_STENCILOP_DESC	0x10	02CF5A80	02CF57B0	00613DCA	00613A30
-CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	BackFace	0x24	UD3D11_DEPTH_STENCILOP_DESC	0x10	02CF5A80	02CF57B0	00613E39	00613A30
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	FrontCounterClockwise	0x8	int	0x10	02CF52C0	01F2E550	0061405E	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	DepthBias	0xC	int	0x10	02CF52C0	01F2E550	006140CD	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	DepthBiasClamp	0x10	float	0x10	02CF52C0	01F2E690	0061413C	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	SlopeScaledDepthBias	0x14	float	0x10	02CF52C0	01F2E690	006141AB	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	DepthClipEnable	0x18	int	0x10	02CF52C0	01F2E550	0061421A	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	ScissorEnable	0x1C	int	0x10	02CF52C0	01F2E550	00614289	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	MultisampleEnable	0x20	int	0x10	02CF52C0	01F2E550	006142F8	00613E80
-CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	AntialiasedLineEnable	0x24	int	0x10	02CF52C0	01F2E550	00614367	00613E80
-D3D11_RENDER_TARGET_BLEND_DESC	UD3D11_RENDER_TARGET_BLEND_DESC	BlendEnable	0x0	int	0x10	02CF5EB0	01F2E550	00614742	00614640
-D3D11_RENDER_TARGET_BLEND_DESC	UD3D11_RENDER_TARGET_BLEND_DESC	RenderTargetWriteMask	0x1C	unsigned char	0x10	02CF5EB0	01F2E460	00614A45	00614640
-PShaderComputeProgramD3D11	PRendering::VPShaderComputeProgramD3D11	m_dimX	0x80	unsigned int	0x10	02CF1C40	01F2E5A0	006178A2	00617810
-PShaderComputeProgramD3D11	PRendering::VPShaderComputeProgramD3D11	m_dimY	0x84	unsigned int	0x10	02CF1C40	01F2E5A0	00617915	00617810
-PShaderComputeProgramD3D11	PRendering::VPShaderComputeProgramD3D11	m_dimZ	0x88	unsigned int	0x10	02CF1C40	01F2E5A0	00617988	00617810
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_state	0x30	PRendering::VPShaderPassStateD3D11	0x10	02CF1440	02CF1540	00617A91	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_vertexParameterLocation	0x1C0	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617B03	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_fragmentParameterLocation	0x1E0	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617B75	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_geometryParameterLocation	0x200	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617BE7	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_computeParameterLocation	0x220	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617C59	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_vertexTexParameterLocation	0x240	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617CCB	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_fragmentTexParameterLocation	0x260	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617D3D	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_geometryTexParameterLocation	0x280	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617DAF	00617A00
-PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_computeTexParameterLocation	0x2A0	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	02CF1440	02CB9800	00617E21	00617A00
-PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_rasterDesc	0x4	UCD3D11_RASTERIZER_DESC	0x10	02CF1540	02CF52C0	00617EF2	00617E60
-PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_depthDesc	0x2C	UCD3D11_DEPTH_STENCIL_DESC	0x10	02CF1540	02CF5A80	00617F65	00617E60
-PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_blendDesc	0x60	UCD3D11_BLEND_DESC	0x10	02CF1540	02CF6320	00617FD8	00617E60
-PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_stencilRef	0x188	unsigned char	0x10	02CF1540	01F2E460	0061804B	00617E60
-PShaderProgramD3D11	PRendering::VPShaderProgramD3D11	m_constantBufferSize	0x28	unsigned int	0x10	02CF1840	01F2E5A0	006181B0	00618080
-PShaderProgramD3D11	PRendering::VPShaderProgramD3D11	m_globalConstantBufferIndex	0x2C	unsigned int	0x10	02CF1840	01F2E5A0	00618223	00618080
-PShaderProgramD3D11	PRendering::VPShaderProgramD3D11	m_shaderProfile	0x70	unsigned int	0x10	02CF1840	01F2E5A0	00618296	00618080
-PShaderVertexProgramD3D11	PRendering::VPShaderVertexProgramD3D11	m_inputLayout	0x78	PRendering::VPStreamInputLayoutD3D11	0x10	02CF1940	02CF1740	00618358	006182D0
-PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_semantic	0x0	VPString	0x10	02CF1640	02E4D630	0061841D	00618390
-PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_renderType	0x8	PGeometry::VPRenderDataType	0x12	02CF1640	02D3C460	00618490	00618390
-PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_semanticIndex	0x10	unsigned int	0x10	02CF1640	01F2E5A0	00618503	00618390
-PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_d3dFormat	0x14	unsigned int	0x10	02CF1640	01F2E5A0	00618576	00618390
-PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_inputSlot	0x18	unsigned int	0x10	02CF1640	01F2E5A0	006185E9	00618390
-PArray	E$00::V?$PArray	m_count	0x0	unsigned int	0x00	02CF6C40	01F2E5A0	00618B0A	00618970
-PArray	$07::Phyre::PRendering::VPStreamInputDescD3D11::V?$PArray	m_count	0x0	unsigned int	0x00	02CF6E70	01F2E5A0	00618E3A	00618CA0
-								00632A41	00632A10
-								00632B89	00632B30
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_radius	0x84	float	0x00	02D367A0	01F2E690	0064818E	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_atmosphereStart	0x88	float	0x00	02D367A0	01F2E690	006481FD	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_asymmetry	0x8C	float	0x00	02D367A0	01F2E690	0064826C	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_betaR	0x90	sce::Vectormath::Scalar::Aos::VVector3	0x00	02D367A0	02E50510	006482DB	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_betaM	0xA0	sce::Vectormath::Scalar::Aos::VVector3	0x00	02D367A0	02E50510	0064834A	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_invHR	0xC0	float	0x00	02D367A0	01F2E690	006483B9	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_invHM	0xC4	float	0x00	02D367A0	01F2E690	00648428	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_sunIntensity	0xC8	float	0x00	02D367A0	01F2E690	00648497	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_sunDir	0xCC	sce::Vectormath::Scalar::Aos::VVector3	0x00	02D367A0	02E50510	00648506	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_fogParameters	0xDC	sce::Vectormath::Scalar::Aos::VVector2	0x00	02D367A0	02E502D0	00648575	00648100
-PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_renderDebugTextures	0x61	bool	0x00	02D367A0	01F2E3C0	006485E4	00648100
-PCelShadingBase	PPostProcessing::VPCelShadingBase	m_lineThickness	0x58	float	0x00	02D361A0	01F2E690	006486AE	00648620
-PCelShadingBase	PPostProcessing::VPCelShadingBase	m_threshold	0x5C	float	0x00	02D361A0	01F2E690	0064871D	00648620
-PCelShadingBase	PPostProcessing::VPCelShadingBase	m_gamma	0x60	float	0x00	02D361A0	01F2E690	0064878C	00648620
-PCelShadingBase	PPostProcessing::VPCelShadingBase	m_lightColor	0x64	sce::Vectormath::Scalar::Aos::VVector4	0x00	02D361A0	02E50A50	006487FB	00648620
-PCelShadingBase	PPostProcessing::VPCelShadingBase	m_edgeColor	0x74	sce::Vectormath::Scalar::Aos::VVector4	0x00	02D361A0	02E50A50	0064886A	00648620
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_ambientColor	0x40D0	sce::Vectormath::Scalar::Aos::VVector4	0x00	02D34840	02E50A50	0064892E	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_instantLightsEnabled	0x41D0	bool	0x00	02D34840	01F2E3C0	0064899D	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_instantLightIntensity	0x4108	float	0x00	02D34840	01F2E690	00648A0C	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_instantLightScatteringIntensity	0x410C	float	0x00	02D34840	01F2E690	00648A7B	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogDistance	0x40F0	float	0x00	02D34840	01F2E690	00648AEA	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogNearDistance	0x40F4	float	0x00	02D34840	01F2E690	00648B59	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogAmount	0x40F8	float	0x00	02D34840	01F2E690	00648BC8	006488A0
-PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogColor	0x40E0	sce::Vectormath::Scalar::Aos::VVector4	0x00	02D34840	02E50A50	00648C37	006488A0
-PDepthOfFieldBase	PPostProcessing::VPDepthOfFieldBase	m_focusPlaneDistance	0x50	float	0x00	02D34B40	01F2E690	00648CFE	00648C70
-PDepthOfFieldBase	PPostProcessing::VPDepthOfFieldBase	m_focusRange	0x54	float	0x00	02D34B40	01F2E690	00648D6D	00648C70
-PDepthOfFieldBase	PPostProcessing::VPDepthOfFieldBase	m_focusBlurRange	0x58	float	0x00	02D34B40	01F2E690	00648DDC	00648C70
-PGlowBase	PPostProcessing::VPGlowBase	m_glowAmountScale	0x5C	float	0x00	02D35AA0	01F2E690	00648E9E	00648E10
-PGlowBase	PPostProcessing::VPGlowBase	m_glowLuminanceThreshold	0x60	float	0x00	02D35AA0	01F2E690	00648F0D	00648E10
-PGlowBase	PPostProcessing::VPGlowBase	m_glowLuminanceScale	0x64	float	0x00	02D35AA0	01F2E690	00648F7C	00648E10
-PMotionBlurBase	PPostProcessing::VPMotionBlurBase	m_velocityScale	0xD10	float	0x00	02D34E40	01F2E690	00649035	00648FB0
-PPostEffectBase	PPostProcessing::VPPostEffectBase	m_effectMaterial	0x10	PRendering::VPMaterial	0x02	02D34740	02CB6B80	00649101	00649070
-PPostEffectBase	PPostProcessing::VPPostEffectBase	m_enabled	0x41	bool	0x00	02D34740	01F2E3C0	00649170	00649070
-PScreenSpaceReflectionBase	PPostProcessing::VPScreenSpaceReflectionBase	m_minReflectionDirZ	0x50	float	0x00	02D364A0	01F2E690	0064972E	006496A0
-PScreenSpaceReflectionBase	PPostProcessing::VPScreenSpaceReflectionBase	m_marchStepFactor	0x54	float	0x00	02D364A0	01F2E690	0064979D	006496A0
-PArray	$07::Phyre::PPostProcessing::PEAVPPostEffectBase::V?$PArray	m_count	0x0	unsigned int	0x00	02D38270	01F2E5A0	0064ABBA	0064AA20
-PDataBlockBase	PGeometry::VPDataBlockBase	m_memoryType	0x1D	unsigned char	0x10	02D39D40	01F2E460	006656B2	00665620
-PDataBlockBase	PGeometry::VPDataBlockBase	m_stride	0x0	unsigned int	0x10	02D39D40	01F2E5A0	00665721	00665620
-PDataBlockBase	PGeometry::VPDataBlockBase	m_elementCount	0x4	unsigned int	0x10	02D39D40	01F2E5A0	00665794	00665620
-PDataBlockD3D11	PGeometry::VPDataBlockD3D11	m_dataSize	0x78	unsigned int	0x00	02D39C40	01F2E5A0	00665990	00665870
-PDataBlockD3D11	PGeometry::VPDataBlockD3D11	m_offsetInVertexBuffer	0x70	unsigned int	0x08	02D39C40	01F2E5A0	00665A03	00665870
-PDynamicDataBlock	PGeometry::VPDynamicDataBlock	m_stride	0x0	unsigned int	0x10	02D39F40	01F2E5A0	00665ACE	00665A40
-PDynamicDataBlock	PGeometry::VPDynamicDataBlock	m_elementCount	0x4	unsigned int	0x10	02D39F40	01F2E5A0	00665B41	00665A40
-PDynamicMesh	PGeometry::VPDynamicMesh	m_mesh	0x8	PGeometry::VPMesh	0x0A	02D3A140	02D3A640	00665E73	00665CB0
-PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_startStreamIndex	0x0	unsigned int	0x08	02D3A040	01F2E5A0	00665F3E	00665EB0
-PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_streamCount	0x4	unsigned int	0x08	02D3A040	01F2E5A0	00665FB1	00665EB0
-PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_elementCount	0x8	unsigned int	0x08	02D3A040	01F2E5A0	00666024	00665EB0
-PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_indexCount	0xC	int	0x08	02D3A040	01F2E550	00666097	00665EB0
-PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_memoryType	0xD	unsigned char	0x10	02D3A240	01F2E460	00666162	006660D0
-PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_elementCount	0x8	unsigned int	0x10	02D3A240	01F2E5A0	006661D5	006660D0
-PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_type	0xC	unsigned char	0x10	02D3A240	01F2E460	00666248	006660D0
-PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_minimumIndex	0x0	unsigned int	0x10	02D3A240	01F2E5A0	006662B7	006660D0
-PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_maximumIndex	0x4	unsigned int	0x10	02D3A240	01F2E5A0	0066632A	006660D0
-PIndexDataBlockD3D11	PGeometry::VPIndexDataBlockD3D11	m_dataSize	0x70	unsigned int	0x00	02D39A40	01F2E5A0	006664A0	00666380
-PIndexDataBlockD3D11	PGeometry::VPIndexDataBlockD3D11	m_offsetInIndexBuffer	0x68	unsigned int	0x08	02D39A40	01F2E5A0	00666513	00666380
-PMesh	PGeometry::VPMesh	m_defaultMaterials	0x60	PGeometry::VPMaterialSet	0x08	02D3A640	02D3A440	00666CEA	006668B0
-PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_materialIndex	0x0	unsigned int	0x10	02D3A840	01F2E5A0	00666F1E	00666E90
-PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_matrixIndex	0x4	int	0x10	02D3A840	01F2E550	00666F91	00666E90
-PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_lodIndex	0x1C	int	0x10	02D3A840	01F2E550	0066710F	00666E90
-PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_shapeIndex	0x20	int	0x10	02D3A840	01F2E550	00667182	00666E90
-PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_gatherIndex	0x24	int	0x10	02D3A840	01F2E550	006671F5	00666E90
-PMeshSegmentD3D11	PGeometry::VPMeshSegmentD3D11	m_indexData	0x40	PGeometry::VPIndexDataBlockD3D11	0x10	02D39840	02D39A40	00667363	00667230
-PShape	PGeometry::VPShape	m_indexFormat	0x31	unsigned char	0x08	02D3ACE0	01F2E460	006674D5	006673A0
-PShape	PGeometry::VPShape	m_indexCount	0x0	unsigned int	0x08	02D3ACE0	01F2E5A0	00667544	006673A0
-PShape	PGeometry::VPShape	m_vertexFormat	0x30	unsigned char	0x08	02D3ACE0	01F2E460	0066764E	006673A0
-PShape	PGeometry::VPShape	m_vertexCount	0x18	unsigned int	0x08	02D3ACE0	01F2E5A0	006676C1	006673A0
-PSkeletonJointBounds	PGeometry::VPSkeletonJointBounds	m_hierarchyMatrixIndex	0xC	unsigned int	0x08	02D3A540	01F2E5A0	00667878	00667700
-PSkeletonJointBounds	PGeometry::VPSkeletonJointBounds	m_pad	0x1C	unsigned int	0x08	02D3A540	01F2E5A0	006678EB	00667700
-PSkinBoneRemap	PGeometry::VPSkinBoneRemap	m_hierarchyMatrixIndex	0x0	unsigned short	0x10	02D3A740	01F2E500	006679AE	00667920
-PSkinBoneRemap	PGeometry::VPSkinBoneRemap	m_skeletonMatrixIndex	0x2	unsigned short	0x10	02D3A740	01F2E500	00667A21	00667920
-PVertexStream	PGeometry::VPVertexStream	m_type	0x10	unsigned char	0x10	02D3ADE0	01F2E460	00667AF2	00667A60
-PVertexStream	PGeometry::VPVertexStream	m_offset	0x0	unsigned int	0x10	02D3ADE0	01F2E5A0	00667B61	00667A60
-PVertexStream	PGeometry::VPVertexStream	m_renderDataType	0x8	PGeometry::VPRenderDataType	0x12	02D3ADE0	02D3C460	00667BD4	00667A60
-PVertexStream	PGeometry::VPVertexStream	m_streamSet	0x11	unsigned char	0x10	02D3ADE0	01F2E460	00667C47	00667A60
-PArray	E$03::V?$PArray	m_count	0x0	unsigned int	0x00	02D3C8B0	01F2E5A0	00668C7A	00668AE0
-PArray	H$03::V?$PArray	m_count	0x0	unsigned int	0x00	02D3DC60	01F2E5A0	00668FAA	00668E10
-PArray	$07::Phyre::PGeometry::VPDataBlockD3D11::V?$PArray	m_count	0x0	unsigned int	0x00	02D3D3A0	01F2E5A0	006692DA	00669140
-PArray	$03::Phyre::PGeometry::PDynamicMesh::VPDynamicSegmentDesc::V?$PArray	m_count	0x0	unsigned int	0x00	02D3DE90	01F2E5A0	0066960A	00669470
-PArray	$07::Phyre::PGeometry::VPMeshSegment::V?$PArray	m_count	0x0	unsigned int	0x00	02D3D800	01F2E5A0	0066993A	006697A0
-PArray	$03::Phyre::PGeometry::VPSkeletonJointBounds::V?$PArray	m_count	0x0	unsigned int	0x00	02D3DA30	01F2E5A0	00669C6A	00669AD0
-PArray	$01::Phyre::PGeometry::VPSkinBoneRemap::V?$PArray	m_count	0x0	unsigned int	0x00	02D3D170	01F2E5A0	00669F9A	00669E00
-PArray	$07::Phyre::PGeometry::VPVertexStream::V?$PArray	m_count	0x0	unsigned int	0x00	02D3CAE0	01F2E5A0	0066A2CA	0066A130
-PSharray	Phyre::PRendering::PEAVPMaterial::V?$PSharray	m_count	0x0	unsigned int	0x00	02D3D5D0	01F2E5A0	0066A6C8	0066A460
-PSharray	Phyre::PGeometry::VPDataBlockBufferD3D11::V?$PSharray	m_count	0x0	unsigned int	0x00	02D3CD10	01F2E5A0	0066AA15	0066A7B0
-PSharray	Phyre::PGeometry::VPIndexDataBlockBufferD3D11::V?$PSharray	m_count	0x0	unsigned int	0x00	02D3CF40	01F2E5A0	0066AD65	0066AB00
-PAssetReference	VPAssetReference	m_id	0x30	VPString	0x10	02D3E680	02E4D630	006757D9	00675740
-PAssetReference	VPAssetReference	m_asset	0x38	PClassDescriptorBase	0x12	02D3E680	02CF8270	0067584C	00675740
-PAssetReference	VPAssetReference	m_assetType	0x40	PClassDescriptorForClassDescriptor	0x12	02D3E680	02CF8470	006758BE	00675740
-PAssetReferenceImport	VPAssetReferenceImport	m_id	0x8	VPString	0x10	02D3E780	02E4D630	00675E4B	00675DA0
-PAssetReferenceImport	VPAssetReferenceImport	m_targetAssetType	0x0	PClassDescriptorForClassDescriptor	0x12	02D3E780	02CF8470	00675EB9	00675DA0
-PCamera	VPCamera	m_viewMatrix	0x0	VPMatrix4x3	0x10	02D3F210	02E51570	00678573	006784E0
-PCamera	VPCamera	m_projectionMatrix	0x30	sce::Vectormath::Scalar::Aos::VMatrix4	0x10	02D3F210	02E511D0	006785E6	006784E0
-PCamera	VPCamera	m_viewProjectionMatrix	0x70	sce::Vectormath::Scalar::Aos::VMatrix4	0x10	02D3F210	02E511D0	00678659	006784E0
-PCamera	VPCamera	m_localToWorldMatrix	0xB0	VPWorldMatrix	0x12	02D3F210	02E404B0	006786CB	006784E0
-PCamera	VPCamera	m_nearPlane	0xB8	float	0x10	02D3F210	01F2E690	0067873E	006784E0
-PCamera	VPCamera	m_farPlane	0xBC	float	0x10	02D3F210	01F2E690	006787B1	006784E0
-PCameraProjection	VPCameraProjection	m_aspect	0xC8	float	0x10	02D3F310	01F2E690	0067895A	006788C0
-PBitmapFont	PText::VPBitmapFont	m_fontSize	0x4	unsigned int	0x10	02E3FA60	01F2E5A0	0067D072	0067CFE0
-PBitmapFont	PText::VPBitmapFont	m_isSDF	0x0	bool	0x10	02E3FA60	01F2E3C0	0067D0E1	0067CFE0
-PBitmapFont	PText::VPBitmapFont	m_lineSpacing	0x8	float	0x10	02E3FA60	01F2E690	0067D154	0067CFE0
-PBitmapFont	PText::VPBitmapFont	m_baselineOffset	0xC	float	0x10	02E3FA60	01F2E690	0067D1C7	0067CFE0
-PBitmapFont	PText::VPBitmapFont	m_bitmapFontTexture	0x30	PRendering::VPTexture2D	0x12	02E3FA60	02CBB900	0067D370	0067CFE0
-PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_characterCode	0x0	int	0x10	02E3F960	01F2E550	0067D43E	0067D3B0
-PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_kernPairs	0x4	int	0x10	02E3F960	01F2E550	0067D4B1	0067D3B0
-PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_kernOffset	0x8	int	0x10	02E3F960	01F2E550	0067D524	0067D3B0
-PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_width	0x14	float	0x10	02E3F960	01F2E690	0067D60C	0067D3B0
-PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_height	0x18	float	0x10	02E3F960	01F2E690	0067D67F	0067D3B0
-PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_rotated	0x2C	bool	0x10	02E3F960	01F2E3C0	0067D7DC	0067D3B0
-PArray	$03::Phyre::PText::VPBitmapFontCharInfo::V?$PArray	m_count	0x0	unsigned int	0x00	02E401B0	01F2E5A0	0067D9AA	0067D810
-PWorldMatrix	VPWorldMatrix	m_matrix	0x0	VPMatrix4x3	0x10	02E404B0	02E51570	0067E9B6	0067E6C0
-PClassCallableMethodScript	PScripting::VPClassCallableMethodScript	m_script	0x50	PScripting::VPScript	0x02	02E41070	02E41470	00681E11	00681D80
-PClassCallableMethodScript	PScripting::VPClassCallableMethodScript	m_nameAsString	0x58	VPString	0x00	02E41070	02E4D630	00681E7F	00681D80
-PClassCallableMethodScript	PScripting::VPClassCallableMethodScript	m_entryPoint	0x60	VPString	0x00	02E41070	02E4D630	00681EED	00681D80
-PScript	PScripting::VPScript	m_onLoadEntryPoint	0x30	VPString	0x08	02E41470	02E4D630	00682540	006822E0
-PScript	PScripting::VPScript	m_onUnloadEntryPoint	0x38	VPString	0x08	02E41470	02E4D630	006825B2	006822E0
-PScript	PScripting::VPScript	m_defaultEntryPoint	0x40	VPString	0x08	02E41470	02E4D630	00682624	006822E0
-PScript	PScripting::VPScript	m_sourceName	0x48	VPString	0x08	02E41470	02E4D630	00682696	006822E0
-PScript	PScripting::VPScript	m_isPersistent	0x50	bool	0x08	02E41470	01F2E3C0	00682709	006822E0
-PScript	PScripting::VPScript	m_executionInterval	0x54	unsigned int	0x08	02E41470	01F2E5A0	0068277C	006822E0
-PScriptCallbackHandler	PScripting::VPScriptCallbackHandler	m_entryPoint	0x0	VPString	0x00	02E41170	02E4D630	00682849	006827C0
-PScriptCallbackHandler	PScripting::VPScriptCallbackHandler	m_handler	0x8	VPTypedObject	0x00	02E41170	02E4E430	006828B7	006827C0
-PPhysicsBoxBase	PPhysics::VPPhysicsBoxBase	m_halfExtents	0x70	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E478D0	02E50510	00693F49	00693EC0
-PPhysicsCallbackData	PPhysics::VPPhysicsCallbackData	m_collisionObjectA	0x0	VPTypedObject	0x00	02E48AD0	02E4E430	00694009	00693F80
-PPhysicsCallbackData	PPhysics::VPPhysicsCallbackData	m_collisionObjectB	0x10	VPTypedObject	0x00	02E48AD0	02E4E430	00694077	00693F80
-PPhysicsCallbackData	PPhysics::VPPhysicsCallbackData	m_amount	0x20	float	0x00	02E48AD0	01F2E690	006940E6	00693F80
-PPhysicsCapsuleBase	PPhysics::VPPhysicsCapsuleBase	m_height	0x78	float	0x08	02E47AD0	01F2E690	0069422C	00694120
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_collisionRadius	0x10	float	0x00	02E47CD0	01F2E690	006942FB	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_targetDistance	0x14	float	0x00	02E47CD0	01F2E690	0069436A	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_targetHeight	0x18	float	0x00	02E47CD0	01F2E690	006943D9	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_contactEpsilon	0x1C	float	0x00	02E47CD0	01F2E690	00694448	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_minimumCameraDistance	0x20	float	0x00	02E47CD0	01F2E690	006944B7	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_smoothingRate	0x24	float	0x00	02E47CD0	01F2E690	00694526	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_springTension	0x30	float	0x00	02E47CD0	01F2E690	00694595	00694260
-PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_nearCameraYAdjust	0x34	float	0x00	02E47CD0	01F2E690	00694604	00694260
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_gravity	0x28	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E47DD0	02E50510	00694A3C	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_targetNode	0xC8	PScene::VPNode	0x0A	02E47DD0	02E518D0	00694AAE	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_targetWorldMatrix	0xD0	VPWorldMatrix	0x0A	02E47DD0	02E404B0	00694B20	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_rotate	0xE0	float	0x08	02E47DD0	01F2E690	00694B93	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_right	0xE4	float	0x08	02E47DD0	01F2E690	00694C06	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_forward	0xE8	float	0x08	02E47DD0	01F2E690	00694C79	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_velocity	0xEC	float	0x08	02E47DD0	01F2E690	00694CEC	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_jump	0x104	bool	0x08	02E47DD0	01F2E3C0	00694D5F	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_isOnGround	0x105	bool	0x08	02E47DD0	01F2E3C0	00694DD2	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_maxSlopeAngle	0xF0	float	0x08	02E47DD0	01F2E690	00694E45	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_next	0x0	PPhysics::VPPhysicsCharacterControllerBase	0x0A	02E47DD0	02E47DD0	00694EB3	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_startPosition	0x8	sce::Vectormath::Scalar::Aos::VPoint3	0x08	02E47DD0	02E507B0	00694F26	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_scale	0x18	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E47DD0	02E50510	00694F99	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_jumpHeight	0xF4	float	0x08	02E47DD0	01F2E690	0069500C	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_height	0xF8	float	0x08	02E47DD0	01F2E690	0069507F	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_radius	0xFC	float	0x08	02E47DD0	01F2E690	006950F2	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_world	0xD8	PPhysics::VPPhysicsWorld	0x0A	02E47DD0	02E494D0	00695164	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_graphicsOffset	0x48	VPMatrix4	0x08	02E47DD0	02E51350	006951D7	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_invGraphicsOffset	0x88	VPMatrix4	0x08	02E47DD0	02E51350	0069524A	006949A0
-PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_scriptHandler	0x118	PScripting::VPScriptCallbackHandler	0x08	02E47DD0	02E41170	006952BC	006949A0
-PPhysicsCylinderBase	PPhysics::VPPhysicsCylinderBase	m_height	0x78	float	0x08	02E47FD0	01F2E690	0069559C	00695490
-PPhysicsMaterial	PPhysics::VPPhysicsMaterial	m_dynamicFriction	0x0	float	0x08	02E483D0	01F2E690	0069565E	006955D0
-PPhysicsMaterial	PPhysics::VPPhysicsMaterial	m_staticFriction	0x4	float	0x08	02E483D0	01F2E690	006956D1	006955D0
-PPhysicsMaterial	PPhysics::VPPhysicsMaterial	m_restitution	0x8	float	0x08	02E483D0	01F2E690	00695744	006955D0
-PPhysicsMeshBase	PPhysics::VPPhysicsMeshBase	m_shape	0x70	PGeometry::VPShape	0x0A	02E484D0	02D3ACE0	00695808	00695780
-PPhysicsModel	PPhysics::VPPhysicsModel	m_rigidBodies	0x8	PPhysics::VPPhysicsRigidBody	0x0A	02E486D0	02E48BD0	006958D1	00695840
-PPhysicsModel	PPhysics::VPPhysicsModel	m_next	0x0	PPhysics::VPPhysicsModel	0x0A	02E486D0	02E486D0	0069593F	00695840
-PPhysicsModel	PPhysics::VPPhysicsModel	m_world	0x10	PPhysics::VPPhysicsWorld	0x0A	02E486D0	02E494D0	006959B1	00695840
-PPhysicsPlaneBase	PPhysics::VPPhysicsPlaneBase	m_equationCoefficient	0x70	sce::Vectormath::Scalar::Aos::VVector4	0x08	02E487D0	02E50A50	00695A79	006959F0
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_mass	0xE4	float	0x08	02E489D0	01F2E690	0069650C	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_rigidBodyType	0xE8	unsigned char	0x08	02E489D0	01F2E460	0069657F	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_massFrameTransform	0x8	VPMatrix4x3	0x08	02E489D0	02E51570	006965F2	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialPosition	0x38	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E489D0	02E50510	00696665	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialOrientation	0x48	sce::Vectormath::Scalar::Aos::VQuat	0x08	02E489D0	02E50D50	006966D8	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_inertiaTensor	0x58	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E489D0	02E50510	0069674B	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialLinearVelocity	0x68	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E489D0	02E50510	006967BE	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialAngularVelocity	0x78	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E489D0	02E50510	00696831	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_targetNode	0xA0	PScene::VPNode	0x0A	02E489D0	02E518D0	006968A3	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_targetWorldMatrix	0xA8	VPWorldMatrix	0x0A	02E489D0	02E404B0	00696915	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_material	0x98	PPhysics::VPPhysicsMaterial	0x0A	02E489D0	02E483D0	00696987	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_scale	0x88	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E489D0	02E50510	00696A93	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_linearDamping	0xC0	float	0x08	02E489D0	01F2E690	00696B06	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_angularDamping	0xC4	float	0x08	02E489D0	01F2E690	00696B79	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_next	0x0	PPhysics::VPPhysicsRigidBody	0x0A	02E489D0	02E48BD0	00696BE7	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_model	0xC8	PPhysics::VPPhysicsModel	0x0A	02E489D0	02E486D0	00696C59	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_nextKinematicRigidBody	0xD8	PPhysics::VPPhysicsRigidBody	0x0A	02E489D0	02E48BD0	00696CCB	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_collisionGroup	0xE0	unsigned char	0x08	02E489D0	01F2E460	00696D3E	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_enabled	0xE9	bool	0x08	02E489D0	01F2E3C0	00696DB1	00696470
-PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_scriptHandler	0x100	PScripting::VPScriptCallbackHandler	0x08	02E489D0	02E41170	00696E23	00696470
-PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_hollow	0x8	bool	0x08	02E48CD0	01F2E3C0	006973B2	00697320
-PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_mass	0xC	float	0x08	02E48CD0	01F2E690	00697425	00697320
-PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_density	0x10	float	0x08	02E48CD0	01F2E690	00697498	00697320
-PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_material	0x18	PPhysics::VPPhysicsMaterial	0x0A	02E48CD0	02E483D0	0069750A	00697320
-PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_transform	0x20	VPMatrix4x3	0x08	02E48CD0	02E51570	0069757D	00697320
-PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_scale	0x50	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E48CD0	02E50510	006975F0	00697320
-PPhysicsSphereBase	PPhysics::VPPhysicsSphereBase	m_radius	0x70	float	0x08	02E48ED0	01F2E690	00697729	006976A0
-PPhysicsTaperedCapsule	PPhysics::VPPhysicsTaperedCapsule	m_height	0x80	float	0x08	02E490D0	01F2E690	006978DC	00697760
-PPhysicsTaperedCylinder	PPhysics::VPPhysicsTaperedCylinder	m_height	0x80	float	0x08	02E491D0	01F2E690	00697A8C	00697910
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_models	0x48	PPhysics::VPPhysicsModel	0x0A	02E492D0	02E486D0	00698211	00698180
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_gravity	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E492D0	02E50510	00698280	00698180
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_timeStep	0x10	float	0x08	02E492D0	01F2E690	006982F3	00698180
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_worldMin	0x14	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E492D0	02E50510	00698366	00698180
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_worldMax	0x24	sce::Vectormath::Scalar::Aos::VVector3	0x08	02E492D0	02E50510	006983D9	00698180
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_characterControllers	0x50	PPhysics::VPPhysicsCharacterControllerBase	0x0A	02E492D0	02E47DD0	0069844B	00698180
-PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_kinematicRigidBodies	0x58	PPhysics::VPPhysicsRigidBody	0x0A	02E492D0	02E48BD0	006984BD	00698180
-PRaycastResult	PPhysics::VPRaycastResult	m_contactPoint	0x0	sce::Vectormath::Scalar::Aos::VVector4	0x08	02E493D0	02E50A50	0069858E	00698500
-PRaycastResult	PPhysics::VPRaycastResult	m_contactNormal	0x10	sce::Vectormath::Scalar::Aos::VVector4	0x08	02E493D0	02E50A50	00698601	00698500
-PRaycastResult	PPhysics::VPRaycastResult	m_collisionObject	0x20	PClassDescriptorBase	0x0A	02E493D0	02CF8270	00698674	00698500
-PRaycastResult	PPhysics::VPRaycastResult	m_collisionObjectClassDescriptor	0x28	PClassDescriptorForClassDescriptor	0x0A	02E493D0	02CF8470	006986E6	00698500
-PSharray	Phyre::PPhysics::PEAVPPhysicsShape::V?$PSharray	m_count	0x0	unsigned int	0x00	02E4D070	01F2E5A0	00698B98	00698930
-PTrigger	PGameplay::VPTrigger	m_type	0x0	PGameplay::VPTriggerType	0x02	02E4D940	02E5C270	006A7F78	006A7EE0
-PTrigger	PGameplay::VPTrigger	m_localToWorldMatrix	0x18	VPWorldMatrix	0x02	02E4D940	02E404B0	006A7FEA	006A7EE0
-PTrigger	PGameplay::VPTrigger	m_previousLocalToWorldMatrix	0x20	VPWorldMatrix	0x00	02E4D940	02E404B0	006A8058	006A7EE0
-PTrigger	PGameplay::VPTrigger	m_enabled	0x50	bool	0x00	02E4D940	01F2E3C0	006A8159	006A7EE0
-PSharray	Phyre::PGameplay::PEAVPTriggerReceiverComponent::V?$PSharray	m_count	0x0	unsigned int	0x00	02E4DDB0	01F2E5A0	006A8728	006A84C0
-PQuarryComponent	PGameplay::VPQuarryComponent	m_previousLocalToWorldMatrix	0x18	VPWorldMatrix	0x00	02E4E1E0	02E404B0	006A98CD	006A9840
-PQuarryComponent	PGameplay::VPQuarryComponent	m_min	0x48	sce::Vectormath::Scalar::Aos::VVector3	0x00	02E4E1E0	02E50510	006A993C	006A9840
-PQuarryComponent	PGameplay::VPQuarryComponent	m_size	0x58	sce::Vectormath::Scalar::Aos::VVector3	0x00	02E4E1E0	02E50510	006A99AB	006A9840
-PTypedObject	VPTypedObject	m_object	0x0	PClassDescriptorBase	0x12	02E4E430	02CF8270	006A9F9E	006A9F10
-PTypedObject	VPTypedObject	m_classDescriptor	0x8	PClassDescriptorForClassDescriptor	0x12	02E4E430	02CF8470	006AA010	006A9F10
-PComponent	VPComponent	m_entity	0x8	VPEntity	0x12	02E4E720	02E4EAF0	006AACAF	006AAA80
-PComponent	VPComponent	m_next	0x0	VPComponent	0x12	02E4E720	02E4E720	006AAD1D	006AAA80
-PComponent	VPComponent	m_componentType	0x10	PClassDescriptorForClassDescriptor	0x12	02E4E720	02CF8470	006AAD8F	006AAA80
-PEntity	VPEntity	m_firstComponent	0x0	VPComponent	0x0A	02E4EAF0	02E4E720	006AB946	006AB7E0
-PEntity	VPEntity	m_worldMatrix	0x8	VPWorldMatrix	0x0A	02E4EAF0	02E404B0	006AB9B8	006AB7E0
-PCameraOrthographic	VPCameraOrthographic	m_height	0xD0	float	0x10	02E4F290	01F2E690	006AD137	006AD0A0
-PCameraPerspective	VPCameraPerspective	m_FOV	0xD0	float	0x10	02E4F710	01F2E690	006AD999	006AD910
-PArray	$07::Phyre::VPTypedObject::V?$PArray	m_count	0x0	unsigned int	0x00	02E4FBF0	01F2E5A0	006AE91A	006AE780
-PNameComponent	VPNameComponent	m_name	0x28	VPString	0x00	02E4FF60	02E4D630	006AFCB2	006AFC20
-PNode	PScene::VPNode	m_parent	0x8	PScene::VPNode	0x12	02E518D0	02E518D0	006B4DCE	006B41A0
-PNode	PScene::VPNode	m_firstChild	0x10	PScene::VPNode	0x12	02E518D0	02E518D0	006B4E40	006B41A0
-PNode	PScene::VPNode	m_next	0x0	PScene::VPNode	0x12	02E518D0	02E518D0	006B4EAE	006B41A0
-PNode	PScene::VPNode	m_worldMatrix	0x18	VPWorldMatrix	0x12	02E518D0	02E404B0	006B4F20	006B41A0
-PNode	PScene::VPNode	m_localMatrix	0x20	VPMatrix4	0x10	02E518D0	02E51350	006B4F93	006B41A0
-PNode	PScene::VPNode	m_name	0x60	VPString	0x10	02E518D0	02E4D630	006B5005	006B41A0
-PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_modifierNetwork	0x0	PDynamicGeometry::VPModifierNetwork	0x12	02E57F60	02E5E540	006BCAAD	006BCA20
-PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_segmentInputGroupStart	0x8	unsigned int	0x10	02E57F60	01F2E5A0	006BCB20	006BCA20
-PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_segmentOutputGroupStart	0xC	unsigned int	0x10	02E57F60	01F2E5A0	006BCB93	006BCA20
-PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_modifierOutputsAreConsumed	0x10	unsigned int	0x10	02E57F60	01F2E5A0	006BCC06	006BCA20
-PArray	PEBE$07::V?$PArray	m_count	0x0	unsigned int	0x00	02E584A0	01F2E5A0	006BCDDA	006BCC40
-PArray	$07::Phyre::PDynamicGeometry::VPModifierNetworkDynamicMeshSegment::V?$PArray	m_count	0x0	unsigned int	0x00	02E58900	01F2E5A0	006BD11A	006BCF80
-PArray	$07::Phyre::PDynamicGeometry::VPRenderStream::V?$PArray	m_count	0x0	unsigned int	0x00	02E586D0	01F2E5A0	006BD44A	006BD2B0
-PLight	PRendering::VPLight	m_color	0x0	sce::Vectormath::Scalar::Aos::VVector4	0x10	02E58DB0	02E50A50	006BEDFA	006BED60
-PLight	PRendering::VPLight	m_localToWorldMatrix	0x10	VPWorldMatrix	0x12	02E58DB0	02E404B0	006BEE6C	006BED60
-PLight	PRendering::VPLight	m_shadowCaster	0x18	PRendering::VPShadowCaster	0x12	02E58DB0	02E59DC0	006BEEDE	006BED60
-PLight	PRendering::VPLight	m_lightType	0x20	PRendering::VPLightType	0x12	02E58DB0	02E58EB0	006BEF51	006BED60
-PLight	PRendering::VPLight	m_innerConeAngle	0x28	float	0x10	02E58DB0	01F2E690	006BEFC4	006BED60
-PLight	PRendering::VPLight	m_outerConeAngle	0x2C	float	0x10	02E58DB0	01F2E690	006BF037	006BED60
-PLight	PRendering::VPLight	m_intensity	0x30	float	0x10	02E58DB0	01F2E690	006BF0AA	006BED60
-PLight	PRendering::VPLight	m_innerRange	0x34	float	0x10	02E58DB0	01F2E690	006BF11D	006BED60
-PLight	PRendering::VPLight	m_outerRange	0x38	float	0x10	02E58DB0	01F2E690	006BF190	006BED60
-PLight	PRendering::VPLight	m_scatteringIntensity	0x3C	float	0x10	02E58DB0	01F2E690	006BF203	006BED60
-PShadowCaster	PRendering::VPShadowCaster	m_shadowCasterType	0x8	PRendering::VPShadowCasterType	0x12	02E59DC0	02E59EC0	006C16FB	006C15D0
-PShadowCaster	PRendering::VPShadowCaster	m_zbias	0x50	float	0x10	02E59DC0	01F2E690	006C176E	006C15D0
-PShadowCaster	PRendering::VPShadowCaster	m_light	0x0	PRendering::VPLight	0x12	02E59DC0	02E58DB0	006C17DC	006C15D0
-PShadowSplit	PRendering::PShadowCaster::VPShadowSplit	m_farPlane	0xC8	float	0x10	02E59CC0	01F2E690	006C1899	006C1810
-PArray	$07::Phyre::PRendering::PShadowCaster::VPShadowSplit::V?$PArray	m_count	0x0	unsigned int	0x00	02E5A120	01F2E5A0	006C1ABA	006C1920
-PModifierNetworkInstance	PDynamicGeometry::VPModifierNetworkInstance	m_modifierNetwork	0x0	PDynamicGeometry::VPModifierNetwork	0x12	02E5A6C0	02E5E540	006C340D	006C3380
-PModifierNetworkInstanceInput	PDynamicGeometry::VPModifierNetworkInstanceInput	m_elementSize	0x8	unsigned int	0x10	02E5A4C0	01F2E5A0	006C3612	006C3580
-PModifierNetworkInstanceInput	PDynamicGeometry::VPModifierNetworkInstanceInput	m_renderStream	0x10	PDynamicGeometry::VPRenderStream	0x10	02E5A4C0	02E5DE30	006C3684	006C3580
-PModifierNetworkInstancePacketInput	PDynamicGeometry::VPModifierNetworkInstancePacketInput	m_source	0x0	unsigned int	0x10	02E5A5C0	01F2E5A0	006C374E	006C36C0
-PModifierNetworkInstancePacketInput	PDynamicGeometry::VPModifierNetworkInstancePacketInput	m_list	0x4	unsigned int	0x10	02E5A5C0	01F2E5A0	006C37C1	006C36C0
-PArray	$07::Phyre::PEBVPBase::V?$PArray	m_count	0x0	unsigned int	0x00	02E5AA80	01F2E5A0	006C399A	006C3800
-PLODGroup	PLOD::VPLODGroup	m_minBounds	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x00	02E5AE00	02E50510	006C5B76	006C5A50
-PLODGroup	PLOD::VPLODGroup	m_maxBounds	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x00	02E5AE00	02E50510	006C5BE5	006C5A50
-PLODGroup	PLOD::VPLODGroup	m_blendRange	0x30	float	0x00	02E5AE00	01F2E690	006C5C54	006C5A50
-PLODGroup	PLOD::VPLODGroup	m_shaderLODLevelDistance	0x34	float	0x00	02E5AE00	01F2E690	006C5CC3	006C5A50
-PLODGroup	PLOD::VPLODGroup	m_lodMetricType	0x40	PLOD::VPLODMetricType	0x02	02E5AE00	02EA06E0	006C5D36	006C5A50
-PLODGroup	PLOD::VPLODGroup	m_lodBlendType	0x48	PLOD::VPLODBlendType	0x02	02E5AE00	02EA0750	006C5DA9	006C5A50
-PLODGroup	PLOD::VPLODGroup	m_isEnabled	0x60	bool	0x00	02E5AE00	01F2E3C0	006C5E18	006C5A50
-PLODLevel	PLOD::VPLODLevel	m_lodGroup	0x0	PLOD::VPLODGroup	0x02	02E5AD00	02E5AE00	006C607D	006C5FF0
-PLODLevel	PLOD::VPLODLevel	m_minimumThreshold	0x18	float	0x00	02E5AD00	01F2E690	006C617E	006C5FF0
-PLODLevel	PLOD::VPLODLevel	m_maximumThreshold	0x1C	float	0x00	02E5AD00	01F2E690	006C61ED	006C5FF0
-PArray	$07::Phyre::PLOD::VPLODLevel::V?$PArray	m_count	0x0	unsigned int	0x00	02E5B8A0	01F2E5A0	006C63CA	006C6230
-PSharray	Phyre::PRendering::PEAVPMeshInstance::V?$PSharray	m_count	0x0	unsigned int	0x00	02E5B670	01F2E5A0	006C67C8	006C6560
-POccluderGeometryInstance	POccluderGeometry::VPOccluderGeometryInstance	m_occluder	0x0	POccluderGeometry::VPOccluderGeometryObject	0x02	02E5BBB0	02EA0850	006C83A2	006C8310
-POccluderGeometryInstance	POccluderGeometry::VPOccluderGeometryInstance	m_localToWorldMatrix	0x8	VPWorldMatrix	0x02	02E5BBB0	02E404B0	006C8414	006C8310
-PScriptableComponent	PGameplay::VPScriptableComponent	m_script	0x28	PScripting::VPScript	0x02	02E5C050	02E41470	006CD091	006CD000
-PScriptableComponent	PGameplay::VPScriptableComponent	m_entryPoint	0x20	VPString	0x00	02E5C050	02E4D630	006CD0FF	006CD000
-PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_triggerReceiverComponent	0x0	VPTypedObject	0x00	02E5C370	02E4E430	006CD9E9	006CD960
-PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_trigger	0x10	PGameplay::VPTrigger	0x02	02E5C370	02E4D940	006CDA5B	006CD960
-PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_quarryComponent	0x18	PGameplay::VPQuarryComponent	0x02	02E5C370	02E4E1E0	006CDACD	006CD960
-PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_entryCount	0x20	unsigned int	0x00	02E5C370	01F2E5A0	006CDB3C	006CD960
-PTriggerReceiverComponent	PGameplay::VPTriggerReceiverComponent	m_script	0x18	PScripting::VPScript	0x12	02E5C710	02E41470	006CE221	006CE190
-PTriggerReceiverComponent	PGameplay::VPTriggerReceiverComponent	m_entryHandler	0x28	PScripting::VPScriptCallbackHandler	0x10	02E5C710	02E41170	006CE293	006CE190
-PTriggerReceiverComponent	PGameplay::VPTriggerReceiverComponent	m_exitHandler	0x40	PScripting::VPScriptCallbackHandler	0x10	02E5C710	02E41170	006CE305	006CE190
-PModifierAndInputs	PDynamicGeometry::VPModifierAndInputs	m_modifier	0x0	PDynamicGeometry::VPModifier	0x12	02E5E030	02E9FD70	006D0DDE	006D0D50
-PModifierAndInputs	PDynamicGeometry::VPModifierAndInputs	m_persistentStateOffset	0x8	unsigned int	0x10	02E5E030	01F2E5A0	006D0E51	006D0D50
-PModifierAndInputs	PDynamicGeometry::VPModifierAndInputs	m_stateBlockOffset	0xC	unsigned int	0x10	02E5E030	01F2E5A0	006D0EC4	006D0D50
-PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalInputCount	0x18	unsigned int	0x10	02E5E540	01F2E5A0	006D10D0	006D0FA0
-PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalOutputElementSize	0x0	unsigned int	0x10	02E5E540	01F2E5A0	006D126A	006D0FA0
-PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_infoPacket	0x48	PDynamicGeometry::VPModifierNetworkInfoPacket	0x12	02E5E540	02E5E430	006D134E	006D0FA0
-PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalPersistentStateSize	0x50	unsigned int	0x10	02E5E540	01F2E5A0	006D13C1	006D0FA0
-PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalStateBlockSize	0x54	unsigned int	0x10	02E5E540	01F2E5A0	006D1434	006D0FA0
-PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_isCompiled	0x58	bool	0x10	02E5E540	01F2E3C0	006D14A7	006D0FA0
-PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_type	0x0	PGeometry::VPRenderDataType	0x12	02E5DF30	02D3C460	006D160E	006D1580
-PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_modifier	0x8	unsigned int	0x10	02E5DF30	01F2E5A0	006D1681	006D1580
-PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_stream	0xC	unsigned int	0x10	02E5DF30	01F2E5A0	006D16F4	006D1580
-PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_elementSize	0x10	unsigned int	0x10	02E5DF30	01F2E5A0	006D1767	006D1580
-PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_info	0x14	unsigned int	0x10	02E5DF30	01F2E5A0	006D17DA	006D1580
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_size	0x0	unsigned int	0x10	02E5E430	01F2E5A0	006D18A5	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_modifierCodeCount	0x4	unsigned int	0x10	02E5E430	01F2E5A0	006D1918	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_modifierInstanceCount	0x8	unsigned int	0x10	02E5E430	01F2E5A0	006D198B	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_inputCount	0xC	unsigned short	0x10	02E5E430	01F2E500	006D19FE	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_outputCount	0xE	unsigned short	0x10	02E5E430	01F2E500	006D1A71	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_totalPersistentStateSize	0x14	unsigned int	0x10	02E5E430	01F2E5A0	006D1B56	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_totalStateBlockSize	0x18	unsigned int	0x10	02E5E430	01F2E5A0	006D1BC9	006D1810
-PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_spuModifierCodeSize	0x1C	unsigned int	0x10	02E5E430	01F2E5A0	006D1C3C	006D1810
-PModifierNetworkInfoPacket_Buffer	PDynamicGeometry::VPModifierNetworkInfoPacket_Buffer	m_elementSize	0x0	unsigned short	0x10	02E5E330	01F2E500	006D1CFC	006D1C70
-PModifierNetworkInfoPacket_ModifierCode	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierCode	m_modifier	0x0	PDynamicGeometry::VPModifier	0x12	02E5E130	02E9FD70	006D1DC5	006D1D30
-PModifierNetworkInfoPacket_ModifierCode	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierCode	m_inputCount	0x8	unsigned int	0x10	02E5E130	01F2E5A0	006D1E38	006D1D30
-PModifierNetworkInfoPacket_ModifierCode	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierCode	m_outputCount	0xC	unsigned int	0x10	02E5E130	01F2E5A0	006D1EAB	006D1D30
-PModifierNetworkInfoPacket_ModifierInstance	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierInstance	m_persistentStateOffset	0x0	unsigned int	0x10	02E5E230	01F2E5A0	006D1F75	006D1EE0
-PModifierNetworkInfoPacket_ModifierInstance	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierInstance	m_stateBlockOffset	0x4	unsigned int	0x10	02E5E230	01F2E5A0	006D1FE8	006D1EE0
-PModifierNetworkInfoPacket_ModifierInstance	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierInstance	m_codeIndex	0x8	unsigned char	0x10	02E5E230	01F2E460	006D205B	006D1EE0
-PRenderStream	PDynamicGeometry::VPRenderStream	m_dataBlock	0x0	PGeometry::VPDynamicDataBlock	0x12	02E5DE30	02D39F40	006D219D	006D2110
-PRenderStream	PDynamicGeometry::VPRenderStream	m_vertexStream	0x8	PGeometry::VPVertexStream	0x12	02E5DE30	02D3ADE0	006D220F	006D2110
-PRenderStreamInput	PDynamicGeometry::VPRenderStreamInput	m_source	0x0	int	0x10	02E5DD30	01F2E550	006D22DE	006D2250
-PRenderStreamInput	PDynamicGeometry::VPRenderStreamInput	m_stream	0x4	int	0x10	02E5DD30	01F2E550	006D2351	006D2250
-PArray	$07::Phyre::PDynamicGeometry::VPModifierAndInputs::V?$PArray	m_count	0x0	unsigned int	0x00	02E9F850	01F2E5A0	006D252A	006D2390
-PArray	$07::Phyre::PDynamicGeometry::VPModifierNetworkBuffer::V?$PArray	m_count	0x0	unsigned int	0x00	02E9FA80	01F2E5A0	006D285A	006D26C0
-PArray	$03::Phyre::PDynamicGeometry::VPRenderStreamInput::V?$PArray	m_count	0x0	unsigned int	0x00	02E9F620	01F2E5A0	006D2B8A	006D29F0
-POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_planeCount	0x0	unsigned int	0x00	02EA0850	01F2E5A0	006DA051	006D9FC0
-POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_vertexCount	0x4	unsigned int	0x00	02EA0850	01F2E5A0	006DA0C0	006D9FC0
-POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_edgeCount	0x8	unsigned int	0x00	02EA0850	01F2E5A0	006DA12F	006D9FC0
-POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_minBounds	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x00	02EA0850	02E50510	006DA19E	006D9FC0
-POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_maxBounds	0x20	sce::Vectormath::Scalar::Aos::VVector3	0x00	02EA0850	02E50510	006DA20D	006D9FC0
-PDebugUtils	PFramework::VPDebugUtils	m_autoClear	0x50	bool	0x00	02EA9400	01F2E3C0	0079554C	00795320
-PInputMapper	PFramework::VPInputMapper	m_inputMap	0x0	PInputs::VPInputMap	0x02	02EA5560	02EB6DF0	00795627	00795590
-PInputAction	PInputs::VPInputAction	m_name	0x8	VPString	0x00	02EB6CF0	02E4D630	0086D705	0086D670
-PInputSource	PInputs::VPInputSource	m_typeSemantic	0x10	PInputs::VPInputTypeSemantic	0x02	02EB52F0	02EB8270	0086DB02	0086DA70
-PInputSource	PInputs::VPInputSource	m_id	0x18	unsigned int	0x00	02EB52F0	01F2E5A0	0086DB71	0086DA70
-PInputSource	PInputs::VPInputSource	m_invert	0x1C	bool	0x00	02EB52F0	01F2E3C0	0086DBE0	0086DA70
-PInputSource	PInputs::VPInputSource	m_scale	0x20	float	0x00	02EB52F0	01F2E690	0086DC4F	0086DA70
-PInputSourceJoypadAxis	PInputs::VPInputSourceJoypadAxis	m_joypadAxisSemantic	0x30	PInputs::VPInputAxisSemantic	0x02	02EB55F0	02EB82E0	0086DD19	0086DC90
-PInputSourceJoypadButton	PInputs::VPInputSourceJoypadButton	m_positiveButtonSemantic	0x30	PInputs::VPInputJoypadButtonSemantic	0x02	02EB54F0	02EB8350	0086DDE2	0086DD50
-PInputSourceJoypadButton	PInputs::VPInputSourceJoypadButton	m_negativeButtonSemantic	0x38	PInputs::VPInputJoypadButtonSemantic	0x02	02EB54F0	02EB8350	0086DE55	0086DD50
-PInputSourceKey	PInputs::VPInputSourceKey	m_positiveKeySemantic	0x30	PInputs::VPInputKeySemantic	0x02	02EB53F0	02EB83C0	0086DF22	0086DE90
-PInputSourceKey	PInputs::VPInputSourceKey	m_negativeKeySemantic	0x38	PInputs::VPInputKeySemantic	0x02	02EB53F0	02EB83C0	0086DF95	0086DE90
-PInputSourceMouseButton	PInputs::VPInputSourceMouseButton	m_mouseButtonSemantic	0x30	PInputs::VPInputMouseButtonSemantic	0x02	02EB56F0	02EB8430	0086E119	0086E090
-PInputSourceMouseDeltaX	PInputs::VPInputSourceMouseDeltaX	m_modifierButtonSemantic	0x30	PInputs::VPInputMouseButtonSemantic	0x02	02EB57F0	02EB8430	0086E1E2	0086E150
-PInputSourceMouseDeltaX	PInputs::VPInputSourceMouseDeltaX	m_modifierKeySemantic	0x38	PInputs::VPInputKeySemantic	0x02	02EB57F0	02EB83C0	0086E255	0086E150
-PInputSourceMouseDeltaY	PInputs::VPInputSourceMouseDeltaY	m_modifierButtonSemantic	0x30	PInputs::VPInputMouseButtonSemantic	0x02	02EB58F0	02EB8430	0086E322	0086E290
-PInputSourceMouseDeltaY	PInputs::VPInputSourceMouseDeltaY	m_modifierKeySemantic	0x38	PInputs::VPInputKeySemantic	0x02	02EB58F0	02EB83C0	0086E395	0086E290
-PArray	$07::Phyre::PInputs::PEAVPInputAction::V?$PArray	m_count	0x0	unsigned int	0x00	02EB7860	01F2E5A0	0086E60A	0086E470
-PArray	$07::Phyre::PInputs::PEAVPInputSource::V?$PArray	m_count	0x0	unsigned int	0x00	02EB7630	01F2E5A0	0086E94A	0086E7B0
-POctree	PHierarchy::VPOctree	m_center	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x08	02EB9070	02E50510	0087817E	008780F0
-POctree	PHierarchy::VPOctree	m_halfSize	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x08	02EB9070	02E50510	008781F1	008780F0
-POctree	PHierarchy::VPOctree	m_maxRadius	0x20	float	0x08	02EB9070	01F2E690	00878264	008780F0
-POctree	PHierarchy::VPOctree	m_level	0x24	unsigned int	0x08	02EB9070	01F2E5A0	008782D7	008780F0
-POctree	PHierarchy::VPOctree	m_maxLevel	0x28	unsigned int	0x08	02EB9070	01F2E5A0	0087834A	008780F0
-POctree	PHierarchy::VPOctree	m_objectsPerLevel	0x2C	unsigned int	0x08	02EB9070	01F2E5A0	008783BD	008780F0
-POctree	PHierarchy::VPOctree	m_currentObjectCount	0x30	unsigned int	0x08	02EB9070	01F2E5A0	00878430	008780F0
-POctree	PHierarchy::VPOctree	m_totalObjectCount	0x34	unsigned int	0x08	02EB9070	01F2E5A0	008784A3	008780F0
-POctree	PHierarchy::VPOctree	m_octreeChildren	0x40	PHierarchy::VPOctreeChildren	0x0A	02EB9070	02EB9370	00878515	008780F0
-POctree	PHierarchy::VPOctree	m_octreeData	0x38	PHierarchy::VPOctreeData	0x0A	02EB9070	02EB9170	00878587	008780F0
-POctree	PHierarchy::VPOctree	m_parent	0x48	PHierarchy::VPOctree	0x0A	02EB9070	02EB9070	008785F9	008780F0
-POctreeData	PHierarchy::VPOctreeData	m_octree	0x0	PHierarchy::VPOctree	0x0A	02EB9170	02EB9070	0087877D	008786F0
-POctreeData	PHierarchy::VPOctreeData	m_cachedPosition	0x8	sce::Vectormath::Scalar::Aos::VVector3	0x08	02EB9170	02E50510	008787F0	008786F0
-POctreeData	PHierarchy::VPOctreeData	m_bounds	0x18	PRendering::VPMeshInstanceBounds	0x0A	02EB9170	02CB7080	00878862	008786F0
-POctreeData	PHierarchy::VPOctreeData	m_prev	0x28	PHierarchy::VPOctreeData	0x0A	02EB9170	02EB9170	008788D4	008786F0
-POctreeData	PHierarchy::VPOctreeData	m_next	0x20	PHierarchy::VPOctreeData	0x0A	02EB9170	02EB9170	00878946	008786F0
-POctreeWorld	PHierarchy::VPOctreeWorld	m_center	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x00	02EB9270	02E50510	00878A0A	00878980
-POctreeWorld	PHierarchy::VPOctreeWorld	m_halfSize	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x00	02EB9270	02E50510	00878A79	00878980
-POctreeWorld	PHierarchy::VPOctreeWorld	m_objectsPerLevel	0x20	unsigned int	0x00	02EB9270	01F2E5A0	00878AE8	00878980
-POctreeWorld	PHierarchy::VPOctreeWorld	m_maxLevel	0x24	unsigned int	0x00	02EB9270	01F2E5A0	00878B57	00878980
-POctreeWorld	PHierarchy::VPOctreeWorld	m_octree	0x28	PHierarchy::VPOctree	0x08	02EB9270	02EB9070	00878BC9	00878980
-POctreeWorld	PHierarchy::VPOctreeWorld	m_dynamicOctree	0x78	PHierarchy::VPOctree	0x08	02EB9270	02EB9070	00878C3B	00878980
-PGameConfig	PGame::VPGameConfig	m_inputMap	0x10	PInputs::VPInputMap	0x02	02EB9E60	02EB6DF0	00879DF1	00879D60
-PArray	$07::Phyre::PInputs::PEAVPInputMap::V?$PArray	m_count	0x0	unsigned int	0x00	02EBA030	01F2E5A0	0087A05A	00879EC0
-PShaderPassParameterLocationTypesBase		m_parameterStart	0x0	unsigned short	0x00	02CB9600	01F2E500	005EA16A	005EA0E0
-PShaderPassParameterLocationTypesBase		m_parameterCount	0x8	unsigned short	0x00	02CB9600	01F2E500	005EA1E3	005EA0E0
-PAnimationConstantChannel		m_value	0x48	float	0x00	02CADC50	01F2E690	005B0C36	005B0BB0
-POctreeChildren		m_children	0x8	POctree	0x00	02EB9370	02EB9070	008786B5	00878630
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_phyreMarker	0x0	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x0059846E	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_size	0x4	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x005984E1	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_instanceListCount	0x10	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598554	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_packedNamespaceSize	0x8	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x005985C7	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_arrayFixupSize	0x14	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x0059863A	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_arrayFixupCount	0x18	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x005986AD	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerFixupSize	0x1C	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598720	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerFixupCount	0x20	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598793	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerArrayFixupSize	0x24	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598806	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointerArrayFixupCount	0x28	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598879	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_pointersInArraysCount	0x2C	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x005988EC	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_userFixupCount	0x30	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x0059895F	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_userFixupDataSize	0x34	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x005989D2	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_totalDataSize	0x38	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598A45	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_headerClassInstanceCount	0x3C	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598AB8	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_headerClassChildCount	0x40	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598B2B	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_platformID	0xC	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598B9E	0x005983E0
+PClusterHeaderBase	PSerialization::PBinary::VPClusterHeaderBase	m_physicsEngineID	0x44	unsigned int	0x08	0x02CA9FA0	0x01F2E5A0	0x00598C11	0x005983E0
+PClusterHeaderD3D11	PSerialization::PBinary::VPClusterHeaderD3D11	m_indexBufferSize	0x48	unsigned int	0x00	0x02CA9DA0	0x01F2E5A0	0x00598CDE	0x00598C50
+PClusterHeaderD3D11	PSerialization::PBinary::VPClusterHeaderD3D11	m_vertexBufferSize	0x4C	unsigned int	0x00	0x02CA9DA0	0x01F2E5A0	0x00598D4D	0x00598C50
+PClusterHeaderD3D11	PSerialization::PBinary::VPClusterHeaderD3D11	m_maxTextureBufferSize	0x50	unsigned int	0x00	0x02CA9DA0	0x01F2E5A0	0x00598DBC	0x00598C50
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_classID	0x0	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x00598E7E	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_count	0x4	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x00598EF1	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_size	0x8	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x00598F64	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_objectsSize	0xC	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x00598FD7	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_arraysSize	0x10	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x0059904A	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_pointersInArraysCount	0x14	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x005990BD	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_arrayFixupCount	0x18	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x00599130	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_pointerFixupCount	0x1C	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x005991A3	0x00598DF0
+PInstanceListHeader	PSerialization::PBinary::PInternal::VPInstanceListHeader	m_pointerArrayFixupCount	0x20	unsigned int	0x08	0x02CA9EA0	0x01F2E5A0	0x00599216	0x00598DF0
+PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationSet	0x20	PAnimation::VPAnimationSet	0x12	0x02CAD140	0x02CAE660	0x005AD994	0x005AD8F0
+PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationWeightedBlenderController	0x38	PAnimation::VPAnimationWeightedBlenderController	0x10	0x02CAD140	0x02CAEDE0	0x005ADA9F	0x005AD8F0
+PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationTargetBlenderController	0x70	PAnimation::VPAnimationTargetBlenderController	0x10	0x02CAD140	0x02CAECE0	0x005ADB11	0x005AD8F0
+PAnimatableComponent	PAnimation::VPAnimatableComponent	m_animationNetworkInstance	0x90	PAnimation::VPAnimationNetworkInstance	0x10	0x02CAD140	0x02CAE550	0x005ADB83	0x005AD8F0
+PAnimationChannel	PAnimation::VPAnimationChannel	m_times	0x48	PAnimation::VPAnimationChannelTimes	0x12	0x02CAD440	0x02CAD740	0x005AF131	0x005AF0A0
+PAnimationChannel	PAnimation::VPAnimationChannel	m_keyCount	0x60	unsigned int	0x10	0x02CAD440	0x01F2E5A0	0x005AF242	0x005AF0A0
+PAnimationChannelBase	PAnimation::VPAnimationChannelBase	m_keyType	0x38	PAnimation::VPAnimationKeyDataType	0x12	0x02CAD540	0x02CB2950	0x005AF30D	0x005AF280
+PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_instanceObjectType	0x0	PClassDescriptorForClassDescriptor	0x12	0x02CAD640	0x02CF8470	0x005AF76F	0x005AF3B0
+PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_instanceObject	0x8	PClassDescriptorBase	0x12	0x02CAD640	0x02CF8270	0x005AF7E2	0x005AF3B0
+PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_baseObjectType	0x10	PClassDescriptorForClassDescriptor	0x12	0x02CAD640	0x02CF8470	0x005AF854	0x005AF3B0
+PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_baseObject	0x18	PClassDescriptorBase	0x12	0x02CAD640	0x02CF8270	0x005AF8C7	0x005AF3B0
+PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_name	0x28	VPString	0x10	0x02CAD640	0x02E4D630	0x005AF9AB	0x005AF3B0
+PAnimationChannelTarget	PAnimation::VPAnimationChannelTarget	m_index	0x30	unsigned int	0x10	0x02CAD640	0x01F2E5A0	0x005AFA1E	0x005AF3B0
+PAnimationChannelTimes	PAnimation::VPAnimationChannelTimes	m_keyCount	0x0	unsigned int	0x10	0x02CAD740	0x01F2E5A0	0x005AFB8C	0x005AFA60
+PAnimationClip	PAnimation::VPAnimationClip	m_constantChannelStartTime	0x28	float	0x10	0x02CAD840	0x01F2E690	0x005B0569	0x005AFBC0
+PAnimationClip	PAnimation::VPAnimationClip	m_constantChannelEndTime	0x2C	float	0x10	0x02CAD840	0x01F2E690	0x005B05DC	0x005AFBC0
+PAnimationClip	PAnimation::VPAnimationClip	m_binding	0x0	PAnimation::VPAnimationClipBinding	0x12	0x02CAD840	0x02CADB40	0x005B064A	0x005AFBC0
+PAnimationClip	PAnimation::VPAnimationClip	m_name	0x30	VPString	0x10	0x02CAD840	0x02E4D630	0x005B06BC	0x005AFBC0
+PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_spuBindingSize	0x0	unsigned short	0x10	0x02CADB40	0x01F2E500	0x005B0795	0x005B0700
+PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_channelCount	0x2	unsigned short	0x10	0x02CADB40	0x01F2E500	0x005B0808	0x005B0700
+PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_constantChannelCount	0x4	unsigned short	0x10	0x02CADB40	0x01F2E500	0x005B087B	0x005B0700
+PAnimationClipBinding	PAnimation::VPAnimationClipBinding	m_interpCountLength	0x6	unsigned short	0x10	0x02CADB40	0x01F2E500	0x005B08EE	0x005B0700
+PAnimationClipBindingChannelMap	PAnimation::PAnimationClipBinding::VPAnimationClipBindingChannelMap	m_destSlotArrayIndex	0x0	short	0x10	0x02CAD940	0x01F2E4B0	0x005B09C5	0x005B0930
+PAnimationClipBindingChannelMap	PAnimation::PAnimationClipBinding::VPAnimationClipBindingChannelMap	m_interp	0x2	unsigned short	0x10	0x02CAD940	0x01F2E500	0x005B0A38	0x005B0930
+PAnimationClipBindingDataBlockCache	PAnimation::PAnimationClipBinding::VPAnimationClipBindingDataBlockCache	m_sourceChannelIndex	0x14	unsigned short	0x10	0x02CADA40	0x01F2E500	0x005B0B09	0x005B0A70
+PAnimationClipBindingDataBlockCache	PAnimation::PAnimationClipBinding::VPAnimationClipBindingDataBlockCache	m_valueWidthAndKeyCount	0x10	unsigned int	0x10	0x02CADA40	0x01F2E5A0	0x005B0B7C	0x005B0A70
+PAnimationController	PAnimation::VPAnimationController	m_animationClip	0x18	PAnimation::VPAnimationClip	0x12	0x02CADD50	0x02CAD840	0x005B0D01	0x005B0C70
+PAnimationController	PAnimation::VPAnimationController	m_timeController	0x20	PAnimation::VPTimeController	0x12	0x02CADD50	0x02CAEEE0	0x005B0D73	0x005B0C70
+PAnimationDataSource	PAnimation::VPAnimationDataSource	m_animationSet	0x10	PAnimation::VPAnimationSet	0x12	0x02CADE50	0x02CAE660	0x005B0E38	0x005B0DB0
+PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_dataSource	0x0	PAnimation::VPAnimationDataSource	0x12	0x02CAE350	0x02CADE50	0x005B0EFD	0x005B0E70
+PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_inputCount	0x8	unsigned int	0x10	0x02CAE350	0x01F2E5A0	0x005B0F70	0x005B0E70
+PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_destSlotArray	0x8C	unsigned int	0x10	0x02CAE350	0x01F2E5A0	0x005B1058	0x005B0E70
+PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_persistentBufferOffset	0x90	unsigned int	0x10	0x02CAE350	0x01F2E5A0	0x005B10CB	0x005B0E70
+PAnimationDataSourceListEntry	PAnimation::VPAnimationDataSourceListEntry	m_preprocessBufferOffset	0x94	unsigned int	0x10	0x02CAE350	0x01F2E5A0	0x005B113E	0x005B0E70
+PAnimationEvent	PAnimation::VPAnimationEvent	m_time	0x0	float	0x10	0x02CAE050	0x01F2E690	0x005B120E	0x005B1180
+PAnimationEvent	PAnimation::VPAnimationEvent	m_id	0x4	unsigned int	0x10	0x02CAE050	0x01F2E5A0	0x005B1281	0x005B1180
+PAnimationEventController	PAnimation::VPAnimationEventController	m_animationEventList	0x18	PAnimation::VPAnimationEventList	0x12	0x02CADF50	0x02CAE150	0x005B1351	0x005B12C0
+PAnimationEventController	PAnimation::VPAnimationEventController	m_timeController	0x20	PAnimation::VPTimeController	0x12	0x02CADF50	0x02CAEEE0	0x005B13C3	0x005B12C0
+PAnimationNetworkInstance	PAnimation::VPAnimationNetworkInstance	m_targetBlender	0x30	PAnimation::VPAnimationTargetBlenderController	0x12	0x02CAE550	0x02CAECE0	0x005B16A3	0x005B14E0
+PAnimationNetworkInstance	PAnimation::VPAnimationNetworkInstance	m_slotArrayElementsRequired	0x38	unsigned int	0x10	0x02CAE550	0x01F2E5A0	0x005B1716	0x005B14E0
+PAnimationNetworkInstance	PAnimation::VPAnimationNetworkInstance	m_preprocessBufferSize	0x50	unsigned int	0x10	0x02CAE550	0x01F2E5A0	0x005B1827	0x005B14E0
+PAnimationSlotFilter	PAnimation::VPAnimationSlotFilter	m_animDataSource	0x28	PAnimation::VPAnimationDataSource	0x12	0x02CAEA60	0x02CADE50	0x005B1EBF	0x005B1D90
+PAnimationSlotFilterDeferredLoad	PAnimation::VPAnimationSlotFilterDeferredLoad	m_keyType	0x0	PAnimation::VPAnimationKeyDataType	0x12	0x02CAE960	0x02CB2950	0x005B201E	0x005B1F90
+PAnimationSlotFilterDeferredLoad	PAnimation::VPAnimationSlotFilterDeferredLoad	m_nodeName	0x8	VPString	0x10	0x02CAE960	0x02E4D630	0x005B2090	0x005B1F90
+PAnimationSlotListIndex	PAnimation::VPAnimationSlotListIndex	m_animKeyType	0x0	PAnimation::VPAnimationKeyDataType	0x12	0x02CAE760	0x02CB2950	0x005B215E	0x005B20D0
+PAnimationSlotListIndex	PAnimation::VPAnimationSlotListIndex	m_targetIndex	0xC	unsigned int	0x10	0x02CAE760	0x01F2E5A0	0x005B2243	0x005B20D0
+PAnimationSlotListIndex	PAnimation::VPAnimationSlotListIndex	m_nodeCentricReIndex	0x10	unsigned int	0x10	0x02CAE760	0x01F2E5A0	0x005B22B6	0x005B20D0
+PAnimationSpuTargetBlenderController	PAnimation::VPAnimationSpuTargetBlenderController	m_animDataSource	0x18	PAnimation::VPAnimationDataSource	0x12	0x02CAEBE0	0x02CADE50	0x005B2378	0x005B22F0
+PAnimationTargetBlenderController	PAnimation::VPAnimationTargetBlenderController	m_animDataSource	0x18	PAnimation::VPAnimationDataSource	0x12	0x02CAECE0	0x02CADE50	0x005B2438	0x005B23B0
+PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_animationClip	0x0	PAnimation::VPAnimationClip	0x12	0x02CAD040	0x02CAD840	0x005B25ED	0x005B2560
+PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_timeIntervalController	0x10	PAnimation::VPTimeIntervalController	0x10	0x02CAD040	0x02CAEFE0	0x005B265F	0x005B2560
+PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_timeScaleOffsetController	0x38	PAnimation::VPTimeScaleOffsetController	0x10	0x02CAD040	0x02CAF0E0	0x005B26D1	0x005B2560
+PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_animationController	0x58	PAnimation::VPAnimationController	0x10	0x02CAD040	0x02CADD50	0x005B2743	0x005B2560
+PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_speed	0xC	float	0x10	0x02CAD040	0x01F2E690	0x005B27B6	0x005B2560
+PBlendableAnimationSource	PAnimation::VPBlendableAnimationSource	m_weight	0x8	float	0x10	0x02CAD040	0x01F2E690	0x005B2829	0x005B2560
+PTimeIntervalController	PAnimation::VPTimeIntervalController	m_parent	0x10	PAnimation::VPTimeController	0x12	0x02CAEFE0	0x02CAEEE0	0x005B2A21	0x005B2990
+PTimeIntervalController	PAnimation::VPTimeIntervalController	m_parentBase	0x18	float	0x10	0x02CAEFE0	0x01F2E690	0x005B2A94	0x005B2990
+PTimeIntervalController	PAnimation::VPTimeIntervalController	m_localBase	0x1C	float	0x10	0x02CAEFE0	0x01F2E690	0x005B2B07	0x005B2990
+PTimeIntervalController	PAnimation::VPTimeIntervalController	m_localRange	0x20	float	0x10	0x02CAEFE0	0x01F2E690	0x005B2B7A	0x005B2990
+PTimeScaleOffsetController	PAnimation::VPTimeScaleOffsetController	m_parent	0x10	PAnimation::VPTimeController	0x12	0x02CAF0E0	0x02CAEEE0	0x005B2C41	0x005B2BB0
+PTimeScaleOffsetController	PAnimation::VPTimeScaleOffsetController	m_scale	0x18	float	0x10	0x02CAF0E0	0x01F2E690	0x005B2CB4	0x005B2BB0
+PTimeScaleOffsetController	PAnimation::VPTimeScaleOffsetController	m_offset	0x1C	float	0x10	0x02CAF0E0	0x01F2E690	0x005B2D27	0x005B2BB0
+PArray	I$03::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB3B50	0x01F2E5A0	0x005B4F9A	0x005B4E00
+PArray	M$03::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB3920	0x01F2E5A0	0x005B52CA	0x005B5130
+PArray	$07::Phyre::PAnimation::PEAVPAnimationChannel::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB3FB0	0x01F2E5A0	0x005B55FA	0x005B5460
+PArray	$07::Phyre::PAnimation::PEAVPAnimationDataSource::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB4F00	0x01F2E5A0	0x005B593A	0x005B57A0
+PArray	$07::Phyre::PAnimation::VPAnimationChannelTarget::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB4640	0x01F2E5A0	0x005B5C7A	0x005B5AE0
+PArray	$07::Phyre::PAnimation::VPAnimationConstantChannel::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB41E0	0x01F2E5A0	0x005B5FAA	0x005B5E10
+PArray	$07::Phyre::PAnimation::VPAnimationDataSourceListEntry::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB5130	0x01F2E5A0	0x005B62DA	0x005B6140
+PArray	$03::Phyre::PAnimation::VPAnimationEvent::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB4AA0	0x01F2E5A0	0x005B660A	0x005B6470
+PArray	$07::Phyre::PAnimation::VPAnimationNetworkInstanceTarget::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB5360	0x01F2E5A0	0x005B693A	0x005B67A0
+PArray	$07::Phyre::PAnimation::VPAnimationSlotArray::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB5590	0x01F2E5A0	0x005B6C6A	0x005B6AD0
+PArray	$07::Phyre::PAnimation::VPAnimationSlotFilterDeferredLoad::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB4CD0	0x01F2E5A0	0x005B6F9A	0x005B6E00
+PArray	$07::Phyre::PAnimation::VPAnimationSlotListIndex::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB4870	0x01F2E5A0	0x005B72CA	0x005B7130
+PArray	$07::Phyre::PAnimation::VPBlendableAnimationSource::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB57C0	0x01F2E5A0	0x005B75FA	0x005B7460
+PArray	$0BA::Phyre::VPQWord::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CB3D80	0x01F2E5A0	0x005B792A	0x005B7790
+PSharray	Phyre::PAnimation::PEAVPAnimationClip::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02CB4410	0x01F2E5A0	0x005B7D28	0x005B7AC0
+PConstantBufferBase	PRendering::VPConstantBufferBase	m_size	0x0	unsigned int	0x10	0x02CB6380	0x01F2E5A0	0x005E3BF5	0x005E3B70
+PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantIndex	0x0	unsigned int	0x00	0x02CB7BA0	0x01F2E5A0	0x005E3CBA	0x005E3C30
+PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantVpIndex	0x4	unsigned int	0x00	0x02CB7BA0	0x01F2E5A0	0x005E3D29	0x005E3C30
+PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantFpIndex	0x8	unsigned int	0x00	0x02CB7BA0	0x01F2E5A0	0x005E3D98	0x005E3C30
+PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantGsIndex	0xC	unsigned int	0x00	0x02CB7BA0	0x01F2E5A0	0x005E3E07	0x005E3C30
+PContextVariantFoldingTable	PRendering::VPContextVariantFoldingTable	m_contextVariantCsIndex	0x10	unsigned int	0x00	0x02CB7BA0	0x01F2E5A0	0x005E3E76	0x005E3C30
+PDynamicMeshInstance	PRendering::VPDynamicMeshInstance	m_dynamicMesh	0x8	PGeometry::VPDynamicMesh	0x0A	0x02CB6580	0x02D3A140	0x005E3F38	0x005E3EB0
+PEffect	PRendering::VPEffect	m_supportedLightMask	0x0	unsigned int	0x00	0x02CB6680	0x01F2E5A0	0x005E3FFA	0x005E3F70
+PEffect	PRendering::VPEffect	m_supportedShadowCasterMask	0x4	unsigned int	0x00	0x02CB6680	0x01F2E5A0	0x005E4069	0x005E3F70
+PEffect	PRendering::VPEffect	m_effectFile	0x8	VPString	0x00	0x02CB6680	0x02E4D630	0x005E40D7	0x005E3F70
+PEffect	PRendering::VPEffect	m_effectFileFromBasePath	0x10	VPString	0x00	0x02CB6680	0x02E4D630	0x005E4145	0x005E3F70
+PEffect	PRendering::VPEffect	m_effectSource	0x68	VPString	0x00	0x02CB6680	0x02E4D630	0x005E41B3	0x005E3F70
+PEffect	PRendering::VPEffect	m_maxLightCount	0x70	unsigned int	0x00	0x02CB6680	0x01F2E5A0	0x005E450B	0x005E3F70
+PEffect	PRendering::VPEffect	m_numSupportedShaderLODLevels	0x74	unsigned int	0x00	0x02CB6680	0x01F2E5A0	0x005E457A	0x005E3F70
+PEffectVariant	PRendering::VPEffectVariant	m_effect	0x0	PRendering::VPEffect	0x02	0x02CB6780	0x02CB6680	0x005E4642	0x005E45B0
+PEffectVariant	PRendering::VPEffectVariant	m_largestShaderPassCount	0x38	unsigned short	0x00	0x02CB6780	0x01F2E500	0x005E4867	0x005E45B0
+PEffectVariant	PRendering::VPEffectVariant	m_tweakableParameterBufferSize	0x60	unsigned short	0x00	0x02CB6780	0x01F2E500	0x005E49F3	0x005E45B0
+PEffectVariant	PRendering::VPEffectVariant	m_untweakableParameterBufferSize	0x62	unsigned short	0x00	0x02CB6780	0x01F2E500	0x005E4A62	0x005E45B0
+PMaterial	PRendering::VPMaterial	m_effectVariant	0x0	PRendering::VPEffectVariant	0x02	0x02CB6B80	0x02CB6780	0x005E4B37	0x005E4AA0
+PMaterial	PRendering::VPMaterial	m_parameterBuffer	0x8	PRendering::VPParameterBuffer	0x02	0x02CB6B80	0x02CB7480	0x005E4BA9	0x005E4AA0
+PMaterial	PRendering::VPMaterial	m_flag	0x10	unsigned int	0x00	0x02CB6B80	0x01F2E5A0	0x005E4C18	0x005E4AA0
+PMaterial	PRendering::VPMaterial	m_remapFrom	0x18	PRendering::VPSceneRenderPassType	0x02	0x02CB6B80	0x02CE7900	0x005E4C8B	0x005E4AA0
+PMaterial	PRendering::VPMaterial	m_remapTo	0x20	PRendering::VPSceneRenderPassType	0x02	0x02CB6B80	0x02CE7900	0x005E4CFE	0x005E4AA0
+PMaterialSwitch	PRendering::VPMaterialSwitch	m_name	0x0	VPString	0x00	0x02CB6A80	0x02E4D630	0x005E5359	0x005E52D0
+PMaterialSwitch	PRendering::VPMaterialSwitch	m_value	0x8	VPString	0x00	0x02CB6A80	0x02E4D630	0x005E53C7	0x005E52D0
+PMeshInstance	PRendering::VPMeshInstance	m_mesh	0x0	PGeometry::VPMesh	0x0A	0x02CB6E80	0x02D3A640	0x005E5497	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_localToWorldMatrix	0x8	VPWorldMatrix	0x0A	0x02CB6E80	0x02E404B0	0x005E5509	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_materialSet	0x20	PGeometry::VPMaterialSet	0x0A	0x02CB6E80	0x02D3A440	0x005E5619	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_instanceSegment	0x28	PGeometry::VPMeshSegment	0x0A	0x02CB6E80	0x02D3A940	0x005E568B	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_dynamicMeshInstance	0x30	PRendering::VPDynamicMeshInstance	0x0A	0x02CB6E80	0x02CB6580	0x005E56FD	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_bounds	0x38	PRendering::VPMeshInstanceBounds	0x0A	0x02CB6E80	0x02CB7080	0x005E576F	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_lodLevel	0x40	PLOD::VPLODLevel	0x0A	0x02CB6E80	0x02E5AD00	0x005E57E1	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_flags	0x58	unsigned int	0x08	0x02CB6E80	0x01F2E5A0	0x005E58ED	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_extraFlag	0x5C	unsigned int	0x08	0x02CB6E80	0x01F2E5A0	0x005E5960	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_extraZBias	0x60	int	0x08	0x02CB6E80	0x01F2E550	0x005E59D3	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_farPlane	0x64	float	0x08	0x02CB6E80	0x01F2E690	0x005E5A46	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_specularIntensity	0x68	float	0x08	0x02CB6E80	0x01F2E690	0x005E5AB9	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_cubeMapIntensity	0x6C	float	0x08	0x02CB6E80	0x01F2E690	0x005E5B2C	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_cubeMapFactor	0x70	float	0x08	0x02CB6E80	0x01F2E690	0x005E5B9F	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_alphaThreshold	0x74	float	0x08	0x02CB6E80	0x01F2E690	0x005E5C12	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_specialRenderOrder	0x78	int	0x08	0x02CB6E80	0x01F2E550	0x005E5C85	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_specialTextureWrapType	0x7C	int	0x08	0x02CB6E80	0x01F2E550	0x005E5CF8	0x005E5400
+PMeshInstance	PRendering::VPMeshInstance	m_name	0x80	VPString	0x08	0x02CB6E80	0x02E4D630	0x005E5D6A	0x005E5400
+PMeshInstanceAttachPoint	PRendering::VPMeshInstanceAttachPoint	m_destination	0x0	VPWorldMatrix	0x02	0x02CB6F80	0x02E404B0	0x005E648D	0x005E6400
+PMeshInstanceAttachPoint	PRendering::VPMeshInstanceAttachPoint	m_source	0x8	PRendering::VPMeshInstance	0x02	0x02CB6F80	0x02CB6E80	0x005E64FF	0x005E6400
+PMeshInstanceAttachPoint	PRendering::VPMeshInstanceAttachPoint	m_sourceMatrixIndex	0x10	unsigned int	0x00	0x02CB6F80	0x01F2E5A0	0x005E656E	0x005E6400
+PMeshInstanceBounds	PRendering::VPMeshInstanceBounds	m_meshInstance	0x28	PRendering::VPMeshInstance	0x02	0x02CB7080	0x02CB6E80	0x005E6641	0x005E65B0
+PMeshInstanceBounds	PRendering::VPMeshInstanceBounds	m_worldMatrix	0x10	VPWorldMatrix	0x02	0x02CB7080	0x02E404B0	0x005E66B3	0x005E65B0
+PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_renderDataType	0x0	PGeometry::VPRenderDataType	0x0A	0x02CB6C80	0x02D3C460	0x005E693E	0x005E68B0
+PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_name	0x8	VPString	0x08	0x02CB6C80	0x02E4D630	0x005E69B0	0x005E68B0
+PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_nameHash	0x10	unsigned short	0x08	0x02CB6C80	0x01F2E500	0x005E6A23	0x005E68B0
+PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_index	0x12	unsigned char	0x08	0x02CB6C80	0x01F2E460	0x005E6A96	0x005E68B0
+PMeshInstanceSegmentStreamBinding	PRendering::VPMeshInstanceSegmentStreamBinding	m_inputSet	0x13	unsigned char	0x08	0x02CB6C80	0x01F2E460	0x005E6B09	0x005E68B0
+PParameterBuffer	PRendering::VPParameterBuffer	m_effectVariant	0x8	PRendering::VPEffectVariant	0x02	0x02CB7480	0x02CB6780	0x005E6DA2	0x005E6D10
+PParameterBufferBase	PRendering::VPParameterBufferBase	m_parameterBufferSize	0x0	unsigned int	0x00	0x02CB7380	0x01F2E5A0	0x005E6EF8	0x005E6E70
+PRenderTargetBase	PRendering::VPRenderTargetBase	m_msaaType	0x9	unsigned char	0x10	0x02CB75A0	0x01F2E460	0x005E6FC2	0x005E6F30
+PRenderTargetBase	PRendering::VPRenderTargetBase	m_renderTargetFlags	0xC	int	0x10	0x02CB75A0	0x01F2E550	0x005E7035	0x005E6F30
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_minFilter	0x0	unsigned char	0x10	0x02CB77A0	0x01F2E460	0x005E710D	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_magFilter	0x1	unsigned char	0x10	0x02CB77A0	0x01F2E460	0x005E7180	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_wrapS	0x2	unsigned char	0x10	0x02CB77A0	0x01F2E460	0x005E71F3	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_wrapT	0x3	unsigned char	0x10	0x02CB77A0	0x01F2E460	0x005E7266	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_wrapR	0x4	unsigned char	0x10	0x02CB77A0	0x01F2E460	0x005E72D9	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_lodBias	0x8	float	0x10	0x02CB77A0	0x01F2E690	0x005E734C	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_maxAnisotropy	0xC	float	0x10	0x02CB77A0	0x01F2E690	0x005E73BF	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_borderColor	0x10	unsigned int	0x10	0x02CB77A0	0x01F2E5A0	0x005E7432	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_baseLevel	0x14	unsigned int	0x10	0x02CB77A0	0x01F2E5A0	0x005E74A5	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_maxLevel	0x18	unsigned int	0x10	0x02CB77A0	0x01F2E5A0	0x005E7518	0x005E7070
+PSamplerStateBase	PRendering::VPSamplerStateBase	m_flags	0x1C	unsigned int	0x10	0x02CB77A0	0x01F2E5A0	0x005E758B	0x005E7070
+PSceneRenderPass	PRendering::VPSceneRenderPass	m_passType	0x0	PRendering::VPSceneRenderPassType	0x02	0x02CB79A0	0x02CE7900	0x005E7EEE	0x005E7E60
+PSceneRenderPass	PRendering::VPSceneRenderPass	m_platformsAreInclude	0x48	bool	0x00	0x02CB79A0	0x01F2E3C0	0x005E81A5	0x005E7E60
+PShader	PRendering::VPShader	m_parameterBufferSize	0x38	unsigned int	0x00	0x02CB9000	0x01F2E5A0	0x005E8424	0x005E81E0
+PShader	PRendering::VPShader	m_parameterBufferFrequenciesRequired	0x0	unsigned int	0x00	0x02CB9000	0x01F2E5A0	0x005E848F	0x005E81E0
+PShaderParameterCaptureBufferByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferByteAddressBuffer	m_structuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	0x02CBA500	0x02CBB600	0x005E8568	0x005E84D0
+PShaderParameterCaptureBufferByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferByteAddressBuffer	m_dataBlock	0x18	PGeometry::VPDataBlock	0x12	0x02CBA500	0x02D39E40	0x005E85DA	0x005E84D0
+PShaderParameterCaptureBufferDataBlock	PRendering::VPShaderParameterCaptureBufferDataBlock	m_dataBlock	0x10	PGeometry::VPDataBlock	0x12	0x02CBA700	0x02D39E40	0x005E869F	0x005E8610
+PShaderParameterCaptureBufferIndexDataBlock	PRendering::VPShaderParameterCaptureBufferIndexDataBlock	m_indexDataBlock	0x10	PGeometry::VPIndexDataBlock	0x12	0x02CBA800	0x02D3A340	0x005E875F	0x005E86D0
+PShaderParameterCaptureBufferLocation	PRendering::VPShaderParameterCaptureBufferLocation	m_offset	0x0	unsigned short	0x00	0x02CB9100	0x01F2E500	0x005E8811	0x005E8790
+PShaderParameterCaptureBufferLocationSize	PRendering::VPShaderParameterCaptureBufferLocationSize	m_size	0x2	unsigned short	0x00	0x02CB9200	0x01F2E500	0x005E88C5	0x005E8840
+PShaderParameterCaptureBufferLocationType	PRendering::VPShaderParameterCaptureBufferLocationType	m_type	0x2	unsigned char	0x00	0x02CB9300	0x01F2E460	0x005E8985	0x005E8900
+PShaderParameterCaptureBufferLocationTypeConstantBuffer	PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer	m_constantBufferLocation	0x4	unsigned int	0x00	0x02CB9400	0x01F2E5A0	0x005E8A4E	0x005E89C0
+PShaderParameterCaptureBufferLocationTypeConstantBuffer	PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer	m_size	0x8	unsigned int	0x00	0x02CB9400	0x01F2E5A0	0x005E8ABD	0x005E89C0
+PShaderParameterCaptureBufferLocationTypeConstantBuffer	PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer	m_type	0xC	unsigned char	0x00	0x02CB9400	0x01F2E460	0x005E8B2C	0x005E89C0
+PShaderParameterCaptureBufferRWByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferRWByteAddressBuffer	m_rwStructuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	0x02CBA600	0x02CBB600	0x005E8BF8	0x005E8B60
+PShaderParameterCaptureBufferRWByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferRWByteAddressBuffer	m_rwDataBlock	0x18	PGeometry::VPDataBlock	0x12	0x02CBA600	0x02D39E40	0x005E8C6A	0x005E8B60
+PShaderParameterCaptureBufferRWByteAddressBuffer	PRendering::VPShaderParameterCaptureBufferRWByteAddressBuffer	m_rwIndirectArgsBuffer	0x20	PRendering::VPIndirectArgsBuffer	0x12	0x02CBA600	0x02CB6980	0x005E8CDC	0x005E8B60
+PShaderParameterCaptureBufferRWStructuredBuffer	PRendering::VPShaderParameterCaptureBufferRWStructuredBuffer	m_rwStructuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	0x02CBA400	0x02CBB600	0x005E8DA8	0x005E8D10
+PShaderParameterCaptureBufferRWStructuredBuffer	PRendering::VPShaderParameterCaptureBufferRWStructuredBuffer	m_rwDataBlock	0x18	PGeometry::VPDataBlock	0x12	0x02CBA400	0x02D39E40	0x005E8E1A	0x005E8D10
+PShaderParameterCaptureBufferRWTexture2D	PRendering::VPShaderParameterCaptureBufferRWTexture2D	m_texture	0x10	PRendering::VPTexture2D	0x12	0x02CBA900	0x02CBB900	0x005E8EDF	0x005E8E50
+PShaderParameterCaptureBufferRWTexture3D	PRendering::VPShaderParameterCaptureBufferRWTexture3D	m_texture	0x10	PRendering::VPTexture3D	0x12	0x02CBAA00	0x02CBBB00	0x005E8F9F	0x005E8F10
+PShaderParameterCaptureBufferSampler	PRendering::VPShaderParameterCaptureBufferSampler	m_unusedPointer	0x10	PRendering::VPTextureCommonBase	0x12	0x02CBA200	0x02CBB700	0x005E905F	0x005E8FD0
+PShaderParameterCaptureBufferStructuredBuffer	PRendering::VPShaderParameterCaptureBufferStructuredBuffer	m_structuredBuffer	0x10	PRendering::VPStructuredBuffer	0x12	0x02CBA300	0x02CBB600	0x005E9128	0x005E9090
+PShaderParameterCaptureBufferStructuredBuffer	PRendering::VPShaderParameterCaptureBufferStructuredBuffer	m_dataBlock	0x18	PGeometry::VPDataBlock	0x12	0x02CBA300	0x02D39E40	0x005E919A	0x005E9090
+PShaderParameterCaptureBufferTexture2D	PRendering::VPShaderParameterCaptureBufferTexture2D	m_texture	0x10	PRendering::VPTexture2D	0x12	0x02CB9F00	0x02CBB900	0x005E925F	0x005E91D0
+PShaderParameterCaptureBufferTexture3D	PRendering::VPShaderParameterCaptureBufferTexture3D	m_texture	0x10	PRendering::VPTexture3D	0x12	0x02CBA000	0x02CBBB00	0x005E931F	0x005E9290
+PShaderParameterCaptureBufferTextureBase	PRendering::VPShaderParameterCaptureBufferTextureBase	m_parameterType	0x0	unsigned int	0x10	0x02CB9D00	0x01F2E5A0	0x005E93E5	0x005E9350
+PShaderParameterCaptureBufferTextureBase	PRendering::VPShaderParameterCaptureBufferTextureBase	m_samplerState	0x8	PRendering::VPSamplerState	0x12	0x02CB9D00	0x02CB78A0	0x005E9457	0x005E9350
+PShaderParameterCaptureBufferTextureBase	PRendering::VPShaderParameterCaptureBufferTextureBase	m_textureBufferIndex	0x4	unsigned int	0x10	0x02CB9D00	0x01F2E5A0	0x005E94CA	0x005E9350
+PShaderParameterCaptureBufferTextureCubeMap	PRendering::VPShaderParameterCaptureBufferTextureCubeMap	m_texture	0x10	PRendering::VPTextureCubeMap	0x12	0x02CBA100	0x02CBBD00	0x005E958F	0x005E9500
+PShaderParameterCaptureConstantBuffer	PRendering::VPShaderParameterCaptureConstantBuffer	m_constantBuffer	0x10	PRendering::VPConstantBuffer	0x12	0x02CB9E00	0x02CB6480	0x005E964F	0x005E95C0
+PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_name	0x8	VPString	0x00	0x02CB9500	0x02E4D630	0x005E970D	0x005E9680
+PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_parameterType	0x2	unsigned char	0x00	0x02CB9500	0x01F2E460	0x005E977C	0x005E9680
+PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_dataType	0x3	unsigned char	0x00	0x02CB9500	0x01F2E460	0x005E97EB	0x005E9680
+PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_arrayElementCount	0x0	unsigned short	0x00	0x02CB9500	0x01F2E500	0x005E9856	0x005E9680
+PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_bufferLoc	0x10	PRendering::VPShaderParameterCaptureBufferLocationSize	0x00	0x02CB9500	0x02CB9200	0x005E98C4	0x005E9680
+PShaderParameterDefinition	PRendering::VPShaderParameterDefinition	m_constantBufferLocation	0x14	unsigned int	0x00	0x02CB9500	0x01F2E5A0	0x005E9933	0x005E9680
+PShaderPassBase	PRendering::VPShaderPassBase	m_vertexProgram	0x0	PRendering::VPShaderVertexProgram	0x12	0x02CB9900	0x02CBAF00	0x005E99FD	0x005E9970
+PShaderPassBase	PRendering::VPShaderPassBase	m_fragmentProgram	0x8	PRendering::VPShaderFragmentProgram	0x12	0x02CB9900	0x02CBB000	0x005E9A6F	0x005E9970
+PShaderPassBase	PRendering::VPShaderPassBase	m_geometryProgram	0x10	PRendering::VPShaderGeometryProgram	0x12	0x02CB9900	0x02CBB100	0x005E9AE1	0x005E9970
+PShaderPassBase	PRendering::VPShaderPassBase	m_computeProgram	0x18	PRendering::VPShaderComputeProgram	0x12	0x02CB9900	0x02CBB200	0x005E9B53	0x005E9970
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_vertexEntryPoint	0x0	VPString	0x00	0x02CB7AA0	0x02E4D630	0x005E9CA9	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_vertexProfile	0x20	unsigned int	0x00	0x02CB7AA0	0x01F2E5A0	0x005E9D18	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_fragmentEntryPoint	0x8	VPString	0x00	0x02CB7AA0	0x02E4D630	0x005E9D86	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_fragmentProfile	0x24	unsigned int	0x00	0x02CB7AA0	0x01F2E5A0	0x005E9DF5	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_geometryEntryPoint	0x10	VPString	0x00	0x02CB7AA0	0x02E4D630	0x005E9E63	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_geometryProfile	0x28	unsigned int	0x00	0x02CB7AA0	0x01F2E5A0	0x005E9ED2	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_computeEntryPoint	0x18	VPString	0x00	0x02CB7AA0	0x02E4D630	0x005E9F40	0x005E9C20
+PShaderPassInfo	PRendering::VPShaderPassInfo	m_computeProfile	0x2C	unsigned int	0x00	0x02CB7AA0	0x01F2E5A0	0x005E9FAF	0x005E9C20
+PShaderPassStateBase	PRendering::VPShaderPassStateBase	m_importantState	0x0	unsigned int	0x10	0x02CB9B00	0x01F2E5A0	0x005EA395	0x005EA310
+PShaderSource	PRendering::VPShaderSource	m_code	0x0	VPString	0x12	0x02CBAB00	0x02E4D630	0x005EA5ED	0x005EA560
+PShaderSource	PRendering::VPShaderSource	m_entry	0x8	VPString	0x10	0x02CBAB00	0x02E4D630	0x005EA65F	0x005EA560
+PShaderSource	PRendering::VPShaderSource	m_profile	0x20	unsigned int	0x10	0x02CBAB00	0x01F2E5A0	0x005EA76B	0x005EA560
+PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_name	0x8	VPString	0x10	0x02CBAE00	0x02E4D630	0x005EA831	0x005EA7A0
+PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_dataType	0x16	unsigned char	0x10	0x02CBAE00	0x01F2E460	0x005EA8A4	0x005EA7A0
+PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_renderType	0x0	PGeometry::VPRenderDataType	0x12	0x02CBAE00	0x02D3C460	0x005EA913	0x005EA7A0
+PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_bufferLoc	0x10	PRendering::VPShaderParameterCaptureBufferLocationSize	0x10	0x02CBAE00	0x02CB9200	0x005EA985	0x005EA7A0
+PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_nameHash	0x14	unsigned short	0x10	0x02CBAE00	0x01F2E500	0x005EA9F8	0x005EA7A0
+PShaderStreamDefinition	PRendering::VPShaderStreamDefinition	m_index	0x17	unsigned char	0x10	0x02CBAE00	0x01F2E460	0x005EAA6B	0x005EA7A0
+PStructuredBufferBase	PRendering::VPStructuredBufferBase	m_elementCount	0x0	unsigned int	0x10	0x02CBB500	0x01F2E5A0	0x005EAB2E	0x005EAAA0
+PStructuredBufferBase	PRendering::VPStructuredBufferBase	m_elementSize	0x4	unsigned int	0x10	0x02CBB500	0x01F2E5A0	0x005EABA1	0x005EAAA0
+PStructuredBufferBase	PRendering::VPStructuredBufferBase	m_flags	0x8	unsigned int	0x10	0x02CBB500	0x01F2E5A0	0x005EAC14	0x005EAAA0
+PTexture2DBase	PRendering::VPTexture2DBase	m_width	0x28	unsigned int	0x10	0x02CBB800	0x01F2E5A0	0x005EACE2	0x005EAC50
+PTexture2DBase	PRendering::VPTexture2DBase	m_height	0x2C	unsigned int	0x10	0x02CBB800	0x01F2E5A0	0x005EAD55	0x005EAC50
+PTexture3DBase	PRendering::VPTexture3DBase	m_width	0x28	unsigned int	0x10	0x02CBBA00	0x01F2E5A0	0x005EAE22	0x005EAD90
+PTexture3DBase	PRendering::VPTexture3DBase	m_height	0x2C	unsigned int	0x10	0x02CBBA00	0x01F2E5A0	0x005EAE95	0x005EAD90
+PTexture3DBase	PRendering::VPTexture3DBase	m_depth	0x30	unsigned int	0x10	0x02CBBA00	0x01F2E5A0	0x005EAF08	0x005EAD90
+PTextureCommonBase	PRendering::VPTextureCommonBase	m_format	0x0	PRendering::VPTextureFormatBase	0x12	0x02CBB700	0x02CF7A70	0x005EAFD3	0x005EAF40
+PTextureCommonBase	PRendering::VPTextureCommonBase	m_memoryType	0x9	unsigned char	0x10	0x02CBB700	0x01F2E460	0x005EB046	0x005EAF40
+PTextureCommonBase	PRendering::VPTextureCommonBase	m_mipmapCount	0x10	unsigned int	0x10	0x02CBB700	0x01F2E5A0	0x005EB0B9	0x005EAF40
+PTextureCommonBase	PRendering::VPTextureCommonBase	m_maxMipLevel	0x14	unsigned int	0x10	0x02CBB700	0x01F2E5A0	0x005EB12C	0x005EAF40
+PTextureCommonBase	PRendering::VPTextureCommonBase	m_textureFlags	0x18	int	0x10	0x02CBB700	0x01F2E550	0x005EB19F	0x005EAF40
+PTextureCubeMapBase	PRendering::VPTextureCubeMapBase	m_size	0x28	unsigned int	0x10	0x02CBBC00	0x01F2E5A0	0x005EB339	0x005EB2B0
+PArray	$07::Phyre::PRendering::PEAVPEffectVariant::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEBEA0	0x01F2E5A0	0x005EB95A	0x005EB7C0
+PArray	$07::Phyre::PDynamicGeometry::PEAVPModifierNetworkInstance::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CECDF0	0x01F2E5A0	0x005EBC9A	0x005EBB00
+PArray	$07::Phyre::PRendering::PEAVPSceneRenderPass::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEBC70	0x01F2E5A0	0x005EBFDA	0x005EBE40
+PArray	$07::Phyre::PRendering::PEBVPContextSwitch::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEC530	0x01F2E5A0	0x005EC31A	0x005EC180
+PArray	$07::Phyre::PRendering::PEBVPLightType::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEC0D0	0x01F2E5A0	0x005EC65A	0x005EC4C0
+PArray	$07::Phyre::PRendering::PEBVPShadowCasterType::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEC300	0x01F2E5A0	0x005EC99A	0x005EC800
+PArray	$03::Phyre::PRendering::VPContextVariantFoldingTable::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEB5E0	0x01F2E5A0	0x005ECCDA	0x005ECB40
+PArray	$07::Phyre::PRendering::VPMaterialSwitch::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEB810	0x01F2E5A0	0x005ED00A	0x005ECE70
+PArray	$03::Phyre::VPMatrix4::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEA000	0x01F2E5A0	0x005ED33A	0x005ED1A0
+PArray	$07::Phyre::PRendering::VPMeshInstanceSegmentContext::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CECBC0	0x01F2E5A0	0x005ED66A	0x005ED4D0
+PArray	$07::Phyre::PRendering::VPNodeContext::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEC760	0x01F2E5A0	0x005ED99A	0x005ED800
+PArray	$07::Phyre::PRendering::VPSceneRenderPass::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEBA40	0x01F2E5A0	0x005EDCCA	0x005EDB30
+PArray	$07::Phyre::PRendering::VPShader::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEB180	0x01F2E5A0	0x005EDFFA	0x005EDE60
+PArray	$01::Phyre::PRendering::VPShaderParameterCaptureBufferLocation::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEAAF0	0x01F2E5A0	0x005EE32A	0x005EE190
+PArray	$01::Phyre::PRendering::VPShaderParameterCaptureBufferLocationType::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEA690	0x01F2E5A0	0x005EE65A	0x005EE4C0
+PArray	$03::Phyre::PRendering::VPShaderParameterCaptureBufferLocationTypeConstantBuffer::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEA8C0	0x01F2E5A0	0x005EE98A	0x005EE7F0
+PArray	$07::Phyre::PRendering::VPShaderParameterDefinition::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEA460	0x01F2E5A0	0x005EECBA	0x005EEB20
+PArray	$07::Phyre::PRendering::VPShaderPass::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEAD20	0x01F2E5A0	0x005EEFEA	0x005EEE50
+PArray	$07::Phyre::PRendering::VPShaderPassInfo::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEB3B0	0x01F2E5A0	0x005EF31A	0x005EF180
+PArray	$07::Phyre::PRendering::VPShaderStreamDefinition::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CEA230	0x01F2E5A0	0x005EF64A	0x005EF4B0
+PArray	$07::Phyre::VPString::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CE9DD0	0x01F2E5A0	0x005EF97A	0x005EF7E0
+PSharray	I::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02CEAF50	0x01F2E5A0	0x005EFD76	0x005EFB10
+PSharray	Phyre::PRendering::PEBVPMeshInstanceSegmentStreamBinding::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02CEC990	0x01F2E5A0	0x005F00C8	0x005EFE60
+CD3D11_BLEND_DESC	UCD3D11_BLEND_DESC	AlphaToCoverageEnable	0x0	int	0x10	0x02CF6320	0x01F2E550	0x00613902	0x00613800
+CD3D11_BLEND_DESC	UCD3D11_BLEND_DESC	IndependentBlendEnable	0x4	int	0x10	0x02CF6320	0x01F2E550	0x00613971	0x00613800
+CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	DepthEnable	0x0	int	0x10	0x02CF5A80	0x01F2E550	0x00613B32	0x00613A30
+CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	StencilEnable	0xC	int	0x10	0x02CF5A80	0x01F2E550	0x00613C7D	0x00613A30
+CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	StencilReadMask	0x10	unsigned char	0x10	0x02CF5A80	0x01F2E460	0x00613CEC	0x00613A30
+CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	StencilWriteMask	0x11	unsigned char	0x10	0x02CF5A80	0x01F2E460	0x00613D5B	0x00613A30
+CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	FrontFace	0x14	UD3D11_DEPTH_STENCILOP_DESC	0x10	0x02CF5A80	0x02CF57B0	0x00613DCA	0x00613A30
+CD3D11_DEPTH_STENCIL_DESC	UCD3D11_DEPTH_STENCIL_DESC	BackFace	0x24	UD3D11_DEPTH_STENCILOP_DESC	0x10	0x02CF5A80	0x02CF57B0	0x00613E39	0x00613A30
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	FrontCounterClockwise	0x8	int	0x10	0x02CF52C0	0x01F2E550	0x0061405E	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	DepthBias	0xC	int	0x10	0x02CF52C0	0x01F2E550	0x006140CD	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	DepthBiasClamp	0x10	float	0x10	0x02CF52C0	0x01F2E690	0x0061413C	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	SlopeScaledDepthBias	0x14	float	0x10	0x02CF52C0	0x01F2E690	0x006141AB	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	DepthClipEnable	0x18	int	0x10	0x02CF52C0	0x01F2E550	0x0061421A	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	ScissorEnable	0x1C	int	0x10	0x02CF52C0	0x01F2E550	0x00614289	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	MultisampleEnable	0x20	int	0x10	0x02CF52C0	0x01F2E550	0x006142F8	0x00613E80
+CD3D11_RASTERIZER_DESC	UCD3D11_RASTERIZER_DESC	AntialiasedLineEnable	0x24	int	0x10	0x02CF52C0	0x01F2E550	0x00614367	0x00613E80
+D3D11_RENDER_TARGET_BLEND_DESC	UD3D11_RENDER_TARGET_BLEND_DESC	BlendEnable	0x0	int	0x10	0x02CF5EB0	0x01F2E550	0x00614742	0x00614640
+D3D11_RENDER_TARGET_BLEND_DESC	UD3D11_RENDER_TARGET_BLEND_DESC	RenderTargetWriteMask	0x1C	unsigned char	0x10	0x02CF5EB0	0x01F2E460	0x00614A45	0x00614640
+PShaderComputeProgramD3D11	PRendering::VPShaderComputeProgramD3D11	m_dimX	0x80	unsigned int	0x10	0x02CF1C40	0x01F2E5A0	0x006178A2	0x00617810
+PShaderComputeProgramD3D11	PRendering::VPShaderComputeProgramD3D11	m_dimY	0x84	unsigned int	0x10	0x02CF1C40	0x01F2E5A0	0x00617915	0x00617810
+PShaderComputeProgramD3D11	PRendering::VPShaderComputeProgramD3D11	m_dimZ	0x88	unsigned int	0x10	0x02CF1C40	0x01F2E5A0	0x00617988	0x00617810
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_state	0x30	PRendering::VPShaderPassStateD3D11	0x10	0x02CF1440	0x02CF1540	0x00617A91	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_vertexParameterLocation	0x1C0	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617B03	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_fragmentParameterLocation	0x1E0	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617B75	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_geometryParameterLocation	0x200	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617BE7	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_computeParameterLocation	0x220	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617C59	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_vertexTexParameterLocation	0x240	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617CCB	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_fragmentTexParameterLocation	0x260	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617D3D	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_geometryTexParameterLocation	0x280	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617DAF	0x00617A00
+PShaderPassD3D11	PRendering::VPShaderPassD3D11	m_computeTexParameterLocation	0x2A0	PRendering::VPShaderPassParameterLocationTypesConstantBuffer	0x10	0x02CF1440	0x02CB9800	0x00617E21	0x00617A00
+PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_rasterDesc	0x4	UCD3D11_RASTERIZER_DESC	0x10	0x02CF1540	0x02CF52C0	0x00617EF2	0x00617E60
+PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_depthDesc	0x2C	UCD3D11_DEPTH_STENCIL_DESC	0x10	0x02CF1540	0x02CF5A80	0x00617F65	0x00617E60
+PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_blendDesc	0x60	UCD3D11_BLEND_DESC	0x10	0x02CF1540	0x02CF6320	0x00617FD8	0x00617E60
+PShaderPassStateD3D11	PRendering::VPShaderPassStateD3D11	m_stencilRef	0x188	unsigned char	0x10	0x02CF1540	0x01F2E460	0x0061804B	0x00617E60
+PShaderProgramD3D11	PRendering::VPShaderProgramD3D11	m_constantBufferSize	0x28	unsigned int	0x10	0x02CF1840	0x01F2E5A0	0x006181B0	0x00618080
+PShaderProgramD3D11	PRendering::VPShaderProgramD3D11	m_globalConstantBufferIndex	0x2C	unsigned int	0x10	0x02CF1840	0x01F2E5A0	0x00618223	0x00618080
+PShaderProgramD3D11	PRendering::VPShaderProgramD3D11	m_shaderProfile	0x70	unsigned int	0x10	0x02CF1840	0x01F2E5A0	0x00618296	0x00618080
+PShaderVertexProgramD3D11	PRendering::VPShaderVertexProgramD3D11	m_inputLayout	0x78	PRendering::VPStreamInputLayoutD3D11	0x10	0x02CF1940	0x02CF1740	0x00618358	0x006182D0
+PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_semantic	0x0	VPString	0x10	0x02CF1640	0x02E4D630	0x0061841D	0x00618390
+PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_renderType	0x8	PGeometry::VPRenderDataType	0x12	0x02CF1640	0x02D3C460	0x00618490	0x00618390
+PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_semanticIndex	0x10	unsigned int	0x10	0x02CF1640	0x01F2E5A0	0x00618503	0x00618390
+PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_d3dFormat	0x14	unsigned int	0x10	0x02CF1640	0x01F2E5A0	0x00618576	0x00618390
+PStreamInputDescD3D11	PRendering::VPStreamInputDescD3D11	m_inputSlot	0x18	unsigned int	0x10	0x02CF1640	0x01F2E5A0	0x006185E9	0x00618390
+PArray	E$00::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CF6C40	0x01F2E5A0	0x00618B0A	0x00618970
+PArray	$07::Phyre::PRendering::VPStreamInputDescD3D11::V?$PArray	m_count	0x0	unsigned int	0x00	0x02CF6E70	0x01F2E5A0	0x00618E3A	0x00618CA0
+								0x00632A41	0x00632A10
+								0x00632B89	0x00632B30
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_radius	0x84	float	0x00	0x02D367A0	0x01F2E690	0x0064818E	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_atmosphereStart	0x88	float	0x00	0x02D367A0	0x01F2E690	0x006481FD	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_asymmetry	0x8C	float	0x00	0x02D367A0	0x01F2E690	0x0064826C	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_betaR	0x90	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02D367A0	0x02E50510	0x006482DB	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_betaM	0xA0	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02D367A0	0x02E50510	0x0064834A	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_invHR	0xC0	float	0x00	0x02D367A0	0x01F2E690	0x006483B9	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_invHM	0xC4	float	0x00	0x02D367A0	0x01F2E690	0x00648428	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_sunIntensity	0xC8	float	0x00	0x02D367A0	0x01F2E690	0x00648497	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_sunDir	0xCC	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02D367A0	0x02E50510	0x00648506	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_fogParameters	0xDC	sce::Vectormath::Scalar::Aos::VVector2	0x00	0x02D367A0	0x02E502D0	0x00648575	0x00648100
+PAtmosphericsBase	PPostProcessing::VPAtmosphericsBase	m_renderDebugTextures	0x61	bool	0x00	0x02D367A0	0x01F2E3C0	0x006485E4	0x00648100
+PCelShadingBase	PPostProcessing::VPCelShadingBase	m_lineThickness	0x58	float	0x00	0x02D361A0	0x01F2E690	0x006486AE	0x00648620
+PCelShadingBase	PPostProcessing::VPCelShadingBase	m_threshold	0x5C	float	0x00	0x02D361A0	0x01F2E690	0x0064871D	0x00648620
+PCelShadingBase	PPostProcessing::VPCelShadingBase	m_gamma	0x60	float	0x00	0x02D361A0	0x01F2E690	0x0064878C	0x00648620
+PCelShadingBase	PPostProcessing::VPCelShadingBase	m_lightColor	0x64	sce::Vectormath::Scalar::Aos::VVector4	0x00	0x02D361A0	0x02E50A50	0x006487FB	0x00648620
+PCelShadingBase	PPostProcessing::VPCelShadingBase	m_edgeColor	0x74	sce::Vectormath::Scalar::Aos::VVector4	0x00	0x02D361A0	0x02E50A50	0x0064886A	0x00648620
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_ambientColor	0x40D0	sce::Vectormath::Scalar::Aos::VVector4	0x00	0x02D34840	0x02E50A50	0x0064892E	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_instantLightsEnabled	0x41D0	bool	0x00	0x02D34840	0x01F2E3C0	0x0064899D	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_instantLightIntensity	0x4108	float	0x00	0x02D34840	0x01F2E690	0x00648A0C	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_instantLightScatteringIntensity	0x410C	float	0x00	0x02D34840	0x01F2E690	0x00648A7B	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogDistance	0x40F0	float	0x00	0x02D34840	0x01F2E690	0x00648AEA	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogNearDistance	0x40F4	float	0x00	0x02D34840	0x01F2E690	0x00648B59	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogAmount	0x40F8	float	0x00	0x02D34840	0x01F2E690	0x00648BC8	0x006488A0
+PDeferredLightingBase	PPostProcessing::VPDeferredLightingBase	m_fogColor	0x40E0	sce::Vectormath::Scalar::Aos::VVector4	0x00	0x02D34840	0x02E50A50	0x00648C37	0x006488A0
+PDepthOfFieldBase	PPostProcessing::VPDepthOfFieldBase	m_focusPlaneDistance	0x50	float	0x00	0x02D34B40	0x01F2E690	0x00648CFE	0x00648C70
+PDepthOfFieldBase	PPostProcessing::VPDepthOfFieldBase	m_focusRange	0x54	float	0x00	0x02D34B40	0x01F2E690	0x00648D6D	0x00648C70
+PDepthOfFieldBase	PPostProcessing::VPDepthOfFieldBase	m_focusBlurRange	0x58	float	0x00	0x02D34B40	0x01F2E690	0x00648DDC	0x00648C70
+PGlowBase	PPostProcessing::VPGlowBase	m_glowAmountScale	0x5C	float	0x00	0x02D35AA0	0x01F2E690	0x00648E9E	0x00648E10
+PGlowBase	PPostProcessing::VPGlowBase	m_glowLuminanceThreshold	0x60	float	0x00	0x02D35AA0	0x01F2E690	0x00648F0D	0x00648E10
+PGlowBase	PPostProcessing::VPGlowBase	m_glowLuminanceScale	0x64	float	0x00	0x02D35AA0	0x01F2E690	0x00648F7C	0x00648E10
+PMotionBlurBase	PPostProcessing::VPMotionBlurBase	m_velocityScale	0xD10	float	0x00	0x02D34E40	0x01F2E690	0x00649035	0x00648FB0
+PPostEffectBase	PPostProcessing::VPPostEffectBase	m_effectMaterial	0x10	PRendering::VPMaterial	0x02	0x02D34740	0x02CB6B80	0x00649101	0x00649070
+PPostEffectBase	PPostProcessing::VPPostEffectBase	m_enabled	0x41	bool	0x00	0x02D34740	0x01F2E3C0	0x00649170	0x00649070
+PScreenSpaceReflectionBase	PPostProcessing::VPScreenSpaceReflectionBase	m_minReflectionDirZ	0x50	float	0x00	0x02D364A0	0x01F2E690	0x0064972E	0x006496A0
+PScreenSpaceReflectionBase	PPostProcessing::VPScreenSpaceReflectionBase	m_marchStepFactor	0x54	float	0x00	0x02D364A0	0x01F2E690	0x0064979D	0x006496A0
+PArray	$07::Phyre::PPostProcessing::PEAVPPostEffectBase::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D38270	0x01F2E5A0	0x0064ABBA	0x0064AA20
+PDataBlockBase	PGeometry::VPDataBlockBase	m_memoryType	0x1D	unsigned char	0x10	0x02D39D40	0x01F2E460	0x006656B2	0x00665620
+PDataBlockBase	PGeometry::VPDataBlockBase	m_stride	0x0	unsigned int	0x10	0x02D39D40	0x01F2E5A0	0x00665721	0x00665620
+PDataBlockBase	PGeometry::VPDataBlockBase	m_elementCount	0x4	unsigned int	0x10	0x02D39D40	0x01F2E5A0	0x00665794	0x00665620
+PDataBlockD3D11	PGeometry::VPDataBlockD3D11	m_dataSize	0x78	unsigned int	0x00	0x02D39C40	0x01F2E5A0	0x00665990	0x00665870
+PDataBlockD3D11	PGeometry::VPDataBlockD3D11	m_offsetInVertexBuffer	0x70	unsigned int	0x08	0x02D39C40	0x01F2E5A0	0x00665A03	0x00665870
+PDynamicDataBlock	PGeometry::VPDynamicDataBlock	m_stride	0x0	unsigned int	0x10	0x02D39F40	0x01F2E5A0	0x00665ACE	0x00665A40
+PDynamicDataBlock	PGeometry::VPDynamicDataBlock	m_elementCount	0x4	unsigned int	0x10	0x02D39F40	0x01F2E5A0	0x00665B41	0x00665A40
+PDynamicMesh	PGeometry::VPDynamicMesh	m_mesh	0x8	PGeometry::VPMesh	0x0A	0x02D3A140	0x02D3A640	0x00665E73	0x00665CB0
+PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_startStreamIndex	0x0	unsigned int	0x08	0x02D3A040	0x01F2E5A0	0x00665F3E	0x00665EB0
+PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_streamCount	0x4	unsigned int	0x08	0x02D3A040	0x01F2E5A0	0x00665FB1	0x00665EB0
+PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_elementCount	0x8	unsigned int	0x08	0x02D3A040	0x01F2E5A0	0x00666024	0x00665EB0
+PDynamicSegmentDesc	PGeometry::PDynamicMesh::VPDynamicSegmentDesc	m_indexCount	0xC	int	0x08	0x02D3A040	0x01F2E550	0x00666097	0x00665EB0
+PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_memoryType	0xD	unsigned char	0x10	0x02D3A240	0x01F2E460	0x00666162	0x006660D0
+PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_elementCount	0x8	unsigned int	0x10	0x02D3A240	0x01F2E5A0	0x006661D5	0x006660D0
+PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_type	0xC	unsigned char	0x10	0x02D3A240	0x01F2E460	0x00666248	0x006660D0
+PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_minimumIndex	0x0	unsigned int	0x10	0x02D3A240	0x01F2E5A0	0x006662B7	0x006660D0
+PIndexDataBlockBase	PGeometry::VPIndexDataBlockBase	m_maximumIndex	0x4	unsigned int	0x10	0x02D3A240	0x01F2E5A0	0x0066632A	0x006660D0
+PIndexDataBlockD3D11	PGeometry::VPIndexDataBlockD3D11	m_dataSize	0x70	unsigned int	0x00	0x02D39A40	0x01F2E5A0	0x006664A0	0x00666380
+PIndexDataBlockD3D11	PGeometry::VPIndexDataBlockD3D11	m_offsetInIndexBuffer	0x68	unsigned int	0x08	0x02D39A40	0x01F2E5A0	0x00666513	0x00666380
+PMesh	PGeometry::VPMesh	m_defaultMaterials	0x60	PGeometry::VPMaterialSet	0x08	0x02D3A640	0x02D3A440	0x00666CEA	0x006668B0
+PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_materialIndex	0x0	unsigned int	0x10	0x02D3A840	0x01F2E5A0	0x00666F1E	0x00666E90
+PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_matrixIndex	0x4	int	0x10	0x02D3A840	0x01F2E550	0x00666F91	0x00666E90
+PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_lodIndex	0x1C	int	0x10	0x02D3A840	0x01F2E550	0x0066710F	0x00666E90
+PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_shapeIndex	0x20	int	0x10	0x02D3A840	0x01F2E550	0x00667182	0x00666E90
+PMeshSegmentBase	PGeometry::VPMeshSegmentBase	m_gatherIndex	0x24	int	0x10	0x02D3A840	0x01F2E550	0x006671F5	0x00666E90
+PMeshSegmentD3D11	PGeometry::VPMeshSegmentD3D11	m_indexData	0x40	PGeometry::VPIndexDataBlockD3D11	0x10	0x02D39840	0x02D39A40	0x00667363	0x00667230
+PShape	PGeometry::VPShape	m_indexFormat	0x31	unsigned char	0x08	0x02D3ACE0	0x01F2E460	0x006674D5	0x006673A0
+PShape	PGeometry::VPShape	m_indexCount	0x0	unsigned int	0x08	0x02D3ACE0	0x01F2E5A0	0x00667544	0x006673A0
+PShape	PGeometry::VPShape	m_vertexFormat	0x30	unsigned char	0x08	0x02D3ACE0	0x01F2E460	0x0066764E	0x006673A0
+PShape	PGeometry::VPShape	m_vertexCount	0x18	unsigned int	0x08	0x02D3ACE0	0x01F2E5A0	0x006676C1	0x006673A0
+PSkeletonJointBounds	PGeometry::VPSkeletonJointBounds	m_hierarchyMatrixIndex	0xC	unsigned int	0x08	0x02D3A540	0x01F2E5A0	0x00667878	0x00667700
+PSkeletonJointBounds	PGeometry::VPSkeletonJointBounds	m_pad	0x1C	unsigned int	0x08	0x02D3A540	0x01F2E5A0	0x006678EB	0x00667700
+PSkinBoneRemap	PGeometry::VPSkinBoneRemap	m_hierarchyMatrixIndex	0x0	unsigned short	0x10	0x02D3A740	0x01F2E500	0x006679AE	0x00667920
+PSkinBoneRemap	PGeometry::VPSkinBoneRemap	m_skeletonMatrixIndex	0x2	unsigned short	0x10	0x02D3A740	0x01F2E500	0x00667A21	0x00667920
+PVertexStream	PGeometry::VPVertexStream	m_type	0x10	unsigned char	0x10	0x02D3ADE0	0x01F2E460	0x00667AF2	0x00667A60
+PVertexStream	PGeometry::VPVertexStream	m_offset	0x0	unsigned int	0x10	0x02D3ADE0	0x01F2E5A0	0x00667B61	0x00667A60
+PVertexStream	PGeometry::VPVertexStream	m_renderDataType	0x8	PGeometry::VPRenderDataType	0x12	0x02D3ADE0	0x02D3C460	0x00667BD4	0x00667A60
+PVertexStream	PGeometry::VPVertexStream	m_streamSet	0x11	unsigned char	0x10	0x02D3ADE0	0x01F2E460	0x00667C47	0x00667A60
+PArray	E$03::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3C8B0	0x01F2E5A0	0x00668C7A	0x00668AE0
+PArray	H$03::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3DC60	0x01F2E5A0	0x00668FAA	0x00668E10
+PArray	$07::Phyre::PGeometry::VPDataBlockD3D11::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3D3A0	0x01F2E5A0	0x006692DA	0x00669140
+PArray	$03::Phyre::PGeometry::PDynamicMesh::VPDynamicSegmentDesc::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3DE90	0x01F2E5A0	0x0066960A	0x00669470
+PArray	$07::Phyre::PGeometry::VPMeshSegment::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3D800	0x01F2E5A0	0x0066993A	0x006697A0
+PArray	$03::Phyre::PGeometry::VPSkeletonJointBounds::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3DA30	0x01F2E5A0	0x00669C6A	0x00669AD0
+PArray	$01::Phyre::PGeometry::VPSkinBoneRemap::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3D170	0x01F2E5A0	0x00669F9A	0x00669E00
+PArray	$07::Phyre::PGeometry::VPVertexStream::V?$PArray	m_count	0x0	unsigned int	0x00	0x02D3CAE0	0x01F2E5A0	0x0066A2CA	0x0066A130
+PSharray	Phyre::PRendering::PEAVPMaterial::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02D3D5D0	0x01F2E5A0	0x0066A6C8	0x0066A460
+PSharray	Phyre::PGeometry::VPDataBlockBufferD3D11::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02D3CD10	0x01F2E5A0	0x0066AA15	0x0066A7B0
+PSharray	Phyre::PGeometry::VPIndexDataBlockBufferD3D11::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02D3CF40	0x01F2E5A0	0x0066AD65	0x0066AB00
+PAssetReference	VPAssetReference	m_id	0x30	VPString	0x10	0x02D3E680	0x02E4D630	0x006757D9	0x00675740
+PAssetReference	VPAssetReference	m_asset	0x38	PClassDescriptorBase	0x12	0x02D3E680	0x02CF8270	0x0067584C	0x00675740
+PAssetReference	VPAssetReference	m_assetType	0x40	PClassDescriptorForClassDescriptor	0x12	0x02D3E680	0x02CF8470	0x006758BE	0x00675740
+PAssetReferenceImport	VPAssetReferenceImport	m_id	0x8	VPString	0x10	0x02D3E780	0x02E4D630	0x00675E4B	0x00675DA0
+PAssetReferenceImport	VPAssetReferenceImport	m_targetAssetType	0x0	PClassDescriptorForClassDescriptor	0x12	0x02D3E780	0x02CF8470	0x00675EB9	0x00675DA0
+PCamera	VPCamera	m_viewMatrix	0x0	VPMatrix4x3	0x10	0x02D3F210	0x02E51570	0x00678573	0x006784E0
+PCamera	VPCamera	m_projectionMatrix	0x30	sce::Vectormath::Scalar::Aos::VMatrix4	0x10	0x02D3F210	0x02E511D0	0x006785E6	0x006784E0
+PCamera	VPCamera	m_viewProjectionMatrix	0x70	sce::Vectormath::Scalar::Aos::VMatrix4	0x10	0x02D3F210	0x02E511D0	0x00678659	0x006784E0
+PCamera	VPCamera	m_localToWorldMatrix	0xB0	VPWorldMatrix	0x12	0x02D3F210	0x02E404B0	0x006786CB	0x006784E0
+PCamera	VPCamera	m_nearPlane	0xB8	float	0x10	0x02D3F210	0x01F2E690	0x0067873E	0x006784E0
+PCamera	VPCamera	m_farPlane	0xBC	float	0x10	0x02D3F210	0x01F2E690	0x006787B1	0x006784E0
+PCameraProjection	VPCameraProjection	m_aspect	0xC8	float	0x10	0x02D3F310	0x01F2E690	0x0067895A	0x006788C0
+PBitmapFont	PText::VPBitmapFont	m_fontSize	0x4	unsigned int	0x10	0x02E3FA60	0x01F2E5A0	0x0067D072	0x0067CFE0
+PBitmapFont	PText::VPBitmapFont	m_isSDF	0x0	bool	0x10	0x02E3FA60	0x01F2E3C0	0x0067D0E1	0x0067CFE0
+PBitmapFont	PText::VPBitmapFont	m_lineSpacing	0x8	float	0x10	0x02E3FA60	0x01F2E690	0x0067D154	0x0067CFE0
+PBitmapFont	PText::VPBitmapFont	m_baselineOffset	0xC	float	0x10	0x02E3FA60	0x01F2E690	0x0067D1C7	0x0067CFE0
+PBitmapFont	PText::VPBitmapFont	m_bitmapFontTexture	0x30	PRendering::VPTexture2D	0x12	0x02E3FA60	0x02CBB900	0x0067D370	0x0067CFE0
+PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_characterCode	0x0	int	0x10	0x02E3F960	0x01F2E550	0x0067D43E	0x0067D3B0
+PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_kernPairs	0x4	int	0x10	0x02E3F960	0x01F2E550	0x0067D4B1	0x0067D3B0
+PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_kernOffset	0x8	int	0x10	0x02E3F960	0x01F2E550	0x0067D524	0x0067D3B0
+PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_width	0x14	float	0x10	0x02E3F960	0x01F2E690	0x0067D60C	0x0067D3B0
+PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_height	0x18	float	0x10	0x02E3F960	0x01F2E690	0x0067D67F	0x0067D3B0
+PBitmapFontCharInfo	PText::VPBitmapFontCharInfo	m_rotated	0x2C	bool	0x10	0x02E3F960	0x01F2E3C0	0x0067D7DC	0x0067D3B0
+PArray	$03::Phyre::PText::VPBitmapFontCharInfo::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E401B0	0x01F2E5A0	0x0067D9AA	0x0067D810
+PWorldMatrix	VPWorldMatrix	m_matrix	0x0	VPMatrix4x3	0x10	0x02E404B0	0x02E51570	0x0067E9B6	0x0067E6C0
+PClassCallableMethodScript	PScripting::VPClassCallableMethodScript	m_script	0x50	PScripting::VPScript	0x02	0x02E41070	0x02E41470	0x00681E11	0x00681D80
+PClassCallableMethodScript	PScripting::VPClassCallableMethodScript	m_nameAsString	0x58	VPString	0x00	0x02E41070	0x02E4D630	0x00681E7F	0x00681D80
+PClassCallableMethodScript	PScripting::VPClassCallableMethodScript	m_entryPoint	0x60	VPString	0x00	0x02E41070	0x02E4D630	0x00681EED	0x00681D80
+PScript	PScripting::VPScript	m_onLoadEntryPoint	0x30	VPString	0x08	0x02E41470	0x02E4D630	0x00682540	0x006822E0
+PScript	PScripting::VPScript	m_onUnloadEntryPoint	0x38	VPString	0x08	0x02E41470	0x02E4D630	0x006825B2	0x006822E0
+PScript	PScripting::VPScript	m_defaultEntryPoint	0x40	VPString	0x08	0x02E41470	0x02E4D630	0x00682624	0x006822E0
+PScript	PScripting::VPScript	m_sourceName	0x48	VPString	0x08	0x02E41470	0x02E4D630	0x00682696	0x006822E0
+PScript	PScripting::VPScript	m_isPersistent	0x50	bool	0x08	0x02E41470	0x01F2E3C0	0x00682709	0x006822E0
+PScript	PScripting::VPScript	m_executionInterval	0x54	unsigned int	0x08	0x02E41470	0x01F2E5A0	0x0068277C	0x006822E0
+PScriptCallbackHandler	PScripting::VPScriptCallbackHandler	m_entryPoint	0x0	VPString	0x00	0x02E41170	0x02E4D630	0x00682849	0x006827C0
+PScriptCallbackHandler	PScripting::VPScriptCallbackHandler	m_handler	0x8	VPTypedObject	0x00	0x02E41170	0x02E4E430	0x006828B7	0x006827C0
+PPhysicsBoxBase	PPhysics::VPPhysicsBoxBase	m_halfExtents	0x70	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E478D0	0x02E50510	0x00693F49	0x00693EC0
+PPhysicsCallbackData	PPhysics::VPPhysicsCallbackData	m_collisionObjectA	0x0	VPTypedObject	0x00	0x02E48AD0	0x02E4E430	0x00694009	0x00693F80
+PPhysicsCallbackData	PPhysics::VPPhysicsCallbackData	m_collisionObjectB	0x10	VPTypedObject	0x00	0x02E48AD0	0x02E4E430	0x00694077	0x00693F80
+PPhysicsCallbackData	PPhysics::VPPhysicsCallbackData	m_amount	0x20	float	0x00	0x02E48AD0	0x01F2E690	0x006940E6	0x00693F80
+PPhysicsCapsuleBase	PPhysics::VPPhysicsCapsuleBase	m_height	0x78	float	0x08	0x02E47AD0	0x01F2E690	0x0069422C	0x00694120
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_collisionRadius	0x10	float	0x00	0x02E47CD0	0x01F2E690	0x006942FB	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_targetDistance	0x14	float	0x00	0x02E47CD0	0x01F2E690	0x0069436A	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_targetHeight	0x18	float	0x00	0x02E47CD0	0x01F2E690	0x006943D9	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_contactEpsilon	0x1C	float	0x00	0x02E47CD0	0x01F2E690	0x00694448	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_minimumCameraDistance	0x20	float	0x00	0x02E47CD0	0x01F2E690	0x006944B7	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_smoothingRate	0x24	float	0x00	0x02E47CD0	0x01F2E690	0x00694526	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_springTension	0x30	float	0x00	0x02E47CD0	0x01F2E690	0x00694595	0x00694260
+PPhysicsCharacterCamera	PPhysics::VPPhysicsCharacterCamera	m_nearCameraYAdjust	0x34	float	0x00	0x02E47CD0	0x01F2E690	0x00694604	0x00694260
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_gravity	0x28	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E47DD0	0x02E50510	0x00694A3C	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_targetNode	0xC8	PScene::VPNode	0x0A	0x02E47DD0	0x02E518D0	0x00694AAE	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_targetWorldMatrix	0xD0	VPWorldMatrix	0x0A	0x02E47DD0	0x02E404B0	0x00694B20	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_rotate	0xE0	float	0x08	0x02E47DD0	0x01F2E690	0x00694B93	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_right	0xE4	float	0x08	0x02E47DD0	0x01F2E690	0x00694C06	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_forward	0xE8	float	0x08	0x02E47DD0	0x01F2E690	0x00694C79	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_velocity	0xEC	float	0x08	0x02E47DD0	0x01F2E690	0x00694CEC	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_jump	0x104	bool	0x08	0x02E47DD0	0x01F2E3C0	0x00694D5F	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_isOnGround	0x105	bool	0x08	0x02E47DD0	0x01F2E3C0	0x00694DD2	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_maxSlopeAngle	0xF0	float	0x08	0x02E47DD0	0x01F2E690	0x00694E45	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_next	0x0	PPhysics::VPPhysicsCharacterControllerBase	0x0A	0x02E47DD0	0x02E47DD0	0x00694EB3	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_startPosition	0x8	sce::Vectormath::Scalar::Aos::VPoint3	0x08	0x02E47DD0	0x02E507B0	0x00694F26	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_scale	0x18	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E47DD0	0x02E50510	0x00694F99	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_jumpHeight	0xF4	float	0x08	0x02E47DD0	0x01F2E690	0x0069500C	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_height	0xF8	float	0x08	0x02E47DD0	0x01F2E690	0x0069507F	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_radius	0xFC	float	0x08	0x02E47DD0	0x01F2E690	0x006950F2	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_world	0xD8	PPhysics::VPPhysicsWorld	0x0A	0x02E47DD0	0x02E494D0	0x00695164	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_graphicsOffset	0x48	VPMatrix4	0x08	0x02E47DD0	0x02E51350	0x006951D7	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_invGraphicsOffset	0x88	VPMatrix4	0x08	0x02E47DD0	0x02E51350	0x0069524A	0x006949A0
+PPhysicsCharacterControllerBase	PPhysics::VPPhysicsCharacterControllerBase	m_scriptHandler	0x118	PScripting::VPScriptCallbackHandler	0x08	0x02E47DD0	0x02E41170	0x006952BC	0x006949A0
+PPhysicsCylinderBase	PPhysics::VPPhysicsCylinderBase	m_height	0x78	float	0x08	0x02E47FD0	0x01F2E690	0x0069559C	0x00695490
+PPhysicsMaterial	PPhysics::VPPhysicsMaterial	m_dynamicFriction	0x0	float	0x08	0x02E483D0	0x01F2E690	0x0069565E	0x006955D0
+PPhysicsMaterial	PPhysics::VPPhysicsMaterial	m_staticFriction	0x4	float	0x08	0x02E483D0	0x01F2E690	0x006956D1	0x006955D0
+PPhysicsMaterial	PPhysics::VPPhysicsMaterial	m_restitution	0x8	float	0x08	0x02E483D0	0x01F2E690	0x00695744	0x006955D0
+PPhysicsMeshBase	PPhysics::VPPhysicsMeshBase	m_shape	0x70	PGeometry::VPShape	0x0A	0x02E484D0	0x02D3ACE0	0x00695808	0x00695780
+PPhysicsModel	PPhysics::VPPhysicsModel	m_rigidBodies	0x8	PPhysics::VPPhysicsRigidBody	0x0A	0x02E486D0	0x02E48BD0	0x006958D1	0x00695840
+PPhysicsModel	PPhysics::VPPhysicsModel	m_next	0x0	PPhysics::VPPhysicsModel	0x0A	0x02E486D0	0x02E486D0	0x0069593F	0x00695840
+PPhysicsModel	PPhysics::VPPhysicsModel	m_world	0x10	PPhysics::VPPhysicsWorld	0x0A	0x02E486D0	0x02E494D0	0x006959B1	0x00695840
+PPhysicsPlaneBase	PPhysics::VPPhysicsPlaneBase	m_equationCoefficient	0x70	sce::Vectormath::Scalar::Aos::VVector4	0x08	0x02E487D0	0x02E50A50	0x00695A79	0x006959F0
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_mass	0xE4	float	0x08	0x02E489D0	0x01F2E690	0x0069650C	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_rigidBodyType	0xE8	unsigned char	0x08	0x02E489D0	0x01F2E460	0x0069657F	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_massFrameTransform	0x8	VPMatrix4x3	0x08	0x02E489D0	0x02E51570	0x006965F2	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialPosition	0x38	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E489D0	0x02E50510	0x00696665	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialOrientation	0x48	sce::Vectormath::Scalar::Aos::VQuat	0x08	0x02E489D0	0x02E50D50	0x006966D8	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_inertiaTensor	0x58	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E489D0	0x02E50510	0x0069674B	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialLinearVelocity	0x68	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E489D0	0x02E50510	0x006967BE	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_initialAngularVelocity	0x78	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E489D0	0x02E50510	0x00696831	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_targetNode	0xA0	PScene::VPNode	0x0A	0x02E489D0	0x02E518D0	0x006968A3	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_targetWorldMatrix	0xA8	VPWorldMatrix	0x0A	0x02E489D0	0x02E404B0	0x00696915	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_material	0x98	PPhysics::VPPhysicsMaterial	0x0A	0x02E489D0	0x02E483D0	0x00696987	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_scale	0x88	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E489D0	0x02E50510	0x00696A93	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_linearDamping	0xC0	float	0x08	0x02E489D0	0x01F2E690	0x00696B06	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_angularDamping	0xC4	float	0x08	0x02E489D0	0x01F2E690	0x00696B79	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_next	0x0	PPhysics::VPPhysicsRigidBody	0x0A	0x02E489D0	0x02E48BD0	0x00696BE7	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_model	0xC8	PPhysics::VPPhysicsModel	0x0A	0x02E489D0	0x02E486D0	0x00696C59	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_nextKinematicRigidBody	0xD8	PPhysics::VPPhysicsRigidBody	0x0A	0x02E489D0	0x02E48BD0	0x00696CCB	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_collisionGroup	0xE0	unsigned char	0x08	0x02E489D0	0x01F2E460	0x00696D3E	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_enabled	0xE9	bool	0x08	0x02E489D0	0x01F2E3C0	0x00696DB1	0x00696470
+PPhysicsRigidBodyBase	PPhysics::VPPhysicsRigidBodyBase	m_scriptHandler	0x100	PScripting::VPScriptCallbackHandler	0x08	0x02E489D0	0x02E41170	0x00696E23	0x00696470
+PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_hollow	0x8	bool	0x08	0x02E48CD0	0x01F2E3C0	0x006973B2	0x00697320
+PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_mass	0xC	float	0x08	0x02E48CD0	0x01F2E690	0x00697425	0x00697320
+PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_density	0x10	float	0x08	0x02E48CD0	0x01F2E690	0x00697498	0x00697320
+PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_material	0x18	PPhysics::VPPhysicsMaterial	0x0A	0x02E48CD0	0x02E483D0	0x0069750A	0x00697320
+PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_transform	0x20	VPMatrix4x3	0x08	0x02E48CD0	0x02E51570	0x0069757D	0x00697320
+PPhysicsShapeBase	PPhysics::VPPhysicsShapeBase	m_scale	0x50	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E48CD0	0x02E50510	0x006975F0	0x00697320
+PPhysicsSphereBase	PPhysics::VPPhysicsSphereBase	m_radius	0x70	float	0x08	0x02E48ED0	0x01F2E690	0x00697729	0x006976A0
+PPhysicsTaperedCapsule	PPhysics::VPPhysicsTaperedCapsule	m_height	0x80	float	0x08	0x02E490D0	0x01F2E690	0x006978DC	0x00697760
+PPhysicsTaperedCylinder	PPhysics::VPPhysicsTaperedCylinder	m_height	0x80	float	0x08	0x02E491D0	0x01F2E690	0x00697A8C	0x00697910
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_models	0x48	PPhysics::VPPhysicsModel	0x0A	0x02E492D0	0x02E486D0	0x00698211	0x00698180
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_gravity	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E492D0	0x02E50510	0x00698280	0x00698180
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_timeStep	0x10	float	0x08	0x02E492D0	0x01F2E690	0x006982F3	0x00698180
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_worldMin	0x14	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E492D0	0x02E50510	0x00698366	0x00698180
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_worldMax	0x24	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02E492D0	0x02E50510	0x006983D9	0x00698180
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_characterControllers	0x50	PPhysics::VPPhysicsCharacterControllerBase	0x0A	0x02E492D0	0x02E47DD0	0x0069844B	0x00698180
+PPhysicsWorldBase	PPhysics::VPPhysicsWorldBase	m_kinematicRigidBodies	0x58	PPhysics::VPPhysicsRigidBody	0x0A	0x02E492D0	0x02E48BD0	0x006984BD	0x00698180
+PRaycastResult	PPhysics::VPRaycastResult	m_contactPoint	0x0	sce::Vectormath::Scalar::Aos::VVector4	0x08	0x02E493D0	0x02E50A50	0x0069858E	0x00698500
+PRaycastResult	PPhysics::VPRaycastResult	m_contactNormal	0x10	sce::Vectormath::Scalar::Aos::VVector4	0x08	0x02E493D0	0x02E50A50	0x00698601	0x00698500
+PRaycastResult	PPhysics::VPRaycastResult	m_collisionObject	0x20	PClassDescriptorBase	0x0A	0x02E493D0	0x02CF8270	0x00698674	0x00698500
+PRaycastResult	PPhysics::VPRaycastResult	m_collisionObjectClassDescriptor	0x28	PClassDescriptorForClassDescriptor	0x0A	0x02E493D0	0x02CF8470	0x006986E6	0x00698500
+PSharray	Phyre::PPhysics::PEAVPPhysicsShape::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02E4D070	0x01F2E5A0	0x00698B98	0x00698930
+PTrigger	PGameplay::VPTrigger	m_type	0x0	PGameplay::VPTriggerType	0x02	0x02E4D940	0x02E5C270	0x006A7F78	0x006A7EE0
+PTrigger	PGameplay::VPTrigger	m_localToWorldMatrix	0x18	VPWorldMatrix	0x02	0x02E4D940	0x02E404B0	0x006A7FEA	0x006A7EE0
+PTrigger	PGameplay::VPTrigger	m_previousLocalToWorldMatrix	0x20	VPWorldMatrix	0x00	0x02E4D940	0x02E404B0	0x006A8058	0x006A7EE0
+PTrigger	PGameplay::VPTrigger	m_enabled	0x50	bool	0x00	0x02E4D940	0x01F2E3C0	0x006A8159	0x006A7EE0
+PSharray	Phyre::PGameplay::PEAVPTriggerReceiverComponent::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02E4DDB0	0x01F2E5A0	0x006A8728	0x006A84C0
+PQuarryComponent	PGameplay::VPQuarryComponent	m_previousLocalToWorldMatrix	0x18	VPWorldMatrix	0x00	0x02E4E1E0	0x02E404B0	0x006A98CD	0x006A9840
+PQuarryComponent	PGameplay::VPQuarryComponent	m_min	0x48	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02E4E1E0	0x02E50510	0x006A993C	0x006A9840
+PQuarryComponent	PGameplay::VPQuarryComponent	m_size	0x58	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02E4E1E0	0x02E50510	0x006A99AB	0x006A9840
+PTypedObject	VPTypedObject	m_object	0x0	PClassDescriptorBase	0x12	0x02E4E430	0x02CF8270	0x006A9F9E	0x006A9F10
+PTypedObject	VPTypedObject	m_classDescriptor	0x8	PClassDescriptorForClassDescriptor	0x12	0x02E4E430	0x02CF8470	0x006AA010	0x006A9F10
+PComponent	VPComponent	m_entity	0x8	VPEntity	0x12	0x02E4E720	0x02E4EAF0	0x006AACAF	0x006AAA80
+PComponent	VPComponent	m_next	0x0	VPComponent	0x12	0x02E4E720	0x02E4E720	0x006AAD1D	0x006AAA80
+PComponent	VPComponent	m_componentType	0x10	PClassDescriptorForClassDescriptor	0x12	0x02E4E720	0x02CF8470	0x006AAD8F	0x006AAA80
+PEntity	VPEntity	m_firstComponent	0x0	VPComponent	0x0A	0x02E4EAF0	0x02E4E720	0x006AB946	0x006AB7E0
+PEntity	VPEntity	m_worldMatrix	0x8	VPWorldMatrix	0x0A	0x02E4EAF0	0x02E404B0	0x006AB9B8	0x006AB7E0
+PCameraOrthographic	VPCameraOrthographic	m_height	0xD0	float	0x10	0x02E4F290	0x01F2E690	0x006AD137	0x006AD0A0
+PCameraPerspective	VPCameraPerspective	m_FOV	0xD0	float	0x10	0x02E4F710	0x01F2E690	0x006AD999	0x006AD910
+PArray	$07::Phyre::VPTypedObject::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E4FBF0	0x01F2E5A0	0x006AE91A	0x006AE780
+PNameComponent	VPNameComponent	m_name	0x28	VPString	0x00	0x02E4FF60	0x02E4D630	0x006AFCB2	0x006AFC20
+PNode	PScene::VPNode	m_parent	0x8	PScene::VPNode	0x12	0x02E518D0	0x02E518D0	0x006B4DCE	0x006B41A0
+PNode	PScene::VPNode	m_firstChild	0x10	PScene::VPNode	0x12	0x02E518D0	0x02E518D0	0x006B4E40	0x006B41A0
+PNode	PScene::VPNode	m_next	0x0	PScene::VPNode	0x12	0x02E518D0	0x02E518D0	0x006B4EAE	0x006B41A0
+PNode	PScene::VPNode	m_worldMatrix	0x18	VPWorldMatrix	0x12	0x02E518D0	0x02E404B0	0x006B4F20	0x006B41A0
+PNode	PScene::VPNode	m_localMatrix	0x20	VPMatrix4	0x10	0x02E518D0	0x02E51350	0x006B4F93	0x006B41A0
+PNode	PScene::VPNode	m_name	0x60	VPString	0x10	0x02E518D0	0x02E4D630	0x006B5005	0x006B41A0
+PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_modifierNetwork	0x0	PDynamicGeometry::VPModifierNetwork	0x12	0x02E57F60	0x02E5E540	0x006BCAAD	0x006BCA20
+PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_segmentInputGroupStart	0x8	unsigned int	0x10	0x02E57F60	0x01F2E5A0	0x006BCB20	0x006BCA20
+PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_segmentOutputGroupStart	0xC	unsigned int	0x10	0x02E57F60	0x01F2E5A0	0x006BCB93	0x006BCA20
+PModifierNetworkDynamicMeshSegment	PDynamicGeometry::VPModifierNetworkDynamicMeshSegment	m_modifierOutputsAreConsumed	0x10	unsigned int	0x10	0x02E57F60	0x01F2E5A0	0x006BCC06	0x006BCA20
+PArray	PEBE$07::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E584A0	0x01F2E5A0	0x006BCDDA	0x006BCC40
+PArray	$07::Phyre::PDynamicGeometry::VPModifierNetworkDynamicMeshSegment::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E58900	0x01F2E5A0	0x006BD11A	0x006BCF80
+PArray	$07::Phyre::PDynamicGeometry::VPRenderStream::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E586D0	0x01F2E5A0	0x006BD44A	0x006BD2B0
+PLight	PRendering::VPLight	m_color	0x0	sce::Vectormath::Scalar::Aos::VVector4	0x10	0x02E58DB0	0x02E50A50	0x006BEDFA	0x006BED60
+PLight	PRendering::VPLight	m_localToWorldMatrix	0x10	VPWorldMatrix	0x12	0x02E58DB0	0x02E404B0	0x006BEE6C	0x006BED60
+PLight	PRendering::VPLight	m_shadowCaster	0x18	PRendering::VPShadowCaster	0x12	0x02E58DB0	0x02E59DC0	0x006BEEDE	0x006BED60
+PLight	PRendering::VPLight	m_lightType	0x20	PRendering::VPLightType	0x12	0x02E58DB0	0x02E58EB0	0x006BEF51	0x006BED60
+PLight	PRendering::VPLight	m_innerConeAngle	0x28	float	0x10	0x02E58DB0	0x01F2E690	0x006BEFC4	0x006BED60
+PLight	PRendering::VPLight	m_outerConeAngle	0x2C	float	0x10	0x02E58DB0	0x01F2E690	0x006BF037	0x006BED60
+PLight	PRendering::VPLight	m_intensity	0x30	float	0x10	0x02E58DB0	0x01F2E690	0x006BF0AA	0x006BED60
+PLight	PRendering::VPLight	m_innerRange	0x34	float	0x10	0x02E58DB0	0x01F2E690	0x006BF11D	0x006BED60
+PLight	PRendering::VPLight	m_outerRange	0x38	float	0x10	0x02E58DB0	0x01F2E690	0x006BF190	0x006BED60
+PLight	PRendering::VPLight	m_scatteringIntensity	0x3C	float	0x10	0x02E58DB0	0x01F2E690	0x006BF203	0x006BED60
+PShadowCaster	PRendering::VPShadowCaster	m_shadowCasterType	0x8	PRendering::VPShadowCasterType	0x12	0x02E59DC0	0x02E59EC0	0x006C16FB	0x006C15D0
+PShadowCaster	PRendering::VPShadowCaster	m_zbias	0x50	float	0x10	0x02E59DC0	0x01F2E690	0x006C176E	0x006C15D0
+PShadowCaster	PRendering::VPShadowCaster	m_light	0x0	PRendering::VPLight	0x12	0x02E59DC0	0x02E58DB0	0x006C17DC	0x006C15D0
+PShadowSplit	PRendering::PShadowCaster::VPShadowSplit	m_farPlane	0xC8	float	0x10	0x02E59CC0	0x01F2E690	0x006C1899	0x006C1810
+PArray	$07::Phyre::PRendering::PShadowCaster::VPShadowSplit::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E5A120	0x01F2E5A0	0x006C1ABA	0x006C1920
+PModifierNetworkInstance	PDynamicGeometry::VPModifierNetworkInstance	m_modifierNetwork	0x0	PDynamicGeometry::VPModifierNetwork	0x12	0x02E5A6C0	0x02E5E540	0x006C340D	0x006C3380
+PModifierNetworkInstanceInput	PDynamicGeometry::VPModifierNetworkInstanceInput	m_elementSize	0x8	unsigned int	0x10	0x02E5A4C0	0x01F2E5A0	0x006C3612	0x006C3580
+PModifierNetworkInstanceInput	PDynamicGeometry::VPModifierNetworkInstanceInput	m_renderStream	0x10	PDynamicGeometry::VPRenderStream	0x10	0x02E5A4C0	0x02E5DE30	0x006C3684	0x006C3580
+PModifierNetworkInstancePacketInput	PDynamicGeometry::VPModifierNetworkInstancePacketInput	m_source	0x0	unsigned int	0x10	0x02E5A5C0	0x01F2E5A0	0x006C374E	0x006C36C0
+PModifierNetworkInstancePacketInput	PDynamicGeometry::VPModifierNetworkInstancePacketInput	m_list	0x4	unsigned int	0x10	0x02E5A5C0	0x01F2E5A0	0x006C37C1	0x006C36C0
+PArray	$07::Phyre::PEBVPBase::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E5AA80	0x01F2E5A0	0x006C399A	0x006C3800
+PLODGroup	PLOD::VPLODGroup	m_minBounds	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02E5AE00	0x02E50510	0x006C5B76	0x006C5A50
+PLODGroup	PLOD::VPLODGroup	m_maxBounds	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02E5AE00	0x02E50510	0x006C5BE5	0x006C5A50
+PLODGroup	PLOD::VPLODGroup	m_blendRange	0x30	float	0x00	0x02E5AE00	0x01F2E690	0x006C5C54	0x006C5A50
+PLODGroup	PLOD::VPLODGroup	m_shaderLODLevelDistance	0x34	float	0x00	0x02E5AE00	0x01F2E690	0x006C5CC3	0x006C5A50
+PLODGroup	PLOD::VPLODGroup	m_lodMetricType	0x40	PLOD::VPLODMetricType	0x02	0x02E5AE00	0x02EA06E0	0x006C5D36	0x006C5A50
+PLODGroup	PLOD::VPLODGroup	m_lodBlendType	0x48	PLOD::VPLODBlendType	0x02	0x02E5AE00	0x02EA0750	0x006C5DA9	0x006C5A50
+PLODGroup	PLOD::VPLODGroup	m_isEnabled	0x60	bool	0x00	0x02E5AE00	0x01F2E3C0	0x006C5E18	0x006C5A50
+PLODLevel	PLOD::VPLODLevel	m_lodGroup	0x0	PLOD::VPLODGroup	0x02	0x02E5AD00	0x02E5AE00	0x006C607D	0x006C5FF0
+PLODLevel	PLOD::VPLODLevel	m_minimumThreshold	0x18	float	0x00	0x02E5AD00	0x01F2E690	0x006C617E	0x006C5FF0
+PLODLevel	PLOD::VPLODLevel	m_maximumThreshold	0x1C	float	0x00	0x02E5AD00	0x01F2E690	0x006C61ED	0x006C5FF0
+PArray	$07::Phyre::PLOD::VPLODLevel::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E5B8A0	0x01F2E5A0	0x006C63CA	0x006C6230
+PSharray	Phyre::PRendering::PEAVPMeshInstance::V?$PSharray	m_count	0x0	unsigned int	0x00	0x02E5B670	0x01F2E5A0	0x006C67C8	0x006C6560
+POccluderGeometryInstance	POccluderGeometry::VPOccluderGeometryInstance	m_occluder	0x0	POccluderGeometry::VPOccluderGeometryObject	0x02	0x02E5BBB0	0x02EA0850	0x006C83A2	0x006C8310
+POccluderGeometryInstance	POccluderGeometry::VPOccluderGeometryInstance	m_localToWorldMatrix	0x8	VPWorldMatrix	0x02	0x02E5BBB0	0x02E404B0	0x006C8414	0x006C8310
+PScriptableComponent	PGameplay::VPScriptableComponent	m_script	0x28	PScripting::VPScript	0x02	0x02E5C050	0x02E41470	0x006CD091	0x006CD000
+PScriptableComponent	PGameplay::VPScriptableComponent	m_entryPoint	0x20	VPString	0x00	0x02E5C050	0x02E4D630	0x006CD0FF	0x006CD000
+PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_triggerReceiverComponent	0x0	VPTypedObject	0x00	0x02E5C370	0x02E4E430	0x006CD9E9	0x006CD960
+PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_trigger	0x10	PGameplay::VPTrigger	0x02	0x02E5C370	0x02E4D940	0x006CDA5B	0x006CD960
+PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_quarryComponent	0x18	PGameplay::VPQuarryComponent	0x02	0x02E5C370	0x02E4E1E0	0x006CDACD	0x006CD960
+PTriggerReceiverTypeCallbackData	PGameplay::VPTriggerReceiverTypeCallbackData	m_entryCount	0x20	unsigned int	0x00	0x02E5C370	0x01F2E5A0	0x006CDB3C	0x006CD960
+PTriggerReceiverComponent	PGameplay::VPTriggerReceiverComponent	m_script	0x18	PScripting::VPScript	0x12	0x02E5C710	0x02E41470	0x006CE221	0x006CE190
+PTriggerReceiverComponent	PGameplay::VPTriggerReceiverComponent	m_entryHandler	0x28	PScripting::VPScriptCallbackHandler	0x10	0x02E5C710	0x02E41170	0x006CE293	0x006CE190
+PTriggerReceiverComponent	PGameplay::VPTriggerReceiverComponent	m_exitHandler	0x40	PScripting::VPScriptCallbackHandler	0x10	0x02E5C710	0x02E41170	0x006CE305	0x006CE190
+PModifierAndInputs	PDynamicGeometry::VPModifierAndInputs	m_modifier	0x0	PDynamicGeometry::VPModifier	0x12	0x02E5E030	0x02E9FD70	0x006D0DDE	0x006D0D50
+PModifierAndInputs	PDynamicGeometry::VPModifierAndInputs	m_persistentStateOffset	0x8	unsigned int	0x10	0x02E5E030	0x01F2E5A0	0x006D0E51	0x006D0D50
+PModifierAndInputs	PDynamicGeometry::VPModifierAndInputs	m_stateBlockOffset	0xC	unsigned int	0x10	0x02E5E030	0x01F2E5A0	0x006D0EC4	0x006D0D50
+PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalInputCount	0x18	unsigned int	0x10	0x02E5E540	0x01F2E5A0	0x006D10D0	0x006D0FA0
+PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalOutputElementSize	0x0	unsigned int	0x10	0x02E5E540	0x01F2E5A0	0x006D126A	0x006D0FA0
+PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_infoPacket	0x48	PDynamicGeometry::VPModifierNetworkInfoPacket	0x12	0x02E5E540	0x02E5E430	0x006D134E	0x006D0FA0
+PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalPersistentStateSize	0x50	unsigned int	0x10	0x02E5E540	0x01F2E5A0	0x006D13C1	0x006D0FA0
+PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_totalStateBlockSize	0x54	unsigned int	0x10	0x02E5E540	0x01F2E5A0	0x006D1434	0x006D0FA0
+PModifierNetwork	PDynamicGeometry::VPModifierNetwork	m_isCompiled	0x58	bool	0x10	0x02E5E540	0x01F2E3C0	0x006D14A7	0x006D0FA0
+PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_type	0x0	PGeometry::VPRenderDataType	0x12	0x02E5DF30	0x02D3C460	0x006D160E	0x006D1580
+PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_modifier	0x8	unsigned int	0x10	0x02E5DF30	0x01F2E5A0	0x006D1681	0x006D1580
+PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_stream	0xC	unsigned int	0x10	0x02E5DF30	0x01F2E5A0	0x006D16F4	0x006D1580
+PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_elementSize	0x10	unsigned int	0x10	0x02E5DF30	0x01F2E5A0	0x006D1767	0x006D1580
+PModifierNetworkBuffer	PDynamicGeometry::VPModifierNetworkBuffer	m_info	0x14	unsigned int	0x10	0x02E5DF30	0x01F2E5A0	0x006D17DA	0x006D1580
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_size	0x0	unsigned int	0x10	0x02E5E430	0x01F2E5A0	0x006D18A5	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_modifierCodeCount	0x4	unsigned int	0x10	0x02E5E430	0x01F2E5A0	0x006D1918	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_modifierInstanceCount	0x8	unsigned int	0x10	0x02E5E430	0x01F2E5A0	0x006D198B	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_inputCount	0xC	unsigned short	0x10	0x02E5E430	0x01F2E500	0x006D19FE	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_outputCount	0xE	unsigned short	0x10	0x02E5E430	0x01F2E500	0x006D1A71	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_totalPersistentStateSize	0x14	unsigned int	0x10	0x02E5E430	0x01F2E5A0	0x006D1B56	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_totalStateBlockSize	0x18	unsigned int	0x10	0x02E5E430	0x01F2E5A0	0x006D1BC9	0x006D1810
+PModifierNetworkInfoPacket	PDynamicGeometry::VPModifierNetworkInfoPacket	m_spuModifierCodeSize	0x1C	unsigned int	0x10	0x02E5E430	0x01F2E5A0	0x006D1C3C	0x006D1810
+PModifierNetworkInfoPacket_Buffer	PDynamicGeometry::VPModifierNetworkInfoPacket_Buffer	m_elementSize	0x0	unsigned short	0x10	0x02E5E330	0x01F2E500	0x006D1CFC	0x006D1C70
+PModifierNetworkInfoPacket_ModifierCode	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierCode	m_modifier	0x0	PDynamicGeometry::VPModifier	0x12	0x02E5E130	0x02E9FD70	0x006D1DC5	0x006D1D30
+PModifierNetworkInfoPacket_ModifierCode	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierCode	m_inputCount	0x8	unsigned int	0x10	0x02E5E130	0x01F2E5A0	0x006D1E38	0x006D1D30
+PModifierNetworkInfoPacket_ModifierCode	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierCode	m_outputCount	0xC	unsigned int	0x10	0x02E5E130	0x01F2E5A0	0x006D1EAB	0x006D1D30
+PModifierNetworkInfoPacket_ModifierInstance	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierInstance	m_persistentStateOffset	0x0	unsigned int	0x10	0x02E5E230	0x01F2E5A0	0x006D1F75	0x006D1EE0
+PModifierNetworkInfoPacket_ModifierInstance	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierInstance	m_stateBlockOffset	0x4	unsigned int	0x10	0x02E5E230	0x01F2E5A0	0x006D1FE8	0x006D1EE0
+PModifierNetworkInfoPacket_ModifierInstance	PDynamicGeometry::VPModifierNetworkInfoPacket_ModifierInstance	m_codeIndex	0x8	unsigned char	0x10	0x02E5E230	0x01F2E460	0x006D205B	0x006D1EE0
+PRenderStream	PDynamicGeometry::VPRenderStream	m_dataBlock	0x0	PGeometry::VPDynamicDataBlock	0x12	0x02E5DE30	0x02D39F40	0x006D219D	0x006D2110
+PRenderStream	PDynamicGeometry::VPRenderStream	m_vertexStream	0x8	PGeometry::VPVertexStream	0x12	0x02E5DE30	0x02D3ADE0	0x006D220F	0x006D2110
+PRenderStreamInput	PDynamicGeometry::VPRenderStreamInput	m_source	0x0	int	0x10	0x02E5DD30	0x01F2E550	0x006D22DE	0x006D2250
+PRenderStreamInput	PDynamicGeometry::VPRenderStreamInput	m_stream	0x4	int	0x10	0x02E5DD30	0x01F2E550	0x006D2351	0x006D2250
+PArray	$07::Phyre::PDynamicGeometry::VPModifierAndInputs::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E9F850	0x01F2E5A0	0x006D252A	0x006D2390
+PArray	$07::Phyre::PDynamicGeometry::VPModifierNetworkBuffer::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E9FA80	0x01F2E5A0	0x006D285A	0x006D26C0
+PArray	$03::Phyre::PDynamicGeometry::VPRenderStreamInput::V?$PArray	m_count	0x0	unsigned int	0x00	0x02E9F620	0x01F2E5A0	0x006D2B8A	0x006D29F0
+POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_planeCount	0x0	unsigned int	0x00	0x02EA0850	0x01F2E5A0	0x006DA051	0x006D9FC0
+POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_vertexCount	0x4	unsigned int	0x00	0x02EA0850	0x01F2E5A0	0x006DA0C0	0x006D9FC0
+POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_edgeCount	0x8	unsigned int	0x00	0x02EA0850	0x01F2E5A0	0x006DA12F	0x006D9FC0
+POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_minBounds	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02EA0850	0x02E50510	0x006DA19E	0x006D9FC0
+POccluderGeometryObject	POccluderGeometry::VPOccluderGeometryObject	m_maxBounds	0x20	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02EA0850	0x02E50510	0x006DA20D	0x006D9FC0
+PDebugUtils	PFramework::VPDebugUtils	m_autoClear	0x50	bool	0x00	0x02EA9400	0x01F2E3C0	0x0079554C	0x00795320
+PInputMapper	PFramework::VPInputMapper	m_inputMap	0x0	PInputs::VPInputMap	0x02	0x02EA5560	0x02EB6DF0	0x00795627	0x00795590
+PInputAction	PInputs::VPInputAction	m_name	0x8	VPString	0x00	0x02EB6CF0	0x02E4D630	0x0086D705	0x0086D670
+PInputSource	PInputs::VPInputSource	m_typeSemantic	0x10	PInputs::VPInputTypeSemantic	0x02	0x02EB52F0	0x02EB8270	0x0086DB02	0x0086DA70
+PInputSource	PInputs::VPInputSource	m_id	0x18	unsigned int	0x00	0x02EB52F0	0x01F2E5A0	0x0086DB71	0x0086DA70
+PInputSource	PInputs::VPInputSource	m_invert	0x1C	bool	0x00	0x02EB52F0	0x01F2E3C0	0x0086DBE0	0x0086DA70
+PInputSource	PInputs::VPInputSource	m_scale	0x20	float	0x00	0x02EB52F0	0x01F2E690	0x0086DC4F	0x0086DA70
+PInputSourceJoypadAxis	PInputs::VPInputSourceJoypadAxis	m_joypadAxisSemantic	0x30	PInputs::VPInputAxisSemantic	0x02	0x02EB55F0	0x02EB82E0	0x0086DD19	0x0086DC90
+PInputSourceJoypadButton	PInputs::VPInputSourceJoypadButton	m_positiveButtonSemantic	0x30	PInputs::VPInputJoypadButtonSemantic	0x02	0x02EB54F0	0x02EB8350	0x0086DDE2	0x0086DD50
+PInputSourceJoypadButton	PInputs::VPInputSourceJoypadButton	m_negativeButtonSemantic	0x38	PInputs::VPInputJoypadButtonSemantic	0x02	0x02EB54F0	0x02EB8350	0x0086DE55	0x0086DD50
+PInputSourceKey	PInputs::VPInputSourceKey	m_positiveKeySemantic	0x30	PInputs::VPInputKeySemantic	0x02	0x02EB53F0	0x02EB83C0	0x0086DF22	0x0086DE90
+PInputSourceKey	PInputs::VPInputSourceKey	m_negativeKeySemantic	0x38	PInputs::VPInputKeySemantic	0x02	0x02EB53F0	0x02EB83C0	0x0086DF95	0x0086DE90
+PInputSourceMouseButton	PInputs::VPInputSourceMouseButton	m_mouseButtonSemantic	0x30	PInputs::VPInputMouseButtonSemantic	0x02	0x02EB56F0	0x02EB8430	0x0086E119	0x0086E090
+PInputSourceMouseDeltaX	PInputs::VPInputSourceMouseDeltaX	m_modifierButtonSemantic	0x30	PInputs::VPInputMouseButtonSemantic	0x02	0x02EB57F0	0x02EB8430	0x0086E1E2	0x0086E150
+PInputSourceMouseDeltaX	PInputs::VPInputSourceMouseDeltaX	m_modifierKeySemantic	0x38	PInputs::VPInputKeySemantic	0x02	0x02EB57F0	0x02EB83C0	0x0086E255	0x0086E150
+PInputSourceMouseDeltaY	PInputs::VPInputSourceMouseDeltaY	m_modifierButtonSemantic	0x30	PInputs::VPInputMouseButtonSemantic	0x02	0x02EB58F0	0x02EB8430	0x0086E322	0x0086E290
+PInputSourceMouseDeltaY	PInputs::VPInputSourceMouseDeltaY	m_modifierKeySemantic	0x38	PInputs::VPInputKeySemantic	0x02	0x02EB58F0	0x02EB83C0	0x0086E395	0x0086E290
+PArray	$07::Phyre::PInputs::PEAVPInputAction::V?$PArray	m_count	0x0	unsigned int	0x00	0x02EB7860	0x01F2E5A0	0x0086E60A	0x0086E470
+PArray	$07::Phyre::PInputs::PEAVPInputSource::V?$PArray	m_count	0x0	unsigned int	0x00	0x02EB7630	0x01F2E5A0	0x0086E94A	0x0086E7B0
+POctree	PHierarchy::VPOctree	m_center	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02EB9070	0x02E50510	0x0087817E	0x008780F0
+POctree	PHierarchy::VPOctree	m_halfSize	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02EB9070	0x02E50510	0x008781F1	0x008780F0
+POctree	PHierarchy::VPOctree	m_maxRadius	0x20	float	0x08	0x02EB9070	0x01F2E690	0x00878264	0x008780F0
+POctree	PHierarchy::VPOctree	m_level	0x24	unsigned int	0x08	0x02EB9070	0x01F2E5A0	0x008782D7	0x008780F0
+POctree	PHierarchy::VPOctree	m_maxLevel	0x28	unsigned int	0x08	0x02EB9070	0x01F2E5A0	0x0087834A	0x008780F0
+POctree	PHierarchy::VPOctree	m_objectsPerLevel	0x2C	unsigned int	0x08	0x02EB9070	0x01F2E5A0	0x008783BD	0x008780F0
+POctree	PHierarchy::VPOctree	m_currentObjectCount	0x30	unsigned int	0x08	0x02EB9070	0x01F2E5A0	0x00878430	0x008780F0
+POctree	PHierarchy::VPOctree	m_totalObjectCount	0x34	unsigned int	0x08	0x02EB9070	0x01F2E5A0	0x008784A3	0x008780F0
+POctree	PHierarchy::VPOctree	m_octreeChildren	0x40	PHierarchy::VPOctreeChildren	0x0A	0x02EB9070	0x02EB9370	0x00878515	0x008780F0
+POctree	PHierarchy::VPOctree	m_octreeData	0x38	PHierarchy::VPOctreeData	0x0A	0x02EB9070	0x02EB9170	0x00878587	0x008780F0
+POctree	PHierarchy::VPOctree	m_parent	0x48	PHierarchy::VPOctree	0x0A	0x02EB9070	0x02EB9070	0x008785F9	0x008780F0
+POctreeData	PHierarchy::VPOctreeData	m_octree	0x0	PHierarchy::VPOctree	0x0A	0x02EB9170	0x02EB9070	0x0087877D	0x008786F0
+POctreeData	PHierarchy::VPOctreeData	m_cachedPosition	0x8	sce::Vectormath::Scalar::Aos::VVector3	0x08	0x02EB9170	0x02E50510	0x008787F0	0x008786F0
+POctreeData	PHierarchy::VPOctreeData	m_bounds	0x18	PRendering::VPMeshInstanceBounds	0x0A	0x02EB9170	0x02CB7080	0x00878862	0x008786F0
+POctreeData	PHierarchy::VPOctreeData	m_prev	0x28	PHierarchy::VPOctreeData	0x0A	0x02EB9170	0x02EB9170	0x008788D4	0x008786F0
+POctreeData	PHierarchy::VPOctreeData	m_next	0x20	PHierarchy::VPOctreeData	0x0A	0x02EB9170	0x02EB9170	0x00878946	0x008786F0
+POctreeWorld	PHierarchy::VPOctreeWorld	m_center	0x0	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02EB9270	0x02E50510	0x00878A0A	0x00878980
+POctreeWorld	PHierarchy::VPOctreeWorld	m_halfSize	0x10	sce::Vectormath::Scalar::Aos::VVector3	0x00	0x02EB9270	0x02E50510	0x00878A79	0x00878980
+POctreeWorld	PHierarchy::VPOctreeWorld	m_objectsPerLevel	0x20	unsigned int	0x00	0x02EB9270	0x01F2E5A0	0x00878AE8	0x00878980
+POctreeWorld	PHierarchy::VPOctreeWorld	m_maxLevel	0x24	unsigned int	0x00	0x02EB9270	0x01F2E5A0	0x00878B57	0x00878980
+POctreeWorld	PHierarchy::VPOctreeWorld	m_octree	0x28	PHierarchy::VPOctree	0x08	0x02EB9270	0x02EB9070	0x00878BC9	0x00878980
+POctreeWorld	PHierarchy::VPOctreeWorld	m_dynamicOctree	0x78	PHierarchy::VPOctree	0x08	0x02EB9270	0x02EB9070	0x00878C3B	0x00878980
+PGameConfig	PGame::VPGameConfig	m_inputMap	0x10	PInputs::VPInputMap	0x02	0x02EB9E60	0x02EB6DF0	0x00879DF1	0x00879D60
+PArray	$07::Phyre::PInputs::PEAVPInputMap::V?$PArray	m_count	0x0	unsigned int	0x00	0x02EBA030	0x01F2E5A0	0x0087A05A	0x00879EC0
+PShaderPassParameterLocationTypesBase		m_parameterStart	0x0	unsigned short	0x00	0x02CB9600	0x01F2E500	0x005EA16A	0x005EA0E0
+PShaderPassParameterLocationTypesBase		m_parameterCount	0x8	unsigned short	0x00	0x02CB9600	0x01F2E500	0x005EA1E3	0x005EA0E0
+PAnimationConstantChannel		m_value	0x48	float	0x00	0x02CADC50	0x01F2E690	0x005B0C36	0x005B0BB0
+POctreeChildren		m_children	0x8	POctree	0x00	0x02EB9370	0x02EB9070	0x008786B5	0x00878630

@@ -1,257 +1,257 @@
 condition_id	row	name	help_text	target	test	also_needs	pick	menu_position	sites
-0x6000	0	Foe: party leader's target	Target the same foe the party leader is targeting.	Foe	is the party leader's target (leader +0x750)	-	nearest	0, 0	003030A7; 00303141; 0030BD00
-0x6001	1	Foe: nearest visible	Target nearest foe visible on screen.	Foe	on screen	-	nearest	0, 1	003030A7; 00303185; 0030BD00
-0x6002	2	Foe: any	Target any foe.	Foe	any unit	-	random	0, 2	00301ECC; 0030BD00
-0x6003	3	Foe: targeting leader	Target any foe targeting the party leader.	Foe	is targeting the party leader (unit +0x710)	-	nearest	0, 5	003024B0; 00302A76; 0030BD00
-0x6004	4	Foe: targeting self	Target any foe targeting the character.	Foe	is targeting the character (unit +0x710)	-	nearest	0, 6	003024B0; 00302A98; 0030BD00
-0x6005	5	Foe: targeting ally	Target any foe targeting an ally.	Foe	is targeting one of the character's allies (unit +0x710)	-	nearest	0, 7	003024B0; 00302AB1; 0030BD00
-0x6006	6	Foe: furthest	Target foe furthest from the character.	Foe	highest distance from the character (0031E6F0)	-	nearest of the equal ones	0, 14	003020E4; 0030BD00
-0x6007	7	Foe: nearest	Target foe nearest the character.	Foe	lowest distance from the character (0031E6F0)	-	nearest of the equal ones	0, 15	003020E4; 0030BD00
-0x6008	8	Foe: highest HP	Target foe with most remaining HP.	Foe	highest HP	-	nearest of the equal ones	0, 16	00301F8F; 0030BD00
-0x6009	9	Foe: lowest HP	Target foe with least remaining HP.	Foe	lowest HP	-	nearest of the equal ones	1, 0	00301F8F; 0030BD00
-0x600A	10	Foe: highest max HP	Target foe with highest max HP.	Foe	highest max HP (stats +0x24, doubled under Bubble; current HP under Disease)	-	nearest of the equal ones	1, 1	00301FCB; 0030BD00
-0x600B	11	Foe: lowest max HP	Target foe with lowest max HP.	Foe	lowest max HP (stats +0x24, doubled under Bubble; current HP under Disease)	-	nearest of the equal ones	1, 2	00301FCB; 0030BD00
-0x600C	12	Foe: highest MP	Target foe with most remaining MP.	Foe	highest MP	-	nearest of the equal ones	1, 3	00301FC6; 0030BD00
-0x600D	13	Foe: lowest MP	Target foe with least remaining MP.	Foe	lowest MP	-	nearest of the equal ones	1, 4	00301FC6; 0030BD00
-0x600E	14	Foe: highest max MP	Target foe with highest max MP.	Foe	highest max MP (stats +0x28)	-	nearest of the equal ones	1, 5	00301FFB; 0030BD00
-0x600F	15	Foe: lowest max MP	Target foe with lowest max MP.	Foe	lowest max MP (stats +0x28)	-	nearest of the equal ones	1, 6	00301FFB; 0030BD00
-0x6010	16	Foe: highest level	Target highest level foe.	Foe	highest level (stats +0x1C2)	-	nearest of the equal ones	1, 7	003020B9; 0030BD00
-0x6011	17	Foe: lowest level	Target lowest level foe.	Foe	lowest level (stats +0x1C2)	-	nearest of the equal ones	1, 8	003020B9; 0030BD00
-0x6012	18	Foe: highest strength	Target foe with highest strength.	Foe	highest Strength (stats +0x2A)	-	nearest of the equal ones	1, 9	00302019; 0030BD00
-0x6013	19	Foe: lowest strength	Target foe with lowest strength.	Foe	lowest Strength (stats +0x2A)	-	nearest of the equal ones	1, 10	00302019; 0030BD00
-0x6014	20	Foe: highest magick power	Target foe with highest magick power.	Foe	highest Magick Power (stats +0x2B)	-	nearest of the equal ones	1, 11	00302041; 0030BD00
-0x6015	21	Foe: lowest magick power	Target foe with lowest magick power.	Foe	lowest Magick Power (stats +0x2B)	-	nearest of the equal ones	1, 12	00302041; 0030BD00
-0x6016	22	Foe: highest speed	Target foe with highest speed.	Foe	highest Speed (stats +0x2D)	-	nearest of the equal ones	1, 13	00302091; 0030BD00
-0x6017	23	Foe: lowest speed	Target foe with lowest speed.	Foe	lowest Speed (stats +0x2D)	-	nearest of the equal ones	1, 14	00302091; 0030BD00
-0x6018	24	Foe: highest defense	Target foe with highest defense.	Foe	highest Defense (stats +0x2F)	-	nearest of the equal ones	1, 15	00301F4F; 0030BD00
-0x6019	25	Foe: highest magick resist	Target foe with highest magick resist.	Foe	highest Magick Resist (stats +0x30)	-	nearest of the equal ones	1, 16	00301F6F; 0030BD00
-0x601A	26	Foe: HP >= 100,000	Target any foe with HP greater than or equal to 100,000.	Foe	HP >= 100,000	-	highest HP	2, 0	00302E80; 00302EDF; 0030BD00
-0x601B	27	Foe: HP >= 50,000	Target any foe with HP greater than or equal to 50,000.	Foe	HP >= 50,000	-	highest HP	2, 1	00302E80; 00302EDF; 0030BD00
-0x601C	28	Foe: HP >= 10,000	Target any foe with HP greater than or equal to 10,000.	Foe	HP >= 10,000	-	highest HP	2, 2	00302E80; 00302EDF; 0030BD00
-0x601D	29	Foe: HP >= 5,000	Target any foe with HP greater than or equal to 5,000.	Foe	HP >= 5,000	-	highest HP	2, 3	00302E80; 00302EDF; 0030BD00
-0x601E	30	Foe: HP >= 3,000	Target any foe with HP greater than or equal to 3,000.	Foe	HP >= 3,000	-	highest HP	2, 4	00302E80; 00302EDF; 0030BD00
-0x601F	31	Foe: HP >= 2,000	Target any foe with HP greater than or equal to 2,000.	Foe	HP >= 2,000	-	highest HP	2, 5	00302E80; 00302EDF; 0030BD00
-0x6020	32	Foe: HP >= 1,000	Target any foe with HP greater than or equal to 1,000.	Foe	HP >= 1,000	-	highest HP	2, 6	00302E80; 00302EDF; 0030BD00
-0x6021	33	Foe: HP >= 500	Target any foe with HP greater than or equal to 500.	Foe	HP >= 500	-	highest HP	2, 7	00302E80; 00302EDF; 0030BD00
-0x6022	34	Foe: HP < 100,000	Target any foe with less than 100,000 HP.	Foe	HP < 100,000	-	lowest HP	2, 8	00302E80; 00302EDF; 0030BD00
-0x6023	35	Foe: HP < 50,000	Target any foe with less than 50,000 HP.	Foe	HP < 50,000	-	lowest HP	2, 9	00302E80; 00302EDF; 0030BD00
-0x6024	36	Foe: HP < 10,000	Target any foe with less than 10,000 HP.	Foe	HP < 10,000	-	lowest HP	2, 10	00302E80; 00302EDF; 0030BD00
-0x6025	37	Foe: HP < 5,000	Target any foe with less than 5,000 HP.	Foe	HP < 5,000	-	lowest HP	2, 11	00302E80; 00302EDF; 0030BD00
-0x6026	38	Foe: HP < 3,000	Target any foe with less than 3,000 HP.	Foe	HP < 3,000	-	lowest HP	2, 12	00302E80; 00302EDF; 0030BD00
-0x6027	39	Foe: HP < 2,000	Target any foe with less than 2,000 HP.	Foe	HP < 2,000	-	lowest HP	2, 13	00302E80; 00302EDF; 0030BD00
-0x6028	40	Foe: HP < 1,000	Target any foe with less than 1,000 HP.	Foe	HP < 1,000	-	lowest HP	2, 14	00302E80; 00302EDF; 0030BD00
-0x6029	41	Foe: HP < 500	Target any foe with less than 500 HP.	Foe	HP < 500	-	lowest HP	2, 15	00302E80; 00302EDF; 0030BD00
-0x602A	42	Foe: HP = 100%	Target any foe with full HP.	Foe	HP full	-	nearest	2, 16	00302F7E; 0030BD00
-0x602B	43	Foe: HP >= 70%	Target any foe with 70% or more HP.	Foe	HP >= 70 % of max HP	-	highest HP %	3, 1	00302203; 00302292; 003022C7; 0030BD00
-0x602C	44	Foe: HP >= 50%	Target any foe with 50% or more HP.	Foe	HP >= 50 % of max HP	-	highest HP %	3, 2	00302203; 00302292; 003022C7; 0030BD00
-0x602D	45	Foe: HP >= 30%	Target any foe with 30% or more HP.	Foe	HP >= 30 % of max HP	-	highest HP %	3, 3	00302203; 00302292; 003022C7; 0030BD00
-0x602E	46	Foe: status = Petrify	Target any foe with Petrify status.	Foe	has Petrify	-	nearest	3, 10	003021A3; 0030BD00
-0x602F	47	Foe: status = Stop	Target any foe with Stop status.	Foe	has Stop	-	nearest	3, 11	003021A3; 0030BD00
-0x6030	48	Foe: status = Sleep	Target any foe with Sleep status.	Foe	has Sleep	-	nearest	3, 12	003021A3; 0030BD00
-0x6031	49	Foe: status = Confuse	Target any foe with Confuse status.	Foe	has Confuse	-	nearest	3, 13	003021A3; 0030BD00
-0x6032	50	Foe: status = Doom	Target any foe with Doom status.	Foe	has Doom	-	nearest	3, 14	003021A3; 0030BD00
-0x6033	51	Foe: status = Blind	Target any foe with Blind status.	Foe	has Blind	-	nearest	3, 15	003021A3; 0030BD00
-0x6034	52	Foe: status = Poison	Target any foe with Poison status.	Foe	has Poison	-	nearest	3, 16	003021A3; 0030BD00
-0x6035	53	Foe: status = Silence	Target any foe with Silence status.	Foe	has Silence	-	nearest	4, 0	003021A3; 0030BD00
-0x6036	54	Foe: status = Sap	Target any foe with Sap status.	Foe	has Sap	-	nearest	4, 1	003021A3; 0030BD00
-0x6037	55	Foe: status = Oil	Target any foe with Oil status.	Foe	has Oil	-	nearest	4, 2	003021A3; 0030BD00
-0x6038	56	Foe: status = Reverse	Target any foe with Reverse status.	Foe	has Reverse	-	nearest	4, 3	003021A3; 0030BD00
-0x6039	57	Foe: status = Disable	Target any foe with Disable status.	Foe	has Disable	-	nearest	4, 4	003021A3; 0030BD00
-0x603A	58	Foe: status = Immobilize	Target any foe with Immobilize status.	Foe	has Immobilize	-	nearest	4, 5	003021A3; 0030BD00
-0x603B	59	Foe: status = Slow	Target any foe with Slow status.	Foe	has Slow	-	nearest	4, 6	003021A3; 0030BD00
-0x603C	60	Foe: status = Disease	Target any foe with Disease status.	Foe	has Disease	-	nearest	4, 7	003021A3; 0030BD00
-0x603D	61	Foe: status = Protect	Target any foe with Protect status.	Foe	has Protect	-	nearest	4, 8	003021A3; 0030BD00
-0x603E	62	Foe: status = Shell	Target any foe with Shell status.	Foe	has Shell	-	nearest	4, 9	003021A3; 0030BD00
-0x603F	63	Foe: status = Haste	Target any foe with Haste status.	Foe	has Haste	-	nearest	4, 10	003021A3; 0030BD00
-0x6040	64	Foe: status = Bravery	Target any foe with Bravery status.	Foe	has Bravery	-	nearest	4, 11	003021A3; 0030BD00
-0x6041	65	Foe: status = Faith	Target any foe with Faith status.	Foe	has Faith	-	nearest	4, 12	003021A3; 0030BD00
-0x6042	66	Foe: status = Reflect	Target any foe with Reflect status.	Foe	has Reflect	-	nearest	4, 13	003021A3; 0030BD00
-0x6043	67	Self: targeted by ally	Target self if targeted by an ally.	Self	any unit	Ally: is targeting the character (unit +0x710)	random	14, 15	00301ECC; 003024B0; 00302A98; 0030BD00
-0x6044	68	Foe: status = Regen	Target any foe with Regen status.	Foe	has Regen	-	nearest	4, 14	003021A3; 0030BD00
-0x6045	69	Self: targeted by foe	Target self if targeted by a foe.	Self	any unit	Foe: is targeting the character (unit +0x710)	random	14, 14	00301ECC; 003024B0; 00302A98; 0030BD00
-0x6046	70	Foe: status = Berserk	Target any foe with Berserk status.	Foe	has Berserk	-	nearest	4, 15	003021A3; 0030BD00
-0x6047	71	Foe: not targeted by ally	Target any foe not targeted by an ally.	Foe	lowest number of units whose committed action targets it (unit +0xEA8)	-	nearest of the equal ones	0, 4	00302123; 0030BD00
-0x6048	72	Foe: status = HP Critical	Target any foe with HP Critical status.	Foe	has HP Critical	-	nearest	4, 16	003021A3; 0030BD00
-0x6049	73	Foe: fire-weak	Target any foe weak against fire.	Foe	weak to fire (stats +0x40 bit 0)	-	nearest	5, 0	003023A5; 0030BD00
-0x604A	74	Foe: lightning-weak	Target any foe weak against lightning.	Foe	weak to lightning (stats +0x40 bit 1)	-	nearest	5, 1	003023A5; 0030BD00
-0x604B	75	Foe: ice-weak	Target any foe weak against ice.	Foe	weak to ice (stats +0x40 bit 2)	-	nearest	5, 2	003023A5; 0030BD00
-0x604C	76	Foe: earth-weak	Target any foe weak against earth.	Foe	weak to earth (stats +0x40 bit 3)	-	nearest	5, 3	003023A5; 0030BD00
-0x604D	77	Foe: water-weak	Target any foe weak against water.	Foe	weak to water (stats +0x40 bit 4)	-	nearest	5, 4	003023A5; 0030BD00
-0x604E	78	Foe: wind-weak	Target any foe weak against wind.	Foe	weak to wind (stats +0x40 bit 5)	-	nearest	5, 5	003023A5; 0030BD00
-0x604F	79	Foe: holy-weak	Target any foe weak against holy.	Foe	weak to holy (stats +0x40 bit 6)	-	nearest	5, 6	003023A5; 0030BD00
-0x6050	80	Foe: dark-weak	Target any foe weak against dark.	Foe	weak to dark (stats +0x40 bit 7)	-	nearest	5, 7	003023A5; 0030BD00
-0x6051	81	Foe: fire-vulnerable	Target any foe susceptible to fire damage.	Foe	does not absorb fire (stats +0x41 bit 0 clear)	-	nearest	5, 8	003023C9; 0030BD00
-0x6052	82	Foe: lightning-vulnerable	Target any foe susceptible to lightning damage.	Foe	does not absorb lightning (stats +0x41 bit 1 clear)	-	nearest	5, 9	003023C9; 0030BD00
-0x6053	83	Foe: ice-vulnerable	Target any foe susceptible to ice damage.	Foe	does not absorb ice (stats +0x41 bit 2 clear)	-	nearest	5, 10	003023C9; 0030BD00
-0x6054	84	Foe: earth-vulnerable	Target any foe susceptible to earth damage.	Foe	does not absorb earth (stats +0x41 bit 3 clear)	-	nearest	5, 11	003023C9; 0030BD00
-0x6055	85	Foe: water-vulnerable	Target any foe susceptible to water damage.	Foe	does not absorb water (stats +0x41 bit 4 clear)	-	nearest	5, 12	003023C9; 0030BD00
-0x6056	86	Foe: wind-vulnerable	Target any foe susceptible to wind damage.	Foe	does not absorb wind (stats +0x41 bit 5 clear)	-	nearest	5, 13	003023C9; 0030BD00
-0x6057	87	Foe: holy-vulnerable	Target any foe susceptible to holy damage.	Foe	does not absorb holy (stats +0x41 bit 6 clear)	-	nearest	5, 14	003023C9; 0030BD00
-0x6058	88	Foe: dark-vulnerable	Target any foe susceptible to dark damage.	Foe	does not absorb dark (stats +0x41 bit 7 clear)	-	nearest	5, 15	003023C9; 0030BD00
-0x6059	89	Foe: undead	Target any undead foe.	Foe	unit byte +0x55 is 13	-	nearest	5, 16	003021CC; 0030BD00
-0x605A	90	Foe: flying	Target any flying foe.	Foe	unit type byte +0x56 is 46	-	nearest	6, 0	003021EC; 0030BD00
-0x605B	91	Ally: item AMT >= 10	Target any ally if 10 or more of the selected item remain.	Ally	any unit	the character: holds 10 or more of the line's item	random	11, 16	00301ECC; 003032C0; 003032EE; 0030BD00
-0x605C	92	Foe: character HP = 100%	Target any on-screen foe if character has full HP.	Foe	on screen	the character: HP full	nearest	6, 6	003030A7; 00303185; 00302F7E; 0030BD00
-0x605D	93	Foe: item AMT >= 10	Target any on-screen foe if 10 or more of the selected item remain.	Foe	on screen	the character: holds 10 or more of the line's item	nearest	7, 16	003030A7; 00303185; 003032C0; 003032EE; 0030BD00
-0x605E	94	Foe: character status = Blind	Target any on-screen foe if character has Blind status.	Foe	on screen	the character: has Blind	nearest	6, 1	003030A7; 00303185; 003021A3; 0030BD00
-0x605F	95	Foe: character status = Silence	Target any on-screen foe if character has Silence status.	Foe	on screen	the character: has Silence	nearest	6, 2	003030A7; 00303185; 003021A3; 0030BD00
-0x6060	96	Foe: character status = Bravery	Target any on-screen foe if character has Bravery status.	Foe	on screen	the character: has Bravery	nearest	6, 3	003030A7; 00303185; 003021A3; 0030BD00
-0x6061	97	Foe: character status = Faith	Target any on-screen foe if character has Faith status.	Foe	on screen	the character: has Faith	nearest	6, 4	003030A7; 00303185; 003021A3; 0030BD00
-0x6062	98	Foe: character status = HP Critical	Target any on-screen foe if character has HP Critical status.	Foe	on screen	the character: has HP Critical	nearest	6, 5	003030A7; 00303185; 003021A3; 0030BD00
-0x6063	99	Foe: character MP >= 90%	Target any on-screen foe if character has 90% or more MP.	Foe	on screen	the character: MP >= 90 % of max MP	nearest	6, 7	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x6064	100	Foe: character MP >= 70%	Target any on-screen foe if character has 70% or more MP.	Foe	on screen	the character: MP >= 70 % of max MP	nearest	6, 8	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x6065	101	Foe: character MP >= 50%	Target any on-screen foe if character has 50% or more MP.	Foe	on screen	the character: MP >= 50 % of max MP	nearest	6, 9	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x6066	102	Foe: character MP >= 30%	Target any on-screen foe if character has 30% or more MP.	Foe	on screen	the character: MP >= 30 % of max MP	nearest	6, 10	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x6067	103	Foe: character MP >= 10%	Target any on-screen foe if character has 10% or more MP.	Foe	on screen	the character: MP >= 10 % of max MP	nearest	6, 11	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x6068	104	Foe: character MP < 90%	Target any on-screen foe if character has less than 90% MP.	Foe	on screen	the character: MP < 90 % of max MP	nearest	6, 12	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x6069	105	Foe: character MP < 70%	Target any on-screen foe if character has less than 70% MP.	Foe	on screen	the character: MP < 70 % of max MP	nearest	6, 13	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x606A	106	Foe: character MP < 50%	Target any on-screen foe if character has less than 50% MP.	Foe	on screen	the character: MP < 50 % of max MP	nearest	6, 14	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x606B	107	Foe: character MP < 30%	Target any on-screen foe if character has less than 30% MP.	Foe	on screen	the character: MP < 30 % of max MP	nearest	6, 15	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x606C	108	Foe: character MP < 10%	Target any on-screen foe if character has less than 10% MP.	Foe	on screen	the character: MP < 10 % of max MP	nearest	6, 16	003030A7; 00303185; 003032A7; 00302F37; 003022C7; 0030BD00
-0x606D	109	Foe: character HP >= 90%	Target any on-screen foe if character has 90% or more HP.	Foe	on screen	the character: HP >= 90 % of max HP	nearest	7, 0	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x606E	110	Foe: character HP >= 70%	Target any on-screen foe if character has 70% or more HP.	Foe	on screen	the character: HP >= 70 % of max HP	nearest	7, 1	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x606F	111	Foe: character HP >= 50%	Target any on-screen foe if character has 50% or more HP.	Foe	on screen	the character: HP >= 50 % of max HP	nearest	7, 2	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6070	112	Foe: character HP >= 30%	Target any on-screen foe if character has 30% or more HP.	Foe	on screen	the character: HP >= 30 % of max HP	nearest	7, 3	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6071	113	Foe: character HP >= 10%	Target any on-screen foe if character has 10% or more HP.	Foe	on screen	the character: HP >= 10 % of max HP	nearest	7, 4	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6072	114	Foe: character HP < 90%	Target any on-screen foe if character has less than 90% HP.	Foe	on screen	the character: HP < 90 % of max HP	nearest	7, 5	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6073	115	Foe: character HP < 70%	Target any on-screen foe if character has less than 70% HP.	Foe	on screen	the character: HP < 70 % of max HP	nearest	7, 6	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6074	116	Foe: character HP < 50%	Target any on-screen foe if character has less than 50% HP.	Foe	on screen	the character: HP < 50 % of max HP	nearest	7, 7	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6075	117	Foe: character HP < 30%	Target any on-screen foe if character has less than 30% HP.	Foe	on screen	the character: HP < 30 % of max HP	nearest	7, 8	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6076	118	Foe: character HP < 10%	Target any on-screen foe if character has less than 10% HP.	Foe	on screen	the character: HP < 10 % of max HP	nearest	7, 9	003030A7; 00303185; 00302203; 00302292; 003022C7; 0030BD00
-0x6077	119	Self	Target self.	Self	any unit	-	random	12, 0	00301ECC; 0030BD00
-0x6078	120	Self: HP < 100%	Target self if character has less than 100% HP.	Self	HP below max	-	nearest	12, 1	00302F7E; 0030BD00
-0x6079	121	Self: HP < 90%	Target self if character has less than 90% HP.	Self	HP < 90 % of max HP	-	lowest HP %	12, 2	00302203; 00302292; 003022C7; 0030BD00
-0x607A	122	Self: HP < 80%	Target self if character has less than 80% HP.	Self	HP < 80 % of max HP	-	lowest HP %	12, 3	00302203; 00302292; 003022C7; 0030BD00
-0x607B	123	Self: HP < 70%	Target self if character has less than 70% HP.	Self	HP < 70 % of max HP	-	lowest HP %	12, 4	00302203; 00302292; 003022C7; 0030BD00
-0x607C	124	Self: HP < 60%	Target self if character has less than 60% HP.	Self	HP < 60 % of max HP	-	lowest HP %	12, 5	00302203; 00302292; 003022C7; 0030BD00
-0x607D	125	Self: HP < 50%	Target self if character has less than 50% HP.	Self	HP < 50 % of max HP	-	lowest HP %	12, 6	00302203; 00302292; 003022C7; 0030BD00
-0x607E	126	Self: HP < 40%	Target self if character has less than 40% HP.	Self	HP < 40 % of max HP	-	lowest HP %	12, 7	00302203; 00302292; 003022C7; 0030BD00
-0x607F	127	Self: HP < 30%	Target self if character has less than 30% HP.	Self	HP < 30 % of max HP	-	lowest HP %	12, 8	00302203; 00302292; 003022C7; 0030BD00
-0x6080	128	Self: HP < 20%	Target self if character has less than 20% HP.	Self	HP < 20 % of max HP	-	lowest HP %	12, 9	00302203; 00302292; 003022C7; 0030BD00
-0x6081	129	Self: HP < 10%	Target self if character has less than 10% HP.	Self	HP < 10 % of max HP	-	lowest HP %	12, 10	00302203; 00302292; 003022C7; 0030BD00
-0x6082	130	Self: MP < 100%	Target self if character has less than 100% MP.	Self	MP below max	-	nearest	12, 11	00302F7E; 0030BD00
-0x6083	131	Self: MP < 90%	Target self if character has less than 90% MP.	Self	MP < 90 % of max MP	-	lowest MP %	12, 12	003032A7; 00302F37; 003022C7; 0030BD00
-0x6084	132	Self: MP < 80%	Target self if character has less than 80% MP.	Self	MP < 80 % of max MP	-	lowest MP %	12, 13	003032A7; 00302F37; 003022C7; 0030BD00
-0x6085	133	Self: MP < 70%	Target self if character has less than 70% MP.	Self	MP < 70 % of max MP	-	lowest MP %	12, 14	003032A7; 00302F37; 003022C7; 0030BD00
-0x6086	134	Self: MP < 60%	Target self if character has less than 60% MP.	Self	MP < 60 % of max MP	-	lowest MP %	12, 15	003032A7; 00302F37; 003022C7; 0030BD00
-0x6087	135	Self: MP < 50%	Target self if character has less than 50% MP.	Self	MP < 50 % of max MP	-	lowest MP %	12, 16	003032A7; 00302F37; 003022C7; 0030BD00
-0x6088	136	Self: MP < 40%	Target self if character has less than 40% MP.	Self	MP < 40 % of max MP	-	lowest MP %	13, 0	003032A7; 00302F37; 003022C7; 0030BD00
-0x6089	137	Self: MP < 30%	Target self if character has less than 30% MP.	Self	MP < 30 % of max MP	-	lowest MP %	13, 1	003032A7; 00302F37; 003022C7; 0030BD00
-0x608A	138	Self: MP < 20%	Target self if character has less than 20% MP.	Self	MP < 20 % of max MP	-	lowest MP %	13, 2	003032A7; 00302F37; 003022C7; 0030BD00
-0x608B	139	Self: MP < 10%	Target self if character has less than 10% MP.	Self	MP < 10 % of max MP	-	lowest MP %	13, 3	003032A7; 00302F37; 003022C7; 0030BD00
-0x608C	140	Self: status = Petrify	Target self if character has Petrify status.	Self	has Petrify	-	nearest	13, 4	003021A3; 0030BD00
-0x608D	141	Self: status = Doom	Target self if character has Doom status.	Self	has Doom	-	nearest	13, 5	003021A3; 0030BD00
-0x608E	142	Self: status = Blind	Target self if character has Blind status.	Self	has Blind	-	nearest	13, 6	003021A3; 0030BD00
-0x608F	143	Self: status = Poison	Target self if character has Poison status.	Self	has Poison	-	nearest	13, 7	003021A3; 0030BD00
-0x6090	144	Self: status = Silence	Target self if character has Silence status.	Self	has Silence	-	nearest	13, 8	003021A3; 0030BD00
-0x6091	145	Self: status = Sap	Target self if character has Sap status.	Self	has Sap	-	nearest	13, 9	003021A3; 0030BD00
-0x6092	146	Self: status = Oil	Target self if character has Oil status.	Self	has Oil	-	nearest	13, 10	003021A3; 0030BD00
-0x6093	147	Self: status = Reverse	Target self if character has Reverse status.	Self	has Reverse	-	nearest	13, 11	003021A3; 0030BD00
-0x6094	148	Self: status = Immobilize	Target self if character has Immobilize status.	Self	has Immobilize	-	nearest	13, 12	003021A3; 0030BD00
-0x6095	149	Self: status = Slow	Target self if character has Slow status.	Self	has Slow	-	nearest	13, 13	003021A3; 0030BD00
-0x6096	150	Self: status = Disease	Target self if character has Disease status.	Self	has Disease	-	nearest	13, 14	003021A3; 0030BD00
-0x6097	151	Self: status = Lure	Target self if character has Lure status.	Self	has Lure	-	nearest	13, 15	003021A3; 0030BD00
-0x6098	152	Self: status = Protect	Target self if character has Protect status.	Self	has Protect	-	nearest	13, 16	003021A3; 0030BD00
-0x6099	153	Self: status = Shell	Target self if character has Shell status.	Self	has Shell	-	nearest	14, 0	003021A3; 0030BD00
-0x609A	154	Self: status = Haste	Target self if character has Haste status.	Self	has Haste	-	nearest	14, 1	003021A3; 0030BD00
-0x609B	155	Self: status = Bravery	Target self if character has Bravery status.	Self	has Bravery	-	nearest	14, 2	003021A3; 0030BD00
-0x609C	156	Self: status = Faith	Target self if character has Faith status.	Self	has Faith	-	nearest	14, 3	003021A3; 0030BD00
-0x609D	157	Self: status = Reflect	Target self if character has Reflect status.	Self	has Reflect	-	nearest	14, 4	003021A3; 0030BD00
-0x609E	158	Self: status = Invisible	Target self if character has Invisible status.	Self	has Invisible	-	nearest	14, 5	003021A3; 0030BD00
-0x609F	159	Self: status = Regen	Target self if character has Regen status.	Self	has Regen	-	nearest	14, 6	003021A3; 0030BD00
-0x60A0	160	Self: status = Float	Target self if character has Float status.	Self	has Float	-	nearest	14, 7	003021A3; 0030BD00
-0x60A1	161	Self: status = Bubble	Target self if character has Bubble status.	Self	has Bubble	-	nearest	14, 8	003021A3; 0030BD00
-0x60A2	162	Self: status = HP Critical	Target self if character has HP Critical status.	Self	has HP Critical	-	nearest	14, 9	003021A3; 0030BD00
-0x60A3	163	Ally: any	Target any ally able to act.	Ally	any unit	-	random	8, 0	00301ECC; 0030BD00
-0x60A4	164	Ally: party leader	Target party leader.	Ally	is the party leader	-	nearest	8, 1	003024B0; 003024DA; 0030BD00
-0x60A5	165	Ally: Vaan	Target Vaan.	Ally	is Vaan (party record of type 0)	-	nearest	8, 2	003023ED; 0030BD00
-0x60A6	166	Ally: Ashe	Target Ashe.	Ally	is Ashe (party record of type 1)	-	nearest	8, 3	003023ED; 0030BD00
-0x60A7	167	Ally: Fran	Target Fran.	Ally	is Fran (party record of type 2)	-	nearest	8, 4	003023ED; 0030BD00
-0x60A8	168	Ally: Balthier	Target Balthier.	Ally	is Balthier (party record of type 3)	-	nearest	8, 5	003023ED; 0030BD00
-0x60A9	169	Ally: Basch	Target Basch.	Ally	is Basch (party record of type 4)	-	nearest	8, 6	003023ED; 0030BD00
-0x60AA	170	Ally: Penelo	Target Penelo.	Ally	is Penelo (party record of type 5)	-	nearest	8, 7	003023ED; 0030BD00
-0x60AB	171	Ally: guest	Target guest.	Ally	is a guest (party record of type 7-25)	-	nearest	8, 8	003024B0; 003024FD; 0030BD00
-0x60AC	172	Ally: lowest HP	Target ally with least remaining HP.	Ally	lowest HP	-	nearest of the equal ones	8, 9	00301F8F; 0030BD00
-0x60AD	173	Ally: strongest weapon	Target ally whose weapon has highest attack.	Ally	highest Attack Power (stats +0x2E)	-	nearest of the equal ones	8, 10	00301F0F; 0030BD00
-0x60AE	174	Ally: lowest defense	Target ally whose equipment has lowest defense.	Ally	lowest Defense (stats +0x2F)	-	nearest of the equal ones	8, 11	00301F4F; 0030BD00
-0x60AF	175	Ally: lowest magick resist	Target ally whose equipment has lowest magick resist.	Ally	lowest Magick Resist (stats +0x30)	-	nearest of the equal ones	8, 12	00301F6F; 0030BD00
-0x60B0	176	Ally: HP < 100%	Target any ally with less than 100% HP.	Ally	HP below max	-	nearest	8, 13	00302F7E; 0030BD00
-0x60B1	177	Ally: HP < 90%	Target any ally with less than 90% HP.	Ally	HP < 90 % of max HP	-	lowest HP %	8, 14	00302203; 00302292; 003022C7; 0030BD00
-0x60B2	178	Ally: HP < 80%	Target any ally with less than 80% HP.	Ally	HP < 80 % of max HP	-	lowest HP %	8, 15	00302203; 00302292; 003022C7; 0030BD00
-0x60B3	179	Ally: HP < 70%	Target any ally with less than 70% HP.	Ally	HP < 70 % of max HP	-	lowest HP %	8, 16	00302203; 00302292; 003022C7; 0030BD00
-0x60B4	180	Ally: HP < 60%	Target any ally with less than 60% HP.	Ally	HP < 60 % of max HP	-	lowest HP %	9, 0	00302203; 00302292; 003022C7; 0030BD00
-0x60B5	181	Ally: HP < 50%	Target any ally with less than 50% HP.	Ally	HP < 50 % of max HP	-	lowest HP %	9, 1	00302203; 00302292; 003022C7; 0030BD00
-0x60B6	182	Ally: HP < 40%	Target any ally with less than 40% HP.	Ally	HP < 40 % of max HP	-	lowest HP %	9, 2	00302203; 00302292; 003022C7; 0030BD00
-0x60B7	183	Ally: HP < 30%	Target any ally with less than 30% HP.	Ally	HP < 30 % of max HP	-	lowest HP %	9, 3	00302203; 00302292; 003022C7; 0030BD00
-0x60B8	184	Ally: HP < 20%	Target any ally with less than 20% HP.	Ally	HP < 20 % of max HP	-	lowest HP %	9, 4	00302203; 00302292; 003022C7; 0030BD00
-0x60B9	185	Ally: HP < 10%	Target any ally with less than 10% HP.	Ally	HP < 10 % of max HP	-	lowest HP %	9, 5	00302203; 00302292; 003022C7; 0030BD00
-0x60BA	186	Ally: MP < 100%	Target any ally with less than 100% MP.	Ally	MP below max	-	nearest	9, 6	00302F7E; 0030BD00
-0x60BB	187	Ally: MP < 90%	Target any ally with less than 90% MP.	Ally	MP < 90 % of max MP	-	lowest MP %	9, 7	003032A7; 00302F37; 003022C7; 0030BD00
-0x60BC	188	Ally: MP < 80%	Target any ally with less than 80% MP.	Ally	MP < 80 % of max MP	-	lowest MP %	9, 8	003032A7; 00302F37; 003022C7; 0030BD00
-0x60BD	189	Ally: MP < 70%	Target any ally with less than 70% MP.	Ally	MP < 70 % of max MP	-	lowest MP %	9, 9	003032A7; 00302F37; 003022C7; 0030BD00
-0x60BE	190	Ally: MP < 60%	Target any ally with less than 60% MP.	Ally	MP < 60 % of max MP	-	lowest MP %	9, 10	003032A7; 00302F37; 003022C7; 0030BD00
-0x60BF	191	Ally: MP < 50%	Target any ally with less than 50% MP.	Ally	MP < 50 % of max MP	-	lowest MP %	9, 11	003032A7; 00302F37; 003022C7; 0030BD00
-0x60C0	192	Ally: MP < 40%	Target any ally with less than 40% MP.	Ally	MP < 40 % of max MP	-	lowest MP %	9, 12	003032A7; 00302F37; 003022C7; 0030BD00
-0x60C1	193	Ally: MP < 30%	Target any ally with less than 30% MP.	Ally	MP < 30 % of max MP	-	lowest MP %	9, 13	003032A7; 00302F37; 003022C7; 0030BD00
-0x60C2	194	Ally: MP < 20%	Target any ally with less than 20% MP.	Ally	MP < 20 % of max MP	-	lowest MP %	9, 14	003032A7; 00302F37; 003022C7; 0030BD00
-0x60C3	195	Ally: MP < 10%	Target any ally with less than 10% MP.	Ally	MP < 10 % of max MP	-	lowest MP %	9, 15	003032A7; 00302F37; 003022C7; 0030BD00
-0x60C4	196	Ally: status = KO	Target any ally with KO status.	Ally	has KO	-	nearest	9, 16	003021A3; 0030BD00
-0x60C5	197	Ally: status = Stone	Target any ally with Stone status.	Ally	has Stone	-	nearest	10, 0	003021A3; 0030BD00
-0x60C6	198	Ally: status = Petrify	Target any ally with Petrify status.	Ally	has Petrify	-	nearest	10, 1	003021A3; 0030BD00
-0x60C7	199	Ally: status = Stop	Target any ally with Stop status.	Ally	has Stop	-	nearest	10, 2	003021A3; 0030BD00
-0x60C8	200	Ally: status = Sleep	Target any ally with Sleep status.	Ally	has Sleep	-	nearest	10, 3	003021A3; 0030BD00
-0x60C9	201	Ally: status = Confuse	Target any ally with Confuse status.	Ally	has Confuse	-	nearest	10, 4	003021A3; 0030BD00
-0x60CA	202	Ally: status = Doom	Target any ally with Doom status.	Ally	has Doom	-	nearest	10, 5	003021A3; 0030BD00
-0x60CB	203	Ally: status = Blind	Target any ally with Blind status.	Ally	has Blind	-	nearest	10, 6	003021A3; 0030BD00
-0x60CC	204	Ally: status = Poison	Target any ally with Poison status.	Ally	has Poison	-	nearest	10, 7	003021A3; 0030BD00
-0x60CD	205	Ally: status = Silence	Target any ally with Silence status.	Ally	has Silence	-	nearest	10, 8	003021A3; 0030BD00
-0x60CE	206	Ally: status = Sap	Target any ally with Sap status.	Ally	has Sap	-	nearest	10, 9	003021A3; 0030BD00
-0x60CF	207	Ally: status = Oil	Target any ally with Oil status.	Ally	has Oil	-	nearest	10, 10	003021A3; 0030BD00
-0x60D0	208	Ally: status = Reverse	Target any ally with Reverse status.	Ally	has Reverse	-	nearest	10, 11	003021A3; 0030BD00
-0x60D1	209	Ally: status = Disable	Target any ally with Disable status.	Ally	has Disable	-	nearest	10, 12	003021A3; 0030BD00
-0x60D2	210	Ally: status = Immobilize	Target any ally with Immobilize status.	Ally	has Immobilize	-	nearest	10, 13	003021A3; 0030BD00
-0x60D3	211	Ally: status = Slow	Target any ally with Slow status.	Ally	has Slow	-	nearest	10, 14	003021A3; 0030BD00
-0x60D4	212	Ally: status = Disease	Target any ally with Disease status.	Ally	has Disease	-	nearest	10, 15	003021A3; 0030BD00
-0x60D5	213	Ally: status = Lure	Target any ally with Lure status.	Ally	has Lure	-	nearest	10, 16	003021A3; 0030BD00
-0x60D6	214	Ally: status = Protect	Target any ally with Protect status.	Ally	has Protect	-	nearest	11, 0	003021A3; 0030BD00
-0x60D7	215	Ally: status = Shell	Target any ally with Shell status.	Ally	has Shell	-	nearest	11, 1	003021A3; 0030BD00
-0x60D8	216	Ally: status = Haste	Target any ally with Haste status.	Ally	has Haste	-	nearest	11, 2	003021A3; 0030BD00
-0x60D9	217	Ally: status = Bravery	Target any ally with Bravery status.	Ally	has Bravery	-	nearest	11, 3	003021A3; 0030BD00
-0x60DA	218	Ally: status = Faith	Target any ally with Faith status.	Ally	has Faith	-	nearest	11, 4	003021A3; 0030BD00
-0x60DB	219	Ally: status = Reflect	Target any ally with Reflect status.	Ally	has Reflect	-	nearest	11, 5	003021A3; 0030BD00
-0x60DC	220	Ally: status = Invisible	Target any ally with Invisible status.	Ally	has Invisible	-	nearest	11, 6	003021A3; 0030BD00
-0x60DD	221	Ally: status = Regen	Target any ally with Regen status.	Ally	has Regen	-	nearest	11, 7	003021A3; 0030BD00
-0x60DE	222	Ally: status = Float	Target any ally with Float status.	Ally	has Float	-	nearest	11, 8	003021A3; 0030BD00
-0x60DF	223	Ally: status = Berserk	Target any ally with Berserk status.	Ally	has Berserk	-	nearest	11, 9	003021A3; 0030BD00
-0x60E0	224	Ally: status = Bubble	Target any ally with Bubble status.	Ally	has Bubble	-	nearest	11, 10	003021A3; 0030BD00
-0x60E1	225	Ally: status = HP Critical	Target any ally with HP Critical status.	Ally	has HP Critical	-	nearest	11, 11	003021A3; 0030BD00
-0x60E2	226	Foe: targeting Vaan	Target any foe targeting Vaan.	Foe	is targeting Vaan (unit +0x710 is combatant 0)	-	nearest	0, 8	00302AE3; 0030BD00
-0x60E3	227	Foe: targeting Ashe	Target any foe targeting Ashe.	Foe	is targeting Ashe (unit +0x710 is combatant 1)	-	nearest	0, 9	00302AE3; 0030BD00
-0x60E4	228	Foe: targeting Fran	Target any foe targeting Fran.	Foe	is targeting Fran (unit +0x710 is combatant 2)	-	nearest	0, 10	00302AE3; 0030BD00
-0x60E5	229	Foe: targeting Balthier	Target any foe targeting Balthier.	Foe	is targeting Balthier (unit +0x710 is combatant 3)	-	nearest	0, 11	00302AE3; 0030BD00
-0x60E6	230	Foe: targeting Basch	Target any foe targeting Basch.	Foe	is targeting Basch (unit +0x710 is combatant 4)	-	nearest	0, 12	00302AE3; 0030BD00
-0x60E7	231	Foe: targeting Penelo	Target any foe targeting Penelo.	Foe	is targeting Penelo (unit +0x710 is combatant 5)	-	nearest	0, 13	00302AE3; 0030BD00
-0x60E8	232	Self: 2+ foes present	Target self if 2 or more foes are present.	Self	any unit	the character: 2 or more foes in its perception list (unit +0xBC4)	random	14, 10	00301ECC; 003031C4; 00303216; 0030BD00
-0x60E9	233	Self: 3+ foes present	Target self if 3 or more foes are present.	Self	any unit	the character: 3 or more foes in its perception list (unit +0xBC4)	random	14, 11	00301ECC; 003031C4; 00303216; 0030BD00
-0x60EA	234	Self: 4+ foes present	Target self if 4 or more foes are present.	Self	any unit	the character: 4 or more foes in its perception list (unit +0xBC4)	random	14, 12	00301ECC; 003031C4; 00303216; 0030BD00
-0x60EB	235	Self: 5+ foes present	Target self if 5 or more foes are present.	Self	any unit	the character: 5 or more foes in its perception list (unit +0xBC4)	random	14, 13	00301ECC; 003031C4; 00303216; 0030BD00
-0x60EC	236	Ally: 2+ foes present	Target any ally if 2 or more foes are present.	Ally	any unit	the character: 2 or more foes in its perception list (unit +0xBC4)	random	11, 12	00301ECC; 003031C4; 00303216; 0030BD00
-0x60ED	237	Ally: 3+ foes present	Target any ally if 3 or more foes are present.	Ally	any unit	the character: 3 or more foes in its perception list (unit +0xBC4)	random	11, 13	00301ECC; 003031C4; 00303216; 0030BD00
-0x60EE	238	Ally: 4+ foes present	Target any ally if 4 or more foes are present.	Ally	any unit	the character: 4 or more foes in its perception list (unit +0xBC4)	random	11, 14	00301ECC; 003031C4; 00303216; 0030BD00
-0x60EF	239	Ally: 5+ foes present	Target any ally if 5 or more foes are present.	Ally	any unit	the character: 5 or more foes in its perception list (unit +0xBC4)	random	11, 15	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F0	240	Foe: 2+ foes present	Target any foe if 2 or more foes are present.	Foe	any unit	the character: 2 or more foes in its perception list (unit +0xBC4)	random	7, 10	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F1	241	Foe: 3+ foes present	Target any foe if 3 or more foes are present.	Foe	any unit	the character: 3 or more foes in its perception list (unit +0xBC4)	random	7, 11	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F2	242	Foe: 4+ foes present	Target any foe if 4 or more foes are present.	Foe	any unit	the character: 4 or more foes in its perception list (unit +0xBC4)	random	7, 12	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F3	243	Foe: 5+ foes present	Target any foe if 5 or more foes are present.	Foe	any unit	the character: 5 or more foes in its perception list (unit +0xBC4)	random	7, 13	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F4	244	Foe: 2+ allies present	Target any foe if 2 or more allies are present	Foe	any unit	the character: 2 or more allies in its perception list (unit +0xBC4)	random	7, 14	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F5	245	Foe: 3+ allies present	Target any foe if 3 or more allies are present	Foe	any unit	the character: 3 or more allies in its perception list (unit +0xBC4)	random	7, 15	00301ECC; 003031C4; 00303216; 0030BD00
-0x60F6	246	Self: item AMT >= 10	Target self if 10 or more of the selected item remain.	Self	any unit	the character: holds 10 or more of the line's item	random	14, 16	00301ECC; 003032C0; 003032EE; 0030BD00
-0x60F7	247	Foe: HP >= 90%	Target any foe with 90% or more HP.	Foe	HP >= 90 % of max HP	-	highest HP %	3, 0	00302203; 00302292; 003022C7; 0030BD00
-0x60F8	248	Foe: HP >= 10%	Target any foe with 10% or more HP.	Foe	HP >= 10 % of max HP	-	highest HP %	3, 4	00302203; 00302292; 003022C7; 0030BD00
-0x60F9	249	Foe: HP < 90%	Target any foe with less than 90% HP.	Foe	HP < 90 % of max HP	-	lowest HP %	3, 5	00302203; 00302292; 003022C7; 0030BD00
-0x60FA	250	Foe: HP < 70%	Target any foe with less than 70% HP.	Foe	HP < 70 % of max HP	-	lowest HP %	3, 6	00302203; 00302292; 003022C7; 0030BD00
-0x60FB	251	Foe: HP < 50%	Target any foe with less than 50% HP.	Foe	HP < 50 % of max HP	-	lowest HP %	3, 7	00302203; 00302292; 003022C7; 0030BD00
-0x60FC	252	Foe: HP < 30%	Target any foe with less than 30% HP.	Foe	HP < 30 % of max HP	-	lowest HP %	3, 8	00302203; 00302292; 003022C7; 0030BD00
-0x60FD	253	Foe: HP < 10%	Target any foe with less than 10% HP.	Foe	HP < 10 % of max HP	-	lowest HP %	3, 9	00302203; 00302292; 003022C7; 0030BD00
-0x60FE	254	Foe: targeted by ally	Target any foe targeted by an ally.	Foe	highest number of units whose committed action targets it (unit +0xEA8)	-	nearest of the equal ones	0, 3	00302123; 0030BD00
-0x60FF	255	NOT USED no_chip	-	Foe	highest max HP (stats +0x24, doubled under Bubble; current HP under Disease)	the character: summon timer below 20 (battle state +0x5AD8)	nearest of the equal ones	-	00301FCB; 00303523; 00303540; 0030BD00
+0x6000	0	Foe: party leader's target	Target the same foe the party leader is targeting.	Foe	is the party leader's target (leader +0x750)	-	nearest	0, 0	0x003030A7; 0x00303141; 0x0030BD00
+0x6001	1	Foe: nearest visible	Target nearest foe visible on screen.	Foe	on screen	-	nearest	0, 1	0x003030A7; 0x00303185; 0x0030BD00
+0x6002	2	Foe: any	Target any foe.	Foe	any unit	-	random	0, 2	0x00301ECC; 0x0030BD00
+0x6003	3	Foe: targeting leader	Target any foe targeting the party leader.	Foe	is targeting the party leader (unit +0x710)	-	nearest	0, 5	0x003024B0; 0x00302A76; 0x0030BD00
+0x6004	4	Foe: targeting self	Target any foe targeting the character.	Foe	is targeting the character (unit +0x710)	-	nearest	0, 6	0x003024B0; 0x00302A98; 0x0030BD00
+0x6005	5	Foe: targeting ally	Target any foe targeting an ally.	Foe	is targeting one of the character's allies (unit +0x710)	-	nearest	0, 7	0x003024B0; 0x00302AB1; 0x0030BD00
+0x6006	6	Foe: furthest	Target foe furthest from the character.	Foe	highest distance from the character (0x0031E6F0)	-	nearest of the equal ones	0, 14	0x003020E4; 0x0030BD00
+0x6007	7	Foe: nearest	Target foe nearest the character.	Foe	lowest distance from the character (0x0031E6F0)	-	nearest of the equal ones	0, 15	0x003020E4; 0x0030BD00
+0x6008	8	Foe: highest HP	Target foe with most remaining HP.	Foe	highest HP	-	nearest of the equal ones	0, 16	0x00301F8F; 0x0030BD00
+0x6009	9	Foe: lowest HP	Target foe with least remaining HP.	Foe	lowest HP	-	nearest of the equal ones	1, 0	0x00301F8F; 0x0030BD00
+0x600A	10	Foe: highest max HP	Target foe with highest max HP.	Foe	highest max HP (stats +0x24, doubled under Bubble; current HP under Disease)	-	nearest of the equal ones	1, 1	0x00301FCB; 0x0030BD00
+0x600B	11	Foe: lowest max HP	Target foe with lowest max HP.	Foe	lowest max HP (stats +0x24, doubled under Bubble; current HP under Disease)	-	nearest of the equal ones	1, 2	0x00301FCB; 0x0030BD00
+0x600C	12	Foe: highest MP	Target foe with most remaining MP.	Foe	highest MP	-	nearest of the equal ones	1, 3	0x00301FC6; 0x0030BD00
+0x600D	13	Foe: lowest MP	Target foe with least remaining MP.	Foe	lowest MP	-	nearest of the equal ones	1, 4	0x00301FC6; 0x0030BD00
+0x600E	14	Foe: highest max MP	Target foe with highest max MP.	Foe	highest max MP (stats +0x28)	-	nearest of the equal ones	1, 5	0x00301FFB; 0x0030BD00
+0x600F	15	Foe: lowest max MP	Target foe with lowest max MP.	Foe	lowest max MP (stats +0x28)	-	nearest of the equal ones	1, 6	0x00301FFB; 0x0030BD00
+0x6010	16	Foe: highest level	Target highest level foe.	Foe	highest level (stats +0x1C2)	-	nearest of the equal ones	1, 7	0x003020B9; 0x0030BD00
+0x6011	17	Foe: lowest level	Target lowest level foe.	Foe	lowest level (stats +0x1C2)	-	nearest of the equal ones	1, 8	0x003020B9; 0x0030BD00
+0x6012	18	Foe: highest strength	Target foe with highest strength.	Foe	highest Strength (stats +0x2A)	-	nearest of the equal ones	1, 9	0x00302019; 0x0030BD00
+0x6013	19	Foe: lowest strength	Target foe with lowest strength.	Foe	lowest Strength (stats +0x2A)	-	nearest of the equal ones	1, 10	0x00302019; 0x0030BD00
+0x6014	20	Foe: highest magick power	Target foe with highest magick power.	Foe	highest Magick Power (stats +0x2B)	-	nearest of the equal ones	1, 11	0x00302041; 0x0030BD00
+0x6015	21	Foe: lowest magick power	Target foe with lowest magick power.	Foe	lowest Magick Power (stats +0x2B)	-	nearest of the equal ones	1, 12	0x00302041; 0x0030BD00
+0x6016	22	Foe: highest speed	Target foe with highest speed.	Foe	highest Speed (stats +0x2D)	-	nearest of the equal ones	1, 13	0x00302091; 0x0030BD00
+0x6017	23	Foe: lowest speed	Target foe with lowest speed.	Foe	lowest Speed (stats +0x2D)	-	nearest of the equal ones	1, 14	0x00302091; 0x0030BD00
+0x6018	24	Foe: highest defense	Target foe with highest defense.	Foe	highest Defense (stats +0x2F)	-	nearest of the equal ones	1, 15	0x00301F4F; 0x0030BD00
+0x6019	25	Foe: highest magick resist	Target foe with highest magick resist.	Foe	highest Magick Resist (stats +0x30)	-	nearest of the equal ones	1, 16	0x00301F6F; 0x0030BD00
+0x601A	26	Foe: HP >= 100,000	Target any foe with HP greater than or equal to 100,000.	Foe	HP >= 100,000	-	highest HP	2, 0	0x00302E80; 0x00302EDF; 0x0030BD00
+0x601B	27	Foe: HP >= 50,000	Target any foe with HP greater than or equal to 50,000.	Foe	HP >= 50,000	-	highest HP	2, 1	0x00302E80; 0x00302EDF; 0x0030BD00
+0x601C	28	Foe: HP >= 10,000	Target any foe with HP greater than or equal to 10,000.	Foe	HP >= 10,000	-	highest HP	2, 2	0x00302E80; 0x00302EDF; 0x0030BD00
+0x601D	29	Foe: HP >= 5,000	Target any foe with HP greater than or equal to 5,000.	Foe	HP >= 5,000	-	highest HP	2, 3	0x00302E80; 0x00302EDF; 0x0030BD00
+0x601E	30	Foe: HP >= 3,000	Target any foe with HP greater than or equal to 3,000.	Foe	HP >= 3,000	-	highest HP	2, 4	0x00302E80; 0x00302EDF; 0x0030BD00
+0x601F	31	Foe: HP >= 2,000	Target any foe with HP greater than or equal to 2,000.	Foe	HP >= 2,000	-	highest HP	2, 5	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6020	32	Foe: HP >= 1,000	Target any foe with HP greater than or equal to 1,000.	Foe	HP >= 1,000	-	highest HP	2, 6	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6021	33	Foe: HP >= 500	Target any foe with HP greater than or equal to 500.	Foe	HP >= 500	-	highest HP	2, 7	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6022	34	Foe: HP < 100,000	Target any foe with less than 100,000 HP.	Foe	HP < 100,000	-	lowest HP	2, 8	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6023	35	Foe: HP < 50,000	Target any foe with less than 50,000 HP.	Foe	HP < 50,000	-	lowest HP	2, 9	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6024	36	Foe: HP < 10,000	Target any foe with less than 10,000 HP.	Foe	HP < 10,000	-	lowest HP	2, 10	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6025	37	Foe: HP < 5,000	Target any foe with less than 5,000 HP.	Foe	HP < 5,000	-	lowest HP	2, 11	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6026	38	Foe: HP < 3,000	Target any foe with less than 3,000 HP.	Foe	HP < 3,000	-	lowest HP	2, 12	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6027	39	Foe: HP < 2,000	Target any foe with less than 2,000 HP.	Foe	HP < 2,000	-	lowest HP	2, 13	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6028	40	Foe: HP < 1,000	Target any foe with less than 1,000 HP.	Foe	HP < 1,000	-	lowest HP	2, 14	0x00302E80; 0x00302EDF; 0x0030BD00
+0x6029	41	Foe: HP < 500	Target any foe with less than 500 HP.	Foe	HP < 500	-	lowest HP	2, 15	0x00302E80; 0x00302EDF; 0x0030BD00
+0x602A	42	Foe: HP = 100%	Target any foe with full HP.	Foe	HP full	-	nearest	2, 16	0x00302F7E; 0x0030BD00
+0x602B	43	Foe: HP >= 70%	Target any foe with 70% or more HP.	Foe	HP >= 70 % of max HP	-	highest HP %	3, 1	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x602C	44	Foe: HP >= 50%	Target any foe with 50% or more HP.	Foe	HP >= 50 % of max HP	-	highest HP %	3, 2	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x602D	45	Foe: HP >= 30%	Target any foe with 30% or more HP.	Foe	HP >= 30 % of max HP	-	highest HP %	3, 3	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x602E	46	Foe: status = Petrify	Target any foe with Petrify status.	Foe	has Petrify	-	nearest	3, 10	0x003021A3; 0x0030BD00
+0x602F	47	Foe: status = Stop	Target any foe with Stop status.	Foe	has Stop	-	nearest	3, 11	0x003021A3; 0x0030BD00
+0x6030	48	Foe: status = Sleep	Target any foe with Sleep status.	Foe	has Sleep	-	nearest	3, 12	0x003021A3; 0x0030BD00
+0x6031	49	Foe: status = Confuse	Target any foe with Confuse status.	Foe	has Confuse	-	nearest	3, 13	0x003021A3; 0x0030BD00
+0x6032	50	Foe: status = Doom	Target any foe with Doom status.	Foe	has Doom	-	nearest	3, 14	0x003021A3; 0x0030BD00
+0x6033	51	Foe: status = Blind	Target any foe with Blind status.	Foe	has Blind	-	nearest	3, 15	0x003021A3; 0x0030BD00
+0x6034	52	Foe: status = Poison	Target any foe with Poison status.	Foe	has Poison	-	nearest	3, 16	0x003021A3; 0x0030BD00
+0x6035	53	Foe: status = Silence	Target any foe with Silence status.	Foe	has Silence	-	nearest	4, 0	0x003021A3; 0x0030BD00
+0x6036	54	Foe: status = Sap	Target any foe with Sap status.	Foe	has Sap	-	nearest	4, 1	0x003021A3; 0x0030BD00
+0x6037	55	Foe: status = Oil	Target any foe with Oil status.	Foe	has Oil	-	nearest	4, 2	0x003021A3; 0x0030BD00
+0x6038	56	Foe: status = Reverse	Target any foe with Reverse status.	Foe	has Reverse	-	nearest	4, 3	0x003021A3; 0x0030BD00
+0x6039	57	Foe: status = Disable	Target any foe with Disable status.	Foe	has Disable	-	nearest	4, 4	0x003021A3; 0x0030BD00
+0x603A	58	Foe: status = Immobilize	Target any foe with Immobilize status.	Foe	has Immobilize	-	nearest	4, 5	0x003021A3; 0x0030BD00
+0x603B	59	Foe: status = Slow	Target any foe with Slow status.	Foe	has Slow	-	nearest	4, 6	0x003021A3; 0x0030BD00
+0x603C	60	Foe: status = Disease	Target any foe with Disease status.	Foe	has Disease	-	nearest	4, 7	0x003021A3; 0x0030BD00
+0x603D	61	Foe: status = Protect	Target any foe with Protect status.	Foe	has Protect	-	nearest	4, 8	0x003021A3; 0x0030BD00
+0x603E	62	Foe: status = Shell	Target any foe with Shell status.	Foe	has Shell	-	nearest	4, 9	0x003021A3; 0x0030BD00
+0x603F	63	Foe: status = Haste	Target any foe with Haste status.	Foe	has Haste	-	nearest	4, 10	0x003021A3; 0x0030BD00
+0x6040	64	Foe: status = Bravery	Target any foe with Bravery status.	Foe	has Bravery	-	nearest	4, 11	0x003021A3; 0x0030BD00
+0x6041	65	Foe: status = Faith	Target any foe with Faith status.	Foe	has Faith	-	nearest	4, 12	0x003021A3; 0x0030BD00
+0x6042	66	Foe: status = Reflect	Target any foe with Reflect status.	Foe	has Reflect	-	nearest	4, 13	0x003021A3; 0x0030BD00
+0x6043	67	Self: targeted by ally	Target self if targeted by an ally.	Self	any unit	Ally: is targeting the character (unit +0x710)	random	14, 15	0x00301ECC; 0x003024B0; 0x00302A98; 0x0030BD00
+0x6044	68	Foe: status = Regen	Target any foe with Regen status.	Foe	has Regen	-	nearest	4, 14	0x003021A3; 0x0030BD00
+0x6045	69	Self: targeted by foe	Target self if targeted by a foe.	Self	any unit	Foe: is targeting the character (unit +0x710)	random	14, 14	0x00301ECC; 0x003024B0; 0x00302A98; 0x0030BD00
+0x6046	70	Foe: status = Berserk	Target any foe with Berserk status.	Foe	has Berserk	-	nearest	4, 15	0x003021A3; 0x0030BD00
+0x6047	71	Foe: not targeted by ally	Target any foe not targeted by an ally.	Foe	lowest number of units whose committed action targets it (unit +0xEA8)	-	nearest of the equal ones	0, 4	0x00302123; 0x0030BD00
+0x6048	72	Foe: status = HP Critical	Target any foe with HP Critical status.	Foe	has HP Critical	-	nearest	4, 16	0x003021A3; 0x0030BD00
+0x6049	73	Foe: fire-weak	Target any foe weak against fire.	Foe	weak to fire (stats +0x40 bit 0)	-	nearest	5, 0	0x003023A5; 0x0030BD00
+0x604A	74	Foe: lightning-weak	Target any foe weak against lightning.	Foe	weak to lightning (stats +0x40 bit 1)	-	nearest	5, 1	0x003023A5; 0x0030BD00
+0x604B	75	Foe: ice-weak	Target any foe weak against ice.	Foe	weak to ice (stats +0x40 bit 2)	-	nearest	5, 2	0x003023A5; 0x0030BD00
+0x604C	76	Foe: earth-weak	Target any foe weak against earth.	Foe	weak to earth (stats +0x40 bit 3)	-	nearest	5, 3	0x003023A5; 0x0030BD00
+0x604D	77	Foe: water-weak	Target any foe weak against water.	Foe	weak to water (stats +0x40 bit 4)	-	nearest	5, 4	0x003023A5; 0x0030BD00
+0x604E	78	Foe: wind-weak	Target any foe weak against wind.	Foe	weak to wind (stats +0x40 bit 5)	-	nearest	5, 5	0x003023A5; 0x0030BD00
+0x604F	79	Foe: holy-weak	Target any foe weak against holy.	Foe	weak to holy (stats +0x40 bit 6)	-	nearest	5, 6	0x003023A5; 0x0030BD00
+0x6050	80	Foe: dark-weak	Target any foe weak against dark.	Foe	weak to dark (stats +0x40 bit 7)	-	nearest	5, 7	0x003023A5; 0x0030BD00
+0x6051	81	Foe: fire-vulnerable	Target any foe susceptible to fire damage.	Foe	does not absorb fire (stats +0x41 bit 0 clear)	-	nearest	5, 8	0x003023C9; 0x0030BD00
+0x6052	82	Foe: lightning-vulnerable	Target any foe susceptible to lightning damage.	Foe	does not absorb lightning (stats +0x41 bit 1 clear)	-	nearest	5, 9	0x003023C9; 0x0030BD00
+0x6053	83	Foe: ice-vulnerable	Target any foe susceptible to ice damage.	Foe	does not absorb ice (stats +0x41 bit 2 clear)	-	nearest	5, 10	0x003023C9; 0x0030BD00
+0x6054	84	Foe: earth-vulnerable	Target any foe susceptible to earth damage.	Foe	does not absorb earth (stats +0x41 bit 3 clear)	-	nearest	5, 11	0x003023C9; 0x0030BD00
+0x6055	85	Foe: water-vulnerable	Target any foe susceptible to water damage.	Foe	does not absorb water (stats +0x41 bit 4 clear)	-	nearest	5, 12	0x003023C9; 0x0030BD00
+0x6056	86	Foe: wind-vulnerable	Target any foe susceptible to wind damage.	Foe	does not absorb wind (stats +0x41 bit 5 clear)	-	nearest	5, 13	0x003023C9; 0x0030BD00
+0x6057	87	Foe: holy-vulnerable	Target any foe susceptible to holy damage.	Foe	does not absorb holy (stats +0x41 bit 6 clear)	-	nearest	5, 14	0x003023C9; 0x0030BD00
+0x6058	88	Foe: dark-vulnerable	Target any foe susceptible to dark damage.	Foe	does not absorb dark (stats +0x41 bit 7 clear)	-	nearest	5, 15	0x003023C9; 0x0030BD00
+0x6059	89	Foe: undead	Target any undead foe.	Foe	unit byte +0x55 is 13	-	nearest	5, 16	0x003021CC; 0x0030BD00
+0x605A	90	Foe: flying	Target any flying foe.	Foe	unit type byte +0x56 is 46	-	nearest	6, 0	0x003021EC; 0x0030BD00
+0x605B	91	Ally: item AMT >= 10	Target any ally if 10 or more of the selected item remain.	Ally	any unit	the character: holds 10 or more of the line's item	random	11, 16	0x00301ECC; 0x003032C0; 0x003032EE; 0x0030BD00
+0x605C	92	Foe: character HP = 100%	Target any on-screen foe if character has full HP.	Foe	on screen	the character: HP full	nearest	6, 6	0x003030A7; 0x00303185; 0x00302F7E; 0x0030BD00
+0x605D	93	Foe: item AMT >= 10	Target any on-screen foe if 10 or more of the selected item remain.	Foe	on screen	the character: holds 10 or more of the line's item	nearest	7, 16	0x003030A7; 0x00303185; 0x003032C0; 0x003032EE; 0x0030BD00
+0x605E	94	Foe: character status = Blind	Target any on-screen foe if character has Blind status.	Foe	on screen	the character: has Blind	nearest	6, 1	0x003030A7; 0x00303185; 0x003021A3; 0x0030BD00
+0x605F	95	Foe: character status = Silence	Target any on-screen foe if character has Silence status.	Foe	on screen	the character: has Silence	nearest	6, 2	0x003030A7; 0x00303185; 0x003021A3; 0x0030BD00
+0x6060	96	Foe: character status = Bravery	Target any on-screen foe if character has Bravery status.	Foe	on screen	the character: has Bravery	nearest	6, 3	0x003030A7; 0x00303185; 0x003021A3; 0x0030BD00
+0x6061	97	Foe: character status = Faith	Target any on-screen foe if character has Faith status.	Foe	on screen	the character: has Faith	nearest	6, 4	0x003030A7; 0x00303185; 0x003021A3; 0x0030BD00
+0x6062	98	Foe: character status = HP Critical	Target any on-screen foe if character has HP Critical status.	Foe	on screen	the character: has HP Critical	nearest	6, 5	0x003030A7; 0x00303185; 0x003021A3; 0x0030BD00
+0x6063	99	Foe: character MP >= 90%	Target any on-screen foe if character has 90% or more MP.	Foe	on screen	the character: MP >= 90 % of max MP	nearest	6, 7	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6064	100	Foe: character MP >= 70%	Target any on-screen foe if character has 70% or more MP.	Foe	on screen	the character: MP >= 70 % of max MP	nearest	6, 8	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6065	101	Foe: character MP >= 50%	Target any on-screen foe if character has 50% or more MP.	Foe	on screen	the character: MP >= 50 % of max MP	nearest	6, 9	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6066	102	Foe: character MP >= 30%	Target any on-screen foe if character has 30% or more MP.	Foe	on screen	the character: MP >= 30 % of max MP	nearest	6, 10	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6067	103	Foe: character MP >= 10%	Target any on-screen foe if character has 10% or more MP.	Foe	on screen	the character: MP >= 10 % of max MP	nearest	6, 11	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6068	104	Foe: character MP < 90%	Target any on-screen foe if character has less than 90% MP.	Foe	on screen	the character: MP < 90 % of max MP	nearest	6, 12	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6069	105	Foe: character MP < 70%	Target any on-screen foe if character has less than 70% MP.	Foe	on screen	the character: MP < 70 % of max MP	nearest	6, 13	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x606A	106	Foe: character MP < 50%	Target any on-screen foe if character has less than 50% MP.	Foe	on screen	the character: MP < 50 % of max MP	nearest	6, 14	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x606B	107	Foe: character MP < 30%	Target any on-screen foe if character has less than 30% MP.	Foe	on screen	the character: MP < 30 % of max MP	nearest	6, 15	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x606C	108	Foe: character MP < 10%	Target any on-screen foe if character has less than 10% MP.	Foe	on screen	the character: MP < 10 % of max MP	nearest	6, 16	0x003030A7; 0x00303185; 0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x606D	109	Foe: character HP >= 90%	Target any on-screen foe if character has 90% or more HP.	Foe	on screen	the character: HP >= 90 % of max HP	nearest	7, 0	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x606E	110	Foe: character HP >= 70%	Target any on-screen foe if character has 70% or more HP.	Foe	on screen	the character: HP >= 70 % of max HP	nearest	7, 1	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x606F	111	Foe: character HP >= 50%	Target any on-screen foe if character has 50% or more HP.	Foe	on screen	the character: HP >= 50 % of max HP	nearest	7, 2	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6070	112	Foe: character HP >= 30%	Target any on-screen foe if character has 30% or more HP.	Foe	on screen	the character: HP >= 30 % of max HP	nearest	7, 3	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6071	113	Foe: character HP >= 10%	Target any on-screen foe if character has 10% or more HP.	Foe	on screen	the character: HP >= 10 % of max HP	nearest	7, 4	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6072	114	Foe: character HP < 90%	Target any on-screen foe if character has less than 90% HP.	Foe	on screen	the character: HP < 90 % of max HP	nearest	7, 5	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6073	115	Foe: character HP < 70%	Target any on-screen foe if character has less than 70% HP.	Foe	on screen	the character: HP < 70 % of max HP	nearest	7, 6	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6074	116	Foe: character HP < 50%	Target any on-screen foe if character has less than 50% HP.	Foe	on screen	the character: HP < 50 % of max HP	nearest	7, 7	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6075	117	Foe: character HP < 30%	Target any on-screen foe if character has less than 30% HP.	Foe	on screen	the character: HP < 30 % of max HP	nearest	7, 8	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6076	118	Foe: character HP < 10%	Target any on-screen foe if character has less than 10% HP.	Foe	on screen	the character: HP < 10 % of max HP	nearest	7, 9	0x003030A7; 0x00303185; 0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6077	119	Self	Target self.	Self	any unit	-	random	12, 0	0x00301ECC; 0x0030BD00
+0x6078	120	Self: HP < 100%	Target self if character has less than 100% HP.	Self	HP below max	-	nearest	12, 1	0x00302F7E; 0x0030BD00
+0x6079	121	Self: HP < 90%	Target self if character has less than 90% HP.	Self	HP < 90 % of max HP	-	lowest HP %	12, 2	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x607A	122	Self: HP < 80%	Target self if character has less than 80% HP.	Self	HP < 80 % of max HP	-	lowest HP %	12, 3	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x607B	123	Self: HP < 70%	Target self if character has less than 70% HP.	Self	HP < 70 % of max HP	-	lowest HP %	12, 4	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x607C	124	Self: HP < 60%	Target self if character has less than 60% HP.	Self	HP < 60 % of max HP	-	lowest HP %	12, 5	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x607D	125	Self: HP < 50%	Target self if character has less than 50% HP.	Self	HP < 50 % of max HP	-	lowest HP %	12, 6	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x607E	126	Self: HP < 40%	Target self if character has less than 40% HP.	Self	HP < 40 % of max HP	-	lowest HP %	12, 7	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x607F	127	Self: HP < 30%	Target self if character has less than 30% HP.	Self	HP < 30 % of max HP	-	lowest HP %	12, 8	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6080	128	Self: HP < 20%	Target self if character has less than 20% HP.	Self	HP < 20 % of max HP	-	lowest HP %	12, 9	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6081	129	Self: HP < 10%	Target self if character has less than 10% HP.	Self	HP < 10 % of max HP	-	lowest HP %	12, 10	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x6082	130	Self: MP < 100%	Target self if character has less than 100% MP.	Self	MP below max	-	nearest	12, 11	0x00302F7E; 0x0030BD00
+0x6083	131	Self: MP < 90%	Target self if character has less than 90% MP.	Self	MP < 90 % of max MP	-	lowest MP %	12, 12	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6084	132	Self: MP < 80%	Target self if character has less than 80% MP.	Self	MP < 80 % of max MP	-	lowest MP %	12, 13	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6085	133	Self: MP < 70%	Target self if character has less than 70% MP.	Self	MP < 70 % of max MP	-	lowest MP %	12, 14	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6086	134	Self: MP < 60%	Target self if character has less than 60% MP.	Self	MP < 60 % of max MP	-	lowest MP %	12, 15	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6087	135	Self: MP < 50%	Target self if character has less than 50% MP.	Self	MP < 50 % of max MP	-	lowest MP %	12, 16	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6088	136	Self: MP < 40%	Target self if character has less than 40% MP.	Self	MP < 40 % of max MP	-	lowest MP %	13, 0	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x6089	137	Self: MP < 30%	Target self if character has less than 30% MP.	Self	MP < 30 % of max MP	-	lowest MP %	13, 1	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x608A	138	Self: MP < 20%	Target self if character has less than 20% MP.	Self	MP < 20 % of max MP	-	lowest MP %	13, 2	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x608B	139	Self: MP < 10%	Target self if character has less than 10% MP.	Self	MP < 10 % of max MP	-	lowest MP %	13, 3	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x608C	140	Self: status = Petrify	Target self if character has Petrify status.	Self	has Petrify	-	nearest	13, 4	0x003021A3; 0x0030BD00
+0x608D	141	Self: status = Doom	Target self if character has Doom status.	Self	has Doom	-	nearest	13, 5	0x003021A3; 0x0030BD00
+0x608E	142	Self: status = Blind	Target self if character has Blind status.	Self	has Blind	-	nearest	13, 6	0x003021A3; 0x0030BD00
+0x608F	143	Self: status = Poison	Target self if character has Poison status.	Self	has Poison	-	nearest	13, 7	0x003021A3; 0x0030BD00
+0x6090	144	Self: status = Silence	Target self if character has Silence status.	Self	has Silence	-	nearest	13, 8	0x003021A3; 0x0030BD00
+0x6091	145	Self: status = Sap	Target self if character has Sap status.	Self	has Sap	-	nearest	13, 9	0x003021A3; 0x0030BD00
+0x6092	146	Self: status = Oil	Target self if character has Oil status.	Self	has Oil	-	nearest	13, 10	0x003021A3; 0x0030BD00
+0x6093	147	Self: status = Reverse	Target self if character has Reverse status.	Self	has Reverse	-	nearest	13, 11	0x003021A3; 0x0030BD00
+0x6094	148	Self: status = Immobilize	Target self if character has Immobilize status.	Self	has Immobilize	-	nearest	13, 12	0x003021A3; 0x0030BD00
+0x6095	149	Self: status = Slow	Target self if character has Slow status.	Self	has Slow	-	nearest	13, 13	0x003021A3; 0x0030BD00
+0x6096	150	Self: status = Disease	Target self if character has Disease status.	Self	has Disease	-	nearest	13, 14	0x003021A3; 0x0030BD00
+0x6097	151	Self: status = Lure	Target self if character has Lure status.	Self	has Lure	-	nearest	13, 15	0x003021A3; 0x0030BD00
+0x6098	152	Self: status = Protect	Target self if character has Protect status.	Self	has Protect	-	nearest	13, 16	0x003021A3; 0x0030BD00
+0x6099	153	Self: status = Shell	Target self if character has Shell status.	Self	has Shell	-	nearest	14, 0	0x003021A3; 0x0030BD00
+0x609A	154	Self: status = Haste	Target self if character has Haste status.	Self	has Haste	-	nearest	14, 1	0x003021A3; 0x0030BD00
+0x609B	155	Self: status = Bravery	Target self if character has Bravery status.	Self	has Bravery	-	nearest	14, 2	0x003021A3; 0x0030BD00
+0x609C	156	Self: status = Faith	Target self if character has Faith status.	Self	has Faith	-	nearest	14, 3	0x003021A3; 0x0030BD00
+0x609D	157	Self: status = Reflect	Target self if character has Reflect status.	Self	has Reflect	-	nearest	14, 4	0x003021A3; 0x0030BD00
+0x609E	158	Self: status = Invisible	Target self if character has Invisible status.	Self	has Invisible	-	nearest	14, 5	0x003021A3; 0x0030BD00
+0x609F	159	Self: status = Regen	Target self if character has Regen status.	Self	has Regen	-	nearest	14, 6	0x003021A3; 0x0030BD00
+0x60A0	160	Self: status = Float	Target self if character has Float status.	Self	has Float	-	nearest	14, 7	0x003021A3; 0x0030BD00
+0x60A1	161	Self: status = Bubble	Target self if character has Bubble status.	Self	has Bubble	-	nearest	14, 8	0x003021A3; 0x0030BD00
+0x60A2	162	Self: status = HP Critical	Target self if character has HP Critical status.	Self	has HP Critical	-	nearest	14, 9	0x003021A3; 0x0030BD00
+0x60A3	163	Ally: any	Target any ally able to act.	Ally	any unit	-	random	8, 0	0x00301ECC; 0x0030BD00
+0x60A4	164	Ally: party leader	Target party leader.	Ally	is the party leader	-	nearest	8, 1	0x003024B0; 0x003024DA; 0x0030BD00
+0x60A5	165	Ally: Vaan	Target Vaan.	Ally	is Vaan (party record of type 0)	-	nearest	8, 2	0x003023ED; 0x0030BD00
+0x60A6	166	Ally: Ashe	Target Ashe.	Ally	is Ashe (party record of type 1)	-	nearest	8, 3	0x003023ED; 0x0030BD00
+0x60A7	167	Ally: Fran	Target Fran.	Ally	is Fran (party record of type 2)	-	nearest	8, 4	0x003023ED; 0x0030BD00
+0x60A8	168	Ally: Balthier	Target Balthier.	Ally	is Balthier (party record of type 3)	-	nearest	8, 5	0x003023ED; 0x0030BD00
+0x60A9	169	Ally: Basch	Target Basch.	Ally	is Basch (party record of type 4)	-	nearest	8, 6	0x003023ED; 0x0030BD00
+0x60AA	170	Ally: Penelo	Target Penelo.	Ally	is Penelo (party record of type 5)	-	nearest	8, 7	0x003023ED; 0x0030BD00
+0x60AB	171	Ally: guest	Target guest.	Ally	is a guest (party record of type 7-25)	-	nearest	8, 8	0x003024B0; 0x003024FD; 0x0030BD00
+0x60AC	172	Ally: lowest HP	Target ally with least remaining HP.	Ally	lowest HP	-	nearest of the equal ones	8, 9	0x00301F8F; 0x0030BD00
+0x60AD	173	Ally: strongest weapon	Target ally whose weapon has highest attack.	Ally	highest Attack Power (stats +0x2E)	-	nearest of the equal ones	8, 10	0x00301F0F; 0x0030BD00
+0x60AE	174	Ally: lowest defense	Target ally whose equipment has lowest defense.	Ally	lowest Defense (stats +0x2F)	-	nearest of the equal ones	8, 11	0x00301F4F; 0x0030BD00
+0x60AF	175	Ally: lowest magick resist	Target ally whose equipment has lowest magick resist.	Ally	lowest Magick Resist (stats +0x30)	-	nearest of the equal ones	8, 12	0x00301F6F; 0x0030BD00
+0x60B0	176	Ally: HP < 100%	Target any ally with less than 100% HP.	Ally	HP below max	-	nearest	8, 13	0x00302F7E; 0x0030BD00
+0x60B1	177	Ally: HP < 90%	Target any ally with less than 90% HP.	Ally	HP < 90 % of max HP	-	lowest HP %	8, 14	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B2	178	Ally: HP < 80%	Target any ally with less than 80% HP.	Ally	HP < 80 % of max HP	-	lowest HP %	8, 15	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B3	179	Ally: HP < 70%	Target any ally with less than 70% HP.	Ally	HP < 70 % of max HP	-	lowest HP %	8, 16	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B4	180	Ally: HP < 60%	Target any ally with less than 60% HP.	Ally	HP < 60 % of max HP	-	lowest HP %	9, 0	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B5	181	Ally: HP < 50%	Target any ally with less than 50% HP.	Ally	HP < 50 % of max HP	-	lowest HP %	9, 1	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B6	182	Ally: HP < 40%	Target any ally with less than 40% HP.	Ally	HP < 40 % of max HP	-	lowest HP %	9, 2	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B7	183	Ally: HP < 30%	Target any ally with less than 30% HP.	Ally	HP < 30 % of max HP	-	lowest HP %	9, 3	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B8	184	Ally: HP < 20%	Target any ally with less than 20% HP.	Ally	HP < 20 % of max HP	-	lowest HP %	9, 4	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60B9	185	Ally: HP < 10%	Target any ally with less than 10% HP.	Ally	HP < 10 % of max HP	-	lowest HP %	9, 5	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60BA	186	Ally: MP < 100%	Target any ally with less than 100% MP.	Ally	MP below max	-	nearest	9, 6	0x00302F7E; 0x0030BD00
+0x60BB	187	Ally: MP < 90%	Target any ally with less than 90% MP.	Ally	MP < 90 % of max MP	-	lowest MP %	9, 7	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60BC	188	Ally: MP < 80%	Target any ally with less than 80% MP.	Ally	MP < 80 % of max MP	-	lowest MP %	9, 8	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60BD	189	Ally: MP < 70%	Target any ally with less than 70% MP.	Ally	MP < 70 % of max MP	-	lowest MP %	9, 9	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60BE	190	Ally: MP < 60%	Target any ally with less than 60% MP.	Ally	MP < 60 % of max MP	-	lowest MP %	9, 10	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60BF	191	Ally: MP < 50%	Target any ally with less than 50% MP.	Ally	MP < 50 % of max MP	-	lowest MP %	9, 11	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60C0	192	Ally: MP < 40%	Target any ally with less than 40% MP.	Ally	MP < 40 % of max MP	-	lowest MP %	9, 12	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60C1	193	Ally: MP < 30%	Target any ally with less than 30% MP.	Ally	MP < 30 % of max MP	-	lowest MP %	9, 13	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60C2	194	Ally: MP < 20%	Target any ally with less than 20% MP.	Ally	MP < 20 % of max MP	-	lowest MP %	9, 14	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60C3	195	Ally: MP < 10%	Target any ally with less than 10% MP.	Ally	MP < 10 % of max MP	-	lowest MP %	9, 15	0x003032A7; 0x00302F37; 0x003022C7; 0x0030BD00
+0x60C4	196	Ally: status = KO	Target any ally with KO status.	Ally	has KO	-	nearest	9, 16	0x003021A3; 0x0030BD00
+0x60C5	197	Ally: status = Stone	Target any ally with Stone status.	Ally	has Stone	-	nearest	10, 0	0x003021A3; 0x0030BD00
+0x60C6	198	Ally: status = Petrify	Target any ally with Petrify status.	Ally	has Petrify	-	nearest	10, 1	0x003021A3; 0x0030BD00
+0x60C7	199	Ally: status = Stop	Target any ally with Stop status.	Ally	has Stop	-	nearest	10, 2	0x003021A3; 0x0030BD00
+0x60C8	200	Ally: status = Sleep	Target any ally with Sleep status.	Ally	has Sleep	-	nearest	10, 3	0x003021A3; 0x0030BD00
+0x60C9	201	Ally: status = Confuse	Target any ally with Confuse status.	Ally	has Confuse	-	nearest	10, 4	0x003021A3; 0x0030BD00
+0x60CA	202	Ally: status = Doom	Target any ally with Doom status.	Ally	has Doom	-	nearest	10, 5	0x003021A3; 0x0030BD00
+0x60CB	203	Ally: status = Blind	Target any ally with Blind status.	Ally	has Blind	-	nearest	10, 6	0x003021A3; 0x0030BD00
+0x60CC	204	Ally: status = Poison	Target any ally with Poison status.	Ally	has Poison	-	nearest	10, 7	0x003021A3; 0x0030BD00
+0x60CD	205	Ally: status = Silence	Target any ally with Silence status.	Ally	has Silence	-	nearest	10, 8	0x003021A3; 0x0030BD00
+0x60CE	206	Ally: status = Sap	Target any ally with Sap status.	Ally	has Sap	-	nearest	10, 9	0x003021A3; 0x0030BD00
+0x60CF	207	Ally: status = Oil	Target any ally with Oil status.	Ally	has Oil	-	nearest	10, 10	0x003021A3; 0x0030BD00
+0x60D0	208	Ally: status = Reverse	Target any ally with Reverse status.	Ally	has Reverse	-	nearest	10, 11	0x003021A3; 0x0030BD00
+0x60D1	209	Ally: status = Disable	Target any ally with Disable status.	Ally	has Disable	-	nearest	10, 12	0x003021A3; 0x0030BD00
+0x60D2	210	Ally: status = Immobilize	Target any ally with Immobilize status.	Ally	has Immobilize	-	nearest	10, 13	0x003021A3; 0x0030BD00
+0x60D3	211	Ally: status = Slow	Target any ally with Slow status.	Ally	has Slow	-	nearest	10, 14	0x003021A3; 0x0030BD00
+0x60D4	212	Ally: status = Disease	Target any ally with Disease status.	Ally	has Disease	-	nearest	10, 15	0x003021A3; 0x0030BD00
+0x60D5	213	Ally: status = Lure	Target any ally with Lure status.	Ally	has Lure	-	nearest	10, 16	0x003021A3; 0x0030BD00
+0x60D6	214	Ally: status = Protect	Target any ally with Protect status.	Ally	has Protect	-	nearest	11, 0	0x003021A3; 0x0030BD00
+0x60D7	215	Ally: status = Shell	Target any ally with Shell status.	Ally	has Shell	-	nearest	11, 1	0x003021A3; 0x0030BD00
+0x60D8	216	Ally: status = Haste	Target any ally with Haste status.	Ally	has Haste	-	nearest	11, 2	0x003021A3; 0x0030BD00
+0x60D9	217	Ally: status = Bravery	Target any ally with Bravery status.	Ally	has Bravery	-	nearest	11, 3	0x003021A3; 0x0030BD00
+0x60DA	218	Ally: status = Faith	Target any ally with Faith status.	Ally	has Faith	-	nearest	11, 4	0x003021A3; 0x0030BD00
+0x60DB	219	Ally: status = Reflect	Target any ally with Reflect status.	Ally	has Reflect	-	nearest	11, 5	0x003021A3; 0x0030BD00
+0x60DC	220	Ally: status = Invisible	Target any ally with Invisible status.	Ally	has Invisible	-	nearest	11, 6	0x003021A3; 0x0030BD00
+0x60DD	221	Ally: status = Regen	Target any ally with Regen status.	Ally	has Regen	-	nearest	11, 7	0x003021A3; 0x0030BD00
+0x60DE	222	Ally: status = Float	Target any ally with Float status.	Ally	has Float	-	nearest	11, 8	0x003021A3; 0x0030BD00
+0x60DF	223	Ally: status = Berserk	Target any ally with Berserk status.	Ally	has Berserk	-	nearest	11, 9	0x003021A3; 0x0030BD00
+0x60E0	224	Ally: status = Bubble	Target any ally with Bubble status.	Ally	has Bubble	-	nearest	11, 10	0x003021A3; 0x0030BD00
+0x60E1	225	Ally: status = HP Critical	Target any ally with HP Critical status.	Ally	has HP Critical	-	nearest	11, 11	0x003021A3; 0x0030BD00
+0x60E2	226	Foe: targeting Vaan	Target any foe targeting Vaan.	Foe	is targeting Vaan (unit +0x710 is combatant 0)	-	nearest	0, 8	0x00302AE3; 0x0030BD00
+0x60E3	227	Foe: targeting Ashe	Target any foe targeting Ashe.	Foe	is targeting Ashe (unit +0x710 is combatant 1)	-	nearest	0, 9	0x00302AE3; 0x0030BD00
+0x60E4	228	Foe: targeting Fran	Target any foe targeting Fran.	Foe	is targeting Fran (unit +0x710 is combatant 2)	-	nearest	0, 10	0x00302AE3; 0x0030BD00
+0x60E5	229	Foe: targeting Balthier	Target any foe targeting Balthier.	Foe	is targeting Balthier (unit +0x710 is combatant 3)	-	nearest	0, 11	0x00302AE3; 0x0030BD00
+0x60E6	230	Foe: targeting Basch	Target any foe targeting Basch.	Foe	is targeting Basch (unit +0x710 is combatant 4)	-	nearest	0, 12	0x00302AE3; 0x0030BD00
+0x60E7	231	Foe: targeting Penelo	Target any foe targeting Penelo.	Foe	is targeting Penelo (unit +0x710 is combatant 5)	-	nearest	0, 13	0x00302AE3; 0x0030BD00
+0x60E8	232	Self: 2+ foes present	Target self if 2 or more foes are present.	Self	any unit	the character: 2 or more foes in its perception list (unit +0xBC4)	random	14, 10	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60E9	233	Self: 3+ foes present	Target self if 3 or more foes are present.	Self	any unit	the character: 3 or more foes in its perception list (unit +0xBC4)	random	14, 11	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60EA	234	Self: 4+ foes present	Target self if 4 or more foes are present.	Self	any unit	the character: 4 or more foes in its perception list (unit +0xBC4)	random	14, 12	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60EB	235	Self: 5+ foes present	Target self if 5 or more foes are present.	Self	any unit	the character: 5 or more foes in its perception list (unit +0xBC4)	random	14, 13	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60EC	236	Ally: 2+ foes present	Target any ally if 2 or more foes are present.	Ally	any unit	the character: 2 or more foes in its perception list (unit +0xBC4)	random	11, 12	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60ED	237	Ally: 3+ foes present	Target any ally if 3 or more foes are present.	Ally	any unit	the character: 3 or more foes in its perception list (unit +0xBC4)	random	11, 13	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60EE	238	Ally: 4+ foes present	Target any ally if 4 or more foes are present.	Ally	any unit	the character: 4 or more foes in its perception list (unit +0xBC4)	random	11, 14	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60EF	239	Ally: 5+ foes present	Target any ally if 5 or more foes are present.	Ally	any unit	the character: 5 or more foes in its perception list (unit +0xBC4)	random	11, 15	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F0	240	Foe: 2+ foes present	Target any foe if 2 or more foes are present.	Foe	any unit	the character: 2 or more foes in its perception list (unit +0xBC4)	random	7, 10	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F1	241	Foe: 3+ foes present	Target any foe if 3 or more foes are present.	Foe	any unit	the character: 3 or more foes in its perception list (unit +0xBC4)	random	7, 11	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F2	242	Foe: 4+ foes present	Target any foe if 4 or more foes are present.	Foe	any unit	the character: 4 or more foes in its perception list (unit +0xBC4)	random	7, 12	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F3	243	Foe: 5+ foes present	Target any foe if 5 or more foes are present.	Foe	any unit	the character: 5 or more foes in its perception list (unit +0xBC4)	random	7, 13	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F4	244	Foe: 2+ allies present	Target any foe if 2 or more allies are present	Foe	any unit	the character: 2 or more allies in its perception list (unit +0xBC4)	random	7, 14	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F5	245	Foe: 3+ allies present	Target any foe if 3 or more allies are present	Foe	any unit	the character: 3 or more allies in its perception list (unit +0xBC4)	random	7, 15	0x00301ECC; 0x003031C4; 0x00303216; 0x0030BD00
+0x60F6	246	Self: item AMT >= 10	Target self if 10 or more of the selected item remain.	Self	any unit	the character: holds 10 or more of the line's item	random	14, 16	0x00301ECC; 0x003032C0; 0x003032EE; 0x0030BD00
+0x60F7	247	Foe: HP >= 90%	Target any foe with 90% or more HP.	Foe	HP >= 90 % of max HP	-	highest HP %	3, 0	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60F8	248	Foe: HP >= 10%	Target any foe with 10% or more HP.	Foe	HP >= 10 % of max HP	-	highest HP %	3, 4	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60F9	249	Foe: HP < 90%	Target any foe with less than 90% HP.	Foe	HP < 90 % of max HP	-	lowest HP %	3, 5	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60FA	250	Foe: HP < 70%	Target any foe with less than 70% HP.	Foe	HP < 70 % of max HP	-	lowest HP %	3, 6	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60FB	251	Foe: HP < 50%	Target any foe with less than 50% HP.	Foe	HP < 50 % of max HP	-	lowest HP %	3, 7	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60FC	252	Foe: HP < 30%	Target any foe with less than 30% HP.	Foe	HP < 30 % of max HP	-	lowest HP %	3, 8	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60FD	253	Foe: HP < 10%	Target any foe with less than 10% HP.	Foe	HP < 10 % of max HP	-	lowest HP %	3, 9	0x00302203; 0x00302292; 0x003022C7; 0x0030BD00
+0x60FE	254	Foe: targeted by ally	Target any foe targeted by an ally.	Foe	highest number of units whose committed action targets it (unit +0xEA8)	-	nearest of the equal ones	0, 3	0x00302123; 0x0030BD00
+0x60FF	255	NOT USED no_chip	-	Foe	highest max HP (stats +0x24, doubled under Bubble; current HP under Disease)	the character: summon timer below 20 (battle state +0x5AD8)	nearest of the equal ones	-	0x00301FCB; 0x00303523; 0x00303540; 0x0030BD00

@@ -2,12 +2,12 @@
 title: "Weapon motion list: the animation set each weapon's motion class gives a battle unit, from the WepJob_Matrix table"
 kind: "reference"
 category: "Battle actions"
-addresses: "02EBF180, 003202F0, 003203B0, 00325A20, 00325AD0, 00320170, 00320230"
+addresses: "0x02EBF180, 0x003202F0, 0x003203B0, 0x00325A20, 0x00325AD0, 0x00320170, 0x00320230"
 ---
 
 ## What it lists
 
-`weapon-motion-list.tsv` holds one line for each of the 23 rows of the table that registry slot `02EBF180` points
+`weapon-motion-list.tsv` holds one line for each of the 23 rows of the table that registry slot `0x02EBF180` points
 at (`battle_pack.bin` directory entry `+0x04`). The table is not an `st2e` table: it is a `u16` stride (1), a `u16`
 row count (23), and then one byte per row from `+0x04`. Row *m* is a weapon motion class, the byte `+0x26` of a
 main-hand equipment row ([Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)), and its byte is an
@@ -15,24 +15,24 @@ animation set.
 
 ### How the set is chosen
 
-`003202F0(stats, &set)` gives a unit its animation set (`003202F0`-`00320443`):
+`0x003202F0(stats, &set)` gives a unit its animation set (`0x003202F0`-`0x00320443`):
 
 1. An enemy record (stats `+0x05` = 1) whose definition row byte `+0x13` is not `0xFF` takes that byte
-   (`0032031F`-`0032033C`).
+   (`0x0032031F`-`0x0032033C`).
 2. A record whose main hand `+0x50` is `0x1000`, Unarmed, with no off-hand item (`+0x52` = `0xFFFF`) and Brawler (augment 9)
-   in either effect layer (`+0x69` or `+0x79` bit 1) takes row 22 (`0032034B`-`00320384`).
-3. Otherwise `003203B0(main hand)` takes the row of the main-hand item's motion class `+0x26` when the id is not
+   in either augment layer (`+0x69` or `+0x79` bit 1) takes row 22 (`0x0032034B`-`0x00320384`).
+3. Otherwise `0x003203B0(main hand)` takes the row of the main-hand item's motion class `+0x26` when the id is not
    `0xFFFF` and the item's slot bits `+0x07` are below `0x20`; any other id gives row −1, the high byte of the row
-   count, 0 (`003203B0`-`0032043C`).
+   count, 0 (`0x003203B0`-`0x0032043C`).
 
 Its callers:
 
-- `00320170` gives the motion lane of a unit's model ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)).
-- `00320230` does the same for the member in a seat of slot map 4. It answers 22 itself for the seat `00327200`
-  returns while `00303EC0` holds, and uses the Chocobo's record `[02EBF190]` + `0x2E58` for seat 3.
-- `00325A20` and `00325AD0`, the two action caches of [Action phases](action-phases.md), call it only for a unit
+- `0x00320170` gives the motion lane of a unit's model ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)).
+- `0x00320230` does the same for the member in a seat of slot map 4. It answers 22 itself for the seat `0x00327200`
+  returns while `0x00303EC0` holds, and uses the Chocobo's record `[0x02EBF190]` + `0x2E58` for seat 3.
+- `0x00325A20` and `0x00325AD0`, the two action caches of [Action phases](action-phases.md), call it only for a unit
   that is not a party unit; a party unit (stats `+0x05` = 0) gets the byte of row 1 there, set 1
-  (`00325A50`-`00325A5A`, `00325AD0`).
+  (`0x00325A50`-`0x00325A5A`, `0x00325AD0`).
 
 ### How it is built
 
@@ -42,12 +42,12 @@ them, and lists for each motion class the main-hand equipment rows 0-419 (slot b
 
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
-| `+0x00` | `u16` | stride | `003202F0`, `00325A20`, `00325AD0` | the row size, 1 |
+| `+0x00` | `u16` | stride | `0x003202F0`, `0x00325A20`, `0x00325AD0` | the row size, 1 |
 | `+0x02` | `u16` | count | none | 23 |
-| `+0x04` | `u8[23]` | sets | `003202F0`, `00325A20`, `00325AD0` | the animation set of each motion class |
+| `+0x04` | `u8[23]` | sets | `0x003202F0`, `0x00325A20`, `0x00325AD0` | the animation set of each motion class |
 
-The slot is loaded by `00320376` and `0032042D` (`003202F0`), `00325A50` (`00325A20`) and `00325AF5` (`00325AD0`),
-and stored once by the loader (`00236C74`); none of them reads the count.
+The slot is loaded by `0x00320376` and `0x0032042D` (`0x003202F0`), `0x00325A50` (`0x00325A20`) and `0x00325AF5` (`0x00325AD0`),
+and stored once by the loader (`0x00236C74`); none of them reads the count.
 
 ### Checks
 

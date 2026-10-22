@@ -1,5 +1,5 @@
 group	row	member	ids	mask	allowed	explanation
-0						an empty group: 0032A230 finds no row and nothing is limited
+0						an empty group: 0x0032A230 finds no row and nothing is limited
 1	0	Vaan		0x0		Vaan may use nothing; every command is refused
 1	1	Penelo	0x0052	0x0	Potion (action 82)	Penelo may use only Potion (action 82)
 2	2	Vaan	0x5000	0x1	the Gambits command	Vaan may use only the Gambits command

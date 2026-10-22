@@ -2,7 +2,7 @@
 title: "EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play"
 kind: "format"
 category: "EBP script files"
-addresses: "0032FA10, 0032FAC0, 002561C0, 003DA1F0, 0032F3D0, 005C5230, 00256530, 002572E0, 003DA400, 003DA330, 003DA300, 00258350, 00255410, 002554E0, 003CC5F0, 003CC740, 003CC890, 0032ED80, 02092800, 022C6D58, 022C6D80, 00258190, 002ED430, 002E7F10, 002ED130, 002EA890"
+addresses: "0x0032FA10, 0x0032FAC0, 0x002561C0, 0x003DA1F0, 0x0032F3D0, 0x005C5230, 0x00256530, 0x002572E0, 0x003DA400, 0x003DA330, 0x003DA300, 0x00258350, 0x00255410, 0x002554E0, 0x003CC5F0, 0x003CC740, 0x003CC890, 0x0032ED80, 0x02092800, 0x022C6D58, 0x022C6D80, 0x00258190, 0x002ED430, 0x002E7F10, 0x002ED130, 0x002EA890"
 ---
 
 ## What the player sees
@@ -16,18 +16,18 @@ map scripts in a language tree carry them; a map without them keeps the ordinary
 ## Where it comes from
 
 Sections 8 and 9 are slots 8 and 9 of the `.ebp` directory
-([EBP script container](ebp-script-container.md)). The directory walker `003304A0` dispatches
-slot 9 first (`0033058E`) and slot 8 after it (`003305A9`); each handler takes the manager index
+([EBP script container](ebp-script-container.md)). The directory walker `0x003304A0` dispatches
+slot 9 first (`0x0033058E`) and slot 8 after it (`0x003305A9`); each handler takes the manager index
 from the low four bits of its argument.
 
 | Section | Handler | Steps | Pending bit |
 |---|---|---|---|
-| 9, CAM7 | `0032FAC0` | stores the section at `022C6D58[manager]`, clears the four camera channels (`002566E0(manager, 0..3)`), runs the loader `002561C0`, and only when it returns non-zero sets manager record `+0xE0` (`0026CE20`) | 7 |
-| 8, CML1 | `0032FA10` | stores the section at `022C6D80[manager]`, sets manager record `+0xD8` (`0026CE00`), and runs `003DA1F0` when `+0xE0` is set | 8 |
+| 9, CAM7 | `0x0032FAC0` | stores the section at `0x022C6D58[manager]`, clears the four camera channels (`0x002566E0(manager, 0..3)`), runs the loader `0x002561C0`, and only when it returns non-zero sets manager record `+0xE0` (`0x0026CE20`) | 7 |
+| 8, CML1 | `0x0032FA10` | stores the section at `0x022C6D80[manager]`, sets manager record `+0xD8` (`0x0026CE00`), and runs `0x003DA1F0` when `+0xE0` is set | 8 |
 
-The teardown `0032ED80` runs `002561A0` and the channel clear for CAM7, then clears both globals
-and both record fields (`0032EFC4`, `0032F00C`); the free beside each clear is gated on
-`005C5230(5)`, which returns 0. The manager record and the camera channel entries the verbs bind
+The teardown `0x0032ED80` runs `0x002561A0` and the channel clear for CAM7, then clears both globals
+and both record fields (`0x0032EFC4`, `0x0032F00C`); the free beside each clear is gated on
+`0x005C5230(5)`, which returns 0. The manager record and the camera channel entries the verbs bind
 are on [actor managers](../Characters-And-Objects/actor-managers.md).
 
 ## Layouts
@@ -59,7 +59,7 @@ shot record
 +0x00  u32      -           0
 +0x04  u32      length      to the next record
 +0x08  char[24] name        copied with strncpy(…, 24)
-+0x20  u32      attach      attachment word (002572E0)
++0x20  u32      attach      attachment word (0x002572E0)
 +0x24  u16      eyeJoint    joint for eye attach modes 1 and 2
 +0x26  u16      targetJoint joint for target attach modes 1 and 2
 +0x28  commands             keys and segments, then 0xFF and three pad bytes
@@ -102,7 +102,7 @@ path (array C)
 then arc[arcs]: f32 distance, f32 parameter
 ```
 
-Each shot becomes a 0x40-byte entry in `[02092810 + manager * 0xBB0]`: `+0x00` the name, `+0x18`
+Each shot becomes a 0x40-byte entry in `[0x02092810 + manager * 0xBB0]`: `+0x00` the name, `+0x18`
 the address of record `+0x28`, `+0x20` and `+0x28` the eye and target actors, `+0x30` and `+0x32`
 the joint words, `+0x34`-`+0x3D` the attachment bits.
 
@@ -134,25 +134,25 @@ Every count is per language tree; the CAM7 sections are byte-identical in all ni
 
 ### CAM7 at load
 
-`002561C0(section, manager)`:
+`0x002561C0(section, manager)`:
 
-1. Returns 0 unless `+0x00` is `CAM7` (`002561C8`); the handler then binds nothing.
-2. Stores the section at `02092808 + manager * 0xBB0` (`00256205`).
+1. Returns 0 unless `+0x00` is `CAM7` (`0x002561C8`); the handler then binds nothing.
+2. Stores the section at `0x02092808 + manager * 0xBB0` (`0x00256205`).
 3. Returns 1 at once when `cameras` is 0 (manager below 5).
-4. For each shot, from `section + first`: copies 24 name bytes with `strncpy` (`00256276`), so a
+4. For each shot, from `section + first`: copies 24 name bytes with `strncpy` (`0x00256276`), so a
    24-byte name has no terminator; stores the command stream address, zeroes `+0x20` and `+0x28`,
    copies the joint words, and steps by `length`.
 5. Builds pointer arrays for the ease curves (stepping by the `u32` at `+0`) and the paths
-   (stepping by the `u16` at `+0`) at `02092818` and `02092820`.
+   (stepping by the `u16` at `+0`) at `0x02092818` and `0x02092820`.
 
 Nothing is compared with the section's length.
 
-`002572E0(manager)`, run by `0026CE60` once `+0xD8` and `+0xE0` are both set, decodes each
+`0x002572E0(manager)`, run by `0x0026CE60` once `+0xD8` and `+0xE0` are both set, decodes each
 shot's `attach` word:
 
 | Bits | Eye | Target |
 |---|---|---|
-| actor | 0-8: the n-th type-3 actor of the manager, n - 1 (`00257AD0`), 0 for none | 16-24 |
+| actor | 0-8: the n-th type-3 actor of the manager, n - 1 (`0x00257AD0`), 0 for none | 16-24 |
 | attach mode | 13-14 | 29-30 |
 | turn with the actor | 15 | 31 |
 | hold height | 11 | 27 |
@@ -161,10 +161,10 @@ shot's `attach` word:
 
 ### CML1 at load
 
-`003DA1F0(manager)` sets record `+0x18` and `+0x1A` to -1 and the four channel entries to idle,
-then for each row zeroes `+0x08` and the low byte of `+0x0C` (`003DA292`, `003DA296`). Its name
-lookup `00256530` runs only when `0032F3D0(1, name)` returns non-zero, and kind 1 ends in
-`005C5230(5)`, which is `xor eax, eax`: the lookup never runs, the authored `camera` column is
+`0x003DA1F0(manager)` sets record `+0x18` and `+0x1A` to -1 and the four channel entries to idle,
+then for each row zeroes `+0x08` and the low byte of `+0x0C` (`0x003DA292`, `0x003DA296`). Its name
+lookup `0x00256530` runs only when `0x0032F3D0(1, name)` returns non-zero, and kind 1 ends in
+`0x005C5230(5)`, which is `xor eax, eax`: the lookup never runs, the authored `camera` column is
 used as shipped, and no name is ever compared.
 
 ### Who reads a row
@@ -173,67 +173,67 @@ Each reader checks the row number against `count` and takes row `+0x04` at `+0x1
 
 | Verb | Handler | Reader | Does |
 |---|---|---|---|
-| `camerastart_7d`, `camerastart_7e` | `0034F2F0`, `0034F930` | `003DA400` (`003DA456`) | binds the shot to a camera channel |
-| `camerahitcheck`, `camerahitcheck_33c` | `0034EDB0`, `0034E9B0` | `003DA330` (`003DA35E`) | runs the shot on a scratch player and reports a hit (`002567E0`) |
-| `behindtoeventcamera` | `00349FA0` | `003DA300` (`003DA31F`) | starts the move to the shot (`00255C50`) |
+| `camerastart_7d`, `camerastart_7e` | `0x0034F2F0`, `0x0034F930` | `0x003DA400` (`0x003DA456`) | binds the shot to a camera channel |
+| `camerahitcheck`, `camerahitcheck_33c` | `0x0034EDB0`, `0x0034E9B0` | `0x003DA330` (`0x003DA35E`) | runs the shot on a scratch player and reports a hit (`0x002567E0`) |
+| `behindtoeventcamera` | `0x00349FA0` | `0x003DA300` (`0x003DA31F`) | starts the move to the shot (`0x00255C50`) |
 
 ### Playing a shot
 
-`00258350` walks the stream from the channel's position each frame:
+`0x00258350` walks the stream from the channel's position each frame:
 
 - a key copies eye, target, angle, fov and the three follow values into the pose, is remembered
   as the segment's start, and the walk continues;
-- a segment adds the frame time to its clock, computes its 13 progresses (`00255410`: an ease
-  curve through `003CC5F0`, else clock / frames), its two path offsets (`002554E0`), and the
+- a segment adds the frame time to its clock, computes its 13 progresses (`0x00255410`: an ease
+  curve through `0x003CC5F0`, else clock / frames), its two path offsets (`0x002554E0`), and the
   pose between the remembered key and the key after it by `kind`; once the clock reaches
   `duration` the walk moves on, carrying the rest of the clock;
 - `0xFF` marks the channel finished.
 
 The eye is the eye path offset plus the pose's eye and the target likewise, unless `absolute`
-is set; both go through the attachment transforms and into the view at `02096370`, the fov as
-`fov * π / 180`. The eye is interpolated by `00257B50`, or by `00257BF0` for kind 1 and `00257D10` for
-kind 2; the target by `00258090`, or by `00257E40` for kind 3 and `00257F60` for kind 4. Kinds 5
-and 6 replace both with the path-follow routines `00256960` and `00256CA0`.
+is set; both go through the attachment transforms and into the view at `0x02096370`, the fov as
+`fov * π / 180`. The eye is interpolated by `0x00257B50`, or by `0x00257BF0` for kind 1 and `0x00257D10` for
+kind 2; the target by `0x00258090`, or by `0x00257E40` for kind 3 and `0x00257F60` for kind 4. Kinds 5
+and 6 replace both with the path-follow routines `0x00256960` and `0x00256CA0`.
 
-`003CC5F0` finds the curve key by summing spans until they pass `time / end` and returns
-`a·s³ + b·s² + c·s + d`, `s` the position inside that key. `003CC890` turns a distance into a
-parameter by a binary search of the arcs, and `003CC740` finds the segment by its span and returns
+`0x003CC5F0` finds the curve key by summing spans until they pass `time / end` and returns
+`a·s³ + b·s² + c·s + d`, `s` the position inside that key. `0x003CC890` turns a distance into a
+parameter by a binary search of the arcs, and `0x003CC740` finds the segment by its span and returns
 the three cubics. A plain path word runs the whole path as the progress goes from 0 to 1
-(`003CC6C0`); with bit 14 the progress is a distance (`003CC710`).
+(`0x003CC6C0`); with bit 14 the progress is a distance (`0x003CC710`).
 
 ### Attaching the eye and target
 
-Before it walks the stream, `00258350` builds the two attachment transforms, the eye's at channel
+Before it walks the stream, `0x00258350` builds the two attachment transforms, the eye's at channel
 `+0x190` and the target's at `+0x1D0`. A side whose entry has no actor (`+0x20`, `+0x28`), or whose
-manager fails `002671F0`, gets the identity (`00203170`). Otherwise `00258190(attach, matrix,
+manager fails `0x002671F0`, gets the identity (`0x00203170`). Otherwise `0x00258190(attach, matrix,
 &fovAdd, &angleSub)` builds it from the side's bits, and the channel byte `+0x189` (eye) or `+0x18A`
 (target) is set afterwards, marking the side as attached.
 
-`00258190`:
+`0x00258190`:
 
 1. keeps the matrix's old position (`+0x30`, `+0x34`, `+0x38`);
 2. sets the rotation: the identity, or with "turn with the actor" a turn about the vertical by the
-   actor's heading (`00265200`, `003CC480(0, heading, 0, matrix)`);
-3. takes the point by the attach mode: 0, the actor's position (`00265020`); 1, the position of
-   joint `eyeJoint` or `targetJoint` from `002E7F10`; 2, the same from `002ED430`;
+   actor's heading (`0x00265200`, `0x003CC480(0, heading, 0, matrix)`);
+3. takes the point by the attach mode: 0, the actor's position (`0x00265020`); 1, the position of
+   joint `eyeJoint` or `targetJoint` from `0x002E7F10`; 2, the same from `0x002ED430`;
 4. writes the point as the position, except that "hold height" keeps the old y and "hold ground
    position" keeps the old x and z once the side is attached;
-5. with bit 9 or bit 10 of the word, finds the joint's node (`002ED130`) and reads the node's record
-   (`002EA890`): bit 9 puts its `+0x198` in `angleSub`, bit 10 its `+0x194` in `fovAdd`.
+5. with bit 9 or bit 10 of the word, finds the joint's node (`0x002ED130`) and reads the node's record
+   (`0x002EA890`): bit 9 puts its `+0x198` in `angleSub`, bit 10 its `+0x194` in `fovAdd`.
 
 The view's angle is then the pose's angle minus `angleSub`, and its fov `fov * π / 180 + fovAdd`.
 
 The two joint modes look in different places:
 
-- `002E7F10(actor, joint, 0, out)` takes the actor's model record (`022C6F28 + slot × 0x740`, the
-  slot the word at `[actor + 0xC0]`) and hands it to `00426770`, which asks that model and the one
-  chained at its `+0x08` for the joint's matrix (`00421E20`); it returns 1 when one answered.
-- `002ED430(actor, joint, 0, out)` checks the same slot and passes on to `003A6DF0`, which finds the
-  model that holds the joint among its flagged nodes (`00426650`, `00421D70`) and reads the node's
-  matrix (`00422050`); it returns whether that gave a result.
-- `002ED130(actor, joint)` runs the flagged-node search on the actor's own model: a model whose
-  `+0x9C` is 2 (`00372800`) is searched for a node with that id and bit `0x100` of its `+0x04` set
-  (`003737C0`). `002EA890(actor, index)` returns record `index` (`0x290` bytes each) of the
+- `0x002E7F10(actor, joint, 0, out)` takes the actor's model record (`0x022C6F28 + slot × 0x740`, the
+  slot the word at `[actor + 0xC0]`) and hands it to `0x00426770`, which asks that model and the one
+  chained at its `+0x08` for the joint's matrix (`0x00421E20`); it returns 1 when one answered.
+- `0x002ED430(actor, joint, 0, out)` checks the same slot and passes on to `0x003A6DF0`, which finds the
+  model that holds the joint among its flagged nodes (`0x00426650`, `0x00421D70`) and reads the node's
+  matrix (`0x00422050`); it returns whether that gave a result.
+- `0x002ED130(actor, joint)` runs the flagged-node search on the actor's own model: a model whose
+  `+0x9C` is 2 (`0x00372800`) is searched for a node with that id and bit `0x100` of its `+0x04` set
+  (`0x003737C0`). `0x002EA890(actor, index)` returns record `index` (`0x290` bytes each) of the
   model's node records at `[+0x84]`.
 
 The word's bits beside an actor field of 0 are never read: such a side keeps the identity.

@@ -2,13 +2,13 @@
 title: "Reward selector list: every package selector and the packages it chooses between"
 kind: "reference"
 category: "Rewards: EXP, LP, gil and loot"
-addresses: "02EBF068, 002FD640, 0031C5D0, 0031D712, 00322C50"
+addresses: "0x02EBF068, 0x002FD640, 0x0031C5D0, 0x0031D712, 0x00322C50"
 ---
 
 ## What it lists
 
 `reward-selector-list.tsv` holds one line for each of the 256 rows of the selector table that registry slot
-`02EBF068` reaches (`battle_pack.bin` directory entry `+0x9C`). Row *n* is selector id `0xA000` + *n*, inventory
+`0x02EBF068` reaches (`battle_pack.bin` directory entry `+0x9C`). Row *n* is selector id `0xA000` + *n*, inventory
 class 15 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
 
 - 45 selectors, `0xA080`-`0xA0AC`, name one reward package each in their first triple, and none uses its second
@@ -23,11 +23,11 @@ the section's `+0x20`) and describes each named package by its own row of
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16[3]` | first | the ids the class-15 handler `002FD640` grants, each tested for `0xFFFF` on its own |
+| `+0x00` | `u16[3]` | first | the ids the class-15 handler `0x002FD640` grants, each tested for `0xFFFF` on its own |
 | `+0x06` | `u16[3]` | second | granted instead when the give's flag bit 1 is set: the sixth id whenever the fifth is not `0xFFFF` |
 
-`0031C5D0`'s class-15 arm copies the first triple to the query record and its class-31 arm the second
-(`0031D712`-`0031D73A`).
+`0x0031C5D0`'s class-15 arm copies the first triple to the query record and its class-31 arm the second
+(`0x0031D712`-`0x0031D73A`).
 
 ### Checks
 

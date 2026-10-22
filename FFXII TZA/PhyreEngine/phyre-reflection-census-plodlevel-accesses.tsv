@@ -1,9 +1,9 @@
 function	name	site	disp	kind	instruction	route	note
-006C4A60	FUN_006c4a60	006C4A78	0x0	w	mov qword ptr [rdx], rcx	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4A7B	0x8	w	mov dword ptr [rdx + 8], ecx	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4A7E	0x10	w	mov qword ptr [rdx + 0x10], rcx	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4A82	0x18	w	mov dword ptr [rdx + 0x18], ecx	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4A85	0x1c	w	mov qword ptr [rdx + 0x1c], 0x461c4000	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4A96	0x28	w	mov qword ptr [rax], 0x3f800000	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4A9D	0x30	w	mov dword ptr [rax + 8], 4	ctorrdx-seeded 006C4A60	
-006C4A60	FUN_006c4a60	006C4AA4	0x20	w	mov dword ptr [rdx + 0x20], 1	ctorrdx-seeded 006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A78	0x0	w	mov qword ptr [rdx], rcx	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A7B	0x8	w	mov dword ptr [rdx + 8], ecx	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A7E	0x10	w	mov qword ptr [rdx + 0x10], rcx	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A82	0x18	w	mov dword ptr [rdx + 0x18], ecx	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A85	0x1c	w	mov qword ptr [rdx + 0x1c], 0x461c4000	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A96	0x28	w	mov qword ptr [rax], 0x3f800000	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4A9D	0x30	w	mov dword ptr [rax + 8], 4	ctorrdx-seeded 0x006C4A60	
+0x006C4A60	FUN_006c4a60	0x006C4AA4	0x20	w	mov dword ptr [rdx + 0x20], 1	ctorrdx-seeded 0x006C4A60	

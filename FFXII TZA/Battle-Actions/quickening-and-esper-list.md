@@ -2,12 +2,12 @@
 title: "Quickening and Esper list: the thirty-two class-17 ids of the Quickenings, the Espers and Second Board, with their names and the code that reads them"
 kind: "reference"
 category: "Battle actions"
-addresses: "02EBF0C8, 0031C5D0, 0031D814, 00306340, 003064F0, 00325F40, 00252E60, 00323D10"
+addresses: "0x02EBF0C8, 0x0031C5D0, 0x0031D814, 0x00306340, 0x003064F0, 0x00325F40, 0x00252E60, 0x00323D10"
 ---
 
 ## What it lists
 
-`quickening-and-esper-list.tsv` holds one line for each of the 32 rows of the table that registry slot `02EBF0C8`
+`quickening-and-esper-list.tsv` holds one line for each of the 32 rows of the table that registry slot `0x02EBF0C8`
 reaches (`battle_pack.bin` directory entry `+0x6C`). Row *n* is id `0xC000` + *n*, inventory class 17
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)), whose owned state is one bit.
 
@@ -17,7 +17,7 @@ reaches (`battle_pack.bin` directory entry `+0x6C`). Row *n* is id `0xC000` + *n
 | `0xC012`-`0xC01E` | the 13 Espers | word `+0x22` of summon actions 262-274 |
 | `0xC01F` | SecondJob | no action |
 
-The bits gate License Board squares: `00323D10` refuses an Esper square, node *n* 18-30, until bit `0xC000` + *n*
+The bits gate License Board squares: `0x00323D10` refuses an Esper square, node *n* 18-30, until bit `0xC000` + *n*
 is owned, and the Second Board square until bit `0xC01F` is ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
 
 ### How it is built
@@ -28,33 +28,33 @@ section's `+0x20`), names each row by its word `+0x00` through the word banks, a
 
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
-| `+0x00` | `u16` | nameWord | `0031C5D0` (`0031D86B`, `0031D8AE`) | the name, bank 0; its row is the number of the action that names the id |
-| `+0x02` | `u16` | word02 | `00306340`, on a path no caller takes (below) | 265 + row on every row |
+| `+0x00` | `u16` | nameWord | `0x0031C5D0` (`0x0031D86B`, `0x0031D8AE`) | the name, bank 0; its row is the number of the action that names the id |
+| `+0x02` | `u16` | word02 | `0x00306340`, on a path no caller takes (below) | 265 + row on every row |
 | `+0x04` | `u16` | word04 | none | 0-31, the row number on 25 rows |
 | `+0x06` | `u16` | word06 | none | 0 on every row |
 
-`0031C5D0`'s class-17 arm stores the name in the query record `+0x18`, the owned state `00309EC0(id, 0)` in
-`+0x20`, `0030AE30(id, 0)` in `+0x24` and -1 in `+0x2C` (`0031D814`-`0031D8E5`).
+`0x0031C5D0`'s class-17 arm stores the name in the query record `+0x18`, the owned state `0x00309EC0(id, 0)` in
+`+0x20`, `0x0030AE30(id, 0)` in `+0x24` and -1 in `+0x2C` (`0x0031D814`-`0x0031D8E5`).
 
 ### The scope of "no function uses"
 
-The table is loaded by `0031C5D0`, `00306340`, the validator `00322C50` (the row count only) and the loader
-`00236C30`; all four were decompiled. `0031C5D0` reads only `+0x00`.
+The table is loaded by `0x0031C5D0`, `0x00306340`, the validator `0x00322C50` (the row count only) and the loader
+`0x00236C30`; all four were decompiled. `0x0031C5D0` reads only `+0x00`.
 
-`00306340(member, id)` takes a magick's action row `+0x02`, a technick's `+0x02`, or for a `0xC000` id the word
-`+0x02` of this table, and hands it to `003064F0`, which asks `003060E0` and `00323EC0` whether the member may use
+`0x00306340(member, id)` takes a magick's action row `+0x02`, a technick's `+0x02`, or for a `0xC000` id the word
+`+0x02` of this table, and hands it to `0x003064F0`, which asks `0x003060E0` and `0x00323EC0` whether the member may use
 that action. Its two callers never pass a `0xC000` id:
 
-1. `002826F0` and `00282A40` hand it the ids of the menu category lists 9 and 8
+1. `0x002826F0` and `0x00282A40` hand it the ids of the menu category lists 9 and 8
    ([Party marks](../Menus-And-HUD/party-marks.md)).
-2. The only function that adds an id to a category list is `00252E60`, reached from `00325F40`. It chooses the
-   list from the id's top nibble through the table at `01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
-   (`00D1066E`, `00D1066F`), and it returns at once for a nibble above 10 (`00325F40`).
+2. The only function that adds an id to a category list is `0x00252E60`, reached from `0x00325F40`. It chooses the
+   list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
+   (`0x00D1066E`, `0x00D1066F`), and it returns at once for a nibble above 10 (`0x00325F40`).
    - An id already in the list is not added again
-   (`00252EE5`); after appending, it calls `002CD650` (`00252F18`), which sets the save-wide category bit
-   (`[020927C0] + 0x3244`, `00252D40`) of each inventory category whose list is now non-empty
+   (`0x00252EE5`); after appending, it calls `0x002CD650` (`0x00252F18`), which sets the save-wide category bit
+   (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty
    ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).
-3. The other writers of the lists, `002530E0`, `002534C0`, `002535D0` and `00253240`, only move, remove or clear
+3. The other writers of the lists, `0x002530E0`, `0x002534C0`, `0x002535D0` and `0x00253240`, only move, remove or clear
    ids.
 
 So no `0xC000` id reaches the word `+0x02`, and `+0x04` and `+0x06` have no reader at all.

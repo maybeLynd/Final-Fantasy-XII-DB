@@ -2,7 +2,7 @@
 title: "Animation sounds: footsteps, swings and voices authored into animations, the twelve sound types, which variation plays and where it is heard from"
 kind: "system"
 category: "Sound and music"
-addresses: "00520C50, 00520D00, 0046CC70, 0046C250, 0046C6E0, 0046C8F0, 002E9D90, 003A6E60"
+addresses: "0x00520C50, 0x00520D00, 0x0046CC70, 0x0046C250, 0x0046C6E0, 0x0046C8F0, 0x002E9D90, 0x003A6E60"
 ---
 
 ## What the player sees
@@ -17,13 +17,13 @@ addresses: "00520C50, 00520D00, 0046CC70, 0046C250, 0046C6E0, 0046C8F0, 002E9D90
 ### The three commands
 
 Animations carry the commands; the character's sound emitter, the render record's sub-object at `+0x5F0`, plays them
-through `0046CC70(emitter, mode, type, volume)`:
+through `0x0046CC70(emitter, mode, type, volume)`:
 
 | Command | Handler | Passes |
 |---|---|---|
-| `0x05` | `00520C50`, through `0046CBA0` | word `+2` as `mode << 12 \| type`, volume 0 for full |
-| `0x29` | `00520D00` | mode 0, type 1, volume the signed word `+2` out of 128 |
-| `0x19` | `00520CE0` | mode 0, type 1, volume 0 for full: the footstep with no volume word |
+| `0x05` | `0x00520C50`, through `0x0046CBA0` | word `+2` as `mode << 12 \| type`, volume 0 for full |
+| `0x29` | `0x00520D00` | mode 0, type 1, volume the signed word `+2` out of 128 |
+| `0x19` | `0x00520CE0` | mode 0, type 1, volume 0 for full: the footstep with no volume word |
 
 ### The sound types
 
@@ -50,8 +50,8 @@ attachment and bone `0x0C` fall back to `0x100` when missing.
 
 ### Which variation
 
-`0046C250(emitter, type)` sets the bank group, emitter byte `+5`, and the variant, byte `+6`. Each draw is
-`003A6E60(n)`, the presentation random stream, and the last pick of each family is kept in a nibble of bytes `+1`-`+3`,
+`0x0046C250(emitter, type)` sets the bank group, emitter byte `+5`, and the variant, byte `+6`. Each draw is
+`0x003A6E60(n)`, the presentation random stream, and the last pick of each family is kept in a nibble of bytes `+1`-`+3`,
 so a repeat is stepped down by one, wrapping:
 
 | Type | Group | Variant |
@@ -66,31 +66,31 @@ so a repeat is stepped down by one, wrapping:
 | 8, 9, 10 | `2` | `0x15`, `0x17`, `0x19` |
 | 11, 12 | `0` | `0x0E`, `0x0F` |
 
-Types 4 and 5 are also silent when `003326C0` finds nothing for emitter word `+8` (`0046C433`, `0046C50F`).
+Types 4 and 5 are also silent when `0x003326C0` finds nothing for emitter word `+8` (`0x0046C433`, `0x0046C50F`).
 
 ### Where it is heard from
 
-`0046C6E0` and `0046C8F0` find the point by type from one table, and the source's radius is half the character's
-parameter `0x9001D1E`. `0046C6E0` runs first and can refuse the sound. `0046C8F0` builds the spatial source, scales
+`0x0046C6E0` and `0x0046C8F0` find the point by type from one table, and the source's radius is half the character's
+parameter `0x9001D1E`. `0x0046C6E0` runs first and can refuse the sound. `0x0046C8F0` builds the spatial source, scales
 its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 0 and calls the play routine
 ([Spatial sound](spatial-sound.md)).
 
 ### Which sample
 
-`002E9D90(actor record, group, variant, footstep flag)` finds the sample in the actor's sound set at `+0xC0`:
+`0x002E9D90(actor record, group, variant, footstep flag)` finds the sample in the actor's sound set at `+0xC0`:
 
 - Group 0 reads its block from the binding in the presentation record's first attach slot (`[actor + 0xC0] + 0x30`,
-  `002E9F50`); only the weapon (`w`) rows of `charseinfo` author that block. Groups 1 and 2 read the set itself.
-- For group 1, the footstep, the index is the movement body's ground type `+0x8A` (`002E9F29`) looked up in
+  `0x002E9F50`); only the weapon (`w`) rows of `charseinfo` author that block. Groups 1 and 2 read the set itself.
+- For group 1, the footstep, the index is the movement body's ground type `+0x8A` (`0x002E9F29`) looked up in
   `soundfoottable.bin`, with the table's 32 added when the flag and the field's environment variant are both set.
 - For group 2 with a variant below 10, when the actor's voice-pool entry (`+0x20` of the actor it resolves to through
-  `00263F40` and `00263F10`) has state 3, its bank loaded (`0036ECA0`), the sound comes straight from that bank
-  (`0036EC50`, `002E9F81`): the character's own voice.
+  `0x00263F40` and `0x00263F10`) has state 3, its bank loaded (`0x0036ECA0`), the sound comes straight from that bank
+  (`0x0036EC50`, `0x002E9F81`): the character's own voice.
 - The footstep flag is set for types 1, 8, 9 and 10.
 
 ### The play routine
 
-`0046CC70` refuses unless the emitter is enabled, byte `+0` = 1, and its owner is live. Then by mode:
+`0x0046CC70` refuses unless the emitter is enabled, byte `+0` = 1, and its owner is live. Then by mode:
 
 | Mode | Does |
 |---:|---|
@@ -99,19 +99,19 @@ its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 
 | `4` | an explicit sound number at the character, bit 31 added below `0x100` |
 | `5` | with type 1, stores `0xC00` in emitter word `+5` |
 
-`003A0E50(id, position, record)` makes the sound. An id with bit 30 set is a battle-voice line, bank `id >> 8 & 0xFF`
-and line `id & 0xFF`, played at the point in the Config voice language (`002DF460`); any other id plays from a block
-bank at the point (`002DF280`), and -1 plays nothing. The same call serves `0046C8F0`, `00332C40` and `003B99D0`.
-`003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays (`0046CE04`-`0046CE1F`), with the
-kind from emitter byte `+0x07`: kind 0 through the battle-voice stop (`001DC330`), kind 1 through `002DF0F0`.
+`0x003A0E50(id, position, record)` makes the sound. An id with bit 30 set is a battle-voice line, bank `id >> 8 & 0xFF`
+and line `id & 0xFF`, played at the point in the Config voice language (`0x002DF460`); any other id plays from a block
+bank at the point (`0x002DF280`), and -1 plays nothing. The same call serves `0x0046C8F0`, `0x00332C40` and `0x003B99D0`.
+`0x003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays (`0x0046CE04`-`0x0046CE1F`), with the
+kind from emitter byte `+0x07`: kind 0 through the battle-voice stop (`0x001DC330`), kind 1 through `0x002DF0F0`.
 
-That kind is written when a voice of types 4-7 starts: `003A10F0(id)` returns 1 when bit 30 of the id is clear
-(a block-bank sound) and 0 when it is set (a battle-voice line), and `0046D055`-`0046D05E` stores it at `+0x07`
+That kind is written when a voice of types 4-7 starts: `0x003A10F0(id)` returns 1 when bit 30 of the id is clear
+(a block-bank sound) and 0 when it is set (a battle-voice line), and `0x0046D055`-`0x0046D05E` stores it at `+0x07`
 beside the handle `+0x18` and the type `+0x1C`.
 
-The battle routine `00307300` plays mode 4 at a battle record's actor through `00329F70` (`00307727`), which passes
-the record's `+0x08` to `0046CBB0`. That finds the actor's render record (`0x740` bytes each from `[022C6F28]`) and
-calls `0046CC70` on its emitter at `+0x5F0`.
+The battle routine `0x00307300` plays mode 4 at a battle record's actor through `0x00329F70` (`0x00307727`), which passes
+the record's `+0x08` to `0x0046CBB0`. That finds the actor's render record (`0x740` bytes each from `[0x022C6F28]`) and
+calls `0x0046CC70` on its emitter at `+0x5F0`.
 
 ## Modding notes
 

@@ -2,7 +2,7 @@
 title: "Bigfile archive: the VBF container, how its index loads and is checked, and how a read reaches the file"
 kind: "system"
 category: "Game files and data tables"
-addresses: "0017CEB0, 0019B070, 001F4340, 001F4120, 001F4720, 001F3FD0, 0019AEE0, 001F47D0, 001F4250, 00214FC0, 00215290, 00215110, 0019AFE0, 0019A770, 0019A860, 0019AA20, 0080C5A0, 01F81110, 009038C8, 008C2140, 008C2EF0, 0017D280, 008098D4, 007A0A80, 001F4060, 002150B0, 001F4840, 00215220, 0019B200, 0019A660, 0019A6E0, 0019A9B0"
+addresses: "0x0017CEB0, 0x0019B070, 0x001F4340, 0x001F4120, 0x001F4720, 0x001F3FD0, 0x0019AEE0, 0x001F47D0, 0x001F4250, 0x00214FC0, 0x00215290, 0x00215110, 0x0019AFE0, 0x0019A770, 0x0019A860, 0x0019AA20, 0x0080C5A0, 0x01F81110, 0x009038C8, 0x008C2140, 0x008C2EF0, 0x0017D280, 0x008098D4, 0x007A0A80, 0x001F4060, 0x002150B0, 0x001F4840, 0x00215220, 0x0019B200, 0x0019A660, 0x0019A6E0, 0x0019A9B0"
 ---
 
 ## What the player sees
@@ -17,22 +17,22 @@ error box, "Broken game data, please repair or restore the data."
 
 ### Mounting
 
-`0017CEB0` sets the base path (`0059A770("../../..")`), calls `0019B190`, and mounts
-`"../FFXII_TZA.vbf"` into the archive manager from `0019B1F0` with `0019B070`; it never tests the
-result. `0019B070(manager, path)` puts a new `0xB0`-byte archive object in the first empty one of the
-manager's five slots `+0x20..+0x40` and opens it with `001F4340`; when the open fails it destroys and
-frees the object (`001F4120`) and clears the slot. With all five slots full it returns false without
-opening anything. `0017CEB0` is the only caller of `0019B070`, so the shipped game fills slot 0 only.
+`0x0017CEB0` sets the base path (`0x0059A770("../../..")`), calls `0x0019B190`, and mounts
+`"../FFXII_TZA.vbf"` into the archive manager from `0x0019B1F0` with `0x0019B070`; it never tests the
+result. `0x0019B070(manager, path)` puts a new `0xB0`-byte archive object in the first empty one of the
+manager's five slots `+0x20..+0x40` and opens it with `0x001F4340`; when the open fails it destroys and
+frees the object (`0x001F4120`) and clears the slot. With all five slots full it returns false without
+opening anything. `0x0017CEB0` is the only caller of `0x0019B070`, so the shipped game fills slot 0 only.
 
-`001F4060` constructs the object: an empty key tree whose
-nodes come from a `PMapPair` allocator (`0067FFB0`, `0x30`-byte nodes), null tables and handles, and the
+`0x001F4060` constructs the object: an empty key tree whose
+nodes come from a `PMapPair` allocator (`0x0067FFB0`, `0x30`-byte nodes), null tables and handles, and the
 critical section `+0x80`.
 
 ### Loading and checking the index
 
-`001F4340(archive, path)` copies the path into a 260-byte buffer (`+0x78`) and opens it with CRT
+`0x001F4340(archive, path)` copies the path into a 260-byte buffer (`+0x78`) and opens it with CRT
 `fopen(path, "rb")`; a null path or a failed `fopen` returns false. It reads the magic and refuses
-anything but `0x4B595253` (`'SRYK'`): it logs `"BigFile head wrong!\n"` (`009038C8`) through `0017D280`
+anything but `0x4B595253` (`'SRYK'`): it logs `"BigFile head wrong!\n"` (`0x009038C8`) through `0x0017D280`
 and returns false without closing the file. It reads `indexSize` (the second dword), seeks 16 bytes
 before the end and reads the stored digest there, then reads the first `indexSize` bytes of the file
 in one `fread` into `+0x00` and closes the file.
@@ -54,80 +54,80 @@ After the check the opener:
    for each entry, its last block is set to 0 when the entry's block-size value equals
    `size & 0xFFFF`.
 4. Rebases each record's `nameOffset` to a pointer (adding the name table's start) and inserts the
-   record under its key into a red-black tree at `+0x08` (`001F4720` → `001F3FD0`); nodes hold the key
+   record under its key into a red-black tree at `+0x08` (`0x001F4720` → `0x001F3FD0`); nodes hold the key
    at `+0x18` and the record pointer at `+0x28`, ordered by the halves as signed 64-bit values, `+0x18`
-   first and `+0x20` on a tie (`001F4008`-`001F4028`).
+   first and `+0x20` on a tie (`0x001F4008`-`0x001F4028`).
 5. Allocates fifteen `0x30`-byte reader handles (`0x2D8` bytes, a count of 15 first) at `+0xA8`, and
-   opens the archive in each one (`00215290`).
+   opens the archive in each one (`0x00215290`).
 
 ### Finding a file
 
-`0019AEE0(manager, name)` returns 0 when the manager pointer `01F81110` is null. Otherwise it
+`0x0019AEE0(manager, name)` returns 0 when the manager pointer `0x01F81110` is null. Otherwise it
 MD5-hashes the name from offset `[manager + 0x70]` and asks each filled slot in order 0 to 4 through
-`001F47D0(archive, digest)`; the first hit wins. `001F47D0` walks the tree with the same signed order
-and hands the record to `001F4250`, which takes the first free handle of the fifteen under the
+`0x001F47D0(archive, digest)`; the first hit wins. `0x001F47D0` walks the tree with the same signed order
+and hands the record to `0x001F4250`, which takes the first free handle of the fifteen under the
 archive's lock (`+0x80`). When all fifteen are busy it builds a fresh handle for that open
-(`008098D4(0x30)`, `00214FC0`, `00215290`), which never joins the pool. The lookup never compares
+(`0x008098D4(0x30)`, `0x00214FC0`, `0x00215290`), which never joins the pool. The lookup never compares
 names.
 
-`002150B0(handle, record)` binds a handle: it stores the record at `+0x18`, sets the position `+0x20`
+`0x002150B0(handle, record)` binds a handle: it stores the record at `+0x18`, sets the position `+0x20`
 and the window's bounds to 0 and the in-use byte `+0x00` to 1. The resolver takes the file's size from
-the record through `00215280`. Closing a stream releases its handle through `002150D0` →
-`001F4840(archive, handle)`: a handle of the fifteen is cleared (`002152D0`: record, position and
-in-use byte), and any other is destroyed (`00215040`: frees its 64 KiB window and closes its file) and
+the record through `0x00215280`. Closing a stream releases its handle through `0x002150D0` →
+`0x001F4840(archive, handle)`: a handle of the fifteen is cleared (`0x002152D0`: record, position and
+in-use byte), and any other is destroyed (`0x00215040`: frees its 64 KiB window and closes its file) and
 freed.
 
 ### Reading bytes
 
-A handle read `00215110(handle, buffer, n)` takes n as 32 bits, clamps it to `size − position` when the read would pass the
+A handle read `0x00215110(handle, buffer, n)` takes n as 32 bits, clamps it to `size − position` when the read would pass the
 entry's size (returning 0 when nothing is left), serves what it can from the handle's 64 KiB window,
-and passes the rest to the archive reader `0019AFE0`.
+and passes the rest to the archive reader `0x0019AFE0`.
 
-A handle seek `00215220(handle, offset, origin)` sets the position to the offset (origin 0), adds
+A handle seek `0x00215220(handle, offset, origin)` sets the position to the offset (origin 0), adds
 the offset (1) or sets it to the size minus the offset (2), and returns the new position, or
 `FFFFFFFF` for another origin. It tests only the offset argument: a negative offset or one above the
 size returns `FFFFFFFF` after the position has changed, and origin 1 can move the position past the
 size.
 
-`0019A770` plans a read: starting at the record's `firstBlock` and its archive `offset`, it skips
+`0x0019A770` plans a read: starting at the record's `firstBlock` and its archive `offset`, it skips
 whole 64 KiB blocks by adding each skipped block's stored size (a block-size value of 0 counts as
-`0x10000`). `0019A860` seeks there (`_fseeki64`) and reads the stored blocks with CRT `fread`.
-`0019AA20` turns each block into 64 KiB (or the tail's length): a block whose `+0x70` byte is 0 is
-copied as stored, any other is inflated with zlib 1.2.11's `uncompress` (`0080C5A0`).
+`0x10000`). `0x0019A860` seeks there (`_fseeki64`) and reads the stored blocks with CRT `fread`.
+`0x0019AA20` turns each block into 64 KiB (or the tail's length): a block whose `+0x70` byte is 0 is
+copied as stored, any other is inflated with zlib 1.2.11's `uncompress` (`0x0080C5A0`).
 
 When an
 `uncompress` call returns an error or the total differs from the expected length `+0x58`, it
-loads string-table text `0x7834` (`0019A510`, [Steam integration](../Steam-And-Achievements/steam-integration.md)),
+loads string-table text `0x7834` (`0x0019A510`, [Steam integration](../Steam-And-Achievements/steam-integration.md)),
 shows it with `MessageBoxW` under the caption "error" and sets its state `+0x88` to 6; otherwise
 the state becomes 5.
 
-`0019AA20` ORs every
+`0x0019AA20` ORs every
 `uncompress` result; when any is non-zero, or the bytes produced do not total the request (`+0x58`),
-it calls `007A0A80(1)`, shows `MessageBoxW` with string resource `0x7834` and caption `error`, and
+it calls `0x007A0A80(1)`, shows `MessageBoxW` with string resource `0x7834` and caption `error`, and
 sets the read's state `+0x88` to 6; otherwise to 5.
 
 ### Read records
 
-The manager `01F81110` (`0x80` bytes, `0019B190` → `0019AE70`) holds thirty read records of `0x98`
-bytes built by `0019B200(manager + 8, 30)`, which constructs each with `0019A3B0` (`0019A2A0`: three
+The manager `0x01F81110` (`0x80` bytes, `0x0019B190` → `0x0019AE70`) holds thirty read records of `0x98`
+bytes built by `0x0019B200(manager + 8, 30)`, which constructs each with `0x0019A3B0` (`0x0019A2A0`: three
 part descriptors, each with its own 64 KiB buffer) and creates a semaphore with thirty counts.
 
-- `0019A660` waits on the semaphore, then claims the first record whose busy word `+0x90` it can
+- `0x0019A660` waits on the semaphore, then claims the first record whose busy word `+0x90` it can
   change from 0 to 1 atomically, and raises its use count `+0x40`.
-- `0019A6E0(manager, start, block, n)`, `block` = `0x10000`, takes a record that way. With `start`
+- `0x0019A6E0(manager, start, block, n)`, `block` = `0x10000`, takes a record that way. With `start`
   not 0 it marks the head used with offset `start` and length `head = min(block - start, n)`, then
-  `n -= head` (`0019A70F`-`0019A736`); it marks the middle used when `n >= block`
-  (`0019A739`-`0019A741`) and the tail used with length `n % block` when that is above 0
-  (`0019A744`-`0019A759`).
-- After the read, `0019A9B0` lowers the use count under the manager's critical section `+0x48`; at 0
-  it resets the record (`0019B130`), clears the busy word and releases one semaphore count.
+  `n -= head` (`0x0019A70F`-`0x0019A736`); it marks the middle used when `n >= block`
+  (`0x0019A739`-`0x0019A741`) and the tail used with length `n % block` when that is above 0
+  (`0x0019A744`-`0x0019A759`).
+- After the read, `0x0019A9B0` lowers the use count under the manager's critical section `+0x48`; at 0
+  it resets the record (`0x0019B130`), clears the busy word and releases one semaphore count.
 
-`0019AFE0` returns the byte count it was asked for when the read's state is 5 and 0 otherwise.
+`0x0019AFE0` returns the byte count it was asked for when the read's state is 5 and 0 otherwise.
 
-The import table has no `CreateFileMapping` or `MapViewOfFile`. `ReadFile` (`008C2140`) has three
-call sites (`0059A9B0`, `0059D4B0`, `0059F4A0`), `SetFilePointer` two and `CreateFileA` two (the
-minidump writers `005CCAB0` and `0079B1E0`); CRT `fread` (`008C2EF0`) has 17, including
-`001F4340` and `0019A860`.
+The import table has no `CreateFileMapping` or `MapViewOfFile`. `ReadFile` (`0x008C2140`) has three
+call sites (`0x0059A9B0`, `0x0059D4B0`, `0x0059F4A0`), `SetFilePointer` two and `CreateFileA` two (the
+minidump writers `0x005CCAB0` and `0x0079B1E0`); CRT `fread` (`0x008C2EF0`) has 17, including
+`0x001F4340` and `0x0019A860`.
 
 ## Layouts
 
@@ -140,7 +140,7 @@ The file starts with the index; `indexSize` bytes of it are covered by the diges
 | `+0x00` | `u32` | magic | `'SRYK'` |
 | `+0x04` | `u32` | indexSize | |
 | `+0x08` | `u32` | count | entries |
-| `+0x0C` | `u32` | zero | not read |
+| `+0x0C` | `u8[4]` | zero | read and written by no function (the opener `0x001F4340` reads the magic and `indexSize`, then the whole index as bytes); nothing fixes its width |
 | `+0x10` | `u8[16]` | keys | one per entry: the MD5 of its name |
 
 After the keys come `count` entry records, then the names (a `u32` length that counts itself, then
@@ -153,7 +153,7 @@ The last 16 bytes of the file are the MD5 of `[0, indexSize)`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | firstBlock | |
-| `+0x04` | `u32` | firstBlock copy | not read |
+| `+0x04` | `u8[4]` | firstBlock copy | read and written by no function (`0x0019A770` plans a read from `firstBlock`, `size` and `offset`); nothing fixes its width |
 | `+0x08` | `u64` | size | uncompressed |
 | `+0x10` | `u64` | offset | archive offset of the first stored block |
 | `+0x18` | `u64` | nameOffset | from the first name |
@@ -196,7 +196,7 @@ The last 16 bytes of the file are the MD5 of `[0, indexSize)`.
 | `+0x08` | `Part*` | head | |
 | `+0x10` | `Part*` | middle | |
 | `+0x18` | `Part*` | tail | |
-| `+0x30` | `u32` | owned | non-zero: the reset frees the buffer at `38`; zeroed by `0019A2A0` and the reset `0019B130` |
+| `+0x30` | `u32` | owned | non-zero: the reset frees the buffer at `38`; zeroed by `0x0019A2A0` and the reset `0x0019B130` |
 | `+0x38` | `void*` | buffer | freed with `free` while `30` is non-zero |
 | `+0x40` | `u32` | use count | |
 | `+0x48` | `u64` | archive offset | |
@@ -245,7 +245,7 @@ stored block, and one inflate per compressed block.
 
 ## State
 
-The archive manager at `01F81110` with its five slots; each archive's index buffer, key tree, block
+The archive manager at `0x01F81110` with its five slots; each archive's index buffer, key tree, block
 tables and reader handles.
 
 ## Modding notes
@@ -264,7 +264,7 @@ To repack `FFXII_TZA.vbf` so that the game accepts it:
   exactly the tail's length would be read as raw, so store such a tail raw.
 - Recompute the MD5 of `[0, indexSize)` into the last 16 bytes whenever the index changes. Replacing
   an entry's stored bytes in place with the same length leaves the index, and so the digest, unchanged.
-- A mod can mount up to four more archives through `0019B070`; slots are searched in order, so an
+- A mod can mount up to four more archives through `0x0019B070`; slots are searched in order, so an
   earlier slot overrides a later one.
 
 ## Related

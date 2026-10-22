@@ -1,23 +1,23 @@
 function	name	site	disp	kind	instruction	route	note
-005DC400	FUN_005dc400	005DC400	0x58	w	mov dword ptr [rcx], 0x1010105	ctor-seeded 006C0EB0	
-005DC400	FUN_005dc400	005DC408	0x5c	w	mov byte ptr [rcx + 4], 1	ctor-seeded 006C0EB0	
-005DC400	FUN_005dc400	005DC40C	0x60	w	mov dword ptr [rcx + 8], eax	ctor-seeded 006C0EB0	
-005DC400	FUN_005dc400	005DC40F	0x6c	w	mov dword ptr [rcx + 0x14], eax	ctor-seeded 006C0EB0	
-005DC400	FUN_005dc400	005DC415	0x64	w	mov qword ptr [rcx + 0xc], 0x3f800000	ctor-seeded 006C0EB0	
-005DC400	FUN_005dc400	005DC41D	0x70	w	mov qword ptr [rcx + 0x18], 0x400	ctor-seeded 006C0EB0	
-00615CD0	FUN_00615cd0	00615CE1	0x78	w	mov qword ptr [rbx + 0x20], 0	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0ECD	0x0	w	mov qword ptr [rdi], rcx	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0ED7	0x8	w	mov qword ptr [rdi + 8], rax	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0EDB	0x10	w	mov dword ptr [rdi + 0x10], ecx	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0EDE	0x18	w	mov qword ptr [rdi + 0x18], rcx	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0EE2	0x50	w	mov dword ptr [rdi + 0x50], 0x3727c5ac	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0EFA	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F04	0x58	w	mov byte ptr [rbx], 1	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F07	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F11	0x59	w	mov byte ptr [rbx + 1], 1	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F15	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F1F	0x5a	w	mov byte ptr [rbx + 2], 2	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F23	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F2D	0x5b	w	mov byte ptr [rbx + 3], 2	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F31	0x74	r	mov ecx, dword ptr [rbx + 0x1c]	ctor-seeded 006C0EB0	
-006C0EB0	FUN_006c0eb0	006C0F40	0x74	w	mov dword ptr [rbx + 0x1c], ecx	ctor-seeded 006C0EB0	
+0x005DC400	FUN_005dc400	0x005DC400	0x58	w	mov dword ptr [rcx], 0x1010105	ctor-seeded 0x006C0EB0	
+0x005DC400	FUN_005dc400	0x005DC408	0x5c	w	mov byte ptr [rcx + 4], 1	ctor-seeded 0x006C0EB0	
+0x005DC400	FUN_005dc400	0x005DC40C	0x60	w	mov dword ptr [rcx + 8], eax	ctor-seeded 0x006C0EB0	
+0x005DC400	FUN_005dc400	0x005DC40F	0x6c	w	mov dword ptr [rcx + 0x14], eax	ctor-seeded 0x006C0EB0	
+0x005DC400	FUN_005dc400	0x005DC415	0x64	w	mov qword ptr [rcx + 0xc], 0x3f800000	ctor-seeded 0x006C0EB0	
+0x005DC400	FUN_005dc400	0x005DC41D	0x70	w	mov qword ptr [rcx + 0x18], 0x400	ctor-seeded 0x006C0EB0	
+0x00615CD0	FUN_00615cd0	0x00615CE1	0x78	w	mov qword ptr [rbx + 0x20], 0	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0ECD	0x0	w	mov qword ptr [rdi], rcx	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0ED7	0x8	w	mov qword ptr [rdi + 8], rax	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0EDB	0x10	w	mov dword ptr [rdi + 0x10], ecx	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0EDE	0x18	w	mov qword ptr [rdi + 0x18], rcx	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0EE2	0x50	w	mov dword ptr [rdi + 0x50], 0x3727c5ac	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0EFA	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F04	0x58	w	mov byte ptr [rbx], 1	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F07	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F11	0x59	w	mov byte ptr [rbx + 1], 1	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F15	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F1F	0x5a	w	mov byte ptr [rbx + 2], 2	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F23	0x74	r	mov eax, dword ptr [rbx + 0x1c]	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F2D	0x5b	w	mov byte ptr [rbx + 3], 2	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F31	0x74	r	mov ecx, dword ptr [rbx + 0x1c]	ctor-seeded 0x006C0EB0	
+0x006C0EB0	FUN_006c0eb0	0x006C0F40	0x74	w	mov dword ptr [rbx + 0x1c], ecx	ctor-seeded 0x006C0EB0	

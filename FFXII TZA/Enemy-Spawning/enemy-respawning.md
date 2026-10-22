@@ -2,7 +2,7 @@
 title: "Enemy respawning: death counts, cooldowns, the group table that wakes a zone script, and the two-area memory"
 kind: "system"
 category: "Enemy spawning"
-addresses: "00300530, 002395A0, 0032A100, 0032A160, 0032A150, 00235F50, 00235FB0, 002366E0, 00236670, 00235720, 00306E60, 00239710, 0050F8C0, 00306F00, 003250F0, 00307110, 00307030, 003070E0, 00233D20, 0026ADC0, 00307140, 00238B70, 00238AE0, 00307090, 002342F0, 00233780, 002368D0, 00235340, 00235330, 00237DF0, 00233C10, 00233440, 00233550, 00234990, 002352E0, 00300E40, 002350C0, 00328370, 003148F0"
+addresses: "0x00300530, 0x002395A0, 0x0032A100, 0x0032A160, 0x0032A150, 0x00235F50, 0x00235FB0, 0x002366E0, 0x00236670, 0x00235720, 0x00306E60, 0x00239710, 0x0050F8C0, 0x00306F00, 0x003250F0, 0x00307110, 0x00307030, 0x003070E0, 0x00233D20, 0x0026ADC0, 0x00307140, 0x00238B70, 0x00238AE0, 0x00307090, 0x002342F0, 0x00233780, 0x002368D0, 0x00235340, 0x00235330, 0x00237DF0, 0x00233C10, 0x00233440, 0x00233550, 0x00234990, 0x002352E0, 0x00300E40, 0x002350C0, 0x00328370, 0x003148F0"
 ---
 
 ## What the player sees
@@ -28,25 +28,25 @@ tick the list.
 
 ### Recording a death
 
-The HP modifier `00300530` is the one path to a death. On its lethal branch, when the unit's stats
+The HP modifier `0x00300530` is the one path to a death. On its lethal branch, when the unit's stats
 record at `+0x698` has kind byte `+0x05` = 1 (an enemy built from the enemy definition table,
 [battle unit construction](../Characters-And-Objects/battle-unit-construction.md)), it takes the spawn
-record at unit `+0x6A0` and increments its death count `+0x08` (`00300801`). It then reads the
-frame counter through `0032A150`, divides it by `(int)(30.0 * [01DFE0B8])` with an unsigned `div`
-(`00300820`) and stores the quotient at `+0x0C` (`00300829`): the second of the death.
+record at unit `+0x6A0` and increments its death count `+0x08` (`0x00300801`). It then reads the
+frame counter through `0x0032A150`, divides it by `(int)(30.0 * [0x01DFE0B8])` with an unsigned `div`
+(`0x00300820`) and stores the quotient at `+0x0C` (`0x00300829`): the second of the death.
 
 The divisor is 30 at the 30 fps setting and 60 at 60 fps, so the stamp is in whole seconds at
-either rate. It then calls the group table's death handler `00306F00` (`0030082F`). When that returns 1 the
-group completed, and the modifier skips its own death presentation event (`00300836`); otherwise
+either rate. It then calls the group table's death handler `0x00306F00` (`0x0030082F`). When that returns 1 the
+group completed, and the modifier skips its own death presentation event (`0x00300836`); otherwise
 it dispatches, when a local flag allows it, `0x200E` when its argument has bit 8, else `0x2007` or
-`0x2008` by a second argument (`00300838`-`0030085F`).
+`0x2008` by a second argument (`0x00300838`-`0x0030085F`).
 
 ### The authored limit and cooldown
 
-`002395A0(table)` is the tail of the script verb that installs a zone's spawn table. The table is
+`0x002395A0(table)` is the tail of the script verb that installs a zone's spawn table. The table is
 `b_00` = entry count, `b_01` = whether keys are authored, `w_02` = row stride, rows from `+4`. For
-each live-bank entry `i` whose flag bit 1 (committed) is clear (`002395E3`) it writes, with
-`rand` = `00328370` (the shared gameplay generator,
+each live-bank entry `i` whose flag bit 1 (committed) is clear (`0x002395E3`) it writes, with
+`rand` = `0x00328370` (the shared gameplay generator,
 [random number generators](../Random-Numbers/random-number-generators.md)):
 
 ```python
@@ -61,52 +61,52 @@ cooldowns. A committed entry keeps its numbers: the roll happens once per bank l
 
 ### The clock
 
-The counter `0208D45C` is advanced by `0032A100`, which the field frame `00234590` calls once per
-frame (`002345CA`): when timer 0 reports done (`003EBB70(0)`) it restarts it (`003EBBB0(0, 0, 1)`,
-`003EBD00(0)`), then reads the timer's value through `003EBA90(0)` and increments the counter only
-when that value differs from the one it kept at `022C317C` (`0032A12A`-`0032A135`). The only other
-writer is `0032A160`, which zeroes it, and its one caller is the battle runtime reset `00237DF0`
-(`00237E37`). No save writes or restores it.
+The counter `0x0208D45C` is advanced by `0x0032A100`, which the field frame `0x00234590` calls once per
+frame (`0x002345CA`): when timer 0 reports done (`0x003EBB70(0)`) it restarts it (`0x003EBBB0(0, 0, 1)`,
+`0x003EBD00(0)`), then reads the timer's value through `0x003EBA90(0)` and increments the counter only
+when that value differs from the one it kept at `0x022C317C` (`0x0032A12A`-`0x0032A135`). The only other
+writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
+(`0x00237E37`). No save writes or restores it.
 
-Other code reads the counter directly (`00319600`,
-`003247F0`, `00317670`, `003191B0`); none of it is respawn code.
+Other code reads the counter directly (`0x00319600`,
+`0x003247F0`, `0x00317670`, `0x003191B0`); none of it is respawn code.
 
-The same reset zeroes the transition stamp `02089374` (`00237E53`), sets the two field-history
-words `02089372` and `02089370` to `0xFFFF` (`00237E5D`, `00237E64`) and clears the bank parity
-`0208D454` (`00237E6B`).
+The same reset zeroes the transition stamp `0x02089374` (`0x00237E53`), sets the two field-history
+words `0x02089372` and `0x02089370` to `0xFFFF` (`0x00237E5D`, `0x00237E64`) and clears the bank parity
+`0x0208D454` (`0x00237E6B`).
 
-The reset runs from the battle-state guard `00233C10`: twice when the
-block pointer `02EBF190` is null (`00233C3F`, `00233C48`), once when the block's stamp is not
-`0x05071901` (`00233C59`). Its other callers are the area reset `00239960` when the request byte
-`0208D455` holds -2 (`0023998E`; the byte is a one-shot request, copied to `0208D456` and set to -1 before the test), `00238AA2` and `00394486`. An ordinary load whose block passes the
+The reset runs from the battle-state guard `0x00233C10`: twice when the
+block pointer `0x02EBF190` is null (`0x00233C3F`, `0x00233C48`), once when the block's stamp is not
+`0x05071901` (`0x00233C59`). Its other callers are the area reset `0x00239960` when the request byte
+`0x0208D455` holds -2 (`0x0023998E`; the byte is a one-shot request, copied to `0x0208D456` and set to -1 before the test), `0x00238AA2` and `0x00394486`. An ordinary load whose block passes the
 stamp test does not restart the clock.
 
 ### Two readers of the cooldown
 
 The zone script reads the three fields through three verbs, each a wrapper around one accessor
 that resolves the lane through the unit's lane map at `+0x40` (count at `+0`, slot bytes from `+1`,
-`0xFF` empty) and the live bank `[0208E690] + slot * 0x250`:
+`0xFF` empty) and the live bank `[0x0208E690] + slot * 0x250`:
 
 | Accessor | Verb wrapper | Returns |
 |---|---|---|
-| `00235F50(lane)` | `0050F660` | the death count `+0x08`, or -1 |
-| `00235FB0(lane)` | `0050FAB0` | `counter / fps - stamp +0x0C`, the elapsed seconds, or -1 |
-| `002366E0(lane)` | `005101F0` | the cooldown `+0x10`, or -1 |
-| `00236670()` | `0050FC90` | flag bit 0 of the unit's own entry (retired, awaiting re-entry) when bit 1 is set and bit 2 clear, else -1 |
+| `0x00235F50(lane)` | `0x0050F660` | the death count `+0x08`, or -1 |
+| `0x00235FB0(lane)` | `0x0050FAB0` | `counter / fps - stamp +0x0C`, the elapsed seconds, or -1 |
+| `0x002366E0(lane)` | `0x005101F0` | the cooldown `+0x10`, or -1 |
+| `0x00236670()` | `0x0050FC90` | flag bit 0 of the unit's own entry (retired, awaiting re-entry) when bit 1 is set and bit 2 clear, else -1 |
 
 The elapsed seconds come back as a signed int, so the script's own test is signed. The shipped zone
 scripts compare the two verbs with a strict greater-than (every `btlAtelGetRespawnTime` call in the
 corpus is `btlAtelGetElapseTime(i) > btlAtelGetRespawnTime(i)`), so a cooldown of N seconds
 passes at the first second where `floor(counter / fps) - stamp > N`, one second later than N.
 
-The automatic spawn selector `00235720` ([enemy spawning](enemy-spawning.md)) reads the fields
-directly and differently. It examines no entry at all when the active count `00308D90()` has reached
-the cap byte `0208D458` (`00235758`-`00235766`, returns -1).
+The automatic spawn selector `0x00235720` ([enemy spawning](enemy-spawning.md)) reads the fields
+directly and differently. It examines no entry at all when the active count `0x00308D90()` has reached
+the cap byte `0x0208D458` (`0x00235758`-`0x00235766`, returns -1).
 
 It skips an entry whose limit `+0x0A` is non-zero and whose count
-`+0x08` has reached it (`002358A1`-`002358B0`). For an entry with flag bit 0 clear and bit 1 set
+`+0x08` has reached it (`0x002358A1`-`0x002358B0`). For an entry with flag bit 0 clear and bit 1 set
 and a non-zero cooldown, it skips while `seconds - stamp < cooldown` as an unsigned compare
-(`002358D1` `sub`, `002358D5` `cmp`, `002358D7` `jb`): the native gate re-admits at `elapsed >= N`.
+(`0x002358D1` `sub`, `0x002358D5` `cmp`, `0x002358D7` `jb`): the native gate re-admits at `elapsed >= N`.
 An entry with bit 0 set, one that range retirement marked, skips the cooldown test altogether.
 
 ### After a runtime reset
@@ -121,157 +121,157 @@ stamp is exactly `counter + 1`.
 ### Registering a group member
 
 A zone script puts an enemy in a group with verb `0x3030` `btlAtelSetEventFlagGroup(group, mode)`.
-Its handler `0050F8C0` pops two ints and calls `00239710(actor, mode, group)`, which needs the
-actor's battle unit (`0031B760`, else returns -1) and writes unit `+0xE98` = `group` and `+0xE99`
-= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, bits 2-7 kept (`00239746`-`00239766`), then calls
-`00306E60(unit, 1)`.
+Its handler `0x0050F8C0` pops two ints and calls `0x00239710(actor, mode, group)`, which needs the
+actor's battle unit (`0x0031B760`, else returns -1) and writes unit `+0xE98` = `group` and `+0xE99`
+= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, bits 2-7 kept (`0x00239746`-`0x00239766`), then calls
+`0x00306E60(unit, 1)`.
 
-`00306E60(unit, add)` is the only writer of the member mask. It returns without effect when the unit
+`0x00306E60(unit, add)` is the only writer of the member mask. It returns without effect when the unit
 is null, its stats record `+0x698` is null or not kind 1, or its group byte `+0xE98` is 0. It
-resolves the unit's slot as `002360D0(map at +0x40, 00263D30(actor at +0x10))` and rejects a
+resolves the unit's slot as `0x002360D0(map at +0x40, 0x00263D30(actor at +0x10))` and rejects a
 negative. The bit is `(int64)(int32)(1 << (slot & 31))`: a 32-bit shift, sign-extended, so slot 31
 covers bits 31-63 and slots 32 and above alias onto `slot & 31`. With `add` set the member mask
-gains the bit, otherwise it loses it; the dead bit is cleared either way (`00306EEA`).
+gains the bit, otherwise it loses it; the dead bit is cleared either way (`0x00306EEA`).
 
-Range retirement (`002350C0`, `002352BB`) is the one caller with `add` = 0: a retired member leaves
+Range retirement (`0x002350C0`, `0x002352BB`) is the one caller with `add` = 0: a retired member leaves
 the checklist without dying.
 
 ### Completing a group
 
-`00306F00(unit)` runs on every lethal branch of the HP modifier; its own gates keep only a kind-1
+`0x00306F00(unit)` runs on every lethal branch of the HP modifier; its own gates keep only a kind-1
 unit with a non-zero group byte. With the same gates as the registration and the same slot
-resolution it sets `group table[group - 1].deadMask |= bit` (`00306F78`) and tests
-`(memberMask & deadMask) == memberMask` (`00306F7C`-`00306F83`). The test is a mask comparison,
+resolution it sets `group table[group - 1].deadMask |= bit` (`0x00306F78`) and tests
+`(memberMask & deadMask) == memberMask` (`0x00306F7C`-`0x00306F83`). The test is a mask comparison,
 not a count: killing a member twice changes nothing, a unit outside the member mask cannot complete
 the group, and a group with an empty member mask completes on its first death.
 
 On completion it locks the party (next section) and chooses an arm by `+0xE99` bit 0:
 
-- mode 1 (`00306FC9`-`00306FE8`): clear unit flag bit 47, set the group table's flag bit 0, dispatch
+- mode 1 (`0x00306FC9`-`0x00306FE8`): clear unit flag bit 47, set the group table's flag bit 0, dispatch
   presentation event `0x2005`;
-- any other mode (`0030700C`-`00307012`): set unit flag bit 47, dispatch `0x2008`. The flag is
-  raised later by the reaction handler `003250F0`: on the death events it sets unit flag bit 33
-  (`00325185`) and, when bit 47 is set (`0032519C`), calls `00307110`, which clears bit 47 and
-  sets the group table flag (`0030711A`-`00307133`).
+- any other mode (`0x0030700C`-`0x00307012`): set unit flag bit 47, dispatch `0x2008`. The flag is
+  raised later by the reaction handler `0x003250F0`: on the death events it sets unit flag bit 33
+  (`0x00325185`) and, when bit 47 is set (`0x0032519C`), calls `0x00307110`, which clears bit 47 and
+  sets the group table flag (`0x0030711A`-`0x00307133`).
 
 Nothing remembers that a group completed. A member that respawns and re-registers clears its dead
 bit, and its next death completes the group again: a room can be cleared twice.
 
 ### The lock
 
-Three calls run on every completion, each with argument 1 (`00306F95`-`00306FB2`):
+Three calls run on every completion, each with argument 1 (`0x00306F95`-`0x00306FB2`):
 
-- `00307140(on)` calls `002E1C20(0xC)` ten times when on (`002E1CA0(0xC)` when off): the row-12
+- `0x00307140(on)` calls `0x002E1C20(0xC)` ten times when on (`0x002E1CA0(0xC)` when off): the row-12
   capability inhibitions ([party roster and control
-  suppression](../Party/party-leader.md)), then `00359200(on, 2)`,
-  `00359330(2, 1, on)` and `0026BD20(2, on == 0)`;
-- `00238B70(on)` sets or clears `02089340` bit 5 and, for every battle-unit slot whose byte `+0`
-  has bit 4, posts `002E7C10(actor, actor, 0x30B, 0)`;
-- `00238AE0(on)` sets or clears `02089340` bit 7.
+  suppression](../Party/party-leader.md)), then `0x00359200(on, 2)`,
+  `0x00359330(2, 1, on)` and `0x0026BD20(2, on == 0)`;
+- `0x00238B70(on)` sets or clears `0x02089340` bit 5 and, for every battle-unit slot whose byte `+0`
+  has bit 4, posts `0x002E7C10(actor, actor, 0x30B, 0)`;
+- `0x00238AE0(on)` sets or clears `0x02089340` bit 7.
 
 The zone script releases the lock with the same calls' off forms through its own verbs; the group table
-never releases it. The next area entry does clear the two `02089340` bits: `002342F0` opens with
-`02089340 = (02089340 & 0xFFFFC01E) | 0x10`, which also clears the "nothing pending" bit 1; the
+never releases it. The next area entry does clear the two `0x02089340` bits: `0x002342F0` opens with
+`0x02089340 = (0x02089340 & 0xFFFFC01E) | 0x10`, which also clears the "nothing pending" bit 1; the
 row-12 inhibitions stay until their off form runs.
 
 ### Delivering the completion to the script
 
-`00307030` runs once per field frame from `00234590` (`00234717`). It does nothing while the gate
-`00233D20` is closed: `02089340 & 0xF00` must be 0 and time-stop request 10 must not be raised
-(`00226BD0(10)` = 0, [the time-stop
+`0x00307030` runs once per field frame from `0x00234590` (`0x00234717`). It does nothing while the gate
+`0x00233D20` is closed: `0x02089340 & 0xF00` must be 0 and time-stop request 10 must not be raised
+(`0x00226BD0(10)` = 0, [the time-stop
 registry](../Engine-Core/time-stop-and-freeze.md)).
 
 With the gate open it walks the 64 entries; for each with flag bit 0 it clears the bit and calls
-`0026ADC0(3, i + 1)`, which stores the group number in word 3 of the 64-word table at `[02098E68]`
-when the index is below 64, `02098E20` bit 0 is set and the pointer is non-null.
+`0x0026ADC0(3, i + 1)`, which stores the group number in word 3 of the 64-word table at `[0x02098E68]`
+when the index is below 64, `0x02098E20` bit 0 is set and the pointer is non-null.
 
 Zone scripts wait on that word (`scratch1 @0x06`) with `waitv`, which waits while it is zero; the word is cleared on
 every field transition ([field runtime](../Characters-And-Objects/field-runtime.md)).
 
-`003070E0` reports whether any entry has flag bit 0. The per-unit frame `00233F70` calls it
-(`00234095`) and sets `02089340` bit 1 when nothing is pending.
+`0x003070E0` reports whether any entry has flag bit 0. The per-unit frame `0x00233F70` calls it
+(`0x00234095`) and sets `0x02089340` bit 1 when nothing is pending.
 
 ### Resetting the group table
 
-`00307090` walks the 64 entries four at a time (`0x60` per step from `02EC13D0` to `02EC19D0`),
+`0x00307090` walks the 64 entries four at a time (`0x60` per step from `0x02EC13D0` to `0x02EC19D0`),
 zeroing both masks and clearing flag bit 0 (`and byte ptr [...], 0xFE`). Its one caller is the area
-initialiser `002342F0` (`0023442D`), straight after the bank rotation, so membership is rebuilt by
+initialiser `0x002342F0` (`0x0023442D`), straight after the bank rotation, so membership is rebuilt by
 script after every area entry. The group table is BSS and starts at zero.
 
 ### The two banks and the return window
 
-`002368D0` allocates two banks of `0x9400` bytes tagged `btlKeepCharWork1` and `btlKeepCharWork2`
-at `0208E690` and `0208E698`, 64 spawn records of `0x250` each, and sets the return window
-`0208936C` to 300 (`00236A0D`). Bank 1 is the live bank; bank 2 holds the previous area.
+`0x002368D0` allocates two banks of `0x9400` bytes tagged `btlKeepCharWork1` and `btlKeepCharWork2`
+at `0x0208E690` and `0x0208E698`, 64 spawn records of `0x250` each, and sets the return window
+`0x0208936C` to 300 (`0x00236A0D`). Bank 1 is the live bank; bank 2 holds the previous area.
 
-`00233780` runs once per area initialisation (`00234423` in `002342F0`), after the area's own reset
+`0x00233780` runs once per area initialisation (`0x00234423` in `0x002342F0`), after the area's own reset
 and before the group table reset, and returns at once when either bank pointer is null. It reads the
-entered field id from `003148F0`, the counter from `0032A150`, and restores when both hold
-(`002337D6`-`00233803`):
+entered field id from `0x003148F0`, the counter from `0x0032A150`, and restores when both hold
+(`0x002337D6`-`0x00233803`):
 
 ```python
-field == 02089372                                          the field from two transitions ago
-(u32)(counter - 02089374) <= (u32)((int)(30.0 * [01DFE0B8]) * 0208936C)    unsigned, ja wipes
+field == 0x02089372                                          the field from two transitions ago
+(u32)(counter - 0x02089374) <= (u32)((int)(30.0 * [0x01DFE0B8]) * 0x0208936C)    unsigned, ja wipes
 ```
 
 A restore exchanges the two banks' contents through a `0x9400`-byte stack buffer (bank 2 to the
 stack, bank 1 to bank 2, the stack to bank 1); the pointers stay. A wipe copies bank 1 over bank 2,
 zeroes bank 1 with one `memset`, and sets the 64 spawn-history counters of the new parity to 1.
-Both branches flip the parity byte `0208D454` and then shift the history: `02089372 = 02089370`,
-`02089370 = field`, `02089374 = counter`. The compare is against the field from two moves ago, so
+Both branches flip the parity byte `0x0208D454` and then shift the history: `0x02089372 = 0x02089370`,
+`0x02089370 = field`, `0x02089374 = counter`. The compare is against the field from two moves ago, so
 the restore fires on the pattern A, B, A within the window; entering B again from B wipes.
 
 The window is in seconds because the counter difference is in frames and the multiplier is the
-frames per second. `00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `00235330`
-returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep` (`005107F0`), which
+frames per second. `0x00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `0x00235330`
+returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep` (`0x005107F0`), which
 no shipped script calls, so the window is 300 seconds everywhere. After a reset the previous-field
-word is `0xFFFF` (sign-extended to -1 at `002337CD`) and `003148F0` never returns a negative, so the
+word is `0xFFFF` (sign-extended to -1 at `0x002337CD`) and `0x003148F0` never returns a negative, so the
 first rotation after any reset wipes.
 
 ### The spawn-history counters
 
-`0208D354` holds two banks of 64 `u16` counters, selected by the parity `0208D454`. The wipe sets the
-new parity's 64 to 1 (`002339CC`-`002339E2`); the unit installer `0023A570` reads a row's counter,
+`0x0208D354` holds two banks of 64 `u16` counters, selected by the parity `0x0208D454`. The wipe sets the
+new parity's 64 to 1 (`0x002339CC`-`0x002339E2`); the unit installer `0x0023A570` reads a row's counter,
 stores its low byte at the spawn record's `+0x12` and writes back `old + 1`, or 1 once `old` reaches
-`00254A40()` ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The
-reset `00237DF0` clears the parity, not the counters.
+`0x00254A40()` ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The
+reset `0x00237DF0` clears the parity, not the counters.
 
 ### What the save image carries
 
-`00233440(image)` zeroes a `0x20010`-byte image, copies bank 2 to `+0x10` and bank 1 to `+0x10010`
-in `0x128` passes of `0x80` bytes, and stores `02089372` at `+0` and `02089370` at `+2`.
-`00233550(image)` copies image `+0x10` back into bank 2 and restores the two words; it never touches
+`0x00233440(image)` zeroes a `0x20010`-byte image, copies bank 2 to `+0x10` and bank 1 to `+0x10010`
+in `0x128` passes of `0x80` bytes, and stores `0x02089372` at `+0` and `0x02089370` at `+2`.
+`0x00233550(image)` copies image `+0x10` back into bank 2 and restores the two words; it never touches
 bank 1.
 
-Its two callers are in the slot-0 restore `005843E0` (`0058443B`, `0058445E`), so only a load
+Its two callers are in the slot-0 restore `0x005843E0` (`0x0058443B`, `0x0058445E`), so only a load
 of the field-transition autosave restores bank 2 and the history; a manual slot restores neither
 ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)). The window, the stamp, the
 parity and the counter are in no save.
 
 ### Killing or tearing down by group
 
-Four helpers walk the 32 battle-unit slots through `00321170` and act on kind-1 units:
-`00234880` tears down every unit whose group byte is non-zero, `00234990(mask)` those whose
-`mask >> (group & 31) & 1` is set (`00300E40(unit, 0)`), and `00234A10`/`00234A80(mask)` set or
-clear unit flag `0x800` (the script's hide bit) on the masked subset. `002352E0` runs
-`00300520(stats, 0, 0, 0)` on every kind-1 unit, which goes through the HP modifier and therefore
+Four helpers walk the 32 battle-unit slots through `0x00321170` and act on kind-1 units:
+`0x00234880` tears down every unit whose group byte is non-zero, `0x00234990(mask)` those whose
+`mask >> (group & 31) & 1` is set (`0x00300E40(unit, 0)`), and `0x00234A10`/`0x00234A80(mask)` set or
+clear unit flag `0x800` (the script's hide bit) on the masked subset. `0x002352E0` runs
+`0x00300520(stats, 0, 0, 0)` on every kind-1 unit, which goes through the HP modifier and therefore
 records a death for each. The mask test keeps 5 bits of the group id, so ids above 32 share a bit
 with `id - 32`.
 
-The teardown `00300E40(unit, keepMark)` runs the spawn record clear `00237080` (flags
-`& 0xFFFFFF7A`, the word `+0x16` = `0x00FF` so the key `+0x17` is zeroed too, `+0x78`-`+0x7C` zeroed) only when `keepMark` is 0 (`00300F5D`-
-`00300F68`). Range retirement is the one caller passing 1, so a retired entry keeps its bit 0 and
+The teardown `0x00300E40(unit, keepMark)` runs the spawn record clear `0x00237080` (flags
+`& 0xFFFFFF7A`, the word `+0x16` = `0x00FF` so the key `+0x17` is zeroed too, `+0x78`-`+0x7C` zeroed) only when `keepMark` is 0 (`0x00300F5D`-
+`0x00300F68`). Range retirement is the one caller passing 1, so a retired entry keeps its bit 0 and
 its transient state while every other teardown clears them.
 
 ## Layouts
 
-Struct SpawnGroupTable base=`02EC13C0` count=64 size=`0x18`:
+Struct SpawnGroupTable base=`0x02EC13C0` count=64 size=`0x18`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u64` | memberMask | bit (slot & 31), sign-extended from 32 bits; set by `00306E60`(unit, 1) |
-| `+0x08` | `u64` | deadMask | set by `00306F00`, cleared by `00306E60` either way |
-| `+0x10` | `u8` | flags | bit 0 = completion pending for `00307030` |
+| `+0x00` | `u64` | memberMask | bit (slot & 31), sign-extended from 32 bits; set by `0x00306E60`(unit, 1) |
+| `+0x08` | `u64` | deadMask | set by `0x00306F00`, cleared by `0x00306E60` either way |
+| `+0x10` | `u8` | flags | bit 0 = completion pending for `0x00307030` |
 | `+0x11` | `u8[7]` | padding |  |
 
 Struct SpawnRecordRespawnFields in the spawn record (`0x250` bytes, spawn-record-fields page):
@@ -279,35 +279,35 @@ Struct SpawnRecordRespawnFields in the spawn record (`0x250` bytes, spawn-record
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | flags | bit 0 retired awaiting re-entry, bit 1 committed, bit 2 released |
-| `+0x08` | `u16` | deathCount | `00300801` |
-| `+0x0A` | `u16` | deathLimit | `002395A0`: base + rand % (range + 1), or 0 |
-| `+0x0C` | `u32` | deathSecond | `00300829`: counter / fps |
-| `+0x10` | `u16` | cooldown | `002395A0`: base + rand % (range + 1), or 0; whole seconds |
-| `+0x12` | `u8` | historyCounter | low byte of the row's `0208D354` counter at install |
-| `+0x17` | `u8` | persistenceKey | zeroed with +`0x16` by `00236860` / `00237080`; +`0x18` the authored key the resets restore it from |
+| `+0x08` | `u16` | deathCount | `0x00300801` |
+| `+0x0A` | `u16` | deathLimit | `0x002395A0`: base + rand % (range + 1), or 0 |
+| `+0x0C` | `u32` | deathSecond | `0x00300829`: counter / fps |
+| `+0x10` | `u16` | cooldown | `0x002395A0`: base + rand % (range + 1), or 0; whole seconds |
+| `+0x12` | `u8` | historyCounter | low byte of the row's `0x0208D354` counter at install |
+| `+0x17` | `u8` | persistenceKey | zeroed with +`0x16` by `0x00236860` / `0x00237080`; +`0x18` the authored key the resets restore it from |
 
-Struct SpawnKeepImage size=`0x20010`   (`00233440` writes, `00233550` restores):
+Struct SpawnKeepImage size=`0x20010`   (`0x00233440` writes, `0x00233550` restores):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00000` | `u16` | fieldTwoAgo | `02089372` |
-| `+0x00002` | `u16` | fieldLast | `02089370` |
-| `+0x00010` | `u8[37888] bank2` | [0208E698]; restored by 00233550 |  |
-| `+0x10010` | `u8[37888] bank1` | [0208E690]; written, never restored |  |
+| `+0x00000` | `u16` | fieldTwoAgo | `0x02089372` |
+| `+0x00002` | `u16` | fieldLast | `0x02089370` |
+| `+0x00010` | `u8[37888] bank2` | [0x0208E698]; restored by 0x00233550 |  |
+| `+0x10010` | `u8[37888] bank1` | [0x0208E690]; written, never restored |  |
 
 Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0208D45C` | `u32` | frame counter, +1 per field frame whose timer 0 moved (0032A100); 0 at reset |  |
-| `01DFE0B8` | `f32` | frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale) |  |
-| `02089370` | `u16` | last field | `02089372`  u16  field two transitions ago |
-| `02089374` | `u32` | counter at the last transition |  |
-| `0208936C` | `i32` | return window, seconds (300) |  |
-| `0208D454` | `u8` | bank parity | `0208D354`  u16[2][64]  spawn-history counters |
-| `02EBF190` | `void*` | battle-state block; dword +0 stamp 0x05071901 |  |
-| `02089340` | `u32` | battle flags: bit 1 nothing pending, bit 5 and 7 the lock, bits 8-11 close the gate |  |
-| `02098E68` | `void*` | the 64-word field table; word 3 receives the completed group |  |
+| `0x0208D45C` | `u32` | frame counter, +1 per field frame whose timer 0 moved (0x0032A100); 0 at reset |  |
+| `0x01DFE0B8` | `f32` | frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale) |  |
+| `0x02089370` | `u16` | last field | `0x02089372`  u16  field two transitions ago |
+| `0x02089374` | `u32` | counter at the last transition |  |
+| `0x0208936C` | `i32` | return window, seconds (300) |  |
+| `0x0208D454` | `u8` | bank parity | `0x0208D354`  u16[2][64]  spawn-history counters |
+| `0x02EBF190` | `void*` | battle-state block; dword +0 stamp 0x05071901 |  |
+| `0x02089340` | `u32` | battle flags: bit 1 nothing pending, bit 5 and 7 the lock, bits 8-11 close the gate |  |
+| `0x02098E68` | `void*` | the 64-word field table; word 3 receives the completed group |  |
 
 ## Shipped data
 
@@ -322,13 +322,13 @@ Globals:
 
 ## Operations
 
-A kill, in order: the HP modifier bumps `+0x08` and stamps `+0x0C`; `00306F00` sets the dead bit and
+A kill, in order: the HP modifier bumps `+0x08` and stamps `+0x0C`; `0x00306F00` sets the dead bit and
 tests the mask; on completion the lock engages and the arm is chosen; the reaction handler raises
 the flag for a mode other than 1 when the death track ends; the next field frame with an open gate
 posts the group number; the zone script wakes and runs the aftermath.
 
-An area entry, in order (`002342F0`): the cap `0208D458` = 28, the area reset `00239960` when
-requested, the bank rotation `00233780`, `003221B0`, the group table reset `00307090`, then the zone
+An area entry, in order (`0x002342F0`): the cap `0x0208D458` = 28, the area reset `0x00239960` when
+requested, the bank rotation `0x00233780`, `0x003221B0`, the group table reset `0x00307090`, then the zone
 script re-registers every member and reinstalls the spawn table, whose initialiser rolls only the
 uncommitted entries.
 

@@ -1,4 +1,4 @@
 function	name	site	disp	kind	instruction	route	note
-005A0CB0	FUN_005a0cb0	005A0CC0	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 00D26BC0	
-005A0CB0	FUN_005a0cb0	005A0CED	0x8	r	mov rax, qword ptr [rcx + 8]	vtable-seeded 00D26BC0	
-005A0CB0	FUN_005a0cb0	005A0CF4	0x8	w	mov qword ptr [rcx + 8], 0	vtable-seeded 00D26BC0	
+0x005A0CB0	FUN_005a0cb0	0x005A0CC0	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 0x00D26BC0	
+0x005A0CB0	FUN_005a0cb0	0x005A0CED	0x8	r	mov rax, qword ptr [rcx + 8]	vtable-seeded 0x00D26BC0	
+0x005A0CB0	FUN_005a0cb0	0x005A0CF4	0x8	w	mov qword ptr [rcx + 8], 0	vtable-seeded 0x00D26BC0	

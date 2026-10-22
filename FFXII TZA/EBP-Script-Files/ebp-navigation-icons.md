@@ -2,7 +2,7 @@
 title: "EBP navigation icons: the NAVIICN2 block a field map script carries for its minimap markers"
 kind: "format"
 category: "EBP script files"
-addresses: "00332100, 003DFDC0, 02B59D58, 003DFCC0, 003DFBE0, 003DFDD0, 00400CF0, 00400550, 00352430, 003DFA50, 003DFDA0, 0032A8A0"
+addresses: "0x00332100, 0x003DFDC0, 0x02B59D58, 0x003DFCC0, 0x003DFBE0, 0x003DFDD0, 0x00400CF0, 0x00400550, 0x00352430, 0x003DFA50, 0x003DFDA0, 0x0032A8A0"
 ---
 
 ## What the player sees
@@ -14,19 +14,19 @@ passes. The same block lets a script move an actor onto the object an icon names
 ## Where it comes from
 
 Section 4 is slot 4 of the `.ebp` directory ([EBP script container](ebp-script-container.md)).
-The directory walker `003304A0` dispatches it at `0033064B`; the handler `00332100` drops the
-manager index from the low four bits of its argument and tail-jumps to `003DFDC0`, which stores
-the section address in the single global `02B59D58`. The handler reads no byte of the block, and
+The directory walker `0x003304A0` dispatches it at `0x0033064B`; the handler `0x00332100` drops the
+manager index from the low four bits of its argument and tail-jumps to `0x003DFDC0`, which stores
+the section address in the single global `0x02B59D58`. The handler reads no byte of the block, and
 there is one global for all managers: the last script loaded with a section 4 wins.
 
-The global is cleared by `003DFDA0` (from the boot `00266D10`) and by `003DFA50` (from the area
-unload `002628B0`, at `00262CD4`), which passes a non-null block to `00331880` and nulls it.
+The global is cleared by `0x003DFDA0` (from the boot `0x00266D10`) and by `0x003DFA50` (from the area
+unload `0x002628B0`, at `0x00262CD4`), which passes a non-null block to `0x00331880` and nulls it.
 
 ## Layouts
 
 The block has the NAVIICN2 layout of the location map's sloc files
 ([map menu files](../Game-Files-And-Data-Tables/menu-map-files.md)). Offsets are from the
-section start, as `003DFCC0` and `003DFBE0` read them:
+section start, as `0x003DFCC0` and `0x003DFBE0` read them:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -42,7 +42,7 @@ Entry (16 bytes):
 | `+0x00` | `i16[2]` | from | read only by setposbynaviicon (low bytes) |
 | `+0x04` | `i16[2]` | at | not read for section 4 |
 | `+0x08` | `i16` | icon | icon number; a negative icon is refused |
-| `+0x0A` | `i16` | gate | story gate (`0032A8A0`); 0 always passes, 1 never shows |
+| `+0x0A` | `i16` | gate | story gate (`0x0032A8A0`); 0 always passes, 1 never shows |
 | `+0x0C` | `u8[4]` | - | not read |
 
 ## Shipped data
@@ -63,42 +63,42 @@ Entry (16 bytes):
 
 ### The accessors
 
-- `003DFCC0(kind)` returns kind `kind`'s count, or 0 when the global is null, byte `+7` is below
-  `'2'`, or the kind is 0, above 9 or not below `kinds` (`003DFCCC`-`003DFCE9`).
-- `003DFBE0(kind, i, out)` stores the object `003DFDD0(kind, i)` resolves at `out`, applies the same
-  tests plus `i < count`, and stores the entry's address at `out + 0x10` (`003DFC7D`). It returns 1
-  only when the icon is not negative, an object was found, and `0032A8A0(gate)` passes
-  (`003DFC81`-`003DFC9C`).
+- `0x003DFCC0(kind)` returns kind `kind`'s count, or 0 when the global is null, byte `+7` is below
+  `'2'`, or the kind is 0, above 9 or not below `kinds` (`0x003DFCCC`-`0x003DFCE9`).
+- `0x003DFBE0(kind, i, out)` stores the object `0x003DFDD0(kind, i)` resolves at `out`, applies the same
+  tests plus `i < count`, and stores the entry's address at `out + 0x10` (`0x003DFC7D`). It returns 1
+  only when the icon is not negative, an object was found, and `0x0032A8A0(gate)` passes
+  (`0x003DFC81`-`0x003DFC9C`).
 
-`003DFB50` and `003DFBB0`, which read the same layout from a sloc block passed to them, are the
-location map's accessors; they never read `02B59D58`.
+`0x003DFB50` and `0x003DFBB0`, which read the same layout from a sloc block passed to them, are the
+location map's accessors; they never read `0x02B59D58`.
 
 ### Which object an icon names
 
-`003DFDD0(kind, i)` turns the entry number into an object through a jump table on the kind
-(`003DFDF7`):
+`0x003DFDD0(kind, i)` turns the entry number into an object through a jump table on the kind
+(`0x003DFDF7`):
 
 | Kind | Resolver | Object |
 |---|---|---|
-| 1, 2 | `00264A40` | entry `i` of list 0 in the zone script's image |
-| 3, 5, 8 | `00264CA0` | entry `i` of list 2, 3 or 4 (`00264E40`) |
-| 6 | `00264CA0` → `003DFAC0` | an older-layout table that `003DFAC0` looks for in section 16 at the offset in its `+0x08`; in an `FF12POS3` section that word is `size`, so the lookup reads past the records ([Position entries](ebp-position-entries.md)) |
-| 4, 7, 9 | none | nothing, so `003DFBE0` refuses every entry |
+| 1, 2 | `0x00264A40` | entry `i` of list 0 in the zone script's image |
+| 3, 5, 8 | `0x00264CA0` | entry `i` of list 2, 3 or 4 (`0x00264E40`) |
+| 6 | `0x00264CA0` → `0x003DFAC0` | an older-layout table that `0x003DFAC0` looks for in section 16 at the offset in its `+0x08`; in an `FF12POS3` section that word is `size`, so the lookup reads past the records ([Position entries](ebp-position-entries.md)) |
+| 4, 7, 9 | none | nothing, so `0x003DFBE0` refuses every entry |
 
 The lists are the per-class tables of manager 0's bound script image, found through its header
-`+0x70` (`00264AE0`). `002649B0(class, i)` returns `table + 0x10 + i * 0x20`, or null when `i` is
+`+0x70` (`0x00264AE0`). `0x002649B0(class, i)` returns `table + 0x10 + i * 0x20`, or null when `i` is
 not below the count at `+0`; for classes 0 and 1 it also returns null when the byte at `table + 0x2C + i * 0x20`
-lacks the bit numbered by `00377860()`.
+lacks the bit numbered by `0x00377860()`.
 
 ### The minimap
 
-`00400550(list, 0)`, called by the minimap's list build `003C5130` (`003C5374`), runs
-`00400CF0` for kinds 5, 8, 3 and 4 in that order. For each entry `00400CF0`:
+`0x00400550(list, 0)`, called by the minimap's list build `0x003C5130` (`0x003C5374`), runs
+`0x00400CF0` for kinds 5, 8, 3 and 4 in that order. For each entry `0x00400CF0`:
 
 1. stops once the list holds 64 icons;
-2. skips the entry unless `003DFBE0` returns 1, and skips icon 14 (the caller passes 0 for the
+2. skips the entry unless `0x003DFBE0` returns 1, and skips icon 14 (the caller passes 0 for the
    flag that would keep it);
-3. adds it only when its gate is not 1, its icon is not 0, and its gate is 0 or `0032A8A0(gate)`
+3. adds it only when its gate is not 1, its icon is not 0, and its gate is 0 or `0x0032A8A0(gate)`
    passes;
 4. takes the icon number from the low byte of `+0x08` and the position from the first and third
    words of the resolved object, not from the entry's own coordinates.
@@ -108,10 +108,10 @@ minimap draws the list is on [map screens](../Menus-And-HUD/map-screens.md).
 
 ### `setposbynaviicon`
 
-`setposbynaviicon` (`0x30D`, `00352430`) pops an entry number and a kind and calls `003DFBE0`.
+`setposbynaviicon` (`0x30D`, `0x00352430`) pops an entry number and a kind and calls `0x003DFBE0`.
 When the entry exists it sets the actor's byte `+0x0F` to the icon's low byte with bit 6 set and
 copies the low bytes of `from` x and y to `+0x21` and `+0x22`. When the object exists it pushes
-the object's four words and runs `setpos2_20d` (`00350C30`), placing the actor at the object.
+the object's four words and runs `setpos2_20d` (`0x00350C30`), placing the actor at the object.
 
 ## Modding notes
 
@@ -119,7 +119,7 @@ the object's four words and runs `setpos2_20d` (`00350C30`), placing the actor a
   every kind.
 - An icon must name an existing entry of its kind's list; the minimap draws it at that entry's
   position, and moving `at` changes nothing.
-- Use kinds 3, 5 or 8 for minimap markers and for `setposbynaviicon`; kind 6 resolves through `003DFAC0`,
+- Use kinds 3, 5 or 8 for minimap markers and for `setposbynaviicon`; kind 6 resolves through `0x003DFAC0`,
   which does not read `FF12POS3` records, and kinds 4, 7 and 9 resolve to nothing.
 - Icon 14, icon 0, gate 1 and a negative icon are never drawn on the minimap.
 - The minimap holds at most 64 icons.

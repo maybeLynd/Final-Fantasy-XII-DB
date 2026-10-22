@@ -2,13 +2,13 @@
 title: "Reward package list: every reward package with its gil and items, and where it is named"
 kind: "reference"
 category: "Rewards: EXP, LP, gil and loot"
-addresses: "02EBF070, 002FD530, 0031C5D0, 0031D683, 00322C50"
+addresses: "0x02EBF070, 0x002FD530, 0x0031C5D0, 0x0031D683, 0x00322C50"
 ---
 
 ## What it lists
 
 `reward-package-list.tsv` holds one line for each of the 512 rows of the reward-package table that registry slot
-`02EBF070` reaches (`battle_pack.bin` directory entry `+0x98`). Row *n* is package id `0x9000` + *n*, inventory
+`0x02EBF070` reaches (`battle_pack.bin` directory entry `+0x98`). Row *n* is package id `0x9000` + *n*, inventory
 class 14 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): giving the id gives the
 package's gil and items together.
 
@@ -22,18 +22,18 @@ package's gil and items together.
 
 `Database/Tools/catalogues/reward_packages.py` reads the `st2e` table at entry `+0x98` (512 rows of 12 bytes from
 the section's `+0x20`) and names each item through `ids.py`, which reads the name word of the item's own row as the
-matching arm of `0031C5D0` does.
+matching arm of `0x0031C5D0` does.
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | gil | times the give's count, added to the party's gil and floored at 0 (`002FD530`) |
+| `+0x00` | `u32` | gil | times the give's count, added to the party's gil and floored at 0 (`0x002FD530`) |
 | `+0x04` | `u16` | item1 | an inventory id, `0xFFFF` for none |
 | `+0x06` | `u16` | count1 | given as count1 times the give's count (negative for a take) |
 | `+0x08` | `u16` | item2 | an inventory id, `0xFFFF` for none |
 | `+0x0A` | `u16` | count2 | as `count1` |
 
-The class-14 handler `002FD530` gives the gil and then each item that is not `0xFFFF` through `003008A0`, and the
-class-14 arm of `0031C5D0` copies the five fields to the query record (`0031D683`-`0031D6AB`).
+The class-14 handler `0x002FD530` gives the gil and then each item that is not `0xFFFF` through `0x003008A0`, and the
+class-14 arm of `0x0031C5D0` copies the five fields to the query record (`0x0031D683`-`0x0031D6AB`).
 
 The `selectors` column lists the package selectors ([Reward selector list](reward-selector-list.md)) that name the
 package, and `script_gives` counts the rows of [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md)

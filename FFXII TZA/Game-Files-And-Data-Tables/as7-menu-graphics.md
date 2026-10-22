@@ -2,7 +2,7 @@
 title: "Menu graphics containers (.as7): the compressed page archives behind item pictures and character silhouettes"
 kind: "format"
 category: "Game files and data tables"
-addresses: "0024AA00, 00248500, 02090788, 02091090, 00291C80, 0209BEA0, 00291D90, 00292050, 00292390, 01E0C470, 01E0C474, 002C8EE0, 0209E638, 002CEB40, 002CEFD0, 002CEE00, 0024A440, 0024A1D0, 002C9040"
+addresses: "0x0024AA00, 0x00248500, 0x02090788, 0x02091090, 0x00291C80, 0x0209BEA0, 0x00291D90, 0x00292050, 0x00292390, 0x01E0C470, 0x01E0C474, 0x002C8EE0, 0x0209E638, 0x002CEB40, 0x002CEFD0, 0x002CEE00, 0x0024A440, 0x0024A1D0, 0x002C9040"
 ---
 
 ## What the player sees
@@ -14,18 +14,18 @@ needs one. The large character silhouette behind the Gambits screen is one of si
 ## Where it comes from
 
 The files are resource kind 7, in the `in` and `ch` locale folders only:
-`ps2data/image/ff12/myoshiok/<locale>/bin_menu/<name>.as7`. In the US kind-7 path array (`01EC73A0`) the ids are
+`ps2data/image/ff12/myoshiok/<locale>/bin_menu/<name>.as7`. In the US kind-7 path array (`0x01EC73A0`) the ids are
 `0x75` for `Char_Silhouette.as7` and `0x9A` to `0xA1` for `Item_Gra00.as7` to `Item_Gra07.as7`. The KR, CH and CN arrays
-(`01E0E530`, `01E5A3D0`, `01EABBA0`) name the `ch` copy; the others name `in`.
+(`0x01E0E530`, `0x01E5A3D0`, `0x01EABBA0`) name the `ch` copy; the others name `in`.
 
-- Items: at start-up `0022A4B0` calls `00291C80`, which requests kind 7 ids `0x98` to `0xA1` (`itemgra_c.tm2`,
-  `Item_Clut.bin`, then the eight sheets) through `0032E620`, sizing each with `0024AB90` (a jump to `0032E400`) and
-  allocating it from heap 2 (`00249810`). Request `i` fills the 16-byte slot `0209BEA0 + 16 × i` (status, then
+- Items: at start-up `0x0022A4B0` calls `0x00291C80`, which requests kind 7 ids `0x98` to `0xA1` (`itemgra_c.tm2`,
+  `Item_Clut.bin`, then the eight sheets) through `0x0032E620`, sizing each with `0x0024AB90` (a jump to `0x0032E400`) and
+  allocating it from heap 2 (`0x00249810`). Request `i` fills the 16-byte slot `0x0209BEA0 + 16 × i` (status, then
   buffer at `+8`).
-- Silhouettes: the field HUD root `00253780` calls `002C8EE0`, which requests ids `0x74` (`monotone_chr.bin`) and
-  `0x75` (`Char_Silhouette.as7`) into the slots at `0209E638`. `002CEB40` copies them into its widget, so the
+- Silhouettes: the field HUD root `0x00253780` calls `0x002C8EE0`, which requests ids `0x74` (`monotone_chr.bin`) and
+  `0x75` (`Char_Silhouette.as7`) into the slots at `0x0209E638`. `0x002CEB40` copies them into its widget, so the
   container's buffer sits at widget `+0xD8`. Each slot holds the request id at `+0`, which the delivery
-  callback `002C9040(i)` clears to 0, and the buffer at `+8`.
+  callback `0x002C9040(i)` clears to 0, and the buffer at `+8`.
 
 ## Layouts
 
@@ -83,34 +83,34 @@ Measured over every `.as7` in the archive.
 
 ### The walker
 
-`0024AA00(file, out, first, n)` reads the count from bytes 2 and 3 and returns 1 at once when `first` is not below
+`0x0024AA00(file, out, first, n)` reads the count from bytes 2 and 3 and returns 1 at once when `first` is not below
 it. `n` = 0, or an `n` above the count, means the count; the run is clipped to the pages that exist. It points the
-codec's output base `02090788` at `out`, zeroes `out[0]` and the output cursor `02091090`, then decodes pages
-`first` onward, each with `00248500(file + pageOff[i], file + dictOff)`, so consecutive pages are appended. It
+codec's output base `0x02090788` at `out`, zeroes `out[0]` and the output cursor `0x02091090`, then decodes pages
+`first` onward, each with `0x00248500(file + pageOff[i], file + dictOff)`, so consecutive pages are appended. It
 returns 0 when all pages decoded and 1 when one fails. Nothing bounds the output against the buffer.
 
 ### The codec
 
-`00248500(stream, blob)` reads the mode and `b`, takes the output length from the blob (mode 0) or the stream
-(mode 3), and returns 0 for any other mode. It writes at `[02090788] + [02091090]`, advancing the cursor, until the
+`0x00248500(stream, blob)` reads the mode and `b`, takes the output length from the blob (mode 0) or the stream
+(mode 3), and returns 0 for any other mode. It writes at `[0x02090788] + [0x02091090]`, advancing the cursor, until the
 count of decoded bytes reaches the length: an exact finish returns 1, an overshoot returns 0. A length of 0 returns
 1 with nothing written.
 
 ### Item pictures
 
-`00291D90`, the item-graphic object's procedure, copies the ten slots into the object (`+0xC8 + 16 × i`, buffer at
+`0x00291D90`, the item-graphic object's procedure, copies the ten slots into the object (`+0xC8 + 16 × i`, buffer at
 `+0xD0 + 16 × i`), sets bits 0 to 9 of its word `+0x168`, and registers the `itemgra_c.tm2` buffer as the atlas
-`itemgra_c` through `0024A440`. `00292050(i)` returns slot `i`'s buffer when its bit is set.
+`itemgra_c` through `0x0024A440`. `0x00292050(i)` returns slot `i`'s buffer when its bit is set.
 
-The list item procedure `00292390` takes a graphic id from message `0x0C` (payload word `+2`) and decodes on its next
+The list item procedure `0x00292390` takes a graphic id from message `0x0C` (payload word `+2`) and decodes on its next
 update (message 2):
 
-1. The sheet is `id >> 6` and the page `id & 63`; `00292050(sheet + 2)` gives the container, and `0024AA00`
+1. The sheet is `id >> 6` and the page `id & 63`; `0x00292050(sheet + 2)` gives the container, and `0x0024AA00`
    decodes that one page into the item's own buffer at `+0x2C8`.
 2. When the sheet differs from the last one shown, it points the atlas palette at `Item_Clut + sheet × 1,024` (slot
    1's buffer) and takes the colour count from the atlas picture.
-3. It copies 64 x 96 bytes (`01E0C470`, `01E0C474`) into the `itemgra_c` pixels, at column 0 or 64 by a toggle that
-   flips each time, and re-uploads the atlas (`0024A1D0`).
+3. It copies 64 x 96 bytes (`0x01E0C470`, `0x01E0C474`) into the `itemgra_c` pixels, at column 0 or 64 by a toggle that
+   flips each time, and re-uploads the atlas (`0x0024A1D0`).
 
 The toggle and the last sheet are shared by every item picture, so the atlas holds two item pictures at
 once: a third decode overwrites the older one, and both are drawn with the palette of the last sheet
@@ -118,13 +118,13 @@ decoded, so two items from different sheets on screen together show one in the w
 
 ### Silhouettes
 
-`002CEE00(index, flags)` stores the index at widget `+0x10D`; an index above 5 clears the decode bit. The Gambits
-screen passes the member's word `+0x60` when it reloads the centre pane (`0056A044`) and -1 when it closes
-(`00567A52`).
+`0x002CEE00(index, flags)` stores the index at widget `+0x10D`; an index above 5 clears the decode bit. The Gambits
+screen passes the member's word `+0x60` when it reloads the centre pane (`0x0056A044`) and -1 when it closes
+(`0x00567A52`).
 
-`002CEFD0` maps the index through `{0, 1, 3, 2, 4, 5}` to a group `g`, allocates two 264,192-byte buffers from heap
+`0x002CEFD0` maps the index through `{0, 1, 3, 2, 4, 5}` to a group `g`, allocates two 264,192-byte buffers from heap
 2 on first use, decodes pages `516 × g` (258 pages) into the first and the next 258 into the second, and registers
-them as the atlases `chrback_top` and `chrback_bottom` (`0024A440`), or re-uploads them (`0024A1D0`) after the first
+them as the atlases `chrback_top` and `chrback_bottom` (`0x0024A440`), or re-uploads them (`0x0024A1D0`) after the first
 time. It ignores the walker's result, so a page that fails to decode leaves a partial picture that is
 uploaded all the same.
 
@@ -146,5 +146,5 @@ uploaded all the same.
 - [Menu resource packages (.mrp)](mrp-menu-resource-packages.md): `save_load.mrp` and `shop_new.mrp` name the
   `itemgra_c` atlas the item pages are copied into.
 - [File size tables (.fst)](file-size-tables-fst.md): the kind 7 path arrays and request sizes.
-- [File requests and the read queue](file-requests-and-the-read-queue.md): `0032E400` and `0032E620`.
+- [File requests and the read queue](file-requests-and-the-read-queue.md): `0x0032E400` and `0x0032E620`.
 - [Gambit screen](../Menus-And-HUD/gambit-screen.md): the screen that sets the silhouette.

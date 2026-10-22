@@ -2,7 +2,7 @@
 title: "Menu effects: the 64-record registry that menu screens use to spawn, place and remove effects by id"
 kind: "system"
 category: "Graphics"
-addresses: "02EBDBC0, 02EBE5C0, 003B29B0, 003B2B40, 003B28F0, 003B2D80, 003B2BC0, 003B2AA0, 003B2930, 003B2CA0, 003B2CE0, 003B2F50, 0024C460, 0024C550, 0024F610, 0024B270, 0024FCF0, 0039B620, 0039B550"
+addresses: "0x02EBDBC0, 0x02EBE5C0, 0x003B29B0, 0x003B2B40, 0x003B28F0, 0x003B2D80, 0x003B2BC0, 0x003B2AA0, 0x003B2930, 0x003B2CA0, 0x003B2CE0, 0x003B2F50, 0x0024C460, 0x0024C550, 0x0024F610, 0x0024B270, 0x0024FCF0, 0x0039B620, 0x0039B550"
 ---
 
 ## What the player sees
@@ -15,25 +15,25 @@ the [License Board](../Menus-And-HUD/license-board-screen.md), and the effects o
 
 ### Loading the menu context
 
-`003B29B0(file)` clears all 64 records and the id counter `02EBE5C0`, frees every effect instance and context of type 4
-(`0024C460(4)`, `0024C550(4)`), builds an `0x890`-byte context template with type byte 4 (`0024B3A0`) and parses the
-screen's effect file into it (`003EDAD0`). `0024C460(type)` frees each instance on the list `020910F0[type]`;
-`0024C550(type)` frees each context on `020910A0[type]` and then the instances. Type 4 is the menus' own: the other
+`0x003B29B0(file)` clears all 64 records and the id counter `0x02EBE5C0`, frees every effect instance and context of type 4
+(`0x0024C460(4)`, `0x0024C550(4)`), builds an `0x890`-byte context template with type byte 4 (`0x0024B3A0`) and parses the
+screen's effect file into it (`0x003EDAD0`). `0x0024C460(type)` frees each instance on the list `0x020910F0[type]`;
+`0x0024C550(type)` frees each context on `0x020910A0[type]` and then the instances. Type 4 is the menus' own: the other
 context builds use 1, 2, 3, 5 and 7 ([Effect files](effect-files-efx-efb.md)).
 
-Two lighter resets exist. `003B2B40` does the same clearing without loading a file, and `003B28F0` frees the type-4
+Two lighter resets exist. `0x003B2B40` does the same clearing without loading a file, and `0x003B28F0` frees the type-4
 instances and zeroes each record's id and instance without touching the counter.
 
 ### Spawning
 
-`003B2D80(x, y, z, kind)`:
+`0x003B2D80(x, y, z, kind)`:
 
-1. It increments `02EBE5C0`, so even a spawn that then fails uses up an id.
-2. It finds the loaded type-4 context (`0024F610`); without one it returns 0. Otherwise it makes the id
+1. It increments `0x02EBE5C0`, so even a spawn that then fails uses up an id.
+2. It finds the loaded type-4 context (`0x0024F610`); without one it returns 0. Otherwise it makes the id
    `(counter & 0x0FFFFFFF) | 0x40000000`.
-3. It creates an instance (`0024B270`) from an `0x3B0`-byte request with word `0x104` and the id.
-4. It takes a free record (`003B2BC0`). When all 64 are in use, `003B2BC0` frees the oldest record's instance
-   (`0024EE60`), shifts the table down one record and returns the last one, so a spawn never fails for lack of room.
+3. It creates an instance (`0x0024B270`) from an `0x3B0`-byte request with word `0x104` and the id.
+4. It takes a free record (`0x003B2BC0`). When all 64 are in use, `0x003B2BC0` frees the oldest record's instance
+   (`0x0024EE60`), shifts the table down one record and returns the last one, so a spawn never fails for lack of room.
 5. It stores the id, the instance and the four arguments in the record, and sets up the instance: `+0x320`-`+0x328` = 1.0,
    `+0x330` = `0x80808080`, `+0x340` = the context, `+0x370` = `0x102`, `+0x373` = `kind`, `+0x39C` = 1.0, and flag bits
    in `+0x368`, `+0x36A` and `+0x378`. A kind of `0x13` adds 2.45 to the instance's `+0x304`.
@@ -43,45 +43,45 @@ No registry routine reads `+0x10`-`+0x1C` back, and callers only ever hold ids.
 
 ### Removing
 
-- `003B2AA0(id)` finds the record, frees its instance (`0024EE60`), moves the later records down and clears the last
+- `0x003B2AA0(id)` finds the record, frees its instance (`0x0024EE60`), moves the later records down and clears the last
   record's id.
-- `003B2930(instance)` does the same compaction for the record holding that instance without freeing it. The effect
-  system calls it from `0024B580` and `0024B9B0` when it frees an instance itself.
+- `0x003B2930(instance)` does the same compaction for the record holding that instance without freeing it. The effect
+  system calls it from `0x0024B580` and `0x0024B9B0` when it frees an instance itself.
 
 ### Setting a depth offset
 
-`003B2F50(id, value)` writes `value` to the instance's `+0x338`. `0024FCF0` publishes `+0x338` to `02AEE7F4` when it
-makes the instance current; `0039B620(n)` stores `n + [02AEE7F4]` at `02AEE7F0`; and `0039B550` adds `02AEE7F0`,
-converted to float, to the third component of the translation of every matrix it installs, as does `0039AFA0`. The
-value is a depth offset for the instance's elements. For other instances the effect build `0026F470` copies it from
+`0x003B2F50(id, value)` writes `value` to the instance's `+0x338`. `0x0024FCF0` publishes `+0x338` to `0x02AEE7F4` when it
+makes the instance current; `0x0039B620(n)` stores `n + [0x02AEE7F4]` at `0x02AEE7F0`; and `0x0039B550` adds `0x02AEE7F0`,
+converted to float, to the third component of the translation of every matrix it installs, as does `0x0039AFA0`. The
+value is a depth offset for the instance's elements. For other instances the effect build `0x0026F470` copies it from
 the effect file.
 
 ### Queries
 
-- `003B2CE0(id)` returns 0 when the id has no record or instance, and 1 when bit `0x100` of the instance's `+0x378` is
+- `0x003B2CE0(id)` returns 0 when the id has no record or instance, and 1 when bit `0x100` of the instance's `+0x378` is
   clear. Otherwise it returns a code from the instance's byte `+0x370`: 0 gives 2; 1 and 2 give 3; 3 gives 5; 4 to 6 give
   4; any other value 1. A fresh spawn (`+0x370` = 2) answers 3.
-- `003B2CA0(instance)` returns the record holding an instance, or 0. `0024D770`, `003A4290` and `003A56F0` call it.
+- `0x003B2CA0(instance)` returns the record holding an instance, or 0. `0x0024D770`, `0x003A4290` and `0x003A56F0` call it.
 
 ### Who drives it
 
 | Screen | Load or reset | Spawn, remove, query |
 |---|---|---|
-| License Board: the chooser window `00558FB0` and chooser `00557DB0` | `003B29B0`, `003B2B40` | `00557DB0`, `005588C0`, `00558960` |
-| License Board: the board screen `00561390` and view `0055CD40` | `003B29B0`, `003B2B40`; `003B28F0` from `0055CD40` and `0055F3E0` | `0055CD40`, `0055B560`, `0055F010` |
-| Clan Primer, Sky Pirate's Den: `00572E10` and `00573980` | `003B29B0`; `003B28F0`, `003B2B40` | `00572920`, `005734C0`, `00573690` |
+| License Board: the chooser window `0x00558FB0` and chooser `0x00557DB0` | `0x003B29B0`, `0x003B2B40` | `0x00557DB0`, `0x005588C0`, `0x00558960` |
+| License Board: the board screen `0x00561390` and view `0x0055CD40` | `0x003B29B0`, `0x003B2B40`; `0x003B28F0` from `0x0055CD40` and `0x0055F3E0` | `0x0055CD40`, `0x0055B560`, `0x0055F010` |
+| Clan Primer, Sky Pirate's Den: `0x00572E10` and `0x00573980` | `0x003B29B0`; `0x003B28F0`, `0x003B2B40` | `0x00572920`, `0x005734C0`, `0x00573690` |
 
-The License Board keeps the id of a square's effect in the square's `+0x2C`, and `0055F010` polls `003B2CE0` while it
-runs the square transitions ([License Board screen](../Menus-And-HUD/license-board-screen.md)). `00557DB0` also polls it.
+The License Board keeps the id of a square's effect in the square's `+0x2C`, and `0x0055F010` polls `0x003B2CE0` while it
+runs the square transitions ([License Board screen](../Menus-And-HUD/license-board-screen.md)). `0x00557DB0` also polls it.
 
-In the Sky Pirate's Den, `00572920` goes through the thirty descriptors and, for each one whose award bit is set
-(`00576E10`), spawns one effect at the layout entry's words `+2` and `+4` with the kind byte `+0x16`, then calls
-`003B2F50(id, (0xFF - entry byte +1) × 10000)` ([Achievements](../Steam-And-Achievements/achievements.md)).
-`005734C0` and `00573690` refresh them: a stored id that is not -1 is removed first, then a new one is spawned and set.
+In the Sky Pirate's Den, `0x00572920` goes through the thirty descriptors and, for each one whose award bit is set
+(`0x00576E10`), spawns one effect at the layout entry's words `+2` and `+4` with the kind byte `+0x16`, then calls
+`0x003B2F50(id, (0xFF - entry byte +1) × 10000)` ([Achievements](../Steam-And-Achievements/achievements.md)).
+`0x005734C0` and `0x00573690` refresh them: a stored id that is not -1 is removed first, then a new one is spawned and set.
 
 ## Layouts
 
-Registry record, `02EBDBC0` + n × `0x28`, 64 records:
+Registry record, `0x02EBDBC0` + n × `0x28`, 64 records:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -95,13 +95,13 @@ Registry record, `02EBDBC0` + n × `0x28`, 64 records:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `02EBE5C0` | `u32` | counter | the last id number handed out |
+| `0x02EBE5C0` | `u32` | counter | the last id number handed out |
 
 ## State
 
-- `02EBDBC0`-`02EBE5BF`: the 64 records, kept packed from the start; the first free record ends every scan.
-- `02EBE5C0`: the id counter, cleared by `003B29B0` and `003B2B40`.
-- The type-4 context and its instances on the effect lists `020910A0[4]` and `020910F0[4]`.
+- `0x02EBDBC0`-`0x02EBE5BF`: the 64 records, kept packed from the start; the first free record ends every scan.
+- `0x02EBE5C0`: the id counter, cleared by `0x003B29B0` and `0x003B2B40`.
+- The type-4 context and its instances on the effect lists `0x020910A0[4]` and `0x020910F0[4]`.
 
 ## Modding notes
 

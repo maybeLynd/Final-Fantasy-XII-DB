@@ -1,21 +1,21 @@
 function	name	site	disp	kind	instruction	route	note
-005AC9B0	FUN_005ac9b0	005AC9D0	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 00D315B0	
-005AC9B0	FUN_005ac9b0	005AC9D3	0x18	r	mov eax, dword ptr [rcx + 0x18]	vtable-seeded 00D315B0	
-005AC9B0	FUN_005ac9b0	005AC9DF	0x20	r	mov rcx, qword ptr [rcx + 0x20]	vtable-seeded 00D315B0	
-005AC9B0	FUN_005ac9b0	005AC9F0	0x20	w	mov qword ptr [rbx + 0x20], rax	vtable-seeded 00D315B0	
-005AC9B0	FUN_005ac9b0	005AC9F4	0x18	w	mov dword ptr [rbx + 0x18], eax	vtable-seeded 00D315B0	
-005AC9B0	FUN_005ac9b0	005AC9FE	0x0	w	mov qword ptr [rbx], rax	vtable-seeded 00D315B0	
-005C3A20	FUN_005c3a20	005C3A20	0x18	r	mov eax, dword ptr [rcx + 0x18]	vtable-seeded 00D315B0	
-005C52B0	FUN_005c52b0	005C52B0	0x18	r	mov eax, dword ptr [rcx + 0x18]	vtable-seeded 00D315B0	
-005C52B0	FUN_005c52b0	005C52BB	0x20	r	mov rax, qword ptr [rcx + 0x20]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9F44	0x18	r	mov esi, dword ptr [rcx + 0x18]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9F54	0x18	r	mov r8d, dword ptr [rcx + 0x18]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9F5D	0x18	r	cmp edx, dword ptr [rcx + 0x18]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9F69	0x20	r	mov rdx, qword ptr [rcx + 0x20]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9F85	0x20	r	mov rcx, qword ptr [rbx + 0x20]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9F8E	0x18	r	mov eax, dword ptr [rbx + 0x18]	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9FA4	0x20	w	mov qword ptr [rbx + 0x20], rbp	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9FA8	0x18	w	mov dword ptr [rbx + 0x18], edi	vtable-seeded 00D315B0	
-005C9F30	FUN_005c9f30	005C9FC0	0x20	r	mov rax, qword ptr [rbx + 0x20]	vtable-seeded 00D315B0	
-005CB4F0	FUN_005cb4f0	005CB52C	0x18	r	mov ebp, dword ptr [rsi + 0x18]	vtable-seeded 00D315B0	
-005CB4F0	FUN_005cb4f0	005CB540	0x20	r	mov rax, qword ptr [rsi + 0x20]	vtable-seeded 00D315B0	
+0x005AC9B0	FUN_005ac9b0	0x005AC9D0	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 0x00D315B0	
+0x005AC9B0	FUN_005ac9b0	0x005AC9D3	0x18	r	mov eax, dword ptr [rcx + 0x18]	vtable-seeded 0x00D315B0	
+0x005AC9B0	FUN_005ac9b0	0x005AC9DF	0x20	r	mov rcx, qword ptr [rcx + 0x20]	vtable-seeded 0x00D315B0	
+0x005AC9B0	FUN_005ac9b0	0x005AC9F0	0x20	w	mov qword ptr [rbx + 0x20], rax	vtable-seeded 0x00D315B0	
+0x005AC9B0	FUN_005ac9b0	0x005AC9F4	0x18	w	mov dword ptr [rbx + 0x18], eax	vtable-seeded 0x00D315B0	
+0x005AC9B0	FUN_005ac9b0	0x005AC9FE	0x0	w	mov qword ptr [rbx], rax	vtable-seeded 0x00D315B0	
+0x005C3A20	FUN_005c3a20	0x005C3A20	0x18	r	mov eax, dword ptr [rcx + 0x18]	vtable-seeded 0x00D315B0	
+0x005C52B0	FUN_005c52b0	0x005C52B0	0x18	r	mov eax, dword ptr [rcx + 0x18]	vtable-seeded 0x00D315B0	
+0x005C52B0	FUN_005c52b0	0x005C52BB	0x20	r	mov rax, qword ptr [rcx + 0x20]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9F44	0x18	r	mov esi, dword ptr [rcx + 0x18]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9F54	0x18	r	mov r8d, dword ptr [rcx + 0x18]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9F5D	0x18	r	cmp edx, dword ptr [rcx + 0x18]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9F69	0x20	r	mov rdx, qword ptr [rcx + 0x20]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9F85	0x20	r	mov rcx, qword ptr [rbx + 0x20]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9F8E	0x18	r	mov eax, dword ptr [rbx + 0x18]	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9FA4	0x20	w	mov qword ptr [rbx + 0x20], rbp	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9FA8	0x18	w	mov dword ptr [rbx + 0x18], edi	vtable-seeded 0x00D315B0	
+0x005C9F30	FUN_005c9f30	0x005C9FC0	0x20	r	mov rax, qword ptr [rbx + 0x20]	vtable-seeded 0x00D315B0	
+0x005CB4F0	FUN_005cb4f0	0x005CB52C	0x18	r	mov ebp, dword ptr [rsi + 0x18]	vtable-seeded 0x00D315B0	
+0x005CB4F0	FUN_005cb4f0	0x005CB540	0x20	r	mov rax, qword ptr [rsi + 0x20]	vtable-seeded 0x00D315B0	

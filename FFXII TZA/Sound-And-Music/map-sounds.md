@@ -2,7 +2,7 @@
 title: "Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience"
 kind: "format"
 category: "Sound and music"
-addresses: "003635E0, 00363750, 00363E40, 00346260, 00346990, 003638B0, 00363B40, 002DF070, 022CBAF8"
+addresses: "0x003635E0, 0x00363750, 0x00363E40, 0x00346260, 0x00346990, 0x003638B0, 0x00363B40, 0x002DF070, 0x022CBAF8"
 ---
 
 ## What the player sees
@@ -19,116 +19,116 @@ Each map pack (`.mpk`) carries its list in slot 10 and its `SeSep` sound-bank re
 
 ### Binding
 
-When the map pack binds its sound, `003635E0(list, bank, handle)`:
+When the map pack binds its sound, `0x003635E0(list, bank, handle)`:
 
-1. unbinds the previous list (`00363750`);
+1. unbinds the previous list (`0x00363750`);
 2. takes the pack's bank, or `list + [list + 0x0C]` when none is given;
-3. opens every `SeSep` record in `[list + 0x08]` bytes through `002DF070` ([Sound banks](sound-banks.md)) and calls
-   `002DEE90(-1)`, which returns at once because the load query answers 0 for a negative id
+3. opens every `SeSep` record in `[list + 0x08]` bytes through `0x002DF070` ([Sound banks](sound-banks.md)) and calls
+   `0x002DEE90(-1)`, which returns at once because the load query answers 0 for a negative id
    ([Audio manager](audio-manager.md));
-4. frees the pack's bank block (`003697F0`);
-5. keeps the handle at `022CBA88` and the list at `022CBAF8`, and resets the ambience volume to `0x7F`.
+4. frees the pack's bank block (`0x003697F0`);
+5. keeps the handle at `0x022CBA88` and the list at `0x022CBAF8`, and resets the ambience volume to `0x7F`.
 
 ### Playing an entry
 
 | Verb | Id | Body | Plays |
 |---|---|---|---|
-| `mapsoundplay(i)` | `0x2BA` | `00346260` | entry `i` through `002DF010` at pan `0x40`, volume `0x7F`, unless `00267310` answers non-zero for the actor |
-| `mapsoundplay_2bb(i, pan, volume)` | `0x2BB` | `00346990` | entry `i` through `002DEF40` with the given pan and volume |
+| `mapsoundplay(i)` | `0x2BA` | `0x00346260` | entry `i` through `0x002DF010` at pan `0x40`, volume `0x7F`, unless `0x00267310` answers non-zero for the actor |
+| `mapsoundplay_2bb(i, pan, volume)` | `0x2BB` | `0x00346990` | entry `i` through `0x002DEF40` with the given pan and volume |
 
-Both play nothing when no list is bound or `i` is at or past the count, compared unsigned (`00346291`, `003469D5`).
+Both play nothing when no list is bound or `i` is at or past the count, compared unsigned (`0x00346291`, `0x003469D5`).
 
 ### Emitters
 
-The pack's `SP1` block holds the map's sound emitters. For each one, `003638B0` reads its first word as a list index
-and plays the id at the emitter's position, `+0x20`-`+0x28`, through `002DEFA0` (`0036397F`-`00363996`) when:
+The pack's `SP1` block holds the map's sound emitters. For each one, `0x003638B0` reads its first word as a list index
+and plays the id at the emitter's position, `+0x20`-`+0x28`, through `0x002DEFA0` (`0x0036397F`-`0x00363996`) when:
 
 - the index is in range and the id is not negative;
-- `00229EA0` answers 2 and `022CBB2E` is set;
+- `0x00229EA0` answers 2 and `0x022CBB2E` is set;
 - the emitter's flag byte `+0x08` has bits `0x30` clear, and bit 2 clear or bit 3 set.
 
-Each update `00362850` marks every emitter with bit 6, runs the emitters it reaches through `003631B0`, and then
-`00363F30(list, area)` stops the handle at `+0x04` of every emitter still marked or with bit 4 or 5 set (mask
-`0x70`), or of all of them while `022CBB2E` is clear or when `area`, the `00362E50` result, is 0 (`002DF0F0`).
-It clears the bit-6 mark of every emitter, and `00362850` then clears bit 3 of every emitter. `00363180(i)` sets
-bit 3 of emitter `i` (`00362DC0`), so a bit-2 emitter plays for that pass; the map pack's switch records call it
-from `003E8440` and `003E8690`.
+Each update `0x00362850` marks every emitter with bit 6, runs the emitters it reaches through `0x003631B0`, and then
+`0x00363F30(list, area)` stops the handle at `+0x04` of every emitter still marked or with bit 4 or 5 set (mask
+`0x70`), or of all of them while `0x022CBB2E` is clear or when `area`, the `0x00362E50` result, is 0 (`0x002DF0F0`).
+It clears the bit-6 mark of every emitter, and `0x00362850` then clears bit 3 of every emitter. `0x00363180(i)` sets
+bit 3 of emitter `i` (`0x00362DC0`), so a bit-2 emitter plays for that pass; the map pack's switch records call it
+from `0x003E8440` and `0x003E8690`.
 
 ### Reverb
 
-`00362850` also sets the reverb level. It takes the value `003631B0` returns from the emitters, or the locked value
-`022CBA84` while `022CBA91` is set, and when that differs from `022CBA80` it sends it through `002DF410(1, 0xB4,
+`0x00362850` also sets the reverb level. It takes the value `0x003631B0` returns from the emitters, or the locked value
+`0x022CBA84` while `0x022CBA91` is set, and when that differs from `0x022CBA80` it sends it through `0x002DF410(1, 0xB4,
 level)`: driver action `0x2E` for parameter 7 at `level / 127` over 3 s ([Audio manager](audio-manager.md)).
 
 | Verb | Id | Body | Does |
 |---|---|---|---|
-| `lockreverb` | `0x1D6` | `003417C0` | locks its one value as the level (`003631A0(1, level)`) and resets the frame count (`00363B20(-1)`) |
-| `lockreverb_2a5` | `0x2A5` | `00341460` | stores one value as the frame count (`00363B20`) and locks the other as the level |
-| `unlockreverb` | `0x1D7` | `00341D00` | unlocks (`003631A0(0, 0)`) and resets the frame count |
+| `lockreverb` | `0x1D6` | `0x003417C0` | locks its one value as the level (`0x003631A0(1, level)`) and resets the frame count (`0x00363B20(-1)`) |
+| `lockreverb_2a5` | `0x2A5` | `0x00341460` | stores one value as the frame count (`0x00363B20`) and locks the other as the level |
+| `unlockreverb` | `0x1D7` | `0x00341D00` | unlocks (`0x003631A0(0, 0)`) and resets the frame count |
 
-`00363B20` stores its count at `022CBB30`, 180 for 0 or less, and the event teardown `00262870` unlocks as well.
+`0x00363B20` stores its count at `0x022CBB30`, 180 for 0 or less, and the event teardown `0x00262870` unlocks as well.
 
 ### Weather ambience
 
-`00363B40` picks the ambience when the weather is set (`002620E0`):
+`0x00363B40` picks the ambience when the weather is set (`0x002620E0`):
 
 1. It reads up to three entries of the list's weather table, or of the `SP1` block's table at `+0x04` when the list
-   has none, into three selections at `022CBB58`. An index in range whose id is above 0 is kept, and each id is
-   added once to a keep list at `022CBB64`.
-2. The weather slot is `00265920()` minus one; a slot at or past the table's count picks nothing.
-3. A new ambience becomes `022CBA7C`. While `022CBB2D` is set it starts at once through `00363840`. Otherwise a
-   playing ambience fades out over 15 frames first (`002DF190(current, 0xF)`), and with none playing `003636A0`
+   has none, into three selections at `0x022CBB58`. An index in range whose id is above 0 is kept, and each id is
+   added once to a keep list at `0x022CBB64`.
+2. The weather slot is `0x00265920()` minus one; a slot at or past the table's count picks nothing.
+3. A new ambience becomes `0x022CBA7C`. While `0x022CBB2D` is set it starts at once through `0x00363840`. Otherwise a
+   playing ambience fades out over 15 frames first (`0x002DF190(current, 0xF)`), and with none playing `0x003636A0`
    starts the new one.
-4. With no ambience for the slot, the current one fades out over 180 frames (`002DF190(current, 0xB4)`).
+4. With no ambience for the slot, the current one fades out over 180 frames (`0x002DF190(current, 0xB4)`).
 
-Every update `00362850` also runs the two ambience steps:
+Every update `0x00362850` also runs the two ambience steps:
 
-- `00362C60` starts a pending ambience (`003636A0`) and resets the volume ramp once the old one has stopped, or once
-  the countdown `022CBA78`, run down by 2 per pass, goes below 0. It sends a changed ambience volume
-  `022CBA92` to the playing handle `022CBA70` (`002DF150`).
-- `00362D20` moves the map sound volume `022CBA94` from `022CBA98` towards `022CBA99` by the step `022CBA9C` per
-  pass. Character and effect sounds take their volume byte from `022CBA94` ([Spatial sound](spatial-sound.md)).
+- `0x00362C60` starts a pending ambience (`0x003636A0`) and resets the volume ramp once the old one has stopped, or once
+  the countdown `0x022CBA78`, run down by 2 per pass, goes below 0. It sends a changed ambience volume
+  `0x022CBA92` to the playing handle `0x022CBA70` (`0x002DF150`).
+- `0x00362D20` moves the map sound volume `0x022CBA94` from `0x022CBA98` towards `0x022CBA99` by the step `0x022CBA9C` per
+  pass. Character and effect sounds take their volume byte from `0x022CBA94` ([Spatial sound](spatial-sound.md)).
 
-`00363E40(frames)` stops the ambience:
+`0x00363E40(frames)` stops the ambience:
 
-- with no playing handle (`022CBA70 == 0`) it runs `003636A0` and resets the ramp: `022CBA9C = 0`,
-  `022CBAA0 = 1.0`, and `022CBA94`, `022CBA98` and `022CBA99` to `0x7F`;
-- with `frames > 0` it fades `022CBA7C` out over that many frames (`002DF190(022CBA7C, frames)`), moves the handle
-  from `022CBA70` to `022CBA74` and sets the countdown `022CBA78 = frames`;
-- otherwise it stops `022CBA7C` at once (`002DF0F0(0, 022CBA7C)`), runs `003636A0`, makes the same resets, clears
-  both handles and sets `022CBA78 = -1`.
+- with no playing handle (`0x022CBA70 == 0`) it runs `0x003636A0` and resets the ramp: `0x022CBA9C = 0`,
+  `0x022CBAA0 = 1.0`, and `0x022CBA94`, `0x022CBA98` and `0x022CBA99` to `0x7F`;
+- with `frames > 0` it fades `0x022CBA7C` out over that many frames (`0x002DF190(0x022CBA7C, frames)`), moves the handle
+  from `0x022CBA70` to `0x022CBA74` and sets the countdown `0x022CBA78 = frames`;
+- otherwise it stops `0x022CBA7C` at once (`0x002DF0F0(0, 0x022CBA7C)`), runs `0x003636A0`, makes the same resets, clears
+  both handles and sets `0x022CBA78 = -1`.
 
-`envsoundtrans` (`0x57E`, `00346060`) ramps the ambience bank's volume through `00361730`, which calls
-`002DF1E0(022CBA7C, frames, volume)` while a handle is held at `022CBA70`.
+`envsoundtrans` (`0x57E`, `0x00346060`) ramps the ambience bank's volume through `0x00361730`, which calls
+`0x002DF1E0(0x022CBA7C, frames, volume)` while a handle is held at `0x022CBA70`.
 
 ### Unbinding
 
-`00363750` releases every listed id through `002DF050`, except an id from 1,000 to 1,999 that is in the keep list
-(`00363774`-`003637E4`). It copies the three selections and the keep list to `022CBB38` and releases the handle
-(`002DEB40`).
+`0x00363750` releases every listed id through `0x002DF050`, except an id from 1,000 to 1,999 that is in the keep list
+(`0x00363774`-`0x003637E4`). It copies the three selections and the keep list to `0x022CBB38` and releases the handle
+(`0x002DEB40`).
 
 ### Event sound lists
 
 A cutscene's sounds come from SPP1 lists in the event's `.snd`, a PKFL pack of 16 sub-files whose `0x88`-byte
-directory the event loader reads into `022C6E98` (`0032FE94`). Each event manager has eight sound slots of `0x38`
-bytes from `02B59360`, indexed `manager x 8 + slot`, and slot `k` reads sub-file `k`:
+directory the event loader reads into `0x022C6E98` (`0x0032FE94`). Each event manager has eight sound slots of `0x38`
+bytes from `0x02B59360`, indexed `manager x 8 + slot`, and slot `k` reads sub-file `k`:
 
-1. `eventsoundread` `0x151` (`00344660` -> `003DF3E0`) empties the slot (`003DEC90`), sets its bit in the
-   manager's mask at `02B59C20` and asks for the sub-file (`003DF440`, `0032F2F0`). The verb does nothing while the
-   manager is skipping (`00267310`), and `003DF440` parks a slot in state 1 instead of reading during a skip.
-2. When the read is in, `003DF2C0` splits the sub-file into its two parts (`0036B970`), the list and its `SeSep`
-   records, and `003DF360` opens the banks (`002DF070`), keeps the bank handle at slot `+0x00` and sets state 4.
-3. `eventsoundreadsync` `0x152` waits on `00345250` while the slot is in state 2, 3 or 4 (`003DF0F0`, `003DF0A0`).
+1. `eventsoundread` `0x151` (`0x00344660` -> `0x003DF3E0`) empties the slot (`0x003DEC90`), sets its bit in the
+   manager's mask at `0x02B59C20` and asks for the sub-file (`0x003DF440`, `0x0032F2F0`). The verb does nothing while the
+   manager is skipping (`0x00267310`), and `0x003DF440` parks a slot in state 1 instead of reading during a skip.
+2. When the read is in, `0x003DF2C0` splits the sub-file into its two parts (`0x0036B970`), the list and its `SeSep`
+   records, and `0x003DF360` opens the banks (`0x002DF070`), keeps the bank handle at slot `+0x00` and sets state 4.
+3. `eventsoundreadsync` `0x152` waits on `0x00345250` while the slot is in state 2, 3 or 4 (`0x003DF0F0`, `0x003DF0A0`).
 
-`eventsoundplay` `0x153` (`00345930` -> `003DF200`) plays list entry `word & 0xFFFFFF` of slot `(word >> 24) - 4`
-centred (`002DF010`); `eventsoundplay_16a` `0x16A` (`00350700` -> `003DF130`) gives a pan and volume (`002DEF40`).
+`eventsoundplay` `0x153` (`0x00345930` -> `0x003DF200`) plays list entry `word & 0xFFFFFF` of slot `(word >> 24) - 4`
+centred (`0x002DF010`); `eventsoundplay_16a` `0x16A` (`0x00350700` -> `0x003DF130`) gives a pan and volume (`0x002DEF40`).
 Both need state 1 or 5 and an entry below the count, store the entry's `i16` from the table at list `+0x18` at
-`022C2534` (`00314D50`), or -1 without one, and clear `022C2530` (`00314000`).
+`0x022C2534` (`0x00314D50`), or -1 without one, and clear `0x022C2530` (`0x00314000`).
 
-`eventsounddispose` `0x154` (`00347470` -> `003DEC90`) waits out a read or bank load and then releases the slot: in
-state 5 it releases every listed id (`002DF050`) and calls `002DEB40` for each of the list's `+0x10` words from
-`+0x12`; in state 1 `003DEFC0` only frees the blocks and the mask bit. When a list's `+0x10` is set, `003DF2C0` also
-passes `mapNo % 10` to `0032F3A0`.
+`eventsounddispose` `0x154` (`0x00347470` -> `0x003DEC90`) waits out a read or bank load and then releases the slot: in
+state 5 it releases every listed id (`0x002DF050`) and calls `0x002DEB40` for each of the list's `+0x10` words from
+`+0x12`; in state 1 `0x003DEFC0` only frees the blocks and the mask bit. When a list's `+0x10` is set, `0x003DF2C0` also
+passes `mapNo % 10` to `0x0032F3A0`.
 
 ## Layouts
 
@@ -190,7 +190,7 @@ All but one id name a shipped bank under `se600`-`se610`; `600070` has none.
 
 ## Loader behaviour
 
-1. `002DF070` rounds the length up to 16 and stops at a record that is not `SeSep` or is longer than what remains.
+1. `0x002DF070` rounds the length up to 16 and stops at a record that is not `SeSep` or is longer than what remains.
 2. The verbs bound the index unsigned, the emitter and weather readers after a sign test.
 3. The weather pick reads at most three entries, so a table's entries 4-7 change nothing.
 4. Only `slot < count` is tested before the selection is read, so a count of 4 with weather slot 4 reads the keep

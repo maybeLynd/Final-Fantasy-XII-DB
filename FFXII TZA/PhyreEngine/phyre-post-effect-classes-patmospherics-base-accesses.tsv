@@ -1,24 +1,24 @@
 function	name	site	disp	kind	instruction	route	note
-00646510	FUN_00646510	00646529	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 00D62800	
-00646510	FUN_00646510	0064652C	0x50	r	mov rcx, qword ptr [rcx + 0x50]	vtable-seeded 00D62800	
-00646510	FUN_00646510	0064653E	0x50	w	mov qword ptr [rbx + 0x50], 0	vtable-seeded 00D62800	
-00646510	FUN_00646510	0064654D	0x0	w	mov qword ptr [rbx], rax	vtable-seeded 00D62800	
-00646510	FUN_00646510	00646550	0x30	r	mov ecx, dword ptr [rbx + 0x30]	vtable-seeded 00D62800	
-00646510	FUN_00646510	00646567	0x38	r	mov rcx, qword ptr [rbx + 0x38]	vtable-seeded 00D62800	
-00646510	FUN_00646510	00646576	0x38	w	mov qword ptr [rbx + 0x38], 0	vtable-seeded 00D62800	
-00646510	FUN_00646510	0064657E	0x30	w	mov dword ptr [rbx + 0x30], 0	vtable-seeded 00D62800	
-00655DC0	FUN_00655dc0	00655E08	0x48	w	mov dword ptr [rsi + 0x48], ebx	vtable-seeded 00D62800	
-00655DC0	FUN_00655dc0	00655E12	0x44	w	mov dword ptr [rsi + 0x44], edi	vtable-seeded 00D62800	
-00655DC0	FUN_00655dc0	00655E15	0x40	w	mov byte ptr [rsi + 0x40], 1	vtable-seeded 00D62800	
-00657150	FUN_00657150	0065715A	0x0	r	mov rax, qword ptr [rcx]	vtable-seeded 00D62800	
-006571C0	FUN_006571c0	006571C0	0x10	r	mov rax, qword ptr [rcx + 0x10]	vtable-seeded 00D62800	
-006571C0	FUN_006571c0	006571CF	0x41	r	cmp byte ptr [rcx + 0x41], 0	vtable-seeded 00D62800	
-006575E0	FUN_006575e0	006575E0	0x10	r	mov rax, qword ptr [rcx + 0x10]	vtable-seeded 00D62800	
-006575E0	FUN_006575e0	006575E4	0x18	w	mov qword ptr [rcx + 0x18], rax	vtable-seeded 00D62800	
-006575E0	FUN_006575e0	006575F1	0x20	w	mov qword ptr [rcx + 0x20], rax	vtable-seeded 00D62800	
-006575E0	FUN_006575e0	006575FE	0x28	w	mov qword ptr [rcx + 0x28], rax	vtable-seeded 00D62800	
-006575E0	FUN_006575e0	00657605	0x28	w	mov qword ptr [rcx + 0x28], 0	vtable-seeded 00D62800	
-00657680	FUN_00657680	00657680	0x44	w	mov dword ptr [rcx + 0x44], edx	vtable-seeded 00D62800	
-00657680	FUN_00657680	00657685	0x48	w	mov dword ptr [rcx + 0x48], r8d	vtable-seeded 00D62800	
-0065B8F0	FUN_0065b8f0	0065B8F4	0x40	r	cmp byte ptr [rcx + 0x40], 0	vtable-seeded 00D62800	
-0065B8F0	FUN_0065b8f0	0065B90F	0x0	r	mov rax, qword ptr [rcx]	vtable-seeded 00D62800	
+0x00646510	FUN_00646510	0x00646529	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x0064652C	0x50	r	mov rcx, qword ptr [rcx + 0x50]	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x0064653E	0x50	w	mov qword ptr [rbx + 0x50], 0	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x0064654D	0x0	w	mov qword ptr [rbx], rax	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x00646550	0x30	r	mov ecx, dword ptr [rbx + 0x30]	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x00646567	0x38	r	mov rcx, qword ptr [rbx + 0x38]	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x00646576	0x38	w	mov qword ptr [rbx + 0x38], 0	vtable-seeded 0x00D62800	
+0x00646510	FUN_00646510	0x0064657E	0x30	w	mov dword ptr [rbx + 0x30], 0	vtable-seeded 0x00D62800	
+0x00655DC0	FUN_00655dc0	0x00655E08	0x48	w	mov dword ptr [rsi + 0x48], ebx	vtable-seeded 0x00D62800	
+0x00655DC0	FUN_00655dc0	0x00655E12	0x44	w	mov dword ptr [rsi + 0x44], edi	vtable-seeded 0x00D62800	
+0x00655DC0	FUN_00655dc0	0x00655E15	0x40	w	mov byte ptr [rsi + 0x40], 1	vtable-seeded 0x00D62800	
+0x00657150	FUN_00657150	0x0065715A	0x0	r	mov rax, qword ptr [rcx]	vtable-seeded 0x00D62800	
+0x006571C0	FUN_006571c0	0x006571C0	0x10	r	mov rax, qword ptr [rcx + 0x10]	vtable-seeded 0x00D62800	
+0x006571C0	FUN_006571c0	0x006571CF	0x41	r	cmp byte ptr [rcx + 0x41], 0	vtable-seeded 0x00D62800	
+0x006575E0	FUN_006575e0	0x006575E0	0x10	r	mov rax, qword ptr [rcx + 0x10]	vtable-seeded 0x00D62800	
+0x006575E0	FUN_006575e0	0x006575E4	0x18	w	mov qword ptr [rcx + 0x18], rax	vtable-seeded 0x00D62800	
+0x006575E0	FUN_006575e0	0x006575F1	0x20	w	mov qword ptr [rcx + 0x20], rax	vtable-seeded 0x00D62800	
+0x006575E0	FUN_006575e0	0x006575FE	0x28	w	mov qword ptr [rcx + 0x28], rax	vtable-seeded 0x00D62800	
+0x006575E0	FUN_006575e0	0x00657605	0x28	w	mov qword ptr [rcx + 0x28], 0	vtable-seeded 0x00D62800	
+0x00657680	FUN_00657680	0x00657680	0x44	w	mov dword ptr [rcx + 0x44], edx	vtable-seeded 0x00D62800	
+0x00657680	FUN_00657680	0x00657685	0x48	w	mov dword ptr [rcx + 0x48], r8d	vtable-seeded 0x00D62800	
+0x0065B8F0	FUN_0065b8f0	0x0065B8F4	0x40	r	cmp byte ptr [rcx + 0x40], 0	vtable-seeded 0x00D62800	
+0x0065B8F0	FUN_0065b8f0	0x0065B90F	0x0	r	mov rax, qword ptr [rcx]	vtable-seeded 0x00D62800	

@@ -2,7 +2,7 @@
 title: "Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script"
 kind: "system"
 category: "Damage and battle formulas"
-addresses: "0030FED0, 0030E130, 0030E360, 002390B0, 002394C0, 0030E060, 00323890"
+addresses: "0x0030FED0, 0x0030E130, 0x0030E360, 0x002390B0, 0x002394C0, 0x0030E060, 0x00323890"
 ---
 
 ## What the player sees
@@ -20,19 +20,19 @@ makes the wearer immune to statuses.
 
 ### The rebuild
 
-`0030FED0(stats, flags)` rebuilds a unit's augment set. It forces flag bits `0x202` on (`0030FEFB`) and
-starts from an empty 128-bit set (`0030FF02`-`0030FF0A`). Its 25 call sites:
+`0x0030FED0(stats, flags)` rebuilds a unit's augment set. It forces flag bits `0x202` on (`0x0030FEFB`) and
+starts from an empty 128-bit set (`0x0030FF02`-`0x0030FF0A`). Its 25 call sites:
 
 | Caller | Sites |
 |---|---|
-| the equipment setters `0031A410`, `0031A510`, `0031A630` | `0031A4CA`, `0031A5ED`, `0031A6D4` |
-| the License setter `00323910` | `00323B87` |
-| the level setter `0030C470` and the level-up `0030C650` | `0030C602`, `0030C7CE` |
-| the layer write `0030E130`, the status write `0030E360`, `0030E8F0` and `0030F690` | `0030E329`, `0030E828`, `0030E94D`, `0030F735` |
-| the result applier `003112F0` | `00311AC5` |
-| the spawn finalisation `0023A410` | `0023A502` |
-| `00328BD0` | `00328C66` |
-| the direct stat orders `002FDDA0` ([Battle orders](../Battle-Actions/battle-orders.md)) | `002FDEF7`, `002FE163`, `002FE1DB`, `002FE22F`, `002FE283`, `002FE2D7`, `002FE32D`, `002FE383`, `002FE3D9`, `002FE42D`, `002FE481`, `002FE4D5` |
+| the equipment setters `0x0031A410`, `0x0031A510`, `0x0031A630` | `0x0031A4CA`, `0x0031A5ED`, `0x0031A6D4` |
+| the License setter `0x00323910` | `0x00323B87` |
+| the level setter `0x0030C470` and the level-up `0x0030C650` | `0x0030C602`, `0x0030C7CE` |
+| the layer write `0x0030E130`, the status write `0x0030E360`, `0x0030E8F0` and `0x0030F690` | `0x0030E329`, `0x0030E828`, `0x0030E94D`, `0x0030F735` |
+| the result applier `0x003112F0` | `0x00311AC5` |
+| the spawn finalisation `0x0023A410` | `0x0023A502` |
+| `0x00328BD0` | `0x00328C66` |
+| the direct stat orders `0x002FDDA0` ([Battle orders](../Battle-Actions/battle-orders.md)) | `0x002FDEF7`, `0x002FE163`, `0x002FE1DB`, `0x002FE22F`, `0x002FE283`, `0x002FE2D7`, `0x002FE32D`, `0x002FE383`, `0x002FE3D9`, `0x002FE42D`, `0x002FE481`, `0x002FE4D5` |
 
 ### The four sources
 
@@ -40,71 +40,71 @@ The wanted set is the OR of these sources:
 
 | Source | For | Adds | Sites |
 |---|---|---|---|
-| character row | party records | bits of words `+0x50` (augments 0-31) and `+0x54` (32-63) of the row of `02EBF130` the type byte `+0x04` selects | `0030FF1F`-`00310018` |
-| enemy mask | enemy-side records | the 128 bits at battle unit `+0xE80` | `0031001A`-`0031006F` |
-| equipment | everyone | byte `+0x1A` of each equipped item of group 3 (helms, armor, accessories), unless it is `0xFF` | `00310071`-`00310121` |
-| licenses | everyone | the eight `u16` at `+0x08`-`+0x16` of each owned node (bit *i* of stats `+0x194`, *i* < 361) whose type byte `+0x05` is 15-18, skipping `0xFFFF` | `00310127`-`003102DF` |
+| character row | party records | bits of words `+0x50` (augments 0-31) and `+0x54` (32-63) of the row of `0x02EBF130` the type byte `+0x04` selects | `0x0030FF1F`-`0x00310018` |
+| enemy mask | enemy-side records | the 128 bits at battle unit `+0xE80` | `0x0031001A`-`0x0031006F` |
+| equipment | everyone | byte `+0x1A` of each equipped item of group 3 (helms, armor, accessories), unless it is `0xFF` | `0x00310071`-`0x00310121` |
+| licenses | everyone | the eight `u16` at `+0x08`-`+0x16` of each owned node (bit *i* of stats `+0x194`, *i* < 361) whose type byte `+0x05` is 15-18, skipping `0xFFFF` | `0x00310127`-`0x003102DF` |
 
-The License node's type is classed by `003241D0` and `00323890`: types 15-17 are group `0x1B` and type 18
-group `0x1C`, and both groups are class 2, the only class that adds augments (`00310192`-`0031019E`).
+The License node's type is classed by `0x003241D0` and `0x00323890`: types 15-17 are group `0x1B` and type 18
+group `0x1C`, and both groups are class 2, the only class that adds augments (`0x00310192`-`0x0031019E`).
 
 ### Applying the difference
 
-The wanted set is compared with the augment layer `+0x78` (`003102E5`-`00310336`):
+The wanted set is compared with the augment layer `+0x78` (`0x003102E5`-`0x00310336`):
 
 ```python
-added = (wanted ^ layer) & wanted      -> 0030E130(stats, id, 0, flags, mode 3)
-removed = (wanted ^ layer) & layer       -> 0030E130(stats, id, 0, flags, mode 1)
+added = (wanted ^ layer) & wanted      -> 0x0030E130(stats, id, 0, flags, mode 3)
+removed = (wanted ^ layer) & layer       -> 0x0030E130(stats, id, 0, flags, mode 1)
 ```
 
-The walk covers ids 0-127 (`00310338`-`003103A3`). Mode 3 sets the bit in `+0x78` and mode 1 clears it,
-each with the side effects of `0030E130`. Then the stats rebuild `002FEF30` runs (`003103AD`,
+The walk covers ids 0-127 (`0x00310338`-`0x003103A3`). Mode 3 sets the bit in `+0x78` and mode 1 clears it,
+each with the side effects of `0x0030E130`. Then the stats rebuild `0x002FEF30` runs (`0x003103AD`,
 [Stats](stats.md)).
 
 ### Auto-statuses and immunities from gear
 
 The stats rebuild ORs two status words into the stats record
 ([Stats](stats.md)): the character row's words `+0x48` and `+0x4C`, and each equipped item's attribute
-words `+0x08` and `+0x0C` (`002FF0A3`-`002FF0D9`, `002FF505`-`002FF51E`):
+words `+0x08` and `+0x0C` (`0x002FF0A3`-`0x002FF0D9`, `0x002FF505`-`0x002FF51E`):
 
 | Stats word offset | From row | From item | What it does |
 |---|---|---|---|
 | `+0x3C` | `+0x48` | `+0x08` | statuses the unit has as long as the source stays (status word 2) |
-| `+0x38` | `+0x4C` | `+0x0C` | statuses the unit cannot get: adding one to `+0x64` is refused (`0030E531`) |
+| `+0x38` | `+0x4C` | `+0x0C` | statuses the unit cannot get: adding one to `+0x64` is refused (`0x0030E531`) |
 
-The status write `0030E360` picks its word by mode (jump table `0030E88C`): modes 0, 1 and 2 clear a bit in
+The status write `0x0030E360` picks its word by mode (jump table `0x0030E88C`): modes 0, 1 and 2 clear a bit in
 `+0x64`, `+0x3C` and `+0x38`; modes 3, 4 and 5 set it, mode 3 refusing a status already in `+0x64` or in
-`+0x38` (`0030E4E7`-`0030E564`).
+`+0x38` (`0x0030E4E7`-`0x0030E564`).
 
 ### An enemy's scripted augments and immunities
 
 Two script commands set an enemy's two masks:
 
-- **`btlAtelSetAbility(a, b)`**: the handler `00510440` pops two numbers and jumps to `002390B0`, which
+- **`btlAtelSetAbility(a, b)`**: the handler `0x00510440` pops two numbers and jumps to `0x002390B0`, which
   clears `+0xE80` and sets the augments of the two words in reverse bit order: bit *j* of the first argument
-  sets augment 31 - *j*, bit *j* of the second sets augment 63 - *j* (`002390D8`-`00239161`). Only augments 0-63
+  sets augment 31 - *j*, bit *j* of the second sets augment 63 - *j* (`0x002390D8`-`0x00239161`). Only augments 0-63
   can be set this way.
-  - The handler's first pop (`00267E10`) is the word pushed last, the second argument, and it is `002390B0`'s
+  - The handler's first pop (`0x00267E10`) is the word pushed last, the second argument, and it is `0x002390B0`'s
     first word.
-- **`btlAtelSetStatus(table)`**: the handler `005103B0` resolves its argument to 8 bytes of script data and
-  jumps to `002394C0`, which reads 32 two-bit codes, one per status (`00239504`-`00239527`):
+- **`btlAtelSetStatus(table)`**: the handler `0x005103B0` resolves its argument to 8 bytes of script data and
+  jumps to `0x002394C0`, which reads 32 two-bit codes, one per status (`0x00239504`-`0x00239527`):
 
 | Code | Effect |
 |---:|---|
-| `3` | the status goes into the immunity mask `+0xE90` (`00239538`) |
-| `2` | the status is added once, while the spawn record is fresh (`00239551`-`00239577`) |
-| `1` | the same, when bit 0 of a shared gameplay LCG draw is set (`00239547`-`0023954F`) |
+| `3` | the status goes into the immunity mask `+0xE90` (`0x00239538`) |
+| `2` | the status is added once, while the spawn record is fresh (`0x00239551`-`0x00239577`) |
+| `1` | the same, when bit 0 of a shared gameplay LCG draw is set (`0x00239547`-`0x0023954F`) |
 | `0` | nothing |
 
-"Fresh" means bits 0 and 2 of the spawn record's first dword are clear (`002394DF`-`002394F9`). After the
-stats rebuild, `0030FED0` turns every bit of `+0xE90` into an immunity with `0030E360(..., mode 5)`,
-which sets it in `+0x38` (`003103B2`-`00310413`). The stats rebuild clears `+0x38` first, so the loop puts
+"Fresh" means bits 0 and 2 of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`). After the
+stats rebuild, `0x0030FED0` turns every bit of `+0xE90` into an immunity with `0x0030E360(..., mode 5)`,
+which sets it in `+0x38` (`0x003103B2`-`0x00310413`). The stats rebuild clears `+0x38` first, so the loop puts
 the immunities back on every rebuild.
 
 ### Enemy affinity changes
 
 For an enemy with a battle unit, the rebuild then reconciles the five affinity bytes with the spawn
-record (`00310415`-`003104BC`, [Elements](elements.md)):
+record (`0x00310415`-`0x003104BC`, [Elements](elements.md)):
 
 - spawn record byte `+0` bit 7 set: the spawn record's `+0x78`-`+0x7C` are copied over stats
   `+0x40`-`+0x44`;
@@ -115,19 +115,19 @@ The result applier sets that bit when it changes an enemy's affinities
 
 ### The clamps
 
-Last, the rebuild limits three values without going through the HP write (`003104BF`-`00310594`):
+Last, the rebuild limits three values without going through the HP write (`0x003104BF`-`0x00310594`):
 
 | Value | Limit |
 |---|---|
 | current HP `+0x48` | max HP `+0x24`, doubled under Bubble (status 28); under Disease (status 16), the current HP itself, at least 1 |
-| current MP `+0x4C` | max MP `+0x28`, or 0 when effect 39 is in either layer (byte `+0x6C` or `+0x7C`, bit 7) |
-| Mist pool `+0x06` | max MP times the MP bars `+0x37` (0 counting as 1), or 0 under effect 39 |
+| current MP `+0x4C` | max MP `+0x28`, or 0 when augment 39 (Magick Seal) is in either layer (byte `+0x6C` or `+0x7C`, bit 7) |
+| Mist pool `+0x06` | max MP times the MP bars `+0x37` (0 counting as 1), or 0 under augment 39 (Magick Seal) |
 
-The values only go down. Then `0030E060` sets the charge count `+0x4E` to `+0x06 / +0x28` when `+0x37` is
-not 0, and to 0 otherwise (`0030E0AF`-`0030E0C3`, `0031059C`); it does nothing when max MP `+0x28` is 0 or less
-(`0030E093`). When the rebuild's flags have `0x400` without `0x10` and the record has a battle unit (`0031B860`),
-a changed count is posted as a hit or heal reaction with the difference (`003283D0`, `0030E102`;
-[HP and KO](hp-and-ko.md)), which `003283D0` posts as a battle number through `003BBD00` (`00328462`,
+The values only go down. Then `0x0030E060` sets the charge count `+0x4E` to `+0x06 / +0x28` when `+0x37` is
+not 0, and to 0 otherwise (`0x0030E0AF`-`0x0030E0C3`, `0x0031059C`); it does nothing when max MP `+0x28` is 0 or less
+(`0x0030E093`). When the rebuild's flags have `0x400` without `0x10` and the record has a battle unit (`0x0031B860`),
+a changed count is posted as a hit or heal reaction with the difference (`0x003283D0`, `0x0030E102`;
+[HP and KO](hp-and-ko.md)), which `0x003283D0` posts as a battle number through `0x003BBD00` (`0x00328462`,
 [Battle numbers](../Menus-And-HUD/battle-numbers.md)).
 
 ## Shipped data
@@ -139,7 +139,7 @@ a changed count is posted as a hit or heal reaction with the difference (`003283
 | Scripts calling `btlAtelSetAbility` / `btlAtelSetStatus` | 502 each, 6,746 calls each |
 
 Each augment's text is entry *id* of the augment text bank (text word `0x5000` + id in the augment table
-`02EBF040`), for example 74 "Increases max HP by 30" and 20 "Gain MP after dealing magick damage".
+`0x02EBF040`), for example 74 "Increases max HP by 30" and 20 "Gain MP after dealing magick damage".
 
 ## Modding notes
 

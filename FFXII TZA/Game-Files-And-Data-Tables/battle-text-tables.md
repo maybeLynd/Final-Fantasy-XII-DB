@@ -2,7 +2,7 @@
 title: "Battle and menu text tables: the word banks in battle_pack.bin, the st2e string tables behind menu and help text, and how a text id becomes a string"
 kind: "format"
 category: "Game files and data tables"
-addresses: "003214B0, 002B58B0, 02EBF170, 002F9860, 002F9920, 02EC3D80, 02F973C0, 01E09F68, 002385D0, 002FA560, 002F7660, 00238640, 002F83E0, 00248700, 0053EB90, 01CEB638, 003846F0, 003845F0, 002AC2F0, 002491B0, 00563520, 00292260, 002922C0, 00292190, 002F7680, 002F79C0"
+addresses: "0x003214B0, 0x002B58B0, 0x02EBF170, 0x002F9860, 0x002F9920, 0x02EC3D80, 0x02F973C0, 0x01E09F68, 0x002385D0, 0x002FA560, 0x002F7660, 0x00238640, 0x002F83E0, 0x00248700, 0x0053EB90, 0x01CEB638, 0x003846F0, 0x003845F0, 0x002AC2F0, 0x002491B0, 0x00563520, 0x00292260, 0x002922C0, 0x00292190, 0x002F7680, 0x002F79C0"
 ---
 
 ## What the player sees
@@ -15,9 +15,9 @@ loads when it first needs them.
 ## Where it comes from
 
 - **Word banks:** entry `+0xF8` of `battle_pack.bin` (`word.bin`), bound to the registry slot
-  `02EBF170` at start-up ([authored data tables](authored-data-tables.md)).
+  `0x02EBF170` at start-up ([authored data tables](authored-data-tables.md)).
 - **Text groups:** kind-2 files under `ps2data/image/ff12/test_battle/<language>/binaryfile/`, one
-  per group, listed by the byte table `01E09F68`. 26 ship; group 27's file, `menu05`, is named but
+  per group, listed by the byte table `0x01E09F68`. 26 ship; group 27's file, `menu05`, is named but
   not shipped.
 
 | Groups | Kind-2 ids | Files |
@@ -46,7 +46,7 @@ st2e string table          the shared table header ('st2e', +0x04 rows, +0x08 ro
                            +0x14 sub-directory: u16 count (1), u32 offset of the text block
 text block                 +0x00 u32 string count, +0x04 u32 string offsets[count] (from the block),
                            then NUL-terminated strings
-text id                    group * 1000 + row (002F9860), or a row's own id (002F9920)
+text id                    group * 1000 + row (0x002F9860), or a row's own id (0x002F9920)
 ```
 
 ## Shipped data
@@ -88,62 +88,62 @@ codes, many at `0x80` and above, with two-byte ones.
 
 ### Word banks
 
-`003846F0` binds the word block at depth 1, so every bank offset and every row offset becomes an
-address. `003214B0(word)` takes bank `(word >> 11) & 0x1F` and row `word & 0x7FF`, returns 0 when
+`0x003846F0` binds the word block at depth 1, so every bank offset and every row offset becomes an
+address. `0x003214B0(word)` takes bank `(word >> 11) & 0x1F` and row `word & 0x7FF`, returns 0 when
 either is past its count, and otherwise the row's address. Many readers instead index the banks
-inline with no bounds test, among them the unit name lookup in `0023A570`.
+inline with no bounds test, among them the unit name lookup in `0x0023A570`.
 
-A row starts with two zero bytes. `002B58B0(row, k)` skips them and then `k` strings and returns the
+A row starts with two zero bytes. `0x002B58B0(row, k)` skips them and then `k` strings and returns the
 string it reaches; a row without the two zero bytes is returned as it is. Of its 59 callers, 14
-are interface code reading a row's strings: the gambit screen (`00567B60`, `0056A890`,
-`0056BC70`), the licence screens (`00558CE0`, `005618E0`), the battle menu's title `0027D480`
-and the party list `002986E0` among them ([gambit screen](../Menus-And-HUD/gambit-screen.md),
+are interface code reading a row's strings: the gambit screen (`0x00567B60`, `0x0056A890`,
+`0x0056BC70`), the licence screens (`0x00558CE0`, `0x005618E0`), the battle menu's title `0x0027D480`
+and the party list `0x002986E0` among them ([gambit screen](../Menus-And-HUD/gambit-screen.md),
 [battle menu](../Menus-And-HUD/battle-menu.md), [party list](../Menus-And-HUD/party-list.md)).
 
 ### Text groups
 
-`002F9860(id)` splits the id into group `id / 1000` and row `id % 1000`. It returns the string when the
-group is below 28, its file is resident (`02EC3D80[group]`), and the row is below the table's
+`0x002F9860(id)` splits the id into group `id / 1000` and row `id % 1000`. It returns the string when the
+group is below 28, its file is resident (`0x02EC3D80[group]`), and the row is below the table's
 `+0x04`; otherwise, or when the table or its `+0x14` sub-directory is null, it returns the empty string at
-`01CEB638`. The string is entry `row` of the text block that the table's `+0x14` sub-directory names.
+`0x01CEB638`. The string is entry `row` of the text block that the table's `+0x14` sub-directory names.
 
-`002F9920(id)` is the second form: group `id / 10000`, then a linear search of the table's rows for a
-row equal to `id`, returning the text-block string at that row's position, or `01CEB638`. A row's
+`0x002F9920(id)` is the second form: group `id / 10000`, then a linear search of the table's rows for a
+row equal to `id`, returning the text-block string at that row's position, or `0x01CEB638`. A row's
 id need not be `group × 10000 + row`: `us` `menu_command` row 5 is `10100`, so that string is both
 `1005` and `10100`. In all nine languages 144 files number their rows from `group × 10000` in order
 and 90 do not. Both resolvers divide a signed id, so a negative group passes their `< 28` test: an id of −1000
-or less for `002F9860` (`id / 1000`), and of −10000 or less for `002F9920` (`id / 10000`).
+or less for `0x002F9860` (`id / 1000`), and of −10000 or less for `0x002F9920` (`id / 10000`).
 
 A group is loaded on demand:
 
-1. `002FA560(group)` passes the group's setter (`002F7660` and its neighbours, `0x20` bytes apart) to
-   `002385D0`, which requests kind-2 file `01E09F68[group]` (`00384420`); group 0 has no file.
-2. On delivery the setter stores the file at `02EC3D80[group]` and jumps to `00238640`, which binds
-   it into `02F973C0[group]` with `003845F0`.
-3. `002F83E0(group)` frees the file and clears `02EC3D80[group]`.
+1. `0x002FA560(group)` passes the group's setter (`0x002F7660` and its neighbours, `0x20` bytes apart) to
+   `0x002385D0`, which requests kind-2 file `0x01E09F68[group]` (`0x00384420`); group 0 has no file.
+2. On delivery the setter stores the file at `0x02EC3D80[group]` and jumps to `0x00238640`, which binds
+   it into `0x02F973C0[group]` with `0x003845F0`.
+3. `0x002F83E0(group)` frees the file and clears `0x02EC3D80[group]`.
 
-`002FA560` is called from the menu widget handler `00248700`, for the group the widget names when
-it is not yet resident, and from `0053EB90` for groups 25 and 26.
+`0x002FA560` is called from the menu widget handler `0x00248700`, for the group the widget names when
+it is not yet resident, and from `0x0053EB90` for groups 25 and 26.
 
-The setters are not in group order: `002F7680` serves group 4 and `002F79C0` group 21. Each stores
-its file at `02EC3D80[group]` and jumps to `00238640` with the group in `ecx`:
+The setters are not in group order: `0x002F7680` serves group 4 and `0x002F79C0` group 21. Each stores
+its file at `0x02EC3D80[group]` and jumps to `0x00238640` with the group in `ecx`:
 
 | Groups | Setters |
 |---|---|
-| 0-6 | `002F7660`, `002F7900`, `002F7980`, `002F76A0`, `002F7680`, `002F76E0`, `002F7960` |
-| 7-13 | `002F79A0`, `002F76C0`, `002F7740`, `002F7720`, `002F77E0`, `002F7800`, `002F7700` |
-| 14-20 | `002F7780`, `002F77A0`, `002F7820`, `002F77C0`, `002F7920`, `002F7940`, `002F7760` |
-| 21-27 | `002F79C0`, `002F7840`, `002F7860`, `002F7880`, `002F78A0`, `002F78C0`, `002F78E0` |
+| 0-6 | `0x002F7660`, `0x002F7900`, `0x002F7980`, `0x002F76A0`, `0x002F7680`, `0x002F76E0`, `0x002F7960` |
+| 7-13 | `0x002F79A0`, `0x002F76C0`, `0x002F7740`, `0x002F7720`, `0x002F77E0`, `0x002F7800`, `0x002F7700` |
+| 14-20 | `0x002F7780`, `0x002F77A0`, `0x002F7820`, `0x002F77C0`, `0x002F7920`, `0x002F7940`, `0x002F7760` |
+| 21-27 | `0x002F79C0`, `0x002F7840`, `0x002F7860`, `0x002F7880`, `0x002F78A0`, `0x002F78C0`, `0x002F78E0` |
 
-`002491B0(request group, group)` hands a group to that handler (`00244F50(0xD0, 00248700, ...)`) and counts
-it on the request group. `00292260` asks for groups 10, 20 and 14, `002922C0` (from `00556500`) for 17, and
-`00292190` (from `0057B780`) for 10, 20, 14 and 16, each only when `002F8040(group)` finds
-`02EC3D80[group]` empty. At start-up `0022A4B0` runs `00563520`, which takes a request group with the
-completion function `00563550` (`002486B0`), asks for groups 10, 20 and 14 and closes it (`00249410`).
+`0x002491B0(request group, group)` hands a group to that handler (`0x00244F50(0xD0, 0x00248700, ...)`) and counts
+it on the request group. `0x00292260` asks for groups 10, 20 and 14, `0x002922C0` (from `0x00556500`) for 17, and
+`0x00292190` (from `0x0057B780`) for 10, 20, 14 and 16, each only when `0x002F8040(group)` finds
+`0x02EC3D80[group]` empty. At start-up `0x0022A4B0` runs `0x00563520`, which takes a request group with the
+completion function `0x00563550` (`0x002486B0`), asks for groups 10, 20 and 14 and closes it (`0x00249410`).
 
 ## Modding notes
 
-- Keep a word row's two leading zero bytes; without them `002B58B0` returns the row itself whatever
+- Keep a word row's two leading zero bytes; without them `0x002B58B0` returns the row itself whatever
   string number is asked for.
 - A word bank holds at most 2,048 rows and there are at most 32 banks.
 - The `group × 1000` form reaches rows 0–999 only; rows past that need their `group × 10000` id

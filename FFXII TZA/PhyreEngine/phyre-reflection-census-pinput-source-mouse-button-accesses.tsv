@@ -1,11 +1,11 @@
 function	name	site	disp	kind	instruction	route	note
-0086D2B0	FUN_0086d2b0	0086D2C9	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 01CD62E8	
-008735A0	FUN_008735a0	008735D3	0x30	r	mov rcx, qword ptr [rdi + 0x30]	vtable-seeded 01CD62E8	
-008735A0	FUN_008735a0	008735DE	0x18	r	mov ecx, dword ptr [rdi + 0x18]	vtable-seeded 01CD62E8	
-008735A0	FUN_008735a0	008735E4	0x1c	r	movzx ecx, byte ptr [rdi + 0x1c]	vtable-seeded 01CD62E8	
-008735A0	FUN_008735a0	008735EB	0x20	r	mov ecx, dword ptr [rdi + 0x20]	vtable-seeded 01CD62E8	
-00874120	FUN_00874120	00874129	0x30	r	mov rcx, qword ptr [rcx + 0x30]	vtable-seeded 01CD62E8	
-00874120	FUN_00874120	00874147	0x30	w	mov qword ptr [rbx + 0x30], rax	vtable-seeded 01CD62E8	
-00874120	FUN_00874120	0087414B	0x30	r	mov rcx, qword ptr [rbx + 0x30]	vtable-seeded 01CD62E8	
-00874120	FUN_00874120	0087415A	0x28	w	mov dword ptr [rbx + 0x28], eax	vtable-seeded 01CD62E8	
-00874120	FUN_00874120	00874163	0x28	w	mov dword ptr [rbx + 0x28], 0	vtable-seeded 01CD62E8	
+0x0086D2B0	FUN_0086d2b0	0x0086D2C9	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 0x01CD62E8	
+0x008735A0	FUN_008735a0	0x008735D3	0x30	r	mov rcx, qword ptr [rdi + 0x30]	vtable-seeded 0x01CD62E8	
+0x008735A0	FUN_008735a0	0x008735DE	0x18	r	mov ecx, dword ptr [rdi + 0x18]	vtable-seeded 0x01CD62E8	
+0x008735A0	FUN_008735a0	0x008735E4	0x1c	r	movzx ecx, byte ptr [rdi + 0x1c]	vtable-seeded 0x01CD62E8	
+0x008735A0	FUN_008735a0	0x008735EB	0x20	r	mov ecx, dword ptr [rdi + 0x20]	vtable-seeded 0x01CD62E8	
+0x00874120	FUN_00874120	0x00874129	0x30	r	mov rcx, qword ptr [rcx + 0x30]	vtable-seeded 0x01CD62E8	
+0x00874120	FUN_00874120	0x00874147	0x30	w	mov qword ptr [rbx + 0x30], rax	vtable-seeded 0x01CD62E8	
+0x00874120	FUN_00874120	0x0087414B	0x30	r	mov rcx, qword ptr [rbx + 0x30]	vtable-seeded 0x01CD62E8	
+0x00874120	FUN_00874120	0x0087415A	0x28	w	mov dword ptr [rbx + 0x28], eax	vtable-seeded 0x01CD62E8	
+0x00874120	FUN_00874120	0x00874163	0x28	w	mov dword ptr [rbx + 0x28], 0	vtable-seeded 0x01CD62E8	

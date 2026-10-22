@@ -1,94 +1,94 @@
 function	name	site	disp	kind	instruction	route	note
-00248EB0	FUN_00248eb0	00248EC1	0x0	addr	lea rax, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00249FD0	FUN_00249fd0	0024A0DE	0x0	addr	lea rsi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-0024A710	FUN_0024a710	0024A7B6	0x0	addr	lea rax, [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00271450	FUN_00271450	00271461	0x0	addr	lea rax, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-00274CB0	FUN_00274cb0	00274D45	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00276320	FUN_00276320	00276357	0x0	addr	lea rsi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002B0280	FUN_002b0280	002B0D17	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002B1D20	FUN_002b1d20	002B1D38	0x0	addr	lea rax, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002B4730	FUN_002b4730	002B47E3	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002D9C40	FUN_002d9c40	002D9C6A	0x0	addr	lea rax, [rax + r9*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DAF30	FUN_002daf30	002DAF5A	0x0	addr	lea rax, [rax + r9*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD1E0	FUN_002dd1e0	002DD20A	0x0	addr	lea rax, [rax + r8*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD420	FUN_002dd420	002DD442	0x0	addr	lea rdi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD4C0	FUN_002dd4c0	002DD4F4	0x0	addr	lea rdi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD550	FUN_002dd550	002DD573	0x0	addr	lea rdi, [rax + r8*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002F4520	FUN_002f4520	002F457E	0x0	addr	lea rdi, [rdi + r8*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-003649A0	FUN_003649a0	00364A12	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-0036D400	FUN_0036d400	0036D4CD	0x0	addr	lea rdx, [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00375B90	FUN_00375b90	00375BEE	0x0	addr	lea rax, [rsi + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00375B90	FUN_00375b90	00375CF7	0x0	addr	lea rax, [rsi + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	003A1DD9	0x0	addr	lea r8, [r9 + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	003A1DE1	0x0	addr	lea rbx, [r9 + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	003A1DE5	0x0	r	mov rcx, qword ptr [r8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	003A1DF4	0x0	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-003EC8A0	FUN_003ec8a0	003EC8A9	0x0	r	mov rcx, qword ptr [rcx]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-003EC8A0	FUN_003ec8a0	003EC8B6	0x0	w	mov qword ptr [rbx], 0	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-003EFDF0	FUN_003efdf0	003EFE4B	0x0	addr	lea r8, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	00466009	0x0	addr	lea rdx, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	0046604C	0x0	r	mov eax, dword ptr [rdx]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004660F0	FUN_004660f0	0046610C	0x0	r	mov rax, qword ptr [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00474600	FUN_00474600	00474628	0x0	addr	lea rax, [rax + r10*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00474710	FUN_00474710	004748FB	0x0	addr	lea rdx, [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE3C0	FUN_004fe3c0	004FE3C2	0x0	w	mov qword ptr [rcx], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE3D0	FUN_004fe3d0	004FE3ED	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE3D0	FUN_004fe3d0	004FE40A	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE44D	0x0	w	mov qword ptr [rbx], r9	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE472	0x0	w	mov qword ptr [rbx], r8	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-005044B0	RenderCommand_GetCurrentWriteBuffer	005044C1	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-0051BC70	FUN_0051bc70	0051BCEE	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00248EB0	FUN_00248eb0	00248EC8	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00249FD0	FUN_00249fd0	0024A0D9	0x8	r	mov rdi, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-00249FD0	FUN_00249fd0	0024A173	0x8	rw	add qword ptr [rsi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-00271450	FUN_00271450	00271468	0x8	r	mov rdx, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-00272590	FUN_00272590	002725D2	0x8	r	mov rsi, qword ptr [r14 + rbp*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00272590	FUN_00272590	00272692	0x8	rw	add qword ptr [r14 + rbp*8 + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00274CB0	FUN_00274cb0	00274D40	0x8	r	mov rdi, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00276320	FUN_00276320	00276352	0x8	r	mov rdi, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00276320	FUN_00276320	0027640B	0x8	rw	add qword ptr [rsi + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002B0280	FUN_002b0280	002B0D22	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002B1D20	FUN_002b1d20	002B1D3C	0x8	r	mov rdx, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002B4730	FUN_002b4730	002B47EE	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002D9C40	FUN_002d9c40	002D9C71	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DAF30	FUN_002daf30	002DAF61	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DB080	FUN_002db080	002DB209	0x8	r	mov rdi, qword ptr [rcx + rax*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DB080	FUN_002db080	002DBA96	0x8	rw	add qword ptr [rdx + rax*8 + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DC290	FUN_002dc290	002DC2EE	0x8	r	mov rbx, qword ptr [rax + rdi*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DC290	FUN_002dc290	002DC561	0x8	rw	add qword ptr [rax + rdi*8 + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD1E0	FUN_002dd1e0	002DD211	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD420	FUN_002dd420	002DD43D	0x8	r	mov rbx, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD420	FUN_002dd420	002DD472	0x8	rw	add qword ptr [rdi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD4C0	FUN_002dd4c0	002DD4EF	0x8	r	mov rbx, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD4C0	FUN_002dd4c0	002DD524	0x8	rw	add qword ptr [rdi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD550	FUN_002dd550	002DD56E	0x8	r	mov rbx, qword ptr [rax + r8*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-002DD550	FUN_002dd550	002DD5A6	0x8	rw	add qword ptr [rdi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-0036D400	FUN_0036d400	0036D4FD	0x8	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-0036D400	FUN_0036d400	0036D505	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	003A1DD4	0x8	r	mov rdx, qword ptr [r9 + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	003A1DFA	0x8	w	mov qword ptr [rbx + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
-003EFDF0	FUN_003efdf0	003EFE61	0x8	r	mov rcx, qword ptr [r8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-003EFDF0	FUN_003efdf0	003EFE69	0x8	w	mov qword ptr [r8 + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	0046600D	0x8	r	mov rax, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	00466016	0x8	w	mov qword ptr [rdx + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	00466030	0x8	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	00466038	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004660F0	FUN_004660f0	00466110	0x8	w	mov qword ptr [rdx + rcx*8 + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00468070	FUN_00468070	00468070	0x8	r	mov r9, qword ptr [rcx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00468070	FUN_00468070	0046807F	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00474710	FUN_00474710	00474904	0x8	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00474710	FUN_00474710	0047490C	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE3C0	FUN_004fe3c0	004FE3C5	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE3D0	FUN_004fe3d0	004FE3F0	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE3D0	FUN_004fe3d0	004FE40D	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE450	0x8	w	mov qword ptr [rbx + 8], r9	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE481	0x8	w	mov qword ptr [rbx + 8], r8	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE3C0	FUN_004fe3c0	004FE3C9	0x10	w	mov qword ptr [rcx + 0x10], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE3D0	FUN_004fe3d0	004FE3F4	0x10	w	mov qword ptr [rbx + 0x10], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
-004FE3D0	FUN_004fe3d0	004FE411	0x10	w	mov dword ptr [rbx + 0x10], edi	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE454	0x10	w	mov dword ptr [rbx + 0x10], r9d	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE485	0x10	w	mov dword ptr [rbx + 0x10], edi	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-00465FF0	FUN_00465ff0	00466053	0x14	r	cmp dword ptr [rdx + 0x14], r8d	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE3D0	FUN_004fe3d0	004FE3DA	0x14	r	cmp dword ptr [rcx + 0x14], 0	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE42F	0x14	r	cmp dword ptr [rcx + 0x14], 0	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
-004FE420	RenderCommandBuffer_ConfigureBackingRange	004FE446	0x14	w	mov dword ptr [rbx + 0x14], 1	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00248EB0	FUN_00248eb0	0x00248EC1	0x0	addr	lea rax, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00249FD0	FUN_00249fd0	0x0024A0DE	0x0	addr	lea rsi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x0024A710	FUN_0024a710	0x0024A7B6	0x0	addr	lea rax, [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00271450	FUN_00271450	0x00271461	0x0	addr	lea rax, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x00274CB0	FUN_00274cb0	0x00274D45	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00276320	FUN_00276320	0x00276357	0x0	addr	lea rsi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002B0280	FUN_002b0280	0x002B0D17	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002B1D20	FUN_002b1d20	0x002B1D38	0x0	addr	lea rax, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002B4730	FUN_002b4730	0x002B47E3	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002D9C40	FUN_002d9c40	0x002D9C6A	0x0	addr	lea rax, [rax + r9*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DAF30	FUN_002daf30	0x002DAF5A	0x0	addr	lea rax, [rax + r9*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD1E0	FUN_002dd1e0	0x002DD20A	0x0	addr	lea rax, [rax + r8*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD420	FUN_002dd420	0x002DD442	0x0	addr	lea rdi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD4C0	FUN_002dd4c0	0x002DD4F4	0x0	addr	lea rdi, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD550	FUN_002dd550	0x002DD573	0x0	addr	lea rdi, [rax + r8*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002F4520	FUN_002f4520	0x002F457E	0x0	addr	lea rdi, [rdi + r8*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x003649A0	FUN_003649a0	0x00364A12	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x0036D400	FUN_0036d400	0x0036D4CD	0x0	addr	lea rdx, [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00375B90	FUN_00375b90	0x00375BEE	0x0	addr	lea rax, [rsi + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00375B90	FUN_00375b90	0x00375CF7	0x0	addr	lea rax, [rsi + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	0x003A1DD9	0x0	addr	lea r8, [r9 + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	0x003A1DE1	0x0	addr	lea rbx, [r9 + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	0x003A1DE5	0x0	r	mov rcx, qword ptr [r8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	0x003A1DF4	0x0	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x003EC8A0	FUN_003ec8a0	0x003EC8A9	0x0	r	mov rcx, qword ptr [rcx]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x003EC8A0	FUN_003ec8a0	0x003EC8B6	0x0	w	mov qword ptr [rbx], 0	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x003EFDF0	FUN_003efdf0	0x003EFE4B	0x0	addr	lea r8, [rax + rdx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x00466009	0x0	addr	lea rdx, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x0046604C	0x0	r	mov eax, dword ptr [rdx]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004660F0	FUN_004660f0	0x0046610C	0x0	r	mov rax, qword ptr [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00474600	FUN_00474600	0x00474628	0x0	addr	lea rax, [rax + r10*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00474710	FUN_00474710	0x004748FB	0x0	addr	lea rdx, [rdx + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE3C0	FUN_004fe3c0	0x004FE3C2	0x0	w	mov qword ptr [rcx], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE3D0	FUN_004fe3d0	0x004FE3ED	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE3D0	FUN_004fe3d0	0x004FE40A	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE44D	0x0	w	mov qword ptr [rbx], r9	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE472	0x0	w	mov qword ptr [rbx], r8	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x005044B0	RenderCommand_GetCurrentWriteBuffer	0x005044C1	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x0051BC70	FUN_0051bc70	0x0051BCEE	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00248EB0	FUN_00248eb0	0x00248EC8	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00249FD0	FUN_00249fd0	0x0024A0D9	0x8	r	mov rdi, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x00249FD0	FUN_00249fd0	0x0024A173	0x8	rw	add qword ptr [rsi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x00271450	FUN_00271450	0x00271468	0x8	r	mov rdx, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x00272590	FUN_00272590	0x002725D2	0x8	r	mov rsi, qword ptr [r14 + rbp*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00272590	FUN_00272590	0x00272692	0x8	rw	add qword ptr [r14 + rbp*8 + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00274CB0	FUN_00274cb0	0x00274D40	0x8	r	mov rdi, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00276320	FUN_00276320	0x00276352	0x8	r	mov rdi, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00276320	FUN_00276320	0x0027640B	0x8	rw	add qword ptr [rsi + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002B0280	FUN_002b0280	0x002B0D22	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002B1D20	FUN_002b1d20	0x002B1D3C	0x8	r	mov rdx, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002B4730	FUN_002b4730	0x002B47EE	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002D9C40	FUN_002d9c40	0x002D9C71	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DAF30	FUN_002daf30	0x002DAF61	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DB080	FUN_002db080	0x002DB209	0x8	r	mov rdi, qword ptr [rcx + rax*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DB080	FUN_002db080	0x002DBA96	0x8	rw	add qword ptr [rdx + rax*8 + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DC290	FUN_002dc290	0x002DC2EE	0x8	r	mov rbx, qword ptr [rax + rdi*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DC290	FUN_002dc290	0x002DC561	0x8	rw	add qword ptr [rax + rdi*8 + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD1E0	FUN_002dd1e0	0x002DD211	0x8	r	mov rax, qword ptr [rax + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD420	FUN_002dd420	0x002DD43D	0x8	r	mov rbx, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD420	FUN_002dd420	0x002DD472	0x8	rw	add qword ptr [rdi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD4C0	FUN_002dd4c0	0x002DD4EF	0x8	r	mov rbx, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD4C0	FUN_002dd4c0	0x002DD524	0x8	rw	add qword ptr [rdi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD550	FUN_002dd550	0x002DD56E	0x8	r	mov rbx, qword ptr [rax + r8*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x002DD550	FUN_002dd550	0x002DD5A6	0x8	rw	add qword ptr [rdi + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x0036D400	FUN_0036d400	0x0036D4FD	0x8	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x0036D400	FUN_0036d400	0x0036D505	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	0x003A1DD4	0x8	r	mov rdx, qword ptr [r9 + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x003A1DB0	RenderCommand_SubmitCurrentBufferAndSwap	0x003A1DFA	0x8	w	mov qword ptr [rbx + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 exposed	
+0x003EFDF0	FUN_003efdf0	0x003EFE61	0x8	r	mov rcx, qword ptr [r8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x003EFDF0	FUN_003efdf0	0x003EFE69	0x8	w	mov qword ptr [r8 + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x0046600D	0x8	r	mov rax, qword ptr [rax + rcx*8 + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x00466016	0x8	w	mov qword ptr [rdx + 8], rcx	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x00466030	0x8	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x00466038	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004660F0	FUN_004660f0	0x00466110	0x8	w	mov qword ptr [rdx + rcx*8 + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00468070	FUN_00468070	0x00468070	0x8	r	mov r9, qword ptr [rcx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00468070	FUN_00468070	0x0046807F	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00474710	FUN_00474710	0x00474904	0x8	r	mov rcx, qword ptr [rdx + 8]	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00474710	FUN_00474710	0x0047490C	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE3C0	FUN_004fe3c0	0x004FE3C5	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE3D0	FUN_004fe3d0	0x004FE3F0	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE3D0	FUN_004fe3d0	0x004FE40D	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE450	0x8	w	mov qword ptr [rbx + 8], r9	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE481	0x8	w	mov qword ptr [rbx + 8], r8	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE3C0	FUN_004fe3c0	0x004FE3C9	0x10	w	mov qword ptr [rcx + 0x10], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE3D0	FUN_004fe3d0	0x004FE3F4	0x10	w	mov qword ptr [rbx + 0x10], rax	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0 zeroclear	
+0x004FE3D0	FUN_004fe3d0	0x004FE411	0x10	w	mov dword ptr [rbx + 0x10], edi	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE454	0x10	w	mov dword ptr [rbx + 0x10], r9d	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE485	0x10	w	mov dword ptr [rbx + 0x10], edi	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x00465FF0	FUN_00465ff0	0x00466053	0x14	r	cmp dword ptr [rdx + 0x14], r8d	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE3D0	FUN_004fe3d0	0x004FE3DA	0x14	r	cmp dword ptr [rcx + 0x14], 0	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE42F	0x14	r	cmp dword ptr [rcx + 0x14], 0	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	
+0x004FE420	RenderCommandBuffer_ConfigureBackingRange	0x004FE446	0x14	w	mov dword ptr [rbx + 0x14], 1	route-seeded EMBED RenderCommandBufferPair +0x0 stride=0x18 count=2 base+0x0	

@@ -2,7 +2,7 @@
 title: "Party marks: which party member cannot wear an item or has learned a magick or technick, the bitmap behind the marks, and when it is rebuilt"
 kind: "system"
 category: "Menus and HUD"
-addresses: "002826F0, 00282A40, 00282F10, 00282EE0, 003FCAD0"
+addresses: "0x002826F0, 0x00282A40, 0x00282F10, 0x00282EE0, 0x003FCAD0"
 ---
 
 ## What the player sees
@@ -16,9 +16,9 @@ addresses: "002826F0, 00282A40, 00282F10, 00282EE0, 003FCAD0"
 
 ### The bitmap
 
-The menu root `[0209AC30]` keeps one byte per id from `+0xB2E`, with bit n for the party member whose record `+0x60`
-is n (`002828A7`). An id becomes its byte index the same way in all three functions that touch it (`0028281F`-`00282848`,
-`00282F10`):
+The menu root `[0x0209AC30]` keeps one byte per id from `+0xB2E`, with bit n for the party member whose record `+0x60`
+is n (`0x002828A7`). An id becomes its byte index the same way in all three functions that touch it (`0x0028281F`-`0x00282848`,
+`0x00282F10`):
 
 | Ids | Index |
 |---|---|
@@ -27,40 +27,40 @@ is n (`002828A7`). An id becomes its byte index the same way in all three functi
 | `0x3000`-`0x3051`, magicks | `id - 0x2E44`, from `0x1BC` |
 | anything else | `0` |
 
-`00282F10(id, member)` answers the member's bit. A scan of every listed function for a memory operand with the
-displacement `0xB2E` finds only `002826F0`, `00282A40` and `00282F10`.
+`0x00282F10(id, member)` answers the member's bit. A scan of every listed function for a memory operand with the
+displacement `0xB2E` finds only `0x002826F0`, `0x00282A40` and `0x00282F10`.
 
 ### Building it
 
-`002826F0` rebuilds the bits of every member and `00282A40(member)` those of one member. The Party Menu runs
-`002826F0` from `00281AE0` (`00281CB0`), and the license board's grid runs `00282A40` (`0055DA89`;
-[License Board screen](license-board-screen.md)). For each member pointer of the nine at `[0209AC30] + 0xAC8` whose
+`0x002826F0` rebuilds the bits of every member and `0x00282A40(member)` those of one member. The Party Menu runs
+`0x002826F0` from `0x00281AE0` (`0x00281CB0`), and the license board's grid runs `0x00282A40` (`0x0055DA89`;
+[License Board screen](license-board-screen.md)). For each member pointer of the nine at `[0x0209AC30] + 0xAC8` whose
 record has a member number 0-5 at `+0x60` and bit 1 of `+0x00` clear:
 
-1. `00282EE0(record)` gives the record's place among the nine `0xC0`-byte records at `[0209AC30] + 0x408`, and
-   `0031C4C0` its party slot.
-2. For each id of the category lists 1-4 (`00252F40`, `00252FA0`), it clears the bit, fills a class-6 query record
-   (`0031C5D0`), and sets the bit unless the record's `+0x38` is `0x17`-`0x1A` (`002CCA00`) or the member can wear the
-   item in its slot `+0x4C` (`00317B70`, [Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)).
+1. `0x00282EE0(record)` gives the record's place among the nine `0xC0`-byte records at `[0x0209AC30] + 0x408`, and
+   `0x0031C4C0` its party slot.
+2. For each id of the category lists 1-4 (`0x00252F40`, `0x00252FA0`), it clears the bit, fills a class-6 query record
+   (`0x0031C5D0`), and sets the bit unless the record's `+0x38` is `0x17`-`0x1A` (`0x002CCA00`) or the member can wear the
+   item in its slot `+0x4C` (`0x00317B70`, [Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)).
 3. For each id of the category lists 9 and 8, it clears the bit and sets it when the member owns the magick or
-   technick and holds its license (`00306340`, [Command availability](../Battle-Actions/command-availability.md)).
+   technick and holds its license (`0x00306340`, [Command availability](../Battle-Actions/command-availability.md)).
 
 So an equipment bit means "cannot wear" and an ability bit means "has it".
 
 ### Showing it
 
-`003FCAD0`, the row painter of the equipment list under the Status and Equip screen, sets each member's mark frame
-(`003FCB9D`):
+`0x003FCAD0`, the row painter of the equipment list under the Status and Equip screen, sets each member's mark frame
+(`0x003FCB9D`):
 
 | Row | Bit | Frame |
 |---|---|---|
 | any | - | 7, the default |
-| equipment | set | 8, or 9 when the board reader `003FC900` answers non-zero for either of the member's two license boards (`00323670`, `00323630`) |
-| equipment worn by the member | - | the member's own mark, `002C9B30(member, 5) + 1` |
+| equipment | set | 8, or 9 when the board reader `0x003FC900` answers non-zero for either of the member's two license boards (`0x00323670`, `0x00323630`) |
+| equipment worn by the member | - | the member's own mark, `0x002C9B30(member, 5) + 1` |
 | magick or technick | clear | 8 |
 | magick or technick | set | the member's own mark |
 
-`002C9B30(n, field)` reads field 0-8 of member n's row of seven `0x10`-byte rows at `009170C0`, clamping n to 0-6.
+`0x002C9B30(n, field)` reads field 0-8 of member n's row of seven `0x10`-byte rows at `0x009170C0`, clamping n to 0-6.
 
 ## Modding notes
 

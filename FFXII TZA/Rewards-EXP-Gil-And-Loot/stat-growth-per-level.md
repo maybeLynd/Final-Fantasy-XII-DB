@@ -2,7 +2,7 @@
 title: "Stat growth on level-up: HP, MP, Strength, Magick Power, Vitality and Speed per level, starting stats, and the level-up notices"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-addresses: "0030C650, 002F9A60, 002F9B20, 002F9BD0, 0030C470, 00863BF0"
+addresses: "0x0030C650, 0x002F9A60, 0x002F9B20, 0x002F9BD0, 0x0030C470, 0x00863BF0"
 ---
 
 ## What the player sees
@@ -20,74 +20,74 @@ from its first level, and it is left out when a kill's EXP is divided ([EXP, LP 
 
 ### The level walk
 
-`0030C650(record, target, flags)` raises a stats record from its current level
-`+0x1C2` to `min(target, 99)` one level at a time (`0030C67A`-`0030C682`, back-edge `0030C865`). It
+`0x0030C650(record, target, flags)` raises a stats record from its current level
+`+0x1C2` to `min(target, 99)` one level at a time (`0x0030C67A`-`0x0030C682`, back-edge `0x0030C865`). It
 never lowers a level: when the target is not above the current level it returns at once. Each step:
 
 1. When the record is a party record (stats byte `+0x05` = 0) and the level is below 99, the stats grow
-   (`0030C6CC`, `0030C6D9`). `L` is the level before the step, and `row` is row `+0x04` (the
-   character's type id) of `chr_data`, the table in registry slot `02EBF130` (`battle_pack.bin`
+   (`0x0030C6CC`, `0x0030C6D9`). `L` is the level before the step, and `row` is row `+0x04` (the
+   character's type id) of `chr_data`, the table in registry slot `0x02EBF130` (`battle_pack.bin`
    directory `+0x44`, 40 rows of `0x80` bytes):
-   - max HP `+0x08` (dword) `= 002F9A60(L, HP)`;
-   - max MP `+0x0C` (i16) `= 002F9B20(L, MP)`;
-   - Strength `+0x10` (float) `= 002F9BD0(Strength, row.b[+0x1F])`;
-   - Magick Power `+0x14` `= 002F9BD0(Magick Power, row.b[+0x22])`;
-   - Vitality `+0x18` `= 002F9BD0(Vitality, row.b[+0x25])`;
-   - Speed `+0x1C` `= 002F9BD0(Speed, row.b[+0x28])`.
+   - max HP `+0x08` (dword) `= 0x002F9A60(L, HP)`;
+   - max MP `+0x0C` (i16) `= 0x002F9B20(L, MP)`;
+   - Strength `+0x10` (float) `= 0x002F9BD0(Strength, row.b[+0x1F])`;
+   - Magick Power `+0x14` `= 0x002F9BD0(Magick Power, row.b[+0x22])`;
+   - Vitality `+0x18` `= 0x002F9BD0(Vitality, row.b[+0x25])`;
+   - Speed `+0x1C` `= 0x002F9BD0(Speed, row.b[+0x28])`.
 
-   Every `chr_data` row is built as a party record (`0023AC80`, kind 0 sets `+0x05` = 0), the Espers
+   Every `chr_data` row is built as a party record (`0x0023AC80`, kind 0 sets `+0x05` = 0), the Espers
    (rows 27-39) and the Chocobo (row 26) included, so this applies to them too.
 2. The level byte goes up by one, capped at 99.
-3. On the last step only: the derived stats are rebuilt (`0030FED0(record, 0)`), and the notices
+3. On the last step only: the derived stats are rebuilt (`0x0030FED0(record, 0)`), and the notices
    below are posted unless flags bit 1 is set.
 
 The notices, for a party record:
 
-- message 4 carrying the record and the new level, through `0046A690` and `0046AB10`;
-- when `0031B860` finds the record's unit on the field and that unit's stats are party-kind
-  (`[unit+0x698]` byte `+0x05` = 0): the HUD popup `002905D0(unit id, from level, new level)`
-  (`[0209BE80] + 0x7FB0`), a call to `002EACD0(unit id)`, and sound 7 (`003A1180` / `002DF220`, then
-  `00329210(1)`).
+- message 4 carrying the record and the new level, through `0x0046A690` and `0x0046AB10`;
+- when `0x0031B860` finds the record's unit on the field and that unit's stats are party-kind
+  (`[unit+0x698]` byte `+0x05` = 0): the HUD popup `0x002905D0(unit id, from level, new level)`
+  (`[0x0209BE80] + 0x7FB0`), a call to `0x002EACD0(unit id)`, and sound 7 (`0x003A1180` / `0x002DF220`, then
+  `0x00329210(1)`).
 
 ### HP and MP growth
 
-HP and MP growth read `hpmpbase_data`, the table in registry slot `02EBF108` (`battle_pack.bin`
+HP and MP growth read `hpmpbase_data`, the table in registry slot `0x02EBF108` (`battle_pack.bin`
 directory `+0x28`, 99 rows of 2 bytes, row = level before the step):
 
 ```c
-// 002F9A60: b = row.hp (byte 0)
+// 0x002F9A60: b = row.hp (byte 0)
 bonus = (b / 5.0f >= 0.01f) ? (MT() % (int)(b / 5.0f * 100.0f)) / 100.0f : 0;
 HP   += b + (int)bonus;                     // bonus is 0 .. b/5 - 0.01, truncated
 
-// 002F9B20: b = row.mp (byte 1)
+// 0x002F9B20: b = row.mp (byte 1)
 bonus = (b >= 0.01f) ? (MT() % (int)(b * 100.0f)) / 100.0f : 0;
 MP   += b + (int)bonus;                     // 0 .. b - 1 extra
 ```
 
-`MT()` is `00863BF0`, the Mersenne Twister whose state starts at `02EB3870` (index `02EB4230`). On its
-first use it seeds itself with 5489 (`0x1571`, `00866D60`).
+`MT()` is `0x00863BF0`, the Mersenne Twister whose state starts at `0x02EB3870` (index `0x02EB4230`). On its
+first use it seeds itself with 5489 (`0x1571`, `0x00866D60`).
 
 All 99 rows, with the smallest and largest gain each formula allows, are in [hp-mp-growth.tsv](hp-mp-growth.tsv),
 which `Database/Tools/catalogues/hpmp_growth.py` writes from the shipped file (two runs give byte-identical output).
 
 ### Strength, Magick Power, Vitality and Speed
 
-The four stats grow by `002F9BD0`: `value + byte / 128`, and a result above 100.0 becomes
-99.99999 (`002F9BD7`-`002F9BEC`). There is no random part.
+The four stats grow by `0x002F9BD0`: `value + byte / 128`, and a result above 100.0 becomes
+99.99999 (`0x002F9BD7`-`0x002F9BEC`). There is no random part.
 
 ### Starting values
 
-`0030C470(record, level, ...)` sets the level byte to 0 (`0030C496`). For a party
+`0x0030C470(record, level, ...)` sets the level byte to 0 (`0x0030C496`). For a party
 record it then copies the row's starting values:
-- max HP from `row.u16[+0x16]` and max MP from `row.u16[+0x1A]` (`0030C4F9`-`0030C507`);
-- the four stats from the base bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27` (`0030C50B`-`0030C546`);
-- byte `+0x20` from `row.b[+0x46]`, or from `00324100(record)`, the largest licence-granted value, when
+- max HP from `row.u16[+0x16]` and max MP from `row.u16[+0x1A]` (`0x0030C4F9`-`0x0030C507`);
+- the four stats from the base bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27` (`0x0030C50B`-`0x0030C546`);
+- byte `+0x20` from `row.b[+0x46]`, or from `0x00324100(record)`, the largest licence-granted value, when
   that is larger.
 
-Then it calls `0030C650(record, level, 2)` (`0030C562`-`0030C56E`), so a new character grows silently
-from level 0 to its starting level, and sets the EXP total `+0x18C` to `002F8F20(level - 1)`, the EXP
-needed for that level, capped at 99,999,999 (`0030C573`-`0030C586`). The summon start calls it as
-`0030C470(Esper record, summoner's level, 0)` (`003069EE` in `00306760`), so an Esper is rebuilt from
+Then it calls `0x0030C650(record, level, 2)` (`0x0030C562`-`0x0030C56E`), so a new character grows silently
+from level 0 to its starting level, and sets the EXP total `+0x18C` to `0x002F8F20(level - 1)`, the EXP
+needed for that level, capped at 99,999,999 (`0x0030C573`-`0x0030C586`). The summon start calls it as
+`0x0030C470(Esper record, summoner's level, 0)` (`0x003069EE` in `0x00306760`), so an Esper is rebuilt from
 level 0 to the summoner's level every time it is summoned. A character's starting gil (`row.u16[+0x3E]`) is added once, on its
 first activation (see the gil page).
 
@@ -95,11 +95,11 @@ first activation (see the gil page).
 
 | Caller | Call | Target level | Flags |
 |---|---|---|---|
-| `0030C470` | `0030C56E` | the starting level | 2 (silent) |
-| `00312280` | `003124A3` | the level the EXP total reaches (see the EXP page) | 0 |
-| `003112F0` | `003113DF` | result byte `+0x11C` (the target's new level, `0xFF` = none) | 0 |
-| `003112F0` | `003113FD` | result byte `+0x11D` (the source's new level) | 0 |
-| `00305960` | `003059CB` | 99, for every record of party map 3 | 0 |
+| `0x0030C470` | `0x0030C56E` | the starting level | 2 (silent) |
+| `0x00312280` | `0x003124A3` | the level the EXP total reaches (see the EXP page) | 0 |
+| `0x003112F0` | `0x003113DF` | result byte `+0x11C` (the target's new level, `0xFF` = none) | 0 |
+| `0x003112F0` | `0x003113FD` | result byte `+0x11D` (the source's new level) | 0 |
+| `0x00305960` | `0x003059CB` | 99, for every record of party map 3 | 0 |
 
 ## Layouts
 
@@ -177,7 +177,7 @@ The fixed parts sum to 3,210 HP and 333 MP from level 0 to 99, before the random
   character's own HP and MP differ only by its starting values `+0x16` / `+0x1A`.
 - Per-character growth of the four stats is `chr_data` bytes `+0x1F`, `+0x22`, `+0x25`, `+0x28`, in
   1/128 per level; with the base bytes, a stat at level `L` is `base + L × growth / 128`.
-- The level cap 99 is code (`0030C650`, and `002F8F20` on the EXP page), not data.
+- The level cap 99 is code (`0x0030C650`, and `0x002F8F20` on the EXP page), not data.
 
 ## Related
 

@@ -1,6 +1,6 @@
 motion_class	animation_set	weapons	first_weapons	explanation
 0	0	0		set 0 for no shipped weapon
-1	1	1	Unarmed	set 1; also the set 00325A20 and 00325AD0 give every party unit
+1	1	1	Unarmed	set 1; also the set 0x00325A20 and 0x00325AD0 give every party unit
 2	4	12	Dagger, Mage Masher, Assassin's Dagger	set 4 for Dagger, Mage Masher, Assassin's Dagger
 3	3	27	Broadsword, Longsword, Iron Sword	set 3 for Broadsword, Longsword, Iron Sword
 4	12	13	Claymore, Defender, Save the Queen	set 12 for Claymore, Defender, Save the Queen
@@ -21,4 +21,4 @@ motion_class	animation_set	weapons	first_weapons	explanation
 19	0	0		set 0 for no shipped weapon
 20	15	12	Altair, Capella, Vega	set 15 for Altair, Capella, Vega
 21	5	6	Hornito, Fumarole, Tumulus	set 5 for Hornito, Fumarole, Tumulus
-22	2	0		set 2; bare hands with augment 9 and no off-hand item (00320376)
+22	2	0		set 2; bare hands with augment 9 and no off-hand item (0x00320376)

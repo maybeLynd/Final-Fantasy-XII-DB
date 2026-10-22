@@ -2,7 +2,7 @@
 title: "License Board: the twelve job board files, the square grid each holds, and the squares every board shares"
 kind: "format"
 category: "Items, equipment, shops and licenses"
-addresses: "02EBF1A0, 00238260, 02EBF038, 00328990, 0055B3F0, 00556F90"
+addresses: "0x02EBF1A0, 0x00238260, 0x02EBF038, 0x00328990, 0x0055B3F0, 0x00556F90"
 ---
 
 ## What the player sees
@@ -20,12 +20,12 @@ of the `us`, `uk`, `in`, `fr`, `de`, `es` and `it` languages, point at the copie
 and the three Asian tables at `test_battle/ch/BinaryFile/`; the two sets are byte for byte the same. The copies in the `cn` and `kr` folders
 differ and are not named by any table.
 
-`BattleStorage_InitializeWorkArrays` clears the twelve board slots at `02EBF1A0` and asks `00238260(k)` for
-each board *k* from 0 to 11 (`002369E5`-`00236A24`). When slot *k* is empty, `00238260` requests file index
-`0x47 + k` (`0023836A`-`0023837D`), so board *k* is `board_{k+1}.bin`; that board's callback stores the loaded
-file's address in slot *k*, releasing a board already there with `003844F0` first (`00238390`-`002383AA` for
+`BattleStorage_InitializeWorkArrays` clears the twelve board slots at `0x02EBF1A0` and asks `0x00238260(k)` for
+each board *k* from 0 to 11 (`0x002369E5`-`0x00236A24`). When slot *k* is empty, `0x00238260` requests file index
+`0x47 + k` (`0x0023836A`-`0x0023837D`), so board *k* is `board_{k+1}.bin`; that board's callback stores the loaded
+file's address in slot *k*, releasing a board already there with `0x003844F0` first (`0x00238390`-`0x002383AA` for
 board 0). No request for index 70 is made by the calls to the
-file request functions `00384420` and `003843F0`.
+file request functions `0x00384420` and `0x003843F0`.
 
 ## Layouts
 
@@ -37,8 +37,8 @@ file request functions `00384420` and `003843F0`.
 | `+0x08` | `u16[576]` | cells | row-major, cell(col, row) = cells[row * width + col]; `0xFFFF` = no square |
 
 A cell holds a node number, 0-360, an index into the license node table: section 12 of `battle_pack.bin`, bound
-to `02EBF038` by the battle data binder (`00236D5C`-`00236D67`), 361 records of 24 bytes. The id check
-`00322C50` bounds a node number by that table's count (`00322FCB`-`00322FD9`). What a node record holds and what
+to `0x02EBF038` by the battle data binder (`0x00236D5C`-`0x00236D67`), 361 records of 24 bytes. The id check
+`0x00322C50` bounds a node number by that table's count (`0x00322FCB`-`0x00322FD9`). What a node record holds and what
 buying a square does are on [Licenses](licenses.md).
 
 ### The readers
@@ -47,16 +47,16 @@ Six functions read cells with the formula above, each returning `0xFFFF` for a c
 
 | Function | Sites |
 |---|---|
-| `00328990` | `003289F0`-`00328A14` |
-| `0055E2C0` | `0055E32D`-`0055E345` |
-| `0055E600` | `0055E764`-`0055E788`, `0055E864` |
-| `00560070` | `005600F3`-`00560113`, `0056015B` |
-| `0055F830` | `0055F8E7`-`0055F95A` |
-| `003FC900` | `003FC94E`-`003FC9B4` |
+| `0x00328990` | `0x003289F0`-`0x00328A14` |
+| `0x0055E2C0` | `0x0055E32D`-`0x0055E345` |
+| `0x0055E600` | `0x0055E764`-`0x0055E788`, `0x0055E864` |
+| `0x00560070` | `0x005600F3`-`0x00560113`, `0x0056015B` |
+| `0x0055F830` | `0x0055F8E7`-`0x0055F95A` |
+| `0x003FC900` | `0x003FC94E`-`0x003FC9B4` |
 
-The board view `0055B3F0` reads the width and height as bytes and keeps each plus one at `+0x559` and `+0x55A`
-(`0055B484`-`0055B4A2`). The board's title and description are text ids `0x3ED + board` and `0x838 + board`
-(`00556FE7`, `00557010`), rows 5-16 of `menu_command.bin` for the titles.
+The board view `0x0055B3F0` reads the width and height as bytes and keeps each plus one at `+0x559` and `+0x55A`
+(`0x0055B484`-`0x0055B4A2`). The board's title and description are text ids `0x3ED + board` and `0x838 + board`
+(`0x00556FE7`, `0x00557010`), rows 5-16 of `menu_command.bin` for the titles.
 
 ## Shipped data
 
@@ -92,8 +92,8 @@ square count and Second Board square against the table above.
 
 ## Loader behaviour
 
-1. `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once (`002369E5`-`00236A24`).
-2. A slot that already holds a board is not requested again (`00238320`-`00238327`).
+1. `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once (`0x002369E5`-`0x00236A24`).
+2. A slot that already holds a board is not requested again (`0x00238320`-`0x00238327`).
 3. The grid is used as loaded: nothing writes a board file, and the header's width and height are trusted by
    every reader.
 

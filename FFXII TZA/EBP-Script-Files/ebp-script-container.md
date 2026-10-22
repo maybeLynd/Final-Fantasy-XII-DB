@@ -2,7 +2,7 @@
 title: "EBP script container: the twenty-slot directory of every zone and event script, and the walk that hands each section to its loader"
 kind: "format"
 category: "EBP script files"
-addresses: "003304A0, 0032FCA0, 0032FC30, 00330310, 0032E400, 0032E620, 002DF980, 002DF9A0, 0036A100, 0036C660, 00332250, 022C6E48, 022C6C00, 0032F1B0, 0032ED80, 0032F430, 0032F850, 00330190, 00330220, 00332100, 00330060, 0032FA10, 0032FAC0, 00331610, 003316B0, 0032FB70, 00330110, 003320E0, 00332110, 003320D0, 0032ED70, 00332130"
+addresses: "0x003304A0, 0x0032FCA0, 0x0032FC30, 0x00330310, 0x0032E400, 0x0032E620, 0x002DF980, 0x002DF9A0, 0x0036A100, 0x0036C660, 0x00332250, 0x022C6E48, 0x022C6C00, 0x0032F1B0, 0x0032ED80, 0x0032F430, 0x0032F850, 0x00330190, 0x00330220, 0x00332100, 0x00330060, 0x0032FA10, 0x0032FAC0, 0x00331610, 0x003316B0, 0x0032FB70, 0x00330110, 0x003320E0, 0x00332110, 0x003320D0, 0x0032ED70, 0x00332130"
 ---
 
 ## What the player sees
@@ -20,9 +20,9 @@ event scripts at `ps2data/plan_master/<language>/event/<group>/<event>/<event>.e
 language trees. Four control scripts (`btlctrl`, `ctrl`, `evctrl`, `mapctrl`) sit under
 `ps2data/image/ff12/<language>/bin/` in the `in` and `ch` trees only.
 
-The game never opens a script by name. `0032FCA0(manager, id)` turns a script manager index and a
+The game never opens a script by name. `0x0032FCA0(manager, id)` turns a script manager index and a
 script id into a `(namespace, index)` pair and resolves it through the path tables
-(`002DF980` returns `[0215F000 + namespace × 8][index]`, the tables `002DF9A0` installs per
+(`0x002DF980` returns `[0x0215F000 + namespace × 8][index]`, the tables `0x002DF9A0` installs per
 language; see [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md)):
 
 | Manager | Namespace | Index | Files at index, +1, +2, +3 |
@@ -31,9 +31,9 @@ language; see [file path resolution](../Game-Files-And-Data-Tables/file-path-res
 | 1 to 3 (events) | 8 | id × 4 | `.ebp`, `.mot`, `.snd`, `.vpc` |
 | 4 | 1 | id + `0x6B` | the script only |
 
-The zone script is requested from `00314020` (`003140BA`, manager 0, the id held at `01EED064`).
-Event scripts go to managers 1 to 3: `003522C0` and `00353080` add 1 to their argument and clamp
-it to 1 to 3, and `00353590`, `003CA07C` and `00306BD0` use manager 3.
+The zone script is requested from `0x00314020` (`0x003140BA`, manager 0, the id held at `0x01EED064`).
+Event scripts go to managers 1 to 3: `0x003522C0` and `0x00353080` add 1 to their argument and clamp
+it to 1 to 3, and `0x00353590`, `0x003CA07C` and `0x00306BD0` use manager 3.
 
 ## Layouts
 
@@ -56,20 +56,20 @@ low four bits, so every offset must be a multiple of 16.
 
 | Slot | First bytes | Handler, then binder | Kept in | Documented in |
 |---|---|---|---|---|
-| 0 | `0x8000000B` | `0032F850` → `0026C8C0` | `022C6C28` | [script image](ebp-script-image.md) |
-| 2 | | `00330190` → `0026C880` | `022C6CA0` | [script text](ebp-text-sections.md) |
-| 3 | | `00330220` → `0026C8A0` | `022C6CC8` | [script text](ebp-text-sections.md) |
-| 4 | `NAVI` | `00332100` → `003DFDC0` | | [navigation icons](ebp-navigation-icons.md) |
-| 6 | `TIM2` | `00330060` → `0026C860`, `0017F790`, `0029CAC0` | `022C6CF0` | [TIM2 images](../Game-Files-And-Data-Tables/tim2-images.md) |
-| 8 | `CML1` | `0032FA10` → `0026CE00` | `022C6D80` | [camera tables](ebp-camera-tables.md) |
-| 9 | `CAM7` | `0032FAC0` → `002566E0`, `002561C0`, `0026CE20` | `022C6D58` | [camera tables](ebp-camera-tables.md) |
-| 10 | `CML1` | `00331610` → `0026D3A0`, `003DD120` | `022C6DF8` | [camera shake](ebp-camera-shake.md) |
-| 11 | `SHK1` | `003316B0` → `0026D3C0`, `0037DC30`, `0037DA90` | `022C6DD0` | [camera shake](ebp-camera-shake.md) |
-| 12 | | `0032FB70` → `0026CE40` | `022C6DA8` | [actor manifest](ebp-actor-manifest.md) |
-| 14 | `LGT2` | `00330110`, bound later by `0032F1B0` | `022C6E20` | [lighting](ebp-lighting-lgt2.md) |
-| 16 | `FF12` | `003320E0` → `003DFE60(0, section)` | | [position entries](ebp-position-entries.md) |
-| 17 | | `00332110` → `003DFE60(1, section)` | | [position entries](ebp-position-entries.md) |
-| 19 | `FF12` | `003320D0` → `003EAA00` | | [area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md) |
+| 0 | `0x8000000B` | `0x0032F850` → `0x0026C8C0` | `0x022C6C28` | [script image](ebp-script-image.md) |
+| 2 | | `0x00330190` → `0x0026C880` | `0x022C6CA0` | [script text](ebp-text-sections.md) |
+| 3 | | `0x00330220` → `0x0026C8A0` | `0x022C6CC8` | [script text](ebp-text-sections.md) |
+| 4 | `NAVI` | `0x00332100` → `0x003DFDC0` | | [navigation icons](ebp-navigation-icons.md) |
+| 6 | `TIM2` | `0x00330060` → `0x0026C860`, `0x0017F790`, `0x0029CAC0` | `0x022C6CF0` | [TIM2 images](../Game-Files-And-Data-Tables/tim2-images.md) |
+| 8 | `CML1` | `0x0032FA10` → `0x0026CE00` | `0x022C6D80` | [camera tables](ebp-camera-tables.md) |
+| 9 | `CAM7` | `0x0032FAC0` → `0x002566E0`, `0x002561C0`, `0x0026CE20` | `0x022C6D58` | [camera tables](ebp-camera-tables.md) |
+| 10 | `CML1` | `0x00331610` → `0x0026D3A0`, `0x003DD120` | `0x022C6DF8` | [camera shake](ebp-camera-shake.md) |
+| 11 | `SHK1` | `0x003316B0` → `0x0026D3C0`, `0x0037DC30`, `0x0037DA90` | `0x022C6DD0` | [camera shake](ebp-camera-shake.md) |
+| 12 | | `0x0032FB70` → `0x0026CE40` | `0x022C6DA8` | [actor manifest](ebp-actor-manifest.md) |
+| 14 | `LGT2` | `0x00330110`, bound later by `0x0032F1B0` | `0x022C6E20` | [lighting](ebp-lighting-lgt2.md) |
+| 16 | `FF12` | `0x003320E0` → `0x003DFE60(0, section)` | | [position entries](ebp-position-entries.md) |
+| 17 | | `0x00332110` → `0x003DFE60(1, section)` | | [position entries](ebp-position-entries.md) |
+| 19 | `FF12` | `0x003320D0` → `0x003EAA00` | | [area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md) |
 
 The "Kept in" arrays hold one qword per manager. Slots 1, 5, 7, 13, 15 and 18 have no dispatch:
 the walker never reads their offsets. Slot 17 is the same format as slot 16, bound under the
@@ -99,104 +99,104 @@ Measured over every `.ebp` in `FFXII_TZA.vbf`.
 
 ### Requesting a script
 
-`0032FC30(manager, id)` calls `0032FCA0` and, for manager 0, sets bit 0 of the manager's pending
-word. `0032FCA0`:
+`0x0032FC30(manager, id)` calls `0x0032FCA0` and, for manager 0, sets bit 0 of the manager's pending
+word. `0x0032FCA0`:
 
-1. tears down the manager's previous script (`0032ED80`, below) and records the id at `022C6D28`
-   and `022C6D40`;
+1. tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28`
+   and `0x022C6D40`;
 2. picks the namespace and index from the table above;
 3. for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer
-   `022C6E70` (pending bit 13), and, for managers 1 to 3, index + 2 into `022C6E98` (bit 12);
-4. for managers 1 to 3, requests index + 3 of namespace 8 into the `0x208`-byte buffer `022C6EE8`
-   (bit 15) and the same index of namespace 37 into `022C6EC0` (bit 14); each request is made only
-   when `0032E400` reports a size;
+   `0x022C6E70` (pending bit 13), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit 12);
+4. for managers 1 to 3, requests index + 3 of namespace 8 into the `0x208`-byte buffer `0x022C6EE8`
+   (bit 15) and the same index of namespace 37 into `0x022C6EC0` (bit 14); each request is made only
+   when `0x0032E400` reports a size;
 5. pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE`
-   for manager 3 when that arena is enabled (`0036B200`), otherwise 5;
-6. calls `00330310` to read the script itself.
+   for manager 3 when that arena is enabled (`0x0036B200`), otherwise 5;
+6. calls `0x00330310` to read the script itself.
 
-Namespace 37's table is the `in` tree's (`01ECBCF0`; the `ch` tree's `01EA4D00` for language codes
+Namespace 37's table is the `in` tree's (`0x01ECBCF0`; the `ch` tree's `0x01EA4D00` for language codes
 7, 8 and 11), so its index + 3 names a `.vpcjp` file such as
 `in\event\nal_a\nal_a0100\nal_a0100.vpcjp` where namespace 8 names the `.vpc`. The four companion buffers are allocated once,
-for all five managers, by `0032F430`.
+for all five managers, by `0x0032F430`.
 
 ### Reading it whole
 
-`00330310(manager, id, namespace, index)`:
+`0x00330310(manager, id, namespace, index)`:
 
-1. takes the size from `0032E400`, which rounds the size table's figure up to a multiple of 64;
+1. takes the size from `0x0032E400`, which rounds the size table's figure up to a multiple of 64;
 2. sets pending bit 17;
-3. allocates that many bytes with `0036A100` in the current arena and labels the block with
-   `0036C660` (source name `atelload.c`, tag `0x95C`);
-4. stores the buffer at `022C6C00[manager]`, sets the manager record's `+0x11` bit 3, and forms the
+3. allocates that many bytes with `0x0036A100` in the current arena and labels the block with
+   `0x0036C660` (source name `atelload.c`, tag `0x95C`);
+4. stores the buffer at `0x022C6C00[manager]`, sets the manager record's `+0x11` bit 3, and forms the
    packed value `buffer | manager`;
-5. calls `00332250`, which for namespaces 5, 8 and 37 cuts a folder name out of the path (such as
-   `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value (`0017FA90`);
-6. files an asynchronous whole-file read (`0032E620`) whose completion is `003304A0(packed)`;
-7. for manager 0, files a `0x800`-byte pre-read of the zone's index + 2, its `.fpk` (`0032EB40`), which no
+5. calls `0x00332250`, which for namespaces 5, 8 and 37 cuts a folder name out of the path (such as
+   `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value (`0x0017FA90`);
+6. files an asynchronous whole-file read (`0x0032E620`) whose completion is `0x003304A0(packed)`;
+7. for manager 0, files a `0x800`-byte pre-read of the zone's index + 2, its `.fpk` (`0x0032EB40`), which no
    zone ships, so it reads nothing.
 
 Script id `0xD4` (namespace 8 index `0x350`, `event/pre_z/pre_z0000` in the `us` tables) is
-preloaded once by `0032F430` into `022C6F10`; a request for it copies that image into the new
+preloaded once by `0x0032F430` into `0x022C6F10`; a request for it copies that image into the new
 buffer and walks it at once instead of reading the file.
 
 ### The directory walk
 
-`003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0` (`003304D9`) and the
+`0x003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0` (`0x003304D9`) and the
 manager from the low nibble. It sets pending bit 1, and bit 9 when slot 12 is present
-(`003304DE`–`003304F5`). It then tests each slot in a fixed order with the same five steps:
+(`0x003304DE`–`0x003304F5`). It then tests each slot in a fixed order with the same five steps:
 `slotCount > n` (unsigned), offset non-zero, `base + offset`, `or` the manager into the low nibble,
 call the handler. There is no loop and no table: fifteen `cmp dword ptr [rdi + 4], n` sites cover
 fourteen slots, slot 12 being tested twice.
 
 The order is 0, 2, 3, 6, then 9, 8, 11, 10, 12, 16, 17, 4, 19, and last 14, which is skipped for
-manager 0 (`0033066B`). The first four calls are bracketed by the text-layer calls `0017FB70` and
-`0017FBE0`. The walk reads nothing else: not the magic, not the reserved words and not the padding.
+manager 0 (`0x0033066B`). The first four calls are bracketed by the text-layer calls `0x0017FB70` and
+`0x0017FBE0`. The walk reads nothing else: not the magic, not the reserved words and not the padding.
 
-The packed value is carried in 32 bits (`00330510 or eax, ebx`, `00330512 mov ecx, eax`), and each
+The packed value is carried in 32 bits (`0x00330510 or eax, ebx`, `0x00330512 mov ecx, eax`), and each
 handler masks it back with `0xFFFFFFF0`, so the buffer must lie below 4 GiB and every section offset
 must keep the low four bits clear.
 
 ### Handlers
 
 Each handler that keeps its section stores the pointer in its manager array (section table) and
-calls its binder; the slot-0 handler `0032F850` first rejects an image whose first byte is 0
+calls its binder; the slot-0 handler `0x0032F850` first rejects an image whose first byte is 0
 ([script image](ebp-script-image.md)). Sections 4, 16, 17 and 19 go straight to their subsystem
-and are not tracked per manager. Section 14 is only stored; `0032F1B0` binds it.
+and are not tracked per manager. Section 14 is only stored; `0x0032F1B0` binds it.
 
 ### Pending word and finish
 
-`022C6E48[manager]` holds the manager's outstanding work:
+`0x022C6E48[manager]` holds the manager's outstanding work:
 
 | Bit | Set by | Cleared by |
 |---|---|---|
-| 0 | `0032ED70` after an event request, `0032FC30` for manager 0 | `00332130` |
-| 1 | the walk | the slot-0 handler `0032F850` |
-| 9 | the walk, when slot 12 is present | the slot-12 handler `0032FB70` |
-| 12 to 15 | `0032FCA0`, per companion request | their completions `00331760`, `003302B0`, `003317C0`, `00331820` |
-| 17 | `00330310` | the end of the walk (`00330696`) |
+| 0 | `0x0032ED70` after an event request, `0x0032FC30` for manager 0 | `0x00332130` |
+| 1 | the walk | the slot-0 handler `0x0032F850` |
+| 9 | the walk, when slot 12 is present | the slot-12 handler `0x0032FB70` |
+| 12 to 15 | `0x0032FCA0`, per companion request | their completions `0x00331760`, `0x003302B0`, `0x003317C0`, `0x00331820` |
+| 17 | `0x00330310` | the end of the walk (`0x00330696`) |
 
 The other handlers clear bits 4 to 8, 10, 11 and 16, which nothing on this route sets. Every
 clearer applies the same rule: when the word without bit 0 becomes zero it clears the record's
-`+0x11` bit 3; when the whole word goes from non-zero to zero it runs `0032F1B0(manager)`.
+`+0x11` bit 3; when the whole word goes from non-zero to zero it runs `0x0032F1B0(manager)`.
 
-`0032F1B0` binds section 14 through `0037AA90` for managers above 0, with its light bookkeeping
-(`0037B230`, `003DE920`, `0037B290`), then runs `0026CE60`, which builds the manager's actors from the
-image ([actor managers](../Characters-And-Objects/actor-managers.md)), and `00263C30`.
-Bit 0 therefore holds `0032F1B0` back after every part has arrived, until `00332130` clears it
-(its callers include `00354B20`, `00354E80` and `00378120`).
-For manager 0, `0032F850` and `0032FB70` also run `0025AFC0(0)` once bits 1 and 9 are both clear.
+`0x0032F1B0` binds section 14 through `0x0037AA90` for managers above 0, with its light bookkeeping
+(`0x0037B230`, `0x003DE920`, `0x0037B290`), then runs `0x0026CE60`, which builds the manager's actors from the
+image ([actor managers](../Characters-And-Objects/actor-managers.md)), and `0x00263C30`.
+Bit 0 therefore holds `0x0032F1B0` back after every part has arrived, until `0x00332130` clears it
+(its callers include `0x00354B20`, `0x00354E80` and `0x00378120`).
+For manager 0, `0x0032F850` and `0x0032FB70` also run `0x0025AFC0(0)` once bits 1 and 9 are both clear.
 
 ### Teardown
 
-`0032ED80(manager)` runs before every new request. It unbinds what the handlers bound: section 6
-(`002E0780`, `0017FA50`, `0029CB10`), section 14 on managers above 0 (`0037AA50`), section 9
-(`002561A0`, `002566E0`, `0026CE20(manager, 0)`), section 8 (`0026CE00`), section 11 (`0037DA70`,
-`0026D3C0`), section 10 (`0026D3A0`) and section 12 (`0026CE40`), and resets the four shake slots
-(`0037DC30(manager, 0..3)`).
+`0x0032ED80(manager)` runs before every new request. It unbinds what the handlers bound: section 6
+(`0x002E0780`, `0x0017FA50`, `0x0029CB10`), section 14 on managers above 0 (`0x0037AA50`), section 9
+(`0x002561A0`, `0x002566E0`, `0x0026CE20(manager, 0)`), section 8 (`0x0026CE00`), section 11 (`0x0037DA70`,
+`0x0026D3C0`), section 10 (`0x0026D3A0`) and section 12 (`0x0026CE40`), and resets the four shake slots
+(`0x0037DC30(manager, 0..3)`).
 
 It zeroes every manager array
-entry and the pending word, and frees the file buffer `022C6C00[manager]` (`003697F0`). The
-per-section frees beside each unbind sit behind `005C5230`, which returns 0, so they never run.
+entry and the pending word, and frees the file buffer `0x022C6C00[manager]` (`0x003697F0`). The
+per-section frees beside each unbind sit behind `0x005C5230`, which returns 0, so they never run.
 
 ## Modding notes
 
@@ -212,7 +212,7 @@ per-section frees beside each unbind sit behind `005C5230`, which returns 0, so 
 ## Related
 
 - [Script image](ebp-script-image.md): section 0, the code the interpreter runs.
-- [Actor managers](../Characters-And-Objects/actor-managers.md): the record the bind fills and `0026CE60`.
+- [Actor managers](../Characters-And-Objects/actor-managers.md): the record the bind fills and `0x0026CE60`.
 - [File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md): the path tables and the read.
-- [Resource arenas](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md): `0036A100`, the arena stack and block labels.
+- [Resource arenas](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md): `0x0036A100`, the arena stack and block labels.
 - [Script interpreter](../Scripts-And-Script-Commands/script-interpreter.md): what runs the image once it is bound.

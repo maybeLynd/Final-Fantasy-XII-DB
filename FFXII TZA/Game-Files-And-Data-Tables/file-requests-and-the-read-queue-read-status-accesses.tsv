@@ -1,3 +1,3 @@
 function	name	site	disp	kind	instruction	route	note
-001D6D90	FUN_001d6d90	001D6DD4	0x0	w	mov dword ptr [rax], 0xffffffff	route-seeded STATIC 0x0215EFF4 base+0x0	
-001D6FB0	FUN_001d6fb0	001D6FF4	0x0	w	mov dword ptr [rax], 0xffffffff	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x001D6D90	FUN_001d6d90	0x001D6DD4	0x0	w	mov dword ptr [rax], 0xffffffff	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x001D6FB0	FUN_001d6fb0	0x001D6FF4	0x0	w	mov dword ptr [rax], 0xffffffff	route-seeded STATIC 0x0215EFF4 base+0x0	

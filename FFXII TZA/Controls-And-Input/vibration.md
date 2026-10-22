@@ -2,7 +2,7 @@
 title: "Vibration: the pad vibration that scenes and effects play, the request slots and their steps, the Vibration Function setting, and how the levels reach an XInput or Steam pad"
 kind: "system"
 category: "Controls and input"
-addresses: "02EC0B80, 0035B2F0, 0035B580, 0035B650, 0035AF20, 0035AE30, 0035FED0, 0035F590, 0035F690, 001E1120, 007A2140, 0035B1A0"
+addresses: "0x02EC0B80, 0x0035B2F0, 0x0035B580, 0x0035B650, 0x0035AF20, 0x0035AE30, 0x0035FED0, 0x0035F590, 0x0035F690, 0x001E1120, 0x007A2140, 0x0035B1A0"
 ---
 
 ## What the player sees
@@ -17,50 +17,50 @@ addresses: "02EC0B80, 0035B2F0, 0035B580, 0035B650, 0035AF20, 0035AE30, 0035FED0
 
 ### The request slots
 
-Vibration requests live in 32 slots of `0x20` bytes at `02EC0B80`. `0035B270`, run once from `0022A0B0`
-(`0022A429`), chains every slot into the free list `02EC0B60`, empties the playing list `02EC0B61` (`0xFF`), clears
-the eight recorded handles `022C8030`, the pattern table `02EC0B68` and the pause mask `02EC0B40`, and sets the output
-switch `02EC0B3C` to 1 (`0035B2D5`-`0035B2DC`). No rip-relative store writes `02EC0B3C` elsewhere.
+Vibration requests live in 32 slots of `0x20` bytes at `0x02EC0B80`. `0x0035B270`, run once from `0x0022A0B0`
+(`0x0022A429`), chains every slot into the free list `0x02EC0B60`, empties the playing list `0x02EC0B61` (`0xFF`), clears
+the eight recorded handles `0x022C8030`, the pattern table `0x02EC0B68` and the pause mask `0x02EC0B40`, and sets the output
+switch `0x02EC0B3C` to 1 (`0x0035B2D5`-`0x0035B2DC`). No rip-relative store writes `0x02EC0B3C` elsewhere.
 
-A handle is the slot's generation times 256 plus the slot number plus 1 (`0035B2F0`). Every function that takes
+A handle is the slot's generation times 256 plus the slot number plus 1 (`0x0035B2F0`). Every function that takes
 a handle first compares the generation, so a stale handle does nothing:
 
-- `0035B240(handle)` returns the slot's state, or 0 for a stale handle.
-- `0035B550(handle, strength)` sets the strength.
-- `0035B1A0(handle)` frees the slot: it unlinks it from the playing list, raises the generation, puts it at the
+- `0x0035B240(handle)` returns the slot's state, or 0 for a stale handle.
+- `0x0035B550(handle, strength)` sets the strength.
+- `0x0035B1A0(handle)` frees the slot: it unlinks it from the playing list, raises the generation, puts it at the
   head of the free list and clears its state and pattern.
 
 ### Starting a vibration
 
-1. `0035B2F0(pattern, channel)` takes the head of the free list when its state is 0: state 1, strength 1.0, track 1
+1. `0x0035B2F0(pattern, channel)` takes the head of the free list when its state is 0: state 1, strength 1.0, track 1
    at pair 0 and track 2 at the pair the pattern's first `u16` names, and links it into the playing list.
-2. `0035B580(handle, mask)` starts a slot in state 1: it keeps the mask and moves to state 2, or straight to state 4
-   when the mask shares a bit with the pause mask `02EC0B40` (`0035B5AB`).
-3. `0035B650(index, mask)` does both for pattern `index` of the loaded table on channel 0, when the index is below
-   the table's count and one of the eight entries at `022C8030` is empty, and records the handle there.
+2. `0x0035B580(handle, mask)` starts a slot in state 1: it keeps the mask and moves to state 2, or straight to state 4
+   when the mask shares a bit with the pause mask `0x02EC0B40` (`0x0035B5AB`).
+3. `0x0035B650(index, mask)` does both for pattern `index` of the loaded table on channel 0, when the index is below
+   the table's count and one of the eight entries at `0x022C8030` is empty, and records the handle there.
 
 | Starter | What it plays |
 |---|---|
-| verb `vibplay` `0x23D`, handler `0034AC30` | `0035B650(pattern, 2)` through `00379F20`, unless `00267310` answers non-zero for the actor's byte `+0x15` |
-| verb `vibstop` `0x23E`, handler `0034B0F0` | frees the eight recorded handles (`0035B460`) |
-| `0034B3C0` | answers whether a recorded handle is playing or paused (`0035B380`), or frees them when `00267310` answers non-zero |
-| effect sequence element of kind 3 (`004FF2C0`) | `005372D0`: on the element's frame, with fewer than four running, `0035B2F0(pattern, 0)` and `0035B580(handle, 1)`, strength `00537410`'s answer over 127 |
+| verb `vibplay` `0x23D`, handler `0x0034AC30` | `0x0035B650(pattern, 2)` through `0x00379F20`, unless `0x00267310` answers non-zero for the actor's byte `+0x15` |
+| verb `vibstop` `0x23E`, handler `0x0034B0F0` | frees the eight recorded handles (`0x0035B460`) |
+| `0x0034B3C0` | answers whether a recorded handle is playing or paused (`0x0035B380`), or frees them when `0x00267310` answers non-zero |
+| effect sequence element of kind 3 (`0x004FF2C0`) | `0x005372D0`: on the element's frame, with fewer than four running, `0x0035B2F0(pattern, 0)` and `0x0035B580(handle, 1)`, strength `0x00537410`'s answer over 127 |
 
-Each frame `0046E990` and `0046EDD0` set the strength of a sequence's running vibrations again from `00537410` and
-free those that have stopped; `0046EE70` frees all of a sequence's vibrations.
+Each frame `0x0046E990` and `0x0046EDD0` set the strength of a sequence's running vibrations again from `0x00537410` and
+free those that have stopped; `0x0046EE70` frees all of a sequence's vibrations.
 
 ### Stepping
 
-`0035AF20` turns the time into whole steps; the field frame calls it at `0022A955`, `0022AC7A` and `0022ADDE`:
+`0x0035AF20` turns the time into whole steps; the field frame calls it at `0x0022A955`, `0x0022AC7A` and `0x0022ADDE`:
 
 ```python
-accumulator 022C8050 += 10000 * [01DFE0BC]
+accumulator 0x022C8050 += 10000 * [0x01DFE0BC]
 steps = accumulator / 10000, run in one pass
 accumulator = accumulator % 10000
 ```
 
-The pass clears the levels `02EC0B50` (two channels of two `i32`, track 1 then track 2), then steps each playing
-slot whose mask shares no bit with `02EC0B40`. A track's pair k is `{duration, level}` at `+4 + 2k`, and the next
+The pass clears the levels `0x02EC0B50` (two channels of two `i32`, track 1 then track 2), then steps each playing
+slot whose mask shares no bit with `0x02EC0B40`. A track's pair k is `{duration, level}` at `+4 + 2k`, and the next
 pair's level is its end:
 
 ```python
@@ -73,54 +73,54 @@ to the next pair. A pair with duration 0 ends its track, and a slot whose two tr
 
 ### Pausing
 
-- `0035B4B0(mask)` adds the bits to `02EC0B40` and moves every playing slot whose mask shares a bit to state 3.
-- `0035B510(mask)` removes the bits and moves every slot in state 3 back to 2, whatever its mask.
-- `00226280` calls `0035B4B0(5)` when bit 29 of the flags it combines is clear and `0035B510(0xFF)` otherwise
-  (`002264AE`, `002264B7`).
+- `0x0035B4B0(mask)` adds the bits to `0x02EC0B40` and moves every playing slot whose mask shares a bit to state 3.
+- `0x0035B510(mask)` removes the bits and moves every slot in state 3 back to 2, whatever its mask.
+- `0x00226280` calls `0x0035B4B0(5)` when bit 29 of the flags it combines is clear and `0x0035B510(0xFF)` otherwise
+  (`0x002264AE`, `0x002264B7`).
 
 So `vibplay`'s mask 2 is never paused, and an effect's mask 1 is.
 
 ### Output to the pad channel
 
-`0035AE30` runs after the stepping. With the switch `02EC0B3C` on it calls `0035FED0(channel, 1, track 1 level)` and
-`0035FED0(channel, 0, track 2 level)` for channels 0 and 1, and with it off it sends zeros (`0035AE41`-`0035AE95`).
-It then frees every recorded handle in state 4 (`0035AEA1`-`0035AEE2`).
+`0x0035AE30` runs after the stepping. With the switch `0x02EC0B3C` on it calls `0x0035FED0(channel, 1, track 1 level)` and
+`0x0035FED0(channel, 0, track 2 level)` for channels 0 and 1, and with it off it sends zeros (`0x0035AE41`-`0x0035AE95`).
+It then frees every recorded handle in state 4 (`0x0035AEA1`-`0x0035AEE2`).
 
-`0035FED0(channel, actuator, level)` stores the level byte at `+0x06 + actuator` of the channel record `022CAE90`
-(`0x294` bytes each) and the vsync count `022CA5E0` at `+0x1C + 4 × actuator`. The two capture frames, the full
-menu frame and the capture-backed frame first clear the four levels with `0035AF10` (`0022AF63`, `0022B009`,
-`0022BA0B`, `0022BCB7`).
+`0x0035FED0(channel, actuator, level)` stores the level byte at `+0x06 + actuator` of the channel record `0x022CAE90`
+(`0x294` bytes each) and the vsync count `0x022CA5E0` at `+0x1C + 4 × actuator`. The two capture frames, the full
+menu frame and the capture-backed frame first clear the four levels with `0x0035AF10` (`0x0022AF63`, `0x0022B009`,
+`0x0022BA0B`, `0x0022BCB7`).
 
 ### From the channel to the pad
 
-On every poll `0035F420` calls `0035F590` (`0035F548`):
+On every poll `0x0035F420` calls `0x0035F590` (`0x0035F548`):
 
 1. With the channel's flag bit 2 set, the large value is the envelope `+0x16` times the actuator-1 level `+0x07`,
    shifted right 14, and the small value is bit 0 of the envelope times the actuator-0 level `+0x06`, shifted
    right 21; without it both are 0.
-2. It hands them through `008628F0` to `001E1120(pad +0x02, small, large)`, and sets flag bit 4 when either level it read
-   is non-zero. `0035FCA0` clears bit 4 before each poll (`0035FCE8`).
-3. `001E1120` sends zeros instead unless the input manager's last-device byte `+0x38` says the pad was used last
-   (`00197780`) and `00228480` answers 0 (`001E1148`-`001E116F`).
-4. `00198E80` takes the n-th registered controller of kind 2 (`0079D620`, `00796FC0(2, n)`) and `007A1080` stores the
+2. It hands them through `0x008628F0` to `0x001E1120(pad +0x02, small, large)`, and sets flag bit 4 when either level it read
+   is non-zero. `0x0035FCA0` clears bit 4 before each poll (`0x0035FCE8`).
+3. `0x001E1120` sends zeros instead unless the input manager's last-device byte `+0x38` says the pad was used last
+   (`0x00197780`) and `0x00228480` answers 0 (`0x001E1148`-`0x001E116F`).
+4. `0x00198E80` takes the n-th registered controller of kind 2 (`0x0079D620`, `0x00796FC0(2, n)`) and `0x007A1080` stores the
    large value at `+0x98`, the small one at `+0x99` and 1 at `+0x9A`.
 
-The XInput pad's update `007A2140` passes `+0x98` / 255 × 65535 as the left motor and 65535 or 0 for a
-non-zero or zero `+0x99` as the right motor to `XInputSetState` (`007A21C5`-`007A2224`). The Steam controller's update
-`007A1CD0` calls slot `0x88` of the Steam controller interface `02EA9508` with `+0x98` × 256 and `+0x99` × 256. A
-displacement scan of the listed functions in `00790000`-`007A5000` finds no other reader of `+0x98`, so a DirectInput
+The XInput pad's update `0x007A2140` passes `+0x98` / 255 × 65535 as the left motor and 65535 or 0 for a
+non-zero or zero `+0x99` as the right motor to `XInputSetState` (`0x007A21C5`-`0x007A2224`). The Steam controller's update
+`0x007A1CD0` calls slot `0x88` of the Steam controller interface `0x02EA9508` with `+0x98` × 256 and `+0x99` × 256. A
+displacement scan of the listed functions in `0x00790000`-`0x007A5000` finds no other reader of `+0x98`, so a DirectInput
 pad gets no vibration.
 
 ### The Vibration Function setting
 
-The Config option Vibration Function is bit 13 of the options word `*0215E6E0`. `002DE080` stores it from the Config
-screen (`00240865`) and `002DDA30` applies it when the options are loaded; both pass it to `0035FF30(0, bit)`,
-which sets or clears flag bit 2 of channel 0 (`002DDAA4`). Channel 1 has no setter of that bit in a raw call scan
-of `0035FF30`.
+The Config option Vibration Function is bit 13 of the options word `*0x0215E6E0`. `0x002DE080` stores it from the Config
+screen (`0x00240865`) and `0x002DDA30` applies it when the options are loaded; both pass it to `0x0035FF30(0, bit)`,
+which sets or clears flag bit 2 of channel 0 (`0x002DDAA4`). Channel 1 has no setter of that bit in a raw call scan
+of `0x0035FF30`.
 
 ### The fade-out
 
-`0035F690` runs after each poll of the channel (`0035FD8D`) and moves the envelope `+0x16` between 0 and `0x4000` by
+`0x0035F690` runs after each poll of the channel (`0x0035FD8D`) and moves the envelope `+0x16` between 0 and `0x4000` by
 the step `+0x18`:
 
 | While | Count | What happens |
@@ -132,15 +132,15 @@ the step `+0x18`:
 
 ## Layouts
 
-A request slot is `0x20` bytes; the 32 slots sit at `02EC0B80`:
+A request slot is `0x20` bytes; the 32 slots sit at `0x02EC0B80`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | next | the next slot in the free or playing list; `0xFF` ends it |
 | `+0x01` | `u8` | state | 0 free, 1 taken, 2 playing, 3 paused, 4 finished |
-| `+0x02` | `u16` | generation | raised by every free (`0035B1A0`) |
+| `+0x02` | `u16` | generation | raised by every free (`0x0035B1A0`) |
 | `+0x08` | `u8*` | pattern | the pattern record |
-| `+0x10` | `f32` | strength | 1.0 when taken; set by `0035B550` |
+| `+0x10` | `f32` | strength | 1.0 when taken; set by `0x0035B550` |
 | `+0x14` | `u16` | step1 | track 1's pair |
 | `+0x16` | `u16` | step2 | track 2's pair |
 | `+0x18` | `u8` | frame1 | steps into track 1's pair |
@@ -167,7 +167,7 @@ plays:
 - A second track in `eventvib.bin` drives the right motor, which is either off or full: the small value is 1 only
   for a level of 128 or more at full envelope.
 - The table's patterns always play on channel 0, the only channel the Vibration Function setting reaches.
-- `0035B510` resumes every paused vibration, not only those of the mask it clears.
+- `0x0035B510` resumes every paused vibration, not only those of the mask it clears.
 - The pattern file's layout is on [Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md).
 
 ## Related

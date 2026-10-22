@@ -2,12 +2,12 @@
 title: "Action list: every attack, magick, technick, item use, summon, Quickening, Concurrence, Foecraft move and trap with its cost, power, element, statuses, area and texts"
 kind: "reference"
 category: "Battle actions"
-addresses: "02EBF138, 0031C5D0, 0031DBB1, 0031DBBE, 002F9860, 00305F10, 003093D0, 00320D70"
+addresses: "0x02EBF138, 0x0031C5D0, 0x0031DBB1, 0x0031DBBE, 0x002F9860, 0x00305F10, 0x003093D0, 0x00320D70"
 ---
 
 ## What it lists
 
-`action-list.tsv` holds one line for each of the 543 rows of the action table that registry slot `02EBF138`
+`action-list.tsv` holds one line for each of the 543 rows of the action table that registry slot `0x02EBF138`
 reaches (`battle_pack.bin` directory entry `+0x3C`). Row *n* is action id *n*. What every field does, and the code
 that reads it, is on [Action definition row](action-definition-row.md); this page is the shipped content.
 
@@ -22,9 +22,9 @@ Mist Charge rows (242-244), Chain Bonus (245) and Dismiss (275).
 `Database/Tools/catalogues/actions.py`, with the shared readers in `ffxii_text.py`:
 
 1. the `st2e` table at entry `+0x3C`: 543 rows of 60 bytes from the section's `+0x20`;
-2. the name word `+0x34` through the word banks at entry `+0xF8` (`00305F10`);
+2. the name word `+0x34` through the word banks at entry `+0xF8` (`0x00305F10`);
 3. the help line `+0x00` (4000 for none) and the description `+0x2E` through the text groups, group `id / 1000` and
-   row `id % 1000` as `002F9860` resolves them for `0031C5D0` (`0031DBB1`, `0031DBBE`);
+   row `id % 1000` as `0x002F9860` resolves them for `0x0031C5D0` (`0x0031DBB1`, `0x0031DBBE`);
 4. every one-byte text code through the glyph table of the shipped `us` font `font00.dat` (records of `0x24` bytes
    from `+0x28`, key = byte - `0x20`, the glyph's UTF-8 at `+0x04`, as [Fonts](../Menus-And-HUD/fonts.md) describes);
    token `0x02` (line break) is written as a space;
@@ -32,7 +32,7 @@ Mist Charge rows (242-244), Chain Bonus (245) and Dismiss (275).
    [Statuses](../Status-Effects-And-KO/statuses.md)' table;
 6. each flag word kept as hex, with beside it only the bits that have a named effect on
    [Action definition row](action-definition-row.md); `+0x2C` bits 12 and 15 take their names from
-   [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) (`0030846A`, `003084B3`).
+   [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) (`0x0030846A`, `0x003084B3`).
 
 ### Checks
 

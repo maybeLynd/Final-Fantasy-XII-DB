@@ -2,7 +2,7 @@
 title: "ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them"
 kind: "system"
 category: "EBP script files"
-addresses: "003306E0, 0032E400, 0032FCA0, 00D10990, 0032F6F0"
+addresses: "0x003306E0, 0x0032E400, 0x0032FCA0, 0x00D10990, 0x0032F6F0"
 ---
 
 ## What the player sees
@@ -18,30 +18,30 @@ reads them, so editing or deleting them changes nothing in play.
 The executable holds none of the module names (`\ctrl.`, `/ctrl.`, `btlctrl`, `evctrl`, `mapctrl`,
 `systemctrl`) and none of `.sbn`, `.msb` or `.dbg` as a terminated string, in ASCII or UTF-16. The
 bare strings `sbn` and `msb` occur once each and `dbg` twice, and the `sbn`/`msb`/`dbg` entries at
-`00D10994` to `00D1099C` are extension strings in the list `bin dbg sbn msb msf fnt cam camera lgt cml
-cmi shk skl vld` at `00D10990`.
+`0x00D10994` to `0x00D1099C` are extension strings in the list `bin dbg sbn msb msf fnt cam camera lgt cml
+cmi shk skl vld` at `0x00D10990`.
 
 ### The sibling loader stops at its first query
 
-`003306E0`, called from `0032FCA0` (`00330029`), builds sibling names for a script by putting those
-extensions on its path (the first six at `0033078D` to `00330A59`).
+`0x003306E0`, called from `0x0032FCA0` (`0x00330029`), builds sibling names for a script by putting those
+extensions on its path (the first six at `0x0033078D` to `0x00330A59`).
 
-Three names go into a subfolder through `0032F6F0(path, folder, extension)` (`00330AB9`,
-`00330AE9`, `00330C39`), each with the folder `camera` (`00D109AC`) and the extension `cam`, `lgt` or
-`shk`. `0032F6F0` inserts the folder and a backslash before the file name, which starts after the
+Three names go into a subfolder through `0x0032F6F0(path, folder, extension)` (`0x00330AB9`,
+`0x00330AE9`, `0x00330C39`), each with the folder `camera` (`0x00D109AC`) and the extension `cam`, `lgt` or
+`shk`. `0x0032F6F0` inserts the folder and a backslash before the file name, which starts after the
 last `\` or `/`. It then copies the extension over the characters after the last `.`, stopping at
 the end of either, or cuts the name at that `.` when the extension is null, and copies the result
 back over `path`.
 
-`003306E0` then sizes the names with `0032E400`, 14 calls that all pass kind `0xFF` (`00330E47` to
-`00330F71`).
+`0x003306E0` then sizes the names with `0x0032E400`, 14 calls that all pass kind `0xFF` (`0x00330E47` to
+`0x00330F71`).
 
-- `0032E400` compares the kind with `0xFF` before any lookup (`0032E404`) and returns -1
-  (`0032E438`).
-- The first result is kept in `r15d` (`00330E58`); `00330F7D` jumps to the epilogue `003315E7` when
+- `0x0032E400` compares the kind with `0xFF` before any lookup (`0x0032E404`) and returns -1
+  (`0x0032E438`).
+- The first result is kept in `r15d` (`0x00330E58`); `0x00330F7D` jumps to the epilogue `0x003315E7` when
   it is not positive, and no branch before that point lands beyond it.
 
-So `003306E0` returns without registering any file, and no string in the executable names these files.
+So `0x003306E0` returns without registering any file, and no string in the executable names these files.
 
 ## Layouts
 

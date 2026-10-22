@@ -1,9 +1,9 @@
 function	name	site	disp	kind	instruction	route	note
-005A1BA0	FUN_005a1ba0	005A1BA7	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BAA	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BAD	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BB1	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BB4	0x20	w	mov qword ptr [rdx + 0x20], rax	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BB8	0x30	w	mov qword ptr [rdx + 0x30], rax	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BBC	0x28	w	mov dword ptr [rdx + 0x28], 0x3f800000	ctorrdx-seeded 005A1BA0	
-005A1BA0	FUN_005a1ba0	005A1BC3	0x2c	w	mov dword ptr [rdx + 0x2c], 0xbf800000	ctorrdx-seeded 005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BA7	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BAA	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BAD	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BB1	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BB4	0x20	w	mov qword ptr [rdx + 0x20], rax	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BB8	0x30	w	mov qword ptr [rdx + 0x30], rax	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BBC	0x28	w	mov dword ptr [rdx + 0x28], 0x3f800000	ctorrdx-seeded 0x005A1BA0	
+0x005A1BA0	FUN_005a1ba0	0x005A1BC3	0x2c	w	mov dword ptr [rdx + 0x2c], 0xbf800000	ctorrdx-seeded 0x005A1BA0	

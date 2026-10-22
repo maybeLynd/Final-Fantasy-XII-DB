@@ -2,7 +2,7 @@
 title: "Render parameters and shader assets: the post-process shader files and the scene-parameter documents"
 kind: "system"
 category: "Graphics"
-addresses: "01DF0910, 0018D850, 0019CB20, 001FF740, 001FF6B0, 001C51D0, 001C3D50, 001C7940, 001CA600, 001C9190, 001A9B00, 001A9930, 008FB2D8"
+addresses: "0x01DF0910, 0x0018D850, 0x0019CB20, 0x001FF740, 0x001FF6B0, 0x001C51D0, 0x001C3D50, 0x001C7940, 0x001CA600, 0x001C9190, 0x001A9B00, 0x001A9930, 0x008FB2D8"
 ---
 
 ## What the player sees
@@ -20,43 +20,43 @@ The executable names 18 `.phyre` assets for the post-process chain, text and vid
 
 | Path | Use |
 |---|---|
-| `/GameData/D3D11/ArtData/shaders/SAO.fx.phyre`, `UnSharpMask`, `HBAO`, `PS2DepthOfField`, `SeparableSSS`, `GaussianFilter`, `PhyreFXAA`, `SMAA` (`.fx`), `searchtex`, `areatexdx10` (`.dds`), `depthmask`, `BrightnessShader` (`.fx`) | the pointer table `01DF0910`, in this order |
-| `/GameData/D3D11/ArtData/shaders/video.fx.phyre` | `001B7850` (`001B78E3`) |
+| `/GameData/D3D11/ArtData/shaders/SAO.fx.phyre`, `UnSharpMask`, `HBAO`, `PS2DepthOfField`, `SeparableSSS`, `GaussianFilter`, `PhyreFXAA`, `SMAA` (`.fx`), `searchtex`, `areatexdx10` (`.dds`), `depthmask`, `BrightnessShader` (`.fx`) | the pointer table `0x01DF0910`, in this order |
+| `/GameData/D3D11/ArtData/shaders/video.fx.phyre` | `0x001B7850` (`0x001B78E3`) |
 | `/GameData/D3D11/ArtData/shaders/PhyreText.fx.phyre`, `/GameData/D3D11/ArtData/font/tuffysdf.fgen.phyre` | the text shader and its distance-field font |
 | `/GameData/%s/ArtData/shaders/CopyBuffer.fx.phyre`, `/GameData/%s/ArtData/shaders/anisolighting.dds.phyre` | `%s` is the graphics API folder |
-| `/GameData/D3D11/ArtData/map/%s/tex/%s.dds.phyre` | `001A6FF0` (`001A712D`), the map textures |
+| `/GameData/D3D11/ArtData/map/%s/tex/%s.dds.phyre` | `0x001A6FF0` (`0x001A712D`), the map textures |
 
-`0018D850` walks the twelve entries of `01DF0910`, requests each path (`0019CB20`, `0018D8BE`) and
+`0x0018D850` walks the twelve entries of `0x01DF0910`, requests each path (`0x0019CB20`, `0x0018D8BE`) and
 keeps the result at `+0x218 + 8 x i` of the render-parameter block, then configures each
-(`0018D160`). The twelve entries are ten shaders and the two SMAA lookup textures. The twelve pass
+(`0x0018D160`). The twelve entries are ten shaders and the two SMAA lookup textures. The twelve pass
 functions on [Post-processing](post-processing.md) draw with them.
 
 `CopyBuffer.fx.phyre` and `anisolighting.dds.phyre` are requested by their users. The
-render-manager installer `00186CD0` loads the first, with `D3D11` as the folder, through
-`001EEC80` for the colour-buffer copy pass. The model asset cache's constructor `001B9370` loads
-the second through `001BB190`, which makes the asset ready (`0063DA50`, `0063B010`), finds its
-first object list whose class is `PTexture2D` (`02CBB900`) or derives from it, and stores at the
+render-manager installer `0x00186CD0` loads the first, with `D3D11` as the folder, through
+`0x001EEC80` for the colour-buffer copy pass. The model asset cache's constructor `0x001B9370` loads
+the second through `0x001BB190`, which makes the asset ready (`0x0063DA50`, `0x0063B010`), finds its
+first object list whose class is `PTexture2D` (`0x02CBB900`) or derives from it, and stores at the
 cache's `+0x00` the object address it computes from the list's `+0x60` and the class's `+0xF8`.
 
 ### The scene-parameter documents
 
 The values live in JSON inside the archive: `jsondata/init.json` holds the global defaults,
 `jsondata/maps/<map>.json` one set per map, and `jsondata/cutscenes/<scene>.json` one set per
-cutscene, keyed `Common` and `Cut 1` to `Cut N`. Every key is looked up by name through `001FF740`
-(and `001FF6B0` beneath it); the area loader `001C7940` falls back to the defaults when a map omits a
-key, and the cutscene loader `001C3D50` goes through `001C51D0`.
+cutscene, keyed `Common` and `Cut 1` to `Cut N`. Every key is looked up by name through `0x001FF740`
+(and `0x001FF6B0` beneath it); the area loader `0x001C7940` falls back to the defaults when a map omits a
+key, and the cutscene loader `0x001C3D50` goes through `0x001C51D0`.
 [Graphics settings](../Engine-Core/graphics-settings.md) lists where each key lands.
 
 312 distinct key strings are passed at the call sites of these lookups; the
-three largest readers are `001C7940`, `001CA600` and `001C3D50`.
+three largest readers are `0x001C7940`, `0x001CA600` and `0x001C3D50`.
 
 ### The cascade keys are composed
 
-`001C7940` never spells `mCascadePartition0_1` and its kin. At `001C9190` it formats
-`"mCascadePartition%d_%d"` (`008FB2D8`) for columns 0 to 2 and rows 1 to 3, reads each value (with
-the defaults as fallback) and stores it through `001A9B00(map-art context, row - 1, column, v)`.
-`001A9B00` refuses an index of 3 or more and writes `+0x350 + (row x 3 + column) x 4` of the object
-`001A9930` returns: a 3 x 3 float matrix. No code looks up `mCascadeNumber`, which the files also carry;
+`0x001C7940` never spells `mCascadePartition0_1` and its kin. At `0x001C9190` it formats
+`"mCascadePartition%d_%d"` (`0x008FB2D8`) for columns 0 to 2 and rows 1 to 3, reads each value (with
+the defaults as fallback) and stores it through `0x001A9B00(map-art context, row - 1, column, v)`.
+`0x001A9B00` refuses an index of 3 or more and writes `+0x350 + (row x 3 + column) x 4` of the object
+`0x001A9930` returns: a 3 x 3 float matrix. No code looks up `mCascadeNumber`, which the files also carry;
 the loop is fixed at three.
 
 ### Authored keys that nothing reads

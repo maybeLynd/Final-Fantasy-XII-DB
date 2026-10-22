@@ -2,7 +2,7 @@
 title: "Location-map colour tables (.cl2): the CLT2 palettes some location maps draw with"
 kind: "format"
 category: "Game files and data tables"
-addresses: "003C1F00, 003C26C0, 003C2190, 02B457E0, 0024A9E0, 0024A480, 0024A1D0, 00181000, 00180E70, 0017F3B0, 008C5B34, 02CF7480, 00163D00, 003BC2D0"
+addresses: "0x003C1F00, 0x003C26C0, 0x003C2190, 0x02B457E0, 0x0024A9E0, 0x0024A480, 0x0024A1D0, 0x00181000, 0x00180E70, 0x0017F3B0, 0x008C5B34, 0x02CF7480, 0x00163D00, 0x003BC2D0"
 ---
 
 ## What the player sees
@@ -14,17 +14,17 @@ instead, so the same pixel data can be recoloured without being reshipped.
 ## Where it comes from
 
 The files are resource kind 7: `ps2data/image/ff12/myoshiok/<locale>/bin_menu/loca_<name>.cl2`. In the US kind-7
-path array (`01EC73A0`) id `0xE2` is `Loca_gil.cl2`, `0xE3` `Loca_bhm.cl2` and `0xE4` `Loca_rbl.cl2`.
+path array (`0x01EC73A0`) id `0xE2` is `Loca_gil.cl2`, `0xE3` `Loca_bhm.cl2` and `0xE4` `Loca_rbl.cl2`.
 
-The map-data widget `02B457E0` loads `menumap_common.bin` (kind 7 `0xA4`) into its `+0xE8` (`003BC2D0`). The pane
-loader `003C1F00(widget, owner, descriptor, n)`, reached through `003C2190` from `002B7B80`, `002BAF80` and
-`003CB4F0`, takes a free pane (two, `0xA8` bytes apart from `+0x120`), requests `menumap_sub<n>.bin` (kind 7
-`0x142 + n`) through `00249180`, and then picks the colour table:
+The map-data widget `0x02B457E0` loads `menumap_common.bin` (kind 7 `0xA4`) into its `+0xE8` (`0x003BC2D0`). The pane
+loader `0x003C1F00(widget, owner, descriptor, n)`, reached through `0x003C2190` from `0x002B7B80`, `0x002BAF80` and
+`0x003CB4F0`, takes a free pane (two, `0xA8` bytes apart from `+0x120`), requests `menumap_sub<n>.bin` (kind 7
+`0x142 + n`) through `0x00249180`, and then picks the colour table:
 
-1. It releases the table already at widget `+0x118` (`003697F0`) and clears the pointer.
+1. It releases the table already at widget `+0x118` (`0x003697F0`) and clears the pointer.
 2. It finds the entry table in `menumap_common.bin` (the u16 at file `+8` is its offset: a u32 count, then 8-byte
    entries) and, when `n` is below the count and byte `+1` of entry `n` is not 0, requests kind 7 id
-   `0xE1 + byte` through `00249210` into heap 3 (`003C2068`-`003C208D`), keeping the buffer at `+0x118`.
+   `0xE1 + byte` through `0x00249210` into heap 3 (`0x003C2068`-`0x003C208D`), keeping the buffer at `+0x118`.
 
 ## Layouts
 
@@ -71,28 +71,28 @@ Measured over every `.cl2` in the archive and every `menumap_common.bin`.
 
 ### The reader
 
-`003C26C0(widget, n)` finds the pane holding `menumap_sub<n>` and walks the sub file's picture table. For each
+`0x003C26C0(widget, n)` finds the pane holding `menumap_sub<n>` and walks the sub file's picture table. For each
 picture whose atlas slot is still empty and whose offset is not -1, it:
 
 1. takes the colour table at `+0x118`, or the buffer at `+0x110` when that is empty, and gets its picture header
-   through `0024A9E0(buffer, 0)` (buffer `+0x10`). `+0x110` is the default: `003C2100` fills it, when it is
-   empty, with `0035D520()` = `[0209AC30 + 0x3A0]`, which `00280AD0` sets to the third table of
-   `clutpack_ys.bin` (kind 7 id `0xD4`, requested by `002808D0`);
+   through `0x0024A9E0(buffer, 0)` (buffer `+0x10`). `+0x110` is the default: `0x003C2100` fills it, when it is
+   empty, with `0x0035D520()` = `[0x0209AC30 + 0x3A0]`, which `0x00280AD0` sets to the third table of
+   `clutpack_ys.bin` (kind 7 id `0xD4`, requested by `0x002808D0`);
 2. reads the image size (`+8`), header size (`+0xC`) and colour count (`+0xE`) of that header and computes the
    palette address;
 3. names the picture `loca_<a>_<b>` (`sprintf "loca_%d_%d"`) from the sub file's tables and registers it through
-   `0024A480(picture, name, flags, palette, colours)`.
+   `0x0024A480(picture, name, flags, palette, colours)`.
 
-`0024A480` registers the atlas (`0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits 18 and
-up of the slot's flags and the palette at slot `+0x28`, then builds the texture (`0024A1D0`).
+`0x0024A480` registers the atlas (`0x0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits 18 and
+up of the slot's flags and the palette at slot `+0x28`, then builds the texture (`0x0024A1D0`).
 
 ### The upload
 
-With a slot palette present, `0024A1D0` passes the stored count, the palette and the picture's own clut and image
-type bytes (picture header `+0x12`, `+0x13`) to `00181000` for an 8-bit picture or `00180E70` for a 4-bit one, so
-the file's `clutType` and `imageType` never matter. Both reach `0017F3B0`, which creates a texture of the format object `02CF7480` (named `RGBA8` by
-`00163D00`), copies the colours, and rescales byte 3 of each to `min(255, trunc(a × 255 / 128))`
-(`0017F517`-`0017F54A`, factor 1/128 at `008C5B34`).
+With a slot palette present, `0x0024A1D0` passes the stored count, the palette and the picture's own clut and image
+type bytes (picture header `+0x12`, `+0x13`) to `0x00181000` for an 8-bit picture or `0x00180E70` for a 4-bit one, so
+the file's `clutType` and `imageType` never matter. Both reach `0x0017F3B0`, which creates a texture of the format object `0x02CF7480` (named `RGBA8` by
+`0x00163D00`), copies the colours, and rescales byte 3 of each to `min(255, trunc(a × 255 / 128))`
+(`0x0017F517`-`0x0017F54A`, factor 1/128 at `0x008C5B34`).
 
 An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 221 of 255.
@@ -113,6 +113,6 @@ An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 ## Related
 
 - [Map screens](../Menus-And-HUD/map-screens.md): the map-data widget and the menumap files it loads.
-- [UI typed lists](ui-typed-lists.md): the atlas registry `0024A480` registers each picture in.
+- [UI typed lists](ui-typed-lists.md): the atlas registry `0x0024A480` registers each picture in.
 - [File size tables (.fst)](file-size-tables-fst.md): the kind 7 path arrays and request sizes.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the request entries.

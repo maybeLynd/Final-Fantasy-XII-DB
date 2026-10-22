@@ -1,3 +1,3 @@
 function	name	site	disp	kind	instruction	route	note
-005D6B70	FUN_005d6b70	005D6B77	0x0	w	mov word ptr [rdx], ax	ctorrdx-seeded 005D6B70	
-005D6B70	FUN_005d6b70	005D6B7A	0x2	w	mov byte ptr [rdx + 2], 0x34	ctorrdx-seeded 005D6B70	
+0x005D6B70	FUN_005d6b70	0x005D6B77	0x0	w	mov word ptr [rdx], ax	ctorrdx-seeded 0x005D6B70	
+0x005D6B70	FUN_005d6b70	0x005D6B7A	0x2	w	mov byte ptr [rdx + 2], 0x34	ctorrdx-seeded 0x005D6B70	

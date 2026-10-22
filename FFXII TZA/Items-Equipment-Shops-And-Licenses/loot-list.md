@@ -2,15 +2,15 @@
 title: "Loot list: every loot id with its name, price, sell price, sort order and description"
 kind: "reference"
 category: "Items, equipment, shops and licenses"
-addresses: "02EBF098, 0031C5D0, 0031CBA3, 0031CBC1, 0031CBE0, 0031CBE7, 0031CBFA, 0031CC01, 0057DBC2"
+addresses: "0x02EBF098, 0x0031C5D0, 0x0031CBA3, 0x0031CBC1, 0x0031CBE0, 0x0031CBE7, 0x0031CBFA, 0x0031CC01, 0x0057DBC2"
 ---
 
 ## What it lists
 
-`loot-list.tsv` holds one line for each of the 512 rows of the loot table that registry slot `02EBF098` reaches
+`loot-list.tsv` holds one line for each of the 512 rows of the loot table that registry slot `0x02EBF098` reaches
 (`battle_pack.bin` directory entry `+0x84`). Row *n* is loot id `0x2000` + *n*, inventory class 7
-([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): the class-7 arm of `0031C5D0`
-subtracts `0x2000` from the id and multiplies by the row size (`0031CBA3`-`0031CBBE`).
+([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): the class-7 arm of `0x0031C5D0`
+subtracts `0x2000` from the id and multiplies by the row size (`0x0031CBA3`-`0x0031CBBE`).
 
 - 235 rows are named loot: rows 0, 32-245, 256-269 and 274-279.
 - The other 277 rows are named Reserve, with icon frame 0.
@@ -27,12 +27,12 @@ The row layout, as the class-7 arm copies it:
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | price | query record `+0x28` (`0031CBE0`); a shop pays half, rounded down, and will not buy loot whose half is 0 ([Shop screens](../Menus-And-HUD/shop-screens.md), `0057DBC2`) |
-| `+0x02` | `u16` | textId | the description, through `002F9860` into query record `+0x10` (`0031CBE7`-`0031CBF6`); `14000` + row on every row |
-| `+0x04` | `u8` | iconFrame | query record `+0x2C` (`0031CBFA`); 73 on every named row |
+| `+0x00` | `u16` | price | query record `+0x28` (`0x0031CBE0`); a shop pays half, rounded down, and will not buy loot whose half is 0 ([Shop screens](../Menus-And-HUD/shop-screens.md), `0x0057DBC2`) |
+| `+0x02` | `u16` | textId | the description, through `0x002F9860` into query record `+0x10` (`0x0031CBE7`-`0x0031CBF6`); `14000` + row on every row |
+| `+0x04` | `u8` | iconFrame | query record `+0x2C` (`0x0031CBFA`); 73 on every named row |
 | `+0x05` | `u8` | | 0 on every row |
-| `+0x06` | `u16` | nameWord | the name (`0031CBC1`) |
-| `+0x08` | `u16` | sortOrder | query record `+0x30` (`0031CC01`), the key Auto-sort `002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)); equal to the row on every row |
+| `+0x06` | `u16` | nameWord | the name (`0x0031CBC1`) |
+| `+0x08` | `u16` | sortOrder | query record `+0x30` (`0x0031CC01`), the key Auto-sort `0x002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)); equal to the row on every row |
 
 ### Checks
 

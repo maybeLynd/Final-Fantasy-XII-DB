@@ -2,7 +2,7 @@
 title: "Event memory: the event and summon memory heaps a field gets when its actors are bound, and the list of fields that get no event memory"
 kind: "system"
 category: "Story, events and hunts"
-addresses: "0026C8C0, 00377440, 00377480, 0025A990, 0025AA30, 02ADD0A8"
+addresses: "0x0026C8C0, 0x00377440, 0x00377480, 0x0025A990, 0x0025AA30, 0x02ADD0A8"
 ---
 
 ## What the player sees
@@ -14,48 +14,48 @@ marked as a town, loads them from the general memory instead.
 
 ### At actor bind
 
-`ActorManager_BindLoadedDefinitionPayload` (`0026C8C0`) binds the payload of any of the five actor manager slots.
-Only when slot 0, the field, is bound (`0026C95D`-`0026C95F`) does it handle two heaps whose pointers are
-`02099DD0` and `02099DD8` (`0026C9B5`-`0026CA39`):
+`ActorManager_BindLoadedDefinitionPayload` (`0x0026C8C0`) binds the payload of any of the five actor manager slots.
+Only when slot 0, the field, is bound (`0x0026C95D`-`0x0026C95F`) does it handle two heaps whose pointers are
+`0x02099DD0` and `0x02099DD8` (`0x0026C9B5`-`0x0026CA39`):
 
-1. It takes the id registered for slot 0, `0032F240(0)`, the id the field was loaded by: the slot loader
-   `0032FCA0` stores it (`0032FD09`) and requests the field's own files by it (`0032FD3F`) (`0026C9B7`).
-2. It releases each heap that exists: heap 13 at `02099DD0` and heap 14 at `02099DD8`, through `00369760`,
-   `0036D160` and `003697F0` (`0026C9BC`-`0026CA17`).
-3. When `00377440(id)` reports the id absent from the event memory list, `0025A990` makes heap 13 again
-   (`0026CA1E`-`0026CA29`).
-4. When `00377480(id)` returns 0, `0025AA30` makes heap 14 again (`0026CA2E`-`0026CA39`).
+1. It takes the id registered for slot 0, `0x0032F240(0)`, the id the field was loaded by: the slot loader
+   `0x0032FCA0` stores it (`0x0032FD09`) and requests the field's own files by it (`0x0032FD3F`) (`0x0026C9B7`).
+2. It releases each heap that exists: heap 13 at `0x02099DD0` and heap 14 at `0x02099DD8`, through `0x00369760`,
+   `0x0036D160` and `0x003697F0` (`0x0026C9BC`-`0x0026CA17`).
+3. When `0x00377440(id)` reports the id absent from the event memory list, `0x0025A990` makes heap 13 again
+   (`0x0026CA1E`-`0x0026CA29`).
+4. When `0x00377480(id)` returns 0, `0x0025AA30` makes heap 14 again (`0x0026CA2E`-`0x0026CA39`).
 
 ### The two heaps
 
 | Heap | Pointer | Size | Name | Made by |
 |---|---|---|---|---|
-| 13 | `02099DD0` | `0x100000`, 1 MiB | `EVTMEM` | `0025A990` (`0025A9D5`-`0025AA21`) |
-| 14 | `02099DD8` | `0x19000`, 100 KiB | `SMNMEM` | `0025AA30` |
+| 13 | `0x02099DD0` | `0x100000`, 1 MiB | `EVTMEM` | `0x0025A990` (`0x0025A9D5`-`0x0025AA21`) |
+| 14 | `0x02099DD8` | `0x19000`, 100 KiB | `SMNMEM` | `0x0025AA30` |
 
-Each maker releases an existing heap first, allocates the block from pool 5, names it (`0036C660`) and registers
-it under its heap number with `00369D30`. The slot reset `002628B0` releases both heaps the same way when slot 0
-is reset (`00262DC3`-`00262DC5`, `00262DD3`-`00262E28`).
+Each maker releases an existing heap first, allocates the block from pool 5, names it (`0x0036C660`) and registers
+it under its heap number with `0x00369D30`. The slot reset `0x002628B0` releases both heaps the same way when slot 0
+is reset (`0x00262DC3`-`0x00262DC5`, `0x00262DD3`-`0x00262E28`).
 
 The slot loaders take the payloads of slots 1 and 2 from heap 13 and the payload of slot 3 from heap 14 when those
-heaps exist, and from pool 5 otherwise (`0032F8F6`-`0032F96B`, `0032FE00`-`0032FE40`). So a field on the list, or
+heaps exist, and from pool 5 otherwise (`0x0032F8F6`-`0x0032F96B`, `0x0032FE00`-`0x0032FE40`). So a field on the list, or
 a town, loads those slots' actors from the general pool.
 
 ### The two tests
 
-`00377440(id)` reads the list at `02ADD0A8`: no list, an empty list or an id not in it all count as absent
-(`00377440`-`0037747A`). `00377480(id)` returns bit 15 of the id's record in the field record table `02ADD100`,
+`0x00377440(id)` reads the list at `0x02ADD0A8`: no list, an empty list or an id not in it all count as absent
+(`0x00377440`-`0x0037747A`). `0x00377480(id)` returns bit 15 of the id's record in the field record table `0x02ADD100`,
 the town bit ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)), and 0 for an id outside the table.
 So the summon memory heap is made only for fields that are not towns.
 
 ### The list file
 
-The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `00378540` under the name `EVTMEM`
-(`003787E6`-`00378841`); its completion `00378A50` stores the pointer in `02ADD0A8`.
+The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `0x00378540` under the name `EVTMEM`
+(`0x003787E6`-`0x00378841`); its completion `0x00378A50` stores the pointer in `0x02ADD0A8`.
 
-The buffer comes from `00267990(size)` (`003787FB`), which allocates the file's size in arena 5 (`0036C1D0(5)`,
-`0036A190`) and labels the block with the file name cut from `..\..\katano\ateldecode.c` (`0036C750`) and the tag
-`0x1698` (`0036C660`). `00378540` then labels it again with the name `EVTMEM` and tag 0 (`00378810`).
+The buffer comes from `0x00267990(size)` (`0x003787FB`), which allocates the file's size in arena 5 (`0x0036C1D0(5)`,
+`0x0036A190`) and labels the block with the file name cut from `..\..\katano\ateldecode.c` (`0x0036C750`) and the tag
+`0x1698` (`0x0036C660`). `0x00378540` then labels it again with the name `EVTMEM` and tag 0 (`0x00378810`).
 
 ## Layouts
 

@@ -2,7 +2,7 @@
 title: "Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them"
 kind: "format"
 category: "Menus and HUD"
-addresses: "001C6C00, 001CA600, 001AF470, 001FF4F0, 00200B80, 0024B120, 00184660, 001B24B0"
+addresses: "0x001C6C00, 0x001CA600, 0x001AF470, 0x001FF4F0, 0x00200B80, 0x0024B120, 0x00184660, 0x001B24B0"
 ---
 
 ## What the player sees
@@ -21,7 +21,7 @@ addresses: "001C6C00, 001CA600, 001AF470, 001FF4F0, 00200B80, 0024B120, 00184660
 | `uisize_sd.json` | 4,609 bytes | 164, all also in `uisize.json` |
 
 Each is one JSON object of `"Key": number` pairs, with a trailing comma before the closing brace. The image names them
-`JsonData/UISize/UISize.json` (`008F9EC0`) and `JsonData/UISize/UISize_sd.json` (`008F9EE0`).
+`JsonData/UISize/UISize.json` (`0x008F9EC0`) and `JsonData/UISize/UISize_sd.json` (`0x008F9EE0`).
 
 `parametersmanageruisizestruct.csv` (10,350 bytes) ships in `jsondata/`: the layout editor's schema, with 36 section
 labels and 229 sliders, each with a name, decimal places, minimum, maximum and a `disable` flag. The image holds no
@@ -29,28 +29,28 @@ string of its name, so the game does not read it.
 
 ### Which file is loaded
 
-`001C6C00` (reached from `001B1580`, `001B159B`) loads the layout once:
+`0x001C6C00` (reached from `0x001B1580`, `0x001B159B`) loads the layout once:
 
-1. It returns unless the byte `01DF6E48` or `01F81282` is set (`001C6C20`-`001C6C30`).
-2. With the document `01F81318` already parsed, it goes straight to the loader (`001C6C44`).
-3. Otherwise it reads the byte `[01F811E0]` (`001B1620`, `001C6C4A`): set loads `UISize.json` (`001C6C83`), clear loads
-   `UISize_sd.json` (`001C6D54`). Then it parses the file into `01F81318` (`00200BF0`) and runs the loader `001CA600`.
+1. It returns unless the byte `0x01DF6E48` or `0x01F81282` is set (`0x001C6C20`-`0x001C6C30`).
+2. With the document `0x01F81318` already parsed, it goes straight to the loader (`0x001C6C44`).
+3. Otherwise it reads the byte `[0x01F811E0]` (`0x001B1620`, `0x001C6C4A`): set loads `UISize.json` (`0x001C6C83`), clear loads
+   `UISize_sd.json` (`0x001C6D54`). Then it parses the file into `0x01F81318` (`0x00200BF0`) and runs the loader `0x001CA600`.
 
-The byte `[01F811E0]` comes from `[01E0280C]`, shipped 1, through `00184660` and `001B24B0` at start-up
-(`0022A113`-`0022A120`). The same call sets the layout frame `01E0C1D8` x `01E0C1DC` to 1920 x 1080 (`0024B124`,
-`0024B12E`), or 512 x 448 when clear. So the shipped game loads `UISize.json` into a 1920 x 1080 frame.
-`0024ABC0()` returns the frame width over 512 (`01E0C1D8` x `[008C5B30]`, 1/512), 3.75 in the 1920 frame; it has
-24 call sites, among them the HUD draw `003F0610` and `00505570`.
+The byte `[0x01F811E0]` comes from `[0x01E0280C]`, shipped 1, through `0x00184660` and `0x001B24B0` at start-up
+(`0x0022A113`-`0x0022A120`). The same call sets the layout frame `0x01E0C1D8` x `0x01E0C1DC` to 1920 x 1080 (`0x0024B124`,
+`0x0024B12E`), or 512 x 448 when clear. So the shipped game loads `UISize.json` into a 1920 x 1080 frame.
+`0x0024ABC0()` returns the frame width over 512 (`0x01E0C1D8` x `[0x008C5B30]`, 1/512), 3.75 in the 1920 frame; it has
+24 call sites, among them the HUD draw `0x003F0610` and `0x00505570`.
 
 ## Layouts
 
-The loader `001CA600` binds every key by its own code, with no table (1,602 instructions):
+The loader `0x001CA600` binds every key by its own code, with no table (1,602 instructions):
 
-1. It stops at once if `mScrollListHeight` is absent (`001CA604`-`001CA621`).
-2. For each key it looks the name up (`001FF740`), reads it as an integer (`00200B80`) or a float (`00200B50`), and
+1. It stops at once if `mScrollListHeight` is absent (`0x001CA604`-`0x001CA621`).
+2. For each key it looks the name up (`0x001FF740`), reads it as an integer (`0x00200B80`) or a float (`0x00200B50`), and
    stores it through a pointer slot (`mov rcx, [rbx + slot]` / `mov [rcx], eax`).
-3. The slots are `[01F811E8] + 0x3B00` onwards, filled by `001AF470` (`001AF477`-`001B00E9`), and three more at
-   `[01F81200] + 0x2F8`-`+0x308`, filled by `001B44A0` (`001B4551`-`001B4574`), for the three float keys.
+3. The slots are `[0x01F811E8] + 0x3B00` onwards, filled by `0x001AF470` (`0x001AF477`-`0x001B00E9`), and three more at
+   `[0x01F81200] + 0x2F8`-`+0x308`, filled by `0x001B44A0` (`0x001B4551`-`0x001B4574`), for the three float keys.
 
 | Count | |
 |---|---:|
@@ -58,17 +58,17 @@ The loader `001CA600` binds every key by its own code, with no table (1,602 inst
 | read as integers | 223 |
 | read as floats (`FontItalicVal`, `FontItalicScale`, `FontShadowAlphaMuti`) | 3 |
 | file keys never bound (`NA_HintMessageIcon_PosX/Y`, `NA_HintMessage_PosX/Y`, `mBtlCommandScrollTableOffsetX`) | 5 |
-| slots with no key (cells `01F2CA94`-`01F2CAA0`) | 4 |
+| slots with no key (cells `0x01F2CA94`-`0x01F2CAA0`) | 4 |
 
 No two keys share a cell, and every cell is in `.data`.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | tag | 1 integer, 2 double, 3 object, 6 absent (`00200BE0`, `001FF5E1`) |
-| `+0x08` | `u32[2]` | payload | pointer to the value or the child map (`00200B87`, `00200B93`) |
+| `+0x00` | `u32` | tag | 1 integer, 2 double, 3 object, 6 absent (`0x00200BE0`, `0x001FF5E1`) |
+| `+0x08` | `u32[2]` | payload | pointer to the value or the child map (`0x00200B87`, `0x00200B93`) |
 
-An integer read returns the integer for tag 1, the truncated double for tag 2, and 0 otherwise (`00200B9C`); a float
-read converts either and returns 0.0 otherwise (`00200B75`).
+An integer read returns the integer for tag 1, the truncated double for tag 2, and 0 otherwise (`0x00200B9C`); a float
+read converts either and returns 0.0 otherwise (`0x00200B75`).
 
 ## Shipped data
 
@@ -99,7 +99,7 @@ the cell starts at that file's value.
 
 | Column | Meaning |
 |---|---|
-| `key` | the key name, as the loader looks it up (`008FB678`-`008FCBF0`) |
+| `key` | the key name, as the loader looks it up (`0x008FB678`-`0x008FCBF0`) |
 | `file` | which shipped files hold it |
 | `cell` | the global the loader stores it in |
 | `type` | integer or float read, and the widths readers use |
@@ -116,13 +116,13 @@ the cell starts at that file's value.
 
 ## Loader behaviour
 
-1. A key missing from the loaded file is inserted as absent (tag 6, `001FF5E1`) and stored as 0. Loading
+1. A key missing from the loaded file is inserted as absent (tag 6, `0x001FF5E1`) and stored as 0. Loading
    `uisize_sd.json` would therefore set its 63 missing keys to 0, not leave their built-in values.
 2. The loader never checks a value against the schema's range.
 3. Every reader reads its cell directly by address (481 rip-relative sites); none goes through the
    pointer slots.
-4. `EXPLPNumOffsetX` is the one key code writes: `0028B24A` overwrites it with `ExpNumOffsetX` or `LpNumOffsetX` before
-   its read at `0028B5F1`, so its file value never reaches the screen. Its schema row has `disable` set.
+4. `EXPLPNumOffsetX` is the one key code writes: `0x0028B24A` overwrites it with `ExpNumOffsetX` or `LpNumOffsetX` before
+   its read at `0x0028B5F1`, so its file value never reaches the screen. Its schema row has `disable` set.
 5. The `disable` flag is set on six schema rows (`mNumEffectOffsetX1`, `NumEffectOffsetY1`, `mExpEffectOffsetY`,
    `EXPLPNumOffsetX`, `FontBaseWidth`, `FontBaseHeight`); five of them are loaded and read as usual.
 

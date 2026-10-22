@@ -2,7 +2,7 @@
 title: "Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "00345080, 003449A0, 0034A6D0, 0034B1E0, 00346930, 00346E30, 003459C0, 00345520, 0032A810"
+addresses: "0x00345080, 0x003449A0, 0x0034A6D0, 0x0034B1E0, 0x00346930, 0x00346E30, 0x003459C0, 0x00345520, 0x0032A810"
 ---
 
 ## What it lists
@@ -15,17 +15,17 @@ reward package (`0x9xxx`) gives its gil and items together.
 
 | Verb | Id | Arguments | What it does | Rows |
 |---|---|---|---|---:|
-| `additemmes` | `0x480` | item, count | opens the "obtained" window (`0034A6D0`), waits for it to close, then adds the item (`0034B1E0`) | 2,486 |
-| `additem_47f` | `0x47F` | item, count, window | adds the item, opening the window first when the third argument is non-zero (`003449A0`) | 2,123 |
-| `additem` | `0x2E5` | item, count | opens the window and adds the item (`00345080`) | 220 |
-| `subitem` | `0x2F2` | item, count | takes the count away (`003459C0`) | 284 |
-| `setitemnum` | `0x55C` | item, count | sets the count held (`00345520`) | 5 |
-| `addgill` | `0x2E7` | amount | adds gil (`00346930`) | 17 |
-| `subgill` | `0x2E8` | amount | takes gil (`00346E30`) | 63 |
+| `additemmes` | `0x480` | item, count | opens the "obtained" window (`0x0034A6D0`), waits for it to close, then adds the item (`0x0034B1E0`) | 2,486 |
+| `additem_47f` | `0x47F` | item, count, window | adds the item, opening the window first when the third argument is non-zero (`0x003449A0`) | 2,123 |
+| `additem` | `0x2E5` | item, count | opens the window and adds the item (`0x00345080`) | 220 |
+| `subitem` | `0x2F2` | item, count | takes the count away (`0x003459C0`) | 284 |
+| `setitemnum` | `0x55C` | item, count | sets the count held (`0x00345520`) | 5 |
+| `addgill` | `0x2E7` | amount | adds gil (`0x00346930`) | 17 |
+| `subgill` | `0x2E8` | amount | takes gil (`0x00346E30`) | 63 |
 
-Every item verb goes through `0032A810` or `0032A830`, which call the inventory change `00300B80` or `00300BA0` and
-floor the count they return at 0 (`0032A81C`-`0032A820`, `0032A83C`-`0032A840`); the gil verbs go through
-`0032A7F0`.
+Every item verb goes through `0x0032A810` or `0x0032A830`, which call the inventory change `0x00300B80` or `0x00300BA0` and
+floor the count they return at 0 (`0x0032A81C`-`0x0032A820`, `0x0032A83C`-`0x0032A840`); the gil verbs go through
+`0x0032A7F0`.
 
 ### Where the item comes from
 
@@ -80,7 +80,7 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 
 ### Where a script is
 
-- A zone script is the field whose entry in the `us` zone path table (`01EE23A0`, three paths per field id)
+- A zone script is the field whose entry in the `us` zone path table (`0x01EE23A0`, three paths per field id)
   names it. The map name is the area name at that field id in `planmapname.bin`, and the region the name at the
   field's group word in `map_ref.bin`. A name that is only a zone code is left out and the region kept.
 - An event script is the scene of every zone script that loads it with `eventread` (`0x0E7`) or `eventread_e8`

@@ -2,7 +2,7 @@
 title: "Actor record fields: the record offset by offset, its flag bytes, and the movement and secondary contexts"
 kind: "reference"
 category: "Characters and objects"
-addresses: "00266530, 00266AD0, 003DB580, 00265020, 0026AE90, 002E4A10, 0025DF00"
+addresses: "0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A10, 0x0025DF00"
 ---
 
 ## What it lists
@@ -62,18 +62,18 @@ Each table has one row per access site:
 
 ### The movement context
 
-`00266AD0` plants `+0xB8` = record `+0x120` for every sequence but 0. The context's first three
-floats are the actor's world position: `00265020(actor, x, y, z)` copies `[+0xB8] + 0`, `+4` and `+8`
+`0x00266AD0` plants `+0xB8` = record `+0x120` for every sequence but 0. The context's first three
+floats are the actor's world position: `0x00265020(actor, x, y, z)` copies `[+0xB8] + 0`, `+4` and `+8`
 for a class-1 or class-3 actor and zeros otherwise. The field runtime's wait resolver reads the
 steering request through `[[+0xB8] + 0xF0]` (its mode at `+0x29`, its speed at `+0x7C`), and the
-manager cleanup `0025B070` ends a job it keeps at `+0x74` (class 1) or `+0x220` (class 3). The
+manager cleanup `0x0025B070` ends a job it keeps at `+0x74` (class 1) or `+0x220` (class 3). The
 context's own layout is the movement category's.
 
 ### The secondary context
 
 `+0xC0` = record `+0x350` for sequences 5-7. The initialiser resets its `+0x138` to 0, `+0x148` to
-1.0, `+0x14E` to 1 and `+0x140` and `+0x144` to 0 (each followed by `00268380`), and `+0x152` to 0
-for a tagged entry; the frozen pass `0025E400` runs `002E5180` on a record whose `+0xC0` object has a
+1.0, `+0x14E` to 1 and `+0x140` and `+0x144` to 0 (each followed by `0x00268380`), and `+0x152` to 0
+for a tagged entry; the frozen pass `0x0025E400` runs `0x002E5180` on a record whose `+0xC0` object has a
 `+0x138`.
 
 ### The flag bytes at init
@@ -84,7 +84,7 @@ for a tagged entry; the frozen pass `0025E400` runs `002E5180` on a record whose
 | `+0x0D` | `(old & 0xA2) \| 0x82`, then bit 5 cleared | `(old & 0x22) \| 2`, then bit 5 cleared |
 | `+0x14` | `(old & 0xB0) \| 0x30`; bit 7 for sequences 5 and 7 | the same |
 | `+0x0C` | `(old & 0x71) \| 8`, then bits 4-6 cleared | the same |
-| `+0x0E` | set to `0xF0`, then `00265FF0` writes the low nibble: 4 for class 1, 5 for class 3 | the same |
+| `+0x0E` | set to `0xF0`, then `0x00265FF0` writes the low nibble: 4 for class 1, 5 for class 3 | the same |
 | `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits 8 and 13 cleared for class 3 | the same |
 
 ## Related

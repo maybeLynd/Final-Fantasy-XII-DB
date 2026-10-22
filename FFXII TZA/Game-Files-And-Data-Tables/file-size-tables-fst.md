@@ -2,7 +2,7 @@
 title: "File size tables: the per-language .fst that sizes every file by resource kind and id"
 kind: "format"
 category: "Game files and data tables"
-addresses: "002DF9A0, 02EC3EE0, 002DF960, 0032E400, 0032EB40, 002DF780, 0215F000, 01E88B00, 00B56AC8, 0032FCA0, 0024AC30, 022C51F0, 0032EA90, 0046DE50, 0032EC20, 0046E050, 0046DE80, 0046DD50, 00536F30, 00536DD0"
+addresses: "0x002DF9A0, 0x02EC3EE0, 0x002DF960, 0x0032E400, 0x0032EB40, 0x002DF780, 0x0215F000, 0x01E88B00, 0x00B56AC8, 0x0032FCA0, 0x0024AC30, 0x022C51F0, 0x0032EA90, 0x0046DE50, 0x0032EC20, 0x0046E050, 0x0046DE80, 0x0046DD50, 0x00536F30, 0x00536DD0"
 ---
 
 ## What the player sees
@@ -16,12 +16,12 @@ short table stops the game at start-up.
 Twelve files ship loose in the install's `FileSizeTables` folder, one per language:
 `FileSizeTable_{JP,US,FR,DE,IT,ES,UK,KR,CH,ASIA,IN,CN}.fst`.
 
-`ResourcePath_Init` (`002DF9A0`), called
+`ResourcePath_Init` (`0x002DF9A0`), called
 once at boot, builds the name with
  `sprintf("%sFileSizeTables/FileSizeTable_%s.fst", "../", name)`,
-where `name` is the language's entry in the twelve-string table at `01E88B00`
+where `name` is the language's entry in the twelve-string table at `0x01E88B00`
 (`JP US FR DE IT ES UK KR CH ASIA IN CN`, indexed by the language id it receives), opens it with
-`fopen(…, "rb")` and reads all 820,000 bytes into `02EC3EE0` with one `fread`. The working folder is
+`fopen(…, "rb")` and reads all 820,000 bytes into `0x02EC3EE0` with one `fread`. The working folder is
 the executable's `x64`, so `../` is the install root.
 
 ## Layouts
@@ -32,10 +32,10 @@ FileSizeTable  820,000 bytes, no header
 ```
 
 The kind count and the id stride live only in the readers (`kind × 5000 + id`). The 41 kinds are the 41
-path-array pointers at `0215F000 + kind × 8` that `002DF9A0` installs, and an id is the position in the
+path-array pointers at `0x0215F000 + kind × 8` that `0x002DF9A0` installs, and an id is the position in the
 kind's path array, so `size[kind][id]` is the size of the file that array names at that position. Seven
 kinds (1, 2, 5, 7, 8, 9, 12) take a per-language array. For KR, CH and CN, kinds 21, 26 and 37 (the
-`.ard`, `.nmb` and event `.ebp` arrays) are replaced too (`01E0CFA0`, `01EAE0D0`, `01EA4D00`); JP,
+`.ard`, `.nmb` and event `.ebp` arrays) are replaced too (`0x01E0CFA0`, `0x01EAE0D0`, `0x01EA4D00`); JP,
 ASIA and IN keep the shared arrays.
 
 ## Shipped data
@@ -85,50 +85,50 @@ Populated kinds in the US table, with the first sized path of each kind's array:
 | 39 | 64 | 63 | 56,384 – 85,312 | `sound\shout\jp\shout00\shout00.win.sab` |
 
 All paths begin `PS2Data\`. Kind 5 holds each area's script set, three files per area: id `3a` its
-global `.ebp`, `3a + 1` its `.mot` and `3a + 2` its `.fpk`. The area loader `0032FCA0` asks for kind
+global `.ebp`, `3a + 1` its `.mot` and `3a + 2` its `.fpk`. The area loader `0x0032FCA0` asks for kind
 5, index `area × 3`, for area slot 0 (and slots above 4), kind 8 with index `area × 4` for slots 1 to
 3, and kind 1 with index `area + 0x6B` for slot 4.
 
 Of the ten empty kinds, six (3, 17, 18, 29, 36, 40) point at runtime slots rather than path arrays.
 Four have arrays the table never sizes: kind 6 (`image\FF12\isowaki\ousi00.bin` and `dummy.bin`
 entries), 27 (`sound\wave\wave0000.wd` onward), 31 (`sound\music\data\music000.bgm` onward) and 35
-(`c:\image\ff12\overlay\in\ff12menuoverlay_00_debug.bin` onward). `0024AC30` requests kind 35, index
+(`c:\image\ff12\overlay\in\ff12menuoverlay_00_debug.bin` onward). `0x0024AC30` requests kind 35, index
 `n + 7`, with the `−1` size it reads; the read issuer refuses it and the queue then reports it delivered
-with nothing read. No call site of `0032E620` passes kind 6, 27 or 31.
+with nothing read. No call site of `0x0032E620` passes kind 6, 27 or 31.
 
 ## Loader behaviour
 
 - **Boot.** A failed `fopen` or a short `fread` prints through the CRT and then writes to address 0, a
   deliberate crash.
-- **The size.** `002DF960(kind, id)` returns `size[kind][id]`. The request builder's size `0032E400`
-  returns −1 for kind `0xFF`, consults a per-kind override pointer at `022C51F0` first (which only
-  `0032EA90`'s zero-clear writes, so it is always null), and otherwise rounds a positive table size up
+- **The size.** `0x002DF960(kind, id)` returns `size[kind][id]`. The request builder's size `0x0032E400`
+  returns −1 for kind `0xFF`, consults a per-kind override pointer at `0x022C51F0` first (which only
+  `0x0032EA90`'s zero-clear writes, so it is always null), and otherwise rounds a positive table size up
   to a multiple of 64.
-- **The staged head read.** `0032EB40(slot, kind, id)` takes the same size and, when it is above
-  `0x800`, requests only the first 2 KB into `022C5C00 + slot × 0x800`.
-- **The read.** The read issuer `002DF780(kind, id, dest, bytes, offset)` does nothing for an entry of
-  −1 and leaves the read status `0215EFF4` as the previous read left it; otherwise it takes the path at
-  the kind's array position and reads it through the file cache or the archive (`001D6D90` and
-  `001D6FB0` set the status to −1 when they issue).
+- **The staged head read.** `0x0032EB40(slot, kind, id)` takes the same size and, when it is above
+  `0x800`, requests only the first 2 KB into `0x022C5C00 + slot × 0x800`.
+- **The read.** The read issuer `0x002DF780(kind, id, dest, bytes, offset)` does nothing for an entry of
+  −1 and leaves the read status `0x0215EFF4` as the previous read left it; otherwise it takes the path at
+  the kind's array position and reads it through the file cache or the archive (`0x001D6D90` and
+  `0x001D6FB0` set the status to −1 when they issue).
 - **A refused request.** The queue completes it with the
   previous read's status, normally as delivered, with the destination untouched.
 - **No bounds checks.** Neither reader tests the kind or the id against 41 or 5,000.
 
 ### Behind the staged head read
 
-`0032EB40` first clears read-layer slot `slot` (`0046DE50`: its destination `+0x10`) and gives its request the
-word `slot << 24 | kind << 16 | id` and the delivery callback `0032EC20`, which unpacks that word into
-`0046E050(slot, kind, id, dest)`. That fills one of two `0xA0`-byte slots at `02CA6070`: the kind, the
-destination, and a sector that `0046DE80(kind, id)` computes from a sector directory at
-`02EBA508`.
+`0x0032EB40` first clears read-layer slot `slot` (`0x0046DE50`: its destination `+0x10`) and gives its request the
+word `slot << 24 | kind << 16 | id` and the delivery callback `0x0032EC20`, which unpacks that word into
+`0x0046E050(slot, kind, id, dest)`. That fills one of two `0xA0`-byte slots at `0x02CA6070`: the kind, the
+destination, and a sector that `0x0046DE80(kind, id)` computes from a sector directory at
+`0x02EBA508`.
 
-Nothing writes `02EBA508`, which is 0 in the image, so the sector is always 0. The read layer's tick
-`0046DD50` acts only in its states 1 to 4, and its state `02CA6068` is 0 in the image and written only by
+Nothing writes `0x02EBA508`, which is 0 in the image, so the sector is always 0. The read layer's tick
+`0x0046DD50` acts only in its states 1 to 4, and its state `0x02CA6068` is 0 in the image and written only by
 the tick itself (to 0, 3 and 4), so the tick never leaves state 0.
 
-The expansion the tick would hand to `00369050` therefore never runs: `00536F30` reads a header (12
+The expansion the tick would hand to `0x00369050` therefore never runs: `0x00536F30` reads a header (12
 bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by the low two bits of `+4`
-copies the data, expands it with `00536DD0`, or with `00537030`. In `00536DD0` an even control byte b
+copies the data, expands it with `0x00536DD0`, or with `0x00537030`. In `0x00536DD0` an even control byte b
 copies `b >> 1` literal bytes, and an odd one with the next byte copies `(next >> 4) + 3` bytes from
 `((word >> 1) & 0x7FF) + 1` bytes back.
 

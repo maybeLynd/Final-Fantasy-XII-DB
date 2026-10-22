@@ -1,141 +1,141 @@
 function	name	site	disp	kind	instruction	route	note
-005049E0	FUN_005049e0	00504A0D	0x0	w	mov word ptr [rcx], bp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A13	0x2	w	mov word ptr [rcx + 2], bp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CE7D	0x4	w	mov dword ptr [rbp + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CE89	0x4	w	mov dword ptr [rbp + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D18B	0x4	w	mov dword ptr [rsi + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D197	0x4	w	mov dword ptr [rsi + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A05	0x4	w	mov qword ptr [rcx + 4], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-003E6680	FUN_003e6680	003E668E	0x8	r	test byte ptr [rax + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041E590	FUN_0041e590	0041E5A3	0x8	r	mov eax, dword ptr [rax + 8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00421280	FUN_00421280	004212B4	0x8	rw	or dword ptr [rax + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00421280	FUN_00421280	004212BA	0x8	rw	and dword ptr [rax + 8], 0xfffffffe	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00421280	FUN_00421280	004212D5	0x8	r	test byte ptr [rax + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00421280	FUN_00421280	00421311	0x8	r	test byte ptr [rbx + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CF70	CharacterRenderRecord_UpdateChildInheritedState	0042D025	0x8	rw	or dword ptr [rax + 8], 2	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CF70	CharacterRenderRecord_UpdateChildInheritedState	0042D039	0x8	rw	and dword ptr [rax + 8], 0xfffffffd	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D3C3	0x8	rw	or dword ptr [rax + 8], 2	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D3C9	0x8	rw	and dword ptr [rax + 8], 0xfffffffd	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A21	0xC	w	mov qword ptr [rcx + 0xc], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A28	0x14	w	mov qword ptr [rcx + 0x14], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A2C	0x1C	w	mov qword ptr [rcx + 0x1c], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A30	0x24	w	mov qword ptr [rcx + 0x24], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A1A	0x30	w	mov qword ptr [rcx + 0x30], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A5A	0x38	w	mov qword ptr [rcx + 0x38], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A5E	0x40	w	mov dword ptr [rcx + 0x40], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00202C70	FUN_00202c70	00202C73	0x50	w	movups xmmword ptr [rcx], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CE96	0x50	addr	lea rcx, [rbp + 0x50]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D346	0x50	addr	lea rcx, [rsi + 0x50]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AC4	0x50	addr	lea rcx, [rsi + 0x50]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00202C70	FUN_00202c70	00202C7A	0x60	w	movups xmmword ptr [rcx + 0x10], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
-00202C70	FUN_00202c70	00202C82	0x70	w	movups xmmword ptr [rcx + 0x20], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
-00202C70	FUN_00202c70	00202C8A	0x80	w	movups xmmword ptr [rcx + 0x30], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CDC6	0x90	w	movups xmmword ptr [rbp + 0x90], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CDE9	0x90	w	movups xmmword ptr [rbp + 0x90], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D0EC	0x90	w	movups xmmword ptr [rax + 0x90], xmm1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-006C0520	FUN_006c0520	006C052B	0x90	w	movss dword ptr [rcx], xmm1	route-seeded FN 0x003E55B0+0x0 base+0x90	
-006C0520	FUN_006c0520	006C052F	0x94	w	movss dword ptr [rcx + 4], xmm2	route-seeded FN 0x003E55B0+0x0 base+0x90	
-006C0520	FUN_006c0520	006C0534	0x98	w	movss dword ptr [rcx + 8], xmm3	route-seeded FN 0x003E55B0+0x0 base+0x90	
-006C0520	FUN_006c0520	006C0526	0x9C	w	movss dword ptr [rcx + 0xc], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x90	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CDD2	0xA0	addr	lea rdx, [rbx + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CDF5	0xA0	addr	lea rcx, [rbp + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D12A	0xA0	addr	lea rcx, [rsi + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A84	0xA0	addr	lea rcx, [rsi + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00521400	Vec4f_MultiplyComponents	00521409	0xA0	w	movss dword ptr [rcx], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-006C0520	FUN_006c0520	006C052B	0xA0	w	movss dword ptr [rcx], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-00521400	Vec4f_MultiplyComponents	00521418	0xA4	w	movss dword ptr [rcx + 4], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-006C0520	FUN_006c0520	006C052F	0xA4	w	movss dword ptr [rcx + 4], xmm2	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-00521400	Vec4f_MultiplyComponents	00521428	0xA8	w	movss dword ptr [rcx + 8], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-006C0520	FUN_006c0520	006C0534	0xA8	w	movss dword ptr [rcx + 8], xmm3	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D40D	0xAC	r	mulss xmm2, dword ptr [rdi + 0xac]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D59F	0xAC	r	mulss xmm2, dword ptr [rdi + 0xac]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00521400	Vec4f_MultiplyComponents	00521438	0xAC	w	movss dword ptr [rcx + 0xc], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-006C0520	FUN_006c0520	006C0526	0xAC	w	movss dword ptr [rcx + 0xc], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xA0	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CE0B	0xB0	w	mov word ptr [rbp + 0xb0], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D162	0xB0	w	mov word ptr [rsi + 0xb0], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AC8	0xB0	w	mov word ptr [rsi + 0xb0], ax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-005049E0	FUN_005049e0	00504A45	0xB2	w	mov word ptr [rcx + 0xb2], ax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
-0042F4C0	FUN_0042f4c0	0042F5D5	0xB6	w	mov word ptr [rdi + 0xb6], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042F880	FUN_0042f880	0042FA64	0xB6	w	mov word ptr [rbx + 0xb6], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A34	0xB6	w	mov dword ptr [rcx + 0xb6], 0xff0000	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504740	FUN_00504740	00504777	0xB8	r	movsx r10d, byte ptr [rcx + 0xb8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00520D30	FUN_00520d30	00520D71	0xB8	w	mov byte ptr [rcx + 0xb8], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A3E	0xBA	w	mov word ptr [rcx + 0xba], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504D20	FUN_00504d20	00504D20	0xBA	w	mov byte ptr [rcx + 0xba], dl	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	0042968F	0xBC	w	mov byte ptr [r8 + 0xbc], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	00429701	0xBC	w	mov byte ptr [r8 + 0xbc], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D740	FUN_0042d740	0042D78B	0xBC	w	mov byte ptr [r8 + 0xbc], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00202C90	FUN_00202c90	00202C93	0xD0	w	movups xmmword ptr [rcx], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xD0 exposed	
-004209C0	CharacterRenderRecord_PublishViewDependentPresentationToModelInstance	004209D5	0xD0	addr	lea rcx, [rax + 0xd0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AA7	0xD0	addr	lea rcx, [rsi + 0xd0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-006C0520	FUN_006c0520	006C052B	0xD0	w	movss dword ptr [rcx], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xD0	
-006C0520	FUN_006c0520	006C052F	0xD4	w	movss dword ptr [rcx + 4], xmm2	route-seeded FN 0x003E55B0+0x0 base+0xD0	
-006C0520	FUN_006c0520	006C0534	0xD8	w	movss dword ptr [rcx + 8], xmm3	route-seeded FN 0x003E55B0+0x0 base+0xD0	
-006C0520	FUN_006c0520	006C0526	0xDC	w	movss dword ptr [rcx + 0xc], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xD0	
-0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0042E814	0xE0	w	mov word ptr [rax + 0xe0], cx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A4C	0xE0	w	mov word ptr [rcx + 0xe0], bp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0042E822	0xE8	w	mov qword ptr [rax + 0xe8], rcx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A53	0xE8	w	mov qword ptr [rcx + 0xe8], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0042E831	0xF0	w	mov qword ptr [rbx + 0xf0], rax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D3DA	0xF8	r	mov rcx, qword ptr [rax + 0xf8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D579	0xF8	r	mov rcx, qword ptr [rdi + 0xf8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0042E80A	0xF8	w	mov qword ptr [rax + 0xf8], rdi	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504ADA	0x100	addr	lea rdi, [rsi + 0x100]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B3F	0x100	w	rep stosw word ptr [rdi], ax	route-seeded FN 0x003E55B0+0x0 base+0x100	
-005049E0	FUN_005049e0	00504B42	0x140	w	mov qword ptr [rsi + 0x140], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B50	0x148	w	mov qword ptr [rsi + 0x148], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B57	0x150	w	mov qword ptr [rsi + 0x150], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B5E	0x158	w	mov qword ptr [rsi + 0x158], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B65	0x160	w	mov qword ptr [rsi + 0x160], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B6C	0x168	w	mov qword ptr [rsi + 0x168], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B73	0x170	w	mov qword ptr [rsi + 0x170], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B7A	0x178	w	mov qword ptr [rsi + 0x178], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504610	RenderModelInstance_RemoveSubresourceVariantBinding	00504651	0x180	addr	lea rax, [rsi + 0x180]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504610	RenderModelInstance_RemoveSubresourceVariantBinding	00504670	0x180	r	movzx ecx, byte ptr [rax]	route-seeded FN 0x003E55B0+0x0 base+0x180	
-00504610	RenderModelInstance_RemoveSubresourceVariantBinding	0050467A	0x180	w	mov byte ptr [rax], 0xff	route-seeded FN 0x003E55B0+0x0 base+0x180	
-005049E0	FUN_005049e0	00504B49	0x194	addr	lea rax, [rsi + 0x194]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B8C	0x194	w	mov dword ptr [rax], 0xffffffff	route-seeded FN 0x003E55B0+0x0 base+0x194	
-005049E0	FUN_005049e0	00504B92	0x198	addr	lea rax, [rax + 4]	route-seeded FN 0x003E55B0+0x0 base+0x194	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CEBD	0x1E4	w	mov dword ptr [rbp + 0x1e4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D375	0x1E4	w	mov dword ptr [rsi + 0x1e4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A61	0x1E4	w	mov dword ptr [rcx + 0x1e4], 0xffffffff	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0042CEC8	0x1E8	w	mov qword ptr [rbp + 0x1e8], rax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D380	0x1E8	w	mov qword ptr [rsi + 0x1e8], rax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504A6B	0x1E8	w	mov qword ptr [rcx + 0x1e8], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504740	FUN_00504740	00504758	0x1F8	r	mov eax, dword ptr [rcx + 0x1f8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504D30	RenderModelInstance_EnsureSubresourceVariantBinding	00504D60	0x1F8	r	mov eax, dword ptr [rbp + 0x1f8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504740	FUN_00504740	0050474D	0x208	r	mov edx, dword ptr [rcx + 0x208]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AE1	0x208	w	mov dword ptr [rsi + 0x208], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AEA	0x20C	w	mov dword ptr [rsi + 0x20c], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AFE	0x210	w	mov dword ptr [rsi + 0x210], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B09	0x214	w	mov dword ptr [rsi + 0x214], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B0F	0x218	w	mov dword ptr [rsi + 0x218], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B15	0x21C	w	mov dword ptr [rsi + 0x21c], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-00504D30	RenderModelInstance_EnsureSubresourceVariantBinding	00504D4B	0x21C	r	mov ecx, dword ptr [rcx + 0x21c]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B1B	0x220	w	mov dword ptr [rsi + 0x220], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D3CD	0x240	r	cmp dword ptr [rax + 0x240], -1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0042D710	0x240	r	mov ecx, dword ptr [rdi + 0x240]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B36	0x240	w	mov dword ptr [rsi + 0x240], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F28A	0x244	rw	or dword ptr [rax + 0x244], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F291	0x244	r	mov edx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F2AB	0x244	w	mov dword ptr [rax + 0x244], r8d	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F2DF	0x244	rw	and dword ptr [rax + 0x244], 0xfffffffe	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	0042965B	0x244	r	xor ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	00429664	0x244	rw	xor dword ptr [rax + 0x244], ecx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	0042966A	0x244	r	mov ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	00429681	0x244	w	mov dword ptr [rax + 0x244], edx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	004296CD	0x244	r	xor ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	004296D6	0x244	rw	xor dword ptr [rax + 0x244], ecx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	004296DC	0x244	r	mov ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-004295E0	FUN_004295e0	004296F3	0x244	w	mov dword ptr [rax + 0x244], edx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D740	FUN_0042d740	0042D75C	0x244	r	xor ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D740	FUN_0042d740	0042D765	0x244	rw	xor dword ptr [rax + 0x244], ecx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D740	FUN_0042d740	0042D76B	0x244	r	mov ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0042D740	FUN_0042d740	0042D77E	0x244	w	mov dword ptr [rax + 0x244], edx	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AD4	0x244	r	mov eax, dword ptr [rsi + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504AF3	0x244	w	mov dword ptr [rsi + 0x244], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F2B8	0x248	w	mov dword ptr [r9 + 0x248], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B21	0x248	w	mov qword ptr [rsi + 0x248], 0x3f800000	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F2C5	0x24C	w	mov dword ptr [r9 + 0x24c], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0041F2D2	0x250	w	mov dword ptr [r9 + 0x250], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
-005049E0	FUN_005049e0	00504B2C	0x250	w	mov dword ptr [rsi + 0x250], 0x3cf5c28f	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A0D	0x0	w	mov word ptr [rcx], bp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A13	0x2	w	mov word ptr [rcx + 2], bp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CE7D	0x4	w	mov dword ptr [rbp + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CE89	0x4	w	mov dword ptr [rbp + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D18B	0x4	w	mov dword ptr [rsi + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D197	0x4	w	mov dword ptr [rsi + 4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A05	0x4	w	mov qword ptr [rcx + 4], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x003E6680	FUN_003e6680	0x003E668E	0x8	r	test byte ptr [rax + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041E590	FUN_0041e590	0x0041E5A3	0x8	r	mov eax, dword ptr [rax + 8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00421280	FUN_00421280	0x004212B4	0x8	rw	or dword ptr [rax + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00421280	FUN_00421280	0x004212BA	0x8	rw	and dword ptr [rax + 8], 0xfffffffe	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00421280	FUN_00421280	0x004212D5	0x8	r	test byte ptr [rax + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00421280	FUN_00421280	0x00421311	0x8	r	test byte ptr [rbx + 8], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CF70	CharacterRenderRecord_UpdateChildInheritedState	0x0042D025	0x8	rw	or dword ptr [rax + 8], 2	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CF70	CharacterRenderRecord_UpdateChildInheritedState	0x0042D039	0x8	rw	and dword ptr [rax + 8], 0xfffffffd	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D3C3	0x8	rw	or dword ptr [rax + 8], 2	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D3C9	0x8	rw	and dword ptr [rax + 8], 0xfffffffd	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A21	0xC	w	mov qword ptr [rcx + 0xc], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A28	0x14	w	mov qword ptr [rcx + 0x14], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A2C	0x1C	w	mov qword ptr [rcx + 0x1c], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A30	0x24	w	mov qword ptr [rcx + 0x24], rax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A1A	0x30	w	mov qword ptr [rcx + 0x30], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A5A	0x38	w	mov qword ptr [rcx + 0x38], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A5E	0x40	w	mov dword ptr [rcx + 0x40], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00202C70	FUN_00202c70	0x00202C73	0x50	w	movups xmmword ptr [rcx], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CE96	0x50	addr	lea rcx, [rbp + 0x50]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D346	0x50	addr	lea rcx, [rsi + 0x50]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AC4	0x50	addr	lea rcx, [rsi + 0x50]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00202C70	FUN_00202c70	0x00202C7A	0x60	w	movups xmmword ptr [rcx + 0x10], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
+0x00202C70	FUN_00202c70	0x00202C82	0x70	w	movups xmmword ptr [rcx + 0x20], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
+0x00202C70	FUN_00202c70	0x00202C8A	0x80	w	movups xmmword ptr [rcx + 0x30], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x50 exposed	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CDC6	0x90	w	movups xmmword ptr [rbp + 0x90], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CDE9	0x90	w	movups xmmword ptr [rbp + 0x90], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D0EC	0x90	w	movups xmmword ptr [rax + 0x90], xmm1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x006C0520	FUN_006c0520	0x006C052B	0x90	w	movss dword ptr [rcx], xmm1	route-seeded FN 0x003E55B0+0x0 base+0x90	
+0x006C0520	FUN_006c0520	0x006C052F	0x94	w	movss dword ptr [rcx + 4], xmm2	route-seeded FN 0x003E55B0+0x0 base+0x90	
+0x006C0520	FUN_006c0520	0x006C0534	0x98	w	movss dword ptr [rcx + 8], xmm3	route-seeded FN 0x003E55B0+0x0 base+0x90	
+0x006C0520	FUN_006c0520	0x006C0526	0x9C	w	movss dword ptr [rcx + 0xc], xmm0	route-seeded FN 0x003E55B0+0x0 base+0x90	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CDD2	0xA0	addr	lea rdx, [rbx + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CDF5	0xA0	addr	lea rcx, [rbp + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D12A	0xA0	addr	lea rcx, [rsi + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A84	0xA0	addr	lea rcx, [rsi + 0xa0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00521400	Vec4f_MultiplyComponents	0x00521409	0xA0	w	movss dword ptr [rcx], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x006C0520	FUN_006c0520	0x006C052B	0xA0	w	movss dword ptr [rcx], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x00521400	Vec4f_MultiplyComponents	0x00521418	0xA4	w	movss dword ptr [rcx + 4], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x006C0520	FUN_006c0520	0x006C052F	0xA4	w	movss dword ptr [rcx + 4], xmm2	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x00521400	Vec4f_MultiplyComponents	0x00521428	0xA8	w	movss dword ptr [rcx + 8], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x006C0520	FUN_006c0520	0x006C0534	0xA8	w	movss dword ptr [rcx + 8], xmm3	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D40D	0xAC	r	mulss xmm2, dword ptr [rdi + 0xac]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D59F	0xAC	r	mulss xmm2, dword ptr [rdi + 0xac]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00521400	Vec4f_MultiplyComponents	0x00521438	0xAC	w	movss dword ptr [rcx + 0xc], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x006C0520	FUN_006c0520	0x006C0526	0xAC	w	movss dword ptr [rcx + 0xc], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xA0	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CE0B	0xB0	w	mov word ptr [rbp + 0xb0], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D162	0xB0	w	mov word ptr [rsi + 0xb0], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AC8	0xB0	w	mov word ptr [rsi + 0xb0], ax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x005049E0	FUN_005049e0	0x00504A45	0xB2	w	mov word ptr [rcx + 0xb2], ax	route-seeded FN 0x003E55B0+0x0 base+0x0 zeroclear	
+0x0042F4C0	FUN_0042f4c0	0x0042F5D5	0xB6	w	mov word ptr [rdi + 0xb6], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042F880	FUN_0042f880	0x0042FA64	0xB6	w	mov word ptr [rbx + 0xb6], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A34	0xB6	w	mov dword ptr [rcx + 0xb6], 0xff0000	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504740	FUN_00504740	0x00504777	0xB8	r	movsx r10d, byte ptr [rcx + 0xb8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00520D30	FUN_00520d30	0x00520D71	0xB8	w	mov byte ptr [rcx + 0xb8], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A3E	0xBA	w	mov word ptr [rcx + 0xba], ax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504D20	FUN_00504d20	0x00504D20	0xBA	w	mov byte ptr [rcx + 0xba], dl	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x0042968F	0xBC	w	mov byte ptr [r8 + 0xbc], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x00429701	0xBC	w	mov byte ptr [r8 + 0xbc], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D740	FUN_0042d740	0x0042D78B	0xBC	w	mov byte ptr [r8 + 0xbc], al	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00202C90	FUN_00202c90	0x00202C93	0xD0	w	movups xmmword ptr [rcx], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xD0 exposed	
+0x004209C0	CharacterRenderRecord_PublishViewDependentPresentationToModelInstance	0x004209D5	0xD0	addr	lea rcx, [rax + 0xd0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AA7	0xD0	addr	lea rcx, [rsi + 0xd0]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x006C0520	FUN_006c0520	0x006C052B	0xD0	w	movss dword ptr [rcx], xmm1	route-seeded FN 0x003E55B0+0x0 base+0xD0	
+0x006C0520	FUN_006c0520	0x006C052F	0xD4	w	movss dword ptr [rcx + 4], xmm2	route-seeded FN 0x003E55B0+0x0 base+0xD0	
+0x006C0520	FUN_006c0520	0x006C0534	0xD8	w	movss dword ptr [rcx + 8], xmm3	route-seeded FN 0x003E55B0+0x0 base+0xD0	
+0x006C0520	FUN_006c0520	0x006C0526	0xDC	w	movss dword ptr [rcx + 0xc], xmm0	route-seeded FN 0x003E55B0+0x0 base+0xD0	
+0x0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0x0042E814	0xE0	w	mov word ptr [rax + 0xe0], cx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A4C	0xE0	w	mov word ptr [rcx + 0xe0], bp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0x0042E822	0xE8	w	mov qword ptr [rax + 0xe8], rcx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A53	0xE8	w	mov qword ptr [rcx + 0xe8], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0x0042E831	0xF0	w	mov qword ptr [rbx + 0xf0], rax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D3DA	0xF8	r	mov rcx, qword ptr [rax + 0xf8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D579	0xF8	r	mov rcx, qword ptr [rdi + 0xf8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042E7F0	CharacterRenderRecord_BindModelInstanceReferenceState	0x0042E80A	0xF8	w	mov qword ptr [rax + 0xf8], rdi	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504ADA	0x100	addr	lea rdi, [rsi + 0x100]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B3F	0x100	w	rep stosw word ptr [rdi], ax	route-seeded FN 0x003E55B0+0x0 base+0x100	
+0x005049E0	FUN_005049e0	0x00504B42	0x140	w	mov qword ptr [rsi + 0x140], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B50	0x148	w	mov qword ptr [rsi + 0x148], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B57	0x150	w	mov qword ptr [rsi + 0x150], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B5E	0x158	w	mov qword ptr [rsi + 0x158], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B65	0x160	w	mov qword ptr [rsi + 0x160], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B6C	0x168	w	mov qword ptr [rsi + 0x168], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B73	0x170	w	mov qword ptr [rsi + 0x170], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B7A	0x178	w	mov qword ptr [rsi + 0x178], rbp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504610	RenderModelInstance_RemoveSubresourceVariantBinding	0x00504651	0x180	addr	lea rax, [rsi + 0x180]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504610	RenderModelInstance_RemoveSubresourceVariantBinding	0x00504670	0x180	r	movzx ecx, byte ptr [rax]	route-seeded FN 0x003E55B0+0x0 base+0x180	
+0x00504610	RenderModelInstance_RemoveSubresourceVariantBinding	0x0050467A	0x180	w	mov byte ptr [rax], 0xff	route-seeded FN 0x003E55B0+0x0 base+0x180	
+0x005049E0	FUN_005049e0	0x00504B49	0x194	addr	lea rax, [rsi + 0x194]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B8C	0x194	w	mov dword ptr [rax], 0xffffffff	route-seeded FN 0x003E55B0+0x0 base+0x194	
+0x005049E0	FUN_005049e0	0x00504B92	0x198	addr	lea rax, [rax + 4]	route-seeded FN 0x003E55B0+0x0 base+0x194	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CEBD	0x1E4	w	mov dword ptr [rbp + 0x1e4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D375	0x1E4	w	mov dword ptr [rsi + 0x1e4], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A61	0x1E4	w	mov dword ptr [rcx + 0x1e4], 0xffffffff	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042CBF0	CharacterRenderRecord_UpdateChildLODAndPresentationState	0x0042CEC8	0x1E8	w	mov qword ptr [rbp + 0x1e8], rax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D380	0x1E8	w	mov qword ptr [rsi + 0x1e8], rax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504A6B	0x1E8	w	mov qword ptr [rcx + 0x1e8], rbx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504740	FUN_00504740	0x00504758	0x1F8	r	mov eax, dword ptr [rcx + 0x1f8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504D30	RenderModelInstance_EnsureSubresourceVariantBinding	0x00504D60	0x1F8	r	mov eax, dword ptr [rbp + 0x1f8]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504740	FUN_00504740	0x0050474D	0x208	r	mov edx, dword ptr [rcx + 0x208]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AE1	0x208	w	mov dword ptr [rsi + 0x208], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AEA	0x20C	w	mov dword ptr [rsi + 0x20c], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AFE	0x210	w	mov dword ptr [rsi + 0x210], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B09	0x214	w	mov dword ptr [rsi + 0x214], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B0F	0x218	w	mov dword ptr [rsi + 0x218], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B15	0x21C	w	mov dword ptr [rsi + 0x21c], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x00504D30	RenderModelInstance_EnsureSubresourceVariantBinding	0x00504D4B	0x21C	r	mov ecx, dword ptr [rcx + 0x21c]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B1B	0x220	w	mov dword ptr [rsi + 0x220], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D3CD	0x240	r	cmp dword ptr [rax + 0x240], -1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D050	CharacterRenderRecord_UpdateRootLODAndPresentationState	0x0042D710	0x240	r	mov ecx, dword ptr [rdi + 0x240]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B36	0x240	w	mov dword ptr [rsi + 0x240], ebp	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F28A	0x244	rw	or dword ptr [rax + 0x244], 1	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F291	0x244	r	mov edx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F2AB	0x244	w	mov dword ptr [rax + 0x244], r8d	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F2DF	0x244	rw	and dword ptr [rax + 0x244], 0xfffffffe	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x0042965B	0x244	r	xor ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x00429664	0x244	rw	xor dword ptr [rax + 0x244], ecx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x0042966A	0x244	r	mov ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x00429681	0x244	w	mov dword ptr [rax + 0x244], edx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x004296CD	0x244	r	xor ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x004296D6	0x244	rw	xor dword ptr [rax + 0x244], ecx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x004296DC	0x244	r	mov ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x004295E0	FUN_004295e0	0x004296F3	0x244	w	mov dword ptr [rax + 0x244], edx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D740	FUN_0042d740	0x0042D75C	0x244	r	xor ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D740	FUN_0042d740	0x0042D765	0x244	rw	xor dword ptr [rax + 0x244], ecx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D740	FUN_0042d740	0x0042D76B	0x244	r	mov ecx, dword ptr [rax + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0042D740	FUN_0042d740	0x0042D77E	0x244	w	mov dword ptr [rax + 0x244], edx	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AD4	0x244	r	mov eax, dword ptr [rsi + 0x244]	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504AF3	0x244	w	mov dword ptr [rsi + 0x244], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F2B8	0x248	w	mov dword ptr [r9 + 0x248], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B21	0x248	w	mov qword ptr [rsi + 0x248], 0x3f800000	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F2C5	0x24C	w	mov dword ptr [r9 + 0x24c], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x0041F270	CharacterRenderRecord_PublishBlendStateToModelInstance	0x0041F2D2	0x250	w	mov dword ptr [r9 + 0x250], eax	route-seeded FN 0x003E55B0+0x0 base+0x0	
+0x005049E0	FUN_005049e0	0x00504B2C	0x250	w	mov dword ptr [rsi + 0x250], 0x3cf5c28f	route-seeded FN 0x003E55B0+0x0 base+0x0	

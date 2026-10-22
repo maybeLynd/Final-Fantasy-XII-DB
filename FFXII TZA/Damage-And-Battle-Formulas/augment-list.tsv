@@ -1,130 +1,130 @@
-id	name	text_id	text	value	value_reader	value_use	timer_slot	explanation
-0	NOT USED			0				an unused row
-1	NOT USED	13001		0				an unused row
-2	NOT USED	13002	Improves chance to hit.	0				Improves chance to hit.
-3	NOT USED	13003	Improves chance to block with a shield.	10	00387FD0, 00389370	added to the shield-block chance		Improves chance to block with a shield; value 10, added to the shield-block chance
-4	NOT USED	13004	Improves chance of avoiding attacks.	0				Improves chance of avoiding attacks.
-5	Increases defense when HP Critical.	13005	Reduces physical damage taken when HP Critical.	0				Increases defense when HP Critical.
-6	NOT USED	13006	When attacked, automatically counter with weapon in hand.	0				When attacked, automatically counter with weapon in hand.
-7	NOT USED	13007	Improves chance to counter.	0				Improves chance to counter.
-8	Increases magick power when HP Critical.	13008	Raises magick power when HP Critical.	0				Increases magick power when HP Critical.
-9	Increases attack power when fighting empty-handed.	13009	Increases physical damage dealt while empty-handed.	0				Increases attack power when fighting empty-handed.
-10	Increases strength when HP Critical.	13010	Raises strength when HP Critical.	0				Increases strength when HP Critical.
-11	Increases strength when HP is full.	13011	Raises strength when character has full HP.	0				Increases strength when HP is full.
-12	Converts license points to gil.	13012	Convert all license points earned to gil.	0				Converts license points to gil.
-13	NOT USED	13013	Improves chance of scoring multiple hits.	0				Improves chance of scoring multiple hits.
-14	NOT USED	13014	Improves potency of restorative items such as potions.	0				Improves potency of restorative items such as potions.
-15	NOT USED	13015	Reverses effects of restorative items such as potions.	0				Reverses effects of restorative items such as potions.
-16	NOT USED	13016	Nullifies weather and terrain effects on elemental damage.	0				Nullifies weather and terrain effects on elemental damage.
-17	NOT USED	13017	Enables the theft of superior and rare items.	0				Enables the theft of superior and rare items.
-18	NOT USED	13018	Improves chance to strike with magicks.	0				Improves chance to strike with magicks.
-19	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-20	Gain MP after dealing magick damage.	13020	NOT USED	0				Gain MP after dealing magick damage.
-21	Gain MP after taking damage.	13021	NOT USED	0				Gain MP after taking damage.
-22	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-23	Gain MP after defeating a foe.	13023	NOT USED	0				Gain MP after defeating a foe.
-24	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-25	NOT USED	13025	Search the deepest recesses of chests, coffers, and the like.	0				Search the deepest recesses of chests, coffers, and the like.
-26	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-27	NOT USED	13027	Doubles EXP earned.	0				Doubles EXP earned.
-28	NOT USED	13028	Doubles license points earned.	0				Doubles license points earned.
-29	NOT USED	13029	Reduces EXP earned to 0.	0				Reduces EXP earned to 0.
-30	Increases duration of status effects.	13030	NOT USED	0				Increases duration of status effects.
-31	NOT USED	13031	Magicks will not bounce off targets with Reflect status.	0				Magicks will not bounce off targets with Reflect status.
-32	NOT USED	13032	Enables casting of magicks with gil, rather than MP.	0				Enables casting of magicks with gil, rather than MP.
-33	NOT USED	13033	NOT USED	0				an unused row
-34	NOT USED	13034	NOT USED	0				an unused row
-35	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-36	NOT USED	13036	Reduces MP cost by half.	0				Reduces MP cost by half.
-37	NOT USED	13037	Move safely past traps.	0				Move safely past traps.
-38	NOT USED			0				an unused row
-39	NOT USED	13039	Reduces MP to 0.	0				Reduces MP to 0.
-40	NOT USED			0				an unused row
-41	NOT USED			0				an unused row
-42	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-43	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-44	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-45	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-46	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-47	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-48	NOT USED			0				an unused row
-49	NOT USED			0				an unused row
-50	NOT USED			0				an unused row
-51	NOT USED			0				an unused row
-52	NOT USED			0				an unused row
-53	NOT USED			0				an unused row
-54	NOT USED			0				an unused row
-55	NOT USED			120	00387020	the default timer: value x 30 x the frame base	3	Paling: a timed effect, slot 3, 120 x 30 steps by default
-56	NOT USED			120	00387020	the default timer: value x 30 x the frame base	4	Magick Shield: a timed effect, slot 4, 120 x 30 steps by default
-57	NOT USED			120	00387020	the default timer: value x 30 x the frame base	5	White Wind: a timed effect, slot 5, 120 x 30 steps by default
-58	NOT USED			0				an unused row
-59	NOT USED			0				an unused row
-60	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-61	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-62	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-63	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-64	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-65	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-66	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-67	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-68	Increases physical attack damage.			1	002FEF30	added to Strength (list 00D10290)		Increases physical attack damage; value 1, added to Strength (list 00D10290)
-69	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-70	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-71	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-72	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-73	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-74	Increases max HP by 30.			30	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 30; value 30, added to max HP (list 00D102B0)
-75	Increases max HP by 70.			70	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 70; value 70, added to max HP (list 00D102B0)
-76	Increases max HP by 110.			110	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 110; value 110, added to max HP (list 00D102B0)
-77	Increases max HP by 150.			150	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 150; value 150, added to max HP (list 00D102B0)
-78	Increases max HP by 190.			190	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 190; value 190, added to max HP (list 00D102B0)
-79	Increases max HP by 230.			230	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 230; value 230, added to max HP (list 00D102B0)
-80	Increases max HP by 270.			270	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 270; value 270, added to max HP (list 00D102B0)
-81	Increases max HP by 310.			310	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 310; value 310, added to max HP (list 00D102B0)
-82	Increases max HP by 350.			350	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 350; value 350, added to max HP (list 00D102B0)
-83	Increases max HP by 390.			390	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 390; value 390, added to max HP (list 00D102B0)
-84	Increases max HP by 435.			435	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 435; value 435, added to max HP (list 00D102B0)
-85	Increases max HP by 500.			500	002FEF30	added to max HP (list 00D102B0)		Increases max HP by 500; value 500, added to max HP (list 00D102B0)
-86	Gain MP after dealing damage.	13040	NOT USED	0				Gain MP after dealing damage.
-87	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-88	Increases chance to block with a shield.			5	00387FD0, 00389370	added to the shield-block chance		Increases chance to block with a shield; value 5, added to the shield-block chance
-89	Increases chance to block with a shield.			5	00387FD0, 00389370	added to the shield-block chance		Increases chance to block with a shield; value 5, added to the shield-block chance
-90	Increases chance to block with a shield.			5	00387FD0, 00389370	added to the shield-block chance		Increases chance to block with a shield; value 5, added to the shield-block chance
-91	Reduces magick MP cost by 10%.			10	002F95D0	percent taken off a magick's MP cost		Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
-92	Reduces magick MP cost by 10%.			10	002F95D0	percent taken off a magick's MP cost		Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
-93	Reduces magick MP cost by 10%.			10	002F95D0	percent taken off a magick's MP cost		Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
-94	Reduces action time by 10%.			12	002F8410	percent taken off the charge time		Reduces action time by 10%; value 12, percent taken off the charge time
-95	Reduces action time by 10%.			12	002F8410	percent taken off the charge time		Reduces action time by 10%; value 12, percent taken off the charge time
-96	Reduces action time by 10%.			12	002F8410	percent taken off the charge time		Reduces action time by 10%; value 12, percent taken off the charge time
-97	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-98	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-99	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-100	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-101	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-102	Increases magick potency.			1	002FEF30	added to Magick Power (list 00D102A0)		Increases magick potency; value 1, added to Magick Power (list 00D102A0)
-103	Increases magick power when HP is full.	13041	Increases magick power when HP is full.	0				Increases magick power when HP is full.
-104	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-105	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-106	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-107	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-108	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-109	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-110	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-111	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-112	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-113	Adds an additional gambit slot.			1				Adds an additional gambit slot; value 1, not read by number
-114	Attack Items	13062	Slightly raises max HP.	0				Attack Items
-115	NOT USED	13063	Move with great celerity.	0				Move with great celerity.
-116	Remedies remove Stop, Doom, and Disease.			0				Remedies remove Stop, Doom, and Disease.
-117	Remedies remove Petrify, Confuse, and Oil.			0				Remedies remove Petrify, Confuse, and Oil.
-118	Remedies remove Sleep, Sap, Immobilize, and Disable.			0				Remedies remove Sleep, Sap, Immobilize, and Disable.
-119	Potions restore more HP.			40	0038DD20	percent added to a Potion's HP		Potions restore more HP; value 40, percent added to a Potion's HP
-120	Potions restore more HP.			30	0038DD20	percent added to a Potion's HP		Potions restore more HP; value 30, percent added to a Potion's HP
-121	Potions restore more HP.			20	0038DD20	percent added to a Potion's HP		Potions restore more HP; value 20, percent added to a Potion's HP
-122	Ethers restore more MP.			30	0038DF00	percent added to an Ether's MP		Ethers restore more MP; value 30, percent added to an Ether's MP
-123	Ethers restore more MP.			20	0038DF00	percent added to an Ether's MP		Ethers restore more MP; value 20, percent added to an Ether's MP
-124	Ethers restore more MP.			10	0038DF00	percent added to an Ether's MP		Ethers restore more MP; value 10, percent added to an Ether's MP
-125	Phoenix Down restores more HP.			10	0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
-126	Phoenix Down restores more HP.			10	0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
-127	Phoenix Down restores more HP.			10	0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
-128	Additional License Board unlocked.			20				Additional License Board unlocked; value 20, not read by number
+id	term	name	name_jp	license	text_id	text	value	value_reader	value_use	timer_slot	explanation
+0	No Knockback	NOT USED	ノックバックなし				0				No Knockback: an unused row, with no English text
+1	Safety	NOT USED	セーフティ		13001		0				Safety: an unused row, with no English text
+2	Concentration	NOT USED	精神統一		13002	Improves chance to hit.	0				Concentration: Improves chance to hit.
+3	Shield Evade Up	NOT USED	盾回避アップ		13003	Improves chance to block with a shield.	10	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Evade Up: Improves chance to block with a shield; value 10, added to the shield-block chance
+4	Anticipate	NOT USED	見切る		13004	Improves chance of avoiding attacks.	0				Anticipate: Improves chance of avoiding attacks.
+5	Last Stand	Increases defense when HP Critical.	「瀕死」ステータス時に防御力UP	Last Stand	13005	Reduces physical damage taken when HP Critical.	0				Last Stand: Reduces physical damage taken when HP Critical.
+6	Counterattack	NOT USED	攻撃に対してカウンター		13006	When attacked, automatically counter with weapon in hand.	0				Counterattack: When attacked, automatically counter with weapon in hand.
+7	Counter Rate Up	NOT USED	カウンター率アップ		13007	Improves chance to counter.	0				Counter Rate Up: Improves chance to counter.
+8	Spellbreaker	Increases magick power when HP Critical.	「瀕死」ステータス時に魔力UP	Spellbreaker	13008	Raises magick power when HP Critical.	0				Spellbreaker: Raises magick power when HP Critical.
+9	Brawler	Increases attack power when fighting empty-handed.	両手が素手の時に攻撃力UP	Brawler	13009	Increases physical damage dealt while empty-handed.	0				Brawler: Increases physical damage dealt while empty-handed.
+10	Adrenaline	Increases strength when HP Critical.	「瀕死」ステータス時に力UP	Adrenaline	13010	Raises strength when HP Critical.	0				Adrenaline: Raises strength when HP Critical.
+11	Focus	Increases strength when HP is full.	HPが満タン時に力UP	Focus	13011	Raises strength when character has full HP.	0				Focus: Raises strength when character has full HP.
+12	LP to Gil	Converts license points to gil.	ライセンスポイントを換金し入手		13012	Convert all license points earned to gil.	0				LP to Gil: Convert all license points earned to gil.
+13	Swordplay	NOT USED	殺陣		13013	Improves chance of scoring multiple hits.	0				Swordplay: Improves chance of scoring multiple hits.
+14	Medicine Potency Up	NOT USED	薬の効果がUP		13014	Improves potency of restorative items such as potions.	0				Medicine Potency Up: Improves potency of restorative items such as potions.
+15	Medicine Reversal	NOT USED	薬逆効果		13015	Reverses effects of restorative items such as potions.	0				Medicine Reversal: Reverses effects of restorative items such as potions.
+16	Weather and Terrain Nullify	NOT USED	自然状況属性無効		13016	Nullifies weather and terrain effects on elemental damage.	0				Weather and Terrain Nullify: Nullifies weather and terrain effects on elemental damage.
+17	Steal Up	NOT USED	盗みUP		13017	Enables the theft of superior and rare items.	0				Steal Up: Enables the theft of superior and rare items.
+18	Willpower Nullify	NOT USED	気力無効		13018	Improves chance to strike with magicks.	0				Willpower Nullify: Improves chance to strike with magicks.
+19	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+20	Warmage	Gain MP after dealing magick damage.	魔法ダメージを与えてMPチャージ	Warmage	13020	NOT USED	0				Warmage: Gain MP after dealing magick damage.
+21	Martyr	Gain MP after taking damage.	ダメージを受けてMPチャージ	Martyr	13021	NOT USED	0				Martyr: Gain MP after taking damage.
+22	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+23	Headsman	Gain MP after defeating a foe.	敵を倒してMPチャージ	Headsman	13023	NOT USED	0				Headsman: Gain MP after defeating a foe.
+24	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+25	Treasure Galore	NOT USED	お宝ザクザク		13025	Search the deepest recesses of chests, coffers, and the like.	0				Treasure Galore: Search the deepest recesses of chests, coffers, and the like.
+26	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+27	EXP Up	NOT USED	獲得EXPがUP		13027	Doubles EXP earned.	0				EXP Up: Doubles EXP earned.
+28	LP Up	NOT USED	獲得LPがUP		13028	Doubles license points earned.	0				LP Up: Doubles license points earned.
+29	Zero EXP	NOT USED	獲得経験値０		13029	Reduces EXP earned to 0.	0				Zero EXP: Reduces EXP earned to 0.
+30	Spellbound	Increases duration of status effects.	有効ステータスの持続時間延長	Spellbound	13030	NOT USED	0				Spellbound: Increases duration of status effects.
+31	Reflect Pierce	NOT USED	リフレク貫通		13031	Magicks will not bounce off targets with Reflect status.	0				Reflect Pierce: Magicks will not bounce off targets with Reflect status.
+32	Gil Magick	NOT USED	ギル魔法		13032	Enables casting of magicks with gil, rather than MP.	0				Gil Magick: Enables casting of magicks with gil, rather than MP.
+33	Sound Detection Evasion	NOT USED	聴覚索敵回避		13033	NOT USED	0				Sound Detection Evasion: an unused row, with no English text
+34	Scent Detection Evasion	NOT USED	嗅覚索敵回避		13034	NOT USED	0				Scent Detection Evasion: an unused row, with no English text
+35	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+36	Half MP Cost	NOT USED	消費MP半減		13036	Reduces MP cost by half.	0				Half MP Cost: Reduces MP cost by half.
+37	Trap Evasion	NOT USED	トラップ回避		13037	Move safely past traps.	0				Trap Evasion: Move safely past traps.
+38	Cartridge	NOT USED	カートリッジ				0				Cartridge: an unused row, with no English text
+39	Magick Seal	NOT USED	魔法封印		13039	Reduces MP to 0.	0				Magick Seal: Reduces MP to 0.
+40	Wobbly	NOT USED	ぐにゃぐにゃ				0				Wobbly: an unused row, with no English text
+41	Libra Nullify	NOT USED	ライブラ無効				0				Libra Nullify: an unused row, with no English text
+42	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+43	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+44	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+45	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+46	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+47	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+48	Damage Reduction	NOT USED	ダメージ軽減				0				Damage Reduction: an unused row, with no English text
+49	Damage Bonus	NOT USED	ダメージ上乗せ				0				Damage Bonus: an unused row, with no English text
+50	HP-Cost Attack	NOT USED	HP消費攻撃				0				HP-Cost Attack: an unused row, with no English text
+51	Zero MP Cost	NOT USED	消費MP０				0				Zero MP Cost: an unused row, with no English text
+52	Barrier Change	NOT USED	バリアチェンジ				0				Barrier Change: an unused row, with no English text
+53	Attack Charge Time 0	NOT USED	攻撃CT０				0				Attack Charge Time 0: an unused row, with no English text
+54	Magick Charge Time 0	NOT USED	魔法CT０				0				Magick Charge Time 0: an unused row, with no English text
+55	Absolute Physical Defense	NOT USED	物理絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	3	Paling: a timed effect, slot 3, 120 x 30 steps by default
+56	Absolute Magick Defense	NOT USED	魔法絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	4	Magick Shield: a timed effect, slot 4, 120 x 30 steps by default
+57	Absolute Ailment Defense	NOT USED	障害絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	5	White Wind: a timed effect, slot 5, 120 x 30 steps by default
+58	Retaliate	NOT USED	反撃				0				Retaliate: an unused row, with no English text
+59	Self-Destruct Trigger	NOT USED	自爆起動				0				Self-Destruct Trigger: an unused row, with no English text
+60	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+61	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+62	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+63	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+64	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+65	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+66	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+67	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+68	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
+69	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+70	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+71	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+72	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+73	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+74	+30 HP	Increases max HP by 30.	HPmaxを30プラス	+30 HP			30	0x002FEF30	added to max HP (list 0x00D102B0)		+30 HP: Increases max HP by 30; value 30, added to max HP (list 0x00D102B0)
+75	+70 HP	Increases max HP by 70.	HPmaxを70プラス	+70 HP			70	0x002FEF30	added to max HP (list 0x00D102B0)		+70 HP: Increases max HP by 70; value 70, added to max HP (list 0x00D102B0)
+76	+110 HP	Increases max HP by 110.	HPmaxを110プラス	+110 HP			110	0x002FEF30	added to max HP (list 0x00D102B0)		+110 HP: Increases max HP by 110; value 110, added to max HP (list 0x00D102B0)
+77	+150 HP	Increases max HP by 150.	HPmaxを150プラス	+150 HP			150	0x002FEF30	added to max HP (list 0x00D102B0)		+150 HP: Increases max HP by 150; value 150, added to max HP (list 0x00D102B0)
+78	+190 HP	Increases max HP by 190.	HPmaxを190プラス	+190 HP			190	0x002FEF30	added to max HP (list 0x00D102B0)		+190 HP: Increases max HP by 190; value 190, added to max HP (list 0x00D102B0)
+79	+230 HP	Increases max HP by 230.	HPmaxを230プラス	+230 HP			230	0x002FEF30	added to max HP (list 0x00D102B0)		+230 HP: Increases max HP by 230; value 230, added to max HP (list 0x00D102B0)
+80	+270 HP	Increases max HP by 270.	HPmaxを270プラス	+270 HP			270	0x002FEF30	added to max HP (list 0x00D102B0)		+270 HP: Increases max HP by 270; value 270, added to max HP (list 0x00D102B0)
+81	+310 HP	Increases max HP by 310.	HPmaxを310プラス	+310 HP			310	0x002FEF30	added to max HP (list 0x00D102B0)		+310 HP: Increases max HP by 310; value 310, added to max HP (list 0x00D102B0)
+82	+350 HP	Increases max HP by 350.	HPmaxを350プラス	+350 HP			350	0x002FEF30	added to max HP (list 0x00D102B0)		+350 HP: Increases max HP by 350; value 350, added to max HP (list 0x00D102B0)
+83	+390 HP	Increases max HP by 390.	HPmaxを390プラス	+390 HP			390	0x002FEF30	added to max HP (list 0x00D102B0)		+390 HP: Increases max HP by 390; value 390, added to max HP (list 0x00D102B0)
+84	+435 HP	Increases max HP by 435.	HPmaxを435プラス	+435 HP			435	0x002FEF30	added to max HP (list 0x00D102B0)		+435 HP: Increases max HP by 435; value 435, added to max HP (list 0x00D102B0)
+85	+500 HP	Increases max HP by 500.	HPmaxを500プラス	+500 HP			500	0x002FEF30	added to max HP (list 0x00D102B0)		+500 HP: Increases max HP by 500; value 500, added to max HP (list 0x00D102B0)
+86	Inquisitor	Gain MP after dealing damage.	ダメージを与えてMPチャージ	Inquisitor	13040	NOT USED	0				Inquisitor: Gain MP after dealing damage.
+87	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+88	Shield Block	Increases chance to block with a shield.	装備した盾の回避力UP	Shield Block			5	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Block: Increases chance to block with a shield; value 5, added to the shield-block chance
+89	Shield Block	Increases chance to block with a shield.	装備した盾の回避力UP	Shield Block			5	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Block: Increases chance to block with a shield; value 5, added to the shield-block chance
+90	Shield Block	Increases chance to block with a shield.	装備した盾の回避力UP	Shield Block			5	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Block: Increases chance to block with a shield; value 5, added to the shield-block chance
+91	Channeling	Reduces magick MP cost by 10%.	魔法使用時の消費MPを10％カット	Channeling			10	0x002F95D0	percent taken off a magick's MP cost		Channeling: Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
+92	Channeling	Reduces magick MP cost by 10%.	魔法使用時の消費MPを10％カット	Channeling			10	0x002F95D0	percent taken off a magick's MP cost		Channeling: Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
+93	Channeling	Reduces magick MP cost by 10%.	魔法使用時の消費MPを10％カット	Channeling			10	0x002F95D0	percent taken off a magick's MP cost		Channeling: Reduces magick MP cost by 10%; value 10, percent taken off a magick's MP cost
+94	Swiftness	Reduces action time by 10%.	行動時間を10％カット	Swiftness			12	0x002F8410	percent taken off the charge time		Swiftness: Reduces action time by 10%; value 12, percent taken off the charge time
+95	Swiftness	Reduces action time by 10%.	行動時間を10％カット	Swiftness			12	0x002F8410	percent taken off the charge time		Swiftness: Reduces action time by 10%; value 12, percent taken off the charge time
+96	Swiftness	Reduces action time by 10%.	行動時間を10％カット	Swiftness			12	0x002F8410	percent taken off the charge time		Swiftness: Reduces action time by 10%; value 12, percent taken off the charge time
+97	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+98	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+99	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+100	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+101	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+102	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
+103	Serenity	Increases magick power when HP is full.	HP満タン時に魔力UP	Serenity	13041	Increases magick power when HP is full.	0				Serenity: Increases magick power when HP is full.
+104	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+105	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+106	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+107	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+108	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+109	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+110	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+111	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+112	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+113	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
+114	Essentials	Attack Items	たたかうアイテム	Essentials	13062	Slightly raises max HP.	0				Essentials: Slightly raises max HP.
+115	Reserve	NOT USED	{name}予備		13063	Move with great celerity.	0				Reserve: Move with great celerity.
+116	Remedy Lore 3	Remedies remove Stop, Doom, and Disease.	＋ストップ＋死の宣告＋ウイルス	Remedy Lore 3			0				Remedy Lore 3: Remedies remove Stop, Doom, and Disease.
+117	Remedy Lore 2	Remedies remove Petrify, Confuse, and Oil.	＋石化中＋混乱＋オイル	Remedy Lore 2			0				Remedy Lore 2: Remedies remove Petrify, Confuse, and Oil.
+118	Remedy Lore 1	Remedies remove Sleep, Sap, Immobilize, and Disable.	＋睡眠＋スリップ＋ドンムブ＋ドンアク	Remedy Lore 1			0				Remedy Lore 1: Remedies remove Sleep, Sap, Immobilize, and Disable.
+119	Potion Lore 3	Potions restore more HP.	ポーション類の回復量UP	Potion Lore 3			40	0x0038DD20	percent added to a Potion's HP		Potion Lore 3: Potions restore more HP; value 40, percent added to a Potion's HP
+120	Potion Lore 2	Potions restore more HP.	ポーション類の回復量UP	Potion Lore 2			30	0x0038DD20	percent added to a Potion's HP		Potion Lore 2: Potions restore more HP; value 30, percent added to a Potion's HP
+121	Potion Lore 1	Potions restore more HP.	ポーション類の回復量UP	Potion Lore 1			20	0x0038DD20	percent added to a Potion's HP		Potion Lore 1: Potions restore more HP; value 20, percent added to a Potion's HP
+122	Ether Lore 3	Ethers restore more MP.	エーテル類の回復量UP	Ether Lore 3			30	0x0038DF00	percent added to an Ether's MP		Ether Lore 3: Ethers restore more MP; value 30, percent added to an Ether's MP
+123	Ether Lore 2	Ethers restore more MP.	エーテル類の回復量UP	Ether Lore 2			20	0x0038DF00	percent added to an Ether's MP		Ether Lore 2: Ethers restore more MP; value 20, percent added to an Ether's MP
+124	Ether Lore 1	Ethers restore more MP.	エーテル類の回復量UP	Ether Lore 1			10	0x0038DF00	percent added to an Ether's MP		Ether Lore 1: Ethers restore more MP; value 10, percent added to an Ether's MP
+125	Phoenix Lore	Phoenix Down restores more HP.	フェニックスの尾のHP回復量UP	Phoenix Lore			10	0x0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Lore: Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
+126	Phoenix Lore	Phoenix Down restores more HP.	フェニックスの尾のHP回復量UP	Phoenix Lore			10	0x0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Lore: Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
+127	Phoenix Lore	Phoenix Down restores more HP.	フェニックスの尾のHP回復量UP	Phoenix Lore			10	0x0038E2D0	added to Phoenix Down's percent of max HP		Phoenix Lore: Phoenix Down restores more HP; value 10, added to Phoenix Down's percent of max HP
+128	Second Board	Additional License Board unlocked.	ライセンスボードをもうひとつ所持	Second Board			20				Second Board: Additional License Board unlocked; value 20, not read by number

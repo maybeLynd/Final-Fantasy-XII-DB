@@ -2,7 +2,7 @@
 title: "Small .bin tables: footstep sounds, controller vibration, battle window sizes, the button legend, quest window texts and summon colours"
 kind: "format"
 category: "Game files and data tables"
-addresses: "00378540, 002E9D90, 00379E90, 0035B3E0, 0035B650, 0035B2F0, 0035AF20, 0035AE30, 0034AC30, 0035C5B0, 0035C3F0, 0027BDE0, 0027DED0, 0029DC90, 0029DA70, 0029DBE0, 0029E330, 00473D20, 00473B90, 00473C90, 003B53C0, 003B5340, 0036FBB0, 0036F9F0, 02ADD0C0, 02EC0B68, 022CA460, 0209C4A0, 02CA6C60, 02AD9B60"
+addresses: "0x00378540, 0x002E9D90, 0x00379E90, 0x0035B3E0, 0x0035B650, 0x0035B2F0, 0x0035AF20, 0x0035AE30, 0x0034AC30, 0x0035C5B0, 0x0035C3F0, 0x0027BDE0, 0x0027DED0, 0x0029DC90, 0x0029DA70, 0x0029DBE0, 0x0029E330, 0x00473D20, 0x00473B90, 0x00473C90, 0x003B53C0, 0x003B5340, 0x0036FBB0, 0x0036F9F0, 0x02ADD0C0, 0x02EC0B68, 0x022CA460, 0x0209C4A0, 0x02CA6C60, 0x02AD9B60"
 ---
 
 ## What the player sees
@@ -22,26 +22,26 @@ path arrays and sized by the [file size tables](file-size-tables-fst.md). Each i
 
 | File | Kind / id | Copy read | Requester |
 |---|---|---|---|
-| `common/soundfoottable.bin` | 9 / 9 | the one file | `00378540` |
-| `common/eventvib.bin` | 9 / 7 | the one file | `00379E90` |
-| `myoshiok/<lang>/bin_menu/menubtlwndinfo.bin` | 7 / 0x25 | the language's own | `0035C5B0` |
-| `myoshiok/<lang>/bin_menu/key_signal_data.bin` | 7 / 0x24 | the language's own | `0029DC90` |
-| `<in or ch>/bin/questbase.bin` | 9 / 0x21 | `in`, or `ch` for Korean and the two Chinese languages | `00473D20` |
-| `common/summoneffectdata.bin` | 9 / 0x2A | the one file | `003B53C0` |
+| `common/soundfoottable.bin` | 9 / 9 | the one file | `0x00378540` |
+| `common/eventvib.bin` | 9 / 7 | the one file | `0x00379E90` |
+| `myoshiok/<lang>/bin_menu/menubtlwndinfo.bin` | 7 / 0x25 | the language's own | `0x0035C5B0` |
+| `myoshiok/<lang>/bin_menu/key_signal_data.bin` | 7 / 0x24 | the language's own | `0x0029DC90` |
+| `<in or ch>/bin/questbase.bin` | 9 / 0x21 | `in`, or `ch` for Korean and the two Chinese languages | `0x00473D20` |
+| `common/summoneffectdata.bin` | 9 / 0x2A | the one file | `0x003B53C0` |
 
 "The language's own" means the `us`, `fr`, `de`, `it`, `es`, `kr`, `ch` or `cn` copy, and the `in` copy
 for Japanese, UK, ASIA and IN.
 
-- `00378540` requests the footstep table with the completion `00378F80`, which stores the buffer at
-  `02ADD0C0`; `00377C10` returns that pointer.
-- `0035C5B0` requests the `bwind` file through the menu-set wrapper `00249180` and stores the buffer at
-  `022CA460`.
-- `0029DC90` requests the `signe` file only while `0209C4A0` is null; its completion `0029DCD0` stores
+- `0x00378540` requests the footstep table with the completion `0x00378F80`, which stores the buffer at
+  `0x02ADD0C0`; `0x00377C10` returns that pointer.
+- `0x0035C5B0` requests the `bwind` file through the menu-set wrapper `0x00249180` and stores the buffer at
+  `0x022CA460`.
+- `0x0029DC90` requests the `signe` file only while `0x0209C4A0` is null; its completion `0x0029DCD0` stores
   the buffer there.
-- `00473D20` passes kind 9, id 0x21 to `0051ED10` and stores the result at `02CA6C60`.
-- `00379E90` hands the `VIB0` buffer to `0035B3E0` (through `00379F30`), which publishes it at
-  `02EC0B68`.
-- `003B53C0` reads `summoneffectdata.bin` straight into the 672-byte `.data` buffer `02AD9B60` with no
+- `0x00473D20` passes kind 9, id 0x21 to `0x0051ED10` and stores the result at `0x02CA6C60`.
+- `0x00379E90` hands the `VIB0` buffer to `0x0035B3E0` (through `0x00379F30`), which publishes it at
+  `0x02EC0B68`.
+- `0x003B53C0` reads `summoneffectdata.bin` straight into the 672-byte `.data` buffer `0x02AD9B60` with no
   completion callback.
 
 ## Layouts
@@ -109,9 +109,9 @@ scene          u8 scene id, u8 a, u8 b, u8 n, then {u8 signal (section 1 index),
 | `+0x000` | `u8[3]` | scale A, red, green, blue, in hundredths |  |
 | `+0x003` | `u8[3]` | scale B, in hundredths |  |
 | `+0x006` | `u8[4]` | colour of the full-screen tint |  |
-| `+0x280` | `f32` | copied to 02AE9660 | +`0x284` f32  copied to `02AE9664` |
-| `+0x288` | `f32` | tint size factor (02AE9650 and scaled copies) |  |
-| `+0x28C` | `f32` | copied to 02AE9668 |  |
+| `+0x280` | `f32` | copied to 0x02AE9660 | +`0x284` f32  copied to `0x02AE9664` |
+| `+0x288` | `f32` | tint size factor (0x02AE9650 and scaled copies) |  |
+| `+0x28C` | `f32` | copied to 0x02AE9668 |  |
 | `+0x290` | `u32, +0x294 u32` | two words whose difference is split in thirds for the tint's layers |  |
 | `+0x298` | `u8[8]` | zero |  |
 
@@ -137,110 +137,110 @@ Measured over every copy in the archive.
 
 ### Footsteps
 
-`002E9D90(actor, kind, sound, useVariant)` picks an actor's sound in slot `kind` (0 to 2). For kind 1,
+`0x002E9D90(actor, kind, sound, useVariant)` picks an actor's sound in slot `kind` (0 to 2). For kind 1,
 the footstep, with a non-negative `useVariant`:
 
 1. The surface is the signed word `+0x8A` of the record at `[[actor′ + 0xC0] + 0x138]`, where `actor′` is
-   the actor the sound resolves to (`00263F40`).
-2. When `useVariant` is non-zero and the weather variant flag `02099DBC` (0 or 1, set from
+   the actor the sound resolves to (`0x00263F40`).
+2. When `useVariant` is non-zero and the weather variant flag `0x02099DBC` (0 or 1, set from
    `map_ref.bin` for the current weather slot; see [weather](../World-Areas-And-Travel/weather.md)) is
    non-zero, the table index is the count word `+0x08` plus the surface and the sound starts at −1;
    otherwise the index is the surface and the sound starts at 0.
 3. The signed byte at `+0x10 + index` is added. With `useVariant` set, the flag is added again, so with
    the flag at 1 the sound is set B's entry and with the flag at 0 set A's.
-4. `003A1240(bank, sound)` checks the actor's bank handle for the slot against its record at
-   `02AEEDC8` and returns `bank slot × 512 + sound`, or −1 for a stale handle.
+4. `0x003A1240(bank, sound)` checks the actor's bank handle for the slot against its record at
+   `0x02AEEDC8` and returns `bank slot × 512 + sound`, or −1 for a stale handle.
 
 When the table is not loaded, the sound is the surface plus 32 − flag, plus the flag again: surface + 32
 with the flag set, the surface itself without it. Nothing bounds the surface against 32.
 
 ### Vibration patterns
 
-- **Binding.** `0035B3E0` replaces each offset with an address handle (`0020E600` / `0020E620` over the
-  buffer's low 32 bits) and stores the buffer at `02EC0B68`.
-- **Starting.** The script verb `vibplay` (`0x23D`, native `0034AC30`) passes its argument to
-  `0035B650(pattern, 2)` when `00267310` returns 0 for the calling actor's byte `+0x15`. `0035B650`
+- **Binding.** `0x0035B3E0` replaces each offset with an address handle (`0x0020E600` / `0x0020E620` over the
+  buffer's low 32 bits) and stores the buffer at `0x02EC0B68`.
+- **Starting.** The script verb `vibplay` (`0x23D`, native `0x0034AC30`) passes its argument to
+  `0x0035B650(pattern, 2)` when `0x00267310` returns 0 for the calling actor's byte `+0x15`. `0x0035B650`
   returns unless the pattern is below the count.
-- **The slot.** `0035B2F0` takes a free 32-byte slot from the list at `02EC0B60`: state 1, record at
-  `+8`, scale 1.0 at `+0x10`, track 1 at pair 0, track 2 at the record's `u16 +0`, pad 0. `0035B650`
-  records the handle in one of eight entries at `022C8030` and arms the slot: state 2, or 4 when the
-  mask `02EC0B40` blocks it.
-- **Stepping.** `0035AF20` adds 10,000 × the time base `01DFE0BC` (1.0 at 30 fps, 0.5 at 60 fps) to the
-  accumulator `022C8050` and runs one step per 10,000. Each step clears the output pair at `02EC0B50`.
+- **The slot.** `0x0035B2F0` takes a free 32-byte slot from the list at `0x02EC0B60`: state 1, record at
+  `+8`, scale 1.0 at `+0x10`, track 1 at pair 0, track 2 at the record's `u16 +0`, pad 0. `0x0035B650`
+  records the handle in one of eight entries at `0x022C8030` and arms the slot: state 2, or 4 when the
+  mask `0x02EC0B40` blocks it.
+- **Stepping.** `0x0035AF20` adds 10,000 × the time base `0x01DFE0BC` (1.0 at 30 fps, 0.5 at 60 fps) to the
+  accumulator `0x022C8050` and runs one step per 10,000. Each step clears the output pair at `0x02EC0B50`.
 - **Levels.** In a step, each track of a playing slot whose pair has a non-zero duration writes
   `(start + (end − start) × elapsed / duration) × scale` when larger than the value already there
-  (track 1 to `02EC0B50`, track 2 to `02EC0B54`) and advances; a slot whose two tracks have both reached
+  (track 1 to `0x02EC0B50`, track 2 to `0x02EC0B54`) and advances; a slot whose two tracks have both reached
   a zero duration goes to state 4.
-- **Output.** `0035AE30` sends the two values to pad 0 through `0035FED0` (track 1 to actuator 1,
-  track 2 to actuator 0) when the vibration switch `02EC0B3C` is on, and zero otherwise; it then frees
+- **Output.** `0x0035AE30` sends the two values to pad 0 through `0x0035FED0` (track 1 to actuator 1,
+  track 2 to actuator 0) when the vibration switch `0x02EC0B3C` is on, and zero otherwise; it then frees
   every listed slot in state 4.
 
 ### Battle window sizes
 
-`0035C3F0(out, entry)` returns the entry's width, raised to the measured text width `022CA408[entry]`
-when that is larger, and its row count. `0027BDE0(kind, out)` maps the battle window kind to the
+`0x0035C3F0(out, entry)` returns the entry's width, raised to the measured text width `0x022CA408[entry]`
+when that is larger, and its row count. `0x0027BDE0(kind, out)` maps the battle window kind to the
 entry: kinds 2 to 7 to entries 1 to 6, kinds 9 to 15 to entries 7 to 13, kinds 16 to 19 to entry 14,
 anything else to entry 0. Nothing bounds the entry against the file's count.
 
-`0027DED0(menu, kind)` sizes the open list: the width goes to the list object's word `+0xEA` (widened by
-`01E0C364 − 01E0C354` for kinds 10 to 14 in mode 4), the visible rows are the table's rows clamped to the
+`0x0027DED0(menu, kind)` sizes the open list: the width goes to the list object's word `+0xEA` (widened by
+`0x01E0C364 − 0x01E0C354` for kinds 10 to 14 in mode 4), the visible rows are the table's rows clamped to the
 list length `+0x500` and to at least 1 (byte `+0x1528`), and the height is rows × the row height word
-`+0x100`. Entry 4, the only wide one, is window kind 5: `0027E050` opens kind 5 as the command-list
+`+0x100`. Entry 4, the only wide one, is window kind 5: `0x0027E050` opens kind 5 as the command-list
 window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 6.
 
 ### Button legend
 
-- **Masks.** `0029DBE0(key)` returns section 0's button mask for a key below the button count, and for
+- **Masks.** `0x0029DBE0(key)` returns section 0's button mask for a key below the button count, and for
   `0x100 + n` the mask of the button signal n names. A key of `0x16` or `0x1A`, or a signal naming
-  button `0x16` or `0x1A`, returns the word `01E0C2A0`; `0x17` returns `01E0C2A4`; a key at or past
+  button `0x16` or `0x1A`, returns the word `0x01E0C2A0`; `0x17` returns `0x01E0C2A4`; a key at or past
   the button count returns 0.
 - **Mask range.** `0x100 + n` for `n` at or past the signal count also returns 0; only a valid signal's
   out-of-range button clamps to the last button.
-- **Scenes.** `0029DA70(out, scene)` finds the scene whose first byte matches, copies `a`, `b` and `n`
+- **Scenes.** `0x0029DA70(out, scene)` finds the scene whose first byte matches, copies `a`, `b` and `n`
   to `out[0..2]`, and fills one 0x18-byte slot per pair from `out + 8`: the button's name and the
-  signal's label as strings from the text resolver `002F9920`, the word `(~(flag << 2)) & 4` and the
+  signal's label as strings from the text resolver `0x002F9920`, the word `(~(flag << 2)) & 4` and the
   signal index. A scene id with no scene reads from address 1 and faults.
-- **Showing.** `0029E330(scene)` builds the legend and `0029DDF0` copies it into the HUD object
-  `[0209C498] + 0x158` at `+0xD0` only when it differs. Its callers are menu screens (`00295D20`,
-  `0029E110`, `002B7B80`, `002BAF80`, `002D5EB0`, `005789D0`).
-- **Panes.** `0029E3B0(legend)`, run by `0029DDF0`, closes the old pane (`0029DF20`) and opens the next of the
-  object's panes, `[0209C498] + 0x160 + 0x148 x [+0x3F0]`, under it (`00246AD0`). It copies up to four entries,
-  their two strings, flags `& 0x3FFF` and byte `+0x13`, and measures the names (`0029CD90`) for the widest,
+- **Showing.** `0x0029E330(scene)` builds the legend and `0x0029DDF0` copies it into the HUD object
+  `[0x0209C498] + 0x158` at `+0xD0` only when it differs. Its callers are menu screens (`0x00295D20`,
+  `0x0029E110`, `0x002B7B80`, `0x002BAF80`, `0x002D5EB0`, `0x005789D0`).
+- **Panes.** `0x0029E3B0(legend)`, run by `0x0029DDF0`, closes the old pane (`0x0029DF20`) and opens the next of the
+  object's panes, `[0x0209C498] + 0x160 + 0x148 x [+0x3F0]`, under it (`0x00246AD0`). It copies up to four entries,
+  their two strings, flags `& 0x3FFF` and byte `+0x13`, and measures the names (`0x0029CD90`) for the widest,
   `+0xC1`, while the pane's `+0xC0` is 0.
 - **Repeats.** An entry whose two strings equal one of the old legend's gets bit `0x8000`, and the old one bit
-  `0x4000`, before `0029DCE0` runs. `0029DFB0()`, from `0029DCE0`, returns the smallest difference between the
-  first entry's width, with the argument of a leading `0F 5` code (`003FFAB0`), and each entry's width.
-- **Colours.** `0029D9D0(pane, entry, node)`, from the pane's `0029D550`, colours a node by the entry's flags:
-  bit 0 colour 3, bit 1 colour 7, bit 3 colour `0x106`, else 0 (`002DD7E0`); unless bit 15 is set it scales
+  `0x4000`, before `0x0029DCE0` runs. `0x0029DFB0()`, from `0x0029DCE0`, returns the smallest difference between the
+  first entry's width, with the argument of a leading `0F 5` code (`0x003FFAB0`), and each entry's width.
+- **Colours.** `0x0029D9D0(pane, entry, node)`, from the pane's `0x0029D550`, colours a node by the entry's flags:
+  bit 0 colour 3, bit 1 colour 7, bit 3 colour `0x106`, else 0 (`0x002DD7E0`); unless bit 15 is set it scales
   the alpha by the pane's `+0x140` / 128.
-- `0029E770(a, b)` writes the two words at `[0209C498] + 0xC0` and `+0xC2`; the location map `002BA700`, the
-  special-attack window `002D5EB0` and `0055E9E0` call it.
+- `0x0029E770(a, b)` writes the two words at `[0x0209C498] + 0xC0` and `+0xC2`; the location map `0x002BA700`, the
+  special-attack window `0x002D5EB0` and `0x0055E9E0` call it.
 
 ### Quest window texts
 
-`00473C90(n)` returns `0xA000 +` entry n's text index, and `00473B90(n)` entry n's value A; both return
+`0x00473C90(n)` returns `0xA000 +` entry n's text index, and `0x00473B90(n)` entry n's value A; both return
 −1 when n is not below the count, with a signed compare. The begin native of the script verb
-`questresultwindow` (`0x37C`, `00344C60`) falls back to entry 0 on −1 and opens the window with that
-text id through `00290130`. Value A is read by `queststartwindow`'s begin `003456E0` and by the
-hunt-list row builder `0037E8D0`, which stores it in the row.
+`questresultwindow` (`0x37C`, `0x00344C60`) falls back to entry 0 on −1 and opens the window with that
+text id through `0x00290130`. Value A is read by `queststartwindow`'s begin `0x003456E0` and by the
+hunt-list row builder `0x0037E8D0`, which stores it in the row.
 
 ### Summon colours
 
-`003B5340` returns the active summon effect (1-based) from the two 8-byte state entries at `02B40508`
-and `02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor, −1 none): the active
+`0x003B5340` returns the active summon effect (1-based) from the two 8-byte state entries at `0x02B40508`
+and `0x02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor, −1 none): the active
 entry with the higher priority byte, the first on a tie, or 0 when none is active or bit 0 or 1 of
-`02B40518` is set; `003B53C0` clears both entries before the read.
+`0x02B40518` is set; `0x003B53C0` clears both entries before the read.
 
-- `0036FBB0` first runs `003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
-  `+0x284` = 0; state 2, `003B4EFE`, `003B4F5D`) and calls `003B4FD0` when the winner changes (`003B4FBF`).
+- `0x0036FBB0` first runs `0x003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
+  `+0x284` = 0; state 2, `0x003B4EFE`, `0x003B4F5D`) and calls `0x003B4FD0` when the winner changes (`0x003B4FBF`).
   - It then
-    turns record `effect − 1`'s scale A into the floats at `0209A3C0`..`0209A3C8` and scale B into `0209A3D0`..`0209A3D8`
-  (each byte × 0.01) and sets bit `0x8` of the light mask `02B3F520` (`003ACA60`, `0036FCB7`), or sets all six to 1.0
-  and clears that bit (`003ACA70`, `0036FC05`) when no effect is active
+    turns record `effect − 1`'s scale A into the floats at `0x0209A3C0`..`0x0209A3C8` and scale B into `0x0209A3D0`..`0x0209A3D8`
+  (each byte × 0.01) and sets bit `0x8` of the light mask `0x02B3F520` (`0x003ACA60`, `0x0036FCB7`), or sets all six to 1.0
+  and clears that bit (`0x003ACA70`, `0x0036FC05`) when no effect is active
   ([Character lighting](../Graphics/character-lighting-and-shadows.md)).
-- `0036F9F0` copies the record's colour into the tint packet at `02AE9690` and its copies, with the tail
+- `0x0036F9F0` copies the record's colour into the tint packet at `0x02AE9690` and its copies, with the tail
   floats at `+0x280` and `+0x284`, sets a 256 × 224 rectangle and submits the packet through
-  `003A35E0`; `0036F550` builds the layered form from the tail fields at `+0x288` to `+0x294`.
+  `0x003A35E0`; `0x0036F550` builds the layered form from the tail fields at `+0x288` to `+0x294`.
 
 Nothing bounds the effect against 64.
 

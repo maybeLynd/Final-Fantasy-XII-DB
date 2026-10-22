@@ -2,7 +2,7 @@
 title: "PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers"
 kind: "format"
 category: "PKFL package files"
-addresses: "0032FCA0, 0032FC30, 0032F430, 022C6E70, 022C6E98, 022C6EE8, 022C6EC0, 0032F260, 0032F290, 0032F2C0, 0032F2F0, 0032F3A0, 0032F320, 0032F360, 003DD4C0, 003DF440, 003DF2C0, 003E9F80, 003E9EF0, 002DF980"
+addresses: "0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980"
 ---
 
 ## What the player sees
@@ -18,7 +18,7 @@ The packages sit beside each area's script in the archive, `<area>.mot`, `<area>
 `<area>.vpcjp`. They are files of the per-area records in the resource kinds the area loader uses
 ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)): kind 5 records are
 `{ebp, mot, fpk}` (three files per area, index `3a`), kind 8 records `{ebp, mot, snd, vpc}` and kind `0x25`
-records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `002DF980(kind, index)`.
+records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `0x002DF980(kind, index)`.
 
 ## Layouts
 
@@ -46,9 +46,9 @@ the first at `0x800`.
 
 ### The directory tables
 
-`0032F430`, at start-up, allocates four `0x88`- or `0x208`-byte tables per area slot: `.mot` at `022C6E70`,
-`.snd` at `022C6E98`, `.vpc` at `022C6EE8` and `.vpcjp` at `022C6EC0`. When an area slot
-loads, `0032FCA0` (from `0032FC30`) reads into them:
+`0x0032F430`, at start-up, allocates four `0x88`- or `0x208`-byte tables per area slot: `.mot` at `0x022C6E70`,
+`.snd` at `0x022C6E98`, `.vpc` at `0x022C6EE8` and `.vpcjp` at `0x022C6EC0`. When an area slot
+loads, `0x0032FCA0` (from `0x0032FC30`) reads into them:
 
 - for area slots 0 to 3, the first `0x88` bytes of the `.mot` (record index + 1);
 - for area slots 1 to 3 (kind 8), also the first `0x88` bytes of the `.snd` (+ 2) and `0x208` of the
@@ -56,8 +56,8 @@ loads, `0032FCA0` (from `0032FC30`) reads into them:
 - for area slot 4, none of them.
 
 A table it does not fill, or a file with no size, gets byte 0 cleared. Each request it files sets a pending
-bit in the slot's word `022C6E48[g]`: `0x2000` for the `.mot` (completion `003302B0`), `0x1000` for the
-`.snd` (`00331760`), `0x8000` for the `.vpc` (`00331820`) and `0x4000` for the `.vpcjp` (`003317C0`).
+bit in the slot's word `0x022C6E48[g]`: `0x2000` for the `.mot` (completion `0x003302B0`), `0x1000` for the
+`.snd` (`0x00331760`), `0x8000` for the `.vpc` (`0x00331820`) and `0x4000` for the `.vpcjp` (`0x003317C0`).
 
 ### The slot readers
 
@@ -66,21 +66,21 @@ byte 0 of the table is 0. None bounds `k` against the table.
 
 | Reader | Table | Returns | Caller |
 |---|---|---|---|
-| `0032F260` | `.mot` | offset of slot `k` | `003DD4C0` (script motion slots) |
-| `0032F290` | `.mot` | size of slot `k` | `003DD4C0` |
-| `0032F2C0` | `.snd` | offset of slot `k` | `003DF440` (sound sets) |
-| `0032F2F0` | `.snd` | size of slot `k` | `003DF440` |
-| `0032F3A0` | `.snd` | size of slot `k + 8` | `003DF2C0`, which discards the value |
-| `0032F320` | `.vpcjp` or `.vpc` | offset of slot `k` | `003E9EF0` (voice loads) |
-| `0032F360` | `.vpcjp` or `.vpc` | size of slot `k` | `003E9F80`, `003E9D30`, `003E9E10` |
+| `0x0032F260` | `.mot` | offset of slot `k` | `0x003DD4C0` (script motion slots) |
+| `0x0032F290` | `.mot` | size of slot `k` | `0x003DD4C0` |
+| `0x0032F2C0` | `.snd` | offset of slot `k` | `0x003DF440` (sound sets) |
+| `0x0032F2F0` | `.snd` | size of slot `k` | `0x003DF440` |
+| `0x0032F3A0` | `.snd` | size of slot `k + 8` | `0x003DF2C0`, which discards the value |
+| `0x0032F320` | `.vpcjp` or `.vpc` | offset of slot `k` | `0x003E9EF0` (voice loads) |
+| `0x0032F360` | `.vpcjp` or `.vpc` | size of slot `k` | `0x003E9F80`, `0x003E9D30`, `0x003E9E10` |
 
-`0032F320` and `0032F360` take the `.vpcjp` table when their third argument is 0 and the `.vpc` table
+`0x0032F320` and `0x0032F360` take the `.vpcjp` table when their third argument is 0 and the `.vpc` table
 otherwise.
 
 ### Reading a slot
 
 A consumer allocates the slot's size and files the area file's kind and index with the slot's offset as
-the read's file offset (`003E9EF0` passes it in the request record), so only that payload is read. The
+the read's file offset (`0x003E9EF0` passes it in the request record), so only that payload is read. The
 read queue rounds the offset down to a `0x800` boundary
 ([file requests](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)). A size of 0
 loads nothing.

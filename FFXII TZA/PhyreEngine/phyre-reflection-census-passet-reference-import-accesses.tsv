@@ -1,4 +1,4 @@
 function	name	site	disp	kind	instruction	route	note
-00674E50	FUN_00674e50	00674E75	0x0	w	mov qword ptr [rbx], rax	ctorrdx-seeded 00674E50	
-00674E50	FUN_00674e50	00674E7A	0x8	w	mov qword ptr [rbx + 8], rax	ctorrdx-seeded 00674E50	
-00674E50	FUN_00674e50	00674E7E	0x10	w	mov qword ptr [rbx + 0x10], rax	ctorrdx-seeded 00674E50	
+0x00674E50	FUN_00674e50	0x00674E75	0x0	w	mov qword ptr [rbx], rax	ctorrdx-seeded 0x00674E50	
+0x00674E50	FUN_00674e50	0x00674E7A	0x8	w	mov qword ptr [rbx + 8], rax	ctorrdx-seeded 0x00674E50	
+0x00674E50	FUN_00674e50	0x00674E7E	0x10	w	mov qword ptr [rbx + 0x10], rax	ctorrdx-seeded 0x00674E50	

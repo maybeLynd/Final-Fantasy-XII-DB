@@ -2,7 +2,7 @@
 title: "Combos: combo chance, the hit-count roll, low-HP bonus and how each extra hit is re-committed"
 kind: "system"
 category: "Battle actions"
-addresses: "00388550, 00388660, 0030FA00, 0030C010, 00308610, 00307300, 00385680, 003105D0"
+addresses: "0x00388550, 0x00388660, 0x0030FA00, 0x0030C010, 0x00308610, 0x00307300, 0x00385680, 0x003105D0"
 ---
 
 ## What the player sees
@@ -31,47 +31,47 @@ Whether a combo happens, and how many hits it has, is decided once, on the first
 
 ### Where the decision is made
 
-Before a weapon attack resolves, the preview pass `00385680` runs the first slot segment of the
-action's formula recipe (the recipe table at `01EF96C0`, slot functions at `01EFA5C0`;
-`003859BD`-`00385A16`). For every recipe that contains slot 10 (20-24, 28, 29, 64, 103 and 104) that
+Before a weapon attack resolves, the preview pass `0x00385680` runs the first slot segment of the
+action's formula recipe (the recipe table at `0x01EF96C0`, slot functions at `0x01EFA5C0`;
+`0x003859BD`-`0x00385A16`). For every recipe that contains slot 10 (20-24, 28, 29, 64, 103 and 104) that
 segment is slots 5, 6, 7, 8, 9, 10, 22, 33, 34 and 41. Recipe 103 is chosen by 10 monster action rows
 such as Ram, Gnaw and Rake, the others by weapons. Slot 9 is the combo chance and slot 10 the combo
 roll.
 
 Before running the slots, when the target being previewed is the unit's current target (`+0x710`
-through `00320A70`, or on the stats-record path the first `+0x6B9` entry through `00320A40`),
-`00385680` clears the first 0x14 bytes of the unit's 64-byte record, keeping the `u16` at `+0x10`. It
-puts back the high nibble of `+0x12` (read at `0038579C`) while the unit's combo counter `+0x6B7` is
-non-zero, and sets bit 0 of `+0x12` (`003857A1`-`003857DD`).
+through `0x00320A70`, or on the stats-record path the first `+0x6B9` entry through `0x00320A40`),
+`0x00385680` clears the first 0x14 bytes of the unit's 64-byte record, keeping the `u16` at `+0x10`. It
+puts back the high nibble of `+0x12` (read at `0x0038579C`) while the unit's combo counter `+0x6B7` is
+non-zero, and sets bit 0 of `+0x12` (`0x003857A1`-`0x003857DD`).
 
 ### The chance, slot 9
 
-`00388550(stats, target, context)` reads the attacker's weapon id at stats
-`+0x50`; when it is below the equipment table's count plus `0x1000` (table `02EBF0F8`), the threshold is
-`(int)(byte +0x1C of the equipment row * 0.7)` (`008F3104`), or `* 1.8` (`00908E1C`) when bit 5 of the
-evaluation context's byte `+0x1B` (merged augment 13) is set (`0038855F`). It is stored at
-`02AEDFE4` (`00388648`). An id outside the table gives 0.
+`0x00388550(stats, target, context)` reads the attacker's weapon id at stats
+`+0x50`; when it is below the equipment table's count plus `0x1000` (table `0x02EBF0F8`), the threshold is
+`(int)(byte +0x1C of the equipment row * 0.7)` (`0x008F3104`), or `* 1.8` (`0x00908E1C`) when bit 5 of the
+evaluation context's byte `+0x1B` (merged augment 13) is set (`0x0038855F`). It is stored at
+`0x02AEDFE4` (`0x00388648`). An id outside the table gives 0.
 
 ### The roll, slot 10
 
-`00388660(stats, target, context)` (602 bytes):
+`0x00388660(stats, target, context)` (602 bytes):
 
-1. It finds the attacker's battle unit (`0031B860`) and reads its counter `+0x6B7` (`0038868A`). The
-   record is `0208D480 + stats[+0x04] * 0x40` for a party-side attacker (stats `+0x05` = 0), otherwise
-   `0208DE80 + unit[+0xEA9] * 0x40` (`003886A7`-`003886E1`). Result flag bit 1 at
-   `[context+0x10]+0x18` is cleared (`003886F1`).
-2. **Counter 0 - the first hit.** One draw from the Mersenne Twister (`00379CD0`) modulo 100 must be
-   below `02AEDFE4`, else there is no combo (`003886FD`-`0038871D`). The count is then rolled as shown
+1. It finds the attacker's battle unit (`0x0031B860`) and reads its counter `+0x6B7` (`0x0038868A`). The
+   record is `0x0208D480 + stats[+0x04] * 0x40` for a party-side attacker (stats `+0x05` = 0), otherwise
+   `0x0208DE80 + unit[+0xEA9] * 0x40` (`0x003886A7`-`0x003886E1`). Result flag bit 1 at
+   `[context+0x10]+0x18` is cleared (`0x003886F1`).
+2. **Counter 0 - the first hit.** One draw from the Mersenne Twister (`0x00379CD0`) modulo 100 must be
+   below `0x02AEDFE4`, else there is no combo (`0x003886FD`-`0x0038871D`). The count is then rolled as shown
    below, and when `c >= 1` it is stored in the high nibble of the record's byte `+0x12` and result flag
-   bit 1 is set (`00388850`-`00388876`).
+   bit 1 is set (`0x00388850`-`0x00388876`).
 3. **Counter above 0 - a later hit.** No draw: result flag bit 1 is set when the counter is below the
-   stored nibble (`0038886B`-`0038887A`).
-4. Whenever bit 1 ends up set, the knockback decision `02AEDFC8` and the guard decision `02AEDFC4`
-   are zeroed (`00388891`-`003888AB`); see below.
+   stored nibble (`0x0038886B`-`0x0038887A`).
+4. Whenever bit 1 ends up set, the knockback decision `0x02AEDFC8` and the guard decision `0x02AEDFC4`
+   are zeroed (`0x00388891`-`0x003888AB`); see below.
 
 ### The extra-hit count
 
-The per-roll chance comes from the attacker's HP (`00388723`-`003887D6`), with `cur` = stats `+0x48`
+The per-roll chance comes from the attacker's HP (`0x00388723`-`0x003887D6`), with `cur` = stats `+0x48`
 and `max` = `max(cur, 1)` when status bit 16 is set, else `+0x24` (doubled under status bit 28):
 
 | Current HP | Chance per roll |
@@ -85,86 +85,86 @@ The divisions are signed and truncating. The count is then:
 
 ```python
 n = 1
-repeat 11 times: if MT() % 100 < chance: n = n + 1  # 003887DA-00388807
-enemy-side attacker: n = min(n, byte [[unit+0xE68]+0x20] - 1)  # 00388827-0038884D
+repeat 11 times: if MT() % 100 < chance: n = n + 1  # 0x003887DA-0x00388807
+enemy-side attacker: n = min(n, byte [[unit+0xE68]+0x20] - 1)  # 0x00388827-0x0038884D
 c = min(n, 11)
 ```
 
 ### Guard and knockback on combo hits
 
-Slot 6 (`00388440`) sets the knockback decision `02AEDFC8` on a draw below `02AEDFD8`, made only when
-bit 0 of context bytes `+0x68` and `+0x78` is clear. Slot 8 (`003884F0`) sets the guard decision
-`02AEDFC4` on a draw below `02AEDFDC` for a target whose unit has flag bit 23.
+Slot 6 (`0x00388440`) sets the knockback decision `0x02AEDFC8` on a draw below `0x02AEDFD8`, made only when
+bit 0 of context bytes `+0x68` and `+0x78` is clear. Slot 8 (`0x003884F0`) sets the guard decision
+`0x02AEDFC4` on a draw below `0x02AEDFDC` for a target whose unit has flag bit 23.
 
-Slot 41 (`003896B0`) runs after slot 10 and reads both: `02AEDFC4` turns outcome codes 1 and 3 into 2
-and 4, and `02AEDFC8` sets result flag bit 3. Because slot 10 zeroes both whenever the combo
+Slot 41 (`0x003896B0`) runs after slot 10 and reads both: `0x02AEDFC4` turns outcome codes 1 and 3 into 2
+and 4, and `0x02AEDFC8` sets result flag bit 3. Because slot 10 zeroes both whenever the combo
 continues, no hit that is followed by another combo hit takes either effect.
 
 ### From the result to the target entry
 
-The effect applier `00307300` copies result flag bit 1 to bit
+The effect applier `0x00307300` copies result flag bit 1 to bit
 10 (`0x400`) of the target entry's flags, unless bit 21 of the attacker's word `+0x04` is set
-(`003075D3`-`003075E0`).
+(`0x003075D3`-`0x003075E0`).
 
 ### Continuing
 
-The combat frame `00308610` calls `0030FA00` after the action state step `00307BE0` returns non-zero,
-when all of these hold (`00308768`-`0030879F`):
+The combat frame `0x00308610` calls `0x0030FA00` after the action state step `0x00307BE0` returns non-zero,
+when all of these hold (`0x00308768`-`0x0030879F`):
 
-- the attacker has Confuse or Berserk (status `0x08000020`) or is not fleeing (`00253B90()` returns
-  0, that is `01E0C2B8` is non-zero);
+- the attacker has Confuse or Berserk (status `0x08000020`) or is not fleeing (`0x00253B90()` returns
+  0, that is `0x01E0C2B8` is non-zero);
 - the first target entry exists (unit `+0x780`) and its flags have bit 10.
 
-`0030FA00` (146 bytes) asks the gate `0030C010`;
-when it passes, it commits the same action again - `0030F760(unit, [+0x708], [+0x714], [+0x710], 1)` -
+`0x0030FA00` (146 bytes) asks the gate `0x0030C010`;
+when it passes, it commits the same action again - `0x0030F760(unit, [+0x708], [+0x714], [+0x710], 1)` -
 and on success increments `+0x6B7`, restores `+0x6B8` and sets the action phase `+0x6B4` to 5
-(`0030FA3B`-`0030FA80`).
+(`0x0030FA3B`-`0x0030FA80`).
 
 ### The gate
 
-`0030C010` (179 bytes) returns 1 only when: the fleeing test above passes again; the
+`0x0030C010` (179 bytes) returns 1 only when: the fleeing test above passes again; the
 first target entry exists with flag bit 10; unit bit 22 is clear; the target `+0x710` resolves to a unit
-with a stats record that has none of status bits 0, 1 and 31 (or `00377C20()` is non-zero); when bit 0 of
-`02089340` is set, `00237670(unit id)` is non-zero; and the special-sequence state `022C2160` is 0 or 7
-(`0030C016`-`0030C0B0`).
+with a stats record that has none of status bits 0, 1 and 31 (or `0x00377C20()` is non-zero); when bit 0 of
+`0x02089340` is set, `0x00237670(unit id)` is non-zero; and the special-sequence state `0x022C2160` is 0 or 7
+(`0x0030C016`-`0x0030C0B0`).
 
 ### The hit count
 
-The effect applier `00307300` counts the hits of action `0x96` in `+0x6B8`. For a target whose
+The effect applier `0x00307300` counts the hits of action `0x96` in `+0x6B8`. For a target whose
 entry code is 0 it adds 1 and, once the count is above 1, passes the unit id and the count to
-`0028E920`, which hands them to the HUD object at `[0209BE80] + 0x5380` through `00289D70`
-(`0030761D`-`00307676`, `0028E920`). The re-commit in `0030FA00` keeps the count, so it runs across
+`0x0028E920`, which hands them to the HUD object at `[0x0209BE80] + 0x5380` through `0x00289D70`
+(`0x0030761D`-`0x00307676`, `0x0028E920`). The re-commit in `0x0030FA00` keeps the count, so it runs across
 the whole combo.
 
 ### Reset
 
-`003105D0` clears `+0x6B7` and `+0x6B8` with one word store (`003106EB`) when the unit's
+`0x003105D0` clears `+0x6B7` and `+0x6B8` with one word store (`0x003106EB`) when the unit's
 action is cancelled or reset.
 
 ### What the counter blocks
 
-`00325D90`, the navigation-step test, returns 0 while `+0x6B7` is non-zero
-(`00325DDF`). `0023B040` recomputes the party leader's control-suppression bits and, while the leader's
-`+0x6B7` is non-zero, replaces its result with all bits set (`0023B124`-`0023B12D`); the bits go to
-`003592C0`, `00359200` and `0026BD40` (`0023B1C0`-`0023B1FA`).
+`0x00325D90`, the navigation-step test, returns 0 while `+0x6B7` is non-zero
+(`0x00325DDF`). `0x0023B040` recomputes the party leader's control-suppression bits and, while the leader's
+`+0x6B7` is non-zero, replaces its result with all bits set (`0x0023B124`-`0x0023B12D`); the bits go to
+`0x003592C0`, `0x00359200` and `0x0026BD40` (`0x0023B1C0`-`0x0023B1FA`).
 
 ## State
 
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
-| unit `+0x6B7` | `u8` | extra hits dealt so far | `0030FA79` (+1); `003106EB` (cleared) |
-| unit `+0x6B8` | `u8` | hits of action `0x96`, kept across a re-commit | `00307665` (+1); `0030FA65`; `003106EB` (cleared) |
-| record `+0x12` high nibble | u4 | extra hits rolled for this combo | `00388865` |
-| `02AEDFE4` | `u32` | combo chance, percent | `00388648` |
-| target entry flags bit 10 | bit | continue the combo after this hit | `003075E0` |
+| unit `+0x6B7` | `u8` | extra hits dealt so far | `0x0030FA79` (+1); `0x003106EB` (cleared) |
+| unit `+0x6B8` | `u8` | hits of action `0x96`, kept across a re-commit | `0x00307665` (+1); `0x0030FA65`; `0x003106EB` (cleared) |
+| record `+0x12` high nibble | u4 | extra hits rolled for this combo | `0x00388865` |
+| `0x02AEDFE4` | `u32` | combo chance, percent | `0x00388648` |
+| target entry flags bit 10 | bit | continue the combo after this hit | `0x003075E0` |
 
 ## Modding notes
 
 - The combo chance is byte `+0x1C` of each weapon's equipment row in `battle_pack.bin`. Shipped values
   run from 0 to 100; most weapons have 5 to 30.
-- The 0.7 and 1.8 factors are floats at `008F3104` (shared with other code) and `00908E1C`.
-- The HP bands are the shifts in `00388660` (16, 8, 4) and the chances the immediates `0x40`, `0x20`,
-  `0x10` and 8; the eleven rolls are `mov r14d, 0xB` at `003887DA`, which also caps the count.
+- The 0.7 and 1.8 factors are floats at `0x008F3104` (shared with other code) and `0x00908E1C`.
+- The HP bands are the shifts in `0x00388660` (16, 8, 4) and the chances the immediates `0x40`, `0x20`,
+  `0x10` and 8; the eleven rolls are `mov r14d, 0xB` at `0x003887DA`, which also caps the count.
 - An enemy's combo cap is byte `+0x20` of its class row, minus one; a value of 1 disables its combos.
 
 ## Related
@@ -174,6 +174,6 @@ action is cancelled or reset.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   5 (Confuse), 16, 27 (Berserk) and 28.
 - [The R2 modal toggle](../Controls-And-Input/escape.md) - the FLEEING mode
-  behind `01E0C2B8`.
+  behind `0x01E0C2B8`.
 - [The formula step table](../Damage-And-Battle-Formulas/damage-formula.md) - the other
   slots of the recipe.

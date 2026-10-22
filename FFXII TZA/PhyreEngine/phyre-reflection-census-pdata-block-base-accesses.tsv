@@ -1,6 +1,6 @@
 function	name	site	disp	kind	instruction	route	note
-00660A20	FUN_00660a20	00660A27	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 00660A20	
-00660A20	FUN_00660a20	00660A2A	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 00660A20	
-00660A20	FUN_00660a20	00660A2D	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 00660A20	
-00660A20	FUN_00660a20	00660A31	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 00660A20	
-00660A20	FUN_00660a20	00660A34	0x1c	w	mov word ptr [rdx + 0x1c], 0x300	ctorrdx-seeded 00660A20	
+0x00660A20	FUN_00660a20	0x00660A27	0x0	w	mov qword ptr [rdx], rax	ctorrdx-seeded 0x00660A20	
+0x00660A20	FUN_00660a20	0x00660A2A	0x8	w	mov dword ptr [rdx + 8], eax	ctorrdx-seeded 0x00660A20	
+0x00660A20	FUN_00660a20	0x00660A2D	0x10	w	mov qword ptr [rdx + 0x10], rax	ctorrdx-seeded 0x00660A20	
+0x00660A20	FUN_00660a20	0x00660A31	0x18	w	mov dword ptr [rdx + 0x18], eax	ctorrdx-seeded 0x00660A20	
+0x00660A20	FUN_00660a20	0x00660A34	0x1c	w	mov word ptr [rdx + 0x1c], 0x300	ctorrdx-seeded 0x00660A20	
