@@ -95,9 +95,14 @@ So no function reads the value of rows 104-113 (1 each) or 128 (20).
 
 ### Augment 114, Essentials
 
-Every party row starts with the Essentials license (node 31), which grants augment 114, but no function tests that
-augment:
+Augment 114's name word is "Attack Items", and the Essentials license (node 31, 1 LP) grants it. All seven main
+characters start with that square ([License list](../Items-Equipment-Shops-And-Licenses/license-list.md)), so it stands
+for the Attack and Items commands every character has from the start. The game needs neither the square nor the
+augment to allow them:
 
+- Attack (action row 150) and all 51 named item rows carry bit 13 of the action row's `+0x2C`, which the license
+  check `0x00323EC0` passes before any board lookup (`0x00323F4D`-`0x00323F58`;
+  [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
 - No instruction tests bit 114 directly: bit 2 of the layer bytes `+0x76` or `+0x86`, or of the merged copy at
   context `+0x28`. The same sweep finds Brawler's test at `0x00320364` and `0x0032036A`.
 - The four functions that test an augment by a computed id do not ask for 114: the stats rebuild takes its ids from
@@ -105,7 +110,8 @@ augment:
   merge (`0x00384827`) and the timer pass `0x00385570` (`0x003855CD`) walk every id.
 - No instruction reads the Essentials license bit, owned-square byte `+0x197`, by itself.
 
-So the row's text, "Slightly raises max HP." (text id 13062), describes nothing the game does with it.
+So the commands are innate to every character, and the row's help text, "Slightly raises max HP." (text id 13062),
+describes nothing the game does with augment 114.
 
 ### Checks
 

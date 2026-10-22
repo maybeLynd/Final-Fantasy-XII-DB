@@ -113,7 +113,7 @@ id	term	name	name_jp	license	text_id	text	value	value_reader	value_use	timer_slo
 111	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
 112	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
 113	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
-114	Essentials	Attack Items	たたかうアイテム	Essentials	13062	Slightly raises max HP.	0				"Essentials, which every party row starts with (license node 31): no function tests augment 114, and the row's text id 13062 reads ""Slightly raises max HP."""
+114	Essentials	Attack Items	たたかうアイテム	Essentials	13062	Slightly raises max HP.	0				Essentials (name word Attack Items), the license square every main character starts with: it stands for the Attack and Items commands, which need no license (action row +0x2C bit 13), and no function tests augment 114
 115	Reserve	NOT USED	{name}予備		13063	Move with great celerity.	0				Reserve: Move with great celerity.
 116	Remedy Lore 3	Remedies remove Stop, Doom, and Disease.	＋ストップ＋死の宣告＋ウイルス	Remedy Lore 3			0				Remedy Lore 3: Remedies remove Stop, Doom, and Disease.
 117	Remedy Lore 2	Remedies remove Petrify, Confuse, and Oil.	＋石化中＋混乱＋オイル	Remedy Lore 2			0				Remedy Lore 2: Remedies remove Petrify, Confuse, and Oil.
