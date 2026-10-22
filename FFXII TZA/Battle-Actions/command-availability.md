@@ -100,7 +100,7 @@ record (`0x0030A330`) is below `0x00324020(stats)`; for any other row the Licens
 | `0x12` | `0x003037A0`: for a party-side unit, the item the action uses (`0x003093D0(id)`, not `0xFFFF`) has an owned count of 0 (`0x0030B0E0`) and is not the item already set aside at `+0xDC8` |
 | `0x13` | MP: the `i16` at stats `+0x4C` is below `0x00309110` - for kinds other than 5 and 6, the row's byte `+0x0A` adjusted by `0x002F95D0`, or 0 when the unit pays with gil |
 | `0x14` | Mist charges: the byte at stats `+0x4E` is below `0x00308FF0` - the row's byte `+0x0A` for kinds 5 and 6, else 0 |
-| `0x15` | gil: for a party-side unit paying with gil (`0x002F9820`: bit 0 of the augment layer bytes `+0x6C` or `+0x7C`, augment 32 (Gil Magick), "Enables casting of magicks with gil, rather than MP"), when the cost `0x00309060` is above both the party's gil (`[0x02092758]+8`, `0x00253690`) and the gil already reserved at `+0xE58` |
+| `0x15` | gil: for a party-side unit paying with gil (`0x002F9820`: bit 0 of the augment layer bytes `+0x6C` or `+0x7C`, augment 32 (Offering), "Enables casting of magicks with gil, rather than MP"), when the cost `0x00309060` is above both the party's gil (`[0x02092758]+8`, `0x00253690`) and the gil already reserved at `+0xE58` |
 
 ### Which cost the battle menu shows
 

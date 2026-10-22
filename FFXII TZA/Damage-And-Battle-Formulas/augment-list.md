@@ -26,15 +26,17 @@ bestiary, the enemy orders):
   Martyr (21), Battle Lore, Magick Lore, Potion Lore and the rest. Each is granted by exactly one license.
 - **Which licenses grant augments.** License data (entry `+0x34`) grants augment rows through its node types 15 to
   18 (byte `+0x05`: types 15-17 are group `0x1B` and 18 group `0x1C` in `0x003241D0`'s table `0x00324260`, both class
-  2 in `0x00323890`). Type 30, the Second Board node 360, names augment 128 (group `0x1E`, class 3, so the rebuild
-  never applies it as an augment).
+  2 in `0x00323890`). Type 30, the Second Board node 360, names augment 128, Second Board: it is group `0x1E`, class 3, so the
+  rebuild never applies it as an augment.
 - **The other 41 have no English name in the game.** They are the augments only equipment, a party table row or a
   foe's script gives, such as the Steel Poleyns' (37) or the Esper rows' (18, 31). The English, French,
   German, Italian and Spanish `battle_pack.bin` name these rows `NOT USED`, `Unused`, `dummy` or `DUMMY`, and the
   menus show only their help text.
-- **The Japanese build (`in`) names every row**: 37 is トラップ回避, 1 セーフティ, 13 殺陣. For the 41 the term is an
-  English rendering of the Japanese name ("Trap Evasion", "Safety", "Swordplay"), and `name_jp` keeps the Japanese
-  text.
+- **The names the 41 go by.** They take the names the modding community uses for them, such as Tread Lightly (37),
+  Safety (1) and Combo Boost (13). Rows 38 and 115, which have no community name, are Cartridge (the Japanese
+  カートリッジ) and Reserve.
+- **The Japanese build (`in`) names every row**, and `name_jp` keeps those names: 37 is トラップ回避, 1 セーフティ,
+  13 殺陣.
 
 `name` stays the English name word: for the licensed augments it is a sentence ("Increases attack power when
 fighting empty-handed.").
@@ -91,6 +93,20 @@ Fifteen functions load `0x02EBF040` (111 references): `0x002FEF30`, `0x002F95D0`
 
 So no function reads the value of rows 104-113 (1 each) or 128 (20).
 
+### Augment 114, Essentials
+
+Every party row starts with the Essentials license (node 31), which grants augment 114, but no function tests that
+augment:
+
+- No instruction tests bit 114 directly: bit 2 of the layer bytes `+0x76` or `+0x86`, or of the merged copy at
+  context `+0x28`. The same sweep finds Brawler's test at `0x00320364` and `0x0032036A`.
+- The four functions that test an augment by a computed id do not ask for 114: the stats rebuild takes its ids from
+  its three lists (`0x002FF5CA`-`0x002FF70F`), the enemy-order selector from the order (`0x00302494`), and the context
+  merge (`0x00384827`) and the timer pass `0x00385570` (`0x003855CD`) walk every id.
+- No instruction reads the Essentials license bit, owned-square byte `+0x197`, by itself.
+
+So the row's text, "Slightly raises max HP." (text id 13062), describes nothing the game does with it.
+
 ### Checks
 
 - The table's header gives 129 rows of 8 bytes, and the TSV has 129 data lines.
@@ -107,7 +123,7 @@ So no function reads the value of rows 104-113 (1 each) or 128 (20).
 
 | Column | Meaning |
 |---|---|
-| `id`, `term` | the augment id (the row) and its name in the database: its license's name, or the English rendering of `name_jp` (above) |
+| `id`, `term` | the augment id (the row) and its name in the database: its license's name, or the modding community's name (above) |
 | `name`, `name_jp` | the English name word `+0x02`, and the same word in the Japanese build |
 | `license` | the license that grants the augment, empty for none |
 | `text_id`, `text` | `+0x00` and its shipped text; empty for 0 |

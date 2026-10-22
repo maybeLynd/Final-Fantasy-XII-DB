@@ -94,9 +94,9 @@ each of party slots 0-3 that the action may target while it has KO, Stone or X-Z
 3. **Sight.** The query `0x003919B0` around the unit's position `+0xE0` uses its floats `+0x64`, `+0x68` and
    `+0x160`. A result is kept when it is not an Invisible unit of another side (`0x0030BCB0`), its height differs by at most `+0x68`, and the
    test `0x0032A4D0` passes (`0x0032497E`-`0x00324ABA`).
-4. **The two radii,** enemy-table units only. Units within the class row's byte `+0x25` that lack augment 33 (Sound Detection Evasion)
+4. **The two radii,** enemy-table units only. Units within the class row's byte `+0x25` that lack augment 33 (Veil)
    and pass `0x0032A4D0` are kept (`0x00324AC0`-`0x00324BF5`). Units within byte `+0x26` below 40 % HP that lack
-   augment 34 (Scent Detection Evasion) are kept (`0x00324BFB`-`0x00324D2E`). Each radius also bounds the height difference.
+   augment 34 (Life Cloak) are kept (`0x00324BFB`-`0x00324D2E`). Each radius also bounds the height difference.
 5. **Being hit,** enemy-table units only. A unit whose entry in `+0xDD4 + 4 * slot` is still ahead of the tick
    counter `0x0208D45C` is kept (`0x00324D34`-`0x00324DCF`). An action's first pass over a target sets the
    attacker's entry to the counter plus `10 * (int)(0x01DFE0B8 * 30.0)`, 300 as shipped (`0x00319206`-`0x0031923F`),

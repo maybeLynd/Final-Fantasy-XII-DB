@@ -81,9 +81,9 @@ Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
 | `+0x18` | the target unit's byte `+0x55`, or -1 without a unit |
 | `+0x1A-0x29` | the source's 128 augment bits, from both layers `+0x68` and `+0x78` |
 
-Without a target unit, Reverse (status 12) is removed from `+0x08` and augment 15 (Medicine Reversal) from the merged bits
+Without a target unit, Reverse (status 12) is removed from `+0x08` and augment 15 (Medicine Reverse) from the merged bits
 (`0x00384896`-`0x0038489D`). When the result's bit 5 is set it also removes Reverse, Disease (16) and Reflect
-(23) from `+0x08`, sets a `+0x18` of `0x0D` to 0, and removes augment 15 (Medicine Reversal) (`0x003848A1`-`0x003848B8`).
+(23) from `+0x08`, sets a `+0x18` of `0x0D` to 0, and removes augment 15 (Medicine Reverse) (`0x003848A1`-`0x003848B8`).
 
 ### The first list: landing the hit
 
@@ -94,12 +94,12 @@ A recipe's first list runs when the action executes, through `0x00385680` (slot 
 | Slot | Function | Does |
 |---:|---|---|
 | `5` | `0x00388350` | knockback chance = weapon byte `+0x1B`, adjusted by a random share of both levels |
-| `6` | `0x00388440` | rolls knockback against it, unless the target has augment 0 (No Knockback) |
-| `7`, `8` | `0x00388490`, `0x003884F0` | the alternative outcome flag `0x02AEDFC4`: a chance from the target's Speed when it has augment 6 (Counterattack) |
+| `6` | `0x00388440` | rolls knockback against it, unless the target has augment 0 (Stability) |
+| `7`, `8` | `0x00388490`, `0x003884F0` | the alternative outcome flag `0x02AEDFC4`: a chance from the target's Speed when it has augment 6 (Counter) |
 | `9`, `10` | `0x00388550`, `0x00388660` | the combo chance and count ([Combos](../Battle-Actions/combos.md)) |
 | `22` | `0x00388FB0` | loads the target's shield, weapon and innate evade (`+0x33`, `+0x32`, `+0x31`) and sets the hit chance to 100 |
 | `33` | `0x00389310` | halves the hit for a Blind source, `0x02AEDFE0 = 0x02AEDFE0 / 2` signed (`0x00389318`-`0x00389323`); clears the bands for an Invisible source or a target under Stop, Sleep or Disable, and the innate band under Immobilize |
-| `34` | `0x00389370` | adds 25 to the innate band (30 for a party-side target) under target augment 4 (Anticipate), adds augment 3 and the three Shield Block licenses' augments 88-90 to the block band, clears all three bands when the user has augment 2 (Concentration, the Cameo Belt's augment), and clears bands the target's equipment does not allow |
+| `34` | `0x00389370` | adds 25 to the innate band (30 for a party-side target) under target augment 4 (Evasion Boost), adds augment 3 and the three Shield Block licenses' augments 88-90 to the block band, clears all three bands when the user has augment 2 (Accuracy Boost, the Cameo Belt's augment), and clears bands the target's equipment does not allow |
 | `41` | `0x003896B0` | the outcome roll below |
 
 The bands slot 34 keeps come from `0x00384E50(target)`, which reads the integers `0x2902032B` and
@@ -163,7 +163,7 @@ recipe 7's is `62 92 93 94 95 113 170 175 182`:
 | `98` | `0x0038BE00` | doubles the scale on a critical |
 | `99`, `94`, `95` | `0x0038BE30`, `0x0038B220`, `0x0038B6A0` | elements and weather ([Elements](elements.md)) |
 | `125`, `113` | `0x0038D280` | the finisher: `(attack - defence) * scale` into HP loss or gain |
-| `165` | `0x0038F890` | ×1.2 for augment 49 (Damage Bonus), ×2 for augment 50 (HP-Cost Attack) (`0x0038F89B`-`0x0038F8D0`) |
+| `165` | `0x0038F890` | ×1.2 for augment 49 (Attack Boost), ×2 for augment 50 (Double-Edged) (`0x0038F89B`-`0x0038F8D0`) |
 | `170`, `171` | `0x0038F970`, `0x0038F9D0` | the status chance: the action's `+0x14`, or the weapon's `+0x1F` |
 | `175`, `176` | `0x0038FB80`, `0x0038FBC0` | roll it; a miss stops the list |
 | `182` | `0x0038FCD0` | add the action's or weapon's statuses |

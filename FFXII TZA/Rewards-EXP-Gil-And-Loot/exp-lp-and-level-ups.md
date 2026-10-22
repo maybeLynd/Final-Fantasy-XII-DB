@@ -12,10 +12,10 @@ field get none. Every party member, on the field or not, receives the enemy's fu
 
 Four augments, each carried by one piece of equipment, change this per member:
 
-- EXP Up, "Doubles EXP earned." (Embroidered Tippet);
-- LP Up, "Doubles license points earned." (Golden Amulet);
-- Zero EXP, "Reduces EXP earned to 0." (Firefly);
-- LP to Gil, "Convert all license points earned to gil." (Cat-ear Hood).
+- EXP Boost, "Doubles EXP earned." (Embroidered Tippet);
+- LP Boost, "Doubles license points earned." (Golden Amulet);
+- Stagnation, "Reduces EXP earned to 0." (Firefly);
+- Lobbying, "Convert all license points earned to gil." (Cat-ear Hood).
 
 A game started as New Game Minus earns no EXP at all, though LP and gil are still paid. EXP stops at
 99,999,999 and LP at 99,999. A member levels up as soon as their EXP reaches the next level's total;
@@ -106,10 +106,10 @@ whose augment byte `+0x1A` carries the augment:
 
 | Bit | Augment | Description id | Equipment (augment byte `+0x1A`) |
 |---|---|---|---|
-| `+0x6B` bit 3 | 27, EXP Up | 13027 | Embroidered Tippet (`0x1168`) |
-| `+0x6B` bit 4 | 28, LP Up | 13028 | Golden Amulet (`0x116F`) |
-| `+0x6B` bit 5 | 29, Zero EXP | 13029 | Firefly (`0x1171`) |
-| `+0x69` bit 4 | 12, LP to Gil | 13012 | Cat-ear Hood (`0x117F`) |
+| `+0x6B` bit 3 | 27, EXP Boost | 13027 | Embroidered Tippet (`0x1168`) |
+| `+0x6B` bit 4 | 28, LP Boost | 13028 | Golden Amulet (`0x116F`) |
+| `+0x6B` bit 5 | 29, Stagnation | 13029 | Firefly (`0x1171`) |
+| `+0x69` bit 4 | 12, Lobbying | 13012 | Cat-ear Hood (`0x117F`) |
 
 ### Applying them
 

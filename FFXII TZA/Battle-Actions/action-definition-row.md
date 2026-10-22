@@ -117,8 +117,8 @@ Bit *n* of `+0x13` is one element; no shipped row sets more than one:
 | `8`, `9` | 186, 378 | copied to the query record's `+0x20` (`0x0031DB9E`-`0x0031DBA7`) |
 | `11` | 57 | clears bit 5 of the result's byte `+0` (`0x00386079`); also read by `0x0031AA30` (`0x0031AB02`) |
 | `12` | 18 | the shape reader reports the whole party or no area, whatever the radius (`0x0031A990`) |
-| `13` | 162 | magick class: a target with augment 56 (Absolute Magick Defense) voids it as result kind 7 (`0x00390EE5`, `0x003910C3`); no charge time under augment 54 (Magick Charge Time 0) (`0x002F8689`) |
-| `14` | 207 | physical class: augment 55 (Absolute Physical Defense) voids it as result kind 7 (`0x00390E9A`, `0x00391076`) |
+| `13` | 162 | magick class: a target with augment 56 (Magick-Immunity) voids it as result kind 7 (`0x00390EE5`, `0x003910C3`); no charge time under augment 54 (Swiftcast) (`0x002F8689`) |
+| `14` | 207 | physical class: augment 55 (Physical-Immunity) voids it as result kind 7 (`0x00390E9A`, `0x00391076`) |
 | `16` | 78 | Reflect (status 23) bounces it: result kind 8 and a new target from `0x00384F40` (`0x00390D7F`, `0x00390DF1`-`0x00390E42`) |
 | `17` | 28 | runs the special-guard roll (`0x00388058`) |
 | `19` | 97 | Silence blocks it (`0x002FFE56`, [Command availability](command-availability.md)) |

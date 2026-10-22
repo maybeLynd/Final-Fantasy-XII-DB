@@ -120,8 +120,8 @@ Last, the rebuild limits three values without going through the HP write (`0x003
 | Value | Limit |
 |---|---|
 | current HP `+0x48` | max HP `+0x24`, doubled under Bubble (status 28); under Disease (status 16), the current HP itself, at least 1 |
-| current MP `+0x4C` | max MP `+0x28`, or 0 when augment 39 (Magick Seal) is in either layer (byte `+0x6C` or `+0x7C`, bit 7) |
-| Mist pool `+0x06` | max MP times the MP bars `+0x37` (0 counting as 1), or 0 under augment 39 (Magick Seal) |
+| current MP `+0x4C` | max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer (byte `+0x6C` or `+0x7C`, bit 7) |
+| Mist pool `+0x06` | max MP times the MP bars `+0x37` (0 counting as 1), or 0 under augment 39 (Emptiness) |
 
 The values only go down. Then `0x0030E060` sets the charge count `+0x4E` to `+0x06 / +0x28` when `+0x37` is
 not 0, and to 0 otherwise (`0x0030E0AF`-`0x0030E0C3`, `0x0031059C`); it does nothing when max MP `+0x28` is 0 or less

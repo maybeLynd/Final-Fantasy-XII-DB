@@ -91,8 +91,8 @@ nor clear Invisible here.
 
 The base `b` is the action row's byte `+0x09`, or, when the row has bit 27 of `+0x0C`, byte `+0x27`
 of the weapon's equipment row (0, no charge, when the weapon id is out of range). The limit is 0 - no
-charge - when the unit has augment 53 (Attack Charge Time 0) (bit 5 of the augment layer bytes `+0x6E`/`+0x7E`) and the row's byte
-`+0x08` is 0, or augment 54 (Magick Charge Time 0) (bit 6) and the row's flag bit 13. A unit with speed 0 (stats `+0x2D`) gets
+charge - when the unit has augment 53 (Celerity) (bit 5 of the augment layer bytes `+0x6E`/`+0x7E`) and the row's byte
+`+0x08` is 0, or augment 54 (Swiftcast) (bit 6) and the row's flag bit 13. A unit with speed 0 (stats `+0x2D`) gets
 `9000 * F`. Otherwise:
 
 ```python

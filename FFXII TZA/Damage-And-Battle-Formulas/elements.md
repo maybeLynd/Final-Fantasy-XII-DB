@@ -74,7 +74,7 @@ this order (`0x0038B709`-`0x0038B932`):
 
 1. **Immune** (`+0x43`): sets `0x02AEDFCC` = 1 and skips every later test (`0x0038B70D`-`0x0038B71D`).
 2. **Weak** (`+0x40`): multiplies the scale `0x02AEE054` by 2.0 and sets bit 1 of the result's `+0x140`
-   (`0x0038B769`-`0x0038B791`). When the target also has augment 52 (Barrier Change) in either layer (byte `+0x6E` or `+0x7E`,
+   (`0x0038B769`-`0x0038B791`). When the target also has augment 52 (Elemental Shift) in either layer (byte `+0x6E` or `+0x7E`,
    bit 4), it calls `0x00384B10(element, context)` and sets bit 10 (`0x0038B78D`-`0x0038B7F2`).
 3. **Half** (`+0x42`): multiplies by 0.5 and sets bit 2 (`0x0038B84A`-`0x0038B871`).
 4. **Absorb** (`+0x41`): sets `0x02AEDFD0` = 1 and leaves the scale alone (`0x0038B8BC`-`0x0038B8D1`).
@@ -134,11 +134,11 @@ The same three slots also multiply the scale for other statuses, for example She
 ### Weather and terrain scaling
 
 Slot 94, `0x0038B220`, scales a magick's element by the area's conditions. It runs in recipes 7, 14, 37,
-63, 83, 105 and 106, before slot 95; the weapon recipes do not run it. It is skipped when augment 16 (Weather and Terrain Nullify) is in
+63, 83, 105 and 106, before slot 95; the weapon recipes do not run it. It is skipped when augment 16 (Weatherproof) is in
 the target's layer `+0x68` or `+0x78` (bytes `+0x6A`, `+0x7A`, bit 0) or in the user's merged context
 bits (context `+0x1C` bit 0) (`0x0038B226`-`0x0038B242`).
 
-Augment 16 (Weather and Terrain Nullify) is the augment the Agate Ring carries: equipment row 345 has byte `+0x1A` = 16 and class 21,
+Augment 16 (Weatherproof) is the augment the Agate Ring carries: equipment row 345 has byte `+0x1A` = 16 and class 21,
 and the stats rebuild `0x0030FED0` adds the `+0x1A` augment of each equipped item of classes 19-22 to the
 layer `+0x78` (`0x00310080`-`0x00310121`, [Steal](steal.md) has the details).
 

@@ -91,7 +91,7 @@ is **1,000,000**.
 - the unit is an enemy (stats byte `+0x05` = 1);
 - the action id is above `0x21E`;
 - the action's row in the action table `[0x02EBF138]` has byte `+0x1E` equal to 5 or 6;
-- `0x002F9820` does not report the unit as a party member with augment 32 (Gil Magick), bit 0 of stats byte
+- `0x002F9820` does not report the unit as a party member with augment 32 (Offering), bit 0 of stats byte
   `+0x6C` or `+0x7C`.
 
 Augment row 32's description (id 13032) reads "Enables casting of magicks with gil, rather than

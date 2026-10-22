@@ -86,7 +86,7 @@ member (kind 0) outside the Esper band 27-39, outside a town (`0x00377C20`), whi
 0 and unit flag bit 36 is clear. `0x002F8060` itself refuses, returning -1, when the unit's stats:
 
 - carry bit 26 in the combined status words `+0x3C | +0x64`;
-- carry bit 5 in either layer byte `+0x6C` or `+0x7C`: augment 37 (Trap Evasion, "Move safely past traps"),
+- carry bit 5 in either layer byte `+0x6C` or `+0x7C`: augment 37 (Tread Lightly, "Move safely past traps"),
   the Float status's effect ([the two layers](../Status-Effects-And-KO/statuses.md),
   [battle text banks](../Game-Files-And-Data-Tables/battle-text-tables.md));
 - have kind 1, or kind 0 with the type byte `+0x04` in 27-39.

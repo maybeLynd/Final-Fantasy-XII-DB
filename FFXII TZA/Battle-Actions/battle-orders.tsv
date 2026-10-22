@@ -145,130 +145,130 @@ order_id	handler	operation	value	name
 0x408F	0x002FDDA0	remove a status (0x0030E360 mode 0)	30	Libra
 0x4090	0x002FDDA0	remove a status (0x0030E360 mode 0)	31	X-Zone
 0x4091	0x002FDDA0	clear all 128 augment bits of layer +0x68, then rebuild the stats (0x0030FED0)		
-0x4092	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	0	No Knockback
+0x4092	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	0	Stability
 0x4093	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	1	Safety
-0x4094	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	2	Concentration
-0x4095	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	3	Shield Evade Up
-0x4096	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	4	Anticipate
+0x4094	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	2	Accuracy Boost
+0x4095	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	3	Shield Boost
+0x4096	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	4	Evasion Boost
 0x4097	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	5	Last Stand
-0x4098	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	6	Counterattack
-0x4099	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	7	Counter Rate Up
+0x4098	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	6	Counter
+0x4099	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	7	Counter Boost
 0x409A	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	8	Spellbreaker
 0x409B	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	9	Brawler
 0x409C	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	10	Adrenaline
 0x409D	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	11	Focus
-0x409E	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	12	LP to Gil
-0x409F	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	13	Swordplay
-0x40A0	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	14	Medicine Potency Up
-0x40A1	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	15	Medicine Reversal
-0x40A2	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	16	Weather and Terrain Nullify
-0x40A3	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	17	Steal Up
-0x40A4	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	18	Willpower Nullify
+0x409E	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	12	Lobbying
+0x409F	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	13	Combo Boost
+0x40A0	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	14	Item Boost
+0x40A1	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	15	Medicine Reverse
+0x40A2	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	16	Weatherproof
+0x40A3	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	17	Thievery
+0x40A4	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	18	Saboteur
 0x40A5	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	19	Magick Lore
 0x40A6	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	20	Warmage
 0x40A7	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	21	Martyr
 0x40A8	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	22	Magick Lore
 0x40A9	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	23	Headsman
 0x40AA	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	24	Magick Lore
-0x40AB	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	25	Treasure Galore
+0x40AB	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	25	Treasure Hunter
 0x40AC	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	26	Magick Lore
-0x40AD	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	27	EXP Up
-0x40AE	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	28	LP Up
-0x40AF	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	29	Zero EXP
+0x40AD	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	27	EXP Boost
+0x40AE	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	28	LP Boost
+0x40AF	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	29	Stagnation
 0x40B0	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	30	Spellbound
-0x40B1	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	31	Reflect Pierce
-0x40B2	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	32	Gil Magick
-0x40B3	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	33	Sound Detection Evasion
-0x40B4	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	34	Scent Detection Evasion
+0x40B1	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	31	Piercing Magick
+0x40B2	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	32	Offering
+0x40B3	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	33	Veil
+0x40B4	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	34	Life Cloak
 0x40B5	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	35	Battle Lore
-0x40B6	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	36	Half MP Cost
-0x40B7	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	37	Trap Evasion
+0x40B6	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	36	Parsimony
+0x40B7	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	37	Tread Lightly
 0x40B8	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	38	Cartridge
-0x40B9	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	39	Magick Seal
-0x40BA	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	40	Wobbly
-0x40BB	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	41	Libra Nullify
+0x40B9	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	39	Emptiness
+0x40BA	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	40	Resist Piercing
+0x40BB	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	41	Anti-Libra
 0x40BC	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	42	Battle Lore
 0x40BD	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	43	Battle Lore
 0x40BE	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	44	Battle Lore
 0x40BF	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	45	Battle Lore
 0x40C0	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	46	Battle Lore
 0x40C1	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	47	Battle Lore
-0x40C2	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	48	Damage Reduction
-0x40C3	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	49	Damage Bonus
-0x40C4	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	50	HP-Cost Attack
-0x40C5	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	51	Zero MP Cost
-0x40C6	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	52	Barrier Change
-0x40C7	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	53	Attack Charge Time 0
-0x40C8	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	54	Magick Charge Time 0
-0x40C9	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	55	Absolute Physical Defense
-0x40CA	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	56	Absolute Magick Defense
-0x40CB	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	57	Absolute Ailment Defense
-0x40CC	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	58	Retaliate
-0x40CD	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	59	Self-Destruct Trigger
+0x40C2	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	48	Stoneskin
+0x40C3	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	49	Attack Boost
+0x40C4	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	50	Double-Edged
+0x40C5	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	51	Spellspring
+0x40C6	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	52	Elemental Shift
+0x40C7	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	53	Celerity
+0x40C8	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	54	Swiftcast
+0x40C9	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	55	Physical-Immunity
+0x40CA	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	56	Magick-Immunity
+0x40CB	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	57	Status-Immunity
+0x40CC	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	58	Damage Spikes
+0x40CD	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	59	Suicidal
 0x40CE	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	60	Battle Lore
 0x40CF	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	61	Battle Lore
 0x40D0	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	62	Battle Lore
 0x40D1	0x002FDDA0	set an augment in layer +0x68 (0x0030E130 mode 2)	63	Battle Lore
-0x40D2	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	0	No Knockback
+0x40D2	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	0	Stability
 0x40D3	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	1	Safety
-0x40D4	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	2	Concentration
-0x40D5	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	3	Shield Evade Up
-0x40D6	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	4	Anticipate
+0x40D4	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	2	Accuracy Boost
+0x40D5	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	3	Shield Boost
+0x40D6	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	4	Evasion Boost
 0x40D7	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	5	Last Stand
-0x40D8	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	6	Counterattack
-0x40D9	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	7	Counter Rate Up
+0x40D8	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	6	Counter
+0x40D9	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	7	Counter Boost
 0x40DA	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	8	Spellbreaker
 0x40DB	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	9	Brawler
 0x40DC	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	10	Adrenaline
 0x40DD	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	11	Focus
-0x40DE	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	12	LP to Gil
-0x40DF	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	13	Swordplay
-0x40E0	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	14	Medicine Potency Up
-0x40E1	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	15	Medicine Reversal
-0x40E2	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	16	Weather and Terrain Nullify
-0x40E3	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	17	Steal Up
-0x40E4	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	18	Willpower Nullify
+0x40DE	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	12	Lobbying
+0x40DF	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	13	Combo Boost
+0x40E0	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	14	Item Boost
+0x40E1	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	15	Medicine Reverse
+0x40E2	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	16	Weatherproof
+0x40E3	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	17	Thievery
+0x40E4	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	18	Saboteur
 0x40E5	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	19	Magick Lore
 0x40E6	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	20	Warmage
 0x40E7	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	21	Martyr
 0x40E8	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	22	Magick Lore
 0x40E9	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	23	Headsman
 0x40EA	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	24	Magick Lore
-0x40EB	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	25	Treasure Galore
+0x40EB	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	25	Treasure Hunter
 0x40EC	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	26	Magick Lore
-0x40ED	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	27	EXP Up
-0x40EE	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	28	LP Up
-0x40EF	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	29	Zero EXP
+0x40ED	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	27	EXP Boost
+0x40EE	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	28	LP Boost
+0x40EF	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	29	Stagnation
 0x40F0	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	30	Spellbound
-0x40F1	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	31	Reflect Pierce
-0x40F2	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	32	Gil Magick
-0x40F3	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	33	Sound Detection Evasion
-0x40F4	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	34	Scent Detection Evasion
+0x40F1	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	31	Piercing Magick
+0x40F2	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	32	Offering
+0x40F3	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	33	Veil
+0x40F4	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	34	Life Cloak
 0x40F5	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	35	Battle Lore
-0x40F6	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	36	Half MP Cost
-0x40F7	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	37	Trap Evasion
+0x40F6	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	36	Parsimony
+0x40F7	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	37	Tread Lightly
 0x40F8	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	38	Cartridge
-0x40F9	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	39	Magick Seal
-0x40FA	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	40	Wobbly
-0x40FB	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	41	Libra Nullify
+0x40F9	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	39	Emptiness
+0x40FA	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	40	Resist Piercing
+0x40FB	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	41	Anti-Libra
 0x40FC	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	42	Battle Lore
 0x40FD	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	43	Battle Lore
 0x40FE	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	44	Battle Lore
 0x40FF	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	45	Battle Lore
 0x4100	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	46	Battle Lore
 0x4101	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	47	Battle Lore
-0x4102	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	48	Damage Reduction
-0x4103	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	49	Damage Bonus
-0x4104	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	50	HP-Cost Attack
-0x4105	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	51	Zero MP Cost
-0x4106	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	52	Barrier Change
-0x4107	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	53	Attack Charge Time 0
-0x4108	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	54	Magick Charge Time 0
-0x4109	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	55	Absolute Physical Defense
-0x410A	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	56	Absolute Magick Defense
-0x410B	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	57	Absolute Ailment Defense
-0x410C	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	58	Retaliate
-0x410D	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	59	Self-Destruct Trigger
+0x4102	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	48	Stoneskin
+0x4103	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	49	Attack Boost
+0x4104	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	50	Double-Edged
+0x4105	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	51	Spellspring
+0x4106	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	52	Elemental Shift
+0x4107	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	53	Celerity
+0x4108	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	54	Swiftcast
+0x4109	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	55	Physical-Immunity
+0x410A	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	56	Magick-Immunity
+0x410B	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	57	Status-Immunity
+0x410C	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	58	Damage Spikes
+0x410D	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	59	Suicidal
 0x410E	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	60	Battle Lore
 0x410F	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	61	Battle Lore
 0x4110	0x002FDDA0	clear an augment in layer +0x68 (0x0030E130 mode 0)	62	Battle Lore

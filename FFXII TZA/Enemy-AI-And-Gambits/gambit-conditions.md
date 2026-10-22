@@ -55,8 +55,8 @@ bit 15 (MP) of word `+0x2C`, adds the previewed result of every action already c
 (`0x00308C86`-`0x00308D7D`).
 
 The maximum is max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1. For MP it
-is max MP `+0x28`, or 0 when augment 39 (Magick Seal) is in either layer ([Augments](../Damage-And-Battle-Formulas/augments.md)). A
-unit with max MP 0 or augment 39 (Magick Seal) never passes an MP percentage test (`0x00302F37`-`0x00302F59`).
+is max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer ([Augments](../Damage-And-Battle-Formulas/augments.md)). A
+unit with max MP 0 or augment 39 (Emptiness) never passes an MP percentage test (`0x00302F37`-`0x00302F59`).
 
 ### Units the action would not change
 

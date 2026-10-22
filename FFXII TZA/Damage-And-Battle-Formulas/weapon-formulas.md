@@ -118,7 +118,7 @@ variance (`0x0038A785`-`0x0038A7EE`).
 ### Bows and crossbows in strong wind
 
 The first list of recipe 25 runs slot 35 (`0x003895D0`) and that of recipe 26 slot 36 (`0x00389610`). When
-the wielder lacks augment 2 (Concentration) (context `+0x1A` bit 2) and the wind class `0x02099DAC` is 2, they scale the hit
+the wielder lacks augment 2 (Accuracy Boost) (context `+0x1A` bit 2) and the wind class `0x02099DAC` is 2, they scale the hit
 chance `0x02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte `+0x1A` = 2:
 
 | Slot | Weapons | Hit chance factor | Sites |

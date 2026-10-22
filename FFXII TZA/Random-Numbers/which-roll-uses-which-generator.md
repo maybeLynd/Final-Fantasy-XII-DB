@@ -36,7 +36,7 @@ has 98 call sites in 66 functions; the float thunk 9 call sites in one function.
 | HP and MP growth bonus on a level-up | `0x002F9A60`, `0x002F9B20` | `0x002F9AD3`, `0x002F9B8C` |
 | treasure placement: a treasure spawns when `draw % 100 < chance` (row byte `+5`), unless its persistent flag (`0x0032AA60(row byte +4)`) is set | `0x002FA740` | `0x002FA7FC` |
 | second treasure roll: when the flag `0x0032AA60(row byte +9)` is not 1, `draw % 100 < row byte +10` marks the entry present | `0x002FAED0` | `0x002FAEF2` |
-| chest contents: gil or item (`draw % 100 >= row byte +11` is item), which of two items (`draw % 100 < 50`, or `< 95` with bit 1 of the augment layer bytes `+0x6B` or `+0x7B`, augment 25 (Treasure Galore)), and the gil amount `draw % n + 1` when row byte `+8` has bit `0x40` | `0x002FAFD0` | `0x002FB01D`, `0x002FB082`, `0x002FB0AD` |
+| chest contents: gil or item (`draw % 100 >= row byte +11` is item), which of two items (`draw % 100 < 50`, or `< 95` with bit 1 of the augment layer bytes `+0x6B` or `+0x7B`, augment 25 (Treasure Hunter)), and the gil amount `draw % n + 1` when row byte `+8` has bit `0x40` | `0x002FAFD0` | `0x002FB01D`, `0x002FB082`, `0x002FB0AD` |
 | field action trigger near a unit: `draw % 100 < 75` picks word `+6` else `+8` of the entry | `0x002F8060` | `0x002F8218` |
 | script verb `rand` (`0x28`): the raw draw | `0x00355140` | `0x00355149` |
 | script verb `rand_29` (`0x29`, one argument `n`): `(draw × n) >> 32` | `0x00354BF0` | `0x00354C08` |

@@ -1,64 +1,64 @@
 id	term	name	name_jp	license	text_id	text	value	value_reader	value_use	timer_slot	explanation
-0	No Knockback	NOT USED	ノックバックなし				0				No Knockback: an unused row, with no English text
+0	Stability	NOT USED	ノックバックなし				0				Stability: an unused row, with no English text
 1	Safety	NOT USED	セーフティ		13001		0				Safety: an unused row, with no English text
-2	Concentration	NOT USED	精神統一		13002	Improves chance to hit.	0				Concentration: Improves chance to hit.
-3	Shield Evade Up	NOT USED	盾回避アップ		13003	Improves chance to block with a shield.	10	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Evade Up: Improves chance to block with a shield; value 10, added to the shield-block chance
-4	Anticipate	NOT USED	見切る		13004	Improves chance of avoiding attacks.	0				Anticipate: Improves chance of avoiding attacks.
+2	Accuracy Boost	NOT USED	精神統一		13002	Improves chance to hit.	0				Accuracy Boost: Improves chance to hit.
+3	Shield Boost	NOT USED	盾回避アップ		13003	Improves chance to block with a shield.	10	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Boost: Improves chance to block with a shield; value 10, added to the shield-block chance
+4	Evasion Boost	NOT USED	見切る		13004	Improves chance of avoiding attacks.	0				Evasion Boost: Improves chance of avoiding attacks.
 5	Last Stand	Increases defense when HP Critical.	「瀕死」ステータス時に防御力UP	Last Stand	13005	Reduces physical damage taken when HP Critical.	0				Last Stand: Reduces physical damage taken when HP Critical.
-6	Counterattack	NOT USED	攻撃に対してカウンター		13006	When attacked, automatically counter with weapon in hand.	0				Counterattack: When attacked, automatically counter with weapon in hand.
-7	Counter Rate Up	NOT USED	カウンター率アップ		13007	Improves chance to counter.	0				Counter Rate Up: Improves chance to counter.
+6	Counter	NOT USED	攻撃に対してカウンター		13006	When attacked, automatically counter with weapon in hand.	0				Counter: When attacked, automatically counter with weapon in hand.
+7	Counter Boost	NOT USED	カウンター率アップ		13007	Improves chance to counter.	0				Counter Boost: Improves chance to counter.
 8	Spellbreaker	Increases magick power when HP Critical.	「瀕死」ステータス時に魔力UP	Spellbreaker	13008	Raises magick power when HP Critical.	0				Spellbreaker: Raises magick power when HP Critical.
 9	Brawler	Increases attack power when fighting empty-handed.	両手が素手の時に攻撃力UP	Brawler	13009	Increases physical damage dealt while empty-handed.	0				Brawler: Increases physical damage dealt while empty-handed.
 10	Adrenaline	Increases strength when HP Critical.	「瀕死」ステータス時に力UP	Adrenaline	13010	Raises strength when HP Critical.	0				Adrenaline: Raises strength when HP Critical.
 11	Focus	Increases strength when HP is full.	HPが満タン時に力UP	Focus	13011	Raises strength when character has full HP.	0				Focus: Raises strength when character has full HP.
-12	LP to Gil	Converts license points to gil.	ライセンスポイントを換金し入手		13012	Convert all license points earned to gil.	0				LP to Gil: Convert all license points earned to gil.
-13	Swordplay	NOT USED	殺陣		13013	Improves chance of scoring multiple hits.	0				Swordplay: Improves chance of scoring multiple hits.
-14	Medicine Potency Up	NOT USED	薬の効果がUP		13014	Improves potency of restorative items such as potions.	0				Medicine Potency Up: Improves potency of restorative items such as potions.
-15	Medicine Reversal	NOT USED	薬逆効果		13015	Reverses effects of restorative items such as potions.	0				Medicine Reversal: Reverses effects of restorative items such as potions.
-16	Weather and Terrain Nullify	NOT USED	自然状況属性無効		13016	Nullifies weather and terrain effects on elemental damage.	0				Weather and Terrain Nullify: Nullifies weather and terrain effects on elemental damage.
-17	Steal Up	NOT USED	盗みUP		13017	Enables the theft of superior and rare items.	0				Steal Up: Enables the theft of superior and rare items.
-18	Willpower Nullify	NOT USED	気力無効		13018	Improves chance to strike with magicks.	0				Willpower Nullify: Improves chance to strike with magicks.
+12	Lobbying	Converts license points to gil.	ライセンスポイントを換金し入手		13012	Convert all license points earned to gil.	0				Lobbying: Convert all license points earned to gil.
+13	Combo Boost	NOT USED	殺陣		13013	Improves chance of scoring multiple hits.	0				Combo Boost: Improves chance of scoring multiple hits.
+14	Item Boost	NOT USED	薬の効果がUP		13014	Improves potency of restorative items such as potions.	0				Item Boost: Improves potency of restorative items such as potions.
+15	Medicine Reverse	NOT USED	薬逆効果		13015	Reverses effects of restorative items such as potions.	0				Medicine Reverse: Reverses effects of restorative items such as potions.
+16	Weatherproof	NOT USED	自然状況属性無効		13016	Nullifies weather and terrain effects on elemental damage.	0				Weatherproof: Nullifies weather and terrain effects on elemental damage.
+17	Thievery	NOT USED	盗みUP		13017	Enables the theft of superior and rare items.	0				Thievery: Enables the theft of superior and rare items.
+18	Saboteur	NOT USED	気力無効		13018	Improves chance to strike with magicks.	0				Saboteur: Improves chance to strike with magicks.
 19	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
 20	Warmage	Gain MP after dealing magick damage.	魔法ダメージを与えてMPチャージ	Warmage	13020	NOT USED	0				Warmage: Gain MP after dealing magick damage.
 21	Martyr	Gain MP after taking damage.	ダメージを受けてMPチャージ	Martyr	13021	NOT USED	0				Martyr: Gain MP after taking damage.
 22	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
 23	Headsman	Gain MP after defeating a foe.	敵を倒してMPチャージ	Headsman	13023	NOT USED	0				Headsman: Gain MP after defeating a foe.
 24	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
-25	Treasure Galore	NOT USED	お宝ザクザク		13025	Search the deepest recesses of chests, coffers, and the like.	0				Treasure Galore: Search the deepest recesses of chests, coffers, and the like.
+25	Treasure Hunter	NOT USED	お宝ザクザク		13025	Search the deepest recesses of chests, coffers, and the like.	0				Treasure Hunter: Search the deepest recesses of chests, coffers, and the like.
 26	Magick Lore	Increases magick potency.	魔法の効果UP	Magick Lore			1	0x002FEF30	added to Magick Power (list 0x00D102A0)		Magick Lore: Increases magick potency; value 1, added to Magick Power (list 0x00D102A0)
-27	EXP Up	NOT USED	獲得EXPがUP		13027	Doubles EXP earned.	0				EXP Up: Doubles EXP earned.
-28	LP Up	NOT USED	獲得LPがUP		13028	Doubles license points earned.	0				LP Up: Doubles license points earned.
-29	Zero EXP	NOT USED	獲得経験値０		13029	Reduces EXP earned to 0.	0				Zero EXP: Reduces EXP earned to 0.
+27	EXP Boost	NOT USED	獲得EXPがUP		13027	Doubles EXP earned.	0				EXP Boost: Doubles EXP earned.
+28	LP Boost	NOT USED	獲得LPがUP		13028	Doubles license points earned.	0				LP Boost: Doubles license points earned.
+29	Stagnation	NOT USED	獲得経験値０		13029	Reduces EXP earned to 0.	0				Stagnation: Reduces EXP earned to 0.
 30	Spellbound	Increases duration of status effects.	有効ステータスの持続時間延長	Spellbound	13030	NOT USED	0				Spellbound: Increases duration of status effects.
-31	Reflect Pierce	NOT USED	リフレク貫通		13031	Magicks will not bounce off targets with Reflect status.	0				Reflect Pierce: Magicks will not bounce off targets with Reflect status.
-32	Gil Magick	NOT USED	ギル魔法		13032	Enables casting of magicks with gil, rather than MP.	0				Gil Magick: Enables casting of magicks with gil, rather than MP.
-33	Sound Detection Evasion	NOT USED	聴覚索敵回避		13033	NOT USED	0				Sound Detection Evasion: an unused row, with no English text
-34	Scent Detection Evasion	NOT USED	嗅覚索敵回避		13034	NOT USED	0				Scent Detection Evasion: an unused row, with no English text
+31	Piercing Magick	NOT USED	リフレク貫通		13031	Magicks will not bounce off targets with Reflect status.	0				Piercing Magick: Magicks will not bounce off targets with Reflect status.
+32	Offering	NOT USED	ギル魔法		13032	Enables casting of magicks with gil, rather than MP.	0				Offering: Enables casting of magicks with gil, rather than MP.
+33	Veil	NOT USED	聴覚索敵回避		13033	NOT USED	0				Veil: an unused row, with no English text
+34	Life Cloak	NOT USED	嗅覚索敵回避		13034	NOT USED	0				Life Cloak: an unused row, with no English text
 35	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
-36	Half MP Cost	NOT USED	消費MP半減		13036	Reduces MP cost by half.	0				Half MP Cost: Reduces MP cost by half.
-37	Trap Evasion	NOT USED	トラップ回避		13037	Move safely past traps.	0				Trap Evasion: Move safely past traps.
+36	Parsimony	NOT USED	消費MP半減		13036	Reduces MP cost by half.	0				Parsimony: Reduces MP cost by half.
+37	Tread Lightly	NOT USED	トラップ回避		13037	Move safely past traps.	0				Tread Lightly: Move safely past traps.
 38	Cartridge	NOT USED	カートリッジ				0				Cartridge: an unused row, with no English text
-39	Magick Seal	NOT USED	魔法封印		13039	Reduces MP to 0.	0				Magick Seal: Reduces MP to 0.
-40	Wobbly	NOT USED	ぐにゃぐにゃ				0				Wobbly: an unused row, with no English text
-41	Libra Nullify	NOT USED	ライブラ無効				0				Libra Nullify: an unused row, with no English text
+39	Emptiness	NOT USED	魔法封印		13039	Reduces MP to 0.	0				Emptiness: Reduces MP to 0.
+40	Resist Piercing	NOT USED	ぐにゃぐにゃ				0				Resist Piercing: an unused row, with no English text
+41	Anti-Libra	NOT USED	ライブラ無効				0				Anti-Libra: an unused row, with no English text
 42	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 43	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 44	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 45	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 46	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 47	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
-48	Damage Reduction	NOT USED	ダメージ軽減				0				Damage Reduction: an unused row, with no English text
-49	Damage Bonus	NOT USED	ダメージ上乗せ				0				Damage Bonus: an unused row, with no English text
-50	HP-Cost Attack	NOT USED	HP消費攻撃				0				HP-Cost Attack: an unused row, with no English text
-51	Zero MP Cost	NOT USED	消費MP０				0				Zero MP Cost: an unused row, with no English text
-52	Barrier Change	NOT USED	バリアチェンジ				0				Barrier Change: an unused row, with no English text
-53	Attack Charge Time 0	NOT USED	攻撃CT０				0				Attack Charge Time 0: an unused row, with no English text
-54	Magick Charge Time 0	NOT USED	魔法CT０				0				Magick Charge Time 0: an unused row, with no English text
-55	Absolute Physical Defense	NOT USED	物理絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	3	Paling: a timed effect, slot 3, 120 x 30 steps by default
-56	Absolute Magick Defense	NOT USED	魔法絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	4	Magick Shield: a timed effect, slot 4, 120 x 30 steps by default
-57	Absolute Ailment Defense	NOT USED	障害絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	5	White Wind: a timed effect, slot 5, 120 x 30 steps by default
-58	Retaliate	NOT USED	反撃				0				Retaliate: an unused row, with no English text
-59	Self-Destruct Trigger	NOT USED	自爆起動				0				Self-Destruct Trigger: an unused row, with no English text
+48	Stoneskin	NOT USED	ダメージ軽減				0				Stoneskin: an unused row, with no English text
+49	Attack Boost	NOT USED	ダメージ上乗せ				0				Attack Boost: an unused row, with no English text
+50	Double-Edged	NOT USED	HP消費攻撃				0				Double-Edged: an unused row, with no English text
+51	Spellspring	NOT USED	消費MP０				0				Spellspring: an unused row, with no English text
+52	Elemental Shift	NOT USED	バリアチェンジ				0				Elemental Shift: an unused row, with no English text
+53	Celerity	NOT USED	攻撃CT０				0				Celerity: an unused row, with no English text
+54	Swiftcast	NOT USED	魔法CT０				0				Swiftcast: an unused row, with no English text
+55	Physical-Immunity	NOT USED	物理絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	3	Paling: a timed effect, slot 3, 120 x 30 steps by default
+56	Magick-Immunity	NOT USED	魔法絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	4	Magick Shield: a timed effect, slot 4, 120 x 30 steps by default
+57	Status-Immunity	NOT USED	障害絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	5	White Wind: a timed effect, slot 5, 120 x 30 steps by default
+58	Damage Spikes	NOT USED	反撃				0				Damage Spikes: an unused row, with no English text
+59	Suicidal	NOT USED	自爆起動				0				Suicidal: an unused row, with no English text
 60	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 61	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 62	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
@@ -113,7 +113,7 @@ id	term	name	name_jp	license	text_id	text	value	value_reader	value_use	timer_slo
 111	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
 112	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
 113	Gambit Slot	Adds an additional gambit slot.	ガンビットスロットを1UP	Gambit Slot			1				Gambit Slot: Adds an additional gambit slot; value 1, not read by number
-114	Essentials	Attack Items	たたかうアイテム	Essentials	13062	Slightly raises max HP.	0				Essentials: Slightly raises max HP.
+114	Essentials	Attack Items	たたかうアイテム	Essentials	13062	Slightly raises max HP.	0				"Essentials, which every party row starts with (license node 31): no function tests augment 114, and the row's text id 13062 reads ""Slightly raises max HP."""
 115	Reserve	NOT USED	{name}予備		13063	Move with great celerity.	0				Reserve: Move with great celerity.
 116	Remedy Lore 3	Remedies remove Stop, Doom, and Disease.	＋ストップ＋死の宣告＋ウイルス	Remedy Lore 3			0				Remedy Lore 3: Remedies remove Stop, Doom, and Disease.
 117	Remedy Lore 2	Remedies remove Petrify, Confuse, and Oil.	＋石化中＋混乱＋オイル	Remedy Lore 2			0				Remedy Lore 2: Remedies remove Petrify, Confuse, and Oil.
