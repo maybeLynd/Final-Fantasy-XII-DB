@@ -49,15 +49,16 @@ then asks for two more files:
 | `0` | `<name>.ker` | `0x001B5750` (`0x001B5040`) | `0x001B5230`, through `0x001B6080` |
 | `1` | `<name>.fex` | `0x001B5480` (`0x001B5061`) | `0x001B4C00`, through `0x001B6030` |
 
-The font object keeps its tables in maps keyed by code:
+The font object keeps its tables in three maps keyed by code, at `+0x00`, `+0x38` and `+0xA8` of the font. Each map
+is an object of its own, with its header node at its `+0x08` and its root at its `+0x18` (`0x001FC640`, `0x001FC580`):
 
 - the builder's filer `0x001FDCC0` takes each glyph record from `0x001FC580(font, key)`, which returns the record in
-  the map at `+0x08`, inserting an empty one for a new key; `0x001E9860` looks glyphs up through `0x001FDEC0(font,
-  key)` in the map at `+0x40`, which returns null for a missing key;
+  the map at `+0x00`, inserting an empty one for a new key; `0x001E9860` looks glyphs up through `0x001FDEC0(font,
+  key)` in the map at `+0x38`, which returns null for a missing key;
 - the `.fex` reader `0x001B4C00` adds a list of n entries for a key with `0x001FDB90(font, key, n)`, which returns 0
   when the map at `+0xA8` already holds the key, and writes entry i with `0x001FDB50(font, key, i, v)`;
-- `0x001B4D70` stores the atlas and shadow names at `+0x100` and `+0xE0` with `0x001FE020` and `0x001FE080`, which
-  free the string they are given, and tests `0x001FDF80(font)`, whether `+0x60` equals `+0x18`.
+- `0x001B4D70` stores the atlas name (`<name>.dds.phyre`) at `+0xE0` with `0x001FE080` and the shadow name
+  (`<name>_shadow.dds.phyre`) at `+0x100` with `0x001FE020` (`0x001B4FB8`, `0x001B4FF3`), each of which frees the string it is given, and tests `0x001FDF80(font)`, whether `+0x60` equals `+0x18`.
 
 The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10` with the text renderer `[0x01F811F8]`
 (`0x2380` bytes, `0x001E71B0`); its constructor `0x001B3940` sets up a name vector, three maps keyed by font id
@@ -139,8 +140,9 @@ and adds each character, with bit 31 cleared (`0x00674A03`-`0x00674A23`).
 
 When text is drawn, `0x001E9D20` binds the
 running font and the list for the text's key to the text context (`0x001E9DB9`-`0x001E9DD5`). `0x001FDD60` finds that list in the
-font's map at `+0xB0` and returns 0 when the key has none (`0x001E9DD0`). `0x001E9860` then reads glyph
-`list[index]` instead of `index`; an index past the list's end gives glyph 0.
+font's map at `+0xA8`, the one the `.fex` reader fills, and returns 0 when the key has none (`0x001E9DD0`). `0x001E9860` then reads glyph
+`list[index]` instead of `index`; an index at or past the list's end gives a null glyph, as does a context
+with no font (`0x001E9866`, `0x001E987E`, `0x001E9890`).
 
 ### Glyph advances
 
