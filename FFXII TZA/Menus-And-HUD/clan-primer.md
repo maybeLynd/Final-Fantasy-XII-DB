@@ -74,6 +74,14 @@ command read in `0x0056F810` and `0x00574D00`.
 The family index lists rows of three types, blank, entry and group caption (`0x00571A50`, `0x00571710`, `0x00576A50`).
 Confirming an entry opens the entry page through `0x0056EC10`. The cursor of each page is saved in bank 6 (`0x002527B0`).
 
+`0x005742D0`, the content page under the entry page (`menu_command.bin` `0x4BC`, built by `0x00570080`), draws a frame
+through `0x00573F40(page)` (`0x005746C5`) when its byte `+0x8060` is 2 or 5 and up and it has rows (`+0xE0`).
+
+`0x00573F40` draws a box through `0x00392A00(+0x38, rect, ...)` with `0x002DD7E0(0xF6)` in all four colour slots, at
+x = `[+0xE0] + 0x98` plus the layout's `+0x0C` - 8 and y = the layout's `+0x10` + 16, 8 x 8 wide, as high as
+`min(+0x8063, rows) x the row height + 16`, where rows = `(word +0x9E - +0x13C - 1 + word +0x100) / word +0x100` of
+`[+0xE0]` and the row height is `+0x0A` of the record `0x0020E600` gives for `[[[+0x60]]] + 0x0C`.
+
 ### The family index rows
 
 `0x00571F60(page)` builds the index rows for the page's kind (`+0xE8`) after updating the unlocks (`0x00577550`). Each row

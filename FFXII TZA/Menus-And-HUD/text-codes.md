@@ -135,6 +135,12 @@ some escapes from its arguments. It is reached through `0x002B4090` and `0x002B4
 arguments in order, eight bytes each; with `typed` each escape names an entry of an array of `0x10`-byte arguments,
 type 1 a number and type 2 a string (for example `0x002B4ADA`-`0x002B4AFF`).
 
+`0x002B40C0` first scans the template with `0x002B4810(template, slots)` (`0x002B4108`), which types the argument slots the
+escapes name, stepping by `0x002B1FB0` lengths and switching on the byte after each `0F` (table `0x002B4990`, index bytes
+`0x002B49A8`): `-` (`0x003FFC60`) and `l` (`0x003FFCE0`) set `slots + 8 + 16 x slot` to 1, `1` (`0x003FFF10`) and `m`
+(`0x003FFB90`) set it to 2, the slot being the byte the parser returns; `+` and `,` (`0x003FFAB0`) set the next qword of
+the list at `slots + 0x88` (16-byte stride) to 1. Every other code does nothing.
+
 | Escape | Becomes |
 |---|---|
 | `0F +` | `0F + 81` and the argument's byte, a render-state code |

@@ -60,6 +60,26 @@ The flush chooses a path per line record (`0x001E85ED`-`0x001E8659`):
    to the begin call `0x001E9920` through `0x0017FA10` (`0x002AA52A`, `0x002AC801` and seven more), so menu text takes the
    offscreen path.
 
+### The drawing objects
+
+The constructors the flush calls set the objects up before any vertex is added:
+
+- `0x00213A00(obj)` (`0x001E86BB`, `0x001E88C4`) and `0x00213960(obj)` (`0x001E8A7D`) build a `DynGeoFontTextSpecialShadowInstance`
+  (vtable `0x00906E50`) and a `DynGeoFontTextSpecialShadowFinalInstance` (`0x00906F20`): each zeroes `+0x08` to `+0xF7`
+  (`0x00861EC0`), clears `+0xF8`, `+0x100`, `+0x124`-`+0x12C`, `+0x138`-`+0x140`, `+0x14C`-`+0x154` and `+0x160`, and writes
+  the identity matrix at `+0x11C` (1.0 at `+0x11C`, `+0x130`, `+0x144` and `+0x158`).
+- `0x002130E0(obj)` (`0x001E91F3`) builds a `DynGeoFontTextInstance` (vtable `0x00906DC8`) and zeroes `+0x08` to `+0x3F`.
+- `0x00213870(obj, n)` (`0x001E920A`) stores the vertex count at `+0x28` and takes two arrays of `n x 0x30` bytes from the
+  arena `[0x01F7F4C0]` (`0x001A1470`) into `+0x18` and `+0x20`.
+- `0x00213570(obj, v)` (`0x001E92CE`, once per `0x3C`-byte vertex) projects the vertex and appends it to both arrays
+  while the count `+0x2C` is below `+0x28`. With the 4 x 4 matrix at `+0x54` it computes `w = x m60 + y m70 + m90`,
+  `x' = (x m54 + y m64 + m84) / w` and `y' = (x m58 + y m68 + m88) / w`.
+- It stores `(x' - 2048) x 2 / W` and `(y' - 2048) x -2 / H` into the vertex's `+0x0C` and `+0x10`, W x H being
+  1920 x 1080 when `0x001B1620()` is set and 512 x 448 otherwise.
+- Entry `+0x2C` of each array takes the vertex's `+0x00`, `+0x04` at `+0x20`, `+0x24`, its `+0x0C`-`+0x18` at
+  `+0x00`-`+0x0C`, and its `+0x1C`-`+0x28` (first array) or `+0x2C`-`+0x38` (second array) at `+0x10`-`+0x1C`; the
+  count then moves on.
+
 ### The drawing classes
 
 The image's run-time type data names eight classes, each with its own vtable:
@@ -137,6 +157,11 @@ The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorde
 the font display, 4.0 when none is set (`0x0017F9A0`, `0x001B5210`). 64 of these objects are kept, one per border colour
 and target size (`0x001E96A0`).
 
+The 64 border objects are `0x38` bytes each at font display `+0x1500`. `0x001E96A0` takes the first whose byte `+0x20`
+is set, or whose four colour floats `+0x24`-`+0x30` and size `+0x18` already match (`0x00212E30`, `0x001E970E`), and fills
+a new one with `0x002130C0` (`0x001E9744`), which stores the four floats and clears `+0x20`. The reset `0x001E9380` runs
+`0x00213090` on all 64 (`0x001E9399`), setting `+0x20` and the four floats to 1.0.
+
 So the border is a shader pass over a white mask, and the glyphs are drawn once on top of it.
 
 ### The shadow atlas path
@@ -186,6 +211,19 @@ colour to `+0x30` (also kept at record `+0x94`): `rgb = (byte +0x90..+0x92 x s16
 `a = (byte +0x93 x s16 +0x58) >> 7` (`0x002DD6DD`-`0x002DD738`). It places the text at
 (x, y) through `0x00397910` and draws it with `0x002B0280`. `0x002D8550` sets up the same and draws through `0x002AF960`, for
 the confirm windows and the pause task (`0x0057C92A`, `0x00242373`, `0x00227F39`).
+
+`0x00243860(list, record, dx, dy)` draws the type-5 text nodes of a typed list ([UI typed
+lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)) with a draw record; the per-element query `0x002D28E0` runs
+it (`0x002D2C3F`, `0x002D2C64`). For each of the header's nodes that has the drawn bit `0x1`, type 5 and a string `+0x18`:
+
+- the record takes the node's scale `+0x28` as the size `+0x60`, `+0x2C` as the palette byte `+0x5C`, `+0x2D`, `+0x2F`
+  and bits 6-11 of `+0x08` as `+0x66`, `+0x65` and `+0x64`, and `+0x24` as the colour `+0x90` unless bit 18 of the
+  dword at `+0x5C` is set; node flag `0x2` makes the alpha scale `+0x5A` `0x80` for that node;
+- with `+0x2D` bit `0x4` the node is clipped to its rectangle (`0x0029FE20`, `0x00249FD0`) and recentred from
+  `[0x0208F574] / 4` and its `+0x0A`;
+- a string `0x00364980` reports as UTF-16 is skipped; any other gets a context from `0x002B3400`, the colour bytes scaled
+  as `0x002DD680` scales them, and `0x002B0280` draws at (dx + x, dy + node `+0x0E`); `0x002D8530(record)` follows a
+  clipped node.
 
 ### The drawer's VIF packet
 

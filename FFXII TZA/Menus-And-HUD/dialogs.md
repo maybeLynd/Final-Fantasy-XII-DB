@@ -54,12 +54,21 @@ wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0x0057C4BF`-`0x0057C68
 3. `0x8002` is cancel: with bit `0x2` it posts `0x8102`, otherwise it moves the list back (`0x002D4650`, `0x0057CACB`).
 4. Message 10 forwards input to the list unless the window is in notice mode (`0x0057C9A3`).
 
+`0x0057C3E0(window, element, row)` is the list's row callback, given in the create record `0x002D14E0` takes
+(`0x0057C722`). While `+0x636` is set it colours the element (`+0x90`) with `0x002DD7E0(6)` when the row's word
+`+0x5B8 + 16 x row` equals `+0x638`, else with `0x002DD7E0(2)` unless the row's `+0x5BC` has bit `0x1`, draws
+`0x002D8910(element, 0, 0, [window + 16 x (row + 0x5B)], 0)`, and puts the colour back to `0x002DD7E0(0)`.
+
 `0x00241D40`, installed by `0x00241BF0` and `0x00241C90`, is a second confirm procedure that reads the same layout keys.
 Its row callback `0x00241D00` draws Yes (`menu_command.bin` `0x3E8`) on row 0 and No (`0x3E9`) on the other.
 `0x00241B40(window)` answers a pick: message 12 with `0x8100` to the owner `+0xD0` for row 0 of the list `+0xC8`
 and `0x8101` for any other. `0x00241A70(window)` answers a cancel by the mode byte `+0x3BE`: 1 sends `0x8101`, 2
 sends `0x8102`, and 0 moves the list back to the row `+0xC0` (`0x002D4650`), first posting `0x8104` to the owner
 when `+0x3C4` bit 11 is set.
+
+`0x002477A0(window, v)`, which `0x00241D40` calls with 4 (`0x00242101`), stores `v & 7` in bits 16-18 of `+0x44` and sets
+the two bytes `+0xAC` and `+0xAD` from that field: with its bit `0x4` set, `+0xAD` becomes `0xF9` when bit `0x2` is
+set and `+0xAC` becomes `0xF9` when bit `0x1` is set; with bit `0x4` clear, each byte becomes `0xF9` or 6 by its bit.
 
 Four builders fill the record `0x00241C90` takes and open the window:
 

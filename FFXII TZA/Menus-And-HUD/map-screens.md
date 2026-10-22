@@ -230,6 +230,36 @@ The minimap is the widget `0x003C5910`, at `0x02B476B0` (`0x003C80C0`):
 4. While the map is jammed (`0x00377780`, verb `setnavimapjamming`), `0x004001D0` draws its jamming passes over the
    picture (`0x00401620`, `0x004014E0`, `0x004010A0`) and `0x003C4070` leaves out the ring, the party marker and the icons.
 
+The parts of that draw:
+
+- `0x003C6140(writer, record)` (`0x003C3595`, from the ring) scales the eight constant bytes `0x01EFE370`-`0x01EFE377` by the
+  record's words `+0x5A` (bytes 0-2 and 4-6) and `+0x58` (bytes 3 and 7), each `(byte x word) >> 7`, opens a packet
+  (`0x00248EB0(writer)`), moves the writer's cursor `+0x10` on by `0x30` and writes the two colours as four dwords each,
+  moving the cursor by `0x10` after each.
+- `0x003C7EA0(record, m, r, n, first)` (`0x003C326D`, from the party marker) emits a fan of `n` vertices through
+  `0x00181350(v, 1)`: the point (0, 0, 0, 1) through the matrix `m` (`0x00202B70`, `0x00202CA0`) with the record's colour
+  bytes `+0x94`-`+0x97`, then n - 1 points in the colour `0x00D116A0` (0, 0, 0, 0x80): the first is `first`, each next
+  is the previous through the matrix `r`, and all go through `m`.
+- `0x003C2E60` passes `first` = (cos, sin, 0, 1) of the marker's angle times its radius and closes the batch
+  (`0x00181330`).
+- `0x004006A0(table)` (from `0x004001D0`) draws the triangles of an index table (count `+0x04`, 12-byte entries at `+0x18`)
+  in batches of up to 24: it copies each entry's three index pairs into a `0x20`-byte row and picks the batch header
+  by `0x00377780()` (`0x3025C00000008000` jammed, `0x302DC00000008000` otherwise, `0x412` as its second qword).
+- `0x00400870(rows, n)` (`0x004007B6`) builds each triangle's three vertices from the row's index pairs: x and y from the
+  float pairs at `0x02B5F2D0`, four ints from the floats at `0x02B5F2A0` and the pair at `0x02B5F820`; it submits them three
+  at a time (`0x00181350`).
+- `0x004010A0` (the jamming pass) takes two phases from the frame counter `0x0208F570`, modulo 60 and modulo 30, as angles
+  through `0x00861F0E`, then fills the vertex scratch `0x02B5FD70` with `0x004019F0` (`0x00401353`) and submits it with
+  `0x004009C0` (`0x00401478`).
+- `0x004019F0(points, n, m, q, ..., scaleX, scaleY, picture)` sets a block up from `m` and `q` (`0x00202D70`) and writes
+  two scratch vertices per `0x30`-byte point at `0x02B5FD70 + 0x30 x [0x02B62D70]`, counting it up: x - 640 and x + 640
+  (`0x008C5A98`) with the point's `+0x24`, transformed by the block (`0x00202B70`, `0x00202CA0`).
+- Each of those vertices carries the colour bytes `0x80`, `0x80`, `0x80` with the alpha from argument 7's `+0x58`, and
+  texture coordinates from the picture's words `+0x14`, `+0x16` times `scaleX`, `scaleY`.
+- `0x004009C0()` hands the 256 scratch vertices to the batcher as a strip (`0x00181460(0x02B5FD70, 256)`), then for every
+  six vertices up to 250 appends vertices 0 and 1, then 4, 1, 4 and 5 one at a time (`0x00181350`), and resets
+  `0x02B62D70` to 0.
+
 The ring takes its entry count from `0x00264AC0(list)` (`0x003C350B`), the first dword of that per-class table of the zone
 script's image (header `+0x70`, `0x00264AE0`), and gets a 6-byte style for each entry from `0x002648F0(entry, out)`
 (`0x003C35D5`, `0x003C36BA`):

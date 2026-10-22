@@ -17,14 +17,6 @@ with a one-sentence summary of what you will find on each.
 Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 `73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`), image base included.
 
-## How numbers are written
-
-- A hexadecimal number starts with `0x`: `0x1C` is 28, `+0x1C` is an offset of 28 bytes, `0xFFFF` is 65535,
-  and inside an expression or an instruction it is written the same way: `[rcx+0x414]`.
-- A number without `0x` is decimal.
-- Addresses are hexadecimal too, always with 8 digits: `0x0046FAE0`.
-- The `.tsv` data files write numbers the same way: `0x4000` is 16384, and an address is `0x0046FAE0`.
-
 ## Categories
 
 - [Engine core](FFXII%20TZA/Engine-Core/README.md) - The main loop and per-frame update, startup and the values fixed at boot, the developer tuning console, logging, the object model and the engine's shared state.

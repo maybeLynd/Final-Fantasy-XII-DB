@@ -61,6 +61,18 @@ to the shared procedure `0x005651E0`. The pane of a category lives at `[0x0209AC
 - `0x005659B0(id)` gives the pane focus (`0x00244640`, `0x00244830`), or hands it to `0x002286B0` when `0x00228480` returns non-zero and
   `[0x0209AC30] + 0x308` is empty.
 
+`0x005639D0` and `0x00563C00` are the row callbacks the create records of `0x00563B10` and `0x00563D20` carry (`0x00563B59`,
+`0x00563D5B`), called as `(pane, element, _, n)`; both return 1:
+
+- without a row table `+0xE0`, they clear the element list (`0x00243580`) and show the text node (`[[element + 0x10] +
+  8]`, bit `0x1` of `+0x08`) with the string `0x002F9860(0x7D8)`, the colour `0x0020E620(0)`, x = the template's `+0x04` -
+  20 and y = its `+0x06`;
+- with rows (`0x20` bytes from `+0xE0`), the icon node (`[[element + 0x10]]`) is shown when the row's byte `+0x0A` is
+  not `0xFF`, with that cell and `+0x39` from the palette table, else hidden; the text node takes the row's string
+  `+0x00`, `0x0020E620(0)`, the template position and, at `+0x24`, `0x002DD7E0(6)` when the pane's `+0x180` has bit
+  `0x100` and its word `+0x17C` equals `n`, else `0x002DD7E0(0)`;
+- `0x005639D0` also runs `0x003FCAD0(element, row, 2, 7)`.
+
 `0x005651E0` answers:
 
 | Message | Does |

@@ -172,6 +172,15 @@ The box itself is a nine-piece panel. `0x00245E60` sets up a draw record (`0x002
 `1 / ([0x01DFE0B4] x 9600 / 1000)` and is clamped to 0-1: `+0x1D0` up when `up` is non-zero, `+0x88` up with `+0x1D4`
 bit 8, and `+0x188` and `+0x1B8` up with `+0x1D4` bit 9; each goes down otherwise.
 
+`0x003EEA80(block, kind, flag, element, fade)` draws the sprite records of the two `0x30`-byte blocks at `+0x170` and
+`+0x1A0` of that object (`0x003EE612`, `0x003EE637`, with the fade `+0x1D0`), while the block's `+0x18` is positive:
+
+- it scales the element's width word `+0x58` by `+0x18 x fade`, and puts the width and `+0x5C` back afterwards;
+- for the one or (with `+0x1C` set) two 8-byte records at `+0x08` it takes x and y from words 0 and 1, u and v as the
+  two 12-bit fields of dword `+0x04`, and byte `+0x07`: its high nibble picks a row of the picture's palette table
+  (`[[block] + 0x20] + 0x30`, row `+0x12`) and its low nibble is added, giving element `+0x5C`;
+- each record is drawn with `0x002D8CB0(element, [block], rect, kind, flag)`.
+
 `0x003EE8C0(object, text, a, b)` sets those fades up for a new text. The object holds two 0x1E0-byte
 text entries at `+0xC0`, and the index `+0x4B0` toggles between them:
 

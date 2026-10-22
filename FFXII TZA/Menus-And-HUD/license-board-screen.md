@@ -206,6 +206,13 @@ Obtaining the Second Board ends with the chooser opening for the member's second
   to eight contents from the node record `0x0035D330(0x19, node)` `+0x26`, by its list type `+0x23`: class 1 records
   for type 0, class `0x14` records for type 1 (with the icon of the class 1 record each names), and class `0x1D`
   names for types 2 and 3.
+- `0x005599D0` is the view's list pane (`menu_command.bin` `0x4B5`, built by `0x00559860`). Its row callback `0x00559910`
+  (`0x00559ABF`, kept at the list's `+0x120`) fills row `n` from the pane's `0x20`-byte rows at `+0xE8`:
+  - the text element (`[[pane + 0x10] + 8]`) gets the row's string `+0x00`, the colour `0x0020E620(0)` at `+0x20` and,
+    at `+0x24`, `0x002DD7E0(2)` when the row's word `+0x0C` is 0, else `0x002DD7E0(0)`;
+  - the icon element (`[[pane + 0x10]]`) is shown (bit `0x1` of `+0x08`) when the row's word `+0x08` is not `0xFFFF`
+    and its byte `+0x0A` is not `0xFF`, with that byte as the cell `+0x0A` and `+0x39` from the picture's palette
+    table (`[+0x20] + 8 x cell + 7`).
 - `0x0055AE00` and `0x0055B840` step to another member that has a board (`0x0027EDA0` or `0x0027F430` with the test
   `0x005617E0`), play sound `0x51` and rebuild the view (`0x0055DBD0`); `0x00557A40` and `0x00557A90` do the same in the chooser
   (`0x00558760`).
