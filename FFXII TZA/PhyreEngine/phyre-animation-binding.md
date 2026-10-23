@@ -272,6 +272,43 @@ Measured over the packed namespaces and instance lists of every `.phyre` cluster
 | target names | `nodename1608` / `nodename118` (nodes, bound by the scene binders) and `setVisibilityFromAnimation` (a method, bound by `0x005C0C90`) |
 | targets with `m_type` 2, 4 or 5 | 0 |
 
+## State
+
+### Semantic indices
+
+Each channel semantic is built by its own static initialiser, which runs before `main` in initialiser-table order
+(`0x008C35C8`-`0x008C3658`). The initialiser reads the count `0x02CACF18`, stores it in the descriptor's `+0x14`, stores
+the count plus 1 back, puts the descriptor's address in the table `0x02CACF20` at the old count, and registers an
+exit teardown. After the nineteenth the count is 19 and each semantic's index is its row number in Channel semantics.
+
+A semantic's index is the bit it owns in a channel group's word. `0x005C22B0` reads `+0x14` through a channel's
+semantic pointer (`+0x38`) and ORs `1 << index` into the group (`0x005C26FA`-`0x005C26FC`); `0x005C2FE0` and `0x005C8130`
+read it the same way and combine `index << 2` with the channel's `+0x40` (`0x005C307A`, `0x005C8237`). `0x005CB8D0` walks
+the bits of a group word up to the count and takes each set bit's semantic from `0x02CACF20` (`0x005CBB95`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F2CE54` | `u32` | 0 | `Rotation` (`0x01F2CE40`) `+0x14`: index 0 | `0x00160DF0` (`0x00160E01`, 0) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CE6C` | `u32` | 0 | `Translation` (`0x01F2CE58`) `+0x14`: index 1 | `0x00160F70` (`0x00160F81`, 1) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CE84` | `u32` | 0 | `Scale` (`0x01F2CE70`) `+0x14`: index 2 | `0x00160E30` (`0x00160E41`, 2) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CE9C` | `u32` | 0 | `ShaderParameterF4` (`0x01F2CE88`) `+0x14`: index 3 | `0x00160F30` (`0x00160F41`, 3) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CEB4` | `u32` | 0 | `ShaderParameterF3` (`0x01F2CEA0`) `+0x14`: index 4 | `0x00160EF0` (`0x00160F01`, 4) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CECC` | `u32` | 0 | `ShaderParameterF2` (`0x01F2CEB8`) `+0x14`: index 5 | `0x00160EB0` (`0x00160EC1`, 5) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CEE4` | `u32` | 0 | `ShaderParameterF1` (`0x01F2CED0`) `+0x14`: index 6 | `0x00160E70` (`0x00160E81`, 6) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CEFC` | `u32` | 0 | `LightColor` (`0x01F2CEE8`) `+0x14`: index 7 | `0x00160CF0` (`0x00160D01`, 7) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CF14` | `u32` | 0 | `LightIntensity` (`0x01F2CF00`) `+0x14`: index 8 | `0x00160D70` (`0x00160D81`, 8) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CF2C` | `u32` | 0 | `LightFalloffAndPenumbra` (`0x01F2CF18`) `+0x14`: index 9 | `0x00160D30` (`0x00160D41`, 9) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CF44` | `u32` | 0 | `CameraFov` (`0x01F2CF30`) `+0x14`: index 10 | `0x00160BF0` (`0x00160C01`, 10) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CF5C` | `u32` | 0 | `CameraZNear` (`0x01F2CF48`) `+0x14`: index 11 | `0x00160CB0` (`0x00160CC1`, 11) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CF74` | `u32` | 0 | `CameraZFar` (`0x01F2CF60`) `+0x14`: index 12 | `0x00160C70` (`0x00160C81`, 12) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CF8C` | `u32` | 0 | `CameraOrthographicSize` (`0x01F2CF78`) `+0x14`: index 13 | `0x00160C30` (`0x00160C41`, 13) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CFA4` | `u32` | 0 | `MorphTargetWeight` (`0x01F2CF90`) `+0x14`: index 14 | `0x00160DB0` (`0x00160DC1`, 14) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CFBC` | `u32` | 0 | `UserAttributeBool` (`0x01F2CFA8`) `+0x14`: index 15 | `0x00160FB0` (`0x00160FC1`, 15) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CFD4` | `u32` | 0 | `UserAttributeInt` (`0x01F2CFC0`) `+0x14`: index 16 | `0x00161030` (`0x00161041`, 16) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2CFEC` | `u32` | 0 | `UserAttributeFloat` (`0x01F2CFD8`) `+0x14`: index 17 | `0x00160FF0` (`0x00161001`, 17) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x01F2D004` | `u32` | 0 | `UserAttributeVector` (`0x01F2CFF0`) `+0x14`: index 18 | `0x00161070` (`0x00161081`, 18) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
+| `0x02CACF18` | `u32` | 0 (zero-filled tail of .data) | number of channel semantics registered, the next free row of `0x02CACF20`; 19 after the nineteen initialisers | the nineteen initialisers, each the count plus 1: `0x00160BF0` (`0x00160C07`), `0x00160C30` (`0x00160C47`), `0x00160C70` (`0x00160C87`), `0x00160CB0` (`0x00160CC7`), `0x00160CF0` (`0x00160D07`), `0x00160D30` (`0x00160D47`), `0x00160D70` (`0x00160D87`), `0x00160DB0` (`0x00160DC7`), `0x00160DF0` (`0x00160E07`), `0x00160E30` (`0x00160E47`), `0x00160E70` (`0x00160E87`), `0x00160EB0` (`0x00160EC7`), `0x00160EF0` (`0x00160F07`), `0x00160F30` (`0x00160F47`), `0x00160F70` (`0x00160F87`), `0x00160FB0` (`0x00160FC7`), `0x00160FF0` (`0x00161007`), `0x00161030` (`0x00161047`), `0x00161070` (`0x00161087`) | the same nineteen initialisers, each at its first instruction, and `0x005C2FE0` (`0x005C3001`) and `0x005C8130` (`0x005C81C4`), which size a stack buffer from it, `0x005C8850` (`0x005C8864`), which passes it to `0x0060C340`, and `0x005CB8D0` (`0x005CBB70`, `0x005CBBB5`), which stops its walk at it |
+
 ## Modding notes
 
 - A channel's semantic must point at the shipped descriptor; a copy with the same name is treated as a

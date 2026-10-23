@@ -401,6 +401,255 @@ on message `0xF` with value 4, closes the pane and calls `0x00291D40` and `0x002
 
 ## Layouts
 
+### The slot screen
+
+The slot screen is the `0x1C8`-byte widget with procedure `0x0057FE80` that `0x00583040` builds in place (`0x00583205`; The slot list above).
+
+```struct SlotScreen base=record size=0x1C8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0057FE80
++0xC0    ptr             owner                  the widget the slot screen opens under, the creation record's first
+                                                qword (0x0057FEE1); the construct message opens the screen under it
+                                                (0x00246AD0, 0x005802F6) and the screen posts it message 12 with
+                                                sub-command 0x12 and 4 when it closes (0x00580790)
++0xC8    ptr             statusPane             the status pane, the creation record's second qword (0x0057FEEC); a
+                                                cursor move on a status-2 slot fills it from the slot's cached header
+                                                with 0x0057EFE0 (0x00580446, 0x00580E25)
++0xD0    ptr             saveTransaction        the save transaction widget 0x005819F0 that state 4 opens as a child
+                                                (0x00581031); 0 at construction and when the screen takes the result
+                                                (0x0057FEFD, 0x005804F3)
++0xD8    ptr             popup                  the popup the state machine opens with 0x00583990 (The save and load
+                                                screen above; 0x00581237); closed and cleared when the popup's answer
+                                                arrives (0x00580383-0x005803A8, 0x0058061B, 0x00580AC5-0x00580AE7,
+                                                0x00580CE5-0x00580D09); 0 at construction (0x0057FF04)
++0xE0    u32             flags                  bit 0: the creation record's +0x14 bit 0 (0x0057FF2D), with which every
+                                                row is drawn as status 5 and the list skips the status-2 work
+                                                (0x00580073); bit 3: a save waits for the device check, taken by
+                                                0x00580B40, which then goes to state 4 (0x00580BCB-0x00580BE1); bit 4 is
+                                                tested by the confirm (0x00580495). 0 before the creation record is read
+                                                (0x0057FEF6)
++0xE4    u32             nextCounter            the next save counter: the active image's +0x50 at construction
+                                                (0x0057FFA5), raised to the highest header +0x50 among the listed
+                                                status-2 slots and slot 0's cache row, each time also stored at
+                                                0x02CA99B4 (0x005800AF-0x005800BD, 0x00580179-0x00580187); state 4 passes it
+                                                plus 1 to the save transaction (0x00580FA7); 0x00580CD0 reads and raises
+                                                it after a save (0x00580D35-0x00580D92)
++0xE8    u8              holdFrames             frames left in state 0xC, which sets 0x78 (The save and load screen
+                                                above); counted down by 1 (0x00580376)
++0xE9    u8              state                  the screen's state 0-0xE (The save and load screen above), set by the
+                                                state machine 0x00580EB0 (0x00581246) and 0xFF at construction (0x0057FF0B);
+                                                0x00580EB0 compares the new state with it (0x00580EE2); the popup answer
+                                                handlers dispatch on it (0x00580369, 0x005803D5, 0x0058062B, 0x00580A86,
+                                                0x00580A9D)
++0xEA    u8              loadMode               0 for the save screen, 1 for the load screen, the creation
+                                                record's +0x10 (0x0057FF16): it chooses the slots listed (0x0057FF56, 0x00580055),
+                                                the device check's mode (0x00580F29), the row draw mode, and how a
+                                                confirm (0x00580541), a cursor move (0x0058030F) and 0x00580B40 (0x00580B46)
+                                                proceed
++0xEB    u8              slot                   the slot the player confirmed (0x0058053A); state 4 opens the save
+                                                transaction with it (The save and load screen above)
++0xEC    u8              rowCount               the rows listed: 0 at construction (the word store at 0x0057FFAB), 1
+                                                more for each listed slot (0x005800E1-0x005800F0); 0x00580CD0 adds a row
+                                                after a save (0x00580E49-0x00580E5E)
++0xED    u8              unusedRows             the listed slots with status 5, "Unused file" (0x0058002F); 0 at
+                                                construction (0x0057FFAB)
++0xEE    u8              usableRows             the listed slots with status 5, status 2, or room reserved (0x00580035,
+                                                0x0058004F); 0 at construction (0x0057FFB3)
++0xEF    u8[200]         rowSlot                the slot number of each row: the list build stores each listed slot
+                                                (0x005800E8); in load mode the autosave row is moved down past the
+                                                newest manual save by swapping neighbours (0x0058012A-0x00580154); the row
+                                                draw, the confirm and the cursor move read it (0x00580437, 0x0058050C,
+                                                0x00580C5E, 0x00580D6F)
++0x1B7   u8              pad1B7                 read and written by no function; nothing fixes its width
++0x1B8   ptr             list                   the slot list widget, layout item 0's +0x18 (0x0057FF9A); the construct
+                                                message sets it up and starts its cursor (0x0058018D-0x005801D9); 0x00580B40
+                                                (0x00580C24) and 0x00580CD0 (0x00580D2B) read it
++0x1C0   ptr             headerCache            the header cache, the first 0xA0 bytes of each slot's image at slot x
+                                                0xA0, the creation record's +0x18 (0x0057FF20); read for the
+                                                counters +0x50 and the row draw (0x00580088, 0x00580156, 0x0058016A, 0x0058045A,
+                                                0x00580C72, 0x00580DB0, 0x00580E1E, 0x00580FF8)
+```
+
+### The storage queue object
+
+The queue is the `0x720`-byte widget at `0x02CA99C0` with procedure `0x005823B0` (The storage queue above).
+
+```struct StorageQueue base=record size=0x720
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x005823B0
++0xC0    ptr             callback               the completion callback a kind-1 packet installs (0x005820A5); the
+                                                dequeue 0x00582240 calls it with the finished packet's kind, its result
+                                                and +0xC8 (0x00582373-0x0058238E); 0 at construction (0x005824A9)
++0xC8    u32             callbackArg            the callback's argument, copied from the kind-1 packet with the
+                                                callback (0x005820B2) and passed to it as its third argument (0x0058237F)
++0xCC    u8              busy                   1 while a front packet is running: the enqueue sets it when the start
+                                                0x00582040 answers 0, the packet not yet finished (0x005826BA), and
+                                                starts nothing new while it is set (0x00582698); the dequeue clears it
+                                                when the queue empties (0x00582280); the tick (message 2) completes and
+                                                starts packets while it is set (0x00582443-0x0058248A); the device check
+                                                0x0057EA40 (0x0057EA9F), the poll arm 0x0057EC60 (0x0057ECC0) and the disarm
+                                                0x0057ED40 (0x0057ED94) clear it with the queue; 0 at construction
+                                                (0x005824B0)
++0xCD    u8              pad0CD                 read and written by no function; nothing fixes its width
++0xCE    u8              pad0CE                 read and written by no function; nothing fixes its width
++0xCF    u8              pad0CF                 read and written by no function; nothing fixes its width
++0xD0    u32             spaceNeeded            the space a save needs, 102,400 bytes from 0x003936B0, stored by the
+                                                first tick (0x0058243D); the popup opener 0x00583990 rounds it up to KB
+                                                for the popup text (0x005839C8)
++0xD4    u32             spaceKnown             bit 0 set once the first tick has measured +0xD0 (0x00582436), which it
+                                                does only while the bit is clear (0x0058240A); the load lifecycle
+                                                0x00582860 waits for it (0x00582A6A); 0 at construction (0x005824B7)
++0xD8    u8[704]         queue                  the eight 0x58-byte packets of the queue (The storage queue above)
++0x398   u8              count                  the packets queued, 0-8: the enqueue refuses a ninth
+                                                (0x0058254E-0x0058255D), copies the packet to entry count
+                                                (0x00582570-0x005825AD) and adds 1 (0x00582692); the dequeue takes 1 off and
+                                                moves the rest down (0x0058224F-0x005822D9); the device check, the poll
+                                                arm and the disarm empty the queue by setting it to 0 or keep the
+                                                started packet with 1 (0x0057EA72-0x0057EA98, 0x0057EC8F-0x0057ECB9,
+                                                0x0057ED61-0x0057ED8D); 0 at construction (0x005824BD)
++0x399   u8              pad399                 read and written by no function; nothing fixes its width
++0x39A   u8              device                 the device byte a kind-2 packet stores (0x005820FA), 0xFF at
+                                                construction (0x005824C4); read by the device-check result 0x0057E950
+                                                (0x0057E9F0), the presence poll's result 0x0057EBB0 (0x0057EC0F), 0x0057F630
+                                                (0x0057F654), 0x0057F6B0 (0x0057F78E) and the save transaction's completion
+                                                0x00581B70 (0x00581D04)
++0x39B   u8              descriptorNext         the next free entry of the descriptor ring at +0x3A0: a kind-8
+                                                packet's descriptors are copied from it on (0x00582608-0x0058264C), the
+                                                packet's +0x48 is pointed at the first (0x0058265F-0x0058267F) and it
+                                                advances by their count (0x0058268C); it restarts at 0 when the count
+                                                would pass 16 (0x005825D2-0x005825E4); 0 at construction (the word store
+                                                at 0x005824C4)
++0x39C   u8[4]           pad39C                 read and written by no function; nothing fixes its width
++0x3A0   u8[896]         descriptors            the ring of sixteen 0x38-byte file descriptors that kind-8 packets
+                                                (the save transaction) carry, copied in by the enqueue
+                                                (0x00582617-0x0058264C); the handler 0x003BB9B0 reads them through the
+                                                packet's +0x48
+```
+
+### The progress gauge
+
+The gauge is the `0x110`-byte widget at `0x02CA99C8` with procedure `0x00581490` that counts a save, a load or a format in tenths of the full count.
+
+```struct ProgressGauge base=record size=0x110
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x00581490
++0xC0    ptr             owner                  the widget that made the gauge, the creation record's first qword
+                                                (0x005816AC-0x005816B7); the gauge opens under it (0x00246AD0, 0x005817A9) and
+                                                posts it message 12 with sub-command 0xF on message 15 (0x005814F4) and
+                                                0x12 on message 18 (0x005814C9)
++0xC8    u32             flags                  bit 0: the count has been sent to its full value, set by 0x005813E0
+                                                (0x00581462, 0x00581480) and cleared by it and by 0x00581860 before a new
+                                                target (0x00581408, 0x005818A7); while it is set the tick does not creep
+                                                past the target (0x005815DB). Bit 1: the shown value is creeping past
+                                                the target one unit a tick (0x005815E9-0x0058161D). Bit 2: the count is
+                                                stopped, set by 0x0057F360 (0x0057F479), 0x00580840 (0x0058091A, 0x00580A56) and
+                                                the save transaction's completion 0x00581B70 (0x00581D3A), and the tick
+                                                does nothing then (0x00581529). 0 at construction and on reset
+                                                (0x0058171A, 0x005812E2, 0x0058180F)
++0xCC    u32             soundOn                bit 0 set while the working sound runs: 0x005819A0 plays sound 0x42
+                                                unless its argument is 1, keeps its handle at +0xE8 and sets the bit
+                                                (0x005819B9-0x005819D7); 0x00580EB0 sets it for the save, load and format
+                                                states (0x00580FC6, 0x0058107E, 0x0058118A); 0x00581350 stops the sound
+                                                (0x0024A1A0) and clears the bit (0x00581368-0x0058138B). 0 at construction
+                                                (0x0058174F)
++0xD0    u8              operation              the operation the gauge counts: 2 a save (0x00580FD3), 3 a load
+                                                (0x0058108B), 4 a format (0x00581197), or 0x005819A0's argument (0x005819DE);
+                                                0xFF at construction (0x00581748). On success 0x00581350 plays sound 0x27
+                                                for 0, 1 and 4 and 0x43 for 2 and 3 (0x00581396-0x005813CD)
++0xD1    u8[3]           pad0D1                 read and written by no function; nothing fixes its width
++0xD4    u32             full                   the full count in tenths, 10 x 0x005817D0's first argument (0x00581833),
+                                                0xFFFF at construction and reset (0x00581708, 0x005812D0, 0x005817FD);
+                                                0x005813E0 sends the count to it (0x005813F6) and 0x00581860 caps its target
+                                                at it (0x00581899); the number is drawn in colour 0xD2 once the shown
+                                                value reaches it (0x00581966)
++0xD8    u32             shown                  the value on the number display: 0x00581930 stores the value it draws
+                                                (0x0058195B); the high half of the qword store of 0xFFFF clears it
+                                                (0x005812D0, 0x005817FD); 0x005813E0 and 0x00581860 start their animations
+                                                from it (0x005813FC, 0x0058188B)
++0xDC    u32             target                 the count's target in tenths: 0x005813E0 sets the full value (0x00581415),
+                                                0x00581860 10 x its first argument capped at the full value, or the full
+                                                value for -1 (0x005818AE); the tick creeps the shown value past it while
+                                                it is below (0x005815DF); 0 on reset (0x005812DB, 0x00581808)
++0xE0    u32             softCap                10 x 0x005817D0's second argument (0x00581848); while it is not 0 and the
+                                                value passes it, the tick holds the value at it and raises it by 1 a
+                                                tick up to one below the full value (0x00581623-0x00581642); 0 on reset
+                                                (the qword stores at 0x005812DB, 0x00581808)
++0xE4    u32             creep                  how far past the target the shown value has crept: 1 when creeping
+                                                starts (0x00581600), then 1 more each tick (0x005815ED)
++0xE8    i32             soundHandle            the handle of the working sound 0x42 (0x005819D1) or of 0x00580EB0's sound
+                                                for the save, load and format states (0x00580FCD, 0x00581085, 0x00581191);
+                                                0x00581350 stops it and sets -1 (0x00581371, 0x00581381); -1 at construction
+                                                (0x00581735)
++0xEC    u8[4]           pad0EC                 read and written by no function; nothing fixes its width
++0xF0    ptr             numberNode             the gauge's number display, layout entry 1 (0x00394690, 0x005816CA): the
+                                                construct message pads its +0x48/+0x4A by 0x200 (0x005816D6-0x005816FB),
+                                                0x00581930 writes the value (0x00225580) and its colour (0x0029F480) into it
+                                                (0x00581952, 0x0058197C), the reset clears it (0x005812C2, 0x005817EF,
+                                                0x00581821)
++0xF8    u32             animStep               the steps taken of the animation: 0 when one starts (0x0058144D,
+                                                0x005818F2), 1 more each tick (0x00581555)
++0xFC    u32             animSteps              the animation's length in ticks: 4 for 0x005813E0's run to the full
+                                                value (0x0058145C), or the steps 0x00581860 works out (0x00581902), at least
+                                                1; 0 when the animation ends (0x005815C5), when there is nothing to
+                                                animate (0x0058147A, 0x00581918) and on reset (0x005812F4, 0x0058182D,
+                                                0x00581742). The tick animates only while it is not 0 (0x00581536)
++0x100   u32             animFrom               the value the animation starts from, the shown value (0x00581422,
+                                                0x005818C6); read by the tick (0x00581561)
++0x104   u32             animSpan               the full value less the start (0x0058143E, 0x005818DE); the tick adds
+                                                animSpan x animStep / animSteps to the start (0x00581571-0x005815A9), and
+                                                the whole span at the end (0x005815B1)
++0x108   u32             animValue              the value the animation has reached, which the tick shows (0x0058142B,
+                                                0x005818CF, 0x00581567, 0x005815A9, 0x005815B9)
++0x10C   f32             animFraction           animStep / animSteps (0x00581599), 1.0 at the end (0x005815CB), 0 when an
+                                                animation starts (0x00581453, 0x005818F8); read by no instruction
+```
+
+### The card-presence poll
+
+The poll is the `0xD0`-byte widget at `0x02CA99D8` with procedure `0x0057EB30`.
+
+```struct CardPresencePoll base=record size=0xD0
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0057EB30
++0xC0    u32             flags                  bit 0: the second argument of the poll arm 0x0057EC60
+                                                (0x0057ECC7-0x0057ECD1); bit 1: a presence poll is queued, set by 0x0057EC60
+                                                (0x0057ED13) and by the device check 0x0057EA40 after it queues its
+                                                packets (0x0057EAFE); while bit 1 is set each of the three, 0x0057EA40
+                                                (0x0057EA5D), 0x0057EC60 (0x0057EC7A) and the disarm 0x0057ED40 (0x0057ED4C),
+                                                first empties the storage queue, or marks its started front packet to
+                                                skip its callback. The disarm clears bits 0 and 1 (0x0057ED85,
+                                                0x0057ED9B); the construct message sets 0 (0x0057EB74)
++0xC4    u8[4]           pad0C4                 read and written by no function; nothing fixes its width
++0xC8    ptr             controller             the first argument of the poll arm 0x0057EC60, the save and load screen
+                                                that armed it (0x0057ECD7); 0 at construction (0x0057EB6A)
+```
+
+### The backdrop
+
+The backdrop is the `0xD0`-byte widget at `0x02CA99E0` with procedure `0x0057F7D0` that opens screen layer 1 behind the save and load popups.
+
+```struct SaveScreenBackdrop base=record size=0xD0
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0057F7D0
++0xC0    ptr             layer                  the screen layer 1 the construct message opens with the descriptor
+                                                0x00D23E98 (0x002CCCA0, 0x0057F893)
++0xC8    u32             closing                bit 0 set once the layer has been closed (0x0057F83E); 0 at construction
+                                                (the qword store at 0x0057F8A4)
++0xCC    i32             countdown              steps left before the backdrop goes: the save and load code sets 4
+                                                when its popup sequence ends (0x0058039B, 0x00580611 in 0x0057FE80;
+                                                0x00580890, 0x005809F4 in 0x00580840; 0x00580ADD in 0x00580A80; 0x00580CFD in
+                                                0x00580CD0; 0x00582D65 in 0x00582860; 0x0058312E in 0x00583040); the popup
+                                                opener 0x00583990 sets 0 (0x00583BA2) and the construct message clears it
+                                                (0x0057F8A4). Each step on which 0x001EDEC0(+0xB4) answers non-zero lowers
+                                                it; at 0 the layer closes (0x002CCB10), bit 0 of +0xC8 is set and 14
+                                                more steps run (0x0057F81E-0x0057F847), after which the widget releases
+                                                itself (0x0057F85E-0x0057F869)
+```
+
+### Slot and list records
+
+The slot status table, the save list rows and the disable-autosave rows are laid out as follows.
+
 `SlotStatusEntry` (`0x8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |

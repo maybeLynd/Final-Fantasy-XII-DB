@@ -109,7 +109,7 @@ the init registers.
 | `PDynamicGeometry` | modifier networks, morph weights, render streams | 1 type and 30 helper calls |
 | `PLOD` | LOD groups and levels, blend and metric types | 2 types |
 | `PText` | `PBitmapFont`, `PBitmapFontCharInfo` | two calls |
-| `PInputs` | input actions, input sources (pad axes and buttons, keys, mouse, motion, touch, vision tracker), input semantics | 6 types and 34 helper calls |
+| `PInputs` | input actions, input sources (pad axes and buttons, keys, mouse, motion, touch, vision tracker), input semantics ([Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)) | 6 types and 34 helper calls |
 | `PGame` | `PGameConfig` | one call, `0x00879D60` |
 | `PHierarchy` | `POctree`, `POctreeWorld` | creates the `POctreeChildren` allocator at `0x02EBA2A0` |
 | `PDeveloperExtensions` | the module class only | none: init and shutdown are both `0x005C5230` |

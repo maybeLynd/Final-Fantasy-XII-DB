@@ -153,6 +153,36 @@ saved bits under the same mask (`0x006E97D8`). Two x87 helpers at `0x00125743` (
 | `_controlfp` sites | 6 |
 | `pi` / `2pi` as `f32` in read-only data | 2 / 4 copies |
 
+## State
+
+### The CPU probe's other outputs
+
+The start-up probe `0x00809458`, called once from `0x00808959`, writes three globals besides the CPU level
+`0x01F44858`. It reads the `cpuid` leaf 0 vendor string and tests it for `GenuineIntel` (`0x0080948B`-`0x008094D2`) and
+`AuthenticAMD`, then reads leaf 1 (`0x008094DA`), and leaf 7 when leaf 0 reports 7 or more (`0x00809575`).
+
+1. It sets `0x01F4485C` to 2 (`0x00809472`) as the level becomes 1 (`0x00809481`).
+2. For `GenuineIntel` it sets `0x01F44860` to all ones (`0x008094F3`) and bit 2 of `0x02EAED88` (`0x00809504`), and bit 0
+   when the leaf 1 signature masked with `0x0FFF3FF0` is `0x106C0`, `0x20660`, `0x20670`, `0x30650`, `0x30660` or
+   `0x30670` (`0x0080953E`).
+3. For `AuthenticAMD` it sets bit 2 of `0x02EAED88` when the leaf 1 signature masked with `0x0FF00F00` is at least
+   `0x00600F00` (`0x0080955C`).
+4. When leaf 7 `ebx` bit 9 is set it sets bit 1 of `0x02EAED88` (`0x00809590`).
+5. When leaf 1 `ecx` bit 20 is set the level becomes 2 and `0x01F4485C` 6 (`0x0080959E`, `0x008095A8`). When `ecx` bits
+   27 and 28 are also set and `xgetbv` reports both bits of `XCR0 & 6`, the level becomes 3 and `0x01F4485C` gains
+   bit 3 (`0x008095E3`, `0x008095F1`). When leaf 7 `ebx` bit 5 is set as well, the level becomes 5 and `0x01F4485C` gains
+   bit 5 (`0x008095FC`, `0x00809606`).
+
+So `0x01F4485C` has bit n set for each level n the probe reached. No instruction outside the probe reads any of
+the three: the probe's own reads are its loads of `0x02EAED88` (`0x008094B2`) and `0x01F4485C` (`0x008095DA`) and the
+`or` on `0x01F44860`. No image-base-relative or disp32 reference and no data qword names them.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F4485C` | `u32` | 2 | one bit per CPU level the probe reached: 2 (level 1), 6 (level 2), `0xE` (level 3), `0x2E` (level 5) | `0x00809458` (`0x00809472`, `0x008095A8`, `0x008095F1`, `0x00809606`) | `0x00809458` (`0x008095DA`) only |
+| `0x01F44860` | `u64` | `0x202F` | all ones on a `GenuineIntel` processor, otherwise its start value | `0x00809458` (`0x008094F3`) | `0x00809458` (`0x008094F3`, the read of the `or`) only |
+| `0x02EAED88` | `u32` | 0 (zero-filled tail of `.data`) | bit 2: `GenuineIntel`, or `AuthenticAMD` with the leaf 1 signature at least `0x00600F00`; bit 0: `GenuineIntel` with one of the six signatures in step 2; bit 1: leaf 7 `ebx` bit 9 | `0x00809458` (`0x00809504`, `0x0080953E`, `0x0080955C`, `0x00809590`) | `0x00809458` (`0x008094B2`) only |
+
 ## Modding notes
 
 - Hooking the `sqrtf` slot `0x008C2BB8` sees every scalar square root the game computes except the four

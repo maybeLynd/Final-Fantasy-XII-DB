@@ -190,5 +190,5 @@ which hold none of them, and a scan of `.text` for the 32-bit offsets of `0x022C
 - [Combos](combos.md) - the combo gate that waits for the scene to finish.
 - [Action commit](action-commit.md) - the commit that comes before the scene.
 - [Area of effect](area-of-effect.md) - the target list the scene reads.
-- [How a cutscene runs](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md) - scene
+- [How a cutscene runs](../Scripts-And-Script-Commands/event-scenes.md) - scene
   manager 3 in script scenes.

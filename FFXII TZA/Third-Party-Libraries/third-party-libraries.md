@@ -158,6 +158,32 @@ begins an ImGui frame or window. ImGui's own window and identifier literals ("De
 "##Tooltip", "#CLIPBOARD", "[Window][") do not occur in the image. The debug menu the game does have
 is drawn by its own code, described on [Debug menu](../Engine-Core/debug-menu.md).
 
+### The clipboard copy and the solidus string
+
+`0x00796E70` is Dear ImGui's default clipboard-text getter: `0x00791D80` stores its address at `ImGuiIO` `+0xA0`
+(`0x00791DFC`). Each call:
+
+1. frees the previous copy through the context's free function (`[0x01F40380] + 0xC0`, `0x00796E87`) and clears
+   `0x02EACD78` (`0x00796E8D`);
+2. opens the clipboard and takes its `CF_UNICODETEXT` (13) data with `OpenClipboard`, `GetClipboardData` and
+   `GlobalLock`, and returns 0 when either of the first two fails;
+3. allocates the text's UTF-8 length plus one through the context's allocator (`[0x01F40380] + 0xB8`, `0x00796F69`),
+   stores the block in `0x02EACD78` (`0x00796F78`) and converts the text into it (`0x00797210`);
+4. unlocks and closes the clipboard and returns `0x02EACD78` (`0x00796F9B`).
+
+The `\/` that `SolidusEscaper` writes is the static string at `0x01FD4058`. `0x002165B0` passes its `begin` and
+`end - begin`, computed on the low 32 bits (`0x00216604`, `0x0021660E`, `0x00216615`), to `sputn`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EACD78` | `void*` | 0 (zero-filled tail of `.data`) | the UTF-8 copy of the clipboard text that `0x00796E70` returns; 0 when there is none | `0x00796E70`: 0 after the free (`0x00796E8D`), the new block (`0x00796F78`) | `0x00796E70`: the test before the free (`0x00796E74`) and the return value (`0x00796F9B`) |
+| `0x01FD4060` | `void*` | 0 (zero-filled tail of `.data`) | `end` of the `\/` string `0x01FD4058` | its initialiser `0x0015FEF0` (`0x0015FF23`, `0x0015FF6E`, `0x0015FF9C`, `0x0015FFC0`) | `0x002165B0` (`0x00216604`, the low 4 bytes) |
+| `0x01FD4068` | `void*` | 0 (zero-filled tail of `.data`) | `capacityEnd` of the `\/` string `0x01FD4058` | `0x0015FEF0` (`0x0015FF0E`, `0x0015FF7E`, `0x0015FFA3`) | its `atexit` destructor `0x008A8000` (`0x008A800D`) |
+
+No other instruction reaches these globals: no other RIP-relative, image-base-relative or disp32 reference names
+them, and no section holds a pointer to them. The other fields of the static strings are on
+[EASTL strings and containers](eastl-strings-and-containers.md).
+
 ## Related
 
 - [Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md): the JSON

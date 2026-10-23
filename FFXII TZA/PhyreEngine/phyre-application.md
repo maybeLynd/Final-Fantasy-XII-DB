@@ -196,8 +196,9 @@ window's slot 1 to apply.
 - `0x007A1320` (`0x0079F0AA`, at shutdown) unlinks the input object's devices, the one at `+0x150` and the 18 at `+0x88`,
   from their listener lists.
 - `0x007A37B0` is a `swscanf` (`__stdio_common_vswscanf`) for the XInput test `0x00797AD0` (`0x00797D4F`, `0x00797D8C`;
-  [Controllers](../Controls-And-Input/controllers.md)); `0x0079DA10` (`0x0079E31B`) builds the input layer's sources, objects
-  with the type tags `0x01F44D90` to `0x01F44FD0`, two thresholds taken with `sqrtf` and `cosf`.
+  [Controllers](../Controls-And-Input/controllers.md)); `0x0079DA10` (`0x0079E31B`) evaluates one input source against the
+  devices: it reads the source's type tag `+0x10` (`0x01F44D90` to `0x01F44FD0`) and device index `+0x18`, with two
+  thresholds taken with `sqrtf` and `cosf` ([Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)).
 
 ### Script and replay helpers
 

@@ -291,6 +291,70 @@ list (reset per packet list), the GS replay's register words at `0x01F83561` to 
 `0x01FC3580` to `0x01FC3610`, the vertex and index buffers, the texture table `0x01F83580` and the
 device pointer `0x01FC35F8`.
 
+### The GS register words
+
+The replay keeps each GS register it honours in a word of its own. The A+D handler `0x0020FCA0` stores a register
+by its number, and the PACKED handler `0x0020F3E0` stores the descriptors a 4-bit field can name. `0x0020ED30` and
+`0x0020FF10` read the words when they select D3D11 state, choosing the `_1` or `_2` register by the `CTXT` bit
+`0x01FC3601`.
+
+| Global | Register or field | Used for |
+|---|---|---|
+| `0x01FC3588`, `0x01FC3590` | `TEX0_1`, `TEX0_2` | the texture lookup in `0x0020EB60` and `0x0020ED30` |
+| `0x01FC35B8`, `0x01FC35C0` | `CLAMP_1`, `CLAMP_2` | the calls of `0x0018AA30` and `0x001EE650` |
+| `0x01FC35D8`, `0x01FC35E0` | `ALPHA_1`, `ALPHA_2` | the blend `0x001EE650` |
+| `0x01FC35E8`, `0x01FC35F0` | `ZBUF_1`, `ZBUF_2` | stored; no instruction reads them |
+| `0x01FC3604` to `0x01FC3606` | `FOGCOL` red, green, blue | stored; no instruction reads them |
+| `0x01F8357D`, `0x01F8357E` | `PRIM` bits `FGE`, `ABE` | `ABE` goes to the device's slot `+0x78`; `FGE` is never read |
+| `0x01FC361D`, `0x01FC361E` | `RGBAQ` blue, green | the vertex colour in `0x0020EA50` |
+| `0x01FD366C` to `0x01FD3680` | `TEST` fields `ATST`, `AREF`, `AFAIL`, `DATE`, `DATM`, `ZTE` | the alpha, destination-alpha and depth tests |
+| `0x01FC3608` | the data qword of the A+D register being handled | the `PRIM` and `FOGCOL` arms |
+
+Four more words steer the replay:
+
+- `0x01FC3603` is 1 when the D3D11 state must be selected again; `0x0020ED30` selects state only then and clears it.
+- `0x01FC3607` is 1 when the last texture has base pointer 0; the replay then ends with the device's `TEXFLUSH`
+  slot `+0x128`.
+- `0x01FD3610` holds the command's flag `+0x639`; while it is set, texture id `0xE00` is looked up as `0xDFF`.
+- `0x01F83560` holds the command's byte `+0x638`; while it is set, the GS's ordinary alpha blend
+  `(Cs - Cd) × As + Cd` becomes D3D11's MAX operation. Type `0x02`'s draw `0x004490D0` and `0x004559C0` set it
+  around their sprite draws.
+
+`0x01FD3688` is the copy of the texture-table entry `0x0020F250` returns for the current `TEX0`. `0x01F82D0C` is the
+second VIF word of the scratch chunk `0x01F82D08`, which `0x001DB840` rewrites on every call.
+
+### The microprograms' constant vector
+
+`0x01E02830` holds `(0, 0, 0, 1)` in the image and is the microprograms' constant register. `0x0022CB90` zeroes its
+first two lanes at boot. `0x0022CC20` copies `(0, 0, 0, 1)` back from `0x008C5FD0`, and a program calls it after it
+stores into the vector: `0x004BF500` stores lanes x and y at `0x004C07DA` and `0x004C07E2` and calls it at
+`0x004C07EA`.
+
+### Working cells and index words
+
+Below VU memory, `0x02064B20` to `0x02064D1F` are 32 float working cells of 16 bytes, and `0x02064DB0` to `0x02064DE8`
+hold 16-bit integer words, the page's cell indices, four bytes apart. The microprograms use them as their
+registers: a program loads a cell or word, computes, and stores the result for its next instruction. The
+shared subroutines receive the cells' addresses: `0x004B1190` passes `0x02064CB0` (`0x004B3E86`) to `0x004B9D80`
+(`0x004B3EB9`). A cell's value lives only until the next program overwrites it.
+
+### The lens-flare program's words
+
+The lens-flare microprogram `0x004C0EA0`, which the lens-flare draw `0x00461270` installs (`0x004620E3`), keeps its
+integer words in `.data` at `0x02CA7F40` to `0x02CA7F78` instead of in the index words:
+
+- `0x02CA7F58` walks the input records, 3 cells each, and `0x02CA7F50` counts the records left in a pass;
+- `0x02CA7F68` and `0x02CA7F6C` walk the current record's parts, 4 cells and one count per part;
+- `0x02CA7F48` is the output cursor: it starts at cell `0xBC` and moves 9 cells per part;
+- `0x02CA7F4C` counts the parts, and at the end the program writes it, with the end-of-packet bit `0x8000`, into
+  the GIF tag in cell `0xBB` (`0x02CA7F44`); `0x02CA7F54` holds the packet's first cell, `0xB9`.
+
+### Every written word
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [ps2-vif1-vu1-emulation-state.tsv](ps2-vif1-vu1-emulation-state.tsv), one per address | the row's `type` | the row's `start` | the row's `meaning` | the row's `set_by` | the row's `read_by` |
+
 ## Modding notes
 
 - Only the twenty registers above reach the PC. A packet that relies on FRAME, SCISSOR, XYOFFSET,

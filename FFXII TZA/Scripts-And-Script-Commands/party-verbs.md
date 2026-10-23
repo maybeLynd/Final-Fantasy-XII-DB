@@ -133,7 +133,7 @@ actor's motion lane (presentation byte `+0x12`) from its binding's count and gro
 | `getpartymembermask` / `getbattlemembermask` | `0x0361` / `0x0362` | `0x003542C0` / `0x003546F0` | `0x00359C00` (all non-guests) / `0x00359BA0` (the roster) as bit masks |
 | `getbattlemembertotal`, `…onlytotal`, `getguestmemberonlytotal` | `0x03B4`, `0x03CC`, `0x03CE` | `0x00341E60`, `0x003426F0`, `0x003430C0` | `0x003599A0` counted over both collector groups, group 0 only, or group 1 only; the `_543` to `_545` forms (`0x0543` to `0x0545`) take a flag and return the raw collector counts when it is 0 |
 | `capturebattlemember(sel)` / `capturebattlemembeructop` | `0x03B3` / `0x03F0` | `0x003408E0` / `0x00340E00` | push `0, 0` or `1, 0` and run `0x00357570` |
-| `captureguestmember(i)` | `0x03CD` | `0x003410C0` | captures the `i`-th guest of group 1 through `0x00262F50` and cancels its action ([cutscenes](cutscenes-and-the-world-lock.md)) |
+| `captureguestmember(i)` | `0x03CD` | `0x003410C0` | captures the `i`-th guest of group 1 through `0x00262F50` and cancels its action ([party during scenes](party-during-scenes.md)) |
 
 `partycommoneffectplay(v)` (`0x043E`, `0x00350B90`) hands the value to `0x00268690` and returns its
 result.
@@ -187,6 +187,6 @@ per-actor bytes the setters write.
 ## Related
 
 - [Party read-in state machine](../Characters-And-Objects/actor-model-rebuild.md): what the polls wait for.
-- [Cutscenes and the world lock](cutscenes-and-the-world-lock.md): capturing a member's body.
+- [Party during scenes](party-during-scenes.md): capturing a member's body.
 - [Native commands](native-commands.md): begin and poll.
 - [Verb dispatch](verb-dispatch.md): the value stack the motion verbs reuse.

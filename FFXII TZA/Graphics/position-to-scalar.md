@@ -135,6 +135,14 @@ The fade record (in the container at `+0x2F0`, or in the element definition at `
 | `0x02EBB7E4`, `0x02EBB7E8`, `0x02EBB7EF` | the global fade near, far and floor complement |
 | `0x020926E4` to `0x020926F0` | the dimming ramp: flags, count, value, target, step |
 
+One more word of the settings block is written. `0x003ECCA0` builds the map's request from the map's defaults: near
+`0x02EBB7F8`, far `0x02EBB7FC` and colour `0x02EBB804` (`0x003ECCBF`-`0x003ECCED`). The word between far and colour is not part
+of it.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBB800` | `u32` | 0 (zero-filled tail of `.data`) | set to `0xFFFFFFFF` when `0x003ECF70` resets the settings, between the map's default far distance and its default colour; read by no function | `0x003ECF70` (`0x003ECF9A`) | no function |
+
 ## Modding notes
 
 - An effect's own fade distances are the four `i16` words of its fade record; setting both of a
@@ -144,7 +152,8 @@ The fade record (in the container at `+0x2F0`, or in the element definition at `
 
 ## Related
 
-- [Effect element runtime](effect-element-runtime.md): the containers and the element draws.
+- [Effect element runtime](effect-element-runtime.md): the containers.
+- [Effect drawing](effect-drawing.md): the element draws.
 - [Character fades](character-fades.md): the owner fade bit `0x10` multiplies in.
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the dimming ramp.
 - [PS2 CPU emulation](../Engine-Core/ps2-cpu-emulation.md): the workbench the transforms use.

@@ -193,7 +193,7 @@ and then loops over passes:
 6. `0x001D8AB0(0x001D8A60(), dt)`, the `SaveloadManager` `0x001C1910` (`0x01F81260`), the screen fade
    `0x001D9080` (`0x01F82CE0`), and the `MultipleDebugDisplay` (`0x01F81270`): `0x0022FFE0` when its byte
    `+0x463C` is set, then the auto-test walker `0x001C2F50`
-   ([cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md));
+   ([event scenes](../Scripts-And-Script-Commands/event-scenes.md));
 7. when `0x01F82D30` is clear the pump returns (`0x001E0560`, at the end of `0x0022A580`, sets it when
    `0x01F82D31` was armed; states 4 and 6 also call `0x001E0580` before their handlers); otherwise the frame-end reset `0x001E0590` runs
    (`0x00185D80` on the render manager, `0x0018B040(0x01F7F5E0)`, `0x0018C8F0(0x01F7F5E8)`, `0x001DB620`,
@@ -294,6 +294,56 @@ at `0x01F82CD8`, `0x40` bytes built by `0x001D89D0` in the init burst with a fad
 A load shorter than 5 s therefore never shows the icon.
 
 ## Layouts
+
+### The statics at 0x01F7F490
+
+These cells sit in the static block at `0x01F7F490`; each row names the cell's own address first.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x38` | `void*` | containerCell | 0x01F7F4C8: the 0xC0-byte object the init burst 0x0017D4C0 builds (0x0017D4FC-0x0017D524) with 0x001A16E0, which runs 0x001A1500(object, 5000, 0): an EASTL vector of 16-byte elements at +0x00 grown to 5,000, two EASTL sets at +0x20 and +0x58, a lock at +0x90 and the byte +0xB8 = 0; no instruction reads the cell back |
+| `+0x40` | `void*` | immediateTarget | 0x01F7F4D0: the 0x10-byte GeometryRenderTargetImmediate (vtable 0x008F5F28, RTTI) that 0x001A17D0 builds in the init burst, its +0x08 pointing at itself (0x0017D51F-0x0017D547). 0x001FB810(node, n) calls its +0x08's slot 0, 0x001F48B0, which wraps the node in a 0x28-byte GeometryInstanceOrderedObject from the ring allocator +0x30 and files it on [0x01F7F5E0] (0x001F48DE-0x001F4940); 0x001FB830 runs 0x001A1850, which with a render manager (0x00189120) wraps the node the same way and hands it to the new object's slot 1 with the manager's +0x08, and otherwise calls slot 0 with 0x40 (0x001A186F-0x001A190E). 0x0020E630(node, kind) submits through it (0x0020E63C-0x0020E66A) |
+| `+0x48` | `void*` | sceneBracket | 0x01F7F4D8: the 0xA0-byte object 0x001B24D0 builds in the init burst (0x0017D542-0x0017D565) that brackets each effect layer (Effect element runtime): 0x00862C10 opens a layer with 0x001B2530, which stores the pass id at +0x90 and the layer at +0x94; 0x00862C30 closes it with 0x001B2600; 0x00862BF0, 0x00862C00 and 0x00862C40 return the two words |
+| `+0x74` | `u32` | earlyWaterDraw | 0x01F7F504: the area's mEarlyWaterDraw setting, 1 when the scene config holds 1 (0x001C913A-0x001C9146 through 0x00182FE0); MainLoop_Draw reads it (0x0017FE20 at 0x0022B0ED) and, when it is set, draws the "Water effect" pass (0x0017F330, 0x00180A30) right after effect layer 3 (0x0022B416-0x0022B431), otherwise later in the frame (0x0022B46A-0x0022B48A) |
+| `+0x78` | `u32` | nextRenderKey | 0x01F7F508: the key the next render record takes: each presentation set-up stores its model entry's id (entry +0x14) here just before 0x0042FB80 creates the render record (0x002E2980, 0x002E334D, 0x002EE2B3, 0x003EB2DE; the monster viewer's loader stores 0x02164210 at 0x002EE55F) and restores it after (0x002E299D, 0x002E3360, 0x002EE2C5, 0x002EE57E, 0x003EB2EF); the record's initialiser 0x00420480 copies it, when not 0, into the render record's key +0x6B0 (0x00420636-0x00420640) |
+| `+0x7C` | `u8` | opaquePosted | 0x01F7F50C: once-per-frame latch of the RenderOpaqueObj command: 0x0017F070, called by MainLoop_Draw (0x0022B38F), posts the command on the render command vector (0x0018C580) only while this is 0 and the vector exists, and sets it to 1 (0x0017F074-0x0017F09A); 0x0017F270 (0x0022B331) clears it with +0x7D |
+| `+0x7D` | `u8` | mapOpaquePosted | 0x01F7F50D: the same latch for the RenderMapOpaqueObj command, posted by 0x001809A0 (0x001809A4-0x001809CA; Map art); while it is set, +0x7E is 0 and the map-art context's +0x419 is 0, the map command's draw 0x001F3570 draws the characters' opaque objects before the map's (0x001F3586-0x001F35D0) and RenderOpaqueObj's draw 0x001F36B0 leaves them out (0x001F36B9-0x001F36D7) |
+| `+0x7E` | `u8` | charsWithOpaque | 0x01F7F50E: 1 when the effect group draw 0x0024D370 runs with the open layer [0x01F7F4D8] + 0x94 at 2 and 0x003AA2E0 answers non-zero (0x0024D448-0x0024D45E, through 0x00183060); MainLoop_Draw clears it on a pass whose first argument is not 1 (0x0022B10D-0x0022B14D). While it is set both opaque draws leave the characters to RenderOpaqueObj (0x0017FE50 at 0x001F3586 and 0x001F36B9) |
+| `+0xAC` | `f32` | parkedCubemapIntensity | 0x01F7F53C: mCubemapIntensity parked while the Bestiary's monster viewer is open: 0x001846F0 (0x0057025A) copies 0x02CB8138 here and zeroes 0x02CB8138 (0x001846FD-0x00184710); 0x001846B0 copies it back (0x001846C6-0x001846CE) |
+| `+0xC0` | `f32[16]` | flareMatrix | 0x01F7F550: the lens-flare pass's corner matrix: 0x0017ED50 multiplies each row of the matrix it is given by the render manager's matrix +0x6C8 (0x0017E7E0 at 0x0017EDE4-0x0017EE20) and stores the four rows here (0x0017EE41-0x0017EF01), returning this address (0x0017EE3A); its only caller 0x00376470 transforms the flare's corners by it (0x00202D70 at 0x00376843-0x00376850; Lens flares) |
+
+### The main loop cells at 0x02064AA0
+
+These cells sit in the static block at `0x02064AA0`, the main loop cells of [Frame update order](frame-update-order.md); each row names the cell's own address first.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u32` | bootStubResult | 0x02064AA4: written once at boot by 0x0022A0B0 with the result of 0x005C5230, which returns 0 (0x0022A0BB-0x0022A0C0; Startup constants); read by no function |
+| `+0x33` | `i8` | battleRuntimeMode | 0x02064AD3: the main state 0x0022A580 dispatches on (Frame update order): 0 start-up 0x0022B6E0, 1 title and loading 0x0022B7E0, 2 the field frame 0x0022A770 (also any other value), 3 the full menu 0x0022B8C0, 4 the capture before a menu 0x0022AF50, 5 the capture-backed frame 0x0022BC20, 6 a second capture 0x0022B000. 0 at boot (0x0022A1A0); the handlers move it on (0x0022B74E to 1, 0x0022B85B to 2, 0x0022AFF2 to 3, 0x0022B097 to 5, 0x0022BB81 and 0x0022BDC5 to 2); 0x00229F00 sets it and 0x00229EA0 returns it |
+| `+0x34` | `f32` | bootOne | 0x02064AD4: 1.0, stored once at boot (0x0022A190); read by no function |
+| `+0x44` | `u32` | drawSkipped | 0x02064AE4: 1 when MainLoop_Draw returned at once on the skip request 0x01FD4A70, clearing the request (0x0022B196-0x0022B1A4); the field frame clears it before each draw (0x0022A824, r12d = 0 from 0x0022A78B). While it is set the next draw runs 0x00182370 in place of the GS register batch (0x0022B1C0-0x0022B1D2) |
+| `+0x48` | `u32` | monsterShown | 0x02064AE8: 1 while the Bestiary's monster viewer shows a monster in the full menu frame (0x00181DD0 at 0x0022BA5D, set at 0x0022BA66); on the first frame without one 0x0022B8C0 clears it and runs 0x00314370(1) and 0x0036F510 (0x0022BA9A-0x0022BAB2) |
+| `+0x4C` | `u32` | endOfPassCallback | 0x02064AEC: the end-of-pass callback word: 0x0022A580 tests it as a dword after the state handler and, when it is set, clears it (0x0022A731-0x0022A73F); no instruction stores a non-zero value |
+| `+0x54` | `u8[3]` | vuClipFlags | 0x02064AF4: the emulated VU1 clip flags, four 6-bit judgements: each clip step in the VU1 programs shifts the word left by 6, clears its top byte +0x57 and sets bits 0 to 5 from comparing x, y and z with +w and -w (0x00476506-0x0047650D, 0x00476635-0x004766BC); the programs read its low word (0x00476622, 0x004766C3) |
+| `+0x57` | `u8` | vuClipTop | 0x02064AF7: the top byte of the clip word at +0x54, cleared after every 6-bit shift so the flags keep 24 bits (0x0047650D, 0x00476641) |
+| `+0x5C` | `u32` | vuRandomOn | 0x02064AFC: the switch of the emulated VU1 random generator: while it is 0, 0x004B97F0 and 0x004B9C50 return 1.0 without stepping the seed 0x01E02828 (0x004B97F0-0x004B9801, 0x004B9C50-0x004B9C68); VU1 programs set it (0x0047C6B4 and 0x004884F3 store 1; 0x00482B24 and 0x004EC23A store a register) and read it (0x0047C8EE, 0x0048347D, 0x004D47C7, 0x004EC8FE) |
+
+### The device-check pane
+
+The pane is the `0xD0`-byte widget at `0x02CA99D0` with procedure `0x0057E8D0` that the save and load screen `0x00582860` builds.
+
+`DeviceCheckPane` (`0xD0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0057E8D0` |
+| `+0xC0` | `u32` | flags | bit 1: the device check runs in save mode, bit 0 of `0x0057EA40`'s second argument (`0x0057EAAD`-`0x0057EAC2`); 0 at construction (`0x0057E914`) |
+| `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
+| `+0xC8` | `void*` | controller | the first argument of the device check `0x0057EA40`, the save and load screen that runs it (`0x0057EAB4`); 0 at construction (`0x0057E90A`) |
+
+### The application object
+
+The application object and its parts are laid out as follows.
 
 ```
 GameApplication  (static, 0x01F7E350, 0x1140 bytes; base Phyre::PFramework::PApplication)

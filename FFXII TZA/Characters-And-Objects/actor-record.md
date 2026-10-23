@@ -221,7 +221,7 @@ and on slot 0 state that belongs to the field. Among its calls, in order:
 | `0x003EC5F0` | slot 0 | calls `0x003EB6C0(i)` for `i` = 0-15, each only while `0x00377C20()` is 0 |
 | `0x003EC690` | slot 0 | releases the trap marker resource `0x02B5EC94` (`0x002EBD60(id, 0)`, `0x002E3DC0`) and zeroes it ([traps](../World-Areas-And-Travel/traps.md)) |
 | `0x003DC710` | slots 0 and 3 | each of the 16 entries of `0x14` bytes at `0x02B57F74` with state byte `+0x02` = 3, byte `+0x03` = 0 and word `+0x00` = 0 gets `+0x10` added to its dword `+0x04` (`byte +0x0F \| 0x10` when bits 4-19 come out 0), state 4, and `0x02B58170` = 1 |
-| `0x003605A0(slot)` | a bound slot | the slot's eight skip entries at `0x022CB730 + slot * 0x80` (byte `+0` = index, `+1` = slot, `+2` and qword `+8` = 0) and its armed and executed masks `0x022CB9C0` and `0x022CB9D8` ([cutscenes](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md)) |
+| `0x003605A0(slot)` | a bound slot | the slot's eight skip entries at `0x022CB730 + slot * 0x80` (byte `+0` = index, `+1` = slot, `+2` and qword `+8` = 0) and its armed and executed masks `0x022CB9C0` and `0x022CB9D8` ([cutscenes](../Scripts-And-Script-Commands/event-scenes.md)) |
 | `0x003E9970(slot)` | a bound slot | stops (`0x003E98B0(i)`) each of the 64 voice slots at `0x02B5D0B0` whose byte `+0x05` is the slot ([voices](../Sound-And-Music/voices.md)) |
 | `0x003B6C20` | a bound slot | the summon group's requested count `0x02EBCC60`, its 32 handles at `0x02EBCBE0`, the unique count `0x02EBCBC0`, the leader handle `0x02EBCC70`, the 32 bytes `0x02EBCA80`-`0x02EBCA9F` and the dword `0x02EBCAA0` |
 | `0x003DEE10(slot)` | a bound slot, twice | the slot's eight event-sound entries at `0x02B59360 + (slot * 8 + i) * 0x38`, below |

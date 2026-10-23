@@ -12,7 +12,7 @@ addresses: "0x00409250, 0x00422380, 0x003E5AD0, 0x003A4290, 0x00426770"
 them are present, and the special-id bones of its `@FCP` block.
 
 The two points are the weapon's blade and grip. A held weapon is a child record of the character that holds it, and
-the anchor query finds a point on a child by key (`0x00426770`; [Effect element runtime](effect-element-runtime.md),
+the anchor query finds a point on a child by key (`0x00426770`; [Effect anchors and targets](effect-anchors-and-targets.md),
 point kinds 4 and 5, and the fallback to a child's `n_grip`):
 
 | Point | Key | Point id (`0x00422380`) |
@@ -91,4 +91,4 @@ One model is used by both Katana and Sword (1H) rows; the table counts it once, 
 - [Model asset list: every model the game can bind, with its model file, motion lanes, remastered parts and the tables and scripts that use it](model-asset-list.md)
 - [Model files (.cm, .ca)](model-files-cm-ca.md): `@FTR` and `@FCP`
 - [Character render records](character-render-records.md): attach slots, default bones and point ids
-- [Effect element runtime](effect-element-runtime.md): the anchor query that uses the two points
+- [Effect anchors and targets](effect-anchors-and-targets.md): the anchor query that uses the two points

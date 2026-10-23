@@ -103,6 +103,40 @@ The fourteen registered codes, read from the records:
 - Find a code by name: `0x006D5AF0(&record, name)`; 0 and the record, or `0x13`.
 - Add a code: `0x006D5A60(record)` after `0x006D58D0`; remove it with `0x006D6F90(record)`.
 
+## State
+
+### The morph records' statics
+
+Each morph initialiser owns a `0xD0`-byte static: the `0x78`-byte record, a link at `+0x78`, and five 16-byte
+description entries from `+0x80`. It passes `+0x80` to `0x006D58D0` as the input table and `+0xC0` as the output table
+(the record's `+0x18` and `+0x28`), then stores the entries itself:
+
+```
++0x78  ptr   link to the record that was the list head
++0x80  4 input description entries, 16 bytes each
++0xC0  1 output description entry
+entry: +0x00 ptr semantic (0 in every morph entry), +0x08 u32 data type
+```
+
+All five entries of a code carry the same data type: 1 in `Morph22`, `Morph32` and `Morph42`, 2 in the three
+`Morph?3` codes and 3 in the three `Morph?4` codes, so the type is the element's float count minus 1. The input
+table always has four entries; a code with two or three inputs fills the entries past its input count too.
+
+The initialisers run in initialiser-table order (`0x008C45C8`-`0x008C4608`): `Morph22`, `Morph32`, `Morph42`,
+`Morph23`, `Morph33`, `Morph43`, `Morph24`, `Morph34`, `Morph44`. Each stores the head `0x02E9FDE0` in its `+0x78`
+and makes its record the head. No instruction reads the head or a link except these initialisers' own loads of
+the head, so nothing walks this list; the registry the resolver uses is `0x02E9FD60`.
+
+[phyre-modifier-codes-state.tsv](phyre-modifier-codes-state.tsv) has one row per static: the head, the eight links
+of `Morph23` to `Morph44` and their 80 entry words, with each writer and reader as `function (site, value)`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02E9FDE0` | `void*` | 0 | head of the morph records' own list, linked through `+0x78`; `Morph44` (`0x02EA0570`) after the last initialiser | the nine initialisers, each its record (`0x0016805B`, `0x0016814B`, `0x0016823B`, `0x0016832B`, `0x0016841B`, `0x0016850B`, `0x001685FB`, `0x001686EB`, `0x001687DB`) | the same nine (`0x00168046`, `0x00168136`, `0x00168226`, `0x00168316`, `0x00168406`, `0x001684F6`, `0x001685E6`, `0x001686D6`, `0x001687C6`) |
+| record `+0x78`, 8 rows | `void*` | 0 | the record before it in initialiser order | its initialiser | - |
+| entry `+0x00`, 40 rows | `void*` | 0 | semantic: 0 | its initialiser | - |
+| entry `+0x08`, 40 rows | `u32` | 0 | data type: 1, 2 or 3 | its initialiser | - |
+
 ## Modding notes
 
 - Only these fourteen names resolve; any other name gives `0x13` from the resolver.

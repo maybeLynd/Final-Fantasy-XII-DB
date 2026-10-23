@@ -218,6 +218,120 @@ The member lists beside this page:
 - [`image-hardening-scalar-conversion-registrars.tsv`](image-hardening-scalar-conversion-registrars.tsv): the scalar-conversion registrars.
 - [`image-hardening-guard-cf-dispatch-target.tsv`](image-hardening-guard-cf-dispatch-target.tsv): the dispatch target `0x00896270`.
 
+## State
+
+### The scalar-conversion tree
+
+The 144 nodes lie at `0x02CAAD10`-`0x02CACC58`, `0x38` bytes apart: the `0x30`-byte node, then its registrar's
+guard. The tree's header is the sentinel `0x01F2CDA0`. Its `+0x18`, `0x01F2CDB8`, holds the root and is the root's
+parent. The header's six qwords hold `0x01F2CDA0` on disk, so the tree starts empty.
+
+`0x0059A030` calls the registrars in the order of their nodes' addresses, and the `(source, destination)` keys rise
+in that order. Each registrar does the following (sites of `0x005850F0`; every registrar has them at the same
+offsets):
+
+1. Inside its guarded block it stores the node's address in `+0x00`, `+0x08` and `+0x10` (`0x0058515C`-`0x0058516A`),
+   the source and destination descriptors with one 16-byte store (`0x00585176`) and the routine (`0x00585184`).
+2. On every call it sets bit 0 of `+0x10` (`0x005851BC`) and points `+0x00` and `+0x08` at the sentinel
+   (`0x005851CA`, `0x005851D1`).
+3. It walks down from the root comparing the source, then the destination, as unsigned values: a smaller key
+   follows `+0x00`, a larger one `+0x08` (`0x00585203`-`0x0058522F`). An equal key ends the call (`0x0058523A`).
+4. Otherwise it stores the last node it visited, with bit 0 set, in its own `+0x10` (`0x0058524B`), stores itself in
+   that node's `+0x00` or `+0x08`, or in `0x01F2CDB8` when the tree is empty (`0x00585255`), and calls
+   `0x0067F700(0x01F2CDA0, node)` (`0x0058525F`).
+
+`0x0067F700` rebalances while the parent's bit 0 is set (`0x0067F718`, `0x0067F9A4`) and clears the root's bit 0 before
+it returns (`0x0067F9C2`). Bit 0 set marks a red node and clear a black one: the tree is a red-black tree. Because
+the keys arrive in rising order, every insert walks through `+0x08` only, and step 4 stores into a `+0x08`;
+during the build a node's `+0x00` changes after step 2 only in `0x0067F700`'s rotations (`0x0067F984`).
+
+After all 144 inserts the root is `0x02CAB3D8` (`PUInt8` to `PUInt64`, routine `0x00592E30`). 8 nodes are red and 136
+black, 72 have no child, and every path from the root to the sentinel passes 6 black nodes.
+
+`0x0059FE20`, the `PSerialization` module's shutdown (slot 2 of the vtable `0x00D26C40`, which `0x00160320` installs in `0x01F2CD80`
+at `0x0016036A`; before that, and again after `0x008A8CE0`, `0x01F2CD80` holds the base vtable `0x00D26BC0`, whose slot 2 is
+the stub `0x005C5230`), calls
+`0x0067F580(0x01F2CDA0)` (`0x0059FF08`). It removes every node, rebalancing through `0x0067F9D0`, and leaves each one
+pointing at itself in `+0x00`, `+0x08` and `+0x10` (`0x0067F69D`-`0x0067F6A4`, `0x0067F6BB`-`0x0067F6C2`). It then clears
+the byte `0x02CA9D91` (`0x0059FF0D`), so the next call of `0x0059A030` runs the 144 registrars again.
+
+On that second run every guard is already set, so each registrar runs steps 2 to 4 only, and the tree is rebuilt
+with the same shape. The exit teardown `0x008A81D0`, which `0x00160310` registers with `atexit`, calls
+`0x0067F580(0x01F2CDA0)` twice (`0x008A81E4`, `0x008A81F1`).
+
+`0x0059A030` reads `+0x18` (`0x0059A340`), `+0x20` (`0x0059A34E`) and `+0x00` or `+0x08` (`0x0059A36C`) of each node on its
+search path, and `+0x28` of the node it finds (`0x0059A388`). No other function reads or writes a node.
+
+Besides the 144
+empty teardown adapters `0x008A83E0` + k x `0x10`, each a `lea` of its node and a `jmp` to the `ret` at `0x0016D6A0`, only the
+registrars name a node by a RIP-relative reference; no image-base-relative or disp32 reference and no data qword
+names one. Only the registrars, `0x0059A030`, `0x0059FE20` and `0x008A81D0` name the header, and `0x0067F700`, `0x0067F580`
+and `0x0067F9D0` reach the nodes from it.
+
+The table gives the six fields of every node. Each row of
+[image-hardening-state.tsv](image-hardening-state.tsv) is one field of one node, with its registrar and
+conversion pair, its value once the 144 inserts are done, and its own writers and readers by instruction.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `+0x00` of each node (144 rows of the table) | `void*` | 0 (zero-filled tail of `.data`) | link0: the child whose key is smaller, `0x01F2CDA0` when there is none; the node's own address from step 1 until step 2, and again after `0x0067F580` removes it | the node's registrar (steps 1 and 2); `0x0067F700` (`0x0067F984`); `0x0067F580` and `0x0067F9D0`, from `0x0059FE20` and `0x008A81D0` | `0x0059A030` (`0x0059A36C`); `0x0067F580`, `0x0067F700` and `0x0067F9D0` |
+| `+0x08` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | link1: the child whose key is larger, `0x01F2CDA0` when there is none; the node's own address from step 1 until step 2, and again after `0x0067F580` removes it | the node's registrar (steps 1 and 2); the registrar of the node inserted beneath it (step 4, 143 nodes); `0x0067F700` (`0x0067F950`, `0x0067F980`); `0x0067F580` and `0x0067F9D0` | the walks of the registrars that run after it (step 3, 143 nodes); `0x0059A030` (`0x0059A36C`); `0x0067F580`, `0x0067F700` and `0x0067F9D0` |
+| `+0x10` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | parent, low bit the node colour (set red, clear black); `0x01F2CDB8` for the root; the node's own address before step 2 and after `0x0067F580` removes it | the node's registrar (steps 1, 2 and 4); `0x0067F700`, `0x0067F580` and `0x0067F9D0` | the node's registrar (step 2); `0x0067F580`, `0x0067F700` and `0x0067F9D0` |
+| `+0x18` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | source: type descriptor (lookup key, first), one of the twelve | the node's registrar (step 1, the 16-byte store) | the node's registrar (step 3, except the first, `0x00592770`, which finds the tree empty); the walks of the registrars that run after it; `0x0059A030` (`0x0059A340`) |
+| `+0x20` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | destination: type descriptor (lookup key, second), one of the twelve | the node's registrar (step 1, the 16-byte store) | the node's registrar (step 3, except `0x00592770`); the walks of the registrars that run after it when the sources are equal; `0x0059A030` (`0x0059A34E`) |
+| `+0x28` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | routine: the conversion routine, one of the 68 | the node's registrar (step 1) | `0x0059A030` (`0x0059A388`) only |
+
+### The failure record
+
+When `IsProcessorFeaturePresent(23)` reports no fast fail, `__report_gsfailure` (`0x00809654`) and `0x0080973C` fill an
+exception record at `0x02EAED90` and a context record at `0x02EAEE30` (`0x4D0` bytes, up to `0x02EAF300`). They pass
+`0x01CC72D0`, the read-only pair `0x02EAED90`, `0x02EAEE30`, to `0x00809620` (`0x0080971B`, `0x008097CD`), which passes it to
+`UnhandledExceptionFilter` (`0x00809634`).
+
+1. The context is captured with `RtlCaptureContext` and unwound with `RtlVirtualUnwind`: up to two frames by `0x00809848`
+   for `0x00809654` (`0x00809679`), one by `0x008097D8` for `0x0080973C` (`0x00809761`). Each reads `Rip` (`+0xF8`) to find
+   the frame's unwind entry (`0x00809859`, `0x008097EB`).
+2. Each reporter then stores its return address in `Rip` (`0x00809683`, `0x0080976B`) and the address just above it in
+   `Rsp` (`0x00809693`, `0x0080977B`). `0x00809654` is reached by the jump at `0x00808C5C`, so its return address is the
+   one the failing function's call to `0x00808C40` pushed; `0x0080973C`'s is always `0x00809736`.
+3. `0x00809654` also stores the value it was passed, the failed `cookie xor rsp`, in `Rcx` (`+0x80`, `0x008096AD`).
+4. Each copies `Rip` into `ExceptionAddress` (`0x0080969A`, `0x00809782`) and stores the code `0xC0000409`, flags 1 and
+   one parameter: 2 from `0x00809654` (`0x008096E2`), the argument from `0x0080973C` (`0x008097C2`), which is 8 from its only
+   caller `0x00809728`.
+
+No instruction in the image reads any other field of either record. No RIP-relative, image-base-relative or
+disp32 reference names an address in `0x02EAED90`-`0x02EAF2FF` outside `0x00809654` and `0x0080973C`, and the only data
+qwords that point into it are the pair at `0x01CC72D0`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAED90` | `u32` | 0 (zero-filled tail of `.data`) | exception record `+0x00`, the code: `0xC0000409` | `0x00809654` (`0x008096B4`), `0x0080973C` (`0x00809790`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAED94` | `u32` | 0 (zero-filled tail of `.data`) | exception record `+0x04`, the flags: 1 | `0x00809654` (`0x008096BE`), `0x0080973C` (`0x0080979A`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAEDA0` | `void*` | 0 (zero-filled tail of `.data`) | exception record `+0x10`, the exception address: the reporter's return address, copied from `0x02EAEF28` | `0x00809654` (`0x008096A1`), `0x0080973C` (`0x00809789`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAEDA8` | `u32` | 0 (zero-filled tail of `.data`) | exception record `+0x18`, the parameter count: 1 | `0x00809654` (`0x008096C8`), `0x0080973C` (`0x008097A4`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAEDB0` | `u64` | 0 (zero-filled tail of `.data`) | exception record `+0x20`, the first parameter: the fast-fail code, 2 for a cookie failure, 8 for a range-check failure | `0x00809654` (`0x008096E2`), `0x0080973C` (`0x008097C2`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAEEB0` | `u64` | 0 (zero-filled tail of `.data`) | context record `+0x80`, `Rcx`: for a cookie failure the failed `cookie xor rsp`; for a range-check failure the captured value | `RtlCaptureContext` and `RtlVirtualUnwind` (step 1); `0x00809654` (`0x008096AD`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAEEC8` | `void*` | 0 (zero-filled tail of `.data`) | context record `+0x98`, `Rsp`: the address just above the reporter's return address | `RtlCaptureContext` and `RtlVirtualUnwind` (step 1); `0x00809654` (`0x00809693`), `0x0080973C` (`0x0080977B`) | `UnhandledExceptionFilter` through `0x01CC72D0`; no instruction in the image |
+| `0x02EAEF28` | `void*` | 0 (zero-filled tail of `.data`) | context record `+0xF8`, `Rip`: the reporter's return address | `RtlCaptureContext` and `RtlVirtualUnwind` (step 1); `0x00809654` (`0x00809683`), `0x0080973C` (`0x0080976B`) | `0x00809848` (`0x00809859`), `0x008097D8` (`0x008097EB`), `0x00809654` (`0x0080969A`), `0x0080973C` (`0x00809782`); `UnhandledExceptionFilter` through `0x01CC72D0` |
+
+### The runtime's own fast fail
+
+`0x0080996C(code)` is the C runtime start-up's fast fail. It is called with 5 from `0x00808988` (`0x00808A4B`) and with 7
+from `0x00808C90` (`0x00808D3A`, `0x00808D45`), `0x00808D78` (`0x00808D95`, `0x00808DBA`) and `0x00809124` (`0x00809231`,
+`0x0080923C`).
+
+1. When `IsProcessorFeaturePresent(23)` reports fast fail it executes `int 0x29` with the code (`0x00809993`).
+2. Otherwise it clears the dword `0x02EAF300` (`0x00809995`), captures and unwinds a context on its stack and builds an
+   exception record with code `0x40000015` and flags 1 there (`0x00809A50`, `0x00809A58`).
+3. It calls `IsDebuggerPresent` (`0x00809A60`), `SetUnhandledExceptionFilter(NULL)` (`0x00809A81`) and
+   `UnhandledExceptionFilter` (`0x00809A8C`).
+4. When that returns 0 it ands `0x02EAF300` with 0, or with -1 when `IsDebuggerPresent` returned 1 (`0x00809A9A`). It
+   then returns (`0x00809AB0`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAF300` | `u32` | 0 (zero-filled tail of `.data`) | a dword that holds 0 at every point: `0x0080996C` clears it and its one other access ands it with 0 or -1 | `0x0080996C` (`0x00809995`, `0x00809A9A`) | `0x0080996C` (`0x00809A9A`, the read of the `and`) only |
+
 ## Modding notes
 
 - Addresses are fixed: no rebasing layer is needed, and the live cookie can be read at `0x01F44830`.

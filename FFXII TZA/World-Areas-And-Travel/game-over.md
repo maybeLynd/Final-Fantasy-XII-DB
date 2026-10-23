@@ -256,6 +256,11 @@ Title-return bytes:
 | `0x022CB727` | `u8` | cleared by 0x00360120 | `0x022CB72A`  u8   softwarereset request (`0x003603D0`) |
 | `0x022CB72B` | `u8` | title-map request (0x003603E0, from the area controller when +0x3FC is 0x0C) |  |
 
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x022CB724` | `u16` | 90 (0x5A), stored as a word every main-loop pass by 0x00360120 (0x00360135) and at boot by 0x00360370 (0x0036039C); read by no instruction |  |
+| `0x022CB727` | `u8` | 0, stored by 0x00360120 (0x0036013C), 0x003601D0 (0x003602AB) and 0x00360370 (0x00360385); read by no instruction |  |
+
 Request and mode:
 
 | Address | Type | Name | Meaning |

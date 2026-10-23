@@ -115,4 +115,5 @@ Registry record, `0x02EBDBC0` + n × `0x28`, 64 records:
 - [Clan Primer](../Menus-And-HUD/clan-primer.md): the Sky Pirate's Den page.
 - [Achievements](../Steam-And-Achievements/achievements.md): the award bits and statues.
 - [Effect files](effect-files-efx-efb.md): the effect containers and context types.
-- [Effect element runtime](effect-element-runtime.md): how instances are updated and drawn.
+- [Effect element runtime](effect-element-runtime.md): how instances are updated.
+- [Effect drawing](effect-drawing.md): how they are drawn.

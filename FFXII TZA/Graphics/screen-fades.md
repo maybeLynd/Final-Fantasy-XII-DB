@@ -169,7 +169,7 @@ once, black or white by its flags, after `0x002EFE50(0xFF)` (`0x003144C2`-`0x003
 `skipexec` reaches `0x00360710`, which after its teardown calls, when `0x00267310` reports 0,
 `0x002EFE40(6)`, `0x002EFE50(0xFF)` and `0x002EFA70(4, 0, 0, 0)` (`0x00360832`-`0x0036084F`): layer 4 goes to
 black in zero frames, at priority 255 so it covers every other stage-6 effect. The skip itself is
-on [cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md).
+on [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
 
 ### The movie fade schedule
 
@@ -309,7 +309,7 @@ In the decompiled `us` scripts (1,114 files), counting every call:
 - [Script screen effects](script-screen-effects.md): the cut-in, motion blur, soft focus and
   screen blur effects that share the descriptor pool.
 - [Movies](movies.md): the movie files the schedule's ids name.
-- [Cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md):
+- [Event scenes](../Scripts-And-Script-Commands/event-scenes.md):
   the movie verbs, the player states and `skipexec`.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the fade verbs.
 - [Frame update order](../Engine-Core/frame-update-order.md): where the pool tick, the

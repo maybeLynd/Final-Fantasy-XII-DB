@@ -143,7 +143,7 @@ for which `0x002647B0` is non-zero.
 `cancel_battle_think_only_crystal_talk` (`0x057A`, `0x00344740`) runs outside a town: every roster
 member except the controlled one has its action cancelled (`0x0035AE10`) and, when `0x00233D70` says
 so, three presentation resets (`0x002ECA00`, `0x002EB430`, `0x002ED020`). `capturepc` cancels the same
-way ([cutscenes](cutscenes-and-the-world-lock.md)).
+way ([party during scenes](party-during-scenes.md)).
 
 `setforcefight(a)` (`0x0483`, begin `0x003419F0`, poll `0x00342CE0` → `0x00357F00`) is a state machine
 on the scratch block: the begin stores `a >= 0` at `+4`, the draw flag 0 at `+2` and `a | 0x1000000`
@@ -251,6 +251,6 @@ the two script grant words; the render record's drawn state; `0x022C1F48` and `0
 
 ## Related
 
-- [Cutscenes and the world lock](cutscenes-and-the-world-lock.md): the capture that cancels an action.
+- [Party during scenes](party-during-scenes.md): the capture that cancels an action.
 - [Force fight mode](../Engine-Core/force-fight-mode.md): the toggle behind `setforcefightmode`.
 - [Script verb table](verb-table.md): the ids and handlers.

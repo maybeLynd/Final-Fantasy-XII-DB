@@ -118,7 +118,8 @@ copies for 8, while kind 38 names `jp` copies for those 43 and keeps the same `u
 
 - [Effect files (.efx, .efb): the effect containers, their chunk streams, the record kinds and the map effect bank](effect-files-efx-efb.md)
 - [Effect element types: the handlers of every element type, what the verified types draw or change, and the kind-0x54 mesh record](effect-element-types.md)
-- [Effect element runtime: instances, emitters and elements, the per-step update, birth, release and child spawns, and the six display layers](effect-element-runtime.md)
+- [Effect element runtime: instances, emitters and elements, the per-step update, birth, release, child spawns and timeline tracks](effect-element-runtime.md)
+- [Effect file loading: the battle effect slots, the loaded-file queue, filing, sharing and releasing, and the battle effect program's state](effect-file-loading.md)
 - [Action list: every attack, magick, technick, item use, summon, Quickening, Concurrence, Foecraft move and trap with its cost, power, element, statuses, area and texts](../Battle-Actions/action-list.md)
 - [Action phases: delay, charge time, approach, execution and the end of a battle action](../Battle-Actions/action-phases.md)
 - [File size tables: the per-language .fst that sizes every file by resource kind and id](../Game-Files-And-Data-Tables/file-size-tables-fst.md)

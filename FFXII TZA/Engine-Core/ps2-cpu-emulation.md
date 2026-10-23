@@ -177,7 +177,8 @@ outside the `0x00506A40` family.
 `0x022D9144` to `0x022D916C` are scalar scratch for eleven translated bodies (`0x003AC110`, `0x003B4310`,
 `0x003B5D40`, `0x005131C0`, `0x00515DA0`, `0x00515FE0`, `0x0051D310`, `0x0053DB50`, `0x0042CBF0`, `0x00395050`,
 `0x003954E0`) and stand for no named register; `0x022D9134` is written by four of them and read by
-none; `0x022D9450` to `0x022D9457` is written by `0x002487A0` and `0x00248A90` and read by nothing.
+none; `0x022D9450` to `0x022D945F` is written by `0x002487A0` and `0x00248A90` (all four lanes, three times each) and
+read by nothing.
 
 ## Layouts
 
@@ -227,6 +228,41 @@ exit when a register must survive. From C code: `0x00398F90`, `0x00397910` and `
 The block `0x022D8F08` to `0x022D947B`, `vf00` at `0x01EF93F0`, and the save stack at `0x02EC0800` /
 `0x02EC0A00`. Every value is whatever the last body left there; no routine owns a register between
 calls, and a value that survives is one nobody overwrote.
+
+### The shift-amount register
+
+`0x022D8F0C`, between the save depth and `$zero`, is the Emotion Engine's shift-amount register `SA`. Before each
+call of `0x00501820`, `0x00502280` stores `((signed byte) sil ^ 2) << 4` there (`0x00502670`, `0x005027C1`).
+`0x00501820` is `QFSRV`: it shifts the 256-bit pair of its two source registers right by `SA` bits into its
+result (`0x00501822`-`0x00501939`). A shift of 0 copies the low source, and 64 joins the high half of the low
+source to the low half of the high source.
+
+### The loop counter
+
+`0x022D94A0`, past the block's end, is the 64-bit loop counter of the translated loops. A body stores its
+remaining count near the end of each pass and runs the pass again while the counter is not 0. It compares it
+either with `$zero` (11 sites) or with the immediate 0. `0x00394E50` stores it at `0x00395011` and compares it at
+`0x0039502A`. Its row in the table below lists every function that stores or compares it.
+
+### Lanes, scratch and the rows past vf31
+
+The register table above names each register by its first byte. Translated bodies also address bytes,
+halfwords and words inside a register, for example the byte lanes of `t2` that `0x00446050` stores. Each such
+address has its own row in [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state.tsv):
+
+- the byte, halfword and word lanes of `t2` to `t7` (`0x022D8FB1` to `0x022D900E`);
+- the top byte of `CLIP`, `0x022D9133`, which each `VCLIP` step clears after its shift;
+- the scalar scratch dwords `0x022D9148` to `0x022D9168`, with what each body stores in them;
+- lanes y and w of `ACC` and the lanes of `vf01` to `vf31` that are named by their own address;
+- the 8-byte words of the rows `0x022D93A0` to `0x022D942F`, which only the clear `0x0036D9E0` writes;
+- the four lanes of the cell `0x022D9450` to `0x022D945F`, which only `0x002487A0` and `0x00248A90` write.
+
+An access counts for a row when its bytes include the row's address. A 16-byte register store therefore
+appears in the row of every lane it covers, and a lane loop over a register appears in every lane's row.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state.tsv), one per address | the row's `type` | 0 (zero-filled tail of `.data`) | the row's `meaning` | the row's `set_by` | the row's `read_by` |
 
 ## Modding notes
 

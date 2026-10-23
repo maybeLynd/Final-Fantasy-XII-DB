@@ -1,0 +1,90 @@
+global	record	code	field	type	start	meaning	set_by	read_by
+0x02E9FDE0	-	-	-	ptr	0 (zero-filled tail of .data)	head of the list of the nine morph records, linked through each record's +0x78: each initialiser stores the head in its record's +0x78 and makes its record the head, so after the last initialiser (0x00168760) the head is Morph44 (0x02EA0570); no other instruction reads the head	0x00167FE0 (0x0016805B, the record); 0x001680D0 (0x0016814B, the record); 0x001681C0 (0x0016823B, the record); 0x001682B0 (0x0016832B, the record); 0x001683A0 (0x0016841B, the record); 0x00168490 (0x0016850B, the record); 0x00168580 (0x001685FB, the record); 0x00168670 (0x001686EB, the record); 0x00168760 (0x001687DB, the record)	0x00167FE0 (0x00168046); 0x001680D0 (0x00168136); 0x001681C0 (0x00168226); 0x001682B0 (0x00168316); 0x001683A0 (0x00168406); 0x00168490 (0x001684F6); 0x00168580 (0x001685E6); 0x00168670 (0x001686D6); 0x00168760 (0x001687C6)
+0x02EA01D8	0x02EA0160	Morph23	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph23` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph42` record 0x02EA0090	0x001680D0 (0x00168144, 0x02EA0090)	-
+0x02EA01E0	0x02EA0160	Morph23	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph23`: 0 (no semantic)	0x001680D0 (0x00168152, 0)	-
+0x02EA01E8	0x02EA0160	Morph23	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph23`: 2	0x001680D0 (0x00168159, 2)	-
+0x02EA01F0	0x02EA0160	Morph23	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph23`: 0 (no semantic)	0x001680D0 (0x00168163, 0)	-
+0x02EA01F8	0x02EA0160	Morph23	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph23`: 2	0x001680D0 (0x0016816A, 2)	-
+0x02EA0200	0x02EA0160	Morph23	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph23`: 0 (no semantic); past the record's input count (2)	0x001680D0 (0x00168174, 0)	-
+0x02EA0208	0x02EA0160	Morph23	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph23`: 2; past the record's input count (2)	0x001680D0 (0x0016817B, 2)	-
+0x02EA0210	0x02EA0160	Morph23	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph23`: 0 (no semantic); past the record's input count (2)	0x001680D0 (0x00168185, 0)	-
+0x02EA0218	0x02EA0160	Morph23	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph23`: 2; past the record's input count (2)	0x001680D0 (0x0016818C, 2)	-
+0x02EA0220	0x02EA0160	Morph23	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph23`: 0 (no semantic)	0x001680D0 (0x00168196, 0)	-
+0x02EA0228	0x02EA0160	Morph23	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph23`: 2	0x001680D0 (0x0016819D, 2)	-
+0x02EA0448	0x02EA03D0	Morph24	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph24` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph43` record 0x02EA0300	0x001681C0 (0x00168234, 0x02EA0300)	-
+0x02EA0450	0x02EA03D0	Morph24	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph24`: 0 (no semantic)	0x001681C0 (0x00168242, 0)	-
+0x02EA0458	0x02EA03D0	Morph24	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph24`: 3	0x001681C0 (0x00168249, 3)	-
+0x02EA0460	0x02EA03D0	Morph24	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph24`: 0 (no semantic)	0x001681C0 (0x00168253, 0)	-
+0x02EA0468	0x02EA03D0	Morph24	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph24`: 3	0x001681C0 (0x0016825A, 3)	-
+0x02EA0470	0x02EA03D0	Morph24	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph24`: 0 (no semantic); past the record's input count (2)	0x001681C0 (0x00168264, 0)	-
+0x02EA0478	0x02EA03D0	Morph24	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph24`: 3; past the record's input count (2)	0x001681C0 (0x0016826B, 3)	-
+0x02EA0480	0x02EA03D0	Morph24	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph24`: 0 (no semantic); past the record's input count (2)	0x001681C0 (0x00168275, 0)	-
+0x02EA0488	0x02EA03D0	Morph24	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph24`: 3; past the record's input count (2)	0x001681C0 (0x0016827C, 3)	-
+0x02EA0490	0x02EA03D0	Morph24	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph24`: 0 (no semantic)	0x001681C0 (0x00168286, 0)	-
+0x02EA0498	0x02EA03D0	Morph24	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph24`: 3	0x001681C0 (0x0016828D, 3)	-
+0x02EA0038	0x02E9FFC0	Morph32	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph32` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph22` record 0x02E9FEF0	0x001682B0 (0x00168324, 0x02E9FEF0)	-
+0x02EA0040	0x02E9FFC0	Morph32	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph32`: 0 (no semantic)	0x001682B0 (0x00168332, 0)	-
+0x02EA0048	0x02E9FFC0	Morph32	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph32`: 1	0x001682B0 (0x00168339, 1)	-
+0x02EA0050	0x02E9FFC0	Morph32	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph32`: 0 (no semantic)	0x001682B0 (0x00168343, 0)	-
+0x02EA0058	0x02E9FFC0	Morph32	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph32`: 1	0x001682B0 (0x0016834A, 1)	-
+0x02EA0060	0x02E9FFC0	Morph32	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph32`: 0 (no semantic)	0x001682B0 (0x00168354, 0)	-
+0x02EA0068	0x02E9FFC0	Morph32	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph32`: 1	0x001682B0 (0x0016835B, 1)	-
+0x02EA0070	0x02E9FFC0	Morph32	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph32`: 0 (no semantic); past the record's input count (3)	0x001682B0 (0x00168365, 0)	-
+0x02EA0078	0x02E9FFC0	Morph32	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph32`: 1; past the record's input count (3)	0x001682B0 (0x0016836C, 1)	-
+0x02EA0080	0x02E9FFC0	Morph32	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph32`: 0 (no semantic)	0x001682B0 (0x00168376, 0)	-
+0x02EA0088	0x02E9FFC0	Morph32	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph32`: 1	0x001682B0 (0x0016837D, 1)	-
+0x02EA02A8	0x02EA0230	Morph33	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph33` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph23` record 0x02EA0160	0x001683A0 (0x00168414, 0x02EA0160)	-
+0x02EA02B0	0x02EA0230	Morph33	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph33`: 0 (no semantic)	0x001683A0 (0x00168422, 0)	-
+0x02EA02B8	0x02EA0230	Morph33	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph33`: 2	0x001683A0 (0x00168429, 2)	-
+0x02EA02C0	0x02EA0230	Morph33	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph33`: 0 (no semantic)	0x001683A0 (0x00168433, 0)	-
+0x02EA02C8	0x02EA0230	Morph33	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph33`: 2	0x001683A0 (0x0016843A, 2)	-
+0x02EA02D0	0x02EA0230	Morph33	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph33`: 0 (no semantic)	0x001683A0 (0x00168444, 0)	-
+0x02EA02D8	0x02EA0230	Morph33	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph33`: 2	0x001683A0 (0x0016844B, 2)	-
+0x02EA02E0	0x02EA0230	Morph33	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph33`: 0 (no semantic); past the record's input count (3)	0x001683A0 (0x00168455, 0)	-
+0x02EA02E8	0x02EA0230	Morph33	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph33`: 2; past the record's input count (3)	0x001683A0 (0x0016845C, 2)	-
+0x02EA02F0	0x02EA0230	Morph33	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph33`: 0 (no semantic)	0x001683A0 (0x00168466, 0)	-
+0x02EA02F8	0x02EA0230	Morph33	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph33`: 2	0x001683A0 (0x0016846D, 2)	-
+0x02EA0518	0x02EA04A0	Morph34	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph34` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph24` record 0x02EA03D0	0x00168490 (0x00168504, 0x02EA03D0)	-
+0x02EA0520	0x02EA04A0	Morph34	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph34`: 0 (no semantic)	0x00168490 (0x00168512, 0)	-
+0x02EA0528	0x02EA04A0	Morph34	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph34`: 3	0x00168490 (0x00168519, 3)	-
+0x02EA0530	0x02EA04A0	Morph34	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph34`: 0 (no semantic)	0x00168490 (0x00168523, 0)	-
+0x02EA0538	0x02EA04A0	Morph34	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph34`: 3	0x00168490 (0x0016852A, 3)	-
+0x02EA0540	0x02EA04A0	Morph34	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph34`: 0 (no semantic)	0x00168490 (0x00168534, 0)	-
+0x02EA0548	0x02EA04A0	Morph34	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph34`: 3	0x00168490 (0x0016853B, 3)	-
+0x02EA0550	0x02EA04A0	Morph34	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph34`: 0 (no semantic); past the record's input count (3)	0x00168490 (0x00168545, 0)	-
+0x02EA0558	0x02EA04A0	Morph34	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph34`: 3; past the record's input count (3)	0x00168490 (0x0016854C, 3)	-
+0x02EA0560	0x02EA04A0	Morph34	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph34`: 0 (no semantic)	0x00168490 (0x00168556, 0)	-
+0x02EA0568	0x02EA04A0	Morph34	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph34`: 3	0x00168490 (0x0016855D, 3)	-
+0x02EA0108	0x02EA0090	Morph42	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph42` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph32` record 0x02E9FFC0	0x00168580 (0x001685F4, 0x02E9FFC0)	-
+0x02EA0110	0x02EA0090	Morph42	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph42`: 0 (no semantic)	0x00168580 (0x00168602, 0)	-
+0x02EA0118	0x02EA0090	Morph42	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph42`: 1	0x00168580 (0x00168609, 1)	-
+0x02EA0120	0x02EA0090	Morph42	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph42`: 0 (no semantic)	0x00168580 (0x00168613, 0)	-
+0x02EA0128	0x02EA0090	Morph42	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph42`: 1	0x00168580 (0x0016861A, 1)	-
+0x02EA0130	0x02EA0090	Morph42	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph42`: 0 (no semantic)	0x00168580 (0x00168624, 0)	-
+0x02EA0138	0x02EA0090	Morph42	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph42`: 1	0x00168580 (0x0016862B, 1)	-
+0x02EA0140	0x02EA0090	Morph42	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph42`: 0 (no semantic)	0x00168580 (0x00168635, 0)	-
+0x02EA0148	0x02EA0090	Morph42	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph42`: 1	0x00168580 (0x0016863C, 1)	-
+0x02EA0150	0x02EA0090	Morph42	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph42`: 0 (no semantic)	0x00168580 (0x00168646, 0)	-
+0x02EA0158	0x02EA0090	Morph42	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph42`: 1	0x00168580 (0x0016864D, 1)	-
+0x02EA0378	0x02EA0300	Morph43	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph43` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph33` record 0x02EA0230	0x00168670 (0x001686E4, 0x02EA0230)	-
+0x02EA0380	0x02EA0300	Morph43	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph43`: 0 (no semantic)	0x00168670 (0x001686F2, 0)	-
+0x02EA0388	0x02EA0300	Morph43	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph43`: 2	0x00168670 (0x001686F9, 2)	-
+0x02EA0390	0x02EA0300	Morph43	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph43`: 0 (no semantic)	0x00168670 (0x00168703, 0)	-
+0x02EA0398	0x02EA0300	Morph43	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph43`: 2	0x00168670 (0x0016870A, 2)	-
+0x02EA03A0	0x02EA0300	Morph43	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph43`: 0 (no semantic)	0x00168670 (0x00168714, 0)	-
+0x02EA03A8	0x02EA0300	Morph43	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph43`: 2	0x00168670 (0x0016871B, 2)	-
+0x02EA03B0	0x02EA0300	Morph43	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph43`: 0 (no semantic)	0x00168670 (0x00168725, 0)	-
+0x02EA03B8	0x02EA0300	Morph43	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph43`: 2	0x00168670 (0x0016872C, 2)	-
+0x02EA03C0	0x02EA0300	Morph43	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph43`: 0 (no semantic)	0x00168670 (0x00168736, 0)	-
+0x02EA03C8	0x02EA0300	Morph43	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph43`: 2	0x00168670 (0x0016873D, 2)	-
+0x02EA05E8	0x02EA0570	Morph44	+0x78	ptr	0 (zero-filled tail of .data)	link of the `Morph44` record in the list headed by 0x02E9FDE0: the head when its initialiser ran, the `Morph34` record 0x02EA04A0	0x00168760 (0x001687D4, 0x02EA04A0)	-
+0x02EA05F0	0x02EA0570	Morph44	+0x80	ptr	0 (zero-filled tail of .data)	semantic of input description 0 of `Morph44`: 0 (no semantic)	0x00168760 (0x001687E2, 0)	-
+0x02EA05F8	0x02EA0570	Morph44	+0x88	u32	0 (zero-filled tail of .data)	data type of input description 0 of `Morph44`: 3	0x00168760 (0x001687E9, 3)	-
+0x02EA0600	0x02EA0570	Morph44	+0x90	ptr	0 (zero-filled tail of .data)	semantic of input description 1 of `Morph44`: 0 (no semantic)	0x00168760 (0x001687F3, 0)	-
+0x02EA0608	0x02EA0570	Morph44	+0x98	u32	0 (zero-filled tail of .data)	data type of input description 1 of `Morph44`: 3	0x00168760 (0x001687FA, 3)	-
+0x02EA0610	0x02EA0570	Morph44	+0xA0	ptr	0 (zero-filled tail of .data)	semantic of input description 2 of `Morph44`: 0 (no semantic)	0x00168760 (0x00168804, 0)	-
+0x02EA0618	0x02EA0570	Morph44	+0xA8	u32	0 (zero-filled tail of .data)	data type of input description 2 of `Morph44`: 3	0x00168760 (0x0016880B, 3)	-
+0x02EA0620	0x02EA0570	Morph44	+0xB0	ptr	0 (zero-filled tail of .data)	semantic of input description 3 of `Morph44`: 0 (no semantic)	0x00168760 (0x00168815, 0)	-
+0x02EA0628	0x02EA0570	Morph44	+0xB8	u32	0 (zero-filled tail of .data)	data type of input description 3 of `Morph44`: 3	0x00168760 (0x0016881C, 3)	-
+0x02EA0630	0x02EA0570	Morph44	+0xC0	ptr	0 (zero-filled tail of .data)	semantic of output description 0 of `Morph44`: 0 (no semantic)	0x00168760 (0x00168826, 0)	-
+0x02EA0638	0x02EA0570	Morph44	+0xC8	u32	0 (zero-filled tail of .data)	data type of output description 0 of `Morph44`: 3	0x00168760 (0x0016882D, 3)	-

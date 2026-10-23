@@ -1,0 +1,70 @@
+global	type	start	value_bits	value	meaning	source_float	source_bits	initialiser	table_slot	set_by	read_by
+0x02EA0B50	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168950	0x008C4650	0x00168950 (0x00168961)	-
+0x02EA0B54	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168990	0x008C4640	0x00168990 (0x001689A1)	-
+0x02EA0B68	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168970	0x008C4648	0x00168970 (0x00168981)	-
+0x02EA13A0	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x001689F0	0x008C4668	0x001689F0 (0x00168A01)	-
+0x02EA13A4	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168A10	0x008C4660	0x00168A10 (0x00168A21)	-
+0x02EA13A8	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x001689D0	0x008C4670	0x001689D0 (0x001689E1)	-
+0x02EA13B0	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168A70	0x008C4678	0x00168A70 (0x00168A81)	-
+0x02EA13B4	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168A50	0x008C4680	0x00168A50 (0x00168A61)	-
+0x02EA13B8	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168A30	0x008C4688	0x00168A30 (0x00168A41)	-
+0x02EA1488	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168A90	0x008C46A0	0x00168A90 (0x00168AA1)	-
+0x02EA148C	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168AB0	0x008C4698	0x00168AB0 (0x00168AC1)	-
+0x02EA1490	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168AD0	0x008C4690	0x00168AD0 (0x00168AE1)	-
+0x02EA1724	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168B30	0x008C46A8	0x00168B30 (0x00168B41)	-
+0x02EA1728	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168B10	0x008C46B0	0x00168B10 (0x00168B21)	-
+0x02EA172C	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168AF0	0x008C46B8	0x00168AF0 (0x00168B01)	-
+0x02EA1928	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168B70	0x008C46C8	0x00168B70 (0x00168B81)	-
+0x02EA192C	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168B90	0x008C46C0	0x00168B90 (0x00168BA1)	-
+0x02EA1930	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168B50	0x008C46D0	0x00168B50 (0x00168B61)	-
+0x02EA1950	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168BF0	0x008C46D8	0x00168BF0 (0x00168C01)	-
+0x02EA1954	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168BD0	0x008C46E0	0x00168BD0 (0x00168BE1)	-
+0x02EA1958	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168BB0	0x008C46E8	0x00168BB0 (0x00168BC1)	-
+0x02EA19B0	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168C80	0x008C46F8	0x00168C80 (0x00168C91)	-
+0x02EA19B4	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168C40	0x008C4708	0x00168C40 (0x00168C51)	-
+0x02EA19B8	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168C60	0x008C4700	0x00168C60 (0x00168C71)	-
+0x02EA1A40	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168CE0	0x008C4710	0x00168CE0 (0x00168CF1)	-
+0x02EA1A44	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168CC0	0x008C4718	0x00168CC0 (0x00168CD1)	-
+0x02EA1A48	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168CA0	0x008C4720	0x00168CA0 (0x00168CB1)	-
+0x02EA3D28	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168D40	0x008C4728	0x00168D40 (0x00168D51)	-
+0x02EA3D2C	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168D00	0x008C4738	0x00168D00 (0x00168D11)	-
+0x02EA3D30	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168D20	0x008C4730	0x00168D20 (0x00168D31)	-
+0x02EA3D34	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168DA0	0x008C4740	0x00168DA0 (0x00168DB1)	-
+0x02EA3D38	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168D60	0x008C4750	0x00168D60 (0x00168D71)	-
+0x02EA3D3C	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168D80	0x008C4748	0x00168D80 (0x00168D91)	-
+0x02EA3D58	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168DC0	0x008C4768	0x00168DC0 (0x00168DD1)	-
+0x02EA3D5C	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168DE0	0x008C4760	0x00168DE0 (0x00168DF1)	-
+0x02EA3DE0	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168E00	0x008C4758	0x00168E00 (0x00168E11)	-
+0x02EA3DE4	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168E60	0x008C4770	0x00168E60 (0x00168E71)	-
+0x02EA3DE8	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168E40	0x008C4778	0x00168E40 (0x00168E51)	-
+0x02EA3DEC	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168E20	0x008C4780	0x00168E20 (0x00168E31)	-
+0x02EA4028	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168EC0	0x008C4788	0x00168EC0 (0x00168ED1)	-
+0x02EA402C	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168E80	0x008C4798	0x00168E80 (0x00168E91)	-
+0x02EA4030	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168EA0	0x008C4790	0x00168EA0 (0x00168EB1)	-
+0x02EA4064	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168F10	0x008C47B8	0x00168F10 (0x00168F21)	-
+0x02EA4068	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168F50	0x008C47A8	0x00168F50 (0x00168F61)	-
+0x02EA406C	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168F30	0x008C47B0	0x00168F30 (0x00168F41)	-
+0x02EA4070	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168F70	0x008C47D0	0x00168F70 (0x00168F81)	-
+0x02EA4074	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00168FB0	0x008C47C0	0x00168FB0 (0x00168FC1)	-
+0x02EA4078	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168F90	0x008C47C8	0x00168F90 (0x00168FA1)	-
+0x02EA407C	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00169010	0x008C47D8	0x00169010 (0x00169021)	-
+0x02EA4080	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00168FF0	0x008C47E0	0x00168FF0 (0x00169001)	-
+0x02EA4084	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00168FD0	0x008C47E8	0x00168FD0 (0x00168FE1)	-
+0x02EA4088	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00169030	0x008C4800	0x00169030 (0x00169041)	-
+0x02EA408C	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00169070	0x008C47F0	0x00169070 (0x00169081)	-
+0x02EA4090	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00169050	0x008C47F8	0x00169050 (0x00169061)	-
+0x02EA4094	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00169090	0x008C4818	0x00169090 (0x001690A1)	-
+0x02EA4098	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x001690D0	0x008C4808	0x001690D0 (0x001690E1)	-
+0x02EA409C	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x001690B0	0x008C4810	0x001690B0 (0x001690C1)	-
+0x02EA40A0	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00169130	0x008C4820	0x00169130 (0x00169141)	-
+0x02EA40A4	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x001690F0	0x008C4830	0x001690F0 (0x00169101)	-
+0x02EA40A8	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00169110	0x008C4828	0x00169110 (0x00169121)	-
+0x02EA40AC	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00169190	0x008C4838	0x00169190 (0x001691A1)	-
+0x02EA40B0	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00169150	0x008C4848	0x00169150 (0x00169161)	-
+0x02EA40B4	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00169170	0x008C4840	0x00169170 (0x00169181)	-
+0x02EA40C0	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x001691B0	0x008C4860	0x001691B0 (0x001691C1)	-
+0x02EA40C4	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x001691D0	0x008C4858	0x001691D0 (0x001691E1)	-
+0x02EA40C8	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x001691F0	0x008C4850	0x001691F0 (0x00169201)	-
+0x02EA40CC	u16	0 (zero-filled tail of .data)	0x1400	2^-10 = 0.0009765625	the half epsilon, the gap between 1 and the next half	0x00D8F9C0	0x3A7FFFD5	0x00169210	0x008C4878	0x00169210 (0x00169221)	-
+0x02EA40D0	u16	0 (zero-filled tail of .data)	0x7BFF	65504	the largest finite half	0x00D8F9CC	0x477FE000	0x00169230	0x008C4870	0x00169230 (0x00169241)	-
+0x02EA40D4	u16	0 (zero-filled tail of .data)	0x0001	2^-24 = 5.96046e-08	the smallest positive half, a subnormal	0x00D5003C	0x33800000	0x00169250	0x008C4868	0x00169250 (0x00169261)	-

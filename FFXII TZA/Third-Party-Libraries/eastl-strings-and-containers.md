@@ -217,6 +217,61 @@ names them. The addresses taken near them are the strings' `allocator` fields, w
 and the destructors call through, and the objects at `0x01F83070` and `0x01F83080` (`0x001FBD80`, `0x001FBE50`), whose code
 reaches only their `+0x00` and `+0x08` (`0x001FB840`, `0x001FB810`).
 
+### How every static string is filled
+
+Every static string is filled in the same steps as the escapes above. `0x0015D610`, which builds `null` from
+`0x00904780`, shows each store:
+
+1. `0x0015D62E` sets `capacityEnd` to 0, and `0x0015D643` zeroes `begin` and `end` with one 16-byte store.
+2. With a block from the allocator, `0x0015D687`, `0x0015D68E` and `0x0015D69E` set `begin` and `end` to the block and
+   `capacityEnd` to the block plus 5. When the length plus one is below 2, `0x0015D6B5`, `0x0015D6BC` and `0x0015D6C3`
+   set them to `0x02EBA2E0`, `0x02EBA2E0` and `0x02EBA2E1` instead.
+3. After the copy, `0x0015D6E0` moves `end` past the four characters and `0x0015D6EE` writes the terminator.
+4. At exit, `0x008A70F0` reads `capacityEnd` (`0x008A70FD`) and `begin` (`0x008A7107`) and frees the block through the
+   allocator's slot `+0x18` when it is longer than one byte.
+
+### Who reads the token strings
+
+The 52 token strings are four copies of the same 13: copy 1 from `0x01F83090` to `0x01F83230` (around the empty string `0x01F83130`), copies 2 to 4 at
+`0x01FD3C58` to `0x01FD4118`. While the game runs, only copy 1 and one string of copy 4 are read:
+
+- the escapes of copy 1, by `0x002002E0` (above);
+- `null`: the value writer `0x001FF210` builds a string value from its `begin` (`0x001FF491`) and `end`
+  (`0x001FF48A`), and the value reader `0x00200E60` matches its four letters against the input (`0x00200F1F`,
+  `0x00200F42`, `0x00200F75`, `0x00200FA8`);
+- `true` and `false`: `0x00200E60` matches them letter by letter (`true` at `0x00200FDE`, `0x00201005`, `0x00201038`,
+  `0x0020106B`; `false` at `0x00201084`, `0x002010AB`, `0x002010DE`, `0x00201111`, `0x00201144`);
+- for a boolean value, `0x001FF210` passes the address of `true` or `false` (`0x001FF41E`, `0x001FF425`, chosen at
+  `0x001FF42F`) to `0x001FE820`, which copies its `begin` (`0x001FE879`) and `end` (`0x001FE875`) into a string value;
+- `0123456789ABCDEFabcdef` (`0x01F830F0`): `0x00200E60` starts a number on a character from entry 0 to entry 9
+  (`0x00200FCA`), the number reader `0x00201890` tests for a leading `0` (`0x0020197F`), and the string reader
+  `0x00201EB0` accepts a `\u` digit in entries 0 to 9, 10 to 15 or 16 to 21 (`0x00202281`);
+- `\/` of copy 4 (`0x01FD4058`), by JsonBox's `SolidusEscaper` `0x002165B0`
+  ([Third-party libraries](third-party-libraries.md)).
+
+`\u` and `\/` of copy 1, and every other string of copies 2 to 4, are read only by their own destructors.
+
+### The empty string value and the empty map
+
+`0x0015D2F0` builds `0x01F83130` without a copy: `begin` and `end` take the shared byte `0x02EBA2E0` (`0x0015D30E`,
+`0x0015D31C`) and `capacityEnd` takes `0x02EBA2E1` (`0x0015D32A`). `0x00200BA0` returns its address for every value whose
+type tag is not 0, the string tag. Its two callers read it: `0x001C3760` its `begin` (`0x001C38FF`, after the call at
+`0x001C38FA`), and `0x001C6E20` its `end` and `begin` (`0x001C6F68`, `0x001C6F6C`, after the call at `0x001C6F47`). The
+destructor `0x008A6FB0` reads `capacityEnd` and `begin`.
+
+`0x0015D260` builds an empty map at `0x01F83250` with an allocator named `EASTL map` (`0x008F4120`):
+
+1. the anchor's right and left links point at the anchor `0x01F83258` (`0x0015D2C1`, `0x0015D2C8`);
+2. the root is 0 (`0x0015D2AF`), the anchor's colour byte is 0 (`0x0015D2CF`) and the count is 0 (`0x0015D2D6`).
+
+Only `0x0015D260` and the destructor `0x008A6F10` refer to the map, so it stays empty. `0x008A6F10` reads the root
+(`0x008A6F24`) and returns at `0x008A6F2E` because it is 0. Its loop would free `0x50`-byte nodes (`0x008A6F75`), each
+with a string key at `+0x20` and a value at `+0x40` that it passes to `0x002001F0`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [`eastl-strings-and-containers-state.tsv`](eastl-strings-and-containers-state.tsv): the 138 string fields that no table above lists and the five written fields of the empty map | `void*`; the map's colour `u8` and count `u32` | 0 (zero-filled tail of `.data`) | one field of a static string (its object, literal and copy) or of the empty map | the initialiser, at the sites in `set_by` | the readers above and the destructors (`read_by`); `-` for the 45 fields that no code reads: 41 `end` pointers and the map's two anchor links, colour byte and count |
+
 ## Modding notes
 
 - Never free or write through a string whose capacity end is `0x02EBA2E1`: that is the shared empty

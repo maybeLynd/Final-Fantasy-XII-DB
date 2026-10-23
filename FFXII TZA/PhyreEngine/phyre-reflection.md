@@ -580,15 +580,16 @@ The `family` column groups the rows:
 |---|---:|---|
 | `class-flags` | 310 | the `+0xFC` flags of the descriptors that initialisers and registrars build |
 | `array-getter` | 698 | the fields that the 69 array-type descriptor getters write |
-| `data-member` | 265 | member records: the registrars' vtable and attribute stores, and the core records built inline |
-| `callable` | 173 | the method and script-function records and their caller objects |
+| `data-member` | 272 | member records: the registrars' vtable and attribute stores, and the core records built inline |
+| `callable` | 622 | the method and script-function records and their caller objects |
 | `builtin-type` | 130 | the 13 built-in type objects |
 | `enum-type` | 44 | the 4 enum type objects built on first use |
 | `core-descriptor` | 90 | the fields of the 10 core descriptors that their own code writes |
 | `members-registered` | 12 | the bytes that mark a class's members as registered |
 | `header-handler` | 4 | the handler at `+0x100` of the header descriptors |
 | `named-semantic` | 3 | the list of named-semantic descriptors and two of their vtables |
-| `named-registry` | 3 | the registries of named light, shadow-caster and LOD-blend objects |
+| `named-registry` | 4 | the registries of named light, shadow-caster, LOD-blend and trigger objects |
+| `named-type` | 23 | the light and shadow-caster type objects and the other named values registered by name |
 | `default-namespace` | 6 | the fields of the default namespace `0x01F2E330` |
 | `type-tree` | 5 | the link words of the type-tree header `0x01F2E780` |
 
@@ -734,6 +735,85 @@ of every class and sets it back to 0 (`0x00638DAB`).
   and `0x11` for an object with no name.
 - `type-tree`: the link words `0x01F2E788`-`0x01F2E7A8` of the header `0x01F2E780`; `0x00636280` and `0x00638F00` set
   them to the header's address, an empty tree, behind guard `0x02CF9524`.
+
+### More method and script-function records
+
+The `callable` and `data-member` families also hold the records that 22 more member registrars build, from
+`PTimer` (`0x005A02D0`) to `PInputAction` (`0x0086D670`): 134 records, 125 in a method list and 9 in a script-function
+list, each row with the same fields and wording as above. Their registrars:
+
+| Class | Registrar | Records |
+|---|---|---:|
+| `PAnimatableComponent` | `0x005AD8F0` | 23 |
+| `PAnimationClip` | `0x005AFBC0` | 10 |
+| `PAnimationSet` | `0x005B1900` | 3 |
+| `PApplication` | `0x007943E0` | 13 |
+| `PApplicationViewport` | `0x00794E80` | 5 |
+| `PAssetReference` | `0x00675740` | 5 |
+| `PDebugUtils` | `0x00795320` | 2 |
+| `PEntity` | `0x006AB7E0` | 7 |
+| `PInputAction` | `0x0086D670` | 2 |
+| `PInputMapper` | `0x00795590` | 2 |
+| `PInstancesComponent` | `0x006AE350` | 4 |
+| `PMaterialSet` | `0x00666550` | 3 |
+| `PNode` | `0x006B41A0` | 14 |
+| `PPhysicsRigidBody` | `0x00695AB0` | 12 |
+| `PPhysicsWorld` | `0x00697AC0` | 8 |
+| `PPostEffectManager` | `0x006491B0` | 5 |
+| `PRandomGenerator` | `0x006B04B0` | 1 |
+| `PScheduler` | `0x00681F30` | 4 |
+| `PTimer` | `0x005A02D0` | 1 |
+| `PWorldMatrix` | `0x0067E6C0` | 4 |
+| `Quat` | `0x006B0EC0` | 4 |
+| `Vector2` | `0x006B1320` | 2 |
+
+For the 105 records whose caller fields have rows, the registrar stores 0 in the record's `+0x28` right after
+`0x00632FB0` builds it, and the caller object's address once the caller is built. Of these caller objects, 44 hold a 16-byte member-function pointer and
+61 an 8-byte function. The `data-member` rows add the vtable and attribute stores of `m_animationClips`
+(`PAnimatableComponent`), `m_channels` and `m_constantChannels` (`PAnimationClip`) and `m_postEffects`
+(`PPostEffectManager`).
+
+### Light and shadow-caster types
+
+`PLightType` and `PShadowCasterType` objects are `0x20`-byte named values: vtable `+0x00`, name `+0x08`, registry
+link `+0x10`, mask `+0x18`, index `+0x1C`. Each of the eight static objects has an initialiser that registers it
+(`0x006BFC60` or `0x006C2380`) and, when that succeeds, sets its mask and index and stores it in its type's index table.
+The rows are family `named-type`.
+
+| Object | Name | Mask | Index | Initialiser | Exit teardown |
+|---|---|---|---:|---|---|
+| `0x01F2ED48` | `PointLight` | `0x1` | 0 | `0x001674B0` | `0x008B6000` |
+| `0x01F2ED68` | `DirectionalLight` | `0x2` | 1 | `0x00167450` | `0x008B5F60` |
+| `0x01F2ED88` | `AmbientLight` | `0x4` | 2 | `0x001673F0` | `0x008B5EC0` |
+| `0x01F2EDA8` | `SpotLight` | `0x8` | 3 | `0x00167500` | `0x008B60A0` |
+| `0x01F2EDC8` | `NoShadow` | `0x1` | 0 | `0x001676A0` | `0x008B6730` |
+| `0x01F2EDE8` | `PCFShadowMap` | `0x2` | 1 | `0x001676F0` | `0x008B67D0` |
+| `0x01F2EE08` | `CascadedShadowMap` | `0x4` | 2 | `0x001675E0` | `0x008B65F0` |
+| `0x01F2EE28` | `CombinedCascadedShadowMap` | `0x8` | 3 | `0x00167640` | `0x008B6690` |
+
+The index tables are `0x02E58CB0` (light types) and `0x02E59BC0` (shadow-caster types), 32 slots each. `0x006BFC40` and
+`0x006C2300` return slot *i* for *i* below `0x20` and 0 otherwise; their one caller, `0x006B9630`, takes each type's
+name (`+0x08`) for the `-DLIGHTTYPE_<i>=` and `-DSHADOWTYPE_<i>=` defines. `0x006B9120` tests a type's mask against
+the effect's words and packs its index. `0x006B9CF0` copies an effect's supported light types (`+0x28`) and
+shadow-caster types (`+0x38`), sorts the light types by mask with the comparator `0x006B8D10` and packs the same
+index pairs.
+
+The exit teardown, and the destructor `0x006BEC40` or `0x006C0FE0` (reached from slot 0 of the vtable `0x00D82F28` or
+`0x00D83B60`), puts back the class vtable. When the mask is not 0 it unlinks the object from its registry and stores
+0 in its index table at the object's index.
+
+### Trigger types
+
+`0x02E5C210` heads the registry of named `PTriggerType` values (family `named-registry`). Its records hold a name at
+`+0x00`, the next record at `+0x08` and at `+0x10` a flag, 1 for a record taken from the pool. `0x006CD4F0` puts a record at the front; it returns
+`0x11` for a record with no name and `0x12` for a name already present.
+
+- `0x00167C50` registers the static record `0x01F31F78`, `UnsetTrigger`, and `0x008B6FC0` unlinks it at exit.
+- `0x006CD390`, `PNamedSemanticDynamic::FindOrCreateDynamic`, finds a name with `_stricmp`. On a miss it takes a
+  record from the pool `0x02E5C218` and a name slot from `0x02E5C240`, copies the name, sets the flag to 1 and
+  registers the record.
+- `0x006CD5B0`, slot `+0x50` of `PNamedSemanticDescriptorForDynamicType<PTriggerType>` (`0x00D89F40`, the descriptor
+  `0x006CD270` builds at `0x02E5C270`), copies every record's address into an array.
 
 ## Modding notes
 

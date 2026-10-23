@@ -33,6 +33,127 @@ and `in` hold six `q_c00`-`q_c05.tm2` pictures.
 
 ## Layouts
 
+### Queued requests
+
+Each of the 32 queued requests at `+0x3F0` of the quest data widget is `0x10` bytes.
+
+```struct QuestDataRequest base=[questdata+0x3F0]+i*0x10 size=0x10
++0x00    u8              state                  0 in a request; the queue copies requests whole (0x0037FC55-0x0037FC66)
+                                                and 0x0037FFD0 moves the first into the list whole (0x0038003E), where
+                                                this byte becomes the list entry's state
++0x01    u8              kind                   2 for a group file (0x0037FE0E, 0x0037FE7B), 4 for menuquest.nfs
+                                                (0x0037F56F); 0x0037FBA0 matches queued and listed entries by it
+                                                (0x0037FBD0-0x0037FBD4, 0x0037FC11-0x0037FC15)
++0x02    u8              group                  the quest group of a kind-2 request (0x0037FE13, 0x0037FE60), compared
+                                                only for kind 2 (0x0037FBE0-0x0037FBE4, 0x0037FC22-0x0037FC26)
++0x03    u8[1]           gap03                  read and written by no function; nothing fixes its width
++0x04    u16             record                 the menuquest.dat record index (0x0037FE18); 0x0037F190 sends it to the
+                                                owner for kind 2 (0x0037F1C6)
++0x06    u16             questId                the quest id, bits 8-17 of the record's dword +0x10
+                                                (0x0037FDBC-0x0037FDC4, 0x0037FE06)
++0x08    ptr             owner                  the widget to tell when the file is ready (0x0037FE1E, 0x0037FE51,
+                                                0x0037F563); a request equal to a queued one only replaces its owner
+                                                (0x0037FD34-0x0037FD42)
+```
+
+### Listed group files
+
+Each of the 32 listed files at `+0xF0` of the quest data widget is `0x18` bytes; its first `0x10` bytes come whole from the request.
+
+```struct QuestDataFile base=[questdata+0xF0]+i*0x18 size=0x18
++0x00    u8              state                  1 loaded, 2 loading, 3 dropped on arrival; the first eight bytes come
+                                                whole from the request (0x0038003E); 0x0037FBA0 reads it for a matching
+                                                request and sets 3 again for 3 (0x0037FCBB-0x0037FCD0); 0x0037E8D0 and
+                                                0x0037EE10 use an entry only at 1 (0x0037E952, 0x0037EEF3); cleared on
+                                                release (0x0037FA49)
++0x01    u8              kind                   the request's kind, matched by 0x0037FBA0 (0x0037FBD0) and by 0x0037E8D0 and
+                                                0x0037EE10 (0x0037E930, 0x0037EED1)
++0x02    u8              group                  the request's group, matched for kind 2 (0x0037FBE4, 0x0037E936, 0x0037EED7)
++0x03    u8[5]           rest03                 the request's bytes +0x03 to +0x07, copied whole with it (0x0038003E);
+                                                no function reads them from the list
++0x08    ptr             owner                  the widget to tell: replaced by a matching request's owner
+                                                (0x0037FCBE-0x0037FCC2); 0x0037F190 tells it when the entry is ready
+                                                (0x0037FD16-0x0037FD1D)
++0x10    ptr             buffer                 the file's buffer from 0x003800D0; for kind 2 0x0037FEA0 publishes the
+                                                selected quest's chunks from it (0x0037FCEA-0x0037FD11); 0x0037E8D0 and
+                                                0x0037EE10 read the group file through it (0x0037E957, 0x0037EEF8); freed on
+                                                release (0x0037FA40)
+```
+
+### The quest data widget's fields
+
+The quest data widget is the `0x5F0`-byte widget at `0x02AED490` with procedure `0x0037F4D0` (The quest data widget below).
+
+```struct QuestDataWidget base=record size=0x5F0
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0037F4D0
++0xC0    ptr             owner                  the widget told when files are ready: 0 on creation, then the creation
+                                                record's +0x08 (0x0037F66C, 0x0037F6C7-0x0037F6CB); 0x0037E4F0 keeps the
+                                                closing owner here (0x0037E53D); 0x0037F340 and 0x0037F1F0 send it {0x10, 8}
+                                                (0x0037F358, 0x0037F211); destroy sends it {0x10, 9} (0x0037F59C-0x0037F5CB);
+                                                the menuquest.nfs request names it (0x0037F563)
++0xC8    ptr             questTable             menuquest.dat, kind-7 resource 0x128, always requested on creation
+                                                (0x0037F72A-0x0037F750); 0x0037FD50 finds a quest's group and position in it
+                                                (0x0037FD67-0x0037FDC4); freed by 0x0037FA00
++0xD0    ptr             questList              menuquest.lst, kind-7 resource 0x13A, requested when +0xE0 bit 4 is
+                                                set (0x0037F745-0x0037F778); 0x0037E5B0 and 0x0037EFC0 read the threshold and
+                                                petitioner line from it (0x0037E65F, 0x0037E6BC, 0x0037EFCB); 0x0037F860 frees
+                                                it and clears this (0x0037F8A9-0x0037F8BA)
++0xD8    ptr             nameSheet              menuquest.nfs, kept by 0x0037F1F0 when it arrives and registered as
+                                                glyph sheet 5 (0x0037F2B2-0x0037F2C3); 0x0037EB70 returns it (0x0037EB7D);
+                                                0x003800D0 tests it (0x003800F2); 0x0037F860 unregisters it (0x0037F8C5)
++0xE0    u32             flags                  bits 0-4 and 7-9 cleared on creation (0x0037F62B). Bit 0: ready, set by
+                                                0x0037F340 with +0xE5 = 2 (0x0037F389). Bits 1-4: creation bytes 0-3
+                                                (0x0037F678-0x0037F6C1): bit 1 request menuquest.nfs after the first load
+                                                (0x0037F54C-0x0037F574), bit 2 read by no function, bit 3 load resource
+                                                group 0x15 (0x0037F70D-0x0037F71E), bit 4 load menuquest.lst (0x0037F745).
+                                                Bits 5 and 6 cleared on creation (0x0037F6D2). Bit 5: the first load has
+                                                arrived (0x0037F532-0x0037F546). Bit 6: group 0x15 was requested
+                                                (0x0037F723); 0x0037F860 releases it and clears the bit
+                                                (0x0037F88D-0x0037F8A1). Bit 7: busy: set while 0x0037E350 works (0x0037E3BE,
+                                                0x0037E46F) and by 0x003800A0 (0x003800AC-0x003800BC); 0x0037F160 returns it and
+                                                0x0037E4F0 then answers at once. Bits 8 and 9: the selected quest's QHD0
+                                                and QHT0 chunks are published (0x0037FEF5-0x0037FF5F); cleared on creation
+                                                (0x0037F6E5, 0x0037F703) and by 0x0037F860 (0x0037F8EC, 0x0037F902); 0x0037EB90
+                                                and 0x0037EC70 test bit 8 (0x0037EBC3, 0x0037ECB4), 0x0037F140 returns bit 9
++0xE4    u8[1]           gap0E4                 read and written by no function; nothing fixes its width
++0xE5    u8              stage                  0 on creation (0x0037F650); 1 when the first load arrives (0x0037F53F); 2
+                                                ready (0x0037F390); 3 closing without a close request and 4 closing with
+                                                one, set by 0x0037E4F0 (0x0037E594, 0x0037E548). At 3 the procedure retries
+                                                0x0037F860 and destroys the widget when it succeeds (0x0037F583-0x0037F5D0);
+                                                destroy frees the files except at 3 (0x0037F50B); 0x0037F1F0, 0x0037FBA0 and
+                                                0x0037FFD0 wait while it is 0 (0x0037F205, 0x0037FC75, 0x0037FFF2)
++0xE6    u8              group                  the selected quest's group, the record's byte +0x10, stored by
+                                                0x0037FD50 (0x0037FDDD), or the group 0x0037FE40 is asked for (0x0037FE64);
+                                                0xFF on creation (0x0037F63D); 0x0037E8D0 finds the group's file by it
+                                                (0x0037E90A)
++0xE7    u8              position               the quest's position in its group, the number of earlier records of
+                                                the same group (0x0037FD93-0x0037FDE9); 0 from 0x0037FE40 (0x0037FE6D);
+                                                0x0037FBA0, 0x0037F1F0 and 0x0037E8D0 index the group file's 20-byte items
+                                                with it (0x0037FCFE, 0x0037F2F8, 0x0037E960, 0x0037E9D9)
++0xE8    u16             record                 the selected quest's record index in menuquest.dat (0x0037FDF7); 0 from
+                                                0x0037FE40 by a dword store with +0xEA (0x0037FE74); 0x0037E8D0 compares it
+                                                with the pane's (0x0037E8F4)
++0xEA    u16             questId                the selected quest's id, bits 8-17 of the record's dword +0x10
+                                                (0x0037FDBC-0x0037FDFF); 0 from 0x0037FE40 (0x0037FE74); 0x0037EB90 and 0x0037EC70
+                                                read it (0x0037EBEE, 0x0037EC10, 0x0037ECDF)
++0xEC    u8[2]           gap0EC                 read and written by no function; nothing fixes its width
++0xEE    u8              fileCount              the number of entries in the file list +0xF0: 0 on creation with +0xEF
+                                                (0x0037F647); 0x0037FBA0 walks it (0x0037FBAF), 0x0037FA00 frees that many and
+                                                sets 0 (0x0037FA27, 0x0037FA62)
++0xEF    u8              queueCount             the number of queued requests at +0x3F0: 0x0037FBA0 walks it and appends
+                                                at +0x3F0 + count x 0x10 (0x0037FBF7, 0x0037FC4E-0x0037FC6A); 0x0037FFD0 takes
+                                                the first and lowers it (0x00380061); the procedure runs 0x0037FFD0 while
+                                                it is not 0 (0x0037F5DA)
++0xF0    u8[768]         files                  the file list, 32 QuestDataFile entries (above), cleared on creation
+                                                with the queue (0x0037F60D-0x0037F626)
++0x3F0   u8[512]         queue                  the request queue, 32 QuestDataRequest entries (above)
+```
+
+### The quest files
+
+The shipped quest files are laid out as follows.
+
 All multi-byte fields are little-endian.
 
 ### menuquest.dat

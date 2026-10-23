@@ -80,7 +80,7 @@ first through the same setter and the second as the HUD draw word `0x01E0C2AC` (
 Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D700`), and `0x003B7BB0`,
 `0x003B7C60` and `0x003B7E20`, the bodies of `resumeposbattletarget` (`0x195`), `resumepartyinfo_spattack`
 (`0x2A4`) and `setpossummonspace` (`0x191`, `0x003482E0`)
-([cutscenes and the world lock](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md)).
+([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)).
 
 ## Layouts
 

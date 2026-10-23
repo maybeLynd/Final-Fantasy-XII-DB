@@ -94,7 +94,7 @@ along the bone's x axis for that length.
 ### The draw
 
 The render root's model pass `0x0041E4D0` ends by calling `0x0051BC70`. It first draws effect layer 3, the one the effect
-system names `TsEffMan_Layer_AfterOBJ` (`0x00258EE0(3)`, [Effect element runtime](effect-element-runtime.md)), binds the
+system names `TsEffMan_Layer_AfterOBJ` (`0x00258EE0(3)`, [Effect drawing](effect-drawing.md)), binds the
 trail image and palette, and copies the `0x4A0`-byte template. For each listed entry it:
 
 - skips it when bit 1 of `entry +5 | 0x02CA8402` is set, when it holds fewer than two samples, or when its opacity `+8` is
@@ -195,6 +195,6 @@ Measured over the 1,066 `.cm` models in the archive; the model block is the `@FC
 - [Authored presentation commands](authored-presentation-commands.md): command `0x11`.
 - [Model files](model-files-cm-ca.md): the model block that carries the trail section.
 - [Character fades](character-fades.md): the opacity `0x0051CDC0` stores.
-- [Effect element runtime](effect-element-runtime.md): display layer 3, drawn just before the trails.
+- [Effect drawing](effect-drawing.md): display layer 3, drawn just before the trails.
 - [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the packet interpreter and the
   recompiled programs.
