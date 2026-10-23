@@ -88,8 +88,8 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 
 | | |
 |---|---:|
-| keys read by some screen | 213, in 124 functions, 480 read sites |
-| keys bound but read by nothing | 13: the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}`, `BattleLogBlackBandH`, `LicenseBlackBandH`, `FontShadowAlphaMuti` |
+| keys read by some screen | 214: 213 at 480 read sites in 124 functions, and `FontShadowAlphaMuti` through the font manager's slot `+0x308` (`0x001B5210`, `0x001B521C`), from the font border filter pass `0x00190260` (`0x00190434`) |
+| keys bound but read by nothing | 12: the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}`, `BattleLogBlackBandH`, `LicenseBlackBandH` |
 | shipped values outside their schema range | none, in either file |
 | keys `uisize_sd.json` lacks | 63 of the 226 bound |
 

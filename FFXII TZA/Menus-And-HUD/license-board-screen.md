@@ -103,7 +103,8 @@ The sweep `0x0055B310` walks the squares and finds those whose state differs fro
 
 After a purchase, `0x0055DD70` sets the collect bit, runs the fill and gives each listed square a transition
 (`0x0055DDC6`-`0x0055DE80`): a newly reachable square shows state 4 after 0x2E frames with an effect, and an emptied
-square fades out. A square past the 32nd keeps its old look until the next sweep. `0x0055F010` runs the transitions
+square fades out. A square past the 32nd keeps its old look until a later fill lists it or, without the collect bit, copies
+its state (`0x0055B380`-`0x0055B3A6`). `0x0055F010` runs the transitions
 every frame.
 
 ### Preview
@@ -511,7 +512,8 @@ No other instruction reaches `0x02CA8FD8`.
 - The view is the board file plus one row and column; a larger board needs `+0x559`/`+0x55A` to fit a byte.
 - The screen tests LP against the menu record's `+0xB0` (`0x0055C496`), and the purchase charges the member's stats
   record.
-- One purchase animates at most 32 changed squares; the rest change without an effect.
+- One purchase animates at most 32 changed squares; a square past the 32nd is neither listed nor updated and keeps
+  its old look until a later fill lists it or, without the collect bit, copies its state (`0x0055B380`-`0x0055B3A6`).
 
 ## Related
 

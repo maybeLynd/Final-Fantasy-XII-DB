@@ -1287,6 +1287,45 @@ The exit teardown, and the destructor `0x006BEC40` or `0x006C0FE0` (reached from
 - `0x006CD5B0`, slot `+0x50` of `PNamedSemanticDescriptorForDynamicType<PTriggerType>` (`0x00D89F40`, the descriptor
   `0x006CD270` builds at `0x02E5C270`), copies every record's address into an array.
 
+### The per-type table size
+
+The engine set-up `0x005A08E0` calls `0x00638AE0` (`0x005A0AB7`), which walks every class descriptor (the list at
+`+0x10` of the object `0x006373D0` returns, linked through `+0x50`), gives every
+descriptor its per-type table entry at `+0xEC` (`0x00638C0A`). It stores the number of descriptors it walked. The run
+setup `0x0079F150` calls `0x0063C730` (`0x0079F539`), which reads that number and, when the world's per-type table (count
+`+0x10`, entries `+0x18`) does not already hold one more than it, gives the table that many `0x20`-byte entries and
+links each entry's list to itself.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CF8264` | `u32` | 0 (zero-filled tail of `.data`) | the number of class descriptors `0x00638AE0` numbered | `0x00638AE0` (`0x00638C40`) | `0x0063C730` (`0x0063C744`) |
+
+### Two `PCameraProjection` script methods
+
+The engine set-up also calls the `PCameraProjection` member registrar `0x006788C0` (`0x005A096E`). After registering
+`m_aspect`, it builds two method records, each behind its own thread-safe guard (`0x02D3F760`, `0x02D3F7C0`): `0x00632FB0`
+builds the record with its name (`setNearPlane`, `setFarPlane`), and when `0x005A7A40` finds no method of that name
+the registrar appends the record to the method list at `+0x90` of the class the record names at `+0x10`. The
+record's `+0x00` takes the list's sentinel and `+0x08` the previous last record.
+
+It then stores 0 in the record's
+caller pointer `+0x28`, builds the caller object beside the record and points `+0x28` at it.
+
+Each record's exit
+teardown (`0x008B1F20`, `0x008B1EC0`, registered at `0x006789FF` and `0x00678AD7`) unlinks it, points both links at the
+record itself and frees the name buffer `+0x18` when bit 0 of `+0x20` is set.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02D3F718` | `void*` | 0 (zero-filled tail of `.data`) | `setNearPlane` record (`0x02D3F710`) `+0x08`: the record before it in the method list | `0x006788C0` (`0x006789F1`); `0x008B1F20` (`0x008B1F50`, the record's own address) | `0x008B1F20` (`0x008B1F34`) |
+| `0x02D3F738` | `void*` | 0 (zero-filled tail of `.data`) | `setNearPlane` record `+0x28`: the caller object `0x02D3F740` | `0x006788C0` (`0x006789BB`, 0; `0x00678A49`, `0x02D3F740`) | callers of the method, through the record |
+| `0x02D3F740` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6CC78` (slots `0x006B4170`, `0x00678F90`) | `0x006788C0` (`0x00678A2F`) | callers of the method, through the record |
+| `0x02D3F748` | `u8[16]` | 0 (zero-filled tail of `.data`) | the caller object's member-function pointer: `0x00679120` and 0. `0x00679120` stores its float argument (`xmm1`) at `+0xC0` of the object and jumps to the object's slot 1 | `0x006788C0` (`0x00678A3B`, one 16-byte store) | the caller object's slots, through the object |
+| `0x02D3F778` | `void*` | 0 (zero-filled tail of `.data`) | `setFarPlane` record (`0x02D3F770`) `+0x08`: the record before it | `0x006788C0` (`0x00678AC9`); `0x008B1EC0` (`0x008B1EF0`, the record's own address) | `0x008B1EC0` (`0x008B1ED4`) |
+| `0x02D3F798` | `void*` | 0 (zero-filled tail of `.data`) | `setFarPlane` record `+0x28`: the caller object `0x02D3F7A0` | `0x006788C0` (`0x00678A93`, 0; `0x00678B1A`, `0x02D3F7A0`) | callers of the method, through the record |
+| `0x02D3F7A0` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6CC78` | `0x006788C0` (`0x00678B00`) | callers of the method, through the record |
+| `0x02D3F7A8` | `u8[16]` | 0 (zero-filled tail of `.data`) | the caller object's member-function pointer: `0x00679110` and 0. `0x00679110` stores its float argument at `+0xC4` and jumps to slot 1 | `0x006788C0` (`0x00678B0C`, one 16-byte store) | the caller object's slots, through the object |
+
 ## Modding notes
 
 - A class's members exist only in code. A new field needs a new registration; a file cannot add one

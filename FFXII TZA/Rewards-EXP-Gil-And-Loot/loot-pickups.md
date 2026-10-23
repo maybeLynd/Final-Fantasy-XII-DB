@@ -296,6 +296,45 @@ Each of the seven entries at `+0x20` of a pickup slot is 8 bytes.
 | `0x022C3174` | `i32` | pickups collected since the last chain level rise | `0x00319920`; reset on a rise (`0x003184EC`) and by `0x003183A0` |
 | `0x02F973B8` | `f32` | +inf, the search ceiling | `0x002368D0` (`0x002368F0`) |
 
+The pool reset `0x00319B10` and the presence clear `0x002FB250` are unrolled, so they write every slot and every record at
+a fixed address. Slot n starts at `0x02EC0FA0` + n × `0x60`; the slot functions `0x00319A00` and `0x00319830` form the same
+address from a sign-extended index (`0x00319A00`-`0x00319A12`, `0x00319830`-`0x00319842`). The slot fields at their fixed
+addresses:
+
+| Slot | `+0x00` slot number | `+0x04` state | `+0x10` prev | `+0x18` next | `+0x58` handle |
+|---|---|---|---|---|---|
+| 0 | `0x02EC0FA0` | `0x02EC0FA4` | `0x02EC0FB0` | `0x02EC0FB8` | `0x02EC0FF8` |
+| 1 | `0x02EC1000` | `0x02EC1004` | `0x02EC1010` | `0x02EC1018` | `0x02EC1058` |
+| 2 | `0x02EC1060` | `0x02EC1064` | `0x02EC1070` | `0x02EC1078` | `0x02EC10B8` |
+| 3 | `0x02EC10C0` | `0x02EC10C4` | `0x02EC10D0` | `0x02EC10D8` | `0x02EC1118` |
+| 4 | `0x02EC1120` | `0x02EC1124` | `0x02EC1130` | `0x02EC1138` | `0x02EC1178` |
+| 5 | `0x02EC1180` | `0x02EC1184` | `0x02EC1190` | `0x02EC1198` | `0x02EC11D8` |
+| 6 | `0x02EC11E0` | `0x02EC11E4` | `0x02EC11F0` | `0x02EC11F8` | `0x02EC1238` |
+| 7 | `0x02EC1240` | `0x02EC1244` | `0x02EC1250` | `0x02EC1258` | `0x02EC1298` |
+| 8 | `0x02EC12A0` | `0x02EC12A4` | `0x02EC12B0` | `0x02EC12B8` | `0x02EC12F8` |
+| 9 | `0x02EC1300` | `0x02EC1304` | `0x02EC1310` | `0x02EC1318` | `0x02EC1358` |
+
+Every field is 0 at load, since the pool lies in the zero-filled tail of `.data`. The writers and readers of each
+field, the same for all ten slots:
+
+| Field offset | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `+0x00` | `i32` | 0 | the slot's own number n, passed to the presence functions | `0x00319B10`: n for slots 1-9 (`0x00319B12`, `0x00319C3E`-`0x00319C84`), 0 for slot 0 (`0x00319B45`) | `0x00319CA0` (`0x00319D29`), `0x00319600` (`0x003196CE`, `0x0031976D`), `0x00319920` (`0x003199C4`), `0x003197B0` (`0x00319803`), `0x00319850` (`0x00319890`; returned from `0x003198E6`) |
+| `+0x04` | `i32` | 0 | the state, 0 free to 7 last blink | `0x00319B10`, 0; `0x00319CA0`, 1 (`0x00319D96`) and 0 on eviction (`0x00319D30`); `0x00319600`, 2 on landing (`0x00319757`), state + 1 per blink (`0x0031972F`), 0 on expiry (`0x003196D5`); `0x00319920`, 0 (`0x003199DC`); `0x003197B0`, 0 (`0x0031980C`). Every 0 is a qword store that also clears the stamp at `+0x08` | `0x00319CA0` (`0x00319CC5`, equal to 0 means free); `0x00319600` (`0x00319640`; signed compares with 1, 6 and 7 at `0x00319643`-`0x0031965E`) |
+| `+0x10` | `void*` | 0 | the previous live slot | `0x00319B10`, 0; `0x00319CA0` (`0x00319D0A` on the next slot, `0x00319D38`, `0x00319D56`, `0x00319D63`); `0x00319600` (`0x003196AF`, `0x003196DD`); `0x00319920` (`0x003199A1`, `0x003199E4`); `0x003197B0` (`0x003197E0`, `0x00319814`) | `0x00319CA0` (`0x00319CE3`, `0x00319D01`), `0x00319600` (`0x00319688`, `0x003196A6`), `0x00319920` (`0x0031997A`, `0x00319998`), `0x003197B0` (`0x003197B9`, `0x003197D7`) |
+| `+0x18` | `void*` | 0 | the next live slot | `0x00319B10`, 0; `0x00319CA0` (`0x00319CF0` on the previous slot, `0x00319D34`, `0x00319D4B`, `0x00319D71`); `0x00319600` (`0x00319695`, `0x003196D9`); `0x00319920` (`0x00319987`, `0x003199E0`); `0x003197B0` (`0x003197C6`, `0x00319810`) | `0x00319CA0` (`0x00319CE7`, `0x00319CFD`), `0x00319600` (`0x0031968C`, `0x003196A2`, `0x0031977A`), `0x00319920` (`0x0031997E`, `0x00319994`), `0x003197B0` (`0x003197BD`, `0x003197D3`), `0x00319850` (`0x003198E8`) |
+| `+0x58` | `u32` | 0 | the pickup object's handle | `0x00319B10`, 0; `0x00319CA0`, the op 1 result (`0x00319E05`) and 0 on eviction (`0x00319D3C`); `0x00319600`, 0 (`0x003196E1`); `0x00319920`, 0 (`0x003199E8`); `0x003197B0`, 0 (`0x00319818`) | `0x00319CA0` (`0x00319D17`), `0x00319600` (`0x003196BC`, `0x0031971A`, `0x00319739`, `0x00319751`), `0x00319920` (`0x003199AE`), `0x003197B0` (`0x003197ED`) |
+
+Presence record n starts at `0x022BE7F0` + n × `0x20`. Its present byte for records 1-9 lies at `0x022BE810`, `0x022BE830`,
+`0x022BE850`, `0x022BE870`, `0x022BE890`, `0x022BE8B0`, `0x022BE8D0`, `0x022BE8F0` and `0x022BE910`:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022BE810` to `0x022BE910`, step `0x20` | `u8` | 0 (zero-filled tail) | 1 while record n holds a published pickup position | `0x002FB250`, 0 (`0x002FB257`-`0x002FB28F`); `0x002FB2D0`, 1 (`0x002FB2F8`); `0x002FB2A0`, 0 (`0x002FB2B3`) | `0x002FB2D0` (`0x002FB2E3`, equal to 1 refuses the publish); `0x002FB310` (`0x002FB31E`, 0 returns no position); `0x002FB150` (`0x002FB1E0`, walking records 0-9 with a signed count at `0x002FB214`) |
+
+`0x002FB2D0` and `0x002FB2A0` refuse a record number above 9 with an unsigned compare (`0x002FB2D3`, `0x002FB2A3`), so a
+negative number is refused as well. `0x002FB310` takes the number without a bound.
+
 ## Modding notes
 
 - Ten is a literal: the scan bound in `0x00319CA0` (`0x00319CD0`) and the slot numbering in `0x00319B10`

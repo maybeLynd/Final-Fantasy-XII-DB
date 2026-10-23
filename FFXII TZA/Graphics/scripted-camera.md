@@ -374,6 +374,66 @@ Counted in the decompiled `us` scripts (1,114 files):
 [`scripted-camera-camerashake-channels.tsv`](scripted-camera-camerashake-channels.tsv) by start channel and bank index, with
 the scripts that make them.
 
+## State
+
+Every global below is 0 at load (the zero-filled tail of `.data`).
+
+### The working camera's eye and roll
+
+The working camera at `0x02AED560` keeps its eye in the fourth row `+0x90` of its camera matrix, so `0x02AED5F0` is the
+eye's x, and its roll at `+0xC4`. The update `0x003820C0` copies the winning slot over the camera with 16-byte stores,
+then adds the shake to the eye and the roll:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02AED5F4` | `f32` | 0 | the eye's y, `+0x94` | `0x003820C0`: the winner's copy (`0x003822B5`, 16 bytes over `0x02AED5F0`-`0x02AED5FF`), plus the turned eye offset (`0x00382476`) | `0x003820C0` (`0x0038233D` in its 16-byte copy to the stack, `0x00382452`, `0x00382541`); `0x003CBD60` (`0x003CBDB5`); `0x003CBFA0` (`0x003CBFBC`); `0x0037D970` (`0x0037D9A2`); `0x00202C90` and `0x00203080` as part of the vector `0x02AED5F0`; `0x002F1F40` (`0x002F1FDC`, `0x002F2018`), `0x0043F2B0` (`0x0043F2FE`, `0x0043F368`) and `0x005002E0` (`0x00500324`, `0x0050038A`), each a 16-byte load of the row `0x02AED5F0` |
+| `0x02AED5F8` | `f32` | 0 | the eye's z, `+0x98` | `0x003820C0`: the winner's copy (`0x003822B5`), plus the turned eye offset (`0x0038247E`) | `0x003820C0` (`0x0038233D`, `0x00382468`, `0x0038256A`); `0x003CBD60` (`0x003CBDC3`); `0x003CBFA0` (`0x003CBFD1`); `0x0037D970` (`0x0037D9B5`); `0x00202C90` and `0x00203080` as part of the vector `0x02AED5F0`; `0x002F1F40` (`0x002F1FDC`, `0x002F2018`), `0x0043F2B0` (`0x0043F2FE`, `0x0043F368`) and `0x005002E0` (`0x00500324`, `0x0050038A`), each a 16-byte load of the row `0x02AED5F0` |
+| `0x02AED624` | `f32` | 0 | the roll, `+0xC4` | `0x003820C0`: the winner's copy (`0x003822D6`, 16 bytes over `0x02AED620`-`0x02AED62F`), plus the shake roll `0x02AEDF98` (`0x003823DA`) | `0x003820C0` (`0x0038235D` in its copy to the stack, `0x003823BE`); `0x003CBD60` (`0x003CBE05`) |
+
+`0x003CBD60` runs on the camera from `0x00382486` (`0x00382406`), and `0x003CBFA0`, the vector from the eye to the target,
+runs on it from `0x0029BC80`, `0x002DF2C0`, `0x002DF560` and `0x003F1A60`. The 16-byte copy `0x00202C90` takes the eye
+`0x02AED5F0` from `0x002C7660`, `0x002C7B10`, `0x003F2CF0`, `0x003F3010`, `0x003F5100`, `0x003F5260`, `0x003F5430` and `0x003FB3E0`; the
+vector difference `0x00203080` takes it from `0x0028A090`, `0x003F1A60`, `0x003F35C0`, `0x003F7200`, `0x00505570` and `0x00505E00`.
+
+### The submitted flags
+
+Slot n's submitted flag is the `u32` at `0x02AED630` + n × `0xE0` + `0xD0`. Slot 0's is `0x02AED700`; slots 1 to 7 are:
+
+| Global | Slot | Set by | Read by |
+|---|---|---|---|
+| `0x02AED7E0` | 1 | `0x00382910`, 0 at boot (`0x00382930`); `0x003820C0`, 0 when it reads the slot (`0x00382147`); `0x003829D0`, 1 (`0x00382B07`) | `0x003820C0` (`0x00382138`); `0x003829D0` (`0x00382A70`) |
+| `0x02AED8C0` | 2 | `0x00382910` (`0x00382936`); `0x003820C0` (`0x00382169`); `0x003829D0` | `0x003820C0` (`0x0038215A`); `0x003829D0` |
+| `0x02AED9A0` | 3 | `0x00382910` (`0x0038293C`); `0x003820C0` (`0x0038218B`); `0x003829D0` | `0x003820C0` (`0x0038217C`); `0x003829D0` |
+| `0x02AEDA80` | 4 | `0x00382910` (`0x00382942`); `0x003820C0` (`0x003821AD`); `0x003829D0` | `0x003820C0` (`0x0038219E`); `0x003829D0` |
+| `0x02AEDB60` | 5 | `0x00382910` (`0x00382948`); `0x003820C0` (`0x003821CF`); `0x003829D0` | `0x003820C0` (`0x003821C0`); `0x003829D0` |
+| `0x02AEDC40` | 6 | `0x00382910` (`0x0038294E`); `0x003820C0` (`0x003821F1`); `0x003829D0` | `0x003820C0` (`0x003821E2`); `0x003829D0` |
+| `0x02AEDD20` | 7 | `0x00382910` (`0x00382954`); `0x003820C0` (`0x00382213`); `0x003829D0` | `0x003820C0` (`0x00382204`); `0x003829D0` |
+
+`0x003820C0` takes a slot whose flag equals 1 and `0x003829D0` files into the first slot whose flag is 0, setting the
+priority `+0xD4` (`0x00382B01`) before the flag. A slot wins with a signed compare of its priority against the best
+so far (`0x0038212B`, `0x0038214D` and on).
+
+### The view's override elements
+
+`0x003820C0` copies the working camera's view `+0x20` (`0x02AED580`) to `0x02AEDE70` with `0x00202C70` (`0x0038267A`). When
+`0x00181DD0` reports an override it then replaces eight elements from the matrix `m` that `0x00181CF0` returns
+(`0x00382694`-`0x00382712`); the element `+0x00`, `0x02AEDE70`, takes `-m[+0x0C]`:
+
+| Global | Element | Type | Start | Override value |
+|---|---|---|---|---|
+| `0x02AEDE74` | `+0x04` | `f32` | 0 | `-m[+0x1C]` (`0x003826B9`) |
+| `0x02AEDE78` | `+0x08` | `f32` | 0 | `-m[+0x2C]` (`0x003826C9`) |
+| `0x02AEDE80` | `+0x10` | `f32` | 0 | `-m[+0x00]` (`0x003826D8`) |
+| `0x02AEDE84` | `+0x14` | `f32` | 0 | `-m[+0x04]` (`0x003826E8`) |
+| `0x02AEDE88` | `+0x18` | `f32` | 0 | `-m[+0x08]` (`0x003826F8`) |
+| `0x02AEDEA0` | `+0x30` | `f32` | 0 | `m[+0x20]` (`0x00382705`) |
+| `0x02AEDEA4` | `+0x34` | `f32` | 0 | `m[+0x24]` (`0x00382712`) |
+
+The view is read as whole 16-byte rows by `0x0024C060` (`0x0024C10D`-`0x0024C130`), `0x004FDDA0` (`0x004FDDB2`-`0x004FDDEE`) and
+`0x0051CDE0` (`0x0051CF17`-`0x0051CF8E`), and as a matrix through `0x00202C70`, `0x00202D70` and `0x00202D50` by `0x0028DC00`,
+`0x002F4520`, `0x002F5550`, `0x003820C0` (`0x00382752`, `0x0038276C`, `0x003827D5`), `0x003F0170`, `0x003F0610`, `0x003F3710`,
+`0x003F5430` and `0x003F7930`.
+
 ## Modding notes
 
 - A camera submitted at a priority above `0x64` from a hook beats every camera in the game for that

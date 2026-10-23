@@ -38,7 +38,7 @@ gameplay LCG at `0x022C256C`:
 ```python
 a = state = state * 0x41C64E6D + 0x3039;
 b = state = state * 0x41C64E6D + 0x3039; state = state * 0x41C64E6D + 0x3039;
-draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 11 + 10 + 10 bits
+draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);  # 11 + 10 + 10 bits
 ```
 
 The loot and chain functions do not call the generator `0x00328370`; each carries its own inlined copy

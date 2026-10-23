@@ -351,6 +351,81 @@ One of the player's three frame queues, as the queue functions use it:
 | VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in [`media-decoder-libraries-vp8-decoder-instance-accesses.tsv`](media-decoder-libraries-vp8-decoder-instance-accesses.tsv) and [`media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv`](media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv) |
 | encoder text | `mkvmuxer`, "VP8 Encoder" and "VP9" occur zero times |
 
+## State
+
+### The movie open time
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02E3F800` | `u32` | 0 (zero-filled tail of `.data`) | the `GetTickCount` milliseconds when the last movie was opened | `0x0067A480` (`0x0067A4EE`) | no instruction names it |
+
+### HCA decoder start-up counts
+
+`0x00121000` and `0x00124350` are run-once wrappers: each adds 1 to its own count and does its work only on the call
+that makes the count 1. `0x00121000` then runs `0x00124350` and the start-up check `0x00121DB0`, which keeps its own count
+in `0x02EAE0C8`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAE080` | `i32` | 0 (zero-filled tail of `.data`) | the number of calls to `0x00121000` | `0x00121000` (`0x0012100C`) | `0x00121000` (`0x00121004`); `0x001218B0` (`0x001218C2`: it returns 5 unless the count is greater than 0, a signed compare) |
+| `0x02EAE0CC` | `i32` | 0 (zero-filled tail of `.data`) | the number of calls to `0x00124350`; the first runs `0x00125250` | `0x00124350` (`0x0012435C`) | `0x00124350` (`0x00124354`) |
+| `0x02EAE0D0` | `i32` | 0 (zero-filled tail of `.data`) | raised by 1 on each call of `0x00125250`, which returns the new value | `0x00125250` (`0x00125250`, `inc`) | `0x00125250` (`0x00125256`) |
+
+### A block counter in the Ogg Vorbis decoder
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAE0D4` | `i32` | 0 (zero-filled tail of `.data`) | after each block it decodes, `0x007FDC60` adds the channel count it has just looped over (`+0x04` of the stream information at `[[block + 0x50] + 0x08]`) | `0x007FDC60` (`0x007FE0B2`, `add`) | no instruction names it |
+
+### libvpx run-once words
+
+Each of these words runs one set-up function once for all decoder instances. A caller that swaps 0 for 1 runs the
+function and then raises the word to 2; a caller that finds 1 spins on `Sleep(0)` until it can swap 2 for 2. The
+decoder-interface init `0x0016E110` runs `0x0016F080` and `0x00172580` through two of them and then calls `0x00172680`, which
+runs its own; the one-time table set-up `0x0016F1F0` runs `0x00172580` and `0x001740A0`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBA2E8` | `u32` | 0 (zero-filled tail of `.data`) | run-once word of `0x0016F080`, the processor-feature kernel install | `0x0016E110` (`lock cmpxchg` at `0x0016E12C`, `0x0016E146`, `0x0016E15A`; `lock inc` at `0x0016E13B`) | the same `lock cmpxchg` instructions |
+| `0x02EBA2F0` | `u32` | 0 (zero-filled tail of `.data`) | run-once word of `0x00172580` | `0x0016E110` (`0x0016E166`, `0x0016E180`, `0x0016E19A`; `0x0016E175`, `lock inc`); `0x0016F1F0` (`0x0016F214`, `0x0016F22E`, `0x0016F242`; `0x0016F223`, `lock inc`) | the same `lock cmpxchg` instructions |
+| `0x02EBA2F4` | `u32` | 0 (zero-filled tail of `.data`) | run-once word inside `0x00172680` | `0x00172680` (`0x0017268E`, `0x00172725`, `0x0017273A`; `0x00172711`, `lock inc`) | the same `lock cmpxchg` instructions |
+| `0x02EBA2F8` | `u32` | 0 (zero-filled tail of `.data`) | run-once word of `0x001740A0`, which fills the intra-predictor tables below | `0x0016F1F0` (`0x0016F24E`, `0x0016F268`, `0x0016F27C`; `0x0016F25D`, `lock inc`) | the same `lock cmpxchg` instructions |
+| `0x02EBA2E4` | `u32` | 0 (zero-filled tail of `.data`) | 1 once `0x0016F1F0` has run its two set-ups; it skips them while the word is not 0 | `0x0016F1F0` (`0x0016F28B`, 1) | `0x0016F1F0` (`0x0016F1F4`) |
+
+### Intra-predictor tables
+
+`0x001740A0` stores the addresses of the intra-prediction functions in three tables: pairs from `0x02EBA310` to `0x02EBA378` and a third table of ten entries from `0x02EBA380`.
+
+Two decoders index them: the
+predictors `0x00174200` (`0x0017426E`-`0x00174275`) and `0x001742D0` (`0x001743F6`-`0x001743FD`) read the entry at
+`0x02EBA340` and `0x02EBA348` respectively plus 8 times `+0xF10 * 2 + +0xF14 * 4` of the macroblock decoder, both
+flags being 0 or 1, and `0x001790A0`, the subblock predictor, reads the third table through the address it loads at `0x001790DF`. No instruction that names an address reads the first three pairs or an entry of the third table after its first.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBA310`, `0x02EBA318` | `void*` | 0 (zero-filled tail of `.data`) | first pair: `0x001491A0`, `0x00149160` | `0x001740A0` (`0x001740A7`, `0x00174109`) | no instruction names them |
+| `0x02EBA320`, `0x02EBA328` | `void*` | 0 (zero-filled tail of `.data`) | second pair: `0x001492B0`, `0x00149260` | `0x001740A0` (`0x001740B5`, `0x00174117`) | no instruction names them |
+| `0x02EBA330`, `0x02EBA338` | `void*` | 0 (zero-filled tail of `.data`) | third pair: `0x00149450`, `0x001493E0` | `0x001740A0` (`0x001740C3`, `0x00174125`) | no instruction names them |
+| `0x02EBA340`, `0x02EBA348` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when `+0xF10` and `+0xF14` are both 0: `0x00148F10`, `0x00148DA0` | `0x001740A0` (`0x001740D1`, `0x00174133`) | `0x00174200` (`0x00174275`, `0x02EBA340` plus the index); `0x001742D0` (`0x001743FD`, `0x02EBA348` plus the index) |
+| `0x02EBA350`, `0x02EBA358` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when only `+0xF10` is 1: `0x00148E50`, `0x00148CB0` | `0x001740A0` (`0x001740DF`, `0x00174141`) | the indexed reads at `0x00174275` and `0x001743FD` |
+| `0x02EBA360`, `0x02EBA368` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when only `+0xF14` is 1: `0x00148EB0`, `0x00148D10` | `0x001740A0` (`0x001740ED`, `0x0017414F`) | the indexed reads at `0x00174275` and `0x001743FD` |
+| `0x02EBA370`, `0x02EBA378` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when both are 1: `0x00148DE0`, `0x00148C40` | `0x001740A0` (`0x001740FB`, `0x0017415D`) | the indexed reads at `0x00174275` and `0x001743FD` |
+| `0x02EBA380` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 0: `0x00148B70` | `0x001740A0` (`0x0017416B`) | `0x001790A0`, through the table address it loads at `0x001790DF` |
+| `0x02EBA388`-`0x02EBA3C8` | `void*` | 0 (zero-filled tail of `.data`) | third table, entries 1 to 9: `0x00149370`, `0x00179460`, `0x001793B0`, `0x00179600`, `0x00179810`, `0x00179700`, `0x001794F0`, the pointer then held at `0x02F974F8`, and `0x00148AF0` | `0x001740A0` (`0x00174179`, `0x00174187`, `0x00174195`, `0x001741A3`, `0x001741B1`, `0x001741BF`, `0x001741CD`, `0x001741DB`, `0x001741E9`) | `0x001790A0`, through the same table address |
+
+### Sub-pixel predictor pointers
+
+`0x0016F080` picks one of two kernels for each pointer by the processor features it reads with `cpuid`
+(`0x0016F140`-`0x0016F1D6`); "with the feature" below means bit `0x10` of `r8d` set at `0x0016F140`. `0x00175CA0` copies them into the macroblock decoder's `+0xF98`-`+0xFB0` when the decoder's
+`+0x1E88` is 0 (`0x00175DE4`) and copies another set, with `0x02F97510` and `0x02F97528`, otherwise.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02F97520` | `void*` | 0 (zero-filled tail of `.data`) | the first set's pointer for `+0xF98`: `0x00172CE0`, or `0x00173450` with the feature | `0x0016F080` (`0x0016F1AB`) | `0x00175CA0` (`0x00175DED`, to `+0xF98`) |
+| `0x02F97508` | `void*` | 0 (zero-filled tail of `.data`) | the first set's pointer for `+0xFA0`: `0x00173040`, or `0x00173360` with the feature | `0x0016F080` (`0x0016F1C4`) | `0x00175CA0` (`0x00175DFB`, to `+0xFA0`) |
+| `0x02F97518` | `void*` | 0 (zero-filled tail of `.data`) | the first set's pointer for `+0xFA8`: `0x00172F00`, or `0x00173270` with the feature | `0x0016F080` (`0x0016F1D6`) | `0x00175CA0` (`0x00175E09`, to `+0xFA8`) |
+| `0x02F97510` | `void*` | 0 (zero-filled tail of `.data`) | the second set's pointer for `+0xFA8`: `0x001263AD`, or `0x00127104` with the feature | `0x0016F080` (`0x0016F179`) | `0x00175CA0` (`0x00175E3C`, to `+0xFA8`) |
+
 ## Modding notes
 
 - A replacement movie must be WebM with a VP8 video track; its sound must be a Vorbis track, since

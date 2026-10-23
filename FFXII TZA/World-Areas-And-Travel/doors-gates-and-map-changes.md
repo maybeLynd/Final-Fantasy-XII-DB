@@ -411,6 +411,20 @@ A body steps towards a blocked polygon:
 | `0x0209A6E0` | the hidden effect set of the last step | `0x0026EB30` | replaced by `0x0026EB30` every step |
 | `0x02EBF278` | 64 `f32` fade weights of the camera regions | `0x0022FF10` | `0x00382080`, every frame |
 
+The two resets also write three words beside the model block, each 0 at load (the zero-filled tail of `.data`); no
+instruction reads them at these addresses:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209A700` | `u32` | 0 | cleared together with `0x0209A704` (below) by one qword store of 0 | `0x0026E1D0` (`0x0026E21A`, 8 bytes, covering `0x0209A700`-`0x0209A707`) | no instruction at this address |
+| `0x0209A704` | `u32` | 0 | the word after `0x0209A700`: the map set-up clears it, the map teardown clears it, `0x00379930(x)` stores its argument, and the draw-list build reads it | `0x0026E1D0` (`0x0026E21A`, in the same qword store); `0x00378120`, 0 (`0x0037814C`); `0x00378230`, 0 (`0x00378253`); `0x00379930` (`0x00379930`, its first argument) | `0x002F5550` (`0x002F5585`) |
+| `0x0209A70C` | `u64` | 0 | all bits set: `0xFFFFFFFFFFFFFFFF`, stored as one qword | `0x0026E640` (`0x0026E6CA`) | no instruction at this address |
+| `0x0209A714` | `u64` | 0 | all bits set, stored as one qword; it ends at `0x0209A71B`, just before the 32 anchor words at `0x0209A71C` that the same reset fills with `0xFFFF` (`0x0026E6EE`) | `0x0026E640` (`0x0026E6D5`) | no instruction at this address |
+
+The anchor-word reader `0x003A6FC0(n)` sign-extends `n` and does not bound it (`0x003A6FD0`-`0x003A6FDA`), so an `n` from -8
+to -1 would read these two qwords; the draw-list build `0x002F5550` writes an anchor word only for an index from 0 to 31
+(`0x002F653F`-`0x002F654B`).
+
 None of these addresses is read or written by the save image functions referenced from them; the state
 is rebuilt from the map and its script on every load.
 

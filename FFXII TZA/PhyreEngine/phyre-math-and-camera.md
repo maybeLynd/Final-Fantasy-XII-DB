@@ -191,6 +191,18 @@ A `PCameraPerspective` as `0x00189C20` uses it. Its `PCamera` part starts 8 byte
 | `0x01F2EE08` | `CascadedShadowMap` shadow-type object |
 | `0x01F2EE28` | `CombinedCascadedShadowMap` shadow-type object |
 
+### A static orthographic camera
+
+The C++ initialiser `0x00169580` builds a `PCameraOrthographic` in place at `0x02EA5760`: it constructs the part at
+`+0x08` (`0x00184E60`), installs the vtable `0x00902ED8`, sets `+0xC8` and `+0xD0` to 1.0, runs `0x001F0A00` on the object
+and registers the exit stub `0x008B7C90`, which only puts back the `PCameraProjection` vtable `0x008C5D50`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EA5760` | `void*` | 0 (zero-filled tail of `.data`) | the object's vtable: `0x00902ED8` (`PCameraOrthographic`), then `0x008C5D50` at exit | `0x00169580` (`0x001695A8`); `0x008B7C90` (`0x008B7C97`) | no instruction names it; `0x00169580` passes the object's address to `0x001F0A00` (`0x001695A1`) |
+| `0x02EA5828` | `f32` | 0 (zero-filled tail of `.data`) | `+0xC8`, `m_aspect`: 1.0 | `0x00169580` (`0x00169597`) | no instruction names it |
+| `0x02EA5830` | `f32` | 0 (zero-filled tail of `.data`) | `+0xD0`, the first member after the `0xD0` bytes of `PCameraProjection`: 1.0 | `0x00169580` (`0x001695AF`) | no instruction names it |
+
 ## Modding notes
 
 - A light whose inner and outer ranges are equal divides by zero in `0x005FF5A0`; keep the outer range

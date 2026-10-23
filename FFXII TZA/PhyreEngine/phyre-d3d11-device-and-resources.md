@@ -471,6 +471,38 @@ all three colour bits) and `0x2000` and `0x4000` mark depth and stencil.
 | `0x01F7F5A0` | counter that picks a cube map's ring record |
 | `0x01F7F590` | frame slot of the deferred upload queue |
 
+### The texture-format registry
+
+The `PRendering` init calls `0x0062D0D0` (`0x00608D96`), which puts each texture-format object on a registry keyed by its
+name (`+0x00`) and linked through its `+0x08`, and stores the object's address in the table `0x02CF7120` at the
+object's code (`+0x10`). It inserts `L8`, `A8`, `LA8` and `RG8` itself and the rest through `0x0062D040`.
+
+Each insert
+walks the list comparing names and fails with `0x12` for a name already present, or `0x11` for a null name;
+otherwise it stores the old head in the object's `+0x08` and makes the object the head.
+
+The `PRendering` shutdown
+`0x00610630` calls `0x0062D740` (`0x0061068C`), which clears each table slot and unlinks the objects, the first five inline
+and the rest through `0x0062D6D0`. Its walk pointer starts at the head, so the store `[r9]` writes the head or the
+`+0x08` of the object before, and it then stores 0 in the object's own `+0x08`.
+
+The other readers are `0x0062D660`,
+which stores the object whose name matches through its first argument or returns `0x13`, `0x0062DBD0`, which counts
+the list and copies every object's address into an array, and `0x0062DCB0`, which returns the object whose name
+matches, or 0.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CF7110` | `void*` | 0 (zero-filled tail of `.data`) | head of the texture-format registry | `0x0062D0D0` (`0x0062D160`, `0x0062D1D0`, `0x0062D230`, `0x0062D299`); `0x0062D040` (`0x0062D0AA`); through the unlink pointer, `0x0062D740` (`0x0062D7B8`, `0x0062D818`, `0x0062D878`, `0x0062D8D8`, `0x0062D938`) and `0x0062D6D0` (`0x0062D729`) | `0x0062D040` (`0x0062D05C`); `0x0062D0D0` (`0x0062D0FF`); `0x0062D660` (`0x0062D672`); `0x0062D6D0` (`0x0062D6E9`); `0x0062D740` (`0x0062D744`, `0x0062D7BF`, `0x0062D81F`, `0x0062D87F`, `0x0062D8DF`, `0x0062D93F`); `0x0062DBD0` (`0x0062DBDF`, `0x0062DC70`); `0x0062DCB0` (`0x0062DCBB`) |
+| `0x02CF72C8` | `void*` | 0 (zero-filled tail of `.data`) | `L8` (`0x02CF72C0`) `+0x08`: the head before it, 0 | `0x0062D0D0` (`0x0062D152`); `0x0062D740` (`0x0062D7BB`, 0, through the object) | the walks of the list, through the object; `0x0062D740` compares its address (`0x0062D77C`) |
+| `0x02CF7300` | `void*` | 0 (zero-filled tail of `.data`) | `A8` (`0x02CF72F8`) `+0x08`: `L8` | `0x0062D0D0` (`0x0062D1C2`); `0x0062D740` (`0x0062D81B`, 0, through the object) | the walks of the list, through the object; `0x0062D740` compares its address (`0x0062D7DC`) |
+| `0x02CF7338` | `void*` | 0 (zero-filled tail of `.data`) | `LA8` (`0x02CF7330`) `+0x08`: `A8` | `0x0062D0D0` (`0x0062D222`); `0x0062D740` (`0x0062D87B`, 0, through the object) | the walks of the list, through the object; `0x0062D740` compares its address (`0x0062D83C`) |
+| `0x02CF7370` | `void*` | 0 (zero-filled tail of `.data`) | `RG8` (`0x02CF7368`) `+0x08`: `LA8` | `0x0062D0D0` (`0x0062D292`); `0x0062D740` (`0x0062D8DB`, 0, through the object) | the walks of the list, through the object; `0x0062D740` compares its address (`0x0062D89C`) |
+
+The walks that read an object's `+0x08` are in `0x0062D040`, `0x0062D0D0`, `0x0062D660`, `0x0062D6D0`, `0x0062D740`,
+`0x0062DBD0` and `0x0062DCB0`. The unlink stores through `[r9]` also write one of these links when the object removed
+is the one after it, and `0x0062D6D0` stores 0 in the `+0x08` of the object it removes (`0x0062D72C`).
+
 ## Modding notes
 
 - The device needs feature level 11.0; the lower levels in the creation list are never kept.

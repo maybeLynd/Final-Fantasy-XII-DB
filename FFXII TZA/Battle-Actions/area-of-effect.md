@@ -161,7 +161,8 @@ and `0x00328530` and jumped to from `0x0031AB80`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | flags | bit 0 kept by the clear (`0x00316D05`-`0x00316D16`); the rest cleared |
-| `+0x01` | `u16` | keys | cleared to 0 by `0x00316D1D` |
+| `+0x01` | `u8` | keyType | the key the candidate picker `0x003087E0` sorts by: 1 takes the arm at `0x003089C3` (`0x00308817`-`0x0030881A`), 2 the arm at `0x00308873` (`0x00308820`-`0x00308823`), and 0 or any other value the plain walk at `0x00308825`; cleared to 0 together with `+0x02` by the 16-bit store at `0x00316D1D` |
+| `+0x02` | `u8` | pickRule | the picker's rule, compared with 3 (`0x00308873`-`0x00308879`); cleared by the same 16-bit store |
 | `+0x03` | `u8` | pad3 | cleared by the memset of `0x00316D0B` |
 | `+0x04` | `i32` | count | entries in use; signed (movsxd at `0x00316CD0` and `0x00316D70`); append refuses at 32 (`0x00316CD4`) |
 | `+0x08` | `u8[512]` | entries | 32 ActionTargetEntry records of 16 bytes |

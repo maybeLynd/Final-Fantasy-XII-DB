@@ -550,6 +550,14 @@ capacity end), which start-up initialisers build empty and `atexit` destructors 
 
 No other instruction reaches these words: no other RIP-relative, image-base-relative or disp32 reference names them.
 
+### The latch word
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F7F48C` | `u16` | 0 (zero-filled tail of `.data`) | `+0x113C` of the object `0x01F7E350`, the startup latch, with the run-once byte `+0x113D`; the initialiser clears both with one 16-bit store | `0x0015BC40` (`0x0015BC68`, 0); through the object, `0x0017D000` (`0x0017D074`, 1 in `+0x113C`) and `0x0017CCD0` (`0x0017CD31`, 1 in `+0x113D`) | through the object: `+0x113C` by `0x0017CCD0` (`0x0017CCD6`), `0x0017CE50` (`0x0017CE77`) and `0x0017D090` (`0x0017D094`); `+0x113D` by `0x0017CCD0` (`0x0017CD1E`) |
+
+No other instruction has the displacement `0x113C` or `0x113D`.
+
 ## Modding notes
 
 - Anything driving the application before the latch is set finds slots 4 and 8 returning at once

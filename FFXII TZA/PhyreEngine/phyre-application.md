@@ -384,6 +384,117 @@ The members below are the ones the code of this page's classes uses or the refle
 | arenas | 96 MiB (64 MiB and 32 MiB halves), 2 MiB |
 | frame-rate window | 2.0 seconds |
 
+## State
+
+### Window and host statics
+
+The window procedure `0x00798FF0` and the window set-up `0x0079B300` keep the window's state in plain statics. On its
+first call the procedure registers the message `PHYREMSG_HOSTHWND` (`0x01CB33E0`). A host program that sends that
+message with its own window handle in `wParam` makes the game window its child (`SetParent`, `0x0079909F`), and the
+procedure answers with the message `PHYREMSG_SENDHWND` (`0x01CB31E0`) and the game window's handle (`SendMessageW`,
+`0x007990BC`).
+
+The jump table at `0x007990E4` sends `WM_CREATE`, `WM_DESTROY`, `WM_MOVE`, `WM_SIZE`, `WM_ACTIVATE`,
+`WM_CLOSE`, `WM_ERASEBKGND`, `WM_GETMINMAXINFO`, `WM_DISPLAYCHANGE` and the four title-bar button messages to their
+own branches; the button-up messages above `0x112` are tested at `0x0079968A`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EACD24` | `u32` | 0 (zero-filled tail of `.data`) | the message number `RegisterWindowMessageW("PHYREMSG_HOSTHWND")` returns, taken by the first call that finds the word 0 | `0x00798FF0` (`0x00799043`) | `0x00798FF0` (`0x0079902C`, the zero test; `0x0079906D`, compared for equality with the message) |
+| `0x02EA523E` | `u8` | 0 (zero-filled tail of `.data`) | 1 once the host message has arrived: the window is hosted | `0x00798FF0` (`0x00799081`, 1); `0x0079B300` (`0x0079B420`, 0 when `GetClientRect` on the host window fails) | `0x00798FF0` (`0x007994B4`: while it is set, `WM_ERASEBKGND` returns 1 without the default handling); `0x0079B300` (`0x0079B3F8`, `0x0079B554`: while it is set, the window takes the size of the host's drawing area from `GetClientRect`) |
+| `0x02EA5238` | `u32` | 0 (zero-filled tail of `.data`) | the low 32 bits of the host message's `wParam`, the host window's handle | `0x00798FF0` (`0x00799088`) | `0x0079B300` (`0x0079B407`, sign-extended to 64 bits and passed to `GetClientRect`) |
+| `0x02EA5240` | `u32` | 0 (zero-filled tail of `.data`) | the low 32 bits of the host message's `lParam` | `0x00798FF0` (`0x0079908E`) | no instruction names it |
+| `0x02EA523C` | `u8` | 0 (zero-filled tail of `.data`) | 1 when ScreenMode (settings `+0x08`) is 2, borderless, at start-up | `0x007980A0` (`0x007985D4`, `sete`) | `0x0079B300` (`0x0079B3DB`, which then stores ScreenMode 2 through `0x001DF340(settings, 2, 2)` at `0x0079B3F3`; `0x0079B426` and `0x0079B5CE`, which choose the `WS_POPUP` style `0x80000000`) |
+| `0x02EA523F` | `u8` | 0 (zero-filled tail of `.data`) | 1 while the window is minimised: `WM_SIZE` with `SIZE_MINIMIZED` (1) sets it and any other `WM_SIZE` clears it | `0x00798FF0` (`0x007993FD`, 1; `0x00799409`, 0) | no instruction names it |
+| `0x02EA523D` | `u8` | 0 (zero-filled tail of `.data`) | 1 from a `WM_ACTIVATE` with `WA_CLICKACTIVE` (2) until the next `WM_LBUTTONUP` or `WM_RBUTTONUP`: the click that activated the window | `0x00798FF0` (`0x00799507`, 1; `0x007996B6`, 0) | `0x007A1790` (`0x007A19EF`): while it is set, the mouse poll zeroes the three button bytes `+0x1F4`-`+0x1F6` it has just filled from bit 7 of the device's state bytes, so the activating click does not reach the game |
+| `0x01F3DA06` | `u8` | 1 (file-backed `.data`) | 1 when the framework last showed the cursor with `ShowCursor(1)`, 0 when it last hid it with `ShowCursor(0)` | `0x00798FF0` (`0x00799593`, 1: on `WM_ACTIVATE` with `WA_INACTIVE`, when the cursor was hidden); `0x007A0A80` (`0x007A0ABD`, 1, when asked to show a hidden cursor; `0x007A0ADB`, 0, when asked to hide a shown one) | no instruction names it |
+| `0x02EACD30` | `u32` | 0 (zero-filled tail of `.data`) | `cbSize` of the `CURSORINFO` record `0x02EACD30`-`0x02EACD47`, set to `0x18` before each `GetCursorInfo` on it; the flags word `0x02EACD34` that call fills decides the stores to `0x01F3DA06` | `0x00798FF0` (`0x0079956A`); `0x007A0A80` (`0x007A0A95`) | `GetCursorInfo`, through the address `0x00798FF0` (`0x00799574`) and `0x007A0A80` (`0x007A0A8E`) pass |
+| `0x02EA5244` | `u8` | 0 (zero-filled tail of `.data`) | 1 while a mouse button is held on the title bar or border | `0x00798FF0` (`0x007995C8`, 1, on `WM_NCLBUTTONDOWN` or `WM_NCRBUTTONDOWN`, after slot 17 with 1, and the `WH_MOUSE` hook `0x00798F80` is then installed; `0x00799617`, 0, on `WM_NCLBUTTONUP` or `WM_NCRBUTTONUP`, after slot 17 with 0, and the hook is then removed) | `0x00798FF0` (`0x007995A7`, `0x007995F8`); `0x00798F80` (`0x00798FA4`: while it is set, a `WM_LBUTTONUP` the hook sees posts `WM_NCLBUTTONUP` to the window) |
+| `0x02EA5361` | `u8` | 0 (zero-filled tail of `.data`) | when set, the close confirmation stores ScreenMode 1 (`0x001DF340(settings, 2, 1)`, `0x007992CA`) and writes the settings file (`0x007992D6`) after its box closes, calling `0x0017DB40` first when the answer is OK, and then clears the byte | `0x00798FF0` (`0x007992DB`, 0) | `0x00798FF0` (`0x007992A7`) |
+| `0x02EA5360` | `u8` | 0 (zero-filled tail of `.data`) | 1 after the borderless branch of the size callback has placed the window; while it is set, the next borderless placement adds `SWP_NOMOVE` (2) to the `SetWindowPos` flags `0x60` (`0x0079F96B`-`0x0079F981`) | `0x0079F750` (`0x0079F99D`, 1; `0x0079F89E`, 0, windowed; `0x0079F8C0`, 0, full screen); `0x00795DC0` (`0x00795EA9`, 0, after its own `SetWindowPos`); `0x007A03D0` (`0x007A03E0`, 0, before it queues request 5) | `0x0079F750` (`0x0079F96B`) |
+
+The only store to `0x02EA5361` is the clear at `0x007992DB`, so the settings write on close runs only if the byte is set
+from outside the executable.
+
+### Frame-rate statics
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAC980` | `u32` | 0 (zero-filled tail of `.data`) | frames counted since the last frames-per-second measurement | `0x0079C140` (`0x0079C27E`, plus 1 after the input slot; `0x0079C2CA`, 0) | `0x0079C140` (`0x0079C276`; converted to a float as an unsigned value at `0x0079C2AD`) |
+| `0x02EAC984` | `f32` | 0 (zero-filled tail of `.data`) | seconds accumulated over the same frames from the delta `+0x48`; when it exceeds 2.0 (`0x01CEBC08`), `+0x60` becomes the count divided by it, `+0x68` becomes 1 and both statics restart | `0x0079C140` (`0x0079C299`; `0x0079C2C2`, 0.0) | `0x0079C140` (`0x0079C28D`) |
+| `0x02EA5378` | `u8` | 0 (zero-filled tail of `.data`) | 1 while the application's `+0xD44` (VSync, settings `+0x14`) is 0, Off; stored every frame | `0x0079C140` (`0x0079C224`, `sete`) | no instruction names it |
+
+The `lea` of `0x02EA5370` at `0x00797942` names the 8-byte slot before it, which `0x00797910` passes to `0x008088FA` as its
+output pointer (`0x0079795D`).
+
+### The render-interface parameter block
+
+`0x0079E520` fills the block at `0x01F403A8` from the window and from `+0xD20` of the application (`[PWindow + 0x08]`,
+which `0x00792F10` sets from its second argument at `0x00792F4A`), points the application's `+0xD10` at it
+(`0x0079E5DF`) and runs the run setup. The run setup passes the block to `0x006253D0` (`0x0079F492`), which reads it
+through `r14`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F403B0` | `u32` | 1 (file-backed `.data`) | `+0x08`: the application's `+0xD3C`, the MSAA sample count `0x001DE570` returns (1, 2, 4, 8 or 9), or 1 when that is 0 | `0x0079E520` (`0x0079E59C`) | no instruction names it; `0x006253D0` does not read `+0x08` |
+| `0x01F403B4` | `u8` | 0 (file-backed `.data`) | `+0x0C`: the application's `+0xD20`, 1 for full screen (ScreenMode 1) | `0x0079E520` (`0x0079E578`) | `0x006253D0` (`0x006257AE`: 0 makes the device request windowed, `sete r9b`) |
+| `0x01F403B8` | `u32` | 0 (file-backed `.data`) | `+0x10`: the application's `+0xD44`, VSync (settings `+0x14`); `0x006253D0` turns 0, 1 and 2 into the word `0`, `1` and `0x101` at its `+0x1848` | `0x0079E520` (`0x0079E585`) | `0x006253D0` (`0x006254D9`) |
+| `0x01F403BC` | `u32` | 1 (file-backed `.data`) | `+0x14`: the application's `+0xD4C`, the swap-chain buffer count: 2 when BackBufferCount (settings `+0x44`) is 0, otherwise 3 (`0x007985BB`-`0x007985C6`) | `0x0079E520` (`0x0079E5A9`) | `0x006253D0` (`0x006254CF`, `0x006254DD`, both stored at its `+0x184C`) |
+| `0x01F403C0` | `u32` | 0 (file-backed `.data`) | `+0x18`: DeviceID (settings `+0x4C`) | `0x0079E520` (`0x0079E5C2`) | `0x006253D0` (`0x006256A9`, compared for equality with each adapter's device id) |
+| `0x01F403C4` | `u32` | 0 (file-backed `.data`) | `+0x1C`: LUIDLow (settings `+0x50`) | `0x0079E520` (`0x0079E5D2`) | `0x006253D0` (`0x006256C1`, compared for equality) |
+| `0x01F403C8` | `u32` | 0 (file-backed `.data`) | `+0x20`: LUIDHigh (settings `+0x54`) | `0x0079E520` (`0x0079E5B9`) | `0x006253D0` (`0x006256B5`, compared for equality) |
+
+An adapter is chosen by `0x006253D0` only when all three of DeviceID, LUIDLow and LUIDHigh match.
+
+### Message-pump callbacks
+
+`0x007980A0` registers two callbacks after the window is created, each with the `PWindow` on its stack (`[rbp - 0x40]`)
+as the argument, and clears both after the message loop (`0x007986BF`, `0x007986C8`). Both callbacks, `0x00798910` and
+`0x007989B0`, pump the pending window messages with `PeekMessageW`, `TranslateMessage` and `DispatchMessageW` until
+none is left or `WM_QUIT` is next, so the window keeps answering while the renderer waits.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CB6348` | `void*` | 0 (zero-filled tail of `.data`) | the callback `0x00600C20` calls while it waits: `0x007989B0` | `0x005FE190` (`0x005FE190`), from `0x007980A0` (`0x00798642`, `0x007989B0`; `0x007986C8`, 0) | `0x00600C20` (`0x00600C60`, called when not 0 on every turn of its wait at `0x005CD8B0`) |
+| `0x02CB6340` | `void*` | 0 (zero-filled tail of `.data`) | that callback's argument, the `PWindow` | `0x005FE190` (`0x005FE197`), from `0x007980A0` (`0x00798642`; `0x007986C8`, 0) | `0x00600C20` (`0x00600C6C`) |
+| `0x02CEDA10` | `void*` | 0 (zero-filled tail of `.data`) | the argument of the callback `0x00615BC0` calls while it waits for `0x02CC03D8` with a 1000 ms limit (`0x005CD720`); the callback, `0x00798910`, is the neighbour `0x02CEDA18` | `0x0061C540` (`0x0061C547`), from `0x007980A0` (`0x00798632`; `0x007986BF`, 0) | `0x00615BC0` (`0x00615C55`) |
+
+### Input-replay statics
+
+The input-replay option keeps its records in one array, which `0x0079FB10` fills from the replay file and `0x00796490`
+(the `Frames` handler in the table above) replays. Like the rest of the replay path, none of it runs in the shipped
+game.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EA5480` | `u32` | 0 (zero-filled tail of `.data`) | record count; bit 31 set marks a buffer the array does not own | `0x007A0540` through the address `0x0079FB10` passes (`0x0079FC78`); `0x00796490` (`0x007965CB`, `0x00796604`, 0, once every record is replayed or the quit byte is set); `0x008B7B90` (`0x008B7BC6`, 0), the exit teardown `0x00169510` registers | `0x00796490` (`0x007964A9`, `0x00796591`); `0x008B7B90` (`0x008B7B9D`) |
+| `0x02EA5488` | `void*` | 0 (zero-filled tail of `.data`) | the records, `0x98` bytes each; `+0x04` is the frame number a record waits for | `0x007A0540`, as above; `0x00796490` (`0x007965C4`, `0x007965FD`, 0, after freeing it); `0x008B7B90` (`0x008B7BBF`, 0) | `0x00796490` (`0x007964E9`, `0x00796539`, `0x007965A6`, `0x007965E2`); `0x0079FB10` (`0x0079FD1F`, `0x0079FD49`, `0x0079FD9E`, `0x0079FDD0`, `0x0079FE1D`, `0x0079FE2C`, `0x0079FEEF`, `0x0079FF45`, `0x0079FFD6`); `0x008B7B90` (`0x008B7BAC`) |
+| `0x02EA5364` | `u32` | 0 (zero-filled tail of `.data`) | index of the next record to replay; compared unsigned with the count and the record's frame with the frame counter `+0x64` (`0x007964CC`, `0x007964F0`) | `0x00796490` (`0x00796513`, `0x00796566`, plus 1 per replayed record; `0x0079659B`, `0x007965D7`, 0) | `0x00796490` (`0x007964C0`, `0x00796507`, `0x00796556`, `0x0079658B`) |
+| `0x02EAC278` | `u8` | 0 (zero-filled tail of `.data`) | 1 once `0x0079A120` has logged its one-time warning `0x01CB2978` for a record whose kind is not 1, 2 or 3 | `0x0079A120` (`0x0079A16C`) | `0x0079A120` (`0x0079A158`) |
+| `0x02EAC279` | `u8` | 0 (zero-filled tail of `.data`) | 1 once `0x0079FB10` has logged its one-time warning `0x01CB29D8`, that the input stream found no keyboard | `0x0079FB10` (`0x0079FDB8`) | `0x0079FB10` (`0x0079FDAF`) |
+
+### Update-thread object bytes
+
+`0x007A4190` builds the update-thread object `0x02EACF10` on first use: `0x005CC900` zeroes `+0x00`-`+0x17` and
+`+0x30`-`+0x47`, and the bytes after each are cleared by hand.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EACF28` | `u8` | 0 (zero-filled tail of `.data`) | `+0x18` of the object | `0x007A4190` (`0x007A41E6`, 0) | no instruction names it; `0x007A4240`, `0x007A4250`, `0x007A42D0`, `0x007A42E0` and `0x007A4310` do not access `+0x18` of the object |
+| `0x02EACF58` | `u8` | 0 (zero-filled tail of `.data`) | `+0x48` of the object, `+0x18` of its thread part `+0x30`: 1 while the update thread exists | `0x007A4190` (`0x007A41F9`, 0); `0x007A4250` (`0x007A42B8`, 1, after `0x005CD1E0` creates the thread); `0x007A42E0` (`0x007A4306`, 0, after `0x005CD330` waits for it) | no instruction names it |
+
+### Two counts cleared at shutdown
+
+The application shutdown `0x0079EDD0` calls `0x0064AD60`, which empties two statics, `0x02D351F0` and `0x02D35278`. For each
+it runs `0x00671690(static, 0, 0, 0)`, which stores the two zeros at `+0x00` and `+0x04`, and then compares the
+product of `+0x00` and `+0x04` with `+0x78`; when they differ it releases the static through `0x00674230`, if bit 0 of
+`+0x74` is set, and stores the product.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02D35268` | `u32` | 0 (zero-filled tail of `.data`) | `+0x78` of `0x02D351F0`: the product last stored | `0x0064AD60` (`0x0064ADFB`, 0) | `0x0064AD60` (`0x0064ADD7`, compared for equality) |
+| `0x02D352F0` | `u32` | 0 (zero-filled tail of `.data`) | `+0x78` of `0x02D35278`, the same | `0x0064AD60` (`0x0064AE46`, 0) | `0x0064AD60` (`0x0064AE22`, compared for equality) |
+
 ## Modding notes
 
 - Game logic runs on the update thread. Code hooked into the window procedure runs on the main

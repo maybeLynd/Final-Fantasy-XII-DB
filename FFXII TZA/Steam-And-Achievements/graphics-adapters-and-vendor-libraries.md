@@ -259,6 +259,19 @@ at `0x01F83460` (vtable `0x009064B8`) share the first `0x30` bytes:
 | `0x02CED884` | NVAPI initialised, written only |
 | `[0x01F82D20] + 0x44C` | the MSAA mask |
 
+The fields of `NvidiaAdapterInfo` that instructions name directly, and the accesses its own functions make through
+the object (`rdi` in `0x0020D050`, `rsi` in `0x0020D120`, `rbp` in `0x0020DAB0`):
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01E02590` | `void*` | 0 (file-backed `.data`) | `+0x10` `idsBegin`; each 16-byte store also clears `idsEnd` `0x01E02598` | `0x0015DCA0` (`0x0015DCDD`, 0); the exit destructor `0x008A7430` (`0x008A74AD`, 0); through the object, the grow and append helpers `0x0020DAB0` passes `+0x10` to (`0x0020DBD1`, `0x0020DC08`) | `0x008A7430` (`0x008A7434`, `0x008A7458`, `0x008A7472`, `0x008A7493`); `0x0020D050` (`0x0020D08C`); `0x0020D120` (`0x0020D159`); `0x0020DAB0` (`0x0020DB9A`, `0x0020DBE3`) |
+| `0x01E025A0` | `void*` | 0 (file-backed `.data`) | `+0x20` `idsCapacity` | `0x0015DCA0` (`0x0015DCB9`, 0); `0x008A7430` (`0x008A74A2`, 0); the same helpers | `0x008A7430` (`0x008A7464`: the capacity less `idsBegin`, divided by the 12-byte record size, is the count it frees with `0x001CD050`); `0x0020DAB0` (`0x0020DBC6`, `0x0020DBFD`, compared with `idsEnd`) |
+| `0x01E025A8` | `u8` | 0 (file-backed `.data`) | `+0x28` `ready` | `0x0015DCA0` (`0x0015DCC3`, 0); `0x0020DAB0` (`0x0020DC57`, 1) | `0x0020DAB0` (`0x0020DC5B`, its return value) |
+| `0x01E025AC` | `i32` | 0 (file-backed `.data`) | `+0x2C` `count` | `0x0015DCA0` (`0x0015DCC9`, 0); `0x0020DAB0` (`0x0020DC54`) | `0x0020D050` (`0x0020D082`); `0x0020D120` (`0x0020D14F`); both sign-extend it (`movsxd`) |
+
+`0x0015DCA0` registers `0x008A7430` with `atexit`. `0x0020DAB0` also writes `idsEnd` through the object (`0x0020DC27`, plus
+12 per record).
+
 ## Modding notes
 
 - To force an adapter, write its device id and LUID into DeviceID, LUIDLow and LUIDHigh; an adapter

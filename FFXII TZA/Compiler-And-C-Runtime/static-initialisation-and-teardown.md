@@ -304,6 +304,49 @@ words. No other instruction names either array, so both stay 0 and the teardown 
 | `0x02E56560` | `u32` | 0 (zero-filled tail of `.data`) | count word of the array that `0x008B5CA0` destroys; stays 0 | `0x008B5CA0` (`0x008B5CD6`), 0 | `0x008B5CA0` (`0x008B5CAD`) |
 | `0x02E56568` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array; stays 0 | `0x008B5CA0` (`0x008B5CCF`), 0 | `0x008B5CA0` (`0x008B5CBC`) |
 
+Three more teardowns destroy statics of the same two-word shape, `{u32 count, ptr buffer}` with bit 31 of the count
+marking a buffer the array does not own. Each is registered by a C++ initialiser that does nothing else, or nothing
+else with these words, and each frees the buffer through `0x00584730` only when bit 31 is clear and the buffer is set
+(`0x008B7BE0` and `0x008B7CB0` also only when the count is above 1), then zeroes both words. Every instruction that
+names one of these globals is in its teardown.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F2E828` | `u32` | 0 (file-backed `.data`) | count word of the array that `0x008B0690` destroys after `0x01F2E860` (`0x00663170`) and `0x01F2E850` (`0x001B6EF0`); `0x008B0690` is registered by `0x001653B0` (`0x001653CA`), which constructs `0x01F2E860` through `0x00662A80` | `0x008B0690` (`0x008B06DF`), 0 | `0x008B0690` (`0x008B06B6`) |
+| `0x01F2E830` | `void*` | 0 (file-backed `.data`) | buffer of that array | `0x008B0690` (`0x008B06D8`), 0 | `0x008B0690` (`0x008B06C5`) |
+| `0x02EA54A0` | `u32` | 0 (zero-filled tail of `.data`) | count word of the first array `0x008B7BE0` destroys; `0x008B7BE0` is registered by `0x00169520` | `0x008B7BE0` (`0x008B7C23`), 0 | `0x008B7BE0` (`0x008B7BEF`) |
+| `0x02EA54A8` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array | `0x008B7BE0` (`0x008B7C1C`), 0 | `0x008B7BE0` (`0x008B7C09`) |
+| `0x02EA5490` | `u32` | 0 (zero-filled tail of `.data`) | count word of the second array `0x008B7BE0` destroys | `0x008B7BE0` (`0x008B7C5B`), 0 | `0x008B7BE0` (`0x008B7C29`) |
+| `0x02EA5498` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array | `0x008B7BE0` (`0x008B7C54`), 0 | `0x008B7BE0` (`0x008B7C43`) |
+| `0x02EA58A8` | `u32` | 0 (zero-filled tail of `.data`) | count word of the first array `0x008B7CB0` destroys; `0x008B7CB0` is registered by `0x001695F0` | `0x008B7CB0` (`0x008B7CF3`), 0 | `0x008B7CB0` (`0x008B7CBF`) |
+| `0x02EA58B0` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array | `0x008B7CB0` (`0x008B7CEC`), 0 | `0x008B7CB0` (`0x008B7CD9`) |
+| `0x02EA5898` | `u32` | 0 (zero-filled tail of `.data`) | count word of the second array `0x008B7CB0` destroys | `0x008B7CB0` (`0x008B7D2B`), 0 | `0x008B7CB0` (`0x008B7CF9`) |
+| `0x02EA58A0` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array | `0x008B7CB0` (`0x008B7D24`), 0 | `0x008B7CB0` (`0x008B7D13`) |
+
+The array words of `0x01F2E828` lie between `0x01F2E820`, which `0x0064A0E0` and the unwind handlers `0x0089E890` and
+`0x0089E89C` name, and `0x01F2E838`, which `0x0064A0E0` writes (`0x0064A13B`).
+
+### The locale facet list
+
+`0x0016A290`, the first `.CRT$XCL` entry, registers `0x008B905C`, the destructor of the runtime's facet-tidy object.
+`0x00808850` (`_Facet_Register`) puts each facet the locale code registers at the front of a list of `0x10`-byte nodes,
+`{next, facet}`, allocated by `0x00210EC0`; `0x00194F50`, `0x0019B2F0`, `0x001AA6C0` and `0x00203E60` call it. At exit `0x008B905C`
+takes each node off the front and deletes it through its scalar deleting destructor `0x008087C4`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAECE8` | `void*` | 0 (zero-filled tail of `.data`) | head of the registered-facet list | `0x00808850` (`0x0080887B`, the new node, or 0 when the allocation fails); `0x008B905C` (`0x008B906A`, the next node) | `0x00808850` (`0x0080886D`); `0x008B905C` (`0x008B9076`) |
+
+### Two dwords of the Bullet static
+
+The teardown `0x008B90A0` above also zeroes the two dwords `0x02EAF614` and `0x02EAF618` of the Bullet static `0x02EAF400`,
+before the buffer `0x02EAF620` and the byte `0x02EAF628` that it frees and resets: it sets the byte to 1
+and stores 0 in the buffer and, with one 8-byte store, in both dwords.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAF614` | `u32` | 0 (zero-filled tail of `.data`) | `+0x214` of `0x02EAF400`; the 8-byte store that zeroes it also zeroes `0x02EAF618` | `0x008B90A0` (`0x008B90F0`), 0 | no instruction names it |
+
 ## Modding notes
 
 - An injected DLL that attaches after the C++ table has run finds every global above already built.

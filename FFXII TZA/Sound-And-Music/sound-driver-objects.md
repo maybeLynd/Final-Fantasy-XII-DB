@@ -381,8 +381,9 @@ it passes it to.
 
 ## Modding notes
 
-- At most 92 sounds and 8 music exist at once; a ninety-third sound is refused with "sound heap empty" and plays
-  nothing.
+- At most 92 sounds and 8 music exist at once; a ninety-third sound is refused and plays nothing. `0x007B2CB0` logs
+  "sound heap empty. could not create sound" and returns -1 (`0x007B2D1C`-`0x007B2D75`); the source factory `0x007BBFB0`
+  logs "sound heap empty. could not create sound object" and returns -1 the same way (`0x007BC013`-`0x007BC06C`).
 - No instrument exists in the shipped game: the pool of 32 is built only when start-up block `+0x28` is not 0, and
   `0x00210760` leaves it 0 (`0x00210831`).
 - A sound id with bit 30 set names a sound by its number in the bank, not by its index.

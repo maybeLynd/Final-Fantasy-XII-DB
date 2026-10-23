@@ -61,8 +61,8 @@ The seed function has exactly two callers:
 2. **Loading a save.** `0x00584210` seeds from the clock at `0x005843A5`-`0x005843D3`:
 
 ```python
-t = _time64(NULL);                                   // IAT 0x008C3060, called at 0x0058439F
-seed = (((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF)  // 0x005843A5-0x005843B2, btr bit 31 at 0x005843BE + 0x258 * frameCounter;                                // 0x005843B4, 0x005843C2; all 32-bit, wrapping
+t = _time64(NULL);                                        # IAT 0x008C3060, called at 0x0058439F
+seed = (((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF) + 0x258 * frameCounter;  # 0x005843A5-0x005843B2, btr bit 31 at 0x005843BE; 0x005843B4, 0x005843C2; all 32-bit, wrapping
 ```
 
 `frameCounter` is `0x01FD4A80`, which the application frame dispatcher `0x0022A580` increments once
@@ -80,8 +80,8 @@ recurrence three times and assembles 31 bits from the high halves:
 ```python
 a = state * 0x41C64E6D + 0x3039;
 b = a     * 0x41C64E6D + 0x3039;
-state = b     * 0x41C64E6D + 0x3039;                     // one store, after all three steps
-draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 0x00328370
+state = b     * 0x41C64E6D + 0x3039;                      # one store, after all three steps
+draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);  # 0x00328370
 ```
 
 `0x00328370` is the out-of-line draw; it has 23 call sites in 15 functions. Seven more functions
@@ -129,7 +129,7 @@ Presentation effects use a 32-bit shift register at `0x01EF93E8`, enabled by the
 
 ```python
 feedback = (((state >> 18) ^ state) >> 4) & 1;
-state = (((state & 0x003FFFFF) | 0x1FC00000) << 1) | feedback;   // the bits form a float in [1.0, 2.0)
+state = (((state & 0x003FFFFF) | 0x1FC00000) << 1) | feedback;  # the bits form a float in [1.0, 2.0)
 ```
 
 | Function | Steps per call | Result |
@@ -148,10 +148,10 @@ functions.
 `0x006B05E0` is the script method `GenerateRandomFloat01` of `PRandomGenerator`: `0x006B04B0` registers the name (`0x00632FB0` at `0x006B052B`) and stores the address in its float caller record (`0x006B059F`-`0x006B05A6`), its only reference. It is not a recurrence: it increments the counter `0x02E50260` and hashes it:
 
 ```python
-c = ++counter;                                   // 0x006B05E0-0x006B05EB
-x = (c ^ 0x00BC602F) * 0x9E3779B9;               // 0x006B05F1-0x006B05F6
-y = ((x << 6) ^ (x >> 26) ^ x) * 0x9E3779B9;     // 0x006B0600-0x006B060A
-r = ((y << 5) ^ (y >> 12)) + y;                  // 0x006B0614-0x006B061C
+c = ++counter;                                            # 0x006B05E0-0x006B05EB
+x = (c ^ 0x00BC602F) * 0x9E3779B9;                        # 0x006B05F1-0x006B05F6
+y = ((x << 6) ^ (x >> 26) ^ x) * 0x9E3779B9;              # 0x006B0600-0x006B060A
+r = ((y << 5) ^ (y >> 12)) + y;                           # 0x006B0614-0x006B061C
 return (float)(u64)r * 2^-32;                    // 0x006B061E-0x006B0623, 0x008F30E0 = 0x2F800000; r >= 0xFFFFFF80 rounds to 1.0
 ```
 
@@ -166,8 +166,8 @@ xorshift128, seeded from a counter: `c = ++[0x01F3CD6C]` (`0x0074BFE0`-`0x0074BF
 
 ```python
 t = x ^ (x << 11);  x = y; y = z; z = w;
-w = w ^ (w >> 19) ^ t ^ (t >> 8);      // 0x0074C0A7-0x0074C0C4; the t >> 8 is an arithmetic shift (sar, 0x0074C0BD)
-u = (w & 0x7FFFFFFF) * 2^-31;          // 0x0074C0C8-0x0074C0D1
+w = w ^ (w >> 19) ^ t ^ (t >> 8);         # 0x0074C0A7-0x0074C0C4; the t >> 8 is an arithmetic shift (sar, 0x0074C0BD)
+u = (w & 0x7FFFFFFF) * 2^-31;             # 0x0074C0C8-0x0074C0D1
 ```
 
 The arithmetic shift makes this differ from the reference xorshift128 whenever `t` has its top bit

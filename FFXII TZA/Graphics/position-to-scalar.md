@@ -143,6 +143,18 @@ of it.
 |---|---|---|---|---|---|
 | `0x02EBB800` | `u32` | 0 (zero-filled tail of `.data`) | set to `0xFFFFFFFF` when `0x003ECF70` resets the settings, between the map's default far distance and its default colour; read by no function | `0x003ECF70` (`0x003ECF9A`) | no function |
 
+Two requests are kept in globals: the map's own request at `0x02EBB7C0` (its priority at `0x02EBB7C0`, near at `0x02EBB7C4`) and the
+fog request that a new map leaves at `0x02ADD108`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBB7C8` | `i32` | 0 (zero-filled tail) | the map request's far distance, a whole number | `0x003ECCA0`, the map default `0x02EBB7FC` (`0x003ECCE1`); `0x003ECAC0`, the target's far or the blend, through its first argument, which `0x003ECCA0` passes as `0x02EBB7C0` (`0x003ECAF8`, `0x003ECB9D`) | `0x003ECAC0` (`0x003ECB53`); `0x003ECE60`, in the 16-byte load of the request (`0x003ECE91`) |
+| `0x02EBB7CC` | `u32` | 0 | the map request's colour word, the floor byte on top | `0x003ECCA0`, the map default `0x02EBB804` (`0x003ECCED`); `0x003ECAC0` (`0x003ECAFE`, `0x003ECC7A`) | `0x003ECAC0` (`0x003ECB9A`); `0x003ECE60` (`0x003ECE91`, scaling red, green and blue before it submits) |
+| `0x02ADD108` | `i32` | 0 | the priority of the fog request `0x02ADD108`-`0x02ADD117`: 10 | `0x00378120`, 10 when a map is set up (`0x003781D6`), after copying the environment's near, far and colour to `0x02ADD10C`-`0x02ADD114` (`0x003781AB`-`0x003781C9`) | `0x003ED170`, as the request's priority, compared signed with the kept one (`0x003ED176`-`0x003ED178`); `0x00377520` passes `0x02ADD108` (`0x0037753F`) |
+
+`0x00377520`, from `0x0022A770`, `0x0022B0B0` and `0x00314820`, submits the fog request while `0x02ADD118` is set and either
+`0x02EBF9C8` or `0x02ADD0F4` is non-zero, then clears `0x02ADD0F4` (`0x00377524`-`0x0037754B`).
+
 ## Modding notes
 
 - An effect's own fade distances are the four `i16` words of its fade record; setting both of a

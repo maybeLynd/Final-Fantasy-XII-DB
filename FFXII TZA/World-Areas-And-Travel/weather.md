@@ -408,6 +408,35 @@ A story script forcing the weather:
 | `0x02CA4380`-`0x02CA439C`, `0x02CA43A0`, `0x02CA43B0` | wind preset row, sun direction, tangent | `0x0040B3B0`, `0x0040B430` |
 | debug `+0xAAC` | slot override | no writer in the image |
 
+The map's lights are three records of `0x30` bytes from `0x0209A2E0`, light i at `0x0209A2E0` + i × `0x30`, after the
+count `0x0209A2D0`:
+
+- `+0x00`, the light's direction: each world step `0x0026EB30` turns the vector (0, 0, -1, 1) by the three angles at
+  `+0x10`, converted from degrees to radians and wrapped into -π to π, and stores the 16-byte result
+  (`0x0026EB79`-`0x0026EC88`); `0x00379630` files it at the light request's `+0x30` (`0x003796F0`).
+- `+0x10`, three angles in degrees, read by `0x0026EB30` (`0x0026EBBA`, `0x0026EBF9`, `0x0026EC39`).
+- `+0x20`, a vector that `0x00379630` files at the light request's `+0x10` (`0x003796EA`); `0x0026EB30` sets its fourth
+  float `+0x2C` to 1.0 each step (`0x0026EC8D`).
+
+`0x003ED020(i, &light[i] + 0x10, &light[i] + 0x20)` fills `+0x10` and `+0x20` with 16 bytes each from the environment
+record of slot `[0x0209A6E8]` - 1 in `[0x02EBB7F0]` (`0x180` bytes a record): its `+0x90` + i × `0x20` and `+0xA0` + i ×
+`0x20` (`0x003ED054`-`0x003ED0A5`). It does nothing while `[0x02EBB7F0]` is 0. `0x0026E8D0` (`0x0026E919`) and `0x0026E960`
+(`0x0026EA79`) call it for lights 0 to 2. The map reset `0x0026E640` zeroes `+0x10` and `+0x20` of each light with 16-byte
+stores and sets `0x0209A2D4` to 1.0:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209A2D4` | `f32` | 0 (zero-filled tail) | 1.0 after a map reset | `0x0026E640` (`0x0026E728`) | no instruction at this address |
+| `0x0209A2F0` | `f32[4]` | 0 | light 0 `+0x10`: the angles | `0x0026E640`, 0 (`0x0026E6F1`, 16 bytes); `0x003ED020` (`0x003ED05C`-`0x003ED080`) | `0x0026EB30` |
+| `0x0209A300` | `f32[4]` | 0 | light 0 `+0x20` | `0x0026E640`, 0 (`0x0026E6F9`, 16 bytes); `0x003ED020` (`0x003ED08B`-`0x003ED0A5`); `0x0026EB30`, 1.0 in `+0x2C` (`0x0026EC8D`) | `0x00379630` (`0x003796EA`) |
+| `0x0209A320` | `f32[4]` | 0 | light 1 `+0x10`: the angles | `0x0026E640`, 0 (`0x0026E701`); `0x003ED020` | `0x0026EB30` |
+| `0x0209A330` | `f32[4]` | 0 | light 1 `+0x20` | `0x0026E640`, 0 (`0x0026E709`); `0x003ED020`; `0x0026EB30`, 1.0 in `+0x2C` | `0x00379630` |
+| `0x0209A350` | `f32[4]` | 0 | light 2 `+0x10`: the angles | `0x0026E640`, 0 (`0x0026E711`); `0x003ED020` | `0x0026EB30` |
+| `0x0209A360` | `f32[4]` | 0 | light 2 `+0x20` | `0x0026E640`, 0 (`0x0026E719`); `0x003ED020`; `0x0026EB30`, 1.0 in `+0x2C` | `0x00379630` |
+
+`0x00379630` files light requests for the first `0x0209A2D0` lights only, a signed count raised to 0 when negative and
+capped at 3 (`0x003796A7`-`0x003796C4`); `0x0026EB30` steps all three lights.
+
 Nothing on this path allocates, and no lock or thread check appears in any body named here. The
 in-image routes to `0x0026D910` are the boot setup, the field runtime pass and the script verb.
 

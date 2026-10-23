@@ -300,6 +300,21 @@ In the decompiled `us` scripts (1,114 files), counting every call:
 | `efffadein` / `efffadeout` | 42 in 41 (`n` 5 or 10) / 28 in 28 (`n` 6) |
 | `fadetrans`, `efffadecancel` | no calls |
 
+## State
+
+The movie fade schedule is the object at `0x02ADECD0`, which `0x0037DDD0` passes to `0x0037DEA0` (`0x0037DDF4`). Besides the
+issued bits `+0xF0` (`0x02ADEDC0`) and the row `+0xC8` (`0x02ADED98`), it holds:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02ADECE4` | `u32` | 0 (zero-filled tail) | `+0x14`, the movie's elapsed frames: the player's counter `+0x18` times 0.033366665, truncated (`0x001B77B0`) | `0x0037DDD0`: 0, then the value, in states 1 and 2 (`0x0037DE22`, `0x0037DE3F`); the value in state 3 (`0x0037DDFB`) | `0x0037DEA0` (`0x0037DEDC`, `0x0037DF33`), through the object |
+| `0x02ADED90` | `void*` | 0 | `+0xC0`, a pointer to `0x02ADEDC8`, so the end mark is read at its `+0x10` | `0x0037DDD0` (`0x0037DE28`) | `0x0037DEA0` (`0x0037DF27`) |
+| `0x02ADEDD8` | `i32` | 0 | the movie's end mark: the player's counter `+0x20` times 0.033366665, less 30 (less 8 for movie id 43), truncated and raised to 0 when negative (`0x001B77E0`) | `0x0037DDD0`, in states 1 and 2 (`0x0037DE34`) | `0x0037DEA0` (`0x0037DF37`, through `+0xC0`) |
+
+Both schedule tests in `0x0037DEA0` are unsigned: the fade-in fires once the elapsed frames are not below the row's
+start byte `+0x01` (`0x0037DEDF`), and the fade-out once they are not below `end - outLength - outLead` (`0x0037DF44`), so a
+difference below 0 compares as a large unsigned value.
+
 ## Modding notes
 
 - A fade-out stays on screen until a fade-in on the same layer; leaving one out of a script leaves

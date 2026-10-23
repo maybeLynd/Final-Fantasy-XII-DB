@@ -481,6 +481,37 @@ the bits of a group word up to the count and takes each set bit's semantic from 
 | `0x01F2D004` | `u32` | 0 | `UserAttributeVector` (`0x01F2CFF0`) `+0x14`: index 18 | `0x00161070` (`0x00161081`, 18) | `0x005C22B0` (`0x005C26EF`, `0x005C29BF`), `0x005C2FE0` (`0x005C3077`), `0x005C8130` (`0x005C8234`, `0x005C82E4`), through a channel's semantic pointer `+0x38` |
 | `0x02CACF18` | `u32` | 0 (zero-filled tail of .data) | number of channel semantics registered, the next free row of `0x02CACF20`; 19 after the nineteen initialisers | the nineteen initialisers, each the count plus 1: `0x00160BF0` (`0x00160C07`), `0x00160C30` (`0x00160C47`), `0x00160C70` (`0x00160C87`), `0x00160CB0` (`0x00160CC7`), `0x00160CF0` (`0x00160D07`), `0x00160D30` (`0x00160D47`), `0x00160D70` (`0x00160D87`), `0x00160DB0` (`0x00160DC7`), `0x00160DF0` (`0x00160E07`), `0x00160E30` (`0x00160E47`), `0x00160E70` (`0x00160E87`), `0x00160EB0` (`0x00160EC7`), `0x00160EF0` (`0x00160F07`), `0x00160F30` (`0x00160F47`), `0x00160F70` (`0x00160F87`), `0x00160FB0` (`0x00160FC7`), `0x00160FF0` (`0x00161007`), `0x00161030` (`0x00161047`), `0x00161070` (`0x00161087`) | the same nineteen initialisers, each at its first instruction, and `0x005C2FE0` (`0x005C3001`) and `0x005C8130` (`0x005C81C4`), which size a stack buffer from it, `0x005C8850` (`0x005C8864`), which passes it to `0x0060C340`, and `0x005CB8D0` (`0x005CBB70`, `0x005CBBB5`), which stops its walk at it |
 
+### The semantic registry
+
+The `PAnimation` init `0x005C5C80` also puts the semantics on a registry keyed by name, `0x02CAFCD8`, linked through
+each descriptor's `+0x08`. It inserts `Rotation`, `Translation`, `Scale` and `ShaderParameterF4` itself
+(`0x005C5D6F`-`0x005C5EF9`) and the other fifteen through `0x005BEFE0` (15 calls).
+
+Each insert walks the list comparing
+names and returns `0x12` for a name already present (`0x11` for a null name in `0x005BEFE0`); otherwise it stores the
+old head in the descriptor's `+0x08` and makes the descriptor the head.
+
+The `PAnimation` shutdown `0x005CB150` takes
+them off again, the first six inline and the rest through `0x005BFED0`: its walk pointer starts at the head, so its
+store `[r9]` writes the head or the `+0x08` of the descriptor before, and it then stores 0 in the descriptor's own
+`+0x08`.
+
+The other readers are `0x005BF070`, which stores the descriptor whose name matches through its first argument
+or returns `0x13`, `0x005C38B0`, which copies every descriptor's address into an array it allocates with `0x0017D260`,
+and `0x005C5250`, which returns the descriptor whose name matches, or 0.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CAFCD8` | `void*` | 0 (zero-filled tail of `.data`) | head of the semantic registry | `0x005C5C80` (`0x005C5DD9`, `0x005C5E39`, `0x005C5E99`, `0x005C5EF9`); `0x005BEFE0` (`0x005BF04A`); through the unlink pointer, `0x005CB150` (`0x005CB228`, `0x005CB278`, `0x005CB2C8`, `0x005CB318`, `0x005CB368`, `0x005CB3B8`) and `0x005BFED0` | `0x005BEFE0` (`0x005BEFFC`); `0x005BF070` (`0x005BF082`); `0x005BFED0` (`0x005BFED0`); `0x005C38B0` (`0x005C38BF`, `0x005C3950`); `0x005C5250` (`0x005C525B`); `0x005C5C80` (`0x005C5D7B`); `0x005CB150` (`0x005CB1E8`, `0x005CB22F`, `0x005CB27F`, `0x005CB2CF`, `0x005CB31F`, `0x005CB36F`, `0x005CB3BF`) |
+| `0x01F2CE48` | `void*` | 0 (file-backed `.data`) | `Rotation` (`0x01F2CE40`) `+0x08`: the head before it, 0 | `0x005C5C80` (`0x005C5DCB`); `0x005CB150` (`0x005CB22B`, 0, through the descriptor) | every walk of the list, through the descriptor; `0x005CB150` compares its address (`0x005CB1F7`) |
+| `0x01F2CE60` | `void*` | 0 (file-backed `.data`) | `Translation` (`0x01F2CE58`) `+0x08`: `Rotation` | `0x005C5C80` (`0x005C5E2B`); `0x005CB150` (`0x005CB27B`, 0, through the descriptor) | every walk of the list, through the descriptor; `0x005CB150` compares its address (`0x005CB241`) |
+| `0x01F2CE78` | `void*` | 0 (file-backed `.data`) | `Scale` (`0x01F2CE70`) `+0x08`: `Translation` | `0x005C5C80` (`0x005C5E8B`); `0x005CB150` (`0x005CB2CB`, 0, through the descriptor) | every walk of the list, through the descriptor; `0x005CB150` compares its address (`0x005CB291`) |
+| `0x01F2CE90` | `void*` | 0 (file-backed `.data`) | `ShaderParameterF4` (`0x01F2CE88`) `+0x08`: `Scale` | `0x005C5C80` (`0x005C5EEB`); `0x005CB150` (`0x005CB31B`, 0, through the descriptor) | every walk of the list, through the descriptor; `0x005CB150` compares its address (`0x005CB2E1`) |
+
+The walks that read a descriptor's `+0x08` are in `0x005BEFE0`, `0x005BF070`, `0x005BFED0`, `0x005C38B0`, `0x005C5250`,
+`0x005C5C80` and `0x005CB150`. The unlink stores through `[r9]` also write one of these four links when the descriptor
+removed is the one after it.
+
 ## Modding notes
 
 - A channel's semantic must point at the shipped descriptor; a copy with the same name is treated as a

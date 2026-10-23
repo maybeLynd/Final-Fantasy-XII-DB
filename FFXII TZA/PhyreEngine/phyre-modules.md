@@ -347,6 +347,86 @@ use them, to free them; `0x008C1570` passes `0x0087A830` the static's address an
 those in `0x0087AE00`, `0x0087AE80` and `0x008C1570` names `0x02EBA2A8`-`0x02EBA2D7`, RIP-relative, image-base-relative
 or as a disp32.
 
+### The engine clock
+
+The engine set-up `0x005A08E0` calls `0x005CC980` (`0x005A0A5A`) before it starts the modules. `0x005CC980` raises the timer
+resolution with `timeBeginPeriod(5)`, takes `timeGetTime`, reads the performance-counter frequency into `0x02CB6120`
+and its reciprocal into `0x02CB6128`, and takes the counter's first reading. It returns `0x17`, which stops the
+set-up, only when both `timeBeginPeriod` and `QueryPerformanceFrequency` failed (`0x005CCA06`, `0x005CCA8D`).
+`0x005CC930`, the engine's clock, divides each counter reading by `0x02CB6120`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CB60F0` | `u8` | 0 (zero-filled tail of `.data`) | 1 when `timeBeginPeriod(5)` returned 0, success | `0x005CC980` (`0x005CC991`, `sete`) | `0x005CC980` (`0x005CCA06`) |
+| `0x02CB60F1` | `u8` | 0 (zero-filled tail of `.data`) | 1 when `QueryPerformanceFrequency` returned 1, success | `0x005CC980` (`0x005CC9ED`, `sete`) | `0x005CC980` (`0x005CCA8D`) |
+| `0x02CB60F4` | `u32` | 0 (zero-filled tail of `.data`) | the `timeGetTime` milliseconds at set-up | `0x005CC980` (`0x005CC9B8`) | `0x005CC980` (`0x005CCA51`, converted to a double as an unsigned value) |
+| `0x02CB6118` | `i64` | 0 (zero-filled tail of `.data`) | the first performance-counter reading; 1 is stored first, then `QueryPerformanceCounter` fills it through the address `0x005CC9D7` passes (`0x005CCA00`) | `0x005CC980` (`0x005CC9AD`, 1; `QueryPerformanceCounter`) | `0x005CC980` (`0x005CCA10`, converted to a double as a signed value) |
+| `0x02CB6108` | `f64` | 0 (zero-filled tail of `.data`) | that reading in seconds: `0x02CB6118` times `0x02CB6128` | `0x005CC980` (`0x005CCA24`) | no instruction names it |
+| `0x02CB60F8` | `u32` | 0 (zero-filled tail of `.data`) | the reading in milliseconds divided by 2^32 (`0x009002D8` = 1000.0, `0x00D36060` = 2^-32), truncated | `0x005CC980` (`0x005CCA44`) | no instruction names it |
+| `0x02CB6100` | `f64` | 0 (zero-filled tail of `.data`) | `0x02CB60F8` times 2^32 (`0x00D36068`) plus `0x02CB60F4` | `0x005CC980` (`0x005CCA68`) | no instruction names it |
+| `0x02CB6110` | `f64` | 0 (zero-filled tail of `.data`) | 0.0 | `0x005CC980` (`0x005CCA83`) | no instruction names it |
+| `0x02CB6130` | `f64` | 0 (zero-filled tail of `.data`) | 0.0 | `0x005CC980` (`0x005CCA73`) | no instruction names it |
+| `0x02CB6138` | `f64` | 0 (zero-filled tail of `.data`) | 0.0 | `0x005CC980` (`0x005CCA7B`) | no instruction names it |
+
+### Render-pass numbering
+
+The `PRendering` init `0x00608A40` ends by jumping to `0x005FD560` (`0x00608DC0`). It sets `+0x18` of every record on the
+render-pass list `0x02CBF998` to -1, then numbers the records from 0 in list order, stores the count and sizes the
+array `0x02CB6780` to eight bytes per record (`0x0063DE00`). While `0x02CB6358` is set it returns `0x12` and changes
+nothing.
+
+`0x005F0720`, called from `0x005CF6E0`, sets that byte and uses the count: it clears that many pointer slots
+(`0x005F07A0`-`0x005F07B1`, compared unsigned) and files each record under its number. The `PRendering` shutdown
+`0x00610630` clears both and empties `0x02CB6780`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CB635C` | `u32` | 0 (zero-filled tail of `.data`) | the number of records on the render-pass list | `0x005FD560` (`0x005FD5BE`); `0x00610630` (`0x0061066D`, 0) | `0x005F0720` (`0x005F0734`, `0x005F078F`, `0x005F07A5`, `0x005F07F4`) |
+| `0x02CB6358` | `u8` | 0 (zero-filled tail of `.data`) | 1 once `0x005F0720` has used the numbers; it locks them | `0x005F0720` (`0x005F073A`, 1); `0x00610630` (`0x00610685`, 0) | `0x005FD560` (`0x005FD564`) |
+
+### Scene-wide parameter buffers
+
+The `PRendering` init calls `0x005FD2A0(0x40)` (`0x00608DA2`) after `0x0062D0D0`.
+
+It points an array at the 23
+parameter records of `0x18` bytes at `0x02CB7DA0` that `0x00162B30` builds, names them from the table `0x00D3EB30`, measures one block of them with `0x005FD700`, and allocates that many blocks and
+that many constant-buffer objects.
+
+The 23 names, in order: `EyeDirWS`, `EyePosWS`, `Proj`, `View`, `ViewInv`, `ViewInvTranspose`, `ViewProj`, `NearFarPlane`, `NearTimesFarPlane`, `FarMinusNearPlane`, `FarMinusNearInv`, `AspectRatio`, `ViewportWidthHeight`, `ViewportWidthHeightInv`, `ScreenWidthHeight`, `ScreenWidthHeightInv`, `GlobalAmbientColor`, `Time`, `DitherNoiseTexture`, `LowResDepthTexture`, `RWDeferredLightBuffer`, `RWCapturedTriangleBuffer`, `SceneWideParameterConstantBuffer`.
+
+Its count word `0x02CB8448`, the object array `0x02CB8478` and the lock `0x02CB8480`
+are listed with `0x005FD2A0` and `0x005FE200` in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv). The `PRendering`
+shutdown `0x00610630` runs `0x005FE200` (`0x00610658`), which takes the lock, releases everything and stores 0.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CB8450` | `void*` | 0 (zero-filled tail of `.data`) | the parameter records: `0x02CB7DA0`, with the count word `0x80000017`, 23 records the array does not own | `0x005FD2A0` (`0x005FD2F1`); `0x005FE200` (`0x005FE256`, 0) | `0x005FD2A0` (`0x005FD2C4`, `0x005FD3CB`); `0x005FE200` (`0x005FE236`) |
+| `0x02CB8458` | `u16` | 0 (zero-filled tail of `.data`) | the size of one block, from `0x005FD700`, rounded up to 16 bytes | `0x005FD2A0` (`0x005FD3EF`); `0x005FE200` (`0x005FE2A6`, 0) | no instruction names it |
+| `0x02CB8460` | `void*` | 0 (zero-filled tail of `.data`) | the blocks, allocated by `0x0017D260` with 16-byte alignment and zeroed | `0x005FD2A0` (`0x005FD406`); `0x005FE200` (`0x005FE2BF`, 0, after freeing it) | `0x005FE200` (`0x005FE2B3`) |
+| `0x02CB8468` | `u32` | 0 (zero-filled tail of `.data`) | the number of blocks: the argument rounded up to even, 64 | `0x005FD2A0` (`0x005FD40D`); `0x005FE200` (`0x005FE2AD`, 0) | no instruction names it |
+| `0x02CB8470` | `u32` | 0 (zero-filled tail of `.data`) | the number of `0x50`-byte constant-buffer objects at `0x02CB8478`, also 64; bit 31 set marks objects the array does not own. Each is built by `0x00615550`, resized by `0x00628050(object, 8)` when its `+0x18` count is not 8, and given `0x5E4` at `+0x00` | `0x005FD2A0` (`0x005FD4CD`); `0x005FE200` (`0x005FE32A`, 0) | `0x005FD2A0` (`0x005FD427`, `0x005FD4AC`); `0x005FE200` (`0x005FE265`, `0x005FE298`, `0x005FE2C6`) |
+| `0x02CB84A8` | `u32` | 0 (zero-filled tail of `.data`) | 0 when the blocks are allocated | `0x005FD2A0` (`0x005FD413`) | no instruction names it |
+
+`0x005FD2A0` also zeroes the `0xB30` bytes from `0x02CB84B0` (`0x005FD534`).
+
+### Statics the `PAnimation` shutdown clears
+
+The `PAnimation` shutdown `0x005CB150` empties two more statics after the job pool. The first is an array of
+`{u32 count, ptr buffer}` whose buffer it frees when bit 31 of the count is clear; the exit destructor `0x008A9240`,
+registered by `0x00160BE0`, does the same. The second group follows the channel-semantic count `0x02CACF18` and the
+`0x100` bytes of semantic slots from `0x02CACF20` (see [animation binding](phyre-animation-binding.md)); it clears them
+only when the array's buffer equals `0x02CAD020` (`0x005CB192`). Every instruction that names any of these globals
+stores 0.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CAE650` | `u32` | 0 (zero-filled tail of `.data`) | the array's count word | `0x005CB150` (`0x005CB1D8`, 0); `0x008A9240` (`0x008A9276`, 0) | `0x005CB150` (`0x005CB1B4`); `0x008A9240` (`0x008A924D`) |
+| `0x02CAE658` | `void*` | 0 (zero-filled tail of `.data`) | the array's buffer | `0x005CB150` (`0x005CB1D1`, 0); `0x008A9240` (`0x008A926F`, 0) | `0x005CB150` (`0x005CB18B`); `0x008A9240` (`0x008A925C`) |
+| `0x02CACF1C` | `u32` | 0 (zero-filled tail of `.data`) | the word after the semantic count | `0x005CB150` (`0x005CB19B`, 0) | no instruction names it |
+| `0x02CAD020` | `void*` | 0 (zero-filled tail of `.data`) | the qword after the semantic slots | `0x005CB150` (`0x005CB1A1`, 0) | `0x005CB150` (`0x005CB192`, compared for equality) |
+| `0x02CAD028` | `u32` | 0 (zero-filled tail of `.data`) | the next dword | `0x005CB150` (`0x005CB1A8`, 0) | no instruction names it |
+| `0x02CAD02C` | `u32` | 0 (zero-filled tail of `.data`) | the next dword | `0x005CB150` (`0x005CB1AE`, 0) | no instruction names it |
+
 ## Modding notes
 
 - All fifteen objects exist before `main`, at fixed addresses. A loader that runs earlier than

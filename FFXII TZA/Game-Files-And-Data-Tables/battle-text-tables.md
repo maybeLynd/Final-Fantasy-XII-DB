@@ -151,6 +151,44 @@ its file at `0x02EC3D80[group]` and jumps to `0x00238640` with the group in `ecx
 | 14-20 | `0x002F7780`, `0x002F77A0`, `0x002F7820`, `0x002F77C0`, `0x002F7920`, `0x002F7940`, `0x002F7760` |
 | 21-27 | `0x002F79C0`, `0x002F7840`, `0x002F7860`, `0x002F7880`, `0x002F78A0`, `0x002F78C0`, `0x002F78E0` |
 
+Group n's slot is the qword `0x02EC3D80` + n × 8, 0 at load (the zero-filled tail of `.data`). Its setter stores the
+delivered file's 32-bit argument sign-extended to 64 bits:
+
+| Group | Global | Set by |
+|---|---|---|
+| 1 | `0x02EC3D88` | `0x002F7900` (`0x002F7908`) |
+| 2 | `0x02EC3D90` | `0x002F7980` (`0x002F7988`) |
+| 3 | `0x02EC3D98` | `0x002F76A0` (`0x002F76A8`) |
+| 4 | `0x02EC3DA0` | `0x002F7680` (`0x002F7688`) |
+| 5 | `0x02EC3DA8` | `0x002F76E0` (`0x002F76E8`) |
+| 6 | `0x02EC3DB0` | `0x002F7960` (`0x002F7968`) |
+| 7 | `0x02EC3DB8` | `0x002F79A0` (`0x002F79A8`) |
+| 8 | `0x02EC3DC0` | `0x002F76C0` (`0x002F76C8`) |
+| 9 | `0x02EC3DC8` | `0x002F7740` (`0x002F7748`) |
+| 10 | `0x02EC3DD0` | `0x002F7720` (`0x002F7728`) |
+| 11 | `0x02EC3DD8` | `0x002F77E0` (`0x002F77E8`) |
+| 12 | `0x02EC3DE0` | `0x002F7800` (`0x002F7808`) |
+| 13 | `0x02EC3DE8` | `0x002F7700` (`0x002F7708`) |
+| 14 | `0x02EC3DF0` | `0x002F7780` (`0x002F7788`) |
+| 15 | `0x02EC3DF8` | `0x002F77A0` (`0x002F77A8`) |
+| 16 | `0x02EC3E00` | `0x002F7820` (`0x002F7828`) |
+| 17 | `0x02EC3E08` | `0x002F77C0` (`0x002F77C8`) |
+| 18 | `0x02EC3E10` | `0x002F7920` (`0x002F7928`) |
+| 19 | `0x02EC3E18` | `0x002F7940` (`0x002F7948`) |
+| 20 | `0x02EC3E20` | `0x002F7760` (`0x002F7768`) |
+| 21 | `0x02EC3E28` | `0x002F79C0` (`0x002F79C8`) |
+| 22 | `0x02EC3E30` | `0x002F7840` (`0x002F7848`) |
+| 23 | `0x02EC3E38` | `0x002F7860` (`0x002F7868`) |
+| 24 | `0x02EC3E40` | `0x002F7880` (`0x002F7888`) |
+| 25 | `0x02EC3E48` | `0x002F78A0` (`0x002F78A8`) |
+| 26 | `0x02EC3E50` | `0x002F78C0` (`0x002F78C8`) |
+| 27 | `0x02EC3E58` | `0x002F78E0` (`0x002F78E8`) |
+
+Four functions reach the slots as one array indexed by a sign-extended group: `0x002F8040` answers 1 when a slot is not 0
+(`0x002F804C`), `0x002F83E0` frees the file a slot holds and stores 0 (`0x002F83F4`-`0x002F8402`), and both resolvers test
+the slot for 0 before they read the bound table at `0x02F973C0` (`0x002F989D` in `0x002F9860`, `0x002F9967` in `0x002F9920`).
+`0x002F9860` then takes the row bound `+0x04` of the bound table with an unsigned compare (`0x002F98C7`).
+
 `0x002491B0(request group, group)` hands a group to that handler (`0x00244F50(0xD0, 0x00248700, ...)`) and counts
 it on the request group. `0x00292260` asks for groups 10, 20 and 14, `0x002922C0` (from `0x00556500`) for 17, and
 `0x00292190` (from `0x0057B780`) for 10, 20, 14 and 16, each only when `0x002F8040(group)` finds
