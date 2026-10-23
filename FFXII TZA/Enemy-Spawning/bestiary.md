@@ -140,7 +140,7 @@ The `+0x03` and `+0x15` bits, by their readers:
 | `+0x27` | `u8` | unit `+0x6C` | `0x0023A570` |
 | `+0x28` | `u8` | bit 0 the view query's height; bit 1 the kill chain skips it | `0x0031ADB0` (`0x0031B08D`), `0x00317ED0` (`0x00317F09`) |
 | `+0x29` | `u8[5]` | absorb, halve, nullify, weak, potency | `0x002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
-| `+0x30` | `u8[16]` | read and written by no function (scope below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
+| `+0x30` | `u8[16]` | read and written by no function in the scope below; taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
 | `+0x40` | `u16` | model family, the same-model run | `0x00317ED0` (`0x00317F77`) |
 | `+0x52` | `u16` | species, `0xFFFF` none | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
 

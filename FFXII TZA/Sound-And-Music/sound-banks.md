@@ -139,7 +139,7 @@ The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk direc
 | `+0x00` | `char[4]` | tag | "snd " "seq " "trk " "mtrl" in a .sab; "musc" "inst" "mtrl" in a .mab |
 | `+0x04` | `u32` | flags | `0x00100000` |
 | `+0x08` | `u32` | offset | from the start of the file |
-| `+0x0C` | `u8[4]` | pad | 0; read by no function (`0x007CF6B0` and `0x007D0580` read the tag and the offset); nothing fixes its width |
+| `+0x0C` | `u8[4]` | pad | 0; read by no function: `0x007CF6B0` and `0x007D0580` read the tag and the offset, and the five functions that call `0x007CF6B0` (`0x007D0210`, `0x007D0580`, `0x007E3450`, `0x007E3CF0`, `0x007E48D0`) read the offset `+0x08` of the entry it returns and not its `+0x0C`; nothing fixes its width |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

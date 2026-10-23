@@ -140,7 +140,7 @@ The file starts with the index; `indexSize` bytes of it are covered by the diges
 | `+0x00` | `u32` | magic | `'SRYK'` |
 | `+0x04` | `u32` | indexSize | |
 | `+0x08` | `u32` | count | entries |
-| `+0x0C` | `u8[4]` | zero | read and written by no function (the opener `0x001F4340` reads the magic and `indexSize`, then the whole index as bytes); nothing fixes its width |
+| `+0x0C` | `u8[4]` | zero | copied whole with the index by the opener `0x001F4340` (`fread`); no instruction of the opener, the tree functions `0x001F4720`, `0x001F3FD0` and `0x001F47D0`, the handle taker `0x001F4250` or the planner `0x0019A770` reads or writes it; nothing fixes its width |
 | `+0x10` | `u8[16]` | keys | one per entry: the MD5 of its name |
 
 After the keys come `count` entry records, then the names (a `u32` length that counts itself, then
@@ -153,7 +153,7 @@ The last 16 bytes of the file are the MD5 of `[0, indexSize)`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | firstBlock | |
-| `+0x04` | `u8[4]` | firstBlock copy | read and written by no function (`0x0019A770` plans a read from `firstBlock`, `size` and `offset`); nothing fixes its width |
+| `+0x04` | `u8[4]` | firstBlock copy | copied whole with the index by `0x001F4340`; no instruction of the opener, the tree functions `0x001F4720`, `0x001F3FD0` and `0x001F47D0`, the handle taker `0x001F4250`, the planner `0x0019A770` (which reads `firstBlock`, `size` and `offset`) or the handle readers `0x0019A660`, `0x0019A6E0`, `0x0019A860`, `0x0019A9B0` and `0x0019AFE0` reads or writes it; nothing fixes its width |
 | `+0x08` | `u64` | size | uncompressed |
 | `+0x10` | `u64` | offset | archive offset of the first stored block |
 | `+0x18` | `u64` | nameOffset | from the first name |

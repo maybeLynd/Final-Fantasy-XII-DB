@@ -68,7 +68,7 @@ shipped pack fills them.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[4]` | magic | "YM00" |
-| `+0x04` | `u8[4]` | stamp | an export value; read by no function (`0x002F6AB0` starts at +`0x10`); nothing fixes its width |
+| `+0x04` | `u8[4]` | stamp | an export value; read by none of `0x002F6AB0` (which starts at +`0x10`), the world-object builders `0x0026E760` and `0x0026E7D0` that hand it the section, or the pack walker `0x00378BC0`; nothing fixes its width |
 | `+0x08` | `u8[8]` | author | an export tag; not read by `0x002F6AB0` |
 | `+0x10` | `u32` | count | 17 in all 461 sections; `0x002F6AB0` reads it at [base + `0x10`] |
 | `+0x14` | `u32[]` | index | count + 1 entries of {u24 offset in 16-byte units from +`0x10`, u8 tag}; the last is the end sentinel with tag `0xFF` |

@@ -31,7 +31,7 @@ A shop row, 8 bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | name | the shop's name id |
-| `+0x02` | `u8[2]` | pad | read and written by no function (`0x00238660` rebases the offsets, `0x002FAD40` walks the ladder); nothing fixes its width |
+| `+0x02` | `u8[2]` | pad | read and written by no function: `0x02EBF158` is loaded only by `0x00238660`, which rebases the offsets, `0x002FA920` and `0x002FAE40`, and no instruction of those three or of the ladder walker `0x002FAD40` reads or writes a shop row's `+0x02`; nothing fixes its width |
 | `+0x04` | `u32` | ladder | offset of the shop's ladder |
 
 A ladder row, 8 bytes:

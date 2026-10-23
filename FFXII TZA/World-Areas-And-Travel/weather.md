@@ -122,7 +122,8 @@ entry whose roll lands elsewhere publishes one slot's combat wind under another 
 
 ### The environment variant in map_ref.bin
 
-`map_ref.bin` is bound at `0x02099D88` with `0x02099D90` as the loaded guard (both tested at
+`map_ref.bin` is bound at `0x02099D88`; `0x02099D90` is the address of its `+0x14` table, which the load completion
+`0x002678A0` sets, so it also serves as the loaded test (both tested at
 `0x0026D98F`, `0x0026D9CC` and by `0x00264F10`). The field's row is at `header[+4] + field * 8`; its first
 word is the MWeather selector (`0x00264F10` returns it) and its `+2` is a block index. The block is at
 `header[+8] + block * 16`, and lane `committed + 1` of the block, 4 bytes, is the variant for the
@@ -283,11 +284,11 @@ the map-side globals, and `0x002628B0` (`0x00262B53`) sets `0x0209A6FC` to 1 at 
 | `+0x00` | `u8[4]` | magic | "MRF" and the version byte 2 |
 | `+0x04` | `i32` | rowsOff | image-relative offset of the field rows, 8 bytes each (`0x0026D910`, `0x00264F10`) |
 | `+0x08` | `i32` | blocksOff | offset of the 16-byte weather blocks (`0x0026D910`) |
-| `+0x0C` | `u8[4]` | unused | zero in the shipped file; read and written by no function on this page; nothing fixes its width |
+| `+0x0C` | `u8[4]` | unused | zero in the shipped file; read and written by no function: the image pointer `0x02099D88` is loaded by `0x00264ED0`, `0x00264F10`, `0x00264F40`, `0x00264F90`, `0x00264FD0`, `0x002678A0`, `0x00268750`, `0x0026D910` and `0x0026DB30`, and no instruction of the nine reads or writes it; nothing fixes its width |
 | `+0x10` | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0x0026DA10-0x0026DA26) |  |
-| `+0x14` | `u8[4]` | table14Off in the shipped file, the offset of a count dword then u32[count]; read by no function on this page; nothing fixes its width |  |
+| `+0x14` | `i32` | table14Off offset of a count dword then u32[count], the terrain class per field group: the load completion 0x002678A0 adds it to the base (0x002678A7) and keeps the sum at 0x02099D90, which 0x00263DD0 indexes by the unit's group word without a bound check (0x00263E00) |  |
 | `+0x18` | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0x0026DA66-0x0026DA7D) |  |
-| `+0x1C` | `u8[20] unused2` | zero in the shipped file; read and written by no function on this page; nothing fixes its width |  |
+| `+0x1C` | `u8[20] unused2` | zero in the shipped file; read and written by no function (the scope of +0x0C); nothing fixes its width |  |
 
 `MapRefFieldRow` (`0x8` bytes, offsets from the start of the row):
 
@@ -399,7 +400,7 @@ A story script forcing the weather:
 |---|---|---|
 | payload `+0x1060` | committed slot 0 to 2 | `0x0026D910` (`0x0026D95E`) |
 | payload `+0x1061` | restore flag | `0x0026D8F0` sets; `0x0026D910` clears (`0x0026DA92`) |
-| `0x02099D88`, `0x02099D90` | the `map_ref.bin` image and its loaded guard | the map_ref loader |
+| `0x02099D88`, `0x02099D90` | the `map_ref.bin` image and the address of its `+0x14` table | the map_ref loader `0x00268750` and its completion `0x002678A0` |
 | `0x02ADD0B0` | the MWeather image | `0x00378F70`, `0x00378540` (zeroed) |
 | `0x02099DA8`, `0x02099DAC`, `0x02099DB0`, `0x02099DBC` | the published variant | `0x0026D910`; `0x0026AB40` for the last |
 | `0x0209A6E8`, `0x0209A708` | the map's slot and dirty flag | `0x0026E8D0`; `0x0026E290` clears the flag |

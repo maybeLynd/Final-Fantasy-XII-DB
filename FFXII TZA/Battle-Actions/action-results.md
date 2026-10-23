@@ -92,7 +92,7 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x018` | `u32` | flagsB | bit 1: continue a combo (`0x00388660`); bit 2: guard decision (`0x00385A1C`-`0x00385A2D`); bit 3: knockback (`0x003896B0`); `0x00307300` copies bits 0-3 to target entry bits 11, 10, 9, 8 |
 | `+0x01C` | `u8` | resolved | 1: post the battle-message events (`0x00385BA0`) |
 | `+0x01D` | `i8` | mpUnits | whole max-MP units added to the target's secondary resource (step 8) |
-| `+0x01E` | `u8[2]` | zero1E | zeroed only by the memset of `+0x08` to `+0x147` in `0x003848E0` (`0x00861EC0`, `0x003848F5`); read by no function; nothing fixes its width |
+| `+0x01E` | `u8[2]` | zero1E | zeroed only by the memset of `+0x08` to `+0x147` in `0x003848E0` (`0x00861EC0`, `0x003848F5`); read by none of the record's functions (scope below); nothing fixes its width |
 | `+0x020` | `i32` | userHp | user HP change or value (step 9) |
 | `+0x024` | `i32` | targetHp | target HP change or value (step 8) |
 | `+0x028` | `i16` | userMp | user MP change or value (step 9) |
@@ -105,7 +105,7 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x03C` | `u8[2]` | effectSet | augment bits to set; `0xFF` none (step 10) |
 | `+0x03E` | `u8[4]` | effectClear | augment bits to clear; `0xFF` none (step 10) |
 | `+0x042` | `i16[8]` | effectTimers copied to target +0x17C..+0x18A when not negative |  |
-| `+0x052` | `u8[2]` | zero52 | zeroed only by the memset in `0x003848E0`; read by no function; nothing fixes its width |
+| `+0x052` | `u8[2]` | zero52 | zeroed only by the memset in `0x003848E0`; read by none of the record's functions (scope below); nothing fixes its width |
 | `+0x054` | `u32` | addMask | statuses to add (step 6) |
 | `+0x058` | `u32` | removeMask | statuses to remove (step 6) |
 | `+0x05C` | `i32[32]` | statusA | per-status parameter A (duration); copied to target `+0xBC` |
@@ -113,7 +113,7 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x11C` | `u8` | targetLevel | `0xFF` none (step 4) |
 | `+0x11D` | `u8` | userLevel | `0xFF` none (step 4) |
 | `+0x11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11) |
-| `+0x126` | `u8[2]` | zero126 | zeroed only by the memset in `0x003848E0`; read by no function; nothing fixes its width |
+| `+0x126` | `u8[2]` | zero126 | zeroed only by the memset in `0x003848E0`; read by none of the record's functions (scope below); nothing fixes its width |
 | `+0x128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` (step 12) |
 | `+0x12C` | `u8[4]` | affinityClr | cleared out of the same bytes (step 12) |
 | `+0x130` | `u16` | packedParam | -1 by the word store `0x00384991` in `0x003848E0`; not read by `0x003112F0` or `0x00385BA0` |
@@ -122,7 +122,13 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x138` | `i32` | echoB | to [`0x02EBF190`]`+0x5B0E` (low byte) when not -1 (`0x00385BA0`) |
 | `+0x13C` | `i32` | echoA | to [`0x02EBF190`]`+0x5B00` when not -1 (`0x00385BA0`) |
 | `+0x140` | `u32` | flagsC | bits 4, 5, 6, 7: flags for the status and effect writes; bit 14: sound `0x34` |
-| `+0x144` | `u8[4]` | zero144 | zeroed only by the memset in `0x003848E0`; read by no function; nothing fixes its width |
+| `+0x144` | `u8[4]` | zero144 | zeroed only by the memset in `0x003848E0`; read by none of the record's functions (scope below); nothing fixes its width |
+
+The scope of "read by none of the record's functions" is the thirteen functions that build, fill or apply the record:
+`0x003848E0` and its six callers `0x00385680`, `0x00385DF0`, `0x00385F60`, `0x00386A50`, `0x00386A70` and `0x00386AE0`, the
+resolvers `0x00388660`, `0x003896B0` and `0x00385E50`, the applier `0x003112F0`, the poster `0x00385BA0` and `0x00307300`. No
+instruction in them reads or writes `+0x1E`, `+0x52`, `+0x126` or `+0x144`, and none copies the record whole: the
+memset is their only call into the runtime's memory routines, and none has a `rep movs`.
 
 ## State
 

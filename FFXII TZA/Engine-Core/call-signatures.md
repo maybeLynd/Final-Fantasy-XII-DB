@@ -10,11 +10,13 @@ addresses: "0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE
 One row for each of 499 functions drawn from across the executable, from `0x0015BCF0` to
 `0x00862660` and from two-instruction stubs to a body of 898 instructions (`0x007A2440`). The set is
 a selection, not every function in the image. For each, the table gives the argument registers
-the body itself reads, and from them the argument count.
+the body itself reads, and from them the argument count: the highest argument position the body reads.
 
-A function is listed only when its body settles its whole signature: it hands no untouched argument register on
-through a tail jump, leaves through no indirect jump that is not a switch, and every read of a stack argument is
-placed against a frame the walk can follow.
+A function is listed only when its body settles every argument read the method can see: it hands no untouched
+argument register on through a tail jump, leaves through no indirect jump that is not a switch, and every read of a
+stack argument is placed against a frame the walk can follow. A row gives the inputs the body uses, not its
+declared prototype: a parameter the body never reads does not show, the tables tell integer from float registers but give no
+types, and return values are outside them (see below).
 
 ### Method
 

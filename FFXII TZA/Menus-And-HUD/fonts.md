@@ -49,16 +49,24 @@ then asks for two more files:
 | `0` | `<name>.ker` | `0x001B5750` (`0x001B5040`) | `0x001B5230`, through `0x001B6080` |
 | `1` | `<name>.fex` | `0x001B5480` (`0x001B5061`) | `0x001B4C00`, through `0x001B6030` |
 
-The font object keeps its tables in three maps keyed by code, at `+0x00`, `+0x38` and `+0xA8` of the font. Each map
-is an object of its own, with its header node at its `+0x08` and its root at its `+0x18` (`0x001FC640`, `0x001FC580`):
+The font object keeps three maps keyed by code: the glyphs at `+0x38`, the kerning pairs at `+0x70` and the
+expansion lists at `+0xA8` of the font, each built by the constructor (`0x001FC0E4`, `0x001FC134`, `0x001FC184`). Each map
+has its header node at its own `+0x08` and its root at its own `+0x18` (`0x001FC587`, `0x001FC58E`), so the glyph map's
+header and root are at the font's `+0x40` and `+0x50`:
 
-- the builder's filer `0x001FDCC0` takes each glyph record from `0x001FC580(font, key)`, which returns the record in
-  the map at `+0x00`, inserting an empty one for a new key; `0x001E9860` looks glyphs up through `0x001FDEC0(font,
-  key)` in the map at `+0x38`, which returns null for a missing key;
+- the builder's filer `0x001FDCC0` takes each glyph record from `0x001FC580(font + 0x38, &key)` (`0x001FDCC8`,
+  `0x001FDD13`), which returns the record for the key, inserting an empty one for a new key; `0x001E9860` looks glyphs
+  up in the same map through `0x001FDEC0(font, key)` (root `+0x50`, header `+0x40`), which returns null for a missing
+  key;
 - the `.fex` reader `0x001B4C00` adds a list of n entries for a key with `0x001FDB90(font, key, n)`, which returns 0
-  when the map at `+0xA8` already holds the key, and writes entry i with `0x001FDB50(font, key, i, v)`;
+  when the map at `+0xA8` already holds the key, and writes entry i with `0x001FDB50(font, key, i, v)`; both find
+  the key's entry in that map through `0x001FC640`;
 - `0x001B4D70` stores the atlas name (`<name>.dds.phyre`) at `+0xE0` with `0x001FE080` and the shadow name
-  (`<name>_shadow.dds.phyre`) at `+0x100` with `0x001FE020` (`0x001B4FB8`, `0x001B4FF3`), each of which frees the string it is given, and tests `0x001FDF80(font)`, whether `+0x60` equals `+0x18`.
+  (`<name>_shadow.dds.phyre`) at `+0x100` with `0x001FE020` (`0x001B4FB8`, `0x001B4FF3`), each of which frees the string it is given;
+- after filing every glyph, the builder tests `0x001FDF80(font)`, whether the glyph map's count `+0x60` (its own
+  `+0x28`, which the inserter `0x001FD010` raises at `0x001FD0BB` and `0x001FD14E`) equals the count `+0x18` the
+  constructor was given (`0x001FC095`), and asserts on it (`0x001B4F6C`, "Font Info Buffer size Not Equal with Head
+  Data!!").
 
 The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10` with the text renderer `[0x01F811F8]`
 (`0x2380` bytes, `0x001E71B0`); its constructor `0x001B3940` sets up a name vector, three maps keyed by font id

@@ -45,10 +45,10 @@ So `0x021641A8` to `0x021641E0` hold the tables for `b`, `c`, `g`, `m`,
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "CHSE"; ignored |
-| `+0x04` | `u8[2]` | version | bytes 01 00 in all 8 files; read by no function (`0x002ED950` reads only count); nothing fixes its width |
-| `+0x06` | `u8[2]` | letter | the file's own letter then 0, in all 8 files; read by no function; nothing fixes its width |
+| `+0x04` | `u8[2]` | version | bytes 01 00 in all 8 files; read by no function: the eight table pointers are loaded by one function, `0x002ED950` (`0x002ED977`-`0x002ED9B6`), which reads the count at +`0x08` and returns a row address, and the file is copied whole by the read `0x0032E620`; nothing fixes its width |
+| `+0x06` | `u8[2]` | letter | the file's own letter then 0, in all 8 files; read by no function (the scope of +`0x04`); nothing fixes its width |
 | `+0x08` | `i32` | count | rows that follow; the row bound |
-| `+0x0C` | `u8[4]` | zero | 0 in all 8 files; read by no function; nothing fixes its width |
+| `+0x0C` | `u8[4]` | zero | 0 in all 8 files; read by no function (the scope of +`0x04`); nothing fixes its width |
 
 `ChseRow` (`0x10` bytes, offsets from the start of the record):
 

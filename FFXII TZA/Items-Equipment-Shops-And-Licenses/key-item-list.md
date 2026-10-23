@@ -29,7 +29,7 @@ the q_daiji arm (`0x0031D488`-`0x0031D61B`, base `0x8060` at `0x0031D622`) read 
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[2]` | b00 | read and written by no function, so nothing fixes its width: the three tables are loaded only by `0x0031C5D0`, the validator `0x00322C50` and the loader `0x00236C30`, and the arm reads `+0x02`-`+0x09` |
+| `+0x00` | `u8[2]` | b00 | read and written by no function, so nothing fixes its width: the three table pointers `0x02EBF090`, `0x02EBF088` and `0x02EBF080` are loaded only by `0x0031C5D0`, whose arms read `+0x02`-`+0x09`, by the validator `0x00322C50`, which reads each table's count (`0x00322E3B`-`0x00322E65`), and by the loader `0x00236C30`, which fills each table whole through `0x003845F0` (`0x00236E8C`-`0x00236ECE`) |
 | `+0x02` | `u16` | sortOrder | query record `+0x30` (`0x0031D631`-`0x0031D635`), the key Auto-sort `0x002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)) |
 | `+0x04` | `u8` | iconFrame | query record `+0x2C` (`0x0031D26B`-`0x0031D26F`) |
 | `+0x05` | `u8` | | 0 on every row |

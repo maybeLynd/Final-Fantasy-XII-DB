@@ -191,7 +191,7 @@ third byte. The defaults do not agree on what they mean:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | flags | bits 0-11 Map entry (`0x003779F0`), bits 12-13 MP regime (`0x00377BA0`), bit 14 area name (`0x00377A40`), bit 15 town (`0x00377C20`, `0x00377480`) |
-| `+0x02` | `u8` | options | bit 0 hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by nothing (scope: the eight readers of `0x02ADD100` above), bits 4-6 default leader (`0x00377C70`), bit 7 never set and never read |
+| `+0x02` | `u8` | options | bit 0 hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by nothing (scope: the seven functions that load `0x02ADD100` above and its two loaders), bits 4-6 default leader (`0x00377C70`), bit 7 never set and never read |
 
 ## Shipped data
 
@@ -280,8 +280,9 @@ The name table's header, measured in all nine language copies of `planmapname.bi
   impose a regime on any area without touching the file.
 - Bits 4-6 of the third byte are a working but unused feature: a non-zero value names the party member
   the game follows when control returns inside that town.
-- Bits 1-3 of the third byte are authored on 638 areas and read by no function; changing them does
-  nothing.
+- Bits 1-3 of the third byte are authored on 638 areas and read by no function: the table pointer `0x02ADD100` is
+  loaded by the seven readers above and stored by the two loaders `0x00378540` and `0x00378B80`, and of the seven only
+  `0x00377700` (bit 0, `0x00377721`) and `0x00377C70` (bits 4-6, `0x00377C91`) read the third byte. Changing them does nothing.
 - Area names and the Map pages live in `planmapname.bin`, not here; the record only carries the Map
   entry id and the name flag.
 

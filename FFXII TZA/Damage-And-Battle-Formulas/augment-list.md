@@ -91,7 +91,7 @@ Fifteen functions load `0x02EBF040` (111 references): `0x002FEF30`, `0x002F95D0`
   `+0x06` only.
 - `0x0031C5D0` reads `+0x00` and `+0x02`.
 
-So no function reads the value of rows 104-113 (1 each) or 128 (20).
+So none of the fifteen reads the value of rows 104-113 (1 each) or 128 (20).
 
 ### Augment 114, Essentials
 
