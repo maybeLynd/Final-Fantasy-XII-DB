@@ -32,9 +32,9 @@ The manager is a `0x40`-byte object whose pointer is at `0x01F7FFE0`. `0x0019875
 ### One poll
 
 The device poll runs from the vsync callback `0x0035EC90`, installed at `0x0035E943`, through `0x0035FCA0` and `0x0035F420`.
-`0x0035F420` reaches the manager's poll `0x00196FF0(manager, frame)` through two thunks: `0x00862670` jumps to `0x001E09B0`,
-which calls it at `0x001E09D3`, and `0x00862680` jumps to `0x001E09E0`, which calls it through a pointer. The poll runs in
-this order:
+`0x0035F420` reaches the manager's poll `0x00196FF0(manager, frame)` through `0x00862670` (`0x0035F467`), which jumps to
+`0x001E09B0`, which tail-jumps to the poll at `0x001E09D3`. Its next call, `0x00862680` (`0x0035F473`), jumps to `0x001E09E0`,
+which tail-jumps to the return stub `0x0016D6A0` (`0x001E0A03`) and so does nothing. The poll runs in this order:
 
 1. With `+0x39` at 0 it returns at once (`0x0019701D`).
 2. It updates every device (`0x007999E0`, `0x0019702D`), which lists them again after a pad arrives
@@ -310,6 +310,74 @@ The cursor's setters:
   `0x00276D30`, `0x002778C0`, `0x00279E20` and `0x0027B880` call it.
 - `0x003C9370(h)` answers 1 when `h` is one of the handles of the target list `0x022C83F0` (`0x0035D3E0`) and 0
   otherwise; `0x003C87B0` (`0x003C8847`) and `0x003C8B70` (`0x003C8FB2`) call it.
+
+## State
+
+### Record button codes
+
+The static initialiser `0x0015C280` fills the records' button codes in 16-byte stores; the globals below are the
+stores that land on buttons 4-7 (`+0x10`), 8-11 (`+0x20`) and 12-15 (`+0x30`). All are 0 in the file. The translator
+`0x00197160` reads every button code of the five records through the record list `0x01DF1480` that the poll passes it
+(`0x00197089`, `0x001971C5`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01DF15EC`, `0x01DF15FC`, `0x01DF160C` | `u32[4]` each | 0 | buttons 4-7, 8-11 and 12-15 of record 1, the mouse: copies of `0x01F80100`, `0x01F80110` and `0x01F80120`, which are 0 in the file, so they stay 0 | `0x0015C280` (`0x0015C2B2`, `0x0015C2C0`, `0x0015C2C7`) | `0x00197160` |
+| `0x01DF1748`, `0x01DF1768` | `u32[4]` each | 0 | buttons 4-7 and 12-15 of record 2, the first keyboard profile | `0x0015C280`, from the defaults `0x01DF09D0` and `0x01DF09F0` (`0x0015C350`, `0x0015C365`); the publisher `0x00195DF0` (`0x00195E64`, `0x00195E82`); the defaults `0x00198B60` (`0x00198C8D`, `0x00198C9D`); the rebuild `0x00196290` (`0x001962CD`, `0x001962DD`); Circle and Cross only: `0x00195DF0` (`0x00195F1C`, `0x00195F24`), `0x00198B60` (`0x00198D1F`, `0x00198D27`), `0x00198960` (`0x0019896C`, `0x00198972`) | `0x00197160`; the copies into the master `0x01F80130` (`0x00195F47`-`0x00195FCF`, `0x00198D47`-`0x00198D91`); Circle or Cross only: `0x001967D0` (`0x00196864`), `0x00195DF0` (`0x00195F0C`, `0x00195F14`), `0x00198B60` (`0x00198D0F`, `0x00198D17`), `0x00198960` (`0x00198960`, `0x00198966`) |
+| `0x01DF18A4`, `0x01DF18B4`, `0x01DF18C4` | `u32[4]` each | 0 | buttons 4-7, 8-11 and 12-15 of record 3, the second profile | `0x0015C280` (`0x0015C3F0`, `0x0015C3FE`, `0x0015C405`); `0x00195DF0` (`0x00195E64`, `0x00195E78`, `0x00195E82`); `0x00198B60` (`0x00198C8D`, `0x00198C95`, `0x00198C9D`); `0x00196290` (`0x0019636D`, `0x00196375`, `0x0019637D`); Circle and Cross as for record 2, `0x00198960` at `0x00198990` and `0x00198996` | as for record 2; `0x00198960` at `0x0019897E` and `0x0019898A` |
+| `0x01DF1A00`, `0x01DF1A10`, `0x01DF1A20` | `u32[4]` each | 0 | the same for record 4, the third profile | `0x0015C280` (`0x0015C48D`, `0x0015C49B`, `0x0015C4A2`); `0x00195DF0`, `0x00198B60` as for record 3; `0x00196290` (`0x0019640D`, `0x00196415`, `0x0019641D`); Circle and Cross as for record 2, `0x00198960` at `0x001989B4` and `0x001989BA` | as for record 2; `0x00198960` at `0x001989A2` and `0x001989AE` |
+
+### The filtered button words
+
+`0x002498B0` copies the button words `0x02F97360`-`0x02F9736F` to the filtered copy `0x02F97388`-`0x02F97397` and the stick
+bytes to `0x02F97398` every game frame (`0x00249A5E`-`0x00249A71`). When `0x02F973A0` is not 0 it then applies the masks
+below (`0x00249A7E`-`0x00249BF8`). The masks are set by `0x002D6640(mask, sticks)` for every set at once, by
+`0x002D6620`, which masks every button and the sticks without setting `0x02F973A0`, by `0x002D66A0(buttons)`, the forced
+presses that the gambit screen and the licence board use, and cleared by `0x00249840`. All are
+0 in the file.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02F9738A` | `u16` | 0 | filtered pressed mask, set 1 | `0x002284F0`, 0 (`0x00228628`); `0x002498B0` (0 at `0x002498E0`; `0x00249A71`, `0x00249B80`) | `0x002498B0` (`0x00249AC7`) |
+| `0x02F9738C` | `u16` | 0 | filtered repeat mask, set 1 | `0x002284F0` (`0x00228628`); `0x002498B0` (0 at `0x002498E0`; `0x00249A71`, `0x00249B9E`) | `0x002498B0` (`0x00249AD3`) |
+| `0x02F9738E` | `u16` | 0 | filtered released mask, set 1 | `0x002284F0` (`0x00228628`); `0x002498B0` (0 at `0x002498E0`; `0x00249A71`, `0x00249AEA`) | `0x002498B0` (`0x00249AEA`) |
+| `0x02F97396` | `u16` | 0 | filtered released mask, set 0 | `0x002284F0` (`0x0022862F`); `0x002498B0` (0 at `0x002498E7`; `0x00249A71`, `0x00249AF4`) | `0x002498B0` (`0x00249AF4`) |
+| `0x02F973A2` | `u8` | 0 | 1: the filtered stick bytes become 0 | `0x002D6620`, 1 (`0x002D6620`); `0x002D6640`, whether `sticks` is not 0 (`0x002D6659`); `0x00249840`, 0 (`0x00249842`) | `0x002498B0` (`0x00249AFB`) |
+| `0x02F973A4` | `u16` | 0 | buttons taken out of both held masks | `0x002D6620`, `0xFFFF` (`0x002D6627`); `0x002D6640`, `mask` (`0x002D6675`); `0x00249840`, 0 (`0x00249842`) | `0x002498B0` (`0x00249A7E`) |
+| `0x02F973A6` | `u16` | 0 | buttons taken out of both pressed masks | `0x002D6620` (`0x002D6627`); `0x002D6640` (`0x002D666E`); `0x00249840` (`0x00249842`) | `0x002498B0` (`0x00249A9D`) |
+| `0x02F973A8` | `u16` | 0 | buttons taken out of both repeat masks | `0x002D6620` (`0x002D6627`); `0x002D6640` (`0x002D6667`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249AA8`) |
+| `0x02F973AA` | `u16` | 0 | buttons taken out of both released masks | `0x002D6620` (`0x002D6627`); `0x002D6640` (`0x002D6660`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249AB2`) |
+| `0x02F973AE` | `u16` | 0 | buttons forced into both pressed masks for one game frame | `0x002D66A0`, `buttons` (`0x002D66B6`); `0x002498B0`, 0 after use (`0x00249BF8`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249B3A`, `0x00249B4A`) |
+
+`0x002D6680` loads 8 bytes from `0x02F973A1` and uses only the first.
+
+### The field target cursor and L2
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01EFE378` | `i32` | 1 | 1 while the pad's L2 (held mask set 0, bit 8) drives the target cursor's `+0xC0` bit 2, which it sets while held and the next call clears; 0 once the keyboard's L2 (`0x0017DDC0`) has taken over, which toggles the bit on each new press (`0x003C912C`-`0x003C91C1`) | `0x003C8B70`: 0 on the keyboard key (`0x003C9158`), 1 on the pad button (`0x003C9183`) | `0x003C8B70` (`0x003C912C`, `0x003C918E`) |
+| `0x02B47738` | `u8` | 0 | whether the keyboard's L2 was held at the last call, so that only a new press toggles the bit | `0x003C8B70` (`0x003C91C1`) | `0x003C8B70` (`0x003C914A`) |
+
+The toggle and the set are skipped while bit 18 of `0x002E0FA0()` is set (`0x003C9171`-`0x003C917A`, `0x003C919A`-`0x003C91A3`).
+
+### Channel set-up
+
+`0x0035F260` sets up the two input channels. All of these are 0 in the file.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CB3B8` | `i32[2]` | 0 | the device each channel reads: -1 for both, and nothing stores another value; `0x0035FCA0` passes it to `0x0053DD10`, which answers 1 whatever it is | `0x0035F260` (`0x0035F27E`) | through the address: `0x0035F420` (`0x0035F441`, `0x0035F451`), `0x0035FCA0` (`0x0035FCC3`, `0x0035FCE3`), `0x0035FDD0` (`0x0035FDF7`, `0x0035FDFE`) |
+| `0x022CB6C0`, `0x022CB6C8` | `u8[8]` each | 0 | a 16-byte block that stays 0: `0x0035F420` hands its address to `0x00862680`, which reaches the return stub `0x0016D6A0` through `0x001E09E0` and writes nothing (`0x0035F46C`), and `0x003600C0` copies it to `0x02F97350` each game frame (`0x00249C06`) | `0x0035F260`, 0 (`0x0035F403`, `0x0035F40A`) | `0x003600C0` (`0x003600C0`) |
+| `0x022CB700` | `i32` | 0 | 2 | `0x0035F260` (`0x0035F28C`, `0x0035F2B9`) | no instruction |
+| `0x022CB704` | `i32` | 0 | the channel `0x0035F260` is setting up, 1 when it returns | `0x0035F260` (`0x0035F28C`, `0x0035F2D3`) | no instruction |
+| `0x022CB708` | `u8[8]` | 0 | 0 | `0x0035F260` (`0x0035F2A1`) | no instruction |
+| `0x022CB710` | `u8[8]` | 0 | 0 | `0x0035F260` (`0x0035F293`, `0x0035F2C9`) | no instruction |
+| `0x022CB718` | `u8[8]` | 0 | 0 | `0x0035F260` (`0x0035F2B2`) | no instruction |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
+image-base-relative references (`0x00195DF0` and `0x00198B60` reach records 2-4 that way, at the sites listed) and a scan
+of `.text` for each global's 32-bit offset from the image base, which finds no other; the same scan finds the two
+known uses of `0x02AEA030` (`0x003B6181`, `0x003B6188`).
 
 ## Modding notes
 

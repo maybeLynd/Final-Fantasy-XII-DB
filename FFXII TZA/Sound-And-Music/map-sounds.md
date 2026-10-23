@@ -76,15 +76,17 @@ level)`: driver action `0x2E` for parameter 7 at `level / 127` over 3 s ([Audio 
    has none, into three selections at `0x022CBB58`. An index in range whose id is above 0 is kept, and each id is
    added once to a keep list at `0x022CBB64`.
 2. The weather slot is `0x00265920()` minus one; a slot at or past the table's count picks nothing.
-3. A new ambience becomes `0x022CBA7C`. While `0x022CBB2D` is set it starts at once through `0x00363840`. Otherwise a
-   playing ambience fades out over 15 frames first (`0x002DF190(current, 0xF)`), and with none playing `0x003636A0`
-   starts the new one.
+3. A new ambience becomes `0x022CBA7C`. While `0x022CBB2D` is set it starts at once through `0x00363840`. Otherwise it
+   waits in `0x022CBA7C` until `0x003633B0` or `0x00363410` sets `0x022CBB2D`, which starts it through `0x00363840`: a
+   playing ambience fades out over 15 frames (`0x002DF190(current, 0xF)`), and with none playing `0x003636A0` releases
+   the previous map's kept ambiences (below).
 4. With no ambience for the slot, the current one fades out over 180 frames (`0x002DF190(current, 0xB4)`).
 
 Every update `0x00362850` also runs the two ambience steps:
 
-- `0x00362C60` starts a pending ambience (`0x003636A0`) and resets the volume ramp once the old one has stopped, or once
-  the countdown `0x022CBA78`, run down by 2 per pass, goes below 0. It sends a changed ambience volume
+- `0x00362C60` releases the previous map's kept ambiences (`0x003636A0`), resets the volume ramp and clears the fading
+  handle `0x022CBA74` once the old one has stopped, or once the countdown `0x022CBA78`, run down by 2 per pass, goes
+  below 0. It sends a changed ambience volume
   `0x022CBA92` to the playing handle `0x022CBA70` (`0x002DF150`).
 - `0x00362D20` moves the map sound volume `0x022CBA94` from `0x022CBA98` towards `0x022CBA99` by the step `0x022CBA9C` per
   pass. Character and effect sounds take their volume byte from `0x022CBA94` ([Spatial sound](spatial-sound.md)).
@@ -104,8 +106,23 @@ Every update `0x00362850` also runs the two ambience steps:
 ### Unbinding
 
 `0x00363750` releases every listed id through `0x002DF050`, except an id from 1,000 to 1,999 that is in the keep list
-(`0x00363774`-`0x003637E4`). It copies the three selections and the keep list to `0x022CBB38` and releases the handle
-(`0x002DEB40`).
+(`0x00363774`-`0x003637E4`). It copies the three selections, the keep list and its count, `0x022CBB58`-`0x022CBB77`, over
+`0x022CBB38`-`0x022CBB57` (`0x003637F0`-`0x00363810`) and releases the handle (`0x002DEB40`).
+
+### The previous map's keep list
+
+The copy keeps the previous map's ambiences loaded until the next ambience is picked. `0x003636A0` then releases
+(`0x002DF050`) each of the previous ids at `0x022CBB44` that is above 0 and not in the current keep list `0x022CBB64`
+(count `0x022CBB70`) (`0x003636A6`-`0x00363716`), so an ambience both maps keep stays loaded. It runs from the weather
+pick (`0x00363D47`, `0x00363DE1`), `0x00362C60` (`0x00362C8C`), `0x00363E40` (`0x00363E93`, `0x00363EE9`), `0x002628B0`
+(`0x00262920`), `0x003601D0` (`0x00360317`) and `0x00363560` (`0x0036359B`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBB50` | `i32` | 0 (zero-filled tail) | the count of the previous map's keep list at `0x022CBB44` | the map-sound initialiser `0x00362F70`, 0 (`0x00363036`), after setting both lists to -1 (`0x00363020`-`0x00363064`); `0x00363750`, the copy of `0x022CBB70` (`0x00363810`) | `0x003636A0` (`0x003636A6`, `0x00363700`) |
+
+These are all its accesses among the RIP-relative references; no image-base-relative reference or disp32
+displacement names it, a search that finds the control `0x02AEA030` at `0x003B6181` and `0x003B6188`.
 
 ### Event sound lists
 

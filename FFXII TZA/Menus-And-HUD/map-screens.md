@@ -31,6 +31,9 @@ The two controls are rows 28 and 25 of the Controls screen (`0x002414B0`; [Contr
 The input arbiter `0x00253C70` keeps the map state in `0x02092750`:
 
 1. Map Transparency toggles the state between 0 and 3 and remembers it in `0x0209E5B0` (`0x00253E2F`-`0x00253E63`).
+   Each toggle also sets `0x0209E5B4` to 1 (`0x00253E45`, `0x00253E5D`). On a later frame, when `0x001EDE70` answers
+   non-zero, the arbiter clears it and skips the Map Transparency and Display Map press tests for that frame
+   (`0x00253D82`-`0x00253D98`, past `0x00253DEC`-`0x00253E9A`); while `0x001EDE70` answers 0 it stays set and the tests run.
 2. State 3 opens the map overlay with `0x002B6220(1)` (`0x00253DE2`) when the field-time container is ready (`0x003CB3E0`),
    `0x02092754` is 0, the field has a map record (`0x003BFDF0`) and the story counter is at least 16
    (`0x00253DD1`-`0x00253DDA`).
@@ -417,6 +420,15 @@ The location list pane `0x005542D0` uses row painters installed at `+0x120` of i
 |---|---|
 | guide table in `menumap_common.bin` (`us`) | 77 entries, story counter thresholds 0 to 6,150; every entry selects `menumap_guide00.bin` |
 | "???" sites | 6 places in the code load `0x3EC` |
+
+## State
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209E5B4` | `i32` | 0 (zero-filled tail) | 1 after a Map Transparency toggle: the next frame on which `0x001EDE70` answers non-zero skips the map press tests once. `0x001EDE70` returns the frame-rate mode flag `0x01F82E38`, which `0x001EDDC0` sets to 1 for a frame limit of 1 ([Startup constants](../Engine-Core/startup-constants.md)) | `0x00253C70`: 1 on each toggle (`0x00253E45`, `0x00253E5D`), 0 when it skips (`0x00253D98`) | `0x00253C70` (`0x00253D82`) |
+
+These are all its accesses among the RIP-relative references; no image-base-relative reference or disp32
+displacement names it, a search that finds the control `0x02AEA030` at `0x003B6181` and `0x003B6188`.
 
 ## Modding notes
 

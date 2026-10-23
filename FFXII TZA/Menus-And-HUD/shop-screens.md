@@ -186,6 +186,10 @@ and bit 3 when it is not 1, and passes both to the list.
 
 - `0x0057D600(buy)` gives the tab count, 9 when buying and 6 otherwise; `0x0057D5E0(buy, i)` the category of tab `i`,
   from `0x00D23D60` (buy: 20 to 27 and 29) or `0x00D23D6C` (otherwise: 8 to 12 and 15); `0x0057D610` is `0x0057D620` with 0.
+- Categories 20, 21 and 22 are the three key-item tables. The row builders `0x0057CF20` (`0x0057D420`-`0x0057D45E`) and
+  `0x0057D620` (`0x0057D9C2`-`0x0057D9FD`) pass `0x0057DAD0` an end and a start, and it keeps an id only when
+  start <= id < end (`0x0057DB2C`-`0x0057DB3B`): category 20 takes `0x8060`-`0x81FF`, 21 takes `0x8000`-`0x803F` and
+  22 takes `0x8040`-`0x805F` ([Key item list](../Items-Equipment-Shops-And-Licenses/key-item-list.md)).
 - `0x0057CE10(category)` returns the category's row table, one of 17 between `0x00D239A0` and `0x00D23A50`; `0x0057CDD0(n)`
   allocates `n` zeroed 0x20-byte rows from arena 2 (`0x002497E0(2, n x 0x20)`, `0x0057CDDC`-`0x0057CDF6`).
 - `0x0056DED0(screen)` is the screen's step: the quantity window's input while it is open (`0x0056CA60`); otherwise the
