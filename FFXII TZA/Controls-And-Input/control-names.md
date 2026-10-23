@@ -61,3 +61,4 @@ channel registry's 143 names have 113 distinct codes, in 16 groups of aliases.
 ## Related
 
 - [keymap.ini](keymap-file.md) - the file that stores these codes.
+- [Phyre input semantics](phyre-input-semantics.md) - the engine's own named semantics for the same button codes, and its input-source classes.
