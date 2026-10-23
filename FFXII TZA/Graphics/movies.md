@@ -24,6 +24,8 @@ The `.mh` files ship under `ps2data/movie_finish/<lang>/`. No `.md` stream ships
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 A `.mh` file is a 24-byte header and a table of 12-byte entries:
 
 | Offset | Type | Name | Meaning |

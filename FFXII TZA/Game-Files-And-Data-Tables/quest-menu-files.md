@@ -33,6 +33,8 @@ and `in` hold six `q_c00`-`q_c05.tm2` pictures.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### menuquest.dat
 
 | Offset | Type | Name | Meaning |

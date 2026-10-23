@@ -32,6 +32,8 @@ are on [actor managers](../Characters-And-Objects/actor-managers.md).
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 All offsets are from the section start unless a record is named.
 
 ```

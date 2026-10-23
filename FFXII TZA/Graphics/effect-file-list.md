@@ -111,6 +111,7 @@ copies for 8, while kind 38 names `jp` copies for those 43 and keeps the same `u
 | `chunks` | the chunk counts by type, then the `0xB00` record counts by kind |
 | `elements` | the `0xA00` element records by element type ([Effect element types](effect-element-types.md)) |
 | `textures` | the count of kind-`0x52` texture records, then each as `width x height`, `f` format and `p` palette count |
+| `sep_banks` | the six-digit sound banks the file's `SeSep` records name (in its mode-1 kind-`0x57` sound records, which `0x00504060` walks with `0x002DF070` when the record's id is first registered in `0x02EBBA00`), in order; a bank the archive lacks is marked |
 | `explanation` | a one-line summary of the row |
 
 ## Related

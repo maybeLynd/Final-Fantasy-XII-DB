@@ -23,6 +23,8 @@ map-art context is the object at `0x01F81168`.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ```
 <texture path><CR><LF>
 <texture path with _pic_1><CR><LF>

@@ -34,6 +34,8 @@ and `in` for the default.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 A sheet has no header, magic or count. It is a run of glyph cells, each `roundW x roundH` texels at 4 bits per
 texel, rows of `roundW / 2` bytes, where `roundW` and `roundH` are the glyph record's width and height rounded
 up to 8, 16, 32, 64 or 128. A cell starts at its glyph record's sheet offset.

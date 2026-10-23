@@ -22,6 +22,8 @@ releases the roots.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ```
 +0x00  char[8]  magic   "FF12POS3"; only byte 7 is read, as a version
 +0x08  u32      size    0x10 + 0x30 × count

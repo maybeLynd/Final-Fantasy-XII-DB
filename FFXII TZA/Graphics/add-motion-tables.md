@@ -26,6 +26,8 @@ read their files whole:
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### .adm
 
 A flat stream, read in order with no offsets.

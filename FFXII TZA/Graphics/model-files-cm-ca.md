@@ -39,6 +39,8 @@ at record `+0x26C` (`0x0042061B`).
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### The container
 
 ```python

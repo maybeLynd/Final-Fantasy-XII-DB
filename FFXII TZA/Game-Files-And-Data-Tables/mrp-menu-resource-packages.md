@@ -36,6 +36,8 @@ them, so the game never loads them.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 A `.mrp` is a UI typed-list file: the magic `MRP`, a prepared byte at `+3`, and three `{count, offset}` tables
 that `0x002A00F0` turns from file offsets into pointers in place. The tables are the 20-byte list records (`+0x1C`,
 `+0x20`), the 16-byte atlas name records (`+0x04`, `+0x08`), which end the file, and the 12-byte atlas row table

@@ -36,6 +36,8 @@ only by it.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### File header
 
 | Offset | Type | Name | Meaning |

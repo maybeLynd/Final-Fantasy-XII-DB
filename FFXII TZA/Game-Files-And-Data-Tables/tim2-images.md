@@ -26,6 +26,8 @@ binders call `0x0024A1D0` directly on TIM2s inside a pack (`0x00246A10` binds fi
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 TIM2 file header (16 bytes; the first picture always starts at +`0x10`):
 
 | Offset | Type | Name | Meaning |

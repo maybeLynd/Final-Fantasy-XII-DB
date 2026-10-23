@@ -37,6 +37,8 @@ it to 1 to 3, and `0x00353590`, `0x003CA07C` and `0x00306BD0` use manager 3.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### Container header
 
 | Offset | Type | Name | Meaning |

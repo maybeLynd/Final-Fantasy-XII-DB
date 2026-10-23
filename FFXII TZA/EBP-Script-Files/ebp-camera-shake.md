@@ -31,6 +31,8 @@ below 5, then clears both globals and both record fields (`0x0032F060`, `0x0032F
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 Offsets are from the section start unless a record is named.
 
 ```

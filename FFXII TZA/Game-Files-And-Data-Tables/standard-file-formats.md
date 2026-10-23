@@ -31,6 +31,8 @@ PS2 icon pair and the boot descriptor are instead entries of the per-kind path a
 
 ## Layouts
 
+The TGA image and the PS2 icon pair are little-endian; the CSV tables and JSON documents are text.
+
 ### TGA title image
 
 | Offset | Type | Name | Meaning |

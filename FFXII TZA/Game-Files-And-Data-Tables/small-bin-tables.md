@@ -46,6 +46,8 @@ for Japanese, UK, ASIA and IN.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### FOOT: soundfoottable.bin
 
 | Offset | Type | Name | Meaning |

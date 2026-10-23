@@ -23,6 +23,8 @@ Both are plain text in the archive. Prefetch manifests live under `prefetchdata/
 
 ## Layouts
 
+A manifest is text, so it has no byte order.
+
 A prefetch manifest is whitespace-separated tokens, each a file name. A token beginning `##` is a
 comment and is dropped; the shipped header `##Total_data_Size:_361_MB` is written with underscores so
 that it stays one token. `eventlist.csv` is records of four comma-separated integers, with `##`

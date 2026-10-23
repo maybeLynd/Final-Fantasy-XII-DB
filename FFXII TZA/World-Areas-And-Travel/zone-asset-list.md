@@ -2,7 +2,7 @@
 title: "Zone asset list: every zone the area loader can enter, with the files it loads and the models and foes it brings"
 kind: "reference"
 category: "World, areas and travel"
-addresses: "0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A10, 0x001A7A50, 0x01EF9490"
+addresses: "0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A10, 0x001A7A50, 0x01EF9490, 0x00264FD0, 0x003635E0, 0x00331990"
 ---
 
 ## What it lists
@@ -22,7 +22,7 @@ and the archive reader `vbflib.py`:
 2. **The map row.** Row *n* of `map_ref.bin` (8 bytes from the header's `+0x04`, [Weather](weather.md)) names the rest:
    - the zone's own map pack, kind 4 at the row's word `+0x00` (`0x00264F10`; [Map pack](mpk-map-pack.md));
    - the block pack, kind 4 at the signed word `+0x00` of the 16-byte block record the row's `+0x02` selects
-     (`0x00264F40`);
+     (`0x00264F40`). The block record's second word plus 500 is the sound map number (`0x00264FD0`);
    - the area, the row's word `+0x04` (`0x00264ED0`). Its battle data is kind 21 at 2 × area, the `.ard` that
      `0x003EA820` sizes and reads ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)).
 3. **The remastered map art.** `0x00379A10` cuts `<area>\<map>` out of the zone pack's path and swaps five zones for
@@ -30,10 +30,13 @@ and the archive reader `vbflib.py`:
    `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_d3d11.ah` ([Map art](map-art.md),
    [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)). The decoder
    counts the `.dae.phyre` meshes and `.dds.phyre` textures the list names.
-4. **The models,** the bound ids of the zone script's section 12, the actor manifest
+4. **The map sounds.** The binder `0x003635E0` keeps the `SPP1` list of the pack loaded in mode 0, the block pack
+   (`0x00331990`), and opens the six-digit bank each listed id names ([Map sounds](../Sound-And-Music/map-sounds.md)). The
+   block pack's slot 10 holds the list: a `0x20`-byte header with the id count at `+0x04`, then the `u32` ids.
+5. **The models,** the bound ids of the zone script's section 12, the actor manifest
    ([Actor manifest](../EBP-Script-Files/ebp-actor-manifest.md)), named through
    [Model asset list](../Graphics/model-asset-list.md).
-5. **The foes,** the definitions the zone script places ([Enemy placements](../Enemy-Spawning/enemy-placements.tsv)),
+6. **The foes,** the definitions the zone script places ([Enemy placements](../Enemy-Spawning/enemy-placements.tsv)),
    by their shipped names.
 
 The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), `frs0109` (`frs0101`), `frs0110`
@@ -50,6 +53,7 @@ The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), 
 | map packs | 458 distinct zone packs and 88 distinct block packs, all shipped |
 | area battle data | 215 distinct `.ard` files named; not shipped for 120 zones |
 | remastered map art | 704 zones, 451 distinct lists, each with one mesh; 82,856 textures in all. The four zones `ttl_a01`, `ttl_b01`, `ttl_c01` and `ttl_d01` have none |
+| map sounds | 704 zones bind a list, from 87 block packs: 1 to 48 ids, 624 distinct, 10,215 in all. The four `ttl` zones' block pack `tst0100` carries none. Sound map numbers 502 to 594, 88 distinct |
 | models | 582 zones name models in their manifest, 209 distinct models in all |
 | foes | 471 zones place foes. Seven zones (`nal_a01`, `nal_b01`, `rui_a04`, `sav_b01`, `rbn_a01`, `rbn_a03`, `srb_b04`) place definitions whose shipped name is "No name" (21 bestiary rows, NPC models such as `n1020`) and list that name |
 
@@ -69,6 +73,8 @@ map packs and the map art sit in folders of their own with no language.
 | `zone`, `name` | the zone number *n* and the zone script's name |
 | `script`, `mot`, `fpk` | the files at kind 5 indices 3*n*, 3*n* + 1 and 3*n* + 2, the US copy; "(not shipped)" when the archive lacks the file |
 | `pack`, `block_pack` | the zone's map pack and the block pack |
+| `sound_map` | the sound map number, the block record's second word plus 500 |
+| `map_sounds` | the ids of the block pack's `SPP1` list, in list order; each names the six-digit bank `se<id / 1000>/se<id>` |
 | `area`, `ard` | the area number and its battle data file; "(not shipped)" when the archive lacks it |
 | `art`, `art_meshes`, `art_textures` | the remastered `.ah` list and its mesh and texture counts; empty when the zone has none |
 | `models` | the models of the zone script's actor manifest, by name |

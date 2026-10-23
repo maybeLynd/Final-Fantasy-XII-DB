@@ -30,6 +30,8 @@ from the same language's `packfiles/tex2pack_ys.bin` (kind 7, `0xD7`).
 
 ## Layouts
 
+A file holds single bytes only, so it has no byte order.
+
 A file has no header, magic, size or palette. It is a run of 8-bit colour indices that the paste routine
 reads as rows of its destination rectangle's width:
 

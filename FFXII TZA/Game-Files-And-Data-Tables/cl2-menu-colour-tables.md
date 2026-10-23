@@ -28,6 +28,8 @@ loader `0x003C1F00(widget, owner, descriptor, n)`, reached through `0x003C2190` 
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 The file is a TIM2 file with the magic changed, one picture and no pixel data.
 
 ```

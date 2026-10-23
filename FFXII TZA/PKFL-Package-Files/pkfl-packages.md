@@ -22,6 +22,8 @@ records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `0
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | 'PKFL' | only byte 0 is tested, for non-zero |

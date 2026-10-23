@@ -24,6 +24,8 @@ enum), each passing the class descriptor, the member's type, name, byte offset a
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 Packed namespace (at m_size):
 
 | Offset | Type | Name | Meaning |

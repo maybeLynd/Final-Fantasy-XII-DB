@@ -46,7 +46,11 @@ and the archive reader `vbflib.py`:
 4. **The remastered files.** The decoder reads each list from the archive and counts its `.dae.phyre` and
    `.dds.phyre` paths.
 5. **Further motions.** Kind 30's motion files are listed with the model whose `.cm` folder holds them.
-6. **The users,** joined by bound id: [Bestiary](../Enemy-Spawning/bestiary.md) `model_id`,
+6. **The sounds.** Row *n* of the model's letter table `charseinfo_<letter>.bin`, which `0x002ED950` returns, names
+   three SE blocks and a battle-voice bank ([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)).
+   `0x002E60F0` turns a block id into a kind-32 `.seb` and its `.win.sab`, and the bank number names `shoutNN`
+   ([Sound banks](../Sound-And-Music/sound-banks.md)).
+7. **The users,** joined by bound id: [Bestiary](../Enemy-Spawning/bestiary.md) `model_id`,
    [Party table](../Party/party-table.md) `model`, and the script manifests of
    [Actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) (`ebp-actor-manifest-ids.tsv`).
 
@@ -90,6 +94,7 @@ A 10-lane monster's files are `_00`, `_10`, `_e1`-`_e6`, `_t1` and `_t2`, in tha
 | shipped `.cm` with no `.ah` | 20: 18 weapons and the NPCs `n1027` and `n1174` |
 | lane files that ship | 1,195 on 449 models |
 | further motions | 1,954 of kind 30's 1,969 files, on 344 models |
+| sounds | 673 models name SE blocks (252 weapons in slot 0; characters, monsters, NPCs and summons in slots 1 and 2), 217 distinct blocks; 39 name a battle-voice bank. A battle unit's definition can name its own voice bank, which takes precedence ([Bestiary](../Enemy-Spawning/bestiary.md) `voice_bank`) |
 | users | 347 models in the bestiary, 28 in the party table, 482 in script manifests; 342 in none of the three |
 
 ### Checks
@@ -111,6 +116,8 @@ A 10-lane monster's files are `_00`, `_10`, `_e1`-`_e6`, `_t1` and `_t2`, in tha
 | `lanes`, `lane_files` | the lane count, and each lane file that ships with the lane or lanes that load it |
 | `extra_motions` | the number of kind 30 motion files in the model's folder |
 | `ah`, `pc_meshes`, `pc_textures` | the remastered `.ah` list, its mesh and its number of textures; empty when the archive has no list |
+| `se_blocks` | the SE blocks of the model's `charseinfo` row, slot by slot, as the `.seb` files they load: slot 0 is sound group 0, played through the weapon model a character holds; slot 1 group 1, the footsteps; slot 2 group 2 ([Animation sounds](../Sound-And-Music/animation-sounds.md)) |
+| `voice_bank` | the battle-voice bank the row names, `shoutNN`; empty for none |
 | `bestiary`, `party`, `script_containers` | the bestiary names, party table rows and number of script manifests that use the model |
 | `explanation` | a one-line summary |
 

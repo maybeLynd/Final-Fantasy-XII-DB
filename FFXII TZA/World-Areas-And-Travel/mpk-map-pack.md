@@ -27,6 +27,8 @@ weather page, which reads the same two tables.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### The pack
 
 `MpkHeader` (`0xC0` bytes, offsets from the start of the file):
@@ -385,7 +387,7 @@ bytes.
 | YM00 | 461 sections, median 2.9 MB; count 17 and the same 17 tags in every one; 441 stamps are float-shaped values between 1 and 1000 |
 | ACTL | 270 sections, 64 to 1,792 bytes; version 1 and record size 0x16 in all; the index ends where the first record begins and the records end at the aux offset in all 270; 1,822 records, 101 of them tombstones |
 | SP1 | 456 sections, 704 to 9,792 bytes; `listOffset` (`+0x04`) 0x20 in all; the three regions tile areas, emitters, index in 454 (two sections have no emitter index) |
-| SPP1 | 545 lists of 1 to 8 entries; the `+0x1A` list offset is non-zero in all 545 |
+| SPP1 | 545 lists of 1 to 48 ids, 624 distinct; the weather-table offset `+0x1A` is non-zero in all 545, with 1, 2 or 3 entries in 189, 130 and 226 tables |
 | TIM2 and NPS2 | one picture per section (`u16 +6` = 1); 577 placements, all version "2" |
 | WD | 46 sections, all in `<area>00` packs; record stride 0x20 in the 27 with more than one record |
 

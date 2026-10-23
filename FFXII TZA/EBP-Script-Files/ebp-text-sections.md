@@ -32,6 +32,8 @@ address from the rest. The manager bind `0x0026C8C0` zeroes both record fields (
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 Both sections have the same shape. Offsets are from the start of the section.
 
 ```

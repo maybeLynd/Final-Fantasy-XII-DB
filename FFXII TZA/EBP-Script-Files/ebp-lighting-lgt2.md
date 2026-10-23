@@ -22,6 +22,8 @@ pending bit 16; when the manager's pending word empties, the finaliser `0x0032F1
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ```
 +0x00  char[4]  magic       "LGT2", compared as the dword 0x3254474C
 +0x04  u16      listOffset  start of the chunk chain, from the section start

@@ -40,6 +40,8 @@ page). Five pass the stream's own `+0x0C` as the size; the EFB loader passes the
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ```
 EFX stream (offsets from the magic)
 +0x00  char[8]  magic     "EFX0010", "EFX0009" or "EFX0008", NUL-terminated, compared as 8 bytes

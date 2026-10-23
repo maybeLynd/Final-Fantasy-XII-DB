@@ -24,6 +24,8 @@ unload `0x002628B0`, at `0x00262CD4`), which passes a non-null block to `0x00331
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 The block has the NAVIICN2 layout of the location map's sloc files
 ([map menu files](../Game-Files-And-Data-Tables/menu-map-files.md)). Offsets are from the
 section start, as `0x003DFCC0` and `0x003DFBE0` read them:

@@ -2,7 +2,7 @@
 title: "File requests and the read queue: the request slots, how a load is queued, sized, read in parts and completed, and how a caller waits, asks or cancels"
 kind: "system"
 category: "Game files and data tables"
-addresses: "0x0032E450, 0x022C31C0, 0x022C51C0, 0x022C51C8, 0x022C51D0, 0x01EED498, 0x0032EA90, 0x022C51F0, 0x0032E400, 0x002DF960, 0x0032E620, 0x003EB0D0, 0x0032E870, 0x0032E990, 0x0032EC40, 0x0032E780, 0x0032E7C0, 0x0032E070, 0x0032E040, 0x0032E520, 0x0032E4D0, 0x0032E590, 0x0032E2F0, 0x0032E330, 0x0032E370, 0x0032E3B0, 0x0046E030, 0x002DF780, 0x002DF6C0, 0x0046DFE0, 0x0046E0E0, 0x0215EFF4, 0x0035E810, 0x022CA5E0, 0x0035EA30, 0x003EADD0, 0x02B5E0E0, 0x0046DD50, 0x003E9780, 0x003BB790, 0x0050DFE0, 0x00249180, 0x022C5AF0, 0x022C59F0, 0x0032EA50, 0x0032ECE0, 0x0032ED20, 0x0051ED10, 0x0051EDB0"
+addresses: "0x0032E450, 0x022C31C0, 0x022C51C0, 0x022C51C8, 0x022C51D0, 0x01EED498, 0x0032EA90, 0x022C51F0, 0x0032E400, 0x002DF960, 0x0032E620, 0x003EB0D0, 0x0032E870, 0x0032E990, 0x0032EC40, 0x0032E780, 0x0032E7C0, 0x0032E070, 0x0032E040, 0x0032E520, 0x0032E4D0, 0x0032E590, 0x0032E2F0, 0x0032E330, 0x0032E370, 0x0032E3B0, 0x0046E030, 0x002DF780, 0x002DF6C0, 0x0046DFE0, 0x0046E0E0, 0x0215EFF4, 0x0035E810, 0x022CA5E0, 0x0035EA30, 0x003EADD0, 0x02B5E0E0, 0x0046DD50, 0x003E9780, 0x003BB790, 0x0050DFE0, 0x00249180, 0x022C5AF0, 0x022C59F0, 0x0032EA50, 0x0032ECE0, 0x0032ED20, 0x0051ED10, 0x0051EDB0, 0x002DF7B0, 0x0024AC30, 0x00365810, 0x002EF300, 0x00324510, 0x003DC5B0, 0x003EB100"
 ---
 
 ## What the player sees
@@ -115,6 +115,48 @@ BGM stream reader (`0x003EADD0`) first.
 The first argument is the descriptor's `+0x08` word, not the buffer; a requester reads its bytes at
 the destination.
 
+### A refused request
+
+The read issuer `0x002DF780` tests the size table, not the request: it compares the table entry
+`[0x02EC3EE0 + 4 × (5000 × kind + index)]` with −1 (`0x002DF7B0`) and returns without reading on −1. `0x0032E870` stores the
+caller's byte count as it is (`0x0032E92C`). So a request whose table entry is −1 completes with the previous read's
+status, normally as delivered, with nothing written, whatever byte count the caller passed.
+
+`0x0032E400` hands the −1 back to the caller (`0x0032E43B`-`0x0032E448` round only a positive value). The table is read
+whole at start-up (`0x002E0432`-`0x002E0444`) and never written after.
+
+Every requester is in [`file-requests-and-the-read-queue-requesters.tsv`](file-requests-and-the-read-queue-requesters.tsv): the
+51 call sites of `0x0032E620`, the three of `0x0051ED10` and the two of `0x0032E780`, with where each takes its kind,
+index and size, whether it tests the size before filing, and what follows when the buffer is never written.
+
+- 37 of the 51 sites size the file with `0x0032E400` and test the size before filing: 30 skip 0 or less, 4 skip only a
+  negative size, and 3 test it in the record builder that stores it (`0x003DD4C0`, `0x003DF440`, `0x003E9F80`).
+- The area loader `0x0032FCA0` tests the entry's sign before its four fixed-size requests.
+- `0x0032EB40` requests a file only when its size is above `0x800` bytes.
+- The model binding's `0x002EAD50` is reached only through `0x002E6700`'s positive-size test (`0x002E6789`).
+- Six fixed requests file without a test but name entries every table sizes: `0x00291C80`, `0x002C8EE0`, `0x003658F0`,
+  `0x0039C3F0`, `0x003B53C0`, `0x002FC860`. `debug_fileread` (`0x0050DFE0`) passes the script's values.
+
+The requests that do meet a −1 in a shipped table:
+
+| Requester | Entries | Tables | What follows |
+|---|---|---|---|
+| `0x0024AC30` | kind 35, `n + 7` | every table | the callback `0x0024ACF0` stores 1 at `0x02091094`, so the overlay counts as loaded with `[0x01FD4A18]` as it was |
+| `0x00365810` | kind 7, indices 218-223 (`0x00D10C98`) | KR, CN | the callback `0x00364380` sets the slot's loaded bit in `[0x022CBE00] + 0x240` over a zero-length block (`0x0036BC60` clamps a negative size to 0) |
+| `0x002EF300` | kind 1, indices 117-132 (`0x75` + slot) | JP, CH, ASIA, IN | no callback; the caller `0x0050D9A0` pumps the queue (`0x0032E520(0)`) and goes on with the save buffer `0x02164280` as it was |
+| `0x0051ED10` from `0x003EAC40` | kind 9, index `0x1F` | UK | the caller's callback, through `0x0051EDB0`, runs on a zero-length block nothing wrote |
+| `0x00324510` | kind 26, its own list of 301 at `0x022C27B8` | every table sizes only 166 kind-26 entries | `0x003244F0` counts the request done with its part of `[0x022C27B0]` unwritten |
+| `0x003DC5B0` | the caller's | any | `0x003DC8D0` returns the −1 size and a flag `0x003DC5B0` never tests; the callback `0x003DC340` binds the block unwritten |
+
+The BGM stream reader (`0x0032E780`'s two sites) never files in shipped play. Only `0x003EB100` arms the record
+`0x02B5E0E0` (`0x003EB139`), and its one caller is the verb `bgmstreamread` (`0x448`, `0x00354690`), which no shipped script
+calls ([music](../Sound-And-Music/music-table.md)). The reset `0x003EB050` leaves `+0x31` at 0, so `0x003EADE0` returns at once
+(`0x003EADF4`-`0x003EADF8`). Armed, it would file kind `0x24` parts, which every table leaves at −1, and hand the unwritten
+buffer to the sound library (`0x002DF660`), whose `0x0021D770` refuses a byte count of 0 or less (`0x0021D7AD`-`0x0021D7AF`).
+
+In every one of the twelve tables kinds 3, 6, 17, 18, 27, 29, 31, 35, 36 and 40 are −1 throughout, and no entry is 0.
+The UK table leaves kinds 5 and 8 at −1 throughout, so it sizes no zone script.
+
 ### Waiting, asking and cancelling
 
 - `0x0032E520(0)` drains: it pumps, and while the pending list is non-empty or a read is in flight it
@@ -221,7 +263,7 @@ counter `0x022CA5E0` and the BGM stream reader at `0x02B5E0E0`.
 
 - A request's offset is floored to a 2 KB boundary; a reader of a file at an unaligned offset gets the
   bytes from the boundary below.
-- A request whose size entry is −1 is never read (`0x002DF780` does nothing); the queue completes it
+- A request whose size entry is −1 is never read (`0x002DF7B0` tests the table entry, not the byte count); the queue completes it
   with the previous read's status, normally as delivered, with nothing written. A real read that fails
   calls nothing, and the slot is released.
 - Cancelling a path request frees the path at once, even while its read is in flight; a second

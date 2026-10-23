@@ -22,6 +22,8 @@ image's first byte.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### Header
 
 | Offset | Type | Name | Meaning |

@@ -40,6 +40,8 @@ So `0x021641A8` to `0x021641E0` hold the tables for `b`, `c`, `g`, `m`,
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 `ChseHeader` (`0x10` bytes, offsets from the start of the file):
 
 | Offset | Type | Name | Meaning |

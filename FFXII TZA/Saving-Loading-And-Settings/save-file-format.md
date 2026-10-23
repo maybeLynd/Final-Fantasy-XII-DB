@@ -32,6 +32,8 @@ The container is read by `0x008666B0(path, mode)`, called from the stream opener
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 ### The container on disk
 
 `SaveFileContainer` (`0xC` bytes, offsets from the start of the file):

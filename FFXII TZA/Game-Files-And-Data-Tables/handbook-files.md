@@ -32,6 +32,8 @@ holds `menuhandbook.bin` and `menuhandbook_order.bin`, which the Clan Primer pag
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 Offsets are from the start of the file. Every offset field is relative to the file unless noted.
 
 ### hctg: the family catalog
