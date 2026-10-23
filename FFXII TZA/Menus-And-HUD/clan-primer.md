@@ -276,6 +276,171 @@ closes (`0x0057032C`, `0x00570350`).
   it to `+0x144` (`0x001C694D`);
 - `eyeVfxZBias` (`0x008FB498`) to `0x002F1690` (`0x001C659B`), which stores the value less 1000.0 at `0x022BDEBC`.
 
+## Layouts
+
+### The back panel's fields
+
+The back panel is the `0x130`-byte widget with procedure `0x00574E80` that publishes itself at `0x02CA9718` (Opening above).
+
+```struct PrimerBackPanel base=record size=0x130
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x00574E80
++0xC0    u32             flags                  0 on construction, 0x40 when the creation record carries a resume
+                                                record (0x00574F2A-0x00574F3C). Bit 0: the screen has opened, once the mid
+                                                pane exists (bit 1) and the data manager has loaded (bit 2)
+                                                (0x00575038-0x005750B4). Bit 1: the mid pane +0xF8 is built (0x0057502A).
+                                                Bit 2: the data manager reported 1 (message 16 with 1, 0x00574FE5). Bit
+                                                3: the data manager reported 2, it is gone (0x00574FDC); the tick then
+                                                closes the panel and sets bit 4 (0x00575144-0x0057516F). Bit 5: leave
+                                                without returning to the Party Menu: set by the mid pane on its
+                                                command 0xE with 0x12 (0x0056F0AC); children are then destroyed outright
+                                                (0x00575244, 0x00575267, 0x0057533B, 0x005749C7, 0x00574A3E, 0x0056F176) and the
+                                                release continues at 0x00579AE0 instead of 0x002814E0(0x4BC)
+                                                (0x005754C8-0x005754EE). Bit 6: open straight into Hunts: 0x00574D00 posts
+                                                kind 6 (0x00574D92), the opening skips 0x002CC960 (0x00575065), 0x0056EE10
+                                                builds the hunt list from +0xC8 (0x0056EEC2); the mid pane clears it
+                                                after its first pass (0x0056F048-0x0056F059)
++0xC4    u8              kind                   the category kind posted by command 0x8001 (0x00575424-0x00575428): 4
+                                                Traveler's Tips, 5 Bestiary, 6 Hunts, 7 Sky Pirate's Den; handed to
+                                                the mid pane with 0x0056F2A0 (0x00575456-0x00575480)
++0xC5    u8[3]           gap0C5                 read and written by no function; nothing fixes its width
++0xC8    u8[16]          resumeRecord           the 16-byte resume record the creation record points to, copied whole
+                                                (0x00574F39-0x00574F46); 0x00575580 passes 0x0209AC30 + 0x3E8. With bit 6 set,
+                                                0x0056EE10 hands it to 0x00579A40 (0x0056EEC2-0x0056EED2), which builds the
+                                                hunt list 0x00579AF0 from its dwords +0x00 and +0x04, byte +0x08, bits
+                                                11-18 of the dword +0x08 and bytes +0x0C-+0x0F (0x00579A71-0x00579AB1)
++0xD8    ptr             categoryList           the 0x178-byte category list with procedure 0x0056F810 that 0x00574D00
+                                                builds from Party_Book.mrp (0x00574D4E) and opens under its parent
+                                                unless bit 6 is set (0x00574DB0); opened again by command 0xF with 6
+                                                (0x005752F3); asked to close by command 0x8002 with 3 (0x005753FC) and by
+                                                destroy; cleared by command 0x12 with 3 (0x0057523D); 0 on construction
+                                                (0x00574EF2)
++0xE0    ptr             sidePane               the 0xD0-byte pane with procedure 0x0056F550 that 0x00574D00 builds beside
+                                                the category list (0x00574D84); opened, closed and cleared with it
+                                                (0x00574DC6, 0x00575309, 0x00575408, 0x0057544A); cleared by command 0x12 with
+                                                4 (0x0057521F); 0 on construction (0x00574EF9)
++0xE8    ptr             pane570890             the 0xC8-byte widget with procedure 0x00570890 built from Party_Book.mrp
+                                                on message 14 (0x005750E3-0x00575102); cleared by command 0x12 with 2,
+                                                which closes the mid pane once +0xF0 is gone as well
+                                                (0x00575292-0x005752AF); closed by command 0x12 with 3 (0x00575236); the Sky
+                                                Pirate's Den page and 0x005738D0 read it (0x00572FBF, 0x00573323, 0x00573911);
+                                                0 on construction (0x00574F00)
++0xF0    ptr             pane56EA40             the 0xD8-byte widget with procedure 0x0056EA40 built on message 14 with
+                                                the image labels +0x118 (0x0057510E-0x00575136); cleared by command 0x12
+                                                with 5, which closes the mid pane once +0xE8 is gone
+                                                (0x005751EE-0x00575211); closed by command 0x12 with 3 (0x00575260); read by
+                                                0x00572E10 (0x00573043, 0x00573350); 0 on construction (0x00574F07)
++0xF8    ptr             midPane                the 0x100-byte mid pane with procedure 0x0056EF60 that hosts the
+                                                category's pages, built when the panel's pictures have loaded
+                                                (0x00575009-0x00575031); given the kind by command 0x8001
+                                                (0x0057545D-0x00575480) and passed to 0x002CD800 when the screen opens
+                                                (0x00575094); cleared by command 0x12 with 6, which releases the data
+                                                manager through 0x00575F10 (0x005751D9-0x005751E2); read by 0x00572E10 and
+                                                0x005738D0 (0x00573270, 0x0057392B); 0 on construction (0x00574F0E)
++0x100   ptr             titleWidget            the 0xD8-byte title widget 0x00574AD0 that 0x00574A00(text) builds; it
+                                                shows the text through list record 0x1A of Party_Book.mrp and stores
+                                                itself here (0x00574B35). 0x00574A00, 0x005749B0, the mid pane and command
+                                                0xF with 3 close it and clear this (0x00574A32-0x00574A5A,
+                                                0x005749BB-0x005749E3, 0x0056F166-0x0056F194, 0x0057532F-0x00575357); 0x00574BA0,
+                                                0x005701B0 and 0x00572E10 read it; 0 on construction (0x00574F15)
++0x108   ptr             rankPane               the 0xC0-byte clan rank pane with procedure 0x0056F410, which draws the
+                                                rank through 0x0056F470: built by 0x00574E00 while this is 0
+                                                (0x00574E2C-0x00574E63) and by command 0xE with 3 through 0x0056F3C0
+                                                (0x0057538C-0x005753A2), which opens it (0x005753A9); command 0xF with 3
+                                                closes it and clears this (0x0057535E-0x00575375); 0 on construction
+                                                (0x00574F1C)
++0x110   ptr             helpWindow             the help window that 0x005704E0, 0x00572890 and 0x00573980 open with
+                                                0x002CCCA0 while it is 0 (0x0057050A, 0x005728C7, 0x00573AD1); 0x005704A0 frees
+                                                it (0x005704C1) and 0x0056ECC0 closes it with 0x002CCB10 when a page loses
+                                                its help window (0x0056ED07-0x0056ED1C), each clearing this; read by
+                                                0x005738D0 (0x005738F3); 0 on construction (0x00574F23)
++0x118   ptr             imageLabel0            the image label of HandBack_c.tm2 (kind-7 resource 0xCE), registered
+                                                with +0x120 by 0x003934F0 from the table 0x00D23628 when the panel is
+                                                built (0x00574F55-0x00574F78) and released by 0x00393900 on destroy
+                                                (0x00575498-0x005754A4, 0x00393920); the pane 0x0056EA40 gets the address of
+                                                the pair (0x0057510E)
++0x120   ptr             imageLabel1            the image label of Hand_4_c.tm2 (0xCD), the second of the pair
+                                                0x003934F0 registers and 0x00393900 releases (0x00393920)
++0x128   ptr             listFile               Party_Book.mrp (kind-7 resource 0xCC), requested by 0x003933F0
+                                                (0x00574F7D-0x00574F94, 0x00393431) and released by 0x003938B0 on destroy
+                                                (0x005754A9-0x005754B5, 0x003938D0-0x003938DD); the panes take its low 32 bits
+                                                as their list file (0x00574D19, 0x00574D5A, 0x00574E36, 0x005750D2, 0x00575396)
+                                                and 0x00574AD0 and 0x00574BA0 read it (0x00574B01, 0x00574C4F)
+```
+
+### The data manager's fields
+
+The data manager is the `0x120`-byte widget at `0x02CA9738` with procedure `0x005771F0` (The data manager above).
+
+```struct PrimerDataManager base=record size=0x120
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x005771F0
++0xC0    ptr             listener               the widget the manager reports to through 0x005770A0 (message 16 with a
+                                                value): the creation record's +0x08 (0x0057725A-0x0057725E), replaced by
+                                                0x00577A00 (0x00577A0C). Values: 1 when nothing was left to load or the
+                                                load finished (0x00577180), 4, 5 and 6 when slot 0, 1 or 2 has its
+                                                content (0x005773DD-0x0057740A), 10 when a cancel has finished
+                                                (0x00577449-0x00577455), 2 when the manager is destroyed (0x005774B7)
++0xC8    ptr             unlockTable0           the unlock table of kind 0, kind-7 resource 0x229 ([0x00D23740] + 1),
+                                                bound by 0x00576F50 when +0x100 bit 2 is set (0x00577010-0x00577038);
+                                                0x00577550 reads the table of its kind at +0xC8 + 8 x kind (0x00577660);
+                                                freed and cleared by 0x005777C0 (0x00577826-0x00577833); 0 on construction
+                                                (0x00577221)
++0xD0    ptr             unlockTable1           the unlock table of kind 1, kind-7 resource 0x295 (0x00D23742 + 1),
+                                                bound, read and freed as +0xC8 (0x00577038, 0x00577660, 0x00577833); 0 on
+                                                construction (0x0057722A)
++0xD8    ptr             unlockTable2           the unlock table of kind 2, kind-7 resource 0x2CD (0x00D23744 + 1),
+                                                bound, read and freed as +0xC8 (0x00577038, 0x00577660, 0x00577833); 0 on
+                                                construction (0x00577231)
++0xE0    ptr             unlockTable3           the unlock table of kind 3, kind-7 resource 0x2F5 (0x00D23746 + 1),
+                                                bound, read and freed as +0xC8 (0x00577038, 0x00577660, 0x00577833); 0 on
+                                                construction (0x00577238)
++0xE8    ptr             unlockTable4           the unlock table of kind 4, Traveler's Tips, kind-7 resource 0x31D
+                                                (0x00D23748 + 1), bound, read and freed as +0xC8 (0x00577038, 0x00577660,
+                                                0x00577833); 0 on construction (0x0057723F)
++0xF0    ptr             unlockTable5           the Bestiary's unlock table, kind 5, kind-7 resource 0x355 (0x00D2374A +
+                                                1), 16-byte records from +0x0C: seven slot values and the mode
+                                                word +0x0E that 0x00576860 and 0x005768E0 read (0x00576870, 0x005768EA); bound,
+                                                read by 0x00577550 (0x005775C1) and freed as +0xC8; 0 on construction
+                                                (0x00577246)
++0xF8    ptr             questTable             menuquest.dat, kind-7 resource 0x128, bound by 0x00576F50 with the six
+                                                tables (0x00577041-0x0057707B); the hunt counters 0x00576550, 0x00576920 and
+                                                0x00576CA0 read it (0x00576623, 0x00576677, 0x005769BB, 0x00576CD6); freed and
+                                                cleared by 0x005777C0 (0x00577847-0x00577862); 0 on construction (0x00577253)
++0x100   u32             flags                  bit 0: the opening run has started (message 14 deactivates the manager
+                                                and sets it, 0x005772FC-0x00577306); loads finishing afterwards are not
+                                                reported (0x005772D7). Bit 1: the tables are loading: set when they are
+                                                requested (0x0057706F), cleared when the batch arrives (0x005772E3);
+                                                0x00576550, 0x00576920, 0x00576CA0 and 0x00577550 answer 0 while it is set
+                                                (0x0057661A, 0x005769B2, 0x00576CCD, 0x00577567). Bit 2: bind the tables, set
+                                                from a non-zero first byte of the creation record (0x00577265-0x0057727D);
+                                                0x005777C0 frees them and clears it (0x00577800-0x00577840). Bits 4 and 5:
+                                                glyph sheet 7 or 8 was missing and is loaded and later released by the
+                                                manager (0x00576F67, 0x00576F7C, 0x005777CF-0x005777F9). Bit 3: release
+                                                requested by 0x00575F10 (0x00575F24); the tick then tears down and closes
+                                                once the three slots are gone (0x00577315-0x0057736D). Bit 6: cancelling,
+                                                set by 0x005776D0 (0x005776F5), which refuses new loads in 0x00577880
+                                                (0x00577893) and 0x005778F0 (0x0057790D); cleared after report 10
+                                                (0x0057745A). Bits 7-9: slot 0, 1 or 2 is idle after a cancel (command
+                                                0x10 with 3, 4 or 5, 0x00577411-0x00577429; 0x005776D0 clears all three); a
+                                                load request to the slot clears its bit (0x005778B2, 0x00575D8B, 0x00575E2C)
++0x104   u8[4]           gap104                 read and written by no function; nothing fixes its width
++0x108   ptr             slot0                  load slot 0, the family catalog, built by 0x00575810(0, manager)
+                                                (0x0057728B); 0 when the slot reports itself freed (command 0x12 with 0,
+                                                0x005774A8); read by 0x005771F0 (0x005773A2), 0x00575D10, 0x00575DD0, 0x00575F10,
+                                                0x00576030, 0x005760A0, 0x00576300, 0x005766E0, 0x00576740, 0x00576A50, 0x00576DA0,
+                                                0x005776D0, 0x00577880 and 0x005778F0
++0x110   ptr             slot1                  load slot 1, the entry's text bundle, built by 0x00575810(1, manager)
+                                                (0x0057729C); 0 when it reports itself freed (0x00577497); read by
+                                                0x00575D10, 0x00575F10, 0x00576300, 0x005766B0, 0x00576DA0, 0x005776D0 and
+                                                0x00577A40
++0x118   ptr             slot2                  load slot 2, the entry's picture bundle, built by 0x00575810(2, manager)
+                                                (0x005772AD); 0 when it reports itself freed (0x00577486); when slot 0's
+                                                catalog is ready the manager sets its +0xCA to the catalog's
+                                                word +0x14 plus 2 (0x005773CB-0x005773D6); read by 0x00575DD0, 0x00575F10,
+                                                0x00576C70, 0x00576DA0 and 0x005776D0
+```
+
 ## Shipped data
 
 | Family | Entries | Groups | Unlock limit (`0x00D23758`) |

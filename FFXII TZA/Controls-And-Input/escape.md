@@ -110,17 +110,64 @@ the battle menu's builder `0x00276650` (`0x0027668C`) and its panel procedure `0
 ([Battle menu](../Menus-And-HUD/battle-menu.md)). Those two readers and the writers above are the only accesses
 to `0x01E0C2B8`.
 
+## Layouts
+
+### The escape widget's fields
+
+The escape widget is the `0xE0`-byte widget at `0x022CBE20` with procedure `0x00366B80` (State below).
+
+```struct EscapeWidget base=record size=0xE0
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x00366B80
++0xC0    ptr             atlas                  the image label battle_4_c (the name at 0x009152B0 through 0x01E0C1E8),
+                                                looked up with 0x0024A5A0 on construction (0x003670DC-0x003670E1); no
+                                                function reads it back
++0xC8    ptr             latch                  the address of the latch words 0x022CBE18 that 0x00366740 passes as the
+                                                construct message's second argument (0x00367096-0x0036709A). The draw
+                                                fills the gauge from the count word +0x00 against the delay 0x022CBE08
+                                                (0x00366C5B-0x00366C6A, 0x00366CE6-0x00366D0D); the update reads the arming
+                                                word +0x02: bit 7 runs the disarm 0x003667E0 (0x00366F0E-0x00366F1B), bit 3
+                                                or 5 starts the pulse and is cleared (0x00366F40-0x00366F8C), bit 2 keeps
+                                                the pulse running (0x00366F9C-0x00366FAC), bits 0 and 1 fade the picture
+                                                in and out (0x00366FE6-0x0036701D)
++0xD0    i16             alpha                  the picture's alpha, 0 to 128: set to 128 when a pulse starts with bit
+                                                5 (0x00366F5B); rises by 128 / [0x022CBE0C] per update while arming bit 0
+                                                is set and falls to 0 while bit 1 is set, when no pulse runs
+                                                (0x00366FE6-0x00367037); while a pulse runs the draw sets it to 96 + 32
+                                                sin(pi x frames since +0xD4 / 30) (0x00366BEC-0x00366C29). The draw draws
+                                                nothing while it is 0 (0x00366BD0) and scales each node's alpha +0x58 by
+                                                it (0x00366DDC-0x00366E10)
++0xD2    i16             brightness             the picture's brightness scale: 255 when a pulse starts with bit 3 and
+                                                without bit 5 (0x00366F71-0x00366F80), 128 with bit 5 (0x00366F5B); each
+                                                update takes 128 / [0x022CBE14] from it down to 128 (0x00366FB4-0x00366FD0).
+                                                The draw multiplies the draw record's brightness +0x5A by it over 128
+                                                (0x00366D6F-0x00366D86)
++0xD4    u32             pulseStart             the frame counter 0x0208F570 when the pulse started (0x00366F90-0x00366F96);
+                                                the draw's pulse takes the frames since then (0x00366BEC-0x00366BF5)
++0xD8    u16             pulsing                1 while the armed pulse runs: set with +0xDA by one dword store when
+                                                arming bit 3 or 5 is seen (0x00366F65, 0x00366F76); the update clears it
+                                                while arming bit 2 is clear (0x00366FA6-0x00366FAC). While it is set the
+                                                update leaves the alpha alone (0x00366FD8), the draw pulses the alpha
+                                                (0x00366BDE) and draws the ring copy (0x00366E2B)
++0xDA    u16             ringScale              the scale of the expanding copy, in 256ths: 0x100 when the pulse
+                                                starts with bit 3 (0x00366F76), 0x200 with bit 5 (0x00366F65); each update
+                                                adds 0x20 up to 0x200 (0x00366F20-0x00366F38). While it is below 0x200 the
+                                                draw draws each node a second time at this scale with its alpha times
+                                                (0x200 - scale) / 256 (0x00366E35-0x00366E8B)
++0xDC    u8[4]           tail0DC                read and written by no function; nothing fixes its width
+```
+
 ## State
 
 The escape widget `0x00366B80` sets these when it is built (message 1, `0x003670A6`-`0x003670D6`), from the frame-time
 base `0x01DFE0B4`, 1 as shipped, beside the delay `0x022CBE08`. Its update (message 2, `0x00366EFB`-`0x003670E8`) moves the
-picture's alpha `+0xD0` and size `+0xD2` by 128 divided by them; its draw reads both (`0x00366D6F`, `0x00366DDC`).
+picture's alpha `+0xD0` and brightness `+0xD2` by 128 divided by them; its draw reads both (`0x00366D6F`, `0x00366DDC`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022CBE0C` | `i32` | 0 | the frames the picture takes to fade, 30 times the base over 6, so 5: while the arming word `0x022CBE1A` has bit 0 the alpha rises by `128 / 5` a frame to 128, and while it has bit 1 it falls to 0 (`0x00366FE6`-`0x00367037`); the pulse of an armed escape replaces both | `0x00366B80` (`0x003670D0`) | `0x00366B80` (`0x00366FF3`, `0x00367024`) |
 | `0x022CBE10` | `i32` | 0 | 30 times the base, the same value as `0x022CBE08`; nothing reads it | `0x00366B80` (`0x003670C0`) | no instruction |
-| `0x022CBE14` | `i32` | 0 | the frames the picture takes to shrink, 20 times the base: when the escape is armed with bit 3 and without bit 5 the size jumps to 255 (`0x00366F71`-`0x00366F80`), and each update takes `128 / 20` from it down to 128 (`0x00366FB4`-`0x00366FD0`) | `0x00366B80` (`0x003670D6`) | `0x00366B80` (`0x00366FB9`) |
+| `0x022CBE14` | `i32` | 0 | the frames the picture's brightness takes to settle, 20 times the base: when the escape is armed with bit 3 and without bit 5 the brightness jumps to 255 (`0x00366F71`-`0x00366F80`), and each update takes `128 / 20` from it down to 128 (`0x00366FB4`-`0x00366FD0`) | `0x00366B80` (`0x003670D6`) | `0x00366B80` (`0x00366FB9`) |
 | `0x022CBE20` | `void*` | 0 | the escape widget: the `0xE0`-byte widget with procedure `0x00366B80` that `0x00366740` creates through `0x00244F50` and opens (`0x00246AC0`), passing it the address `0x022CBE18` | `0x00366740` (`0x0036678D`), run by the field set-up `0x00253A30` (`0x00253A57`); `0x00366A00`, 0 after it destroys the widget with `0x00245020` (`0x00366A15`), run by `0x00252DE0` (`0x00252E15`) | `0x00366740`, which builds it only while it is 0 (`0x00366753`); `0x00366A00` (`0x00366A04`) |
 
 No other instruction reaches these four. The search covered the executable's RIP-relative references, its

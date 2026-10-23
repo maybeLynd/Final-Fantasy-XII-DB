@@ -469,6 +469,42 @@ The window, `0x410` bytes from `0x002A2C00`; the fields listed here are those of
 | `+0x10` | `u8*` | groups | the picture's group table |
 | `+0x18` | `u8*` | frames | the picture's frame table |
 
+### The signal widget's fields
+
+Each of the three signal widgets (`0x0209CC18`, `0x0209CC20`, `0x0209CC28`, Signals above) is a `0x150`-byte widget with procedure `0x002A86A0`.
+
+```struct SignalWidget base=record size=0x150
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x002A86A0
++0xC0    ptr             window                 the conversation window the signal belongs to, the creation record's
+                                                first qword (0x002A8A6B; 0x002A8220, 0x002A7F70 and 0x002A8100 pass the
+                                                window). On message 21 every signal but the log signal sets its own y
+                                                to the window's y +0x9A less MsgWinSignal's 0x1B at 0x01E0CDB8
+                                                (0x002A8708-0x002A871D); the draw reads the window's mode +0x3E8 and its
+                                                log cursor +0x3C0 and row count +0x3C1 (0x002A8737, 0x002A8794-0x002A87B4)
++0xC8    char[128]       label                  the signal's label text, at most 0x80 bytes, written by the text
+                                                formatter 0x002B4090 and its callees 0x002B3770 and 0x002B49F0. Kinds 1-10:
+                                                on construction, template text 0x467C with the button glyph 0x0029DA70
+                                                picks for the kind (0x002A8ABC-0x002A8B19). The log signal, kind 11:
+                                                cleared (0x002A8B2F), then template 0x4690 with the log cursor +0x3C0
+                                                plus 1 and the row count +0x3C1 (0x002A8B34-0x002A8B6A), rebuilt on every
+                                                draw (0x002A88C7-0x002A88F8). The draw lays it out with 0x002B3400
+                                                (0x002A875C, 0x002A8882, 0x002A8900)
++0x148   u32             kind                   the signal's kind, the creation record's +0x10 (0x002A8A5F): 1-6 for the
+                                                right signal 0x0209CC18 (built by 0x002A8220), 9 or 10 for the left signal
+                                                0x0209CC20 (10 when the window's mode bits +0x3E8 & 0x700 are 0x300,
+                                                0x002A7FF5-0x002A8008), 11 for the log signal 0x0209CC28 (0x002A815A). The
+                                                draw dispatches on it (0x002A872A); kind 11 draws the log's up and down
+                                                arrows (0x002A89B7) and keeps its own y (0x002A86FA). 0x002A8220 keeps the
+                                                right signal when the new kind is the same or 3 apart
+                                                (0x002A82A9-0x002A8308); 0x002A7F70 keeps the left one while its kind
+                                                matches (0x002A8010)
++0x14C   u32             widthChanged           1 on a new right signal whose label width differs from the one it
+                                                replaced (0x002A83B3-0x002A83B9); 0x002A8220 clears it on the kept signal
+                                                (0x002A82A3). 0x002A7F70 places the left signal from the right one's x and
+                                                rebuilds it when the kind changed or this is set (0x002A8018)
+```
+
 ## State
 
 ### The window registry
