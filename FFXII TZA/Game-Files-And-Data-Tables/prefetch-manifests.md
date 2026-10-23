@@ -25,6 +25,13 @@ Both are plain text in the archive. Prefetch manifests live under `prefetchdata/
 
 A manifest is text, so it has no byte order.
 
+| File | Unit | Separator | Comments | Header, count or version |
+|---|---|---|---|---|
+| prefetch manifest | a file name | whitespace | a token beginning `##` is dropped | none; the shipped `##Total_data_Size:_361_MB` is a comment |
+| `eventlist.csv` | a record of four integers | commas within a record | a line beginning `##` is skipped | none |
+| `.ah` list | a path such as `/GameData/D3D11/ArtData/chr/...phyre`, in load order | whitespace | none | none |
+| `TexList.txt` | a texture file name, relative to `GameData/D3D11/ArtData/menu/` | CRLF line ends | none | none |
+
 A prefetch manifest is whitespace-separated tokens, each a file name. A token beginning `##` is a
 comment and is dropped; the shipped header `##Total_data_Size:_361_MB` is written with underscores so
 that it stays one token. `eventlist.csv` is records of four comma-separated integers, with `##`

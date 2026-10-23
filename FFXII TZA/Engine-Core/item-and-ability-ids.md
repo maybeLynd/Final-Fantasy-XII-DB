@@ -203,6 +203,13 @@ when the fill returns negative and return the record's address either way. The r
 class 1 with the id in the high word of `+4`, and eleven other functions hand `0x0031C5D0` their
 own record at fourteen sites.
 
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CA524` | `i32` | 0 (zero-filled tail) | `+4` of the row-form record `0x022CA520`: the row, or for `0x0035E070` the class-1 id in the high word | `0x0035D330`, the row argument (`0x0035D346`); `0x0035E070`, the id shifted left 16 (`0x0035E2B6`) | `0x0031C5D0`, through the record's address from both (`0x0035D34C`, `0x0035E2C6`), in its class arms (`0x0031C61F`-`0x0031CF28`) |
+
+No other instruction reaches `0x022CA524`: no other RIP-relative, image-base-relative or 32-bit offset reference names
+it.
+
 The menus are those callers: the gambit screen's row and page builders (`0x00567B60`, `0x0056B100`,
 `0x0056AE80`), the licence screens (`0x00558CE0`, `0x005618E0`) and the battle menu's title
 `0x0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),

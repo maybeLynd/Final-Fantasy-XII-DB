@@ -64,7 +64,7 @@ through `0x0024A440` (the readers are in `0x00406A60`); every shipped list has n
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 not read by the decoder bit 28     copied to bit 0 of the built list's header |
+| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 read by no instruction: the decoder takes bits 0-9 (`0x002432E3`) and bit 28 (`0x00243329`), its 113 callers read +`0x04` to +`0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: +`0x1088`, +`0x109C` and +`0x10B0` of the block at +`0x8FA0`), whose first dwords no instruction reads bit 28     copied to bit 0 of the built list's header bits 29-31 0 in all 7,665 records; read by no instruction (the same readers as bits 10-27: the decoder takes bits 0-9 and 28, the 113 callers read +`0x04` to +`0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
 | `+0x04` | `i16` | x | the list's rectangle, copied by the widgets that own it |
 | `+0x06` | `i16` | y |  |
 | `+0x08` | `u16` | width |  |
@@ -80,7 +80,7 @@ Items are variable-length and say their own length, so the walk steps over any t
 |---|---|---|---|
 | `+0x00` | `u8` | item length in bytes |  |
 | `+0x01` | `u8` | type, 1-9 |  |
-| `+0x02` | `u8` | not read by the decoder |  |
+| `+0x02` | `u8` | read by no instruction: the decoder reads +0x00 and +0x01 (0x00243379, 0x00243340) and bit 4 of +0x03 (0x00243329), the six constructors it calls (0x0029F4C0, 0x0029FEB0, 0x0029ED40, 0x0029F130, 0x0029F930, 0x0029ECB0) read nothing at +0x02, and the relocator 0x002A00F0 touches no item |  |
 | `+0x03` | `u8` | bit 4 (bit 28 of the first dword): drawn |  |
 | `+0x04` | `i16` | x |  |
 | `+0x06` | `i16` | y |  |

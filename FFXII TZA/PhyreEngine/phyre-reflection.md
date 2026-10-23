@@ -327,9 +327,14 @@ record, and an owned node has bit `0x1` at node `+0x20`.
 +0xFC flags
 0x00000001  dynamic class (built by 0x00632E80)
 0x00000002  abstract: no instance list (0x00639510)
+0x00000004  set for PParameterBuffer alone (0x001615C0); the PCluster loaders test it per class
 0x00000008  no default constructor: PCluster::create refuses it
+0x00000010  never set; 0x0059D940 extracts it, so the value is always 0
+0x00000020  set by a class's registrar or wrapper getter before 0x00639450 registers the members; never read
+0x00000040-0x04000000  no instruction writes or reads them
 0x08000000  a member is a PSharray, or the parent has the bit
 0x10000000  every instance byte is described by a member
+0x20000000  set by 0x0063BC00, never tested
 0x40000000  members registered (0x00639450)
 0x80000000  default instance and masks built
 ```
@@ -560,6 +565,175 @@ displacement, read or write, and how the object pointer was traced.
 | `0x02CF8270` | `PBase`, the root descriptor |
 | `0x02CF8470` | the descriptor of `PClassDescriptor` |
 | `0x02CF8570` | the `WriteMask` annotation key |
+
+### Registration statics
+
+The descriptors, member records, type objects and lists that registration builds are static objects.
+[phyre-reflection-state.tsv](phyre-reflection-state.tsv) gives each of their fields that code writes
+directly: the object, the class, the field, its type, its start value in the file, its meaning, and every
+instruction that writes or reads it, as `function (site, value)`. A `-` under `read_by` means that no
+RIP-relative, image-base-relative or disp32 reference names the field.
+
+The `family` column groups the rows:
+
+| Family | Globals | What |
+|---|---:|---|
+| `class-flags` | 310 | the `+0xFC` flags of the descriptors that initialisers and registrars build |
+| `array-getter` | 698 | the fields that the 69 array-type descriptor getters write |
+| `data-member` | 265 | member records: the registrars' vtable and attribute stores, and the core records built inline |
+| `callable` | 173 | the method and script-function records and their caller objects |
+| `builtin-type` | 130 | the 13 built-in type objects |
+| `enum-type` | 44 | the 4 enum type objects built on first use |
+| `core-descriptor` | 90 | the fields of the 10 core descriptors that their own code writes |
+| `members-registered` | 12 | the bytes that mark a class's members as registered |
+| `header-handler` | 4 | the handler at `+0x100` of the header descriptors |
+| `named-semantic` | 3 | the list of named-semantic descriptors and two of their vtables |
+| `named-registry` | 3 | the registries of named light, shadow-caster and LOD-blend objects |
+| `default-namespace` | 6 | the fields of the default namespace `0x01F2E330` |
+| `type-tree` | 5 | the link words of the type-tree header `0x01F2E780` |
+
+### Class flags
+
+Each row of `class-flags` is the flags word of one descriptor. Its constructor clears the word and its own
+code sets bits; the code listed in Layouts (`+0xFC flags`) adds the rest at run time. The rows split by
+the value the class's own code leaves:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `+0xFC` of each of 240 `class-flags` descriptors whose meaning ends "leaves it at 0x0" | `u32` | 0 | concrete class: the constructor sets bit `0x2`, the initialiser clears it | the initialiser (`and`, site per row); through the descriptor, the class's constructor (`or 2`) and `0x00632D80` (`0x00632E69`) or `0x00632C90` (`0x00632D6A`, an 8-byte store from `+0xF8`) | - |
+| `+0xFC` of each of 33 descriptors left at `0x8` | `u32` | 0 | no default constructor: the initialiser clears bit `0x2` and sets bit `0x8` in one read-modify-write | as above | the initialiser's own load (site per row) |
+| `+0xFC` of each of 26 descriptors left at `0x20` | `u32` | 0 | bit `0x20` set by the class's member registrar, or by the getter of a `PClassDescriptorWrapper<T>` class, after it registers the members | the initialiser and the registrar (sites per row) | - |
+| `0x02CB757C` | `u32` | 0 | `PParameterBuffer` (`PClassDescriptorHeaderWithoutDefaultConstructor`): the initialiser `0x001615C0` clears bit `0x2` and sets bits `0x4` and `0x8` (`0x001615FF`); `0x00639780` tests bit `0x4` (`0x006397C0`) | `0x001615C0` (`0x001615FF`); through the descriptor, `0x005D9B30` (`0x005D9B8A`, bit `0x2`), `0x00632D80` (`0x00632E69`, 0) | `0x001615C0` (`0x001615F3`) |
+| `+0xFC` of the 10 core descriptors (`0x02CF836C`, `0x02CF846C`, `0x02CF856C`, `0x02CF867C`, `0x02CF877C`, `0x02CF887C`, `0x02CF897C`, `0x02CF8A7C`, `0x02CF8B7C`, `0x02CF962C`) | `u32` | 0 | the core registrars set bit `0x40000000` themselves, as `0x00639450` does for other classes | per row | per row |
+
+The 69 array-type descriptors are in `array-getter`: each getter sets bit `0x2` while it builds the descriptor
+and clears it after installing the Concrete vtable.
+
+Every instruction in the game that writes or reads a descriptor's `+0xFC` is a row of
+[phyre-reflection-class-flag-sites.tsv](phyre-reflection-class-flag-sites.tsv): 980 rows, one per bit and access.
+907 instructions touch the word: 380 through a pointer and 527 at a descriptor's static address. Nothing
+reads the whole word: every load ends in a bit test, a sign test, a bit extraction or a store back. By bit:
+
+| Bit | Meaning | Written by | Read by |
+|---|---|---|---|
+| `0x1` | dynamic class | `0x00632E80` (`0x00632F18`) | 21 sites: `0x00633790`, `0x006361C0`, `0x00636280`, `0x00637320`, `0x00637350`, `0x00639450`, `0x00639A60`, `0x0063ABF0`, `0x0063BBC0`, `0x0063C910`, `0x008AF490` (`0x008AF4D6`, through `[0x01F2E340]` - `0x50`), and the 10 core registrars after their `bts` (`0x006344F8` and the same test in the other nine) |
+| `0x2` | abstract | set at 393 sites (the 315 class constructors' `or`, the 69 array-type getters and 9 more); cleared at 366 sites: 296 initialisers, the 69 array-type getters after installing the Concrete vtable, and `0x00635DC0` (`0x00636164`) | `0x0059AC00` (`0x0059ACDB`), `0x00639510` (`0x0063954C`), `0x00639A60` (`0x00639AF1`), `0x0063A4C0` (`0x0063A51E`) |
+| `0x4` | set for `PParameterBuffer` alone; the PCluster loader tests it per class | `0x001615C0` (`0x001615FF`) | `0x00639780` (`0x006397C0`) and the PCluster loaders `0x0059C250`, `0x0059C700`, `0x0059CE30`, `0x0059D590`, `0x0059D6A0` (twice), `0x0059D940` and `0x0059F500` |
+| `0x8` | no default constructor | 38 initialisers (load, clear `0x2`, set `0x8`, store) | `0x0059AC00` (`0x0059ACDB`), `0x00639A60` (`0x00639B2C`), `0x0063A990` (`0x0063A99A`), `0x0063AA50` (`0x0063AA5F`) |
+| `0x10` | never set | none | `0x0059D940` (`0x0059DCD3`-`0x0059DCDB`), so the value it extracts is always 0 |
+| `0x20` | set by the class's registrar or wrapper getter before `0x00639450` registers the members: right after `0x006388C0` registers the descriptor by name in 18 registrars, between `0x006388C0` and `0x00639450` in `0x00608A40`, after the member record is built in the ten Vectormath wrapper getters, and at entry in PBase's registrar | 29 sites in 28 functions | read by no instruction |
+| `0x08000000` | a member is a PSharray (`0x00639EE2`-`0x00639EEF`), or the parent has the bit (`0x00639D9D`-`0x00639DB0`) | `0x00639C80`: cleared (`0x00639CB4`), set (`0x00639EEF`), and copied from the parent's word (`0x00639D9D`-`0x00639DB0`) | `0x00639C80` (the parent's bit, `0x00639DAB`) |
+| `0x10000000` | every instance byte is described by a member | `0x00639C80`: cleared (`0x00639CB4`), set (`0x0063A0E2`) | `0x00639850` (`0x00639868`) |
+| `0x20000000` | set by `0x0063BC00`, never tested | `0x0063BC00` (`0x0063BC49`) | none |
+| `0x40000000` | members registered (`0x00639450`) | set by `0x00636280` (`0x006363E0`), `0x00639450` (`0x00639465`) and the 10 core registrars' `bts` (12 sites); cleared by `0x00638C90` (`0x00638D8D`) | 13 sites in `0x00636280`, `0x00637A70`, `0x00639850`, `0x00639A40`, `0x00639C80` (two), `0x0063A790`, `0x0063BB10`, `0x0063BC00`, `0x0063C1A0`, `0x0063C5E0`, `0x0063C910` (two) |
+| `0x80000000` | default instance and masks built | set by `0x00639A60` (`0x00639C55`); cleared by `0x00632E80` (`0x00632F3C`), `0x0063D410` (`0x0063D4DB`) and `0x0063D930` (`0x0063D945`) | 13 sign tests: at the loads of the `0x40000000` readers other than `0x00639A40`, and at `0x00639A60` (`0x00639A94`) |
+
+No instruction writes or reads bits `0x40` to `0x4000000`. The whole word is written as 0 by the 10 core
+constructors `0x006316C0`-`0x00632780`, `0x00632C90` (`0x00632D6A`, 8 bytes from `+0xF8`) and `0x00632D80` (`0x00632E69`), and
+stored back by the initialisers after they change their bits (50 sites).
+
+### Array-type descriptor getters
+
+A getter such as `0x005B5130` (`PArray<float, 4>`) builds its descriptor, an `m_count` member, the `WriteMask`
+annotation on it and an `m_els` member, each behind its own thread-safe static, then registers the
+descriptor (`0x006388C0`, `0x00639450`). Ten of its statics are in `array-getter`:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| descriptor `+0xFC`, 69 rows | `u32` | 0 | flags: bit `0x2` set while the getter builds the descriptor, cleared after the Concrete vtable is installed | the getter (two sites per row); through the descriptor, `0x00632D80` (`0x00632E69`, 0) | - |
+| descriptor `+0x30`, 69 rows | `void*` | 0 | the descriptor's name: 0 until the getter is called with a name, then the name static's value | the getter | the getter's test of it |
+| name static, 68 rows | `void*` | 0 | the first non-null name the getter is passed; it is also the name the getter passes to `0x00632D80` | the getter (after a `cmove`) | the getter |
+| annotation `+0x00`, 69 rows | `void*` | 0 | vtable `0x00D32D50`, `PAnnotationWithValue<unsigned int>` | the getter | - |
+| annotation `+0x30`, 69 rows | `u32` | 0 | `0x7FFFFFFF`; `0x00639C80` takes it through the annotation's slot `+0x08` (`0x005C4D20`, `0x0063A05F`) and copies it into the write mask over `m_count`, leaving out bit 31 | the getter | - |
+| `m_els` `+0x00`, 69 rows | `void*` | 0 | the record's `PClassDataMemberArrayDynamic<T>` vtable, installed after `0x00632A10` builds the record | the getter | - |
+| `m_els` `+0x28`, 9 rows | `u32` | 0 | attribute bit `0x40` ORed in for a `PSharray<T>` | the getter | - |
+| `m_els` `+0x58`, 69 rows | `u32` | 0 | element size: 8 in 51 getters, 4 in 13, 2 in 3, 1 and 16 in one each | the getter | - |
+| `m_els` `+0x60`, 69 rows | `void*` | 0 | `0x005C4CC0`, which returns the array's first word without bit 31 | the getter | - |
+| `m_els` `+0x68`, 69 rows | `void*` | 0 | 0, or `0x00671250` in the 9 `PSharray<T>` getters | the getter | - |
+| `m_els` `+0x70`, 69 rows | `void*` | 0 | the set-elements function of the element type (`0x00673130` in 19 getters, `0x006AF760` in 22) | the getter | - |
+
+In all 69 record vtables slot `+0x20` is `0x006065D0`, which calls `+0x60`; slots `+0x30` and `+0x38` are
+`0x00604580`, which calls `+0x68` or, when it is 0, reads the pointer stored in the member; slot `+0x40` is
+`0x0060F3D0`, which calls `+0x70` with a buffer and a count and returns `0x15` when it is 0. `0x00673130` frees
+a buffer the array owns, then stores the new buffer at `+0x08` and the count with bit 31 set.
+
+### Member records and callables
+
+Member registrars build records with `0x00632960`, `0x00632A10`, `0x00632A70` and `0x00632BE0`. Two of their
+stores are direct (`data-member`):
+
+- 49 vtable stores at `+0x00`: the `PClassDataMemberPhyreArray<T>`, `PClassDataMemberPhyreSharray<T>` or
+  `PClassDataMemberArrayDynamic<T>` vtable, installed after `0x00632A10` builds the record;
+- 44 attribute ORs at `+0x28`: bit `0x10` or `0x08` after the constructor stores the attributes.
+
+The core registrars build their member records inline, field by field, as `0x00632960` would; the owner's
+attach slot `+0x40` (`0x0062EFD0` in every core descriptor vtable) then links each record into `+0x80`. Their
+rows give every field. The `m_type` member of `PClassDataMemberDynamic` gets a dynamic-type helper at
+`0x01F2DF30` and attribute bit `0x4` (`0x00634668`).
+
+A method or script-function record (`callable`) is a `0x30`-byte `PClassMember`: list node `+0x00`/`+0x08`,
+owner `+0x10`, name `+0x18`, attributes `+0x20`, and at `+0x28` a pointer to its caller object, which
+follows at `+0x30`. A `PMethodCallerConcrete` record is linked into the owner's `+0x90` list, a
+`PFunctionCallerConcrete` record into `+0xA0`:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| record `+0x08`, 26 rows | `void*` | 0, or the record's own address | previous-record link: the registrar links the record at the end of the list | the registrar; the exit teardown, which unlinks the record and stores the record's address | the exit teardown |
+| record `+0x28`, 49 rows | `void*` | 0 | the caller object's address | the registrar (41 store 0 first) | - |
+| caller `+0x00`, 49 rows | `void*` | 0 | the caller's vtable | the registrar | - |
+| caller `+0x08`, 49 rows | `void*` or `u8[16]` | 0 | the function called: 8 bytes for a function, or a 16-byte member-function pointer with a 0 adjustment at `+0x10` in 9 records | the registrar | - |
+
+For `PFunctionCallerConcrete<float>` (`0x00D34C08`) slots `+0x08` (`0x005C1350`) and `+0x10` (`0x005CBCC0`) call
+through `+0x08`.
+
+### Built-in and enum types
+
+The built-in types `PType`, `bool`, `PChar`, `PUInt8`, `PInt16`, `PUInt16`, `PInt32`, `PUInt32`, `PUInt64`,
+`PInt64`, `float`, `double` and `PUInt128` are static `PType` objects at `0x01F2E370`-`0x01F2E780`. The file
+already holds their fields. `0x00637F20`, which registers every one of them by name with `0x006388C0`, stores
+them again behind each type's guard; seven of them are also built by other functions (`0x00637720` for `PType`;
+`0x006315B0` and `0x00637650` for `PUInt32`), as each row lists.
+
+The enum types `Phyre::PResult` (`0x02CB07A0`, getter `0x005A6670`), `PSamplerStateFilterFormatType`
+(`0x02CC02D0`, `0x005D8CA0`), `PSamplerStateWrapFormatType` (`0x02CC0330`, `0x005D8D70`) and `PCollisionGroup`
+(`0x02E4A0D0`, `0x0068F0F0`) are `PTypeDefault<unsigned int>` objects of size 4 built on first use; their exit
+teardowns put back the `PType` vtable `0x00D31168`.
+
+In both families the three tree links point at the object's own `+0x08` and the hash and key are 0;
+`0x006388C0` sets them when it registers a type.
+
+### Core descriptors and the default namespace
+
+The core descriptors `PBase` (`0x02CF8270`), `PClassDataMemberDynamic`, `PClassDescriptor`,
+`PClassDescriptorDynamic`, `PClassMember`, `PCluster`, `PClusterDependencyList`, `PNamespace`, `PWorld`
+(`0x02CF8370`-`0x02CF8A80`) and `PSharray<PString>` (`0x02CF9530`) are built by their own code. Their rows cover:
+
+- `+0xC0`, `+0xC8`, `+0xD0`: the three static buffers, stored by the initialiser;
+- `+0x08`-`+0x28`: reset by the registrar only when bit `0x1` of `+0xFC` is set (`0x006344F8` and the same test
+  in the others), which the class's own code leaves clear;
+- `PBase` `+0x38`: `0x006318A0` stores 1 through the descriptor (`0x00631913`), then the initialiser `0x00164180`
+  stores 0 (`0x00164197`).
+
+The default namespace `0x01F2E330` is built behind guard `0x02CF94EC` by whichever of `0x006316C0`-`0x00632780`,
+`0x00637A70`, `0x00638C90` and `0x0063C730` runs first, each storing the same empty lists. Its state word
+`0x01F2E350` is set to 1 by `0x00637A70` (`0x00637AB8`) while it computes every class's layout offsets, then to 2
+(`0x00637B60`) while it builds every class's default instance and masks; `0x00638C90` clears bit `0x40000000`
+of every class and sets it back to 0 (`0x00638DAB`).
+
+### Other registration statics
+
+- `members-registered`: the byte after a getter's guard (`0x02CACDB4` for `PTimer`); the getter stores 1 right
+  after `0x00639450` and skips the member registration while it is set.
+- `header-handler`: `+0x100` of the header descriptors `PAnimationClipBinding`, `PParameterBuffer`,
+  `PModifierNetworkInfoPacket` and `POccluderGeometryObject`; slot `+0x78` of each descriptor jumps to it.
+- `named-semantic`: `0x01F2EBB8` heads the list of every `PNamedSemanticDescriptor`; `0x006B6820` links each new
+  descriptor's `+0x50` node at the front.
+- `named-registry`: `0x02E58CA0` (`PLightType`), `0x02E59BB8` (`PShadowCasterType`) and `0x02EA0748`
+  (`PLODBlendType`) head lists linked through `+0x10` and keyed by the name at `+0x08`. `0x006BFC60`,
+  `0x006C2380` and `0x006D9A70` add an object at the front; they return `0x12` for a name already present
+  and `0x11` for an object with no name.
+- `type-tree`: the link words `0x01F2E788`-`0x01F2E7A8` of the header `0x01F2E780`; `0x00636280` and `0x00638F00` set
+  them to the header's address, an empty tree, behind guard `0x02CF9524`.
 
 ## Modding notes
 

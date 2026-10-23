@@ -32,7 +32,7 @@ The files are resource kind 7, in the `in` and `ch` locale folders only:
 All multi-byte fields are big-endian.
 
 ```
-+0x00  char[2]  "A7"       not read by the game
++0x00  u8[2]    "A7"       read by no function: the container buffers reach only the walker 0x0024AA00 (from 0x00292390 at 0x00292768 and 0x002CEFD0 at 0x002CF2B4 and 0x002CF2CE), which starts at byte +0x02, and the codec 0x00248500, which reads the page streams and the dictionary; the slot and widget copies 0x00291D90, 0x00292050, 0x002CEB40 and 0x002C8EE0 move the pointer only; nothing fixes its width
 +0x02  u16be    count      number of pages
 +0x04  u32be    dictOff    file offset of the dictionary blob
 +0x08  u32be[count] pageOff  file offset of each page's token stream

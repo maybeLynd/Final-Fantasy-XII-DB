@@ -496,6 +496,15 @@ Measured from `gamedata/disableautosavelist/disableautosavelist.txt` in the arch
 | `0x01EFAC10` | `u8` | the save-data check: 2 running, 1 a save exists, 0 none | `0x00393EA0` |
 | `0x01F81260` | `void*` | the SaveloadManager, holding the autosave exclusion rows at `+0x50` | `0x001C18A0` |
 
+The device-check pane:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA99D0` | `void*` | 0 (zero-filled tail) | the device-check pane, the `0xD0`-byte widget with procedure `0x0057E8D0` that the save and load screen `0x00582860` builds while it is 0; the device check `0x0057EA40` stores the controller at its `+0xC8` and bit 0 of its second argument, the save-or-load mode, in bit 1 of `+0xC0` | `0x0057E8D0`: itself on message 1 (`0x0057E903`), 0 on message 18 (`0x0057E8F4`) | `0x00582860`, which builds it only while it is 0 (`0x00582A90`-`0x00582AA9`) and closes it with `0x00244F00` on leaving (`0x00582B7C`, `0x00582BEF`, `0x00582C38`); `0x0057EA40` (`0x0057EAA6`) |
+
+No other instruction reaches `0x02CA99D0`: no other RIP-relative, image-base-relative or 32-bit offset reference names
+it.
+
 ## Modding notes
 
 - A tool that writes a slot file must also write the zeroed-header then stamped-header sequence

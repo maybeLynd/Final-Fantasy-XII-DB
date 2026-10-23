@@ -186,6 +186,9 @@ Measured from the executable (SHA-256 `73461d08…d89721f8`).
 ## State
 
 - `0x02E41000`: the most recent accessor failure, overwritten by each.
+- `0x02E41058`: the script record being run. The `PScheduler` slots `0x00685140`, `0x006853C0` and `0x00685560` store the
+  record before each call of `0x006852B0` or `0x00684F60` and 0 after it; `0x00683AF0` returns its script `+0x08`, or 0
+  when none is set, and `0x00681F30` takes that function's address (`0x006820EF`).
 - The registry keys `"PhyreObject"`, `"Vector"` and `"Matrix"`: read, never written, by the binding
   layer.
 

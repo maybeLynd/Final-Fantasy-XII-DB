@@ -67,6 +67,11 @@ A curve has the ease-curve layout of the camera tables (`+0x00` length `0x18 + 0
 at `+0x10`-`+0x20`); [EBP camera tables](ebp-camera-tables.md) has it in full. `0x003CC5F0` skips
 the first 16 bytes of each key.
 
+Both sections are used in place inside the loaded `.ebp`, where the handlers store their addresses. At load
+`0x003DD120` zeroes each CML1 row's `+0x08` and the low byte of its `+0x0C` in the section itself. `0x0037DA90` keeps
+the SHK1 curve addresses in its own allocation at `0x02ADD988 + manager * 0x3D0`, and a started shake is kept in the
+manager record (`0x003DD230` writes `+0x170 + 8k` onward and `+0x1C`).
+
 ## Shipped data
 
 Every count is per language tree; section 11 is byte-identical in all nine trees.

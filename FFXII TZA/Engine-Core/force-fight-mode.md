@@ -125,6 +125,25 @@ cached.
 The flag, the two enable bytes, the toggle state and its edge byte, the override cells and the
 mode register.
 
+The party's battle hold: `0x00307E70`, run once per field frame (`0x00234703`), keeps the party in its battle state for
+90 frames after the last member stops fighting. It collects up to four party members (`0x0031B810`) without the
+statuses `0x80000003` (or with `0x00377C20`) into `0x022C1788`, moves bit 2 of `0x022C1F48` into bit 1 and sets bit 2 again
+when one of them is engaged (`+4` bit 16) and has none of the statuses `0x8800203B` (`0x00307EE1`-`0x00307F3F`). Then:
+
+1. With bit 2 set (fighting this frame) the hold is 0.
+2. With bit 1 set (fighting the frame before) it notes the frame counter `0x0032A150()` in `0x022C1F40` and starts the
+   hold at `3 x trunc([0x01DFE0B8] x 30)`, 90 as shipped (`0x00307F53`-`0x00307F75`).
+3. Otherwise a running hold becomes `[0x022C1F40] + 90 - 0x0032A150()` (`0x00307F77`-`0x00307FA5`).
+
+Bit 0 of `0x022C1F48` is then set while bit 2 is set or the hold is not 0 (`0x00307FB4`-`0x00307FDB`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C1F44` | `i32` | 0 (zero-filled tail) | the frames left of the battle hold | `0x00307E70` (`0x00307FAE`); 0 with `0x022C1F40` in one 8-byte store: `0x00304400` (`0x00304427`), the engagement update `0x00307D10` (`0x00307D75`), `0x00307FF0` (`0x00307FF9`), `0x0030F2D0` (`0x0030F2EB`) | `0x00307E70` (`0x00307F77`) |
+
+No other instruction reaches `0x022C1F44`: no other RIP-relative, image-base-relative or 32-bit offset reference names
+it.
+
 ## Modding notes
 
 - The predicate's sense is inverted from its name: a true `0x00253B90()` means fleeing. A hook that

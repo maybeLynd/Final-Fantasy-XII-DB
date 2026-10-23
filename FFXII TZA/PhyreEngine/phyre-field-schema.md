@@ -36,7 +36,7 @@ Packed namespace (at m_size):
 | `+0x0C` | `u32` | nClasses |  |
 | `+0x10` | `u32` | nMembers |  |
 | `+0x14` | `u32` | stringPoolSize |  |
-| `+0x18` | `u32` | 0 in every shipped file |  |
+| `+0x18` | `u8[4]` | 0 in every shipped file; read by no function on a shipped file: the validator 0x0059E070 sums +0x08, +0x0C, +0x10, +0x14 and +0x1C against +0x04 (0x0059E173-0x0059E191) and reads nothing else of the header, the binders take the counts and the records, and the byte swap 0x0059C180 (0x0059C1B7-0x0059C1BC) runs only when 0x0059A3B0 finds the cluster marker byte-reversed (0x0059A3FF-0x0059A437), which no shipped file is; nothing fixes its width |  |
 | `+0x1C` | `u32` | size of an optional block, 0 in every shipped file |  |
 | `+0x20` | `u32` | string-pool offset of each type name [nTypes] | ...  class records, 9 u32 each [nClasses] ...  member records, 6 u32 each [nMembers] ...  NUL-separated string pool [stringPoolSize] |
 
@@ -70,6 +70,9 @@ The attribute word in `w4`, with bit 31 masked off, is the run-time member's att
 `0x2` a pointer, `0x4` a dynamic-type helper, `0x20` an enum, `0x40` an inline counted buffer, and
 the per-class bits `0x08` and `0x10`.
 
+Every name (a type-table entry, class `w2`, member `w0`) is an offset from the start of the string pool, the
+namespace's last `stringPoolSize` bytes.
+
 ```python
 registration call (0x00632960), Win64 arguments
 rcx         record
@@ -94,6 +97,10 @@ run-time offset, for example `PClusterHeaderBase`, whose 18 fields sit at 0 to 6
 113 are packed: in `PAssetReference`, `m_id`, `m_asset` and `m_assetType` sit at file offsets 0, 1
 and 2 with width 1, against run-time offsets inside a `0x50`-byte object. An object pointer has
 width 1 and a `PArray` member width 5 in a packed class.
+
+So no instance is used in place. `0x0059E300` reads the instances, and each file member is copied from its file
+offset to its run-time member's offset by the routine `0x0059D2D0` chose, or skipped
+([choosing a copy routine](#choosing-a-copy-routine)); the objects in memory have the run-time layout.
 
 ## Shipped data
 

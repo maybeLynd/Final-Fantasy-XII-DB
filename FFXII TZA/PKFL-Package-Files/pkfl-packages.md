@@ -33,6 +33,11 @@ All multi-byte fields are little-endian.
 The directory ends at file offset `0x88` for 16 slots and `0x208` for 64. Every payload starts on a `0x800`
 boundary, the first at file offset `0x800`.
 
+No package is held in memory whole. `0x0032FCA0` reads only the directory, the first `0x88` or `0x208` bytes, into
+the table of that size `0x0032F430` allocated for the area slot, and the slot readers use it as read. Each payload
+is read on its own into its consumer's buffer ([reading a slot](#reading-a-slot)). The one check is byte 0: when
+it is 0, every slot reader refuses with −1. The readers return a slot's offset and size as stored.
+
 ## Shipped data
 
 | Fact | Value |

@@ -94,12 +94,16 @@ what happens to those registrations at exit.
 
 Many hold Phyre type information:
 
-- The 61 descriptor-pair accessors (115 bytes each, like `0x005C3B10`) build `{descriptor | 1, 0}` pairs.
-  Their 27 descriptors are all Phyre class descriptors: the code that fills each one stores a
-  `PClassDescriptorConcrete`, `PClassDescriptorForType` or `PClassDescriptorWithoutDefaultConstructor`
-  vtable for classes such as `PAnimatableComponent` (`0x02CAD140`), `PNode`, `PEntity`, `PCamera`,
-  `PLight`, `PString` and `PApplication`.
-- The 57 pair initialisers build the same kind of pair; 41 of them call one of nine functions for it: the type-default
+- The 61 descriptor-pair accessors (115 bytes each, like `0x005C3B10`) are slot 4 of their caller classes' vtables,
+  and each fills a two-entry argument-type list `{descriptor | 1, 0}` ([caller type lists](#caller-type-lists)):
+  60 for methods without arguments (the receiver, then the 0 end) and one, `0x006AC6F0`, for the caller of a
+  one-argument function (`PFunctionCallerConcrete<PEntity *, PWorldMatrix *>`: `PWorldMatrix *`, then the 0 end).
+  - Their 27 descriptors are all Phyre class descriptors: the code that fills each one stores a
+    `PClassDescriptorConcrete`, `PClassDescriptorForType` or `PClassDescriptorWithoutDefaultConstructor`
+    vtable for classes such as `PAnimatableComponent` (`0x02CAD140`), `PNode`, `PEntity`, `PCamera`,
+    `PLight`, `PString` and `PApplication`.
+- The 57 pair initialisers each fill a three-entry list: a receiver, one argument and the 0 end. 41 of them take the
+  argument's entry from a call to one of nine functions: the type-default
   descriptors `0x00630180` (`PTypeDefault<unsigned int>`), `0x0062FF50` (`<char>`), `0x006301F0`
   (`<float>`) and `0x00630490` (`<bool>`), and lazily built wrapper descriptors for `Vector4`
   (`0x006B19A0`), `Vector3`, `Quat`, `PMatrix4` and `PMatrix4x3`.
@@ -158,6 +162,123 @@ The member lists beside this page, each named `lazy-statics-and-one-time-init-<l
 | `magic-static-pair-initialisers` | 57 pair builders that call a descriptor function |
 | `magic-static-singleton-guards` | 17 holders whose only calls are header, footer and `atexit` |
 | `bj5-residue` | 30 further holders that register no teardown |
+
+## State
+
+### Caller type lists
+
+Most statics behind a gate are the argument-type lists of Phyre's callers. Each `PMethodCallerConcrete` or
+`PFunctionCallerConcrete` class has its own holder in slot 4 (`+0x20`) of its vtable. The holder returns the
+address of a static array of 8-byte entries, which it fills inside its guarded block on first use and never
+changes afterwards. `0x005C4AD0`, slot 4 of `PMethodCallerConcrete<PAnimationSet, PResult, PCluster &>`
+(vtable `0x00D34BD8`), fills `0x02CB59F0`:
+
+```
+0x02CB59F0  0x02CAE660 | 1   receiver: PAnimationSet       stored at 0x005C4B35
+0x02CB59F8  0x02CF8780 | 1   argument 1: PCluster &        stored at 0x005C4B47
+0x02CB5A00  0              end of the list               stored at 0x005C4B1F
+0x02CB5A08  guard
+```
+
+Every list follows the same rules, checked entry by entry against the template arguments of its caller
+class:
+
+- a method's list starts with its class's descriptor (the receiver); a function's list starts with its first
+  argument;
+- the arguments follow in order; the return type has no entry;
+- an entry is a static class descriptor, or the result of a descriptor function the holder calls inside the
+  guarded block (`0x00630180` `unsigned int`, `0x0062FF50` `char`, `0x006301F0` `float`, `0x006B19A0` `Vector4`);
+- bit 0 is set for the receiver and for an argument passed by reference or pointer, and clear for an
+  argument passed by value;
+- a 0 entry ends the list, and the guard is the next word.
+
+The 61 descriptor-pair accessors hold two-entry lists: 60 of methods without arguments and one of the
+caller of a one-argument function (`0x006AC6F0`). The 57 pair initialisers hold three-entry lists: a receiver and one
+argument.
+
+| Entries, end included | Method lists | Function lists |
+|---|---:|---:|
+| 2 | 60 | 5 |
+| 3 | 71 | 0 |
+| 4 | 13 | 0 |
+| 5 | 4 | 0 |
+| 6 | 5 | 0 |
+| 7 | 2 | 0 |
+| 8 | 1 | 0 |
+
+### Who reads the lists
+
+No instruction reads an entry in place. Apart from the holder's own store and its `lea` of the array, no
+RIP-relative, image-base-relative or disp32 reference names any entry. The lists are read through slot 4, by
+the animation target binders on the function or method they look up by name (see
+[animation binding](../PhyreEngine/phyre-animation-binding.md)):
+
+- `0x005C0B60` compares a function's entry 0 with `0x006B19A0() | 1` (`0x005C0C23`) and entry 1 with 0
+  (`0x005C0C28`);
+- `0x005C0C90` compares a method's entry 1 with `0x006B19A0() | 1` (`0x005C0D5A`) and entry 2 with 0
+  (`0x005C0D60`).
+
+On a mismatch each logs that the function or method "does not take a single const Vectormath::Aos::Vector4 *
+parameter" (`0x00D31EA0`, `0x00D31F30`) and binds it anyway. Of the 226 calls and jumps through
+`[reg + 0x20]` in `.text`, these two are the only ones that read the result as a type list. No code reads
+the receiver entry, or any entry from `+0x18` on.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [lazy-statics-and-one-time-init-state.tsv](lazy-statics-and-one-time-init-state.tsv): the 406 entries of the 161 lists other than the first entries of the 61 descriptor-pair accessors, which are the `descriptor` column of [lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv](lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv) | `void*` | 0 (zero-filled tail of `.data`) | one entry of a caller's type list: its static, offset, guard, holder, caller vtable and class, the entry's type, its value and bit 0, and the holder's abort funclet when it has one (75 of the 161 holders) | the holder, once, inside its guarded block (`set_by`) | `0x005C0B60` or `0x005C0C90` through slot 4, at the sites above (`read_by`); `-` for every other entry |
+
+### The desktop probe
+
+`0x0079E700` keeps `user32.dll` and three of its functions in lazy statics. Behind guard `0x02EACD50` it stores
+`LoadLibraryA("user32.dll")` (`0x0079E7E6`). Behind guard `0x02EACD60` it stores `GetProcAddress` results for
+`OpenDesktopA`, `CloseDesktop` and `SwitchDesktop` in `0x02EACD58`, `0x02EACD68` and `0x02EACD70`. It then opens
+the desktop `"Default"` with access `0x100` (`DESKTOP_SWITCHDESKTOP`), calls `SwitchDesktop` on it and
+closes it.
+
+It returns 0 only when the desktop opens and `SwitchDesktop` succeeds, and 1 when the library or any
+function is missing, the desktop does not open or the switch fails. The window procedure `0x00798FF0` calls it
+for message `0x8001` (`0x00799720`) and calls `0x007A0A80` only on 0, with the byte `0x01F3DA05` set. No other code
+uses the two globals below: no RIP-relative, image-base-relative or disp32 reference outside `0x0079E700` names
+them.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EACD48` | `void*` | 0 (zero-filled tail of `.data`) | module handle of `user32.dll`; 0 means the probe returns 1 | `0x0079E700` (`0x0079E7F3`), once behind guard `0x02EACD50` | `0x0079E700`: the null test (`0x0079E72F`) and the three `GetProcAddress` calls (`0x0079E81D`, `0x0079E831`, `0x0079E84C`) |
+| `0x02EACD58` | `void*` | 0 (zero-filled tail of `.data`) | address of `OpenDesktopA`; 0 means the probe returns 1 | `0x0079E700` (`0x0079E83F`), once behind guard `0x02EACD60` | `0x0079E700` (`0x0079E74B`), which calls it at `0x0079E782` |
+
+### Physics enum name records
+
+The physics module's init `0x006A4100` calls `0x0069E790` (`0x006A438F`) and then `0x0069E880` (`0x006A4394`). Each
+builds a `0x20`-byte record on first use with `0x006CCD80`: `+0x00` the enum's name, `+0x08` the next record,
+`+0x10` its table of `{name, value}` pairs and `+0x18` the pair count, which `0x006CCDA0` stores on every call.
+
+| Record | Guard | Name | Table | Pairs |
+|---|---|---|---|---|
+| `0x02E4BDC8` | `0x02E4BDE8` | `PCollisionGroup` | `0x00D7A020` | 15: `PE_COLLISIONGROUP_DYNAMIC` 0, `_STATIC` 1, `_CHARACTER` 2, `_LAYER0`-`_LAYER11` 3-14 |
+| `0x02E4BDF0` | `0x02E4BE10` | `PRigidBodyType` | `0x00D7A300` | 3: `PE_RIGIDBODYTYPE_STATIC` 0, `_DYNAMIC` 1, `_KINEMATIC` 2 |
+
+Each call then walks the list from `0x02E5BF88` comparing names. Only when its name is absent does it store the
+old head in its record's `+0x08` and make the record the head. After the init the head is `PRigidBodyType`,
+whose `+0x08` is `PCollisionGroup`, whose `+0x08` is 0. Nothing else reads the list: no RIP-relative,
+image-base-relative or disp32 reference outside the two holders names `0x02E5BF88`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02E5BF88` | `void*` | 0 (zero-filled tail of `.data`) | head of the enum name records | `0x0069E790` (`0x0069E867`), `0x0069E880` (`0x0069E957`): the new record | `0x0069E790` (`0x0069E81D`), `0x0069E880` (`0x0069E90D`) |
+| `0x02E4BDD0` | `void*` | 0 (zero-filled tail of `.data`) | `PCollisionGroup` record `+0x08`: the head when it was linked, 0 | `0x0069E790` (`0x0069E860`) | the list walks of `0x0069E790` (`0x0069E857`) and `0x0069E880` (`0x0069E947`) |
+| `0x02E4BDF8` | `void*` | 0 (zero-filled tail of `.data`) | `PRigidBodyType` record `+0x08`: the head when it was linked, `0x02E4BDC8` | `0x0069E880` (`0x0069E950`) | the list walks of `0x0069E790` (`0x0069E857`) and `0x0069E880` (`0x0069E947`) |
+
+### The largest-channel start value
+
+`0x00712910` (called from `0x007125B0` at `0x00712830`) copies a colour of three floats, raising negative channels
+to 0. When the target at `[r8]` is positive it scales the colour so its weighted sum equals the target
+(`0.2126`, `0.7152`, `0.0722` when `r9b` is set, else `0.29891`, `0.58661`, `0.11448`). When the target is
+negative it finds the largest channel, starting from `0x02EA1718`, and scales so that channel equals minus the
+target.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EA1718` | `f32` | 0 (zero-filled tail of `.data`) | `-3.40282e+38` (`0xFF7FFFFF`): the lesser of `-FLT_MAX` (`0x01F3C514` with the sign mask `0x01CEBDA0`) and `FLT_MIN` (`0x01F3C510`), the start of the largest-channel search | `0x00712910` (`0x00712A90`), once behind guard `0x02EA171C` | `0x00712910` (`0x00712A9D`) |
 
 ## Modding notes
 

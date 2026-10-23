@@ -108,7 +108,7 @@ start, padded with `0xFFFFFFFF`, then the sub-files.
 | `tex2pack_ys.bin` | 16 | 11 | TIM2 | `0x00280670` binds entries 0-9 into `[0x0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388` |
 | `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `0x00280980` stores entries 0-22 at `[0x0209AC30] + 8 × i` and relocates each with `0x002A00F0` |
 | `clutpack_ys.bin` | 16 | 4 | CLT2 | `0x00280AD0` stores entries 0-3 at `[0x0209AC30] + 0x390`..`0x3A8` |
-| `fontpack_fs.bin` | 16 | 7 | font tables | `0x003643A0`: entry 0 to `+0x08` (rebased by `0x00366080`), 1 to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130` for faces `0xB`, `0xD`, `0xE`, `0xF`; the binder skips entry 3, which repeats entry 2's offset in all six files |
+| `fontpack_fs.bin` | 16 | 7 | font tables | `0x003643A0`: entry 0 (the font block) to `+0x08` (walked by `0x00366080`), 1 (the palette block) to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130`, the sheets of faces 0, 2, 3 and 4, whose font ids `0xB`, `0xD`, `0xE`, `0xF` it registers ([header](btm-exfont-bitmaps.md#layouts)); the binder skips entry 3, which repeats entry 2's offset in all six files |
 | `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0x0039C150`: entries 0-5 to `0x02AEE810`, `0x02AEE850`, `0x02AEE870`, `0x02AEE878`, `0x02AEE880`, `0x02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `0x02AEE848` and over `0x02AEE880` |
 
 The font-table destinations are relative to the font object `[0x022CBE00]`. No binder checks an entry

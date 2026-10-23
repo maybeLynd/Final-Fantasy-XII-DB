@@ -47,6 +47,11 @@ Entry (16 bytes):
 | `+0x0A` | `i16` | gate | story gate (`0x0032A8A0`); 0 always passes, 1 never shows |
 | `+0x0C` | `u8[4]` | - | not read |
 
+The block is used in place inside the loaded `.ebp`: `0x02B59D58` holds its address, which `0x003DFDC0` stores and
+`0x003DFCC0` (`0x003DFCC0`) and `0x003DFBE0` (`0x003DFC14`) read. The boot clear `0x003DFDA0` nulls it (`0x003DFDA3`). The area
+unload `0x003DFA50` reads it (`0x003DFA8A`), passes a non-null block to the free `0x00331880` and nulls it (`0x003DFA9B`); the
+free runs only when `0x005C5230(5)` returns non-zero (`0x003318A2`-`0x003318A9`), which it never does.
+
 ## Shipped data
 
 | Fact | Value |

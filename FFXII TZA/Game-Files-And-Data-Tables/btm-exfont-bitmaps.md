@@ -42,11 +42,25 @@ up to 8, 16, 32, 64 or 128. A cell starts at its glyph record's sheet offset.
 
 The glyph tables, as `0x003643A0`, `0x00366080` and `0x00364210` read them:
 
-Fontpack_fs.bin:
+Fontpack_fs.bin (offsets from the file start; `0x003643A0` binds them into the font state):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | fontBlock | offset of the font block from the file start (`0x003643A0`) |
+| `+0x00` | `u32` | fontBlock | offset of the font block, `0x40`; to state +`0x008` |
+| `+0x04` | `u32` | palettes | offset of the palette block; to state +`0x190` |
+| `+0x08` | `u32` | sheet0 | offset of face 0's sheet; to state +`0x110` when that slot is empty |
+| `+0x0C` | `u32` | sheet0Copy | the same value as +`0x08` in all six files; read by no function |
+| `+0x10` | `u32` | sheet2 | offset of face 2's sheet; to state +`0x120` when empty |
+| `+0x14` | `u32` | sheet3 | offset of face 3's sheet; to state +`0x128` when empty |
+| `+0x18` | `u32` | sheet4 | offset of face 4's sheet; to state +`0x130` when empty |
+| `+0x1C` | `u32` | end | `0xFFFFFFFF` in all six files; read by no function |
+| `+0x20` | `u8[32]` | 0xFF in all six files; read by no function |  |
+
+Palette block (640 bytes, from +`0x04` to +`0x08`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32[160]` | colours | R, G, B, A bytes, alpha on the PS2 scale (at most `0x80`), ten rows of 16 |
 
 Font block:
 
@@ -62,7 +76,7 @@ Glyph table:
 |---|---|---|---|
 | `+0x00` | `i32` | next | offset of the next table from this one |
 | `+0x04` | `i32` | glyphCount | number of 12-byte records |
-| `+0x08` | `u8[8]` | not read by 0x00364210 |  |
+| `+0x08` | `u8[8]` | read by no function: the tables are reached through the state's table pointers (+0x10 + 8 x face, set by 0x00366080), and their readers 0x00366080 (+0x00, +0x04), 0x00364210, 0x00364530, 0x003647E0 and 0x003655F0 (+0x04, then the records from +0x10) read nothing from +0x08 to +0x0F; nothing fixes its width |  |
 | `+0x10` | `...` | records | glyphCount records |
 
 Glyph record (12 bytes):
@@ -89,6 +103,18 @@ Font state (pointer at `0x022CBE00`):
 | `+0x228` | `void*` | cacheTail | least recently used glyph cache entry |
 | `+0x230` | `void*` | cacheHead | most recently used glyph cache entry |
 | `+0x240` | `u32` | ready | bit n set when face n's sheet has arrived |
+
+`0x003643A0` also sets bits 0, 2, 3, 4, 30 and 31 of `+0x240`, so faces 0, 2, 3 and 4 count as ready once the
+fontpack arrives.
+
+Both files are used as loaded. `0x003643A0` and `0x00366080` keep the addresses the
+fontpack's offsets lead to in the font state, not in the file. A sheet stays in its buffer: each glyph cache
+entry points into it (`sheet + sheetOffset`), and `0x003649A0` sends a cell's texels from there.
+
+`0x00365990` sends the palette block from state `+0x190` to GS address `0x3500` as a 32-bit-colour rectangle 16
+colours wide and `[+0x244]` rows high (`0x00474600`, `0x003A22A0`). The shipped font block's `value` is 9, so that is
+20 rows and 1,280 bytes: the 640-byte palette block and the first 640 bytes of face 0's sheet, which follows it
+in every file.
 
 Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 and their sheets sit at state
 `+0x140` to `+0x168`.

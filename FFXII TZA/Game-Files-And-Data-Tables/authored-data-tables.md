@@ -26,8 +26,9 @@ file 0x13, `battle_pack.bin` (`0x00384420`: size from `0x0032E400(2, id)`, no re
 negative, allocation with `0x0036A190`, then `0x0032E620`). On delivery `0x00238850` rebases the pack's
 directory with `0x003846F0(&0x0208E680, pack, 0)` and calls `0x00236C30(1)`.
 
-The pack starts with a `u32` entry count (71) followed by 71 offsets, which the directory rebase
-turns into addresses. `0x00236C30(1)` then sends 42 of the entries to slots:
+The pack starts with a `u16` entry count (71), two zero bytes and 72 offsets: one for each entry and,
+last, the end offset. The directory rebase (`0x00384727` reads the count; the loop to `0x0038478E` runs
+count + 1 times) turns them into addresses. `0x00236C30(1)` then sends 42 of the entries to slots:
 
 - 33 through `0x003845F0(&slot, entry)`;
 - `+0x2C` to `0x02EBF160` with `0x003846F0(…, 0)` and `+0xF8` to `0x02EBF170` with `0x003846F0(…, 1)`;
@@ -184,7 +185,8 @@ the id's top nibble (5–19), −1 for nibble 15.
 table header   +0x00 'st2e' (or u16 count on 0x003846F0 tables), +0x04 u32 row count, +0x08 u16 row stride,
                +0x0A u16 0, +0x0C row array, +0x10 reference, +0x14 encoded sub-directory,
                +0x18 reference, +0x1C reference (all offsets from the header until bound)
-battle_pack    +0x00 u32 count (71), +0x04 + 4k: offset of entry k
+battle_pack    +0x00 u16 count (71), +0x02 u8[2] 0, +0x04 + 4k: offset of entry k (k < 71),
+               +0x120 end offset (file size - 4), +0x124 u8[4] 0; the file ends with u8[4] 0
 licd board     +0x00 'licd', +0x04 u16 width, +0x06 u16 height, +0x08 u16 cells[width*height]
 .ard header    +0x10 / +0x14 / +0x18 / +0x24 / +0x28 section offsets (categories 0-4), +0x2C section for 0x003DCF00
 ```

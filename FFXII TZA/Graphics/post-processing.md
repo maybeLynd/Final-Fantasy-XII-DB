@@ -209,6 +209,12 @@ Two sets of named pass records exist side by side:
     precompute and `RenderText_*` passes
     ([registry](post-processing-runtime-render-pass-registry.tsv),
     [teardown wrappers](post-processing-render-pass-registry-60.tsv)).
+- `0x005F05F0` (`PNamedSemanticDynamic::FindOrCreateDynamic`) returns the registry record of a name. For a name the
+  registry lacks it logs "Performance warning - allocating freelist on demand" and creates one: a record from the
+  pool `0x02CC0388`, a name buffer from `0x02CC03B0`, the record set to `{name, next 0, flag 1, +0x18 = -1}` and
+  registered with `0x005FDCB0`.
+- It copies the name with its terminator (`0x005F06E3`) and takes the name's whole length, so a name of 64 bytes or
+  more runs past its 64-byte buffer.
 
 ### The frame-marker table
 
@@ -272,6 +278,8 @@ The render-parameter block fields this page uses (`0x4A8` bytes at `0x01F7F5F0`)
 | `0x02EA1590`, `0x02EA1598` | the `CTextureUtil` singleton and its reference count |
 | `0x02CBF998` | the head of the runtime render-pass registry |
 | `0x01F82C80` | the frame-marker table |
+| `0x02CC0388` | the pool of `0x20`-byte pass records for passes created at run time: built by `0x00162330` (`0x0067FFB0`: 256 records, alignment 8, named `PSceneRenderPassType`), its free list filled by `0x00680150` when empty, reset by `0x005FDDF0` (`0x006803D0`), destroyed at exit by `0x008AB790` |
+| `0x02CC03B0` | the pool of `0x40`-byte name buffers for those records: built by `0x001623D0` (256, alignment 1), filled, reset and destroyed in the same way (`0x008AB7B0` at exit) |
 
 ## Modding notes
 

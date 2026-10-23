@@ -45,6 +45,10 @@ Both sections have the same shape. Offsets are from the start of the section.
                 zero fill to the next 0x40 boundary
 ```
 
+Both banks are used in place inside the loaded `.ebp`. The handler stores only the section address (`0x003301BB`,
+and the record field), and a lookup returns that address plus the entry's low 16 bits (`0x00264D85`-`0x00264D8A`), so
+a string is read from the section itself ([looking up a string](#looking-up-a-string)).
+
 A text id is an entry number. The strings are glyph codes and control codes, not ASCII: the
 character codes are on [battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)
 and [fonts](../Menus-And-HUD/fonts.md), and the control codes, including the choice list `0x0E`, on
@@ -103,6 +107,24 @@ returns bit 0 of the entry's upper half (`0x002673C0`, `0x002673C6`). Section 3 
 - `debug_mesask_43` (`0x0050EAB0`) always opens the window, stores the flag at `+0x38` through
   `0x002E1D90`, and returns 1 in the call record when it is clear.
 - `unkCall_5b6` (`0x003545B0`) hands the string to `0x00474070` only when the flag is clear.
+
+`0x00474070(text, a, b, c, d, record)` builds a `0x1D8`-byte widget with procedure `0x00474100` (`0x00244F50`, `0x004740D3`)
+from the string and the verb's other four arguments; `unkCall_5b6` passes its script record's `+0xB0` as `record`
+(`0x00354628`-`0x00354644`). The widget's procedure `0x00474100`:
+
+- on construction (message 1) builds the text through `0x002A3090` (`0x00474271`);
+- on the draw after its content (message 4) draws the second picture at its `+0x1D0`, `+0x1D4` (`0x001829C0`,
+  `0x0047416C`);
+- on command `0x12` (message 12) destroys itself (`0x00474149`).
+
+`unkCall_5b7` (`0x00354BE0`) tail-jumps to `0x00474040`, which destroys it.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA6C80` | `void*` | 0 (zero-filled tail) | the widget `0x00474070` built; a self-destroy on command `0x12` leaves it set | `0x00474070` (`0x004740D8`); `0x00474040`, 0 after destroying it with `0x00245020` (`0x00474055`) | `0x00474040` (`0x00474044`) |
+| `0x02CA6C78` | `void*` | 0 (zero-filled tail) | the `record` argument, held only while the widget is built: `0x00474100` copies it into the text request on message 1 | `0x00474070` (`0x004740BF`), then 0 once the widget exists (`0x004740DF`) | `0x00474100` (`0x00474253`) |
+
+No other instruction reaches either: no other RIP-relative, image-base-relative or 32-bit offset reference names them.
 
 While a slot holds a window with `+0x38` set, `0x002E0540` returns 1 and `0x00265680` returns 0
 (`0x002656F2`). The bodies that raise hold request 17 when `0x00265680` returns 0, among them `ucon`,

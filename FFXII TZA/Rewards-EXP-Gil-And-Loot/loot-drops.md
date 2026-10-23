@@ -187,14 +187,19 @@ The enemy's drop record (`[unit+0xE60]`), the fields the drop roll reads:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x28` | `u16[5]` | slotItems | the five normal drops; `0xFFFF` = none |
-| `+0x32` | `...` | other | fields not read by the drop roll |
+| `+0x32` | `u16[3]` | steal | the three steal slots; not read by the drop roll |
+| `+0x38` | `u32[2]` | partIds | model rebuild parts; not read by the drop roll |
+| `+0x40` | `u8[2]` | partLinks | their attach links; not read by the drop roll |
 | `+0x42` | `u8` | extraChance0 | chance of extra drop 0, percent |
 | `+0x43` | `u8` | extraChance1 | chance of extra drop 1, percent |
-| `+0x44` | `...` | gap44 | not read by the drop roll |
+| `+0x44` | `u16[2]` | poach | the two poach items; not read by the drop roll |
 | `+0x48` | `u16` | extraCond0 | key item that must be held for extra drop 0 |
 | `+0x4A` | `u16` | extraItem0 | extra drop 0 |
 | `+0x4C` | `u16` | extraCond1 | key item for extra drop 1 |
 | `+0x4E` | `u16` | extraItem1 | extra drop 1 |
+
+The whole record, with the readers of the fields the drop roll skips, is on
+[battle-unit-construction](../Characters-And-Objects/battle-unit-construction.md).
 
 Over the 1,146 shipped spawn rows the condition is always one of eight key items: `0x8065`-`0x806A`
 and `0x806B` (the Monographs) and `0x806C` (the Canopic Jar); the extra item is Arcana (`0x204C`,

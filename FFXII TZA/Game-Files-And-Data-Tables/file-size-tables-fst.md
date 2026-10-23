@@ -40,6 +40,11 @@ kinds (1, 2, 5, 7, 8, 9, 12) take a per-language array. For KR, CH and CN, kinds
 `.ard`, `.nmb` and event `.ebp` arrays) are replaced too (`0x01E0CFA0`, `0x01EAE0D0`, `0x01EA4D00`); JP,
 ASIA and IN keep the shared arrays.
 
+The table is used as loaded. `0x002DF9A0` reads the file into `0x02EC3EE0` as one item of `0xC8320` bytes
+(`0x002E0432`-`0x002E0444`); a count other than 1 takes its error path (`0x002E044D`). Only two other instructions
+name the array, and both read it: `0x002DF960` returns `size[kind × 5000 + id]` (`0x002DF977`), and `0x002DF780` tests an
+entry for −1 (`0x002DF7B0`). Nothing converts, relocates or writes it after the read.
+
 ## Shipped data
 
 | Fact | Value |

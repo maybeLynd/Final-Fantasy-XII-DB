@@ -279,6 +279,15 @@ init walk.
 No other instruction loads the pointer (no RIP-relative, image-base-relative or disp32 reference names it), so no
 code takes elements from the pool.
 
+### PLOD group flag
+
+Slot `+0x70` of the `PLODGroup` descriptors (vtables `0x00D85490` and `0x00D85518`), the slot a loader calls for a
+class's loaded list, is `0x006C4CD0`, which jumps to `0x006C68B0`. That function sets one byte before it walks the list.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02E5ACF0` | `u8` | 0 | set to 1 each time `0x006C68B0` runs | `0x006C68B0` (`0x006C68BE`) | none: no RIP-relative, image-base-relative or disp32 reference outside the store names it |
+
 ### Hierarchy triangle tables
 
 The `PHierarchy` init `0x0087AE00` passes the static `0x02EBA2A8` and level 2 to `0x0087A8C0` (`0x0087AE21`, `0x0087AE26`).

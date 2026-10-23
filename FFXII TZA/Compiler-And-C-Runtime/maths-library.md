@@ -138,7 +138,7 @@ saved bits under the same mask (`0x006E97D8`). Two x87 helpers at `0x00125743` (
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `f32` | x | read by the distance helpers |
-| `+0x04` | `f32` | y | not read by `0x004686D0` or `0x003A1960` |
+| `+0x04` | `f32` | y | the height, which both helpers skip: each reads +`0x00` and +`0x08` only, so the distance is horizontal |
 | `+0x08` | `f32` | z | read by the distance helpers |
 
 ## Shipped data

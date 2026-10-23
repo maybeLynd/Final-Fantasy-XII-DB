@@ -48,9 +48,9 @@ All multi-byte fields are little-endian.
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "CHSE"; ignored |
 | `+0x04` | `u8[2]` | version | bytes 01 00 in all 8 files; read by no function: the eight table pointers are loaded by one function, `0x002ED950` (`0x002ED977`-`0x002ED9B6`), which reads the count at +`0x08` and returns a row address, and the file is copied whole by the read `0x0032E620`; nothing fixes its width |
-| `+0x06` | `u8[2]` | letter | the file's own letter then 0, in all 8 files; read by no function (the scope of +`0x04`); nothing fixes its width |
+| `+0x06` | `u8[2]` | letter | the file's own letter then 0, in all 8 files; read by no function: as for +`0x04`, the one loader `0x002ED950` reads only the count +`0x08` (`0x002ED9C2`) and `0x0032E620` copies the file whole; nothing fixes its width |
 | `+0x08` | `i32` | count | rows that follow; the row bound |
-| `+0x0C` | `u8[4]` | zero | 0 in all 8 files; read by no function (the scope of +`0x04`); nothing fixes its width |
+| `+0x0C` | `u8[4]` | zero | 0 in all 8 files; read by no function: as for +`0x04`, the one loader `0x002ED950` reads only the count +`0x08` (`0x002ED9C2`) and `0x0032E620` copies the file whole; nothing fixes its width |
 
 `ChseRow` (`0x10` bytes, offsets from the start of the record):
 

@@ -43,6 +43,27 @@ that `0x002A00F0` turns from file offsets into pointers in place. The tables are
 `+0x20`), the 16-byte atlas name records (`+0x04`, `+0x08`), which end the file, and the 12-byte atlas row table
 (`+0x24`, `+0x28`). [UI typed lists](ui-typed-lists.md) gives the full layout, the items, and the relocation.
 
+The header, with the values of all 116 shipped files:
+
+| Offset | Type | Field | Shipped | Relocation |
+|---|---|---|---|---|
+| `+0x00` | `char[3]` | `MRP` | `MRP` | |
+| `+0x03` | `u8` | prepared | 0 | read by `0x002A00F0`; set to 1 after the pass |
+| `+0x04` | `u32` | atlas name records | the count | |
+| `+0x08` | `u32` | their offset, from the file start | the name records, which end the file | rewritten by `0x002A00F0` |
+| `+0x0C` | `u32` | | 0 | |
+| `+0x10` | `u32` | end of the name records | the file size | |
+| `+0x14` | `u32` | | 0 | |
+| `+0x18` | `u32` | | the file size | |
+| `+0x1C` | `u32` | list records | the count | read by `0x002A1A80` |
+| `+0x20` | `u32` | their offset, from the file start | `0x30` | rewritten by `0x002A1A80` |
+| `+0x24` | `u32` | row registrations | 0 | read by `0x002A00F0` |
+| `+0x28` | `u32` | the row table's offset, from the file start | the file size | rewritten by `0x002A00F0` |
+| `+0x2C` | `u32` | | 0 | |
+
+The load checks only byte `+3`: when it is 1, `0x002A00F0` returns at once and the offsets stay as they are. No count
+or offset is compared with the file size.
+
 The same bytes ship in two other carriers:
 
 - `packfiles/mrppack_ys.bin` (kind 7 `0xD3` in the US array, requested by `0x002808D0` through `0x00249180`): for each

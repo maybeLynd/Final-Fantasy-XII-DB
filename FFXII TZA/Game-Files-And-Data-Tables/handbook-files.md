@@ -48,7 +48,7 @@ Offsets are from the start of the file. Every offset field is relative to the fi
 +0x10  u16      pageCount    pages; bounds every page number (0x00575DD0)
 +0x12  u16      sectionCount sections; bounds every caption index (0x00576A50)
 +0x14  u16      textBundles  number of hdat files; the first picture file follows them (0x005773D2)
-+0x16  u16      pictureFiles number of picture files the page map names; not read by the readers here
++0x16  u8[2]    pictureFiles number of picture files the page map names; read by no function: the catalog readers 0x005778F0, 0x00575D10, 0x00575DD0, 0x00576030, 0x005760A0, 0x005766E0, 0x00576740 and 0x00576A50 (the functions that load [slot 0 +0xF0]) read nothing at +0x16; nothing fixes its width
 +0x18  i32      caption[sectionCount]   text id of each section caption; -1 = none
 ...    u16      gateCount, u16 gateAt[gateCount]   caption gates, offsets from gateCount's own position
 ```
@@ -87,7 +87,7 @@ page `p` is in file `textBundles + pageMap[p]`.
 | `+0x00` | `char[4]` | magic | "hchk"; the loaders ignore it |
 | `+0x04` | `u32` | version | 103; not read |
 | `+0x08` | `u16` | count | records; `0x00577550` walks this many |
-| `+0x0A` | `u16` | unused | 18 or 0; not read by `0x00577550` |
+| `+0x0A` | `u8[2]` | unused | 18 or 0; read by no function: the six tables, manager +`0xC8` to +`0xF0`, are read only by `0x00577550` (`0x005775C1`, `0x00577660`), which walks the records with `0x00575E80`, and neither reads +`0x0A`; nothing fixes its width |
 | `+0x0C` | `rec[count]` | 8 bytes each, 16 for the Bestiary |  |
 
 Families 0-4, 8 bytes per entry, evaluated by `0x00575E80`. A field holding all ones (`0xFF`, `0xFFFF`) is
@@ -125,8 +125,8 @@ A record, `4 + 4 x slots + 8` bytes:
 
 ```
 +0x00  u8   slots       text slots
-+0x01  u8   serial      not read by 0x00576300 or 0x00577A40
-+0x02  u16  entry       the record's entry number; not read by 0x00576300 or 0x00577A40
++0x01  u8   serial      read by no function: the bundle, [slot 1 +0xF0], is loaded by 0x00576300 (0x00576376), 0x00577A40 (0x00577A8E) and the sheet registration 0x00575710 (0x00575750, which reads +0x0C of the bundle only), and the two record readers take +0x00 and the tail after the slots; nothing fixes its width
++0x02  u8[2]  entry     the record's entry number; read by no function: the bundle is loaded by 0x00576300, 0x00577A40 and 0x00575710 (as +0x01), and no instruction of the three reads a record's +0x02; nothing fixes its width
 +0x04  i32  string[slots]   offset from stringsAt of each slot's string entry
 ...    u16, u16, u16, u8, u8   copied to the entry's line record +0x48, +0x4A, +0x4C, +0x4E (0x00576300)
 ```

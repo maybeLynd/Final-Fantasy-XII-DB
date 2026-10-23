@@ -288,7 +288,7 @@ the map-side globals, and `0x002628B0` (`0x00262B53`) sets `0x0209A6FC` to 1 at 
 | `+0x10` | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0x0026DA10-0x0026DA26) |  |
 | `+0x14` | `i32` | table14Off offset of a count dword then u32[count], the terrain class per field group: the load completion 0x002678A0 adds it to the base (0x002678A7) and keeps the sum at 0x02099D90, which 0x00263DD0 indexes by the unit's group word without a bound check (0x00263E00) |  |
 | `+0x18` | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0x0026DA66-0x0026DA7D) |  |
-| `+0x1C` | `u8[20] unused2` | zero in the shipped file; read and written by no function (the scope of +0x0C); nothing fixes its width |  |
+| `+0x1C` | `u8[20] unused2` | zero in the shipped file; read and written by no function: no instruction of the nine functions that load the image pointer 0x02099D88 (0x00264ED0, 0x00264F10, 0x00264F40, 0x00264F90, 0x00264FD0, 0x002678A0, 0x00268750, 0x0026D910, 0x0026DB30) reads or writes +0x1C to +0x2F; nothing fixes its width |  |
 
 `MapRefFieldRow` (`0x8` bytes, offsets from the start of the row):
 

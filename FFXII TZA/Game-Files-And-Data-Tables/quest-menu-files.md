@@ -83,8 +83,8 @@ The strings are the game's encoded text, zero-terminated. A quest with no entry 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | sectionAt[6] | offset of each section |
-| `+0x0C` | `u16` | pad | `0xFFFF`; not read |
-| `+0x0E` | `u16` | count | records; not read, the records are indexed by position |
+| `+0x0C` | `u8[2]` | pad | `0xFFFF`; read by no function: the readers of a loaded group file, `0x0037E8D0`, `0x0037EE10`, `0x0037EF70`, `0x0037FD50` and `0x0037FEA0`, take sectionAt and the records from +`0x10`, and the loader `0x003800D0` and the list code `0x0037FFD0`, `0x0037F7C0` and `0x0037FA00` move or free the buffer; nothing fixes its width |
+| `+0x0E` | `u16` | count | records, which the readers index by position; read by no function: the readers of a loaded group file, `0x0037E8D0`, `0x0037EE10`, `0x0037EF70`, `0x0037FD50` and `0x0037FEA0`, take sectionAt and the records from +`0x10`, and the loader `0x003800D0` and the list code `0x0037FFD0`, `0x0037F7C0` and `0x0037FA00` move or free the buffer; nothing fixes its width |
 | `+0x10` | `rec[count]` | 20 bytes each |  |
 
 A record, at `0x10 + 20 x position`:

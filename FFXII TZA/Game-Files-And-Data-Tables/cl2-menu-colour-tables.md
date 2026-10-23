@@ -33,10 +33,10 @@ All multi-byte fields are little-endian.
 The file is a TIM2 file with the magic changed, one picture and no pixel data.
 
 ```
-+0x00  char[4]  "CLT2"     not read by the game
++0x00  u8[4]    "CLT2"     read by no function: the table pointer, widget +0x118, is loaded by the draw 0x003C26C0 (0x003C2794), which hands it to 0x0024A9E0 (+0x06 and the picture header from +0x10), and by the releases 0x003C1F00 (0x003C2024) and 0x003BC4E0 (0x003BC55A); nothing fixes its width
 +0x04  u8       version    4
 +0x05  u8       format     0
-+0x06  u16      pictures   1
++0x06  u16      pictures   1; read by 0x0024A9E0 as the bound of the picture index, which is 0 here
 +0x08  u8[8]    zero
 picture header (+0x10)
 +0x10  u32      totalSize  file size - 0x10; not read
@@ -54,6 +54,10 @@ picture header (+0x10)
 
 The palette starts at `+0x10 + headerSize + imageSize`. The alpha byte is on the PS2 scale, where `0x80` is
 opaque.
+
+The file stays as loaded in its buffer at widget `+0x118`, and nothing writes to it. The atlas slot keeps a
+pointer to its palette (`+0x28`), and the upload copies the colours into the texture (`0x0017F503`) and rescales
+the alpha there ([the upload](#the-upload)). The next pane load frees the buffer (step 1 of the pane loader).
 
 ## Shipped data
 
@@ -104,7 +108,8 @@ An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 - To recolour every map without a `.cl2`, edit the third table of `clutpack_ys.bin`, which uses the
   same layout.
 - The game never checks `CLT2`, the version, the picture count, the sizes or the clut and image types. It reads
-  only `+0x18`, `+0x1C` and `+0x1E` and the palette they locate.
+  `+0x18`, `+0x1C` and `+0x1E` and the palette they locate, and the picture count only as the bound of the
+  picture index (`0x0024A9E4`), which the reader passes as 0, so the header is at `+0x10` for any count.
 - Keep the image size 0 and the header size `0x30`, or move the palette to match `0x10 + headerSize + imageSize`.
 - Write alpha on the PS2 scale: `0x80` is opaque, and values above it saturate.
 - To recolour another map, set byte `+1` of its `menumap_common.bin` entry to `k`; the game then requests kind 7

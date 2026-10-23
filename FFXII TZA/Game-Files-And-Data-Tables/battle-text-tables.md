@@ -39,17 +39,31 @@ All multi-byte fields are little-endian.
 
 ```python
 word (battle_pack +0xF8)   +0x00 u16 bank count, +0x04 u32 bank offsets[count + 1] (from the word block)
-word bank                  +0x00 u16 row count, +0x04 u32 row offsets[count] (from the bank)
+word bank                  +0x00 u16 row count, +0x02 u8[2] 0, +0x04 u32 row offsets[count + 1] (from the
+                           bank), the last the bank's end
 word row                   00 00, then NUL-terminated strings
 bank:row word              bits 11-15 bank, bits 0-10 row
 
 st2e string table          the shared table header ('st2e', +0x04 rows, +0x08 row bytes, +0x0C rows),
                            each row a u32 text id, group * 10000 + n,
-                           +0x14 sub-directory: u16 count (1), u32 offset of the text block
-text block                 +0x00 u32 string count, +0x04 u32 string offsets[count] (from the block),
-                           then NUL-terminated strings
+                           +0x14 sub-directory (from the table): u16 count (1), u8[2] 0, u32 text block
+                           offset (12), u32 end offset (both from the sub-directory)
+text block                 +0x00 u32 string count, +0x04 u32 string offsets[count + 1] (from the block),
+                           the last the strings' end, then NUL-terminated strings, then u8[0-3] 0 to a
+                           4-byte end
 text id                    group * 1000 + row (0x002F9860), or a row's own id (0x002F9920)
 ```
+
+Binding rewrites each file in place in its buffer; nothing copies it.
+
+- `0x003846F0` adds a directory's address to each of its count + 1 offsets, so they become addresses. At depth 1,
+  as for the word block, it first does the same for the directory each of the first count entries names (the
+  banks).
+- For a text group, `0x003845F0` adds the table's address to each non-zero header field `+0x0C`, `+0x10`,
+  `+0x18` and `+0x1C` and to `+0x14`, and `0x003846F0` rewrites the sub-directory's entries and the text
+  block's offsets.
+- Every rewritten field holds a 32-bit address: `0x0020E600` zero-extends it and adds `[0x01F83530]`, which is 0
+  in this build ([global state accessors](../Engine-Core/global-state-accessors.md)).
 
 ## Shipped data
 

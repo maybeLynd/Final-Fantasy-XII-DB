@@ -64,7 +64,7 @@ Sub-mesh 0 (tiles):
 |---|---|---|---|
 | `+0x00` | `f32` | s | fraction of the bound texture's width |
 | `+0x04` | `f32` | t | fraction of the bound texture's height |
-| `+0x08` | `f32[2]` | - | 1.0 in every shipped vertex; not read by the draw path |
+| `+0x08` | `f32[2]` | - | 1.0 in every shipped vertex; copied with the whole vertex array into the tile packet's UNPACK chunk (`0x005556A0` at `0x00555786`: V4-32, two 16-byte quads per vertex, so these are the z and w of the first quad), which nothing on this port decodes (Drawing the tiles); the draw that reaches the GPU binds the sprite batcher's `0x30`-byte vertices, built from +`0x00`, +`0x04` and +`0x10` only (`0x005558E0`-`0x00555957`), so the GPU never sees these bytes; no instruction reads them (`0x00274780`'s other callers, `0x00563110` and `0x0055A8A0`, read the slots and sub-mesh 1) |
 | `+0x10` | `f32[4]` | x, y, z, w | position |
 
 Sub-mesh 1 (strips):
@@ -148,7 +148,17 @@ first eight bytes (`0x005631CA`). A slot whose name matches nothing keeps its na
 On its draw message (4), `0x00552250` calls `0x00562F30` (`0x005527D2`), which passes sub-mesh 0 to `0x005556A0`.
 That function builds a matrix with `0x00555A70` (scale half of `[0x01F2CAC0]`, a quarter turn about x by
 `0x00202E90`, a translation from the scroll position) and copies the whole vertex array, `vtxCount` entries,
-into its packet behind it. It then draws one four-vertex primitive per slot:
+into its packet behind it.
+
+The packet is a VIF chunk in the GS command buffer: an UNPACK header for the block (`0x00271100`, `0x6C008000`: V4-32,
+two 16-byte quads per vertex, the count in bits 16 up), the block of `vtxCount`, the matrix and the vertices, then
+FLUSHE and MSCAL `0x2E95` (`0x005557B9`-`0x005557DD`).
+
+Nothing on this port decodes that buffer
+([graphics thread handshake](../Graphics/graphics-thread-handshake.md)); the tiles reach the screen
+through the [sprite batcher](../Graphics/sprite-batcher.md), whose `0x00181350` takes the 0x30-byte
+vertices the path builds on its stack (`0x005558E0`-`0x00555957`): the position with z forced to 0, the colour, `s x width`
+and `t x height`. It draws one four-vertex primitive per slot:
 
 - Slot `k` uses vertices `4k` to `4k + 3`, read in order from `vtxOff`; the path ignores the slot's index run
   and the index stream.
