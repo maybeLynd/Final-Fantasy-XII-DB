@@ -60,28 +60,7 @@ is copied from (`0x0055C117`).
 - The ten Gambit Slot squares (nodes 266-275) are left out unless the Gambits command is available
   (`0x00283730(0x4B9)`, `0x0032A8A0(0x4009)`, `0x0055C34E`-`0x0055C38B`).
 
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `+0x00` | `u32[2]` | name | the square's name string |
-| `+0x08` | `u16` | node | license node, `0xFFFF` for an empty or hidden square |
-| `+0x0B` | `u8` | rule | node byte `+0x06`: 1, 2 or 3 choose the confirm text |
-| `+0x0C` | `u16` | lpCost | node byte `+0x04` |
-| `+0x0E` | `u16` | artNode | row of the art table [`0x02CA9670`] |
-| `+0x10` | `u32[2]` | kindText | the kind of license, Weapon to Gambit (`0x4280`-`0x4289`) |
-| `+0x18` | `u32` | state | bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags |
-| `+0x20` | `u8` | col | column |
-| `+0x21` | `u8` | row | row |
-| `+0x22` | `u8` | phase | 0 idle, 1 effect armed, 2 countdown, 3 effect playing (`0x0055F010`) |
-| `+0x23` | `u8` | pending | the state the transition will show |
-| `+0x24` | `u8` | tile | tile variant 0-7 |
-| `+0x25` | `u8` | alpha | `0x80` when built |
-| `+0x26` | `u8` | fadeLeft | fade counter |
-| `+0x27` | `u8` | fadeLen | fade length |
-| `+0x28` | `u8` | fadeOn | fade running |
-| `+0x29` | `u8` | fadeIn | fade direction |
-| `+0x2A` | `i16` | countdown frames before the pending state shows |  |
-| `+0x2C` | `u32` | effect | the playing effect (`0x003B2D80`) |
-| `+0x30` | `u32` | category | node byte `+0x05`; `0x1E` is the Second Board |
+The square record, `LicenseSquare`, is under [Layouts](#layouts).
 
 ### Square states
 
@@ -206,7 +185,13 @@ Obtaining the Second Board ends with the chooser opening for the member's second
   to eight contents from the node record `0x0035D330(0x19, node)` `+0x26`, by its list type `+0x23`: class 1 records
   for type 0, class `0x14` records for type 1 (with the icon of the class 1 record each names), and class `0x1D`
   names for types 2 and 3.
-- `0x005599D0` is the view's list pane (`menu_command.bin` `0x4B5`, built by `0x00559860`). Its row callback `0x00559910`
+- `0x005599D0` is the callback of the four detail panes at view `+0x140`: `0x00559860` installs it (`0x005598A8`) for each
+  of the four slots (`0x005598E4`) as a `0x208`-byte task (`0x005598B9`) through `0x00244F50`, and passes no menu id.
+- The Licenses command id `0x4B5` of `menu_command.bin` is an immediate at eight sites in `.text`. The chooser
+  window (`0x00558FF0`) and the board screen (`0x00561446`) pass it to `0x00280CA0`, which looks the id up in the entry
+  list of `[0x0209AC30] + 0xD8`; the member-pick widget passes it to the return to the Party Menu, `0x002814E0`
+  (`0x005609AC`); the others are `0x00281BE5`, `0x0028237F`, `0x002C1236`, `0x002C1278` and `0x002D739D`.
+- Each detail pane's row callback `0x00559910`
   (`0x00559ABF`, kept at the list's `+0x120`) fills row `n` from the pane's `0x20`-byte rows at `+0xE8`:
   - the text element (`[[pane + 0x10] + 8]`) gets the row's string `+0x00`, the colour `0x0020E620(0)` at `+0x20` and,
     at `+0x24`, `0x002DD7E0(2)` when the row's word `+0x0C` is 0, else `0x002DD7E0(0)`;
@@ -237,6 +222,39 @@ Obtaining the Second Board ends with the chooser opening for the member's second
 `0x00560910` lists the members with `0x00561100`: the roster slot of each one `0x00282FA0` accepts and its portrait
 (`0x002526F0(8, id + 0x4D, 1)`). `0x00560610` draws a member's board in miniature, one cell per square of the board table
 `[0x02EBF1A0 + board]` coloured `0x002DD7E0(0xDB + value)`, and `0x0055FA50` frees the six cell arrays at `+0x150`.
+
+## Layouts
+
+The squares are one array at view `+0x120`, row by row, the row width the view's `+0x559` (`0x0055C140`-`0x0055C14E`).
+`0x0055B560` allocates `0x38` bytes a square (`0x0055B586`) and zeroes the whole array with `0x00861EC0` (`0x0055B643`).
+
+`LicenseSquare` (`0x38` bytes, offsets from the start of the [view+0x120]+i*0x38):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | name | the square's name string, from `0x002B58B0` (`0x0055C114`) |
+| `+0x08` | `u16` | node | license node (`0x0055C0DD`), `0xFFFF` for an empty or hidden square (`0x0055C38B`, `0x0055C4F8`) |
+| `+0x0A` | `u8[1]` | pad0A | zeroed with the array (`0x0055B643`) and by the qword stores of +`0x08` for an empty or hidden square (`0x0055C37F`, `0x0055C4E2`); the fill writes +`0x08` and +`0x0B` around it |
+| `+0x0B` | `u8` | rule | record byte +`0x22`, node byte +`0x06` (`0x0055C11F`, `0x0055C123`): 1, 2 or 3 choose the confirm text |
+| `+0x0C` | `u16` | lpCost | record byte +`0x20`, node byte +`0x04` (`0x0055C117`); the record holds the node at +`0x1C` |
+| `+0x0E` | `u16` | artNode | row of the art table [`0x02CA9670`] (`0x0055C126`) |
+| `+0x10` | `u32[2]` | kindText | the kind of license, Weapon to Gambit (`0x4280`-`0x4289`), (`0x0055C12E`) |
+| `+0x18` | `u32` | state | bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags |
+| `+0x1C` | `u8[4]` | pad1C | zeroed with the array (`0x0055B643`) and by the qword stores of +`0x18` for an empty or hidden square (`0x0055C387`, `0x0055C4EA`); the fill writes +`0x18` as a dword (`0x0055C47F`, `0x0055C4C2`) |
+| `+0x20` | `u8` | col | column (`0x0055C0E1`) |
+| `+0x21` | `u8` | row | row (`0x0055C0E5`) |
+| `+0x22` | `u8` | phase | 0 idle, 1 effect armed, 2 countdown, 3 effect playing (`0x0055F010`) |
+| `+0x23` | `u8` | pending | the state the transition will show |
+| `+0x24` | `u8` | tile | tile variant 0-7 (`0x0055C15C`) |
+| `+0x25` | `u8` | alpha | `0x80` when built (`0x0055B690`) |
+| `+0x26` | `u8` | fadeLeft | fade counter |
+| `+0x27` | `u8` | fadeLen | fade length |
+| `+0x28` | `u8` | fadeOn | fade running |
+| `+0x29` | `u8` | fadeIn | fade direction |
+| `+0x2A` | `i16` | countdown | frames before the pending state shows |
+| `+0x2C` | `u32` | effect | the playing effect (`0x003B2D80`); `0x0055B560` passes a non-zero one to `0x003B2AA0` (`0x0055B5DA`) and clears it (`0x0055B5DF`) |
+| `+0x30` | `u32` | category | node byte +`0x05` (`0x0055C13D`); `0x1E` is the Second Board |
+| `+0x34` | `u8[4]` | pad34 | zeroed with the array (`0x0055B643`); the fill writes +`0x30` as a dword and stops there |
 
 ## Shipped data
 

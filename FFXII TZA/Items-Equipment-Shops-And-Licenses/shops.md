@@ -31,7 +31,7 @@ A shop row, 8 bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | name | the shop's name id |
-| `+0x02` | `u8[2]` | pad | read and written by no function: `0x02EBF158` is loaded only by `0x00238660`, which rebases the offsets, `0x002FA920` and `0x002FAE40`, and no instruction of those three or of the ladder walker `0x002FAD40` reads or writes a shop row's `+0x02`; nothing fixes its width |
+| `+0x02` | `u8[2]` | pad | read and written by no function: `0x02EBF158` is loaded only by `0x00238660`, which rebases the offsets, `0x002FA920` and `0x002FAE40`, and no instruction of those three or of the ladder walker `0x002FAD40` reads or writes a shop row's `+0x02`. The word reads of `+0x02` in `0x002FAD40` (`0x002FADE4`, `0x002FAE05`, `0x002FAE19`) are of a ladder row's threshold: their base is the ladder's data plus the entry index times the ladder's row size (`0x002FAD90`-`0x002FADBF`). Nothing fixes the width of the shop row's `+0x02` |
 | `+0x04` | `u32` | ladder | offset of the shop's ladder |
 
 A ladder row, 8 bytes:
@@ -40,7 +40,7 @@ A ladder row, 8 bytes:
 |---|---|---|---|
 | `+0x00` | `u8` | kind | condition kind |
 | `+0x01` | `u8` | operand | condition operand |
-| `+0x02` | `u16` | threshold | condition threshold |
+| `+0x02` | `u16` | threshold | condition threshold, read by `0x002FAD40` (`0x002FADE4`, `0x002FAE05`, `0x002FAE19`) |
 | `+0x04` | `u32` | list | offset of the list the rung selects |
 
 A list row is one `u16`, an encoded id: `0x0xxx` item, `0x1xxx` equipment, `0x2xxx` loot, `0x3xxx` magick, `0x4xxx`

@@ -71,8 +71,8 @@ stolen from successfully once.
 
 The roll branches on bit 1 of context byte `+0x1C` (`0x003904A5`). Context bytes `+0x1A`-`+0x29` merge the
 user's two augment layers: bit `id & 7` of byte `+0x1A + id / 8` is set when the user's stats record has
-effect `id` in its layer `+0x68` or `+0x78` (`0x00384820`-`0x00384858`). Bit 1 of `+0x1C` is therefore
-augment 17 (Thievery).
+augment `id` in its layer `+0x68` or `+0x78` (`0x00384820`-`0x00384858`). Bit 1 of `+0x1C` is therefore
+the augment Thievery (17).
 
 Thief's Cuffs are equipment row 354 of `battle_pack.bin` (named in the equipment-name table), and the
 row's augment byte `+0x1A` is 17. The stats rebuild `0x0030FED0` collects the augment byte of each of the

@@ -36,7 +36,8 @@ The folder is `GameData/D3D11/ArtData/font/<folder>/`, and the list is its `font
 2. `0x001B4930` reads one name at a time with `"%s"`, skipping line ends, and makes each into a path.
 3. `0x001B5610` requests `<name>.dat` for each name, and its completion `0x001B5FE0` reaches the font builder `0x001B4D70`.
 
-Each font also has an atlas `<name>.dds.phyre` and a shadow atlas `<name>_shadow.dds.phyre` (`0x008F6748`, `0x008F81E0`).
+Each font's atlas is `<name>.dds.phyre` (`0x008F6748`). The builder also names a shadow atlas `<name>_shadow.dds.phyre`
+(`0x008F81E0`), which the shipped build never requests and no font folder ships (the manager's list below).
 
 ### The font builder
 
@@ -61,8 +62,13 @@ header and root are at the font's `+0x40` and `+0x50`:
 - the `.fex` reader `0x001B4C00` adds a list of n entries for a key with `0x001FDB90(font, key, n)`, which returns 0
   when the map at `+0xA8` already holds the key, and writes entry i with `0x001FDB50(font, key, i, v)`; both find
   the key's entry in that map through `0x001FC640`;
-- `0x001B4D70` stores the atlas name (`<name>.dds.phyre`) at `+0xE0` with `0x001FE080` and the shadow name
-  (`<name>_shadow.dds.phyre`) at `+0x100` with `0x001FE020` (`0x001B4FB8`, `0x001B4FF3`), each of which frees the string it is given;
+- `0x001B4D70` builds three names from the file's name with `0x001B31E0`, each from a suffix pointer:
+  - `<name>.dat` at `[rbp - 0x38]` (`0x01DF6E08` to `0x008F81F4`, `0x001B4DA8`);
+  - `<name>.dds.phyre` at `[rbp - 0x58]` (`0x01DF6DF8` to `0x008F6748`, `0x001B4DB9`-`0x001B4DC7`);
+  - `<name>_shadow.dds.phyre` at `[rbp - 0x78]` (`0x01DF6E00` to `0x008F81E0`, `0x001B4DCD`-`0x001B4DDB`).
+- `0x001B4D70` copies `[rbp - 0x58]` (begin `[rbp - 0x58]`, end `[rbp - 0x50]`, `0x001B4F9E`-`0x001B4FAB`) into the font's atlas
+  name `+0xE0` with `0x001FE080` (`0x001B4FB8`), and `[rbp - 0x78]` (`0x001B4FD9`-`0x001B4FE6`) into the shadow name `+0x100`
+  with `0x001FE020` (`0x001B4FF3`); each of the two frees the string it is given;
 - after filing every glyph, the builder tests `0x001FDF80(font)`, whether the glyph map's count `+0x60` (its own
   `+0x28`, which the inserter `0x001FD010` raises at `0x001FD0BB` and `0x001FD14E`) equals the count `+0x18` the
   constructor was given (`0x001FC095`), and asserts on it (`0x001B4F6C`, "Font Info Buffer size Not Equal with Head
@@ -74,8 +80,12 @@ The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10
 
 - `0x001B58E0(manager, id)`, from `0x001B4D70`, requests the font's atlas through the asynchronous loader
   (`0x001A1220`, `0x001A0A90`, `0x001A0BB0`; the path from `0x001FDF10`) with the completion `0x001B6230`, and, unless
-  `0x001E9A20([0x01F811F8])` answers non-zero, its shadow atlas (`0x001FDE60`) with `0x001B6110`, each request filed
-  in its map by the font id.
+  `0x001E9A20([0x01F811F8])` answers non-zero (`0x001B5A3F`-`0x001B5A46`), its shadow atlas (`0x001FDE60`) with `0x001B6110`,
+  each request filed in its map by the font id.
+- `0x001E9A20` returns the path byte `+0x2378`. Its one writer `0x001E9F30` is called from `0x001B44A0` with the third
+  argument, which `0x0017F9E0` passes on from `0x0029CE40`: `[0x01E02818] > 0` (`0x0029CE4A`-`0x0029CE55`). `0x01E02818` holds 1
+  in `.data`, and its only rip-relative reference is the read `0x00229E30`, so the byte is 1 and the shadow atlas is
+  not requested. None of the 62 shipped atlas files is a `_shadow` one.
 - `0x001B6230(font, ...)` finds the texture of the loaded atlas (`0x0019CE20`, `0x0019CA80`, a resource of type
   `0x02CBB900` in its `+0x38` list) and hands it to the font (`0x00213560`).
 - `0x001B60D0()` asks for the fonts again: `0x001B5140([0x01F81200])` requests every listed name.
@@ -126,6 +136,91 @@ field is the left glyph; no file except `us/fontex_subtitle` has the reverse of 
 | `+0x04` | `i32` | count | number of u32 values that follow |
 
 A `.fex` is chunks of `{key, count, value[count]}` to the end of the file. The values are glyph keys in first-use order.
+
+### The atlas files
+
+Each of the 62 shipped `<name>.dds.phyre` atlases is a Phyre cluster: the u32 at `+0x00` is `0x50485952` ("PHYR"),
+the one at `+0x0C` is `0x44583131` ("DX11"), and the cluster names one `PTexture2D` asset,
+`ArtData/font/<folder>/<name>.dds`. The u32 at
+`+0x50` is the pixel data size, and the pixels are the last that many bytes of the file, after a header of 2,524 to
+2,535 bytes. Every atlas's width and height are the `.dat` header's `atlasW` and `atlasH`:
+
+| Format (class name after `PTexture2D`) | Bytes a pixel | Atlases |
+|---|---:|---|
+| `A8` | 1 | 45 |
+| `ARGB8` | 4 | 17: `font_bookman` in all five folders, the six `font_stf_*` in `jp` and `us` |
+
+The rows are stored bottom row first: a glyph record's `atlasY` counts from the top, and its row *y* is stored row
+`atlasH - 1 - y`. Measured over the shipped files:
+
+- read that way, all of an atlas's ink (the A8 value, or the last byte of an ARGB8 pixel) lies inside the glyph
+  rectangles in 59 of the 62 files, and 99.85 % in the two `font_stf_as` files and 99.46 % in `us/font_venus`;
+- read top row first, 43 files have ink outside them;
+- in `us/font00` (2,048 x 1,980), the ink of `.`, `,` and `_` has its centre at rows 38.5 to 44.6 of the 55-row cell,
+  and that of `'` and `^` at rows 17.1 to 21.0.
+
+The draw loop `0x002A9F00` passes the glyph's pixel rectangle, `atlasX` to `atlasX + cellW` and `atlasY` to
+`atlasY + cellH` (`0x002AA5C7`-`0x002AA647`), to `0x0017F7C0`. The completion `0x001B6230` takes the `PTexture2D` instance
+(class `0x02CBB900`) from the loaded cluster's `+0x38` list and hands the font a pointer into the cluster's instance
+data for it (`0x001B62A5`-`0x001B6332`).
+
+### The font object
+
+`0x001B4D70` allocates `0x120` bytes (`0x001B4E73`) and builds the font with `0x001FC060` (`0x001B4EC5`), which takes the
+header's values as arguments and stores each.
+
+```struct Font base=font size=0x120
++0x00  u32       fontId            header +0x00 (0x001FC089)
++0x04  u8[4]     pad04             not written by the constructor 0x001FC060; 0x00210EC0 allocates the font (0x001B4E73)
++0x08  ptr       atlas             the atlas texture: 0 from the constructor (0x001FC08D), set by 0x00213560 from the
+                                   atlas completion 0x001B6230 (0x001B6332)
++0x10  ptr       shadow            the shadow atlas texture: 0 (0x001FC091), set by 0x00213540 from 0x001B6110 (0x001B6212)
++0x18  u32       glyphCount        header +0x04 (0x001FC095); 0x001FDF80 compares it with glyphsCount
++0x1C  u32       metricA           header +0x20 (0x001FC09F); returned by 0x001FDDC0
++0x20  u32       metricB           header +0x24 (0x001FC0A9)
++0x24  u32       atlasW            header +0x08 (0x001FC0AC)
++0x28  u32       atlasH            header +0x0C (0x001FC0B0)
++0x2C  u32       cellW             header +0x10 (0x001FC0B8)
++0x30  u32       cellH             header +0x14 (0x001FC0C2)
++0x34  f32       scale             header +0x18 (0x001FC0CE); returned by 0x001FDDB0, which 0x001E9BF0 calls (0x001E9BFC)
++0x38  u8[8]     glyphsPad         map of the glyph records by key, filed by 0x001FDCC0 and looked up by 0x001FDEC0 (0x001FC0E4); not written by the constructor
++0x40  ptr       glyphsHeadA       header node, first word: 0 (0x001FC0F3), then the header itself (0x001FC111)
++0x48  ptr       glyphsHeadB       header node, second word: 0 (0x001FC0F6), then the header itself (0x001FC114)
++0x50  ptr       glyphsRoot        root node: 0 when empty (0x001FC0FA, 0x001FC118); 0x001FC580 starts here (0x001FC587)
++0x58  u8        glyphsHeadFlag    0 (0x001FC11C)
++0x59  u8[7]     glyphsPad21       zeroed by the qword store at 0x001FC0FE
++0x60  u32       glyphsCount       entries: 0 (0x001FC120); 0x001FD010 raises it (0x001FD0BB, 0x001FD14E)
++0x64  u8[4]     glyphsPad2C       not written by the constructor
++0x68  ptr       glyphsAlloc       the "EASTL map" allocator name (0x008F4120), set by 0x001EDF00 (0x001FC10C)
++0x70  u8[8]     kerningPad        map of the kerning pairs, filed by 0x001FDC10 and looked up by 0x001FDDD0 (0x001FC134); not written by the constructor
++0x78  ptr       kerningHeadA      header node, first word: 0 (0x001FC143), then the header itself (0x001FC161)
++0x80  ptr       kerningHeadB      header node, second word: 0 (0x001FC146), then the header itself (0x001FC164)
++0x88  ptr       kerningRoot       root node: 0 when empty (0x001FC14A, 0x001FC168)
++0x90  u8        kerningHeadFlag   0 (0x001FC16C)
++0x91  u8[7]     kerningPad21      zeroed by the qword store at 0x001FC14E
++0x98  u32       kerningCount      entries: 0 (0x001FC170)
++0x9C  u8[4]     kerningPad2C      not written by the constructor
++0xA0  ptr       kerningAlloc      the "EASTL map" allocator name (0x008F4120), set by 0x001EDF00 (0x001FC15C)
++0xA8  u8[8]     expansionPad      map of the expansion lists by key, filled by 0x001FDB90 and 0x001FDB50 and found by 0x001FDD60 (0x001FC184); not written by the constructor
++0xB0  ptr       expansionHeadA    header node, first word: 0 (0x001FC196), then the header itself (0x001FC1B4)
++0xB8  ptr       expansionHeadB    header node, second word: 0 (0x001FC199), then the header itself (0x001FC1B7)
++0xC0  ptr       expansionRoot     root node: 0 when empty (0x001FC19D, 0x001FC1BB)
++0xC8  u8        expansionHeadFlag 0 (0x001FC1BF)
++0xC9  u8[7]     expansionPad21    zeroed by the qword store at 0x001FC1A1
++0xD0  u32       expansionCount    entries: 0 (0x001FC1C3)
++0xD4  u8[4]     expansionPad2C    not written by the constructor
++0xD8  ptr       expansionAlloc    the "EASTL map" allocator name (0x008F4120), set by 0x001EDF00 (0x001FC1AF)
++0xE0  ptr       atlasNameBegin    atlas name <name>.dds.phyre (0x001FE080, 0x001B4FB8), first character; the empty
+                                   string 0x02EBA2E0 from the constructor (0x001FC1F5); 0x001FDF10 copies the name for the request
++0xE8  ptr       atlasNameEnd      end of the characters; 0x02EBA2E0 when empty (0x001FC1FC)
++0xF0  ptr       atlasNameCap      end of the buffer; 0x02EBA2E1 when empty (0x001FC20A)
++0xF8  ptr       atlasNameAlloc    the "EASTL basic_string" allocator name (0x008F6600), set by 0x001EDF00 (0x001FC1E9)
++0x100 ptr       shadowNameBegin   shadow name <name>_shadow.dds.phyre (0x001FE020, 0x001B4FF3), first character;
+                                   0x02EBA2E0 when empty (0x001FC239); 0x001FDE60 copies the name for the request
++0x108 ptr       shadowNameEnd     end of the characters; 0x02EBA2E0 when empty (0x001FC240)
++0x110 ptr       shadowNameCap     end of the buffer; 0x02EBA2E1 when empty (0x001FC247)
++0x118 ptr       shadowNameAlloc   the "EASTL basic_string" allocator name (0x008F6600), set by 0x001EDF00 (0x001FC234)
+```
 
 ### Kerning between two glyphs
 

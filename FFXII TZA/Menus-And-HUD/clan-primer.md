@@ -74,7 +74,10 @@ command read in `0x0056F810` and `0x00574D00`.
 The family index lists rows of three types, blank, entry and group caption (`0x00571A50`, `0x00571710`, `0x00576A50`).
 Confirming an entry opens the entry page through `0x0056EC10`. The cursor of each page is saved in bank 6 (`0x002527B0`).
 
-`0x005742D0`, the content page under the entry page (`menu_command.bin` `0x4BC`, built by `0x00570080`), draws a frame
+`0x005742D0` is the content page under the entry page. `0x00570080` installs it (`0x005700EB`) as a `0x8068`-byte task
+(`0x005700F6`) through `0x00244F50` (`0x00570116`) and passes no menu id. The Clan Primer's `menu_command.bin` id `0x4BC` is an
+immediate at four sites in `.text`: the title call (`0x00574E18`), the return to the Party Menu (`0x005754EE`) and the
+menu task `0x00281AE0` (`0x00281B1B`, and `0x00281C72`, which passes it to `0x002CD3C0`). The content page draws a frame
 through `0x00573F40(page)` (`0x005746C5`) when its byte `+0x8060` is 2 or 5 and up and it has rows (`+0xE0`).
 
 `0x00573F40` draws a box through `0x00392A00(+0x38, rect, ...)` with `0x002DD7E0(0xF6)` in all four colour slots, at

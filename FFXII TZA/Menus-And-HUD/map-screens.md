@@ -22,7 +22,7 @@ addresses: "0x00253C70, 0x002B6350, 0x002B9D30, 0x003BC450, 0x003BC2D0, 0x003C18
 | World Map | `menu_command.bin` `0x4B7`, help `0xCCA` | main-menu entry `0x00281C36` |
 | location map | the phrase in `0xCCA`; opened by the control "Display Map" (`0x589`) | menu request `0x21` ([Menus](menus.md)) |
 | map overlay | toggled by the control "Map Transparency" (`0x586`); its layout keys are `TrackMap*` | `0x002B6220` |
-| minimap | the script verbs `shownavimap`, `hidenavimap`, `setnavimapindex` and others | widget `0x003C5910` |
+| minimap | shown by the script verbs `shownavimap` (`0x00352390`) and `shownavimapfast` (`0x00352AD0`), hidden by `hidenavimap` (`0x003527D0`) and `hidenavimapfast` (`0x00352E20`); `setnavimapindex` (`0x00356BF0`) picks its picture | widget `0x003C5910` |
 
 The two controls are rows 28 and 25 of the Controls screen (`0x002414B0`; [Control remapping](../Controls-And-Input/control-remapping.md)).
 
@@ -221,7 +221,7 @@ map list is `menumap_area.bin` `+0xC`).
 
 The minimap is the widget `0x003C5910`, at `0x02B476B0` (`0x003C80C0`):
 
-1. `0x003C5E00` shows it, from the HUD-on step and the verb `shownavimap` (`0x00352390`), and `0x003C58B0` hides it.
+1. `0x003C5E00` shows it and `0x003C58B0` hides it (see [Who shows and hides the minimap](#who-shows-and-hides-the-minimap)).
 2. Every world tick, `0x003C6000` keeps it in step while the save-RAM status allows it (`0x00377750`) and copies the party
    position to `0x02B45810` (`0x00359150`).
 3. Its draw callback `0x003C32B0` calls `0x003C4070` in mode 0, which draws the zone's own map picture `[0x02B457F0]` at 4
@@ -242,9 +242,16 @@ The parts of that draw:
   is the previous through the matrix `r`, and all go through `m`.
 - `0x003C2E60` passes `first` = (cos, sin, 0, 1) of the marker's angle times its radius and closes the batch
   (`0x00181330`).
-- `0x004006A0(table)` (from `0x004001D0`) draws the triangles of an index table (count `+0x04`, 12-byte entries at `+0x18`)
-  in batches of up to 24: it copies each entry's three index pairs into a `0x20`-byte row and picks the batch header
-  by `0x00377780()` (`0x3025C00000008000` jammed, `0x302DC00000008000` otherwise, `0x412` as its second qword).
+- `0x004006A0(table)` (from `0x004001D0`) draws every triangle of an index table (count the `i16` at `+0x04`, 12-byte
+  entries from the pointer at `+0x18`) in packets of at most 24. Each entry's three index pairs become a `0x20`-byte
+  row. A packet is drawn when it holds 24 rows (`0x00400705`) or the entries run out (`0x0040070F`), and a new packet is
+  opened (`0x004007C7`) while entries remain (`0x004007C3`), so no entry is dropped.
+- The packet header is the packet's row count ORed with `0x3025C00000008000` when `0x00377780()` reports the map
+  jammed, or `0x302DC00000008000` otherwise, with `0x412` as its second qword (`0x00400721`-`0x0040073B`).
+- `0x004001D0` passes the table `0x01E0C590` (`0x0040032C`), whose count is 136 in the executable. No instruction writes
+  that count: `0x004006A0` reads it at `0x004006AC`, `0x0040070A` and `0x004007BB`, and `0x004017D0` and `0x00401D40`, which also
+  receive the table, read only its `+0x00`, `+0x02`, `+0x08` and `+0x10`. Its triangles are drawn as five packets of 24 and
+  one of 16.
 - `0x00400870(rows, n)` (`0x004007B6`) builds each triangle's three vertices from the row's index pairs: x and y from the
   float pairs at `0x02B5F2D0`, four ints from the floats at `0x02B5F2A0` and the pair at `0x02B5F820`; it submits them three
   at a time (`0x00181350`).
@@ -294,6 +301,26 @@ The tick also uncovers the map around the party: `0x003C6000` calls `0x003C5500`
 
 The picture comes from the zone's map pack: `0x003C63A0` registers it and `0x00379870` places it, chosen by
 `setnavimapindex` (`0x00377400`) ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
+
+### Who shows and hides the minimap
+
+`0x003C5E00` has three callers and `0x003C58B0` six; the creator `0x003C80C0` is reached only from `0x003C5E00` and the
+world tick `0x003C6000`, and `0x003C8070`, which also closes it, only from that tick (`0x003C606B`).
+
+| Step | Shows it (`0x003C5E00`) | Hides it (`0x003C58B0`) |
+|---|---|---|
+| verb `shownavimap`, body `0x00352390` | `0x0035239F` | - |
+| verb `shownavimapfast`, body `0x00352AD0` | `0x00352AE2` | - |
+| verb `hidenavimap`, body `0x003527D0` | - | `0x003527DF` |
+| verb `hidenavimapfast`, body `0x00352E20` | - | `0x00352E32` |
+| HUD switch `0x00251F40(on)`: shows for `on` above 0, hides otherwise | `0x00251F6E` | `0x00251FF7` |
+| HUD-off step `0x00254AC0`, called by the field change `0x00314440` (`0x003144F6`) | - | `0x00254AEB` |
+| `0x00255330(mode)`, reached from `0x00254440` (`0x0025446E`): mode 1 hides, any other mode applies the HUD switch (`0x002553A2`) | - | `0x00255357` |
+| `0x0035CA70`, called from `0x0035C960` (`0x0035C9CE`) | - | `0x0035CB4B` |
+
+No other script verb's body calls or jumps to either function. Any other verb that changes the minimap does so
+through the HUD switch, the two HUD-off steps or `0x0035CA70`: `debug_switchstatusdisplay` (`0x0050DA20`) flips the HUD
+switch through `0x00255020`, and `setnavimapindex` (`0x00356BF0`) only passes its argument to `0x00377400`.
 
 ### Minimap markers
 
