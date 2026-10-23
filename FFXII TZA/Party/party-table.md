@@ -42,7 +42,7 @@ What a join, the catch-up and the growth do with these values is on [Party membe
 | `+0x00` | `u32` | equipForbidMask | `0x00317930` (`0x00317AD1`-`0x00317AD6`) | bit *c* refuses equipment of class *c*, the equipment row's `+0x09`; 0 on every row |
 | `+0x04` | `u8[3]` | quickenings | `0x0030A310`, `0x0030A330`, `0x00313120`, `0x002F88B0` | the action rows of the member's three Quickenings, `0xD0`-`0xE1` |
 | `+0x07` | `u8` | cameraType | `0x0031B8E0` | the field camera type `0x0025A160` selects (below) |
-| `+0x08` | `u8[2]` | unread08 | none | read and written by no function in the scope below |
+| `+0x08` | `u8[2]` | unread08 | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
 | `+0x0A` | `u16[5]` | equipment | `0x0023AC80` (`0x0031A630`), `0x00316DF0` | starting equipment, slots 0-4 (main hand, off hand, head, body, accessory) |
 | `+0x14` | `u16` | gambitPreset | `0x0023AC80`, `0x00328BD0` (`0x00327CB0`), `0x00235AF0` | the preset gambit list, `0x5000` + row of `gambit_data` |
 | `+0x16` | `u16` | startHp | `0x0030C470` | max HP at level 0 |
@@ -54,7 +54,7 @@ What a join, the catch-up and the growth do with these values is on [Party membe
 | `+0x2A` | `u8` | evade | `0x002FEF30` (`0x002FF095`) | innate evade |
 | `+0x2B` | `u8` | size | `0x0023A570` | unit `+0x68` = this byte, unit `+0x6C` = this byte × 1.5 |
 | `+0x2C` | `u8` | flags | `0x0023AC80`, `0x00317480` | bits 3-4 the catch-up rule; bit 6 sets stats `+0x00` bit 2 (below) |
-| `+0x2D` | `u8` | unread2D | none | read and written by no function in the scope below; `0xFF` on every row |
+| `+0x2D` | `u8` | unread2D | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; `0xFF` on every row |
 | `+0x2E` | `u8` | levelBonus | `0x0023AC80`, `0x00317480` | the starting level (0 means 1), and the levels added to the catch-up average |
 | `+0x30` | `u16` | nameWord | `0x0031C5D0`, `0x0023A570`, `0x00329220`, `0x00536310` | the name, bank 8 |
 | `+0x32` | `u8` | summonTime | `0x002FA0E0` | the Esper's summon timer: `0x00306760` stores it as a float at `[0x02EBF190]` `+0x5AD8` and `+0x5ADC` (`0x00306995`-`0x003069B7`) |
@@ -65,17 +65,20 @@ What a join, the catch-up and the growth do with these values is on [Party membe
 | `+0x47` | `u8` | startMpPercent | `0x0030C470` | the share of max MP a new record starts with |
 | `+0x48` | `u32` | permanentStatuses | `0x002FEF30` (`0x002FF0D6`) | ORed into stats `+0x3C`, bit *s* = status *s* |
 | `+0x4C` | `u32` | immunities | `0x002FEF30` (`0x002FF0A3`) | ORed into stats `+0x38`, the statuses that cannot be added |
-| `+0x50` | `u32[2]` | augments | `0x0030FED0` (`0x0030FF1F`-`0x00310018`) | augments 0-31 and 32-63 the member always has |
+| `+0x50` | `u32[2]` | augments | `0x0030FED0` (`0x0030FF1F`-`0x00310018`), `0x00239040` (`0x00239073`) | augments 0-31 and 32-63 the member always has; the script verb handler `0x00239040` (`0x00510580`) reads word *k* of `+0x50`-`+0x57`, *k* below 4, of any unit's row as an order row |
 | `+0x58` | `i16[10]` | list | `0x00316DF0`, `0x003060E0` | ids: first-join items and the actions a guest or Esper may use (below) |
 | `+0x70` | `u32` | model | `0x0031C2F0` | the bound model id, letter class in bits 16-23 |
-| `+0x74` | `u8[6]` | unread74 | none | read and written by no function in the scope below |
+| `+0x74` | `u8[6]` | unread74 | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
 | `+0x7A` | `i16` | pushWeight | `0x00238BF0` (`0x00238C65`), `0x00317400` (`0x0031744B`) | a positive value / 10 is the body's push weight, which `0x0026DAC0` sets (below) |
-| `+0x7C` | `u8[2]` | unread7C | none | read and written by no function in the scope below |
+| `+0x7C` | `u8[2]` | unread7C | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
 
 The bytes `+0x02`-`+0x03`, `+0x1C`, `+0x20`, `+0x23`, `+0x26`, `+0x29`, `+0x2F`, `+0x33`, `+0x40`-`+0x43`,
-`+0x6C`-`+0x6F` and `+0x7E`-`+0x7F` are 0 on every row. The bytes `+0x08`-`+0x09`, `+0x2D`, `+0x74`-`+0x79` and
-`+0x7C`-`+0x7D`, and bit 0 of `+0x2C`, are read and written by no function in the scope below. With no reader and no
-writer nothing fixes their width, so the layout gives them as byte arrays and the TSV as their bytes.
+`+0x6C`-`+0x6F` and `+0x7E`-`+0x7F` are 0 on every row.
+
+No instruction writes a row after `battle_pack.bin` is loaded, and no instruction reads the bytes `+0x08`-`+0x09`,
+`+0x2D`, `+0x74`-`+0x79` or `+0x7C`-`+0x7D`. With no reader and no writer nothing fixes their width, so the layout
+gives them as byte arrays and the TSV as their bytes. Bit 0 of `+0x2C` is set on four rows (Ashe, Fran, Penelo and Amalia) and tested by no
+instruction: `0x0023AC80` tests bit 6 (`0x0023AF22`) and `0x00317480` takes bits 3-4 (`0x003174D9`-`0x003174E7`).
 
 ### The push weight
 
@@ -99,9 +102,8 @@ below 3, and `0x0030A330(row, action)` the slot that holds an action.
 
 On the Esper rows the bytes are not action rows: they are `0xA0`-`0xB9` in pairs, while the Esper attacks are
 `0xB6`-`0xCF` (the list at `+0x58`). Only `0x00329220` reads them there, copying slots 0-2 into the words
-`+0xB4`-`+0xB8` of the member's status record (`0x00329645`), and no function reads those words: a sweep of every
-word read and every `lea` at `+0xB4`, `+0xB6` and `+0xB8` over `.text`, and of the stack copies in the record's
-callers, finds none. The TSV gives them in `esper_bytes_04`.
+`+0xB4`-`+0xB8` of the member's status record (`0x00329645`, stored at `0x0032964C`), and no instruction reads
+those words. The TSV gives them in `esper_bytes_04`.
 
 ### The list at +0x58
 
@@ -128,25 +130,6 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
   selector in seat *seat* of slot map 4; the chocobo handlers `0x00304060` and `0x00304140` hand the value to
   `0x0025A160`, the field camera type ([Field camera](../Graphics/field-camera.md)). The Chocobo's row
   holds 14.
-
-### The scope of "no reader"
-
-Every function that loads `0x02EBF130` was decompiled: `0x0023AC80`, `0x0030C470`, `0x0030C650`, `0x0030FED0`, `0x002FEF30`,
-`0x003060E0`, `0x00317930`, `0x00329220`, `0x00323910`, `0x00323EC0`, `0x0023A570`, `0x00316DF0`, `0x00317480`, `0x0031C2F0`,
-`0x00536310`, `0x00235AF0`, `0x002F88B0`, `0x002FA0E0`, `0x0031B8E0`, `0x00328BD0`, `0x0031C5D0`, the validator `0x00322C50`
-(the row count only) and the loader `0x00236C30`. The image holds no image-base-relative form of the address.
-
-`0x0023A570` stores the row at unit `+0xE60`. That pointer is loaded at 27 sites in 21 functions:
-
-- `0x00313120` reads `+0x04`-`+0x06`, and `0x00238BF0` and `0x00317400` read `+0x7A`, on party units;
-- `0x00236210`, `0x00238BF0`'s other two loads, `0x00239E10`, `0x002FDDA0`, `0x00301AD0`, `0x003112F0`, `0x00312280`'s
-  `0x003180F0`, `0x0031AA30`, `0x0031BE30`, `0x0031C000`, `0x0031C540`, `0x003202F0`, `0x003212E0`, `0x00390390`, `0x00390680`,
-  `0x0046A870` and `0x00536310` read it only after a test for an enemy record (stats `+0x05` = 1);
-- `0x0023A410` reads the spawn record `+0x6A0` first, which a party unit does not have (`0x0023A570` stores 0);
-- `0x00239040`, a script verb's handler (`0x00510580`), tests no kind and reads `+0x50`-`+0x56` as order rows.
-
-The pointers these functions pass on (`0x0030A310`, `0x0030A330`, `0x002F8E50`, `0x002F9180`, `0x00327CB0`, `0x0031A630`) take
-values, not the row, except `0x0030A310` and `0x0030A330`, which read only `+0x04`-`+0x06`.
 
 ### Checks
 
@@ -186,7 +169,7 @@ values, not the row, except `0x0030A310` and `0x0030A330`, which read only `+0x0
 | `permanent_statuses`, `immunities` | the statuses of `+0x48` and `+0x4C` |
 | `augments` | the augments of `+0x50`-`+0x57`, each by its term with its id |
 | `push_weight` | `+0x7A` divided by 10 |
-| `unread_08`, `unread_2D`, `unread_74`, `unread_7C` | the bytes no function in the scope above reads or writes, `+0x08`-`+0x09`, `+0x2D`, `+0x74`-`+0x79` and `+0x7C`-`+0x7D` |
+| `unread_08`, `unread_2D`, `unread_74`, `unread_7C` | the bytes no instruction reads, `+0x08`-`+0x09`, `+0x2D`, `+0x74`-`+0x79` and `+0x7C`-`+0x7D` |
 | `explanation` | a one-line summary of the row |
 
 ## Related

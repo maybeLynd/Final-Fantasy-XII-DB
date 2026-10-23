@@ -15,7 +15,7 @@ reaches (`battle_pack.bin` directory entry `+0xEC`). Row *n* is augment id *n*, 
   the timed effects 55-57.
 - 77 rows have a non-zero value at `+0x04`. 63 are read by a function that picks the row by number, 3 are the
   default timers of the three timed effects, and 11 (the ten gambit-slot rows 104-113 and row 128) are read by no
-  function, as the scope below states.
+  instruction (below).
 
 ### The name of each augment
 
@@ -79,9 +79,9 @@ The readers of `+0x04`:
 | 125-127 | `0x0038E2D0` | added to the action's power `+0x10` for bits 125-127, the percent of the target's max HP it restores, capped at 100 (`0x0038E335`-`0x0038E3F6`) |
 | 55-57 | `0x00387020` | the default timer, value × 30 × the frame base `0x01DFE0B4`, which `0x0030EA40` and `0x0038FF20` store in the slot `+0x06` names |
 
-### The scope of "read by no function"
+### The functions that read the table
 
-Fifteen functions load `0x02EBF040` (111 references): `0x002FEF30`, `0x002F95D0`, `0x002F8410`, `0x00387FD0`,
+Fifteen functions load `0x02EBF040`, at 111 instructions: `0x002FEF30`, `0x002F95D0`, `0x002F8410`, `0x00387FD0`,
 `0x00389370`, `0x0038DD20`, `0x0038DF00`, `0x0038E2D0`, `0x0030EA40`, `0x00387020`, `0x00385570`, `0x0038FF20`, the query filler
 `0x0031C5D0`, the validator `0x00322C50` and the loader `0x00236C30`.
 
@@ -91,7 +91,12 @@ Fifteen functions load `0x02EBF040` (111 references): `0x002FEF30`, `0x002F95D0`
   `+0x06` only.
 - `0x0031C5D0` reads `+0x00` and `+0x02`.
 
-So none of the fifteen reads the value of rows 104-113 (1 each) or 128 (20).
+No other instruction reaches the table, and none writes it after `battle_pack.bin` is loaded. Every read of
+`+0x04` is one of the 28 in these functions: 23 take a fixed row, three in `0x002FEF30` take the 44 ids of its
+lists (the rows in the table above), and the two that take any id (`0x00387074` from `0x0030EA40`, `0x00390071` in
+`0x0038FF20`) read only a row whose slot `+0x06` is at most 7
+(`0x0030EA9D`, `0x0039001D`-`0x00390024`), which is true only of rows 55-57. So the values of rows 104-113 (1 each) and
+128 (20) are read by no instruction.
 
 ### Augment 114, Essentials
 
@@ -134,7 +139,7 @@ describes nothing the game does with augment 114.
 | `license` | the license that grants the augment, empty for none |
 | `text_id`, `text` | `+0x00` and its shipped text; empty for 0 |
 | `value` | `+0x04` |
-| `value_reader`, `value_use` | the function that reads this row's value and what it does with it; empty when none does |
+| `value_reader`, `value_use` | the function that reads this row's value and what it does with it; empty when no instruction reads it |
 | `timer_slot` | `+0x06`; empty for `0xFF` |
 | `explanation` | a one-line summary: the name (or the extra text when the name is `NOT USED`), the value and its use |
 

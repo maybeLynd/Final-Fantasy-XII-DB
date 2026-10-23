@@ -75,10 +75,15 @@ The constructors the flush calls set the objects up before any vertex is added:
   while the count `+0x2C` is below `+0x28`. With the 4 x 4 matrix at `+0x54` it computes `w = x m60 + y m70 + m90`,
   `x' = (x m54 + y m64 + m84) / w` and `y' = (x m58 + y m68 + m88) / w`.
 - It stores `(x' - 2048) x 2 / W` and `(y' - 2048) x -2 / H` into the vertex's `+0x0C` and `+0x10`, W x H being
-  1920 x 1080 when `0x001B1620()` is set and 512 x 448 otherwise.
+  1920 x 1080 when `0x001B1620()` is set and 512 x 448 otherwise (`0x00213628`-`0x00213658` for x,
+  `0x0021365D`-`0x00213688` for y).
 - Entry `+0x2C` of each array takes the vertex's `+0x00`, `+0x04` at `+0x20`, `+0x24`, its `+0x0C`-`+0x18` at
   `+0x00`-`+0x0C`, and its `+0x1C`-`+0x28` (first array) or `+0x2C`-`+0x38` (second array) at `+0x10`-`+0x1C`; the
   count then moves on.
+
+Text coordinates are centred on 2048 with y growing downward. The factor -2 (`0x008F3148`, `0x00213680`) turns them into
+clip space, where y grows upward and both axes run from -1 to 1 across the W x H area. The vertex appender `0x00213D10`
+maps its vertices the same way (`0x00213D31`-`0x00213D9A`).
 
 ### The drawing classes
 

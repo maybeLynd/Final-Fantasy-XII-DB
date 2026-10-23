@@ -131,13 +131,16 @@ and clears the bit (`0x00244990`-`0x0024499F`):
 
 1. Each child's priority, position in the list and pointer go into the scratch table `0x0208ED60`
    (`0x00247A0A`-`0x00247A2D`).
-2. The sort `0x00249CE0` orders them with the comparator `0x00244610`: a larger priority first, equal priorities in
-   their old order. It is a quicksort: while a range holds more than eleven elements, it takes the middle element
-   as the pivot (`0x00249D60`-`0x00249D6D`), partitions the range, keeps the larger part on a stack of ranges in its
-   scratch and goes on with the smaller (`0x00249E40`-`0x00249EA0`).
-3. It then finishes with `0x00249680(scratch, base, size, n, compare)` over the whole array (`0x00249ED6`), an
+2. The sort `0x00249CE0(scratch, base, size, n, compare)` gets the child count as `n` (`0x00247A36`) and orders the
+   entries with the comparator `0x00244610`: a larger priority first, equal priorities in their old order.
+3. It is a quicksort over index ranges whose bounds are both included: the first is 0 to n - 1 (`0x00249D12`). While
+   a range's last index minus its first is above 10 (`0x00249D36`), so while it holds 12 or more entries, it takes
+   the middle entry as the pivot (`0x00249D60`-`0x00249D6D`) and partitions the range.
+4. It keeps the larger part on a stack of ranges in its scratch, only when that part holds more than 10 entries
+   (`0x00249E54`, `0x00249E7F`), and goes on with the smaller (`0x00249E40`-`0x00249EA0`).
+5. It then finishes with `0x00249680(scratch, base, size, n, compare)` over the whole array (`0x00249ED6`), an
    insertion sort that takes each element in turn into `scratch` and moves larger ones up by `size` bytes.
-4. The children are relinked in that order (`0x00247A51`-`0x00247AB1`).
+6. The children are relinked in that order (`0x00247A51`-`0x00247AB1`).
 
 The root draw passes `0x002450B0` and `0x00245110` set `0x0208F564` to 0 and to 1 and walk the tree with `0x00245E60`. A
 widget's own content is drawn only in the pass equal to its `+0x40` bit 24, with bit 28 clear (`0x0024623A`-`0x0024624B`);
@@ -322,8 +325,54 @@ The Party Menu's member rows, the Status and Equip rows and the license board us
 `+0xB4` lets a widget work on every other tick. The constructor sets it to 1 when `0x001EDDA0` returns 0 and
 `0x00314960` is non-zero (`0x0024674A`-`0x0024675C`); the drain clears it when `0x001EDDA0` returns non-zero and counts it up
 otherwise (`0x00248044`-`0x00248059`). `0x001EDEC0(phase)` answers 1 always when `0x01DFE0C0` is set or `0x01F82E38` is clear,
-and the phase's low bit inverted otherwise; 43 functions call it on their `+0xB4` (`0x0024218B`, `0x002521DD`,
-`0x00580356` and others) before doing their gated work.
+and the phase's low bit inverted otherwise. It has 43 callers in the executable, one per function, and each passes
+its widget's `+0xB4` before doing its gated work:
+
+| Function | Loads `+0xB4` | Calls `0x001EDEC0` |
+|---|---|---|
+| `0x0023E020` | `0x0023E25F` | `0x0023E265` |
+| `0x0023E560` | `0x0023E60C` | `0x0023E612` |
+| `0x00241D40` | `0x0024218B` | `0x00242191` |
+| `0x00252030` | `0x002521DD` | `0x002521E3` |
+| `0x00276D30` | `0x00276FA0` | `0x00276FA6` |
+| `0x0027C870` | `0x0027C8C0` | `0x0027C8C6` |
+| `0x00299090` | `0x00299374` | `0x0029937A` |
+| `0x0029A0A0` | `0x0029A302` | `0x0029A308` |
+| `0x0029E110` | `0x0029E1AB` | `0x0029E1B1` |
+| `0x002A1FB0` | `0x002A21B7` | `0x002A21BD` |
+| `0x002A6190` | `0x002A6459` | `0x002A645F` |
+| `0x002B6DB0` | `0x002B70CA` | `0x002B70D0` |
+| `0x002B7B80` | `0x002B8394` | `0x002B839B` |
+| `0x002BAF80` | `0x002BBCD0` | `0x002BBCD7` |
+| `0x002BC3E0` | `0x002BC86F` | `0x002BC875` |
+| `0x002BE490` | `0x002BE4A8` | `0x002BE4AE` |
+| `0x002D2DB0` | `0x002D37AE` | `0x002D37B4` |
+| `0x002D5590` | `0x002D55B2` | `0x002D55B8` |
+| `0x002D5690` | `0x002D5704` | `0x002D570A` |
+| `0x002D5830` | `0x002D5889` | `0x002D588F` |
+| `0x002D59E0` | `0x002D5A16` | `0x002D5A1C` |
+| `0x002D5C80` | `0x002D5CD9` | `0x002D5CDF` |
+| `0x002D5EB0` | `0x002D636C` | `0x002D6372` |
+| `0x0035D6B0` | `0x0035D7BF` | `0x0035D7C5` |
+| `0x00366B80` | `0x00366EFB` | `0x00366F01` |
+| `0x00394130` | `0x00394184` | `0x0039418A` |
+| `0x003C95C0` | `0x003C9701` | `0x003C9707` |
+| `0x003EEEC0` | `0x003EEF27` | `0x003EEF2D` |
+| `0x003EF050` | `0x003EF11C` | `0x003EF122` |
+| `0x003EF2E0` | `0x003EF306` | `0x003EF30C` |
+| `0x003EF4A0` | `0x003EF57B` | `0x003EF581` |
+| `0x003EF830` | `0x003EF95B` | `0x003EF961` |
+| `0x003F4060` | `0x003F40AF` | `0x003F40B5` |
+| `0x004061F0` | `0x004062A0` | `0x004062A6` |
+| `0x00407590` | `0x00407604` | `0x0040760A` |
+| `0x0053E380` | `0x0053E479` | `0x0053E47F` |
+| `0x005528C0` | `0x0055354A` | `0x00553550` |
+| `0x005542D0` | `0x00554975` | `0x0055497B` |
+| `0x0057C480` | `0x0057C8C0` | `0x0057C8C6` |
+| `0x0057F7D0` | `0x0057F804` | `0x0057F80A` |
+| `0x0057FE80` | `0x00580356` | `0x0058035C` |
+| `0x00581490` | `0x00581516` | `0x0058151C` |
+| `0x00582860` | `0x00582A31` | `0x00582A37` |
 
 ### The widget that registers itself once
 

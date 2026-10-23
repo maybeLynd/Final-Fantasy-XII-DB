@@ -34,6 +34,26 @@ non-zero (`0x00303185`-`0x00303197`). That test builds a box from the unit's pos
 the view-projection matrix `0x02AEDDF0` through `0x0046C0D0`
 ([Scripted camera](../Graphics/scripted-camera.md)), so it follows the current camera.
 
+### Values worked out once per test
+
+`0x00301AD0` loops over the candidates itself (`0x0030356B`-`0x00303590`). It sets a flag for the first candidate
+(`0x00301B55`) and clears it before each later one (`0x0030356B`). Five tests work a value out for the first candidate,
+store it in a global and read it back for the others:
+
+| Global | Type | Test | Stored for the first candidate |
+|---|---|---|---|
+| `0x022BE968` | `void*` | 34/35, check 18 | the list `0x022C1788` (`0x003026FE`): the units of party slots 0-3 that are in play (`0x00302710`-`0x00302755`), as in [Enemy order sets](enemy-order-sets.md) |
+| `0x022BEB84` | `i32` | 34/35, check 18 | how many units that list holds (`0x0030275F`; read at `0x00302767` and `0x003027B8`) |
+| `0x022BED98` | `void*` | 34/35, check 27 | the combatant `0x0031B770` returns for `v` (`0x00302AF0`); each candidate is compared with it (`0x00302B0C`) |
+| `0x022C17A8` | `void*` | 38/39 | the unit `0x002367A0` returns for definition selector `s` (`0x00302D2A`; read at `0x00302D43`) |
+| `0x022BED94` | `i32` | 64/65 | 1 when `0x00309EC0` reports at least `10 x s` of the line's item, else 0 (`0x003032F8`; read at `0x00303300`) |
+
+The opcode and check numbers are those of [Enemy order sets](enemy-order-sets.md) (`0x00301EB8`, `0x003024BC`). No
+other instruction reads or writes these five: the RIP-relative references of the executable reach them only from
+`0x00301AD0`, and no instruction uses their offsets from the image base (a scan of `.text` for each 32-bit offset; the
+same scan finds the two known uses of `0x02AEA030` at `0x003B6181` and `0x003B6188`). The clear `0x0030FE60` stops at
+`0x022BEB84` and `0x022BED94`, exclusive (`0x0030FE69`, `0x0030FE89`), so it clears neither.
+
 ### How the target is picked
 
 | Rule | Conditions | Sites |

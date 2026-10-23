@@ -30,7 +30,8 @@ be affected at that moment, nothing in the record is applied.
 
 It is called by the resolver `0x00385F60` (`0x0038600F`), the preview `0x00385680` (`0x0038586C`) and the four
 status-result builders `0x00385DF0`, `0x00386A50`, `0x00386A70` and `0x00386AE0`. The record lives on the
-caller's stack.
+stack of the function that starts the action or status change, which first clears all `0x148` bytes with
+`memset` (below).
 
 ### The applier
 
@@ -83,29 +84,29 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8` | flags0 | left to the caller by `0x003848E0` |
-| `+0x001` | `u8[3]` | pad01 | left to the caller |
+| `+0x000` | `u32` | flags0 | left to the caller by `0x003848E0`; stored whole by `0x00303A00` (`0x00303A85`), `0x00307300` (`0x00307527`) and `0x00310DB0` (`0x00311241`); bit 5 tested and cleared by the resolver (`0x00386029`, `0x00386082`) |
 | `+0x004` | `u8` | outcome | 1-5 the evade/guard outcome of slot 41 (`0x003896B0`); 6 at `0x00386347` and `0x003858A2`; 9 at `0x0038588A`; 10 at `0x00386303` |
-| `+0x005` | `u8[3]` | pad05 | left to the caller |
+| `+0x005` | `u8[3]` | pad05 | written only by the clears (below); read by no instruction; nothing fixes its width |
 | `+0x008` | `u32` | gilCost | subtracted from the party's gil (step 13) |
-| `+0x00C` | `u8[12]` | zero0C | zeroed by `0x003848E0`; not read by `0x003112F0` |
+| `+0x00C` | `u8[4]` | zero0C | written only by the clears (below); read by no instruction; nothing fixes its width |
+| `+0x010` | `void*` | otherUnit | a battle unit that `0x00384F40` returns, stored by the handler `0x00390AB0` (`0x00390E39`-`0x00390E42`); the preview `0x00303A00` then previews the action again for that unit's stats record (`0x00303B45`-`0x00303B90`) |
 | `+0x018` | `u32` | flagsB | bit 1: continue a combo (`0x00388660`); bit 2: guard decision (`0x00385A1C`-`0x00385A2D`); bit 3: knockback (`0x003896B0`); `0x00307300` copies bits 0-3 to target entry bits 11, 10, 9, 8 |
 | `+0x01C` | `u8` | resolved | 1: post the battle-message events (`0x00385BA0`) |
 | `+0x01D` | `i8` | mpUnits | whole max-MP units added to the target's secondary resource (step 8) |
-| `+0x01E` | `u8[2]` | zero1E | zeroed only by the memset of `+0x08` to `+0x147` in `0x003848E0` (`0x00861EC0`, `0x003848F5`); read by none of the record's functions (scope below); nothing fixes its width |
+| `+0x01E` | `u8[2]` | zero1E | written only by the two clears (below); read by no instruction; nothing fixes its width |
 | `+0x020` | `i32` | userHp | user HP change or value (step 9) |
 | `+0x024` | `i32` | targetHp | target HP change or value (step 8) |
 | `+0x028` | `i16` | userMp | user MP change or value (step 9) |
 | `+0x02A` | `i16` | targetMp | target MP change or value (step 8) |
 | `+0x02C` | `u32` | flagsA | bit 0 set by `0x003848E0`; bits 1-4 set-not-add; 7, 8, 13, 14 present; 19 marks the target unit |
-| `+0x030` | `u16` | unused30 | `0xFFFF` by the word store `0x0038490B` in `0x003848E0`; not read by `0x003112F0` or `0x00385BA0` |
+| `+0x030` | `u16` | unused30 | `0xFFFF` by the word store `0x0038490B` in `0x003848E0`; read by no instruction |
 | `+0x032` | `u8[3]` | steal | steal slots 0-2 (step 5, `0x00385BA0`) |
-| `+0x035` | `u8[3]` | zero35 | zeroed by `0x003848E0`; not read by `0x003112F0` |
+| `+0x035` | `u8[3]` | zero35 | written only by the clears (below); read by no instruction; nothing fixes its width |
 | `+0x038` | `i32` | poachItem | item id in the low word; -1 none (step 5) |
 | `+0x03C` | `u8[2]` | effectSet | augment bits to set; `0xFF` none (step 10) |
 | `+0x03E` | `u8[4]` | effectClear | augment bits to clear; `0xFF` none (step 10) |
 | `+0x042` | `i16[8]` | effectTimers copied to target +0x17C..+0x18A when not negative |  |
-| `+0x052` | `u8[2]` | zero52 | zeroed only by the memset in `0x003848E0`; read by none of the record's functions (scope below); nothing fixes its width |
+| `+0x052` | `u8[2]` | zero52 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 | `+0x054` | `u32` | addMask | statuses to add (step 6) |
 | `+0x058` | `u32` | removeMask | statuses to remove (step 6) |
 | `+0x05C` | `i32[32]` | statusA | per-status parameter A (duration); copied to target `+0xBC` |
@@ -113,22 +114,42 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x11C` | `u8` | targetLevel | `0xFF` none (step 4) |
 | `+0x11D` | `u8` | userLevel | `0xFF` none (step 4) |
 | `+0x11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11) |
-| `+0x126` | `u8[2]` | zero126 | zeroed only by the memset in `0x003848E0`; read by none of the record's functions (scope below); nothing fixes its width |
+| `+0x126` | `u8[2]` | zero126 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 | `+0x128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` (step 12) |
 | `+0x12C` | `u8[4]` | affinityClr | cleared out of the same bytes (step 12) |
-| `+0x130` | `u16` | packedParam | -1 by the word store `0x00384991` in `0x003848E0`; not read by `0x003112F0` or `0x00385BA0` |
-| `+0x132` | `u8[2]` | zero132 | zeroed by `0x003848E0`; not read by `0x003112F0` |
+| `+0x130` | `u16` | packedParam | -1 by the word store `0x00384991` in `0x003848E0`; the handler `0x003907E0` stores byte `+0x10` × 100 + byte `+0x11` of action row `[0x02AEDFD4]` (`0x00390877`-`0x00390893`); `0x00319F50` reads it after the resolver returns (`0x0031A0D2`, `0x0031A0DF`) |
+| `+0x132` | `u8[2]` | zero132 | written only by the clears (below); read by no instruction; nothing fixes its width |
 | `+0x134` | `f32` | knockback | zeroed by `0x003848E0`; with flagsB bit 3 the resolver stores `0x00385E50`'s value here (`0x0038680F`-`0x0038682E`; [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) |
 | `+0x138` | `i32` | echoB | to [`0x02EBF190`]`+0x5B0E` (low byte) when not -1 (`0x00385BA0`) |
 | `+0x13C` | `i32` | echoA | to [`0x02EBF190`]`+0x5B00` when not -1 (`0x00385BA0`) |
 | `+0x140` | `u32` | flagsC | bits 4, 5, 6, 7: flags for the status and effect writes; bit 14: sound `0x34` |
-| `+0x144` | `u8[4]` | zero144 | zeroed only by the memset in `0x003848E0`; read by none of the record's functions (scope below); nothing fixes its width |
+| `+0x144` | `u8[4]` | zero144 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 
-The scope of "read by none of the record's functions" is the thirteen functions that build, fill or apply the record:
-`0x003848E0` and its six callers `0x00385680`, `0x00385DF0`, `0x00385F60`, `0x00386A50`, `0x00386A70` and `0x00386AE0`, the
-resolvers `0x00388660`, `0x003896B0` and `0x00385E50`, the applier `0x003112F0`, the poster `0x00385BA0` and `0x00307300`. No
-instruction in them reads or writes `+0x1E`, `+0x52`, `+0x126` or `+0x144`, and none copies the record whole: the
-memset is their only call into the runtime's memory routines, and none has a `rep movs`.
+### Where records live and who clears them
+
+A record is a local of one of nine functions. Eight clear all `0x148` bytes with `memset` (`0x00861EC0`)
+before use; the ninth, `0x00319F50`, hands its record straight to the resolver, whose `0x003848E0` clears
+`+0x08`-`+0x147`:
+
+| Function | Clears at | Hands the record to |
+|---|---|---|
+| `0x00303830` | `0x003038CB` | the preview `0x00385680` |
+| `0x00303A00` | `0x00303A64` | the preview `0x00385680` |
+| `0x00307300` | `0x003073D2` | the resolver `0x00385F60`, the applier `0x003112F0` |
+| `0x00308B90` | `0x00308BCB` | the resolver `0x00385F60` |
+| `0x0030EC00` | `0x0030EC89` | the resolver `0x00385F60` |
+| `0x0030E130` | `0x0030E293` | `0x00386A50` or `0x00386AE0` (`0x0030E2BC`), the applier |
+| `0x0030E360` | `0x0030E5E1` | `0x00386A50` or `0x00386A70` (`0x0030E60E`), the applier |
+| `0x00310DB0` | `0x00310F7A`, `0x00311010`, `0x0031121A` | `0x00385DF0`, the resolver, the applier |
+| `0x00319F50` | none | the resolver `0x00385F60` |
+
+The resolver and the preview also put the record's address at `+0x10` of the evaluation context that
+`0x003847C0` builds (`0x003847FF`), and the 202 action-effect handlers of the table `0x01EFA5C0` reach it there.
+
+The bytes `+0x05`-`+0x07`, `+0x0C`-`+0x0F`, `+0x1E`-`+0x1F`, `+0x35`-`+0x37`, `+0x52`-`+0x53`, `+0x126`-`+0x127`,
+`+0x132`-`+0x133` and `+0x144`-`+0x147` are written only by these clears and by `0x003848E0`'s `memset` of
+`+0x08`-`+0x147` (`0x003848F5`), and read by no instruction; `+0x30` is also written `0xFFFF` (`0x0038490B`). No function
+copies a record whole.
 
 ## State
 

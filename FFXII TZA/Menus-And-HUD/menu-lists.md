@@ -70,6 +70,19 @@ The notices are listed on [widget messages](widget-messages.md).
 otherwise the run lasts the frames `0x002D1870` gives, as `frames x 1000 / 60` ms, with curve 1, curve 5 for kind 7
 (which also sets `+0xE0` bit 24) and curve 0 for kinds 3, 9 and 10 (`0x002D4AE4`-`0x002D4B2B`).
 
+### The content position
+
+The content widget `[list+0xC0]` keeps its position as two `i16` words, x at `+0x98` and y at `+0x9A`. The target
+is x = -(first column `+0xED`, `i8`, x column width `+0xEA`, `u16`) and y = -(first row `+0xF2`, `i16`, x row
+height `+0x100`, `u16`), computed in 32 bits (`0x002D4A53`-`0x002D4A8F`). Both ways of moving work in 16 bits:
+
+- kind 1 stores the low words of the targets (`0x002D4AB6`, `0x002D4AC5`);
+- the tween `0x002468A0` stores the start words at `+0x84`/`+0x86` and the 16-bit differences at `+0x8C`/`+0x8E`
+  (`0x00246940`-`0x00246981`).
+
+The y target fits the word while first row x row height is at most 32,768, so a list with row height `h` reaches
+row 32,768 / `h` (rounded down) exactly; with `h` = 48 that is row 682.
+
 `0x002D1870(list, kind, rows, columns)` gives the frames, with `n` the rows moved and `h` the row height:
 
 | Kind | Frames |

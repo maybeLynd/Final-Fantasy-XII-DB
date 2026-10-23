@@ -14,9 +14,11 @@ moment.
 - **Radius.** An action with a radius of 0 hits only its target. Otherwise it hits units within that
   distance on the ground (height is ignored). Fire, Cure and Protect have no radius; Fira has 8,
   Cura and Protectga 10, and the -ja spells 100, which covers any battle area.
-- **Centre.** The circle is centred on the target, except for actions centred on the user - the
-  cries and songs (Screech, Wail, Angelsong, the Soundwaves and others), radius 8 or 10.
-- **Cones** (breaths, gazes, Flash, Tremor and others) hit units in the radius that are also within an
+- **Centre.** The circle is centred on the target, except for actions centred on the user, such as
+  the cries and songs (Screech, Wail, Angelsong, the Soundwaves), with a radius from 6 to 100. Every
+  one is in the table under [Shipped data](#shipped-data).
+- **Cones** (for example the breaths, the gazes, Flash and Tremor; every one is under
+  [Shipped data](#shipped-data)) hit units in the radius that are also within an
   angle either side of the line from the user to the target. On most of them that angle is 180
   degrees, which makes the cone test pass for everyone in the radius, so the area is the plain
   circle around the target. Two cones have an angle of 0, which in practice leaves the target alone.
@@ -170,6 +172,50 @@ and `0x00328530` and jumped to from `0x0031AB80`.
 | `+0x08` | `u32` | entryFlags | low byte the outcome code (`0x0030DAE0`), bits 8-11 result flags; written by the effect applier `0x00307300` |
 | `+0x0C` | `u32` | tail | no unit-relative reader of `+0x78C` in the image (entry-pointer reads not excluded) |
 
+## Shipped data
+
+The shipped action table (`battle_pack.bin`, read through `0x02EBF138`) marks 26 actions as centred on the user (bit 21
+of the flag word `+0x0C`). The radius is the row's byte `+0x06`. The same rows carry the flag name "area centred on
+the user" in [Action list](action-list.md).
+
+| Radius | Actions centred on the user (id) |
+|---|---|
+| `6` | Piercing Graviga (`443`) |
+| `8` | Angelsong (`349`), Magick Ballad (`350`), Warsong (`351`), Vespersong (`352`), Mystery Waltz (`353`), Hero's March (`354`), Time Requiem (`355`), Soul Etude (`356`), Fly, Enkidu! (`463`), Now, Enkidu! (`464`), Eviscerator (`475`), Force of Will (`486`), Azure Vortice (`488`), Crimson Vortice (`489`) |
+| `10` | Screech (`342`), Scream (`343`), Wail (`344`), Eerie Soundwave (`345`), Joyous Soundwave (`346`), Rage (`418`), Shockstorm (`457`), Pollen Dance (`478`) |
+| `20` | Monarch Sword (`468`) |
+| `100` | Inviolable Will (`491`), Ascension (`495`) |
+
+Cones (bit 24) and lines (bit 25) take the angle or half-width from byte `+0x07`; in [Action list](action-list.md)
+they carry the flag names "cone area" and "line area". Monarch Sword and Eviscerator are both centred on the user
+and cones.
+
+| Shape | Radius | Angle or width | Actions (id) |
+|---|---|---|---|
+| cone | `3` | `40` | Cloying Breath (`376`) |
+| cone | `3` | `60` | Bad Breath (`377`) |
+| cone | `3` | `80` | Putrid Breath (`378`) |
+| cone | `3` | `120` | High Jump (`476`) |
+| cone | `4` | `45` | Tail Swipe (`404`) |
+| cone | `4` | `75` | Stone Gaze (`335`), Phantasmal Gaze (`336`), Flash (`337`) |
+| cone | `4` | `180` | Spiral Cut (`394`), Snake Lash (`398`), Flatten (`403`) |
+| cone | `6` | `60` | Aqua Bubbles (`357`), Mythril Bubbles (`358`), Breath (`362`), White Breath (`363`), Stone Breath (`364`), Poison Breath (`365`) |
+| cone | `6` | `180` | Darkness (`327`), Ice Break (`328`), Water Spout (`329`), Shining Ray (`330`), Tremor (`331`), Tempest (`332`), Sandstorm (`333`), Pyromania (`334`), Blast Wave (`372`), Shock Wave (`373`), Pulsar Wave (`374`), Dark Shock (`375`), Spinkick (`390`), Sonic Turn (`399`), Chain Reaction (`409`), Discharge (`422`), Pollen (`424`), Power Stun (`438`), Power Spin (`442`), Bushfire (`458`), Sporefall (`459`), Sword Dance (`461`), Circle of Judgment (`471`) |
+| cone | `8` | `0` | Eviscerator (`475`) |
+| cone | `8` | `180` | Screwtail (`406`) |
+| cone | `10` | `45` | Gatling Gun (`481`) |
+| cone | `10` | `180` | Ultimate Illusion (`466`) |
+| cone | `15` | `180` | Ground Shaker (`456`) |
+| cone | `18` | `180` | Choco-Comet (`426`) |
+| cone | `20` | `0` | Monarch Sword (`468`) |
+| cone | `20` | `180` | Tree of Sephira (`492`) |
+| cone | `100` | `180` | Gigaflare Sword (`496`) |
+| line | `3` | `2` | Gust (`359`) |
+| line | `4` | `3` | Innocence (`474`) |
+| line | `5` | `2` | Mach Wave (`487`) |
+| line | `5` | `3` | Gale (`360`) |
+| line | `20` | `10` | Judgment (`411`) |
+
 ## Modding notes
 
 - The area fields are bytes of the action row: `+0x06` radius, `+0x07` cone angle in degrees or line
@@ -181,8 +227,8 @@ and `0x00328530` and jumped to from `0x0031AB80`.
 - Of the 247 area rows, 245 follow the target's side, Self-Destruct has bit 2 and Mass Destruct bit
   3. Bit 1 is set only on 13 rows named Reserve.
 - Remora Strike has an angle byte (180) but neither cone nor line bit, so its angle has no effect.
-- 18 rows with radius 10 have bit 12 (Red Spiral, White Whorl, Pyroclasm, Fires of War and other
-  Quickenings and finishers): the gatherer spreads them over the radius, while `0x0031A990` reports them
+- 18 rows with radius 10 have bit 12: the 18 Quickenings, ids 208 to 225 (Red Spiral to
+  Resplendence): the gatherer spreads them over the radius, while `0x0031A990` reports them
   as shape 0.
 - Raising the radius to 100 makes a spell cover the whole battle area, as the -ja spells do.
 

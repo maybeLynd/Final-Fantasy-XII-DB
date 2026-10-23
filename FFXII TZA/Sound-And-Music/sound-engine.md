@@ -216,19 +216,56 @@ A source voice moves from open (1) to playing (3, slot 3 `0x007E2710`) or paused
 
 Game calls do not touch voices directly; they post actions. A poster takes an action from the free list `0x02EAD028`
 (`0x007AB460`; when none is left it prints "Action exhausted!!") and appends it with `0x007AB550`. The driver thread
-drains the queue in order in `0x007AB5C0`, by the action's type through the 54-entry jump table `0x007AC080`:
+drains the queue in order in `0x007AB5C0`, by the action's type through the 54-entry jump table `0x007AC080`.
+
+Types `0x00`-`0x04`, `0x07` and `0x08` first find a category with `0x007AAA20(id)`: entry `id` of the table at
+`[0x02EAD008]` while `id` is below `[0x02EAD000]`, and the arm does nothing when that is null. A category's sound list is at `+0x28` of its `+0x58` object, or of
+the category itself when `+0x58` is null. A ramp (`0x007CA560`) moves a value from where it is now to a target over
+a time.
 
 | Types | Arms | Does |
 |---|---|---|
-| `0x00`-`0x08` | `0x007AAA20` with `0x007AA5B0`, `0x007AA570`, `0x007AAD90`, `0x007AAC80` and others | category volume and pitch |
+| `0x00` | `0x007AAA20`, then `0x007AA5B0` | stops each sound on the category's list whose slot `+0xC0` answer equals the category's `+0x60` (`ISound` slot `+0x10`) |
+| `0x01` | `0x007AAA20`, then `0x007AA680` | when the category's pause count `+0x64` is 0, pauses those sounds (slot `+0x18`) and keeps the value at `+0x68`; either way counts it up |
+| `0x02` | `0x007AAA20`, then `0x007AA3E0` | when the pause count is 1, resumes them (slot `+0x20`); either way counts it down, to no lower than 0 |
+| `0x03` | `0x007AAA20`, then `0x007AA570` | starts the ramp of entry n + 1 of the category's 48-byte array at `+0x38` (count `+0x78`) |
+| `0x04` | `0x007AAA20`, then `0x007AA550` | starts the ramp at the category's `+0x40` |
+| `0x05` | `0x007AAD90` | starts the global ramp at `0x01F403E0` |
+| `0x06` | `0x007AAC80` | starts the global ramp at `0x01F40410` |
+| `0x07` | `0x007AAA20`, then `0x007AA4E0` | sets the category's bytes `+0x80` and `+0x81` |
+| `0x08` | `0x007AAA20`, then `0x007AA4D0` | sets the category's bytes `+0x82` and `+0x83` |
 | `0x09` | `0x007B2470`, `0x007D0A20` | bank |
 | `0x0A` | `0x007B44C0`, `0x007BDFA0` | play a sound |
-| `0x0B`-`0x1B` | `0x007AB1E0`, then an `ISound` method | stop `0x007BED30`, pause `0x007BEF30`, resume `0x007BE0B0`, volume `0x007BEAF0`, pitch `0x007BE8A0`, panning `0x007BE590`, low-pass `0x007BE3F0`, and the rest |
+| `0x0B`-`0x1B` | `0x007AB1E0`, then an `ISound` method | one slot per type, in the next table |
 | `0x1C`-`0x2D` | `0x007B77E0`, then a `Magi::Music` method | music, from `0x007C8370` to `0x007CEF60` |
 | `0x2E`, `0x2F`, `0x31` | `0x007AC3E0` | mixer bus |
 | `0x30` | `0x007ACD30` | effect preset |
 | `0x32`, `0x33` | `0x007B1210`; `0x007B6350`, `0x007AE550` | two further driver arms |
 | `0x34`, `0x35` | `0x007B4A00(0)` then `0x007AF560`, a jump to `0x007DF620`; `0x007B48F0(0)` then `0x007AF540`, a jump to `0x007DF560` | two arms that reach the output renderer |
+
+`0x007AB1E0` turns the action's handle into a sound by its low byte: 2 through `0x007B44C0`, 8 through `0x007B77E0` and 9
+through `0x007B7FD0`. The arm then calls one slot of that object's vtable, `Driver::Sound` (`0x01CB5A30`) or `Magi::Music`
+(`0x01CB5E38`); `0x007AC3D0` only returns -1.
+
+| Type | Slot | `Driver::Sound` | `Magi::Music` |
+|---|---|---|---|
+| `0x0B` | `+0x10` | `0x007BED30` (stop) | `0x007CA9E0` |
+| `0x0C` | `+0x18` | `0x007BEF30` (pause) | `0x007CA9F0` |
+| `0x0D` | `+0x20` | `0x007BE0B0` (resume) | `0x007C8890` |
+| `0x0E` | `+0x38` | `0x007BEAF0` (volume) | `0x007CA650` |
+| `0x0F` | `+0x40` | `0x007BE8A0` (pitch) | `0x007CA420` |
+| `0x10` | `+0x48` | `0x007BE590` (panning) | `0x007CA370` |
+| `0x11` | `+0x90` | `0x007BECD0` | `0x007CA750` |
+| `0x12` | `+0x50` | `0x007BE510` | `0x007CA350` |
+| `0x13` | `+0x58` | `0x007BEC70` | `0x007CA730` |
+| `0x14` | `+0x60` | `0x007BE3E0` | `0x007C91C0` |
+| `0x15` | `+0x68` | `0x007BE3F0` (low-pass) | `0x007C92D0` |
+| `0x16` | `+0x70` | `0x007BE3D0` | `0x007C91A0` |
+| `0x17` | `+0x78` | `0x007BE360` | `0x007C8CD0` |
+| `0x18` | `+0x80` | `0x007BE3C0` | `0x007C9190` |
+| `0x19` | `+0x88` | `0x007BEAE0` | `0x007AC3D0` |
+| `0x1A` | `+0x98` | `0x007BEA30` | `0x007AC3D0` |
+| `0x1B` | `+0xA0` | `0x007BE980` | `0x007AC3D0` |
 
 The busiest posters are stop `0x007A84A0` (20 call sites), resume `0x007A7A20` (8), play `0x007A78B0` (7, type `0x0A` for a
 sound and `0x1C` for music), pause `0x007A8590` (5) and set volume `0x007A81F0` (5).
