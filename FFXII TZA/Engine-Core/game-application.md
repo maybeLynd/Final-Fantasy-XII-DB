@@ -2,7 +2,7 @@
 title: "Game application object: the root object, its vtable and the boot order"
 kind: "system"
 category: "Engine core"
-addresses: "0x0015BC40, 0x0017CC70, 0x0017CEB0, 0x0017CF30, 0x0017CCD0, 0x0017CDE0, 0x0017CDC0, 0x0017CE50, 0x0017D090, 0x0017D0C0, 0x0017D120, 0x0017D160, 0x0017D1A0, 0x0017D210, 0x0017CFD0, 0x0017D170, 0x0017CDF0, 0x0017CE20, 0x0017D1E0, 0x0017D000, 0x0017D4C0, 0x0017D650, 0x0017D670, 0x0017D6B0, 0x0017D6E0, 0x0022A490, 0x0022A580, 0x00189000, 0x00189120, 0x0019A0A0, 0x001A11B0, 0x001B7EE0, 0x001C18A0, 0x001C2F00, 0x001D8CD0, 0x001BDA50, 0x001C0D40, 0x001BBFC0, 0x001A98B0, 0x00199790, 0x001997D0, 0x001E0550, 0x001E0590, 0x001E05E0, 0x001E05F0, 0x0018A620, 0x0018A7D0, 0x00186230, 0x005C5230, 0x001999D0, 0x00199F60, 0x0019DA30, 0x0019EB00, 0x001B9370, 0x00184F20, 0x01F82CD8, 0x001D89D0, 0x001D8AB0, 0x001D8700, 0x001D7A20, 0x001D8770, 0x001BAA30, 0x001E03F0, 0x00186010, 0x00187550, 0x00187860, 0x001876E0"
+addresses: "0x0015BC40, 0x0017CC70, 0x0017CEB0, 0x0017CF30, 0x0017CCD0, 0x0017CDE0, 0x0017CDC0, 0x0017CE50, 0x0017D090, 0x0017D0C0, 0x0017D120, 0x0017D160, 0x0017D1A0, 0x0017D210, 0x0017CFD0, 0x0017D170, 0x0017CDF0, 0x0017CE20, 0x0017D1E0, 0x0017D000, 0x0017D4C0, 0x0017D650, 0x0017D670, 0x0017D6B0, 0x0017D6E0, 0x0022A490, 0x0022A580, 0x00189000, 0x00189120, 0x0019A0A0, 0x001A11B0, 0x001B7EE0, 0x001C18A0, 0x001C2F00, 0x001D8CD0, 0x001BDA50, 0x001C0D40, 0x001BBFC0, 0x001A98B0, 0x00199790, 0x001997D0, 0x001E0550, 0x001E0590, 0x001E05E0, 0x001E05F0, 0x0018A620, 0x0018A7D0, 0x00186230, 0x005C5230, 0x001999D0, 0x00199F60, 0x0019DA30, 0x0019EB00, 0x001B9370, 0x00184F20, 0x01F82CD8, 0x001D89D0, 0x001D8AB0, 0x001D8700, 0x001D7A20, 0x001D8770, 0x001BAA30, 0x001E03F0, 0x00186010, 0x00187550, 0x00187860, 0x001876E0, 0x0017E720, 0x0017E4E0, 0x00229590, 0x00250540, 0x001D72F0, 0x0022A770"
 ---
 
 ## What the player sees
@@ -53,7 +53,7 @@ the archive mount and the latch are game code overriding middleware entry points
 | 14 | `0x0017D160` | the base's `0x007A0B40`: stores the argument byte at `+0x27` |
 | 15, 25 | `0x0017D1A0`, `0x0017D1E0` | forward a byte to the input manager (`0x001989D0`, `0x00198E70`) |
 | 16 | `0x0017D210` | `0x00227D40(byte)` |
-| 21, 22 | `0x0017CFD0`, `0x0017D170` | read and write the pause byte at `0x01F810F0` (`0x00199780`, `0x001997E0`); nothing in the game tests it |
+| 21, 22 | `0x0017CFD0`, `0x0017D170` | read and write the pause byte at `0x01F810F0` (`0x00199780`, `0x001997E0`); `0x0017E4E0` reads it for the frame and the console draw `0x001D7A20` tests it |
 | 23, 24 | `0x0017CDF0`, `0x0017CE20` | the base's `0x0079D560` and `0x0079D5B0` times the time scale `0x0017E440()` |
 | 1, 12, 13, 17-20, 28-30 | the base's | inherited unchanged |
 | 11, 26, 27 | `0x005C5230`, `0x0016D6A0`, `0x005C5230` | the shared return-zero and return stubs |
@@ -377,8 +377,31 @@ published frame delta and the second-pass flag; the pump mode and the game-step 
   a thunk to the stub.
 - A second pump pass runs only while `0x01F82D30` is set by the pacing predicate; the game step then
   sees a delta of 0 on the second pass.
-- The pause byte behind `0x01F810F0` has no consumer: its getter's only callers are the two slots and
-  the pump's compiled-out hook, so a pause has to be done elsewhere.
+- The pause byte behind `0x01F810F0` is reached through `0x001997D0` (returns the pointer at `0x01F810F0`) and `0x00199780`
+  (returns the byte). Its writers and readers:
+  - `0x0017E720(flag)` stores `flag != 0` through `0x001997E0` (`0x0017E728`, `0x0017E73B`). Its only caller is the pause
+    overlay `0x00229590`, which passes 0 at `0x002297B0` (after the policy-bit clears `0x002E1CA0` at `0x0022979C` and
+    `0x002297A9`) and 1 at `0x002298C1` (after setting `0x01E027FC` = 1 at `0x002298B7`) ([pause screen](../Menus-And-HUD/pause-screen.md)).
+  - The vtable slots 21 and 22 (`0x0017CFD0`, `0x0017D170`) read and write it too, each after `0x001997D0`'s null test
+    (`0x0017CFD9`).
+  - `0x0017E4E0()` returns the byte (`0x0017E4E4`-`0x0017E4F1`). The pre-dispatch step `0x0022A580` copies it to `0x02F974A0`
+    (`0x0022A67A`) and, with no second pass armed (`0x01FD4A68` = 0), tests the copy at `0x0022A713`: clear, it runs
+    `0x001E05E0()` and, when that is 0, `0x001832F0()`, before `0x00375B80(0)`; set, it goes to `0x00375B80(0)` at once.
+  - The field frame `0x0022A770` runs `0x002506D0` only while the byte is set (`0x0022A8CA`,
+    [frame update order](frame-update-order.md)).
+  - The UI tick `0x00250540` tests it at `0x00250570`-`0x00250577`. While the byte is set (paused) it runs only the short
+    block `0x00250579`-`0x002505C4`: the `0x00184950()` add into `0x0208F570` when the pump's flag `0x02064AA0` is clear,
+    `0x002481A0`, `0x00248030` and `0x00244970` on `0x0208EA48`, `0x00248190`, `0x002481C0`, `0x00250CA0`, then the tail `0x003676B0(1)`.
+  - While it is clear the tick continues at `0x002505C9`: it adds 1 or 2 (by `0x001EDE70()` and `0x00181DD0()`,
+    `0x00250546`-`0x00250565`) to `0x0208F570`, zeroes `0x020927DC` (`0x002505D0`), tail-jumps to `0x002508E0` when `0x00229EA0()` is 5
+    (`0x002505EA`), and otherwise runs the full tick from `0x002505EF` (`0x003C9FD0(3)`, `0x00254CC0`, `0x002481A0`, the `0x0208EA20`
+    loop with `0x00248030`, to `0x002508D0`).
+  - Both paths of `0x00250540` call `0x002481A0`, the parity flip of `0x0208ED5C` ([widgets](../Menus-And-HUD/widgets.md)).
+  - Two console drawers read it through `0x001997D0` and `0x00199780` directly: `0x001D7A20` draws nothing while it is set
+    (`0x001D7A56`-`0x001D7A65` to `0x001D7DA2`), and the second-picture drawer `0x001D72F0` returns without drawing
+    (`0x001D7319`-`0x001D7328` to its epilogue `0x001D7678`).
+  - The pump `0x0017D6E0` reads the pointer at `0x0017D73B` only to hand it to `0x0016D6A0`, the compiled-out hook, which is a
+    bare `ret`.
 
 ## Related
 

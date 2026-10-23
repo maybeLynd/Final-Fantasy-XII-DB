@@ -154,6 +154,29 @@ The table has 29 distinct arms for 32 classes: 15, 30 and 31 share one, 25 and 3
 the fifteen inventory classes the arm's base equals `(class - 5) << 12`, the same structure the
 descriptors carry. A missing table counts as zero rows, so a null-guarded arm accepts nothing.
 
+Class 13's validator range is the four key-item sub-table counts summed from `0x8000`, but the code that reads
+the ids fixes the three sub-ranges in immediates of its own:
+
+| Ids | Sub-table | Query filler test | List kind |
+|---|---|---|---|
+| `0x8000`-`0x803F` | m_daiji_data `0x02EBF090` | `id - 0x8000` at most `0x3F` (`0x0031D111`) | 21 |
+| `0x8040`-`0x805F` | g_daiji_data `0x02EBF088` | `id - 0x8040` at most `0x1F` (`0x0031D2B4`-`0x0031D2BF`) | 22 |
+| `0x8060`-`0x81FF` | q_daiji_data `0x02EBF080` | `id - 0x8060` at most `0x19F` (`0x0031D472`-`0x0031D482`) | 20 |
+
+- The query filler's class-13 arm (`0x0031D0EF`) reads the row's name word `+8`, description word `+6`, byte `+4`
+  (record `+0x2C`) and word `+2` (record `+0x30`) from the sub-table the test picks. A validated id past `0x81FF`
+  skips all four (`0x0031D482` to `0x0031D638`): the record gets only the two channels and `+0x28` = -1, the name
+  stays null and the fill returns 0.
+- The description line `0x00292B70` returns nothing for a kind-10 entry outside `0x8060`-`0x81FF`
+  (`0x00292C3A`-`0x00292C4A`, [text codes](../Menus-And-HUD/text-codes.md)).
+- The Key Items list builders `0x0057CF20` and `0x0057D620` hand `0x0057DAD0` a `{u32 end, u32 start}` pair for list
+  kinds 20, 21 and 22 (`0x0057D432`-`0x0057D45E`, `0x0057D9D1`-`0x0057D9FD`), and `0x0057DAD0` keeps an id only when
+  `start <= id < end` (`0x0057DB2C`-`0x0057DB3B`).
+- The class-13 descriptor holds 512 ids and a 32-word bitset, so the owned bits end at `0x81FF` too.
+
+s_daiji_data (`0x02EBF078`) ships with no rows, so the summed count is 64 + 32 + 416 = 512 and every one of these
+bounds ends at the same id. A row added to any sub-table moves the validator's end and none of the others.
+
 ### The query record
 
 `0x0031C5D0(record)` fills a `0x98`-byte record whose `+0` is the class and whose `+4` is the row
@@ -267,6 +290,9 @@ records.
   needs the gil setter, not an id.
 - Classes 10, 12 and 16 are holes in the nibble space: a count of 0 and no handler, so any id with
   top nibble 5, 7 or `0xB` is refused everywhere.
+- An encoded id's index is its low twelve bits (`0x00309EC0` at `0x00309F02`, `0x0030AE30` at `0x0030AE72`:
+  `and ecx, 0xFFF`), so each of the fifteen classes an id names (5 to 19) reaches at most 4,096 rows, indices 0 to
+  `0xFFF`: its table, or for class 13 its four key-item sub-tables together. Rows past that cannot be named by an id.
 
 ## Related
 

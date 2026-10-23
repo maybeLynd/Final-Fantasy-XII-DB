@@ -38,6 +38,10 @@ a polygon and at `+4` of a wall record. Its fields, with the functions that read
 | 30 | wall ignored by kind-4 queries | `setmapidwall` kind 6 | `0x0022D4B0`, `0x0022CC50` |
 | 31 | wall switched off | `setmapidwall` kind 5 | `0x0022F8B0`, `0x0022DE60`, `0x0022D7E0`, `0x0022D4B0`, `0x0022CC50` |
 
+`0x00230A40` closes a polygon to every movement kind when there is no neighbour across the edge (`0x00230A4F`) or the
+polygon type (bits 0-2, after the overrides) is not 0 (`0x00230AB9`). Otherwise kinds 0, 1, 2, 3 and 5 test their block bit;
+kind 4 and kinds 6 and above have none and pass every floor polygon (`0x00230B4A`).
+
 ### The override table
 
 `0x0209A3E0` holds 80 entries of two 32-bit words, `mask` then `value`, 8 bytes each, from `0x0209A3E0` to
