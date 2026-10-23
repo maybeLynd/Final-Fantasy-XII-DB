@@ -107,8 +107,11 @@ function	name	site	disp	kind	instruction	route	note
 0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x00306FCE	0x0	rw	and qword ptr [rbx], rax	arg0 from 0x00300530 at 0x0030082F	
 0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x0030700C	0x0	rw	or qword ptr [rbx], rcx	arg0 from 0x00300530 at 0x0030082F	
 0x00307110	SpawnGroup_MarkCompletionPendingAfterReaction	0x0030711A	0x0	rw	and qword ptr [rcx], rax	arg0 from 0x003250F0 at 0x003251A4	
+0x00307300		0x00307460	0x0	r	test byte ptr [rbx], 0x10	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x0030752B	0x0	r	mov rcx, qword ptr [rdi]	arg1 from 0x003191B0 at 0x00319362	
 0x00307300	Battle_ProcessActionTarget	0x0030778C	0x0	r	mov eax, dword ptr [rdi]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x003079FC	0x0	rw	or qword ptr [rbx], 0x4000000	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A97	0x0	rw	or qword ptr [rbx], 0x1000000	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307C70	FUN_00307c70	0x00307C76	0x0	r	mov rax, qword ptr [rcx]	arg0 from 0x00233F70 at 0x00233FF1	
 0x00307C70	FUN_00307c70	0x00307CA2	0x0	rw	and qword ptr [rbx], rax	arg0 from 0x00233F70 at 0x00233FF1	
 0x00307C70	FUN_00307c70	0x00307CD7	0x0	rw	and qword ptr [rbx], rax	arg0 from 0x00233F70 at 0x00233FF1	
@@ -223,6 +226,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00320CF0	FUN_00320cf0	0x00320D02	0x0	r	test byte ptr [rax], 0x10	0x00236820	
 0x00321170	BattleUnit_GetBySlotIndexIfUnitFlag4Set	0x0032117E	0x0	r	test byte ptr [rax], 0x10	0x00236820	
 0x00322490	FUN_00322490	0x003224DF	0x0	r	test byte ptr [rax], 0x10	0x00263E30	
+0x00323350		0x003233AA	0x0	r	test byte ptr [rdx], 0x10	arg1 from 0x00307300 at 0x00307B04	
 0x00324380	FUN_00324380	0x003243B5	0x0	r	test byte ptr [rbx], 4	0x00236820	
 0x003243F0	FUN_003243f0	0x00324420	0x0	r	test byte ptr [rbx], 2	arg0 from 0x00324450 at 0x0032445E	
 0x00324450	FUN_00324450	0x00324456	0x0	r	test byte ptr [rcx], 0x40	arg0 from 0x00233AD0 at 0x00233B46	
@@ -347,9 +351,12 @@ function	name	site	disp	kind	instruction	route	note
 0x00306B10	FUN_00306b10	0x00306B62	0x8	r	mov edx, dword ptr [rbx + 8]	arg0 from 0x0030CBE0 at 0x0030CDCA	
 0x00306D90	FUN_00306d90	0x00306DF4	0x8	r	mov eax, dword ptr [rax + 8]	0x0031B760	
 0x00307300	Battle_ProcessActionTarget	0x0030763F	0x8	r	mov ecx, dword ptr [rdi + 8]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x00307642	0x8	addr	lea r8, [rbx + 8]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x00307670	0x8	r	mov ecx, dword ptr [rdi + 8]	arg1 from 0x003191B0 at 0x00319362	
 0x00307300	Battle_ProcessActionTarget	0x0030773F	0x8	r	mov ecx, dword ptr [rdi + 8]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x00307742	0x8	addr	lea r8, [rbx + 8]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x0030776D	0x8	r	mov ecx, dword ptr [rdi + 8]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x00307770	0x8	addr	lea r8, [rbx + 8]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x00307795	0x8	r	mov eax, dword ptr [rdi + 8]	arg1 from 0x003191B0 at 0x00319362	
 0x003082F0	FUN_003082f0	0x00308378	0x8	r	mov ecx, dword ptr [rbx + 8]	arg0 from 0x003250F0 at 0x0032516B	
 0x003082F0	FUN_003082f0	0x0030837B	0x8	addr	lea r8, [rbx + 8]	arg0 from 0x003250F0 at 0x0032516B	
@@ -394,6 +401,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0031EB20	BattleMenu_BuildCommandEntryList	0x0031F7C8	0x8	r	mov eax, dword ptr [rsi + 8]	0x00236820	
 0x00322050	FUN_00322050	0x00322073	0x8	w	mov dword ptr [rbx + 8], eax	arg0 from 0x00300E40 at 0x00300EFC	
 0x00322080	FUN_00322080	0x003220B9	0x8	w	mov dword ptr [rbx + 8], eax	0x00263E30	
+0x00323350		0x003234C9	0x8	r	mov ecx, dword ptr [rbx + 8]	arg1 from 0x00307300 at 0x00307B04	
 0x00325260	BattleUnit_HandleActionTimelineEvent	0x0032562A	0x8	r	mov ecx, dword ptr [rbx + 8]	0x00263E30	
 0x00325260	BattleUnit_HandleActionTimelineEvent	0x0032562D	0x8	addr	lea r8, [rbx + 8]	0x00263E30	
 0x00325D90	BattleUnit_CanAdvanceCombatNavigation	0x00325DFF	0x8	r	mov ebx, dword ptr [rdi + 8]	arg0 from 0x00325BB0 at 0x00325BD0	
@@ -402,6 +410,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00328530	FUN_00328530	0x0032858F	0x8	r	mov edx, dword ptr [rdi + 8]	arg1 from 0x00306010 at 0x0030605B	
 0x00328530	FUN_00328530	0x003285D5	0x8	r	cmp dword ptr [rdi + 8], eax	arg1 from 0x00306010 at 0x0030605B	
 0x00328530	FUN_00328530	0x00328612	0x8	r	mov eax, dword ptr [rdi + 8]	arg1 from 0x00306010 at 0x0030605B	
+0x00329F70		0x00329F75	0x8	r	mov ecx, dword ptr [rcx + 8]	arg0 from 0x00307300 at 0x00307727	
 0x00329F80	FUN_00329f80	0x0032A034	0x8	r	mov ecx, dword ptr [rbx + 8]	arg0 from 0x00304850 at 0x00304B62	
 0x00329F80	FUN_00329f80	0x0032A037	0x8	addr	lea r8, [rbx + 8]	arg0 from 0x00304850 at 0x00304B62	
 0x0032A060	FUN_0032a060	0x0032A0DA	0x8	r	mov esi, dword ptr [rbx + 8]	0x00236820	
@@ -485,8 +494,15 @@ function	name	site	disp	kind	instruction	route	note
 0x003057D0	FUN_003057d0	0x0030588D	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg0 from 0x00233F70 at 0x002340B4	
 0x00306E60	SpawnGroup_UpdateExpectedMemberLaneMask	0x00306E9A	0x10	r	mov rcx, qword ptr [rcx + 0x10]	arg0 from 0x002350C0 at 0x002352BB	
 0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x00306F3C	0x10	r	mov rcx, qword ptr [rcx + 0x10]	arg0 from 0x00300530 at 0x0030082F	
+0x00307300		0x00307876	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x00307921	0x10	r	mov rcx, qword ptr [rdi + 0x10]	arg1 from 0x003191B0 at 0x00319362	
 0x00307300	Battle_ProcessActionTarget	0x00307941	0x10	r	mov rcx, qword ptr [rdi + 0x10]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x0030794A	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307992	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x003079BF	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x003079F8	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A5C	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A87	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307C70	FUN_00307c70	0x00307C8B	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg0 from 0x00233F70 at 0x00233FF1	
 0x00307C70	FUN_00307c70	0x00307CBA	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg0 from 0x00233F70 at 0x00233FF1	
 0x003082F0	FUN_003082f0	0x00308368	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg0 from 0x003250F0 at 0x0032516B	
@@ -598,6 +614,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0030F760	BattleUnit_CommitAction	0x0030F91B	0x24	r	cmp dword ptr [rdi + 0x24], eax	arg0 from 0x00305AB0 at 0x00305B2F	
 0x0030F760	BattleUnit_CommitAction	0x0030F91B	0x24	r	cmp dword ptr [rdi + 0x24], eax	arg1+0xBA0 from 0x00305AB0 at 0x00305B2F	
 0x00310DB0	BattleUnit_RunPeriodicCombatMaintenance	0x00310DE4	0x24	w	mov dword ptr [rsi + 0x24], eax	arg0 from 0x00233F70 at 0x00234001	
+0x00307300		0x00307798	0x28	w	mov dword ptr [rbx + 0x28], eax	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00308270	FUN_00308270	0x00308282	0x28	w	mov dword ptr [rcx + 0x28], 0	arg0 from 0x00308610 at 0x003086AA	
 0x00312FA0	BattleUnit_TryCommitEngageAutoAttack	0x00312FAF	0x28	r	mov esi, dword ptr [rcx + 0x28]	arg0 from 0x003250F0 at 0x00325161	
 0x00312FA0	BattleUnit_TryCommitEngageAutoAttack	0x00312FB5	0x28	w	mov dword ptr [rcx + 0x28], 0	arg0 from 0x003250F0 at 0x00325161	
@@ -739,6 +756,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00301830	AiOrder_CheckActionPreconditions	0x003018B1	0xD0	r	movups xmm1, xmmword ptr [rax - 0x30]	arg0 from 0x003014C0 at 0x003015DA	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304B4D	0xD0	addr	lea rdx, [rbx + 0x50]	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304D93	0xD0	addr	lea rdx, [rbx + 0x50]	arg0 from 0x00307BE0 at 0x00307C19	
+0x00307300		0x003079C3	0xD0	w	movups xmmword ptr [rbx + 0xd0], xmm0	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00311F70	FUN_00311f70	0x00312062	0xD0	w	movups xmmword ptr [rdi + 0xd0], xmm6	arg1 from 0x00233AD0 at 0x00233BE8	
 0x00312730	BattleLocomotion_DecodeOrderGoal	0x00312838	0xD0	addr	lea rcx, [rbx + 0xd0]	0x0031B7E0	
 0x00312730	BattleLocomotion_DecodeOrderGoal	0x003128DD	0xD0	r	movups xmm0, xmmword ptr [rax + 0xd0]	0x0031B7E0	
@@ -768,6 +786,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00305110	FUN_00305110	0x00305201	0xE0	addr	lea rdx, [rsi + 0xe0]	arg0 from 0x00304850 at 0x00304BCC	
 0x00305230	FUN_00305230	0x00305368	0xE0	addr	lea rdx, [rdi + 0xe0]	arg0 from 0x00304850 at 0x00304A53	
 0x00305230	FUN_00305230	0x00305406	0xE0	addr	lea rdx, [rdi + 0xe0]	arg0 from 0x00304850 at 0x00304A53	
+0x00307300		0x003079CA	0xE0	w	movups xmmword ptr [rbx + 0xe0], xmm0	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00308040	BattleUnit_HasNonPartyEngagementEvidence	0x003080B6	0xE0	addr	lea rcx, [rbx + 0xe0]	arg0 from 0x00308010 at 0x0030802D	
 0x003087E0	AiOrder_SelectFinalTargetFromCandidates	0x00308B4F	0xE0	addr	lea rdx, [rax + 0xe0]	0x0031B760	
 0x003087E0	AiOrder_SelectFinalTargetFromCandidates	0x00308B56	0xE0	addr	lea rcx, [r15 + 0xe0]	arg0 from 0x003014C0 at 0x003017BF	
@@ -786,8 +805,10 @@ function	name	site	disp	kind	instruction	route	note
 0x0031E6F0	BattleTarget_ComputeSurfaceDistanceBetweenUnits	0x0031E727	0xE0	addr	lea rcx, [rdi + 0xe0]	arg0 from 0x00301AD0 at 0x0030279E	
 0x0031E760	BattleTarget_ComputeSurfaceDistanceToPosition	0x0031E77A	0xE0	addr	lea rcx, [rbx + 0xe0]	arg0 from 0x00301AD0 at 0x0030285E	
 0x00320E10	FUN_00320e10	0x0032100B	0xE0	addr	lea rcx, [rdi + 0xe0]	arg0 from 0x0031ADB0 at 0x0031AF82	
+0x00323350		0x003233D5	0xE0	r	movss xmm6, dword ptr [rbx + 0xe0]	arg1 from 0x00307300 at 0x00307B04	
 0x00323350	BattleAction_ApplyKnockbackImpulse	0x003233DD	0xE0	r	subss xmm6, dword ptr [rdi + 0xe0]	arg0 from 0x00307300 at 0x00307B04	
 0x00323350	BattleAction_ApplyKnockbackImpulse	0x0032341F	0xE0	r	movss xmm0, dword ptr [rdi + 0xe0]	arg0 from 0x00307300 at 0x00307B04	
+0x00323350		0x00323429	0xE0	r	subss xmm0, dword ptr [rbx + 0xe0]	arg1 from 0x00307300 at 0x00307B04	
 0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	0x00324987	0xE0	r	movaps xmm0, xmmword ptr [rdi + 0xe0]	arg0 from 0x00233F70 at 0x00234009	
 0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	0x00324AE8	0xE0	r	movaps xmm0, xmmword ptr [rdi + 0xe0]	arg0 from 0x00233F70 at 0x00234009	
 0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	0x00324C23	0xE0	r	movaps xmm0, xmmword ptr [rdi + 0xe0]	arg0 from 0x00233F70 at 0x00234009	
@@ -825,8 +846,10 @@ function	name	site	disp	kind	instruction	route	note
 0x0031AC90	Vector3_ComputeXZHeadingOrFallback	0x0031ACA0	0xE8	r	subss xmm1, dword ptr [rcx + 8]	arg0+0xE0 from 0x00301AD0 at 0x00302A01	
 0x0031ADB0	FUN_0031adb0	0x0031AFC2	0xE8	r	subss xmm1, dword ptr [rbx + 0xe8]	arg0 from 0x0031B4B0 at 0x0031B4DF	
 0x0031ADB0	FUN_0031adb0	0x0031B04D	0xE8	r	addss xmm7, dword ptr [rbx + 0xe8]	arg0 from 0x0031B4B0 at 0x0031B4DF	
+0x00323350		0x003233EA	0xE8	r	movss xmm7, dword ptr [rbx + 0xe8]	arg1 from 0x00307300 at 0x00307B04	
 0x00323350	BattleAction_ApplyKnockbackImpulse	0x003233F2	0xE8	r	subss xmm7, dword ptr [rdi + 0xe8]	arg0 from 0x00307300 at 0x00307B04	
 0x00323350	BattleAction_ApplyKnockbackImpulse	0x00323431	0xE8	r	movss xmm1, dword ptr [rdi + 0xe8]	arg0 from 0x00307300 at 0x00307B04	
+0x00323350		0x0032343B	0xE8	r	subss xmm1, dword ptr [rbx + 0xe8]	arg1 from 0x00307300 at 0x00307B04	
 0x0032A4D0	BattlePerception_TestCachedSpatialVisibilityPair	0x0032A566	0xE8	r	movss xmm0, dword ptr [rdi + 0xe8]	arg0 from 0x003247F0 at 0x00324A89	
 0x0032A4D0	BattlePerception_TestCachedSpatialVisibilityPair	0x0032A574	0xE8	r	movss xmm1, dword ptr [rsi + 0xe8]	arg1 from 0x003247F0 at 0x00324A89	
 0x00336710	BattleLocomotion_BuildSolverContext	0x0033674A	0xE8	r	mov eax, dword ptr [rdx + 0x68]	arg1+0x80 from 0x0033A240 at 0x0033A269	
@@ -884,6 +907,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0033A240	FUN_0033a240	0x0033A334	0x158	w	movss dword ptr [rbx + 0xd8], xmm0	arg0+0x80 from 0x00308610 at 0x0030867A	
 0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	0x00236328	0x15C	w	movss dword ptr [rbx + 0x15c], xmm0	arg0 from 0x00239E10 at 0x0023A047	
 0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	0x0030041E	0x15C	w	movss dword ptr [rbx + 0x15c], xmm6	arg0 from 0x00325BB0 at 0x00325D5C	
+0x00307300		0x00307A03	0x15C	w	movss dword ptr [rbx + 0x15c], xmm6	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00311F70	FUN_00311f70	0x003120A7	0x15C	w	movss dword ptr [rdi + 0x15c], xmm6	arg1 from 0x00233AD0 at 0x00233BE8	
 0x00336710	BattleLocomotion_BuildSolverContext	0x003367E1	0x15C	r	mov eax, dword ptr [rdx + 0xdc]	arg1+0x80 from 0x0033A240 at 0x0033A269	
 0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DA6	0x15C	w	movss dword ptr [rbx + 0xdc], xmm1	arg1+0x80 from 0x00325BB0 at 0x00325D0A	
@@ -894,10 +918,13 @@ function	name	site	disp	kind	instruction	route	note
 0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	0x00300426	0x160	w	movss dword ptr [rbx + 0x160], xmm6	arg0 from 0x00325BB0 at 0x00325D5C	
 0x00301AD0	AiOrder_EvaluateTargetSelector	0x003029EA	0x160	r	movss xmm2, dword ptr [r15 + 0x160]	0x00236820	
 0x00301AD0	AiOrder_EvaluateTargetSelector	0x00302A09	0x160	r	movss xmm0, dword ptr [r15 + 0x160]	0x00236820	
+0x00307300		0x00307A0B	0x160	w	movss dword ptr [rbx + 0x160], xmm6	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x0030D160	Battle_BuildActionTargetSet	0x0030D2D2	0x160	r	movss xmm2, dword ptr [r9 + 0xe0]	arg0 from 0x00304850 at 0x00304EE2	
 0x0030D160	Battle_BuildActionTargetSet	0x0030D3B7	0x160	r	movss xmm2, dword ptr [r13 + 0x160]	arg0 from 0x00304850 at 0x00304EE2	
 0x00311F70	FUN_00311f70	0x003120AF	0x160	w	movss dword ptr [rdi + 0x160], xmm6	arg1 from 0x00233AD0 at 0x00233BE8	
 0x0031ADB0	FUN_0031adb0	0x0031AFD8	0x160	r	movss xmm0, dword ptr [rbx + 0x160]	arg0 from 0x0031B4B0 at 0x0031B4DF	
+0x00323350		0x0032346F	0x160	r	movss xmm0, dword ptr [rbx + 0x160]	arg1 from 0x00307300 at 0x00307B04	
+0x00323350		0x0032347E	0x160	r	subss xmm0, dword ptr [rbx + 0x160]	arg1 from 0x00307300 at 0x00307B04	
 0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	0x003249A6	0x160	r	movss xmm0, dword ptr [rdi + 0x160]	arg0 from 0x00233F70 at 0x00234009	
 0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325D33	0x160	r	movss xmm2, dword ptr [rbx + 0xe0]	arg0 from 0x003082F0 at 0x00308341	
 0x00336710	BattleLocomotion_BuildSolverContext	0x003367F9	0x160	r	mov eax, dword ptr [rdx + 0xe0]	arg1+0x80 from 0x0033A240 at 0x0033A269	
@@ -1211,10 +1238,14 @@ function	name	site	disp	kind	instruction	route	note
 0x002F8BB0	Reward_ComputeExperienceForRecipient	0x002F8CF0	0x698	r	mov rcx, qword ptr [r14 + 0x698]	arg1 from 0x00312280 at 0x003123D1	
 0x002F90C0	Reward_ComputeLicensePointsForRecipient	0x002F9109	0x698	r	mov rax, qword ptr [rdi + 0x698]	arg1 from 0x00312280 at 0x003123DE	
 0x002F91A0	BattleAction_ComputeTargetPrimaryResourceGainFromHpDamage	0x002F91C2	0x698	r	mov rcx, qword ptr [rcx + 0x698]	arg0 from 0x00307300 at 0x00307B26	
+0x002F91A0		0x002F91DB	0x698	r	mov rcx, qword ptr [r9 + 0x698]	arg1 from 0x00307300 at 0x00307B26	
+0x002F91A0		0x002F91FD	0x698	r	mov rax, qword ptr [r9 + 0x698]	arg1 from 0x00307300 at 0x00307B26	
 0x002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	0x002F927F	0x698	r	mov rcx, qword ptr [rcx + 0x698]	arg0 from 0x00307300 at 0x00307B78	
+0x002F9240		0x002F9298	0x698	r	mov rcx, qword ptr [rbp + 0x698]	arg1 from 0x00307300 at 0x00307B78	
 0x002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	0x002F92BA	0x698	r	mov rax, qword ptr [rdi + 0x698]	arg0 from 0x00307300 at 0x00307B78	
 0x002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	0x002F9329	0x698	r	mov rax, qword ptr [rdi + 0x698]	arg0 from 0x00307300 at 0x00307B78	
 0x002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	0x002F938B	0x698	r	mov rax, qword ptr [rdi + 0x698]	arg0 from 0x00307300 at 0x00307B78	
+0x002F9240		0x002F93A5	0x698	r	mov rcx, qword ptr [rbp + 0x698]	arg1 from 0x00307300 at 0x00307B78	
 0x002F9400	BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep	0x002F941E	0x698	r	mov rcx, qword ptr [rbp + 0x698]	arg0 from 0x00310DB0 at 0x003110C3	
 0x002F9400	BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep	0x002F94F6	0x698	r	mov rax, qword ptr [rbp + 0x698]	arg0 from 0x00310DB0 at 0x003110C3	
 0x002F95D0	BattleAction_ComputeModifiedResourceCostAmount	0x002F9634	0x698	r	mov rcx, qword ptr [rsi + 0x698]	arg0 from 0x0031EB20 at 0x0031F06D	
@@ -1334,8 +1365,19 @@ function	name	site	disp	kind	instruction	route	note
 0x00307300	Battle_ProcessActionTarget	0x00307401	0x698	r	mov rdx, qword ptr [rdi + 0x698]	arg1 from 0x003191B0 at 0x00319362	
 0x00307300	Battle_ProcessActionTarget	0x0030741E	0x698	r	mov rdx, qword ptr [rdi + 0x698]	arg1 from 0x003191B0 at 0x00319362	
 0x00307300	Battle_ProcessActionTarget	0x0030755C	0x698	r	mov rdx, qword ptr [rdi + 0x698]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x00307568	0x698	r	mov r8, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x00307585	0x698	r	mov rax, qword ptr [rdi + 0x698]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x00307599	0x698	r	mov rax, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x003076CE	0x698	r	mov rax, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x0030784C	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x003078F8	0x698	r	mov rax, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x003079D6	0x698	r	mov rax, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A36	0x698	r	mov rax, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A9E	0x698	r	mov r8, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x00307AAA	0x698	r	mov rdx, qword ptr [rdi + 0x698]	arg1 from 0x003191B0 at 0x00319362	
+0x00307300		0x00307ACC	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307B2B	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307B3F	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00307300	Battle_ProcessActionTarget	0x00307B7D	0x698	r	mov rcx, qword ptr [rdi + 0x698]	arg1 from 0x003191B0 at 0x00319362	
 0x00307BE0	BattleUnit_AdvanceActionState	0x00307C4D	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg0 from 0x00308610 at 0x00308754	
 0x00307D10	BattleUnit_UpdateEngagementStateFlag	0x00307D1D	0x698	r	mov rcx, qword ptr [rcx + 0x698]	arg0 from 0x002FEF30 at 0x002FFA40	
@@ -1541,6 +1583,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00322A80	FUN_00322a80	0x00322C1D	0x698	r	cmp qword ptr [r14 + 0x698], rsi	arg0 from 0x0031EB20 at 0x0031F3C4	
 0x003230E0	FUN_003230e0	0x00323163	0x698	r	cmp qword ptr [rax + 0x698], rsi	0x00236820	
 0x003230E0	FUN_003230e0	0x003231C7	0x698	r	cmp qword ptr [r15 + 0x698], rsi	arg0 from 0x00322A80 at 0x00322B43	
+0x00323350		0x00323396	0x698	r	mov rcx, qword ptr [rdx + 0x698]	arg1 from 0x00307300 at 0x00307B04	
 0x00324380	FUN_00324380	0x003243BA	0x698	r	mov rax, qword ptr [rbx + 0x698]	0x00236820	
 0x003243F0	FUN_003243f0	0x003243FE	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg0 from 0x00324450 at 0x0032445E	
 0x00324470	FUN_00324470	0x00324495	0x698	r	mov rcx, qword ptr [rbx + 0x698]	arg0 from 0x0031A410 at 0x0031A4DF	
@@ -1655,6 +1698,9 @@ function	name	site	disp	kind	instruction	route	note
 0x003014C0	AiOrder_EvaluateAndResolveActionTarget	0x00301553	0x6A0	r	mov rax, qword ptr [rdi + 0x6a0]	arg0 from 0x00305CC0 at 0x00305DD2	
 0x003014C0	AiOrder_EvaluateAndResolveActionTarget	0x0030156A	0x6A0	r	mov rax, qword ptr [rdi + 0x6a0]	arg0 from 0x00305CC0 at 0x00305DD2	
 0x00301AD0	AiOrder_EvaluateTargetSelector	0x00301D69	0x6A0	r	mov rax, qword ptr [rbx + 0x6a0]	0x00236820	
+0x00307300		0x003079E8	0x6A0	r	mov rax, qword ptr [rbx + 0x6a0]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A48	0x6A0	r	mov rax, qword ptr [rbx + 0x6a0]	arg2 (the target unit, in rbx from the label 0x00307457)	
+0x00307300		0x00307A75	0x6A0	r	mov rax, qword ptr [rbx + 0x6a0]	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x00308040	BattleUnit_HasNonPartyEngagementEvidence	0x0030806C	0x6A0	r	mov rax, qword ptr [rcx + 0x6a0]	arg0 from 0x00308010 at 0x0030802D	
 0x00308040	BattleUnit_HasNonPartyEngagementEvidence	0x003080AF	0x6A0	r	mov rax, qword ptr [rbx + 0x6a0]	arg0 from 0x00308010 at 0x0030802D	
 0x0030DA30	FUN_0030da30	0x0030DA7E	0x6A0	r	mov rax, qword ptr [rbx + 0x6a0]	arg0 from 0x00308610 at 0x00308650	
@@ -2439,6 +2485,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002392D0	FUN_002392d0	0x00239339	0xE9C	rw	or dword ptr [rdi + 0xe9c], eax	0x0031B760	
 0x003229A0	FUN_003229a0	0x003229C4	0xE9C	r	mov eax, dword ptr [rax + 0xe9c]	0x00263E30	
 0x00300E40	BattleUnit_TeardownAndDespawn	0x00300EEE	0xEA0	r	cmp dword ptr [rdi + 0xea0], esi	arg0 from 0x00233EA0 at 0x00233F37	
+0x00307300		0x00307511	0xEA0	rw	and dword ptr [rbx + 0xea0], eax	arg2 (the target unit, in rbx from the label 0x00307457)	
 0x003105D0	BattleUnit_CancelAndResetCurrentAction	0x0031069C	0xEA0	rw	and dword ptr [rax + 0xea0], edx	0x00236820	
 0x003105D0	BattleUnit_CancelAndResetCurrentAction	0x0031069C	0xEA0	rw	and dword ptr [rax + 0xea0], edx	arg0 from 0x00300140 at 0x0030014D	
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236ADF	0xEA4	w	mov dword ptr [rdi + 0xea4], esi	arg0 from 0x0023A570 at 0x0023A5B0	

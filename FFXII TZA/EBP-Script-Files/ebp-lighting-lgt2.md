@@ -67,6 +67,10 @@ type 6  +0x04 s32 n, +0x08 {u16 type3Index; u16 id}[n]   id lookup into the type
 type 7  +0x04 + selector × 8: u16[4] record indices, 0xFFFF ends   selector-driven set
 ```
 
+A type-5 sub-entry is a curve with the ease-curve layout of the camera tables and SHK1 (`+0x00` length
+`0x18 + 0x24 * keys`, `+0x04` keys, start and end time and value, then the keys): the animation hands each one to
+the same evaluator, `0x003CC5F0` ([EBP camera tables](ebp-camera-tables.md) has the layout in full).
+
 ## Shipped data
 
 Measured over all 10,036 EBP2 containers in the nine language trees.

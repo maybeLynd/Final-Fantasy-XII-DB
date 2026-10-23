@@ -8,17 +8,23 @@ addresses: "0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A
 ## What it lists
 
 The [actor record](actor-record.md) page lays the record out and names its fields. This page carries
-the measurements behind it: `actor-record-fields.tsv` lists every access to a record the typed scan
-reached through a proven record register, and two further tables list the accesses to the record's
-interior contexts, which code reaches only through the pointers at `+0xB8` and `+0xC0`:
+the measurements behind it: `actor-record-fields.tsv` lists every access to a record, and four further tables
+list the accesses to the record's interiors, which code reaches through the pointers at `+0xA0`, `+0xA8`, `+0xB8`
+and `+0xC0` of a record it holds:
 
 | Table | Region | Rows |
 |---|---|---|
-| `actor-record-fields.tsv` | the record itself | 1,130 |
-| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 708 |
-| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 309 |
-| [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 14 |
-| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the resource entries behind `+0xA0` | 82 |
+| `actor-record-fields.tsv` | the record itself | 1,221 |
+| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 759 |
+| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 389 |
+| [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
+| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the resource entries behind `+0xA0` | 88 |
+
+Every way to a record was followed: the manager pools and the static records the table's own rows resolve, the
+handle resolver `0x003588B0` and the current-actor getter `0x00358940`, the 251 functions proven to take a record in an
+argument register, and the pointers all of these pass on; the 35 other functions that reference the manager slots
+`0x02098E10` touch slot fields, not records. The interiors were followed from every record so held, through their
+pointers and through the entry resolvers `0x003DB550` and `0x002651A0`.
 
 ### The regions
 
@@ -53,7 +59,7 @@ Each table has one row per access site:
 | `disp` | the offset reached, relative to the record or to the context |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on |
 | `instruction` | the instruction text |
-| `route` | how the scan knew the register held the object: a seed accessor's return, or an argument passed by a named caller at a named site |
+| `route` | how the function reached the object: `the record pool or a static record` when it resolved the record itself, `argN from F at S` when the object came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S (`argN+0xK` when offset by K), `actor +0xP, the actor as argN from F at S` or `actor +0xP, the actor in R` when the function loaded the interior from a record it held in that argument or register, `chain from the record: ...` for the slot and entry arrays walked from the record's counts, and `ctor` for the record constructor |
 | `note` | `idx` when an index register takes part |
 
 ## Data

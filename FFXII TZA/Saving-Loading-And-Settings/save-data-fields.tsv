@@ -5,6 +5,8 @@ offset	region	function	site	kind	instruction	via
 0x0	whole payload	0x002EF650	0x002EF663	set	call 0x861ec0 (memset, 0x56690 bytes: the whole image)	0x02164280
 0x0	whole payload	0x0057E310	0x0057E42F	copy	mov qword ptr [rdi + 0x100], 0x56690 (the write request's length: the whole image to the slot file)	file kind 8
 0x0	whole payload	0x00580EB0	0x00581117	copy	mov dword ptr [rbp + 7], 0x56690 (the read request's length: the slot file into the whole image)	file kind 9
+0x0	whole payload	0x00866A00	0x00866A4D	copy	mov byte ptr [r10 + rdi], dl (byte loop: the stream's bytes into the caller's buffer, the whole image on a load)	file kind 9
+0x0	whole payload	0x00866AD0	0x00866B19	copy	movzx eax, byte ptr [rbx] (byte loop: the caller's buffer into the stream, the whole image on a save)	file kind 8
 0xA00	script globals	0x002EF390	0x002EF3A0	r	cmp byte ptr [rax + rbx + 0xc00], 1	
 0x1000	quest ordered bits	0x0046B0F0	0x0046B105	r	movzx r8d, byte ptr [rax + rdi + 0x1000]	
 0x1000	quest ordered bits	0x0046B240	0x0046B274	r	test byte ptr [rax + rdi + 0x1000], dl	
