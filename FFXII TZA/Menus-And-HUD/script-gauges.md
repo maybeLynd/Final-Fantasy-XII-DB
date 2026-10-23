@@ -197,6 +197,33 @@ The gauge window is the `0xE8`-byte widget at `0x02B62D80` with procedure `0x004
                                                 0x00406EF7)
 ```
 
+## State
+
+The gauge verbs keep a small block at `0x02B5D090`: the open byte `0x02B5D090` (set by `0x003E9020`, cleared by `0x003E90E0`
+and `0x003E9100`), the kind byte `0x02B5D091`, and the four colours `setgaugecolor` hands to the gauge, `0x02B5D098` to
+`0x02B5D0A4`.
+
+`setgaugecolor` (`0x00357270`) pops five values and calls `0x003E9120(i, r, g, b, a)` (`0x003572CB`), which:
+
+- limits `i` to 0..3 (`0x003E9123`-`0x003E9134`);
+- packs the four bytes as `r | g << 8 | b << 16 | a << 24` and stores them in entry `i` of the table
+  (`0x003E9154`-`0x003E9160`);
+- passes all four entries to `0x00408780` (`0x003E9163`-`0x003E917D`).
+
+The gauge's own colours are therefore the table's: the three entries the verb does not name are the ones the last
+`initgauge` or `setgaugecolor` left, and an entry packed as `0xFFFFFFFF` (all four values 255) leaves that colour of
+the gauge as it was.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B5D091` | `u8` | 0 | the kind `initgauge` was given, its one argument (`0x0034DC79`-`0x0034DC88`), stored before the kind is turned into the type | `0x003E9020` (`0x003E903D`) | none (Project notes) |
+| `0x02B5D09C` | `u32` | 0 | colour entry 1, the gauge's second colour (`+0xFC`, `0x004087B6`): green 0x80, blue 0x80, alpha 0x80 at every open | `0x003E9020`, `0x80808000` (`0x003E9054`); `0x003E9120` for `i` = 1 (`0x003E9160`) | `0x003E9120` (`0x003E9171`) |
+| `0x02B5D0A0` | `u32` | 0 | colour entry 2, the gauge's third colour (`+0x100`, `0x004087C2`): red 0x80, green 0x80, alpha 0x80 at every open | `0x003E9020`, `0x80008080` (`0x003E905E`); `0x003E9120` for `i` = 2 (`0x003E9160`) | `0x003E9120` (`0x003E916A`) |
+
+At every open `0x003E9020` also stores `0x80008000` (green 0x80, alpha 0x80) in entry 0 (`0x003E904A`) and `0x80000080`
+(red 0x80, alpha 0x80) in entry 3 (`0x003E9068`); it does not pass them to the gauge, whose counter starts with the
+colours `0x00407F90` gives it.
+
 ## Modding notes
 
 - `initgauge 3` leaves the gauge without a child and reads a null layout record; use kinds 0 to 2. No shipped

@@ -491,6 +491,21 @@ from the layout's nodes (`0x0055CE07`-`0x0055CE61`).
 
 No other instruction reaches these three.
 
+The member picker draws its miniature boards with the menu picture `lic_4_c` (`Tm2_Menu\lic_4_c.tm2`, kind 7, id
+`0x79`), which the game requests once at start-up: the start-up step `0x0022A4B0` calls `0x00556500` (`0x0022A4DC`), which
+takes one of the twelve request batches (`0x002486B0`) with the callback `0x00556560`, which sets `0x02CA8F94` to 1, and
+files the picture in it through `0x002493D0` (`0x00556541`).
+
+On opening, `0x00560910` waits until `0x02CA8F94` is non-zero (`0x00560A55`-`0x00560A62`), then copies the picture to its own
+`+0xE0` (`0x00560A78`), where `0x00560610` reads it for each miniature (`0x0056065D`); closing clears that copy
+(`0x0056099E`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA8FD8` | `void*` | 0 | the texture entry of `lic_4_c`, the one `0x002493D0` returns from the 64-entry table `0x0208F580` | `0x00556500` (`0x00556549`) | `0x00560910` (`0x00560A6C`) |
+
+No other instruction reaches `0x02CA8FD8`.
+
 ## Modding notes
 
 - The view is the board file plus one row and column; a larger board needs `+0x559`/`+0x55A` to fit a byte.

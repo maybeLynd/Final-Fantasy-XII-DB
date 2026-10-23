@@ -100,14 +100,25 @@ The reader and the writer go through a wide-character file buffer whose vtable i
 (`0x001982FB`, `0x0019840F`), which grows the string's buffer with `0x00195820`.
 
 The number in a `[KeyboardN]` header, minus one, is the profile, which starts at -1 before any header, and
-nothing tests it (`0x0019834A`-`0x0019834C`): a binding is stored at `0x01F80F90 + 0x70 * profile + 4 * slot` when its
-name matches (`0x0019849B`-`0x001984E9`), with set 1's slots 0-15 at `+0x00`, set 2's at `+0x40` and set 3's at
-`+0x60`. So:
+nothing tests it (`0x0019834A`-`0x0019834C`). Each of the three name groups has its own base: group 0 (buttons)
+`0x01F80F90` (`0x001984BF`), group 1 (sticks) `0x01F80FD0` (`0x001984AF`) and group 2 (extras) `0x01F80FF0` (`0x0019849F`).
+A binding whose name is entry *i* of its group is stored at `base + 0x70 * profile + 4 * i` (`0x0019849B`-`0x001984E9`).
+So:
 
-- a binding before the first header, or under `[Keyboard0]`, lands in the `0x70` bytes below the profiles, the end
-  of the path buffer at `0x01F80D90`;
-- under `[Keyboard4]` it lands in the `0x70` bytes above them, `0x01F81090`-`0x01F810FF`, where a set-3 binding reaches
-  the pause byte's pointer `0x01F810F0` and the first AsyncJobManager at `0x01F810F8`;
+- a binding before the first header, or under `[Keyboard0]` (profile -1), lands in the `0x70` bytes below the
+  profiles, `0x01F80F20`-`0x01F80F8F`, the end of the path buffer at `0x01F80D90`;
+- under `[Keyboard4]` (profile 3) it lands in the `0x70` bytes above them, `0x01F810E0`-`0x01F8114F`: buttons at
+  `0x01F810E0`-`0x01F8111F`, sticks at `0x01F81120`-`0x01F8113F` and extras at `0x01F81140`-`0x01F8114F`. Each binding below
+  overwrites half of an 8-byte word:
+  - Select and L3: the word `0x01F810E0`, which the reader and the writer load (`0x001980DC`, `0x00199486`);
+  - R3 and Start: the object pointer `0x01F810E8` that `0x00194F50` publishes (`0x00195028`);
+  - Up and Right: the pause byte's pointer `0x01F810F0`;
+  - Down and Left: the first AsyncJobManager `0x01F810F8`; L2 and R2: the second, at `0x01F81100`;
+  - Triangle and Circle: the archive manager `0x01F81110`;
+  - Speed1 and Speed2: the word `0x01F81140`, read by `0x0019B8C0`, `0x0019B990`, `0x0019C031` and `0x00202930`;
+  - Speed3 and WalkMode: the object pointer `0x01F81148` that `0x0019B2F0` publishes (`0x0019B3C8`).
+
+  An L1 binding overwrites the byte `0x01F81108`, which `0x0080C440` sets to 1 (`0x0080C4D0`);
 - any larger or negative number reaches `0x70 * (N - 1)` bytes from the table in either direction.
 
 Only profiles 1-3 are ever read back (`0x001965E0`, `0x00196550`, `0x00198B60`).

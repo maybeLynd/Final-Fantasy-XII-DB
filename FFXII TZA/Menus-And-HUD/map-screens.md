@@ -696,6 +696,30 @@ The World Map's route draw keeps the route picture's size, which `0x005520F0` re
 
 No other instruction reaches these globals. The one indexed table near `0x01F2CAF8`, `[0x01F2CA10 + 8i]` in `0x0053AB50`
 (`0x0053C807`), takes an index of at most 23 (`0x0053C7AB`-`0x0053C7F9`), so it ends at `0x01F2CACF`.
+
+The same line-state call also fills a `0x54`-byte block at `0x02CA9680` for the two route draws: `0x00562E30` passes its
+own arguments to `0x00563430` (`0x00562E89`), whose fifth argument is the four floats at `+0x8C` of `0x005520F0`'s second
+argument (`0x005521F2`).
+
+- `0x02CA9680`-`0x02CA96BF` is a 4 x 4 matrix. `0x00563430` makes it the identity (`0x00203170`, `0x00563445`), stores 1.0 at
+  `0x02CA9680` and `0x02CA9694` (`0x00563474`, `0x0056347E`), and stores the translation 2048 less half the screen
+  (`0x01E0C1D8`, `0x01E0C1DC`) less its third and fourth arguments at `0x02CA96B0` and `0x02CA96B4` (`0x005634C6`, `0x005634BE`).
+- The draws pass every route point through the matrix (`0x00202B70`; `0x005621A0` at `0x00562501` and `0x00562568`,
+  `0x00562A30` at `0x00562BC4` and `0x00562BF5`).
+- Float `+0x00` of the rectangle goes to `0x02CA96C8` (`0x005634F7`).
+- The ribbon's texture comes from the route picture: the first segment takes the column `0x02CA96C0` x width and each
+  further segment the next column (`0x00562D3B`), between the rows `0x02CA96C4` x height and that row plus `0x02CA96CC` x
+  height (`0x00562B0A`-`0x00562B7B`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA96C0` | `f32` | 0 | the ribbon's first texture column as a fraction of the route picture's width (`0x01F2CAF8`): float `+0x08` of the rectangle | `0x00563430` (`0x005634D8`) | `0x005621A0` (`0x005623FB`); `0x00562A30` (`0x00562B1B`) |
+| `0x02CA96C4` | `f32` | 0 | the ribbon's first texture row as a fraction of the picture's height (`0x01F2CAFC`): float `+0x0C` of the rectangle | `0x00563430` (`0x005634E4`) | `0x005621A0` (`0x00562403`); `0x00562A30` (`0x00562B23`) |
+| `0x02CA96C8` | `f32` | 0 | float `+0x00` of the rectangle, stored beside the other three; no route draw reads it | `0x00563430` (`0x005634F7`) | none |
+| `0x02CA96CC` | `f32` | 0 | the ribbon's height in the picture as a fraction of its height: float `+0x04` of the rectangle; the second row is the first plus this times the height | `0x00563430` (`0x005634FF`) | `0x005621A0` (`0x005623F3`); `0x00562A30` (`0x00562B13`) |
+| `0x02CA96D0` | `i32` | 0 | a copy of the World Map line scale `0x01F2CAF4` (16 in the file, `WorldMapLineScale` in [screen layouts](screen-layouts.tsv)): each draw scales a segment's direction to this length (`0x00202FE0`) | `0x00563430` (`0x00563507`) | `0x005621A0` (`0x005625C9`); `0x00562A30` (`0x00562C54`) |
+
+Nothing reaches these five globals beyond the listed instructions.
 ## Modding notes
 
 - An area's map item is listed in `menumap_area.bin`; owning it reveals the area's points without visiting them.
