@@ -37,7 +37,8 @@ stack depth at `0x02099AC0` before anything else, then checks the actor's flag b
 `+0x13` bit 0 is set or `+0x10C` is non-zero, `+0x0B` bit 5 must be set or the call returns 1
 without it.
 
-The loop runs at most `0x10000` instructions per call. Each iteration fetches the opcode byte at
+The loop has a budget of `0x10000` instructions per call (`0x0025E4FA`), which ends the call only
+through the stop rule below. Each iteration fetches the opcode byte at
 the PC; for opcodes at or above `0x47` it also pre-decodes a little-endian 16-bit operand from the
 two following bytes, which is one opcode early (`0x47` has length 1).
 
@@ -53,12 +54,28 @@ Two epilogues end a handler. `0x0025E60A` raises the stop request and falls into
 advances the PC by the instruction's length, read as a signed word at `0x01EFEA60 + opcode × 24`:
 0 for `0x00` to `0x02`, 1 for `0x03` to `0x47`, 3 for `0x48` to `0x63`.
 
-At the loop head a stop
-request with an empty stack ends the call; with values still on the stack it clears them and
-continues. Budget exhaustion follows the same rule: with values on the stack it clears them and
-runs one more instruction before the second test exits. The exit stores the PC into the wait slot
-and returns 0 when the opcode it stopped on is `0x58`, `0x59`, `0x5D` or `0x5E`, a native call
-left busy, and 1 otherwise.
+Every loop head decrements the budget counter, a signed dword (`0x0025E570`), and a negative result
+raises the stop flag (`0x0025E57B`-`0x0025E57D`). With the flag raised:
+
+- an empty stack ends the call (`0x0025E58A`-`0x0025E58D`), the only jump to the exit;
+- a non-empty stack is cleared to depth 0 (`0x0025E593`-`0x0025E596`) before the next instruction runs.
+
+The counter first goes negative at the head after instruction 65,536 and stays negative through
+head 65,536 + 2^31, 2^31 heads in all, each of which raises the flag again. So once the budget is
+spent, the call ends at the first of those heads that finds the stack empty: every instruction that
+leaves a value on the stack is followed by one more.
+
+A push at depth 63 is refused and the PC advances as usual (`0x0025E696`-`0x0025E69A`, `0x0025F226`; the
+int push `0x00267F90` at `0x00267F93`-`0x00267F96`), so the push limit never ends the loop. Once the budget
+is spent the clear resets the depth before each instruction, so no push is refused.
+
+The stop arm, the wait arms and a busy native call raise the same flag. The CALL handlers store the
+result of `0x002621D0` into it (`0x002619BB`, `0x00261A1E`, `0x00261AD9`), so a finished verb lowers it. The
+return opcodes `0x2D` to `0x30` store 1 or the result of `0x0025B400`, which is 1 or 0 (`0x0025B441`,
+`0x0025B45F`), into it (`0x002612F5`, `0x00261397`, `0x0026146F`, `0x002614D7`), so a return can raise or lower it.
+
+The exit stores the PC into the wait slot (`0x00261DD3`) and returns 0 when the last opcode run is `0x58`,
+`0x59`, `0x5D` or `0x5E` (`0x00261DC1`-`0x00261DE3`), and the flag's value otherwise (`0x00261DE6`).
 
 ### The value stack
 
@@ -174,7 +191,7 @@ instruction: u8 opcode, then u16 operand for 0x48..0x63
 | opcodes / distinct handlers | 100 / 92 |
 | instruction lengths | 0 ×3, 1 ×69, 3 ×28 |
 | opcodes without a handler | 6, none used by any shipped script |
-| instruction budget per call | 65,536 |
+| instructions per call before the budget raises the stop flag | 65,536 |
 | value stack | 64 entries, pushes refused at 63 |
 | rewind sites / advance sites | 21 / 4 |
 | interpreter body | 14,646 bytes, one call site |
@@ -182,8 +199,9 @@ instruction: u8 opcode, then u16 operand for 0x48..0x63
 ## Operations
 
 Per frame: the field runtime pass runs the driver for every actor; the driver runs the
-interpreter for every actor whose wait slot is kind 1 or 2. Per call: budget, gate, fetch,
-dispatch, advance or rewind, until a stop with an empty stack, a busy native call or the budget.
+interpreter for every actor whose wait slot is kind 1 or 2. Per call: gate, then budget, fetch,
+dispatch, advance or rewind, until a loop head finds the stop flag raised and the stack empty; a stop
+instruction, a wait, a busy native call, a return and the spent budget can raise the flag.
 
 ## State
 

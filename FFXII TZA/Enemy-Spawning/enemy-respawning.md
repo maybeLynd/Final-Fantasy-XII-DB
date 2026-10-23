@@ -138,12 +138,18 @@ the checklist without dying.
 
 ### Completing a group
 
-`0x00306F00(unit)` runs on every lethal branch of the HP modifier; its own gates keep only a kind-1
-unit with a non-zero group byte. With the same gates as the registration and the same slot
-resolution it sets `group table[group - 1].deadMask |= bit` (`0x00306F78`) and tests
-`(memberMask & deadMask) == memberMask` (`0x00306F7C`-`0x00306F83`). The test is a mask comparison,
-not a count: killing a member twice changes nothing, a unit outside the member mask cannot complete
-the group, and a group with an empty member mask completes on its first death.
+`0x00306F00(unit)` runs on every lethal branch of the HP modifier. Its gates return 0 for a null unit,
+a null stats record `+0x698` or one whose byte `+5` is not 1 (`0x00306F09`-`0x00306F26`), a group byte
+`+0xE98` of 0 (`0x00306F31`-`0x00306F3A`) and a negative slot from `0x002360D0` (`0x00306F4B`-`0x00306F55`),
+the same gates and slot resolution as the registration. Past them it sets
+`group table[group - 1].deadMask |= bit` (`0x00306F78`) and tests `(memberMask & deadMask) == memberMask`
+(`0x00306F7C`-`0x00306F83`).
+
+The test is a mask comparison, not a count, and nothing before it reads whether the bit is in the
+member mask or whether the group has already completed. Every call that passes the gates while the
+dead mask covers the member mask takes the completion branch, whether its bit is a member's not yet
+recorded, a member's already recorded, or outside the member mask. With an empty member mask, every
+call that passes the gates takes it.
 
 On completion it locks the party (next section) and chooses an arm by `+0xE99` bit 0:
 
@@ -154,8 +160,15 @@ On completion it locks the party (next section) and chooses an arm by `+0xE99` b
   (`0x00325185`) and, when bit 47 is set (`0x0032519C`), calls `0x00307110`, which clears bit 47 and
   sets the group table flag (`0x0030711A`-`0x00307133`).
 
-Nothing remembers that a group completed. A member that respawns and re-registers clears its dead
-bit, and its next death completes the group again: a room can be cleared twice.
+`0x00306F00` reads no record of an earlier completion. The flag bit 0 that both arms set (`0x00306FE0`,
+and `0x00307133` in `0x00307110`) is tested only by `0x00307030` and `0x003070E0`, and cleared by `0x00307030`
+and the reset `0x00307090`.
+
+The completion branch stores into neither mask: of the code that addresses the table (`0x02EC13C0`,
+`0x02EC13D0`, `0x02EC19D0`), the masks' only writers are `0x00306E60`, `0x00306F00` at `0x00306F78` and
+`0x00307090`. So every later call that passes the gates runs the branch again while the dead mask still
+covers the member mask. A member that re-registers clears its own dead bit (`0x00306EEA`); the test then fails
+until a call sets that bit again.
 
 ### The lock
 
@@ -170,9 +183,11 @@ Three calls run on every completion, each with argument 1 (`0x00306F95`-`0x00306
 - `0x00238AE0(on)` sets or clears `0x02089340` bit 7.
 
 The zone script releases the lock with the same calls' off forms through its own verbs; the group table
-never releases it. The next area entry does clear the two `0x02089340` bits: `0x002342F0` opens with
-`0x02089340 = (0x02089340 & 0xFFFFC01E) | 0x10`, which also clears the "nothing pending" bit 1; the
-row-12 inhibitions stay until their off form runs.
+never releases it. The next area entry does clear the two `0x02089340` bits: `0x002342F0`, when `0x02089300` is
+non-zero (`0x002342F4`), opens with `0x02089340 = (0x02089340 & 0xFFFFC01E) | 0x10` (`0x0023432D`, `0x00234339`,
+stored at `0x00234343`). The AND clears bit 0 and bits 5 to 13, among them the lock bits 5 and 7 and the
+gate bits 8 to 11, and keeps bits 1 to 4 and 14 to 31, so the "nothing pending" bit 1 is kept; the OR sets
+bit 4. The row-12 inhibitions stay until their off form runs.
 
 ### Delivering the completion to the script
 

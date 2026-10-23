@@ -70,7 +70,14 @@ Each of the two slots at `+0x120` of the map-data widget is `0xA8` bytes.
 +0x14    u8[4]           gap14                  read and written by no function; nothing fixes its width
 +0x18    ptr[18]         pictures               the registered pictures loca_<fieldId>_<variant>, one handle per key
                                                 whose offset is not -1 (0x0024A480 in 0x003C26C0); released with 0x0024A680
-                                                and cleared by 0x003C22B0 and 0x003C2210 (0x003C2249-0x003C2268)
+                                                and cleared by 0x003C22B0 and 0x003C2210 (0x003C2249-0x003C2268); the
+                                                registering loop stores a handle only where the qword is still 0
+                                                (0x003C2780-0x003C2784) and runs over the key count +0x13, offset -1
+                                                keys included, with no test against 18 (0x003C283A): from the first
+                                                slot the 19th key lands on the second slot's +0x00 file pointer,
+                                                written only while that slot holds no file; from the second slot it
+                                                lands on the widget's +0x270 areaBits, and later keys past the
+                                                widget's 0x278 bytes
 ```
 
 ### The map-data widget's fields

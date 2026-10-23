@@ -86,12 +86,15 @@ Callers of `0x00314440`: the mapjump poll (`0x003553CF`), `0x00280140` (`0x00280
 3. The transition record in the persistent payload (`0x002EF2B0`): `+0x104C` = old `+0x1044`; `+0x1044`
    = map, also copied to `0x01EED064`; `+0x1050` = old `+0x1048`; `+0x1048` = entrance; `+0x1054` = mode;
    `+0x1058` = `0x00264F90(map)`, the persistence group; `+0x105C` = map; `+0x1062` bit 5 cleared.
-4. `0x022C2540` = 0; `0x002EFA70(3, 0, 1)` (fade slot 3).
-5. When `0x01EED064` is non-negative: `s = 0x00236760()` (bit 12 of `[0x02EBF190]+4`). For a destination
-   other than `0xC`, when `s` is 0 the map id is written to the runtime buffer at `0x002EF640() + 0x4E664`
-   and `0x003C8670()` runs. For destination `0xC`: `0x00287D00(0)` and `0x01E0C3EC` = 1.
-6. Autosave: when `0x0020E500(map, 0x00265270(), entrance)` returns non-zero, `0x00229B40`, `0x005844A0`,
-   `0x00584580` and `0x00583260` capture the runtime state and open the save writer.
+4. `0x005C5230()`, which returns 0 (`0x003146E5`); `0x022C2540` = 0; `0x002EFA70(3, 0, 1, 0)` (fade slot 3, `0x00314700`).
+5. Steps 5 and 6 run only when `0x01EED064` is non-negative (`0x00314705`-`0x0031470C`): `s = 0x00236760()` (bit 12 of
+   `[0x02EBF190]+4`). For destination `0xC`: `0x00287D00(0)` and `0x01E0C3EC` = 1. For any other destination the
+   map id is written to the runtime buffer at `0x002EF640() + 0x4E664` only when `s` is 0 (`0x00314731`), and
+   `0x003C8670()` runs whatever `s` is (`0x00314744`).
+6. Autosave: when `0x0020E500(map, 0x00265270(), entrance)` returns non-zero (`0x00314774`-`0x0031477B`), staging
+   zeroes three stack buffers of `0x80`, `0x80` and `0x400` bytes, then `0x00229B40(s)`, `0x005844A0(buffers, 1, s)`,
+   `0x00584580()` and `0x00583260()` (`0x003147BB`-`0x003147E9`) capture the runtime state and create the autosave
+   widget `0x0057E4D0`. Staging then returns 0, and the funnel goes on to `0x0026A5F0(0)` and the slot-2 fade.
 
 Field `0xC` is the title map (`ttl_a01`, see the file table below): a request for map 0 becomes `0xC`
 when the input channel mode is 0, and staging `0xC` skips the runtime-buffer write.

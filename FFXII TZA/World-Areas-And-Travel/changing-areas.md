@@ -16,15 +16,21 @@ Nothing moves while the screen is dark, and a second jump asked for in that time
    game-over and KO paths, the debug menu and the load-completion callbacks all reach the one funnel `0x00314440`; a
    request while a jump is pending is dropped ([zone changes](zone-changes-and-mapjump.md#the-request),
    [save and teleport crystals](save-and-teleport-crystals.md), [game over](game-over.md)).
-2. **Staging.** `0x003145E0` drains the resource queue, requests actor managers 1 to 3 for reinitialisation and writes
-   the transition record in the save payload: the old and new map and entrance, the mode and the persistence group;
-   back in the funnel, `0x0026A5F0(0)` requests manager 0
+2. **Staging.** `0x003145E0` drains the resource queue, requests actor managers 1 to 3 for reinitialisation, writes
+   the transition record in the save payload (the old and new map and entrance, the mode and the persistence group)
+   and calls `0x002EFA70(3, 0, 1, 0)` on fade slot 3 (`0x00314700`)
    ([zone changes](zone-changes-and-mapjump.md#staging-and-the-transition-record),
    [save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
-3. **The fade-out.** Unless the mode's bit 0 is set, fade slot 2 starts when it is idle
-   ([screen fades](../Graphics/screen-fades.md)).
-4. **The autosave test.** When the destination asks for one, the runtime state is captured and the save writer opens
-   ([saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md)).
+3. **The autosave test.** Still inside staging, when `0x0020E500(map, 0x00265270(), entrance)` returns non-zero
+   (`0x00314774`-`0x0031477B`), the runtime state is captured (`0x003147BB`, `0x003147DF`, `0x003147E4`) and the autosave
+   widget `0x0057E4D0` is created (`0x00583260` at `0x003147E9`)
+   ([saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md)):
+   - the widget queues the write to slot 0;
+   - it completes when the result `0x003BB420()` is 0 and opens the insufficient-disk-space popup when it is not
+     (`0x0057E53C`-`0x0057E599`).
+4. **The fade-out.** After staging returns, the funnel requests manager 0 with `0x0026A5F0(0)` (`0x003144A1`); then,
+   unless the mode's bit 0 is set (`0x003144A6`), fade slot 2 starts when `0x002EFD20(2)` reports it idle
+   (`0x003144B1`-`0x003144E5`) ([screen fades](../Graphics/screen-fades.md)).
 5. **The teardown.** On the next simulation tick `0x00314020` reinitialises and unloads every requested manager before
    any actor runs, releasing what each manager held
    ([actor managers](../Characters-And-Objects/actor-managers.md),

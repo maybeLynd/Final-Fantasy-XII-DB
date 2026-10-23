@@ -111,6 +111,9 @@ with nothing read. No call site of `0x0032E620` passes kind 6, 27 or 31.
   returns −1 for kind `0xFF`, consults a per-kind override pointer at `0x022C51F0` first (which only
   `0x0032EA90`'s zero-clear writes, so it is always null), and otherwise rounds a positive table size up
   to a multiple of 64.
+- **The path.** `0x002DF980(kind, id)` returns the file's path, `[[0x0215F000 + kind × 8] + id × 8]`
+  (`0x002DF980`-`0x002DF995`); `0x001BB2B0` takes a character's asset-list name from the model path it returns
+  ([prefetch manifests](prefetch-manifests.md)).
 - **The staged head read.** `0x0032EB40(slot, kind, id)` takes the same size and, when it is above
   `0x800`, requests only the first 2 KB into `0x022C5C00 + slot × 0x800`.
 - **The read.** The read issuer `0x002DF780(kind, id, dest, bytes, offset)` does nothing for an entry of

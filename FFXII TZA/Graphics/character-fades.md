@@ -189,6 +189,12 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
 | `+0x40` | `f32[4]` | colour | (r, g, b, a); +`0x4C` is also the lowest weight |
 | `+0x50` | `u32` | stamp from 0x00181DD0() |  |
 
+- `0x003B4160` takes the first of the 64 records whose `+0x00` is 0 and returns 0 when none is free
+  (`0x003B4182`-`0x003B4193`); it gives the record the next serial from `0x02B404C4`, wrapping to 1 above
+  `0xFFFFFF` (`0x003B41AB`-`0x003B41BB`), and stores `serial << 8 | slot` at `+0x00` (`0x003B41ED`-`0x003B41F2`),
+  which is never 0, the serial being 1 to 0xFFFFFF (its only writers are `0x003B41BB` and the reset's `0x003B480E`).
+- A record is freed by storing 0 at its `+0x00`: `0x003B42B0` at `0x003B42DC`, `0x003B4840` at `0x003B48D7`, and the
+  reset `0x003B4790`, which zeroes all 64 records and the serial (`0x003B480E`-`0x003B481D`).
 - `0x003B4840`, from `0x00258D70` and `0x00258E40`, steps every record whose stamp is non-zero or while
   `0x00181DD0()` returns 0: it adds one to the age and the frame, wraps the frame past the period,
   sets the phase to `frame / period` (at most 1), and unlinks the record once its age passes a

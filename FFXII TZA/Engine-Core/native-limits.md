@@ -19,7 +19,7 @@ Values are exact. A count and its highest index are separate rows where both mat
 | Combat | 9 | 32 targets per action, 32 noticed units per enemy, 11 combo hits, action ids up to `0x21E` and orders `0x4000`-`0x4166`, the 60,000 deposit bank, the 10,000 gil-toss sum |
 | Items, licences, party | 6 | 99 of an item, 99,999,999 gil, 3 MP bars, 12 gambit slots, licence members 0-39, 64 grants per scenario preset |
 | Menus and input | 10 | 17 rows per gambit page, row 682 of a 48-pixel list, 11 statuses per party row, `0x4000` text index words, 127-character keymap lines |
-| Scripts, maps and actors | 12 | 128 models bound per map, `s16` variables clamped to -32,767 to 32,768, 65,536 instructions per script call, 32 binding lanes, 512 manager points, scene slots 1-3 |
+| Scripts, maps and actors | 12 | 128 models bound per map, `s16` variables clamped to -32,767 to 32,768, a 65,536-instruction budget per script call, after which the call ends at the first instruction boundary with an empty stack, 32 binding lanes, 512 manager points, scene slots 1-3 |
 | Resources, files and saves | 16 | 1,024 outstanding load requests, 32 effect tickets, 512 item pictures, 18 sloc pictures, 31-character section names, a 1 MiB save image, the 2 GB quest buffer bound |
 | Movement | 5 | 128 route steps, 128 cells per collision sub-step, 4 placed party units, the wrapping cell occupancy byte |
 | Rendering | 8 | 6 directional lights per character, 32 light groups, 16 event lights, 64-entry effect actor tables, presentation command ids `0x00`-`0x48`, 5,000 render commands |
