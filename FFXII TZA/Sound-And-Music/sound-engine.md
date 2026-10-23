@@ -347,13 +347,21 @@ argument at `+0x10` (`0x007A5557`-`0x007A555B`). All of these are 0 in the file 
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02EACFD0` | `void*` | 0 | the spatial layer thread's handle | `0x001696D0`, 0 (`0x001696D9`); `0x007A5B50`, from `CreateThread` (`0x007A5D73`) | `0x007A5B50`, to set the thread's affinity (`0x007A5D94`) |
+| `0x02EACF70` | `void*` | 0 | the driver update thread's handle, from `_beginthreadex` | `0x00169660`, 0 (`0x00169669`); `0x007A4D50` (`0x007A5238`) | `0x007A4D50`, to set the thread's affinity mask from start-up block `+0x4C` unless that is -1 (`0x007A5259`) |
+| `0x02EACF78` | `void*` | 0 | `+0x08` of that thread's block: its body `0x007A5400` | `0x00169660` (`0x00169670`); `0x007A4D50` (`0x007A51FE`) | `0x007A5550`, through the block's address (`0x007A51F7`) |
+| `0x02EACF80` | `void*` | 0 | `+0x10` of that block: the body's argument, 0 | `0x00169660` (`0x00169677`); `0x007A4D50` (`0x007A522B`) | `0x007A5550`, through the block's address |
+| `0x02EACF88` | `i32` | 0 | 0, stored with an exchange whose old value is not used | `0x00169640` (`0x00169649`); `0x007A4D50` (`0x007A4DC5`) | only those two exchanges |
+| `0x02EACF8C` | `u8` | 0 | the update thread's stop flag: the thread ends when it is not 0, and nothing stores anything but 0 | `0x007A4D50`, 0 (`0x007A5210`) | `0x007A5400` (`0x007A5411`, `0x007A552C`) |
+| `0x02EACF8D` | `u8` | 0 | 1 once the driver has started: a second start returns at once, and the spatial layer's start `0x007A5B50` asks `0x007A52B0` for it first (`0x007A5B7E`) | `0x007A4D50`, 1 (`0x007A5224`) | `0x007A4D50` (`0x007A4D73`); `0x007A52B0` (`0x007A52B0`) |
+| `0x02EACF90` | `u64` | 0 | the clock count (`0x007AD630`) at the update thread's last pass; the pass time is the difference over the clock rate (`0x007AD670`) | `0x007A4D50` (`0x007A4ED0`); `0x007A5400` (`0x007A548C`) | `0x007A5400` (`0x007A545D`) |
+| `0x02EACF98` | `void*` | 0 | start-up block `+0x10`: the address of `+0x28` of the sound object `[0x01FD36A0]` (`0x00210814`), whose class `0x00906A18` has the return stub `0x0016D6A0` in slots 1 to 3 | `0x007A4D50` (`0x007A4DCF`) | `0x007A5400`, which calls its slot 1 before each pass (`0x007A5440`) and slot 2 after it (`0x007A550F`); `0x007A5570`, which formats each driver message and hands it with its level to slot 3 (`0x007A559A`, `0x007A5622`) |
+| `0x02EACFD0` | `void*` | 0 | the spatial layer thread's handle | `0x001696D0`, 0 (`0x001696D9`); `0x007A5B50`, from `_beginthreadex` (`0x007A5D6D`, import `0x008C2D70`; stored at `0x007A5D73`) | `0x007A5B50`, to set the thread's affinity (`0x007A5D94`) |
 | `0x02EACFD8` | `void*` | 0 | `+0x08` of that thread's block: its body `0x007A5E50` | `0x001696D0` (`0x001696E0`); `0x007A5B50` (`0x007A5D46`) | `0x007A5550`, through the block's address (`0x007A5D1D`) |
 | `0x02EACFE0` | `void*` | 0 | `+0x10` of that block: the body's argument, 0 | `0x001696D0` (`0x001696E7`); `0x007A5B50` (`0x007A5D66`) | `0x007A5550`, through the block's address |
 | `0x02EACFE8` | `u8` | 0 | 1 once the spatial layer has started; a second start returns at once | `0x007A5B50` (`0x007A5D54`) | `0x007A5B50` (`0x007A5B6B`) |
 | `0x02EACFE9` | `u8` | 0 | the spatial thread's stop flag: the thread ends when it is not 0, and nothing stores anything but 0 | `0x007A5B50`, 0 (`0x007A5D3F`) | `0x007A5E50` (`0x007A5E54`, `0x007A5EF0`) |
 | `0x02EACFF0` | `u64` | 0 | the clock count (`0x007AD630`) at the spatial thread's last pass; the pass time is the difference over the clock rate | `0x007A5B50` (`0x007A5D2F`); `0x007A5E50` (`0x007A5EBA`) | `0x007A5E50` (`0x007A5E8B`) |
-| `0x02EAD810` | `void*` | 0 | the job worker thread's handle | `0x00169F50`, 0 (`0x00169F59`); `0x007B6F70`, from `CreateThread` (`0x007B6FEA`) | `0x007B6F70`, to set its affinity (`0x007B7006`) |
+| `0x02EAD810` | `void*` | 0 | the job worker thread's handle | `0x00169F50`, 0 (`0x00169F59`); `0x007B6F70`, from `_beginthreadex` (`0x007B6FE4`, import `0x008C2D70`; stored at `0x007B6FEA`) | `0x007B6F70`, to set its affinity (`0x007B7006`) |
 | `0x02EAD818` | `void*` | 0 | `+0x08` of the worker's block: its body `0x007B6D40` | `0x00169F50` (`0x00169F60`); `0x007B6F70` (`0x007B6FA4`) | `0x007A5550`, through the block's address (`0x007B6F9B`) |
 | `0x02EAD820` | `void*` | 0 | `+0x10` of that block: the argument, 0 | `0x00169F50` (`0x00169F67`); `0x007B6F70` (`0x007B6FDD`) | `0x007A5550`, through the block's address |
 | `0x02EAD890` | `u8` | 0 | the job worker's stop flag: the loop ends when it is not 0, and nothing stores anything but 0 | `0x007B6F70`, 0 (`0x007B6FD6`) | `0x007B6D40` (`0x007B6D44`, `0x007B6F43`) |
@@ -364,6 +372,9 @@ argument at `+0x10` (`0x007A5557`-`0x007A555B`). All of these are 0 in the file 
 | `0x02EAE090` | `i32` | 0 | the size of the HCA mixer's silent buffer, its argument's `+0x08` times 512 | `0x007DCD70` (`0x007DCD9A`) | `0x007DCD70` (`0x007DCDA5`); `0x007DCE20` (`0x007DCFF2`) and `0x007DD040` (`0x007DD1DF`), which hand the buffer to the voice's slot at `+0x48` |
 | `0x02EAE098` | `void*` | 0 | that buffer, allocated with tag 5 (`0x007AD550`) and zeroed | `0x007DCD70` (`0x007DCDB1`) | `0x007DCE20` (`0x007DCFF9`); `0x007DD040` (`0x007DD1E6`) |
 | `0x02EAE0A0` | `void*` | 0 | the block callback from the device block `+0x08`, `0x007AF740` (`0x007AEFEC`) | `0x007DDED0` (`0x007DDEFA`) | called by `0x007DF690` under the lock `0x02EAE0B0` when the device asks for a block (`0x007DF6AA`) |
+
+The one address taken near the update thread's block, `0x02EACF68` (`0x007A4190`, `0x008A5AF0`), is a one-time
+initialisation guard and reaches none of it.
 
 ### The external sources
 

@@ -364,6 +364,60 @@ mapping divides by 512 and 448 instead (`0x001B1620`, `0x00213D38`).
 | `+0x28` | `u8` | offscreen | set by begin `0x001E99AA` |
 | `+0x29` | `u8` | firstPending cleared 0x001E84D0 |  |
 
+## State
+
+### The glyph metrics
+
+`0x002AC2F0` reads the next glyph and works out its metrics. It keeps the base width and height `0x0209CC70` and
+`0x0209CC74` and the unscaled advance `0x0209CC78`, then multiplies the four floats from `0x0209CC70` by the text size
+`+0x34` into `0x0209CC60`-`0x0209CC6C`. When the x or y scale `+0x38`, `+0x3C` is not 1.0, it multiplies all four by the
+x scale and the height by the y scale instead (`0x002AC54B`-`0x002AC5A6`).
+
+The drawers read the scaled values to place the glyph's quad and move the pen. These are 0 in the file; the
+eight-byte stores in the lists put 0 in two of them at once.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209CC60` | `f32` | 0 | the glyph's width on screen: `0x0209CC70` x size x x scale | `0x002AC2F0` (`0x002AC56A`, `0x002AC59F`); 0: `0x002AAE40` (`0x002AB703`), `0x002AC5F0` (`0x002AC62E`, `0x002AC7AA`), `0x002AE610` (`0x002AE841`, `0x002AEABB`), `0x002AF340` (`0x002AF624`, `0x002AF74A`, `0x002AF8EA`), `0x002AF960` (`0x002AFB73`), `0x002B0280` (`0x002B03F9`), `0x002B2150` (`0x002B2292`); other values: `0x002AE450` (`0x002AE4FD`), `0x002AEB20` (`0x002AECF1`), `0x002B0280` (`0x002B072E`, `0x002B0751`), `0x002B2150` (`0x002B240D`) | `0x002A9F00` (`0x002AA364`, `0x002AA40F`, `0x002AA498`); `0x002AA800` (`0x002AAAC2`, `0x002AAB3E`, `0x002AAB97`); `0x002AAE40` (`0x002AB203`, `0x002AB296`, `0x002AB2F7`); `0x002AF340` (`0x002AF644`, `0x002AF8C3`); `0x002B0280` (`0x002B0993`, `0x002B0A87`, `0x002B0ACF`); `0x002B2150` (`0x002B2262`, `0x002B23D9`) |
+| `0x0209CC64` | `f32` | 0 | the glyph's height on screen: `0x0209CC74` x size x y scale | `0x002AC2F0` (`0x002AC56A`, `0x002AC59F`, `0x002AC5A6`); 0: `0x002AAE40` (`0x002AB703`), `0x002AC5F0` (`0x002AC62E`, `0x002AC7AA`), `0x002AE610` (`0x002AE841`, `0x002AEABB`), `0x002AF340` (`0x002AF624`, `0x002AF74A`, `0x002AF8EA`), `0x002AF960` (`0x002AFB73`), `0x002B0280` (`0x002B03F9`), `0x002B2150` (`0x002B2292`); other values: `0x002AC5F0` (`0x002ACB71`, `0x002ACB89`, `0x002ACCD6`, `0x002ACDC8`, `0x002ACEE8`, `0x002ACFAC`, `0x002AD75E`, `0x002ADAD7`, `0x002AE017`), `0x002AE450` (`0x002AE51C`), `0x002AE610` (`0x002AEAD1`), `0x002AEB20` (`0x002AED09`), `0x002B0280` (`0x002B072E`, `0x002B0751`, `0x002B0758`, `0x002B0F40`, `0x002B0FBB`, `0x002B105E`, `0x002B10BC`), `0x002B2150` (`0x002B240D`) | `0x002A9F00` (`0x002AA35C`, `0x002AA4FA`); `0x002AA800` (`0x002AAACA`, `0x002AABB6`); `0x002AAE40` (`0x002AB1FB`, `0x002AB31E`); `0x002AEB20` (`0x002AED45`); `0x002AF340` (`0x002AF7B9`, `0x002AF7F0`); `0x002B0280` (`0x002B098B`, `0x002B0B40`); `0x002B2150` (`0x002B2262`, `0x002B239C`, `0x002B23BD`) |
+| `0x0209CC68` | `f32` | 0 | the glyph's advance on screen, which the drawers add to the pen x (`0x002B188B`): `0x0209CC78` x size x x scale, or the one-glyph advance `+0xA9` that `0F 4` sets, which `0x002AC2F0` then clears (`0x002AC5AE`-`0x002AC5CB`) | `0x002AC2F0` (`0x002AC56A`, `0x002AC59F`, `0x002AC5C3`); 0: `0x002AAE40` (`0x002AB70A`), `0x002AC5F0` (`0x002AC638`, `0x002AC7B1`), `0x002AE610` (`0x002AE848`, `0x002AEAC2`), `0x002AF340` (`0x002AF62B`, `0x002AF756`, `0x002AF8F1`), `0x002AF960` (`0x002AFB84`), `0x002B0280` (`0x002B0400`), `0x002B2150` (`0x002B229C`); other values: `0x002AC5F0` (`0x002ACB3A`, `0x002ACCA9`, `0x002ACDB8`, `0x002ACED5`, `0x002ACFA4`, `0x002AD0C7`, `0x002AD144`, `0x002AD756`, `0x002ADACF`, `0x002ADCD0`, `0x002AE009`), `0x002AE450` (`0x002AE529`, `0x002AE5A7`), `0x002AE610` (`0x002AEAC9`), `0x002AEB20` (`0x002AED17`, `0x002AED35`), `0x002B0280` (`0x002B072E`, `0x002B0751`, `0x002B0776`, `0x002B0F1F`, `0x002B0FAC`, `0x002B104A`, `0x002B10D4`, `0x002B11EB`, `0x002B126F`, `0x002B15EC`), `0x002B2150` (`0x002B240D`) | `0x002A9F00` (`0x002AA734`); `0x002AA800` (`0x002AAD9F`); `0x002AAE40` (`0x002AB66A`); `0x002AE610` (`0x002AE7DC`); `0x002AF340` (`0x002AF7A1`, `0x002AF7DC`); `0x002B0280` (`0x002B0D5A`, `0x002B0F5C`, `0x002B0FDE`, `0x002B10F0`, `0x002B188B`); `0x002B2150` (`0x002B2262`, `0x002B23A4`, `0x002B23C5`) |
+| `0x0209CC78` | `f32` | 0 | the glyph's unscaled advance: its width (`0x0017F9C0` of the glyph record's `+0x1C`, or bits 32-36 of its character-map entry) plus the letter spacing `+0x4C`, plus 1.5, or 0.5 when `0x00254A10` answers 0, for a glyph marked by bit 31 of its entry while `+0x40` is not 0 (`0x002AC4B8`-`0x002AC510`) | `0x002AC2F0` (0: `0x002AC316`; `0x002AC510`); `0x002B0280` (0: `0x002B040E`; `0x002B06D3`); 0: `0x002AC5F0` (`0x002AD1D9`), `0x002AF960` (`0x002AFA1F`) | `0x002AC2F0` (`0x002AC55C`); `0x002B0280` (`0x002B0727`) |
+
+Nothing else reads or writes these four: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The addresses taken near them, `0x0209CC3C` by `0x001AF470` (a `UISize.json` cell, [Screen
+layouts](screen-layouts.md)) and `0x0209CC30` by `0x002A84F0` (the end of a loop over `0x0209CC18`-`0x0209CC28`), reach none
+of them.
+
+### The screen-width counter
+
+The drawers `0x002A9F00`, `0x002AA800`, `0x002AAE40` and `0x002B0280` split a line's batch every 1920 units of pen travel.
+When a glyph's right edge over 1920 passes `0x01E0CDF4` and the context's `+0x20` is set, the drawer:
+
+1. flushes the batch (`0x0017F850`) and begins again with `0x0017FA10(context +0xB8, 0x44, 1)`;
+2. reselects the font `0x0209CC30`, `0x0209CC34` (`0x0017FD30`) and the transform `+0x20` (`0x0017FB00`);
+3. adds 1.0 to `0x01E0CDF4` (`0x002B0B35`-`0x002B0BA9` in `0x002B0280`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01E0CDF4` | `f32` | 1.0 | the screen width, in units of 1920, at which the next split falls | 1.0: `0x002B0280` at the start of a draw (`0x002B034D`), `0x002AF960` (`0x002AF9E9`); plus 1.0: `0x002A9F00` (`0x002AA583`), `0x002AA800` (`0x002AAC47`), `0x002AAE40` (`0x002AB3BD`), `0x002B0280` (`0x002B0BA9`) | `0x002A9F00` (`0x002AA4EF`, `0x002AA565`); `0x002AA800` (`0x002AABDB`, `0x002AAC33`); `0x002AAE40` (`0x002AB33D`, `0x002AB3A7`); `0x002B0280` (`0x002B0B35`, `0x002B0B9A`) |
+| `0x01E0CE0C` | `f32` | 10.0 | `0x0024ABC0()` x 4, 15.0 in the 1920 frame, stored when the text painter is set up and the language test `0x00254A10` answers 0 | `0x002B3550` (`0x002B3587`), from `0x0029CE40` | no instruction: no RIP-relative, image-base-relative or 32-bit offset reference reads it |
+
+### Code scratch
+
+A number argument of `0F .` ([Text codes](text-codes.md)) is drawn by `0x002AE610` from a copy of the escape. The
+interpreter and the drawer each copy the escape's four bytes from the selector into their own scratch and set byte 1 to
+`0xFF`. `0x002AE610` reads bytes 1 and 2 through `0x003FFC60` (`0x002AE760`) and draws the number only when byte 1 & `0x7F`
+is `0x7F` (`0x002AE823`). Both scratches hold `2D 80 80 00` in the file, which the copy replaces.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01E0CE04` | `u8[4]` | `2D 80 80 00` | the drawer's copy of a `0F .` escape with a number argument; byte 1, `0x01E0CE05`, is set to `0xFF` | `0x002B0280`: the copy (`0x002B194D`), then `0x01E0CE05` (`0x002B195A`) | `0x002AE610`, called with the address (`0x002B1961`, `0x002B19A2`), through `0x003FFC60` (`0x003FFC68`, `0x003FFC91`, `0x003FFCA9`, `0x003FFCC0`) |
+| `0x01E0CE08` | `u8[4]` | `2D 80 80 00` | the interpreter's copy of the same; byte 1, `0x01E0CE09`, is set to `0xFF` | `0x002AC5F0`: the copy (`0x002ADAFA`), then `0x01E0CE09` (`0x002ADB07`) | `0x002AE610`, called with the address (`0x002ADB98`, `0x002ADBC9`), the same way |
+| `0x01E0CDFF` | `u8` | `0x80` | the last byte of the static code `0F ? 81 n` at `0x01E0CDFC`: `n` with bit 7 set, the argument of `0x002AC2C0(n)` | `0x002AC2C0` (`0x002AC2CA`) | through the address `0x002AC2C0` returns: its one caller `0x003F92B0`, the location text, copies the code into the text with `0x00254F30` (`0x003F92FA`-`0x003F930B`) |
+
+No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them, and the `UISize.json` cells `0x001AF470` registers near them are separate globals.
+
 ## Modding notes
 
 - A text palette entry's second colour is the border colour.

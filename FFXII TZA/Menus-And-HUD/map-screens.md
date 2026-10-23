@@ -426,9 +426,14 @@ The location list pane `0x005542D0` uses row painters installed at `+0x120` of i
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0209E5B4` | `i32` | 0 (zero-filled tail) | 1 after a Map Transparency toggle: the next frame on which `0x001EDE70` answers non-zero skips the map press tests once. `0x001EDE70` returns the frame-rate mode flag `0x01F82E38`, which `0x001EDDC0` sets to 1 for a frame limit of 1 ([Startup constants](../Engine-Core/startup-constants.md)) | `0x00253C70`: 1 on each toggle (`0x00253E45`, `0x00253E5D`), 0 when it skips (`0x00253D98`) | `0x00253C70` (`0x00253D82`) |
+| `0x022C83B8` | `void*` | 0 (zero-filled tail) | the address of the minimap's map record `0x02B45A00`, which `0x003C5E40` returns | `0x0035C560`, from the interface start-up `0x00253970`: 0 with the `0x23C8` bytes from `0x022C8060` (`0x0035C573`), then the address (`0x0035C598`) | no instruction |
+| `0x02B476B8` | `i32` | 0 (zero-filled tail) | the area (`0x003148F0`) whose explored mask the minimap's field set-up loaded into `0x02B45978` (`0x003C5410`); on leaving, the 32 bytes at `0x02B45978` go back into that area's Map record (`0x002551B0`) when the area has a Map entry (`0x003779F0`) | `0x003C5F00`, the field set-up (`0x003C5F77`) | `0x003C5E50`, the teardown (`0x003C5E67`); `0x003C8670`, from the jump staging `0x003145E0` (`0x003C8676`) |
 
 These are all its accesses among the RIP-relative references; no image-base-relative reference or disp32
 displacement names it, a search that finds the control `0x02AEA030` at `0x003B6181` and `0x003B6188`.
+
+No other instruction reaches `0x022C83B8` or `0x02B476B8`: no other RIP-relative, image-base-relative or 32-bit offset
+reference names them, and the one address taken nearby, `0x022C8388` by `0x0035BC50`, reaches `0x022C8388`-`0x022C83A7` only.
 
 ## Modding notes
 

@@ -154,6 +154,22 @@ cursor step (`0x00558549`). Message 2 writes the board's name, `menu_command.bin
 for board 0), as the header, and its description, `menu_message.bin` `0x838` plus the board, split into three lines
 at `+0xD0` by `0x002B5730`.
 
+## State
+
+The table `0x0208EA60` holds one 8-byte window pointer per slot. `0x00241D40` stores itself at the slot it picked
+(`0x00241E48`) and clears it when it closes (`0x0024257E`), both through the slot index.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0208EA68` | `void*` | 0 (zero-filled tail) | slot 1: the second confirm window opened under a root other than `[0x0208EA38]` and `[0x0208EA50]`, 0 when none is open | `0x00241D40`: the window (`0x00241E48`), 0 when it closes (`0x0024257E`); `0x002419B0`, 0 after it closes the window (`0x00241A04`, `0x00241A31`) | `0x002419B0` (`0x002419B6`); `0x00241A50(slot)` (`0x00241A5C`), with 1 from the battle menu (`0x0027C4D2`) and with a variable slot from `0x0027A353` and `0x00229095` |
+
+`0x002419B0`, run by `0x0035BB70` at the field set-up and teardown (`0x0035BB99`), closes the slot-1 window unless its
+`+0x7C` bit 5 is set: it hides it (`0x00244DD0`) when bits 0 and 5 of `+0x40` are set, and otherwise sends it message 15
+(`0x00915058`) and releases it (`0x00245020`).
+
+No other instruction reaches `0x0208EA68`: no other RIP-relative, image-base-relative or 32-bit offset reference names
+it, and the table's address is taken only by `0x00241A50`.
+
 ## Modding notes
 
 - A new yes-or-no question goes through `0x002CDF20`'s flags `0xC812`; a notice through `0x002CE370`.

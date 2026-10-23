@@ -175,7 +175,8 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
   and flag bit 2 or a target.
 - `0x00368830(on)` sets or clears flag bit 4, which allows the bounce (`0x005641F0`, `0x00564650`, `0x005680E0`,
   `0x005687F0`). `0x003688A0(n)`, from `0x002D3BA0`, and `0x003687C0(flags, n)`, from `0x00368360`, start a bounce whose
-  first phase lasts n frames (2 for -1) while bit 4 is set; `0x003687C0` stops it when the request's bit 1 is set.
+  first phase lasts n frames while bit 4 is set; `0x003688A0` takes -1 as 2, and `0x003687C0` does nothing for -1
+  (`0x003687C8`); `0x003687C0` stops it when the request's bit 1 is set.
 - `0x003688E0(frames)`, from `0x00368360` and `0x003689E0`, starts a fade in over `frames`: from a fade out (`0x022CBE87` = 2)
   it keeps the progress, `0x022CBE8A = 0x022CBE8A * frames / 0x022CBE88` (`0x0036890E`-`0x00368923`); from hidden (3) it
   starts at the full count, `0x022CBE8A = 0x022CBE88 = frames` (`0x003688F6`-`0x003688FE`).
@@ -206,6 +207,101 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 | `+0x110` | `u16[2]` | masks | confirm and cancel masks |
 | `+0x120` | `fn*` | painter | the row painter |
 | `+0x13C` | `i32` | margin | top margin |
+
+## State
+
+The globals in the first three tables belong to the hand cursor's block `0x022CBE30`. All are 0 in the file, and
+`0x00368270` also sets every one of them to 0 when it clears the block's `0x70` bytes with `memset` (`0x00368281`).
+
+### The bounce
+
+The bounce runs while flag bit 4 of `0x022CBE32` is set and the phase `0x022CBE3D` is 1 to 4. The step `0x00367200` adds
+its frames to `0x022CBE3E`; once that passes the phase's length, the byte at `0x022CBE40` + phase - 1 (`0x0036759E`), it
+moves to the next phase with the count at 0. After phase 4 it starts again at phase 1 with the lengths 2, 6, 4 and
+30 (`0x003675AB`-`0x003675CE`). `0x00367ED0` shifts the hand by:
+
+```python
+phase 2:     offset = trunc(4 x 0x00248F40(2, [0x022CBE41], [0x022CBE3E]))       (0x00367F36-0x00367F57)
+phase 3:     offset = 4 - trunc(4 x 0x00248F40(1, [0x022CBE42], [0x022CBE3E]))   (0x00367F08-0x00367F32)
+phase 1, 4:  offset = 0
+```
+
+The offset is negated when `0x022CBE36` is 2 and added to x when `0x022CBE3C` is 0, to y when it is 1 (`0x00367F5B`-`0x00367F83`).
+
+These start a bounce, each only while flag bit 4 is set:
+
+- `0x003687C0(flags, n)` sets the lengths n, 6, 4, 30 and phase 1, does nothing when n is -1, and sets phase 0, whatever
+  flag bit 4, when `flags` bit 1 is set; `0x00368360` passes the slide's frames + 2 (`0x00368675`).
+- `0x003688A0(n)` sets n (2 for -1), 6, 4, 30 and phase 1; `0x00368860(n)` the same with n + 2 (2 when n is -3).
+- `0x00368360` sets 0, 6, 4, 30 for a request whose byte `+0x08` is 2 (`0x00368702`), and 2, 6, 4, 30 when it places the
+  hand at once without the request's `+0x0A` bit 1 (`0x00368767`).
+- `0x00367200` sets 2, 6, 4, 30 when a slide ends, unless flag bit 10 is set (`0x003673BB`-`0x003673CC`).
+
+The Clan Primer's list step `0x00570CE0` copies the eight bytes `0x022CBE3C`-`0x022CBE43` out with `0x00367EC0` before it
+steps the list (`0x00570D6F`) and puts them back with `0x00368820` on the path that puts the list's view and cursor back where they were with `0x002D47C0`
+(`0x00571222`-`0x0057126A`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBE3C` | `u8` | 0 | the bounce's axis: 0 along x, 1 along y, any other value no shift; only its own copy is ever stored back, so it stays 0 and the hand bounces sideways | `0x00368820` (`0x00368828`) | `0x00367EC0` (`0x00367EC5`); `0x00367ED0` (`0x00367F67`) |
+| `0x022CBE3E` | `u16` | 0 | frames into the current bounce phase | `0x00367200` (0: `0x003673BB`, `0x003675BB`, `0x003675D7`, `0x00367662`; the count: `0x00367594`); `0x003678F0`, 0 (`0x00367908`); `0x00368270`, 0 (`0x003682B7`); `0x00368360`, 0 (`0x00368702`, `0x00368767`); `0x003687C0`, 0 (`0x003687DB`); `0x00368820` (`0x00368828`); `0x00368860`, 0 (`0x00368896`); `0x003688A0`, 0 (`0x003688D3`); `0x00368940`, 0 (`0x0036899D`) | `0x00367200` (`0x00367584`); `0x00367EC0` (`0x00367EC5`); `0x00367ED0` (`0x00367F08`, `0x00367F36`) |
+| `0x022CBE40` | `u8` | 0 | phase 1's length in frames, the pause before the hand moves out | `0x00367200`, 2 (`0x003673BB`, `0x003675BB`); `0x00368360`, 0 (`0x00368702`) or 2 (`0x00368767`); `0x003687C0`, n (`0x003687D5`); `0x00368820` (`0x00368828`); `0x00368860` (`0x00368890`); `0x003688A0` (`0x003688CD`) | `0x00367200` (`0x0036759E`); `0x00367EC0` (`0x00367EC5`) |
+| `0x022CBE41` | `u8` | 0 | phase 2's length, the move out of 4 pixels: always 6 | `0x00367200` (`0x003673BB`, `0x003675BB`); `0x00368360` (`0x00368702`, `0x00368767`); `0x003687C0` (`0x003687E2`); `0x00368820` (`0x00368828`); `0x00368860` (`0x0036886F`); `0x003688A0` (`0x003688AC`) | `0x00367200` (`0x0036759E`); `0x00367EC0` (`0x00367EC5`); `0x00367ED0` (`0x00367F43`) |
+| `0x022CBE42` | `u8` | 0 | phase 3's length, the move back: always 4 | `0x00367200` (`0x003673CC`, `0x003675C5`); `0x00368360` (`0x00368771`); `0x003687C0` (`0x003687E2`); `0x00368820` (`0x00368828`); `0x00368860` (`0x0036886F`); `0x003688A0` (`0x003688AC`) | `0x00367200` (`0x0036759E`); `0x00367EC0` (`0x00367EC5`); `0x00367ED0` (`0x00367F15`) |
+| `0x022CBE43` | `u8` | 0 | phase 4's length, the rest before the next bounce: always 30 | `0x00367200` (`0x003673CC`, `0x003675C5`); `0x00368360` (`0x00368771`); `0x003687C0` (`0x003687EB`); `0x00368820` (`0x00368828`); `0x00368860` (`0x0036887D`); `0x003688A0` (`0x003688BA`) | `0x00367200` (`0x0036759E`); `0x00367EC0` (`0x00367EC5`) |
+
+### The trail
+
+While the hand slides, `0x00367200` keeps where it is drawn each frame (`0x00367ED0`) as point 0 and moves the older
+points one place on (`0x00367292`-`0x003672F7`), up to the four that `0x022CBE70` counts. Each point's alpha comes from the
+four bytes at `0x01EF9248`: `0x30`, `0x20`, `0x10` and `0x08` (`0x0036732A`).
+
+At rest each step sets the oldest point's x to `0x8000`, gives each point the alpha of the point after it and counts
+one point fewer (`0x003673EE`-`0x00367433`). The last point steps through the four alphas before it goes
+(`0x0036743B`-`0x00367487`).
+
+`0x00367940` draws the points from the oldest to point 0 at their y + 4, each at its alpha times the hand's over 128.
+It reads them through the block's address (`0x00367A30`, `0x00367A47`, `0x00367A4D`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBE71` | `u8` | 0 | point 0's alpha | `0x00367200` (`0x0036732A`, `0x003673F5`, `0x00367487`) | `0x00367200` (`0x0036743B`); `0x00367940` (`0x00367A30`) |
+| `0x022CBE72` | `u8` | 0 | point 1's alpha | `0x00367200` (`0x0036732A`, `0x00367402`) | `0x00367200` (`0x003673EE`); `0x00367940` (`0x00367A30`) |
+| `0x022CBE73` | `u8` | 0 | point 2's alpha | `0x00367200` (`0x0036732A`, `0x0036740F`) | `0x00367200` (`0x003673FB`); `0x00367940` (`0x00367A30`) |
+| `0x022CBE74` | `u8` | 0 | point 3's alpha | `0x00367200` (`0x0036732A`) | `0x00367200` (`0x00367408`); `0x00367940` (`0x00367A30`) |
+| `0x022CBE76` | `i16` | 0 | point 0's x, `0x8000` for none | `0x00367200` (`0x003672EB`; `0x8000`: `0x0036741D`, `0x00367669`); `0x003678F0`, `0x8000` (`0x00367901`); `0x00368270`, `0x8000` (`0x003682D0`); `0x00368940`, `0x8000` (`0x00368996`) | `0x00367200` (`0x003672CA`); `0x00367940` (`0x00367A4D`) |
+| `0x022CBE78` | `i16` | 0 | point 0's y | `0x00367200` (`0x003672F7`) | `0x00367200` (`0x003672D8`); `0x00367940` (`0x00367A47`) |
+| `0x022CBE7A` | `i16` | 0 | point 1's x, `0x8000` for none | `0x00367200` (`0x003672D1`; `0x8000`: `0x0036741D`, `0x00367671`); `0x003678F0` (`0x0036790F`); `0x00368270` (`0x003682D7`); `0x00368940` (`0x003689A4`) | `0x00367200` (`0x003672AE`); `0x00367940` (`0x00367A4D`) |
+| `0x022CBE7C` | `i16` | 0 | point 1's y | `0x00367200` (`0x003672DF`) | `0x00367200` (`0x003672BC`); `0x00367940` (`0x00367A47`) |
+| `0x022CBE7E` | `i16` | 0 | point 2's x, `0x8000` for none | `0x00367200` (`0x003672B5`; `0x8000`: `0x0036741D`, `0x00367679`); `0x003678F0` (`0x00367916`); `0x00368270` (`0x003682DE`); `0x00368940` (`0x003689AB`) | `0x00367200` (`0x00367292`); `0x00367940` (`0x00367A4D`) |
+| `0x022CBE80` | `i16` | 0 | point 2's y | `0x00367200` (`0x003672C3`) | `0x00367200` (`0x003672A0`); `0x00367940` (`0x00367A47`) |
+| `0x022CBE82` | `i16` | 0 | point 3's x, `0x8000` for none | `0x00367200` (`0x00367299`; `0x8000`: `0x0036741D`, `0x00367681`); `0x003678F0` (`0x0036791D`); `0x00368270` (`0x003682E5`); `0x00368940` (`0x003689B2`) | `0x00367940` (`0x00367A4D`) |
+| `0x022CBE84` | `i16` | 0 | point 3's y | `0x00367200` (`0x003672A7`) | `0x00367940` (`0x00367A47`) |
+
+### The request
+
+`0x00368360` turns a request's position into a screen position (`0x00368010`) and adds the request's offset `+0x04`/`+0x06`
+when its `+0x0A` bit 8 is set, giving the target. `0x00367820` starts a slide only when the target changed and the
+position before the offset differs from `0x022CBE50`/`0x022CBE52`. With the same position and a new offset it retargets a
+sliding hand, or moves a resting one there at once, without a slide (`0x0036787B`-`0x003678D9`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBE50` | `i16` | 0 | x of the last request's position before its offset; the target itself when the hand is placed at once; `0x8000` for none | `0x00367200`, `0x8000` when a fade out ends with flag bit 7 (`0x00367658`); `0x00367820` (`0x003678CE`); `0x003678F0`, `0x8000` (`0x00367934`); `0x00368270`, `0x8000` (`0x003682AD`); `0x00368360` (`0x003686DD`; the target: `0x00368723`); `0x00368940`, `0x8000` without a position (`0x003689C9`) | `0x00367820` (`0x0036787B`) |
+| `0x022CBE52` | `i16` | 0 | y of the same | `0x00367200` (`0x00367658`); `0x00367820` (`0x003678D9`); `0x003678F0` (`0x00367934`); `0x00368270` (`0x003682AD`); `0x00368360` (`0x003686E9`; the target: `0x00368744`); `0x00368940` (`0x003689C9`) | `0x00367820` (`0x00367887`) |
+| `0x022CBE54` | `i16` | 0 | x of the last request's offset, 0 when it had none; the next request's offset minus this is the shift `0x022CBE58` | `0x00368360` (`0x003684D6`) | `0x00368360` (`0x003684AA`) |
+| `0x022CBE56` | `i16` | 0 | y of the same, for `0x022CBE5A` | `0x00368360` (`0x003684DD`) | `0x00368360` (`0x003684BC`) |
+| `0x022CBE86` | `u8` | 0 | the hand's alpha while flag bit 6 is set, in place of the fade's: every request that sets the flags stores `0x80`, full, first | `0x00368360`, `0x80` (`0x0036854F`) | `0x00367940` (`0x003679D6`) |
+
+Nothing else reads or writes these globals: no other RIP-relative, image-base-relative or 32-bit offset reference
+names them, and the block's address is taken only by `0x00367940` and `0x00368270`, with `0x022CBE4C` handed to
+`0x00368940` by `0x003676D0`, which reads only the target there.
+
+### The content widget
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA8F30` | `i32` | 0 | 0 after the content widget draws its rows on message 4 (`0x002D2600`, or `0x002D28E0` with list `+0xE0` bit 25), 1 after any message other than 1, 4 and 17, which it passes to `0x005C5230` | `0x002D1420` (1: `0x002D143F`; 0: `0x002D14B5`, `0x002D14C6`) | no instruction: no RIP-relative, image-base-relative or 32-bit offset reference reads it |
 
 ## Modding notes
 

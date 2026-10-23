@@ -45,6 +45,10 @@ The wanted set is the OR of these sources:
 | equipment | everyone | byte `+0x1A` of each equipped item of group 3 (helms, armor, accessories), unless it is `0xFF` | `0x00310071`-`0x00310121` |
 | licenses | everyone | the eight `u16` at `+0x08`-`+0x16` of each owned node (bit *i* of stats `+0x194`, *i* < 361) whose type byte `+0x05` is 15-18, skipping `0xFFFF` | `0x00310127`-`0x003102DF` |
 
+Every source sets its augment's bit in the one 128-bit set at `[rsp + 0x40]` with `bts` (`0x0030FF9D`, `0x0030FFC2`,
+`0x0031000A`, `0x0031005C`, `0x00310114`, `0x003101C5`-`0x003102CF`), so two sources of one augment (two pieces of gear, or
+gear and a license) give one bit, and the augment does not stack.
+
 The License node's type is classed by `0x003241D0` and `0x00323890`: types 15-17 are group `0x1B` and type 18
 group `0x1C`, and both groups are class 2, the only class that adds augments (`0x00310192`-`0x0031019E`).
 
@@ -132,17 +136,45 @@ a changed count is posted as a hit or heal reaction with the difference (`0x0032
 
 ### Saboteur
 
-Augment 18 (Saboteur) has one reader. The hit-rate slot 21 of the calculator, `0x00388F20`, tests it in the
-merged context (`+0x1C` bit `0x4`, `0x00388F2A`) and sets the hit chance `0x02AEDFE0` to 100 when it is set
-(`0x00388F37`); otherwise the chance is the action row's `+0x12` less the target's Vitality plus the user's Magick
-Power (`0x00388F8C`-`0x00388FA1`). The recipes whose lists hold slot 21 are 3, 8, 9, 10, 12, 14, 15, 68 and 72
+Saboteur (18) is bit `0x4` of the layer bytes `+0x6A` and `+0x7A` and of the context byte `+0x1C`. Its one
+fixed-position reader is the hit-rate slot 21 of the calculator, `0x00388F20`, which tests it in the merged context
+(`+0x1C` bit `0x4`, `0x00388F2A`) and sets the hit chance `0x02AEDFE0` to 100 when it is set (`0x00388F37`); otherwise
+the chance is the action row's `+0x12` less the target's Vitality plus the user's Magick Power
+(`0x00388F8C`-`0x00388FA1`). The recipes whose lists hold slot 21 are 3, 8, 9, 10, 12, 14, 15, 68 and 72
 ([Formula slots](formula-slots.md)).
 
-No other instruction tests the bit: none in the layers (`+0x6A` or `+0x7A`, bit `0x4`) and none in a context.
-The four readers that take an augment id from data (the stat lists of the rebuild, the enemy-order selector
-`0x00302494`, the context merge `0x00384827` and the timer pass `0x003855CD`) reach it only through that data. The
-other `test byte ptr [reg + 0x1C], 4` sites in the image (`0x0025B997`, `0x0025BA33`, `0x0059C0E3`, `0x0059D836`) are on
-field records and asset lists, not combat contexts.
+Five functions test an augment by a computed id, and this is what each does with 18:
+
+- the context merge `0x003847C0` walks ids 0-127 (`0x00384851`) and copies each layer bit into the context
+  (`0x00384827`, `0x00384831`, `0x0038484C`), which is how the bit reaches `0x00388F2A`;
+- the enemy-order selector tests augment `s` for opcodes 32 and 33 (`0x00302494`, `0x0030249B`;
+  [Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md)). 22 shipped orders test Saboteur (18) on
+  the deciding enemy itself ([enemy-orders.tsv](../09-Combat-AI-And-Gambits/enemy-orders.tsv)):
+  - 7 "has" tests, each guarding an order that clears it (action word `0x40E4`);
+  - 15 "lacks" tests, each guarding an order that sets it (`0x40A4`);
+  - in the areas frs_a, rui_c, rui_d, mnt_b, gil_g, pbc_c, mfr_c, gil_e, gil_f, tri_e, tri_f and tri_h;
+- the state change `0x0030E130` tests the id's bit in both layers before and after the change (`0x0030E1BE`,
+  `0x0030E1C9`; `0x0030E269`, `0x0030E26F`) to tell whether the state changed; the orders above reach it with 18, and so
+  does the rebuild below;
+- the timer pass `0x00385570` walks every id and reads the timer slot `+0x06` of each set augment's row
+  (`0x00385619`); row 18's slot is `0xFF` ([Augment list](augment-list.md)), so the pass goes on to the next id
+  (`0x0038561D`);
+- the stats rebuild `0x002FEF30` tests only the 44 ids of its three lists `0x00D10290`, `0x00D102A0` and `0x00D102B0`
+  (`0x002FF5CA`, `0x002FF668`, `0x002FF708`, loop ends `0x002FF638`, `0x002FF6D6`, `0x002FF776`), and 18 is in none of them.
+
+Two functions read the layers whole:
+
+- the rebuild from licences and equipment `0x0030FED0` XORs the old layer bytes with the new
+  (`0x00310310`-`0x0031032E`) and calls `0x0030E130` for every id whose bit went off (`0x00310378`) or came on
+  (`0x00310396`), 18 included, so a licence or equipment change that turns Saboteur on or off is applied through
+  the same state change as an order;
+- the party-member status builder `0x00329220` ORs the two layers into the record's `+0x4C`-`+0x5B`
+  (`0x00329480`-`0x003294AF`; [Party member status record](../Characters-And-Objects/party-member-status-record.md)); of that
+  copy only `+0x51` bit 1 (augment 41) is ever read (`0x002BFFAA`), so the copied bit 18 is read by nothing.
+
+No other instruction in the executable tests bit 18: no instruction reaches bit `0x4` of `+0x1C`, `+0x6A` or
+`+0x7A` outside the eight functions above, and the bit is stored nowhere but the two layers, the context byte and
+the status record's copy.
 
 ## Shipped data
 
