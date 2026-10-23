@@ -134,58 +134,57 @@ timeline). The seven `Phyre::VTS` classes (`ScreenStateWindow`, `ScreenStateFull
 
 ## Layouts
 
-The module objects, their code and their entry points. The span is the narrowest run of whole 64 KB
-zones holding at least 80 % of the vtable slot targets used only by that namespace's classes.
+The module objects, their entry points and how many functions belong to each (the attribution below).
 
-| Module | Object | Registrar | Module vtable | Init | Shutdown | Exit destructor | Code span |
-|---|---|---|---|---|---|---|---|
-| `PSerialization` | `0x01F2CD80` | `0x00160320` | `0x00D26C40` | `0x0059D550` | `0x0059FE20` | `0x008A8CE0` | `0x00580000`–`0x0059FFFF` |
-| `PScene` | `0x01F2CDF8` | `0x00160380` | `0x00D27DC0` | `0x005A0D20` | stub | `0x008A8DC0` | `0x006B0000`–`0x006BFFFF` |
-| `PAnimation` | `0x01F2CE20` | `0x001610E0` | `0x00D31260` | `0x005C5C80` | `0x005CB150` | `0x008AAD40` | `0x005A0000`–`0x005CFFFF` |
-| `PRendering` | `0x01F2D680` | `0x00162B70` | `0x00D497F8` | `0x00608A40` | `0x00610630` | `0x008AE6D0` | `0x005C0000`–`0x0061FFFF` |
-| `PPostProcessing` | `0x01F2E800` | `0x00165420` | `0x00D61E30` | `0x00654830` | `0x0065D700` | `0x008B0B40` | `0x00630000`–`0x0064FFFF` |
-| `PGeometry` | `0x01F2E9B8` | `0x00165EA0` | `0x00D68DA0` | `0x006716D0` | `0x006739A0` | `0x008B1A60` | `0x00650000`–`0x0067FFFF` |
-| `PScripting` | `0x01F2EAC8` | `0x00166210` | `0x00D6FD98` | `0x00685AC0` | `0x00685F60` | `0x008B2670` | `0x00680000`–`0x0068FFFF` |
-| `PPhysics` | `0x01F2EB00` | `0x00166C30` | `0x00D79770` | `0x006A4100` | stub | `0x008B3E30` | `0x00680000`–`0x0068FFFF` |
-| `PDynamicGeometry` | `0x01F2EE60` | `0x00167810` | `0x00D85138` | `0x006C45F0` | `0x006C4750` | `0x008B6A40` | `0x006B0000`–`0x006DFFFF` |
-| `PLOD` | `0x01F2EE80` | `0x00167870` | `0x00D85168` | `0x006C4860` | stub | `0x008B6AA0` | `0x006C0000`–`0x006CFFFF` |
-| `PText` | `0x02E5BE88` | `0x00167B90` | `0x00D89C68` | `0x006CCD60` | stub | `0x008B6F00` | `0x00670000`–`0x0067FFFF` |
-| `PInputs` | `0x01F44D70` | `0x0016AB40` | `0x01CD7D10` | `0x00875E10` | stub | `0x008B9890` | `0x00860000`–`0x0087FFFF` |
-| `PGame` | `0x01F44FE8` | `0x0016AEC0` | `0x01CD7FF0` | `0x008762E0` | stub | `0x008BA260` | `0x00870000`–`0x0087FFFF` |
-| `PHierarchy` | `0x01F47550` | `0x0016D5B0` | `0x01CDA1F8` | `0x0087AE00` | `0x0087AE80` | `0x008C1580` | `0x00870000`–`0x0087FFFF` |
-| `PDeveloperExtensions` | `0x01F47570` | `0x0016D610` | `0x01CDA228` | stub | stub | `0x008C15E0` | none |
+| Module | Object | Registrar | Module vtable | Init | Shutdown | Exit destructor | Functions |
+|---|---|---|---|---|---|---|---:|
+| `PSerialization` | `0x01F2CD80` | `0x00160320` | `0x00D26C40` | `0x0059D550` | `0x0059FE20` | `0x008A8CE0` | 115 |
+| `PScene` | `0x01F2CDF8` | `0x00160380` | `0x00D27DC0` | `0x005A0D20` | stub | `0x008A8DC0` | 76 |
+| `PAnimation` | `0x01F2CE20` | `0x001610E0` | `0x00D31260` | `0x005C5C80` | `0x005CB150` | `0x008AAD40` | 1,181 |
+| `PRendering` | `0x01F2D680` | `0x00162B70` | `0x00D497F8` | `0x00608A40` | `0x00610630` | `0x008AE6D0` | 2,662 |
+| `PPostProcessing` | `0x01F2E800` | `0x00165420` | `0x00D61E30` | `0x00654830` | `0x0065D700` | `0x008B0B40` | 809 |
+| `PGeometry` | `0x01F2E9B8` | `0x00165EA0` | `0x00D68DA0` | `0x006716D0` | `0x006739A0` | `0x008B1A60` | 595 |
+| `PScripting` | `0x01F2EAC8` | `0x00166210` | `0x00D6FD98` | `0x00685AC0` | `0x00685F60` | `0x008B2670` | 317 |
+| `PPhysics` | `0x01F2EB00` | `0x00166C30` | `0x00D79770` | `0x006A4100` | stub | `0x008B3E30` | 1,109 |
+| `PDynamicGeometry` | `0x01F2EE60` | `0x00167810` | `0x00D85138` | `0x006C45F0` | `0x006C4750` | `0x008B6A40` | 424 |
+| `PLOD` | `0x01F2EE80` | `0x00167870` | `0x00D85168` | `0x006C4860` | stub | `0x008B6AA0` | 106 |
+| `PText` | `0x02E5BE88` | `0x00167B90` | `0x00D89C68` | `0x006CCD60` | stub | `0x008B6F00` | 63 |
+| `PInputs` | `0x01F44D70` | `0x0016AB40` | `0x01CD7D10` | `0x00875E10` | stub | `0x008B9890` | 639 |
+| `PGame` | `0x01F44FE8` | `0x0016AEC0` | `0x01CD7FF0` | `0x008762E0` | stub | `0x008BA260` | 17 |
+| `PHierarchy` | `0x01F47550` | `0x0016D5B0` | `0x01CDA1F8` | `0x0087AE00` | `0x0087AE80` | `0x008C1580` | 100 |
+| `PDeveloperExtensions` | `0x01F47570` | `0x0016D610` | `0x01CDA228` | stub | stub | `0x008C15E0` | 0 |
 
-"Stub" is `0x005C5230`, which returns 0. The namespaces without a module object lie at `0x00790000`–`0x0079FFFF`
-(`PFramework`), `0x006A0000`–`0x006CFFFF` (`PGameplay`) and `0x00870000`–`0x0087FFFF` (`PVision`).
+"Stub" is `0x005C5230`, which returns 0. The namespaces without a module object are `PFramework` (629 functions), `PGameplay` (147)
+and `PVision` (74).
 
-Each module's member list sits beside this page. It is a selection of the module's functions: vtable
-slot targets of the module's own classes and bodies reached only from them or from the reflection
-templates bound to the module. The code-span column, not the list, gives the module's extent.
+[`phyre-modules-attribution.tsv`](phyre-modules-attribution.tsv) attributes to a module every function that a
+PhyreEngine class holds or that PhyreEngine code calls or references, 12,359 in all: by the class it belongs to
+when it has one (it sits in a vtable slot of the class, or installs the class's vtable), and otherwise by the
+modules whose code calls or references it.
 
-| Module | Member list | Functions |
-|---|---|---:|
-| `PAnimation` | [phyre-modules-panimation.tsv](phyre-modules-panimation.tsv) | 238 |
-| `PDynamicGeometry` | [phyre-modules-pdynamicgeometry.tsv](phyre-modules-pdynamicgeometry.tsv) | 42 |
-| `PFramework` | [phyre-modules-pframework.tsv](phyre-modules-pframework.tsv) | 47 |
-| `PGameplay` | [phyre-modules-pgameplay.tsv](phyre-modules-pgameplay.tsv) | 19 |
-| `PGeometry` | [phyre-modules-pgeometry.tsv](phyre-modules-pgeometry.tsv) | 72 |
-| `PHierarchy` | [phyre-modules-phierarchy.tsv](phyre-modules-phierarchy.tsv) | 16 |
-| core (`Phyre::` with no module) | [phyre-modules-phyrecore.tsv](phyre-modules-phyrecore.tsv) | 58 |
-| `PInputs` | [phyre-modules-pinputs.tsv](phyre-modules-pinputs.tsv) | 103 |
-| `PLOD` | [phyre-modules-plod.tsv](phyre-modules-plod.tsv) | 30 |
-| `PPhysics` | [phyre-modules-pphysics.tsv](phyre-modules-pphysics.tsv) | 134 |
-| `PPostProcessing` | [phyre-modules-ppostprocessing.tsv](phyre-modules-ppostprocessing.tsv) | 161 |
-| `PProfiling` | [phyre-modules-pprofiling.tsv](phyre-modules-pprofiling.tsv) | 1 |
-| `PRendering` | [phyre-modules-prendering.tsv](phyre-modules-prendering.tsv) | 310 |
-| `PScene` | [phyre-modules-pscene.tsv](phyre-modules-pscene.tsv) | 9 |
-| `PScripting` | [phyre-modules-pscripting.tsv](phyre-modules-pscripting.tsv) | 23 |
-| `PSerialization` | [phyre-modules-pserialization.tsv](phyre-modules-pserialization.tsv) | 19 |
-| `PText` | [phyre-modules-ptext.tsv](phyre-modules-ptext.tsv) | 9 |
+- 10,573 belong to one module, 7,058 of them by class; 1,504 of these belong to the core (`Phyre::` classes and
+  code outside any module).
+- 1,786 are shared between modules: 150 sit in the vtables of classes from several modules (one body serving
+  several classes) and 1,636 are used by several modules' code.
+- 2,233 are also used by code outside PhyreEngine.
+
+| Column | Meaning |
+|---|---|
+| `addr` | the function's entry address |
+| `module` | the module it belongs to: its class's module, or the one module whose code uses it; `shared:` and the modules when there is more than one |
+| `class_module` | the module of the class it belongs to, `-` for none |
+| `used_by` | the modules whose code calls or references it, and `outside PhyreEngine` when other code does too |
+| `classes` | the classes it belongs to, separated by `;` |
+
+A class's module is the namespace it is declared in (`Phyre::PRendering::...`); a template instance belongs to
+the module its PhyreEngine parameters name, and core (`PhyreCore`) when they name none or several. A pointer in a
+data table does not count as a use.
 
 [phyre-modules-phyre-function-class-map.tsv](phyre-modules-phyre-function-class-map.tsv) maps every
 function filed as PhyreEngine code to the class it belongs to, by the vtable slot it sits in or the
 vtable it installs. [phyre-modules-phyre-module-utility-registrars.tsv](phyre-modules-phyre-module-utility-registrars.tsv)
-lists thirteen of the fifteen registrars, all but `PScripting`'s `0x00166210` and `PText`'s `0x00167B90`.
+lists the thirteen registrars whose bodies are the same 86 bytes ending in a jump to `0x00808B90`; the other two,
+`PScripting`'s `0x00166210` and `PText`'s `0x00167B90`, have bodies of their own.
 
 ## Shipped data
 

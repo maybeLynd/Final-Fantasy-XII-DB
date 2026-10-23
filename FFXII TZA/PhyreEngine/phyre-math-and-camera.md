@@ -29,7 +29,9 @@ Matrices are 16 floats, row-major, with the translation in the last row.
 
 ### The renderer's camera
 
-`0x0060CE50(renderer, camera)` stores the camera at `+0xA8` and builds two matrices:
+`0x0060CE50(renderer, camera)` stores the camera at `+0xA8` and builds two matrices. Its callers hand it the
+camera's `PCamera` part, 8 bytes into a `PCameraPerspective` (`0x001880CD` `lea rdx, [rax + 8]`), so the offsets
+here are offsets in that part:
 
 1. The camera-to-world matrix at `+0xB0`: the camera's `m_localToWorldMatrix` (`+0xB0` of the
    camera) when it has one, expanded from 4×3 to 4×4; otherwise the affine inverse (`0x00185AF0`) of its
@@ -38,6 +40,28 @@ Matrices are 16 floats, row-major, with the translation in the last row.
 
 It then clears `+0xA0`. Six game functions call it, among them `0x00187950`, `0x001E2AF0` and
 `0x001F06D0`.
+
+### The perspective projection
+
+`0x00189C20`, slot 1 of the `PCameraPerspective` vtable (`0x008C5D68`), rebuilds the camera's projection matrix
+from its near and far planes, aspect ratio and field of view.
+
+Its seven callers include the render manager's
+camera set-up `0x00184CE0`, which stores the vtable (`0x00184D1F`), sets the field of view to pi/4 (45 degrees) and
+the scale `+0xD4` to 1.0, then calls it, and `0x006AD750`. With `n` = `+0xC0`, `f` = `+0xC4`, `a` = `+0xC8`, `fov` = `+0xD0` (radians)
+and `k` = `+0xD4`, and `c = tan(pi/2 - fov * 0.5)`, the cotangent of half the field of view (`tanf`, the import at
+`0x008C2BC0`, through `0x00861F1A`):
+
+```python
+x scale   +0x38 = c * k / a
+y scale   +0x4C = c * k
+z         +0x60 = (n + f) / (n - f)      +0x64 = -1.0
+w         +0x70 = 2 * n * f / (n - f)    +0x74 = 0
+every other cell of +0x38..+0x77 = 0
+```
+
+The matrix is column-major (four columns of four floats from `+0x38`): a right-handed projection that looks
+down the camera's -z, with clip-space depth from -1 at the near plane to +1 at the far plane and +y up.
 
 ### Node world matrices
 
@@ -111,6 +135,24 @@ tests.
 | `+0xA8` | `void*` | camera | the PCamera |
 | `+0xB0` | `f32[16]` | cameraToWorld | camera space to world |
 | `+0xF0` | `f32[16]` | view | world to camera space |
+
+A `PCameraPerspective` as `0x00189C20` uses it. Its `PCamera` part starts 8 bytes in, after the vtable, so the
+`PCamera` members' offsets in the [field schema](phyre-field-schema.md) are 8 lower than here:
+
+`PCameraPerspective` (offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | vtable | `0x008C5D68` |
+| `+0x08` | `f32[12]` | m_viewMatrix | 4 x 3 |
+| `+0x38` | `f32[16]` | m_projectionMatrix | written by `0x00189C20` |
+| `+0x78` | `f32[16]` | m_viewProjectionMatrix |  |
+| `+0xB8` | `void*` | m_localToWorldMatrix |  |
+| `+0xC0` | `f32` | m_nearPlane |  |
+| `+0xC4` | `f32` | m_farPlane |  |
+| `+0xC8` | `f32` | m_aspect | PCameraProjection |
+| `+0xD0` | `f32` | m_FOV | radians, the full vertical angle |
+| `+0xD4` | `f32` | scale | a factor on both axes' scales |
 
 `PMeshInstanceBounds` (`0x30` bytes, offsets from the start of the record):
 

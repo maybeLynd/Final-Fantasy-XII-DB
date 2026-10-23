@@ -129,7 +129,7 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
 ### @FTR, the skeleton
 
 ```
-+0x30  u32       node count again
++0x30  u16       node count again, read as a word by 0x00409240 (0x0040924A)
 +0x34  u32       offset of the value pool, from the entry
 +0x38  u16       extra u16 slots after the node list (equal to the @FDM key count)
 +0x40  u32[n]    per node: (record offset from the entry << 12) | node number
