@@ -1,430 +1,430 @@
-offset	region	function	site	kind	instruction	via
-0x0	script operand bank	0x002EF2D0	0x002EF2E1	addr	lea rcx, [rax + 0x200]	
-0x0	whole payload	0x002EF570	0x002EF57C	copy	lea rax, [rip + 0x1e74cfd] (copy, 0xACD x 0x80 bytes: the whole image out to 0x022676C0)	0x02164280
-0x0	whole payload	0x002EF5F0	0x002EF603	set	call 0x861ec0 (memset, 0x56690 bytes: the whole image)	0x02164280
-0x0	whole payload	0x002EF650	0x002EF663	set	call 0x861ec0 (memset, 0x56690 bytes: the whole image)	0x02164280
-0x0	whole payload	0x0057E310	0x0057E42F	copy	mov qword ptr [rdi + 0x100], 0x56690 (the write request's length: the whole image to the slot file)	file kind 8
-0x0	whole payload	0x00580EB0	0x00581117	copy	mov dword ptr [rbp + 7], 0x56690 (the read request's length: the slot file into the whole image)	file kind 9
-0x0	whole payload	0x00866A00	0x00866A4D	copy	mov byte ptr [r10 + rdi], dl (byte loop: the stream's bytes into the caller's buffer, the whole image on a load)	file kind 9
-0x0	whole payload	0x00866AD0	0x00866B19	copy	movzx eax, byte ptr [rbx] (byte loop: the caller's buffer into the stream, the whole image on a save)	file kind 8
-0xA00	script globals	0x002EF390	0x002EF3A0	r	cmp byte ptr [rax + rbx + 0xc00], 1	
-0x1000	quest ordered bits	0x0046B0F0	0x0046B105	r	movzx r8d, byte ptr [rax + rdi + 0x1000]	
-0x1000	quest ordered bits	0x0046B240	0x0046B274	r	test byte ptr [rax + rdi + 0x1000], dl	
-0x1000	quest ordered bits	0x0046B3F0	0x0046B42D	r	test byte ptr [rax + rdi + 0x1000], bl	
-0x1000	quest ordered bits	0x0046B3F0	0x0046B43B	rw	or byte ptr [rax + rdi + 0x1000], bl	
-0x1000	quest ordered bits	0x0046B3F0	0x0046B470	rw	and byte ptr [rax + rcx + 0x1000], bl	
-0x1020	quest cleared bits	0x0046B020	0x0046B035	r	movzx r8d, byte ptr [rax + rdi + 0x1020]	
-0x1020	quest cleared bits	0x0046B1A0	0x0046B1D4	r	test byte ptr [rax + rdi + 0x1020], dl	
-0x1020	quest cleared bits	0x0046B290	0x0046B2E8	rw	or byte ptr [rax + rcx + 0x1020], bl	
-0x1020	quest cleared bits	0x0046B290	0x0046B33C	rw	and byte ptr [rax + rcx + 0x1020], bl	
-0x1040	quest clear counter	0x0046B0B0	0x0046B0B9	r	mov eax, dword ptr [rax + 0x1040]	
-0x1040	quest clear counter	0x0046B290	0x0046B2C9	r	cmp dword ptr [rax + 0x1040], 0xffff	
-0x1040	quest clear counter	0x0046B290	0x0046B2DA	rw	inc dword ptr [rax + 0x1040]	
-0x1044	zone transition record	0x00314530	0x0031456F	r	mov edx, dword ptr [rax + 0x1044]	
-0x1044	zone transition record	0x003145E0	0x0031466E	r	mov ecx, dword ptr [rbx + 0x1044]	
-0x1044	zone transition record	0x003145E0	0x00314685	w	mov dword ptr [rax + 0x1044], esi	
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg0 from 0x00377C20 at 0x00377C24
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 0x00377C20 at 0x00377C24
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 0x00377C20 at 0x00377C24
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg2 from 0x00377C20 at 0x00377C24
-0x1044	zone transition record	0x00314970	0x0031498D	w	mov dword ptr [rax + 0x1044], 0xffffffff	
-0x1044	zone transition record	0x00314DC0	0x00314DCD	w	mov dword ptr [rax + 0x1044], ebx	
-0x1044	zone transition record	0x00584210	0x0058427B	r	mov eax, dword ptr [rbx + 0x1244]	
-0x1044	zone transition record	0x00584210	0x00584332	w	mov dword ptr [rbx + 0x1244], eax	
-0x1048	zone transition record	0x003145E0	0x00314698	r	mov ecx, dword ptr [rbx + 0x1048]	
-0x1048	zone transition record	0x003145E0	0x003146A9	w	mov dword ptr [rax + 0x1048], edi	
-0x1048	zone transition record	0x003148B0	0x003148B9	r	mov eax, dword ptr [rax + 0x1048]	
-0x1048	zone transition record	0x00314970	0x0031499C	w	mov dword ptr [rax + 0x1048], 0xffffffff	
-0x1048	zone transition record	0x00314D80	0x00314D8D	w	mov dword ptr [rax + 0x1048], ebx	
-0x1048	zone transition record	0x00584210	0x00584287	r	mov eax, dword ptr [rbx + 0x1248]	
-0x1048	zone transition record	0x00584210	0x005842B7	w	mov dword ptr [rbx + 0x1248], esi	
-0x1048	zone transition record	0x00584210	0x0058433E	w	mov dword ptr [rbx + 0x1248], eax	
-0x104C	zone transition record	0x003145E0	0x00314674	w	mov dword ptr [rax + 0x104c], ecx	
-0x104C	zone transition record	0x00314870	0x00314879	r	mov eax, dword ptr [rax + 0x104c]	
-0x104C	zone transition record	0x00314970	0x003149AB	w	mov dword ptr [rax + 0x104c], 0	
-0x104C	zone transition record	0x00584210	0x00584293	r	mov eax, dword ptr [rbx + 0x124c]	
-0x104C	zone transition record	0x00584210	0x0058434A	w	mov dword ptr [rbx + 0x124c], eax	
-0x1050	zone transition record	0x003145E0	0x0031469E	w	mov dword ptr [rax + 0x1050], ecx	
-0x1050	zone transition record	0x00314850	0x00314859	r	mov eax, dword ptr [rax + 0x1050]	
-0x1050	zone transition record	0x00314970	0x003149BA	w	mov dword ptr [rax + 0x1050], 0	
-0x1050	zone transition record	0x00584210	0x0058429F	r	mov eax, dword ptr [rbx + 0x1250]	
-0x1050	zone transition record	0x00584210	0x00584356	w	mov dword ptr [rbx + 0x1250], eax	
-0x1054	zone transition record	0x003145E0	0x003146B6	w	mov dword ptr [rax + 0x1054], ebp	
-0x1054	zone transition record	0x003148D0	0x003148D9	r	mov eax, dword ptr [rax + 0x1054]	
-0x1054	zone transition record	0x00314970	0x003149C9	w	mov dword ptr [rax + 0x1054], 0	
-0x1054	zone transition record	0x00314DA0	0x00314DAD	w	mov dword ptr [rax + 0x1054], ebx	
-0x1054	zone transition record	0x00584210	0x005842AB	r	mov eax, dword ptr [rbx + 0x1254]	
-0x1054	zone transition record	0x00584210	0x00584362	w	mov dword ptr [rbx + 0x1254], eax	
-0x1058	zone transition record	0x003145E0	0x003146C8	w	mov dword ptr [rax + 0x1058], ebx	
-0x105C	zone transition record	0x00314530	0x00314586	w	mov dword ptr [rax + 0x105c], edx	
-0x105C	zone transition record	0x003145E0	0x003146D3	w	mov dword ptr [rax + 0x105c], esi	
-0x105C	zone transition record	0x00314910	0x00314919	r	mov eax, dword ptr [rax + 0x105c]	
-0x1060	zone transition record	0x0025ACA0	0x0025ACC1	r	movsx ebx, byte ptr [rax + 0x1060]	
-0x1060	zone transition record	0x002620E0	0x00262123	r	movsx eax, byte ptr [rax + 0x1060]	
-0x1060	zone transition record	0x002620E0	0x0026214E	r	movsx eax, byte ptr [rax + 0x1060]	
-0x1060	zone transition record	0x002620E0	0x0026217C	r	movsx eax, byte ptr [rax + 0x1060]	
-0x1060	zone transition record	0x00265920	0x0026593B	r	movsx eax, byte ptr [rax + 0x1060]	
-0x1060	zone transition record	0x0026D910	0x0026D95E	w	mov byte ptr [rax + 0x1060], dil	
-0x1060	zone transition record	0x0026D910	0x0026D96F	r	movsx ecx, byte ptr [rax + 0x1060]	
-0x1060	zone transition record	0x0026D910	0x0026D9BB	r	movzx r9d, byte ptr [rax + 0x1060]	
-0x1061	zone transition record	0x00268320	0x0026836C	w	mov byte ptr [rax + 0x1061], 1	
-0x1061	zone transition record	0x0026D8F0	0x0026D8F9	w	mov byte ptr [rax + 0x1061], 1	
-0x1061	zone transition record	0x0026D910	0x0026D951	r	cmp byte ptr [rax + 0x1061], bl	
-0x1061	zone transition record	0x0026D910	0x0026DA92	w	mov byte ptr [rax + 0x1061], 0	
-0x1061	zone transition record	0x00280140	0x00280213	w	mov byte ptr [rax + 0x1061], dil	
-0x1062	zone transition record	0x0026DB30	0x0026DBF4	r	test byte ptr [rax + 0x1062], 0x20	
-0x1062	zone transition record	0x00314530	0x00314563	rw	or byte ptr [rax + 0x1062], 0x20	
-0x1062	zone transition record	0x003145E0	0x003146DE	rw	and byte ptr [rax + 0x1062], 0xdf	
-0x1062	zone transition record	0x003149E0	0x003149E9	rw	and byte ptr [rax + 0x1062], 0xfb	
-0x1062	zone transition record	0x00314A00	0x00314A09	rw	and byte ptr [rax + 0x1062], 0xfe	
-0x1062	zone transition record	0x00314A00	0x00314A15	rw	and byte ptr [rax + 0x1062], 0xfd	
-0x1062	zone transition record	0x00314A00	0x00314A21	rw	and byte ptr [rax + 0x1062], 0xbf	
-0x1062	zone transition record	0x00314A00	0x00314A2D	rw	and byte ptr [rax + 0x1062], 0x7f	
-0x1062	zone transition record	0x00314A60	0x00314A69	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314A80	0x00314A89	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314AA0	0x00314AA9	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314B00	0x00314B09	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314B20	0x00314B29	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314B40	0x00314B49	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314B60	0x00314B69	r	movzx eax, byte ptr [rax + 0x1062]	
-0x1062	zone transition record	0x00314B80	0x00314B8D	rw	and byte ptr [rax + 0x1062], 0xfe	
-0x1062	zone transition record	0x00314B80	0x00314B99	rw	or byte ptr [rax + 0x1062], cl	
-0x1062	zone transition record	0x00314BB0	0x00314BBD	rw	and byte ptr [rax + 0x1062], 0xbf	
-0x1062	zone transition record	0x00314BB0	0x00314BCC	rw	or byte ptr [rax + 0x1062], cl	
-0x1062	zone transition record	0x00314BE0	0x00314BF1	rw	and byte ptr [rax + 0x1062], 0x7f	
-0x1062	zone transition record	0x00314BE0	0x00314C0F	rw	or byte ptr [rax + 0x1062], 0x80	
-0x1062	zone transition record	0x00314C70	0x00314C7D	rw	and byte ptr [rax + 0x1062], 0xf7	
-0x1062	zone transition record	0x00314C70	0x00314C8C	rw	or byte ptr [rax + 0x1062], cl	
-0x1062	zone transition record	0x00314CA0	0x00314CAD	rw	and byte ptr [rax + 0x1062], 0xef	
-0x1062	zone transition record	0x00314CA0	0x00314CBC	rw	or byte ptr [rax + 0x1062], cl	
-0x1062	zone transition record	0x00314CD0	0x00314CDD	rw	and byte ptr [rax + 0x1062], 0xfd	
-0x1062	zone transition record	0x00314CD0	0x00314CEB	rw	or byte ptr [rax + 0x1062], cl	
-0x1062	zone transition record	0x00314D00	0x00314D0D	rw	and byte ptr [rax + 0x1062], 0xfb	
-0x1062	zone transition record	0x00314D00	0x00314D1C	rw	or byte ptr [rax + 0x1062], cl	
-0x1063	zone transition record	0x0025D9E0	0x0025DBA8	r	test byte ptr [rax + 0x1063], 0x40	
-0x1063	zone transition record	0x00261F90	0x0026201B	r	test byte ptr [rax + 0x1063], 0x40	
-0x1063	zone transition record	0x002628B0	0x00262A6A	rw	and byte ptr [rax + 0x1063], 0xbf	
-0x1063	zone transition record	0x0026A720	0x0026A731	rw	and byte ptr [rax + 0x1063], 0xbf	
-0x1063	zone transition record	0x0026A720	0x0026A74F	rw	or byte ptr [rax + 0x1063], 0x40	
-0x1063	zone transition record	0x0026DE20	0x0026DE33	r	test byte ptr [rax + 0x1063], 0x40	
-0x1063	zone transition record	0x00314A00	0x00314A39	rw	and byte ptr [rax + 0x1063], 0xcf	
-0x1063	zone transition record	0x00314A00	0x00314A45	rw	and byte ptr [rax + 0x1063], 0xfc	
-0x1063	zone transition record	0x00314A00	0x00314A51	rw	and byte ptr [rax + 0x1063], 0xf3	
-0x1063	zone transition record	0x00314AC0	0x00314AC9	r	movzx eax, byte ptr [rax + 0x1063]	
-0x1063	zone transition record	0x00314AE0	0x00314AE9	r	movzx eax, byte ptr [rax + 0x1063]	
-0x1063	zone transition record	0x00314BE0	0x00314BFD	rw	and byte ptr [rax + 0x1063], 0xcf	
-0x1063	zone transition record	0x00314BE0	0x00314C21	rw	and byte ptr [rax + 0x1063], 0xcf	
-0x1063	zone transition record	0x00314BE0	0x00314C28	rw	or byte ptr [rax + 0x1063], bl	
-0x1063	zone transition record	0x00314C40	0x00314C50	rw	and byte ptr [rax + 0x1063], 0xfc	
-0x1063	zone transition record	0x00314C40	0x00314C57	rw	or byte ptr [rax + 0x1063], bl	
-0x1064	quest scenario flags	0x0046B180	0x0046B18E	r	movzx eax, byte ptr [rax + rbx + 0x1064]	
-0x1064	quest scenario flags	0x0046B490	0x0046B4A4	w	mov byte ptr [rax + rbx + 0x1064], dil	
-0x1164	quest order field ids	0x0046B0D0	0x0046B0DE	r	movzx eax, word ptr [rax + rbx*2 + 0x1164]	
-0x1164	quest order field ids	0x0046B350	0x0046B364	w	mov word ptr [rax + rbx*2 + 0x1164], di	
-0x1164	quest order field ids	0x0046B3F0	0x0046B44E	w	mov word ptr [rax + rsi*2 + 0x1164], bx	
-0x1364	quest ok bits	0x0046B1F0	0x0046B224	r	test byte ptr [rax + rdi + 0x1364], dl	
-0x1364	quest ok bits	0x0046B380	0x0046B3B5	rw	or byte ptr [rax + rcx + 0x1364], bl	
-0x1364	quest ok bits	0x0046B380	0x0046B3D1	rw	and byte ptr [rax + rcx + 0x1364], bl	
-0x1384	flag bank 64A	0x0032A9A0	0x0032A9E4	r	test byte ptr [rax + rdi + 0x1384], dl	
-0x1384	flag bank 64A	0x0032AC70	0x0032ACB3	rw	or byte ptr [rax + rcx + 0x1384], bl	
-0x1384	flag bank 64A	0x0032AC70	0x0032ACD3	rw	and byte ptr [rax + rcx + 0x1384], bl	
-0x138C	flag bank 64B	0x0032AA00	0x0032AA44	r	test byte ptr [rax + rdi + 0x138c], dl	
-0x138C	flag bank 64B	0x0032ACF0	0x0032AD33	rw	or byte ptr [rax + rcx + 0x138c], bl	
-0x138C	flag bank 64B	0x0032ACF0	0x0032AD53	rw	and byte ptr [rax + rcx + 0x138c], bl	
-0x13B4	flag bank 2048	0x0032A930	0x0032A97B	r	test byte ptr [rax + rdi + 0x13b4], dl	
-0x13B4	flag bank 2048	0x0032ABF0	0x0032AC36	rw	or byte ptr [rax + rcx + 0x13b4], bl	
-0x13B4	flag bank 2048	0x0032ABF0	0x0032AC56	rw	and byte ptr [rax + rcx + 0x13b4], bl	
-0x14B4	flag bank 512	0x0032AA60	0x0032AAAB	r	test byte ptr [rax + rdi + 0x14b4], dl	
-0x14B4	flag bank 512	0x0032AAD0	0x0032AB1F	r	test byte ptr [rax + rdi + 0x14b4], dl	
-0x14B4	flag bank 512	0x0032AD70	0x0032ADB6	rw	or byte ptr [rax + rcx + 0x14b4], bl	
-0x14B4	flag bank 512	0x0032AD70	0x0032ADD6	rw	and byte ptr [rax + rcx + 0x14b4], bl	
-0x14B4	flag bank 512	0x0032ADF0	0x0032AE3A	rw	or byte ptr [rax + rcx + 0x14b4], bl	
-0x14B4	flag bank 512	0x0032ADF0	0x0032AE5A	rw	and byte ptr [rax + rcx + 0x14b4], bl	
-0x14F4	primary flag bank	0x0032A8A0	0x0032A900	r	test byte ptr [rax + rbx + 0x14f4], dl	
-0x14F4	primary flag bank	0x0032AB60	0x0032ABA8	rw	or byte ptr [rax + rcx + 0x14f4], bl	
-0x14F4	primary flag bank	0x0032AB60	0x0032ABC8	rw	and byte ptr [rax + rcx + 0x14f4], bl	
-0x1534	music override	0x0025D9E0	0x0025DBB6	r	movzx esi, byte ptr [rax + 0x1534]	
-0x1534	music override	0x00261F90	0x00262029	r	movzx edi, byte ptr [rax + 0x1534]	
-0x1534	music override	0x002628B0	0x00262A76	w	mov byte ptr [rax + 0x1534], bpl	
-0x1534	music override	0x0026A720	0x0026A73D	w	mov byte ptr [rax + 0x1534], 0	
-0x1534	music override	0x0026A720	0x0026A75B	w	mov byte ptr [rax + 0x1534], bl	
-0x1534	music override	0x0026DE20	0x0026DE41	r	movzx ebx, byte ptr [rax + 0x1534]	
-0x1535	options apply byte	0x002EF370	0x002EF37D	w	mov byte ptr [rax + 0x1735], bl	
-0x2000	battle block copy	0x00229B40	0x00229BA2	w	movups xmmword ptr [rax - 0x80], xmm0	
-0x2000	battle block copy	0x00235AF0	0x00235B00	addr	lea rdx, [rax + 0x2200]	
-0x2000	battle block copy	0x00235AF0	0x00235B1C	r	cmp dword ptr [rdx], ecx	
-0x2000	battle block copy	0x002EF4A0	0x002EF4AC	copy	lea rax, [rip + 0x1e76fcd] (copy, 0xC0 x 0x80 bytes out to 0x021B290C)	0x02164280
-0x2000	battle block copy	0x005844A0	0x00584515	addr	lea rax, [rdi + 0x2200]	
-0x2000	battle block copy	0x005844A0	0x00584532	w	movups xmmword ptr [rax - 0x80], xmm0	
-0x2004	battle block copy	0x00235AF0	0x00235B24	r	cmp dword ptr [rdx + 4], ecx	
-0x2010	battle block copy	0x00229B40	0x00229BAA	w	movups xmmword ptr [rax - 0x70], xmm1	
-0x2010	battle block copy	0x005844A0	0x0058453A	w	movups xmmword ptr [rax - 0x70], xmm1	
-0x2020	battle block copy	0x00229B40	0x00229BB2	w	movups xmmword ptr [rax - 0x60], xmm0	
-0x2020	battle block copy	0x005844A0	0x00584542	w	movups xmmword ptr [rax - 0x60], xmm0	
-0x2030	battle block copy	0x00229B40	0x00229BBA	w	movups xmmword ptr [rax - 0x50], xmm1	
-0x2030	battle block copy	0x005844A0	0x0058454A	w	movups xmmword ptr [rax - 0x50], xmm1	
-0x2040	battle block copy	0x00229B40	0x00229BC2	w	movups xmmword ptr [rax - 0x40], xmm0	
-0x2040	battle block copy	0x005844A0	0x00584552	w	movups xmmword ptr [rax - 0x40], xmm0	
-0x2050	battle block copy	0x00229B40	0x00229BCA	w	movups xmmword ptr [rax - 0x30], xmm1	
-0x2050	battle block copy	0x005844A0	0x0058455A	w	movups xmmword ptr [rax - 0x30], xmm1	
-0x2060	battle block copy	0x00229B40	0x00229BD2	w	movups xmmword ptr [rax - 0x20], xmm0	
-0x2060	battle block copy	0x005844A0	0x00584562	w	movups xmmword ptr [rax - 0x20], xmm0	
-0x2070	battle block copy	0x00229B40	0x00229BDA	w	movups xmmword ptr [rax - 0x10], xmm1	
-0x2070	battle block copy	0x005844A0	0x0058456A	w	movups xmmword ptr [rax - 0x10], xmm1	
-0x2080	battle block copy	0x00229B40	0x00229B91	addr	lea rax, [rax + 0x80]	
-0x2080	battle block copy	0x005844A0	0x00584521	addr	lea rax, [rax + 0x80]	
-0x7B12	battle block copy	0x00235AF0	0x00235B41	r	cmp word ptr [rdx + 0x5b12], ax	
-0x7B42	battle block copy	0x00235AF0	0x00235B31	r	cmp byte ptr [rdx + 0x5b42], al	
-0x8000	image-backed block	0x00252E60	0x00252EB5	addr	lea rdi, [rax + rcx*4]	
-0x8000	image-backed block	0x00252F70	0x00252F8F	addr	lea rax, [rax + rcx*4]	
-0x8000	image-backed block	0x00252FF0	0x00253020	addr	lea rsi, [rax + rdx*4]	
-0x8000	image-backed block	0x002530E0	0x00253145	addr	lea rdi, [rax + rcx*4]	
-0x8000	image-backed block	0x00253240	0x002532AB	addr	lea r14, [rcx + rax*4]	
-0x8000	image-backed block	0x002534C0	0x00253512	addr	lea r14, [rax + rcx*4]	
-0x8000	image-backed block	0x002535D0	0x0025362D	addr	lea r14, [rax + rdx*4]	
-0x8008	image-backed block	0x00394130	0x0039423B	w	movups xmmword ptr [rax + 8], xmm0	
-0x8008	image-backed block	0x00394130	0x003942CA	r	movups xmm0, xmmword ptr [rax + 8]	
-0x8018	image-backed block	0x00394130	0x00394246	w	movups xmmword ptr [rax + 0x18], xmm1	
-0x8018	image-backed block	0x00394130	0x003942D5	r	movups xmm1, xmmword ptr [rax + 0x18]	
-0x8028	image-backed block	0x00394130	0x00394252	w	movsd qword ptr [rax + 0x28], xmm0	
-0x8028	image-backed block	0x00394130	0x003942E0	r	movsd xmm0, qword ptr [rax + 0x28]	
-0x8030	image-backed block	0x00252610	0x002526AA	w	mov word ptr [r9 + rax*2 + 0x30], r8w	
-0x8030	image-backed block	0x002526F0	0x00252793	r	movsx eax, word ptr [rbp + rax*2 + 0x30]	
-0x8030	image-backed block	0x002527B0	0x00252819	w	mov word ptr [r9 + rax*2 + 0x30], r8w	
-0x8030	image-backed block	0x002527B0	0x0025282D	w	mov word ptr [r9 + rax*2 + 0x30], r8w	
-0x8030	image-backed block	0x00253A80	0x00253B3E	addr	lea rcx, [rbx + 0x30]	
-0x8090	image-backed block	0x00252610	0x0025265B	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
-0x8090	image-backed block	0x00252610	0x0025266E	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
-0x8090	image-backed block	0x002526F0	0x0025273B	r	mov eax, dword ptr [rbp + rax*4 + 0x90]	
-0x8090	image-backed block	0x002526F0	0x00252751	r	mov eax, dword ptr [rbp + rax*4 + 0x90]	
-0x8090	image-backed block	0x002527B0	0x002527CF	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
-0x8090	image-backed block	0x002527B0	0x002527E5	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	
-0x8224	image-backed block	0x002551B0	0x002551E3	r	movups xmm0, xmmword ptr [rax]	
-0x8224	image-backed block	0x003C5E50	0x003C5E8D	w	movups xmmword ptr [rax], xmm0	
-0x8224	image-backed block	0x003C60F0	0x003C611D	w	movups xmmword ptr [rax], xmm0	
-0x8224	image-backed block	0x003C8670	0x003C869C	w	movups xmmword ptr [rax], xmm0	
-0x8234	image-backed block	0x002551B0	0x002551E9	r	movups xmm1, xmmword ptr [rax + 0x10]	
-0x8234	image-backed block	0x003C5E50	0x003C5E97	w	movups xmmword ptr [rax + 0x10], xmm1	
-0x8234	image-backed block	0x003C60F0	0x003C6127	w	movups xmmword ptr [rax + 0x10], xmm1	
-0x8234	image-backed block	0x003C8670	0x003C86A6	w	movups xmmword ptr [rax + 0x10], xmm1	
-0xB244	image-backed block	0x00252D40	0x00252D67	rw	and byte ptr [r9 + 0x3244], al	
-0xB244	image-backed block	0x00252D40	0x00252D6E	r	movzx eax, byte ptr [r9 + 0x3244]	
-0xB244	image-backed block	0x00252D40	0x00252D7D	w	mov byte ptr [r9 + 0x3244], al	
-0xB244	image-backed block	0x00253480	0x002534AA	rw	and byte ptr [rax + 0x3244], 1	
-0xB244	image-backed block	0x00253A80	0x00253B1C	rw	and byte ptr [rax + 0x3244], 1	
-0xB244	image-backed block	0x00253A80	0x00253B47	addr	lea rcx, [rbx + 0x3244]	
-0xB245	image-backed block	0x00253480	0x002534B1	rw	and byte ptr [rax + 0x3245], 0xfe	
-0xB245	image-backed block	0x00253A80	0x00253B23	rw	and byte ptr [rax + 0x3245], 0xfe	
-0xB2C4	image-backed block	0x00253A80	0x00253B5D	w	mov qword ptr [rbx + 0x32c4], rax	
-0xB2C4	image-backed block	0x00254E00	0x00254E27	rw	and byte ptr [r9 + 0x32c4], al	
-0xB2C4	image-backed block	0x00254E00	0x00254E2E	r	movzx eax, byte ptr [r9 + 0x32c4]	
-0xB2C4	image-backed block	0x00254E00	0x00254E3D	w	mov byte ptr [r9 + 0x32c4], al	
-0xB2CC	image-backed block	0x003154B0	0x003154FD	r	movzx edx, byte ptr [rax + rcx + 0x32cc]	
-0xB2CC	image-backed block	0x00315910	0x00315965	r	movzx ebx, byte ptr [rax + rdi + 0x32cc]	
-0xB2CC	image-backed block	0x00315910	0x00315975	w	mov byte ptr [rax + rdi + 0x32cc], bl	
-0xB2CC	image-backed block	0x00315910	0x00315994	r	movzx ebx, byte ptr [rax + rdi + 0x32cc]	
-0xB2CC	image-backed block	0x00315910	0x003159A4	w	mov byte ptr [rax + rdi + 0x32cc], bl	
-0xB30C	image-backed block	0x003156E0	0x00315737	r	movzx edx, byte ptr [rax + rcx + 0x330c]	
-0xB30C	image-backed block	0x00315B50	0x00315BA4	r	movzx ebx, byte ptr [rax + rdi + 0x330c]	
-0xB30C	image-backed block	0x00315B50	0x00315BB8	w	mov byte ptr [rax + rdi + 0x330c], bl	
-0xB30C	image-backed block	0x00315B50	0x00315BCC	w	mov byte ptr [rax + rdi + 0x330c], bl	
-0xB34C	image-backed block	0x00315620	0x00315647	r	movzx edx, byte ptr [rax + rcx + 0x334c]	
-0xB34C	image-backed block	0x00315A20	0x00315A4B	r	movzx ebx, byte ptr [rax + rdi + 0x334c]	
-0xB34C	image-backed block	0x00315A20	0x00315A60	r	movzx ebx, byte ptr [rax + rdi + 0x334c]	
-0xB34C	image-backed block	0x00315A20	0x00315A70	w	mov byte ptr [rax + rdi + 0x334c], bl	
-0xB36C	image-backed block	0x00315470	0x00315493	r	movzx eax, byte ptr [rax + rcx + 0x336c]	
-0xB36C	image-backed block	0x00315CD0	0x00315D00	r	movzx ebx, byte ptr [rax + rbp + 0x336c]	
-0xB36C	image-backed block	0x00315CD0	0x00315D29	w	mov byte ptr [rax + rbp + 0x336c], bl	
-0xB3F4	image-backed block	0x003156E0	0x0031577E	r	movzx edx, byte ptr [rax + rcx + 0x33f4]	
-0xB3F4	image-backed block	0x00315B50	0x00315BF2	r	movzx ebx, byte ptr [rax + rdi + 0x33f4]	
-0xB3F4	image-backed block	0x00315B50	0x00315C06	w	mov byte ptr [rax + rdi + 0x33f4], bl	
-0xB3F4	image-backed block	0x00315B50	0x00315C1A	w	mov byte ptr [rax + rdi + 0x33f4], bl	
-0xB404	image-backed block	0x00315420	0x00315440	r	cmp byte ptr [rax + rbx + 0x3404], 0	
-0xB404	image-backed block	0x00315420	0x0031545C	r	movzx eax, byte ptr [rax + rbx + 0x3404]	
-0xB404	image-backed block	0x00315820	0x0031583E	r	cmp byte ptr [rax + rsi + 0x3404], 0	
-0xB404	image-backed block	0x00315820	0x0031584D	r	cmp byte ptr [rax + rsi + 0x3404], 0	
-0xB404	image-backed block	0x00315820	0x00315861	r	movzx ebx, byte ptr [rax + rsi + 0x3404]	
-0xB404	image-backed block	0x00315820	0x0031588E	w	mov byte ptr [rax + rsi + 0x3404], bl	
-0xB404	image-backed block	0x00315A90	0x00315AA8	r	cmp byte ptr [rax + rbx + 0x3404], 0	
-0xB404	image-backed block	0x00315A90	0x00315AB7	w	mov byte ptr [rax + rbx + 0x3404], 1	
-0xB404	image-backed block	0x00316930	0x003169E0	r	cmp byte ptr [rax + rsi + 0x3404], bl	
-0xB404	image-backed block	0x00316930	0x003169EE	r	movzx edx, byte ptr [rax + rsi + 0x3404]	
-0xB404	image-backed block	0x00316930	0x00316A0C	w	mov byte ptr [rax + rsi + 0x3404], 2	
-0xB604	image-backed block	0x00315670	0x00315697	r	movzx r8d, byte ptr [rax + rbx + 0x3604]	
-0xB604	image-backed block	0x003156E0	0x003157B7	r	test byte ptr [rax + rdi + 0x3604], dl	
-0xB604	image-backed block	0x00315AD0	0x00315B06	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
-0xB604	image-backed block	0x00315AD0	0x00315B1D	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
-0xB604	image-backed block	0x00315AD0	0x00315B2D	w	mov byte ptr [rax + rsi + 0x3604], bl	
-0xB604	image-backed block	0x00315B50	0x00315C43	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
-0xB604	image-backed block	0x00315B50	0x00315C55	r	movzx ebx, byte ptr [rax + rsi + 0x3604]	
-0xB604	image-backed block	0x00315B50	0x00315C65	w	mov byte ptr [rax + rsi + 0x3604], bl	
-0xB844	image-backed block	0x003154B0	0x00315612	r	movzx edx, byte ptr [rax + rcx + 0x3844]	
-0xB844	image-backed block	0x00315910	0x003159D9	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
-0xB844	image-backed block	0x00315910	0x003159EE	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
-0xB844	image-backed block	0x00315910	0x003159FE	w	mov byte ptr [rax + rdi + 0x3844], bl	
-0xB844	image-backed block	0x00315E90	0x00315EC5	r	movzx r8d, byte ptr [rax + rdx + 0x3844]	
-0xB844	image-backed block	0x00315E90	0x00316059	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
-0xB844	image-backed block	0x00315E90	0x00316069	w	mov byte ptr [rax + rdi + 0x3844], bl	
-0xB844	image-backed block	0x00316670	0x003166AF	r	movzx edx, byte ptr [rcx + rax + 0x3844]	
-0xB844	image-backed block	0x00316A50	0x00316ACB	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
-0xB844	image-backed block	0x00316A50	0x00316ADB	w	mov byte ptr [rax + rdi + 0x3844], bl	
-0xB844	image-backed block	0x00316A50	0x00316B28	r	movzx ebx, byte ptr [rax + rdi + 0x3844]	
-0xB844	image-backed block	0x00316A50	0x00316B38	w	mov byte ptr [rax + rdi + 0x3844], bl	
-0xB845	image-backed block	0x00316440	0x00316449	r	movzx ecx, byte ptr [rax + 0x3845]	
-0xB848	image-backed block	0x003156E0	0x00315805	r	movzx edx, byte ptr [rax + rcx + 0x3848]	
-0xB848	image-backed block	0x00315B50	0x00315C8E	r	movzx ebx, byte ptr [rax + rdi + 0x3848]	
-0xB848	image-backed block	0x00315B50	0x00315CA7	w	mov byte ptr [rax + rdi + 0x3848], bl	
-0xB84C	image-backed block	0x003162E0	0x0031631C	addr	lea ecx, [rax + 0x384c]	
-0xB84C	image-backed block	0x003162E0	0x00316353	r	mov ebx, dword ptr [rax]	
-0xB84C	image-backed block	0x003162E0	0x0031635F	r	movsx ebx, word ptr [rax]	
-0xB84C	image-backed block	0x003166F0	0x00316705	addr	lea edx, [rax + 0x384c]	
-0xB84C	image-backed block	0x003166F0	0x0031673B	r	mov ebx, dword ptr [rax]	
-0xB84C	image-backed block	0x003166F0	0x00316750	r	movsx ebx, word ptr [rax]	
-0xB84C	image-backed block	0x00316810	0x00316878	addr	lea edx, [rax + 0x384c]	
-0xB84C	image-backed block	0x00316810	0x0031689D	w	mov dword ptr [rax], 0x7ffffffe	
-0xB84C	image-backed block	0x00316810	0x003168B3	w	mov word ptr [rax], r15w	
-0xB84C	image-backed block	0x00316810	0x003168CB	addr	lea edx, [rax + 0x384c]	
-0xB84C	image-backed block	0x00316810	0x003168F0	w	mov dword ptr [rax], ebp	
-0xB84C	image-backed block	0x00316810	0x003168FC	w	mov word ptr [rax], bp	
-0xB84C	image-backed block	0x00316BF0	0x00316C04	addr	lea r8d, [rax + 0x384c]	
-0xB84C	image-backed block	0x00316BF0	0x00316C30	w	mov dword ptr [rax], ebx	
-0xB84C	image-backed block	0x00316BF0	0x00316C45	w	mov word ptr [rax], bx	
-0xB84C	image-backed block	0x00316C60	0x00316C79	addr	lea edx, [rax + 0x384c]	
-0xB84C	image-backed block	0x00316C60	0x00316CA3	w	mov dword ptr [rax], 0x1869f	
-0xB84C	image-backed block	0x00316C60	0x00316CBC	w	mov word ptr [rcx], ax	
-0xB868	image-backed block	0x00315390	0x003153A4	r	mov ebx, dword ptr [rax]	
-0xC7B8	image-backed block	0x00250270	0x002502D9	r	cmp dword ptr [rdx + r10*4 + 0x47b8], eax	
-0xC7B8	image-backed block	0x00250270	0x002503D9	r	cmp r15d, dword ptr [rdx + r10*4 + 0x47b8]	
-0xC7B8	image-backed block	0x00252FA0	0x00252FD7	r	mov eax, dword ptr [rax + rcx*4 + 0x47b8]	
-0xC7E8	image-backed block	0x002542B0	0x002542D1	r	mov r11, qword ptr [rax + 0x47e8]	
-0xC7E8	image-backed block	0x00254CC0	0x00254D06	rw	add qword ptr [rbx + 0x47e8], rcx	
-0xC7E8	image-backed block	0x00254CC0	0x00254D0F	r	mov rax, qword ptr [rbx + 0x47e8]	
-0xC7E8	image-backed block	0x00254CC0	0x00254D1D	w	mov qword ptr [rbx + 0x47e8], rax	
-0xC7E8	image-backed block	0x00255040	0x00255047	w	mov qword ptr [rax + 0x47e8], 0	
-0xE000	checksum	0x00583D60	0x00583F99	w	mov dword ptr [rdi + 0xe200], eax	
-0xE040	group bank A	0x00229B40	0x00229CDF	addr	lea rcx, [rdi + 0xe240]	
-0xE040	group bank A	0x0025D8E0	0x0025D901	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CE6
-0xE040	group bank A	0x00269A20	0x00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 0x00584210 at 0x00584368
-0xE040	group bank A	0x002EF7C0	0x002EF7CC	copy	lea rax, [rip + 0x1e82ced] (copy, 4 x 0x80 bytes out to 0x021C8B80)	0x02164280
-0xE040	group bank A	0x00584210	0x0058432B	addr	lea rcx, [rbx + 0xe240]	
-0xE040	group bank A	0x005843E0	0x00584428	addr	lea rcx, [rdi + 0xe240]	
-0xE040	group bank A	0x005844A0	0x005844DA	addr	lea rcx, [rax + 0xe240]	
-0xE040	group bank A	0x00584580	0x00584597	addr	lea rcx, [rbx + 0xe240]	
-0xE050	group bank A	0x0025D8E0	0x0025D909	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CE6
-0xE050	group bank A	0x00269A20	0x00269A45	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0 from 0x00584210 at 0x00584368
-0xE060	group bank A	0x0025D8E0	0x0025D911	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CE6
-0xE060	group bank A	0x00269A20	0x00269A4D	r	movups xmm0, xmmword ptr [rcx - 0x60]	arg0 from 0x00584210 at 0x00584368
-0xE070	group bank A	0x0025D8E0	0x0025D919	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CE6
-0xE070	group bank A	0x00269A20	0x00269A55	r	movups xmm1, xmmword ptr [rcx - 0x50]	arg0 from 0x00584210 at 0x00584368
-0xE080	group bank A	0x0025D8E0	0x0025D921	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CE6
-0xE080	group bank A	0x00269A20	0x00269A5D	r	movups xmm0, xmmword ptr [rcx - 0x40]	arg0 from 0x00584210 at 0x00584368
-0xE090	group bank A	0x0025D8E0	0x0025D929	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CE6
-0xE090	group bank A	0x00269A20	0x00269A65	r	movups xmm1, xmmword ptr [rcx - 0x30]	arg0 from 0x00584210 at 0x00584368
-0xE0A0	group bank A	0x0025D8E0	0x0025D931	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CE6
-0xE0A0	group bank A	0x00269A20	0x00269A6D	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0 from 0x00584210 at 0x00584368
-0xE0B0	group bank A	0x0025D8E0	0x0025D939	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CE6
-0xE0B0	group bank A	0x00269A20	0x00269A75	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0 from 0x00584210 at 0x00584368
-0xE0C0	group bank A	0x0025D8E0	0x0025D8F0	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00229B40 at 0x00229CE6
-0xE0C0	group bank A	0x00269A20	0x00269A3A	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00584210 at 0x00584368
-0xE240	spawn-keep image A	0x00229B40	0x00229CEB	addr	lea rcx, [rdi + 0xe440]	
-0xE240	spawn-keep image A	0x00233440	0x00233530	w	mov word ptr [rbx], ax	arg0 from 0x00229B40 at 0x00229CF2
-0xE240	spawn-keep image A	0x00233550	0x002335B9	r	movzx eax, word ptr [rcx]	arg0 from 0x005843E0 at 0x0058443B
-0xE240	spawn-keep image A	0x002EF740	0x002EF74C	copy	lea rax, [rip + 0x1e82f6d] (copy, 0x400 x 0x80 bytes out to 0x021C8D80)	0x02164280
-0xE240	spawn-keep image A	0x005843E0	0x00584434	addr	lea rcx, [rdi + 0xe440]	
-0xE240	spawn-keep image A	0x00584580	0x005845A3	addr	lea rcx, [rbx + 0xe440]	
-0xE242	spawn-keep image A	0x00233440	0x0023353A	w	mov word ptr [rbx + 2], ax	arg0 from 0x00229B40 at 0x00229CF2
-0xE242	spawn-keep image A	0x00233550	0x002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 0x005843E0 at 0x0058443B
-0xE250	spawn-keep image A	0x00233440	0x00233468	addr	lea rdx, [rbx + 0x10]	arg0 from 0x00229B40 at 0x00229CF2
-0xE250	spawn-keep image A	0x00233440	0x00233481	w	movups xmmword ptr [rdx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0xE250	spawn-keep image A	0x00233550	0x0023355C	addr	lea rdx, [rcx + 0x10]	arg0 from 0x005843E0 at 0x0058443B
-0xE250	spawn-keep image A	0x00233550	0x0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 0x005843E0 at 0x0058443B
-0xE260	spawn-keep image A	0x00233440	0x00233489	w	movups xmmword ptr [rdx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0xE260	spawn-keep image A	0x00233550	0x0023357B	r	movups xmm1, xmmword ptr [rdx - 0x70]	arg0 from 0x005843E0 at 0x0058443B
-0xE270	spawn-keep image A	0x00233440	0x00233491	w	movups xmmword ptr [rdx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0xE270	spawn-keep image A	0x00233550	0x00233583	r	movups xmm0, xmmword ptr [rdx - 0x60]	arg0 from 0x005843E0 at 0x0058443B
-0xE280	spawn-keep image A	0x00233440	0x00233499	w	movups xmmword ptr [rdx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0xE280	spawn-keep image A	0x00233550	0x0023358B	r	movups xmm1, xmmword ptr [rdx - 0x50]	arg0 from 0x005843E0 at 0x0058443B
-0xE290	spawn-keep image A	0x00233440	0x002334A1	w	movups xmmword ptr [rdx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0xE290	spawn-keep image A	0x00233550	0x00233593	r	movups xmm0, xmmword ptr [rdx - 0x40]	arg0 from 0x005843E0 at 0x0058443B
-0xE2A0	spawn-keep image A	0x00233440	0x002334A9	w	movups xmmword ptr [rdx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0xE2A0	spawn-keep image A	0x00233550	0x0023359B	r	movups xmm1, xmmword ptr [rdx - 0x30]	arg0 from 0x005843E0 at 0x0058443B
-0xE2B0	spawn-keep image A	0x00233440	0x002334B1	w	movups xmmword ptr [rdx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0xE2B0	spawn-keep image A	0x00233550	0x002335A3	r	movups xmm0, xmmword ptr [rdx - 0x20]	arg0 from 0x005843E0 at 0x0058443B
-0xE2C0	spawn-keep image A	0x00233440	0x002334B9	w	movups xmmword ptr [rdx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0xE2C0	spawn-keep image A	0x00233550	0x002335AB	r	movups xmm1, xmmword ptr [rdx - 0x10]	arg0 from 0x005843E0 at 0x0058443B
-0xE2D0	spawn-keep image A	0x00233440	0x00233470	addr	lea rdx, [rdx + 0x80]	arg0 from 0x00229B40 at 0x00229CF2
-0xE2D0	spawn-keep image A	0x00233550	0x00233570	addr	lea rdx, [rdx + 0x80]	arg0 from 0x005843E0 at 0x0058443B
-0x1E250	spawn-keep image A	0x00233440	0x002334CF	addr	lea rcx, [rbx + 0x10010]	arg0 from 0x00229B40 at 0x00229CF2
-0x1E250	spawn-keep image A	0x00233440	0x002334E7	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0x1E260	spawn-keep image A	0x00233440	0x002334EF	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0x1E270	spawn-keep image A	0x00233440	0x002334F7	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0x1E280	spawn-keep image A	0x00233440	0x002334FF	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0x1E290	spawn-keep image A	0x00233440	0x00233507	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0x1E2A0	spawn-keep image A	0x00233440	0x0023350F	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0x1E2B0	spawn-keep image A	0x00233440	0x00233517	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CF2
-0x1E2C0	spawn-keep image A	0x00233440	0x0023351F	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CF2
-0x1E2D0	spawn-keep image A	0x00233440	0x002334D6	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00229B40 at 0x00229CF2
-0x2E250	group bank B	0x00229B40	0x00229CCA	addr	lea rcx, [rdi + 0x2e450]	
-0x2E250	group bank B	0x0025D8E0	0x0025D901	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CD1
-0x2E250	group bank B	0x00269A20	0x00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 0x005843E0 at 0x00584452
-0x2E250	group bank B	0x005843E0	0x0058444B	addr	lea rcx, [rdi + 0x2e450]	
-0x2E260	group bank B	0x0025D8E0	0x0025D909	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CD1
-0x2E260	group bank B	0x00269A20	0x00269A45	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0 from 0x005843E0 at 0x00584452
-0x2E270	group bank B	0x0025D8E0	0x0025D911	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CD1
-0x2E270	group bank B	0x00269A20	0x00269A4D	r	movups xmm0, xmmword ptr [rcx - 0x60]	arg0 from 0x005843E0 at 0x00584452
-0x2E280	group bank B	0x0025D8E0	0x0025D919	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CD1
-0x2E280	group bank B	0x00269A20	0x00269A55	r	movups xmm1, xmmword ptr [rcx - 0x50]	arg0 from 0x005843E0 at 0x00584452
-0x2E290	group bank B	0x0025D8E0	0x0025D921	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CD1
-0x2E290	group bank B	0x00269A20	0x00269A5D	r	movups xmm0, xmmword ptr [rcx - 0x40]	arg0 from 0x005843E0 at 0x00584452
-0x2E2A0	group bank B	0x0025D8E0	0x0025D929	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CD1
-0x2E2A0	group bank B	0x00269A20	0x00269A65	r	movups xmm1, xmmword ptr [rcx - 0x30]	arg0 from 0x005843E0 at 0x00584452
-0x2E2B0	group bank B	0x0025D8E0	0x0025D931	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CD1
-0x2E2B0	group bank B	0x00269A20	0x00269A6D	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0 from 0x005843E0 at 0x00584452
-0x2E2C0	group bank B	0x0025D8E0	0x0025D939	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CD1
-0x2E2C0	group bank B	0x00269A20	0x00269A75	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0 from 0x005843E0 at 0x00584452
-0x2E2D0	group bank B	0x0025D8E0	0x0025D8F0	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00229B40 at 0x00229CD1
-0x2E2D0	group bank B	0x00269A20	0x00269A3A	addr	lea rcx, [rcx + 0x80]	arg0 from 0x005843E0 at 0x00584452
-0x2E450	spawn-keep image B	0x00229B40	0x00229CD6	addr	lea rcx, [rdi + 0x2e650]	
-0x2E450	spawn-keep image B	0x00233550	0x002335B9	r	movzx eax, word ptr [rcx]	arg0 from 0x005843E0 at 0x0058445E
-0x2E450	spawn-keep image B	0x005843E0	0x00584457	addr	lea rcx, [rdi + 0x2e650]	
-0x2E452	spawn-keep image B	0x00233550	0x002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 0x005843E0 at 0x0058445E
-0x2E460	spawn-keep image B	0x00233550	0x0023355C	addr	lea rdx, [rcx + 0x10]	arg0 from 0x005843E0 at 0x0058445E
-0x2E460	spawn-keep image B	0x00233550	0x0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 0x005843E0 at 0x0058445E
-0x2E470	spawn-keep image B	0x00233550	0x0023357B	r	movups xmm1, xmmword ptr [rdx - 0x70]	arg0 from 0x005843E0 at 0x0058445E
-0x2E480	spawn-keep image B	0x00233550	0x00233583	r	movups xmm0, xmmword ptr [rdx - 0x60]	arg0 from 0x005843E0 at 0x0058445E
-0x2E490	spawn-keep image B	0x00233550	0x0023358B	r	movups xmm1, xmmword ptr [rdx - 0x50]	arg0 from 0x005843E0 at 0x0058445E
-0x2E4A0	spawn-keep image B	0x00233550	0x00233593	r	movups xmm0, xmmword ptr [rdx - 0x40]	arg0 from 0x005843E0 at 0x0058445E
-0x2E4B0	spawn-keep image B	0x00233550	0x0023359B	r	movups xmm1, xmmword ptr [rdx - 0x30]	arg0 from 0x005843E0 at 0x0058445E
-0x2E4C0	spawn-keep image B	0x00233550	0x002335A3	r	movups xmm0, xmmword ptr [rdx - 0x20]	arg0 from 0x005843E0 at 0x0058445E
-0x2E4D0	spawn-keep image B	0x00233550	0x002335AB	r	movups xmm1, xmmword ptr [rdx - 0x10]	arg0 from 0x005843E0 at 0x0058445E
-0x2E4E0	spawn-keep image B	0x00233550	0x00233570	addr	lea rdx, [rdx + 0x80]	arg0 from 0x005843E0 at 0x0058445E
-0x4E460	transition metadata	0x00229B40	0x00229CF7	addr	lea rcx, [rdi + 0x4e660]	
-0x4E460	transition metadata	0x002EF540	0x002EF540	r	movaps xmm0, xmmword ptr [rip + 0x1ec3399]	0x02164280
-0x4E460	transition metadata	0x002EF540	0x002EF547	w	movups xmmword ptr [rcx], xmm0	arg0 from 0x00229B40 at 0x00229CFE
-0x4E460	transition metadata	0x00584210	0x00584371	addr	lea rcx, [rbx + 0x4e660]	
-0x4E460	transition metadata	0x005843E0	0x0058441C	addr	lea rcx, [rdi + 0x4e660]	
-0x4E460	transition metadata	0x005843E0	0x00584471	r	movzx eax, byte ptr [rdi + 0x4e660]	
-0x4E460	transition metadata	0x00584580	0x005845AF	addr	lea rcx, [rbx + 0x4e660]	
-0x4E460	transition metadata	0x00584580	0x005845C2	w	mov dword ptr [rbx + 0x4e660], eax	
-0x4E464	transition metadata	0x002EF3C0	0x002EF3C0	r	mov eax, dword ptr [rip + 0x1ec351e]	0x02164280
-0x4E464	transition metadata	0x002EF3C0	0x002EF3C9	w	mov dword ptr [rcx + 4], eax	arg0 from 0x00584580 at 0x005845B6
-0x4E464	transition metadata	0x003145E0	0x00314731	w	mov dword ptr [rax + 0x4e664], ecx	
-0x4E468	transition metadata	0x002EF3C0	0x002EF3DA	w	movups xmmword ptr [rcx + 8], xmm0	arg0 from 0x00584580 at 0x005845B6
-0x4E468	transition metadata	0x002EF410	0x002EF420	r	movups xmm0, xmmword ptr [rcx + 8]	arg0 from 0x00584210 at 0x00584378
-0x4E468	transition metadata	0x002EF410	0x002EF45D	r	test byte ptr [rbx + 8], 1	arg0 from 0x00584210 at 0x00584378
-0x4E46C	transition metadata	0x002EF410	0x002EF463	r	movss xmm0, dword ptr [rbx + 0xc]	arg0 from 0x00584210 at 0x00584378
-0x4E470	transition metadata	0x002EF410	0x002EF46D	r	movss xmm0, dword ptr [rbx + 0x10]	arg0 from 0x00584210 at 0x00584378
-0x4E470	transition metadata	0x002EF540	0x002EF54A	r	movaps xmm1, xmmword ptr [rip + 0x1ec339f]	0x02164280
-0x4E470	transition metadata	0x002EF540	0x002EF551	w	movups xmmword ptr [rcx + 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CFE
-0x4E478	transition metadata	0x002EF3C0	0x002EF3EC	w	movups xmmword ptr [rcx + 0x18], xmm0	arg0 from 0x00584580 at 0x005845B6
-0x4E478	transition metadata	0x002EF410	0x002EF43B	r	test byte ptr [rcx + 0x18], 2	arg0 from 0x00584210 at 0x00584378
-0x4E478	transition metadata	0x002EF410	0x002EF441	r	movups xmm0, xmmword ptr [rcx + 0x18]	arg0 from 0x00584210 at 0x00584378
-0x4E480	transition metadata	0x002EF410	0x002EF453	r	movss xmm0, dword ptr [rcx + 0x20]	arg0 from 0x00584210 at 0x00584378
-0x4E480	transition metadata	0x002EF540	0x002EF555	r	movsd xmm0, qword ptr [rip + 0x1ec33a3]	0x02164280
-0x4E480	transition metadata	0x002EF540	0x002EF55D	w	movsd qword ptr [rcx + 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CFE
-0x4E488	transition metadata	0x002EF3C0	0x002EF3FD	w	mov dword ptr [rdx + 0x28], ecx	arg0 from 0x00584580 at 0x005845B6
-0x4E488	transition metadata	0x002EF410	0x002EF432	r	mov edx, dword ptr [rcx + 0x28]	arg0 from 0x00584210 at 0x00584378
-0x4E488	transition metadata	0x002EF540	0x002EF562	r	mov eax, dword ptr [rip + 0x1ec33a0]	0x02164280
-0x4E488	transition metadata	0x002EF540	0x002EF568	w	mov dword ptr [rcx + 0x28], eax	arg0 from 0x00229B40 at 0x00229CFE
-0x4E48C	battle-state block			range	0x4E48C-0x5589B: the block's accesses through its pointer are in ../Party/party-data.md	0x02EBF190
+offset	region	function	site	kind	instruction	via	note
+0x0	script operand bank	0x002EF2D0	0x002EF2E1	addr	lea rcx, [rax + 0x200]		
+0x0	whole payload	0x002EF570	0x002EF57C	copy	lea rax, [rip + 0x1e74cfd]	0x02164280	copy, 0xACD x 0x80 bytes: the whole image out to 0x022676C0
+0x0	whole payload	0x002EF5F0	0x002EF603	set	call 0x861ec0	0x02164280	memset, 0x56690 bytes: the whole image
+0x0	whole payload	0x002EF650	0x002EF663	set	call 0x861ec0	0x02164280	memset, 0x56690 bytes: the whole image
+0x0	whole payload	0x0057E310	0x0057E42F	copy	mov qword ptr [rdi + 0x100], 0x56690	file kind 8	the write request's length: the whole image to the slot file
+0x0	whole payload	0x00580EB0	0x00581117	copy	mov dword ptr [rbp + 7], 0x56690	file kind 9	the read request's length: the slot file into the whole image
+0x0	whole payload	0x00866A00	0x00866A4D	copy	mov byte ptr [r10 + rdi], dl	file kind 9	byte loop: the stream's bytes into the caller's buffer, the whole image on a load
+0x0	whole payload	0x00866AD0	0x00866B19	copy	movzx eax, byte ptr [rbx]	file kind 8	byte loop: the caller's buffer into the stream, the whole image on a save
+0xA00	script globals	0x002EF390	0x002EF3A0	r	cmp byte ptr [rax + rbx + 0xc00], 1		
+0x1000	quest ordered bits	0x0046B0F0	0x0046B105	r	movzx r8d, byte ptr [rax + rdi + 0x1000]		
+0x1000	quest ordered bits	0x0046B240	0x0046B274	r	test byte ptr [rax + rdi + 0x1000], dl		
+0x1000	quest ordered bits	0x0046B3F0	0x0046B42D	r	test byte ptr [rax + rdi + 0x1000], bl		
+0x1000	quest ordered bits	0x0046B3F0	0x0046B43B	rw	or byte ptr [rax + rdi + 0x1000], bl		
+0x1000	quest ordered bits	0x0046B3F0	0x0046B470	rw	and byte ptr [rax + rcx + 0x1000], bl		
+0x1020	quest cleared bits	0x0046B020	0x0046B035	r	movzx r8d, byte ptr [rax + rdi + 0x1020]		
+0x1020	quest cleared bits	0x0046B1A0	0x0046B1D4	r	test byte ptr [rax + rdi + 0x1020], dl		
+0x1020	quest cleared bits	0x0046B290	0x0046B2E8	rw	or byte ptr [rax + rcx + 0x1020], bl		
+0x1020	quest cleared bits	0x0046B290	0x0046B33C	rw	and byte ptr [rax + rcx + 0x1020], bl		
+0x1040	quest clear counter	0x0046B0B0	0x0046B0B9	r	mov eax, dword ptr [rax + 0x1040]		
+0x1040	quest clear counter	0x0046B290	0x0046B2C9	r	cmp dword ptr [rax + 0x1040], 0xffff		
+0x1040	quest clear counter	0x0046B290	0x0046B2DA	rw	inc dword ptr [rax + 0x1040]		
+0x1044	zone transition record	0x00314530	0x0031456F	r	mov edx, dword ptr [rax + 0x1044]		
+0x1044	zone transition record	0x003145E0	0x0031466E	r	mov ecx, dword ptr [rbx + 0x1044]		
+0x1044	zone transition record	0x003145E0	0x00314685	w	mov dword ptr [rax + 0x1044], esi		
+0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]		
+0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg0 from 0x00377C20 at 0x00377C24	
+0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 0x00377C20 at 0x00377C24	
+0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 0x00377C20 at 0x00377C24	
+0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg2 from 0x00377C20 at 0x00377C24	
+0x1044	zone transition record	0x00314970	0x0031498D	w	mov dword ptr [rax + 0x1044], 0xffffffff		
+0x1044	zone transition record	0x00314DC0	0x00314DCD	w	mov dword ptr [rax + 0x1044], ebx		
+0x1044	zone transition record	0x00584210	0x0058427B	r	mov eax, dword ptr [rbx + 0x1244]		
+0x1044	zone transition record	0x00584210	0x00584332	w	mov dword ptr [rbx + 0x1244], eax		
+0x1048	zone transition record	0x003145E0	0x00314698	r	mov ecx, dword ptr [rbx + 0x1048]		
+0x1048	zone transition record	0x003145E0	0x003146A9	w	mov dword ptr [rax + 0x1048], edi		
+0x1048	zone transition record	0x003148B0	0x003148B9	r	mov eax, dword ptr [rax + 0x1048]		
+0x1048	zone transition record	0x00314970	0x0031499C	w	mov dword ptr [rax + 0x1048], 0xffffffff		
+0x1048	zone transition record	0x00314D80	0x00314D8D	w	mov dword ptr [rax + 0x1048], ebx		
+0x1048	zone transition record	0x00584210	0x00584287	r	mov eax, dword ptr [rbx + 0x1248]		
+0x1048	zone transition record	0x00584210	0x005842B7	w	mov dword ptr [rbx + 0x1248], esi		
+0x1048	zone transition record	0x00584210	0x0058433E	w	mov dword ptr [rbx + 0x1248], eax		
+0x104C	zone transition record	0x003145E0	0x00314674	w	mov dword ptr [rax + 0x104c], ecx		
+0x104C	zone transition record	0x00314870	0x00314879	r	mov eax, dword ptr [rax + 0x104c]		
+0x104C	zone transition record	0x00314970	0x003149AB	w	mov dword ptr [rax + 0x104c], 0		
+0x104C	zone transition record	0x00584210	0x00584293	r	mov eax, dword ptr [rbx + 0x124c]		
+0x104C	zone transition record	0x00584210	0x0058434A	w	mov dword ptr [rbx + 0x124c], eax		
+0x1050	zone transition record	0x003145E0	0x0031469E	w	mov dword ptr [rax + 0x1050], ecx		
+0x1050	zone transition record	0x00314850	0x00314859	r	mov eax, dword ptr [rax + 0x1050]		
+0x1050	zone transition record	0x00314970	0x003149BA	w	mov dword ptr [rax + 0x1050], 0		
+0x1050	zone transition record	0x00584210	0x0058429F	r	mov eax, dword ptr [rbx + 0x1250]		
+0x1050	zone transition record	0x00584210	0x00584356	w	mov dword ptr [rbx + 0x1250], eax		
+0x1054	zone transition record	0x003145E0	0x003146B6	w	mov dword ptr [rax + 0x1054], ebp		
+0x1054	zone transition record	0x003148D0	0x003148D9	r	mov eax, dword ptr [rax + 0x1054]		
+0x1054	zone transition record	0x00314970	0x003149C9	w	mov dword ptr [rax + 0x1054], 0		
+0x1054	zone transition record	0x00314DA0	0x00314DAD	w	mov dword ptr [rax + 0x1054], ebx		
+0x1054	zone transition record	0x00584210	0x005842AB	r	mov eax, dword ptr [rbx + 0x1254]		
+0x1054	zone transition record	0x00584210	0x00584362	w	mov dword ptr [rbx + 0x1254], eax		
+0x1058	zone transition record	0x003145E0	0x003146C8	w	mov dword ptr [rax + 0x1058], ebx		
+0x105C	zone transition record	0x00314530	0x00314586	w	mov dword ptr [rax + 0x105c], edx		
+0x105C	zone transition record	0x003145E0	0x003146D3	w	mov dword ptr [rax + 0x105c], esi		
+0x105C	zone transition record	0x00314910	0x00314919	r	mov eax, dword ptr [rax + 0x105c]		
+0x1060	zone transition record	0x0025ACA0	0x0025ACC1	r	movsx ebx, byte ptr [rax + 0x1060]		
+0x1060	zone transition record	0x002620E0	0x00262123	r	movsx eax, byte ptr [rax + 0x1060]		
+0x1060	zone transition record	0x002620E0	0x0026214E	r	movsx eax, byte ptr [rax + 0x1060]		
+0x1060	zone transition record	0x002620E0	0x0026217C	r	movsx eax, byte ptr [rax + 0x1060]		
+0x1060	zone transition record	0x00265920	0x0026593B	r	movsx eax, byte ptr [rax + 0x1060]		
+0x1060	zone transition record	0x0026D910	0x0026D95E	w	mov byte ptr [rax + 0x1060], dil		
+0x1060	zone transition record	0x0026D910	0x0026D96F	r	movsx ecx, byte ptr [rax + 0x1060]		
+0x1060	zone transition record	0x0026D910	0x0026D9BB	r	movzx r9d, byte ptr [rax + 0x1060]		
+0x1061	zone transition record	0x00268320	0x0026836C	w	mov byte ptr [rax + 0x1061], 1		
+0x1061	zone transition record	0x0026D8F0	0x0026D8F9	w	mov byte ptr [rax + 0x1061], 1		
+0x1061	zone transition record	0x0026D910	0x0026D951	r	cmp byte ptr [rax + 0x1061], bl		
+0x1061	zone transition record	0x0026D910	0x0026DA92	w	mov byte ptr [rax + 0x1061], 0		
+0x1061	zone transition record	0x00280140	0x00280213	w	mov byte ptr [rax + 0x1061], dil		
+0x1062	zone transition record	0x0026DB30	0x0026DBF4	r	test byte ptr [rax + 0x1062], 0x20		
+0x1062	zone transition record	0x00314530	0x00314563	rw	or byte ptr [rax + 0x1062], 0x20		
+0x1062	zone transition record	0x003145E0	0x003146DE	rw	and byte ptr [rax + 0x1062], 0xdf		
+0x1062	zone transition record	0x003149E0	0x003149E9	rw	and byte ptr [rax + 0x1062], 0xfb		
+0x1062	zone transition record	0x00314A00	0x00314A09	rw	and byte ptr [rax + 0x1062], 0xfe		
+0x1062	zone transition record	0x00314A00	0x00314A15	rw	and byte ptr [rax + 0x1062], 0xfd		
+0x1062	zone transition record	0x00314A00	0x00314A21	rw	and byte ptr [rax + 0x1062], 0xbf		
+0x1062	zone transition record	0x00314A00	0x00314A2D	rw	and byte ptr [rax + 0x1062], 0x7f		
+0x1062	zone transition record	0x00314A60	0x00314A69	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314A80	0x00314A89	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314AA0	0x00314AA9	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314B00	0x00314B09	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314B20	0x00314B29	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314B40	0x00314B49	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314B60	0x00314B69	r	movzx eax, byte ptr [rax + 0x1062]		
+0x1062	zone transition record	0x00314B80	0x00314B8D	rw	and byte ptr [rax + 0x1062], 0xfe		
+0x1062	zone transition record	0x00314B80	0x00314B99	rw	or byte ptr [rax + 0x1062], cl		
+0x1062	zone transition record	0x00314BB0	0x00314BBD	rw	and byte ptr [rax + 0x1062], 0xbf		
+0x1062	zone transition record	0x00314BB0	0x00314BCC	rw	or byte ptr [rax + 0x1062], cl		
+0x1062	zone transition record	0x00314BE0	0x00314BF1	rw	and byte ptr [rax + 0x1062], 0x7f		
+0x1062	zone transition record	0x00314BE0	0x00314C0F	rw	or byte ptr [rax + 0x1062], 0x80		
+0x1062	zone transition record	0x00314C70	0x00314C7D	rw	and byte ptr [rax + 0x1062], 0xf7		
+0x1062	zone transition record	0x00314C70	0x00314C8C	rw	or byte ptr [rax + 0x1062], cl		
+0x1062	zone transition record	0x00314CA0	0x00314CAD	rw	and byte ptr [rax + 0x1062], 0xef		
+0x1062	zone transition record	0x00314CA0	0x00314CBC	rw	or byte ptr [rax + 0x1062], cl		
+0x1062	zone transition record	0x00314CD0	0x00314CDD	rw	and byte ptr [rax + 0x1062], 0xfd		
+0x1062	zone transition record	0x00314CD0	0x00314CEB	rw	or byte ptr [rax + 0x1062], cl		
+0x1062	zone transition record	0x00314D00	0x00314D0D	rw	and byte ptr [rax + 0x1062], 0xfb		
+0x1062	zone transition record	0x00314D00	0x00314D1C	rw	or byte ptr [rax + 0x1062], cl		
+0x1063	zone transition record	0x0025D9E0	0x0025DBA8	r	test byte ptr [rax + 0x1063], 0x40		
+0x1063	zone transition record	0x00261F90	0x0026201B	r	test byte ptr [rax + 0x1063], 0x40		
+0x1063	zone transition record	0x002628B0	0x00262A6A	rw	and byte ptr [rax + 0x1063], 0xbf		
+0x1063	zone transition record	0x0026A720	0x0026A731	rw	and byte ptr [rax + 0x1063], 0xbf		
+0x1063	zone transition record	0x0026A720	0x0026A74F	rw	or byte ptr [rax + 0x1063], 0x40		
+0x1063	zone transition record	0x0026DE20	0x0026DE33	r	test byte ptr [rax + 0x1063], 0x40		
+0x1063	zone transition record	0x00314A00	0x00314A39	rw	and byte ptr [rax + 0x1063], 0xcf		
+0x1063	zone transition record	0x00314A00	0x00314A45	rw	and byte ptr [rax + 0x1063], 0xfc		
+0x1063	zone transition record	0x00314A00	0x00314A51	rw	and byte ptr [rax + 0x1063], 0xf3		
+0x1063	zone transition record	0x00314AC0	0x00314AC9	r	movzx eax, byte ptr [rax + 0x1063]		
+0x1063	zone transition record	0x00314AE0	0x00314AE9	r	movzx eax, byte ptr [rax + 0x1063]		
+0x1063	zone transition record	0x00314BE0	0x00314BFD	rw	and byte ptr [rax + 0x1063], 0xcf		
+0x1063	zone transition record	0x00314BE0	0x00314C21	rw	and byte ptr [rax + 0x1063], 0xcf		
+0x1063	zone transition record	0x00314BE0	0x00314C28	rw	or byte ptr [rax + 0x1063], bl		
+0x1063	zone transition record	0x00314C40	0x00314C50	rw	and byte ptr [rax + 0x1063], 0xfc		
+0x1063	zone transition record	0x00314C40	0x00314C57	rw	or byte ptr [rax + 0x1063], bl		
+0x1064	quest scenario flags	0x0046B180	0x0046B18E	r	movzx eax, byte ptr [rax + rbx + 0x1064]		
+0x1064	quest scenario flags	0x0046B490	0x0046B4A4	w	mov byte ptr [rax + rbx + 0x1064], dil		
+0x1164	quest order field ids	0x0046B0D0	0x0046B0DE	r	movzx eax, word ptr [rax + rbx*2 + 0x1164]		
+0x1164	quest order field ids	0x0046B350	0x0046B364	w	mov word ptr [rax + rbx*2 + 0x1164], di		
+0x1164	quest order field ids	0x0046B3F0	0x0046B44E	w	mov word ptr [rax + rsi*2 + 0x1164], bx		
+0x1364	quest ok bits	0x0046B1F0	0x0046B224	r	test byte ptr [rax + rdi + 0x1364], dl		
+0x1364	quest ok bits	0x0046B380	0x0046B3B5	rw	or byte ptr [rax + rcx + 0x1364], bl		
+0x1364	quest ok bits	0x0046B380	0x0046B3D1	rw	and byte ptr [rax + rcx + 0x1364], bl		
+0x1384	flag bank 64A	0x0032A9A0	0x0032A9E4	r	test byte ptr [rax + rdi + 0x1384], dl		
+0x1384	flag bank 64A	0x0032AC70	0x0032ACB3	rw	or byte ptr [rax + rcx + 0x1384], bl		
+0x1384	flag bank 64A	0x0032AC70	0x0032ACD3	rw	and byte ptr [rax + rcx + 0x1384], bl		
+0x138C	flag bank 64B	0x0032AA00	0x0032AA44	r	test byte ptr [rax + rdi + 0x138c], dl		
+0x138C	flag bank 64B	0x0032ACF0	0x0032AD33	rw	or byte ptr [rax + rcx + 0x138c], bl		
+0x138C	flag bank 64B	0x0032ACF0	0x0032AD53	rw	and byte ptr [rax + rcx + 0x138c], bl		
+0x13B4	flag bank 2048	0x0032A930	0x0032A97B	r	test byte ptr [rax + rdi + 0x13b4], dl		
+0x13B4	flag bank 2048	0x0032ABF0	0x0032AC36	rw	or byte ptr [rax + rcx + 0x13b4], bl		
+0x13B4	flag bank 2048	0x0032ABF0	0x0032AC56	rw	and byte ptr [rax + rcx + 0x13b4], bl		
+0x14B4	flag bank 512	0x0032AA60	0x0032AAAB	r	test byte ptr [rax + rdi + 0x14b4], dl		
+0x14B4	flag bank 512	0x0032AAD0	0x0032AB1F	r	test byte ptr [rax + rdi + 0x14b4], dl		
+0x14B4	flag bank 512	0x0032AD70	0x0032ADB6	rw	or byte ptr [rax + rcx + 0x14b4], bl		
+0x14B4	flag bank 512	0x0032AD70	0x0032ADD6	rw	and byte ptr [rax + rcx + 0x14b4], bl		
+0x14B4	flag bank 512	0x0032ADF0	0x0032AE3A	rw	or byte ptr [rax + rcx + 0x14b4], bl		
+0x14B4	flag bank 512	0x0032ADF0	0x0032AE5A	rw	and byte ptr [rax + rcx + 0x14b4], bl		
+0x14F4	primary flag bank	0x0032A8A0	0x0032A900	r	test byte ptr [rax + rbx + 0x14f4], dl		
+0x14F4	primary flag bank	0x0032AB60	0x0032ABA8	rw	or byte ptr [rax + rcx + 0x14f4], bl		
+0x14F4	primary flag bank	0x0032AB60	0x0032ABC8	rw	and byte ptr [rax + rcx + 0x14f4], bl		
+0x1534	music override	0x0025D9E0	0x0025DBB6	r	movzx esi, byte ptr [rax + 0x1534]		
+0x1534	music override	0x00261F90	0x00262029	r	movzx edi, byte ptr [rax + 0x1534]		
+0x1534	music override	0x002628B0	0x00262A76	w	mov byte ptr [rax + 0x1534], bpl		
+0x1534	music override	0x0026A720	0x0026A73D	w	mov byte ptr [rax + 0x1534], 0		
+0x1534	music override	0x0026A720	0x0026A75B	w	mov byte ptr [rax + 0x1534], bl		
+0x1534	music override	0x0026DE20	0x0026DE41	r	movzx ebx, byte ptr [rax + 0x1534]		
+0x1535	options apply byte	0x002EF370	0x002EF37D	w	mov byte ptr [rax + 0x1735], bl		
+0x2000	battle block copy	0x00229B40	0x00229BA2	w	movups xmmword ptr [rax - 0x80], xmm0		
+0x2000	battle block copy	0x00235AF0	0x00235B00	addr	lea rdx, [rax + 0x2200]		
+0x2000	battle block copy	0x00235AF0	0x00235B1C	r	cmp dword ptr [rdx], ecx		
+0x2000	battle block copy	0x002EF4A0	0x002EF4AC	copy	lea rax, [rip + 0x1e76fcd]	0x02164280	copy, 0xC0 x 0x80 bytes out to 0x021B290C
+0x2000	battle block copy	0x005844A0	0x00584515	addr	lea rax, [rdi + 0x2200]		
+0x2000	battle block copy	0x005844A0	0x00584532	w	movups xmmword ptr [rax - 0x80], xmm0		
+0x2004	battle block copy	0x00235AF0	0x00235B24	r	cmp dword ptr [rdx + 4], ecx		
+0x2010	battle block copy	0x00229B40	0x00229BAA	w	movups xmmword ptr [rax - 0x70], xmm1		
+0x2010	battle block copy	0x005844A0	0x0058453A	w	movups xmmword ptr [rax - 0x70], xmm1		
+0x2020	battle block copy	0x00229B40	0x00229BB2	w	movups xmmword ptr [rax - 0x60], xmm0		
+0x2020	battle block copy	0x005844A0	0x00584542	w	movups xmmword ptr [rax - 0x60], xmm0		
+0x2030	battle block copy	0x00229B40	0x00229BBA	w	movups xmmword ptr [rax - 0x50], xmm1		
+0x2030	battle block copy	0x005844A0	0x0058454A	w	movups xmmword ptr [rax - 0x50], xmm1		
+0x2040	battle block copy	0x00229B40	0x00229BC2	w	movups xmmword ptr [rax - 0x40], xmm0		
+0x2040	battle block copy	0x005844A0	0x00584552	w	movups xmmword ptr [rax - 0x40], xmm0		
+0x2050	battle block copy	0x00229B40	0x00229BCA	w	movups xmmword ptr [rax - 0x30], xmm1		
+0x2050	battle block copy	0x005844A0	0x0058455A	w	movups xmmword ptr [rax - 0x30], xmm1		
+0x2060	battle block copy	0x00229B40	0x00229BD2	w	movups xmmword ptr [rax - 0x20], xmm0		
+0x2060	battle block copy	0x005844A0	0x00584562	w	movups xmmword ptr [rax - 0x20], xmm0		
+0x2070	battle block copy	0x00229B40	0x00229BDA	w	movups xmmword ptr [rax - 0x10], xmm1		
+0x2070	battle block copy	0x005844A0	0x0058456A	w	movups xmmword ptr [rax - 0x10], xmm1		
+0x2080	battle block copy	0x00229B40	0x00229B91	addr	lea rax, [rax + 0x80]		
+0x2080	battle block copy	0x005844A0	0x00584521	addr	lea rax, [rax + 0x80]		
+0x7B12	battle block copy	0x00235AF0	0x00235B41	r	cmp word ptr [rdx + 0x5b12], ax		
+0x7B42	battle block copy	0x00235AF0	0x00235B31	r	cmp byte ptr [rdx + 0x5b42], al		
+0x8000	image-backed block	0x00252E60	0x00252EB5	addr	lea rdi, [rax + rcx*4]		
+0x8000	image-backed block	0x00252F70	0x00252F8F	addr	lea rax, [rax + rcx*4]		
+0x8000	image-backed block	0x00252FF0	0x00253020	addr	lea rsi, [rax + rdx*4]		
+0x8000	image-backed block	0x002530E0	0x00253145	addr	lea rdi, [rax + rcx*4]		
+0x8000	image-backed block	0x00253240	0x002532AB	addr	lea r14, [rcx + rax*4]		
+0x8000	image-backed block	0x002534C0	0x00253512	addr	lea r14, [rax + rcx*4]		
+0x8000	image-backed block	0x002535D0	0x0025362D	addr	lea r14, [rax + rdx*4]		
+0x8008	image-backed block	0x00394130	0x0039423B	w	movups xmmword ptr [rax + 8], xmm0		
+0x8008	image-backed block	0x00394130	0x003942CA	r	movups xmm0, xmmword ptr [rax + 8]		
+0x8018	image-backed block	0x00394130	0x00394246	w	movups xmmword ptr [rax + 0x18], xmm1		
+0x8018	image-backed block	0x00394130	0x003942D5	r	movups xmm1, xmmword ptr [rax + 0x18]		
+0x8028	image-backed block	0x00394130	0x00394252	w	movsd qword ptr [rax + 0x28], xmm0		
+0x8028	image-backed block	0x00394130	0x003942E0	r	movsd xmm0, qword ptr [rax + 0x28]		
+0x8030	image-backed block	0x00252610	0x002526AA	w	mov word ptr [r9 + rax*2 + 0x30], r8w		
+0x8030	image-backed block	0x002526F0	0x00252793	r	movsx eax, word ptr [rbp + rax*2 + 0x30]		
+0x8030	image-backed block	0x002527B0	0x00252819	w	mov word ptr [r9 + rax*2 + 0x30], r8w		
+0x8030	image-backed block	0x002527B0	0x0025282D	w	mov word ptr [r9 + rax*2 + 0x30], r8w		
+0x8030	image-backed block	0x00253A80	0x00253B3E	addr	lea rcx, [rbx + 0x30]		
+0x8090	image-backed block	0x00252610	0x0025265B	w	mov dword ptr [r9 + rax*4 + 0x90], r8d		
+0x8090	image-backed block	0x00252610	0x0025266E	w	mov dword ptr [r9 + rax*4 + 0x90], r8d		
+0x8090	image-backed block	0x002526F0	0x0025273B	r	mov eax, dword ptr [rbp + rax*4 + 0x90]		
+0x8090	image-backed block	0x002526F0	0x00252751	r	mov eax, dword ptr [rbp + rax*4 + 0x90]		
+0x8090	image-backed block	0x002527B0	0x002527CF	w	mov dword ptr [r9 + rax*4 + 0x90], r8d		
+0x8090	image-backed block	0x002527B0	0x002527E5	w	mov dword ptr [r9 + rax*4 + 0x90], r8d		
+0x8224	image-backed block	0x002551B0	0x002551E3	r	movups xmm0, xmmword ptr [rax]		
+0x8224	image-backed block	0x003C5E50	0x003C5E8D	w	movups xmmword ptr [rax], xmm0		
+0x8224	image-backed block	0x003C60F0	0x003C611D	w	movups xmmword ptr [rax], xmm0		
+0x8224	image-backed block	0x003C8670	0x003C869C	w	movups xmmword ptr [rax], xmm0		
+0x8234	image-backed block	0x002551B0	0x002551E9	r	movups xmm1, xmmword ptr [rax + 0x10]		
+0x8234	image-backed block	0x003C5E50	0x003C5E97	w	movups xmmword ptr [rax + 0x10], xmm1		
+0x8234	image-backed block	0x003C60F0	0x003C6127	w	movups xmmword ptr [rax + 0x10], xmm1		
+0x8234	image-backed block	0x003C8670	0x003C86A6	w	movups xmmword ptr [rax + 0x10], xmm1		
+0xB244	image-backed block	0x00252D40	0x00252D67	rw	and byte ptr [r9 + 0x3244], al		
+0xB244	image-backed block	0x00252D40	0x00252D6E	r	movzx eax, byte ptr [r9 + 0x3244]		
+0xB244	image-backed block	0x00252D40	0x00252D7D	w	mov byte ptr [r9 + 0x3244], al		
+0xB244	image-backed block	0x00253480	0x002534AA	rw	and byte ptr [rax + 0x3244], 1		
+0xB244	image-backed block	0x00253A80	0x00253B1C	rw	and byte ptr [rax + 0x3244], 1		
+0xB244	image-backed block	0x00253A80	0x00253B47	addr	lea rcx, [rbx + 0x3244]		
+0xB245	image-backed block	0x00253480	0x002534B1	rw	and byte ptr [rax + 0x3245], 0xfe		
+0xB245	image-backed block	0x00253A80	0x00253B23	rw	and byte ptr [rax + 0x3245], 0xfe		
+0xB2C4	image-backed block	0x00253A80	0x00253B5D	w	mov qword ptr [rbx + 0x32c4], rax		
+0xB2C4	image-backed block	0x00254E00	0x00254E27	rw	and byte ptr [r9 + 0x32c4], al		
+0xB2C4	image-backed block	0x00254E00	0x00254E2E	r	movzx eax, byte ptr [r9 + 0x32c4]		
+0xB2C4	image-backed block	0x00254E00	0x00254E3D	w	mov byte ptr [r9 + 0x32c4], al		
+0xB2CC	image-backed block	0x003154B0	0x003154FD	r	movzx edx, byte ptr [rax + rcx + 0x32cc]		
+0xB2CC	image-backed block	0x00315910	0x00315965	r	movzx ebx, byte ptr [rax + rdi + 0x32cc]		
+0xB2CC	image-backed block	0x00315910	0x00315975	w	mov byte ptr [rax + rdi + 0x32cc], bl		
+0xB2CC	image-backed block	0x00315910	0x00315994	r	movzx ebx, byte ptr [rax + rdi + 0x32cc]		
+0xB2CC	image-backed block	0x00315910	0x003159A4	w	mov byte ptr [rax + rdi + 0x32cc], bl		
+0xB30C	image-backed block	0x003156E0	0x00315737	r	movzx edx, byte ptr [rax + rcx + 0x330c]		
+0xB30C	image-backed block	0x00315B50	0x00315BA4	r	movzx ebx, byte ptr [rax + rdi + 0x330c]		
+0xB30C	image-backed block	0x00315B50	0x00315BB8	w	mov byte ptr [rax + rdi + 0x330c], bl		
+0xB30C	image-backed block	0x00315B50	0x00315BCC	w	mov byte ptr [rax + rdi + 0x330c], bl		
+0xB34C	image-backed block	0x00315620	0x00315647	r	movzx edx, byte ptr [rax + rcx + 0x334c]		
+0xB34C	image-backed block	0x00315A20	0x00315A4B	r	movzx ebx, byte ptr [rax + rdi + 0x334c]		
+0xB34C	image-backed block	0x00315A20	0x00315A60	r	movzx ebx, byte ptr [rax + rdi + 0x334c]		
+0xB34C	image-backed block	0x00315A20	0x00315A70	w	mov byte ptr [rax + rdi + 0x334c], bl		
+0xB36C	image-backed block	0x00315470	0x00315493	r	movzx eax, byte ptr [rax + rcx + 0x336c]		
+0xB36C	image-backed block	0x00315CD0	0x00315D00	r	movzx ebx, byte ptr [rax + rbp + 0x336c]		
+0xB36C	image-backed block	0x00315CD0	0x00315D29	w	mov byte ptr [rax + rbp + 0x336c], bl		
+0xB3F4	image-backed block	0x003156E0	0x0031577E	r	movzx edx, byte ptr [rax + rcx + 0x33f4]		
+0xB3F4	image-backed block	0x00315B50	0x00315BF2	r	movzx ebx, byte ptr [rax + rdi + 0x33f4]		
+0xB3F4	image-backed block	0x00315B50	0x00315C06	w	mov byte ptr [rax + rdi + 0x33f4], bl		
+0xB3F4	image-backed block	0x00315B50	0x00315C1A	w	mov byte ptr [rax + rdi + 0x33f4], bl		
+0xB404	image-backed block	0x00315420	0x00315440	r	cmp byte ptr [rax + rbx + 0x3404], 0		
+0xB404	image-backed block	0x00315420	0x0031545C	r	movzx eax, byte ptr [rax + rbx + 0x3404]		
+0xB404	image-backed block	0x00315820	0x0031583E	r	cmp byte ptr [rax + rsi + 0x3404], 0		
+0xB404	image-backed block	0x00315820	0x0031584D	r	cmp byte ptr [rax + rsi + 0x3404], 0		
+0xB404	image-backed block	0x00315820	0x00315861	r	movzx ebx, byte ptr [rax + rsi + 0x3404]		
+0xB404	image-backed block	0x00315820	0x0031588E	w	mov byte ptr [rax + rsi + 0x3404], bl		
+0xB404	image-backed block	0x00315A90	0x00315AA8	r	cmp byte ptr [rax + rbx + 0x3404], 0		
+0xB404	image-backed block	0x00315A90	0x00315AB7	w	mov byte ptr [rax + rbx + 0x3404], 1		
+0xB404	image-backed block	0x00316930	0x003169E0	r	cmp byte ptr [rax + rsi + 0x3404], bl		
+0xB404	image-backed block	0x00316930	0x003169EE	r	movzx edx, byte ptr [rax + rsi + 0x3404]		
+0xB404	image-backed block	0x00316930	0x00316A0C	w	mov byte ptr [rax + rsi + 0x3404], 2		
+0xB604	image-backed block	0x00315670	0x00315697	r	movzx r8d, byte ptr [rax + rbx + 0x3604]		
+0xB604	image-backed block	0x003156E0	0x003157B7	r	test byte ptr [rax + rdi + 0x3604], dl		
+0xB604	image-backed block	0x00315AD0	0x00315B06	r	movzx ebx, byte ptr [rax + rsi + 0x3604]		
+0xB604	image-backed block	0x00315AD0	0x00315B1D	r	movzx ebx, byte ptr [rax + rsi + 0x3604]		
+0xB604	image-backed block	0x00315AD0	0x00315B2D	w	mov byte ptr [rax + rsi + 0x3604], bl		
+0xB604	image-backed block	0x00315B50	0x00315C43	r	movzx ebx, byte ptr [rax + rsi + 0x3604]		
+0xB604	image-backed block	0x00315B50	0x00315C55	r	movzx ebx, byte ptr [rax + rsi + 0x3604]		
+0xB604	image-backed block	0x00315B50	0x00315C65	w	mov byte ptr [rax + rsi + 0x3604], bl		
+0xB844	image-backed block	0x003154B0	0x00315612	r	movzx edx, byte ptr [rax + rcx + 0x3844]		
+0xB844	image-backed block	0x00315910	0x003159D9	r	movzx ebx, byte ptr [rax + rdi + 0x3844]		
+0xB844	image-backed block	0x00315910	0x003159EE	r	movzx ebx, byte ptr [rax + rdi + 0x3844]		
+0xB844	image-backed block	0x00315910	0x003159FE	w	mov byte ptr [rax + rdi + 0x3844], bl		
+0xB844	image-backed block	0x00315E90	0x00315EC5	r	movzx r8d, byte ptr [rax + rdx + 0x3844]		
+0xB844	image-backed block	0x00315E90	0x00316059	r	movzx ebx, byte ptr [rax + rdi + 0x3844]		
+0xB844	image-backed block	0x00315E90	0x00316069	w	mov byte ptr [rax + rdi + 0x3844], bl		
+0xB844	image-backed block	0x00316670	0x003166AF	r	movzx edx, byte ptr [rcx + rax + 0x3844]		
+0xB844	image-backed block	0x00316A50	0x00316ACB	r	movzx ebx, byte ptr [rax + rdi + 0x3844]		
+0xB844	image-backed block	0x00316A50	0x00316ADB	w	mov byte ptr [rax + rdi + 0x3844], bl		
+0xB844	image-backed block	0x00316A50	0x00316B28	r	movzx ebx, byte ptr [rax + rdi + 0x3844]		
+0xB844	image-backed block	0x00316A50	0x00316B38	w	mov byte ptr [rax + rdi + 0x3844], bl		
+0xB845	image-backed block	0x00316440	0x00316449	r	movzx ecx, byte ptr [rax + 0x3845]		
+0xB848	image-backed block	0x003156E0	0x00315805	r	movzx edx, byte ptr [rax + rcx + 0x3848]		
+0xB848	image-backed block	0x00315B50	0x00315C8E	r	movzx ebx, byte ptr [rax + rdi + 0x3848]		
+0xB848	image-backed block	0x00315B50	0x00315CA7	w	mov byte ptr [rax + rdi + 0x3848], bl		
+0xB84C	image-backed block	0x003162E0	0x0031631C	addr	lea ecx, [rax + 0x384c]		
+0xB84C	image-backed block	0x003162E0	0x00316353	r	mov ebx, dword ptr [rax]		
+0xB84C	image-backed block	0x003162E0	0x0031635F	r	movsx ebx, word ptr [rax]		
+0xB84C	image-backed block	0x003166F0	0x00316705	addr	lea edx, [rax + 0x384c]		
+0xB84C	image-backed block	0x003166F0	0x0031673B	r	mov ebx, dword ptr [rax]		
+0xB84C	image-backed block	0x003166F0	0x00316750	r	movsx ebx, word ptr [rax]		
+0xB84C	image-backed block	0x00316810	0x00316878	addr	lea edx, [rax + 0x384c]		
+0xB84C	image-backed block	0x00316810	0x0031689D	w	mov dword ptr [rax], 0x7ffffffe		
+0xB84C	image-backed block	0x00316810	0x003168B3	w	mov word ptr [rax], r15w		
+0xB84C	image-backed block	0x00316810	0x003168CB	addr	lea edx, [rax + 0x384c]		
+0xB84C	image-backed block	0x00316810	0x003168F0	w	mov dword ptr [rax], ebp		
+0xB84C	image-backed block	0x00316810	0x003168FC	w	mov word ptr [rax], bp		
+0xB84C	image-backed block	0x00316BF0	0x00316C04	addr	lea r8d, [rax + 0x384c]		
+0xB84C	image-backed block	0x00316BF0	0x00316C30	w	mov dword ptr [rax], ebx		
+0xB84C	image-backed block	0x00316BF0	0x00316C45	w	mov word ptr [rax], bx		
+0xB84C	image-backed block	0x00316C60	0x00316C79	addr	lea edx, [rax + 0x384c]		
+0xB84C	image-backed block	0x00316C60	0x00316CA3	w	mov dword ptr [rax], 0x1869f		
+0xB84C	image-backed block	0x00316C60	0x00316CBC	w	mov word ptr [rcx], ax		
+0xB868	image-backed block	0x00315390	0x003153A4	r	mov ebx, dword ptr [rax]		
+0xC7B8	image-backed block	0x00250270	0x002502D9	r	cmp dword ptr [rdx + r10*4 + 0x47b8], eax		
+0xC7B8	image-backed block	0x00250270	0x002503D9	r	cmp r15d, dword ptr [rdx + r10*4 + 0x47b8]		
+0xC7B8	image-backed block	0x00252FA0	0x00252FD7	r	mov eax, dword ptr [rax + rcx*4 + 0x47b8]		
+0xC7E8	image-backed block	0x002542B0	0x002542D1	r	mov r11, qword ptr [rax + 0x47e8]		
+0xC7E8	image-backed block	0x00254CC0	0x00254D06	rw	add qword ptr [rbx + 0x47e8], rcx		
+0xC7E8	image-backed block	0x00254CC0	0x00254D0F	r	mov rax, qword ptr [rbx + 0x47e8]		
+0xC7E8	image-backed block	0x00254CC0	0x00254D1D	w	mov qword ptr [rbx + 0x47e8], rax		
+0xC7E8	image-backed block	0x00255040	0x00255047	w	mov qword ptr [rax + 0x47e8], 0		
+0xE000	checksum	0x00583D60	0x00583F99	w	mov dword ptr [rdi + 0xe200], eax		
+0xE040	group bank A	0x00229B40	0x00229CDF	addr	lea rcx, [rdi + 0xe240]		
+0xE040	group bank A	0x0025D8E0	0x0025D901	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CE6	
+0xE040	group bank A	0x00269A20	0x00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 0x00584210 at 0x00584368	
+0xE040	group bank A	0x002EF7C0	0x002EF7CC	copy	lea rax, [rip + 0x1e82ced]	0x02164280	copy, 4 x 0x80 bytes out to 0x021C8B80
+0xE040	group bank A	0x00584210	0x0058432B	addr	lea rcx, [rbx + 0xe240]		
+0xE040	group bank A	0x005843E0	0x00584428	addr	lea rcx, [rdi + 0xe240]		
+0xE040	group bank A	0x005844A0	0x005844DA	addr	lea rcx, [rax + 0xe240]		
+0xE040	group bank A	0x00584580	0x00584597	addr	lea rcx, [rbx + 0xe240]		
+0xE050	group bank A	0x0025D8E0	0x0025D909	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CE6	
+0xE050	group bank A	0x00269A20	0x00269A45	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0 from 0x00584210 at 0x00584368	
+0xE060	group bank A	0x0025D8E0	0x0025D911	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CE6	
+0xE060	group bank A	0x00269A20	0x00269A4D	r	movups xmm0, xmmword ptr [rcx - 0x60]	arg0 from 0x00584210 at 0x00584368	
+0xE070	group bank A	0x0025D8E0	0x0025D919	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CE6	
+0xE070	group bank A	0x00269A20	0x00269A55	r	movups xmm1, xmmword ptr [rcx - 0x50]	arg0 from 0x00584210 at 0x00584368	
+0xE080	group bank A	0x0025D8E0	0x0025D921	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CE6	
+0xE080	group bank A	0x00269A20	0x00269A5D	r	movups xmm0, xmmword ptr [rcx - 0x40]	arg0 from 0x00584210 at 0x00584368	
+0xE090	group bank A	0x0025D8E0	0x0025D929	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CE6	
+0xE090	group bank A	0x00269A20	0x00269A65	r	movups xmm1, xmmword ptr [rcx - 0x30]	arg0 from 0x00584210 at 0x00584368	
+0xE0A0	group bank A	0x0025D8E0	0x0025D931	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CE6	
+0xE0A0	group bank A	0x00269A20	0x00269A6D	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0 from 0x00584210 at 0x00584368	
+0xE0B0	group bank A	0x0025D8E0	0x0025D939	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CE6	
+0xE0B0	group bank A	0x00269A20	0x00269A75	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0 from 0x00584210 at 0x00584368	
+0xE0C0	group bank A	0x0025D8E0	0x0025D8F0	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00229B40 at 0x00229CE6	
+0xE0C0	group bank A	0x00269A20	0x00269A3A	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00584210 at 0x00584368	
+0xE240	spawn-keep image A	0x00229B40	0x00229CEB	addr	lea rcx, [rdi + 0xe440]		
+0xE240	spawn-keep image A	0x00233440	0x00233530	w	mov word ptr [rbx], ax	arg0 from 0x00229B40 at 0x00229CF2	
+0xE240	spawn-keep image A	0x00233550	0x002335B9	r	movzx eax, word ptr [rcx]	arg0 from 0x005843E0 at 0x0058443B	
+0xE240	spawn-keep image A	0x002EF740	0x002EF74C	copy	lea rax, [rip + 0x1e82f6d]	0x02164280	copy, 0x400 x 0x80 bytes out to 0x021C8D80
+0xE240	spawn-keep image A	0x005843E0	0x00584434	addr	lea rcx, [rdi + 0xe440]		
+0xE240	spawn-keep image A	0x00584580	0x005845A3	addr	lea rcx, [rbx + 0xe440]		
+0xE242	spawn-keep image A	0x00233440	0x0023353A	w	mov word ptr [rbx + 2], ax	arg0 from 0x00229B40 at 0x00229CF2	
+0xE242	spawn-keep image A	0x00233550	0x002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 0x005843E0 at 0x0058443B	
+0xE250	spawn-keep image A	0x00233440	0x00233468	addr	lea rdx, [rbx + 0x10]	arg0 from 0x00229B40 at 0x00229CF2	
+0xE250	spawn-keep image A	0x00233440	0x00233481	w	movups xmmword ptr [rdx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0xE250	spawn-keep image A	0x00233550	0x0023355C	addr	lea rdx, [rcx + 0x10]	arg0 from 0x005843E0 at 0x0058443B	
+0xE250	spawn-keep image A	0x00233550	0x0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 0x005843E0 at 0x0058443B	
+0xE260	spawn-keep image A	0x00233440	0x00233489	w	movups xmmword ptr [rdx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0xE260	spawn-keep image A	0x00233550	0x0023357B	r	movups xmm1, xmmword ptr [rdx - 0x70]	arg0 from 0x005843E0 at 0x0058443B	
+0xE270	spawn-keep image A	0x00233440	0x00233491	w	movups xmmword ptr [rdx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0xE270	spawn-keep image A	0x00233550	0x00233583	r	movups xmm0, xmmword ptr [rdx - 0x60]	arg0 from 0x005843E0 at 0x0058443B	
+0xE280	spawn-keep image A	0x00233440	0x00233499	w	movups xmmword ptr [rdx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0xE280	spawn-keep image A	0x00233550	0x0023358B	r	movups xmm1, xmmword ptr [rdx - 0x50]	arg0 from 0x005843E0 at 0x0058443B	
+0xE290	spawn-keep image A	0x00233440	0x002334A1	w	movups xmmword ptr [rdx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0xE290	spawn-keep image A	0x00233550	0x00233593	r	movups xmm0, xmmword ptr [rdx - 0x40]	arg0 from 0x005843E0 at 0x0058443B	
+0xE2A0	spawn-keep image A	0x00233440	0x002334A9	w	movups xmmword ptr [rdx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0xE2A0	spawn-keep image A	0x00233550	0x0023359B	r	movups xmm1, xmmword ptr [rdx - 0x30]	arg0 from 0x005843E0 at 0x0058443B	
+0xE2B0	spawn-keep image A	0x00233440	0x002334B1	w	movups xmmword ptr [rdx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0xE2B0	spawn-keep image A	0x00233550	0x002335A3	r	movups xmm0, xmmword ptr [rdx - 0x20]	arg0 from 0x005843E0 at 0x0058443B	
+0xE2C0	spawn-keep image A	0x00233440	0x002334B9	w	movups xmmword ptr [rdx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0xE2C0	spawn-keep image A	0x00233550	0x002335AB	r	movups xmm1, xmmword ptr [rdx - 0x10]	arg0 from 0x005843E0 at 0x0058443B	
+0xE2D0	spawn-keep image A	0x00233440	0x00233470	addr	lea rdx, [rdx + 0x80]	arg0 from 0x00229B40 at 0x00229CF2	
+0xE2D0	spawn-keep image A	0x00233550	0x00233570	addr	lea rdx, [rdx + 0x80]	arg0 from 0x005843E0 at 0x0058443B	
+0x1E250	spawn-keep image A	0x00233440	0x002334CF	addr	lea rcx, [rbx + 0x10010]	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E250	spawn-keep image A	0x00233440	0x002334E7	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E260	spawn-keep image A	0x00233440	0x002334EF	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E270	spawn-keep image A	0x00233440	0x002334F7	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E280	spawn-keep image A	0x00233440	0x002334FF	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E290	spawn-keep image A	0x00233440	0x00233507	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E2A0	spawn-keep image A	0x00233440	0x0023350F	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E2B0	spawn-keep image A	0x00233440	0x00233517	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E2C0	spawn-keep image A	0x00233440	0x0023351F	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CF2	
+0x1E2D0	spawn-keep image A	0x00233440	0x002334D6	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00229B40 at 0x00229CF2	
+0x2E250	group bank B	0x00229B40	0x00229CCA	addr	lea rcx, [rdi + 0x2e450]		
+0x2E250	group bank B	0x0025D8E0	0x0025D901	w	movups xmmword ptr [rcx - 0x80], xmm0	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E250	group bank B	0x00269A20	0x00269A37	r	movups xmm0, xmmword ptr [rcx]	arg0 from 0x005843E0 at 0x00584452	
+0x2E250	group bank B	0x005843E0	0x0058444B	addr	lea rcx, [rdi + 0x2e450]		
+0x2E260	group bank B	0x0025D8E0	0x0025D909	w	movups xmmword ptr [rcx - 0x70], xmm1	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E260	group bank B	0x00269A20	0x00269A45	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0 from 0x005843E0 at 0x00584452	
+0x2E270	group bank B	0x0025D8E0	0x0025D911	w	movups xmmword ptr [rcx - 0x60], xmm0	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E270	group bank B	0x00269A20	0x00269A4D	r	movups xmm0, xmmword ptr [rcx - 0x60]	arg0 from 0x005843E0 at 0x00584452	
+0x2E280	group bank B	0x0025D8E0	0x0025D919	w	movups xmmword ptr [rcx - 0x50], xmm1	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E280	group bank B	0x00269A20	0x00269A55	r	movups xmm1, xmmword ptr [rcx - 0x50]	arg0 from 0x005843E0 at 0x00584452	
+0x2E290	group bank B	0x0025D8E0	0x0025D921	w	movups xmmword ptr [rcx - 0x40], xmm0	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E290	group bank B	0x00269A20	0x00269A5D	r	movups xmm0, xmmword ptr [rcx - 0x40]	arg0 from 0x005843E0 at 0x00584452	
+0x2E2A0	group bank B	0x0025D8E0	0x0025D929	w	movups xmmword ptr [rcx - 0x30], xmm1	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E2A0	group bank B	0x00269A20	0x00269A65	r	movups xmm1, xmmword ptr [rcx - 0x30]	arg0 from 0x005843E0 at 0x00584452	
+0x2E2B0	group bank B	0x0025D8E0	0x0025D931	w	movups xmmword ptr [rcx - 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E2B0	group bank B	0x00269A20	0x00269A6D	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0 from 0x005843E0 at 0x00584452	
+0x2E2C0	group bank B	0x0025D8E0	0x0025D939	w	movups xmmword ptr [rcx - 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E2C0	group bank B	0x00269A20	0x00269A75	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0 from 0x005843E0 at 0x00584452	
+0x2E2D0	group bank B	0x0025D8E0	0x0025D8F0	addr	lea rcx, [rcx + 0x80]	arg0 from 0x00229B40 at 0x00229CD1	
+0x2E2D0	group bank B	0x00269A20	0x00269A3A	addr	lea rcx, [rcx + 0x80]	arg0 from 0x005843E0 at 0x00584452	
+0x2E450	spawn-keep image B	0x00229B40	0x00229CD6	addr	lea rcx, [rdi + 0x2e650]		
+0x2E450	spawn-keep image B	0x00233550	0x002335B9	r	movzx eax, word ptr [rcx]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E450	spawn-keep image B	0x005843E0	0x00584457	addr	lea rcx, [rdi + 0x2e650]		
+0x2E452	spawn-keep image B	0x00233550	0x002335C3	r	movzx eax, word ptr [rcx + 2]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E460	spawn-keep image B	0x00233550	0x0023355C	addr	lea rdx, [rcx + 0x10]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E460	spawn-keep image B	0x00233550	0x0023356D	r	movups xmm0, xmmword ptr [rdx]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E470	spawn-keep image B	0x00233550	0x0023357B	r	movups xmm1, xmmword ptr [rdx - 0x70]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E480	spawn-keep image B	0x00233550	0x00233583	r	movups xmm0, xmmword ptr [rdx - 0x60]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E490	spawn-keep image B	0x00233550	0x0023358B	r	movups xmm1, xmmword ptr [rdx - 0x50]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E4A0	spawn-keep image B	0x00233550	0x00233593	r	movups xmm0, xmmword ptr [rdx - 0x40]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E4B0	spawn-keep image B	0x00233550	0x0023359B	r	movups xmm1, xmmword ptr [rdx - 0x30]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E4C0	spawn-keep image B	0x00233550	0x002335A3	r	movups xmm0, xmmword ptr [rdx - 0x20]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E4D0	spawn-keep image B	0x00233550	0x002335AB	r	movups xmm1, xmmword ptr [rdx - 0x10]	arg0 from 0x005843E0 at 0x0058445E	
+0x2E4E0	spawn-keep image B	0x00233550	0x00233570	addr	lea rdx, [rdx + 0x80]	arg0 from 0x005843E0 at 0x0058445E	
+0x4E460	transition metadata	0x00229B40	0x00229CF7	addr	lea rcx, [rdi + 0x4e660]		
+0x4E460	transition metadata	0x002EF540	0x002EF540	r	movaps xmm0, xmmword ptr [rip + 0x1ec3399]	0x02164280	
+0x4E460	transition metadata	0x002EF540	0x002EF547	w	movups xmmword ptr [rcx], xmm0	arg0 from 0x00229B40 at 0x00229CFE	
+0x4E460	transition metadata	0x00584210	0x00584371	addr	lea rcx, [rbx + 0x4e660]		
+0x4E460	transition metadata	0x005843E0	0x0058441C	addr	lea rcx, [rdi + 0x4e660]		
+0x4E460	transition metadata	0x005843E0	0x00584471	r	movzx eax, byte ptr [rdi + 0x4e660]		
+0x4E460	transition metadata	0x00584580	0x005845AF	addr	lea rcx, [rbx + 0x4e660]		
+0x4E460	transition metadata	0x00584580	0x005845C2	w	mov dword ptr [rbx + 0x4e660], eax		
+0x4E464	transition metadata	0x002EF3C0	0x002EF3C0	r	mov eax, dword ptr [rip + 0x1ec351e]	0x02164280	
+0x4E464	transition metadata	0x002EF3C0	0x002EF3C9	w	mov dword ptr [rcx + 4], eax	arg0 from 0x00584580 at 0x005845B6	
+0x4E464	transition metadata	0x003145E0	0x00314731	w	mov dword ptr [rax + 0x4e664], ecx		
+0x4E468	transition metadata	0x002EF3C0	0x002EF3DA	w	movups xmmword ptr [rcx + 8], xmm0	arg0 from 0x00584580 at 0x005845B6	
+0x4E468	transition metadata	0x002EF410	0x002EF420	r	movups xmm0, xmmword ptr [rcx + 8]	arg0 from 0x00584210 at 0x00584378	
+0x4E468	transition metadata	0x002EF410	0x002EF45D	r	test byte ptr [rbx + 8], 1	arg0 from 0x00584210 at 0x00584378	
+0x4E46C	transition metadata	0x002EF410	0x002EF463	r	movss xmm0, dword ptr [rbx + 0xc]	arg0 from 0x00584210 at 0x00584378	
+0x4E470	transition metadata	0x002EF410	0x002EF46D	r	movss xmm0, dword ptr [rbx + 0x10]	arg0 from 0x00584210 at 0x00584378	
+0x4E470	transition metadata	0x002EF540	0x002EF54A	r	movaps xmm1, xmmword ptr [rip + 0x1ec339f]	0x02164280	
+0x4E470	transition metadata	0x002EF540	0x002EF551	w	movups xmmword ptr [rcx + 0x10], xmm1	arg0 from 0x00229B40 at 0x00229CFE	
+0x4E478	transition metadata	0x002EF3C0	0x002EF3EC	w	movups xmmword ptr [rcx + 0x18], xmm0	arg0 from 0x00584580 at 0x005845B6	
+0x4E478	transition metadata	0x002EF410	0x002EF43B	r	test byte ptr [rcx + 0x18], 2	arg0 from 0x00584210 at 0x00584378	
+0x4E478	transition metadata	0x002EF410	0x002EF441	r	movups xmm0, xmmword ptr [rcx + 0x18]	arg0 from 0x00584210 at 0x00584378	
+0x4E480	transition metadata	0x002EF410	0x002EF453	r	movss xmm0, dword ptr [rcx + 0x20]	arg0 from 0x00584210 at 0x00584378	
+0x4E480	transition metadata	0x002EF540	0x002EF555	r	movsd xmm0, qword ptr [rip + 0x1ec33a3]	0x02164280	
+0x4E480	transition metadata	0x002EF540	0x002EF55D	w	movsd qword ptr [rcx + 0x20], xmm0	arg0 from 0x00229B40 at 0x00229CFE	
+0x4E488	transition metadata	0x002EF3C0	0x002EF3FD	w	mov dword ptr [rdx + 0x28], ecx	arg0 from 0x00584580 at 0x005845B6	
+0x4E488	transition metadata	0x002EF410	0x002EF432	r	mov edx, dword ptr [rcx + 0x28]	arg0 from 0x00584210 at 0x00584378	
+0x4E488	transition metadata	0x002EF540	0x002EF562	r	mov eax, dword ptr [rip + 0x1ec33a0]	0x02164280	
+0x4E488	transition metadata	0x002EF540	0x002EF568	w	mov dword ptr [rcx + 0x28], eax	arg0 from 0x00229B40 at 0x00229CFE	
+0x4E48C	battle-state block			range	0x4E48C-0x5589B: the block's accesses through its pointer are in ../Party/party-data.md	0x02EBF190	

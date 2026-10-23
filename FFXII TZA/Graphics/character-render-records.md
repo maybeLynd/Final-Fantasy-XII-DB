@@ -2,7 +2,7 @@
 title: "Character render records: the record array, the pool lifecycle, render events and the presentation entries"
 kind: "system"
 category: "Graphics"
-addresses: "0x003325D0, 0x022C6F28, 0x022C6F20, 0x022C6F30, 0x0041E3A0, 0x0041E550, 0x004269A0, 0x00426480, 0x0042FB80, 0x004279B0, 0x004278E0, 0x0041F730, 0x00420480, 0x00428710, 0x00427C90, 0x00429140, 0x004200A0, 0x00426EC0, 0x0042ED60, 0x00332660, 0x003323D0, 0x00426090, 0x00427DE0, 0x00427BD0, 0x00426420, 0x0051F9F0, 0x0051FBB0, 0x0051F6B0, 0x002ED570, 0x00409FE0, 0x0046E4D0, 0x004780C0, 0x0051F240, 0x0051F080, 0x0051F410, 0x0051F190, 0x0051BA40, 0x0051BA80, 0x0051B9F0, 0x0051B970, 0x00424D80, 0x004235C0, 0x0041FCA0, 0x00424230, 0x01F00410, 0x0041CD30, 0x0041CFC0, 0x0041C9A0, 0x00417920, 0x00417110"
+addresses: "0x003325D0, 0x022C6F28, 0x022C6F20, 0x022C6F30, 0x0041E3A0, 0x0041E550, 0x004269A0, 0x00426480, 0x0042FB80, 0x004279B0, 0x004278E0, 0x0041F730, 0x00420480, 0x00428710, 0x00427C90, 0x00429140, 0x004200A0, 0x00426EC0, 0x0042ED60, 0x00332660, 0x003323D0, 0x00426090, 0x00427DE0, 0x00427BD0, 0x00426420, 0x0051F9F0, 0x0051FBB0, 0x0051F6B0, 0x002ED570, 0x00409FE0, 0x0046E4D0, 0x004780C0, 0x0051F240, 0x0051F080, 0x0051F410, 0x0051F190, 0x0051BA40, 0x0051BA80, 0x0051B9F0, 0x0051B970, 0x00424D80, 0x004235C0, 0x0041FCA0, 0x00424230, 0x01F00410, 0x0041CD30, 0x0041CFC0, 0x0041C9A0, 0x00417920, 0x00417110, 0x004215A0, 0x0042F880, 0x0042F310, 0x0042F3B0, 0x00422310, 0x00422380, 0x01EFFFB0, 0x01F00060, 0x004219C0, 0x004218A0"
 ---
 
 ## What the player sees
@@ -318,6 +318,65 @@ event of its own for the parent's event (`0x0041E5B0`): `0x00422E40` for a child
 `0x00423510(record, resource)` returns the payload of the resource's `@FRM` (`0x00408F90`, `0x00408F80`)
 plus the dword at its `+0x0C`, or 0 when the section is missing or that dword is 0; `0x003E6070`
 reads three floats there.
+
+### Attaching a record: the pending tie and the slot table
+
+A tie is requested by `0x0042F310` or `0x0042F3B0` (`(child, parent, slot)`; [chocobos](../World-Areas-And-Travel/chocobos-and-airships.md)
+has the actor-level caller). They store the parent's id at the child's `+0x3CE`, the slot at `+0x3CC` and set
+`+0x290` bit 19. The request service `0x00427DE0` sees the bit (`0x00427F44`-`0x00427F53`) and runs `0x0042F880`. That
+function hands the parent, the slot and the child to `0x004215A0` (`0x0042FA1C`-`0x0042FA29`), which resolves the slot
+against the parent's skeleton entry:
+
+| Slot | Skeleton with keyed bones (entry `+0x00` bit 7 set) | Skeleton with named bones (bit 7 clear) |
+|---|---|---|
+| `0x7FFF` | the whole skeleton (`0x004219C0` with key −1, `0x00421661`-`0x0042166A`) | no name |
+| `0x10A` | `0x0041F010(parent, child)` (`0x004216F7`-`0x00421707`) | the name `0x00422310` gives |
+| `0x102`, `0x103` | as slots 2 and 3 | the name `0x00422310` gives |
+| below `0x100` | the bone `0x003E5AD0` gives for the slot as a special id, tied with `0x0046E640`; bone key `0x1E` when it gives `0xFFFF` (`0x00421738`-`0x00421768`) | entry `slot` of the name table `0x01EFFFB0` (`0x00422347`) |
+| other | the key `0x00422380` gives (`0x0042176A`-`0x0042177A`) | the name `0x00422310` gives |
+
+A keyed tie goes through `0x004219C0(parent, key, child)` and a named one through `0x004218A0(parent, name, child)`
+(`0x00421841`-`0x00421852`). Afterwards the child's word `+0x06` is the parent's id and `+0x2F0` the slot
+(`0x00421861`-`0x00421868`).
+
+On a keyed skeleton, slot 15 is the ride (`0x0042177F`-`0x0042180D`); the named path skips this. It sets the parent's `+0x284` bit 27 and the child's bits 26 and 27,
+and bit 6 of `+0x4B7` on both. It runs `0x0041CFC0` on both records' active presentation entries (`0x00422D50`), loads
+the child's angles `+0x120` from `0x02064AB0`, and calls `0x00512C80` on the child's `+0x650`. When the child has an
+attached child at `+0x2C8`, it re-places that child through `0x0041F010`.
+
+The two tables are 22 entries long, one per slot below `0x16`: string pointers and `s16` keys.
+
+| Slot | Bone name (`0x01EFFFB0`) | Key (`0x01F00060`) |
+|---|---|---|
+| 0, 2 | `n_buki_r` | `0xBA` |
+| 1, 3 | `n_buki_l` | `0xB3` |
+| 4 | `j_sebo_b` | `0x01` |
+| 5 | `j_kosi` | `0x1B` |
+| 6-11 | `j_asi_a_l` | `0x16` |
+| 12, 13 | `j_kao` | `0x03` |
+| 14 | `__not att` | none (−1) |
+| 15 | `n_hara` | `0x1E` |
+| 16 | `model` | `0x1D` |
+| 17 | `j_kaochild_s` | `0x02` |
+| 18 | `j_blade` | `0x65E` |
+| 19 | `n_grip` | `0x656` |
+| 20 | `child_e` | none (−1) |
+| 21 | `automax` | `0x1D` |
+
+The point ids `0x100` and up name bones directly. For `0x00422310` and `0x00422380`:
+
+| Point id | Name | Key |
+|---|---|---|
+| `0x100` | `n_hara` | `0x1E` |
+| `0x101` | `model` | `0x1D` |
+| `0x109` | `__naiyo__` | `0x1D00` |
+| `0x200` | `j_blade` | `0x65E` |
+| `0x201` | `n_grip` | `0x656` |
+| `0x1000` | `j_kao` | `0x03` |
+| any other id of `0x100` or more | `__naiyo__` (`0x00D12428`) | none (`0xFFFF`) |
+
+So a weapon's blade and grip are the bones keyed `0x65E` and `0x656`, named `j_blade` and `n_grip`. A rider sits on
+`n_hara`, key `0x1E`, unless the mount's model has its own bone for special id 15.
 
 ### The dirty words
 

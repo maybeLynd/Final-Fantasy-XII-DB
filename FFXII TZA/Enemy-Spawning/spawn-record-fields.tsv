@@ -1,23 +1,23 @@
 function	name	site	disp	kind	instruction	route	note
-0x00233440	FUN_00233440	0x00233477	0x0	copy	movups xmm0, xmmword ptr [rax] (copy, 0x128 x 0x80 bytes: the whole history bank out to the save payload's spawn-keep image)	0x0208E698	
-0x00233550	FUN_00233550	0x0023356D	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the save payload's spawn-keep image over the history bank)	0x0208E698	
-0x00233780	Spawn_SwapOrPushBanks	0x00233827	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the whole history bank out to a stack temp)	0x0208E698	
-0x00233780	Spawn_SwapOrPushBanks	0x00233887	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the whole live bank over the history bank)	0x0208E690	
-0x00233780	Spawn_SwapOrPushBanks	0x002338E7	0x0	copy	movups xmm0, xmmword ptr [rax] (copy, 0x128 x 0x80 bytes: the stack temp over the live bank)	0x0208E690	
-0x00233780	Spawn_SwapOrPushBanks	0x0023395C	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the whole live bank over the history bank)	0x0208E690	
+0x00233440	FUN_00233440	0x00233477	0x0	copy	movups xmm0, xmmword ptr [rax]	0x0208E698	copy, 0x128 x 0x80 bytes: the whole history bank out to the save payload's spawn-keep image
+0x00233550	FUN_00233550	0x0023356D	0x0	copy	movups xmm0, xmmword ptr [rdx]	0x0208E698	copy, 0x128 x 0x80 bytes: the save payload's spawn-keep image over the history bank
+0x00233780	Spawn_SwapOrPushBanks	0x00233827	0x0	copy	movups xmm0, xmmword ptr [rdx]	0x0208E698	copy, 0x128 x 0x80 bytes: the whole history bank out to a stack temp
+0x00233780	Spawn_SwapOrPushBanks	0x00233887	0x0	copy	movups xmm0, xmmword ptr [rdx]	0x0208E690	copy, 0x128 x 0x80 bytes: the whole live bank over the history bank
+0x00233780	Spawn_SwapOrPushBanks	0x002338E7	0x0	copy	movups xmm0, xmmword ptr [rax]	0x0208E690	copy, 0x128 x 0x80 bytes: the stack temp over the live bank
+0x00233780	Spawn_SwapOrPushBanks	0x0023395C	0x0	copy	movups xmm0, xmmword ptr [rdx]	0x0208E690	copy, 0x128 x 0x80 bytes: the whole live bank over the history bank
 0x00233AD0	BattleUnit_ActivateAppliedDefinitionRuntime	0x00233BA8	0x0	rw	or dword ptr [rax], 2	unit +0x6A0	
 0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x0023429B	0x0	rw	or dword ptr [rcx], 4	unit +0x6A0	
 0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x00235159	0x0	r	test byte ptr [rax], 0x10	unit +0x6A0	
 0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x002352A6	0x0	rw	or dword ptr [rcx], 1	unit +0x6A0	
 0x00235360	Spawn_SelectContinuousEntry	0x00235410	0x0	r	mov r8d, dword ptr [rax]	0x0208E698	
-0x00235360	Spawn_SelectContinuousEntry	0x0023546C	0x0	copy	movups xmm0, xmmword ptr [rax] (copy, 0x250 bytes: the matching history record over the live record)	0x0208E698	
+0x00235360	Spawn_SelectContinuousEntry	0x0023546C	0x0	copy	movups xmm0, xmmword ptr [rax]	0x0208E698	copy, 0x250 bytes: the matching history record over the live record
 0x002354F0	Spawn_SelectPreviousMapEntry	0x0023555C	0x0	r	test byte ptr [r8], 4	0x0208E690	
 0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358B6	0x0	r	mov eax, dword ptr [r14]	0x0208E690	
-0x00236030	FUN_00236030	0x0023607F	0x0	addr	add rcx, qword ptr [rip + 0x1e5860a] (the record's address, tested for null only)	0x0208E690	
+0x00236030	FUN_00236030	0x0023607F	0x0	addr	add rcx, qword ptr [rip + 0x1e5860a]	0x0208E690	the record's address, tested for null only
 0x00236670	SpawnEntry_QueryRangeReentryPending	0x002366BA	0x0	r	mov eax, dword ptr [rcx]	0x0208E690	
 0x00236860	SpawnEntry_ResetTransientState	0x002368AA	0x0	rw	and dword ptr [rcx], 0xffffff7a	0x0208E690	
-0x002368D0	FUN_002368d0	0x0023696E	0x0	set	call 0x861ec0 (memset, 0x9400 bytes: the whole live bank at allocation)	0x0208E690	
-0x002368D0	FUN_002368d0	0x00236999	0x0	set	call 0x861ec0 (memset, 0x9400 bytes: the whole history bank at allocation)	0x0208E698	
+0x002368D0	FUN_002368d0	0x0023696E	0x0	set	call 0x861ec0	0x0208E690	memset, 0x9400 bytes: the whole live bank at allocation
+0x002368D0	FUN_002368d0	0x00236999	0x0	set	call 0x861ec0	0x0208E698	memset, 0x9400 bytes: the whole history bank at allocation
 0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	0x00237085	0x0	rw	and dword ptr [rcx], 0xffffff7a	arg0 from 0x00300E40 at 0x00300F68	
 0x00237430	FUN_00237430	0x00237451	0x0	r	mov eax, dword ptr [rax]	unit +0x6A0	
 0x00237D80	FUN_00237d80	0x00237DD7	0x0	rw	and dword ptr [rax], 0xffffffdf	unit +0x6A0	

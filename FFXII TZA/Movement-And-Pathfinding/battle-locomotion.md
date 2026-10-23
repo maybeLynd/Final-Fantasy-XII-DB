@@ -488,6 +488,22 @@ The locomotion block's flag word, headings, rates, counters and reach values; th
 rebuilt every step. Three recovery bodies draw from the C runtime `rand()` (IAT `0x008C3098`), the
 process-wide stream, so a detour is not reproducible from the game's own generators.
 
+The circling formation keeps its centre at `0x022C7CF0` as four floats: `0x022C7CF0`, `0x022C7CF4` and `0x022C7CF8` take the
+x, y and z of the sampled enemy's position through the three pointer arguments of `0x00265020`, which copies them from
+`[actor+0xB8]` or writes 0 without a position (`0x00265041`-`0x00265059`), and `0x022C7CFC` stays 0. The mode 2 sampler
+`0x00337C10` takes them from an enemy of mode 5, and the mode 1 sampler `0x00337D90`, called by the mode 1 body `0x0033DFD0`
+(`0x0033E000`), from an enemy of mode 4. The area initialisation `0x0033A380` clears the 0x30 bytes
+`0x022C7CE0`-`0x022C7D0F`.
+
+The two rows below give every access: every RIP-relative reference, with the addresses of
+`0x022C7CF0` and `0x022C7CF8` that the code passes on followed into their callees; no image-base-relative reference or
+disp32 displacement names either global.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C7CF8` | `f32` | 0 (zero-filled tail) | the z of the formation centre, the third float of `0x022C7CF0` | `0x0033A380`, 0 (`0x0033A39B`); `0x00265020` through its fourth argument (`0x0026504E`, `0x00265059`), passed by `0x00337C10` (`0x00337CEA`, `0x00337D2D`) and `0x00337D90` (`0x00337E94`, `0x00337EE3`) | through the address `0x022C7CF0`: `0x00202B10` (`0x00202B2D`), which adds the centre to a unit's goal offset, from `0x0033D890` (`0x0033DA35`) and `0x0033DFD0` (`0x0033E0E2`); `0x00203080`, which subtracts, at `0x0020309D` when `0x0033D890` calls it (`0x0033DB0F`) and at `0x002030A2` when `0x0033DFD0` calls it (`0x0033E145`) |
+| `0x022C7D08` | `u8[8]` | 0 (zero-filled tail) | read by no instruction; nothing fixes its width | `0x0033A380`, 0 with the block (`0x0033A3A9`) | no instruction |
+
 ## Modding notes
 
 - The step is quadratic in the remaining distance; the seven constants are one curve with a

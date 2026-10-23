@@ -2,7 +2,7 @@
 title: "Bestiary: every enemy definition of every area with its name, level, stats, elements, statuses, loot and rewards"
 kind: "reference"
 category: "Enemy spawning"
-addresses: "0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A570, 0x0023AC80, 0x002FEF30, 0x0030C470, 0x002398F0, 0x002394C0, 0x002390B0, 0x0023A3B0, 0x002F8BB0, 0x002F90C0, 0x00312280, 0x00317090, 0x00390390, 0x00390680, 0x003180F0, 0x00238BF0, 0x0031C2F0, 0x002ED6F0, 0x002DF9A0, 0x00264ED0"
+addresses: "0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A570, 0x0023AC80, 0x002FEF30, 0x0030C470, 0x002398F0, 0x002394C0, 0x002390B0, 0x0023A3B0, 0x002F8BB0, 0x002F90C0, 0x00312280, 0x00317090, 0x00390390, 0x00390680, 0x003180F0, 0x00238BF0, 0x0031C2F0, 0x002ED6F0, 0x002DF9A0, 0x00264ED0, 0x0031C540, 0x0026D610, 0x002E6090, 0x002E28E0, 0x0042FB80, 0x00420480, 0x0041F340, 0x00504F00, 0x00504840, 0x004772E0"
 ---
 
 ## What it lists
@@ -91,7 +91,8 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 | `+0x08` | `u16` | name word | `0x0023A570`, `0x0031C5D0` (`0x0031DD5A`), `0x00536310` |
 | `+0x0A` | `i16[3]` | model scale in percent, 0 meaning 100 | `0x00238BF0` (`0x00238D1B`-`0x00238D68`), handed to `0x002E5FD0` |
 | `+0x10` | `u8` | 0, or 55 on two rows | no instruction (below) |
-| `+0x11` | `u8[2]` | the model's variant bytes: `+0x12` first, `+0x11` second | `0x0031C540` (`0x0031C5AB`, `0x0031C5B1`) |
+| `+0x11` | `u8` | the model variant: the `@FOR` record key the render record asks for (below) | `0x0031C540` (`0x0031C5B1`) |
+| `+0x12` | `u8` | the colour: the model row's option number (below) | `0x0031C540` (`0x0031C5AB`) |
 | `+0x13` | `u8` | animation set, `0xFF` for the weapon's | `0x003202F0` ([Action phases](../Battle-Actions/action-phases.md)) |
 | `+0x14` | `u8` | 0 in every row | no instruction (below) |
 | `+0x15` | `u8` | flags: bit 0 Attack and weapon evade from the rows; bit 1 shield and magick evade from the rows; bit 2 unit flag bit 43; bits 3-4 the target-information query | `0x002FEF30`, `0x0023A570`, `0x0031AA30` |
@@ -119,6 +120,40 @@ The `+0x03` and `+0x15` bits, by their readers:
   of `+0x304` ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
 - `+0x15` bit 3: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits 3 or 4: it leaves the
   reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and `0x00328530`.
+
+### Colour and model variants
+
+`0x0031C540(actorId, &colour, &variant)` resolves the id to its actor (`0x003588B0`) and the actor's unit (`0x00263E30`,
+`+0x30`), and reads the two bytes from the unit's definition (`[unit + 0xE60]`, `+0x12` and `+0x11`) when the
+unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zero return. The model rebuild hands them on as
+`0x0026D610(actor, variant, colour)` (`0x0037B77C`-`0x0037B7A5`), or as variant 1 and colour 0 when the read fails
+([actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)). From there:
+
+1. `0x0026D610` stores variant and colour at the actor's secondary `+0x14C` and `+0x14D` (`0x002E6090`).
+2. The presentation set-up `0x002E28E0` passes both to `0x0042FB80` (`0x002E2986`-`0x002E2998`), whose initialiser
+   `0x00420480` keeps the variant at render record `+0x5C`, 1 when it is 0 (`0x00420557`-`0x00420568`), and the colour at
+   `+0x5D` (`0x0042056C`-`0x00420576`).
+3. The bind `0x0041F340` hands both to the model row (`0x0041F641`-`0x0041F69E`, `0x004780C0`). `0x00504F00` matches the
+   variant against the model's `@FOR` record keys (`+0xB8`; the first record's key when none matches, 0 with no
+   record) and keeps the colour as the option number `+0xB9`
+   while it is below the `@FOR` option count `+0x33`, else 0
+   ([model files](../Graphics/model-files-cm-ca.md)).
+4. The variant also picks the `@FOR` scale (`0x00504840`, record `+0x26C`) and the pose sequencer entry
+   (`0x004772E0`, record `+0x450`).
+
+Over the 1,146 definitions, `+0x12` is 0 on 1,065, 1 on 46, 2 on 20, 3 on 8, 4 on 3 and 5 on 4; `+0x11` is 0 on
+1,046, 1 on 27, 2 on 22, 3 on 21, 4 on 21, 5 on 3, 6 on 4, and 7 and 8 on one each. 1,018 rows have both 0.
+
+The chocobos are one model, `m1066` (`0x006D002A`), with one `@FOR` record (key 1) and six option numbers. Every
+chocobo definition has variant 0 and one of these colours:
+
+| Colour (`+0x12`) | Definitions |
+|---|---|
+| 1 | Red Chocobo (3), Lv. 99 Red Chocobo (2) |
+| 2 | Black Chocobo (5), Bull Chocobo (1) |
+| 3 | White Chocobo (1) |
+| 4 | Green Chocobo (2) |
+| 5 | Brown Chocobo (4) |
 
 ### The class row (slot 0, 84 bytes)
 
@@ -248,6 +283,7 @@ Five definitions compared with the code that reads them:
 | `steal_*`, `drop_1`-`drop_5`, `poach_*` | the items by name |
 | `monograph_1`, `monograph_2` | item, chance and the key item that must be held |
 | `weapon`, `weapon_element`, `weapon_status`, `off_hand` | the two equipment ids by name; the main-hand row's element and on-hit status |
+| `variant` | definition `+0x12` (the colour) then `+0x11` (the model variant), as "colour, variant" |
 | `start_hp` ... `class_bytes30` | the remaining fields as the layout tables above name them, raw; `push_weight` is class row `+0x10` divided by 10, and `class_bytes30` the sixteen bytes of `+0x30` |
 | `explanation` | a one-line summary of the placements, HP, elements, rewards and steals |
 

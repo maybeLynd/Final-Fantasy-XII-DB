@@ -12,10 +12,10 @@ function	name	site	disp	kind	instruction	route	note
 0x00233F70	BattleUnit_UpdateLifecycleAndCombatFrame	0x002340EC	0x0	r	test qword ptr [rbx], rcx	0x0031B760	
 0x00233F70	BattleUnit_UpdateLifecycleAndCombatFrame	0x0023412D	0x0	rw	or dword ptr [rbx], 0x10	0x0031B760	
 0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x00234263	0x0	r	test byte ptr [rbx], 0x10	0x00263E30	
-0x00234200	FUN_00234200	0x002342CE	0x0	set	call 0x861ec0 (memset, 0xF50 bytes: the whole unit at release)	0x00263E30	
+0x00234200	FUN_00234200	0x002342CE	0x0	set	call 0x861ec0	0x00263E30	memset, 0xF50 bytes: the whole unit at release
 0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x002342D3	0x0	rw	and dword ptr [rbx], 0xfffffffe	0x00263E30	
 0x00234480	BattleUnit_AllocateSlotAndBindActor	0x002344A5	0x0	r	test byte ptr [rbx], 1	0x0208E688 (the slot acquire)	slot acquire; rbx = first clear slot in *(0x0208E688), memset then seeds
-0x00234480	FUN_00234480	0x002344D2	0x0	set	call 0x861ec0 (memset, 0xF50 bytes: the whole unit at slot acquire)	0x0208E688 (the slot acquire)	
+0x00234480	FUN_00234480	0x002344D2	0x0	set	call 0x861ec0	0x0208E688 (the slot acquire)	memset, 0xF50 bytes: the whole unit at slot acquire
 0x00234480	BattleUnit_AllocateSlotAndBindActor	0x002344D7	0x0	rw	or dword ptr [rbx], 1	0x0208E688 (the slot acquire)	slot acquire; rbx = first clear slot in *(0x0208E688), memset then seeds
 0x00234480	BattleUnit_AllocateSlotAndBindActor	0x00234503	0x0	rw	and dword ptr [rbx], 0xffdfffff	0x0208E688 (the slot acquire)	slot acquire; rbx = first clear slot in *(0x0208E688), memset then seeds
 0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x00235126	0x0	r	test byte ptr [rsi], 0x10	0x0031B760	
@@ -26,7 +26,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	0x00236352	0x0	rw	and qword ptr [rbx], 0xfffffffffffbffff	arg0 from 0x00239E10 at 0x0023A047	
 0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	0x00236382	0x0	rw	or qword ptr [rbx], 0x40000	arg0 from 0x00239E10 at 0x0023A047	
 0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	0x002363AA	0x0	rw	or qword ptr [rbx], 0x40000	arg0 from 0x00239E10 at 0x0023A047	
-0x002368D0	FUN_002368d0	0x00236943	0x0	set	call 0x861ec0 (memset, 32 x 0xF50 bytes: the whole pool at allocation)	0x0208E688	
+0x002368D0	FUN_002368d0	0x00236943	0x0	set	call 0x861ec0	0x0208E688	memset, 32 x 0xF50 bytes: the whole pool at allocation
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236A6F	0x0	r	test byte ptr [rcx], 0x10	arg0 from 0x0023A570 at 0x0023A5B0	
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236AA6	0x0	rw	and dword ptr [rdi], 0xffffb0e3	arg0 from 0x0023A570 at 0x0023A5B0	
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236AB1	0x0	rw	and qword ptr [rdi], rax	arg0 from 0x0023A570 at 0x0023A5B0	
@@ -51,9 +51,9 @@ function	name	site	disp	kind	instruction	route	note
 0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023AC4B	0x0	rw	and qword ptr [rdi], 0xfffffffffbffffff	arg0 from 0x00300E40 at 0x00300F75	
 0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023AC52	0x0	rw	or qword ptr [rdi], 2	arg0 from 0x00300E40 at 0x00300F75	
 0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023AC56	0x0	rw	or dword ptr [rdi], 4	arg0 from 0x00300E40 at 0x00300F75	
-0x00265A20	FUN_00265a20	0x00265AA4	0x0	addr	mov rcx, qword ptr [rbx + 0x30] (the unit, passed to 0x00234A00)	actor +0x30	
-0x002E3AF0	FUN_002e3af0	0x002E3B5F	0x0	addr	mov rcx, qword ptr [rbx + 0x30] (the unit, passed to 0x0031B750)	actor +0x30	
-0x002E5610	FUN_002e5610	0x002E562A	0x0	addr	mov r14, qword ptr [rcx + 0x30] (the unit, tested for null only)	actor +0x30	
+0x00265A20	FUN_00265a20	0x00265AA4	0x0	addr	mov rcx, qword ptr [rbx + 0x30]	actor +0x30	the unit, passed to 0x00234A00
+0x002E3AF0	FUN_002e3af0	0x002E3B5F	0x0	addr	mov rcx, qword ptr [rbx + 0x30]	actor +0x30	the unit, passed to 0x0031B750
+0x002E5610	FUN_002e5610	0x002E562A	0x0	addr	mov r14, qword ptr [rcx + 0x30]	actor +0x30	the unit, tested for null only
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF994	0x0	r	mov eax, dword ptr [r14]	0x0031B860	
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF9E1	0x0	r	mov rcx, qword ptr [r14]	0x0031B860	
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FFA11	0x0	w	mov qword ptr [r14], rcx	0x0031B860	
@@ -266,7 +266,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00329A20	BattleUnit_AddPrimaryResourceRecoveryAccumulator	0x00329A36	0x0	r	test byte ptr [rcx], 0x10	arg0 from 0x002FA540 at 0x002FA559	
 0x00329A80	FUN_00329a80	0x00329AA3	0x0	r	test byte ptr [rax], 0x10	0x00263E30	
 0x0032A060	FUN_0032a060	0x0032A08A	0x0	r	mov ecx, dword ptr [rax]	0x00236820	
-0x00359B80	FUN_00359b80	0x00359B85	0x0	addr	mov rcx, qword ptr [rcx + 0x30] (the unit, passed on to 0x0031AD90)	actor +0x30	
+0x00359B80	FUN_00359b80	0x00359B85	0x0	addr	mov rcx, qword ptr [rcx + 0x30]	actor +0x30	the unit, passed on to 0x0031AD90
 0x00387FD0	BattleFormula_RollSpecialGuardOutcome	0x00387FF8	0x0	r	mov eax, dword ptr [rax]	0x0031B860	
 0x003884F0	BattleFormula_RollGuardParryMode	0x00388508	0x0	r	mov eax, dword ptr [rax]	0x0031B860	
 0x003896B0	BattleFormula_RollAvoidGuardParryOutcome	0x003896D5	0x0	r	mov eax, dword ptr [rax]	0x0031B860	
@@ -735,7 +735,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00325260	BattleUnit_HandleActionTimelineEvent	0x00325646	0x74	w	mov dword ptr [rbx + 0x74], eax	0x00263E30	
 0x00233F70	BattleUnit_UpdateLifecycleAndCombatFrame	0x0023406F	0x80	addr	lea rcx, [rbx + 0x80]	0x0031B760	
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236B12	0x80	addr	lea rcx, [rdi + 0x80]	arg0 from 0x0023A570 at 0x0023A5B0	
-0x00236A60	FUN_00236a60	0x00236BF0	0x80	set	call 0x861ec0 (memset, 0x610 bytes: +0x80 to +0x68F in the reuse reset)	arg0 from 0x0023A570 at 0x0023A5B0	
+0x00236A60	FUN_00236a60	0x00236BF0	0x80	set	call 0x861ec0	arg0 from 0x0023A570 at 0x0023A5B0	memset, 0x610 bytes: +0x80 to +0x68F in the reuse reset
 0x00301830	AiOrder_CheckActionPreconditions	0x0030185B	0x80	addr	lea rax, [rcx + 0x80]	arg0 from 0x003014C0 at 0x003015DA	
 0x00301830	AiOrder_CheckActionPreconditions	0x00301887	0x80	r	movups xmm0, xmmword ptr [rax]	arg0 from 0x003014C0 at 0x003015DA	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x003048EF	0x80	addr	lea rbx, [rdi + 0x80]	arg0 from 0x00307BE0 at 0x00307C19	
@@ -2160,7 +2160,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00313120	FUN_00313120	0x00313285	0x778	addr	lea rcx, [rdi + 0x778]	0x0031B7E0	
 0x00313120	FUN_00313120	0x00313299	0x778	addr	lea r8, [rdi + 0x778]	0x0031B7E0	
 0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316CFA	0x778	r	movzx ebx, byte ptr [rcx]	arg0+0x778 from 0x003105D0 at 0x003106B4	
-0x00316CF0	FUN_00316cf0	0x00316D0B	0x778	set	call 0x861ec0 (memset, 0x208 bytes: the target buffer)	arg0+0x778 from 0x003105D0 at 0x003106B4	
+0x00316CF0	FUN_00316cf0	0x00316D0B	0x778	set	call 0x861ec0	arg0+0x778 from 0x003105D0 at 0x003106B4	memset, 0x208 bytes: the target buffer
 0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316D10	0x778	rw	and byte ptr [rdi], 0xfe	arg0+0x778 from 0x003105D0 at 0x003106B4	
 0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316D16	0x778	rw	or byte ptr [rdi], bl	arg0+0x778 from 0x003105D0 at 0x003106B4	
 0x00319F50	BattleUnit_HandleActorTimelineEvent	0x00319FD8	0x778	addr	lea rcx, [rbx + 0x778]	0x00263E30	
@@ -2289,7 +2289,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0030F130	AiOrder_BuildCandidateTargetBufferFromStoredRangeAndStatus	0x0030F177	0xBC0	r	movups xmm0, xmmword ptr [rax]	arg0 from 0x003014C0 at 0x00301649	
 0x00316D30	FUN_00316d30	0x00316D3A	0xBC0	rw	or byte ptr [rcx], 1	arg0+0xBC0 from 0x00308610 at 0x003087D2	
 0x00316D30	FUN_00316d30	0x00316D3F	0xBC0	r	movzx ebx, byte ptr [rcx]	arg0+0xBC0 from 0x00308610 at 0x003087D2	
-0x00316D30	FUN_00316d30	0x00316D4E	0xBC0	set	call 0x861ec0 (memset, 0x208 bytes: the perception cache)	arg0+0xBC0 from 0x00308610 at 0x003087D2	
+0x00316D30	FUN_00316d30	0x00316D4E	0xBC0	set	call 0x861ec0	arg0+0xBC0 from 0x00308610 at 0x003087D2	memset, 0x208 bytes: the perception cache
 0x00316D30	FUN_00316d30	0x00316D53	0xBC0	rw	and byte ptr [rdi], 0xfe	arg0+0xBC0 from 0x00308610 at 0x003087D2	
 0x00316D30	FUN_00316d30	0x00316D59	0xBC0	rw	or byte ptr [rdi], bl	arg0+0xBC0 from 0x00308610 at 0x003087D2	
 0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	0x00324857	0xBC0	addr	lea r14, [rdi + 0xbc0]	arg0 from 0x00233F70 at 0x00234009	
@@ -2594,4 +2594,4 @@ function	name	site	disp	kind	instruction	route	note
 0x002FE950	FUN_002fe950	0x002FE9C5	0xEB0	r	cmp dword ptr [rbx + 0xeb0], ecx	arg0 from 0x00310DB0 at 0x003112AC	
 0x002FE950	FUN_002fe950	0x002FE9CD	0xEB0	w	mov dword ptr [rbx + 0xeb0], ecx	arg0 from 0x00310DB0 at 0x003112AC	
 0x002FE950	FUN_002fe950	0x002FEA22	0xEB0	r	movsxd rax, dword ptr [rbx + 0xeb0]	arg0 from 0x00310DB0 at 0x003112AC	
-0x0031AD90	FUN_0031ad90	0x0031AD92	0xED0	addr	lea rax, [rcx + 0xed0] (returned)	arg0 from 0x00359B80 at 0x00359B8C	
+0x0031AD90	FUN_0031ad90	0x0031AD92	0xED0	addr	lea rax, [rcx + 0xed0]	arg0 from 0x00359B80 at 0x00359B8C	returned

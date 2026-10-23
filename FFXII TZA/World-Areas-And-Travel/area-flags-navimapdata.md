@@ -37,8 +37,8 @@ The World/Area/Field start-up routine `0x00378540` requests it as resource (9, 8
 `"MapInfo"` (string at `0x00D11148`) through the resource loader `0x0032E620`, with `0x00378B80` as the
 delivery callback. That callback is ten bytes: it zero-extends the delivered 32-bit address and stores
 it at `0x02ADD100` (`0x00378B82`). `0x00378540` clears `0x02ADD100` first, so the cell is null until the file
-arrives. No other function writes `0x02ADD100` (its references are the eight reads in the accessors
-below, the two writes in `0x00378540` and `0x00378B80`, and two data references in `0x00379D60`).
+arrives. No other function writes `0x02ADD100` (its references are the seven reads in the accessors
+below, one in each, and the two writes in `0x00378540` and `0x00378B80`).
 
 ### The record and its seven readers
 
@@ -60,6 +60,10 @@ area id unsigned against the count at `+4` and return the default when it is not
 bytes `+8` and `+9` (or `+10`) of `table + 3 × id`. `0x00377C20` is the model: `0x00377C29` loads the
 pointer, `0x00377C33` tests it, `0x00377C35`-`0x00377C39` bounds the id, `0x00377C42`-`0x00377C53` assembles
 the word from two byte loads, `0x00377C55` shifts by 15.
+
+These seven are the only code that reads the table. Its address is held only in `0x02ADD100`: no instruction or data
+word holds it as an absolute or image-relative value, the key `"MapInfo"` has its one reference in `0x00378540`, and
+each reader returns only its own bits. So no code reads third-byte bits 1-3 or bit 7 as a field.
 
 ### The current area id
 
@@ -191,9 +195,14 @@ third byte. The defaults do not agree on what they mean:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | flags | bits 0-11 Map entry (`0x003779F0`), bits 12-13 MP regime (`0x00377BA0`), bit 14 area name (`0x00377A40`), bit 15 town (`0x00377C20`, `0x00377480`) |
-| `+0x02` | `u8` | options | bit 0 hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by nothing (scope: the seven functions that load `0x02ADD100` above and its two loaders), bits 4-6 default leader (`0x00377C70`), bit 7 never set and never read |
+| `+0x02` | `u8` | options | bit 0 hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by no code, bits 4-6 default leader (`0x00377C70`), bit 7 never set and never read |
 
 ## Shipped data
+
+Every record, decoded field by field, is in [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv): one row per area
+id with the `us` name `0x00377B60` returns (empty for an id with no name entry), the flag word, the Map entry
+(`none` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, bits 1-3 and the
+default leader.
 
 Census of the 1,154 records in `navimapdata.bin`:
 
@@ -202,7 +211,7 @@ Census of the 1,154 records in `navimapdata.bin`:
 | town flag (bit 15) | set on 193 areas |
 | area name (bit 14) | set on 155 areas, 154 of them towns |
 | MP regime (bits 12-13) | 0 on 945, 1 on 36, 2 on 69, 3 on 104 |
-| Map entry (bits 0-11) | `0xFFF` (none) on 556, 0 on 200, 370 distinct values, highest 368 |
+| Map entry (bits 0-11) | `0xFFF` (none) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
 | hold flag (byte 2 bit 0) | set on 170 areas, every one of them a town; the 23 towns without it are ids 0-22 |
 | byte 2 bits 1-3 | 0x02, 0x04 and 0x08 in eight combinations across 638 areas |
 | byte 2 bits 4-7 | 0 on every record |

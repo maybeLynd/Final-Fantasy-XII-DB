@@ -67,6 +67,7 @@ The companion table has one row per access site:
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed (`lea`) and passed on, `set` a clear over the span the instruction cell gives, `copy` a block move whose length and other end the instruction cell gives, `range` a span whose own table the instruction cell names |
 | `instruction` | the instruction text, as disassembled from the executable |
 | `via` | empty when the function computes the address from the buffer getter `0x002EF640` or `0x002EF2B0` itself; `argN from F at S` when the pointer came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K; `0x02EBF190` or `0x020927C0` when the function loads that block pointer; `0x02164280` for a direct reference to the buffer; `file kind 8` and `file kind 9` for the slot file's write and read |
+| `note` | what the access does, where the instruction alone does not show it (a bulk copy or clear and its size) |
 
 The battle-state block's accesses through `0x02EBF190` are not repeated here: the table carries one `range` row for the
 block, and [the block's field map](../Party/party-data.md) lists them field by field; the copies and clears that reach

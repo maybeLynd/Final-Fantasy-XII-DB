@@ -2,7 +2,7 @@
 title: "Movement bodies and separation: the collision body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart"
 kind: "system"
 category: "Movement and pathfinding"
-addresses: "0x003DAE30, 0x002E8E20, 0x0026B2E0, 0x0026BBC0, 0x0026BF60, 0x00265390, 0x0026B170, 0x003DA8A0, 0x003DAD00, 0x002E3500, 0x00269EC0, 0x002682D0, 0x002685F0, 0x00268380, 0x003DAF20, 0x00380D30, 0x003808A0, 0x003DB1B0, 0x003DB020, 0x0046AD20, 0x003DAA40, 0x003DAC70, 0x003DAAB0, 0x003DAB50, 0x00314F30, 0x00314F50, 0x003DA5A0, 0x003DA730, 0x00314E10, 0x003DA9F0, 0x002E5180, 0x002E5380, 0x003B7730, 0x00266D10, 0x00269E60, 0x0026ABD0, 0x0026B9D0, 0x00263810, 0x0026A560, 0x0026BE00, 0x00263640, 0x002E86B0, 0x0026AB60, 0x0026BEE0, 0x0026BDD0, 0x002640E0"
+addresses: "0x003DAE30, 0x002E8E20, 0x0026B2E0, 0x0026BBC0, 0x0026BF60, 0x00265390, 0x0026B170, 0x003DA8A0, 0x003DAD00, 0x002E3500, 0x00269EC0, 0x002682D0, 0x002685F0, 0x00268380, 0x003DAF20, 0x00380D30, 0x003808A0, 0x003DB1B0, 0x003DB020, 0x0046AD20, 0x003DAA40, 0x003DAC70, 0x003DAAB0, 0x003DAB50, 0x00314F30, 0x00314F50, 0x003DA5A0, 0x003DA730, 0x00314E10, 0x003DA9F0, 0x002E5180, 0x002E5380, 0x003B7730, 0x00266D10, 0x00269E60, 0x0026ABD0, 0x0026B9D0, 0x00263810, 0x0026A560, 0x0026BE00, 0x00263640, 0x002E86B0, 0x0026AB60, 0x0026BEE0, 0x0026BDD0, 0x002640E0, 0x003E58B0, 0x00239E10, 0x003204D0, 0x003204E0, 0x003E6150, 0x002E28E0"
 ---
 
 ## What the player sees
@@ -188,6 +188,28 @@ its value as given, without the `[0x01DFE0BC]` factor.
 record's `+0x23C` with it: at or above it `0x004255B0` picks state 2 and `0x004256E0` state 2 or a
 direction state 9 to 11; below it, down to the lower bound `0x003E58B0`, both pick state 1 or a
 direction state 3 to 5. `0x0041F730` starts `+0x420` at 0.013333.
+
+Both thresholds are `@FCP` section 9 words ([model files](../Graphics/model-files-cm-ca.md),
+property ids `09 00 DD FF`):
+
+- The walk threshold `0x003E58B0(record)` is section 9's float `+0x34`, or `+0x30` while the record's `+0x284` bit 18 is
+  set (`0x003E58CF`-`0x003E58F9`), times the three scales `+0x260`, `+0x160` and `+0x26C`; 0.013333 (`0x00D117B8`) for a
+  record with no `@FCP` payload or no section 9.
+- The run threshold `+0x420` has three writers, all through `0x002E86B0`. The presentation set-up hands the actor's
+  `+0xE4` (`0x00263640`, `0x002E2CF6`): property `0x09000707`, section 9 float slot 7, which `0x003E6150` multiplies by the
+  scale `+0x26C`, then times `[0x01DFE0BC]` = 1.0 (`0x002E2CCE`-`0x002E2CEE`). The verb `setwalkthresholdspeed` hands its
+  value (`0x0026BE00`). The unit set-up `0x00239E10` hands the unit's float `+0x184` (`0x0023A006`-`0x0023A012`).
+- `0x00239E10` fills `+0x184` from one of two properties (`0x00239E33`-`0x00239E5F`, `0x00239EB5`-`0x00239ECC`):
+  - `0x003204D0(unit, 9)`, property `0x09000707`, when the unit's row `+0x698` byte `+5` is 1 and byte `+0x13` of its
+    `+0xE60` block is not `0xFF`;
+  - `0x003204D0(unit, 2)`, property `0x09000101`, otherwise.
+  `0x003204E0` takes both through `0x002ECE50` and multiplies them by the actor's scale, the third output of `0x00265240`
+  (`0x00320545`-`0x0032057A`; [action range](../Battle-Actions/action-range.md)).
+- `+0xE0`, the speed the move verbs push, is property `0x09000606`, section 9 float slot 6, scaled by `+0x26C` the
+  same way (`0x002E2CA1`-`0x002E2CB3`).
+
+`0x003E6150` returns 0 for a model without `@FCP`. A model with `@FCP` but no section 9 gets the default table
+`0x01F265B0`: slot 6 is 0.0666667 and slots 1 and 7 are 0.13333.
 
 `0x002640E0(actor)` reads `+0xE0` back (0 for any class but 3). The move verbs push it as the speed
 argument before running their body: `rcmove`/`cmove` (`0x003E`/`0x0059`, `0x003548B0`),

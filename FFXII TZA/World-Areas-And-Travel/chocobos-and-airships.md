@@ -2,16 +2,21 @@
 title: "Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel"
 kind: "system"
 category: "World, areas and travel"
-addresses: "0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F00, 0x003514D0, 0x00347230, 0x00347820, 0x00347C60, 0x00356630, 0x00355910, 0x0033F650, 0x0050F8A0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x00304440, 0x00234590, 0x00303CC0, 0x00336390, 0x0017D380, 0x0017D3A0, 0x0031B8C0, 0x00311E20, 0x0035CFA0, 0x0035C960, 0x0035CA70, 0x003CA310, 0x003CA860, 0x00304680, 0x00304060, 0x00304140, 0x00237DF0, 0x0034EE20, 0x0034DD90, 0x0032AB60, 0x003EBA90, 0x003EBB70, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00263750, 0x00306760, 0x005843E0, 0x002EF3C0, 0x002EF410, 0x00261F90, 0x002DEE50, 0x003611F0, 0x0026A7F0, 0x00342E50, 0x00265680, 0x001D50D0, 0x005C5230"
+addresses: "0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F00, 0x003514D0, 0x00347230, 0x00347820, 0x00347C60, 0x00356630, 0x00355910, 0x0033F650, 0x0050F8A0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x00304440, 0x00234590, 0x00303CC0, 0x00336390, 0x0017D380, 0x0017D3A0, 0x0031B8C0, 0x00311E20, 0x0035CFA0, 0x0035C960, 0x0035CA70, 0x003CA310, 0x003CA860, 0x00304680, 0x00304060, 0x00304140, 0x00237DF0, 0x0034EE20, 0x0034DD90, 0x0032AB60, 0x003EBA90, 0x003EBB70, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00263750, 0x00306760, 0x005843E0, 0x002EF3C0, 0x002EF410, 0x00261F90, 0x002DEE50, 0x003611F0, 0x0026A7F0, 0x00342E50, 0x00265680, 0x001D50D0, 0x005C5230, 0x003CA280, 0x003CA2B0, 0x003CA1C0, 0x003CA1E0, 0x0028FD70, 0x003CAE00, 0x003CA530, 0x003CB0C0, 0x003CB150, 0x003CAB00, 0x003CA200, 0x003200A0, 0x003045A0, 0x00304790, 0x003047C0, 0x002E28C0, 0x002E26F0, 0x002EDAA0, 0x0042F310, 0x0042F3B0, 0x0025D480, 0x00249C60, 0x0035C630"
 ---
 
 ## What the player sees
 
 At a chocobo keeper, or a wild chocobo, the player hands over Gysahl Greens, the screen fades and
 the leader is riding, with the chocobo theme playing. The ride lasts three minutes; when the time
-runs out the party is set down where it stands, and the player can also get off through the menu's
-Dismount command, by touching a crystal, by boarding an airship or when a scene needs the party on
-foot. The menu refuses to dismount where the chocobo has no room to stand.
+runs out the party is set down where it stands, and the player can also get off by pressing the cancel
+button, which asks "Dismount?", by touching a crystal, by boarding an airship or when a scene needs the
+party on foot. The question becomes "You cannot dismount here." where the chocobo has no room to stand.
+
+While riding, the screen shows the time left in seconds and tenths, which changes colour over the last second
+and pulses once the time is up, and up to three marks for the dashes left. The confirm button spends one
+mark on a ten-second dash at double speed; a ride has three, and nothing gives them back before the next
+mount.
 
 At an aerodrome counter the player buys a ticket and chooses whether to watch the flight: the
 party then either sees the departure scene and arrives at the other aerodrome, or spends the flight
@@ -106,8 +111,9 @@ The values are therefore seconds counted at the frame rate: the ride is 180 seco
 `0x00304440` runs every field frame from the tick's per-slot pre-pass `0x00234590` (`0x00234712`) while
 `+0x5AE0` bit 0 is set:
 
-1. `+0x5AE4` = slot 1's value, or 180.0 while the configuration byte `+0xE1D` of `[0x001D50D0()]`
-   is set (`0x0017D380`); `+0x5AE8` = slot 2's value;
+1. `+0x5AE4` = slot 1's value, or 180.0 while the debug-menu byte `+0xE1D` of `[0x001D50D0()]` is set
+   (`0x0017D380`; row 229, "Enable infinite chocobo time", in the
+   [debug menu commands](../Engine-Core/debug-menu-commands.md)); `+0x5AE8` = slot 2's value;
 2. when `0x00303CC0()` allows a dismount, slot 1 has expired, that byte is clear, the ladder is 2
    and the chocobo (`0x0031B8C0(3)`, the unit of roster entry 3) exists: `0x00311E20()` refreshes the
    camera target and `0x0035CFA0(1)` starts the dismount task;
@@ -115,14 +121,75 @@ The values are therefore seconds counted at the frame rate: the ride is 180 seco
    animation `0x2001` is requested and bit 1 is cleared.
 
 Turbo (`0x00303F00(on)`) sets `+0x5AEC`, puts the chocobo's render record in mode 1 (on) or 3 (off)
-and, when the bit changes: on requires ladder 2 and a non-zero charge count; it loads slot 2 with
-`10 × [0x01DFE0B8]` seconds (the frame base, image value 1.0), spends one charge unless the
-configuration byte `+0xE1E` (`0x0017D3A0`) is set, and requests animation `0x2010`; off requests
-`0x2001`; either way bit 1 is toggled.
+and, when the bit changes:
 
-### The turbo charge marks
+- on requires ladder 2 and a non-zero charge count (`0x00303F82`-`0x00303F92`), tested before anything else, so an
+  empty count refuses even with the endless-turbo byte set;
+- it loads slot 2 with `[0x01DFE0B8] × [0x008F8180]` seconds, the frame base 1.0 times 10.0 (`0x00303F98`-`0x00303FC8`);
+- with the debug-menu byte `+0xE1E` set (`0x0017D3A0`; row 230, "Enable infinite chocobo turbo time") it sets the
+  count back to 3 (`0x00303FDD` `or 0xC`), otherwise it stores the count less one (`0x00303FED`-`0x00303FFD`);
+- it requests animation `0x2010` on the chocobo (`0x0030401A`, `0x00329A10`); off requests `0x2001`; either way bit 1
+  is toggled (`0x00304026`-`0x0030403B`).
 
-The party menu task `0x003CA860` shows the charges as up to three marks in its child `0x003CB150`, which keeps the
+The count is written only by the mounts (`0x00303DC6` and the special presentation's `0x00306A23`, both `or 0xC`),
+by turbo, by the reset `0x00304680` (`0x00304726`, cleared) and by the transition restore `0x002EF410` (below), so a ride
+has three dashes and gets none back. While turbo is on the chocobo's speed is doubled: `0x003045A0` multiplies the
+chocobo definition's speed by `[0x01CEBC08]` = 2.0 when bit 1 is set (`0x003045D5`-`0x003045DA`;
+[player movement](../Movement-And-Pathfinding/player-movement.md)).
+
+### The ride HUD
+
+The HUD is a widget tree under the manager `0x003CA860`, a `0xAA0`-byte task that `0x003CA280` builds once into
+`0x02B47758` when the field HUD is set up (`0x0035C630`, run by `0x00253780`) and `0x003CA2B0` frees with the HUD
+([HUD](../Menus-And-HUD/hud.md), `0x0028F2F0`). `0x0028FD70` asks the manager to show it while chocobo mode is on
+(`0x0037C860`, `0x003CA1E0`: `+0xA90` = 1) and to hide it otherwise (`0x003CA1C0`: `+0xA90` = 2); the dismount task asks
+for the hide in state 1. On message 2 the manager acts on `+0xA90`:
+
+| Request | State of the children | Then |
+|---|---|---|
+| 1, show | chocobo mode does not hold (`0x0037C860`, a thunk to `0x00303EC0`) | nothing yet |
+| 1, show | the marks widget is up and not closing (its `+0x1D4` bit 1, set on message 15) | clears the request (`0x003CAA07`-`0x003CAA2C`) |
+| 1, show | none of the marks, the control window and the TIME root is up | builds the marks widget `0x003CB150` at `+0xC0` (`0x003CB0C0`, which sends it message 16) and the TIME root `0x003CAE00` at `+0x460` (`0x190` bytes), then clears the request (`0x003CA9FA`-`0x003CAA94`) |
+| 2, hide | the Dismount dialog is up | closes the dialog's window once (`+0x6B0`, marked in `+0xA80` bit 0) |
+| 2, hide | the marks widget has set up (its `+0x1D4` bit 0, read at `+0x294`) and is not closing | closes the marks, the TIME root and the control window (`+0xC0`, `+0x460`, `+0x2A0`, `0x00244F00`) and clears the request (`0x003CA96B`-`0x003CA9EE`) |
+| 2, hide | no marks widget, or one closing | clears the request (`0x003CA9AC`, `0x003CA9C2` to `0x003CAA94`) |
+
+The children:
+
+| Widget | Built | Does |
+|---|---|---|
+| TIME root `0x003CAE00` | by the show | lays out its nodes from `0x00D11730` and, when opened (message 14), builds the timer `0x003CA530` (`0xD0` bytes) |
+| timer `0x003CA530` | by the TIME root | each tick writes the ride time left as three digits of whole seconds and one digit of tenths (`0x0029F6E0`, `0x003CA76A`, `0x003CA798`) |
+| marks `0x003CB150` | by the show | the turbo marks below; when opened (message 14) it posts message `0x1D` up the chain (`0x003CB249`) |
+| control window `0x003CAB00` | by the manager on message `0x1D` (`0x1C0` bytes at `+0x2A0`) | the buttons below |
+| Dismount dialog `0x003CA310` | by the manager on message `0x1E` (`0x4A0` bytes at `+0x5F0`), unless one is up | the question below |
+
+The timer's colour is menu colour 0 while at least 1.0 second is left. Below that it blends from colour 0 towards
+colour 6 as the time falls (`0x002752E0` with `t × 256`, `0x003CA684`-`0x003CA6F5`). At or below 0 it also pulses: from
+the first such tick (kept at `+0xC0`) the red, green and blue are scaled by `(128 + 64 × sin(pi × ticks / 30)) /
+128`, `ticks` counted on the UI tick counter `0x0208F570` (`0x003CA603`-`0x003CA64A`, `sinf` through `0x00861F0E`).
+
+The control window reads its buttons on message `0x1F`, which `0x003CA200` sends while it is up and its `+0x2E0`
+bit 4 is set (from `0x00253C70`, `0x00253F6B`). Its legend is scene `0xC` of the button legend (`0x0029DA70`), and its
+two keys are signals 13 and 14 ([small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md)), which
+the shipped table ties to buttons `0x16` and `0x17`, so `0x0029DBE0` returns the confirm mask `0x01E0C2A0` and the
+cancel mask `0x01E0C2A4`:
+
+- cancel (`0x10E`, `0x003CAC76`-`0x003CAC89`) posts message `0x1E` up the chain (`0x00275440`), which opens the Dismount
+  dialog;
+- confirm (`0x10D`, `0x003CACB0`-`0x003CACC3`) starts turbo (`0x00303F00(1)`) and plays sound `0x55` when turbo is off and
+  a charge is left, and plays sound 5 otherwise (`0x003CACC9`-`0x003CACF7`);
+- each tick (message 2) it shows its confirm prompt node only while turbo is off and a charge is left
+  (`0x003CAD1F`-`0x003CAD35`);
+- on its input turn (message 10), once the ride time is at or below 0 and `0x00303CC0()` allows a dismount, it asks the
+  manager for the hide (`0x003CAD49`-`0x003CAD6F`).
+
+All the widgets read the ride through `0x003200A0(0, out)`, which fills a `0x34`-byte record (Layouts): the
+summon's half when an Esper is out (`0x003135E0`), else the chocobo's half while the riding bit is set.
+
+#### The turbo charge marks
+
+The marks widget `0x003CB150` shows the charges as up to three marks, and keeps the
 record `[0x0209AC30] + 0x28` at `+0x1C8` on message 1:
 
 1. Message 16 sets `+0x1D4` bit 0, decodes the child's layout from that record (`0x002432B0`) and runs
@@ -142,10 +209,19 @@ radius, 0)` passes: the chocobo's position (`0x00265020`) and the four points `r
 both axes all lie on walkable ground (`0x0026E100`), with `radius` the larger of the leader's two
 `0x00265090` radii.
 
-The menu's Dismount command uses the same test. Its dialog task `0x003CA310`, spawned by the party
-menu task `0x003CA860` while chocobo mode is on, shows text `0x832` "Dismount" when the test passes
-and `0x87C` "You cannot dismount here." when it does not, and on a confirmed `0x8100` result it
-calls `0x0035CFA0(0)`.
+The Dismount dialog uses the same test. The dialog `0x003CA310`, which the HUD manager builds when the
+control window's cancel button asks for it (The ride HUD, above), shows text `0x832` "Dismount?" when the test
+passes and `0x87C` "You cannot dismount here." when it does not (`0x003CA4BA`-`0x003CA4C6`). Its answers, by the
+message-12 sub-code (`0x003CA36A`-`0x003CA3E8`):
+
+| Answer | Sound | Then |
+|---|---|---|
+| `0x8102`, cancel | 3 | closes |
+| `0x8100`, yes, with the test passing | `0x56` | `0x0035CFA0(0)`, `0x0035D010(1)`, closes |
+| any other, or a failed test | 2 | `0x0035D010(0)`, closes |
+
+On its first tick after opening (`+0x490` bit 1) it plays sound 4 (`0x003CA3EA`-`0x003CA3FD`). With the turbo sounds
+`0x55` and 5 these are the ride's system sounds, all through `0x00249C60`.
 
 The dialog's open message runs `0x0035CF10` (`0x003CA43E`): it clears `0x022CA45C`, resets the battle menu
 (`0x00252B40(0x14)`) and takes two holds through `0x002E1C20(8)`. A confirmed Dismount then calls `0x0035D010(1)`
@@ -183,13 +259,41 @@ and no dismount task is running (`0x022CA468` = 0). The handler's open step sets
   the three floats zeroed, `0x0035C900(0)`. It runs from the battle runtime reset `0x00237DF0`
   (`0x00237E4B`) and from `0x00304140`, which calls it when the riding bit is clear.
 - `0x00304060` and `0x00304140` are entered through the pointer pair at `0x01EED010` / `0x01EED018`.
-  `0x00304060` restores a ride: it re-attaches the chocobo to the leader (`0x002E28C0`, `0x002ECF10`),
+  `0x00304060` restores a ride: it attaches the leader to the chocobo (`0x002E28C0(chocobo, leader)`, `0x00304097`, then
+  `0x002ECF10`; the attach below),
   reloads slot 1 with `max(+0x5AE4, 2.0)` (the floor at `0x01CEBC08`) and slot 2 with `+0x5AE8`,
   re-applies turbo from bit 1 and sets bit 0.
-- The riding bit is in the save: `0x002EF3C0` copies the whole dword `+0x5B04` into the transition
-  record's `+0x28` and `0x002EF410` writes it back ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
-  The restore `0x005843E0` then clears bit 1 when the block's flag bit 12 is set (`0x0058446A`), so a
-  load into the second spawn-keep pair never arrives riding.
+- The ride is in the save, in the transition record ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)):
+  - `0x002EF3C0` copies the whole dword `+0x5B04` into the record's `+0x28` and the ride state `+0x5AE0`-`+0x5AEF`
+    into its `+0x08` (`0x002EF3D3`); `0x002EF410` writes both back;
+  - when the restored ride's timer bit is set (`0x002EF45D`), `0x002EF410` also reloads slot 1 with
+    `max(+0x5AE4, 2.0)` (`0x00304790`) and slot 2 with `+0x5AE8` (`0x003047C0`), sets the riding bit and clears bit 0
+    of `+0x5B04` (`0x002EF47E`-`0x002EF48C`);
+  - the restore `0x005843E0` calls `0x002EF410` only while the block's flag bit 12 is clear (`0x00236760`, tested at
+    `0x00584418`; the call at `0x00584423`); with the bit set it restores the second spawn-keep pair instead and clears
+    bit 1 of `+0x5B04` (`0x0058446A`), so such a load never arrives riding.
+
+### The rider attach
+
+`0x002E28C0(mount, rider)` is `0x002E26F0(mount, rider, 15)`: the rider is tied to attach slot 15 of the mount's model.
+`0x002E26F0(parent, child, slot)` needs both actors' secondary records (`+0xC0`) and both render ids (dword `+0` of
+each, not -1, `0x002E275B`/`0x002E2764`; their low words are passed on). It detaches the child first when its secondary `+0x14F` bit 0 is set (`0x002E6B10`), sets that bit
+and `0x0025D540`, then:
+
+- with the child's `+0x14F` bit 2 set, it passes the child's three authored vectors to `0x0042F3B0`: secondary
+  `+0x120` to the render record's `+0x140` (`0x00420F20`), `+0x128` to its angles `+0x120` (`0x00420CF0`) and `+0x130`
+  to its scales `+0x160` (`0x00420D50`); a missing vector gives 0, 0, 0, or 1, 1, 1 for the scale;
+- otherwise `0x002EDAA0` zeroes the child record's angles and `+0x140`, then `0x0042F310` ties it;
+- both ties store the parent's render id at the child record's `+0x3CE` and the slot at `+0x3CC`, set `+0x290` bit
+  19 and clear bits 18 and 20 (`0x0042F382`-`0x0042F3A0`, `0x0042F487`-`0x0042F4A4`), a pending attachment
+  ([character fades](../Graphics/character-fades.md), `0x0042F880`);
+- `0x0025D480` then clears the three vector pointers and bit 2, so the vectors serve one attach.
+
+The script verb `attachinfo` (`0x0026A140`, [actor record](../Characters-And-Objects/actor-record.md)) sets the vectors for the
+next attach. The ride's path (`0x00304060` to `0x002E28C0`) sets none, and the previous attach cleared them, so the
+rider sits where slot 15 of the chocobo's model puts it
+([character render records](../Graphics/character-render-records.md)). `0x002E26F0`'s other caller is
+`0x0034A640` (`0x0034A686`).
 
 ### Airship travel
 
@@ -222,6 +326,18 @@ Struct ChocoboRide base=[`0x02EBF190`]+`0x5AE0` size=`0x10`:
 | `+0x04` | `f32` | rideLeft | seconds; 180.0 at mounting (`0x00303D90`, `0x00304440`) |
 | `+0x08` | `f32` | turboLeft | seconds (`0x00303F00`, `0x00304440`) |
 | `+0x0C` | `u32` | turboArg | the last `0x00303F00` argument |
+
+Struct RideHudRecord size=`0x34`     filled by `0x003200A0`(0, out); zeroed first:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u32` | flags | bit 0 riding (`0x00303EE0`), bit 1 turbo on (`0x003045F0`) |
+| `+0x08` | `void*` | chocobo | the unit of roster entry 3 in chocobo mode, else 0 (`0x00303E90`) |
+| `+0x0C` | `f32` | rideLeft | +`0x5AE4` (`0x00304660`) |
+| `+0x10` | `f32` | turboLeft | +`0x5AE8` (`0x00304670`) |
+| `+0x14` | `u32` | charges | bits 2-3 of +`0x5AE0` (`0x00304610`) |
+| `+0x18` | `u32` | leaderRow | block byte +`0x5AA4` (`0x00304630`, `0x003271D0`) |
+| `+0x1C` | `u32` | summon | bit 0 an Esper is out (`0x003135E0`); +`0x20` to +`0x33` the summon's fields (`0x00313590`, `0x00313820`, `0x00313830`, `0x003137E0`, `0x003137F0`); when set, +`0x04` to +`0x18` stay 0 |
 
 Struct TimerSlot base=`0x02B5EBC0` size=`0x14`:
 
@@ -263,7 +379,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - Riding is engine-global: one bit, one flag, one timer. There is no per-actor rider state; the
   chocobo is the actor in roster entry 3 and the render-mode and animation calls target it.
 - Two dismount paths exist, the scripts' `setchocobomode(0)` plus `releasemapjumpgroupflag(115)`
-  and the native task, which clears the same flag in state 4. The menu's Dismount command and the
+  and the native task, which clears the same flag in state 4. The Dismount dialog and the
   timer both go through the task.
 - The ride timer pauses with the field: it only counts while `0x00304440` runs, and `0x00304060`
   reloads it from the saved seconds, never below 2.0.
@@ -279,7 +395,8 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 | `0x022CA45C` | u32 | cleared when a timer dismount starts; 1 after a refused Dismount (`0x0035D010`), read by `0x0035CF50` |
 | `0x01CEBC08` | f32 | 2.0, the restore floor for slot 1 |
 | `0x01DFE0B8` | f32 | the frame base the turbo length multiplies, image value 1.0 |
-| `[0x001D50D0()] + 0xE1D`, `+0xE1E` | u8 | configuration bytes: endless ride, endless turbo charges |
+| `[0x001D50D0()] + 0xE1D`, `+0xE1E` | u8 | debug-menu rows 229 and 230: endless ride, turbo charges refilled to 3 |
+| `0x02B47758` | ptr | the ride HUD manager `0x003CA860`; its `+0xA90` low two bits are the show (1) or hide (2) request |
 | persistent flag 115 | flag | riding, as the scripts see it |
 | persistent flag 94 | flag | set before the airship-deck and attack jumps (scripts) |
 
@@ -287,6 +404,11 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 
 - To change the ride length, change the `180.0` the setter and the per-frame refresh write
   (`0x43340000` at `0x00303D90` and `0x00304440`); the timer counts seconds at the frame rate.
+- The dash length is `[0x01DFE0B8] × [0x008F8180]` (`0x00303F98`-`0x00303FA3`). Both are shared constants: `0x008F8180`
+  (10.0) also scales the HUD's tenths (`0x003CA5D0`), so change the dash at the `mulss` in `0x00303F00`. The dash speed
+  factor is `0x01CEBC08` (2.0), which is also the restore floor of the ride timer.
+- The three charges come from the `or 0xC` at `0x00303DC6` and `0x00306A23`; a refill needs a write of bits 2-3 of
+  `+0x5AE0`.
 - A mount without a script is `0x00303D90(1)` plus flag 115; a dismount without the fade is
   `0x00303D90(0)` plus clearing the flag. The task adds the fade, the music swap and the party
   rebuild.
@@ -306,3 +428,6 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [The music control file and the BGM stream](../Sound-And-Music/music-table.md): tracks `0x5A` and `0x5B`.
 - [Area flags](area-flags-navimapdata.md): the town bit the ladder ranks above riding.
 - [Game over](game-over.md): what a party wipe does.
+- [HUD](../Menus-And-HUD/hud.md) and [widget messages](../Menus-And-HUD/widget-messages.md): the field HUD the ride's widgets
+  join and the message ids they answer.
+- [Debug menu commands](../Engine-Core/debug-menu-commands.md): rows 229 and 230.

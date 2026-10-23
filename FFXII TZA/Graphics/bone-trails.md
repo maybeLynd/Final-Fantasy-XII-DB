@@ -66,8 +66,12 @@ copies the descriptor, clears the histories, takes the first sample and appends 
 `0x00422170(record, bone, base out, tip out)` resolves the record's model instance and calls `0x003711D0`, or `0x003712C0`
 when the instance's first byte has bit 7. `0x003711D0` refuses a bone at or past the skeleton's count, copies the bone's
 world position (`+0xB0` of its `0x290`-byte runtime record) as the base, and builds the tip by putting `(length, 0, 0, 1)`
-through the bone's matrix at `+0x80`, with `length` the float `+0x74` of the bone's `0x4C`-byte definition. A trail runs
-along the bone's x axis for the bone's authored length.
+through the bone's matrix at `+0x80`.
+
+The runtime records are the block the instance handle `+0x84` resolves to
+(`0x00371227`-`0x00371239`); `length` is the float at `+0x74 + 0x4C × n` of the other block, the one handle `+0xA0` resolves to
+(`0x003711EB`-`0x00371215`), with `n` the word `+0x27E` of the bone's runtime record (`0x0037123C`-`0x00371276`). A trail runs
+along the bone's x axis for that length.
 
 ### The update
 
@@ -181,7 +185,7 @@ Measured over the 1,066 `.cm` models in the archive; the model block is the `@FC
 - `0x003E6770` finds the trail section with a 32-bit sum of the model block and its offset, so a model
   block must sit below 4 GB.
 
-- A trail's length and direction come from the bone's definition and x axis; the descriptor only picks the bone.
+- A trail's length and direction come from the bone's length entry and x axis; the descriptor only picks the bone.
 - At most sixteen trails exist at once; a request beyond that makes nothing.
 - The trail's alpha is fade × the character's opacity, so a fading character takes its trail with it.
 - The four colour groups are integers on the 0-255 scale, uploaded as they are.
