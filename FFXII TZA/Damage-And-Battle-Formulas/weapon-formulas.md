@@ -143,7 +143,10 @@ Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`0x00389C60`) and slot 144 (
    that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 writes 0 and fails the
    action (`0x00389D24`-`0x00389DAE`). Without a stored preview it fails at count 0, and at a higher count
    only rolls the hit chance and writes no new count (`0x00389D7E`-`0x00389DA2`).
-3. Slot 144 deals `2 ^ count`, the count before this use (`pow(2.0, count)`, `0x0038EAF4`-`0x0038EB1B`).
+3. Both rolls compare the chance with the roll as unsigned 32-bit numbers (`0x00389D48`-`0x00389D4F`,
+   `0x00389D9B`-`0x00389DA2`), so a chance below 0, from a row byte below `count * count / 4`, reads as a number
+   above 99 and the roll hits.
+4. Slot 144 deals `2 ^ count`, the count before this use (`pow(2.0, count)`, `0x0038EAF4`-`0x0038EB1B`).
 
 `0x00385BA0` copies result `+0x138` into `+0x5B0E` afterwards (`0x00385BAF`-`0x00385BD1`), so the damage runs 1,
 2, 4 and so on up to 65,536.

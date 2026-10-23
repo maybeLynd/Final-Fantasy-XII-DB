@@ -69,8 +69,9 @@ The quest list of the `menuhandbook` object, bound at `0x022C2550`, gives a mini
 
 - The clan rank counts the list's quests that are ordered or cleared and whose scenario byte reaches the minimum
   (`0x00316480`, `0x00316520`-`0x0031654D`; [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) has the rank table).
-- `0x00315DC0(q)` answers true for a cleared quest (`0x00315DD5`), else, for a quest in the list, whether its scenario
-  byte reaches the minimum (`0x00315DE9`-`0x00315E6B`), else true.
+- `0x00315DC0(q)` answers false for q = -1 (`0x00315DC8`-`0x00315DCD`) and true for a cleared quest (`0x00315DD5`), else, for a quest in the list, whether its scenario
+  byte reaches the minimum (`0x00315DE9`-`0x00315E6D`). A quest the list does not hold, or an empty list, answers
+  false (`0x00315E27`-`0x00315E45`); only a missing list answers true (`0x00315DF5`-`0x00315E10`, `0x00315E75`).
 
 Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90`, `0x0037EC70`, `0x0037EE10`, `0x0037EF70`,
 `0x0037F060`, `0x00380170`, `0x003BC260`, `0x003C0A00`, `0x003F4C30`) and the Clan Primer's hunt panes (`0x00577C30`, `0x005781A0`,

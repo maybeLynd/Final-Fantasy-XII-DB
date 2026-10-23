@@ -255,6 +255,38 @@ byte `+4`, in an action list (kind 11) a row with flag bit 0 gives its byte `+6`
 
 The window rises by `HelpMessageMoveY` (`0x002BF77A`) while the boss gauge is out of its compact state.
 
+Each window is a `0x500`-byte widget at the help block's `+0xC0` or `+0x5C0`, the two used in turn by the byte
+`+0x10C8` (`0x002BF5C1`-`0x002BF644`). `0x002BF4F0`, run by the block's procedure `0x002BE490` (`0x002BE4C1`), builds a window,
+or, while one is up, a new line in it (`0x002BFB40` at `0x002BF577`). A line is a `0x100`-byte widget `0x002BF8C0` in the
+next of four slots at the window's `+0xD8`, chosen by the cursor `+0x4E8` (`0x002BFB9A`-`0x002BFBF6`); the new line waits
+at `+0x4D8` and becomes the active line `+0x4E0` once that is empty (`0x002BFB58`-`0x002BFB93`).
+
+A line whose text is
+wider than its box scrolls: after a hold of 60 frames it moves left by one each frame and wraps, the text drawn
+twice, the second copy one text width plus the width of the gap text `0x00916C28` after the first (`0x002BF8C0`).
+
+The help window, `0x500` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C0` | `void*` | block | the help block that built the window: the construct message stores the creation record's first qword (`0x002BF7D1`-`0x002BF7DF`), which `0x002BF4F0` sets to the block (`0x002BF542`) |
+| `+0x4EA` | `u16` | flags | bit 0: the picture cell `+0x4E9` is still to be shown. The builder sets it with `+0x4E9` (`0x002BF587`-`0x002BF595`, `0x002BF617`-`0x002BF626`); the next tick (message 2) clears it and gives the window's first node that cell at its `+0x0A` and the cell's byte 7 at its `+0x39` (`0x002BF718`-`0x002BF74E`) |
+| `+0x4F0` | `void*` | text | the help text shown, the creation record's `+0x10`, which `0x002BF4F0` copies from the block's `+0x10D0` (`0x002BF53B`): stored by the construct message (`0x002BF880`-`0x002BF887`) and by each new line (`0x002BFCE1`-`0x002BFCED`) |
+| `+0x4F8` | `i16` | baseY | the window's y from its layout, kept by the construct message (`0x002BF808`-`0x002BF80F`), which then puts the window at this plus the rise or plus 0 (`0x004051D0`, `0x002BF826`-`0x002BF84E`); each tick moves the window to this plus `0x002BED00(HelpMessageMoveY)` when its y `+0x9A` differs (`0x002BF77A`-`0x002BF7BA`) |
+
+A help line, `0x100` bytes, four at the window's `+0xD8`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0xC0` | `void*` | block | the help block, the creation record's first qword, stored by the construct message (`0x002BFA53`-`0x002BFA61`) |
+| `+0xD8` | `void*` | text | the line's text, the creation record's `+0x10` (`0x002BFAC3`-`0x002BFAC7`), drawn by `0x002D8910` (`0x002BF93C`, `0x002BF969`, `0x002BF989`) |
+| `+0xE0` | `void*` | font | the font the line is measured and drawn with, the creation record's `+0x18` (`0x002BFACE`-`0x002BFAD2`; measured by `0x0029CD90` at `0x002BFC25`); the fifth argument of each draw (`0x002BF933`, `0x002BF959`, `0x002BF97F`) |
+| `+0xE8` | `i32` | loopWidth | the scroll's cycle: the text's width plus the width of the gap text `0x00916C28`, both from `0x0029CD90` (`0x002BFC6D`, `0x002BFCB7`), through the creation record's `+0x28` (`0x002BFAF8`-`0x002BFB04`); the offset wraps at it (`0x002BF9E2`) and the second copy is drawn at it less the offset (`0x002BF950`-`0x002BF975`) |
+| `+0xEC` | `u32` | holdStart | the frame counter `0x0208F570` when the line was built (`0x002BFAEC`-`0x002BFAF2`): while it is not 0 the line is drawn once at x 0 (`0x002BF921`, `0x002BF97F`-`0x002BF99A`), and the tick sets it to 0 once more than 60 frames have passed (`0x002BFA08`-`0x002BFA15`) |
+| `+0xF0` | `i32` | scroll | the scroll offset: 0 when built (`0x002BFB0A`); each tick of a scrolling line adds the frames since `+0xF8`, modulo `+0xE8` (`0x002BF9D8`-`0x002BF9E8`); the draw puts the text at x = -offset and again at `+0xE8` - offset (`0x002BF92A`-`0x002BF975`) |
+| `+0xF4` | `u32` | flags | bit 0: the text is wider than its box, the creation record's `+0x30` (`0x002BFC34`-`0x002BFC3D`, copied at `0x002BFAD9`-`0x002BFAE6`), so the line scrolls; bit 1: set once the line has posted message 12 up the chain (`0x00275440`) on its first tick (`0x002BFA1F`-`0x002BFA47`); the window answers message 12 by closing its active line `+0x4E0` (`0x002BF6DA`-`0x002BF6FF`) |
+| `+0xF8` | `u32` | lastStep | the frame counter at the last scroll step (`0x002BF9EE`-`0x002BF9F4`), and at every tick of the hold (`0x002BF9FC`-`0x002BFA02`); a counter below it counts as one frame (`0x002BF9C5`-`0x002BF9D6`) |
+
 The host `0x002BE490` keeps the two windows `0x2B8` bytes apart. On its message 2, `0x002BE290` builds the target
 information window (`0x002C0F30`) when bit 0 of `+0x57E` asks for it, in the free window that `0x002BEA40` returns:
 `0x002BEA40` clears `+0x570`, starts closing each busy window whose `+0x280` bit 0 is clear, and returns a window with no

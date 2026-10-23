@@ -224,6 +224,25 @@ At every open `0x003E9020` also stores `0x80008000` (green 0x80, alpha 0x80) in 
 (red 0x80, alpha 0x80) in entry 3 (`0x003E9068`); it does not pass them to the gauge, whose counter starts with the
 colours `0x00407F90` gives it.
 
+The gauges' records come from a pool of 32 `0x48`-byte records, which `0x003E7DF0` builds at start-up (called
+at `0x00266E3D`). It zeroes the 32 records from `0x02B5C780`,
+stores `0x20` plus the record's index at `+0x28` and 0 in the byte `+0x2C` (`0x003E7E00`-`0x003E7E38`), then links
+records 3 to 30 both ways, `+0x00` to the next record and `+0x08` to the previous one (`0x003E7E50`-`0x003E7E67`).
+
+It closes the chain at both ends: record 2's `+0x00` is record 3 and its `+0x08` is 0, record 31's `+0x08` is record 30
+and its `+0x00` is 0. Record 0's `+0x00` points to record 2, so records 2 to 31 hang from record 0 as one list of
+30; record 0's `+0x08` and both links of record 1 are 0 (`0x003E7E69`-`0x003E7EAF`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B5C788` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` of record 0 of the record pool `0x003E7DF0` builds | `0x003E7DF0` (`0x003E7E06` in the clearing loop; 0 at `0x003E7EA1`) | no reader is named here; `0x003E7DF0` forms the pool's addresses at `0x003E7DF3`, `0x003E7E3A`, `0x003E7E69`, `0x003E7E7E` and `0x003E7E8C` |
+| `0x02B5C7C8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x00` of pool record 1 | `0x003E7DF0` (`0x003E7E02`; 0 at `0x003E7EAF`) | as above |
+| `0x02B5C7D0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` of pool record 1 | `0x003E7DF0` (`0x003E7E06`; 0 at `0x003E7EA8`) | as above |
+| `0x02B5C810` | `void*` | 0 (zero-filled tail of `.data`) | `+0x00` of pool record 2, the first of the list of 30: record 3 (`0x02B5C858`) | `0x003E7DF0` (`0x003E7E02`; `0x003E7E77`) | as above |
+| `0x02B5C818` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` of pool record 2 | `0x003E7DF0` (`0x003E7E06`; 0 at `0x003E7E70`) | as above |
+| `0x02B5D038` | `void*` | 0 (zero-filled tail of `.data`) | `+0x00` of pool record 31, the last of the list | `0x003E7DF0` (`0x003E7E02`; 0 at `0x003E7E9A`) | as above |
+| `0x02B5D040` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` of pool record 31: record 30 (`0x02B5CFF0`) | `0x003E7DF0` (`0x003E7E06`; `0x003E7E85`) | as above |
+
 ## Modding notes
 
 - `initgauge 3` leaves the gauge without a child and reads a null layout record; use kinds 0 to 2. No shipped

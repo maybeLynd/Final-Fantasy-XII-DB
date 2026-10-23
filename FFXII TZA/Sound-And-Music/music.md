@@ -161,6 +161,8 @@ A track slot, `0x18` bytes, four at `0x022CB9F0` (`0x00360C70` sets them up):
 | `+0x01` | `u8` | track | the track number |
 | `+0x02` | `u8` | flags | bit 0 empty the slot when ready, bit 1 fading out (`0x00361170`) |
 | `+0x03` | `u8` | index | the slot's own index, returned by `0x00361630` |
+| `+0x08` | `void*` | handle | 0 when a load is issued (`0x00360BCA`, `0x003616B9`); when the load reports done (`0x002DEE90` answers 0) the slot becomes ready and a handle here goes to `0x003697F0` (`0x00360BA3`-`0x00360BBC`) |
+| `+0x10` | `u32` | issueClear | set to 0 with `+0x08` each time a load is issued, before `+0x14` takes the new load id: by the per-frame step `0x00360B50` for a slot in state 2 (`0x00360BCE`, base `0x022CB9F1`, so `[rbx + 0xF]` is slot `+0x10`) and by `0x00361630` when it takes a free slot (`0x003616BD`) |
 | `+0x14` | `u32` | loadId | the music controller's load id (`0x00361630`) |
 
 The script music stream's reader, one record at `0x02B5E0E0` in the zero-filled tail of `.data`. `0x003EB050` resets it

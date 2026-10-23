@@ -163,6 +163,17 @@ The draw record that `0x002D8D10` passes on:
 | `+0x08` | `u8*` | corners | four RGBA corner colours, or null for the widget's colour `+0x90` |
 | `+0x10` | `i16[2]` | pivot | rotation centre when bit 2 is set |
 
+The widget draw record, `0xA0` bytes, that `0x002D8C00` fills for each widget in the draw pass (kept at the widget's
+`+0x38`, `0x00245EB0`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x5C` | `u32` | flags | byte 0 is the text palette, handed to the text context by `0x002DD680` (`0x002DD69E`-`0x002DD6A5`) and `0x002DD5D0` (`0x002DD5F1`); bit 17 turns the clip on: set by the fill (`0x002D8C16`), kept for a child only when the parent's record has it (`0x0024614D`-`0x0024616F`), and `0x002D8530` clips to `+0x48` only while it is set (`0x002D8530`-`0x002D8544`); bit 18 makes the sprite draw ignore the corner colours and draw flat in the record's colour (`0x002DB53F`, `0x002DB988`-`0x002DB99B`, `0x002DBAB5`) |
+| `+0x60` | `f32` | textSize | the text size, 1.0 from the fill (`0x002D8C58`): `0x002DD680` hands it to the text context's `+0x34` (`0x002DD6AF`-`0x002DD6B4`) and `0x002DD5D0` to the UTF-16 one (`0x002DD5EC`); the help line sets it to 1.0 before it draws (`0x002BF909`) |
+| `+0x68` | `f32` | f68 | 1.0 from the fill (`0x002D8C5F`); the draw pass saves the whole record before a node's draw message and copies it back after (`0x0024625B`-`0x002462BA`, `0x002462E5`-`0x00246344`) |
+| `+0x6C` | `f32` | f6C | 1.0 from the fill (`0x002D8C66`); saved and restored with the record in the same way |
+| `+0x88` | `u64` | gsTex1 | `0x60` from the fill (`0x002D8C26`): the value the sprite draw `0x002DB080` sends to GS register `0x14`, TEX1_1 (`0x002DB7A0`-`0x002DB7AA`), as `0x002D9C40` does (`0x002D9CE5`-`0x002D9CF3`); `0x60` sets MMAG and MMIN to 1, linear filtering |
+
 ## Shipped data
 
 Measured in `us/packfiles/texpack_ys.bin`; the record count runs from the record table to the end of the picture

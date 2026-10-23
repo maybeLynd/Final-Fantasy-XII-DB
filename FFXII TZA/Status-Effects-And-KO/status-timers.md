@@ -33,8 +33,8 @@ unit that `0x00327150` finds, the slot unit whose stats record is entry `[[0x02E
 of the records at `[0x02EBF190] + 8`, or 0 when there is none (`0x00305E70`-`0x00305E97`,
 `0x00327150`-`0x003271BF`, `0x003271E0`).
 
-A summoned Esper at 0 HP, or whose summoner is gone or down, is dismissed with `0x003138D0(0)` and nothing else
-runs (`0x00310E21`-`0x00310EFD`). Then four gates skip to the tail, below (`0x00310F12`-`0x00310F4F`): the actor
+A summoned Esper at 0 HP or below (a signed 32-bit test, `0x00310E5B`-`0x00310E5F`), or whose summoner is gone or
+down, is dismissed with `0x003138D0(0)` and nothing else runs (`0x00310E21`-`0x00310EFD`). Then four gates skip to the tail, below (`0x00310F12`-`0x00310F4F`): the actor
 manager is not ready (`0x00265680`), the battle or unit eligibility mask is set
 ([Gaining and losing statuses](status-changes.md)), or unit flag bit 36 is set.
 

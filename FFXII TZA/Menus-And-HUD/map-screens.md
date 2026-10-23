@@ -550,8 +550,11 @@ The World Map host is the `0x188`-byte widget at `0x02CA8F38` with procedure `0x
 +0x140   u8[8]           gap140                 read and written by no function; nothing fixes its width
 +0x148   i32             mapPictureId           the id of the map picture at +0x128: -1 from 0x00562F90 (0x00563065);
                                                 0x005632C0 loads nothing when asked for the same id and stores a new one
-                                                (0x005632DB-0x005632F5); the picture pane 0x00553F40 compares it with the id
-                                                it is asked for (0x00553FA3-0x00553FB0)
+                                                (0x005632DB-0x005632F5); the picture pane 0x00553F40 zero-extends it to 64
+                                                bits and compares it with the whole 64-bit id it is asked for
+                                                (0x00553FAA-0x00553FB0), so a stored -1 equals a request of 0xFFFFFFFF
+                                                and not a 64-bit -1; on a mismatch it passes 0x005632C0 only the
+                                                request's low 16 bits (0x00553FF1)
 +0x14C   f32             bind8C                 1.0, stored by the binder 0x00563110 (0x00563282); no function reads it
 +0x150   f32             bind90                 1.0, stored by the binder (0x0056328C); no function reads it
 +0x154   u64             bind94                 0, stored by the binder as one qword (0x00563277); no function reads it.

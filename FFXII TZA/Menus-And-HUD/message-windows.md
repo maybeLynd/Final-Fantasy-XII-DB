@@ -469,6 +469,14 @@ The window, `0x410` bytes from `0x002A2C00`; the fields listed here are those of
 | `+0x10` | `u8*` | groups | the picture's group table |
 | `+0x18` | `u8*` | frames | the picture's frame table |
 
+A log row, `0x28` bytes at `0x0209C700 + i x 0x28` (The message log), written by `0x002A3250` from the window's text
+element at `+0xD0`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x20` | `u8` | font | the element's font byte `+0xA6`, stored as a word (`0x002A32E0`-`0x002A32E7`); the log's redraw `0x002A4830` reads it as a byte back into the element's `+0xA6` (`0x002A49DC`-`0x002A49E5`) |
+| `+0x21` | `u8` | fontHigh | the high byte of that word store: `0x002A3250` zero-extends the font byte, so each fill writes 0 here (`0x002A32E0`-`0x002A32E7`), after clearing `+0x20`-`+0x27` with a qword (`0x002A32CA`); the log clear (Closing) zeroes it with the `0x280` bytes of rows |
+
 ### The signal widget's fields
 
 Each of the three signal widgets (`0x0209CC18`, `0x0209CC20`, `0x0209CC28`, Signals above) is a `0x150`-byte widget with procedure `0x002A86A0`.

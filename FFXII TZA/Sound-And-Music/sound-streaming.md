@@ -137,7 +137,10 @@ finished bank out (`0x007B2880`, from `0x007B2A12`).
 
 `0x007B6C50` and the worker `0x007B6D40` share the ring `0x02EAD8B0` under the lock `0x02EAD828`. They count jobs posted and
 taken in two words and use the slot `count mod 48` (`0x007B6C9B`-`0x007B6CDF`, `0x007B6D99`-`0x007B6DCB`); when the taken
-count reaches 48 the worker takes 48 from both until it is below (`0x007B6DD2`-`0x007B6E21`). The worker sleeps on a
+count `0x02EAD894` and the posted count `0x02EAD898` have both reached 48, the worker reduces each to its remainder
+mod 48 (`0x007B6DD2`-`0x007B6E21`); while either is below 48 it leaves both as they are (`0x007B6DD6`, `0x007B6DDC`).
+
+The worker sleeps on a
 manual-reset event guarded by the lock `0x02EAD850`: it registers as a waiter, waits until a post has raised the
 generation and released waiters remain, and the last released waiter resets the event (`0x007B6E66`-`0x007B6F30`).
 

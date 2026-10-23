@@ -418,7 +418,8 @@ The data manager is the `0x120`-byte widget at `0x02CA9738` with procedure `0x00
                                                 glyph sheet 7 or 8 was missing and is loaded and later released by the
                                                 manager (0x00576F67, 0x00576F7C, 0x005777CF-0x005777F9). Bit 3: release
                                                 requested by 0x00575F10 (0x00575F24); the tick then tears down and closes
-                                                once the three slots are gone (0x00577315-0x0057736D). Bit 6: cancelling,
+                                                once the three slots are gone, unless bits 1 and 2 are both set
+                                                (0x00577315-0x0057736D). Bit 6: cancelling,
                                                 set by 0x005776D0 (0x005776F5), which refuses new loads in 0x00577880
                                                 (0x00577893) and 0x005778F0 (0x0057790D); cleared after report 10
                                                 (0x0057745A). Bits 7-9: slot 0, 1 or 2 is idle after a cancel (command

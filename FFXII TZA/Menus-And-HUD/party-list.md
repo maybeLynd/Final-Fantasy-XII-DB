@@ -326,15 +326,33 @@ The counter record, `0x58` bytes, two per member at `0x0209BF40`:
 | `+0x48` | `PartyMemberStatusRecord*` | record | the member |
 | `+0x50` | `i32` | shown | the value drawn |
 
-The status cycle record at the row's `+0xF0`:
+The list widget `0x0029BE50`, `0xB68` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | mask | statuses to show |
-| `+0x04` | `u32` | counted | the mask at the last count |
-| `+0x08` | `i16` | shown | the period being shown |
-| `+0x0A` | `i16` | count | statuses counted (`0x00275E40`) |
-| `+0x10` | `void*` | status | the status row shown, or 0 |
+| `+0xB20` | `fn*` | pressHandler | the handler each press is offered to (The buttons): `0x0029B790` and `0x0029B870` call it with the context `+0xB30`, the answer and the byte `+0xB48` (`0x0029B7AA`-`0x0029B7B9`, `0x0029B899`-`0x0029B8BC`), and a return of 0 refuses the press; with no handler every press is taken (`0x0029B79E`-`0x0029B7A0`). `0x002969F0` sets it with its context (`0x002969F5`, `0x002969FC`): the battle menu installs `0x0027E3E0` (`0x00279C12`-`0x00279C1C`) and clears it with 0 (`0x00276E9E`, `0x00278F52`, `0x00279C3C`, `0x0027A88C`) |
+
+The row widget `0x0029A0A0`, `0x160` bytes, four at the list's `+0x240`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0DC` | `u8` | hpFrame | the HP frame in use (What a row shows): 1 for values below 100, 2 below 1000, 3 for 1000 and above, of the larger of HP and the cap `+0x28`; `0x00297710` stores it (`0x00297751`) and swaps the frame's nodes only when it changes (`0x0029773E`-`0x00297747`). The HP digit draws `0x00297D10` and `0x00297E70` take their digit node from the tables `0x00916300` and `0x00916308` by it and draw frame + 1 digits (`0x00297DC3`-`0x00297DE8`, `0x00297E89`-`0x00297E9F`, `0x00297F1D`), and the HP flash `0x002994E0` picks its nodes by it (`0x00299522`) |
+| `+0x0F0` | `u8[24]` | statusCycle | the status cycle record, below; `0x00297FE0` passes `+0xF0` to `0x00272F80` (`0x00298014`, `0x00298036`) |
+| `+0x112` | `i16` | dimFade | the fade of nodes 0-2 for flag bit 7 (Row effects): `0x00298130` adds `0x20` a frame up to `0x100` while the bit is set and takes `0x20` off down to 0 once it is clear (`0x00298145`-`0x0029817A`), then gives the alpha of each of the four corner colours of nodes 0-2 the value `a x (0x100 - t) / 256` (`0x00298182`-`0x00298241`) |
+| `+0x118` | `i16` | noStatusNode | 4: the node of the child layout at node `+0xE0` that is drawn (its `+0x08` bit 0) only while no status is shown, `+0x100` = 0 (`0x0029A982`-`0x0029A9A7`, `0x0029ABAE`-`0x0029ABD7`); `0x00297880`, choosing the MP frame, writes it with `+0x11A` as the dword `0x10004` (`0x00297A6A`, `0x00297B5A`) |
+| `+0x11A` | `i16` | mpDigitNode | 1: the node of the same child layout that `0x0029A8E0` draws the MP number into as three digits when it differs from `+0x138` (`0x0029A904`-`0x0029A925`), and the first of the nodes n, n + 1 and n + 2 round which `0x002996E0` draws the MP flash (`0x0029972B`-`0x0029975E`, `0x002997A9`) |
+| `+0x128` | `i32` | markStep | the step of the six-frame mark of `0x0029B490` (The summon gauge): 1 more each call up to 11 while the record's flag bit 17 is set, 1 less down to 0 while it is clear (`0x0029B4F1`-`0x0029B51D`); the frame shown is entry step / 2 of the six, written to node 0 of the child layout at node `+0xE0` (`0x0029B523`-`0x0029B535`) |
+| `+0x148` | `u32[3]` | mpBarLevel | one level per MP bar, 0 to `0x100`: each draw `0x0029A930` adds 16 to bar i's while i is below the charges `+0x86` and takes 16 off otherwise (`0x0029ACD0`-`0x0029ACEC`), and colours the bar from its three-key track at that level (`0x00271AB0` at `0x0029AD1C`, `0x0029AD21`-`0x0029ADF4`); the loop runs over the bar count `+0x87`, 1 to 3 (`0x0029AB51`-`0x0029AB8F`, `0x0029ADF9`-`0x0029AE09`) |
+
+The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30, 0, 0, 0)` (`0x00272F60`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | mask | statuses to show: the member's status presence word `+0x44`, copied in each frame by `0x00297FE0` (`0x0029802A`) |
+| `+0x04` | `u32` | counted | the mask at the last count: when the mask differs from it and either nothing was counted or the period has moved on, `0x00272F80` stores the mask here, counts again and sets `+0x08` to -1 (`0x0027302D`-`0x0027305C`) |
+| `+0x08` | `i16` | shown | the period being shown, from the frame counter `0x0208F570` (`0x00273012`-`0x0027302A`, stored at `0x00273099`); -1 after a count (`0x00273058`), 0 when nothing counts (`0x00273067`) |
+| `+0x0A` | `i16` | count | statuses counted (`0x00275E40`, stored at `0x00273051`); it sets each status's period, `max(36 - 6n, 12)` frames (`0x00272FC0`-`0x00273000`), and 0 shows nothing (`0x00273061`) |
+| `+0x10` | `void*` | status | the status row shown, or 0: the n-th counted status of the mask in the order once the blank periods have passed (`0x002730A3`-`0x0027314B`), 0 during them and when nothing counts (`0x0027306B`); `0x00297FE0` shows its text `0x46B7` plus `+0x98` and its colour from `+0x25` bit 0 (`0x0029803B`-`0x002980B8`), and answers 1 when a mark appeared or went (`0x00298020`, `0x0029804C`) |
 
 ### The gil window
 
