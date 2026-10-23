@@ -149,7 +149,7 @@ Five functions test an augment by a computed id, and this is what each does with
   (`0x00384827`, `0x00384831`, `0x0038484C`), which is how the bit reaches `0x00388F2A`;
 - the enemy-order selector tests augment `s` for opcodes 32 and 33 (`0x00302494`, `0x0030249B`;
   [Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md)). 22 shipped orders test Saboteur (18) on
-  the deciding enemy itself ([enemy-orders.tsv](../09-Combat-AI-And-Gambits/enemy-orders.tsv)):
+  the deciding enemy itself ([Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), whose `enemy-orders.tsv` lists them):
   - 7 "has" tests, each guarding an order that clears it (action word `0x40E4`);
   - 15 "lacks" tests, each guarding an order that sets it (`0x40A4`);
   - in the areas frs_a, rui_c, rui_d, mnt_b, gil_g, pbc_c, mfr_c, gil_e, gil_f, tri_e, tri_f and tri_h;
