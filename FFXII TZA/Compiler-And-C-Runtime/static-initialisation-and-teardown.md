@@ -59,7 +59,7 @@ nulls.
 
 ### What the C++ initialisers build
 
-Grouped by the first function each entry calls, from a census of every entry's body:
+Every entry, grouped by the first function it calls:
 
 | Entries | Callee | What is built |
 |---:|---|---|

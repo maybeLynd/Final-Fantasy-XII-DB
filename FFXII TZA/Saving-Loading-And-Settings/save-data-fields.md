@@ -14,20 +14,22 @@ works on the whole buffer shows an offset `0x200` larger: `0x00229B40`'s `+0x4E6
 and `0x002EF390`'s `+0xC00` is payload `+0xA00`.
 
 The table below lists the payload's regions with the functions that write and read each one. The
-companion table [`save-data-fields.tsv`](save-data-fields.tsv) holds every access that reaches the
-payload directly through the buffer getters, or through a pointer those functions pass on, with its
-instruction text checked against the executable.
+companion table [`save-data-fields.tsv`](save-data-fields.tsv) holds every access to the payload: through the
+buffer getters `0x002EF640` and `0x002EF2B0` and the pointers passed on from them, through the block pointers
+`0x02EBF190` and `0x020927C0`, directly at the buffer `0x02164280`, and the block moves (the clears, the copies and the
+slot file's read and write).
 
 ### The regions
 
 | Payload offset | Size | Region | Written by | Read by |
 |---|---|---|---|---|
-| `+0x00000` | 512 | script operand bank, `i16[256]`, reached through the slot pointer `0x02098E58` that `0x0026C8C0` sets to `0x002EF2B0()` | `0x0026ABA0` | `0x00264640` |
+| `+0x00000` | 353424 | the whole payload, moved as one block with the header | `0x002EF5F0` and `0x002EF650` clear the image; the load's read (`0x00580EB0`, kind 9) fills it from the slot file | `0x002EF570` copies the image to the backup `0x022676C0`; the autosave write (`0x0057E310`, kind 8) sends it to the slot file |
+| `+0x00000` | 512 | script operand bank, `i16[256]`, reached through the slot pointer `0x02098E58` that `0x0026C8C0` sets to `0x002EF2B0()` | `0x0026ABA0`; `0x002EF2D0` clears the first `0x1538` bytes | `0x00264640` |
 | `+0x00200` | 3584 | the script-global variable space up to the quest arrays, addressed by the scripts' own descriptors ([the storage-class page](../Scripts-And-Script-Commands/script-variables.md)) | scripts | `0x002EF390` tests `+0xA00 + i == 1` |
 | `+0x01000` | 32 | quest ordered bits, one per quest id | `0x0046B3F0` (`setquestorder`); `0x0046B290` also clears a bit here, but of quest `id & 7` (it re-splits the bit index at `0x0046B2EF`), so only quests 0-7 are un-ordered that way | `0x0046B240` (`isquestorder`), `0x0046B0F0` (the count) |
 | `+0x01020` | 32 | quest cleared bits | `0x0046B290` (`setquestclear`) | `0x0046B1A0` (`isquestclear`), `0x0046B020` (the count) |
 | `+0x01040` | 4 | a counter of `setquestclear` calls with a non-zero value, incremented while below `0xFFFF` | `0x0046B290` | `0x0046B0B0` (`getquestcleartotal`) |
-| `+0x01044` | 32 | the zone transition record ([zone changes page](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) | `0x003145E0`, `0x00314970`, `0x0026D910`, `0x0026A720` | `0x003148F0`, `0x00314870`, `0x00314850`, `0x003148D0`, `0x0026DE20` |
+| `+0x01044` | 32 | the zone transition record ([zone changes page](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) | the writers listed under the record below | the readers listed under the record below |
 | `+0x01064` | 256 | quest scenario flag, `u8` per quest id | `0x0046B490` (`setquestscenarioflag`) | `0x0046B180` (`getquestscenarioflag`) |
 | `+0x01164` | 512 | `u16` per quest id: the field id (`0x003148F0()`) when the quest was first ordered | `0x0046B3F0`, `0x0046B350` | `0x0046B0D0` |
 | `+0x01364` | 32 | quest ok bits | `0x0046B380` (`setquestok`) | `0x0046B1F0` (`isquestok`) |
@@ -36,17 +38,17 @@ instruction text checked against the executable.
 | `+0x013B4` | 256 | flag bank of 2048 bits | `0x0032ABF0` | `0x0032A930` |
 | `+0x014B4` | 64 | flag bank of 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0x0032AD70`, `0x0032ADF0` | `0x0032AA60`, `0x0032AAD0` |
 | `+0x014F4` | 64 | the primary flag bank, ids 2-511 | `0x0032AB60` | `0x0032A8A0` |
-| `+0x01534` | 1 | the music track override, used while `+0x1063` bit 6 is set | `0x0026A720` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` |
+| `+0x01534` | 1 | the music track override, used while `+0x1063` bit 6 is set | `0x0026A720`, `0x002628B0` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` |
 | `+0x01535` | 1 | a byte the options apply `0x002DDA30` writes as 1 and the verb handler `0x0050D180` writes from its operand, through `0x002EF370` | `0x002EF370` | |
-| `+0x02000` | 24576 | a copy of the battle-state block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` | `0x00235AF0` |
+| `+0x02000` | 24576 | a copy of the battle-state block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` | `0x00235AF0`; `0x002EF4A0` copies the span out to `0x021B290C` |
 | `+0x08000` | 18456 | the image-backed state block, `*(0x020927C0)` | see its table below | |
 | `+0x0E000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`0x003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `0x002EF640()` but stored into the buffer `0x00583D60`'s third argument selects (the staging buffer when it is not 0, as `0x003145E0` passes through `0x005844A0`) | `0x00583D60` | |
-| `+0x0E040` | 512 | group persistent bank A, a copy of `0x02099FF0` | `0x0025D8E0` from `0x00229B40` and `0x00584580` | `0x00269A20` from `0x005843E0` and `0x00584210` |
-| `+0x0E240` | 131088 | spawn-keep image A | `0x00233440` from `0x00229B40` and `0x00584580` | `0x00233550` from `0x005843E0` |
-| `+0x2E250` | 512 | group persistent bank B | `0x0025D8E0` | `0x00269A20` |
-| `+0x2E450` | 131088 | spawn-keep image B | `0x00233440` | `0x00233550` |
-| `+0x4E460` | 44 | the save-transition metadata record | `0x002EF540`, `0x002EF3C0`, `0x002EF510`, `0x00584580`, `0x003145E0` | `0x002EF410`, `0x005843E0` |
-| `+0x4E48C` | 29712 | the battle-state block, `*(0x02EBF190)` ([its field map](../Party/party-data.md)) | bound by `0x00238A80` and `0x00233C10`, reset by `0x002370C0` | |
+| `+0x0E040` | 512 | group persistent bank A, a copy of `0x02099FF0` | `0x0025D8E0` from `0x00229B40` and `0x00584580` | `0x00269A20` from `0x005843E0` and `0x00584210`; `0x005844A0`; `0x002EF7C0` copies the bank out to `0x021C8B80` |
+| `+0x0E240` | 131088 | spawn-keep image A | `0x00233440` from `0x00229B40` and `0x00584580` | `0x00233550` from `0x005843E0`; `0x002EF740` copies `0x20000` bytes out to `0x021C8D80` |
+| `+0x2E250` | 512 | group persistent bank B | `0x0025D8E0` | `0x00269A20`, `0x00229B40`, `0x005843E0` |
+| `+0x2E450` | 131088 | spawn-keep image B | `0x00233440` | `0x00233550`, `0x00229B40`, `0x005843E0` |
+| `+0x4E460` | 44 | the save-transition metadata record | `0x002EF540`, `0x002EF3C0`, `0x002EF510`, `0x00584580`, `0x003145E0` | `0x002EF410`, `0x005843E0`, `0x00229B40`, `0x00584210` |
+| `+0x4E48C` | 29712 | the battle-state block, `*(0x02EBF190)` ([its field map](../Party/party-data.md)) | bound by `0x00238A80` and `0x00233C10`, cleared whole by `0x002370C0`; its accesses through `0x02EBF190` are on [Party data](../Party/party-data.md) | the same page |
 
 Each spawn-keep image is preceded by its group bank, so pair A and pair B are two `0x20210`-byte
 blocks at `+0xE040` and `+0x2E250`, and `0x005844A0` clears both pairs with one `memset` of `0x40420` bytes
@@ -62,12 +64,13 @@ The companion table has one row per access site:
 | `region` | the region from the table above that contains the offset |
 | `function` | the function containing the instruction |
 | `site` | the instruction's address |
-| `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed (`lea`) and passed on |
+| `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed (`lea`) and passed on, `set` a clear over the span the instruction cell gives, `copy` a block move whose length and other end the instruction cell gives, `range` a span whose own table the instruction cell names |
 | `instruction` | the instruction text, as disassembled from the executable |
-| `via` | empty when the function computes the address from the buffer getter itself; otherwise the argument register and the caller and call site that passed the pointer in |
+| `via` | empty when the function computes the address from the buffer getter `0x002EF640` or `0x002EF2B0` itself; `argN from F at S` when the pointer came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K; `0x02EBF190` or `0x020927C0` when the function loads that block pointer; `0x02164280` for a direct reference to the buffer; `file kind 8` and `file kind 9` for the slot file's write and read |
 
-Rows inside the battle-state block are listed only when the function reaches the block from the buffer
-getter itself; accesses through the block pointer `0x02EBF190` belong to the block's own field map.
+The battle-state block's accesses through `0x02EBF190` are not repeated here: the table carries one `range` row for the
+block, and [the block's field map](../Party/party-data.md) lists them field by field; the copies and clears that reach
+it from the buffer are on that page too.
 
 ## Data
 
@@ -101,6 +104,15 @@ Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
 
 `0x00584210` stashes `+0x1044`-`+0x1054` into the header's `+0x80`-`+0x90` when a load begins and puts
 them back on the restore path (see the [save file format page](save-file-format.md)).
+
+The record's writers are `0x003145E0`, `0x00314970`, `0x00314530`, `0x0026D910`, `0x0026A720`, `0x002628B0`, `0x00268320`,
+`0x0026D8F0`, `0x00280140`, `0x00584210` and the field setters `0x003149E0`, `0x00314A00`, `0x00314B80`, `0x00314BB0`, `0x00314BE0`,
+`0x00314C40`, `0x00314C70`, `0x00314CA0`, `0x00314CD0`, `0x00314D00`, `0x00314D80`, `0x00314DA0` and `0x00314DC0`.
+
+Its readers are
+`0x003148F0`, `0x00314870`, `0x00314850`, `0x003148D0`, `0x003148B0`, `0x00314910`, `0x00314530`, `0x003145E0`, `0x0026D910`, `0x0026DB30`,
+`0x0026DE20`, `0x0025ACA0`, `0x0025D9E0`, `0x00261F90`, `0x002620E0`, `0x00265920`, `0x00584210` and the field getters `0x00314A60`,
+`0x00314A80`, `0x00314AA0`, `0x00314AC0`, `0x00314AE0`, `0x00314B00`, `0x00314B20`, `0x00314B40` and `0x00314B60`.
 
 ### The image-backed state block
 

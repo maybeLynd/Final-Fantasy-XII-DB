@@ -1,107 +1,502 @@
 function	name	site	disp	kind	instruction	route	note
-0x00235360	Spawn_SelectContinuousEntry	0x002353FA	0x17	r	movzx r9d, byte ptr [rcx + 0x17]	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x00235465	0x80	addr	lea rcx, [rcx + 0x80]	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x00235476	0x0	w	movups xmmword ptr [rcx - 0x80], xmm0	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x0023547E	0x10	w	movups xmmword ptr [rcx - 0x70], xmm1	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x00235486	0x20	w	movups xmmword ptr [rcx - 0x60], xmm0	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x0023548E	0x30	w	movups xmmword ptr [rcx - 0x50], xmm1	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x00235496	0x40	w	movups xmmword ptr [rcx - 0x40], xmm0	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x0023549E	0x50	w	movups xmmword ptr [rcx - 0x30], xmm1	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354A6	0x60	w	movups xmmword ptr [rcx - 0x20], xmm0	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354AE	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354BB	0x80	w	movups xmmword ptr [rcx], xmm0	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354C2	0x90	w	movups xmmword ptr [rcx + 0x10], xmm1	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354CA	0xA0	w	movups xmmword ptr [rcx + 0x20], xmm0	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354D2	0xB0	w	movups xmmword ptr [rcx + 0x30], xmm1	seed	
-0x00235360	Spawn_SelectContinuousEntry	0x002354DD	0xC0	w	movups xmmword ptr [rcx + 0x40], xmm0	seed	
-0x002354F0	Spawn_SelectPreviousMapEntry	0x0023555C	0x0	r	test byte ptr [r8], 4	seed	
-0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x002356D5	0x60	w	movups xmmword ptr [rsi + 0x60], xmm0	seed	
-0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x002356DE	0x50	w	movups xmmword ptr [rsi + 0x50], xmm0	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358A1	0xA	r	movzx eax, word ptr [r14 + 0xa]	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358AB	0x8	r	cmp word ptr [r14 + 8], ax	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358B6	0x0	r	mov eax, dword ptr [r14]	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358C1	0x10	r	movzx eax, word ptr [r14 + 0x10]	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358D1	0xC	r	sub ecx, dword ptr [r14 + 0xc]	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x00235A08	0x60	w	movups xmmword ptr [rdi + 0x60], xmm9	seed	
-0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x00235A0F	0x50	w	movups xmmword ptr [rdi + 0x50], xmm9	seed	
-0x00235EF0	SpawnEntry_GetDeathLimit	0x00235F3A	0xA	r	movzx eax, word ptr [rcx + 0xa]	seed	
-0x00235F50	SpawnEntry_GetDeathCount	0x00235F9A	0x8	r	movzx eax, word ptr [rcx + 8]	seed	
-0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	0x00236017	0xC	r	sub eax, dword ptr [rbx + 0xc]	seed	
-0x00236140	SpawnEntry_GetScriptSelection	0x0023618A	0x16	r	movsx eax, byte ptr [rcx + 0x16]	seed	
-0x00236670	SpawnEntry_QueryRangeReentryPending	0x002366BA	0x0	r	mov eax, dword ptr [rcx]	seed	
-0x002366E0	SpawnEntry_GetRespawnCooldownTicks	0x0023672A	0x10	r	movzx eax, word ptr [rcx + 0x10]	seed	
-0x00236860	SpawnEntry_ResetTransientState	0x002368AA	0x0	rw	and dword ptr [rcx], 0xffffff7a	seed	
-0x00236860	SpawnEntry_ResetTransientState	0x002368B0	0x16	w	mov word ptr [rcx + 0x16], 0xff	seed	
-0x00236860	SpawnEntry_ResetTransientState	0x002368B6	0x78	w	mov dword ptr [rcx + 0x78], 0	seed	
-0x00236860	SpawnEntry_ResetTransientState	0x002368BD	0x7C	w	mov byte ptr [rcx + 0x7c], 0	seed	
-0x00239410	SpawnEntry_SetCurrentCandidateState	0x00239490	0x60	w	movups xmmword ptr [rcx + 0x60], xmm0	seed	
-0x00239410	SpawnEntry_SetCurrentCandidateState	0x00239494	0x50	w	movups xmmword ptr [rcx + 0x50], xmm0	seed	
-0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398AD	0x16	r	movzx ecx, byte ptr [rdx + 0x16]	seed	
-0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398BB	0x16	w	mov byte ptr [rdx + 0x16], al	seed	
-0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398C2	0x0	rw	and dword ptr [rdx], 0xfffffffa	seed	
-0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398C5	0x0	r	test byte ptr [rdx], 5	seed	
-0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398CA	0x18	r	movzx eax, byte ptr [rdx + 0x18]	seed	
-0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398CE	0x17	w	mov byte ptr [rdx + 0x17], al	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A347	0x0	r	mov ecx, dword ptr [rax]	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A354	0x16	w	mov byte ptr [rax + 0x16], 0xff	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A358	0x0	w	mov dword ptr [rax], ecx	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A35A	0x78	w	mov dword ptr [rax + 0x78], r11d	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A35E	0x7C	w	mov byte ptr [rax + 0x7c], r11b	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A362	0x18	r	movzx ecx, byte ptr [rax + 0x18]	seed	
-0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A366	0x17	w	mov byte ptr [rax + 0x17], cl	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A791	0x0	r	test byte ptr [rbp], 5	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7AE	0x14	w	mov byte ptr [rbp + 0x14], 0	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7BB	0x14	r	movzx eax, byte ptr [rbp + 0x14]	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7C3	0x14	w	mov byte ptr [rbp + 0x14], al	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7D3	0x14	w	mov byte ptr [rbp + 0x14], al	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7DC	0x14	r	movzx eax, byte ptr [rbp + 0x14]	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7E4	0x14	w	mov byte ptr [rbp + 0x14], al	seed	
-0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A840	0x12	w	mov byte ptr [rbp + 0x12], bl	seed	
-0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACC2	0xD0	w	mov qword ptr [rdi + 0x50], 0xffffffffffffffff	arg0+0x80<0x0023A570@0x0023A7A9	
-0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACD0	0xD8	w	mov word ptr [rdi + 0x58], r13w	arg0+0x80<0x0023A570@0x0023A7A9	
-0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACD5	0x243	w	mov word ptr [rdi + 0x1c3], r13w	arg0+0x80<0x0023A570@0x0023A7A9	
-0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACDD	0x245	w	mov byte ptr [rdi + 0x1c5], 0xff	arg0+0x80<0x0023A570@0x0023A7A9	
-0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023AD8E	0x84	w	mov word ptr [rdi + 4], r15w	arg0+0x80<0x0023A570@0x0023A7A9	
-0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023AF28	0x80	rw	or dword ptr [rdi], 4	arg0+0x80<0x0023A570@0x0023A7A9	
-0x0030C470	FUN_0030c470	0x0030C488	0x85	r	movzx eax, byte ptr [rcx + 5]	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C48E	0x84	r	movzx r14d, byte ptr [rcx + 4]	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C496	0x242	w	mov byte ptr [rcx + 0x1c2], dil	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C4B1	0x108	w	mov byte ptr [rcx + 0x88], r8b	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C500	0x88	w	mov dword ptr [rbx + 8], eax	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C507	0x8C	w	mov word ptr [rbx + 0xc], ax	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C516	0x90	w	movss dword ptr [rbx + 0x10], xmm0	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C526	0x94	w	movss dword ptr [rbx + 0x14], xmm1	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C536	0x98	w	movss dword ptr [rbx + 0x18], xmm0	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C546	0x9C	w	movss dword ptr [rbx + 0x1c], xmm1	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C54F	0xA0	w	mov byte ptr [rbx + 0x20], al	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C55F	0xA0	w	mov byte ptr [rbx + 0x20], al	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C586	0x20C	w	mov dword ptr [rbx + 0x18c], eax	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5BB	0xEC	r	cmp byte ptr [rbx + 0x6c], dil	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5C1	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5C7	0xA8	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5CB	0xCC	w	mov word ptr [rbx + 0x4c], di	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5D1	0xEC	r	cmp byte ptr [rbx + 0x6c], dil	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5D7	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5DD	0xA8	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0030C470	FUN_0030c470	0x0030C5F9	0xCC	w	mov word ptr [rbx + 0x4c], dx	arg0+0x80<0x0023AC80@0x0023AD96	
-0x0031A630	BattleStats_SetEquipmentSlotDirect	0x0031A668	0xD0	addr	lea rdx, [rcx + 0x50]	arg0+0x80<0x0023AC80@0x0023ADB5	
-0x0031A630	BattleStats_SetEquipmentSlotDirect	0x0031A685	0x80	addr	lea r14, [rbx + rbp*2]	arg0+0x80<0x0023AC80@0x0023ADB5	idx
-0x0031A630	BattleStats_SetEquipmentSlotDirect	0x0031A6A8	0xD0	addr	lea rcx, [rbx + 0x50]	arg0+0x80<0x0023AC80@0x0023ADB5	
-0x00323790	FUN_00323790	0x00323790	0x210	r	mov r8d, dword ptr [rcx + 0x190]	arg0+0x80<0x0023AC80@0x0023AE0B	
-0x00323790	FUN_00323790	0x0032379C	0x210	w	mov dword ptr [rcx + 0x190], 0	arg0+0x80<0x0023AC80@0x0023AE0B	
-0x00323790	FUN_00323790	0x003237B3	0x210	w	mov dword ptr [rcx + 0x190], r8d	arg0+0x80<0x0023AC80@0x0023AE0B	
-0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x0032393D	0x85	r	cmp byte ptr [rcx + 5], 0	arg0+0x80<0x0023AC80@0x0023AE7C	
-0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x003239C7	0x210	r	mov edx, dword ptr [rdi + 0x190]	arg0+0x80<0x0023AC80@0x0023AE7C	
-0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x003239E1	0x210	w	mov dword ptr [rdi + 0x190], edx	arg0+0x80<0x0023AC80@0x0023AE7C	
-0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x00323A9E	0x84	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x80<0x0023AC80@0x0023AE7C	
-0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x00323B64	0xA0	r	movzx eax, byte ptr [rdi + 0x20]	arg0+0x80<0x0023AC80@0x0023AE7C	
-0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x00323B7C	0xA0	w	mov byte ptr [rdi + 0x20], bl	arg0+0x80<0x0023AC80@0x0023AE7C	
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327CC3	0x85	r	movzx eax, byte ptr [rcx + 5]	arg0+0x80<0x0023AC80@0x0023AEF5	
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D57	0x108	w	mov word ptr [rdi + rdx*4 + 0x88], ax	arg0+0x80<0x0023AC80@0x0023AEF5	idx
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D64	0x10A	w	mov word ptr [rdi + rdx*4 + 0x8a], ax	arg0+0x80<0x0023AC80@0x0023AEF5	idx
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D6C	0x138	r	movzx eax, word ptr [rdi + 0xb8]	arg0+0x80<0x0023AC80@0x0023AEF5	
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D78	0x138	w	mov word ptr [rdi + 0xb8], ax	arg0+0x80<0x0023AC80@0x0023AEF5	
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D84	0x13A	w	mov byte ptr [rdi + 0xba], bl	arg0+0x80<0x0023AC80@0x0023AEF5	
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D96	0x80	addr	lea rcx, [rdi + rcx*4]	arg0+0x80<0x0023AC80@0x0023AEF5	idx
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327DAA	0x138	r	movzx eax, word ptr [rdi + 0xb8]	arg0+0x80<0x0023AC80@0x0023AEF5	
-0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327DB6	0x138	w	mov word ptr [rdi + 0xb8], ax	arg0+0x80<0x0023AC80@0x0023AEF5	
+0x00233440	FUN_00233440	0x00233477	0x0	copy	movups xmm0, xmmword ptr [rax] (copy, 0x128 x 0x80 bytes: the whole history bank out to the save payload's spawn-keep image)	0x0208E698	
+0x00233550	FUN_00233550	0x0023356D	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the save payload's spawn-keep image over the history bank)	0x0208E698	
+0x00233780	Spawn_SwapOrPushBanks	0x00233827	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the whole history bank out to a stack temp)	0x0208E698	
+0x00233780	Spawn_SwapOrPushBanks	0x00233887	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the whole live bank over the history bank)	0x0208E690	
+0x00233780	Spawn_SwapOrPushBanks	0x002338E7	0x0	copy	movups xmm0, xmmword ptr [rax] (copy, 0x128 x 0x80 bytes: the stack temp over the live bank)	0x0208E690	
+0x00233780	Spawn_SwapOrPushBanks	0x0023395C	0x0	copy	movups xmm0, xmmword ptr [rdx] (copy, 0x128 x 0x80 bytes: the whole live bank over the history bank)	0x0208E690	
+0x00233AD0	BattleUnit_ActivateAppliedDefinitionRuntime	0x00233BA8	0x0	rw	or dword ptr [rax], 2	unit +0x6A0	
+0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x0023429B	0x0	rw	or dword ptr [rcx], 4	unit +0x6A0	
+0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x00235159	0x0	r	test byte ptr [rax], 0x10	unit +0x6A0	
+0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x002352A6	0x0	rw	or dword ptr [rcx], 1	unit +0x6A0	
+0x00235360	Spawn_SelectContinuousEntry	0x00235410	0x0	r	mov r8d, dword ptr [rax]	0x0208E698	
+0x00235360	Spawn_SelectContinuousEntry	0x0023546C	0x0	copy	movups xmm0, xmmword ptr [rax] (copy, 0x250 bytes: the matching history record over the live record)	0x0208E698	
+0x002354F0	Spawn_SelectPreviousMapEntry	0x0023555C	0x0	r	test byte ptr [r8], 4	0x0208E690	
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358B6	0x0	r	mov eax, dword ptr [r14]	0x0208E690	
+0x00236030	FUN_00236030	0x0023607F	0x0	addr	add rcx, qword ptr [rip + 0x1e5860a] (the record's address, tested for null only)	0x0208E690	
+0x00236670	SpawnEntry_QueryRangeReentryPending	0x002366BA	0x0	r	mov eax, dword ptr [rcx]	0x0208E690	
+0x00236860	SpawnEntry_ResetTransientState	0x002368AA	0x0	rw	and dword ptr [rcx], 0xffffff7a	0x0208E690	
+0x002368D0	FUN_002368d0	0x0023696E	0x0	set	call 0x861ec0 (memset, 0x9400 bytes: the whole live bank at allocation)	0x0208E690	
+0x002368D0	FUN_002368d0	0x00236999	0x0	set	call 0x861ec0 (memset, 0x9400 bytes: the whole history bank at allocation)	0x0208E698	
+0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	0x00237085	0x0	rw	and dword ptr [rcx], 0xffffff7a	arg0 from 0x00300E40 at 0x00300F68	
+0x00237430	FUN_00237430	0x00237451	0x0	r	mov eax, dword ptr [rax]	unit +0x6A0	
+0x00237D80	FUN_00237d80	0x00237DD7	0x0	rw	and dword ptr [rax], 0xffffffdf	unit +0x6A0	
+0x00238BF0	BattleUnit_RefreshActorRuntimeFromDefinition	0x00238D98	0x0	r	test byte ptr [rax], 0x20	unit +0x6A0	
+0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	0x002391DC	0x0	r	mov eax, dword ptr [rcx]	unit +0x6A0	
+0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	0x002391E5	0x0	w	mov dword ptr [rcx], eax	unit +0x6A0	
+0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	0x002391FD	0x0	rw	or dword ptr [rax], 0x10	unit +0x6A0	
+0x002392D0	FUN_002392d0	0x00239346	0x0	r	test byte ptr [rax], 5	unit +0x6A0	
+0x002394C0	FUN_002394c0	0x002394F7	0x0	r	mov ebp, dword ptr [rcx]	unit +0x6A0	
+0x002395A0	SpawnEntry_ResetFromTable	0x002395E3	0x0	r	test byte ptr [rdi + rcx], 2	0x0208E690	idx
+0x002396B0	BattleUnit_SetRuntimeUnitCategoryMode	0x002396E0	0x0	r	mov ecx, dword ptr [rdx]	unit +0x6A0	
+0x002396B0	BattleUnit_SetRuntimeUnitCategoryMode	0x002396EA	0x0	w	mov dword ptr [rdx], ecx	unit +0x6A0	
+0x002396B0	BattleUnit_SetRuntimeUnitCategoryMode	0x002396F9	0x0	rw	or dword ptr [rax], 0x20	unit +0x6A0	
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398C2	0x0	rw	and dword ptr [rdx], 0xfffffffa	0x0208E690	
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398C5	0x0	r	test byte ptr [rdx], 5	0x0208E690	
+0x002398F0	FUN_002398f0	0x00239918	0x0	r	test byte ptr [rax], 5	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A24A	0x0	r	test byte ptr [rax], 5	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A25D	0x0	rw	and dword ptr [rax], 0xffffffbf	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A267	0x0	rw	and dword ptr [rax], 0xfffffff7	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A282	0x0	rw	or dword ptr [rax], 8	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A2AC	0x0	rw	or dword ptr [rax], 0x40	unit +0x6A0	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A347	0x0	r	mov ecx, dword ptr [rax]	0x0208E690	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A358	0x0	w	mov dword ptr [rax], ecx	0x0208E690	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A42E	0x0	r	test byte ptr [rcx], 5	unit +0x6A0	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A465	0x0	rw	and dword ptr [rax], 0xfffffffb	unit +0x6A0	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A46F	0x0	rw	and dword ptr [rax], 0xfffffffe	unit +0x6A0	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A791	0x0	r	test byte ptr [rbp], 5	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A791	0x0	r	test byte ptr [rbp], 5	lane map	
+0x002FFCF0	BattleAction_CheckActionAvailabilityReason	0x002FFD51	0x0	r	test byte ptr [rax], 0x30	unit +0x6A0	
+0x002FFCF0	BattleAction_CheckActionAvailabilityReason	0x002FFD6C	0x0	r	test byte ptr [rax], 0x48	unit +0x6A0	
+0x002FFF50	BattleTarget_ComputeEligibilityBlockMask	0x00300014	0x0	r	test byte ptr [rax], 0x20	unit +0x6A0	
+0x002FFF50	BattleTarget_ComputeEligibilityBlockMask	0x00300023	0x0	r	test byte ptr [rax], 0x40	unit +0x6A0	
+0x003014C0	AiOrder_EvaluateAndResolveActionTarget	0x0030155A	0x0	r	test byte ptr [rax], 0x30	unit +0x6A0	
+0x003014C0	AiOrder_EvaluateAndResolveActionTarget	0x00301571	0x0	r	test byte ptr [rax], 0x48	unit +0x6A0	
+0x00301AD0	AiOrder_EvaluateTargetSelector	0x00301D70	0x0	r	test byte ptr [rax], 0x10	unit +0x6A0	
+0x00307300	Battle_ProcessActionTarget	0x00307A7F	0x0	rw	and dword ptr [rax], 0xffffffef	unit +0x6A0	
+0x00308040	BattleUnit_HasNonPartyEngagementEvidence	0x00308073	0x0	r	mov ecx, dword ptr [rax]	unit +0x6A0	
+0x0030DA30	FUN_0030da30	0x0030DA85	0x0	r	test byte ptr [rax], 0x30	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031043A	0x0	r	test byte ptr [rcx], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x0031195E	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311986	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x003119AE	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x003119D6	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A00	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A2A	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A54	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A7E	0x0	rw	or dword ptr [rax], 0x80	unit +0x6A0	
+0x003125E0	BattleUnit_ComputePresentationSuppressionMask	0x003126BE	0x0	r	mov ecx, dword ptr [rax]	unit +0x6A0	
+0x00312EE0	FUN_00312ee0	0x00312F17	0x0	r	mov edi, dword ptr [rcx]	unit +0x6A0	
+0x00312EE0	FUN_00312ee0	0x00312F24	0x0	w	mov dword ptr [rcx], eax	unit +0x6A0	
+0x00312EE0	FUN_00312ee0	0x00312F30	0x0	rw	and dword ptr [rax], 0xfffffff7	unit +0x6A0	
+0x0031FDA0	FUN_0031fda0	0x0031FDEB	0x0	r	mov edx, dword ptr [rax]	unit +0x6A0	
+0x0031FE10	FUN_0031fe10	0x0031FE43	0x0	r	test byte ptr [rax], 0x40	unit +0x6A0	
+0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	0x003248CD	0x0	r	test byte ptr [rax], 0x30	unit +0x6A0	
+0x00329220	FUN_00329220	0x0032935C	0x0	r	test byte ptr [rax], 0x40	unit +0x6A0	
+0x00384F40	FUN_00384f40	0x003850F7	0x0	r	test byte ptr [rax], 0x30	unit +0x6A0	
+0x00384F40	FUN_00384f40	0x00385112	0x0	r	test byte ptr [rax], 0x48	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A24F	0x4	w	mov dword ptr [rax + 4], 0	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A276	0x4	w	movss dword ptr [rax + 4], xmm6	unit +0x6A0	
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0023A2A0	0x4	w	movss dword ptr [rax + 4], xmm6	unit +0x6A0	
+0x00308040	BattleUnit_HasNonPartyEngagementEvidence	0x0030808B	0x4	r	movss xmm0, dword ptr [rax + 4]	unit +0x6A0	
+0x00308040	BattleUnit_HasNonPartyEngagementEvidence	0x003080D0	0x4	r	movss xmm0, dword ptr [rax + 4]	unit +0x6A0	
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358AB	0x8	r	cmp word ptr [r14 + 8], ax	0x0208E690	
+0x00235F50	SpawnEntry_GetDeathCount	0x00235F9A	0x8	r	movzx eax, word ptr [rcx + 8]	0x0208E690	
+0x002395A0	SpawnEntry_ResetFromTable	0x0023965C	0x8	w	mov word ptr [rdi + rcx + 8], r15w	0x0208E690	idx
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300801	0x8	rw	inc word ptr [rax + 8]	unit +0x6A0	
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358A1	0xA	r	movzx eax, word ptr [r14 + 0xa]	0x0208E690	
+0x00235EF0	SpawnEntry_GetDeathLimit	0x00235F3A	0xA	r	movzx eax, word ptr [rcx + 0xa]	0x0208E690	
+0x002395A0	SpawnEntry_ResetFromTable	0x00239623	0xA	w	mov word ptr [rdi + rcx + 0xa], ax	0x0208E690	idx
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358D1	0xC	r	sub ecx, dword ptr [r14 + 0xc]	0x0208E690	
+0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	0x00236017	0xC	r	sub eax, dword ptr [rbx + 0xc]	0x0208E690	
+0x002395A0	SpawnEntry_ResetFromTable	0x00239657	0xC	w	mov dword ptr [rdi + rcx + 0xc], r15d	0x0208E690	idx
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300829	0xC	w	mov dword ptr [rcx + 0xc], eax	unit +0x6A0	
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x002358C1	0x10	r	movzx eax, word ptr [r14 + 0x10]	0x0208E690	
+0x002366E0	SpawnEntry_GetRespawnCooldownTicks	0x0023672A	0x10	r	movzx eax, word ptr [rcx + 0x10]	0x0208E690	
+0x002395A0	SpawnEntry_ResetFromTable	0x00239652	0x10	w	mov word ptr [rdi + rcx + 0x10], ax	0x0208E690	idx
+0x00238BF0	BattleUnit_RefreshActorRuntimeFromDefinition	0x00238EA9	0x12	r	movzx esi, byte ptr [rax + 0x12]	unit +0x6A0	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A840	0x12	w	mov byte ptr [rbp + 0x12], bl	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A840	0x12	w	mov byte ptr [rbp + 0x12], bl	lane map	
+0x00329220	FUN_00329220	0x003298BD	0x12	r	movzx ecx, byte ptr [rax + 0x12]	unit +0x6A0	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7AE	0x14	w	mov byte ptr [rbp + 0x14], 0	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7AE	0x14	w	mov byte ptr [rbp + 0x14], 0	lane map	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7BB	0x14	r	movzx eax, byte ptr [rbp + 0x14]	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7BB	0x14	r	movzx eax, byte ptr [rbp + 0x14]	lane map	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7C3	0x14	w	mov byte ptr [rbp + 0x14], al	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7C3	0x14	w	mov byte ptr [rbp + 0x14], al	lane map	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7D3	0x14	w	mov byte ptr [rbp + 0x14], al	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7D3	0x14	w	mov byte ptr [rbp + 0x14], al	lane map	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7DC	0x14	r	movzx eax, byte ptr [rbp + 0x14]	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7DC	0x14	r	movzx eax, byte ptr [rbp + 0x14]	lane map	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7E4	0x14	w	mov byte ptr [rbp + 0x14], al	0x0208E690	
+0x0023A570	BattleUnit_ApplyUnitDefinition	0x0023A7E4	0x14	w	mov byte ptr [rbp + 0x14], al	lane map	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311468	0x14	r	movzx eax, byte ptr [rcx + 0x14]	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x0031146F	0x14	w	mov byte ptr [rcx + 0x14], al	unit +0x6A0	
+0x00385BA0	BattleFormula_ApplyResultMetadata	0x00385C17	0x14	rw	and byte ptr [rax + 0x14], 0xfb	unit +0x6A0	
+0x00385BA0	BattleFormula_ApplyResultMetadata	0x00385C41	0x14	rw	and byte ptr [rax + 0x14], 0xfd	unit +0x6A0	
+0x00385BA0	BattleFormula_ApplyResultMetadata	0x00385C6B	0x14	rw	and byte ptr [rax + 0x14], 0xfe	unit +0x6A0	
+0x00390390	FUN_00390390	0x0039041E	0x14	r	movzx eax, byte ptr [rcx + 0x14]	unit +0x6A0	
+0x00390390	FUN_00390390	0x0039044D	0x14	r	movzx eax, byte ptr [rcx + 0x14]	unit +0x6A0	
+0x00390390	FUN_00390390	0x0039047E	0x14	r	movzx eax, byte ptr [rcx + 0x14]	unit +0x6A0	
+0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	0x002391EE	0x15	w	mov byte ptr [rcx + 0x15], 0	unit +0x6A0	
+0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	0x00239207	0x15	w	mov byte ptr [rax + 0x15], bl	unit +0x6A0	
+0x00301AD0	AiOrder_EvaluateTargetSelector	0x00301D75	0x15	r	movzx eax, byte ptr [rax + 0x15]	unit +0x6A0	
+0x00236140	SpawnEntry_GetScriptSelection	0x0023618A	0x16	r	movsx eax, byte ptr [rcx + 0x16]	0x0208E690	
+0x00236860	SpawnEntry_ResetTransientState	0x002368B0	0x16	w	mov word ptr [rcx + 0x16], 0xff	0x0208E690	
+0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	0x0023708B	0x16	w	mov word ptr [rcx + 0x16], 0xff	arg0 from 0x00300E40 at 0x00300F68	
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398AD	0x16	r	movzx ecx, byte ptr [rdx + 0x16]	0x0208E690	
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398BB	0x16	w	mov byte ptr [rdx + 0x16], al	0x0208E690	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A354	0x16	w	mov byte ptr [rax + 0x16], 0xff	0x0208E690	
+0x00235360	Spawn_SelectContinuousEntry	0x002353FA	0x17	r	movzx r9d, byte ptr [rcx + 0x17]	0x0208E690	
+0x00235360	Spawn_SelectContinuousEntry	0x0023541F	0x17	r	cmp r9b, byte ptr [rax + 0x17]	0x0208E698	
+0x002395A0	SpawnEntry_ResetFromTable	0x00239671	0x17	w	mov byte ptr [rdi + rcx + 0x17], al	0x0208E690	idx
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398CE	0x17	w	mov byte ptr [rdx + 0x17], al	0x0208E690	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A366	0x17	w	mov byte ptr [rax + 0x17], cl	0x0208E690	
+0x002395A0	SpawnEntry_ResetFromTable	0x00239675	0x18	w	mov byte ptr [rdi + rcx + 0x18], al	0x0208E690	idx
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398CA	0x18	r	movzx eax, byte ptr [rdx + 0x18]	0x0208E690	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A362	0x18	r	movzx ecx, byte ptr [rax + 0x18]	0x0208E690	
+0x00321530	BattleEnmity_UpdatePeriodicDecay	0x00321569	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
+0x003215C0	BattleEnmity_ReadForCombatantId	0x003215D7	0x19	addr	lea rbx, [rax + 0x19]	unit +0x6A0	
+0x00321630	BattleEnmity_GetHighestRelevant	0x00321650	0x19	addr	lea rbp, [rax + 0x19]	unit +0x6A0	
+0x00321770	BattleEnmity_AnyAboveThreshold	0x00321792	0x19	addr	lea rsi, [rax + 0x19]	unit +0x6A0	
+0x00321810	FUN_00321810	0x00321824	0x19	addr	lea rcx, [rax + 0x19]	unit +0x6A0	
+0x00321850	BattleEnmity_WriteForCombatantId	0x00321885	0x19	addr	lea rbp, [rax + 0x19]	unit +0x6A0	
+0x00321850	BattleEnmity_WriteForCombatantId	0x0032195D	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
+0x003219D0	BattleEnmity_PropagateToPerceivingFoes	0x00321A50	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
+0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321BB7	0x19	addr	lea rbp, [rax + 0x19]	unit +0x6A0	
+0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321C8E	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
+0x00321D30	BattleEnmity_WriteAllCombatantIds	0x00321D61	0x19	addr	lea r9, [rax + 0x19]	unit +0x6A0	
+0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x002356DE	0x50	w	movups xmmword ptr [rsi + 0x50], xmm0	0x0208E690	
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x00235A0F	0x50	w	movups xmmword ptr [rdi + 0x50], xmm9	0x0208E690	
+0x00239410	SpawnEntry_SetCurrentCandidateState	0x00239494	0x50	w	movups xmmword ptr [rcx + 0x50], xmm0	0x0208E690	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x003003CE	0x50	w	movups xmmword ptr [rax + 0x50], xmm0	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x003003CE	0x50	w	movups xmmword ptr [rax + 0x50], xmm0	unit +0x6A0	
+0x00307300	Battle_ProcessActionTarget	0x003079F4	0x50	w	movups xmmword ptr [rax + 0x50], xmm0	unit +0x6A0	
+0x00311F70	FUN_00311f70	0x00312092	0x50	w	movups xmmword ptr [rax + 0x50], xmm6	unit +0x6A0	
+0x00312730	FUN_00312730	0x003127FB	0x50	addr	add rcx, 0x50	unit +0x6A0	
+0x00312DF0	FUN_00312df0	0x00312E24	0x50	r	movaps xmm0, xmmword ptr [rcx]	arg0+0x50 from 0x00312730 at 0x00312A68	
+0x004686D0	Vector3_ComputeXZDistance	0x004686DE	0x50	r	subss xmm1, dword ptr [rdx]	arg1+0x50 from 0x0031E760 at 0x0031E787	
+0x004686D0	Vector3_ComputeXZDistance	0x004686D9	0x58	r	subss xmm0, dword ptr [rdx + 8]	arg1+0x50 from 0x0031E760 at 0x0031E787	
+0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x00234291	0x60	w	movups xmmword ptr [rcx + 0x60], xmm0	unit +0x6A0	
+0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x002356D5	0x60	w	movups xmmword ptr [rsi + 0x60], xmm0	0x0208E690	
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x00235A08	0x60	w	movups xmmword ptr [rdi + 0x60], xmm9	0x0208E690	
+0x00239410	SpawnEntry_SetCurrentCandidateState	0x00239490	0x60	w	movups xmmword ptr [rcx + 0x60], xmm0	0x0208E690	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A4B7	0x60	r	movss xmm0, dword ptr [rax + 0x60]	unit +0x6A0	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x0030034A	0x60	r	ucomiss xmm0, dword ptr [rsi]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x00300388	0x60	r	movss xmm1, dword ptr [rsi]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x00300391	0x60	r	movaps xmm0, xmmword ptr [rsi]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x0030039F	0x60	r	movaps xmm0, xmmword ptr [rsi]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x003003CB	0x60	r	movaps xmm0, xmmword ptr [rsi]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A4B3	0x64	addr	lea r8, [rax + 0x64]	unit +0x6A0	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A4D0	0x64	r	addss xmm0, dword ptr [rax + 0x64]	unit +0x6A0	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A4D5	0x64	w	movss dword ptr [rax + 0x64], xmm0	unit +0x6A0	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x00300357	0x64	r	ucomiss xmm0, dword ptr [rsi + 4]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x00300383	0x64	r	movss xmm2, dword ptr [rsi + 4]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x003208C0	FUN_003208c0	0x0032091A	0x64	w	movss dword ptr [rbx], xmm0	arg2+0x64 from 0x0023A410 at 0x0023A4BC	
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0023A4AE	0x68	r	movss xmm1, dword ptr [rax + 0x68]	unit +0x6A0	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x00300365	0x68	r	ucomiss xmm0, dword ptr [rsi + 8]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00300310	BattleUnit_PublishLocomotionPosition	0x0030037B	0x68	r	movss xmm3, dword ptr [rsi + 8]	arg1+0x60 from 0x0023A410 at 0x0023A4F1	
+0x00239210	FUN_00239210	0x0023929C	0x70	w	movss dword ptr [rax + 0x70], xmm6	unit +0x6A0	
+0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	0x0030046E	0x70	w	movss dword ptr [rax + 0x70], xmm6	unit +0x6A0	
+0x00307300	Battle_ProcessActionTarget	0x00307A4F	0x70	w	movss dword ptr [rax + 0x70], xmm6	unit +0x6A0	
+0x00311F70	FUN_00311f70	0x003120F7	0x70	w	movss dword ptr [rax + 0x70], xmm6	unit +0x6A0	
+0x00312B40	FUN_00312b40	0x00312C84	0x70	r	mov ecx, dword ptr [rax + 0x70]	unit +0x6A0	
+0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x0023429E	0x74	w	mov dword ptr [rcx + 0x74], eax	unit +0x6A0	
+0x00236860	SpawnEntry_ResetTransientState	0x002368B6	0x78	w	mov dword ptr [rcx + 0x78], 0	0x0208E690	
+0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	0x00237091	0x78	w	mov dword ptr [rcx + 0x78], 0	arg0 from 0x00300E40 at 0x00300F68	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A35A	0x78	w	mov dword ptr [rax + 0x78], r11d	0x0208E690	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031043F	0x78	r	movzx ecx, byte ptr [rcx + 0x78]	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x003119A4	0x78	rw	or byte ptr [rax + 0x78], cl	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A4A	0x78	rw	and byte ptr [rax + 0x78], cl	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031044D	0x79	r	movzx edx, byte ptr [rcx + 0x79]	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310492	0x79	w	mov byte ptr [rcx + 0x79], al	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x0031197C	0x79	rw	or byte ptr [rax + 0x79], cl	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A20	0x79	rw	and byte ptr [rax + 0x79], cl	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031045B	0x7A	r	movzx ecx, byte ptr [rax + 0x7a]	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104A0	0x7A	w	mov byte ptr [rcx + 0x7a], al	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x003119CC	0x7A	rw	or byte ptr [rax + 0x7a], cl	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311A74	0x7A	rw	and byte ptr [rax + 0x7a], cl	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310469	0x7B	r	movzx ecx, byte ptr [rax + 0x7b]	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104AE	0x7B	w	mov byte ptr [rcx + 0x7b], al	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x00311954	0x7B	rw	or byte ptr [rax + 0x7b], cl	unit +0x6A0	
+0x003112F0	BattleFormula_ApplyTargetResult	0x003119F6	0x7B	rw	and byte ptr [rax + 0x7b], cl	unit +0x6A0	
+0x00236860	SpawnEntry_ResetTransientState	0x002368BD	0x7C	w	mov byte ptr [rcx + 0x7c], 0	0x0208E690	
+0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	0x00237098	0x7C	w	mov byte ptr [rcx + 0x7c], 0	arg0 from 0x00300E40 at 0x00300F68	
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A35E	0x7C	w	mov byte ptr [rax + 0x7c], r11b	0x0208E690	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310477	0x7C	r	movzx ecx, byte ptr [rax + 0x7c]	unit +0x6A0	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104BC	0x7C	w	mov byte ptr [rcx + 0x7c], al	unit +0x6A0	
+0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023AF28	0x80	rw	or dword ptr [rdi], 4	arg0+0x80 from 0x0023A570 at 0x0023A7A9	
+0x0031A630	BattleStats_SetEquipmentSlotDirect	0x0031A685	0x80	addr	lea r14, [rbx + rbp*2]	arg0+0x80 from 0x0023AC80 at 0x0023ADB5	idx*2
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D96	0x80	addr	lea rcx, [rdi + rcx*4]	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	idx*4
+0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023AD8E	0x84	w	mov word ptr [rdi + 4], r15w	arg0+0x80 from 0x0023A570 at 0x0023A7A9	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF007	0x84	r	movzx eax, byte ptr [rdi + 4]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF061	0x84	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF115	0x84	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C48E	0x84	r	movzx r14d, byte ptr [rcx + 4]	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C716	0x84	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F389	0x84	r	movzx eax, byte ptr [rbx + 4]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0030FF5E	0x84	r	movzx ecx, byte ptr [rbx + 4]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00317930	Equipment_CheckItemEligibleForSlot	0x00317AC4	0x84	r	movzx ecx, byte ptr [rbp + 4]	arg0+0x80 from 0x0031A630 at 0x0031A677	
+0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x00323A9E	0x84	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x80 from 0x0023AC80 at 0x0023AE7C	
+0x00323C60	BattleStats_HasRequiredLicenseForEquipment	0x00323C97	0x84	r	cmp byte ptr [rbx + 4], 6	arg0+0x80 from 0x00317930 at 0x00317ADE	
+0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327DED	0x84	r	movzx eax, byte ptr [rcx + 4]	arg0+0x80 from 0x00327CB0 at 0x00327DC5	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFFB	0x85	r	movzx ecx, byte ptr [rdi + 5]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C488	0x85	r	movzx eax, byte ptr [rcx + 5]	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C6D9	0x85	r	cmp byte ptr [rdi + 5], 0	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7DB	0x85	r	cmp byte ptr [rdi + 5], 0	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F383	0x85	r	cmp byte ptr [rbx + 5], 0	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0030FF1F	0x85	r	movzx eax, byte ptr [rcx + 5]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031001A	0x85	r	cmp byte ptr [rbx + 5], r13b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003103BB	0x85	r	cmp byte ptr [rbx + 5], r13b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310415	0x85	r	cmp byte ptr [rbx + 5], r13b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00317930	Equipment_CheckItemEligibleForSlot	0x00317A89	0x85	r	movzx eax, byte ptr [rbp + 5]	arg0+0x80 from 0x0031A630 at 0x0031A677	
+0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x0032393D	0x85	r	cmp byte ptr [rcx + 5], 0	arg0+0x80 from 0x0023AC80 at 0x0023AE7C	
+0x00323C60	BattleStats_HasRequiredLicenseForEquipment	0x00323C8F	0x85	r	movzx eax, byte ptr [rbx + 5]	arg0+0x80 from 0x00317930 at 0x00317ADE	
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327CC3	0x85	r	movzx eax, byte ptr [rcx + 5]	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C10	0x86	r	movsx eax, word ptr [rdi + 6]	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C6A	0x86	w	mov word ptr [rdi + 6], cx	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x0030E060	FUN_0030e060	0x0030E0B5	0x86	r	movsx eax, word ptr [rdi + 6]	arg0+0x80 from 0x0030FED0 at 0x0031059C	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F602	0x86	r	movsx eax, word ptr [rbx + 6]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F645	0x86	r	movsx r8d, word ptr [rbx + 6]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310566	0x86	r	movsx eax, word ptr [rbx + 6]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310594	0x86	w	mov word ptr [rbx + 6], r14w	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00323D10	BattleStats_CheckLicenseNodeAcquireReason	0x00323D31	0x86	addr	lea eax, [rcx + 6]	arg0+0x80 from 0x00323910 at 0x0032396D	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF078	0x88	r	mov ecx, dword ptr [rdi + 8]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF245	0x88	r	movsx eax, word ptr [rdi + 8]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C500	0x88	w	mov dword ptr [rbx + 8], eax	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C72D	0x88	r	mov edx, dword ptr [rdi + 8]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C743	0x88	w	mov dword ptr [rdi + 8], eax	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF265	0x8A	r	movsx eax, word ptr [rdi + 0xa]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF084	0x8C	r	movsx ecx, word ptr [rdi + 0xc]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF27C	0x8C	r	movsx eax, word ptr [rdi + 0xc]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C507	0x8C	w	mov word ptr [rbx + 0xc], ax	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C735	0x8C	r	movsx edx, word ptr [rdi + 0xc]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C753	0x8C	w	mov word ptr [rdi + 0xc], ax	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF293	0x8E	r	movsx eax, word ptr [rdi + 0xe]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF0C2	0x90	r	cvttss2si r12d, dword ptr [rdi + 0x10]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2E6	0x90	r	movsx eax, word ptr [rdi + 0x10]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C516	0x90	w	movss dword ptr [rbx + 0x10], xmm0	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C74B	0x90	r	movss xmm0, dword ptr [rdi + 0x10]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C760	0x90	w	movss dword ptr [rdi + 0x10], xmm0	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2C1	0x92	r	movsx eax, word ptr [rdi + 0x12]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF0CD	0x94	r	cvttss2si r13d, dword ptr [rdi + 0x14]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2E0	0x94	r	movsx eax, word ptr [rdi + 0x14]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C526	0x94	w	movss dword ptr [rbx + 0x14], xmm1	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C76C	0x94	r	movss xmm0, dword ptr [rdi + 0x14]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C776	0x94	w	movss dword ptr [rdi + 0x14], xmm0	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2AA	0x96	r	movsx eax, word ptr [rdi + 0x16]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF099	0x98	r	cvttss2si r8d, dword ptr [rdi + 0x18]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF20A	0x98	r	movsx r10d, word ptr [rdi + 0x18]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C536	0x98	w	movss dword ptr [rbx + 0x18], xmm0	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C782	0x98	r	movss xmm0, dword ptr [rdi + 0x18]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C78C	0x98	w	movss dword ptr [rdi + 0x18], xmm0	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF20F	0x9A	r	movsx r9d, word ptr [rdi + 0x1a]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF0B7	0x9C	r	cvttss2si r9d, dword ptr [rdi + 0x1c]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF23D	0x9C	r	movsx r8d, word ptr [rdi + 0x1c]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C546	0x9C	w	movss dword ptr [rbx + 0x1c], xmm1	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C798	0x9C	r	movss xmm0, dword ptr [rdi + 0x1c]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7A2	0x9C	w	movss dword ptr [rdi + 0x1c], xmm0	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2D6	0x9E	r	movsx ecx, word ptr [rdi + 0x1e]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF0AA	0xA0	r	movzx eax, byte ptr [rdi + 0x20]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2F1	0xA0	r	movsx eax, word ptr [rdi + 0x20]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C54F	0xA0	w	mov byte ptr [rbx + 0x20], al	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C470	FUN_0030c470	0x0030C55F	0xA0	w	mov byte ptr [rbx + 0x20], al	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x00323B64	0xA0	r	movzx eax, byte ptr [rdi + 0x20]	arg0+0x80 from 0x0023AC80 at 0x0023AE7C	
+0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x00323B7C	0xA0	w	mov byte ptr [rdi + 0x20], bl	arg0+0x80 from 0x0023AC80 at 0x0023AE7C	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFAB	0xA4	addr	lea rsi, [rdi + 0x24]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFB9	0xA4	w	mov qword ptr [rsi], rcx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF7E2	0xA4	w	mov dword ptr [rsi], r8d	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF805	0xA4	w	mov dword ptr [rsi], r15d	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300679	0xA4	r	mov eax, dword ptr [rsi + 0x24]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x0030069A	0xA4	r	mov r14d, dword ptr [rsi + 0x24]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F375	0xA4	r	mov eax, dword ptr [rcx + 0x24]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3C2	0xA4	r	mov edx, dword ptr [rbx + 0x24]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104DD	0xA4	r	mov ecx, dword ptr [rbx + 0x24]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104FD	0xA4	r	mov eax, dword ptr [rbx + 0x24]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF824	0xA8	w	mov word ptr [rsi + 4], r8w	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C32	0xA8	r	movsx edx, word ptr [rdi + 0x28]	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C57	0xA8	r	movsx ecx, word ptr [rdi + 0x28]	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D83	0xA8	r	movsx ecx, word ptr [rsi + 0x28]	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D99	0xA8	r	movsx edi, word ptr [rsi + 0x28]	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x0030C470	FUN_0030c470	0x0030C5C7	0xA8	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C470	FUN_0030c470	0x0030C5DD	0xA8	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030E060	FUN_0030e060	0x0030E089	0xA8	r	movzx ecx, word ptr [rdi + 0x28]	arg0+0x80 from 0x0030FED0 at 0x0031059C	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5C6	0xA8	r	movsx ecx, word ptr [rcx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5E7	0xA8	r	movsx esi, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F633	0xA8	r	movsx ecx, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F65D	0xA8	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310519	0xA8	r	movsx ecx, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310534	0xA8	r	movsx eax, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310553	0xA8	r	movsx ecx, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031057C	0xA8	r	movsx r14d, word ptr [rbx + 0x28]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF840	0xAA	w	mov byte ptr [rsi + 6], r12b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF85A	0xAB	w	mov byte ptr [rsi + 7], r13b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFBC	0xAC	w	mov qword ptr [rsi + 8], rcx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF874	0xAC	w	mov byte ptr [rsi + 8], r8b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF88E	0xAD	w	mov byte ptr [rsi + 9], r9b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF8F2	0xAE	w	mov byte ptr [rsi + 0xa], r8b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF90C	0xAF	w	mov byte ptr [rsi + 0xb], r9b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF921	0xB0	w	mov byte ptr [rsi + 0xc], r8b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF936	0xB1	w	mov byte ptr [rsi + 0xd], r10b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF949	0xB2	w	mov byte ptr [rsi + 0xe], dl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF95B	0xB3	w	mov byte ptr [rsi + 0xf], cl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFC0	0xB4	w	mov qword ptr [rsi + 0x10], rcx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF96D	0xB4	w	mov byte ptr [rsi + 0x10], al	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF8B6	0xB5	w	mov byte ptr [rsi + 0x11], bl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF8D2	0xB6	w	mov byte ptr [rsi + 0x12], r11b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF89F	0xB7	w	mov byte ptr [rsi + 0x13], r8b	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C2E	0xB7	r	movzx eax, byte ptr [rdi + 0x37]	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C53	0xB7	r	movzx eax, byte ptr [rdi + 0x37]	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x0030E060	FUN_0030e060	0x0030E0AF	0xB7	r	cmp byte ptr [rdi + 0x37], r14b	arg0+0x80 from 0x0030FED0 at 0x0031059C	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F62F	0xB7	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F659	0xB7	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031054F	0xB7	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310578	0xB7	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF0D3	0xB8	rw	or dword ptr [rsi + 0x14], ecx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF510	0xB8	rw	or dword ptr [rsi + 0x14], ecx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E513	0xB8	r	mov ecx, dword ptr [rsi + 0x38]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E531	0xB8	r	test dword ptr [rsi + 0x38], edi	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E557	0xB8	r	mov eax, dword ptr [rsi + 0x38]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E564	0xB8	w	mov dword ptr [rsi + 0x38], eax	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEF82	0xBC	r	mov eax, dword ptr [rdi + 0x3c]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFC4	0xBC	w	mov qword ptr [rsi + 0x18], rcx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF0D9	0xBC	rw	or dword ptr [rsi + 0x18], ecx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF51E	0xBC	rw	or dword ptr [rsi + 0x18], ecx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF982	0xBC	r	mov eax, dword ptr [rsi + 0x18]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300624	0xBC	r	or eax, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x0030065F	0xBC	r	or ecx, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E404	0xBC	r	mov eax, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E4A9	0xBC	r	mov eax, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E4FD	0xBC	r	mov ecx, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E50E	0xBC	w	mov dword ptr [rsi + 0x3c], eax	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E543	0xBC	r	mov ecx, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E552	0xBC	w	mov dword ptr [rsi + 0x3c], eax	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E5B7	0xBC	r	mov eax, dword ptr [rsi + 0x3c]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F34E	0xBC	r	mov eax, dword ptr [rcx + 0x3c]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3AC	0xBC	r	mov eax, dword ptr [rbx + 0x3c]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104C2	0xBC	r	or edx, dword ptr [rbx + 0x3c]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF2FE	0xC0	w	mov byte ptr [rsi + 0x1c], al	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF52D	0xC0	rw	or byte ptr [rsi + 0x1c], cl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310443	0xC0	w	mov byte ptr [rbx + 0x40], cl	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310480	0xC0	r	movzx eax, byte ptr [rbx + 0x40]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF306	0xC1	w	mov byte ptr [rsi + 0x1d], al	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF53C	0xC1	rw	or byte ptr [rsi + 0x1d], cl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310451	0xC1	w	mov byte ptr [rbx + 0x41], dl	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031048E	0xC1	r	movzx eax, byte ptr [rbx + 0x41]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF30E	0xC2	w	mov byte ptr [rsi + 0x1e], al	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF54B	0xC2	rw	or byte ptr [rsi + 0x1e], cl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031045F	0xC2	w	mov byte ptr [rbx + 0x42], cl	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031049C	0xC2	r	movzx eax, byte ptr [rbx + 0x42]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF316	0xC3	w	mov byte ptr [rsi + 0x1f], al	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF55A	0xC3	rw	or byte ptr [rsi + 0x1f], cl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031046D	0xC3	w	mov byte ptr [rbx + 0x43], cl	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104AA	0xC3	r	movzx eax, byte ptr [rbx + 0x43]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEFC8	0xC4	w	mov dword ptr [rsi + 0x20], ecx	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF322	0xC4	w	mov byte ptr [rsi + 0x20], al	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF571	0xC4	rw	or byte ptr [rsi + 0x20], cl	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031047B	0xC4	w	mov byte ptr [rbx + 0x44], cl	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104B8	0xC4	r	movzx eax, byte ptr [rbx + 0x44]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x003005EF	0xC8	r	mov eax, dword ptr [rsi + 0x48]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x0030063B	0xC8	r	mov edx, dword ptr [rsi + 0x48]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300749	0xC8	w	mov dword ptr [rsi + 0x48], r14d	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x0030078B	0xC8	r	cmp dword ptr [rsi + 0x48], eax	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F367	0xC8	r	mov eax, dword ptr [rcx + 0x48]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F37C	0xC8	r	mov ecx, dword ptr [rcx + 0x48]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3B8	0xC8	r	mov edx, dword ptr [rbx + 0x48]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3CD	0xC8	r	sub edx, dword ptr [rbx + 0x48]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104D1	0xC8	r	mov ecx, dword ptr [rbx + 0x48]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104E8	0xC8	r	mov eax, dword ptr [rbx + 0x48]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310508	0xC8	w	mov dword ptr [rbx + 0x48], eax	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D69	0xCC	r	movsx ebx, word ptr [rsi + 0x4c]	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300E00	0xCC	w	mov word ptr [rsi + 0x4c], di	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x0030C470	FUN_0030c470	0x0030C5CB	0xCC	w	mov word ptr [rbx + 0x4c], di	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C470	FUN_0030c470	0x0030C5F9	0xCC	w	mov word ptr [rbx + 0x4c], dx	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5CE	0xCC	r	movsx r8d, word ptr [rbx + 0x4c]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310522	0xCC	r	movsx eax, word ptr [rbx + 0x4c]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031053D	0xCC	w	mov word ptr [rbx + 0x4c], ax	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030E060	FUN_0030e060	0x0030E0A3	0xCE	r	movzx esi, byte ptr [rdi + 0x4e]	arg0+0x80 from 0x0030FED0 at 0x0031059C	
+0x0030E060	FUN_0030e060	0x0030E111	0xCE	w	mov byte ptr [rdi + 0x4e], bl	arg0+0x80 from 0x0030FED0 at 0x0031059C	
+0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACC2	0xD0	w	mov qword ptr [rdi + 0x50], 0xffffffffffffffff	arg0+0x80 from 0x0023A570 at 0x0023A7A9	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FEF9A	0xD0	addr	lea rbx, [rdi + 0x50]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF3F0	0xD0	r	movzx edx, word ptr [rbx + rbp*2]	arg0+0x80 from 0x0030FED0 at 0x003103AD	idx*2
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF430	0xD0	r	movzx ebx, word ptr [rbx + rbp*2]	arg0+0x80 from 0x0030FED0 at 0x003103AD	idx*2
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310071	0xD0	addr	lea rsi, [rbx + 0x50]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310080	0xD0	r	movzx edx, word ptr [rsi]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003100BF	0xD0	r	movzx r8d, word ptr [rsi]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00317930	Equipment_CheckItemEligibleForSlot	0x00317A32	0xD0	r	cmp word ptr [r15], r12w	arg1+0xD0 from 0x0031A630 at 0x0031A677	
+0x00317930	Equipment_CheckItemEligibleForSlot	0x00317A61	0xD0	r	movzx r8d, word ptr [r15]	arg1+0xD0 from 0x0031A630 at 0x0031A677	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318B73	0xD0	r	cmp word ptr [rcx], r12w	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318B8E	0xD0	w	mov word ptr [rbx], r15w	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318BC4	0xD0	r	movzx edx, word ptr [rbx]	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318C4E	0xD0	r	movzx ecx, word ptr [rbx]	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318C5E	0xD0	w	mov word ptr [rbx], r15w	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x0031A630	BattleStats_SetEquipmentSlotDirect	0x0031A668	0xD0	addr	lea rdx, [rcx + 0x50]	arg0+0x80 from 0x0023AC80 at 0x0023ADB5	
+0x0031A630	BattleStats_SetEquipmentSlotDirect	0x0031A6A8	0xD0	addr	lea rcx, [rbx + 0x50]	arg0+0x80 from 0x0023AC80 at 0x0023ADB5	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318BE4	0xD2	r	cmp word ptr [rbx + 2], r12w	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318C14	0xD2	r	movzx edi, word ptr [rbx + 2]	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318C68	0xD2	r	movzx ecx, word ptr [rbx + 2]	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	0x00318C79	0xD2	w	mov word ptr [rbx + 2], r12w	arg0+0xD0 from 0x0031A630 at 0x0031A6B6	
+0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACD0	0xD8	w	mov word ptr [rdi + 0x58], r13w	arg0+0x80 from 0x0023A570 at 0x0023A7A9	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300621	0xE4	r	mov eax, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300656	0xE4	r	mov ecx, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F340 at 0x0030F3DC	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E407	0xE4	r	or eax, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E4AC	0xE4	r	or eax, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E4E7	0xE4	r	mov ecx, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E4F8	0xE4	w	mov dword ptr [rsi + 0x64], eax	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E526	0xE4	r	mov ecx, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E53E	0xE4	w	mov dword ptr [rsi + 0x64], eax	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E5BA	0xE4	r	or eax, dword ptr [rsi + 0x64]	arg0+0x80 from 0x0030F690 at 0x0030F721	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F354	0xE4	r	or eax, dword ptr [rcx + 0x64]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3AF	0xE4	r	or eax, dword ptr [rbx + 0x64]	arg0+0x80 from 0x0030C470 at 0x0030C5A5	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104BF	0xE4	r	mov edx, dword ptr [rbx + 0x64]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E1BE	0xE8	r	test byte ptr [rbx + 0x68], sil	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E217	0xE8	r	movzx eax, byte ptr [rbx + 0x68]	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E23E	0xE8	r	movzx eax, byte ptr [rbx + 0x68]	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E24E	0xE8	w	mov byte ptr [rbx + 0x68], al	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E269	0xE8	r	test byte ptr [rbx + 0x68], sil	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C1F	0xEC	r	movzx r9d, byte ptr [rdi + 0x6c]	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D75	0xEC	r	movzx edx, byte ptr [rsi + 0x6c]	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x0030C470	FUN_0030c470	0x0030C5BB	0xEC	r	cmp byte ptr [rbx + 0x6c], dil	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C470	FUN_0030c470	0x0030C5D1	0xEC	r	cmp byte ptr [rbx + 0x6c], dil	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5AE	0xEC	r	movzx eax, byte ptr [rcx + 0x6c]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F621	0xEC	r	movzx edx, byte ptr [rbx + 0x6c]	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031050B	0xEC	r	movzx edx, byte ptr [rbx + 0x6c]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310541	0xEC	r	movzx edx, byte ptr [rbx + 0x6c]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E1C9	0xF8	r	test byte ptr [rbx + 0x78], sil	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E202	0xF8	r	movzx eax, byte ptr [rbx + 0x78]	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E212	0xF8	w	mov byte ptr [rbx + 0x78], al	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E229	0xF8	r	movzx eax, byte ptr [rbx + 0x78]	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E239	0xF8	w	mov byte ptr [rbx + 0x78], al	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E26F	0xF8	r	test byte ptr [rbx + 0x78], sil	arg0+0x80 from 0x0030FED0 at 0x00310378	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310303	0xF8	addr	lea r9, [rbx + 0x78]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310316	0xF8	r	xor dl, byte ptr [r9]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310320	0xF8	r	and dl, byte ptr [r9 - 1]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310319	0xF9	addr	lea r9, [r9 + 1]	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C29	0xFC	r	cmp byte ptr [rdi + 0x7c], cl	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C4E	0xFC	r	cmp byte ptr [rdi + 0x7c], cl	arg0+0x80 from 0x0030F5A0 at 0x0030F617	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D7D	0xFC	r	cmp byte ptr [rsi + 0x7c], dil	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D93	0xFC	r	cmp byte ptr [rsi + 0x7c], dil	arg0+0x80 from 0x0030F5A0 at 0x0030F5FD	
+0x0030C470	FUN_0030c470	0x0030C5C1	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C470	FUN_0030c470	0x0030C5D7	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5C0	0xFC	r	cmp byte ptr [rcx + 0x7c], dil	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5E1	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F629	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F653	0xFC	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x80 from 0x0030C470 at 0x0030C5AD	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310513	0xFC	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031052E	0xFC	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310549	0xFC	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310572	0xFC	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x80 from 0x0030C470 at 0x0030C602	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF1EE	0x108	r	movzx eax, byte ptr [rdi + 0x88]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF32F	0x108	r	movzx eax, byte ptr [rdi + 0x88]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF388	0x108	r	movzx eax, byte ptr [rdi + 0x88]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C4B1	0x108	w	mov byte ptr [rcx + 0x88], r8b	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D57	0x108	w	mov word ptr [rdi + rdx*4 + 0x88], ax	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	idx*4
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D64	0x10A	w	mov word ptr [rdi + rdx*4 + 0x8a], ax	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	idx*4
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D6C	0x138	r	movzx eax, word ptr [rdi + 0xb8]	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D78	0x138	w	mov word ptr [rdi + 0xb8], ax	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327DAA	0x138	r	movzx eax, word ptr [rdi + 0xb8]	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327DB6	0x138	w	mov word ptr [rdi + 0xb8], ax	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	
+0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	0x00327D84	0x13A	w	mov byte ptr [rdi + 0xba], bl	arg0+0x80 from 0x0023AC80 at 0x0023AEF5	
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E594	0x13C	w	mov dword ptr [rsi + rdx*4 + 0xbc], ecx	arg0+0x80 from 0x0030F690 at 0x0030F721	idx*4
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E5AF	0x1BC	w	mov word ptr [rsi + rcx*2 + 0x13c], ax	arg0+0x80 from 0x0030F690 at 0x0030F721	idx*2
+0x0030C470	FUN_0030c470	0x0030C586	0x20C	w	mov dword ptr [rbx + 0x18c], eax	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x00323790	FUN_00323790	0x00323790	0x210	r	mov r8d, dword ptr [rcx + 0x190]	arg0+0x80 from 0x0023AC80 at 0x0023AE0B	
+0x00323790	FUN_00323790	0x0032379C	0x210	w	mov dword ptr [rcx + 0x190], 0	arg0+0x80 from 0x0023AC80 at 0x0023AE0B	
+0x00323790	FUN_00323790	0x003237B3	0x210	w	mov dword ptr [rcx + 0x190], r8d	arg0+0x80 from 0x0023AC80 at 0x0023AE0B	
+0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x003239C7	0x210	r	mov edx, dword ptr [rdi + 0x190]	arg0+0x80 from 0x0023AC80 at 0x0023AE7C	
+0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	0x003239E1	0x210	w	mov dword ptr [rdi + 0x190], edx	arg0+0x80 from 0x0023AC80 at 0x0023AE7C	
+0x00323D10	BattleStats_CheckLicenseNodeAcquireReason	0x00323E13	0x210	r	cmp eax, dword ptr [rbp + 0x190]	arg0+0x80 from 0x00323910 at 0x0032396D	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF1F5	0x242	r	movzx ecx, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF336	0x242	r	movzx edx, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF38F	0x242	r	movzx edx, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030FED0 at 0x003103AD	
+0x0030C470	FUN_0030c470	0x0030C496	0x242	w	mov byte ptr [rcx + 0x1c2], dil	arg0+0x80 from 0x0023AC80 at 0x0023AD96	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C66F	0x242	r	movzx ecx, byte ptr [rcx + 0x1c2]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C6CC	0x242	r	cmp byte ptr [rdi + 0x1c2], 0x63	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C723	0x242	r	movzx ecx, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C73C	0x242	r	movzx ecx, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7A7	0x242	r	movzx eax, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7BB	0x242	w	mov byte ptr [rdi + 0x1c2], al	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C806	0x242	r	movzx r8d, byte ptr [rdi + 0x1c2]	arg0+0x80 from 0x0030C470 at 0x0030C56E	
+0x0046A690	FUN_0046a690	0x0046A6BF	0x242	r	movzx eax, byte ptr [rcx + 0x1c2]	arg0+0x80 from 0x0030C650 at 0x0030C7E4	
+0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACD5	0x243	w	mov word ptr [rdi + 0x1c3], r13w	arg0+0x80 from 0x0023A570 at 0x0023A7A9	
+0x0023AC80	BattleStats_InitializeDefinitionRecord	0x0023ACDD	0x245	w	mov byte ptr [rdi + 0x1c5], 0xff	arg0+0x80 from 0x0023A570 at 0x0023A7A9	

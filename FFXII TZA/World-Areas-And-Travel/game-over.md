@@ -273,7 +273,7 @@ Request and mode:
 | `healall` calls in the 1,114 us zone scripts | `healall(0)` 1,228 in 184 scripts; `healall(5)` 903 in 103; `healall(2)` 20 in 18 |
 | `setnowjumpindex(-2)` | 1,146 calls in 183 scripts: the 81 crystal scripts and 102 others, each around a save screen |
 | save screens opened (`openfullscreenmenu_48d(0x8005, …)`) | 1,148 calls |
-| `mapjump` calls | 8,881; none passes a negative entrance, so the `-2` alias is only ever set through `setnowjumpindex` |
+| `mapjump` calls | 7,356; none passes a negative entrance, so the `-2` alias is only ever set through `setnowjumpindex` |
 | GAME OVER image | `gameover_c.tm2` under each language's `Tm2_Menu` folder; image id 7 in the slot table |
 | pause texts | `0x85F` "This will return you to the title screen. Are you sure?", `0x890` "This will close FINAL FANTASY XII THE ZODIAC AGE. Are you sure?" |
 | title map | field `0x0C` is `ttl_a01` ([zone changes](zone-changes-and-mapjump.md)) |

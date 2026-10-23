@@ -28,8 +28,8 @@ records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `0
 | `+0x04` | `u32` | slotCount | 16 (.mot, .snd) or 64 (.vpc, .vpcjp); not read |
 | `+0x08` | `{u32 offset, u32 size}[slotCount]` | offsets from the file start; {0, 0} = slot empty |  |
 
-The directory ends at `0x88` for 16 slots and `0x208` for 64. Every payload starts on a `0x800` boundary,
-the first at `0x800`.
+The directory ends at file offset `0x88` for 16 slots and `0x208` for 64. Every payload starts on a `0x800`
+boundary, the first at file offset `0x800`.
 
 ## Shipped data
 
@@ -37,7 +37,7 @@ the first at `0x800`.
 |---|---|
 | packages | 10,314: 4,392 `.mot`, 2,304 `.snd`, 1,809 `.vpc`, 1,809 `.vpcjp` |
 | empty packages | 27: 9 `.mot`, 9 `.vpc`, 9 `.vpcjp`, every pair `{0, 0}` |
-| layout | in all 10,287 others: every pair inside the file, offsets ascending, the first at `0x800`, each next payload at the first `0x800` boundary after the one before, zero bytes in the gaps, file size a multiple of `0x800` |
+| layout | in all 10,287 others: every pair inside the file, offsets ascending, the first at file offset `0x800`, each next payload at the first `0x800` boundary after the one before, zero bytes in the gaps, file size a multiple of `0x800` |
 | `.mot` slots | 0-15 used (1,539, 3,186, 1,737, 1,134, 774, 540, 378, 270, 108, 54, 54, 36, 36, 27, 18, 18 packages); every payload is an `@FRP` container |
 | `.snd` slots | 0-7 in every package, payloads starting with the dword 2; slots 8-15 in 9, 1,809, 324, 225, 153, 99, 45 and 18 packages, payloads starting `WD` |
 | `.vpc` and `.vpcjp` slots | 0-13 of 64 used, the same occupancy in both (1,782 down to 9); every payload is a `VSP1` voice set |

@@ -177,7 +177,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 |---|---|
 | standalone lists | 116 `.mrp` files, 12 names, in 10 locale folders (`us`, `de`, `es`, `fr`, `it`, `in` have all 12; `ch`, `cn`, `kr`, `in_sdver` lack `title_fore3.mrp`) |
 | packs | 10 `mrppack_ys.bin`; 23 units in nine, 21 in `in_sdver` (the last two offsets are `0xFFFFFFFF`); 228 units |
-| list files in all | 344, every one `MRP\0` with byte `+3` = 0, outer table at `0x30`, no rows |
+| list files in all | 344, every one `MRP\0` with byte `+3` = 0, outer table at file offset `0x30`, no rows |
 | list records | 7,665 (1,458 in files, 6,207 in pack units); the largest holds 104 items |
 | items | 30,546 (5,223 and 25,323) |
 | items by type | 1: 2,661; 2: 20,181; 4: 2,017; 5: 4,484; 6: 46; 7: 278; 8: 879; types 3 and 9: none |

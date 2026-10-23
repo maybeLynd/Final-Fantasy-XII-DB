@@ -105,7 +105,9 @@ given, walks the free list from `+0x90` (bottom up, through `+0x08`) or `+0x98` 
 `+0x04`) for the first block at least that large.
 
 It carves the allocation from the bottom or the top
-of that block, writes a new header for any remainder of at least 0 bytes, sets the allocation's
+of that block. When the block holds at least `0x40` bytes beyond the allocation, room for a header
+(`0x0036BDD9`-`0x0036BDE0`), the rest becomes a free block of its own, even with an empty payload; otherwise
+the whole block is taken. It sets the allocation's
 `+0x14` bit 0 (allocated), `+0x15` bit 0 for a top allocation and `+0x16` = the current tag, and
 returns the payload. `0x0036A100(size)` allocates bottom-up in the current arena and `0x0036A190` (through
 `0x0036A1A0`) top-down; when that fails both fall to `0x0036BFE0`.

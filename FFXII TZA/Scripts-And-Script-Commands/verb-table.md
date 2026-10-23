@@ -31,7 +31,7 @@ from other authored sources otherwise; the argument counts are measured on the h
 | `arity`, `arity_status`, `net_or_sums` | the measured argument count; `CONFIRMED` equals the catalogue, `CONFLICT` differs from it, `DERIVED` has no catalogue value, `GUARDED` and `CONDITIONAL` take two values (`lo\|hi`) depending on the guard |
 | `result_body` | the result handler's control flow: `CONST`, `TAILJUMP`, `CALL1`, `LINEAR` (several calls, no branch) or `BRANCHING`; carried over from the earlier census, not re-measured for this table |
 | `reach` | the engine subsystems the callbacks call directly, with hit counts, ignoring helpers with more than twenty callers; carried over from the earlier call-graph map |
-| `us_calls` | occurrences of `verb(` in the 1,114 decompiled US scripts |
+| `us_calls` | calls of the verb in the 1,114 decompiled US scripts; a script function that shares a verb's name (`function mapjump(`) is not a call |
 
 ## Data
 

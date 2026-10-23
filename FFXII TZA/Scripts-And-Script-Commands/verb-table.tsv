@@ -50,7 +50,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 0030	0	030	keywaitt	catalogue	1	False	False	0x10	0x003567F0	0x0033F8E0			begin+poll	begin	1	0	0	0		1	CONFIRMED	1		Input:1	18
 0031	0	031	keywaittr	catalogue	1	False	False	0x00	0x003567F0	0x003401F0			begin+poll	begin	1	0	0	0		1	CONFIRMED	1		Input:1	2
 0032	0	032	show	catalogue	0	False	True				0x00342A70		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		3628
-0033	0	033	hide	catalogue	0	False	True				0x00342EB0		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		3654
+0033	0	033	hide	catalogue	0	False	True				0x00342EB0		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		3649
 0034	0	034	showw	catalogue	0	False	True				0x00343E50		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		338
 0035	0	035	hidew	catalogue	0	False	True				0x00344120		result	result	0	0	0	0		0	CONFIRMED	0	CALL1		388
 0036	0	036	shows	catalogue	0	False	True				0x00344490		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		288
@@ -140,7 +140,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 008A	0	08A	maskopen	catalogue	1	False	False	0x10			0x00353D90		result	result	2	0	0	0		1	CONFIRMED	1	BRANCHING		60
 008B	0	08B	maskclose	catalogue	1	False	False	0x10			0x00354800		result	result	2	0	0	0		1	CONFIRMED	1	BRANCHING		67
 008C	0	08C	voicedispose	catalogue	1	False	False	0x10			0x00352DB0		result	result	1	0	0	0		1	CONFIRMED	1	LINEAR		639
-008D	0	08D	mapjump	catalogue	3	False	False	0x10,0x1B,0x1C	0x00354D00	0x00355350			begin+poll	begin	3	0	0	0		3	CONFIRMED	3		Resource:1,WorldAreaField:1	8881
+008D	0	08D	mapjump	catalogue	3	False	False	0x10,0x1B,0x1C	0x00354D00	0x00355350			begin+poll	begin	3	0	0	0		3	CONFIRMED	3		Resource:1,WorldAreaField:1	7356
 008E	0	08E	sethpmenu	catalogue	1	False	False	0x10			0x00356990		result	result	2	0	0	0		1	CONFIRMED	1	BRANCHING		17663
 008F	0	08F	setmapjumppos	other							0x00356E10		result	result	1	3	5	0		1	DERIVED	1	BRANCHING	WorldAreaField:2,Movement:2	0
 0090	0	090	nowmap	catalogue	0	True	False				0x0033F310		result	result	0	0	0	1		0	CONFIRMED	0	CALL1		63695

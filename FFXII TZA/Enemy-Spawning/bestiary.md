@@ -87,13 +87,13 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 | `+0x00` | `u16` | class row | `0x0023A570`, `0x002FEF30`; `0x0031C2F0` reads its low byte for the model ([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)) |
 | `+0x02` | `u8` | spawn counter slot, `0xFF` none | `0x0023A570` |
 | `+0x03` | `u8` | flags: bits 0-1 the tracked-HP class (`0x00328FF0`); bit 4 the height and AI tests below; bit 5 the shadow kind | `0x0023A570`, `0x00238BF0`, `0x00236210`, `0x00301AD0` |
-| `+0x04` | `u8[4]` | 0 in every row | no reader (scope below) |
+| `+0x04` | `u8[4]` | 0 in every row | `0x00313120` (`0x0031337B`) reads `+0x04`-`+0x06` as a party row's Quickening slots for any unit the verb `spattackplay` (`0x003495A0`) names; `+0x07` no instruction (below) |
 | `+0x08` | `u16` | name word | `0x0023A570`, `0x0031C5D0` (`0x0031DD5A`), `0x00536310` |
 | `+0x0A` | `i16[3]` | model scale in percent, 0 meaning 100 | `0x00238BF0` (`0x00238D1B`-`0x00238D68`), handed to `0x002E5FD0` |
-| `+0x10` | `u8` | 0, or 55 on two rows | no reader (scope below) |
+| `+0x10` | `u8` | 0, or 55 on two rows | no instruction (below) |
 | `+0x11` | `u8[2]` | the model's variant bytes: `+0x12` first, `+0x11` second | `0x0031C540` (`0x0031C5AB`, `0x0031C5B1`) |
 | `+0x13` | `u8` | animation set, `0xFF` for the weapon's | `0x003202F0` ([Action phases](../Battle-Actions/action-phases.md)) |
-| `+0x14` | `u8` | 0 in every row | no reader (scope below) |
+| `+0x14` | `u8` | 0 in every row | no instruction (below) |
 | `+0x15` | `u8` | flags: bit 0 Attack and weapon evade from the rows; bit 1 shield and magick evade from the rows; bit 2 unit flag bit 43; bits 3-4 the target-information query | `0x002FEF30`, `0x0023A570`, `0x0031AA30` |
 | `+0x16` | `u16` | main-hand equipment id | `0x0023AC80` (slot 0) |
 | `+0x18` | `u32` | starting HP, 0 for none | `0x0023A410` ([Enemy spawning](enemy-spawning.md)) |
@@ -140,7 +140,7 @@ The `+0x03` and `+0x15` bits, by their readers:
 | `+0x27` | `u8` | unit `+0x6C` | `0x0023A570` |
 | `+0x28` | `u8` | bit 0 the view query's height; bit 1 the kill chain skips it | `0x0031ADB0` (`0x0031B08D`), `0x00317ED0` (`0x00317F09`) |
 | `+0x29` | `u8[5]` | absorb, halve, nullify, weak, potency | `0x002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
-| `+0x30` | `u8[16]` | read and written by no function in the scope below; taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
+| `+0x30` | `u8[16]` | read and written by no instruction (below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
 | `+0x40` | `u16` | model family, the same-model run | `0x00317ED0` (`0x00317F77`) |
 | `+0x52` | `u16` | species, `0xFFFF` none | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
 
@@ -183,20 +183,23 @@ The `+0x12` and `+0x18` bits, by their readers:
 
 Bytes `04`-`1F`, `32`-`33` and `36`-`37` are 0 in every row of both slots.
 
-### The scope of "no reader"
+### Bytes no instruction reads
 
-The search covered every reference to the four slots and every load of the unit's two row pointers:
+Definition `+0x07`, `+0x10` and `+0x14` and class row `+0x30`-`+0x3F` arrive whole with the area file,
+which `0x003EA710` binds, and no instruction reads or writes them afterwards. Every way to a row was followed:
 
-- `0x02EBF120` is read by `0x0023A570`, `0x0023AC80`, `0x002FEF30`, `0x0031C2F0`, `0x0031C5D0` and `0x00322C50`; `0x02EBF150` by
-  `0x0023A570`, `0x002FEF30`, `0x0031C2F0` and `0x00322C50`; `0x02EBF148` and `0x02EBF140` by `0x0023A570` and `0x002FEF30`. All
-  were decompiled; the image holds no image-base-relative form of the four addresses.
-- The definition pointer unit `+0xE60` is loaded at 27 sites in 21 functions and the class row pointer `+0xE68` at
-  47 sites in 31 functions; each load was followed to the fields it reads. `0x00313120` and `0x00317400` read only party
-  rows.
-- `+0xE70` and `+0xE78` (the stat rows) are loaded only by `0x002F8BB0`, `0x002F90C0`, `0x00312280` and `0x00317090`.
+- The four slot pointers are loaded by seven functions and no others: `0x02EBF120` by `0x0023A570`, `0x0023AC80`,
+  `0x002FEF30`, `0x0031C2F0`, `0x0031C5D0` and `0x00322C50`; `0x02EBF150` by `0x0023A570`, `0x002FEF30`, `0x0031C2F0` and `0x00322C50`;
+  `0x02EBF148` and `0x02EBF140` by `0x0023A570` and `0x002FEF30`; `0x0023A160` clears all four. No instruction forms the four
+  addresses from the image base.
+- The definition pointer unit `+0xE60` is loaded or stored at 32 sites in 25 functions and the class row pointer
+  `+0xE68` at 52 sites in 33 functions, and the pointers were followed into the callees that receive them.
+  `0x00313120` reads `+0x04`-`+0x06` of the row at `+0xE60` of the unit `0x0031B7E0` resolves from the actor handle the verb
+  `spattackplay` pops (`0x0031337B`), and `0x00317400` reads `+0x7A`: both treat the row as a party row.
+- `+0xE70` and `+0xE78` (the stat rows) are stored by `0x0023A570` and loaded only by `0x002F8BB0`, `0x002F90C0`, `0x00312280`
+  and `0x00317090`.
 
-No instruction in that set reads the definition's `+0x04`-`+0x07`, `+0x10` or `+0x14`, or the class row's
-`+0x30`-`+0x3F`, so the TSV gives those raw.
+No instruction in that set touches the bytes above, so the TSV gives them raw.
 
 ### Checks
 

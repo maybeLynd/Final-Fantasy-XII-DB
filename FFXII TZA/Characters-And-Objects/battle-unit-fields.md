@@ -9,9 +9,14 @@ addresses: "0x00234480, 0x00236A60, 0x00316CD0, 0x00316CF0, 0x003839F0, 0x003839
 
 A battle unit is the `0xF50`-byte combat record every fighting actor holds in the pool of 32
 ([battle units](battle-units.md)). This page lays the record out by region and names the fields
-that a final page has established; the companion table `battle-unit-fields.tsv` lists every access
-to a unit that the typed scan reached: the function, the site, the offset, the operand width and
-the instruction, each instruction checked against the executable.
+that a final page has established; the companion table `battle-unit-fields.tsv` lists every access to a unit:
+through the pool `0x0208E688`, the accessors `0x00236820`, `0x00263E30`, `0x0031B7E0`, `0x0031B760`, `0x0031B860`, `0x0031B770` and
+`0x002367A0`, the actor's `+0x30` pointer, and the pointers passed on from them, with the clears as `set` rows.
+
+Every way to a unit was followed: the pool is loaded by `0x00234200`, `0x00234480`, `0x002367A0`, `0x00236820`, `0x002368D0` and
+`0x00238B70`; the seven accessors' callers were followed, as were the 194 functions that take an actor in an argument
+register ([actor record fields](actor-record-fields.md)); of the actor's twelve `+0x30` reads outside the accessors,
+seven test the pointer for null and the rest are in the table.
 
 ### The regions
 
@@ -47,6 +52,40 @@ the instruction, each instruction checked against the executable.
 | `+0xE68` | 8 | the class row the status record reads `+0x52` and `+0x12` bit 7 from | [party member status record](party-member-status-record.md) |
 | `+0xE80` | 16 | the innate augment source | [augments](../Damage-And-Battle-Formulas/augments.md) |
 | `+0xEA9` | 1 | the slot index, written at bind | [battle units](battle-units.md) |
+| `+0x018` | 8 | fields the table shows 1 function writing and 1 reading at `+0x18` | this page |
+| `+0x024-0x02C` | 16 | fields the table shows 9 functions writing and 6 reading at `+0x24`, `+0x28`, `+0x2C`; zeroed by the reuse reset | this page |
+| `+0x038` | 8 | fields the table shows 1 function writing and 2 reading at `+0x38` | this page |
+| `+0x040` | 8 | fields the table shows 1 function writing and 17 reading at `+0x40` | this page |
+| `+0x04C-0x074` | 44 | fields the table shows 17 functions writing and 19 reading at 15 offsets; set to 0 by the reuse reset; set to 0xFF by the reuse reset; set to 0xFFFF by the reuse reset; zeroed by the reuse reset; set to all ones by the reuse reset | this page |
+| `+0x690` | 4 | fields the table shows 10 functions writing and 5 reading at `+0x690` | this page |
+| `+0x6B5-0x6B6` | 2 | fields the table shows 5 functions writing and 10 reading at `+0x6B5`, `+0x6B6`; zeroed by the reuse reset | this page |
+| `+0x6C0` | 16 | fields the table shows 2 functions writing and 2 reading at `+0x6C0` | this page |
+| `+0x6D0-0x6E0` | 32 | fields the table shows 9 functions writing and 4 reading at `+0x6D0`, `+0x6D4`, `+0x6D8`, `+0x6DC`, `+0x6E0`; zeroed by the reuse reset | this page |
+| `+0x6E8` | 8 | fields the table shows 4 functions writing and 1 reading at `+0x6E8`; zeroed by the reuse reset | this page |
+| `+0x6F0` | 16 | fields the table shows 3 functions writing and 2 reading at `+0x6F0`; zeroed by the reuse reset | this page |
+| `+0x6F8` | 8 | fields the table shows 8 functions writing and 1 reading at `+0x6F8`; zeroed by the reuse reset | this page |
+| `+0x710-0x714` | 6 | fields the table shows 5 functions writing and 55 reading at `+0x710`, `+0x714`; zeroed by the reuse reset; set to 0xFFFF by the reuse reset | this page |
+| `+0x728` | 8 | fields the table shows 2 functions writing and 1 reading at `+0x728` | this page |
+| `+0x748-0x764` | 36 | fields the table shows 14 functions writing and 5 reading at 8 offsets; zeroed by the reuse reset; set to all ones by the reuse reset | this page |
+| `+0x774` | 4 | fields the table shows 3 functions writing and 2 reading at `+0x774` | this page |
+| `+0x988` | 8 | fields the table shows 1 function writing and 2 reading at `+0x988` | this page |
+| `+0xB30` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB30` | this page |
+| `+0xB40` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB40` | this page |
+| `+0xB50` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB50` | this page |
+| `+0xB60` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB60` | this page |
+| `+0xB70` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB70` | this page |
+| `+0xB80` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB80` | this page |
+| `+0xB88` | 8 | fields the table shows 1 function writing and 1 reading at `+0xB88` | this page |
+| `+0xB90` | 16 | fields the table shows 2 functions writing and 1 reading at `+0xB90`; zeroed by the reuse reset | this page |
+| `+0xBA4` | 2 | fields the table shows 1 function writing and 1 reading at `+0xBA4` | this page |
+| `+0xBB8` | 4 | fields the table shows 1 function writing and 1 reading at `+0xBB8` | this page |
+| `+0xBC0-0xBC1` | 3 | fields the table shows 3 functions writing and 7 reading at `+0xBC0`, `+0xBC1` | this page |
+| `+0xDCC-0xDD4` | 12 | fields the table shows 8 functions writing and 4 reading at `+0xDCC`, `+0xDD0`, `+0xDD4`; zeroed by the reuse reset; zeroed by 0x003176C0 from the reuse reset | this page |
+| `+0xE70` | 8 | fields the table shows 1 function writing and 4 reading at `+0xE70` | this page |
+| `+0xE78` | 8 | fields the table shows 1 function writing and 4 reading at `+0xE78` | this page |
+| `+0xE90` | 4 | fields the table shows 2 functions writing and 2 reading at `+0xE90`; zeroed by the reuse reset | this page |
+| `+0xE98-0xEB0` | 28 | fields the table shows 12 functions writing and 20 reading at 9 offsets; zeroed by the reuse reset | this page |
+| `+0xED0` | 1 | fields the table shows 0 functions writing and 1 reading at `+0xED0` | this page |
 
 ## Columns
 
@@ -58,9 +97,9 @@ the instruction, each instruction checked against the executable.
 | `name` | the name the scan carried for that function; blank or `FUN_` when none was assigned |
 | `site` | the instruction's address |
 | `disp` | the unit offset reached |
-| `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on |
-| `instruction` | the instruction text, checked against the executable |
-| `route` | how the scan knew the register held a unit: a pool accessor's return, or an argument passed by a named caller at a named site |
+| `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on, `set` a clear over the span the instruction cell gives |
+| `instruction` | the instruction text |
+| `route` | how the function reached the unit: `0x0208E688` when it indexes the pool itself (`0x0208E688 (the slot acquire)` for the free-slot walk), an accessor's address when it took that accessor's return, `actor +0x30, the actor as argN from F at S` when it loaded the unit from an actor it was handed, `argN from F at S` when the unit came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K, and `sweep` for the two `+0x768`/`+0x76C` pairs found by an image-wide displacement sweep and verified at the site |
 | `note` | `idx` when an index register takes part |
 
 ## Data

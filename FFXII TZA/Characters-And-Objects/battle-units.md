@@ -239,7 +239,7 @@ Globals:
 ### The flag word
 
 Every immediate-mask write and test on `+0x00` and `+0x04` in the access table [`battle-unit-fields.tsv`](battle-unit-fields.tsv)
-(each site checked against the executable), by bit, plus the unit reset `0x00236A60`'s register mask
+by bit, plus the unit reset `0x00236A60`'s register mask
 `0xFFFF7FFDFFE7FFFD` (`0x00236A9C`-`0x00236AB1`), which clears bits 1, 19, 20, 33 and 47:
 
 | Bit | Set by | Cleared by | Tested by |

@@ -276,8 +276,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
   shipped flag id `0xFF`, the trap's setter never runs in shipped play.
 
 - The two access tables beside this page, [`traps-live-entry-accesses.tsv`](traps-live-entry-accesses.tsv) and
-  [`traps-live-set-accesses.tsv`](traps-live-set-accesses.tsv), list every reach into the ring's entries and into the live set,
-  each instruction checked against the executable.
+  [`traps-live-set-accesses.tsv`](traps-live-set-accesses.tsv), list every reach into the ring's entries and into the live set.
 
 ## State
 

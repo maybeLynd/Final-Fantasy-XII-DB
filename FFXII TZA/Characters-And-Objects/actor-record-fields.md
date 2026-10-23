@@ -20,8 +20,6 @@ interior contexts, which code reaches only through the pointers at `+0xB8` and `
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 14 |
 | [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the resource entries behind `+0xA0` | 82 |
 
-Every instruction in all five tables was disassembled from the executable and matched.
-
 ### The regions
 
 | Record offset | Size | Region |
@@ -54,7 +52,7 @@ Each table has one row per access site:
 | `site` | the instruction's address |
 | `disp` | the offset reached, relative to the record or to the context |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on |
-| `instruction` | the instruction text, checked against the executable |
+| `instruction` | the instruction text |
 | `route` | how the scan knew the register held the object: a seed accessor's return, or an argument passed by a named caller at a named site |
 | `note` | `idx` when an index register takes part |
 

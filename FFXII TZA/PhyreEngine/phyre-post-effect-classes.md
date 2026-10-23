@@ -153,7 +153,7 @@ access tables per class:
 |---|---|
 | `.phyre` clusters in the archive | 35,984, all with a decodable packed namespace |
 | clusters declaring any `PPostProcessing` class, as a class or a type | 0 |
-| control: clusters declaring `PEffect` | 2,184 |
+| clusters declaring `PEffect` | 2,184 |
 
 ## State
 
@@ -175,5 +175,5 @@ access tables per class:
 
 - [Shader variant selection](shader-variant-selection.md): what `0x0060B980` does with the effect a worker selects.
 - [Phyre reflection](phyre-reflection.md): class descriptors and their factory slots.
-- [Phyre asset files](phyre-asset-files.md): the packed namespace the census reads.
+- [Phyre asset files](phyre-asset-files.md): the packed namespace each cluster carries.
 - [YEBIS post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md): the other post-effect library in the executable.

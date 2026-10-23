@@ -98,7 +98,7 @@ Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 an
 | files | 12: the six names in `in/exfont` and `ch/exfont`; no `.btm` ships in any other folder |
 | distinct contents | 6; each `ch` sheet is byte-identical to its `in` sheet |
 | sizes | `font_stf_a_*` 42,240; `font_stfc_normal` and `font_stf_c_shadow` 32,256; `font_stf_b_*` 29,184 |
-| first four bytes | `00 00 00 00` in all 12; the first non-zero byte is at `0x15` to `0x64` |
+| first four bytes | `00 00 00 00` in all 12; the first non-zero byte is at file offset `0x15` to `0x64` |
 | texel values | all 16 nibble values occur in every sheet |
 | size tables | 42,240 / 29,184 / 32,256 for ids `0xDA`-`0xDF` in every table except `KR` and `CN`, which hold -1 |
 | `fontpack_fs.bin` tables | 12 in every copy; faces 6 to 11 are the staff-roll faces |
