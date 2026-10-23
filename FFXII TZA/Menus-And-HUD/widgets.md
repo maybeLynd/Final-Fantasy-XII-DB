@@ -686,6 +686,79 @@ Every message a procedure receives ([Widget messages](widget-messages.md)):
 +0x10  u32[2]          b                      the second argument
 ```
 
+### The battle-menu pages' target-list block
+
+Each of the two `0x1620`-byte pages inside the list widget (`+0xF0` and `+0x1710`, procedure `0x0027AD70`) keeps the target-list block that `0x0031EB20` fills at its `+0x4C0` ([Target selection](../Battle-Actions/target-selection.md)); the offsets below are from the start of the page.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x4C4` | `u8[4]` | listBlock04 | +0x04 of the target-list block at +0x4C0 that the list builder 0x0031EB20 fills for this page (0x0027D740 calls it with this + 0x4C0 at 0x0027D865 and 0x0027D891); read and written by no function; nothing fixes its width |
+| `+0x4D8` | `u32` | listFilter | +0x18 of the target-list block: 0x0027E050 stores it together with the list mode +0x4D4 as one qword (0x0027E118, on the page at this + 0xF0 + i x 0x1620 from 0x002793FA); 0x0031EB20 compares it with a candidate action row's +0x2C & 7 (0x0031EF8A) and, when it is not 0xFF, indexes the table at 0x0208CE70 with it (0x0031F907) |
+| `+0x4EC` | `u8` | listSlot | +0x2C of the target-list block: 0x0031EB20 reads it and goes on only for a value up to 0x27 before it looks in the stats records at [0x02EBF190] (0x0031F7E9-0x0031F7F5) |
+| `+0x4F4` | `u16` | listActionA | +0x34 of the target-list block: 0x0031EB20 passes it as the first argument of GambitConfig_ClassifyActionTargetPairCompatibility 0x00327A10 (0x0031FB26-0x0031FB30) |
+| `+0x4F8` | `u16` | listActionB | +0x38 of the target-list block: 0x0031EB20 passes it as the second argument of 0x00327A10 (0x0031FA34-0x0031FA3F) |
+| `+0x4FC` | `u32` | listValue3C | +0x3C of the target-list block: 0x0031EB20 copies it to its frame (0x0031F9AC-0x0031F9B6) |
+| `+0x508` | `u32` | listFlags | +0x48 of the target-list block: 0x0031EB20 takes bit 0 of it as a flag for three of its codes (0x0031EB71, 0x0031ED58, 0x0031F8A7) |
+
+### The battle-menu panel's sprites
+
+Each `0x3010`-byte panel of the battle menu (procedure `0x00276D30`) keeps four `0x40`-byte sprites at `+0xC0`, `+0x100`, `+0x140` and `+0x180`. Each is a copy of a type-2 node of the panel's layout list ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)), drawn with `0x0029F5D0`.
+
+```struct BattleMenuPanelSprite base=record size=0x40
++0x00    ptr             item                   the sprite node's pointer to its item in the layout file (written for
+                                                every node by the list decoder at 0x002433EB), copied with the template;
+                                                the drawer 0x0029F5D0 does not read it
++0x08    u16             word08                 the node's flags, from the list decoder (0x002433EE-0x00243428): bit 0
+                                                shown, bits 2 to 5 the node type; copied with the template; the
+                                                panel's draws do not test it
++0x0A    i16             int0A                  the frame: the drawer takes the source x, y, width and height from the
+                                                sub-image record +0x20 + frame x 8 (0x0029F5DA-0x0029F622); the node
+                                                constructor 0x0029F4C0 sets it (0x0029F520)
++0x0C    i16             word0C                 the x the sprite is drawn at, plus the drawer's x argument
+                                                (0x0029F63B-0x0029F64B); the panel moves it with the panel (0x002772DF,
+                                                0x0027729D, 0x002772B3, 0x002772C9) and sets sprite 1's (0x00277421, 0x0027754B)
++0x0E    i16             word0E                 the y the sprite is drawn at, plus the drawer's y argument
+                                                (0x0029F650-0x0029F663); moved with the panel (0x002772EA, 0x002772A8,
+                                                0x002772BE, 0x002772D4) and set for sprite 1 (0x00277449, 0x00277574)
++0x10    u16             word10                 the width the sprite is drawn at (0x0029F668); the panel sets sprite 1's
+                                                from a sub-image record's width (0x00277457-0x00277461, 0x0027758A)
++0x12    u16             word12                 the height the sprite is drawn at (0x0029F671); the panel sets sprite
+                                                1's from that record's height (0x00277468-0x0027747A, 0x0027759E)
++0x14    u8[4]           unobservedSpan14       copied with the template; the list decoder's shared fields end
+                                                at +0x13 (0x0024342F) and nothing reads these bytes; nothing fixes their
+                                                width
++0x18    ptr             ptr18                  the atlas (0x0029F4DF): the drawer hands it to the emitter 0x002D8D10 and
+                                                takes the palette table from its header +0x20 (0x0029F68A-0x0029F6C4)
++0x20    ptr             ptr20                  the atlas's sub-image records (0x0029F518), indexed by the frame +0x0A
+                                                (0x0029F5E2-0x0029F61F)
++0x28    u8[8]           qword0028              the first two of the four vertex colours +0x28-+0x37
+                                                (0x0029F543-0x0029F54C), which the drawer passes to 0x002D8D10 by address
+                                                (0x0029F67A)
++0x30    u8[9]           copied30               +0x30-+0x37 the third and fourth vertex colours (0x0029F552-0x0029F558),
+                                                passed with the first two (0x0029F67A); +0x38 is 0 from the node
+                                                constructor (0x0029F53F) and read by nothing
++0x39    u8              byte39                 the palette selector (0x0029F53C): its high nibble indexes the atlas's
+                                                palette byte table and its low nibble is added; the sum is the draw's
+                                                palette +0x5C (0x0029F65E-0x0029F6BC)
++0x3A    u8[6]           unobservedSpan3A       +0x3A the first colour's fourth byte and +0x3B 0x80 from the node
+                                                constructor (0x0029F55B-0x0029F562), +0x3C-+0x3F nothing; copied with the
+                                                template and read by no function; nothing fixes their width
+```
+
+### The battle-menu panel's fields
+
+These fields sit in each `0x3010`-byte panel; the offsets are from the start of the panel.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x01C0` | `void*` | qword01C0 | the first 8 bytes of the panel's copy of a text node, +0x1C0-+0x1EF: node 0 of the child widget that node 2 of the panel's layout +0x2FF8 holds, copied whole when the panel is built (0x0027713A-0x00277153). These 8 bytes are the node's pointer to its layout item (0x002433EB); the panel draws the copy with the text drawer 0x0029FBD0 unless +0x2FF0 bit 10 is set (0x002777DF-0x002777F5), and the drawer does not read them |
+| `+0x01F0` | `u8[12]` | field01F0 | the first 12 bytes of a second text-node copy, +0x1F0-+0x21F: node 1 of the panel's layout, copied when the panel is built (0x0027716C-0x00277185): the item pointer and the node flags +0x1F8; no instruction of the menu code (0x00270000-0x002A0000) reads them |
+| `+0x0200` | `u8[16]` | vector0200 | +0x200-+0x20F of the second text-node copy: width +0x200, height +0x202 and, at +0x208, the string, which the list widget 0x002778C0 sets for a panel with +0x2FF0 bit 10 (the list kinds 16 to 19) to PARTY, FOES, RESERVE or ALLIES (texts 0x4A49-0x4A4C of menu_expansion.bin; 0x0027930C-0x0027939B), reaching the panel through its +0xD0 (0x002778EF) |
+| `+0x0210` | `u8[16]` | vector0210 | +0x210-+0x21F of the second text-node copy: +0x210 the node's encoded picture address, which the text drawer resolves with 0x0020E600 (0x0029FDE2-0x0029FDF8) and 0x002778C0 sets to 0x0020E620(0) with each of those strings (0x0027933A, 0x0027935E, 0x0027937F, 0x002793A0); +0x214 the colour, +0x218 the scale and +0x21C the mode bytes, copied from the layout (0x00277181-0x00277185) |
+| `+0x2FE8` | `void*` | qword2FE8 | the cursor block that keeps the stack of opened lists, the battle menu's +0x61B0 copied when the panel is built (0x0027A58D-0x0027A594); the list widget 0x002778C0 reads it through its +0xD0 (0x0027819E, 0x002781EE, 0x00278522, 0x0027881F, 0x002794F7, 0x0027981E, 0x002798D7), and 0x0027D330, called with the panel at 0x00278A2F, stores the cursor positions through it (0x0027D391-0x0027D3DD) |
+| `+0x2FF6` | `u16` | word2FF6 | the tutorial command group, the battle menu's +0x61C2 copied when the panel is built (0x0027A432-0x0027A43C); 0x002778C0 puts it in the word +0x153A of its list request (0x00279296-0x0027929E) |
+| `+0x3000` | `u32` | dword3000 | the target tabs the chosen action allows, the battle menu's +0x61E4 copied when the panel is built (0x0027A509-0x0027A50F); 0x002778C0 puts its low word in its list request +0x153E (0x00279287-0x0027928F) and passes it as the fourth argument of 0x0027C730 (0x00279B01-0x00279B12) |
+
 ## State
 
 Both blocks are 0 in the file. `0x00247AE0` zeroes the focus stack, its focus cell and its count together (`0x110`

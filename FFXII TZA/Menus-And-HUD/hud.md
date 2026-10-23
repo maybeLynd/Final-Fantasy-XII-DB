@@ -585,6 +585,203 @@ This field sits in the part at `+0xA0D0` of the manager, whose two `0x110`-byte 
 |---|---|---|---|
 | `+0x220` | `u8[8]` | boundBase | the start of the block the two 0x110 elements are bound to: 0x003F7E80 passes this + 0x220 as the second qword of each element's construct message (0x003F7EAA, 0x003F7EB1), the element keeps it as its bound object (0x003F83C6) and reads it at +0x740, which is this + 0x960 (0x003F8820), and +0x754, which is this + 0x974 (0x003F82BF). These eight bytes themselves are read and written by no function; nothing fixes their width |
 
+### The selection marker's slots
+
+The selection marker keeps two `0x20`-byte slots at its `+0x30` (The selection marker above). A new unit starts the slot that bit 1 of the marker's `+0x74` names and flips that bit, so the next unit takes the other slot (`0x0028CB1F`-`0x0028CB66`).
+
+```struct SelectionMarkerSlot base=record size=0x20
++0x00    f32[4]          position               the unit's position in the world, x, y, z and 1.0: 0x002E7F70 writes it
+                                                from the unit's model (0x003E5510) when the slot starts
+                                                (0x0028CB70-0x0028CB77) and on every update while the unit's handle still
+                                                resolves and the slot is not fading out (0x0028CEE3-0x0028CEFE); each of
+                                                the slot's three sprites copies it as its own position
+                                                (0x0028D665-0x0028D66B)
++0x10    i16             growth                 the slot's growth in 256ths: 0 when the slot starts (0x0028CB52), 16
+                                                more on every update up to 256 (0x0028CF4D-0x0028CF67). The draw reads it
+                                                as the time into the colour track 0x00915FB0 and scales the sprites'
+                                                brightness by it (0x0028D4AD, 0x0028D5D3-0x0028D610), and scales the alpha
+                                                of the second, widening pass by it (0x0028D911-0x0028D94B)
++0x12    u8              unobservedByte012      set to 0x80 when the slot starts (0x0028CB62), as the marker's own
+                                                byte +0x2B is when the marker starts (0x0028CAA2); read by no function
++0x13    u8              alpha                  the slot's alpha, 0 to 128: 0 when the slot starts (0x0028CB52); each
+                                                update adds 32 / [0x01DFE0B4] up to 128 while flag bit 1 is clear, and
+                                                takes the same away while it is set, freeing the slot (flag bit 0
+                                                cleared) when it would fall below 0 (0x0028CF03-0x0028CF4A). The draw
+                                                multiplies the marker's fade +0x76 by it over 128 (0x0028D488-0x0028D497)
++0x14    u16             flags0014              bit 0: the slot is in use (set at 0x0028CB5A, cleared when the alpha
+                                                runs out at 0x0028CF29); bit 1: the slot fades out, set when the unit's
+                                                handle no longer resolves (0x00273780 at 0x0028CEAC-0x0028CEC4) or when the
+                                                marker moves to another unit (0x0028C940, 0x0028CB00-0x0028CB11); bit 3:
+                                                0x00273750 answers that the unit's class nibble is 1 or 2
+                                                (0x0028CECE-0x0028CEEA), passed to the sprite binder 0x003F1430
+                                                (0x0028D6CA-0x0028D6F0)
++0x16    i16             lastGrowth             the growth +0x10 before the last update (0x0028CF56). While it differs
+                                                from +0x10 the slot is still widening and the draw draws three rings
+                                                of the three sprites at half alpha; once they are equal it draws one
+                                                (0x0028D513-0x0028D59B)
++0x18    u32             unit                   the handle of the unit the slot marks, from 0x0028CA40's second argument
+                                                (0x0028CB5F); the update resolves it (0x0028CEA9, 0x0028CECE, 0x0028CEE3) and
+                                                0x0028CA40 compares it with a new request (0x0028CAC9)
++0x1C    u8[4]           pad01C                 zeroed when the slot starts by the qword store 0x0028CB56, which also
+                                                covers +0x18; read and written by no other function; nothing fixes its
+                                                width
+```
+
+### The level-up popups
+
+The part at `+0x7FB0` holds six `0x110`-byte records, one per unit whose level went up (`0x002905D0`, Its parts above). The first `0xF0` bytes of a record become the popup widget the pump `0x00296860` builds in place.
+
+```struct LevelUpBlink base=record size=0x110
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header) when the pump 0x00296860 builds the record's 0xF0-byte widget in
+                                                place with procedure 0x00299D10 (0x002968B5-0x002968DE)
++0xC0    i32             life                   the frames the popup stays: 30 x [0x01DFE0B4] when built
+                                                (0x00299F3E-0x00299F52); each update while the widget's state nibble +0x7C
+                                                is 3 and flag bit 1 is clear takes one away, and at 0 or below sets
+                                                flag bit 1 and asks for the close 0x00244F00 (0x0029A063-0x0029A092)
++0xC4    u32             liveKey00C4            the handle of the unit the popup is over: the construct message's
+                                                second argument (0x00299F35-0x00299F38), which the pump passes from the
+                                                record's key +0xF4 (0x002968CA-0x002968D9); each update resolves it
+                                                (0x00299FC9-0x00299FCF) and 0x00299A30 matches a live record by it
+                                                (0x00299A71)
++0xC8    u32             queuedValue            the construct message's first argument (0x00299F2C-0x00299F2F), the value
+                                                the pump takes from the queue (0x002968C5); 0x002905D0 only ever queues 1
+                                                (0x002905F6); read by no function
++0xCC    f32             fade                   the popup's opacity, 0 to 1: 1.0 when built (0x00299F22); each update
+                                                adds [0x01DFE0BC] / 6 up to 1.0 while flag bit 0 is set and takes it
+                                                away down to 0 while it is clear (0x0029A003-0x0029A059); the draw scales
+                                                the alpha +0x58 of the widget's draw record +0x38 by it (0x00299D72,
+                                                0x00299E65, 0x00299ECE-0x00299EDD)
++0xD0    f32[4]          position               the unit's position, x, y, z and 1.0, which 0x002E9A90 writes from the
+                                                unit's model (0x003E5810, 1.0 at 0x002E9AE2) on each update while the
+                                                handle resolves (0x00299FE2-0x00299FEF); the draw projects it through the
+                                                view 0x02AEDDB0 (0x00249080 at 0x00299D91-0x00299DBA) and centres the popup on
+                                                the screen point (0x00299E35-0x00299E5D)
++0xE0    ptr             layout                 the popup's layout, record 0 of MRP unit 4 at [0x0209AC30] + 0x20
+                                                (0x0035D3F0) built by 0x002432B0 with the widget as parent
+                                                (0x00299F58-0x00299F6F); its width +0x08 and height +0x0A go to the
+                                                header's +0x9C and +0x9E (0x00299F76-0x00299F88) and centre the drawn
+                                                popup (0x00299D8A-0x00299DB2, 0x00299E35-0x00299E4B)
++0xE8    u32             flags                  bit 0: the unit is present, set when built (0x00299F1B) and cleared when
+                                                the handle no longer resolves (0x00299FD9), which turns the fade +0xCC
+                                                downward; bit 1: finished, set by the close message 15 (0x00299D5F) or
+                                                when +0xC0 runs out (0x0029A081), and stops the count; bit 2: running,
+                                                set when built, needed for the fade and the count (0x00299FF4-0x00299FFD)
+                                                and for any draw (0x00299D6B-0x00299D85); bit 3: drawn once, set by the
+                                                first draw on screen, which draws nothing (0x00299E56-0x00299E78), after
+                                                which each draw pulses the brightness +0x5A as 128 + 64 sin(pi (frame
+                                                mod [0x01E0C550]) / [0x01E0C550]) (0x00299E7D-0x00299ECA)
++0xEC    u8[4]           unobservedSpan00EC     read and written by no function; nothing fixes its width
++0xF0    u32             claimed00F0            the record's claim flag, 0 when free: the producer 0x002966E0 sets it to
+                                                1 when it claims a free record (0x002967D3, 0x0029680F) and the pump
+                                                0x00296860 clears it once the record's queue is empty
+                                                (0x00296903-0x00296909); the pump builds the popup only while it is set
+                                                (0x00296897)
++0xF4    u32             key00F4                the unit's handle, written when the record is claimed from the
+                                                producer's argument (0x002967DD, 0x00296819): 0x002905D0's caller passes the
+                                                levelled unit's handle [unit + 8] (0x0030C811 in 0x0030C650); 0x00299A30
+                                                matches a claimed record by it (0x00299A7B)
++0xF8    u32[3]          queue00F8              three queued values, each 1 from 0x002905D0 (0x002905F6): the producer
+                                                appends a value it does not already hold at +0x106 (0x00296712-0x0029675D,
+                                                0x002967E4); the pump builds one popup for the value at +0x104 and
+                                                clears that slot (0x002968AC-0x002968EF)
++0x104   i16             consumeCursor0104      the pump's index into +0xF8, wrapping at 3 (0x002968AC,
+                                                0x002968F3-0x002968FC)
++0x106   i16             produceCursor0106      the producer's index into +0xF8, wrapping at 3 (0x00296736-0x0029675D,
+                                                0x002967CB-0x002967FD, 0x00296807-0x00296839)
++0x108   u8[8]           unobservedSpan0108     read and written by no function; nothing fixes its width
+```
+
+### The sprites of the part at +0xA0
+
+The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F9390` places them along the lines of the zone script's lists 0 and 1 (`0x003F9720`), and `0x003F8C70` hands them to the depth list on each draw (The draw pass above), so they have the layout every function of that table reads.
+
+```struct HudLineSprite base=record size=0x100
++0x00    f32[4]          position               x, y, z: the sprite's place on the line, which 0x00270260 sets at
+                                                parameter t along the line's points (0x003F954F-0x003F956E); the fourth
+                                                float is the size the draw multiplies the corner offsets by
+                                                (0x003F0903-0x003F0A15), which the part sets to 0.5 after placing the
+                                                sprite (0x003F95B1). The depth pass projects x, y, z through the view
+                                                0x02AEDDB0 (0x002720F0 at 0x003F01DE)
++0x10    f32[4]          offset                 added to +0x00 before the corners are projected (0x00202B10 at
+                                                0x003F068F-0x003F069A); (0, 0, 0, 1.0) from the reset 0x003F00F0
+                                                (0x003F014B-0x003F0162, the constant 0x01EF93F0)
++0x20    u64             tex0                   the picture's TEX0 [picture + 0x30] with the palette block (2 x
+                                                [+0x52C4] + the point's style byte) added at bit 38
+                                                (0x003F95BC-0x003F95E9); part of the 0xB0 bytes the draw copies into the
+                                                packet (0x003F1E24-0x003F1E31)
++0x28    u64             tex0Register           6, the register number of the TEX0 value before it (0x003F95F0), copied
+                                                into the packet with it
++0x30    f32[4]          texRect                the texture rectangle, u, v, width and height as fractions of the
+                                                picture's size: the part's cell rectangle +0x00 copied by 0x00202C90
+                                                (0x003F95E1, 0x003F961E), which 0x003F8D20 takes from the picture's cell
+                                                (0x002711E0 at 0x003F8E09); the draw scales it by the picture's width and
+                                                height (0x003F111C-0x003F117F)
++0x40    i32             red                    255 (0x003F9629); the corners' red, 0 to 255 (0x003F0E8F-0x003F0EBE)
++0x44    i32             green                  255 (0x003F9630); the corners' green (0x003F0E98-0x003F0EC4)
++0x48    i32             blue                   255 (0x003F9637); the corners' blue (0x003F0EA1-0x003F0ECA)
++0x4C    i32             alpha                  128 x min(1, sin((6 - d) / 6 x pi/2)) x the point's alpha / 128, d
+                                                being the sprite's distance from the line point the segment starts at;
+                                                no sprite is placed farther than 6 (0x003F957B-0x003F9623); the draw
+                                                scales it by its camera fade (0x003F1E36-0x003F1E49)
++0x50    f32[4]          corners                the corner offsets x0, y0, x1, y1: (-0.25, -0.25, 0.25, 0.25)
+                                                (0x003F963E-0x003F9653), turned by +0x60 and scaled by the size +0x0C
+                                                (0x003F0903-0x003F0A15)
++0x60    f32[4]          cosSin060              (cos a, sin a, -sin a, cos a) of the sprite's turn a: 0 from the reset
+                                                0x003F00F0 (0x003F0101-0x003F012E), then (frame mod 160) x 360 / 160
+                                                degrees, one turn every 160 frames (0x003F93F4-0x003F9462, 0x003F1230 at
+                                                0x003F954A); the draw turns the corners +0x50 by it (0x003F0915-0x003F09C7)
++0x70    f32[4]          screenShift            +0x70 and +0x74 are added to all four projected corners, divided by
+                                                the frame scales 0x0024ABC0 and 0x0024ABA0 (0x003F0C81-0x003F0D75); (0, 0, 0,
+                                                1.0) from the reset (0x003F0140-0x003F0147), so the part's sprites stay in
+                                                place; the draw reads neither +0x78 nor +0x7C
++0x80    u32             twoColour              0 from the reset (0x003F013A); when it is not 0 the draw gives two of
+                                                the four corners the colour +0x90-+0x9C instead of +0x40-+0x4C
+                                                (0x003F0E04-0x003F0EAF)
++0x84    u8[12]          pad084                 copied into the packet with the first 0xB0 bytes (0x00271290 from
+                                                0x003F1E31); read by no other instruction; nothing fixes its width
++0x90    i32[4]          colour2                the second colour, red, green, blue and alpha, that the draw reads
+                                                only while +0x80 is not 0 (0x003F0E57-0x003F0E89); the part never
+                                                sets +0x80 or these words
++0xA0    u8[16]          pad0A0                 copied into the packet with the first 0xB0 bytes (0x003F1E31); read by
+                                                no other instruction; nothing fixes its width
++0xB0    ptr             sortLow                the depth tree's lower link: 0x003F19D0 clears it when it inserts the
+                                                sprite and hangs a sprite of lower depth from it (0x003F19D5,
+                                                0x003F1A1E-0x003F1A41); the draw walk follows it (0x003F0532)
++0xB8    ptr             sortHigh               the depth tree's higher link (0x003F19DC, 0x003F1A0D-0x003F1A2F); the draw
+                                                walk follows it (0x003F0543-0x003F0564)
++0xC0    ptr             sortParent             the depth tree's parent link (0x003F19E3, 0x003F1A36, 0x003F1A48); the draw
+                                                walk climbs it (0x003F0523, 0x003F056E)
++0xC8    f32             depth                  1 / w from the projection 0x002720F0, stored for every sprite of the
+                                                list (0x003F01E6) and, for a sprite in front with x and y inside 0 to
+                                                4096, stored negated (0x003F020E-0x003F0219); 0x003F19D0 sorts on it
+                                                (0x003F19F3, 0x003F1A00)
++0xCC    u8[4]           pad0CC                 read and written by no function; nothing fixes its width
++0xD0    ptr             listNext               the next sprite of the depth list: 0x003F1290 clears it when it appends
+                                                the sprite (0x003F1292) and sets it on the old tail (0x003F12B1); 0x003F0170
+                                                walks it (0x003F0229)
++0xD8    ptr             listPrev               the previous sprite of the depth list: cleared on append (0x003F1299),
+                                                set to the old tail (0x003F12BC)
++0xE0    ptr             picture                the part's picture partytop_8_c, [+0x52B8] (0x003F965A-0x003F9661), which
+                                                0x003F8D20 fetches by name with 0x0024A5A0 (0x003F8D45-0x003F8D51); the draw
+                                                reads its size from the header +0x20 (0x003F0F02-0x003F0F44) and hands it
+                                                to the batcher (0x003F11D1-0x003F11E8)
++0xE8    i16             paletteOffset          0 (0x003F9668); for a 4-bit picture the draw adds 4 x it at bit 37 of
+                                                the bound TEX0 (0x003F1CC3-0x003F1CFC) and starts a new batch when it
+                                                differs from the batch's (0x003F1BF4-0x003F1BFE)
++0xEA    u16             drawFlags              bit 0 dims the sprite while the camera looks at it from behind the
+                                                focus unit (0x003F1A87-0x003F1BC3); 0x003FAB60 sets it on the world-object
+                                                sprites (0x003FAC9E); nothing sets it on the part's sprites, so it stays
+                                                0 from the manager's clear
++0xEC    i32             palette                the palette the batcher binds with the picture (0x003F1192-0x003F11E8): -1
+                                                from the reset (0x003F0152), then [+0x52C4] plus the point's style byte
+                                                (0x003F95F8-0x003F9610)
++0xF0    i32             kind                   the picture kind the draw switches on: -1 chain_item, -2 targetline_p,
+                                                -3 chainflash, any other the picture +0xE0 (0x003F0F55-0x003F111C); 0 from
+                                                the reset and the part (0x003F015C, 0x003F9606)
++0xF4    u8[12]          unobservedTail0F4      read and written by no function; nothing fixes its width
+```
+
 ## State
 
 | Global | Type | Start | Meaning | Set by | Read by |
