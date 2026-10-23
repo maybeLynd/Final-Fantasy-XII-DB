@@ -1,0 +1,117 @@
+folder	file	bytes	form	list_position	requested	fontId	glyphCount	atlasW	atlasH	cellW	cellH	scale	flags	metricA	metricB
+ch	font00.dat	85468	header 0x28	2	1	1	2373	2048	3575	48	55	1	0x0	15	36
+ch	font00.ker	1476	pairs		0										
+ch	font_bookman.dat	400	header 0x28	3	1	13	10	512	40	40	40	1	0x0	15	40
+ch	font_iwa_g12.dat	1156	header 0x28	4	1	14	31	2048	55	48	55	1	0x0	15	36
+ch	font_square.dat	472	header 0x28	6	1	15	12	1024	44	40	32	1	0x1	20	20
+ch	font_square.ker	612	pairs		1										
+ch	font_venus.dat	1372	header 0x28	5	1	11	37	2048	44	40	32	1	0x1	20	20
+ch	font_venus.ker	3900	pairs		1										
+ch	fontex_expand.dat	30208	header 0x28	0	1	2	838	2048	1265	48	55	1	0x2	15	36
+ch	fontex_expand.fex	26900	lists		1										
+ch	fontex_expand.ker	60	pairs		0										
+ch	fontex_subtitle.dat	63796	header 0x28	1	1	3	1771	2048	2640	48	55	1	0x2	25	48
+ch	fontex_subtitle.fex	85372	lists		1										
+ch	fontguide.dat	472	header 0x28	7	1	4	12	1024	55	48	55	1	0x0	15	36
+ch	fontlist.ah	142	names												
+ch	fontmonster.dat	17788	header 0x28	10	1	7	493	2048	770	48	55	1	0x2	15	36
+ch	fontmonster.fex	3668	lists		1										
+ch	fontquest.dat	976	header 0x28	9	1	5	26	2048	55	48	55	1	0x0	15	36
+ch	fonttutorial.dat	544	header 0x28	8	1	6	14	1024	55	48	55	1	0x0	15	36
+cn	font00.dat	85000	header 0x28	2	1	1	2360	2048	3520	48	55	1	0x0	15	36
+cn	font00.ker	1476	pairs		0										
+cn	font_bookman.dat	400	header 0x28	3	1	13	10	512	40	40	40	1	0x0	15	40
+cn	font_iwa_g12.dat	1156	header 0x28	4	1	14	31	2048	55	48	55	1	0x0	15	36
+cn	font_square.dat	472	header 0x28	6	1	15	12	1024	44	40	32	1	0x1	20	20
+cn	font_square.ker	612	pairs		1										
+cn	font_venus.dat	1372	header 0x28	5	1	11	37	2048	44	40	32	1	0x1	20	20
+cn	font_venus.ker	3900	pairs		1										
+cn	fontex_expand.dat	28588	header 0x28	0	1	2	793	2048	1210	48	55	1	0x2	15	36
+cn	fontex_expand.fex	24532	lists		1										
+cn	fontex_expand.ker	60	pairs		0										
+cn	fontex_subtitle.dat	63400	header 0x28	1	1	3	1760	2048	2640	48	55	1	0x2	25	48
+cn	fontex_subtitle.fex	85004	lists		1										
+cn	fontguide.dat	472	header 0x28	7	1	4	12	1024	55	48	55	1	0x0	15	36
+cn	fontlist.ah	142	names												
+cn	fontmonster.dat	20704	header 0x28	10	1	7	574	2048	880	48	55	1	0x2	15	36
+cn	fontmonster.fex	5076	lists		1										
+cn	fontquest.dat	976	header 0x28	9	1	5	26	2048	55	48	55	1	0x0	15	36
+cn	fonttutorial.dat	472	header 0x28	8	1	6	12	1024	55	48	55	1	0x0	15	36
+jp	font00.dat	47524	header 0x28	2	1	1	1319	2048	1980	48	55	1	0x0	15	36
+jp	font00.ker	60408	pairs		0										
+jp	font_bookman.dat	400	header 0x28	3	1	13	10	512	40	40	40	1	0x0	15	40
+jp	font_iwa_g12.dat	1660	header 0x28	4	1	14	45	2048	110	48	55	1	0x0	15	36
+jp	font_iwa_g12.ker	12552	pairs		0										
+jp	font_square.dat	472	header 0x28	6	1	15	12	1024	44	40	32	1	0x1	20	20
+jp	font_square.ker	612	pairs		1										
+jp	font_stf_a.dat	2812	header 0x28	11	1	17	77	2048	64	32	32	1	0x1	20	20
+jp	font_stf_a.ker	14844	pairs		1										
+jp	font_stf_as.dat	2848	header 0x28	12	1	18	78	2048	64	32	32	1	0x1	20	20
+jp	font_stf_as.ker	14844	pairs		1										
+jp	font_stf_b.dat	2848	header 0x28	13	1	19	78	2048	64	32	32	1	0x1	20	20
+jp	font_stf_b.ker	14844	pairs		1										
+jp	font_stf_bs.dat	2848	header 0x28	14	1	20	78	2048	64	32	32	1	0x1	20	20
+jp	font_stf_bs.ker	14844	pairs		1										
+jp	font_stf_c.dat	2848	header 0x28	15	1	21	78	2048	64	32	32	1	0x1	20	20
+jp	font_stf_c.ker	14844	pairs		1										
+jp	font_stf_cs.dat	2848	header 0x28	16	1	22	78	2048	64	32	32	1	0x1	20	20
+jp	font_stf_cs.ker	14844	pairs		1										
+jp	font_venus.dat	1372	header 0x28	5	1	11	37	2048	44	40	32	1	0x1	20	20
+jp	font_venus.ker	3900	pairs		1										
+jp	fontex_expand.dat	28696	header 0x28	0	1	2	796	2048	1210	48	55	1	0x2	15	36
+jp	fontex_expand.fex	38288	lists		1										
+jp	fontex_subtitle.dat	47164	header 0x28	1	1	3	1309	2048	1980	48	55	1	0x2	25	48
+jp	fontex_subtitle.fex	70712	lists		1										
+jp	fontguide.dat	904	header 0x28	7	1	4	24	2048	55	48	55	1	0x0	15	36
+jp	fontlist.ah	217	names												
+jp	fontmonster.dat	27040	header 0x28	10	1	7	750	2048	1155	48	55	1	0x2	15	36
+jp	fontmonster.fex	11392	lists		1										
+jp	fontquest.dat	4396	header 0x28	9	1	5	121	2048	220	48	55	1	0x0	15	36
+jp	fonttutorial.dat	1192	header 0x28	8	1	6	32	2048	55	48	55	1	0x0	15	36
+kr	font00.dat	44608	header 0x28	2	1	1	1238	2048	1870	48	55	1	0x1	15	36
+kr	font00.ker	4560	pairs		1										
+kr	font_bookman.dat	400	header 0x28	3	1	13	10	512	40	40	40	1	0x0	15	40
+kr	font_iwa_g12.dat	1156	header 0x28	4	1	14	31	2048	55	48	55	1	0x0	15	36
+kr	font_square.dat	472	header 0x28	6	1	15	12	1024	44	40	32	1	0x1	20	20
+kr	font_square.ker	612	pairs		1										
+kr	font_venus.dat	1372	header 0x28	5	1	11	37	2048	44	40	32	1	0x1	20	20
+kr	font_venus.ker	3900	pairs		1										
+kr	fontex_expand.dat	13900	header 0x28	0	1	2	385	2048	605	48	55	1	0x2	15	36
+kr	fontex_expand.fex	17104	lists		1										
+kr	fontex_expand.ker	60	pairs		0										
+kr	fontex_subtitle.dat	34780	header 0x28	1	1	3	965	2048	1485	48	55	1	0x3	15	15
+kr	fontex_subtitle.fex	76380	lists		1										
+kr	fontex_subtitle.ker	468	pairs		1										
+kr	fontguide.dat	328	header 0x28	7	1	4	8	512	55	48	55	1	0x0	15	36
+kr	fontlist.ah	142	names												
+kr	fontmonster.dat	8284	header 0x28	10	1	7	229	2048	385	48	55	1	0x2	15	36
+kr	fontmonster.fex	1708	lists		1										
+kr	fontquest.dat	688	header 0x28	9	1	5	18	1024	55	48	55	1	0x0	15	36
+kr	fonttutorial.dat	220	header 0x28	8	1	6	5	512	55	48	55	1	0x0	15	36
+us	font00.dat	46876	header 0x28	0	1	1	1301	2048	1980	48	55	1	0x0	15	36
+us	font00.ker	60408	pairs		0										
+us	font_bookman.dat	400	header 0x28	2	1	13	10	512	40	40	40	1	0x0	15	40
+us	font_iwa_g12.dat	5476	header 0x28	3	1	14	151	2048	275	48	55	1	0x0	15	36
+us	font_iwa_g12.ker	12552	pairs		0										
+us	font_square.dat	472	header 0x28	5	1	15	12	1024	44	40	32	1	0x1	20	20
+us	font_square.ker	612	pairs		1										
+us	font_stf_a.dat	2848	header 0x28	6	1	17	78	2048	64	32	32	1	0x1	20	20
+us	font_stf_a.ker	14844	pairs		1										
+us	font_stf_as.dat	2848	header 0x28	7	1	18	78	2048	64	32	32	1	0x1	20	20
+us	font_stf_as.ker	14844	pairs		1										
+us	font_stf_b.dat	2848	header 0x28	8	1	19	78	2048	64	32	32	1	0x1	20	20
+us	font_stf_b.ker	14844	pairs		1										
+us	font_stf_bs.dat	2848	header 0x28	9	1	20	78	2048	64	32	32	1	0x1	20	20
+us	font_stf_bs.ker	14844	pairs		1										
+us	font_stf_c.dat	2848	header 0x28	10	1	21	78	2048	64	32	32	1	0x1	20	20
+us	font_stf_c.ker	14844	pairs		1										
+us	font_stf_cs.dat	2848	header 0x28	11	1	22	78	2048	64	32	32	1	0x1	20	20
+us	font_stf_cs.ker	14844	pairs		1										
+us	font_venus.dat	3388	header 0x28	4	1	11	93	2048	132	40	32	1	0x1	20	20
+us	font_venus.ker	13332	pairs		1										
+us	fontex_expand.dat	29192	header 0x20		0	2	810	2048	1368	48	55	2.4	0x2		
+us	fontex_expand.fex	108384	triples		0										
+us	fontex_subtitle.dat	46876	header 0x28	1	1	3	1301	2048	2772	64	66	1	0x1	15	48
+us	fontex_subtitle.fex	137772	triples		0										
+us	fontex_subtitle.ker	106644	pairs		1										
+us	fontlist.ah	153	names												

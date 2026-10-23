@@ -343,3 +343,7 @@ them.
 
 - [Text codes](text-codes.md) - the codes that set size, spacing and the next glyph's advance.
 - [Menus](menus.md) - the screens that draw this text.
+- [Font files](fonts-files.md) - every shipped font data file with its `.dat` header.
+- [Font glyphs](fonts-glyphs.md) - every glyph record of every `.dat`.
+- [Font kerning pairs](fonts-kerning.md) - every pair of every `.ker`.
+- [Font expansion lists](fonts-expansion-lists.md) - every list of every `.fex`, with its path.
