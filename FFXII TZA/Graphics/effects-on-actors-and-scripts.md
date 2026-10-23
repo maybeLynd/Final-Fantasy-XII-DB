@@ -41,6 +41,12 @@ The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the 
 - `0x003B0820(v)`, with arena 8 selected, ends the instance (`0x0024EE60`) of every entry whose `+0x04`
   equals `v`, closes each gap and clears `0x02EBEF48`. `0x002FCB60(handle)` calls it with its own
   handle first (`0x002FCB79`).
+
+The last entry, `0x02EBEF48`-`0x02EBEF5F`, is the one a closed gap leaves behind. After moving the later entries up one,
+`0x003B0770` and `0x003AFFB0` clear its handle `0x02EBEF48` and its instance `0x02EBEF50` (`0x003B07F2`-`0x003B07FC`,
+`0x003B00D9`-`0x003B00E0`), and `0x003B0820` (`0x003B089D`) and `0x003B0220` (`0x003B028B`) clear its handle. When `0x003B0980` ends an instance to free an
+entry, it clears bit 0 of the last entry's `+0x13`, `0x02EBEF5B` (`0x003B0A9D`), and returns that entry (`0x003B0AA4`).
+
 - `0x003B1260(handle, kind)`, for a kind of 1 to 10, calls `0x0024FE70(instance, kind)` with arena 8
   selected.
 - `0x003B1050(targets, n)`, from `0x0024FBF0`, raises bit `0x4` of `+0x368` on every kind-5 instance

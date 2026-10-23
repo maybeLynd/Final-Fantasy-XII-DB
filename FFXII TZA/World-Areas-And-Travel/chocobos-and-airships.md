@@ -2,7 +2,7 @@
 title: "Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel"
 kind: "system"
 category: "World, areas and travel"
-addresses: "0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F00, 0x003514D0, 0x00347230, 0x00347820, 0x00347C60, 0x00356630, 0x00355910, 0x0033F650, 0x0050F8A0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x00304440, 0x00234590, 0x00303CC0, 0x00336390, 0x0017D380, 0x0017D3A0, 0x0031B8C0, 0x00311E20, 0x0035CFA0, 0x0035C960, 0x0035CA70, 0x003CA310, 0x003CA860, 0x00304680, 0x00304060, 0x00304140, 0x00237DF0, 0x0034EE20, 0x0034DD90, 0x0032AB60, 0x003EBA90, 0x003EBB70, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00263750, 0x00306760, 0x005843E0, 0x002EF3C0, 0x002EF410, 0x00261F90, 0x002DEE50, 0x003611F0, 0x0026A7F0, 0x00342E50, 0x00265680, 0x001D50D0, 0x005C5230, 0x003CA280, 0x003CA2B0, 0x003CA1C0, 0x003CA1E0, 0x0028FD70, 0x003CAE00, 0x003CA530, 0x003CB0C0, 0x003CB150, 0x003CAB00, 0x003CA200, 0x003200A0, 0x003045A0, 0x00304790, 0x003047C0, 0x002E28C0, 0x002E26F0, 0x002EDAA0, 0x0042F310, 0x0042F3B0, 0x0025D480, 0x00249C60, 0x0035C630"
+addresses: "0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F00, 0x003514D0, 0x00347230, 0x00347820, 0x00347C60, 0x00356630, 0x00355910, 0x0033F650, 0x0050F8A0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x00304440, 0x00234590, 0x00303CC0, 0x00336390, 0x0017D380, 0x0017D3A0, 0x0031B8C0, 0x00311E20, 0x0035CFA0, 0x0035C960, 0x0035CA70, 0x003CA310, 0x003CA860, 0x00304680, 0x00304060, 0x00304140, 0x00237DF0, 0x0034EE20, 0x0034DD90, 0x0032AB60, 0x003EBA90, 0x003EBB70, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00263750, 0x00306760, 0x005843E0, 0x002EF3C0, 0x002EF410, 0x00261F90, 0x002DEE50, 0x003611F0, 0x0026A7F0, 0x00342E50, 0x00265680, 0x001D50D0, 0x005C5230, 0x003CA280, 0x003CA2B0, 0x003CA1C0, 0x003CA1E0, 0x0028FD70, 0x003CAE00, 0x003CA530, 0x003CB0C0, 0x003CB150, 0x003CAB00, 0x003CA200, 0x003200A0, 0x003045A0, 0x00304790, 0x003047C0, 0x002E28C0, 0x002E26F0, 0x002EDAA0, 0x0042F310, 0x0042F3B0, 0x0025D480, 0x00249C60, 0x0035C630, 0x003EB9A0, 0x00314020, 0x003EBAB0, 0x003EBB90, 0x003EBBB0, 0x0030D8B0, 0x004215A0, 0x003E5AD0, 0x0046E640, 0x00370390, 0x01EECFC0, 0x02B5EBC0, 0x022CA624, 0x02064AB0"
 ---
 
 ## What the player sees
@@ -98,15 +98,52 @@ flight ([save and teleport crystals](save-and-teleport-crystals.md)).
 
 ### The ride timer and the turbo timer
 
-The two countdowns live in the shared timer slots at `0x02B5EBC0`, 20 bytes each (Layouts):
+The two countdowns live in the eight shared timer slots at `0x02B5EBC0`, 20 bytes each (Layouts; the
+ride is slot 1, the dash slot 2, which the summon timer also uses, `0x00313600`):
 
-- `0x003EBC50(slot, value, target)` loads a slot with a step of `1/60` (`0x3C889A05`) when
-  `0x00290180()` is 2 and `1/50` (`0x3CA3D70A`) otherwise, negative when the target is at or below
-  the value;
-- `0x003EBD00(slot)` starts it, or marks it expired when value and target already agree;
-- `0x003EBA90(slot)` reads the value and `0x003EBB70(slot)` the expired byte.
+- `0x003EBC50(slot, value, target)` loads a slot: `+0x00` = the value truncated to an integer, `+0x04`
+  = the target, `+0x08` = the value, `+0x0C` = the step, `0.016675` (`0x3C889A05` at `0x00D1181C`, one
+  59.97 Hz frame), negated when the integer value is at or above the target (`0x003EBC98`-`0x003EBCA8`);
+  the loader's other arm, `0.02` (`0x009002BC`), is dead code, because `0x00290180` is `mov eax, 2; ret`
+  and the arm needs any other value;
+- the loader clears the running byte `+0x10` and the expired byte `+0x11` (`0x003EBCBB`, `0x003EBCD7`); its store of 1
+  for a zero step (`0x003EBCD0`; `0x003EBC24` in `0x003EBBB0`) cannot run, because the step is never 0;
+- `0x003EBD00(slot)` sets the running byte, or the expired byte when `+0x00` already equals the
+  target (`0x003EBD12`-`0x003EBD1D`); `0x003EBBB0(slot, start, target)` is the integer loader the other
+  slot users take (`0x0032A100`, `0x0034F1A0`);
+- `0x003EBA90(slot)` reads the value, `0x003EBB70(slot)` the expired byte, `0x003EBB90(slot)` clears the
+  running byte, and `0x003EBAB0` resets all eight slots to value 0, running 0 and expired 1 at the
+  start-up step `0x00266D10` (`0x00266D95`).
 
-The values are therefore seconds counted at the frame rate: the ride is 180 seconds.
+The ticker is `0x003EB9A0`, run by the simulation tick `0x00314020` (`0x00314056`) when no time stop
+restricts anything (`0x00226BA0`), slot 0 is live with its field-busy bit 7 clear (`0x00267330(0)`) and its
+request flag `+0x13` clear (`0x002673F0(0)`; [actor managers](../Characters-And-Objects/actor-managers.md)), the
+frame mode `0x00229EA0()` is 2, `0x002672B0()` is non-zero and the field is live
+(`0x00265680`).
+
+For every slot that is running and not expired it adds `step x frame steps` to the
+value, the frame steps being the dword `0x022CA624` that `0x0035E790` returns (`0x003EBA17`-`0x003EBA4A`);
+when the value reaches the target it is clamped to it and the slot marked expired
+(`0x003EBA4F`-`0x003EBA60`). The values are therefore seconds counted at the frame rate: the ride is
+180 seconds.
+
+A mount starts the ride timer through the mode transition table, not through the verb
+([party control modes](../Engine-Core/party-control-modes.md#the-transition-dispatcher)):
+
+- `0x00303D90(1)` sets the riding bit and the count;
+- the next committed transition pass `0x00233AA0` (from the actor drive pass `0x0025D9E0`) finds the
+  level changed to 2 and runs row 2's enter-with-commit handler `0x00304060`: it attaches the rider
+  (below), loads slot 1 with `max(+0x5AE4, 2.0)`, 180 at that point, and slot 2 with `+0x5AE8`,
+  re-applies turbo from bit 1 and sets bit 0 (`0x003040BC`-`0x00304131`);
+- the same handler runs again on every later committed pass that finds level 2 unchanged (the
+  dispatcher's "stay" call, `0x0030D915`-`0x0030D929`; `0x00304060` has no once-only test and returns early only
+  when roster entry 3 has no unit, `0x00304073`-`0x00304076`): each run re-ties the rider
+  and reloads both slots from `+0x5AE4` and `+0x5AE8`, which `0x00304440` keeps current;
+- the uncommitted enter handler `0x00304180` places the chocobo at the rider, builds the focus list
+  (`0x00327850`, `0x003042AE`) and sets `0x022C83E8` bit 3 (`0x0035C900(1)`, `0x003043DE`); the uncommitted leave
+  `0x00304400` clears bit 0 and detaches the rider (`0x0030440B`, `0x00304435`); the committed leave `0x00304140`
+  runs `0x0025A160` on the rider's slot and, only when the riding bit is already clear (`0x0030415E`), the
+  full reset `0x00304680` and `0x0035C770(0)`.
 
 `0x00304440` runs every field frame from the tick's per-slot pre-pass `0x00234590` (`0x00234712`) while
 `+0x5AE0` bit 0 is set:
@@ -125,7 +162,8 @@ and, when the bit changes:
 
 - on requires ladder 2 and a non-zero charge count (`0x00303F82`-`0x00303F92`), tested before anything else, so an
   empty count refuses even with the endless-turbo byte set;
-- it loads slot 2 with `[0x01DFE0B8] × [0x008F8180]` seconds, the frame base 1.0 times 10.0 (`0x00303F98`-`0x00303FC8`);
+- it loads slot 2 with `[0x01DFE0B8] × [0x008F8180]` seconds (`0x00303F98`-`0x00303FC8`): the time base, 1.0 in the image
+  and 2.0 under FrameLimit 1, times 10.0;
 - with the debug-menu byte `+0xE1E` set (`0x0017D3A0`; row 230, "Enable infinite chocobo turbo time") it sets the
   count back to 3 (`0x00303FDD` `or 0xC`), otherwise it stores the count less one (`0x00303FED`-`0x00303FFD`);
 - it requests animation `0x2010` on the chocobo (`0x0030401A`, `0x00329A10`); off requests `0x2001`; either way bit 1
@@ -136,6 +174,24 @@ by turbo, by the reset `0x00304680` (`0x00304726`, cleared) and by the transitio
 has three dashes and gets none back. While turbo is on the chocobo's speed is doubled: `0x003045A0` multiplies the
 chocobo definition's speed by `[0x01CEBC08]` = 2.0 when bit 1 is set (`0x003045D5`-`0x003045DA`;
 [player movement](../Movement-And-Pathfinding/player-movement.md)).
+
+The dash drains in slot 2 at the ticker's rate, from `[0x01DFE0B8] x 10.0` to 0 (10.0 with the image value 1.0;
+20.0 when FrameLimit 1 makes `0x001EDDC0` store 2.0 there, `0x001EDDD8`), and `0x00304440` ends it in its step 3 when
+the slot expires. The gauge the player sees is the count alone: of the twelve call sites of the record
+filler `0x003200A0` (in seven functions), none reads the turbo time `+0x10` (the ride HUD record access
+table), so a running dash shows no bar and no number, only the spent mark's fade (below).
+
+### The debug switches
+
+Two debug-menu rows reach the ride, both toggles of a byte of the debug object `[0x001D50D0()]`
+([debug menu commands](../Engine-Core/debug-menu-commands.md)):
+
+| Row | Text | Toggle | Byte | Reader | Read at | Effect |
+|---|---|---|---|---|---|---|
+| 229 | Enable infinite chocobo time | `0x001D3B31` | `+0xE1D` | `0x0017D380` | `0x00304458`, `0x003044BD` | the ride time is written as 180.0 every frame and the timer dismount is skipped |
+| 230 | Enable infinite chocobo turbo time | `0x001D3B46` | `+0xE1E` | `0x0017D3A0` | `0x00303FCD` | a dash sets the count back to 3 instead of spending one |
+
+The two readers have no other callers; the dash length itself is not changed by either row.
 
 ### The ride HUD
 
@@ -184,6 +240,8 @@ cancel mask `0x01E0C2A4`:
 - on its input turn (message 10), once the ride time is at or below 0 and `0x00303CC0()` allows a dismount, it asks the
   manager for the hide (`0x003CAD49`-`0x003CAD6F`).
 
+The control window's two button labels are text buffers of `0x80` bytes at its `+0xC0` and `+0x140`. For button i (0 and 1), `0x003CAB00` takes `+0xC0 + i x 0x80` (`0x003CAC00`-`0x003CAC10`), has the formatter `0x002B4090` write the template text `0x467C` into it with the values of legend entry i of `0x0029DA70` (`0x003CAC13`-`0x003CAC2F`), and gives the buffer to child node i as its text at `+0x18` (`0x003CAC39`), with `0x0020E620(0)` at `+0x20` (`0x003CAC3D`-`0x003CAC44`). The signal widgets of [Message windows](../Menus-And-HUD/message-windows.md) build their labels the same way.
+
 All the widgets read the ride through `0x003200A0(0, out)`, which fills a `0x34`-byte record (Layouts): the
 summon's half when an Esper is out (`0x003135E0`), else the chocobo's half while the riding bit is set.
 
@@ -201,6 +259,45 @@ record `[0x0209AC30] + 0x28` at `+0x1C8` on message 1:
    colour over 16.
 3. While a tween runs, `0x003CAED0` writes its value (`0x00271960`) into the node's colours; a mark whose
    tweens have both ended (`0x00272710`) is hidden.
+
+#### The HUD parts
+
+The five widgets are built inside the manager's `0xAA0` bytes with `0x00245000` ([widgets](../Menus-And-HUD/widgets.md#construction)).
+Four take a record of the field HUD layout file at `[0x0209AC30] + 0x28`, decoded by `0x002432B0` (the dialog takes
+none); the marks, the control window and the TIME root install an animation descriptor with `0x00247570`, while
+the timer and the dialog keep the default `0x00915198` ([widgets](../Menus-And-HUD/widgets.md#opening-and-closing-runs)):
+
+| Part | Procedure | Size | At | Layout record | Descriptor | Nodes |
+|---|---|---|---|---|---|---|
+| manager | `0x003CA860` | `0xAA0` | `0x02B47758` | none: its rect is `0x01E0C1D8` x `0x01E0C1DC` at 0, 0 (`0x003CAA9D`-`0x003CAABD`) | none; it sets its draw priority to `0xA0` with `0x00247930` (`0x003CAACC`) | |
+| marks | `0x003CB150` | `0x1E0` (`0x003CB0ED`) | `+0xC0` (`0x003CB0E3`) | 0 (`0x003CB1C7`) | table entry 1 (`0x003CB1D4`) | items 3, 4, 5 of the record, from `0x00D11758` (`0x003CB347`) |
+| control window | `0x003CAB00` | `0x1C0` | `+0x2A0` | 1, through the marks' record (`0x003CAB65`) | table entry 4 (`0x003CAB9D`) | two `0x80`-byte labels at `+0xC0` and `+0x140` from legend scene `0xC` |
+| TIME root | `0x003CAE00` | `0x190` | `+0x460` | 2 (`0x003CAE73`) | its own at `0x00D11730` (`0x003CAEB5`) | |
+| timer | `0x003CA530` | `0xD0` | the TIME root's `+0xC0` (`0x003CAE22`) | 3 (`0x003CA7C8`) | default | the digits through `0x0029F6E0`: three whole seconds, one tenth |
+| Dismount dialog | `0x003CA310` | `0x4A0` | `+0x5F0` | none: text `0x832` or `0x87C` into a `0x200`-byte buffer, window flags `0x418` plus `0x101` when the test fails (`0x003CA4A8`-`0x003CA4E0`) | default | its window at `+0xC0` (`0x00241C90`) |
+
+The descriptors are two halves of `0x14` bytes, open and close; their words are (1, 200, 1, 40) at
+`0x00D11730`, (1, 200, 1, −50) for entry 1 (the marks) and (1, 200, 1, 0) with 50 in the third dword for
+entry 4 (the control window) of the table at `0x009158C0` (`0x002735E0`), the second word being the length in
+milliseconds (`0x00246BC4` reads `+2`).
+
+The marks widget's layout-record pointer at its `+0x1C8` (a qword,
+`0x003CB198`) is read by the manager as its own `+0x288`, low dword sign-extended (`0x003CA8FC`), and passed as
+the control window's message `+8`; the marks' flags `+0x1D4` are the manager's `+0x294` (`0x003CA9B4`).
+
+#### The ride's sounds
+
+Six system sound ids are played by the two input widgets, all through `0x00249C60`
+([sound effects](../Sound-And-Music/sound-effects.md)):
+
+| Id | Site | When |
+|---|---|---|
+| `0x55` | `0x003CACE1` | confirm with turbo off and a charge left: the dash starts |
+| 5 | `0x003CACF7` | confirm otherwise: refused |
+| 4 | `0x003CA3F8` | the Dismount dialog's first tick after opening |
+| `0x56` | `0x003CA3CB` | yes, with the ground test passing: the dismount task starts |
+| 3 | `0x003CA379` | cancel (`0x8102`) |
+| 2 | `0x003CA3E8` to `0x003CA379` | any other answer, or yes with the test failing |
 
 ### Where a dismount is allowed
 
@@ -258,7 +355,8 @@ and no dismount task is running (`0x022CA468` = 0). The handler's open step sets
 - `0x00304680` is the full reset: `0x00303D90(0)`, the turbo end, `+0x5AE0` bits 0, 2 and 3 cleared,
   the three floats zeroed, `0x0035C900(0)`. It runs from the battle runtime reset `0x00237DF0`
   (`0x00237E4B`) and from `0x00304140`, which calls it when the riding bit is clear.
-- `0x00304060` and `0x00304140` are entered through the pointer pair at `0x01EED010` / `0x01EED018`.
+- `0x00304060` and `0x00304140` are row 2's committed enter and leave handlers of the transition table
+  `0x01EECFC0` (`0x0030D8B0`; The ride timer and the turbo timer, above).
   `0x00304060` restores a ride: it attaches the leader to the chocobo (`0x002E28C0(chocobo, leader)`, `0x00304097`, then
   `0x002ECF10`; the attach below),
   reloads slot 1 with `max(+0x5AE4, 2.0)` (the floor at `0x01CEBC08`) and slot 2 with `+0x5AE8`,
@@ -294,6 +392,34 @@ next attach. The ride's path (`0x00304060` to `0x002E28C0`) sets none, and the p
 rider sits where slot 15 of the chocobo's model puts it
 ([character render records](../Graphics/character-render-records.md)). `0x002E26F0`'s other caller is
 `0x0034A640` (`0x0034A686`).
+
+Slot 15 is resolved when the request service runs `0x0042F880` and `0x004215A0` on the pending tie
+([character render records](../Graphics/character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table)).
+The tie takes the slot path because the rider's own skeleton entry has bit 7 of `+0x00` set (`0x00421649`
+tests the child's entry, `0x004215CE`-`0x004215FE`; the kind-2 builder sets the bit at `0x00372CB3`); a rider
+without it would go to the named link `0x004218A0` (`0x00421838`).
+
+The slot is then looked up in the chocobo's
+model: `0x003E5AD0(parent, 15)`, entry 15 of the u16 table at `+0x14C` of section 1 of its `@FCP`
+([model files](../Graphics/model-files-cm-ca.md#fcp)).
+
+The ride chocobo is party-table row 26, model id 173, `monster/m11/m1178/m1178.cm`
+([party table](../Party/party-table.md), [model asset list](../Graphics/model-asset-list.md)).
+In that file the entry is 0, so the rider's skeleton is linked to node 0, the root (key `0x1D`, the
+`model` bone, no pool translation), by `0x0046E640` and `0x00370390` (`0x00421738`-`0x0042175C`;
+[animation playback](../Graphics/animation-playback.md#the-node-records-and-the-attach-tree)).
+
+Only an entry of `0xFFFF` would fall back to bone key `0x1E`, `n_hara`, which in `m1178` is node 1
+at (0, 1.0, 0) above the root.
+
+The slot-15 branch then sets the chocobo's `+0x284` bit 27 and the rider's bits 26 and 27, bit 6 of
+`+0x4B7` on both, resets both presentation entries (`0x0041CFC0`), copies the 16 bytes at `0x02064AB0`
+into the rider's angles `+0x120` and runs `0x00512C80` on its `+0x650` (`0x0042177F`-`0x004217F0`).
+
+`0x02064AB0` lies in `.data`'s zero-filled tail, and its only direct references are eight `movaps` reads
+(`0x002F36BC`, `0x003C51DE`, `0x003F53B0`, `0x003F5977`, `0x003F67E0`, `0x003F6B50`, `0x004217DB`, `0x004FEA3E`), so the
+angles are zero; with the authored vectors unset, `0x002EDAA0` had already zeroed `+0x140`. The rider's seat
+is therefore the chocobo's root, with no offset and zero angles from the tie; the tie sets no posture.
 
 ### Airship travel
 
@@ -339,16 +465,54 @@ Struct RideHudRecord size=`0x34`     filled by `0x003200A0`(0, out); zeroed firs
 | `+0x18` | `u32` | leaderRow | block byte +`0x5AA4` (`0x00304630`, `0x003271D0`) |
 | `+0x1C` | `u32` | summon | bit 0 an Esper is out (`0x003135E0`); +`0x20` to +`0x33` the summon's fields (`0x00313590`, `0x00313820`, `0x00313830`, `0x003137E0`, `0x003137F0`); when set, +`0x04` to +`0x18` stay 0 |
 
-Struct TimerSlot base=`0x02B5EBC0` size=`0x14`:
+Struct TimerSlot base=`0x02B5EBC0` size=`0x14` count=8     slot 1 the ride, slot 2 the dash and the summon timer:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | start | (`0x003EBC50`) |
-| `+0x04` | `i32` | target |  |
-| `+0x08` | `f32` | value | `0x003EBA90` |
-| `+0x0C` | `f32` | step | ±1/60 or ±1/50 per frame |
-| `+0x10` | `u8` | running | `0x003EBD00` |
-| `+0x11` | `u8` | expired | `0x003EBB70` |
+| `+0x00` | `i32` | start | the loaded value truncated to an integer (`0x003EBC79`), or the integer start (`0x003EBBC8`) |
+| `+0x04` | `i32` | target | `0x003EBC74`; the ticker compares the value with it as a float (`0x003EBA3A`) |
+| `+0x08` | `f32` | value | `0x003EBA90`; stepped by `0x003EB9A0`, clamped to the target on expiry |
+| `+0x0C` | `f32` | step | +-0.016675 per frame step (`0x003EBCA8`; the 0.02 arm is unreachable); not written by the reset |
+| `+0x10` | `u8` | running | 1 from `0x003EBD00`, 0 from the loaders, `0x003EBB90` and the reset |
+| `+0x11` | `u8` | expired | 1 from `0x003EBD00`, the ticker and the reset; 0 from every load (`0x003EBCD7`, `0x003EBC34`); the loaders' zero-step store of 1 (`0x003EBC24`, `0x003EBCD0`) is unreachable |
+| `+0x12` | `u8[2]` | no instruction in the census reaches it |  |
+
+Struct RideHudManager size=`0xAA0` at [`0x02B47758`]     procedure `0x003CA860`; the widget header to +`0xC0`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C0` | `RideHudMarks` | the marks widget, 0x1E0 bytes, built by 0x003CB0C0; the manager reads its +0x1C8 as a | sign-extended dword at its own +`0x288` (`0x003CA8FC`) and its +`0x1D4` at +`0x294` (`0x003CA9B4`, `0x003CAA18`) |
+| `+0x2A0` | `u8[448]` | the control window 0x003CAB00: +0xC0 and +0x140 its two 0x80-byte labels |  |
+| `+0x460` | `u8[400]` | the TIME root 0x003CAE00; its +0xC0 holds the 0xD0-byte timer 0x003CA530 |  |
+| `+0x5F0` | `u8[1184]` | the Dismount dialog 0x003CA310; +0xC0 its window, closed by the hide (0x003CA988, through the | manager's +`0x6B0`); +`0x490` flags (bit 0 window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit 1 first tick pending), +`0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
+| `+0xA90` | `u32` | bits 0-1 the request: 1 show, 2 hide, cleared when acted on |  |
+
+Struct RideHudMarks size=`0x1E0` at manager+`0xC0`     procedure `0x003CB150`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C0` | `TurboMark[3]` | the three 0x58-byte mark records |  |
+| `+0x1C8` | `void*` | the field HUD layout record [0x0209AC30]+0x28, kept on message 1 (0x003CB198) |  |
+| `+0x1D0` | `u32` | the shown count, at most 3 (0x003CB3A9, 0x003CAFC1) |  |
+| `+0x1D4` | `u32` | bit 0 set up (message 16, 0x003CB1BD), bit 1 closing (message 15, 0x003CB29F) |  |
+
+Struct TurboMark size=`0x58`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[32]` | alpha tween (0x002726C0 / 0x002727C0 at 0x003CAF5F / 0x003CAF6A); +0x14 i16 its value |  |
+| `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; |  |
+| `+0x34` | `i16` | its | value |
+| `+0x40` | `void*` | the mark's layout item, item 3 + k of the record (0x003CB36E) |  |
+| `+0x48` | `u32` | bit 0 shown, bit 1 spent, bit 2 alpha tween running, bit 3 colour tween running |  |
+
+The timer widget keeps one field of its own, `+0xC0`, the UI tick at which the time first reached 0
+(`0x003CA653`); the control window's two labels are the only fields past its header.
+
+The access tables beside this page list every instruction found reaching
+[the ride state](chocobos-and-airships-ride-state-accesses.tsv) (`+0x5AE0`-`+0x5AEF`, `+0x5B04`,
+`+0x5B08` of the block), [the ride HUD record](chocobos-and-airships-ride-hud-record-accesses.tsv) and
+[the timer slots](chocobos-and-airships-timer-slot-accesses.tsv).
 
 ```python
 mode = bit3(+0x5B04) ? 5 : bit2 ? 4 : town ? 3 : bit1 ? 2 : bit0  # 0x0030D9A0
@@ -390,7 +554,10 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 |---|---|---|
 | `[0x02EBF190] + 0x5B04` | u32 | the mode bits; bit 1 riding; saved in the transition record |
 | `[0x02EBF190] + 0x5AE0`-`+0x5AEF` | struct | the ride state above |
-| `0x02B5EBC0` | TimerSlot[] | slot 1 the ride, slot 2 turbo |
+| `0x02B5EBC0` | TimerSlot[8] | slot 1 the ride, slot 2 turbo (and the summon timer) |
+| `0x022CA624` | u32 | the frame steps the ticker multiplies the step by (`0x0035E790`) |
+| `0x01EECFC0` row 2 | ptr[4] | the chocobo level's transition handlers `0x00304180`, `0x00304400`, `0x00304060`, `0x00304140` |
+| `0x02064AB0` | f32[4] | the rider's angles after the tie: uninitialised, read only |
 | `0x022CA468` | ptr | the running dismount task, 0 when none |
 | `0x022CA45C` | u32 | cleared when a timer dismount starts; 1 after a refused Dismount (`0x0035D010`), read by `0x0035CF50` |
 | `0x01CEBC08` | f32 | 2.0, the restore floor for slot 1 |
@@ -409,6 +576,10 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
   factor is `0x01CEBC08` (2.0), which is also the restore floor of the ride timer.
 - The three charges come from the `or 0xC` at `0x00303DC6` and `0x00306A23`; a refill needs a write of bits 2-3 of
   `+0x5AE0`.
+- The rider's seat is the chocobo model's special-id entry 15 (`m1178.cm`, `@FCP` payload `+0x40 + 0x14C + 30`, 0 = the
+  root); another node there moves the seat. `attachinfo` vectors set on the rider before the committed pass
+  (`0x002E26F0` with `+0x14F` bit 2) offset (`+0x140`) and scale (`+0x160`) it from that node; their angles are
+  replaced by the slot-15 branch's copy of `0x02064AB0` (`0x004217E9`).
 - A mount without a script is `0x00303D90(1)` plus flag 115; a dismount without the fade is
   `0x00303D90(0)` plus clearing the flag. The task adds the fade, the music swap and the party
   rebuild.
@@ -431,3 +602,6 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [HUD](../Menus-And-HUD/hud.md) and [widget messages](../Menus-And-HUD/widget-messages.md): the field HUD the ride's widgets
   join and the message ids they answer.
 - [Debug menu commands](../Engine-Core/debug-menu-commands.md): rows 229 and 230.
+- [Party control modes](../Engine-Core/party-control-modes.md): the transition table whose row 2 starts and ends the ride.
+- [Model files](../Graphics/model-files-cm-ca.md) and [animation playback](../Graphics/animation-playback.md): the special-id table and the node link the rider's seat uses.
+- [Sound effects](../Sound-And-Music/sound-effects.md): the system sound player the ride's six ids go through.

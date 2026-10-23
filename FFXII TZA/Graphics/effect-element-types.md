@@ -65,6 +65,19 @@ parsed while `0x022BE950` is set. The prefix is `TsElementType_` unless the row 
 
 Type `0xA1`, VLENSFLARE, drives the eight lens-flare slots at `0x02ADBB40`.
 
+While it parses a type-1 stream, `0x002FC4A0` records every definition's type. It clears `0x914` bytes from `0x02EC29C0`
+(`0x002FC570`), sets `0x02EC32C4` and `0x02EC32CC` to 1 (`0x002FC5BC`, `0x002FC5C7`), runs the parse `0x003EDAD0` (`0x002FC5D2`)
+and then clears `0x02EC32C4` (`0x002FC5E7`).
+
+While both words are set, the setup dispatcher `0x005004C0` appends the
+definition's type byte `+0x44` to the 512 dwords at `0x02EC29C0` and adds 1 to the count `0x02EC32D0`. When 512 are
+recorded it clears `0x02EC32CC` instead (`0x005004C0`-`0x00500501`). With `0x022BE950` set, `0x002FC4A0` then prints the
+count, each recorded type with its name (`0x002FBA60`) and each distinct type once (`0x002FC5F5`-`0x002FC7E7`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EC32D0` | `u32` | 0 (zero-filled tail) | the number of definition types recorded at `0x02EC29C0` during the last type-1 parse, at most 512 | `0x002FC4A0`, 0 (its clear from `0x02EC29C0`, `0x002FC570`; the 8-byte store at `0x02EC32CC`, `0x002FC5C7`); `0x005004C0`, +1 (`0x005004F9`) | `0x005004C0` (`0x005004DC`, `0x005004F9`); `0x002FC4A0` (`0x002FC667`, `0x002FC6A3`, `0x002FC70D`, `0x002FC751`, `0x002FC7B7`) |
+
 ### Types 0x00 to 0x0A
 
 | Type | Birth | Update | Draw | Setup | Release | Authored |
@@ -978,6 +991,21 @@ points, (`0x02AEEDA4` + 1 + `0x02AEEDAC`) × (`0x02AEEDA8` + 1).
 | `0x02092631` | `u8` | 0 (zero-filled tail of `.data`) | camera records to release in the field: `0xD1`'s release `0x003D90C0` ors in 1 when definition byte `+0x241` has bit 2 set and 2 otherwise, while the byte at `[0x02F97348]` is below `0xA` (`0x003D90E0`-`0x003D9104`). Unless its argument is 1, `0x00258B90` calls `0x0025A520(6, 0)` for bit 0 and `0x0025A520(4, 0)` for bit 1, then clears the byte | `memset` from `0x0024C970` (`0x0024C983`); `0x0024C970` (`0x0024CAF1`); `0x003D90C0` (`0x003D9104`); `0x00258B90` (`0x00258BD8`) | `0x003D90C0` (`0x003D9104`); `0x00258B90` (`0x00258B9F`, `0x00258BC3`) |
 | `0x02092632` | `u8` | 0 (zero-filled tail of `.data`) | the same while the byte at `[0x02F97348]` is `0xA` or more (`0x003D90FC`). `0x00258B90` handles it when `[0x02096A18]` `+0x370` is set and `+0x366` is 0 or not above `+0x367` (`0x00258BDF`-`0x00258C2F`) | `memset` from `0x0024C970` (`0x0024C983`); `0x0024C970` (`0x0024CAF8`); `0x003D90C0` (`0x003D90FC`); `0x00258B90` (`0x00258C2F`) | `0x003D90C0` (`0x003D90FC`); `0x00258B90` (`0x00258BDF`, `0x00258C1A`) |
 | `0x02096ED8` | `f32` | 0 (zero-filled tail of `.data`) | the field of view of the camera `0x02096ED0`: the key's `+0x328` from `0x003D9150`, or π/4 (`0x3F490FDB`) from the camera set-ups | `0x003D9150` (`0x003D922D`); `0x003CBAD0` (`0x003CBAE1`, reached from `0x00259360` by its jump); `0x003CBBE0` (`0x003CBBF1`, reached from `0x00259180` through `0x003CBFF0`) | `0x0025A2C0` (`0x0025A2C6`, its 16-byte load of `0x02096ED0`, called from `0x003D9150` at `0x003D929F`) |
+
+The four built-in type-`0x42` definitions and the projection copy the effect camera starts from:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B4E3D8` | `void*` | 0 (zero-filled tail of `.data`) | entry 1 of the four definition pointers at `0x02B4E3D0`: the body `0x01EFE520` of the built-in record at `0x01EFE510` (its `+0x08` holds the body length, `0x130`), after `0x0050C450` has set it up over that length | `0x003D8C30` (`0x003D8C42`, the record; `0x003D8CA9`, its body; called from `0x00259180` at `0x002591AF`) | `0x003D8C30` (`0x003D8C8E`); `0x003D7FF0` (`0x003D80A0`-`0x003D80A7`) |
+| `0x02B4E3E0` | `void*` | 0 (zero-filled tail of `.data`) | entry 2: the body `0x01EFE6A0` of the record at `0x01EFE690`, set up the same way | `0x003D8C30` (`0x003D8C57`, `0x003D8CD0`) | `0x003D8C30` (`0x003D8CB5`); `0x003D7FF0` (`0x003D80A0`-`0x003D80A7`) |
+| `0x02AEE5B0` | `vec` | 0 (zero-filled tail of `.data`) | row 1 of `0x02AEE5A0`, a copy of the camera projection `0x02AEDD30` taken by `0x0039AED0` and `0x0039AF20`, which `0x0039CD50` runs in the field reset | `0x0039AED0` (`0x0039AEFC`); `0x0039AF20` (`0x0039AF44`) | `0x0039AFA0` (`0x0039B059`, copied to `0x022D9310` at `0x0039B060`; called from `0x0039D430` at `0x0039D45F`) |
+| `0x02AEE5C0` | `vec` | 0 (zero-filled tail of `.data`) | row 2 of that copy | `0x0039AED0` (`0x0039AF0A`); `0x0039AF20` (`0x0039AF52`) | `0x0039AFA0` (`0x0039B067`, copied to `0x022D9320` at `0x0039B082`) |
+| `0x02AEE5D0` | `vec` | 0 (zero-filled tail of `.data`) | row 3 of that copy | `0x0039AED0` (`0x0039AF11`); `0x0039AF20` (`0x0039AF59`) | `0x0039AFA0` (`0x0039B08A`, copied to `0x022D9330` at `0x0039B09A`) |
+
+`0x003D7FF0`, the `0x42` pool's slot taker, copies the request's 32 bytes to slot `+0x30`. When the slot byte `+0x3E` is 2 it
+holds slot `+0x40` to at most 3, takes that entry of `0x02B4E3D0`, adds `0x80` (the definition's track group) and
+stores its image offset (`0x0020E620`) back at `+0x40` (`0x003D8086`-`0x003D80B4`). Entry 0, `0x02B4E3D0`, is `0x01EFE3A0`, the body
+of the record at `0x01EFE390`, and entry 3, `0x02B4E3E8`, the body `0x01EFE820` of the record at `0x01EFE810`.
 
 ### Templates the type arms patch
 

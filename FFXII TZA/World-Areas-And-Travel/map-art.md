@@ -146,6 +146,22 @@ Every frame `0x001808D0`, called from `0x0022A770`, runs `0x001AA120`, which rew
 animates on screen. `0x004680D0` releases the PS2 side and calls `0x00180280`, whose `0x001A5980` frees
 both textures of every entry (`0x00183720`) and empties the map and the vector.
 
+The parser keeps the PS2 palettes in a buffer of its own. For a chunk of `n` textures (its first dword), `0x00468160`
+sets `0x02CA6024` to the dword its third argument points to, the map's `+0x1B8`
+([MPK map pack](mpk-map-pack.md)), or to 0 when that pointer is null (`0x004681A4`-`0x004681E5`). It allocates
+`(n + [0x02CA6024]) x 1024` bytes in arena 6 (`0x003EC8D0`) into `0x02CA6018` (`0x00468200`-`0x0046821C`).
+
+Texture `i` has its
+palette converted into the 1,024-byte slot `i` (`0x003CCB60`, `0x004682B4`-`0x004682D0`). An entry of the `[0x02CA6010]` table
+whose byte `+0x10` is 4 has its palette converted into slot `n` plus its dword `+0x30` (`0x0046835B`-`0x0046837B`). The slot's address goes to
+`0x001801A0` with the texture (`0x004682C8`, `0x00468487`). `0x004680D0` frees the buffer and clears the pointer through
+`0x003EC8A0` (`0x00468145`-`0x0046814C`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA6018` | `void*` | 0 (zero-filled tail) | the tag-12 palette buffer: `n + [0x02CA6024]` slots of 1,024 bytes | `0x00468160` (`0x0046821C`); `0x003EC8A0`, 0 (`0x003EC8B6`, called from `0x004680D0` at `0x0046814C`) | `0x00468160` (`0x004682B4`, `0x00468374`); `0x003EC8A0` (`0x003EC8A9`, from `0x004680D0`) |
+| `0x02CA6024` | `u32` | 0 (zero-filled tail) | the number of palette slots after the textures' own, read from the parser's third argument; 0 without one | `0x00468160` (`0x004681A4`, 0; `0x004681E5`) | `0x00468160` (`0x00468200`) |
+
 ### The views and the bridge
 
 Byte `+0x1C` of the render manager (`0x00189120`) tells which view is being prepared: `0x00185A10` sets it

@@ -291,6 +291,13 @@ The PhyreEngine lock, `0x28` bytes (constructor `0x005CC8A0`; plain lock `0x005C
 | `0x02EA0BA0` | the 2,048-byte format buffer of `0x006DF480` |
 | `0x02CB6120`, `0x02CB6128` | the performance-counter frequency and its reciprocal |
 
+The descriptor `0x00368ED0` hands to `0x00863540` for the semaphore `0x022D7F90` (`lea` of `0x022D7F98` at `0x00368F08`):
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022D7F9C` | `u32` | 0 (zero-filled tail of `.data`) | `+0x04`, the semaphore's maximum count, `0x10000`; one 8-byte store also sets the initial count `+0x08` (`0x022D7FA0`) to 0 | `0x00368ED0` (`0x00368EFD`) | `0x00863540` (`0x0086355E`, `+0x04`, and `0x00863565`, `+0x08`), which pass them to `0x008632E0` as the maximum and initial counts of `CreateSemaphoreW` (`0x0086331D`) |
+| `0x022D7FAC` | `u32` | 0 (zero-filled tail of `.data`) | `+0x14` of the descriptor, stored 0 | `0x00368ED0` (`0x00368F0F`) | `0x00863540` reads `+0x04` and `+0x08` of the descriptor (`0x0086355E`, `0x00863565`), not `+0x14` |
+
 ### The thread-name map
 
 `0x02EB37B8` is a static `eastl::map` from thread id to thread name. Its initialiser `0x0016A2C0` builds it empty and

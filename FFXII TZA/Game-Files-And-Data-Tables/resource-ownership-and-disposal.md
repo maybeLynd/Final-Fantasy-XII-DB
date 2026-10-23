@@ -268,6 +268,18 @@ The bank at manager `+0xD90`, the 32 effect tickets and 32 instance handles with
 counter, the context lists `0x020910A0`, the current context `0x02F97340`, and the 80 motion slots with
 their five pending masks at `0x02B58A60`.
 
+The pending masks are five `u32` at `0x02B58A60 + 4 × g`, one per area slot `g`; bit `i` marks motion record `i` of
+that slot as armed and not yet swept:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B58A68` | `u32` | 0 (zero-filled tail of `.data`) | the pending mask of area slot 2; the reset's 8-byte store also clears slot 3's mask `0x02B58A6C` | `0x003DD7E0` (`0x003DD7F4`, 0; called from `0x00266D10` at `0x00267112`); `0x003DD790(g)` (`0x003DD7D0`, 0 after it clears the slot's sixteen records; reached from `0x0026C8C0` at `0x0026CDE3`); `0x003DDA20` (`0x003DDA5F`, sets bit `i`); `0x003DD4C0` (`0x003DD672`, clears bit `i` once the record is handled) | `0x003DD4C0` (`0x003DD4F0`, the whole mask; `0x003DD510`, bit `i`) |
+| `0x02B58A70` | `u32` | 0 (zero-filled tail of `.data`) | the pending mask of area slot 4 | `0x003DD7E0` (`0x003DD7FB`, 0); `0x003DD790`, `0x003DDA20` and `0x003DD4C0` as above | `0x003DD4C0` as above |
+
+The other three masks follow the same accesses; the reset clears slots 0 and 1 with one 8-byte store at `0x02B58A60`
+(`0x003DD7ED`). `0x003DD790`, `0x003DDA20` and the sweep reach each mask as `0x02B58A60 + 4 × g` (`0x003DD7C9`, `0x003DDA47`,
+`0x003DD4D4` with `0x003DD69B`).
+
 ## Modding notes
 
 - Two sources with the same tag and name share one bank entry: the first one registered wins, and

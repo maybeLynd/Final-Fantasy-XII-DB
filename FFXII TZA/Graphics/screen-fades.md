@@ -74,6 +74,12 @@ Fades are one kind of screen effect. The pool holds 32 records of 0x70 bytes at 
 for stages 2, 3, 5 and 6 in the scene draw `0x0022B0B0` and stage 7 after `0x00376470`, so the stage,
 then the priority, sets the order in which fades and other screen effects cover each other.
 
+The class enables are bytes at `0x02EC07E0`, just past the pool, indexed by the record's class byte `+2`. The reset
+`0x00375120` (called from `0x00259180` at `0x002591CD`) sets classes 0 to 3 to 1 with one 4-byte store (`0x0037514F`) and
+classes 4 and 5 with one 2-byte store at `0x02EC07E4` (`0x0037515C`). Three walks of the pool test the byte of each
+live record's class: the pool tick `0x00374950` (`0x0037497A`), `0x00374FD0` (`0x0037502B`) and the draw `0x00375500`
+(`0x00375578`), each as `[0x02EBF9E0 + 0xE00 + class]`.
+
 ### Drawing a fade
 
 `0x003740B0` draws one full-screen quad (corners at ±1.0) in the descriptor's colour with alpha

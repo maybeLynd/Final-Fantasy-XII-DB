@@ -427,6 +427,13 @@ each through `0x00332750` after the emitter step and frees a player whose step r
 the `0x600` record's sub-entries; a track's event list is at the sub-entry's `+0x20` (count byte
 `+3`, 0 meaning 64), filled by `0x0046F380`, which frees the slot's old event first.
 
+When the checks at `0x00332A07`-`0x00332A39` pass, the player step `0x00332750` sets bit 2 of the player's `+0x90` on the
+first such step (`0x00332A61`). On later steps it counts the player's `+0xA0` up and returns 0 once the count reaches
+the limit `0x02EC0F90`, so the player is freed (`0x00332A3B`-`0x00332A5C`). `0x02EC0F90` (`i32`, 0 at start, zero-filled
+tail of `.data`) is set by `0x003333D0` (`0x003333E7`), which `0x001EDDC0` calls at `0x001EDE52`, to the frame-time factor
+`0x01DFE0B8` times 30.0 (`0x008F8D80`), truncated and shifted left by 2: 120 in this build. `0x00332750` reads it at
+`0x00332A52`.
+
 `0x0046EE30(track, sub-entry, id, byte)` fills a new track and `0x0046EFD0(track, slot)` starts it at
 time 0. `0x0046EFD0` creates the path objects the sub-entry lists (`0x003A8240`, `0x003A8020`), runs every
 enabled subtype-2 event through `0x003B8670`, and fires the time-0 events: subtype 1 births an
@@ -503,6 +510,42 @@ left at `+0x35C`. At 0, bit `0x2000` frees through `0x00333740(player, key)` the
 key and every emitter with it (`0x003A8510`); bit `0x1000` frees through `0x003334B0(player, key)`
 every track and emitter without it (`0x003A8660`).
 
+### Moving the owner actor
+
+Opcodes `0x1C` and `0x1D` of the battle effect program `0x003B8670` (cases `0x003B8EBD` and `0x003B8FB2`) move the actor
+that owns the current instance: `0x003588B0` of the instance's `+0x08`, or of the slot-0 target `[0x02096A20]` when
+`+0x378` bit `0x200` is set (`0x003B8EBD`-`0x003B8EDA`).
+
+The first of them in an instance, while `+0x368` bit `0x80` is clear, saves the actor's position (`0x00265020` into `0x02092180`-`0x02092188`), its facing (`0x00265200`) and its `+0x08`
+bit 3 and `+0x09` bit 6, the bits `partyusecharhit` sets
+([party verbs](../Scripts-And-Script-Commands/party-verbs.md)). It then calls `0x003B7E10(0)` unless `+0x368` bit
+`0x100` is set, and sets bit `0x80` (`0x003B8EF2`-`0x003B8F68`).
+
+- `0x1C` clears both actor bits (`0x0026A430(actor, 0)`, `0x003B8F74`), sets `0x02092190` to 1 and places the actor at the
+  operand's floats `+0x04`, `+0x08` and `+0x0C` times 0.01 (`0x0026AF80`, `0x003B8F79`-`0x003B8F9E`).
+- `0x1D` sets `0x02092190` to 1 and turns the actor to operand `+0x08` in degrees, `x 2 x π / 360` (`0x0026B5A0`,
+  `0x003B9064`-`0x003B9081`).
+
+`0x0024C6B0` puts the actor back. Opcode `0x1E` calls it (`0x003B9095`), `0x003A7360` calls it while `+0x368` bit `0x80` is
+set (`0x003A73BD`), and `0x0024C870` calls it (`0x0024C8D4`).
+
+1. It does nothing while bit `0x80` is clear.
+2. It clears `0x02092190` and stops there while `0x020921B0` is non-zero (`0x0024C6C8`-`0x0024C6D9`).
+3. It calls `0x003B7E10(1)`. When bit `0x100` is set it clears bit `0x80` and runs the target's restore `0x0024C870`
+   first (`0x0024C704`-`0x0024C71A`).
+4. It restores the two bits (`0x0026A430`, `0x0026A3A0`), the position (`0x0026AF80`) and the facing (`0x0026B5A0`)
+   (`0x0024C74C`-`0x0024C793`), and clears bit `0x80`.
+
+`0x0024C870` restores the target actor the same way from `0x020921A0`-`0x020921BC`, clearing `0x020921B0`. It stops while
+`0x02092190` is non-zero (`0x0024C88D`-`0x0024C89E`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209218C` | `u32` | 0 (zero-filled tail) | the owner actor's saved `+0x08` bit 3 (`0x00263F70`); `0x0026A430` puts it back into `+0x08` bit 3 and `+0x09` bit 6 | `0x003B8670`: opcode `0x1C` (`0x003B8F33`), opcode `0x1D` (`0x003B9028`); `0x0024C970`, 0 (its `0x1670`-byte clear from `0x020910A0`, `0x0024C983`) | `0x0024C6B0` (`0x0024C74C`) |
+| `0x02092190` | `u32` | 0 (zero-filled tail) | 1 once opcode `0x1C` or `0x1D` has moved the owner actor; while it is non-zero `0x0024C870` restores nothing | `0x003B8670`, 1: opcode `0x1C` (`0x003B8F79`), opcode `0x1D` (`0x003B9064`); `0x0024C6B0`, 0 (`0x0024C6CF`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C870` (`0x0024C88D`) |
+| `0x02092194` | `f32` | 0 (zero-filled tail) | the owner actor's saved facing (`0x00265200`), restored with `0x0026B5A0` | `0x003B8670`: opcode `0x1C` (`0x003B8F23`), opcode `0x1D` (`0x003B9018`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C6B0` (`0x0024C788`) |
+| `0x0209219C` | `u32` | 0 (zero-filled tail) | the owner actor's saved `+0x09` bit 6 (`0x00263E70`), restored with `0x0026A3A0` after `0x0209218C` | `0x003B8670`: opcode `0x1C` (`0x003B8F3E`), opcode `0x1D` (`0x003B9033`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C6B0` (`0x0024C75A`) |
+
 ### The method tables
 
 Every per-type behaviour is a switch on the element's type byte. Five tables cover the main range
@@ -569,6 +612,46 @@ per live element.
 
 The instance lists `0x020910F0`, the current instance `0x02F97348` and context `0x02F97340`, the table
 pointers `0x02EBEF70`–`0x02EBEFB0` and the current emitter `0x02EBEF80`.
+
+The draw state `0x0024FCF0` publishes is the start of a block, `0x02096800`-`0x02096D2B`, that the start-up reset
+`0x00259250` returns to its boot values ([start-up constants](../Engine-Core/startup-constants.md)). Other
+pages name other words of it: the effect program's flags `0x020968C8`
+([effect file loading](effect-file-loading.md)), the target slots `0x02096A20`-`0x02096B34`
+([effect anchors and targets](effect-anchors-and-targets.md)), and the chunk words `0x02096B40` and `0x02096BA4`
+([effect files](effect-files-efx-efb.md)).
+
+The scale is `0x02096810`-`0x0209681C`. `0x0024FCF0` copies the instance's
+`+0x320` into it and multiplies it by `+0x39C` (`0x003A2B20`, `0x0024FD0B`-`0x0024FD29`). It then sets w to 1.0
+(`0x0024FD3B`), as `0x0024C060` also does (`0x0024C212`). The rows give the words this page owns:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02096814` | `f32` | 0 (zero-filled tail) | the scale's y: `0x0024C060` scales the effect matrix `0x02AEEA20` by it (`0x0039ADE0`, called at `0x0024C21A`), and the anchor queries divide a point's y by it | `0x0024FCF0` (`0x0024FD12`, 16 bytes, then `0x003A2B20` at `0x003A2B51`); `0x00259250`, 1.0 (`0x00259303`) | `0x003A2B20` (`0x003A2B26`, from `0x0024FD29`); `0x0039ADE0` (`0x0039AE19`-`0x0039AE4B`, from `0x0024C21A`); `0x003A4290` (`0x003A456F`, `0x003A479E`); `0x003A56F0` (`0x003A5914`, `0x003A5B3E`) |
+| `0x02096818` | `f32` | 0 (zero-filled tail) | the scale's z, used the same way | `0x0024FCF0` (`0x0024FD12`; `0x003A2B51`); `0x00259250`, 1.0 (`0x0025930D`) | `0x003A2B20` (`0x003A2B26`); `0x0039ADE0` (`0x0039AE5A`-`0x0039AE82`); `0x003A4290` (`0x003A4581`, `0x003A47AB`); `0x003A56F0` (`0x003A5922`, `0x003A5B52`) |
+| `0x02096844` | `u8` | 0 (zero-filled tail) | the byte after the word `0x02096840`, which `0x0024FCF0` sets from the instance's `+0x330`; the reset sets it to 0 | `0x00259250`, 0 (`0x00259358`) | no instruction names it |
+| `0x02096884` | `u8[8]` | 0 (zero-filled tail) | eight bytes the reset sets to `00 10 01 01 00 00 00 00`. Byte `0x02096885` (`0x10`) and `0x0209688C` decide whether the `0x42` pool's step `0x003D8190` runs after the effect updates. Byte `0x02096887` (1) makes the effect-camera chunk submit the camera record `0x02096D30` | `0x00259250` (`0x00259295`, one 8-byte store) | `0x00258D70` (`0x00258E1B`, `0x02096885`); `0x00258E40` (`0x00258E8A`, `0x02096885`); `0x003ED8A0` (`0x003ED965`, `0x02096887`) |
+| `0x0209688C` | `u8` | 0 (zero-filled tail) | with the low nibble of `0x02096885`: the field step and the menu step run `0x003D8190` when that nibble is 0 or this byte is non-zero (`0x00258E1B`-`0x00258E2D`, `0x00258E8A`-`0x00258EA0`); the reset leaves the nibble 0 | `0x00259250`, 0 (`0x002592F3`) | `0x00258D70` (`0x00258E24`); `0x00258E40` (`0x00258E93`) |
+| `0x0209688E` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x002592A0`) | no instruction names it |
+| `0x02096892` | `u32` | 0 (zero-filled tail) | set to `0x200` by the reset | `0x00259250` (`0x002592AA`) | no instruction names it |
+| `0x02096896` | `u16` | 0 (zero-filled tail) | set to `0x8040` by the reset | `0x00259250` (`0x002592B4`) | no instruction names it |
+| `0x020968A0` | `f32[4]` | 0 (zero-filled tail) | set to (0, 0, 0, 1.0) from `0x008C5FD0` by the reset | `0x00259250` (`0x00259269`) | no instruction names it |
+| `0x020968B4` | `u32` | 0 (zero-filled tail) | set to `0x80000080` by the reset, after the neutral colour `0x020968B0` | `0x00259250` (`0x002592C7`) | no instruction names it |
+| `0x020968B8` | `u16` | 0 (zero-filled tail) | set to 1 by the reset | `0x00259250` (`0x002592D1`) | no instruction names it |
+| `0x020968E8` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x002592E6`) | no instruction names it |
+| `0x020968EC` | `u16` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x002592EC`) | no instruction names it |
+| `0x020968EE` | `u8` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x002592E0`) | no instruction names it |
+| `0x020969F0` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x00259317`) | no instruction names it |
+| `0x020969F8` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x0025931D`) | no instruction names it |
+| `0x02096A00` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x00259323`) | no instruction names it |
+| `0x02096A08` | `u32` | 0 (zero-filled tail) | set to 0 by the reset, below the target count `0x02096A20` | `0x00259250` (`0x00259329`) | no instruction names it |
+| `0x02096B3C` | `u32` | 0 (zero-filled tail) | set to 0 by the reset, below the chunk word `0x02096B40` | `0x00259250` (`0x0025932F`) | no instruction names it |
+| `0x02096BA0` | `u32` | 0 (zero-filled tail) | set to 0 by the reset, whose 8-byte store also clears the chunk word `0x02096BA4` ([effect files](effect-files-efx-efb.md), written by `0x003EE2D0` at `0x003EE319`, `0x003EE378`, `0x003EE395`) | `0x00259250` (`0x00259335`, 8 bytes) | no instruction names it |
+| `0x02096BA8` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x0025933C`) | no instruction names it |
+| `0x02096C60` | `u8` | 0 (zero-filled tail) | flags; the reset clears bit 0 and keeps the rest | `0x00259250` (`0x00259260`) | `0x00259250` (`0x00259260`, the same `and`) |
+| `0x02096C78` | `u32` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x00259352`) | no instruction names it |
+| `0x02096D21` | `u8` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x00259342`) | no instruction names it |
+| `0x02096D24` | `f32` | 0 (zero-filled tail) | set to 0.0 by the reset, before `0x02096D28` = 1 | `0x00259250` (`0x00259285`) | no instruction names it |
+| `0x02F8F320` | `u32` | 0 (zero-filled tail) | set to 1 by the field step `0x00258D70` and the menu step `0x00258E40` before they update the effects | `0x00258D70`, 1 (`0x00258DC1`, `edi` = 1 from `0x00258D95`); `0x00258E40`, 1 (`0x00258E74`) | no instruction names it |
 
 ## Modding notes
 

@@ -208,6 +208,31 @@ Those last seven number and clear the tables from `0x02B581A0` to `0x02B5EC88`: 
 `0x13602` and colour `0x80FFFFFF`, 16 records, 5 × 8 slots, 32 records numbered `0x20` to `0x3F`
 with a 28-node list, and eight pairs of 0 and `0x100`.
 
+The `0x48`-byte records are the [script gauges](../Menus-And-HUD/script-gauges.md)' record pool, which `0x003E7DF0`
+(called at `0x00266E3D`) builds; its layout is on that page.
+
+The eight pairs are the countdown slots: `0x14`-byte records at `0x02B5EBC0`, whose fields are laid out on
+[chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md). `0x003EBAB0` (called at `0x00266D95`) sets
+each slot's start `+0x00`, target `+0x04` and value `+0x08` to 0 and stores the word `0x100` at `+0x10`, so the
+running byte `+0x10` is 0 and the expired byte `+0x11` is 1 (`0x003EBAB2`-`0x003EBB5D`).
+
+The step `0x003EB9A0`, from the field tick `0x00314020` (`0x00314056`), runs when its gates pass
+(`0x003EB9A4`-`0x003EB9F1`) and walks all eight slots. For each slot that is running and not expired it adds the step
+`+0x0C` times the integer `0x0035E790()` returns to the value; once the value reaches the target `+0x04` it stores
+the target as the value and sets the expired byte (`0x003EBA17`-`0x003EBA6B`).
+
+| Slot | Record | Who drives it |
+|---|---|---|
+| 0 | `0x02B5EBC0` | the enemy respawn clock `0x0032A100` ([enemy respawning](../Enemy-Spawning/enemy-respawning.md)): `0x003EBB70` (`0x0032A106`), `0x003EBBB0(0, 0, 1)` (`0x0032A117`), `0x003EBD00` (`0x0032A11E`), `0x003EBA90` (`0x0032A125`) |
+| 1 | `0x02B5EBD4` | the chocobo ride: `0x00304060` (`0x003040DA`, `0x003040E4`), `0x00304790` (`0x003047A7`, `0x003047B5`), and the ride tick `0x00304440` reads its value and its expired byte (`0x00304479`, `0x003044B4`) |
+| 2 | `0x02B5EBE8` | the chocobo turbo: `0x00303F00` (`0x00303FBE`, `0x00303FC8`), `0x00304060` (`0x003040FF`, `0x00304109`), `0x003047C0` (`0x003047CE`, `0x003047DC`), `0x00304440` (`0x00304492`, `0x003044F1`); the summon countdown: `0x00313600` (`0x00313622`, `0x0031362C`), `0x00313760` (`0x00313797`, `0x003137B0`), `0x003139D0` (`0x003139E7`, `0x003139F5`) ([party control modes](party-control-modes.md)) |
+| 3, 4 | `0x02B5EBFC`, `0x02B5EC10` | the event-timer verbs, whose slot is their argument plus 3, held to 3 or 4: `seteventtimer` (`0x0034F1A0`, `0x003EBBB0` at `0x0034F1FD`), `starteventtimer` (`0x00350620`, `0x003EBD00` at `0x0035063F` and `0x00350654`), `istermeventtimer` (`0x0034F730`, `0x003EBB70` at `0x0034F75C`), `geteventtimer` (`0x0034FD30`, `0x003EBA90` at `0x0034FD5C`), `pauseeventtimer` (`0x00350100`: `0x003EBB90` at `0x00350148` when its first argument is non-zero, else `0x003EBD00` at `0x00350157`) |
+| 5, 6, 7 | `0x02B5EC24`, `0x02B5EC38`, `0x02B5EC4C` | the reset `0x003EBAB0` and the step `0x003EB9A0` |
+
+The accessors, each taking the slot index: `0x003EBBB0(slot, start, target)` and `0x003EBC50(slot, value, target)`
+load a slot, `0x003EBD00` starts it (or marks it expired when start and target already agree), `0x003EBB90` clears its
+running byte, `0x003EBA90` returns its value and `0x003EBB70` its expired byte.
+
 `0x0036F4D0` runs `0x00382910`, which clears 8 records at `0x02AED700` (stride `0xE0`) and builds two
 view records with `0x004679C0(record, width, height)`: `0x02AED4A0` for the frame size
 `[0x022D8EAC]` × `[0x022D8EB4]` and `0x02AED500` for 2000 × 2000.
@@ -264,6 +289,14 @@ constant every frame; the time base is read wherever a frame count is converted.
 The generator latch and state; the time-base triple, the mode flag and its suppressor; the
 ticks-per-frame constant; the masks and the DecideButton flag; the language index; the block
 pointers and the arena table.
+
+The countdown slots, field by field:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B5EBD4`, `0x02B5EBE8`, `0x02B5EBFC`, `0x02B5EC10`, `0x02B5EC24`, `0x02B5EC38`, `0x02B5EC4C` | `i32` | 0 (zero-filled tail of `.data`) | `+0x00` start of countdown slots 1 to 7 | `0x003EBAB0` (`0x003EBACA`, `0x003EBAD7`, `0x003EBAE4`, `0x003EBAF1`, `0x003EBAFE`, `0x003EBB0B`, `0x003EBB18`, 0); `0x003EBBB0` (`0x003EBBC8`); `0x003EBC50` (`0x003EBC79`, the value truncated) | `0x003EBBB0` (`0x003EBBEC`); `0x003EBC50` (`0x003EBC98`); `0x003EBD00` (`0x003EBD12`) |
+| `0x02B5EBC4`, `0x02B5EBD8`, `0x02B5EBEC`, `0x02B5EC00`, `0x02B5EC14`, `0x02B5EC28`, `0x02B5EC3C`, `0x02B5EC50` | `i32` | 0 (zero-filled tail of `.data`) | `+0x04` target of slots 0 to 7; the reset clears it together with the `f32` value `+0x08` in one 8-byte store | target: `0x003EBAB0` (`0x003EBAB2`, `0x003EBAC3`, `0x003EBAD0`, `0x003EBADD`, `0x003EBAEA`, `0x003EBAF7`, `0x003EBB04`, `0x003EBB11`); `0x003EBBB0` (`0x003EBBCB`); `0x003EBC50` (`0x003EBC74`). value: the same reset stores; `0x003EBBB0` (`0x003EBC14`); `0x003EBC50` (`0x003EBCC0`, `0x003EBCDC`); `0x003EB9A0` (`0x003EBA4A`, `0x003EBA5B`) | target: `0x003EBBB0` (`0x003EBBEF`); `0x003EBC50` (`0x003EBC9B`); `0x003EBD00` (`0x003EBD0E`); `0x003EB9A0` (`0x003EBA3A`). value: `0x003EB9A0` (`0x003EBA45`); `0x003EBA90` (`0x003EBA9E`) |
+| `0x02B5EBE4`, `0x02B5EBF8`, `0x02B5EC0C`, `0x02B5EC20`, `0x02B5EC34`, `0x02B5EC48`, `0x02B5EC5C` | `u8` | 0 (zero-filled tail of `.data`) | `+0x10` running byte of slots 1 to 7; the reset's `u16` store of `0x100` also sets the expired byte `+0x11` to 1 | running: `0x003EBAB0` (`0x003EBB27`, `0x003EBB30`, `0x003EBB39`, `0x003EBB42`, `0x003EBB4B`, `0x003EBB54`, `0x003EBB5D`); `0x003EBBB0` (`0x003EBC0F`, 0); `0x003EBC50` (`0x003EBCBB`, 0); `0x003EBD00` (`0x003EBD17`, 1); `0x003EBB90` (`0x003EBB9E`, 0). expired: the same reset stores; `0x003EBBB0` (`0x003EBC24`, `0x003EBC34`); `0x003EBC50` (`0x003EBCD0`, `0x003EBCD7`); `0x003EBD00` (`0x003EBD1D`); `0x003EB9A0` (`0x003EBA60`) | running: `0x003EB9A0` (`0x003EBA1C`). expired: `0x003EB9A0` (`0x003EBA29`); `0x003EBB70` (`0x003EBB7E`) |
 
 ## Modding notes
 

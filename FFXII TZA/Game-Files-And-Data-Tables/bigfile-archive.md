@@ -115,8 +115,8 @@ part descriptors, each with its own 64 KiB buffer) and creates a semaphore with 
 - `0x0019A660` waits on the semaphore, then claims the first record whose busy word `+0x90` it can
   change from 0 to 1 atomically, and raises its use count `+0x40`.
 - `0x0019A6E0(manager, start, block, n)`, `block` = `0x10000`, takes a record that way. With `start`
-  not 0 it marks the head used with offset `start` and length `head = min(block - start, n)`, then
-  `n -= head` (`0x0019A70F`-`0x0019A736`); it marks the middle used when `n >= block`
+  not 0 it marks the head used with offset `start` and length `head = min(block - start, n)`, an unsigned
+  64-bit min (`0x0019A713`-`0x0019A71F`), then `n -= head` in 32 bits (`0x0019A736`); it marks the middle used when `n >= block`
   (`0x0019A739`-`0x0019A741`) and the tail used with length `n % block` when that is above 0
   (`0x0019A744`-`0x0019A759`).
 - After the read, `0x0019A9B0` lowers the use count under the manager's critical section `+0x48`; at 0

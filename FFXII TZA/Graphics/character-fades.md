@@ -205,6 +205,19 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
   and returns the colour and weight of the record whose luma (`0.299 r + 0.587 g + 0.114 b`) times
   weight is lowest. With no record it returns weight 1.
 
+The key tables are two `0x10`-byte entries from `0x02B404E8`, picked by the record's curve number (`0x003B4403`-`0x003B441C`):
+a `u32` key count and a pointer to `(phase, value)` pairs of `f32`. The pool reset `0x003B4790` (called from `0x00259180`
+at `0x0025919B`) fills them every time it runs:
+
+| Curve | Count | Keys (phase, value) | Stores |
+|---|---|---|---|
+| 0 | `0x02B404E8` = 3 | `0x02B404F0` = `0x00D11520`: (0, 1.0), (0.5, 0), (1.0, 1.0) | `0x003B47D0`, `0x003B47DA` |
+| 1 | `0x02B404F8` = 5 | `0x02B40500` = `0x00D11538`: (0, 1.0), (0.25, 0), (0.5, 1.0), (0.75, 0), (1.0, 1.0) | `0x003B47EA`, `0x003B47F4` |
+
+`0x003B4310` forms the base at `0x003B438A` and reads the count (`0x003B441F`) and the key pointer (`0x003B4427`, `0x003B4460`)
+of the record's curve, then the keys around the record's phase (`0x003B4433`, `0x003B446C`-`0x003B4488`). So curve 0 dips
+from full to nothing and back once per period, and curve 1 twice.
+
 ### Into the model instance
 
 For an attached record `0x0042CBF0` runs the three readers above, stores `+0x49C` = composite × script

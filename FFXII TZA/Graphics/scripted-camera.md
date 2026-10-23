@@ -207,6 +207,18 @@ channel)` returns from the current row's first byte (player `+0x178`): 1 for kin
 for kind 2, 0 for kind −1 and 1 for any other kind; `0x00258B50` returns the player's `+0x0C`. A negative
 channel selects the transition player at `0x02096520` instead.
 
+The transition player is a `0x2E0`-byte shot player like the twenty in the groups. The actor-system reset
+`0x002556F0` clears it (`0x00861EC0` at `0x002557C9`), stores −1 in its frame `+0x184` (`0x020966A4`, `0x002557D5`), resets
+its view `+0x210` through `0x003CBFF0` (`0x002557DF`) and then stores 0 in the frame (`0x002557F3`), so it starts on frame
+0, the main view.
+
+The shot evaluation `0x00258350` reads that frame when it is given a negative channel
+(`0x002583CB`, `0x002583D2`) and writes the evaluated pose into entry `frame` of the poses at `0x02096370`, `0x40` apart
+(`0x00258687`-`0x002586D2`).
+
+The clear of the frames, `0x00255810` (from the tick `0x00314020` at `0x003140F0` and from `0x003143D0` at `0x003143EB`), walks the twenty group players
+(`0x00255820`-`0x0025584D`, from `0x020929B4` in steps of `0xBB0`).
+
 ### Submissions
 
 `0x003829D0(camera, priority)` files a 0xD0-byte camera into the first free of eight 0xE0-byte

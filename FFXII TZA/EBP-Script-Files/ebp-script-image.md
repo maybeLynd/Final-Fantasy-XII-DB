@@ -164,7 +164,8 @@ that is still 0. `0x00266530`:
 
 1. forms the directory as image + `[+0x18]` and the actor's entry at `+4 + index × 0x30`, or
    `× 0x20` when the version word is below 8 (`0x00266710`–`0x00266731`), and stores it at record `+0x40`;
-2. sets record `+2` to 1 for an index below the type-0 count, else 2 (`0x002666FC`–`0x0026670D`);
+2. sets record `+2` to 1 for an index below the type-0 count, a signed 32-bit compare, else 2
+   (`0x002666FC`–`0x0026670D`);
 3. for a `partySlot` of `0x80` to `0x83`, files the record in the party table `0x0209A1F0` at
    `partySlot & 0x7F` (`0x00266738`–`0x00266792`);
 4. sets record `+0x48` to the function table, `+0x50` to the jump table and `+0x58` to the code

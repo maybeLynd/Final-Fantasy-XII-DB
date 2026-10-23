@@ -1,0 +1,61 @@
+function	name	site	disp	width	kind	instruction	route	note
+0x003EB9A0	FUN_003eb9a0	0x003EBA1C	0x10	byte	r	cmp byte ptr [rbx + 0xc], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA29	0x11	byte	r	cmp byte ptr [rbx + 0xd], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA2F	0xC	dword	r	movss xmm0, dword ptr [rbx + 8]	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA3A	0x4	dword	r	movd xmm0, dword ptr [rbx]	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA45	0x8	dword	r	addss xmm1, dword ptr [rbx + 4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA4A	0x8	dword	w	movss dword ptr [rbx + 4], xmm1	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA5B	0x8	dword	w	movss dword ptr [rbx + 4], xmm0	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EB9A0	FUN_003eb9a0	0x003EBA60	0x11	byte	w	mov byte ptr [rbx + 0xd], 1	ARRAY 0x02B5EBC0 stride=0x14 count=8	walker register from 0x02B5EBC4
+0x003EBA90	FUN_003eba90	0x003EBA9E	0x8	dword	r	movss xmm0, dword ptr [rax + rcx*4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x8
+0x003EBAB0	FUN_003ebab0	0x003EBAB2	0x4	qword	w	mov qword ptr [rip + 0x2773107], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 0 cell
+0x003EBAB0	FUN_003ebab0	0x003EBABD	0x0	dword	w	mov dword ptr [rip + 0x27730fd], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 0 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAC3	0x4	qword	w	mov qword ptr [rip + 0x277310e], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 1 cell
+0x003EBAB0	FUN_003ebab0	0x003EBACA	0x0	dword	w	mov dword ptr [rip + 0x2773104], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 1 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAD0	0x4	qword	w	mov qword ptr [rip + 0x2773115], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 2 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAD7	0x0	dword	w	mov dword ptr [rip + 0x277310b], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 2 cell
+0x003EBAB0	FUN_003ebab0	0x003EBADD	0x4	qword	w	mov qword ptr [rip + 0x277311c], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 3 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAE4	0x0	dword	w	mov dword ptr [rip + 0x2773112], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 3 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAEA	0x4	qword	w	mov qword ptr [rip + 0x2773123], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 4 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAF1	0x0	dword	w	mov dword ptr [rip + 0x2773119], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 4 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAF7	0x4	qword	w	mov qword ptr [rip + 0x277312a], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 5 cell
+0x003EBAB0	FUN_003ebab0	0x003EBAFE	0x0	dword	w	mov dword ptr [rip + 0x2773120], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 5 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB04	0x4	qword	w	mov qword ptr [rip + 0x2773131], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 6 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB0B	0x0	dword	w	mov dword ptr [rip + 0x2773127], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 6 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB11	0x4	qword	w	mov qword ptr [rip + 0x2773138], rax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 7 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB18	0x0	dword	w	mov dword ptr [rip + 0x277312e], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 7 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB1E	0x10	word	w	mov word ptr [rip + 0x27730a9], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 0 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB27	0x10	word	w	mov word ptr [rip + 0x27730b4], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 1 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB30	0x10	word	w	mov word ptr [rip + 0x27730bf], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 2 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB39	0x10	word	w	mov word ptr [rip + 0x27730ca], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 3 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB42	0x10	word	w	mov word ptr [rip + 0x27730d5], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 4 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB4B	0x10	word	w	mov word ptr [rip + 0x27730e0], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 5 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB54	0x10	word	w	mov word ptr [rip + 0x27730eb], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 6 cell
+0x003EBAB0	FUN_003ebab0	0x003EBB5D	0x10	word	w	mov word ptr [rip + 0x27730f6], 0x100	ARRAY 0x02B5EBC0 stride=0x14 count=8	slot 7 cell
+0x003EBB70	FUN_003ebb70	0x003EBB7E	0x11	byte	r	movsx eax, byte ptr [rax + rcx*4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x11
+0x003EBB90	FUN_003ebb90	0x003EBB9E	0x10	byte	w	mov byte ptr [rax + rcx*4], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x10
+0x003EBBB0	FUN_003ebbb0	0x003EBBC8	0x0	dword	w	mov dword ptr [rdi + rbx*4], edx	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBBCB	0x4	dword	w	mov dword ptr [rdi + rbx*4 + 4], r8d	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBBEC	0x0	dword	r	mov eax, dword ptr [rdi + rbx*4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBBEF	0x4	dword	r	cmp eax, dword ptr [rdi + rbx*4 + 4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBBFC	0xC	dword	w	movss dword ptr [rdi + rbx*4 + 0xc], xmm0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBC02	0xC	dword	r	movss xmm1, dword ptr [rdi + rbx*4 + 0xc]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBC0F	0x10	byte	w	mov byte ptr [rdi + rbx*4 + 0x10], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBC14	0x8	dword	w	movss dword ptr [rdi + rbx*4 + 8], xmm0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBC24	0x11	byte	w	mov byte ptr [rdi + rbx*4 + 0x11], 1	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBBB0	FUN_003ebbb0	0x003EBC34	0x11	byte	w	mov byte ptr [rdi + rbx*4 + 0x11], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBC74	0x4	dword	w	mov dword ptr [rdi + rbx*4 + 4], r8d	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBC79	0x0	dword	w	mov dword ptr [rdi + rbx*4], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBC98	0x0	dword	r	mov eax, dword ptr [rdi + rbx*4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBC9B	0x4	dword	r	cmp eax, dword ptr [rdi + rbx*4 + 4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCA8	0xC	dword	w	movss dword ptr [rdi + rbx*4 + 0xc], xmm0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCAE	0xC	dword	r	movss xmm1, dword ptr [rdi + rbx*4 + 0xc]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCBB	0x10	byte	w	mov byte ptr [rdi + rbx*4 + 0x10], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCC0	0x8	dword	w	movss dword ptr [rdi + rbx*4 + 8], xmm0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCD0	0x11	byte	w	mov byte ptr [rdi + rbx*4 + 0x11], 1	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCD7	0x11	byte	w	mov byte ptr [rdi + rbx*4 + 0x11], 0	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBC50	FUN_003ebc50	0x003EBCDC	0x8	dword	w	movss dword ptr [rdi + rbx*4 + 8], xmm6	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBD00	FUN_003ebd00	0x003EBD0E	0x4	dword	r	mov eax, dword ptr [rdx + rcx*4 + 4]	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBD00	FUN_003ebd00	0x003EBD12	0x0	dword	r	cmp dword ptr [rdx + rcx*4], eax	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBD00	FUN_003ebd00	0x003EBD17	0x10	byte	w	mov byte ptr [rdx + rcx*4 + 0x10], 1	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0
+0x003EBD00	FUN_003ebd00	0x003EBD1D	0x11	byte	w	mov byte ptr [rdx + rcx*4 + 0x11], 1	ARRAY 0x02B5EBC0 stride=0x14 count=8	indexed, base cell +0x0

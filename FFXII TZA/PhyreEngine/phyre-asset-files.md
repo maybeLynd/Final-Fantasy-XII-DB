@@ -2,7 +2,7 @@
 title: "PhyreEngine asset files: the .phyre cluster header, the packed namespace, the instance data and how the loader reads and fixes up a cluster"
 kind: "format"
 category: "PhyreEngine"
-addresses: "0x0019CB20, 0x00637C50, 0x0059E070, 0x0059A3B0, 0x0059A6F0, 0x0059C180, 0x00686D00, 0x0069E780, 0x0059D550, 0x02CA9D90, 0x0059AAE0, 0x0059B430, 0x00599500, 0x0059AC00, 0x0059E300, 0x0059E780, 0x0059D6A0, 0x0059F500, 0x0059D590, 0x0059E880, 0x0059D940, 0x0059CE30, 0x0059C700, 0x0059C250, 0x00686DE0, 0x02CAA0A0, 0x00676450, 0x00675EF0, 0x00676BD0, 0x006753A0, 0x00675580, 0x006D4CF0, 0x006DA380"
+addresses: "0x0019CB20, 0x00637C50, 0x0059E070, 0x0059A3B0, 0x0059A6F0, 0x0059C180, 0x00686D00, 0x0069E780, 0x0059D550, 0x02CA9D90, 0x0059AAE0, 0x0059B430, 0x00599500, 0x0059AC00, 0x0059E300, 0x0059E780, 0x0059D6A0, 0x0059F500, 0x0059D590, 0x0059E880, 0x0059D940, 0x0059CE30, 0x0059C700, 0x0059C250, 0x00686DE0, 0x02CAA0A0, 0x00676450, 0x00675EF0, 0x00676BD0, 0x006753A0, 0x00675580, 0x006D4CF0, 0x006DA380, 0x005BFF30, 0x005FE350, 0x001605C0, 0x001615C0, 0x00167DB0, 0x001688F0"
 ---
 
 ## What the player sees
@@ -373,14 +373,42 @@ dump of data under 32 bytes) and the load goes on.
 - `0x0059D940` reads the header-class words and the 16-byte child records (`0x00597070`) and fixes up
   the header-class objects and their child objects, logging a child whose class has no runtime
   version and a runtime class larger than the file's.
-- Two header classes carry arrays after their fixed part, and their static initialisers (`0x00167DB0`,
-  `0x001688F0`) set flag `0x4` at `+0xFC` and store a function at descriptor `+0x100` that hands each
-  array to a visitor's slot `+0x08` with its element type.
+- Four header classes carry arrays after their fixed part, and their static initialisers (`0x001605C0`,
+  `0x001615C0`, `0x00167DB0`, `0x001688F0`) clear flag `0x2` and set `0x4` at `+0xFC` (`0x001615C0` sets `0x8` as
+  well; the other three clear it) and store a function at descriptor `+0x100` that hands each array to
+  the visitor with its element type: through its slot `+0x08`, or through `+0x10` with a second location.
 - `0x006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
   slot `+0x18` answers true: `+0x04` modifier codes and `+0x08` modifier instances (`0x20` bytes
   each), then `+0x0C` + `+0x0E` two-byte buffer entries.
 - `0x006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
   `+0x04` `Point3`, then `+0x08` × 4 bytes.
+- `0x005BFF30` serves `PAnimationClipBinding` (`0x08` bytes), and does nothing when the visitor's slot
+  `+0x18` answers true: `(+0x06 + 3) & ~3` two-byte entries at `+0x08` (the type `0x006300A0` returns),
+  then `+0x02` + `+0x04` four-byte `PAnimationClipBindingChannelMap` records, both through slot `+0x08`
+  (`0x005BFF6B`-`0x005BFFF4`).
+- It then hands, from the next 8-byte boundary, `+0x02` `PAnimationClipBindingDataBlockCache` records
+  through slot `+0x10`; the second location is the end of the two arrays rounded up to the alignment the
+  visitor's `+0x08` object answers for that type (its slot `+0x18`, `0x005BFFF8`-`0x005C0058`).
+- `0x005FE350` serves `PParameterBuffer` (`0x20` bytes), and does nothing when slot `+0x18` answers true:
+  for each of the `+0x10` (bits 0-30) `PShaderParameterDefinition` records at `+0x18`, `0x18` bytes
+  each, it hands one parameter to slot `+0x10` at the record's `+0x10` offset into the buffer
+  (`0x005FE3C7`-`0x005FE40A`).
+- A parameter type `+0x02` of `0x42`-`0x44`, `0x47`-`0x49` or `0x4B`-`0x50` is one `PShaderParameterCaptureBuffer`
+  record: `0x42` Texture2D, `0x43` Texture3D, `0x44` TextureCubeMap, `0x47` Sampler, `0x48`
+  StructuredBuffer, `0x49` RWStructuredBuffer, `0x4B` ByteAddressBuffer, `0x4C` RWByteAddressBuffer, `0x4D`
+  RWTexture2D, `0x4E` RWTexture3D, `0x4F` DataBlock, `0x50` IndexDataBlock (`0x005FE40D`-`0x005FE651`).
+- `0x4A` is one `PShaderParameterCaptureConstantBuffer` (`0x005FE575`-`0x005FE59A`).
+- Any other parameter is `+0x00` (or 1) times the 1, 2, 3, 4, 12 or 16 elements of the basic type its
+  data type `+0x03` selects through the type getters `0x0062FF50`-`0x006301F0`, each behind a thread-safe static
+  (`0x005FE656`-`0x005FE7E5`);
+  a data type with no descriptor is logged by name through `0x005CDAA0` with the format at `0x00D4A688`
+  (`0x005FE802`-`0x005FE81C`).
+- The second location is the same record's `+0x10` offset in the array the visitor's `+0x08` object
+  returns for `+0x18` through its slot `+0x20`, when that array's class is or derives from
+  `PShaderParameterDefinition` (`0x005D8EB0`).
+- Without that array the second location is the first, and both are null unless the offset is at least 4
+  and offset plus size (bits 0-12 of `+0x12`) lies within `+0x00`, both as unsigned compares
+  (`0x005FE36F`-`0x005FE40A`).
 - `0x0059CE30`, `0x0059C700` and `0x0059C250` then read the pointer-array, pointer and array tables. Each
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
   pointer-array entries, `0x1C` for pointer entries; `0x00595EF0`, `0x00596890`, built on the 7-bit

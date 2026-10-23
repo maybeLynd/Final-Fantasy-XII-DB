@@ -159,9 +159,9 @@ the ids fixes the three sub-ranges in immediates of its own:
 
 | Ids | Sub-table | Query filler test | List kind |
 |---|---|---|---|
-| `0x8000`-`0x803F` | m_daiji_data `0x02EBF090` | `id - 0x8000` at most `0x3F` (`0x0031D111`) | 21 |
-| `0x8040`-`0x805F` | g_daiji_data `0x02EBF088` | `id - 0x8040` at most `0x1F` (`0x0031D2B4`-`0x0031D2BF`) | 22 |
-| `0x8060`-`0x81FF` | q_daiji_data `0x02EBF080` | `id - 0x8060` at most `0x19F` (`0x0031D472`-`0x0031D482`) | 20 |
+| `0x8000`-`0x803F` | m_daiji_data `0x02EBF090` | `id - 0x8000` at most `0x3F` as an unsigned 16-bit value (`0x0031D10E`-`0x0031D115`) | 21 |
+| `0x8040`-`0x805F` | g_daiji_data `0x02EBF088` | `id - 0x8040` at most `0x1F` as an unsigned 16-bit value (`0x0031D2B4`-`0x0031D2BF`) | 22 |
+| `0x8060`-`0x81FF` | q_daiji_data `0x02EBF080` | `id - 0x8060` at most `0x19F` as an unsigned 16-bit value (`0x0031D472`-`0x0031D482`) | 20 |
 
 - The query filler's class-13 arm (`0x0031D0EF`) reads the row's name word `+8`, description word `+6`, byte `+4`
   (record `+0x2C`) and word `+2` (record `+0x30`) from the sub-table the test picks. A validated id past `0x81FF`

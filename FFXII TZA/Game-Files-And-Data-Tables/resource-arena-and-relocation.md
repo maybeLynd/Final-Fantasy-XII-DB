@@ -178,7 +178,8 @@ hang off `+0x48`.
 - `0x0036B130(handle)` returns `[slot + 8] + 0x40` with no check word test, so a stale handle resolves
   to whatever the slot holds now. `0x003AB7F0` wraps it and returns 0 when the low 32 bits of the
   result are `0x40` or less.
-- `0x0036A0B0(handle)` checks only `(handle & 3) != 0 && handle >= 0x100000` (`0x0036A0BA`-`0x0036A0C5`), takes
+- `0x0036A0B0(handle)` checks only `(handle & 3) != 0 && handle >= 0x100000` (unsigned; `0x0036A0BA`-`0x0036A0C5`),
+  takes
   the header `[(handle & ~3) + 8]`, sets the block's `+0x15` bit 2 when it is clear, zeroing `+0x3E`, and returns the payload `+0x40`, or 0; `0x0036D200(handle)` clears that bit and
   `+0x3E` again. The sound-bank loaders `0x002E60F0`, `0x0036E9F0`, `0x0036EAB0`, `0x0036ED50` and `0x003A1650` use the
   first, `0x002E60F0` and `0x003A0EA0` the second.
@@ -310,6 +311,21 @@ at most one move, a header save and restore plus one payload copy.
 
 The fifteen arena records, the enabled mask `0x022D89B8`, the current arena `0x022D89BC` and its stack, and
 the encoding base `0x01F83530`.
+
+The byte totals per accounting group: a `u32` table at `0x022D8E10`, indexed by a block header's byte `+0x17`. The
+mover `0x0036A2A0` adds the size `+0x18` of the block it moves to that block's group (`0x0036A37D`-`0x0036A391`); the free `0x00369860` subtracts it
+for a non-zero group (`0x00369B1B`-`0x00369B34`), and so does the resize `0x0036D050` (`0x0036D0EC`-`0x0036D0FE`).
+
+`0x0036C5D0(handle,
+group)` and `0x0036C620(payload, group)` move the size from the old group to the new one and store the new group
+(`0x0036C60C`, `0x0036C610`, `0x0036C616`; `0x0036C642`, `0x0036C649`). The boot step `0x0036D260`, run by the boot fixer at
+`0x0022A3B4`, zeroes groups 8 to 12:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022D8E30` | `u32` | 0 (zero-filled tail of `.data`) | bytes in group 8; one 8-byte store also zeroes group 9 (`0x022D8E34`) | `0x0036D260` (`0x0036D262`); the group updates above | the group updates above (each adds to or subtracts from the word it reads) |
+| `0x022D8E38` | `u32` | 0 (zero-filled tail of `.data`) | bytes in group 10; one 8-byte store also zeroes group 11 (`0x022D8E3C`) | `0x0036D260` (`0x0036D269`); the group updates above | the group updates above |
+| `0x022D8E40` | `u32` | 0 (zero-filled tail of `.data`) | bytes in group 12 | `0x0036D260` (`0x0036D270`); the group updates above | the group updates above |
 
 ## Modding notes
 

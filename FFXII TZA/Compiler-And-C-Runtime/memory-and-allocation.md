@@ -77,7 +77,7 @@ The MSVC standard library's allocator reaches `new` and `delete`, not the aligne
 large blocks itself. `0x002099D0(this, count)` allocates `count` 16-byte elements:
 
 1. a count of 0 returns null, and a count above `0x0FFFFFFFFFFFFFFF` calls `_Xbad_alloc`
-   (`0x002099EF`);
+   (`0x002099EF`), as does a size of 4 KiB or more whose `+0x27` wraps past 64 bits (`0x00209A0C`);
 2. below 4 KiB it returns `0x00210EC0(bytes)`;
 3. from 4 KiB it allocates `bytes + 0x27` (`0x00209A03`), rounds the result up to 32 bytes
    (`0x00209A27`, `0x00209A2B`) and stores the raw pointer in the qword just below the returned address

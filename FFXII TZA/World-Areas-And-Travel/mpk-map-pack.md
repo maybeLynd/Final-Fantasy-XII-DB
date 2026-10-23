@@ -445,7 +445,12 @@ pending word `0x02ADD0EC` and the bind word `0x02ADD0F0`:
 | 9 | `0x02ADD0B8`, bit 4 | the same |
 | 15 | `0x02ADD058`, bit 18 | the same |
 
-It then clears pending bits 0 to 18 one by one and, when the pending word is empty, calls the binder
+The slot 4 copy does not test its new block. `0x00378CF6` allocates it, top-down on the first try (`0x0036A190`), and when the arena
+cannot make room the allocation's pressure path, retrying bottom-up, gives up and returns 0 (`0x0036C0B2`-`0x0036C0BF`). The labeller
+`0x0036C660` skips a null block, but the copy at `0x00378D27` (`memcpy`) then writes the dataset to address 0, and the
+game faults there.
+
+`0x00378BC0` then clears pending bits 0 to 18 one by one and, when the pending word is empty, calls the binder
 `0x003775D0`; `0x00214B70` ends the completion.
 
 ### The bind

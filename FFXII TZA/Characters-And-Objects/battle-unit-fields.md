@@ -165,6 +165,10 @@ Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
 | perception cache | `+0xBC0`-`+0xDC7`, header bit 0 forced on | `0x00316D30` from the reuse reset |
 | target buffer | `+0x778`-`+0x97F`, keeping header bit 0 | `0x00316CF0` |
 
+In both target buffers, the header byte `+0x03` and the last four bytes `+0x0C`-`+0x0F` of each 16-byte entry go with the buffer as a block. The buffer clears zero them with the rest of the `0x208` bytes (`0x00316CF0`, memset at `0x00316D0B`; the perception cache's `0x00316D30`, memset at `0x00316D4E`). For the buffer at `+0x778`, `0x0030EDA0` copies them back with the action state `+0x6B0`-`+0xB9F` in its 16-byte stores (`0x0030EDB6`-`0x0030EE44`).
+
+The entry's outcome word at `+0x08` is a dword in the code: `0x002FFA14`, `0x0030019B`, `0x00300EAD` and `0x003011E0` clear its bit 10 with an `and dword`, and `0x0030071A` loads it as a dword.
+
 ### The spans between named fields
 
 The unit bytes between the named fields, by range. The locomotion block at `+0x80` is the solver's argument (`0x00336CE0`), so its offsets are given in block terms as well; the action state `+0x6B0`-`+0xB9F` is the `0x4F0` bytes `0x0030EDA0` restores from the saved block at `[+0xB88]`.

@@ -376,6 +376,30 @@ channel already exists (`0x0024F680`); otherwise it walks the rows with `0x0026F
 whose `u16 +0x04` equals the id, and it clears bits `0x4` and `0x8` of the channel's byte
 `0x02F8F23C[channel]`.
 
+The channel bytes are 64 flag bytes at `0x02F8F23C`, one per channel (an instance's word `+0x04`), followed by 32 at
+`0x02F8F27C`, one per issuing manager (the instance's word `+0x06`). The bank reset `0x0026F9F0` (called from `0x00259180`
+at `0x002591E1`) sets all 96 to 3 with twelve 8-byte stores, from `0x02F8F23C` to `0x02F8F294` (`0x0026FA12`-`0x0026FA5F`).
+
+The update pass holds a bank instance (state 1 then runs only `0x003A7EE0` and `0x003A93F0`) when its channel byte or
+its manager byte has neither bit 0 nor bit 2 (`0x0024BB2B`-`0x0024BB51`), and the draw gate `0x0024D770` refuses one
+unless both bytes have bit 1 (`0x0024D7CD`-`0x0024D7E9`):
+
+| Bit | Meaning | Written by | Read by |
+|---|---|---|---|
+| 0 (1) | the channel runs | `0x002700F0(channel, on)` (`0x0027011D` sets it, `0x0027010C` clears it); `0x0026FFA0(on)` for all 64 (`0x00270092`-`0x002700A6` set, `0x0026FFE0`-`0x00270046` clear); the update pass's rewrite below | `0x0024B9B0` (`0x0024BB36` channel, `0x0024BB49` manager); `0x0026FAD0` (`0x0026FB63`) |
+| 1 (2) | the channel is drawn | `0x00270130(channel, on)` (`0x00270144`, `0x00270148`); `0x002700C0(on)` for all 64 (`0x002700D0`-`0x002700DD`) | `0x0024D770` (`0x0024D7D1` channel, `0x0024D7E0` manager) |
+| 2 (4) | run one more step | `0x0026FAD0` (`0x0026FB69`, when bit 0 is clear); `0x002700F0(channel, 0)` and `0x0026FFA0(0)`, when bit 3 is set (`0x00270115`; `0x0026FFE0`-`0x00270046`); cleared by `0x0026FE50` (`0x0026FE92`), by `0x002700F0(channel, 1)` (`0x00270119`-`0x0027011D`), by `0x0026FFA0(1)` and by the rewrite | `0x0024B9B0` (`0x0024BB36`, `0x0024BB49`, and in the rewrite `0x0024BEBA`, `0x0024BF13`) |
+| 3 (8) | started since the last update pass | `0x0026FAD0` (`0x0026FB5D`); cleared by `0x0026FE50` (`0x0026FE92`), by the map teardown's `0x0026F420` (`0x0026F440`-`0x0026F459`) and by the rewrite | `0x002700F0` (`0x0027010F`); `0x0026FFA0` (`0x0026FFF2`, `0x0027002A`) |
+
+After the kind-2 update pass has walked a non-empty list, `0x0024B9B0` rewrites the 64 channel bytes
+(`0x0024BE75`-`0x0024BF5A`): every byte loses bit 3, and a byte that had bit 2 also loses bits 2 and 0.
+
+`0x0026FFA0` and
+`0x002700C0` are called with 1 from `0x0026C8C0` (`0x0026CA61`, `0x0026CA6B`). `0x002700F0` is called by `0x003E8440`
+(`0x003E855B`), `0x003E85B0` (`0x003E8656`), `0x003E8690` (`0x003E87B3`) and `0x003E8C50` (`0x003E8D0F`), and `0x00270130` by
+`0x003E8690` (`0x003E87C0`) and `0x003E8C50` (`0x003E8D18`) ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)). The
+reset stores the 32 manager bytes, and `0x0024BB49` and `0x0024D7E0` read them.
+
 The third argument of `0x0026FAD0`, the issuing script's manager when `bgeffectplay` (`0x00342880`)
 starts a channel, goes through `0x0026F470` into the instance's word `+0x06`, beside the channel at
 `+0x04`. `0x0026FA80(manager)` passes `{kind 2, +0x06 manager}`

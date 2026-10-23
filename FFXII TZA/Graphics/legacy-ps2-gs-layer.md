@@ -374,6 +374,16 @@ Access tables beside this page:
 | `0x02CA6004`, `0x02CA6008` | the rebuild's largest footprint and weighted count |
 | `0x0209A670`, `0x0209A6E8`, `0x0209A708` | bound map, weather slot, dirty word |
 
+`0x0209A6F8` switches the map's draw. Each world step `0x0026EB30` copies it into the bound map's `+0x120`
+(`0x0026ED4E`-`0x0026ED54`), the word `0x0026E290` tests before it draws the map ([when the rebuild
+runs](#when-the-rebuild-runs)). Opcode `0x0B` of the battle effect program `0x003B8670` sets it and the screen-clear
+switch `0x022D8EDC` to 0 before it files its light. Opcode `0x0A` and `0x0024D9C0` set both back to 1
+([effect file loading](effect-file-loading.md)).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209A6F8` | `u32` | 0 (zero-filled tail) | 1 lets the bound map draw, 0 keeps `0x0026E290` from drawing it; copied to the map's `+0x120` every world step | `0x0026E640`, 1 (`0x0026E6BA`); `0x0024D9C0`, 1 (`0x0024D9C6`); `0x003B8670`: opcode `0x0A`, 1 (`0x003B96B3`), opcode `0x0B`, 0 (`0x003B9730`) | `0x0026EB30` (`0x0026ED4E`) |
+
 ## Modding notes
 
 - The texture budget is the same on every machine: 176 GS pages less the rebuild's two totals,

@@ -59,6 +59,15 @@ or `0xD0` are drawn (`0x0044198E`–`0x004419CE`; the table is
 [`effect-element-runtime-effect-kind-441970.tsv`](effect-element-runtime-effect-kind-441970.tsv)). It sets the pass nibble `0x02AEE910`: definition
 byte `+0x4C` when `+0x4A` is `0x40` or more, else 8 (`0x004419F5`–`0x00441A0E`).
 
+That rule has one exception. While bit `0x400` of `0x020926E4` is set and the current instance is of kind 3, the
+nibble is `0x020926F8` + 8 (`0x004419D0`-`0x004419F3`). Opcode `0x3E` of the battle effect program `0x003B8670` sets the bit
+and stores its operand byte `+4` in `0x020926F8` (`0x003B9797`-`0x003B97A7`). Opcode `0x3F` clears the bit
+(`0x003B97B2`-`0x003B97B7`), and so does the effect teardown `0x0024E910`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x020926F8` | `u8` | 0 (zero-filled tail) | the pass nibble less 8 for kind-3 instances while `0x020926E4` bit `0x400` is set | `0x003B8670`: opcode `0x3E`, its operand byte `+4` (`0x003B97A7`); `0x0024C970`, 0 (its `0x1670`-byte clear from `0x020910A0`, `0x0024C983`) | `0x00441970` (`0x004419E4`) |
+
 It then calls `0x002F4020(element, emitter)` for each element, forward from the head, or backward from
 the tail when the emitter record's byte `+0x2C4` has bits 0–1 set (`0x00441A15`–`0x00441A82`).
 
@@ -179,6 +188,13 @@ emitters of one group; each blended primitive costs one draw-list entry, and the
 
 The pass nibble `0x02AEE910`, the blend pair `0x02AEE900` / `0x02AEE908`, the draw list `0x02F8F2F8` with its
 count `0x02F8F2C6`, and the packet cursor `0x02F8F2D0` / `0x02F8F2D8` over `0x02F8F308`.
+
+When `0x003A3740` empties the draw list it stores the count it drained in `0x02F8F2CC` and keeps the larger of that count
+and `0x02F8F2CE` in `0x02F8F2CE` (`0x003A3929`-`0x003A3973`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02F8F2CE` | `u16` | 0 (zero-filled tail) | the largest number of entries the draw list has held when drained | `0x003A3740` (`0x003A3973`); `0x003A3670`, 0 (its 4-byte clear of `0x02F8F2CC`, `0x003A36E6`) | `0x003A3740` (`0x003A395E`) |
 
 ## Modding notes
 
