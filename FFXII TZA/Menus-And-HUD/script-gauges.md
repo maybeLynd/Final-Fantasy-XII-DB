@@ -153,6 +153,50 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 | `+0x130` | `u32` | style | bit 0 picks the seconds-only timer format (`0x00407720`) |
 | `+0x134` | `char[64] text` | the formatted timer (0x00407720) |  |
 
+### The gauge window
+
+The gauge window is the `0xE8`-byte widget at `0x02B62D80` with procedure `0x00406E80` that `0x00408300` creates.
+
+```struct ScriptGaugeWindow base=record size=0xE8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x00406E80
++0xC0    ptr             gauge                  the gauge child the construct message builds for the creation argument
+                                                (0x00406FD3-0x00407107): type 0 the 0x278-byte counter with procedure
+                                                0x00407590, types 1 and 2 the 0x1F8-byte gauge with procedure 0x004079A0,
+                                                any other type none (0 from 0x00406FB8). Every gauge verb reaches the
+                                                child through it (0x00408190-0x00408AAC: 0x004081A8, 0x00408210, 0x0040825C,
+                                                0x0040828C, 0x004082DC, 0x00408379, 0x004083EC, 0x0040846D, 0x004084DC, 0x0040850A,
+                                                0x0040853D, 0x0040857D, 0x004085BE, 0x00408661, 0x00408719, 0x0040879A, 0x004087F3,
+                                                0x0040884C, 0x00408873, 0x004088DF, 0x00408981, 0x00408A3D, 0x00408AAC), and so do
+                                                0x00407150 (0x0040717C) and the tick (0x00406F2D)
++0xC8    u32             flags                  bit 0: tested by the tick, which with it set runs 0x00408200 when the
+                                                child is not open or is in run state 1 or 4 (0x00406F20-0x00406F67); no
+                                                instruction sets it. Bit 1: the gauges are off, set and cleared by
+                                                0x00407150 (0x0040715D-0x0040718C); every verb does nothing while it is set
+                                                (0x00408372, 0x00408410, 0x0040845F, 0x004084CE, 0x004084FC, 0x0040852F, 0x0040856F,
+                                                0x004085E5, 0x00408688, 0x00408740, 0x0040878C, 0x004087EC, 0x0040883E, 0x0040886C,
+                                                0x00408903, 0x004089A8, 0x00408A2F) and so do the pause and timer stubs. Bit
+                                                2: the timer is stopped, set by stopgaugetimer 0x004083B0 (0x004083C7) and
+                                                by 0x00407F90 for its mode-2 child (0x00408069), cleared by 0x00408AD0
+                                                (0x00408AE7). Bit 3: the script pause mask, set by 0x00404D70 (0x00404D87)
+                                                and cleared by 0x00404DC0 (0x00404DDA). The counter steps its ramp only
+                                                while bits 2 and 3 are clear (0x0040762B, 0x00407A35). 0 at construction
+                                                (0x00406FCD)
++0xCC    u8[4]           pad0CC                 read and written by no function; nothing fixes its width
++0xD0    ptr             layoutRecord           the gauge's layout record 0x0051EDC0(0), (1) or (2) by type (0x00407018),
+                                                0 for the other types (0x00406FBF), after which the construct message
+                                                reads +0x28 through it (0x0040701F); its byte +0x24 is the picture count
+                                                and +0x28 the picture list (0x00407027-0x00407035)
++0xD8    ptr             pictures               the array of +0xE0 picture handles the construct message allocates
+                                                (0x00393590, 0x00407050) and fills, one load (0x0024A440) for each list
+                                                entry of type 1 and 0 for the others (0x00407070-0x004070AD); message 18
+                                                releases each (0x0024A680) and frees the array (0x00406EBD-0x00406F14); 0 at
+                                                construction (0x00406FC6)
++0xE0    u8              pictureCount           the number of pictures, byte +0x24 of the layout record (0x00407035);
+                                                bounds the load and release loops (0x00407057, 0x004070B1, 0x00406ECF,
+                                                0x00406EF7)
+```
+
 ## Modding notes
 
 - `initgauge 3` leaves the gauge without a child and reads a null layout record; use kinds 0 to 2. No shipped

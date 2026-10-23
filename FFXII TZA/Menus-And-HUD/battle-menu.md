@@ -376,6 +376,72 @@ The label widths come from a pre-pass, `0x00273E30`, which scene and action code
 | `+0x04` | `u16` | flags | bit 0 greyed, bits 6-9 the targets the action needs |
 | `+0x06` | `u8` | reason | `0x002FFCF0` code from `0x00317BC0` |
 
+### The list widget's page tasks
+
+The list widget (`0x2DC0` bytes, procedure `0x002778C0`) keeps four `0x20`-byte page-task records at `+0x2D30`, each `{function, argument, previous, next}`, linked from `+0xE0`; the stepper `0x00274BD0` calls each record's function in turn and unlinks a record whose function answers 1.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x2D40` | `void*` | headPrev | the previous link of record 0 of the list widget's four 0x20-byte page-task records at +0x2D30 ({function, argument, previous, next}). Record 0 is the list head (+0xE0 and +0xE8 are set to +0x2D30 at 0x00277999, 0x002779A0), so nothing links before it: 0x00274BA0 sets the previous link of records 1-3 only (0x00274BC8, called for records 1, 2 and 3 at 0x002779C8). The stepper 0x00274BD0 reads it when record 0's function answers 1 and the record is unlinked (0x00274C3C) and sets it to 0 (0x00274C61); it stays 0 |
+| `+0x2D48` | `void*` | headNext | the next link of record 0: 0x00274BA0 reads it to find the tail (0x00274BA0) and sets it to record 1 when it appends record 1 (0x00274BC4); the stepper 0x00274BD0 follows it (0x00274C15), relinks it past record 1 when record 1 is unlinked (0x00274C49) and sets it to 0 when record 0 is unlinked (0x00274C65). Record 0's function is the page rebuild 0x0027D740 for the child page at +0xF0 (0x0027795C, argument +0x2D38 at 0x0027795F); record 2's is the same for the page at +0x1710 (0x00277984, 0x00277977); records 1 and 3 hold the stub 0x005C5230 (0x0027796A, 0x0027798B) |
+
+### The boss gauge manager
+
+The manager is the `0xF0`-byte widget at `0x02B62D88` with procedure `0x00406A60` (The boss gauge above).
+
+```struct BossGaugeManager base=record size=0xF0
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x00406A60
++0xC0    ptr             window                 the boss gauge window, the 0xD8-byte widget with procedure 0x00405310
+                                                that the tick builds (0x00244F50 at 0x00406C36) and that stores itself
+                                                here (0x00405384); the tick attaches it hidden (0x00244960) while the HUD
+                                                is hidden and opens it otherwise (0x00406C3B-0x00406C63); 0x00404D40 returns
+                                                its bars (0x00404D4C), and bossgaugeclose 0x00404E10, the HUD hide
+                                                0x00405150, the HUD show 0x004052D0, 0x004060B0, the bar 0x004061F0 and
+                                                0x00406DD0 reach the window through it; 0 at construction (0x00406C8D)
++0xC8    u32             flags                  bit 0: bossgaugeopen asked for the gauge (0x00405270), and the tick
+                                                builds the window while it is set (0x00406B52); bit 1: the window is
+                                                open, set by the tick with bit 0 cleared (0x00406C68-0x00406C74), after
+                                                which the tick only refreshes the value table (0x004050C0, 0x00406B44);
+                                                bit 2: the HUD hid the window (0x00405150), taken back by the HUD show
+                                                (0x004052EC, 0x00405301); bits 1 and 2 are cleared when the window goes
+                                                (0x004056F2). Bit 3: skip the full-values test once (0x00406BC2-0x00406BCA).
+                                                Bit 4: 1 at construction (0x10, 0x00406CA5); passed to the new window as
+                                                its creation argument (0x00406B85-0x00406B9D) unless an entry's value is
+                                                below its maximum (0x00406BD2-0x00406C0E). Bit 5: the bars' state from
+                                                0x00406DD0 (0x00406DE0, 0x00406E0D). Bit 7: the script pause mask, set and
+                                                cleared by 0x00404D70 and 0x00404DC0 (0x00404D9C-0x00404DFB); a bar does
+                                                nothing while bit 6 or 7 is set (0x0040639D)
++0xCC    u8[4]           pad0CC                 read and written by no function; nothing fixes its width
++0xD0    ptr             layoutRecord           the gauge's layout record, 0x0051EDC0(3) (0x00406CAF-0x00406CB4): its
+                                                byte +0x24 is the picture count and its +0x28 the picture list the
+                                                construct message loads (0x00406CC9-0x00406CDF)
++0xD8    ptr             pictures               the array of +0xE0 picture handles the construct message allocates
+                                                (0x00393590, 0x00406CFA) and fills, one load (0x0024A440) for each list
+                                                entry of type 1 and 0 for the others (0x00406D17-0x00406D54); message 18
+                                                releases each (0x0024A680) and frees the array (0x00406AA6-0x00406B04)
++0xE0    u8              pictureCount           the number of pictures, byte +0x24 of the layout record (0x00406CDF);
+                                                bounds the load and release loops (0x00406D01, 0x00406D58, 0x00406AB8,
+                                                0x00406AE7)
++0xE1    u8              style                  the bar style 0x00405100 picks from the boss's class, 0xFF for no gauge
+                                                (0x00406BBC; The boss gauge above); the tick passes it to the window and
+                                                builds no window for 0xFF (0x00406B70, 0x00406C13); 0 at construction
+                                                (0x00406CC2)
++0xE2    u8              pad0E2                 read and written by no function; nothing fixes its width
++0xE3    u8              entryCount             the entries in the value table +0xE8, the count 0x0031B690 returns on
+                                                each draw (0x00406B27-0x00406B33) and on 0x004050C0's refresh (0x004050EA); 0
+                                                at construction (0x00406C9E); bossgaugeclose 0x00404E10 (0x00404E69),
+                                                0x00404F50 (0x00404F71, 0x00404FA1), the window 0x00405310 (0x004055F3), the bar
+                                                0x004061F0 (0x004062FC) and 0x00407D10 (0x00407D75) read it
++0xE4    u8[4]           pad0E4                 read and written by no function; nothing fixes its width
++0xE8    ptr             valueTable             the boss value table, 0x18 bytes an entry ({..., value +0x08,
+                                                maximum +0x0C, ...}), whose address 0x0031B690 stores here through its argument
+                                                (0x0031B6B5, 0x0031B72D); 0x00404F50 returns its entries (0x00404F81,
+                                                0x00404FAE), the tick tests each value against its maximum (0x00406BE1),
+                                                bossgaugeclose (0x00404E76) and 0x00407D10 (0x00407D7D) read it; 0 at
+                                                construction (0x00406C94)
+```
+
 ## State
 
 For style 2 `0x00404F50` does not return a table entry: it copies value entry 0, the 24 bytes at `[[0x02B62D88] + 0xE8]`,

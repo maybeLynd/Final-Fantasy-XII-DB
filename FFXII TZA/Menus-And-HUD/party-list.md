@@ -336,6 +336,90 @@ The status cycle record at the row's `+0xF0`:
 | `+0x0A` | `i16` | count | statuses counted (`0x00275E40`) |
 | `+0x10` | `void*` | status | the status row shown, or 0 |
 
+### The gil window
+
+The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1FB0`; the script verb `fs_foodwinopen` opens it through `0x002A1D40`, and `gillwinstart` and the shop's trade (`0x0056D4D9`) start its count through `0x002A1DC0`.
+
+```struct GilWindow base=record size=0xF8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x002A1FB0
++0xC0    u32             countFlags             bit 0 (with bit 1 tested as the pair 3): a gil count is running, set
+                                                by 0x002A1DC0 (0x002A1E47-0x002A1E60), which also clears bits 1-5 and so
+                                                picks curve 0 in bits 2-5; the tick clears bits 0-1 when the count
+                                                ends (0x002A238A) and passes bits 2-5 to 0x00248F40 as the curve
+                                                (0x002A231F-0x002A2344). 0x002A1DC0 refuses a new count (0x002A1DE6) and the
+                                                idle test 0x002A2620 answers 0 (0x002A262C) while bits 0-1 are set
++0xC4    i32             countFrom              the gil shown when the count started: 0x002A1DC0 copies the shown
+                                                amount +0xEC (0x002A1E41); the tick shows countFrom + countBy x t
+                                                (0x002A2352-0x002A2380) and countFrom + countBy at the end (0x002A2391)
++0xC8    i32             countBy                the gil change being counted: 0x002A1DC0 stores the change 0x002524C0
+                                                allows, the request clamped so the total stays within 0-99,999,999
+                                                (0x002A1E5A); read by the tick (0x002A2349)
++0xCC    u32             countFrames            the count's length in frames: 0x002A1DC0 sets 0x15, 21 frames
+                                                (0x002A1E72); the tick passes it to 0x00248F40 (0x002A2338)
++0xD0    u32             countStart             the frame counter 0x0208F570 when the count started, stored by 0x002A1DC0
+                                                (0x002A1E6C); the tick passes the frames since then to 0x00248F40
+                                                (0x002A2331)
++0xD4    u8[4]           pad0D4                 read and written by no function; nothing fixes its width
++0xD8    ptr             limitDialog            the message window state 3 opens with message 0x856 through 0x00241C90
+                                                (0x002A2234-0x002A2296); state 4 waits until it is 0 (0x002A220E). The
+                                                command message 12 sets it to 0 (0x002A21AB) and state 4 clears it again
+                                                (0x002A2228)
++0xE0    ptr             layoutBlock            the layout block the window places itself from: the creation record's
+                                                first qword (0x002A257F), or the menu layout block [0x0209AC30] + 0x90
+                                                when that is 0 (0x002A25B3-0x002A25C1); the opening and the tick resolve
+                                                its +0x20 (0x0020E600) and read entry +0xE8's x, y, width and height
+                                                (0x002A207B-0x002A20CC, 0x002A24FD-0x002A2527)
++0xE8    i16             layoutEntry            the 20-byte entry of the layout block the window uses: from the
+                                                creation record's +0x08 (0x002A258A), 0 with the default block
+                                                (0x002A25CA); read at 0x002A208A and 0x002A2504
++0xEA    u16             mode                   from the creation record's +0x0A (0x002A2575; 3 from fs_foodwinopen's
+                                                creator 0x002A1D40). Mode 1 makes the tick show the party's gil,
+                                                GameState_GetGil 0x00253690, every tick (0x002A21CA-0x002A21D9); mode 3
+                                                picks the frame 0x00916408 over 0x00916430 (0x002A20FB); any other mode
+                                                hides layout items 0 and 3 by clearing bit 0 of their +0x08
+                                                (0x002A211D-0x002A213A)
++0xEC    i32             shown                  the gil amount drawn: from the creation record's +0x0C (0x002A256B), the
+                                                opening value 0x002A1D40 passes; mode 1 refreshes it each tick
+                                                (0x002A21D9); a count moves it (0x002A2380, 0x002A2394). The tick draws it
+                                                as 8 digits in layout item 6 (0x0029F6E0, 0x002A23B7, 0x002A23DC); 0x002A1DC0
+                                                tests it plus the change against 99,999,999 and starts the count from
+                                                it (0x002A1DF3, 0x002A1E3B)
++0xF0    i16             pauseFrames            frames left after a count: state 2 sets 24 (0x002A22B5); state 1 plays
+                                                sound 0x1A (0x00249C60) and 0x0024A1A0([0x01E0CDCC]) at 20 (0x002A22C1) and
+                                                counts it down (0x002A22E0, 0x002A22E7); state 4 sets it to 0 with the
+                                                state and overflow bytes in one dword store of 0xFF0000 (0x002A221E)
++0xF2    i8              state                  the count's state: 0 counting (set by 0x002A1DC0, 0x002A1E50), 2 count
+                                                done (0x002A1E2E when the allowed change is 0, 0x002A239A at the end), 1
+                                                pausing (0x002A22AE), 3 the limit message is due (0x002A2313), 4 waiting
+                                                for it (0x002A229D; the command message 12 also sets 4, 0x002A21A4), -1
+                                                idle (0x002A2300, 0x002A221E, and the construct message's word store 0xFF,
+                                                0x002A25A5). The tick dispatches on it (0x002A21DF); the idle test
+                                                0x002A2620 answers 1 only for -1 (0x002A2638)
++0xF3    u8              overLimit              1 when the shown gil plus the requested change passes 99,999,999, else
+                                                0: 0x002A1DC0 (0x002A1DFF-0x002A1E1A); after the pause the tick goes to
+                                                state 3, the limit message, when it is set, and to idle otherwise
+                                                (0x002A22F5). Set to 0 by the construct message (0x002A25A5) and by state
+                                                4 (0x002A221E)
++0xF4    u8              caption                from the creation record's +0x10 (0x002A2595; 2 from 0x002A1D40): non-zero
+                                                hides layout item 14 and puts message 0x4B55 (for 1) or 0x4B56
+                                                (otherwise) in item 5 (0x002A213E-0x002A217E), and lets the tick slide the
+                                                window back to its layout y (0x002A24D4); 0x002A1DC0 refuses a count while
+                                                it is non-zero (0x002A1DD9)
++0xF5    u8              placedUnderMask        1 once the window has been put under the conversation window's mask
+                                                widget [0x0209C610]: set when the window opens with that widget present
+                                                (0x002A206F) and by the tick's first placement under it (0x002A243E,
+                                                0x002A2457); while it is 1 the tick slides the window to the mask's y
+                                                less the window's height (0x002A246A-0x002A24AB)
++0xF6    u8              maskHold               set to 1 every tick the mask widget [0x0209C610] exists (0x002A24B0); once
+                                                the mask is gone the tick counts it down (0x002A24BC-0x002A24C9) and
+                                                slides the window back to its layout y only after it is 0
++0xF7    u8              bottomAnchor           from the creation record's +0x11 (0x002A259F; 0 from 0x002A1D40): non-zero
+                                                places the window at the screen height 0x1C0 less its height less
+                                                0x002C9430(0x81) plus 12 when it opens (0x002A209F-0x002A20F4), and with
+                                                0x002C9430(1) each tick while it is not running (0x002A23EB-0x002A2426)
+```
+
 ## State
 
 The target window's pair of counters is the two `0x58`-byte records `0x0209C240` (HP) and `0x0209C298` (MP). The

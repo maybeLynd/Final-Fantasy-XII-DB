@@ -257,6 +257,18 @@ The element update `0x003FC510` runs the element through its states:
 | `+0x10` | `i32` | look | `0x00319A20` result, 0-2 |
 | `+0x14` | `i32` | level | chain level 0-3 through `0x01EED3A8` |
 
+### The drop entry
+
+Each of the seven entries at `+0x20` of a pickup slot is 8 bytes.
+
+`LootDropEntry` (`0x8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | itemId | the granted item id; `0xFFFF` marks the slot empty and skips it without ending the walk |
+| `+0x02` | `u8[2]` | pad02 | copied with the seven entries by the pickup's creation (the 16-byte and 8-byte copies at `0x00319D78`-`0x00319D91` in `0x00319CA0`); read by no instruction; nothing fixes its width |
+| `+0x04` | `u32` | quantity | how many of the item to grant; passed to the grant call in edx |
+
 ## Operations
 
 | Function | Role |

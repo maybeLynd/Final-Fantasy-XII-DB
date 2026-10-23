@@ -288,6 +288,25 @@ pointers are on [Config screen](config-screen.md).
 | `0x0208E6C8` | `void*` | 0 | the open Parameter Settings screen, the `0xC8`-byte widget with procedure `0x00240AD0` | `0x00240D60` (`0x00240DAB`); `0x00240AD0`, 0 on message 18 (`0x00240B00`) | `0x00240D60`, which creates it only while it is 0 (`0x00240D73`) and opens it under the menu root `[0x0208EA28]` (`0x00246AD0`, `0x00240DBA`); `0x00240AD0`, which closes it after `0x002814E0(0x53A)` (`0x00240B5C`) |
 
 No other instruction reaches either: no other RIP-relative, image-base-relative or 32-bit offset reference names them.
+
+### The leader choice window
+
+The party leader choice is the `0xC8`-byte widget at `0x022CA428` with procedure `0x0035D6B0`.
+
+```struct LeaderChoiceWindow base=record size=0xC8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0035D6B0
++0xC0    i32             delay                  the steps left before the question opens: the construct message sets
+                                                0x18 (0x0035D89C); each step message 2 on which 0x001EDEC0(+0xB4) answers
+                                                non-zero lowers it while it is above 0 (0x0035D7D2-0x0035D7DE), and at 0
+                                                the question opens (0x0035D7E4)
++0xC4    u32             flags                  bit 0: the question box is open, set after 0x0035C660 opens it
+                                                (0x0035D7F1, 0x0035D808) so it opens once, cleared by the construct
+                                                message (0x0035D895); bit 1: the field teardown 0x0035BB70 is closing the
+                                                window (0x0035BBB1), and then message 18 skips its own restore of the
+                                                menu state (0x0035D6FC)
+```
+
 ## Columns
 
 | Column | Meaning |

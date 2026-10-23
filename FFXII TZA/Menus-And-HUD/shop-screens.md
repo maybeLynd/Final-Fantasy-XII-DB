@@ -231,6 +231,143 @@ The equip offer checks each party member (`0x00317B70`):
 3. Yes opens the member picker `0x0057AC10`, "Select a character to equip." (`0xC70`), which equips through
    `0x0031A510` (`0x0057AF18`) once per copy bought.
 
+## Layouts
+
+### The grant list
+
+The grant list is the `0x130`-byte widget with procedure `0x003F4840` that `0x003F47E0` builds and that keeps itself at `0x02B5F1F8`; the grant window `0x0057A4E0` and the quest result window use it.
+
+```struct GrantList base=record size=0x130
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x003F4840
++0xC0    u8              page                   the page on show: 0 none yet (the construct message, 0x003F48E1), 1 the
+                                                item list (0x003F47BB), 2 the second list (0x003F4747). 0x003F4690 opens the
+                                                next page from it (0x003F46A8): from 0 the item list when the copied
+                                                reward record has its gil bit or item pairs, else the second list when
+                                                it has single items; from 1 the second list when there are single
+                                                items; otherwise it answers 0 and message 12 (sub-command 0x12, the
+                                                page is done) closes the window. Message 12 drops the finished page's
+                                                child by it (0x003F49AE). 0x003F4670 returns it, or 3 when no window
+                                                exists (0x003F4682); the grant window 0x0057A4E0 and 0x0057A440 wait on
+                                                that, and so does the quest result window 0x003F4E70 for 3 (0x003F4F56)
++0xC1    u8[7]           pad0C1                 read and written by no function; nothing fixes its width
++0xC8    u64             owner                  the creator's first argument, the first qword of the creation record
+                                                (0x003F487F; 0x0057A4E0 passes its rsi); handed to the item list child
+                                                0x003F4330 as the first word of its creation record (0x003F4750)
++0xD0    u8[16]          reward00               bytes 0x00-0x0F of the 0x24-byte reward record the creator points to
+                                                (0x003F488D): byte +0x00 bit 0 marks gil, word +0x08 the number of item
+                                                pairs and word +0x0A the number of single items, which 0x003F4690 tests
+                                                to choose the pages (0x003F46D4, 0x003F46D9, 0x003F46E3); both children get
+                                                this copy's address (0x003F46F7, 0x003F4768)
++0xE0    u8[16]          reward10               bytes 0x10-0x1F of the copied reward record (0x003F4898), read by the
+                                                two children through the copy's address
++0xF0    u8[4]           reward20               bytes 0x20-0x23 of the copied reward record (0x003F48A2), read by the
+                                                two children through the copy's address
++0xF4    u8[4]           pad0F4                 read and written by no function; nothing fixes its width
++0xF8    u8[16]          callbacks00            bytes 0x00-0x0F of the 0x18-byte block the creator's third argument
+                                                points to, or zero when it is null (0x003F48B4, 0x003F48CA, 0x003F48D1); the
+                                                grant window 0x0057A4E0 fills it with a byte at +0x04, -1 at +0x06 and
+                                                the function 0x0057B6A0 at +0x08. Both children get its address
+                                                (0x003F470D, 0x003F476D)
++0x108   ptr             callbacks10            bytes 0x10-0x17 of that block (0x003F48C0, 0x003F48D8): the second
+                                                function, 0x0057C010 from the grant window 0x0057A4E0
++0x110   ptr             itemList               the item list page, 0x128 bytes with procedure 0x003F4330 (0x00244F50 at
+                                                0x003F47A4, stored at 0x003F47AC, opened at 0x003F47B6); 0 on construction
+                                                (0x003F48E8) and when message 12 finishes page 1 (0x003F49CC)
++0x118   ptr             secondList             the second page, 0xF0 bytes with procedure 0x003F4060, for the record's
+                                                single items (0x00244F50 at 0x003F4730, stored at 0x003F4738); 0 on
+                                                construction (0x003F48EF) and when message 12 finishes page 2 (0x003F49C1)
++0x120   u32             ownsPicture            bit 0 set when the window loaded its own picture, kind 7 id 0x96
+                                                (0x003F4941), clear when the caller gave one (0x003F48FF); the construct
+                                                message opens the window at once only without it (0x003F497A); the
+                                                closing message 15 frees the picture only with it (0x003F49F4)
++0x124   u8[4]           pad124                 read and written by no function; nothing fixes its width
++0x128   ptr             picture                the picture the item list draws with: the caller's (the creator's
+                                                fourth argument, from 0x0057A4E0's [r9 + 0x158], 0x003F4906) or the load
+                                                request kind 7 id 0x96 (0x00249320, 0x003F4935); handed to the item list
+                                                (0x003F477E); freed and cleared by the closing message 15 when owned
+                                                (0x003F49FD-0x003F4A17)
+```
+
+### The shop window
+
+The shop window is the `0x268`-byte widget with procedure `0x0057B890` that `0x0057B800` builds (The window's memory above).
+
+```struct ShopWindow base=record size=0x268
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0057B890
++0xC0    u8              shop                   the shop number, the construct message's argument a
+                                                (0x0057B8BD-0x0057B8C3): the title is the shop's name 0x002FAE40(shop) on
+                                                opening (message 16, 0x0057B977) and on return from a trade (0x0057C01B);
+                                                the tab lists 0x0057B500 (0x0057B5E9, 0x0057B609) and the new-goods check
+                                                0x0057B6F0 (0x0057B70A, 0x0057B71A) list its goods; 0x0057BD40 asks 0x0056E880
+                                                whether rows 1 and 2 are offered for it (0x0057BE23); choosing a row
+                                                opens the trade screen 0x0056DD50(shop, text) (0x0057C0F0); the grant
+                                                window 0x0057A4E0 reads it (0x0057A573)
++0xC1    u8              savedMenuByte          byte +0xDE0 of the menu layout block [0x0209AC30] when the shop opens
+                                                (0x0057B92F-0x0057B936); the construct message then calls 0x00285F20(0), and
+                                                message 18 restores the saved value with 0x00285F20 (0x0057BCA0)
++0xC2    u8[2]           pad0C2                 read and written by no function; nothing fixes its width
++0xC4    u8              activeRow              the command row whose trade screen is open: 0x0057C070 stores the
+                                                confirmed row (0x0057C0AA); 0xFF for none (the construct message
+                                                0x0057B8F1, message 8 0x0057BA83). While a row is active 0x0057BD40 draws it
+                                                in style 0 and the other rows in style 3 (0x0057BE3C-0x0057BE57); message
+                                                8 runs 0x002CB8B0 unless it is row 2 (0x0057BA72)
++0xC5    u8[3]           pad0C5                 read and written by no function; nothing fixes its width
++0xC8    i16             listCursor             the head of the command rows' list state: 0x002CD4D0 sets it to 0,
+                                                points +0xD0 at the rows and registers the state at [0x0209AC30] + 0x330
+                                                (0x002CD4E5, called by 0x0057B400 at 0x0057B421); the command list builder
+                                                0x002C9BF0 takes it as the list's row (0x002C9C79)
++0xCA    u8[6]           pad0CA                 read and written by no function; nothing fixes its width
++0xD0    ptr             rowsPointer            the address of the three command rows at +0xD8, stored by 0x002CD4D0
+                                                (0x002CD4EB); read for a row's help text (0x0057B983, 0x0057BAC9, 0x0057BB51)
++0xD8    u8[96]          rows                   the three 0x20-byte command rows (The command rows above): 0x002CD4D0
+                                                clears them (memset 0x60, 0x002CD4F1); 0x0057B400 labels them 0x48B-0x48D
+                                                with help 0xC67-0xC69 (0x002CD3C0, 0x0057B426-0x0057B44E); 0x0057BD40 puts a
+                                                row's help text at its +0x18 (0x0057BE80); the cursor message 0x8000 and
+                                                message 8 show that help (0x00291D80, 0x0057BB5C, 0x0057BAD6)
++0x138   u32[3]          offered                per command row, whether it is offered: 0x0057BD40 stores 1 for row 0
+                                                and 0x0056E880(shop, ...) for rows 1 and 2 (0x0057BE1E-0x0057BE3A); 0x0057C070
+                                                refuses a confirmed row whose entry is 0 (0x0057C087). The construct
+                                                message clears the three (0x0057B8E1, 0x0057B8E8)
++0x144   u8[4]           pad144                 read and written by no function; nothing fixes its width
++0x148   ptr             commandList            the command list widget, built by 0x002C9BF0 from the rows (0x0057B47B,
+                                                stored at 0x0057B483), 0 at construction (0x0057B8D5); message 10 hands it
+                                                the input (0x002D3900, 0x0057BB00); its +0xE0 gets bit 17 when a row is
+                                                chosen (0x0057C0A3-0x0057C0B1) and loses it on message 8 (0x0057BAE0), and
+                                                gets bit 21 on sub-command 0x12 (0x0057BB76) and loses it on 0xF
+                                                (0x0057BBA9); message 8 reads its cursor to show the row's help
+                                                (0x0057BA8F)
++0x150   u32             flags                  bit 0: picture 0x16 was loaded here (0x0057B7E7) and message 18 releases
+                                                it (0x002F83E0(0x16), 0x0057BC8D); bit 1: the bazaar has new goods, set by
+                                                0x0057BD40 when 0x0057B6F0 finds some (0x0057BDD2), which makes message 19
+                                                and sub-command 0x12 show them (0x0057B4A0, 0x0057BA14) and is cleared by
+                                                the answers 0x8100-0x8102 (0x0057BBF9); bit 2: the window is closing for
+                                                a trade, set by 0x0057B6A0 (0x0057B6D8) and taken by message 19
+                                                (0x0057B9F1-0x0057B9FE); bit 3: set by message 15 (closing begins,
+                                                0x0057BC18), cleared by message 14 (0x0057B9E2); bit 4: set by message 20
+                                                unless bit 2 is set (0x0057BC52-0x0057BC5F), after which each tick waits
+                                                for 0x00283980 and destroys the window (0x0057BA31-0x0057BA53); bit 5:
+                                                sub-command 0xF's argument (0x0057BB8C-0x0057BB9E), cleared by message 8
+                                                (0x0057BAF1); message 8 does its work only with bit 5 set or bit 3 clear
+                                                (0x0057BA60-0x0057BA6C). The construct message sets it to 0 (0x0057B900)
++0x154   u8[4]           pad154                 read and written by no function; nothing fixes its width
++0x158   ptr             picture                the shop's one picture, kind 7 id 0x96 (the list 0x00D238E0, one entry):
+                                                0x0057B780 has 0x003933F0 load it here (0x0057B792, 0x00393431); 0x0057B680
+                                                returns it for index 0 (0x0057B697); the grant window 0x0057A4E0
+                                                (0x0057A5DD), the equip offer 0x0057A980 (0x0057A9B6) and 0x0057C070
+                                                (0x0057C0D1) use it; message 18 releases it through 0x003938B0 (0x0057BC6D,
+                                                0x003938D0, 0x003938DD)
++0x160   ptr             goodsBlock             the 0x7D0-byte block of 1,000 good ids taken from arena 2 by the
+                                                construct message (0x002497E0, 0x0057B90B); 0x0057B500 has 0x002FA920 fill it
+                                                for each tab and copies it into the tab row (0x0057B610, 0x0057B61C);
+                                                message 18 frees it (0x003697F0, 0x0057BCAC)
++0x168   u16             bazaarIds              the first of the 128 bazaar good ids at +0x168-+0x267 that the
+                                                new-goods check 0x0057B6F0 has 0x002FA920 fill (0x002FAA10) and reads back
+                                                (0x0057B740, 0x0057B74C)
++0x16A   u8[254]         bazaarIds2             ids 1-127 of the same array
+```
+
 ## Shipped data
 
 | | |

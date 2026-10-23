@@ -472,6 +472,119 @@ Scripts reach it through a word of hide bits, one per verb family:
 
 The Escape Mode register and arming are on [Escape](../Controls-And-Input/escape.md).
 
+## Layouts
+
+### The field marker
+
+The field marker is the `0xF8`-byte widget at `0x022C83E0` with procedure `0x0035C160` (State below); every field past the header is set only by its construct message, so it draws nothing.
+
+```struct FieldMarker base=record size=0xF8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x0035C160
++0xC0    i16             state                  the marker's draw state: the draw message 4 runs only for states 2-5
+                                                (0x0035C1BD-0x0035C1CA); states 2, 4 and 5 set the colour
+                                                bytes +0x90-+0x92 of the draw record [+0x38] to the pulse 96 + 32 x
+                                                sin(frame x pi / 30) (0x0035C1D0-0x0035C22D), state 3 holds +0x90 at 0x80
+                                                (0x0035C364). The construct message 1 sets it to 0 (0x0035C3AB); no other
+                                                instruction writes it
++0xC2    u8[2]           pad0C2                 read and written by no function; nothing fixes its width
++0xC4    u32             helpOpen               set while the marker holds the help block's rings open: 0x0035C080
+                                                closes them with 0x00290990 only when it is non-zero and then clears it
+                                                (0x0035C090, 0x0035C0A5); 0x0035C100 fades them with 0x00290B10 and clears it
+                                                (0x0035C11E). The construct message 1 sets it to 0 (0x0035C3B2); no
+                                                instruction sets it non-zero
++0xC8    char[32]        label                  the label text the marker draws: the draw message passes its address
+                                                to 0x002B3400 as the text of the draw context (0x0035C2C4) and 0x002D8650
+                                                draws it (0x0035C34D); the construct message 1 stores 0 in its first
+                                                byte (0x0035C397), an empty label. The next field bounds it at 32 bytes
++0xE8    i16             labelWidth             the label's width: the draw message scales it by the depth factor
+                                                0.5 + 0.5 x (depth - 0x100000) / 3145728 (depth clamped to
+                                                0x100000-0x400000) and draws the label at x - width / 2
+                                                (0x0035C2DC-0x0035C341)
++0xEA    i16             labelHeight            the label's height: scaled by the same depth factor; the label is
+                                                drawn at y - height, above the projected point (0x0035C2F2-0x0035C330)
++0xEC    u32             unit                   the handle of the unit the label follows: the draw message skips when
+                                                0x002EA230(handle) answers non-zero (0x0035C233), otherwise takes the
+                                                unit's position (0x002E9A90, 0x0035C246) and projects it through the view
+                                                0x02AEDDB0 (0x00249110, 0x0035C270), and draws nothing when the projected
+                                                depth is 0x1000000 or more (0x0035C28C). The construct message 1 sets it
+                                                to 0 (0x0035C3A5)
++0xF0    u64             cleared0F0             set to 0 by the command message 12 (0x0035C1B1); read by no instruction
+```
+
+### The field-effect icon
+
+The field-effect icon is the `0xD8`-byte widget at `0x02B47740` with procedure `0x003C9A30` that the HUD switch opens; it shows the icon of the first field effect in force.
+
+```struct FieldEffectIcon base=record size=0xD8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
+                                                header); procedure 0x003C9A30
++0xC0    u8              effect                 the field effect in force: each tick (message 2) takes the first of
+                                                bits 0x1-0x40 of the field-effect flags 0x022C314C (0x0031A8E0) in the
+                                                table 0x00D11710 as 0-6, or 7 for none, and stores it here
+                                                (0x003C9BD8-0x003C9C02); the construct message sets it and +0xC1 to 7 with
+                                                one word store of 0x707 (0x003C9AF1). Read by no instruction: the tick
+                                                uses the value it has just computed
++0xC1    u8              iconEffect             the field effect whose icon is loaded or being loaded: the tick stores
+                                                the current effect here when it differs from the icon child's +0xC0
+                                                and the child is idle (its +0xC1 is 0) or in state 3-4 (0x003C9D28,
+                                                0x003C9D46); 0x003C9950 requests the picture kind 7, id 0x0E + this value
+                                                (0x003C997B); once the picture has loaded the tick gives it to the
+                                                child's +0xC0 (0x003C9C33, 0x003C9C43)
++0xC2    u8[2]           pad0C2                 read and written by no function; nothing fixes its width
++0xC4    u32             flags                  bit 0: the widget is open, set by message 19 (forward run finished,
+                                                0x003C9BBF), cleared by message 15 (closing begins, 0x003C9D75); bit 1:
+                                                the icon child is open, set by the tick (0x003C9CAE), cleared by
+                                                0x003C98A0 when it closes the child (0x003C98D1); bit 2: a new icon is
+                                                wanted, set by the tick (0x003C9D25, 0x003C9D43), cleared once the child
+                                                is opened with it (0x003C9CBD); bit 3: the picture request is in flight,
+                                                set by 0x003C9950 (0x003C99AF), cleared by message 16 (a resource batch
+                                                has loaded, 0x003C9B2A). The construct message sets it to 0 (0x003C9AFF)
++0xC8    ptr             iconChild              the icon widget, 0xC8 bytes with procedure 0x003C95C0, built by the
+                                                construct message (0x00244F50 at 0x003C9B0C, stored at 0x003C9B11); placed
+                                                by 0x003C9840 (0x003C9846, 0x003C986E), closed by 0x003C98A0 (0x003C98A9,
+                                                0x003C98C5), opened by the tick (0x00246AD0, 0x003C9CA2) and released by
+                                                message 18 unless it is open (0x003C9D8E-0x003C9DAA)
++0xD0    ptr             pictureBuffer          the loaded icon picture: 0x003C9950 frees the previous buffer (0x003697F0,
+                                                0x003C9967) and keeps the new request's +0x08 (0x003C99C0); 0x003C9E50
+                                                copies 2h rows of w bytes from it into the battle_4_c image and frees
+                                                it (0x003C9E58, 0x003C9F52, 0x003C9F6D); message 18 frees it (0x003C9DB1,
+                                                0x003C9DC2); the construct message sets it to 0 (0x003C9B05)
+```
+
+### The manager part at +0xA0
+
+These bytes sit in the part at `+0xA0` of the manager `[0x0209BE80]` (The manager object above); the offset is from the start of the part.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x52A8` | `u8[8]` | pad52A8 | between the pointer +0x52A0 and the pointer +0x52B0 (manager +0x5348-+0x534F); read and written by no function; nothing fixes its width |
+
+### The manager part at +0x57E0
+
+These bytes sit in the pickup part at `+0x57E0` of the manager; the offsets are from the start of the part.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x24A4` | `u8[12]` | pad24A4 | after the counter words +0x24A0/+0x24A2 and before the screen-label node at +0x24B0 (manager +0x7C84-+0x7C8F); read and written by no function; nothing fixes its width |
+| `+0x26A0` | `u8[7]` | pad26A0 | after the two image handles +0x2690/+0x2698 and before the six low-nibble bytes +0x26A7 (manager +0x7E80-+0x7E86); read and written by no function; nothing fixes its width |
+
+### The manager part at +0x8FA0
+
+This field sits in the help-message part at `+0x8FA0` of the manager; the offset is from the start of the part.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0xBC` | `u8[4]` | headerBC | the last four bytes of the help-message screen's widget header (manager +0x905C-+0x905F), past the header's rate +0xB8; read and written by no function; nothing fixes its width |
+
+### The manager part at +0xA0D0
+
+This field sits in the part at `+0xA0D0` of the manager, whose two `0x110`-byte elements start at its `+0x000`; the offset is from the start of the part.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x220` | `u8[8]` | boundBase | the start of the block the two 0x110 elements are bound to: 0x003F7E80 passes this + 0x220 as the second qword of each element's construct message (0x003F7EAA, 0x003F7EB1), the element keeps it as its bound object (0x003F83C6) and reads it at +0x740, which is this + 0x960 (0x003F8820), and +0x754, which is this + 0x974 (0x003F82BF). These eight bytes themselves are read and written by no function; nothing fixes their width |
+
 ## State
 
 | Global | Type | Start | Meaning | Set by | Read by |
