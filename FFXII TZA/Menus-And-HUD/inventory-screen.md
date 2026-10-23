@@ -119,6 +119,40 @@ two for Abilities.
 pane holds an item (`+0x180` bit 8) or bits 26 or 29 are set; `0x00563DC0` does the same on focus and then shows the
 cursor. The tab of a pane is `0x00564380`.
 
+### The description box
+
+`0x00293170(kind, id, a, b)` fills the description box. It works through the window at `[0x0209AC30] + 0x2F8` and the box
+at that window's `+0xC0`:
+
+1. While the window is 0 it does nothing (`0x002931AE`).
+2. When the box exists, it closes the box (`0x00244DD0`). First it installs the animation descriptor `0x00916058` when
+   `a` is set and `0x00916030` when `b` is set (`0x00247570`).
+3. Kind 0 stops there.
+4. Otherwise `0x00292B70` composes the line ([Text codes](text-codes.md)). When there is no line, it stops with the box
+   closed.
+5. With no box yet, it creates one through `0x00244F50`: a `0x102D0`-byte list item with procedure `0x00292390`
+   ([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), kept at the window's `+0xC0`. An
+   existing box is sent the line and the entry as message 12 (`0x00247510`, [Widget messages](widget-messages.md)). If
+   bit 5 of the box's `+0x7C` is clear, it stops instead.
+6. It installs `0x00916058` again when `a` is set, then opens the box under the window (`0x00246AD0`).
+
+`0x00293110(kind, id)` calls it with `b` = 0. `a` is bit 0 of the box's `+0x40`, or 0 when there is no box. The one
+exception is `0x00293110(0, 0)`, which passes `b` = 1, so it only closes the box. `0x00293100(kind, id, a)` passes `b` = 0.
+
+Every caller, and the kind it passes. The id is in the high word unless the row says otherwise:
+
+| Caller (call site) | Where | Kind |
+|---|---|---|
+| `0x00563F10` (`0x00563F7D`), `0x00563DC0` (`0x00563E42`) | Inventory, the item under the cursor | word `+2` of the tab's 4-byte record at `0x00D23960`: Weapons 1, Armor 3, Accessories 5, Ammunition 2 (the kind `0x00292B70` narrows ammunition to; `0x00564430` passes 3), Items 8, Loot 9, Key Items 10; Abilities 6, or 7 when byte `+0xF7` of the pane's current entry is 15 (`0x005643E2`-`0x00564407`) |
+| `0x0056E5D0` (`0x0056E6C9`, through `0x00293100`) | shops | `0x00D235D8[help kind]`: help kinds 0 to 11 give 1, 3, 5, 2, 8, 7, 6, 9, 11, 12, 13 and 15 |
+| `0x003FDFE0` (`0x003FE2D5`) | Equip, the slot list | word `+2` of the slot's 4-byte record at `0x00D23988`: Weapon 1, Off-hand 3, Helm 4, Armor 4, Accessory 5 |
+| `0x003FF920` (`0x003FF973`) | Equip | `0x00292F60(slot)` |
+| `0x002C59D0` (`0x002C5E39`) | the Status pane | 14, with the status number (the entry's byte `+0xC8`) as the whole id rather than in the high word, the form every status lookup takes (`0x0031E137`); 0 and 0 when the entry fails `0x002D02A0` |
+| `0x002C59D0` (`0x002C5D84`), `0x003FF360` (`0x003FF732`), `0x005651E0` (`0x0056531A`), `0x0056C850` (`0x0056C913`), `0x0056E140` (`0x0056E283`), `0x0057B6A0` (`0x0057B6C7`) | | 0 and 0, which closes the box |
+
+The shops' help kinds 8 and 10 (categories 12, 31 and 14) give kinds 11 and 13. Neither has a handler, so for those
+goods the box closes and stays empty.
+
 ### The input step
 
 `0x00564C80(pane)` runs every frame: while an item is held, `0x00564D30`; otherwise `0x00564E10(pane, 0)`.

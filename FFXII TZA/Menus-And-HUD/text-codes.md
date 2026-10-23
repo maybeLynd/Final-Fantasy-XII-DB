@@ -211,6 +211,15 @@ Three kinds are narrowed first:
 | 8 | `0x00293E10` | an item: class 5 and its action row's description, with the same `0x4B27` text |
 | 9, 10, 12, 14, 15 | `0x00293F40`, `0x00294AB0`, `0x00295720`, `0x002956B0`, `0x002947F0` | the description `+0x10` of class 7, 13, 11, 26 or 18: loot, key items, gambit conditions, statuses, bazaar goods |
 
+`0x00292B70` writes no line and returns 0 for:
+
+- kind 0 or a kind above 15 (`0x00292C0D`-`0x00292C16`);
+- kinds 0, 11 and 13, whose entries of `0x01E0C490` are null (`0x00292D12`-`0x00292D19`). A kind 3 entry whose row `+0x4C` is
+  above 4 also becomes kind 0 (`0x00292CE9`);
+- an id of `0xFFFF` with kind 3, 6 or 10 (`0x00292C9E`, `0x00292C7B`, `0x00292C2D`), and a kind 10 id outside
+  `0x8060`-`0x81FF` (`0x00292C3A`-`0x00292C4A`);
+- a handler that returns 0 (`0x00292D3E`).
+
 `0x00293CE0(list, bits, text, count, n, flag)` adds to an argument list a text `0x4B27` + b for each set bit b
 of a byte, with `text` before or after them depending on the language (`0x00254A10`, `0x00264150`); the kind 3, 4
 and 5 handlers use it.
