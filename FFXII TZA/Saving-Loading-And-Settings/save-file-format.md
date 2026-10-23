@@ -108,8 +108,8 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x64` | `u32` | blocksize constant 0x7410, the battle-state block's size |  |
 | `+0x68` | `u32` | magic2 | `0x0131F3EA`, tested by `0x00255260` |
 | `+0x6C` | `u32` | size2 | `0x4818`, tested by `0x00255260`; the image-backed state block's size |
-| `+0x70` | `u8[32] stash` | the mode-3 stash: +0x70 ticks, +0x78 hours, +0x7A minutes, +0x7B seconds, +0x7C walked, +0x80 five dwords of the world-transition record (0x00584210) |  |
-| `+0x90` | `u8[368] rest` | zeroed by the image clears; not written by the enumerated writers |  |
+| `+0x70` | `u8[36] stash` | the mode-3 stash: +0x70 ticks, +0x78 hours, +0x7A minutes, +0x7B seconds, +0x7C walked (0x00320D50), +0x80 to +0x93 the five dwords of the world-transition record (0x00584210; the last stored at 0x005842B1 and read back at 0x0058435C) |  |
+| `+0x94` | `u8[364] rest` | zeroed by the image clears; not written by the enumerated writers |  |
 
 The roster loop (`0x00583DC2`-`0x00583EEB`) walks party pages 0-8 from `0x00282DF0(page)`, skips a page
 whose word `+0x60` is negative or whose flag bit 1 is set, and writes for each page `{+0x60 low
@@ -145,7 +145,7 @@ The buffers are `0x566C0` apart, 48 bytes more than the image.
 
 | Image offset | Payload offset | Content |
 |---|---|---|
-| `+0x01244` | `+0x1044` | the active or pending area id (`0x00584210` stashes `+0x1244`-`+0x1254`) |
+| `+0x01244` | `+0x1044` | the active or pending area id (`0x00584210` stashes the five dwords `+0x1244` to `+0x1257` and stores `0x483` here through `0x00314DC0`, `0x005842D7`-`0x005842DF`) |
 | `+0x02200` | `+0x2000` | the copy of the battle-state block head that `0x00235AF0` compares |
 | `+0x08200` | `+0x8000` | the image-backed state block, `0x4818` bytes, bound to `0x020927C0` by `0x00253970`; its `+0x47E8` (image `+0xC9E8`) mirrors the play clock |
 | `+0x4E68C` | `+0x4E48C` | the battle-state block, 29,712 bytes, bound to `0x02EBF190` by `0x00233C10` (`0x00233C25`-`0x00233C33`) |
@@ -198,13 +198,21 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
    `0x00237DF0` runs (`0x00233C59`), which reaches `0x002370C0`: the block is zeroed, stamped, and its
    party arrays at `+0x5A48` filled with `0xFFFF` (`0x002370C0`).
 4. `0x00584210`, called from the load lifecycle `0x00582860` (`0x00582EBA`), handles the stash:
-   - load mode `0x00394450()` = 3 with header flag bit 0 clear: the play clock, the walked total
-     and the five transition dwords are stashed at `+0x70`-`+0x90` and cleared, and field
-     `0x483` is requested (`0x00314DC0`);
+   - load mode `0x00394450()` = 3 with header flag bit 0 clear:
+     - the play clock `+0x10` to `+0x1B` is copied to `+0x70` to `+0x7B`, the walked total
+       `0x00320D50()` to `+0x7C`, and the five transition dwords `+0x1244` to `+0x1257` to `+0x80` to
+       `+0x93` (`0x00584255`-`0x005842B1`);
+     - the entrance word `+0x1248` is then zeroed (`0x005842B7`), bit 0 of the battle block's `+0x5B04` is
+       cleared (`0x005842BD`-`0x005842C4`), the tick count and the hours, minutes
+       and seconds dword are zeroed (`0x005842CB`, `0x005842CF`), `0x00322200` zeroes the walked pair at the
+       battle block's `+0x5AC8` and `+0x5ACC` (`0x005842D2`), and the header's walked mirror `+0x0C` is
+       zeroed (`0x005842DC`);
+     - `0x00314DC0` stores `0x483` as the destination field `+0x1244` (`0x005842D7`-`0x005842DF`); the
+       previous field, previous entrance and mode words `+0x124C` to `+0x1257` keep their values;
    - any other mode with flag bit 0 set: the stash is restored, `0x00329E40(walked)` re-seats the
      accumulator, `0x00269A20(image + 0xE240)` and `0x002EF410(image + 0x4E660)` run, the flag is
-     cleared, `0x01E0C3EC` is zeroed and `0x0023A390(0)` clears the block's `+4` bit 12.
-   - Both paths clear bit 0 of the battle block's `+0x5B04`.
+     cleared, `0x01E0C3EC` is zeroed, bit 0 of the battle block's `+0x5B04` is cleared
+     (`0x0058437D`-`0x0058438C`) and `0x0023A390(0)` clears the block's `+4` bit 12.
    - Both paths then reseed the gameplay generator from the clock (see the
      [random number generators page](../Random-Numbers/random-number-generators.md)).
 

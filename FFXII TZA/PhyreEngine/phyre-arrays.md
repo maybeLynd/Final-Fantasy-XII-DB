@@ -16,17 +16,28 @@ and the top bit of the count is what tells the engine not to free that memory.
 
 ### Two containers
 
-PhyreEngine has two array templates, both 16 bytes and both registered as reflected classes with
-`m_count` at `+0x00`:
+PhyreEngine has two array templates, both registered as reflected classes with `m_count` at `+0x00`:
 
-- `PArray<T>` keeps its elements on the heap; `+0x08` (`m_els`) is the pointer. The registration of
+- `PArray<T>` is 16 bytes and keeps its elements on the heap; `+0x08` (`m_els`) is the pointer. The registration of
   `PArray<unsigned int,4>`, `0x005B4E00`, builds a `0x10`-byte descriptor with alignment 8, an `m_count`
   member at 0 with the `WriteMask` annotation `0x7FFFFFFF`, and an `m_els` array member (kind 2,
   element size 4) at 8.
-- `PSharray<T>` keeps a single element inside the array: with a count of 1 the element is the
-  8 bytes at `+0x08` (`m_u`); with 0 there is no storage; with 2 or more `+0x08` is the heap pointer.
-  The registration of `PSharray<PUInt32>`, `0x005EFB10`, gives `m_u` attribute bit `0x40`, the bit the
-  reflection layer reads as "measured and defaulted inline".
+- `PSharray<T>` keeps a single element inside the array: with a count of 1 the element itself is
+  stored from `+0x08` (`m_u`); with 0 there is no storage; with 2 or more `+0x08` is the heap pointer.
+  Its size is 8 bytes plus the larger of 8 and the element size, which the class registrations pass
+  to `0x00632D80`:
+  - `0x10` for `PSharray<PUInt32>` (`0x005EFBA9`) and the six pointer instantiations (`0x005B7B59`,
+    `0x005EFEF9`, `0x0066A4F9`, `0x006989C9`, `0x006A8559`, `0x006C65F9`);
+  - `0x50` for `PSharray<PDataBlockBufferD3D11>` (`0x0066A849`) and
+    `PSharray<PIndexDataBlockBufferD3D11>` (`0x0066AB99`), whose `0x48`-byte elements (`0x00661CC0`,
+    `0x00662170`) fill `+0x08` to `+0x4F` at a count of 1;
+  - in `PDataBlockD3D11` the member `m_buffers` at `+0x20` (`0x006658F3`) is followed by
+    `m_offsetInVertexBuffer` at `+0x70` (`0x006659E6`), and in `PIndexDataBlockD3D11` `m_buffers` at
+    `+0x18` (`0x00666403`) is followed by `m_offsetInIndexBuffer` at `+0x68` (`0x006664F6`).
+
+The registrations of `PSharray<PUInt32>` (`0x005EFD0A`), `PSharray<PDataBlockBufferD3D11>` (`0x0066A9A9`) and
+`PSharray<PIndexDataBlockBufferD3D11>` (`0x0066ACF9`) give `m_u` attribute bit `0x40`, the bit the reflection
+layer reads as "measured and defaulted inline".
 
 Element access follows from this. `0x006045B0` returns the pointer at `+0x08` of a `PArray`; `0x0063B9B0` returns the
 address of `+0x08` itself for a `PSharray` holding one element, null for none, and the stored pointer
@@ -47,9 +58,15 @@ records are made with `new[]`: `0x005C9CF0` replaces one with a new array of `n`
 
 The set-external operation is the one that sets the bit. `0x0062A870` and `0x0060F400` refuse a count with
 bit 31 already set (5), free owned old storage, store the new pointer and write `count | 0x80000000`.
-`0x00673130` and `0x006AF760` do the same on the array directly. The `PSharray` form `0x006C7D00` copies a
-single element into the inline slot instead and leaves the count at a plain 1, so a one-element
-`PSharray` always owns its element.
+`0x00673130` and `0x006AF760` do the same on the array directly. The `PSharray` forms copy a single
+element into the inline slot instead and leave the count at a plain 1, so a one-element `PSharray`
+always owns its element:
+
+- `0x006C7D00` copies one dword for `PSharray<PUInt32>` (`0x006C7D62`-`0x006C7D64`);
+- `0x006A5950` copies one qword for the six pointer instantiations (`0x006A59B2`-`0x006A59B5`);
+- `0x00672F30` and `0x00673030` copy the `0x48`-byte buffer records and store the record's own
+  `TAsyncUpdate` vtable at `+0x28` (`0x00672F92`-`0x00672FD3`, `0x00673092`-`0x006730D3`);
+- `0x0063DE10` stores the copy of the string made by `0x001C26B0` (`0x0063DE98`-`0x0063DEAA`).
 
 ### Strings in arrays
 
@@ -146,12 +163,12 @@ PArray&lt;T&gt; (`0x10`):
 | `+0x00` | `u32` | m_count | element count in bits 0-30; bit 31 = storage not owned |
 | `+0x08` | `void*` | m_els | elements, or null |
 
-PSharray&lt;T&gt; (`0x10`):
+PSharray&lt;T&gt; (8 + max(8, sizeof T): `0x10` up to 8-byte elements; `0x50` for PDataBlockBufferD3D11 and PIndexDataBlockBufferD3D11):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | m_count | as above |
-| `+0x08` | `u64` | m_u | count 0: unused; count 1: the element itself; count 2+: pointer to elements |
+| `+0x08` | `T or ptr` | m_u | count 0: unused; count 1: the element itself, max(8, sizeof T) bytes; count 2+: pointer to elements |
 
 PString (8):
 
@@ -181,7 +198,7 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 | File | Rows | What it lists |
 |---|---:|---|
 | [phyre-arrays-member-vtables.tsv](phyre-arrays-member-vtables.tsv) | 69 | each array member-record vtable: element type, slot `+0x28` thunk and resize body, slots `+0x20`, `+0x30`, `+0x40` |
-| [phyre-arrays-template-bodies.tsv](phyre-arrays-template-bodies.tsv) | 79 | template bodies: resizes, allocate-and-copy helpers, element copiers and defaulters, copy-assigns, set-external, clear and destroy bodies, with their element types |
+| [phyre-arrays-template-bodies.tsv](phyre-arrays-template-bodies.tsv) | 85 | template bodies: resizes, allocate-and-copy helpers, element copiers and defaulters, copy-assigns, set-external, clear and destroy bodies, with their element types |
 
 ## Operations
 
@@ -194,7 +211,9 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 ## Modding notes
 
 - To make an array use memory you manage, store the pointer and `count | 0x80000000`; the engine then
-  never frees it. Resizing or copy-assigning such an array gives an owned copy.
+  never frees it. A `PSharray` takes foreign memory only for two or more elements: for a count of 1
+  `0x0063B9B0` returns the address of `+0x08` (`0x0063B9D3`), and every set-external body copies the single
+  element there. Resizing or copy-assigning such an array gives an owned copy.
 - A `PSharray` with one element keeps it inside the array, so code that walks the elements must take
   the address of `+0x08` rather than read it as a pointer.
 - Strings copied into arrays always become owned copies; a tagged (bit 0) string is never freed.

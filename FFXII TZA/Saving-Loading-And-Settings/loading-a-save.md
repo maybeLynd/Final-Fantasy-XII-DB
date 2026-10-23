@@ -2,7 +2,7 @@
 title: "Loading a save: the steps from choosing a slot to the party standing where it saved"
 kind: "operation"
 category: "Saving, loading and settings"
-addresses: "0x00580EB0, 0x00582860, 0x00394400, 0x00394130, 0x00512130, 0x00255260, 0x00233C10, 0x002CFD10, 0x00268320, 0x00267C90, 0x00314530, 0x002DE050, 0x00584210"
+addresses: "0x00580EB0, 0x00582860, 0x00394400, 0x00394130, 0x00512130, 0x00255260, 0x002EF640, 0x002EF650, 0x00233C10, 0x002CFD10, 0x00268320, 0x00267C90, 0x00314530, 0x002DE050, 0x00584210"
 ---
 
 ## What the player sees
@@ -13,9 +13,16 @@ where the save was made.
 ## Steps
 
 1. **The widget is created.** The End handler `0x00512130` of script verb `0x705D` creates the post-load widget
-   `0x00394130` ([verb table](../Scripts-And-Script-Commands/verb-table.md)). On its first message it keeps the in-game
-   options, the `0x28`-byte record at `0x002536A0() + 8`, at its `+0xC8` (`0x003942C0`-`0x003942E5`), starts fade slot 2
-   and sets a 30-frame counter ([game settings](game-settings.md)).
+   `0x00394130` ([verb table](../Scripts-And-Script-Commands/verb-table.md)). On its first message it:
+   - zeroes the active image's play clock (`+0x10` and the dword at `+0x18`, `0x003942B9`-`0x003942BD`);
+   - keeps the in-game options, the `0x28`-byte record at `0x002536A0() + 8`, at its `+0xC8`
+     (`0x003942C0`-`0x003942E5`) ([game settings](game-settings.md));
+   - stores 1 at `0x020927C8` (`0x00254CB0`, `0x003942ED`);
+   - resets the active image with `0x002EF650` (`0x003942F2`);
+   - sets the pending preset byte `0x0208D455` to 0 (`0x0023A110`, `0x003942F9`);
+   - stores `0x112` as the transition record's destination field (`0x00314DC0`, `0x003942FE`-`0x00394303`);
+   - starts fade slot 2 over 15 frames (`0x002EFA70`, `0x00394315`) and sets a 30-frame counter
+     (`0x0039431A`-`0x00394322`).
 2. **The read.** State 8 of the save and load screen queues the storage requests that read the slot's file into
    the active image, `0x56690` bytes ([saving and loading](saving-and-loading.md#the-save-and-load-screen),
    [save file format](save-file-format.md)).
@@ -25,10 +32,16 @@ where the save was made.
    wakes the widget (`0x00394400`, when `0x00394520` finds it), and lets `0x00584210` handle the mode-3 stash and reseed
    the gameplay generator from the clock ([saving and loading](saving-and-loading.md#what-a-load-runs),
    [save file format](save-file-format.md)).
-5. **The payload test.** When its counter has run out, the widget tests the payload's second magic at `+0x68`
-   (`0x00255260`). Without it, it clears the cursor-bank entry below and asks for map 0 through the jump funnel
-   ([save file format](save-file-format.md), [changing areas](../World-Areas-And-Travel/changing-areas.md)).
-6. **`btlCallBackAfterReadSaveRam()`.** With the magic, `0x00233C10` binds the battle-state block `0x02EBF190` to the
+5. **The header test.** When its counter has run out, the widget passes the active image's header `+0x68`
+   (`0x002EF640`, `0x003941D3`-`0x003941DC`) to `0x00255260`, which accepts a pair of zero dwords or the magic
+   `0x0131F3EA` followed by the size `0x4818` (`0x00255265`-`0x00255283`); the payload begins at image `+0x200`.
+   When the test fails, the widget:
+   - resets the active image with `0x002EF650` (`0x003941E5`), which clears its `0x56690` bytes and runs
+     `0x00253A80`, `0x002EF2D0` and `0x00238A80` (`0x002EF656`-`0x002EF67D`);
+   - clears the cursor-bank entry and the battle-menu cursor block of step 7 (`0x002CFD10`, `0x003941ED`);
+   - asks for map 0 through the jump funnel `0x00314440` (`0x003941FC`)
+     ([save file format](save-file-format.md), [changing areas](../World-Areas-And-Travel/changing-areas.md)).
+6. **`btlCallBackAfterReadSaveRam()`.** When the test passes, `0x00233C10` binds the battle-state block `0x02EBF190` to the
    loaded image ([save data fields](save-data-fields.md), [party data](../Party/party-data.md)). The empty
    function `0x0016D6A0` runs before it ([jump thunks](../Engine-Core/jump-thunks.md)).
 7. **`YsSaveRam_CallBackInit()`.** `0x002CFD10` (whose argument it ignores) clears entry 4 of the menu cursor bank 6 (`0x002527B0(6, 4, 0)`) and

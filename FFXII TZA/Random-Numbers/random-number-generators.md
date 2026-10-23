@@ -62,7 +62,7 @@ The seed function has exactly two callers:
 
 ```python
 t = _time64(NULL);                                   // IAT 0x008C3060, called at 0x0058439F
-seed = ((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF   // 0x005843A5-0x005843B2, btr bit 31 at 0x005843BE + 0x258 * frameCounter;                            // 0x005843B4, 0x005843C2
+seed = (((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF)  // 0x005843A5-0x005843B2, btr bit 31 at 0x005843BE + 0x258 * frameCounter;                                // 0x005843B4, 0x005843C2; all 32-bit, wrapping
 ```
 
 `frameCounter` is `0x01FD4A80`, which the application frame dispatcher `0x0022A580` increments once
@@ -85,8 +85,8 @@ draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3F
 ```
 
 `0x00328370` is the out-of-line draw; it has 23 call sites in 15 functions. Seven more functions
-carry the same three steps inline, reading and writing `0x022C256C` directly, so an instruction
-census of the multiplier `0x41C64E6D` finds 24 sites in 8 functions: `0x00328370`, `0x00317ED0`,
+carry the same three steps inline, reading and writing `0x022C256C` directly, so the multiplier
+`0x41C64E6D` appears at 24 sites in 8 functions: `0x00328370`, `0x00317ED0`,
 `0x003183D0`, `0x00318510`, `0x003185D0`, `0x003186F0`, `0x00318820` and `0x00319530` (three sites each). All
 eight advance the same word, so every draw by any of them moves the others along.
 
@@ -145,7 +145,7 @@ functions.
 
 ### The counter hash
 
-The routine at `0x006B05E0` (code the analysis did not carve as a function) is not a recurrence: it increments the counter `0x02E50260` and hashes it:
+`0x006B05E0` is the script method `GenerateRandomFloat01` of `PRandomGenerator`: `0x006B04B0` registers the name (`0x00632FB0` at `0x006B052B`) and stores the address in its float caller record (`0x006B059F`-`0x006B05A6`), its only reference. It is not a recurrence: it increments the counter `0x02E50260` and hashes it:
 
 ```python
 c = ++counter;                                   // 0x006B05E0-0x006B05EB
@@ -207,7 +207,7 @@ set. The counter and the kernels (`0x02EA24A0`) are referenced only from this ro
 | `0x0015BCF0`, `0x0018D680` | graphics-noise MT: seed at process start, seed mixer |
 | `0x003D8E50`, `0x004005E0` | presentation generator: scaled draw, unit draw |
 | `0x00259180` | presentation generator: seed |
-| routine at `0x006B05E0` | counter hash |
+| `0x006B05E0` | counter hash, `PRandomGenerator` method `GenerateRandomFloat01` |
 | `0x0074BDE0` | PPFX xorshift kernel builder |
 
 ## State

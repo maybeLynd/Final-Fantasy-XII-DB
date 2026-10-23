@@ -59,7 +59,13 @@ address	form	role	element
 0x006396C0	PSharray	storage, duplicate m strings, zero the rest	PString (8)
 0x0063D9C0	PSharray	resize; releases the old storage through 0x0063DCA0	PString (8)
 0x00646C00	PSharray	copy-assign (0x006A8C90)	8 bytes
+0x0066F7F0	PSharray	storage for count elements (null for 0, inline at +0x08 for 1, 0x48 x count at alignment 8 above 1), copy m (0x00661720), default the rest with the TAsyncUpdate vtable 0x00D68DD0 at +0x28	PDataBlockBufferD3D11 (0x48)
+0x0066F8B0	PSharray	storage for count elements (null for 0, inline at +0x08 for 1, 0x48 x count at alignment 8 above 1), copy m (0x006618A0), default the rest with the TAsyncUpdate vtable 0x00D68DE0 at +0x28	PIndexDataBlockBufferD3D11 (0x48)
 0x00671250	PSharray	element pointer: member-record +0x68 hook stored by the PSharray registrars such as 0x005EFB10	-
+0x00672A20	PSharray	resize (storage 0x0066F7F0)	PDataBlockBufferD3D11 (0x48)
+0x00672AD0	PSharray	resize (storage 0x0066F8B0)	PIndexDataBlockBufferD3D11 (0x48)
+0x00672F30	PSharray	set external through 0x006733B0; a count of 1 is copied into array +0x08 to +0x4F with the vtable 0x00D68DD0 at element +0x28 and stays owned	PDataBlockBufferD3D11 (0x48)
+0x00673030	PSharray	set external through 0x006733E0; a count of 1 is copied into array +0x08 to +0x4F with the vtable 0x00D68DE0 at element +0x28 and stays owned	PIndexDataBlockBufferD3D11 (0x48)
 0x00673130	PArray	set external: member-record +0x70 hook installed by 0x005B4E00 for PArray<unsigned int,4>	-
 0x0067AFD0	-	allocate count bytes (alignment 1) and copy the first m; called by 0x00627BD0	1 byte
 0x00691A60	PSharray	clear: free owned heap storage (count above 1), zero count and storage	-
@@ -76,5 +82,5 @@ address	form	role	element
 0x006C52D0	PSharray	clear, same body as 0x00691A60	-
 0x006C7450	PSharray	storage, copy m, zero the rest	pointer (8)
 0x006C7A40	PSharray	resize; one body shared by 6 pointer-element vtables, also called by 0x005C0320	pointer (8)
-0x006C7D00	PSharray	set external; a count of 1 is copied into the inline slot and stays owned	8 bytes
+0x006C7D00	PSharray	set external for PSharray<PUInt32>, reached from slot +0x40 0x0060F680, the +0x70 hook 0x0060F2D0 and 0x006C68B0 (0x006C691A); a count of 1 is copied into the inline slot as one dword (0x006C7D62-0x006C7D64) and stays owned	unsigned int (4)
 0x00879B00	PArray	copy-assign through 0x006BC4C0, then copy the qword at +0x10	-

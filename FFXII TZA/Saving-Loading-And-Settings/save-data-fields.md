@@ -103,8 +103,11 @@ Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
 | `+0x1E` | `u8` | flags1 | bit 5 cleared by `0x003145E0`, set by `0x00314530` |
 | `+0x1F` | `u8` | flags2 | bit 6: the music override at +`0x1534` is in force (`0x0026A720`, `0x0026DE20`) |
 
-`0x00584210` stashes `+0x1044`-`+0x1054` into the header's `+0x80`-`+0x90` when a load begins and puts
-them back on the restore path (see the [save file format page](save-file-format.md)).
+With load mode 3 and the header's flag bit 0 clear, `0x00584210` copies the five dwords `+0x1044` to
+`+0x1057` into the header's `+0x80` to `+0x93` (`0x0058427B`-`0x005842B1`), zeroes `destinationEntrance`
+(`0x005842B7`) and stores `0x483` as `destinationField` through `0x00314DC0` (`0x005842D7`-`0x005842DF`); in
+any other mode with the flag set it copies them back (`0x00584325`-`0x00584362`) (see the
+[save file format page](save-file-format.md)).
 
 The record's writers are `0x003145E0`, `0x00314970`, `0x00314530`, `0x0026D910`, `0x0026A720`, `0x002628B0`, `0x00268320`,
 `0x0026D8F0`, `0x00280140`, `0x00584210` and the field setters `0x003149E0`, `0x00314A00`, `0x00314B80`, `0x00314BB0`, `0x00314BE0`,

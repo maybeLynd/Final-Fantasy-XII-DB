@@ -327,12 +327,11 @@ The file cache manager's other fields are on the
 
 ## Shipped data
 
-Measured from the executable. Call counts are `call` and `jmp` rel32 sites in a linear
-disassembly of `.text` restarted at every `.pdata` entry; functions are counted by `.pdata` extents.
+Imports, call sites of the allocation routines, and the boot blocks, in the executable.
 
 | Fact | Value |
 |---|---|
-| Import symbols | 538, from 30 DLLs; function counts below fold chained unwind entries into their primary |
+| Import symbols | 538, from 30 DLLs |
 | Heap imports | 8, slots `0x008C2B40` to `0x008C2B78` |
 | Direct `call [malloc]` / `call [free]` | 30 / 37 |
 | `0x00584730` aligned free | 2,596 calls and 1 jump, in 2,308 functions |
