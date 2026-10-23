@@ -117,6 +117,41 @@ The read stream, `StreamingBank::AudioStream`, `0xA0` bytes, built by `0x007E2BC
 | `+0x90` | `StreamingBank*` | bank | the bank it belongs to |
 | `+0x98` | `void*` | owner | the voice reading it, or 0 |
 
+## State
+
+### The streaming-bank list
+
+The list at `0x02EAD490` is an `ObjectList` ([Sound driver objects](sound-driver-objects.md)): `0x00169B10` sets it up
+at start-up and `0x008B89A0` takes it down at exit, `0x007B2700` builds its nodes (`0x007B2600`, `0x007B2854`), the bank
+creators add a bank at the front (`0x007AF380`, from `0x007B1DB6` and `0x007B216C`) and the update pass `0x007B2920` takes a
+finished bank out (`0x007B2880`, from `0x007B2A12`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAD4B0` | `void*` | 0 | list `+0x20`, the first node in use; each node holds its bank at `+0x20` and the next node at `+0x10` | `0x00169B10` (`0x00169B3C`); `0x008B89A0` (`0x008B8A00`); through the address: `0x007B2600` (from `0x007B2700`), `0x007AF380` (from `0x007B1AB0`, `0x007B1E10`), `0x007B2880` (from `0x007B2920`) | `0x007B1AB0` (`0x007B1B62`) and `0x007B1E10` (`0x007B1EE7`), which walk the banks for an overlapping buffer; `0x007B2920` (`0x007B29E5`), which finds the node of the bank it retires |
+
+### The job ring
+
+`0x007B6C50` and the worker `0x007B6D40` share the ring `0x02EAD8B0` under the lock `0x02EAD828`. They count jobs posted and
+taken in two words and use the slot `count mod 48` (`0x007B6C9B`-`0x007B6CDF`, `0x007B6D99`-`0x007B6DCB`); when the taken
+count reaches 48 the worker takes 48 from both until it is below (`0x007B6DD2`-`0x007B6E21`). The worker sleeps on a
+manual-reset event guarded by the lock `0x02EAD850`: it registers as a waiter, waits until a post has raised the
+generation and released waiters remain, and the last released waiter resets the event (`0x007B6E66`-`0x007B6F30`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAD878` | `void*` | 0 | the event's handle, `CreateEventW` with manual reset, not signalled | `0x00169E90`, 0 and then the handle (`0x00169EC0`, `0x00169F07`) | `0x007B6C50`, `SetEvent` (`0x007B6CF4`); `0x007B6D40`, `WaitForSingleObject` and `ResetEvent` (`0x007B6EA0`, `0x007B6F29`); `0x008B8D40`, `CloseHandle` at exit (`0x008B8D44`) |
+| `0x02EAD880` | `i32` | 0 | the waiters on the event | `0x00169E90` (`0x00169EC7`, `0x00169EE0`); `0x007B6D40`, 1 more before the wait and 1 less after (`0x007B6E73`, `0x007B6F02`) | `0x007B6C50`, which signals only when it is above 0 (`0x007B6CEA`, `0x007B6D01`) |
+| `0x02EAD884` | `i32` | 0 | the waiters the last signal releases: a post sets it to the waiter count, each released waiter takes 1, and the one that brings it to 0 resets the event | `0x00169E90` (`0x00169EC7`, `0x00169EE9`); `0x007B6C50` (`0x007B6D07`); `0x007B6D40` (`0x007B6F0F`) | `0x007B6D40` (`0x007B6EBD`, `0x007B6F16`) |
+| `0x02EAD888` | `i32` | 0 | the signal generation, 1 more on each post that signals; a waiter leaves only when it differs from the value it saw on arrival | `0x00169E90` (`0x00169ECE`, `0x00169EF1`); `0x007B6C50` (`0x007B6D0D`) | `0x007B6D40` (`0x007B6E80`, `0x007B6EC7`) |
+| `0x02EAD894` | `i32` | 0 | the jobs taken | `0x007B6D40` (`0x007B6DB1`, `0x007B6E21`); `0x007B6F70`, 0 (`0x007B6FB0`) | `0x007B6C50` (`0x007B6C77`); `0x007B6D40` (`0x007B6D87`); `0x007B7070` (`0x007B7099`) |
+| `0x02EAD898` | `i32` | 0 | the jobs posted; the ring is full at 48 more than the jobs taken | `0x007B6C50` (`0x007B6CB9`); `0x007B6D40` (`0x007B6E1A`); `0x007B6F70`, 0 (`0x007B6FC2`) | `0x007B6C50` (`0x007B6C6D`); `0x007B6D40` (`0x007B6D7D`); `0x007B7070` (`0x007B709F`) |
+| `0x02EAD89C` | `i32` | 0 | the last job id given; the next is 1 more, skipping 0 (`0x007B6C8E`-`0x007B6CA3`) | `0x007B6C50` (`0x007B6CA3`); `0x007B6F70`, 0 (`0x007B6FCA`) | `0x007B6C50` (`0x007B6C8E`) |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
+the image base and for those of `0x02EAD490` and `0x02EAD8B0`, which finds none.
+
 ## Modding notes
 
 - A streaming music bank can carry at most 16 streams; each layer of a music that plays at the same time needs its

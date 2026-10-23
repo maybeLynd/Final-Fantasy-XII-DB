@@ -248,6 +248,22 @@ other scripts are these:
 No script calls `removebattlemember`, `setbattlememberone` or `setbattlememberlock`, and none adds Reks or a
 guest row above 14. The other eight language folders make the same calls.
 
+## State
+
+The staging map `0x022C2580` is nine `u16` seats laid out like map 0. Each membership change copies map 0 into it
+(16 bytes, then the ninth seat), changes it by seat index, and `0x003261D0` closes up seats 0-3 and seats 4-8 and
+writes all nine back to map 0 through `0x00329080(seat, selector, 0)` (`0x003262BB`-`0x00326327`, `0x00326450`-`0x00326467`).
+`0x003273D0` instead fills all nine from a list it is handed, `0xFF` giving `0xFFFF` (`0x0032741D`-`0x003274D8`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C2590` | `u16` | 0 | seat 8 of the staging map, the last reserve seat | the copy: `0x003172E0` (`0x0031735A`), `0x00326110` (`0x00326140`), `0x003286E0` (`0x00328766`), `0x003287A0` (`0x00328840`), `0x003288F0` (`0x0032894F`), `0x00328B20` (`0x00328B83`), `0x00328DB0` (`0x00328F04`); `0x003273D0` (`0x003274D8`); by seat index: `0x003172E0` (`0x00317396`), `0x00326110` (`0x00326185`), `0x003286E0` (`0x0032877C`, `0x0032877F`), `0x003287A0` (`0x003288B2`, `0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`, `0x00328F60`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | by seat index: `0x003261D0` (`0x00326303`, `0x00326450`), `0x003273D0` (`0x00327610`, `0x00327760`), `0x003172E0` (`0x0031736B`), `0x00326110` (`0x0032615A`), `0x003286E0` (`0x00328770`), `0x003287A0` (`0x00328890`, `0x003288AD`), `0x00328DB0` (`0x00328F4C`, `0x00328F55`) |
+
+No other instruction reaches `0x022C2590`. The search covered the executable's RIP-relative references (the staging
+map's address is taken by the functions above and by `0x0031A300` and `0x00324380`, which write one byte per unit 0-3 from `0x022C257C`), its
+image-base-relative references, which hold none, and a scan of `.text` for the 32-bit offsets of `0x022C2580` and
+`0x022C2590` from the image base, which finds none.
+
 ## Modding notes
 
 - For rows 0-6 a join adds each worn piece to the owned and worn counts and a leave subtracts it, so gear given to

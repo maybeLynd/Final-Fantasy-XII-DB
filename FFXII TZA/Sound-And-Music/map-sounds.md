@@ -122,7 +122,7 @@ pick (`0x00363D47`, `0x00363DE1`), `0x00362C60` (`0x00362C8C`), `0x00363E40` (`0
 | `0x022CBB50` | `i32` | 0 (zero-filled tail) | the count of the previous map's keep list at `0x022CBB44` | the map-sound initialiser `0x00362F70`, 0 (`0x00363036`), after setting both lists to -1 (`0x00363020`-`0x00363064`); `0x00363750`, the copy of `0x022CBB70` (`0x00363810`) | `0x003636A0` (`0x003636A6`, `0x00363700`) |
 
 These are all its accesses among the RIP-relative references; no image-base-relative reference or disp32
-displacement names it, a search that finds the control `0x02AEA030` at `0x003B6181` and `0x003B6188`.
+displacement names it.
 
 ### Event sound lists
 

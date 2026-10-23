@@ -263,6 +263,22 @@ The squares are one array at view `+0x120`, row by row, the row width the view's
 | boards | 12, each 24 x 24 squares in the file, 25 x 25 on screen (625 squares, 49 of them the empty border) |
 | Gambit Slot squares | 10 on each board, 120 in all |
 
+## State
+
+These start with the file's values and are replaced when the board view `0x0055CD40` is built: it builds its widgets
+from layout 5 of the menu layout block (`[0x0209AC30] + 0x58`, `0x002432B0`, `0x0055CDE6`-`0x0055CE02`) and takes them
+from the layout's nodes (`0x0055CE07`-`0x0055CE61`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F2CACC` | `i32` | 48 | the size of a board square in pixels: the word `+0x10` of the third entry of the view's node array `+0x60`, when there is one; `0x01F2CAF0` becomes 48.0 over it (`0x0055CE1B`-`0x0055CE38`). Half of it is the view's `+0x554` (`0x0055C598`-`0x0055C5AC`) | `0x0055CD40` (`0x0055CE27`) | `0x0055AB20` (`0x0055AB81`); `0x0055AE80` (`0x0055AEF9`, `0x0055B0C6`); `0x0055B8C0` (`0x0055B8D7`); `0x0055B960` (`0x0055B9B0`); `0x0055BAC0` (`0x0055BB73`, `0x0055BEE3`); `0x0055C530` (`0x0055C598`, `0x0055C5A6`, `0x0055C5DE`, `0x0055C605`); `0x0055CD40` (`0x0055D270`, `0x0055D295`, `0x0055D2BB`, `0x0055D2DB`, `0x0055D33D`, `0x0055D364`, `0x0055D378`, `0x0055D3C5`, `0x0055D427`, `0x0055D46B`); `0x0055E9E0` (`0x0055EA60`, `0x0055EA7C`, `0x0055EBA3`, `0x0055EBBF`, `0x0055ED4E`, `0x0055ED62`); `0x00561CA0` (`0x00561CD2`); `0x00561D30` (`0x00561D62`) |
+| `0x01F2CAD0` | `i32` | -1 | the x offset, from the square, of the text `0x0055BAC0` writes on a square (formatted by `0x00365B30` into the view's `+0x4F2` and drawn by `0x002D8910`): the signed word `+0x0C` of the second entry of that array | `0x0055CD40` (`0x0055CE51`) | `0x0055BAC0` (`0x0055BEFB`) |
+| `0x01F2CAD4` | `i32` | -12 | that text's y offset, added to half the square size (`0x0055BF01`-`0x0055BF09`): the signed word `+0x0E` of the second entry | `0x0055CD40` (`0x0055CE61`) | `0x0055BAC0` (`0x0055BF03`) |
+
+No other instruction reaches these three. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
+the image base, which finds none.
+
 ## Modding notes
 
 - The view is the board file plus one row and column; a larger board needs `+0x559`/`+0x55A` to fit a byte.

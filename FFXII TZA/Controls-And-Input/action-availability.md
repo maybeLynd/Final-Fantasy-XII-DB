@@ -56,7 +56,7 @@ read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 | `13` | cleared only: `0x0025B500` jumps to `0x002E1CD0` with clear 1 and row 13 (`0x0025B567`-`0x0025B573`) | - |
 | `15` | the pause menu, `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`) | `0`, `1`, `9`, `20` |
 
-Rows 5, 11 and 14 have no writer.
+No holder sets a bit in rows 5, 11 and 14; only the two clears `0x002E0670` and `0x002E1450` write them (`0x002E0680`/`0x002E1572`, `0x002E0695`/`0x002E1587`, `0x002E06A3`/`0x002E1595`).
 
 ### Row 8
 
@@ -134,6 +134,37 @@ that bit's word of `0x01E0C2C0` (`0x00254500`-`0x0025453C`). The menu router ref
 | `6` | 14 |
 | `8` | 1, and 21 |
 | `9` | 5, and 14 |
+
+## State
+
+The 16 rows, each a `u32` that is 0 in the file. `0x002E0670` and `0x002E1450` clear them two at a time with 8-byte
+stores (`0x002E0672`-`0x002E06A3`, `0x002E1564`-`0x002E1595`). Every row is read by `0x002E0FA0` (`0x002E0FC0`, `0x002E0FCD`)
+and by the drain `0x002E09A0` (`0x002E0C00`, `0x002E0C0D`), which OR the 16 together, and by `0x002E1020` from `0x00228972`,
+which copies each one; the table names these three the readers above.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0215F1C0` | `u32` | 0 | row 0, the movie and event-skip row | the row 0 holders above; 0 (`0x002E0672`, `0x002E1564`) | the readers above |
+| `0x0215F1C4` | `u32` | 0 | row 1, the menu-disable row | `0x002E1BE0` (`0x002E1BFE`, `0x002E1C0B`); 0 (`0x002E0672`, `0x002E1564`) | the readers above; `0x002E1020` from `0x002283E2` and `0x00229B12` (bit 21); `0x002E1BE0` |
+| `0x0215F1C8` | `u32` | 0 | row 2, battle selection | `0x00313A00` through `0x002E1C20` and `0x002E1CA0`; `0x00229510` as the Start screen closes (`0x00229554`, `0x00229562`); 0 (`0x002E0679`, `0x002E156B`) | the readers above |
+| `0x0215F1CC` | `u32` | 0 | row 3, the quest windows | the row 3 holders above; 0 (`0x002E0679`, `0x002E156B`) | the readers above |
+| `0x0215F1D0` | `u32` | 0 | row 4, the screen mask | `0x002E2400` (`0x002E2417`), `0x002E2440` (`0x002E245F`), `0x002E06B0` (`0x002E06C3`); 0 (`0x002E0680`, `0x002E1572`) | the readers above |
+| `0x0215F1D4` | `u32` | 0 | row 5; no holder sets a bit | 0 (`0x002E0680`, `0x002E1572`) | the readers above |
+| `0x0215F1D8` | `u32` | 0 | row 6, user control | the row 6 holders above; 0 (`0x002E0687`, `0x002E1579`) | the readers above |
+| `0x0215F1DC` | `u32` | 0 | row 7, set to `0x100203` while a full-screen menu or the Start screen is up | `0x002E09A0` (`0x002E0D2A`); `0x002E2240` (`0x002E2248`, `0x002E2265`); the main loop through `0x002E1CA0` (`0x0022BBA1`-`0x0022BBC5`); 0 (`0x002E0687`, `0x002E1579`) | the readers above |
+| `0x0215F1E0` | `u32` | 0 | row 8, the menu-request family | the row 8 writers below; `0x00229510` as the Start screen closes (`0x00229554`, `0x00229562`); 0 (`0x002E068E`, `0x002E1580`) | the readers above |
+| `0x0215F1E4` | `u32` | 0 | row 9, the crossfade | the row 9 holders above; 0 (`0x002E068E`, `0x002E1580`) | the readers above |
+| `0x0215F1E8` | `u32` | 0 | row 10, the timed hold after a menu request | `0x002F1C8B`, `0x002F18AC`; 0 (`0x002E0695`, `0x002E1587`) | the readers above |
+| `0x0215F1EC` | `u32` | 0 | row 11; no holder sets a bit | 0 (`0x002E0695`, `0x002E1587`) | the readers above |
+| `0x0215F1F0` | `u32` | 0 | row 12, user control and a spawn group's last death | `0x00307140`, called at `0x0026C738` and `0x00306F9A`; 0 (`0x002E069C`, `0x002E158E`) | the readers above |
+| `0x0215F1F4` | `u32` | 0 | row 13, cleared only | `0x0025B500` through `0x002E1CD0` (`0x0025B567`-`0x0025B573`); 0 (`0x002E069C`, `0x002E158E`) | the readers above |
+| `0x0215F1F8` | `u32` | 0 | row 14; no holder sets a bit | 0 (`0x002E06A3`, `0x002E1595`) | the readers above |
+| `0x0215F1FC` | `u32` | 0 | row 15, the pause menu | `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`); 0 (`0x002E06A3`, `0x002E1595`) | the readers above |
+
+No other instruction reaches the table. The search covered the executable's RIP-relative references (the table's
+address is taken by `0x002E1020`, `0x002E1C20`, `0x002E1CA0` and `0x002E1CD0`, and `0x0215F1D0` by `0x002E09A0` and
+`0x002E0FA0`), its image-base-relative references, which hold none of the rows, and a scan of `.text` for the rows'
+32-bit offsets from the image base, which finds none.
 
 ## Modding notes
 

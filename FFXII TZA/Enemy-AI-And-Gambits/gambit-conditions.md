@@ -50,8 +50,7 @@ store it in a global and read it back for the others:
 
 The opcode and check numbers are those of [Enemy order sets](enemy-order-sets.md) (`0x00301EB8`, `0x003024BC`). No
 other instruction reads or writes these five: the RIP-relative references of the executable reach them only from
-`0x00301AD0`, and no instruction uses their offsets from the image base (a scan of `.text` for each 32-bit offset; the
-same scan finds the two known uses of `0x02AEA030` at `0x003B6181` and `0x003B6188`). The clear `0x0030FE60` stops at
+`0x00301AD0`, and no instruction uses their offsets from the image base (a scan of `.text` for each 32-bit offset). The clear `0x0030FE60` stops at
 `0x022BEB84` and `0x022BED94`, exclusive (`0x0030FE69`, `0x0030FE89`), so it clears neither.
 
 ### How the target is picked

@@ -119,6 +119,23 @@ the layout set.
 `0x00285F60` turns the game language from `0x0017E270` into the language set: `fr` 6, `de` 5, `it` 4, `es` 3, `kr` 0,
 `ch` 2, `cn` 1, and `en`, `jp` and anything else 9.
 
+## State
+
+Two cells tell the keyboard that a License Board panel is up ([License Board screen](../Menus-And-HUD/license-board-screen.md)).
+When the task is built and either is set, it moves itself to the second draw pass (`0x00247730(self, 1)`,
+`0x00287BE3`-`0x00287BFD`), so it is drawn over the panel. Each panel's procedure, when it is destroyed (message 18) and
+the screen closed itself with `0x02CA9678` set, clears its cell and `0x02CA9678` and puts an open keyboard back in the
+first pass (`0x00247730(keyboard, 0)`; `0x00558D14`-`0x00558D3D`, `0x0056190D`-`0x00561936`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA8FE0` | `void*` | 0 | the chooser panel's cell: `0x00558C40`, from the board chooser `0x00557DB0` (`0x00557EDD`, `0x005587AE`), builds a `0xD0`-byte panel with procedure `0x00558CE0` and, when the build succeeds, copies the chooser's `+0xE8` here (`0x00558C95`-`0x00558CB2`) | `0x00558C40` (`0x00558CB2`); `0x00558CE0`, 0 (`0x00558D2A`) | `0x002878E0` (`0x00287BE3`) |
+| `0x02CA8FE8` | `void*` | 0 | the second panel's cell: `0x00561830`, from `0x0055DBD0` (`0x0055DC96`) and `0x0055E9E0` (`0x0055EDC8`), builds a `0xF8`-byte panel with procedure `0x005618E0` and stores the panel here, keeping the old value when the build fails (`0x00561885`-`0x005618A4`) | `0x00561830` (`0x005618A4`); `0x005618E0`, 0 (`0x00561923`) | `0x002878E0` (`0x00287BEC`); `0x00561830` (`0x00561899`) |
+
+No other instruction reaches these two. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
+image base, which finds none.
+
 ## Modding notes
 
 - F9 is read as code 73 directly (`0x0017DE60`), not through the keymap, and 73 is not a reserved code, so a

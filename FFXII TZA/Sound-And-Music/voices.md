@@ -163,6 +163,24 @@ Each cue's bank is a `sabf` container with one sound ([Sound banks](sound-banks.
 Every one of the 4,943 cue words in the event scripts names a sub-file present in that event's `.vpc` and an index
 below its count.
 
+## State
+
+The eight picks at `0x02B5EC70` are one `i32` per group, the candidate the search gave it. `0x003EBD30`, `0x003EBD70`,
+`0x003EBE40` and `0x003EBE70` clear them with four 8-byte stores; the search `0x00321F10` writes them by group through the
+address `0x003EBD30` and `0x003EBE70` hand to `0x00321EA0` (`0x0032203B`); `mesvgetfaceid` `0x003EBDC0` and
+`battlevoice_regist_message_and_voice` `0x003EBF20` read them by group (`0x003EBDD6`, `0x003EBF2A`). `0x003EBD70` also frees
+`VOICEWK` (`0x003697F0`) and forgets the control table; `0x003EBE40` forgets both without freeing.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B5EC78` | `i32[2]` | 0 | the picks of groups 2 and 3 | `0x003EBD30` (`0x003EBD40`); `0x003EBD70` (`0x003EBDA4`); `0x003EBE40` (`0x003EBE57`); `0x003EBE70` (`0x003EBEEC`); `0x00321F10` (`0x0032203B`) | `0x003EBDC0` (`0x003EBDD6`); `0x003EBF20` (`0x003EBF2A`) |
+| `0x02B5EC80` | `i32[2]` | 0 | the picks of groups 4 and 5 | `0x003EBD30` (`0x003EBD47`); `0x003EBD70` (`0x003EBDAB`); `0x003EBE40` (`0x003EBE5E`); `0x003EBE70` (`0x003EBEF3`); `0x00321F10` (`0x0032203B`) | `0x003EBDC0` (`0x003EBDD6`); `0x003EBF20` (`0x003EBF2A`) |
+
+No other instruction reaches these words. The search covered the executable's RIP-relative references (the picks'
+address is taken by `0x003EBD30`, `0x003EBDC0`, `0x003EBE70` and `0x003EBF20` only), its image-base-relative references,
+which hold none of them, and a scan of `.text` for the 32-bit offsets of `0x02B5EC70`, `0x02B5EC78` and `0x02B5EC80` from
+the image base, which finds none.
+
 ## Modding notes
 
 - A line is sub-file `slot`, cue `index` of the event's `.vpc` (English) and `.vpcjp` (Japanese).

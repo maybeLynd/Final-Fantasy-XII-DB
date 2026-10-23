@@ -148,6 +148,33 @@ The event lock goes up when the last member of an enemy spawn group falls: the g
 calls `0x00307140(1)` once the defeated mask covers the member mask (`0x00306F95`-`0x00306F9A`;
 [Boss fights](../Battle-Actions/boss-fights.md), [Enemy respawning](../Enemy-Spawning/enemy-respawning.md)).
 
+## State
+
+Each pass of `0x00338490` first marks all four formation slots empty with `0xFF` in their first byte
+(`0x00338590`-`0x003385B4`), then gives each follower the next slot: the unit's slot byte `+0xEA9` at `+0x00`, its
+position at `+0x10`, its angle around the leader at `+0x20` and the unit at `+0x28` (`0x0033863F`-`0x0033867C`).
+
+It then runs an exchange sort over the filled slots (`0x003388E1`-`0x00338C10`) whose every test compares the float at `+0x24`
+with itself (`comiss xmm0, xmm0`, then `jbe`, at `0x00338960`, `0x003389D3`, `0x00338A44`, `0x00338ACF`, `0x00338B94`), so it
+never swaps two entries. `0x00339A60` finds a unit's slot by comparing the first bytes with its slot byte (`0x00339A9D`-`0x00339AC1`).
+
+The followers are spread around the leader by an angle that depends on the party: 30 degrees when `0x003135C0`
+answers non-zero, otherwise 25, 50 or 40 degrees for one, two or three followers (`0x00338C19`-`0x00338C4C`). The
+global `0x022C7DF0` is added to it (`0x00338CBC`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C7DF0` | `f32` | 0 | the random part of that angle: `rand() % 50` tenths of a degree, in radians (`0x00338C59`-`0x00338CA1`), drawn again on each pass in which every follower's committed order `+0x714` is the wait `0x4021` (`0x00338600`-`0x00338617`, `0x00338C54`), and kept from the last such pass otherwise | `0x00338490` (`0x00338CA1`) | `0x00338490` (`0x00338CAB`) |
+| `0x022C7DF4` | `i32` | 0 | set to 0 each time the random part is drawn; nothing reads it | `0x00338490` (`0x00338C62`) | no instruction |
+| `0x022C7E60` | `u8` | 0 | the slot byte of formation slot 1, `0xFF` when the slot is empty | `0x00338490`: `0xFF` (`0x0033859E`), the follower's slot byte (`0x00338679`); the sort's swaps never run | `0x00339A60` (`0x00339AB4`) |
+| `0x022C7EC0` | `u8` | 0 | the slot byte of formation slot 2 | as for slot 1, `0xFF` at `0x003385A7` | as for slot 1 |
+| `0x022C7F20` | `u8` | 0 | the slot byte of formation slot 3 | as for slot 1, `0xFF` at `0x003385B4` | as for slot 1 |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references (the slots'
+addresses are taken by `0x00338490` and `0x00339A60` only), its image-base-relative references, which hold none of
+them, and a scan of `.text` for the 32-bit offsets of `0x022C7DF0`, `0x022C7DF4`, `0x022C7E00`, `0x022C7E10`, `0x022C7E20`,
+`0x022C7E24`, `0x022C7E30`, `0x022C7E60`, `0x022C7EC0` and `0x022C7F20` from the image base, which finds none.
+
 ## Modding notes
 
 - Every reader of the leader asks `0x003272A0`, so changing `0x022C7FE0` through the request and commit is enough for

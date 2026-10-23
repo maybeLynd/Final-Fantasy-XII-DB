@@ -183,6 +183,25 @@ A row lists up to seven `u16` action ids from `+0x02`, ending at `0xFFFF`, with 
 - In the action list (code `0xB`) an action gets flag bit 0 and code `0x2B` unless it is one of the row's ids with
   its mask bit clear (`0x0031F1AD`-`0x0031F1FF`); the code goes in the entry's byte `+6`.
 
+## State
+
+`0x00322630(unit)`, which step 4 of the slot filter needs to return 0 when `frustum` is set, asks `0x002EA230(unit id +0x08)` once per unit and
+frame and keeps the answer in two masks of one bit per unit index `+0xEA9` (`0x00322636`-`0x0032269E`).
+
+`0x002EA230` answers whether bit 3 of the unit's render record `+0x284` is clear; it answers 1 when `0x003588B0` finds no actor for
+the id or the actor's `+0xC0` block is missing or starts with -1, and 0 when the block names no render record or the record's `+0x284` is 0
+(`0x002EA234`-`0x002EA28A`). `0x003226C0`, run by the field frame `0x00234590` (`0x002346EF`), clears both masks with one
+8-byte store (`0x003226C2`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C2570` | `u32` | 0 | the units asked this frame | `0x00322630` (`0x00322656`); `0x003226C0`, 0 (`0x003226C2`) | `0x00322630` (`0x00322636`) |
+| `0x022C2574` | `u32` | 0 | the units whose answer was 1; `0x00322630` returns the unit's bit, so a unit with its bit set is left out of a frustum list | `0x00322630` (`0x00322674`, `0x00322690`); `0x003226C0`, 0 (`0x003226C2`) | `0x00322630` (`0x00322661`, `0x0032269F`) |
+
+No other instruction reaches these two. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
+image base, which finds none.
+
 ## Modding notes
 
 - The 24-unit limit is the float at `0x00D1081C` (576.0, the square of the range); it applies to every

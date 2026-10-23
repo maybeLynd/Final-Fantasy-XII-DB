@@ -376,6 +376,25 @@ The label widths come from a pre-pass, `0x00273E30`, which scene and action code
 | `+0x04` | `u16` | flags | bit 0 greyed, bits 6-9 the targets the action needs |
 | `+0x06` | `u8` | reason | `0x002FFCF0` code from `0x00317BC0` |
 
+## State
+
+For style 2 `0x00404F50` does not return a table entry: it copies value entry 0, the 24 bytes at `[[0x02B62D88] + 0xE8]`,
+to `0x02B62D90` (`0x00405007`-`0x00405016`), rewrites its value and maximum for the bar asked, and returns `0x02B62D90`
+(`0x004050A7`). The callers read `+0x08`, `+0x0C` and `+0x10` of the entry they get.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B62D90` | `u8[8]` | 0 | bytes `+0x00`-`+0x07` of that copy; no caller reads them | `0x00404F50` (`0x0040500A`) | no instruction |
+| `0x02B62D98` | `i32` | 0 | `+0x08`, the value: for bar 0 the part inside the current cell, `(current x 51 - cells x max) / 51` rounded up (`0x00405023`-`0x00405054`); for bar 1 the width `cells x 6 - 2` (`0x0040508D`-`0x004050A1`) | `0x00404F50` (`0x0040500A`, `0x00405047`, `0x00405054`, `0x004050A1`) | through the returned address: `0x00405770` (`0x00405820`), `0x004061F0` (`0x00406479`, `0x004064A9`, `0x004064D9`), `0x00406770` (`0x00406817`), `0x00407D10` (`0x00407D98`) |
+| `0x02B62D9C` | `i32` | 0 | `+0x0C`, the maximum: for bar 0 the maximum over 51 rounded up (`0x0040505A`-`0x00405086`), for bar 1 298 (`0x00405090`) | `0x00404F50` (`0x0040500A`, `0x00405072`, `0x00405086`, `0x00405090`) | through the returned address: `0x00405770` (`0x00405829`), `0x004061F0` (`0x004062E3`, `0x00406476`), `0x00407D10` (`0x00407D9C`) |
+| `0x02B62DA0` | `u8[8]` | 0 | bytes `+0x10`-`+0x17` of the copy; the dword `+0x10` is read | `0x00404F50` (`0x00405016`) | through the returned address: `0x004061F0` (`0x004064A4`) |
+
+The callers reach these cells only through the address `0x00404F50` returns, from its calls at `0x00405816`,
+`0x004062D9`, `0x004063FA`, `0x004067C8` and `0x00407D8E`. No other instruction reaches them. The search covered the
+executable's RIP-relative references (`0x02B62D90` is taken only by `0x00404F50`, at `0x0040507F` and `0x004050A7`), its
+image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
+the image base, which finds none.
+
 ## Modding notes
 
 - The top command list is the six pairs at `0x00D10650`; reordering them reorders the menu.

@@ -278,8 +278,7 @@ to -1 by the reset (above).
 | `+0xA4` | `f32` | defense | the defence subtracted from attack (`0x0038D28B`) |
 
 `+0x97` has no access among the RIP-relative references, the image-base-relative references and a disp32 scan of
-the code section over the whole block; the scan's one hit, `0x006FE60C`, is inside a `jmp` and is no displacement, and
-the control `0x02AEA030` is found at `0x003B6181` and `0x003B6188`. No instruction takes the address of any part of the
+the code section over the whole block; the scan's one hit, `0x006FE60C`, is inside a `jmp` and is no displacement. No instruction takes the address of any part of the
 block, so every access is one of these direct ones.
 
 ## State

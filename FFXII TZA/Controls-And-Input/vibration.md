@@ -96,8 +96,8 @@ menu frame and the capture-backed frame first clear the four levels with `0x0035
 On every poll `0x0035F420` calls `0x0035F590` (`0x0035F548`):
 
 1. With the channel's flag bit 2 set, the large value is the envelope `+0x16` times the actuator-1 level `+0x07`,
-   shifted right 14, and the small value is bit 0 of the envelope times the actuator-0 level `+0x06`, shifted
-   right 21; without it both are 0.
+   shifted right 14, and the small value is bit 21 of the envelope `+0x16` times the actuator-0 level `+0x06`
+   (`0x0035F61B`-`0x0035F639`: multiplied, shifted right 14, then right 7, then masked with 1); without it both are 0.
 2. It hands them through `0x008628F0` to `0x001E1120(pad +0x02, small, large)`, and sets flag bit 4 when either level it read
    is non-zero. `0x0035FCA0` clears bit 4 before each poll (`0x0035FCE8`).
 3. `0x001E1120` sends zeros instead unless the input manager's last-device byte `+0x38` says the pad was used last
@@ -161,6 +161,33 @@ plays:
 | 2, 5 | 15, 35 | 230 |
 | 6, 7 | 15, 35 | 255 |
 | 8, 9, 10 | 5 | 140, 180, 255 |
+
+## State
+
+The eight recorded handles at `0x022C8030` are `u32`s that `0x0035B270` clears with four 8-byte stores
+(`0x0035B2B9`-`0x0035B2CE`). `0x0035B650` records a new handle in the first empty one (`0x0035B692`-`0x0035B6D1`);
+`0x0035B460` (`vibstop`) and `0x0035B5D0` free each recorded handle and clear it (`0x0035B480`-`0x0035B48B`,
+`0x0035B5F0`-`0x0035B5FB`), `0x0035B5D0`, from `0x00262B99`, then also frees every slot in use (`0x0035B607`-`0x0035B63C`);
+`0x0035AE30` frees and clears those in state 4 (`0x0035AEB4`-`0x0035AEE2`); `0x0035B380` reads them (`0x0035B3A0`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C8038` | `u32[2]` | 0 | recorded handles 2 and 3 | `0x0035B270` (`0x0035B2C0`); `0x0035B650` (`0x0035B6D1`); `0x0035B460` (`0x0035B48B`); `0x0035B5D0` (`0x0035B5FB`); `0x0035AE30` (`0x0035AEE2`) | `0x0035B650` (`0x0035B692`); `0x0035B460` (`0x0035B480`); `0x0035B5D0` (`0x0035B5F0`); `0x0035AE30` (`0x0035AEB4`); `0x0035B380` (`0x0035B3A0`) |
+| `0x022C8040` | `u32[2]` | 0 | recorded handles 4 and 5 | as for `0x022C8038`, `0x0035B270` at `0x0035B2C7` | as for `0x022C8038` |
+| `0x022C8048` | `u32[2]` | 0 | recorded handles 6 and 7 | as for `0x022C8038`, `0x0035B270` at `0x0035B2CE` | as for `0x022C8038` |
+| `0x02EC0F60` | `u8` | 0 | slot 31's next byte: `0x0035B270` chains slot i to slot i + 1 and ends the free list here with `0xFF` (`0x0035B288`, `0x0035B29D`); later the list code moves it like any slot's | `0x0035B270` (`0x0035B288`, `0x0035B29D`); `0x0035B1A0` (`0x0035B216`, `0x0035B226`); `0x0035B2F0` (`0x0035B346`) | `0x0035B1A0` (`0x0035B1D0`, `0x0035B1F6`, `0x0035B20E`); `0x0035B2F0` (`0x0035B31F`); `0x0035AF20` (`0x0035B143`) |
+| `0x022CB5C0` | `u8` | 0 | the large value `0x0035F590` computes for the pad (actuator 1), 0 without the channel's flag bit 2 or without bit 1 of the argument byte that `0x022CB600` keeps (`0x0035F5BB`-`0x0035F602`) | `0x0035F590` (`0x0035F5BB`, `0x0035F5FA`, `0x0035F602`) | `0x008628F0`, which hands it to `0x001E1120` as the large value (`0x008628F7`), through the address `0x0035F590` passes (`0x0035F668`) |
+| `0x022CB5C1` | `u8` | 0 | the small value, 0 or 1 (`0x0035F60F`-`0x0035F641`) | `0x0035F590` (`0x0035F5BB`, `0x0035F639`, `0x0035F641`) | `0x008628F0` (`0x008628FB`), the same way |
+| `0x022CB600` | `u8` | 0 | the byte `0x0035F590`'s third argument points to, `& 3`: bit 1 lets the large value be computed and bit 0 the small one (`0x0035F5D7`, `0x0035F60F`); stored when either is; `0x0035F590` passes its address to `0x008628F0` (`0x0035F661`), which does not use that argument | `0x0035F590` (`0x0035F5D0`, `0x0035F650`) | no instruction |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references (the
+handles' address is taken by `0x0035AE30`, `0x0035B380`, `0x0035B460`, `0x0035B5D0` and `0x0035B650`, the slots' by the slot
+functions above, `0x022CB5C0` and `0x022CB600` by `0x0035F590` only), its image-base-relative references, in which
+`0x0035AF20` reads the slot bytes by slot number.
+
+A scan of `.text` for the 32-bit offsets of `0x022C8030`,
+`0x022C8038`, `0x022C8040`, `0x022C8048`, `0x02EC0F60`, `0x022CB5C0`, `0x022CB5C1` and `0x022CB600` from the image base, which
+finds none.
 
 ## Modding notes
 

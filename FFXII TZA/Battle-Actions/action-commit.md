@@ -128,6 +128,19 @@ still has bit 5, it clears the bit and calls `0x00305AB0(unit, 0)` when the unit
 | unit `+0xEA8` | `u8` | attacker count | `0x0030F959` (+1); `0x003107DD` (-1) |
 | `0x022BE980` / `0x022BE981` | `u8` | idle-queue read and write indices | `0x00313D1E` / `0x003086DA`; both zeroed by `0x0030FE60` (`0x0030FE7B`) |
 
+`0x0030FE60` lays out three blocks the same way: a 16-bit word, then 64 entries of 8 bytes. It stores 0 in each word
+and in the first dword of each entry. The first block is the idle-unit queue (`0x022BE980`) and the third the show
+queue (`0x022BEDA0`, [Action phases](action-phases.md)); the second is used by nothing else.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022BEB90` | `u16` | 0 | the word before the 64 entries `0x022BEB94`-`0x022BED93`; only the reset touches the word and the entries | `0x0030FE60`, 0 (`0x0030FE9B`; the entries at `0x0030FE90`) | no instruction |
+
+The search for `0x022BEB90`-`0x022BED93` covered the executable's RIP-relative references, which hold the store
+`0x0030FE9B` and the loop start `0x0030FE82` (`0x0030FE89` ends the loop at `0x022BED94`, the gambit value of
+[Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md)), its image-base-relative references, which
+hold none, and a scan of `.text` for the 32-bit offsets of `0x022BEB90`, `0x022BEB91` and `0x022BEB94` from the image base, which finds none.
+
 ## Related
 
 - [Area of effect](area-of-effect.md) - the target list the commit starts, and the stats-record list.

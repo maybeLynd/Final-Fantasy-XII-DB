@@ -148,6 +148,36 @@ called from `0x002341D0`, the area initialisation `0x00234397` and the slot rele
 | `0x022C2178` / `0x022C218C` | `u32` | Quickening index / its user's id |
 | `0x022C21B4` / `0x022C21B8` | `u32` / `void*` | Quickening target count / the targets, one unit pointer per target from `0x022C21B8` on (`0x0030690D`) |
 
+The Quickening chain also keeps one 4-byte entry per main character, party type 0-6, from `0x022C2196`: the character's
+Mist pool (stats `+0x06`) when the Quickening starts, a `u16`, and at `+0x02` the Mist charges the character's
+Quickenings in the chain have cost, a `u8`:
+
+1. `0x0030D720` (from `0x003066EB` and `0x0030686D`) clears them and the three level
+   counters `0x022C2192`-`0x022C2194` ([Concurrence list](concurrence-list.md)).
+2. `0x0030D550` (from `0x00306872`) clears the
+   entries again and stores each fighting member's pool (`0x0030D5BC`-`0x0030D5EF`).
+3. The chain step `0x00313120` adds the
+   cost `0x00308FF0` gives to the user's byte while it is below 3 (`0x00313314`-`0x00313333`).
+4. When the chain ends,
+   `0x0030D810` (from `0x003066C9`) changes each member's Mist pool by `saved - charges x max MP (stats +0x28) - current pool`
+   through `0x00300BC0` (`0x0030D850`-`0x0030D889`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C2194` | `u8` | 0 | the count of Quickenings used from the third slot | `0x0030D720`, 0 (`0x0030D738`); `0x00313120` (`0x003133A9`) | `0x00313120` (`0x0031339D`); `0x00305F10`, as part of the 8 bytes from `0x022C2190` (`0x00305F1A`); `0x002F8D60` through the address `0x0030DB70` passes (`0x0030DC4E`) |
+| `0x022C2196` / `0x022C2198` | `u16` / `u8` | 0 | type 0's saved pool / charges | pool: `0x0030D550`, 0 (`0x0030D567`) and by type (`0x0030D5E7`); `0x0030D720`, 0 (`0x0030D7AF`); charges: `0x0030D550` (`0x0030D560`); `0x0030D720` (`0x0030D7A9`); `0x00313120` (`0x00313333`) | `0x0030D810` (`0x0030D871`, `0x0030D86B`); charges also `0x00313120` (`0x00313320`) |
+| `0x022C219A` / `0x022C219C` | `u16` / `u8` | 0 | type 1's | as for type 0, the clears at `0x0030D574` / `0x0030D56E` and `0x0030D7BC` / `0x0030D7B6` | as for type 0 |
+| `0x022C219E` / `0x022C21A0` | `u16` / `u8` | 0 | type 2's | the clears at `0x0030D581` / `0x0030D57B` and `0x0030D7C9` / `0x0030D7C3` | as for type 0 |
+| `0x022C21A2` / `0x022C21A4` | `u16` / `u8` | 0 | type 3's | the clears at `0x0030D58E` / `0x0030D588` and `0x0030D7D6` / `0x0030D7D0` | as for type 0 |
+| `0x022C21A6` / `0x022C21A8` | `u16` / `u8` | 0 | type 4's | the clears at `0x0030D59B` / `0x0030D595` and `0x0030D7E3` / `0x0030D7DD` | as for type 0 |
+| `0x022C21AA` / `0x022C21AC` | `u16` / `u8` | 0 | type 5's | the clears at `0x0030D5A8` / `0x0030D5A2` and `0x0030D7F0` / `0x0030D7EA` | as for type 0 |
+| `0x022C21AE` / `0x022C21B0` | `u16` / `u8` | 0 | type 6's | the clears at `0x0030D5B5` / `0x0030D5AF` and `0x0030D7FD` / `0x0030D7F7` | as for type 0 |
+
+No other instruction reaches these cells. The search covered the executable's RIP-relative references (the block's
+addresses are taken by `0x0030D550`, `0x0030D810`, `0x0030DB70` and `0x00313120` only), its image-base-relative references,
+which hold none of them, and a scan of `.text` for the 32-bit offsets of `0x022C2170`, `0x022C2190`, `0x022C2192`,
+`0x022C2196`, `0x022C2198` and each routed cell from the image base, which finds none.
+
 ## Modding notes
 
 - The scene flag is bit 30 of an action row's word `+0x0C`; clearing it makes the action run as an

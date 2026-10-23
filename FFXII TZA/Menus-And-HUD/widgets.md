@@ -398,6 +398,22 @@ bit 1 is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit 2 (`0x0
 confirm through `0x00394380` and paints its rows with `0x00393950`, which, when `0x00264150`
 answers non-zero, recolours row 0 with colour 1 and the others with colour 0 (`0x00393240`), and sets each row's picture cell.
 
+## State
+
+Both blocks are 0 in the file. `0x00247AE0` zeroes the focus stack, its focus cell and its count together (`0x110`
+bytes from `0x0208EAC0`, `0x00247CED`) and makes the matrix `0x0208ECD0` the identity (`0x00203170`, `0x00247CCD`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0208EBB8` | `void*` | 0 | the last of the 32 focus-stack slots at `0x0208EAC0`. A push onto a full stack moves slots 1-31 down one, stores 0 here and then puts the new widget here (`0x00244650`-`0x002446CA`) | `0x00244640`, 0 (`0x002446BB`) and the widget (`0x002446CA`); `0x00244700`, as it closes the stack up (`0x00244767`, `0x0024477A`, `0x002447D7`, `0x002447EA`); `0x002448D0` (`0x002448FE`); `0x00247AE0` (`0x00247CED`) | `0x00244640`, as the source of the move (`0x002446AB`); `0x00244700` (`0x00244740`, `0x00244760`, `0x002447B0`, `0x002447B5`, `0x002447D0`); `0x002448D0` (`0x00244919`) |
+| `0x0208ED00` | `f32` | 0 | x of the centre of the widget being drawn: its box x plus half its width. `0x00245E60` puts it in the translation row of the matrix `0x0208ECD0` and multiplies the matrix it was handed by that matrix (`0x00202D70`, `0x002460B4`), after a matrix that moves the box back by half its size (`0x00245FC6`-`0x00245FE3`) | `0x00245E60` (`0x002460A4`); `0x00247AE0` (`0x00247CCD`) | `0x00202D70`, through the matrix address `0x00245E60` passes (`0x00246078`, `0x002460B4`) |
+| `0x0208ED04` | `f32` | 0 | y of that centre: the box y plus half its height | `0x00245E60` (`0x002460AC`); `0x00247AE0` (`0x00247CCD`) | `0x00202D70`, as above |
+
+No other instruction reaches these cells. The search covered the executable's RIP-relative references (the focus
+stack's base `0x0208EAC0` is taken by `0x00244640`, `0x00244700`, `0x002448D0` and `0x00247AE0` only, the matrix
+`0x0208ECD0` by `0x00245E60` and `0x00247AE0` only), its image-base-relative references, which hold none of them, and a
+scan of `.text` for each address's 32-bit offset from the image base, which finds none.
+
 ## Modding notes
 
 - A new widget needs a procedure that answers message 1 and returns 0 for the rest; `0x005C5230` is the shared default.

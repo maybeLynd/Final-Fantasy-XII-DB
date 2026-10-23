@@ -154,6 +154,25 @@ The header of an order set, followed by its 24-byte orders ([Gambits](gambits.md
 | `+0x00` | `u8[12]` | counts | orders in subgroups 0-11, summed by the walk (`0x00305D30`, `0x00305D89`) |
 | `+0x0C` | `u8[20]` | pad0C | 0 in the built-in sets |
 
+## State
+
+`0x0032A4D0(unit, other, refresh)`, the line-of-sight test of steps 3 and 4, keeps its answers for the frame in the
+`0x100` bytes at `0x022C26A0`: one 32-bit mask per unit index `+0xEA9` of the pairs already tested
+(`0x022C26A0 + 4i`), and one of the pairs found clear (`0x022C2720 + 4i`).
+
+A pair already tested gives its kept
+answer unless `refresh` is set (`0x0032A510`-`0x0032A52B`); otherwise the test casts a line between the two units'
+positions, raised by the height `0x00263940` gives (`0x0032A54C`-`0x0032A5D8`), and keeps the answer for both units.
+`0x0032A650`, run by the field frame `0x00234590` (`0x002346EA`), clears the block (`0x0032A663`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C2564` | `i32` | 0 | the lines cast so far this frame: every test that is not answered from the kept masks adds 1 (`0x0032A61C`) | `0x0032A4D0` (`0x0032A61C`); `0x0032A650`, 0 (`0x0032A681`) | `0x0032A650`, which keeps the larger of it and `0x022C2568` in `0x022C2568` before clearing it (`0x0032A668`-`0x0032A67B`); no other function reads `0x022C2568` |
+
+No other instruction reaches `0x022C2564` or `0x022C2568`. The search covered the executable's RIP-relative references,
+its image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
+image base, which finds none.
+
 ## Modding notes
 
 - A phase change is an order: an enemy switches phase only when one of its own orders `0x4116`-`0x4121`

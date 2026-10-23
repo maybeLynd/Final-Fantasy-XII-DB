@@ -249,7 +249,7 @@ runner `0x007BAEC0` gives each back after running it (`0x007BB4FD`-`0x007BB53F`)
 
 No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
 image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
-the image base, which finds none; the same scan finds the two known uses of `0x02AEA030` (`0x003B6181`, `0x003B6188`).
+the image base, which finds none.
 
 ## Modding notes
 

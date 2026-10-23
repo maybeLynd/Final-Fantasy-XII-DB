@@ -51,7 +51,7 @@ The member records are the `0xC0`-byte records at `0x022C8080 + i x 0xC0` (`0x00
 
 `0x0035BB70`, run by the field set-up `0x00253A30` (`0x00253A3E`) and the teardown `0x003C5E50` (`0x003C5EA7`), clears the
 whole `0x348`-byte block from `0x022C8060`, keeps only the bits `0xFFFC02EC` of the mode word `0x022C83E8`, runs
-`0x002419B0(1)`, closes the leader-choice window in `0x022CA428` and the window `0x0035E070` keeps in `0x022CA430`
+`0x002419B0()`, closes the leader-choice window in `0x022CA428` and the window `0x0035E070` keeps in `0x022CA430`
 (`0x00244F00`), and ends in `0x002A1E90`, which closes the widget in `[0x0209C4C8]`.
 
 `0x0035D570(unit)` returns 1 when the unit's handle is one of the `[0x022C83F0]` words at `0x022C83F8`; the overhead
@@ -118,7 +118,7 @@ HP and MP roll through counters, `0x58`-byte records, two per member at `0x0209B
 window at `0x0209C240`. `0x00297C10(record)` finds the pair holding the record's handle or takes a free one, sets it up
 with `0x003F89C0` and the callbacks `0x0029B7D0` (HP) and `0x0029B810` (MP), and registers both in the HUD's counter list
 `+0x80` (`0x003F8A50`). `0x002962D0` unregisters pairs whose handle no longer resolves (`0x002732E0`, `0x003F8A30`), and
-`0x00296360(record, on)` does the same for the target window's pair (from `0x002C0870`).
+`0x00296360(record, handle)` does the same for the target window's pair (from `0x002C0870`).
 
 `0x003F8A30(list, node)` first moves the list head on to the node's next (`+0x28`) when the node is the head, then
 runs `0x003F8BF0(node)` (`0x003F8A42`): it calls the node's callback `+0x38` with 5, links its previous `+0x30` and next
@@ -335,6 +335,28 @@ The status cycle record at the row's `+0xF0`:
 | `+0x08` | `i16` | shown | the period being shown |
 | `+0x0A` | `i16` | count | statuses counted (`0x00275E40`) |
 | `+0x10` | `void*` | status | the status row shown, or 0 |
+
+## State
+
+The target window's pair of counters is the two `0x58`-byte records `0x0209C240` (HP) and `0x0209C298` (MP). The
+handle that matches a unit to it sits where a member's pair keeps its handle, at `+0xB0` from the pair
+(`0x002962C0` returns `0x0209C240`).
+
+`0x00296360(record, handle)`, from `0x002C0870`, first unregisters both records when a
+handle is held (`0x0029636A`-`0x002963A0`); with a non-zero handle and a record whose `+0x04` is not 0 it stores the
+handle and sets both records up again (`0x002963AA`-`0x00296436`). `0x00296260`, from `0x0028F327` and `0x0028F8E3`, zeroes
+the `0xC0` bytes from `0x0209C240` (`0x0029626F`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209C288` | `void*` | 0 | the HP counter's context `+0x48`: the record `0x00296360` was given | `0x003F89C0`, which zeroes the record and stores its fourth argument (`0x003F89E5`, `0x003F89FB`), from `0x00296360` (`0x002963E2`); `0x00296360` (`0x0029642F`); `0x00296260`, 0 (`0x0029626F`) | `0x0029B7D0`, the HP callback, through the counter it is called with (`0x0029B7D7`) |
+| `0x0209C2E0` | `void*` | 0 | the MP counter's context `+0x48`, the same record | `0x003F89C0` as above, from `0x00296360` (`0x00296402`); `0x00296360` (`0x00296436`); `0x00296260`, 0 (`0x0029626F`) | `0x0029B810`, the MP callback, the same way (`0x0029B814`) |
+| `0x0209C2F0` | `u32` | 0 | the handle of the unit whose HP and MP the target window rolls, 0 for none | `0x00296360`: 0 (`0x002963A0`), the handle (`0x002963C8`); `0x00296260`, 0 (`0x0029626F`) | `0x00296360` (`0x0029636A`); through the address `0x002962C0` returns: `0x0028F1F0` (`0x0028F21D`), which starts the window's roll when the changed unit's handle matches, and `0x002C0400` (`0x002C0449`) |
+
+No other instruction reaches these three. The search covered the executable's RIP-relative references (the two
+records' addresses are taken by `0x00296260`, `0x00296360` and `0x002962C0` only), its image-base-relative references, which hold
+none of them, and a scan of `.text` for the 32-bit offsets of `0x0209C240`, `0x0209C298` and the three globals from
+the image base, which finds none.
 
 ## Modding notes
 

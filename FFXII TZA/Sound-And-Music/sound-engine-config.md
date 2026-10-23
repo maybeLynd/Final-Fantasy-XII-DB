@@ -235,6 +235,36 @@ gives the ramped value of the row whose name matches, or -1; a switched sound re
 Only with `enable` set does `0x007AC4F0` build the HCA mixer voice (`0x007ACC6B`-`0x007ACC9B`). The engine renders at the
 constant 48,000 (`0x007AC691`).
 
+### The master ramps
+
+The master volume ramp `0x01F403E0` and the master pitch ramp `0x01F40410` are laid out alike: `+0x00` the value the
+ramp starts from, then the fields below. When the configuration is loaded, `0x007AAA40` sets each to start 0, target
+1.0, time 0 and duration 0 (the vector `0x008C5F90`, `0x007AAC12`, `0x007AAC20`) and the other fields to 0.
+
+Command `0x05` starts the volume ramp (`0x007AAD90`, from `0x007AB751`) and command `0x06` the pitch ramp (`0x007AAC80`, from
+`0x007AB765`): the current value becomes the start, the argument the target and the duration, time 0, curve 0, and
+the ramp runs. Each driver pass advances both (`0x007AAEA0`, from `0x007A54B2`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F403E4` | `f32` | 0 | the volume ramp's target | `0x007AAA40` (`0x007AAC12`); `0x007AAD90` (`0x007AAE05`) | `0x007AAD90` (`0x007AADB4`, `0x007AADD5`); `0x007AAEA0` (`0x007AAF18`, `0x007AAF31`) |
+| `0x01F403E8` | `f32` | 0 | its time so far; the pass adds its time step and stops at the duration (`0x007AAEDB`-`0x007AAEF0`) | `0x007AAA40` (`0x007AAC12`); `0x007AAD90`, 0 (`0x007AAE15`); `0x007AAEA0` (`0x007AAEE6`, `0x007AAEF0`) | `0x007AAD90` (`0x007AADBE`); `0x007AAEA0` (`0x007AAED1`) |
+| `0x01F403EC` | `f32` | 0 | its duration; with a duration of 0 the value is the target | `0x007AAA40` (`0x007AAC12`); `0x007AAD90` (`0x007AAE0D`, `0x007AAE53`, `0x007AAE86`) | `0x007AAD90` (`0x007AADA7`); `0x007AAEA0` (`0x007AAEB0`) |
+| `0x01F403F4` | `i32` | 0 | its curve, handed to `0x007A9E50` with `time / duration` | `0x007AAA40`, 0 (`0x007AAC19`); `0x007AAD90`, 0 (`0x007AAE1F`) | `0x007AAD90` (`0x007AADC6`); `0x007AAEA0` (`0x007AAF22`) |
+| `0x01F403F8` | `u8` | 0 | 1 while the ramp runs; the pass clears it when the time reaches the duration | `0x007AAA40`, 0 (`0x007AAC27`); `0x007AAD90`, 1 (`0x007AAE29`); `0x007AAEA0` (`0x007AAEFB`, `0x007AAF04`) | `0x007AAEA0` (`0x007AAEBB`) |
+| `0x01F403FC` | `i32` | 0 | with 1, a start shortens the duration to the change over the rate `0x01F40400` (rising) or `0x01F40404` (falling) (`0x007AAE30`-`0x007AAE86`); only `0x007AAA40` writes it, with 0 | `0x007AAA40` (`0x007AAC2E`) | `0x007AAD90` (`0x007AADFE`) |
+| `0x01F40414` | `f32` | 0 | the pitch ramp's target | `0x007AAA40` (`0x007AAC20`); `0x007AAC80` (`0x007AACF5`) | `0x007AAC80` (`0x007AACA4`, `0x007AACC5`); `0x007AAEA0` (`0x007AAFA1`, `0x007AAFBA`) |
+| `0x01F40418` | `f32` | 0 | its time so far | `0x007AAA40` (`0x007AAC20`); `0x007AAC80`, 0 (`0x007AAD05`); `0x007AAEA0` (`0x007AAF77`, `0x007AAF81`) | `0x007AAC80` (`0x007AACAE`); `0x007AAEA0` (`0x007AAF62`) |
+| `0x01F4041C` | `f32` | 0 | its duration | `0x007AAA40` (`0x007AAC20`); `0x007AAC80` (`0x007AACFD`, `0x007AAD43`, `0x007AAD76`) | `0x007AAC80` (`0x007AAC97`); `0x007AAEA0` (`0x007AAF50`) |
+| `0x01F40424` | `i32` | 0 | its curve | `0x007AAA40`, 0 (`0x007AAC35`); `0x007AAC80`, 0 (`0x007AAD0F`) | `0x007AAC80` (`0x007AACB6`); `0x007AAEA0` (`0x007AAFAB`) |
+| `0x01F40428` | `u8` | 0 | 1 while it runs | `0x007AAA40`, 0 (`0x007AAC3C`); `0x007AAC80`, 1 (`0x007AAD19`); `0x007AAEA0` (`0x007AAF8C`, `0x007AAF95`) | `0x007AAEA0` (`0x007AAF5B`) |
+| `0x01F4042C` | `i32` | 0 | its rate switch, with the rates `0x01F40430` and `0x01F40434`; only `0x007AAA40` writes it, with 0 | `0x007AAA40` (`0x007AAC43`) | `0x007AAC80` (`0x007AACEE`) |
+
+No other instruction reaches these fields. The search covered the executable's RIP-relative references (the
+addresses `0x007A5B50` and `0x0079E520` take nearby, `0x01F403D0` and `0x01F403A8`, belong to other objects), its
+image-base-relative references, which hold none of them, and a scan of `.text` for the 32-bit offsets of
+`0x01F403E0`, `0x01F40410` and each field from the image base, which finds none.
+
 ## Shipped data
 
 | Chunk | Size | Holds |

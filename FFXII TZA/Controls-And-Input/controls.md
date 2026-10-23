@@ -376,8 +376,7 @@ The toggle and the set are skipped while bit 18 of `0x002E0FA0()` is set (`0x003
 
 No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
 image-base-relative references (`0x00195DF0` and `0x00198B60` reach records 2-4 that way, at the sites listed) and a scan
-of `.text` for each global's 32-bit offset from the image base, which finds no other; the same scan finds the two
-known uses of `0x02AEA030` (`0x003B6181`, `0x003B6188`).
+of `.text` for each global's 32-bit offset from the image base, which finds no other.
 
 ## Modding notes
 

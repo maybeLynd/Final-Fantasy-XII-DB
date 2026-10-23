@@ -244,6 +244,24 @@ The manager, `0x40` bytes at `0x01FD36A0`:
 | `+0x38` | `u32` | pauseOn | the last pause switch |
 | `+0x3C` | `u32` | pauseMask | the paused kinds |
 
+## State
+
+The pending list at `0x01FD4140` is a two-way list with its own head node: `+0x00` the first node, `+0x08` the last,
+then its allocator at `0x01FD4150`, named "EASTL list" (`0x001601C0`). Each node holds the next node, the previous node
+and the sound object (`+0x10`), `0x18` bytes. `0x00222080` and `0x002225B0` put each stopped sound at the end
+(`0x002220D4`-`0x00222110`, `0x00222604`-`0x00222640`); `0x00222280`, the sweep, unlinks a node through the list address it
+is given (`0x002222EF`-`0x00222318`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01FD4148` | `void*` | 0 | the pending list's last node, the head node itself when the list is empty | `0x001601C0`, the head (`0x001601DB`, `0x001601FC`); `0x00222080` (`0x00222110`); `0x002225B0` (`0x00222640`); `0x00222280` when it unlinks the last node (`0x00222307`), through the address `0x00221E00` (`0x00221E1D`) and `0x00222050` (`0x0022205F`) pass | `0x00222080` (`0x002220FB`, `0x00222106`); `0x002225B0` (`0x0022262B`, `0x00222636`); `0x00222280` (`0x002222F2`), the same way |
+| `0x0215EFDC` | `i32` | 0 | a running number given to each spoken-line stream as it opens: `0x002DF660` passes it through `0x001DC2E0`, `0x00211270` and `0x0021D770` to the stream bank's open `0x002251B0`, which keeps it at the bank's `+0x3C` (`0x002251F7`), and adds 1 (`0x002DF660`-`0x002DF673`) | `0x002DF660` (`0x002DF673`) | `0x002DF660` (`0x002DF660`), from `0x003B9136`, `0x003E9CEC` and `0x003EAE9B` |
+
+No other instruction reaches these two. The search covered the executable's RIP-relative references (the list's
+address is taken by `0x001601C0`, `0x00221E00`, `0x00222050`, `0x00222080`, `0x002225B0` and `0x008A80F0`, which frees its nodes
+at exit), its image-base-relative references, which hold neither, and a scan of `.text` for the 32-bit offsets of
+`0x01FD4140`, `0x01FD4148` and `0x0215EFDC` from the image base, which finds none.
+
 ## Modding notes
 
 - The pool counts are the second argument to each pool builder in `0x00217FD0`, `0x0021A9F0`, `0x00219400`, `0x0021BDB0` and

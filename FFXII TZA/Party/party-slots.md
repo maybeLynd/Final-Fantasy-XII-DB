@@ -118,6 +118,25 @@ The slot maps in the battle state block:
 The maps start at `[0x02EBF190] + 0x5A48`; the leader is the dword at `+0x5AA4`
 ([Party data](party-data.md)).
 
+## State
+
+`0x0031BAC0(point, angle, seat, out)` places the member in a seat of map 1 around a point: the controlled member
+(`0x003272F0`) stands on the point itself (`0x0031BBF6`-`0x0031BBFD`, `0x0031BD18`). The others take positions from a table
+of 4 rows of 3 that `0x0031BAC0` builds on its stack (`0x0031BAEF`-`0x0031BB9B`), the row being `0x022C2670` less 2, or 3
+when `0x003135C0` answers non-zero (`0x0031BBDA`-`0x0031BBF2`); with fewer than two standing members it places nobody
+(`0x0031BC51`).
+
+The position is turned by the angle (`0x0031BC75`-`0x0031BD0D`). `0x0037D000` calls it for seats 0 to 3 after
+`0x0031BD60` (`0x0037D029`-`0x0037D09D`), and so does `0x0037B4D0` (`0x0037BFA6`), which places the party at a field start.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C2674` | `i32` | 0 | which position in the row the next placed member takes; each member placed takes the next | `0x0031BAC0`, 1 more (`0x0031BCD9`); `0x0031BD60`, 0 (`0x0031BD64`), from `0x0037D000` (`0x0037D029`), the area teardown reset `0x002341C0` (`0x002341DF`) and the area initialisation `0x002342F0` (`0x00234454`); `0x003266C0`, 0 (`0x00326B39`) | `0x0031BAC0` (`0x0031BC5E`) |
+
+No other instruction reaches `0x022C2674`. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold none, and a scan of `.text` for its 32-bit offset from the image base,
+which finds none.
+
 ## Modding notes
 
 - The new-game party is the nine bytes at `0x01EED260`; changing the first byte changes who starts and who leads.

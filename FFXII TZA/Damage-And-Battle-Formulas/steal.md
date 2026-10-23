@@ -172,6 +172,22 @@ The spawn record at unit `+0x6A0`:
 |---|---|---|---|
 | `+0x14` | `u8` | stealLeft | bits `0x1`, `0x2`, `0x4`: the common, uncommon and rare item is still available (`0x0023A570`, `0x00390390`, `0x003112F0`) |
 
+## State
+
+The won-items list is three 4-byte entries from `0x02EBB540`: the item id (`u16`) at `+0`, the count (`u8`) at `+2`; no
+instruction uses byte `+3`. `0x0046A870` empties it first (`0x0046A88D`, `0x0046A897`); `0x0046AC90(item)` adds 1 to the
+count of an entry that holds the item, or puts the item with count 1 in the first entry whose count is 0
+(`0x0046ACC0`-`0x0046AD0C`); gil (`0xE000` ids) always takes a new entry (`0x0046ACA5`-`0x0046ACB0`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBB548` | `u8[4]` | 0 | the third entry: the third different item or gil won, which is the rare item when all three are won and differ | `0x0046A870`, 0 (`0x0046A897`); `0x0046AC90`: the count (`0x0046ACFE`), the item and count 1 (`0x0046AD07`, `0x0046AD0C`) | `0x0046AC90` (`0x0046ACC0`, `0x0046ACC8`, `0x0046ACE8`); `0x0046A870`, which posts its line (`0x0046A940`, `0x0046A944`) |
+
+No other instruction reaches `0x02EBB548`-`0x02EBB54B`. The search covered the executable's RIP-relative references (the
+list's addresses are taken by `0x0046A870` and `0x0046AC90` only), its image-base-relative references, which hold none,
+and a scan of `.text` for the 32-bit offsets of `0x02EBB540`, `0x02EBB542` and `0x02EBB548` from the image base, which
+finds none.
+
 ## Modding notes
 
 - The chances are immediates in `0x00390390`: `6`, `0x1E`, `0x50` with Thief's Cuffs and `3`, `0xA`,

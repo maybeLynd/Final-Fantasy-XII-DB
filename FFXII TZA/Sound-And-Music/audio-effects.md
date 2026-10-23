@@ -278,6 +278,26 @@ except three that a voice builds for itself:
 So the reverbs, the compressor, the side-chain input, the biquad filter, the pitch shifter and the frequency shifter
 are not built by the shipped game.
 
+## State
+
+All are 16-byte vectors of four `f32`, 0 in the file, that the builders fill each time an effect is built and the
+run functions only read.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EADF00` | `f32[4]` | 0 | (1, 1, 1, 1): the weight of the vector parked at `[rbp+0x190]` in the first four samples of the pair the reverb stores at `[rsi+0xE0]` and adds into `p` (`0x007D4AFF`-`0x007D4B6D`) | `0x007D2150` (`0x007D29EF`) | `0x007D3CB0` (`0x007D4B06`) |
+| `0x02EADF10` | `f32[4]` | 0 | (0, 0, 1, 1): the weight of the vector parked at `[rbp+0x1A0]` in the last four samples, stored at `[rsi+0xF0]`: its last two lanes are kept (`0x007D4B57`-`0x007D4B81`) | `0x007D2150` (`0x007D29F8`) | `0x007D3CB0` (`0x007D4B5E`) |
+| `0x02EADF20` | `f32[4]` | 0 | (0, 0, 0, 0): the weight of the vector parked at `[rbp+0x1D0]` in the first four samples, so it drops out (`0x007D4B33`-`0x007D4B53`) | `0x007D2150` (`0x007D2A09`) | `0x007D3CB0` (`0x007D4B3B`) |
+| `0x02EADF30` | `f32[4]` | 0 | (1, 1, 0, 0): the weight of the vector parked at `[rbp+0x1E0]` in the last four samples: its first two lanes are kept (`0x007D4B43`-`0x007D4B71`) | `0x007D2150` (`0x007D2A10`) | `0x007D3CB0` (`0x007D4B4B`) |
+| `0x02EAE050` | `f32[4]` | 0 | the compressor's zero vector for channels 4-7, as `0x02EAE040` is for channels 0-3: the cap of `(slope - 1) x (d x inGain - threshold)` and the "sum is 0 or less" test (`0x007D8D12`, `0x007D8D30`) | `0x007D85E0` (`0x007D8794`) | `0x007D8BE0` (`0x007D8D12`, `0x007D8D30`) |
+| `0x02EAE060` | `f32[4]` | 0 | the compressor's one vector for channels 0-3: the gain 1.0 put in where the sum is 0 or less (`0x007D8D41`) | `0x007D85E0` (`0x007D87A9`) | `0x007D8BE0` (`0x007D8D41`) |
+| `0x02EAE070` | `f32[4]` | 0 | the same for channels 4-7 (`0x007D8D4B`) | `0x007D85E0` (`0x007D87A2`) | `0x007D8BE0` (`0x007D8D4B`) |
+
+No other instruction reaches these vectors. The search covered the executable's RIP-relative references (the
+address `0x02EAE040` that `0x007D3CB0` takes at `0x007D4584` and `0x007D5672` ends a loop over the vectors from `0x02EADF40`, `0x007D4777`-`0x007D47BF`), its
+image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from the
+image base, which finds none.
+
 ## Modding notes
 
 - Giving a bus effect records in `sead.win.config` builds these effects on that bus; each record's type byte picks the

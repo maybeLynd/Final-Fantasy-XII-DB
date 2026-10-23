@@ -472,6 +472,17 @@ Scripts reach it through a word of hide bits, one per verb family:
 
 The Escape Mode register and arming are on [Escape](../Controls-And-Input/escape.md).
 
+## State
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B5F1F0` | `f32` | 0 | the horizontal scale of the depth-list sprites: the screen's aspect factor `0x00183280()` (height x 16/9, or `0x001DD110()`, over width) times 1.0, or 0.75 when `0x002DDC50()` answers non-zero and `0x00180150()` answers 0 (`0x00254A00`; `0x003F03C9`-`0x003F048D`). `0x003F0610` multiplies one offset of each of the four corners by it and divides it by the frame width over 512 (`0x0024ABC0`) | `0x003F0170` (`0x003F0499`) | `0x003F0610` (`0x003F0772`, `0x003F07AB`, `0x003F07E4`, `0x003F081D`) |
+| `0x02B5F1F4` | `u32` | 0 | the palette of a `+0x10F40` mark's sprites: `0x003F3260` stores the mark's `+0x48` here before drawing it, and `0x003F3710` hands it to the sprite batcher's state as its palette `+0x3A38` (`0x00181930`, `0x001B2410`). `0x003F2CF0` also stores the cell of a `+0x10F20` mark's kind here (`0x002713B0(+0x990)`), which `0x003F3260` replaces before any read | `0x003F2CF0` (`0x003F2D5D`); `0x003F3260` (`0x003F3327`) | `0x003F3710` (`0x003F3851`), from `0x003F3260` (`0x003F339D`, `0x003F33CF`, `0x003F3420`, `0x003F3452`) |
+
+No other instruction reaches these two. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
+image base, which finds none.
+
 ## Modding notes
 
 - Every target line, ring and mark shares one `0x8030`-byte pool; when it is full a ring request waits a frame and a

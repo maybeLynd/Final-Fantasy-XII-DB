@@ -193,8 +193,7 @@ entry the index `0x02EBB54C` names (`0x0046AC00`-`0x0046AC3B`). Every field is 0
 
 No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
 image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
-the image base and for the ring's address `0x02EBB560`, which finds none; the same scan finds the two known uses of
-`0x02AEA030` (`0x003B6181`, `0x003B6188`).
+the image base and for the ring's address `0x02EBB560`, which finds none.
 
 ## Related
 
