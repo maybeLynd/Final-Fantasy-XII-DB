@@ -111,15 +111,12 @@ head pointing at itself in the file.
 | `0x01F40200` | `void*` | `0x01F401F8` | the retired list's last node | `0x00797460` (`0x007975C8`); through the nodes, when the shutdown `0x007998E0` unlinks the last one (`0x0079994A`) | `0x00797460` (`0x007975B0`) |
 | `0x02EA58B8` | `void*` | 0 | the mouse object. When a mouse is set up again, `0x00797460` unlinks the old one's six `0x48`-byte entries from `+0x30` that still name it (`0x00797489`-`0x00797593`), moves it from the live list to the retired list (`0x00797597`-`0x007975C8`), builds a new one and stores it here; the retired objects are destroyed only at shutdown (`0x007998E0`) | `0x00797460` (`0x00797671`) | `0x00797460` (`0x00797479`) |
 | `0x01F3DA04` | `u8` | 1 | lets the XInput controller's poll `0x007A2140` run (`0x007A2194`-`0x007A219B`). On Windows 7 (`GetVersionExA` platform 2, version 6.1) with an XInput pad marked in `0x02EA5379`, the poll calls `0x00799A80`, which clears it and notes the clock's second in `0x01F4012C`, then sets it again once more than `0x01F40188` (1) second has passed and clears `0x02EA5379`, so it happens once (`0x00799A80`-`0x00799B06`) | `0x00799A80`: 0 (`0x00799AD8`), 1 (`0x00799AFF`) | `0x007A2140` (`0x007A2194`) |
+| `0x02EA537A` | `u8` | 0 | 1 once a mouse has been set up. The input poll `0x007A2440`, which the window's update slot `0x007A3110` runs on the application's input object, then binds that object to the first controller of kind 0, the mouse (`0x0079A430`, through `0x00796FC0(0, 0)`; the mouse class `0x01CB23F8` answers 0 from slot 1, `0x005C5230`), and clears it; the poll also binds when the object holds no mouse at `+0x150` (`0x007A2446`-`0x007A246B`) | `0x00797460`, 1 (`0x007975CF`); `0x007A2440`, 0 (`0x007A246B`) | `0x007A2440` (`0x007A245D`) |
 
-No other instruction reaches these four. The search covered the executable's RIP-relative references (the lists'
-heads are taken by the functions above and by the walkers `0x00796FC0`, `0x00797690`, `0x007999E0`, `0x0079AF20`,
-`0x0079CEC0` and `0x0079E3D0`, which only follow the first-node links), its image-base-relative references, which hold
-none of them.
-
-A scan of `.text` for the 32-bit offsets of `0x01F401E8`, `0x01F401F0`, `0x01F401F8`, `0x01F40200`,
-`0x02EA58B8` and `0x01F3DA04` from the image base, which finds only bytes of the call instruction at `0x00614B7A`, not an
-operand.
+No other instruction reaches these five: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The lists' heads are also taken by the walkers `0x00796FC0`, `0x00797690`, `0x007999E0`, `0x0079AF20`, `0x0079CEC0` and
+`0x0079E3D0`, which only follow the first-node links, and the address `0x02EA5370` that `0x00797910` hands DirectInput
+(`0x00797942`) is the 8-byte interface pointer, below `0x02EA537A`.
 
 ## Modding notes
 

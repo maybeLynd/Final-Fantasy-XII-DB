@@ -193,6 +193,7 @@ to the record builder `0x00221940`, its only reader. Every field is 0 in the fil
 | `0x0215E734`, `0x0215E744`, `0x0215E754`, `0x0215E764`, `0x0215E774`, `0x0215E784` | `f32[4]` each | 0 | `+0x24` on: the outline's points, 16 bytes each (x, y, z, 1.0); these six are the rectangle's | `0x002DE420`: the rectangle (`0x002DE56B`-`0x002DE61B`) and the ellipse, through the address `0x0215E734` (`0x002DE733`); `0x002DE800`: a line's points (`0x002DE940`-`0x002DE9E6`, `0x002DEA18`-`0x002DEA44`) | `0x00221940`, x, y and z of each point (`0x00221A80`-`0x00221A99`) |
 | `0x0215EF38` | `i32` | 0 | `+0x828`: the record's percentage byte for the current weather slot, record `+0x0C` plus the slot from `0x00265920` minus 1 | `0x002DE800` (`0x002DE843`) | `0x00221940`, the starting volume (`0x00221C1D`) |
 | `0x0215EF3C` | `i32` | 0 | `+0x82C`: the record's volume byte `+0x19` | `0x002DE800` (`0x002DE84E`) | `0x00221940`, the starting volume (`0x00221C11`) |
+| `0x0215EF4C` | `u8` | 0 | `+0x83C`: a byte the reset clears; nothing reads it | `0x002DE360`, 0 (`0x002DE3BF`) | no instruction |
 
 ### The character-sound template
 
@@ -219,6 +220,32 @@ reads it.
 `0x00361810` skips both behind-the-listener steps and uses 100 instead of `0x022CBB2C` while `0x002DEBF0` answers 2 (the
 word `0x0215EF48`, `0x00361858`-`0x00361866`, `0x00361B3B`-`0x00361B43`).
 
+### The listener's place
+
+`0x00362850` keeps the game-side listener at `0x022CBB00` as four floats, x, y, z and 1.0, and its facing at `0x022CBA8C`.
+The microphone mode `0x022CBA9A` (`set_microphone_pos`, `0x00363B00`) picks where they come from (`0x003629DF`-`0x00362A9A`):
+
+| Mode | Place | Facing |
+|---|---|---|
+| 0 | the party's focus character (`0x003588B0`, `0x00265020`), moved toward the camera in the horizontal plane as The listener describes (`0x003628B2`-`0x003629D7`) | `atan2` of the character's offset from the camera, x over z (`0x00362918`-`0x00362925`); kept when the two are at one point |
+| 1 | the position `set_microphone_pos` stored at `0x022CBB10`, copied whole (`0x00362A83`-`0x00362A9A`) | its value `0x022CBAAC` (`0x00362A8A`-`0x00362A92`) |
+| 2 | the camera's position, the fourth row of the camera matrix `0x02AEDEF0` (`0x00202C70`, `0x00362A00`-`0x00362A4A`) | the angle of the matrix's third row (`0x00362A54`-`0x00362A79`) |
+
+In mode 1 and mode 2 the mode 0 result is overwritten. `0x00362F70` starts both at (0, 0, 0, 1.0) and 0. The place is
+read through its address by `0x003631B0`, which runs the map's emitters from it ([Map sounds](map-sounds.md)), by the
+pan and volume step `0x00361810`, and by the two calls that hand it to the driver: `0x002DF560` each update and
+`0x002DF2C0` when the map sound starts, through `0x001DC390` and `0x00211340`, and `0x001DC000` and `0x00210F60`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBB04` | `f32` | 0 | the listener's y: the focus character's own y in mode 0, with no offset | `0x00362850`: mode 0 (`0x003629BF`), mode 2 (`0x00362A1A`), mode 1 with the 16-byte copy (`0x00362A9A`); `0x00362F70`, 0 with the 16-byte store (`0x00362FCC`) | through the address `0x022CBB00`: `0x00361810` (`0x00361883`), from `0x00361BF0` (`0x00361CA6`), `0x00361CF0` (`0x00361DA3`) and `0x003631B0` (`0x00363320`); `0x003631B0` (`0x0036327D`, 16 bytes) and its shape tests `0x00362230` (`0x00362390`; `0x00363FD0` at `0x00363FE4`), `0x003623C0` (`0x00362414`, `0x003626B6`) and `0x00361DE0` (`0x00361E1B`, `0x00362138`), each 16 bytes, from `0x00362850` (`0x00362B76`, `0x00362BB7`); `0x00211340` (`0x002113A7`), from `0x00362850` through `0x002DF560` (`0x00362ABB`); `0x00210F60` (`0x00210FC7`), from `0x00362F70` through `0x002DF2C0` (`0x0036314C`) |
+| `0x022CBB08` | `f32` | 0 | the listener's z | `0x00362850`: mode 0 (`0x003629D7`), mode 2 (`0x00362A3B`), mode 1 with the 16-byte copy (`0x00362A9A`); `0x00362F70`, 0 with the 16-byte store (`0x00362FCC`) | `0x00362850`, which hands x and z to the emitter lookup `0x00362E50` (`0x00362B4E`); through the address `0x022CBB00`: `0x00361810` (`0x003618BB`), from `0x00361BF0` (`0x00361CA6`), `0x00361CF0` (`0x00361DA3`) and `0x003631B0` (`0x00363320`); `0x003631B0` (`0x0036327D`, 16 bytes) and its shape tests `0x00362230` (`0x00362390`; `0x00363FD0` at `0x00363FE4`), `0x003623C0` (`0x00362414`, `0x003626B6`) and `0x00361DE0` (`0x00361E1B`, `0x00362138`), each 16 bytes, from `0x00362850` (`0x00362B76`, `0x00362BB7`); `0x00211340` (`0x002113A2`), from `0x00362850` through `0x002DF560` (`0x00362ABB`); `0x00210F60` (`0x00210FC2`), from `0x00362F70` through `0x002DF2C0` (`0x0036314C`) |
+| `0x022CBB0C` | `f32` | 0 | the listener's fourth float: 1.0, or in mode 1 the fourth float of the stored position | `0x00362850`, 1.0: mode 0 (`0x003629B5`), mode 2 (`0x00362A4A`); mode 1 with the 16-byte copy (`0x00362A9A`); `0x00362F70`, 1.0 with the 16-byte store (`0x00362FCC`) | through the address `0x022CBB00`, only as part of 16-byte loads: `0x003631B0` (`0x0036327D`), `0x00362230` (`0x00362390`), `0x00363FD0` (`0x00363FE4`), `0x003623C0` (`0x00362414`, `0x003626B6`), `0x00361DE0` (`0x00361E1B`, `0x00362138`) |
+| `0x022CBA8C` | `f32` | 0 | the listener's facing, in radians: `0x00361810` subtracts it from the direction of a sound to get the sound's pan (`0x003619C6`-`0x00361A25`) | `0x00362850`: mode 0 (`0x00362925`), mode 2 (`0x00362A79`), mode 1 (`0x00362A92`); `0x00362F70`, 0 (`0x00362FC6`) | `0x00361BF0` (`0x00361C76`), `0x00361CF0` (`0x00361D7E`) and `0x003631B0` (`0x003632EB`), which pass it to `0x00361810` (`0x003619D0`); `0x00362850` (`0x00362AAC`) and `0x00362F70` (`0x0036310E`), which pass it to `0x002DF560` and `0x002DF2C0`, where `0x00211340` and `0x00210F60` overwrite that argument unread (`0x002113A2`, `0x00210FC2`) |
+
+No other instruction reaches these four: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[6]` each, are the only indexed tables below them
+(`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`), and they end at `0x022CB9F0`.
 ### The layer's pools
 
 | Global | Type | Start | Meaning | Set by | Read by |
@@ -236,6 +263,8 @@ runner `0x007BAEC0` gives each back after running it (`0x007BB4FD`-`0x007BB53F`)
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x02EADD78` | `void*` | 0 | Lay free-action queue `+0x08`, the cells, 512 of them | `0x0016A180` (`0x0016A1A4`); `0x008B8F40`, 0 after freeing them (`0x008B8F91`); through the address: `0x007BAB30` (`0x007BAB6C`, `0x007BAC22`), from `0x007BAC80` (`0x007BACC7`) | `0x008B8F40`, which frees them at exit (`0x008B8F44`); through the address: `0x007BAB30`, which frees the old cells and chains the new ones (`0x007BAB45`, `0x007BAC40`) |
+| `0x02EADD98` | `i32` | 0 | Lay free-action queue `+0x28`, capacity: 512 cells | `0x0016A180`, 0 with `+0x2C` (`0x0016A19D`); through the address: `0x007BAB30` (`0x007BABA0`), from `0x007BAC80` (`0x007BACC7`) | no instruction |
 | `0x02EADD80` | `void*` | 0 | Lay free-action queue `+0x10`, first free cell | `0x0016A180` (`0x0016A1A4`); `0x007BAC80` (`0x007BACFB`); `0x007BAD60` (`0x007BAE28`); `0x007BAEC0` (`0x007BB50D`); `0x008B8F40` (`0x008B8F91`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BACE8`, `0x007BAD34`); `0x007BAD60` (`0x007BAE15`); `0x007BAEC0` (`0x007BB4FD`) |
 | `0x02EADD88` | `void*` | 0 | Lay free-action queue `+0x18`, first queued cell | `0x0016A180` (`0x0016A1AC`); `0x007BAC80` (`0x007BAD13`); `0x007BAD60` (`0x007BAE0E`); `0x007BAEC0` (`0x007BB525`); `0x008B8F40` (`0x008B8FA0`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BAD0A`); `0x007BAD60` (`0x007BAD8B`); `0x007BAEC0` (`0x007BB51C`) |
 | `0x02EADD90` | `void*` | 0 | Lay free-action queue `+0x20`, last queued cell | `0x0016A180` (`0x0016A1AC`); `0x007BAC80` (`0x007BAD2D`); `0x007BAEC0` (`0x007BB53F`); `0x008B8F40` (`0x008B8FA0`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BAD1C`); `0x007BAEC0` (`0x007BB52E`) |

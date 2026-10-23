@@ -121,8 +121,9 @@ picture's alpha `+0xD0` and size `+0xD2` by 128 divided by them; its draw reads 
 | `0x022CBE0C` | `i32` | 0 | the frames the picture takes to fade, 30 times the base over 6, so 5: while the arming word `0x022CBE1A` has bit 0 the alpha rises by `128 / 5` a frame to 128, and while it has bit 1 it falls to 0 (`0x00366FE6`-`0x00367037`); the pulse of an armed escape replaces both | `0x00366B80` (`0x003670D0`) | `0x00366B80` (`0x00366FF3`, `0x00367024`) |
 | `0x022CBE10` | `i32` | 0 | 30 times the base, the same value as `0x022CBE08`; nothing reads it | `0x00366B80` (`0x003670C0`) | no instruction |
 | `0x022CBE14` | `i32` | 0 | the frames the picture takes to shrink, 20 times the base: when the escape is armed with bit 3 and without bit 5 the size jumps to 255 (`0x00366F71`-`0x00366F80`), and each update takes `128 / 20` from it down to 128 (`0x00366FB4`-`0x00366FD0`) | `0x00366B80` (`0x003670D6`) | `0x00366B80` (`0x00366FB9`) |
+| `0x022CBE20` | `void*` | 0 | the escape widget: the `0xE0`-byte widget with procedure `0x00366B80` that `0x00366740` creates through `0x00244F50` and opens (`0x00246AC0`), passing it the address `0x022CBE18` | `0x00366740` (`0x0036678D`), run by the field set-up `0x00253A30` (`0x00253A57`); `0x00366A00`, 0 after it destroys the widget with `0x00245020` (`0x00366A15`), run by `0x00252DE0` (`0x00252E15`) | `0x00366740`, which builds it only while it is 0 (`0x00366753`); `0x00366A00` (`0x00366A04`) |
 
-No other instruction reaches these three. The search covered the executable's RIP-relative references, its
+No other instruction reaches these four. The search covered the executable's RIP-relative references, its
 image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
 the image base, which finds none.
 

@@ -250,19 +250,50 @@ guest row above 14. The other eight language folders make the same calls.
 
 ## State
 
-The staging map `0x022C2580` is nine `u16` seats laid out like map 0. Each membership change copies map 0 into it
-(16 bytes, then the ninth seat), changes it by seat index, and `0x003261D0` closes up seats 0-3 and seats 4-8 and
-writes all nine back to map 0 through `0x00329080(seat, selector, 0)` (`0x003262BB`-`0x00326327`, `0x00326450`-`0x00326467`).
-`0x003273D0` instead fills all nine from a list it is handed, `0xFF` giving `0xFFFF` (`0x0032741D`-`0x003274D8`).
+The staging map `0x022C2580` is nine `u16` seats laid out like map 0: seats 0-3 fight, seats 4-8 are the reserve.
+Each membership change copies map 0 into it (16 bytes for seats 0-7, then seat 8), changes it by seat index, and
+`0x003261D0` closes up seats 0-3 and seats 4-8 and writes all nine back to map 0 through `0x00329080(seat, selector, 0)`
+(`0x003262BB`-`0x00326327`, `0x00326450`-`0x00326467`). `0x003273D0` instead fills all nine from a list it is handed, `0xFF`
+giving `0xFFFF` (`0x0032741D`-`0x003274D8`), and closes them up the same way (`0x003275CB`-`0x00327632`). All nine are 0 in
+the file.
+
+### Which seats an access reaches
+
+Most accesses take the seat as an index, so the seats each one can reach decide the rows below:
+
+| Function | Seats 0-3 | Seats 4-8 |
+|---|---|---|
+| `0x003172E0`, adding a main character | none | the free reserve seat from `0x00321100`: read `0x0031736B`, written `0x00317396` |
+| `0x00326110`, from the guest add `0x003170E0` (`0x003171AE`), its only caller | seat 3, 2 or 1: read `0x0032615A`, written `0x00326185` | none |
+| `0x003286E0`, `removebattlemember` | the member's fighting seat: read `0x00328770`, written `0x0032877C` | the free reserve seat from `0x00321100`: read `0x00328779`, written `0x0032877F` |
+| `0x003287A0`, `setbattlememberone` | seats 0-2 only: read `0x003288A6`, written `0x003288B2` | the first empty reserve seat: read `0x00328890`, `0x003288AD`, written `0x003288B5` |
+| `0x003288F0` and `0x00328B20`, the removes | the member's seat, found among all nine: written `0x0032895E`, `0x00328B92` | the same |
+| `0x00328DB0`, `setbattlemember` | the free fighting seat, seats 0-2 only: read `0x00328F55`, written `0x00328F60`; a listed member's seat 3: read `0x00328F4C`, written `0x00328F5D` | the listed member's seat: read `0x00328F4C`, written `0x00328F5D` |
+| `0x003261D0`, the commit | close-up and actor match: read `0x003262D1`, `0x00326340`, `0x00326346`, `0x003263CC`; written `0x003262E1`, `0x003262E6` | close-up: read `0x00326303`; written `0x00326313`, `0x00326318` |
+| `0x003273D0`, the list fill | close-up and actor match: read `0x003275E0`, `0x00327646`, `0x0032764C`, `0x003276D7`; written `0x003275EF`, `0x003275F3` | close-up: read `0x00327610`; written `0x0032761F`, `0x00327623` |
+
+Both `0x003261D0` (`0x00326450`) and `0x003273D0` (`0x00327760`) read every seat when they write the map back. The 16-byte
+copy of seats 0-7 is at `0x0031734B` (`0x003172E0`), `0x00326131` (`0x00326110`), `0x00328758` (`0x003286E0`), `0x00328826`
+(`0x003287A0`), `0x00328940` (`0x003288F0`), `0x00328B74` (`0x00328B20`) and `0x00328EF5` (`0x00328DB0`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022C2590` | `u16` | 0 | seat 8 of the staging map, the last reserve seat | the copy: `0x003172E0` (`0x0031735A`), `0x00326110` (`0x00326140`), `0x003286E0` (`0x00328766`), `0x003287A0` (`0x00328840`), `0x003288F0` (`0x0032894F`), `0x00328B20` (`0x00328B83`), `0x00328DB0` (`0x00328F04`); `0x003273D0` (`0x003274D8`); by seat index: `0x003172E0` (`0x00317396`), `0x00326110` (`0x00326185`), `0x003286E0` (`0x0032877C`, `0x0032877F`), `0x003287A0` (`0x003288B2`, `0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`, `0x00328F60`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | by seat index: `0x003261D0` (`0x00326303`, `0x00326450`), `0x003273D0` (`0x00327610`, `0x00327760`), `0x003172E0` (`0x0031736B`), `0x00326110` (`0x0032615A`), `0x003286E0` (`0x00328770`), `0x003287A0` (`0x00328890`, `0x003288AD`), `0x00328DB0` (`0x00328F4C`, `0x00328F55`) |
+| `0x022C2582` | `u16` | 0 | seat 1 of the staging map, a fighting seat | the 16-byte copy; `0x003273D0` (`0x00327437`); by seat index: `0x00326110` (`0x00326185`), `0x003286E0` (`0x0032877C`), `0x003287A0` (`0x003288B2`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F60`); the close-up of `0x003261D0` (`0x003262E1`, `0x003262E6`) and of `0x003273D0` (`0x003275EF`, `0x003275F3`) | `0x00326110` (`0x0032615A`); `0x003286E0` (`0x00328770`); `0x003287A0` (`0x003288A6`); `0x00328DB0` (`0x00328F55`); `0x003261D0` (`0x003262D1`, `0x00326340`, `0x00326346`, `0x003263CC`, `0x00326450`); `0x003273D0` (`0x003275E0`, `0x00327646`, `0x0032764C`, `0x003276D7`, `0x00327760`) |
+| `0x022C2584` | `u16` | 0 | seat 2 of the staging map, a fighting seat | the 16-byte copy; `0x003273D0` (`0x0032744C`); by seat index: `0x00326110` (`0x00326185`), `0x003286E0` (`0x0032877C`), `0x003287A0` (`0x003288B2`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F60`); the close-up of `0x003261D0` (`0x003262E1`, `0x003262E6`) and of `0x003273D0` (`0x003275EF`, `0x003275F3`) | `0x00326110` (`0x0032615A`); `0x003286E0` (`0x00328770`); `0x003287A0` (`0x003288A6`); `0x00328DB0` (`0x00328F55`); `0x003261D0` (`0x003262D1`, `0x00326340`, `0x00326346`, `0x003263CC`, `0x00326450`); `0x003273D0` (`0x003275E0`, `0x00327646`, `0x0032764C`, `0x003276D7`, `0x00327760`) |
+| `0x022C2586` | `u16` | 0 | seat 3 of the staging map, the fourth fighting seat, which `setbattlemember` and `setbattlememberone` never fill | the 16-byte copy; `0x003273D0` (`0x00327463`); by seat index: `0x00326110` (`0x00326185`), `0x003286E0` (`0x0032877C`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x003262E1`, `0x003262E6`) and of `0x003273D0` (`0x003275EF`, `0x003275F3`) | `0x00326110` (`0x0032615A`); `0x003286E0` (`0x00328770`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x003262D1`, `0x00326340`, `0x00326346`, `0x003263CC`, `0x00326450`); `0x003273D0` (`0x003275E0`, `0x00327646`, `0x0032764C`, `0x003276D7`, `0x00327760`) |
+| `0x022C2588` | `u16` | 0 | seat 4 of the staging map, the first reserve seat | the 16-byte copy; `0x003273D0` (`0x0032747A`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
+| `0x022C258A` | `u16` | 0 | seat 5 of the staging map, a reserve seat | the 16-byte copy; `0x003273D0` (`0x00327491`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
+| `0x022C258C` | `u16` | 0 | seat 6 of the staging map, a reserve seat | the 16-byte copy; `0x003273D0` (`0x003274A8`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
+| `0x022C258E` | `u16` | 0 | seat 7 of the staging map, a reserve seat | the 16-byte copy; `0x003273D0` (`0x003274BF`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
+| `0x022C2590` | `u16` | 0 | seat 8 of the staging map, the last reserve seat | the copy: `0x003172E0` (`0x0031735A`), `0x00326110` (`0x00326140`), `0x003286E0` (`0x00328766`), `0x003287A0` (`0x00328840`), `0x003288F0` (`0x0032894F`), `0x00328B20` (`0x00328B83`), `0x00328DB0` (`0x00328F04`); `0x003273D0` (`0x003274D8`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
 
-No other instruction reaches `0x022C2590`. The search covered the executable's RIP-relative references (the staging
-map's address is taken by the functions above and by `0x0031A300` and `0x00324380`, which write one byte per unit 0-3 from `0x022C257C`), its
-image-base-relative references, which hold none, and a scan of `.text` for the 32-bit offsets of `0x022C2580` and
-`0x022C2590` from the image base, which finds none.
+No other instruction reaches seats 1-8. Apart from the two close-up loops' address-taking leas of seat 4 (`0x00326334`,
+`0x0032763F`), no other RIP-relative, image-base-relative or 32-bit offset reference names them.
+
+The staging map's address is also taken by `0x0031A300` and `0x00324380`, which write one byte per unit 0-3 from
+`0x022C257C`, below the map. The one indexed table read that could reach it, `0x00308E80(i)` on the unit pointers at
+`0x022C24E0 + i x 8`, has one caller, the debug menu's "Chara Name" readout (`0x001CFC2A`), whose index field `+0x10A8`
+holds only the 0 its constructor `0x001CCB20` stores (`0x001CCE34`, `0x001CCF79`), so it reads the first pointer and never the map.
 
 ## Modding notes
 

@@ -456,6 +456,35 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | `+0x10` | `u8*` | groups | the picture's group table |
 | `+0x18` | `u8*` | frames | the picture's frame table |
 
+## State
+
+### The window registry
+
+Entry `i` of the eight pointers at `0x0209C4D0` holds the window registered with index `i` at `+0x3B8` (see The window
+object). The register scan reads every entry (`0x002A6205`), and each entry point and loop reads the entries by that
+index or in turn: `0x002A2720` (`0x002A2742`), `0x002A27C0` (`0x002A27D6`), `0x002A27F0` (`0x002A2806`), `0x002A2830` (`0x002A2846`),
+`0x002A28B0` (`0x002A28C6`), `0x002A2BB0` (`0x002A2BCA`), and the loops `0x002A28E0` (`0x002A28F0`), `0x002A2940` (`0x002A2950`),
+`0x002A29A0` (`0x002A29B0`), `0x002A2A00` (`0x002A2A10`), `0x002A38C0` (`0x002A38F5`) and `0x002A3F50` (`0x002A3F60`). All are 0 in
+the file.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209C4D8`, `0x0209C4E0`, `0x0209C4E8`, `0x0209C4F0`, `0x0209C4F8`, `0x0209C500` | `void*` each | 0 | registry entries 1-6 | `0x002A6190`: the window on message 1 (`0x002A6236`), 0 on message 18 (`0x002A6965`); the reset `0x002A79E0`, 0 (`0x002A7A01`, `0x002A7A08`, `0x002A7A0F`, `0x002A7A16`, `0x002A7A1D`, `0x002A7A24`) | `0x002A6190` (`0x002A6205`) and the twelve readers above |
+| `0x0209C508` | `void*` | 0 | registry entry 7, which message 18 leaves set (`0x002A695B`) | `0x002A6190`, the window on message 1 (`0x002A6236`); `0x002A79E0`, 0 (`0x002A7A2B`) | the same |
+
+### The log scroll and the tick flags
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209C61C` | `i32` | 0 | the row the log's scroll starts from, the window's `+0x3BE` | `0x002A5F40` (`0x002A6132`) | `0x002A5930` (`0x002A5981`) |
+| `0x0209C620` | `i32` | 0 | the rows the scroll moves: the new row minus the start | `0x002A5F40` (`0x002A614B`) | `0x002A5930`, which puts the window at start + rows x the curve value (`0x002A5979`-`0x002A5997`) |
+| `0x0209C624` | `i32` | 0 | the scroll's length, 12 frames | `0x002A5F40` (`0x002A6141`) | `0x002A5930`, which hands it to the curve `0x00248F40` with the frames since the start `0x0209C628` (`0x002A5961`) |
+| `0x0209C62C` | `i32` | 0 | 1 while a skip freezes the windows: `0x002A38C0(v)` stores `v` (see Skipping) | `0x002A38C0` (`0x002A38CF`) | `0x002A2C00`, which calls `0x002A3730(window, 1)` for a new window while it is set (`0x002A3039`-`0x002A304A`) |
+| `0x01E0CDC8` | `i32` | 1 | whether the window steps on this tick: the window procedure stores `0x001EDEC0(+0xB4)` on message 2 and 1 again after the tick | `0x002A6190` (`0x002A6464`, `0x002A65D8`) | `0x002A6190` (`0x002A6531`); the mode step `0x002A7720` (`0x002A774B`, `0x002A779C`, `0x002A77F7`); `0x002A8C50` (`0x002A8D37`); `0x002ABEC0` (`0x002ABEC9`) |
+| `0x01E0CDCC` | `i32` | -1 | the handle of the last sound the window procedure played (`0x00249C60`, `0x002A64AF`) | `0x002A6190` (`0x002A64B4`) | `0x002A1FB0`, which stops it (`0x0024A1A0`) before playing sound `0x1A` (`0x002A22CB`-`0x002A22DB`) |
+
+No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The image-base-relative accesses of `0x002A6190` reach the registry only by the index `+0x3B8`, which is below 8.
 ## Modding notes
 
 - `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+0x7C`:

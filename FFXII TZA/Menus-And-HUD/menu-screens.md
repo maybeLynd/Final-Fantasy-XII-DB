@@ -275,6 +275,19 @@ to its resource batch when they are not (`0x002491B0`), and `0x002922F0`, run by
 shop (`0x0057BC88`) and `0x00560910` (`0x0056098E`), releases each resident group through `0x002F83E0`: 17 unless `[0x02CA8F94]` is set, 10, 20 and 14
 unless `[0x02CA96D4]` is set, and 16.
 
+### The Quit and Parameter Settings pointers
+
+Each opener creates its screen through `0x00244F50` only while its global is 0 and keeps the widget there; the screen
+clears it when it is destroyed (message 18), and on leaving returns to the Party Menu on its entry (`0x002814E0`),
+plays sound 3 and closes (`0x00244F00`). Both globals are 0 in the file. The Config, Graphics Settings and Controls
+pointers are on [Config screen](config-screen.md).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209AC20` | `void*` | 0 | the open Quit screen, the `0xC0`-byte widget with procedure `0x0027EA70` | `0x0027EBC0` (`0x0027EC0B`); `0x0027EA70`, 0 on message 18 (`0x0027EA9E`) | `0x0027EBC0`, which creates it only while it is 0 (`0x0027EBD3`) and opens it (`0x00246AC0`, `0x0027EC1A`); `0x0027EA70`, which closes it after `0x002814E0(0x505)` (`0x0027EB4A`) |
+| `0x0208E6C8` | `void*` | 0 | the open Parameter Settings screen, the `0xC8`-byte widget with procedure `0x00240AD0` | `0x00240D60` (`0x00240DAB`); `0x00240AD0`, 0 on message 18 (`0x00240B00`) | `0x00240D60`, which creates it only while it is 0 (`0x00240D73`) and opens it under the menu root `[0x0208EA28]` (`0x00246AD0`, `0x00240DBA`); `0x00240AD0`, which closes it after `0x002814E0(0x53A)` (`0x00240B5C`) |
+
+No other instruction reaches either: no other RIP-relative, image-base-relative or 32-bit offset reference names them.
 ## Columns
 
 | Column | Meaning |

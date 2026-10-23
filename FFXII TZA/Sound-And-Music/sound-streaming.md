@@ -128,6 +128,9 @@ finished bank out (`0x007B2880`, from `0x007B2A12`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x02EAD498` | `i32` | 0 | list `+0x08`, capacity: the nodes the list holds | `0x00169B10`, 0 with `+0x0C` (`0x00169B2D`); through the address: `0x007B2600` (`0x007B2665`), from `0x007B2700` | through the address: `0x007B6AA0` (`0x007B6AB1`, `0x007B6AE6`), from `0x007B2600` (`0x007B26DC`); `0x007B2880` (`0x007B2888`), from `0x007B2920` |
+| `0x02EAD49C` | `i32` | 0 | list `+0x0C`, nodes in use | `0x00169B10` (`0x00169B2D`); `0x008B89A0`, 0 (`0x008B89DD`); through the address: `0x007B2600` (`0x007B2651`) with `0x007B6AA0` (`0x007B6AF5`), from `0x007B2700`; `0x007AF380` (`0x007AF459`), from `0x007B1AB0` and `0x007B1E10`; `0x007B2880` (`0x007B2908`), from `0x007B2920` | through the address: `0x007AF380` (`0x007AF459`); `0x007B2880` (`0x007B2908`) |
+| `0x02EAD4A0` | `void*` | 0 | list `+0x10`, the `DriverListNode` array | `0x00169B10` (`0x00169B34`); `0x008B89A0`, 0 after freeing it (`0x008B89F1`); through the address: `0x007B2600` (`0x007B2641`, `0x007B26D5`), from `0x007B2700` | `0x008B89A0`, which frees it at exit (`0x008B89A4`); through the address: `0x007B2600` (`0x007B2615`) with `0x007B6AA0` (`0x007B6AA0`, `0x007B6AC0`, `0x007B6AC9`), from `0x007B2700`; `0x007B2880` (`0x007B2898`), from `0x007B2920` |
 | `0x02EAD4B0` | `void*` | 0 | list `+0x20`, the first node in use; each node holds its bank at `+0x20` and the next node at `+0x10` | `0x00169B10` (`0x00169B3C`); `0x008B89A0` (`0x008B8A00`); through the address: `0x007B2600` (from `0x007B2700`), `0x007AF380` (from `0x007B1AB0`, `0x007B1E10`), `0x007B2880` (from `0x007B2920`) | `0x007B1AB0` (`0x007B1B62`) and `0x007B1E10` (`0x007B1EE7`), which walk the banks for an overlapping buffer; `0x007B2920` (`0x007B29E5`), which finds the node of the bank it retires |
 
 ### The job ring
@@ -140,6 +143,7 @@ generation and released waiters remain, and the last released waiter resets the 
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x02EAD858`, `0x02EAD860`, `0x02EAD868`, `0x02EAD870` | `u8[8]` each | 0 | bytes `+0x08`-`+0x27` of the event's lock `0x02EAD850`, a Windows critical section (`InitializeCriticalSection`, import `0x008C20B0`), whose state Windows keeps there | `0x00169E90`, 0 (`0x00169EA4`, `0x00169EAB`, `0x00169EB2`, `0x00169EB9`), then `InitializeCriticalSection` through the address (`0x00169ED5`); `EnterCriticalSection` and `LeaveCriticalSection` (`0x008C20B8`, `0x008C20C0`) through the address, from `0x007B6C50` (`0x007B6CE4`, `0x007B6D1A`) and `0x007B6D40` (`0x007B6E6D`, `0x007B6E86`, `0x007B6EB7`, `0x007B6EDE`, `0x007B6EFC`, `0x007B6F1F`); `DeleteCriticalSection` (`0x008C20D0`) from `0x008B8D40` at exit (`0x008B8D5C`) | only those Windows calls, through the address |
 | `0x02EAD878` | `void*` | 0 | the event's handle, `CreateEventW` with manual reset, not signalled | `0x00169E90`, 0 and then the handle (`0x00169EC0`, `0x00169F07`) | `0x007B6C50`, `SetEvent` (`0x007B6CF4`); `0x007B6D40`, `WaitForSingleObject` and `ResetEvent` (`0x007B6EA0`, `0x007B6F29`); `0x008B8D40`, `CloseHandle` at exit (`0x008B8D44`) |
 | `0x02EAD880` | `i32` | 0 | the waiters on the event | `0x00169E90` (`0x00169EC7`, `0x00169EE0`); `0x007B6D40`, 1 more before the wait and 1 less after (`0x007B6E73`, `0x007B6F02`) | `0x007B6C50`, which signals only when it is above 0 (`0x007B6CEA`, `0x007B6D01`) |
 | `0x02EAD884` | `i32` | 0 | the waiters the last signal releases: a post sets it to the waiter count, each released waiter takes 1, and the one that brings it to 0 resets the event | `0x00169E90` (`0x00169EC7`, `0x00169EE9`); `0x007B6C50` (`0x007B6D07`); `0x007B6D40` (`0x007B6F0F`) | `0x007B6D40` (`0x007B6EBD`, `0x007B6F16`) |
@@ -150,7 +154,7 @@ generation and released waiters remain, and the last released waiter resets the 
 
 No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
 image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
-the image base and for those of `0x02EAD490` and `0x02EAD8B0`, which finds none.
+the image base and for those of `0x02EAD490`, `0x02EAD850` and `0x02EAD8B0`, which finds none.
 
 ## Modding notes
 

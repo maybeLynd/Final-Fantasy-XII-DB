@@ -241,6 +241,20 @@ it while a row's `+0xC8` differs from its `+0xC4` (`0x0023C25F`-`0x0023C26B`).
 | Controls settings | `[0x01F82D20]` `+0x58`-`+0x64` | `GameSetting.ini` when Controls is left (`0x0023D268`, `0x0023D428`) |
 | key bindings | the keymap profiles | `keymap.ini` when Controls is left with Cancel (`0x0023D263`, [keymap.ini](../Controls-And-Input/keymap-file.md)) |
 
+## State
+
+Each of the three screens is opened by a function that creates its widget through `0x00244F50` only while its global
+is 0 and keeps the widget there; leaving clears it. All three are 0 in the file.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0208E6C0` | `void*` | 0 | the open Graphics Settings screen: the `0x730`-byte widget with procedure `0x0023BD40` | `0x0023BCC0` (`0x0023BD0E`); `0x0023BD40`, 0 when it reopens Config (`0x0023C517`) | `0x0023BCC0`, which opens the screen only while it is 0 (`0x0023BCD7`); `0x0023BD40`, which closes it with `0x00244F00` (`0x0023C3B1`); the row widget `0x0023B6F0`, which forwards a command `0x1C` to the screen's procedure (`0x0023B7F2`), hands the screen to the row's arm on a new press (`0x0023B86A`) and compares its row with the screen's selected row `+0x718` (`0x0023B916`); the question box `0x0023E020` (`0x0023E222`) and `0x00240A00` (`0x00240A13`, reached from `0x0017DB80`), which send it notice `0x2CA6` (message 13) |
+| `0x0208E6D0` | `void*` | 0 | the open Controls screen: the `0x4C0`-byte widget with procedure `0x0023CE10` | `0x0023CC90` (`0x0023CCDF`); `0x0023CE10`, 0 when it reopens Config (`0x0023D43F`) | `0x0023CC90`, which opens the screen only while it is 0 (`0x0023CCA8`); the binding row `0x0023C5C0`, which sends it messages 2 and 4 through `0x005841B0` (`0x0023C7A8`, `0x0023C8C3`); `0x0023CE10`, which closes it with `0x00244F00` when the player leaves with the cancel button (`0x0023D281`) |
+| `0x0208E6D8` | `void*` | 0 | the open Config screen: the `0x4D8`-byte widget with procedure `0x0023FBE0`, which stores itself on message 1 | `0x0023FBE0`: itself (`0x0023FC51`); 0 when it goes, after opening Graphics Settings or Controls for a waiting row command `0x20` or `0x21` (`0x00240284`, `0x0024026B`), or after `0x002E1CA0(1, 0x15)` for origin 1 (`0x00240252`) | the openers `0x00240680` (`0x002406B8`) and `0x002406F0` (`0x00240703`) and the two screens that reopen Config, `0x0023BD40` (`0x0023C510`) and `0x0023CE10` (`0x0023D438`), which create it only while it is 0; the row widgets `0x0023D6B0` (`0x0023D794`), `0x0023D890` (`0x0023D8BA`) and `0x0023DD10` (`0x0023DD3A`), which step only while Config's `+0xD0` bit 0 is clear |
+
+No other instruction reaches these three: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The one 32-bit hit on `0x0208E6C0`'s offset is the displacement of the RIP-relative `lea` at `0x00359951`, which
+names `0x022C8018`.
 ## Modding notes
 
 - Config's rows and their order are the row lists of `0x01E0BF60`; the mode lists at `0x01E0B670`, `0x01E0B7D0` and
