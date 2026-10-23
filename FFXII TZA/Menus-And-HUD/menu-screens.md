@@ -2,7 +2,7 @@
 title: "Menu screens: every menu widget procedure, the screen it belongs to, what installs it and the resources it loads"
 kind: "reference"
 category: "Menus and HUD"
-addresses: "0x00280DE0, 0x00281ED0, 0x0027FB70, 0x0027F5D0, 0x00254B50, 0x00280980, 0x00244F50, 0x00245000"
+addresses: "0x00280DE0, 0x00281ED0, 0x0027FB70, 0x0027F5D0, 0x00254B50, 0x00280980, 0x00244F50, 0x00245000, 0x002800F0, 0x00283270, 0x0027F210"
 ---
 
 ## What it lists
@@ -305,6 +305,481 @@ The party leader choice is the `0xC8`-byte widget at `0x022CA428` with procedure
                                                 message (0x0035D895); bit 1: the field teardown 0x0035BB70 is closing the
                                                 window (0x0035BBB1), and then message 18 skips its own restore of the
                                                 menu state (0x0035D6FC)
+```
+
+### The menu state block
+
+The menu state block is the static `0x0209AC60`, `0xE00` bytes. `0x002800F0`, from `0x00253970` (`0x002539C0`), points
+`[0x0209AC30]` at it and clears it once (`0x002800FA`-`0x00280110`); every reader reaches it through `[0x0209AC30]`. It holds
+the open screens and panes, the menu pictures and layouts, the nine party records the menus show, and the state the
+menu screens share.
+
+```struct MenuStateBlock base=record size=0xE00
++0x00    ptr[23]         layoutUnits            the 23 layout units of mrppack_ys.bin, unit u at +8 x u: 0x00280980
+                                                fills each empty one with the pack's address plus the pack's u32 at 4
+                                                x u (0x002809A3-0x002809B7) and relocates it (0x002A00F0); the screens read
+                                                their layout records from it through 0x002432B0 (the unit table below)
++0xB8    ptr             modeScreenTask         the open mode-screen task, the 0xD8-byte widget 0x0027FB70 that 0x00280A00
+                                                builds for a menu request (0x00280A6F-0x00280A76): it stores itself when
+                                                it opens (0x0027FE02) and clears this on message 0x12 (0x0027FBAB);
+                                                0x00280A00 opens nothing while this or areaController is set
+                                                (0x00280A1A-0x00280A30) (Game over)
++0xC0    ptr             areaController         the open area controller, the 0xD8-byte widget 0x00280140 that 0x00280A00
+                                                builds beside the mode-screen task (0x00280A85-0x00280A8C): set when it
+                                                opens (0x00280429) and cleared on its message 0x12 (0x002802A0); 0x00280120
+                                                answers 1 while this is 0 (0x00280129), and 0x0027EFA0 writes 2 to
+                                                its +0xC8 before a game over (0x0027EFDA-0x0027EFE8)
++0xC8    ptr             eventSkipTask          the event-skip task, the 0xD8-byte widget 0x00228130 that 0x00228700
+                                                builds for Start's skip arm (0x0022875F-0x00228777) and that clears this
+                                                when it ends (0x002281E9); 0x00228700 builds none while it is set
+                                                (0x0022871A) (Action availability)
++0xD0    ptr             pauseTask              the pause task 0x00228C70 (Game over): set when it opens (0x00228DC6) and
+                                                cleared when it ends (0x0022946D)
++0xD8    ptr             partyMenu              the open Party Menu 0x00280DE0, stored by its menu task 0x00281AE0
+                                                (0x00281B23, called from 0x00280E4E) and cleared by 0x00281E00 (0x00281EB4);
+                                                the script menu host 0x002D70F0 stores itself here when a script opens a
+                                                menu (0x002D735A); 0x00280B70 closes it (0x00280C6A-0x00280C71)
++0xE0    ptr             scriptResourceTask     the 0xC0-byte task 0x002D6EE0 that the script verb fsmenu_loadresource
+                                                builds through 0x002D7840 (0x002D7862-0x002D786E): it requests the picture
+                                                tuto_win_c into tutoWinPicture (0x002D6F39-0x002D6F65), stores itself
+                                                (0x002D6F80) and clears this on message 0x12 (0x002D6F0F); 0x002D7840 builds
+                                                none while it or tutoWinPicture is set (0x002D784B-0x002D785D)
++0xE8    ptr             autoWindow             the auto window 0x002D66D0 that the script verbs fsmenu_showauto and
+                                                fsmenu_showautofast build through 0x002D7B40 (0x002D7B7C-0x002D7B9C): it
+                                                stores itself (0x002D673A) and clears this (0x002D6708); 0x002D7B40 builds
+                                                none while it is set (0x002D7B5F)
++0xF0    ptr             highlightRectWindow    the 0x188-byte highlight-rectangle window 0x002D6CA0 that
+                                                fsmenu_loadresource builds through 0x002D7840 (0x002D7887-0x002D7897): it
+                                                stores itself (0x002D6D82) and clears this when it closes (0x002D6CE2);
+                                                the verbs fsmenu_registrect, fsmenu_showrect, fsmenu_hiderect and
+                                                fsmenu_registiconrect drive it (0x002D78B0, 0x002D7CB0, 0x002D7800,
+                                                0x002D7710), as do the gambit editor (0x0056A3D0, 0x0056BE40) and the
+                                                location map (0x003C6B70)
++0xF8    ptr             memberList             the Party Menu's member list 0x00285290: set when it opens (0x002852F0)
+                                                and cleared when it closes (0x0028562C); its row widgets sit at
+                                                its +0xC0 + 8 x slot, which 0x002830A0, 0x00280B70 and 0x00282FC0 walk beside
+                                                memberSlots (0x002830F3, 0x00280BC3, 0x00282FF3)
++0x100   ptr             requestDispatcher      the request-screen dispatcher 0x0027F5D0 under the mode-screen task: set
+                                                when it opens (0x0027F738) and cleared when it leaves (0x0027F84F)
++0x108   ptr             equipPane              the equipment pane 0x003FF360 of Status and Equip, built once by
+                                                0x003FF160 (0x003FF192-0x003FF1BC) and cleared by the pane (0x003FF8E4)
++0x110   ptr             statusPane             the Status and Equip pane 0x002C59D0 (mrppack unit 7 record 2), built
+                                                once by the screen 0x002C2320 (0x002C2692-0x002C26BE) and cleared by the
+                                                pane (0x002C5E4B)
++0x118   ptr             namePanel              the Party Menu's current-member name panel 0x002C13C0 (mrppack unit 7
+                                                record 10): set when it opens (0x002C150B), cleared when it closes
+                                                (0x002C1770)
++0x120   ptr             listPanel              the Party Menu's list panel 0x002C3560 (mrppack unit 7 record 12): set
+                                                when it opens (0x002C386F), cleared when it closes (0x002C35B1)
++0x128   ptr             fourPanePanel          the Party Menu's four-pane panel 0x002C4460 (mrppack unit 7 record 11):
+                                                set when it opens (0x002C46DB), cleared when it closes (0x002C44B0)
++0x130   ptr             statusBottomPane       the Status and Equip pane 0x002C1E20 (mrppack unit 6 record 2), built by
+                                                0x002C1DA0 (0x002C1DF7) and cleared by the pane (0x002C1E55)
++0x138   ptr             equipStatPanel         the Equip screen's stat panel, EquipStatPanel above: built by 0x003FE410
+                                                (0x003FE466), cleared on its message 18 (0x003FE60E)
++0x140   ptr             statusEquipScreen      the Status and Equip screen 0x002C2320: set when it opens (0x002C2363),
+                                                cleared when it returns to the Party Menu (0x002C25DB)
++0x148   ptr             slotNames              the slot-name widget 0x003FEE40 (Weapon, Off-hand, Helm, Armor,
+                                                Accessory), built by 0x003FEDC0 (0x003FEE17) and released and cleared by
+                                                0x003FD2C0 (0x003FD335-0x003FD341)
++0x150   ptr             equipList              the equipment list 0x003FDFE0 ("Change equipment."), built by 0x003FDA20
+                                                (0x003FDA69) and cleared by the list (0x003FE072)
++0x158   ptr             licenseMemberPick      the License Board's member pick 0x00560910: set when it opens
+                                                (0x00560A40), with partyFlags bit 4 set (0x00560A4E); cleared when it
+                                                leaves (0x005609BD), with bit 4 cleared (0x005609CB)
++0x160   ptr             gambitPane             the gambit editor's pane in entry 4 of its table 0x02CA96E0 (the cell
+                                                0x02CA9700): the editor 0x005691E0 copies it here when it opens
+                                                (0x00569507-0x0056951A) and clears this when it leaves through
+                                                0x002814E0(0x4B9) (0x0056927A)
++0x168   ptr             inventory              the Inventory screen 0x00565E00: set when it opens (0x00565E50), cleared
+                                                on its message 18 (0x0056622F) (Inventory screen)
++0x170   ptr[33]         tabPanes               the tab panes of the Inventory and the shops, the pane of slot s at +8
+                                                x s: the table 0x00D233A0 gives categories 0x405-0x409 and 0x40D-0x40F
+                                                slots 0-7 and the shop tab keys 0x597-0x5AF slots 8-32 (the 33-entry
+                                                search 0x00563FD0-0x00563FE1); 0x00564B90 stores a built pane (0x00564C40),
+                                                the pane procedure 0x005651E0 clears its slot (0x005655CA), and 0x00563FC0,
+                                                0x00564A60, 0x00565190 and 0x005659B0 look a pane up (Inventory screen)
++0x278   ptr             infoPanel              the Party Menu panel 0x002CF940 (mrppack unit 6 record 6) that 0x002CF8B0
+                                                builds for the Party Menu and the shop list: set when it opens
+                                                (0x002CFC3B), cleared when it closes (0x002CF978)
++0x280   ptr             gradient               the menu background gradient 0x002CE7E0 (picture party_grd_2), built by
+                                                0x002CD800 (0x002CD85C) and cleared by the gradient (0x002CE841); 0x002C98C0
+                                                closes it (0x002C98D4)
++0x288   ptr             summonNameRow          the name row 0x002CF740 (mrppack unit 6 record 10) that 0x002CF710 builds
+                                                only while an Esper is summoned (partyFlags bit 3) and this is 0
+                                                (0x002CF717-0x002CF728): set at 0x002CF7E8, cleared on its message 0x12
+                                                (0x002CF77E)
++0x290   ptr             screenLayer0           screen layer kind 0: 0x002CCD40 builds the 0xF0-byte fade layer 0x002CCE70
+                                                of kind k at +0x290 + 8 x k (0x002CCD62-0x002CCDA6) under that kind's root
+                                                (0x002CCDB5-0x002CCDEA), and 0x002CCBC0(k, frames) closes it; kind 0 comes
+                                                from 0x002CCCF0 (0x002CCD21) and goes under the menu root 0x0208EA28;
+                                                0x002CCBA0 closes it (0x002CCBA7)
++0x298   ptr             screenLayer1           screen layer kind 1, from 0x002CCCA0 (0x002CCCD6), under 0x0208EA28;
+                                                0x002CCB10, 0x002CCB30 and 0x002CCC30 close it (0x002CCB17, 0x002CCB37,
+                                                0x002CCC37) and 0x002CD150 reads it (0x002CD159)
++0x2A0   ptr             screenLayer2           screen layer kind 2, from the pause task 0x00228C70 (0x00229109-0x00229127),
+                                                under 0x0208EA38; the event-skip task closes it (0x002CCBC0(2, 0x1000) at
+                                                0x00228192-0x002281A2)
++0x2A8   ptr             screenLayer3           screen layer kind 3, from the pause screen 0x00229590 (0x0022993C,
+                                                0x00229A98), under 0x0208EA48, which also closes it (0x0022983E); 0x00229590
+                                                waits for it to be gone (0x00229776) (Pause screen)
++0x2B0   ptr             screenLayer4           screen layer kind 4, which 0x002CCD40 would put under 0x0208EA50
+                                                (0x002CCDE6-0x002CCDEA); stays 0, because the five calls of 0x002CCD40 pass
+                                                kinds 0, 1, 2, 3 and 3 (0x002CCD21, 0x002CCCD6, 0x00229127, 0x0022993C,
+                                                0x00229A98)
++0x2B8   ptr             topBand                the top black band 0x002C9120 of the screen openers: 0x002C99E0 builds it
+                                                for slot 0 (0x002C9A62-0x002C9A77) under 0x0208EA28, and the band clears its
+                                                slot when it closes (0x002C9176); read by 0x002C9060, 0x002C9400, 0x002C9430
+                                                and the request dispatcher (0x0027F78E)
++0x2C0   ptr             topBandSlot1           slot 1 of the top band, which 0x002C99E0 would build under 0x0208EA38
+                                                (0x002C9A8D); stays 0, because 0x002C99E0 is reached only from 0x002C99A0,
+                                                which passes slot 0 (0x002C99AF)
++0x2C8   ptr             bottomBand             the bottom black band 0x002C9570, built with topBand (0x002C9A2F-0x002C9A5A)
+                                                and cleared when it closes (0x002C95C7); 0x002C98F0 closes both bands and
+                                                the side mask 0x0209C318 (0x002C98FF-0x002C998F); read by 0x002C9430,
+                                                0x002C9490, 0x002C9890 and the request dispatcher (0x0027F7A3)
++0x2D0   ptr             bottomBandSlot1        slot 1 of the bottom band; stays 0 for the same reason as topBandSlot1
++0x2D8   ptr             titleCaption           the screen title caption 0x002CA1F0 (mrppack unit 6 record 4), rebuilt
+                                                by 0x002CA150 after releasing the old one (0x002CA182-0x002CA1C5) and
+                                                released by 0x002CA110 (0x002CA11B-0x002CA133)
++0x2E0   ptr             memberRecordPanel      the member-record panel 0x002CBF80 (The member-record panel above),
+                                                built by 0x002CBED0, 0x002CBE40 or 0x002CBDA0 (0x002CBF48, 0x002CBE96, 0x002CBE11)
+                                                and cleared on its message 0x12 (0x002CBFBD)
++0x2E8   ptr             questionOrNotice       the open yes-or-no question 0x002CDF20 (set 0x002CDF6C, cleared 0x002CE1F7)
+                                                or notice 0x002CE370 (set 0x002CE48A, cleared 0x002CE3D4) (Dialogs)
++0x2F0   ptr             sortBar                the item sort bar 0x00566680 ("Sort", menu_command.bin 0x415), built by
+                                                0x005665B0 (0x00566661) and cleared by the bar (0x00566765)
++0x2F8   ptr             descriptionWindow      the description window, MenuDescriptionWindow below: built by 0x00292FA0
+                                                only while this is 0 (0x00292FBA-0x00292FF4); the window also stores
+                                                itself (0x00293042), and 0x00292B10 releases it and its box and clears
+                                                this (0x00292B5C)
++0x300   ptr             itemPictureLoader      the item-picture loader 0x00291D90 (itemgra_c pictures for the ten
+                                                entries at 0x0209BEA0): set when it opens (0x00291F96), cleared when it
+                                                closes (0x00291DD2); the area controller waits while this or
+                                                pictureLoader is set (0x002802F2-0x00280308)
++0x308   ptr             pictureLoader          the picture loader 0x002CEB40 for the entries at 0x0209E638 that 0x002CEFA0
+                                                installs: set at 0x002CEDB7, cleared when it closes (0x002CEB87); the
+                                                pause screen takes the focus only while this is 0 (0x002470ED) (Pause
+                                                screen)
++0x310   ptr             silhouette             the gambit editor's character silhouette 0x002CF440: set when it opens
+                                                (0x002CF620), cleared when it closes (0x002CF489)
++0x318   ptr             memberOrderWatch       the 0xF0-byte widget 0x00283A10 that 0x002839B0 builds once
+                                                (0x002839BB-0x002839E0; also from the shop list and 0x0035CA70): when
+                                                created it copies the nine records' member ids +0x60 to
+                                                its +0xC0-+0xE0 (0x00283A51-0x00283AF9). Each step runs 0x00283B30:
+                                                after the member order changes it waits for the party read-in
+                                                (0x00324360, done when 0x0037CB50 reports it), then re-records the
+                                                fighting units and reloads their models (0x00324380), goes round
+                                                once more if +0xE8 bit 0 flags a further change, then stops
+                                                (state 0). 0x00283940 releases it and clears this (0x00283963)
++0x320   ptr             licenseBoardView       the License Board's open board chooser 0x00557DB0 (built by 0x00557AE0,
+                                                0x00557B4D) or grid view 0x0055CD40 (built by 0x0055C690, 0x0055C6FD); each
+                                                clears it when it closes (0x005582CE, 0x0055CDC4) (License Board screen)
++0x328   ptr             confirmWindow          the confirm window 0x0057C480 (Dialogs): set when it opens (0x0057C4D9),
+                                                cleared when it ends (0x0057CC83)
++0x330   ptr             commandRowSet          the command-row set being filled (Command rows and first visits
+                                                above): 0x002CD4D0(set, rows, n) clears n 32-byte rows and points this
+                                                at the set (0x002CD4E5-0x002CD4FD); 0x002CD3C0 appends a row with its id and
+                                                two texts (0x002CD3D3-0x002CD403), 0x002CD420 returns row i and 0x002CD4B0 the
+                                                count
++0x338   ptr             picBattle4c            the picture battle_4_c, registered by 0x00280750 (0x00280807-0x00280823,
+                                                label 0x01E0C1E8) and bound by 0x00280670 (0x002806A0-0x002806B6); 0x0035D460
+                                                returns it (0x0035D467) (Menu sprites)
++0x340   ptr             picTargetlineP         the picture targetline_p, the second of the ten pictures 0x00280750
+                                                registers in its loop (0x0028080E-0x00280823, label 0x01E0C1E0) and 0x00280670
+                                                binds (0x002806A0-0x002806B6)
++0x348   ptr             picSFontC              the picture s_font_c, the third of the ten (label 0x01E0C230),
+                                                registered and bound by the same loops
++0x350   ptr             picBattle4p            the picture battle_4_p, the fourth (label 0x01E0C1F0); 0x0035D3D0 returns
+                                                it (0x0035D3D7)
++0x358   ptr             picMiniFaceC           the picture mini_face_c, the fifth (label 0x01E0C278); 0x0035C430 copies a
+                                                guest's small face into it (0x0035C440, 0x0035C51F) (Binmenu images)
++0x360   ptr             picPartytop4c          the picture partytop_4_c, the sixth (label 0x01E0C200); 0x0035D470 returns
+                                                it (0x0035D477)
++0x368   ptr             picPartytop8c          the picture partytop_8_c, the seventh (label 0x01E0C208); 0x0035D480
+                                                returns it (0x0035D487)
++0x370   ptr             picPartyGrd2           the picture party_grd_2, the eighth (label 0x01E0C238), registered and
+                                                bound by the same loops
++0x378   ptr             picIconsC              the picture icons_c, the ninth (label 0x01E0C1F8); read by 0x00242B90
+                                                (0x00242BA9) and 0x002C33F0 (0x002C343F)
++0x380   ptr             picExtraC              the picture extra_c, the tenth (label 0x01E0C280), registered and bound
+                                                by the same loops; the loops end at +0x388 (0x00280832, 0x002806CA)
++0x388   ptr             effectPicture          the TIM2 picture at the picture pack's u32 +0x28 offset, set once by
+                                                0x00280670 (0x002806D3-0x002806F4); 0x002509D0 reads it (0x00250B01, 0x00250B6E)
+                                                (Script screen effects)
++0x390   ptr             colourTable0           colour table 0: 0x00280AD0 points it at the colour-table file plus the
+                                                file's u32 +0x00 (0x00280AE7-0x00280AF6); read by 0x002509D0, 0x00250E90,
+                                                0x002C8EE0 and 0x002CEFD0 (CL2 menu colour tables)
++0x398   ptr             colourTable1           colour table 1, the file plus its u32 +0x04 (0x00280B04-0x00280B1B);
+                                                0x0035D530 returns it (0x0035D537)
++0x3A0   ptr             colourTable2           colour table 2, the file plus its u32 +0x08 (0x00280B29-0x00280B40);
+                                                0x0035D520 returns it (0x0035D527)
++0x3A8   ptr             colourTable3           colour table 3, the file plus its u32 +0x0C (0x00280B4E-0x00280B65); read
+                                                by 0x002509D0 (0x00250B40)
++0x3B0   ptr             shopPicture            the shop picture shop_8_c, requested by 0x002CBD50 as kind 7, id 0x63
+                                                (0x002CBD5B-0x002CBD91) and released by 0x002CC5F0 (0x002CC5FB-0x002CC618)
++0x3B8   ptr             tutoWinPicture         the picture tuto_win_c, requested by scriptResourceTask as kind 7, id
+                                                0xD8 (0x002D6F39-0x002D6F65) and released by 0x002D7960 (0x002D796B-0x002D7988)
++0x3C0   ptr             guestPortrait          the guest portrait face_guest, requested by 0x002CEAE0 when a guest is
+                                                in the party (0x002CEAEB-0x002CEB26) and freed by 0x002CE980 after it copies
+                                                it into partytop_8_c (0x002CEA9F-0x002CEAC1) (Binmenu images)
++0x3C8   ptr             colourTableFile        the menu colour-table file, kind 7, id 0xD4, requested by 0x002808D0
+                                                (0x00280924-0x0028095D); 0x00280AD0 takes the four colour tables from it
++0x3D0   ptr             layoutPack             mrppack_ys.bin, kind 7, id 0xD3, requested by 0x002808D0
+                                                (0x002808E0-0x00280916); 0x00280980 takes layoutUnits from it
+                                                (0x0028098B-0x002809AA)
++0x3D8   ptr             picturePack            tex2pack_ys.bin, kind 7, id 0xD7, requested by 0x00280750 with 0x00280670
+                                                as its completion (0x00280840-0x0028086D); 0x00280670 binds its pictures to
+                                                the ten picture names (0x002806A0-0x002806D1)
++0x3E0   i16             mapReturnAction        word +0 of the 6-byte record the location map or its overlay hands
+                                                back through 0x00285F00 (0x00285F09) (Map screens): 0x002814E0 passes the
+                                                record to 0x0028E690 (0x00281572-0x00281579), which does nothing for 0 and
+                                                3, reopens the location map (0x002B9D30) for 1 and the World Map host
+                                                0x00550400 for any other value (0x0028E6A5-0x0028E712); 0x002814E0 then
+                                                branches on it (0x00281585)
++0x3E2   u16             mapReturnPage          word +2 of that record, written with +0 (0x00285F09): the page, bit 15
+                                                set; 0x0028E690 hands it to the map it reopens (0x0028E6C4, 0x0028E72F)
++0x3E4   i16             mapReturnPosition      word +4 of that record (0x00285F13); 0x0028E690 passes it to the World Map
+                                                (0x0028E75A)
++0x3E6   u8[2]           gap3E6                 read and written by no function; nothing fixes its width
++0x3E8   u8[16]          mapViewResume          the 16-byte record copied whole by 0x00285EE0 (0x00285EEA) from the notice
+                                                board list (0x0037E481-0x0037E488) or the Clan Primer's hunt list
+                                                (0x00579B86-0x00579B8D): 0x002804E0 opens the World Map (0x0028E790) when bit
+                                                8 of its dword +0x08 is set and the location map (0x0028E630) when it is
+                                                clear, for the area in its dword +0x00 (0x002804EB-0x002805C3); 0x00575580
+                                                reopens the Clan Primer straight into Hunts from it (Clan Primer)
++0x3F8   u32             areaWait               the dword the area controller hands to 0x0032E4D0 in state 1 (0x00280357);
+                                                no instruction writes it, so it keeps the 0 of the first clear
+                                                (0x00280110), and 0x0032E4D0 answers 0 for 0 (0x0032E4DB, 0x0032E50B)
++0x3FC   i32             requestedField         the field the next teardown of the area controller travels to:
+                                                0x00285EC0 writes it (0x00285ED8) with bit 8 of areaFlags (Game over), and
+                                                the controller reads it through its +0xC0, which points at +0x3F8
+                                                (0x0028044C, 0x00280252, 0x00280279)
++0x400   u32             areaFlags              the area controller's state (low byte) and requests (the table below),
+                                                reached through the controller's or the event-skip task's +0xC0
+                                                (0x0028044C, 0x0022828E)
++0x404   u8[4]           gap404                 read and written by no function; nothing fixes its width
++0x408   u8[192]         record0                party record 0, a Party member status record (the layout on the Party
+                                                member status record page) that 0x00283270 builds through 0x00320040(3, 0,
+                                                record) (0x00283350-0x00283368) for slot 0 of the gameplay roster, map 3
+                                                (Party slots); slots 0-3 are the active party
++0x4C8   u8[192]         record1                party record 1, built the same way for roster slot 1 (the loop adds
+                                                0xC0 per slot, 0x0028342C)
++0x588   u8[192]         record2                party record 2, for roster slot 2
++0x648   u8[192]         record3                party record 3, for roster slot 3, the last of the active party
++0x708   u8[192]         record4                party record 4, for roster slot 4, the first reserve slot
++0x7C8   u8[192]         record5                party record 5, for roster slot 5
++0x888   u8[192]         record6                party record 6, for roster slot 6
++0x948   u8[192]         record7                party record 7, for roster slot 7
++0xA08   u8[192]         record8                party record 8, for roster slot 8; the loop ends at 9 (0x00283433)
++0xAC8   ptr[9]          memberSlots            the nine records in menu order: for each member id of the 16-entry
+                                                order table 0x00915CE0 (0, 3, 2, 4, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                                                15, 0) 0x00283270 points the next slot at the first unused record with
+                                                that id (0x00283473-0x002834D2), then appends the unused records in record
+                                                order (0x002834D4-0x002835E5); 0x00282EA0(slot) gives a slot's record index,
+                                                and the member steps walk the slots from currentMember
++0xB10   u8[26]          activeMember           one byte per member id (record +0x60): 1 when the member's record is
+                                                one of the first four (the active party), 0 for the reserve; written
+                                                by 0x00283270 when its argument is non-zero (0x0028337D-0x00283393) and by
+                                                0x00284C90 (0x00284E43); read by 0x002858A0, 0x002C1FF0 and 0x0035CA70
+                                                (0x00285963, 0x002C2124, 0x0035CD9C) (Chocobos and airships)
++0xB2A   u8              activeCount            the number of records 0-3 with a member (+0x60 not negative): cleared
+                                                and counted by 0x00283270 (0x002832B9, 0x002833A7); read by 0x002CC2A0,
+                                                0x005691E0 and 0x0056AB00 (0x002CC307, 0x005694B0, 0x0056AC13)
++0xB2B   u8              reserveCount           the number of records 4-8 with a member: cleared and counted by
+                                                0x00283270 (0x002832AB, 0x002833AF); read with activeCount (0x002CC30F,
+                                                0x005694A9, 0x0056AC0B)
++0xB2C   u8              mainCount              the number of members with an id of 5 or less and record flag bit 1
+                                                clear, the six main characters: cleared and counted by 0x00283270
+                                                (0x0028329D, 0x002833C5-0x002833D2); read by 0x002CC2A0, 0x002CDAE0, 0x003FD6B0,
+                                                0x003FD860, 0x0055F780, 0x0055F830, 0x005636F0 and 0x00563B10
++0xB2D   u8              guestId                the member id of a guest in the party (record flag bit 1), or 0xFF:
+                                                0x00283270 (0x002832C7, 0x002833FB-0x00283400); 0x002CEAE0 loads the guest's
+                                                portrait face_guest id + 0x10 into guestPortrait (0x002CEAF4)
++0xB2E   u8[526]         partyMarks             the party-mark bitmap of Party marks: one byte per equipment, technick
+                                                or magick id, bit n for member n; 0x002826F0 and 0x00282A40 build it and
+                                                0x00282F10 reads it (0x00282868-0x002829B5, 0x00282BA7-0x00282CF9, 0x00282F66);
+                                                the highest index, 0x20D for magick 0x3051, ends at +0xD3C
++0xD3C   u32             partyFlags             the party's menu conditions, rebuilt by 0x00283270 (the table below)
++0xD40   u8[32]          weaponSlot             the Weapon slot row of the current member, a MenuEquipSlotRow below:
+                                                0x0027F210 fills the five rows from the member's equipment
+                                                words +0x98-+0xA8 (record +0x9A + 4 x k) each time currentMember changes
+                                                (0x0027F240-0x0027F2BA, through 0x00285F20 and the member steps)
++0xD60   u8[32]          offHandSlot            the Off-hand slot row; its id +0xD68 and class +0xD6B decide whether a
+                                                weapon needs ammunition (0x0027F086, 0x0027F0B0) (Equipment)
++0xD80   u8[32]          helmSlot               the Helm slot row
++0xDA0   u8[32]          armorSlot              the Armor slot row
++0xDC0   u8[32]          accessorySlot          the Accessory slot row; the fill stops after it (0x0027F2B3)
++0xDE0   i16             currentMember          the slot, 0-8 in memberSlots, of the member the menus show: 0x00285F20
+                                                sets it and refreshes the slot rows (0x00285F27); the member steps
+                                                0x0027ED10, 0x0027EDA0, 0x0027F360 and 0x0027F430 move it (0x0027ED80, 0x0027EE3F,
+                                                0x0027F40E, 0x0027F503) and the member list sets it on a pick (0x00285B08)
++0xDE2   u8              equipWarning           the Equip screen's warning code (Stats): written by the refreshers and
+                                                the equipment list (0x003FE9E7, 0x003FECBB, 0x003FE04C, 0x003FE304, 0x003FF722,
+                                                0x00291D65) and shown by 0x002CA490 (0x002CA4A8, 0x002CA557)
++0xDE3   u8              shownWarning           the warning code last shown, so codes 1-9, 0xE and 0xF are shown once
+                                                each (0x002CA55E, 0x002CA5C7; cleared at 0x003FE03E, 0x003FE2F6, 0x003FF714,
+                                                0x00291D57)
++0xDE4   u16             warningItem            the item id the refreshers store with the code (0x003FE9F8, 0x003FECD0);
+                                                no instruction reads it (Stats)
++0xDE6   u8              licenseZoom            the License Board's zoom: the grid view's scale +0x8C is 2.0 while
+                                                this is 0 and 1.0 while it is 1 (table 0x00D23080, 0x0055D0D7-0x0055D0FD);
+                                                the button 0x110 flips it and runs the scale change over 150
+                                                (0x0055C9FC-0x0055CA69); 0 again when a menu request opens (0x0027FCF2),
+                                                from 0x00394460 (0x00394470) and when a script opens the License Board
+                                                (0x002D73A2)
++0xDE7   u8              partyMenuPage          the Party Menu's member page in 0x002C1A80: 1 after it opens the list
+                                                panel (0x002C1C4C-0x002C1C58), 2 after the four-pane panel
+                                                (0x002C1B2E-0x002C1B3A), 0 when it closes them (0x002C1C0C); 0x002C1A80
+                                                answers non-zero while it is not 0 (0x002C1C97-0x002C1CA0)
++0xDE8   u8              visitsMarked           set to 1 by 0x002CD510 after it marks Config, Status, Inventory and
+                                                every unlocked entry and category as visited (0x002CD514-0x002CD641), from
+                                                the Party Menu (0x00281CB5) and the Inventory (0x00565E57); read by no
+                                                function
++0xDE9   u8              stepFlash              which step arrow flashes (the table below); 0x002CABF0 and 0x00566C10 take
+                                                their bits and clear them
++0xDEA   u8              panelsHidden           1 while the License Board or the Clan Primer covers the Party Menu:
+                                                0x00561DC0 (from the License Board member pick 0x00560910) and 0x005738D0
+                                                (Clan Primer, 0x00572F31 with 1, 0x00573A36 with 0) store it (0x00561DCF,
+                                                0x005738E1) and hide or show the Party Menu's panels with it (0x00247730,
+                                                0x00561DE9-0x00561E50); 0x0057A040 returns 0 at once while it is 0
+                                                (0x0057A073)
++0xDEB   u8              commitGambits          set to 1 by the script verb fsmenu_registrestore while an area
+                                                controller is open (0x00511AA0-0x00511AB4, 0x002D7D47) and cleared by
+                                                0x002D6F90 (0x002D6FE5); while it is set, the gambit editor commits its
+                                                gambits when it closes (0x00569242-0x00569259) (Gambits screen)
++0xDEC   u8              blinkOff               non-zero stops the menu's pulsing marks: 0x002CC8D0 then returns the
+                                                base value instead of base + amplitude x sin (0x002CC8E5-0x002CC8F9); the
+                                                script verb fsmenu_blinkanchor writes its argument xor 1
+                                                (0x00511B15-0x00511B24, 0x002D7D37); the auto window and the highlight
+                                                window clear it around their own pulse and restore it
+                                                (0x002D684E-0x002D687D, 0x002D6E2C-0x002D6E4D)
++0xDED   u8              startHold              the Start presses still to swallow after an event skip: the event-skip
+                                                task sets 3 when it ends (0x00228210), and the Start handler 0x002287D0,
+                                                with no event-skip task and no area controller, takes one off and does
+                                                nothing else while it is above 0 (0x0022884B-0x0022885E)
++0xDEE   u8              savedMusicVolume       the music volume to bring back when the menu closes: the mode-screen
+                                                task stores the volume 0x002DE350 reports when it opens a menu and, when
+                                                it is above 50, fades the music to 50 over 60 frames (0x002DEE50;
+                                                0x0027FEC8-0x0027FEF6, 0x0027FF1C-0x0027FF4A), otherwise stores 0; the Party
+                                                Menu (0x00281206-0x0028122D) and the return to the menu
+                                                (0x002815A2-0x002815C1) fade it back and clear this; 0x0027EFA0 clears it
+                                                for a game over (0x0027F00C)
++0xDEF   u8              modeScreenOpening      1 while a mode screen is opening: set by the mode-screen task
+                                                (0x0027FDC0, 0x0027FFBC) and 0x0027EFA0 (0x0027F01F), cleared by the area
+                                                controller (0x00280292); 0x00254A70 answers 1 while it is 0 (0x00254A77)
+                                                (Screen fades)
++0xDF0   i32             openLength             the length of the screen's opening run: the mode-screen task stores 1
+                                                when the request word has bit 15 and 200 otherwise (0x0027FD83-0x0027FDAB,
+                                                through 0x002CC9F0); 0x002CC9B0 returns it for the location map, the World
+                                                Map, 0x005542D0 and 0x00581310 (0x002BB194, 0x005529F2, 0x0055491D, 0x00581333),
+                                                which hand it to 0x002CC960 or 0x002CC9C0
++0xDF4   i32             shopArenaPending       1 after the mode-screen task opens a shop (0x0027FCCE): the area
+                                                controller's message 0x12 then puts arena 11 back to mode 0 through
+                                                0x0024AB60 and clears this (0x0028018B-0x002801A4) (Resource arena)
++0xDF8   i32             chosenEntry            the Party Menu entry chosen last, its menu_command.bin id: the Party
+                                                Menu writes it (0x00280E30, 0x002810FC); the Equip comparisons test it for
+                                                Equip, 0x4B6 (0x00293791, 0x002943CA, 0x00294F3E, 0x00295554, 0x00295ACB)
+                                                (Menus)
++0xDFC   u8[4]           tail                   read and written by no function; nothing fixes its width
+```
+
+The layout units of `layoutUnits` and the functions that read them:
+
+| Unit | Offset | Read by |
+|---:|---|---|
+| 0 | `+0x00` | `0x0029CB50` (`0x0029CB57`) |
+| 1 | `+0x08` | the Battle Menu (`0x00279E20`, `0x0027C870`), the party list and its children (`0x00298250`, `0x00299090`, `0x00299AC0`, `0x0029A0A0`, `0x0029B700`, `0x0029BE50`, `0x0029C530`), `0x002BE0A0`, `0x002BEFB0`, `0x002BF3D0`, the escape widget `0x00366B80` and the kill-chain widget `0x003FAF10` |
+| 2 | `+0x10` | the minimap `0x003C5910` and the HUD widget `0x003C9A30` with its child `0x003C95C0` |
+| 3 | `+0x18` | the special-attack window's panes (`0x002D5590`, `0x002D5690`, `0x002D5830`, `0x002D5C80`, `0x002D5E00`) |
+| 4 | `+0x20` | `0x0035D3F0` |
+| 5 | `+0x28` | `0x003CA530`, `0x003CAE00`, `0x003CB150` |
+| 6 | `+0x30` | the Quit screen `0x0027EA70`, the member list and its rows (`0x00285290`, `0x00283BB0`, `0x00284450`, `0x002858A0`), `0x002C1000`, `0x002C1E20`, `0x002C9BF0`, `0x002CA1F0`, `0x002CE7A0`, `0x002CF740`, `0x002CF940`, the location map pane `0x00403380` |
+| 7 | `+0x38` | the Party Menu panels (`0x002C13C0`, `0x002C3560`, `0x002C4460`), Status and Equip (`0x002C59D0`, `0x003FE5D0`, `0x003FF360`), the member-record panel and its children (`0x002CBED0`, `0x002CA6C0`, `0x002CABF0`, `0x002CB150`, `0x002CB4B0`) |
+| 8 | `+0x40` | the list item `0x00292390` and the equipment rows (`0x003FD1D0`, `0x003FD6B0`, `0x003FD860`, `0x003FEE40`) |
+| 9 | `+0x48` | the Inventory panes and rows (`0x003FCD20`, `0x005636F0`, `0x00563B10`, `0x00564010`, `0x00566A70`, `0x00567200`, `0x0056DD50`) |
+| 10 | `+0x50` | the gambit editor (`0x005677A0`, `0x005691E0`, `0x0056AB00`, `0x0056ADA0`, `0x0056B4D0`, `0x0056C060`, `0x0056C170`) |
+| 11 | `+0x58` | the License Board grid view (`0x005595E0`, `0x005599D0`, `0x0055CD40`, `0x00560910`, `0x005618E0`) |
+| 12 | `+0x60` | Config, Graphics Settings, Controls and Parameter Settings (`0x0023B330`, `0x0023B6F0`, `0x0023BD40`, `0x0023C5C0`, `0x0023CE10`, `0x0023D4F0`, `0x0023D890`, `0x0023DD10`, `0x0023EA10`, `0x00240AD0`) |
+| 13-16 | `+0x68`-`+0x80` | `0x0051EDC0(n)`, which returns unit 13 + n (`0x0051EDC0`-`0x0051EDF0`), called from `0x00406A60` and `0x00406E80` |
+| 17 | `+0x88` | `0x0029CB70` (`0x0029CB77`) |
+| 18 | `+0x90` | the gil window `0x002A1FB0` |
+| 19 | `+0x98` | the License Board chooser (`0x00556DB0`, `0x00556F90`, `0x00558CE0`) |
+| 20 | `+0xA0` | `0x0027E9D0`, called from `0x001D7150` |
+| 21 | `+0xA8` | the on-screen keyboard `0x002878E0` ([On-screen keyboard](../Controls-And-Input/on-screen-keyboard.md)) |
+| 22 | `+0xB0` | `0x0029CB60` (`0x0029CB67`) |
+
+`areaFlags` (`+0x400`), the area controller's word ([Game over](../World-Areas-And-Travel/game-over.md)):
+
+| Bits | Meaning |
+|---|---|
+| 0-7 | the controller's state: 0 when it opens (`0x00280453`); its step runs state 1 (`0x00280357`), which ends in 2 (`0x002803CC`), and state 2 (`0x002802C8`); `0x0027F2E0` writes 2, or 1 when bit 9 is set and bit 10 clear (`0x0027F31E`-`0x0027F33B`) |
+| 8 | a field change is requested: set with `requestedField` by `0x00285EC0` (`0x00285EC7`), and with field 0 by the controller's state 1 (`0x002803A3`-`0x002803B3`); cleared by the controller when it closes (`0x0028024E`) |
+| 9, 10 | set together by `0x00285E60` (`0x00285E6B`, `0x00285E7C`); cleared by the controller's state 1 after it resets the save image (`0x00280380`-`0x00280395`), and bit 9 makes the controller's close restore the world (`0x002801E4`-`0x00280246`) |
+| 11 | bit 15 of the request that opened the controller (`0x00280481`-`0x0028049B`); `0x0027F2E0` closes slot 0 over 1 frame instead of 200 while it is set, then clears it (`0x0027F2F2`-`0x0027F301`, `0x0027F349`) |
+| 12 | set by the event-skip task when it opens (`0x00228295`) |
+| 13 | set or cleared by `0x00285EA0(on)` (`0x00285EAA`-`0x00285EB6`), cleared by the event-skip task when it opens (`0x002282A3`) |
+| 14 | passed to `0x00244630` when the event-skip task ends (`0x002281FB`-`0x00228204`); none of the writers above sets it |
+
+`partyFlags` (`+0xD3C`), rebuilt by `0x00283270` each time it rebuilds the party records:
+
+| Bit | Set when | Read by |
+|---:|---|---|
+| 0 | some member's gambit set has more than 10 slots (byte `+0x32` of the copy `0x00327BE0` makes, `0x00283406`-`0x00283423`; [Gambits screen](gambit-screen.md)) | the gambit editor (`0x00569482`) |
+| 1 | a guest is in the party (record flag bit 1, `0x002833E0`-`0x002833ED`) | the guest portrait (`0x002CE998`, `0x002CEAEB`) |
+| 2 | the party is riding a chocobo (`0x00303EE0`, `0x002832DC`-`0x002832F8`) | the member list, which refuses party changes with "You cannot change party members while mounted" (`0x0BE1`, `0x00285DEB`-`0x00285DF5`; `0x00284CD4`) |
+| 3 | an Esper is summoned (`0x003135E0`, `0x002832FE`-`0x0028331A`) | the member list ("You cannot remove a summoner with an active Esper from the party", `0x0BE2`, `0x00285DFC`-`0x00285E06`; `0x00284CDC`), `0x002830A0` (`0x002830AB`) and `0x002CF710` (`0x002CF717`) |
+| 4 | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel sets it from its creation record (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
+| 5 | bit 10 of the action policy `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
+
+`stepFlash` (`+0xDE9`), which step arrow flashes for 4 frames:
+
+| Bit | Set by | Taken by |
+|---:|---|---|
+| 0 | a step to the next member (`0x0027F3FF`, `0x0027F4F1`) | the member-record panel's child `0x002CABF0`, its `+0xEA` (`0x002CADAC`-`0x002CADE3`) |
+| 1 | a step to the previous member (`0x0027ED71`, `0x0027EE2C`) | `0x002CABF0`, its `+0xE8` |
+| 2 | a step to the next tab (`0x00564300`: `0x00564344`, `0x00564366`) or gambit page (`0x0056AD50`: `0x0056AD80`) | the gambit icon `0x00566C10`, its `+0xE4` (`0x00566D72`-`0x00566DA9`) |
+| 3 | a step to the previous tab (`0x00563EC0`: `0x00563EFD`) or gambit page (`0x0056AAC0`: `0x0056AAE1`) | `0x00566C10`, its `+0xE2` |
+
+The equipment rows that `0x0027F210` fills, five from `+0xD40` 32 bytes apart (Weapon, Off-hand, Helm, Armor,
+Accessory), and the description window at `+0x2F8`:
+
+```struct MenuEquipSlotRow base=record size=0x20
++0x00    ptr             name                   the piece's name, 0x002B58B0 of the item's text (0x0027F28C-0x0027F295);
+                                                read by no function
++0x08    u16             id                     the piece's item id, 0xFFFF for an empty slot (0x0027F259-0x0027F271);
+                                                read by the equipment screens (0x003FD3CC, 0x003FDFE0, 0x003FE720, 0x003FEF01,
+                                                0x003FF0C7, 0x003FF8AA, 0x003FF94C) and 0x0027F030
++0x0A    u8              icon                   the item's icon, its query record's +0x2C (0x0027F299-0x0027F29D); read by
+                                                no function
++0x0B    u8              class                  the item's class, the query record's +0x38 (0x0027F2A2-0x0027F2A6); read
+                                                by 0x003FD360 for the weapon (0x003FD48B) and 0x0027F030 for the off hand
+                                                (0x0027F0B0)
++0x0C    u8[20]          zero                   cleared by the fill (0x0027F262-0x0027F26C) and read by no function
+```
+
+```struct MenuDescriptionWindow base=record size=0xD8
++0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets);
+                                                procedure 0x00293010
++0xC0    ptr             box                    the description box, the 0x102D0-byte list item 0x00292390 that 0x00293170
+                                                creates and keeps here (Inventory screen); 0 when the window opens
+                                                (0x00293049)
++0xC8    i8              iconShown              the icon picture the box shows last: -1 when the window opens
+                                                (0x00293050), and the box copies icon r into its picture only when r
+                                                differs, then stores r (0x0029277B-0x002927A5); 0x0029289C passes it to
+                                                0x01E0C480
++0xC9    u8              iconHalf               which half of the icon picture the box writes next: 0 when the window
+                                                opens (0x00293050); the box uploads at row offset this x 64
+                                                (0x002925BD-0x002925C4, 0x002927F0-0x002927FC, 0x002929A1-0x002929A8) and flips it
+                                                after each upload (0x00292634, 0x0029290B, 0x00292A28)
++0xCA    u8[2]           gap0CA                 read and written by no function; nothing fixes its width
++0xCC    i32             width                  0 when the window opens (0x00293059); 0x002932F0(n) writes n (0x00293303),
+                                                which the Inventory uses to size the line to its widest category name
+                                                (Inventory screen); read by no function
++0xD0    i32             mode                   the window's mode from the opening message's argument: 1 gives 6, 2
+                                                gives 4, 3 gives 5, 4 gives 7 and any other 1 (0x0029305F-0x002930A3);
+                                                read by no function
++0xD4    u8[4]           tail                   read and written by no function; nothing fixes its width
 ```
 
 ## Columns
