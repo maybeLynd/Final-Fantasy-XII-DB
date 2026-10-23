@@ -112,8 +112,9 @@ The help window shows the code as follows:
 - Codes `0xA`-`0xD`, which `0x00309480` never returns, have no line (their table rows go to `0x002CA522` with id 0).
 - Codes 0 and `0x10` show the line the caller passes: "Change equipment." (`0x003FE2A2`), the text at `+0x180` of the
   menu block's widget `+0x108` (`0x003FF97D`) or, in the shop, "Select a character to equip." (`0x0057B3BF`).
-- No instruction of the 456 functions that load `[0x0209AC30]` reads `+0xDE4`. The member panel `0x002CA7C0` calls the
-  comparison for its numbers and reads neither field.
+- No instruction reads `+0xDE4`: the two stores above and the clearing of the whole block when it is first set up
+  (`0x00280110`) are its only accesses. The member panel `0x002CA7C0` calls the comparison for its numbers and reads
+  neither field.
 
 ### A party member's base
 

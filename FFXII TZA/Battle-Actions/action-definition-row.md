@@ -132,8 +132,11 @@ Bit *n* of `+0x13` is one element; no shipped row sets more than one:
 | `31` | 64 | consumes an item: the command entry carries the item count (`0x0031F077`) |
 
 Bits 13 and 14 are also copied into the kind-10 AI operand mask as its bits 8 and 9 (`0x00312213`-`0x00312232`).
-Bits 7, 10, 15, 18 and 20 are set on 324, 292, 24, 1 (Attack) and 81 rows and are read by none of the
-154 functions that resolve `0x02EBF138`: their word-wide reads mask other bits (`0x0030770D` keeps at most bit 13, masked by a 0-or-1 register, `0x0030D3AE` tests bit 24, `0x002F8494` bit 27, `0x002F8689` bit 13). No shipped row sets bits 22 or 23.
+Bits 7, 10, 15, 18 and 20 are set on 324, 292, 24, 1 (Attack) and 81 rows and are read by no instruction. The 60
+instructions that read the word test other bits; those that take it whole keep bit 13 (`0x0030770D`, masked by a
+0-or-1 register; `0x002F8689`), bits 13 and 14 (`0x00312213`), bits 24 and 25 (`0x0030D3AE`), bits 12, 21, 24 and 25
+(`0x0031A99A`), bit 27 (`0x002F8494`), bits 8 and 9 (`0x0031DB9E`), bits 5 and 6 (`0x00322BD5`) or bit 31 (`0x0031F077`).
+No shipped row sets bits 22 or 23.
 
 ### The flag word at +0x2C
 
@@ -150,9 +153,12 @@ Bits 7, 10, 15, 18 and 20 are set on 324, 292, 24, 1 (Attack) and 81 rows and ar
 
 Bits 9, 12 and 15 (3, 20 and 10 rows) are read through the whole word by the AI order selectors
 (`0x00303434`, `0x00303492`, `0x00308CF2`) and by `0x003851F0` and `0x003872D0` (`0x003852AB`, `0x00387382`).
-Bit 5 is set on 227 rows and is read by none of the 154 functions that resolve `0x02EBF138`: their
-word-wide reads take bits 0-2 (`0x00300B3F`, `0x00317CFF`, `0x0031CDC2`, `0x0031EF87`, `0x0032A46F`), bits 6 and 7
-(`0x00322B67`, `0x00322B78`) or bits 12 and 15 (`0x00303496`, `0x00308CFB`, `0x00308D02`).
+
+Bit 5 is set on 227 rows and is read by no instruction. The 44 instructions that read the byte `+0x2C` or the
+word test or keep other bits: bits 0-2 (`0x002377FF`, `0x00237885`, `0x00300B3F`, `0x00317CFF`, `0x0031CDC2`, `0x0031EF87`,
+`0x0032A46F` among them), bits 3 and 4 (`0x002F9323`, `0x002F9377`), bits 6 and 7 (`0x002FFAF5`, `0x002FFB30`, `0x00322B67`,
+`0x00322B78` among them) and bits 8-15 (the word tests above, `0x0030847E`, `0x003084B8`, `0x00308CFB`, `0x00308D02`,
+`0x0030BC10`).
 
 ### The flag word at +0x36
 

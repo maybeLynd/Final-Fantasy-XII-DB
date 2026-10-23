@@ -44,11 +44,10 @@ The two id arrays are filled by `0x002FA920`, which writes one id per good and t
   category byte `0x00D238F8 + tab`) or the bazaar's (mode 2, `0x00D23901 + tab`) into the block at `+0x160`
   (`0x0057B5E9`-`0x0057B617`).
 
-These are the only uses of the shop window's `+0x160` and `+0x168` in the 213 functions from `0x0056C000` to
-`0x0057E000` and the eight that load `[0x02CA9790]`. The other operands with those displacements there belong to other
-records: the stack slot `[rsp+0x160]` of `0x0057C140` (`0x0057C2AF`), and `+0x168` of another widget's own record in
-`0x0056F5F0` (`0x0056F6F2`), `0x0056F810` (`0x0056F853`, `0x0056F895`, `0x0056F906`, `0x0056FA09`) and `0x0056FAD0` (`0x0056FAE8`,
-`0x0056FBB1`, `0x0056FBFD`).
+No other instruction reads or writes the shop window's `+0x160` or `+0x168`. The block pointer at `+0x160` is
+stored by message 1 (`0x0057B90B`), passed to `0x002FA920` and copied into the tab row by `0x0057B500` (`0x0057B610`,
+`0x0057B61C`) and freed by message 18 (`0x0057BCAC`); the ids from `+0x168` are written by `0x002FA920` (`0x002FAA10`) and
+read back only by `0x0057B6F0` (`0x0057B740`, `0x0057B74C`).
 
 ### The command rows
 
@@ -211,12 +210,13 @@ and bit 3 when it is not 1, and passes both to the list.
   the help (`0x0056E5D0`).
 - `0x0056E580(screen, v)` returns from the equip offer (`0x0057ADCD`, `0x0057AFFA`, `0x0057C04B`): it sets `+0x194` bit 1 when
   `v` is 0, re-attaches the screen and runs `0x0056C850`.
-- `0x0056DD00(screen)` answers whether the screen may close: not while the grant window `[0x02CA9790]` and its part
+- `0x0056DD00(screen)` answers whether the screen may close: not while the shop window `[0x02CA9790]` and the part
   `[0x02CA97A0]` exist (`0x0057A960`), always once `+0x194` bit 2 is set, and otherwise unless `0x0057A440` reports state 2
   of `0x003F4670`.
-- `0x0057B680(i)` returns the grant window's child `+0x158` for `i` below 1, and `0x0057B6A0` closes the grant window's
-  parts (`0x0057A5C0`): the list (`0x002CA110`), the panel `[0x02CA9798]`, the help lines (`0x00291D80`, `0x00293110`) and the
-  window itself, returning `0xC`.
+- `[0x02CA9790]` is the shop window itself: its message 1 stores it (`0x0057B8CE`) and message 18 clears it
+  (`0x0057BCC2`). `0x0057B680(i)` returns the shop window's child `+0x158` for `i` below 1, and `0x0057B6A0`, a callback of
+  the grant window (`0x0057A5C0`), closes the shop's parts: the list (`0x002CA110`), the panel `[0x02CA9798]`, the help
+  lines (`0x00291D80`, `0x00293110`) and the shop window (`0x0057B6D1`-`0x0057B6DF`), returning `0xC`.
 - `0x0057C010` is the grant window's other callback; `0x0057A4E0` installs it beside `0x0057B6A0` (`0x0057A5CC`). It passes the
   name id of the shop byte `+0xC0` of `[0x02CA9790]` (`0x002FAE40`) through `0x003EABE0` to `0x002CA150(…, 0)`, runs
   `0x002CE7A0(1)` and `0x0056E580([0x02CA9798], 0)`, re-attaches `[0x02CA9790]` (`0x00246AD0`) and returns `0xC`.

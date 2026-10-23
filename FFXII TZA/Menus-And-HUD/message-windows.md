@@ -81,12 +81,22 @@ open: it does nothing while `+0x60` is set and sets it after the move (`0x002E05
 - the choice byte `+0x38`, the style `+0x3D` (read at `0x002E174B`) and the `messync` bits `+0x3E`;
 - bits 1-7 of `+0x44`; the open clears bit 0 only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
   stores `value & 1`);
-- the spans `+0x45`-`+0x4B`, `+0x4D`-`+0x53` and `+0x64`-`+0x67`, which no instruction reads or writes.
+- the `setshapeanime` animation `+0x46`-`+0x4B` and `+0x50`-`+0x53`, which only `0x003E9440` writes
+  (`0x003E9451`-`0x003E9468`) and only `0x003E9320` reads (`0x003E9380`-`0x003E9391`);
+- the bytes `+0x45`, `+0x4D`-`+0x4F` and `+0x64`-`+0x67`, which no instruction reads or writes.
 
 So a slot's style, choice flag and `messync` bits carry over until a verb sets them again, while a rectangle or
-`askpos` setting applies to one window only. The search for the spans covered every instruction of the 36 functions
-that reference `0x0215F200`-`0x0215F53F` (the rip-relative reference index, with `0x002E170C` as the positive control; no
-image-base-relative operand reaches the range).
+`askpos` setting applies to one window only.
+
+The asset path lookups `0x002DF980`, `0x002DF880` and `0x002DF780` could reach the slots only for resource kind 18: that
+kind has no path array, only the cell `0x0215F150` below the slots, which nothing writes, and a lookup reads
+`[cell + n x 8]` without a bound (`0x002DF991`), so a number of 22 or more would land in the slots.
+
+Kind 18 comes only
+from a bound id of class `M` (`0x002ED812`; [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)),
+and no shipped script, table, file or code names one. Every other caller of `0x002DF980` and `0x002DF880` passes a
+fixed kind other than 18, and `0x002DF780` reads a path only for a file the size table sizes, which no kind-18 file
+is in any language.
 
 ### Slot states
 
@@ -278,8 +288,11 @@ and a draw order at `+0x400`, made by `0x002A2AD0` with each part hidden, colour
 | `setshapecolor_18a` | `0x18A` | `0x003E94D0` → `0x002A2650` → `0x002A7C70` | sets the colour, or tweens it over n ticks with a curve |
 | `setshapescale_187` | `0x187` | `0x003E9690` → `0x002A26A0` | sets the scale, or tweens it over n ticks with a curve |
 
-`0x003E9320` uses `0x002A3830` whenever the slot's `+0x4C` is set, so after `setshapeanime` a later `setshape` on the
-same window animates too (`0x003E9377`). `0x002A7A60` reads a frame's box and palette from the picture's tables. Each tick `0x002A3F90` steps every part with
+`0x003E9320` uses `0x002A3830` when the slot's `+0x4C` is set (`0x003E9377`) and clears `+0x4C` on every path
+(`0x003E9417`, `0x003E941D`), so the stored animation serves only the `setshapeanime` call that stored it
+(`0x0034016B`-`0x0034017F`); a later `setshape` takes `0x002A3650`.
+
+`0x002A7A60` reads a frame's box and palette from the picture's tables. Each tick `0x002A3F90` steps every part with
 `0x002A7AD0`: the frame timer, the colour tween and the scale tween, each through `0x00248F40` ([widgets](widgets.md)).
 A loop count of 0 loops for ever. The parts do not step while a time stop restricts anything (`0x00226BA0`) and story
 flag `0x6F` is clear ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
@@ -395,15 +408,19 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | `+0x42` | `u8` | hasParts | the window gets picture parts |
 | `+0x43` | `u8` | flag43 | the reset writes 0 |
 | `+0x44` | `u8` | noFocus | bit 0: open without the focus; bits 1-7 are never set |
-| `+0x45` | `u8[7]` | - | read and written by none of the 36 functions that reference the slots |
-| `+0x4C` | `u8` | flag4C | the reset writes 0 |
-| `+0x4D` | `u8[7]` | - | read and written by none of the 36 functions that reference the slots |
+| `+0x45` | `u8` | - | no instruction reads or writes it |
+| `+0x46` | `u16` | animLast | `setshapeanime` last frame; `0x003E9320` passes it to the part's `+0x2F` |
+| `+0x48` | `u16` | animFirst | first frame of the loop, to the part's `+0x30` |
+| `+0x4A` | `u16` | animDelay | ticks per frame, to the part's `+0x2D` and `+0x2E` |
+| `+0x4C` | `u8` | animSet | 1 once `0x003E9440` has stored an animation (`0x003E946B`); `0x003E9320` reads it and writes 0; the open and the reset write 0 |
+| `+0x4D` | `u8[3]` | - | no instruction reads or writes them |
+| `+0x50` | `u32` | animLoops | loop count; its low byte goes to the part's `+0x2C` |
 | `+0x54` | `u16` | partsBuilt | the part count given to `0x002A2AD0`, 0 for a window without parts |
 | `+0x56` | `u16` | partCount | parts for a shape window, 16 |
 | `+0x58` | `u32` | req58 | set by `0x002E2120`; its low 16 bits are copied into the creation request (`0x002E17C5`); the open and the reset clear `+0x58`-`+0x5F` (`0x002E19DF`) |
 | `+0x5C` | `u32` | req5C | set by `0x002E2090`; its low byte is copied into the creation request (`0x002E1772`); the reset clears `+0x58`-`+0x5F` |
 | `+0x60` | `i32` | shifted | 1 once `0x002E04E0` has moved the slot's rectangle and window; the open and the slot reset `0x002E1450` write 0 |
-| `+0x64` | `u8[4]` | - | read and written by none of the 36 functions that reference the slots |
+| `+0x64` | `u8[4]` | - | no instruction reads or writes them |
 
 `PicturePart`, `0x60` bytes, the array at `+0x3F8` of a window with parts:
 
