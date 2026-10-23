@@ -29,6 +29,17 @@ track's first byte, or 0 for a negative track or no file.
 
 ## Layouts
 
+All multi-byte fields are little-endian. The two-byte fields of runs and rungs are read a byte at a time, byte
+`+1` shifted above byte `+0` (`0x003EAAA5`-`0x003EAAB4`, `0x003EAAD6`-`0x003EAAE5`, `0x003EAB20`-`0x003EAB2A`), so they need
+no alignment.
+
+Offsets in each table below are from the start of its own structure: the header, a run, a rung or a
+`musicinfo.bin` entry. A page offset is from the start of `musicctrl.bin`: `0x003EAB90` adds the file's address to
+each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 127) / 128` of them
+(`0x003EAB9A`-`0x003EABA7`). A page's first run is at its offset. A run's rungs follow its 4 bytes, 3 bytes each
+(`0x003EAB07`, `0x003EAB39`), and the next run starts at the run plus `4 + 3 * rungs` (`0x003EAACB`-`0x003EAAD3`). Track
+*t*'s entry in `musicinfo.bin` is at file offset `2 * t` (`0x00361023`).
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "MUS0" |

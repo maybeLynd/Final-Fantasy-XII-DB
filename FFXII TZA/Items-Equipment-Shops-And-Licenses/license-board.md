@@ -29,6 +29,12 @@ file request functions `0x00384420` and `0x003843F0`.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
+Offsets are from the start of the file. The board's slot holds the loaded file's address as the callback stores it
+(`0x002383AA`), and the readers index the file directly: the width at `+0x04` (`0x003289F0`), the height at `+0x06`
+(`0x00328A03`) and a cell at `+0x08` plus twice `row * width + col` (`0x00328A0C`-`0x00328A14`).
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[4]` | magic | "licd"; no code compares it |

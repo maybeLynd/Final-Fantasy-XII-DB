@@ -94,6 +94,8 @@ The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | fontId | the font's id (lookup `0x001B4E33`, insert `0x0020B5F0`) |

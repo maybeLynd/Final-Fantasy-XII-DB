@@ -33,6 +33,11 @@ down (`0x0017D670`, from `0x0017CDC0`). A first run with no file therefore ends 
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
+The file itself is text; the table is one profile as the reader fills it, with offsets from the start of the
+profile.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32[16]` | buttons | group 0: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle, Circle, Cross, Square |
@@ -111,6 +116,23 @@ direction pad, Space confirms, C cancels, and F1-F3 set the game speed.
 `0x00198B60` copies each profile's defaults into the profiles at `0x01F80F90`, builds the published records at
 `0x01DF1738` with L2 and R2 cleared (`0x01DF1758`), applies the Circle and Cross exchange, and copies the records to
 `0x01F80130`.
+
+### From the file to the input records
+
+The file is converted field by field: `0x00198000` parses each binding's text into a `u32` in its profile slot at
+`0x01F80F90`. When both checks pass, `0x00195DF0` turns each profile *p* into a `0x15C`-byte record at
+`0x01DF1738 + 0x15C * p` (`0x00195E30`-`0x00195FD5`):
+
+1. It copies the 16 button codes, profile `+0x00`-`+0x3F`, to record `+0x00`-`+0x3F`.
+2. It clears L2 and R2, record `+0x20` and `+0x24` (`0x00195E86`).
+3. It writes the eight stick codes as four 16-byte entries at record `+0x40`, `+0x50`, `+0x60` and `+0x70`, each
+   `2`, `4` and then the profile's pair: `+0x40`/`+0x44`, `+0x48`/`+0x4C`, `+0x50`/`+0x54`, `+0x58`/`+0x5C`
+   (`0x00195E97`-`0x00195EFA`).
+4. It exchanges Circle and Cross, record `+0x34` and `+0x38`, when `0x001DFA70` returns 0 (`0x00195F03`-`0x00195F24`).
+5. It copies the whole record to `0x01F80130 + 0x15C * p` (`0x00195F2C`-`0x00195FCF`).
+
+It reads each profile only up to `+0x5F`, so group 2 (`+0x60`-`+0x6F`) does not enter the records, and it writes
+no record byte from `+0x80` on. It then sets byte `+0x3B` of the input manager it was passed (`0x00195FE0`).
 
 ## Modding notes
 

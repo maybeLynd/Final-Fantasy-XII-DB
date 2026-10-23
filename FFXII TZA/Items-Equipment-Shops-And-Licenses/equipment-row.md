@@ -29,6 +29,17 @@ Every reader computes the row itself: it loads the registry slot `0x02EBF0F8`, r
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
+Offsets in the row table are from the start of the row, and offsets in the bonus record table from the start of
+the record. Row *n* starts at the header's `+0x0C` plus *n* times the header's `u16` stride at `+0x08`
+(`0x002381CC`-`0x002381DA`). In the `us` file the header holds 557 rows (`+0x04`), stride 52, rows at `0x20` and
+bonus records at `0x7144` (`+0x18`).
+
+The header's `+0x0C` and `+0x18` are offsets from the start of the section, rebased by `0x003845F0` (`0x0038460E`,
+`0x0038462F`). A row's `+0x28` is an offset from the header's `+0x18` (`0x00238225`-`0x0023823E`). The directory entry
+`+0x38` is an offset from the start of `battle_pack.bin`, rebased by `0x003846F0` (`0x00384759`-`0x00384780`).
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | pad00 | 0 on every row |
@@ -183,6 +194,25 @@ Sap, Oil, Disable, Immobilize, Slow and Disease.
    and bonus offset `+0x18` by the section address (`0x0038460E`, `0x0038462F`).
 3. It then rewrites every row's `+0x28` to the encoded address of its bonus record, header `+0x18` plus the stored
    offset (`0x00238225`-`0x0023823E`). Nothing else writes a row.
+
+### What the load checks
+
+The load makes three tests, none of them on the file's contents:
+
+- `0x00384420` files no request when `0x0032E400` gives the file a negative size (`0x00384453`-`0x00384459`); the size
+  read comes from that size table, not from the file.
+- `0x003845F0` leaves the slot null when the section entry is null (`0x003845F7`-`0x003845FA`), and rebases a header
+  offset only when it is not 0 (`0x0038460A`, `0x0038461A`, `0x0038462B`, `0x0038463C`).
+- `0x00238160` rewrites rows up to the header's row count `+0x04` (`0x00238190`-`0x0023819E`).
+
+The load never checks the `st2e` magic, the stride, the row count against the section's size, or that a row's
+`+0x28` lands inside the bonus records. `0x00238850`, `0x003846F0`, `0x00236C30`, `0x003845F0` and `0x00238160` read no row
+field other than `+0x28`. The four bytes `st2e` occur nowhere in the image.
+
+Of the header reads made through the registry slots, listed one by one on
+[Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), none is at `+0x00`. All 562 reads
+of `+0x08` are `movzx` loads that feed the row formula or its inverse (21 divide an offset by the stride), and none
+is compared.
 
 ## Modding notes
 

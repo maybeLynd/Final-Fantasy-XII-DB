@@ -27,6 +27,17 @@ the action id is the formula scratch word `0x02AEDFD4`.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
+Offsets in the table are from the start of the row. Row *n* starts at the header's `+0x0C` plus *n* times the
+header's `u16` stride at `+0x08` (`0x00237FFA`-`0x00238024`); the loop that files the rows stops at the `u32` row count
+at `+0x04` (`0x00237FF5`). In the `us` file the header holds 543 rows, stride 60 and first row `0x20`.
+
+The header's `+0x0C`, `+0x10`, `+0x18` and `+0x1C` are offsets from the start of the section: `0x003845F0` adds the
+section address to each one that is not 0 (`0x003845F4`-`0x00384640`). The directory entries of `battle_pack.bin` are
+offsets from the start of the file: `0x00238850` passes the file to `0x003846F0`, which adds the file's address to the
+`u32` entries from `+0x04`, one more than the `u16` count at `+0x00` (`0x00384727`-`0x0038478E`).
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | helpId | help text id; 4000 = none (`0x0031C5D0` at `0x0031DBB1`, through `0x002F9860`) |

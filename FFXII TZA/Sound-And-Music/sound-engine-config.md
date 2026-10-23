@@ -41,6 +41,8 @@ All 16 later reads of `0x02EAD3E0`, in 15 functions, pass it to a chunk finder, 
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "scnf" |

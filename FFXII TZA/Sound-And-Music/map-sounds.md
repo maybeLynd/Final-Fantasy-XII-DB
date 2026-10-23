@@ -149,6 +149,14 @@ passes `mapNo % 10` to `0x0032F3A0`.
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
+Offsets in the header are from the start of the list, and so are the three offsets it holds: the `SeSep` records
+at `+0x0C` (`0x00363607`-`0x0036360A`, `0x003DF3A2`-`0x003DF3A6`), the weather table at `+0x1A` (`0x00363BA2`-`0x00363BB3`)
+and, in event lists, the `i16` table at `+0x18` (`0x003DF277`-`0x003DF283`). The id list starts at `+0x20`, right
+after the header: entry *i* is at `+0x20 + 4 * i` (`0x0034629A`, `0x003469DA`, `0x00363BE6`, `0x003DF269`). Offsets in
+the id entry and the weather table are from the start of the entry and of the table.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "SPP1" |
@@ -212,6 +220,12 @@ All but one id name a shipped bank under `se600`-`se610`; `600070` has none.
 3. The weather pick reads at most three entries, so a table's entries 4-7 change nothing.
 4. Only `slot < count` is tested before the selection is read, so a count of 4 with weather slot 4 reads the keep
    list's first cell as a selection; shipped tables have at most 3.
+5. The list is used in place: the map bind keeps its address at `0x022CBAF8` (`0x00363662`), an event slot at its
+   `+0x08` (`0x003DF399`), and every reader indexes it there.
+6. No loader checks the list itself. The map bind reads only its `+0x08` and `+0x0C` (`0x00363607`, `0x00363627`); the
+   event bind reads those (`0x003DF3A2`, `0x003DF3B1`) and `+0x10` and `+0x12` (`0x003DF301`, `0x003DF306`). No reader
+   on this page tests the count, `+0x0C`, `+0x18` or `+0x1A` against the list's size, and none compares the
+   magic: the bytes `SPP1` occur nowhere in the image.
 
 ## Modding notes
 

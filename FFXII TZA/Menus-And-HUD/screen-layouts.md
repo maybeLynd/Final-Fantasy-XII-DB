@@ -42,7 +42,21 @@ The byte `[0x01F811E0]` comes from `[0x01E0280C]`, shipped 1, through `0x0018466
 `0x0024ABC0()` returns the frame width over 512 (`0x01E0C1D8` x `[0x008C5B30]`, 1/512), 3.75 in the 1920 frame; it has
 24 call sites, among them the HUD draw `0x003F0610` and `0x00505570`.
 
+### From the file to the cells
+
+The file is converted, not used in place. The JSON reader `0x00200BF0`, which `0x001C6C00` calls with `0x01F81318`
+(`0x001C6CFE`, `0x001C6DD4`), opens it and allocates its size plus one byte
+(`0x00200C5A`-`0x00200C60`), reads it and ends it with a 0 (`0x00200C73`-`0x00200C7B`), parses the text into the value nodes
+of the document `0x01F81318` (`0x00200E60`, called at `0x00200DF9`) and frees the read buffer (`0x00200E01`). A file whose
+size reads as -1 or 0 is not parsed (`0x00200C45`-`0x00200C54`). The loader `0x001CA600` then copies each key's value
+from the document into its cell, one key at a time.
+
 ## Layouts
+
+All multi-byte fields are little-endian.
+
+The files are JSON text. The node table below is the parsed value each key becomes, with offsets from the start of
+the node.
 
 The loader `0x001CA600` binds every key by its own code, with no table (1,602 instructions):
 

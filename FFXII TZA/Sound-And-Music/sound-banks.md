@@ -120,6 +120,8 @@ The effect loader `0x00504060` adds an entry for a kind-1 record and opens its b
 
 ## Layouts
 
+All multi-byte fields are little-endian.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "sabf" in a .sab, "mabf" in a .mab |
