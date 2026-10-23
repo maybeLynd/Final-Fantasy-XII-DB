@@ -167,8 +167,9 @@ Recipe 16 (Knot of Rust `0x91`, Devour Soul `0xC4`) runs slot 121 (`0x0038D970`)
 `0x90`, Soul Purge `0xC5`) slot 122 (`0x0038DA00`):
 
 - **Deposit:** the user's max HP (doubled under Bubble; under Disease its current HP, at least 1) divided
-  by `MT19937 % 10 + 1` is the damage, and a third of it is added to the bank `+0x5B0C`, at most 60,000
-  (`0x0038D976`-`0x0038D9F2`).
+  by `MT19937 % 10 + 1` is the damage, and a third of it is added to the bank, at most 60,000
+  (`0x0038D976`-`0x0038D9F2`). The bank is the word `rustBank` at `+0x5B0C` of the battle-state block `[0x02EBF190]`
+  (`0x0038D9C1`, `0x0038D9DE`; [Party data](../Party/party-data.md)), one bank for every user.
 - **Withdrawal:** with a stored preview, the bank moves into the user's record and is emptied; the damage
   is the record's value (`0x0038DA49`-`0x0038DA6A`).
 

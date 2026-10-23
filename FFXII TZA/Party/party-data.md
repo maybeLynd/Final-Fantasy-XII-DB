@@ -44,10 +44,43 @@ The block holds:
 | `width_type` | its width and type; `record`, `bank` and the bracketed counts are arrays |
 | `field` | its name on this page |
 | `meaning` | what it holds, with the instructions that show it |
-| `writers`, `readers` | the functions an access census of the block finds writing and reading it, with one site each; a store counts for every byte it covers, a read for its first byte, and a function that only takes a field's address is listed as a reader |
+| `writers`, `readers` | the functions that write and read the field, with one site each |
 
-The census follows the block pointer `0x02EBF190` and the pointers handed on from it into the functions it reaches;
-an access through a pointer it did not follow is not in these two columns. Rows named `pad` have no field.
+Rows named `pad` are the bytes between two fields.
+
+### How an access is counted
+
+- A store or a read counts for every row its bytes cover; a clear or copy of a span counts for every row in it.
+- A function that only takes a field's address is listed as a reader.
+- An access through an inventory descriptor counts for the regions its handler serves (`0x01EEBCC0`): `0x002FD150`
+  and `0x002FD8D0` for rows 0-2 (items, equipment, loot), `0x002FD420` and `0x002FD970` for the five bit rows, and
+  `0x003047F0` for all eight count regions; `+0x20` is the loot tally and `+0x30` the items-ever-owned bits.
+- The `members` row lists the functions that reach a member record through the block, directly or through the
+  roster array `0x022C1740`, whose nine entries are member records from `0x00320AB0`; the functions that reach one
+  through a battle unit are on [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md).
+
+The columns hold every access through the block pointer `0x02EBF190`, the active image `0x02164280` (`0x002EF640`),
+the roster array `0x022C1740`, the inventory descriptors `0x01EEBCC0` and the save file layer.
+
+### What carries the whole block
+
+- The reset `0x002370C0` clears all `0x7410` bytes (`0x002370D3`), and `0x002EF5F0` and `0x002EF650` clear the whole
+  active image (`0x002EF603`, `0x002EF663`); `0x0030FAA0` clears `+0x4F84`-`+0x57BF`, the two backups and the bytes
+  after them, once it has put the backups back (`0x0030FBC7`).
+- `0x00229B40` copies the block's first `0x6000` bytes, `0xC0` chunks of `0x80`, to image `+0x2200` (payload
+  `+0x2000`; `0x00229B7B`-`0x00229BE2`), and `0x8000` bytes, `0x100` chunks of `0x80`, from the block into the capture
+  image (`0x00229BE4`-`0x00229C41`). `0x005844A0` copies the same `0x6000` bytes to image `+0x2200` (`0x00584515`-`0x00584572`)
+  when the block's first byte is not 0 (`0x0058450B`).
+- `0x002EF4A0`, called by `0x00235AF0` (`0x00235B76`), copies those `0x6000` bytes at image `+0x2200` back over the
+  block's first `0x6000` bytes, `0xC0` chunks of `0x80` (`0x002EF4A0`-`0x002EF504`).
+- `0x0057E310` and `0x002EF690` copy the capture image into the write buffer `0x02211000` as `0xACD` chunks of `0x80`
+  bytes and a 16-byte tail, `0x56690` bytes in all (`0x0057E347`-`0x0057E3A6`, `0x002EF6AB`-`0x002EF70F`); `0x002EF570`
+  copies the active image into the backup `0x022676C0` the same way (`0x002EF577`-`0x002EF5E6`).
+- On a save the file layer's write `0x00866AD0` copies the write buffer into the file vector byte by byte
+  (`0x00866B1C`, `0x00866B40`). On a load `0x00580EB0` queues a read request of `0x56690` bytes into the active image
+  (`0x005810BC`-`0x0058111E`); the read `0x00866A00` moves the bytes from the file vector one at a time (`0x00866A46`-`0x00866A4D`).
+- `+0x5AD0`-`+0x5ADF` and `+0x5AE0`-`+0x5AEF` are also copied as 16-byte blocks into the save-transition record
+  (`0x002EF3D3`, `0x002EF3E5`, `0x002EF517`) and back (`0x002EF424`, `0x002EF44C`).
 
 ## Related
 

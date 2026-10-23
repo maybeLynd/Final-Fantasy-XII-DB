@@ -33,18 +33,33 @@ field that means different things has a party row and an enemy row at the same o
 | `width_type` | its width and type for that owner |
 | `field` | a short name |
 | `meaning` | what the field holds, with the instruction that fixes it |
-| `writers`, `readers` | how many functions write or read the offset, and up to six of them with one site each; a party row and an enemy row at one offset share these |
+| `writers`, `readers` | every function that writes or reads the field, with one site each |
 
-The writers and readers come from an access census of the record: every function that loads unit
-`+0x698` or the party array, followed through register copies and through calls that pass the record,
-three calls deep. A store counts for every field its width covers, so the word store at `0x0023AD8E`
-writes both `+0x04` and `+0x05`.
+Rows named `pad` are bytes no field uses.
 
-The census misses accesses through a computed base or index (the augment layers in `0x0030E130`, the
-License bits in `0x00323910` and `0x0030FED0`), records passed in a register it does not follow (the gambit
-loader `0x00327CB0`, the two License Board setters), and writes made before a record is bound to a unit.
-The writers and readers of those kinds that were read by hand are marked "by hand"; outside them, a
-count of 0 means "none on the census routes".
+### How an access is counted
+
+- A store or a read counts for every field its bytes cover, so the word store at `0x0023AD8E` writes both `+0x04`
+  and `+0x05`. A clear or copy of a whole record or of the party block counts for every field.
+- A function that only takes a field's address is listed as a reader.
+- The block's member records are always kind 0: the initialiser `0x0023AC80` takes the kind from `edx >> 8`
+  (`0x0023ACA1`), the block resets pass the member index, below `0x28` (`0x00237E26`, `0x00239AC4`), and no other
+  instruction writes `+0x05` (the `kind` row).
+- A party row lists the functions that reach a record through the block's member array
+  ([Party data](../Party/party-data.md)), through the roster array `0x022C1740`, whose nine entries are member
+  records from `0x00320AB0`, or through a battle unit's `+0x698`.
+- An enemy row lists the functions that reach a record through a unit's `+0x698`, or before the record is bound:
+  in the binder `0x0023A570` (record = spawn record `+0x80`, `0x0023A787`) and in what the initialiser `0x0023AC80` does
+  for kind 1 (`0x0023AD9B`-`0x0023ADFF`).
+- A test of the kind byte `+0x05` before an access limits it to the kinds that pass: a `cmp` or `test` of the byte,
+  or of a register loaded from it, and the conditional jump on that result, in the function or in a caller that
+  hands the record on.
+- A function is in both the party row and the enemy row at an offset when it reads the record from a unit's
+  `+0x698` and no test of `+0x05` lies between that load and the access. A `both` row lists every function.
+
+The columns hold every access through a unit's `+0x698`, the block's member array, the roster array `0x022C1740`,
+the record homes `0x02EBB560` and `0x022C1F50`, and the binder `0x0023A570`. No access reaches past the `0x1C8` bytes of
+a record.
 
 ## Related
 

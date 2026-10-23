@@ -19,7 +19,9 @@ the range over three tables of 10-byte rows:
 
 The fourth sub-table the class counts, s_daiji_data (entry `+0x94`, `0x02EBF078`), has no rows. The other 329 rows are
 named Reserve. The five q_daiji rows with their own icon frame are Dawn Shard, Manufacted Nethicite, Sword of Kings,
-Treaty-Blade and Goddess's Magicite.
+Treaty-Blade and Goddess's Magicite. The bounds the validator applies to each of these ranges, and where each one is
+compiled in, are on [Item and ability ids](../Engine-Core/item-and-ability-ids.md) ("The thirty-two-class
+validator").
 
 ### How it is built
 
