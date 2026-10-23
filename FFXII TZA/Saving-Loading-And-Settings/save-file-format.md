@@ -184,9 +184,13 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
 2. `0x00235AF0` (the prelude of the guard `0x00233C10`, `0x00233C14`) compares the block at `0x02EBF190`
    with the image's copy at `+0x2200`: its first two dwords, its byte `+0x5B42` and its word
    `+0x5B12`.
-   - On any difference the 40 party records are rebuilt at block `+0x5B10` (stride `0x9C`) from
-     the older layout at block `+0x90` (stride `0x1C8`), with the job and licence entries re-read
-     from the character table `[0x02EBF130]` and the table `[0x02EBF0E0]`.
+   - On any difference the 40 members' gambit banks are rebuilt (`0x00235B83`-`0x00235D7E`): three `0x34`-byte banks
+     per member at block `+0x5B10 + k × 0x9C` ([gambits](../Enemy-AI-And-Gambits/gambits.md)).
+     - The selected bank `+0x7370 + 4k` is set to 0.
+     - Bank 0 is copied from the member record's older gambit block (block `+0x90 + k × 0x1C8`, `0x34` bytes).
+     - Banks 1 and 2 are filled from the gambit preset the member's party table row names (word `+0x14` of
+       `[0x02EBF130]`, a row of `[0x02EBF0E0]` at id `0x5000` + row). Each filled slot's bit is set in the bank's
+       `+0x30`, and byte `+0x32` is taken from the record's `+0xBA`.
    - `0x002EF4A0` first copies `0xC00` bytes from `0x02166480` to `0x021B290C`.
 3. `0x00233C10`: with no block bound, it binds `0x02EBF190` to the active image `+0x4E68C`, rebases the
    inventory descriptors (`0x0030B6A0`) and runs the battle reset `0x00237DF0` twice (`0x00233C3F`,

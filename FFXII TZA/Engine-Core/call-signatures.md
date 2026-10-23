@@ -7,8 +7,8 @@ addresses: "0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE
 
 ## What it lists
 
-One row for each of the executable's 38,161 functions, from `0x00121000` to `0x008C15E0` and from two-instruction
-stubs to a body of 6,492 instructions (`0x004B1190`): the integer and float argument registers each function reads,
+One row for each of the executable's 38,161 functions, from `0x00121000` to `0x008C15E0` and from one-instruction
+stubs (a `ret` or a `jmp`) to a body of 6,492 instructions (`0x004B1190`): the integer and float argument registers each function reads,
 its argument count (the highest argument position it reads), the arguments its entry stores in their home slots,
 and the stack arguments it reads. A second table lists every call and tail call with its target and the argument
 registers that reach it unchanged. Return values are not in these tables.

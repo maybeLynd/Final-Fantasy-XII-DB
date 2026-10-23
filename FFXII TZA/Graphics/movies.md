@@ -24,6 +24,21 @@ The `.mh` files ship under `ps2data/movie_finish/<lang>/`. No `.md` stream ships
 
 ## Layouts
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PMaterialSet base=record size=0x10
++0x04    u8[4]           pad04                  the four bytes between the material count at +0x00 (returned by the
+                                                script accessor getMaterialCount, 0x005C4CC0) and the material pointer
+                                                at +0x08 of the PSharray header; no registered member covers it
+                                                (0x00662280 registers the 0x10-byte class at 0x006622D0)
+```
+
+### Movie files and the player
+
+The structures below are the ones the mechanisms above use.
+
 All multi-byte fields are little-endian.
 
 A `.mh` file is a 24-byte header and a table of 12-byte entries. The game never opens one

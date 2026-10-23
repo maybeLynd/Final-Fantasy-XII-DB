@@ -186,6 +186,46 @@ vtable it installs. [phyre-modules-phyre-module-utility-registrars.tsv](phyre-mo
 lists the thirteen registrars whose bodies are the same 86 bytes ending in a jump to `0x00808B90`; the other two,
 `PScripting`'s `0x00166210` and `PText`'s `0x00167B90`, have bodies of their own.
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PLODGroup base=record size=0x68
++0x00    f32[4]          m_minBounds            m_minBounds (f32[4]), registered by 0x006C5A50 (0x00632960 at 0x006C5B76);
+                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
+                                                .phyre files that declare PLODGroup; the constructor 0x006C5180 sets it
+                                                to (FLT_MAX, FLT_MAX, FLT_MAX) (0x006C5180-0x006C5193), an empty box with
+                                                m_maxBounds
++0x10    f32[4]          m_maxBounds            m_maxBounds (f32[4]), registered by 0x006C5A50 (0x00632960 at 0x006C5BE5);
+                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
+                                                .phyre files that declare PLODGroup; the constructor 0x006C5180 sets it
+                                                to (-FLT_MAX, -FLT_MAX, -FLT_MAX) (0x006C519A-0x006C51A8)
++0x38    u8[8]           bytes38                the constructor 0x006C5180 writes 1000.0 to m_shaderLODLevelDistance
+                                                (+0x34) and 0 to +0x38 with one qword store (0x006C51E0); no registered
+                                                member covers it (0x006C4EC0 registers the 0x68-byte class at 0x006C4F10)
++0x61    u8[7]           pad61                  the bytes after m_isEnabled (u8 at +0x60) up to the end of the
+                                                0x68-byte class; no registered member covers it (0x006C4EC0 registers
+                                                the 0x68-byte class at 0x006C4F10)
+```
+
+`POctree` (`0x50` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `f32[4]` | m_center | m_center (f32[4]), registered by `0x008780F0` (`0x00632960` at `0x0087817E`); no shipped .phyre file declares POctree |
+| `+0x10` | `f32[4]` | m_halfSize | m_halfSize (f32[4]), registered by `0x008780F0` (`0x00632960` at `0x008781F1`); no shipped .phyre file declares POctree |
+| `+0x20` | `f32` | m_maxRadius | m_maxRadius (f32), registered by `0x008780F0` (`0x00632960` at `0x00878264`); no shipped .phyre file declares POctree |
+| `+0x24` | `u32` | m_level | m_level (u32), registered by `0x008780F0` (`0x00632960` at `0x008782D7`); no shipped .phyre file declares POctree |
+| `+0x30` | `u32` | m_currentObjectCount | m_currentObjectCount (u32), registered by `0x008780F0` (`0x00632960` at `0x00878430`); no shipped .phyre file declares POctree |
+| `+0x34` | `u32` | m_totalObjectCount | m_totalObjectCount (u32), registered by `0x008780F0` (`0x00632960` at `0x008784A3`); no shipped .phyre file declares POctree |
+
+`POctreeWorld` (`0xC8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `f32[4]` | m_center | m_center (f32[4]), registered by `0x00878980` (`0x00632960` at `0x00878A0A`); no shipped .phyre file declares POctreeWorld |
+| `+0x10` | `f32[4]` | m_halfSize | m_halfSize (f32[4]), registered by `0x00878980` (`0x00632960` at `0x00878A79`); no shipped .phyre file declares POctreeWorld |
+
 ## Shipped data
 
 | Fact | Value |

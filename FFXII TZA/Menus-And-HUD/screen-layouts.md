@@ -88,7 +88,7 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 
 | | |
 |---|---:|
-| keys read by some screen | 213, in 124 functions, 481 read sites |
+| keys read by some screen | 213, in 124 functions, 480 read sites |
 | keys bound but read by nothing | 13: the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}`, `BattleLogBlackBandH`, `LicenseBlackBandH`, `FontShadowAlphaMuti` |
 | shipped values outside their schema range | none, in either file |
 | keys `uisize_sd.json` lacks | 63 of the 226 bound |

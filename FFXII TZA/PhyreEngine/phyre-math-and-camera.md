@@ -127,6 +127,23 @@ tests.
 
 ## Layouts
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PCameraProjection base=record size=0xD0
++0xC8    f32             m_aspect               m_aspect (f32), registered by 0x006788C0 (0x00632960 at 0x0067895A); the
+                                                cluster loader binds it by name (0x0059B430) in the 247 shipped .phyre
+                                                files that declare PCameraProjection
++0xCC    u8[4]           bytesCC                the bytes after m_aspect (+0xC8) up to the end of the 0xD0-byte class,
+                                                where m_FOV of PCameraPerspective starts; no registered member covers
+                                                it (0x00678420 registers the 0xD0-byte class at 0x0067846A)
+```
+
+### Camera and bounds records
+
+The structures below are the ones the mechanisms above use.
+
 `RendererCamera` (offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |

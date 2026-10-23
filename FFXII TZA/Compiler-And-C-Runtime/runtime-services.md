@@ -18,8 +18,7 @@ shows.
 ### The import table
 
 The executable imports 538 symbols from 30 DLLs (per-DLL counts under Shipped data). Every slot
-is referenced by code. Decoding all of `.text` (a linear sweep restarted at every `.pdata`
-function start) and matching every rip-relative operand against the slots gives:
+is referenced by code. The slots are reached as follows:
 
 | How code reaches the slot | Slots |
 |---|---|

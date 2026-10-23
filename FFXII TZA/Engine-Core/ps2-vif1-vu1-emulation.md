@@ -248,6 +248,66 @@ through its slot `+0x28` with the index kind. The device object is the one `0x00
 
 ## Layouts
 
+The working words below VU memory (`0x02064B00`, `0x330` bytes) that have a role beyond a microprogram register; the other cells and index words are rows of the state table (Working cells and index words):
+
+```struct Vu1RegisterBank02064B00 base=record size=0x330
++0xA0    f32[4]          cellA0                 float working cell 8 of the 32 at 0x02064B20-0x02064D1F (0x02064BA0), a
+                                                microprogram register like its neighbours: 0x002F0280 stores a whole
+                                                cell into it (0x002F0868, 0x002F0AC4); 316 direct references in 35
+                                                functions (154 reads, 162 writes, 0 address loads)
++0x160   f32[4]          tagStage               float working cell 20 of the 32 at 0x02064B20-0x02064D1F (0x02064C60): the
+                                                packet leaf 0x004EF860 stages here the cell named by the index word
+                                                0x02064DD0 (0x004EF866-0x004EF8C8) and copies its upper twelve bytes beside
+                                                the GIF tag it writes (0x004EF8DB-0x004EF8F2); 519 direct references in 45
+                                                functions (262 reads, 257 writes, 0 address loads)
++0x190   f32[4]          cell190                float working cell 23 of the 32 at 0x02064B20-0x02064D1F (0x02064C90), a
+                                                microprogram register: 0x002F0280 stores a lane (0x002F058B) and 0x004758E0
+                                                a whole cell (0x0047699A); 582 direct references in 37 functions (253
+                                                reads, 329 writes, 0 address loads)
++0x1A0   f32[4]          cell1A0                float working cell 24 of the 32 at 0x02064B20-0x02064D1F (0x02064CA0), a
+                                                microprogram register: 0x002F0280 stores whole cells into it (0x002F04DC,
+                                                0x002F0706); 669 direct references in 40 functions (345 reads, 324
+                                                writes, 0 address loads)
++0x2B0   u8[4]           outputCell             the 16-bit index word 0x02064DB0 in its 4-byte slot: the VU memory cell
+                                                where the next GS packet's GIF tag goes; 0x004EF860 writes the tag there
+                                                (0x004EF88B-0x004EF8B6) and after the callback moves it to 0x02064B0C +
+                                                0x02064DB4 (0x004EF913-0x004EF924); 196 direct references in 67 functions
+                                                (69 reads, 115 writes, 12 address loads)
++0x2B4   u8[4]           bufferOffset           the 16-bit index word 0x02064DB4 in its 4-byte slot: 0x004EF860 sets it to
+                                                0x02064B0C + 0x2A8, or + 0x168 when 0x02064B0C differs from 0x02064DB0 -
+                                                0x168 (0x004EF8B8-0x004EF902), alternating the packet between two halves
+                                                of VU memory, and to the new 0x02064DB0 + 1 after the callback
+                                                (0x004EF92B-0x004EF92E); 341 direct references in 68 functions (120 reads,
+                                                221 writes, 0 address loads)
++0x2B8   u8[4]           loopCount              the 16-bit index word 0x02064DB8 in its 4-byte slot: the packet's loop
+                                                count, which 0x004EF860 writes into the GIF tag with the end-of-packet
+                                                bit 0x8000 (0x004EF89C-0x004EF8B6) and then resets to the word 0x02064B0C
+                                                (0x004EF8C0); 244 direct references in 63 functions (100 reads, 144
+                                                writes, 0 address loads)
++0x2C0   u8[4]           index2C0               the 16-bit index word 0x02064DC0 in its 4-byte slot, a microprogram
+                                                integer register: 0x002F0280 stores it (0x002F033E) and reads it back
+                                                (0x002F154E); 110 direct references in 26 functions (50 reads, 60
+                                                writes, 0 address loads)
++0x2CC   u8[4]           index2CC               the 16-bit index word 0x02064DCC in its 4-byte slot, a microprogram
+                                                integer register: 0x002F0280 stores it (0x002F07FA) and reads it
+                                                (0x002F09FB); 260 direct references in 50 functions (44 reads, 208
+                                                writes, 8 address loads)
++0x2D0   u8[4]           tagTemplateCell        the 16-bit index word 0x02064DD0 in its 4-byte slot: the VU memory cell
+                                                holding the GIF tag template whose upper twelve bytes 0x004EF860 copies
+                                                beside each tag (0x004EF866-0x004EF886); 152 direct references in 74
+                                                functions (31 reads, 121 writes, 0 address loads)
++0x2DC   u8[4]           index2DC               the 16-bit index word 0x02064DDC in its 4-byte slot, a microprogram
+                                                integer register: 0x002F0280 stores it (0x002F13DB), as does 0x004758E0
+                                                (0x004766D2); 105 direct references in 41 functions (36 reads, 69
+                                                writes, 0 address loads)
++0x2E0   u8[4]           index2E0               the 16-bit index word 0x02064DE0 in its 4-byte slot, a microprogram
+                                                integer register: 0x002F0280 stores it (0x002F046E, 0x002F0496); 89 direct
+                                                references in 31 functions (29 reads, 60 writes, 0 address loads)
++0x2E8   u8[4]           index2E8               the 16-bit index word 0x02064DE8 in its 4-byte slot, a microprogram
+                                                integer register: 0x002F0280 stores it (0x002F02DC, 0x002F13BB); 66 direct
+                                                references in 26 functions (4 reads, 62 writes, 0 address loads)
+```
+
 ```python
 VIF command word     [31:24] code, [23:0] parameters
 MPG on this port     0x4A000000 | addr, then a u64 x64 function pointer (the console: NUM microcode words)

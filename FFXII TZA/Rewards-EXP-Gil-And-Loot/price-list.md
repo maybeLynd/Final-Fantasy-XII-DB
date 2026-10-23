@@ -14,19 +14,18 @@ which an event script reads with `getprice`. The aerodrome counters of
 [Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) read `0xB005`-`0xB007` this way and then
 take the amount with `subgill`.
 
-- 41 ids are named in a `getprice` call of the us scripts (90 calls); the most asked for is `0xB075`, 20,000 gil,
+- 41 ids are named in a `getprice` call of the us scripts (82 of the 90 calls); the most asked for is `0xB075`, 20,000 gil,
   20 calls in `alc_b05`, `alc_b06`, `alc_f03`, `alc_f04` and `alc_f05`.
 - Eight calls, all in `fon_b01`, pass the id in a script variable (variables 199 and 200), so the TSV does not tie
   them to an id.
 - The other 87 ids are named by no us script.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/price_list.py` reads the `st2e` table at entry `+0x74` (128 rows of 4 bytes from the
-section's `+0x20`). The script columns come from [`price-script-calls.tsv`](price-script-calls.tsv), which
-`Database/Tools/catalogues/getprice_calls.py` writes: it reads every us event script from the game's archive,
-decodes each script function's bytecode, and resolves each call's argument, reading a `PUSHI` operand through the
-script section's int pool (`+0x20`, [EBP script image](../EBP-Script-Files/ebp-script-image.md)).
+The price table is the `st2e` table at entry `+0x74` (128 rows of 4 bytes from the section's `+0x20`). The script
+columns come from [`price-script-calls.tsv`](price-script-calls.tsv): every `getprice` call of the us event scripts,
+with a `PUSHI` argument read through the script section's int pool (`+0x20`,
+[EBP script image](../EBP-Script-Files/ebp-script-image.md)).
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -35,15 +34,6 @@ script section's int pool (`+0x20`, [EBP script image](../EBP-Script-Files/ebp-s
 `getprice(id)` (verb `0x2F0`, `0x0034B000`) pops the id and returns `0x0032A880(id)`: `0x0030A0F0` fills a class-1 query
 record for the id and returns its `+0x28`, and `0x0032A880` turns a failed fill (-1) into 0. The table is read only
 by that arm, the validator `0x00322C50` and the loader `0x00236C30`.
-
-### Checks
-
-- The table's header gives 128 rows of 4 bytes, and the TSV has 128 data lines.
-- Two runs of each tool give byte-identical output.
-- Rows compared with their readers: `0xB005`-`0xB007` are 210 gil each and named by `nac_b01`, one of the
-  five aerodrome scripts; `0xB000` is 500 gil, named by `rbn_a17`, `rbn_a18` and `rbn_a19`.
-- `price-script-calls.tsv` has 90 rows, the `us_calls` count the [Verb table](../Scripts-And-Script-Commands/verb-table.md)
-  gives for `getprice`.
 
 ## Columns
 

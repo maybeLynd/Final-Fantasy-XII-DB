@@ -11,10 +11,10 @@ addresses: "0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A
 area loader's context *n*. For each it gives the files the loader requests for that zone and the models and foes the
 zone's script brings in. The 708 are the zones whose script the US resource-kind 5 array names and the archive ships.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/zone_assets.py`, on the path arrays of [Asset paths](../Game-Files-And-Data-Tables/asset-paths.md)
-and the archive reader `vbflib.py`:
+The columns come from the path arrays of [Asset paths](../Game-Files-And-Data-Tables/asset-paths.md) and the
+archive index:
 
 1. **The zone script.** The area loader `0x0032FCA0` loads manager 0 from kind 5 at index 3*n*: the zone script
    `.ebp`, with its `.mot` at 3*n* + 1 and its `.fpk` at 3*n* + 2
@@ -28,8 +28,8 @@ and the archive reader `vbflib.py`:
 3. **The remastered map art.** `0x00379A10` cuts `<area>\<map>` out of the zone pack's path and swaps five zones for
    the art they reuse (the table `0x01EF9490`); `0x001A7A50` builds
    `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_d3d11.ah` ([Map art](map-art.md),
-   [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)). The decoder
-   counts the `.dae.phyre` meshes and `.dds.phyre` textures the list names.
+   [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)). `art_meshes` and
+   `art_textures` count the list's meshes and textures.
 4. **The map sounds.** The binder `0x003635E0` keeps the `SPP1` list of the pack loaded in mode 0, the block pack
    (`0x00331990`), and opens the six-digit bank each listed id names ([Map sounds](../Sound-And-Music/map-sounds.md)). The
    block pack's slot 10 holds the list: a `0x20`-byte header with the id count at `+0x04`, then the `u32` ids.
@@ -60,11 +60,6 @@ The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), 
 The zone scripts have a copy in each language folder, and the table names the US one. The `.ard` files ship in the
 `in` and `ch` folders (166 each, byte-identical, [Bestiary](../Enemy-Spawning/bestiary.md)), and the
 map packs and the map art sit in folders of their own with no language.
-
-### Checks
-
-- Every zone's script is a file the archive ships (708 of 708), and every map pack and block pack too.
-- Two runs over the same files give byte-identical output.
 
 ## Columns
 

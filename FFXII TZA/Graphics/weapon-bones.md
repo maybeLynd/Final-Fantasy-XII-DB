@@ -23,10 +23,9 @@ point kinds 4 and 5, and the fallback to a child's `n_grip`):
 The default bone table of [Character render records](character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table)
 names them for attach slots 18 and 19.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/weapon_bones.py`, on the archive reader `vbflib.py` and the layouts of
-[Model files](model-files-cm-ca.md):
+Each row is read from the model's `.cm` with the layouts of [Model files](model-files-cm-ca.md):
 
 1. **The node keys.** Node *n* of the `.cm`'s `@FTR` skeleton has the key `0x00409250` returns: bits 0-11 of the node
    record's first dword, or the `u16` at record `+0x08` when the record's flag bit 30 is set.
@@ -43,8 +42,8 @@ names them for attach slots 18 and 19.
 | `j_blade` | 185 of the 326 |
 | `n_grip` | 284 of the 326 |
 | node counts | 2 nodes on 98 models, 3 on 182, 4 on 19, 5 on 26, and 16 on the spear `w5003` |
-| key sets | `0x1D 0x656 0x65E` 180; `0x1D 0x656` 57; `0x1D 0x1E` 41; `0x1D 0x656 0x1D00 0x1CFF 0x1CFD` 16; `0x1D 0x656 0x658 0x657` 13; `0x1D 0x656 0x1D00 0x3C5A 0x3C5B` 8; six others. `0x1D` (`model`) is on all 326 |
-| special ids `0x104`-`0x106` | `none 1 0` on 284; `1 none 0` on the 41 `0x1D 0x1E` models; `none none 0` on `w5003` |
+| key sets | `0x1D 0x656 0x65E` 180; `0x1D 0x656` 57; `0x1D 0x1E` 41; `0x1D 0x656 0x1D00 0x1CFF 0x1CFD` 16; `0x1D 0x656 0x658 0x657` 13; `0x1D 0x656 0x1D00 0x3C5A 0x3C5B` 8; ten others on 11 models. `0x1D` (`model`) is on all 326 |
+| special ids `0x104`-`0x106` | `none 1 0` on 284; `1 none 0` on the 41 `0x1D 0x1E` models; `none none 0` on the mace `w2302` |
 | special ids 0-31 | none on 281; id 14 is bone 2 on 23; ids 0-8 are bone 1 on 20; id 13 is bone 0 on 2 |
 | equipment | 373 rows name 295 of the models; 32 are named by no row |
 
@@ -53,7 +52,7 @@ By category:
 | Category | Models | Without `j_blade` | Without `n_grip` |
 |---|---:|---|---|
 | Sword (1H), Sword (2H), Dagger, Axe, Hammer, Katana, Ninja Sword, Rod, Staff, Measure, Hand-bomb | 132 | none | none |
-| Mace (1H) | 13 | `w2302`, which has only the keys `0x66C`-`0x66E` | `w2302` |
+| Mace (1H) | 13 | `w2302`, whose keys are `0x1D` and `0x66C`-`0x66E` | `w2302` |
 | Spear (2H) | 15 | `w5003` (`0x656`, `0x657`, `0x658` and twelve keys `0x18B4`-`0x18BF`), `w5020` (`0x1D 0x1E`) | `w5020` |
 | Pole (2H) | 13 | 12 | none |
 | Bow (2H) | 14 | all | none |
@@ -63,16 +62,11 @@ By category:
 | Bolts | 10 | all | `w8209`, `w8210` |
 | Shot | 9 | all | 8 (`w8301`-`w8308`) |
 | Incendiaries | 8 | all | all |
-| Shield | 32 | 22, which carry `0x1D 0x1E` only; the ten others carry both points | none |
+| Shield | 32 | 22, which carry `0x1D 0x656` (`n_grip` only); the ten others carry both points | none |
 | Unarmed | 17 | all, `0x1D 0x1E` models | all |
 | no equipment row | 32, `w2123` among them | 14 of the 31 shipped | `w1004`, `w1010` |
 
 One model is used by both Katana and Sword (1H) rows; the table counts it once, in the first row.
-
-### Checks
-
-- Every row's keys are read from the shipped `.cm`; the unshipped `w2123` is kept with the note "not shipped".
-- Two runs over the same files give byte-identical output.
 
 ## Columns
 
@@ -90,5 +84,6 @@ One model is used by both Katana and Sword (1H) rows; the table counts it once, 
 
 - [Model asset list: every model the game can bind, with its model file, motion lanes, remastered parts and the tables and scripts that use it](model-asset-list.md)
 - [Model files (.cm, .ca)](model-files-cm-ca.md): `@FTR` and `@FCP`
-- [Character render records](character-render-records.md): attach slots, default bones and point ids
+- [Character render records](character-render-records.md): attach slots and default bones
+- [Skeleton entries and bones](skeleton-entries-and-bones.md): bone points and their ids
 - [Effect anchors and targets](effect-anchors-and-targets.md): the anchor query that uses the two points

@@ -326,6 +326,51 @@ The framework's other classes sit beside `PApplication` in `.rdata`:
 [phyre-application-p-application-accesses.tsv](phyre-application-p-application-accesses.tsv) lists
 1,076 instructions in 62 functions that read or write fields of the application object.
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PApplication base=record size=0x1130
++0x0050  f64             timeOffset             time offset taken at run setup: the run setup 0x0079F150 stores the
+                                                clock reading minus the start value at 0x02CB60E8 (0x0079F1AF) and adds
+                                                the elapsed time +0x40 after initScene (0x0079F6CA-0x0079F6D4); the time
+                                                update 0x0079D920 subtracts it from each clock reading (0x0079D96D); 0
+                                                from the constructor 0x00792350 (0x007923BB); no registered member covers
+                                                it (0x00791AC0 registers the 0x1130-byte class at 0x00791B10)
++0x0084  u8[1]           bytes84                the byte at +0x84, after the dword the constructor 0x00792350 clears
+                                                at +0x80 (0x007923D4) and before the qword it clears at +0x88 (0x007923DB);
+                                                no registered member covers it (0x00791AC0 registers the 0x1130-byte
+                                                class at 0x00791B10)
++0x009C  u8[4]           bytes9C                the four bytes at +0x9C, inside the sub-object at +0x90 whose address
+                                                the constructor 0x00792350 passes on (0x007923E2); no registered member
+                                                covers it (0x00791AC0 registers the 0x1130-byte class at 0x00791B10)
++0x0D38  u32             dwordD38               zeroed by the constructor 0x00792350 together with +0xD3C (qword store
+                                                0x00792482); no registered member covers it (0x00791AC0 registers the
+                                                0x1130-byte class at 0x00791B10)
++0x0D3C  u32             settingD3C             set at start-up by 0x007980A0 from the settings object [0x01F82D20]:
+                                                0x001DE570 takes its +0x20 modulo 5 and returns 1, 2, 4, 8 or 9 from the
+                                                table 0x00900EE8 (0x0079856F); the game's 0x00186CD0 reads it through the
+                                                getter 0x00796E20 (0x00186D3C) and stores it in 0x01DF0900 and 0x02CB8084
+                                                (0x00186D62, 0x00186D68); no registered member covers it (0x00791AC0
+                                                registers the 0x1130-byte class at 0x00791B10)
++0x0D68  u32             widthAfterInit         the width (+0xD24) as it stands after initScene, copied by the run
+                                                setup 0x0079F150 (0x0079F6E9-0x0079F6EF); no registered member covers it
+                                                (0x00791AC0 registers the 0x1130-byte class at 0x00791B10)
++0x0D6C  u32             heightAfterInit        the height (+0xD28) as it stands after initScene, copied by the run
+                                                setup 0x0079F150 (0x0079F6F5-0x0079F6FB); no registered member covers it
+                                                (0x00791AC0 registers the 0x1130-byte class at 0x00791B10)
++0x10D0  u16             iconId                 the window icon's resource id: 0x0079B300 passes it to LoadIconA with
+                                                the module handle (0x0079B758) and keeps the icon at 0x02EA5250; the
+                                                game-application constructor 0x0015BC40 sets it to 40101 (0x9CA5)
+                                                through 0x007A1190, a 4-byte store (0x0015BC71-0x0015BC7D); no registered
+                                                member covers it (0x00791AC0 registers the 0x1130-byte class at
+                                                0x00791B10)
++0x10D5  u8[3]           bytes10D5              the bytes after the byte the constructor 0x00792350 clears at +0x10D4
+                                                (0x00792521), before the qword it clears at +0x10D8 (0x00792528); no
+                                                registered member covers it (0x00791AC0 registers the 0x1130-byte class
+                                                at 0x00791B10)
+```
+
 ## Shipped data
 
 | Fact | Value |

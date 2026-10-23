@@ -50,11 +50,14 @@ buying a square does are on [Licenses](licenses.md).
 
 ### The readers
 
-Six functions read cells with the formula above, each returning `0xFFFF` for a column or row outside the board:
+Seven functions read cells with the formula above. For a column or row outside the board, six return `0xFFFF`
+and `0x0055BFF0` returns its fourth argument (`0x0055C0D3`). `0x0055BFF0` takes its board from the slot array at
+`0x02EBF1A0` + 8 x a signed slot byte (`0x0055C0A0`), addressed relative to the image base (`0x0055C0A8`):
 
 | Function | Sites |
 |---|---|
 | `0x00328990` | `0x003289F0`-`0x00328A14` |
+| `0x0055BFF0` | `0x0055C0B0`-`0x0055C0CC` |
 | `0x0055E2C0` | `0x0055E32D`-`0x0055E345` |
 | `0x0055E600` | `0x0055E764`-`0x0055E788`, `0x0055E864` |
 | `0x00560070` | `0x005600F3`-`0x00560113`, `0x0056015B` |

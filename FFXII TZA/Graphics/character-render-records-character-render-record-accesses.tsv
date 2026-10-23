@@ -355,7 +355,6 @@ function	name	site	disp	kind	instruction	route	note
 0x002EDF90	CharacterRender_UpdateAddMotionBindingState	0x002EDFCE	0x6C8	w	mov dword ptr [rcx + 0x6c8], edx	seed	
 0x002EDF90	CharacterRender_UpdateAddMotionBindingState	0x002EDFD9	0x6F0	addr	lea r8, [rcx + 0x6f0]	seed	
 0x002EDF90	CharacterRender_UpdateAddMotionBindingState	0x002EDFE0	0x6E8	addr	lea rdx, [rcx + 0x6e8]	seed	
-0x002EDF90	CharacterRender_UpdateAddMotionBindingState	0x002EE017	0x6E7	addr	lea eax, [rdx - 1]	seed	
 0x002EE050	FUN_002ee050	0x002EE06A	0x284	r	cmp dword ptr [rcx + 0x284], 0	seed	
 0x002EE050	FUN_002ee050	0x002EE073	0x160	r	movss xmm0, dword ptr [rcx + 0x160]	seed	
 0x002EE050	FUN_002ee050	0x002EE082	0x164	r	movss xmm0, dword ptr [rcx + 0x164]	seed	

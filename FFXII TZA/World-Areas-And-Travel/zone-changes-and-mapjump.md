@@ -20,9 +20,10 @@ scene can hold a jump back until it is ready to let the party go.
 ### The script asks with the mapjump verb
 
 A zone change starts as the script verb `0x8D`, which the script sources call `mapjump(map, entrance,
-mode)`. Its handlers are read from the family-0 verb table at `0x01EED700`, 32 bytes per verb: record
-`0x8D` holds the Start handler `0x00354D00` at `+8` and the Poll handler `0x00355350` at `+0x10`; record
-`0x8E` has a zero first slot, so the verb has no End handler.
+mode)`. Its handlers are read from the family-0 verb table at `0x01EED700`, one 32-byte record per verb from `+8`
+([verb dispatch](../Scripts-And-Script-Commands/verb-dispatch.md)): record `0x8D` holds the Start handler
+`0x00354D00` at `+0` and the Poll handler `0x00355350` at `+8`, and its result slot `+0x18` is 0, so the verb has no
+End handler.
 
 The Start handler `0x00354D00` pops the three arguments in reverse into the verb's context words (`ctx[3]`
 = mode, `ctx[2]` = entrance, `ctx[1]` = map). When byte `0x02064AD3` (`0x00229EA0`) is 2 it calls

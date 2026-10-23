@@ -239,6 +239,36 @@ then it clears the ring's positions and capacity, so later requests return null.
 
 ## Layouts
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PLight base=record size=0x40
++0x00    f32[4]          m_color                the light colour, written as parameter type 0xC0 and, times
+                                                m_intensity, as 0xC2; m_color (f32[4]), registered by 0x006BED60
+                                                (0x00632960 at 0x006BEDFA); no shipped .phyre file declares PLight; the
+                                                script method setColorRGBA (registered at 0x006BF329) stores red, green,
+                                                blue and alpha at +0x00, +0x04, +0x08 and +0x0C through 0x006C0520
++0x28    f32             m_innerConeAngle       the inner cone angle, written as parameter types 0xC4 and 0xC5;
+                                                m_innerConeAngle (f32), registered by 0x006BED60 (0x00632960 at 0x006BEFC4);
+                                                no shipped .phyre file declares PLight; the script method
+                                                setInnerConeAngle (registered at 0x006BF3F3) stores it through 0x006C05C0
++0x34    f32             m_innerRange           the inner range of parameter type 0xC3; m_innerRange (f32), registered
+                                                by 0x006BED60 (0x00632960 at 0x006BF11D); no shipped .phyre file declares
+                                                PLight; the script method setRange (registered at 0x006BF70D) stores the
+                                                inner range here and the outer range at +0x38 through 0x006C05F0
++0x3C    f32             m_scatteringIntensity  the scattering intensity; m_scatteringIntensity (f32), registered by
+                                                0x006BED60 (0x00632960 at 0x006BF203); no shipped .phyre file declares
+                                                PLight; the script method setScatteringIntensity (registered at
+                                                0x006BF89A) stores it through 0x006C0600
+```
+
+Bytes `+0x04` to `+0x07` of `PShaderParameterDefinition` lie between `m_dataType` (`+0x03`) and `m_name` (`+0x08`); no registered member covers them (`0x005DAF10` registers the `0x18`-byte class at `0x005DAF60`).
+
+### Draw records
+
+The structures below are the ones the mechanisms above use.
+
 `DrawRecord` (`0xA0` bytes, offsets from the start of the 0x0060B980-stack):
 
 | Offset | Type | Name | Meaning |

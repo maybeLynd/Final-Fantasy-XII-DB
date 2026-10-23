@@ -121,8 +121,12 @@ The five receiver binders are `0x0028E220` (`+0x8FA0`, to `0x002BDCE0`), `0x0028
 
 The member lists [`thunks-and-import-stubs-forward-second-argument-tail-calls.tsv`](thunks-and-import-stubs-forward-second-argument-tail-calls.tsv) (72 entries) and
 [`thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv`](thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv) (29 entries) hold part of the first
-two rows. [`thunks-and-import-stubs-thunk-address-taken.tsv`](thunks-and-import-stubs-thunk-address-taken.tsv) lists 297 one-jump functions whose
-address appears in a qword or a `lea`, with the section of each reference.
+two rows.
+
+[`thunks-and-import-stubs-thunk-address-taken.tsv`](thunks-and-import-stubs-thunk-address-taken.tsv) lists 296 one-jump functions whose address
+appears in a qword or a `lea`, with the section of each reference. 141 more one-jump functions have their address
+taken and are not in it: 139 forwarders that are script verb handlers, named by the verb table in `.data`;
+`0x0051BC00`, taken by the `lea` at `0x0051BA01`; and the import stub `0x00896270`, named by a qword in `.rdata`.
 
 ### Why caller counts disagree
 

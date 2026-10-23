@@ -240,8 +240,88 @@ A first-pool shadow slot (`0xE0` bytes, 160 at `[0x02B40528]`), the ramp fields:
 | `+0x98` | `f32` | cross-fade weight input | +`0x9C`  f32     its step |
 | `+0xC0` | `f32[6]` | the values last built |  |
 
-Every access to the slot fields is in
-[the ramp-channel access table](authored-presentation-commands-ramp-channel-record-accesses.tsv).
+[The ramp-channel access table](authored-presentation-commands-ramp-channel-record-accesses.tsv) lists every slot
+field access of the 23 functions that load the slot base `0x02B40528`, among them the two ramp setters `0x003B6950`
+(channel 3: `+0x03`, `+0x78`, `+0x7C`) and `0x003B69B0` (channel 1: `+0x01`, `+0x70`, `+0x74`).
+
+The slot's other fields, from the take `0x003B56D0`, the builder `0x003B62D0`, the motion override keeper `0x003B5E20` and the setters `0x003B6B10`-`0x003B6BD0`:
+
+```struct RampChannelRecord base=record size=0xE0
++0x04    u16             renderRecordId         the owner's character render record id: the take 0x003B56D0 stores it
+                                                (0x003B5726); the builder 0x003B62D0 finds the record [0x022C6F28] + id *
+                                                0x740 (0x003B62FC-0x003B6328) and its shadow record 0x003B6BF0 (0x003B637D);
+                                                0x003B5980 reads it for the camera distance (0x003B59AC)
++0x08    f32             extentScale            a scale on both shadow extents: the builder's out +0x34 = s[+0x18] *
+                                                this * +0x44 and out +0x38 the same with s[+0x1C] (0x003B64D2-0x003B64F5);
+                                                1.0 at take (0x003B573D)
++0x0C    f32             opacity                a factor of the shadow's strength term, out +0x28 = this * s[+0x0C] *
+                                                [0x01EFE314] * +0x2C * 0.5 (0x003B64FA-0x003B6519); 1.0 at take (0x003B574F);
+                                                0x003B6B10 sets it (0x003B6B26), as the status visuals do with 1.0 while
+                                                display is denied
++0x14    f32             fade                   the shadow's fade level, 0 to 1: 1.0 at take (0x003B572E); 0x00426340 sets
+                                                it through 0x003B6B80 (0x003B6B96) to record +0x27C or the camera-distance
+                                                fade 0x003B5980; the builder interpolates the shadow record's level
+                                                ranges and size with it (0x003B63A2-0x003B6404)
++0x18    f32             offsetBias             an offset added to the anchor offset's first axis before the facing
+                                                rotation (0x003B6789-0x003B678C, 0x003B67C2); 0 from the take's qword store
+                                                at +0x14 (0x003B572E)
++0x20    u32             colourR                first component of the shadow colour: 0x003B6B30 copies it from its
+                                                argument (0x003B6B48-0x003B6B4A); the builder copies it to out +0x60
+                                                (0x003B64C0-0x003B64C3); 0 at take (0x003B575F)
++0x24    u32             colourG                second component of the shadow colour (0x003B6B51; to out +0x64 at
+                                                0x003B64C6); 0 at take (0x003B575F)
++0x28    u32             colourB                third component of the shadow colour (0x003B6B58; to out +0x68 at
+                                                0x003B64CC); 0 at take (0x003B5765)
++0x2C    f32             strengthScale          a factor of the strength term out +0x28 (0x003B650C); 0x003B6BB0 sets it
+                                                (0x003B6BC6), called by 0x0042D050; 1.0 at take (0x003B5769)
++0x38    u16             anchorBone             the anchor bone in use, +0x3C or +0x3E: 0x003B5CE0 picks it
+                                                (0x003B5D22-0x003B5D32) and the take starts it at +0x3C
+                                                (0x003B583D-0x003B5841); while the cross-fade runs the builder blends from
+                                                the previous anchor's bone to this one (0x003B65FB-0x003B6662)
++0x3A    u16             previousAnchorBone     the anchor bone before the last 0x003B5CE0 (0x003B5D08-0x003B5D0D); the
+                                                builder blends from it while +0x38 differs (0x003B65FF)
++0x3C    u16             boneA                  the model's special bone 0x104 (0x003E5AD0, 0x003B57FA-0x003B5804): the
+                                                builder's first bone matrix through 0x00421FF0 (0x003B6343-0x003B634F)
++0x3E    u16             boneB                  the model's special bone 0x106 (0x003B582F-0x003B5839): the builder's
+                                                second bone matrix (0x003B6360-0x003B636C)
++0x40    u8              flags                  bit 0 in use (set by the take 0x003B56D0 at 0x003B5759-0x003B57D0, cleared
+                                                by the free 0x003B6000 at 0x003B6016); bits 1-4 the overrides a motion
+                                                keeps at +0xA0-+0xB8 (1 offset, 2 rotation, 3 extent scales, 4 base
+                                                offset; 0x003B5E3F-0x003B5EF0); bit 5 keeps the offset out of the
+                                                cross-fade blend (0x003B6549-0x003B6562); bit 6 takes the shadow's height
+                                                from the anchor bone instead of the ground (0x003B645F-0x003B64A3); bits
+                                                1-6 come from the motion block's word +0x32 (0x003B5F58-0x003B5FF4)
++0x44    f32             offsetScale            a multiplier of the anchor offset and of both extents: 0x003B6BD0 sets
+                                                it (0x003B6BE6), called by 0x0042D050; the builder multiplies by it
+                                                (0x003B64DC, 0x003B64F0, 0x003B66E3, 0x003B66E8); 1.0 at take (0x003B5770)
++0x48    f32             baseOffsetX            the base offset's first axis, added to channel 0's value before the
+                                                scale (0x003B66C1): 0x003B5CE0 stores it (0x003B5D12) after keeping the old
+                                                one at +0x30; 0x003B5E20 restores a kept one from +0xB4 (0x003B5EE5); 0 at
+                                                take (0x003B5848)
++0x4C    f32             baseOffsetY            the base offset's second axis (0x003B66CE; 0x003B5D18; restored from +0xB8
+                                                at 0x003B5EF0); 0 at take (0x003B5848)
++0xA0    f32             keptOffsetX            the anchor offset a motion keeps (block +0x4C, 0x003B5EFB-0x003B5EFE),
+                                                written back into +0x50 and +0x80 by the next motion while flag bit 1
+                                                is set (0x003B5E49-0x003B5E67)
++0xA4    f32             keptOffsetY            the kept offset's second axis (block +0x50, 0x003B5F08; restored at
+                                                0x003B5E52-0x003B5E70)
++0xA8    f32             keptExtentScaleA       the first extent scale a motion keeps (block +0x10, 0x003B5F47),
+                                                restored into +0x58 and +0x88 while flag bit 3 is set
+                                                (0x003B5EA4-0x003B5EC2)
++0xAC    f32             keptExtentScaleB       the second kept extent scale (block +0x54, 0x003B5F51; restored at
+                                                0x003B5EAD-0x003B5ECB)
++0xB0    f32             keptRotation           the rotation a motion keeps, the block word +0x32 >> 6 in degrees
+                                                times 0.0174533 (0x003B5F0F-0x003B5F27), restored into +0x70 and +0x90
+                                                while flag bit 2 is set (0x003B5E82-0x003B5E91)
++0xB4    u32             keptBaseOffsetX        the base offset a motion keeps (block +0x58, 0x003B5F30-0x003B5F33),
+                                                restored into +0x48 while flag bit 4 is set (0x003B5EDE-0x003B5EE5); moved
+                                                as a dword, used as the f32 +0x48
++0xB8    u32             keptBaseOffsetY        the kept base offset's second axis (block +0x5C, 0x003B5F3D; restored
+                                                into +0x4C at 0x003B5EE9-0x003B5EF0)
++0xBC    f32             lookRotation           a rotation added to the shadow's rotation after the facing (0x003B6712):
+                                                0x003B6B60 sets it (0x003B6B76) from the look controller; 0 at take
+                                                (0x003B5850)
+```
 
 ## State
 

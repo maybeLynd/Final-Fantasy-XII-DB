@@ -29,9 +29,9 @@ is the restore flag that makes the next apply keep the committed slot (see the a
 
 The debug override is the dword at `+0xAAC` of the debug singleton `0x001D50D0()`, read by `0x0017D490`.
 Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it with the format
-`%s%s %d %s, Weather Slot:%d (Triangle/Cross to toggle)` at `0x008FFC80`. No instruction in the image
-stores to `[reg + 0xAAC]` (instruction search over the whole program: the two reads only), so the
-shipped build never sets it.
+`%s%s %d %s, Weather Slot:%d (Triangle/Cross to toggle)` at `0x008FFC80`. The singleton's constructor
+`0x001CCB20` zeroes it with the qword store at `+0xAA8` (`0x001CCBA3`). No instruction in the image stores to
+`[reg + 0xAAC]`: the two reads are its only references through that offset.
 
 ### The probabilities the zone script authors
 

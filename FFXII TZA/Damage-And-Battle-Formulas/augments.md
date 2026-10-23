@@ -172,7 +172,7 @@ Two functions read the layers whole:
   (`0x00329480`-`0x003294AF`; [Party member status record](../Characters-And-Objects/party-member-status-record.md)); of that
   copy only `+0x51` bit 1 (augment 41) is ever read (`0x002BFFAA`), so the copied bit 18 is read by nothing.
 
-No other instruction in the executable tests bit 18: no instruction reaches bit `0x4` of `+0x1C`, `+0x6A` or
+No other instruction in the executable tests bit 18: no instruction reaches bit `0x4` of the stats record's `+0x1C`, `+0x6A` or
 `+0x7A` outside the eight functions above, and the bit is stored nowhere but the two layers, the context byte and
 the status record's copy.
 

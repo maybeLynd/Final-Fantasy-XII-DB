@@ -18,11 +18,10 @@ package's gil and items together.
 - 268 of the 300 are named by a package selector or by at least one script give; the other 32 are named by
   neither.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/reward_packages.py` reads the `st2e` table at entry `+0x98` (512 rows of 12 bytes from
-the section's `+0x20`) and names each item through `ids.py`, which reads the name word of the item's own row as the
-matching arm of `0x0031C5D0` does.
+The package table is the `st2e` table at entry `+0x98` (512 rows of 12 bytes from the section's `+0x20`); each
+item's name is the name word of the item's own row, as the matching arm of `0x0031C5D0` reads it.
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -38,13 +37,6 @@ class-14 arm of `0x0031C5D0` copies the five fields to the query record (`0x0031
 The `selectors` column lists the package selectors ([Reward selector list](reward-selector-list.md)) that name the
 package, and `script_gives` counts the rows of [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md)
 that may give it (a set row counts for each of its packages).
-
-### Checks
-
-- The table's header gives 512 rows of 12 bytes, and the TSV has 512 data lines.
-- Two runs over the same files give byte-identical output.
-- Rows compared with the handler: `0x9003` gives 300 gil, Potion x2 and Teleport Stone x1, and selector `0xA080`
-  names it; `0x9001` gives Potion x3 and Phoenix Down x2.
 
 ## Columns
 

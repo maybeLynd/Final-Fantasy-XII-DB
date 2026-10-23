@@ -20,7 +20,7 @@ on [Effect files](effect-files-efx-efb.md).
 | kind 11 | 512 | 366 | the magic effects `m0000`-`m0511`, played with English voices |
 | kind 38 | 512 | 366 | the same ids played with Japanese voices |
 | kind 12 | 894 | 532 | the event effects a zone script loads by number: `e` 0-511 (ids 0-511), `l` 0-63 (ids 512-575) and `q` 0-319 (ids 576-895) |
-| character effects | 125 | 125 | `h0000`-`h0125` in `jp/chara`, bound to 144 model names (9 `g`, 82 `m`, 26 `s`) |
+| character effects | 125 | 125 | `h0000`-`h0125` in `jp/chara`, bound to 117 model names (9 `g`, 82 `m`, 26 `s`) |
 
 Kinds 10, 11 and 38 use one path array for every language. Kind 12's array differs by text
 language: 312 of the 532 shipped event effects have per-language copies (`us`, `fr`, `de`, `it`, `es`,
@@ -29,15 +29,14 @@ which copy each language id takes. The magic effects are chosen by the voice lan
 kind-11 array names `us` copies for 43 ids (the 18 Quickening cinematics 120-137 among them) and `uk`
 copies for 8, while kind 38 names `jp` copies for those 43 and keeps the same `uk` and `in` copies.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/effect_files.py`, with `asset_paths.py` (the path arrays) and `vbflib.py`
-(the archive index):
+The columns come from the path arrays, the US size table, the archive index and the files:
 
 1. The path arrays: `0x002DF9A0` installs one array per kind at `0x0215F000 + 8 x kind`, then a switch
-   on the language id replaces kind 12's (and kind 7's) with the language's own; the decoder follows
-   its instructions for every language id 0 to 11, named `JP US FR DE IT ES UK KR CH ASIA IN CN` as
-   the size-table loader names them. Entry n of an array is the path of id n.
+   on the language id replaces kind 12's (and kind 7's) with the language's own; the arrays of every
+   language id 0 to 11, named `JP US FR DE IT ES UK KR CH ASIA IN CN` as the size-table loader names
+   them, are listed. Entry n of an array is the path of id n.
 2. The size is the US `FileSizeTable_US.fst` entry `kind x 5000 + id`; `ships` is whether the archive
    index names the path; the contents come from the extracted file.
 3. The contents: a walk of the chunk stream from `+0x10` (length `+0x00`, type `+0x06`) counts the
@@ -75,26 +74,6 @@ copies for 8, while kind 38 names `jp` copies for those 43 and keeps the same `u
     144 slots of the `0x28000`-entry table at `+0x228` of its object; `0x001A09E0` reads the slot
     `letter x 0x500 + number` for a model name `<letter><number>` (`0x001A0A74`-`0x001A0A7F`), for
     `0x001A0CF0`, `0x001A0E50` and `0x001D6EC0`. The row's `requested_by` names those models.
-
-### Checks
-
-- The rows with a size equal the size-table page's counts: 366 for kinds 11 and 38, 532 for kind 12,
-  2 for kind 10. Every sized row's path is in the archive index.
-- Two runs over the same files give byte-identical output.
-- Rows compared with the code: Cure (action 0, effect `0x00B3`) is `m0179.efx`, the `in` copy for
-  both voice languages; Blizzaja (288, `0x00D2`) is `m0210.efx`, `us` with English voices and `jp`
-  with Japanese; Red Spiral (208) plays `m0210` and its cinematic `0x78` is `m0120.efx`, `us` or `jp`.
-- Inferno (226) has cinematic `0x8A`, `m0138.efx` from `uk` in both; the Concurrence cinematics 142,
-  144, 145, 147, 148 and 150-152 have no file and load `m0138` instead, as the fallback says.
-- Four magic effects ship that no action names: ids 1, 20, 21 and 82. Four actions name an id with no
-  file: Shades of Black (159, id 97) and the Reserve rows 482-484, which load `m0000`.
-- Of the 3,288 shipped `.efx`, the twelve language arrays and the character table name 3,245. The 43
-  others: `h0000.efx`; the `jp` magic copies of the eight `uk` ids and the five `in` ids; eleven `jp`
-  event copies whose `us` copy every language takes (`e0023`, `e0034`, `q0047`, `q0048`, `q0074`-`q0076`,
-  `q0103`, `q0119`, `q0120`, `q0126`); `q0090`-`q0093` in `kr`, `ch` and `cn`; and the `m_all2` or
-  `m_all3` copies in `ch`, `in`, `jp` and `uk`.
-- No file carries a `SOUND` element (type `0xF1`); 190 carry a `PCAMERA` element (`0xD1`). The
-  7,896 texture records are all format 0, 1 or 4.
 
 ## Columns
 

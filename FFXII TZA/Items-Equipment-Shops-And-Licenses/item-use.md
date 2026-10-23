@@ -41,9 +41,11 @@ then charges the MP and Mist costs, with `0x10` plus `flag` as the change reason
 second gil amount, unit `+0xE54`, floored at 0 (`0x00305712`-`0x0030572B`). That amount is set when the action's
 result is worked out (`0x00303954`, `0x00303B2E`) and cleared by the unit reset (`0x00236AE5`).
 
-It is called from three places:
+It is called from four places:
 
 - the standard action, `0x00304F38`;
+- the effect applier `0x00307300`, with `flag` 0, when its fifth argument is 1 and the availability check `0x002FFCF0`
+  passes (`0x00307388`-`0x003073B9`);
 - `Battle_ProcessActionTargetEntry`, once per action, guarded by unit `+0x700` bit 1, with `flag` 1
   (`0x003192B7`-`0x003192BC`);
 - the handler of script verb `0x29D` `spattackplay`, with `flag` 1 (`0x003132B7`).

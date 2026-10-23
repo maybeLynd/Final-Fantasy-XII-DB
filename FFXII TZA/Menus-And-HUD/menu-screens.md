@@ -13,6 +13,16 @@ widget constructors `0x00244F50`, `0x00245000` and `0x002465F0` ([Widgets](widge
 the 296 calls are reached from two or four `lea` sites, so the `install site` column lists 306 `lea` sites. Each
 procedure is tied to a screen by walking its installers up to a Party Menu entry or a menu request.
 
+Of the rip-relative `lea` instructions in `.text`, 312 load one of the 267 procedures. The six that are not install
+sites all load `0x005C5230` (`xor eax, eax; ret`), and none of them builds a widget:
+
+- the constructor `0x002465F0` puts it in place of a null procedure (`0x0024662E`);
+- `0x002778C0` stores it at `+0x2D50` and `+0x2D90` of its object (`0x00277945`);
+- `0x005C51A0`, whose address is at `0x00D314D0`, returns it;
+- `0x007A0180` registers it with `0x007A0090` as the handler of the console commands `MinFramerate` and `Expect`
+  (`0x007A01D2`, `0x007A02AE`);
+- `0x00808C90` passes it to `0x00862010` (`0x00808CF8`).
+
 ### The Party Menu and its entries
 
 The Party Menu is `0x00280DE0` ("Party Menu", `menu_command.bin` `0x554`, the control label at `0x00915DD0`), built by

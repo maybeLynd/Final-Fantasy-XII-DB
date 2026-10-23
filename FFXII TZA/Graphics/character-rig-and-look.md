@@ -439,7 +439,7 @@ Render-record fields:
 ## Shipped data
 
 Counts of the talking-head verbs in the 1,114 decompiled `us` scripts
-([character-rig-and-look-rig-verbs-census.tsv](character-rig-and-look-rig-verbs-census.tsv)), and tables from the
+([calls per verb](character-rig-and-look-rig-verb-calls.tsv), [calls per first argument](character-rig-and-look-rig-verb-first-arguments.tsv), [calls per frame count](character-rig-and-look-rig-verb-frames.tsv)), and tables from the
 executable image.
 
 | Fact | Value |

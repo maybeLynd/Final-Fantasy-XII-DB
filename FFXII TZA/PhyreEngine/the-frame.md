@@ -188,6 +188,16 @@ Instruction-level access tables beside this page:
 | `PCameraOrthographic` | [the-frame-pcamera-orthographic-accesses.tsv](the-frame-pcamera-orthographic-accesses.tsv) |
 | `PCameraProjection` | [the-frame-pcamera-projection-accesses.tsv](the-frame-pcamera-projection-accesses.tsv) |
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PCameraOrthographic base=record size=0xD8
++0xD4    u8[4]           bytesD4                the bytes after m_height (+0xD0) up to the end of the 0xD8-byte class;
+                                                no registered member covers it (0x006ACFF0 registers the 0xD8-byte class
+                                                at 0x006AD03A)
+```
+
 ## State
 
 | Address | What |

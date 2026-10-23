@@ -279,7 +279,7 @@ declares 49 rows of 8 bytes; each row's id is a movie code of path kind `0x1C` (
 | id 43, `IVT` | 6-frame white fade-in at frame 0, 6-frame white fade-out at the end mark |
 | movies | 40 `.webm` files; ids 38, 39, 40, 46 have no path, ids 37, 41, 44, 45, 47 have no `.webm` |
 
-Every row whose movie is missing is all zero; ids 0 (`OPN`) and 32 (`WAR`) ship and take no
+Every row whose movie is missing has its seven fade bytes zero (its first byte is still the row's id); ids 0 (`OPN`) and 32 (`WAR`) ship and take no
 scheduled fade.
 
 In the decompiled `us` scripts (1,114 files), counting every call:

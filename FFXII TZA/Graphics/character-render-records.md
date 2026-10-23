@@ -459,6 +459,39 @@ The access tables beside this page list every instruction found touching each st
 - [the instance bank's chunk entries](character-render-records-chunked-slot-bank-entry-accesses.tsv) and
   [slot entries](character-render-records-chunked-slot-entry-accesses.tsv).
 
+The record bytes between the fields the store names, by range; `+0x411` and `+0x5F1` have readers:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x062` | `u8[2]` | span0062 | the two bytes between the previous event +0x60 and the model instance index +0x64 |
+| `+0x066` | `u8[2]` | span0066 | the two bytes between the model instance index +0x64 and the resource reference +0x68 |
+| `+0x0D4` | `u8[4]` | span00D4 | the four bytes between the byte +0xD3 and the resource reference +0xD8; the walks of the eight-word table +0x90 in 0x0042F4C0, 0x0042F6C0 and 0x0042F880 (count: the word +0xC2, compared at 0x0042F5DC) address it only as word 34 of that table (0x0042F5FD, 0x0042F818, 0x0042FA88) |
+| `+0x0EC` | `u8[4]` | span00EC | the four bytes between the signed resource displacement +0xE8 (-1 for none) and the resource reference +0xF0 |
+| `+0x104` | `u8[4]` | span0104 | the four bytes between the second signed resource displacement +0x100 and the bound source pointer +0x108 |
+| `+0x11C` | `u8[4]` | span011C | the four bytes between the tween entry index +0x118 and the rotation's x angle +0x120 |
+| `+0x24E` | `u8[2]` | span024E | the two bytes between the word +0x24C and the previous rotation x angle +0x250 |
+| `+0x298` | `u8[8]` | span0298 | the eight bytes between the dirty mask +0x294 and the kind selector +0x2A0 |
+| `+0x2CC` | `u8[4]` | span02CC | the four bytes between the word +0x2CA and the projected origin +0x2D0 |
+| `+0x38C` | `u8[4]` | span038C | the four bytes between the pending translation's z +0x388 and the dword +0x390 |
+| `+0x3F5` | `u8[3]` | span03F5 | the three bytes between the state byte +0x3F4 and the word +0x3F8 |
+| `+0x411` | `i8` | randomChoice | the random choice of the presentation-entry selector kind 0x01: 0x00422420 draws 0 to 4 with 0x003A6E60(5) into it when the counter +0x40E is 0 (0x0042243C-0x00422451) and, at 11 times [0x01DFE0B4] with bit 0x4 from 0x0041F2F0(record, 0x20), adds 5 (0x004224A1); it returns the value as the choice (0x00422464, 0x004224AE) |
+| `+0x458` | `u8[40]` | span0458 | the 40 bytes between the stop-frame counter +0x457 and the dword band +0x480-+0x48C |
+| `+0x490` | `u8[12]` | span0490 | the twelve bytes between the dword band +0x480-+0x48C and the level-of-detail view scale +0x49C (reset to 1.0) |
+| `+0x57C` | `u8[4]` | span057C | the four bytes after member +0x28 of the embedded tween object at +0x550, before the parameter tag +0x580 |
+| `+0x5CC` | `u8[4]` | span05CC | the four bytes after the parameter block +0x580-+0x5C8, before the 16-byte block +0x5D0 |
+| `+0x5F1` | `u8[3]` | span05F1 | bytes 1 to 3 of the record's sound emitter +0x5F0; the low four bits of byte +0x5F1 keep the emitter's last random variation: 0x0046C250, which 0x0046CC70 calls with the emitter (0x0046CD9A-0x0046CD9D), draws 0x003A6E60(3), steps it down (to 2 below 0) when it equals the kept value, and stores it back (0x0046C2F6-0x0046C323, 0x0046C337-0x0046C360) |
+| `+0x5FC` | `u8[4]` | span05FC | bytes +0x0C to +0x0F of the sound emitter +0x5F0, between its dword +0x08 (+0x5F8) and its pointer +0x10 (+0x600) |
+| `+0x60E` | `u8[2]` | span060E | the two bytes between the emitter's word +0x60C and the live heading +0x610 |
+| `+0x61E` | `u8[2]` | span061E | the upper two bytes of the flags lane +0x61C of the live block +0x610-+0x61F (heading, speed, accumulator, flags); 0x00424080 copies the whole block to the cached block +0x620 (0x00424182-0x00424185) |
+| `+0x62E` | `u8[2]` | span062E | the upper two bytes of the latch-word lane +0x62C of the cached block +0x620-+0x62F; written by 0x00424080's 16-byte copy from the live block (0x00424185) |
+| `+0x66E` | `u8[2]` | span066E | the two bytes between the flag byte +0x66D and the first auxiliary transform +0x670 |
+| `+0x6A1` | `u8[3]` | span06A1 | the three bytes between the state byte +0x6A0 and the phase dword +0x6A4 |
+| `+0x6AC` | `u8[4]` | span06AC | the four bytes between the interpolation counter +0x6A8 and the dword +0x6B0 |
+| `+0x6B4` | `u8[4]` | span06B4 | the four bytes between the dword +0x6B0 and the first bound resource pointer +0x6B8 |
+| `+0x6CC` | `u8[4]` | span06CC | the four bytes between the add-motion binding state +0x6C8 and the bound resource pointer +0x6D0 |
+| `+0x6E4` | `u8[4]` | span06E4 | the four bytes between the dword +0x6E0 and the add-motion binding pair +0x6E8/+0x6F0 |
+| `+0x71C` | `u8[4]` | span071C | the four bytes between the dword +0x718 and the bound resource pointer +0x720 |
+
 ## State
 
 - The record array, the tail and the four banks live for the whole run; nothing frees them.

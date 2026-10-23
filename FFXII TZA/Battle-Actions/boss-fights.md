@@ -92,7 +92,8 @@ In the shipped scripts (all 1,114 `us` scripts):
 | scripts that call `lockmapjump` | 68 |
 | of those, also putting an enemy in a group 1-5 | 19 |
 | `mapjump(12)` exit entries | 1,525 |
-| of those, calling `sysucoff` in their opening lines | 1,462 |
+| of those, calling `sysucoff` and branching on its result | 1,525 |
+| of those, calling `sysucoff` before any other command | 1,457 |
 
 ## Related
 

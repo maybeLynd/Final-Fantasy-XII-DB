@@ -18,23 +18,22 @@ PS2-era model and motion file, effect files, sound banks, voice files and movies
 under `gamedata/` is reached by name instead, through the `.ah` lists
 ([Prefetch and asset-header manifests](prefetch-manifests.md)), and is not in this table.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/asset_paths.py`, with the archive reader `vbflib.py`:
+The columns come from the executable's path arrays, the US size table and the archive index:
 
 1. **The arrays.** `ResourcePath_Init` `0x002DF9A0` stores one array pointer per kind at `0x0215F000` + kind × 8, then
-   switches on the language id − 1 and replaces the language's own arrays. The decoder follows the function's
-   instructions for language id 1 (US): it tracks each `lea reg, [rip + x]` and records each store into
-   `0x0215F000`-`0x0215F140`, taking the switch arm that language selects. No array address is typed into the tool.
+   switches on the language id − 1 and replaces the language's own arrays; the arrays listed are those the US arm
+   installs.
 2. **The entries.** An array is a run of 8-byte pointers to NUL-terminated paths, or 0; id *n* is entry *n*. Six
    kinds (3, 17, 18, 29, 36 and 40) point at runtime slots near `0x0215F000` instead of an array and have no entries.
 3. **Where an array ends.** The arrays sit back to back in `.rdata`, so each one ends where the next array that any
-   language installs begins. Past that point the decoder lists an id only when the size table sizes it, and gives it
-   no path (below).
+   language installs begins. Past that point an id is listed only when the size table sizes it, with no path
+   (below).
 4. **The size.** `0x002DF960(kind, id)` returns the dword at `kind × 5000 + id` of the language's
-   `FileSizeTable_<lang>.fst`; `0xFFFFFFFF` is no file. The decoder reads the US table.
+   `FileSizeTable_<lang>.fst`; `0xFFFFFFFF` is no file. The size column is the US table's value.
 5. **Shipping.** The path, less its `PS2Data\` prefix and in lower case, is looked up among the 89,414 names of
-   the shipped `FFXII_TZA.vbf` index, which `vbflib.py` reads as `0x001F4340` does; the archive record's size is
+   the shipped `FFXII_TZA.vbf` index that `0x001F4340` reads; the archive record's size is
    written beside it.
 
 ### Shipped data
@@ -103,15 +102,6 @@ size table sizes 24 kind 1 ids: 24 and 32, whose files ship; 1 and 2, which the 
 lane); `0x002E98F0` adds `0x33` to that index and the lane loader `0x002E6EB0` adds `0x43` (`0x002E6F99`-`0x002E6FA2`,
 [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)). The bestiary, the party table and
 the actor manifests name only the twelve letters, so no shipped bound id reaches kind 1.
-
-### Checks
-
-- The table's 10,521 sized entries are exactly the entries of `FileSizeTable_US.fst` that are not `0xFFFFFFFF`.
-- Arrays the decoder finds agree with the addresses other decoders use: kind 5 `0x01EE23A0` and kind 21 `0x01EDC280`
-  ([Bestiary](../Enemy-Spawning/bestiary.md)), and the model kinds 14 `0x01EAA9A0`, 19 `0x01E94B50`, 23
-  `0x01EA38B0` and 34 `0x01E373A0`.
-- The first sized path of every kind is the one [File size tables](file-size-tables-fst.md) lists.
-- Two runs over the same files give byte-identical output.
 
 ## Columns
 

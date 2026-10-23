@@ -68,7 +68,7 @@ MP   += b + (int)bonus;                     // 0 .. b - 1 extra
 first use it seeds itself with 5489 (`0x1571`, `0x00866D60`).
 
 All 99 rows, with the smallest and largest gain each formula allows, are in [hp-mp-growth.tsv](hp-mp-growth.tsv),
-which `Database/Tools/catalogues/hpmp_growth.py` writes from the shipped file (two runs give byte-identical output).
+read from the shipped file.
 
 ### Strength, Magick Power, Vitality and Speed
 

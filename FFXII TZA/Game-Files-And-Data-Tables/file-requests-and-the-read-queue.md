@@ -129,8 +129,9 @@ Every requester is in [`file-requests-and-the-read-queue-requesters.tsv`](file-r
 51 call sites of `0x0032E620`, the three of `0x0051ED10` and the two of `0x0032E780`, with where each takes its kind,
 index and size, whether it tests the size before filing, and what follows when the buffer is never written.
 
-- 37 of the 51 sites size the file with `0x0032E400` and test the size before filing: 30 skip 0 or less, 4 skip only a
-  negative size, and 3 test it in the record builder that stores it (`0x003DD4C0`, `0x003DF440`, `0x003E9F80`).
+- 39 of the 51 sites size the file through `0x0032E400`: 24 skip a size of 0 or less, 4 skip only a negative size,
+  and 11 file it without a test (the table's guard column names what each tests instead); 3 others test the size
+  in the record builder that stores it (`0x003DD4C0`, `0x003DF440`, `0x003E9F80`).
 - The area loader `0x0032FCA0` tests the entry's sign before its four fixed-size requests.
 - `0x0032EB40` requests a file only when its size is above `0x800` bytes.
 - The model binding's `0x002EAD50` is reached only through `0x002E6700`'s positive-size test (`0x002E6789`).

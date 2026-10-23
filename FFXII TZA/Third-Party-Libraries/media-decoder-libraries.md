@@ -173,8 +173,8 @@ to them:
 
 The other kernels from `0x00125770` to `0x00158C97` that are in neither list are not reached either:
 no rel32 call, jump or conditional branch in `.text`, no rip-relative operand in any listed function and
-no 8-byte pointer in any section has one of them as its target, while the same scan finds the four
-installs at `0x0016F144` to `0x0016F167`.
+no 8-byte pointer in any section has one of them as its target; the four installs at `0x0016F144` to
+`0x0016F167` are the only references of their kind.
 
 They are sums of absolute differences, quantizers, 8x8 and 32x32 inverse transforms, intra predictors,
 VP8 loop filters, two- and eight-tap filters and sub-pixel variance kernels. Each is listed with its

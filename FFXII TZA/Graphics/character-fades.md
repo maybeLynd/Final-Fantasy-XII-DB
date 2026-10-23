@@ -69,10 +69,13 @@ either rate.
 
 `0x00428C40` starts all four ramps with one frame count. `rgbatrans` (`0x3B2`, `0x0033F530`) reaches it
 through `0x002E84B0` and `puppetrgbatrans` (`0x535`, `0x0033FAD0`) through `0x002E8500`; both pass the
-popped frame count plus one. A sweep of every reference to `0x003E5D60`, `0x003E5D00`, `0x00428940` and
+popped frame count plus one.
+
+A sweep of every reference to `0x003E5D60`, `0x003E5D00`, `0x00428940` and
 `0x004293C0`, conditional jumps included, finds no write of channel 3 and those listed above for the
-others; the direct calls are in
-[the channel census](character-fades-fade-channel-census.tsv).
+others. [The channel census](character-fades-fade-channel-census.tsv) holds the direct calls of `0x003E5D00` and
+`0x003E5D60`; channels 2 and 5 reach them through the dispatcher `0x00428940` (`0x003E5D00` for `r9` of 1 or less,
+`0x003E5D60` for a non-null `rcx`), so their writers are the ones in the table above, not census rows.
 
 ### Attached pieces (channel 1)
 

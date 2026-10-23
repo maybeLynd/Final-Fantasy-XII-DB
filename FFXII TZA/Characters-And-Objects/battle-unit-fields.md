@@ -165,6 +165,42 @@ Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
 | perception cache | `+0xBC0`-`+0xDC7`, header bit 0 forced on | `0x00316D30` from the reuse reset |
 | target buffer | `+0x778`-`+0x97F`, keeping header bit 0 | `0x00316CF0` |
 
+### The spans between named fields
+
+The unit bytes between the named fields, by range. The locomotion block at `+0x80` is the solver's argument (`0x00336CE0`), so its offsets are given in block terms as well; the action state `+0x6B0`-`+0xB9F` is the `0x4F0` bytes `0x0030EDA0` restores from the saved block at `[+0xB88]`.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00C` | `u8[4]` | span000C | the four bytes between the actor handle +0x08 and the bound actor record +0x10; the slot acquire 0x00234480 zeroes the whole 0xF50-byte slot (0x002344C7-0x002344D2) |
+| `+0x020` | `i32` | bound | 1 after the bind walk: 0x00265A20 calls 0x00234A00(unit, 1) for a unit whose actor's +0x30 is set (0x00265AA4-0x00265AB4), and 0x00234A00 stores it (0x00234A00) |
+| `+0x034` | `u8[4]` | span0034 | the four bytes after the killer id +0x30; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0x059` | `u8[3]` | span0059 | the three bytes after +0x58 (the entry group is +0x57), before the qword the reuse reset 0x00236A60 clears at +0x5C (0x00236AF8); zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0x078` | `u8[8]` | span0078 | the eight bytes before the locomotion block at +0x80, after the fields the reuse reset clears at +0x64-+0x6F (0x00236B41, 0x00236B45); zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0x0C4` | `u8[12]` | span00C4 | bytes +0x44 to +0x4F of the locomotion block at +0x80 (the block the solver 0x00336CE0 takes as its argument), after its goal kind +0x40; zeroed by the reuse reset 0x00236A60 with +0x80-+0x68F (0x00236B12-0x00236BF0) |
+| `+0x0FC` | `u8[4]` | span00FC | the fourth dword of the locomotion block's step point +0x70 (unit +0xF0): the solver context copies only its x, y and z and sets its own w to 1.0 (0x00336757-0x00336769); zeroed by the reuse reset (0x00236BF0) |
+| `+0x120` | `u8[32]` | span0120 | bytes +0xA0 to +0xBF of the locomotion block, between its destination +0x90 and the detour point copy +0xC0; zeroed by the reuse reset (0x00236BF0) |
+| `+0x14C` | `u8[4]` | span014C | the fourth dword after the locomotion block's detour point copy +0xC0-+0xC8, which the solver 0x00336CE0 writes as three floats (0x00336DE1-0x00336DFD); zeroed by the reuse reset (0x00236BF0) |
+| `+0x1B4` | `u8[12]` | span01B4 | bytes +0x134 to +0x13F of the locomotion block, between its sidestep odds +0x130 and its direction +0x140; zeroed by the reuse reset (0x00236BF0) |
+| `+0x1D4` | `u8[12]` | span01D4 | bytes +0x154 to +0x15F of the locomotion block, between its target handle +0x150 and its goal kind +0x160; zeroed by the reuse reset (0x00236BF0) |
+| `+0x1E4` | `u8[12]` | span01E4 | bytes +0x164 to +0x16F of the locomotion block, between its goal kind +0x160 and its flags +0x170 (unit +0x1F0); zeroed by the reuse reset (0x00236BF0) |
+| `+0x1F8` | `u8[8]` | span01F8 | the eight bytes between the locomotion block's slot byte +0x177 (unit +0x1F7) and the navigation path state at +0x200; zeroed by the reuse reset (0x00236BF0) |
+| `+0x697` | `u8` | span0697 | the byte after the three bytes +0x694-+0x696 the reuse reset sets to 0xFF and 0xFFFF, before the combat stats record pointer +0x698; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0x6A8` | `u8[8]` | span06A8 | the eight bytes between the spawn record pointer +0x6A0 and the command word +0x6B0; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0x6BA` | `u8[6]` | span06BA | bytes +0x6BA to +0x6BF at the head of the action state +0x6B0-+0xB9F, which 0x0030EDA0 restores as a whole from the saved block at [+0xB88] (the copy loop 0x0030EDB6-0x0030EE07 nine times 0x80 bytes, then 0x70 bytes at 0x0030EE09-0x0030EE44) |
+| `+0x704` | `u8[4]` | span0704 | bytes 4 to 7 of the action block +0x700, copied with it to the commit copy +0x718 and the cancelled copy +0x730 by the reuse reset (0x00236B5C-0x00236B80); restored with the action state by 0x0030EDA0 (0x0030EDEF) |
+| `+0x716` | `u8[2]` | span0716 | the two bytes after the action id +0x714, copied with the target focus handle +0x710 as one qword to +0x728 and +0x740 (0x00236B6A-0x00236B95); restored by 0x0030EDA0 (0x0030EDF7) |
+| `+0x746` | `u8[2]` | span0746 | the cancelled copy's counterpart of +0x716, written by the qword copies into +0x740 (0x00236B8D; 0x003105D0 at 0x003106E3); restored by 0x0030EDA0 (0x0030EDCF, 0x0030EE1A) |
+| `+0x75A` | `u8[2]` | span075A | the two bytes after the word +0x758 the reuse reset sets (0x00236BD9); restored by 0x0030EDA0 (0x0030EDD7, 0x0030EE22) |
+| `+0x980` | `u8[8]` | span0980 | the eight bytes after the target buffer +0x778-+0x97F, inside the action state 0x0030EDA0 restores (0x0030EDEF, 0x0030EE3A) |
+| `+0xB94` | `u8[12]` | span0B94 | the last twelve bytes of the action state +0x6B0-+0xB9F, after the dword +0xB90 the reuse reset clears (0x00236BE0); restored by 0x0030EDA0's tail copy (0x0030EE44) |
+| `+0xBBC` | `u8[4]` | span0BBC | the four bytes between +0xBB8 and +0xBC0, before the perception candidate count +0xBC4; outside the 0x4F0 bytes 0x0030EDA0 restores (they end at +0xB9F) |
+| `+0xDCA` | `u8[2]` | span0DCA | the two bytes after the reserved consumed item +0xDC8 (set to 0xFFFF by the reuse reset, 0x00236AFC), just past the 32 entries of the perception cache +0xBC8-+0xDC7 |
+| `+0xE5C` | `u8[4]` | span0E5C | the four bytes between the reserved gil cost +0xE58 and the definition row pointer +0xE60; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0xE94` | `u8[4]` | span0E94 | the four bytes after the dword +0xE90 the reuse reset clears (0x00236B19), before +0xE98; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0xE9B` | `u8` | span0E9B | the byte after +0xE98-+0xE9A, before +0xE9C; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0xEAA` | `u8[2]` | span0EAA | the two bytes after the slot index +0xEA9, before +0xEAC; zeroed with the slot by 0x00234480 (0x002344D2) |
+| `+0xEB4` | `u8[156]` | tail0EB4 | the bytes from +0xEB4 to the end of the 0xF50-byte unit; 0x0031AD90 returns the address +0xED0 inside them (0x0031AD92); zeroed with the slot by 0x00234480 (0x002344D2) |
+
 ## Related
 
 - [Battle units](battle-units.md): the pool, the bind and the flag word.

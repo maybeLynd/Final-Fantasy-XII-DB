@@ -7,9 +7,9 @@ addresses: "0x01E0C2B8, 0x00253B90, 0x0030C0D0, 0x00253BA0, 0x00254EA0, 0x003444
 
 ## What the player sees
 
-Hold R2 in the field until the hold arms and the word FLEEING appears on the HUD: the party
+Press R2 in the field; once the arming counter has run, the word FLEEING appears on the HUD: the party
 stops answering the enemy, combos stop chaining for anyone who is not Confused or Berserk, and
-most battle commands are refused until the party fights again. Hold R2 again and the label is
+most battle commands are refused until the party fights again. Press R2 again and the label is
 gone and the party fights. The ordinary state is the fighting one. Area scripts put the party
 into the fleeing state at map entry and after a teleport, and the game restores the toggle's own
 state a moment later.
@@ -69,11 +69,11 @@ the edge byte `0x020927E4` was clear, is forced to 1 by the device poll path (`0
   `0x00366950`;
 - unless a skip predicate holds, the arming counter runs (`0x003669F0`, then `0x003667E0` for state
   0 or `0x00366870` for state 1), and a non-zero state is replaced by `0x003669F0()`, bit 2 of
-  `0x022CBE1A`: the flag drops to 0 only once the hold has armed.
+  `0x022CBE1A`: the flag drops to 0 only once the counter has armed.
 
-The arming counter makes the hold audible. `0x00366870` starts sound `0x52` (`0x003A1180`, then
+The arming counter is audible. `0x00366870` starts sound `0x52` (`0x003A1180`, then
 `0x002DF220`) on its first pass, keeping the handle in `0x022CBE1C` and bit 4 of `0x022CBE1A`;
-`0x003667E0` stops that sound if it still plays (`0x002DEE80`, `0x002DF0F0`) and, when the hold had
+`0x003667E0` stops that sound if it still plays (`0x002DEE80`, `0x002DF0F0`) and, when the counter had
 armed (bit 2) and `0x00265680()` holds with bit 6 clear, plays sound `0x2A` (`0x00249C60`)
 ([sound effects](../Sound-And-Music/sound-effects.md)).
 

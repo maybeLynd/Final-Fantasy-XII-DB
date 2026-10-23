@@ -176,8 +176,8 @@ The library's texture utility `CTextureUtil` is a reference-counted singleton (`
 `TEXSHADERSET::CreateEffect` `0x0072A320` (`0x0072D872`) and abandons the sequence on a non-zero result.
 
 `0x0072A320` (13,547 bytes) loads the compiled effect once through `0x0078A120`, returns the loader's
-error unchanged when that fails, and then fetches a handle for each technique and uniform it names:
-325 `tech_` names and 36 uniforms, among them `fParam_FocusDistance`, three HDR formats
+error unchanged when that fails, and then fetches a handle for each technique and uniform it names. Its body
+references 364 distinct strings: 325 `tech_` names and 36 uniforms, among them `fParam_FocusDistance`, three HDR formats
 (`fParam_HDRFormatFactor_LOGRGB`, `_REINHARDRGB`, `_RGBALUM`) and the vignette and lens-distortion
 parameters. Its ten log calls are gated by `0x01F3BA80` together with `0x02EA0B40` or `0x01F3BA90`.
 
@@ -190,7 +190,8 @@ HDR conversions such as `_REINHARDRGB_RGB` and `_LOGRGBLUM_RGBFAST` (table `0x02
 Handles are 32-bit values stored from `this + 8` (`0x0072A496`). One run is addressed from `this + 0x1AA10`
 (`0x0072BA97`): a five-pass loop (`0x0072BAB0`-`0x0072C5C3`) fills 25 slots from `+0x1A9C0` to `+0x1AA20`, and
 other loops fill arrays of 8 and 4. The last slot is at `+0x221D8`. The placed slots are in
-[the handle layout](post-processing-ppfx-handle-layout.tsv).
+[the handle layout](post-processing-ppfx-handle-layout.tsv): 352 handle stores, fewer than the names, because a
+family row fetches several names under one count and suffix table.
 
 ### The render-pass registries
 

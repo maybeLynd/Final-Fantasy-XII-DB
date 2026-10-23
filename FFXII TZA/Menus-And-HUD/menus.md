@@ -164,7 +164,7 @@ otherwise with `0x00916330` (`0x00247570`).
 | the chosen map node's paired value, singleton `+0x10FAC` | the world map (`0x002901D0`, `0x0029020E`) | the script verb's result, for ids 17 and 18 only (`0x00254710`) |
 | mailbox `+0xE`, `+0xF` | the menu close (`0x002E1BA0`) | `openfullscreenmenu_48d`, `tutorial_sync_partymenu`, `is_callpartymenu_status` |
 | the main menu's chosen entry, root `+0xDF8` | `0x00280DE0` (`0x002810FC`) | the Equip compares (`0x00293791`-`0x00295ACB`) |
-| the command menu's chosen member, `+0x2FE0` | `0x00278135`, `0x0027A5A1` | 12 readers, resolved through `0x002732E0` |
+| the command menu's chosen member, `+0x2FE0` | `0x00278135`, `0x0027A5A1` | 12 reads (`0x00276FC5`-`0x0027A6D8`); three of them resolve it through `0x002732E0` (`0x00276FCB`, `0x002782BC`, `0x002793BA`) |
 
 ### Ids nothing posts
 

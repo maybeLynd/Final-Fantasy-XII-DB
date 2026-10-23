@@ -36,8 +36,10 @@ A pool or in-place widget is marked borrowed (`+0x40` bit 14): the release then 
 
 ### Sizes
 
-Over the image there are 296 construction sites in 235 functions, building 267 procedures at 83 sizes, from `0xC0` to
-`0x179E0`. No procedure is built at two sizes, so a widget's size identifies its type.
+Over the image there are 296 construction sites in 235 functions, building 267 procedures. 265 of them are always
+built at one size, 82 sizes in all from `0xC0` to `0x179E0`, which several procedures share. The other two grow with
+their content: `0x00571A50` is `0xF0` bytes plus two for each counted entry (`0x00570CA8`), and `0x00578450` is `0x100`
+plus eight for each line `0x002B39A0` finds (`0x005782CD`).
 
 | Size | Procedure | Widget |
 |---|---|---|

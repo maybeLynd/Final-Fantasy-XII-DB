@@ -147,7 +147,8 @@ controller sets `0x0209AC10`.
 
 ## State
 
-The save payload bytes `0` to `0xCF4`, the script image's file and local areas, and the two banks.
+The save payload bytes `0` to `0xCF5` (the last declared offset, `0xCF4`, is a 16-bit variable), the script
+image's file and local areas, and the two banks.
 
 ## Modding notes
 

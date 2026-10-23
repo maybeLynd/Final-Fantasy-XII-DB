@@ -147,6 +147,64 @@ The per-switch installers, teardown stubs and all four slots are in
 Instruction-level accesses to the D3D11 shader pass state are in
 [shader-variant-selection-p-shader-pass-state-d3d11-accesses.tsv](shader-variant-selection-p-shader-pass-state-d3d11-accesses.tsv).
 
+### Reflected members
+
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+```struct PEffect base=record size=0x78
++0x00    u32             m_supportedLightMask   0 in all 93 shipped effects; m_supportedLightMask (u32), registered by
+                                                0x005E3F70 (0x00632960 at 0x005E3FFA); the cluster loader binds it by name
+                                                (0x0059B430) in the 2,184 shipped .phyre files that declare PEffect
++0x04    u32             m_supportedShadowCasterMask m_supportedShadowCasterMask (u32), registered by 0x005E3F70
+                                                     (0x00632960 at 0x005E4069); the cluster loader binds it by name
+                                                     (0x0059B430) in the 2,184 shipped .phyre files that declare PEffect
++0x08    ptr             m_effectFile           m_effectFile (ptr), registered by 0x005E3F70 (0x00632960 at 0x005E40D7); the
+                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
+                                                files that declare PEffect
++0x10    ptr             m_effectFileFromBasePath m_effectFileFromBasePath (ptr), registered by 0x005E3F70 (0x00632960 at
+                                                  0x005E4145); the cluster loader binds it by name (0x0059B430) in the
+                                                  2,184 shipped .phyre files that declare PEffect
++0x68    ptr             m_effectSource         m_effectSource (ptr), registered by 0x005E3F70 (0x00632960 at 0x005E41B3);
+                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
+                                                .phyre files that declare PEffect
++0x70    u32             m_maxLightCount        0 in all 93 shipped effects; m_maxLightCount (u32), registered by
+                                                0x005E3F70 (0x00632960 at 0x005E450B); the cluster loader binds it by name
+                                                (0x0059B430) in the 2,184 shipped .phyre files that declare PEffect
++0x74    u32             m_numSupportedShaderLODLevels 0 in all 93 shipped effects; m_numSupportedShaderLODLevels
+                                                       (u32), registered by 0x005E3F70 (0x00632960 at 0x005E457A); the
+                                                       cluster loader binds it by name (0x0059B430) in the 2,184 shipped
+                                                       .phyre files that declare PEffect
+```
+
+```struct PEffectVariant base=record size=0x68
++0x38    u16             m_largestShaderPassCount m_largestShaderPassCount (u16), registered by 0x005E45B0 (0x00632960 at
+                                                  0x005E4867); the cluster loader binds it by name (0x0059B430) in the
+                                                  2,184 shipped .phyre files that declare PEffectVariant
++0x3A    u8[6]           pad3A                  the bytes after m_largestShaderPassCount (u16 at +0x38) up to
+                                                m_tweakableShaderParameterDefinitions at +0x40; no registered member
+                                                covers it (0x005D9280 registers the 0x68-byte class at 0x005D92D0)
++0x60    u16             m_tweakableParameterBufferSize m_tweakableParameterBufferSize (u16), registered by 0x005E45B0
+                                                        (0x00632960 at 0x005E49F3); the cluster loader binds it by name
+                                                        (0x0059B430) in the 2,184 shipped .phyre files that declare
+                                                        PEffectVariant
++0x62    u16             m_untweakableParameterBufferSize m_untweakableParameterBufferSize (u16), registered by
+                                                          0x005E45B0 (0x00632960 at 0x005E4A62); the cluster loader binds it
+                                                          by name (0x0059B430) in the 2,184 shipped .phyre files that
+                                                          declare PEffectVariant
++0x64    u8[4]           pad64                  the bytes after m_untweakableParameterBufferSize (u16 at +0x62) up to
+                                                the end of the 0x68-byte class; no registered member covers it
+                                                (0x005D9280 registers the 0x68-byte class at 0x005D92D0)
+```
+
+```struct PMaterialSwitch base=record size=0x10
++0x00    ptr             m_name                 m_name (ptr), registered by 0x005E52D0 (0x00632960 at 0x005E5359); the
+                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
+                                                files that declare PMaterialSwitch
++0x08    ptr             m_value                m_value (ptr), registered by 0x005E52D0 (0x00632960 at 0x005E53C7); the
+                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
+                                                files that declare PMaterialSwitch
+```
+
 ## Shipped data
 
 Measured over the shader clusters in the archive (`gamedata/d3d11/artdata/shaders/*.phyre`).
@@ -168,7 +226,7 @@ Measured over the shader clusters in the archive (`gamedata/d3d11/artdata/shader
 
 A model names the compiled shader it draws with as `<shader>.fx#<hash>`, in its own cluster's strings; the archive
 ships each such variant as a separate cluster beside the shader, and no other file (`idmaps.txt` included) and no
-string in the executable builds or holds those names. Measured by `Database/Tools/phyre-census/shader_variant_files.py`.
+string in the executable builds or holds those names.
 
 ## State
 

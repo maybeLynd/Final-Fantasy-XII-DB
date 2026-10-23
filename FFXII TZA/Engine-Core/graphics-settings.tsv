@@ -37,11 +37,11 @@ block_off	address	shader_constant	cbuffer_off	config_key	default	menu_ids	menu_l
 +0x08C	0x02CB805C	mapWaterParallaxFactor	0x210	mDebugWaterParallaxFactor	0.04	125	Water Parallax Occlusion Debug Factor
 +0x090	0x02CB8060	mapWaterFresnelFactor	0x214	mDebugWaterFresnelFactor	3.81	126	Water Fresnel Factor
 +0x094	0x02CB8064	mapParallaxEnabled	0x21C	-	1	-	-
-+0x098	0x02CB8068	mapWaterBias	0x218	-	0	-	-
++0x098	0x02CB8068	mapWaterBias	0x218	mWaterBias	0	-	-
 +0x09C	0x02CB806C	mapIrrCubeMapIntensity	0x234	mMapIrrCubemapIntensity	2	119	Map IBL Diffuse Intensity
-+0x0A0	0x02CB8070	vMapAmbientColor	0x220	-	1	-	-
-+0x0A4	0x02CB8074	vMapAmbientColor[1]	0x224	-	1	-	-
-+0x0A8	0x02CB8078	vMapAmbientColor[2]	0x228	-	1	-	-
++0x0A0	0x02CB8070	vMapAmbientColor	0x220	mMapAmbientColorR	1	-	-
++0x0A4	0x02CB8074	vMapAmbientColor[1]	0x224	mMapAmbientColorG	1	-	-
++0x0A8	0x02CB8078	vMapAmbientColor[2]	0x228	mMapAmbientColorB	1	-	-
 +0x0AC	0x02CB807C	vMapAmbientColor[3]	0x22C	-	1	-	-
 +0x0B0	0x02CB8080	vMapAmbColorCutPercent	0x230	mMapAmbientColorCutPercent	0.3	28	Use PS2 lighting
 +0x0B8	0x02CB8088	mapIrrCubeMapFactor	0x578	-	0	-	-
@@ -260,14 +260,14 @@ block_off	address	shader_constant	cbuffer_off	config_key	default	menu_ids	menu_l
 +0x420	0x02CB83F0	m_iChrPCFBlurForLoopEnd	0x5B4	-	-	-	-
 +0x424	0x02CB83F4	m_iMapPCFBlurForLoopStart	0x5A8	-	-	-	-
 +0x428	0x02CB83F8	m_iMapPCFBlurForLoopEnd	0x5AC	-	-	-	-
-+0x42C	0x02CB83FC	mMapEnableHeightFade	0x5B8	-	0	-	-
++0x42C	0x02CB83FC	mMapEnableHeightFade	0x5B8	mMapEnableShadowFade	0	-	-
 +0x42D	0x02CB83FD	mChrEnableHeightFade	0x5BC	-	-	-	-
 +0x430	0x02CB8400	mMapShadowValueLerpMin	0x5C0	-	-	-	-
 +0x434	0x02CB8404	mChrShadowValueLerpMin	0x5C4	-	-	-	-
-+0x438	0x02CB8408	mShadowFadeSpeed	0x5D0	-	0	-	-
-+0x43C	0x02CB840C	mShadowFadeRange	0x5D8	-	0	-	-
-+0x440	0x02CB8410	mShadowFlyingFadeSpeed	0x5D4	-	0	-	-
-+0x444	0x02CB8414	mShadowFlyingFadeRange	0x5DC	-	0	-	-
++0x438	0x02CB8408	mShadowFadeSpeed	0x5D0	mMapShadowFadeSpeed	0	-	-
++0x43C	0x02CB840C	mShadowFadeRange	0x5D8	mMapShadowFadeRange	0	-	-
++0x440	0x02CB8410	mShadowFlyingFadeSpeed	0x5D4	mMapShadowFlyingFadeSpeed	0	-	-
++0x444	0x02CB8414	mShadowFlyingFadeRange	0x5DC	mMapShadowFlyingFadeRange	0	-	-
 +0x448	0x02CB8418	m_mapFadeHeight	0x5E0	-	1	-	-
 +0x450	0x02CB8420	ssssb	0x590	-	0	-	-
 +0x454	0x02CB8424	ssssb[1]	0x594	-	-0.5	-	-

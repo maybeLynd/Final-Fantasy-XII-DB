@@ -202,6 +202,15 @@ Sub-mesh 1's slot names do not matter to this path; the texture is the one the c
 widget colour to `0x80000000` (RGB 0, alpha `0x80`) and calls `0x00555400` with no image and a scale of
 1.2 (`0x0055A967`): the same strip mesh, untextured and black.
 
+### What the load checks
+
+Nothing in the file is validated:
+
+- `0x00274780` takes each directory offset as stored and reads no size (`0x00274783`).
+- The binder's one test is the slot name against the six names at `0x00D23270`; a slot that matches none keeps its
+  name bytes where the image pointer goes ([binding textures](#binding-textures)).
+- No vertex index is compared with `vtxCount`.
+
 ## Modding notes
 
 - Only the two directory offsets are read; the size fields, `idxCount`, the header padding and

@@ -48,36 +48,19 @@ when the entry lacks them: `eyeVfxZBias`, `lightAmbientA`, `variation`, `clut`, 
 (`0x001C6419`), and the other 28 keys are read from the entry alone, so a missing one reads as 0 (`0x001C63E7`,
 `0x001C6450`).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/json_configs.py`:
+The columns come from the documents and from the loaders that read them:
 
 1. every `.json` file under `jsondata/` of the extract, sorted; four are not strict JSON (a trailing comma, or a
-   missing comma between members) and the decoder repairs only those two defects: `cutscenes/evt_t0005.json`,
+   missing comma between members): `cutscenes/evt_t0005.json`,
    `maps/bhm0201.json`, `uisize/uisize.json` and `uisize/uisize_sd.json`; 26 cutscene documents are empty;
 2. every leaf of every document, keyed by family and the leaf's own name, with the documents that carry it, its
    JSON types and its values;
 3. whether the executable holds the name as a string between two zero bytes, and at which file offset;
-4. the reader columns, kept with the script as one row per family and key and written from the loaders'
-   code; the script refuses to write when that table and the files name different keys;
+4. the reader columns, one row per family and key, from the loaders' code;
 5. for the gallery, every entry's keys as columns, and the model file and bestiary names that
    [Bestiary](../Enemy-Spawning/bestiary.md) lists for the entry's model id.
-
-### Checks
-
-- The extract holds 830 `.json` files under `jsondata/`: 459 map, 337 cutscene, 28 palette and 2 UI-size documents
-  and the four root files. The TSV has 717 data lines, one per family and key, and the reader table names the
-  same 717.
-- `monstergallery.json` has 385 entries and the gallery TSV 385 data lines.
-- Two runs over the same files give byte-identical output.
-- `lightShaftColorR`, `G` and `B` compared with the code: `0x001C7940` reads the three and `lightShaftColorA` into
-  four floats and passes them to `0x00194400` (`0x001C8AF5`), which stores the first three at `+0xC4`, `+0xC8` and
-  `+0xCC` of the post-process parameter object and 0 at `+0xD0`.
-- `modelScale` compared with the code: its setter `0x001EBB60` stores the value at `+0x23C` of the monster viewer.
-- `ActionListMistLineOffset` compared with the code: the battle menu adds the global `0x01E0CEA0` it sets to the
-  word it reads at `+0x9E` (`0x002C5304`, `0x002C530B`).
-- Where a row says a value is only written, the sweep it rests on is named in the row: every access to the field
-  in the object's own methods, the functions that load the object's pointer, and the callers of its getter.
 
 ## Columns
 

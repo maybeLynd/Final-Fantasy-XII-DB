@@ -34,12 +34,6 @@ The engine handles one past the limit in four ways, and the `past_it` column say
 - it writes past the end, a fault or a corruption waiting to happen (the 129th bound model, the gambit page's 18th row,
   an async request with no free entry).
 
-### How it is built
-
-The rows come from the final pages: every sentence that states a count, capacity, bound or range was listed, and each
-limit kept was read at the instruction that sets it. Rows whose past-the-limit behaviour the code does not settle on
-its own are not listed until it is read.
-
 ## Columns
 
 | Column | Meaning |

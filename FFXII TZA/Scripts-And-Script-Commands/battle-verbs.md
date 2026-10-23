@@ -92,8 +92,8 @@ script-chosen id.
 Bits 9 and 10 are tested in the engagement update `0x00307D10` (`0x00307D84`, `0x00307DA7`, `0x00307DD1`):
 with bit 9 set the unit counts as engaged while `0x0030B050` finds a qualifying target, bit 10 grants
 one grace pass, and the bits clear themselves afterwards. `0x00307D10` also clears them at once in a
-town and when the unit flees (`0x00253B90`). This covers the operand search of the whole image for
-`[reg + 4]` with `0x200`, `0x400`, `0x600` or `0xFFFFF9FF` and byte `+5` tests.
+town and when the unit flees (`0x00253B90`). `0x00311E90` and `0x00311F50` set both bits with `or [+4], 0x600`
+(`0x00311F19`, `0x00311F5E`).
 
 `0x002FEDC0`, `0x00301140` and `0x00313480` also clear bits 9, 10 and 16 (`and [+4], 0xFFFEF9FF` at
 `0x002FEDC6`, `0x00301231`, `0x003134A5`). Statuses `0x08000020` hold a unit engaged without these bits.

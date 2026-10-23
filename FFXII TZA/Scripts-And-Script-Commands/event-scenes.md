@@ -105,7 +105,7 @@ Globals:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x2098E10` | `SceneManager[4]` | managers | manager `m` at `+ m × 0x288`; 0 is the zone, 1 to 3 the scenes |
+| `+0x2098E10` | `SceneManager[5]` | managers | manager `m` at `+ m × 0x288`, five slots ([actor managers](../Characters-And-Objects/actor-managers.md)); 0 is the zone, 1 to 3 the scenes |
 | `+0x22C6E48` | `u64[4]` | pendingLoad | per manager; bit 0 is the start hold |
 | `+0x22C6D20` | `u8[4]` | unloadRequest | per manager |
 | `+0x22CB730` | `SkipEntry[32]` | skips | entry `i + m × 8`, stride 16 |

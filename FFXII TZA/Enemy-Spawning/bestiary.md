@@ -31,16 +31,16 @@ decoder asserts that each definition's `placements` count is its number of lines
 The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
 installer `0x0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/bestiary.py` reads the files the way the game reads them:
+Each line is read as the game reads the files:
 
 1. The area files. The executable's kind-21 path array `0x01EDC280`, which `0x002DF9A0` installs at `0x0215F0A8` for every
    language but Korean and Chinese, names area *a*'s file at position 2*a* under `plan_master/in`. 215 positions name
    a file and 166 of those ship. Each section is an `st2e` table whose rows start at the section's `+0x0C`.
 2. The placements. A map's script is entry 3*n* of the US kind-5 array `0x01EE23A0` (`0x002DF9A0`, language 1), and its
-   area is the word `+4` of row *n* of `map_ref.bin`, as `0x00264ED0` reads it. The decoder walks every function of
-   those 708 scripts.
+   area is the word `+4` of row *n* of `map_ref.bin`, as `0x00264ED0` reads it. The placements are the calls in every
+   function of those 708 scripts.
 3. The names: the definition's name word `+0x08` through the word banks of the `us` `battle_pack.bin`, as `0x0023A570`
    resolves it through `0x02EBF170`.
 4. The item names: ids through the [Item list](../Items-Equipment-Shops-And-Licenses/item-list.md),
@@ -48,11 +48,11 @@ installer `0x0023A570` applies it to a unit through the spawn record ([Spawn rec
    [Loot list](../Items-Equipment-Shops-And-Licenses/loot-list.md) and key-item list, and `0xE000` + *n* as *n* gil
    ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
 5. The model: the class row's dword `+0x00` is a bound id (letter class in bits 16-23, number in bits 0-15).
-   `0x002ED6F0` turns it into a resource kind and file index, and the decoder takes the file name from that kind's path
-   array ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
+   `0x002ED6F0` turns it into a resource kind and file index, and the file name is that index's entry of the kind's
+   path array ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
 
 The 31 `bts_` test-battle scripts under `plan_map` hold the other 517 placements of the shipped scripts. The US
-kind-5 array names none of them, so no area load runs them, and the decoder leaves them out.
+kind-5 array names none of them, so no area load runs them, and they are left out.
 
 ### The placement verbs
 
@@ -235,34 +235,6 @@ which `0x003EA710` binds, and no instruction reads or writes them afterwards. Ev
   and `0x00317090`.
 
 No instruction in that set touches the bytes above, so the TSV gives them raw.
-
-### Checks
-
-- The 166 files' own slot 2 headers give 1,146 rows in all, and the TSV has 1,146 data lines; the slot 0, 5 and 6
-  headers give 954, 1,119 and 619 rows, the counts on the area file page.
-- Two runs over the same files give byte-identical output.
-- The 708 us map scripts hold 6,229 `btlAtelSetUnit` calls, each followed in the same function by one
-  `btlAtelSetLevel`, one `btlAtelSetStatus` and one `btlAtelSetAbility` with immediate arguments, and each naming a
-  row below its area's slot 2 count; the decoder asserts all three. With the 517 of the `bts_` scripts they are the
-  6,746 calls of each verb in the us scripts.
-- The `in` and `ch` area files are byte-identical (166 of 166), and the 708 us map scripts place every enemy exactly
-  as the `fr` and `in` copies do. Only the names differ by language: 986 of the 1,146 differ in the `de`
-  `battle_pack.bin`. The TSV keeps the `us` names.
-- No text field keeps an undecoded `{hh}` byte.
-
-Five definitions compared with the code that reads them:
-
-| Definition | Field | Shipped bytes | Reader and result |
-|---|---|---|---|
-| Wolf, `dst_a` row 2 | HP, base row 2 and growth row 1 | `+0x20` = `0x5E`, `0x14` | `0x002FEF30`: 94 + 20 per level above the placement's base |
-| Wolf | level, script `dst_a01` | `btlAtelSetLevel(2, 1)` | `0x002398F0`: level 2 or 3, reference level 2 |
-| Wolf | steal | `+0x32` = `0x2021`, `0x2069`, `0x10F3` | `0x00390390`: Wind Stone, Wolf Pelt, Pointy Hat |
-| Flan, `mic_a` row 4 | EXP, LP | base `+0x34` = 200, `+0x2F` = 1; growth 7, 0 | `0x002F8BB0`, `0x002F90C0`: 200 EXP + 7 per level, 1 LP |
-| Flan | weak | class row 4 `+0x2C` = `0x01` | `0x002FEF30` copies it to stats `+0x40`: fire |
-| Malboro, `lus_d` row 3 | poach | `+0x44` = `0x207E`, `+0x46` = `0x207F` | `0x00390680`: Malboro Fruit at 95 %, Malboro Flower at 5 % |
-| Malboro | clan points | base `+0x00` = 330, growth 85 | `0x00317090`: 330 + 85 per level |
-| Basch, `naf_a` row 2 | evades | `+0x15` = `0x03`, base `+0x02` = 25, `+0x03` = 10 | `0x002FEF30`: shield evade 25 and magick evade 10 from the row, not the Buckler |
-| Omega Mark XII, `gil_i` row 7 | absorb | class row 6 `+0x29` = `0xFF` | `0x002FEF30`: absorbs all eight elements |
 
 ## Columns
 

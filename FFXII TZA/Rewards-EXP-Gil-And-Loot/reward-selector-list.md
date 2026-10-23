@@ -15,11 +15,10 @@ class 15 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
   triple.
 - The other 211 rows hold `0xFFFF` in all six ids.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/reward_selectors.py` reads the `st2e` table at entry `+0x9C` (256 rows of 12 bytes from
-the section's `+0x20`) and describes each named package by its own row of
-[Reward package list](reward-package-list.md).
+The selector table is the `st2e` table at entry `+0x9C` (256 rows of 12 bytes from the section's `+0x20`); each
+named package is described by its own row of [Reward package list](reward-package-list.md).
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -33,13 +32,6 @@ Class 30 shares that arm and copies the first triple too. `0x0030AAC0(id, &a, &b
 `0x003F4C30` (`0x003F4CAD`), reads a selector that way: it fills its own record with class 30, or 31 when `flags` has
 bit 1 (`0x0030AADC`-`0x0030AAF1`), and the id, calls `0x0031C5D0`, and returns the three words at the record's `+0x38`,
 `+0x3A` and `+0x3C`, or -1 when the fill fails.
-
-### Checks
-
-- The table's header gives 256 rows of 12 bytes, and the TSV has 256 data lines.
-- Two runs over the same files give byte-identical output.
-- Rows compared with the handler: `0xA080` names `0x9003`, 300 gil, Potion x2 and Teleport Stone x1; `0xA0AB` names
-  `0x902E`, 30,000 gil and Godslayer's Badge x1.
 
 ## Columns
 

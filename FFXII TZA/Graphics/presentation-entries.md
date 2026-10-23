@@ -136,7 +136,7 @@ else the default 0) and byte 3 of dword `0x2D` (`0x63070B2D`) for state 7, and f
 | 6 | `0x60070C30` | 0 | 1 | 2: 1 when the low six bits of byte `+2` of the actor's resource block (`0x00422D90` of entry `+0x310`, `+0x318`) are below 16; 3 and 5 kept; 4: 1 when those bits are non-zero |
 
 Over the 1,066 shipped models the forward byte is 0 in 626 (343 of them by default), 1 in 129, 2 in 10 and 3 in
-301; the sideways and backward bytes are 0, 1 or 2; the turn byte runs 0 to 5 (`fcp_locomotion_props.py`).
+301; the sideways and backward bytes are 0, 1 or 2; the turn byte runs 0 to 5.
 
 The selector then sets the entry's `+0x0C` bit 13. In mode 1, and in mode 2 when `0x002ED530` answers for the
 record's actor (`+0x108`), it times the states with two byte counters in 30 fps frames (`[0x01DFE0B4]`, 1 at 30
