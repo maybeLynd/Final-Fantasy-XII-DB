@@ -590,8 +590,16 @@ Command `0x05` starts the volume ramp (`0x007AAD90`, from `0x007AB751`) and comm
 `0x007AB765`): the current value becomes the start, the argument the target and the duration, time 0, curve 0, and
 the ramp runs. Each driver pass advances both (`0x007AAEA0`, from `0x007A54B2`).
 
+Each ramp is a static `SQEX::Sd::DynamicValue<0>` whose vtable word sits 8 bytes before it, at `0x01F403D8` and
+`0x01F40408`; the file holds the vtable `0x01CB44A0` in both. At exit, `0x008B8690` and `0x008B8680` store the base vtable
+`0x01CB4470`, `SQEX::Sd::SeadObject<0,8>`, in them. `0x00169710` and `0x00169700`, which run from the C++ initialiser table
+(its entries `0x008C4940` and `0x008C4948`), register the two stubs with `atexit` (`0x00808B90`; [Static initialisation and
+teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)).
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x01F403D8` | `void*` | `0x01CB44A0` | the volume ramp's vtable word | `0x008B8690`, `0x01CB4470` at exit (`0x008B8697`) | no instruction names it |
+| `0x01F40408` | `void*` | `0x01CB44A0` | the pitch ramp's vtable word | `0x008B8680`, `0x01CB4470` at exit (`0x008B8687`) | no instruction names it |
 | `0x01F403E4` | `f32` | 0 | the volume ramp's target | `0x007AAA40` (`0x007AAC12`); `0x007AAD90` (`0x007AAE05`) | `0x007AAD90` (`0x007AADB4`, `0x007AADD5`); `0x007AAEA0` (`0x007AAF18`, `0x007AAF31`) |
 | `0x01F403E8` | `f32` | 0 | its time so far; the pass adds its time step and stops at the duration (`0x007AAEDB`-`0x007AAEF0`) | `0x007AAA40` (`0x007AAC12`); `0x007AAD90`, 0 (`0x007AAE15`); `0x007AAEA0` (`0x007AAEE6`, `0x007AAEF0`) | `0x007AAD90` (`0x007AADBE`); `0x007AAEA0` (`0x007AAED1`) |
 | `0x01F403EC` | `f32` | 0 | its duration; with a duration of 0 the value is the target | `0x007AAA40` (`0x007AAC12`); `0x007AAD90` (`0x007AAE0D`, `0x007AAE53`, `0x007AAE86`) | `0x007AAD90` (`0x007AADA7`); `0x007AAEA0` (`0x007AAEB0`) |

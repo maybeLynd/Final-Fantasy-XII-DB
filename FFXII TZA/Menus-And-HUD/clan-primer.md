@@ -276,6 +276,55 @@ closes (`0x0057032C`, `0x00570350`).
   it to `+0x144` (`0x001C694D`);
 - `eyeVfxZBias` (`0x008FB498`) to `0x002F1690` (`0x001C659B`), which stores the value less 1000.0 at `0x022BDEBC`.
 
+#### The model record
+
+`0x002EE9C0(model, shown, count, items, a5, a6)` writes a `0x30`-byte record: the current one at `0x02164210`, or the
+request at `0x02164240` (`0x002EEA75`-`0x002EEAB3`).
+
+- With the loader stage `0x01EEBAA8` at 8, a 32-bit compare, it writes the current record and sets the stage to 0, so
+  the loader starts again (`0x002EE9EA`-`0x002EE9FC`, `0x002EEAE5`).
+- Otherwise a request for the current model (`0x002EE9FE`) returns its entry `[0x02164238]` and clears the request flag
+  `0x02164208`. Any other is written as the request and sets the flag (`0x002EEAF5`); a request already pending first
+  gives its entry of `0x01EEBAB0` back as -1 (`0x002EEA1B`-`0x002EEA27`).
+- The entry is the first of the ten dwords of `0x01EEBAB0` that holds -1, searched from 0, or from the pending request's
+  entry `[0x02164268]`, up to `0x01EEBAD8`, the dword just past the table (`0x002EEA32`-`0x002EEA6E`). With none free it
+  returns -1 and writes no record.
+
+The record's words, the current one's address first:
+
+| Offset | Current | Field |
+|---|---|---|
+| `+0x00` | `0x02164210` | the model |
+| `+0x04`, `+0x08` | `0x02164214`, `0x02164218` | the fifth and sixth arguments |
+| `+0x0C` | `0x0216421C` | the weapon count, `count` |
+| `+0x10`, `+0x14` | `0x02164220`, `0x02164224` | weapon 0's and weapon 1's render slot |
+| `+0x18`, `+0x1C` | `0x02164228`, `0x0216422C` | weapon 0's and weapon 1's model id |
+| `+0x20`, `+0x24` | `0x02164230`, `0x02164234` | weapon 0's and weapon 1's item id, `count` dwords copied from `items` when `count` is above 0, a signed compare (`0x002EEABB`-`0x002EEADE`) |
+| `+0x28` | `0x02164238` | the entry of `0x01EEBAB0` |
+| `+0x2C` | `0x0216423C` | `shown` |
+
+The settle `0x002EED80` copies the request over the current record word by word (`0x002EEE04`-`0x002EEE58`). The loader
+`0x002EE430` fills the weapon words of the current record, one stage per call. The release `0x002EEB20` runs only at stage
+8 (`0x002EEB24`) and clears them through a pointer that starts at `0x02164220` and steps 4 bytes per weapon
+(`0x002EEBAC`-`0x002EEC9B`), while the weapon index is below `0x0216421C`, a signed compare (`0x002EEC95`); it then sets the
+count to 0 (`0x002EECAB`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02164214` | `u32` | 0 | `+0x04`, passed to `0x0042FB80` as its second argument when the body loads | `0x002EE9C0` (`0x002EEA84`); `0x002EED80`, from `0x02164244` (`0x002EEE16`) | `0x002EE430` (`0x002EE559`) |
+| `0x02164218` | `u32` | 0 | `+0x08`, passed to `0x0042FB80` as its third argument | `0x002EE9C0` (`0x002EEA9B`); `0x002EED80`, from `0x02164248` (`0x002EEE22`) | `0x002EE430` (`0x002EE552`) |
+| `0x02164220` | `i32` | 0 | `+0x10`: weapon 0's render slot, the sign-extended 16-bit answer of `0x002EE290(body slot, weapon 0's model, 0x10A)`, the body slot being the record's entry of `0x01EEBAB0`; -1 after a release | `0x002EE430` (`0x002EE706`); `0x002EEB20`, -1 (`0x002EEC8B`) | `0x002EEB20` (`0x002EEBC0`, `0x002EEBC8`); a slot of -1, a 16-bit compare, skips the render record `[0x022C6F28]` + slot × `0x740` (`0x002EEBCB`) |
+| `0x02164224` | `i32` | 0 | `+0x14`: weapon 1's render slot, the same way | `0x002EE430` (`0x002EE81D`); `0x002EEB20`, -1 (`0x002EEC8B`, second pass) | `0x002EEB20` (`0x002EEBC0`, `0x002EEBC8`, second pass) |
+| `0x02164228` | `u32` | 0 | `+0x18`: weapon 0's model id: the item id itself when it has any bit of `0x770000`, otherwise the dword `+0x30` of row item id - `0x1000` of the table `[0x02EBF0F8]` | `0x002EE430` (`0x002EE6A1`); `0x002EEB20`, 0 (`0x002EEC83`) | `0x002EE430`, to `0x002E99C0` (`0x002EE6C4`); `0x002EEB20`, which lowers that model's `u16` use count `+0x1C` (`0x002EEC25`-`0x002EEC65`) |
+| `0x0216422C` | `u32` | 0 | `+0x1C`: weapon 1's model id, the same way from `0x02164234` | `0x002EE430` (`0x002EE7B8`); `0x002EEB20`, 0 (`0x002EEC83`, second pass) | `0x002EE430` (`0x002EE7DB`); `0x002EEB20` (`0x002EEC25`, second pass) |
+| `0x02164230` | `u32` | 0 | `+0x20`: weapon 0's item id; its low 16 bits choose the motion set through `0x003203B0` | `0x002EE9C0`, the copy (`0x002EEAD3`); `0x002EED80`, from `0x02164260` (`0x002EEE46`); `0x002EEB20`, 0 (`0x002EEC88`) | `0x002EE430` (`0x002EE64A`, `0x002EE68B`, `0x002EE874`, `0x002EE8E0`) |
+| `0x02164234` | `u32` | 0 | `+0x24`: weapon 1's item id | `0x002EE9C0`, the copy (`0x002EEAD3`, second pass); `0x002EED80`, from `0x02164264` (`0x002EEE52`); `0x002EEB20`, 0 (`0x002EEC88`, second pass) | `0x002EE430` (`0x002EE761`, `0x002EE7A2`) |
+| `0x02164204` | `i32` | 0 | loader passes since the model settled: 0 when the body load starts, then 1 more on each pass at stage 8 while it is below `[0x01EEBAAC]` (10 in the file), a signed compare | `0x002EE430`, 0 (`0x002EE475`) and + 1 (`0x002EE98A`) | `0x002EE430` (`0x002EE97A`); `0x002EF030`, which answers 1 when the stage is 8 and the count equals `[0x01EEBAAC]`, else 0 (`0x002EF03F`; called by `0x001EC060` and `0x0022BEB0`) |
+| `0x01EEBAD8` | `i32` | -1 | with `shown` at 0: the first n from 1 to 31 for which `0x002EB5E0(body model, n, 0, 0)` answers non-zero, else -1 | `0x002EE430`, -1 (`0x002EE47B`) and n (`0x002EE4CE`) | `0x002EE430` (`0x002EE590`): when it is not negative, a signed test, and `shown` is 0, `0x002EE1D0(body slot, body model, n)` runs, the body slot being the sign-extended 16-bit answer of `0x0042FB80`, which `0x002EE586` also stores in the record's entry of `0x01EEBAB0` |
+
+The loader goes on to stage 4, weapon 1, only when the count is above 1, a signed compare (`0x002EE739`-`0x002EE74A`), and
+with a count of 0 or less it skips the weapons (`0x002EE63E`, signed).
+
 ## Layouts
 
 ### The back panel's fields

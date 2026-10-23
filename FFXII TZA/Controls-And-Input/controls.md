@@ -392,6 +392,51 @@ stores that land on buttons 4-7 (`+0x10`), 8-11 (`+0x20`) and 12-15 (`+0x30`). A
 | `0x01DF18A4`, `0x01DF18B4`, `0x01DF18C4` | `u32[4]` each | 0 | buttons 4-7, 8-11 and 12-15 of record 3, the second profile | `0x0015C280` (`0x0015C3F0`, `0x0015C3FE`, `0x0015C405`); `0x00195DF0` (`0x00195E64`, `0x00195E78`, `0x00195E82`); `0x00198B60` (`0x00198C8D`, `0x00198C95`, `0x00198C9D`); `0x00196290` (`0x0019636D`, `0x00196375`, `0x0019637D`); Circle and Cross as for record 2, `0x00198960` at `0x00198990` and `0x00198996` | as for record 2; `0x00198960` at `0x0019897E` and `0x0019898A` |
 | `0x01DF1A00`, `0x01DF1A10`, `0x01DF1A20` | `u32[4]` each | 0 | the same for record 4, the third profile | `0x0015C280` (`0x0015C48D`, `0x0015C49B`, `0x0015C4A2`); `0x00195DF0`, `0x00198B60` as for record 3; `0x00196290` (`0x0019640D`, `0x00196415`, `0x0019641D`); Circle and Cross as for record 2, `0x00198960` at `0x001989B4` and `0x001989BA` | as for record 2; `0x00198960` at `0x001989A2` and `0x001989AE` |
 
+### The movement-key blocks
+
+Each block is three records, one per keyboard profile, `0x15C` bytes apart: `0x01F80550`, `0x01F806AC` and `0x01F80808`,
+and `0x01F80970`, `0x01F80ACC` and `0x01F80C28`. All are 0 in the file.
+
+The static initialisers `0x0015C0D0` and `0x0015BF20`, which run from the C++ initialiser table (entries `0x008C3208` and
+`0x008C3210`), fill each record's sixteen button codes with the 64-byte prototype `0x01DF0980`: button 0, Select, gets
+code 53 (`Key_Z`), button 2, R3, gets code 51 (`Key_X`), and the others 0. They also copy `0x100` bytes from `0x01F7FFF0`
+into each record's axis entries at `+0x40`.
+
+The builders rewrite all sixteen codes of each record of their block, profile *p* for record *p*:
+
+- `0x00196DF0` (mode bit 1, block `0x01F80550`; `0x00196E32`-`0x00196E54`): Up, Right, Down and Left, buttons 4-7, get the
+  profile's left-stick keys LY_N, LX_P, LY_P and LX_N, read at `0x01F80FEC`, `0x01F80FE0`, `0x01F80FE8` and `0x01F80FE4` +
+  `0x70` × *p* ([keymap.ini](keymap-file.md)); every other button gets 0.
+- `0x00196EE0` (mode bit 0; `0x00196F2D`-`0x00196F59`) and `0x00196C40` (mode bit 2; `0x00196C9B`-`0x00196CC1`), block
+  `0x01F80970`: the same, and L2 and R2, buttons 8 and 9, get the profile's group 0 slots 8 and 9, at `0x01F80FB0` and
+  `0x01F80FB4` + `0x70` × *p*.
+
+The poll runs the builders on a pass with the manager's `+0x3B` set, before it translates (`0x00197040`-`0x00197073`).
+The mode setters `0x00198670`, `0x00198690`, `0x001986B0`, `0x001986E0`, `0x00198710` and `0x00198730` store `+0x3A` and set
+`+0x3B` to 1 together (`0x00198680`, `0x00198684` in the first), and `0x00198700` writes both bytes in one word store, 0
+and 1 (`0x00198700`).
+
+Two functions read the codes, one of them through a lookup:
+
+- The translator `0x00197160` reads a record's sixteen codes (`0x001971B0`, while the index is below 16, an unsigned
+  32-bit compare at `0x0019724A`). The poll passes it each record of `0x01F80550` while mode bit 1 is set
+  (`0x001970C8`-`0x001970F6`) and each record of `0x01F80970` while bit 0 or 2 is (`0x001970F8`-`0x0019711B`).
+- `0x00197870(manager, record, 0, button)` answers one code: from `0x01F80970` when mode bit 0 is set, else from
+  `0x01F80550` when bit 1 is, else from `0x01F80970` when bit 2 is, else 0 (`0x00197870`-`0x00197902`). The button must be
+  below 16, an unsigned 32-bit compare (`0x001978E5`, `0x0019790F`).
+- `0x001E0DC0` reaches `0x00197870` (`0x001E0DF9`). Its two callers ask record 0 for buttons 7, 5, 4 and 6 (`0x002B5B60` at
+  `0x002B5C3B`, the table `0x00916780`) and 4, 6, 7 and 5 (`0x00289830` at `0x00289889`, the table `0x00915DA0` of `0x002891A0`).
+  Of the globals below, only `0x01F80560` and `0x01F80980` are read through it.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F80560`, `0x01F80570`, `0x01F80580` | `u32[4]` each | 0 | block `0x01F80550`, record 0, the first profile: buttons 4-7 (Up, Right, Down, Left), 8-11 and 12-15 | `0x0015C0D0`, the prototype's 0 (`0x0015C10D`, `0x0015C114`, `0x0015C11B`); `0x00196DF0`, the movement keys and 0 (`0x00196E4C`, `0x00196E50`, `0x00196E54`) | `0x00197160` (`0x001971B0`); buttons 4-7 also `0x00197870` (`0x001978FC`) |
+| `0x01F806AC`, `0x01F806BC`, `0x01F806CC`, `0x01F806DC` | `u32[4]` each | 0 | record 1, the second profile: buttons 0-3, 4-7, 8-11 and 12-15 | `0x0015C0D0`, the prototype, 53 and 51 in buttons 0 and 2 (`0x0015C175`, `0x0015C186`, `0x0015C190`, `0x0015C197`); `0x00196DF0`, second pass (`0x00196E32`, `0x00196E4C`, `0x00196E50`, `0x00196E54`) | `0x00197160` (`0x001971B0`) |
+| `0x01F80808`, `0x01F80818`, `0x01F80828`, `0x01F80838` | `u32[4]` each | 0 | record 2, the third profile: buttons 0-3, 4-7, 8-11 and 12-15 | `0x0015C0D0` (`0x0015C1F3`, `0x0015C201`, `0x0015C208`, `0x0015C20F`); `0x00196DF0`, third pass | `0x00197160` (`0x001971B0`) |
+| `0x01F80980`, `0x01F80990`, `0x01F809A0` | `u32[4]` each | 0 | block `0x01F80970`, record 0, the first profile: buttons 4-7 (Up, Right, Down, Left), 8-11 (L2, R2 and two zeros) and 12-15 | `0x0015BF20`, the prototype's 0 (`0x0015BF5D`, `0x0015BF64`, `0x0015BF6B`); `0x00196EE0` (`0x00196F43`, `0x00196F55`, `0x00196F59`) and `0x00196C40` (`0x00196CAE`, `0x00196CBD`, `0x00196CC1`) | `0x00197160` (`0x001971B0`); buttons 4-7 also `0x00197870` (`0x00197926`) |
+| `0x01F80ACC`, `0x01F80ADC`, `0x01F80AEC`, `0x01F80AFC` | `u32[4]` each | 0 | record 1, the second profile: buttons 0-3, 4-7, 8-11 and 12-15 | `0x0015BF20`, the prototype, 53 and 51 in buttons 0 and 2 (`0x0015BFC5`, `0x0015BFD6`, `0x0015BFE0`, `0x0015BFE7`); `0x00196EE0` and `0x00196C40`, second pass | `0x00197160` (`0x001971B0`) |
+| `0x01F80C28`, `0x01F80C38`, `0x01F80C48`, `0x01F80C58` | `u32[4]` each | 0 | record 2, the third profile: buttons 0-3, 4-7, 8-11 and 12-15 | `0x0015BF20` (`0x0015C043`, `0x0015C051`, `0x0015C058`, `0x0015C05F`); `0x00196EE0` and `0x00196C40`, third pass | `0x00197160` (`0x001971B0`) |
+
 ### The filtered button words
 
 `0x002498B0` copies the button words `0x02F97360`-`0x02F9736F` to the filtered copy `0x02F97388`-`0x02F97397` and the stick

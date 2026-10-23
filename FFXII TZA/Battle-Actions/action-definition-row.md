@@ -102,6 +102,72 @@ ownership rule for each):
 | `13`, `14`, `16`, `17` | 3, 1, 1, 1 | the Reserve rows 155-157, `actstop`, `escape`, `escapestop` |
 | `255` | 56 | 47 `NOT USED` and Reserve rows; nine named rows with no linked id: `Do nothing.`, Mount, Dismount, `sousachange`, Mist Charge (3), Chain Bonus, Dismiss |
 
+### The action lists
+
+`0x002376F0` sorts the action ids into lists by kind. It is called only by the first-screen set-up `0x00236A40`
+(`0x00236A4E`), and it does nothing while the action table slot `0x02EBF138` is 0 (`0x002376FF`).
+
+For each list it walks rows 0-542, a signed 32-bit compare against `0x21F` (`0x00237786` and the same compare after each
+list), and appends the id of each matching row as a `u16` to one array at `0x0208CEC0`, `0x02089340` + `0x3B80`
+(`0x0023777B`). The lists follow each other in the array in this order:
+
+1. kind 0;
+2. kind 1 with `+0x2C` bits 0-2 at 0, 1, 2, 3 and 4, five lists (`0x002377FF`; `0x00237881`-`0x0023788B`, an 8-bit compare,
+   and the three like it);
+3. kind 2, kind 5, kind 6 and kind 3.
+
+A kind 1 row whose value is 5, row 81, is in none of them, and so is every row of kind 4 or above 6.
+
+Each list is a 16-byte entry: the address of its first id at `+0x00` and its `u16` count at `+0x08`, the 16-bit
+difference of two running totals (`0x0023781D`-`0x00237825` is one). Entry *k* of the table at `0x0208CD20` is the list of
+kind *k*. Entry 18, `0x0208CE40`, spans kinds 1 and 2, entry 19, `0x0208CE50`, spans kinds 5 and 6, and entries 21-25,
+from `0x0208CE70`, hold the magicks by their `+0x2C` value 0-4. `0x002376F0` stores entries 0-3, 5, 6, 18, 19 and 21-25.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0208CD20` | `void*` | 0 | entry 0: the first id of the kind 0 list, always `0x0208CEC0` | `0x002376F0` (`0x00237731`) | `0x0031EB20`, as entry 0 (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CD28` | `u16` | 0 | entry 0: the count of kind 0 rows | `0x002376F0` (`0x0023779B`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CD30` | `void*` | 0 | entry 1: the first id of the magicks | `0x002376F0` (`0x002377B3`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CD38` | `u16` | 0 | entry 1: the count of kind 1 rows with `+0x2C` value 0-4 | `0x002376F0` (`0x00237A57`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CD40` | `void*` | 0 | entry 2: the first id of the technicks | `0x002376F0` (`0x00237A6E`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CD48` | `u16` | 0 | entry 2: the count of kind 2 rows | `0x002376F0` (`0x00237ADB`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CD50` | `void*` | 0 | entry 3: the first id of the items | `0x002376F0` (`0x00237C17`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CD58` | `u16` | 0 | entry 3: the count of kind 3 rows | `0x002376F0` (`0x00237C88`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CD70` | `void*` | 0 | entry 5: the first id of the summons | `0x002376F0` (`0x00237B06`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CD78` | `u16` | 0 | entry 5: the count of kind 5 rows | `0x002376F0` (`0x00237B6E`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CD80` | `void*` | 0 | entry 6: the first id of the Quickenings | `0x002376F0` (`0x00237B85`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CD88` | `u16` | 0 | entry 6: the count of kind 6 rows | `0x002376F0` (`0x00237BEE`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CE40` | `void*` | 0 | entry 18: the first id of the magicks, the start of the magicks and technicks together | `0x002376F0` (`0x002377AC`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CE48` | `u16` | 0 | entry 18: the count of kind 1 rows with value 0-4 and kind 2 rows together | `0x002376F0` (`0x00237AF6`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CE50` | `void*` | 0 | entry 19: the first id of the summons, the start of the summons and Quickenings together | `0x002376F0` (`0x00237AFD`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CE58` | `u16` | 0 | entry 19: the count of kind 5 and kind 6 rows together | `0x002376F0` (`0x00237C00`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CE78` | `u16` | 0 | entry 21: the count of magicks with `+0x2C` value 0 | `0x002376F0` (`0x00237825`) | `0x0031EB20`, through the filter (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CE80` | `void*` | 0 | entry 22: the first id of the magicks with value 1 | `0x002376F0` (`0x0023783C`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CE88` | `u16` | 0 | entry 22: their count | `0x002376F0` (`0x002378AD`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CE90` | `void*` | 0 | entry 23: the first id of the magicks with value 2 | `0x002376F0` (`0x002378C4`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CE98` | `u16` | 0 | entry 23: their count | `0x002376F0` (`0x0023793A`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CEA0` | `void*` | 0 | entry 24: the first id of the magicks with value 3 | `0x002376F0` (`0x00237951`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CEA8` | `u16` | 0 | entry 24: their count | `0x002376F0` (`0x002379C2`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+| `0x0208CEB0` | `void*` | 0 | entry 25: the first id of the magicks with value 4 | `0x002376F0` (`0x002379D9`) | `0x0031EB20` (`0x0031F934`, `0x0031F94A`) |
+| `0x0208CEB8` | `u16` | 0 | entry 25: their count | `0x002376F0` (`0x00237A4A`) | `0x0031EB20` (`0x0031F923`, `0x0031F95D`) |
+
+Entry 21's address `0x0208CE70` is the first id of the magicks with value 0, the same address as entry 1's
+(`0x002377BA`, [Widgets](../Menus-And-HUD/widgets.md)).
+
+The battle menu's list builder `0x0031EB20` reads the lists ([Battle menu](../Menus-And-HUD/battle-menu.md)):
+
+1. It takes the entry at `0x0208CD20` + mode × `0x10`, the mode being the list block's dword `+0x14`, sign-extended
+   (`0x0031F8ED`-`0x0031F8FF`). When the mode is 1 and the block's dword `+0x18` is not `0xFF`, both 32-bit compares, it
+   takes the entry at `0x0208CE70` + that value × `0x10` instead (`0x0031F902`-`0x0031F920`).
+2. An empty list ends the build at once (`0x0031F923`, an unsigned 16-bit compare of index 0 with the count).
+3. Otherwise it walks the ids while the index is below the count, a signed 32-bit compare with the zero-extended count
+   (`0x0031F95D`-`0x0031F978`), and appends each id to the block's list at `+0x50` + n × 8, counting in `+0x40`
+   (`0x0031F94A`-`0x0031F95A`).
+4. With bit 0 of the block's dword `+0x48` clear (`0x0031F8A7`-`0x0031F8B5`, `0x0031F930`), an id goes in only when
+   `0x00306480(id, unit, 0)` answers 0 ([Command availability](command-availability.md); `0x0031F934`-`0x0031F948`). The
+   unit is the `0x1C8`-byte record of `[0x02EBF190]` that the block's byte `+0x2C` names, which must be at most `0x27`,
+   an unsigned 8-bit compare (`0x0031F882`-`0x0031F8A4`).
+
 ### The element byte
 
 Bit *n* of `+0x13` is one element; no shipped row sets more than one:
