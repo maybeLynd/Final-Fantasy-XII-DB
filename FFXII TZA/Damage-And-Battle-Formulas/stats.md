@@ -21,6 +21,10 @@ added on top of an old value.
 
 No stat goes below 0, and max HP never goes below 1.
 
+On the Equip screen, highlighting a piece that would take another piece off, or that cannot be used with what is
+worn, replaces the help line with a warning such as "Equipping a two-handed weapon will remove your shield." (the
+full list is under [The equipment comparison's warnings](#the-equipment-comparisons-warnings)).
+
 ## How it works
 
 ### The rebuild
@@ -31,6 +35,85 @@ clears the block first (`0x002FEFB9`-`0x002FEFC8`).
 
 The augment rebuild `0x0030FED0` calls it (`0x003103AD`); [Augments](augments.md) lists that function's 25
 callers. The equipment comparison `0x0030A4E0` calls it with its own block (`0x0030A6B7`).
+
+### The equipment comparison
+
+`0x0030A4E0(member, candidate, out)` builds a member's stats as they would be with five other equipment words
+(`candidate`, laid out like stats `+0x50`). `out` is a `0x2C`-byte record: the `0x24`-byte stats block, then a
+warning code at `+0x24` (`u32`) and an equipment id at `+0x28` (`u16`). In order:
+
+1. It finds the member's stats with `0x00320AB0(member, 3)`; with none it returns -1 and writes nothing
+   (`0x0030A503`-`0x0030A513`).
+2. It writes 0 to `out+0x24` and `0xFFFF` to `out+0x28` (`0x0030A518`-`0x0030A524`). With no candidate it goes to step 6.
+3. The slot it judges is the highest of the five whose candidate word differs from the worn one
+   (`0x0030A565`-`0x0030A5C3`); the piece is that slot's candidate word.
+4. It runs the hand check `0x00318B40(candidate, slot, 0)` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md))
+   and stores the new word of the highest slot the check changed at `out+0x28` (`0x0030A5D5`-`0x0030A640`).
+5. It stores the warning code at `out+0x24` (below).
+6. It builds the stats into `out` with `0x002FEF30(stats, out, words)` (`0x0030A6B7`) and returns that result.
+
+### The equipment comparison's warnings
+
+The code is `0x10` when the license test `0x00323C60` refuses the piece (`0x0030A64F`-`0x0030A658`). An empty slot
+(`0xFFFF`) fails that test's id check, so taking a piece off always gives `0x10`. Otherwise `0x00309480` answers
+(`0x0030A691`) from the slot, the piece's and the worn pieces' categories, and whether the hand check changed the off
+hand.
+
+The categories come from `0x0031EA90` through the byte map `0x0031EA74`
+([Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)):
+
+| Category | Pieces |
+|---|---|
+| `0` | an empty slot |
+| `1` | Unarmed |
+| `2` | one-handed weapons |
+| `3` | two-handed weapons |
+| `4` | bows, crossbows, guns and hand-bombs |
+| `5` | ammunition |
+| `6` | shields |
+| `7`, `8`, `9` | head (class 19), body (class 20), accessories (classes 21-22); `0x00309480` treats them like any category it does not list |
+
+A ranged weapon's ammunition is at hand when `0x003096F0(weapon, worn off hand)` returns 1: the worn off hand holds
+ammunition (ids `0x1184`-`0x11A3`) of the class the weapon's `+0x11` names, or the party holds at least one of
+those ammunition ids (the equipment class's query handler, `0x00309801`-`0x0030988D`).
+
+| Code | Slot | When | Help line |
+|---:|---|---|---|
+| `0` | any | none of the rows below applies, as for every head, body or accessory piece the license test accepts | the screen's own line |
+| `1` | off hand | a shield, under a worn two-handed weapon | "Equipping a shield will remove your two-handed weapon." (3229) |
+| `2` | off hand | a shield, under a worn ranged weapon | "Equipping a shield will remove your ranged weapon." (3248) |
+| `3` | main hand | a two-handed weapon, over a worn shield | "Equipping a two-handed weapon will remove your shield." (3231) |
+| `4` | main hand | a ranged weapon whose ammunition is at hand, over a worn shield | "Equipping a ranged weapon will remove your shield." (3232) |
+| `5` | main hand | over worn ammunition: a weapon that is not ranged; or a ranged weapon whose ammunition is at hand when the hand check changes the off hand | "Changing your equipped weapon will remove all ammunition." (3255) |
+| `6` | off hand | arrows (class 23) under a worn Unarmed, one-handed or two-handed weapon, or under a worn ranged weapon when the hand check changes the off hand | "You must equip a bow before equipping arrows." (3250) |
+| `7` | off hand | bolts (class 24), as for `6` | "You must equip a crossbow before equipping bolts." (3251) |
+| `8` | off hand | shot (class 25), as for `6` | "You must equip a gun before equipping shot." (3252) |
+| `9` | off hand | bombs (class 26), as for `6` | "You must equip a hand-bomb before equipping bombs." (3253) |
+| `0xE` | main hand | a ranged weapon whose ammunition is not at hand, over an empty off hand, ammunition or a shield | "You lack the proper ammunition to equip this weapon." (3321) |
+| `0xF` | off hand | a piece of category 0, under a worn ranged weapon, with ammunition worn | text 3322 |
+| `0x10` | the slot | the license test refuses the piece, including an empty slot | the screen's own line |
+
+Text 3322 begins with its terminator in the English and Italian `help_menu.bin`, so it shows nothing; the French
+and German rows say that taking the ammunition off removes the ranged weapon, and the Spanish row reads `DUMMY`. No
+shipped equipment row has a class outside 0-26, so the only category-0 piece is the empty slot, which the license
+test refuses first: `0xF` is not produced with the shipped tables.
+
+When no slot differs, the license test is given the stack word at `[rsp+0x46]`, which the function never writes
+(`0x0030A644`-`0x0030A64F` with slot -1), and `0x00309480` returns 0 for slot -1: the code is 0 or `0x10`, and the help
+line is the screen's own either way.
+
+The help window shows the code as follows:
+
+- The Equip screen's two refreshers `0x003FE720` and `0x003FEAD0` copy the code to the menu block's byte `+0xDE2` and the
+  id to the word `+0xDE4` (`0x003FE9E7`, `0x003FECBB`; the word stores `0x003FE9F8`, `0x003FECD0`).
+- `0x002CA490` reads `+0xDE2` through the 17-entry jump table at `0x002CA574` and puts the line in the help window
+  (`[0x0209BE80] + 0x8FA0`, through `0x002F9860`, `0x00291D70` and `0x00291D80`). For codes 1-9, `0xE` and `0xF` it does so
+  only when the code differs from the last one, kept at `+0xDE3`.
+- Codes `0xA`-`0xD`, which `0x00309480` never returns, have no line (their table rows go to `0x002CA522` with id 0).
+- Codes 0 and `0x10` show the line the caller passes: "Change equipment." (`0x003FE2A2`), the text at `+0x180` of the
+  menu block's widget `+0x108` (`0x003FF97D`) or, in the shop, "Select a character to equip." (`0x0057B3BF`).
+- No instruction of the 456 functions that load `[0x0209AC30]` reads `+0xDE4`. The member panel `0x002CA7C0` calls the
+  comparison for its numbers and reads neither field.
 
 ### A party member's base
 

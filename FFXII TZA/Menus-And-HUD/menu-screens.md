@@ -132,6 +132,51 @@ The panel `0x002CBF80`, built by `0x002CBED0` under Status and Equip, `0x002CBE4
   with the start time from `0x0208F570`; `0x002CA2E0(panel)`, the step that `0x002CA6C0` and `0x002CB4B0` run, advances
   it through `0x00248F40` and writes the brightness into the node's four vertex colours.
 
+The comparison `0x0030A4E0` also returns a warning code, which the Equip screen turns into its help-window warnings
+("Equipping a shield will remove your two-handed weapon." and the others); every code, its condition and its line
+are on [Stats](../Damage-And-Battle-Formulas/stats.md#the-equipment-comparisons-warnings).
+
+### The Equip screen's stat panel
+
+The Equip screen's stat panel lists Attack Power, Defense, Magick Resist, Evade, Magick Evade, Strength, Magick
+Power, Vitality and Speed, each as worn and, when it changes, with the highlighted piece. `0x003FE410(opener)` builds
+it once as a `0x118`-byte widget with procedure `0x003FE5D0` and keeps it at `[0x0209AC30] + 0x138` (`0x003FE44B`-`0x003FE466`);
+Status and Equip passes 1 (`0x002C24BA`) and the shop 0 (`0x0057AD55`). Message 18 clears the pointer (`0x003FE60E`).
+
+`EquipStatPanel` (`0x118` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u8[192]` | header | the widget header (widgets.md) |
+| `+0x0C0` | `void*` | rows | the row list; message 1 gives it the row painter `0x003FE490` at its +`0x120` and this panel at its +`0xD8` (`0x003FE690`-`0x003FE6B8`) |
+| `+0x0C8` | `i32[9]` | current | the nine values as worn, in row order |
+| `+0x0EC` | `i32[9]` | preview | the nine values with the highlighted piece |
+| `+0x110` | `u16` | opener | `0x003FE410`'s argument, stored by message 1 (`0x003FE689`) |
+| `+0x112` | `u8[2]` | gap112 | read and written by none of the panel's functions |
+| `+0x114` | `u32` | flags | bit 0: the current numbers in colour 2, otherwise colour 0 (`0x003FE521`) |
+
+The refreshers fill both rows from two comparisons, as worn and with the candidate set (`0x003FE8C0`-`0x003FE9D6`,
+`0x003FEB90`-`0x003FECA6`). Row i takes stats byte `+0x0A`, `+0x0B`, `+0x0C`, `+0x11`, `+0x12`, `+0x06`, `+0x07`, `+0x08`
+or `+0x09` of the comparison's block ([Stats](../Damage-And-Battle-Formulas/stats.md)).
+
+`0x003FEAD0(candidate)` refreshes for
+a candidate set, or with none shows the worn set in both rows; `0x003FE720(mode, slot)` builds the candidate for
+mode `0x401` (every slot empty), `0x402` (the Optimise set, `0x002F9F20`) and `0x404` (the worn set, the five
+words at the menu block's `+0xD48` 32 bytes apart, with `slot` emptied) (`0x003FE73C`-`0x003FE852`). Any other mode,
+`0x403` included, refreshes with no candidate, the worn set in both rows (`0x003FE751`, `0x003FE7E6`). The callers pass
+their message id as the mode (`0x002C2917`, `0x002C2D4F`).
+
+The row painter `0x003FE490(panel, nodes, ..., i)` draws row i:
+
+- the name, text `0x4A90 + i` (`0x003FE4D2`);
+- the current value with number format `0x4B33` for rows 0-4 and `0x4B32` for rows 5-8 (`0x003FE4AE`-`0x003FE4C4`);
+- the preview only when it differs, in colour 5 when it is at least the current value and 4 when lower
+  (`0x003FE53C`-`0x003FE576`).
+
+The same refreshers write max HP and max MP, as `i16` values, to the widget at `[[0x0209AC30] + 0x130] + 0xC0`:
+the previewed and current max HP at `+0xF0` and `+0xF2`, the previewed and current max MP at `+0xF4` and `+0xF6`,
+each pair 0 when the two are equal (`0x003FEA26`-`0x003FEAAA`).
+
 ### Screens opened by menu requests
 
 The generic request host `0x0027FB70` (built by `0x00280A00` for the router `0x00254B50`, `0x00254C39`) and its dispatcher

@@ -42,6 +42,17 @@ kind, id)` builds the requirement mask for the id and passes when any byte of it
 the id sets its bit (`0x002F8FE5`-`0x002F908D`). So the same ability on several squares sets several bits, and owning
 any one of them licenses it.
 
+The two sides size the mask differently:
+
+- `0x00323BB0` holds the mask in 46 bytes on its stack, zeroed at `0x00323BD4`-`0x00323BF5`, and compares 46 bytes
+  (`0x00323C27`: `cmp rax, 0x2E`).
+- `0x002F8FA0` clears `(count + 7) / 8` bytes, `count` being the node table's row count `[0x02EBF038] + 4`, before
+  setting bits (`0x002F8FD3`-`0x002F8FE0`), and sets bit n for any node n below `count`.
+
+The shipped node table has 361 rows in every language's `battle_pack.bin`, so the builder clears exactly 46 bytes
+and sets bits 0-360; nothing is written past the 46 bytes, and bits 361-367 stay 0. `0x00323BB0` is the builder's only
+caller (a scan of every `call` and `jmp` in `.text`).
+
 `0x00323890` turns a node's category byte into its kind, through `0x003241D0` and two jump tables
 (`0x00323894`-`0x003238DB`, `0x003241D0`-`0x00324233`):
 
@@ -169,6 +180,13 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 - A square grants up to eight ids of one kind, set by its category; adding an id to a square's list licenses it.
 - A square's cost is its byte `+0x04`; the menu, not the setter, checks that the LP covers it.
 - `resetJobs` keeps the squares a member started with and refunds the rest.
+- The license test holds 368 nodes, nodes 0 to 367: the mask and the owned bits at `+0x194` are 46 bytes, and nodes
+  368 and up are never compared.
+- A node table of 369 to 384 rows makes `0x002F8FA0` write one or two bytes past the mask, into the two unused stack
+  bytes after it (`[rsp+0x4E]`, `[rsp+0x4F]` of `0x00323BB0`).
+- At 385 rows or more it also writes the saved stack cookie at `[rsp+0x50]` (`0x00323BC0`); the cookie check
+  `0x00808C40` then fails unless the bytes written equal the ones there, and the process ends
+  ([Image hardening](../Compiler-And-C-Runtime/image-hardening.md)).
 
 ## Related
 

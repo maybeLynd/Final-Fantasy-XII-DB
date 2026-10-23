@@ -167,6 +167,35 @@ The helpers behind those arguments:
 | `+0x05` | `u8` | slot3 | argument kind of slot 3 |
 | `+0x06` | `u16` | zero6 | 0 in every shipped row |
 
+## State
+
+### The repeat ring
+
+The ring at `0x02EBB560` holds ten `0x20`-byte entries. `0x004696A0` clears every entry field by field
+(`0x004696A0`-`0x004697BB`); the poster `0x0046AB10` reads all ten through the ring's address (`0x0046ABB7`) and writes the
+entry the index `0x02EBB54C` names (`0x0046AC00`-`0x0046AC3B`). Every field is 0 in the file (the zero-filled tail of
+`.data`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBB580`, `0x02EBB5A0`, `0x02EBB5C0`, `0x02EBB5E0`, `0x02EBB600`, `0x02EBB620`, `0x02EBB640`, `0x02EBB660`, `0x02EBB680` | `u16` each | 0 | `+0x00` of entries 1-9: the event of the message last recorded there; `0xFFFF` when empty | `0x004696A0`, `0xFFFF`; `0x0046AB10`, the event (`0x0046AC0D`, `0x0046AC20`) | `0x0046AB10` (`0x0046ABDA`) |
+| `0x02EBB564`, `0x02EBB584`, `0x02EBB5A4`, `0x02EBB5C4`, `0x02EBB5E4`, `0x02EBB604`, `0x02EBB624`, `0x02EBB644`, `0x02EBB664`, `0x02EBB684` | `u32` each | 0 | `+0x04` of entries 0-9: the tick from `0x0032A150` when the message was recorded | `0x004696A0`, 0; `0x0046AB10` (`0x0046AC0D`, `0x0046AC3B`) | `0x0046AB10`, which adds `450 x [0x01DFE0B4]` and compares the sum with the tick now (`0x0046ABF0`) |
+| `0x02EBB568`, `0x02EBB588`, `0x02EBB5A8`, `0x02EBB5C8`, `0x02EBB5E8`, `0x02EBB608`, `0x02EBB628`, `0x02EBB648`, `0x02EBB668`, `0x02EBB688` | `void*` each | 0 | `+0x08` of entries 0-9: the stats record the message was about | `0x004696A0`, 0; `0x0046AB10` (`0x0046AC1B`) | `0x0046AB10` (`0x0046ABD4`) |
+| `0x02EBB578`, `0x02EBB598`, `0x02EBB5B8`, `0x02EBB5D8`, `0x02EBB5F8`, `0x02EBB618`, `0x02EBB638`, `0x02EBB658`, `0x02EBB678`, `0x02EBB698` | `u16` each | 0 | `+0x18` of entries 0-9: always 0 | `0x004696A0`, a 2-byte 0; `0x0046AB10`, an 8-byte 0 over `+0x18`-`+0x1F` (`0x0046AC16`) | no instruction |
+
+### Other state
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01EEBB04` | `f32` | 0 | the height of the party leader's position kept at `0x01EEBB00` for the visibility filter: `0x002FA3B0` stores the leader's position there and then zeroes the height | `0x00265020`, through the address (`0x002FA3F7`); `0x002FA3B0` (`0x002FA40A`) | `0x003A1920`, the distance, through the address `0x01EEBB00` (`0x002FA42B`) |
+| `0x02CA6028` | `void*` | 0 | the stats record of the last resumed gambit commit for which `0x004697C0` was called with kind 4, a previous action below `0x21F`, action `0x4022` or `0x4124` and `0x002F8E90` answering 1 (`0x004697FF`-`0x0046982A`) | `0x004697C0` (`0x0046984A`) | `0x004697C0` (`0x0046982C`) |
+| `0x02CA6030` | `u16` | 0 | that call's action; a call with the same stats record and action posts nothing (`0x0046982C`-`0x00469843`), and any other posts event 6 unless the previous action is `0x96` | `0x004697C0` (`0x00469851`) | `0x004697C0` (`0x0046983C`) |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
+the image base and for the ring's address `0x02EBB560`, which finds none; the same scan finds the two known uses of
+`0x02AEA030` (`0x003B6181`, `0x003B6188`).
+
 ## Related
 
 - [Battle message list](battle-message-list.md) - every row of the table with its text.

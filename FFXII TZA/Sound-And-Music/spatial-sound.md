@@ -174,6 +174,83 @@ low-pass stays at 1.0.
 | so the distance gain | `(range - d) / (range - inner)` |
 | `DynamicSound` | range 30.0, inner 0, directionality factor 0, no Doppler, in all 13,150 sound records |
 
+## State
+
+### The request block
+
+`0x002DE800` builds every placed-sound request in the block at `0x0215E710`, which `0x002DE360` (from `0x003692D0`) resets.
+`0x002DEFA0` (`0x002DEFDF`) and `0x002DF460` (`0x002DF49F`) pass the block's address on, through `0x001DBE00` and `0x001DC190`,
+to the record builder `0x00221940`, its only reader. Every field is 0 in the file (the zero-filled tail of `.data`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0215E714`, `0x0215E718` | `f32`, `f32` | 0 | `+0x04`, `+0x08`: the position's y and z | `0x002DE360`, 0 (`0x002DE3A2`, `0x002DE3AC`); `0x002DE800`, the caller's position (`0x002DE872`, `0x002DE87F`) | `0x00221940` (`0x00221B45`, `0x00221B37`, `0x00221C03`, `0x00221BFA`) |
+| `0x0215E720` | `f32` | 0 | `+0x10`: the range | `0x002DE360`, 20.0 (`0x002DE376`); `0x002DE800`, record `+0x10` (`0x002DE88C`) | `0x00221940` (`0x00221A3F`, `0x00221B0A`) |
+| `0x0215E724` | `f32` | 0 | `+0x14`: the value passed beside the range into the source's creation record (`0x00221A68`, `0x00221B3F`) | `0x002DE360`, 0 (`0x002DE38C`); `0x002DE800`, 0 (`0x002DE894`), or for shape 2 the first float of record `+0x30` (`0x002DE90C`) | `0x00221940` (`0x00221A4A`, `0x00221B13`) |
+| `0x0215E728` | `i32` | 0 | `+0x18`: the source type (see The source classes): 5 for shapes 0-2, 2 for shape 3, 1 for shape 4, and the shape byte itself for any other shape | `0x002DE800` (`0x002DE85B`, `0x002DE8C7`, `0x002DE8D2`, `0x002DEB14`) | `0x00221940` (`0x002219BF`) |
+| `0x0215E72C` | `i32` | 0 | `+0x1C`: the outline mode a `PolygonSound` keeps at `+0x104`: 1, line segments, for shape 2; 3, a triangle fan, for shapes 0 and 1 | `0x002DE360`, 0 (`0x002DE3B3`); `0x002DE800` (`0x002DEA4D`, `0x002DEB0A`) | `0x00221940`, as a byte (`0x00221A5F`) |
+| `0x0215E730` | `i32` | 0 | `+0x20`: the outline's point count: 15 for the ellipse, 6 for the rectangle, the record's points plus one for a line | `0x002DE800` (`0x002DEB00`, `0x002DEA9F`, `0x002DEA57`) | `0x00221940` (`0x00221A47`) |
+| `0x0215E734`, `0x0215E744`, `0x0215E754`, `0x0215E764`, `0x0215E774`, `0x0215E784` | `f32[4]` each | 0 | `+0x24` on: the outline's points, 16 bytes each (x, y, z, 1.0); these six are the rectangle's | `0x002DE420`: the rectangle (`0x002DE56B`-`0x002DE61B`) and the ellipse, through the address `0x0215E734` (`0x002DE733`); `0x002DE800`: a line's points (`0x002DE940`-`0x002DE9E6`, `0x002DEA18`-`0x002DEA44`) | `0x00221940`, x, y and z of each point (`0x00221A80`-`0x00221A99`) |
+| `0x0215EF38` | `i32` | 0 | `+0x828`: the record's percentage byte for the current weather slot, record `+0x0C` plus the slot from `0x00265920` minus 1 | `0x002DE800` (`0x002DE843`) | `0x00221940`, the starting volume (`0x00221C1D`) |
+| `0x0215EF3C` | `i32` | 0 | `+0x82C`: the record's volume byte `+0x19` | `0x002DE800` (`0x002DE84E`) | `0x00221940`, the starting volume (`0x00221C11`) |
+
+### The character-sound template
+
+`0x00362F70` fills the request template at `0x022CBAB0` and the listener-side constants once; the template copies
+`0x00361750` (`0x00361750`-`0x00361782`), `0x003617B0` (`0x003617B0`-`0x003617DA`), `0x00361BF0` (`0x00361C0B`-`0x00361C5B`) and
+`0x00361CF0` (`0x00361D0B`-`0x00361D3C`) read the whole template, `+0x00`-`+0x3F`, in four 16-byte loads, and nothing else
+reads it.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBAB8` | `u8[8]` | 0 | template `+0x08`-`+0x0F`, zeroed (`0x00363078`) and then overwritten by the stores below | `0x00362F70` | the four template copies |
+| `0x022CBAB9` | `u8` | 0 | template `+0x09`, the shape: bit 7 cleared, so shape 0, the ellipse | `0x00362F70` (`0x0036307F`) | `0x00362F70` (the same `and`); the four template copies |
+| `0x022CBABA` | `u32` | 0 | template `+0x0A`-`+0x0D`: `0x7F`, 0, 100, 100 | `0x00362F70` (`0x003630DD`) | the four template copies |
+| `0x022CBABE` | `u8` | 0 | template `+0x0E`: 100 | `0x00362F70` (`0x003630C1`) | the four template copies |
+| `0x022CBAC0` | `f32` | 0 | template `+0x10`: the range, 20.0 | `0x00362F70` (`0x0036308D`, `0x003630EE`) | the four template copies |
+| `0x022CBAC8` | `u8[8]` | 0 | template `+0x18`-`+0x1F`: zeroed, then `+0x1B` and `+0x1C` stored below | `0x00362F70` (`0x00363086`) | the four template copies |
+| `0x022CBACB` | `u8` | 0 | template `+0x1B`: 100, the pan width `0x00361810` scales (`0x00361891`) | `0x00362F70` (`0x003630E7`) | the four template copies |
+| `0x022CBACC` | `f32` | 0 | template `+0x1C`: 0.05 | `0x00362F70` (`0x003630C7`) | the four template copies |
+| `0x022CBAD0`, `0x022CBAD8`, `0x022CBAE0`, `0x022CBAE8` | `u8[8]` each | 0 | template `+0x20`-`+0x3F`: 0, so the half-sizes `+0x30` and `+0x34` are 0 and `0x002DE800` raises them to 0.1 (`0x002DEAB8`-`0x002DEACA`) | `0x00362F70` (`0x0036309B`, `0x003630A2`, `0x003630A9`, `0x003630B0`) | the four template copies |
+| `0x022CBAA4` | `u8` | 0 | 6: the step by which `0x00361810` moves a request's behind-the-listener amount `+0x2C` toward 64 (behind) or 0, in the range 0-64 (`0x00361B45`-`0x00361B78`) | `0x00362F70` (`0x0036315B`) | `0x00361810` (`0x00361B45`) |
+| `0x022CBAA8` | `i32` | 0 | 44: the volume factor at full behind, `(4096 + (44 - 64) x amount) / 4096`, so 2816/4096 at 64 (`0x00361B6F`-`0x00361B90`) | `0x00362F70` (`0x00363165`) | `0x00361810` (`0x00361B6F`) |
+| `0x022CBB2C` | `u8` | 0 | 150: the percentage applied to a request's pan width `+0x1B` (`0x003618D4`-`0x003618EB`) | `0x00362F70` (`0x00363102`) | `0x00361810` (`0x00361868`) |
+
+`0x00361810` skips both behind-the-listener steps and uses 100 instead of `0x022CBB2C` while `0x002DEBF0` answers 2 (the
+word `0x0215EF48`, `0x00361858`-`0x00361866`, `0x00361B3B`-`0x00361B43`).
+
+### The layer's pools
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EADDF8` | `i32` | 0 | the `Lay` action count, 512 | `0x007BAC80` (`0x007BAC94`) | no instruction |
+| `0x02EADE10` | `i32` | 0 | the page count, 1 | `0x007BB6B0` (`0x007BB6BC`) | `0x007BB690`, which bounds a page number (`0x007BB694`); `0x007BB6B0` (`0x007BB6F5`, `0x007BB760`); `0x007BB780` (`0x007BB78D`, `0x007BB7B9`) |
+| `0x02EADE18` | `void*` | 0 | the table of page pointers | `0x007BB6B0` (`0x007BB6EE`) | `0x007BB690` (`0x007BB69C`); `0x007BB6B0` (`0x007BB746`); `0x007BB780` (`0x007BB7A0`) |
+| `0x02EADE20` | `i32` | 0 | the source count, 128 | `0x007BC400` (`0x007BC412`) | `0x007BC400` (`0x007BC44D`, `0x007BC467`, `0x007BC47C`, `0x007BC4A2`, `0x007BC4DE`) |
+| `0x02EADE24` | `i32` | 0 | the last serial given to a source; each new source's handle takes the next | `0x007BBFB0` (`0x007BC135`) | `0x007BBFB0` (`0x007BC11E`) |
+
+The `Lay` free-action queue `0x02EADD70` and the source list `0x02EADE80` have the layouts `DriverQueue` and
+`ObjectList` of [Sound driver objects](sound-driver-objects.md); "through the address" names the helpers a function
+hands the object to. `0x007BAC80` puts the 512 actions on the free-action queue, `0x007BAD60` takes one, and the `Lay`
+runner `0x007BAEC0` gives each back after running it (`0x007BB4FD`-`0x007BB53F`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EADD80` | `void*` | 0 | Lay free-action queue `+0x10`, first free cell | `0x0016A180` (`0x0016A1A4`); `0x007BAC80` (`0x007BACFB`); `0x007BAD60` (`0x007BAE28`); `0x007BAEC0` (`0x007BB50D`); `0x008B8F40` (`0x008B8F91`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BACE8`, `0x007BAD34`); `0x007BAD60` (`0x007BAE15`); `0x007BAEC0` (`0x007BB4FD`) |
+| `0x02EADD88` | `void*` | 0 | Lay free-action queue `+0x18`, first queued cell | `0x0016A180` (`0x0016A1AC`); `0x007BAC80` (`0x007BAD13`); `0x007BAD60` (`0x007BAE0E`); `0x007BAEC0` (`0x007BB525`); `0x008B8F40` (`0x008B8FA0`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BAD0A`); `0x007BAD60` (`0x007BAD8B`); `0x007BAEC0` (`0x007BB51C`) |
+| `0x02EADD90` | `void*` | 0 | Lay free-action queue `+0x20`, last queued cell | `0x0016A180` (`0x0016A1AC`); `0x007BAC80` (`0x007BAD2D`); `0x007BAEC0` (`0x007BB53F`); `0x008B8F40` (`0x008B8FA0`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BAD1C`); `0x007BAEC0` (`0x007BB52E`) |
+| `0x02EADD9C` | `i32` | 0 | Lay free-action queue `+0x2C`, cells queued | `0x0016A180` (`0x0016A19D`); `0x007BAC80` (`0x007BAD27`); `0x007BAD60` (`0x007BAE20`); `0x007BAEC0` (`0x007BB539`); `0x008B8F40` (`0x008B8F7D`); through the address: `0x007BAB30` (from `0x007BAC80`) | `0x007BAC80` (`0x007BAD27`); `0x007BAD60` (`0x007BAE20`); `0x007BAEC0` (`0x007BB539`) |
+| `0x02EADE88` | `i32` | 0 | source list `+0x08`, capacity: the nodes the list holds | `0x0016A230` (`0x0016A24D`); through the address: `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | `0x007BBFB0` (`0x007BC1E5`); `0x007BC2B0` (`0x007BC2C1`); `0x007BC4F0` (`0x007BC777`); through the address: `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) |
+| `0x02EADE8C` | `i32` | 0 | source list `+0x0C`, nodes in use | `0x0016A230` (`0x0016A24D`); `0x007BC4F0` (`0x007BC802`); `0x008B8FD0` (`0x008B900D`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`); `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | `0x007BC4F0` (`0x007BC802`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`) |
+| `0x02EADE90` | `void*` | 0 | source list `+0x10`, the `DriverListNode` array | `0x0016A230` (`0x0016A254`); `0x008B8FD0` (`0x008B9021`); through the address: `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | `0x007BBFB0` (`0x007BC1ED`); `0x007BC2B0` (`0x007BC2CD`); `0x007BC4F0` (`0x007BC787`); `0x008B8FD0` (`0x008B8FD4`); through the address: `0x007B2880` (from `0x007BBFB0`); `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) |
+| `0x02EADE98` | `void*` | 0 | source list `+0x18`, first free node | `0x0016A230` (`0x0016A254`); `0x007BC4F0` (`0x007BC80B`); `0x008B8FD0` (`0x008B9021`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`); `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | `0x007BC4F0` (`0x007BC7E7`, `0x007BC7F2`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`) |
+| `0x02EADEA0` | `void*` | 0 | source list `+0x20`, first node in use | `0x0016A230` (`0x0016A25C`); `0x007BC4F0` (`0x007BC7A6`); `0x008B8FD0` (`0x008B9030`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`); `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | `0x007BC4F0` (`0x007BC523`, `0x007BC6F8`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`) |
+| `0x02EADEA8` | `void*` | 0 | source list `+0x28`, last node in use | `0x0016A230` (`0x0016A25C`); `0x007BC4F0` (`0x007BC7C9`); `0x008B8FD0` (`0x008B9030`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`); `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`) |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
+the image base, which finds none; the same scan finds the two known uses of `0x02AEA030` (`0x003B6181`, `0x003B6188`).
+
 ## Modding notes
 
 - A map emitter's range and shape decide where its sound is heard; a range of 0 or less is never heard.

@@ -113,6 +113,47 @@ The rows use painters at `+0x120`: `0x0056BBD0` for a condition (the name, in co
 and `0x0056A780` for an action, which adds the icon frame and, when its byte `+0x11` is set, the number `+0x0C` with text
 `0x465F` (`0x0029FF60`); the frame is hidden for an empty entry, id `0x96`, or state `0x0F`.
 
+### The row cache
+
+The list (`0x0056B4D0`) is a `0x5A8`-byte widget that `0x0056B350` builds (`0x0056B3B4`-`0x0056B3C5`). It keeps the shown
+page's rows in a cache of 17 rows of `0x20` bytes, rows 0 to 16, at `+0xE0`-`+0x2FF`; the page records follow at
+`+0x300`. A page is loaded by `0x0056BC70(list, page)` for conditions and `0x0056A890(list, page)` for actions:
+
+1. They zero the 17 rows (`0x220` bytes) and set each row's id to `0xFFFF` (`0x0056BCA4`-`0x0056BCFB`,
+   `0x0056A8C4`-`0x0056A91C`).
+2. They ask `0x0031EB20` for the page's entries into a 512-entry buffer on the stack (`0x0056BD28`, `0x0056A949`). The
+   enumerator stops at 512 entries (`0x0031F9E0`, `0x0031FAD0`) and at the first id the validator refuses.
+3. They write one row per entry, for every entry returned, with no bound at 17 (`0x0056BD50`-`0x0056BDBE`,
+   `0x0056A970`-`0x0056AA25`).
+4. They give the list widget the count, at least 1 (`0x002D48C0`), so it scrolls over every row.
+
+`GambitListRow` (`0x20` bytes, offsets from the start of the [list+0xE0]+i*0x20):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | name | the entry's name (`0x002B58B0`), or text `0x4C7` for an entry not yet owned |
+| `+0x08` | `u16` | id | the condition or action id; `0xFFFF` for an empty row |
+| `+0x0A` | `u8` | icon | the condition row's +`0x2C`; for an action, +`0x2C` of the item record its +`0x2C` names, 0 when that is `0xFFFF` |
+| `+0x0B` | `u8` | pad0B | 0; the fillers do not write it |
+| `+0x0C` | `u16` | number | the count shown with text `0x465F`, for an action whose item record (its own record when it names none) has kind 5 at +`0x00` (that record's +`0x24`) or 8 (the action's +`0x24`) (`0x0056A9AA`-`0x0056AA17`) |
+| `+0x0E` | `u8[2]` | pad0E | 0; the fillers do not write them |
+| `+0x10` | `u8` | state | the enumerator's state for the entry; `0x0F` for one not yet owned |
+| `+0x11` | `u8` | hasNumber | 1 when +`0x0C` is shown |
+| `+0x12` | `u8` | flag12 | written 0 by both fillers; read by the list at `0x0056BB46` |
+| `+0x13` | `u8[5]` | pad13 | 0; the fillers do not write them |
+| `+0x18` | `void*` | help | the entry's help text, or `0xCD8` or `0xCD7` for one not yet owned |
+
+Four functions read the rows, each at `(row + 7) x 0x20` from the list, which is `+0xE0` for row 0: the
+condition painter `0x0056BBD0` (`0x0056BBE9`), the action painter `0x0056A780` (`0x0056A799`), the list's own messages
+`0x0056B4D0` for the cursor's row (`0x0056BA4A`; confirm hands it to `0x0056AC50`), and `0x00568460` (`0x005684C7`), which
+measures a row's name for the lesson steering of `0x0056BE40` and `0x00510B80`.
+
+A page of more than 17 entries is written past the cache: row 17 lands on the page records at `+0x300`-`+0x31F`, and
+each further row 32 bytes on, through the list's own fields up to `+0x59F` (row 37). Row 38 and later run past the
+`0x5A8`-byte widget. The number of entries on a page is the grid's rows per page, `[0x0208D311]` for conditions and
+`[0x0208D301]` for actions: one more than the highest page position in the table, condition row `+0x17` (`0x00238903`-`0x0023892D`) or action
+row `+0x39` (`0x00238043`-`0x0023806D`).
+
 `0x005678A0` re-attaches the member-scoped pane `[0x02CA96D8]` (`0x005677A0`) to the root `[0x0208EA28]` (`0x00246AD0`) for the
 two openers (`0x00282286`, `0x002D7270`).
 
@@ -166,6 +207,8 @@ target row, page and entry, then only confirm (`0x002D66A0`).
 - A condition's or action's place in the lists is its grid column and row in the condition or action table.
 - Which targets an action accepts is its row's byte `+0x0C`; widening it lets more conditions pair with it.
 - `setgambit_slotmax` adds its argument to the slot count of all three sets, clamped to 0-12.
+- A page holds at most 17 entries (positions 0 to 16): the list's row cache has 17 rows, and an eighteenth entry is
+  written over the page records at `+0x300` (above).
 
 ## Related
 

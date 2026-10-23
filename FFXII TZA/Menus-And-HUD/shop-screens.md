@@ -23,6 +23,33 @@ A script opens a shop with `openfullscreenmenu_48d(2, shop)`, menu request 10 ([
 screen calls `0x0057B800(shop)` (`0x0027FCDA`), which creates the command list `0x0057B890`. The shop number is the only
 argument; the mode is chosen inside the screen. The title is the shop's name, `0x002FAE40(shop)` (`0x0057B98F`-`0x0057B9C1`).
 
+### The window's memory
+
+The shop window takes two blocks:
+
+1. The window itself, a `0x268`-byte (616-byte) widget that `0x0057B800` builds with procedure `0x0057B890`
+   (`0x0057B866`-`0x0057B872`). It ends with 128 bazaar ids, `u16` at `+0x168`-`+0x267`, indexes 0 to 127.
+2. A `0x7D0`-byte (2,000-byte) block that message 1 takes from arena 2 (`0x002497E0(2, 0x7D0)`, `0x0057B8DC`-`0x0057B906`)
+   and keeps at `+0x160`. It holds 1,000 ids, indexes 0 to 999. Message 18 frees it (`0x003697F0`, `0x0057BCAC`-`0x0057BCB8`).
+
+`0x002497E0(arena, size)` selects the arena (`0x0036C1D0`), allocates (`0x0036A100`) and restores the arena (`0x0036C140`).
+The tab rows are a third, per-tab block: `0x0057CDD0(n)` takes `n x 0x20` bytes from the same arena and zeroes them.
+
+The two id arrays are filled by `0x002FA920`, which writes one id per good and takes no length:
+
+- `0x0057B6F0`, the new-goods check, lists the shop's bazaar goods on offer into `+0x168` (mode 2, `0x0057B721`-`0x0057B736`).
+  Mode 2 walks every row of the bazaar table `[0x02EBF058]` (`0x002FA9E0`-`0x002FAA1C`), 128 in every shipped
+  `battle_pack.bin`, so the array is exactly as long as the table.
+- `0x0057B500`, which the window sizer `0x0057BEE0` runs for every tab (`0x0057BF50`), lists a Buy tab's goods (mode 1,
+  category byte `0x00D238F8 + tab`) or the bazaar's (mode 2, `0x00D23901 + tab`) into the block at `+0x160`
+  (`0x0057B5E9`-`0x0057B617`).
+
+These are the only uses of the shop window's `+0x160` and `+0x168` in the 213 functions from `0x0056C000` to
+`0x0057E000` and the eight that load `[0x02CA9790]`. The other operands with those displacements there belong to other
+records: the stack slot `[rsp+0x160]` of `0x0057C140` (`0x0057C2AF`), and `+0x168` of another widget's own record in
+`0x0056F5F0` (`0x0056F6F2`), `0x0056F810` (`0x0056F853`, `0x0056F895`, `0x0056F906`, `0x0056FA09`) and `0x0056FAD0` (`0x0056FAE8`,
+`0x0056FBB1`, `0x0056FBFD`).
+
 ### The command rows
 
 `0x0057B400` builds three rows (`0x0057B426`-`0x0057B44E`), and `0x0057BD40` sets whether each is offered:
@@ -160,7 +187,7 @@ and bit 3 when it is not 1, and passes both to the list.
 - `0x0057D600(buy)` gives the tab count, 9 when buying and 6 otherwise; `0x0057D5E0(buy, i)` the category of tab `i`,
   from `0x00D23D60` (buy: 20 to 27 and 29) or `0x00D23D6C` (otherwise: 8 to 12 and 15); `0x0057D610` is `0x0057D620` with 0.
 - `0x0057CE10(category)` returns the category's row table, one of 17 between `0x00D239A0` and `0x00D23A50`; `0x0057CDD0(n)`
-  allocates `n` zeroed 0x20-byte rows (`0x002497E0(2)`).
+  allocates `n` zeroed 0x20-byte rows from arena 2 (`0x002497E0(2, n x 0x20)`, `0x0057CDDC`-`0x0057CDF6`).
 - `0x0056DED0(screen)` is the screen's step: the quantity window's input while it is open (`0x0056CA60`); otherwise the
   tab switch of the [Inventory screen](inventory-screen.md) (`0x00563EC0`, `0x00564300`), which redraws the tab strip
   (`0x005674B0`), takes the help kind `0x0056DC30(category)` into `+0x191`, rebuilds the list (`0x0056C950`, `0x0056E410`)
@@ -216,6 +243,8 @@ The equip offer checks each party member (`0x00317B70`):
 - A new Buy tab needs an entry in tab set 32 at `0x00D23C70` and a goods code in `0x00D23D60`.
 - The sell price is always half the listed price; changing it means changing the `sar` in the row fillers.
 - Raising a kind's limit in `0x00D235F8` lets the party buy more of it at once.
+- A bazaar table of more than 128 goods, with more than 128 on offer at once, makes `0x0057B6F0` write past the shop
+  window's 616 bytes; a list of more than 1,000 goods for one tab overruns the 2,000-byte block at `+0x160`.
 
 ## Related
 

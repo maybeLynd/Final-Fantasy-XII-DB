@@ -338,6 +338,73 @@ copies use codec 4, which `Voice::Initialize` does not accept. HCA header byte `
 never used; byte `+0xD` is 1 in the 348 music materials and 0 in the rest. 11,374 materials are 48000 Hz and 139 are
 44100 Hz; 7,759 are mono and 3,754 stereo.
 
+## State
+
+### Threads and the device
+
+`0x007A5550`, the start routine of every driver thread, calls the function at `+0x08` of the block it is given with the
+argument at `+0x10` (`0x007A5557`-`0x007A555B`). All of these are 0 in the file unless shown.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EACFD0` | `void*` | 0 | the spatial layer thread's handle | `0x001696D0`, 0 (`0x001696D9`); `0x007A5B50`, from `CreateThread` (`0x007A5D73`) | `0x007A5B50`, to set the thread's affinity (`0x007A5D94`) |
+| `0x02EACFD8` | `void*` | 0 | `+0x08` of that thread's block: its body `0x007A5E50` | `0x001696D0` (`0x001696E0`); `0x007A5B50` (`0x007A5D46`) | `0x007A5550`, through the block's address (`0x007A5D1D`) |
+| `0x02EACFE0` | `void*` | 0 | `+0x10` of that block: the body's argument, 0 | `0x001696D0` (`0x001696E7`); `0x007A5B50` (`0x007A5D66`) | `0x007A5550`, through the block's address |
+| `0x02EACFE8` | `u8` | 0 | 1 once the spatial layer has started; a second start returns at once | `0x007A5B50` (`0x007A5D54`) | `0x007A5B50` (`0x007A5B6B`) |
+| `0x02EACFE9` | `u8` | 0 | the spatial thread's stop flag: the thread ends when it is not 0, and nothing stores anything but 0 | `0x007A5B50`, 0 (`0x007A5D3F`) | `0x007A5E50` (`0x007A5E54`, `0x007A5EF0`) |
+| `0x02EACFF0` | `u64` | 0 | the clock count (`0x007AD630`) at the spatial thread's last pass; the pass time is the difference over the clock rate | `0x007A5B50` (`0x007A5D2F`); `0x007A5E50` (`0x007A5EBA`) | `0x007A5E50` (`0x007A5E8B`) |
+| `0x02EAD810` | `void*` | 0 | the job worker thread's handle | `0x00169F50`, 0 (`0x00169F59`); `0x007B6F70`, from `CreateThread` (`0x007B6FEA`) | `0x007B6F70`, to set its affinity (`0x007B7006`) |
+| `0x02EAD818` | `void*` | 0 | `+0x08` of the worker's block: its body `0x007B6D40` | `0x00169F50` (`0x00169F60`); `0x007B6F70` (`0x007B6FA4`) | `0x007A5550`, through the block's address (`0x007B6F9B`) |
+| `0x02EAD820` | `void*` | 0 | `+0x10` of that block: the argument, 0 | `0x00169F50` (`0x00169F67`); `0x007B6F70` (`0x007B6FDD`) | `0x007A5550`, through the block's address |
+| `0x02EAD890` | `u8` | 0 | the job worker's stop flag: the loop ends when it is not 0, and nothing stores anything but 0 | `0x007B6F70`, 0 (`0x007B6FD6`) | `0x007B6D40` (`0x007B6D44`, `0x007B6F43`) |
+| `0x02EAD8A0` | `i32` | 0 | the id of the job the worker is running, 0 when none; the worker copies the job's 16-byte ring entry here | `0x007B6D40` (`0x007B6DCB`, and 0 after the job at `0x007B6E54`); `0x007B6F70`, 0 (`0x007B703F`) | `0x007B7070`, which answers whether a job is still pending or running (`0x007B7091`) |
+| `0x02EAD8A8` | `void*` | 0 | the running job's object, whose slot 1 the worker calls | `0x007B6D40` (`0x007B6DCB`, and 0 after the job at `0x007B6E5A`); `0x007B6F70`, 0 (`0x007B7047`) | `0x007B6D40` (`0x007B6E35`) |
+| `0x01F40438` | `u8` | 1 | 1 until the first block: the first block copies its per-channel peaks into the meter at `[0x02EAD380]`, every later block keeps the larger of the two; nothing sets it back to 1 | `0x007AF740`, 0 (`0x007AFE68`) | `0x007AF740` (`0x007AFC15`) |
+| `0x02EAD3AC` | `i32` | 0 | a position `0x007AF740` reads and advances only while `[0x02EAD390]` is 2 (`0x007AFEF4`-`0x007AFF79`); the only store to `0x02EAD390` puts 0 there (`0x007AEF30`, `0x007AF339`, the same 0 it stores into `0x02EAD308`), so in the shipped game this is never reached | `0x007AF740` (`0x007AFF79`) | `0x007AF740` (`0x007AFF06`, `0x007AFF6D`) |
+| `0x02EAE090` | `i32` | 0 | the size of the HCA mixer's silent buffer, its argument's `+0x08` times 512 | `0x007DCD70` (`0x007DCD9A`) | `0x007DCD70` (`0x007DCDA5`); `0x007DCE20` (`0x007DCFF2`) and `0x007DD040` (`0x007DD1DF`), which hand the buffer to the voice's slot at `+0x48` |
+| `0x02EAE098` | `void*` | 0 | that buffer, allocated with tag 5 (`0x007AD550`) and zeroed | `0x007DCD70` (`0x007DCDB1`) | `0x007DCE20` (`0x007DCFF9`); `0x007DD040` (`0x007DD1E6`) |
+| `0x02EAE0A0` | `void*` | 0 | the block callback from the device block `+0x08`, `0x007AF740` (`0x007AEFEC`) | `0x007DDED0` (`0x007DDEFA`) | called by `0x007DF690` under the lock `0x02EAE0B0` when the device asks for a block (`0x007DF6AA`) |
+
+### The external sources
+
+The update pass keeps every open external source in a list linked through each source's `+0x4F0` (previous) and
+`+0x4F8` (next); `0x007B9050` puts a newly opened source at the front, and `0x007B99B0` takes out a source whose byte
+`+0x488` is set and whose `+0x68` object's slot 2 answers 0 or less (`0x007B99F2`-`0x007B9A86`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EADD30` | `void*` | 0 | the first source | `0x007B9050` (`0x007B92FA`, `0x007B9334`); `0x007B99B0` (`0x007B9A3C`) | `0x007B9050` (`0x007B92E9`, `0x007B9318`, `0x007B9326`); `0x007B99B0` (`0x007B99CB`, `0x007B9A30`) |
+| `0x02EADD38` | `void*` | 0 | the last source | `0x007B9050` (`0x007B92F3`); `0x007B99B0` (`0x007B9A53`) | `0x007B99B0` (`0x007B9A43`) |
+| `0x02EADD40` | `i32` | 0 | the sources in the list | `0x007B9050` (`0x007B933B`); `0x007B99B0` (`0x007B9A86`) | the same two |
+
+### Voice lists and the command queue
+
+The pooled source voices and the submixes are `ObjectList`s, the command queue a `DriverQueue` and the allocated
+source voices a list of `0x20`-byte nodes (class `0x01CB4AB8`, previous `+0x08`, next `+0x10`, voice `+0x18`) that
+`0x007AF490` puts at the front; the layouts are on [Sound driver objects](sound-driver-objects.md). "Through the
+address" names the helpers a function hands the list to.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAD050` | `void*` | 0 | command queue `+0x10`, first free cell | `0x00169720` (`0x00169744`); `0x007AB550` (`0x007AB56F`); `0x007AB5C0` (`0x007AB65D`); `0x008B86A0` (`0x008B86F1`); through the address: `0x007AB240` (from `0x007AB390`) | `0x007AB550` (`0x007AB556`); `0x007AB5C0` (`0x007AB64C`) |
+| `0x02EAD058` | `void*` | 0 | command queue `+0x18`, first queued cell | `0x00169720` (`0x0016974C`); `0x007AB550` (`0x007AB587`); `0x007AB5C0` (`0x007AB645`); `0x008B86A0` (`0x008B8700`); through the address: `0x007AB240` (from `0x007AB390`) | `0x007AB550` (`0x007AB57E`); `0x007AB5C0` (`0x007AB5E7`, `0x007AC01C`) |
+| `0x02EAD06C` | `i32` | 0 | command queue `+0x2C`, cells queued | `0x00169720` (`0x0016973D`); `0x007AB550` (`0x007AB59B`); `0x007AB5C0` (`0x007AB657`); `0x008B86A0` (`0x008B86DD`); through the address: `0x007AB240` (from `0x007AB390`) | `0x007AB550` (`0x007AB59B`); `0x007AB5C0` (`0x007AB657`) |
+| `0x02EAD2A8` | `i32` | 0 | pooled source-voice list `+0x08`, capacity: the nodes the list holds | `0x00169930` (`0x0016994D`); through the address: `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) | `0x007B0000` (`0x007B00FF`); through the address: `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) |
+| `0x02EAD2AC` | `i32` | 0 | pooled source-voice list `+0x0C`, nodes in use | `0x00169930` (`0x0016994D`); `0x007B0000` (`0x007B018A`); `0x008B8850` (`0x008B888D`); through the address: `0x007AF380` (from `0x007AEA20`); `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) | `0x007B0000` (`0x007B018A`); through the address: `0x007AF380` (from `0x007AEA20`) |
+| `0x02EAD2B0` | `void*` | 0 | pooled source-voice list `+0x10`, the `DriverListNode` array | `0x00169930` (`0x00169954`); `0x008B8850` (`0x008B88A1`); through the address: `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) | `0x007B0000` (`0x007B010F`); `0x008B8850` (`0x008B8854`); through the address: `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) |
+| `0x02EAD2B8` | `void*` | 0 | pooled source-voice list `+0x18`, first free node | `0x00169930` (`0x00169954`); `0x007B0000` (`0x007B0193`); `0x008B8850` (`0x008B88A1`); through the address: `0x007AF380` (from `0x007AEA20`); `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) | `0x007B0000` (`0x007B016F`, `0x007B017A`); through the address: `0x007AF380` (from `0x007AEA20`) |
+| `0x02EAD2C0` | `void*` | 0 | pooled source-voice list `+0x20`, first node in use | `0x00169930` (`0x0016995C`); `0x007B0000` (`0x007B012E`); `0x008B8850` (`0x008B88B0`); through the address: `0x007AF380` (from `0x007AEA20`); `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) | `0x007B0000` (`0x007B00B4`); through the address: `0x007AF380` (from `0x007AEA20`) |
+| `0x02EAD2C8` | `void*` | 0 | pooled source-voice list `+0x28`, last node in use | `0x00169930` (`0x0016995C`); `0x007B0000` (`0x007B0151`); `0x008B8850` (`0x008B88B0`); through the address: `0x007AF380` (from `0x007AEA20`); `0x007AED10` with `0x007B6AA0` (from `0x007AEF30`) | through the address: `0x007AF380` (from `0x007AEA20`) |
+| `0x02EAD2F0` | `void*` | 0 | submix list `+0x20`, first node in use | `0x001699A0` (`0x001699CC`); `0x008B88D0` (`0x008B8930`); through the address: `0x007AF380` (from `0x007AEC10`); `0x007AEE20` with `0x007B6AA0` (from `0x007AEF30`) | `0x007B0000` (`0x007B0076`, `0x007B02F1`); through the address: `0x007AF380` (from `0x007AEC10`) |
+| `0x02EAD308` | `i32` | 0 | allocated source-voice list `+0x08`, nodes in the list | `0x00169830` (`0x00169839`, `0x0016984A`); `0x007AEF30` (`0x007AF331`); `0x007B0000` (`0x007B0292`); `0x008B87B0` (`0x008B87E9`); through the address: `0x007AF490` (from `0x007AEA20`) | `0x007B0000` (`0x007B0292`); through the address: `0x007AF490` (from `0x007AEA20`) |
+| `0x02EAD310` | `void*` | 0 | allocated source-voice list `+0x10`, first node | `0x00169830` (`0x0016985B`); `0x007AEF30` (`0x007AF347`); `0x007B0000` (`0x007B024C`); `0x008B87B0` (`0x008B87FA`); through the address: `0x007AF490` (from `0x007AEA20`) | `0x007AEF30` (`0x007AF2FF`); `0x007B0000` (`0x007B01FD`); `0x008B87B0` (`0x008B87B6`); through the address: `0x007AF490` (from `0x007AEA20`) |
+| `0x02EAD318` | `void*` | 0 | allocated source-voice list `+0x18`, last node | `0x00169830` (`0x0016985B`); `0x007AEF30` (`0x007AF347`); `0x007B0000` (`0x007B026F`); `0x008B87B0` (`0x008B87FA`); through the address: `0x007AF490` (from `0x007AEA20`) | no instruction |
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
+image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
+the image base and for each list's address, which finds none; the same scan finds the two known uses of `0x02AEA030`
+(`0x003B6181`, `0x003B6188`).
+
 ## Modding notes
 
 - A replacement sound can be 16-bit PCM (codec 1), Microsoft ADPCM (2), Ogg Vorbis (3) or HCA (7); the driver plays

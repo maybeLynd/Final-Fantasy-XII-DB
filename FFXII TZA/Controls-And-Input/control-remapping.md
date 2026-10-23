@@ -177,6 +177,40 @@ to `0x01F80130` (`0x00198960`-`0x001989C6`); it does not read the new value, so 
 Shift); profile 2 binds the four directions, Circle, Cross, R3 and Select, and profile 3 the same without Up and Down. [keymap.ini](keymap-file.md) lists
 every default.
 
+## State
+
+The Circle and Cross codes of the three keyboard records and of their master copies, and the Config screen's row
+table:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01DF176C`, `0x01DF1770` | `u32`, `u32` | 0 | Circle and Cross, buttons 13 and 14 (`+0x34`, `+0x38`) of record 2, the first keyboard profile ([Controls](controls.md)) | the static initialiser `0x0015C280` from the defaults at `0x01DF09F0` (`0x0015C365`); the publisher `0x00195DF0` (`0x00195E82`, and the exchange `0x00195F1C`, `0x00195F24`); the defaults `0x00198B60` (`0x00198C9D`, and the exchange `0x00198D1F`, `0x00198D27`); the rebuild `0x00196290` from the master copy (`0x001962DD`); the exchange `0x00198960` (`0x0019896C`, `0x00198972`) | `0x00195DF0` (`0x00195F0C`, `0x00195F14`); `0x00198B60` (`0x00198D0F`, `0x00198D17`); `0x00198960` (`0x00198960`, `0x00198966`); the input filter `0x001967D0`, which keeps only the confirm key of each record (`0x00196864`); the translator `0x00197160` through the record list `0x01DF1480` (`0x001971C5`) |
+| `0x01DF18C8`, `0x01DF18CC` | `u32`, `u32` | 0 | the same two buttons of record 3, the second profile | `0x0015C280` (`0x0015C405`); `0x00195DF0`, `0x00198B60` and `0x00196290` (`0x0019637D`) as for record 2; `0x00198960` (`0x00198990`, `0x00198996`) | `0x00195DF0`, `0x00198B60`, `0x001967D0` and `0x00197160` as for record 2; `0x00198960` (`0x0019897E`, `0x0019898A`) |
+| `0x01DF1A24`, `0x01DF1A28` | `u32`, `u32` | 0 | the same two buttons of record 4, the third profile | `0x0015C280` (`0x0015C4A2`); `0x00195DF0`, `0x00198B60` and `0x00196290` (`0x0019641D`) as for record 2; `0x00198960` (`0x001989B4`, `0x001989BA`) | `0x00195DF0`, `0x00198B60`, `0x001967D0` and `0x00197160` as for record 2; `0x00198960` (`0x001989A2`, `0x001989AE`) |
+| `0x01F80164`, `0x01F80168` | `u32`, `u32` | 0 | Circle and Cross in the master copy of record 2, `+0x34` and `+0x38` of `0x01F80130` | the static initialiser `0x0015BD30` (`0x0015BD77`); the copies of `0x00195DF0` (`0x00195F40`-`0x00195FCF`) and `0x00198B60` (`0x00198D40`-`0x00198D91`); `0x00198960` (`0x00198978`, `0x00198984`) | the rebuild `0x00196290` (`0x001962B7`-`0x001962F1`), which the poll runs through `0x00196680` |
+| `0x01F802C0`, `0x01F802C4` | `u32`, `u32` | 0 | the same in the master copy of record 3, `0x01F8028C` | `0x0015BD30` (`0x0015BE15`); `0x00195DF0` and `0x00198B60` as above; `0x00198960` (`0x0019899C`, `0x001989A8`) | `0x00196290` (`0x00196357`-`0x00196391`) |
+| `0x01F8041C`, `0x01F80420` | `u32`, `u32` | 0 | the same in the master copy of record 4, `0x01F803E8` | `0x0015BD30` (`0x0015BEB2`); `0x00195DF0` and `0x00198B60` as above; `0x00198960` (`0x001989C0`, `0x001989C6`) | `0x00196290` (the third copy, from `0x001963DE`) |
+| `0x0208E6E0`-`0x0208EA13` | `u32[205]` | 0 | the Config screen's 41 rows (see The binding rows), `0x14` bytes each: `+0x00` the row's own number, which no instruction reads; `+0x04` the type; `+0x08` the text id; `+0x0C` the help text id (`0xD43` on every binding row); `+0x10` the columns of a type 1 or 2 row, or the value a type 3 or 4 row passes to its handler (`0x0023DB40`, `0x0023E710`) | `0x002414B0`, which the screen `0x0023CE10` calls: see the list below | `0x0023CD20`, the type and text (`0x0023CD48`, `0x0023CD67`, `0x0023CD97`); `0x0023CE10`, the type (`0x0023CFA7`, `0x0023D020`, `0x0023D0CF`), `+0x10` (`0x0023D03D`, `0x0023D049`, `0x0023D062`) and the help of the selected row (`0x0023D350`); `0x00241890`, the type of the row under the cursor (`0x002418D0`) |
+
+`0x002414B0` stores the row table in one pass, from 16-byte constants at `0x00914D10`-`0x00915030`:
+
+- 16-byte stores to `0x0208E6E0`, `0x0208E6F0`, `0x0208E700`, `0x0208E710`, `0x0208E720`, `0x0208E730`, `0x0208E740`, `0x0208E760`,
+  `0x0208E770`, `0x0208E780`, `0x0208E790`, `0x0208E7A0`, `0x0208E7C0`, `0x0208E7D0`, `0x0208E7E0`, `0x0208E7F0`, `0x0208E800`,
+  `0x0208E810`, `0x0208E820`, `0x0208E830`, `0x0208E840`, `0x0208E850`, `0x0208E860`, `0x0208E870`, `0x0208E880`, `0x0208E890`;
+- and to `0x0208E8A0`, `0x0208E8B0`, `0x0208E8C0`, `0x0208E8D0`, `0x0208E8E0`, `0x0208E8F0`, `0x0208E900`, `0x0208E910`, `0x0208E920`,
+  `0x0208E930`, `0x0208E940`, `0x0208E950`, `0x0208E960`, `0x0208E980`, `0x0208E990`, `0x0208E9A0`, `0x0208E9B0`, `0x0208E9C0`,
+  `0x0208E9D0`, `0x0208E9F0`, `0x0208EA00` (`0x002414C2`-`0x0024181A`);
+- 4-byte stores: `0x0208E750` = `0xD43`, `0x0208E754` = 1, `0x0208E7B0` = `0x578`, `0x0208E7B4` = `0xD43`, `0x0208E7B8` = 1,
+  `0x0208E7BC` = 11, `0x0208E970` = 1, `0x0208E97C` = `0x568`, `0x0208E9E0` = `0x565`, `0x0208E9E4` = `0xD3F`, `0x0208E9E8` =
+  `0x26`, `0x0208E9EC` = 39, `0x0208EA10` = 0 (`0x002416C2`-`0x0024182C`);
+- 8-byte stores: `0x0208E758` = 6 and `0x0208E974` = 33, the index of rows 6 and 33 with type 0 (`0x00241719`, `0x002416C8`).
+
+No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
+image-base-relative references and a scan of `.text` for each global's 32-bit offset from the image base; that scan
+finds the known image-base uses of `0x01DF176C` and `0x01DF1770` (`0x00195F0C`, `0x00198D0F`) and of `0x0208E6E4` and
+`0x0208E6EC` (`0x0023CFA7`, `0x0023D350`), and every other hit falls inside another instruction's RIP-relative or branch
+offset.
+
 ## Modding notes
 
 - One code can be bound once across all three profiles.

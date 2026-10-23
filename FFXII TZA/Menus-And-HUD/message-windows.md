@@ -64,6 +64,30 @@ Verb names and ids are those of the [verb table](../Scripts-And-Script-Commands/
 
 `+0x3F` keeps the value `0x002640D0` reads from the current actor manager (`[0x02099D70]+0x28`).
 
+When step 5 closes a window whose kind was not -1, the close writes `0xFE` to `+0x40` after the new kind was stored
+there (`0x002E17AD`, `0x002E1866`), so a window opened over such a window reports `0xFE` through `0x002E1170`, not its kind.
+
+`0x002E04E0(slot, dx, dy)` moves a slot's rectangle and its open window (`+0x98`/`+0x9A`) by the offset once per
+open: it does nothing while `+0x60` is set and sets it after the move (`0x002E0501`-`0x002E052A`). The open clears
+`+0x60` (`0x002E17A2`). Its one caller is the gauge placement `0x00407B70`, for slot 6 ([Script gauges](script-gauges.md)).
+
+### What the open leaves as it was
+
+`0x002E16B0` writes every field of the slot (layout below) except these, which keep their values into the next window:
+
+- the rectangle `+0x10`-`+0x16`, read at `0x002E18C3`-`0x002E18E0`; only its flag `+0x3A` is cleared (`0x002E19A1`);
+- the `askpos` rows `+0x24` and `+0x28` and the cancel switch `+0x39`, read at `0x002E1978`-`0x002E1981`; only their flag
+  `+0x3B` is cleared, by the same word write as `+0x3A` (`0x002E19A1`);
+- the choice byte `+0x38`, the style `+0x3D` (read at `0x002E174B`) and the `messync` bits `+0x3E`;
+- bits 1-7 of `+0x44`; the open clears bit 0 only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
+  stores `value & 1`);
+- the spans `+0x45`-`+0x4B`, `+0x4D`-`+0x53` and `+0x64`-`+0x67`, which no instruction reads or writes.
+
+So a slot's style, choice flag and `messync` bits carry over until a verb sets them again, while a rectangle or
+`askpos` setting applies to one window only. The search for the spans covered every instruction of the 36 functions
+that reference `0x0215F200`-`0x0215F53F` (the rip-relative reference index, with `0x002E170C` as the positive control; no
+image-base-relative operand reaches the range).
+
 ### Slot states
 
 Each tick the request drain `0x002E09A0` ([frame update order](../Engine-Core/frame-update-order.md)) steps
@@ -370,12 +394,16 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | `+0x41` | `u8` | answered | the answer was copied |
 | `+0x42` | `u8` | hasParts | the window gets picture parts |
 | `+0x43` | `u8` | flag43 | the reset writes 0 |
-| `+0x44` | `u8` | noFocus | bit 0: open without the focus |
+| `+0x44` | `u8` | noFocus | bit 0: open without the focus; bits 1-7 are never set |
+| `+0x45` | `u8[7]` | - | read and written by none of the 36 functions that reference the slots |
 | `+0x4C` | `u8` | flag4C | the reset writes 0 |
+| `+0x4D` | `u8[7]` | - | read and written by none of the 36 functions that reference the slots |
 | `+0x54` | `u16` | partsBuilt | the part count given to `0x002A2AD0`, 0 for a window without parts |
 | `+0x56` | `u16` | partCount | parts for a shape window, 16 |
-| `+0x58` | `u16` | req58 | copied into the creation request |
-| `+0x5C` | `u8` | req5C | copied into the creation request with the style `+0x3D`; the reset clears `+0x58`-`+0x5F` |
+| `+0x58` | `u32` | req58 | set by `0x002E2120`; its low 16 bits are copied into the creation request (`0x002E17C5`); the open and the reset clear `+0x58`-`+0x5F` (`0x002E19DF`) |
+| `+0x5C` | `u32` | req5C | set by `0x002E2090`; its low byte is copied into the creation request (`0x002E1772`); the reset clears `+0x58`-`+0x5F` |
+| `+0x60` | `i32` | shifted | 1 once `0x002E04E0` has moved the slot's rectangle and window; the open and the slot reset `0x002E1450` write 0 |
+| `+0x64` | `u8[4]` | - | read and written by none of the 36 functions that reference the slots |
 
 `PicturePart`, `0x60` bytes, the array at `+0x3F8` of a window with parts:
 

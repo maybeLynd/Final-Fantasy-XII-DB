@@ -174,7 +174,7 @@ Both percentages, and the weighted pick, take a draw of the shared gameplay LCG 
 
 | Token | Bits | Meaning | Site |
 |---|---|---|---|
-| `keep` | `0x8000` | the order in flight is not re-planned over | `0x0030873B` |
+| `keep` | `0x8000` | the order in flight is not re-planned over, and its time-out is 60 times the time-out factor instead of 30 (10 for an action id above `0x21E`) ([Target selection](../Battle-Actions/target-selection.md)) | `0x0030873B`, `0x0030AF49` |
 | `guard` | `0x4000` | while it is in flight, a resumed walk tries only `resume` orders | `0x00305D7F` |
 | `sticky` | `0x1000` | when the deciding unit's `+0x744` is this action, the unit in its `+0x740` is taken as the only target | `0x00301B47`-`0x00301B72`, `0x00301E76`-`0x00301E88` |
 | `no-repeat` | `0x800` | not tried while it is the unit's previous order | `0x003015A6` |
@@ -182,7 +182,26 @@ Both percentages, and the weighted pick, take a draw of the shared gameplay LCG 
 | `skip-resume` | `0x80` | skipped by a resumed walk | `0x00305DBC` |
 | `resume` | `0x40` | tried by a resumed walk while a `guard` order is in flight | `0x00305DB2` |
 | `chain-2`, `chain-3` | `0x20` with `0x10`, `0x10` with `0x08` | test 2 (or 3) keeps only what test 1 (or 2) kept | `0x003016BE`-`0x003016E0` |
-| `bit-…` | `0x4`, `0x100`, `0x200`, `0x2000` | set in shipped orders; the walk `0x00305CC0`, the evaluator `0x003014C0`, the selector `0x00301AD0` and the combat frame `0x00308610` do not test them | - |
+| `bit-…` | `0x2000` | the order in flight is never timed out: the cancel check `0x002FFB60` skips the time-out `0x0030AF30` (its reason 7) while the bit is set | `0x002FFCA5`-`0x002FFCB5` |
+| `bit-…` | `0x4`, `0x100`, `0x200` | set in shipped orders; the walk `0x00305CC0`, the evaluator `0x003014C0`, the selector `0x00301AD0`, the combat frame `0x00308610`, the cancel check `0x002FFB60` and the time-out `0x0030AF30` do not test them | - |
+
+`bit-…` is a single token for the bits this table does not name, written as their sum in hex: `bit-0x2000`,
+`bit-0x2200`.
+
+The ARD editor of The Insurgent's Toolkit, a community modding tool, has its own names for the bits below. They are
+given here as aliases, credited to that tool, so that its users can find each bit; what each bit does is read from
+the executable, at the sites above:
+
+| Toolkit name | Token | Bits |
+|---|---|---|
+| `caseLinkType` | `chain-2`, `chain-3` | `0x38` |
+| `noInterruptToLowerPriority` | `skip-resume` | `0x80` |
+| `noTargetWith3Attackers` | `spread` | `0x400` |
+| `noConsecutiveUse` | `no-repeat` | `0x800` |
+| `noRetargeting` | `sticky` | `0x1000` |
+| `noTimeout` | `bit-0x2000` | `0x2000` |
+| `noInterruptByHigherPriority` | `guard` | `0x4000` |
+| `noInterruptByAny` | `keep` | `0x8000` |
 
 ## Data
 
