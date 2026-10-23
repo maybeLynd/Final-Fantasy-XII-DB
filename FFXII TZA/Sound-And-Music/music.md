@@ -163,6 +163,31 @@ A track slot, `0x18` bytes, four at `0x022CB9F0` (`0x00360C70` sets them up):
 | `+0x03` | `u8` | index | the slot's own index, returned by `0x00361630` |
 | `+0x14` | `u32` | loadId | the music controller's load id (`0x00361630`) |
 
+The script music stream's reader, one record at `0x02B5E0E0` in the zero-filled tail of `.data`. `0x003EB050` resets it
+(`0x003EB052`-`0x003EB096`), `0x003EB100` arms it (`0x003EB10C`-`0x003EB139`) and `0x003EADE0` steps it through states 1 to 8
+(jump table `0x003EAFEC`); `0x003EAD10` releases it (jump table `0x003EAD98`).
+
+`BgmStream` (`0x38` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i32` | readId | the file request id from `0x0032E780` (`0x003EAE59`, `0x003EAFA7`), waited on with `0x0032E4D0` in states 2 and 8 (`0x003EAE7C`, `0x003EAFC9`); -1 when idle (`0x003EB060`, `0x003EB12F`) |
+| `+0x04` | `u8[4]` | pad04 | written only by the reset's qword store `0x003EB059`; read by no instruction; nothing fixes its width |
+| `+0x08` | `void*` | ring | the ring buffer usebgmstream allocates (`0x003EB180`); read by every read and by the stream open (`0x003EAE3D`, `0x003EAE97`, `0x003EAF29`, `0x003EAF67`); freed by `0x003EB010` (`0x003EB02A`) |
+| `+0x10` | `i32` | ringBytes | the ring's size (`0x003EB187`); state 1 lowers it to the file size (`0x003EAE36`) |
+| `+0x14` | `i32` | openLoadId | the load id of the stream open: state 3 stores the return of `0x002DF660` (`0x003EAEA0`); state 4 waits until `0x002DEE90` reports it done (`0x003EAEB9`), and so does the release in states 3-5 (`0x003EAD50`, `0x003EAD6C`); 0 once play starts (`0x003EAEF0`); zeroed by `0x003EB050` (`0x003EB081`) and `0x003EB100` (`0x003EB122`) |
+| `+0x18` | `u32` | stream | the spoken-line stream's handle, written by `0x0021D770` (`0x0021D7C0`) through the address state 3 passes to `0x002DF660` (`0x003EAE93`); read by play `0x002DF680` (`0x003EAEE8`), the still-playing query `0x002DF630` in state 7 (`0x003EAF00`) and the release's stop `0x002DF690` when not 0 (`0x003EAD81`); zeroed by `0x003EB050` (`0x003EB088`) and `0x003EB100` (`0x003EB122`) |
+| `+0x1C` | `i32` | kind | `0x24`, the file kind (`0x003EB10C`); read for the size query and every read (`0x003EAE26`, `0x003EAE44`, `0x003EAF8C`) |
+| `+0x20` | `i32` | fileIndex | the kind-`0x24` file's index, `0x003EB100`'s argument (`0x003EB129`) from bgmstreamread (`0x0035469E`); read for the size query `0x0032E400` (`0x003EAE22`) and every read `0x0032E780` (`0x003EAE41`, `0x003EAF6E`); zeroed by `0x003EB050` (`0x003EB08F`) |
+| `+0x24` | `i32` | fileBytes | the file's size from `0x0032E400` (`0x003EAE2E`); 0 when armed (`0x003EB11C`) |
+| `+0x28` | `i32` | bytesRead | bytes read so far (`0x003EAE5E`, `0x003EAF9F`); state 7 ends the stream once it reaches fileBytes (`0x003EAEFB`) |
+| `+0x2C` | `i32` | ringCursor | bytesRead modulo ringBytes, where the next read lands (`0x003EAE69`, `0x003EAFB6`); 0 when armed (`0x003EB116`) |
+| `+0x30` | `u8` | state | 1 size and first read, 2 wait, 3 open, 4 wait for the open, 5 ready, 6 play (set by bgmstreamplay `0x003EB150`), 7 refill, 8 wait for the refill |
+| `+0x31` | `u8` | armed | 1 while the stream is in use: set with the state by the word store `0x101` (`0x003EB139`); cleared by the reset (`0x003EB06A`), the release (`0x003EAD46`, `0x003EAD8D`) and by state 7 when the whole file is read and the stream has stopped (`0x003EAF10`); read by `0x003EAD10` (`0x003EAD16`), `0x003EADE0` (`0x003EADF4`), `0x003EB0A0`, `0x003EB0D0` (`0x003EB0E0`) and `0x003EB150` |
+| `+0x32` | `u8` | pan | `0x40` (`0x003EB06A`), passed to `0x002DF680` at play (`0x003EAEE4`) |
+| `+0x33` | `u8` | volume | `0x7F` (`0x003EB073`), passed to `0x002DF680` at play (`0x003EAEDF`) |
+| `+0x34` | `u8[4]` | pad34 | written only by the reset's qword store `0x003EB052`; read by no instruction; nothing fixes its width |
+
 ## Modding notes
 
 - The crossfade length `0x78` and the volume `0x7F` are immediate operands at `0x0026207C`, `0x00262085`, `0x0026209D` and

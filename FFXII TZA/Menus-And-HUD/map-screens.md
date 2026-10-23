@@ -414,6 +414,30 @@ The location list pane `0x005542D0` uses row painters installed at `+0x120` of i
 | map-data widget `0x02B457E0` | the first of its three creators | the field-time container (`0x003CB91C`), the World Map host (`0x005525CB`) or the location container (`0x002BADCD`) |
 | minimap `0x02B476B0` | `0x003C80C0` | `0x003C58B0`, `0x003C8070` |
 
+## Layouts
+
+The container's own fields, the same for the three containers `0x0209E5C0`, `0x0209E5F0` and `0x02B47760`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00180` | `u8` | legendClosing | bit 0 of the dword `+0xC0` of the 0xD0-byte child at `+0xC0` (`0x002B6CE0` for the overlay, the legend pane `0x002BC310` for the location map): the child sets it on message 15 (`0x002B6D02`, `0x002BC332`); the container asks a live child to close (`0x00244F00`) only while it is clear (`0x002B7899`, `0x002B7938`, `0x002B7970`, `0x002BAC3D`, `0x002BACDC`, `0x002BAD14`); the field-time container builds no child, so its test `0x003CB8D2` is not reached |
+| `+0x00190` | `void*` | backImage | `LocaBack_c.tm2` (kind 7 `0xBA`), `+0x00` of the resources record `+0x190`-`+0x1AF` that `0x00404060` loads (`0x004040CC`); the overlay and the location map copy the field-time container's record (`0x002B6570`, `0x002BA040`); given to the location map's background widget (`0x002B9C46`) and freed by `0x004041D0` (`0x004041D9`) |
+| `+0x001A0` | `void*` | lineImage | `w_line01.tm2` (`0xB0`), the texture of a page's line quad (`0x004040FA`); read through the page's `+0x130` by `0x002B7B80` (`0x002B8A8C`), `0x002BAF80` (`0x002BBE93`) and `0x00403640` (`0x004036B0`); freed by `0x004041D0` (`0x004041F9`) |
+| `+0x179D0` | `u16` | mapRecord | the map record shown: creation word `+8` (`0x002B75F0`, `0x002BA76D`, `0x003CB6A8`; 0 for the field-time container); after a load, `0x003BC160`'s answer in mode 6 or the field's own record `0x003BFDF0` (`0x002B7750`, `0x002BA8F1`, `0x003CB7F8`); handed to the next page's builder (`0x002B77EC`, `0x002BAB8F`); a followed map link stores its target (`0x002BB964`) |
+| `+0x179D4` | `u32` | requestedMap | the id mode 6 hands to the map-data request `0x003BC9F0` (`0x002B76A8`, `0x002BA816`, `0x003CB74B`); set only on the location container, by `0x002B9FE0` (`0x002B9FEC`) from `0x0028E630` |
+| `+0x179D8` | `u8` | openMode | creation byte `+0x10` (`0x002B760C`, `0x002BA77B`, `0x003CB6B6`): 5 from `0x002B6220`, `0x0028E660`, `0x0028E690` and the field-time container, 6 from `0x0028E630`; compared with 6 at 12 sites in the three procedures |
+| `+0x179D9` | `u8` | linkTransition | the next location-map page's opening animation, an index into the `0x28`-byte descriptors at `0x00916A70` (`0xFF`: entry 8): `0xFF` from message 1, byte `+0x20` of a followed map link (`0x002BB909`); read by `0x002B9D30` (`0x002B9ED4`) |
+| `+0x179DA` | `u16` | shownMapRecord | the map record of the page last built; the builders hand the old value to the new page's `+0xBBE2` (`0x002B64FF`, `0x002B9F51`) and store the new one (`0x002B6513`, `0x002B9F63`) |
+| `+0x179DC` | `u16` | linkMarker | the marker the next location-map page selects: word `+0x22` of a followed map link (`0x002BB921`), looked up with `0x004026B0` (`0x002BB397`) |
+| `+0x179DE` | `u16` | linkMarkerSet | 1 when `+0x179DC` is to be used (`0x002BB928`), tested by `0x002BB389`; the overlay page makes the same tests on its own container (`0x002B7F31`; `0x002B7F3F` reads its `+0x179DC`), where nothing sets them |
+
+A marker, `0x70` bytes, 24 in a page's list at `+0xB140`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x40` | `void*` | mapPoint | the map point it stands for, `0x003BF520(record +0x1C, record +0x1E)`, 0 for none (`0x00402CA8`); read by the marker painters `0x002B8EE0` (`0x002B91CF`, `0x002B925C`, `0x002B956D`, `0x002B96CF`) and `0x002BCB00` (`0x002BCE90`, `0x002BCF0C`, `0x002BD160`, `0x002BD2D2`) and by `0x00403970` (`0x00403A3A`), `0x00403F90` (`0x00403FF7`, `0x00404007`) and `0x00404730` (`0x0040476D`, `0x00404840`) |
+| `+0x4E` | `u16` | markerFlags | bit 0 the page's selected marker (`0x002B7F57`, `0x002B80D1`, `0x002BB3B3`, `0x002BB52A`, `0x002BBC1C`), which loses bits 1-2; bits 1-2 set on a kind-1 marker (`0x00402CBE`, `0x002BBC04`); `0x00402BF0` sets bits 0 and 3 on every kind-1 marker (`0x00402C0A`); read by `0x00403180` (`0x00403200`, bit 1 picks colour `0x80`) and the labels `0x004044D0` (`0x00404624`, bit 3) |
+
 ## Shipped data
 
 | | |
@@ -435,6 +459,75 @@ displacement names it, a search that finds the control `0x02AEA030` at `0x003B61
 No other instruction reaches `0x022C83B8` or `0x02B476B8`: no other RIP-relative, image-base-relative or 32-bit offset
 reference names them, and the one address taken nearby, `0x022C8388` by `0x0035BC50`, reaches `0x022C8388`-`0x022C83A7` only.
 
+### The minimap's box and view
+
+The minimap procedure `0x003C5910` keeps its layout box in globals. On construction (message 1) it copies the box of its
+first layout node (`[+0x60]`, `+0x0C`-`+0x12`) and three quarters of its size (`0x003C5A5C`-`0x003C5ABD`); on each draw
+before its content (message 3) it gives the node the smaller box, centred in the full one (`0x003C5B69`-`0x003C5BDD`).
+All of these are 0 in the file (the zero-filled tail).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B476C0` | `i32` | 0 | the box's x | `0x003C5910` (`0x003C5A7A`) | `0x003C5910` (`0x003C5B9D`) |
+| `0x02B476C4` | `i32` | 0 | the box's y | `0x003C5910` (`0x003C5A6E`) | `0x003C5910` (`0x003C5BC5`) |
+| `0x02B476C8` | `i32` | 0 | a second copy of the x; nothing reads it | `0x003C5910` (`0x003C5A80`) | no instruction |
+| `0x02B476CC` | `i32` | 0 | a second copy of the y; nothing reads it | `0x003C5910` (`0x003C5A74`) | no instruction |
+| `0x02B476D0` | `i32` | 0 | three quarters of the width, `w x 96 / 128` | `0x003C5910` (`0x003C5AA8`) | `0x003C5910` (`0x003C5B89`, `0x003C5BBE`) |
+| `0x02B476D4` | `i32` | 0 | three quarters of the height | `0x003C5910` (`0x003C5ABD`) | `0x003C5910` (`0x003C5BB0`, `0x003C5BD1`) |
+| `0x02B476D8` | `i32` | 0 | the width | `0x003C5910` (`0x003C5A9C`) | `0x003C5910` (`0x003C5B7C`) |
+| `0x02B476DC` | `i32` | 0 | the height | `0x003C5910` (`0x003C5A93`) | `0x003C5910` (`0x003C5B97`) |
+| `0x01EFE374` | `u32` | `0x8040C0FF` | the ring colour: `0x002DD7E0(0xFE)` on construction (`0x003C5B34`); `0x003C6140` scales its four bytes with the other ring bytes from `0x01EFE370` | `0x003C5910` (`0x003C5B39`) | `0x003C6140`, byte by byte (`0x003C6174`, `0x003C617B`, `0x003C6182`, `0x003C6189`) |
+
+The minimap's draw callback `0x003C32B0` hands the view record `0x02B45820` to the map view `0x003C4070` in mode 0
+(`0x003C3315`). `0x003C4070` builds the view matrix `0x02B476F0` from it (identity `0x003C40AF`, then the scale and turn) and
+passes the record on to `0x004001D0` (`0x003C41AB`), `0x003C3340` (`0x003C4611`, outside mode 2) and `0x003C29A0` (`0x003C4640`):
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B45820` | `i32` | 0 | `+0x00`, the view mode, 0 for the minimap | `0x003C5910`, 0 (`0x003C5ACE`) | `0x003C4070` (`0x003C4192`, `0x003C42BC`, `0x003C42F8`, `0x003C4356`, `0x003C4473`, `0x003C4587`, `0x003C45DB`, `0x003C4645`); `0x003C3340` (`0x003C33C2`, `0x003C347A`), from `0x003C4611`; `0x003C29A0` (`0x003C29C5`) |
+| `0x02B45824` | `f32` | 0 | `+0x04`, the view's width, the node's width | `0x003C5910` (`0x003C5AE6`) | `0x003C4070` (`0x003C411B`); `0x003C3340` (`0x003C3414`); `0x004001D0` (`0x0040024D`, `0x004002C0`) |
+| `0x02B45828` | `f32` | 0 | `+0x08`, the view's height | `0x003C5910` (`0x003C5B08`) | `0x003C4070` (`0x003C413A`); `0x003C3340` (`0x003C3428`); `0x004001D0` (`0x00400252`, `0x004002B6`) |
+| `0x02B4582C` | `f32` | 0 | `+0x0C`, the centre's x: the party position `0x02B45810`, copied on each draw | `0x003C5910` (`0x003C5BF2`) | `0x003C4070` (`0x003C415C`); `0x004001D0` (`0x004002FA`) |
+| `0x02B45830` | `f32` | 0 | `+0x10`, the centre's z, from `0x02B45818` | `0x003C5910` (`0x003C5BFA`) | `0x003C4070` (`0x003C4166`); `0x004001D0` (`0x0040031C`) |
+| `0x02B45834` | `f32[2]` | 0 | `+0x14`, `+0x18`: the offset `0x003C4070` puts in the view matrix's translation row `0x02B47720` | `0x003C5910`, 0 (`0x003C5AFA`) | `0x003C4070` (`0x003C40B4`, `0x003C40C6`) |
+| `0x02B4583C` | `f32` | 0 | `+0x1C`, the turn, 0 on each draw | `0x003C5910` (`0x003C5C1D`) | `0x003C4070` (`0x003C4101`); `0x004001D0` (`0x004002E5`) |
+| `0x02B45840` | `f32` | 0 | `+0x20`, the scale: the layout record's `+0x0C` over 100 on construction, then `0x001814D0()` on each draw | `0x003C5910` (`0x003C5B1C`, `0x003C5C12`) | `0x003C4070` (`0x003C40D8`); `0x004001D0` (`0x004002D5`, `0x004002DA`) |
+| `0x02B47720` | `f32` | 0 | x of the translation row of the view matrix `0x02B476F0`, the record's `+0x14` | `0x003C4070` (`0x003C40BE`) | through the matrix's address, which `0x003C4070` hands to the matrix helpers (`0x003C412D`, `0x003C416B`, `0x003C4230`, `0x003C4256`, `0x003C4281`, `0x003C42C9`, `0x003C4314`, `0x003C43E0`, `0x003C4453`, `0x003C4514`, `0x003C4607`) |
+| `0x02B47724` | `f32` | 0 | y of that row, the record's `+0x18` | `0x003C4070` (`0x003C40CB`) | the same |
+| `0x02B47698` | `void*` | 0 | `0x003C4070`'s fourth argument, stored in modes other than 2 before `0x003C3340` runs (`0x003C45DB`-`0x003C4611`); nothing reads it | `0x003C4070` (`0x003C4600`) | no instruction |
+| `0x02B45800` | `f32` | 0 | the world x of the zone's map picture, NPS2 placement `+0x10` ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)), or 0 without one | `0x003C6360` (`0x003C6360`), from `0x00379870` (`0x003798D5`) | `0x003C4070` (`0x003C426C`); the uncovering step `0x003C5500` (`0x003C55CE`) |
+| `0x02B45804` | `f32` | 0 | the picture's second coordinate, placement `+0x14` | `0x003C6360` (`0x003C6368`) | `0x003C4070` (`0x003C4279`); `0x003C5500` (`0x003C55D6`) |
+
+### The location map and the overlay
+
+Both containers hand a 6-byte return record to `0x00285F00` when they are gone, which copies it into the menu block
+`[0x0209AC30] + 0x3E0` before the return to the menu (`0x002814E0`): the overlay's from `0x002B7540` (`0x002B7563`), the
+location map's from `0x002BA6B0` (`0x002BA6D3`), `0x002BA1F0` (`0x002BA213`) and `0x002BC2C0` (`0x002BC2E2`). The page procedure
+fills it when a page is picked (`0x002B79DD`-`0x002B7A53`, `0x002BADF1`-`0x002BAE5C`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209E5D0` | `u16` | 0 | the overlay's record `+0`: 3 with container bit 10 of `+0x179D2`, otherwise 2 with bit 6 and 0 without | `0x002B7590` (`0x002B79E4`, `0x002B7A19`, `0x002B7A41`) | `0x00285F00` (`0x00285F00`, 4 bytes), from `0x002B7540` |
+| `0x0209E5D2` | `u16` | 0 | `+2`: `0x8000`, bit 15 kept and set with an empty low byte (`0x002B79FB`-`0x002B7A53`) | `0x002B7590` (`0x002B79E4`, `0x002B7A0F`, `0x002B7A53`) | `0x002B7590` (`0x002B79EA`); `0x00285F00` (`0x00285F00`) |
+| `0x0209E5D4` | `u16` | 0 | `+4`: the container's `+0x179D0` | `0x002B7590` (`0x002B79F1`, `0x002B7A27`) | `0x00285F00` (`0x00285F0F`) |
+| `0x0209E608` | `u16` | 0 | the location map's record `+0`, set the same way | `0x002BA700` (`0x002BADF8`, `0x002BAE28`, `0x002BAE4B`) | `0x00285F00` (`0x00285F00`), from `0x002BA6B0`, `0x002BA1F0` and `0x002BC2C0` |
+| `0x0209E60A` | `u16` | 0 | `+2`: bit 15 set, and the second byte of the page's message record `[rbp - 0x28]` (`0x002BAE52`) | `0x002BA700` (`0x002BADF8`, `0x002BAE1E`, `0x002BAE5C`) | `0x002BA700` (`0x002BADFE`); `0x00285F00` (`0x00285F00`) |
+| `0x0209E60C` | `u16` | 0 | `+4`, as for the overlay | `0x002BA700` (`0x002BAE05`, `0x002BAE36`) | `0x00285F00` (`0x00285F0F`) |
+| `0x0209E600` | `void*` | 0 | the location map's pane `0x002BCA70`, `0xC0` bytes, built under the root `[0x0208EA20]` | `0x002B9BE0` (`0x002B9C0C`), from `0x002BA700` (`0x002BA8BA`); `0x002B9B30`, 0 after closing it (`0x002B9B8E`) | `0x002B9BE0`, which builds it only while it is 0 (`0x002B9BE4`); `0x002B9B30` (`0x002B9B75`) |
+| `0x02B457D8` | `i32` | 0 | 1 when `0x003BC160` finds the map's quest step at an index other than 0, 0 when at index 0 (`0x003BC23D`-`0x003BC247`); `0x002BA700` clears it | `0x003BC160` (`0x003BC247`); `0x002BA700`, 0 (`0x002BAD7F`) | `0x002B9D30` (`0x002B9F1B`); the location page `0x002BAF80` (`0x002BB23B`, `0x002BB36E`, `0x002BB609`, `0x002BB99A`, `0x002BBB79`, `0x002BBC5D`); the zone gate `0x003C18A0` (`0x003C191D`, `0x003C1929`) |
+| `0x02B47768` | `i32` | 0 | the area whose map resources the preload child `0x003CB4F0` loads: its argument on the opening run (message 14); 0 when `0x003C0CF0` answers 2 and the child destroys itself, and when it is destroyed (message 18) | `0x003CB4F0` (`0x003CB584`; 0 at `0x003CB597`, `0x003CB542`) | `0x003CB4F0`: the requests `0x003C2190` (`0x003CB5BC`, `0x003CB5FB`, `0x003CB618`), `0x003C21C0` (`0x003CB5F0`), and `0x003C2200` when the batch has loaded (message 16, `0x003CB569`) |
+
+The World Map's route draw keeps the route picture's size, which `0x005520F0` reads from the picture header
+(`+0x14`, `+0x16`) and hands to `0x00562E30` (`0x00552215`):
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F2CAF8` | `i32` | 16 | the route picture's width, which the two route draws give the sprite batcher as its width (`0x001819A0`) | `0x00562E30` (`0x00562E9A`) | `0x005621A0` (`0x0056234E`, `0x005623B9`); `0x00562A30` (`0x00562AE5`, `0x00562AF7`) |
+| `0x01F2CAFC` | `i32` | 16 | its height | `0x00562E30` (`0x00562EA7`) | `0x005621A0` (`0x00562341`, `0x005623C1`); `0x00562A30` (`0x00562AD8`, `0x00562B02`) |
+
+No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The one indexed table near `0x01F2CAF8`, `[0x01F2CA10 + 8i]` in `0x0053AB50` (`0x0053C807`), takes an index of at most 23
+(`0x0053C7AB`-`0x0053C7F9`), so it ends at `0x01F2CACF`.
 ## Modding notes
 
 - An area's map item is listed in `menumap_area.bin`; owning it reveals the area's points without visiting them.

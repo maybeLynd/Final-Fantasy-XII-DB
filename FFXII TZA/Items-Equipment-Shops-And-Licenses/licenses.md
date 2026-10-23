@@ -143,8 +143,8 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | nameWord | name: bank = word >> 11, entry = word & `0x7FF` |
-| `+0x02` | `u16` | w02 | `0x4280`-`0x4289`, one value per group of categories; category 18 has two |
+| `+0x00` | `u16` | nameWord | name: bank = word >> 11 into the word-text table `0x02EBF170`, entry = word & `0x7FF` (bank 3 on all 361 rows); read by the class query `0x0031C5D0` (`0x0031DF56`, `0x0031DF90`) and by `0x002960B0` (`0x002961D9`, `0x00296212`) |
+| `+0x02` | `u16` | typeTextId | the square's type label, a text id for `0x002F9860`: `listhelp_license.bin` rows 24-33, Weapon (`0x4280`, 105 rows), Armor (`0x4281`, 39), Shield (`0x4282`, 10), Accessory (`0x4283`, 23), Magick (`0x4284`, 43), Technick (`0x4285`, 24), Quickening (`0x4286`, 18), Esper (`0x4287`, 13), Augment (`0x4288`, 76), Gambit (`0x4289`, 10), one label per category except category 18, which has Weapon and Gambit; read only by the class query `0x0031C5D0` (`0x0031DFAB`), which keeps the string at its record `+0x10` |
 | `+0x04` | `u8` | lpCost | LP the square costs (`0x003239C3`, `0x0031E093`) |
 | `+0x05` | `u8` | category | 1-30; gives the requirement kind (`0x002F9049` through `0x00323890`) |
 | `+0x06` | `u8` | rule | 0 ordinary, 2 Quickening, 3 Esper; picks the refusal rule (`0x00323DF0`) |

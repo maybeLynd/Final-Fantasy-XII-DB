@@ -38,6 +38,7 @@ once at start-up, reached from `0x0017CEB0` through `0x0017D6B0` and `0x001DBA40
    rows (`0x007B10B4`-`0x007B1145`).
 
 All 16 later reads of `0x02EAD3E0`, in 15 functions, pass it to a chunk finder, so every chunk is read from the copy.
+In memory the file is that copied block, used in place: the game reads every chunk from it where it lies.
 
 ## Layouts
 
@@ -98,6 +99,9 @@ its element count: each category gets that many plus one volume ramps (`0x007AAA
 `0x007ADAB0` gives one category element, by index for version 0 and through the offset table otherwise. `0x007AAA40`
 builds one `0x88`-byte `Driver::Category` per element (`0x007A96F0`; `0x007A9760` destroys one) and keeps the pointers at
 `0x02EAD008`. `0x007AA010` gives each category a handle list with as many nodes as its size.
+
+A category's bytes `+0x52`-`+0x57` and `+0x6C`-`+0x6F` are written only by the `0x88`-byte clear in `0x007AAA40`
+(`0x007AAB3B`) before `0x007A96F0` runs, and read by no instruction; nothing fixes their width.
 
 The binding is `0x007AA320(category, element)`, called by `0x007AAA40` (`0x007AABED`) after every category is built. For
 an element whose `i16` size (`+4` of the element data the argument's `+8` points to) is negative it looks up category

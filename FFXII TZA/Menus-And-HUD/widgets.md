@@ -398,6 +398,294 @@ bit 1 is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit 2 (`0x0
 confirm through `0x00394380` and paints its rows with `0x00393950`, which, when `0x00264150`
 answers non-zero, recolours row 0 with colour 1 and the others with colour 0 (`0x00393240`), and sets each row's picture cell.
 
+## Layouts
+
+### The target tab strip
+
+The strip is `0xD0` bytes. `0x0027C870` is installed only by the battle menu (`0x0027A12F`), so every tab strip is the one inside the battle
+menu, at `+0x60E0`. Its header fields mean what they mean for every widget; the ones below are those the strip's
+own code uses.
+
+```struct TargetTabStrip base=record size=0xD0
++0x00  ptr             proc                   +0x00 of the target tab strip, the 0xD0-byte widget
+                                              the battle menu builds inside itself at +0x60E0
+                                              (0x00245000 at 0x0027A13E, procedure lea 0x0027A12F): its
+                                              procedure 0x0027C870, installed nowhere else, so every
+                                              tab strip is this one. Stored by the constructor
+                                              0x002465F0 (0x00246641), set to 0 by the release 0x002482E0
+                                              (0x002483CE). Called with a message by the widget code
+                                              that reaches the strip through the tree: the tick
+                                              drain 0x00248030 (0x002480E7, message 2), the run step
+                                              0x00246C20 (0x00246C42, 0x00246D93, 0x00246DAB, 0x00246EE5,
+                                              0x00246F8D, 0x0024700E), the draw walk 0x00245E60 (0x002462B0,
+                                              0x0024633A, 0x002463AA), the activation 0x002473F0
+                                              (0x0024743E) and 0x00247490 (0x002474C5), the open 0x00246AD0
+                                              (0x00246BF7), the closes 0x00244DD0 (0x00244EE3), 0x00244F00
+                                              (0x00244F25), 0x00245020 (0x00245044) and 0x002473B0
+                                              (0x002473B6), the release 0x002482E0 (0x002483A0) and the
+                                              deliveries 0x002753F0 (0x002753FA) and 0x00275440
+                                              (0x00275460); the battle menu asks whether it is set
+                                              through 0x00273A20 (0x00273A22). The focus code (0x00244830,
+                                              0x002481C0) reads only the focused widget's, and the
+                                              strip is never given the focus.
++0x08  u8[80]          header08               the widget header from +0x08 to +0x57 (The header above)
++0x58  ptr             layout                 +0x58 of the target tab strip: its layout record,
+                                              record 30 of unit 1 of the menu layout block
+                                              ([0x0209AC30] + 8), stored by the layout decoder
+                                              0x002432B0 (0x00243305) from the strip's message 1
+                                              (0x0027CC83). Read only by the strip's code, for the x
+                                              (+4) and width (+8) that centre it (0x00276B21 in
+                                              0x00276960, 0x0027B147 in 0x0027B120, 0x0027DCEC in 0x0027DCA0);
+                                              no widget code reads it.
++0x60  ptr             items                  +0x60 of the target tab strip: the array of its layout
+                                              items, allocated and filled by 0x002432B0 (0x002433AA,
+                                              read back at 0x002433E0; 0 at 0x0024338C when the record
+                                              has none) and freed by the release 0x002482E0 (0x0024833E,
+                                              0x00248360, 0x0024838A, 0x00248398). Items 2-5 are the four
+                                              tabs (tables 0x00915BE0, 0x00915BF0), 6 and 7 the side
+                                              arrows. The draw walk 0x00245E60 paints them through
+                                              0x002435C0 (0x002435D7); the strip's code reads it in
+                                              0x00276830 (0x0027689B, 0x002768C8, 0x002768F6, 0x0027691F),
+                                              0x00276960 (0x00276A55, 0x00276AFB, 0x00276B1D, 0x00276B84),
+                                              0x0027B120 (0x0027B139, 0x0027B154, 0x0027B178, 0x0027B19E,
+                                              0x0027B1C4), 0x0027B290 (0x0027B2A0, 0x0027B300, 0x0027B315,
+                                              0x0027B33D, 0x0027B352, 0x0027B37A, 0x0027B38A), 0x0027C870
+                                              (0x0027C8D3, 0x0027C90F, 0x0027C95E, 0x0027CA75, 0x0027CBB5) and
+                                              0x0027DCA0 (0x0027DCC6, 0x0027DCE8, 0x0027DD4A, 0x0027DD73).
++0x68  u8[20]          header68               the widget header from +0x68 to +0x7B (The header above)
++0x7C  u32             state                  +0x7C of the target tab strip: its run state word (low
+                                              nibble 0-4, 2 opening, 3 open). Written by the
+                                              constructor 0x002465F0 (0x002466D8), the open 0x00246AD0
+                                              (0x00246BD4, 0x00246BEF, 0x00246BF3), the close 0x00244DD0
+                                              (0x00244E1F, 0x00244E23, 0x00244EBC, 0x00244ED7, 0x00244EDB,
+                                              0x00244EDF), the run step 0x00246C20 (0x00247029, 0x00247047,
+                                              0x0024705B, 0x00247079) and the release 0x002482E0
+                                              (0x002483BE). Read by the tick walker 0x00244980
+                                              (0x002449B2), the run box 0x00244A20 (0x00244A30), 0x00244DD0
+                                              (0x00244E2C, 0x00244EAA), 0x00246AD0 (0x00246B51) and 0x00246C20
+                                              (0x00246FB1); the battle menu marks a tab only on a
+                                              strip in state 2 or 3 (message 50; 0x0027A275, 0x0027A28A
+                                              in 0x00279E20).
++0x80  u8[24]          header80               the widget header from +0x80 to +0x97 (The header above)
++0x98  i16             x                      +0x98 of the target tab strip: its x on screen, tween
+                                              channel 0's first word. 0x002465F0 clears it with +0x9A
+                                              (0x00246711); the strip's message 1 sets it from its
+                                              layout record (0x0027CC9E); 0x00276960 (0x00276B95) and
+                                              0x0027DCA0 with an argument (0x0027DD60) place it at the
+                                              centred x; otherwise 0x0027DCA0 moves it half way there
+                                              each call and snaps within 1 (0x0027DDA8, 0x0027DDC8,
+                                              0x0027DDD7); a position tween's step 0x00246C20 writes it
+                                              (0x00246D2A, 0x00246D69, 0x00246EBF). The draw walk reads it
+                                              for the box (0x00245EB9 in 0x00245E60, 0x00246499 in
+                                              0x00246480).
++0x9A  u8[38]          header9A               the widget header from +0x9A to +0xBF (The header above)
++0xC0  u8              padC0                  cleared with the object; read and written by no other instruction;
+                                              nothing fixes its width
++0xC1  u8              filter                 +0xC1 of the target tab strip: the target filter, 1 or 0, from bit 2 of +0x61CC;
+                                              written by 0x00276960 (0x00276992) and the battle menu's refresh
+                                              (0x0027A22C), read by the strip's tick (0x0027C9AB) and passed to 0x0027AF80,
+                                              which for filter 1 skips rows with flag bit 1 and units with KO, Stone
+                                              or bit 31, and for every filter skips units whose byte +0x0A (0x002647E0)
+                                              has bit 2 (filter 0) or bit 0 (filter 1).
++0xC2  u16             action                 +0xC2 of the target tab strip: the action id whose targets the tabs
+                                              offer, copied from +0x61BA by 0x00276960 (0x002769A4) and the refresh
+                                              (0x0027A232); read by the strip's tick (0x0027C9B3), which puts it at +0x1C
+                                              of the target list requests of 0x0027AF80 and 0x0027B090 (the action id of
+                                              the list builder 0x0031EB20).
++0xC4  u32             member                 +0xC4 of the target tab strip: the handle of the acting party member,
+                                              copied from +0x61BC by 0x00276960 (0x0027699E) and the refresh (0x0027A226);
+                                              read by the strip's tick (0x0027C9BA) as the member of the target list
+                                              requests (+0x08 of 0x0031EB20's list block).
++0xC8  i16             markedList             +0xC8 of the target tab strip: the target list kind 16-19 whose tab is
+                                              marked; 0x00276830 stores it (0x00276943) after drawing the other tabs one
+                                              palette further on. The strip's tick reads it (0x0027CA02, 0x0027CB38) and
+                                              always enables the marked kind's tab: 16 bit 1, 17 bit 2, 18 bit 8, 19
+                                              bit 4.
++0xCA  u8              recheckTicks           +0xCA of the target tab strip: ticks since the enabled tabs were last
+                                              re-checked. The strip's tick adds 1 (0x0027C94B) and, while it is 30 or
+                                              less (0x0027C951), while the strip's and its first item's tween channel 0
+                                              are idle and no run was started on the strip (0x0027C965-0x0027C995),
+                                              re-checks the tabs and sets it to 0 (0x0027C9C1); above 30 it lays the
+                                              tabs out from +0xCF unchanged. 0x00276960 (0x00276BA8, 0x00276BB1) and the
+                                              refresh (0x0027A240) set it to 0.
++0xCB  i8              tutorialGroup          +0xCB of the target tab strip: the tutorial command group, the low byte
+                                              of +0x61C2, stored by 0x00276960 (0x002769AC) and the refresh (0x0027A239);
+                                              the strip's tick reads it (0x0027C9A2) for the word +0x04 of the list-0x1C
+                                              request of 0x0027AF80, the group the tutorial limits ask 0x0032A320 about.
++0xCC  u8              arrow6Ticks            +0xCC of the target tab strip: ticks left of side arrow 6's nudge. The
+                                              battle menu sets 4 when a negative tab step marks a tab (0x0027A2C1);
+                                              while it is not 0 the strip's tick draws item 6 2 lower and takes 1 off
+                                              (0x0027C917, 0x0027C928).
++0xCD  u8              arrow7Ticks            +0xCD of the target tab strip: the same for side arrow 7, set to 4 for a
+                                              positive tab step (0x0027A2B5); the strip's tick reads and lowers it
+                                              (0x0027C8DB, 0x0027C8EC).
++0xCE  u8              requestedMask          +0xCE of the target tab strip: the tab mask the menu asked for (bits 1,
+                                              2, 8 and 4 for tabs 0-3), the 0x00276960 argument from +0x61E4, stored at
+                                              0x002769CA; the strip's tick starts each re-check from it (0x0027C99B),
+                                              dropping bit 4 when 0x0027AF80 finds no row of list 0x1C and bit 8 when
+                                              0x0027B090 finds none of list 0xF.
++0xCF  u8              enabledMask            +0xCF of the target tab strip: the tabs currently enabled. 0x00276960
+                                              stores the requested mask (0x002769D0), drops bits 8 and 4 (0x002769EA,
+                                              0x00276A12), reads it (0x00276A2F, 0x00276AFF, 0x00276B4E) and stores the result
+                                              (0x00276AEF); the strip's tick stores each re-check (0x0027CB24) and
+                                              otherwise reads it (0x0027CB4F) and stores it back with the marked kind's
+                                              bit (0x0027CC62); 0x0027DCA0 reads it to centre the strip (0x0027DCCE,
+                                              0x0027DD14). The side arrows are hidden when exactly one tab is enabled
+                                              (mask 1, 2, 4 or 8; 0x00276B55-0x00276B69, 0x0027DD1B-0x0027DD2F).
+```
+
+### The battle menu
+
+The battle menu widget (`0x61F0` bytes, procedure `0x00279E20`, built at `[0x0209BE80] + 0xAB30`;
+[Battle menu](battle-menu.md)) keeps its two panels and the target tab strip inside itself, and its own state
+after them. Its private messages 33-52 set or read the fields below ([Widget messages](widget-messages.md)).
+
+```struct BattleMenu base=record size=0x61F0
++0x0000  u8[192]         header                 the widget header (The header above)
++0x00C0  u8[24608]       panels                 the two 0x3010-byte panels, at +0xC0 and +0x30D0
++0x60E0  u8[208]         tabs                   the target tab strip, a TargetTabStrip built in place by 0x00245000
+                                                (0x0027A13E) with procedure 0x0027C870 (layout above)
++0x61B0  ptr             cursorBlock            the cursor block at [0x0209BE80] + 0xAA60 that keeps the stack of opened
+                                                lists: 0x00276650 stores its second argument (0x002766F7; 0x00290CF0 passes
+                                                it at 0x00290D88); read as each new panel's +0x2FE8 (0x0027A58D).
++0x61B8  i16             nextListKind           the list kind to open next: 1, the top commands, when built
+                                                (0x0027670D); message 33 sets it (0x0027A793); the tick builds a panel
+                                                while it is not 0 (0x0027A3E7), reads it for the panel (0x0027A48D,
+                                                0x0027A4B9, 0x0027A515, 0x0027A543, 0x0027A5B6, 0x0027A67E, 0x0027A6B3) and sets
+                                                it to 0 (0x0027A6F0); 0x002767C0 answers it when no child answers message
+                                                44 (0x0027680A).
++0x61BA  u16             targetAction           the action id of the target list being opened: message 34 stores it
+                                                (0x0027A7BC), sent by the list widget 0x002778C0 at 0x00278660 with its word +0xDC;
+                                                read for the tab strip's action (0x0027A154, 0x0027A213) and as
+                                                message 1's first argument of each new panel (0x0027A3F4).
++0x61BC  u32             member                 the handle of the party member whose menu is open: the controlled
+                                                character 0x0035BAD0 when built (0x0027A01D), then message 36 (0x0027A768),
+                                                sent by 0x002778C0 at 0x0027815B after a left or right step; read for the
+                                                tab strip (0x0027A15C, 0x0027A21A), for each new panel's +0x2FE0
+                                                (0x0027A59B), and by the panel 0x00276D30, which compares it with 0x0035BAD0
+                                                (0x0027778A).
++0x61C0  u16             requestId              the router id the menu was requested with, bits 0-6 of message 1's
+                                                first argument (0x00279FD1, 0x00279FD8), which 0x00290CF0 takes from
+                                                [0x0209BE80] + 0x10F60 (0x00290D8F); read for the refusal test
+                                                0x00254550(0x00254500(), id) before the Dismiss confirmation (0x0027A337),
+                                                as each new panel's byte +0x2FF0 (0x0027A480), and by the confirmation
+                                                0x0027AA70 (0x0027AC0B).
++0x61C2  u16             tutorialGroup          the tutorial command group, message 1's second argument (0x00279E86,
+                                                0x00279E8B), which 0x00290CF0 takes from [0x0209BE80] + 0x10FA0 (0x00290D9D);
+                                                read for the tab strip's +0xCB (0x0027A143, 0x0027A20B) and each new
+                                                panel's +0x2FF6 (0x0027A432), from which 0x002778C0 fills the word +0x04
+                                                of its list requests.
++0x61C4  i16             panelX                 the x at which panels are placed: item 0's x of the menu's layout
+                                                record 14 plus the record's x (0x00279EC0-0x00279ED2); read to compute +0x61C8
+                                                (0x00279F28) and as each new panel's +0x98 (0x0027A465).
++0x61C6  i16             panelY                 the y at which panels are placed: item 0's y plus its height minus 14
+                                                plus the record's y (0x00279ED9-0x00279EEB); read to compute +0x61CA
+                                                (0x00279F43) and as each new panel's +0x9A (0x0027A45E).
++0x61C8  i16             item1OffsetX           item 1's x plus the record's x minus +0x61C4, written once when the
+                                                menu is built (0x00279F33); read by no instruction.
++0x61CA  i16             item1OffsetY           item 1's y plus the record's y minus +0x61C6, written once when the
+                                                menu is built (0x00279F4E); read by no instruction.
++0x61CC  u32             flags                  state and request bits, in the table below
++0x61D0  ptr             costIcons              the picture battle_4_c (label 0x009152B0 through 0x01E0C1E8), fetched by
+                                                0x0024A5A0 when the menu is built (0x00279E9E); message 43 hands it out
+                                                (0x0027A970), and 0x002778C0 asks for it into its page's +0x1530
+                                                (0x0027926A), from which the action-row painter 0x0027CE70 draws the cost
+                                                icons (0x0027CFDA, 0x0027D0BD).
++0x61D8  i16             layout11X              x of item 0 of layout record 11 plus the record's x, read through a
+                                                0xC0-byte widget built and released at once (0x00279F55-0x00279FC4);
+                                                written once (0x00279F95); read by no instruction.
++0x61DA  i16             layout11Y              y of that item plus the record's y, written once (0x00279FA4); read by
+                                                no instruction.
++0x61DC  i16             layout11W              width of that item, written once (0x00279FAF); read by no instruction.
++0x61DE  i16             layout11H              height of that item, written once (0x00279FBD); read by no instruction.
++0x61E0  i16             memberType             the type (+0x60 of the party status record, 0-5) of the member message
+                                                38 names, from 0x00272EE0 (0x0027A91A); -1 when the message has no second
+                                                argument (0x0027A928) or 0x00254560(3) answers non-zero (0x0027A8F3).
+                                                Senders: 0x002778C0 at 0x0027826B and the menu itself after building a
+                                                panel (0x0027A66B). The panel 0x00276D30 picks its picture cell by it and
+                                                draws none above 5 (0x0027735B).
++0x61E2  i8              markListKind           the target list kind whose tab to mark, from message 50 with +0x61CC
+                                                bit 12 (0x0027A80A), sent by 0x002778C0 at 0x00279AAD with its list kind;
+                                                the next tick passes it to 0x00276830 when the tab strip is opening or
+                                                open (0x0027A29B).
++0x61E3  i8              tabStep                the last tab step: message 51 stores it (0x0027A81C), sent by 0x002778C0
+                                                with the L1 or R1 step from 0x0027B430 (0x00277F24) and with -1 (0x00278EB8,
+                                                constant 0x00915BD0); the tick that marks a tab nudges arrow 7 for a
+                                                positive step and arrow 6 for a negative one (0x0027A2AA, 0x0027A2B5,
+                                                0x0027A2C1) and sets it to 0 (0x0027A2D2); building the strip sets it to 0
+                                                (0x0027A184).
++0x61E4  u32             tabMask                the target tabs the chosen action allows (bits 1, 2, 8, 4 for tabs
+                                                0-3): message 52 stores it (0x0027A9A2), sent by 0x002778C0
+                                                (0x0027849A-0x002784F8) with 7 for any list but kind 11 and otherwise a
+                                                mask from the row's target bits; read for the tab strip's requested
+                                                mask (0x0027A166) and each new panel's +0x3000 (0x0027A509).
++0x61E8  u8[8]           tail                   cleared with the object; read and written by no other instruction;
+                                                nothing fixes its width
+```
+
+| `+0x61CC` bit | Meaning |
+|---:|---|
+| 1 | which panel slot the next panel goes in: flipped after a panel (`0x0027A6E6`-`0x0027A6FE`) or the Dismiss confirmation (`0x0027A397`-`0x0027A3AE`) is built; read as the slot (`0x0027A2D9`, `0x0027A37B`, `0x0027A3FF`) |
+| 2 | the target filter: message 33's second argument (`0x0027A79A`-`0x0027A7AA`); read for the tab strip (`0x0027A14D`, `0x0027A205`) and each panel's `+0x2FF0` bit 11 (`0x0027A52B`); message 47 answers it (`0x0027A775`) |
+| 3 | set when a panel is built (`0x0027A638`), cleared by message 37 (`0x0027A756`); while it is clear message 32 goes out with 1 (`0x0027A60E`) |
+| 4 | message 48's argument bit 0 (`0x0027A958`-`0x0027A966`); at a panel build cleared for list kinds 16-19 (`0x0027A4A6`), otherwise set when the count `0x0035D4E0` returns is above 1 and the kind is not 5-7 or 10-19 (`0x0027A4AF`-`0x0027A4E2`); each tick bit 13 follows it (`0x0027A716`-`0x0027A749`) |
+| 5 | Dismiss asked: set by message 41 (`0x0027A8D1`); the tick builds the confirmation `0x0027AA70` when `0x00265680`, `0x00254550` and `0x00241A50(1)` allow it, and clears it (`0x0027A309`-`0x0027A3C9`) |
+| 6 | set by the panel `0x00276D30` (`0x00276F92`), the confirmation (`0x0027AB3F`) and `0x0028F970` (`0x0028F9D4`); the tick clears it and sends message 53 to both panels (`0x0027A052`-`0x0027A0C0`) |
+| 7 | set on every tick (`0x0027A0F8`); while it is set and bit 6 clear, a tick that finds no panel and no tab strip releases the menu (`0x0027A1A0`-`0x0027A1F9`) |
+| 8 | the router request's bit 10 when built (`0x002766E5`-`0x00276704`); copied to each panel's `+0x2FF0` bit 17 (`0x0027A4E8`-`0x0027A503`) |
+| 9 | message 46's argument (`0x0027A982`-`0x0027A994`); copied to each panel's `+0x2FF0` bit 18 (`0x0027A443`-`0x0027A458`) |
+| 10 | set when built (`0x00276722`); the first tick plays sound 4 (`0x00249C60`) and clears it (`0x0027A032`-`0x0027A048`) |
+| 11 | tab strip wanted: set by message 42 (`0x0027A8DF`); the tick builds or refreshes the strip and clears it (`0x0027A0FF`-`0x0027A247`); also cleared at `0x0027A0EE`, `0x0027A7CA` (message 49, which closes the strip) and `0x0027A85B` |
+| 12 | tab mark pending: set by message 50 (`0x0027A7FB`); the tick marks the tab and clears it (`0x0027A251`-`0x0027A2C8`) |
+| 13 | message 48's argument bit 0 (`0x0027A936`-`0x0027A952`) and the tick (`0x0027A716`-`0x0027A749`); read by the panel `0x00276D30` (`0x002775E7`) |
+
+### The title command consumer
+
+The consumer of [The title asset and its consumer](#the-title-asset-and-its-consumer), `0x1D0` bytes, kept at
+`0x02AEE4C8`.
+
+```struct TitleCommandConsumer base=record size=0x1D0
++0x000  u8[192]         header                 the widget header (The header above)
++0x0C0  u8              startRow               the row the title command list starts on: the argument of
+                                               fsttl_opencommand (0x00511F90 -> 0x00394530), carried as byte +8 of message
+                                               1 (0x003939F7) and stored at 0x00393A18; read once, when the list is set
+                                               up, to move the list there with 0x002D4650 (0x00393BC8).
++0x0C1  u8[3]           padC1                  cleared with the object (0x00246626); read and written by no other
+                                               instruction; nothing fixes its width
++0x0C4  u32             flags                  cleared on message 1 (0x003939FD). Bit 0: the command list is set up
+                                               (0x00393C1C), tested each tick (0x00393A7A). Bit 1: the opening transition
+                                               has finished, set on message 19 (0x00393A6C); fsttl_opencommandsync waits
+                                               through 0x003944D0 until it is set (0x003944E0). Bit 2: close asked, set by
+                                               fsttl_closecommand through 0x00394350 (0x0039435C, 0x0039436A) and cleared
+                                               when fsttl_opencommand finds the consumer with +0x7C bit 5 clear
+                                               (0x003945BB; with the bit set it opens it again, 0x003945A4); with bits 0,
+                                               1 and 2 the tick closes the consumer (0x00393C32-0x00393C45), and on
+                                               destruction bit 2 makes 0x01EFAC12 = 6 (0x00393DF1).
++0x0C8  ptr             commandList            the title command list widget: 0 on message 1 (0x00393A03), then the
+                                               widget of layout item 0 once 0x003946B0 has built the layout
+                                               (0x00393AC2-0x00393ACD). Read to enable it (0x00393BA0, 0x002D45C0), set its
+                                               bytes +0xFC and +0xFE to 0xFF (0x00393BAC, 0x00393BBA), move it to the
+                                               start row (0x00393BCF), store the consumer as its owner and 0x00393950 as
+                                               its row painter (0x00393BDB, 0x00393BF7), run its cursor each input turn
+                                               (0x00393C51, 0x002D3900), and set its +0xFC to 2 on an answer (0x00393D7B).
++0x0D0  char[256]       text                   a 256-byte text buffer: 0x002B4090(0x100, self + 0xD0, source) fills it
+                                               (0x00393B60-0x00393B74) and its address goes to layout item 2's +0x18
+                                               (0x00393B83)
+```
+
+### The message record
+
+Every message a procedure receives ([Widget messages](widget-messages.md)):
+
+```struct WidgetMessage base=record size=0x18
++0x00  u32             id                     the message id; the constructor sends 1 (0x0024660A)
++0x04  u8[4]           pad04                  padding between the 32-bit id and argument a: read by no instruction;
+                                              the constructor's own record leaves it unwritten (0x0024660A writes +0x00,
+                                              0x00246620 +0x08 to +0x17); nothing fixes its width.
++0x08  u32[2]          a                      the first argument
++0x10  u32[2]          b                      the second argument
+```
+
 ## State
 
 Both blocks are 0 in the file. `0x00247AE0` zeroes the focus stack, its focus cell and its count together (`0x110`
@@ -406,13 +694,19 @@ bytes from `0x0208EAC0`, `0x00247CED`) and makes the matrix `0x0208ECD0` the ide
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0208EBB8` | `void*` | 0 | the last of the 32 focus-stack slots at `0x0208EAC0`. A push onto a full stack moves slots 1-31 down one, stores 0 here and then puts the new widget here (`0x00244650`-`0x002446CA`) | `0x00244640`, 0 (`0x002446BB`) and the widget (`0x002446CA`); `0x00244700`, as it closes the stack up (`0x00244767`, `0x0024477A`, `0x002447D7`, `0x002447EA`); `0x002448D0` (`0x002448FE`); `0x00247AE0` (`0x00247CED`) | `0x00244640`, as the source of the move (`0x002446AB`); `0x00244700` (`0x00244740`, `0x00244760`, `0x002447B0`, `0x002447B5`, `0x002447D0`); `0x002448D0` (`0x00244919`) |
+| `0x0208EC40` | `f32[2]` | 0 | x and y of the translation row `+0x30` of the menu view matrix `0x0208EC10`. `0x00247AE0` makes the matrix the identity (`0x00203170`), stores 0 here and 4096.0 in z, and multiplies it by the projection `0x0208EBD0` in place (`0x00202D70`, `0x00247BBF`); the product's row replaces both | `0x00247AE0`, 0 (`0x00247B9C`); the product, through `0x00217150` (`0x002175FB`, 16 bytes) | the multiply `0x00217150` (`0x002173A8`, `0x002173AE`); the finished matrix through its address: `0x00245510` (`0x00245554`), `0x00245E60`, which copies it (`0x002460D3`, `0x00202C70`), and `0x002465D0`, which hands it to its callers `0x00559563`, `0x00561C03` and `0x0057A25B` while `[0x01E0280C]` is 0 (`0x002465E0`) |
+| `0x0208EC48` | `f32` | 0 | z of that row, 4096.0 before the multiply | `0x00247AE0`, 4096.0 (`0x00247BAE`); the product, through `0x00217150` (`0x002175FB`) | `0x00217150` (`0x002173CB`); the finished matrix as above |
+| `0x0208EC80` | `f32[2]` | 0 | x and y of the translation row of the second menu view matrix `0x0208EC50`, built the same way with a projection on the stack (`0x00247C32`-`0x00247C6E`) and then scaled by `0x0039ADE0` with (0.82, 0.82, 1.0, 1.0) from `0x00915290` (`0x00247C8B`) | `0x00247AE0`, 0 (`0x00247C4A`); the product, through `0x00217150` (`0x002175FB`); `0x0039ADE0` (`0x0039AE9B`, `0x0039AEAA`) | `0x00217150` (`0x002173A8`, `0x002173AE`); `0x0039ADE0` (`0x0039AE96`, `0x0039AEA5`); `0x002465D0`, which hands the matrix to its three callers while `[0x01E0280C]` is not 0 (`0x002465D7`) |
+| `0x0208EC88` | `f32` | 0 | z of that row, 4096.0 before the multiply | `0x00247AE0`, 4096.0 (`0x00247C5D`); the product, through `0x00217150` (`0x002175FB`); `0x0039ADE0` (`0x0039AEB9`) | `0x00217150` (`0x002173CB`); `0x0039ADE0` (`0x0039AEB4`); `0x002465D0` as above |
 | `0x0208ED00` | `f32` | 0 | x of the centre of the widget being drawn: its box x plus half its width. `0x00245E60` puts it in the translation row of the matrix `0x0208ECD0` and multiplies the matrix it was handed by that matrix (`0x00202D70`, `0x002460B4`), after a matrix that moves the box back by half its size (`0x00245FC6`-`0x00245FE3`) | `0x00245E60` (`0x002460A4`); `0x00247AE0` (`0x00247CCD`) | `0x00202D70`, through the matrix address `0x00245E60` passes (`0x00246078`, `0x002460B4`) |
 | `0x0208ED04` | `f32` | 0 | y of that centre: the box y plus half its height | `0x00245E60` (`0x002460AC`); `0x00247AE0` (`0x00247CCD`) | `0x00202D70`, as above |
 
 No other instruction reaches these cells. The search covered the executable's RIP-relative references (the focus
 stack's base `0x0208EAC0` is taken by `0x00244640`, `0x00244700`, `0x002448D0` and `0x00247AE0` only, the matrix
-`0x0208ECD0` by `0x00245E60` and `0x00247AE0` only), its image-base-relative references, which hold none of them, and a
-scan of `.text` for each address's 32-bit offset from the image base, which finds none.
+`0x0208ECD0` by `0x00245E60` and `0x00247AE0` only, the matrices `0x0208EC10` and `0x0208EC50` by the functions in their rows), its
+image-base-relative references, which hold none of them, and a
+scan of `.text` for each address's 32-bit offset from the image base, which finds none but the displacement of the
+RIP-relative store at `0x0036932D`, which names `0x022D7FC0`.
 
 ## Modding notes
 

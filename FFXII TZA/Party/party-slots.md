@@ -114,6 +114,7 @@ The slot maps in the battle state block:
 | `+0x24` | `u16[9]` | map2 | battle command menu (`0x0031BA71`) |
 | `+0x36` | `u16[9]` | map3 | gameplay (`0x0031BA57`) |
 | `+0x48` | `u16[9]` | map4 | rebuilt copy (`0x0031BA3D`) |
+| `+0x5A` | `u8[2]` | pad5A | `+0x5AA2`: written only with the whole block (the clear `0x002370D3`, the save image's clears, copies and file read) and read by no other instruction; nothing fixes its width |
 
 The maps start at `[0x02EBF190] + 0x5A48`; the leader is the dword at `+0x5AA4`
 ([Party data](party-data.md)).

@@ -98,8 +98,10 @@ Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
 | Context offset | Holds |
 |---|---|
 | `+0x00` | the action id |
+| `+0x02-0x03` | nothing: written only by the builder's qword clear (`0x003847D8`) and read by no instruction; nothing fixes their width |
 | `+0x04` | the source's statuses (`+0x64 \| +0x3C`) |
 | `+0x08` | the target's statuses |
+| `+0x0C-0x0F` | nothing: written only by the builder's qword clear (`0x003847DE`) and read by no instruction; nothing fixes their width |
 | `+0x10` | the result record |
 | `+0x18` | the target unit's byte `+0x55`, or -1 without a unit |
 | `+0x1A-0x29` | the source's 128 augment bits, from both layers `+0x68` and `+0x78` |

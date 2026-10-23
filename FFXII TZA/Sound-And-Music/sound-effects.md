@@ -132,6 +132,31 @@ A curve above 5 gives 0 (`0x007A9E5A`). The ramp setter `0x007CA560` has 97 call
    `0x007CBCEF`) or byte `+0xC` of a player's parameter block (`0x007E7F3D`).
 3. The driver's `Filter` effect picks curves 4 and 5 for its own parameter ramps (`0x007D1840`, `0x007D1A10`).
 
+### Rate-limited ramps
+
+A ramp whose `+0x24` is 1 never moves faster than its rates. When `0x007CA560` gives a ramp a new target it keeps the
+duration it was asked for, unless that would beat the rate (`0x007CA5D2`-`0x007CA631`):
+
+```python
+if ramp+0x24 == 1:
+    if target > current: duration = max(duration, (target - current) / |ramp+0x28|)
+    else:                duration = max(duration, (current - target) / |ramp+0x2C|)
+```
+
+The driver's `Sound` re-targets its ramp at `+0x3C8` to 0 the same way (`0x007BE207`-`0x007BE26E`). Three places turn the
+limit on, and every constructor turns it off (`+0x24` = 0):
+
+| Ramps | Turned on by | Rise `+0x28` | Fall `+0x2C` |
+|---|---|---|---|
+| a sound's `+0x1B8`, `+0x1E8`, `+0x218` | `Sound` slot 10 `0x007BE510` with its flag set (`0x007BE533`-`0x007BE563`) | 5.0 | 5.0 |
+| a sound's curved ramp `+0x88` | `Sound` slot 11 `0x007BEC70` with its flag set (`0x007BEC9F`, `0x007BECA7`) | 5.0 | 5.0 |
+| a sound's `+0x248` and `+0x278` | `0x007BDDA0`, when byte `+1` of the sound header's entry is 1 (`0x007BDEB7`, `0x007BDEBC`) | entry `+0x10` | entry `+0x14` |
+
+With the flag clear, slots 10 and 11 set `+0x24` to 0 (`0x007BE579`-`0x007BE585`, `0x007BECBD`), and `0x007BDDA0` does for an
+entry whose byte `+1` is not 1 (`0x007BDEC1`). The header's entries are `0x20` bytes from header word `+0x4C`, at most
+two, counted by header byte `+0x4E` (`0x007CFF40`). `0x007BFFA0`, which copies a sound into its replacement (`0x007B4C65`),
+copies `+0x24`-`+0x2F` of eleven of its ramps (`0x007BFFA0`-`0x007C04E1`).
+
 ### Stopping a sound
 
 `0x002DF0F0(handle, 0)` stops the sound with that handle with a 0.1 s fade (`0x00222390`). By id it sends a block-bank
@@ -147,6 +172,31 @@ only caller is the special-attack window `0x002D5EB0` ([Menu screens](../Menus-A
 32 at `0x02EBCC80`, with a countdown of `frames` plus a quarter of it, at least 2. `0x003B3D20`, run from `0x0024D540`,
 counts each entry down and stops its handle at 0 (`0x002DF0F0`), closing the queue up. When `0x003E7DE0` answers non-zero
 it instead calls `0x003B3E40`, which stops every queued handle at once and empties the queue.
+
+## Layouts
+
+A ramp, `0x30` bytes with the vtable `0x01CB44A0`. The driver builds them in seven places: a category's two arrays at
+`+0x38` and `+0x40` (`0x007AA199`), five in a bus from `+0x38` (`0x007AC5B0`), two in an external source voice at `+0x490`
+and `+0x4C0` (`0x007B8D8D`), thirteen in a sound from `+0x188` (`0x007BC978`), seven in a track from `+0x38` (`0x007E7AB7`),
+two in each of a track's four `0x70`-byte pairs from `+0x1F8` (`0x007F3DF2`), and two in a sound source object at `+0x48`
+and `+0x80` (`0x007EF946`). A sound's four curved ramps from `+0x88` (`0x01CB5A20`, `0x007BC903`) start with one.
+
+`AudioParameterRamp` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | vtable | `0x01CB44A0`, written by the seven builders (e.g. `0x007AA1C0`) |
+| `+0x08` | `f32` | start | the value the ramp moves from |
+| `+0x0C` | `f32` | target | the value it moves to, and the value outright when duration is 0 |
+| `+0x10` | `f32` | elapsed | the time so far |
+| `+0x14` | `f32` | duration | the ramp's length; exactly 0 snaps to the target |
+| `+0x18` | `u8[4]` | pad18 | copied with a sound by `0x007BFFA0` (e.g. `0x007BFFFA`); no other access |
+| `+0x1C` | `i32` | curve | the fade curve 0-5 of `0x007A9E50` |
+| `+0x20` | `u8` | active | 1 while the ramp runs; `0x007CA560` sets it (`0x007CA5EB`) |
+| `+0x21` | `u8[3]` | pad21 | read and written by no function; nothing fixes its width |
+| `+0x24` | `u32` | limited | 1: the ramp keeps to its rise and fall rates (read `0x007CA5D2`, `0x007BE207`); set to 1 by `0x007BE510` (`0x007BE533`), `0x007BEC70` (`0x007BEC9F`) and `0x007BDDA0` (`0x007BDEB7`); 0 from every builder (e.g. `0x007AA1D2`, `0x007AC611`, `0x007BC9D2`, `0x007E7B43`, `0x007EF9D1`, `0x007F3E0D`, `0x007B8DDC`) and from `0x007BE579`-`0x007BE585`, `0x007BECBD`, `0x007BDEC1`, `0x007C0531`, `0x007C055B`-`0x007C05A4` |
+| `+0x28` | `f32` | riseRate | the most the value may rise per second when limited: duration is at least the rise over this (`0x007CA5F6`, `0x007BE23A`); 5.0 from `0x007BE510` (`0x007BE533`) and `0x007BEC70` (`0x007BEC9F`); the header entry's +`0x10` from `0x007BDDA0` (`0x007BDEB7`); copied by `0x007BFFA0` |
+| `+0x2C` | `f32` | fallRate | the most the value may fall per second when limited (`0x007CA617`, `0x007BE256`); 5.0 from `0x007BE510` (`0x007BE547`, `0x007BE555`, `0x007BE563`) and `0x007BEC70` (`0x007BECA7`); the header entry's +`0x14` from `0x007BDDA0` (`0x007BDEBC`); copied by `0x007BFFA0` |
 
 ## State
 

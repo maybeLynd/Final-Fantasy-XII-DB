@@ -33,6 +33,11 @@ An id outside a bank's range reads as 0 and sets nothing. The four Bank64 access
 compare only (`0x0032A9A4`, `0x0032AA04`, `0x0032AC77`, `0x0032ACF7`), so a negative id reaches the bank's bytes below it.
 Nothing outside the twelve accessors reads or writes these offsets from the payload base.
 
+Payload bytes `+0xCF6`-`+0xFFF`, between the script variables ([Script variables](../Scripts-And-Script-Commands/script-variables.md),
+which end at `+0xCF5`) and the first flag bank at `+0x1000`, are read and written by no function on their own;
+nothing fixes their width. Only the payload clears (`0x002EF2E8`, `0x002EF603`, `0x002EF663`) and the whole-image copies
+(`0x00229B40`, `0x002EF570`, `0x00583C00`, `0x00583CB0`) cover them.
+
 ### The gate
 
 `0x0032A8A0(id)` reads the Primary bank through an encoded id (`0x0032A8A0`-`0x0032A919`):

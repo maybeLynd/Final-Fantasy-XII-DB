@@ -309,17 +309,25 @@ entries.
 | `+0x058` | `u32[20]` | layerVertices | ten pointers to `0x30`-byte vertices (slot 5, read `0x00214332`) |
 | `+0x0A8` | `u32[10]` | layerCount | vertex capacity per layer (slot 5) |
 | `+0x0D0` | `i32[10]` | layerCursor | next vertex per layer |
-| `+0x0F8` | `u32[2]` | blendCode | slot 7; decoded by `0x001EE650` |
-| `+0x100` | `u32[2]` | stateCode | slot 8; decoded by `0x001EE7C0` |
-| `+0x108` | `i32` | viewX | slot 9 |
+| `+0x0F8` | `u32[2]` | blendCode | the alpha-blend code, four 2-bit fields decoded through `0x00902750` by `0x001EE650`: slot 7 `0x002146F0` copies the font display's `+0x1390` (`0x001E874C`, `0x001E895A`, `0x001E8AC1`, `0x001E900C`); the constructors clear it; read only by slot 1 (`0x00214099`) |
+| `+0x100` | `u32[2]` | testCode | bit 0 and bits 1-3 the alpha test and its method, bit 16 and bits 17-18 the depth test and its method, decoded through `0x008E2C60` and `0x008E2CE0` by `0x001EE7C0`: slot 8 `0x002148E0` copies the display's `+0x1398` (`0x001E875C`, `0x001E896A`, `0x001E8AD1`, `0x001E901C`); the constructors clear it; read only by slot 1 (`0x00214046`) |
+| `+0x108` | `i32` | viewX | the viewport slot 1 hands to the renderer's slot `+0x100` (`0x0021402B`); slot 9 `0x00214830` copies `+0x108`-`+0x11B` from the display's `+0x13A0` for the `ShadowFinal` and `Final` objects (`0x001E8AE1`, `0x001E902C`); the constructors do not write it |
 | `+0x10C` | `i32` | viewY | slot 9 |
-| `+0x110` | `i32` | viewW | slot 9; the target width on the offscreen path |
+| `+0x110` | `i32` | viewW | slot 9; for the `Shadow` objects `0x002147B0` sets the viewport to (0, 0, the render target's width `+0x28`, height `+0x2C`, 0) (`0x002147BC`-`0x00214814`, from `0x001E86D3` and `0x001E88DC`), and `0x00213E30` divides their vertices by this width and the height `+0x114` (`0x00213E4D`, `0x00213E8B`) |
 | `+0x114` | `i32` | viewH | slot 9 |
 | `+0x118` | `u32` | viewFlag | slot 9 |
 | `+0x11C` | `f32[16]` | matrix | slot 3; identity when built |
 
-`Shadow` adds the line origin at `+0x160`/`+0x164` (`0x00214B10`), `ShadowFinal` the target index at `+0x160`
-(`0x002147A0`), and `Final` a byte at `+0x168` (`0x0021394D`).
+The three subclasses add fields after `+0x15C`:
+
+- `Shadow` adds the line origin at `+0x160`/`+0x164`: cleared by its constructor `0x00213A00` (`0x00213A8D`), set by
+  `0x00214B10` from the flush (`0x001E8770`, `0x001E897E`) and subtracted from each vertex by `0x00213E30` (`0x00213E5E`,
+  `0x00213E9A`).
+- `ShadowFinal` keeps its render target index at `+0x160` (`0x002147A0`, read by `0x002148F0` and `0x00214930`).
+- `Final` has a byte at `+0x168` that its constructor sets to 1 (`0x0021394D`) and `0x00214700` overwrites from the
+  flush (`0x001E9074`); no instruction reads that byte.
+- The plain class's last four bytes `+0x15C`-`+0x15F`, the same bytes of `Shadow` and `Final`, and `Final`'s
+  `+0x169`-`+0x16F` are read and written by no function; nothing fixes their width.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -336,6 +344,27 @@ entries.
 
 The byte `[0x01F811E0]` is set from `[0x01E0280C]`, shipped 1 (`0x0022A113`-`0x0022A120`, `0x001B24B0`); with it clear the
 mapping divides by 512 and 448 instead (`0x001B1620`, `0x00213D38`).
+
+The text painter `0x0209D490` keeps the line state of the text being drawn or measured:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10D0` | `u32` | textColour | the colour a `0F )` code set: the interpreter copies the text context's `+0x30` (`0x002AD46C`); `0x002B5390` seeds it from its record `+0x28` and copies it back after each segment (`0x002B5430`, `0x002B545E`, `0x002B55DB`) |
+| `+0x10D4` | `u32` | packetGlyphs | glyphs in the current VIF packet; each drawer adds 1 and closes the packet at 20 (`0x002AA45F`, `0x002AAD5F`, `0x002AB4BA`, `0x002B0CE9`); `0x002B0280` and `0x002AF960` zero it when they start (`0x002B052E`, `0x002AFB2C`) |
+| `+0x10D8` | `i32` | shownBudget | glyphs the type-out still lets this draw show: from the context's shown count `+0x8C` (`0x002ABEEB`, `0x002ABF3A`, `0x002AFB19`); each glyph takes one (`0x002AA0B1`, `0x002AA6E2`), a drawn number gives one back per digit (`0x002AE9E2`) |
+| `+0x10DC` | `i32` | fadeStart | glyphs left before the type-out fade: from the context's `+0x90` (`0x002AFB26`), 32,000 from `0x002B0280` (`0x002B16FD`); at 0 or less a glyph's alpha is scaled by `+0x10E4` (`0x002AA05C`-`0x002AA086`) |
+| `+0x10E0` | `f32` | tabStop | the pen position a `0F 2` with value 0 stores (`0x002ADC94`); a later `0F 2` with value v moves to it plus 2v (`0x002ADCB8`) |
+| `+0x10E4` | `f32` | fadeAlpha | the context's byte `+0x9D` x its `+0x50` (`0x002AFB4C`); lowered by the step for each faded glyph (`0x002AA086`, `0x002AA6DA`) |
+| `+0x10FD` | `i8` | indent | the last `0F 5` value (`0x002ADD57`), or the negated `0F 6` value (`0x002ADD8B`); returned by the list measure `0x002B24B0` (`0x002B277B`) |
+| `+0x10FE` | `u8` | listCursorRoom | 1 when the choice list's fourth byte has bit 5 clear (`0x002AC883`); `0x002B24B0` then widens the list by 2 x 16 x the text scale (`0x002B26C4`-`0x002B26FE`) |
+| `+0x10FF` | `i8` | measuring | 1 while `0x002B2150` only measures (`0x002B2278`), 0 from the drawers `0x002AF960` and `0x002B2970` (`0x002AFA7A`, `0x002B2A9F`); while it is 0 the choice-list arm counts the shown options (`0x002ACB2D`-`0x002ACB4B`) |
+| `+0x1100` | `u8` | columnBeforeList | 1 when a column token `0x05` or `0x0A` comes before any choice list (`0x002ACD5B`, `0x002ACE6B`); returned by `0x002B24B0` (`0x002B270B`) |
+| `+0x1101` | `u8` | listSeen | 1 once a choice list token `0x0E` has been read (`0x002AC879`); tested by the column tokens (`0x002ACD52`, `0x002ACE62`) |
+| `+0x1103` | `u8` | bufferFlipped | 1 after the menu draw's opener `0x002DD4C0` flips the render buffer through `0x002B4710` (`0x002B4720`); cleared by `0x002B4700` (`0x002B4707`) from the closer `0x002DD420`; `0x002B0280` flips the buffer itself only while it is 0 (`0x002B04D3`-`0x002B04DC`) |
+
+`0x002B24B0`, the choice-list measure, saves `+0x10C8`, `+0x10D8`, `+0x10E8`, `+0x10FC` and `+0x10FF`, stores its own
+terminator at `+0x10C8` and clears `+0x10D8`, `+0x10FC`-`+0x10FF`, the column marks `+0x10EC`-`+0x10FB` and
+`+0x1100`-`+0x1101` (`0x002B2570`-`0x002B25BC`), and restores the saved ones when it returns (`0x002B278C`-`0x002B27B7`).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -382,8 +411,9 @@ eight-byte stores in the lists put 0 in two of them at once.
 | `0x0209CC64` | `f32` | 0 | the glyph's height on screen: `0x0209CC74` x size x y scale | `0x002AC2F0` (`0x002AC56A`, `0x002AC59F`, `0x002AC5A6`); 0: `0x002AAE40` (`0x002AB703`), `0x002AC5F0` (`0x002AC62E`, `0x002AC7AA`), `0x002AE610` (`0x002AE841`, `0x002AEABB`), `0x002AF340` (`0x002AF624`, `0x002AF74A`, `0x002AF8EA`), `0x002AF960` (`0x002AFB73`), `0x002B0280` (`0x002B03F9`), `0x002B2150` (`0x002B2292`); other values: `0x002AC5F0` (`0x002ACB71`, `0x002ACB89`, `0x002ACCD6`, `0x002ACDC8`, `0x002ACEE8`, `0x002ACFAC`, `0x002AD75E`, `0x002ADAD7`, `0x002AE017`), `0x002AE450` (`0x002AE51C`), `0x002AE610` (`0x002AEAD1`), `0x002AEB20` (`0x002AED09`), `0x002B0280` (`0x002B072E`, `0x002B0751`, `0x002B0758`, `0x002B0F40`, `0x002B0FBB`, `0x002B105E`, `0x002B10BC`), `0x002B2150` (`0x002B240D`) | `0x002A9F00` (`0x002AA35C`, `0x002AA4FA`); `0x002AA800` (`0x002AAACA`, `0x002AABB6`); `0x002AAE40` (`0x002AB1FB`, `0x002AB31E`); `0x002AEB20` (`0x002AED45`); `0x002AF340` (`0x002AF7B9`, `0x002AF7F0`); `0x002B0280` (`0x002B098B`, `0x002B0B40`); `0x002B2150` (`0x002B2262`, `0x002B239C`, `0x002B23BD`) |
 | `0x0209CC68` | `f32` | 0 | the glyph's advance on screen, which the drawers add to the pen x (`0x002B188B`): `0x0209CC78` x size x x scale, or the one-glyph advance `+0xA9` that `0F 4` sets, which `0x002AC2F0` then clears (`0x002AC5AE`-`0x002AC5CB`) | `0x002AC2F0` (`0x002AC56A`, `0x002AC59F`, `0x002AC5C3`); 0: `0x002AAE40` (`0x002AB70A`), `0x002AC5F0` (`0x002AC638`, `0x002AC7B1`), `0x002AE610` (`0x002AE848`, `0x002AEAC2`), `0x002AF340` (`0x002AF62B`, `0x002AF756`, `0x002AF8F1`), `0x002AF960` (`0x002AFB84`), `0x002B0280` (`0x002B0400`), `0x002B2150` (`0x002B229C`); other values: `0x002AC5F0` (`0x002ACB3A`, `0x002ACCA9`, `0x002ACDB8`, `0x002ACED5`, `0x002ACFA4`, `0x002AD0C7`, `0x002AD144`, `0x002AD756`, `0x002ADACF`, `0x002ADCD0`, `0x002AE009`), `0x002AE450` (`0x002AE529`, `0x002AE5A7`), `0x002AE610` (`0x002AEAC9`), `0x002AEB20` (`0x002AED17`, `0x002AED35`), `0x002B0280` (`0x002B072E`, `0x002B0751`, `0x002B0776`, `0x002B0F1F`, `0x002B0FAC`, `0x002B104A`, `0x002B10D4`, `0x002B11EB`, `0x002B126F`, `0x002B15EC`), `0x002B2150` (`0x002B240D`) | `0x002A9F00` (`0x002AA734`); `0x002AA800` (`0x002AAD9F`); `0x002AAE40` (`0x002AB66A`); `0x002AE610` (`0x002AE7DC`); `0x002AF340` (`0x002AF7A1`, `0x002AF7DC`); `0x002B0280` (`0x002B0D5A`, `0x002B0F5C`, `0x002B0FDE`, `0x002B10F0`, `0x002B188B`); `0x002B2150` (`0x002B2262`, `0x002B23A4`, `0x002B23C5`) |
 | `0x0209CC78` | `f32` | 0 | the glyph's unscaled advance: its width (`0x0017F9C0` of the glyph record's `+0x1C`, or bits 32-36 of its character-map entry) plus the letter spacing `+0x4C`, plus 1.5, or 0.5 when `0x00254A10` answers 0, for a glyph marked by bit 31 of its entry while `+0x40` is not 0 (`0x002AC4B8`-`0x002AC510`) | `0x002AC2F0` (0: `0x002AC316`; `0x002AC510`); `0x002B0280` (0: `0x002B040E`; `0x002B06D3`); 0: `0x002AC5F0` (`0x002AD1D9`), `0x002AF960` (`0x002AFA1F`) | `0x002AC2F0` (`0x002AC55C`); `0x002B0280` (`0x002B0727`) |
+| `0x0209CC7C` | `f32` | 0 | the kerning before the glyph, unscaled: `0x0017F8E0` of the glyph's code point `+0x20` ([kerning](fonts.md)), taken when `0x0017F940()` answers non-zero, the glyph record exists and its code point is not -1, and 0 otherwise; the multiply turns it into `0x0209CC6C` | `0x002AC2F0`: 0 with `0x0209CC78` (`0x002AC316`), the kerning (`0x002AC53B`); `0x002B0280`: 0 with `0x0209CC78` (`0x002B040E`), the kerning (`0x002B06FF`) or 0 (`0x002B0709`); 0 with `0x0209CC78`: `0x002AC5F0` (`0x002AD1D9`), `0x002AF960` (`0x002AFA1F`) | `0x002AC2F0` (`0x002AC55C`); `0x002B0280` (`0x002B0727`), the fourth float of the 16-byte multiply |
 
-Nothing else reads or writes these four: no other RIP-relative, image-base-relative or 32-bit offset reference names
+Nothing else reads or writes these five: no other RIP-relative, image-base-relative or 32-bit offset reference names
 them. The addresses taken near them, `0x0209CC3C` by `0x001AF470` (a `UISize.json` cell, [Screen
 layouts](screen-layouts.md)) and `0x0209CC30` by `0x002A84F0` (the end of a loop over `0x0209CC18`-`0x0209CC28`), reach none
 of them.

@@ -153,6 +153,9 @@ calls `0x00307140(1)` once the defeated mask covers the member mask (`0x00306F95
 Each pass of `0x00338490` first marks all four formation slots empty with `0xFF` in their first byte
 (`0x00338590`-`0x003385B4`), then gives each follower the next slot: the unit's slot byte `+0xEA9` at `+0x00`, its
 position at `+0x10`, its angle around the leader at `+0x20` and the unit at `+0x28` (`0x0033863F`-`0x0033867C`).
+Bytes `+0x01`-`+0x0F` of each slot are read and written by no function on their own; the exchange sort's swaps, which
+never run, move them inside their 16-byte copies of the slot's first vector (`0x00338969`, `0x00338980` and the other
+four swap bodies). Nothing fixes their width.
 
 It then runs an exchange sort over the filled slots (`0x003388E1`-`0x00338C10`) whose every test compares the float at `+0x24`
 with itself (`comiss xmm0, xmm0`, then `jbe`, at `0x00338960`, `0x003389D3`, `0x00338A44`, `0x00338ACF`, `0x00338B94`), so it

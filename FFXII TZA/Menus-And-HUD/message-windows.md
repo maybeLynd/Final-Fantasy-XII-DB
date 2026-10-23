@@ -297,8 +297,11 @@ and a draw order at `+0x400`, made by `0x002A2AD0` with each part hidden, colour
 A loop count of 0 loops for ever. The parts do not step while a time stop restricts anything (`0x00226BA0`) and story
 flag `0x6F` is clear ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
 
-`0x002A5BC0` sorts the draw order by each part's priority byte `+0x0E`, highest first, when `+0x3F2` asks for it, and
-`0x002A4EE0` draws the shown parts in that order, centred when bit 1 is set. `0x002A2860` frees the arrays.
+`0x002A5BC0` sorts the draw order by each part's priority byte `+0x0E`, highest first, when `+0x3F2` is set, and
+clears it (`0x002A5CB6`). Only `0x003E95E0` sets it. It takes window i from the slot table (`0x002E1040`: entry i of the
+`0x68`-byte slots at `0x0215F200`, i clamped to 0-7), writes part i's priority byte (`0x003E9626`), sets `+0x3F2` to 1
+(`0x003E961E`) and ors `0x20` into `+0x3F3` (`0x003E962B`). So the parts are re-sorted after a script changes a
+priority, and `0x002A4EE0` draws the shown parts in that order, centred when bit 1 is set. `0x002A2860` frees the arrays.
 
 ### Skipping
 
@@ -446,6 +449,16 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | `+0x40` | `i16[3]` | colourTime | tick, length, curve |
 | `+0x48` | `f32[4]` | scaleTween | x start, x change, y start, y change |
 | `+0x58` | `i16[3]` | scaleTime | tick, length, curve |
+
+The window, `0x410` bytes from `0x002A2C00`; the fields listed here are those of the type store's P13 list:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x1A0` | `void*` | speakerActor | the actor the window speaks for, the creation request's `+0x00` that `0x002E16B0` fills with its actor (`0x002A2D0F`); passed to the text set-up by `0x002A3250` (`0x002A3451`), `0x002A6A80` (`0x002A6ACD`) and `0x002A6C40` (`0x002A6D07`, `0x002A6DA6`); the caption build `0x002A70B0` asks `0x0028F750` whether it is the HUD's actor (`0x002A71D2`) and reads its byte `+0x107` (`0x002A71FD`) |
+| `+0x3BD` | `u8` | unused3BD | read and written by no function; nothing fixes its width |
+| `+0x3D0` | `u32` | heightOrListX | the window's text height: compared and stored by the resize `0x002A69E0` (`0x002A6A19`, `0x002A6A4C`), saved by `0x002A6C40` (`0x002A6E2B`), stored by the caption build `0x002A70B0` (`0x002A734C`); in a window with a choice list an `f32`, the first of four floats `0x003FFDF0` returns (`0x002A5704`), read by the row painter `0x002A1B00` (`0x002A1C29`, `0x002A1C5C`, `0x002A1C98`) |
+| `+0x3EC` | `u8[4]` | unused3EC | read and written by no function; nothing fixes their width |
+| `+0x3F2` | `u8` | partSortRequest | set to 1 by `0x003E95E0` (`0x003E961E`) when it changes a part's priority; tested and cleared by the part sort `0x002A5BC0` (`0x002A5BC2`, `0x002A5CB6`) |
 
 `PictureSlot`, `0x20` bytes, eight at `0x0209C510`:
 

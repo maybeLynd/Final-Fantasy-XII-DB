@@ -36,6 +36,19 @@ The folder is `GameData/D3D11/ArtData/font/<folder>/`, and the list is its `font
 2. `0x001B4930` reads one name at a time with `"%s"`, skipping line ends, and makes each into a path.
 3. `0x001B5610` requests `<name>.dat` for each name, and its completion `0x001B5FE0` reaches the font builder `0x001B4D70`.
 
+The two paths `0x001B44A0` picks are kept in two globals, which hold the Japanese list and folder in the file, and the
+list request reads the list into a third:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01DF6DE8` | `void*` | `0x008F8188`, the `jp` list `./GameData/D3D11/ArtData/font/jp/fontlist.ah` | the language's font list path | `0x001B44A0`: `cn` (`0x001B44C8`), `ch` (`0x001B44DF`), `kr` (`0x001B44F6`), `us` (`0x001B450D`), `jp` (`0x001B4524`) | `0x001B53F0`, which copies it with `strcpy_s` (import `0x008C3038`) into the list request (`0x001B542D`-`0x001B5434`) |
+| `0x01DF6DF0` | `void*` | `0x008F81B8`, the `jp` folder `./GameData/D3D11/ArtData/font/jp/` | the language's font folder, which `0x001B4930` puts before each listed name with `"%s%s"` (`0x008F80F0`) | `0x001B44A0` (`0x001B453D`), the folder of the chosen language: `0x008F8700` `cn`, `0x008F86A8` `ch`, `0x008F8758` `kr`, `0x008F8650` `us`, `0x008F81B8` `jp` (`0x001B44CF`-`0x001B452B`) | `0x001B4930` (`0x001B4A0C`) |
+| `0x01F81208` | `void*` | 0 | the loaded font list: the zero-terminated copy of `fontlist.ah` that the list request (kind 4) reads into a new block; `0x001B4930` reads the names from it and frees it | `0x001A0F80`, through the request's `+0x120`, which `0x001B53F0` points at it (`0x001B544B`-`0x001B5452`), storing the block (`0x001A1012`); `0x001B4930`, 0 after freeing it with `0x00210EB0` (`0x001B4BC2`) | `0x001B53F0`, which passes whether it is still 0 to the return stub `0x0016D6A0` (`0x001B543A`-`0x001B5446`); `0x001B4930` (`0x001B4973`, `0x001B4BB3`) |
+
+No other instruction reaches these three: no other RIP-relative, image-base-relative or 32-bit offset reference names
+them. The one address taken near the first two, `0x01DF6DE0` (`0x001B456D`), is the float key slot `+0x308` of the font
+manager that `0x001CA600` writes with a 4-byte store ([Screen layouts](screen-layouts.md)), and reaches neither.
+
 Each font's atlas is `<name>.dds.phyre` (`0x008F6748`). The builder also names a shadow atlas `<name>_shadow.dds.phyre`
 (`0x008F81E0`), which the shipped build never requests and no font folder ships (the manager's list below).
 

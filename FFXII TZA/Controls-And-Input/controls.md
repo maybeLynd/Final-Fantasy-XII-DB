@@ -149,6 +149,18 @@ by the block at `0x02F973A0` when that block is not zero:
 Bit i of every mask is button i in this order: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle,
 Circle, Cross, Square. It is called from the main loop (`0x0022B908`) and from `0x0022A7F6`, `0x0022BC50` and `0x00249C4D`.
 
+Each word is the OR of a history word over every poll since the last game frame (`0x00249940`-`0x0024999F`):
+held `+0x06`, pressed `+0x0E`, repeat `+0x0A`, released `+0x12` for set 1, and `+0x04`, `+0x0C`, `+0x08`, `+0x10`
+for set 0. `0x002498B0` clears the three records first (`0x002498BD`-`0x002498E0`), as does `0x002284F0` (`0x00228605`-`0x00228628`).
+Set 1 is read by few functions; set 0 is the one menus and the field read:
+
+| Word | Read by |
+|---|---|
+| held, set 1 | `0x00253C70` (`0x0025420A`, R2) and `0x00252B60` (`0x00252BD2`, R2) |
+| pressed, set 1 | `0x00252B60` (`0x00252B7F`, R2), `0x002501A0` (`0x002501CA`, L3), `0x00250200` (`0x00250223`, L3), `0x002A9980` (`0x002A99EC`, the confirm mask) and the confirmation window `0x0057C480` (`0x0057C9DA`) |
+| repeat, set 1 | `0x002498A0` (`0x002498A0`, R1) |
+| released, set 1 | no function but `0x002498B0`, which copies it to the filtered words (`0x00249A5E`) |
+
 ### Confirm and cancel
 
 `0x0022A4F0` sets the confirm mask `0x01E0C2A0` and the cancel mask `0x01E0C2A4` to Circle and Cross, `0x2000` and `0x4000`,
@@ -342,15 +354,35 @@ presses that the gambit screen and the licence board use, and cleared by `0x0024
 | `0x02F9738C` | `u16` | 0 | filtered repeat mask, set 1 | `0x002284F0` (`0x00228628`); `0x002498B0` (0 at `0x002498E0`; `0x00249A71`, `0x00249B9E`) | `0x002498B0` (`0x00249AD3`) |
 | `0x02F9738E` | `u16` | 0 | filtered released mask, set 1 | `0x002284F0` (`0x00228628`); `0x002498B0` (0 at `0x002498E0`; `0x00249A71`, `0x00249AEA`) | `0x002498B0` (`0x00249AEA`) |
 | `0x02F97396` | `u16` | 0 | filtered released mask, set 0 | `0x002284F0` (`0x0022862F`); `0x002498B0` (0 at `0x002498E7`; `0x00249A71`, `0x00249AF4`) | `0x002498B0` (`0x00249AF4`) |
+| `0x02F97399` | `u8` | 0 | filtered left stick Y: the copy of `0x02F97371`, then, while `0x02F973A0` is set, the forced byte `0x02F973B5` when that is not 0, otherwise 0 when `0x02F973A2` is set | `0x002284F0`, 0 with the four stick bytes (`0x00228636`); `0x002498B0`: 0 (`0x002498EE`), the 4-byte copy (`0x00249A6B`), the masked value (`0x00249BAD`) | `0x002498B0` (`0x00249B2C`); the licence board's `0x0055C740`, which takes the left stick negated and over 32 (`0x0055CC00`); the widget step `0x002BC3E0`, which takes the left stick over 16 (`0x002BC6FA`) |
+| `0x02F9739A` | `u8` | 0 | filtered right stick X: the copy of `0x02F97372`, masked the same way with the forced byte `0x02F973B6` | `0x002284F0`, 0 with the four stick bytes (`0x00228636`); `0x002498B0`: 0 (`0x002498EE`), the 4-byte copy (`0x00249A6B`), the masked value (`0x00249BC8`) | `0x002498B0` (`0x00249B24`); `0x0055C740`, which reads the right stick when the left one is at rest (`0x0055CC19`) |
 | `0x02F973A2` | `u8` | 0 | 1: the filtered stick bytes become 0 | `0x002D6620`, 1 (`0x002D6620`); `0x002D6640`, whether `sticks` is not 0 (`0x002D6659`); `0x00249840`, 0 (`0x00249842`) | `0x002498B0` (`0x00249AFB`) |
 | `0x02F973A4` | `u16` | 0 | buttons taken out of both held masks | `0x002D6620`, `0xFFFF` (`0x002D6627`); `0x002D6640`, `mask` (`0x002D6675`); `0x00249840`, 0 (`0x00249842`) | `0x002498B0` (`0x00249A7E`) |
 | `0x02F973A6` | `u16` | 0 | buttons taken out of both pressed masks | `0x002D6620` (`0x002D6627`); `0x002D6640` (`0x002D666E`); `0x00249840` (`0x00249842`) | `0x002498B0` (`0x00249A9D`) |
 | `0x02F973A8` | `u16` | 0 | buttons taken out of both repeat masks | `0x002D6620` (`0x002D6627`); `0x002D6640` (`0x002D6667`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249AA8`) |
 | `0x02F973AA` | `u16` | 0 | buttons taken out of both released masks | `0x002D6620` (`0x002D6627`); `0x002D6640` (`0x002D6660`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249AB2`) |
+| `0x02F973AC` | `u16` | 0 | buttons forced into both held masks while a mask is on; `0x002498B0` does not clear it, so it stays until `0x00249840` | `0x002D66A0`, `buttons` (`0x002D66A8`); `0x00249840`, 0 (`0x00249849`) | `0x002498B0` (`0x00249B59`, `0x00249B61`) |
 | `0x02F973AE` | `u16` | 0 | buttons forced into both pressed masks for one game frame | `0x002D66A0`, `buttons` (`0x002D66B6`); `0x002498B0`, 0 after use (`0x00249BF8`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249B3A`, `0x00249B4A`) |
+| `0x02F973B0` | `u16` | 0 | buttons forced into both repeat masks for one game frame | `0x002D66A0`, `buttons` (`0x002D66AF`); `0x002498B0`, 0 after use with `0x02F973AE` (`0x00249BF8`); `0x00249840`, 0 (`0x00249850`) | `0x002498B0` (`0x00249B42`, `0x00249B52`) |
 
 `0x002D6680` loads 8 bytes from `0x02F973A1` and uses only the first.
 
+### Channel 1's button words
+
+`0x002498B0` builds channel 1's eight words at `0x02F97374`-`0x02F97383` the same way as channel 0's, from the base
+`0x02F97386` it steps to (`0x00249A4A`): each poll's word is ORed in through `[rbx - 0x12]` to `[rbx - 4]`
+(`0x00249949`-`0x002499A4`). No function reads them back except those ORs; the stick readers `0x00249860` and `0x00249880`
+take a channel number, and their two callers ask for channel 0 (`0x001EC17B`, `0x001EC192`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02F97378` | `u16` | 0 | channel 1's repeat mask, set 1 | `0x002284F0`, 0 with `0x02F9737A`-`0x02F9737F` (`0x0022861A`); `0x002498B0`: 0 (`0x002498D2`), each poll's word ORed in (`0x00249963`) | `0x002498B0`, that OR (`0x00249963`) |
+| `0x02F97380` | `u16` | 0 | channel 1's repeat mask, set 0 | `0x002284F0`, 0 with `0x02F97382`-`0x02F97387` (`0x00228621`); `0x002498B0`: 0 (`0x002498D9`), each poll's word ORed in (`0x00249997`) | `0x002498B0`, that OR (`0x00249997`) |
+
+No other instruction reaches these two globals or `0x02F97399`, `0x02F9739A`, `0x02F973AC` and `0x02F973B0` above: no other
+RIP-relative, image-base-relative or 32-bit offset
+reference names them, and the addresses taken near them are those of `0x002498B0`, `0x00249860` and `0x00249880` above and
+`0x02F97350`, the 16-byte copy `0x003600C0` fills (`0x00249BFF`).
 ### The field target cursor and L2
 
 | Global | Type | Start | Meaning | Set by | Read by |

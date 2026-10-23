@@ -66,7 +66,8 @@ level)`: driver action `0x2E` for parameter 7 at `level / 127` over 3 s ([Audio 
 | `lockreverb_2a5` | `0x2A5` | `0x00341460` | stores one value as the frame count (`0x00363B20`) and locks the other as the level |
 | `unlockreverb` | `0x1D7` | `0x00341D00` | unlocks (`0x003631A0(0, 0)`) and resets the frame count |
 
-`0x00363B20` stores its count at `0x022CBB30`, 180 for 0 or less, and the event teardown `0x00262870` unlocks as well.
+`0x00363B20` stores its count at `0x022CBB30`, 180 for 0 or less, and the event teardown `0x00262870` unlocks as well. No
+instruction reads the count.
 
 ### Weather ambience
 
@@ -90,6 +91,17 @@ Every update `0x00362850` also runs the two ambience steps:
   `0x022CBA92` to the playing handle `0x022CBA70` (`0x002DF150`).
 - `0x00362D20` moves the map sound volume `0x022CBA94` from `0x022CBA98` towards `0x022CBA99` by the step `0x022CBA9C` per
   pass. Character and effect sounds take their volume byte from `0x022CBA94` ([Spatial sound](spatial-sound.md)).
+
+`0x00362C60` sends the ambience volume `0x022CBA92` to the playing handle `0x022CBA70` with `0x002DF150` only when it differs
+from the volume last sent (`0x00362CE6`-`0x00362D0A`):
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBA93` | `u8` | 0 (zero-filled tail) | the ambience volume last sent to the playing handle | `0x00362C60`, after sending (`0x00362D0A`); `0x00363840` (`0x00363883`) and `0x00363A20` (`0x00363A62`), the volume each starts the ambience with; `0x00362F70`, 0 (`0x00362FE5`) | `0x00362C60` (`0x00362CED`) |
+
+No other instruction reaches it: no other RIP-relative, image-base-relative or 32-bit offset reference names it.
+The indexed accesses near it are the cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[6]` each, which end at
+`0x022CB9F0` (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`).
 
 `0x00363E40(frames)` stops the ambience:
 
@@ -119,10 +131,38 @@ pick (`0x00363D47`, `0x00363DE1`), `0x00362C60` (`0x00362C8C`), `0x00363E40` (`0
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x022CBB48` | `i32` | 0 (zero-filled tail) | the second id of the previous map's keep list `0x022CBB44` | the map-sound initialiser `0x00362F70`, -1 (`0x00363027`, in the loop over `0x022CBB44`-`0x022CBB4F`); `0x00363750`, the second keep-list id `0x022CBB68` with the 16-byte copy (`0x00363802`-`0x00363810`) | `0x003636A0`, by index while below the count `0x022CBB50` (`0x003636D0`) |
 | `0x022CBB50` | `i32` | 0 (zero-filled tail) | the count of the previous map's keep list at `0x022CBB44` | the map-sound initialiser `0x00362F70`, 0 (`0x00363036`), after setting both lists to -1 (`0x00363020`-`0x00363064`); `0x00363750`, the copy of `0x022CBB70` (`0x00363810`) | `0x003636A0` (`0x003636A6`, `0x00363700`) |
 
-These are all its accesses among the RIP-relative references; no image-base-relative reference or disp32
-displacement names it.
+These are all their accesses among the RIP-relative references; no image-base-relative reference or disp32
+displacement names either. The one indexed access near `0x022CBB48` is `0x003636A0`'s read above.
+
+### The map sound volume fade
+
+`0x003634B0(frames, volume)` fades the map sound volume `0x022CBA94` to `volume`: it scales `frames` by `0x003691D0`, halves
+it and adds 1; with a positive result n it starts the fade from the current volume with a step of 1 / n
+(`0x003634C3`-`0x0036350F`), otherwise it sets the volume at once (`0x00363522`-`0x00363549`). Each update `0x00362D20` adds the
+step to the progress, stops at 1.0, and sets the volume (`0x00362D20`-`0x00362D98`):
+
+```python
+volume = from x (1 - progress) + to x progress
+```
+
+`0x003634B0` is called from `0x00352A90`, `0x0035CA70`, `0x0035CE38`, `0x003775D0`, `0x003EF290`, `0x003EF2E0` and `0x003EF691`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CBA94` | `i32` | 0 (zero-filled tail) | the map sound volume, 0-127 | `0x00362D20` (`0x00362D98`); `0x003634B0` (`0x00363549`); `0x7F`: `0x00362C60` (`0x00362CBA`), `0x00362F70` (`0x00363007`), `0x003635E0` (`0x0036368C`), `0x00363B40` (`0x00363D75`, `0x00363E08`), `0x00363E40` (`0x00363ECF`, `0x00363F1F`) | `0x00361750` (`0x0036175F`), `0x003617B0` (`0x003617B7`), `0x00361BF0` (`0x00361CB2`), `0x00361CF0` (`0x00361DAF`), `0x003634B0` (`0x003634EF`), `0x003638B0` (`0x00363946`, `0x003639B4`) |
+| `0x022CBA98` | `u8` | 0 (zero-filled tail) | the volume the fade starts from | `0x003634B0` (`0x003634FD`, `0x00363542`); `0x7F`: `0x00362C60` (`0x00362CB3`), `0x00362F70` (`0x00363000`), `0x003635E0` (`0x00363685`), `0x00363B40` (`0x00363D6E`, `0x00363E12`), `0x00363E40` (`0x00363EC8`, `0x00363F18`) | `0x00362D20` (`0x00362D68`) |
+| `0x022CBA99` | `u8` | 0 (zero-filled tail) | the volume the fade ends at | `0x003634B0` (`0x003634CA`); `0x7F`: `0x00362C60` (`0x00362CAC`), `0x00362F70` (`0x00362FF9`), `0x003635E0` (`0x0036367E`), `0x00363B40` (`0x00363D67`, `0x00363E01`), `0x00363E40` (`0x00363EC1`, `0x00363F11`) | `0x00362D20` (`0x00362D77`) |
+| `0x022CBA9C` | `f32` | 0 (zero-filled tail) | the fade's step per update; 0 when no fade runs | `0x003634B0` (`0x0036350F`, `0x00363532`); `0x00362D20`, 0 at the end (`0x00362D5E`); 0: `0x00362C60` (`0x00362C9C`), `0x00362F70` (`0x00362FDF`), `0x003635E0` (`0x0036366E`), `0x00363B40` (`0x00363D57`, `0x00363DF9`), `0x00363E40` (`0x00363EAD`, `0x00363EFB`) | `0x00362D20` (`0x00362D20`) |
+| `0x022CBAA0` | `f32` | 0 (zero-filled tail) | the fade's progress, 0 to 1.0 | `0x003634B0` (`0x00363503`, `0x0036353A`); `0x00362D20` (`0x00362D49`, `0x00362D53`); 1.0: `0x00362C60` (`0x00362CA4`), `0x00362F70` (`0x00363011`), `0x003635E0` (`0x00363676`), `0x00363B40` (`0x00363D5F`, `0x00363DF1`), `0x00363E40` (`0x00363EA5`, `0x00363F03`) | `0x00362D20` (`0x00362D32`) |
+| `0x022CBB20` | `f32` | 0 (zero-filled tail) | 30.0, the range of moving sounds: `0x003616F0` returns it to `0x00332C40` and `0x003B99D0`, which pass it and its reciprocal to `0x00361CF0` and `0x003617B0` | `0x00362F70` (`0x003630CF`) | `0x003616F0` (`0x003616F0`) |
+| `0x022CBB24` | `f32` | 0 (zero-filled tail) | 20.0, the range of character sounds and of `0x00361BF0`'s point sounds | `0x00362F70` (`0x003630F8`) | `0x00361750` (`0x00361757`), `0x00361BF0` (`0x00361C17`) |
+| `0x022CBB30` | `i32` | 0 (zero-filled tail) | the reverb lock's frame count: the argument of `0x00363B20`, 180 for 0 or less | `0x00363B20` (`0x00363B2A`), from `0x00341460`, `0x003417C0`, `0x00341D00` and `0x00262870`; `0x00362F70`, 180 (`0x00363128`) | no instruction |
+
+`0x022CBAA4`, `0x022CBAA8` and `0x022CBB2C`, the behind-the-listener step, volume factor and pan-width percentage the reset
+sets to 6, 44 and 150, are on [Spatial sound](spatial-sound.md).
 
 ### Event sound lists
 

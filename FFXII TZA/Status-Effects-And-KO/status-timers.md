@@ -116,6 +116,34 @@ The step then runs, in order (`0x00310FB1`-`0x003112AC`):
 4. **The tail**, which the four gates above also reach: the enmity decay `0x00321530`
    ([Enmity](../Enemy-AI-And-Gambits/enmity.md)) and `0x002FE950`.
 
+## Layouts
+
+Each unit's 64-byte record: for a party record (byte `+5` = 0) `0x0208D480 + type * 0x40`, forty of them, otherwise
+`0x0208DE80 + unit[+0xEA9] * 0x40`, thirty-two (`0x00386C21`-`0x00386C51`). Both banks are in the zero-filled tail of
+`.data`.
+
+The first list of an action ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) clears the first
+`0x14` bytes when it resolves the user's current target, keeping `+0x10` and, with unit byte `+0x6B7` set, the high
+nibble of `+0x12` (`0x0038579C`-`0x003857E1`). `0x00386C10` clears the first `0x20` bytes (`0x00386C5B`-`0x00386C66`) when a
+unit is placed by `btlAtelSetUnitFinish` (`0x0023A513`) and from `0x00233AD0` (`0x00233BFC`).
+
+`BattleRuntimeUnitRecord` (`0x40` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | stored | the value an action keeps between its first list and its committed resolve: Dark Matter and Soul Purge move the Knot of Rust bank into it and deal it (`0x0038DA5D`, `0x0038DA68`); Traveler stores its damage (`0x0038ECD5`, `0x0038ECFF`) and deals it again without a stored preview (`0x0038ED17`); Gil Toss stores the gil sum (`0x00388E51`), copies it to result +`0x08` for the other targets (`0x00388E60`) and slot 147 shares it among the targets (`0x0038EDD6`) (Weapon formulas) |
+| `+0x04` | `u32` | failed | one bit per target index: a first-list run that ends failed sets the target's bit (`0x00385A7F`), and the committed resolve then gives that target result kind 6 without running a slot (`0x0038633F`) |
+| `+0x08` | `u32` | immune | one bit per target index: set when the first list ends immune (`0x00385AC0`); the committed resolve gives result kind 10 (`0x003862FB`) |
+| `+0x0C` | `u32` | hit | one bit per target index: `0x00387B00` sets the target's bit when a finishing slot ends with an HP value (`0x00387B97`; called from `0x0038D280` and 15 other slot sites); `0x002FA290` tests a unit's bit for the battle effect program `0x003B8670` (`0x002FA352`, through `0x00322850` at `0x003B88B3`) |
+| `+0x10` | `u16` | shadesAction the action Shades of Black (0x9F) turns into: 0x00387A50 stores the random pick of 0x00387130 (0x00387ADE); 0x00387090 returns it (0x0038710E); both resolves put it in place of 0x9F (0x00385801, 0x00385FF7); kept over the first list's clear (0x003857A3, 0x003857E1) |  |
+| `+0x12` | `u8` | flags | bit 0 the stored preview (set `0x003857DD`, cleared `0x00386402`; read by Numerology `0x00389D24`, Dark Matter `0x0038DA49` and Traveler `0x0038EC3A`); bits 1-3 the first list's result +`0x18` bits 1-3 (`0x00385AC3`-`0x00385AF2`), copied into the committed result (`0x003860DF`-`0x00386108`); bits 4-7 the combo count (`0x00388660`: `0x0038885D`, `0x00388865`, `0x0038886B`) |
+| `+0x13` | `u8` | pad13 | written only by the two clears (`0x003857B2`, `0x00386C62`); read by no instruction; nothing fixes its width |
+| `+0x14` | `u16` | healSteps | the out-of-combat healing counter (`0x003869A2`, `0x003869E0`, `0x00386A27`, `0x00386A2C`) |
+| `+0x16` | `u8[2]` | pad16 | written only by the clear `0x00386C62`; read by no instruction; nothing fixes its width |
+| `+0x18` | `f32` | walkLeft | the walk distance left after the last MP step: `0x002F9400` compares the new distance with it (`0x002F9474`) and stores what is left (`0x002F95A6`) (MP gain and cost) |
+| `+0x1C` | `u32` | circle | bit 0: the unit joins the circling formation once KO'd, set by `0x0033CB10` (`0x0033CB60`) when action-timeline event 2 or 6 reaches a KO'd unit (`0x00325651`); bit 1: it has reached its place (`0x0033DA73`); both read by the mode-2 movement `0x0033D890` (`0x0033D953`, `0x0033DA77`) (Battle locomotion) |
+| `+0x20` | `u8[32] pad20` | read and written by no function; nothing fixes its width |  |
+
 ## Modding notes
 
 - A status's duration and beat are data in its row of `battle_pack.bin` section 15; the code reads 10 off both

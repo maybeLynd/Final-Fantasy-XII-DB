@@ -13,6 +13,9 @@ A unit's statuses are 32 bits, status *s* being bit `1 << s`, held in its stats 
 5 (row word `+0x00` = `0x2800` + *s*), and the help line is entry *s* of `listhelp_status.bin` (row word `+0x0A`,
 text id 12,000 + *s*, `0x0031E288`).
 
+Row bytes `+0x11`-`+0x12` and `+0x14`-`+0x1F` are read and written by no function; nothing fixes their width. In the
+shipped rows 42 of these 448 bytes are not `0xFF`, all of them 25 to 31.
+
 ### Duration and beat
 
 The default duration comes from row byte `+0x08` through `0x00387730` (`0x00387740`-`0x00387992`):
