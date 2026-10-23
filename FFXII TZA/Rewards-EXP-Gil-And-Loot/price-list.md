@@ -23,7 +23,7 @@ take the amount with `subgill`.
 ### How it is built
 
 `Database/Tools/catalogues/price_list.py` reads the `st2e` table at entry `+0x74` (128 rows of 4 bytes from the
-section's `+0x20`). The script columns come from `price-script-calls.tsv`, which
+section's `+0x20`). The script columns come from [`price-script-calls.tsv`](price-script-calls.tsv), which
 `Database/Tools/catalogues/getprice_calls.py` writes: it reads every us event script from the game's archive,
 decodes each script function's bytecode, and resolves each call's argument, reading a `PUSHI` operand through the
 script section's int pool (`+0x20`, [EBP script image](../EBP-Script-Files/ebp-script-image.md)).

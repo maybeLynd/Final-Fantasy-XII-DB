@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+0x00693390	FUN_00693390	0x006933A9	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 0x00D79AE8	

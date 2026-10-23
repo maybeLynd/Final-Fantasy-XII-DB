@@ -56,8 +56,8 @@ The 120 stubs name 117 slots: three stubs share the `free` slot `0x008C2B48` and
   3, two each from `d3d11`, `XINPUT9_1_0` and `api-ms-win-crt-stdio`, and one from each of seven
   more.
 
-The member list `thunks-and-import-stubs-external-import-stubs.tsv` holds 117 of the 120 and
-`thunks-and-import-stubs-external-import-stubs-map.tsv` gives the DLL and name of each; the three it
+The member list [`thunks-and-import-stubs-external-import-stubs.tsv`](thunks-and-import-stubs-external-import-stubs.tsv) holds 117 of the 120 and
+[`thunks-and-import-stubs-external-import-stubs-map.tsv`](thunks-and-import-stubs-external-import-stubs-map.tsv) gives the DLL and name of each; the three it
 leaves out are `0x00861EAE` (`__std_terminate`), `0x00862028` (`_exit`) and `0x00862034` (`_c_exit`).
 
 ### The guard-check stub
@@ -98,7 +98,7 @@ The terminate pads are 86 bodies of `jmp 0x00861EAE`. 85 are packed back to back
 
 [Jump thunks](../Engine-Core/jump-thunks.md) tabulates 568 of the forwarders and 85 of
 the terminate pads with their callers and targets. The member list
-`thunks-and-import-stubs-internal-tail-call-forwarders.tsv` holds 749 rows. The 14 forwarders it
+[`thunks-and-import-stubs-internal-tail-call-forwarders.tsv`](thunks-and-import-stubs-internal-tail-call-forwarders.tsv) holds 749 rows. The 14 forwarders it
 leaves out are the twelve that nothing reaches and `0x0026DC50` and `0x0036E9A0`, which are reached
 only by jumps.
 
@@ -119,9 +119,9 @@ The five receiver binders are `0x0028E220` (`+0x8FA0`, to `0x002BDCE0`), `0x0028
 `0x0028CA30`), `0x0028E8B0` (`+0x8FA0`, to `0x002BE020`), `0x0028FB40` (`+0xA0`, to `0x003F8D20`) and `0x0028FB60`
 (`+0x5380`, to `0x0028A080`).
 
-The member lists `thunks-and-import-stubs-forward-second-argument-tail-calls.tsv` (72 entries) and
-`thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv` (29 entries) hold part of the first
-two rows. `thunks-and-import-stubs-thunk-address-taken.tsv` lists 297 one-jump functions whose
+The member lists [`thunks-and-import-stubs-forward-second-argument-tail-calls.tsv`](thunks-and-import-stubs-forward-second-argument-tail-calls.tsv) (72 entries) and
+[`thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv`](thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv) (29 entries) hold part of the first
+two rows. [`thunks-and-import-stubs-thunk-address-taken.tsv`](thunks-and-import-stubs-thunk-address-taken.tsv) lists 297 one-jump functions whose
 address appears in a qword or a `lea`, with the section of each reference.
 
 ### Why caller counts disagree

@@ -1,0 +1,133 @@
+class	vtable	slot	body	size	role	cite
+OrderedObject	0x009010B8	0	0x001E1190	52	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001E11B1
+OrderedObject	0x009010B8	1	0x00861EC6	6	PURE VIRTUAL (jmp _purecall IAT thunk) - abstract in base	0x00861EC6
+OrderedObject	0x009010B8	2	0x00861EC6	6	PURE VIRTUAL (jmp _purecall IAT thunk) - abstract in base	0x00861EC6
+MapOrderedObject	0x009010D8	0	0x001E11D0	52	dtor + extra teardown: 0x00212C50,0x00809950	0x001E11F1
+MapOrderedObject	0x009010D8	1	0x00212C60	14	forwards this[+0x08] to 0x001E2AF0 when non-null	0x00212C67
+MapOrderedObject	0x009010D8	2	0x0016EE70	6	order key = 0x4	0x0016EE75
+SetRendererCameraObj	0x00902F90	0	0x001F2770	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F279B
+SetRendererCameraObj	0x00902F90	1	0x001F3930	122	-> 0x00189120,0x00189560,0x0018A620,0x001F0850	0x001F399A
+SetRendererCameraObj	0x00902F90	2	0x001F2880	6	order key = 0x10	0x001F2885
+BegineSceneObj	0x00902FB0	0	0x001F2020	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F204B
+BegineSceneObj	0x00902FB0	1	0x001F29E0	50	scene-begin submit; -> 0x00188AC0,0x00189120	0x001F2A0D
+BegineSceneObj	0x00902FB0	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+EndSceneObj	0x00902FD0	0	0x001F22A0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F22CB
+EndSceneObj	0x00902FD0	1	0x001F2FA0	13	profile-slot open	0x001F2FA8
+EndSceneObj	0x00902FD0	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+BegineScene0Obj	0x00902FF0	0	0x001F1FE0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F200B
+BegineScene0Obj	0x00902FF0	1	0x001F29D0	14	scene-begin submit	0x001F29D9
+BegineScene0Obj	0x00902FF0	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+EndScene0Obj	0x00903010	0	0x001F2260	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F228B
+EndScene0Obj	0x00903010	1	0x001F2F90	14	profile-slot open	0x001F2F99
+EndScene0Obj	0x00903010	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+CopyBufferObj	0x00903030	0	0x001F2060	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F208B
+CopyBufferObj	0x00903030	1	0x001F2A20	323	profile-slot open; scene-begin submit; -> 0x001867B0,0x001868F0,0x00188730,0x00189120	0x001F2B58
+CopyBufferObj	0x00903030	2	0x001F2880	6	order key = 0x10	0x001F2885
+CopyDepthBufferObj	0x00903050	0	0x001F20A0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F20CB
+CopyDepthBufferObj	0x00903050	1	0x001F2B70	220	profile-slot open; scene-begin submit; -> 0x00186660,0x00188730,0x00189120,0x001D5620	0x001F2C32
+CopyDepthBufferObj	0x00903050	2	0x001F2880	6	order key = 0x10	0x001F2885
+Ps2DofObj	0x00903070	0	0x001F24A0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F24CB
+Ps2DofObj	0x00903070	1	0x001F3440	154	profile-slot open; scene-begin submit; -> 0x00186660,0x001867B0,0x00188730,0x00189120	0x001F34C0
+Ps2DofObj	0x00903070	2	0x001F2880	6	order key = 0x10	0x001F2885
+SetScreenIndexToPostProcessManagerObj	0x00903090	0	0x001F27B0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F27DB
+SetScreenIndexToPostProcessManagerObj	0x00903090	1	0x001F39B0	38	master-enable gate; -> 0x00193D50,0x001F9A60	0x001F39C4
+SetScreenIndexToPostProcessManagerObj	0x00903090	2	0x001F2880	6	order key = 0x10	0x001F2885
+ApplyJsonForCutSceneObj	0x009030B0	0	0x001F1FA0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F1FCB
+ApplyJsonForCutSceneObj	0x009030B0	1	0x001F29C0	8	-> 0x001C3C30	0x001F29C3
+ApplyJsonForCutSceneObj	0x009030B0	2	0x001F2880	6	order key = 0x10	0x001F2885
+ReadPresetDofForCutSceneObj	0x009030D0	0	0x001F2570	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F259B
+ReadPresetDofForCutSceneObj	0x009030D0	1	0x001F3500	11	-> 0x001C6E20	0x001F3506
+ReadPresetDofForCutSceneObj	0x009030D0	2	0x001F2880	6	order key = 0x10	0x001F2885
+RenderMonsterGalleryChara	0x009030F0	0	0x001F2630	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F265B
+RenderMonsterGalleryChara	0x009030F0	1	0x001F3650	91	-> 0x0018B1B0,0x0018B4E0,0x001D5620,0x001D5630	0x001F36A6
+RenderMonsterGalleryChara	0x009030F0	2	0x001F2890	6	order key = 0x100	0x001F2895
+MonsterGallerySoftParticleEnable	0x00903110	0	0x001F2420	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F244B
+MonsterGallerySoftParticleEnable	0x00903110	1	0x001F32E0	21	scene-cmd submit	0x001F32F0
+MonsterGallerySoftParticleEnable	0x00903110	2	0x001F2880	6	order key = 0x10	0x001F2885
+RenderMapOpaqueObj	0x00903130	0	0x001F25F0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F261B
+RenderMapOpaqueObj	0x00903130	1	0x001F3570	210	-> 0x0017FE50,0x0018B1B0,0x0018B4E0,0x001A9930	0x001F363D
+RenderMapOpaqueObj	0x00903130	2	0x001F2890	6	order key = 0x100	0x001F2895
+RenderOpaqueObj	0x00903150	0	0x001F2670	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F269B
+RenderOpaqueObj	0x00903150	1	0x001F36B0	132	-> 0x0017FE50,0x0018B1B0,0x0018B4E0,0x001A9930	0x001F3729
+RenderOpaqueObj	0x00903150	2	0x001F2890	6	order key = 0x100	0x001F2895
+RenderAfterWaterObj	0x00903170	0	0x001F25B0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F25DB
+RenderAfterWaterObj	0x00903170	1	0x001F3510	91	-> 0x0018B1B0,0x0018B4E0,0x001D5620,0x001D5630	0x001F3566
+RenderAfterWaterObj	0x00903170	2	0x001F2890	6	order key = 0x100	0x001F2895
+MaskBorderObj	0x00903190	0	0x001F23E0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F240B
+MaskBorderObj	0x00903190	1	0x001F32B0	46	-> 0x00191130,0x00193D50	0x001F32D9
+MaskBorderObj	0x00903190	2	0x001F2880	6	order key = 0x10	0x001F2885
+RenderSSSObj	0x009031B0	0	0x001F26B0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F26DB
+RenderSSSObj	0x009031B0	1	0x001F3740	355	master-enable gate; profile-slot open; scene-begin submit; -> 0x00186660,0x001867A0,0x001867B0,0x001867C0	0x001F3897
+RenderSSSObj	0x009031B0	2	0x001F2880	6	order key = 0x10	0x001F2885
+PostProcessObj	0x009031D0	0	0x001F2460	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F248B
+PostProcessObj	0x009031D0	1	0x001F3300	313	master-enable gate; profile-slot open; scene-begin submit; -> 0x00186660,0x001867B0,0x001867C0,0x00188730	0x001F3429
+PostProcessObj	0x009031D0	2	0x001F2880	6	order key = 0x10	0x001F2885
+AmbientOcclusionObj	0x009031F0	0	0x001F1F60	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F1F8B
+AmbientOcclusionObj	0x009031F0	1	0x001F28B0	257	master-enable gate; profile-slot open; scene-begin submit; -> 0x00186660,0x001867A0,0x001867B0,0x001867C0	0x001F299E
+AmbientOcclusionObj	0x009031F0	2	0x001F2880	6	order key = 0x10	0x001F2885
+GaussianFilterObj	0x00903210	0	0x001F2320	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F234B
+GaussianFilterObj	0x00903210	1	0x001F3090	370	master-enable gate; profile-slot open; scene-begin submit; -> 0x001867B0,0x00188730,0x00189120,0x0018F8F0	0x001F31F7
+GaussianFilterObj	0x00903210	2	0x001F2880	6	order key = 0x10	0x001F2885
+CopyFrontBufferForVFXObj	0x00903230	0	0x001F2120	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F214B
+CopyFrontBufferForVFXObj	0x00903230	1	0x001F2D40	252	profile-slot open; scene-begin submit; -> 0x001867B0,0x00186990,0x001869E0,0x00188730	0x001F2E22
+CopyFrontBufferForVFXObj	0x00903230	2	0x001F2880	6	order key = 0x10	0x001F2885
+CopyFrontBufferForChrRefraction	0x00903250	0	0x001F20E0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F210B
+CopyFrontBufferForChrRefraction	0x00903250	1	0x001F2C50	233	profile-slot open; scene-begin submit; -> 0x001867B0,0x00186A80,0x00188730,0x00189120	0x001F2D2E
+CopyFrontBufferForChrRefraction	0x00903250	2	0x001F2880	6	order key = 0x10	0x001F2885
+CopyFrontBufferForWaterRefraction	0x00903270	0	0x001F2160	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F218B
+CopyFrontBufferForWaterRefraction	0x00903270	1	0x001F2E40	226	profile-slot open; scene-begin submit; -> 0x001867B0,0x00186A80,0x00188730,0x00189120	0x001F2F17
+CopyFrontBufferForWaterRefraction	0x00903270	2	0x001F2880	6	order key = 0x10	0x001F2885
+ZBufferObj	0x00903290	0	0x001F2830	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F285B
+ZBufferObj	0x00903290	1	0x001F3A00	73	profile-slot open; scene-begin submit; -> 0x00188730,0x00189120,0x001B26F0,0x001B31D0	0x001F3A44
+ZBufferObj	0x00903290	2	0x001F2880	6	order key = 0x10	0x001F2885
+VideoObj	0x009032B0	0	0x001F27F0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F281B
+VideoObj	0x009032B0	1	0x001F39E0	30	-> 0x001B7D50,0x001B7F20	0x001F39F9
+VideoObj	0x009032B0	2	0x001F28A0	6	order key = 0x80	0x001F28A5
+RazorMarkerPushObj	0x009032D0	0	0x001F2520	79	scalar-deleting dtor + frees [+0x18] child (0x00809950 size 1) before member-dtor 0x00212CE0	0x001F2542
+RazorMarkerPushObj	0x009032D0	1	0x001F34F0	16	-> 0x001D5630	0x001F34FB
+RazorMarkerPushObj	0x009032D0	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+RazorMarkerPopObj	0x009032F0	0	0x001F24E0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F250B
+RazorMarkerPopObj	0x009032F0	1	0x001F34E0	12	-> 0x001D5620	0x001F34E7
+RazorMarkerPopObj	0x009032F0	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+FastClearObj	0x00903310	0	0x001F22E0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F230B
+FastClearObj	0x00903310	1	0x001F2FB0	210	profile-slot open; scene-begin submit; -> 0x00185DA0,0x00188730,0x00189120,0x0060D190	0x001F3072
+FastClearObj	0x00903310	2	0x001F2880	6	order key = 0x10	0x001F2885
+DisableMsaaObj	0x00903330	0	0x001F21A0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F21CB
+DisableMsaaObj	0x00903330	1	0x001F2F30	21	-> 0x00186130,0x00189120	0x001F2F40
+DisableMsaaObj	0x00903330	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+EnableMsaaObj	0x00903350	0	0x001F2220	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F224B
+EnableMsaaObj	0x00903350	1	0x001F2F70	31	-> 0x00186410,0x00189120	0x001F2F8A
+EnableMsaaObj	0x00903350	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+SetPrimIdEnableObj	0x00903370	0	0x001F2730	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F275B
+SetPrimIdEnableObj	0x00903370	1	0x001F3910	22	scene-cmd submit	0x001F3921
+SetPrimIdEnableObj	0x00903370	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+EnableDofObj	0x00903390	0	0x001F21E0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F220B
+EnableDofObj	0x00903390	1	0x001F2F50	31	-> 0x00193D50,0x00194240	0x001F2F6A
+EnableDofObj	0x00903390	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+SetDofObj	0x009033B0	0	0x001F26F0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F271B
+SetDofObj	0x009033B0	1	0x001F38B0	85	-> 0x00193D50,0x00194250	0x001F38F5
+SetDofObj	0x009033B0	2	0x0053DD10	6	order key = 0x1	0x0053DD15
+GiResetRenderTargetObj	0x009033D0	0	0x001F23A0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F23CB
+GiResetRenderTargetObj	0x009033D0	1	0x001F3260	80	profile-slot open; scene-begin submit; -> 0x00189120,0x001893C0,0x00609710	0x001F32A0
+GiResetRenderTargetObj	0x009033D0	2	0x00879750	4	order key = this[+18]	0x00879753
+GiResetDefaultRenderTargetObj	0x009033F0	0	0x001F2360	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F238B
+GiResetDefaultRenderTargetObj	0x009033F0	1	0x001F3210	80	profile-slot open; scene-begin submit; -> 0x00188730,0x00189120,0x00609710	0x001F3250
+GiResetDefaultRenderTargetObj	0x009033F0	2	0x00879750	4	order key = this[+18]	0x00879753
+GeometryInstanceOrderedObject	0x00903920	0	0x001F49A0	52	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x001F49C1
+GeometryInstanceOrderedObject	0x00903920	1	0x001F49F0	22	scene-cmd submit	0x001F4A01
+GeometryInstanceOrderedObject	0x00903920	2	0x001F49E0	4	order key = this[+20]	0x001F49E3
+CharacterOrderedObject	0x00903940	0	0x001F4A40	52	scalar-deleting dtor: member-dtor 0x00215310 + 0x00809950 free on flag	0x001F4A61
+CharacterOrderedObject	0x00903940	1	0x00215320	9	-> 0x001F5D70	0x00215324
+CharacterOrderedObject	0x00903940	2	0x00290180	6	order key = 0x2	0x00290185
+FontBorderOrderedObject	0x00906D50	0	0x00212DE0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x00212E0B
+FontBorderOrderedObject	0x00906D50	1	0x00212F70	202	profile-slot open; scene-begin submit; -> 0x0016D6A0,0x00186800,0x00189120,0x005DC190	0x0021302A
+FontBorderOrderedObject	0x00906D50	2	0x00212E20	6	order key = 0x20	0x00212E25
+FontBorderOrderedObject	0x00906D50	3	0x00225580	4	setter: this[+18] = arg	0x00225583
+FontBorderOrderedGaussObject	0x00906D78	0	0x00212DA0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x00212DCB
+FontBorderOrderedGaussObject	0x00906D78	1	0x00212E70	253	profile-slot open; scene-begin submit; -> 0x001867E0,0x00186800,0x00189120,0x00190260	0x00212F68
+FontBorderOrderedGaussObject	0x00906D78	2	0x00212E20	6	order key = 0x20	0x00212E25
+FontBorderOrderedGaussObject	0x00906D78	3	0x00225580	4	setter: this[+18] = arg	0x00225583
+FontBorderOrderedResetObject	0x00906DA0	0	0x00212DE0	62	scalar-deleting dtor: member-dtor 0x00212CE0 + 0x00809950 free on flag	0x00212E0B
+FontBorderOrderedResetObject	0x00906DA0	1	0x00213040	65	profile-slot open; scene-begin submit; -> 0x00189120,0x001893C0	0x00213076
+FontBorderOrderedResetObject	0x00906DA0	2	0x00212E20	6	order key = 0x20	0x00212E25
+FontBorderOrderedResetObject	0x00906DA0	3	0x00225580	4	setter: this[+18] = arg	0x00225583

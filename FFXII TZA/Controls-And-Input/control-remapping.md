@@ -140,7 +140,7 @@ The 35 codes at `0x01DF13E0` are refused at assignment (`0x00198AC0`) and at loa
 | `119`, `122`, `123` | `Key_Left_Alt`, `Key_Right_Alt`, `Key_AccentGrave` |
 | `125`, `130`-`152` | keys with no registered name |
 
-[Control names](control-names.md) and its table `control-names.tsv` name every code.
+[Control names](control-names.md) and its table [`control-names.tsv`](control-names.tsv) name every code.
 
 ### Publishing
 

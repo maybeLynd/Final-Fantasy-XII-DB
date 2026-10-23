@@ -356,13 +356,13 @@ Access tables beside this page:
 
 | Subject | Table |
 |---|---|
-| the bound map's fields | `legacy-ps2-gs-layer-legacy-ps2gs-texture-context-accesses.tsv` |
-| texture records | `legacy-ps2-gs-layer-legacy-ps-2-gs-source-texture-record-accesses.tsv` |
-| instance records | `legacy-ps2-gs-layer-legacy-ps-2-gs-reference-descriptor-accesses.tsv` |
-| slot records | `legacy-ps2-gs-layer-legacy-ps-2-gs-derived-slot-record-accesses.tsv` |
-| `0x02064B00` | `legacy-ps2-gs-layer-vu1-register-bank-02064b00-accesses.tsv` |
-| `0x01E02830` | `legacy-ps2-gs-layer-vu-1c-onstant-vector-01e02830-accesses.tsv` |
-| `0x02064E30` | `legacy-ps2-gs-layer-vu-1da-ta-memory-02064e30-accesses.tsv` |
+| the bound map's fields | [`legacy-ps2-gs-layer-legacy-ps2gs-texture-context-accesses.tsv`](legacy-ps2-gs-layer-legacy-ps2gs-texture-context-accesses.tsv) |
+| texture records | [`legacy-ps2-gs-layer-legacy-ps-2-gs-source-texture-record-accesses.tsv`](legacy-ps2-gs-layer-legacy-ps-2-gs-source-texture-record-accesses.tsv) |
+| instance records | [`legacy-ps2-gs-layer-legacy-ps-2-gs-reference-descriptor-accesses.tsv`](legacy-ps2-gs-layer-legacy-ps-2-gs-reference-descriptor-accesses.tsv) |
+| slot records | [`legacy-ps2-gs-layer-legacy-ps-2-gs-derived-slot-record-accesses.tsv`](legacy-ps2-gs-layer-legacy-ps-2-gs-derived-slot-record-accesses.tsv) |
+| `0x02064B00` | [`legacy-ps2-gs-layer-vu1-register-bank-02064b00-accesses.tsv`](legacy-ps2-gs-layer-vu1-register-bank-02064b00-accesses.tsv) |
+| `0x01E02830` | [`legacy-ps2-gs-layer-vu-1c-onstant-vector-01e02830-accesses.tsv`](legacy-ps2-gs-layer-vu-1c-onstant-vector-01e02830-accesses.tsv) |
+| `0x02064E30` | [`legacy-ps2-gs-layer-vu-1da-ta-memory-02064e30-accesses.tsv`](legacy-ps2-gs-layer-vu-1da-ta-memory-02064e30-accesses.tsv) |
 
 ## State
 

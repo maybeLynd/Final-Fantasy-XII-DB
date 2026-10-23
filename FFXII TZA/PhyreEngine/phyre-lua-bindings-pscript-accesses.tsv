@@ -1,0 +1,13 @@
+function	name	site	disp	kind	instruction	route	note
+0x00680F40	FUN_00680f40	0x00680F47	0x0	w	mov dword ptr [rdx], eax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F49	0x8	w	mov qword ptr [rdx + 8], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F4D	0x10	w	mov dword ptr [rdx + 0x10], eax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F50	0x18	w	mov qword ptr [rdx + 0x18], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F54	0x20	w	mov dword ptr [rdx + 0x20], eax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F57	0x28	w	mov qword ptr [rdx + 0x28], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F5B	0x30	w	mov qword ptr [rdx + 0x30], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F5F	0x38	w	mov qword ptr [rdx + 0x38], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F63	0x40	w	mov qword ptr [rdx + 0x40], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F67	0x48	w	mov qword ptr [rdx + 0x48], rax	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F6B	0x50	w	mov byte ptr [rdx + 0x50], al	ctorrdx-seeded 0x00680F40	
+0x00680F40	FUN_00680f40	0x00680F6E	0x54	w	mov dword ptr [rdx + 0x54], 1	ctorrdx-seeded 0x00680F40	

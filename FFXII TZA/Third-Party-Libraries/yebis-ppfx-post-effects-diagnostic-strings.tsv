@@ -1,0 +1,386 @@
+format_string	call_sites	owner_functions
+..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: 	113	0x006F2560 0x006F2690 0x006F3BE0 0x006F6010 0x006F7660 0x006F8740 0x006F9030 0x006FB810 0x006FE4C0 0x006FF900 0x00705520 0x00706690
+..\\src\\GPU\\GPUPostEffect.cpp(%d) : PPFX: 	29	0x006FF900 0x00705520
+..\\src\\GPU\\GPUTextureUtil.cpp(%d) : Feb 18 2016 PPFX ERROR: 	28	0x00729870 0x0072A320 0x0072D820 0x0072F7D0 0x007307A0 0x00731EA0 0x00735240 0x00735530 0x00735720 0x00735B70 0x007364D0 0x00737D70
+..\\src\\GPU\\TinyEffect\\TinyEffect.cpp(%d) : PPFX FX: 	28	0x0078C080 0x0078C730 0x0078DFB0
+..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX WARNING: 	26	0x006FD110 0x006FF050 0x006FF900 0x00707880 0x00709C90 0x00709D10 0x00709F40 0x0070A060 0x0070A0F0 0x0070A1F0 0x0070A260 0x0070A350
+..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : Feb 18 2016 PPFX ERROR: 	22	0x00723440 0x00723760 0x00723A90 0x00723CA0 0x00723FB0 0x007259D0 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x00726360 0x00726550
+..\\src\\ppfx.cpp(%d) : PPFX: 	17	0x006DAA70 0x006DAFB0 0x006DB1B0 0x006DE780 0x006DE950 0x006DEB40
+..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : PPFX: 	16	0x00723760 0x00724500 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x007261B0 0x00726360 0x00726550 0x00726700 0x007268C0 0x00726A70
+PPFX: 	15	0x006DAA70 0x006DAFB0 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x007261B0 0x00726360 0x00726550 0x00726700 0x007268C0 0x00726A70
+..\\src\\ppfx.cpp(%d) : Feb 18 2016 PPFX ERROR: 	13	0x006DAA70 0x006DAFB0 0x006DB1B0 0x006DE780 0x006DE950 0x006DEB40 0x006DECD0 0x006DED50 0x006DFF40
+..\\src\\GPU\\GPUDepthOfField.cpp(%d) : Feb 18 2016 PPFX ERROR: 	11	0x0076F400 0x00779150 0x0077A8C0 0x0077BF30 0x0077ECE0
+..\\src\\GPU\\GPUTextureUtil.cpp(%d) : PPFX: 	9	0x0072A320 0x0072D820 0x0072F7D0 0x007307A0
+..\\src\\GPU\\TinyEffect\\TinyEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: 	9	0x0078E3C0 0x0078EAF0 0x0078F710 0x0078F800 0x00790160
+..\\src\\GPU\\GPUInterfaceBuffer.cpp(%d) : Feb 18 2016 PPFX ERROR: 	8	0x00787E40 0x00788250 0x00788430 0x007885A0 0x00788800 0x00788A40 0x00788DB0
+..\\src\\GPU\\GPURenderGlare.cpp(%d) : Feb 18 2016 PPFX ERROR: 	8	0x00760700 0x007621F0 0x00766680 0x007677B0 0x00768980
+..\\src\\ppfxRenderToTexture.cpp(%d) : PPFX: 	8	0x006E04F0 0x006E07A0 0x006E0CA0 0x006E0DB0
+..\\src\\GPU\\GPUInterfaceSurface.cpp(%d) : Feb 18 2016 PPFX ERROR: 	7	0x00785C90 0x007861A0 0x00786500
+Invalid pGlobalParameter->m_eType: %d: %s.\n	7	0x0078EAF0
+%s %s:\t%4d x %4d,\t%s (0x%04x),\tMSAA(%2dx, %2d),\tUsage 0x%08x,\tFlags 0x%08x\n	6	0x00725AA0 0x00725E40 0x007261B0 0x00726360 0x00726550 0x00726700
+..\\src\\GPU\\GPUResourceManage.cpp(%d) : Feb 18 2016 PPFX WARNING: 	6	0x00727460 0x007276F0
+..\\src\\GPU\\GPURenderTexture.cpp(%d) : Feb 18 2016 PPFX ERROR: 	5	0x00722A40 0x00722C80
+..\\src\\ppfxRenderToTexture.cpp(%d) : Feb 18 2016 PPFX ERROR: 	5	0x006E04F0 0x006E07A0 0x006E0DB0
+..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : Feb 18 2016 PPFX WARNING: 	4	0x00723760 0x00724EC0 0x00724F50 0x00724FF0
+..\\src\\GPU\\GPURenderTextureArray.cpp(%d) : Feb 18 2016 PPFX ERROR: 	4	0x0075B760 0x0075C080 0x0075DA10
+..\\src\\GPU\\GPUInterfaceTexture.cpp(%d) : Feb 18 2016 PPFX ERROR: 	3	0x007872F0
+..\\src\\GPU\\GPURenderTextureArray.cpp(%d) : PPFX: 	3	0x0075B760
+CTextureUtil::DrawRectGPU_MadT1_Sn(): GetHandle_tech_MadT1_Sn(%d, %d) failed.\n	3	0x00735720 0x00735B70 0x00737D70
+%s %s:\t%4d x %4d x %4d,\t%s (0x%04x),\tUsage 0x%08x,\tFlags 0x%08x\n	2	0x00725C80 0x00725FF0
+%s %s:\t%6d x %3d (%8d),\t%s (0x%04x),\tUsage 0x%08x,\tFlags 0x%08x\n	2	0x007268C0 0x00726A70
+..\\src\\GPU\\GPUInterfaceBuffer.cpp(%d) : Feb 18 2016 PPFX WARNING: 	2	0x00787E40
+..\\src\\GPU\\GPUInterfaceEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: 	2	0x0078A120 0x0078A240
+..\\src\\GPU\\GPUTextureLuminance.cpp(%d) : Feb 18 2016 PPFX WARNING: 	2	0x00780590
+..\\src\\GPU\\TinyEffect\\TinyEffect.cpp(%d) : PPFX: 	2	0x0078D7E0 0x0078D920
+==== IGPUDevice::CreateSurface() ====\n	2	0x00726550 0x00726700
+==== IGPUDevice::CreateTexture() ====\n	2	0x00725AA0 0x00725E40
+==== IGPUDevice::CreateVolumeTexture() ====\n	2	0x00725C80 0x00725FF0
+==== IPfxBaseContext::Initialize() ====\n	2	0x006DAA70
+==== IPfxBaseContext::Initialize() succeeded. ====\n	2	0x006DAA70
+==== IPfxBaseContext::Uninitialize() ====\n	2	0x006DAFB0
+==== IPfxBaseContext::Uninitialize() succeeded. ====\n	2	0x006DAFB0
+==== IPfxBaseRenderToTexture::Initialize() ====\n	2	0x006E04F0 0x006E0CA0
+==== IPfxBaseRenderToTexture::Initialize() succeeded. ====\n	2	0x006E04F0 0x006E0CA0
+CPostEffect::ApplyApertureFilter(): Call while BeginPostEffectScene() and EndPostEffectScene().\n	2	0x0070BD80 0x0070C050
+CPostEffect::ApplyApertureFilter(): Failed to call EndTemporaryFilter().\n	2	0x0070BD80 0x0070C050
+CPostEffect::EndPostEffectScene(): EndPostEffectScene_Process() failed (0x%x: %s).\n	2	0x0070B990 0x0070E1B0
+CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene_InternalProcess() failed (0x%x: %s).\n	2	0x006FB810
+CPostEffect::SetRenderSceneHeightReverse_Gcm(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	2	0x006FF900 0x007112F0
+CPostEffect::SetRenderSceneLuminanceScale(): SceneLuminanceScale mest be greater than zero.\n	2	0x00706B70 0x00707500
+CPostEffectEndPostEffectScene_PreProcess: CRenderTexture::ResolveCurrentDepthStencilTexture() failed (0x%x: %s).\n	2	0x006F8740
+CTextureUtil::GetResult_UpdateInternalLuminance(): CPU may be blocked.\n	2	0x00780590
+IGPUSurface::AttachToOtherSurfaceFramebuffer(): Surface width is not match. (framebuffer: %d != surface: %d).\n	2	0x007861A0
+m_apGlobalParameter[%d]->m_sizeOfElement: %d\n	2	0x0078C730
+strVertexProgramName: %s\n	2	0x0078C730
+\tRetrying dynamic usage.\n	1	0x00787E40
+\nm_apGlobalParameter.size(): %d\n	1	0x0078C730
+\nm_strName       : %s\nm_strElementName: %s\n	1	0x0078DFB0
+  fragmentprogram name: %s\n	1	0x0078EAF0
+  vertexprogram name:   %s\n	1	0x0078EAF0
+%s\n	1	0x0072A320
+..\\src\\GPU\\GPUDepthOfField.cpp(%d) : Feb 18 2016 PPFX WARNING: 	1	0x00772410
+..\\src\\GPU\\GPUInterfaceQuery.cpp(%d) : Feb 18 2016 PPFX ERROR: 	1	0x00789160
+..\\src\\GPU\\GPUInterfaceQuery.cpp(%d) : Feb 18 2016 PPFX WARNING: 	1	0x00789370
+..\\src\\GPU\\GPUInterfaceSurface.cpp(%d) : PPFX: 	1	0x00785C90
+..\\src\\GPU\\GPUInterfaceTexture.cpp(%d) : Feb 18 2016 PPFX WARNING: 	1	0x00786DD0
+..\\src\\GPU\\GPURenderTexturePool.cpp(%d) : PPFX: 	1	0x0075E330
+..\\src\\ppfx.cpp(%d) : Feb 18 2016 PPFX WARNING: 	1	0x006DEB40
+..\\src\\ppfxMemoryAllocator.cpp(%d) : Feb 18 2016 PPFX ERROR: 	1	0x006DA8F0
+==== CPostEffect::Initialize() ====\n	1	0x006FF900
+==== CPostEffect::Initialize() succeeded. ====\n	1	0x006FF900
+==== CPostEffect::Uninitialize() ====\n	1	0x00705520
+==== CPostEffect::Uninitialize() succeeded. ====\n	1	0x00705520
+==== CRenderTextureArray::Initialize() ====\n	1	0x0075B760
+==== CTextureUtil::InitializeDevice() ====\n	1	0x007307A0
+==== CTextureUtil::InitializeDevice() succeeded. ====\n	1	0x007307A0
+==== IGPUDevice::CreateDepthStencilSurface() ====\n	1	0x00726360
+==== IGPUDevice::CreateIndexBuffer() ====\n	1	0x00726A70
+==== IGPUDevice::CreateInputAttribute() ====\n	1	0x00726C30
+==== IGPUDevice::CreateQueryOcclusion() ====\n	1	0x00726D00
+==== IGPUDevice::CreateRenderTarget() ====\n	1	0x007261B0
+==== IGPUDevice::CreateVertexBuffer() ====\n	1	0x007268C0
+==== IGPUDevice::InitializeDevice() ====\n	1	0x00723760
+==== IGPUDevice::InitializeDevice() succeeded. ====\n	1	0x00723760
+==== IGPUSurface::RegisterD3DSurface() failed. ====\n	1	0x00785C90
+==== IPfxBaseContext::UninitializeDeviceResources() ====\n	1	0x006DB1B0
+==== IPfxBaseContext::UninitializeDeviceResources() succeeded. ====\n	1	0x006DB1B0
+==== IPfxBaseContext::~IPfxBaseContext() ====\n	1	0x006DE780
+==== IPfxBaseContext::~IPfxBaseContext() succeeded. ====\n	1	0x006DE780
+==== IPfxBaseRenderToTexture::Uninitialize() ====\n	1	0x006E07A0
+==== IPfxBaseRenderToTexture::Uninitialize() succeeded. ====\n	1	0x006E07A0
+==== IPfxBaseRenderToTexture::~IPfxBaseRenderToTexture() ====\n	1	0x006E0DB0
+==== IPfxBaseRenderToTexture::~IPfxBaseRenderToTexture() succeeded. ====\n	1	0x006E0DB0
+==== TEXSHADERSET::CreateEffect() ====\n	1	0x0072A320
+==== TEXSHADERSET::InitializeDevice() ====\n	1	0x0072D820
+==== TEXSHADERSET::InitializeDevice() succeeded. ====\n	1	0x0072D820
+==== ppfxInitialize() ====\n	1	0x006DE950
+==== ppfxInitialize() succeeded. ====\n	1	0x006DE950
+==== ppfxUninitialize() ====\n	1	0x006DEB40
+==== ppfxUninitialize() succeeded. ====\n	1	0x006DEB40
+CDepthOfField::ApplyDepthOfField(): ApplyDepthOfField_ApertureFilterAllLevels() failed.\n	1	0x0077ECE0
+CDepthOfField::ApplyDepthOfField(): ApplyDepthOfField_Composite() failed.\n	1	0x0077ECE0
+CDepthOfField::ApplyDepthOfField(): ApplyDepthOfField_Source() failed.\n	1	0x0077ECE0
+CDepthOfField::CreateDeviceResources(): m_pGPUDevice->CreateTexture(&m_aapGPUScatterBokehLutMinTexture[s][i]) failed (0x%x: %s).\n	1	0x0076F400
+CDepthOfField::CreateDeviceResources(): m_pGPUDevice->CreateTexture(&m_aapGPUScatterBokehLutTexture[s][i]) failed (0x%x: %s).\n	1	0x0076F400
+CDepthOfField::CreateDeviceResources(): m_pGPUDevice->CreateTexture(&m_pGPUScatterEclipseTexture) failed (0x%x: %s).\n	1	0x0076F400
+CDepthOfField::CreateScatterBokehOpticsTexture(): m_pGPUDevice->CreateTexture(&pGPUScatterBokehOpticsMinTexture) failed (0x%x: %s).\n	1	0x0077BF30
+CDepthOfField::CreateScatterBokehOpticsTexture(): m_pGPUDevice->CreateTexture(&pGPUScatterBokehOpticsTexture) failed (0x%x: %s).\n	1	0x0077BF30
+CDepthOfField::CreateScatterBokehTexture(): m_pGPUDevice->CreateTexture(&pGPUScatterBokehMinTexture) failed (0x%x: %s).\n	1	0x0077A8C0
+CDepthOfField::CreateScatterBokehTexture(): m_pGPUDevice->CreateTexture(&pGPUScatterBokehTexture) failed (0x%x: %s).\n	1	0x0077A8C0
+CDepthOfField::Initialize(): ValidateInitParam() failed (0x%x: %s).\n	1	0x00779150
+CPostEffect::ApplyAmbientOcclusion(): Call SetEffectSource() before call ApplyAmbientOcclusion().\n	1	0x0070BB00
+CPostEffect::ApplyAmbientOcclusion(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070BB00
+CPostEffect::ApplyDepthOfFieldFilter(): Call while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070C460
+CPostEffect::ApplyDepthOfFieldFilter(): Failed begin post effect scene(BeginPostEffectScene).\n	1	0x0070C460
+CPostEffect::ApplyDepthOfFieldFilter(): Failed to apply Depth of Field Effect(EndPostEffectScene).\n	1	0x0070C460
+CPostEffect::ApplyEffects(): At least SetEffectSource() must be called if initialized with PFXINIT_RENDERSCENE_EXTERNAL flag.\n	1	0x0070BA00
+CPostEffect::ApplyEffects(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070BA00
+CPostEffect::ApplyEffects_DepthOfField(): m_pDepthOfField->ApplyDepthOfField() failed (0x%x: %s).\n	1	0x006F6010
+CPostEffect::ApplyEffects_GenerateNormalAndLinearDepth(): pTexUtil->DrawRectGPU_GenerateNormalAndLinearDepth() failed (0x%x: %s).\n	1	0x006F3BE0
+CPostEffect::ApplyGaussianBlurFilter(): Call while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070C810
+CPostEffect::ApplyGaussianBlurFilter(): Failed to call EndTemporaryFilter().\n	1	0x0070C810
+CPostEffect::ApplyGaussianBlurFilter(): Initialize() with PFXINIT_GAUSSIANBLUR flag for gaussian blur.\n	1	0x0070C810
+CPostEffect::ApplyStaticSceneEffects(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070E1B0
+CPostEffect::ApplyStaticSceneEffects(): If ApplyStaticSceneEffects() is called, SetDepthFactorSource() must be PFXDFSRC_A.\n	1	0x0070E1B0
+CPostEffect::BeginPostEffectScene(): At least SetEffectSource() must be called if Initialize() was called with PFXINIT_RENDERSCENE_EXTERNAL flag.\n	1	0x0070B780
+CPostEffect::BeginPostEffectScene(): m_pRenderBuffer->SetRenderTarget() failed (0x%x: %s).\n	1	0x0070B780
+CPostEffect::BeginTemporaryFilter(): Call while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006F2560
+CPostEffect::BeginTemporaryFilter(): Failed.\n	1	0x006F2560
+CPostEffect::EndPostEffectScene_InternalProcess(): m_pRenderGlare->GenerateGlare() failed (0x%x: %s).\n	1	0x006F9030
+CPostEffect::EndPostEffectScene_InternalProcess(): m_pRenderGlare->TonemapToSurface() failed (0x%x: %s).\n	1	0x006F9030
+CPostEffect::EndPostEffectScene_InternalProcess(): pTexUtil->HeatShimmerParticles() failed (0x%x: %s).\n	1	0x006F9030
+CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene() called without BeginPostEffectScene().\n	1	0x006FB810
+CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene_PostProcess() failed (0x%x: %s).\n	1	0x006FB810
+CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene_PreProcess() failed (0x%x: %s).\n	1	0x006FB810
+CPostEffect::EndTemporaryFilter(): Failed to re-begin (BeginPostEffectScene).\n	1	0x006F2690
+CPostEffect::GetMaxMotionBlurCameraRecurrences():\n\tFor using PFXMB_VELOCITYBASE at SetMotionBlurMode() and\n\tPFXVS_AUTOGEN or PFXVS_AUTOGEN_APPOVERWRITE at SetMotionBlurVelocitySource(),\n\tPFXINIT_MOTIO	1	0x006FE4C0
+CPostEffect::Initialize(): Argment iGlareQuality must be greater than or equal to 0.\n	1	0x006FF900
+CPostEffect::Initialize(): CSingleTextureUtil::InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): CSingleTextureUtil::InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006FF900
+CPostEffect::Initialize(): Device context must be immediate context.\n	1	0x006FF900
+CPostEffect::Initialize(): DeviceParam must be set.\n	1	0x006FF900
+CPostEffect::Initialize(): IGPUDevice::CreateDevice() failed.\n	1	0x006FF900
+CPostEffect::Initialize(): PFXINIT_DEPTHTEXTURE cannot be set with PFXINIT_RENDERSCENE_EXTERNAL\n	1	0x006FF900
+CPostEffect::Initialize(): PFX_INITPARAM::m_nEffectViews must be greater than or equal to 0.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_Reduced->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_ReducedVertical->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced2->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced3->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_ReducedVertical->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAutoExposureParam[%d].m_pQuerySceneLuminance->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAutoExposureParam[%d].m_pQuerySceneLuminance->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAutoFocusParam[%d].m_pQuerySceneLuminance->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pDepthOfField->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pDepthOfField->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pEffectColorAlphaDestinationWork->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pEffectColorAlphaDestinationWork->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pGPUDevice->Reset() failed.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pGlareModulatorWork->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pGlareModulatorWork->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pMotionBlurInternalVelocityTexture->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderBuffer->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderBuffer->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderBuffer->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderGlare->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderGlare->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderGlare->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_ppFeedbackBuffer[%d]->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_ppFeedbackBuffer[%d]->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_ppFeedbackBuffer[%d]->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_ppTemporalAntialias_History[%d]->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_ppTemporalAntialias_History[%d]->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): pTexUtil->GetTexturePool()->AllocateTexture(&m_pFeedbackTonemapTexture) failed.\n	1	0x006FF900
+CPostEffect::Initialize(): pTexUtil->GetTexturePool()->AllocateTexture(&m_pTonemapConvolutionTexture) failed.\n	1	0x006FF900
+CPostEffect::Initialize(): pTexUtil->InitializeDeviceSharedTexturePool() succeeded.\n	1	0x006FF900
+CPostEffect::InitializeAfterimage(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x007069E0
+CPostEffect::InitializeContinuousEffects(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00706940
+CPostEffect::InitializeFeedback(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00706A50
+CPostEffect::SetActiveView(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00706760
+CPostEffect::SetAlphaOutputParameters(): Specified alpha output type could not be used on this context.\n\tPFX_INITPARAM::m_eAlphaOutput must be set at Initialize().\n	1	0x0070DBA0
+CPostEffect::SetAmbientOcclusionEnable(): Initialize() with PFXINIT_AMBIENTOCCLUSION flag for screen space ambient occlusion.\n	1	0x0070AA80
+CPostEffect::SetAmbientOcclusionMaskSource(): Argument eOcclusionMaskSource is invalid.\n	1	0x0070D920
+CPostEffect::SetAmbientOcclusionMaskSource(): Initialize() with PFXINIT_AMBIENTOCCLUSION flag for screen space ambient occlusion.\n	1	0x0070D920
+CPostEffect::SetAmbientOcclusionMaskSource(): pOcclusionMaskSource must be set for specified source channel.\n	1	0x0070D920
+CPostEffect::SetAntialiasEnable(): Initialize() with PFXINIT_ANTIALIAS flag for post-process antialias.\n	1	0x0070A1F0
+CPostEffect::SetAntialiasFalloffDistance(): Initialize() with PFXINIT_ANTIALIAS_DISTANCEFALLOFF flag for distance-falloff antialias.\n	1	0x0070A260
+CPostEffect::SetApertureAiryDiscEnable(): Initialize() with PFXINIT_APERTUREAIRYDISC flag for airydisc simulation.\n	1	0x0070A060
+CPostEffect::SetChromaticAberrationEnable(): Initialize() with PFXINIT_CHROMATICABERRATION flag for chromatic aberration.\n	1	0x00709F40
+CPostEffect::SetColorGradingLutEnable(): Initialize() with PFXINIT_COLORGRADINGLUT flag for color grading lut.\n	1	0x0070DC10
+CPostEffect::SetDepthFactorSource(): Initialize() with PFXINIT_DEPTHFACTORSOURCETEXTURE flag for user depth factor texture.\n	1	0x007114F0
+CPostEffect::SetDepthOfFieldEdgeQuality(): Specified edge quality could not be used on this context.\n	1	0x00711350
+CPostEffect::SetDeviceContext(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00706690
+CPostEffect::SetEffectMaskAlphaSource(): Argument eEffectMaskAlphaSource is invalid.\n	1	0x0070D780
+CPostEffect::SetEffectMaskAlphaSource(): Initialize() with PFXINIT_EFFECTMASK flag for effect mask.\n	1	0x0070D780
+CPostEffect::SetEffectMaskColorSource(): Argument eEffectMaskColorSource is invalid.\n	1	0x0070D5C0
+CPostEffect::SetEffectMaskColorSource(): Initialize() with PFXINIT_EFFECTMASK flag for effect mask.\n	1	0x0070D5C0
+CPostEffect::SetFeedbackEnable(): Initialize() with PFXINIT_FEEDBACK flag for feedback.\n	1	0x0070AF90
+CPostEffect::SetFramebuffer(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070CD40
+CPostEffect::SetGaussianBlurEnable(): Initialize() with PFXINIT_GAUSSIANBLUR flag for feedback.\n	1	0x0070A0F0
+CPostEffect::SetGeometryBlurEnable(): Initialize() with PFXINIT_GEOMETRYBLUR flag for geometry blur.\n	1	0x0070A410
+CPostEffect::SetGlareModulatorSource(): Argument eGlareModulatorSource is invalid.\n	1	0x0070D400
+CPostEffect::SetGlareModulatorSource(): Initialize() with PFXINIT_GLAREMODULATOR flag for glare modulation.\n	1	0x0070D400
+CPostEffect::SetGlareParameters(): GlareRemapFactor must be greater than 0.0.\n	1	0x00707560
+CPostEffect::SetHeatShimmerParticleEnable(): Initialize() with PFXINIT_HEATSHIMMER_PARTICLE flag for heat shimmer particle.\n	1	0x0070A350
+CPostEffect::SetLensDistortionEnable(): Initialize() with PFXINIT_IMAGESENSORNOISE flag for image sensor noise.\n	1	0x00709D10
+CPostEffect::SetLensDistortionEnable(): Initialize() with PFXINIT_LENSDISTORTION flag for lens distortion.\n	1	0x00709C90
+CPostEffect::SetLightShaftEnable(): Initialize() with PFXINIT_LIGHTSHAFT flag for light shafts.\n	1	0x00707880
+CPostEffect::SetMotionBlurEnable(): Initialize() with PFXINIT_MOTIONBLUR flag for motion blur.\n	1	0x0070A480
+CPostEffect::SetMultisampleMode(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00708110
+CPostEffect::SetMultisampleMode(): Cannot set multisample mode to PFXMSM_MULTISAMPLE.\n	1	0x00708110
+CPostEffect::SetMultisampleMode(): Cannot set multisample mode to PFXMSM_SINGLESAMPLE.\n	1	0x00708110
+CPostEffect::SetRenderSceneViewportScale(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070D090
+CPostEffect::SetRenderSceneViewportScale(): Not supported. Both of fOffsetX and fOffsetY must be zero.\n	1	0x0070D090
+CPostEffect::SetStaticSceneSource(): GPUTexUtil_Build2DMipmaps(&m_pGPUTexture_StaticSceneSourceTexture) failed (0x%x: %s).\n	1	0x0070DFD0
+CPostEffect::SetStaticSceneSource(): m_pGPUDevice->CreateTexture(&m_pGPUTexture_StaticSceneSourceTexture) failed (0x%x: %s).\n	1	0x0070DFD0
+CPostEffect::SetStaticSceneSource(): m_pGPUTexture_StaticSceneSourceTexture->SetImage2D() failed (0x%x: %s).\n	1	0x0070DFD0
+CPostEffect::SetTemporalAntialiasEnable(): Initialize() with PFXINIT_ANTIALIAS_TEMPORAL flag for temporal anti-alias.\n	1	0x0070AB80
+CPostEffect::SetTonemapResampleFilter(): Specified filter could not be used on this context.\n\tPFX_INITPARAM::m_eTonemapResampleFilter must be set at Initialize().\n	1	0x0070B070
+CPostEffect::SetVignetteByOptics(): Initialize() with PFXINIT_OPTICALVIGNETTING flag for optical vignetting.\n	1	0x0070B500
+CPostEffect::SetVignetteByOpticsImageCircle(): Initialize() with PFXINIT_OPTICALVIGNETTING flag for optical vignetting.\n	1	0x0070B610
+CPostEffect::Uninitialize(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00705520
+CPostEffect::UnregisterDeviceSurface(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070E520
+CPostEffect::UnregisterDeviceTexture(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x0070E600
+CPostEffect::UpdateAlternateFrame(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x007067E0
+CPostEffect::UpdateParameters_Base(): If SetEffectSource() is called, depth texture cannot be used as dpeth factor source.\n	1	0x006F7660
+CRenderGlare::CreateDeviceResources(): m_pGPUDevice->CreateTexture(&m_pGPUTextureTrimCircle) failed (0x%x: %s).\n	1	0x007621F0
+CRenderGlare::CreateSystemObjects(): m_pGhostGeneration->Initialize() failed (0x%x: %s).\n	1	0x00760700
+CRenderGlare::CreateSystemObjects(): m_pLightShaftGeneration->Initialize() failed (0x%x: %s).\n	1	0x00760700
+CRenderGlare::CreateSystemObjects(): m_pStarGeneration->Initialize() failed (0x%x: %s).\n	1	0x00760700
+CRenderGlare::CreateSystemObjects(): m_ppAfterimageGeneration[%d]->Initialize() failed (0x%x: %s).\n	1	0x00760700
+CRenderGlare::GenerateGlare_Afterimage(): pTexUtil->DrawRectGPU_MadOffsetTn() failed (0x%x: %s).\n	1	0x00766680
+CRenderGlare::GenerateGlare_Composite(): pTexUtil->DrawRectGPU_MadLumGammaTn() failed (0x%x: %s).\n	1	0x007677B0
+CRenderGlare::Initialize(): ValidateInitParam() failed (0x%x: %s).\n	1	0x00768980
+CRenderTexture::BeginTiling(): Any render target textures not found.\n	1	0x00722A40
+CRenderTexture::BeginTiling(): CRenderTexture::BeginTiling() has already been called.\nYou have to call EndTiling() before next BeginTiling().\n	1	0x00722A40
+CRenderTexture::BeginTiling(): Current render texture(s) must have tiling informations.\n	1	0x00722A40
+CRenderTexture::EndTiling(): CRenderTexture::BeginTiling() was never called.\nEndTiling() must be called after BeginTiling().\n	1	0x00722C80
+CRenderTexture::EndTiling(): Current render texture(s) must have tiling informations.\n	1	0x00722C80
+CRenderTextureArray::CopyToSurface(): pSrcTexture->GetDevice() failed (0x%x: %s).\n	1	0x0075DA10
+CRenderTextureArray::Initialize(): %s->Initialize() succeeded.\n	1	0x0075B760
+CRenderTextureArray::Initialize(): m_ppTexGenMipMap[%d]->Initialize() failed (0x%x: %s).\n	1	0x0075B760
+CRenderTextureArray::InitializeDevice(): m_pGPUDevice->CreateDepthStencilSurface() failed (0x%x: %s).\n	1	0x0075C080
+CRenderTextureArray::InitializeDevice(): m_pGPUDevice->CreateTexture() failed (0x%x: %s).\n	1	0x0075C080
+CRenderTexturePool::AllocateTextures(): Shared: %d, Generated: %d %s\n	1	0x0075E330
+CTextureUtil::CreateLensRayConvergenceTexture(): m_pGPUDevice->CreateTexture(ppOutGPUTexture_16F) failed (0x%x: %s).\n	1	0x00731EA0
+CTextureUtil::CreateLensRayConvergenceTexture(): m_pGPUDevice->CreateTexture(ppOutGPUTexture_8) failed (0x%x: %s).\n	1	0x00731EA0
+CTextureUtil::DrawRectGPU_DepthOfFieldLayerMask(): GetHandle_tech_DepthOfField_BackgroundLayerMaskT1_Sn(%d, %d) failed.\n	1	0x0073DD70
+CTextureUtil::DrawRectGPU_MadCocT2_Sn(): GetHandle_tech_MadCocT2_Sn(%d, %d) failed.\n	1	0x007364D0
+CTextureUtil::DrawRectGPU_TexCoordMadT1_Sn(): GetHandle_tech_TexCoordMadT1_Sn(%d) failed.\n	1	0x00735530
+CTextureUtil::DrawRectGPU_TexCoordOffsetMadTn(): GetHandle_tech_TexCoordOffsetMadTn(%d, %d) failed.\n	1	0x00735240
+CTextureUtil::InitializeDevice(): CGPUResourceManage::InitializeDevice() failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): InitializeDeviceSharedTexturePool() failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateDepthStencilSurface(&m_pGPUDepthMeasurement) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureAnalyzer) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureFilmGrain) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureFullColorDitherMatrix) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureGray) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureOne) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureRadiusGaussianFade) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureSpectrum) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateTexture(&m_pGPUTextureZero) failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_shaderSet.InitializeDevice() failed (0x%x: %s).\n	1	0x007307A0
+CTextureUtil::InitializeDevice(): m_shaderSet.InitializeDevice() succeeded.\n	1	0x007307A0
+CTextureUtil::InitializeDeviceSharedTexturePoolWithCheck(): m_pTexturePool->InitializeDevice() failed (0x%x: %s).\n	1	0x0072F7D0
+CTextureUtil::InitializeDeviceSharedTexturePoolWithCheck(): m_pTexturePool->InitializeDevice() succeeded.\n	1	0x0072F7D0
+CTinyEffect::ApplyVertexInputs(): apGPUVertexBuffers[%d] is currently mapped. Call Unmap() first.	1	0x00790160
+CTinyEffect::BuildEffect(): \n\n%s\n\n	1	0x0078C730
+CTinyEffect::CreateDeviceProgram(): CreateParameter() failed (0x%x: %s).\n	1	0x0078F710
+CTinyEffect::CreateDeviceProgram(): CreateShaderProgram() failed (0x%x: %s).\n	1	0x0078F710
+CTinyEffect::CreateFromFile(): Create effect from %s\n	1	0x0078D920
+CTinyEffect::CreateFromMemory(): Create effect from Memory\n	1	0x0078D7E0
+CTinyEffect::CreateGlobalParameter():\nstrName: %s\neType: %d\nnElements: %d\n	1	0x0078DFB0
+CTinyEffect::CreateParameter(): \n%d: %s\n	1	0x0078C080
+"CTinyEffect::CreateParameter(programIndex: %d, pProgram->m_strName: ""%s""):\n"	1	0x0078C080
+CTinyEffect::CreateProgram(): pD3DDevice->CreatePixelShader() failed (0x%x: %s).\n	1	0x0078E3C0
+CTinyEffect::CreateTechniquePrograms(): CreateParameter() failed (0x%x: %s).\n	1	0x0078F800
+CTinyEffect::CreateTechniquePrograms(): CreateShaderProgram() failed (0x%x: %s).\n	1	0x0078F800
+DXGI_ERROR_WAS_STILL_DRAWING !!\n	1	0x00789370
+Debug code: CPostEffect::DrawDebugBuffers().\n	1	0x006FF050
+FXDCT_GetDepthCastTypeFromDepthFormat(): eDepthFormat: 0x%x.\n	1	0x00729870
+GPU Memory allocated: %d bytes (%.2f KB / %.2f MB) \n	1	0x006DE950
+GPU total Resource used: %d bytes (%.2f KB / %.2f MB)\n	1	0x006DAA70
+GetEffectDofEdgeQualityTypeFromEdgeQualityType(): Unsupported EPFX_DOFEDGEQUALITY: %d is specified.\n	1	0x00713EB0
+IGPUBaseQuery::CreateDeviceQuery(): ID3D10Base__Device::CreateQuery() failed.\n	1	0x00789160
+IGPUBuffer::BuildBuffer(): GetD3DDevice()->CreateBuffer() failed (0x%x: %s).\n	1	0x00787E40
+IGPUBuffer::BuildBuffer()GetD3DDevice()->CreateBuffer() failed.\n	1	0x00787E40
+IGPUBuffer::Map(): Buffer is already mapped.\n	1	0x00788250
+IGPUBuffer::Map(): GPUUSAGE_DYNAMIC must be set at initialize for Map() with GPUMAPA_FLAG_DISCARD.\n	1	0x00788250
+IGPUBuffer::Unmap(): Buffer is not mapped.\n	1	0x00788430
+IGPUDevice::ApplyRenderState_AlphaFunc() is not supported.\n	1	0x00724FF0
+IGPUDevice::ApplyRenderState_DepthFunc() is not supported.\n	1	0x00724F50
+IGPUDevice::ApplyRenderState_DepthTestEnable() is not supported.\n	1	0x00724EC0
+IGPUDevice::CreateDepthStencilSurface(): IGPUSurface::CreateSurface() failed.\n	1	0x00726360
+IGPUDevice::CreateIndexBuffer(): IGPUIndexBuffer::CreateIndexBuffer() failed.\n	1	0x00726A70
+IGPUDevice::CreateInputAttribute(): IGPUInputAttribute::CreateInputAttribute() failed.\n	1	0x00726C30
+IGPUDevice::CreateQueryOcclusion(): IGPUQueryOcclusion::CreateQueryOcclusion() failed.\n	1	0x00726D00
+IGPUDevice::CreateSurface(): IGPUSurface::CreateSurface() failed.\n	1	0x00726550
+IGPUDevice::CreateSurface(): IGPUSurface::CreateSurface_GPUDEVICESURFACE() failed.\n	1	0x00726700
+IGPUDevice::CreateTexture(): IGPUTexture::CreateTexture() failed.\n	1	0x00725AA0
+IGPUDevice::CreateTexture(): IGPUTexture::CreateTexture_GPUDEVICETEXTURE() failed.\n	1	0x00725E40
+IGPUDevice::CreateVertexBuffer(): IGPUVertexBuffer::CreateVertexBuffer() failed.\n	1	0x007268C0
+IGPUDevice::CreateVolumeTexture(): IGPUTexture::CreateVolumeTexture() failed.\n	1	0x00725C80
+IGPUDevice::CreateVolumeTexture(): IGPUTexture::CreateVolumeTexture_GPUDEVICETEXTURE() failed.\n	1	0x00725FF0
+IGPUDevice::DrawIndices(): Index buffer is not set yet.	1	0x007259D0
+IGPUDevice::InitializeDevice(): InitializeDeviceBuffers() failed (0x%x: %s).\n	1	0x00723760
+IGPUDevice::InitializeDevice(): InitializeDeviceBuffers() succeeded.\n	1	0x00723760
+IGPUDevice::InitializeDevice(): m_pD3DMasterDevice reference counter is non-zero: %d.\n	1	0x00723760
+IGPUDevice::InitializeDeviceBuffers(): GetD3DDeviceBackBuffer() failed (0x%x: %s).\nEffective backbuffer must be set as the render target.\n	1	0x00723440
+IGPUDevice::InitializeDeviceBuffers(): SetDepthStencilSurface() failed (0x%x: %s).\n	1	0x00723440
+IGPUDevice::InitializeDeviceBuffers(): SetRenderTarget() failed (0x%x: %s).\n	1	0x00723440
+IGPUDevice::InitializeDevice_CreateDeviceStates_DrawRectDefaultStates(): m_pD3DDevice->CreateBlendState() failed (0x%x: %s).\n	1	0x00723A90
+IGPUDevice::InitializeDevice_CreateDeviceStates_DrawRectDefaultStates(): m_pD3DDevice->CreateDepthStencilState() failed (0x%x: %s).\n	1	0x00723A90
+IGPUDevice::InitializeDevice_CreateDeviceStates_DrawRectDefaultStates(): m_pD3DDevice->CreateRasterizerState() failed (0x%x: %s).\n	1	0x00723A90
+IGPUDevice::InitializeDevice_CreateDeviceStates_RenderStateMode(): m_pD3DDevice->CreateBlendState() failed (0x%x: %s).\n	1	0x00723CA0
+IGPUDevice::InitializeDevice_CreateDeviceStates_RenderStateMode(): m_pD3DDevice->CreateRasterizerState() failed (0x%x: %s).\n	1	0x00723CA0
+IGPUDevice::InitializeDevice_CreateDeviceStates_SamplerStateMode(): m_pD3DDevice->CreateSamplerState() failed (0x%x: %s).\n	1	0x00723FB0
+IGPUDevice::~IGPUDevice(): uiGPUAllocatedMemorySizeInBytes: %d\n	1	0x00724500
+IGPUEffect::CreateEffect(): (*ppEffect)->RegisterTinyEffect() failed (0x%x: %s).\n	1	0x0078A120
+IGPUEffect::CreateEffectFromFile(): (*ppEffect)->RegisterTinyEffect() failed (0x%x: %s).\n	1	0x0078A240
+IGPUIndexBuffer::CreateIndexBufferpGPUIndexBuffer->BuildIndexBuffer(Size: %d, nBuffers: %d, %s, Usage: 0x%x, Flag:0x%x) failed (0x%x: %s).\n	1	0x00788800
+IGPUInputAttribute::BuildInputAttribute: pD3DDevice->CreateInputLayout() failed (0x%x: %s).\n	1	0x00788A40
+IGPUInputAttribute::CreateInputAttributepGPUInputAttribute->BuildInputAttribute() failed (0x%x: %s).\n	1	0x00788DB0
+IGPUSurface::AttachToOtherSurfaceFramebuffer(): Surface multisample quality is not match. (framebuffer: %d != surface: %d).\n	1	0x007861A0
+IGPUSurface::AttachToOtherSurfaceFramebuffer(): Surface multisample type is not match. (framebuffer: %d != surface: %d).\n	1	0x007861A0
+IGPUSurface::CreateSurface(): CreateRenderTargetOrDepthStencilViewFromShaderResource() failed.\n	1	0x00786500
+IGPUSurface::CreateSurface(): pD3DDevice->CreateTexture2D() failed.\n	1	0x00786500
+IGPUSurface::RegisterD3DSurface(): AttachFramebuffer() failed (0x%x: %s).\n	1	0x00785C90
+IGPUTexture::CreateTexture(): pD3DDevice->CreateShaderResourceView() failed.\n	1	0x007872F0
+IGPUTexture::ReleaseLevelSurfacesAttachToTexture(): m_apGPUSurfaceMipmap[%d]->GetRefCount() reference counter is non-zero: %d.\n	1	0x00786DD0
+IGPUVertexBuffer::CreateVertexBufferpGPUVertexBuffer->BuildVertexBuffer(Size: %d, nBuffers: %d, Usage: 0x%x, Flag:0x%x) failed (0x%x: %s).\n	1	0x007885A0
+IPfxBaseContext::Initialize(): s_pSinglePostEffect->Initialize() failed (0x%x: %s).\n	1	0x006DAA70
+IPfxBaseContext::Uninitialize(): s_pSinglePostEffect->Uninitialize() failed (0x%x: %s).\n	1	0x006DAFB0
+IPfxBaseContext::Uninitialize(): s_pSinglePostEffect->Uninitialize() succeeded.\n	1	0x006DAFB0
+IPfxBaseContext::UninitializeDeviceResources(): s_pSinglePostEffect->OnLostDevice() failed (0x%x: %s).\n	1	0x006DB1B0
+IPfxBaseContext::UninitializeDeviceResources(): s_pSinglePostEffect->OnLostDevice() succeeded.\n	1	0x006DB1B0
+IPfxBaseContext::~IPfxBaseContext(): s_pSinglePostEffect->Uninitialize() failed (0x%x: %s).\n	1	0x006DE780
+IPfxBaseContext::~IPfxBaseContext(): s_pSinglePostEffect->Uninitialize() succeeded.\n	1	0x006DE780
+IPfxBaseRenderToTexture::Initialize(): IPfxBaseRenderToTexture::Uninitialize() implicitly called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006E04F0
+IPfxBaseRenderToTexture::Initialize(): pRenderTexture->Initialize() failed (0x%x: %s).\n	1	0x006E04F0
+IPfxBaseRenderToTexture::Initialize(): pRenderTexture->InitializeDevice() failed (0x%x: %s).\n	1	0x006E04F0
+IPfxBaseRenderToTexture::Uninitialize(): Called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006E07A0
+IPfxBaseRenderToTexture::~IPfxBaseRenderToTexture(): IPfxBaseRenderToTexture::Uninitialize() implicitly called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006E0DB0
+Instance name: %s\n	1	0x0075B760
+License is not valid.\n	1	0x006DFF40
+License text is not set.\n	1	0x006DFF40
+SetApertureFilterLevelVisualize() does not work properly.\n	1	0x00772410
+SetMemoryAllocator(): Call when any pfx interface is not instantiated yet.\n	1	0x006DA8F0
+SetVignetteByOptics() requires proper SetDepthOfFieldParameters() and SetRenderScenePerspective() settings.\n	1	0x006FD110
+TEXSHADERSET::CreateEffect(): IGPUEffect::CreateEffectFromFile() failed (0x%x: %s).\n	1	0x0072A320
+TEXSHADERSET::CreateEffect(): IGPUEffect::CreateEffectFromFile() succeeded.\n	1	0x0072A320
+TEXSHADERSET::CreateEffect(): get parameter handles ...\n	1	0x0072A320
+TEXSHADERSET::InitializeDevice(): CreateEffect() failed (0x%x: %s).\n	1	0x0072D820
+TEXSHADERSET::InitializeDevice(): m_pEffect->OnResetDevice() failed (0x%x: %s).\n	1	0x0072D820
+Unexpected License Error.\n	1	0x006DFF40
+cgParameter name: %s%s.\n	1	0x0078C080
+cgParameter name: %s[%d]%s.\n	1	0x0078C080
+float\n	1	0x0078EAF0
+float4[%d]\n	1	0x0078EAF0
+float4x4[%d]\n	1	0x0078EAF0
+float[%d]\n	1	0x0078EAF0
+m_apGlobalParameter[%d]->m_eType: %d: %s\n	1	0x0078C730
+m_apGlobalParameter[%d]->m_nElements: %d\n	1	0x0078C730
+m_apGlobalParameter[%d]->m_pData: 0x%0x\n	1	0x0078C730
+m_apGlobalParameter[%d]->m_strElementName: %s\n	1	0x0078C730
+m_apGlobalParameter[%d]->m_strName: %s\n	1	0x0078C730
+pProgramParameter->m_iResourceIndex: %d\n	1	0x0078EAF0
+pTechnique->m_strName: %s\n	1	0x0078C730
+parameter %d/%d: %s.\n	1	0x0078EAF0
+ppfxBindFramebuffer(): s_pSinglePostEffect->ApplyEffects() failed (0x%x: %s).\n	1	0x006DED50
+ppfxBindFramebuffer(): s_pSinglePostEffect->SetRenderTarget() failed (0x%x: %s).\n	1	0x006DECD0
+ppfxInitialize(): s_pSinglePostEffect->Initialize() failed (0x%x: %s).\n	1	0x006DE950
+ppfxUninitialize(): PPFX is not initialized.\n	1	0x006DEB40
+ppfxUninitialize(): s_pSinglePostEffect->Uninitialize() failed (0x%x: %s).\n	1	0x006DEB40
+ppfxUninitialize(): s_pSinglePostEffect->Uninitialize() succeeded.\n	1	0x006DEB40
+program: %s has %d parameters.\n	1	0x0078EAF0
+sampler\n	1	0x0078EAF0
+strFragmentProgramFile: %s\n	1	0x0078C730
+strFragmentProgramName: %s\n	1	0x0078C730
+strLinkedProgramFile: %s\n	1	0x0078C730
+strLinkedProgramName: %s\n	1	0x0078C730
+strVertexProgramFile: %s\n	1	0x0078C730
+technique name: %s\n	1	0x0078EAF0
+true	1	0x0073BD30

@@ -1,0 +1,3 @@
+function	name	site	disp	kind	instruction	route	note
+0x002F7380	FUN_002f7380	0x002F758E	0xE	r	cmp word ptr [r14 + rsi + 0xe], 1	route-seeded DYNAMIC *(*(LegacyPs2GsTextureContext+0x150)+8) count=*(LegacyPs2GsTextureContext+0x224) | CHAIN LegacyPs2GsTextureContext +0x150 +0x8 base+0x0	
+0x002F7380	FUN_002f7380	0x002F75B0	0xE	w	mov word ptr [r14 + rsi + 0xe], bp	route-seeded DYNAMIC *(*(LegacyPs2GsTextureContext+0x150)+8) count=*(LegacyPs2GsTextureContext+0x224) | CHAIN LegacyPs2GsTextureContext +0x150 +0x8 base+0x0	

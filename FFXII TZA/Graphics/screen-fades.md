@@ -262,7 +262,7 @@ Movie fade row (registry slot `0x02EBF008`, stride 8):
 The schedule is `battle_pack.bin` directory entry `+0x118`, an `st2e` section whose header
 declares 49 rows of 8 bytes; each row's id is a movie code of path kind `0x1C` (`0x01ECB4D0`, entry
 `2 × id`), the name the player opens as `<code>.webm`. The per-row listing is
-`screen-fades-movie-fade-schedule-names.tsv` beside this page.
+[`screen-fades-movie-fade-schedule-names.tsv`](screen-fades-movie-fade-schedule-names.tsv) beside this page.
 
 | Fact | Value |
 |---|---|

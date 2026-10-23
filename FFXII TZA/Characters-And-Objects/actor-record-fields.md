@@ -15,10 +15,10 @@ interior contexts, which code reaches only through the pointers at `+0xB8` and `
 | Table | Region | Rows |
 |---|---|---|
 | `actor-record-fields.tsv` | the record itself | 1,130 |
-| `actor-record-fields-movement-context.tsv` | the movement context, record `+0x120`, `0x230` bytes | 708 |
-| `actor-record-fields-secondary-context.tsv` | the secondary context, record `+0x350`, `0x188` bytes | 309 |
-| `actor-record-fields-wait-slots.tsv` | the wait slots behind `+0xA8` | 14 |
-| `actor-record-fields-resource-entries.tsv` | the resource entries behind `+0xA0` | 82 |
+| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 708 |
+| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 309 |
+| [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 14 |
+| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the resource entries behind `+0xA0` | 82 |
 
 Every instruction in all five tables was disassembled from the executable and matched.
 

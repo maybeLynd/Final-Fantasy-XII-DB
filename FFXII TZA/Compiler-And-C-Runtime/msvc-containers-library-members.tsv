@@ -1,0 +1,51 @@
+entry	bytes	member	evidence
+0x00194CD0	455	operator<<(wostream, const wchar_t *)	sputc, sputn, _Osfx; catch funclet 0x00896918
+0x00194EB0	57	std::endl for a char ostream	widen('\n'), put, flush
+0x00195100	64	std::bad_cast copy constructor	__std_exception_copy; bad_cast vtable
+0x00195140	54	std::exception copy constructor	__std_exception_copy; exception vtable
+0x00195200	133	std::string release	frees capacity 16 and up, then capacity 15, size 0
+0x00195360	57	locale facet release (pointer at +8)	facet slot +0x10, then the deleting destructor with 1
+0x00195440	101	basic_ifstream<wchar_t> destructor body	basic_ifstream<wchar_t> vtable
+0x001954B0	101	basic_ofstream<wchar_t> destructor body	basic_ofstream<wchar_t> vtable
+0x00195670	398	std::string reallocate to grow	capacity rounded with or 0xF, 1.5 times growth; _Xbad_alloc
+0x00195940	649	basic_filebuf<wchar_t>::_Endwrite	codecvt<wchar_t,char>::unshift, fwrite; called by the close 0x001969D0
+0x00195CF0	255	std::string append(count, ch)	"""string too long"""
+0x00196000	306	std::wstring assign(str, pos, count)	"""invalid string position"""
+0x00196140	325	std::wstring assign(ptr, count)	"""string too long"""
+0x001969D0	127	basic_filebuf<wchar_t> close	fclose; basic_streambuf::_Init
+0x00196AC0	198	std::string erase(pos, count)	"""invalid string position""; memmove"
+0x00196B90	171	std::wstring erase(pos, count)	"""invalid string position""; memmove"
+0x00197A50	229	basic_filebuf<wchar_t>::open	_Fiopen, basic_streambuf::_Init, codecvt_base::always_noconv
+0x0019B480	101	basic_ofstream<char> destructor body	basic_ofstream<char> vtable
+0x0019B580	633	basic_filebuf<char>::_Endwrite	codecvt<char,char>::unshift, fwrite; called by the close 0x0019B8C0
+0x0019B820	48	basic_filebuf<char>::_Reset_back	put-back buffer at +0x70
+0x0019B850	73	basic_filebuf<char>::_Set_back	put-back buffer at +0x70
+0x0019B8C0	127	basic_filebuf<char> close	fclose; basic_streambuf::_Init
+0x0019B990	311	basic_filebuf<char>::open	_Fiopen, _get_stream_buffer_pointers, codecvt_base::always_noconv
+0x001A1920	98	operator+(std::string&&, const char *)	appends through 0x001A5150, then moves the result out through 0x001A4C90
+0x001A1990	112	std::string less-than	memcmp over the shorter length; then the shorter string is the lesser
+0x001A1EA0	89	sprintf_s into a 32-byte buffer	__stdio_common_vsprintf_s with the options word at 0x02EBA3D0 (0x0016D670); -1 on failure
+0x001A4C90	129	std::string take contents (move)	inline characters copied, else the pointer; source left at capacity 15
+0x001A4D20	142	std::vector of 8-byte elements, reallocate	allocate 0x005FEC70, free 0x001A5A80; catch funclet 0x00897140
+0x001A5030	283	std::string append(str, pos, count)	"""invalid string position"", ""string too long"""
+0x001A5150	322	std::string append(ptr, count)	"""string too long""; overlapping source through 0x001A5030"
+0x001A5500	293	std::string assign(str, pos, count)	"""invalid string position"", ""string too long""; assignment from itself trims through 0x00196AC0"
+0x001A5630	301	std::string assign(ptr, count)	"""string too long""; a source inside the string goes through 0x001A5500"
+0x001A6E20	226	std::string find(ptr, pos, count)	memchr, memcmp
+0x001DDE10	419	operator<<(ostream, const char *)	sputc, _Osfx; catch funclet 0x00898368
+0x001DDFD0	119	basic_stringbuf<char> constructor	basic_stringbuf vtable
+0x001DE180	116	basic_istringstream<char> destructor body	basic_istringstream vtable
+0x001DE200	116	basic_ostringstream<char> destructor body	basic_ostringstream vtable
+0x001DE280	116	basic_stringstream<char> destructor body	basic_stringstream vtable
+0x001DE300	36	basic_istringstream<char> virtual-base destructor	0x001DE180, ~basic_ios
+0x001DE330	36	basic_ostringstream<char> virtual-base destructor	0x001DE200, ~basic_ios
+0x001DE360	36	basic_stringstream<char> virtual-base destructor	0x001DE280, ~basic_ios
+0x001DF990	98	allocator<char> allocate	32-byte aligned block from 0x1000 bytes; _Xbad_alloc
+0x001E0100	600	basic_stringbuf<char> str()	copies the buffer into a new std::string through 0x001A4C90
+0x001E0360	35	string-stream str()	the stringbuf str() 0x001E0100 on the stream's +0x18
+0x00204760	185	std::string move assignment	frees its own buffer, then 0x001A4C90
+0x0020DC70	442	std::string insert(pos, str, subpos, count)	"""invalid string position"", ""string too long""; grows through 0x00195670, memmove; the adapter enumeration 0x0020D1E0 calls it"
+0x0020E420	190	std::vector of 12-byte elements, push_back	"grow through 0x0020D8A0, ""vector<T> too long"""
+0x00865E30	141	std::wstring take contents (move)	inline characters copied, else the pointer; source left at capacity 7
+0x00865EC0	293	std::wstring append(str, pos, count)	"""invalid string position"", ""string too long"""
+0x00865FF0	350	std::wstring append(ptr, count)	"""string too long""; a source inside the string goes through 0x00865EC0"

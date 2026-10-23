@@ -1,0 +1,28 @@
+function	name	site	disp	kind	instruction	route	note
+0x0016FB80	FUN_0016fb80	0x0016FB9D	0xe80	r	imul edx, dword ptr [rcx + 0xe80]	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x880	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x8b8	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x8f0	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x928	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x960	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x998	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0x9d0	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xa08	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xa40	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xa78	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xab0	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xae8	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xb20	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xb58	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xb90	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBAF	0xbc8	w	mov dword ptr [r9 - 0x38], edx	ctor-seeded 0x0016FB80	enumerated-base
+0x0016FB80	FUN_0016fb80	0x0016FBB9	0xc00	w	mov dword ptr [rcx + 0xc00], r10d	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBC0	0xce0	w	mov dword ptr [rcx + 0xce0], r10d	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBC7	0xc38	w	mov dword ptr [rcx + 0xc38], 4	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBD1	0xd18	w	mov dword ptr [rcx + 0xd18], 4	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBDB	0xe94	r	mov eax, dword ptr [rcx + 0xe94]	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBE4	0xc70	w	mov dword ptr [rcx + 0xc70], eax	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBEA	0xd50	w	mov dword ptr [rcx + 0xd50], eax	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBF0	0xe94	r	mov eax, dword ptr [rcx + 0xe94]	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FBFD	0xca8	w	mov dword ptr [rcx + 0xca8], eax	ctor-seeded 0x0016FB80	
+0x0016FB80	FUN_0016fb80	0x0016FC03	0xd88	w	mov dword ptr [rcx + 0xd88], eax	ctor-seeded 0x0016FB80	

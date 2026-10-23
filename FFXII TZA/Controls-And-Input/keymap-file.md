@@ -97,7 +97,7 @@ is 0 (`0x001DFA70`-`0x001DFA77`), and the swap runs when it is not (`0x00195F03`
 
 ## Shipped data
 
-`keymap-file.tsv` lists the 28 slots with the default code of each profile, as `0x00198B60` installs them: group 0
+[`keymap-file.tsv`](keymap-file.tsv) lists the 28 slots with the default code of each profile, as `0x00198B60` installs them: group 0
 from `0x01DF09C0`, the stick pairs from the records at `0x01DF0A80`, and group 2 from `0x01DF1470` for profile 1 only.
 Profile 1 binds every slot. Profile 2 binds Select, R3, the four directions, Circle and Cross (Numpad Plus,
 Numpad 0, Numpad 8/6/2/4, Enter and Backspace); profile 3 binds Select, R3, Right, Left, Circle and Cross

@@ -404,13 +404,13 @@ Per-slot tables and instruction-level access lists beside this page:
 
 | Subject | Table |
 |---|---|
-| every class's slots | `render-command-list-ordered-object-vtable-slots.tsv` |
-| the ordered command list | `render-command-list-ordered-command-list-accesses.tsv` |
-| the owner list | `render-command-list-render-command-owner-list-accesses.tsv` |
-| the vector shared by both | `render-command-list-eastl-pointer-vector-accesses.tsv` |
-| command objects | `render-command-list-ordered-object-accesses.tsv` |
-| the render-parameter block | `render-command-list-postprocess-context-accesses.tsv` |
-| the character render-object manager | `render-command-list-pending-completion-queue-01f81248-accesses.tsv` |
+| every class's slots | [`render-command-list-ordered-object-vtable-slots.tsv`](render-command-list-ordered-object-vtable-slots.tsv) |
+| the ordered command list | [`render-command-list-ordered-command-list-accesses.tsv`](render-command-list-ordered-command-list-accesses.tsv) |
+| the owner list | [`render-command-list-render-command-owner-list-accesses.tsv`](render-command-list-render-command-owner-list-accesses.tsv) |
+| the vector shared by both | [`render-command-list-eastl-pointer-vector-accesses.tsv`](render-command-list-eastl-pointer-vector-accesses.tsv) |
+| command objects | [`render-command-list-ordered-object-accesses.tsv`](render-command-list-ordered-object-accesses.tsv) |
+| the render-parameter block | [`render-command-list-postprocess-context-accesses.tsv`](render-command-list-postprocess-context-accesses.tsv) |
+| the character render-object manager | [`render-command-list-pending-completion-queue-01f81248-accesses.tsv`](render-command-list-pending-completion-queue-01f81248-accesses.tsv) |
 
 ## State
 

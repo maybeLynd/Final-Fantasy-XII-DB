@@ -1,0 +1,24 @@
+family_file	members	shared	ledger_name	owner	role
+compilergeneratedcpp-guardedstaticobjectteardown.tsv	28	0x0016D6A0	_guard_check_icall	-	CRT
+compilergeneratedcpp-staticzeroinitobjectinitializer.tsv	11	0x007DF6D0	FUN_007df6d0	-	constructor: InitializeCriticalSection(this), then +0x28..+0x4B zeroed
+compilergeneratedcpp-staticzeroinitobjectinitializer.tsv	11	0x00808B90	atexit	-	CRT
+compilergeneratedcpp-staticzeroinitobjectinitializer.tsv	11	0x00861EC0	memset	-	CRT
+cxxobjectlifecycle-deletingdestructor-alignedorguardedfree.tsv	46	0x0016D6A0	_guard_check_icall	-	CRT
+cxxobjectlifecycle-deletingdestructor-vtablealignedorguardedfree.tsv	10	0x0016D6A0	_guard_check_icall	-	CRT
+lua-math-unaryfunctionadapter.tsv	13	0x00810640	FUN_00810640	-	Lua core call (Lua math adapters)
+lua-math-unaryfunctionadapter.tsv	13	0x00812590	FUN_00812590	-	Lua format-string builder (Lua pages)
+nativeleaf-statichandlereplacewithprerelease.tsv	12	0x003844F0	FUN_003844f0	-	jmp 0x003697F0, the null-safe heap release (validating deallocator 0x00369860)
+phyre-reflection-annotationstaticteardown.tsv	55	0x006B6750	FUN_006b6750	-	Phyre::PAnnotation destructor (RTTI 0x00D80930): unlinks its list node
+phyre-reflection-nameddescriptorstaticteardown.tsv	15	0x006B68A0	FUN_006b68a0	-	Phyre::PNamedSemanticDescriptor destructor (RTTI 0x00D80970): unlinks +0x50, base PType vtable
+phyre-reflection-pclassdatamemberstaticteardownadapter.tsv	30	0x00633240	FUN_00633240	-	Phyre::PClassDataMember destructor (RTTI 0x00D580B0)
+phyre-reflection-staticdescriptorsingleton.tsv	13	0x00808B90	atexit	-	CRT
+phyre-reflection-staticdescriptorsingleton.tsv	13	0x0080929C	_Init_thread_footer	-	CRT
+phyre-reflection-staticdescriptorsingleton.tsv	13	0x008092FC	_Init_thread_header	-	CRT
+platform-windows-criticalsectionstaticinitializer.tsv	19	0x00808B90	atexit	-	CRT
+runtime-container-ownedbufferalignedfreeresetreturntrue.tsv	11	0x00584730	FUN_00584730	-	operator delete (the static teardowns' one external target; static-initialisers page)
+runtime-container-ownedbufferreset.tsv	13	0x00584730	FUN_00584730	-	operator delete (the static teardowns' one external target; static-initialisers page)
+runtime-namedregistryrecord-staticinitializer.tsv	60	0x005DC6F0	FUN_005dc6f0	-	the name-registry record register shim, 45 B (runtime named-registry page)
+runtime-namedregistryrecord-staticinitializer.tsv	60	0x00808B90	atexit	-	CRT
+runtime-nameregistryentry-staticinitializer.tsv	56	0x005FDCB0	FUN_005fdcb0	-	the name-registry entry register, 132 B (runtime name-registry page)
+runtime-nameregistryentry-staticinitializer.tsv	56	0x00808B90	atexit	-	CRT
+runtime-singleton-lazyallocatorinitializer.tsv	8	0x00210EC0	FUN_00210ec0	-	the aligned allocator the object constructors call (game-application page: 0xDD8-byte object allocated via 0x00210EC0)

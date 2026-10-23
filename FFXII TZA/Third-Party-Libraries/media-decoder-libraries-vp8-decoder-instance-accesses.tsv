@@ -1,0 +1,136 @@
+function	name	site	disp	kind	instruction	route	note
+0x0016DE20	vpx_internal_error	0x0016DE37	0x12c0	w	mov dword ptr [rcx], edx	ctor-seeded 0x00171480	
+0x0016DE20	vpx_internal_error	0x0016DE3C	0x12c4	w	mov dword ptr [rcx + 4], 0	ctor-seeded 0x00171480	
+0x0016DE20	vpx_internal_error	0x0016DE57	0x12c4	w	mov dword ptr [rcx + 4], 1	ctor-seeded 0x00171480	
+0x0016DE20	vpx_internal_error	0x0016DE95	0x1317	w	mov byte ptr [rdi + 0x57], 0	ctor-seeded 0x00171480	
+0x0016DE20	vpx_internal_error	0x0016DE99	0x1318	r	cmp dword ptr [rdi + 0x58], 0	ctor-seeded 0x00171480	
+0x0016DE20	vpx_internal_error	0x0016DEA4	0x12c0	r	mov edx, dword ptr [rdi]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171491	0x4380	w	mov dword ptr [rcx + 0x4380], r14d	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171498	0x4390	w	mov dword ptr [rcx + 0x4390], r14d	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001714AC	0x4384	r	mov ecx, dword ptr [rbx + 0x4384]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001714BC	0x34e8	r	mov eax, dword ptr [rbx + 0x34e8]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001714EE	0x4380	w	mov dword ptr [rbx + 0x4380], 1	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001714FB	0x438c	w	mov dword ptr [rbx + 0x438c], eax	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171525	0x4420	w	mov qword ptr [rbx + 0x4420], rdi	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171547	0x438c	r	mov eax, dword ptr [rbx + 0x438c]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171580	0x4428	w	mov qword ptr [rbx + 0x4428], rdi	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001715A2	0x438c	r	mov eax, dword ptr [rbx + 0x438c]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001715CD	0x4410	w	mov qword ptr [rbx + 0x4410], rdi	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001715EF	0x438c	r	mov eax, dword ptr [rbx + 0x438c]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001715F7	0x4410	r	mov rcx, qword ptr [rbx + 0x4410]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x0017160A	0x438c	r	mov eax, dword ptr [rbx + 0x438c]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171647	0x4418	w	mov qword ptr [rbx + 0x4418], rdi	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x0017166C	0x438c	r	cmp dword ptr [rbx + 0x438c], r14d	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171693	0x4428	r	mov rcx, qword ptr [rbx + 0x4428]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001716A7	0x4410	r	mov rcx, qword ptr [rbx + 0x4410]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001716CC	0x4418	r	mov rax, qword ptr [rbx + 0x4418]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001716DD	0x4418	r	mov rax, qword ptr [rbx + 0x4418]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001716E9	0x4418	r	mov rax, qword ptr [rbx + 0x4418]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x001716F0	0x4410	r	mov rcx, qword ptr [rbx + 0x4410]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171701	0x4420	r	mov rax, qword ptr [rbx + 0x4420]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171708	0x4418	r	mov r9, qword ptr [rbx + 0x4418]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171736	0x438c	r	cmp ebp, dword ptr [rbx + 0x438c]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171764	0x4430	w	mov qword ptr [rbx + 0x4430], rax	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x0017176B	0x438c	r	mov eax, dword ptr [rbx + 0x438c]	ctor-seeded 0x00171480	
+0x00171480	vp8_decoder_create_threads	0x00171771	0x4390	w	mov dword ptr [rbx + 0x4390], eax	ctor-seeded 0x00171480	
+0x00174540	FUN_00174540	0x00174571	0x1e94	r	mov ecx, dword ptr [r9 + 0x1e94]	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x00174597	0x1420	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x00174597	0x1424	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1428	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x142c	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1430	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1434	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1438	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x143c	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1440	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1444	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1448	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x144c	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1450	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1454	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x1458	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174597	0x145c	w	mov word ptr [r8 - 0x200], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017459F	0x1e98	r	mov ecx, dword ptr [r9 + 0x1e98]	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x001745C8	0x1620	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x001745C8	0x1624	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1628	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x162c	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1630	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1634	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1638	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x163c	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1640	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1644	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1648	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x164c	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1650	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1654	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x1658	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745C8	0x165c	w	mov word ptr [r8], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745CC	0x1ea0	r	mov ecx, dword ptr [r9 + 0x1ea0]	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x001745F6	0x1820	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x001745F6	0x1824	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1828	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x182c	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1830	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1834	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1838	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x183c	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1840	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1844	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1848	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x184c	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1850	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1854	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x1858	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x001745F6	0x185c	w	mov word ptr [r8 + 0x200], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1422	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x0017461D	0x1426	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x142a	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x142e	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1432	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1436	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x143a	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x143e	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1442	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1446	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x144a	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x144e	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1452	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x1456	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x145a	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017461D	0x145e	w	mov word ptr [r8 - 0x1fe], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174625	0x1e9c	r	mov ecx, dword ptr [r9 + 0x1e9c]	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x00174656	0x1622	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x00174656	0x1626	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x162a	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x162e	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x1632	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x1636	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x163a	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x163e	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x1642	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x1646	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x164a	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x164e	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x1652	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x1656	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x165a	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174656	0x165e	w	mov word ptr [r8 + 2], cx	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x0017465B	0x1ea4	r	mov ecx, dword ptr [r9 + 0x1ea4]	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x00174686	0x1822	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	
+0x00174540	FUN_00174540	0x00174686	0x1826	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x182a	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x182e	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x1832	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x1836	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x183a	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x183e	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x1842	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x1846	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x184a	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x184e	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x1852	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x1856	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x185a	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base
+0x00174540	FUN_00174540	0x00174686	0x185e	w	mov word ptr [r8 + 0x202], ax	ctor-seeded 0x00174540	enumerated-base

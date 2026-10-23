@@ -1,0 +1,23 @@
+address	name	bytes	instructions	instantiation	role	callers	callees	read	write_profile	note
+0x00712F60	FUN_00712f60	679	190	-	insert+rebalance	3	0x00210EB0	whole	+00:12 +08:18 +10:12 +18:11	node 0x30, rotations inlined
+0x00714980	FUN_00714980	80	24	A	destroy subtree	4	0x00210EB0	profile		
+0x00714B60	FUN_00714b60	126	35	A	tidy	2	0x00210EB0,0x00714980	whole	+00:1 +08:2 +10:1	
+0x00714BE0	FUN_00714be0	126	35	A	tidy	2	0x00210EB0,0x00714980	profile	+00:1 +08:2 +10:1	
+0x00714C60	FUN_00714c60	126	35	A	tidy	2	0x00210EB0,0x00714980	profile	+00:1 +08:2 +10:1	
+0x00714CE0	FUN_00714ce0	218	65	A	erase range	2	0x00714B60,0x00714DC0	profile	+00:2	
+0x00714DC0	FUN_00714dc0	840	241	A	erase node+rebalance	5	0x00210EB0,0x00714B00,0x0071F240	whole	+00:6 +08:8 +10:5 +18:18	pair A
+0x00715110	FUN_00715110	218	65	A	erase range	2	0x00714BE0,0x00714DC0	profile	+00:2	
+0x007151F0	FUN_007151f0	218	65	A	erase range	2	0x00714C60,0x00714DC0	profile	+00:2	
+0x0071E500	FUN_0071e500	680	192	-	insert+rebalance	2	0x00210EB0,0x0071EE70	whole	+00:12 +08:18 +10:12 +18:11	node 0x60; destroys the payload only on the throw path (read whole in falsification pass 1)
+0x0071EE70	FUN_0071ee70	148	40	B	payload destructor	8	0x001DFA10	profile	+00:3 +10:2 +18:2	
+0x0071F1E0	FUN_0071f1e0	89	26	B	destroy subtree	1	0x00210EB0,0x0071EE70	profile		
+0x0071F240	FUN_0071f240	85	27	A	rotation	2		profile	+00:4 +08:6 +10:2	pair A mirror
+0x0071F3A0	FUN_0071f3a0	136	38	B	tidy	1	0x00210EB0,0x0071EE70,0x0071F1E0	whole	+00:1 +08:2 +10:1	destroys the payload at +0x20 first
+0x0071F4B0	FUN_0071f4b0	218	65	B	erase range	2	0x0071F3A0,0x0071F590	profile	+00:2	
+0x0071F590	FUN_0071f590	978	281	B	erase node+rebalance	1	0x00210EB0,0x00714B00,0x0071EE70,0x0071F240	profile	+00:10 +08:16 +10:9 +18:18	pair A
+0x00799B80	FUN_00799b80	80	24	C	destroy subtree	1	0x00210EB0	profile		
+0x00799BD0	FUN_00799bd0	85	27	C	rotation	1		whole	+00:4 +08:6 +10:2	pair C
+0x00799C30	FUN_00799c30	89	27	C	rotation	1		whole	+00:2 +08:6 +10:4	pair C mirror
+0x0079B0D0	FUN_0079b0d0	126	35	C	tidy	1	0x00210EB0,0x00799B80	profile	+00:1 +08:2 +10:1	
+0x0079B930	FUN_0079b930	218	65	C	erase range	1	0x0079B0D0,0x0079BA10	whole	+00:2	
+0x0079BA10	FUN_0079ba10	978	282	C	erase node+rebalance	1	0x00210EB0,0x00799BD0,0x00799C30	profile	+00:10 +08:16 +10:9 +18:18	pair C

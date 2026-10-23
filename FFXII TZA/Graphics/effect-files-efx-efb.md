@@ -103,7 +103,7 @@ The `0xB00` kinds, each built by the record store as `alloc(size)`, then `ctor`,
 | `0x59` | `0x30` | `0x005042C0` | `0x00504350` |
 
 The kind-`0x54` mesh record's layout is on [effect element types](effect-element-types.md). The
-case-by-case load and destroy arms are in `effect-element-runtime-switch-family-record-store-5x.tsv`.
+case-by-case load and destroy arms are in [`effect-element-runtime-switch-family-record-store-5x.tsv`](effect-element-runtime-switch-family-record-store-5x.tsv).
 
 ## Shipped data
 

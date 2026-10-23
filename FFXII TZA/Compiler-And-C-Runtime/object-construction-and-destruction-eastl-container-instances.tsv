@@ -1,0 +1,77 @@
+entry	bytes	operation	evidence
+0x00188640	225	vector reserve, 16-byte elements	allocator allocate slot; allocator free slot +0x18
+0x00199A80	96	template destructor: event at +0x90 closed when +0xB8 is set, trees at +0x58 and +0x20, vector of 16-byte elements	allocator free slot +0x18
+0x0019C870	131	template destructor (as 0x00199A80), 0x18-byte elements	allocator free slot +0x18
+0x0019DAD0	130	template destructor (as 0x00199A80), 0x118-byte elements	allocator free slot +0x18
+0x001B3AF0	96	template destructor (as 0x00199A80), 0x20-byte elements	allocator free slot +0x18
+0x0019D8D0	155	vector copy constructor, 8-byte elements	allocator allocate slot; 0x001EDF00 (copied allocator)
+0x0019D970	183	element copy constructor, 0x118-byte record: 0x100 bytes, then the vector at +0x100	calls 0x0019D8D0
+0x0019DD30	85	vector release, 0x118-byte elements	allocator free slot +0x18
+0x0019DD90	61	vector release at +0x100 (the 0x118-byte record's member)	allocator free slot +0x18
+0x0019DDD0	296	vector assign, 8-byte elements	allocator allocate slot; allocator free slot +0x18
+0x001A1A00	354	copy backward, 32-byte vector elements	allocator allocate slot; allocator free slot +0x18
+0x001A1B70	354	copy forward, 32-byte vector elements	allocator allocate slot; allocator free slot +0x18
+0x001A1CE0	339	fill, 32-byte vector elements	allocator allocate slot; allocator free slot +0x18
+0x001A1F00	188	uninitialised move, 32-byte vector elements	"0x001EDF00 ""EASTL vector"""
+0x001A1FC0	219	uninitialised fill n, 32-byte vector elements	allocator allocate slot; 0x001EDF00 (copied allocator)
+0x001A2750	156	element copy constructor, record with a vector at +0x40	0x001EDF00 (copied allocator)
+0x001A28D0	58	string release at +0x48 (buffer freed when capacity is above 1)	allocator free slot +0x18
+0x001A2D50	125	vector release, 32-byte vector elements each released first	allocator free slot +0x18
+0x001A2E10	58	string release at +0x40	allocator free slot +0x18
+0x001A4250	315	vector insert one, 4-byte elements	allocator allocate slot; allocator free slot +0x18
+0x001A2F70	397	map operator[], 64-bit key at node +0x20	"allocator free slot +0x18; 0x001EDF00 ""EASTL basic_string""; calls 0x001A2750"
+0x001A6F10	224	map find, std::string key at node +0x20 (memcmp)	walks the node links at +0 and +8, compares the std::string at node +0x20 with memcmp
+0x001AADE0	142	vector release, 32-byte string elements each released first	allocator free slot +0x18
+0x001AAE70	102	vector release, 0x30-byte elements destroyed through 0x001AB350	allocator free slot +0x18; calls 0x001AB350
+0x001AAEE0	52	vector release at +8	allocator free slot +0x18
+0x001AAF80	362	element copy-assign, 0x30-byte record holding a vector at +8	allocator allocate slot; allocator free slot +0x18
+0x001AB350	115	destroy range, 0x30-byte records	allocator free slot +0x18
+0x001AB8A0	488	vector insert one, 0x30-byte elements	allocator allocate slot; allocator free slot +0x18; calls 0x0019D8D0 0x001AAF80 0x001AB350
+0x001ABB30	324	vector append n default elements, 0x30 bytes	"allocator free slot +0x18; 0x001EDF00 ""EASTL vector""; calls 0x0019D8D0 0x001AB8A0"
+0x001AD860	124	allocate and copy, 0x30-byte elements (allocate slot +8, alignment 0x10)	allocator allocate slot
+0x001AD8E0	125	uninitialised copy, 0x40-byte elements	copies the first qword of each element and the rest through 0x001AE4B0
+0x001AD960	330	copy backward, 0x40-byte elements	allocator free slot +0x18
+0x001ADAB0	127	uninitialised copy, 0x40-byte elements	called by 0x001AF000
+0x001ADB30	108	uninitialised fill n, 0x40-byte elements	called by 0x001AF000
+0x001AE130	58	string release at +8	allocator free slot +0x18
+0x001AE450	87	vector release at +0x38, 0x30-byte elements	allocator free slot +0x18
+0x001AE7C0	137	map node create, 0x48-byte node	allocator allocate slot; 0x001EDF00 (copied allocator)
+0x001AF000	678	vector insert n, 0x40-byte elements	allocator allocate slot; allocator free slot +0x18; calls 0x001AD960 0x001ADAB0 0x001ADB30
+0x001AF3B0	192	tree erase, string value at node +0x40	allocator free slot +0x18
+0x001B3290	130	copy backward, 0x38-byte elements	called by 0x001B4140
+0x001B3320	113	copy forward, 0x38-byte elements	copies each element's vector through 0x001A5760, then its three trailing fields
+0x001B33A0	220	uninitialised move, 0x38-byte elements	0x001EDF00 (copied allocator)
+0x001B3480	180	uninitialised fill n, 0x38-byte elements	0x001EDF00 (copied allocator)
+0x001B4140	856	vector insert n, 0x38-byte elements	allocator allocate slot; allocator free slot +0x18; 0x001EDF00 (copied allocator); calls 0x001B3290 0x001B33A0 0x001B3480
+0x001B8600	523	copy backward, 0x2A8-byte ChrModel elements	allocator free slot +0x18; calls 0x001B9B80
+0x001B9020	201	map copy constructor (anchor at +8, allocator at +0x30)	0x001EDF00 (copied allocator); calls 0x001B9B80
+0x001B9970	148	map assign: clear, then copy the tree	calls 0x001B9B80
+0x001B9B80	247	tree copy, recursive	allocator allocate slot; calls 0x001B9C80
+0x001B9C80	110	tree node clone, 0x58-byte node	allocator allocate slot
+0x001BA470	742	vector insert n, 0x2A8-byte ChrModel elements	allocator allocate slot; allocator free slot +0x18; calls 0x001B8600
+0x001BA990	157	vector erase range, 0x2A8-byte elements destroyed through vtable slot 0	moves the tail through 0x001B8810, destroys the rest through slot 0, steps the end by 0x2A8
+0x001BC8C0	138	list insert range, 0x20-byte nodes	allocator allocate slot
+0x001BCD90	93	list clear, 0x20-byte nodes	allocator free slot +0x18
+0x001BD3F0	163	tree erase, each node holding a list of 0x20-byte nodes	allocator free slot +0x18
+0x001BE990	177	vector release, 40-byte elements each holding a string	allocator free slot +0x18
+0x001C3600	161	vector copy constructor, 16-byte elements	allocator allocate slot; 0x001EDF00 (copied allocator)
+0x001C36F0	104	vector release, 16-byte elements destroyed by 0x001FEA00	allocator free slot +0x18
+0x001E1440	80	uninitialised copy, 24-byte MapOrderedObject elements	called by 0x001E2250
+0x001E1490	144	uninitialised fill n, 0x220-byte elements	called by 0x001E1DD0
+0x001E1B20	85	vector release, 0x220-byte elements	allocator free slot +0x18
+0x001E1C60	47	vector release, byte elements	allocator free slot +0x18
+0x001E1DD0	1139	vector insert n, 0x220-byte elements	allocator allocate slot; allocator free slot +0x18; calls 0x001E1490
+0x001E2250	928	vector insert n, 24-byte MapOrderedObject elements	allocator allocate slot; allocator free slot +0x18; calls 0x001E1440
+0x001E3D80	203	vector erase range, 24-byte elements destroyed through vtable slot 0	called by 0x001E5370
+0x001E5370	182	vector resize, 24-byte elements	calls 0x001E2250 0x001E3D80
+0x001E6F50	128	allocate and copy, 0x3C-byte elements	allocator allocate slot
+0x001E7A20	610	vector insert one, 0x3C-byte elements	allocator allocate slot; allocator free slot +0x18
+0x001F4B30	195	uninitialised copy, 0x318-byte elements	copies 0x318 bytes (99 qwords) per element
+0x001F5080	88	vector release, 0x318-byte elements	allocator free slot +0x18
+0x001F50E0	85	vector release, 0x24-byte elements	allocator free slot +0x18
+0x001FBEF0	201	map copy constructor (anchor at +8, allocator at +0x30)	0x001EDF00 (copied allocator)
+0x001FBFC0	155	vector copy constructor, 4-byte elements	allocator allocate slot; 0x001EDF00 (copied allocator)
+0x001FD780	540	vector insert n, 4-byte elements	allocator allocate slot; allocator free slot +0x18
+0x001FFF00	397	vector insert one, 16-byte tagged values	allocator allocate slot; allocator free slot +0x18
+0x001E74F0	96	template destructor (as 0x00199A80), 16-byte elements	unwind funclet 0x008985BE of 0x001E71B0; erases both trees through 0x001E7560
+0x001E76B0	85	vector release, 0x3C-byte elements	unwind funclet 0x00898660 of 0x001E7480; size from the count divided by 60, times 0x3C

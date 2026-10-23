@@ -1,0 +1,22 @@
+function	name	site	disp	kind	instruction	route	note
+0x005CC900	FUN_005cc900	0x005CC902	0x48	w	mov qword ptr [rcx], rax	ctorrdx-seeded 0x0068AF40	
+0x005CC900	FUN_005cc900	0x005CC905	0x50	w	mov qword ptr [rcx + 8], rax	ctorrdx-seeded 0x0068AF40	
+0x005CC900	FUN_005cc900	0x005CC909	0x58	w	mov qword ptr [rcx + 0x10], rax	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x00691265	0x0	w	mov byte ptr [rcx], 0	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x0069126A	0x4	w	mov dword ptr [rcx + 4], ebp	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x0069126D	0x8	w	mov dword ptr [rcx + 8], 0x10	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x00691274	0x10	w	mov qword ptr [rcx + 0x10], rbp	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x00691278	0x30	w	mov dword ptr [rcx + 0x30], ebp	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x0069127B	0x38	w	mov qword ptr [rcx + 0x38], rbp	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x00691281	0x48	w	mov qword ptr [rcx + 0x48], rax	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x00691285	0x50	w	mov qword ptr [rcx + 0x50], rax	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x00691289	0x58	w	mov qword ptr [rcx + 0x58], rax	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x0069128D	0x60	w	mov qword ptr [rcx + 0x60], rax	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x0069129A	0x60	w	mov byte ptr [rsi + 0x60], bpl	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x006912A7	0x70	w	mov byte ptr [rsi + 0x70], bpl	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x006912B4	0x80	w	mov byte ptr [rsi + 0x80], bpl	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x006912BB	0x88	w	mov qword ptr [rsi + 0x88], rbp	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x006912C2	0x90	w	mov qword ptr [rsi + 0x90], rbp	ctorrdx-seeded 0x0068AF40	
+0x00691240	FUN_00691240	0x006912C9	0x98	w	mov word ptr [rsi + 0x98], bp	ctorrdx-seeded 0x0068AF40	
+0x00874D60	FUN_00874d60	0x00874D60	0x68	w	mov qword ptr [rcx], 0	ctorrdx-seeded 0x0068AF40	
+0x00874D60	FUN_00874d60	0x00874D60	0x78	w	mov qword ptr [rcx], 0	ctorrdx-seeded 0x0068AF40	

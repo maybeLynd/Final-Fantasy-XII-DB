@@ -1,0 +1,33 @@
+function	name	site	disp	kind	instruction	route	note
+0x00691490	FUN_00691490	0x00691495	0x4	w	mov dword ptr [rcx + 4], 0xc11ccccd	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914A5	0x0	w	mov dword ptr [rcx], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914A7	0x8	w	mov dword ptr [rcx + 8], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914AA	0x10	w	mov dword ptr [rcx + 0x10], 0x3f800000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914B1	0x14	w	mov dword ptr [rcx + 0x14], 0xc59c4000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914B8	0x18	w	mov dword ptr [rcx + 0x18], 0xc59c4000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914BF	0x1c	w	mov dword ptr [rcx + 0x1c], 0xc59c4000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914C6	0x24	w	mov dword ptr [rcx + 0x24], 0x459c4000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914CD	0x28	w	mov dword ptr [rcx + 0x28], 0x459c4000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914D4	0x2c	w	mov dword ptr [rcx + 0x2c], 0x459c4000	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914DB	0x34	w	mov qword ptr [rcx + 0x34], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914DF	0x3c	w	mov qword ptr [rcx + 0x3c], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914E3	0x44	w	mov dword ptr [rcx + 0x44], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914E6	0x48	w	mov qword ptr [rcx + 0x48], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914EA	0x50	w	mov qword ptr [rcx + 0x50], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914EE	0x58	w	mov qword ptr [rcx + 0x58], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914F2	0x60	w	mov qword ptr [rcx + 0x60], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914F6	0x68	w	mov qword ptr [rcx + 0x68], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914FA	0x70	w	mov qword ptr [rcx + 0x70], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x006914FE	0x98	w	mov dword ptr [rcx + 0x98], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691504	0xa0	w	mov qword ptr [rcx + 0xa0], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x0069150B	0xa8	w	mov dword ptr [rcx + 0xa8], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691511	0xb0	w	mov qword ptr [rcx + 0xb0], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691518	0xb8	w	mov dword ptr [rcx + 0xb8], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x0069151E	0xc0	w	mov dword ptr [rcx + 0xc0], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691524	0xc8	w	mov qword ptr [rcx + 0xc8], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x0069152B	0xd0	w	mov dword ptr [rcx + 0xd0], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691531	0xd8	w	mov qword ptr [rcx + 0xd8], rax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691538	0xe0	w	mov dword ptr [rcx + 0xe0], eax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x0069154B	0x78	w	rep stosw word ptr [rdi], ax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691558	0x7a	rw	and word ptr [rdx + 0x7a], ax	ctorrdx-seeded 0x0068E4D0	
+0x00691490	FUN_00691490	0x00691561	0x7c	w	mov word ptr [rdx + 0x7c], ax	ctorrdx-seeded 0x0068E4D0	

@@ -208,7 +208,7 @@ GS environment globals (seeded by `0x0036D280`):
 | `0x022D8EDC` | `u32` | clear colour on 1 |  |
 | `0x022D8EF0` | `f32` | width / 2000 | `0x022D8EF4`  f32  height / 2000 |
 
-The spin census is beside this page in `graphics-thread-handshake-inert-spin-census.tsv`: every
+The spin census is beside this page in [`graphics-thread-handshake-inert-spin-census.tsv`](graphics-thread-handshake-inert-spin-census.tsv): every
 backward loop in 38,161 listed bodies whose body only tests registers, 19 in all. Seventeen are the
 fence tests above. The other two wait for a latch that is loaded once outside the loop: `0x00560A60`
 in `0x00560910` on `0x02CA8F94` and `0x00566163` in `0x00565E00` on `0x02CA96D4`. Each latch is set to 1 only

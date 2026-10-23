@@ -95,7 +95,9 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 The cells' values in the image itself are the 512 x 448 layout: for 157 of the 163 bound keys `uisize_sd.json` holds,
 the cell starts at that file's value.
 
-### Columns of screen-layouts.tsv
+### The key table
+
+[`screen-layouts.tsv`](screen-layouts.tsv) has one row for each key of the two layout files:
 
 | Column | Meaning |
 |---|---|

@@ -148,7 +148,7 @@ transform.
 
 ### Bullet bodies outside the member list
 
-Three Bullet functions are not in `bullet-physics-members.tsv`:
+Three Bullet functions are not in [`bullet-physics-members.tsv`](bullet-physics-members.tsv):
 
 - `0x008531F0` is `btRigidBody::applyDamping`, called from `0x00857E70`. It multiplies the linear
   velocity `+0x150` by `(1 - linearDamping)` to the power of the time step (damping at `+0x1E0`, via
@@ -250,5 +250,19 @@ class-descriptor callback would have no instances to visit.
 - [Heading and speed to position](../Movement-And-Pathfinding/heading-speed-to-position-delta.md):
   how actors move without physics.
 - `bullet-physics-members.tsv`: the library's functions in its two link ranges.
-- The `bullet-physics-pphysics-*-accesses.tsv` files beside this page: the field accesses of the
-  `PPhysics` classes' class descriptors and vtables.
+- The field accesses of the `PPhysics` classes' class descriptors and vtables, one table per class:
+  - [`bullet-physics-pphysics-capsule-base-accesses.tsv`](bullet-physics-pphysics-capsule-base-accesses.tsv);
+  - [`bullet-physics-pphysics-character-camera-accesses.tsv`](bullet-physics-pphysics-character-camera-accesses.tsv);
+  - [`bullet-physics-pphysics-character-controller-base-accesses.tsv`](bullet-physics-pphysics-character-controller-base-accesses.tsv);
+  - [`bullet-physics-pphysics-character-controller-bullet-accesses.tsv`](bullet-physics-pphysics-character-controller-bullet-accesses.tsv);
+  - [`bullet-physics-pphysics-cylinder-base-accesses.tsv`](bullet-physics-pphysics-cylinder-base-accesses.tsv);
+  - [`bullet-physics-pphysics-interface-base-accesses.tsv`](bullet-physics-pphysics-interface-base-accesses.tsv);
+  - [`bullet-physics-pphysics-interface-bullet-accesses.tsv`](bullet-physics-pphysics-interface-bullet-accesses.tsv);
+  - [`bullet-physics-pphysics-rigid-body-base-accesses.tsv`](bullet-physics-pphysics-rigid-body-base-accesses.tsv);
+  - [`bullet-physics-pphysics-shape-base-accesses.tsv`](bullet-physics-pphysics-shape-base-accesses.tsv);
+  - [`bullet-physics-pphysics-shape-bullet-accesses.tsv`](bullet-physics-pphysics-shape-bullet-accesses.tsv);
+  - [`bullet-physics-pphysics-sphere-base-accesses.tsv`](bullet-physics-pphysics-sphere-base-accesses.tsv);
+  - [`bullet-physics-pphysics-tapered-capsule-accesses.tsv`](bullet-physics-pphysics-tapered-capsule-accesses.tsv);
+  - [`bullet-physics-pphysics-tapered-cylinder-accesses.tsv`](bullet-physics-pphysics-tapered-cylinder-accesses.tsv);
+  - [`bullet-physics-pphysics-world-base-accesses.tsv`](bullet-physics-pphysics-world-base-accesses.tsv);
+  - [`bullet-physics-pphysics-world-bullet-accesses.tsv`](bullet-physics-pphysics-world-bullet-accesses.tsv).

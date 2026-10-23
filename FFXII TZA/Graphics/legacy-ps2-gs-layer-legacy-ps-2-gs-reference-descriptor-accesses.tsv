@@ -1,0 +1,5 @@
+function	name	site	disp	kind	instruction	route	note
+0x003A6FC0	FUN_003a6fc0	0x003A7009	0x2	r	movsx rax, word ptr [rax + rcx*8 + 2]	route-seeded DYNAMIC *(LegacyPs2GsTextureContext+0x178) count=*(LegacyPs2GsTextureContext+0x174) | CHAIN LegacyPs2GsTextureContext +0x178 base+0x0	
+0x002F7380	FUN_002f7380	0x002F74C0	0x4	r	movzx ecx, word ptr [r9 - 0x19]	route-seeded DYNAMIC *(LegacyPs2GsTextureContext+0x178) count=*(LegacyPs2GsTextureContext+0x174) | CHAIN LegacyPs2GsTextureContext +0x178 base+0x1D	
+0x002F7380	FUN_002f7380	0x002F74C9	0xC	r	test dword ptr [r9 - 0x11], esi	route-seeded DYNAMIC *(LegacyPs2GsTextureContext+0x178) count=*(LegacyPs2GsTextureContext+0x174) | CHAIN LegacyPs2GsTextureContext +0x178 base+0x1D	
+0x002F7380	FUN_002f7380	0x002F74C5	0x1D	r	movzx ebx, byte ptr [r9]	route-seeded DYNAMIC *(LegacyPs2GsTextureContext+0x178) count=*(LegacyPs2GsTextureContext+0x174) | CHAIN LegacyPs2GsTextureContext +0x178 base+0x1D	

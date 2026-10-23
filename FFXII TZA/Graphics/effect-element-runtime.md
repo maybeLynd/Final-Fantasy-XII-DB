@@ -566,7 +566,7 @@ instance.
 `0x00441970(emitter)` returns when the emitter has no elements. Unless the instance's flag byte
 `+0x36A` has bit 0, only emitters whose definition type is `0x40`, `0x41`, `0xA1`, `0xA2`, `0xA5`
 or `0xD0` are drawn (`0x0044198E`–`0x004419CE`; the table is
-`effect-element-runtime-effect-kind-441970.tsv`). It sets the pass nibble `0x02AEE910`: definition
+[`effect-element-runtime-effect-kind-441970.tsv`](effect-element-runtime-effect-kind-441970.tsv)). It sets the pass nibble `0x02AEE910`: definition
 byte `+0x4C` when `+0x4A` is `0x40` or more, else 8 (`0x004419F5`–`0x00441A0E`).
 
 It then calls `0x002F4020(element, emitter)` for each element, forward from the head, or backward from
@@ -676,7 +676,7 @@ minus 1 over 14 cases (`0x002F3384`–`0x002F33EA`, `0x003A575E`–`0x003A5797`)
 14-case switch on the same byte (`0x003A4303`–`0x003A4319`).
 
 Their arms are in
-`effect-element-runtime-switch-family-3a42-3a56.tsv`; `effect-element-runtime-switch-family-frontier-decode.tsv`
+[`effect-element-runtime-switch-family-3a42-3a56.tsv`](effect-element-runtime-switch-family-3a42-3a56.tsv); [`effect-element-runtime-switch-family-frontier-decode.tsv`](effect-element-runtime-switch-family-frontier-decode.tsv)
 decodes `0x00442170` and `0x00442460` (the emitter-record subtype switches) and the record-store
 fronts `0x00500980` / `0x00500850`, together with dispatchers outside the effect code.
 

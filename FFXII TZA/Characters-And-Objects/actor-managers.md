@@ -218,10 +218,12 @@ Struct ActorManagerSlotEntry size=`0x18`:
 
 ## Operations
 
-- The four access tables beside this page (`actor-managers-accesses.tsv`, `actor-managers-rip-accesses.tsv`,
-  `actor-managers-slot-accesses.tsv`, `actor-managers-entry-accesses.tsv`) list every reach into a
-  slot through the bound-slot pointer, through a literal slot address, through the array route and
-  into the entry arrays; every row's instruction was checked against the executable.
+- Four access tables beside this page list every reach into a slot; every row's instruction was checked against
+  the executable:
+  - [`actor-managers-accesses.tsv`](actor-managers-accesses.tsv): through the bound-slot pointer;
+  - [`actor-managers-rip-accesses.tsv`](actor-managers-rip-accesses.tsv): through a literal slot address;
+  - [`actor-managers-slot-accesses.tsv`](actor-managers-slot-accesses.tsv): through the array route;
+  - [`actor-managers-entry-accesses.tsv`](actor-managers-entry-accesses.tsv): into the entry arrays.
 - The world tick runs the field pass per slot, reads `+0x201` to decide which slots get a further
   sub-step, and the pass reads `+0x10`, `+0x11`, `+0x12`, `+0x13`, `+0x17`, `+0x20` and `+0x200`
   ([field runtime](field-runtime.md)).

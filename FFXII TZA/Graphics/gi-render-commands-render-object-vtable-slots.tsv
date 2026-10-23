@@ -1,0 +1,30 @@
+class	vtable	slot	body	size	role	cite
+CharacterRenderObject	0x00903B68	1	0x001F89B0	42	calls 0x0018B4E0,0x0018AFF0	0x001F89BF
+CharacterRenderObject	0x00903B68	2	0x001F6E70	2328	calls 0x001F5B80,0x001BC000,0x001BAFF0 +9	0x001F6EA3
+CharacterRenderObject	0x00903B68	3	0x001F6D60	149	calls 0x001F86F0,0x0018B4E0,0x0018B0B0 +1	0x001F6D7A
+CharacterRenderObject	0x00903B68	4	0x001FB070	7	leaf mov       byte ptr [rcx + 0x498], dl	0x001FB070
+CharacterRenderObject	0x00903B68	5	0x001F86E0	8	leaf movzx     eax, byte ptr [rcx + 0x498]	0x001F86E0
+CharacterRenderObject	0x00903B68	6	0x001F9FF0	161	leaf push      rbx	0x001F9FF0
+CharacterRenderObject	0x00903B68	7	0x001FB080	147	calls 0x001EF060	0x001FB0DB
+CharacterRenderObject	0x00903B68	9	0x001F9A80	159	calls 0x00189120	0x001F9ABA
+CharacterRenderObject	0x00903B68	10	0x001F8C00	97	leaf movzx     eax, byte ptr [rcx + 0x4b4]	0x001F8C00
+CharacterRenderObject	0x00903B68	11	0x001F8BE0	27	leaf mulss     xmm1, dword ptr [rip + 0x6ccf4c]	0x001F8BE0
+CharacterRenderObject	0x00903B68	12	0x001F8C70	160	leaf movzx     eax, byte ptr [rcx + 0x4b4]	0x001F8C70
+CharacterRenderObject	0x00903B68	14	0x001FA0A0	60	leaf movzx     eax, byte ptr [rcx + 0x4b4]	0x001FA0A0
+CharacterRenderObject	0x00903B68	15	0x001F9A60	7	leaf mov       dword ptr [rcx + 0x49c], edx	0x001F9A60
+CharacterRenderObject	0x00903B68	16	0x001FA3D0	1073	calls 0x001AD440,0x001ABF50,0x00358330 +7	0x001FA41B
+CharacterRenderObject	0x00903B68	17	0x001F5C10	15	leaf mov       rax, qword ptr [rcx + 0x390]	0x001F5C10
+CharacterRenderObject	0x00903B68	18	0x001FAFB0	188	calls 0x00808C40,0x001F55F0	0x001FB044
+CharacterRenderObject	0x00903B68	19	0x001F8D10	3397	calls 0x001945B0,0x00183320,0x001D50D0 +6	0x001F8D9C
+CharacterRenderObject	0x00903B68	20	0x001FA0E0	189	calls 0x001945B0	0x001FA12E
+CharacterRenderObject	0x00903B68	21	0x001FA810	7	leaf mov       byte ptr [rcx + 0x4b6], dl	0x001FA810
+CharacterRenderObject	0x00903B68	22	0x001F9FE0	9	leaf movss     dword ptr [rcx + 0x4b8], xmm1	0x001F9FE0
+CharacterRenderObject	0x00903B68	23	0x001F9A70	9	leaf movss     dword ptr [rcx + 0x4bc], xmm1	0x001F9A70
+CharacterRenderObject	0x00903B68	24	0x001FA1A0	547	calls 0x001BC000,0x00189120,0x00186A80 +3	0x001FA1BD
+CharacterRenderObject	0x00903B68	25	0x001FAD40	7	leaf mov       dword ptr [rcx + 0x4b0], edx	0x001FAD40
+CharacterRenderObject	0x00903B68	26	0x001FAA10	812	leaf mov       qword ptr [rsp + 0x18], rbx	0x001FAA10
+CharacterRenderObject	0x00903B68	27	0x001F86D0	8	leaf movzx     eax, byte ptr [rcx + 0x4b4]	0x001F86D0
+CharacterRenderObject	0x00903B68	28	0x001F6E50	14	leaf mov       eax, edx	0x001F6E50
+CharacterRenderObject	0x00903B68	30	0x001FA820	488	calls 0x001F0850,0x001945B0	0x001FA8D3
+MapRenderObject	0x009012C0	1	0x001E5270	31	calls 0x0018B4E0,0x0018AFF0	0x001E5279
+RenderObject	0x00906D10	0	0x00212C90	43	dtor + free	0x00212CAD

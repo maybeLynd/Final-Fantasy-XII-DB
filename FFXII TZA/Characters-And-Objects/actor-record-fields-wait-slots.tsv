@@ -1,0 +1,15 @@
+function	name	site	disp	kind	instruction	route	note
+0x0025D460	ScriptExecutionState_ResetCore	0x0025D462	0x0	w	mov qword ptr [rcx], rax	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0 zeroclear	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DFC6	0x0	addr	lea rsi, [rax + rcx*8]	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBDEE	0x0	addr	lea rdi, [rax + r8*8]	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBE09	0x0	w	mov qword ptr [rdi], rax	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025D460	ScriptExecutionState_ResetCore	0x0025D465	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0 zeroclear	
+0x0025D460	ScriptExecutionState_ResetCore	0x0025D469	0x10	w	mov dword ptr [rcx + 0x10], eax	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025D460	ScriptExecutionState_ResetCore	0x0025D46C	0x14	w	mov word ptr [rcx + 0x14], ax	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DFF0	0x14	r	movzx eax, byte ptr [rsi + 0x14]	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBE0C	0x14	w	mov byte ptr [rdi + 0x14], 1	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025D460	ScriptExecutionState_ResetCore	0x0025D470	0x16	w	mov byte ptr [rcx + 0x16], al	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DFD3	0x16	r	cmp byte ptr [rsi + 0x16], bpl	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DFD9	0x16	w	mov byte ptr [rsi + 0x16], bpl	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DFEC	0x16	w	mov byte ptr [rsi + 0x16], bpl	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E127	0x16	w	mov byte ptr [rsi + 0x16], 1	route-seeded CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8 base+0x0	

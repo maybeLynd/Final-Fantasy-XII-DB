@@ -121,14 +121,14 @@ adds 99 of one id on channel 1, so each member adds 99 of every id of its class.
 
 These member files beside the page are not single-form families:
 
-- `generated-function-families-trivial-global-accessors.tsv`: functions whose whole body is one instruction with one rip-relative operand and `ret`: `lea`, loads and stores of 1, 2, 4 or 8 bytes, and constant stores. The image has 570
+- [`generated-function-families-trivial-global-accessors.tsv`](generated-function-families-trivial-global-accessors.tsv): functions whose whole body is one instruction with one rip-relative operand and `ret`: `lea`, loads and stores of 1, 2, 4 or 8 bytes, and constant stores. The image has 570
   such functions; the list names part of them.
-- `generated-function-families-documented-global-leaf-accessors.tsv`: a list of small bodies, each row naming a target global.
-- `generated-function-families-explained-callee-adapters.tsv`: a list of small adapters, each row naming the function it forwards to.
-- `generated-function-families-generated-families-installed-classes.tsv`: for the vtable-installing families, the class whose vtable each member installs. Each
+- [`generated-function-families-documented-global-leaf-accessors.tsv`](generated-function-families-documented-global-leaf-accessors.tsv): a list of small bodies, each row naming a target global.
+- [`generated-function-families-explained-callee-adapters.tsv`](generated-function-families-explained-callee-adapters.tsv): a list of small adapters, each row naming the function it forwards to.
+- [`generated-function-families-generated-families-installed-classes.tsv`](generated-function-families-generated-families-installed-classes.tsv): for the vtable-installing families, the class whose vtable each member installs. Each
   of its 120 rows names the class of the first rip-relative address in the member's body that is
   preceded by a valid RTTI locator.
-- `generated-function-families-generated-families-shared-implementations.tsv`: for each family, the functions every member calls.
+- [`generated-function-families-generated-families-shared-implementations.tsv`](generated-function-families-generated-families-shared-implementations.tsv): for each family, the functions every member calls.
   The 15 rows for families on this page each name a function every member of that family calls;
   the other 8 rows are for the Lua and PhyreEngine reflection families on other pages.
 

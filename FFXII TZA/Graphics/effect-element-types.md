@@ -27,7 +27,7 @@ The tables give 65 types an arm, with 248 distinct handlers. Types `0x00`–`0x0
 and `0x93`, are main-range types (47);
 `0x42`, `0x68`–`0x6B`, `0x70`–`0x74`, `0xA3`, `0xA4` and `0xA6`–`0xAB` are reached only through the
 sub-range tables (18); `0x6C`–`0x6F` have no arm in either range (`0x0043EBF0`, byte map `0x0043ECC4`). The
-full decode is in `effect-element-types-effect-type-methods.tsv`.
+full decode is in [`effect-element-types-effect-type-methods.tsv`](effect-element-types-effect-type-methods.tsv).
 
 Every birth method except `0x70`'s calls the base birth `0x002F2D60`, and every update method except
 `0x70`'s calls the base update `0x002F2530`. Most updates add a type tail: type 1's `0x004424E0` is
@@ -725,11 +725,16 @@ Definition fields the verified draws read:
 | type-`0x05` definitions | 5,204; mesh slots filled at `+0x570`: one in 4,304, two in 898, three in 1, none in 1 |
 | type-`0x05` mesh ids | all 6,103 equal the slot byte of a kind-`0x54` record in the same stream |
 
-The per-type counts are in `effect-element-types-type_census.tsv`, which matches this census row
-for row. `effect-element-types-effect-type-authored-usage.tsv` is an earlier, smaller census whose
-counts this page supersedes. `effect-element-types-effect-mesh-54-records.tsv` (2,252 rows) and
-`effect-element-types-effect-mesh-54-element05.tsv` (5,164 rows) list the mesh records and type-`0x05`
-definitions of the `.efx` files one per row.
+The tables beside this page:
+
+- [`effect-element-types-type_census.tsv`](effect-element-types-type_census.tsv): the per-type counts, matching
+  this census row for row;
+- [`effect-element-types-effect-type-authored-usage.tsv`](effect-element-types-effect-type-authored-usage.tsv): an
+  earlier, smaller census whose counts this page supersedes;
+- [`effect-element-types-effect-mesh-54-records.tsv`](effect-element-types-effect-mesh-54-records.tsv) (2,252
+  rows): the mesh records of the `.efx` files, one per row;
+- [`effect-element-types-effect-mesh-54-element05.tsv`](effect-element-types-effect-mesh-54-element05.tsv) (5,164
+  rows): the type-`0x05` definitions of the `.efx` files, one per row.
 
 ## Operations
 

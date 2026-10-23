@@ -282,10 +282,10 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 | Fact | Value |
 |---|---|
 | span | `0x006DA880` to `0x007911DF` |
-| member lists | `yebis-ppfx-post-effects-members.tsv`, 1,598 functions; `yebis-ppfx-post-effects-unlisted-bodies.tsv`, 732 bodies in the span that the function list does not hold |
+| member lists | [`yebis-ppfx-post-effects-members.tsv`](yebis-ppfx-post-effects-members.tsv), 1,598 functions; [`yebis-ppfx-post-effects-unlisted-bodies.tsv`](yebis-ppfx-post-effects-unlisted-bodies.tsv), 732 bodies in the span that the function list does not hold |
 | source paths | 25 distinct, 299 copies, 363 loading sites; most sites: `GPUDepthOfField.cpp` 75, `GPUPostEffect.cpp` 48, `GPURenderGlare.cpp` 39, `TFXString.cpp` 30 |
 | absolute header path | 12 copies, 6 of them loaded, 20 sites |
-| diagnostic log | 801 call sites, 386 distinct literal strings; listed in `yebis-ppfx-post-effects-diagnostic-strings.tsv` |
+| diagnostic log | 801 call sites, 386 distinct literal strings; listed in [`yebis-ppfx-post-effects-diagnostic-strings.tsv`](yebis-ppfx-post-effects-diagnostic-strings.tsv) |
 | licence dates | all six 0 |
 | calls into the span from outside | the integration functions at `0x006CBD20` to `0x006CC2F0`, static initialisers, exit and unwind code, and seven PhyreEngine calls to `0x0071F970`, a formatted-scan body (`__stdio_common_vsscanf`) the linker placed inside the span |
 

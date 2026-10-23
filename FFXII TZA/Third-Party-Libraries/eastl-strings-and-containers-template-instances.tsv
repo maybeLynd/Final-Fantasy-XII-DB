@@ -1,0 +1,56 @@
+entry	bytes	operation	evidence
+0x001A3190	130	tree node create, 0x40-byte node holding a string at +0x20	allocates through the container allocator at +0x30, slot +0x10; copies the string's allocator (0x001EDF00) and its characters (0x001A4BF0)
+0x001A4650	620	vector insert n, 32-byte vector elements	grows to max(size + n, 2 x size, 1); moves through 0x001A1F00, fills through 0x001A1FC0, frees each old element's buffer through slot +0x18
+0x001A4920	155	tree erase, 0x88-byte nodes	recursive on the left link; frees the string at node +0x68 when its capacity is above 1, then the node through slot +0x18
+0x001A4BF0	155	string construct from a character range	length + 1 below 2 takes 0x02EBA2E0 and 0x02EBA2E1; otherwise allocates length + 1 through slot +0x10; memmove, then the terminator
+0x001A52A0	332	string append a character range	when it does not fit: new capacity 8 while the old is below 9, else twice the old, at least the needed length; memmove twice and frees the old buffer through slot +0x18
+0x001A5810	119	tree clear, 0x28-byte nodes	erases each subtree through 0x00220390, frees nodes through slot +0x18, then points the anchor at +0x08 at itself and clears the root +0x18 and count +0x28
+0x001A6D80	158	vector erase range, 32-byte vector elements	copies the tail down through 0x001A1B70 and frees the buffers of the elements left past the new end
+0x001A94F0	198	vector reserve, 4-byte elements	allocate slot +0x10, memmove, free slot +0x18
+0x001A95C0	234	vector reserve, 32-byte elements copied as plain bytes	allocate slot +0x10, free slot +0x18
+0x001A96B0	182	vector resize, 32-byte vector elements	"grows through 0x001A4650 with an empty element whose allocator is ""EASTL vector""; shrinks through 0x001A6D80"
+0x001A9E50	118	string substring (position, count)	clamps the count to the characters left; copies the allocator (0x001EDF00) and the range (0x001A4BF0)
+0x001AA4F0	125	copy backward, 0x30-byte elements	six bytes, the vector at +0x08 assigned through 0x0019DDD0, the byte at +0x28
+0x001AA570	178	uninitialised move, 32-byte string or vector elements	copies the allocator (0x001EDF00) and swaps the three pointers with the source
+0x001AA630	137	uninitialised copy, 0x30-byte elements	a u32, a u16, the vector at +0x08 copy-constructed through 0x0019D8D0, the byte at +0x28
+0x001AA7D0	100	move constructor, 32-byte string or vector	copies the allocator (0x001EDF00) and swaps the three pointers with the source
+0x001B1A20	228	vector reserve, 0x30-byte elements	allocates and copies through 0x001AD860, frees the old buffer through slot +0x18
+0x001B31E0	163	string concatenation, string plus C string	reserves the combined length (0x001B38B0), then appends both parts (0x001A52A0)
+0x001B3860	71	string copy constructor	copies the allocator (0x001EDF00) and the characters (0x001A4BF0)
+0x001B38B0	131	string construct empty with a reserved capacity	length + 1 below 2 takes 0x02EBA2E0; otherwise allocates through slot +0x10 and writes the terminator
+0x001B4860	196	vector erase range, 0x38-byte elements holding a string at +0x00	copies the tail down through 0x001B3320 and frees each left-over string through slot +0x18
+0x001B8950	372	fill, 0x2A8-byte ChrModel elements: one value assigned to every element of a range	the map at +0x10 assigned through 0x001B9970, then the plain fields, from the same source each time
+0x001B8AD0	486	uninitialised copy, 0x2A8-byte ChrModel elements	writes the ChrModel vtable; the map at +0x10 copy-constructed through 0x001B9020
+0x001B8CC0	453	uninitialised fill n, 0x2A8-byte ChrModel elements	writes the ChrModel vtable; the map at +0x10 copy-constructed through 0x001B9020
+0x001E5290	218	vector resize, 0x220-byte elements	grows through 0x001E1DD0 with a zeroed element; shrinks through 0x001E12C0
+0x001E6FD0	467	template constructor (as 0x001997F0), 16-byte elements	"""EASTL vector"" at +0x00, two ""EASTL set"" trees at +0x20 and +0x58, the lock at +0x90 (0x005CC8A0), the flag at +0xB8; inserts each element's address into the first set (0x00199DB0)"
+0x001FC2E0	52	vector release at +0x08, 4-byte elements	free slot +0x18 of the allocator at +0x20; reached only from the unwind funclet 0x00898AAC
+0x001FC420	339	map operator[], int key at node +0x20, value an EASTL map	"walks from the root +0x18; inserts a default value through 0x001FCCE0 with an allocator named ""EASTL map"""
+0x001FC640	303	map operator[], u32 key at node +0x20, value a vector of 4-byte elements	"inserts a default value through 0x001FD310 with an allocator named ""EASTL vector"""
+0x001FC770	274	tree copy, 0x28-byte nodes with an 8-byte value at +0x20	allocates through slot +0x10 of the allocator at +0x30; copies the colour byte; recursive on the left link, iterative on the right
+0x001FD9A0	189	tree erase, 0x60-byte nodes holding a map at +0x28	clears the inner map's 0x28-byte nodes through 0x00220390 and slot +0x18, then frees the node
+0x001FDAC0	143	tree erase, 0x48-byte nodes holding a vector of 4-byte elements at +0x28	frees the vector through slot +0x18 of its allocator at +0x40, then the node
+0x001FDF90	137	vector resize, 4-byte elements	grows through 0x001FD780 with the value 0; shrinks by moving the end
+0x001AE550	347	map operator[], u32 key at node +0x20, value an EASTL string	"walks from the root +0x18; inserts an empty string (0x02EBA2E0, 0x001A4BF0) with an allocator named ""EASTL basic_string"" through 0x001AEC30; it serves the thread-name map 0x02EB37B8 of 0x008636E0"
+0x001AE6B0	271	tree copy, 0x30-byte nodes with a 16-byte value at +0x20	allocates through slot +0x10 of the allocator at +0x30; copies the colour byte +0x18; recursive on the left link, iterative on the right
+0x001B90F0	368	copy constructor, 0x2A8-byte ChrModel	writes the ChrModel vtable; the map at +0x10 copy-constructed through 0x001B9020; copies the plain fields and the two 0x100-byte blocks at +0xA0 and +0x1A0
+0x001B9260	258	default constructor, 0x2A8-byte ChrModel	"the ChrModel vtable, an empty map at +0x10 with an allocator named ""EASTL map"", zeroed fields and blocks, +0x2A0 = -1, then 0x001BA910"
+0x001B9910	94	destructor, 0x2A8-byte ChrModel	restores the vtable, zeroes +0x58 to +0x97 and destroys the map at +0x10 (0x001BA910, 0x001B9750); reached from the unwind funclets 0x00897AC0 and 0x00897B10
+0x001BBE00	316	vector resize, 0x2A8-byte ChrModel elements	grows through 0x001BA470 with a default element from 0x001B9260; shrinks through 0x001BA990
+0x001BC950	126	copy constructor, an 8-byte key followed by an EASTL list of 32-byte nodes	copies the key and the allocator (0x001EDF00) and the nodes through 0x001BC8C0
+0x001BCE30	372	map operator[], 8-byte key at node +0x20, value an EASTL list	"inserts an empty list with an allocator named ""EASTL list"" through 0x001BD1B0, then frees the temporary lists' 32-byte nodes through slot +0x18"
+0x001BCFB0	138	tree node erase, 0x40-byte nodes holding a list at +0x28	frees the list's 32-byte nodes through slot +0x18 of its allocator at +0x38, then the node through the tree's allocator at +0x30
+0x001BE520	114	copy backward, 0x28-byte string elements with an 8-byte value at +0x20	assigns each string through 0x001A5760 and copies +0x20
+0x001BE5A0	186	uninitialised move, 0x28-byte string elements with an 8-byte value at +0x20	copies the allocator (0x001EDF00), swaps the three pointers with the source and copies +0x20
+0x001C00B0	250	map find, string key at node +0x20 (begin) and +0x28 (end)	walks from the root +0x18 comparing with memcmp over the shorter length, then the lengths; returns the anchor +0x08 for a missing key
+0x001C2070	153	vector destroy, 0x230-byte elements holding an object at +0x108	runs 0x001EA180 on each element's +0x108, then frees the buffer through slot +0x18; also reached from the unwind funclets 0x00897ECE and 0x00897EE1
+0x001C3590	108	uninitialised copy, 16-byte elements	copy-constructs each element through 0x001FE6B0; the JsonBox value code 0x001FE0E0, 0x001FEAE0 and 0x001FFF00 calls it
+0x001E1210	168	copy backward, 0x220-byte elements copied as plain words	64 bytes at a time; 0x001E1DD0 calls it
+0x001E1370	195	uninitialised copy, 0x220-byte elements copied as plain words	64 bytes at a time; 0x001E1DD0 calls it
+0x001F4A80	167	copy backward, 0x318-byte elements copied as plain words	64 bytes at a time; 0x001F5330 calls it
+0x001F4C00	80	uninitialised copy, 0x18-byte CharacterOrderedObject elements	writes the OrderedObject and then the CharacterOrderedObject vtable and copies the two fields; 0x001F57E0 calls it
+0x001F57E0	928	vector insert n, 0x18-byte CharacterOrderedObject elements	grows to max(size + n, 2 x size, 1) through slot +0x10, copies through 0x001F4C00 and the inline vtable writes, calls each old element's slot 0 and frees the old buffer through slot +0x18
+0x001F8A70	182	vector resize, 0x18-byte CharacterOrderedObject elements	grows through 0x001F57E0 with a default element from 0x002152E0 (destroyed through 0x00215310); shrinks through 0x001E3D80
+0x001FB360	122	"map constructor, empty, allocator named ""EASTL map"""	points the anchor at +0x10 at itself; 0x001ADD30 and 0x001B1B10 call it
+0x001FB770	133	map store, int key c x 2 + d at node +0x20, pointer value at +0x28	inserts a node through 0x001FB470 when the key is missing, then stores the value; 0x001B20B0 calls it
+0x0021A920	201	map copy constructor, 0x30-byte nodes	copies the allocator (0x001EDF00) and the tree through 0x001AE6B0, then finds the leftmost and rightmost nodes and copies the count +0x28

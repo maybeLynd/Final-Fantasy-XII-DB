@@ -358,8 +358,9 @@ Counted in the decompiled `us` scripts (1,114 files):
 | `behindtoeventcamera` | 2 calls |
 | shake verbs | `camerashakestart` 328, `camerashakeclear` 315, `camerashakestop` 180 |
 
-The shake census by verb, channel and id is `scripted-camera-camerashake-census.tsv` beside this
-page.
+[`scripted-camera-camerashake-census.tsv`](scripted-camera-camerashake-census.tsv) counts the shake calls by verb, and
+[`scripted-camera-camerashake-channels.tsv`](scripted-camera-camerashake-channels.tsv) by start channel and bank index, with
+the scripts that make them.
 
 ## Modding notes
 

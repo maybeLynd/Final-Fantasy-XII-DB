@@ -107,7 +107,7 @@ and registers `0x008A8050`.
 
 The compiler emits the string, vector and tree operations once for each element type, so the same
 operation appears many times with different element sizes. 55 such bodies are listed in
-`eastl-strings-and-containers-template-instances.tsv` with the operation and the element or node
+[`eastl-strings-and-containers-template-instances.tsv`](eastl-strings-and-containers-template-instances.tsv) with the operation and the element or node
 size of each; the other 76 are on
 [object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).
 
@@ -191,11 +191,11 @@ Map container, as `0x001A3380` uses it:
 
 - [Screen layouts](../Menus-And-HUD/screen-layouts.md): JSON files parsed through `0x00200BF0` into JsonBox
   values.
-- `eastl-strings-and-containers-string-static-initialisers.tsv`,
-  `eastl-strings-and-containers-basicstring-variant-initialisers.tsv` and
-  `eastl-strings-and-containers-container-static-initialisers.tsv`: the start-up initialisers.
-- `eastl-strings-and-containers-ordered-container-runtime.tsv` and
-  `eastl-strings-and-containers-ordered-container-runtime-callers.tsv`: the tree runtime and its
+- [`eastl-strings-and-containers-string-static-initialisers.tsv`](eastl-strings-and-containers-string-static-initialisers.tsv),
+  [`eastl-strings-and-containers-basicstring-variant-initialisers.tsv`](eastl-strings-and-containers-basicstring-variant-initialisers.tsv) and
+  [`eastl-strings-and-containers-container-static-initialisers.tsv`](eastl-strings-and-containers-container-static-initialisers.tsv): the start-up initialisers.
+- [`eastl-strings-and-containers-ordered-container-runtime.tsv`](eastl-strings-and-containers-ordered-container-runtime.tsv) and
+  [`eastl-strings-and-containers-ordered-container-runtime-callers.tsv`](eastl-strings-and-containers-ordered-container-runtime-callers.tsv): the tree runtime and its
   callers.
 - `eastl-strings-and-containers-template-instances.tsv`: container code instantiated per element
   type.

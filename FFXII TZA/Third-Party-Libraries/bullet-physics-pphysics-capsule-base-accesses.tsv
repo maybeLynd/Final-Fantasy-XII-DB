@@ -1,0 +1,21 @@
+function	name	site	disp	kind	instruction	route	note
+0x006932A0	FUN_006932a0	0x006932C0	0x0	w	mov qword ptr [rcx], rax	vtable-seeded 0x00D799E8	
+0x006932A0	FUN_006932a0	0x006932C3	0x80	r	mov rcx, qword ptr [rcx + 0x80]	vtable-seeded 0x00D799E8	
+0x006932A0	FUN_006932a0	0x006932DC	0x80	w	mov qword ptr [rbx + 0x80], rax	vtable-seeded 0x00D799E8	
+0x006932A0	FUN_006932a0	0x006932E3	0x68	w	mov qword ptr [rbx + 0x68], rax	vtable-seeded 0x00D799E8	
+0x006932A0	FUN_006932a0	0x006932EE	0x0	w	mov qword ptr [rbx], rax	vtable-seeded 0x00D799E8	
+0x0069F8E0	FUN_0069f8e0	0x0069F8F2	0x80	r	cmp qword ptr [rcx + 0x80], 0	vtable-seeded 0x00D799E8	
+0x0069F8E0	FUN_0069f8e0	0x0069F913	0x78	r	movss xmm1, dword ptr [rbx + 0x78]	vtable-seeded 0x00D799E8	
+0x0069F8E0	FUN_0069f8e0	0x0069F920	0x70	r	movss xmm0, dword ptr [rbx + 0x70]	vtable-seeded 0x00D799E8	
+0x0069F8E0	FUN_0069f8e0	0x0069F94E	0x80	w	mov qword ptr [rbx + 0x80], rax	vtable-seeded 0x00D799E8	
+0x0069F8E0	FUN_0069f8e0	0x0069F961	0x80	r	mov rax, qword ptr [rbx + 0x80]	vtable-seeded 0x00D799E8	
+0x0069F8E0	FUN_0069f8e0	0x0069F968	0x68	w	mov qword ptr [rbx + 0x68], rax	vtable-seeded 0x00D799E8	
+0x006A0540	FUN_006a0540	0x006A055C	0x0	r	mov rax, qword ptr [rcx]	vtable-seeded 0x00D799E8	
+0x006A0540	FUN_006a0540	0x006A0575	0x50	r	movss xmm0, dword ptr [rbx + 0x50]	vtable-seeded 0x00D799E8	
+0x006A0540	FUN_006a0540	0x006A057F	0x54	r	movss xmm1, dword ptr [rbx + 0x54]	vtable-seeded 0x00D799E8	
+0x006A0540	FUN_006a0540	0x006A0584	0x80	r	mov rcx, qword ptr [rbx + 0x80]	vtable-seeded 0x00D799E8	
+0x006A0540	FUN_006a0540	0x006A0591	0x58	r	movss xmm0, dword ptr [rbx + 0x58]	vtable-seeded 0x00D799E8	
+0x006A0540	FUN_006a0540	0x006A05BF	0x80	r	mov r8, qword ptr [rbx + 0x80]	vtable-seeded 0x00D799E8	
+0x006A2880	FUN_006a2880	0x006A2889	0x80	r	mov rcx, qword ptr [rcx + 0x80]	vtable-seeded 0x00D799E8	
+0x006A2880	FUN_006a2880	0x006A28A1	0x68	w	mov qword ptr [rbx + 0x68], rax	vtable-seeded 0x00D799E8	
+0x006A2880	FUN_006a2880	0x006A28A5	0x80	w	mov qword ptr [rbx + 0x80], rax	vtable-seeded 0x00D799E8	

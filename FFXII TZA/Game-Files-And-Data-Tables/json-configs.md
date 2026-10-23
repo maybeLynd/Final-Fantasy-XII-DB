@@ -58,8 +58,8 @@ when the entry lacks them: `eyeVfxZBias`, `lightAmbientA`, `variation`, `clut`, 
 2. every leaf of every document, keyed by family and the leaf's own name, with the documents that carry it, its
    JSON types and its values;
 3. whether the executable holds the name as a string between two zero bytes, and at which file offset;
-4. the reader columns from `json-config-readers.tsv` beside the script, one row per family and key, written from
-   the loaders' code; the script refuses to write when that table and the files name different keys;
+4. the reader columns, kept with the script as one row per family and key and written from the loaders'
+   code; the script refuses to write when that table and the files name different keys;
 5. for the gallery, every entry's keys as columns, and the model file and bestiary names that
    [Bestiary](../Enemy-Spawning/bestiary.md) lists for the entry's model id.
 

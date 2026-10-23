@@ -340,15 +340,15 @@ One of the player's three frame queues, as the queue functions use it:
 
 | Fact | Value |
 |---|---|
-| libwebm `mkvparser` | `0x007FFBC0` to `0x00808887` and three scattered vtable bodies; 104 functions in `media-decoder-libraries-libwebm-mkvparser.tsv` |
-| libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 116 functions in `media-decoder-libraries-libvpx-vp8-decoder.tsv`, and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in `media-decoder-libraries-libvpx-vp8-control-handlers.tsv` |
-| libvpx kernels | 63 in `media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`, `0x00125740` to `0x00158C09` |
+| libwebm `mkvparser` | `0x007FFBC0` to `0x00808887` and three scattered vtable bodies; 104 functions in [`media-decoder-libraries-libwebm-mkvparser.tsv`](media-decoder-libraries-libwebm-mkvparser.tsv) |
+| libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 116 functions in [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv), and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in [`media-decoder-libraries-libvpx-vp8-control-handlers.tsv`](media-decoder-libraries-libvpx-vp8-control-handlers.tsv) |
+| libvpx kernels | 63 in [`media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`](media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv), `0x00125740` to `0x00158C09` |
 | libvpx kernels nothing reaches | `media-decoder-libraries-libvpx-unreferenced-kernels.tsv`, entries `0x00125770` to `0x00158C97` |
-| libvorbis | `0x008800C0` to `0x008958AF`; 120 functions in `media-decoder-libraries-libvorbis.tsv` |
-| CRI HCA decoder | `0x00121000` to `0x0012573F`; 53 functions in `media-decoder-libraries-cri-hca-decoder.tsv` |
-| Tremor with `vorbisfile` | `0x007F41A0` to `0x007F6FAF` and `0x007F7680` to `0x007FFBBF`; 103 functions in `media-decoder-libraries-tremor-vorbisfile.tsv` |
-| libogg | `framing.c` 22 functions in `media-decoder-libraries-libogg-framing.tsv`; `bitwise.c` 4 in `media-decoder-libraries-libogg-bitwise.tsv` |
-| VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in `media-decoder-libraries-vp8-decoder-instance-accesses.tsv` and `media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv` |
+| libvorbis | `0x008800C0` to `0x008958AF`; 120 functions in [`media-decoder-libraries-libvorbis.tsv`](media-decoder-libraries-libvorbis.tsv) |
+| CRI HCA decoder | `0x00121000` to `0x0012573F`; 53 functions in [`media-decoder-libraries-cri-hca-decoder.tsv`](media-decoder-libraries-cri-hca-decoder.tsv) |
+| Tremor with `vorbisfile` | `0x007F41A0` to `0x007F6FAF` and `0x007F7680` to `0x007FFBBF`; 103 functions in [`media-decoder-libraries-tremor-vorbisfile.tsv`](media-decoder-libraries-tremor-vorbisfile.tsv) |
+| libogg | `framing.c` 22 functions in [`media-decoder-libraries-libogg-framing.tsv`](media-decoder-libraries-libogg-framing.tsv); `bitwise.c` 4 in [`media-decoder-libraries-libogg-bitwise.tsv`](media-decoder-libraries-libogg-bitwise.tsv) |
+| VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in [`media-decoder-libraries-vp8-decoder-instance-accesses.tsv`](media-decoder-libraries-vp8-decoder-instance-accesses.tsv) and [`media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv`](media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv) |
 | encoder text | `mkvmuxer`, "VP8 Encoder" and "VP9" occur zero times |
 
 ## Modding notes

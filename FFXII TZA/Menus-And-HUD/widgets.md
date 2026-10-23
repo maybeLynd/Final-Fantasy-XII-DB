@@ -132,9 +132,12 @@ and clears the bit (`0x00244990`-`0x0024499F`):
 1. Each child's priority, position in the list and pointer go into the scratch table `0x0208ED60`
    (`0x00247A0A`-`0x00247A2D`).
 2. The sort `0x00249CE0` orders them with the comparator `0x00244610`: a larger priority first, equal priorities in
-   their old order. `0x00249CE0` jumps to `0x00249680(scratch, base, size, n, compare)`, an insertion sort that
-   takes each element in turn into `scratch` and moves larger ones up by `size` bytes.
-3. The children are relinked in that order (`0x00247A51`-`0x00247AB1`).
+   their old order. It is a quicksort: while a range holds more than eleven elements, it takes the middle element
+   as the pivot (`0x00249D60`-`0x00249D6D`), partitions the range, keeps the larger part on a stack of ranges in its
+   scratch and goes on with the smaller (`0x00249E40`-`0x00249EA0`).
+3. It then finishes with `0x00249680(scratch, base, size, n, compare)` over the whole array (`0x00249ED6`), an
+   insertion sort that takes each element in turn into `scratch` and moves larger ones up by `size` bytes.
+4. The children are relinked in that order (`0x00247A51`-`0x00247AB1`).
 
 The root draw passes `0x002450B0` and `0x00245110` set `0x0208F564` to 0 and to 1 and walk the tree with `0x00245E60`. A
 widget's own content is drawn only in the pass equal to its `+0x40` bit 24, with bit 28 clear (`0x0024623A`-`0x0024624B`);
@@ -229,7 +232,10 @@ Five UI tick functions (`0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, 
 - A full stack drops its oldest entry (`0x00244650`-`0x002446C2`).
 - `0x00244830` clears the old widget's bit 4 and sends it message 9, then sets the new widget's bit 4 and sends it
   message 8.
-- `0x002448D0(widget)` gives the focus up: when the widget has it, the stack pops and the new top takes it.
+- `0x002448D0(widget)` gives the focus up. When the widget holds the focus (it is compared with `0x0208EBC0` only, not
+  with the stack's top), the top entry is cleared and popped and the new top, or none, takes the focus
+  (`0x002448E6`-`0x00244929`); otherwise its topmost copy is taken out of the stack (`0x00244700(widget, 0)`). It then does
+  the same for each child (`0x00244937`-`0x0024494F`).
 - `0x00244700(widget, all)` takes a widget out of the stack wherever it sits, every copy when `all` is set and the
   topmost one otherwise, then drops entries equal to their neighbour. `0x002446E0(widget)` gives the focus up and
   removes every copy.

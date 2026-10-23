@@ -1,0 +1,539 @@
+slot	dll	import	code_refs	by_mnemonic	status
+0x008C2000	ADVAPI32.dll	CryptAcquireContextW	6	call:6	called
+0x008C2008	ADVAPI32.dll	CryptReleaseContext	3	call:3	called
+0x008C2010	ADVAPI32.dll	CryptGetHashParam	2	call:2	called
+0x008C2018	ADVAPI32.dll	CryptDecrypt	1	call:1	called
+0x008C2020	ADVAPI32.dll	CryptEncrypt	1	call:1	called
+0x008C2028	ADVAPI32.dll	CryptDestroyKey	2	call:2	called
+0x008C2030	ADVAPI32.dll	CryptDeriveKey	2	call:2	called
+0x008C2038	ADVAPI32.dll	CryptDestroyHash	4	call:4	called
+0x008C2040	ADVAPI32.dll	CryptHashData	4	call:4	called
+0x008C2048	ADVAPI32.dll	CryptCreateHash	4	call:4	called
+0x008C2058	D3DCOMPILER_47.dll	D3DReflect	1	jmp:1	jump, 2 E8/E9 callers, 1 data pointers
+0x008C2068	DINPUT8.dll	DirectInput8Create	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2078	IMM32.dll	ImmGetContext	1	jmp:1	jump, 1 E8/E9 callers, 1 data pointers
+0x008C2080	IMM32.dll	ImmSetCompositionWindow	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2088	IMM32.dll	ImmDisableIME	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2098	IPHLPAPI.DLL	GetAdaptersInfo	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C20A8	KERNEL32.dll	GetLastError	29	call:29	called
+0x008C20B0	KERNEL32.dll	InitializeCriticalSection	39	call:38,jmp:1	called
+0x008C20B8	KERNEL32.dll	EnterCriticalSection	286	bnd call:3,call:283	called
+0x008C20C0	KERNEL32.dll	LeaveCriticalSection	321	call:310,jmp:11	called
+0x008C20C8	KERNEL32.dll	InitializeCriticalSectionEx	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C20D0	KERNEL32.dll	DeleteCriticalSection	40	call:17,jmp:23	called
+0x008C20D8	KERNEL32.dll	ReleaseSemaphore	6	call:6	called
+0x008C20E0	KERNEL32.dll	WaitForSingleObject	18	call:17,jmp:1	called
+0x008C20E8	KERNEL32.dll	LoadResource	1	call:1	called
+0x008C20F0	KERNEL32.dll	LockResource	1	call:1	called
+0x008C20F8	KERNEL32.dll	SizeofResource	1	call:1	called
+0x008C2100	KERNEL32.dll	CreateSemaphoreW	4	call:4	called
+0x008C2108	KERNEL32.dll	FindResourceW	1	call:1	called
+0x008C2110	KERNEL32.dll	GetUserDefaultLangID	1	call:1	called
+0x008C2118	KERNEL32.dll	GlobalMemoryStatusEx	2	call:2	called
+0x008C2120	KERNEL32.dll	OutputDebugStringA	150	call:150	called
+0x008C2128	KERNEL32.dll	FreeLibrary	4	call:4	called
+0x008C2130	KERNEL32.dll	GetProcAddress	51	call:51	called
+0x008C2138	KERNEL32.dll	LoadLibraryW	3	call:3	called
+0x008C2140	KERNEL32.dll	ReadFile	3	call:3	called
+0x008C2148	KERNEL32.dll	SetEndOfFile	1	call:1	called
+0x008C2150	KERNEL32.dll	SetFilePointer	2	call:1,jmp:1	called
+0x008C2158	KERNEL32.dll	WriteFile	1	call:1	called
+0x008C2160	KERNEL32.dll	GetModuleFileNameA	3	call:3	called
+0x008C2168	KERNEL32.dll	LoadLibraryExA	1	call:1	called
+0x008C2170	KERNEL32.dll	RtlCaptureContext	4	call:4	called
+0x008C2178	KERNEL32.dll	CreateFileA	2	call:2	called
+0x008C2180	KERNEL32.dll	IsDebuggerPresent	5	call:5	called
+0x008C2188	KERNEL32.dll	QueryPerformanceCounter	6	call:6	called
+0x008C2190	KERNEL32.dll	QueryPerformanceFrequency	2	call:2	called
+0x008C2198	KERNEL32.dll	SetEvent	11	call:10,jmp:1	called
+0x008C21A0	KERNEL32.dll	ResetEvent	7	call:6,jmp:1	called
+0x008C21A8	KERNEL32.dll	CreateEventA	1	call:1	called
+0x008C21B0	KERNEL32.dll	Sleep	17	call:16,jmp:1	called
+0x008C21B8	KERNEL32.dll	GetCurrentProcess	10	call:10	called
+0x008C21C0	KERNEL32.dll	GetCurrentProcessId	2	call:2	called
+0x008C21C8	KERNEL32.dll	CreateThread	5	call:5	called
+0x008C21D0	KERNEL32.dll	GetCurrentThread	4	call:3,jmp:1	called
+0x008C21D8	KERNEL32.dll	GetCurrentThreadId	10	call:9,jmp:1	called
+0x008C21E0	KERNEL32.dll	SetThreadPriority	10	call:10	called
+0x008C21E8	KERNEL32.dll	GetExitCodeThread	1	call:1	called
+0x008C21F0	KERNEL32.dll	GetLocalTime	1	call:1	called
+0x008C21F8	KERNEL32.dll	LocalFree	46	call:46	called
+0x008C2200	KERNEL32.dll	SetThreadAffinityMask	6	call:6	called
+0x008C2208	KERNEL32.dll	FormatMessageA	11	call:11	called
+0x008C2210	KERNEL32.dll	CreateSemaphoreA	1	call:1	called
+0x008C2218	KERNEL32.dll	DebugBreak	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C2220	KERNEL32.dll	GetSystemInfo	3	call:3	called
+0x008C2228	KERNEL32.dll	GetTickCount	1	call:1	called
+0x008C2230	KERNEL32.dll	GetProcessAffinityMask	2	call:2	called
+0x008C2238	KERNEL32.dll	GetCommandLineW	1	call:1	called
+0x008C2240	KERNEL32.dll	CreateDirectoryW	4	call:4	called
+0x008C2248	KERNEL32.dll	GetFileAttributesW	6	call:6	called
+0x008C2250	KERNEL32.dll	SetUnhandledExceptionFilter	4	call:3,jmp:1	called
+0x008C2258	KERNEL32.dll	CreateMutexW	1	call:1	called
+0x008C2260	KERNEL32.dll	ExitProcess	1	call:1	called
+0x008C2268	KERNEL32.dll	CreateProcessA	1	call:1	called
+0x008C2270	KERNEL32.dll	SetPriorityClass	1	call:1	called
+0x008C2278	KERNEL32.dll	GetProcessId	1	call:1	called
+0x008C2280	KERNEL32.dll	GetSystemTime	1	call:1	called
+0x008C2288	KERNEL32.dll	GetVersionExA	1	call:1	called
+0x008C2290	KERNEL32.dll	GetModuleHandleA	4	call:4	called
+0x008C2298	KERNEL32.dll	GlobalAlloc	1	call:1	called
+0x008C22A0	KERNEL32.dll	GlobalLock	2	call:2	called
+0x008C22A8	KERNEL32.dll	GlobalUnlock	2	call:2	called
+0x008C22B0	KERNEL32.dll	GetProcessWorkingSetSize	1	call:1	called
+0x008C22B8	KERNEL32.dll	RaiseException	3	call:3	called
+0x008C22C0	KERNEL32.dll	SetThreadExecutionState	2	call:2	called
+0x008C22C8	KERNEL32.dll	FormatMessageW	1	call:1	called
+0x008C22D0	KERNEL32.dll	LoadLibraryA	1	call:1	called
+0x008C22D8	KERNEL32.dll	WideCharToMultiByte	2	call:2	called
+0x008C22E0	KERNEL32.dll	SetThreadUILanguage	9	jmp:9	jump, 0 E8/E9 callers, 0 data pointers
+0x008C22E8	KERNEL32.dll	CreateEventW	2	call:2	called
+0x008C22F0	KERNEL32.dll	InitializeSRWLock	5	call:5	called
+0x008C22F8	KERNEL32.dll	ReleaseSRWLockExclusive	15	call:13,jmp:2	called
+0x008C2300	KERNEL32.dll	ReleaseSRWLockShared	4	call:4	called
+0x008C2308	KERNEL32.dll	AcquireSRWLockExclusive	11	call:11	called
+0x008C2310	KERNEL32.dll	AcquireSRWLockShared	4	call:4	called
+0x008C2318	KERNEL32.dll	WaitForMultipleObjectsEx	1	call:1	called
+0x008C2320	KERNEL32.dll	CreateEventExW	4	call:4	called
+0x008C2328	KERNEL32.dll	SuspendThread	1	call:1	called
+0x008C2330	KERNEL32.dll	ResumeThread	4	call:4	called
+0x008C2338	KERNEL32.dll	TryEnterCriticalSection	9	call:9	called
+0x008C2340	KERNEL32.dll	GetNativeSystemInfo	1	call:1	called
+0x008C2348	KERNEL32.dll	LocalAlloc	16	call:16	called
+0x008C2350	KERNEL32.dll	GetSystemDirectoryW	4	call:4	called
+0x008C2358	KERNEL32.dll	SetLastError	19	call:19	called
+0x008C2360	KERNEL32.dll	GetModuleHandleW	2	call:2	called
+0x008C2368	KERNEL32.dll	LoadLibraryExW	12	call:11,jmp:1	called
+0x008C2370	KERNEL32.dll	GetFullPathNameW	2	call:2	called
+0x008C2378	KERNEL32.dll	VerifyVersionInfoW	1	call:1	called
+0x008C2380	KERNEL32.dll	VerSetConditionMask	3	call:3	called
+0x008C2388	KERNEL32.dll	OutputDebugStringW	1	call:1	called
+0x008C2390	KERNEL32.dll	lstrcatW	1	call:1	called
+0x008C2398	KERNEL32.dll	InitializeSListHead	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C23A0	KERNEL32.dll	GetSystemTimeAsFileTime	1	call:1	called
+0x008C23A8	KERNEL32.dll	GetStartupInfoW	1	call:1	called
+0x008C23B0	KERNEL32.dll	IsProcessorFeaturePresent	1	jmp:1	jump, 3 E8/E9 callers, 1 data pointers
+0x008C23B8	KERNEL32.dll	TerminateProcess	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C23C0	KERNEL32.dll	UnhandledExceptionFilter	2	call:2	called
+0x008C23C8	KERNEL32.dll	RtlVirtualUnwind	3	call:3	called
+0x008C23D0	KERNEL32.dll	RtlLookupFunctionEntry	3	call:3	called
+0x008C23D8	KERNEL32.dll	WaitForSingleObjectEx	1	call:1	called
+0x008C23E0	KERNEL32.dll	CloseHandle	21	call:20,jmp:1	called
+0x008C23E8	KERNEL32.dll	CopyFileW	3	call:3	called
+0x008C23F0	KERNEL32.dll	GetTempPathW	1	call:1	called
+0x008C23F8	KERNEL32.dll	SetFileAttributesW	3	call:3	called
+0x008C2400	KERNEL32.dll	TerminateThread	2	call:2	called
+0x008C2408	KERNEL32.dll	ExitThread	1	call:1	called
+0x008C2410	KERNEL32.dll	SetProcessWorkingSetSize	1	call:1	called
+0x008C2420	MSVCP140.dll	?_Incref@facet@locale@std@@UEAAXXZ	1	jmp:1	jump, 0 E8/E9 callers, 1 data pointers
+0x008C2428	MSVCP140.dll	?_Decref@facet@locale@std@@UEAAPEAV_Facet_base@3@XZ	1	jmp:1	jump, 0 E8/E9 callers, 1 data pointers
+0x008C2430	MSVCP140.dll	?_Xregex_error@std@@YAXW4error_type@regex_constants@1@@Z	31	call:31	called
+0x008C2438	MSVCP140.dll	?tolower@?$ctype@D@std@@QEBAPEBDPEADPEBD@Z	2	call:2	called
+0x008C2440	MSVCP140.dll	?tolower@?$ctype@D@std@@QEBADD@Z	10	call:10	called
+0x008C2448	MSVCP140.dll	?_Init@locale@std@@CAPEAV_Locimp@12@_N@Z	1	call:1	called
+0x008C2450	MSVCP140.dll	??1facet@locale@std@@MEAA@XZ	1	call:1	called
+0x008C2458	MSVCP140.dll	??0facet@locale@std@@IEAA@_K@Z	1	call:1	called
+0x008C2460	MSVCP140.dll	??1_Locinfo@std@@QEAA@XZ	2	call:2	called
+0x008C2468	MSVCP140.dll	??0_Locinfo@std@@QEAA@PEBD@Z	1	call:1	called
+0x008C2470	MSVCP140.dll	_Strxfrm	1	call:1	called
+0x008C2478	MSVCP140.dll	_Strcoll	1	call:1	called
+0x008C2480	MSVCP140.dll	_Getcoll	1	call:1	called
+0x008C2488	MSVCP140.dll	?seekpos@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA?AV?$fpos@U_Mbstatet@@@2@V32@H@Z	1	jmp:1	jump, 0 E8/E9 callers, 4 data pointers
+0x008C2490	MSVCP140.dll	?seekoff@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA?AV?$fpos@U_Mbstatet@@@2@_JHH@Z	1	jmp:1	jump, 0 E8/E9 callers, 4 data pointers
+0x008C2498	MSVCP140.dll	?pbackfail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHH@Z	1	jmp:1	jump, 0 E8/E9 callers, 4 data pointers
+0x008C24A0	MSVCP140.dll	?setw@std@@YA?AU?$_Smanip@_J@1@_J@Z	1	call:1	called
+0x008C24A8	MSVCP140.dll	?putback@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z	7	call:7	called
+0x008C24B0	MSVCP140.dll	?peek@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAHXZ	5	call:5	called
+0x008C24B8	MSVCP140.dll	?get@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@AEAD@Z	25	call:25	called
+0x008C24C0	MSVCP140.dll	??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAN@Z	1	call:1	called
+0x008C24C8	MSVCP140.dll	??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z	1	call:1	called
+0x008C24D0	MSVCP140.dll	??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAVios_base@1@AEAV21@@Z@Z	2	call:2	called
+0x008C24D8	MSVCP140.dll	?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@PEAV32@@Z	11	call:11	called
+0x008C24E0	MSVCP140.dll	?clear@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z	2	call:2	called
+0x008C24E8	MSVCP140.dll	?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ	1	jmp:1	jump, 0 E8/E9 callers, 5 data pointers
+0x008C24F0	MSVCP140.dll	?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ	1	jmp:1	jump, 0 E8/E9 callers, 5 data pointers
+0x008C24F8	MSVCP140.dll	?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAPEAV12@PEAD_J@Z	1	jmp:1	jump, 0 E8/E9 callers, 5 data pointers
+0x008C2500	MSVCP140.dll	?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAXAEBVlocale@2@@Z	1	jmp:1	jump, 0 E8/E9 callers, 5 data pointers
+0x008C2508	MSVCP140.dll	?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ	1	jmp:1	jump, 0 E8/E9 callers, 5 data pointers
+0x008C2510	MSVCP140.dll	?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ	1	jmp:1	jump, 0 E8/E9 callers, 5 data pointers
+0x008C2518	MSVCP140.dll	??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ	10	call:2,jmp:8	called
+0x008C2520	MSVCP140.dll	??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z	7	call:7	called
+0x008C2528	MSVCP140.dll	??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z	5	call:5	called
+0x008C2530	MSVCP140.dll	?id@?$ctype@D@std@@2V0locale@2@A	1	mov:1	other operand
+0x008C2538	MSVCP140.dll	??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAH@Z	2	call:2	called
+0x008C2540	MSVCP140.dll	?_Ipfx@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA_N_N@Z	1	call:1	called
+0x008C2548	MSVCP140.dll	??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ	2	jmp:2	jump, 0 E8/E9 callers, 5 data pointers
+0x008C2550	MSVCP140.dll	??0?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z	2	call:2	called
+0x008C2558	MSVCP140.dll	?read@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEAD_J@Z	5	call:5	called
+0x008C2560	MSVCP140.dll	??_D?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAXXZ	2	call:1,jmp:1	called
+0x008C2568	MSVCP140.dll	?overflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHH@Z	1	jmp:1	jump, 0 E8/E9 callers, 1 data pointers
+0x008C2570	MSVCP140.dll	?underflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ	1	jmp:1	jump, 0 E8/E9 callers, 1 data pointers
+0x008C2578	MSVCP140.dll	_Xtime_get_ticks	1	call:1	called
+0x008C2580	MSVCP140.dll	?id@?$collate@D@std@@2V0locale@2@A	1	mov:1	other operand
+0x008C2588	MSVCP140.dll	?snextc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ	1	call:1	called
+0x008C2590	MSVCP140.dll	?sgetc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ	1	call:1	called
+0x008C2598	MSVCP140.dll	?getloc@ios_base@std@@QEBA?AVlocale@2@XZ	1	call:1	called
+0x008C25A0	MSVCP140.dll	?_Getcat@?$ctype@D@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z	1	call:1	called
+0x008C25A8	MSVCP140.dll	?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A	1	mov:1	other operand
+0x008C25B0	MSVCP140.dll	?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z	1	jmp:1	jump, 0 E8/E9 callers, 6 data pointers
+0x008C25B8	MSVCP140.dll	?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z	1	jmp:1	jump, 0 E8/E9 callers, 6 data pointers
+0x008C25C0	MSVCP140.dll	?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ	1	jmp:1	jump, 0 E8/E9 callers, 6 data pointers
+0x008C25C8	MSVCP140.dll	?_Fiopen@std@@YAPEAU_iobuf@@PEBDHH@Z	1	call:1	called
+0x008C25D0	MSVCP140.dll	??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UEAA@XZ	6	call:3,jmp:3	called
+0x008C25D8	MSVCP140.dll	??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z	2	call:2	called
+0x008C25E0	MSVCP140.dll	??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ	10	call:10	called
+0x008C25E8	MSVCP140.dll	??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ	27	call:23,jmp:4	called
+0x008C25F0	MSVCP140.dll	??0_Lockit@std@@QEAA@H@Z	4	call:4	called
+0x008C25F8	MSVCP140.dll	??1_Lockit@std@@QEAA@XZ	6	call:4,jmp:2	called
+0x008C2600	MSVCP140.dll	?uncaught_exception@std@@YA_NXZ	5	call:5	called
+0x008C2608	MSVCP140.dll	?_Xbad_alloc@std@@YAXXZ	23	call:23	called
+0x008C2610	MSVCP140.dll	?_Xinvalid_argument@std@@YAXPEBD@Z	2	call:2	called
+0x008C2618	MSVCP140.dll	?_Xlength_error@std@@YAXPEBD@Z	59	call:59	called
+0x008C2620	MSVCP140.dll	?_Xout_of_range@std@@YAXPEBD@Z	14	call:14	called
+0x008C2628	MSVCP140.dll	??Bid@locale@std@@QEAA_KXZ	4	call:4	called
+0x008C2630	MSVCP140.dll	?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ	4	call:4	called
+0x008C2638	MSVCP140.dll	?always_noconv@codecvt_base@std@@QEBA_NXZ	4	call:4	called
+0x008C2640	MSVCP140.dll	?in@?$codecvt@_WDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEA_W3AEAPEA_W@Z	1	call:1	called
+0x008C2648	MSVCP140.dll	?out@?$codecvt@_WDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEB_W1AEAPEB_WPEAD3AEAPEAD@Z	1	call:1	called
+0x008C2650	MSVCP140.dll	?unshift@?$codecvt@_WDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEAD1AEAPEAD@Z	1	call:1	called
+0x008C2658	MSVCP140.dll	?_Getcat@?$codecvt@_WDU_Mbstatet@@@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z	1	call:1	called
+0x008C2660	MSVCP140.dll	?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z	9	call:7,jmp:2	called
+0x008C2668	MSVCP140.dll	?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z	2	call:2	called
+0x008C2670	MSVCP140.dll	??0?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAA@XZ	2	call:2	called
+0x008C2678	MSVCP140.dll	??1?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@UEAA@XZ	5	call:2,jmp:3	called
+0x008C2680	MSVCP140.dll	?getloc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@QEBA?AVlocale@2@XZ	1	call:1	called
+0x008C2688	MSVCP140.dll	?sputc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@QEAAG_W@Z	2	call:2	called
+0x008C2690	MSVCP140.dll	?sputn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@QEAA_JPEB_W_J@Z	1	call:1	called
+0x008C2698	MSVCP140.dll	?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXXZ	7	call:6,jmp:1	called
+0x008C26A0	MSVCP140.dll	?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z	8	call:8	called
+0x008C26A8	MSVCP140.dll	?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADD@Z	1	call:1	called
+0x008C26B0	MSVCP140.dll	??1?$basic_ios@_WU?$char_traits@_W@std@@@std@@UEAA@XZ	7	call:5,jmp:2	called
+0x008C26B8	MSVCP140.dll	?clear@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z	3	call:3	called
+0x008C26C0	MSVCP140.dll	?setstate@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z	7	call:7	called
+0x008C26C8	MSVCP140.dll	??0?$basic_ios@_WU?$char_traits@_W@std@@@std@@IEAA@XZ	2	call:2	called
+0x008C26D0	MSVCP140.dll	?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ	3	call:3	called
+0x008C26D8	MSVCP140.dll	??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z	9	call:9	called
+0x008C26E0	MSVCP140.dll	?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z	1	call:1	called
+0x008C26E8	MSVCP140.dll	?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ	3	call:3	called
+0x008C26F0	MSVCP140.dll	??0?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAA@PEAV?$basic_streambuf@_WU?$char_traits@_W@std@@@1@_N@Z	1	call:1	called
+0x008C26F8	MSVCP140.dll	??1?$basic_ostream@_WU?$char_traits@_W@std@@@std@@UEAA@XZ	4	call:3,jmp:1	called
+0x008C2700	MSVCP140.dll	?_Osfx@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAXXZ	2	call:2	called
+0x008C2708	MSVCP140.dll	??6?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV01@H@Z	2	call:2	called
+0x008C2710	MSVCP140.dll	?flush@?$basic_ostream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@XZ	1	call:1	called
+0x008C2718	MSVCP140.dll	??0?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAA@PEAV?$basic_streambuf@_WU?$char_traits@_W@std@@@1@_N@Z	1	call:1	called
+0x008C2720	MSVCP140.dll	??1?$basic_istream@_WU?$char_traits@_W@std@@@std@@UEAA@XZ	3	call:2,jmp:1	called
+0x008C2728	MSVCP140.dll	?getline@?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@PEA_W_J@Z	1	call:1	called
+0x008C2730	MSVCP140.dll	?seekg@?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAAAEAV12@_JH@Z	2	call:2	called
+0x008C2738	MSVCP140.dll	?tellg@?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAA?AV?$fpos@U_Mbstatet@@@2@XZ	1	call:1	called
+0x008C2740	MSVCP140.dll	?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z	1	call:1	called
+0x008C2748	MSVCP140.dll	?showmanyc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JXZ	1	jmp:1	jump, 0 E8/E9 callers, 2 data pointers
+0x008C2750	MSVCP140.dll	?xsgetn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEA_W_J@Z	1	jmp:1	jump, 0 E8/E9 callers, 1 data pointers
+0x008C2758	MSVCP140.dll	?xsputn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEB_W_J@Z	1	jmp:1	jump, 0 E8/E9 callers, 1 data pointers
+0x008C2760	MSVCP140.dll	?_BADOFF@std@@3_JB	8	mov:8	other operand
+0x008C2768	MSVCP140.dll	?id@?$codecvt@_WDU_Mbstatet@@@std@@2V0locale@2@A	1	mov:1	other operand
+0x008C2770	MSVCP140.dll	?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A	3	mov:3	other operand
+0x008C2778	MSVCP140.dll	?in@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z	1	call:1	called
+0x008C2780	MSVCP140.dll	?out@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z	1	call:1	called
+0x008C2788	MSVCP140.dll	?unshift@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEAD1AEAPEAD@Z	1	call:1	called
+0x008C2790	MSVCP140.dll	?_Getcat@?$codecvt@DDU_Mbstatet@@@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z	1	call:1	called
+0x008C2798	MSVCP140.dll	??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ	16	call:16	called
+0x008C27A0	MSVCP140.dll	??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ	36	call:16,jmp:20	called
+0x008C27A8	MSVCP140.dll	?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEBA?AVlocale@2@XZ	1	call:1	called
+0x008C27B0	MSVCP140.dll	?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXXZ	6	call:5,jmp:1	called
+0x008C27C0	OLEAUT32.dll	SysAllocString	3	call:3	called
+0x008C27C8	OLEAUT32.dll	SysFreeString	20	call:19,jmp:1	called
+0x008C27D0	OLEAUT32.dll	SysAllocStringLen	9	call:9	called
+0x008C27E0	SHELL32.dll	CommandLineToArgvW	1	call:1	called
+0x008C27E8	SHELL32.dll	SHGetFolderPathW	4	call:4	called
+0x008C27F8	USER32.dll	wsprintfW	1	call:1	called
+0x008C2800	USER32.dll	GetForegroundWindow	6	call:6	called
+0x008C2808	USER32.dll	SendMessageW	2	call:1,jmp:1	called
+0x008C2810	USER32.dll	EnumDisplaySettingsW	1	call:1	called
+0x008C2818	USER32.dll	SystemParametersInfoW	2	call:2	called
+0x008C2820	USER32.dll	PostMessageW	4	call:2,jmp:2	called
+0x008C2828	USER32.dll	GetWindowInfo	1	call:1	called
+0x008C2830	USER32.dll	GetCursorInfo	2	call:2	called
+0x008C2838	USER32.dll	LoadIconA	2	call:2	called
+0x008C2840	USER32.dll	LoadCursorA	1	call:1	called
+0x008C2848	USER32.dll	CallNextHookEx	2	call:1,jmp:1	called
+0x008C2850	USER32.dll	UnhookWindowsHookEx	2	call:2	called
+0x008C2858	USER32.dll	SetWindowsHookExW	2	call:2	called
+0x008C2860	USER32.dll	GetWindow	2	call:2	called
+0x008C2868	USER32.dll	GetWindowThreadProcessId	1	call:1	called
+0x008C2870	USER32.dll	SetParent	1	call:1	called
+0x008C2878	USER32.dll	SetWindowLongPtrA	1	call:1	called
+0x008C2880	USER32.dll	GetWindowLongPtrA	3	call:3	called
+0x008C2888	USER32.dll	SetWindowLongA	3	call:3	called
+0x008C2890	USER32.dll	GetWindowLongA	3	call:3	called
+0x008C2898	USER32.dll	ScreenToClient	1	call:1	called
+0x008C28A0	USER32.dll	ClientToScreen	2	call:2	called
+0x008C28A8	USER32.dll	ClipCursor	3	call:3	called
+0x008C28B0	USER32.dll	GetCursorPos	2	call:2	called
+0x008C28B8	USER32.dll	SetCursorPos	1	call:1	called
+0x008C28C0	USER32.dll	ShowCursor	5	call:5	called
+0x008C28C8	USER32.dll	MessageBoxA	1	call:1	called
+0x008C28D0	USER32.dll	GetWindowRect	5	call:5	called
+0x008C28D8	USER32.dll	ReleaseDC	1	call:1	called
+0x008C28E0	USER32.dll	SetForegroundWindow	1	call:1	called
+0x008C28E8	USER32.dll	SwitchToThisWindow	2	call:1,jmp:1	called
+0x008C28F0	USER32.dll	EmptyClipboard	1	call:1	called
+0x008C28F8	USER32.dll	GetClipboardData	1	call:1	called
+0x008C2900	USER32.dll	SetClipboardData	1	call:1	called
+0x008C2908	USER32.dll	CloseClipboard	2	call:2	called
+0x008C2910	USER32.dll	OpenClipboard	2	call:2	called
+0x008C2918	USER32.dll	SetWindowPos	7	call:7	called
+0x008C2920	USER32.dll	MoveWindow	1	call:1	called
+0x008C2928	USER32.dll	ShowWindow	5	call:4,jmp:1	called
+0x008C2930	USER32.dll	DestroyWindow	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C2938	USER32.dll	CreateWindowExW	1	call:1	called
+0x008C2940	USER32.dll	RegisterClassW	1	call:1	called
+0x008C2948	USER32.dll	PostQuitMessage	1	call:1	called
+0x008C2950	USER32.dll	DefWindowProcW	1	call:1	called
+0x008C2958	USER32.dll	AttachThreadInput	2	call:2	called
+0x008C2960	USER32.dll	PostMessageA	2	call:1,jmp:1	called
+0x008C2968	USER32.dll	RegisterDeviceNotificationA	1	call:1	called
+0x008C2970	USER32.dll	SendMessageA	4	call:4	called
+0x008C2978	USER32.dll	PeekMessageW	5	call:5	called
+0x008C2980	USER32.dll	DispatchMessageW	3	call:3	called
+0x008C2988	USER32.dll	TranslateMessage	3	call:3	called
+0x008C2990	USER32.dll	GetMessageW	1	call:1	called
+0x008C2998	USER32.dll	RegisterWindowMessageW	2	call:2	called
+0x008C29A0	USER32.dll	GetClientRect	8	call:8	called
+0x008C29A8	USER32.dll	EnumDisplaySettingsA	2	call:2	called
+0x008C29B0	USER32.dll	GetSystemMetrics	28	call:28	called
+0x008C29B8	USER32.dll	GetKeyboardLayout	4	call:4	called
+0x008C29C0	USER32.dll	MessageBoxW	5	call:5	called
+0x008C29C8	USER32.dll	AdjustWindowRect	7	call:7	called
+0x008C29D8	VCRUNTIME140.dll	wcsrchr	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C29E0	VCRUNTIME140.dll	__vcrt_InitializeCriticalSectionEx	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C29E8	VCRUNTIME140.dll	wcsstr	4	call:3,jmp:1	called
+0x008C29F0	VCRUNTIME140.dll	__C_specific_handler	1	jmp:1	jump, 0 E8/E9 callers, 9 data pointers
+0x008C29F8	VCRUNTIME140.dll	strrchr	7	call:7	called
+0x008C2A00	VCRUNTIME140.dll	memcmp	1	jmp:1	jump, 88 E8/E9 callers, 0 data pointers
+0x008C2A08	VCRUNTIME140.dll	strstr	61	call:61	called
+0x008C2A10	VCRUNTIME140.dll	strchr	41	call:41	called
+0x008C2A18	VCRUNTIME140.dll	memchr	7	call:7	called
+0x008C2A20	VCRUNTIME140.dll	_CxxThrowException	1	jmp:1	jump, 69 E8/E9 callers, 0 data pointers
+0x008C2A28	VCRUNTIME140.dll	__std_exception_destroy	2	call:1,jmp:1	called
+0x008C2A30	VCRUNTIME140.dll	__std_exception_copy	2	call:2	called
+0x008C2A38	VCRUNTIME140.dll	wcschr	2	call:2	called
+0x008C2A40	VCRUNTIME140.dll	memmove	244	call:244	called
+0x008C2A48	VCRUNTIME140.dll	_purecall	1	jmp:1	jump, 0 E8/E9 callers, 681 data pointers
+0x008C2A50	VCRUNTIME140.dll	__intrinsic_setjmp	1	jmp:1	jump, 4 E8/E9 callers, 0 data pointers
+0x008C2A58	VCRUNTIME140.dll	longjmp	2	call:1,jmp:1	called
+0x008C2A60	VCRUNTIME140.dll	memset	1	jmp:1	jump, 865 E8/E9 callers, 0 data pointers
+0x008C2A68	VCRUNTIME140.dll	memcpy	1	jmp:1	jump, 637 E8/E9 callers, 0 data pointers
+0x008C2A70	VCRUNTIME140.dll	__CxxFrameHandler3	1	jmp:1	jump, 1 E8/E9 callers, 4376 data pointers
+0x008C2A78	VCRUNTIME140.dll	__std_terminate	1	jmp:1	jump, 86 E8/E9 callers, 270 data pointers
+0x008C2A88	WINMM.dll	timeGetTime	1	call:1	called
+0x008C2A90	WINMM.dll	timeGetDevCaps	2	call:2	called
+0x008C2A98	WINMM.dll	timeBeginPeriod	3	call:3	called
+0x008C2AA0	WINMM.dll	timeEndPeriod	4	call:3,jmp:1	called
+0x008C2AB0	XINPUT9_1_0.dll	XInputGetState	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2AB8	XINPUT9_1_0.dll	XInputSetState	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2AC8	api-ms-win-crt-convert-l1-1-0.dll	strtod	1	call:1	called
+0x008C2AD0	api-ms-win-crt-convert-l1-1-0.dll	wcstol	2	call:2	called
+0x008C2AD8	api-ms-win-crt-convert-l1-1-0.dll	atoi	29	call:28,jmp:1	called
+0x008C2AE0	api-ms-win-crt-convert-l1-1-0.dll	strtol	4	call:4	called
+0x008C2AF0	api-ms-win-crt-environment-l1-1-0.dll	getenv	5	call:5	called
+0x008C2B00	api-ms-win-crt-filesystem-l1-1-0.dll	rename	1	call:1	called
+0x008C2B08	api-ms-win-crt-filesystem-l1-1-0.dll	_wremove	2	call:2	called
+0x008C2B10	api-ms-win-crt-filesystem-l1-1-0.dll	_wmkdir	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C2B18	api-ms-win-crt-filesystem-l1-1-0.dll	remove	1	call:1	called
+0x008C2B20	api-ms-win-crt-filesystem-l1-1-0.dll	_waccess	1	call:1	called
+0x008C2B28	api-ms-win-crt-filesystem-l1-1-0.dll	_lock_file	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C2B30	api-ms-win-crt-filesystem-l1-1-0.dll	_unlock_file	1	jmp:1	jump, 0 E8/E9 callers, 0 data pointers
+0x008C2B40	api-ms-win-crt-heap-l1-1-0.dll	malloc	38	call:30,jmp:7,mov:1	called
+0x008C2B48	api-ms-win-crt-heap-l1-1-0.dll	free	45	call:37,jmp:7,mov:1	called
+0x008C2B50	api-ms-win-crt-heap-l1-1-0.dll	_msize	1	call:1	called
+0x008C2B58	api-ms-win-crt-heap-l1-1-0.dll	realloc	6	call:5,jmp:1	called
+0x008C2B60	api-ms-win-crt-heap-l1-1-0.dll	_aligned_malloc	3	jmp:3	jump, 0 E8/E9 callers, 0 data pointers
+0x008C2B68	api-ms-win-crt-heap-l1-1-0.dll	calloc	1	jmp:1	jump, 30 E8/E9 callers, 2 data pointers
+0x008C2B70	api-ms-win-crt-heap-l1-1-0.dll	_aligned_free	2	jmp:2	jump, 17 E8/E9 callers, 0 data pointers
+0x008C2B78	api-ms-win-crt-heap-l1-1-0.dll	_set_new_mode	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2B88	api-ms-win-crt-locale-l1-1-0.dll	setlocale	1	call:1	called
+0x008C2B90	api-ms-win-crt-locale-l1-1-0.dll	localeconv	1	call:1	called
+0x008C2B98	api-ms-win-crt-locale-l1-1-0.dll	_configthreadlocale	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2BA8	api-ms-win-crt-math-l1-1-0.dll	cosf	1	jmp:1	jump, 109 E8/E9 callers, 0 data pointers
+0x008C2BB0	api-ms-win-crt-math-l1-1-0.dll	sinf	1	jmp:1	jump, 175 E8/E9 callers, 0 data pointers
+0x008C2BB8	api-ms-win-crt-math-l1-1-0.dll	sqrtf	1	jmp:1	jump, 570 E8/E9 callers, 0 data pointers
+0x008C2BC0	api-ms-win-crt-math-l1-1-0.dll	tanf	1	jmp:1	jump, 60 E8/E9 callers, 0 data pointers
+0x008C2BC8	api-ms-win-crt-math-l1-1-0.dll	acos	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2BD0	api-ms-win-crt-math-l1-1-0.dll	atan2f	1	jmp:1	jump, 53 E8/E9 callers, 0 data pointers
+0x008C2BD8	api-ms-win-crt-math-l1-1-0.dll	log2f	1	call:1	called
+0x008C2BE0	api-ms-win-crt-math-l1-1-0.dll	modf	1	call:1	called
+0x008C2BE8	api-ms-win-crt-math-l1-1-0.dll	asin	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2BF0	api-ms-win-crt-math-l1-1-0.dll	floorf	1	jmp:1	jump, 14 E8/E9 callers, 0 data pointers
+0x008C2BF8	api-ms-win-crt-math-l1-1-0.dll	ldexp	7	call:7	called
+0x008C2C00	api-ms-win-crt-math-l1-1-0.dll	_dtest	2	call:2	called
+0x008C2C08	api-ms-win-crt-math-l1-1-0.dll	pow	1	jmp:1	jump, 34 E8/E9 callers, 0 data pointers
+0x008C2C10	api-ms-win-crt-math-l1-1-0.dll	_fdclass	2	call:2	called
+0x008C2C18	api-ms-win-crt-math-l1-1-0.dll	modff	2	call:2	called
+0x008C2C20	api-ms-win-crt-math-l1-1-0.dll	asinf	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C2C28	api-ms-win-crt-math-l1-1-0.dll	atan2	1	jmp:1	jump, 4 E8/E9 callers, 0 data pointers
+0x008C2C30	api-ms-win-crt-math-l1-1-0.dll	powf	1	jmp:1	jump, 136 E8/E9 callers, 0 data pointers
+0x008C2C38	api-ms-win-crt-math-l1-1-0.dll	_hypotf	12	bnd call:1,call:11	called
+0x008C2C40	api-ms-win-crt-math-l1-1-0.dll	frexp	5	call:5	called
+0x008C2C48	api-ms-win-crt-math-l1-1-0.dll	sin	1	jmp:1	jump, 8 E8/E9 callers, 0 data pointers
+0x008C2C50	api-ms-win-crt-math-l1-1-0.dll	cos	1	jmp:1	jump, 10 E8/E9 callers, 0 data pointers
+0x008C2C58	api-ms-win-crt-math-l1-1-0.dll	log	1	jmp:1	jump, 24 E8/E9 callers, 0 data pointers
+0x008C2C60	api-ms-win-crt-math-l1-1-0.dll	sqrt	1	jmp:1	jump, 36 E8/E9 callers, 0 data pointers
+0x008C2C68	api-ms-win-crt-math-l1-1-0.dll	_isnan	5	call:5	called
+0x008C2C70	api-ms-win-crt-math-l1-1-0.dll	_finite	5	call:5	called
+0x008C2C78	api-ms-win-crt-math-l1-1-0.dll	acosf	1	jmp:1	jump, 9 E8/E9 callers, 0 data pointers
+0x008C2C80	api-ms-win-crt-math-l1-1-0.dll	atan	1	jmp:1	jump, 11 E8/E9 callers, 0 data pointers
+0x008C2C88	api-ms-win-crt-math-l1-1-0.dll	cosh	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2C90	api-ms-win-crt-math-l1-1-0.dll	__setusermatherr	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2C98	api-ms-win-crt-math-l1-1-0.dll	floor	1	jmp:1	jump, 27 E8/E9 callers, 0 data pointers
+0x008C2CA0	api-ms-win-crt-math-l1-1-0.dll	expf	1	jmp:1	jump, 65 E8/E9 callers, 0 data pointers
+0x008C2CA8	api-ms-win-crt-math-l1-1-0.dll	exp	1	jmp:1	jump, 11 E8/E9 callers, 0 data pointers
+0x008C2CB0	api-ms-win-crt-math-l1-1-0.dll	log10f	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2CB8	api-ms-win-crt-math-l1-1-0.dll	fmodf	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2CC0	api-ms-win-crt-math-l1-1-0.dll	tan	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C2CC8	api-ms-win-crt-math-l1-1-0.dll	_fdtest	3	call:3	called
+0x008C2CD0	api-ms-win-crt-math-l1-1-0.dll	tanh	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2CD8	api-ms-win-crt-math-l1-1-0.dll	sinh	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2CE0	api-ms-win-crt-math-l1-1-0.dll	ceil	1	jmp:1	jump, 3 E8/E9 callers, 0 data pointers
+0x008C2CE8	api-ms-win-crt-math-l1-1-0.dll	atanf	1	jmp:1	jump, 22 E8/E9 callers, 0 data pointers
+0x008C2CF0	api-ms-win-crt-math-l1-1-0.dll	logf	1	jmp:1	jump, 86 E8/E9 callers, 0 data pointers
+0x008C2CF8	api-ms-win-crt-math-l1-1-0.dll	log10	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D00	api-ms-win-crt-math-l1-1-0.dll	fmod	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D08	api-ms-win-crt-math-l1-1-0.dll	ceilf	1	jmp:1	jump, 37 E8/E9 callers, 0 data pointers
+0x008C2D18	api-ms-win-crt-runtime-l1-1-0.dll	_controlfp	6	call:6	called
+0x008C2D20	api-ms-win-crt-runtime-l1-1-0.dll	_initterm	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D28	api-ms-win-crt-runtime-l1-1-0.dll	_exit	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D30	api-ms-win-crt-runtime-l1-1-0.dll	_get_narrow_winmain_command_line	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D38	api-ms-win-crt-runtime-l1-1-0.dll	abort	1	call:1	called
+0x008C2D40	api-ms-win-crt-runtime-l1-1-0.dll	_set_app_type	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D48	api-ms-win-crt-runtime-l1-1-0.dll	_seh_filter_exe	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D50	api-ms-win-crt-runtime-l1-1-0.dll	_cexit	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D58	api-ms-win-crt-runtime-l1-1-0.dll	strerror	5	call:5	called
+0x008C2D60	api-ms-win-crt-runtime-l1-1-0.dll	_crt_atexit	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D68	api-ms-win-crt-runtime-l1-1-0.dll	_register_onexit_function	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D70	api-ms-win-crt-runtime-l1-1-0.dll	_beginthreadex	4	call:4	called
+0x008C2D78	api-ms-win-crt-runtime-l1-1-0.dll	_initialize_onexit_table	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C2D80	api-ms-win-crt-runtime-l1-1-0.dll	exit	12	call:11,jmp:1	called
+0x008C2D88	api-ms-win-crt-runtime-l1-1-0.dll	terminate	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C2D90	api-ms-win-crt-runtime-l1-1-0.dll	_c_exit	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2D98	api-ms-win-crt-runtime-l1-1-0.dll	_initialize_narrow_environment	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2DA0	api-ms-win-crt-runtime-l1-1-0.dll	_errno	25	call:25	called
+0x008C2DA8	api-ms-win-crt-runtime-l1-1-0.dll	_invalid_parameter_noinfo_noreturn	434	call:434	called
+0x008C2DB0	api-ms-win-crt-runtime-l1-1-0.dll	_invalid_parameter_noinfo	2	call:2	called
+0x008C2DB8	api-ms-win-crt-runtime-l1-1-0.dll	_initterm_e	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2DC0	api-ms-win-crt-runtime-l1-1-0.dll	_register_thread_local_exe_atexit_callback	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2DC8	api-ms-win-crt-runtime-l1-1-0.dll	system	1	call:1	called
+0x008C2DD0	api-ms-win-crt-runtime-l1-1-0.dll	_configure_narrow_argv	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2DE0	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vsnprintf_s	2	call:2	called
+0x008C2DE8	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vswprintf	1	call:1	called
+0x008C2DF0	api-ms-win-crt-stdio-l1-1-0.dll	fputs	8	call:8	called
+0x008C2DF8	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vfwprintf	1	call:1	called
+0x008C2E00	api-ms-win-crt-stdio-l1-1-0.dll	_wfopen_s	8	call:8	called
+0x008C2E08	api-ms-win-crt-stdio-l1-1-0.dll	_wfopen	1	call:1	called
+0x008C2E10	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vsprintf_s	3	call:3	called
+0x008C2E18	api-ms-win-crt-stdio-l1-1-0.dll	fputc	2	call:2	called
+0x008C2E20	api-ms-win-crt-stdio-l1-1-0.dll	_get_stream_buffer_pointers	2	call:2	called
+0x008C2E28	api-ms-win-crt-stdio-l1-1-0.dll	ungetc	4	call:4	called
+0x008C2E30	api-ms-win-crt-stdio-l1-1-0.dll	fgets	6	call:6	called
+0x008C2E38	api-ms-win-crt-stdio-l1-1-0.dll	_fseeki64	7	call:7	called
+0x008C2E40	api-ms-win-crt-stdio-l1-1-0.dll	getc	9	call:9	called
+0x008C2E48	api-ms-win-crt-stdio-l1-1-0.dll	freopen	1	call:1	called
+0x008C2E50	api-ms-win-crt-stdio-l1-1-0.dll	ferror	2	call:2	called
+0x008C2E58	api-ms-win-crt-stdio-l1-1-0.dll	feof	1	call:1	called
+0x008C2E60	api-ms-win-crt-stdio-l1-1-0.dll	fsetpos	2	call:2	called
+0x008C2E68	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vswscanf	1	call:1	called
+0x008C2E70	api-ms-win-crt-stdio-l1-1-0.dll	fgetpos	4	call:4	called
+0x008C2E78	api-ms-win-crt-stdio-l1-1-0.dll	fgetc	3	call:3	called
+0x008C2E80	api-ms-win-crt-stdio-l1-1-0.dll	fflush	9	call:9	called
+0x008C2E88	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vswprintf_s	4	call:4	called
+0x008C2E90	api-ms-win-crt-stdio-l1-1-0.dll	ungetwc	1	call:1	called
+0x008C2E98	api-ms-win-crt-stdio-l1-1-0.dll	fputwc	2	call:2	called
+0x008C2EA0	api-ms-win-crt-stdio-l1-1-0.dll	fgetwc	1	call:1	called
+0x008C2EA8	api-ms-win-crt-stdio-l1-1-0.dll	clearerr	1	call:1	called
+0x008C2EB0	api-ms-win-crt-stdio-l1-1-0.dll	_ftelli64	1	call:1	called
+0x008C2EB8	api-ms-win-crt-stdio-l1-1-0.dll	__p__commode	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2EC0	api-ms-win-crt-stdio-l1-1-0.dll	_pclose	1	call:1	called
+0x008C2EC8	api-ms-win-crt-stdio-l1-1-0.dll	_popen	1	call:1	called
+0x008C2ED0	api-ms-win-crt-stdio-l1-1-0.dll	tmpfile	1	call:1	called
+0x008C2ED8	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vsscanf	2	call:2	called
+0x008C2EE0	api-ms-win-crt-stdio-l1-1-0.dll	ftell	4	call:4	called
+0x008C2EE8	api-ms-win-crt-stdio-l1-1-0.dll	fseek	9	call:9	called
+0x008C2EF0	api-ms-win-crt-stdio-l1-1-0.dll	fread	17	call:17	called
+0x008C2EF8	api-ms-win-crt-stdio-l1-1-0.dll	fopen	12	call:12	called
+0x008C2F00	api-ms-win-crt-stdio-l1-1-0.dll	fclose	23	call:23	called
+0x008C2F08	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vsprintf	9	call:9	called
+0x008C2F10	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vfprintf	2	call:2	called
+0x008C2F18	api-ms-win-crt-stdio-l1-1-0.dll	__stdio_common_vfscanf	1	call:1	called
+0x008C2F20	api-ms-win-crt-stdio-l1-1-0.dll	setvbuf	3	call:3	called
+0x008C2F28	api-ms-win-crt-stdio-l1-1-0.dll	__acrt_iob_func	30	call:30	called
+0x008C2F30	api-ms-win-crt-stdio-l1-1-0.dll	tmpnam	1	call:1	called
+0x008C2F38	api-ms-win-crt-stdio-l1-1-0.dll	_set_fmode	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2F40	api-ms-win-crt-stdio-l1-1-0.dll	fwrite	15	call:15	called
+0x008C2F50	api-ms-win-crt-string-l1-1-0.dll	_wcsupr	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C2F58	api-ms-win-crt-string-l1-1-0.dll	isdigit	11	call:10,jmp:1	called
+0x008C2F60	api-ms-win-crt-string-l1-1-0.dll	_wcsnicmp	1	jmp:1	jump, 3 E8/E9 callers, 0 data pointers
+0x008C2F68	api-ms-win-crt-string-l1-1-0.dll	memcpy_s	1	jmp:1	jump, 4 E8/E9 callers, 0 data pointers
+0x008C2F70	api-ms-win-crt-string-l1-1-0.dll	strncpy	29	call:29	called
+0x008C2F78	api-ms-win-crt-string-l1-1-0.dll	strcspn	7	call:7	called
+0x008C2F80	api-ms-win-crt-string-l1-1-0.dll	strtok_s	4	call:4	called
+0x008C2F88	api-ms-win-crt-string-l1-1-0.dll	isspace	5	call:5	called
+0x008C2F90	api-ms-win-crt-string-l1-1-0.dll	islower	7	call:7	called
+0x008C2F98	api-ms-win-crt-string-l1-1-0.dll	isupper	3	call:3	called
+0x008C2FA0	api-ms-win-crt-string-l1-1-0.dll	isalnum	4	call:4	called
+0x008C2FA8	api-ms-win-crt-string-l1-1-0.dll	strspn	2	call:2	called
+0x008C2FB0	api-ms-win-crt-string-l1-1-0.dll	isxdigit	2	call:2	called
+0x008C2FB8	api-ms-win-crt-string-l1-1-0.dll	ispunct	2	call:2	called
+0x008C2FC0	api-ms-win-crt-string-l1-1-0.dll	isgraph	2	call:2	called
+0x008C2FC8	api-ms-win-crt-string-l1-1-0.dll	iscntrl	3	call:3	called
+0x008C2FD0	api-ms-win-crt-string-l1-1-0.dll	strpbrk	3	call:3	called
+0x008C2FD8	api-ms-win-crt-string-l1-1-0.dll	isalpha	3	call:2,jmp:1	called
+0x008C2FE0	api-ms-win-crt-string-l1-1-0.dll	_strnicmp	2	call:1,jmp:1	called
+0x008C2FE8	api-ms-win-crt-string-l1-1-0.dll	wcsncmp	1	call:1	called
+0x008C2FF0	api-ms-win-crt-string-l1-1-0.dll	toupper	6	call:6	called
+0x008C2FF8	api-ms-win-crt-string-l1-1-0.dll	strncmp	19	call:18,jmp:1	called
+0x008C3000	api-ms-win-crt-string-l1-1-0.dll	_stricmp	56	call:56	called
+0x008C3008	api-ms-win-crt-string-l1-1-0.dll	wcscpy_s	1	call:1	called
+0x008C3010	api-ms-win-crt-string-l1-1-0.dll	strcmp	1	jmp:1	jump, 10 E8/E9 callers, 0 data pointers
+0x008C3018	api-ms-win-crt-string-l1-1-0.dll	strncpy_s	6	call:6	called
+0x008C3020	api-ms-win-crt-string-l1-1-0.dll	tolower	7	call:5,mov:2	called
+0x008C3028	api-ms-win-crt-string-l1-1-0.dll	wcsncpy	2	call:2	called
+0x008C3030	api-ms-win-crt-string-l1-1-0.dll	strcoll	2	call:2	called
+0x008C3038	api-ms-win-crt-string-l1-1-0.dll	strcpy_s	19	call:19	called
+0x008C3040	api-ms-win-crt-string-l1-1-0.dll	_wcsicmp	2	call:1,jmp:1	called
+0x008C3050	api-ms-win-crt-time-l1-1-0.dll	_localtime64	2	call:2	called
+0x008C3058	api-ms-win-crt-time-l1-1-0.dll	_gmtime64	1	call:1	called
+0x008C3060	api-ms-win-crt-time-l1-1-0.dll	_time64	5	call:5	called
+0x008C3068	api-ms-win-crt-time-l1-1-0.dll	clock	3	call:3	called
+0x008C3070	api-ms-win-crt-time-l1-1-0.dll	_mktime64	3	call:3	called
+0x008C3078	api-ms-win-crt-time-l1-1-0.dll	strftime	1	call:1	called
+0x008C3080	api-ms-win-crt-time-l1-1-0.dll	_difftime64	1	call:1	called
+0x008C3090	api-ms-win-crt-utility-l1-1-0.dll	qsort	9	call:9	called
+0x008C3098	api-ms-win-crt-utility-l1-1-0.dll	rand	49	call:48,jmp:1	called
+0x008C30A0	api-ms-win-crt-utility-l1-1-0.dll	srand	2	call:2	called
+0x008C30B0	d3d11.dll	D3D11CreateDeviceAndSwapChain	1	jmp:1	jump, 1 E8/E9 callers, 0 data pointers
+0x008C30B8	d3d11.dll	D3D11CreateDevice	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C30C8	dbghelp.dll	SymSetOptions	1	call:1	called
+0x008C30D0	dbghelp.dll	StackWalk64	2	call:2	called
+0x008C30D8	dbghelp.dll	MiniDumpWriteDump	1	jmp:1	jump, 2 E8/E9 callers, 1 data pointers
+0x008C30E0	dbghelp.dll	SymFromAddr	1	call:1	called
+0x008C30E8	dbghelp.dll	SymInitialize	1	call:1	called
+0x008C30F0	dbghelp.dll	SymCleanup	1	call:1	called
+0x008C30F8	dbghelp.dll	SymGetLineFromAddr64	1	call:1	called
+0x008C3100	dbghelp.dll	SymGetModuleBase64	2	mov:2	other operand
+0x008C3108	dbghelp.dll	SymFunctionTableAccess64	2	mov:2	other operand
+0x008C3118	dwmapi.dll	DwmIsCompositionEnabled	1	call:1	called
+0x008C3128	dxgi.dll	CreateDXGIFactory	1	jmp:1	jump, 2 E8/E9 callers, 0 data pointers
+0x008C3138	ole32.dll	CoInitializeEx	2	call:2	called
+0x008C3140	ole32.dll	CoSetProxyBlanket	1	call:1	called
+0x008C3148	ole32.dll	CoCreateInstance	2	call:2	called
+0x008C3150	ole32.dll	CoInitialize	1	call:1	called
+0x008C3158	ole32.dll	CoTaskMemFree	2	call:2	called
+0x008C3160	ole32.dll	CoUninitialize	3	call:3	called
+0x008C3170	steam_api64.dll	SteamAPI_RestartAppIfNecessary	1	call:1	called
+0x008C3178	steam_api64.dll	SteamAPI_UnregisterCallback	11	call:8,jmp:3	called
+0x008C3180	steam_api64.dll	SteamAPI_RegisterCallback	8	call:8	called
+0x008C3188	steam_api64.dll	SteamInternal_CreateInterface	1	call:1	called
+0x008C3190	steam_api64.dll	SteamInternal_ContextInit	25	call:25	called
+0x008C3198	steam_api64.dll	SteamAPI_GetHSteamUser	1	call:1	called
+0x008C31A0	steam_api64.dll	SteamAPI_GetHSteamPipe	2	call:2	called
+0x008C31A8	steam_api64.dll	SteamAPI_Init	1	call:1	called
+0x008C31B0	steam_api64.dll	SteamAPI_RunCallbacks	1	call:1	called

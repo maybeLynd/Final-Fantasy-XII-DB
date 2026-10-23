@@ -202,7 +202,7 @@ image carries (`0x00D86C00`, loaded by `0x006CBD20`) reads `FeatureId = YEBIS_D3
 
 ### The C runtime routines in the image
 
-The 56 functions in `runtime-services-msvc-runtime-tail.tsv` are C and C++ runtime code linked
+The 56 functions in [`runtime-services-msvc-runtime-tail.tsv`](runtime-services-msvc-runtime-tail.tsv) are C and C++ runtime code linked
 into the executable:
 
 - 13 formatted-output wrappers that fetch the options word through `0x0016D670` and call one
@@ -259,7 +259,7 @@ The PhyreEngine lock, `0x28` bytes (constructor `0x005CC8A0`; plain lock `0x005C
 
 | Fact | Value |
 |---|---|
-| imports | 538 symbols from 30 DLLs; data in `runtime-services-iat-any-reference.tsv` |
+| imports | 538 symbols from 30 DLLs; data in [`runtime-services-iat-any-reference.tsv`](runtime-services-iat-any-reference.tsv) |
 | `MSVCP140` / `KERNEL32` / `USER32` | 115 / 110 / 59 |
 | `api-ms-win-crt-stdio` / `-math` / `-string` / `-runtime` | 45 / 45 / 31 / 24 |
 | `VCRUNTIME140` / `ADVAPI32` / `steam_api64` / `dbghelp` | 21 / 10 / 9 / 9 |

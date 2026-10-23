@@ -115,7 +115,7 @@ capacity in bytes (`0x0019CA20`); list clears walk the nodes and release each th
 (`0x00199B00`).
 
 The compiler generates the container operations once per element type. 76 such bodies between
-`0x00188640` and `0x001FFF00` are listed in `object-construction-and-destruction-eastl-container-instances.tsv`
+`0x00188640` and `0x001FFF00` are listed in [`object-construction-and-destruction-eastl-container-instances.tsv`](object-construction-and-destruction-eastl-container-instances.tsv)
 with the operation and element size of each: vector reserve, insert, erase, copy, fill and release,
 tree copy, erase and node creation, list insert and clear, and element copy constructors.
 

@@ -1,0 +1,27 @@
+function	name	site	disp	kind	instruction	route	note
+0x003DA400	FUN_003da400	0x003DA471	0x0	w	mov dword ptr [rbx + rdi*8 + 0x110], edx	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA47D	0x4	w	mov dword ptr [rbx + rdi*8 + 0x114], ecx	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA4B1	0x4	r	movsxd rax, dword ptr [rbx + rdi*8 + 0x114]	embed ActorManagerSlot+0x110	
+0x003DA570	FUN_003da570	0x003DA586	0x4	r	movsxd rax, dword ptr [rcx + r8*8 + 0x114]	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA00D	0x8	w	mov word ptr [rcx + 0x118], ax	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA01B	0x8	w	mov word ptr [rcx + 0x130], ax	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA029	0x8	w	mov word ptr [rcx + 0x148], ax	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA037	0x8	w	mov word ptr [rcx + 0x160], ax	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3B1	0x8	w	mov word ptr [rax + 0x118], cx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3B8	0x8	w	mov word ptr [rax + 0x130], cx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3C6	0x8	w	mov word ptr [rax + 0x148], cx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3D4	0x8	w	mov word ptr [rax + 0x160], cx	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA484	0x8	w	mov word ptr [rbx + rdi*8 + 0x118], ax	embed ActorManagerSlot+0x110	
+0x003DA4D0	FUN_003da4d0	0x003DA4E8	0x8	w	mov word ptr [rcx + rdx*8 + 0x118], ax	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA014	0xA	w	mov word ptr [rcx + 0x11a], dx	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA022	0xA	w	mov word ptr [rcx + 0x132], dx	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA030	0xA	w	mov word ptr [rcx + 0x14a], dx	embed ActorManagerSlot+0x110	
+0x003DA000	FUN_003da000	0x003DA03E	0xA	w	mov word ptr [rcx + 0x162], dx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3AA	0xA	w	mov word ptr [rax + 0x11a], dx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3BF	0xA	w	mov word ptr [rax + 0x132], dx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3CD	0xA	w	mov word ptr [rax + 0x14a], dx	embed ActorManagerSlot+0x110	
+0x003DA370	FUN_003da370	0x003DA3DB	0xA	w	mov word ptr [rax + 0x162], dx	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA462	0xA	w	mov word ptr [rbx + rdi*8 + 0x11a], r8w	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA44D	0xC	w	movss dword ptr [rbx + rdi*8 + 0x11c], xmm2	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA48C	0x10	w	mov dword ptr [rbx + rdi*8 + 0x120], 0x3f800000	embed ActorManagerSlot+0x110	
+0x003DA400	FUN_003da400	0x003DA497	0x14	w	mov byte ptr [rbx + rdi*8 + 0x124], 0	embed ActorManagerSlot+0x110	

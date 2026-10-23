@@ -62,7 +62,7 @@ failure it first destroys the node's value at `+0x20` (`0x0071E528`, `call 0x007
   subtree with `0x00714980` and frees the node through `0x00210EB0`. It then points the head's three
   links back at the head and sets the count to 0.
 
-The full list of these routines is in `msvc-containers-ordered-container-runtime.tsv`.
+The full list of these routines is in [`msvc-containers-ordered-container-runtime.tsv`](msvc-containers-ordered-container-runtime.tsv).
 
 ### Three instantiations
 
@@ -109,10 +109,10 @@ Its parser reports errors through `_Xregex_error` (slot `0x008C2430`, 31 call si
 The game code that uses it is `0x0020A800`, called from `0x0020AC30`. It compiles the pattern
 `(.*)(\\plan_master\\([a-zA-Z]+)\\event\\)(.*)` (`0x00905958`) and matches its string argument
 against it (`0x00203790`), so it tests whether a path has the form `…\plan_master\<name>\event\…`. The
-regex routines that only this use reaches are listed in `msvc-containers-stl-regex-char.tsv`.
+regex routines that only this use reaches are listed in [`msvc-containers-stl-regex-char.tsv`](msvc-containers-stl-regex-char.tsv).
 
 The rest of the instantiation, 92 bodies between `0x002031A0` and `0x0020B000`, is listed in
-`msvc-containers-stl-regex-char-members.tsv` with one function that refers to each. All but four
+[`msvc-containers-stl-regex-char-members.tsv`](msvc-containers-stl-regex-char-members.tsv) with one function that refers to each. All but four
 are called only from `0x0020A800` and the routines of the first list. The node destructors `0x002043A0`
 (`_Node_class`) and `0x00204660` (`_Node_if`) are called by the deleting destructors in the vtables at
 `0x00905A28` and `0x00905930`; `0x00206CD0` and `0x00204590` are reached from the catch funclet `0x008996A0`
@@ -145,7 +145,7 @@ Both follow the library's introsort:
 ### Library members compiled into the image
 
 Beside the tree, 50 more bodies of the Microsoft library are compiled from its headers rather than
-imported. `msvc-containers-library-members.tsv` names each with the import, vtable or failure string
+imported. [`msvc-containers-library-members.tsv`](msvc-containers-library-members.tsv) names each with the import, vtable or failure string
 that identifies it:
 
 - `std::string` and `std::wstring` growth, append, assign, erase, find, compare, `operator+` and move. `0x00195670` grows a

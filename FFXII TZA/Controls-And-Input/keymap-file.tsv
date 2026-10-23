@@ -1,0 +1,29 @@
+slot	offset	name	group	keyboard1	keyboard2	keyboard3
+0	+0x00	Select	0	40 M	114 Numpad Plus	53 Z
+1	+0x04	L3	0	79 Tab	0 (none)	0 (none)
+2	+0x08	R3	0	35 H	110 Numpad 0	51 X
+3	+0x0C	Start	0	64 Escape	0 (none)	0 (none)
+4	+0x10	Up	0	36 I	108 Numpad 8	0 (none)
+5	+0x14	Right	0	39 L	106 Numpad 6	32 E
+6	+0x18	Down	0	38 K	102 Numpad 2	0 (none)
+7	+0x1C	Left	0	37 J	104 Numpad 4	44 Q
+8	+0x20	L2	0	55 2	0 (none)	0 (none)
+9	+0x24	R2	0	117 Left Control	0 (none)	0 (none)
+10	+0x28	L1	0	54 1	0 (none)	0 (none)
+11	+0x2C	R1	0	56 3	0 (none)	0 (none)
+12	+0x30	Triangle	0	45 R	0 (none)	0 (none)
+13	+0x34	Circle	0	80 Space	77 Enter	1 mouse button
+14	+0x38	Cross	0	30 C	78 Backspace	3 mouse button
+15	+0x3C	Square	0	33 F	0 (none)	0 (none)
+16	+0x40	RX_P	1	92 Right	0 (none)	0 (none)
+17	+0x44	RX_N	1	91 Left	0 (none)	0 (none)
+18	+0x48	RY_P	1	94 Down	0 (none)	0 (none)
+19	+0x4C	RY_N	1	93 Up	0 (none)	0 (none)
+20	+0x50	LX_P	1	31 D	0 (none)	0 (none)
+21	+0x54	LX_N	1	28 A	0 (none)	0 (none)
+22	+0x58	LY_P	1	46 S	0 (none)	0 (none)
+23	+0x5C	LY_N	1	50 W	0 (none)	0 (none)
+24	+0x60	Speed1	2	65 F1	0 (none)	0 (none)
+25	+0x64	Speed2	2	66 F2	0 (none)	0 (none)
+26	+0x68	Speed3	2	67 F3	0 (none)	0 (none)
+27	+0x6C	WalkMode	2	118 Left Shift	0 (none)	0 (none)

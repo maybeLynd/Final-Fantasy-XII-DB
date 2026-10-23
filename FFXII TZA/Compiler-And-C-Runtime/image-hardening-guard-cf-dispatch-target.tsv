@@ -1,0 +1,2 @@
+entry	name	bytes	slot
+0x00896270	__guard_dispatch_icall_fptr target (jmp rax)	2	0x008C31C8

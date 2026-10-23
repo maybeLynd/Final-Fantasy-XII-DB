@@ -303,7 +303,7 @@ discards them.
 
 Producers read for this page: `0x2F` `0x005FEA50`, `0x16` `0x005FEFD0`, `0x18` `0x00600A60`, `0x01` and
 `0x02` `0x0060C020`, `0x03` `0x006007B0`, `0x25` `0x0060E810`. The full opcode table is
-`gi-render-commands-render-block-opcode-isa.tsv`.
+[`gi-render-commands-render-block-opcode-isa.tsv`](gi-render-commands-render-block-opcode-isa.tsv).
 
 ### Target binds and clear values
 
@@ -377,13 +377,13 @@ Tables beside this page:
 
 | Subject | Table |
 |---|---|
-| every `GeometryInstance` class's slots, with the `DynGeo*` classes | `gi-render-commands-geometry-instance-vtable-slots.tsv` |
-| `RenderObject`, `MapRenderObject`, `CharacterRenderObject` slots | `gi-render-commands-render-object-vtable-slots.tsv` |
+| every `GeometryInstance` class's slots, with the `DynGeo*` classes | [`gi-render-commands-geometry-instance-vtable-slots.tsv`](gi-render-commands-geometry-instance-vtable-slots.tsv) |
+| `RenderObject`, `MapRenderObject`, `CharacterRenderObject` slots | [`gi-render-commands-render-object-vtable-slots.tsv`](gi-render-commands-render-object-vtable-slots.tsv) |
 | the render-block opcodes, both levels | `gi-render-commands-render-block-opcode-isa.tsv` |
-| the device's fields | `gi-render-commands-primitive-renderer-d3d11-accesses.tsv` |
-| the render context | `gi-render-commands-render-context-02cc0410-accesses.tsv` |
-| the context's pass-state block `+0x0B50` | `gi-render-commands-render-context-pass-state-block-accesses.tsv` |
-| the context's primitive-pass block `+0x07D8` | `gi-render-commands-render-primitive-pass-1e8-accesses.tsv` |
+| the device's fields | [`gi-render-commands-primitive-renderer-d3d11-accesses.tsv`](gi-render-commands-primitive-renderer-d3d11-accesses.tsv) |
+| the render context | [`gi-render-commands-render-context-02cc0410-accesses.tsv`](gi-render-commands-render-context-02cc0410-accesses.tsv) |
+| the context's pass-state block `+0x0B50` | [`gi-render-commands-render-context-pass-state-block-accesses.tsv`](gi-render-commands-render-context-pass-state-block-accesses.tsv) |
+| the context's primitive-pass block `+0x07D8` | [`gi-render-commands-render-primitive-pass-1e8-accesses.tsv`](gi-render-commands-render-primitive-pass-1e8-accesses.tsv) |
 
 ## State
 

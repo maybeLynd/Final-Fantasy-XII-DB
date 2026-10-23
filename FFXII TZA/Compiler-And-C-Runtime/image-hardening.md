@@ -212,11 +212,11 @@ Function counts follow the image's `.pdata` entries, each chained entry folded i
 
 The member lists beside this page:
 
-- `image-hardening-guard-adapter-registrars.tsv`: the 145 empty teardowns registered by the
+- [`image-hardening-guard-adapter-registrars.tsv`](image-hardening-guard-adapter-registrars.tsv): the 145 empty teardowns registered by the
   scalar-conversion registrars and by `0x00165F80`, with the static each tears down, its registrar and the
   registrar's descriptor pair and routine.
-- `image-hardening-scalar-conversion-registrars.tsv`: the scalar-conversion registrars.
-- `image-hardening-guard-cf-dispatch-target.tsv`: the dispatch target `0x00896270`.
+- [`image-hardening-scalar-conversion-registrars.tsv`](image-hardening-scalar-conversion-registrars.tsv): the scalar-conversion registrars.
+- [`image-hardening-guard-cf-dispatch-target.tsv`](image-hardening-guard-cf-dispatch-target.tsv): the dispatch target `0x00896270`.
 
 ## Modding notes
 

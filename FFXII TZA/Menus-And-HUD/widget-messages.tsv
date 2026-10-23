@@ -1,57 +1,57 @@
-id	meaning	record_fields	handler_count	sender_count	example_handlers	example_senders
-1	construct: the handler runs once inside 0x002465F0, before the constructor returns	a = creator record +8, b = creator record +0x10 (0 when no record)	263	1	0x00227EE0, 0x002280B0, 0x00228130, 0x002284F0	0x002465F0@0x00246748
-2	per-tick update: the drain 0x00248030 visits every widget of a drained root once per parity flip (one per UI tick) unless +0x40 bit 18	a = 0, b = 0 (static 0x00915108)	157	1	0x00227EE0, 0x002280B0, 0x00228130, 0x002284F0	0x00248030@0x002480F9
-3	draw, before content (draw pass)	a = 0, b = 0 (static 0x009151C0)	27	1	0x0023D6B0, 0x0023D890, 0x0023DB40, 0x0023DD10	0x00245E60@0x002462D0
-4	draw, after own content, before children	a = 0, b = 0 (static 0x009151D8)	73	1	0x00227EE0, 0x00228C70, 0x00229590, 0x0023B330	0x00245E60@0x0024635A
-5	draw, after children (only when +0x40 bit 12 and bit 24 matches 0x0208F564)	a = 0, b = 0 (static 0x009151F0)	2	1	0x002D2DB0, 0x005691E0	0x00245E60@0x002463BC
-6	+0x40 bit 0 turned on (activated); sent only when bit 1 is set and bit 0 changes; repeated down the subtree	a = 0, b = 0 (stack, id = 6)	8	2	0x00276D30, 0x0028B860, 0x00299090, 0x0029BE50	0x002473F0@0x0024744E; 0x00247490@0x002474D0
-7	+0x40 bit 0 turned off (deactivated); same sender as 6	a = 0, b = 0 (stack, id = 7)	0	2		0x002473F0@0x0024744E; 0x00247490@0x002474D0
-8	focus gained; the widget becomes 0x0208EBC0 and +0x40 bit 4 is set	a = 1 when focus returns by a pop (0x002448D0), 0 when taken (0x002470D0); b = 0	19	1	0x002B7B80, 0x002BAF80, 0x002BD680, 0x002C2320	0x00244830@0x002448AD
-9	focus lost; +0x40 bit 4 cleared	a = 0, b = 0	17	1	0x002B7B80, 0x002BAF80, 0x002BD680, 0x002C2320	0x00244830@0x0024487E
-10	per-tick input turn for the focus top 0x0208EBC0, when every node up its parent chain has +0x40 bits 0 and 3 and none has bit 9	a = 0, b = 0 (static 0x009150D8; also 0x00908B60 from 0x002286B0)	63	2	0x002284F0, 0x00228C70, 0x0023B330, 0x0023B6F0	0x002481C0@0x002481FB; 0x002286B0@0x002286D9
-11	the same turn when a node up the chain has +0x40 bit 9 set	a = 0, b = 0 (static 0x009150F0)	2	1	0x002778C0, 0x005528C0	0x002481C0@0x0024820D
-12	command to an owner: a is a sub-command (0x8000-0x8005 list events, 0x8100-0x8106 dialog answers, or a small screen code), b its argument; the reply value is read by some senders	a = sub-command, b = argument (0x00247510 builds {12, rdx, r8})	73	9	0x00228C70, 0x0023B330, 0x0023B6F0, 0x0023BD40	0x00247510@0x00247547 (101 calls in 67 functions); 0x002778C0@0x00277EB8; 0x0027E3E0@0x0027E493
-13	notice with a command or text id (Config screens and 0x002D4330)	a = id or value, b = value	5	5	0x0023B6F0, 0x0023BD40, 0x0023C5C0, 0x00280DE0	0x0023B6F0@0x0023B8E3; 0x0023E020@0x0023E116; 0x002D4330@0x002D453C
-14	opening transition started (0x00246AD0: attach, activate, state 2, then 14); also two screen senders	a = 0, b = 0 (static 0x01E0C0E0)	61	3	0x0023B330, 0x0023BD40, 0x0023CE10, 0x0023FBE0	0x00246AD0@0x00246C09; 0x00292390@0x00292ACD; 0x003CB650@0x003CB85F
-15	closing begins: sent by the destroy entry 0x00244F00 before an immediate teardown, and by the close starter 0x00244DD0 when a backward run starts	a = 0, b = 0 (static 0x00915058; 0x01E0C0F8 from 0x00244DD0)	71	5	0x00229590, 0x0023E020, 0x0023E560, 0x0023FBE0	0x00244F00@0x00244F34; 0x00244DD0@0x00244EF5; 0x00241940@0x0024197F
-16	resource batch complete (ticket owner notified); also screen-specific posts	a = varies (the relay 0x00275F10 compares it with its key 0x101), b = varies	41	20	0x00253780, 0x00275F10, 0x00280DE0, 0x002A1FB0	0x00249410@0x0024947D; 0x002494F0@0x00249562; 0x002495C0@0x00249632
-17	tween channel 0 (+0x80 bit 0, words +0x98/+0x9A) reached its end; also sent by 0x002468A0	a = 1, b = 0 (static 0x00915138)	6	2	0x00284450, 0x00299AC0, 0x002BE4F0, 0x002C0BE0	0x00246C20@0x00246FA7; 0x002468A0@0x00246907
-18	being destroyed: sent to self by 0x00245020, then to every descendant by 0x002473B0, before release	a = 0, b = 0 (static 0x00915070)	150	2	0x00228130, 0x002284F0, 0x00228C70, 0x00229590	0x00245020@0x0024505A; 0x002473B0@0x002473C9
-19	forward transition finished (state 3)	a = 0, b = 0 (stack)	35	1	0x00241D40, 0x0027F5D0, 0x00280DE0, 0x0029D550	0x00246C20@0x00247039
-20	backward transition finished (state 1)	a = 0, b = 0 (stack)	21	1	0x00285290, 0x00299090, 0x0029D550, 0x002B7B80	0x00246C20@0x0024706B
-21	tween channel 1 (+0x80 bit 1, words +0x9C/+0x9E) stepped; also a subtree broadcast by 0x002C0BE0	a = 0, b = 0 (static 0x00915168)	3	2	0x00276D30, 0x002A6190, 0x002C0BE0	0x00246C20@0x00246FA7; 0x002C0BE0@0x002C0E8E
-22	tween channel 0 stepped, not yet at its end	a = 0, b = 0 (static 0x00915150)	3	1	0x002BE4F0, 0x002C0BE0, 0x005691E0	0x00246C20@0x00246FA7
-23	tween channel 2 (+0x80 bit 2, float +0x8C) stepped; also 0x0055C530	a = 1, b = 0 (static 0x00915180)	1	2	0x0055CD40	0x00246C20@0x00246FA7; 0x0055C530@0x0055C634
-24	released: sent by 0x002482E0 after the children are released and self is unlinked, before the handler slot is nulled	a = 0, b = 0 (static 0x00915040)	13	1	0x00279E20, 0x0027AA70, 0x002B7590, 0x002BA700	0x002482E0@0x002483B2
-25	animation tick: first act of the per-widget stepper 0x00246C20, run for widgets with +0x40 bit 0 by the walker 0x00244970	a = 0, b = 0 (static 0x00915120)	3	1	0x002A86A0, 0x005565E0, 0x0055A340	0x00246C20@0x00246C51
-26	per-element query; the reply is used	a = element index, b = value	7	2	0x002D2DB0, 0x005636F0, 0x00563930, 0x00563B10	0x002D2600@0x002D279E; 0x002D28E0@0x002D2B5C
-29	private band (battle menu and map families): state notice	stack {29, a, b}; per sender	6	8	0x00299090, 0x0029A0A0, 0x003CA860, 0x005528C0	0x00276650@0x00276752; 0x002B7B80@0x002B7F09; 0x00553F40@0x005541F8
-30	private band: battle menu broadcasts to its subtree, map containers	per sender	7	6	0x002778C0, 0x0029BE50, 0x002B7590, 0x002BA700	0x002778C0@0x00277D1E; 0x00279E20@0x0027A609; 0x003CAB00@0x003CACA4
-31	private band: map page cancelled, posted up (map-screens.md); battle menu posts	per sender	6	6	0x002778C0, 0x002B7590, 0x002BA700, 0x003CAB00	0x002BAF80@0x002BB7D2; 0x002778C0@0x00277CF2; 0x00551E00@0x00551E48
-32	private band: map container open request (map-screens.md)	per sender	5	5	0x002778C0, 0x002B7590, 0x002BA700, 0x003CB650	0x002B6570@0x002B65FF; 0x002BA040@0x002BA14E; 0x00279E20@0x0027A633
-33	private band: sent to a new map page after attach (map-screens.md); battle menu posts up	per sender	4	6	0x00279E20, 0x002B7B80, 0x002BAF80, 0x00553F40	0x002B6350@0x002B6541; 0x002B9D30@0x002B9F90; 0x002778C0@0x00278650
-34	private band (battle menu, map containers)	per sender	5	6	0x00279E20, 0x002B7590, 0x002BA700, 0x003CB650	0x002B7590@0x002B76EB; 0x0027B430@0x0027B51E; 0x00553F40@0x005540FB
-35	private band: the relay 0x00275F10 sends it to its target when destroyed (configured 0x23 by 0x002B7590, 0x002BA700, 0x003CB650)	a = 0, b = 0 from the relay	5	3	0x002778C0, 0x002B7590, 0x002BA700, 0x003CB650	0x00275F10@0x00275F82; 0x002778C0@0x00277C16; 0x00551230@0x00551279
-36	private band (battle menu, map)	per sender	4	4	0x00279E20, 0x002B6DB0, 0x002BC3E0, 0x00553F40	0x002778C0@0x002781FE; 0x002B6DB0@0x002B6EA1; 0x005528C0@0x00553449
-37	private band (battle menu, map)	per sender	4	3	0x00279E20, 0x002B7B80, 0x002BAF80, 0x005528C0	0x0027B430@0x0027B552; 0x002BD680@0x002BD79F; 0x00551E00@0x00551E70
-38	private band (battle menu, map)	per sender	4	6	0x00279E20, 0x002B7B80, 0x002BAF80, 0x005528C0	0x002778C0@0x0027826B; 0x00279E20@0x0027A66B; 0x002B7B80@0x002B7CA6
-39	private band (battle menu child 0x00276D30, map pages)	per sender	6	3	0x00276D30, 0x002B7B80, 0x002BAF80, 0x00552250	0x00279E20@0x0027A58B; 0x002BD680@0x002BD79F; 0x005542D0@0x00554959
-40	private band; also the relay 0x00275F10's id when configured 0x28 by 0x00552250	per sender	4	5	0x00279E20, 0x002B7B80, 0x002BAF80, 0x00552250	0x00276D30@0x00276F6A; 0x0027AA70@0x0027AB35; 0x00275F10@0x00275F82
-41	private band (battle menu raises request bit 0x20 at +0x61CC; map containers)	per sender	5	4	0x00279E20, 0x002B7590, 0x002BA700, 0x003CB650	0x002778C0@0x00278620; 0x002B6350@0x002B64B0; 0x00552250@0x00552834
-42	private band (battle menu raises bit 0x800 at +0x61CC; map pages)	per sender	4	3	0x00279E20, 0x002B7B80, 0x002BAF80, 0x005528C0	0x002778C0@0x00279A8A; 0x002BA700@0x002BAA77; 0x005519E0@0x00551A40
-43	private band: map page opened, posted up (map-screens.md); battle menu posts	per sender	4	3	0x00279E20, 0x002B7590, 0x002BA700, 0x003CB650	0x002B7B80@0x002B82CB; 0x002BAF80@0x002BB745; 0x002778C0@0x002792B0
-44	private band (battle menu 0x002778C0, field-time container)	per sender	2	2	0x002778C0, 0x003CB650	0x002767C0@0x002767FD; 0x003CB4F0@0x003CB55F
-45	private band (battle menu 0x002778C0)	per sender	1	1	0x002778C0	0x00276770@0x002767A5
-46	private band (battle menu)	per sender	2	1	0x00276D30, 0x00279E20	0x002778C0@0x00278486
-47	private band (battle menu 0x00279E20)	per sender	1	1	0x00279E20	0x0027B430@0x0027B4CE
-48	private band (battle menu 0x00279E20: payload bit 0 into +0x61CC bits 13 and 4)	per sender	1	2	0x00279E20	0x002778C0@0x002782B0; 0x00279E20@0x0027A6B1
-49	private band (battle menu 0x00279E20)	per sender	1	1	0x00279E20	0x00276D30@0x00276E6F
-50	private band (battle menu 0x00279E20: sets bit 0x1000 of +0x61CC)	per sender	1	1	0x00279E20	0x002778C0@0x00279AAD
-51	private band (battle menu 0x00279E20)	per sender	1	1	0x00279E20	0x002778C0@0x00277F24
-52	private band (battle menu 0x00279E20)	per sender	1	1	0x00279E20	0x002778C0@0x002784F8
-53	private: the battle menu tells a child (0x00276D30 or 0x0027AA70) to tear itself down	stack {53}	2	1	0x00276D30, 0x0027AA70	0x00279E20@0x0027A0C0
-285	private: the yes-or-no question widget 0x002CDF20, the notice widget 0x002CE370 and 0x002C2320 post to their owner	a = value, b = 1, -1, -2, -3 or a register	3	3	0x003FF360, 0x00557DB0, 0x0055CD40	0x002CDF20@0x002CE187; 0x002CE370@0x002CE459; 0x002C2320@0x002C28C3
-286	private: the item sort bar posts to the item list panes (0x00564AC0 family)	a, b = registers	5	1	0x005636F0, 0x00563930, 0x00563B10, 0x00563D20	0x00566680@0x00566838
-287	private: 0x002C9EB0 posts to the main menu, 0x002C2320 and the inventory category list	a, b = registers	3	1	0x00280DE0, 0x002C2320, 0x00565E00	0x002C9EB0@0x002C9EED
-288	private: 0x002D7580, 0x002D79D0 and 0x002D7BF0 post to 0x0027F5D0 and the script-menu host 0x002D70F0	per sender	2	3	0x0027F5D0, 0x002D70F0	0x002D7580@0x002D75D7; 0x002D79D0@0x002D7A6D
-289	private: the gambit lists post to the gambit editor 0x005691E0	per sender	1	2	0x005691E0	0x005680E0@0x0056820A; 0x0056B4D0@0x0056B549
+id	meaning	record_fields	handler_count	example_handlers	example_senders
+1	construct: the handler runs once inside 0x002465F0, before the constructor returns	a = creator record +8, b = creator record +0x10 (0 when no record)	263	0x00227EE0, 0x002280B0, 0x00228130, 0x002284F0	0x002465F0@0x00246748
+2	per-tick update: the drain 0x00248030 visits every widget of a drained root once per parity flip (one per UI tick) unless +0x40 bit 18	a = 0, b = 0 (static 0x00915108)	157	0x00227EE0, 0x002280B0, 0x00228130, 0x002284F0	0x00248030@0x002480F9
+3	draw, before content (draw pass)	a = 0, b = 0 (static 0x009151C0)	27	0x0023D6B0, 0x0023D890, 0x0023DB40, 0x0023DD10	0x00245E60@0x002462D0
+4	draw, after own content, before children	a = 0, b = 0 (static 0x009151D8)	73	0x00227EE0, 0x00228C70, 0x00229590, 0x0023B330	0x00245E60@0x0024635A
+5	draw, after children (only when +0x40 bit 12 and bit 24 matches 0x0208F564)	a = 0, b = 0 (static 0x009151F0)	2	0x002D2DB0, 0x005691E0	0x00245E60@0x002463BC
+6	+0x40 bit 0 turned on (activated); sent only when bit 1 is set and bit 0 changes; repeated down the subtree	a = 0, b = 0 (stack, id = 6)	8	0x00276D30, 0x0028B860, 0x00299090, 0x0029BE50	0x002473F0@0x0024744E; 0x00247490@0x002474D0
+7	+0x40 bit 0 turned off (deactivated); same sender as 6	a = 0, b = 0 (stack, id = 7)	0		0x002473F0@0x0024744E; 0x00247490@0x002474D0
+8	focus gained; the widget becomes 0x0208EBC0 and +0x40 bit 4 is set	a = 1 when focus returns by a pop (0x002448D0), 0 when taken (0x002470D0); b = 0	19	0x002B7B80, 0x002BAF80, 0x002BD680, 0x002C2320	0x00244830@0x002448AD
+9	focus lost; +0x40 bit 4 cleared	a = 0, b = 0	17	0x002B7B80, 0x002BAF80, 0x002BD680, 0x002C2320	0x00244830@0x0024487E
+10	per-tick input turn for the focus top 0x0208EBC0, when every node up its parent chain has +0x40 bits 0 and 3 and none has bit 9	a = 0, b = 0 (static 0x009150D8; also 0x00908B60 from 0x002286B0)	63	0x002284F0, 0x00228C70, 0x0023B330, 0x0023B6F0	0x002481C0@0x002481FB; 0x002286B0@0x002286D9
+11	the same turn when a node up the chain has +0x40 bit 9 set	a = 0, b = 0 (static 0x009150F0)	2	0x002778C0, 0x005528C0	0x002481C0@0x0024820D
+12	command to an owner: a is a sub-command (0x8000-0x8005 list events, 0x8100-0x8106 dialog answers, or a small screen code), b its argument; the reply value is read by some senders	a = sub-command, b = argument (0x00247510 builds {12, rdx, r8})	73	0x00228C70, 0x0023B330, 0x0023B6F0, 0x0023BD40	0x00247510@0x00247547 (101 calls in 67 functions); 0x002778C0@0x00277EB8; 0x0027E3E0@0x0027E493
+13	notice with a command or text id (Config screens and 0x002D4330)	a = id or value, b = value	5	0x0023B6F0, 0x0023BD40, 0x0023C5C0, 0x00280DE0	0x0023B6F0@0x0023B8E3; 0x0023E020@0x0023E116; 0x002D4330@0x002D453C
+14	opening transition started (0x00246AD0: attach, activate, state 2, then 14); also two screen senders	a = 0, b = 0 (static 0x01E0C0E0)	61	0x0023B330, 0x0023BD40, 0x0023CE10, 0x0023FBE0	0x00246AD0@0x00246C09; 0x00292390@0x00292ACD; 0x003CB650@0x003CB85F
+15	closing begins: sent by the destroy entry 0x00244F00 before an immediate teardown, and by the close starter 0x00244DD0 when a backward run starts	a = 0, b = 0 (static 0x00915058; 0x01E0C0F8 from 0x00244DD0)	71	0x00229590, 0x0023E020, 0x0023E560, 0x0023FBE0	0x00244F00@0x00244F34; 0x00244DD0@0x00244EF5; 0x00241940@0x0024197F
+16	resource batch complete (ticket owner notified); also screen-specific posts	a = varies (the relay 0x00275F10 compares it with its key 0x101), b = varies	41	0x00253780, 0x00275F10, 0x00280DE0, 0x002A1FB0	0x00249410@0x0024947D; 0x002494F0@0x00249562; 0x002495C0@0x00249632
+17	tween channel 0 (+0x80 bit 0, words +0x98/+0x9A) reached its end; also sent by 0x002468A0	a = 1, b = 0 (static 0x00915138)	6	0x00284450, 0x00299AC0, 0x002BE4F0, 0x002C0BE0	0x00246C20@0x00246FA7; 0x002468A0@0x00246907
+18	being destroyed: sent to self by 0x00245020, then to every descendant by 0x002473B0, before release	a = 0, b = 0 (static 0x00915070)	150	0x00228130, 0x002284F0, 0x00228C70, 0x00229590	0x00245020@0x0024505A; 0x002473B0@0x002473C9
+19	forward transition finished (state 3)	a = 0, b = 0 (stack)	35	0x00241D40, 0x0027F5D0, 0x00280DE0, 0x0029D550	0x00246C20@0x00247039
+20	backward transition finished (state 1)	a = 0, b = 0 (stack)	21	0x00285290, 0x00299090, 0x0029D550, 0x002B7B80	0x00246C20@0x0024706B
+21	tween channel 1 (+0x80 bit 1, words +0x9C/+0x9E) stepped; also a subtree broadcast by 0x002C0BE0	a = 0, b = 0 (static 0x00915168)	3	0x00276D30, 0x002A6190, 0x002C0BE0	0x00246C20@0x00246FA7; 0x002C0BE0@0x002C0E8E
+22	tween channel 0 stepped, not yet at its end	a = 0, b = 0 (static 0x00915150)	3	0x002BE4F0, 0x002C0BE0, 0x005691E0	0x00246C20@0x00246FA7
+23	tween channel 2 (+0x80 bit 2, float +0x8C) stepped; also 0x0055C530	a = 1, b = 0 (static 0x00915180)	1	0x0055CD40	0x00246C20@0x00246FA7; 0x0055C530@0x0055C634
+24	released: sent by 0x002482E0 after the children are released and self is unlinked, before the handler slot is nulled	a = 0, b = 0 (static 0x00915040)	13	0x00279E20, 0x0027AA70, 0x002B7590, 0x002BA700	0x002482E0@0x002483B2
+25	animation tick: first act of the per-widget stepper 0x00246C20, run for widgets with +0x40 bit 0 by the walker 0x00244970	a = 0, b = 0 (static 0x00915120)	3	0x002A86A0, 0x005565E0, 0x0055A340	0x00246C20@0x00246C51
+26	per-element query; the reply is used	a = element index, b = value	7	0x002D2DB0, 0x005636F0, 0x00563930, 0x00563B10	0x002D2600@0x002D279E; 0x002D28E0@0x002D2B5C
+29	private band (battle menu and map families): state notice	stack {29, a, b}; per sender	6	0x00299090, 0x0029A0A0, 0x003CA860, 0x005528C0	0x00276650@0x00276752; 0x002B7B80@0x002B7F09; 0x00553F40@0x005541F8
+30	private band: battle menu broadcasts to its subtree, map containers	per sender	7	0x002778C0, 0x0029BE50, 0x002B7590, 0x002BA700	0x002778C0@0x00277D1E; 0x00279E20@0x0027A609; 0x003CAB00@0x003CACA4
+31	private band: map page cancelled, posted up (map-screens.md); battle menu posts	per sender	6	0x002778C0, 0x002B7590, 0x002BA700, 0x003CAB00	0x002BAF80@0x002BB7D2; 0x002778C0@0x00277CF2; 0x00551E00@0x00551E48
+32	private band: map container open request (map-screens.md)	per sender	5	0x002778C0, 0x002B7590, 0x002BA700, 0x003CB650	0x002B6570@0x002B65FF; 0x002BA040@0x002BA14E; 0x00279E20@0x0027A633
+33	private band: sent to a new map page after attach (map-screens.md); battle menu posts up	per sender	4	0x00279E20, 0x002B7B80, 0x002BAF80, 0x00553F40	0x002B6350@0x002B6541; 0x002B9D30@0x002B9F90; 0x002778C0@0x00278650
+34	private band (battle menu, map containers)	per sender	5	0x00279E20, 0x002B7590, 0x002BA700, 0x003CB650	0x002B7590@0x002B76EB; 0x0027B430@0x0027B51E; 0x00553F40@0x005540FB
+35	private band: the relay 0x00275F10 sends it to its target when destroyed (configured 0x23 by 0x002B7590, 0x002BA700, 0x003CB650)	a = 0, b = 0 from the relay	5	0x002778C0, 0x002B7590, 0x002BA700, 0x003CB650	0x00275F10@0x00275F82; 0x002778C0@0x00277C16; 0x00551230@0x00551279
+36	private band (battle menu, map)	per sender	4	0x00279E20, 0x002B6DB0, 0x002BC3E0, 0x00553F40	0x002778C0@0x002781FE; 0x002B6DB0@0x002B6EA1; 0x005528C0@0x00553449
+37	private band (battle menu, map)	per sender	4	0x00279E20, 0x002B7B80, 0x002BAF80, 0x005528C0	0x0027B430@0x0027B552; 0x002BD680@0x002BD79F; 0x00551E00@0x00551E70
+38	private band (battle menu, map)	per sender	4	0x00279E20, 0x002B7B80, 0x002BAF80, 0x005528C0	0x002778C0@0x0027826B; 0x00279E20@0x0027A66B; 0x002B7B80@0x002B7CA6
+39	private band (battle menu child 0x00276D30, map pages)	per sender	6	0x00276D30, 0x002B7B80, 0x002BAF80, 0x00552250	0x00279E20@0x0027A58B; 0x002BD680@0x002BD79F; 0x005542D0@0x00554959
+40	private band; also the relay 0x00275F10's id when configured 0x28 by 0x00552250	per sender	4	0x00279E20, 0x002B7B80, 0x002BAF80, 0x00552250	0x00276D30@0x00276F6A; 0x0027AA70@0x0027AB35; 0x00275F10@0x00275F82
+41	private band (battle menu raises request bit 0x20 at +0x61CC; map containers)	per sender	5	0x00279E20, 0x002B7590, 0x002BA700, 0x003CB650	0x002778C0@0x00278620; 0x002B6350@0x002B64B0; 0x00552250@0x00552834
+42	private band (battle menu raises bit 0x800 at +0x61CC; map pages)	per sender	4	0x00279E20, 0x002B7B80, 0x002BAF80, 0x005528C0	0x002778C0@0x00279A8A; 0x002BA700@0x002BAA77; 0x005519E0@0x00551A40
+43	private band: map page opened, posted up (map-screens.md); battle menu posts	per sender	4	0x00279E20, 0x002B7590, 0x002BA700, 0x003CB650	0x002B7B80@0x002B82CB; 0x002BAF80@0x002BB745; 0x002778C0@0x002792B0
+44	private band (battle menu 0x002778C0, field-time container)	per sender	2	0x002778C0, 0x003CB650	0x002767C0@0x002767FD; 0x003CB4F0@0x003CB55F
+45	private band (battle menu 0x002778C0)	per sender	1	0x002778C0	0x00276770@0x002767A5
+46	private band (battle menu)	per sender	2	0x00276D30, 0x00279E20	0x002778C0@0x00278486
+47	private band (battle menu 0x00279E20)	per sender	1	0x00279E20	0x0027B430@0x0027B4CE
+48	private band (battle menu 0x00279E20: payload bit 0 into +0x61CC bits 13 and 4)	per sender	1	0x00279E20	0x002778C0@0x002782B0; 0x00279E20@0x0027A6B1
+49	private band (battle menu 0x00279E20)	per sender	1	0x00279E20	0x00276D30@0x00276E6F
+50	private band (battle menu 0x00279E20: sets bit 0x1000 of +0x61CC)	per sender	1	0x00279E20	0x002778C0@0x00279AAD
+51	private band (battle menu 0x00279E20)	per sender	1	0x00279E20	0x002778C0@0x00277F24
+52	private band (battle menu 0x00279E20)	per sender	1	0x00279E20	0x002778C0@0x002784F8
+53	private: the battle menu tells a child (0x00276D30 or 0x0027AA70) to tear itself down	stack {53}	2	0x00276D30, 0x0027AA70	0x00279E20@0x0027A0C0
+285	private: the yes-or-no question widget 0x002CDF20, the notice widget 0x002CE370 and 0x002C2320 post to their owner	a = value, b = 1, -1, -2, -3 or a register	3	0x003FF360, 0x00557DB0, 0x0055CD40	0x002CDF20@0x002CE187; 0x002CE370@0x002CE459; 0x002C2320@0x002C28C3
+286	private: the item sort bar posts to the item list panes (0x00564AC0 family)	a, b = registers	5	0x005636F0, 0x00563930, 0x00563B10, 0x00563D20	0x00566680@0x00566838
+287	private: 0x002C9EB0 posts to the main menu, 0x002C2320 and the inventory category list	a, b = registers	3	0x00280DE0, 0x002C2320, 0x00565E00	0x002C9EB0@0x002C9EED
+288	private: 0x002D7580, 0x002D79D0 and 0x002D7BF0 post to 0x0027F5D0 and the script-menu host 0x002D70F0	per sender	2	0x0027F5D0, 0x002D70F0	0x002D7580@0x002D75D7; 0x002D79D0@0x002D7A6D
+289	private: the gambit lists post to the gambit editor 0x005691E0	per sender	1	0x005691E0	0x005680E0@0x0056820A; 0x0056B4D0@0x0056B549

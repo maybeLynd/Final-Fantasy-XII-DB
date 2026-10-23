@@ -95,7 +95,7 @@ cell at `0x02064DD0` beside it (staged at `0x02064C60`), sets `0x02064DB4` to `0
 address, then sets `0x02064DB0` to `0x02064B0C + 0x02064DB4` and `0x02064DB4` one past it.
 
 The image installs 57 distinct programs at 141 call sites ([ps2-vif1-vu1-emulation-programs.tsv]
-(ps2-vif1-vu1-emulation-programs.tsv), resolved from the `lea` that loads each site's program
+([`ps2-vif1-vu1-emulation-programs.tsv`](ps2-vif1-vu1-emulation-programs.tsv)), resolved from the `lea` that loads each site's program
 argument). Three routes build the packets that carry them:
 
 - **77 boot templates.** `0x0037DF90` makes 28 calls and `0x0037E0F0` 49, each `lea rcx, object;

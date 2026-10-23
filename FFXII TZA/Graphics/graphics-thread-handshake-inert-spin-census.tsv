@@ -1,0 +1,20 @@
+jump	target	function	name	body
+0x0024D417	0x0024D415	0x0024D370	FUN_0024d370	test eax, eax; jne
+0x0024D492	0x0024D490	0x0024D370	FUN_0024d370	test eax, eax; jne
+0x00259052	0x00259050	0x00259030	VFXSystem_RenderGroupedLayerPassWithGraphicsFence	test eax, eax; jne
+0x002590D7	0x002590D5	0x00259030	VFXSystem_RenderGroupedLayerPassWithGraphicsFence	test eax, eax; jne
+0x00259122	0x00259120	0x002590F0	VFXSystem_RenderSpecialPassWithGraphicsFence	test eax, eax; jne
+0x0036F302	0x0036F300	0x0036F2F0	GraphicsSync_WaitBackendState100ClearAndResetSharedState	test eax, eax; jne
+0x00374C52	0x00374C50	0x003749F0	EffectCapture_ProcessCaptureDraw	test eax, eax; jne
+0x00374C92	0x00374C90	0x003749F0	EffectCapture_ProcessCaptureDraw	test eax, eax; jne
+0x00374CD2	0x00374CD0	0x003749F0	EffectCapture_ProcessCaptureDraw	test eax, eax; jne
+0x00375535	0x00375533	0x00375500	EffectSystem_ProcessQueuedGraphicsEffectsForPass	test eax, eax; jne
+0x003755B2	0x003755B0	0x00375500	EffectSystem_ProcessQueuedGraphicsEffectsForPass	test eax, eax; jne
+0x00375655	0x00375653	0x00375500	EffectSystem_ProcessQueuedGraphicsEffectsForPass	test eax, eax; jne
+0x00376152	0x00376150	0x00376050	EffectCapture_ProcessSecondaryCaptureDraw	test ecx, ecx; jne
+0x00376192	0x00376190	0x00376050	EffectCapture_ProcessSecondaryCaptureDraw	test eax, eax; jne
+0x003761D2	0x003761D0	0x00376050	EffectCapture_ProcessSecondaryCaptureDraw	test eax, eax; jne
+0x003A2DC3	0x003A2DC1	0x003A2D80	GraphicsCommand_CopyAlignedBatchAndPublishState100	test ecx, ecx; jne
+0x003A2EEA	0x003A2EE8	0x003A2E30	GraphicsCommand_CopyAlignedBatchWithControlRecordsAndPublishState100	test eax, eax; jne
+0x00560A62	0x00560A60	0x00560910	FUN_00560910	test eax, eax; je
+0x00566165	0x00566163	0x00565E00	FUN_00565e00	test eax, eax; je

@@ -82,7 +82,7 @@ The story counter is read through `FieldData_GetVariable0` (`0x003EAA78`).
 One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; above 1658: 75; above 1973: 22`, so its
 1,658 rung acts only once the counter is past 1,950.
 
-`music-table.tsv` lists every run. One example, `bul_b02` (field 742), plays track 75, then none above story counter
+[`music-table.tsv`](music-table.tsv) lists every run. One example, `bul_b02` (field 742), plays track 75, then none above story counter
 1,976, 39 above 1,982, none above 2,200, 31 above 2,250, 59 above 2,350 and none above 11,000.
 
 ### Columns of music-table.tsv
@@ -109,7 +109,8 @@ One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; a
   the run's rung count in step.
 - Rungs are tested in file order and stop at the first value the counter is not above, so keep them rising.
 - Setting a track's boss-music bit keeps it playing through chocobo and summon music.
-- The page offsets are rebased in place, so the file must stay at an address below 2 GB.
+- The page offsets are rebased in place with a 32-bit add (`0x003EABBE`) and read back sign-extended (`0x003EAA9C`), so
+  the file must stay at an address below 2 GB.
 
 ## Related
 

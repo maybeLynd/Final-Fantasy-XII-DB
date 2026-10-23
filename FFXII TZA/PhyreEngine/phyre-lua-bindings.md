@@ -206,22 +206,30 @@ Measured from the executable (SHA-256 `73461d08…d89721f8`).
 - [Script interpreter](../Scripts-And-Script-Commands/script-interpreter.md): the game's own script
   machine.
 - The adapter families, beside this page:
-  - `phyre-lua-bindings-object-push-adapters.tsv` (slot 4, static descriptor, 304);
-  - `phyre-lua-bindings-nullable-object-push-adapters.tsv` (slot 6, 295);
-  - `phyre-lua-bindings-object-pointer-accessors.tsv` (323) and
-    `phyre-lua-bindings-object-reference-accessors.tsv` (264);
-  - `phyre-lua-bindings-context-acquire-three-arg-dispatch-adapters.tsv` and
-    `phyre-lua-bindings-optional-pointer-context-dispatch-adapters.tsv` (70 each; descriptor from a
+  - [`phyre-lua-bindings-object-push-adapters.tsv`](phyre-lua-bindings-object-push-adapters.tsv) (slot 4, static descriptor, 304);
+  - [`phyre-lua-bindings-nullable-object-push-adapters.tsv`](phyre-lua-bindings-nullable-object-push-adapters.tsv) (slot 6, 295);
+  - [`phyre-lua-bindings-object-pointer-accessors.tsv`](phyre-lua-bindings-object-pointer-accessors.tsv) (323) and
+    [`phyre-lua-bindings-object-reference-accessors.tsv`](phyre-lua-bindings-object-reference-accessors.tsv) (264);
+  - [`phyre-lua-bindings-context-acquire-three-arg-dispatch-adapters.tsv`](phyre-lua-bindings-context-acquire-three-arg-dispatch-adapters.tsv) and
+    [`phyre-lua-bindings-optional-pointer-context-dispatch-adapters.tsv`](phyre-lua-bindings-optional-pointer-context-dispatch-adapters.tsv) (70 each; descriptor from a
     getter);
-  - push variants: `phyre-lua-bindings-optptr-static-descriptor-dispatch-adapters.tsv`,
-    `-optptr-offsetadd-dispatch-adapters.tsv`, `-optptr-membercall-forward-adapters.tsv`,
-    `-optptr-membercall-resultdispatch-adapters.tsv`, `-optptr-membercall-dispatch-adapters.tsv`,
-    `-nativeadapter-descriptorforwardtailcall.tsv`, `-nativeadapter-optptrallocrecordinstall.tsv`;
-  - slot 1 method adapters: `phyre-lua-bindings-member-vcall-optptr-dispatch-adapters.tsv`,
-    `-optptr-membercall-vcall-dispatch.tsv`, `-nativeadapter-floatpipelinevcalladapter.tsv`,
-    `-nativeadapter-optptrfloatpipelinelookup.tsv`, `-nativeadapter-optptrmembercallclonedforward.tsv`,
-    `-nativeadapter-optptrmembercallvcallforward.tsv`, `-nativeadapter-optptrmembercallvcallresult.tsv`,
-    `-nativeadapter-optptrmemberoffsetvcall.tsv`;
-  - slot 2 native calls: `phyre-lua-bindings-tagged-outrecord-vcall-adapters.tsv`,
-    `-tagged-outrecord-vcall-advance-adapters.tsv`, `-nativeleaf-taggedoutrecordvptrstore.tsv`;
-  - `phyre-lua-bindings-pscript-accesses.tsv` (the `PScript` field stores of `0x00680F40`).
+  - push variants:
+    - [`phyre-lua-bindings-optptr-static-descriptor-dispatch-adapters.tsv`](phyre-lua-bindings-optptr-static-descriptor-dispatch-adapters.tsv);
+    - [`phyre-lua-bindings-optptr-offsetadd-dispatch-adapters.tsv`](phyre-lua-bindings-optptr-offsetadd-dispatch-adapters.tsv);
+    - [`phyre-lua-bindings-optptr-membercall-forward-adapters.tsv`](phyre-lua-bindings-optptr-membercall-forward-adapters.tsv);
+    - [`phyre-lua-bindings-optptr-membercall-resultdispatch-adapters.tsv`](phyre-lua-bindings-optptr-membercall-resultdispatch-adapters.tsv);
+    - [`phyre-lua-bindings-optptr-membercall-dispatch-adapters.tsv`](phyre-lua-bindings-optptr-membercall-dispatch-adapters.tsv);
+    - [`phyre-lua-bindings-nativeadapter-descriptorforwardtailcall.tsv`](phyre-lua-bindings-nativeadapter-descriptorforwardtailcall.tsv);
+    - [`phyre-lua-bindings-nativeadapter-optptrallocrecordinstall.tsv`](phyre-lua-bindings-nativeadapter-optptrallocrecordinstall.tsv);
+  - slot 1 method adapters:
+    - [`phyre-lua-bindings-member-vcall-optptr-dispatch-adapters.tsv`](phyre-lua-bindings-member-vcall-optptr-dispatch-adapters.tsv);
+    - [`phyre-lua-bindings-optptr-membercall-vcall-dispatch.tsv`](phyre-lua-bindings-optptr-membercall-vcall-dispatch.tsv);
+    - [`phyre-lua-bindings-nativeadapter-floatpipelinevcalladapter.tsv`](phyre-lua-bindings-nativeadapter-floatpipelinevcalladapter.tsv);
+    - [`phyre-lua-bindings-nativeadapter-optptrfloatpipelinelookup.tsv`](phyre-lua-bindings-nativeadapter-optptrfloatpipelinelookup.tsv);
+    - [`phyre-lua-bindings-nativeadapter-optptrmembercallclonedforward.tsv`](phyre-lua-bindings-nativeadapter-optptrmembercallclonedforward.tsv);
+    - [`phyre-lua-bindings-nativeadapter-optptrmembercallvcallforward.tsv`](phyre-lua-bindings-nativeadapter-optptrmembercallvcallforward.tsv);
+    - [`phyre-lua-bindings-nativeadapter-optptrmembercallvcallresult.tsv`](phyre-lua-bindings-nativeadapter-optptrmembercallvcallresult.tsv);
+    - [`phyre-lua-bindings-nativeadapter-optptrmemberoffsetvcall.tsv`](phyre-lua-bindings-nativeadapter-optptrmemberoffsetvcall.tsv);
+  - slot 2 native calls: [`phyre-lua-bindings-tagged-outrecord-vcall-adapters.tsv`](phyre-lua-bindings-tagged-outrecord-vcall-adapters.tsv),
+    [`phyre-lua-bindings-tagged-outrecord-vcall-advance-adapters.tsv`](phyre-lua-bindings-tagged-outrecord-vcall-advance-adapters.tsv), [`phyre-lua-bindings-nativeleaf-taggedoutrecordvptrstore.tsv`](phyre-lua-bindings-nativeleaf-taggedoutrecordvptrstore.tsv);
+  - [`phyre-lua-bindings-pscript-accesses.tsv`](phyre-lua-bindings-pscript-accesses.tsv) (the `PScript` field stores of `0x00680F40`).

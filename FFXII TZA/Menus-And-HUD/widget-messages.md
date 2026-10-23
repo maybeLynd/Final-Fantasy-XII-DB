@@ -9,8 +9,7 @@ addresses: "0x00247510, 0x002465F0, 0x00248030, 0x00245E60, 0x002473F0, 0x002448
 
 `widget-messages.tsv` has one row per message id that a widget procedure answers or a sender raises, 56 in all:
 1-26, 29-53 and 285-289. The counts come from decoding the 274 widget procedures of the image (the 267 built by
-[Widgets](widgets.md)'s constructors and seven base procedures their defaults pass messages to) and every delivery
-whose record is built in the delivering function.
+[Widgets](widgets.md)'s constructors and seven base procedures their defaults pass messages to).
 
 ### The message record
 
@@ -48,7 +47,7 @@ do no more than that.
 | `25` | animation tick | `0x00246C20` (`0x00246C51`) |
 | `26` | per-element query; the reply is used | `0x002D2600`, `0x002D28E0` |
 
-No procedure answers ids 27 or 28 and no sender in the census raises them.
+No procedure answers ids 27 or 28.
 
 ### Command sub-codes (message 12)
 
@@ -88,12 +87,8 @@ boxes, 286 the item sort bar, 287 the main menu's lists, 288 the script menu hos
 | `meaning` | what receiving it means, with the sender's addresses |
 | `record_fields` | what `a` and `b` carry |
 | `handler_count` | procedures with an arm for the id that does more than the default |
-| `sender_count` | functions that deliver the id with an immediate in the census |
 | `example_handlers` | procedures that answer it |
 | `example_senders` | delivering functions, with the delivery site |
-
-Sender counts are lower bounds: a record passed in from a caller is counted only where it was read by hand (ids 6, 7,
-35 and 40).
 
 ## Related
 
