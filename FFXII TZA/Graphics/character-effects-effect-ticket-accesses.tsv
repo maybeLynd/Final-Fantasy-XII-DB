@@ -1,0 +1,47 @@
+function	name	site	disp	kind	instruction	route	note
+0x003B3160	FUN_003b3160	0x003B3192	0x0	w	mov qword ptr [rdx - 0x20], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B3196	0x8	w	mov qword ptr [rdx - 0x18], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B319A	0x10	w	mov qword ptr [rdx - 0x10], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B319E	0x18	w	mov qword ptr [rdx - 8], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31A2	0x20	w	mov qword ptr [rdx], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31A5	0x28	w	mov qword ptr [rdx + 8], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31A9	0x30	w	mov qword ptr [rdx + 0x10], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31B0	0x0	rw	and dword ptr [rdx - 0x20], 0xfffffc0	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31BF	0x0	rw	or dword ptr [rdx - 0x20], eax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31CB	0x28	w	mov qword ptr [rdx + 8], r9	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B31DD	0x20	w	mov qword ptr [rdx], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B32B7	0x28	w	mov qword ptr [rdx + 8], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B3160	FUN_003b3160	0x003B32C5	0x20	w	mov qword ptr [rdx], r9	ARRAY 0x02EBCD80 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B33D0	FUN_003b33d0	0x003B33E3	0x0	r	mov eax, dword ptr [rdx]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B33D0	FUN_003b33d0	0x003B33EF	0x30	r	mov eax, dword ptr [rdx + 0x30]	ARRAY 0x02EBCD80 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B37E0	FUN_003b37e0	0x003B37FF	0x0	r	cmp dword ptr [rbx], ecx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3807	0x18	r	mov rcx, qword ptr [rbx + 0x18]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B380B	0x30	w	mov dword ptr [rbx + 0x30], 0xffffffff	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B381C	0x18	r	mov rcx, qword ptr [rbx + 0x18]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B382C	0x28	r	mov rcx, qword ptr [rbx + 0x28]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3830	0x20	r	mov rax, qword ptr [rbx + 0x20]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3839	0x20	w	mov qword ptr [rcx + 0x20], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3846	0x20	r	mov rcx, qword ptr [rbx + 0x20]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B384A	0x28	r	mov rax, qword ptr [rbx + 0x28]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3853	0x28	w	mov qword ptr [rcx + 0x28], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3862	0x28	w	mov qword ptr [rbx + 0x28], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B386D	0x20	w	mov qword ptr [rbx + 0x20], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B387D	0x28	w	mov qword ptr [rax + 0x28], rbx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3888	0x0	rw	and dword ptr [rbx], 0xf000003f	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B388E	0x8	w	mov qword ptr [rbx + 8], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3892	0x10	w	mov qword ptr [rbx + 0x10], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B37E0	FUN_003b37e0	0x003B3896	0x18	w	mov qword ptr [rbx + 0x18], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B38FE	0x20	r	mov rax, qword ptr [rbx + 0x20]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B3910	0x28	w	mov qword ptr [rax + 0x28], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B391B	0x28	w	mov qword ptr [rbx + 0x28], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B392B	0x20	w	mov qword ptr [rax + 0x20], rbx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B3941	0x20	w	mov qword ptr [rbx + 0x20], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B395C	0x0	r	xor eax, dword ptr [rbx]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B3963	0x10	w	mov qword ptr [rbx + 0x10], rcx	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B3967	0x0	rw	xor dword ptr [rbx], eax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B396E	0x8	w	mov qword ptr [rbx + 8], rdi	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B3981	0x0	r	movzx edx, word ptr [rbx]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B39A9	0x18	w	mov qword ptr [rbx + 0x18], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B38B0	FUN_003b38b0	0x003B39BD	0x0	r	mov eax, dword ptr [rbx]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3B10	FUN_003b3b10	0x003B3B23	0x0	r	mov eax, dword ptr [r8]	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3B10	FUN_003b3b10	0x003B3B2C	0x30	w	mov dword ptr [r8 + 0x30], edx	ARRAY 0x02EBCD80 stride=0x38 count=32	

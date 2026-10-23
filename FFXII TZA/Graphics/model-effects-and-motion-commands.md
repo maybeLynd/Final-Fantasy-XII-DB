@@ -150,6 +150,24 @@ helper below first checks that the slot's id equals the handle and does nothing 
   `0x0041E3A0` calls `0x00409F80` at start-up (`0x0041E40B`), which calls `0x0040A230`: 144 stores of
   `PS2Data\obj_finish\in\<folder>\...\<name>.cm` paths, so every shipped `@FEF` model has its entry.
 
+### The @FEF path table
+
+`0x02B64380` is a table of 8-byte path pointers indexed by a fold of a model's name. For a name that ends in a letter
+and four digits, the slot is `0x500` times the letter's character code plus the four digits read as a decimal
+number: `m1006` folds to `0x500 × 0x6D + 1006` = 140,526, the slot `0x02C76AF0`. `0x0040A230` stores each of the 144
+`.cm` paths of the shipped `@FEF` models in the slot its name folds to.
+
+The registration `0x00409FE0`
+([resource ownership](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md)) reads it. For a file with an
+`@FEF` section it folds the last five characters of the file's name (`0x0040A0C0`-`0x0040A129`) and loads that slot
+(`0x0040A12C`). It passes the path to `0x001D6EC0` (`0x0040A17F`), which returns the character-effect path that the
+async-load manager keeps for the same `.cm` (`0x001A09E0`); the number after `chara\h` in that path goes into the
+ticket (`0x003B3B10`, `0x0040A1C4`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [model-effects-and-motion-commands-state.tsv](model-effects-and-motion-commands-state.tsv): the 144 filled slots of `0x02B64380` | `void*` | 0 (zero-filled tail of `.data`) | the `.cm` path of the model whose name folds to the slot: the row's `index`, `name`, `folder` and `path`, with `literal` the address of the string | `0x0040A230`, once at start-up, at the site in `set_by` | `0x00409FE0` (`0x0040A12C`), for the model being registered |
+
 ### Selecting a motion
 
 `0x0041D220(entry, descriptor)` sets up a presentation entry:
@@ -229,7 +247,9 @@ mode (`0x01F82E38`):
 At frame 0 `0x00418880` writes, for each row with a bone, the first value of each of the nine
 channels the record's mask names and that has data (`0x0041A7F0`, then `0x00418650`, `0x00418700` or
 `0x004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has none, after clearing bit 0 of
-the bone's byte `+0x28A`. A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton
+the bone's byte `+0x28A`; it clears that bit on the non-zero-frame path too (`0x004194B7`).
+
+A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton
 instead (`0x0041D6F0`: `0x00409270` finds the node for the bone's `+0x27E` and `0x00409300` reads it, all
 of it into `+0xC0` when bone `+0x28B` bit 2 is set, else only the translation into `+0xF0`).
 

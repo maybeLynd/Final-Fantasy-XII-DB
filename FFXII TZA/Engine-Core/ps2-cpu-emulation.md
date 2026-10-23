@@ -56,6 +56,20 @@ cell, `0x022D904C`, is read once by `0x0051D310`, which uses the scratch dwords 
 multiply in `0x0026EE00` (`0x0026F0E6`, `0x0026F0EC`) and the family `0x00506A40`, `0x00506B40`, `0x00507120`,
 `0x00507490`, `0x005080A0`, `0x00508C90`, `0x00509BB0`, `0x0050A100` and `0x00545650`.
 
+A halfword multiply forms the eight signed products of the matching 16-bit halfwords of its two 16-byte
+operands and keeps them in `LO` and `HI`, one 32-bit word each. `0x00506A40` shows the order
+(`0x00506A70`-`0x00506B2E`), and `0x0026EE00` uses the same one (`0x0026F0E0`-`0x0026F1D2`):
+
+| Word | `LO` (`0x022D9120`) | `HI` (`0x022D9110`) |
+|---|---|---|
+| 0 | halfword 0 | halfword 2 |
+| 1 | halfword 1 | halfword 3 |
+| 2 | halfword 4 | halfword 6 |
+| 3 | halfword 5 | halfword 7 |
+
+`0x0026EE00` then copies the low halfwords of words 1 and 3 of `LO` and `HI` into halfwords 1, 3, 5 and 7 of
+`v0` (`0x0026F24F`-`0x0026F280`). No instruction reads word 2 of either register (see Project notes).
+
 The vector unit's registers follow. `0x022D9130` is the 24-bit `CLIP` flag: `0x0025A8E0` shifts it
 left by six and sets one bit per comparison of x, y and z against `+|w|` and `-|w|` (`0x0025A8EE`
 to `0x0025A96A`), which is the `VCLIP` instruction, and two more translated bodies do the same inline
@@ -260,9 +274,20 @@ address has its own row in [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state
 An access counts for a row when its bytes include the row's address. A 16-byte register store therefore
 appears in the row of every lane it covers, and a lane loop over a register appears in every lane's row.
 
+The table also has a row for each of these addresses:
+
+- the byte, halfword and word lanes of `t0` and `t1` (`0x022D8F91` to `0x022D8FAF`), the word lanes of `v0`
+  (`0x022D8F34` to `0x022D8F3C`), the word lanes of `t2` (`0x022D8FB4` to `0x022D8FBC`) and the halfword lanes of `t3`
+  (`0x022D8FC2` to `0x022D8FCE`). The save `0x0036D930` reads every lane of `v0` and `t0` (`0x0036D974`) and the
+  restore `0x0036D8E0` writes them back (`0x0036D90F`), through the cell addresses of the table of saves above;
+- words 1 to 3 of `HI` (`0x022D9114` to `0x022D911C`) and of `LO` (`0x022D9124` to `0x022D912C`);
+- lanes y and z of `vf00` (`0x01EF93F4`, `0x01EF93F8`), which every store keeps at 0;
+- the scratch dword `0x022D9158`, which `0x0051D310` and `0x0053DB50` store;
+- lane z of `ACC` (`0x022D91A8`) and 44 further lanes of `vf01` to `vf31`.
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| each row of [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state.tsv), one per address | the row's `type` | 0 (zero-filled tail of `.data`) | the row's `meaning` | the row's `set_by` | the row's `read_by` |
+| each row of [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state.tsv), one per address | the row's `type` | the row's `start`: 0 from the zero-filled tail of `.data`, or 0 in the image for `vf00`'s lanes y and z | the row's `meaning` | the row's `set_by` | the row's `read_by` |
 
 ## Modding notes
 

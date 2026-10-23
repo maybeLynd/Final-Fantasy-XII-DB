@@ -227,8 +227,8 @@ mode 1 source is not freed here; its loader frees it afterwards.
 ### After a source moves
 
 Compaction can move a mode 1 source. Nothing that moves it repairs the effect data that borrows it.
-`0x003B3C00(handle, n)`, which `0x003B8670` and `0x00427DE0` call to advance an instance by `n` steps
-(`0x0024FE70`), first runs `0x003B3480`, which repairs a borrowing context against the source's new
+`0x003B3C00(handle, n)`, which `0x003B8670` and `0x00427DE0` call to start cue `n` of an instance (`0x0024FE70`), first
+runs `0x003B3480` for an `n` of 1 to 10, which repairs a borrowing context against the source's new
 address. The repair walks are on the
 [arena page](resource-arena-and-relocation.md#repairing-effect-data-after-its-source-moves). The run
 origins `+0x870` and `+0x878` are not in those walks.

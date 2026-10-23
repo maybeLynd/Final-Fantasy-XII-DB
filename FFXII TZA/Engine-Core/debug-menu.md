@@ -466,6 +466,19 @@ the row to an id, `0x001D1660` runs the arm, `0x0017E070` reads the value back f
 The console object, the page table and the arm table (both in the image), the game-setting
 object, the display flag words, the event-slot arrays.
 
+### The shared event-slot name
+
+`0x01F832C8` is a static EASTL string (`+0x00` begin, `+0x08` end, `+0x10` capacity end). Its initialiser `0x0015DBB0`
+sets it up without copying a text, and the destructor `0x008A72D0` frees it. `0x0020A760` empties it (`0x0020A787`) and
+`0x0020AF10` assigns the slot's name to it through `0x001A5760` (`0x0020AF3E`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F832D8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the shared event-slot name | `0x0015DBB0` (`0x0015DBEA`); `0x001A52A0` (`0x001A537F`), when `0x001A5760` grows it | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A72D0` (`0x008A72DD`) |
+
+No other instruction reaches this word: no other RIP-relative, image-base-relative or disp32 reference names it, and
+the string's address is taken only at `0x0020AF3E`.
+
 ## Modding notes
 
 - The concurrence override assumes the action numbering. `0x002F79E0` copies the eight action rows `0xF1`, `0xE7`,

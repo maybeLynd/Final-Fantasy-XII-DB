@@ -15,8 +15,8 @@ addresses: "0x00197EE0, 0x00195060, 0x00198000, 0x00196550, 0x001965E0, 0x00198B
   - a line that is neither a `[KeyboardN]` header nor a `name=value` binding: reading stops there and the lines
     before it are kept, unless the first set is then incomplete, which makes the game ignore the whole file;
   - a value or set number that is not a number, or is too large: the game stops;
-  - a line of 128 characters or more: its first 127 are read as a line and the rest is lost. If that part is a
-    binding with a value, or a header with `]` and a number, the game hangs while it starts, reading the file
+  - a line of 128 characters or more: its first 127 are read as a line and the rest is left unread. If that part
+    is a binding or a header that parses, the game hangs while it starts, reading the file
     forever; otherwise it is treated like any other line of its kind;
   - a set number other than 1-3: its bindings are written outside the three sets, over other data;
   - a control name longer than 64 characters: the game stops.
@@ -84,9 +84,10 @@ is parsed as a line:
 
 - a header without `]`, or a line that is neither a header nor a binding, ends the read there as usual
   (`0x00198278`, `0x00198387`);
-- a header whose number has no digits, or a binding whose value has none, stops the game (`0x0019853F`,
-  `0x0019858A`);
-- a binding with a value, or a header with `]` and a number, lets the loop go on. Every later `getline` on the
+- a header number or binding value with no digits, or one too large for an int, stops the game: no digits at
+  `0x0019853F` (header) and `0x0019858A` (binding), too large at `0x00198531` and `0x0019857C` (wcstol's errno `0x22`,
+  tested at `0x00198341` and `0x00198456`);
+- a binding or header that parses returns to the loop, which goes on. Every later `getline` on the
   failed stream reads nothing and gives an empty line, which is skipped (`0x0019823D`), and the loop tests only the
   end-of-file bit (`0x00198515`-`0x00198523`), which a failed read never sets, so the read never ends.
 

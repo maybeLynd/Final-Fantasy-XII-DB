@@ -528,6 +528,28 @@ and read back the unused pause byte; slots 23 and 24 scale the framework's time 
 The latch and the run-once byte; the thirteen singleton pointers and the objects behind them; the
 published frame delta and the second-pass flag; the pump mode and the game-step count.
 
+### The cut-name strings
+
+The cutscene bookkeeping of `0x001CC600` keeps two static EASTL strings (`+0x00` begin, `+0x08` end, `+0x10`
+capacity end), which start-up initialisers build empty and `atexit` destructors free:
+
+- `0x01F81358`, the current cut name (initialiser `0x0015C560`, destructor `0x008A69F0`): `0x001CC600` reads its end
+  (`0x001CC622`) and rebuilds it as `"Cut "` plus the count through `0x001A5760` (`0x001CC715`). `0x001CC800` (`0x001CC843`,
+  `0x001CC890`, `0x001CC8C8`), `0x001CC920` (`0x001CC94F`) and the cutscene scene-config reader `0x001C3D50` (`0x001C3E9F`) pass it to the
+  scene-map lookup `0x001FF6B0`, which compares names in `0x001FF4F0`.
+- `0x01F81338`, the previous cut name (initialiser `0x0015CB10`, destructor `0x008A6BF0`): `0x001CC600` assigns the current
+  name to it through `0x001A5760` (`0x001CC630`).
+
+`0x001A5760` (assign) and `0x001A52A0` (grow), which it calls, reach the fields through the string's address.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F81348` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the previous cut name `0x01F81338` | `0x0015CB10` (`0x0015CB2E`, `0x0015CB99`, `0x0015CBBE`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6BF0` (`0x008A6BFD`) |
+| `0x01F81360` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` end of the current cut name `0x01F81358` | `0x0015C560` (`0x0015C593`, `0x0015C5D9`, `0x0015C607`, `0x0015C624`); `0x001A52A0` (`0x001A538E`, `0x001A53D3`); `0x001A5760` (`0x001A57BC`) | `0x001A52A0` (`0x001A52C0`, `0x001A5318`, `0x001A53A0`, `0x001A53B7`, `0x001A53C5`, `0x001A53D3`); `0x001A5760` (`0x001A5774`, `0x001A5798`, `0x001A57BC`, `0x001A57C2`, `0x001A57CF`); `0x001CC600` (`0x001CC622`); `0x001FF4F0` (`0x001FF530`, `0x001FF59E`, `0x001FF60D`) |
+| `0x01F81368` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the current cut name `0x01F81358` | `0x0015C560` (`0x0015C57E`, `0x0015C5E9`, `0x0015C60E`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A69F0` (`0x008A69FD`) |
+
+No other instruction reaches these words: no other RIP-relative, image-base-relative or disp32 reference names them.
+
 ## Modding notes
 
 - Anything driving the application before the latch is set finds slots 4 and 8 returning at once

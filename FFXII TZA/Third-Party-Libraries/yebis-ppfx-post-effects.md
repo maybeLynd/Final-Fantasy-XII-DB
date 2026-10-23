@@ -238,13 +238,17 @@ Nine large bodies in the span are in neither member list. Each is called only fr
   - The vectors take both axes in steps of `max(twelfth argument, 1)`, and the count is returned
     (`0x006E9C20`-`0x006EA05B`).
 - `0x00740BE0` clamps a sample count to 4 to 8, selects the shader for it, uploads constants through
-  slot `+0x98` of the GPU device at `+0x38` and binds textures through slot `+0xB8`.
+  slot `+0x98` of the `PPFX::IGPUEffect` at `+0x38` (vtable `0x00DAF1B8`) and binds textures through its slot `+0xB8`.
 - `0x0078AD20`, the code of `TinyEffect.cpp`, reflects a shader with `D3DReflect` and allocates its
   `0xC0`-byte variable records through `0x006DA880`.
-- `0x0077FFE0` maps a GPU resource (device slot `+0x70`), copies four bytes of it into `+0xA0` to
-  `+0xA3` and unmaps it (slot `+0x78`).
-- `0x00735E40` stages up to eight float vectors at `0x02EA1C50` and uploads them through device slots
-  `+0xD0` and `+0x98`; `0x0074F740` runs it twice (`0x0074FDD9`, `0x007502CD`).
+- `0x0077FFE0` maps a GPU resource through slot `+0x70` of the object at `[+0x28] + 0x38`, which takes Map's
+  arguments (the resource, subresource 0, type 1, and flag `0x100000`, do-not-wait, when `+0x68` is 2;
+  `0x00780002`-`0x00780040`), copies four bytes of it into `+0xA0` to `+0xA3` and unmaps it (slot `+0x78`).
+- `0x00735E40` stages up to eight float vectors at `0x02EA1C50` and uploads them through slots
+  `+0xD0` and `+0x98` of the same effect at `+0x38` (`0x00789E40`, `0x00789D50`).
+- `0x00789D50` counts the upload (`0x02EA40B8`, `0x02EA40BC`) and forwards it through slot `+0x58` of the `PPFX::CTinyEffect` at the effect's `+0xE0`
+  (`0x0078FCF0`); the GPU device's own slots `+0x98` and `+0xD0` (vtable `0x00D9EA30`: `0x00724EA0`, `0x00725090`) only
+  return `0x80004001`. `0x0074F740` runs it twice (`0x0074FDD9`, `0x007502CD`).
 - `0x00741680` runs `0x00740BE0` three times (`0x00741B5C`, `0x00741D2A`, `0x00741F18`).
 - `0x007651F0` returns 0 unless its source at `+0x260` is set and three of its intensities are
   positive; otherwise it builds its pass constants from them.
@@ -1261,6 +1265,166 @@ result.
 No other instruction reaches `0x02EA4024`: no other RIP-relative, image-base-relative or 32-bit offset reference names
 it. The addresses taken near it are two one-time initialisation guards, `0x02EA4020` (`0x00763890`) and `0x02EA4008`
 (`0x00764240`), and a loop bound, `0x02EA4010` (`0x00764240`).
+
+### The library's other statics
+
+Every other written static of the library is a row of
+[yebis-ppfx-post-effects-state.tsv](yebis-ppfx-post-effects-state.tsv), with its type, start value, meaning and
+every writing and reading instruction. The sections below explain each group; the table names the rows.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [yebis-ppfx-post-effects-state.tsv](yebis-ppfx-post-effects-state.tsv): 210 statics from `0x01F3C500` to `0x02EA40BC` | per row | per row: the image value for the `01F3xxxx` rows, 0 (zero-filled tail of `.data`) for the rest | per row, by group below | per row (`set_by`) | per row (`read_by`); `-` for the 8 statics that no code reads |
+
+### Render-target bindings
+
+`CRenderTexture` (vtable `0x00D9C040`) keeps the device's eight colour targets in two parallel arrays: the render
+texture bound to slot *n* at `0x02EA18C0` + 8*n* and the surface of it in use at `0x01F3CB18` + 4*n*. The binder
+`0x007224C0` stores both (`0x007225A9`, `0x007225B1`); a caller passing surface -1 gets the stored one (`0x0071FD78`). Every
+loop over the slots stops at 8.
+
+- `0x02EA1914` counts the render textures attached to the current device. Slots 0 (`0x007214A0`) and 5 (`0x007215C0`)
+  add 1 when a texture attaches to a new device; slot 1 (`0x00721B10`) subtracts 1 when it detaches. An attach at 0
+  stores the device in `0x02EA1918` and clears both arrays; a detach back to 0 clears `0x02EA1918` and both arrays. No
+  instruction reads `0x02EA1918`.
+- `CRenderTexture::BeginTiling` (`0x00722A40`) counts the bound targets into `0x02EA190C` and keeps its first, third and
+  fourth arguments and the 16 bytes at its second in `0x02EA1908`, `0x01F3CB38`, `0x02EA1910` and `0x02EA1938`. No
+  instruction reads those five. `EndTiling` (`0x00722C80`) clears both arrays and `0x02EA1908`.
+- The game calls `BeginTiling` itself at `0x005FED6F` (`0x005FECF0`) and `0x0060F9A0` (`0x0060F830`).
+
+### Device and resource registry
+
+- `0x02EA1948` is the current `IGPUDevice` (vtable `0x00D9EA30`): `IGPUDevice::InitializeDevice` (`0x00723760`) stores
+  it and `~IGPUDevice` (`0x00724500`) clears it. The texture creators `0x007875F0` and `0x00787A90` use it when their
+  caller passes no device.
+- `0x02EA1960` is a 0x28-byte device description that `InitializeDevice` and slot 5 (`0x00724940`) copy from their
+  argument, or clear. `InitializeDeviceBuffers` (`0x00723440`) replaces a 0 width (`0x02EA1960`) or height (`0x02EA1964`)
+  with the one the device reports through its slot `+0x80` (`0x00723473`), and takes a reference to the back buffer at
+  `+0x20` (`0x02EA1980`) when one is given.
+- `0x02EA1998` and `0x02EA19A8` are the resource registry of `GPUResourceManage.cpp`: the device of the first
+  registration (`0x00727460`, through `0x00727800`) and a 0x18-byte list of the registered resources. The last
+  unregistration (`0x007276F0`) frees the list and clears both (`0x00727870`).
+- `CRenderTextureArray::InitializeDevice` (`0x0075C080`) hands each member's `InitializeDevice` (`0x00720320`) its
+  depth-stencil format through `0x02EA1920` (`0x2D` when the array's `+0x58` is 0) and `0x02EA1924` (the same when its
+  flag `0x10000` is set, else 0), and clears both after the call.
+
+### Effect-constant staging buffers
+
+The passes stage their shader constants in three static buffers and hand each to their effect's vector-array setter,
+slot `+0x98` of `IGPUEffect` (vtable `0x00DAF1B8`, built by `0x00789900`):
+
+| Buffer | Size | Filled by | Handed over by |
+|---|---|---|---|
+| A, `0x02EA1A50` | `0x100` bytes, up to the next static `0x02EA1B50` | the loops below and direct stores | 25 calls |
+| B, `0x02EA1C50` | 16 vectors: `0x0074AB30` and `0x0074B6A6` hand over 16 | the loops below and direct stores | 38 calls |
+| `0x02EA1B50` | 3 vectors | `0x00737740`, `0x00737A30` | `0x0073792C`, `0x00737C86` |
+
+`0x00789D50`, the setter, adds 1 to `0x02EA40B8` and the vector count to `0x02EA40BC`, then calls the effect it wraps
+(`+0xE0`) at slot `+0x58`. That is `CTinyEffect` `0x0078FCF0`, which copies the smaller of the count and the
+parameter's size, in 16-byte vectors, with `memcpy` (`0x0078FD45`). Nothing reads `0x02EA40B8` or `0x02EA40BC` except
+their own adds.
+
+Every call is a row of
+[yebis-ppfx-post-effects-constant-uploads.tsv](yebis-ppfx-post-effects-constant-uploads.tsv) with its vector count. A
+staged vector is read when a call's count reaches it; the state table lists those calls in each vector's `read_by`.
+The loops that write the buffers through a pointer:
+
+| Buffer | Function | Loop stores |
+|---|---|---|
+| A | `0x00735240`, `0x00735530`, `0x00735720`, `0x00735B70`, `0x007364D0`, `0x00737740`, `0x00737A30`, `0x00737D70` | copy the pass's vectors from its argument, then zero the rest of the count (`0x007353B8`, `0x00735400`, `0x00735440`; `0x00735608`, `0x00735640`; `0x00735A18`, `0x00735A63`, `0x00735AB0`; `0x00735CD9`, `0x00735D20`, `0x00735D60`; `0x007365D8`, `0x00736610`; `0x00737820`, `0x00737848`, `0x00737877`; `0x00737B90`, `0x00737BB9`, `0x00737BE7`; `0x00737F4C`, `0x00737F83`, `0x00737FC0`) |
+| A | `0x0073AC70`, `0x0073B5A0` | fill *n* taps with 1/*n*, then add them into tap *n* (`0x0073ADD0`-`0x0073AF73`; `0x0073B679`-`0x0073B752`) |
+| A | `0x00735E40` | packs its floats, zero-filled (`0x00736343`, `0x00736365`) |
+| A | `0x00774260` | `0x00774A6C`-`0x00774AC4` |
+| B | `0x00735E40` | copies up to 8 vectors and zeroes the rest (`0x00735FE8`, `0x00736017`), then the second set (`0x007360CE`-`0x007362E7`) |
+| B | `0x00734EB0` | `0x00734F39`-`0x0073509F` |
+| B | `0x00774260`, `0x00777590`, `0x007788A0` | through `0x0072F910`, which returns `0x02EA1C50` (`0x00774AD6`-`0x00774B5E`; `0x00777AE4`-`0x00777CFD`; `0x00778D31`-`0x00778D40`) |
+
+### Lookup tables built on first call
+
+Four converters fill a small `i32` table the first time they run, set a flag and return the entry their argument
+indexes:
+
+| Function | Table | Flag | Entries | Called at |
+|---|---|---|---|---|
+| `0x00714040` | `0x02EA1498` | `0x02EA14BC` | 0, 1, 10, 2, 4, 6, 8, 14, 1 | `0x0071410B` (`0x007140C0`, the HDR encoding code), `0x006F27BF`, `0x006FABC5`, `0x0070C76A` |
+| `0x00713DF0` | `0x02EA14C0` | `0x02EA14E0` | 0, 1, 2, 3, 4, 5, 5, 5 | `0x00702779` (`CPostEffect::Initialize`) |
+| `0x00713EB0` | `0x02EA14E8` | `0x02EA14FC` | 0, 0, 2, 6, 6 | `0x00702770` (`0x006FF900`), `0x00711393`, `0x00711431` |
+| `0x00713F60` | `0x02EA1550` | `0x02EA1588` | 0 to 13 | `0x006FAE5B` (`0x006F9030`), `0x0070768D` (`0x00707670`) |
+
+`0x00713EB0` is `GetEffectDofEdgeQualityTypeFromEdgeQualityType`: above 4 it logs "Unsupported EPFX_DOFEDGEQUALITY"
+(`0x00D90AE0`), and -1 returns `0x10000000`. `0x00713F60` returns -1 for -1.
+
+### Technique-name suffix tables
+
+`TEXSHADERSET::CreateEffect` (`0x0072A320`) looks up its techniques by name. Five helpers keep tables of name
+suffixes, filled once while a flag byte (1 in the image) is set; each walk appends every suffix to the base name and
+looks the technique up:
+
+| Flag | Table | Suffixes | Filled by | Walked by |
+|---|---|---|---|---|
+| `0x01F3CD60` | `0x02EA2250` | 22 tone-map pairs, the first empty: `_REINHARDRGB_RGB` to `_ALPHA_RGB` | `0x0072DAC0`, `0x0072DCF0`, `0x0072DFD0` | the same three (`0x0072DC6D`, `0x0072DEFD`, `0x0072E1DD`) |
+| `0x01F3CD61` | `0x02EA2300` | 16 curves: `_LINEAR` to `_ALPHALUM_PREMAP`, entry 10 empty | `0x0072E740` | `0x0072E740` (`0x0072E8AD`) |
+| `0x01F3CD62` | `0x02EA2380` | 7 channels: `_RVALUE` to `_ABGR8` | `0x0072E2B0`, `0x0072E3E0` | `0x0072E2B0` (`0x0072E370`), `0x0072E3E0` (`0x0072E500`) |
+| `0x01F3CD63` | `0x02EA23B8` | empty, `_USNORM` | `0x0072E5B0`, `0x0072E3E0` | `0x0072E5B0` (`0x0072E690`), `0x0072E3E0` (`0x0072E470`) |
+| `0x01F3CD64` | `0x02EA23C8` | 7 steps: `_PreMatrix` to `_Gamma` | `0x0072E940` | `0x0072E940` (`0x0072EA34`) |
+
+No instruction calls `0x0072E3E0` and no table points to it; its only references are its unwind entries
+(`.pdata` `0x02FEBC28`, `.rdata` `0x01DCBD28`).
+
+### Random states for noise
+
+Two draws keep four 32-bit random states each, seeded once behind a thread-safe guard (`_Init_thread_header`
+`0x008092FC`) with 1, `0x3391`, `0x61E9B` and `0xBF1`. While the draw's animate byte is set, each state steps as
+`x = x * 0x5D588B65 + 0x1000001`, and `(x >> 14) / 262143` is a value from 0 to 1 that offsets the dither noise:
+
+| States | Guards | Draw |
+|---|---|---|
+| `0x02EA2400`, `0x02EA2410`, `0x02EA2420`, `0x02EA2430` | `0x02EA2408`-`0x02EA2438` | `0x00739530` (animate byte `+0x130`) |
+| `0x02EA2440`, `0x02EA2450`, `0x02EA2460`, `0x02EA2470` | `0x02EA2448`-`0x02EA2478` | `CTextureUtil::DrawRectGPU_TonemapHDR` `0x0073BD30` (`+0x2D0`) |
+
+Two depth-of-field draws keep a xorshift-128 state each, seeded `0x6C078966`, `0xDD5254A5`, `0xB9523B81`,
+`0x03DF95B3`: `0x02EA4038`-`0x02EA4044` in `0x00771B30` (guard `0x02EA4048`) and `0x02EA4050`-`0x02EA405C` in `0x00777590`
+(guard `0x02EA4060`). Each step is:
+
+```python
+t = x ^ (x << 11);  x = y;  y = z;  z = w;  w = w ^ (w >> 19) ^ t ^ (t >> 8)
+```
+
+`0x02EA404C` counts the `SetApertureFilterLevelVisualize` branch of `0x00772410`, which prints "does not work properly"
+only when the count is 0 or a multiple of 100.
+
+### Glare definitions and colours
+
+The glare code builds its look tables from two `.data` row lists when `CRenderGlare`'s constructor (`0x007687E0`)
+allocates the definition object `0x02EA3D50`:
+
+- `0x02EA3D40`: the star-line types, from the seven rows at `0x01F3CF20` (Disable, Cross, CrossFilter, SnowCross,
+  SunnyCross, Vertical, Anamorphic), built by `0x0075F160`.
+- `0x02EA3D48`: the glare types, from the 14 rows at `0x01F3D000` (Disable, Bloom, Lens Flare, Standard, Cheap Lens
+  Camera, Afterimage, the cross filters and the streaks), built by `0x0075F960`.
+- `0x0075F160` also writes two colour orders for the lines: `0x02EA3D60` white, red, green, blue and `0x02EA3DA0` white,
+  blue, green, red. `0x00764240` picks one (`0x007644C3`) and hands it to the effect (`0x00764FA1`).
+
+The destructor `0x007693B0` frees both tables and the object (`0x0075FA60`, `0x0075F390`). `0x00707670` copies a glare type
+by index, but the thunk `0x006DBA00`, which jumps to it, is referenced by no instruction or table.
+
+`0x0075B2F0` returns a seven-entry hexagon pattern built once (flag `0x02EA3D24`): `0x02EA3CB0` is (0, 0, 0, 0) and
+entry *i* + 1 is (-sin 60*i*°, cos 60*i*°, 0, 0) for *i* = 0 to 5.
+
+### Constant colours and the allocator's map
+
+- Three draws keep the colour (1, 1, 1, 1) in a guarded lazy static: `0x02EA2480` (`0x00748C00`), `0x02EA3FF8`
+  (`0x00764240`) and `0x02EA4010` (`0x00763890`).
+- The game's allocator `0x02E5BDE0` counts its live allocations at `+0x08` (`0x02E5BDE8`) and their bytes at `+0x10`
+  (`0x02E5BDF0`). It maps each address to its size, file and line in a red-black tree headed at `+0x18`
+  (`0x02E5BDF8`). The head is also the nil node that leaf links point to; `+0x30` (`0x02E5BE10`) holds the root, and
+  `+0x30` to `+0x40` stand in as the root's parent.
+- The initialiser `0x00167990` stores the head's address in all six words. Inserts (`0x006CBA20`), rebalancing
+  (`0x0067F700`, `0x0067F9D0`) and erases (`0x0067FE20`) rewrite the root and the nil node's parent word (`0x02E5BE08`), and
+  read the second link and the colour bit of the root's parent position (`0x02E5BE18`, `0x02E5BE20`).
+- `0x01F3C500` lets `0x006F1270` fill the eleven maximum vectors at `0x02EA13C0` once.
+- `0x02EA17B0` is the text `0x0071B070` builds for the texture-creation log lines (`GPUUSAGE_RENDERTARGET`,
+  `GPUUSAGE_DEPTHSTENCIL`).
 
 ## Modding notes
 

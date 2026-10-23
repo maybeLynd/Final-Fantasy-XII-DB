@@ -39,7 +39,7 @@ children; `0x0046E6F0` rebuilds it after every acquire (`0x0046E4D0`), release a
 
 ### Skeleton bones: the listed bones, lookups and the bone-to-bone tie
 
-A skeleton entry's word `+0x9C` is its skeleton kind, 0 or 2 (an `@FTR` node table, see
+A skeleton entry's dword `+0x9C` is its skeleton kind, 0 or 2 (an `@FTR` node table, see
 [model files](model-files-cm-ca.md)), and `+0xA0` the skeleton resource. The bone array `+0x84` holds
 `+0x88` bones of `0x290` bytes; after them come `+0x88` u16 slots whose first `+0x8A` list the bones
 built from pool values (node flag bit 8), then the extra slots.

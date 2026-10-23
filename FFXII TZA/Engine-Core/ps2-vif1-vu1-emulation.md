@@ -398,6 +398,8 @@ registers: a program loads a cell or word, computes, and stores the result for i
 shared subroutines receive the cells' addresses: `0x004B1190` passes `0x02064CB0` (`0x004B3E86`) to `0x004B9D80`
 (`0x004B3EB9`). A cell's value lives only until the next program overwrites it.
 
+The halfwords `0x02064B12` to `0x02064B1E`, just below the cells, are 16-bit integer words of the same kind.
+
 ### The lens-flare program's words
 
 The lens-flare microprogram `0x004C0EA0`, which the lens-flare draw `0x00461270` installs (`0x004620E3`), keeps its

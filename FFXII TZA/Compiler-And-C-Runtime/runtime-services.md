@@ -291,6 +291,24 @@ The PhyreEngine lock, `0x28` bytes (constructor `0x005CC8A0`; plain lock `0x005C
 | `0x02EA0BA0` | the 2,048-byte format buffer of `0x006DF480` |
 | `0x02CB6120`, `0x02CB6128` | the performance-counter frequency and its reciprocal |
 
+### The thread-name map
+
+`0x02EB37B8` is a static `eastl::map` from thread id to thread name. Its initialiser `0x0016A2C0` builds it empty and
+registers the teardown `0x008B9110`. The thread creator `0x008636E0` (called from `0x0035E820`, `0x00368C80`, `0x00368DD0`
+and `0x00368F70`) takes the new thread's id from its object's `+0x10`, finds or adds its entry with `0x001AE550`
+(`0x008637BA`) and assigns the name with `0x001A5760` (`0x008637D6`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EB37C0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08`, the anchor's right link: the rightmost node, the map's last entry (nodes link right at `+0x00`, left at `+0x08`, parent at `+0x10`); the initialiser points it at the anchor `0x02EB37C0` itself | `0x0016A2C0` (`0x0016A2DA`, `0x0016A321`); `0x0016D840` (`0x0016D870`, `0x0016D878`) | `0x0016D720` (`0x0016D733`); `0x0016D840` (`0x0016D873`); `0x001AEC30` (`0x001AEC46`) |
+| `0x02EB37C8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10`, the anchor's left link: the leftmost node, the map's first entry (`begin()`); the initialiser points it at the anchor | `0x0016A2C0` (`0x0016A2E1`, `0x0016A328`); `0x0016D840` (`0x0016D855`, `0x0016D86A`) | `0x0016D720` (`0x0016D737`); `0x0016D840` (`0x0016D864`); `0x001AEB00` (`0x001AEB6A`) |
+| `0x02EB37D0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x18`, the root node; 0 while empty | `0x0016A2C0` (`0x0016A2E8`, `0x0016A30F`); `0x0016D840` (`0x0016D85E`, `0x0016D912`, `0x0016D9E5`, `0x0016DA3D`) | `0x0016D720` (`0x0016D720`); `0x0016D840` (`0x0016D87B`, `0x0016D8CD`, `0x0016D926`, `0x0016D9A3`, `0x0016D9F8`, `0x0016DA41`, `0x0016DA4B`); `0x001AE550` (`0x001AE574`); `0x001AEB00` (`0x001AEB19`); the teardown `0x008B9110` (`0x008B9124`) |
+| `0x02EB37D8` | `u8` | 0 (zero-filled tail of `.data`) | `+0x20`, the anchor's colour byte, 0 | `0x0016A2C0` (`0x0016A2EF`, `0x0016A32F`) | `0x0016D720` (`0x0016D72D`) |
+| `0x02EB37E0` | `u32` | 0 (zero-filled tail of `.data`) | `+0x28`, the number of entries | `0x0016A2C0` (`0x0016A2F6`, `0x0016A336`); `0x001AEB00` (`0x001AEBC9`, `0x001AEBF8`); `0x001AEC30` (`0x001AECAD`, `0x001AED09`); `0x001AEF70` (`0x001AEFD2`) | `0x001AE550` (`0x001AE5A3`); `0x001AEB00` (`0x001AEB7D`, `0x001AEB8B`, `0x001AEB9C`, `0x001AEBC9`, `0x001AEBF8`); `0x001AEC30` (`0x001AECAD`, `0x001AECC7`, `0x001AED09`); `0x001AEF70` (`0x001AEFD2`) |
+
+No other instruction reaches these words: no other RIP-relative, image-base-relative or disp32 reference names them,
+and the map's address is taken only at `0x008637B3` and `0x008B9133`, the anchor's only at `0x0016A308`.
+
 ## Modding notes
 
 - A debug viewer shows the sound library's and the post-effect library's messages with no change

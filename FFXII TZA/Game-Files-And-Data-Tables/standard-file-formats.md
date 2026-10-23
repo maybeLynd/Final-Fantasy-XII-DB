@@ -263,6 +263,31 @@ back to `JsonData/init.json` through an output file stream (`0x00202930`).
 - `0x001C2F50` (from `0x0017D6E0`) parses `/Tools/AutoTest/MapIndex.json` for a `MapIndex` value; no such
   file ships.
 
+### The document-name strings
+
+The map and cutscene loaders keep their document names in static EASTL strings (`+0x00` begin, `+0x08` end,
+`+0x10` capacity end), which start-up initialisers build empty and `atexit` destructors free:
+
+- `0x01F81288`, the map document name (initialiser `0x0015C9E0`, destructor `0x008A6B90`): `0x001C53F0` empties it
+  (`0x001C5429`) and rebuilds it through `0x001A5760` (`0x001C544E`).
+- `0x01F81388`, the last map name (initialiser `0x0015C8D0`, destructor `0x008A6B30`): `0x001C61F0` compares the new name
+  with it (`0x001C624A`, `memcmp` at `0x001C6263`) and, when they differ, assigns it through `0x001A5760` (`0x001C6274`).
+- `0x01F812A8`, the cutscene document name (initialiser `0x0015C7C0`, destructor `0x008A6AD0`): `0x001C5930` reads its
+  length (`0x001C5978`) and assigns it through `0x001A5760` (`0x001C59EB`); `0x001C5040` empties it (`0x001C504B`-`0x001C505E`).
+
+`0x001A5760` (assign) and `0x001A52A0` (grow), which it calls, reach the fields through the string's address.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F81298` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the map document name `0x01F81288` | `0x0015C9E0` (`0x0015C9FE`, `0x0015CA69`, `0x0015CA8E`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6B90` (`0x008A6B9D`) |
+| `0x01F812B0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` end of the cutscene document name `0x01F812A8` | `0x0015C7C0` (`0x0015C7F3`, `0x0015C839`, `0x0015C867`, `0x0015C884`); `0x001A52A0` (`0x001A538E`, `0x001A53D3`); `0x001A5760` (`0x001A57BC`); `0x001C5040` (`0x001C505E`) | `0x001A52A0` (`0x001A52C0`, `0x001A5318`, `0x001A53A0`, `0x001A53B7`, `0x001A53C5`, `0x001A53D3`); `0x001A5760` (`0x001A5774`, `0x001A5798`, `0x001A57BC`, `0x001A57C2`, `0x001A57CF`); `0x001C5040` (`0x001C504B`); `0x001C5930` (`0x001C5978`, the low 4 bytes) |
+| `0x01F812B8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the cutscene document name `0x01F812A8` | `0x0015C7C0` (`0x0015C7DE`, `0x0015C849`, `0x0015C86E`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6AD0` (`0x008A6ADD`) |
+| `0x01F81390` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` end of the last map name `0x01F81388` | `0x0015C8D0` (`0x0015C903`, `0x0015C949`, `0x0015C977`, `0x0015C994`); `0x001A52A0` (`0x001A538E`, `0x001A53D3`); `0x001A5760` (`0x001A57BC`) | `0x001A52A0` (`0x001A52C0`, `0x001A5318`, `0x001A53A0`, `0x001A53B7`, `0x001A53C5`, `0x001A53D3`); `0x001A5760` (`0x001A5774`, `0x001A5798`, `0x001A57BC`, `0x001A57C2`, `0x001A57CF`); `0x001C61F0` (`0x001C624A`, the low 4 bytes) |
+| `0x01F81398` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the last map name `0x01F81388` | `0x0015C8D0` (`0x0015C8EE`, `0x0015C959`, `0x0015C97E`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6B30` (`0x008A6B3D`) |
+
+No other instruction reaches these words: no other RIP-relative, image-base-relative or disp32 reference names them.
+The strings' addresses are taken only at the sites above.
+
 ### The PS2 memory-card icon pair
 
 `0x00582790` asks `0x00249210` for kind 7 id `0x2C` (`icon.sys`) and kind 7 id `0x2D` (`icon1.ico`),

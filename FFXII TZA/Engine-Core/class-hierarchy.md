@@ -27,9 +27,10 @@ address as a relative pointer is a locator and nothing else.
 The type descriptor holds the decorated class name (`.?AVGameApplication@@`), and the hierarchy
 descriptor points at an array of base class descriptors, each naming a base and where it sits in
 the object. Reading every locator in `.rdata` this way yields 2,286 vtables for 2,248 class names;
-102 of the 2,350 type descriptors in the image name types that have no vtable, and 38 names own
-two or more vtables. The
-virtual slots of a vtable are the run of `.text` addresses that follows it: 25,801 slots in all,
+102 of the 2,350 type descriptors in the image name types that have no vtable, and 28 names own
+two or more vtables (18 own two, 10 own three; 38 vtables beyond each name's first).
+
+The virtual slots of a vtable are the run of `.text` addresses that follows it: 25,801 slots in all,
 pointing at 6,886 distinct functions.
 
 ### What the classes are

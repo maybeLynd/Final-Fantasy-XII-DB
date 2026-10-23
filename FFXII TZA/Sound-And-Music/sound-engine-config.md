@@ -97,7 +97,9 @@ Each finder walks `chunkCount` entries from `dirOffset` and compares the tag wit
 | `dirOffset`, `chunkCount` | read from the copy by every finder on every call (`0x007ADB2A`, `0x007ADB2F`) |
 | entry tag | compared in place with the finder's tag (`0x007ADB5A`) |
 | entry offset | relocated on every call: the finder returns the copy's address plus the offset (`0x007ADB86`-`0x007ADB92`); no object keeps the chunk pointer |
-| `h04`, `h09`, `e04`, `e06`, `e0C` | not read (see Loader behaviour) | A table chunk starts with a `u8` version, a `u16` at
+| `h04`, `h09`, `e04`, `e06`, `e0C` | not read (see Loader behaviour) |
+
+A table chunk starts with a `u8` version, a `u16` at
 `+0x02` that locates its element-offset table and a `u16` element count at `+0x04`.
 
 | Tag | Class | Finder | Read by |
@@ -396,15 +398,20 @@ the selection (`0x007B2880`) and one that passes stays, so an empty selection st
 In `0x11`-`0x17`, mode 0 tests each selected sound's own value and mode 1 this sound's value minus the selected
 sound's; any other mode leaves the selection as it is (`0x007B34E2`, `0x007B35FF`, `0x007B3732`, `0x007B383C`, `0x007B398D`,
 `0x007B3AB3`, `0x007B3B97`).
-`0x11`, `0x13`, `0x14` and `0x15` test with `0x007B2BD0`, and `0x16` and `0x17` with `0x007B2C40`; with either, a code
-above 5 fails every sound and empties the selection (`0x007B2C16`, `0x007B2C92`):
+
+`0x11`, `0x13`, `0x14` and `0x15` test with `0x007B2BD0`, which compares signed 32-bit numbers (`cmp edx, r8d` with
+`setg`/`setl`, `0x007B2BEC`-`0x007B2C12`); their mode-1 differences subtract zero-extended byte or `u16` fields at 32 bits
+(`0x007B3517`, `0x007B3767`, `0x007B38C0`, `0x007B39EE`), so they are exact. `0x16` and `0x17` test with `0x007B2C40`, which
+compares `f32` values (`ucomiss`/`comiss`, `0x007B2C5B`-`0x007B2C8B`); their mode-1 differences are `f32` subtractions
+(`0x007B3AE0`, `0x007B3BD9`). With either comparator, a code above 5 fails every sound and empties the selection
+(`0x007B2C16`, `0x007B2C92`):
 
 | Opcode | Handler | Does |
 |---|---|---|
 | `0x01` | `0x007B33DF` | ends the macro |
 | `0x10` | `0x007B33E9` | selects every other playing sound again, with no operands: it empties the selection (`0x007B6AA0`) and refills it as the macro's start does (`0x007B32F3`-`0x007B336C`), with each sound of the sound list `0x02EAD560` that is not this one, answers state 2 (slot 21, `0x007BD9A0`) and is not waiting for its bank (slot 38); later filters start again from all of them |
 | `0x11` | `0x007B3471` | tests each selected sound's category, byte `+0x06` of its sound record (`0x007B349C`), against the value (`0x007B3494`-`0x007B34A4`); with mode 1, this sound's category minus the selected sound's (`0x007B34E8`-`0x007B3519`) |
-| `0x12` | `0x007B3555` | tests each selected sound's key, the bank header's `param` (`u16` `+0x0A`, see [sound banks](sound-banks.md)) over the sound number (record `u16` `+0x08`) (`0x007BD5E0`, called at `0x007B3578`), against the value with its own unsigned `==`, `!=`, `>`, `>=`, `<` or `<=` (`0x007B357D`-`0x007B35BF`); with mode 1, this sound's key minus the selected sound's, as a signed difference (`0x007B3605`-`0x007B367C`); a code above 5 fails every sound here too (`0x007B3584`, `0x007B363B`), and a sound whose bank is not ready has key -1 (`0x007BD602`-`0x007BD609`) |
+| `0x12` | `0x007B3555` | tests each selected sound's key, the bank header's `param` (`u16` `+0x0A`, see [sound banks](sound-banks.md)) over the sound number (record `u16` `+0x08`) (`0x007BD5E0`, called at `0x007B3578`), against the value with its own unsigned `==`, `!=`, `>`, `>=`, `<` or `<=` (`0x007B357D`-`0x007B35BF`); with mode 1, this sound's key minus the selected sound's: both keys and the value are zero-extended from 32 bits (`0x007B360D`, `0x007B362C`, `0x007B3624`), subtracted at 64 bits (`0x007B3631`) and compared as signed 64-bit numbers (`0x007B3651`-`0x007B367C`); a code above 5 fails every sound here too (`0x007B3584`, `0x007B363B`), and a sound whose bank is not ready has key -1 (`0x007BD602`-`0x007BD609`) |
 | `0x13` | `0x007B36BA` | tests byte `+0x07` of each selected sound's sound record (`0x007B36EC`) against the value; with mode 1, this sound's byte minus the selected sound's (`0x007B3738`-`0x007B3769`) |
 | `0x14` | `0x007B37A5` | tests each selected sound's macro number for this call, the same byte `+0x0A`, `+0x0B` or `+0x4F` of its own sound record (`0x007B37C9`-`0x007B37EF`), 0 for `+0x4F` in a record below version `0x0E` (`0x007B37F1`), against the value; with mode 1, this sound's number minus the selected sound's (`0x007B3842`-`0x007B38C2`) |
 | `0x15` | `0x007B38FE` | tests each selected sound's bank `param`, the `u16` `+0x0A` of its bank's `.sab` header read through the bank's slot 5 (`0x007B391A`-`0x007B3936`), the high half of `0x12`'s key, against the value; with mode 1, this sound's `param` minus the selected sound's (`0x007B3993`-`0x007B39F0`) |

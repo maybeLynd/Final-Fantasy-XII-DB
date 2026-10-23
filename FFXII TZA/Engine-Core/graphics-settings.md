@@ -368,6 +368,22 @@ The block with its two snapshot slots and ring index, the post-process parameter
 (`0x01F7F5F0`, also at `0x01F81300`), the shadow object (`0x01F82EA8`, also at `0x01F812C8`), the second
 settings run and the frame's snapshot.
 
+### The previous-cut name copy
+
+`0x01F812E0` is a static EASTL string (`+0x00` begin, `+0x08` end, `+0x10` capacity end) that the initialiser
+`0x0015C650` builds empty and the destructor `0x008A6A40` frees. `0x001C3C30` copies the previous cut name `0x01F81338` into
+it through `0x001A5760` (`0x001C3C80`), and the cutscene scene-config reader `0x001C3D50` passes it, with the current cut
+name `0x01F81358`, to the scene-map lookup `0x001FF6B0` (`0x001C3EA6`), which compares names in `0x001FF4F0`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F812E0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x00` begin of the copy | `0x0015C650` (`0x0015C683`, `0x0015C6C2`, `0x0015C6F0`); `0x001A52A0` (`0x001A5386`) | `0x001A52A0` (`0x001A52BE`, `0x001A52C5`, `0x001A5312`, `0x001A5349`); `0x001A5760` (`0x001A577A`, `0x001A5782`, `0x001A579C`, `0x001A57D5`); `0x001FF4F0` (`0x001FF534`, `0x001FF5A2`, `0x001FF611`); `0x008A6A40` (`0x008A6A57`) |
+| `0x01F812E8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` end of the copy | `0x0015C650` (`0x0015C683`, `0x0015C6C9`, `0x0015C6F7`, `0x0015C714`); `0x001A52A0` (`0x001A538E`, `0x001A53D3`); `0x001A5760` (`0x001A57BC`) | `0x001A52A0` (`0x001A52C0`, `0x001A5318`, `0x001A53A0`, `0x001A53B7`, `0x001A53C5`, `0x001A53D3`); `0x001A5760` (`0x001A5774`, `0x001A5798`, `0x001A57BC`, `0x001A57C2`, `0x001A57CF`); `0x001FF4F0` (`0x001FF530`, `0x001FF59E`, `0x001FF60D`) |
+| `0x01F812F0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the copy | `0x0015C650` (`0x0015C66E`, `0x0015C6D9`, `0x0015C6FE`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6A40` (`0x008A6A4D`) |
+
+No other instruction reaches these words: no other RIP-relative, image-base-relative or disp32 reference names them,
+and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
+
 ## Modding notes
 
 - The defaults are immediates in `0x005DC580`, `0x005DC430` and `0x005DC720`; patching them changes the

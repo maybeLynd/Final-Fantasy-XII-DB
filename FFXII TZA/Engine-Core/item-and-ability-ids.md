@@ -127,8 +127,8 @@ lists are what the menus page through.
 `0x00322C50(class, id)` answers whether an id is valid for a class. Classes 1 to 32 dispatch
 through the 32-entry table at `0x00323054`, and every arm ends in the shared test `lo ≤ id ≤ hi -
 1`, so a bound is a count and the valid set is `[lo, lo + count)`. The count comes from the
-`+4` word of an authored table (`st2e`: `+4` rows, `+8` stride, rows from `+0x20`, bound at area
-load by `0x00236C30` through `0x003845F0`), except for four arms:
+`+4` word of an authored table (`st2e`: `+4` rows, `+8` stride, `+0x0C` the row array, `0x20` in the
+shipped tables that have rows; bound at the pack or area load through `0x003845F0`), except for four arms:
 
 - class 1 derives the class from the id with `0x00309440` and re-enters the switch;
 - class 19 uses `0xE000` to `0xEFFF` compiled in, so the last valid id is `0xEFFE`;
@@ -176,6 +176,78 @@ the ids fixes the three sub-ranges in immediates of its own:
 
 s_daiji_data (`0x02EBF078`) ships with no rows, so the summed count is 64 + 32 + 416 = 512 and every one of these
 bounds ends at the same id. A row added to any sub-table moves the validator's end and none of the others.
+
+### From a content id to its row
+
+One rule takes an encoded id to the authored row it names. Its parts are above and on
+[authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md); this section only joins them,
+reading the validator `0x00322C50` and the query filler `0x0031C5D0` as the two routines that apply it.
+
+1. **Class.** `0x00309440(id)` gives `(id >> 12) + 5`, the descriptor's `+0x38`, or −1 for nibble `0xF`. A
+   caller that already holds a class (classes 2-4 and 20-32 have no nibble) passes it directly; the
+   class-1 arms of both routines derive it this way and re-enter (`0x00322C7E`-`0x00322C8B`, `0x0031C61F`-`0x0031C639`).
+2. **Base and slot.** The class's arm pairs a base with a registry slot (the table in The thirty-two-class
+   validator): base `(class − 5) << 12` for the inventory classes 5-19, `0xA000` for 30 and 31, which share
+   class 15's arm (`0x00322EC2`, `0x0031D745`), and 0 for 2-4, 20-29 and 32 (`0x00322C9A`-`0x00323028`).
+3. **Table.** The slot holds the table its loader bound.
+   - For every class with a bound slot except 3 and 4 that is the pack load `0x00236C30(1)`, which passes the
+     sign-extended dword `[[0x0208E680] + entry]` of one battle_pack directory entry to `0x003845F0(&slot, table)`
+     (33 sites, `0x00236C86`-`0x0023701E`), to a bespoke binder (the same dword in `ecx`, `0x00236D73`) or to
+     `0x003846F0`.
+   - Class 12's slot `0x02EBF0D0` is bound by no loader (its one reference is the read at `0x00322DFE`), and
+     classes 1, 19, 22 and 23 have no slot.
+   - Which entry each slot takes is the Shipped data table on
+     [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md#shipped-data).
+   - Classes 3 and 4 use the area slots `0x02EBF120` and `0x02EBF150`, bound from the `.ard` by `0x003EA710`
+     through `0x0023A160` (categories 2 and 0) and unbound by `0x003EA820` at each area load (`0x0023A160(category, 0)`,
+     `0x003EA8E1`-`0x003EA90D`), so they change with the area.
+4. **Row.** `row = id − base`, valid when `0 ≤ row < [table + 0x04]`: the validator's shared tail refuses
+   `id < base` and `id > base + count − 1` (`0x0032302E`-`0x0032303B`), with count 0 for a null slot.
+5. **Address.** `address = 0x0020E600([table + 0x0C]) + u16[table + 0x08] × row`, in 32-bit arithmetic
+   ([finding a row](../Game-Files-And-Data-Tables/authored-data-tables.md#finding-a-row)).
+   - `+0x0C` is the row array's offset until `0x003845F0` adds the table's low 32 bits to it, when it is non-zero
+     (`0x00384600`-`0x0038460E`); it is `0x20`, the header size, in all 64 battle_pack `st2e` tables that have rows
+     and in every `.ard` category-0 and category-2 table that has rows.
+
+The filler's class-6 arm applies the rule: `eax = 0x0020E600([[0x02EBF0F8] + 0xC])` (`0x0031C886`-`0x0031C890`), then
+`movzx ebp, word ptr [rbx + 6]`, `sub ebp, 0x1000`, `movzx ecx, word ptr [r8 + 8]`, `imul ebp, ecx`, `add ebp, eax`
+(`0x0031C89C`-`0x0031C8AE`).
+
+The same shape with its own base is at
+`0x0031CB08` (7), `0x0031CC72` (8), `0x0031CE1E`-`0x0031CE2A` (9, `0x4000` in `r14d`), `0x0031CFC3` (11), `0x0031D6B6` (14),
+`0x0031D745` (15), `0x0031D7E3` (16), `0x0031D860` (17) and `0x0031D93B` (18); a base-0 class multiplies the id or row
+as it is (class 5 at `0x0031C756`-`0x0031C75F`, class 2 at `0x0031C6A7`-`0x0031C6AF`).
+
+Worked: id `0x1005` has nibble 1, class 6, base `0x1000`, slot `0x02EBF0F8`, bound from directory entry `+0x38`
+(eitm_data, 557 rows of 52 bytes), so row 5 at `table + 0x20 + 5 × 52`. Id `0x8045` has class 13 and falls
+in the second key-item sub-range, so it is row 5 of g_daiji_data (`0x02EBF088`, entry `+0x8C`).
+
+The exceptions, each read at its bytes:
+
+- **Class 13, key items.** The validator sums the four sub-tables' counts from `0x8000` (`0x00322E28`-`0x00322E8C`),
+  but a row is `id − 0x8000` in m_daiji_data (`0x0031D164`), `id − 0x8040` in g_daiji_data (`0x0031D30E`) or
+  `id − 0x8060` in q_daiji_data (`0x0031D4D1`), chosen by the sub-range tests in the table above; s_daiji_data
+  ships no rows and is reached by no reader.
+- **Class 19, gil.** No table: the arm is compiled in as `0xE000`-`0xEFFF` (`0x00322F63`-`0x00322F68`), so the last
+  valid id is `0xEFFE`; the gil handler `0x002FD880` takes the amount as `id & 0xFFF` (`0x002FD8A2`) and the
+  filler only validates and returns −1 (`0x0031C63B`-`0x0031C64A`).
+- **Classes 22 and 23.** No table: literal counts 4 and 9 (`0x00322FA6`, `0x00322FAF`), ids 0-3 and 0-8; the filler
+  returns 0 without a row.
+- **Class 12.** Slot `0x02EBF0D0` is never written, so its count is 0 and every id is refused.
+- **Class 10.** The filler's arm reads no row (`0x0031CF28`-`0x0031CF75`); gambit_data is read by `0x00327CB0`, which
+  fills a new stats record's gambit block from a preset, and by `0x00235AF0` ([gambits](../Enemy-AI-And-Gambits/gambits.md)).
+- **Base-0 classes** (2-5, 20, 21, 24-29 and 32). The id is the row. The query record takes it at `+4` for 2-4,
+  20, 21, 24-29 and 32 (and the bare id for 22 and 23, which have no row) and at `+6` for 5 (The query record
+  below). For class 19, `+4` holds the gil id itself, validated
+  against `0xE000`-`0xEFFE`; for 30 and 31, `+6` holds an id based at `0xA000`.
+- **Shared tables.** Classes 15, 30 and 31 use questreward_data and 25 and 32 license_data, with one base.
+- **Zero-row tables.** jochumodel_data (entry `+0x14`), s_daiji_data (entry `+0x94`) and the category-0 and
+  category-2 tables of asp_a, dor_f, mrm_a and slm_a in the `ch` and `in` area sets ship with 0 rows and
+  `+0x0C` = 0, which the binder leaves at 0; their counts refuse every id, so the rule never reads them.
+- **A null slot or a zero `+0x0C`.** The validator refuses. A reader that null-tests the slot without refusing
+  (`0x003876D0`, which then uses 0 as the row address, `0x00387712`) or decodes a zero `+0x0C` (`0x0020E600(0)`, 0
+  because the base cell `0x01F83530` is never written) reads near address 0
+  ([finding a row](../Game-Files-And-Data-Tables/authored-data-tables.md#finding-a-row)).
 
 ### The query record
 
@@ -306,3 +378,5 @@ records.
 - [Gil](../Rewards-EXP-Gil-And-Loot/gil.md): the setter the gil and package classes call.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): where the state block's
   inventory regions sit in the save image.
+- [Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md): the `st2e` header, the
+  pack load that binds each slot, and the row arithmetic the readers inline.

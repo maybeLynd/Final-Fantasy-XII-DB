@@ -122,26 +122,62 @@ icon byte `+0x2C` and the class `+0x38`, all zero for `0xFFFF`; the equipment pa
 ### The member-record panel
 
 The panel `0x002CBF80`, built by `0x002CBED0` under Status and Equip, `0x002CBE40` under the gambit screen and
-`0x002CBDA0` under the shop, shows a party member against a chosen piece or ability:
+`0x002CBDA0` under the shop, shows a party member against a chosen piece or ability. It is a `0x170`-byte widget
+kept at `[0x0209AC30] + 0x2E0` (`0x002CBF34`-`0x002CBF48`), and on message 1 it builds its parts
+(`0x002CC0A8`-`0x002CC20E`):
 
-- `0x002CA7C0(..., row, panel, id)`, run by `0x002CC4F0`, handles an equipment id: it builds the member's stats as
-  they are and with the piece in its slot (`0x0030A4E0`), marks the panel when the piece is the one worn
-  (`+0xE0`), passes whether it can be worn (`0x00317B70`) to `0x002CB360` and `0x002CA5D0`, and shows the differences
-  with `0x002CC780`.
+| Offset | Part | Size | Procedure |
+|---|---|---:|---|
+| `+0xC0` | the arrow strip | `0xF8` | `0x002CABF0` |
+| `+0xC8` | the stat labels, made only when bit 0 of the build word is set (`0x002CC09D`) | `0xD0` | `0x002CB150` |
+| `+0xD0` + 8 x i | row i of nine | `0x110` | `0x002CA6C0` |
+| `+0x118` + 8 x i | row i's difference widget, made only when bit 0 of the build word is set (`0x002CC10A`) | `0xE8` | `0x002CB4B0` |
+
+The build word is `+0x10` of the parameter block that the construct message carries at `+8` (`0x002CBFE7`), not a
+word of the panel. Only the shop's builder sets its bit 0 (`0x002CBDC8` stores 7); the Status and Equip builder
+stores `(screen == Status) << 3` (`0x002C24BF`-`0x002C24CE`, `0x002CBF00`-`0x002CBF09`) and the gambit editor stores 8
+(`0x0056958E`).
+
+So the stat labels, the nine difference widgets and `0x002CC4F0`, whose callers `0x0056D370`, `0x0056E5D0` and
+`0x0057B1A0` are shop functions, belong to the shop's panel; under Status, Equip and the gambit screen the panel has
+the rows and the arrow strip only.
+
+- `0x002CA7C0(..., row, diff, id)`, run by `0x002CC4F0` for each of the nine rows with the row at `+0xD0 + 8 x i`
+  and its difference widget at `+0x118 + 8 x i` (`0x002CC537`-`0x002CC565`), handles an equipment id:
+  - it builds the member's stats as they are and with the piece in its slot (`0x0030A4E0`);
+  - it marks the difference widget when the piece is the one worn (its `+0xE0`, `0x002CAA86`);
+  - it passes whether the piece can be worn (`0x00317B70`) to `0x002CB360` with the difference widget and to
+    `0x002CA5D0` with the row (`0x002CAA9C`-`0x002CAAB5`);
+  - it shows the differences with `0x002CC780`.
 - It shows one difference for a weapon (group 1) and two for a shield or armour (groups 2 and 3), and none for
-  ammunition or classes 21 and 22. For a magick, technick or gambit (classes 8, 9, 11, 12) it fades the row
-  toward `0x20` instead.
+  ammunition or classes 21 and 22. For a magick, technick or gambit (classes 8, 9, 11, 12) it fades both toward
+  `0x20` instead: the difference widget's node 11 through `0x002CB360` (`0x002CA994`-`0x002CA99B`; the target at
+  `0x002CB424`, the start at `0x002CB43A`) and the row's node 0 by writing the row's fade record itself
+  (`0x002CA9A0`-`0x002CA9F4`).
 - `0x002CC780(nodes, delta, ...)` writes a difference: the number's absolute value in colour 4 when it is above
   0 and 5 otherwise, and for a non-zero difference a second node (`0x0029CCF0`, given the sign) placed by the
   number of digits.
-- `0x002CB1F0(..., panel, id)` shows the stat labels for an equipment id: text `0x4A90` for a weapon other than
-  ammunition, `0x4A93` and `0x4A94` for a shield, `0x4A91` and `0x4A92` for armour other than classes 21 and 22.
-- `0x002CAFE0(panel, n, step, mode, keep)` hides the panel's four arrow nodes; when the panel is shown (`+0x40`
-  bit 0), n is above 1 and `+0xF0` bit 1 is clear, it shows one pair, chosen by `+0xF0` bit 0, in colour 2 for
-  mode 1 and 0 otherwise. Without `keep` it places them (n - 1) x step to the left.
-- `0x002CA3B0(panel, node, target, curve, ms)` starts a fade of a node's brightness `+0x3B` toward `target`,
-  with the start time from `0x0208F570`; `0x002CA2E0(panel)`, the step that `0x002CA6C0` and `0x002CB4B0` run, advances
-  it through `0x00248F40` and writes the brightness into the node's four vertex colours.
+- `0x002CB1F0(..., labels, id)`, given the stat labels at `+0xC8` (`0x002CC51E`), shows them for an equipment id:
+  text `0x4A90` for a weapon other than ammunition, `0x4A93` and `0x4A94` for a shield, `0x4A91` and `0x4A92`
+  for armour other than classes 21 and 22.
+- `0x002CAFE0(strip, n, step, mode, keep)` takes the arrow strip at `+0xC0` and, as n, the panel's byte
+  `+0x168` (`0x002CB831`-`0x002CB83F`, `0x002CB97B`-`0x002CB998`, `0x002CBA0F`-`0x002CBA1D`, `0x002CC460`-`0x002CC47A`):
+  - it hides the strip's four arrow nodes, the list at the strip's `+0x60`;
+  - when the strip is shown (its `+0x40` bit 0), n is above 1 and the strip's `+0xF0` bit 1 is clear, it shows
+    one pair, chosen by `+0xF0` bit 0, in colour 2 for mode 1 and 0 otherwise;
+  - without `keep` it places the list's node 2 (n - 1) x step to the left of its base (`0x002CB0FE`-`0x002CB111`)
+    and stores that offset, negated, in the strip's `+0xEE` (`0x002CB0F7`).
+- `0x002CA3B0(widget, node, target, curve, ms)` starts a fade of a node's brightness `+0x3B` toward `target`,
+  with the start time from `0x0208F570`, and keeps the fade in the widget it is given (`+0xC0`-`+0xD0`): the
+  difference widget at `0x002CA8F6` and `0x002CB43A`.
+- The rows' fades use the same record, written in place without `0x002CA3B0`: `0x002CA7C0` starts node 0 toward
+  `0x80` on entry (`0x002CA869`-`0x002CA8B2`) and toward `0x20` as above, and `0x002CA5D0` starts node 0 toward
+  `0x80`, or toward `0x20` when its flag is set or, with a non-zero mode, the member is not the current one
+  (`0x002CA620`-`0x002CA6AC`). On entry `0x002CA7C0` also starts the difference widget's node 11 toward `0x80`
+  (`0x002CA8E8`-`0x002CA8F6`).
+- `0x002CA2E0(widget)`, the message-2 step of both the rows (`0x002CA6FA`) and the difference widgets
+  (`0x002CB4EE`), advances a widget's fade through `0x00248F40` and writes the brightness into the node's four
+  vertex colours.
 
 The comparison `0x0030A4E0` also returns a warning code, which the Equip screen turns into its help-window warnings
 ("Equipping a shield will remove your two-handed weapon." and the others); every code, its condition and its line

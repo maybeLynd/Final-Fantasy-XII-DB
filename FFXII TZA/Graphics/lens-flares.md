@@ -84,6 +84,32 @@ With bit 4 of `+0x1CE` set each part gets a scale from the fades, chosen by the 
 
 Without bit 4 every part has scale 1.
 
+### The flare packet
+
+The draw hands its parts to the lens-flare microprogram `0x004C0EA0` in a boot template, as the draws in
+[effect element types](effect-element-types.md) do. `0x004C2040`, which `0x0037E0F0` calls at start-up (`0x0037E0FB`),
+builds the `0xC20`-byte template `0x02AEA3A0`. Its VIF codes unpack `0xBC` cells to VU cells 0 to `0xBB` (`+0x1C` =
+`0x6CBC0000`, `0x004C206D`), so the word at `0x02AEA3C0 + 16 × cell + 4 × lane` lands in that cell and lane. Each draw
+writes its values into the template and passes `0x02AEA3B8`, `0xC08` bytes, with the program to `0x003A34D0`
+(`0x004620CF`-`0x004620FC`).
+
+| Cell | What the draw or the builder puts there |
+|---|---|
+| 0 | x and y: the light's GS screen position; z and w: the vector track at definition `+0x110` at the element's frame |
+| 1 | z: the intensity `0x02AEA3D8` |
+| 2 | x: the number of further parts; y: the number of parts at the light; w: `0x8000` (`0x004C20A5`) |
+| 3 to `0x32` | the further parts, three cells each, from `0x02AEA3F0` |
+| `0x33` on | the parts at the light, three cells each, from `0x02AEA6F0` |
+| `0x39` to `0xB8` | four cells for each of the flare model's first 32 rows (`0x00461720`-`0x00461A88`) |
+| `0xB9` | a GIF tag for one `A+D` register (`0x004C20AC`, `0x004C20B7`, `0x004C20C1`) |
+| `0xBA` | the `TEX0_1` value: x and y its two words, z the register number 6 (`0x004C20CB`) |
+| `0xBB` | the GIF tag of the parts (`0x004C20D5`-`0x004C20F3`), whose count the program fills in |
+
+The program starts its first pass with the count in cell 2 lane y (`0x004C1006`) and its second with lane x
+(`0x004C17A0`). For the second pass it subtracts cell 0's z and w from its x and y (`0x004C176E`-`0x004C177F`).
+
+The draw skips the hand-over when a part's row and count reach 32 (`0x00461B3A`, `0x00461C84`, both to `0x00462101`).
+
 ### The per-frame pass
 
 The field frame runs `0x00376470` between its two draws ([the frame](../PhyreEngine/the-frame.md)).
@@ -110,6 +136,18 @@ query list (`0x00184A70`), and for each slot with a handle and flag bit 3 clear:
 A slot without a handle still adds an empty entry. The pass ends with `0x00182530`. The two
 screen-capture states run `0x00376D80` instead, which sets flag bit 3 on every live slot, freezing its
 fades, and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into the word after each.
+
+### Ending the freeze
+
+`0x00376BE0` undoes the freeze when play returns to the field. The full menu frame `0x0022B8C0` runs it after
+`CLOSE FULLMENU` (`0x0022BBDE`), and the capture-backed frame `0x0022BC20` after it goes back to state 2
+(`0x0022BDCC`). For each slot with a handle (`0x00376C30`) it:
+
+1. clears flag bit 3 (`0x00376C3D`);
+2. copies the four kept words back: `+0x0C` to `+0x08`, `+0x14` to `+0x10`, `+0x1C` to `+0x18` and `+0x24` to
+   `+0x20` (`0x00376C3A`-`0x00376C57`);
+3. when flag bit 0 is set (`0x00376C40`), dims the scene colour and the light scale and rewrites the flare light's
+   request as `0x00376AC0` does (`0x00376C62`-`0x00376D43`).
 
 ### Dimming and the flare light
 
@@ -213,6 +251,62 @@ Last it copies the eight entries, with their visibility, to `+0xE4` under the lo
 | `0x01F811F0` | the occlusion query manager |
 | `0x01F7F550` | the product matrix `0x0017ED50` returns |
 | `0x020926C0` | the scene colour the dimming scales |
+
+### The flare packet's words
+
+These words of the template `0x02AEA3A0` are written by the draw `0x00461270`. The command reads each one from the
+template when it runs: `0x0022BFF0` copies it into its VU cell at the lane site given.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02AEA3C0` | `f32` | 0 (zero-filled tail of `.data`) | cell 0 lane x: the light's x on the GS screen, the projected x / 16 (2048 is the centre); 2000.0 after boot | `0x004C2040` (`memset` at `0x004C2051`, `0x004C207B`); `0x00461270` (`0x00461502`) | `0x00461270` (`0x0046162D`, the part angle); `0x0022BFF0` (`0x0022C650`) |
+| `0x02AEA3C4` | `f32` | 0 (zero-filled tail of `.data`) | cell 0 lane y: the light's y on the GS screen, the projected y / 16; 2000.0 after boot | `0x004C2040` (`memset` at `0x004C2051`, `0x004C2074`); `0x00461270` (`0x0046150A`) | `0x00461270` (`0x00461625`, the part angle); `0x0022BFF0` (`0x0022C658`) |
+| `0x02AEA3C8` | `f32` | 0 (zero-filled tail of `.data`) | cell 0 lane z: x of the vector track at definition `+0x110` at the element's frame (`0x00430B90`, `0x00461562`); 2048.0 after boot | `0x004C2040` (`memset` at `0x004C2051`, `0x004C2089`); `0x00461270` (`0x0046156A`) | `0x0022BFF0` (`0x0022C65E`) |
+| `0x02AEA3CC` | `f32` | 0 (zero-filled tail of `.data`) | cell 0 lane w: y of the same track (`0x00461572`); 2048.0 after boot | `0x004C2040` (`memset` at `0x004C2051`, `0x004C2082`); `0x00461270` (`0x00461576`) | `0x0022BFF0` (`0x0022C666`) |
+| `0x02AEA3E0` | `u32` | 0 (zero-filled tail of `.data`) | cell 2 lane x: the number of further parts. It is `+0x1B3` (`0x00461C2C`), or with a part list at definition `+0x20C` the list's count `+0x10` less the parts at the light, at most `+0x1B3` (`0x00461F3E`); each part the draw skips lowers it by one | `0x004C2040` (`memset` at `0x004C2051`); `0x00461270` (`0x00461C2C`, `0x00461C74`, `0x00461F3E`, `0x00461F75`, `0x00461FA6`) | `0x00461270` (`0x00461C74`, `0x00461F75`, `0x00461FA6`); `0x0022BFF0` (`0x0022C650`) |
+| `0x02AEA3E4` | `u32` | 0 (zero-filled tail of `.data`) | cell 2 lane y: the number of parts at the light: `+0x1B2` (`0x00461D9F`) or the parts the draw placed (`0x00461C1E`, `0x00461F27`); the draw numbers the further parts after them | `0x004C2040` (`memset` at `0x004C2051`); `0x00461270` (`0x00461C1E`, `0x00461D9F`, `0x00461F27`) | `0x00461270` (`0x00461D89`, `0x00461F16`); `0x0022BFF0` (`0x0022C658`) |
+| `0x02AEAF60` | `u32` | 0 (zero-filled tail of `.data`) | cell `0xBA` lane x: the low word of `TEX0_1`, the first word of the texture register pair `0x005030F0` copies for the flare model's row (`0x00461AA1`) | `0x004C2040` (`memset` at `0x004C2051`); `0x00461270` (`0x00461ABF`) | `0x0022BFF0` (`0x0022C650`) |
+| `0x02AEAF64` | `u32` | 0 (zero-filled tail of `.data`) | cell `0xBA` lane y: the high word of `TEX0_1`. When the palette operation at definition `+0x150` has a kind, its high 27 bits come from the high word of the result of `0x00431B10` (`0x004616A8`, `0x00461AB2`-`0x00461AB9`) | `0x004C2040` (`memset` at `0x004C2051`); `0x00461270` (`0x00461AC5`) | `0x0022BFF0` (`0x0022C666`) |
+
+### The product matrix's cells
+
+`0x0017ED50` stores the matrix row by row and returns `0x01F7F550` (`0x0017EE3A`). The per-frame pass
+`0x00376470` calls it (`0x0037683E`) and passes that pointer (`0x00376848`) to `0x00202D70`, which jumps to the multiply `0x00217150`. The multiply
+reads the cells through its second argument at the sites below.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F7F554` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 1 | `0x0017ED50` (`0x0017EE6A`) | `0x00217150` (`0x002171A5`, `0x002173D5`) |
+| `0x01F7F558` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 2 | `0x0017ED50` (`0x0017EE5F`) | `0x00217150` (`0x00217187`) |
+| `0x01F7F55C` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 3 | `0x0017ED50` (`0x0017EEE1`) | `0x00217150` (`0x00217257`) |
+| `0x01F7F560` | `f32` | 0 (zero-filled tail of `.data`) | row 1, column 0 | `0x0017ED50` (`0x0017EE41`) | `0x00217150` (`0x0021716D`, `0x002172A1`, `0x00217312`, `0x002173DE`) |
+| `0x01F7F564` | `f32` | 0 (zero-filled tail of `.data`) | row 1, column 1 | `0x0017ED50` (`0x0017EE88`) | `0x00217150` (`0x002171C6`, `0x002173FD`) |
+| `0x01F7F568` | `f32` | 0 (zero-filled tail of `.data`) | row 1, column 2 | `0x0017ED50` (`0x0017EE7D`) | `0x00217150` (`0x002171B0`, `0x00217417`) |
+| `0x01F7F56C` | `f32` | 0 (zero-filled tail of `.data`) | row 1, column 3 | `0x0017ED50` (`0x0017EEE9`) | `0x00217150` (`0x00217190`) |
+| `0x01F7F570` | `f32` | 0 (zero-filled tail of `.data`) | row 2, column 0 | `0x0017ED50` (`0x0017EE4C`) | `0x00217150` (`0x00217182`, `0x0021728F`, `0x00217329`, `0x002173E6`) |
+| `0x01F7F574` | `f32` | 0 (zero-filled tail of `.data`) | row 2, column 1 | `0x0017ED50` (`0x0017EEA6`) | `0x00217150` (`0x002171E3`, `0x0021737B`, `0x0021740A`) |
+| `0x01F7F578` | `f32` | 0 (zero-filled tail of `.data`) | row 2, column 2 | `0x0017ED50` (`0x0017EE9B`) | `0x00217150` (`0x002171BB`, `0x00217428`) |
+| `0x01F7F57C` | `f32` | 0 (zero-filled tail of `.data`) | row 2, column 3 | `0x0017ED50` (`0x0017EEF1`) | `0x00217150` (`0x0021719A`, `0x00217432`) |
+| `0x01F7F580` | `f32` | 0 (zero-filled tail of `.data`) | row 3, column 0 | `0x0017ED50` (`0x0017EEC1`) | `0x00217150` (`0x0021744C`) |
+| `0x01F7F584` | `f32` | 0 (zero-filled tail of `.data`) | row 3, column 1 | `0x0017ED50` (`0x0017EEF9`) | `0x00217150` (`0x00217454`) |
+| `0x01F7F588` | `f32` | 0 (zero-filled tail of `.data`) | row 3, column 2 | `0x0017ED50` (`0x0017EF01`) | `0x00217150` (`0x00217459`) |
+| `0x01F7F58C` | `f32` | 0 (zero-filled tail of `.data`) | row 3, column 3 | `0x0017ED50` (`0x0017EED9`) | `0x00217150` (`0x0021745E`) |
+
+### The scene colour's green channel
+
+The scene colour is four floats, red, green, blue and alpha. `0x003769E0`, from the draw `0x0022B0B0` (`0x0022B278`),
+copies it to `0x0209A380`, the scene colour of the map ambient
+([how a character is lit](character-lighting-and-shadows.md)).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x020926C4` | `f32` | 0 (zero-filled tail of `.data`) | green: 1.0 from each frame's draw set-up, then scaled by type `0xD0` elements and by the flare dimming | `0x0024D540` (`0x0024D721`) and `0x0024DA40` (`0x0024DA52`), which it calls: 1.0 with the whole colour; `0x00465690` (`0x0046578F`): the whole colour scaled; `0x00376AC0` (`0x00376B1B`) and `0x00376BE0` (`0x00376CA6`): times `f` | `0x003769E0` (`0x003769E0`), with the whole colour; `0x00465690` (`0x00465784`); `0x00376AC0` (`0x00376ADB`); `0x00376BE0` (`0x00376C6F`) |
+
+### The slots' fields
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| each row of [lens-flares-state.tsv](lens-flares-state.tsv): the handle of slots 1 to 7, and the four frozen copies and the flags of all eight slots | the row's `type` | 0 (zero-filled tail of `.data`) | the row's `meaning`, for the slot and field it names | the row's `set_by`: `0x00376350`, `0x00376990` and `0x00376A80` for a handle, `0x00376D80` for a frozen copy | the row's `read_by`: the handle checks of every accessor, and `0x00376BE0` for a frozen copy |
 
 ## Modding notes
 

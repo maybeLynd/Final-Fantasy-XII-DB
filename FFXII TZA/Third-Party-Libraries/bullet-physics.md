@@ -225,6 +225,22 @@ the broadphase box from (-5000, -5000, -5000) at `+0x14` to (5000, 5000, 5000) a
 No shipped cluster declares or instantiates a `PPhysics` class, so even with the manager enabled the
 class-descriptor callback would have no instances to visit.
 
+## State
+
+Six statistics globals of the library, all 0 in the zero-filled tail of `.data`. Like the rest of the library they
+run only inside a world, which the game never builds (above).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAF390` | `i32` | 0 | the count of pair removals: the hashed pair cache's remove `0x00848960` adds 1 on entry, before it orders the two proxies by their id `+0x18` and looks the pair up | `0x00848960` (`0x00848971`, `inc`) | only that increment |
+| `0x02EAF394` | `i32` | 0 | the count of pair-add requests: `0x00848170` adds 1 before the filter test (the callback at the cache's `+0x28`, or the two proxies' group and mask words `+0x08`/`+0x0A`) and the jump to the insert `0x008485E0` | `0x00848170` (`0x0084817F`, `inc`) | only that increment |
+| `0x02EAF398` | `i32` | 0 | the count of pair lookups: `0x00848270` adds 1 on entry | `0x00848270` (`0x00848275`, `inc`) | only that increment |
+| `0x02EAF39C` | `i32` | 0 | the count of overlapping pairs, which the game only lowers: by 1 for each pair `0x00848880` removes after the callback's test (`0x008488C0`, removal through `+0x10`), and for each pair the sweep-and-prune pass `0x00838D80` finds no longer overlapping on the three 16-bit axes (`0x00838F60`-`0x00838F89`) | `0x00848880` (`0x008488DA`, `dec`); `0x00838D80` (`0x00838FAE`, `dec`) | only those decrements |
+| `0x02EAF3C0` | `u8` | 0 | the no-deactivation switch: the world step `0x008588A0` sets it, when the world has a debug drawer (`0x00858938`), to bit 4 (`0x10`) of the drawer's debug mode (`0x0085894F`-`0x00858955`); while it is non-zero `0x00858C80` puts no body to sleep | `0x008588A0` (`0x00858957`) | `0x00858C80` (`0x00858DA7`) |
+| `0x02EAF3CC` | `i32` | 0 | the count of split-impulse recoveries: each of the two contact passes `0x0085A900` and `0x0085AC50` adds 1 for a contact row whose penetration term `+0xA8` is not 0 | `0x0085A900` (`0x0085A91F`, `inc`); `0x0085AC50` (`0x0085AC6B`, `inc`) | only those increments |
+
+No other instruction reaches these six globals.
+
 ## Modding notes
 
 - The whole route is dormant. Adding `PPhysicsWorld` and `PPhysicsRigidBody` objects to a cluster is
