@@ -225,6 +225,18 @@ by an 11-byte callback (`0x00556560`, `0x00563550`), so each loop either falls t
 | `0x022CFF10` | the TkSyncv handler table |
 | `0x022D8EA0`, `0x022D8E50` | the current display record and the record array |
 
+The options applier `0x002DDA30` rounds the words `+0x20` and `+0x22` of the in-game options record `[0x0215E6E0]` up
+to even, writes them back and copies them beside the GS environment globals (`0x002DDB0B`-`0x002DDB44`). The seed
+`0x0036D280` clears both copies with one 8-byte store.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022D8EBC` | `i32` | 0 (zero-filled tail) | options `+0x20`, made even | `0x0036D280`, 0 (`0x0036D296`); `0x002DDA30` (`0x002DDB44`) | no instruction |
+| `0x022D8EC0` | `i32` | 0 (zero-filled tail) | options `+0x22`, made even | `0x0036D280`, 0 (`0x0036D296`); `0x002DDA30` (`0x002DDB3C`) | no instruction |
+
+Nothing else reads or writes the two copies: no other RIP-relative, image-base-relative or 32-bit offset reference
+names them.
+
 ## Modding notes
 
 - Read this code from disassembly: the decompiler removes all eleven settle-spins.

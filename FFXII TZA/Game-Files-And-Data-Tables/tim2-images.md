@@ -158,6 +158,18 @@ also written by the font-pack completion `0x0039C150`.
 - `0x0039BB30` (from `0x0029CE40`, which also zeroes the `0x0209C320` table) clears `0xF0` bytes from
   `0x02AEE810`, including the font-pack pointer, and calls `0x0039C3F0`, which requests the pack again.
 
+The table `0x0209C320` holds six 16-byte entries, a buffer pointer at `+0x00` and a count at `+0x08`. `0x0029CE40` zeroes
+every entry with plain stores (`0x0029CE7A`-`0x0029CEC2`); `0x0029CAC0` and `0x0029CB10` reach the entries only through the
+table's address. All are 0 in the file (the zero-filled tail of `.data`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209C330`, `0x0209C340`, `0x0209C350`, `0x0209C360`, `0x0209C370` | `void*` each | 0 | the buffers of entries 1 to 5, 0 for an empty entry | `0x0029CE40` (`0x0029CE87`, `0x0029CE94`, `0x0029CEA1`, `0x0029CEAE`, `0x0029CEBB`); through the address: `0x0029CAC0`, a new buffer (`0x0029CAF4`), and `0x0029CB10`, 0 at a count of 0 (`0x0029CB41`) | through the address: `0x0029CAC0` (`0x0029CAD0`, `0x0029CAE2`); `0x0029CB10` (`0x0029CB20`) |
+| `0x0209C328`, `0x0209C338`, `0x0209C348`, `0x0209C358`, `0x0209C368`, `0x0209C378` | `i32` each | 0 | the counts of entries 0 to 5 | `0x0029CE40` (`0x0029CE81`, `0x0029CE8E`, `0x0029CE9B`, `0x0029CEA8`, `0x0029CEB5`, `0x0029CEC2`); through the address: `0x0029CAC0`, 1 for a new buffer (`0x0029CAF7`) and one more for a known one (`0x0029CB03`), and `0x0029CB10`, one less (`0x0029CB36`) | through the address: `0x0029CAC0` (`0x0029CB03`); `0x0029CB10` (`0x0029CB36`) |
+
+No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference
+names them, and the table's address is taken only by `0x0029CAC0` and `0x0029CB10`.
+
 `0x0039BAD0(buffer)` returns the slot from 1 to 7 whose low 32 bits match, or 0. `0x0039BA30(slot, mode)`
 returns null for an empty slot, else the first picture's block (picture `+0x30`). With mode 0 it returns
 null when that block's flags have a bit of `0x18000` set. With a non-zero mode and `0x00254A10` true it

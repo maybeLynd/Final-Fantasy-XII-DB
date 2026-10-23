@@ -177,6 +177,46 @@ Map container, as `0x001A3380` uses it:
 | containers built empty | 4: 2 maps, 1 vector, 1 list |
 | distinct non-empty literals | 13, each copied 4 times |
 
+## State
+
+### The escapes of the JSON string writer
+
+`0x002002E0(out, text)`, from `0x001FEE80` (`0x001FEF70`) and `0x001FF210` (`0x001FF30C`), writes a string for JSON output.
+For each character it appends the matching escape from one copy of the static strings, read through the string's
+`begin` and `end`: `"` (`0x002003C5`), `\` (`0x00200440`), `0x08` (`0x002004BD`), `0x0C` (`0x0020053A`), `0x0A`
+(`0x002005B7`), `0x0D` (`0x00200633`) and `0x09` (`0x002006AC`).
+
+Each string is a `basic_string` (Layouts) with its own initialiser and destructor:
+
+1. one 16-byte store zeroes `begin` and `end`;
+2. both take the two-byte buffer, from the allocator or the shared byte `0x02EBA2E0`, and `end` moves past the two
+   characters;
+3. the `atexit` destructor reads `begin` and `capacityEnd` to free the buffer.
+
+All are 0 in the file (the zero-filled tail of `.data`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F83090` | `void*` | 0 | `\n` `begin` (text `0x009047B4`) | `0x0015D520` (`0x0015D553`, `0x0015D597`, `0x0015D5C5`) | `0x002002E0` (`0x002005FC`); `0x008A70A0` (`0x008A70B7`) |
+| `0x01F83098` | `void*` | 0 | `\n` `end` | `0x0015D520` (`0x0015D553`, `0x0015D59E`, `0x0015D5CC`, `0x0015D5F0`) | `0x002002E0` (`0x002005F5`) |
+| `0x01F830B0` | `void*` | 0 | `\t` `begin` (text `0x009047BC`) | `0x0015D9D0` (`0x0015DA03`, `0x0015DA47`, `0x0015DA75`) | `0x002002E0` (`0x002006F1`); `0x008A7230` (`0x008A7247`) |
+| `0x01F830B8` | `void*` | 0 | `\t` `end` | `0x0015D9D0` (`0x0015DA03`, `0x0015DA4E`, `0x0015DA7C`, `0x0015DAA0`) | `0x002002E0` (`0x002006EA`) |
+| `0x01F83110` | `void*` | 0 | `\\` `begin` (text `0x009047A4`) | `0x0015D7F0` (`0x0015D823`, `0x0015D867`, `0x0015D895`) | `0x002002E0` (`0x00200485`); `0x008A7190` (`0x008A71A7`) |
+| `0x01F83118` | `void*` | 0 | `\\` `end` | `0x0015D7F0` (`0x0015D823`, `0x0015D86E`, `0x0015D89C`, `0x0015D8C0`) | `0x002002E0` (`0x0020047E`) |
+| `0x01F831B0` | `void*` | 0 | `\f` `begin` (text `0x009047B0`) | `0x0015D430` (`0x0015D463`, `0x0015D4A7`, `0x0015D4D5`) | `0x002002E0` (`0x0020057F`); `0x008A7050` (`0x008A7067`) |
+| `0x01F831B8` | `void*` | 0 | `\f` `end` | `0x0015D430` (`0x0015D463`, `0x0015D4AE`, `0x0015D4DC`, `0x0015D500`) | `0x002002E0` (`0x00200578`) |
+| `0x01F831D0` | `void*` | 0 | `\r` `begin` (text `0x009047B8`) | `0x0015D050` (`0x0015D083`, `0x0015D0C7`, `0x0015D0F5`) | `0x002002E0` (`0x00200677`); `0x008A6DF0` (`0x008A6E07`) |
+| `0x01F831D8` | `void*` | 0 | `\r` `end` | `0x0015D050` (`0x0015D083`, `0x0015D0CE`, `0x0015D0FC`, `0x0015D120`) | `0x002002E0` (`0x00200670`) |
+| `0x01F83210` | `void*` | 0 | `\"` `begin` (text `0x009047A0`) | `0x0015D700` (`0x0015D733`, `0x0015D777`, `0x0015D7A5`) | `0x002002E0` (`0x00200408`); `0x008A7140` (`0x008A7157`) |
+| `0x01F83218` | `void*` | 0 | `\"` `end` | `0x0015D700` (`0x0015D733`, `0x0015D77E`, `0x0015D7AC`, `0x0015D7D0`) | `0x002002E0` (`0x00200401`) |
+| `0x01F83230` | `void*` | 0 | `\b` `begin` (text `0x009047AC`) | `0x0015CE70` (`0x0015CEA3`, `0x0015CEE7`, `0x0015CF15`) | `0x002002E0` (`0x00200502`); `0x008A6D50` (`0x008A6D67`) |
+| `0x01F83238` | `void*` | 0 | `\b` `end` | `0x0015CE70` (`0x0015CEA3`, `0x0015CEEE`, `0x0015CF1C`, `0x0015CF40`) | `0x002002E0` (`0x002004FB`) |
+
+No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference
+names them. The addresses taken near them are the strings' `allocator` fields, which `0x001EDF00` fills with 8 bytes
+and the destructors call through, and the objects at `0x01F83070` and `0x01F83080` (`0x001FBD80`, `0x001FBE50`), whose code
+reaches only their `+0x00` and `+0x08` (`0x001FB840`, `0x001FB810`).
+
 ## Modding notes
 
 - Never free or write through a string whose capacity end is `0x02EBA2E1`: that is the shared empty

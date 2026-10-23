@@ -207,6 +207,97 @@ lists the thirteen registrars whose bodies are the same 86 bytes ending in a jum
 - Stop: `0x005A0840`, once, after the message loop; then each module's `atexit` destructor.
 - Enumerate: walk from `0x02CACC90` through `+0x08`; `+0x10` names each module.
 
+## State
+
+### Module list links
+
+Each module object's `+0x08` is its link to the next module. Its registrar stores the list head there before it
+makes the object the head, and its exit destructor reads it to unlink the object, then stores 0. The list code
+also reaches every link through the node:
+
+- the init walk `0x005A08E0` (`0x005A0A44`) and the shutdown walk `0x005A0840` (`0x005A0869`) follow each link;
+- each registrar's search reads a link only past a node whose key is below `0xFF`, which no module has
+  (`0x0016033D`, `0x0016039D`, `0x001610FD`, `0x00162B8D`, `0x0016543D`, `0x00165EBD`, `0x0016622D`, `0x00166C4D`, `0x0016782D`,
+  `0x0016788D`, `0x006CCC4C`, `0x0016AB5D`, `0x0016AEDD`, `0x0016D5CD`, `0x0016D62D`);
+- each exit destructor's search reads the links of the nodes before its own (`0x008A8D0E`, `0x008A8DEE`, `0x008AAD6E`,
+  `0x008AE6FE`, `0x008B0B6E`, `0x008B1A8E`, `0x008B269E`, `0x008B3E5E`, `0x008B6A6E`, `0x008B6ACE`, `0x008B6F2E`, `0x008B98BE`,
+  `0x008BA28E`, `0x008C15AE`, `0x008C160E`);
+- the registrars store through the link where their search stopped (`0x00160359`, `0x001603B9`, `0x00161119`,
+  `0x00162BA9`, `0x00165459`, `0x00165ED9`, `0x00166249`, `0x00166C69`, `0x00167849`, `0x001678A9`, `0x006CCC5E`, `0x0016AB79`,
+  `0x0016AEF9`, `0x0016D5E9`, `0x0016D649`);
+- the exit destructors store through the link that pointed at their object (`0x008A8D26`, `0x008A8E06`, `0x008AAD86`, `0x008AE716`, `0x008B0B86`, `0x008B1AA6`, `0x008B26B6`, `0x008B3E76`, `0x008B6A86`,
+  `0x008B6AE6`, `0x008B6F46`, `0x008B98D6`, `0x008BA2A6`, `0x008C15C6`, `0x008C1626`).
+
+The registrars run in initialiser-table order, `0x008C3520` (`PSerialization`) to `0x008C5670` (`PDeveloperExtensions`),
+so after the last one each link holds the module registered just before its own.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F2CD88` | `void*` | 0 | `PSerialization` (`0x01F2CD80`) `+0x08`: 0, the end of the list | `0x00160320`, the head at registration, 0 (`0x0016034B`); `0x008A8CE0`, 0 (`0x008A8D29`) | `0x008A8CE0` (`0x008A8D1F`) |
+| `0x01F2CE00` | `void*` | 0 | `PScene` (`0x01F2CDF8`) `+0x08`: `PSerialization` | `0x00160380` (`0x001603AB`); `0x008A8DC0`, 0 (`0x008A8E09`) | `0x008A8DC0` (`0x008A8DFF`) |
+| `0x01F2CE28` | `void*` | 0 | `PAnimation` (`0x01F2CE20`) `+0x08`: `PScene` | `0x001610E0` (`0x0016110B`); `0x008AAD40`, 0 (`0x008AAD89`) | `0x008AAD40` (`0x008AAD7F`) |
+| `0x01F2D688` | `void*` | 0 | `PRendering` (`0x01F2D680`) `+0x08`: `PAnimation` | `0x00162B70` (`0x00162B9B`); `0x008AE6D0`, 0 (`0x008AE719`) | `0x008AE6D0` (`0x008AE70F`) |
+| `0x01F2E808` | `void*` | 0 | `PPostProcessing` (`0x01F2E800`) `+0x08`: `PRendering` | `0x00165420` (`0x0016544B`); `0x008B0B40`, 0 (`0x008B0B89`) | `0x008B0B40` (`0x008B0B7F`) |
+| `0x01F2E9C0` | `void*` | 0 | `PGeometry` (`0x01F2E9B8`) `+0x08`: `PPostProcessing` | `0x00165EA0` (`0x00165ECB`); `0x008B1A60`, 0 (`0x008B1AA9`) | `0x008B1A60` (`0x008B1A9F`) |
+| `0x01F2EAD0` | `void*` | 0 | `PScripting` (`0x01F2EAC8`) `+0x08`: `PGeometry` | `0x00166210` (`0x0016623B`); `0x008B2670`, 0 (`0x008B26B9`) | `0x008B2670` (`0x008B26AF`) |
+| `0x01F2EB08` | `void*` | 0 | `PPhysics` (`0x01F2EB00`) `+0x08`: `PScripting` | `0x00166C30` (`0x00166C5B`); `0x008B3E30`, 0 (`0x008B3E79`) | `0x008B3E30` (`0x008B3E6F`) |
+| `0x01F2EE68` | `void*` | 0 | `PDynamicGeometry` (`0x01F2EE60`) `+0x08`: `PPhysics` | `0x00167810` (`0x0016783B`); `0x008B6A40`, 0 (`0x008B6A89`) | `0x008B6A40` (`0x008B6A7F`) |
+| `0x01F2EE88` | `void*` | 0 | `PLOD` (`0x01F2EE80`) `+0x08`: `PDynamicGeometry` | `0x00167870` (`0x0016789B`); `0x008B6AA0`, 0 (`0x008B6AE9`) | `0x008B6AA0` (`0x008B6ADF`) |
+| `0x02E5BE90` | `void*` | 0 (zero-initialised storage) | `PText` (`0x02E5BE88`) `+0x08`: `PLOD` | `0x006CCC10` through the object `0x00167B90` passes (`0x006CCC5A`); `0x008B6F00`, 0 (`0x008B6F49`) | `0x008B6F00` (`0x008B6F3F`) |
+| `0x01F44D78` | `void*` | 0 | `PInputs` (`0x01F44D70`) `+0x08`: `PText` | `0x0016AB40` (`0x0016AB6B`); `0x008B9890`, 0 (`0x008B98D9`) | `0x008B9890` (`0x008B98CF`) |
+| `0x01F44FF0` | `void*` | 0 | `PGame` (`0x01F44FE8`) `+0x08`: `PInputs` | `0x0016AEC0` (`0x0016AEEB`); `0x008BA260`, 0 (`0x008BA2A9`) | `0x008BA260` (`0x008BA29F`) |
+| `0x01F47558` | `void*` | 0 | `PHierarchy` (`0x01F47550`) `+0x08`: `PGame` | `0x0016D5B0` (`0x0016D5DB`); `0x008C1580`, 0 (`0x008C15C9`) | `0x008C1580` (`0x008C15BF`) |
+| `0x01F47578` | `void*` | 0 | `PDeveloperExtensions` (`0x01F47570`) `+0x08`: `PHierarchy` | `0x0016D610` (`0x0016D63B`); `0x008C15E0`, 0 (`0x008C1629`) | `0x008C15E0` (`0x008C161F`) |
+
+### Text technique table
+
+The table at `0x02E5BE50` holds one record per text rendering technique, in the order of the names at `0x00D89BE0`.
+`0x006CCC10` stores the addresses of the seven `0x20`-byte records, which the initialisers named below build through
+`0x005DC6F0` with the technique's name. `0x006CCCE0(mode)` returns entry `mode`, reading it image-base-relative
+(`0x006CCCF1`). Only for an entry of 0 would it search the render-pass registry `0x02CBF998` by name and store the
+result (`0x006CCD53`); `0x006CCC10` leaves no entry 0.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02E5BE58` | `void*` | 0 | entry 1: `0x02E5BEC8`, `RenderText_AlphaTest`, built by `0x00167A70` | `0x006CCC10` (`0x006CCC80`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
+| `0x02E5BE60` | `void*` | 0 | entry 2: `0x02E5BEE8`, `RenderText_HardEdges`, built by `0x00167AA0` | `0x006CCC10` (`0x006CCC8E`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
+| `0x02E5BE68` | `void*` | 0 | entry 3: `0x02E5BF08`, `RenderText_SoftEdges`, built by `0x00167B60` | `0x006CCC10` (`0x006CCC9C`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
+| `0x02E5BE70` | `void*` | 0 | entry 4: `0x02E5BF28`, `RenderText_SoftEdgesAndOutline`, built by `0x00167B00` | `0x006CCC10` (`0x006CCCAA`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
+| `0x02E5BE78` | `void*` | 0 | entry 5: `0x02E5BF48`, `RenderText_SoftEdgesAndShadow`, built by `0x00167B30` | `0x006CCC10` (`0x006CCCB8`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
+| `0x02E5BE80` | `void*` | 0 | entry 6: `0x02E5BF68`, `RenderText_SoftEdgesAndGlow`, built by `0x00167AD0` | `0x006CCC10` (`0x006CCCC6`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
+
+### Animation job pool
+
+The `PAnimation` init `0x005C5C80` ends by jumping to `0x005BEF70` (`0x005C6009`). That function creates the pool only
+while `0x02CAD030` is 0. A failed allocation leaves the pointer 0 and makes the init return `0xD`, which stops the
+init walk.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CAD030` | `void*` | 0 | the `0x28`-byte pool object named `ANIThreadPoolJobs`, built by `0x0067FFB0(pool, 0x20, 0x80, 8, name)`, which stores `0x20` at `+0x18`, `0x80` at `+0x1C` and 8 at `+0x20` | `0x005BEF70`, the new object (`0x005BEFBD`); `0x005CB150`, the `PAnimation` shutdown, 0 after `0x00680030` and `0x00584730` free the pool (`0x005CB184`) | `0x005BEF70` (`0x005BEF7D`); `0x005CB150` (`0x005CB166`) |
+
+No other instruction loads the pointer (no RIP-relative, image-base-relative or disp32 reference names it), so no
+code takes elements from the pool.
+
+### Hierarchy triangle tables
+
+The `PHierarchy` init `0x0087AE00` passes the static `0x02EBA2A8` and level 2 to `0x0087A8C0` (`0x0087AE21`, `0x0087AE26`).
+That function sizes two of the static's three `{u32 count, ptr buffer}` arrays from the level. Bit 31 of a count
+marks a buffer the array does not own, which no code frees. It starts them as an octahedron: six corners
+(`0x0087A99B`-`0x0087AA35`) and eight triangles (`0x0087AA42`-`0x0087AADD`). It then subdivides the triangles once per
+level, starting at `0x0087AB50`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBA2B0` | `void*` | 0 | `+0x08`: the corner buffer, room for 126 (8 × 4² − 2) records of four floats; the first six are (0, 0, 1, 1), (0, 0, −1, 1) and (±0.7071, ±0.7071, 0, 1) | `0x0087A8C0` (`0x0087A923`); `0x0087AE80`, the `PHierarchy` shutdown, 0 (`0x0087AEDF`); `0x0087A830`, 0 (`0x0087A8A7`) | `0x0087A8C0` (`0x0087A902`, `0x0087A98B`, `0x0087AB70`); `0x0087AE80` (`0x0087AEC5`); `0x0087A830` (`0x0087A898`) |
+| `0x02EBA2C8` | `u32` | 0 | `+0x20`: the count of the triangle array, 384 (3 × 8 × 4²) | `0x0087A8C0` (`0x0087A97F`); `0x0087AE80`, 0 (`0x0087AF17`); `0x0087A830`, 0 (`0x0087A868`) | `0x0087A8C0` (`0x0087A930`, `0x0087A963`); `0x0087AE80` (`0x0087AEEC`); `0x0087A830` (`0x0087A847`) |
+| `0x02EBA2D0` | `void*` | 0 | `+0x28`: the triangle buffer, `u32` corner indices three per triangle; the first triangle is corners 0, 3 and 4 | `0x0087A8C0` (`0x0087A97B`); `0x0087AE80`, 0 (`0x0087AF10`); `0x0087A830`, 0 (`0x0087A864`) | `0x0087A8C0` (`0x0087A95A`, `0x0087A997`, `0x0087AB50`); `0x0087AE80` (`0x0087AEF6`); `0x0087A830` (`0x0087A853`) |
+
+Apart from `0x0087A8C0`, which builds the arrays, only the shutdown `0x0087AE80` and the exit destructor `0x0087A830`
+use them, to free them; `0x008C1570` passes `0x0087A830` the static's address and jumps to it. No instruction but
+those in `0x0087AE00`, `0x0087AE80` and `0x008C1570` names `0x02EBA2A8`-`0x02EBA2D7`, RIP-relative, image-base-relative
+or as a disp32.
+
 ## Modding notes
 
 - All fifteen objects exist before `main`, at fixed addresses. A loader that runs earlier than

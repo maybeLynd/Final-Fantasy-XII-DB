@@ -2,7 +2,7 @@
 title: "Effect element runtime: instances, emitters and elements, the per-step update, birth, release and child spawns, and the six display layers"
 kind: "system"
 category: "Graphics"
-addresses: "0x0024B270, 0x020910F0, 0x02F97348, 0x02EBEF88, 0x0024ED80, 0x00258D70, 0x0024B9B0, 0x003A7050, 0x003A8390, 0x0043EF40, 0x00441B30, 0x002F3BC0, 0x002F2D60, 0x002F3910, 0x002F2530, 0x002F4020, 0x005004C0, 0x002F31C0, 0x005002E0, 0x003A8950, 0x003A8AE0, 0x00258EE0, 0x00259030, 0x0024D370, 0x0024D4E0, 0x00441970, 0x02AEE910, 0x02F8F2F8, 0x02F8F2C6, 0x003A3740, 0x003A3A00, 0x0024D540"
+addresses: "0x0024B270, 0x020910F0, 0x02F97348, 0x02EBEF88, 0x0024ED80, 0x00258D70, 0x0024B9B0, 0x003A7050, 0x003A8390, 0x0043EF40, 0x00441B30, 0x002F3BC0, 0x002F2D60, 0x002F3910, 0x002F2530, 0x002F4020, 0x005004C0, 0x002F31C0, 0x005002E0, 0x003A8950, 0x003A8AE0, 0x00258EE0, 0x00259030, 0x0024D370, 0x0024D4E0, 0x00441970, 0x02AEE910, 0x02F8F2F8, 0x02F8F2C6, 0x003A3740, 0x003A3A00, 0x0024D540, 0x003A4290, 0x003A40F0, 0x003A6FC0, 0x003A6C30, 0x003A69F0, 0x0057A040, 0x004220F0, 0x0046F4B0, 0x003E5700, 0x003E5600, 0x003E5810, 0x003A2B20, 0x01EFAC60, 0x0209A71C"
 ---
 
 ## What the player sees
@@ -39,7 +39,7 @@ records are on [effect files](effect-files-efx-efb.md). Running it takes three l
 `+0x130` and `0x02EBEF88` = `+0x1B8` (`0x0024ED80`–`0x0024EDFF`).
 
 It then tail-jumps to `0x0024FCF0` (`0x0024EDFF`), which publishes the instance's draw state:
-byte `+3` at `0x02096800`, the colour `+0x320` scaled by `+0x39C` with alpha 1.0 at `0x02096810`, `+0x310` at
+byte `+3` at `0x02096800`, the scale `+0x320` times `+0x39C` (`0x003A2B20`) with w 1.0 at `0x02096810`, `+0x310` at
 `0x02096820` (zero when `+0x378` has bit `0x800`), `+0x300` at `0x02096830`, `+0x330` at `0x02096840` and the depth
 offset `+0x338` at `0x02AEE7F4` (`0x0024FD05`-`0x0024FD86`; [menu effects](menu-effects.md)). All the code below
 reads these globals.
@@ -680,6 +680,92 @@ Their arms are in
 decodes `0x00442170` and `0x00442460` (the emitter-record subtype switches) and the record-store
 fronts `0x00500980` / `0x00500850`, together with dispatchers outside the effect code.
 
+### The anchor query
+
+`0x003A4290(anchor, element, work, out)` places an element. It samples the element's offset track at its frame
+`+0xFC` (`0x00430B90`, `0x003A4303`), resolves the anchor descriptor into the matrix `out`, adds the offset to `out`'s
+position and returns 1. When the anchor cannot be resolved it keeps `work` from the frame before, or on frame 0
+zeroes `work` and `out` and returns 0 (`0x003A53DC`-`0x003A542B`). The descriptor's bytes:
+
+| Field offset | Meaning |
+|---|---|
+| `+0x40` | `n` for the record kinds 4, 6 and 7 |
+| `+0x48` | the record kind (first table) |
+| `+0x49` | the point kind (second table) |
+| `+0x4A` | bit 0 resolve on frame 0 only and keep the result after; bit 1 skip the record's scale; bits 2-3 the height rule (third table) |
+| `+0x4B` | the mode `0x00421E20` takes: 0 the bone's origin, 1 the bone's end, 2 its middle |
+| `+0x4C` | a bone index for the point kinds 6 and 7 |
+| `+0x4E` | the object slot for the record kinds 9 and 13 |
+
+The element's byte `+0x102` is the slot the owner and target reads take ([target slots](#target-slots)).
+
+| Record kind (`+0x48`) | Whose matrix | Point kind used |
+|---|---|---|
+| 1 | the owner's record (`0x003A3FD0`, `0x003A440B`) | yes |
+| 2 | the target's record (`0x003A6BA0`, `0x003A4432`) | yes |
+| 3, 11 | the camera matrix `0x02AEDEF0`; kind 11 takes the position `0x02AED600`-`0x02AED608`. The third axis is scaled by tan(pi/8) / tan(fov / 2), fov the angle `0x02AED568`, or 45 degrees in Super Wide mode while `0x02AED568` and `0x02AED56C` are above 1.0 (`0x003A44C3`-`0x003A4553`) | no |
+| 4 | the record of the actor in `effectactor` slot `n` (`0x003A40F0`, through the tables `0x003A4220` uses) | yes |
+| 5 | the record of the party-focus actor (`0x003590D0`, `0x002E9B80`) | yes |
+| 6 | the `n`-th member of manager 0 that has a record (`0x00263FF0`, `0x00263C30`, `0x00358940`) | yes |
+| 7 | the matrix of map model `n` (`0x003A6FC0`), copied to `out` as it is, without the offset (`0x003A5368`-`0x003A5386`): the draw-list build `0x002F5550` stores each model's index in the 32 words at `0x0209A71C` under the anchor number its placement row names (`0x002F6533`-`0x002F6554`); `n` is the instance's byte `+0x376` while its `+0x368` bit 9 is set | no |
+| 8 | the centre of the instance's targets as the position (`0x003A6C30`) | no |
+| 9, 13 | the path object `0x003A8240(key, +0x4E)` finds, first advanced by `0x004FF0D0(object, 2.0)` while its `+0x103` bit 0 is clear, with the key the work object's byte `+0x42` (kind 9) or `[0x02F97348] + 0x388` (kind 13) | no |
+| 10 | the targets' centre (`0x003A6C30`); the offset's height is added only when `0x0026E350` finds ground there | no |
+| 12, or any other | no anchor: the identity matrix at the offset (`0x003A54DD`) | no |
+| 14 | a screen position turned into a matrix (`0x0057A040`): the menu record's `+0x10`-`+0x18` for a menu-effect instance (id top nibble 4, `0x003B2CA0`), else `0x02096B2C`-`0x02096B34` | no |
+
+On a record, the point kind picks the point; the point ids are those of
+[character render records](character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table).
+"Child" means the first child record with that point (`0x00426770`), for example the weapon a character holds.
+
+| Point kind (`+0x49`) | Point |
+|---|---|
+| 1 | `model` (`0x101`), with the height `[0x02F97348] + 0x36C` while the instance's `+0x368` bit 11 is set |
+| 2, 3 | slot 2 (`n_buki_r`) or 3 (`n_buki_l`) |
+| 4, 5 | a child's `j_blade` (`0x200`) or `n_grip` (`0x201`) |
+| 6 | bone `+0x4C` of the record's skeleton (`0x004220F0`) |
+| 7 | bone `+0x4C` of the first child that has it (`0x00426650`, then `0x004220F0`) |
+| 8, 9 | `n_hara` (`0x100`), then the position replaced by the focus point `+0x670` (`0x003E5700`) or by `+0x670` plus `+0x680` turned by the record's matrix (`0x003E5810`) |
+| 10, 15-19 | a point of the record's box (`0x003E5130` for record kind 2, else `0x003E5070`) turned to face a reference (`0x0046F4B0`): the camera (10); the point twice as far beyond it from the camera, so it faces away (15); the owner's `n_hara` (16; the camera for record kind 1); the target's `n_hara` (17; the camera for kind 2); the targets' centre (18; the camera for kind 8); and for 19 the record's `model` point itself, facing the camera at its height |
+| 11, 12 | slot 12 or 13 (`j_kao`) |
+| 13, 14 | slot 0 (`n_buki_r`) or 1 (`n_buki_l`) |
+| 20, 24 | the record's own points `0x107` and `0x108` (words `+0x2F4`, `+0x2F6`) |
+| 21, 22, 25, 28 | a child's `@FCP` point `0x301`, `0x302`, `0x30A` or `0x307` |
+| 23 | the record's `@FCP` point `0x300` |
+| 26, 27 | the record's `@FCP` point `0x308` or `0x309`, with the kind-1 height rule |
+| 29, 30 | slot 4 (`j_sebo_b`) or 5 (`j_kosi`) |
+| 31, 36, 39 | a random point from list 0, 1 or 2 below, drawn once and then kept in the work object's `+0x40` (`0x003A69F0`) |
+| 32 | `n_hara` at the ground height (`0x00264670` on the record's `+0x108`) |
+| 33 | the focus point `+0x670` at the ground height |
+| 34, 35 | slot 17 (`j_kaochild_s`) or 18 (`j_blade`) |
+| 37, 38 | `n_hara` with the position replaced by `@FCP` section 1's point `+0xD4` (`0x003E5600`), at the ground height (37) or not (38) |
+| 40 | `model`, with the position replaced by section 9's point (`0x003E4F50`) |
+| 0, or above 40 | `n_hara` |
+
+When a point is missing the query falls back to `n_hara` and then to a child's `n_grip` (`0x003A471A`-`0x003A4777`). On
+a record, and for record kinds 3 and 11, the position is then divided by the published instance scale `0x02096810`. Unless `+0x4A` bit 1 is set,
+the record's own scale (`0x003E5710`) is applied when it is not 1, 1, 1 (`0x003A47B8`-`0x003A4861`). The height rule
+follows (`0x003A4868`-`0x003A489F`):
+
+| `+0x4A` bits 2-3 | Height |
+|---|---|
+| 0 | as resolved |
+| 1 | 0 |
+| 2 | `[0x02F97348] + 0x36C` while the instance's `+0x368` bit 11 is set, else the height of the record's `model` point |
+| 3 | the ground height (`0x00264670` on the record's `+0x108`) |
+
+The random lists hold point ids; `0x003A6E60(count)` draws the index:
+
+| List | Count | Point ids |
+|---|---|---|
+| 0 (`0x01EFAC60`) | 15 | `0x100`, `0x301`, `0x302`, 12, 13, 0, 1, `0x300`, `0x17`, `0x18`, `0x307`, `0x30A`, 5, `0x19`, and as fifteenth entry the word at `0x01EFAC7C`, which is the first two count bytes (`0x060F`) |
+| 1 (`0x01EFAC80`) | 6 | `0x100`, 13, 0, 1, `0x17`, `0x18` |
+| 2 (`0x01EFAC90`) | 6 | `0x100`, 0, 1, `0x17`, `0x18`, 0 |
+
+A drawn `0x100` is looked up on the record itself, and any other id on its children (`0x00426770`). When the record has
+no such point, the query draws once more. Ids `0x17`-`0x19` lie past the 22-entry slot tables. A keyed skeleton
+takes them as `@FCP` special ids (`0x003E5AD0`, `0x00421F46`); a named one would index the name table past its end.
+
 ### Target slots
 
 An instance names its targets in the dword array at `+0x10`, with its count in byte `+0x372`.
@@ -1003,6 +1089,47 @@ The instance lists `0x020910F0`, the current instance `0x02F97348` and context `
 pointers `0x02EBEF70`–`0x02EBEFB0`, the current emitter `0x02EBEF80`, the pass nibble `0x02AEE910`, the blend
 pair `0x02AEE900` / `0x02AEE908`, the draw list `0x02F8F2F8` with its count `0x02F8F2C6`, and the packet
 cursor `0x02F8F2D0` / `0x02F8F2D8` over `0x02F8F308`.
+
+### Placing the target actor
+
+Opcodes `0x39` and `0x3A` of the battle effect program `0x003B8670` (index bytes `0x003B994C`, offsets `0x003B9854`) move
+the current instance's slot-0 target actor (`0x003A6D90(0)`, `0x003588B0`). The first of them in an instance runs
+`0x0024B6F0`, which, when the target exists, saves the actor's position, facing and two more values at
+`0x020921A0`-`0x020921BC` and sets the instance's `+0x368` bit `0x100`. When the instance's players are torn down, `0x0024C870` puts them back
+(`0x003A73D7`).
+
+- `0x39` stores the operand's floats `+0x04`, `+0x08` and `+0x0C` times 0.01 (`0x008F30E4`) as the position; a first
+  use also sets the facing to 0 (`0x003B93FF`-`0x003B944A`).
+- `0x3A` stores operand `+0x08` in degrees as radians, `x 2 x π / 360`; a first use also sets the position to 0
+  (`0x003B9466`-`0x003B94A4`).
+
+Each then calls `0x0024F9B0`, which, while bit `0x100` is set and the target exists, sets `0x020921B0` to 1, calls
+`0x0026A430(actor, 0)`, places the actor at the position (`0x0026AF80`) and turns it to the facing (`0x0026B5A0`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x020925A0` | `f32` | 0 (zero-filled tail) | the x the target actor is placed at | `0x003B8670`: opcode `0x39` (`0x003B9428`), a first opcode `0x3A`, 0 (`0x003B947C`) | `0x0024F9B0` (`0x0024FA10`) |
+| `0x020925A4` | `f32` | 0 (zero-filled tail) | its y | `0x003B8670`: opcode `0x39` (`0x003B9439`), a first opcode `0x3A`, 0 (`0x003B947C`) | `0x0024F9B0` (`0x0024FA08`) |
+| `0x020925A8` | `f32` | 0 (zero-filled tail) | its z | `0x003B8670`: opcode `0x39` (`0x003B944A`), a first opcode `0x3A`, 0 (`0x003B9487`) | `0x0024F9B0` (`0x0024F9FD`) |
+| `0x020925B4` | `f32` | 0 (zero-filled tail) | its facing in radians | `0x003B8670`: opcode `0x3A` (`0x003B94A4`), a first opcode `0x39`, 0 (`0x003B9415`) | `0x0024F9B0` (`0x0024FA1D`) |
+
+### The effect program's light and flag byte
+
+Opcode `0x0B` files a light through `0x003B81A0(1)` (`0x003B973C`) and opcode `0x0A` releases it (`0x003B96AD`-`0x003B96CF`).
+When it holds a light, `0x003B81A0` first releases it (`0x003ABCA0`) and clears bits `0x08` and `0x10` of the light
+mask `0x02B3F501` (`0x003ACA90`). With 1 it then files a request with bytes `06 FF 00 01`, `+0x04` 1, `+0x07` bit 0 and
+(1.0, 1.0, 1.0, 1.0) at `+0x10` (`0x003AB960`, `0x003B81EB`-`0x003B821E`), and sets the two mask bits again (`0x003ACA80`).
+The pool and the request are on [Character lighting and shadows](character-lighting-and-shadows.md).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B40538` | `u32` | 0 (zero-filled tail) | the handle of that light, 0 when none; `0x0024D9C0` also releases it through `0x003B81A0(0)` (`0x0024D9DA`) | `0x003B81A0`: 0 (`0x003B81CE`), the handle (`0x003B8228`); `0x003B8670`, 0 (`0x003B96CF`) | `0x003B81A0` (`0x003B81BA`); `0x003B8670` (`0x003B96AD`) |
+| `0x020968C8` | `u8` | 0 (zero-filled tail) | flags of the block `0x00259250` resets: each reset clears bits 1 and 3 and sets bits 0 and 2, keeping the rest. No instruction sets bit 4, which opcode `0x03` tests before it sets the target slot's bit in the current instance's `+0x0C` while `+0x378` bit `0x200` is set (`0x003B8814`-`0x003B8937`), so that bit is never set there | `0x00259250` (`0x002592DA`) | `0x00259250` (`0x00259259`); `0x003B8670` (`0x003B891F`) |
+
+No other instruction reaches these six globals: no other RIP-relative, image-base-relative or 32-bit offset reference
+names them. The addresses taken in the block that holds `0x020968C8` (`0x02096810` and `0x02096820` by `0x0024C060`,
+`0x02096810` by `0x0024FCF0`, `0x02096840` by `0x002F2D60`) reach at most 16 bytes past each, and the one taken near
+`0x02B40538`, `0x02B40508` by `0x003B4B60`, reaches `+0x02` and `+0x04` only (`0x003B54C0`).
 
 ## Modding notes
 

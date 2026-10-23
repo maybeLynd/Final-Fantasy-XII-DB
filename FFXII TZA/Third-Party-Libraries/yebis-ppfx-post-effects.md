@@ -318,6 +318,20 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 | `0x02EA0B70` | the global block; only code inside the library reads it |
 | `0x02EA0B78`, `0x02EA0B80` | two render-to-texture objects `0x006DAA70` creates and `0x006DE780` releases |
 
+### The depth of field's sample count
+
+`0x006EF480(n, out, scale)` called with a null `out` returns `3 x n x (n + 1) + 1` at once
+(`0x006EF48E`-`0x006EF4B3`). The static initialiser `0x00168EE0` calls it with 5, a null `out` and 1.0, and keeps the
+result.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EA4024` | `i32` | 0 (zero-filled tail) | 91, the count `0x006EF480(5, 0, 1.0)` returns; both readers take `trunc(sqrtf(count x 4 / π))` from it (`0x00DABDDC`, 1.27324), which is 10 | `0x00168EE0` (`0x00168EF6`) | `CDepthOfField::CreateDeviceResources` `0x0076F400` (`0x0077075B`); `CDepthOfField::CreateScatterBokehTexture` `0x0077A8C0` (`0x0077AA08`) |
+
+No other instruction reaches `0x02EA4024`: no other RIP-relative, image-base-relative or 32-bit offset reference names
+it. The addresses taken near it are two one-time initialisation guards, `0x02EA4020` (`0x00763890`) and `0x02EA4008`
+(`0x00764240`), and a loop bound, `0x02EA4010` (`0x00764240`).
+
 ## Modding notes
 
 - Setting `EnableYebis` to anything but 1 in a scene or map configuration turns every post-effect

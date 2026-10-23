@@ -2,7 +2,7 @@
 title: "Menu graphics containers (.as7): the compressed page archives behind item pictures and character silhouettes"
 kind: "format"
 category: "Game files and data tables"
-addresses: "0x0024AA00, 0x00248500, 0x02090788, 0x02091090, 0x00291C80, 0x0209BEA0, 0x00291D90, 0x00292050, 0x00292390, 0x01E0C470, 0x01E0C474, 0x002C8EE0, 0x0209E638, 0x002CEB40, 0x002CEFD0, 0x002CEE00, 0x0024A440, 0x0024A1D0, 0x002C9040"
+addresses: "0x0024AA00, 0x00248500, 0x02090788, 0x02091090, 0x00291C80, 0x0209BEA0, 0x00291D90, 0x00292050, 0x00292390, 0x01E0C470, 0x01E0C474, 0x002C8EE0, 0x0209E638, 0x002CEB40, 0x002CEFD0, 0x002CEE00, 0x0024A440, 0x0024A1D0, 0x002C9040, 0x0029F580"
 ---
 
 ## What the player sees
@@ -112,6 +112,13 @@ update (message 2):
 3. It copies 64 x 96 bytes (`0x01E0C470`, `0x01E0C474`) into the `itemgra_c` pixels, at column 0 or 64 by a toggle that
    flips each time, and re-uploads the atlas (`0x0024A1D0`).
 
+The id is signed. On the update the procedure does nothing for an id with bit 15 set (`0x0029269A`-`0x0029269D`).
+For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which tests that bit of the object's word
+`+0x168` as a 16-bit mask (`0x00292063`-`0x0029206D`). `0x00291D90` sets bits 0 to 9, one per slot, so sheets 0 to 7
+answer and ids 0 to 511 (512 pictures, highest 511) decode. An id from 512 to `0x7FFF` finds no container: the procedure
+binds the `itemgra_c` atlas as it stands (`0x00292702`-`0x00292712`, `0x0029F580`) without decoding, so the row shows
+whatever the atlas last held.
+
 The toggle and the last sheet are shared by every item picture, so the atlas holds two item pictures at
 once: a third decode overwrites the older one, and both are drawn with the palette of the last sheet
 decoded, so two items from different sheets on screen together show one in the wrong colours.
@@ -137,6 +144,8 @@ uploaded all the same.
   the decode wrote.
 - A silhouette group is 516 pages that together must decode to two TIM2 images of at most 264,192 bytes each.
 - A real sheet 7 needs an eighth palette: `Item_Clut.bin` ships with seven.
+- Picture ids are `sheet × 64 + page`, 512 in all (0 to 511). A ninth sheet needs a container in slot 10, which the
+  ten-slot request list of `0x00291C80` and the `+0x168` bits do not provide.
 - Request sizes come from the file-size tables, so a resized file needs its kind 7 entry changed there.
 
 ## Related

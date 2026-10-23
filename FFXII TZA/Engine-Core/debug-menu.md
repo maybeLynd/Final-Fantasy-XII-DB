@@ -32,8 +32,8 @@ string is empty), 293 names in all.
 Hole`, `Luminescence`, `Ark Blast`, `Whiteout`, `Windburst`, `Torrent`, `Cataclysm`, `Inferno`),
 the concurrence names an information row prints.
 
-Before those strings it runs `0x002F79E0` (`0x001D03DC`), which writes the eight words `0xF1`, `0xE7`, `0xEA`, `0xED`,
-`0xE5`, `0xE4`, `0xE3` and `0xE2` at `0x022BE930`. `0x002F8D60` returns word `[0x01EEBAF0]` of that table whenever
+Before those strings it runs `0x002F79E0` (`0x001D03DC`), which copies the eight-word constant `0x00D0F9E0` (`0xF1`, `0xE7`,
+`0xEA`, `0xED`, `0xE5`, `0xE4`, `0xE3`, `0xE2`) into `0x022BE930`. `0x002F8D60` returns word `[0x01EEBAF0]` of that table whenever
 `0x01EEBAF0` is not negative.
 
 The open byte `+0xA70` is written once, to 0, by the constructor; no other instruction in the
@@ -468,6 +468,12 @@ object, the display flag words, the event-slot arrays.
 
 ## Modding notes
 
+- The concurrence override assumes the action numbering. `0x002F79E0` copies the eight action rows `0xF1`, `0xE7`,
+  `0xEA`, `0xED`, `0xE5`, `0xE4`, `0xE3` and `0xE2` into `0x022BE930` from the 16-byte constant `0x00D0F9E0`, and `0x002F8D60` returns the one
+  `0x01EEBAF0` selects in place of the concurrence the Quickening chain earned
+  ([concurrence list](../Battle-Actions/concurrence-list.md)).
+- The information row's names at `+0xB04` to `+0xBE4` follow the same order. Moving a concurrence to another
+  action row needs both lists changed with it.
 - The menu is one byte away: a write of 1 to `+0xA70` of the object at `[0x01F81428]` while the
   field frame runs (`0x00358330(1)` must hold, [frame update order](frame-update-order.md)) draws
   page `+0xA88`; the arms then need a caller, since no input code in the image dispatches a row
