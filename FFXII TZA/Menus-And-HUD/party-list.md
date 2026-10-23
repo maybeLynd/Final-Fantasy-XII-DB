@@ -437,10 +437,8 @@ the `0xC0` bytes from `0x0209C240` (`0x0029626F`).
 | `0x0209C2E0` | `void*` | 0 | the MP counter's context `+0x48`, the same record | `0x003F89C0` as above, from `0x00296360` (`0x00296402`); `0x00296360` (`0x00296436`); `0x00296260`, 0 (`0x0029626F`) | `0x0029B810`, the MP callback, the same way (`0x0029B814`) |
 | `0x0209C2F0` | `u32` | 0 | the handle of the unit whose HP and MP the target window rolls, 0 for none | `0x00296360`: 0 (`0x002963A0`), the handle (`0x002963C8`); `0x00296260`, 0 (`0x0029626F`) | `0x00296360` (`0x0029636A`); through the address `0x002962C0` returns: `0x0028F1F0` (`0x0028F21D`), which starts the window's roll when the changed unit's handle matches, and `0x002C0400` (`0x002C0449`) |
 
-No other instruction reaches these three. The search covered the executable's RIP-relative references (the two
-records' addresses are taken by `0x00296260`, `0x00296360` and `0x002962C0` only), its image-base-relative references, which hold
-none of them, and a scan of `.text` for the 32-bit offsets of `0x0209C240`, `0x0209C298` and the three globals from
-the image base, which finds none.
+No other instruction reaches these three. The two records' addresses are taken by `0x00296260`, `0x00296360` and
+`0x002962C0` only.
 
 ## Modding notes
 

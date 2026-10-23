@@ -9,7 +9,8 @@ addresses: "0x02EBF168, 0x02EBF160, 0x00301AD0, 0x003014C0, 0x00305CC0, 0x00308E
 
 An enemy's own lists are order sets from its area file's directory slot 1, `[0x02EBF168]`
 ([Enemy AI](enemy-ai.md), [Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)). The
-166 shipped area files hold 1,422 sets with 50,050 orders between them:
+166 shipped area files hold 1,422 sets with 50,050 orders between them; four of the files (`asp_a`, `dor_f`,
+`mrm_a` and `slm_a`) have a set count of 0, so the sets come from 162 areas:
 
 - [the order sets](enemy-order-sets.tsv), one row per set: its order count, its phase counts and the enemies
   that use it;
@@ -205,11 +206,10 @@ the executable, at the sites above:
 
 ## Data
 
-The two TSVs are written by `Database/Tools/catalogues/opus_enemy_orders.py` from the us `battle_pack.bin` and
-the 166 area files of the kind-21 path list ([Bestiary](../Enemy-Spawning/bestiary.md)). It asserts
-the slot layout of every file, the zero padding and exact length of every set, the sum of every weighted run and
-the register kind of every opcode-54/55 test. Of the 50,050 orders, 3,336 carry exactly the tests and flags of a
-gambit condition, and the tool's wording for those agrees with the condition's name.
+The two TSVs hold the order sets of the `us` `battle_pack.bin` and of the 166 area files of the kind-21 path list
+([Bestiary](../Enemy-Spawning/bestiary.md)). Every file has the slot layout above, and every set has
+its zero padding and fills its length exactly. Of the 50,050 orders, 3,336 carry exactly the tests and flags of a
+gambit condition, and the TSV's wording for those agrees with the condition's name.
 
 ## Related
 

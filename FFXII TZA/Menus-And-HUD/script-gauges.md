@@ -200,8 +200,7 @@ The gauge window is the `0xE8`-byte widget at `0x02B62D80` with procedure `0x004
 ## Modding notes
 
 - `initgauge 3` leaves the gauge without a child and reads a null layout record; use kinds 0 to 2. No shipped
-  script passes 3: the 268 calls in the `us` scripts push the literal kinds 0 (85), 1 (2) and 2 (181)
-  (`Database/Tools/analysis-kit/gfz-scripts/script_verb_census.py --verbs 0x1AB`, a complete run).
+  script passes 3: the 268 calls in the `us` scripts push the literal kinds 0 (85), 1 (2) and 2 (181).
 - `resetgaugetimer` does nothing to an open timer; set the timer with `setgaugetimer` instead.
 - The long format shows up to 9:59:59.99 and then a fixed 99:59:59.99 while the value keeps counting; the
   short one stops at 999.99 seconds.

@@ -27,8 +27,8 @@ is n (`0x002828A7`). An id becomes its byte index the same way in all three func
 | `0x3000`-`0x3051`, magicks | `id - 0x2E44`, from `0x1BC` |
 | anything else | `0` |
 
-`0x00282F10(id, member)` answers the member's bit. A scan of every listed function for a memory operand with the
-displacement `0xB2E` finds only `0x002826F0`, `0x00282A40` and `0x00282F10`.
+`0x00282F10(id, member)` answers the member's bit. No other function in the image has a memory operand with the
+displacement `0xB2E`.
 
 ### Building it
 

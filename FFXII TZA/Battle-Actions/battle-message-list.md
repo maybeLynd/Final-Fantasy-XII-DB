@@ -49,11 +49,11 @@ The rows fall into these groups (full rows in the `.tsv`):
 | `0x10`-`0x12` | has fallen, cast into the void, turns to stone |
 | `0x13`-`0x23` | HP and MP restored, regains consciousness, cured or fading statuses, no effect, reserve members |
 | `0x24`-`0x26` | items and gil obtained |
-| `0x27`-`0x3D` | technick results and failures, steals, poach, Libra |
+| `0x27`-`0x3D` | technick results and failures, steals, poach, Libra, a foe using Shift |
 | `0x3E`-`0x43` | Paling, Magick Shield and White Wind rising and falling |
 | `0x44`-`0x4D` | results of enemy abilities |
 | `0x4E` | loot stolen |
-| `0x4F`-`0x5C` | magick fields falling and lifting (repeat-limited) |
+| `0x4F`-`0x5C` | magick fields and the magnetic field falling and lifting (repeat-limited) |
 | `0x5D`-`0x62` | the Magick Pot, Zalera and back-attack lines (repeat-limited) |
 | `0x63` | empty |
 | `0x64`, `0x65` | items added to inventory |

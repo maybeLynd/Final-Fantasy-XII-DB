@@ -54,8 +54,8 @@ from the arena `[0x01F7F4C0]` at five sites:
 The flush chooses a path per line record (`0x001E85ED`-`0x001E8659`):
 
 1. Byte `+0x2378` of the font display chooses between the Special classes and `DynGeoFontTextInstance`. It is
-   `[0x01E02818] > 0` (`0x001E9F30`, `0x0029CE4A`-`0x0029CE55`); the shipped value is 1, and the image holds no direct,
-   image-base-relative or pointer writer of that cell.
+   `[0x01E02818] > 0` (`0x001E9F30`, `0x0029CE4A`-`0x0029CE55`); the shipped value is 1, and no instruction writes that
+   cell: its only reference is the read in `0x00229E30`.
 2. The record's offscreen byte `+0x28` chooses between the offscreen path and `Final`. Every text painter call passes 1
    to the begin call `0x001E9920` through `0x0017FA10` (`0x002AA52A`, `0x002AC801` and seven more), so menu text takes the
    offscreen path.
@@ -413,8 +413,7 @@ eight-byte stores in the lists put 0 in two of them at once.
 | `0x0209CC78` | `f32` | 0 | the glyph's unscaled advance: its width (`0x0017F9C0` of the glyph record's `+0x1C`, or bits 32-36 of its character-map entry) plus the letter spacing `+0x4C`, plus 1.5, or 0.5 when `0x00254A10` answers 0, for a glyph marked by bit 31 of its entry while `+0x40` is not 0 (`0x002AC4B8`-`0x002AC510`) | `0x002AC2F0` (0: `0x002AC316`; `0x002AC510`); `0x002B0280` (0: `0x002B040E`; `0x002B06D3`); 0: `0x002AC5F0` (`0x002AD1D9`), `0x002AF960` (`0x002AFA1F`) | `0x002AC2F0` (`0x002AC55C`); `0x002B0280` (`0x002B0727`) |
 | `0x0209CC7C` | `f32` | 0 | the kerning before the glyph, unscaled: `0x0017F8E0` of the glyph's code point `+0x20` ([kerning](fonts.md)), taken when `0x0017F940()` answers non-zero, the glyph record exists and its code point is not -1, and 0 otherwise; the multiply turns it into `0x0209CC6C` | `0x002AC2F0`: 0 with `0x0209CC78` (`0x002AC316`), the kerning (`0x002AC53B`); `0x002B0280`: 0 with `0x0209CC78` (`0x002B040E`), the kerning (`0x002B06FF`) or 0 (`0x002B0709`); 0 with `0x0209CC78`: `0x002AC5F0` (`0x002AD1D9`), `0x002AF960` (`0x002AFA1F`) | `0x002AC2F0` (`0x002AC55C`); `0x002B0280` (`0x002B0727`), the fourth float of the 16-byte multiply |
 
-Nothing else reads or writes these five: no other RIP-relative, image-base-relative or 32-bit offset reference names
-them. The addresses taken near them, `0x0209CC3C` by `0x001AF470` (a `UISize.json` cell, [Screen
+Nothing else reads or writes these five. The addresses taken near them, `0x0209CC3C` by `0x001AF470` (a `UISize.json` cell, [Screen
 layouts](screen-layouts.md)) and `0x0209CC30` by `0x002A84F0` (the end of a loop over `0x0209CC18`-`0x0209CC28`), reach none
 of them.
 
@@ -430,7 +429,7 @@ When a glyph's right edge over 1920 passes `0x01E0CDF4` and the context's `+0x20
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01E0CDF4` | `f32` | 1.0 | the screen width, in units of 1920, at which the next split falls | 1.0: `0x002B0280` at the start of a draw (`0x002B034D`), `0x002AF960` (`0x002AF9E9`); plus 1.0: `0x002A9F00` (`0x002AA583`), `0x002AA800` (`0x002AAC47`), `0x002AAE40` (`0x002AB3BD`), `0x002B0280` (`0x002B0BA9`) | `0x002A9F00` (`0x002AA4EF`, `0x002AA565`); `0x002AA800` (`0x002AABDB`, `0x002AAC33`); `0x002AAE40` (`0x002AB33D`, `0x002AB3A7`); `0x002B0280` (`0x002B0B35`, `0x002B0B9A`) |
-| `0x01E0CE0C` | `f32` | 10.0 | `0x0024ABC0()` x 4, 15.0 in the 1920 frame, stored when the text painter is set up and the language test `0x00254A10` answers 0 | `0x002B3550` (`0x002B3587`), from `0x0029CE40` | no instruction: no RIP-relative, image-base-relative or 32-bit offset reference reads it |
+| `0x01E0CE0C` | `f32` | 10.0 | `0x0024ABC0()` x 4, 15.0 in the 1920 frame, stored when the text painter is set up and the language test `0x00254A10` answers 0 | `0x002B3550` (`0x002B3587`), from `0x0029CE40` | no instruction |
 
 ### Code scratch
 
@@ -445,8 +444,8 @@ is `0x7F` (`0x002AE823`). Both scratches hold `2D 80 80 00` in the file, which t
 | `0x01E0CE08` | `u8[4]` | `2D 80 80 00` | the interpreter's copy of the same; byte 1, `0x01E0CE09`, is set to `0xFF` | `0x002AC5F0`: the copy (`0x002ADAFA`), then `0x01E0CE09` (`0x002ADB07`) | `0x002AE610`, called with the address (`0x002ADB98`, `0x002ADBC9`), the same way |
 | `0x01E0CDFF` | `u8` | `0x80` | the last byte of the static code `0F ? 81 n` at `0x01E0CDFC`: `n` with bit 7 set, the argument of `0x002AC2C0(n)` | `0x002AC2C0` (`0x002AC2CA`) | through the address `0x002AC2C0` returns: its one caller `0x003F92B0`, the location text, copies the code into the text with `0x00254F30` (`0x003F92FA`-`0x003F930B`) |
 
-No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference names
-them, and the `UISize.json` cells `0x001AF470` registers near them are separate globals.
+No other instruction reaches these globals. The `UISize.json` cells `0x001AF470` registers near them are separate
+globals.
 
 ## Modding notes
 

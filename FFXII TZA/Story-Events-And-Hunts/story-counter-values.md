@@ -14,7 +14,7 @@ is `FieldData_GetVariable0` (`0x00265270`). [Story flags](story-flags.md) shows 
 The table lists every value a script writes to it, from the 1,114 `us` scripts under `plan_master/us` that decode;
 `evt_t0020` has no `EBP2` header and holds no code.
 
-### How a write is found
+### How scripts write the counter
 
 A script names the counter through the variable descriptor `0x30000000`, class 0, offset 0, a signed 16-bit value,
 in its descriptor table (header `+0x28`). 513 scripts declare it as a variable of its own.
@@ -24,7 +24,6 @@ in its descriptor table (header `+0x28`). 513 scripts declare it as a variable o
 2. No script pushes a reference to the counter with `PUSHP`, so no verb writes it through a reference.
 3. 193 scripts also declare the 256-word array that starts at the same offset. They write only its elements 2 and 3,
    136 times, never element 0.
-4. A byte search for each write pattern finds 1,759 at an instruction start and none inside another instruction.
 
 ### Where the writes are
 

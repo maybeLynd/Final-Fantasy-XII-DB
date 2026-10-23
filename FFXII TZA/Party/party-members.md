@@ -12,7 +12,8 @@ addresses: "0x003172E0, 0x003170E0, 0x00328B20, 0x003288F0, 0x00316DF0, 0x003174
   A guest's gear is never added.
 - On their first join, a main character or a guest also brings the items and gil their party row lists.
 - A character who joins may catch up, as its party row says: on the first join only for Ashe, Fran,
-  Balthier, Basch and the guests, on every join for Penelo, never for Vaan and Reks. Catching up sets
+  Balthier, Basch and the guests of rows 7-14 and 16, on every join for Penelo, never for Vaan, Reks and the
+  guest Basch of row 15. Catching up sets
   level and LP from the two strongest members already in the party.
 - A character who joins arrives with full HP, unless they have Disease.
 - A main character who leaves keeps the gear they are wearing, and it leaves the inventory until they join again.
@@ -287,8 +288,8 @@ copy of seats 0-7 is at `0x0031734B` (`0x003172E0`), `0x00326131` (`0x00326110`)
 | `0x022C258E` | `u16` | 0 | seat 7 of the staging map, a reserve seat | the 16-byte copy; `0x003273D0` (`0x003274BF`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
 | `0x022C2590` | `u16` | 0 | seat 8 of the staging map, the last reserve seat | the copy: `0x003172E0` (`0x0031735A`), `0x00326110` (`0x00326140`), `0x003286E0` (`0x00328766`), `0x003287A0` (`0x00328840`), `0x003288F0` (`0x0032894F`), `0x00328B20` (`0x00328B83`), `0x00328DB0` (`0x00328F04`); `0x003273D0` (`0x003274D8`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
 
-No other instruction reaches seats 1-8. Apart from the two close-up loops' address-taking leas of seat 4 (`0x00326334`,
-`0x0032763F`), no other RIP-relative, image-base-relative or 32-bit offset reference names them.
+No other instruction reaches seats 1-8. The two close-up loops also take the address of seat 4 (`0x00326334`,
+`0x0032763F`).
 
 The staging map's address is also taken by `0x0031A300` and `0x00324380`, which write one byte per unit 0-3 from
 `0x022C257C`, below the map. The one indexed table read that could reach it, `0x00308E80(i)` on the unit pointers at

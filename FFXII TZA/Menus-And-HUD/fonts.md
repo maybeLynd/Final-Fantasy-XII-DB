@@ -45,8 +45,7 @@ list request reads the list into a third:
 | `0x01DF6DF0` | `void*` | `0x008F81B8`, the `jp` folder `./GameData/D3D11/ArtData/font/jp/` | the language's font folder, which `0x001B4930` puts before each listed name with `"%s%s"` (`0x008F80F0`) | `0x001B44A0` (`0x001B453D`), the folder of the chosen language: `0x008F8700` `cn`, `0x008F86A8` `ch`, `0x008F8758` `kr`, `0x008F8650` `us`, `0x008F81B8` `jp` (`0x001B44CF`-`0x001B452B`) | `0x001B4930` (`0x001B4A0C`) |
 | `0x01F81208` | `void*` | 0 | the loaded font list: the zero-terminated copy of `fontlist.ah` that the list request (kind 4) reads into a new block; `0x001B4930` reads the names from it and frees it | `0x001A0F80`, through the request's `+0x120`, which `0x001B53F0` points at it (`0x001B544B`-`0x001B5452`), storing the block (`0x001A1012`); `0x001B4930`, 0 after freeing it with `0x00210EB0` (`0x001B4BC2`) | `0x001B53F0`, which passes whether it is still 0 to the return stub `0x0016D6A0` (`0x001B543A`-`0x001B5446`); `0x001B4930` (`0x001B4973`, `0x001B4BB3`) |
 
-No other instruction reaches these three: no other RIP-relative, image-base-relative or 32-bit offset reference names
-them. The one address taken near the first two, `0x01DF6DE0` (`0x001B456D`), is the float key slot `+0x308` of the font
+No other instruction reaches these three. The one address taken near the first two, `0x01DF6DE0` (`0x001B456D`), is the float key slot `+0x308` of the font
 manager that `0x001CA600` writes with a 4-byte store ([Screen layouts](screen-layouts.md)), and reaches neither.
 
 Each font's atlas is `<name>.dds.phyre` (`0x008F6748`). The builder also names a shadow atlas `<name>_shadow.dds.phyre`
@@ -97,7 +96,7 @@ The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10
   each request filed in its map by the font id.
 - `0x001E9A20` returns the path byte `+0x2378`. Its one writer `0x001E9F30` is called from `0x001B44A0` with the third
   argument, which `0x0017F9E0` passes on from `0x0029CE40`: `[0x01E02818] > 0` (`0x0029CE4A`-`0x0029CE55`). `0x01E02818` holds 1
-  in `.data`, and its only rip-relative reference is the read `0x00229E30`, so the byte is 1 and the shadow atlas is
+  in `.data`, and its only reference in the image is the read in `0x00229E30`, so the byte is 1 and the shadow atlas is
   not requested. None of the 62 shipped atlas files is a `_shadow` one.
 - `0x001B6230(font, ...)` finds the texture of the loaded atlas (`0x0019CE20`, `0x0019CA80`, a resource of type
   `0x02CBB900` in its `+0x38` list) and hands it to the font (`0x00213560`).
@@ -339,13 +338,21 @@ them.
 
 ## Loader behaviour
 
-1. Every check message goes to `0x0016D6A0`, which returns at once, so a bad file stops nothing and logs nothing.
-2. The `.ker` reader reads a whole record while any byte remains (`0x001B52C6`), so a short last record reads past the
-   end.
-3. The `.fex` reader refuses a key already loaded and stops there, without freeing the file (`0x001B4CBA`, `0x001B4D03`).
-4. The `.fex` reader trusts each count (`0x001B4CA6`). Read this way, the two unrequested `us` files would take their
-   first key as a count and run about 2.3 GB past the end.
-5. A `.dat` flag bit asks for its file without checking that it exists; no shipped flag asks for a missing file.
+1. The checks enforce nothing. Each test passes its result and message to `0x0016D6A0`, which returns at once
+   (for example `0x001B4F69`-`0x001B4F7B`, `0x001B52D5`-`0x001B52E7`, `0x001B4CF1`-`0x001B4D1C`), so loading goes on whatever a
+   test finds.
+2. Short records are read past their end. The builder reads the `.dat` header's `0x28` bytes without testing the
+   file's size (`0x001B4DEE`-`0x001B4E29`) and then a whole `0x24`-byte glyph record while any byte remains
+   (`0x001B4ED2`, `0x001B4F4E`). The `.ker` reader does the same with its 12-byte pairs (`0x001B52A9`, `0x001B52C6`), and the
+   `.fex` reader with each chunk's 8-byte key and count (`0x001B4C94`, `0x001B4CEB`).
+3. Counts are trusted. A `.dat` header's `glyphCount` bounds nothing: the builder files records to the end of the
+   file, and only the unenforced test `0x001FDF80` compares the two (`0x001B4F6C`). A `.fex` chunk's count sets how many
+   values are read, with no test against the file's end (`0x001B4CA6`, `0x001B4CBE`-`0x001B4CE9`), so a count too large
+   reads past the end, and a count of 0 or below reads none.
+4. Read this way, the two unrequested `us` `.fex` files would take their first key as a count and run about 2.3 GB
+   past the end.
+5. The `.fex` reader refuses a key already loaded and stops there, without freeing the file (`0x001B4CBA`, `0x001B4D03`).
+6. A `.dat` flag bit asks for its file without checking that it exists; no shipped flag asks for a missing file.
 
 ## Modding notes
 

@@ -265,8 +265,8 @@ buffers and per-channel tap tables and puts back the base vtables; `0x007D31B0` 
 
 ## Shipped data
 
-The shipped `bus ` chunk has one bus with no effects ([Sound engine configuration](sound-engine-config.md)). A raw
-scan of the code section for calls and address loads of every builder above finds them only in the bus builder `0x007AC4F0` (`0x007AC8F6`-`0x007ACA48`),
+The shipped `bus ` chunk has one bus with no effects ([Sound engine configuration](sound-engine-config.md)). Every
+builder above is called, or has its address loaded, only in the bus builder `0x007AC4F0` (`0x007AC8F6`-`0x007ACA48`),
 except three that a voice builds for itself:
 
 | Builder | Other caller | When |
@@ -293,10 +293,8 @@ run functions only read.
 | `0x02EAE060` | `f32[4]` | 0 | the compressor's one vector for channels 0-3: the gain 1.0 put in where the sum is 0 or less (`0x007D8D41`) | `0x007D85E0` (`0x007D87A9`) | `0x007D8BE0` (`0x007D8D41`) |
 | `0x02EAE070` | `f32[4]` | 0 | the same for channels 4-7 (`0x007D8D4B`) | `0x007D85E0` (`0x007D87A2`) | `0x007D8BE0` (`0x007D8D4B`) |
 
-No other instruction reaches these vectors. The search covered the executable's RIP-relative references (the
-address `0x02EAE040` that `0x007D3CB0` takes at `0x007D4584` and `0x007D5672` ends a loop over the vectors from `0x02EADF40`, `0x007D4777`-`0x007D47BF`), its
-image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from the
-image base, which finds none.
+No other instruction reaches these vectors. The address `0x02EAE040` that `0x007D3CB0` takes at `0x007D4584` and `0x007D5672`
+ends a loop over the vectors from `0x02EADF40` (`0x007D4777`-`0x007D47BF`).
 
 ## Modding notes
 

@@ -176,8 +176,8 @@ header.
 | `3` | `cursol_4_p` | 512 x 256, 8-bit | 50 |
 | `4` | `keyboard` | 1024 x 1024, 8-bit | 1,142 |
 
-`cursol_4_p` has one set. Each of the five entries is byte-identical in at least eight of the ten
-language folders.
+`cursol_4_p` has one set. Each of the five entries has the same bytes in at least eight of the ten language
+folders.
 
 ## Modding notes
 

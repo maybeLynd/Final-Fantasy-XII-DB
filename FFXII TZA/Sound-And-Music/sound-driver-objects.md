@@ -376,10 +376,7 @@ appends a filled one to the command queue `0x02EAD040`, and the command runner `
 free-action queue after running it (`0x007ABFB9`-`0x007ABFFB`). The `Lay` command queue `0x02EADDA0` works the same way
 for `0x007BAE50` and the `Lay` runner `0x007BAEC0`.
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
-the image base and for each list's and queue's own address, which finds none; the same scan finds the two known uses
-of `0x02AEA030` (`0x003B6181`, `0x003B6188`). A function that takes a list's or a queue's address is listed with the helper
+No other instruction reaches these globals. A function that takes a list's or a queue's address is listed with the helper
 it passes it to.
 
 ## Modding notes

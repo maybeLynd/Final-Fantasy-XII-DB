@@ -14,10 +14,10 @@ reaches (`battle_pack.bin` directory entry `+0x7C`). Row *n* is technick id `0x4
 Every row's `+0x02` is its action row, rows 158-181 of the action table, and each of those has kind 2 and `+0x22`
 equal to the technick id.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/technicks.py` calls the builder in `magicks.py` for entry `+0x7C`; the rows have the
-magick table's layout, as the class-9 arm copies them (`0x0031CEEB`-`0x0031CF08`):
+Each line is read from the `st2e` table at entry `+0x7C`, as [Magick list](magick-list.md) reads its table; the rows
+have the magick table's layout, as the class-9 arm copies them (`0x0031CEEB`-`0x0031CF08`):
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -31,14 +31,12 @@ magick table's layout, as the class-9 arm copies them (`0x0031CEEB`-`0x0031CF08`
 Every one-byte text code goes through the glyph table of the shipped `us` font `font00.dat`
 ([Fonts](../Menus-And-HUD/fonts.md)).
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 24 rows of 8 bytes, and the TSV has 24 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts byte `+0x07` = 0 and that every row's action row has `+0x22` = `0x4000` + row.
-- Rows compared with their readers: row 0, First Aid, has price 600 and action row 158; row 11, Steal, has price
+- The table's header gives 24 rows of 8 bytes, one TSV line each.
+- Byte `+0x07` is 0 on every row, and every row's action row has `+0x22` = `0x4000` + row.
+- Example rows: row 0, First Aid, has price 600 and action row 158; row 11, Steal, has price
   1200, sort order 0 and action row 169, the Steal row of [Action list](../Battle-Actions/action-list.md).
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

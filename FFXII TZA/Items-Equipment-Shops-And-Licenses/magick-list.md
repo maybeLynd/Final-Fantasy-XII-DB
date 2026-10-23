@@ -14,9 +14,9 @@ subtracts `0x3000` from the id and multiplies by the row size (`0x0031CD0D`-`0x0
 Every row's `+0x02` is its action row, rows 0-80 of the action table, and each of those has kind 1 and `+0x22` equal
 to the magick id. By school there are 25 White, 25 Black, 20 Time, 6 Green and 5 Arcane magicks.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/magicks.py`, with the shared readers in `ffxii_text.py` and the action fields as on
+Each line is read from the shipped files in these steps, with the action fields as on
 [Action list](../Battle-Actions/action-list.md):
 
 1. the `st2e` table at entry `+0x78`: 81 rows of 8 bytes from the section's `+0x20`;
@@ -25,7 +25,7 @@ to the magick id. By school there are 25 White, 25 Black, 20 Time, 6 Green and 5
 4. the school: the action row's `+0x2C & 7`, which the arm stores at query record `+0x3C` (`0x0031CDBE`-`0x0031CDC5`),
    named by the row of the same number in the magick-school table (entry `+0x30`, registry slot `0x02EBF110`). That
    table's five rows hold a help text id `+0x00` and a name word `+0x02`, which `0x0031C5D0`'s class-24 arm reads
-   (`0x0031DDCF`-`0x0031DE9C`). The decoder pairs a school number with the row of the same number;
+   (`0x0031DDCF`-`0x0031DE9C`). School *n* takes the name of row *n*;
 5. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
    ([Fonts](../Menus-And-HUD/fonts.md)).
 
@@ -40,14 +40,12 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
 | `+0x06` | `u8` | sortOrder | query record `+0x30` (`0x0031CD5E`), the key Auto-sort `0x002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)) |
 | `+0x07` | `u8` | | 0 on every row |
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 81 rows of 8 bytes, and the TSV has 81 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts byte `+0x07` = 0 and that every row's action row has `+0x22` = `0x3000` + row.
-- Rows compared with their readers: row 0, Cure, has price 200, action row 0 (8 MP, power 20), school 0, "White
+- The table's header gives 81 rows of 8 bytes, one TSV line each.
+- Byte `+0x07` is 0 on every row, and every row's action row has `+0x22` = `0x3000` + row.
+- Example rows: row 0, Cure, has price 200, action row 0 (8 MP, power 20), school 0, "White
   Magicks"; row 79, Gravity, has price 2300, action row 79 and school 2, "Time Magicks".
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

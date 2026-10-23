@@ -183,10 +183,7 @@ count of an entry that holds the item, or puts the item with count 1 in the firs
 |---|---|---|---|---|---|
 | `0x02EBB548` | `u8[4]` | 0 | the third entry: the third different item or gil won, which is the rare item when all three are won and differ | `0x0046A870`, 0 (`0x0046A897`); `0x0046AC90`: the count (`0x0046ACFE`), the item and count 1 (`0x0046AD07`, `0x0046AD0C`) | `0x0046AC90` (`0x0046ACC0`, `0x0046ACC8`, `0x0046ACE8`); `0x0046A870`, which posts its line (`0x0046A940`, `0x0046A944`) |
 
-No other instruction reaches `0x02EBB548`-`0x02EBB54B`. The search covered the executable's RIP-relative references (the
-list's addresses are taken by `0x0046A870` and `0x0046AC90` only), its image-base-relative references, which hold none,
-and a scan of `.text` for the 32-bit offsets of `0x02EBB540`, `0x02EBB542` and `0x02EBB548` from the image base, which
-finds none.
+No other instruction reaches `0x02EBB548`-`0x02EBB54B`. The list's addresses are taken by `0x0046A870` and `0x0046AC90` only.
 
 ## Modding notes
 

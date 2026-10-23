@@ -17,9 +17,13 @@ Reserve rows), and 56 rows of kind 255. Of those 56, 47 are named `NOT USED` or 
 with no linked id (`+0x22` = `0xFFFF`): `Do nothing.` (146), Mount (148), Dismount (149), `sousachange` (152), three
 Mist Charge rows (242-244), Chain Bonus (245) and Dismiss (275).
 
-### How it is built
+The kind counts include rows named as unused: 24 of the 235 Foecraft rows are named Reserve and 8 of the 16
+Concurrence rows `NOT USED`. With the 47 such rows of kind 255 and the three kind-13 Reserve rows, 82 rows in all
+carry the explanation "an unused row".
 
-`Database/Tools/catalogues/actions.py`, with the shared readers in `ffxii_text.py`:
+### Where the values come from
+
+Each line is read from the shipped `battle_pack.bin` in these steps:
 
 1. the `st2e` table at entry `+0x3C`: 543 rows of 60 bytes from the section's `+0x20`;
 2. the name word `+0x34` through the word banks at entry `+0xF8` (`0x00305F10`);
@@ -34,15 +38,13 @@ Mist Charge rows (242-244), Chain Bonus (245) and Dismiss (275).
    [Action definition row](action-definition-row.md); `+0x2C` bits 12 and 15 take their names from
    [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) (`0x0030846A`, `0x003084B3`).
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 543 rows of 60 bytes, and the TSV has 543 data lines.
-- Two runs over the same files give byte-identical output.
+- The table's header gives 543 rows of 60 bytes, one TSV line each.
 - The kind counts equal the shipped counts on [Action definition row](action-definition-row.md), "The kind byte".
-- Rows compared with their readers: row 0 Cure (kind 1, 8 MP, power 20, help "Restore a small amount of HP to one
+- Example rows: row 0 Cure (kind 1, 8 MP, power 20, help "Restore a small amount of HP to one
   ally."), row 150 Attack (kind 0, help 4000, description "Attack with weapon in hand."), row 169 Steal (kind 2,
   linked id `0x400B`, cost 0, flags `0x00004688`, help "Steal from one foe.").
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

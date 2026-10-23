@@ -51,11 +51,11 @@ word `+0x153A` (`0x0027E2F7`, `0x0027D82F`), which `0x002778C0` copies from `+0x
 
 The command numbers are the rows of comac_data on [Category names](category-names.md).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/small_tables.py` reads the `st2e` table at entry `+0x70` (6 rows of 20 bytes from the
-section's `+0x20`) and the group index at the header's `+0x1C`, and names each entry by its action row's name
-word `+0x34` ([Action list](action-list.md)).
+Each line is a row of the `st2e` table at entry `+0x70` (6 rows of 20 bytes from the section's `+0x20`) or a group
+of the group index at the header's `+0x1C`; each entry is named by its action row's name word `+0x34`
+([Action list](action-list.md)).
 
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
@@ -66,12 +66,11 @@ word `+0x34` ([Action list](action-list.md)).
 The table is loaded only by `0x0032A230` and the loader `0x00236C30`. The words of a masked entry (`0x5000`,
 `0x5005`) are only tested against `0xFFFF`.
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 6 rows of 20 bytes, the group index 5 groups ending at row 6, and the TSV has 7 data
-  lines (the 6 rows and group 0).
-- Two runs over the same file give byte-identical output.
-- Rows compared with their readers: row 1 limits Penelo (`+0x00` = 5) to action 82, Potion; row 2 has mask 1, so
+- The table's header gives 6 rows of 20 bytes and the group index 5 groups ending at row 6; the TSV has a line for
+  each of the 6 rows and one for group 0.
+- Example rows: row 1 limits Penelo (`+0x00` = 5) to action 82, Potion; row 2 has mask 1, so
   its entry `0x5000` leaves Vaan only the Gambits command; row 0 has no entry, so in group 1 every command and action
   of Vaan is greyed.
 

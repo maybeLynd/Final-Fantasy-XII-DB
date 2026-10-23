@@ -286,7 +286,8 @@ The minimap's other small state:
   in x and z, it writes the position to `0x02B45860 + 16 x [0x02B45960]`, makes it the last point, counts `0x02B45962` up
   to 16 and moves the index on modulo 16.
 - `0x003C5030` clears that block (`0x120` bytes from `0x02B45850`) and the live marker list (`0x1430` bytes from
-  `0x02B46280`); Ghidra's references to it are only its unwind entry.
+  `0x02B46280`). The script verb `clearnavimapfootmark` (`0x415`) runs it, through the forwarders `0x00343330`,
+  `0x003EB980` and `0x0035D5F0`, each a single `jmp`.
 - `0x003C5400(i, v)` and `0x003C53E0(i)` set and clear the dword `0x02B45970 + 4i`; `0x003FFF70` sets slot 1 to the
   controlled character's record `+8` (`0x00272E10`) when that is non-zero, and clears it otherwise.
 - `0x003C5720(box, item, angle, &x, &y)`, from the widget's draw (`0x003C5CE7`, `0x003C5D21`), returns the item's position,
@@ -622,11 +623,10 @@ The World Map host is the `0x188`-byte widget at `0x02CA8F38` with procedure `0x
 | `0x022C83B8` | `void*` | 0 (zero-filled tail) | the address of the minimap's map record `0x02B45A00`, which `0x003C5E40` returns | `0x0035C560`, from the interface start-up `0x00253970`: 0 with the `0x23C8` bytes from `0x022C8060` (`0x0035C573`), then the address (`0x0035C598`) | no instruction |
 | `0x02B476B8` | `i32` | 0 (zero-filled tail) | the area (`0x003148F0`) whose explored mask the minimap's field set-up loaded into `0x02B45978` (`0x003C5410`); on leaving, the 32 bytes at `0x02B45978` go back into that area's Map record (`0x002551B0`) when the area has a Map entry (`0x003779F0`) | `0x003C5F00`, the field set-up (`0x003C5F77`) | `0x003C5E50`, the teardown (`0x003C5E67`); `0x003C8670`, from the jump staging `0x003145E0` (`0x003C8676`) |
 
-These are all its accesses among the RIP-relative references; no image-base-relative reference or disp32
-displacement names it, a search that finds the control `0x02AEA030` at `0x003B6181` and `0x003B6188`.
+These are all the accesses to `0x0209E5B4`.
 
-No other instruction reaches `0x022C83B8` or `0x02B476B8`: no other RIP-relative, image-base-relative or 32-bit offset
-reference names them, and the one address taken nearby, `0x022C8388` by `0x0035BC50`, reaches `0x022C8388`-`0x022C83A7` only.
+No other instruction reaches `0x022C83B8` or `0x02B476B8`. The one address taken nearby, `0x022C8388` by `0x0035BC50`, reaches
+`0x022C8388`-`0x022C83A7` only.
 
 ### The minimap's box and view
 
@@ -694,9 +694,8 @@ The World Map's route draw keeps the route picture's size, which `0x005520F0` re
 | `0x01F2CAF8` | `i32` | 16 | the route picture's width, which the two route draws give the sprite batcher as its width (`0x001819A0`) | `0x00562E30` (`0x00562E9A`) | `0x005621A0` (`0x0056234E`, `0x005623B9`); `0x00562A30` (`0x00562AE5`, `0x00562AF7`) |
 | `0x01F2CAFC` | `i32` | 16 | its height | `0x00562E30` (`0x00562EA7`) | `0x005621A0` (`0x00562341`, `0x005623C1`); `0x00562A30` (`0x00562AD8`, `0x00562B02`) |
 
-No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference names
-them. The one indexed table near `0x01F2CAF8`, `[0x01F2CA10 + 8i]` in `0x0053AB50` (`0x0053C807`), takes an index of at most 23
-(`0x0053C7AB`-`0x0053C7F9`), so it ends at `0x01F2CACF`.
+No other instruction reaches these globals. The one indexed table near `0x01F2CAF8`, `[0x01F2CA10 + 8i]` in `0x0053AB50`
+(`0x0053C807`), takes an index of at most 23 (`0x0053C7AB`-`0x0053C7F9`), so it ends at `0x01F2CACF`.
 ## Modding notes
 
 - An area's map item is listed in `menumap_area.bin`; owning it reveals the area's points without visiting them.

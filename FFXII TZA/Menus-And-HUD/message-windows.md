@@ -163,8 +163,8 @@ registers it in the first free entry of the eight pointers at `0x0209C4D0` and k
 `0x002A27C0`, `0x002A2830`, `0x002A28B0`, `0x002A2BB0`).
 
 Message 18 clears the entry only for an index of 6 or below (`0x002A695B`), so a window registered in entry 7 stays
-there after it is destroyed. A scan of the listed functions for rip-relative and image-base-relative operands on
-`0x0209C4D0`-`0x0209C50F` finds two other writers: the register `0x002A6236` and the reset `0x002A79E0`, which the startup
+there after it is destroyed. The registry `0x0209C4D0`-`0x0209C50F` has two other writers: the register `0x002A6236` and
+the reset `0x002A79E0`, which the startup
 step `0x00253970` runs once and which also clears the eight picture slots at `0x0209C510`.
 
 `0x002A2BB0` answers 1 while a live window has a procedure or a run in progress. `0x002A3090` builds a window for the
@@ -510,11 +510,14 @@ Each of the three signal widgets (`0x0209CC18`, `0x0209CC20`, `0x0209CC28`, Sign
 ### The window registry
 
 Entry `i` of the eight pointers at `0x0209C4D0` holds the window registered with index `i` at `+0x3B8` (see The window
-object). The register scan reads every entry (`0x002A6205`), and each entry point and loop reads the entries by that
-index or in turn: `0x002A2720` (`0x002A2742`), `0x002A27C0` (`0x002A27D6`), `0x002A27F0` (`0x002A2806`), `0x002A2830` (`0x002A2846`),
-`0x002A28B0` (`0x002A28C6`), `0x002A2BB0` (`0x002A2BCA`), and the loops `0x002A28E0` (`0x002A28F0`), `0x002A2940` (`0x002A2950`),
-`0x002A29A0` (`0x002A29B0`), `0x002A2A00` (`0x002A2A10`), `0x002A38C0` (`0x002A38F5`) and `0x002A3F50` (`0x002A3F60`). All are 0 in
-the file.
+object). All are 0 in the file. These read the entries, by index or in turn:
+
+- the register's scan of every entry (`0x002A6205`);
+- the entry points `0x002A2720` (`0x002A2742`), `0x002A27C0` (`0x002A27D6`), `0x002A27F0` (`0x002A2806`), `0x002A2830`
+  (`0x002A2846`), `0x002A28B0` (`0x002A28C6`) and `0x002A2BB0` (`0x002A2BCA`);
+- the loops `0x002A28E0` (`0x002A28F0`), `0x002A2940` (`0x002A2950`), `0x002A29A0` (`0x002A29B0`), `0x002A2A00` (`0x002A2A10`),
+  `0x002A38C0` (`0x002A38F5`) and `0x002A3F50` (`0x002A3F60`);
+- the caption placement `0x002A6F80` (`0x002A7000`) and the caption build `0x002A70B0` (`0x002A7673`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -532,8 +535,8 @@ the file.
 | `0x01E0CDC8` | `i32` | 1 | whether the window steps on this tick: the window procedure stores `0x001EDEC0(+0xB4)` on message 2 and 1 again after the tick | `0x002A6190` (`0x002A6464`, `0x002A65D8`) | `0x002A6190` (`0x002A6531`); the mode step `0x002A7720` (`0x002A774B`, `0x002A779C`, `0x002A77F7`); `0x002A8C50` (`0x002A8D37`); `0x002ABEC0` (`0x002ABEC9`) |
 | `0x01E0CDCC` | `i32` | -1 | the handle of the last sound the window procedure played (`0x00249C60`, `0x002A64AF`) | `0x002A6190` (`0x002A64B4`) | `0x002A1FB0`, which stops it (`0x0024A1A0`) before playing sound `0x1A` (`0x002A22CB`-`0x002A22DB`) |
 
-No other instruction reaches these globals: no other RIP-relative, image-base-relative or 32-bit offset reference names
-them. The image-base-relative accesses of `0x002A6190` reach the registry only by the index `+0x3B8`, which is below 8.
+No other instruction reaches these globals. The image-base-relative accesses of `0x002A6190` reach the registry only by
+the index `+0x3B8`, which is below 8.
 ## Modding notes
 
 - `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+0x7C`:

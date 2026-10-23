@@ -51,7 +51,7 @@ The two sides size the mask differently:
 
 The shipped node table has 361 rows in every language's `battle_pack.bin`, so the builder clears exactly 46 bytes
 and sets bits 0-360; nothing is written past the 46 bytes, and bits 361-367 stay 0. `0x00323BB0` is the builder's only
-caller (a scan of every `call` and `jmp` in `.text`).
+caller.
 
 `0x00323890` turns a node's category byte into its kind, through `0x003241D0` and two jump tables
 (`0x00323894`-`0x003238DB`, `0x003241D0`-`0x00324233`):

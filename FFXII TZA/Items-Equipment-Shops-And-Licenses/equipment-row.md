@@ -65,7 +65,7 @@ The header's `+0x0C` and `+0x18` are offsets from the start of the section, reba
 | `+0x1E` | `u8` | element | weapons and ammunition: attack element, one bit each (`0x0038BE30`) |
 | `+0x1F` | `u8` | statusChance | weapons and ammunition: on-hit status chance, percent (`0x0038F9D0` at `0x0038FB44`) |
 | `+0x20` | `u32` | statusMask | weapons and ammunition: statuses a plain Attack inflicts (`0x00384C30` at `0x00384DB2`) |
-| `+0x24` | `u8` | b24 | weapons: one value per weapon kind; no read in a census of the code that loads `0x02EBF0F8` and its callees |
+| `+0x24` | `u8` | b24 | weapons: 0, 3, 5, 7, 8 or 10; 0 on every other row; read by no instruction, so it has no effect (below) |
 | `+0x25` | `u8` | reachKind | weapons: which range pair sets the near and middle distance (`0x00320D70` at `0x00320D93`) |
 | `+0x26` | `u8` | motionClass | weapons: attack motion class, through the map at `0x02EBF180`, main-hand rows only (`0x003203B0` at `0x0032041E`) |
 | `+0x27` | `u8` | chargeBase | weapons: charge time base for actions with flag `+0x0C` bit 27 (`0x002F8410` at `0x002F851A`) |
@@ -73,6 +73,13 @@ The header's `+0x0C` and `+0x18` are offsets from the start of the section, reba
 | `+0x2C` | `u16` | attackEffect | weapons: low 15 bits = the effect a plain Attack shows (`0x0030AC50` at `0x0030AD56`) |
 | `+0x2E` | `u16` | pad2E | 0 on every row |
 | `+0x30` | `u32` | modelId | weapons, ammunition and shields: the held model, 0x0077xxxx (`0x0031BF60` at `0x0031BFE0`) |
+
+Byte `+0x24` is read nowhere in the game. Every row is reached from the slot `0x02EBF0F8`, whose only references
+are rip-relative; the row pointers those readers compute go only into registers, the stack and the callees
+they are passed to, such as `0x0031E9F0` (`+0x09`) and `0x00320D70` (`+0x25`), and none of them reads a byte that
+covers `+0x24`. No row pointer is stored in memory outside the stack, and no row is copied whole.
+
+The bonus record is 24 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -173,18 +180,18 @@ placeholder rows named "NOT USED" and "Reserve".
 
 | Field | Values in rows 0-419 |
 |---|---|
-| `+0x12` price | 0 to 56,000; Unarmed 0, Broadsword 390, Flametongue 4,000; Excalibur, Gendarme and the Genji Shield 1; Ribbon 10 |
+| `+0x12` price | 0 to 56,000; Unarmed 0, Broadsword 390, Flametongue 4,000; 1 on 34 of the rows below 420, among them Excalibur, Gendarme, the Genji Shield and the 13 Reserve rows, and on every `NOT USED` row from 420 on; Ribbon 10 |
 | `+0x07` bit 1 | set on 21 rows: Hero's Blade, Treaty-Blade, Sword of Kings, Joyeuse, Chirijiraden, both Nightmare rows, Flimsy Blade, Manufacted Nethicite, Goddess's Magicite, Dawn Shard and ten Reserve rows (the `cannot_sell` column of [`equipment-list.tsv`](equipment-list.tsv)) |
 | `+0x10` | 0 on 260 rows, 1 on 72, 2 on 84, 3 on 1, 5 on 3 |
 | `+0x18` on weapons | 10 on 144, 100 on 42, 20 on 10, 30 on 3, 200 on 1 |
-| `+0x19` on weapons | 20-29, and 104 on maces |
+| `+0x19` on weapons | 20-29, and 104 on ten of the eleven maces and on Joyeuse below row 420, and on the `NOT USED` rows 463-466 (class 15); the mace Bonebreaker has 27 |
 | `+0x1A` on weapons and ammunition | 1 to 224 |
 | `+0x27` on weapons | 10 to 99 |
 
 Flametongue, row 8: class 1, off hand 18, price 4,000, reach 10, recipe 20, Attack Power 45, knockback 10,
 combo 5, weapon evade 5, element fire (`0x01`), charge base 32, bonus record 0, effect `0x8003`, model
 `0x770020`. Ribbon, row 385: class 22, slot 4, price 10, Defense 1, Magick Resist 1, no augment, bonus record
-4200, which holds Regen and Libra and protects from Petrify, Stop, Sleep, Confuse, Doom, Blind, Poison, Silence,
+offset 4200 (record 175), which holds Regen and Libra and protects from Petrify, Stop, Sleep, Confuse, Doom, Blind, Poison, Silence,
 Sap, Oil, Disable, Immobilize, Slow and Disease.
 
 ## Loader behaviour
@@ -217,6 +224,7 @@ is compared.
 ## Modding notes
 
 - Price is `+0x12`; making an item unsellable is `+0x07` bit 1.
+- Changing `+0x24` changes nothing: no code reads it.
 - A weapon's damage formula is `+0x19`; its element `+0x1E`; its on-hit statuses `+0x1F` and `+0x20`.
 - The class `+0x09` decides how the game reads `+0x18`-`+0x1A`: a row moved to another group changes meaning.
 - To let a two-handed weapon take a shield, set its `+0x11` to 18. A value of 23 or above, or -1, makes combat read

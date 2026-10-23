@@ -16,9 +16,9 @@ addresses: "0x02EBF100, 0x0031C5D0, 0x0031C7F5, 0x0031C81A, 0x0031C83E, 0x0031C8
 - Rows 29-41 (ids `0x001D`-`0x0029`) are named Reserve. Their `+0x07` points at action rows 111-123, which have kind
   255, so they are not item actions; their sort order is 255 and their price is 2.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/items.py` reads the `us` `battle_pack.bin`:
+Each line is read from the shipped `us` `battle_pack.bin` in these steps:
 
 1. the `st2e` table at entry `+0x4C`: 64 rows of 12 bytes from the section's `+0x20`;
 2. the name word `+0x08` through the word banks at entry `+0xF8`, bank `word >> 11` and row `word & 0x7FF`, as
@@ -40,17 +40,14 @@ The row layout:
 | `+0x08` | `u16` | nameWord | the name (`0x0031C7F5`) |
 | `+0x0A` | `u16` | price | buy price in gil, query record `+0x28` (`0x0031C81A`); a shop sells for half, rounded down ([Shop screens](../Menus-And-HUD/shop-screens.md), `0x0057DBC2`) |
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 64 rows of 12 bytes, and the TSV has 64 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts the zero bytes `+0x01`-`+0x03` and `+0x05`-`+0x06`, `+0x07` = `0x52` + row on every row, that
-  no item id is named by two item actions, that each usable item's `+0x07` is its kind-3 action, and that the Reserve
-  rows' action rows are not kind 3.
-- Rows compared with their readers: row 0, Potion, has price 60 at `+0x0A` (the record `+0x28` that `0x0031C81A`
+- The table's header gives 64 rows of 12 bytes, one TSV line each.
+- Bytes `+0x01`-`+0x03` and `+0x05`-`+0x06` are 0 and `+0x07` is `0x52` + row on every row. No item id is named by
+  two item actions, each usable item's `+0x07` is its kind-3 action, and the Reserve rows' action rows are not kind 3.
+- Example rows: row 0, Potion, has price 60 at `+0x0A` (the record `+0x28` that `0x0031C81A`
   writes), sort order 0 and icon frame 37, and action row 82 spends it ("Restore a small amount of HP to one ally.");
   row 6, Phoenix Down, has sort order 8, price 200, and action row 88, which removes KO.
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

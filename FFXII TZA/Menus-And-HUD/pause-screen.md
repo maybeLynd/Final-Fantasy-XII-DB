@@ -160,8 +160,8 @@ The task is the `0xD0`-byte widget at `0x01FD4948` with procedure `0x002284F0` (
 ## Modding notes
 
 - The pause screen is a focus-loss pause only. The overlay is built only while the inactive-window task exists
-  (`0x00228435`), and a raw call scan of the executable finds one call that starts the task, `0x002283AE`, taken when
-  the window is not in front.
+  (`0x00228435`), and one call in the executable starts the task, `0x002283AE`, taken when the window is not in
+  front.
 - What stops play is the audio mask, the policy bits and the task holding the input; the framework pause byte
   is set and cleared alongside them.
 - `0x01FD46FC` makes the opener answer 1 for five calls after a pause screen closes, which keeps the field input off

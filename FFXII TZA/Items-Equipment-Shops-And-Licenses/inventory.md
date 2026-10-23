@@ -117,8 +117,8 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 | the developer verbs `btlAtelGetAll*` `0x3070`-`0x3077` | `0x0030DCE4`-`0x0030DF74` |
 | the developer verb `btlAtelSetRealBattleMode` `0x3024`: 99 of every piece of equipment and every gambit | `0x00308E14`, `0x00308E54` (`0x00308DE0`, from `0x0050F39E`) |
 
-These are every call of `0x003008A0` and its wrappers in a scan of all call and jump instructions of the image; the
-one indirect call is `0x00316F82`, to `0x00300B80` or `0x00300490`.
+These are every call of `0x003008A0` and its wrappers in the image; the one indirect call is `0x00316F82`, to
+`0x00300B80` or `0x00300490`.
 
 ### Writes that bypass the change function
 

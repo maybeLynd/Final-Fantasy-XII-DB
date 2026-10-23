@@ -136,10 +136,9 @@ queue (`0x022BEDA0`, [Action phases](action-phases.md)); the second is used by n
 |---|---|---|---|---|---|
 | `0x022BEB90` | `u16` | 0 | the word before the 64 entries `0x022BEB94`-`0x022BED93`; only the reset touches the word and the entries | `0x0030FE60`, 0 (`0x0030FE9B`; the entries at `0x0030FE90`) | no instruction |
 
-The search for `0x022BEB90`-`0x022BED93` covered the executable's RIP-relative references, which hold the store
-`0x0030FE9B` and the loop start `0x0030FE82` (`0x0030FE89` ends the loop at `0x022BED94`, the gambit value of
-[Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md)), its image-base-relative references, which
-hold none, and a scan of `.text` for the 32-bit offsets of `0x022BEB90`, `0x022BEB91` and `0x022BEB94` from the image base, which finds none.
+No other instruction reaches `0x022BEB90`-`0x022BED93`. The reset's store is `0x0030FE9B`, and its loop starts at
+`0x0030FE82` and ends at `0x022BED94` (`0x0030FE89`), the gambit value of
+[Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md).
 
 ## Related
 

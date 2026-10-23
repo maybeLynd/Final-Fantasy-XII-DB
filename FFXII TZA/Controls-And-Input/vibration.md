@@ -20,7 +20,7 @@ addresses: "0x02EC0B80, 0x0035B2F0, 0x0035B580, 0x0035B650, 0x0035AF20, 0x0035AE
 Vibration requests live in 32 slots of `0x20` bytes at `0x02EC0B80`. `0x0035B270`, run once from `0x0022A0B0`
 (`0x0022A429`), chains every slot into the free list `0x02EC0B60`, empties the playing list `0x02EC0B61` (`0xFF`), clears
 the eight recorded handles `0x022C8030`, the pattern table `0x02EC0B68` and the pause mask `0x02EC0B40`, and sets the output
-switch `0x02EC0B3C` to 1 (`0x0035B2D5`-`0x0035B2DC`). No rip-relative store writes `0x02EC0B3C` elsewhere.
+switch `0x02EC0B3C` to 1 (`0x0035B2D5`-`0x0035B2DC`). No other instruction writes `0x02EC0B3C`.
 
 A handle is the slot's generation times 256 plus the slot number plus 1 (`0x0035B2F0`). Every function that takes
 a handle first compares the generation, so a stale handle does nothing:
@@ -107,16 +107,20 @@ On every poll `0x0035F420` calls `0x0035F590` (`0x0035F548`):
 
 The XInput pad's update `0x007A2140` passes `+0x98` / 255 × 65535 as the left motor and 65535 or 0 for a
 non-zero or zero `+0x99` as the right motor to `XInputSetState` (`0x007A21C5`-`0x007A2224`). The Steam controller's update
-`0x007A1CD0` calls slot `0x88` of the Steam controller interface `0x02EA9508` with `+0x98` × 256 and `+0x99` × 256. A
-displacement scan of the listed functions in `0x00790000`-`0x007A5000` finds no other reader of `+0x98`, so a DirectInput
-pad gets no vibration.
+`0x007A1CD0` calls slot `0x88` of the Steam controller interface `0x02EA9508` with `+0x98` × 256 and `+0x99` × 256.
+
+The DirectInput controller gets vtable `0x01CB2638` from its constructor `0x00792AB0` (`0x00792AC8`), and none of its
+methods (`0x00794280`, `0x00290180`, `0x00799F40`, `0x0079D670`, `0x0079D730` and the update `0x007A1A50`) reads `+0x98` or
+`+0x99`. Its update and `0x007A15A0` call only `Poll`, `Acquire` and `GetDeviceState` on the device and
+`GetDeviceStatus` on DirectInput (`0x007A1A97`, `0x007A1AA7`, `0x007A1ADB`, `0x007A1698`), so a DirectInput pad gets no
+vibration.
 
 ### The Vibration Function setting
 
 The Config option Vibration Function is bit 13 of the options word `*0x0215E6E0`. `0x002DE080` stores it from the Config
 screen (`0x00240865`) and `0x002DDA30` applies it when the options are loaded; both pass it to `0x0035FF30(0, bit)`,
-which sets or clears flag bit 2 of channel 0 (`0x002DDAA4`). Channel 1 has no setter of that bit in a raw call scan
-of `0x0035FF30`.
+which sets or clears flag bit 2 of channel 0 (`0x002DDAA4`). `0x0035FF30` has no other caller, so nothing sets that bit
+for channel 1.
 
 ### The fade-out
 
@@ -180,14 +184,9 @@ The eight recorded handles at `0x022C8030` are `u32`s that `0x0035B270` clears w
 | `0x022CB5C1` | `u8` | 0 | the small value, 0 or 1 (`0x0035F60F`-`0x0035F641`) | `0x0035F590` (`0x0035F5BB`, `0x0035F639`, `0x0035F641`) | `0x008628F0` (`0x008628FB`), the same way |
 | `0x022CB600` | `u8` | 0 | the byte `0x0035F590`'s third argument points to, `& 3`: bit 1 lets the large value be computed and bit 0 the small one (`0x0035F5D7`, `0x0035F60F`); stored when either is; `0x0035F590` passes its address to `0x008628F0` (`0x0035F661`), which does not use that argument | `0x0035F590` (`0x0035F5D0`, `0x0035F650`) | no instruction |
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references (the
-handles' address is taken by `0x0035AE30`, `0x0035B380`, `0x0035B460`, `0x0035B5D0` and `0x0035B650`, the slots' by the slot
-functions above, `0x022CB5C0` and `0x022CB600` by `0x0035F590` only), its image-base-relative references, in which
-`0x0035AF20` reads the slot bytes by slot number.
-
-A scan of `.text` for the 32-bit offsets of `0x022C8030`,
-`0x022C8038`, `0x022C8040`, `0x022C8048`, `0x02EC0F60`, `0x022CB5C0`, `0x022CB5C1` and `0x022CB600` from the image base, which
-finds none.
+No other instruction reaches these globals. The handles' address is taken only by `0x0035AE30`, `0x0035B380`,
+`0x0035B460`, `0x0035B5D0` and `0x0035B650`, the slots' by the slot functions above, and the address of `0x022CB5C0` and
+`0x022CB600` only by `0x0035F590`. `0x0035AF20` reads the slot bytes by slot number, relative to the image base.
 
 ## Modding notes
 

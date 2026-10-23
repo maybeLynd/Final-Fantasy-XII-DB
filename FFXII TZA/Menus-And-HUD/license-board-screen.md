@@ -489,9 +489,7 @@ from the layout's nodes (`0x0055CE07`-`0x0055CE61`).
 | `0x01F2CAD0` | `i32` | -1 | the x offset, from the square, of the text `0x0055BAC0` writes on a square (formatted by `0x00365B30` into the view's `+0x4F2` and drawn by `0x002D8910`): the signed word `+0x0C` of the second entry of that array | `0x0055CD40` (`0x0055CE51`) | `0x0055BAC0` (`0x0055BEFB`) |
 | `0x01F2CAD4` | `i32` | -12 | that text's y offset, added to half the square size (`0x0055BF01`-`0x0055BF09`): the signed word `+0x0E` of the second entry | `0x0055CD40` (`0x0055CE61`) | `0x0055BAC0` (`0x0055BF03`) |
 
-No other instruction reaches these three. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
-the image base, which finds none.
+No other instruction reaches these three.
 
 ## Modding notes
 

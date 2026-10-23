@@ -27,22 +27,20 @@ nothing; the items a new party holds come from the first-join lists of the
 which the title script verb `fsttl_initialize` (`0x00511EA0`) runs, calling `0x00237DF0` at `0x00394486`
 ([Widgets](../Menus-And-HUD/widgets.md), [Verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/small_tables.py` reads the `st2e` table at entry `+0xAC` (32 rows of 4 bytes from the
-section's `+0x20`) and names each id through `ids.py`.
+The rows are the `st2e` table at `battle_pack.bin` entry `+0xAC`: 32 rows of 4 bytes from the section's `+0x20`.
 
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
 | `+0x00` | `u16` | id | `0x0023AF50` | an inventory id; `0xFFFF` on every row |
 | `+0x02` | `u16` | count | `0x0023AF50` | the count to add; 0 on every row |
 
-The table is loaded only by `0x0023AF50` and the loader `0x00236C30` (`0x00236F54`), both decompiled.
+The table is loaded only by `0x0023AF50` and the loader `0x00236C30` (`0x00236F54`).
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 32 rows of 4 bytes, and the TSV has 32 data lines.
-- Two runs over the same file give byte-identical output.
+- The table's header gives 32 rows of 4 bytes, one TSV line each.
 - Every row is `0xFFFF` and 0, the value `0x003008A0` refuses before it reads the inventory.
 
 ## Columns

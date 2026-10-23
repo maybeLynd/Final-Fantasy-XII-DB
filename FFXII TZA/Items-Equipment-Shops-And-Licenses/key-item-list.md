@@ -23,10 +23,9 @@ Treaty-Blade and Goddess's Magicite. The bounds the validator applies to each of
 compiled in, are on [Item and ability ids](../Engine-Core/item-and-ability-ids.md) ("The thirty-two-class
 validator").
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/keyitems.py`, with the shared readers in `ffxii_text.py`, reads the three `st2e` tables
-and decodes each row as the arm does. The m_daiji arm is quoted below; the g_daiji arm (`0x0031D2C5`-`0x0031D460`) and
+Each line is read from one of the three `st2e` tables, and each row is decoded as the arm does. The m_daiji arm is quoted below; the g_daiji arm (`0x0031D2C5`-`0x0031D460`) and
 the q_daiji arm (`0x0031D488`-`0x0031D61B`, base `0x8060` at `0x0031D622`) read the same offsets.
 
 | Offset | Type | Field | Meaning |
@@ -43,15 +42,13 @@ the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/
 27 named g_daiji rows and q_daiji rows 13-15 ("Available", "Accepted" and "Complete!") have empty description texts:
 rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
 
-### Checks
+### Properties of the shipped rows
 
-- The tables' headers give 64, 32 and 416 rows of 10 bytes, s_daiji_data 0, and the TSV has 512 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts byte `+0x05` = 0 on every row.
-- Rows compared with the arm: id `0x8000` is row 0 of m_daiji_data, Rabanastre, icon frame 112, text 20000; id
+- The tables' headers give 64, 32 and 416 rows of 10 bytes and s_daiji_data 0, one TSV line per row.
+- Byte `+0x05` is 0 on every row.
+- Example rows: id `0x8000` is row 0 of m_daiji_data, Rabanastre, icon frame 112, text 20000; id
   `0x8060` is row 0 of q_daiji_data, sort order 73, icon frame 114, text 20096, "This small bottle contains a
   message: ...".
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

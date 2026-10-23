@@ -78,8 +78,8 @@ Two paths set `+0x68` in shipped play:
 | `57` | Wall | White Wind: harmful statuses do not land on the holder | `0x00387D25`-`0x00387D72` |
 | `59` | Chain Reaction | no effect of its own; the shipped AI tests it to pick its phase | `0x00302478` |
 
-Ids 48-51 and 53-57 also have orders, `0x40C2`-`0x40CB`. The shipped order sets contain set orders for every id
-in the table but 52, and clear orders for most of them.
+The ability ids 48-57 also have set orders, `0x40C2`-`0x40CB`, as every id 0-63 does. The shipped order sets contain
+set orders for every id in the table but 52, and clear orders for all but 11, 31, 52 and 59.
 
 ### Timers and messages
 

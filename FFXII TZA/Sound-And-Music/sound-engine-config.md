@@ -96,7 +96,14 @@ positive size allocates that many slots (`0x007AA2E3`), and a negative one binds
 (`0x007AABD1`, `0x007AA342`). The name goes to the category object's `+0x70` (`0x007AA137`-`0x007AA156`). `ctgl` gives only
 its element count: each category gets that many plus one volume ramps (`0x007AAAB2`, `0x007AA15A`).
 
-`0x007ADAB0` gives one category element, by index for version 0 and through the offset table otherwise. `0x007AAA40`
+`0x007ADAB0(chunk, out, i)` gives category element `i`. With `C` the chunk and `B = C + u16[C + 0x02]`:
+
+```python
+C[0] >= 1:  element i = C + u32[B + 4 * i]  # 0x007ADAB8-0x007ADAD2
+C[0] == 0:  element i = B + 0x20 * i  # 0x007ADAE4-0x007ADAF3
+```
+
+The shipped `ctgr` has version 1, `B = C + 0x10` and the offsets `0x20`, `0x40`, `0x60` and `0x80`. `0x007AAA40`
 builds one `0x88`-byte `Driver::Category` per element (`0x007A96F0`; `0x007A9760` destroys one) and keeps the pointers at
 `0x02EAD008`. `0x007AA010` gives each category a handle list with as many nodes as its size.
 
@@ -150,7 +157,14 @@ a macro, the first volume ramp.
 effect table is at `nameAt + ((nameLength + 0x10) & 0xF0)` (`0x007ADA3F`), and an effect's type byte `+0x01` picks its
 class through the jump table at `0x007ACCF0` (`0x007AC883`).
 
-`0x007AD950` gives one bus element, by index for version 0 and through the offset table otherwise.
+`0x007AD950(chunk, out, i)` gives bus element `i` by the same rule, with `B = C + u16[C + 0x02]`:
+
+```python
+C[0] >= 1:  element i = C + u32[B + 4 * i]  # 0x007AD962, 0x007AD981-0x007AD98B
+C[0] == 0:  element i = B + 0x20 * i  # 0x007AD968-0x007AD96C
+```
+
+The shipped `bus ` has version 2, `B = C + 0x10` and one offset, `0x20`.
 `0x007AC410(mixer, bus)` gives a bus's voice; a bus number below 0 or past the count prints "bus access overrun! use
 master bus" and gives bus 0's. `0x007AC4D0(mixer, port)` gives a master port: 1 is bus 0's voice and 2 the voice at
 mixer `+0x18`. The mixer object, `Driver::Audio`, is built once at `0x02EAD0A8` (`0x007AC360`).
@@ -175,18 +189,55 @@ Each builder installs its class's vtable and zeroes its ramps; `0x007AC4F0` call
 `0x007B31A0` runs macro number N, from the sound's own record (`0x007B3201`-`0x007B3226`), when N is below the chunk's count
 (`0x007B3269`). A macro record's `u16` at `+0x02` is the offset of its instruction stream (`0x007B32D0`). Each instruction
 has a header length at `+0x01`, an opcode at `+0x02` and a payload length at `+0x03` (`0x007B42CF`, `0x007B33B6`,
-`0x007B42E4`). 22 opcodes have handlers:
+`0x007B42E4`).
+
+The jump table `0x007B4374`, indexed through the bytes at `0x007B43D0` by opcode - 1 (`0x007B33B6`-`0x007B33DD`),
+gives 22 opcodes a handler; every other opcode, 0 and those above `0xAB` included, is skipped (`0x007B42CB`). An action
+reads a test code `+0x04`, a count `+0x05`, a selector `+0x06` and two `f32` values `+0x08` and `+0x0C`:
 
 | Opcode | Handler | Does |
 |---|---|---|
 | `0x01` | `0x007B33DF` | ends the macro |
-| `0x10` | `0x007B33E9` | a step of its own, before the filters |
-| `0x11`-`0x18` | from `0x007B4374` | filter the playing sounds; `0x12` compares a sound's key, or with mode byte `+5` set to 1 this sound's key minus the other's, with `==`, `!=`, `>`, `>=`, `<` or `<=` (`0x007B3555`); the shipped macros use mode 1 against 0, the same key |
-| `0xA0` | `0x007B3D1D` | when the count of playing sounds passes the test, acts on all, the first, the quietest or the loudest of them with a value |
-| `0xA1` | `0x007B3F2F` | when the count passes the test, refuses the new sound |
-| `0xA2`-`0xAB` | from `0x007B4374` | other actions |
+| `0x10` | `0x007B33E9` | selects every other playing sound again, with no operands: it empties the selection (`0x007B6AA0`) and refills it as the macro's start does (`0x007B32F3`-`0x007B336C`), with each sound of the sound list `0x02EAD560` that is not this one, answers state 2 (slot 21, `0x007BD9A0`) and is not waiting for its bank (slot 38); later filters start again from all of them |
+| `0x11`-`0x18` | `0x007B3471`-`0x007B3C19` | filter the playing sounds; `0x12` compares a sound's key, or with mode byte `+5` set to 1 this sound's key minus the other's, with `==`, `!=`, `>`, `>=`, `<` or `<=` (`0x007B3555`); the shipped macros use mode 1 against 0, the same key |
+| `0xA0` | `0x007B3D1D` | stops with fade `+0x08` (command `0x0B`, `0x007A84A0`) every selected sound (`+0x06` = 0), the first (1), the quietest by slot 26 `0x007BDBB0` (2) or the one with the largest `distance` value, slot 31 `+0x508` (3); in modes 2 and 3 a new sound quieter or farther than all of them is refused instead (`0x007B3E3B`, `0x007B3EDB`) |
+| `0xA1` | `0x007B3F2F` | refuses the new sound (the macro returns 4, `0x007B3F4B`) |
+| `0xA2` | `0x007B3F59` | ramps the first volume ramp of category `+0x06` (`0x007AAA20`, `0x007AA510`) to `+0x08` over `+0x0C` seconds |
+| `0xA3` | `0x007B3F9E` | ramps the volume ramp `+0x148` of every selected sound to `+0x08` over `+0x0C` seconds (`0x007BE4D0`) |
+| `0xA4` | `0x007B3FFB` | ramps this sound's volume ramp `+0x148` the same way (`0x007B4024`) |
+| `0xA5` | `0x007B402E` | sets this sound's start delay `+0x51C` to `n * (+0x08)`, plus `+0x0C` when the action's byte `+0x00` is not 0 (`0x007B4070`-`0x007B408E`) |
+| `0xA6` | `0x007B409D` | sets this sound's `default` value `+0x514` to `n * (+0x08) + (+0x0C)` through slot 17 (`0x007BEAE0`, `0x007B40F7`) |
+| `0xA7` | `0x007B4102` | ramps the second pitch ramp of category `+0x06` (`0x007AA4F0`) to `+0x08` over `+0x0C` seconds |
+| `0xA8` | `0x007B4147` | pauses category `+0x06` with fade `+0x08` (`0x007AA680`), as command `0x01` does |
+| `0xA9` | `0x007B4187` | resumes category `+0x06` with fade `+0x08` (`0x007AA3E0`), as command `0x02` does |
+| `0xAA` | `0x007B41C7` | with `+0x06` = 0, pauses every selected sound with fade `+0x08` (command `0x0C`, `0x007A8590`); any other `+0x06` does nothing (`0x007B41E3`) |
+| `0xAB` | `0x007B424D` | with `+0x06` = 0, resumes every selected sound with fade `+0x08` (command `0x0D`, `0x007A7A20`); any other `+0x06` does nothing (`0x007B4265`) |
 
-`0x007AE1A0` gives one macro element. The filters compare whole numbers with `0x007B2BD0` and floats with `0x007B2C40`, by a
+Every action from `0xA0` to `0xAB` first compares the number of selected sounds (`0x02EAD57C`) with `+0x05` by the code
+`+0x04` (`0x007B2BD0`) and does nothing when the test fails. `0xA5` and `0xA6` then take `n`, the count past that
+threshold (`0x007B404E`-`0x007B406C`, `0x007B40BD`-`0x007B40DB`):
+
+```python
+code 0 (==):          n = 1
+code 2 (>):           n = count - (+0x05)
+code 3 (>=):          n = count - (+0x05) + 1
+codes 1, 4 and 5:     n = count
+```
+
+The targets are these:
+
+- A category's volume is the product of its volume ramps (`0x007A9F40`) and its pitch the product of its two pitch
+  ramps (`0x007A9D30`, count 2 from `0x007AA15E`); command `0x04` drives the first pitch ramp and command `0x03` the
+  volume ramps after the first.
+- A sound's volume is its record's `+0x0C` times its four ramps `+0x88`, `+0xC8`, `+0x108` and `+0x148`
+  (`0x007BDBFC`-`0x007BDCD2`). `0xA3` and `0xA4` are the only calls of `0x007BE4D0`, the setter of the fourth, which
+  also clears the ramp's curve pointer `+0x180` and passes curve 0, so the ramp is linear (`0x007BE4D4`-`0x007BE4EB`).
+- The trigger `0x007BD240` hands the start delay `+0x51C` to each sequence it arms (`0x007BD317`, `0x007E7300`).
+- The `default` value `+0x514` is what a switched sound reads for the name `default` (`0x007BDA63`).
+
+`0x007AE1A0(chunk, out, i)` gives macro element `i` through the offset table whatever the version byte:
+`element i = C + u32[C + u16[C + 0x02] + 4 * i]` (`0x007AE1A7`-`0x007AE1BA`). The shipped `mcr ` has version 0 and the
+offsets `0x20`, `0x40` and `0x70`. The filters compare whole numbers with `0x007B2BD0` and floats with `0x007B2C40`, by a
 code 0 to 5 for `==`, `!=`, `>`, `>=`, `<` and `<=`. With mode byte `+5` set to 1, one action adds its value to the
 sound's current one and wraps the sum into -1 to 1 by steps of 2 (`0x007B4800`, called at `0x007B3C46`).
 
@@ -266,10 +317,8 @@ the ramp runs. Each driver pass advances both (`0x007AAEA0`, from `0x007A54B2`).
 | `0x01F40428` | `u8` | 0 | 1 while it runs | `0x007AAA40`, 0 (`0x007AAC3C`); `0x007AAC80`, 1 (`0x007AAD19`); `0x007AAEA0` (`0x007AAF8C`, `0x007AAF95`) | `0x007AAEA0` (`0x007AAF5B`) |
 | `0x01F4042C` | `i32` | 0 | its rate switch, with the rates `0x01F40430` and `0x01F40434`; only `0x007AAA40` writes it, with 0 | `0x007AAA40` (`0x007AAC43`) | `0x007AAC80` (`0x007AACEE`) |
 
-No other instruction reaches these fields. The search covered the executable's RIP-relative references (the
-addresses `0x007A5B50` and `0x0079E520` take nearby, `0x01F403D0` and `0x01F403A8`, belong to other objects), its
-image-base-relative references, which hold none of them, and a scan of `.text` for the 32-bit offsets of
-`0x01F403E0`, `0x01F40410` and each field from the image base, which finds none.
+No other instruction reaches these fields. The nearby addresses that `0x007A5B50` and `0x0079E520` take,
+`0x01F403D0` and `0x01F403A8`, belong to other objects.
 
 ## Shipped data
 

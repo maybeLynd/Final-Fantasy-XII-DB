@@ -39,17 +39,17 @@ preparation slot that sets the attack value `0x02AEE058`, the defence value `0x0
 
 | Recipe | Weapon classes in the shipped rows | Preparation slot |
 |---:|---|---|
-| 20 | 1 (Broadsword), 2 (Claymore), 5 (Javelin), 13 (Rod), 0 (nine rows), 6 (one row) | 65 `0x0038AAF0` |
+| 20 | 1 (Broadsword), 2 (Claymore), 5 (Javelin), 13 (Rod); among the unused rows, nine class-0 rows named Reserve, the class-5 Reserve rows 179 and 180, and 40 rows named `NOT USED` from 420 on (classes 1, 2, 5 and 6, row 455 among them) | 65 `0x0038AAF0` |
 | 21 | 4 (Ashura), 12 (Dagger) | 66 `0x0038A110` |
 | 22 | 3 (Kotetsu), 14 (Oak Staff), 1 (Kumbha) | 67 `0x0038A1F0` |
-| 23 | 10 (Handaxe), 11 (Iron Hammer), 17 (Hornito), 0 (one row) | 68 `0x0038A2D0` |
+| 23 | 10 (Handaxe), 11 (Iron Hammer), 17 (Hornito); also one class-0 row named Reserve | 68 `0x0038A2D0` |
 | 24 | 6 (Oaken Pole) | 69 `0x0038A3A0` |
-| 25 | 7 (Shortbow), and 3 of the 11 crossbows | 66 `0x0038A110` |
+| 25 | 7 (Shortbow); also three class-8 (crossbow) rows named Reserve or `NOT USED` (186, 458, 490) | 66 `0x0038A110` |
 | 26 | 8 (Bowgun) | 65 `0x0038AAF0` |
 | 27 | 9 (Altair), 16 (Gilt Measure), and Healing Rod, Rod of Faith, Excalipur, Bonebreaker | 70 `0x0038A470` |
 | 29 | 0 (Unarmed) | 72 `0x0038A680` |
 | 104 | 15 (Mace), and Joyeuse | 79 `0x0038AE50` |
-| 64 | 57 class-0 rows and one gun | 76 `0x0038AAF0` |
+| 64 | 58 rows from 420 on, all named `NOT USED`: 57 of class 0 and one of class 9 (gun) | 76 `0x0038AAF0` |
 
 The ammunition classes 23-26 have recipe 0; the ammunition supplies only its element
 ([Elements](elements.md)).

@@ -214,7 +214,7 @@ also carry affinities):
 | Zodiac Escutcheon, Rubber Suit, Diamond Armlet | | | | lightning | |
 | Adamant Hat, Adamant Vest | ice | | fire | | |
 | White Mask, Sage's Ring | | holy | | | |
-| Steel Mask, Bone Mail | holy | | dark | | |
+| Bone Helm, Bone Mail | holy | | dark | | |
 | Windbreaker, Agate Ring | | | wind | | |
 | Viking Coat | | | | water | |
 | Argyle Armlet | | | dark | | |

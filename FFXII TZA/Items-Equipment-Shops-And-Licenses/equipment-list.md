@@ -23,36 +23,34 @@ reaches (`battle_pack.bin` directory entry `+0x38`). The meaning of every field,
 - Enemies are given these ids: 958 of the 1,146 enemy definitions hold one of them in their main-hand word
   `+0x16`, which `0x0023AC80` installs ([Bestiary](../Enemy-Spawning/bestiary.md)).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/equipment.py` reads the `us` `battle_pack.bin`:
+Each line is read from the shipped `us` `battle_pack.bin` in these steps:
 
 1. the `st2e` table at entry `+0x38`: 557 rows of 52 bytes from the section's `+0x20`, and each row's 24-byte bonus
    record at section `+0x7144` plus the row's `+0x28`;
 2. the name word `+0x02` through the word banks at entry `+0xF8`, as `0x0031C5D0` does (`0x0031C911`);
 3. the class name: the name word (second `u16`) of row *class* of the category table at entry `+0x18`, which
    `0x0031C5D0` reads through id kind 28 (`0x0031E3DB`-`0x0031E435`). Its rows 0-26 carry the names of the classes 0-26
-   ("Unarmed", "Sword (1H)", "Shield", "Arrows" and the others), and the decoder pairs them by number. The shipped name
+   ("Unarmed", "Sword (1H)", "Shield", "Arrows" and the others), and class *n* takes the name of row *n*. The shipped name
    of row 22 is "NOT USED crown";
 4. the element bits by the names on [Elements](../Damage-And-Battle-Formulas/elements.md), and the status bits by the names in
    [Statuses](../Status-Effects-And-KO/statuses.md)' table;
 5. every one-byte text code through the glyph table of the shipped `us` font `font00.dat` (records of `0x24` bytes
    from `+0x28`, key = byte - `0x20`, the glyph's UTF-8 at `+0x04`, as [Fonts](../Menus-And-HUD/fonts.md) describes).
 
-Every name word read here starts with the two zero bytes that `0x002B58B0` skips, so its other branch, for a row without
-them, is not exercised by this table.
+Every name word of this table starts with the two zero bytes that `0x002B58B0` skips, so its other branch, for a word
+without them, is never taken for this table.
 
 The group of a row's class decides which of `+0x18`, `+0x19` and `+0x1A` fill the weapon, shield or armor columns,
 as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md), "The class byte and the group").
 
-### Checks
+### Properties of the shipped rows
 
-- The table's own header gives 557 rows of 52 bytes, and the TSV has 557 data lines.
-- Two runs over the same file give byte-identical output.
-- Rows compared with the readers: row 1, Broadsword, has `+0x12` = `0x0186` (390 gil, the price `0x0031C981` reads),
+- The table's own header gives 557 rows of 52 bytes, one TSV line each.
+- Example rows: row 1, Broadsword, has `+0x12` = `0x0186` (390 gil, the price `0x0031C981` reads),
   `+0x1A` = 14 (Attack) and `+0x11` = 18 (it takes a shield in the off hand); row 0, Unarmed, has Attack 12 and the
   class name Unarmed.
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

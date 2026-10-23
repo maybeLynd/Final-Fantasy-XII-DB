@@ -49,8 +49,7 @@ store it in a global and read it back for the others:
 | `0x022BED94` | `i32` | 64/65 | 1 when `0x00309EC0` reports at least `10 x s` of the line's item, else 0 (`0x003032F8`; read at `0x00303300`) |
 
 The opcode and check numbers are those of [Enemy order sets](enemy-order-sets.md) (`0x00301EB8`, `0x003024BC`). No
-other instruction reads or writes these five: the RIP-relative references of the executable reach them only from
-`0x00301AD0`, and no instruction uses their offsets from the image base (a scan of `.text` for each 32-bit offset). The clear `0x0030FE60` stops at
+instruction outside `0x00301AD0` reads or writes these five. The clear `0x0030FE60` stops at
 `0x022BEB84` and `0x022BED94`, exclusive (`0x0030FE69`, `0x0030FE89`), so it clears neither.
 
 ### How the target is picked
@@ -111,8 +110,8 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 
 | Test | Values | Table |
 |---|---|---|
-| HP % | `90`, `80`, `70`, `60`, `50`, `40`, `30`, `20`, `10`, `0` | `0x00D102E0` |
-| HP | `100,000`, `50,000`, `10,000`, `5,000`, `3,000`, `2,000`, `1,000`, `500` | `0x00D10350` |
+| HP % | `90`, `80`, `70`, `60`, `50`, `40`, `30`, `20`, `10`, `0`; no condition uses `0` | `0x00D102E0` |
+| HP | `100,000`, `50,000`, `10,000`, `5,000`, `3,000`, `2,000`, `1,000`, `500` (the next table starts at `0x00D10370`, read on its own at `0x00302F20`) | `0x00D10350` |
 | MP % | ten times the row's sub-selector byte | `0x003032AF`-`0x003032B4` |
 | item count | ten times the sub-selector byte | `0x003032EE`-`0x003032F5` |
 | summon timer | `20`, `30`, `60`, `90`, `120` | `0x00D10380` |

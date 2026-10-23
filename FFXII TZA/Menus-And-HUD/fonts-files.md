@@ -15,13 +15,11 @@ its list. The `<name>.dds.phyre` atlases are textures and are in no table.
 Three tables hold the rest of the data: the glyph records in [Font glyphs](fonts-glyphs.md), the pairs in
 [Font kerning pairs](fonts-kerning.md) and the lists in [Font expansion lists](fonts-expansion-lists.md).
 
-### How the tables rebuild the files
+### What each file holds
 
-`Database/Tools/catalogues/font_tables.py write` decodes every data file into the four tables.
-`font_tables.py check` reads the four tables back, rebuilds each file from them alone and compares it with the
-shipped file. All 116 files rebuild byte for byte:
+Every byte of the 116 files is in the four tables, and each file is exactly these parts:
 
-| File | Rebuilt from |
+| File | Made of |
 |---|---|
 | `fontlist.ah` | the names of the folder's `.dat` lines that have a `list_position`, in that order, each followed by CR LF |
 | `.dat` | this line's header fields, then the file's lines of `fonts-glyphs.tsv` in `record` order |
@@ -42,14 +40,19 @@ read 8 bytes late.
 
 ### Requested files
 
-A `.dat` is requested when its folder's `fontlist.ah` names it (`0x001B4930`), and a `.ker` or `.fex` when its
-`.dat` is requested and has flag bit 0 or 1 set (`0x001B4E19`; readers `0x001B5230` and `0x001B4C00`). That gives 62 of
-the 63 `.dat`, 25 of the 34 `.ker` and 12 of the 14 `.fex` files. The ones never requested are:
+A `.dat` is requested when its folder's `fontlist.ah` names it (`0x001B4930`). The builder loads the `.dat` header's
+`flags` (`0x001B4E19`) and requests the `.ker` when bit 0 is set (`0x001B5024`, request `0x001B5750`, reader `0x001B5230`)
+and the `.fex` when bit 1 is set (`0x001B5045`, request `0x001B5480`, reader `0x001B4C00`). Those two requests are the
+only code in the game that names a `.ker` or a `.fex`. That gives 62 of the 63 `.dat`, 25 of the 34 `.ker` and
+12 of the 14 `.fex` files. The ones never requested are:
 
 - `us/fontex_expand.dat`, with its `.fex`;
 - `us/fontex_subtitle.fex`: its `.dat` has flags `0x1`;
-- `font00.ker` in all five folders and `font_iwa_g12.ker` in `jp` and `us`: those `.dat` files have flags `0x0`;
+- `font00.ker` in `ch`, `cn`, `jp` and `us`, and `font_iwa_g12.ker` in `jp` and `us`: those `.dat` files have flags
+  `0x0`;
 - `fontex_expand.ker` in `ch`, `cn` and `kr`: those `.dat` files have flags `0x2`.
+
+`kr/font00.dat` has flags `0x1`, so `kr/font00.ker` is requested.
 
 ## Columns
 

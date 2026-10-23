@@ -337,7 +337,7 @@ Group 15 of the pump, `0x002C6180`, steps it:
 | `0x002C7B10(entry, ...)` | the status mark over a unit: the cell `0x300` sprite of the status `+0x16` (`0x003F12E0`) at the alpha `+0x15`. Statuses 4, 9 and 24 pulse in size along the track `0x00916E90`, status 12 turns along `0x00916ED0`; with `+0x17` bit 2 it adds the status numbers (`0x002C84E0`) |
 | `0x002C8920(unit, alpha, list, ...)` | queues the cell `0xE00` sprite of the picture `0x0035D460` returns over a unit; `0x002C7660` asks for it for the unit `0x0035BAD0` names when `0x003135C0` and `0x00273460` answer non-zero |
 | `0x002C69A0(pos, sprite, cell, alpha, rgba, picture)` | fills a sprite from a picture cell: the position with w = -1, the texture rectangle, the colour bytes with alpha x `rgba.a` / 128, and half the cell's size to each side; `0x002C7F90`, `0x002C8310` and `0x002C8820` use it |
-| `0x002C6450(part)` | answers whether the focus unit's entry is drawn at full alpha (entry `+0x14` x `+0x1D78` at least `0x4000`), or, with no entry, whether the part is at `0x80`. A scan of the image for calls, jumps and `lea` to it finds none |
+| `0x002C6450(part)` | answers whether the focus unit's entry is drawn at full alpha (entry `+0x14` x `+0x1D78` at least `0x4000`), or, with no entry, whether the part is at `0x80`. `0x0028FA00` jumps to it with the part `[0x0209BE80] + 0x10F80` when that part exists and bit 3 of its `+0x1D7A` is clear, and answers 0 otherwise (`0x0028FA00`-`0x0028FA25`); `0x00253C70` (`0x00254120`) and `0x002736B0` (`0x002736CC`) call `0x0028FA00` |
 
 ### Keyframe tracks
 
@@ -790,9 +790,7 @@ The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F939
 | `0x02B5F1F4` | `u32` | 0 | the palette of a `+0x10F40` mark's sprites: `0x003F3260` stores the mark's `+0x48` here before drawing it, and `0x003F3710` hands it to the sprite batcher's state as its palette `+0x3A38` (`0x00181930`, `0x001B2410`). `0x003F2CF0` also stores the cell of a `+0x10F20` mark's kind here (`0x002713B0(+0x990)`), which `0x003F3260` replaces before any read | `0x003F2CF0` (`0x003F2D5D`); `0x003F3260` (`0x003F3327`) | `0x003F3710` (`0x003F3851`), from `0x003F3260` (`0x003F339D`, `0x003F33CF`, `0x003F3420`, `0x003F3452`) |
 | `0x022C83E0` | `void*` | 0 | the field marker widget: `0xF8` bytes with procedure `0x0035C160`, which on each draw (message 4) projects the unit of handle `+0xEC` through the view `0x02AEDDB0` (`0x00249110`) and draws a picture there whose brightness swings with the frame counter `0x0208F570` (`0x0035C1D0`-`0x0035C34D`); built once, nothing clears it | `0x0035C0D0` (`0x0035C0F2`), run by the field set-up `0x00253A10` (`0x00253A14`) | `0x0035C0D0`, which builds it only while it is 0 (`0x0035C0D4`); `0x0035C080` (`0x0035C084`, `0x0035C09E`) and `0x0035C100` (`0x0035C106`, `0x0035C117`), which close or fade the help block's rings (`0x00290990`, `0x00290B10`) when the widget's `+0xC4` is set and clear it; `0x0035C080` has 20 callers and `0x0035C100` three, among them the leader choice (`0x0029C01B`, `0x0029C02C`) |
 
-No other instruction reaches these three. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from the
-image base, which finds none.
+No other instruction reaches these three.
 
 ## Modding notes
 

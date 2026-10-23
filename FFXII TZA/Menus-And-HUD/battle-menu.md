@@ -455,11 +455,9 @@ to `0x02B62D90` (`0x00405007`-`0x00405016`), rewrites its value and maximum for 
 | `0x02B62D9C` | `i32` | 0 | `+0x0C`, the maximum: for bar 0 the maximum over 51 rounded up (`0x0040505A`-`0x00405086`), for bar 1 298 (`0x00405090`) | `0x00404F50` (`0x0040500A`, `0x00405072`, `0x00405086`, `0x00405090`) | through the returned address: `0x00405770` (`0x00405829`), `0x004061F0` (`0x004062E3`, `0x00406476`), `0x00407D10` (`0x00407D9C`) |
 | `0x02B62DA0` | `u8[8]` | 0 | bytes `+0x10`-`+0x17` of the copy; the dword `+0x10` is read | `0x00404F50` (`0x00405016`) | through the returned address: `0x004061F0` (`0x004064A4`) |
 
-The callers reach these cells only through the address `0x00404F50` returns, from its calls at `0x00405816`,
-`0x004062D9`, `0x004063FA`, `0x004067C8` and `0x00407D8E`. No other instruction reaches them. The search covered the
-executable's RIP-relative references (`0x02B62D90` is taken only by `0x00404F50`, at `0x0040507F` and `0x004050A7`), its
-image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
-the image base, which finds none.
+The callers reach these cells only through the address `0x00404F50` returns, from its calls at `0x00405816`, `0x004062D9`,
+`0x004063FA`, `0x004067C8` and `0x00407D8E`. No other instruction reaches them. `0x02B62D90` is taken only by `0x00404F50`, at
+`0x0040507F` and `0x004050A7`.
 
 ## Modding notes
 

@@ -293,15 +293,14 @@ sliding hand, or moves a resting one there at once, without a slide (`0x0036787B
 | `0x022CBE56` | `i16` | 0 | y of the same, for `0x022CBE5A` | `0x00368360` (`0x003684DD`) | `0x00368360` (`0x003684BC`) |
 | `0x022CBE86` | `u8` | 0 | the hand's alpha while flag bit 6 is set, in place of the fade's: every request that sets the flags stores `0x80`, full, first | `0x00368360`, `0x80` (`0x0036854F`) | `0x00367940` (`0x003679D6`) |
 
-Nothing else reads or writes these globals: no other RIP-relative, image-base-relative or 32-bit offset reference
-names them, and the block's address is taken only by `0x00367940` and `0x00368270`, with `0x022CBE4C` handed to
+Nothing else reads or writes these globals. The block's address is taken only by `0x00367940` and `0x00368270`, with `0x022CBE4C` handed to
 `0x00368940` by `0x003676D0`, which reads only the target there.
 
 ### The content widget
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02CA8F30` | `i32` | 0 | 0 after the content widget draws its rows on message 4 (`0x002D2600`, or `0x002D28E0` with list `+0xE0` bit 25), 1 after any message other than 1, 4 and 17, which it passes to `0x005C5230` | `0x002D1420` (1: `0x002D143F`; 0: `0x002D14B5`, `0x002D14C6`) | no instruction: no RIP-relative, image-base-relative or 32-bit offset reference reads it |
+| `0x02CA8F30` | `i32` | 0 | 0 after the content widget draws its rows on message 4 (`0x002D2600`, or `0x002D28E0` with list `+0xE0` bit 25), 1 after any message other than 1, 4 and 17, which it passes to `0x005C5230` | `0x002D1420` (1: `0x002D143F`; 0: `0x002D14B5`, `0x002D14C6`) | no instruction |
 
 ## Modding notes
 

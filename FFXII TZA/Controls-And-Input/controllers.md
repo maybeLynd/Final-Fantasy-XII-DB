@@ -76,7 +76,7 @@ The XInput constructor `0x00792CB0` ends by calling `0x00862C70`, which loads `.
 keeps its export ordinal 100 in `0x02EBA3F0` and sets `0x02EAF8F0` (`0x00862C70`-`0x00862CCD`). `0x00862CF0` does the same
 load when `0x02EAF8F0` is still 0, reads user 0 through that export into `0x02EBA3E0`, and answers 1 when bit `0x400` of
 the button word `0x02EBA3E4` is set, or the button word itself otherwise. The R2 latch of [Escape Mode](escape.md)
-reads it; a raw scan finds no other caller of `0x00862CF0` or `0x00862C70` than these two and the constructor.
+reads it (`0x00254213`); nothing else calls `0x00862CF0` or `0x00862C70`.
 
 ### The Steam action names
 
@@ -113,10 +113,9 @@ head pointing at itself in the file.
 | `0x01F3DA04` | `u8` | 1 | lets the XInput controller's poll `0x007A2140` run (`0x007A2194`-`0x007A219B`). On Windows 7 (`GetVersionExA` platform 2, version 6.1) with an XInput pad marked in `0x02EA5379`, the poll calls `0x00799A80`, which clears it and notes the clock's second in `0x01F4012C`, then sets it again once more than `0x01F40188` (1) second has passed and clears `0x02EA5379`, so it happens once (`0x00799A80`-`0x00799B06`) | `0x00799A80`: 0 (`0x00799AD8`), 1 (`0x00799AFF`) | `0x007A2140` (`0x007A2194`) |
 | `0x02EA537A` | `u8` | 0 | 1 once a mouse has been set up. The input poll `0x007A2440`, which the window's update slot `0x007A3110` runs on the application's input object, then binds that object to the first controller of kind 0, the mouse (`0x0079A430`, through `0x00796FC0(0, 0)`; the mouse class `0x01CB23F8` answers 0 from slot 1, `0x005C5230`), and clears it; the poll also binds when the object holds no mouse at `+0x150` (`0x007A2446`-`0x007A246B`) | `0x00797460`, 1 (`0x007975CF`); `0x007A2440`, 0 (`0x007A246B`) | `0x007A2440` (`0x007A245D`) |
 
-No other instruction reaches these five: no other RIP-relative, image-base-relative or 32-bit offset reference names
-them. The lists' heads are also taken by the walkers `0x00796FC0`, `0x00797690`, `0x007999E0`, `0x0079AF20`, `0x0079CEC0` and
-`0x0079E3D0`, which only follow the first-node links, and the address `0x02EA5370` that `0x00797910` hands DirectInput
-(`0x00797942`) is the 8-byte interface pointer, below `0x02EA537A`.
+No other instruction reaches these five. The lists' heads are also taken by the walkers `0x00796FC0`, `0x00797690`,
+`0x007999E0`, `0x0079AF20`, `0x0079CEC0` and `0x0079E3D0`, which only follow the first-node links, and the address `0x02EA5370`
+that `0x00797910` hands DirectInput (`0x00797942`) is the 8-byte interface pointer, below `0x02EA537A`.
 
 ## Modding notes
 

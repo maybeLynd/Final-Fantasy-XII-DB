@@ -9,7 +9,17 @@ addresses: "0x00197EE0, 0x00195060, 0x00198000, 0x00196550, 0x001965E0, 0x00198B
 
 - The keyboard controls are kept in `keymap.ini` and changed on the Config screen; the file can also be edited by
   hand.
-- A file with a mistake in it is ignored as a whole, and the default controls are used instead.
+- What a mistake in the file does depends on the mistake:
+  - a code used for two controls, a reserved code, or a control of the first set left empty or out of range: the
+    whole file is ignored and the default controls are used;
+  - a line that is neither a `[KeyboardN]` header nor a `name=value` binding: reading stops there and the lines
+    before it are kept, unless the first set is then incomplete, which makes the game ignore the whole file;
+  - a value or set number that is not a number, or is too large: the game stops;
+  - a line of 128 characters or more: its first 127 are read as a line and the rest is lost. If that part is a
+    binding with a value, or a header with `]` and a number, the game hangs while it starts, reading the file
+    forever; otherwise it is treated like any other line of its kind;
+  - a set number other than 1-3: its bindings are written outside the three sets, over other data;
+  - a control name longer than 64 characters: the game stops.
 - Changing the confirm button between Circle and Cross swaps those two bindings without changing the file.
 
 ## Where it comes from
@@ -59,19 +69,48 @@ line by line, at most 127 characters each:
    first character can be anything, and a header without `]` ends the read.
 3. A line with `=` is a binding: the name before it is compared case-insensitively with all 28 names, and a match
    stores the number after it in that slot of the current profile; a name that matches none changes nothing.
-4. Any other line ends the read, keeping what was read before it.
+4. Any other line ends the read, keeping what was read before it (`0x00198278`, `0x00198387`).
 
-A value with no digits, or one too large, stops the game with a standard library error.
+A value or profile number with no digits, or one too large for an `i32`, stops the game: `wcstol` (`0x00198328`,
+`0x0019843C`) leads to `_Xinvalid_argument` or `_Xout_of_range` (`0x00198531`, `0x0019853F`, `0x0019857C`, `0x0019858A`), and
+nothing on the way up catches the exception. This holds for a binding whose name matches nothing too, because the
+value is parsed before the names are compared (`0x00198415`-`0x0019847C`).
+
+Each line is read by `getline` into a 128-character buffer (`0x00198210`-`0x00198222`). `getline` tests every
+character for the end of the file first, then for LF, then against the count, so a line of up to 127 characters,
+ended by LF or by the end of the file, reads normally; a CR before the LF counts as one of the 127. A line of 128
+or more characters stores its first 127, leaves the rest unread and sets the fail bit, and the 127-character part
+is parsed as a line:
+
+- a header without `]`, or a line that is neither a header nor a binding, ends the read there as usual
+  (`0x00198278`, `0x00198387`);
+- a header whose number has no digits, or a binding whose value has none, stops the game (`0x0019853F`,
+  `0x0019858A`);
+- a binding with a value, or a header with `]` and a number, lets the loop go on. Every later `getline` on the
+  failed stream reads nothing and gives an empty line, which is skipped (`0x0019823D`), and the loop tests only the
+  end-of-file bit (`0x00198515`-`0x00198523`), which a failed read never sets, so the read never ends.
+
+The name before `=` is copied into a 64-character buffer with no length check (`0x0019838F`-`0x001983BF`). A name of 65
+characters or more overwrites the function's stack guard at `+0x220` of its frame (`0x00198038`), and the guard check
+stops the game when the read returns (`0x00198646`).
 
 The reader and the writer go through a wide-character file buffer whose vtable is `0x008F38F0` (`0x001980B9`,
 `0x00199453`); its put-back and seek methods `0x00197E10`, `0x001987A0` and `0x00198880` use the library's buffer helpers
 `0x00195C10` and `0x00195BD0`. The reader copies text from each line into a wide string with `0x00196140`
 (`0x001982FB`, `0x0019840F`), which grows the string's buffer with `0x00195820`.
 
-The profile starts at -1, before any header, and is never checked against 0-2: a binding is stored at
-`0x01F80F90 + 0x70 * profile + 4 * slot`. So a binding before the first header, or under `[Keyboard0]`, lands
-`0x70` bytes below the profiles, in the end of the path buffer at `0x01F80D90`, and a large profile number lands past
-them.
+The number in a `[KeyboardN]` header, minus one, is the profile, which starts at -1 before any header, and
+nothing tests it (`0x0019834A`-`0x0019834C`): a binding is stored at `0x01F80F90 + 0x70 * profile + 4 * slot` when its
+name matches (`0x0019849B`-`0x001984E9`), with set 1's slots 0-15 at `+0x00`, set 2's at `+0x40` and set 3's at
+`+0x60`. So:
+
+- a binding before the first header, or under `[Keyboard0]`, lands in the `0x70` bytes below the profiles, the end
+  of the path buffer at `0x01F80D90`;
+- under `[Keyboard4]` it lands in the `0x70` bytes above them, `0x01F81090`-`0x01F810FF`, where a set-3 binding reaches
+  the pause byte's pointer `0x01F810F0` and the first AsyncJobManager at `0x01F810F8`;
+- any larger or negative number reaches `0x70 * (N - 1)` bytes from the table in either direction.
+
+Only profiles 1-3 are ever read back (`0x001965E0`, `0x00196550`, `0x00198B60`).
 
 ### The two checks
 
@@ -137,7 +176,9 @@ no record byte from `+0x80` on. It then sets byte `+0x3B` of the input manager i
 ## Modding notes
 
 - Lines may be in any order inside a profile, and blank lines are allowed; a comment line ends the read.
-- One repeated code anywhere, or one reserved code, makes the game ignore the whole file.
+- One repeated code anywhere, one reserved code, or one empty or out-of-range code in profile 1 makes the game
+  ignore the whole file.
+- Keep every line under 128 characters and every name under 65: longer ones hang or stop the game.
 - Profile 1 must bind all 28 slots; profiles 2 and 3 may leave slots at 0.
 
 ## Related

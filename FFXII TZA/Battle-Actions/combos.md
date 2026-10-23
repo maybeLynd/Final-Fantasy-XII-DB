@@ -34,8 +34,9 @@ Whether a combo happens, and how many hits it has, is decided once, on the first
 Before a weapon attack resolves, the preview pass `0x00385680` runs the first slot segment of the
 action's formula recipe (the recipe table at `0x01EF96C0`, slot functions at `0x01EFA5C0`;
 `0x003859BD`-`0x00385A16`). For every recipe that contains slot 10 (20-24, 28, 29, 64, 103 and 104) that
-segment is slots 5, 6, 7, 8, 9, 10, 22, 33, 34 and 41. Recipe 103 is chosen by 10 monster action rows
-such as Ram, Gnaw and Rake, the others by weapons. Slot 9 is the combo chance and slot 10 the combo
+segment is slots 5, 6, 7, 8, 9, 10, 22, 33, 34 and 41. Recipe 103 is chosen by 10 Foecraft action rows
+such as Ram, Gnaw and Rake, recipes 20-24, 29, 64 and 104 by weapons; no shipped action row and no weapon row names
+recipe 28. Slot 9 is the combo chance and slot 10 the combo
 roll.
 
 Before running the slots, when the target being previewed is the unit's current target (`+0x710`

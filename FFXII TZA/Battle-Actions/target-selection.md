@@ -198,9 +198,7 @@ the id or the actor's `+0xC0` block is missing or starts with -1, and 0 when the
 | `0x022C2570` | `u32` | 0 | the units asked this frame | `0x00322630` (`0x00322656`); `0x003226C0`, 0 (`0x003226C2`) | `0x00322630` (`0x00322636`) |
 | `0x022C2574` | `u32` | 0 | the units whose answer was 1; `0x00322630` returns the unit's bit, so a unit with its bit set is left out of a frustum list | `0x00322630` (`0x00322674`, `0x00322690`); `0x003226C0`, 0 (`0x003226C2`) | `0x00322630` (`0x00322661`, `0x0032269F`) |
 
-No other instruction reaches these two. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
-image base, which finds none.
+No other instruction reaches these two.
 
 ## Modding notes
 

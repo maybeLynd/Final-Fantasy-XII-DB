@@ -34,11 +34,11 @@ Its callers:
   that is not a party unit; a party unit (stats `+0x05` = 0) gets the byte of row 1 there, set 1
   (`0x00325A50`-`0x00325A5A`, `0x00325AD0`).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/small_tables.py` reads the stride and count at entry `+0x04` and the 23 bytes after
-them, and lists for each motion class the main-hand equipment rows 0-419 (slot bits `+0x07` below `0x20`) whose
-`+0x26` is that class, by name.
+Each line is one of the 23 bytes after the stride and count at entry `+0x04`, with, for its motion class, the names
+of the main-hand equipment rows 0-419 (slot bits `+0x07` below `0x20`) whose `+0x26` is that class, leaving out the
+rows named Reserve.
 
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
@@ -49,14 +49,13 @@ them, and lists for each motion class the main-hand equipment rows 0-419 (slot b
 The slot is loaded by `0x00320376` and `0x0032042D` (`0x003202F0`), `0x00325A50` (`0x00325A20`) and `0x00325AF5` (`0x00325AD0`),
 and stored once by the loader (`0x00236C74`); none of them reads the count.
 
-### Checks
+### Properties of the shipped rows
 
-- The header gives stride 1 and 23 rows, and the TSV has 23 data lines.
-- Two runs over the same file give byte-identical output.
-- Rows compared with their reader: motion class 3 (Broadsword, Longsword, Iron Sword and 24 more) gives set 3;
+- The header gives stride 1 and 23 rows, one TSV line each.
+- Example rows: motion class 3 (Broadsword, Longsword, Iron Sword and 24 more) gives set 3;
   motion class 22, read only by the bare-handed rule, gives set 2; row 1, Unarmed, gives set 1, the set of every party
   unit in the action caches.
-- Motion classes 0, 9, 16 and 19 have no shipped weapon.
+- Motion classes 0, 9, 16, 19 and 22 have no shipped weapon; class 22 is reached only through the bare-handed rule.
 
 ## Columns
 
@@ -64,7 +63,7 @@ and stored once by the loader (`0x00236C74`); none of them reads the count.
 |---|---|
 | `motion_class` | the row, a weapon motion class |
 | `animation_set` | the row's byte |
-| `weapons`, `first_weapons` | how many shipped main-hand rows have the class, and the first three by name |
+| `weapons`, `first_weapons` | how many main-hand rows have the class, and the first three by name; the 13 main-hand rows named Reserve are not counted (ten of class 1, rows 179 and 180 of class 13, row 186 of class 18) |
 | `explanation` | a one-line summary |
 
 ## Related

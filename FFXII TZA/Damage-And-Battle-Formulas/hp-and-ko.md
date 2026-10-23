@@ -164,7 +164,7 @@ A target that survives gets event `0x2005` plus the variant bit, unless flag bit
 
 ## Shipped data
 
-The `btlAtelSetHpLowLimit` calls in the 2,990 decompiled `us` scripts:
+The `btlAtelSetHpLowLimit` calls in the 2,990 `us` scripts:
 
 | Fact | Count |
 |---|---:|

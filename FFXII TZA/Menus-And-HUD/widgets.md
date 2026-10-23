@@ -774,12 +774,9 @@ bytes from `0x0208EAC0`, `0x00247CED`) and makes the matrix `0x0208ECD0` the ide
 | `0x0208ED00` | `f32` | 0 | x of the centre of the widget being drawn: its box x plus half its width. `0x00245E60` puts it in the translation row of the matrix `0x0208ECD0` and multiplies the matrix it was handed by that matrix (`0x00202D70`, `0x002460B4`), after a matrix that moves the box back by half its size (`0x00245FC6`-`0x00245FE3`) | `0x00245E60` (`0x002460A4`); `0x00247AE0` (`0x00247CCD`) | `0x00202D70`, through the matrix address `0x00245E60` passes (`0x00246078`, `0x002460B4`) |
 | `0x0208ED04` | `f32` | 0 | y of that centre: the box y plus half its height | `0x00245E60` (`0x002460AC`); `0x00247AE0` (`0x00247CCD`) | `0x00202D70`, as above |
 
-No other instruction reaches these cells. The search covered the executable's RIP-relative references (the focus
-stack's base `0x0208EAC0` is taken by `0x00244640`, `0x00244700`, `0x002448D0` and `0x00247AE0` only, the matrix
-`0x0208ECD0` by `0x00245E60` and `0x00247AE0` only, the matrices `0x0208EC10` and `0x0208EC50` by the functions in their rows), its
-image-base-relative references, which hold none of them, and a
-scan of `.text` for each address's 32-bit offset from the image base, which finds none but the displacement of the
-RIP-relative store at `0x0036932D`, which names `0x022D7FC0`.
+No other instruction reaches these cells. The focus stack's base `0x0208EAC0` is taken by `0x00244640`, `0x00244700`,
+`0x002448D0` and `0x00247AE0` only, the matrix `0x0208ECD0` by `0x00245E60` and `0x00247AE0` only, the matrices `0x0208EC10` and
+`0x0208EC50` by the functions in their rows.
 
 ## Modding notes
 

@@ -233,8 +233,11 @@ Entries 10-13 then take the
 direction keys of the active movement-key block (`0x001E0DC0`, slots 7, 5, 4 and 6). With no block active that
 call gives code 0, which the index search `0x00197790` never finds, since it covers indices 0-105 only; the entry
 then keeps the first pass's key, the Left, Right, Up or Down binding, because both passes store only an index
-other than -1 (`0x002B5B60`). A scan of rip-relative and image-base displacement
-operands in the listed functions finds no other reference to `0x01E0CE30`.
+other than -1 (`0x002B5B60`).
+
+The only other instruction that reaches `0x01E0CE30` is in the inline-icon reader
+`0x002AEB20` ([Text codes](../Menus-And-HUD/text-codes.md)), which reads one byte of it, relative to the image base, at the
+icon letter minus `0x40` (`0x002AEBA4`-`0x002AEBAD`, `0x002AECA3`; a value from `0x20` first goes through `0x002AB8F0`).
 
 ### Controls read straight from the keymap
 
@@ -429,10 +432,9 @@ take a channel number, and their two callers ask for channel 0 (`0x001EC17B`, `0
 | `0x02F97378` | `u16` | 0 | channel 1's repeat mask, set 1 | `0x002284F0`, 0 with `0x02F9737A`-`0x02F9737F` (`0x0022861A`); `0x002498B0`: 0 (`0x002498D2`), each poll's word ORed in (`0x00249963`) | `0x002498B0`, that OR (`0x00249963`) |
 | `0x02F97380` | `u16` | 0 | channel 1's repeat mask, set 0 | `0x002284F0`, 0 with `0x02F97382`-`0x02F97387` (`0x00228621`); `0x002498B0`: 0 (`0x002498D9`), each poll's word ORed in (`0x00249997`) | `0x002498B0`, that OR (`0x00249997`) |
 
-No other instruction reaches these two globals or `0x02F97399`, `0x02F9739A`, `0x02F973AC` and `0x02F973B0` above: no other
-RIP-relative, image-base-relative or 32-bit offset
-reference names them, and the addresses taken near them are those of `0x002498B0`, `0x00249860` and `0x00249880` above and
-`0x02F97350`, the 16-byte copy `0x003600C0` fills (`0x00249BFF`).
+No other instruction reaches these two globals or `0x02F97399`, `0x02F9739A`, `0x02F973AC` and `0x02F973B0` above. The
+addresses taken near them are those of `0x002498B0`, `0x00249860` and `0x00249880` above and `0x02F97350`, the 16-byte copy
+`0x003600C0` fills (`0x00249BFF`).
 ### The field target cursor and L2
 
 | Global | Type | Start | Meaning | Set by | Read by |
@@ -456,9 +458,8 @@ The toggle and the set are skipped while bit 18 of `0x002E0FA0()` is set (`0x003
 | `0x022CB710` | `u8[8]` | 0 | 0 | `0x0035F260` (`0x0035F293`, `0x0035F2C9`) | no instruction |
 | `0x022CB718` | `u8[8]` | 0 | 0 | `0x0035F260` (`0x0035F2B2`) | no instruction |
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
-image-base-relative references (`0x00195DF0` and `0x00198B60` reach records 2-4 that way, at the sites listed) and a scan
-of `.text` for each global's 32-bit offset from the image base, which finds no other.
+No other instruction reaches these globals. `0x00195DF0` and `0x00198B60` reach records 2-4 relative to the image base,
+at the sites listed.
 
 ## Modding notes
 

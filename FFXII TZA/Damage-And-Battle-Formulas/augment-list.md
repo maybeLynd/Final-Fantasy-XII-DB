@@ -11,8 +11,8 @@ addresses: "0x02EBF040, 0x0031C5D0, 0x002FEF30, 0x002F95D0, 0x002F8410, 0x00387F
 reaches (`battle_pack.bin` directory entry `+0xEC`). Row *n* is augment id *n*, the id whose bit
 [Augments](augments.md) sets in a unit's two augment layers.
 
-- 89 rows carry a shipped name and 40 are named `NOT USED`. 19 of those 40 have no other text; three of the 19 are
-  the timed effects 55-57.
+- 89 rows carry a shipped name and 40 are named `NOT USED`. 19 of those 40 have no other text: 17 have an empty
+  text and rows 33 and 34 the text `NOT USED`. Three of the 19 are the timed effects 55-57.
 - 77 rows have a non-zero value at `+0x04`. 63 are read by a function that picks the row by number, 3 are the
   default timers of the three timed effects, and 11 (the ten gambit-slot rows 104-113 and row 128) are read by no
   instruction (below).
@@ -28,10 +28,12 @@ bestiary, the enemy orders):
   18 (byte `+0x05`: types 15-17 are group `0x1B` and 18 group `0x1C` in `0x003241D0`'s table `0x00324260`, both class
   2 in `0x00323890`). Type 30, the Second Board node 360, names augment 128, Second Board: it is group `0x1E`, class 3, so the
   rebuild never applies it as an augment.
-- **The other 41 have no English name in the game.** They are the augments only equipment, a party table row or a
-  foe's script gives, such as the Steel Poleyns' (37) or the Esper rows' (18, 31). The English, French,
-  German, Italian and Spanish `battle_pack.bin` name these rows `NOT USED`, `Unused`, `dummy` or `DUMMY`, and the
-  menus show only their help text.
+- **The other 41 have no license.** They are the augments only equipment, a party table row or a foe's script
+  gives, such as the Steel Poleyns' (37) or the Esper rows' (18, 31).
+- **Lobbying (12)**, the Cat-ear Hood's, is the one of the 41 with an English name word, "Converts license points
+  to gil.". The other 40 have no English name: the
+  English, French, German, Italian and Spanish `battle_pack.bin` name them `NOT USED`, `Unused`, `dummy` or
+  `DUMMY`, and the menus show only their help text.
 - **The names the 41 go by.** They take the names the modding community uses for them, such as Tread Lightly (37),
   Safety (1) and Combo Boost (13). Rows 38 and 115, which have no community name, are Cartridge (the Japanese
   カートリッジ) and Reserve.
@@ -41,9 +43,9 @@ bestiary, the enemy orders):
 `name` stays the English name word: for the licensed augments it is a sentence ("Increases attack power when
 fighting empty-handed.").
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/augments.py`, with the shared readers in `ffxii_text.py` and `ids.py`:
+Each line is read from the shipped files in these steps:
 
 1. the `st2e` table at entry `+0xEC`: 129 rows of 8 bytes from the section's `+0x20`;
 2. the name word `+0x02` through the word banks at entry `+0xF8`, and the text id `+0x00` through the text groups,
@@ -51,7 +53,7 @@ fighting empty-handed.").
 3. the reader of `+0x04` for each row, from the functions that load `0x02EBF040` (below);
 4. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
    ([Fonts](../Menus-And-HUD/fonts.md));
-5. the license that grants each augment, from license data (`ids.augment_license`);
+5. the license that grants each augment, from the license table ([License list](../Items-Equipment-Shops-And-Licenses/license-list.md));
 6. the Japanese name: the same name word in the `in` `battle_pack.bin`, decoded with the `jp` `font00.dat` as
    `0x002AC2F0` reads a code: a byte from `0x20` is glyph byte − `0x20`, and a lead byte `0x10`-`0x1F` with the next
    byte is glyph `[0x00916570 + 4 × (lead & 0xF)]` + next − `0x20` ([Fonts](../Menus-And-HUD/fonts.md)).
@@ -109,7 +111,7 @@ augment to allow them:
   check `0x00323EC0` passes before any board lookup (`0x00323F4D`-`0x00323F58`;
   [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
 - No instruction tests bit 114 directly: bit 2 of the layer bytes `+0x76` or `+0x86`, or of the merged copy at
-  context `+0x28`. The same sweep finds Brawler's test at `0x00320364` and `0x0032036A`.
+  context `+0x28`.
 - The four functions that test an augment by a computed id do not ask for 114: the stats rebuild takes its ids from
   its three lists (`0x002FF5CA`-`0x002FF70F`), the enemy-order selector from the order (`0x00302494`), and the context
   merge (`0x00384827`) and the timer pass `0x00385570` (`0x003855CD`) walk every id.
@@ -118,17 +120,14 @@ augment to allow them:
 So the commands are innate to every character, and the row's help text, "Slightly raises max HP." (text id 13062),
 describes nothing the game does with augment 114.
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 129 rows of 8 bytes, and the TSV has 129 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts byte `+0x07` = 0, the name word = bank 10, row *n*, and that only ids 55-57 have a timer
-  slot.
-- Rows compared with their readers: row 74 "Increases max HP by 30." has value 30, the bonus [Stats](stats.md)
+- The table's header gives 129 rows of 8 bytes, one TSV line each.
+- On every row byte `+0x07` is 0 and the name word is bank 10, row *n*; only ids 55-57 have a timer slot.
+- Example rows: row 74 "Increases max HP by 30." has value 30, the bonus [Stats](stats.md)
   lists for it; rows 94-96 have value 12, the percentage `0x002F8410` sums for "Reduces action time by 10%";
   rows 55-57 have slots 3, 4 and 5 and value 120, the two minutes [Battle buffs](../Status-Effects-And-KO/battle-buffs.md)
   states.
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

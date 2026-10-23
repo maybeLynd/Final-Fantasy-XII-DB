@@ -173,10 +173,7 @@ global `0x022C7DF0` is added to it (`0x00338CBC`).
 | `0x022C7EC0` | `u8` | 0 | the slot byte of formation slot 2 | as for slot 1, `0xFF` at `0x003385A7` | as for slot 1 |
 | `0x022C7F20` | `u8` | 0 | the slot byte of formation slot 3 | as for slot 1, `0xFF` at `0x003385B4` | as for slot 1 |
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references (the slots'
-addresses are taken by `0x00338490` and `0x00339A60` only), its image-base-relative references, which hold none of
-them, and a scan of `.text` for the 32-bit offsets of `0x022C7DF0`, `0x022C7DF4`, `0x022C7E00`, `0x022C7E10`, `0x022C7E20`,
-`0x022C7E24`, `0x022C7E30`, `0x022C7E60`, `0x022C7EC0` and `0x022C7F20` from the image base, which finds none.
+No other instruction reaches these globals. The slots' addresses are taken by `0x00338490` and `0x00339A60` only.
 
 ## Modding notes
 

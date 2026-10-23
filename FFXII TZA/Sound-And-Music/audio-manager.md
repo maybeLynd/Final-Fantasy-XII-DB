@@ -257,10 +257,8 @@ is given (`0x002222EF`-`0x00222318`).
 | `0x01FD4148` | `void*` | 0 | the pending list's last node, the head node itself when the list is empty | `0x001601C0`, the head (`0x001601DB`, `0x001601FC`); `0x00222080` (`0x00222110`); `0x002225B0` (`0x00222640`); `0x00222280` when it unlinks the last node (`0x00222307`), through the address `0x00221E00` (`0x00221E1D`) and `0x00222050` (`0x0022205F`) pass | `0x00222080` (`0x002220FB`, `0x00222106`); `0x002225B0` (`0x0022262B`, `0x00222636`); `0x00222280` (`0x002222F2`), the same way |
 | `0x0215EFDC` | `i32` | 0 | a running number given to each spoken-line stream as it opens: `0x002DF660` passes it through `0x001DC2E0`, `0x00211270` and `0x0021D770` to the stream bank's open `0x002251B0`, which keeps it at the bank's `+0x3C` (`0x002251F7`), and adds 1 (`0x002DF660`-`0x002DF673`) | `0x002DF660` (`0x002DF673`) | `0x002DF660` (`0x002DF660`), from `0x003B9136`, `0x003E9CEC` and `0x003EAE9B` |
 
-No other instruction reaches these two. The search covered the executable's RIP-relative references (the list's
-address is taken by `0x001601C0`, `0x00221E00`, `0x00222050`, `0x00222080`, `0x002225B0` and `0x008A80F0`, which frees its nodes
-at exit), its image-base-relative references, which hold neither, and a scan of `.text` for the 32-bit offsets of
-`0x01FD4140`, `0x01FD4148` and `0x0215EFDC` from the image base, which finds none.
+No other instruction reaches these two. The list's address is taken by `0x001601C0`, `0x00221E00`, `0x00222050`, `0x00222080`,
+`0x002225B0` and `0x008A80F0`, which frees its nodes at exit.
 
 ## Modding notes
 

@@ -9,7 +9,8 @@ addresses: "0x00280DE0, 0x00281ED0, 0x0027FB70, 0x0027F5D0, 0x00254B50, 0x002809
 
 `menu-screens.tsv` has one row per widget procedure, 267 in all. They are every procedure the image passes to the
 widget constructors `0x00244F50`, `0x00245000` and `0x002465F0` ([Widgets](widgets.md)): 299 construction sites, of which
-296 load the procedure with a `lea` and three are the constructors' own calls and the forwarder `0x00564AC0`. Each
+296 load the procedure with a `lea` and three are the constructors' own calls and the forwarder `0x00564AC0`. Six of
+the 296 calls are reached from two or four `lea` sites, so the `install site` column lists 306 `lea` sites. Each
 procedure is tied to a screen by walking its installers up to a Party Menu entry or a menu request.
 
 ### The Party Menu and its entries
@@ -287,7 +288,7 @@ pointers are on [Config screen](config-screen.md).
 | `0x0209AC20` | `void*` | 0 | the open Quit screen, the `0xC0`-byte widget with procedure `0x0027EA70` | `0x0027EBC0` (`0x0027EC0B`); `0x0027EA70`, 0 on message 18 (`0x0027EA9E`) | `0x0027EBC0`, which creates it only while it is 0 (`0x0027EBD3`) and opens it (`0x00246AC0`, `0x0027EC1A`); `0x0027EA70`, which closes it after `0x002814E0(0x505)` (`0x0027EB4A`) |
 | `0x0208E6C8` | `void*` | 0 | the open Parameter Settings screen, the `0xC8`-byte widget with procedure `0x00240AD0` | `0x00240D60` (`0x00240DAB`); `0x00240AD0`, 0 on message 18 (`0x00240B00`) | `0x00240D60`, which creates it only while it is 0 (`0x00240D73`) and opens it under the menu root `[0x0208EA28]` (`0x00246AD0`, `0x00240DBA`); `0x00240AD0`, which closes it after `0x002814E0(0x53A)` (`0x00240B5C`) |
 
-No other instruction reaches either: no other RIP-relative, image-base-relative or 32-bit offset reference names them.
+No other instruction reaches either.
 
 ### The leader choice window
 

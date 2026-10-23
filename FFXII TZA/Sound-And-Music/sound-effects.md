@@ -211,10 +211,8 @@ countdown in frames (`u16`) at `+2` and the sound handle (`u32`) at `+4`. When a
 | `0x02EBCD7A` | `u16` | 0 | the last entry's countdown | `0x003B3D20`: 1 less each frame (`0x003B3D79`), 0 (`0x003B3DCB`); `0x003B3E10` (`0x003B3E23`); `0x003B3E40` (`0x003B3E73`); `0x003B3EA0` (`0x003B3EFB`) | `0x003B3D20` (`0x003B3D79`, `0x003B3DB0`) |
 | `0x02EBCD7C` | `u32` | 0 | the last entry's sound handle | `0x003B3D20`, 0 (`0x003B3DD2`); `0x003B3E10` (`0x003B3E27`); `0x003B3E40` (`0x003B3E77`); `0x003B3EA0` (`0x003B3EE2`) | `0x003B3D20`, which stops it (`0x003B3D7E`, `0x003B3DB0`); `0x003B3E40` (`0x003B3E66`) |
 
-No other instruction reaches these three. The search covered the executable's RIP-relative references (the queue's
-addresses are taken by `0x003B3D20`, `0x003B3E10`, `0x003B3E40` and `0x003B3EA0` only), its image-base-relative references,
-which hold none of them, and a scan of `.text` for the 32-bit offsets of `0x02EBCC80`, `0x02EBCC82`, `0x02EBCC84` and the
-three globals from the image base, which finds none.
+No other instruction reaches these three. The queue's addresses are taken by `0x003B3D20`, `0x003B3E10`, `0x003B3E40` and
+`0x003B3EA0` only.
 
 ## Modding notes
 

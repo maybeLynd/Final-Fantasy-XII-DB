@@ -99,9 +99,8 @@ from the volume last sent (`0x00362CE6`-`0x00362D0A`):
 |---|---|---|---|---|---|
 | `0x022CBA93` | `u8` | 0 (zero-filled tail) | the ambience volume last sent to the playing handle | `0x00362C60`, after sending (`0x00362D0A`); `0x00363840` (`0x00363883`) and `0x00363A20` (`0x00363A62`), the volume each starts the ambience with; `0x00362F70`, 0 (`0x00362FE5`) | `0x00362C60` (`0x00362CED`) |
 
-No other instruction reaches it: no other RIP-relative, image-base-relative or 32-bit offset reference names it.
-The indexed accesses near it are the cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[6]` each, which end at
-`0x022CB9F0` (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`).
+No other instruction reaches it. The indexed accesses near it are the cutscene skip masks `0x022CB9C0` and `0x022CB9D8`,
+`u32[6]` each, which end at `0x022CB9F0` (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`).
 
 `0x00363E40(frames)` stops the ambience:
 
@@ -134,8 +133,7 @@ pick (`0x00363D47`, `0x00363DE1`), `0x00362C60` (`0x00362C8C`), `0x00363E40` (`0
 | `0x022CBB48` | `i32` | 0 (zero-filled tail) | the second id of the previous map's keep list `0x022CBB44` | the map-sound initialiser `0x00362F70`, -1 (`0x00363027`, in the loop over `0x022CBB44`-`0x022CBB4F`); `0x00363750`, the second keep-list id `0x022CBB68` with the 16-byte copy (`0x00363802`-`0x00363810`) | `0x003636A0`, by index while below the count `0x022CBB50` (`0x003636D0`) |
 | `0x022CBB50` | `i32` | 0 (zero-filled tail) | the count of the previous map's keep list at `0x022CBB44` | the map-sound initialiser `0x00362F70`, 0 (`0x00363036`), after setting both lists to -1 (`0x00363020`-`0x00363064`); `0x00363750`, the copy of `0x022CBB70` (`0x00363810`) | `0x003636A0` (`0x003636A6`, `0x00363700`) |
 
-These are all their accesses among the RIP-relative references; no image-base-relative reference or disp32
-displacement names either. The one indexed access near `0x022CBB48` is `0x003636A0`'s read above.
+These are all their accesses. The one indexed access near `0x022CBB48` is `0x003636A0`'s read above.
 
 ### The map sound volume fade
 

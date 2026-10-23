@@ -11,18 +11,22 @@ addresses: "0x02EBF0A0, 0x002F8D60, 0x0030DB70, 0x00313120, 0x022C2192"
 (`battle_pack.bin` directory entry `+0x80`). Each row names a Concurrence, action rows 226-241, and three
 thresholds. The chain ends in the Concurrence of the last row whose three thresholds the chain's counts all reach.
 
-| Tried | Concurrence | First level | Second level | Third level |
-|---:|---|---:|---:|---:|
-| 1 | Black Hole | 4 | 4 | 4 |
-| 2 | Luminescence | 3 | 3 | 3 |
-| 3 | Ark Blast | 2 | 2 | 2 |
-| 4 | Whiteout | 0 | 0 | 4 |
-| 5 | Windburst | 0 | 4 | 0 |
-| 6 | Torrent | 2 | 2 | 0 |
-| 7 | Cataclysm | 6 | 0 | 0 |
-| 8 | Inferno | 3 | 0 | 0 |
+The rows in the order they are tried, last row first:
+
+| Row | Concurrence | Action row | First level | Second level | Third level |
+|---:|---|---:|---:|---:|---:|
+| 15-7 | Black Hole | 241 | 4 | 4 | 4 |
+| 6 | Luminescence | 231 | 3 | 3 | 3 |
+| 5 | Ark Blast | 234 | 2 | 2 | 2 |
+| 4 | Whiteout | 237 | 0 | 0 | 4 |
+| 3 | Windburst | 229 | 0 | 4 | 0 |
+| 2 | Torrent | 228 | 2 | 2 | 0 |
+| 1 | Cataclysm | 227 | 6 | 0 | 0 |
+| 0 | Inferno | 226 | 3 | 0 | 0 |
 
 Rows 7-15 are all Black Hole with 4, 4 and 4, so row 15 is the one that matches and rows 7-14 are never chosen.
+Eight Concurrences appear in the table; the other eight action rows in 226-241 (230, 232, 233, 235, 236 and
+238-240) are named `NOT USED` on [Action list](action-list.md).
 
 ### The counters
 
@@ -43,10 +47,10 @@ each level, since a member learns the slots in order with the Quickening licence
 A valid action row is stored as row − `0xD0` at `0x022C2178`; -1 leaves `0x022C2178` at -1. While `0x01EEBAF0` is not
 negative, `0x002F8D60` returns the word it selects from `0x022BE930` instead ([Debug menu](../Engine-Core/debug-menu.md)).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/small_tables.py` reads the `st2e` table at entry `+0x80` (16 rows of 13 bytes from the
-section's `+0x20`) and names byte `+0x00` by its action row's name word `+0x34` ([Action list](action-list.md)).
+Each line is a row of the `st2e` table at entry `+0x80` (16 rows of 13 bytes from the section's `+0x20`), with
+byte `+0x00` named by its action row's name word `+0x34` ([Action list](action-list.md)).
 
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
@@ -54,15 +58,14 @@ section's `+0x20`) and names byte `+0x00` by its action row's name word `+0x34` 
 | `+0x01` | `u8[3]` | thresholds | `0x002F8D60` | the counts of first-, second- and third-level Quickenings needed |
 | `+0x04` | `u8[9]` | | none | `0xFF` on every row |
 
-The table is loaded only by `0x002F8D60` and the loader `0x00236C30`, both decompiled; `0x002F8D60` reads bytes
+The table is loaded only by `0x002F8D60` and the loader `0x00236C30`; `0x002F8D60` reads bytes
 `+0x00`-`+0x03`, so `+0x04`-`+0x0C` have no reader.
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 16 rows of 13 bytes, and the TSV has 16 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts that byte `+0x00` is a Concurrence row, `0xE2`-`0xF1`, and that `+0x04`-`+0x0C` are `0xFF`.
-- Rows compared with their reader: row 0, Inferno, action 226, needs 3 first-level Quickenings and nothing else, and
+- The table's header gives 16 rows of 13 bytes, one TSV line each.
+- On every row byte `+0x00` is a Concurrence row, `0xE2`-`0xF1`, and `+0x04`-`+0x0C` are `0xFF`.
+- Example rows: row 0, Inferno, action 226, needs 3 first-level Quickenings and nothing else, and
   is tried last; row 15, Black Hole, action 241, needs 4 of each and is tried first.
 
 ## Columns

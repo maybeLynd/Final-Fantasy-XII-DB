@@ -14,7 +14,7 @@ addresses: "0x02EBF130, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002FEF30, 0x0023A5
 | Rows | Kind | Test |
 |---|---|---|
 | 0-6 | the main characters, Vaan to Reks | `0x003172E0` refuses a selector above 6 |
-| 7-25 | guests; rows 17-25 are named No name and hold no data | `0x00322350`, type − 7 ≤ `0x12` |
+| 7-25 | guests; rows 17-25 are named No name and have no equipment, gambit preset, model, list or gil | `0x00322350`, type − 7 ≤ `0x12` |
 | 26 | the Chocobo | |
 | 27-39 | the thirteen Espers, Belias to Zodiark | `0x002FF007`, type − `0x1B` ≤ `0x0C` |
 
@@ -22,14 +22,15 @@ What a join, the catch-up and the growth do with these values is on [Party membe
 [Stat growth on level-up](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) and
 [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md); this page is the shipped content.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/party_table.py`, with the shared readers in `ffxii_text.py` and `ids.py`:
+Each line is read from the shipped files in these steps:
 
 1. the `st2e` table at entry `+0x44`: 40 rows of 128 bytes from the section's `+0x20`;
 2. the name word `+0x30` through the word banks, as `0x0031C5D0`'s class-2 arm reads it (`0x0031C6B1`-`0x0031C6FA`);
-3. the equipment words and the list at `+0x58` named by `ids.py`, the Quickenings and the Esper attacks by their
-   action row's name word `+0x34`;
+3. the equipment words and the list at `+0x58` named by their ids
+   ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)), the Quickenings and the Esper attacks
+   by their action row's name word `+0x34`;
 4. the status bits named by text bank 5, entry *s* for bit *s*, the names [Statuses](../Status-Effects-And-KO/statuses.md) uses;
 5. the augment bits named by their term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md): the license that
    grants the augment, or the English rendering of its Japanese name where no license grants it;
@@ -131,19 +132,17 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
   `0x0025A160`, the field camera type ([Field camera](../Graphics/field-camera.md)). The Chocobo's row
   holds 14.
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 40 rows of 128 bytes, and the TSV has 40 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts the zero bytes listed above, that a main character's slots are Quickening rows, that every
-  list id has a shipped name, that the Esper attacks are `0xB6`-`0xCF`, and that no Esper or Chocobo row has a count.
-- Rows compared with their readers: row 0, Vaan, has start HP 46 and percent 147, so `0x002F8E50` gives
+- The table's header gives 40 rows of 128 bytes, one TSV line each.
+- The bytes listed above as 0 are 0 on every row. A main character's slots are Quickening rows, except Reks's (row 6), which are 0, every list id has a
+  shipped name, the Esper attacks are `0xB6`-`0xCF`, and no Esper or Chocobo row has a count.
+- Example rows: row 0, Vaan, has start HP 46 and percent 147, so `0x002F8E50` gives
   (0 + 1) × 46 × 147 / 100 = 67 at level 0; his growth bytes 72, 67, 48, 18 are the ones
   [Stat growth on level-up](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) lists; his slots are Red
   Spiral, White Whorl and Pyroclasm, actions `0xD0`-`0xD2`.
 - Row 1, Ashe, has flags `0x09` (catch-up on the first join) and LP bonus 100, as on
   [Party members](party-members.md); row 27, Belias, has summon time 250 and model `s0`.
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

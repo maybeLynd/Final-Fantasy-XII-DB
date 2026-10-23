@@ -152,9 +152,7 @@ generation and released waiters remain, and the last released waiter resets the 
 | `0x02EAD898` | `i32` | 0 | the jobs posted; the ring is full at 48 more than the jobs taken | `0x007B6C50` (`0x007B6CB9`); `0x007B6D40` (`0x007B6E1A`); `0x007B6F70`, 0 (`0x007B6FC2`) | `0x007B6C50` (`0x007B6C6D`); `0x007B6D40` (`0x007B6D7D`); `0x007B7070` (`0x007B709F`) |
 | `0x02EAD89C` | `i32` | 0 | the last job id given; the next is 1 more, skipping 0 (`0x007B6C8E`-`0x007B6CA3`) | `0x007B6C50` (`0x007B6CA3`); `0x007B6F70`, 0 (`0x007B6FCA`) | `0x007B6C50` (`0x007B6C8E`) |
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none of them, and a scan of `.text` for each one's 32-bit offset from
-the image base and for those of `0x02EAD490`, `0x02EAD850` and `0x02EAD8B0`, which finds none.
+No other instruction reaches these globals.
 
 ## Modding notes
 

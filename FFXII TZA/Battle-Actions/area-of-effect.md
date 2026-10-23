@@ -27,7 +27,7 @@ moment.
 - **Side.** An area spreads to the units on the same side as the chosen target, whichever side the
   user is on: Fira on an enemy spreads to its allies, Cura on a party member spreads to the party.
   Confuse on the target does not turn this around. Self-Destruct spreads to the other side from its
-  target, and Mass Destruct hits everyone in range.
+  target, and Mass-Destruct hits everyone in range.
 - **Who is skipped.** Units that are KO, Stone or X-Zone (except in towns, whose town flag waives this;
   [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md))
   and units failing the other targeting checks below are not added. An Invisible enemy is not
@@ -224,7 +224,7 @@ and cones.
 - Shipped `battle_pack.bin`: 247 of 543 action rows have a radius (3, 4, 5, 6, 8, 10, 15, 18, 20 or
   100); 26 rows are centred on the user, 49 are cones (32 of them 180 degrees, two at 0), 5 are lines;
   no row has both cone and line bits, and no row without a radius has bits 21, 24 or 25.
-- Of the 247 area rows, 245 follow the target's side, Self-Destruct has bit 2 and Mass Destruct bit
+- Of the 247 area rows, 245 follow the target's side, Self-Destruct has bit 2 and Mass-Destruct bit
   3. Bit 1 is set only on 13 rows named Reserve.
 - Remora Strike has an angle byte (180) but neither cone nor line bit, so its angle has no effect.
 - 18 rows with radius 10 have bit 12: the 18 Quickenings, ids 208 to 225 (Red Spiral to

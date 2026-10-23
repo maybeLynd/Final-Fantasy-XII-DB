@@ -161,10 +161,8 @@ which copies each one; the table names these three the readers above.
 | `0x0215F1F8` | `u32` | 0 | row 14; no holder sets a bit | 0 (`0x002E06A3`, `0x002E1595`) | the readers above |
 | `0x0215F1FC` | `u32` | 0 | row 15, the pause menu | `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`); 0 (`0x002E06A3`, `0x002E1595`) | the readers above |
 
-No other instruction reaches the table. The search covered the executable's RIP-relative references (the table's
-address is taken by `0x002E1020`, `0x002E1C20`, `0x002E1CA0` and `0x002E1CD0`, and `0x0215F1D0` by `0x002E09A0` and
-`0x002E0FA0`), its image-base-relative references, which hold none of the rows, and a scan of `.text` for the rows'
-32-bit offsets from the image base, which finds none.
+No other instruction reaches the table. The table's address is taken by `0x002E1020`, `0x002E1C20`, `0x002E1CA0` and
+`0x002E1CD0`, and `0x0215F1D0` by `0x002E09A0` and `0x002E0FA0`.
 
 ## Modding notes
 

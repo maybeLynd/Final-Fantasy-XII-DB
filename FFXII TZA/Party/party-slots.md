@@ -134,9 +134,7 @@ The position is turned by the angle (`0x0031BC75`-`0x0031BD0D`). `0x0037D000` ca
 |---|---|---|---|---|---|
 | `0x022C2674` | `i32` | 0 | which position in the row the next placed member takes; each member placed takes the next | `0x0031BAC0`, 1 more (`0x0031BCD9`); `0x0031BD60`, 0 (`0x0031BD64`), from `0x0037D000` (`0x0037D029`), the area teardown reset `0x002341C0` (`0x002341DF`) and the area initialisation `0x002342F0` (`0x00234454`); `0x003266C0`, 0 (`0x00326B39`) | `0x0031BAC0` (`0x0031BC5E`) |
 
-No other instruction reaches `0x022C2674`. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none, and a scan of `.text` for its 32-bit offset from the image base,
-which finds none.
+No other instruction reaches `0x022C2674`.
 
 ## Modding notes
 

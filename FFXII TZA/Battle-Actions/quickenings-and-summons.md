@@ -173,10 +173,8 @@ Quickenings in the chain have cost, a `u8`:
 | `0x022C21AA` / `0x022C21AC` | `u16` / `u8` | 0 | type 5's | the clears at `0x0030D5A8` / `0x0030D5A2` and `0x0030D7F0` / `0x0030D7EA` | as for type 0 |
 | `0x022C21AE` / `0x022C21B0` | `u16` / `u8` | 0 | type 6's | the clears at `0x0030D5B5` / `0x0030D5AF` and `0x0030D7FD` / `0x0030D7F7` | as for type 0 |
 
-No other instruction reaches these cells. The search covered the executable's RIP-relative references (the block's
-addresses are taken by `0x0030D550`, `0x0030D810`, `0x0030DB70` and `0x00313120` only), its image-base-relative references,
-which hold none of them, and a scan of `.text` for the 32-bit offsets of `0x022C2170`, `0x022C2190`, `0x022C2192`,
-`0x022C2196`, `0x022C2198` and each routed cell from the image base, which finds none.
+No other instruction reaches these cells. The block's addresses are taken by `0x0030D550`, `0x0030D810`, `0x0030DB70` and
+`0x00313120` only.
 
 ## Modding notes
 

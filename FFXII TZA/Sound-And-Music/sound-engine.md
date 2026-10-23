@@ -336,7 +336,7 @@ Over the `mtrl` chunks of all 4,609 `.sab` and 116 `.mab` banks:
 The game names its banks with the `.win.sab` suffix (`0x00908998`), so every material it loads is HCA; the `.orb`
 copies use codec 4, which `Voice::Initialize` does not accept. HCA header byte `+0xC` is 0 in all 10,184 HCA materials, so the HCA mixer is
 never used; byte `+0xD` is 1 in the 348 music materials and 0 in the rest. 11,374 materials are 48000 Hz and 139 are
-44100 Hz; 7,759 are mono and 3,754 stereo.
+44100 Hz; 7,759 are mono and 3,754 stereo. The two codec-0 materials, both in `se000`, have rate 0 and 0 channels.
 
 ## State
 
@@ -416,10 +416,7 @@ address" names the helpers a function hands the list to.
 | `0x02EAD310` | `void*` | 0 | allocated source-voice list `+0x10`, first node | `0x00169830` (`0x0016985B`); `0x007AEF30` (`0x007AF347`); `0x007B0000` (`0x007B024C`); `0x008B87B0` (`0x008B87FA`); through the address: `0x007AF490` (from `0x007AEA20`) | `0x007AEF30` (`0x007AF2FF`); `0x007B0000` (`0x007B01FD`); `0x008B87B0` (`0x008B87B6`); through the address: `0x007AF490` (from `0x007AEA20`) |
 | `0x02EAD318` | `void*` | 0 | allocated source-voice list `+0x18`, last node | `0x00169830` (`0x0016985B`); `0x007AEF30` (`0x007AF347`); `0x007B0000` (`0x007B026F`); `0x008B87B0` (`0x008B87FA`); through the address: `0x007AF490` (from `0x007AEA20`) | no instruction |
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
-the image base and for each list's address, which finds none; the same scan finds the two known uses of `0x02AEA030`
-(`0x003B6181`, `0x003B6188`).
+No other instruction reaches these globals.
 
 ## Modding notes
 

@@ -104,7 +104,7 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 | dialogs ([Dialogs](dialogs.md)) | 10 |
 | map overlay, `TrackMap*` | 8 |
 | License Board ([License Board screen](license-board-screen.md)) | 6 |
-| others: window frames, menu bands, Clan Primer, portraits, pause menu, location map, text, status window, screen mask, item screen, auto window, shop | 37 |
+| others: window frames, menu bands, Clan Primer, portraits, pause menu, location map, text, status window, screen mask, button legend, item screen, auto window, shop | 37 |
 
 The cells' values in the image itself are the 512 x 448 layout: for 157 of the 163 bound keys `uisize_sd.json` holds,
 the cell starts at that file's value.
@@ -135,8 +135,7 @@ the cell starts at that file's value.
 1. A key missing from the loaded file is inserted as absent (tag 6, `0x001FF5E1`) and stored as 0. Loading
    `uisize_sd.json` would therefore set its 63 missing keys to 0, not leave their built-in values.
 2. The loader never checks a value against the schema's range.
-3. Every reader reads its cell directly by address (481 rip-relative sites); none goes through the
-   pointer slots.
+3. Every reader reads its cell directly by its address; none goes through the pointer slots.
 4. `EXPLPNumOffsetX` is the one key code writes: `0x0028B24A` overwrites it with `ExpNumOffsetX` or `LpNumOffsetX` before
    its read at `0x0028B5F1`, so its file value never reaches the screen. Its schema row has `disable` set.
 5. The `disable` flag is set on six schema rows (`mNumEffectOffsetX1`, `NumEffectOffsetY1`, `mExpEffectOffsetY`,

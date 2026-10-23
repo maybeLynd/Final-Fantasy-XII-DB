@@ -167,8 +167,7 @@ The table `0x0208EA60` holds one 8-byte window pointer per slot. `0x00241D40` st
 `+0x7C` bit 5 is set: it hides it (`0x00244DD0`) when bits 0 and 5 of `+0x40` are set, and otherwise sends it message 15
 (`0x00915058`) and releases it (`0x00245020`).
 
-No other instruction reaches `0x0208EA68`: no other RIP-relative, image-base-relative or 32-bit offset reference names
-it, and the table's address is taken only by `0x00241A50`.
+No other instruction reaches `0x0208EA68`. The table's address is taken only by `0x00241A50`.
 
 ## Modding notes
 

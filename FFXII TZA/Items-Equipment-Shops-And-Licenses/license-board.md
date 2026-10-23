@@ -8,8 +8,9 @@ addresses: "0x02EBF1A0, 0x00238260, 0x02EBF038, 0x00328990, 0x0055B3F0, 0x00556F
 ## What the player sees
 
 - Each of the twelve jobs has its own License Board, a grid of squares the character buys one at a time.
-- Some squares are on every board: the Espers, the Quickenings' first four squares, Essentials, the accessory
-  squares, the gambit slots and Second Board, which opens a second job.
+- Sixty squares are on every board: the Espers, the Quickenings' first four squares, Essentials, the accessory
+  squares with Ribbon, the gambit slots, eight augment squares (Martyr, Inquisitor, Headsman, Spellbound,
+  Swiftness, +190 HP, +230 HP and +270 HP) and Second Board, which opens a second job.
 - The boards are the same in every language.
 
 ## Where it comes from
@@ -17,7 +18,7 @@ addresses: "0x02EBF1A0, 0x00238260, 0x02EBF038, 0x00328990, 0x0055B3F0, 0x00556F
 The boards are the files `board_1.bin` to `board_12.bin`. Every language's file path table names them at indices
 71-82, and the old single board `license_board.bin`, a file of the same format, at index 70. Seven tables, those
 of the `us`, `uk`, `in`, `fr`, `de`, `es` and `it` languages, point at the copies in `test_battle/in/BinaryFile/`,
-and the three Asian tables at `test_battle/ch/BinaryFile/`; the two sets are byte for byte the same. The copies in the `cn` and `kr` folders
+and the three Asian tables at `test_battle/ch/BinaryFile/`; the two sets are identical. The copies in the `cn` and `kr` folders
 differ and are not named by any table.
 
 `BattleStorage_InitializeWorkArrays` clears the twelve board slots at `0x02EBF1A0` and asks `0x00238260(k)` for
@@ -93,8 +94,7 @@ the node records' own name words.
 [`license-board-squares.tsv`](license-board-squares.tsv) lists all 1,626 filled squares of the twelve boards, one
 line each: the board, its file and job, the row and column (0-23, row first, as the grid is stored from `+8`), the
 node number, and the node's name and LP cost from the node record (`+0x00` name word, `+0x04` LP;
-[Licenses](licenses.md)). It is produced by `Database/Tools/catalogues/license_boards.py`, which checks each board's
-square count and Second Board square against the table above.
+[Licenses](licenses.md)). Each board's square count and Second Board square in it agree with the table above.
 
 ## Loader behaviour
 

@@ -181,8 +181,7 @@ ends in the same jump (`0x005680D7`). `0x003282D0(member, set)`:
 3. calls `0x00328140`, which rebuilds the member's gambit orders at `0x02089378`, one 24-byte order per line that is on and
    filled ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
 
-These are the only calls to `0x003282C0`, `0x003282D0` and `0x00328140` in the image (a scan of every function for direct
-calls).
+These are the only calls to `0x003282C0`, `0x003282D0` and `0x00328140` in the image.
 
 ### Script restore and steering
 

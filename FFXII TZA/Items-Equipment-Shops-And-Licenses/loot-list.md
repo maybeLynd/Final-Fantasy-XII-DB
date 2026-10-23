@@ -16,9 +16,9 @@ subtracts `0x2000` from the id and multiplies by the row size (`0x0031CBA3`-`0x0
 - The other 277 rows are named Reserve, with icon frame 0.
 - Two rows, 274 Sandalwood Chop and 275 Pinewood Chop, have price 0, so a shop will not buy them.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/loot.py`, with the shared readers in `ffxii_text.py`, reads the `st2e` table at entry
+Each line is read from the `st2e` table at entry
 `+0x84` (512 rows of 10 bytes from the section's `+0x20`), the names through the word banks at entry `+0xF8` and the
 descriptions through the text groups. Every one-byte text code goes through the glyph table of the shipped `us`
 font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)).
@@ -34,14 +34,12 @@ The row layout, as the class-7 arm copies it:
 | `+0x06` | `u16` | nameWord | the name (`0x0031CBC1`) |
 | `+0x08` | `u16` | sortOrder | query record `+0x30` (`0x0031CC01`), the key Auto-sort `0x002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)); equal to the row on every row |
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 512 rows of 10 bytes, and the TSV has 512 data lines.
-- Two runs over the same file give byte-identical output.
-- The decoder asserts byte `+0x05` = 0 on every row.
-- Rows compared with their readers: row 0, Teleport Stone, has price 200 (sells for 100), text 14000 "A stone
+- The table's header gives 512 rows of 10 bytes, one TSV line each.
+- Byte `+0x05` is 0 on every row.
+- Example rows: row 0, Teleport Stone, has price 200 (sells for 100), text 14000 "A stone
   allowing instantaneous transport between two gate crystals." and sort order 0; row 32, Earth Stone, has price 70.
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

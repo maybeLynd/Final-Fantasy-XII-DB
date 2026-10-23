@@ -169,9 +169,7 @@ positions, raised by the height `0x00263940` gives (`0x0032A54C`-`0x0032A5D8`), 
 |---|---|---|---|---|---|
 | `0x022C2564` | `i32` | 0 | the lines cast so far this frame: every test that is not answered from the kept masks adds 1 (`0x0032A61C`) | `0x0032A4D0` (`0x0032A61C`); `0x0032A650`, 0 (`0x0032A681`) | `0x0032A650`, which keeps the larger of it and `0x022C2568` in `0x022C2568` before clearing it (`0x0032A668`-`0x0032A67B`); no other function reads `0x022C2568` |
 
-No other instruction reaches `0x022C2564` or `0x022C2568`. The search covered the executable's RIP-relative references,
-its image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
-image base, which finds none.
+No other instruction reaches `0x022C2564` or `0x022C2568`.
 
 ## Modding notes
 

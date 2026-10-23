@@ -12,13 +12,13 @@ addresses: "0x001B4D70, 0x001FDCC0, 0x001E9860, 0x002AA5C7, 0x002AC4EC, 0x002AC5
 is key order in 23 of the 63 files. The builder `0x001B4D70` files every record by its key (`0x001FDCC0`) and
 `0x001E9860` looks glyphs up by key, and no file repeats a key.
 
-The header of each file is in [Font files](fonts-files.md), which also says how the two tables rebuild every `.dat`
-byte for byte. [Fonts](fonts.md) gives the record layout and what reads each field.
+The header of each file is in [Font files](fonts-files.md), which also says how the two tables hold every byte of
+each `.dat`. [Fonts](fonts.md) gives the record layout and what reads each field.
 
 ### What the key is
 
-The key is a glyph index in some fonts and a Unicode code point in the others. Measured by comparing each key with
-the code point of the record's own character:
+The key is a glyph index in some fonts and a Unicode code point in the others. Set against the code point of the
+record's own character, the key is:
 
 | Font | Records | Key |
 |---|---:|---|
@@ -27,7 +27,7 @@ the code point of the record's own character:
 | `fontex_subtitle` in `ch`, `cn`, `jp`, `kr` | 5,805 | the character's code point |
 | every other font | 7,243 | the character's code point |
 
-### Measured over the records
+### Properties of the records
 
 - Every record's `utf8` word decodes to one printable character.
 - Every record's `cellW` and `cellH` equal its file header's.

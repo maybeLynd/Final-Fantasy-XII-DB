@@ -56,7 +56,7 @@ shipped profiles 2 and 3 bind.
 - a cursor mark on the selected column, and otherwise one mark when the code still equals the one the row held
   when the screen opened (`+0xDC`, `0x0023CBB6`-`0x0023CBBD`) and another when it was changed.
 
-`0x001E0B00(code)` turns a code into its text id, and `0x0023CAF0` is its only caller (raw call scan). The names are
+`0x001E0B00(code)` turns a code into its text id, and `0x0023CAF0` is its only caller (`0x0023CB2F`). The names are
 rows of `menu_command_template.bin`, one set of 104 key names per Windows keyboard layout:
 
 | Code | Text id |
@@ -208,11 +208,8 @@ screen's row table (the open Controls screen `0x0208E6D0` is on [Config screen](
   `0x26`, `0x0208E9EC` = 39, `0x0208EA10` = 0 (`0x002416C2`-`0x0024182C`);
 - 8-byte stores: `0x0208E758` = 6 and `0x0208E974` = 33, the index of rows 6 and 33 with type 0 (`0x00241719`, `0x002416C8`).
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
-image-base-relative references and a scan of `.text` for each global's 32-bit offset from the image base; that scan
-finds the known image-base uses of `0x01DF176C` and `0x01DF1770` (`0x00195F0C`, `0x00198D0F`) and of `0x0208E6E4` and
-`0x0208E6EC` (`0x0023CFA7`, `0x0023D350`), and every other hit falls inside another instruction's RIP-relative or branch
-offset.
+No other instruction reaches these globals. `0x01DF176C` and `0x01DF1770` are also reached relative to the image base
+(`0x00195F0C`, `0x00198D0F`), and so are `0x0208E6E4` and `0x0208E6EC` (`0x0023CFA7`, `0x0023D350`).
 
 ## Modding notes
 

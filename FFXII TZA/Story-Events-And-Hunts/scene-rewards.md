@@ -37,7 +37,7 @@ floor the count they return at 0 (`0x0032A81C`-`0x0032A820`, `0x0032A83C`-`0x003
 | an element of a script table | 4 |
 | none: a gil row | 80 |
 
-The four set rows are Montblanc's talk in `rbn_a14`, which gives one of the packages `0x902F`-`0x9036`. The four
+The four set rows are Montblanc's talk in `rbn_a14`, which gives one of the 31 packages `0x902F`-`0x904D`. The four
 table rows are three `subitem` calls in `fon_b01` and one `additemmes` there.
 
 ### The shared give routines

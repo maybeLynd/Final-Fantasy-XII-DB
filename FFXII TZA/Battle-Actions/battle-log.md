@@ -191,9 +191,7 @@ entry the index `0x02EBB54C` names (`0x0046AC00`-`0x0046AC3B`). Every field is 0
 | `0x02CA6028` | `void*` | 0 | the stats record of the last resumed gambit commit for which `0x004697C0` was called with kind 4, a previous action below `0x21F`, action `0x4022` or `0x4124` and `0x002F8E90` answering 1 (`0x004697FF`-`0x0046982A`) | `0x004697C0` (`0x0046984A`) | `0x004697C0` (`0x0046982C`) |
 | `0x02CA6030` | `u16` | 0 | that call's action; a call with the same stats record and action posts nothing (`0x0046982C`-`0x00469843`), and any other posts event 6 unless the previous action is `0x96` | `0x004697C0` (`0x00469851`) | `0x004697C0` (`0x0046983C`) |
 
-No other instruction reaches these globals. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold none of them, and a scan of `.text` for each global's 32-bit offset from
-the image base and for the ring's address `0x02EBB560`, which finds none.
+No other instruction reaches these globals.
 
 ## Related
 

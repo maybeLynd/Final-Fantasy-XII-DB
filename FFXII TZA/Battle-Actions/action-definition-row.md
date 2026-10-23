@@ -202,7 +202,7 @@ word test or keep other bits: bits 0-2 (`0x002377FF`, `0x00237885`, `0x00300B3F`
 | `+0x28` | 120-153 on the 26 Quickening and Concurrence rows (Red Spiral 120) |
 | `+0x34` | the row's own number, except rows 128-142, which hold 136, 137, 128, 129, 130, 138, 139, 140, 141, 135, 142, 131, 132, 133, 134 |
 | `+0x38`, `+0x39` | `0xFF` on 386 rows; Attack 0 / 0, Cure 1 / 0, Cura 1 / 1, Fira 2 / 9 |
-| `+0x3A` | 255 × 475; 15 × 49, 16 on Cure to Curaja and the Potions |
+| `+0x3A` | 255 × 475; 15 × 49; 16 on eight rows: Cure to Curaja, Cura Mote, Potion, Hi-Potion and X-Potion |
 
 Cure's row, as stored:
 

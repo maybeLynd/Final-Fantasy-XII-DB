@@ -27,8 +27,8 @@ Three frame handlers call it while the keyboard is closed and call `0x0027E9E0` 
 (`0x0022BCFA`-`0x0022BD03`). Each first asks `0x002878A0`, which returns the open flag `0x0209AC50`.
 
 `0x0027E9E0` creates the keyboard only when `0x0209AC18` is empty: it starts a task of `0xC0` bytes running
-`0x002878E0`, stores it in `0x0209AC18`, and sets `0x0209AC50` and `0x0209AC14` to 1 (`0x0027E9F3`-`0x0027EA3A`). A raw scan of
-the executable sections for calls, jumps and `lea` to `0x002878E0` finds only the `lea` at `0x0027EA18`.
+`0x002878E0`, stores it in `0x0209AC18`, and sets `0x0209AC50` and `0x0209AC14` to 1 (`0x0027E9F3`-`0x0027EA3A`). The only
+reference to `0x002878E0` in the image is the `lea` at `0x0027EA18`.
 
 On each update (`0x00287A07`, `0x00287AC8`) the task closes itself (`0x00244F00`) when `0x0017DE60` reports F9 again
 (`0x00287A3B`-`0x00287A4B`). The branch that closes on the cancel button instead (`0x00287A10`-`0x00287A34`) runs only when
@@ -132,9 +132,7 @@ first pass (`0x00247730(keyboard, 0)`; `0x00558D14`-`0x00558D3D`, `0x0056190D`-`
 | `0x02CA8FE0` | `void*` | 0 | the chooser panel's cell: `0x00558C40`, from the board chooser `0x00557DB0` (`0x00557EDD`, `0x005587AE`), builds a `0xD0`-byte panel with procedure `0x00558CE0` and, when the build succeeds, copies the chooser's `+0xE8` here (`0x00558C95`-`0x00558CB2`) | `0x00558C40` (`0x00558CB2`); `0x00558CE0`, 0 (`0x00558D2A`) | `0x002878E0` (`0x00287BE3`) |
 | `0x02CA8FE8` | `void*` | 0 | the second panel's cell: `0x00561830`, from `0x0055DBD0` (`0x0055DC96`) and `0x0055E9E0` (`0x0055EDC8`), builds a `0xF8`-byte panel with procedure `0x005618E0` and stores the panel here, keeping the old value when the build fails (`0x00561885`-`0x005618A4`) | `0x00561830` (`0x005618A4`); `0x005618E0`, 0 (`0x00561923`) | `0x002878E0` (`0x00287BEC`); `0x00561830` (`0x00561899`) |
 
-No other instruction reaches these two. The search covered the executable's RIP-relative references, its
-image-base-relative references, which hold neither, and a scan of `.text` for each one's 32-bit offset from the
-image base, which finds none.
+No other instruction reaches these two.
 
 ## Modding notes
 

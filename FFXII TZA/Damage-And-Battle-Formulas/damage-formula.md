@@ -221,7 +221,7 @@ Slots 97 and 93 test the user's merged augment bits and the target's layers (`0x
 | 8 | Spellbreaker | user HP Critical | ×2 party, ×1.7 others |
 | 103 | Serenity | user at full HP | ×1.5 party, ×1.4 others |
 | 5 (target) | Last Stand | target HP Critical | ×0.5 party, ÷3 others |
-| 40 (target) | (no augment text) | the user's main hand is a gun or a measure (class 9 or 16) | ×0.125 |
+| 40 (target) | none (Resist Piercing) | the user's main hand is a gun or a measure (class 9 or 16) | ×0.125 |
 
 ## Layouts
 
@@ -279,9 +279,8 @@ to -1 by the reset (above).
 | `+0xA0` | `f32` | attack | attack, with its variance (`0x0038D280`) |
 | `+0xA4` | `f32` | defense | the defence subtracted from attack (`0x0038D28B`) |
 
-`+0x97` has no access among the RIP-relative references, the image-base-relative references and a disp32 scan of
-the code section over the whole block; the scan's one hit, `0x006FE60C`, is inside a `jmp` and is no displacement. No instruction takes the address of any part of the
-block, so every access is one of these direct ones.
+No instruction reads or writes `+0x97`. No instruction takes the address of any part of the block, so every access
+is one of these direct ones.
 
 ## State
 

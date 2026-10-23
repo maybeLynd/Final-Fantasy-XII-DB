@@ -22,9 +22,9 @@ picture, a threshold, the progress table and the map chunks only (the layouts on
 [Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)); a hunt's reward is given by a
 script call to one of the item and gil verbs that [Scene rewards](scene-rewards.md) describes.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/hunts.py`, with the shared readers in `ffxii_text.py`:
+Each line is read from the shipped files in these steps:
 
 1. the 66 records of `menuquest.dat` from `+0x0C`; a hunt is a record whose key byte 0 is 1 (`0x0037E5B0`), and its
    position is the number of earlier group-1 records (`0x0037E5B0`, `0x0037EE10`);
@@ -45,18 +45,16 @@ script call to one of the item and gil verbs that [Scene rewards](scene-rewards.
 The record text inserts two names this way, id 46 "Tomaj" (hunt 128) and id 726 "Burrogh" (hunt 144), and both
 strings of each pair are the same, so the flag changes nothing in these texts.
 
-### Checks
+### Properties of the shipped files
 
 - `menuquest.dat` holds 66 records, 45 of them in group 1, and `menuquest01.bin`'s section 0 starts at
-  `16 + 20 x 45` and its section 5 ends at the file's end; the TSV has 45 data lines, one per quest id 128-172.
+  `16 + 20 x 45` and its section 5 ends at the file's end; the TSV has one line per quest id 128-172.
 - Every hunt has as many parts as the largest value of its progress row: 4 parts for 42 hunts and 5 for 133, 167
   and 168. Every progress row is non-decreasing, and sections 0 and 1 are empty for every hunt.
-- Two runs over the same files give byte-identical output.
-- No text field keeps an undecoded `{hh}` byte.
-- Hunt 128 compared with its scripts: `rbn_a16` sets its progress to 30 (`setquestscenarioflag`, verb `0x2B3`,
+- Hunt 128 in its scripts: `rbn_a16` sets its progress to 30 (`setquestscenarioflag`, verb `0x2B3`,
   handler `0x00351140`, at script-section offset `0x1D224`), which shows two parts, the bill and the accepted hunt, and to 70
   with the clear (`setquestclear` at `0x1DA5E`), which shows all four.
-- Hunt 147 compared with its scripts: the actor `HUNT07` in `alc_f03` sets 50 (`0x27B8E`), two parts, and with the
+- Hunt 147 in its scripts: the actor `HUNT07` in `alc_f03` sets 50 (`0x27B8E`), two parts, and with the
   clear 150 (`0x27D02`), all four; the row is marked done from 100, the defeat part.
 - Hunt 172 is record 59 and position 40, between 167 and 168, so its text is the 41st record of
   `menuquest01.bin`.

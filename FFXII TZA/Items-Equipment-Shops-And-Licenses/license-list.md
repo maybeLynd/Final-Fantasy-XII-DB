@@ -15,9 +15,9 @@ By requirement kind there are 176 equipment nodes, 97 action nodes (magicks, tec
 the 13 Espers), 87 augment nodes and the one Second Board node, 360. 60 squares are on all twelve boards, and the
 14 Quickening nodes not placed on a board are on none, as [License Board](license-board.md) states.
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/license_list.py`, with the shared readers in `ffxii_text.py`:
+Each line is read from the shipped files in these steps:
 
 1. the `st2e` table at entry `+0x34`: 361 rows of 24 bytes from the section's `+0x20`;
 2. the name word `+0x00` through the word banks (`0x0031DF90`), and the kind text `+0x02` through the text groups
@@ -33,16 +33,14 @@ the 13 Espers), 87 augment nodes and the one Second Board node, 360. 60 squares 
 7. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
    ([Fonts](../Menus-And-HUD/fonts.md)).
 
-### Checks
+### Properties of the shipped rows
 
-- The table's header gives 361 rows of 24 bytes, and the TSV has 361 data lines.
-- Two runs over the same files give byte-identical output.
+- The table's header gives 361 rows of 24 bytes, one TSV line each.
 - The kind counts agree with [Augments](../Damage-And-Battle-Formulas/augments.md), 87 augment nodes, and the board counts
   with [License Board](license-board.md): 60 squares on every board, 14 on none.
-- Rows compared with their readers: node 182, White Magick 1, costs 15 LP (`+0x04`, which `0x003239C3` takes),
+- Example rows: node 182, White Magick 1, costs 15 LP (`+0x04`, which `0x003239C3` takes),
   grants actions 0 and 1, Cure and Blindna, and is held from the start by Ashe, Fran, Penelo and Reks; node 31,
   Essentials, costs 1 LP and every party row 0-6 starts with it; node 360, Second Board, is category 30.
-- No text field keeps an undecoded `{hh}` byte.
 
 ## Columns
 

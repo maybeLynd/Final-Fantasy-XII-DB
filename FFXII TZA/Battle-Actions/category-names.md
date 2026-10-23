@@ -23,10 +23,10 @@ and [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md) sh
 (Gambits, Magicks & Technicks, Mist) are the ones the tutorial groups test on
 [Tutorial battle commands](tutorial-battle-commands.md).
 
-### How it is built
+### Where the values come from
 
-`Database/Tools/catalogues/small_tables.py` reads the four `st2e` tables (rows from each section's `+0x20`), names
-each row by its name word through the word banks and its text id through the text groups, as the arms below do.
+Each line is a row of one of the four `st2e` tables (rows from each section's `+0x20`), named by its name word
+through the word banks and its text id through the text groups, as the arms below do.
 
 | Table | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|---|
@@ -39,13 +39,12 @@ each row by its name word through the word banks and its text id through the tex
 | sobicategory_data | `02` | `u16` | nameWord | `0x0031E3EC`-`0x0031E435` | the name, to query record `+0x18` |
 
 Each table is loaded only by `0x0031C5D0`'s arm for its class, the validator `0x00322C50` (the row count) and the
-loader `0x00236C30`; all were decompiled, and every byte of every row is read by its arm.
+loader `0x00236C30`, and every byte of every row is read by its arm.
 
-### Checks
+### Properties of the shipped rows
 
-- The four headers give 21, 5, 8 and 32 rows of 4, 4, 2 and 4 bytes, and the TSV has 66 data lines.
-- Two runs over the same file give byte-identical output.
-- Rows compared with their readers: comac row 0 is Attack, text 3000 "Attack with weapon in hand."; mgccategory row 0
+- The four headers give 21, 5, 8 and 32 rows of 4, 4, 2 and 4 bytes, one TSV line each.
+- Example rows: comac row 0 is Attack, text 3000 "Attack with weapon in hand."; mgccategory row 0
   is White Magicks; attribute row 0 is Fire and row 7 Dark, the bits 0 and 7 of Elements; sobicategory row 18 is
   Shield, the class of Buckler.
 - comac rows 9, 10 and 12 have no name word (0) and no text.
