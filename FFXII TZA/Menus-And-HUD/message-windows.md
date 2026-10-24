@@ -236,7 +236,7 @@ without bit 18, 3 with a cancel row, after moving the list there with `0x002D484
 
 ### The message log
 
-A conversation window (kind 16, bit 12 of `+0x3E8`) keeps its pages as rows of `0x28` bytes at `0x0209C700`, unless bit 14 is set (`0x002A733A`-`0x002A735C`). Its mode is
+A conversation window (kind 16, which the open marks with bit 12 of `+0x3E8`, `0x002A721E`) keeps its pages as rows of `0x28` bytes at `0x0209C700` unless bit 14 is set; bit 16 of `+0x3E8` records that it keeps them (`0x002A733A`-`0x002A735C`), and the closing start `0x002A2720` clears the rows of a window with bit 16 set (`0x002A2763`, `0x002A277E`). Its mode is
 bits 8-10 of `+0x3E8`:
 
 1. In mode 0, while the text is not typing, Triangle pressed without cancel opens the log (`0x002A5CC0`) when the

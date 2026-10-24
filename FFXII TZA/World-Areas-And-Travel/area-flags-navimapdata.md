@@ -239,10 +239,18 @@ The towns, with the names the `us` `planmapname.bin` gives through the name inde
 
 Every named town is a settlement, a shop or house interior, a plaza, an aerodrome, an airship interior
 or a story room; the code-shaped names (`alc_z01`, `rbn_x01`, `var_z01` and the like) are the scene
-variants of those areas. Areas with MP regime 2 or 3 include Terminus No. 7, the Necrohol of Nabudis
-(Vale of Lingering Sorrow, Echoes of the Past, The Slumbermead), the Great Crystal (A Vikaari Bhrum,
-Sthaana Pisces, Crystal Core), the Pharos (Hall of Effulgent Light, Cloister of Solace, The Crucible),
-the Henne Mines (Site 7) and Giruvegan (Hall of Worth, Throne of Veiled Gods).
+variants of those areas.
+
+Areas with MP regime 2 or 3 include:
+
+- Terminus No. 7 in Barheim Passage;
+- the Nabreus Deadlands: Vale of Lingering Sorrow, Echoes of the Past, The Slumbermead;
+- the Great Crystal: A Vikaari Bhrum, Sthaana Pisces, Crystal Core;
+- the Necrohol of Nabudis: Hall of Effulgent Light, Cloister of Solace, The Crucible;
+- the Pharos: They Who Thirst Not, Womb of the Sun-cryst, Heaven's Challenge;
+- the Lhusu Mines: Site 7;
+- the Stilshrine of Miriam: Hall of Worth, Throne of Veiled Gods;
+- Giruvegan: Gate of Earth, Gate of Water, Gate of Fire, Gate of Wind.
 
 The name table's header, measured in all nine language copies of `planmapname.bin`:
 

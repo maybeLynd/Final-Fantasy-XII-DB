@@ -306,7 +306,7 @@ The title-screen script asks whether any save exists with two verbs:
    the pattern `FFXII_*` with `0x00393630`, selects device 0 (`0x003BB730`) and starts command 9 with
    `0x003BB320`.
 3. `fsttl_getdatacheckstatus` (`0x00511F30`) returns `0x01EFAC10` through `0x00394440`: 2 while running, 1
-   when a save file exists, 0 when none does.
+   when a save file exists, 0 when none does, and 3, the byte's value in the image, before the first check.
 
 `0x003BB320(pattern)` copies the pattern to `0x02B4055C`, sets command 9 at `0x02B40E1C`, the busy flag and
 state 1. The handler `0x003BA680` lists the files (`0x008621E0(device, 0x02B4055C, 0, 200, 0x02B41140)`) and
@@ -604,7 +604,7 @@ Measured from `gamedata/disableautosavelist/disableautosavelist.txt` in the arch
 | `0x02B40E18` | `i32` | the last command's result | the command handlers |
 | `0x02EAF8E0` | `i32` | the status of the last file call | `0x008621E0`, `0x00862590`, `0x00862620`, `0x008625D0`, `0x00862490` |
 | `0x02B4054C` | `i32` | the free space the slot scan draws on | `0x003BA990`, `0x003BA720` |
-| `0x01EFAC10` | `u8` | the save-data check: 2 running, 1 a save exists, 0 none | `0x00393EA0` |
+| `0x01EFAC10` | `u8` | the save-data check: 3 in the image, before the first check; 2 running, 1 a save exists, 0 none | `0x00393EA0` |
 | `0x01F81260` | `void*` | the SaveloadManager, holding the autosave exclusion rows at `+0x50` | `0x001C18A0` |
 
 The device-check pane:

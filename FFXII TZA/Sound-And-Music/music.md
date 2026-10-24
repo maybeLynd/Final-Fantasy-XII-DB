@@ -86,6 +86,12 @@ The script music verbs load tracks into four slots at `0x022CB9F0` (layout below
 `0x00360C00` answers a slot's state by index. `musicreadsync` `0x22A` waits while its slot's state is neither 0 nor 5
 (`0x00341F90`).
 
+The slots open one block, `0x022CB9F0`-`0x022CBA63`, which `0x00360C70` sets up at boot (called from `0x00266D10` at
+`0x00266DD3`). It gives each slot its index and state 0 (`0x00360C90`-`0x00360C9F`), then clears the rest of the block
+(`0x00360CAE`-`0x00360CBE`): the pointer to the track flag file at `0x022CBA50`, two bytes a track with bit 0 the boss-music
+bit, read by `0x00361010` and stored by the file's load completion `0x00360B40` (`0x00360B42`;
+[Music table](music-table.md)); the pending music change `0x022CBA58`; and the fade-out flag `0x022CBA60`.
+
 ### Fresh starts and resume points
 
 The music controller keeps one resume point per track number in the object manager: the position at `+0x3D8` and a

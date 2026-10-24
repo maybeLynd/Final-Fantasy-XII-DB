@@ -14,6 +14,10 @@ field is loaded again; every load rolls each trap's arm chance afresh, whether o
 before. With Libra on a party member, the traps show as markers on the ground; without it
 they are invisible.
 
+Every trap the game ships is listed in [the trap list](trap-list.tsv): the map and region it is on,
+where on the map it lies, how likely it is to be there, the two things it can do with the odds of
+each, and whom it reaches.
+
 ## How it works
 
 ### The trap table in the zone script
@@ -151,7 +155,7 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 | 249, 257 | 107 (`0x0038CE40`) | the same product, draws and skips into the MP loss slot `0x02AEE00C` (power 20, 100; draws `0x0038CE5B`, `0x0038CEF2`) |
 | 260 | 108 (`0x0038CF20`) | the same product, draws and skips into the HP gain slot `0x02AEE008` (power 80; draws `0x0038CF3B`, `0x0038CFD2`): "healing nearby allies" |
 | 261 | 109 (`0x0038D000`) | the same product, draws and skips into the MP gain slot `0x02AEE010` (power 50; draws `0x0038D01B`, `0x0038D0B2`): "energizing nearby allies" |
-| 259 | 163 (`0x0038F6F0`) | gil loss `(1 + a) × (1 + b)`, `a = draw % level` first (`0x0038F719`), then `b = draw % 99`, the row's `+0x10` (`0x0038F7BA`), with the same skips: "Your pockets feel lighter" |
+| 259 | 163 (`0x0038F6F0`) | gil loss `(1 + a) × (1 + b)`, `a = draw % level` first (`0x0038F719`), then `b = draw % 99`, the row's `+0x10` (`0x0038F7BA`), with the same skips, and 0 when the party has no gil (`0x0038F7D0`-`0x0038F7E1`): "Your pockets feel lighter" |
 | 250 to 256, 258 | 181 | the row's `+0x18` status mask: Sap; Confuse and Berserk; Petrify; Blind; Silence; Reverse and Disable; Disease; Oil |
 
 ### Marking the trap's effect
@@ -218,6 +222,50 @@ armed at load = (trap.flagId == 0xFF || !flag(trap.flagId)) && (mt19937() % 100 
 ```
 
 ## Shipped data
+
+### The trap list
+
+[trap-list.tsv](trap-list.tsv) has one line for each of the 489 real traps (every record whose arm
+chance is above 0), in field order and then record order. 473 of them lie on 142 maps; the other 16
+are the sixteen records of `bts_z01`, a zone script that no field's zone-script entry (resource kind
+5, index 3*n*, which the area loader `0x0032FCA0` loads for field *n*) names, so no field loads it. Its
+records all sit at one point, (32.0, -4.0), and name every trap row 246 to 261 once in the 75 slot.
+
+| Column | Meaning |
+|---|---|
+| `zone`, `zone_name` | the field number *n* whose zone script holds the trap, and the script's name; `none` for `bts_z01` |
+| `map_name`, `region` | the map's name (`0x00377B60`) and its region's name (`0x003778B0`) for that field, as [Zone asset list](zone-asset-list.md) gives them; `none` for `bts_z01` |
+| `script`, `table`, `records` | the zone script in the archive, the trap table's offset in its script image, and the table's record count |
+| `record` | the record index *i*: the bit of the live mask and the marker slot |
+| `x`, `z` | the trap point, `+0x00` and `+0x02` divided by ten, in world units; the record holds no height |
+| `flag_id`, `arm_chance` | `+0x04` (`0xFF`, none, in every line) and `+0x05`, the percent chance it is armed at each field load |
+| `action_75`, `action_75_name`, `action_75_effect` | `+0x06`, the action fired when the draw modulo 100 is below 75: its row, its shipped name, and what it does with its battle log line |
+| `action_25`, `action_25_name`, `action_25_effect` | `+0x08`, the action fired otherwise, the same three |
+| `radius`, `reaches` | `+0x0A`, and whom the trap reaches: the one who stepped on it for 0, else every party member within that many units |
+| `explanation` | a one-line summary |
+
+The two traps of `rbl_n02` (Spire Ravel - 2nd Flight) with arm chance 60 share one point; each is
+rolled on its own at load, and when both are armed the first in index order, rejuvenation, fires
+first.
+
+The 473 traps on fields, by the region of their map:
+
+| Region | Traps | Maps | Region | Traps | Maps |
+|---|---:|---:|---|---:|---:|
+| Trial Mode | 69 | 17 | Henne Mines | 19 | 6 |
+| Lhusu Mines | 37 | 13 | Paramina Rift | 18 | 5 |
+| Necrohol of Nabudis | 37 | 8 | Sochen Cave Palace | 18 | 5 |
+| Cerobi Steppe | 36 | 7 | Stilshrine of Miriam | 18 | 6 |
+| Nabreus Deadlands | 28 | 7 | Ogir-Yensa Sandsea | 17 | 5 |
+| Tchita Uplands | 23 | 6 | The Feywood | 17 | 5 |
+| Ridorana Cataract | 21 | 4 | Barheim Passage | 14 | 4 |
+| Zertinan Caverns | 21 | 8 | Pharos - Subterra | 12 | 3 |
+| Giza Plains | 11 | 5 | Nam-Yensa Sandsea | 10 | 5 |
+| Mosphoran Highwaste | 8 | 3 | Pharos - Third Ascent | 7 | 2 |
+| Pharos - Second Ascent | 6 | 2 | Phon Coast | 5 | 2 |
+| Garamsythe Waterway | 4 | 2 | The Salikawood | 4 | 2 |
+| Ozmone Plain | 4 | 3 | Dalmasca Estersand | 3 | 2 |
+| The Tomb of Raithwall | 3 | 2 | The Great Crystal | 3 | 3 |
 
 ### The tables
 
@@ -325,3 +373,4 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - [Section 000 of the script container](../EBP-Script-Files/ebp-script-image.md): the header word `+0x6C` and the tag-3 region.
 - [Area flags](area-flags-navimapdata.md): the town flag that disables arming, markers and triggering.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the tick's per-slot pre-pass that runs the Libra toggle.
+- [Zone asset list](zone-asset-list.md): every field with its map and region name.

@@ -2,14 +2,15 @@
 title: "Zone asset list: every zone the area loader can enter, with the files it loads and the models and foes it brings"
 kind: "reference"
 category: "World, areas and travel"
-addresses: "0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A10, 0x001A7A50, 0x01EF9490, 0x00264FD0, 0x003635E0, 0x00331990"
+addresses: "0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A10, 0x001A7A50, 0x01EF9490, 0x00264FD0, 0x003635E0, 0x00331990, 0x00377B60, 0x003778B0, 0x00264F90, 0x0029C530"
 ---
 
 ## What it lists
 
-`zone-asset-list.tsv` holds one line for each zone: 708 zones, numbered 12 to 1,311, over 215 areas. A zone is the
-area loader's context *n*. For each it gives the files the loader requests for that zone and the models and foes the
-zone's script brings in. The 708 are the zones whose script the US resource-kind 5 array names and the archive ships.
+[zone-asset-list.tsv](zone-asset-list.tsv) holds one line for each zone: 708 zones, numbered 12 to 1,311, over 215
+areas. A zone is the area loader's context *n*. For each it gives the map and region names the player reads in the
+menu, the files the loader requests for that zone and the models and foes the zone's script brings in. The 708 are
+the zones whose script the US resource-kind 5 array names and the archive ships.
 
 ### Where the values come from
 
@@ -38,6 +39,17 @@ archive index:
    [Model asset list](../Graphics/model-asset-list.md).
 6. **The foes,** the definitions the zone script places ([Enemy placements](../Enemy-Spawning/enemy-placements.tsv)),
    by their shipped names.
+7. **The names,** from the `us` name table `planmapname.bin` as its two indexers return them for field *n*; the
+   menu's location line `0x0029C530` calls both, the map name for the current field and the region name for the
+   current field, or for the loaded map `0x00314910` while flag `0x5E` is set (`0x0032A8A0`)
+   ([Area flags](area-flags-navimapdata.md)):
+   - the map name, `0x00377B60(n)`: entry *n* of the offset table at `+0x10`, while *n* is below the area count
+     `+0x04` (1,312);
+   - the region name, `0x003778B0(n)`: entry `[+0x04]` + group of the same table, while the group is below the region
+     count `+0x08` (59). The group is the word `+0x06` of `map_ref.bin` row *n* (`0x00264F90`).
+
+   An empty entry gives an empty name. For the 608 zones below 1,154 the map name is the one
+   [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv) lists for that id.
 
 The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), `frs0109` (`frs0101`), `frs0110`
 (`frs0106`) and `gil0303` (`gil0301`).
@@ -47,6 +59,8 @@ The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), 
 | Fact | Value |
 |---|---|
 | zones | 708, numbered 12 to 1,311; 47 name prefixes over 215 areas |
+| map names | 704 zones, 648 distinct names; the four `ttl` zones have none. 16 scene-variant zones (`rbn_z01`, `alc_z01` to `alc_z04`, `var_z01` and the like) carry their own code as the name |
+| region names | all 708 zones, 51 distinct regions; the largest are Trial Mode (100 zones), The Great Crystal (73) and Draklor Laboratory (71) |
 | scripts | all 708 ship, in each of the nine language folders (`us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch`) |
 | `.mot` | ships for 188 zones; named but not shipped for 520 |
 | `.fpk` | named for all 708, shipped for none |
@@ -66,6 +80,7 @@ map packs and the map art sit in folders of their own with no language.
 | Column | Meaning |
 |---|---|
 | `zone`, `name` | the zone number *n* and the zone script's name |
+| `map_name`, `region` | the map name `0x00377B60(n)` and the region name `0x003778B0(n)`; empty when the entry is empty |
 | `script`, `mot`, `fpk` | the files at kind 5 indices 3*n*, 3*n* + 1 and 3*n* + 2, the US copy; "(not shipped)" when the archive lacks the file |
 | `pack`, `block_pack` | the zone's map pack and the block pack |
 | `sound_map` | the sound map number, the block record's second word plus 500 |

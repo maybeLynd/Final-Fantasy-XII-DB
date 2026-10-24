@@ -52,6 +52,9 @@ Each line is read as the game reads the files:
    path array ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
 6. The Clan Primer Bestiary entry: the class row's word `+0x52` (below), and the entry's name from the US Bestiary
    catalog `menuhandbook_monster.bin`, read as the entry page reads it (next section).
+7. The race and family: the class row's bytes `+0x04` and `+0x05` through word banks 13 and 14 of the `us`
+   `battle_pack.bin`, as battle-text words `0x6800` + `+0x04` and `0x7000` + `+0x05` (Project notes give the
+   basis).
 
 ### The Clan Primer Bestiary entry
 
@@ -198,8 +201,8 @@ chocobo definition has variant 0 and one of these colours:
 | Offset | Type | Field | Read by |
 |---|---|---|---|
 | `+0x00` | `u32` | model, a bound id | `0x0031C2F0` |
-| `+0x04` | `u8` | type, unit `+0x55`; when the source unit's is 13, the Drain slot `0x0038D400` exchanges the target's HP loss and gain with the source's (`0x0038D4D9`-`0x0038D50B`), and its final block then rewrites part of them ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) | `0x0023A570` |
-| `+0x05` | `u8` | class, unit `+0x56`, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)) | `0x0023A570` |
+| `+0x04` | `u8` | type, unit `+0x55`, named by word bank 13 (word `0x6800` + type: 0 Hume, 1 Humanoid, 2 Giant, 3 Dragon, 4 Beast, 5 Insect, 6 Plant, 7 Avion, 8 Amorph, 9 Fiend, 10 Elemental, 11 Warmech, 12 ???, 13 Undead, 14 Construct, 15 Ichthian); when the source unit's is 13, the Drain slot `0x0038D400` exchanges the target's HP loss and gain with the source's (`0x0038D4D9`-`0x0038D50B`), and its final block then rewrites part of them ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) | `0x0023A570` |
+| `+0x05` | `u8` | class, unit `+0x56`, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)), named by word bank 14 (word `0x7000` + class, 64 names; class 34 is Skeleton) | `0x0023A570` |
 | `+0x06` | `u16` | unit `+0x52`; 0 in every row | `0x0023A570` |
 | `+0x10` | `i16` | push weight: a positive value divided by 10 is the weight the separation tick gives the body, as the party table's `+0x7A` ([Party table](../Party/party-table.md)); any other value goes over unchanged, and the -1 of 221 rows makes the body one an overlap never moves (`0x00314E10` gives a negative weight a share of 0) | `0x00238BF0` (`0x00238CEB`) → `0x0026DAC0` ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)) |
 | `+0x12` | `u8` | flags: bits 0-2 the effect column; bit 4 actor `+0x09` bit 6; bit 5 the view query; bit 6 actor `+0x08` bit 3 and `+0x09` bit 6; bit 7 the pair clearance | below |
@@ -282,7 +285,8 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `name` | the shipped name |
 | `placements`, `level` | how many placements the us map scripts make, and the level ranges `base`-`base + range` they set |
 | `class_row`, `model`, `model_id` | the class row, its model's file name and bound id |
-| `type`, `class` | class row `+0x04` and `+0x05`, as numbers |
+| `type`, `race` | class row `+0x04`, and its name in the `us` text: battle-text word `0x6800` + type, word bank 13 |
+| `class`, `family` | class row `+0x05`, and its name in the `us` text: battle-text word `0x7000` + class, word bank 14. The `us` text of class 46 carries the prefix "NOT USED" ("NOT USED Wings"; the `de` text is Flugwesen), and the column keeps it as shipped |
 | `primer_entry`, `primer_name` | class row `+0x52`, the Clan Primer Bestiary entry (empty for none), and that entry's name in the US Bestiary catalog |
 | `model_family` | class row `+0x40` |
 | `base_row`, `growth_row` | definition `+0x22`, `+0x24` |

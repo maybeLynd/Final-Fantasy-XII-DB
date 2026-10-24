@@ -144,6 +144,12 @@ stick and bit 2 the desired heading (`0x00358DFB`-`0x00358E99`). A setter that l
 leader's actor at once with `0x0026D6D0` (`0x00359221`-`0x00359242`, `0x0035927D`-`0x003592AD`). The event lock also
 clears capability byte `0x0209A2C6` while it stands (`0x003071DC`-`0x003071F2`, `0x0026BD20`).
 
+`0x022C8000`-`0x022C800F` is the movement suppression block: at `+0x0` the dword of lock bits, set and cleared by
+`0x00359200`; at `+0x4` the four lock bytes; at `+0x8` the stick magnitude, capped at 128 and divided by 128, as an
+`f32` (`0x003595DF`); and at `+0xC` the walk toggle (`0x003594E0`; both on
+[Player movement](../Movement-And-Pathfinding/player-movement.md)). The reset `0x003590E0` clears the dword and the
+four bytes (`0x0035910F`, `0x00359115`-`0x00359122`).
+
 The event lock goes up when the last member of an enemy spawn group falls: the group's death handler `0x00306F00`
 calls `0x00307140(1)` once the defeated mask covers the member mask (`0x00306F95`-`0x00306F9A`;
 [Boss fights](../Battle-Actions/boss-fights.md), [Enemy respawning](../Enemy-Spawning/enemy-respawning.md)).

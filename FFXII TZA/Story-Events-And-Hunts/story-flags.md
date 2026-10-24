@@ -97,6 +97,12 @@ The new-game reset `0x002EF2D0` clears the first `0x1538` bytes of the payload, 
 (`0x00379160`-`0x003791B5`). `0x002EF2D0` is called by `0x00266D10` (`0x00266DC4`) and by the save-image reset `0x002EF650`
 (`0x002EF674`). The list is kind 9 file `0x28`, requested by `0x00378540` under the name `MJGPINIT`, kept at `0x02ADD0D0` by its completion `0x00378B90` (`0x003787BD`).
 
+`mapjumpgroupinit.bin` and `eventmemorylist.bin` (kind 9 file `0x29`, requested under the name `EVTMEM`;
+[Event memory](event-memory.md)) share one shape: an 8-byte magic, a `u16` count at `+0x08` and `u16` ids from
+`+0x0A`. `0x00379160` reads the first that way (`0x00379177`, `0x0037917B`) and `0x00377440` the second (`0x0037744F`,
+`0x0037745B`). `0x00378540` requests both, and its one caller `0x00377CC0` (`0x00377D8C`) first clears both pointers,
+`0x02ADD0D0` (`0x00377D1C`) and `0x02ADD0A8` (`0x00377D77`).
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |
