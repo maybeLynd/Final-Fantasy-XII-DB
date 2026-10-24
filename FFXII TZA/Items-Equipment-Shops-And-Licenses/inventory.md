@@ -120,10 +120,72 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 These are every call of `0x003008A0` and its wrappers in the image; the one indirect call is `0x00316F82`, to
 `0x00300B80` or `0x00300490`.
 
+### The inventory lists
+
+Each category of the inventory screen reads one of these lists, and Abilities reads two. Moving a row there
+reorders the list ([Inventory screen](../Menus-And-HUD/inventory-screen.md)). The twelve lists are arrays of 16-bit ids in
+the save payload,
+one after another from `[0x020927C0] + 0x38CC`. Each list's entry count is a 32-bit number at
+`[0x020927C0] + 0x47B8 + 4 x list` ([Save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
+
+The table `0x02092760` holds 8 bytes per list:
+- `+2`: the capacity, a signed 16-bit number;
+- `+4`: the list's place, stored encoded (`0x0020E620`).
+
+`0x00253240(list, clear)` writes both for one list, through the jump table at `0x0025344C` (`0x002532CC`-`0x002533E7`). When
+`clear` is not 0, it also sets the count to 0 and every entry to `0xFFFF` (`0x002533EE`-`0x0025341F`).
+
+| List | Holds | Capacity | Place in the payload |
+|---|---|---:|---|
+| 0 | items (class 0) | 64 | `+0x38CC` |
+| 1 | weapons: equipment classes 0-17 | 200 | `+0x394C` |
+| 2 | shields, helms and body armour: equipment classes 18-20 | 140 | `+0x3ADC` |
+| 3 | accessories: equipment classes 21 and 22 | 48 | `+0x3BF4` |
+| 4 | ammunition: equipment classes 23-26 | 32 | `+0x3C54` |
+| 5 | gambit presets (class 5, ids `0x5000`-`0x5027`: the 40 rows of `gambit_data`) | 40 | `+0x3C94` |
+| 6 | gambits (class 6) | 256 | `+0x3CE4` |
+| 7 | class 7, which has no ids | 0 | `+0x3EE4`, list 8's place (`0x00253387`-`0x00253397`) |
+| 8 | technicks (class 4) | 24 | `+0x3EE4` |
+| 9 | magicks (class 3) | 81 | `+0x3F14` |
+| 10 | key items and maps (class 8) | 512 | `+0x3FB6` |
+| 11 | loot (class 2) | 512 | `+0x43B6` |
+
+The lists end at `+0x47B6`. List 7 has capacity 0 and shares list 8's array. That is why twelve list numbers cover
+eleven arrays.
+
+How an id reaches its list:
+
+1. The packed handler and the bit handler store the change first (`0x002FD355`, `0x002FD4F6`). Then they call
+   `0x00325F40(id, before, after)`, where `before` and `after` say whether the thing was owned before and after the
+   change (`0x002FD499`, `0x002FD4F0`-`0x002FD4F3`).
+2. `0x00325F40` adds the id when `before` is 0 and `after` is not, and removes it in the opposite case
+   (`0x00325F6D`-`0x00325F8A`).
+3. It picks the list from the class through the byte maps at `0x01EED1B0`, 16 bytes per class 0-10
+   (`0x00325FF0`-`0x00326016`). Equipment picks by its row's class byte `+0x09`, from the 27 bytes at `0x00D10690`
+   ([Equipment row](equipment-row.md)). Classes 9 and 10 have no map, and a class above 10 is passed over.
+
+The list functions:
+
+- `0x00252E60(list, id << 16)` appends. An id already in the list is not added again (`0x00252EE5`). When the list is
+  full (the count reaches the capacity), or a `0xFFFF` entry is met before the count, it returns without storing
+  (`0x00252EF7`-`0x00252EFD`, `0x00252EEB`, `0x00252F32`).
+- A full list does not take the item away: the handler stored its count first, so the item stays owned and only its
+  list entry is missing.
+- After a store, `0x00252E60` calls `0x002CD650` (`0x00252F18`). That sets the category bits at `[0x020927C0] + 0x3244` for
+  each list that is not empty ([Quickening and Esper list](../Battle-Actions/quickening-and-esper-list.md)).
+- `0x002535D0(list, id << 16)` removes. It writes `0xFFFF` over the id (`0x00253663`-`0x00253668`). Then `0x002534C0`
+  closes the gaps in list order and sets the count to the entries left (`0x00253544`-`0x0025359F`).
+- `0x002530E0(list, id, target)` moves an id to the target id's place and shifts the entries between them by one
+  (`0x00253170`-`0x00253214`). The inventory screen's move calls it (`0x00565BD0`,
+  [Inventory screen](../Menus-And-HUD/inventory-screen.md)).
+- `0x00252F40(list)` returns the list's 8-byte record in `0x02092760` (`0x00252F58`-`0x00252F5F`). Its callers are
+  `0x00564430` and `0x00565CD0` (the inventory screen and its dialogs), `0x0057B500`, `0x0057CF20` and `0x0057D620` (the shop
+  screens), `0x002CCA40` and `0x003FCEE0` (equipment), and `0x002826F0` and `0x00282A40` (party marks).
+
 ### Writes that bypass the change function
 
 - The clear-all `0x003047F0` stores 0 in every count and bit word (`0x0030482A`) and ends by tail-jumping to
-  `0x00253480` (`0x0030483D`), which empties all twelve derived inventory lists (`0x00253240(i, 1)`: every id `0xFFFF`,
+  `0x00253480` (`0x0030483D`), which empties all twelve inventory lists (above; `0x00253240(i, 1)`: every id `0xFFFF`,
   the count at `[0x020927C0] + 0x47B8 + 4i` = 0) and clears every bit of `[0x020927C0] + 0x3244` but bit 0 and bit 0
   of `+0x3245`; the party block reset `0x002370E5` and
   the scenario presets `0x00239B22` call it.
