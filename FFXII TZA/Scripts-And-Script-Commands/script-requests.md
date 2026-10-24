@@ -120,7 +120,7 @@ A refused kind relinks the entry at the free head and returns 3; the bytecode ad
 `0x00263E40` computes on that path is discarded.
 
 A filed entry is copied from the descriptor, appended at the channel's tail, becomes the head
-when the channel was idle, sets the channel's busy bit and `+0x63` bit 1 (re-select). A descriptor
+when the channel was idle, sets the channel's busy bit and `+0x63` bit `0x2` (re-select). A descriptor
 whose mode byte is 4 is instead pushed on the detached list at `+0x61` without touching the
 channel state: that is how notifications travel.
 

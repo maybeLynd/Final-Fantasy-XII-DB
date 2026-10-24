@@ -39,7 +39,7 @@ never lowers a level: when the target is not above the current level it returns 
    (rows 27-39) and the Chocobo (row 26) included, so this applies to them too.
 2. The level byte goes up by one, capped at 99.
 3. On the last step only: the derived stats are rebuilt (`0x0030FED0(record, 0)`), and the notices
-   below are posted unless flags bit 1 is set.
+   below are posted unless flags bit `0x2` is set.
 
 The notices, for a party record:
 

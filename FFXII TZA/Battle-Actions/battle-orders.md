@@ -16,7 +16,7 @@ The table lists all 359 order ids with what the game does for each.
 ### Dispatch
 
 `0x00305080` (called by the action step `0x00307BE0` for an id above `0x21E`) posts
-presentation event `0x2001` - or `0x2010` for a party-side unit of type id `0x1A` while bit 1 of
+presentation event `0x2001` - or `0x2010` for a party-side unit of type id `0x1A` while bit `0x2` of
 `[0x02EBF190]+0x5AE0` is set - then returns -1 when `id - 0x4000` is above `0x166` or the slot of the
 table at `0x01EEC460` (359 eight-byte pointers, `0x01EEC460`-`0x01EECF97`) is empty, and otherwise jumps to
 the handler with the unit as argument (`0x003050A0`-`0x0030510E`). Handlers keep their progress in the
@@ -32,7 +32,7 @@ id-specific rules (`0x003018DD`-`0x00301AA5`); every other id passes:
 | `0x4051`-`0x4121` except `0x4091`, and `0x414B` | a non-zero parameter is a percentage: refused when the parameter is not above a draw from the gameplay generator (`0x00328370`) modulo 100 |
 | `0x4022`, `0x4124` | must have a reachable movement goal (`0x00312730`, then `0x0033A120` not yet reporting arrival); `0x4022` then stores the goal at `+0x6C0` and `0x00309A90()` at `+0x6D0` |
 | `0x4165` | `0x00312730` must find a goal |
-| `0x414D` | `0x00308130` (party side) or `0x00308040(unit, 0)`, tested against unit bit 23 |
+| `0x414D` | `0x00308130` (party side) or `0x00308040(unit, 0)`, tested against unit bit `0x800000` |
 
 ## Columns
 
@@ -52,9 +52,9 @@ The ids fall into these groups (full rows in the `.tsv`):
 
 | Ids | Handler | Operation |
 |---|---|---|
-| `0x4000`-`0x4020`, `0x4022`-`0x4024`, `0x4026`-`0x4035`, `0x4124`-`0x4125`, `0x414A`, `0x414E`, `0x4165` | `0x002FDA60` | move to the goal `0x00312730` derives from the order record; ends when `0x0033A120(movement block, id)` reports it reached. For `0x4022`, `0x4024`, `0x4026`-`0x4035`, `0x4124`, `0x414A`, `0x414E` and `0x4165` the goal is refreshed every frame through `0x00319110`; `0x4022` and `0x4124` set bit 8 of `+0x1F0` while on the way; `0x414E` moves toward the unit at `+0x710`. For the other ids a failed navigation step (`0x00325BB0(unit, 0)` = 0 before arrival) ends the order with -1; the refreshed ids wait instead |
+| `0x4000`-`0x4020`, `0x4022`-`0x4024`, `0x4026`-`0x4035`, `0x4124`-`0x4125`, `0x414A`, `0x414E`, `0x4165` | `0x002FDA60` | move to the goal `0x00312730` derives from the order record; ends when `0x0033A120(movement block, id)` reports it reached. For `0x4022`, `0x4024`, `0x4026`-`0x4035`, `0x4124`, `0x414A`, `0x414E` and `0x4165` the goal is refreshed every frame through `0x00319110`; `0x4022` and `0x4124` set bit `0x100` of `+0x1F0` while on the way; `0x414E` moves toward the unit at `+0x710`. For the other ids a failed navigation step (`0x00325BB0(unit, 0)` = 0 before arrival) ends the order with -1; the refreshed ids wait instead |
 | `0x4021` | `0x002FE7D0` | wait until the counter `+0x75C` reaches `param * (int)(30 * [0x01DFE0B8])`; clears `+0x750`-`+0x757` first; a parameter of 0 never ends |
-| `0x4046`, `0x4047` | `0x002FDDA0` | set / clear unit flag bit 15 |
+| `0x4046`, `0x4047` | `0x002FDDA0` | set / clear unit flag bit `0x8000` |
 | `0x4048`-`0x404F` | `0x002FDDA0` | set unit byte `+0x54` to 0-7 |
 | `0x4050` | `0x002FDDA0` | remove every status (`0x0030E8F0`) |
 | `0x4051`-`0x4070` | `0x002FDDA0` | add status 0-31 (`0x0030E360` mode 3) |
@@ -66,8 +66,8 @@ The ids fall into these groups (full rows in the `.tsv`):
 | `0x4116`-`0x4121` | `0x002FDDA0` | set unit byte `+0x6B5` to 0-11 |
 | `0x4122`, `0x4123`, `0x4149`, `0x4155`-`0x4157` | `0x002FE660` | read-modify-write a register through `0x00321190`/`0x00329E60` (kind = record `+0x06` >> 12, index = its low byte; `0x4122`/`0x4123` use kind 10 of the unit at `+0x710`, the dword at `+0xB90`): set bit, clear bit, set or add the parameter |
 | `0x4126`-`0x4127`, `0x4129`-`0x4138`, `0x414B`-`0x414C`, `0x4150`-`0x4154` | `0x002FDC30` | move by `0x00312B40` to a goal from the order record, stopping at the larger of the unit's two body sizes; `0x4127`, `0x4129`-`0x4138` and `0x414B` re-resolve the goal every frame; ends when `0x0033A120` reports it reached |
-| `0x4139`-`0x4140` / `0x4141`-`0x4148` | `0x002FDDA0` | set / clear bit 0-7 of the battle flags `0x022C314C` (`0x0031A910` / `0x0031A8C0`, which also call `0x00469C00`) |
-| `0x414D` | `0x002FE840` | unless unit bit 24 is set or the phase gate of the running-action check applies, `0x00313400(unit)`, or `0x00313480()` when unit bit 23 is set; ends when unit bits 50 and 51 are clear |
+| `0x4139`-`0x4140` / `0x4141`-`0x4148` | `0x002FDDA0` | set / clear bits 0-7 of the battle flags `0x022C314C` (`0x0031A910` / `0x0031A8C0`, which also call `0x00469C00`) |
+| `0x414D` | `0x002FE840` | unless unit bit `0x1000000` is set or the phase gate of the running-action check applies, `0x00313400(unit)`, or `0x00313480()` when unit bit `0x800000` is set; ends when unit bits `0x4000000000000` and `0x8000000000000` are clear |
 | `0x414F` | `0x002FE8D0` | `0x002E73C0(actor, param)` |
 | `0x4158`-`0x4162` | `0x002FDDA0` | add the parameter to one `i16` of the stats record (`+0x08`, `+0x0A`, `+0x0C`, `+0x0E`, `+0x1E`, `+0x12`, `+0x14`, `+0x10`, `+0x18`, `+0x1A`, `+0x1C`), clamped to +-99, +-100 or +-255, then rebuild (`0x0030FED0`) |
 | `0x4163` / `0x4164` | `0x002FDDA0` | enemy side: set to 1 / add the parameter to the enemy's per-party-member byte table (`[unit+0x6A0]+0x1A` indexed by type id) for every living party member (`0x00321B00`) |

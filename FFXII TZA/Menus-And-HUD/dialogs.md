@@ -64,9 +64,9 @@ Its row callback `0x00241D00` draws Yes (`menu_command.bin` `0x3E8`) on row 0 an
 `0x00241B40(window)` answers a pick: message 12 with `0x8100` to the owner `+0xD0` for row 0 of the list `+0xC8`
 and `0x8101` for any other. `0x00241A70(window)` answers a cancel by the mode byte `+0x3BE`: 1 sends `0x8101`, 2
 sends `0x8102`, and 0 moves the list back to the row `+0xC0` (`0x002D4650`), first posting `0x8104` to the owner
-when `+0x3C4` bit 11 is set.
+when `+0x3C4` bit `0x800` is set.
 
-`0x002477A0(window, v)`, which `0x00241D40` calls with 4 (`0x00242101`), stores `v & 7` in bits 16-18 of `+0x44` and sets
+`0x002477A0(window, v)`, which `0x00241D40` calls with 4 (`0x00242101`), stores `v & 7` in bits `0x70000` of `+0x44` and sets
 the two bytes `+0xAC` and `+0xAD` from that field: with its bit `0x4` set, `+0xAD` becomes `0xF9` when bit `0x2` is
 set and `+0xAC` becomes `0xF9` when bit `0x1` is set; with bit `0x4` clear, each byte becomes `0xF9` or 6 by its bit.
 
@@ -78,8 +78,8 @@ Four builders fill the record `0x00241C90` takes and open the window:
   into window bits `0x8`, else `0x200` (with the default row from `+0x44`), then `0x10`, `0x800` and `0x400`; flags with
   `& 0xFF0` of `0x70` or `0xD0` give style 1 or 2. `0x0023E020`, `0x0023E560`, `0x00252030`, `0x0057AA00`, `0x00583990`
   and `0x00583FD0` call it.
-- `0x003949B0(text, owner, options)` and `0x00394A90` do the same from the options' word `+0x14` (bit 2 to `0x20`, bit 4
-  to `0x8` or else bit 3 to `0x200`, bit 5 to `0x10`, bit 6 to `0x800`, bit 7 to `0x100`, bit 8 to `0x400`) in
+- `0x003949B0(text, owner, options)` and `0x00394A90` do the same from the options' word `+0x14` (bit `0x4` to `0x20`, bit `0x10`
+  to `0x8` or else bit `0x8` to `0x200`, bit `0x20` to `0x10`, bit `0x40` to `0x800`, bit `0x80` to `0x100`, bit `0x100` to `0x400`) in
   style 2, under `[0x0208EA28]` or, for `0x00394A90`, the
   root `[0x0208EA50]` (slot 4); `0x00394A90` serves `0x00583FD0`.
 
@@ -170,7 +170,7 @@ The table `0x0208EA60` holds one 8-byte window pointer per slot. `0x00241D40` st
 | `0x0208EA68` | `void*` | 0 (zero-filled tail) | slot 1: the second confirm window opened under a root other than `[0x0208EA38]` and `[0x0208EA50]`, 0 when none is open | `0x00241D40`: the window (`0x00241E48`), 0 when it closes (`0x0024257E`); `0x002419B0`, 0 after it closes the window (`0x00241A04`, `0x00241A31`) | `0x002419B0` (`0x002419B6`); `0x00241A50(slot)` (`0x00241A5C`), with 1 from the battle menu (`0x0027C4D2`) and with a variable slot from `0x0027A353` and `0x00229095` |
 
 `0x002419B0`, run by `0x0035BB70` at the field set-up and teardown (`0x0035BB99`), closes the slot-1 window unless its
-`+0x7C` bit 5 is set: it hides it (`0x00244DD0`) when bits 0 and 5 of `+0x40` are set, and otherwise sends it message 15
+`+0x7C` bit `0x20` is set: it hides it (`0x00244DD0`) when bits `0x1` and `0x20` of `+0x40` are set, and otherwise sends it message 15
 (`0x00915058`) and releases it (`0x00245020`).
 
 No other instruction reaches `0x0208EA68`. The table's address is taken only by `0x00241A50`.

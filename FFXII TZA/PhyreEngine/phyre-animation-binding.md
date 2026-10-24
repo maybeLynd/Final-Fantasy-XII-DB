@@ -68,7 +68,7 @@ A segment with no matching member leaves the record unbound without a log line. 
 accessor (member vtable slot 1) gives the array kind at `+0x5C`:
 
 - 0 (a scalar): the size is the type's element size (`[member+0x30]+0x38`), or 8 when member flag
-  bit 1 (`+0x28`) marks a pointer member;
+  bit `0x2` (`+0x28`) marks a pointer member;
 - 1 to 4 (the array kinds): the index (descriptor `+0x30`) must be below the count (array slot 4),
   else it logs `Not binding %s:%s because array index (%d) exceeds array size (%d)` and skips; the
   address is the array base (slot 6) plus index × element size;

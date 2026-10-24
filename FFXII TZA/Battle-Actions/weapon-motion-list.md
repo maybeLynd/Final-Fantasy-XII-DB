@@ -20,7 +20,7 @@ animation set.
 1. An enemy record (stats `+0x05` = 1) whose definition row byte `+0x13` is not `0xFF` takes that byte
    (`0x0032031F`-`0x0032033C`).
 2. A record whose main hand `+0x50` is `0x1000`, Unarmed, with no off-hand item (`+0x52` = `0xFFFF`) and Brawler (augment 9)
-   in either augment layer (`+0x69` or `+0x79` bit 1) takes row 22 (`0x0032034B`-`0x00320384`).
+   in either augment layer (`+0x69` or `+0x79` bit `0x2`) takes row 22 (`0x0032034B`-`0x00320384`).
 3. Otherwise `0x003203B0(main hand)` takes the row of the main-hand item's motion class `+0x26` when the id is not
    `0xFFFF` and the item's slot bits `+0x07` are below `0x20`; any other id gives row −1, the high byte of the row
    count, 0 (`0x003203B0`-`0x0032043C`).

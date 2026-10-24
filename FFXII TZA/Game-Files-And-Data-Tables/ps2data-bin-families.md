@@ -15,6 +15,20 @@ For each family the list gives how the executable reaches it and what the bytes 
 another page documents carry that page; the rest are described in the row and, where there is more to say,
 in the sections below. The six small tables are on [their own page](small-bin-tables.md).
 
+One more file under `ps2data/` is outside the list, because its archive name does not end in `.bin`:
+`ps2data/debglobal.bin/file1`, 148 bytes. It holds four 16-byte NUL-padded strings, the IPv4 addresses
+`10.0.5.238`, `10.0.5.255`, `10.0.5.254` and `10.0.16.26`, followed by 84 zero bytes;
+[`ps2data-bin-families-debglobal-rows.tsv`](ps2data-bin-families-debglobal-rows.tsv) lists them with the file's
+SHA-256.
+
+- The executable names it once, `PS2Data\DebGlobal.bin` at `0x00D22C58`, and the string's only reference is the
+  pointer at `0x01F2C750`. No RIP-relative, image-base-relative, absolute-pointer or RVA operand or data word names an
+  address from `0x01F2C750` to `0x01F2C75F`.
+- The data on either side belongs to other readers. Before it, an image ends at `0x01F2C74F`: a 0x10-byte header,
+  0x1000 bytes of pixels and a 256-entry palette at `0x01F2C350`, read by `0x0051D220` and `0x0051D270`. After it, six
+  16-byte records start at `0x01F2C760`, which `0x00521450` walks forward from `0x0052177E`.
+- None of the four addresses occurs as text in any `.exe` or `.dll` in `x64`.
+
 ## Columns
 
 | Column | Meaning |

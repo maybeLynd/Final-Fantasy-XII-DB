@@ -18,7 +18,7 @@ first that refuses:
    nothing except Dismiss and Dismount.
 3. **Summoning while an Esper is out.** The summon actions are refused while a summoned Esper is in
    the battle (in the plain battle state; in a town or while riding a chocobo this test does not apply).
-4. **Statuses.** Stop, Sleep and Disable refuse every action; Silence refuses Magicks and every action whose row sets bit 19 of
+4. **Statuses.** Stop, Sleep and Disable refuse every action; Silence refuses Magicks and every action whose row sets bit `0x80000` of
    `+0x0C`, which the shipped data sets on 16 enemy Foecraft actions such as Fear, Fog, Aquaga, Curse and
    Necromancy; KO, Stone and X-Zone refuse everything - even where the town flag lets such a unit pass
    the first test.
@@ -42,23 +42,24 @@ otherwise. It has seven callers: the battle menu `0x0031EB20` (`0x0031F28A`), th
 (`0x00305B09`), the effect applier `0x00307300` (`0x00307398`), `0x0030DB70` (`0x0030DBBE`) and the running-action
 check `0x002FFB60` (`0x002FFC7C`, its reason 6). In order:
 
-1. Code 2 when the unit lacks bit 4 of its first byte or a stats record, when it has status bit 0, 1 or
+1. Code 2 when the unit lacks bit `0x10` of its first byte or a stats record, when it has status bit `0x1`, `0x2` or
    31 and `0x00377C20()` is 0, or when it is on the enemy side and the byte at `[unit+0x6A0]` has any of
-   bits 3, 4, 5 or 6 (`0x30` or `0x48`).
+   bits `0x8`, `0x10`, `0x20` or `0x40` (`0x30` or `0x48`).
 2. Code 4 when `0x00322C50(0x14, id)` rejects the id.
 3. Code `0x24` for a party-side unit without Confuse or Berserk (status `0x08000020`) while
    `0x00253B90()` is 1 (FLEEING, `0x01E0C2B8` = 0), unless the id is `0x113` (Dismiss) or `0x95` (Dismount).
-4. Code `0x2C` for ids `0x106`-`0x112` (the summons) while `0x0030D9A0()` is 1 - bit 0 of
+4. Code `0x2C` for ids `0x106`-`0x112` (the summons) while `0x0030D9A0()` is 1 - bit `0x1` of
    `[0x02EBF190]+0x5B04`, which the summon scene sets ([Quickenings and summons](quickenings-and-summons.md)).
-   `0x0030D9A0` returns 5, 4, 3 (town flag `0x00377C20`), 2 or 1 from bits 3, 2, the town flag, 1 and 0 of
+   `0x0030D9A0` returns 5, 4, 3 (town flag `0x00377C20`), 2 or 1 from bits `0x8`, `0x4`, the town flag, 1 and 0 of
    that word, in that priority.
-5. **Statuses:** `0x0030E9C0(stats, mask)` with mask `0x8000201B` (status bits 0, 1, 3, 4, 13, 31), or
-   `0x8000221B` (adding bit 9) when the row has bit 19 of `+0x0C` or kind byte `+0x1E` = 1 (Magicks).
-   With a status in the mask it returns 10 for Silence (bit 9), 7 for Stop (3), 8 for Sleep (4), 11 for
-   Disable (13), 9 for Confuse (5), 12 for Berserk (27), else 6 - in that priority; bits 5 and 27 are
+5. **Statuses:** `0x0030E9C0(stats, mask)` with mask `0x8000201B` (status bits `0x1`, `0x2`, `0x8`, `0x10`, `0x2000`, `0x80000000`), or
+   `0x8000221B` (adding bit `0x200`) when the row has bit `0x80000` of `+0x0C` or kind byte `+0x1E` = 1 (Magicks).
+
+   With a status in the mask it returns 10 for Silence (bit `0x200`), 7 for Stop (3), 8 for Sleep (4), 11 for
+   Disable (13), 9 for Confuse (5), 12 for Berserk (27), else 6 - in that priority; bits `0x20` and `0x8000000` are
    never in the mask here.
 6. **Disabled commands:** `0x0031A7B0(stats, id)` - for a party-side unit only - returns `0x16`, `0x17`,
-   `0x18` or `0x19` when the row's kind `+0x1E` is 0, 1, 2 or 3 and bit 2, 3, 4 or 5 of the battle flags
+   `0x18` or `0x19` when the row's kind `+0x1E` is 0, 1, 2 or 3 and bit `0x4`, `0x8`, `0x10` or `0x20` of the battle flags
    `0x022C314C` is set. Those bits are set and cleared by the battle orders `0x413B`-`0x413E` /
    `0x4143`-`0x4146` ([Battle orders](battle-orders.md)).
 7. **Ownership and license:** `0x00306480(id, stats)` returns `0x0F` when `0x003060E0` returns non-zero,
@@ -86,7 +87,7 @@ for any other kind or a null row; the battle menu `0x0031EB20` asks it (`0x0031F
 ### License
 
 `0x00323EC0(stats, id)` passes (returns non-zero) for anyone other than a main party
-member (stats `+0x05` = 0 and type id below 7), and for rows with bit 13 of `+0x2C`. For the
+member (stats `+0x05` = 0 and type id below 7), and for rows with bit `0x2000` of `+0x2C`. For the
 Quickenings (`0xD0`-`0xE1`) a main party member passes when the Quickening's index in the character's
 record (`0x0030A330`) is below `0x00324020(stats)`; for any other row the License Board check
 `0x00323BB0(stats, 1, id)` decides.
@@ -100,11 +101,11 @@ record (`0x0030A330`) is below `0x00324020(stats)`; for any other row the Licens
 | `0x12` | `0x003037A0`: for a party-side unit, the item the action uses (`0x003093D0(id)`, not `0xFFFF`) has an owned count of 0 (`0x0030B0E0`) and is not the item already set aside at `+0xDC8` |
 | `0x13` | MP: the `i16` at stats `+0x4C` is below `0x00309110` - for kinds other than 5 and 6, the row's byte `+0x0A` adjusted by `0x002F95D0`, or 0 when the unit pays with gil |
 | `0x14` | Mist charges: the byte at stats `+0x4E` is below `0x00308FF0` - the row's byte `+0x0A` for kinds 5 and 6, else 0 |
-| `0x15` | gil: for a party-side unit paying with gil (`0x002F9820`: bit 0 of the augment layer bytes `+0x6C` or `+0x7C`, augment 32 (Offering), "Enables casting of magicks with gil, rather than MP"), when the cost `0x00309060` is above both the party's gil (`[0x02092758]+8`, `0x00253690`) and the gil already reserved at `+0xE58` |
+| `0x15` | gil: for a party-side unit paying with gil (`0x002F9820`: bit `0x1` of the augment layer bytes `+0x6C` or `+0x7C`, augment 32 (Offering), "Enables casting of magicks with gil, rather than MP"), when the cost `0x00309060` is above both the party's gil (`[0x02092758]+8`, `0x00253690`) and the gil already reserved at `+0xE58` |
 
 ### Which cost the battle menu shows
 
-For a row with bit 29 of `+0x0C` (the entry carries a cost), the battle menu `0x0031EB20` asks
+For a row with bit `0x20000000` of `+0x0C` (the entry carries a cost), the battle menu `0x0031EB20` asks
 `0x002FA140(unit, id)` (90 bytes, called only at `0x0031F033`) which cost to show, and stores the mapped value
 at `+0x4C` of its list record:
 
@@ -112,16 +113,16 @@ at `+0x4C` of its list record:
 |---:|---|---:|
 | 0 | the unit's stats record has kind byte `+0x05` = 1 (an enemy) (`0x002FA151`) | 1 (MP) |
 | 2 | the id is a summon `0x106`-`0x112` or a Quickening `0xD0`-`0xE1` (`0x002FA15A`-`0x002FA179`) | 2 (Mist charges) |
-| 1 | bit 0 of stats `+0x6C` or `+0x7C` is set, the same pay-with-gil test as `0x002F9820` (`0x002FA182`-`0x002FA18C`) | 4 (gil) |
+| 1 | bit `0x1` of stats `+0x6C` or `+0x7C` is set, the same pay-with-gil test as `0x002F9820` (`0x002FA182`-`0x002FA18C`) | 4 (gil) |
 | 0 | otherwise | 1 (MP) |
 
-A row with bit 31 of `+0x0C` stores 3 (the item count) instead.
+A row with bit `0x80000000` of `+0x0C` stores 3 (the item count) instead.
 
 ## Modding notes
 
 - An action's kind is byte `+0x1E` of its row; kinds 1 and 2 decide whether Silence applies (kind 1,
-  or flag bit 19) and which of the battle's command switches covers it.
-- Bit 13 of `+0x2C` makes an action need no license.
+  or flag bit `0x80000`) and which of the battle's command switches covers it.
+- Bit `0x2000` of `+0x2C` makes an action need no license.
 - The cost byte is `+0x0A` of the row: MP for most kinds, Mist charges for summons and Quickenings.
 
 ## Related

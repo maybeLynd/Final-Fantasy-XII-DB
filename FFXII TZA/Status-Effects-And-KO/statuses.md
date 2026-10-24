@@ -89,10 +89,10 @@ Nine more masks are each used at one to three sites, and 48 sites test the combi
 | `beat` | the interval of the status's periodic step, from row `+0x09`; `-` for none |
 | `cancels` | the statuses it removes when it lands, from row `+0x0C` |
 | `blocked_by` | the statuses that keep it from landing, from row `+0x20` |
-| `class` | harmful or beneficial, from flag bit 13 |
+| `class` | harmful or beneficial, from flag bit `0x2000` |
 | `remedy` | whether Remedy cures it: always, or with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) |
-| `refresh` | `yes` when it can be applied again while present (flag bit 5) |
-| `party_only` | `yes` when it is refused on a target that is not a party record (flag bit 8) |
+| `refresh` | `yes` when it can be applied again while present (flag bit `0x20`) |
+| `party_only` | `yes` when it is refused on a target that is not a party record (flag bit `0x100`) |
 | `arm` | what its arrival or removal does beyond the status bit ([Gaining and losing statuses](status-changes.md)) |
 | `sites` | the row's file offset in `battle_pack.bin` |
 

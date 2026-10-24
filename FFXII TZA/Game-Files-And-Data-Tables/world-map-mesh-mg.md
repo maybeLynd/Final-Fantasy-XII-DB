@@ -98,6 +98,24 @@ Measured from both archive copies and the twelve file-size tables:
 The tile sizes match the textures: the two upper tiles are square and 1024 × 1024, the two lower
 tiles are a quarter as tall and 1024 × 256.
 
+[`world-map-mesh-mg-mg-rows.tsv`](world-map-mesh-mg-mg-rows.tsv) lists both copies with size, SHA-256 and
+the language ids that load each, then every field of each copy in file order: the directory, both sub-mesh
+headers, the six slots, the 16 tile vertices, the 341 strip vertices, both index streams, the 174 strips and
+the tail, each with the function that reads it and what it shows.
+
+- Tiles 0 to 3 are the four quarters of the Ivalice picture, textured `w_main0` to `w_main3`. Sub-mesh 1 is
+  the shading laid over the World Map with `w_shade_p`, and the license board draws the same strips black.
+  Language ids 7, 8 and 11 read the `ch` copy, the others the `in` copy.
+- The 174 strips run back to back over entries 0 to 955 of sub-mesh 1's index stream, and together they use
+  all 341 of its vertices. No index reaches past the vertex array, so no field is out of range.
+- Never read: sub-mesh 0's index stream, which gives each tile as `0x8000 + 4k + 2`, `4k`, `4k + 1`, `4k +
+  3`, while `0x005556A0` takes vertices `4k` to `4k + 3` and emits them 3, 0, 1, 2. `0x00555D10`, the only
+  reader of index runs, is reached only through `0x00555400`, which `0x00562F40` and `0x0055A8A0` call with
+  sub-mesh 1.
+- Also never read: the `indexStart` and `indexCount` of sub-mesh 0's slots, both directory sizes, both
+  `idxCount` fields and the 8 zero bytes after sub-mesh 1's index stream. Slot 1 of sub-mesh 1 holds 0
+  entries, so `0x00555D10` reads nothing for it and it draws nothing.
+
 ## Loader behaviour
 
 ### Request

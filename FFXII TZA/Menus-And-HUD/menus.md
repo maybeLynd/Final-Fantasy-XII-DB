@@ -73,7 +73,7 @@ The mailbox at `0x0215F1A0` holds one request:
 | `+0xE` `u8` | set when a menu closes |
 | `+0xF` `u8` | set when a menu closes; read by `is_callpartymenu_status` |
 
-`0x002E1B10(id, parameter)` posts; for id 2 it also refuses on policy bit 0 (`0x002E1B27`-`0x002E1B33`). A second post before
+`0x002E1B10(id, parameter)` posts; for id 2 it also refuses on policy bit `0x1` (`0x002E1B27`-`0x002E1B33`). A second post before
 delivery overwrites the first and still answers 1 (`0x002E1B35`-`0x002E1B47`).
 
 | Poster | Posts |
@@ -97,7 +97,7 @@ The router is also called directly, without the mailbox:
 
 ### The script verbs
 
-`0x002E0DA0` turns a script selector into an id, keeping bit 15 (`0x002E0DA6`-`0x002E0E00`):
+`0x002E0DA0` turns a script selector into an id, keeping bit `0x8000` (`0x002E0DA6`-`0x002E0E00`):
 
 | Selector | 0 | 1 | 2 | 3 | 4 | 5 | 6 | above 6 |
 |---|---|---|---|---|---|---|---|---|
@@ -116,18 +116,18 @@ Six more verbs read or set menu state through helpers of their own:
 
 | Verb | Id | Helper | Does |
 |---|---|---|---|
-| `spattackwindowsync` | `0x2A9` | `0x002E1660` | keeps waiting while `0x0028F7C0` answers 1 or 2; it answers 3 with no special-attack window at `[0x0209BE80] + 0x10FB0`, or when the window's `+0x752` is 1 or bit 0 of its `+0x749` is set, and 1 otherwise |
-| `open_interventionmenu`, `close_interventionmenu` | `0x455`, `0x456` | `0x0033F860`, `0x002E22F0`, `0x0035D030` | both run the same result handler: `0x0028E940(1)` stores id 1 at `[0x0209BE80] + 0x10F60` and sets bits 4 and 10 of `+0x10F68`, then sound 4 plays (`0x00249C60`) |
-| `get_interventionmenu_status` | `0x457` | `0x002E2340` | 0 without the battle menu (`[0x0209BE80] + 0xAB30`, refused by bit 13 of `+0x10F68`), otherwise 1 with bit 4 of `+0x10F68` set and 2 without (`0x0028F6A0`) |
+| `spattackwindowsync` | `0x2A9` | `0x002E1660` | keeps waiting while `0x0028F7C0` answers 1 or 2; it answers 3 with no special-attack window at `[0x0209BE80] + 0x10FB0`, or when the window's `+0x752` is 1 or bit `0x1` of its `+0x749` is set, and 1 otherwise |
+| `open_interventionmenu`, `close_interventionmenu` | `0x455`, `0x456` | `0x0033F860`, `0x002E22F0`, `0x0035D030` | both run the same result handler: `0x0028E940(1)` stores id 1 at `[0x0209BE80] + 0x10F60` and sets bits `0x10` and `0x400` of `+0x10F68`, then sound 4 plays (`0x00249C60`) |
+| `get_interventionmenu_status` | `0x457` | `0x002E2340` | 0 without the battle menu (`[0x0209BE80] + 0xAB30`, refused by bit `0x2000` of `+0x10F68`), otherwise 1 with bit `0x10` of `+0x10F68` set and 2 without (`0x0028F6A0`) |
 | `get_interventionmenu_commandstatus` | `0x45A` | `0x002E2320`, `0x002E0E30` | the battle menu's current command (`0x002767C0`, through `0x0028F5F0`) plus 1 for 0-7, the same value for 9-17, 18 and 19 swapped, and 0 for any other |
-| `setpartymenustatus` | `0x45F` | `0x002E23E0`, `0x002E13C0` | sets or clears one bit of `[0x020927C0] + 0x32C4` (`0x00254E00`): kinds 0-7 give bits 0, 1, 9 and `0x12`-`0x16`, kind 9 bit `0x1E`, any other `0x1D` |
+| `setpartymenustatus` | `0x45F` | `0x002E23E0`, `0x002E13C0` | sets or clears one bit of `[0x020927C0] + 0x32C4` (`0x00254E00`): kinds 0-7 give bits `0x1`, `0x2`, `0x200` and `0x12`-`0x16`, kind 9 bit `0x1E`, any other `0x1D` |
 
 `show_escapingwindow` (`0x458`) jumps from `0x002E2310` to the return stub `0x0016D6A0` and does nothing. The bits
 `0x1E`-`0x23` of the same word lock Config rows ([Config screen](config-screen.md)). `setmenudisablestatus` (`0x3A5`) sets or clears bit n of
 `0x0215F1C4` through `0x002E1BE0`, one of the 16 words `0x002E0FA0` ORs together; `0x002E12E0` passes 0-18 and turns any other value into -1, which is refused.
 
-Selector 5 with bit 15, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
-selector 4, the notice board, 8 times; selector 0 with bit 15, the destination map, 18 times. Bit 15 makes the screen
+Selector 5 with bit `0x8000`, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
+selector 4, the notice board, 8 times; selector 0 with bit `0x8000`, the destination map, 18 times. Bit `0x8000` makes the screen
 open with no fade (`0x0027FF6D`-`0x0027FF77`).
 
 ### Delivery
@@ -135,7 +135,7 @@ open with no fade (`0x0027FF6D`-`0x0027FF77`).
 The drain `0x002E09A0` runs once per world tick:
 
 1. While manager slot 0 is not ready, it throws the request away (`0x002E0B8B`-`0x002E0BAA`).
-2. A pending id 2 is dropped when `0x0037B330` answers non-zero or policy bit 0 or 3 is set (`0x002E0BC0`-`0x002E0C65`).
+2. A pending id 2 is dropped when `0x0037B330` answers non-zero or policy bit `0x1` or `0x8` is set (`0x002E0BC0`-`0x002E0C65`).
 3. While a party record is busy or another request word is held, it waits and keeps the request (`0x002E0C87`-`0x002E0CC2`).
 4. It then tests `0x00226BA0` and `0x0053DD10` for ids other than 12, 15, 17, 18 and 19 (`0x002E0CC9`-`0x002E0CF3`), but
    `0x0053DD10` always answers 1, so this never holds a request.
@@ -176,7 +176,7 @@ selectors 3 and 1, which no script calls.
 
 The script menu host `0x002D70F0`, which `0x002D7070` builds for the parameters `0x40` and `0x41` above,
 marks itself open in the global below. The Party Menu's picture loader `0x002CEB40` tests it when it opens: while the
-host is open it sets bit 21 of row 1 through `0x002E1C20(1, 21)` (`0x002CEDD4`-`0x002CEDE5`), which blocks the pause
+host is open it sets bit `0x200000` of row 1 through `0x002E1C20(1, 21)` (`0x002CEDD4`-`0x002CEDE5`), which blocks the pause
 menu ([Action availability](../Controls-And-Input/action-availability.md)).
 
 | Global | Type | Start | Meaning | Set by | Read by |
@@ -187,10 +187,10 @@ No other instruction names `0x0209E66C`.
 
 ## Modding notes
 
-- A script opens a screen with `openfullscreenmenu_48d(selector, parameter)`; bit 15 on the selector skips the fade.
+- A script opens a screen with `openfullscreenmenu_48d(selector, parameter)`; bit `0x8000` on the selector skips the fade.
 - Two posts in one tick keep only the second.
 - A request the router refuses during delivery is lost, not retried.
-- A selector above 6 with bit 15 set becomes id `0x8002` and skips the policy-bit-0 test at `0x002E1AAF`.
+- A selector above 6 with bit `0x8000` set becomes id `0x8002` and skips the policy bit `0x1` test at `0x002E1AAF`.
 
 ## Related
 

@@ -238,7 +238,7 @@ record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), b
   dead repeat, the roster loop and the all-records loop. A record is driven once per loop that
   names it, so a party member is driven by both the roster loop and the all-records loop.
 - The init core runs on slot 0 in branch 3 after a designated drive and in branch 5 before the
-  roster loop; its field initialisation runs once per field (flags bit 2).
+  roster loop; its field initialisation runs once per field (flags bit `0x4`).
 
 ## Modding notes
 

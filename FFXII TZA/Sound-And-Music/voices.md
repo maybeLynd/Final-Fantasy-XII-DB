@@ -41,7 +41,7 @@ from the `in` folder, or the `ch` folder for the Korean and Chinese builds (`0x0
 
 ### The language
 
-`0x002DDE20` answers bit 10 of the options record `*0x0215E6E0 + 4`. Clear plays the `.vpc` and set plays the `.vpcjp`
+`0x002DDE20` answers bit `0x400` of the options record `*0x0215E6E0 + 4`. Clear plays the `.vpc` and set plays the `.vpcjp`
 (`0x002DEBB0`). Options command `0x10` writes the bit (`0x002DE2F0`, `0x002DE2FD`); a new options record sets it for the
 Japanese, Korean and Chinese builds (`0x002DDF24`-`0x002DDF55`).
 
@@ -54,9 +54,9 @@ a pending bit in the cue entry.
 | Cue entry field | Holds |
 |---|---|
 | `+0x08` bits 0-23 | the bank's offset |
-| `+0x08` bits 24-30 | the volume, 0-127 |
-| `+0x08` bit 31 | pending start |
-| `+0x0C` bits 0-23, byte `+0x0F` | the bank's size, the pan |
+| `+0x08` bits `0x7F000000` | the volume, 0-127 |
+| `+0x08` bit `0x80000000` | pending start |
+| `+0x0C` bits `0xFFFFFF`, byte `+0x0F` | the bank's size, the pan |
 | `+0x10`, `+0x14` | the stream id, the load handle |
 
 ### Starting a line
@@ -103,7 +103,7 @@ does it go on to the battle-voice banks (`0x0021C870`). Pan and volume go throug
 Each cue helper first takes the slot's table for the language into `+0x30` (`0x002DEBB0`) and checks the slot is ready
 and the index below the count:
 
-- `0x003E9A10(slot, index)` answers 1 while a line is pending, a load handle at cue `+0x14` with bit 31 of `+0x08`,
+- `0x003E9A10(slot, index)` answers 1 while a line is pending, a load handle at cue `+0x14` with bit `0x80000000` of `+0x08`,
   and otherwise whether its stream still plays (`0x001DC2C0`); `voicesync` waits on it (`0x003527F0`).
 - `0x003E9B80(slot, index)` answers whether the cue holds a load handle, the test `voicepan` and `voicevolume` wait on
   (`0x003537B0`).

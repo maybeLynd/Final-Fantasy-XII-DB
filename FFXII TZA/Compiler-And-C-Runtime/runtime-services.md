@@ -131,6 +131,15 @@ both skip that step.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x022D7F28` | `void*` | 0 (zero-filled tail of `.data`) | the worker's thread descriptor `0x022D7F20` `+0x08`: the start `0x00368C10` | `0x00368C80` (`0x00368CE4`) | `0x008636E0` (`0x0086376B`) |
+| `0x022D7F30` | `void*` | 0 (zero-filled tail of `.data`) | descriptor `+0x10`: the stack buffer `0x022D3F20` | `0x00368C80` (`0x00368CFB`) | only the store names it; `0x008636E0` does not read `+0x10` |
+| `0x022D7F38` | `u32` | 0 (zero-filled tail of `.data`) | descriptor `+0x18`: the stack size `0x4000` | `0x00368C80` (`0x00368CDA`) | `0x008636E0` (`0x00863789`), passed to `0x00863430` |
+| `0x022D7F40` | `void*` | 0 (zero-filled tail of `.data`) | descriptor `+0x20`: `0x02EAF6D0` | `0x00368C80` (`0x00368D1B`) | only the store names it; `0x008636E0` does not read `+0x20` |
+| `0x022D7F48` | `u32` | 0 (zero-filled tail of `.data`) | descriptor `+0x28`: `0x24` | `0x00368C80` (`0x00368D0E`) | `0x008636E0` (`0x00863781`), passed to `0x00863430` with the stack size |
+| `0x022D7F54` | `u32` | 0 (zero-filled tail of `.data`) | descriptor `+0x34`: 0 | `0x00368C80` (`0x00368CF5`) | only the store names it; `0x008636E0` does not read `+0x34` |
+| `0x022D7F7C` | `u32` | 0 (zero-filled tail of `.data`) | the worker semaphore's descriptor `0x022D7F78` `+0x04`: the maximum count `0x10000`, stored as one qword with `+0x08`, the initial count 0 | `0x00368C80` (`0x00368C9B`) | `0x00863540` (`0x0086355E`, `0x00863565`), for `CreateSemaphoreW` (`0x008632E0`) |
+| `0x022D7F8C` | `u32` | 0 (zero-filled tail of `.data`) | semaphore descriptor `+0x14`: 0 | `0x00368C80` (`0x00368CBA`) | only the store names it; `0x00863540` reads `+0x04` and `+0x08` only |
+| `0x022D7FB9` | `u8` | 0 (zero-filled tail of `.data`) | the worker's thread argument: cleared, and its address passed to `0x008636E0` and `0x00863610` | `0x00368C80` (`0x00368D22`) | its address only (`0x00368D2E`, `0x00368D49`) |
 | `0x022D7FB4` | `i32` | 0 (zero-filled tail of `.data`) | the worker whose thread priority the next hand-over resets; 0 throughout | `0x00368C80`, 0 (`0x00368CAD`, `0x00368D65`, `0x00368D7B`); `0x00369080`, 0 (`0x0036908D`, `0x003690A8`) | `0x00368C80` (`0x00368D58`, `0x00368D98`); `0x00369080` (`0x00369084`, `0x003690C5`); each sign-extends it |
 
 ### The PhyreEngine lock

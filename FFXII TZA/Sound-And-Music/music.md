@@ -18,14 +18,14 @@ addresses: "0x00261F90, 0x003EAA70, 0x00361010, 0x0030D9A0, 0x003614E0, 0x002DEE
 
 The zone setup `0x0025D9E0` calls `0x00261F90` (`0x0025DB8E`) for the zone being entered:
 
-1. It returns when the zone's `+0x28` is not 0 or its done bit, `+0x10` bit 6, is set (`0x00261F96`-`0x00261FA7`).
-2. It chooses music only when `+0x17` bit 7 is set (`0x00262000`).
+1. It returns when the zone's `+0x28` is not 0 or its done bit, `+0x10` bit `0x40`, is set (`0x00261F96`-`0x00261FA7`).
+2. It chooses music only when `+0x17` bit `0x80` is set (`0x00262000`).
 3. It always sets the done bit on the way out (`0x002620D5`), so the music is chosen once per zone.
 
 ### Which track
 
 1. The field id is payload `+0x1044` (`0x0026200F`, `0x003148F0`).
-2. When payload `+0x1063` bit 6 is set, the track is the saved override at payload `+0x1534`; otherwise it is the
+2. When payload `+0x1063` bit `0x40` is set, the track is the saved override at payload `+0x1534`; otherwise it is the
    field's track from the music table, `0x003EAA70` (`0x0026201B`-`0x00262034`).
 3. Unless that track is boss music (`0x00361010`, `0x00262041`), the battle mode decides: summon mode makes it `0x5B`,
    chocobo mode `0x5A` (`0x0026204A`-`0x00262063`). Summon mode is `0x0030D9A0` answering 1 and chocobo mode answering 2
@@ -41,7 +41,7 @@ The table, its story ladder and the boss-music bit are on [Music table](music-ta
 |---|---|
 | a music change is already pending, `0x022CBA58` | nothing; answers 0 |
 | the track is already playing, `0x0215EF44` (`0x002DEC00`) | answers 2, and `0x002DEE50(current, 0x78, 0x7F)` fades it back to full volume (`0x002620BB`) |
-| otherwise | schedules the change as a task with the track, the length and the volume, marks busy bit 6 (`0x003601B0(6)`) and answers 1 |
+| otherwise | schedules the change as a task with the track, the length and the volume, marks busy bit `0x40` (`0x003601B0(6)`) and answers 1 |
 
 `0x002DEE50(track, length, volume)` stores the volume at `0x0215EF4D` and passes the fade to the music controller through
 `0x001DBCA0`; a negative track with nothing playing does nothing.
@@ -49,12 +49,12 @@ The table, its story ladder and the boss-music bit are on [Music table](music-ta
 ### No track
 
 When no track is chosen and one is playing, `0x002DEE50(current, 0x78)` and `0x00361170(current, 0x78, 1)` fade it out
-(`0x00262080`, `0x00262090`). When nothing is playing, `+0x17` bit 7 is cleared (`0x00262097`). With bit 7 clear,
+(`0x00262080`, `0x00262090`). When nothing is playing, `+0x17` bit `0x80` is cleared (`0x00262097`). With bit `0x80` clear,
 `0x00360D30` clears `0x022CBA60` and calls `0x002DE050` when it was set (`0x002620C5`-`0x002620D0`).
 
 ### The change task
 
-`0x003614E0` hands the change to one of two tasks, and `0x00361460` ends either one by clearing busy bit 6:
+`0x003614E0` hands the change to one of two tasks, and `0x00361460` ends either one by clearing busy bit `0x40`:
 
 - With `0x022CBA60` clear, `0x00360EE0` loads the track into a slot (`0x00361630`) and waits for it to be ready. With a
   track playing it crossfades to the new one (`0x002DEC30`); with none, it sets the volume (`0x002DEE30`) and starts the
@@ -78,7 +78,7 @@ The script music verbs load tracks into four slots at `0x022CB9F0` (layout below
 1. `0x00361630(track)`, from `musicread` `0x229` (`0x00341710`) and the begin of `musicplay` `0x22B` (`0x00342770`), keeps a
    slot already holding the track and clears its two flag bits. A new track takes the first free slot only when that
    is slot 0 or 1 (`0x0036169A`), asks the music controller for a load id (`0x001DBB80`) and sets state 4.
-2. The pump `0x00360B50` sets state 5 once the load id is done (`0x002DEE90`), and empties a ready slot whose bit 0 is set:
+2. The pump `0x00360B50` sets state 5 once the load id is done (`0x002DEE90`), and empties a ready slot whose bit `0x1` is set:
    it stops the track (`0x002DEDE0`) and frees its bank (`0x002DEC20`, `0x00210960`). States 1 and 2 step to a load.
 3. `0x00360DD0` marks every slot except the current track's for release, emptying ready ones at once.
 
@@ -88,7 +88,7 @@ The script music verbs load tracks into four slots at `0x022CB9F0` (layout below
 
 The slots open one block, `0x022CB9F0`-`0x022CBA63`, which `0x00360C70` sets up at boot (called from `0x00266D10` at
 `0x00266DD3`). It gives each slot its index and state 0 (`0x00360C90`-`0x00360C9F`), then clears the rest of the block
-(`0x00360CAE`-`0x00360CBE`): the pointer to the track flag file at `0x022CBA50`, two bytes a track with bit 0 the boss-music
+(`0x00360CAE`-`0x00360CBE`): the pointer to the track flag file at `0x022CBA50`, two bytes a track with bit `0x1` the boss-music
 bit, read by `0x00361010` and stored by the file's load completion `0x00360B40` (`0x00360B42`;
 [Music table](music-table.md)); the pending music change `0x022CBA58`; and the fade-out flag `0x022CBA60`.
 
@@ -145,7 +145,7 @@ new version and 4.0 (`0x00222AD0`). `0x002228A0` passes manager `+0x30` to the d
 
 | Verb | Id | Body | Does |
 |---|---|---|---|
-| `setnowmapmusicno` | `0x471` | `0x00345E70` -> `0x0026A720` | a track sets payload `+0x1063` bit 6 and `+0x1534`; a negative value clears both |
+| `setnowmapmusicno` | `0x471` | `0x00345E70` -> `0x0026A720` | a track sets payload `+0x1063` bit `0x40` and `+0x1534`; a negative value clears both |
 | `getnowmapmusicno` | `0x470` | `0x00345760` -> `0x0026DE00` | the area's track as chosen above, with the summon and chocobo tracks |
 | `getnowmapmusicno_47a` | `0x47A` | `0x00345400` -> `0x0026DE00` | the same; a non-zero argument leaves out the summon and chocobo tracks (`0x0026DE20`) |
 | `isbossmusic` | `0x47B` | `0x00349E10` -> `0x00361010` | the track's boss-music bit |
@@ -173,7 +173,7 @@ A track slot, `0x18` bytes, four at `0x022CB9F0` (`0x00360C70` sets them up):
 |---|---|---|---|
 | `+0x00` | `u8` | state | 0 free, 3 load asked, 4 loading, 5 ready (`0x00360B50`) |
 | `+0x01` | `u8` | track | the track number |
-| `+0x02` | `u8` | flags | bit 0 empty the slot when ready, bit 1 fading out (`0x00361170`) |
+| `+0x02` | `u8` | flags | bit `0x1` empty the slot when ready, bit `0x2` fading out (`0x00361170`) |
 | `+0x03` | `u8` | index | the slot's own index, returned by `0x00361630` |
 | `+0x08` | `void*` | handle | 0 when a load is issued (`0x00360BCA`, `0x003616B9`); when the load reports done (`0x002DEE90` answers 0) the slot becomes ready and a handle here goes to `0x003697F0` (`0x00360BA3`-`0x00360BBC`) |
 | `+0x10` | `u32` | issueClear | set to 0 with `+0x08` each time a load is issued, before `+0x14` takes the new load id: by the per-frame step `0x00360B50` for a slot in state 2 (`0x00360BCE`, base `0x022CB9F1`, so `[rbx + 0xF]` is slot `+0x10`) and by `0x00361630` when it takes a free slot (`0x003616BD`) |
@@ -210,7 +210,7 @@ and the paragraphs above name `0x02B5E0E8`, `0x02B5E0F0`, `0x02B5E110` and `0x02
 
 - The crossfade length `0x78` and the volume `0x7F` are immediate operands at `0x0026207C`, `0x00262085`, `0x0026209D` and
   in `0x003614C0`.
-- Clearing a zone's done bit, `+0x10` bit 6, makes the next call choose the music again.
+- Clearing a zone's done bit, `+0x10` bit `0x40`, makes the next call choose the music again.
 - The saved override survives saving and loading, because it is payload bytes `+0x1063` and `+0x1534`.
 
 ## Related

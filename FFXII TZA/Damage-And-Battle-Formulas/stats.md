@@ -159,9 +159,9 @@ Attack Power starts from the adjustment word `+0x10`, and the evades from `+0x18
 and `+0x20` (`0x002FF202`-`0x002FF2F5`). Two bits of the `0x02EBF120` row's byte `+0x15` switch sources
 (`0x002FF325`-`0x002FF3C8`):
 
-- **bit 0:** Attack Power adds base and growth `+0x2D`, weapon evade adds `+0x2E`, and the equipped
+- **bit `0x1`:** Attack Power adds base and growth `+0x2D`, weapon evade adds `+0x2E`, and the equipped
   weapon's Attack Power and evade are not added;
-- **bit 1:** shield evade adds base and growth `+0x02`, magick evade `+0x03`, and the shield's values are
+- **bit `0x2`:** shield evade adds base and growth `+0x02`, magick evade `+0x03`, and the shield's values are
   not added.
 
 ### Equipment
@@ -216,12 +216,12 @@ For a party record with a battle unit, the rebuild compares stats `+0x3C` with i
 Confuse (status 5) or Berserk (status 27) changed (mask `0x8000020`, `0x002FF982`-`0x002FF98E`), it cancels
 the unit's current action with `0x003105D0` (`0x002FF9C7`), except in these cases:
 
-- the unit word's bit 24 is set (`0x002FF99C`);
+- the unit word's bit `0x1000000` is set (`0x002FF99C`);
 - the action id `+0x714` is at most `0x21E` and byte `+0x6B4` is at least 9 (`0x002FF9A3`-`0x002FF9BD`);
 - the action id is `0x113` (`0x002FF9BF`).
 
-It then clears the unit's `+0x6F8`, `+0x748`, `+0x770`, `+0x750` and `+0x74C`, bit 10 of `+0x788` and bit 1
-of `+0x6B0`, sets bit 21 of `+0x04`, clears bit 14 of the unit word unless `+0xBA0` holds `0x113` or `0x95`,
+It then clears the unit's `+0x6F8`, `+0x748`, `+0x770`, `+0x750` and `+0x74C`, bit `0x400` of `+0x788` and bit `0x2`
+of `+0x6B0`, sets bit `0x200000` of `+0x04`, clears bit `0x4000` of the unit word unless `+0xBA0` holds `0x113` or `0x95`,
 and calls `0x00307D10` (`0x002FF9CC`-`0x002FFA40`).
 
 ## Modding notes

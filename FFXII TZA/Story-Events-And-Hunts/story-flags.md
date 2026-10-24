@@ -43,8 +43,8 @@ nothing fixes their width. Only the payload clears (`0x002EF2E8`, `0x002EF603`, 
 
 `0x0032A8A0(id)` reads the Primary bank through an encoded id (`0x0032A8A0`-`0x0032A919`):
 
-1. Bits 0-13 are the index; bits 15 and above are dropped (`0x0032A8A8`).
-2. With bit 14 set it answers the story schedule for that index, below (`0x0032A8AE`-`0x0032A8BB`).
+1. Bits `0x3FFF` are the index; bits `0x8000` and above are dropped (`0x0032A8A8`).
+2. With bit `0x4000` set it answers the story schedule for that index, below (`0x0032A8AE`-`0x0032A8BB`).
 3. An index of 512 or more answers 0 (`0x0032A8C0`-`0x0032A8C8`).
 4. Index 0 answers 1 and index 1 answers 0, without reading the bank (`0x0032A8D0`-`0x0032A8DD`): always and never.
 5. Any other index answers its Primary bit (`0x0032A8E9`-`0x0032A911`).
@@ -62,7 +62,7 @@ They treat it differently: `0x003C0B70` answers 0 for it (`0x003C0BBD`), and `0x
 ### The story schedule
 
 `0x00377970(index)` answers from `mapjumpgroupflagrom.bin` (`0x00377970`-`0x003779EE`). The record for the index is a
-rising list of story counter values, the last one marked by bit 15. The answer starts false and flips at each value
+rising list of story counter values, the last one marked by bit `0x8000`. The answer starts false and flips at each value
 the main story counter has reached, comparing as signed 16-bit numbers, so a record of two values is true from the
 first value up to, but not including, the second. The counter is `FieldData_GetVariable0` (`0x00265270`), the word at
 the start of the save payload: slot 0's variable block is bound to the payload base (`0x0026CAF8`-`0x0026CAFD`).
@@ -81,7 +81,7 @@ Besides the script verbs:
   name of the pair ([NPC names](../Characters-And-Objects/npc-names.md)).
 - **Chests.** A chest record's byte `+0x09` is its flag, `0xFF` for none. `setuptreasure` `0x2BE` does not place a
   chest whose flag is set (`0x002FAEE2`-`0x002FAEF0`), and opening it, family-3 verb `0x37`, sets the flag before the
-  contents are rolled (`0x002FAFEA`-`0x002FAFFD`). A chest with `0xFF` is gated at setup by bit 255.
+  contents are rolled (`0x002FAFEA`-`0x002FAFFD`). A chest with `0xFF` is gated at setup by story flag 255.
 - **Traps.** A trap record's byte `+0x04` is its flag. Arming skips a trap whose flag is set (`0x002FA7E8`-`0x002FA7FA`),
   and setting it off sets the flag (`0x002F8243`-`0x002F8253`).
 - **Primary writers.** The setter `0x0032AB60` has five callers and no others: the new-game list (`0x00379198`), the
@@ -111,7 +111,7 @@ The new-game reset `0x002EF2D0` clears the first `0x1538` bytes of the payload, 
 | `+0x000` | `char[8]` | magic | "FLAGROM1" |
 | `+0x008` | `u16` | count | 152 |
 | `+0x00A` | `u16[152]` | offsets | file offset of each record |
-| `+0x13A` | `u16[271]` | lists | the records: story counter values, bit 15 on each record's last value |
+| `+0x13A` | `u16[271]` | lists | the records: story counter values, bit `0x8000` on each record's last value |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -145,7 +145,7 @@ the setter's range, so 52 flags are set.
 
 ## Modding notes
 
-- A Primary id read through the gate with bit 14 set is a story-counter band, not a flag: setting the flag does
+- A Primary id read through the gate with bit `0x4000` set is a story-counter band, not a flag: setting the flag does
   nothing for it.
 - Ids 0 and 1 are permanent always and never answers; the setter cannot store them.
 - Editing `mapjumpgroupflagrom.bin` moves the story points at which menus and map groups open.

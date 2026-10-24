@@ -120,7 +120,7 @@ All multi-byte fields are little-endian.
 | `+0x10` | `u32` | cellW | equal to every glyph record's cellW |
 | `+0x14` | `u32` | cellH | equal to every glyph record's cellH |
 | `+0x18` | `f32` | scale | divides advances and kerning (`0x001E9C01`) |
-| `+0x1C` | `u32` | flags | bit 0 asks for .ker, bit 1 for .fex |
+| `+0x1C` | `u32` | flags | bit `0x1` asks for .ker, bit `0x2` for .fex |
 | `+0x20` | `u32` | metricA | the space width: copied to font record `+0x1C`, which the space token `0x04` reads (below) |
 | `+0x24` | `u32` | metricB | the blank width: copied to font record `+0x20`, which the blank token `0x01` reads (below) |
 
@@ -307,7 +307,7 @@ So the authored pairs apply as authored. The current glyph then becomes the prev
 
 An expansion list remaps glyph indices for one piece of text. The key of each list is `0x00674A00` of a three-part path,
 `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`): a hash starting at `0x1505` that multiplies by 33
-and adds each character, with bit 31 cleared (`0x00674A03`-`0x00674A23`).
+and adds each character, with bit `0x80000000` cleared (`0x00674A03`-`0x00674A23`).
 
 When text is drawn, `0x001E9D20` binds the
 running font and the list for the text's key to the text context (`0x001E9DB9`-`0x001E9DD5`). `0x001FDD60` finds that list in the
@@ -320,9 +320,9 @@ with no font (`0x001E9866`, `0x001E987E`, `0x001E9890`).
 For each glyph `0x002AC2F0` computes the advance:
 
 1. `ceil(advance / scale)` from the glyph record (`0x0017F9C0`, `0x001E9BD0`), or the raw advance when the byte `0x01F811E0`
-   is set. A glyph with no record uses bits 32-36 of the font sheet's glyph entry (`0x002AC4F6`-`0x002AC504`).
+   is set. A glyph with no record uses bits `0x1F00000000` of the font sheet's glyph entry (`0x002AC4F6`-`0x002AC504`).
 2. Plus the letter spacing `state + 0x4C` (`0x002AC507`).
-3. Plus 1.5, or 0.5 when `0x00254A10` returns 0, for glyphs marked by bit 31 of the sheet entry while the float
+3. Plus 1.5, or 0.5 when `0x00254A10` returns 0, for glyphs marked by bit `0x80000000` of the sheet entry while the float
    `state + 0x40` is non-zero (`0x002AC4B8`-`0x002AC4DF`).
 
 The advance and kerning are then scaled by the text size `state + 0x34` and the x scale `state + 0x38`
@@ -410,7 +410,7 @@ them.
 
 ## Modding notes
 
-- To kern a new pair, add `{left, right, adjust}` to the font's `.ker` and set bit 0 of the `.dat` flag word.
+- To kern a new pair, add `{left, right, adjust}` to the font's `.ker` and set bit `0x1` of the `.dat` flag word.
 - A glyph needs a `kernCp` other than -1 to take part in kerning.
 - A replacement digit glyph should keep the width of `0`, because every digit is spaced by it.
 - The `scale` float divides every advance and kerning value of the font.

@@ -53,7 +53,7 @@ bank.
   (state 8) it only seeks there and sets state 6; otherwise, once the bank is ready (`+0x80` = 4), it stores the
   material at `+0x34`, the start time at `+0x88` and sets state 2.
 - `0x007E3040(bank, material)` finds a stream that holds a material and has no owner; in a sound bank whose header byte
-  `+0x05` has bit 0 set, every material shares stream 0. `0x007E3270` gives a free stream: one with no material, or else
+  `+0x05` has bit `0x1` set, every material shares stream 0. `0x007E3270` gives a free stream: one with no material, or else
   one in state 8.
 - `0x007E4DB0(stream, voice)` gives a stream to a voice when it has no owner (`+0x98`) and wakes an idle stream to state
   6. `0x007E4800(stream, voice)` gives it back through `0x007E4410`, which refuses below state 6 with

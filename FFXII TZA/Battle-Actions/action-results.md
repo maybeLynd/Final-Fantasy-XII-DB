@@ -19,7 +19,7 @@ be affected at that moment, nothing in the record is applied.
 ### The record
 
 `0x003848E0(record)` (205 bytes) prepares the record. It zeroes `+0x08`-`+0x147`
-(`0x003848EF`-`0x003848F5`), leaves `+0x00`-`+0x07` to the caller, sets bit 0 of `+0x2C`, and sets the
+(`0x003848EF`-`0x003848F5`), leaves `+0x00`-`+0x07` to the caller, sets bit `0x1` of `+0x2C`, and sets the
 "nothing to do" values (`0x003848FA`-`0x003849A0`):
 
 - `-1` in the dword at `+0x38` and in the dwords at `+0x138` and `+0x13C`;
@@ -39,15 +39,15 @@ stack of the function that starts the action or status change, which first clear
 by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic maintenance `0x00310DB0`
 (three calls), the effect-bit write `0x0030E130` and the status write `0x0030E360`. In order:
 
-1. **Skip test.** Unless bit 0 of `flags` is set, nothing is applied when `0x0030B9B0(targetUnit,
+1. **Skip test.** Unless bit `0x1` of `flags` is set, nothing is applied when `0x0030B9B0(targetUnit,
    sourceUnit)` is non-zero - the global part `0x0030B770` or the unit part `0x0030B7F0` of the eligibility
    mask, with the hostile flag from the relationship class ([Area of effect](area-of-effect.md))
    (`0x00311354`-`0x00311367`).
 2. **Metadata** `0x00385BA0`: `+0x138` (when not -1) goes to the byte `[0x02EBF190]+0x5B0E`, `+0x13C` to the
-   dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit 0/1/2 of
+   dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit `0x1`/1/2 of
    `[targetUnit+0x6A0]+0x14`; with `+0x1C` = 1 the battle-message events are posted (`0x00469EC0`).
-3. Bit 19 of `+0x2C` sets bit 3 of the target unit's `+0xE9A`; bit 14 of `+0x140` plays sound `0x34`
-   (`0x003A1180`, `0x002DF220`) and sets bit 2 (`0x00311384`-`0x003113BF`).
+3. Bit `0x80000` of `+0x2C` sets bit `0x8` of the target unit's `+0xE9A`; bit `0x4000` of `+0x140` plays sound `0x34`
+   (`0x003A1180`, `0x002DF220`) and sets bit `0x4` (`0x00311384`-`0x003113BF`).
 4. **Levels.** A target level `+0x11C` other than `0xFF` is applied with `0x0030C650(target, level, 0)`,
    and the user's `+0x11D` likewise (`0x003113CB`-`0x003113FD`).
 5. **Steal and poach.** For an enemy-side target, each non-zero steal byte `k` (`+0x32`-`+0x34`) adds
@@ -55,17 +55,17 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
    of `[targetUnit+0x6A0]+0x14` (already cleared by step 2) and calls `0x00316A50(3)`; a poach item `+0x38` other than -1 is added (`0x00311402`-`0x003114A8`).
 6. **Statuses.** Each bit `n` of the add mask `+0x54` calls `0x0030E360(target, source, n, +0x5C[n],
    +0xDC[n], ..., 3)` (add); each bit of the remove mask `+0x58` calls `0x0030E360(target, source, n, 0, 0,
-   ..., 0)` (remove). Bits 4 and 5 of `+0x140` choose a flag passed to those calls (`0x003114D2`-`0x003115AF`).
+   ..., 0)` (remove). Bits `0x10` and `0x20` of `+0x140` choose a flag passed to those calls (`0x003114D2`-`0x003115AF`).
 7. **Status parameters.** Every `+0x5C[n]` that is not negative is copied to target `+0xBC + 4n` (the
    status durations) and every `+0xDC[n]` to target `+0x13C + 2n` (`0x003115B6`-`0x00311606`).
-8. **Target HP and MP.** With bit 8 of `+0x2C`, `+0x24` is applied to the target's HP - set outright
-   (`0x00300520`) with bit 3, otherwise added (`0x00300530`, the HP write). With bit 14, `+0x2A` goes to the
-   target's MP - set (`0x00300C90`) with bit 4, otherwise added (`0x00300CE0`). A non-zero `+0x1D` adds
+8. **Target HP and MP.** With bit `0x100` of `+0x2C`, `+0x24` is applied to the target's HP - set outright
+   (`0x00300520`) with bit `0x8`, otherwise added (`0x00300530`, the HP write). With bit `0x4000`, `+0x2A` goes to the
+   target's MP - set (`0x00300C90`) with bit `0x10`, otherwise added (`0x00300CE0`). A non-zero `+0x1D` adds
    `+0x1D * [target+0x28]` (whole max-MP units) to the target's secondary resource (`0x00300BC0`) (`0x00311608`-`0x003116E0`).
-9. **User HP and MP.** With bit 7 of `+0x2C`, `+0x20` is applied to the user's HP (set with bit 1);
-   with bit 13, `+0x28` to the user's MP (set with bit 2) (`0x00311700`-`0x00311775`).
+9. **User HP and MP.** With bit `0x80` of `+0x2C`, `+0x20` is applied to the user's HP (set with bit `0x2`);
+   with bit `0x2000`, `+0x28` to the user's MP (set with bit `0x4`) (`0x00311700`-`0x00311775`).
 10. **Augment bits.** `+0x3C` and `+0x3D` (when not `0xFF`) are set in the target's augment layer
-   (`0x0030E130` mode 2); `+0x3E`-`+0x41` are cleared (mode 0); bits 6 and 7 of `+0x140` choose the
+   (`0x0030E130` mode 2); `+0x3E`-`+0x41` are cleared (mode 0); bits `0x40` and `0x80` of `+0x140` choose the
    flags. The eight timers `+0x42`-`+0x50` that are not negative are copied to target
    `+0x17C`-`+0x18A` (`0x00311778`-`0x00311894`).
 11. **Enemy stat changes.** For an enemy-side target, each of `+0x11E`, `+0x120`, `+0x122`, `+0x124`
@@ -74,23 +74,23 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
     (`+0x30`) (`0x0031189B`-`0x00311915`).
 12. **Enemy affinity bytes.** For an enemy-side target, `+0x128`-`+0x12B` are OR-ed into bytes
     `+0x7B`, `+0x79`, `+0x78`, `+0x7A` of `[targetUnit+0x6A0]`, and `+0x12C`-`+0x12F` cleared out of
-    the same bytes; each change sets bit 7 of that record's first dword (`0x0031193C`-`0x00311A7E`).
+    the same bytes; each change sets bit `0x80` of that record's first dword (`0x0031193C`-`0x00311A7E`).
 13. **Gil.** A non-zero `+0x08` is subtracted from the party's gil, not below 0 (`0x00253690`,
     `0x00254EE0`) (`0x00311A84`-`0x00311A9E`).
-14. Bits 2 and 3 of the target unit's `+0xE9A` are cleared; when anything above changed and bit 9 of
+14. Bits `0x4` and `0x8` of the target unit's `+0xE9A` are cleared; when anything above changed and bit `0x200` of
     `flags` is clear, the target's stats are rebuilt (`0x0030FED0(target, 0)`) (`0x00311AA3`-`0x00311AC5`).
 
 ## Layouts
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32` | flags0 | left to the caller by `0x003848E0`; stored whole by `0x00303A00` (`0x00303A85`), `0x00307300` (`0x00307527`) and `0x00310DB0` (`0x00311241`); bit 5 tested and cleared by the resolver (`0x00386029`, `0x00386082`) |
+| `+0x000` | `u32` | flags0 | left to the caller by `0x003848E0`; stored whole by `0x00303A00` (`0x00303A85`), `0x00307300` (`0x00307527`) and `0x00310DB0` (`0x00311241`); bit `0x20` tested and cleared by the resolver (`0x00386029`, `0x00386082`) |
 | `+0x004` | `u8` | outcome | 1-5 the evade/guard outcome of slot 41 (`0x003896B0`); 6 at `0x00386347` and `0x003858A2`; 9 at `0x0038588A`; 10 at `0x00386303` |
 | `+0x005` | `u8[3]` | pad05 | written only by the clears (below); read by no instruction; nothing fixes its width |
 | `+0x008` | `u32` | gilCost | subtracted from the party's gil (step 13) |
 | `+0x00C` | `u8[4]` | zero0C | written only by the clears (below); read by no instruction; nothing fixes its width |
 | `+0x010` | `void*` | otherUnit | a battle unit that `0x00384F40` returns, stored by the handler `0x00390AB0` (`0x00390E39`-`0x00390E42`); the preview `0x00303A00` then previews the action again for that unit's stats record (`0x00303B45`-`0x00303B90`) |
-| `+0x018` | `u32` | flagsB | bit 1: continue a combo (`0x00388660`); bit 2: guard decision (`0x00385A1C`-`0x00385A2D`); bit 3: knockback (`0x003896B0`); `0x00307300` copies bits 0-3 to target entry bits 11, 10, 9, 8 |
+| `+0x018` | `u32` | flagsB | bit `0x2`: continue a combo (`0x00388660`); bit `0x4`: guard decision (`0x00385A1C`-`0x00385A2D`); bit `0x8`: knockback (`0x003896B0`); `0x00307300` copies bits `0xF` to target entry bits `0x800`, `0x400`, `0x200`, `0x100` |
 | `+0x01C` | `u8` | resolved | 1: post the battle-message events (`0x00385BA0`) |
 | `+0x01D` | `i8` | mpUnits | whole max-MP units added to the target's secondary resource (step 8) |
 | `+0x01E` | `u8[2]` | zero1E | written only by the two clears (below); read by no instruction; nothing fixes its width |
@@ -98,7 +98,7 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x024` | `i32` | targetHp | target HP change or value (step 8) |
 | `+0x028` | `i16` | userMp | user MP change or value (step 9) |
 | `+0x02A` | `i16` | targetMp | target MP change or value (step 8) |
-| `+0x02C` | `u32` | flagsA | bit 0 set by `0x003848E0`; bits 1-4 set-not-add; 7, 8, 13, 14 present; 19 marks the target unit |
+| `+0x02C` | `u32` | flagsA | bit `0x1` set by `0x003848E0`; bits 1-4 set-not-add; 7, 8, 13, 14 present; 19 marks the target unit |
 | `+0x030` | `u16` | unused30 | `0xFFFF` by the word store `0x0038490B` in `0x003848E0`; read by no instruction |
 | `+0x032` | `u8[3]` | steal | steal slots 0-2 (step 5, `0x00385BA0`) |
 | `+0x035` | `u8[3]` | zero35 | written only by the clears (below); read by no instruction; nothing fixes its width |
@@ -119,10 +119,10 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x12C` | `u8[4]` | affinityClr | cleared out of the same bytes after the sets (step 12); `0x00384B10` writes `+0x12C` (OR-ed with the drawn element), `+0x12D` (the drawn one) and `+0x12E` (every element but the drawn one) (`0x00384C0B`, `0x00384BF1`, `0x00384BDC`) |
 | `+0x130` | `u16` | packedParam | -1 by the word store `0x00384991` in `0x003848E0`; the handler `0x003907E0` stores byte `+0x10` × 100 + byte `+0x11` of action row `[0x02AEDFD4]` (`0x00390877`-`0x00390893`); `0x00319F50` reads it after the resolver returns (`0x0031A0D2`, `0x0031A0DF`) |
 | `+0x132` | `u8[2]` | zero132 | written only by the clears (below); read by no instruction; nothing fixes its width |
-| `+0x134` | `f32` | knockback | zeroed by `0x003848E0`; with flagsB bit 3 the resolver stores `0x00385E50`'s value here (`0x0038680F`-`0x0038682E`; [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) |
+| `+0x134` | `f32` | knockback | zeroed by `0x003848E0`; with flagsB bit `0x8` the resolver stores `0x00385E50`'s value here (`0x0038680F`-`0x0038682E`; [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) |
 | `+0x138` | `i32` | echoB | to [`0x02EBF190`]`+0x5B0E` (low byte) when not -1 (`0x00385BA0`) |
 | `+0x13C` | `i32` | echoA | to [`0x02EBF190`]`+0x5B00` when not -1 (`0x00385BA0`) |
-| `+0x140` | `u32` | flagsC | bits 4, 5, 6, 7: flags for the status and effect writes; bit 14: sound `0x34` |
+| `+0x140` | `u32` | flagsC | bits `0x10`, `0x20`, `0x40`, `0x80`: flags for the status and effect writes; bit `0x4000`: sound `0x34` |
 | `+0x144` | `u8[4]` | zero144 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 
 ### Where records live and who clears them
@@ -166,7 +166,7 @@ The applier writes only to the records it is given and the globals named in the 
 ## Related
 
 - [Area of effect](area-of-effect.md) - the target entry flags `0x00307300` fills from `flagsB`.
-- [Combos](combos.md) - `flagsB` bit 1.
+- [Combos](combos.md) - `flagsB` bit `0x2`.
 - [Action phases](action-phases.md) - where the resolution runs.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - the status
   numbers of the masks.

@@ -219,6 +219,34 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 | `menuquest.nfs` | 208 to 29,008 bytes ([TIM2 images](tim2-images.md)) |
 | size table | the US table sizes `0x128`-`0x12C` and `0x13A` only |
 
+[`quest-menu-files-lst-rows.tsv`](quest-menu-files-lst-rows.tsv) lists the nine `.lst` files, with size,
+SHA-256, the language ids that load each and the header, then their 594 directory entries: quest id,
+`menuquest.dat` record and group, `textAt`, the threshold byte and the value `0x0037E5B0` takes from it, the
+pad bytes, the string, the line decoded with the language's font, and what the Hunts row shows.
+[`quest-menu-files-nfs-rows.tsv`](quest-menu-files-nfs-rows.tsv) lists the nine `.nfs` files and their ten
+pictures.
+
+- Language ids 0, 9 and 10 load the `in` files and ids 1 to 5, 7, 8 and 11 their own folder's. Id 6 loads no
+  quest file: its array names `uk/quest/`, which ships nothing, and the UK size table holds -1 for ids
+  `0x128` to `0x12C` and `0x13A`, so `0x00249210` files no request for them.
+- In every language, 44 hunts have threshold 3 and switch their row picture to the defeated sheet at
+  progress part 3; Battle on the Big Bridge (quest 167) has 4. The line under each hunt's name is its
+  petitioner and town, such as Tomaj (Rabanastre) for Red & Rotten in the Desert. Every threshold is below
+  its hunt's part count.
+- The 19 group-0 entries hold `not use.` in eight languages; in `in` they hold Japanese titles such as `DOG
+  TEN COMMANDMENTS`, 14 of them starting with expansion glyph 117 of the quest sheet, written `{expansion
+  glyph N}` in the TSV with 118 to 120. Quests 50 and 51 of group 2 share one empty string.
+- Each file has 66 entries naming the 66 `menuquest.dat` quests once each, its strings start right after the
+  directory at `0x220`, the pad bytes and the threshold bytes' high nibbles are 0, and the 99 to 133 bytes
+  of the string area that no entry reaches are all zero.
+- `menuquest.nfs` holds one 4-bit picture, two in `in`. The block after the first picture's header holds
+  8-byte records, of which 121 (`in`), 18 (`kr`) and 26 (`ch`, `cn`) have a non-zero dword at `+2`, the
+  record counts of the language's `fontquest.dat`; the `us`, `fr`, `de`, `it` and `es` sheets have one, and
+  their font folder has no `fontquest.dat`.
+- The second `in` picture, 504 x 23, has header size `0x30`, so `0x0039BF50` fills no block for it. The
+  identical `us` and `it` files carry version byte 216, the other seven 4. Every file passes the registry
+  test of `0x0039BEC0` (`TIM2` and a low nibble of 1 at `+0x40`).
+
 ## Loader behaviour
 
 ### The quest data widget

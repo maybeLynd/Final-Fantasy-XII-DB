@@ -23,7 +23,7 @@ The field's input arbiter calls `0x00228380` before it reads a button and reads 
    (`0x00228490`).
 2. It answers 0 while `0x003603C0` or `0x001D6B70` answers non-zero, or while `0x01FD4950` is 0. `0x01FD4950` is set once,
    by `0x00229AD0`, which the title asset's factory `0x00394460` runs ([Widgets](widgets.md)).
-3. With action policy bit 21 set (`0x002E0FA0`) it goes on only when `0x002E1020(1)` also has bit 21, and then passes argument 0
+3. With action policy bit `0x200000` set (`0x002E0FA0`) it goes on only when `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0
    to the overlay of step 5 ([Action availability](../Controls-And-Input/action-availability.md)).
 4. With an overlay open it answers 1. With the count `0x01FD46FC` above 0 it counts it down and answers 1.
 5. Otherwise, while the inactive-window task exists, it builds the overlay through `0x002282F0(argument)`; with no task
@@ -56,8 +56,8 @@ On message 1 the overlay (`0x00229961`-`0x00229A98`):
    `0x00182FF0(0)`), below;
 2. keeps its argument at `+0xC8`, sets state `+0xC0` to 0, and takes the 1920 x 1080 frame from `0x01E0C1D8` and
    `0x01E0C1DC` as its size;
-3. sets bits 1, 0, 20 and 9 of action policy row 15 (`0x002E1C20`): bits 0, 1 and 9 keep the main menu, the battle
-   menu and Escape Mode shut, and no reader tests bit 20;
+3. sets bits `0x2`, `0x1`, `0x100000` and `0x200` of action policy row 15 (`0x002E1C20`): bits `0x1`, `0x2` and `0x200` keep the main menu, the battle
+   menu and Escape Mode shut, and no reader tests bit `0x100000`;
 4. builds button legend scenes `0x12` and `0x0C` (`0x0029DA70`) and formats text `0x467C`, which holds only size and baseline codes,
    with it into `0x01FD4960` (`0x002B4090`);
 5. attaches under `0x0208EA48` with priority -9.
@@ -150,7 +150,7 @@ The task is the `0xD0`-byte widget at `0x01FD4948` with procedure `0x002284F0` (
 
 ## Related
 
-- [Action availability](../Controls-And-Input/action-availability.md) - row 15 and policy bit 21.
+- [Action availability](../Controls-And-Input/action-availability.md) - row 15 and policy bit `0x200000`.
 - [Controls](../Controls-And-Input/controls.md) - the input arbiter that calls the opener.
 - [Widgets](widgets.md) - the focus, the roots and the release.
 - [Audio manager](../Sound-And-Music/audio-manager.md) - the paused kinds.

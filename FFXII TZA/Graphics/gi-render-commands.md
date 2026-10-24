@@ -74,6 +74,15 @@ the whole path for a command filed at once:
 3. `0x0020E630(0x01F83070, mode)`;
 4. for a mode other than 3, enqueue a `GiResetRenderTargetObj` (`0x0018BF00` at `0x001FBE02`).
 
+Before step 1 it opens a render-list scene when none is open (`0x00182560` returns `0x01F7F538`, 0) and the
+mode is not 3: it files `BegineScene0Obj` (`0x00182250`) and sets `0x01F83064` to 1, recording that it opened the
+scene (`0x001FBD9B`). At the end it keeps the mode at `0x01F83068` and sets `0x01F83060` to 1 (`0x001FBE07`,
+`0x001FBE0D`); `0x001FBE20` and `0x001FBE30` return them.
+
+`GiEndScene`'s factory `0x001FBE50` clears `0x01F83060` (`0x001FBEC6`). When `0x01F83064` is set and the mode is not
+3, it clears that too and closes the scene with `EndSceneObj` (`0x001FBED7`, tail jump to `0x001823B0`;
+[render command list](render-command-list.md)).
+
 `0x0020E630(node, mode)` turns the mode into a class key, 0 → 8, 1 → `0x20`, 2 → `0x40`, 3 → `0x20`
 and anything else → 0, and hands `node[0]` and the key through `0x001FB810` to `0x001A17F0` on the
 handler object `[0x01F7F4D0]`. That object is created by the installer (`0x0017D547`) with
@@ -293,6 +302,13 @@ The device's ring holds 0x80-byte blocks, `u32` opcode at `+0x00` and payload fr
 `0x0060A410` handles opcodes `0x01`–`0x06` and `0x2F` itself (byte table `0x0060AAD8`, arm table
 `0x0060AAB8`) and passes `0x07`–`0x2E` to `0x00607410` (`0x0060A9D4`), whose table `0x006078E4` gives 39
 of them their own arm; `0x12` takes the table's exit.
+
+Opcodes `0x05` and `0x06` (`0x0060A8DE`, `0x0060A958`) copy 32 bytes of their payload and call
+`0x00608F20(state, ...)`. It fills the next of two `0x70`-byte records at `0x02CBC590`, picked by the index
+`0x02CB7FC8`, which it then sets to `(index - 1) & 1`, so the two records alternate (`0x00608F38`-`0x00608F57`).
+Against the record bound before it sets bits `0x1`-`0x8` for each of `+0x38`, `+0x40`, `+0x48` and `+0x50`
+that differs, or all four when `+0x28` differs (`0x00608FBF`-`0x00609010`), and passes that mask on
+(`0x0060B860`, `0x0060EC80`).
 
 Nine level-2 arms decode their payload and then call a body that does nothing: `0x1D`, `0x1E`,
 `0x1F`, `0x25`, `0x27`, `0x28`, `0x29` and `0x2B` call `0x0060D760` (`mov eax, 0x17; ret`), and

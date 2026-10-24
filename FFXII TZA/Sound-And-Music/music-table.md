@@ -24,7 +24,7 @@ addresses: "0x00379D20, 0x003EAB60, 0x003EAB90, 0x003EAA70, 0x02B5E0D0, 0x00360C
 ### The track flag file
 
 `musicinfo.bin` is kind 9 file 6 (`PS2Data\image\ff12\in\common\musicinfo.bin`). `0x00360C70` requests it into heap 5
-(`0x00360C70`), and its completion `0x00360B40` keeps the pointer at `0x022CBA50`. `0x00361010(track)` answers bit 0 of the
+(`0x00360C70`), and its completion `0x00360B40` keeps the pointer at `0x022CBA50`. `0x00361010(track)` answers bit `0x1` of the
 track's first byte, or 0 for a negative track or no file.
 
 ## Layouts
@@ -61,7 +61,7 @@ each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 1
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | flags | bit 0 boss music |
+| `+0x00` | `u8` | flags | bit `0x1` boss music |
 | `+0x01` | `u8` | b01 | read by no code: `0x00361010` is the only reader of the file's pointer |
 
 ### The lookup

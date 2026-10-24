@@ -20,13 +20,13 @@ addresses: "0x003272A0, 0x003594B0, 0x00358BC0, 0x00326500, 0x00263750, 0x003384
 ### The leader handle
 
 The leader is one actor handle, `0x022C7FE0`. `0x003272A0` turns it into the leader's battle unit, or none: the battle
-flag `0x02089340` bit 4 must be set, the handle must resolve to an actor with a battle unit, and the unit's flag bit
-3 must be set (`0x003272A4`-`0x003272CE`). Every reader of the leader's battle unit asks `0x003272A0`; the lock setters
+flag `0x02089340` bit `0x10` must be set, the handle must resolve to an actor with a battle unit, and the unit's flag bit
+`0x8` must be set (`0x003272A4`-`0x003272CE`). Every reader of the leader's battle unit asks `0x003272A0`; the lock setters
 below and the release `0x00358B40` resolve the handle `0x022C7FE0` to its actor directly, without those three tests.
 
-Two more readers keep only the bit-4 test. `0x00327270` returns the leader's actor (`0x003590D0()` through
-`0x003588B0`), or none while bit 4 is clear (`0x00327274`-`0x0032728D`). `0x003272F0` returns the leader's
-roster slot, the first of slots 0-3 whose `0x00263750` actor is that actor, or -1 when bit 4 is clear,
+Two more readers keep only the bit `0x10` test. `0x00327270` returns the leader's actor (`0x003590D0()` through
+`0x003588B0`), or none while bit `0x10` is clear (`0x00327274`-`0x0032728D`). `0x003272F0` returns the leader's
+roster slot, the first of slots 0-3 whose `0x00263750` actor is that actor, or -1 when bit `0x10` is clear,
 the handle does not resolve or no slot holds it (`0x003272F6`-`0x0032734E`).
 
 ### Changing the leader
@@ -59,8 +59,8 @@ Three functions call `0x003594B0`:
    roster-role notice `0x002681D0` (`0x0050C62C`-`0x0050C65D`).
 
 `0x00237F40`, run by `0x0025C830` (`0x0025D41F`) and `0x0026C3E0` (`0x0026C59E`), replaces a fallen leader through the
-first of them. It does nothing while bit 9 or bit 10 of `0x02089340` is set, or while the leader `0x003272A0` has unit
-bit 2 and a stats record whose status words `+0x64` | `+0x3C` are clear of KO, Stone and X-Zone (`0x80000003`),
+first of them. It does nothing while bit `0x200` or bit `0x400` of `0x02089340` is set, or while the leader `0x003272A0` has unit
+bit `0x4` and a stats record whose status words `+0x64` | `+0x3C` are clear of KO, Stone and X-Zone (`0x80000003`),
 or carry them while `0x00377C20()` holds.
 
 Otherwise it lists fighting seats 0-3 with `0x0030A880(list, 3)`: units
@@ -106,7 +106,7 @@ changes.
 
 ### When control is taken away
 
-`0x0023B040` recomputes the control lock once a frame (`0x0023B050`-`0x0023B1FA`). Battle flag `0x02089340` bit 6 raises
+`0x0023B040` recomputes the control lock once a frame (`0x0023B050`-`0x0023B1FA`). Battle flag `0x02089340` bit `0x40` raises
 every lock bit, and nothing waives it (`0x0023B050`-`0x0023B063`).
 
 The rest comes from the leader's state, and is skipped when the battle mode is chocobo (`0x00303EC0`) or the area's
@@ -116,8 +116,8 @@ summon mode when the summoner is down (`0x0023B17C`-`0x0023B1B8`). It is publish
 
 | Lock bit | Published to | Effect |
 |---|---|---|
-| 0 | `0x022C8000` bit 1 (`0x00359200`) | the stick's speed is forced to 0 |
-| 2 | `0x022C8005` bit 1 (`0x003592C0`) | the controlled actor is not turned to the stick |
+| 0 | `0x022C8000` bit `0x1` (`0x00359200`) | the stick's speed is forced to 0 |
+| 2 | `0x022C8005` bit `0x1` (`0x003592C0`) | the controlled actor is not turned to the stick |
 | 1, inverted | `0x0209A2C5` (`0x0026BD40`) | read by the gameplay capability checks |
 
 The full list of contributions, and the gameplay checks that read `0x0209A2C5`, are on
@@ -130,17 +130,17 @@ The stick filter reads one dword and four bytes, and each source of a lock owns 
 
 | Lock | Owner | Setter |
 |---|---|---|
-| `0x022C8000` bit 0 | script `setuclockstatus` | `0x00347E14` |
-| `0x022C8000` bit 1 | the leader's state, above | `0x0023B1DC` |
-| `0x022C8000` bit 2 | the event lock `0x00307140` | `0x003071C7` |
-| `0x022C8000` bit 3 | actor manager slot 3 loaded | `0x0026CC81`-`0x0026CCBA` |
+| `0x022C8000` bit `0x1` | script `setuclockstatus` | `0x00347E14` |
+| `0x022C8000` bit `0x2` | the leader's state, above | `0x0023B1DC` |
+| `0x022C8000` bit `0x4` | the event lock `0x00307140` | `0x003071C7` |
+| `0x022C8000` bit `0x8` | actor manager slot 3 loaded | `0x0026CC81`-`0x0026CCBA` |
 | `0x022C8004` | script `setucpcmovelockstatus` | `0x00359250` |
 | `0x022C8005` | the leader's state, above | `0x003592C0` |
-| `0x022C8006` | the event lock, bit 1 | `0x00359330` |
+| `0x022C8006` | the event lock, bit `0x2` | `0x00359330` |
 | `0x022C8007` | nobody | none: it is read with the others, and only the reset `0x003590E0` clears it (`0x00359115`-`0x00359122`) |
 
-Any bit of `0x022C8000` stops the stick. Of the OR of the four bytes, bit 0 stops the move, bit 1 the turn to the
-stick and bit 2 the desired heading (`0x00358DFB`-`0x00358E99`). A setter that leaves a lock standing stops the
+Any bit of `0x022C8000` stops the stick. Of the OR of the four bytes, bit `0x1` stops the move, bit `0x2` the turn to the
+stick and bit `0x4` the desired heading (`0x00358DFB`-`0x00358E99`). A setter that leaves a lock standing stops the
 leader's actor at once with `0x0026D6D0` (`0x00359221`-`0x00359242`, `0x0035927D`-`0x003592AD`). The event lock also
 clears capability byte `0x0209A2C6` while it stands (`0x003071DC`-`0x003071F2`, `0x0026BD20`).
 

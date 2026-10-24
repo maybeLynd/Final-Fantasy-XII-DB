@@ -35,7 +35,7 @@ displacement `0xB2E`.
 `0x002826F0` rebuilds the bits of every member and `0x00282A40(member)` those of one member. The Party Menu runs
 `0x002826F0` from `0x00281AE0` (`0x00281CB0`), and the license board's grid runs `0x00282A40` (`0x0055DA89`;
 [License Board screen](license-board-screen.md)). For each member pointer of the nine at `[0x0209AC30] + 0xAC8` whose
-record has a member number 0-5 at `+0x60` and bit 1 of `+0x00` clear:
+record has a member number 0-5 at `+0x60` and bit `0x2` of `+0x00` clear:
 
 1. `0x00282EE0(record)` gives the record's place among the nine `0xC0`-byte records at `[0x0209AC30] + 0x408`, and
    `0x0031C4C0` its party slot.

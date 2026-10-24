@@ -85,7 +85,7 @@ result: the winning lane, or -1. The selector:
 2. computes `seconds = counter / (int)(30.0 * [0x01DFE0B8])` from `0x0032A150` (`0x002357D9`-`0x002357F9`);
 3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (lane 0 is never offered; a
    lane past the lane map's own count is skipped). A lane is skipped when its record has
-   died out (`+0x0A` non-zero and `+0x08 >= +0x0A`), or is committed and not retired (flag bit 1 set,
+   died out (`+0x0A` non-zero and `+0x08 >= +0x0A`), or is committed and not retired (flag bit `0x2` set,
    bit `0x1` clear) with a non-zero cooldown `+0x10` and `seconds - +0x0C < +0x10` unsigned;
 4. sets the minimum distance to `0x02089360` when the unit's flag word has bit `0x200000000000` or bit `0x2000000000000`
    (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`), else 0.0;
@@ -272,7 +272,7 @@ bit `0x40` is set (`0x002672F0`, the drive loop's "scheduled this pass" bit), th
 mode `+0x50`, its stats record has a non-zero kind byte, unit flag bit `0x10` is set, the status words pass
 the `0x80000003` gate or the field waives it, and the record's flag bit `0x10` is clear. Then:
 
-- mode 1: for party slots 0-3, a slot counts when it has flag bit 4, a stats record passing the gate,
+- mode 1: for party slots 0-3, a slot counts when it has flag bit `0x10`, a stats record passing the gate,
   and is the party focus. The unit is kept when any counted slot's squared planar distance is below
   `0x02089368^2` (`0x0023527D`, `comiss`/`ja`); it retires when at least one slot counted and none was
   nearer. At exactly the range it retires;

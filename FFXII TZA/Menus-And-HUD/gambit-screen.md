@@ -29,7 +29,7 @@ pane shows the member's selected set (`0x00327C40`, set index at `[0x02EBF190] +
 
 | Row | Shows |
 |---|---|
-| `0` | the character's name; its switch is bit 2 of the party record (`0x00309B40`) |
+| `0` | the character's name; its switch is bit `0x4` of the party record (`0x00309B40`) |
 | 1 to the slot count | one gambit line: condition and action names, "-" (`0x3EB`) when empty, and ON or OFF from the set's mask |
 
 The slot count is the set's byte `+0x32` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)); the script verb
@@ -54,8 +54,8 @@ two digits (`0x0029F6E0`), nudging the second label for numbers below 10 unless 
 
 ### Changing set and character
 
-Bit 9 of the pressed or repeat word (`0x02F97392`, `0x02F97394`; R2 in the [Controls](../Controls-And-Input/controls.md) order) moves to the next of the
-three sets and bit 8 (L2) to the previous one (`0x00569AF1`, `0x005699F0`). The three panes slide by `0x780` (`0x002468A0`),
+Bit `0x200` of the pressed or repeat word (`0x02F97392`, `0x02F97394`; R2 in the [Controls](../Controls-And-Input/controls.md) order) moves to the next of the
+three sets and bit `0x100` (L2) to the previous one (`0x00569AF1`, `0x005699F0`). The three panes slide by `0x780` (`0x002468A0`),
 the pane pointers rotate and the new centre reloads (`0x0056A010`), with sound `0x51`. Held R1 and L1 step to the next or
 previous party member (`0x00568280`, `0x00567990`). Each member's cursor row and column are kept (`0x00569938`-`0x00569953`).
 
@@ -108,7 +108,7 @@ eight bytes a page from `+0x300`, from the run state of `0x0056A3D0` and the tab
   9 `0x8A`, else `0x88`;
 - the page and row of the line's current entry go to `+0x595` and `+0x599`/`+0x59A` (page 0, row 0 when absent), and an
   entry equal to the argument with state 0 returns 1 and stores its page and row at the editor's `+0x334`/`+0x335`.
-- `0x0056B4D0` keeps the shown row at `+0x599` and the row it was asked for at `+0x59A`, both signed bytes. With bit 0 of
+- `0x0056B4D0` keeps the shown row at `+0x599` and the row it was asked for at `+0x59A`, both signed bytes. With bit `0x1` of
   `+0x5A0` set it writes the new row to both and clears the bit (`0x0056B921`-`0x0056B93A`); otherwise it copies `+0x59A`
   back to `+0x599` (`0x0056B94F`-`0x0056B95E`).
 - A row past the page's last, its row count `+2` less 1 compared as signed numbers, sets `+0x599` to that last row while `+0x59A` keeps the row asked for (`0x0056B940`-`0x0056B94D`,
@@ -211,7 +211,7 @@ The member-scoped pane is the `0xD0`-byte widget at `0x02CA96D8` with procedure 
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x005677A0` |
 | `+0xC0` | `u8[8]` | pad0C0 | read and written by no function; nothing fixes its width |
-| `+0xC8` | `u32` | items67Shown | bit 0 is copied into bit 0, the shown bit, of layout items 6 and 7 of the pane each tick while the gambit screen exists (`0x00567817`, `0x0056782E`); the construct message sets 1 (`0x0056785F`); the gambit screen's `0x0056B4D0` sets it to 1 in one arm (`0x0056B557`) and to 0 in another (`0x0056B58D`) |
+| `+0xC8` | `u32` | items67Shown | bit `0x1` is copied into bit `0x1`, the shown bit, of layout items 6 and 7 of the pane each tick while the gambit screen exists (`0x00567817`, `0x0056782E`); the construct message sets 1 (`0x0056785F`); the gambit screen's `0x0056B4D0` sets it to 1 in one arm (`0x0056B557`) and to 0 in another (`0x0056B58D`) |
 | `+0xCC` | `u8[4]` | pad0CC | read and written by no function; nothing fixes its width |
 
 ## Shipped data

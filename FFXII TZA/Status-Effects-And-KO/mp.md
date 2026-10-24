@@ -26,11 +26,11 @@ Healing gives no MP, and neither does damage between two units on the same side.
 
 `0x00300CE0(stats, delta, flags)` changes current MP `+0x4C` (`0x00300D69`-`0x00300E25`):
 
-1. With flags bit 0 clear, the battle and unit eligibility masks of [Gaining and losing
+1. With flags bit `0x1` clear, the battle and unit eligibility masks of [Gaining and losing
    statuses](status-changes.md) refuse the change on any low bit (`0x00300D42`-`0x00300D63`).
 2. The new value is floored at 0 and capped at max MP `+0x28`. With augment 39 in either layer (byte
-   `+0x6C` or `+0x7C`, bit 7) the cap is 0, so MP stays at 0 (`0x00300D6D`-`0x00300D9F`).
-3. Unless flags bit 4 is set, `0x003283D0` shows the change; unless bit 7 is set, `0x0028F1F0` reports it
+   `+0x6C` or `+0x7C`, bit `0x80`) the cap is 0, so MP stays at 0 (`0x00300D6D`-`0x00300D9F`).
+3. Unless flags bit `0x10` is set, `0x003283D0` shows the change; unless bit `0x80` is set, `0x0028F1F0` reports it
    (`0x00300DA6`-`0x00300DD3`). `0x003283D0` posts a battle number through `0x003BBD00` (`0x00328462`,
    [Battle numbers](../Menus-And-HUD/battle-numbers.md)); `0x0028F1F0` finds the member's counter pair with `0x00296280`
    (`0x0028F20E`) and starts its roll ([Party list](../Menus-And-HUD/party-list.md)).
@@ -42,7 +42,7 @@ Healing gives no MP, and neither does damage between two units on the same side.
 ### What gives MP for damage
 
 `0x00307300` is the only caller of the two gain functions (`0x00307B0D`-`0x00307B8C`). It runs them when the
-result changed HP by a delta, `+0x2C` bit 8 set and bit 3 (an absolute HP) clear. The target's gain is written
+result changed HP by a delta, `+0x2C` bit `0x100` set and bit `0x8` (an absolute HP) clear. The target's gain is written
 with flags `0x10`, then the attacker's.
 
 Both gains need the two units on opposite sides: exactly one of them a party record (`0x002F91EB`-`0x002F91FB`,
@@ -52,7 +52,7 @@ Both gains need the two units on opposite sides: exactly one of them a party rec
 
 `0x002F91A0(attacker, target, hpDelta)` gives 0 for a heal (`hpDelta` not below 0) or two units on the same side
 (`0x002F91AB`-`0x002F91FB`); otherwise it gives the target the ladder value for the damage when it has Martyr
-(augment 21) in either layer, byte `+0x6A` or `+0x7A` bit 5 (`0x002F9204`-`0x002F921E`), tripled in an area with MP
+(augment 21) in either layer, byte `+0x6A` or `+0x7A` bit `0x20` (`0x002F9204`-`0x002F921E`), tripled in an area with MP
 regime 2 or 3 (`0x00320160`, `0x002F9220`-`0x002F9234`).
 
 ### Gain from dealing damage
@@ -61,13 +61,13 @@ regime 2 or 3 (`0x00320160`, `0x002F9220`-`0x002F9234`).
 (`0x002F9240`-`0x002F93D6`):
 
 1. A heal (`hpDelta` not below 0) or two units on the same side gives 0.
-2. With Inquisitor (augment 86: attacker byte `+0x72` or `+0x82`, bit 6) and the action row's `+0x2C` bit 3
+2. With Inquisitor (augment 86: attacker byte `+0x72` or `+0x82`, bit `0x40`) and the action row's `+0x2C` bit `0x8`
    set, the gain is the ladder value for the damage.
-3. Otherwise, with Warmage (augment 20: byte `+0x6A` or `+0x7A`, bit 4) and `+0x2C` bit 4 set, the gain is the
+3. Otherwise, with Warmage (augment 20: byte `+0x6A` or `+0x7A`, bit `0x10`) and `+0x2C` bit `0x10` set, the gain is the
    ladder value; without either pair it is 0 (`0x002F9329`-`0x002F9389`).
-4. With Headsman (augment 23: byte `+0x6A` or `+0x7A`, bit 7) and a kill, it adds `max(target level >> 2, 1)`,
+4. With Headsman (augment 23: byte `+0x6A` or `+0x7A`, bit `0x80`) and a kill, it adds `max(target level >> 2, 1)`,
    the level being target byte `+0x1C2` (`0x002F938B`-`0x002F93C0`). A kill here is a target that now has KO,
-   Stone or X-Zone without the field's bit 15 (`0x00307B3F`-`0x00307B61`).
+   Stone or X-Zone without the field's bit `0x8000` (`0x00307B3F`-`0x00307B61`).
 5. In an area with MP regime 2 or 3 the total is tripled (`0x002F93C2`-`0x002F93D6`).
 
 ### The damage ladder
@@ -90,16 +90,16 @@ replaces it ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
 ### MP from walking
 
-While a unit is active and has none of KO, Stone and X-Zone (or the field's bit 15 is set), the distance its
+While a unit is active and has none of KO, Stone and X-Zone (or the field's bit `0x8000` is set), the distance its
 actor moves each frame is added to unit `+0x70`: on the ground plane, or in three dimensions for an actor with
-byte `+8` bit 2 (`0x002E5290`-`0x002E5337`, `0x00329A80`).
+byte `+8` bit `0x4` (`0x002E5290`-`0x002E5337`, `0x00329A80`).
 
 `0x002F9400(unit)`, run by the periodic step `0x00310DB0` (`0x003110C3`), turns that distance into MP
 (`0x002F9400`-`0x002F95AE`):
 
 1. It takes the distance from `+0x70` and compares it with the unit's last stored value, the 32-bit value at
    `+0x18` of its 64-byte record. When the two are equal it stores the value back and gives nothing. A unit that
-   is inactive or has KO, Stone or X-Zone without the field's bit 15 gets 0 and loses its progress
+   is inactive or has KO, Stone or X-Zone without the field's bit `0x8000` gets 0 and loses its progress
    (`0x00320450`-`0x00320492`).
 2. It picks the first of rows 20-24 whose MP limit `+0x04` is at least current MP, or row 24.
 3. The row's distance `+0x00`, divided by 3 in a rich area, is the walk for one point. A longer distance gives
@@ -115,7 +115,7 @@ byte `+8` bit 2 (`0x002E5290`-`0x002E5337`, `0x00329A80`).
 1. An id above `0x21E`, or an action of kind 5 or 6 (row `+0x1E`), costs nothing.
 2. Without a unit the cost is the action row's byte `+0x0A`.
 3. A unit on the gil channel pays no MP (`0x002F9820`): one that is not an enemy-table record and has
-   augment 32 in either layer, byte `+0x6C` / `+0x7C` bit 0.
+   augment 32 in either layer, byte `+0x6C` / `+0x7C` bit `0x1`.
 4. Otherwise `0x002F95D0` adjusts row `+0x0A` (`0x002F962B`-`0x002F9808`).
 
 `0x002F95D0` leaves the cost unchanged for a party record's Quickenings (`0xD0`-`0xE1`, `0x002F9646`-`0x002F9655`)

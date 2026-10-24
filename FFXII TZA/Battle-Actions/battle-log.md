@@ -67,19 +67,19 @@ For the source's current target, actions `0`/`4`, `0x0B`, `0x0D`, `0x0E`, `0x10`
 `0x1E`, `0x1F`, `0x20`, `0x21`, `0x22` and `0x23`; those actions post nothing for any other target.
 For other actions:
 
-1. Bit 0 of the remove mask `+0x58` (KO removed) posts `0x1C`.
+1. Bit `0x1` of the remove mask `+0x58` (KO removed) posts `0x1C`.
 2. Otherwise, with HP and MP present (`+0x2C & 0x4100`), both at or above their caps, and the
    target having MP at all (bytes `+0x6C`/`+0x7C` not negative and `+0x28` not 0), `0x17`.
 3. Otherwise HP present (`+0x2C & 0x500` both set) posts `0x14` (at the cap) or `0x13`, and MP
    present (`0x14000`) posts `0x16`, `0x15`, or `0x1D` when the target has no MP (bytes `+0x6C`/`+0x7C`
    negative or `+0x28` = 0).
-4. The removed statuses other than 0 and 29 are counted by bit 13 of the word at `+6` of their row in
+4. The removed statuses other than 0 and 29 are counted by bit `0x2000` of the word at `+6` of their row in
    the status table `0x02EBF118`: one with the bit posts `0x18`, several `0x19`; one without posts
    `0x1A`, several `0x1B`.
 
 ### Targets with a battle unit
 
-For a target with a battle unit, a failed Steal (action `0xA9`, kind 6) posts `0x33` when bit 23 of
+For a target with a battle unit, a failed Steal (action `0xA9`, kind 6) posts `0x33` when bit `0x800000` of
 `+0x2C` is set and `0x34` otherwise. For a resolved result (kind 0) whose action kind `+0x1E` is 2
 (Technicks) or 7 (Foecraft), the action id picks the event (`0x0046A3FF`-`0x0046A5F9`):
 
@@ -105,7 +105,7 @@ Action `0xB1` with a target present then posts `0x3B` (`0x0046A5FE`-`0x0046A617`
    exists and either `0x02089340` has any of `0x3080` or the target's battle unit (`0x0031B860`) has bit `0x20` of
    byte `+4` (`0x0046AB19`-`0x0046AB56`).
 2. It drops it when the visibility filter `0x00469570` returns 0 (`0x0046AB65`).
-3. For a row with bit 0 of byte `+4`, it drops it when one of the ten 0x20-byte ring entries at
+3. For a row with bit `0x1` of byte `+4`, it drops it when one of the ten 0x20-byte ring entries at
    `0x02EBB560` (event `u16` at `+0`, tick at `+4`, stats at `+8`) holds the same event and stats and
    its tick plus `450 * [0x01DFE0B4]` is still ahead of `0x0032A150()` (`0x0046ABB3`-`0x0046ABF5`).
 4. It records `{event, tick, stats}` in the ring entry `[0x02EBB54C]`, advances that index modulo 10,
@@ -117,7 +117,7 @@ and the index `0x02EBB54C` 0 (`0x004696A0`-`0x004697BB`).
 
 ### The visibility filter
 
-`0x00469570(event, source, target)` returns 1 at once when byte `+3` of the event's row has bit 7
+`0x00469570(event, source, target)` returns 1 at once when byte `+3` of the event's row has bit `0x80`
 (`0x004695F9`). Otherwise it returns `0x002FA3B0` for the source's actor, or for the target's when the
 source has no unit, and 1 when neither has one. `0x002FA3B0(actor)` is true when the actor is less than
 24.0 (`0x008F3128`) units from the party leader, measured with height zeroed (`0x003A1920`); with no leader
@@ -133,17 +133,17 @@ bytes `+0`, `+1`, `+2` and `+5` (`0x00536A51`-`0x00536BBC`):
 | 1, 2 | the source's or the target's name (`0x00536310`) and a byte from its actor (`0x00263A10`) |
 | 3, 4, 5, 6, 7, 8, 9 | the context dword at `+0x10`, `+0x14`, `+0x18`, `+0x1C`, `+0x20`, `+0x28`, `+0x24` |
 
-It passes bits 2-6 of row byte `+3` as a category (`0x00536C6F`), marks events `0x24` and `0x25`, and
+It passes bits `0x7C` of row byte `+3` as a category (`0x00536C6F`), marks events `0x24` and `0x25`, and
 hands the request to the formatter `0x00536410` and the poster `0x0035B990`. `0x00536410` turns kind 5
 into a status name, kind 7 into an item name or a number (`0xE000` + n), and kind 8 into an action
 name; kind 4 is formatted through a sub-template taken from the message table's text heap
 (`0x002B4090`).
 
 The kind 4 sub-template is drawn in two colours chosen by a colour class. `0x00536410` takes the class from
-`0x00536190(flag, id)` (`0x00536463`), with the request's dword `+4` split into the flag, bit 15, and the message id,
-bits 0-14 (`0x00536448`-`0x0053645B`). `0x00536190` reads bits 0-1 of the message row's byte `+3` (`0x005361E2`-`0x005361E6`):
+`0x00536190(flag, id)` (`0x00536463`), with the request's dword `+4` split into the flag, bit `0x8000`, and the message id,
+bits 0-14 (`0x00536448`-`0x0053645B`). `0x00536190` reads bits `0x3` of the message row's byte `+3` (`0x005361E2`-`0x005361E6`):
 
-| Bits 0-1 | Class, flag clear | Class, flag set | Sites |
+| Bits `0x3` | Class, flag clear | Class, flag set | Sites |
 |---:|---:|---:|---|
 | `0` | 7 | 7 | `0x005361FD` |
 | `1` | 0 | 2 | `0x0053625E`-`0x0053626C` |
@@ -151,7 +151,7 @@ bits 0-14 (`0x00536448`-`0x0053645B`). `0x00536190` reads bits 0-1 of the messag
 | `3` | 4 | 5 | `0x00536227`-`0x0053622C` |
 
 `0x00536190` has one more arm, which returns 6 (`0x00536212`), and it is taken when the masked value is 4
-(`0x005361F8`-`0x005361FB`), which the mask to bits 0-1 leaves out; so from `0x00536190`'s entry the class is 0-5 or 7.
+(`0x005361F8`-`0x005361FB`), which the mask to bits `0x3` leaves out; so from `0x00536190`'s entry the class is 0-5 or 7.
 
 The kind 4 arm (`0x0053668C`) passes the class to `0x0035D430(class, 0)`, `0x0035D400(class, 0)`, `0x0035D430(class, 1)` and
 `0x0035D400(class, 1)` (`0x005366CF`-`0x005366FC`). Each reads entry `2 x class + n` of the byte table `0x00D10C60` and
@@ -184,8 +184,8 @@ The helpers behind those arguments:
 | `+0x00` | `u8` | slot0 | argument kind of slot 0 (`0x005369C0`, `0x00536410`) |
 | `+0x01` | `u8` | slot1 | argument kind of slot 1 |
 | `+0x02` | `u8` | slot2 | argument kind of slot 2 |
-| `+0x03` | `u8` | flags3 | bit 7: always shown (`0x00469570`); bits 2-6: category (`0x005369C0`); bits 0-1 dropped by `0x005369C0` and read by `0x00536190` as the colour class of a kind 4 argument (`0x005361E2`) |
-| `+0x04` | `u8` | flags4 | bit 0: repeat-limited (`0x0046AB10`) |
+| `+0x03` | `u8` | flags3 | bit `0x80`: always shown (`0x00469570`); bits `0x7C`: category (`0x005369C0`); bits `0x3` dropped by `0x005369C0` and read by `0x00536190` as the colour class of a kind 4 argument (`0x005361E2`) |
+| `+0x04` | `u8` | flags4 | bit `0x1`: repeat-limited (`0x0046AB10`) |
 | `+0x05` | `u8` | slot3 | argument kind of slot 3 |
 | `+0x06` | `u16` | zero6 | 0 in every shipped row |
 

@@ -12,6 +12,10 @@ the shaders read are made by the code on this page. The swap chain is created wi
 `R8G8B8A8_UNORM`, with the refresh rate of the screen's current mode, and the device is refused
 unless the adapter reaches Direct3D feature level 11.0.
 
+Each finished frame is shown either in step with the screen's refresh (vsync) or held to the game's frame rate
+by sleeping until the frame is due. With VSync setting 2 in full screen, vsync is dropped while the average GPU
+time per frame is above about 16 ms (33 ms at sync interval 2), so a slow scene tears instead of halving its rate.
+
 ## How it works
 
 ### Building the render context
@@ -120,7 +124,7 @@ blocks of the draw page, and a word that is non-zero while the ring is created:
 
 Setting the size records the format, width, height (and depth) and mip count and recomputes the level
 count at `+0x14`: `0x0060DD70` for 2D and `0x0060DE00` for 3D. Both return 3 when the larger side is
-below `1 << mips`, and with bit 1 of `+0x18` (generate mips) the level count is the base-2 logarithm
+below `1 << mips`, and with bit `0x2` of `+0x18` (generate mips) the level count is the base-2 logarithm
 of the largest side. `0x00610990` recomputes `+0x14` alone. `0x005DCC10` is the 3D base initialiser:
 format `0x02CF7A30`, `+0x08` = `0x300`, `+0x18` = 2.
 
@@ -258,6 +262,53 @@ timestamp-disjoint query (type 3) at `+0x10` and two timestamp queries (type 2) 
 descriptor `0x02CB76A0`) and initialises it with `0x00615C90`; it returns null when no object results.
 Ten call sites in `0x0064A000`–`0x006560E0` use it.
 
+### Presenting a frame
+
+The render thread's block `0x19` arm `0x006234A0(context)` shows each finished frame. After the device call
+`+0x378` it returns 0 without a swap chain (`+0x118`). Its sync interval is `0x0017ECE0()`, the value `0x00184960`
+posts to `0x01DF08F8` ([startup constants](../Engine-Core/startup-constants.md)), and 1 when the
+refresh rate `+0x18A4` is below 31.
+
+It uses vsync when the VSync byte `+0x1848` is set and either the swap chain is full screen (`+0x1890`) or
+desktop composition is off (`DwmIsCompositionEnabled`, `0x00623517`).
+
+In full screen with VSync setting 2 (byte `+0x1849`) it keeps a running average of the GPU frame time, the
+double `+0xD70` of the console object that the frame-marker table stores
+([post-processing](../Graphics/post-processing.md)) and `0x0017D880` returns. Each frame adds it
+to `0x02CF2550` and counts `0x02CF2548` up; above 30 frames the count stays 30 and the sum loses one average
+(`0x00623564`-`0x006235AF`).
+
+While no fade layer other than 3 runs (`0x0022A040`, [screen fades](../Graphics/screen-fades.md)),
+the monster viewer's byte `+0x118` is clear (`0x00181DD0`) and the post-process parameter object's byte `+0x1E9`
+is set (`0x00182780`), vsync stays on only while that average is below 0.0327 s (`0x00D56050`) at sync interval 2,
+or 0.0158 s (`0x00D56048`) otherwise (`0x006235B7`-`0x006235F6`). Without vsync the interval is 0.
+
+`IDXGISwapChain::Present` (vtable `+0x40`) gets the interval and the flag `DXGI_PRESENT_TEST` (1) while the
+countdown `+0x18A8` is not 0. `DXGI_STATUS_OCCLUDED` (`0x087A0001`) sets the countdown to 1, any other success
+lowers it by 1, and a failure makes the arm return 0. The swap-chain resize `0x006278B0` sets it to 8 divided by
+the interval when `0x00180170()` is false (`0x006278C4`-`0x006278DD`,
+[screen mode and aspect](../Graphics/screen-mode-and-aspect.md)).
+
+A frame limiter runs after an occluded vsync present, and on every frame without vsync while the byte
+`0x01F2DE89` is set; it is 1 in the file and no instruction writes it. Its target is the unraised interval times
+1/60 s (`0x009010A0`) when the refresh rate is a multiple of 10, otherwise times 0.0166833 s (`0x00900378`, 59.94 Hz).
+
+The limiter begins the multimedia timer period ([Phyre application](phyre-application.md)) and reads the time
+since engine start (`0x005CC930()` minus `0x02CB60E8`). The last frame time `0x01F2DF10` starts as `DBL_MAX`
+(`7FEFFFFFFFFFFFFF` in the file, compared with `0x009010A8`); at that value it becomes the time less one target
+(`0x00623704`).
+
+While the time since `0x01F2DF10` is short of the target, it sleeps the remaining milliseconds (times -1000.0,
+`0x00D56058`) rounded down to a multiple of the timer period `0x02CF2540`, less 1, then calls `Sleep(0)` until the
+target is reached (`0x0062370C`-`0x006237AB`). `0x01F2DF10` then advances by one target, or to the time less one
+target when the frame is more than a target late (`0x006237B5`). Without vsync the frame is then presented at
+interval 0 (`0x006237C6`), with the same countdown.
+
+After a vsync present that was not occluded it ends the timer period unless the average above is in use
+(`0x0062380A`-`0x00623831`), and advances `0x01F2DF10` by one target (`0x00623871`). Last, when the buffer count
+`+0x184C` differs from the description's `+0x148`, it copies it there and resizes the swap chain (`0x006278B0`
+with the size `+0x120`, `+0x124`), and returns 1.
+
 ## Layouts
 
 `RenderContextDevice` (offsets from the start of the context):
@@ -277,10 +328,15 @@ Ten call sites in `0x0064A000`–`0x006560E0` use it.
 | `+0x0708` | `u8[88]` | vertexIndexUpload | UploadBufferPair, sizes from `+0xF4` and `+0xF8` |
 | `+0x0760` | `u8[88]` | rawUpload | UploadBufferPair, sizes from `+0xFC` and `+0x100` |
 | `+0x07B8` | `void*` | indirectArgs | 16-byte ID3D11Buffer, feature level 11.0 |
+| `+0x1848` | `u8` | vsync | 1 for VSync settings 1 and 2 (`0x0062AAB0`); `0x006234A0` presents with vsync while set |
+| `+0x1849` | `u8` | adaptiveVsync | 1 for VSync setting 2 only (the word `0x101` with `+0x1848`) |
+| `+0x184C` | `u32` | bufferCount | the swap chain's buffer count; 1 from the constructor |
 | `+0x1850` | `f64` | startClock | clock() at creation |
 | `+0x1878` | `void*` | factory | IDXGIFactory |
 | `+0x1880` | `void*` | adapter | IDXGIAdapter chosen at start-up |
+| `+0x1890` | `u32` | fullscreen | 1 when GetFullscreenState (`+0x58`) reports full screen |
 | `+0x18A4` | `u32` | refreshRate | numerator / denominator |
+| `+0x18A8` | `u32` | testPresents | presents left with DXGI_PRESENT_TEST; 8 / interval at a resize |
 
 `DXGI_SWAP_CHAIN_DESC` (`0x48` bytes, offsets from the start of the context+0x120):
 
@@ -470,6 +526,10 @@ all three colour bits) and `0x2000` and `0x4000` mark depth and stencil.
 | `0x02CF7A30` | the null format every texture starts with |
 | `0x01F7F5A0` | counter that picks a cube map's ring record |
 | `0x01F7F590` | frame slot of the deferred upload queue |
+| `0x01F2DF10` | `f64`, the frame limiter's last frame time (`DBL_MAX` at start) |
+| `0x01F2DE89` | `u8`, 1: the frame limiter runs without vsync |
+| `0x02CF2548` | `u32`, frames in the GPU-time average, at most 30 |
+| `0x02CF2550` | `f64`, the sum of that average |
 
 ### The texture-format registry
 

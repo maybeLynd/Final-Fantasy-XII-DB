@@ -1,0 +1,104 @@
+kind	name	detail	value_or_text	read_or_created_by	written_or_handled_by	what_it_does	string_in_binary
+shipped	x64/SettingsLoc.xml	16744 bytes	B5F577C7BBCB0C8CD795DE554A7BFE53CFC25CB9A42C7601AEA92CA33E7D5413	-	-	the launcher's text file; read by LoadXmlFile	-
+shipped	x64/FFXII_TZA_GameSetting.exe	961520 bytes	E35CEC8ABE4A722A184C8323DD4CEFC10795E256B7F44BE4B832B4779ADF515B	-	-	the launcher (.NET); every other row is decompiled from it	-
+ini	Language	""""", ""us"""	en, de, fr, it, kr, es, cn, ch or jp: the Steam game language when it is one of the nine, else the value read, else the one GetUserDefaultLangID gives	Program.LoadIniFile; Program.SaveIniFile	Program.LoadIniFile; Program.SetLanguageAccordingToSteam	picks the SettingsLoc.xml Lang element and its font; after a save the in-memory language is the key's value, default us; game: the game's Language setting	yes
+ini	DeviceID	""""""	the chosen adapter's DXGI device id, set in memory at every change of the adapter box and at save time	ConfigForm.GetGameSettingDisplayAdapterSelectedIndex; ConfigForm.comboBox_DisplayAdapter_SelectChanged; ConfigForm.comboBox_FrameLimit_SelectChanged; Program.InitGlobalConfig	ConfigForm.SaveGameSettingDisplayAdapter	with LUIDLow, LUIDHigh and Monitor picks the adapter box item by text comparison and, through Convert.ToInt32, the output whose modes are listed; a non-number takes the adapter with the most dedicated video memory (the FormatException is caught), a number outside 32 bits raises an OverflowException that is not caught; game: the game's DeviceID setting	yes
+ini	LUIDLow	""""""	the low 32 bits of the adapter's LUID, (int)(luid << 32 >> 32)	ConfigForm.GetGameSettingDisplayAdapterSelectedIndex; ConfigForm.comboBox_DisplayAdapter_SelectChanged; ConfigForm.comboBox_FrameLimit_SelectChanged; Program.InitGlobalConfig	ConfigForm.SaveGameSettingDisplayAdapter	as DeviceID; game: the game's LUIDLow setting	yes
+ini	LUIDHigh	""""""	always 0: (int)(luid >> 32 << 32) keeps only bits that the cast to int drops	ConfigForm.GetGameSettingDisplayAdapterSelectedIndex; ConfigForm.comboBox_DisplayAdapter_SelectChanged; ConfigForm.comboBox_FrameLimit_SelectChanged; Program.InitGlobalConfig	ConfigForm.SaveGameSettingDisplayAdapter	as DeviceID; the comparison uses the same expression, so 0 matches; game: the game's LUIDHigh setting	yes
+ini	Monitor	""""""	the output's 1-based index on its adapter	ConfigForm.GetGameSettingDisplayAdapterSelectedIndex; ConfigForm.comboBox_DisplayAdapter_SelectChanged; ConfigForm.comboBox_FrameLimit_SelectChanged; Program.InitGlobalConfig	ConfigForm.SaveGameSettingDisplayAdapter	as DeviceID; with the adapter matched, 0 or a negative value indexes Outputs[-1] or lower, which throws an exception that is not caught; game: the game's Monitor setting	yes
+ini	FrameLimit	"""30"", ""30FPS"""	30 or 60, set in memory by the box at every change and at save time	ConfigForm.LoadConfiguration; ConfigForm.comboBox_DisplayAdapter_SelectChanged; ConfigForm.comboBox_FrameLimit_SelectChanged; Program.InitGlobalConfig	ConfigForm.SaveConfiguration; ConfigForm.comboBox_FrameLimit_SelectChanged	60 selects 60FPS; any other value, the missing-key default 30FPS included, selects 30FPS; with 60 the resolution list keeps only modes of 59 Hz or more; game: the game's FrameLimit setting	yes
+ini	ScreenMode	"""SM_FULLSCREEN"""	SM_WINDOW, SM_FULLSCREEN, SM_BORDERLESS (set in memory by the box at save time)	ConfigForm.LoadConfiguration	ConfigForm.SaveConfiguration	missing or a value outside the three: the box selects SM_FULLSCREEN (SetComboBoxSelected with defaultKey SM_FULLSCREEN); the mode picks the resolution list and enables the adapter box only in full-screen mode; game: the game's ScreenMode setting	yes
+ini	Quality	"""VQ_MEDIUM"""	VQ_LOW, VQ_MEDIUM, VQ_HIGH, VQ_CUSTOM, or a value outside them unchanged	ConfigForm.LoadConfiguration	ConfigForm.SaveConfiguration	missing: VQ_MEDIUM; a value outside the four item keys is added as an item with that key and the text Custom, so a save writes it back unchanged; game: the game's Quality setting	yes
+ini	VSync	"""On"""	On, Off or Adaptive, set in memory by the box at every change and at save time	ConfigForm.LoadConfiguration	ConfigForm.SaveConfiguration; ConfigForm.comboBox_Vsync_SelectChanged	Off and Adaptive select their items; any other value, a missing key included, selects on; game: the game's VSync setting	yes
+ini	MasterVolume	"""100"""	the number read, unchanged (default 100)	ConfigForm.LoadConfiguration	ConfigForm.SaveConfiguration	int.Parse in LoadConfiguration: a non-number throws while the window loads; game: no MasterVolume key in the game's 31-key table: 0x001DE5D0 logs [ConfigFile] invalid key	yes
+ini	WindowSize	""""""	the selected size, only when windowed mode is selected; the save turns each x into * (1280*720)	ConfigForm.UpdateResolutionComboBoxItems; ConfigForm.UpdateResolutionComboBoxSelected	ConfigForm.SaveConfiguration	the read turns each * into x; windowed mode: a value below 640x360 is raised to it and inserted in size order when the list lacks it, an exact text match is selected, else the item nearest in pixel count; missing: the first item; a value with no * makes the Substring arithmetic throw; game: the game's WindowSize setting, width*height	yes
+ini	Resolution	""""", Program.PrimaryScreenWidth + ""x"" + Program.PrimaryScreenHeight"	the selected size, only when full-screen mode is selected; the save turns each x into * (1920*1080)	ConfigForm.UpdateResolutionComboBoxItems; ConfigForm.UpdateResolutionComboBoxSelected	ConfigForm.SaveConfiguration	the read turns each * into x; full-screen: an exact text match is selected, else the item nearest in pixel count; missing: the last item; borderless: listed only when Screen.AllScreens is empty (default the primary screen's size); game: the game's Resolution setting, width*height	yes
+ini	Mute	-	Off: mIsMute changes only in pictureBox2_Click, which no control has as a handler	none	ConfigForm.SaveConfiguration	never read; game: no Mute key in the game's 31-key table: 0x001DE5D0 logs [ConfigFile] invalid key	yes
+ini	LastX	"""0"""	never written	ConfigForm.UpdateResolutionComboBoxItems	none	borderless mode: the screen containing (LastX, LastY) gives the listed size, else the screen whose bottom-right corner is nearest, measured with LastX on both axes; a non-number throws; game: the game's LastX setting	yes
+ini	LastY	"""0"""	never written	ConfigForm.UpdateResolutionComboBoxItems	none	borderless mode: used only in the containment test of LastX; game: the game's LastY setting	yes
+ini	Volume	-	never written: no code passes the key Volume to SetIniString	Program.SetIniString (key test)	none	SetIniString would call OnVolumeChanged, which nothing assigns; game: no Volume key in the game's 31-key table	yes
+control	label_Video	Label	Video	ConfigForm	none	section heading	yes
+control	label_DisplayAdapter	Label	Display Adapter	ConfigForm	none	label of the adapter box	yes
+control	label_Resolution	Label	Resolution	ConfigForm	none	label of the resolution box	yes
+control	label_ScreenMode	Label	Screen Mode	ConfigForm	none	label of the screen mode box	yes
+control	label_VideoQualitySetting	Label	Video Quality Setting	ConfigForm	none	label of the quality box	yes
+control	label_FrameLimit	Label	Framerate Limits	ConfigForm	none	label of the frame limit box	yes
+control	label_ResetDeviceSetting	Label	Reset Device Setting	ConfigForm	none	label of the Reset button	yes
+control	label_Vsync	Label	Vsync	ConfigForm	none	label of the VSync box	yes
+control	panel1	Panel	-	ConfigWindow	none	ConfigForm: a 4-pixel rule above the buttons; ConfigWindow: the scrolling panel that holds ConfigForm	yes
+control	comboBox_DisplayAdapter	ComboBox	-	ConfigForm	SelectedIndexChanged: comboBox_DisplayAdapter_SelectChanged	one item per output of each DXGI adapter with outputs, 'adapter name(output name)' without backslashes and dots; writes DeviceID, LUIDLow, LUIDHigh, Monitor; disabled in windowed and borderless mode	yes
+control	comboBox_Resolution	ComboBox	-	ConfigForm	none	26 design-time sizes (2560x1440 twice) that the first screen-mode selection replaces with the output's modes of at least 1280x720; writes WindowSize or Resolution; disabled in borderless mode	yes
+control	comboBox_ScreenMode	ComboBox	-	ConfigForm	SelectedIndexChanged: comboBox_ScreenMode_SelectChanged	the three screen modes; writes ScreenMode	yes
+control	comboBox_Vsync	ComboBox (Name comboBox_FrameLimit)	-	ConfigForm	SelectedIndexChanged: comboBox_Vsync_SelectChanged	"on, off, auto; writes VSync. Its designer Name is comboBox_FrameLimit, the same as the frame limit box, so Controls[""comboBox_FrameLimit""] finds the frame limit box, which is added first"	yes
+control	comboBox_VideoQualitySetting	ComboBox	-	ConfigForm	none	Low, Medium, High (Custom only when the file says VQ_CUSTOM or a value outside the item keys); writes Quality	yes
+control	comboBox_FrameLimit	ComboBox	-	ConfigForm	SelectedIndexChanged: comboBox_FrameLimit_SelectChanged	30FPS, 60FPS; writes FrameLimit	yes
+control	button_Reset	Button	Reset	ConfigForm	Click: button_Reset_Click	the warning box, then deletes keymap.ini on OK	yes
+control	button_OK	Button	OK	ConfigForm	Click: button_OK_Click	saves GameSetting.ini and exits	yes
+control	button_Cancel	Button	Cancel	ConfigForm	Click: button_Cancle_Click	exits without saving (handler button_Cancle_Click)	yes
+control	button_Apply	Button	Apply	ConfigForm	Click: button_Apply_Click	saves and runs ConfigForm_Load again	yes
+control	label_Version	Label	Ver  1.0.0.1	ConfigForm	none	set to the constant Ver  1.0.4.0 by SetVersionInfo	yes
+control	timer1	Timer	-	ConfigForm	Tick: timer1_Tick	100 ms gamepad poll (timer1_Tick)	yes
+control	textLabel	Label	-	MsgForm	none	the message box text	yes
+control	okButton	Button	-	MsgForm	none	the message box OK button, text from button_ok	yes
+control	cancelButton	Button	-	MsgForm	none	the message box Cancel button, text from button_cancel; hidden in the second-copy error box	yes
+item	SM_WINDOW	Windowed Mode	ScreenMode=SM_WINDOW	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	SM_FULLSCREEN	Full-Screen Mode	ScreenMode=SM_FULLSCREEN	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	SM_BORDERLESS	Borderless Mode	ScreenMode=SM_BORDERLESS	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VQ_LOW	Low	Quality=VQ_LOW	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VQ_MEDIUM	Medium	Quality=VQ_MEDIUM	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VQ_HIGH	High	Quality=VQ_HIGH	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VQ_CUSTOM	Custom	Quality=VQ_CUSTOM	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	FL_THIRTYFRAME	30FPS	FrameLimit=30	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	FL_SIXTYFRAME	60FPS	FrameLimit=60	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VSYNC_ON	on	VSync=On	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VSYNC_OFF	off	VSync=Off	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+item	VSYNC_AUTO	auto	VSync=Adaptive	ConfigForm.ConfigForm_Load	ConfigForm.SaveConfiguration	built-in text; a SettingsLoc.xml Text[@Key] of the same key replaces it	yes
+input	hat 27000	mask 0x1	-	Joy.handleInput	ConfigForm.timer1_Tick	hat left: the Left arrow key, every tick while held (IsLeft and the mask); a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	hat 9000	mask 0x2	-	Joy.handleInput	ConfigForm.timer1_Tick	hat right: the Right arrow key; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	hat 0	mask 0x4	-	Joy.handleInput	ConfigForm.timer1_Tick	hat up: Shift+Tab, focus to the previous control; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	hat 18000	mask 0x8	-	Joy.handleInput	ConfigForm.timer1_Tick	hat down: Tab, focus to the next control; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	button 0	mask 0x10	-	Joy.handleInput	ConfigForm.timer1_Tick	first button: in the mask, used by nothing; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	button 1	mask 0x20	-	Joy.handleInput	ConfigForm.timer1_Tick	second button: clicks the focused window button or message box button; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	button 2	mask 0x40	-	Joy.handleInput	ConfigForm.timer1_Tick	third button: in the mask, used by nothing; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+input	button 3	mask 0x80	-	Joy.handleInput	ConfigForm.timer1_Tick	fourth button: in the mask, used by nothing; a held mask repeats after 3 ticks (mButtonMaxRepeatCount)	-
+file	SettingsLoc.xml	LoadXmlFile (File.Exists, then LoadVBFData)	read	Program.InitGlobalConfig; Program.SaveIniFile	-	the window and message texts and fonts, from the working folder, first line skipped; missing: the controls keep their design-time English texts and the message boxes show no text	yes
+file	Program.ConfigPath	LoadIniFile (File.ReadAllLines), SaveIniFile (File.WriteAllLines)	read and written	Program.LoadIniFile; Program.SaveIniFile	-	GameSetting.ini in Documents/My Games/FINAL FANTASY XII THE ZODIAC AGE/, plus the Steam id folder when SteamAPI.Init succeeds; lines without = are skipped; missing: every box takes its default; a key given twice makes Dictionary.Add throw, the read returns null and a save writes only the launcher's keys; every key read is written back	yes (My Games\FINAL FANTASY XII THE ZODIAC AGE\)
+file	Program.ResetFilePath	File.Exists, File.Delete	deleted	ConfigForm.button_Reset_Click	-	keymap.ini in the same folder, deleted when Reset's warning box returns OK and the file exists	yes (/Paths/ResetFile)
+file	./code_steam.txt	File.Exists, StreamReader.ReadLine	read, result discarded	ConfigForm.SetVersionInfo	-	first line cut between the first space and the first 'on'; not shipped; a line without both throws in the ConfigForm constructor	yes
+file	./data.txt	File.Exists, StreamReader.ReadLine	read, result discarded	ConfigForm.SetVersionInfo	-	as code_steam.txt; not shipped	yes
+file	mutexString	Mutex.OpenExisting	named mutex	Program.IsSingleInstance	-	A8825348-F5CE-4E67-8735-D4AF7E7E58F1: when it already exists the copy shows the 300x100 ERROR box (msg_Content) instead of the window	yes (A8825348-F5CE-4E67-8735-D4AF7E7E58F1)
+file	initiallyOwned: true, mutexString	new Mutex(true, name)	named mutex	Program.IsSingleInstance	-	created owned by the first copy	yes (A8825348-F5CE-4E67-8735-D4AF7E7E58F1)
+pathconfig	IniFile	GameSetting.ini	embedded resource PathConfig	Program.InitGlobalConfig	-	the settings file name	yes
+pathconfig	ResetFile	keymap.ini	embedded resource PathConfig	Program.InitGlobalConfig	-	the file Reset deletes	yes
+pathconfig	FFX	Hello.exe	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	FFXParam	(empty)	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	FFX2	Hello.exe	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	FFX2Param	(empty)	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	SideStory	Hello.exe	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	SideStoryParam	(empty)	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	LastMission	Hello.exe	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	LastMissionParam	(empty)	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	Credit	Hello.exe	embedded resource PathConfig	none	-	read by nothing	yes
+pathconfig	CreditParam	(empty)	embedded resource PathConfig	none	-	read by nothing	yes
+unused	LoadVBFImage	method: reads a file into an Image	-	Program.cs line 285	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	RetriveMonitorResolutions	method: EnumDisplayDevices walk	-	Program.cs line 696	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	Pause	method: runs cmd /C pause	-	Program.cs line 768	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	AllocConsole	Kernel32 import	-	Program.cs line 752	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	ToSBC	method: half-width to full-width text	-	ConfigForm.cs line 353	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	ToDBC	method: full-width to half-width text	-	ConfigForm.cs line 370	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	LanguagePath	property: language folder name	-	Program.cs line 194	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	LangAndSizePath	property: language and 360p folder name	-	Program.cs line 180	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	MainFormHandle	property: reads and writes a window handle through mSharedMemoryObject, which nothing creates	-	Program.cs line 146	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	FocusMessage	property	-	Program.cs line 144	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	GetXmlSelectorNodeByLanguage	method: the XPath condition for a given language	-	Program.cs line 317	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	stopTimer	method: stops the gamepad timer	-	ConfigForm.cs line 951	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	MaxScreenWidth	property: the widest listed mode	-	Program.cs line 219	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	MaxScreenHeight	property: the tallest listed mode	-	Program.cs line 217	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	ResetButton	property	-	ConfigForm.cs line 113	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	DefaultButton	property	-	ConfigForm.cs line 115	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	ApplyButton	property	-	ConfigForm.cs line 119	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	VersionNumber	property	-	Program.cs line 241	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	SetLanguageComboBox	method with an empty body	-	ConfigForm.cs line 349	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	pictureBox2_Click	handler: toggles mute and calls OnVolumeChanged; no control has it as a handler	-	ConfigForm.cs line 879	none	declared and never used: its name occurs once in the decompiled source, at the declaration	-
+unused	OnVolumeChanged	static Action<int> field	-	Program	none	never assigned (no = or += on it), so the Volume key test in SetIniString and pictureBox2_Click call nothing	-
+unused	mSharedMemoryObject	static IntPtr field	-	Program	none	never assigned, so MainFormHandle's MapViewOfFile paths are skipped (it stays IntPtr.Zero)	-

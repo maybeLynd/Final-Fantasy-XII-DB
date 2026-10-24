@@ -414,7 +414,7 @@ slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit `0x80` 
 - Keep `item[0]` exact: a wrong length desynchronises every later item in the record.
 - Keep each record's item stream where `+0x10` points, relative to the record's own address, and keep the
   item count to 1,023.
-- To blank an item, clear item byte `+3` bit 4 rather than retyping it to 3 or 6: a zero-size item aliases the
+- To blank an item, clear item byte `+3` bit `0x10` rather than retyping it to 3 or 6: a zero-size item aliases the
   next node, or writes past the block when it is last.
 - A record shown by a type-8 grid is built with no parent, so it must not contain type-1 or type-8 items: the
   attach step reads through the missing parent.

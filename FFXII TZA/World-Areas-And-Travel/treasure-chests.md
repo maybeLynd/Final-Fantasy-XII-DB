@@ -75,7 +75,7 @@ With no chest the model is set to −1 and the actor stays hidden; with a chest 
 it at `(x / 10, 0, z / 10)` from `+0x04` and `+0x06` and faces it by the low six bits of `+0x08` in 6° steps
 (`0x002FAF60`).
 
-A flag byte of `0xFF` means no flag: `0x0032AA60` then tests bit 255, which nothing in shipped play sets.
+A flag byte of `0xFF` means no flag: `0x0032AA60` then tests flag 255 of the story-flag set, which nothing in shipped play sets.
 
 - The setter `0x0032AD70` has four callers: the trap firing `0x002F8060` and the payout `0x002FAFD0`, both of which skip
   `0xFF` (`0x002F8247`, `0x002FAFF0`), and the verbs `settreasurebattleflag` and `releasetreasurebattleflag`

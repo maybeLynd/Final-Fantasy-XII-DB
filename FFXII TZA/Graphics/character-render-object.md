@@ -209,7 +209,7 @@ The record teardown `0x0041E860` returns up to eight instances listed from recor
 `0x00478070(bank, index)`, which releases the instance with `0x00504C40` and frees its slot
 (`0x0051FCF0`). `0x00504C40` frees the sixteen palette resources at `+0x140` (`0x003CD590`, `0x003CD5D0`)
 and marks their pairs in the map `+0x180` free (`0xFF`), releases the `@FDM` binding when `+0x08`
-bit 2 is set (`0x00409CA0`), releases the 32 texture slot words at `+0x100` (`0x00521250`) and resets
+bit `0x4` is set (`0x00409CA0`), releases the 32 texture slot words at `+0x100` (`0x00521250`) and resets
 the instance (`0x005049E0`).
 
 - `0x00504BC0(record, value)` sets bit `0x80` of byte `+1` of each of the record's instance palette

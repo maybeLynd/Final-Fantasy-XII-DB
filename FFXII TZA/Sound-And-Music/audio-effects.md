@@ -273,7 +273,7 @@ except three that a voice builds for itself:
 |---|---|---|
 | `0x007D9530` `SimpleFilter` | `0x007EA003` | every voice, as effect 0 |
 | `0x007D99E0` `Flanger` | `0x007ED01F` | a sound effect of type 6 |
-| `0x007DA0A0` `GranularPitchShift` | `0x007ED1B6` | a music voice whose header is not version 0 and sets bit 0 of `+0x0A`, built bypassed (`+0x10` = 1) until `0x007EA850` switches it on; all 116 shipped musics are version 11 with that bit clear |
+| `0x007DA0A0` `GranularPitchShift` | `0x007ED1B6` | a music voice whose header is not version 0 and sets bit `0x1` of `+0x0A`, built bypassed (`+0x10` = 1) until `0x007EA850` switches it on; all 116 shipped musics are version 11 with that bit clear |
 
 So the reverbs, the compressor, the side-chain input, the biquad filter, the pitch shifter and the frequency shifter
 are not built by the shipped game.

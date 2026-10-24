@@ -31,16 +31,16 @@ battle units first (`0x0031B860`, `0x00300553`, `0x0030055E`).
 | Caller | Site | Value | Flags |
 |---|---|---|---|
 | the applier, target | `0x00311668` | result `+0x24` | from result `+0x2C`, below |
-| the applier, user | `0x00311739` | result `+0x20`, when result bit 7 | from result `+0x2C`, no source record |
+| the applier, user | `0x00311739` | result `+0x20`, when result bit `0x80` | from result `+0x2C`, no source record |
 | the cap reconcile `0x0030F340` | `0x0030F3DC` | cap minus HP | `0x217` |
 | the deferred HP queue `0x003065D0`, `0x0030EB10` | `0x00306699`, `0x0030EB5F` | queued delta | `0x0` |
 | spawn and timeline code (absolute) | `0x00235316`, `0x0023A451`, `0x0031A09B`, `0x00329CAE` | value | caller's |
 
-For the target, the applier runs only when result `+0x2C` bit 8 is set (`0x00311610`). It uses the
-absolute form for bit 3 (`0x00311657`-`0x00311661`) and builds the flags as bit 19 → flag 8, bit 10 → flag 5,
-bit 18 clear → flag 6, bit 6 clear → flag 4 (`0x00311608`-`0x00311651`)
+For the target, the applier runs only when result `+0x2C` bit `0x100` is set (`0x00311610`). It uses the
+absolute form for bit `0x8` (`0x00311657`-`0x00311661`) and builds the flags as bit `0x80000` → flag 8, bit `0x400` → flag 5,
+bit `0x40000` clear → flag 6, bit `0x40` clear → flag 4 (`0x00311608`-`0x00311651`)
 ([Action results](../Battle-Actions/action-results.md)). For the user it uses the absolute form for bit
-1 and maps bit 9 → flag 5, bit 17 clear → flag 6, bit 5 clear → flag 4 (`0x0031170A`-`0x00311732`); it passes
+`0x2` and maps bit `0x200` → flag 5, bit `0x20000` clear → flag 6, bit `0x20` clear → flag 4 (`0x0031170A`-`0x00311732`); it passes
 no source record, so the user's own write has no killer.
 
 ### The flag bits
@@ -58,21 +58,21 @@ The function unpacks its flags first (`0x00300580`-`0x00300601`):
 | `7` | no damage number | `0x003005F6`, `0x003006D8` |
 | `8` | the KO event is `0x200E` | `0x00300846` |
 
-All flags, including bits this function does not test (`0x217` carries bit 9), are passed on to the
+All flags, including bits this function does not test (`0x217` carries bit `0x200`), are passed on to the
 status write (`0x0030076E`, `0x003007B9`).
 
 ### Refusals
 
 The change is dropped before anything is written in these cases:
 
-1. With flag bit 0 clear, `0x0030B9B0(targetUnit, sourceUnit)` returns non-zero (`0x0030060F`-`0x00300616`): a low bit
+1. With flag bit `0x1` clear, `0x0030B9B0(targetUnit, sourceUnit)` returns non-zero (`0x0030060F`-`0x00300616`): a low bit
    of the battle or unit eligibility mask is set ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)
    has both masks).
 2. The delta is negative and the target has KO, Stone or X-Zone (statuses 0, 1 and 31, mask
-   `0x80000003` over `+0x64 | +0x3C`), unless `0x00377C20` reports bit 15 of the active field record
+   `0x80000003` over `+0x64 | +0x3C`), unless `0x00377C20` reports bit `0x8000` of the active field record
    (`0x0030061C`-`0x00300635`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
-A second gate only skips the store: with flag bit 0 clear and a delta of 0 or less, a non-zero
+A second gate only skips the store: with flag bit `0x1` clear and a delta of 0 or less, a non-zero
 `0x0030B8E0(targetUnit, sourceUnit)` leaves HP unchanged, but the rest of the function runs
 (`0x0030072F`-`0x00300747`).
 
@@ -119,18 +119,18 @@ floor of 796 is KO'd when it reaches 796. The revive test compares the HP before
 
 With a target unit, two publishers run before the store, on the limited value (`0x003006A7`-`0x003006E7`):
 
-- `0x003283D0(targetUnit, delta, isHeal, 0)`, the hit or heal reaction, unless flag bit 4. `isHeal` is
-  `delta > 0`, or flag bit 5 when the delta is 0.
-- `0x0028F1F0(targetUnit[+0x08], old, new, 0)`, the damage number, unless flag bit 7.
+- `0x003283D0(targetUnit, delta, isHeal, 0)`, the hit or heal reaction, unless flag bit `0x10`. `isHeal` is
+  `delta > 0`, or flag bit `0x20` when the delta is 0.
+- `0x0028F1F0(targetUnit[+0x08], old, new, 0)`, the damage number, unless flag bit `0x80`.
 
-Then it reads the event variant: bit 8 of the source unit's target-buffer entry for this target
+Then it reads the event variant: bit `0x100` of the source unit's target-buffer entry for this target
 (`0x00316D70` over source `+0x778`, entry dword at `+0x788`), or 0 without both units
 (`0x003006F6`-`0x0030072C`).
 
 ### Heal and revive
 
 The store is `0x00300749`. A strictly positive delta is a heal (`0x0030074D`): the code re-reads the delta
-itself, so a delta of 0 with flag bit 5 is not a heal. If HP before the change was above 0, the function
+itself, so a delta of 0 with flag bit `0x20` is not a heal. If HP before the change was above 0, the function
 ends. If it was 0 or below, the target is revived: `0x0030E360(target, source, status 0, 0, 0, flags,
 mode 0)` clears KO (`0x0030075C`-`0x0030077A`).
 
@@ -144,7 +144,7 @@ ordinary enemies get no message.
 A delta of 0 or less that leaves HP at or below the floor runs, in order:
 
 1. the "... has fallen." message: `0x00469BB0(source, target)` posts battle message `0x10` through
-   `0x0046AB10` when `0x002F8E90(target) & 7` is non-zero, unless flag bit 1 (`0x0030079C`-`0x003007A8`,
+   `0x0046AB10` when `0x002F8E90(target) & 7` is non-zero, unless flag bit `0x2` (`0x0030079C`-`0x003007A8`,
    `0x00469BDC`-`0x00469BF2`);
 2. KO is set: `0x0030E360(target, source, status 0, -1, -1, flags, mode 3)` (`0x003007AD`-`0x003007CF`);
 3. with a target unit and a source, the killer: target unit `+0x30` = source unit `+0x08`
@@ -155,10 +155,10 @@ A delta of 0 or less that leaves HP at or below the floor runs, in order:
    shipped (`0x00300805`-`0x00300829`, [Action phases](../Battle-Actions/action-phases.md));
 5. `0x00306F00(targetUnit)` records the death in the group ledger and ends the function when it completes
    the group ([Boss fights](../Battle-Actions/boss-fights.md); `0x0030082F`-`0x00300836`);
-6. otherwise, unless flag bit 2, the KO event: `0x200E` with flag bit 8, else `0x2007` or `0x2008` by the
+6. otherwise, unless flag bit `0x4`, the KO event: `0x200E` with flag bit `0x100`, else `0x2007` or `0x2008` by the
    variant bit, carrying the source unit's `+0x08` (`0x00300838`-`0x00300887`).
 
-A target that survives gets event `0x2005` plus the variant bit, unless flag bit 2 or 6
+A target that survives gets event `0x2005` plus the variant bit, unless flag bit `0x4` or `0x40`
 (`0x00300861`-`0x00300887`). Steps 3 to 6 need a target unit; a record without one is only KO'd
 (`0x003007D4`).
 
@@ -189,4 +189,4 @@ and 41,046; `dgl_n01` 222,462; `dor_b01` 18,247; `dst_a01` 67; `lus_c01` 98,482,
 - [Boss fights](../Battle-Actions/boss-fights.md) - the group ledger and what completes a fight.
 - [Battle message list](../Battle-Actions/battle-message-list.md) - message `0x10`.
 - [Elements](elements.md) - the absorb and Reverse rules that decide loss or gain.
-- [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the field record bit 15 exception.
+- [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the field record bit `0x8000` exception.

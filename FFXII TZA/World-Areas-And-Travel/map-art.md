@@ -314,6 +314,18 @@ comma-separated fields, hashes the first (the map name, `0x00674A00`) and stores
 name `start` into the set `+0x3A0` and then every token it reads with `%s`, stepping by the token's
 length plus 2, so the file must separate names with CRLF.
 
+The shipped file is 288 bytes: 32 distinct seven-character map names, each followed by CRLF, so every scan starts
+on a name. [`map-art-nomodelgroupmaps-rows.tsv`](map-art-nomodelgroupmaps-rows.tsv) gives each name with its
+offset, its asset lists and the zones that draw the map.
+
+- Every name has both asset lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`. The 32 maps are the art of 115
+  zones; `dst0103` and `gil0301` are also reached through the alias pairs from `dst0109` and `gil0303` (`0x01EF9490`).
+- In these maps the remastered models ignore the map's own hidden-model set: a model is hidden only while a script
+  has forced it off with `hidemapmodel` ([Doors, gates and map changes](doors-gates-and-map-changes.md#showing-and-hiding-map-models)).
+- `0x001A6A20` reads each name with `sscanf("%s")` (`0x0018A330`) into a 32-byte stack buffer and stops when a scan
+  does not return 1. A name of 32 characters or more writes past the buffer into the stack cookie that `0x00808C40`
+  checks. With no text it inserts only `start` (`0x001A6B48`).
+
 ## Layouts
 
 ### The context
@@ -370,7 +382,7 @@ length plus 2, so the file must separate names with CRLF.
 | `+0x058` | `u8*` | instanceFlag | per instance |
 | `+0x078` | `i32*` | instanceMode | per instance (`0x001E69A0`) |
 | `+0x098` | `u8*` | instanceByte | per instance (`0x001E69A0`) |
-| `+0x0B8` | `u8` | extraPass | bit 1 of a material's `+0x10` flags (`0x001E4000`) |
+| `+0x0B8` | `u8` | extraPass | bit `0x2` of a material's `+0x10` flags (`0x001E4000`) |
 | `+0x0C1` | `u8` | flagA | `0x001E69A0` |
 | `+0x0C2` | `u8` | flagB | `0x001E69A0` |
 | `+0x0C3` | `u8` | flagD | `0x001E69A0` |

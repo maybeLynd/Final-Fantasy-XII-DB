@@ -63,7 +63,7 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 
 | Column | Meaning | Read by |
 |---|---|---|
-| `quest` | the quest id, key bits 8-17 | `0x0037E5B0`, `0x0037EE10` |
+| `quest` | the quest id, key bits `0x3FF00` | `0x0037E5B0`, `0x0037EE10` |
 | `record`, `position` | the record's index in `menuquest.dat` and its position among the group's records | `0x0037E5B0`, `0x0037EE10` |
 | `group` | key bits 0-7, 1 for every hunt | `0x0037EAA0`, `0x00577C30` |
 | `name` | the name text, record `+0x00` | `0x002F9920` from `0x0037E5B0` |

@@ -151,7 +151,7 @@ A request that two families can own asks the block controller first and the six-
 takes it (`0x00210CD0`, `0x00210E10`). The six-digit stop `0x0021A100` stops every sound of
 the bank with that id, of every bank for -1 and -3, and runs bank slot 1 on every bank for -4 (`0x00223300`). `0x00210710`, called by both starts, runs bank slot 6 over every six-digit bank and,
 when none answered, over every block bank (`0x0021B0D0`, slot 2 of both controllers' vtables `0x00907BA8` and `0x00907DE0`); the block bank's slot 6 is `0x002238F0`, the one-at-a-time fade
-of flag bit 6.
+of flag bit `0x40`.
 
 ### Load ids
 
@@ -206,11 +206,11 @@ and the bank is not block 0. `0x02` pauses it; `0x08`, `0x10` and `0x20` pause i
 
 | Bit | Function | Pauses when |
 |---|---|---|
-| `0x08` | `0x00224290` | flag bit 0 set and bits 3, 5 and 6 clear |
+| `0x08` | `0x00224290` | flag bit `0x1` set and bits `0x8`, `0x20` and `0x40` clear |
 | `0x10` | `0x002240B0` | flags `0x69` all clear |
-| `0x20` | `0x00224470` | flag bit 0 clear and the sound id over 1,000 is 150 |
+| `0x20` | `0x00224470` | flag bit `0x1` clear and the sound id over 1,000 is 150 |
 
-The id test reads sound `+0x24`, which a block sound holds with bit 31 set (`0x002245ED`, `0x00224789`). Divided by 1,000
+The id test reads sound `+0x24`, which a block sound holds with bit `0x80000000` set (`0x002245ED`, `0x00224789`). Divided by 1,000
 as a signed number (`0x00224493`-`0x002244A5`) it is never 150, so bit `0x20` pauses no new block sound, and the id test
 of bits `0x08` and `0x10` never excludes one.
 

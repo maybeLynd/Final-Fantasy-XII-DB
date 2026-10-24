@@ -87,7 +87,7 @@ On a record, the point kind picks the point; the point ids are those of
 | 0, or above 40 | `n_hara` |
 
 When a point is missing the query falls back to `n_hara` and then to a child's `n_grip` (`0x003A471A`-`0x003A4777`). On
-a record, and for record kinds 3 and 11, the position is then divided by the published instance scale `0x02096810`. Unless `+0x4A` bit 1 is set,
+a record, and for record kinds 3 and 11, the position is then divided by the published instance scale `0x02096810`. Unless `+0x4A` bit `0x2` is set,
 the record's own scale (`0x003E5710`) is applied when it is not 1, 1, 1 (`0x003A47B8`-`0x003A4861`). The height rule
 follows (`0x003A4868`-`0x003A489F`):
 

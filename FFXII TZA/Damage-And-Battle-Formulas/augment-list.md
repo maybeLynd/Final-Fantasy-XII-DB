@@ -107,10 +107,10 @@ characters start with that square ([License list](../Items-Equipment-Shops-And-L
 for the Attack and Items commands every character has from the start. The game needs neither the square nor the
 augment to allow them:
 
-- Attack (action row 150) and all 51 named item rows carry bit 13 of the action row's `+0x2C`, which the license
+- Attack (action row 150) and all 51 named item rows carry bit `0x2000` of the action row's `+0x2C`, which the license
   check `0x00323EC0` passes before any board lookup (`0x00323F4D`-`0x00323F58`;
   [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
-- No instruction tests bit 114 directly: bit 2 of the layer bytes `+0x76` or `+0x86`, or of the merged copy at
+- No instruction tests augment 114 directly: bit `0x4` of the layer bytes `+0x76` or `+0x86`, or of the merged copy at
   context `+0x28`.
 - The four functions that test an augment by a computed id do not ask for 114: the stats rebuild takes its ids from
   its three lists (`0x002FF5CA`-`0x002FF70F`), the enemy-order selector from the order (`0x00302494`), and the context

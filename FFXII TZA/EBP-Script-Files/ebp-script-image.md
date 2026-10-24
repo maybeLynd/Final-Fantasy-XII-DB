@@ -138,7 +138,7 @@ record pool will come from (`0x002679F0` calls it through record `+0x88`):
 Each callback pushes its arena (`0x0036C1D0`), allocates with `0x0036A100`, labels the block
 `ateldecode.c` with a per-site tag (`0x1676`, `0x16C1`, `0x16E6`) and pops the arena. The handler
 binds the image with `0x0026C8C0(manager, image, callback)`, stores `0x00330050` at record `+0x108`
-(`0x00268630`) and clears pending bit 1 ([script container](ebp-script-container.md)).
+(`0x00268630`) and clears pending bit `0x2` ([script container](ebp-script-container.md)).
 
 ### The bind
 

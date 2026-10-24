@@ -88,7 +88,7 @@ Four functions write the table, and each ends in a call to `0x003278D0`:
 | `0x0026E150` | first, count | `mask := 0` for `count` consecutive entries |
 
 `0x003278D0` walks the body registry (`0x00236850` is the count, `0x00236820(i)` returns the 0xF50-byte body
-`i` at `[0x0208E688]`). For every body whose first byte has bit 4 set it calls `0x003839C0` and `0x003839F0` on
+`i` at `[0x0208E688]`). For every body whose first byte has bit `0x10` set it calls `0x003839C0` and `0x003839F0` on
 the body's `+0x200` block: the two shorts at `+0xC` and `+0xE` become 0xFFFF and the 0x80 bytes from
 `+0x10` become 0xFF. Nothing else is written, and no map model is touched by any of the four writers.
 

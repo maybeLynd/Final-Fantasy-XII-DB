@@ -34,7 +34,7 @@ time.
 in the field frame `0x0022A770`, and with (0, 1) at `0x0022AF8A` in the screen-capture state. The field
 frame runs draw 1 only when entry 1 of the pass mask is non-zero (`0x00358330(1)` at `0x0022A83B`); between
 the two it waits on the command-state word, runs `0x00376470` and `0x00375500(7)` when draw 0's
-bit 4 is set, and sets the mask's byte `+8` to 1 (`0x00358640`).
+bit `0x10` is set, and sets the mask's byte `+8` to 1 (`0x00358640`).
 
 The draw opens a `mainLoopDraw` scope (`0x001EB150`) and returns at once when `0x01FD4A70` is set (clearing
 it and setting `0x02064AE4`). While `0x02064AE4` is clear it writes the GS register batch (`0x0036D400`,
@@ -44,15 +44,15 @@ pass (`0x00377230`) and the bit `0x1` pass, then `0x00332420(0)` when bit `0x40`
 
 | Bit | Accessor | What it gates in `0x0022B0B0` |
 |---|---|---|
-| 0 | `0x00358380` | `0x003769E0`, `0x00377520`, `0x0036F410`; later `0x0036FBB0`, `0x0036F430`, `0x0036F450` and `0x00475390` |
-| 1 | `0x003582A0` | `0x0017F2F0`, `0x0017F070`, `0x00332420(2)`; this bit or bit `0x40`: `0x00332420(3)` and `0x00332420(0)` |
-| 2 | `0x00358350` | `0x00377230`; `0x00258EE0(4)` |
-| 3 | `0x003583B0` | `0x00252A70`, and `0x002450B0` when `0x00357780()`, after the Gaussian filter (normal draw); inside the filter `0x0017FD70` runs only when bit `0x8` is clear or in the alternate draw |
-| 4 | `0x003583F0` | `0x00258EE0` with 1, 2, 3, 5 and 6; `0x00375500` with 2, 3, 5 and 6; the `mask border 2` scope |
-| 5 | `0x00358300` | the first argument of `0x0036D400` |
-| 6 | `0x003582C0` | `0x00332420(1)`; this bit or bit `0x2`: `0x00332420(3)` and `0x00332420(0)` |
-| 7 | `0x003582E0` | the second argument of `0x0036D400` |
-| 8 | `0x003583D0` | a mid-draw block: `0x0036F2C0`, `0x00184900`, `0x0036F2F0` |
+| `0x1` | `0x00358380` | `0x003769E0`, `0x00377520`, `0x0036F410`; later `0x0036FBB0`, `0x0036F430`, `0x0036F450` and `0x00475390` |
+| `0x2` | `0x003582A0` | `0x0017F2F0`, `0x0017F070`, `0x00332420(2)`; this bit or bit `0x40`: `0x00332420(3)` and `0x00332420(0)` |
+| `0x4` | `0x00358350` | `0x00377230`; `0x00258EE0(4)` |
+| `0x8` | `0x003583B0` | `0x00252A70`, and `0x002450B0` when `0x00357780()`, after the Gaussian filter (normal draw); inside the filter `0x0017FD70` runs only when bit `0x8` is clear or in the alternate draw |
+| `0x10` | `0x003583F0` | `0x00258EE0` with 1, 2, 3, 5 and 6; `0x00375500` with 2, 3, 5 and 6; the `mask border 2` scope |
+| `0x20` | `0x00358300` | the first argument of `0x0036D400` |
+| `0x40` | `0x003582C0` | `0x00332420(1)`; this bit or bit `0x2`: `0x00332420(3)` and `0x00332420(0)` |
+| `0x80` | `0x003582E0` | the second argument of `0x0036D400` |
+| `0x100` | `0x003583D0` | a mid-draw block: `0x0036F2C0`, `0x00184900`, `0x0036F2F0` |
 
 The named scopes, in order, are `mask border 0`; `AO render` (when `0x0017FE10()` and `0x01FD49E8`);
 `Water effect` (when `0x0017FE20()` and `0x01FD49E8`, at one of two places); `post-processing render`
@@ -130,7 +130,8 @@ non-null, then read without a null check) to `+0x48`;
 
 Slot 1 (execute, `0x00864E90`) first calls the device's slot `+0xB0` with 0 (`0x00864EB5`) and stores `0x80` in
 `0x01E027B8` (`0x002105A0`, `0x00864EBD`), then hands `+0x08` and the two floats to `0x00210520`, which stores them at
-`0x01FD3620`–`0x01FD365F`, `0x01FD3660` and `0x01FD3664` (the GS replay's vertex matrix and depth bounds),
+`0x01FD3620`–`0x01FD365F` (rows `0x01FD3620`, `0x01FD3630`, `0x01FD3640` and `0x01FD3650`), `0x01FD3660` and `0x01FD3664`
+(the GS replay's vertex matrix and depth bounds),
 passes `+0x48` to the device's slot `+0x30`, sets two device values to 3.0 (slots `+0xD8` and `+0xD0`), and
 ends by tail-jumping to the device's slot `+0x138` with 0 (`0x00864F22`).
 
@@ -209,7 +210,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 ## Modding notes
 
-- Clearing a bit of `0x022C7F90` for a draw removes that pass from the next draw; bit 4 removes the
+- Clearing a bit of `0x022C7F90` for a draw removes that pass from the next draw; bit `0x10` removes the
   `0x00258EE0` calls with 1, 2, 3, 5 and 6 and the `0x00375500` calls with 2, 3, 5 and 6; `0x00258EE0(4)` follows
   bit `0x4`. The routines in the callers table rewrite the mask, so a change can
   be overwritten.

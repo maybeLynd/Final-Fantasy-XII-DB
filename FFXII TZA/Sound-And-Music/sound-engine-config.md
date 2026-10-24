@@ -198,7 +198,7 @@ A category's bytes `+0x52`-`+0x57` and `+0x6C`-`+0x6F` are written only by the `
 (`0x007AAB3B`) before `0x007A96F0` runs, and read by no instruction; nothing fixes their width.
 
 A handle-list node holds its vtable `0x01CB4530` at `+0x00`, the previous node at `+0x08`, the next at `+0x10`, its slot
-number at `+0x18` (-1 when built, `0x007AA0CC`; renumbered by `0x007B6AC4`), a word whose bit 0 marks it in use at `+0x1C`
+number at `+0x18` (-1 when built, `0x007AA0CC`; renumbered by `0x007B6AC4`), a word whose bit `0x1` marks it in use at `+0x1C`
 and the sound's handle at `+0x20` (`0x007BBA76`, `0x007BBA7B`). `0x007B6AA0` links the array into the free chain.
 
 Each ramp is an `AudioParameterRamp` of `0x30` bytes; `0x007AA110` builds the two arrays (`0x007AA16B`-`0x007AA2DD`):

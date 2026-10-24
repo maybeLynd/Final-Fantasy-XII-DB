@@ -96,7 +96,7 @@ damage = (AP + variance1) * (AP + variance2)
 Recipe 27's outcome step is slot 44 (`0x00389A50`). It rolls only the hit chance against `MT19937 % 100`
 (`0x00389A59`-`0x00389A72`). The melee step 41 (`0x003896B0`) and the bow step 42 (`0x00389820`) also test the
 target's shield, weapon and innate evade bands (`0x02AEDFF0`, `0x02AEDFF4`, `0x02AEDFEC`), and the crossbow step
-43 (`0x00389950`) the shield and weapon bands, but only when the target's battle unit has bit 23 of its first
+43 (`0x00389950`) the shield and weapon bands, but only when the target's battle unit has bit `0x800000` of its first
 dword (`0x003896C0`-`0x003896DD`, the same test at `0x00389847` and `0x00389977`); otherwise they make the same
 plain hit roll as slot 44.
 
@@ -112,7 +112,7 @@ damage = (attack - defence) * share
 
 ### Unarmed
 
-Slot 72 checks Brawler (augment 9; context `+0x1B` bit 1).
+Slot 72 checks Brawler (augment 9; context `+0x1B` bit `0x1`).
 With that augment and nothing in the off hand (word `+0x52` is `0x1000` or not an item), the attack is
 half of `Lv + Str` plus a 12.5 % variance (`0x0038A6B1`-`0x0038A77B`). Otherwise it is Attack Power plus the
 variance (`0x0038A785`-`0x0038A7EE`).
@@ -120,7 +120,7 @@ variance (`0x0038A785`-`0x0038A7EE`).
 ### Bows and crossbows in strong wind
 
 The first list of recipe 25 runs slot 35 (`0x003895D0`) and that of recipe 26 slot 36 (`0x00389610`). When
-the wielder lacks augment 2 (Accuracy Boost) (context `+0x1A` bit 2) and the wind class `0x02099DAC` is 2, they scale the hit
+the wielder lacks augment 2 (Accuracy Boost) (context `+0x1A` bit `0x4`) and the wind class `0x02099DAC` is 2, they scale the hit
 chance `0x02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte `+0x1A` = 2:
 
 | Slot | Weapons | Hit chance factor | Sites |
@@ -131,7 +131,7 @@ chance `0x02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment by
 ### Critical hits
 
 Recipes 25, 26 and 27 start their committed list with slot 29 (`0x00389140`); the other weapon recipes
-have slot 28, the empty `0x0016D6A0`. Slot 29 sets result `+0x18` bit 0 when byte `+0x1C` of the main-hand
+have slot 28, the empty `0x0016D6A0`. Slot 29 sets result `+0x18` bit `0x1` when byte `+0x1C` of the main-hand
 row is above `MT19937 % 100` (`0x003891B3`-`0x003891D9`). Slot 98 (`0x0038BE00`) then doubles the scale when that
 bit is set (`0x0038BE04`-`0x0038BE1A`).
 
@@ -141,7 +141,7 @@ Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`0x00389C60`) and slot 144 (
 `+0x5B0E` of the battle state block `[0x02EBF190]`:
 
 1. The hit chance becomes `row[+0x12] - count * count / 4` (`0x00389D0B`-`0x00389D19`).
-2. With a stored preview (bit 0 of the user's 64-byte record `+0x12`) and a count below 17, a roll under
+2. With a stored preview (bit `0x1` of the user's 64-byte record `+0x12`) and a count below 17, a roll under
    that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 writes 0 and fails the
    action (`0x00389D24`-`0x00389DAE`). Without a stored preview it fails at count 0, and at a higher count
    only rolls the hit chance and writes no new count (`0x00389D7E`-`0x00389DA2`).
@@ -185,7 +185,7 @@ its committed list:
 
 1. For the user's current target (`+0x710`), slot 18 sums the current HP of the four party slots that are
    not KO, Stone or X-Zone, up to 10,000 (`0x00388DEE`-`0x00388E21`).
-2. When that is more than the party's gil, the action fails and sets result `+0x140` bit 11
+2. When that is more than the party's gil, the action fails and sets result `+0x140` bit `0x800`
    (`0x00388E24`-`0x00388E45`); otherwise the sum goes into the user's record and result `+0x08`, the gil cost
    (`0x00388E51`-`0x00388E57`). For every other target slot 18 copies the stored sum into result `+0x08`
    (`0x00388E5C`-`0x00388E62`).

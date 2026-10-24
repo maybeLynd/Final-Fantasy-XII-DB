@@ -96,16 +96,16 @@ its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 
 |---:|---|
 | `0` | the chain above. Footsteps are dropped while a record test with `0x1A` holds; types 11 and 12 play only for the party's focus character; type 7 not while the last voice still plays. A new voice of types 4-7 stops the playing one, kept at `+0x18` with its type at `+0x1C` |
 | `1`, `2`, `3` | a direct sound id from one of three bank getters, centred, at `volume * 64 / 128`; not authored |
-| `4` | an explicit sound number at the character, bit 31 added below `0x100` |
+| `4` | an explicit sound number at the character, bit `0x80000000` added below `0x100` |
 | `5` | with type 1, stores `0xC00` in emitter word `+5` |
 
-`0x003A0E50(id, position, record)` makes the sound. An id with bit 30 set is a battle-voice line, bank `id >> 8 & 0xFF`
+`0x003A0E50(id, position, record)` makes the sound. An id with bit `0x40000000` set is a battle-voice line, bank `id >> 8 & 0xFF`
 and line `id & 0xFF`, played at the point in the Config voice language (`0x002DF460`); any other id plays from a block
 bank at the point (`0x002DF280`), and -1 plays nothing. The same call serves `0x0046C8F0`, `0x00332C40` and `0x003B99D0`.
 `0x003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays (`0x0046CE04`-`0x0046CE1F`), with the
 kind from emitter byte `+0x07`: kind 0 through the battle-voice stop (`0x001DC330`), kind 1 through `0x002DF0F0`.
 
-That kind is written when a voice of types 4-7 starts: `0x003A10F0(id)` returns 1 when bit 30 of the id is clear
+That kind is written when a voice of types 4-7 starts: `0x003A10F0(id)` returns 1 when bit `0x40000000` of the id is clear
 (a block-bank sound) and 0 when it is set (a battle-voice line), and `0x0046D055`-`0x0046D05E` stores it at `+0x07`
 beside the handle `+0x18` and the type `+0x1C`.
 

@@ -61,31 +61,31 @@ staging map, empties the member's seat with `0xFFFF`, deactivates the record wit
 
 ### What a join brings
 
-`0x00316DF0(record)` activates a member record that is not yet active, record flag bit 4 (`0x00316DFE`):
+`0x00316DF0(record)` activates a member record that is not yet active, record flag bit `0x10` (`0x00316DFE`):
 
-1. It runs the catch-up below (`0x00316E1D`), unless its second argument has bit 1 set and flag bit 13 of the party
+1. It runs the catch-up below (`0x00316E1D`), unless its second argument has bit `0x2` set and flag bit `0x2000` of the party
    block is clear (`0x00316E0F`-`0x00316E1B`). The adds give 0; the seat writer `0x00329080(seat, selector, 3)` of the
    scenario presets gives 3 (`0x00329167`-`0x0032916A`), so a member seated there gets no catch-up.
-2. When flag bit 13 of the party block is set and the record has never been active, flag bit 3, the level is set
+2. When flag bit `0x2000` of the party block is set and the record has never been active, flag bit `0x8`, the level is set
    to 90 with `0x0030C470(record, 90, 0)` (`0x00316E25`-`0x00316E3D`).
 3. For a main character, each of the five equipment words is added to the inventory, and to the count of equipped
    pieces (`0x00316E87`-`0x00316EB1`).
-4. On the record's first activation, flag bit 3 clear, each enabled gambit slot's condition is added, and for a main
+4. On the record's first activation, flag bit `0x8` clear, each enabled gambit slot's condition is added, and for a main
    character also the id the slot's action row names at `+0x22`, the magick or technick it uses (`0x00316EC3`-`0x00316F92`).
    An item id there goes to the unused channel 4 and adds nothing ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
 5. On that first activation the up to ten ids the party row lists at `+0x58` are added, with counts at
    `+0x34` (`0x00316FE1`-`0x00317019`), and the gil at row `+0x3E` (`0x0031701B`-`0x00317034`).
 6. HP is set to max HP, or twice max HP under Bubble; under Disease it stays, but at least 1
-   (`0x00317048`-`0x00317082`). Flag bits 3 and 4 are then set.
+   (`0x00317048`-`0x00317082`). Flag bits `0x8` and `0x10` are then set.
 
 `0x00323540(record)` deactivates an active main character (`0x00323540`-`0x003235BA`): each of the five equipment words
-leaves the equipped count and the inventory, and flag bit 4 is cleared. A guest's equipment is never counted, and
+leaves the equipped count and the inventory, and flag bit `0x10` is cleared. A guest's equipment is never counted, and
 the first-join items and gil are not taken back.
 
 ### Catching up on a join
 
 `0x00317480(record)` sets a joining member's level and LP from the party (`0x00317480`-`0x00317667`). The party row's
-byte `+0x2C`, bits 3-4, says when: 1 on the first activation only, 2 on every activation, anything else never
+byte `+0x2C`, bits `0x18`, says when: 1 on the first activation only, 2 on every activation, anything else never
 (`0x003174D9`-`0x0031750D`).
 
 1. It takes the two other active main characters with the highest levels, record `+0x1C2`
@@ -127,7 +127,7 @@ Every membership verb raises bit `0x13` of the busy mask `0x022CB720` with `0x00
 | `0x355` `setbattlemember(a, b, c)` | `0x0034D4E0`, `0x003506A0` | chooses who fights, below |
 | `0x358` `removebattlemember(sel)` | `0x00350160`, `0x003506A0` | for a main character, when more than one fights, moves it to a reserve seat with `0x003286E0` (`0x0035019D`-`0x003501AA`) |
 | `0x359` `setbattlememberone(sel)` | `0x00350CD0`, `0x003506A0` | for a main character, keeps it, or else the first fighter, and moves the other main characters out of seats 0-2 with `0x003287A0`; guests and seat 3 stay (`0x00350D29`-`0x00350D52`) |
-| `0x35A` `setbattlememberlock(sel, v)` | `0x00351A40`, `0x003506A0` | for a main character, sets or clears record flag bit 0 with `0x00328FB0` (`0x00328FD5`, `0x00328FDE`) |
+| `0x35A` `setbattlememberlock(sel, v)` | `0x00351A40`, `0x003506A0` | for a main character, sets or clears record flag bit `0x1` with `0x00328FB0` (`0x00328FD5`, `0x00328FDE`) |
 | `0x35B` `addguestbattlemember(sel)` | `0x00352190`, `0x003506A0` | adds a guest with `0x003170E0` (`0x003521CD`-`0x003521DE`) |
 | `0x35C` `removeguestbattlemember(sel)` | `0x00352AF0`, `0x003506A0` | removes a guest with `0x003288F0` (`0x00352B0A`-`0x00352B1E`) |
 | `0x35E` `ispartymember(sel)` | `0x00353CB0` | a guest: in the fighting seats (`0x003596D0`); a main character: in the party (`0x00359740`) |
@@ -145,7 +145,7 @@ target group with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x003
 (`0x0034D547`-`0x0034D57B`). When every one given is in the party (`0x00359C00`, `0x0034D57D`-`0x0034D58F`),
 `0x00328DB0(list, 3)` moves them into fighting seats 0-2:
 
-1. A fighting seat is held when its member's record has flag bit 0 set, the `setbattlememberlock` bit, or is a
+1. A fighting seat is held when its member's record has flag bit `0x1` set, the `setbattlememberlock` bit, or is a
    guest (`0x00328E20`-`0x00328E7F`).
 2. A listed member already in seats 0-2 holds its seat; the others are swapped, in order, into the first free
    seat of 0-2 in the staging map (`0x00328E97`-`0x00328F6D`). With no free seat left the change is dropped.

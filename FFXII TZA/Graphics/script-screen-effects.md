@@ -97,7 +97,7 @@ The four type verbs write the staging block with the mappings of the layout belo
 `+0x01`, `moveblurnoisetype` (`0x0320`, `0x003DE3A0`) `+0x02` and `moveblurscreentype` (`0x0321`,
 `0x003DE430`) `+0x03`.
 
-`0x0024EA10`, in draw 0 with bit 4 up, builds the request for `0x003AAA50` with a capture flag: 1 when
+`0x0024EA10`, in draw 0 with bit `0x10` up, builds the request for `0x003AAA50` with a capture flag: 1 when
 bit `0x20` is up (and clears bit `0x20`), otherwise 1 unless the capture-once bit is set. With the flag down,
 `0x003AAA50` writes 1 to `0x01FD4A70`, and the scene draw `0x0022B0B0` answers by returning before it
 draws (`0x0022B196`), so the scene is not drawn at all.
@@ -139,7 +139,7 @@ also resets the four blur sprites, the motion blur staging block and the blur fa
 
 `setsoftfocusmode(on, mode, b, amount)` (`0x02AE`, handler `0x0034FA00`) calls `0x0036E810`. With
 `on` at 0 it calls the clear `0x0024FA40`. Otherwise it builds byte `+0` = 2 when `mode` is 1, else
-1, byte `+1` = `b` and float `+4` = `amount`, and calls `0x0024FAE0`: bit 0 up, the block copied to
+1, byte `+1` = `b` and float `+4` = `amount`, and calls `0x0024FAE0`: bit `0x1` up, the block copied to
 `0x020925F0`, a target allocated at `0x02092620` (a failed allocation drops bit `0x1` again) and byte
 `+2` forced to 4.
 

@@ -69,7 +69,7 @@ record's key as the literal `makeid` (`0x00D12474`) followed by one raw byte, th
 calls `0x004279B0(key, name, …)` with the 32-byte name of the current model container (`0x00409090` on
 `0x003AB7F0()`). It returns the new record's index, or -1.
 
-`0x004279B0` searches the active list (skipping records with `+0x290` bit 1) and the pending list by key
+`0x004279B0` searches the active list (skipping records with `+0x290` bit `0x2`) and the pending list by key
 (`0x004278E0`), refuses on a match or a full pool, and then:
 
 1. clears the record at the cursor (`0x0041F730`);
@@ -156,7 +156,7 @@ source's first five, and any other record is skipped when the source's name star
 `0x00426500`, from `0x00332440`, is one such walk: `0x00425FB0(0x0042D7A0, 0x0042CF70, records)`.
 
 A record keeps two attached children by id: word `+0x2C8` for the child whose slot byte `+0x6A0`
-is below `0x16`, and `+0x2CA` for the child of slot `0x16`. Unless `+0x40B` bit 4 is set, the event
+is below `0x16`, and `+0x2CA` for the child of slot `0x16`. Unless `+0x40B` bit `0x10` is set, the event
 start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x004215A0` also calls:
 
 1. it stores a slot below `0x16` at `+0x40C`, and takes the mode from the low two bits of `+0x40B`

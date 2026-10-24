@@ -1,0 +1,5 @@
+line	offset	key	value	meaning	text_in_x64_programs
+file	-	ps2data/cdi/in/system.cnf (archive index 79185)	57 bytes, SHA-256 FDC33951CBB0A48F715FDBA5C64F5F0FDA58B451E6ECD4BF9906100601440234	kind 0 id 0 (array 0x01E461F0 entry 0); 57 in every .fst	-
+1	0x00	BOOT2	cdrom0:\SLPM_667.50;1	the PS2 executable to boot: SLPM_667.50 on the disc, version 1	the line: none; 'BOOT2 =': none; cdrom0: none; SLPM_667.50: 1: FFXII_TZA.exe@0x00A029CF
+2	0x1F	VER	0.01	the disc's version text	the line: none; 'VER =': none
+3	0x2B	VMODE	NTSC	the PS2 video mode, NTSC	the line: none; 'VMODE =': none

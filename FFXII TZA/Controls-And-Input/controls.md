@@ -26,7 +26,7 @@ The manager is a `0x40`-byte object whose pointer is at `0x01F7FFE0`. `0x0019875
 | `+0x08`, `+0x09` | invert the right stick's X and Y | `0x0019740F`, `0x0019751A`, `0x001975CB` |
 | `+0x0C`, `+0x10` | mouse wheel notches, total and this frame | `0x0019739A`, `0x001973A4` |
 | `+0x39` | poll on or off | `0x0019701D` |
-| `+0x3A` | movement-key mode bits 0, 1 and 2 | `0x00197040`-`0x001970F8` |
+| `+0x3A` | movement-key mode bits `0x1`, `0x2` and `0x4` | `0x00197040`-`0x001970F8` |
 | `+0x3B` | rebuild the records before the next poll | `0x00197032` |
 
 ### One poll
@@ -44,7 +44,7 @@ which tail-jumps to the return stub `0x0016D6A0` (`0x001E0A03`) and so does noth
 4. It starts the 18-byte frame: a button mask of `0xFFFF`, four stick bytes of `0x80` and twelve zero bytes
    (`0x00197085`-`0x001970A9`).
 5. It runs the translator `0x00197160` over the five records at `0x01DF1480` (`0x001970B0`), then over the three at
-   `0x01F80550` when mode bit 1 is set, and the three at `0x01F80970` when bit 0 or 2 is set (`0x001970C8`-`0x001970FE`).
+   `0x01F80550` when mode bit `0x2` is set, and the three at `0x01F80970` when bit `0x1` or `0x4` is set (`0x001970C8`-`0x001970FE`).
 6. It copies the frame out (`0x0019711D`).
 
 ### Control codes
@@ -92,9 +92,9 @@ The mode-4 arm acts only on an entry whose second value is 4 and whose third is 
 mouse buttons, or 3, the wheel (`0x001972C7`-`0x0019734F`). So entry 4 is the wheel, and entries 0, 1 and 6 do nothing:
 entry 6's 3 is in its fourth value, which this arm does not read.
 
-The two extra blocks turn movement keys into direction buttons. Mode bit 1 makes `0x00196DF0` build three records at
-`0x01F80550` whose Up, Right, Down and Left are each profile's movement keys. Mode bits 0 and 2 build the same at
-`0x01F80970` with L2 and R2 added (`0x00196EE0`, `0x00196C40`); bit 2 also clears the right-stick keys of records 2-4
+The two extra blocks turn movement keys into direction buttons. Mode bit `0x2` makes `0x00196DF0` build three records at
+`0x01F80550` whose Up, Right, Down and Left are each profile's movement keys. Mode bits `0x1` and `0x4` build the same at
+`0x01F80970` with L2 and R2 added (`0x00196EE0`, `0x00196C40`); bit `0x4` also clears the right-stick keys of records 2-4
 (`0x00196D34`).
 
 ### Channel history
@@ -203,7 +203,7 @@ pacing through `0x002D4F70` (1-10) and `0x002D4F90` (1-5).
   answers whether a move would leave the grid.
 - `0x002C4220` moves a cursor `+0x7A0`, 0 to 53, over four panels at `+0xC0` with `0x002C3D70(grid, dir, wrap)`.
   Each panel's first and last cells come from the 12-byte rows of `0x00916D30`, and a move off a panel's edge
-  enters the next shown panel (`+0x40` bit 0). `0x002C54B0(grid, dir)` answers whether a move would leave them.
+  enters the next shown panel (`+0x40` bit `0x1`). `0x002C54B0(grid, dir)` answers whether a move would leave them.
 
 ### Pad or keyboard prompts
 
@@ -254,46 +254,46 @@ profile's code, read from `0x01F80F90` (`0x0019775A`-`0x0019776F`), and test it 
 ### The field buttons
 
 The input arbiter `0x00253C70` reads the field's presses once per field frame. It returns before reading a button
-while Game Over is armed, bit 1 of the mode word `0x022C83E8` (`0x0035C740`; [Game over](../World-Areas-And-Travel/game-over.md)), when the byte `0x0215F1A0` is set (`0x002E12D0`),
+while Game Over is armed, bit `0x2` of the mode word `0x022C83E8` (`0x0035C740`; [Game over](../World-Areas-And-Travel/game-over.md)), when the byte `0x0215F1A0` is set (`0x002E12D0`),
 or when `0x00228380` or the Start handler `0x002287D0` answers non-zero (`0x00253C97`-`0x00253CCC`). The buttons are read
 only while `0x00265680` answers non-zero (`0x00253D0D`), from held and pressed of set 0.
 
-While `0x003135E0` (bit 0 of `+0x5B04` of `0x02EBF190`) and `0x0035C750` (bit 4 of the mode word `0x022C83E8`, not the battle mode register `0x022C83EC` of [Escape Mode](escape.md)) both answer non-zero, the
+While `0x003135E0` (bit `0x1` of `+0x5B04` of `0x02EBF190`) and `0x0035C750` (bit `0x10` of the mode word `0x022C83E8`, not the battle mode register `0x022C83EC` of [Escape Mode](escape.md)) both answer non-zero, the
 confirm button, the four directions and Square are dropped from the presses (`0x00253D3D`-`0x00253D5E`). The arms then
 run in this order, and the policy bits are those of [Action availability](action-availability.md):
 
 | Presses | Condition | What happens |
 |---|---|---|
-| Triangle alone, held and pressed | policy bit 0 clear | the main menu, request 2 (`0x00253D61`-`0x00253D78`) |
-| Select or L3 | see [Menus](../Menus-And-HUD/menus.md) | the map requests; `0x002500F0(mask, 2)` answers 1 when policy bit 11 is clear, `0x00236760` answers 0 and `0x002E25B0(2)` allows request 2 (`0x00253E6D`) |
+| Triangle alone, held and pressed | policy bit `0x1` clear | the main menu, request 2 (`0x00253D61`-`0x00253D78`) |
+| Select or L3 | see [Menus](../Menus-And-HUD/menus.md) | the map requests; `0x002500F0(mask, 2)` answers 1 when policy bit `0x800` is clear, `0x00236760` answers 0 and `0x002E25B0(2)` allows request 2 (`0x00253E6D`) |
 | any | `0x02092730` is 0 and `0x00303EC0` answers non-zero | `0x003CA200`, and the presses are cleared (`0x00253F62`-`0x00253F70`) |
-| Square | `0x02092730` is 0, policy bit 10 clear, `0x003669D0` answers 0 | `0x002F1710`, then request 1 (`0x00253F7C`-`0x00253F98`, `0x002541B9`-`0x002541C7`) |
+| Square | `0x02092730` is 0, policy bit `0x400` clear, `0x003669D0` answers 0 | `0x002F1710`, then request 1 (`0x00253F7C`-`0x00253F98`, `0x002541B9`-`0x002541C7`) |
 | cancel | `0x02092730` is 0 | `0x003C8950` (`0x00253F9D`-`0x00253FA9`) |
 | Left or Right | L1 not held, `0x003669D0` answers 0, `0x02092730` is 0 or 3 | unless `0x02092734` is 1 or request 5 is refused, the target-cycling route `0x0035DA80`, `0x003C8990`, `0x003C87B0(5)` (`0x00253FB3`-`0x00254044`) |
-| Up or Down, or wheel notches | L1 not held, two of the nine members `0x00320040(3, i)` returns have `+0x60` not negative and flag bit 1 clear or flag `0x4008` is set, `0x02092730` is 0 or 5 | request 3; with the area's bit 15 the wheel total is cleared first (`0x00254052`-`0x002540D2`) |
+| Up or Down, or wheel notches | L1 not held, two of the nine members `0x00320040(3, i)` returns have `+0x60` not negative and flag bit `0x2` clear or flag `0x4008` is set, `0x02092730` is 0 or 5 | request 3; with the area's bit `0x8000` the wheel total is cleared first (`0x00254052`-`0x002540D2`) |
 | confirm or Square, or a pending pick | `0x02092730` is 0 | the interaction (`0x00254132`-`0x0025415A`), or request 1 (`0x002541A4`-`0x002541C7`) |
 
 The helpers the arms call:
 
-- `0x003C9570` returns the pick at `+0xCC` of the object in `0x02B47730` while its `+0xC0` bit 3 is set, and
-  `0x003C9550` clears that bit; `0x003C8950` runs `0x00268620` and clears bit 1 when bit 1 is set.
+- `0x003C9570` returns the pick at `+0xCC` of the object in `0x02B47730` while its `+0xC0` bit `0x8` is set, and
+  `0x003C9550` clears that bit; `0x003C8950` runs `0x00268620` and clears bit `0x2` when bit `0x2` is set.
 - `0x003CA200` calls the callback at `+0x2A0` of the object in `0x02B47758` with message `0x1F` when that callback is set
-  (`0x00273A20`) and the object's `+0x2E0` bit 4 is set.
+  (`0x00273A20`) and the object's `+0x2E0` bit `0x10` is set.
 - `0x002F1710` finishes the entry in `0x022BE7D0`: it copies the entry's second word over its first, calls its callback
   at `+0x08`, sets `+0x1C` to 1 and clears the entry's bit, numbered by `+0x18`, in `0x022BE7C0`.
-- `0x002F1C50(n)` arms that entry: it takes one (`0x002F16B0`) into `0x022BE7D0` with the callback `0x002F18A0`, sets bit 1
+- `0x002F1C50(n)` arms that entry: it takes one (`0x002F16B0`) into `0x022BE7D0` with the callback `0x002F18A0`, sets bit `0x2`
   of hold word 10 (`0x002E1C20(10, 1)`, the words at `0x0215F1C0`), and sets the count to 0 and the length to n x
   `[0x01DFE0B4]` (n alone while `0x001EDDA0()` answers). `0x002F18A0` clears that bit (`0x002E1CA0(10, 1)`) and `0x022BE7D0`.
 - `0x00267720` answers 1 only when `0x0209A2AA` is set, the controlled character exists (`0x003590D0`, `0x003588B0`), its record is not one that `0x002373A0` accepts and
 `0x00233D70` refuses, no
   menu is open (`0x002E05C0`), `0x00265680` answers non-zero and `0x02099DB4` is 0.
 - `0x00273950()`, asked before the interaction (`0x0025412B`) and by `0x002C6F70` and `0x002736B0`, answers 0 while policy
-  bit 1 is set without bit 21 (the policy word `0x00254500`, the OR of the `0x01E0C2C0` masks of the set hold-mask bits);
-  otherwise 1 when `0x02092730` is not 1, Escape Mode is not armed (`0x003669D0`) and hold-mask bit 4 is clear.
+  bit `0x2` is set without bit `0x200000` (the policy word `0x00254500`, the OR of the `0x01E0C2C0` masks of the set hold-mask bits);
+  otherwise 1 when `0x02092730` is not 1, Escape Mode is not armed (`0x003669D0`) and hold-mask bit `0x10` is clear.
 - `0x002736B0()`, from the HUD's `0x002C6F70` and `0x002C64C0`, answers 1 only when `0x00267720()` answers 1, hold-mask
-  bit 4 is clear, `0x0028FA00()` and `0x00273950()` pass, and `0x0209A2C0` holds no handle or one whose class-1 or class-3
-  actor has `+0x0C` bit 1 set (`0x0025B4C0`).
-- `0x0028FA00()` needs the HUD part `+0x10F80` with word `+0x1D7A` bit 3 and `+0x1D78` times the controlled character's
+  bit `0x10` is clear, `0x0028FA00()` and `0x00273950()` pass, and `0x0209A2C0` holds no handle or one whose class-1 or class-3
+  actor has `+0x0C` bit `0x2` set (`0x0025B4C0`).
+- `0x0028FA00()` needs the HUD part `+0x10F80` with word `+0x1D7A` bit `0x8` and `+0x1D78` times the controlled character's
   byte `+0x14` in the part's list `+0x1D70` above `0x3FFF`, or `+0x1D78` above `0x7F` when the character is not
   listed.
 - `0x00252DE0`, from the area unload `0x002628B0`, clears `0x02092730` and `0x02092734` and sets `0x020927C8` and `0x020927CC`
@@ -320,8 +320,8 @@ The cursor's setters:
   `h`, sound 1 (`0x00249C60(1)`); then it sets `+0xC8` as `0x003C93E0` does.
 - `0x003C93E0(h)` stores `h` at `+0xC8`, or 0 when `0x00273710(h)` refuses it or it is the controlled character.
 - `0x003C94A0()` (`0x003C90BB`) re-shows the target of the record `0x0035BAF0()` returns (`0x022C8078`): nothing when its
-  bit 15 is set, `0x003C93E0(+8)` when its `+4` and `+8` differ (`0x003C94DD`), otherwise `+0xC8` = 0.
-- `0x003C94F0()` does the same only while `+0xC0` bit 2 is set, and otherwise clears `+0xC8`; the menu steps
+  bit `0x8000` is set, `0x003C93E0(+8)` when its `+4` and `+8` differ (`0x003C94DD`), otherwise `+0xC8` = 0.
+- `0x003C94F0()` does the same only while `+0xC0` bit `0x4` is set, and otherwise clears `+0xC8`; the menu steps
   `0x00276D30`, `0x002778C0`, `0x00279E20` and `0x0027B880` call it.
 - `0x003C9370(h)` answers 1 when `h` is one of the handles of the target list `0x022C83F0` (`0x0035D3E0`) and 0
   otherwise; `0x003C87B0` (`0x003C8847`) and `0x003C8B70` (`0x003C8FB2`) call it.
@@ -337,10 +337,10 @@ The field's target cursor is the `0xD8`-byte widget at `0x02B47730` with procedu
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003C8B70` |
-| `+0xC0` | `u32` | stateBits | the cursor's state bits, bits 1 and 3 cleared on construction (`0x003C9222`). Bit 0: set when the cursor gains the focus (message 8, `0x003C8F8F`); the next input turn only clears it (`0x003C8BCF`-`0x003C8BE1`). Bit 1: tested and cleared by `0x003C8950` after `0x00268620` (`0x003C8960`, `0x003C8975`), cleared after a confirm (`0x003C8F6A`); no access sets it. Bit 2: the target is shown: set while the pad's L2 is held (`0x003C917C`), cleared on each turn in pad mode (`0x003C9134`), toggled by a new keyboard L2 press (`0x003C91AA`-`0x003C91BB`), cleared when the target record shows nothing (`0x003C90D7`); `0x003C8B20`, `0x003C94F0` and `0x003C9590` test it. Bit 3: a pick is waiting at `+0xCC` (`0x003C8E7B`); `0x003C9570` tests it and `0x003C9550` clears it |
+| `+0xC0` | `u32` | stateBits | the cursor's state bits, bits `0x2` and `0x8` cleared on construction (`0x003C9222`). Bit `0x1`: set when the cursor gains the focus (message 8, `0x003C8F8F`); the next input turn only clears it (`0x003C8BCF`-`0x003C8BE1`). Bit `0x2`: tested and cleared by `0x003C8950` after `0x00268620` (`0x003C8960`, `0x003C8975`), cleared after a confirm (`0x003C8F6A`); no access sets it. Bit `0x4`: the target is shown: set while the pad's L2 is held (`0x003C917C`), cleared on each turn in pad mode (`0x003C9134`), toggled by a new keyboard L2 press (`0x003C91AA`-`0x003C91BB`), cleared when the target record shows nothing (`0x003C90D7`); `0x003C8B20`, `0x003C94F0` and `0x003C9590` test it. Bit `0x8`: a pick is waiting at `+0xCC` (`0x003C8E7B`); `0x003C9570` tests it and `0x003C9550` clears it |
 | `+0xC4` | `u32` | chosenTarget | the handle of the chosen target, stored by `0x003C9420`; 0 on construction (`0x003C9211`) and when the cycle opens or a Left or Right press finds no target, by a qword store that also clears `+0xC8` (`0x003C8806`, `0x003C8CBA`, `0x003C8D8F`). `0x003C87B0` keeps it while `0x003C9370` finds it in the target list (`0x003C8841`-`0x003C8858`); each tick the cursor closes with way 4 when it has left the list, has no actor or is no longer targetable (`0x003C8FAA`-`0x003C9051`); `0x003C8B50` returns it when the way `+0xD0` is 1 (`0x003C8B5C`-`0x003C8B65`) |
-| `+0xC8` | `u32` | shownTarget | the handle of the target the cursor shows, stored by `0x003C93E0`, 0 when `0x00273710` refuses it or it is the controlled character (`0x003C90EA`-`0x003C9126`); 0 on construction and whenever the cursor closes (`0x003C89E8`, `0x003C8ACF`, `0x003C8C7E`, `0x003C8D53`, `0x003C8DFF`, `0x003C8F16`, `0x003C906C`). `0x003C8B20` returns it while bit 2 is set, `0x003C9590` answers whether it is set, and a confirm hands it to `0x0028F260` (`0x003C8F54`-`0x003C8F5E`) |
-| `+0xCC` | `u32` | pick | the handle `0x0028F5B0` answers when the interaction button is pressed on an actor `0x00265460`, `0x002647D0` and `0x0025B4C0` accept (`0x003C8E44`-`0x003C8E82`); the cursor sets bit 3 and closes with way 1 (`0x003C8E76`). `0x003C9570` returns it while bit 3 is set (`0x003C9585`) |
+| `+0xC8` | `u32` | shownTarget | the handle of the target the cursor shows, stored by `0x003C93E0`, 0 when `0x00273710` refuses it or it is the controlled character (`0x003C90EA`-`0x003C9126`); 0 on construction and whenever the cursor closes (`0x003C89E8`, `0x003C8ACF`, `0x003C8C7E`, `0x003C8D53`, `0x003C8DFF`, `0x003C8F16`, `0x003C906C`). `0x003C8B20` returns it while bit `0x4` is set, `0x003C9590` answers whether it is set, and a confirm hands it to `0x0028F260` (`0x003C8F54`-`0x003C8F5E`) |
+| `+0xCC` | `u32` | pick | the handle `0x0028F5B0` answers when the interaction button is pressed on an actor `0x00265460`, `0x002647D0` and `0x0025B4C0` accept (`0x003C8E44`-`0x003C8E82`); the cursor sets bit `0x8` and closes with way 1 (`0x003C8E76`). `0x003C9570` returns it while bit `0x8` is set (`0x003C9585`) |
 | `+0xD0` | `u32` | closeWay | how the cursor last closed, 0 on construction (`0x003C9229`): 1 a target confirmed or a pick taken (`0x003C8EFD`, and `0x003C8A50` for 1 and 2), 3 cancelled (`0x003C8DE2`, `0x003C8990`), 4 the target was lost or Escape Mode armed (`0x003C9051`), 5 Left found no target, before or wrapping round (`0x003C8C61`), 6 Right found none (`0x003C8D36`); `0x003C8A50`(n) stores the others as given (`0x003C8AB8`). `0x003C87B0` picks the next target from it (`0x003C880D`): the nearest for 0 and 4, the kept target for 1, 3 and 7, none for 2, and for 5 and 6 the leftmost or rightmost by the direction still held (`0x003C889D`-`0x003C88BB`) |
 | `+0xD4` | `u8[4]` | tail0D4 | read and written by no function; nothing fixes its width |
 
@@ -372,10 +372,10 @@ into each record's axis entries at `+0x40`.
 
 The builders rewrite all sixteen codes of each record of their block, profile *p* for record *p*:
 
-- `0x00196DF0` (mode bit 1, block `0x01F80550`; `0x00196E32`-`0x00196E54`): Up, Right, Down and Left, buttons 4-7, get the
+- `0x00196DF0` (mode bit `0x2`, block `0x01F80550`; `0x00196E32`-`0x00196E54`): Up, Right, Down and Left, buttons 4-7, get the
   profile's left-stick keys LY_N, LX_P, LY_P and LX_N, read at `0x01F80FEC`, `0x01F80FE0`, `0x01F80FE8` and `0x01F80FE4` +
   `0x70` × *p* ([keymap.ini](keymap-file.md)); every other button gets 0.
-- `0x00196EE0` (mode bit 0; `0x00196F2D`-`0x00196F59`) and `0x00196C40` (mode bit 2; `0x00196C9B`-`0x00196CC1`), block
+- `0x00196EE0` (mode bit `0x1`; `0x00196F2D`-`0x00196F59`) and `0x00196C40` (mode bit `0x4`; `0x00196C9B`-`0x00196CC1`), block
   `0x01F80970`: the same, and L2 and R2, buttons 8 and 9, get the profile's group 0 slots 8 and 9, at `0x01F80FB0` and
   `0x01F80FB4` + `0x70` × *p*.
 
@@ -387,10 +387,10 @@ and 1 (`0x00198700`).
 Two functions read the codes, one of them through a lookup:
 
 - The translator `0x00197160` reads a record's sixteen codes (`0x001971B0`, while the index is below 16, an unsigned
-  32-bit compare at `0x0019724A`). The poll passes it each record of `0x01F80550` while mode bit 1 is set
-  (`0x001970C8`-`0x001970F6`) and each record of `0x01F80970` while bit 0 or 2 is (`0x001970F8`-`0x0019711B`).
-- `0x00197870(manager, record, 0, button)` answers one code: from `0x01F80970` when mode bit 0 is set, else from
-  `0x01F80550` when bit 1 is, else from `0x01F80970` when bit 2 is, else 0 (`0x00197870`-`0x00197902`). The button must be
+  32-bit compare at `0x0019724A`). The poll passes it each record of `0x01F80550` while mode bit `0x2` is set
+  (`0x001970C8`-`0x001970F6`) and each record of `0x01F80970` while bit `0x1` or `0x4` is (`0x001970F8`-`0x0019711B`).
+- `0x00197870(manager, record, 0, button)` answers one code: from `0x01F80970` when mode bit `0x1` is set, else from
+  `0x01F80550` when bit `0x2` is, else from `0x01F80970` when bit `0x4` is, else 0 (`0x00197870`-`0x00197902`). The button must be
   below 16, an unsigned 32-bit compare (`0x001978E5`, `0x0019790F`).
 - `0x001E0DC0` reaches `0x00197870` (`0x001E0DF9`). Its two callers ask record 0 for buttons 7, 5, 4 and 6 (`0x002B5B60` at
   `0x002B5C3B`, the table `0x00916780`) and 4, 6, 7 and 5 (`0x00289830` at `0x00289889`, the table `0x00915DA0` of `0x002891A0`).
@@ -452,10 +452,10 @@ addresses taken near them are those of `0x002498B0`, `0x00249860` and `0x0024988
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x01EFE378` | `i32` | 1 | 1 while the pad's L2 (held mask set 0, bit 8) drives the target cursor's `+0xC0` bit 2, which it sets while held and the next call clears; 0 once the keyboard's L2 (`0x0017DDC0`) has taken over, which toggles the bit on each new press (`0x003C912C`-`0x003C91C1`) | `0x003C8B70`: 0 on the keyboard key (`0x003C9158`), 1 on the pad button (`0x003C9183`) | `0x003C8B70` (`0x003C912C`, `0x003C918E`) |
+| `0x01EFE378` | `i32` | 1 | 1 while the pad's L2 (held mask set 0, bit `0x8`) drives the target cursor's `+0xC0` bit `0x2`, which it sets while held and the next call clears; 0 once the keyboard's L2 (`0x0017DDC0`) has taken over, which toggles the bit on each new press (`0x003C912C`-`0x003C91C1`) | `0x003C8B70`: 0 on the keyboard key (`0x003C9158`), 1 on the pad button (`0x003C9183`) | `0x003C8B70` (`0x003C912C`, `0x003C918E`) |
 | `0x02B47738` | `u8` | 0 | whether the keyboard's L2 was held at the last call, so that only a new press toggles the bit | `0x003C8B70` (`0x003C91C1`) | `0x003C8B70` (`0x003C914A`) |
 
-The toggle and the set are skipped while bit 18 of `0x002E0FA0()` is set (`0x003C9171`-`0x003C917A`, `0x003C919A`-`0x003C91A3`).
+The toggle and the set are skipped while bit `0x40000` of `0x002E0FA0()` is set (`0x003C9171`-`0x003C917A`, `0x003C919A`-`0x003C91A3`).
 
 ### Channel set-up
 
@@ -520,7 +520,7 @@ addresses at the sites listed.
 ### The Party Menu's wheel stop
 
 `0x0027E810(notches)` is the stop of `0x002D0580` for the Party Menu's member list, the widget at `[0x0209AC30] + 0xF8`, whose
-rows are the pointers at `+0xC0`, cursor `+0x117` (`i8`) and last row `+0x118` (`i8`); a row is shown when bit 0 of
+rows are the pointers at `+0xC0`, cursor `+0x117` (`i8`) and last row `+0x118` (`i8`); a row is shown when bit `0x1` of
 its `+0x40` is set. The member list's input step `0x00284EC0` calls it once per notch and stops moving when it answers
 1 (`0x00285140`-`0x0028515B`). A positive notch total moves up.
 

@@ -103,6 +103,27 @@ entries), 27 (`sound\wave\wave0000.wd` onward), 31 (`sound\music\data\music000.b
 `n + 7`, with the `−1` size it reads; the read issuer refuses it and the queue then reports it delivered
 with nothing read. No call site of `0x0032E620` passes kind 6, 27 or 31.
 
+[`file-size-tables-fst-files-rows.tsv`](file-size-tables-fst-files-rows.tsv) gives each of the twelve files with its
+language id, SHA-256, sized entries and sized kinds.
+[`file-size-tables-fst-entries-rows.tsv`](file-size-tables-fst-entries-rows.tsv) gives the 10,532 kind and id pairs
+that any table sizes, with the size in each language, the path each language's array names, and the shipped file's
+size where it differs.
+
+- Sized entries: JP, ASIA and IN 10,505, US 10,521, FR 10,522, DE 10,517, IT 10,521, ES 10,522, UK 8,134, KR
+  10,518, CH 10,502 and CN 10,524. Every table sizes the same 31 kinds except UK, which sizes nothing in kinds 5
+  and 8, the area scripts and the event scripts.
+- No language id loads the JP, UK or ASIA table: Japanese loads IN, whose bytes equal JP and ASIA
+  ([Languages](../Saving-Loading-And-Settings/languages.md#the-data-folder-and-the-file-size-table)). UK's missing script
+  sizes therefore reach no player.
+- Where a table sizes an entry and its language's array names a path, the archive holds the file: 123,620 such
+  entries in the twelve tables. 121,892 equal the file's size. The other 1,728 are the same 144 model `.cm` entries
+  in every table (kind 13: 9, kind 19: 27, kind 23: 26, kind 34: 82), each 1,844 to 110,036 bytes larger than the
+  file.
+- Kind 1 ids 1 and 2 and the 20 sized ids from 109 to 132 are sized only in US, FR, DE, IT, ES, UK, KR and CN, and
+  their language's kind 1 array names no file for them: ids 1 and 2 are null entries, and 109 to 132 lie past the
+  array's end. JP, CH, ASIA and IN leave all 22 at −1.
+- `system.cnf` (kind 0, id 0) is 57 and `env99.spp` (kind 1, id 24) 3,392 in all twelve tables.
+
 ## Loader behaviour
 
 - **Boot.** A failed `fopen` or a short `fread` prints through the CRT and then writes to address 0, a

@@ -56,7 +56,7 @@ outNear)`. It has one caller, the standard-action state machine `0x00304850`, wh
 
 A later step of the same machine copies
 them to the unit's movement block (unit `+0x80`, `0x003048EF`): near to `+0x120`, middle to `+0x124`,
-reach to `+0x128`, and sets bit 5 of block `+0x170` (`0x00304BF3`-`0x00304C0F`). Just before, it sets the
+reach to `+0x128`, and sets bit `0x20` of block `+0x170` (`0x00304BF3`-`0x00304C0F`). Just before, it sets the
 block's movement mode `+0x40` to 1 (`0x00304BEC`); the movement step `0x0033BED0` runs the spacing step
 only in that mode (`0x0033BF59`-`0x0033BF5F`).
 
@@ -84,7 +84,7 @@ only in that mode (`0x0033BF59`-`0x0033BF5F`).
 
 `0x00309300` (169 bytes) takes `(actionRow, weaponId)`. It tests the weapon id as a
 class-6 (equipment) id with `0x00322C50(6, id, 0)` and resolves its row (`0x00309319`-`0x0030935E`). A null
-action row gives 0.0 (`0x00309364`). When bit 26 (`0x4000000`) of the row's flag word `+0x0C` is clear,
+action row gives 0.0 (`0x00309364`). When bit `0x4000000` (`0x4000000`) of the row's flag word `+0x0C` is clear,
 the reach is the row's byte `+0x05`; when it is set, the reach is the equipment row's byte `+0x18`,
 or 0.0 when there is no equipment row (`0x00309377`-`0x0030938B`). The byte is divided by 10.0
 (`0x008F8180`, `0x0030939B`).
@@ -93,9 +93,9 @@ or 0.0 when there is no equipment row (`0x00309377`-`0x0030938B`). The byte is d
 
 `0x00320D70` (146 bytes) takes `(actor, actionRow, equipmentRow, component)`:
 
-- **Bit 26 clear:** the action row's byte `+0x02 + component`, divided by 10.0 - `+0x02` is the near
+- **Bit `0x4000000` clear:** the action row's byte `+0x02 + component`, divided by 10.0 - `+0x02` is the near
   value and `+0x03` the middle value (`0x00320DE1`-`0x00320DF5`).
-- **Bit 26 set:** the equipment row's kind byte `+0x25` (kind 0 for a null row, `0x00320DAF`). Kind 2,
+- **Bit `0x4000000` set:** the equipment row's kind byte `+0x25` (kind 0 for a null row, `0x00320DAF`). Kind 2,
   or any kind above 5, gives 0.0 (`0x00320D93`-`0x00320DA2`). Otherwise the parameter number is the dword
   at `0x01EED288 + (component + kind * 2) * 4` (table below), and the value comes from
   `0x003204E0(object, number, &out)`; a negative return gives 0.0 (`0x00320DB1`-`0x00320DD1`).
@@ -135,33 +135,33 @@ and multiplies it by the float at `+0x26C` of that character's `0x740`-byte reco
    the near value used is the target's (`+0x1A0`); otherwise its own (block `+0x120`)
    (`0x00338201`-`0x0033823F`).
 3. **Too far** when the XZ distance `d` from the unit to the reference-target point
-   (`0x0033826E`) exceeds `min(middle + 2.0, reach)` (`0x01CEBC08`, `0x00338253`-`0x00338266`): bit 1 of
+   (`0x0033826E`) exceeds `min(middle + 2.0, reach)` (`0x01CEBC08`, `0x00338253`-`0x00338266`): bit `0x2` of
    block `+0x38` (approach). **Too close** when `d < near + 0.05` (`0x008F30E8`) and `0x003341A0`
-   agrees: bit 2 of block `+0x38` (back off) (`0x00338281`-`0x0033829B`).
+   agrees: bit `0x4` of block `+0x38` (back off) (`0x00338281`-`0x0033829B`).
 4. Approach is dropped when the block's stop distance `+0xD0` is larger than `d`, and back-off when
    `d` is larger than it (`0x0033829F`-`0x003382DE`). When the pair clearance test `0x0033D660` returns 0,
    the approach bit is set (`0x003382F2`-`0x00338301`).
 5. **Approach** runs the pacing step `0x00337A50` and then `0x0033A720`; a non-zero pacing result clears
-   bits 5-14 of block `+0x00` (`0x0033830C`-`0x00338326`).
+   bits `0x7FE0` of block `+0x00` (`0x0033830C`-`0x00338326`).
 6. **Back-off** tests a step with `0x00335B60`: if it returns 0 the unit moves away at the block's speed
    `+0xF8` with heading `ctx+0xB4` (turn limit `0x003364D0`), otherwise the back-off bit is cleared
    (`0x00338339`-`0x003383BC`).
 7. **Neither:** the avoidance manoeuvre `0x003343D0` runs (and `0x0033BAA0` when it starts). When neither
-   bit of block `+0x38` is set and bits 5-14 of block `+0x00` are clear, the unit stops and turns to
+   bit of block `+0x38` is set and bits `0x7FE0` of block `+0x00` are clear, the unit stops and turns to
    face the target (`0x003383C2`-`0x00338442`).
 
 ### The back-off condition
 
-`0x003341A0` returns 1 only when bit 0 of block `+0x38` is set, both
+`0x003341A0` returns 1 only when bit `0x1` of block `+0x38` is set, both
 units exist and differ, `0x0030BCB0(unit, target, 0)` is 0 (the relationship class from `0x0030AB40` is
-above 1), and the acting unit is not on the enemy side (stats byte `+0x05` not 1) or has bit 1 of byte
+above 1), and the acting unit is not on the enemy side (stats byte `+0x05` not 1) or has bit `0x2` of byte
 `+0x21` of its `[unit+0xE68]` record set.
 
 ### Pacing
 
-`0x00337A50` (442 bytes) runs only while bit 8 (`0x100`) of block `+0x3C` is set, the
+`0x00337A50` (442 bytes) runs only while bit `0x100` (`0x100`) of block `+0x3C` is set, the
 acting unit's class from `0x002F8E70` is 1, the class of the unit the target is focused on is not 1, and
-the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0x00337A74`-`0x00337ACB`,
+the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 (`0x00337A74`-`0x00337ACB`,
 `0x00337BDF`). `0x002F8E70` returns 1 for a party-side unit (stats byte `+0x05` = 0) whose type id (byte
 `+0x04`) is outside the Esper band `0x1B`-`0x27`, and 2 inside it (`0x002F8E90`).
 
@@ -170,7 +170,7 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0x00
    returns 0 (`0x00337B0F`).
 2. The remaining charge ticks are `([unit+0x76C] - [unit+0x768])` divided by the charge per tick
    `0x002F9C00(unit)`. If that is not larger than `rem` divided by the fast speed (block `+0xFC`), pacing
-   is abandoned: bit 8 is cleared and 0 returned (`0x00337B26`-`0x00337B50`).
+   is abandoned: bit `0x100` is cleared and 0 returned (`0x00337B26`-`0x00337B50`).
 3. While the elapsed ticks `[unit+0x768] / step` are fewer than `30 * [0x01DFE0B4]` (`0x00337B75`), the
    unit stands (speed 0). After that it stands while the remaining ticks exceed `rem` divided by the
    normal speed (block `+0xF8`), and walks at the normal speed otherwise (`0x00337B80`-`0x00337BD7`).
@@ -192,13 +192,13 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0x00
 
 ## Modding notes
 
-- The action row's byte `+0x05` is the reach times 10 for actions without bit 26 of `+0x0C`; bytes
+- The action row's byte `+0x05` is the reach times 10 for actions without bit `0x4000000` of `+0x0C`; bytes
   `+0x02` and `+0x03` are near and middle times 10, used only when both are non-zero. In the shipped
   `battle_pack.bin`, 6 action rows set them (`1, 20` three times, `1, 15` twice, `20, 20` once) and
-  none of those has bit 26.
-- With bit 26 set, these functions use the equipment row instead of the action row's `+0x05`,
+  none of those has bit `0x4000000`.
+- With bit `0x4000000` set, these functions use the equipment row instead of the action row's `+0x05`,
   `+0x02` and `+0x03`: the reach is the equipment row's byte `+0x18` times 10, and near and middle are
-  character parameters chosen by the equipment row's kind byte `+0x25`. 35 shipped action rows have bit 26.
+  character parameters chosen by the equipment row's kind byte `+0x25`. 35 shipped action rows have bit `0x4000000`.
 - Shipped equipment reaches by kind (`+0x18`): kind 1 10-20, kind 2 100-250, kind 3 10-20, kind 4
   10-30, kind 5 10-20; kind 0 (305 rows) 0-90.
 - The fallback proportions are the floats at `0x008F3100` (0.6) and `0x008F3108` (0.8); the approach

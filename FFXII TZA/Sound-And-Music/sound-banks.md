@@ -34,7 +34,7 @@ The manager's fifth controller, at `+0x18`, is `StreamAudioController`. The two 
 
 ### Block banks and the block index
 
-An actor's sound-effect record names up to three SE blocks as `u16` ids, bit 15 meaning none. `0x002E60F0` turns each id
+An actor's sound-effect record names up to three SE blocks as `u16` ids, bit `0x8000` meaning none. `0x002E60F0` turns each id
 into an index into the kind-32 path array of 608 `.seb` paths at `0x01E7FCF0` (`0x002E6157`-`0x002E618E`). The array holds
 `se000`, `se007`, `se001`-`se006`, then `se200`-`se499` from index 8 and `se700`-`se999` from index 308:
 
@@ -185,7 +185,7 @@ The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk direc
 |---|---|---|---|
 | `+0x00` | `char[5]` | magic | "SeSep" |
 | `+0x08` | `i32` | id | the six-digit bank id |
-| `+0x0C` | `u32` | size | record length in bit 0-30 |
+| `+0x0C` | `u32` | size | record length in bits 0-30 |
 | `+0x10` | `u32` | word | copied to bank `+0x40` and `+0x45` |
 | `+0x14` | `u8` | flags | copied to bank `+0x44` and `+0x49` |
 

@@ -133,7 +133,7 @@ them (`+0x00` next, `+0x01` previous, `+0x04` = `0x80000000`, `+0x10` = 0), sets
   2. on a channel list, notifies the end of a mode-3 request whose `+0x06` is not `0x8000`
      (`0x003DC0D0`), notifies by class (`0x00263050`) when `+0x12` is 2 or more, fixes the head and tail,
      and clears bit `channel` of `+0x06`, `+0x24` and `+0x26` when the channel empties;
-  3. pushes the entry on the free list (`0x003DB650`), sets `+0x63` bit 1 and makes it the head.
+  3. pushes the entry on the free list (`0x003DB650`), sets `+0x63` bit `0x2` and makes it the head.
 
 `0x002697A0(record)` re-issues a record's standing requests. It removes the first entry with a
 non-zero byte `+0x11` from channel 1 and then from channel 0 (`0x003DB420(record, channel, 3)`, which

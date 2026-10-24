@@ -64,7 +64,7 @@ member starts from zero.
 
 The applier can change an enemy's affinities during a fight. Those changes live in the unit's spawn
 record at `+0x78`-`+0x7C`, and the auto-status rebuild `0x0030FED0` copies them back over the stats bytes
-when the spawn record's byte `+0` has bit 7 (`0x00310433`-`0x003104BC`)
+when the spawn record's byte `+0` has bit `0x80` (`0x00310433`-`0x003104BC`)
 ([Action results](../Battle-Actions/action-results.md)).
 
 ### The magick affinity stage
@@ -73,12 +73,12 @@ Slot 95, `0x0038B6A0`, compares the action's element with the target's bytes and
 this order (`0x0038B709`-`0x0038B932`):
 
 1. **Immune** (`+0x43`): sets `0x02AEDFCC` = 1 and skips every later test (`0x0038B70D`-`0x0038B71D`).
-2. **Weak** (`+0x40`): multiplies the scale `0x02AEE054` by 2.0 and sets bit 1 of the result's `+0x140`
+2. **Weak** (`+0x40`): multiplies the scale `0x02AEE054` by 2.0 and sets bit `0x2` of the result's `+0x140`
    (`0x0038B769`-`0x0038B791`). When the target also has augment 52 (Elemental Shift) in either layer (byte `+0x6E` or `+0x7E`,
-   bit 4), it calls `0x00384B10(element, context)` and sets bit 10 (`0x0038B78D`-`0x0038B7F2`).
-3. **Half** (`+0x42`): multiplies by 0.5 and sets bit 2 (`0x0038B84A`-`0x0038B871`).
+   bit `0x10`), it calls `0x00384B10(element, context)` and sets bit `0x400` (`0x0038B78D`-`0x0038B7F2`).
+3. **Half** (`+0x42`): multiplies by 0.5 and sets bit `0x4` (`0x0038B84A`-`0x0038B871`).
 4. **Absorb** (`+0x41`): sets `0x02AEDFD0` = 1 and leaves the scale alone (`0x0038B8BC`-`0x0038B8D1`).
-5. **Potency** (the user's `+0x44`): multiplies by 1.5 and sets bit 3 (`0x0038B911`-`0x0038B932`).
+5. **Potency** (the user's `+0x44`): multiplies by 1.5 and sets bit `0x8` (`0x0038B911`-`0x0038B932`).
 
 Every test that matches applies, so the factors multiply:
 
@@ -103,11 +103,11 @@ The finishing slot `0x0038D280` (slots 113 and 125) turns the scale and the two 
 (`0x0038D280`-`0x0038D333`):
 
 1. Attack minus defence below 0 gives a loss of 0.
-2. Immune: it sets `0x02AEDFC0` = 1, the HP loss `0x02AEE004` = -1 (none), and bit 0 of result `+0x140`. The
+2. Immune: it sets `0x02AEDFC0` = 1, the HP loss `0x02AEE004` = -1 (none), and bit `0x1` of result `+0x140`. The
    resolver turns `0x02AEDFC0` into result kind 10 (`0x003866CE`-`0x003866D7`).
 3. Otherwise the value is `(attack - defence) * scale`. Without absorb it is an HP loss (`0x02AEE004`).
    With absorb it is an HP gain (`0x02AEE008`).
-4. A target with Reverse (status 12, context `+8` bit 12) swaps the two: a loss becomes a gain and an
+4. A target with Reverse (status 12, context `+8` bit `0x1000`) swaps the two: a loss becomes a gain and an
    absorbed hit becomes a loss (`0x0038D2E1`, `0x0038D302`).
 5. Except on the paths of steps 1 and 2 and the absorbed-and-Reverse path, which return at `0x0038D2A2`,
    `0x0038D2CB` and `0x0038D301`, the slot ends by testing a dword against -1 (`0x0038D32A`): the value `t` on the absorb path and on the Reverse path, and the gain
@@ -135,8 +135,8 @@ The same three slots also multiply the scale for other statuses, for example She
 
 Slot 94, `0x0038B220`, scales a magick's element by the area's conditions. It runs in recipes 7, 14, 37,
 63, 83, 105 and 106, before slot 95; the weapon recipes do not run it. It is skipped when augment 16 (Weatherproof) is in
-the target's layer `+0x68` or `+0x78` (bytes `+0x6A`, `+0x7A`, bit 0) or in the user's merged context
-bits (context `+0x1C` bit 0) (`0x0038B226`-`0x0038B242`).
+the target's layer `+0x68` or `+0x78` (bytes `+0x6A`, `+0x7A`, bit `0x1`) or in the user's merged context
+bits (context `+0x1C` bit `0x1`) (`0x0038B226`-`0x0038B242`).
 
 Augment 16 (Weatherproof) is the augment the Agate Ring carries: equipment row 345 has byte `+0x1A` = 16 and class 21,
 and the stats rebuild `0x0030FED0` adds the `+0x1A` augment of each equipped item of classes 19-22 to the

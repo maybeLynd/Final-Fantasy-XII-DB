@@ -21,14 +21,14 @@ The play calls sit in `0x002DEE80`-`0x002DF530` and reach the audio manager thro
 | Call | Arguments | Does |
 |---|---|---|
 | `0x002DF220` | id, pan, volume | plays from a block bank; answers 0 for id -1 (`0x002DF236`-`0x002DF244`), else a play handle |
-| `0x002DEF40` | id, pan, volume | answers 0 without playing while `0x022CB726` is set (`0x003603C0`, `0x002DEF56`; [Game over](../World-Areas-And-Travel/game-over.md)); otherwise plays through `0x001DBDB0` from a block bank when id bit 31 is set and from a six-digit bank when it is clear (`0x002DEF77`-`0x002DEF83`) |
+| `0x002DEF40` | id, pan, volume | answers 0 without playing while `0x022CB726` is set (`0x003603C0`, `0x002DEF56`; [Game over](../World-Areas-And-Travel/game-over.md)); otherwise plays through `0x001DBDB0` from a block bank when id bit `0x80000000` is set and from a six-digit bank when it is clear (`0x002DEF77`-`0x002DEF83`) |
 | `0x002DF010` | id | as `0x002DEF40` with pan `0x40` and volume `0x7F` (`0x002DF02B`) |
 | `0x002DEE80` | handle | answers whether the sound with that handle still plays |
 | `0x002DF0F0` | handle, id | stops the sound with that handle on either side, or every block-bank sound for id -1 |
 | `0x002DF170`, `0x002DF190` | handle or id, frames | stops with a fade of `frames / 60` seconds |
 | `0x002DF150`, `0x002DF1A0` | handle, volume (, frames) | sets the volume, at once or over frames |
 | `0x002DEF20` | handle, pan | sets the pan |
-| `0x002DF280` | id, position, record | `0x002DEFA0` with bit 31 set: a block-bank sound placed at the position; 0 for id -1 |
+| `0x002DF280` | id, position, record | `0x002DEFA0` with bit `0x80000000` set: a block-bank sound placed at the position; 0 for id -1 |
 | `0x002DF120` | handle, position | moves a playing placed sound, except while `0x003603C0` answers non-zero |
 | `0x002DF1E0` | bank id, frames, volume | sets the volume of every sound of that six-digit bank, at once or over frames |
 
@@ -66,16 +66,16 @@ handle is returned even when no bank owns the id, and is kept in the voice at `+
 2. The slot must be in the bank's map, and its sound entry present in the loaded `.sab` (`0x007A8CF0`,
    `0x0022463F`-`0x00224651`).
 3. The slot's flag byte decides the rest, below.
-4. Otherwise it takes a voice, stores slot `+0x14`, id with bit 31 set `+0x24` and handle `+0x18`, sets pan and volume
+4. Otherwise it takes a voice, stores slot `+0x14`, id with bit `0x80000000` set `+0x24` and handle `+0x18`, sets pan and volume
    and posts the start to the driver (`0x007A78B0`, `0x00224825`).
 
 | Flag bit | Effect |
 |---|---|
 | 3 (`0x08`) | not started while slot 7 of the same bank plays, unless this is slot 7 (`0x00224657`-`0x0022467E`) |
-| 5 (`0x20`) | before starting, every playing block or six-digit sound whose own slot flags have bit 6 (`0x40`) is checked: one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
+| 5 (`0x20`) | before starting, every playing block or six-digit sound whose own slot flags have bit `0x40` (`0x40`) is checked: one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
 | 7 (`0x80`) | a voice already playing this slot is reused with the new pan and volume (`0x002246E3`-`0x00224756`) |
 
-A six-digit bank's start `0x00223190` reads one flag byte for the whole bank, `+0x44`, and a bank with bit 5 starts its
+A six-digit bank's start `0x00223190` reads one flag byte for the whole bank, `+0x44`, and a bank with bit `0x20` starts its
 voice with a 4.8 s fade in.
 
 ### Volume
@@ -217,7 +217,7 @@ No other instruction reaches these three. The queue's addresses are taken by `0x
 ## Modding notes
 
 - A sound's pan byte above `0x7F` puts it behind the listener.
-- Flag bit 5 of a slot cross-fades it over 4.8 s against the playing sounds whose flags have bit 6; bit 3 makes
+- Flag bit `0x20` of a slot cross-fades it over 4.8 s against the playing sounds whose flags have bit `0x40`; bit `0x8` makes
   it wait for slot 7.
 - Changing a voice fade's shape needs a curve argument other than 0 at its `0x007CA560` call; no data selects it for
   voice volume, pan, pitch or stop ramps.

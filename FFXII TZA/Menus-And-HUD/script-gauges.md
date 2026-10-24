@@ -38,7 +38,7 @@ draws with at `+0xC8` and `+0xD0`, which depend on the mode byte `+0xC0`.
 ### The verbs
 
 Each verb reaches the child of `[0x02B62D80]` through a one-jump stub, and does nothing while the window's
-`+0xC8` bit 1 is set:
+`+0xC8` bit `0x2` is set:
 
 | Verb | Body | Effect |
 |---|---|---|
@@ -49,7 +49,7 @@ Each verb reaches the child of `[0x02B62D80]` through a one-jump stub, and does 
 | `setgaugecountercondition`, `setgaugetimercondition`, `setgaugeracecondition` | `0x003514F0` → `0x00408560` → `0x00407300` | sets the three thresholds |
 | `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `0x00354190` → `0x00408A20` | sets the type `+0xDC` |
 | `setgaugecolor` | `0x00357270` → `0x00408780` | sets the four colours |
-| `stopgaugetimer` | `0x003521F0` → `0x004083B0` | sets the window's `+0xC8` bit 2 |
+| `stopgaugetimer` | `0x003521F0` → `0x004083B0` | sets the window's `+0xC8` bit `0x4` |
 | `resetgaugetimer` | `0x00351C80` → `0x004083E0` | see below |
 
 ### Value, ramps and thresholds
@@ -68,13 +68,13 @@ value = start + delta, length = 0             at the end; 0x004076B0 returns -1 
   and only when `+0x110` is not 0.
 - `0x00407240(counter, target)` starts a ramp of `+0x108` frames, or 1 when that is 0; its only caller is
   the boss gauge's bar (`0x00406552`).
-- The counter child steps its ramp only while the window's `+0xC8` bits 2 and 3 are both clear
+- The counter child steps its ramp only while the window's `+0xC8` bits `0x4` and `0x8` are both clear
   (`0x00407631`-`0x00407639`).
 
 `0x00407300(counter, a, b, c)` sets `a = a x 60`, `b = b x 60` and `c = c x 60` when the mode byte `+0xC0` is 1,
 a timer (`0x0040730C`-`0x0040731C`), and stores them at `+0xEA`,
 `+0xEC` and `+0xEE`: in that order for types 1 and 3, in reverse order for types 2 and 4, and not at all for
-type 0. A `-1` keeps a threshold. `0x00408A20(type)` stores the type and sets bit 25 of the value widget's
+type 0. A `-1` keeps a threshold. `0x00408A20(type)` stores the type and sets bit `0x2000000` of the value widget's
 `+0x20` for types 2 and 4, clearing it for 1 and 3. `0x00408780(c0, c1, c2, c3)` stores the colours, `-1`
 keeping one.
 
@@ -85,9 +85,9 @@ keeping one.
 
 | Flags | Format id | Shown as |
 |---|---|---|
-| `+0x130` bit 0 clear | `0x4B3C` | hours (value / 216,000), minutes, seconds and hundredths; above 9 hours it shows 99, 59, 59, 99 |
-| `+0x130` bit 0 set, `+0xD8` bit 1 clear | `0x4B3D` | seconds `value / 60` and the hundredths below; when the seconds exceed 999 it shows 999 and 99 (`0x00407774`-`0x004077B5`) |
-| `+0x130` bit 0 set, `+0xD8` bit 1 set | `0x4B3E` | the same |
+| `+0x130` bit `0x1` clear | `0x4B3C` | hours (value / 216,000), minutes, seconds and hundredths; above 9 hours it shows 99, 59, 59, 99 |
+| `+0x130` bit `0x1` set, `+0xD8` bit `0x2` clear | `0x4B3D` | seconds `value / 60` and the hundredths below; when the seconds exceed 999 it shows 999 and 99 (`0x00407774`-`0x004077B5`) |
+| `+0x130` bit `0x1` set, `+0xD8` bit `0x2` set | `0x4B3E` | the same |
 
 The hundredths are `(value mod 60) x 100 / 60`.
 
@@ -99,20 +99,20 @@ timer open the verb therefore changes nothing, and with none open it reads unmap
 scripts never call it (`us_calls` 0 in the [verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
 `0x00407150(window, on)`, reached through `0x004088A0`, `0x004088B0` and `0x00408190`, is the working reset: on a
-change of the window's `+0xC8` bit 1 it ends a counter's ramp at its target, or sets a timer to its maximum
+change of the window's `+0xC8` bit `0x2` it ends a counter's ramp at its target, or sets a timer to its maximum
 for type 1 and to 0 for the others.
 
 ### Pause, hide and restore
 
 - The byte `0x0215F1B3` is a mask of pause reasons ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
-  Whenever it is written, `0x00404D70` (non-zero) or `0x00404DC0` (zero) sets or clears bit 3 of the gauge
-  window's `+0xC8` and bit 7 of the boss gauge's `+0xC8` (`0x002E0D67`, `0x002E15A3`, `0x002E24B7`-`0x002E24F8`),
-  skipping a gauge whose `+0xC8` bit 1 (script) or bit 5 (boss) is set.
+  Whenever it is written, `0x00404D70` (non-zero) or `0x00404DC0` (zero) sets or clears bit `0x8` of the gauge
+  window's `+0xC8` and bit `0x80` of the boss gauge's `+0xC8` (`0x002E0D67`, `0x002E15A3`, `0x002E24B7`-`0x002E24F8`),
+  skipping a gauge whose `+0xC8` bit `0x2` (script) or bit `0x20` (boss) is set.
 - The HUD switch hides the message windows through `0x0035D0E0` and shows them through `0x0035D1B0`
   ([HUD](hud.md)). `0x0035D0E0` also runs `0x004082D0`, which starts the gauge child's closing run with the
   message at `0x01E0C0F8`.
 - `0x0035D1B0` runs `0x00408AA0`, which restarts its opening run with message 14
-  (`0x01E0C0E0`) when the child is hidden (`+0xD8` bit 2 set, bit 3 clear). Both set the run speed `+0xB8`
+  (`0x01E0C0E0`) when the child is hidden (`+0xD8` bit `0x4` set, bit `0x8` clear). Both set the run speed `+0xB8`
   to `1 / 0x00229E70()` when `0x00229DF0` is non-zero and `0x00229EA0` returns 2.
 
 ### Placing the gauge
@@ -120,7 +120,7 @@ for type 1 and to 0 for the others.
 `0x00407B70` reads the positions of two layout children of the window (`0x00394690`), the second named by its third
 argument. When `0x003C5FB0` (the
 minimap status test of [Map screens](map-screens.md)) returns 0 it takes the second, calls `0x002E04E0(6)` and
-moves every widget under the root `[0x0208EA28]` whose `+0x44` bits 19 and 20 are `0x100000` by the difference,
+moves every widget under the root `[0x0208EA28]` whose `+0x44` bits `0x80000` and `0x100000` are `0x100000` by the difference,
 from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `+0x20`). The window's widget
 `+0xC8` gets the chosen position at `+0x98`/`+0x9A`.
 
@@ -133,7 +133,7 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 | `+0x0C0` | `u8` | mode | 0 counter, 1 timer, 3 drawn by the value widget (`0x00408140`) |
 | `+0x0C8` | `void*` | frame | the frame widget (`0x00407F90`) |
 | `+0x0D0` | `void*` | value | the value widget |
-| `+0x0D8` | `u32` | flags | `0x10` at creation; bit 1 picks format `0x4B3E`; bit 5 set by `0x00407150` |
+| `+0x0D8` | `u32` | flags | `0x10` at creation; bit `0x2` picks format `0x4B3E`; bit `0x20` set by `0x00407150` |
 | `+0x0DC` | `u8` | type | 0 to 4 (`0x00408A20`); 2 and 4 reverse the thresholds |
 | `+0x0E0` | `i32` | max | default 100; frames for a timer |
 | `+0x0E4` | `i32` | current | the value shown |
@@ -150,7 +150,7 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 | `+0x11C` | `i32` | start | ramp start value |
 | `+0x120` | `i32` | delta | ramp distance |
 | `+0x124` | `i32` | now | ramp result |
-| `+0x130` | `u32` | style | bit 0 picks the seconds-only timer format (`0x00407720`) |
+| `+0x130` | `u32` | style | bit `0x1` picks the seconds-only timer format (`0x00407720`) |
 | `+0x134` | `char[64]` | text | the formatted timer (`0x00407720`) |
 
 ### The gauge window
@@ -163,7 +163,7 @@ The gauge window is the `0xE8`-byte widget at `0x02B62D80` with procedure `0x004
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00406E80` |
 | `+0xC0` | `void*` | gauge | the gauge child the construct message builds for the creation argument (`0x00406FD3`-`0x00407107`): type 0 the `0x278`-byte counter with procedure `0x00407590`, types 1 and 2 the `0x1F8`-byte gauge with procedure `0x004079A0`, any other type none (0 from `0x00406FB8`). Every gauge verb reaches the child through it (`0x00408190`-`0x00408AAC`: `0x004081A8`, `0x00408210`, `0x0040825C`, `0x0040828C`, `0x004082DC`, `0x00408379`, `0x004083EC`, `0x0040846D`, `0x004084DC`, `0x0040850A`, `0x0040853D`, `0x0040857D`, `0x004085BE`, `0x00408661`, `0x00408719`, `0x0040879A`, `0x004087F3`, `0x0040884C`, `0x00408873`, `0x004088DF`, `0x00408981`, `0x00408A3D`, `0x00408AAC`), and so do `0x00407150` (`0x0040717C`) and the tick (`0x00406F2D`) |
-| `+0xC8` | `u32` | flags | bit 0: tested by the tick, which with it set runs `0x00408200` when the child is not open or is in run state 1 or 4 (`0x00406F20`-`0x00406F67`); no instruction sets it. Bit 1: the gauges are off, set and cleared by `0x00407150` (`0x0040715D`-`0x0040718C`); every verb does nothing while it is set (`0x00408372`, `0x00408410`, `0x0040845F`, `0x004084CE`, `0x004084FC`, `0x0040852F`, `0x0040856F`, `0x004085E5`, `0x00408688`, `0x00408740`, `0x0040878C`, `0x004087EC`, `0x0040883E`, `0x0040886C`, `0x00408903`, `0x004089A8`, `0x00408A2F`) and so do the pause and timer stubs. Bit 2: the timer is stopped, set by stopgaugetimer `0x004083B0` (`0x004083C7`) and by `0x00407F90` for its mode-2 child (`0x00408069`), cleared by `0x00408AD0` (`0x00408AE7`). Bit 3: the script pause mask, set by `0x00404D70` (`0x00404D87`) and cleared by `0x00404DC0` (`0x00404DDA`). The counter steps its ramp only while bits 2 and 3 are clear (`0x0040762B`, `0x00407A35`). 0 at construction (`0x00406FCD`) |
+| `+0xC8` | `u32` | flags | bit `0x1`: tested by the tick, which with it set runs `0x00408200` when the child is not open or is in run state 1 or 4 (`0x00406F20`-`0x00406F67`); no instruction sets it. Bit `0x2`: the gauges are off, set and cleared by `0x00407150` (`0x0040715D`-`0x0040718C`); every verb does nothing while it is set (`0x00408372`, `0x00408410`, `0x0040845F`, `0x004084CE`, `0x004084FC`, `0x0040852F`, `0x0040856F`, `0x004085E5`, `0x00408688`, `0x00408740`, `0x0040878C`, `0x004087EC`, `0x0040883E`, `0x0040886C`, `0x00408903`, `0x004089A8`, `0x00408A2F`) and so do the pause and timer stubs. Bit `0x4`: the timer is stopped, set by stopgaugetimer `0x004083B0` (`0x004083C7`) and by `0x00407F90` for its mode-2 child (`0x00408069`), cleared by `0x00408AD0` (`0x00408AE7`). Bit `0x8`: the script pause mask, set by `0x00404D70` (`0x00404D87`) and cleared by `0x00404DC0` (`0x00404DDA`). The counter steps its ramp only while bits `0x4` and `0x8` are clear (`0x0040762B`, `0x00407A35`). 0 at construction (`0x00406FCD`) |
 | `+0xCC` | `u8[4]` | pad0CC | read and written by no function; nothing fixes its width |
 | `+0xD0` | `void*` | layoutRecord | the gauge's layout record `0x0051EDC0`(0), (1) or (2) by type (`0x00407018`), 0 for the other types (`0x00406FBF`), after which the construct message reads `+0x28` through it (`0x0040701F`); its byte `+0x24` is the picture count and `+0x28` the picture list (`0x00407027`-`0x00407035`) |
 | `+0xD8` | `void*` | pictures | the array of `+0xE0` picture handles the construct message allocates (`0x00393590`, `0x00407050`) and fills, one load (`0x0024A440`) for each list entry of type 1 and 0 for the others (`0x00407070`-`0x004070AD`); message 18 releases each (`0x0024A680`) and frees the array (`0x00406EBD`-`0x00406F14`); 0 at construction (`0x00406FC6`) |

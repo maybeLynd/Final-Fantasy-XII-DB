@@ -1,0 +1,44 @@
+line	offset	key	value	game_side	text_in_x64_programs
+file	-	ConfigData/GaussianFilter/GaussianFilterSetting.ini	619 bytes, SHA-256 8505BAE04459EE262F746881D4432C27EF1A89C735ED0A1685B46C41C081FFD5	-	none; ConfigData: none
+1	0x000	[Setting]	section	-	none
+2	0x00B	Setting.Count	5	-	none
+3	0x014	[Custom1]	section	-	none
+4	0x01F	Custom1.StartWidth	0	-	none
+5	0x02D	Custom1.EndWidth	800	-	none
+6	0x03B	Custom1.StartHeight	0	-	none
+7	0x04A	Custom1.EndHeight	600	-	none
+8	0x059	Custom1.BigKernel	15x15	the console labels render-parameter +0x19C Gaussian Filter big kernel (0 3x3, 1 5x5, 2 7x7, 3 15x15); in play it is 0: the constructor 0x0018CD90 sets 0 and the copier 0x00193940 takes +0x08 of 0x001DC510's object, which 0x001DC3D0 sets to 0	none
+9	0x06A	Custom1.Factor	0.91	the console labels +0x1A0 Gaussian Filter factor; in play the copier 0x00193A00 takes +0x0C of 0x001DC510's object, which 0x001DC3D0 sets to the screen height / 1080.0 (1.0 at 1080)	none
+10	0x077	Custom1.BlendAmount	0.5	the console labels +0x1A4 Gaussian Filter blend amount; in play it is 0.5: the constructor and +0x10 of 0x001DC510's object (0x001DC41A) both hold 0.5	none
+11	0x088	[Custom2]	section	-	none
+12	0x093	Custom2.StartWidth	800	-	none
+13	0x0A3	Custom2.EndWidth	1280	-	none
+14	0x0B2	Custom2.StartHeight	600	-	none
+15	0x0C3	Custom2.EndHeight	720	-	none
+16	0x0D2	Custom2.BigKernel	7x7	the console labels render-parameter +0x19C Gaussian Filter big kernel (0 3x3, 1 5x5, 2 7x7, 3 15x15); in play it is 0: the constructor 0x0018CD90 sets 0 and the copier 0x00193940 takes +0x08 of 0x001DC510's object, which 0x001DC3D0 sets to 0	none
+17	0x0E1	Custom2.Factor	0.91	the console labels +0x1A0 Gaussian Filter factor; in play the copier 0x00193A00 takes +0x0C of 0x001DC510's object, which 0x001DC3D0 sets to the screen height / 1080.0 (1.0 at 1080)	none
+18	0x0EE	Custom2.BlendAmount	0.5	the console labels +0x1A4 Gaussian Filter blend amount; in play it is 0.5: the constructor and +0x10 of 0x001DC510's object (0x001DC41A) both hold 0.5	none
+19	0x0FF	[Custom3]	section	-	none
+20	0x10A	Custom3.StartWidth	1280	-	none
+21	0x11B	Custom3.EndWidth	1600	-	none
+22	0x12A	Custom3.StartHeight	720	-	none
+23	0x13B	Custom3.EndHeight	900	-	none
+24	0x14A	Custom3.BigKernel	5x5	the console labels render-parameter +0x19C Gaussian Filter big kernel (0 3x3, 1 5x5, 2 7x7, 3 15x15); in play it is 0: the constructor 0x0018CD90 sets 0 and the copier 0x00193940 takes +0x08 of 0x001DC510's object, which 0x001DC3D0 sets to 0	none
+25	0x159	Custom3.Factor	0.91	the console labels +0x1A0 Gaussian Filter factor; in play the copier 0x00193A00 takes +0x0C of 0x001DC510's object, which 0x001DC3D0 sets to the screen height / 1080.0 (1.0 at 1080)	none
+26	0x166	Custom3.BlendAmount	0.5	the console labels +0x1A4 Gaussian Filter blend amount; in play it is 0.5: the constructor and +0x10 of 0x001DC510's object (0x001DC41A) both hold 0.5	none
+27	0x177	[Custom4]	section	-	none
+28	0x182	Custom4.StartWidth	1600	-	none
+29	0x193	Custom4.EndWidth	1920	-	none
+30	0x1A2	Custom4.StartHeight	900	-	none
+31	0x1B3	Custom4.EndHeight	1080	-	none
+32	0x1C3	Custom4.BigKernel	3x3	the console labels render-parameter +0x19C Gaussian Filter big kernel (0 3x3, 1 5x5, 2 7x7, 3 15x15); in play it is 0: the constructor 0x0018CD90 sets 0 and the copier 0x00193940 takes +0x08 of 0x001DC510's object, which 0x001DC3D0 sets to 0	none
+33	0x1D2	Custom4.Factor	0.91	the console labels +0x1A0 Gaussian Filter factor; in play the copier 0x00193A00 takes +0x0C of 0x001DC510's object, which 0x001DC3D0 sets to the screen height / 1080.0 (1.0 at 1080)	none
+34	0x1DF	Custom4.BlendAmount	0.5	the console labels +0x1A4 Gaussian Filter blend amount; in play it is 0.5: the constructor and +0x10 of 0x001DC510's object (0x001DC41A) both hold 0.5	none
+35	0x1F0	[Custom5]	section	-	none
+36	0x1FB	Custom5.StartWidth	1920	-	none
+37	0x20C	Custom5.EndWidth	32767	-	none
+38	0x21C	Custom5.StartHeight	1080	-	none
+39	0x22E	Custom5.EndHeight	2160	-	none
+40	0x23E	Custom5.BigKernel	3x3	the console labels render-parameter +0x19C Gaussian Filter big kernel (0 3x3, 1 5x5, 2 7x7, 3 15x15); in play it is 0: the constructor 0x0018CD90 sets 0 and the copier 0x00193940 takes +0x08 of 0x001DC510's object, which 0x001DC3D0 sets to 0	none
+41	0x24D	Custom5.Factor	0.91	the console labels +0x1A0 Gaussian Filter factor; in play the copier 0x00193A00 takes +0x0C of 0x001DC510's object, which 0x001DC3D0 sets to the screen height / 1080.0 (1.0 at 1080)	none
+42	0x25A	Custom5.BlendAmount	0.5	the console labels +0x1A4 Gaussian Filter blend amount; in play it is 0.5: the constructor and +0x10 of 0x001DC510's object (0x001DC41A) both hold 0.5	none

@@ -45,13 +45,14 @@ and plays the id at the emitter's position, `+0x20`-`+0x28`, through `0x002DEFA0
 
 - the index is in range and the id is not negative;
 - `0x00229EA0` answers 2 and `0x022CBB2E` is set;
-- the emitter's flag byte `+0x08` has bits `0x30` clear, and bit 2 clear or bit 3 set.
+- the emitter's flag byte `+0x08` has bits `0x30` clear, and bit `0x4` clear or bit `0x8` set.
 
-Each update `0x00362850` marks every emitter with bit 6, runs the emitters it reaches through `0x003631B0`, and then
-`0x00363F30(list, area)` stops the handle at `+0x04` of every emitter still marked or with bit 4 or 5 set (mask
+Each update `0x00362850` marks every emitter with bit `0x40`, runs the emitters it reaches through `0x003631B0`, and then
+`0x00363F30(list, area)` stops the handle at `+0x04` of every emitter still marked or with bit `0x10` or `0x20` set (mask
 `0x70`), or of all of them while `0x022CBB2E` is clear or when `area`, the `0x00362E50` result, is 0 (`0x002DF0F0`).
-It clears the bit-6 mark of every emitter, and `0x00362850` then clears bit 3 of every emitter. `0x00363180(i)` sets
-bit 3 of emitter `i` (`0x00362DC0`), so a bit-2 emitter plays for that pass; the map pack's switch records call it
+
+It clears the bit `0x40` mark of every emitter, and `0x00362850` then clears bit `0x8` of every emitter. `0x00363180(i)` sets
+bit `0x8` of emitter `i` (`0x00362DC0`), so a bit `0x4` emitter plays for that pass; the map pack's switch records call it
 from `0x003E8440` and `0x003E8690`.
 
 ### Reverb
@@ -238,6 +239,17 @@ reader and the weather pick.
 
 Every id names a shipped bank, `se001/se001NNN`, `se010/se010NNN` or `se050/se050NNN`. Ids from 1,000 to 1,999 are
 the ambiences that survive an unbind.
+
+`env99.spp` (`ps2data/sound/se/map/position_map/spp/env/`, 3,392 bytes) is the one list outside a pack. It is kind 1,
+id 24 of the path arrays, sized 3,392 in all twelve size tables, and its path string (`0x00A2EBF8`) is referenced only
+by entry 24 of the ten kind 1 arrays. It lists the eleven ambience ids 1,001 to 1,011 with `hasMapNo` 0, `mapNo`
+`0xFFFF` and no weather table (`weatherAt` 0).
+
+- Its eleven `SeSep` records start at `+0x70` (`bankOffset`), fill `bankLength` 3,272 bytes and are the eleven ids
+  in list order, 144 to 524 bytes each; eight zero bytes follow them.
+- Every id's bank ships, `se001/se001001` to `se001/se001011`. The map lists of 11 `frs` zones name 1,004, of 14
+  `mic`, `nal` and `slm` zones 1,005, and of 10 `sav` and `tri` zones 1,007; no zone's list names the other eight.
+- [`map-sounds-env99-spp-rows.tsv`](map-sounds-env99-spp-rows.tsv) gives every field and record with its offset.
 
 ### Event sound lists
 

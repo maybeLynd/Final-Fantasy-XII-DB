@@ -97,7 +97,7 @@ The render root's model pass `0x0041E4D0` ends by calling `0x0051BC70`. It first
 system names `TsEffMan_Layer_AfterOBJ` (`0x00258EE0(3)`, [Effect drawing](effect-drawing.md)), binds the
 trail image and palette, and copies the `0x4A0`-byte template. For each listed entry it:
 
-- skips it when bit 1 of `entry +5 | 0x02CA8402` is set, when it holds fewer than two samples, or when its opacity `+8` is
+- skips it when bit `0x2` of `entry +5 | 0x02CA8402` is set, when it holds fewer than two samples, or when its opacity `+8` is
   not above 0;
 - binds the model's own image when descriptor byte `+0` is set;
 - copies the three histories and a parameter block into the template: `0x20`, the sample count, `+0x14`,

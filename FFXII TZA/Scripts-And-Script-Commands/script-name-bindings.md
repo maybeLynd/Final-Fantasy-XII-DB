@@ -130,7 +130,7 @@ The request pump `0x002E6700` takes every entry on the requested list. It splits
 `0x002ED6F0` (adding `0x33` to the index for kind 1), asks `0x0032E400(kind, index)` for the file's
 size: `0x002DF960`'s size rounded up to a multiple of 64 (the per-kind override table at
 `0x022C51F0` it consults first is only ever zeroed, by `0x0032EA90`, among the static references to
-it). It then sets `+0x19` bit 2 and zeroes `+0x10`.
+it). It then sets `+0x19` bit `0x4` and zeroes `+0x10`.
 
 A positive size gets a buffer from `0x0036B160`, whose handle goes to `+0x10`; when
 that succeeds it clears bit `0x4`, files the load with `0x002EAD50`, and for an entry with pin bit `0x8`

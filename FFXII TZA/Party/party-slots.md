@@ -90,10 +90,10 @@ the end `0x00326500` picks the controlled member and `0x022C2670` counts the fig
 ### The snapshot a menu takes
 
 `0x00326BB0`, run when the menu tasks `0x00281AE0` (`0x00281B52`) and `0x002D70F0` (`0x002D73BC`) open, records the active seats
-once; bit 0 of `0x022C25A0` marks the snapshot as taken (`0x003278C0` reads it):
+once; bit `0x1` of `0x022C25A0` marks the snapshot as taken (`0x003278C0` reads it):
 
 1. For each seat 0 to 3 that map 1 holds (`0x00322C50(0x17, i)`, the byte at `[0x02EBF190] + 0x5A5A + 2i`) whose unit
-   (`0x002367A0`) has first-byte bit 3, the 48-byte record at `0x022C25B0 + 0x30 x i` gets the member's type at `+0` and
+   (`0x002367A0`) has first-byte bit `0x8`, the 48-byte record at `0x022C25B0 + 0x30 x i` gets the member's type at `+0` and
    `+1`, the unit id at `+4`, the position at `+0x10` (`0x00265020`) and the angle at `+0x20` (`0x00265200`).
 2. `0x022C25A4` takes the saved leader `[0x02EBF190] + 0x5AA4`, and `0x022C25A5` the controlled member's type (`0x003590D0`),
    or the saved leader when there is none.

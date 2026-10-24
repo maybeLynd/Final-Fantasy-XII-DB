@@ -97,10 +97,10 @@ Two script commands set an enemy's two masks:
 |---:|---|
 | `3` | the status goes into the immunity mask `+0xE90` (`0x00239538`) |
 | `2` | the status is added once, while the spawn record is fresh (`0x00239551`-`0x00239577`) |
-| `1` | the same, when bit 0 of a shared gameplay LCG draw is set (`0x00239547`-`0x0023954F`) |
+| `1` | the same, when bit `0x1` of a shared gameplay LCG draw is set (`0x00239547`-`0x0023954F`) |
 | `0` | nothing |
 
-"Fresh" means bits 0 and 2 of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`). After the
+"Fresh" means bits `0x1` and `0x4` of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`). After the
 stats rebuild, `0x0030FED0` turns every bit of `+0xE90` into an immunity with `0x0030E360(..., mode 5)`,
 which sets it in `+0x38` (`0x003103B2`-`0x00310413`). The stats rebuild clears `+0x38` first, so the loop puts
 the immunities back on every rebuild.
@@ -110,7 +110,7 @@ the immunities back on every rebuild.
 For an enemy with a battle unit, the rebuild then reconciles the five affinity bytes with the spawn
 record (`0x00310415`-`0x003104BC`, [Elements](elements.md)):
 
-- spawn record byte `+0` bit 7 set: the spawn record's `+0x78`-`+0x7C` are copied over stats
+- spawn record byte `+0` bit `0x80` set: the spawn record's `+0x78`-`+0x7C` are copied over stats
   `+0x40`-`+0x44`;
 - clear: the stats bytes are copied into the spawn record.
 
@@ -124,7 +124,7 @@ Last, the rebuild limits three values without going through the HP write (`0x003
 | Value | Limit |
 |---|---|
 | current HP `+0x48` | max HP `+0x24`, doubled under Bubble (status 28); under Disease (status 16), the current HP itself, at least 1 |
-| current MP `+0x4C` | max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer (byte `+0x6C` or `+0x7C`, bit 7) |
+| current MP `+0x4C` | max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer (byte `+0x6C` or `+0x7C`, bit `0x80`) |
 | Mist pool `+0x06` | max MP times the MP bars `+0x37` (0 counting as 1), or 0 under augment 39 (Emptiness) |
 
 The values only go down. Then `0x0030E060` sets the charge count `+0x4E` to `+0x06 / +0x28` when `+0x37` is
@@ -187,9 +187,9 @@ Two functions read the layers whole:
   the same state change as an order;
 - the party-member status builder `0x00329220` ORs the two layers into the record's `+0x4C`-`+0x5B`
   (`0x00329480`-`0x003294AF`; [Party member status record](../Characters-And-Objects/party-member-status-record.md)); of that
-  copy only `+0x51` bit 1 (augment 41) is ever read (`0x002BFFAA`), so the copied bit 18 is read by nothing.
+  copy only `+0x51` bit `0x2` (augment 41) is ever read (`0x002BFFAA`), so the copied bit `0x40000` is read by nothing.
 
-No other instruction in the executable tests bit 18: no instruction reaches bit `0x4` of the stats record's `+0x1C`, `+0x6A` or
+No other instruction in the executable tests bit `0x40000`: no instruction reaches bit `0x4` of the stats record's `+0x1C`, `+0x6A` or
 `+0x7A` outside the eight functions above, and the bit is stored nowhere but the two layers, the context byte and
 the status record's copy.
 

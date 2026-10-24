@@ -36,7 +36,7 @@ The callers of the wrappers:
 
 - `0x0031FE70` from `0x00273880`;
 - `0x00320040` from the input arbiter `0x00253C70` and `0x00254560` (counting members whose type `+0x60`
-  is not negative and flag bit 1 is clear), `0x00272E70`, `0x00283270` (table 3; keeps nine copies at
+  is not negative and flag bit `0x2` is clear), `0x00272E70`, `0x00283270` (table 3; keeps nine copies at
   `[0x0209AC30] + 0x408 + i * 0xC0`) and `0x0035BC50`;
 - `0x0031FEC0` from `0x002BFD20` (copies it into its widget at `+0xC0`);
 - `0x0031FF70` from `0x00272E10`, `0x00273270` and `0x003C3340`.

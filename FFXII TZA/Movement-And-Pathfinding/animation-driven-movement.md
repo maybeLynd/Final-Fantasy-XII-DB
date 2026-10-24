@@ -178,7 +178,7 @@ from the movement context's `+0x50` for a class-3 actor (two uninitialised local
 when actor byte `+0x13` has bit `0x80`) and calls `0x003E6EF0`.
 
 It reads `0x003E68B0` and, when that holds and actor byte `+0x0D` has bit `0x2`, `0x003E6A70`. The render entry's
-byte `+0x10` bit 2 and actor byte `+0x0C` bit `0x10` take the move bit (set here, never cleared here).
+byte `+0x10` bit `0x4` takes the move bit: it is cleared (`0x0025E277`, `0x0025E373`) and then rewritten from the move flag on every pass (`0x0025E37B`-`0x0025E37E`). Actor byte `+0x0C` bit `0x10` also takes it, set here and never cleared here (`0x0025E385`).
 
 Then `0x002E5030(actor, moveBit, &move)` runs the movement step with the summed move as the
 pass-through vector when the bit is set ([movement step](heading-speed-to-position-delta.md)), and

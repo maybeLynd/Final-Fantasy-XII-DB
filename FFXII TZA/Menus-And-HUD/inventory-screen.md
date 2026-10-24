@@ -45,8 +45,8 @@ Message 12 takes three sub-commands:
   (`0x005659B0`) and stores the category (`0x002527B0(6, 1, id)`);
 - `0x8002`, cancel: it closes the screen's list and the open pane (`0x00563FC0`).
 
-`0x00563FC0(id)` closes a category's pane: it sets the pane's `+0x40` bit 6 and either hides it (`0x00244DD0`, when
-bits 0 and 5 are set) or sends it message `0x00915058` and releases it (`0x00245020`). Message 18 returns to the menu
+`0x00563FC0(id)` closes a category's pane: it sets the pane's `+0x40` bit `0x40` and either hides it (`0x00244DD0`, when
+bits `0x1` and `0x20` are set) or sends it message `0x00915058` and releases it (`0x00245020`). Message 18 returns to the menu
 (`0x002814E0(0x4B8)`) and clears `[0x0209AC30] + 0x168`.
 
 ### The tab panes
@@ -135,7 +135,7 @@ two for Abilities.
 ### The help line
 
 `0x00563F10(pane, row)` shows the help of the item under the cursor, `0x00293110(0x00D23962[tab], id << 16)`, unless the
-pane holds an item (`+0x180` bit 8) or bits 26 or 29 are set; `0x00563DC0` does the same on focus and then shows the
+pane holds an item (`+0x180` bit `0x100`) or bits `0x4000000` or `0x20000000` are set; `0x00563DC0` does the same on focus and then shows the
 cursor. The tab of a pane is `0x00564380`.
 
 ### The description box
@@ -152,10 +152,10 @@ at that window's `+0xC0`:
 5. With no box yet, it creates one through `0x00244F50`: a `0x102D0`-byte list item with procedure `0x00292390`
    ([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), kept at the window's `+0xC0`. An
    existing box is sent the line and the entry as message 12 (`0x00247510`, [Widget messages](widget-messages.md)). If
-   bit 5 of the box's `+0x7C` is clear, it stops instead.
+   bit `0x20` of the box's `+0x7C` is clear, it stops instead.
 6. It installs `0x00916058` again when `a` is set, then opens the box under the window (`0x00246AD0`).
 
-`0x00293110(kind, id)` calls it with `b` = 0. `a` is bit 0 of the box's `+0x40`, or 0 when there is no box. The one
+`0x00293110(kind, id)` calls it with `b` = 0. `a` is bit `0x1` of the box's `+0x40`, or 0 when there is no box. The one
 exception is `0x00293110(0, 0)`, which passes `b` = 1, so it only closes the box. `0x00293100(kind, id, a)` passes `b` = 0.
 
 Every caller, and the kind it passes. The id is in the high word unless the row says otherwise:
@@ -177,10 +177,10 @@ goods the box closes and stays empty.
 `0x00564C80(pane)` runs every frame: while an item is held, `0x00564D30`; otherwise `0x00564E10(pane, 0)`.
 
 - `0x00564E10` switches tabs on the buttons of `0x02F97368 & 0xCA0` (`0x00563EC0` one way, `0x00564300` the other), keeps the new tab's cursor (`0x002527B0(8, ...)`), rebuilds its rows (`0x005655F0`, `0x005674B0`) and
-  plays sound 10. The extra button (bit 15 of `0x02F9736A`) opens the sort bar (`0x005665B0`, sound 4), or plays sound 5
+  plays sound 10. The extra button (bit `0x8000` of `0x02F9736A`) opens the sort bar (`0x005665B0`, sound 4), or plays sound 5
   on an empty tab ([Dialogs](dialogs.md)).
 - `0x005641F0(pane, row)` picks the row's item up: it stores the row at `+0x17C` and `+0x17A`, turns the list into move
-  mode (`+0xE4` bits 2, 17 and 18) and hides the tab arrows (`0x005670F0`).
+  mode (`+0xE4` bits `0x4`, `0x20000` and `0x40000`) and hides the tab arrows (`0x005670F0`).
 
 ### Moving an item
 

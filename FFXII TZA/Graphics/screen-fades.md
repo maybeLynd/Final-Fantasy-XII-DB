@@ -110,7 +110,7 @@ The tick also asks `0x00374060(record)` about every kind-1 record and removes th
 (`0x00375470`) when it answers 0. It answers 1 while byte `+0xDEF` of `[0x0209AC30]` is 0 (`0x00254A70`),
 bit `0x800` of `0x020926E4` is set and the record is not layer 3's, whose handle `0x002EF9F0(3)`
 returns (`0x002EF9F0(layer)` reads a fade record's first dword, the layer clamped into 0..6).
-Otherwise it answers 0 once the record has `+0x1C` bit 1 set and its counter `+0x6C` above
+Otherwise it answers 0 once the record has `+0x1C` bit `0x2` set and its counter `+0x6C` above
 `+0x24`, and 1 before that.
 
 `0x0022A040` answers 1 when a fade layer other than 3 is running (`0x002EFD20(layer)` = 1 for one of

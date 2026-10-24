@@ -77,7 +77,7 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 60, 61 | team byte `+0x54` is `v` | `0x0030329B` |
 | 62, 63 | MP at least `10 * s` % of max MP | `0x003032A7` |
 | 64, 65 | the deciding unit holds at least `10 * s` of the line's item (`0x003093D0`, `0x00309EC0`, read at the first candidate), or the candidate is an enemy | `0x003032C0` |
-| 66, 67 | a unit committed against it (`+0xEA4`) carries: `s` = 0 the same action; 1 an action removing a status it has that this action also removes (`0x0031C500`); 2 an action restoring HP (`+0x2C` bit 12); 3 one restoring MP (bit 15) | `0x00303334` |
+| 66, 67 | a unit committed against it (`+0xEA4`) carries: `s` = 0 the same action; 1 an action removing a status it has that this action also removes (`0x0031C500`); 2 an action restoring HP (`+0x2C` bit `0x1000`); 3 one restoring MP (bit `0x8000`) | `0x00303334` |
 | 68, 69 | the whole field: the summon timer (battle state `+0x5AD8`) at least 20, 30, 60, 90 or 120 (`0x00D10380`) | `0x00303523` |
 | 1, 4, 5, 18, 19, 30, 31, 50, 51 | no unit is kept | `0x00301C08`, `0x00303567` |
 
@@ -105,7 +105,7 @@ The checks of opcodes 34 and 35:
 | 24, 25, 26 | targeting (`+0x710`) the deciding unit's linked unit, the deciding unit, or one of the deciding unit's allies | `0x00302A76`, `0x00302A98`, `0x00302AB1` |
 | 27 | targeting combatant `v` | `0x00302AE3` |
 | 28, 29 | within `v` degrees of the deciding unit's facing (28) or within `v` of the deciding unit (29) | `0x00302B18`, `0x00302BC0` |
-| 30, 31 | a status of set A `0x0208D320` other than bit 29 (30), or of set B `0x0208D324` (31) | `0x00302C35`, `0x00302C59` |
+| 30, 31 | a status of set A `0x0208D320` other than bit `0x20000000` (30), or of set B `0x0208D324` (31) | `0x00302C35`, `0x00302C59` |
 | 32 | holding a bow, crossbow, gun or hand-bomb (equipment class 7, 8, 9 or 17, group 4 of `0x0031E9F0`) | `0x00302C77` |
 | 5-7, 14, 15, 22, 23 | no unit is kept | `0x00303567` |
 

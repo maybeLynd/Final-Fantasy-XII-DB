@@ -1,0 +1,7 @@
+field	offset	type	value	meaning	text_in_x64_programs
+file	-	ps2data/debglobal.bin/file1 (archive index 79184)	148 bytes, SHA-256 4EDE55DC58ADB1F50AF9F7770FE50359CE2FB03C2356EF4C1C1DAAADF33100CB	-	DebGlobal.bin: 1: FFXII_TZA.exe@0x00D22C60; DebGlobal: 1: FFXII_TZA.exe@0x00D22C60
+0	0x00	char[16]	10.0.5.238	an IPv4 address in dotted form, NUL-padded	none
+1	0x10	char[16]	10.0.5.255	an IPv4 address in dotted form, NUL-padded	none
+2	0x20	char[16]	10.0.5.254	an IPv4 address in dotted form, NUL-padded	none
+3	0x30	char[16]	10.0.16.26	an IPv4 address in dotted form, NUL-padded	none
+4	0x40	u8[84]	all zero	-	-

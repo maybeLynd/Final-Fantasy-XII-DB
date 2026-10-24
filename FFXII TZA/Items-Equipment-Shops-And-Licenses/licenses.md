@@ -27,8 +27,8 @@ Reks, are ever tested.
 
 ### Licenses that are not needed
 
-An action whose row has bit 13 of the word `+0x2C` set passes (`0x00323F4D`-`0x00323F58`,
-[Action definition row](../Battle-Actions/action-definition-row.md)). A piece of equipment whose row has bit 4 of
+An action whose row has bit `0x2000` of the word `+0x2C` set passes (`0x00323F4D`-`0x00323F58`,
+[Action definition row](../Battle-Actions/action-definition-row.md)). A piece of equipment whose row has bit `0x10` of
 `+0x07` set passes (`0x00323CDF`-`0x00323CE3`, [Equipment row](equipment-row.md)).
 
 ### The test
@@ -78,7 +78,7 @@ eighteen it is.
 non-party record and an invalid node (`0x00323930`-`0x00323953`). With `set`:
 
 1. `0x00323D10(record, node, flags)` must return 0, below (`0x0032395C`-`0x00323979`).
-2. Unless bit 0 of `flags` is set, the node's LP cost, its byte `+0x04`, is taken from the record's LP at `+0x190`,
+2. Unless bit `0x1` of `flags` is set, the node's LP cost, its byte `+0x04`, is taken from the record's LP at `+0x190`,
    kept between 0 and 99,999 (`0x0032397E`-`0x003239E1`). The cost is not compared with the LP here.
 3. The bit is set (`0x003239E7`-`0x00323A29`); without `set` it is cleared.
 4. For a Quickening square, the Quickening in the member's list at the new count is granted through
@@ -176,7 +176,7 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 
 ## Modding notes
 
-- To make an ability free for everyone, set bit 13 of its action row's `+0x2C`; for equipment, bit 4 of `+0x07`.
+- To make an ability free for everyone, set bit `0x2000` of its action row's `+0x2C`; for equipment, bit `0x10` of `+0x07`.
 - A square grants up to eight ids of one kind, set by its category; adding an id to a square's list licenses it.
 - A square's cost is its byte `+0x04`; the menu, not the setter, checks that the LP covers it.
 - `resetJobs` keeps the squares a member started with and refunds the rest.

@@ -20,7 +20,7 @@ bytes: `+0x00` state (bit `0x1` used, bit `0x2` refresh on lookup), `+0x04` id, 
 next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
 
 - `0x0051F240(container, id)` takes the table by the container's mode (`+0x04` low two bits: 1 direct,
-  0 through `0x003AB7F0`, anything else returns 0), indexes it by `id & 0xFFFF`, and when node bit 1 is
+  0 through `0x003AB7F0`, anything else returns 0), indexes it by `id & 0xFFFF`, and when node bit `0x2` is
   set rebuilds `+0x18` as the sign-extended 32-bit sum of the resolved source and the offset.
 - `0x0051F080` admits: `0x0051F410` takes the cursor slot, the id is `slot | 0x10000`, and the node joins
   the active list. The high half never changes, so a reused slot gets the same id.

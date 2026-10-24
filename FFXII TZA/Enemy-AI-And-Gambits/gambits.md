@@ -25,7 +25,7 @@ chooses which one is used.
 
 ### What runs before the gambits
 
-`0x00305AB0(unit, resume)` picks the next action (`0x00305AB0`-`0x00305CB4`). A unit with flag bit 22 first runs
+`0x00305AB0(unit, resume)` picks the next action (`0x00305AB0`-`0x00305CB4`). A unit with flag bit `0x400000` first runs
 `0x00308270` (`0x00305AC1`-`0x00305AC8`). Then:
 
 1. **A pending command.** When unit flag `0x4000` is set it is cleared (`0x00305AEB`); the command's action
@@ -35,7 +35,7 @@ chooses which one is used.
    (27), the order set at `0x01EEC320` is walked instead (`0x00305B66`-`0x00305B90`).
 3. **The unit's own lists.** The set at `+0x6E8` is walked; a party record with Berserk then walks the set
    at `0x01EEC370` (`0x00305BBB`-`0x00305BE5`) and, when that fails, goes on to step 5.
-4. **The gambit list.** For a party record, the walk of the gambit set at `+0x6E0` happens only when bit 2
+4. **The gambit list.** For a party record, the walk of the gambit set at `+0x6E0` happens only when bit `0x4`
    of its stats record's first dword is set; otherwise a command set at `+0x6F8` is walked if one is
    queued (`0x00305BE7`-`0x00305C32`). Enemy records walk `+0x6E0` with their subgroup `+0x6B5`
    ([Enemy AI](enemy-ai.md)). The `+0x6E0` walk first clears `+0x6F8` and `+0x748` (`0x00305C3C`-`0x00305C4C`).
@@ -43,7 +43,7 @@ chooses which one is used.
 6. **Nothing matched.** Unless resuming, the unit commits order `0x4021`, a wait, from `0x01EEC298`
    (`0x00305C7E`-`0x00305C9B`, [Battle orders](../Battle-Actions/battle-orders.md)).
 
-With bit 15 of the active field record set, a party record skips steps 2-5 and goes straight to step 6
+With bit `0x8000` of the active field record set, a party record skips steps 2-5 and goes straight to step 6
 (`0x00305B3C`-`0x00305B57`), and every other unit skips step 2 (`0x00305B5D`-`0x00305B64`).
 
 ### The walk
@@ -68,14 +68,14 @@ returns 1 without trying it (`0x00305DA4`). A resumed commit also calls
 `0x003014C0` decides whether one order can run (`0x003014C0`-`0x0030180E`):
 
 1. It decodes the action (`0x00308EC0`, below) into `*action` (`0x00301500`); `0xFFFF` fails.
-2. Bit 5 of the battle flags `0x02089340`, the battle freeze, fails every order
+2. Bit `0x20` of the battle flags `0x02089340`, the battle freeze, fails every order
    ([Boss fights](../Battle-Actions/boss-fights.md); `0x00301511`).
 3. Every order but `0x414D` fails for a unit that cannot act (`0x0030151A`-`0x00301580`): its flag byte lacks
-   bit 4, it has no stats record, it has KO, Stone or X-Zone and the field's bit 15 does not waive it, or it
+   bit `0x10`, it has no stats record, it has KO, Stone or X-Zone and the field's bit `0x8000` does not waive it, or it
    is an enemy-table unit whose spawn record's first byte has a bit of `0x30` or `0x48`. So a KO'd
    character's gambits never run.
 4. An order with flag `0x800` fails while it is the unit's previous order `+0x738`; for an action id only
-   when the previous command's `+0x730` bit 0 is set (`0x003015A6`-`0x003015C9`).
+   when the previous command's `+0x730` bit `0x1` is set (`0x003015A6`-`0x003015C9`).
 5. For an action outside the order band, the actor and the availability check must pass
    (`0x003015EA`-`0x00301606`), and an order with a non-zero chance word `c` at `+0x02` passes only when a shared
    gameplay LCG draw gives `0x00328370() % 100 < (s16)c` (`0x00301608`-`0x00301637`; the draw is `0x00328370`,
@@ -116,7 +116,7 @@ record and the picker's selection, read at `0x003014C0`, `0x0030F130`, `0x003087
      `+0xBC4` of them) whose unit lies within `max(0x00265090 radii) + +0x6D0` of the unit's `+0x6C0`
      (`0x00319460`, `0x0030F1F0`-`0x0030F25A`);
    - then, for party slots 0-3 (`0x0031B810`), it appends the member when the action's status mask (`0x003872D0`)
-     meets the member's statuses `+0x64 | +0x3C` in bits 0, 1 or 31 (`0x0030F266`-`0x0030F2B2`): an action that
+     meets the member's statuses `+0x64 | +0x3C` in bits `0x1`, `0x2` or `0x80000000` (`0x0030F266`-`0x0030F2B2`): an action that
      removes KO, Stone or X-Zone sees those members even when perception does not.
 3. **The tests.** Each of the order's three tests that runs (The target tests) writes the units it keeps with
    `0x00301AD0(unit, order, action, i, list, out)` into the list at the output pointer:
@@ -153,7 +153,7 @@ not a unit the action would not change, and has the lowest HP % among them, the 
 `0x0030BD00(unit, candidate, mode)` admits a candidate by the relation mode (`0x0030BD27`-`0x0030BE3E`). It first asks
 `0x0030AB40` whether the two are on the same side (`0x0030AB40`-`0x0030AC41`):
 
-- a unit whose actor class nibble is 5, or whose flag byte lacks bit 4, is on neither side
+- a unit whose actor class nibble is 5, or whose flag byte lacks bit `0x10`, is on neither side
   (`0x0030AB93`-`0x0030ABB2`);
 - a party record, or an actor of class nibble 3, is on the party side, and every other unit on the other
   side (`0x0030ABB8`-`0x0030AC0A`);
@@ -284,12 +284,12 @@ One gambit condition, a row of `battle_pack.bin` section 7 (`0x02EBF0D8`, 32 byt
 | `+0x1E` | `u16` | pad1E | 0 in every row |
 
 One candidate list, `0x208` bytes: the unit's perception list at `+0xBC0`, the evaluator's three test lists and the
-picker's output all have this shape (`0x00316CF0` clears one, keeping bit 0 of `+0x00`; `0x00316CD0` appends). The entries
+picker's output all have this shape (`0x00316CF0` clears one, keeping bit `0x1` of `+0x00`; `0x00316CD0` appends). The entries
 are laid out on [Area of effect](../Battle-Actions/area-of-effect.md#layouts):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | flags | bit 0 is kept across a clear (`0x00316D10`-`0x00316D16`); the other bits are cleared with the list |
+| `+0x00` | `u8` | flags | bit `0x1` is kept across a clear (`0x00316D10`-`0x00316D16`); the other bits are cleared with the list |
 | `+0x01` | `u8` | keyType | 0 none, 1 integer keys, 2 float keys: set with the pick rule by the selector (key 1 at `0x003022C7`, key 2 at `0x003027F4`, both bytes as a word at `0x00301ECC`); the picker reads it at `0x00308813` |
 | `+0x02` | `u8` | pickRule | with key type 1 or 2: 2 lowest, 3 highest, any other value keeps no unit (`0x00308923`, `0x00308A68`); with any other key type: 1 random, any other value nearest (`0x00308B0D`) |
 | `+0x03` | `u8` | pad03 | moved only by the whole-list copies in `0x0030F130` and `0x003014C0` (read at `0x0030F177`, `0x003016F7`; written at `0x0030F181`, `0x00301705`) and zeroed by the clear's memset (`0x00316D0B`); no instruction of `0x003014C0`, `0x0030F130`, `0x00301AD0`, `0x003087E0` or `0x00316CF0` reads it alone |

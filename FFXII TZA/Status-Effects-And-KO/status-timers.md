@@ -20,7 +20,7 @@ addresses: "0x00310DB0, 0x00385DF0, 0x00386C70, 0x00385570, 0x00385CA0, 0x003868
 ### The periodic step
 
 `0x00310DB0(unit)` runs for every active unit that is not down, from the unit frame `0x00233F70` (`0x00234001`). It
-first refreshes unit `+0x24` (`0x00305E70`) and `+0x60` (`0x002E8100`), and clears unit flag bit 30 once the battle
+first refreshes unit `+0x24` (`0x00305E70`) and `+0x60` (`0x002E8100`), and clears unit flag bit `0x40000000` once the battle
 clock passes `+0xDD0`, the window a revive opens ([KO and Game Over](ko-and-game-over.md); `0x00310DDC`-`0x00310DFC`).
 It stops at once, running nothing below, when (`0x00310DCB`-`0x00310E1B`):
 
@@ -36,7 +36,7 @@ of the records at `[0x02EBF190] + 8`, or 0 when there is none (`0x00305E70`-`0x0
 A summoned Esper at 0 HP or below (a signed 32-bit test, `0x00310E5B`-`0x00310E5F`), or whose summoner is gone or
 down, is dismissed with `0x003138D0(0)` and nothing else runs (`0x00310E21`-`0x00310EFD`). Then four gates skip to the tail, below (`0x00310F12`-`0x00310F4F`): the actor
 manager is not ready (`0x00265680`), the battle or unit eligibility mask is set
-([Gaining and losing statuses](status-changes.md)), or unit flag bit 36 is set.
+([Gaining and losing statuses](status-changes.md)), or unit flag bit `0x1000000000` is set.
 
 Otherwise it builds a result with `0x00385DF0` and applies it with `0x003112F0(result, 0, stats, 0xFFFF, 0)`
 (`0x00310F5D`-`0x00310FAC`). `0x00385DF0` runs five stages in order (`0x00385E08`-`0x00385E3E`): reset the result
@@ -84,7 +84,7 @@ positive one loses 1, and the step that takes it from 1 to 0 queues the buff for
 
 ### Area drains
 
-`0x00385CA0` drains HP and MP of party-side units (`0x002FA390`) while battle flags `0x022C314C` bit 0 (HP) or bit 1
+`0x00385CA0` drains HP and MP of party-side units (`0x002FA390`) while battle flags `0x022C314C` bit `0x1` (HP) or bit `0x2`
 (MP) are set (`0x00385CB0`-`0x00385DDC`). Battle orders `0x4139`-`0x4148` set and clear those bits
 ([Battle orders](../Battle-Actions/battle-orders.md)). The drain lands when the battle clock `0x0032A150` is a
 multiple of 10 × frame base:
@@ -109,19 +109,19 @@ multiple of 10 × frame base:
 
 ### How the stages share the HP change
 
-The result's `+0x24` is the HP change, and bit 8 of its `+0x2C` sends it to the HP write: the applier adds it
-with `0x00300530`, or sets HP to it with `0x00300520` when bit 3 is also set (`0x00311608`-`0x00311668`). The reset
+The result's `+0x24` is the HP change, and bit `0x100` of its `+0x2C` sends it to the HP write: the applier adds it
+with `0x00300530`, or sets HP to it with `0x00300520` when bit `0x8` is also set (`0x00311608`-`0x00311668`). The reset
 leaves `+0x24` at 0 (`0x003848F5`). The stages then write it in order:
 
 | Stage | What it does to `+0x24` | Sites |
 |---|---|---|
-| Status countdown | adds: Poison its loss, Sap −1, Regen its heal, each setting bit 8; Doom's last step instead stores 0 and sets bits 8 and 3 | `0x00386D3A`, `0x00386D96`, `0x00386DF2`, `0x00386E1A`, `0x00386E2C`; `0x00386EFF`-`0x00386F06` |
+| Status countdown | adds: Poison its loss, Sap −1, Regen its heal, each setting bit `0x100`; Doom's last step instead stores 0 and sets bits `0x100` and `0x8` | `0x00386D3A`, `0x00386D96`, `0x00386DF2`, `0x00386E1A`, `0x00386E2C`; `0x00386EFF`-`0x00386F06` |
 | Buff timers | leaves `+0x24` and `+0x2C` as they are | `0x00385570`-`0x00385675` |
-| HP area drain | on a drain point sets bit 8 and replaces it with the loss, −1 or −(the amount above) | `0x00385D03`, `0x00385D33`, `0x00385D62` |
-| Out-of-combat healing | on a healing point replaces it with the share; a share above 0 sets bit 8, a share of 0 leaves bit 8 as it was | `0x003869E3`, `0x00386A23` |
+| HP area drain | on a drain point sets bit `0x100` and replaces it with the loss, −1 or −(the amount above) | `0x00385D03`, `0x00385D33`, `0x00385D62` |
+| Out-of-combat healing | on a healing point replaces it with the share; a share above 0 sets bit `0x100`, a share of 0 leaves bit `0x100` as it was | `0x003869E3`, `0x00386A23` |
 
 The last stage that writes decides the change. For a unit of max HP 1,600 with a Poison beat of −100: with the
-HP area drain on the same step the change is −16; on one of an enemy's first 10 healing points it is 0, bit 8
+HP area drain on the same step the change is −16; on one of an enemy's first 10 healing points it is 0, bit `0x100`
 still set by Poison; on a 1 % point it is +16; on a step with neither, −100.
 
 Every store the four stages make to
@@ -162,12 +162,12 @@ unit is placed by `btlAtelSetUnitFinish` (`0x0023A513`) and from `0x00233AD0` (`
 | `+0x08` | `u32` | immune | one bit per target index: set when the first list ends immune (`0x00385AC0`); the committed resolve gives result kind 10 (`0x003862FB`) |
 | `+0x0C` | `u32` | hit | one bit per target index: `0x00387B00` sets the target's bit when a finishing slot ends with an HP value (`0x00387B97`; reached from 17 sites in 16 slot functions, `0x0038D280` among them); `0x002FA290` tests a unit's bit for the battle effect program `0x003B8670` (`0x002FA352`, through `0x00322850` at `0x003B88B3`) |
 | `+0x10` | `u16` | shadesAction the action Shades of Black (0x9F) turns into: 0x00387A50 stores the random pick of 0x00387130 (0x00387ADE); 0x00387090 returns it (0x0038710E); both resolves put it in place of 0x9F (0x00385801, 0x00385FF7); kept over the first list's clear (0x003857A3, 0x003857E1) |  |
-| `+0x12` | `u8` | flags | bit 0 the stored preview (set `0x003857DD`, cleared `0x00386402`; read by Numerology `0x00389D24`, Dark Matter `0x0038DA49` and Traveler `0x0038EC3A`); bits 1-3 the first list's result `+0x18` bits 1-3 (`0x00385AC3`-`0x00385AF2`), copied into the committed result (`0x003860DF`-`0x00386108`); bits 4-7 the combo count (`0x00388660`: `0x0038885D`, `0x00388865`, `0x0038886B`) |
+| `+0x12` | `u8` | flags | bit `0x1` the stored preview (set `0x003857DD`, cleared `0x00386402`; read by Numerology `0x00389D24`, Dark Matter `0x0038DA49` and Traveler `0x0038EC3A`); bits 1-3 the first list's result `+0x18` bits 1-3 (`0x00385AC3`-`0x00385AF2`), copied into the committed result (`0x003860DF`-`0x00386108`); bits 4-7 the combo count (`0x00388660`: `0x0038885D`, `0x00388865`, `0x0038886B`) |
 | `+0x13` | `u8` | pad13 | written only by the two clears (`0x003857B2`, `0x00386C62`); read by no instruction; nothing fixes its width |
 | `+0x14` | `u16` | healSteps | the out-of-combat healing counter (`0x003869A2`, `0x003869E0`, `0x00386A27`, `0x00386A2C`) |
 | `+0x16` | `u8[2]` | pad16 | written only by the clear `0x00386C62`; read by no instruction; nothing fixes its width |
 | `+0x18` | `f32` | walkLeft | the walk distance left after the last MP step: `0x002F9400` compares the new distance with it (`0x002F9474`) and stores what is left (`0x002F95A6`) (MP gain and cost) |
-| `+0x1C` | `u32` | circle | bit 0: the unit joins the circling formation once KO'd, set by `0x0033CB10` (`0x0033CB60`) when action-timeline event 2 or 6 reaches a KO'd unit (`0x00325651`); bit 1: it has reached its place (`0x0033DA73`); both read by the mode-2 movement `0x0033D890` (`0x0033D953`, `0x0033DA77`) (Battle locomotion) |
+| `+0x1C` | `u32` | circle | bit `0x1`: the unit joins the circling formation once KO'd, set by `0x0033CB10` (`0x0033CB60`) when action-timeline event 2 or 6 reaches a KO'd unit (`0x00325651`); bit `0x2`: it has reached its place (`0x0033DA73`); both read by the mode-2 movement `0x0033D890` (`0x0033D953`, `0x0033DA77`) (Battle locomotion) |
 | `+0x20` | `u8[32]` | pad20 | read and written by no function; nothing fixes its width |
 
 ## Modding notes

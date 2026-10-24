@@ -61,7 +61,7 @@ the half size `+0x1B6` (`0x00377100`), and the depth (`0x003770D0`). The release
 
 Each draw `0x00461270` repeats the projection, stores the square again in both forms (`0x00377130`,
 `0x00377100`) and the depth, and for a bit `0x20` flare sets the light direction from `0x02AEEAD0` with w 1.0
-(`0x00377160`) and clears flag bit 2. When the projection fails, a bit `0x20` flare sets flag bit 2 instead.
+(`0x00377160`) and clears flag bit `0x4`. When the projection fails, a bit `0x20` flare sets flag bit `0x4` instead.
 A bit `0x20` flare also passes its screen position, `(x − 1792) / 512` and `(y − 1824) / 448`, to
 `0x00182830`, which stores it at render-parameter block `+0x36C` and `+0x370` (`0x00194470`);
 `0x0018EEE0` copies the pair into the post-process command at `+0x44` and `+0x48` (`0x0018F3F5`).
@@ -75,14 +75,14 @@ element without a slot), scaled by the alpha byte of the element's colour over 1
 at `+0x170`. With bit `0x8` of `+0x1B4` each part also carries the angle of the light about the screen
 centre, `atan2(y − 2048, x − 2048)`.
 
-With bit 4 of `+0x1CE` set each part gets a scale from the fades, chosen by the part's bits in
+With bit `0x10` of `+0x1CE` set each part gets a scale from the fades, chosen by the part's bits in
 `+0x1CE` (the parts at the light) or in `+0x1CC` and `+0x1CA` (the others):
 
 - `fade A × +0x1D0 + 1` when its first bit is clear;
 - `fade A × +0x1D4` when its second bit is clear;
 - `fade B × +0x1D8` otherwise.
 
-Without bit 4 every part has scale 1.
+Without bit `0x10` every part has scale 1.
 
 ### The flare packet
 
@@ -310,7 +310,7 @@ copies it to `0x0209A380`, the scene colour of the map ambient
 
 ## Modding notes
 
-- Only eight flares can exist at once; a ninth element of type `0xA1` with bit 2 of `+0x1B4` gets
+- Only eight flares can exist at once; a ninth element of type `0xA1` with bit `0x4` of `+0x1B4` gets
   handle 0, so its visibility and fades read 0 and it draws with intensity 0.
 - The test square's half size is definition `+0x1B6` in GS pixels; a rectangle that covers 10
   back-buffer pixels or less always reads as hidden.

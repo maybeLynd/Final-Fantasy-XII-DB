@@ -31,7 +31,7 @@ There are three ways in:
 | `0x00245000(object, size, procedure, record)` | builds in memory the caller provides, usually inside the parent |
 | `0x002465F0` directly | 7 sites, in `0x00241BF0`, `0x00241C90` and `0x00247AE0` |
 
-A pool or in-place widget is marked borrowed (`+0x40` bit 14): the release then frees only the pool slot
+A pool or in-place widget is marked borrowed (`+0x40` bit `0x4000`): the release then frees only the pool slot
 (`0x002483E5`-`0x002483F0`), while a heap widget is freed (`0x002483DE`).
 
 ### Sizes
@@ -67,7 +67,7 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 | `+0x40` | `u32` | flags | below; `0x80A` plus the generation and borrowed bits when built (`0x00246653`) |
 | `+0x44` | `u16` | w44 | 100 (`0x002466FA`) |
 | `+0x48` | `u32[2]` | trans | animation descriptor, default `0x00915198` (`0x00246687`) |
-| `+0x50` | `u32` | flags2 | bit 0 clip, bit 1 owns the array at `+0x60` |
+| `+0x50` | `u32` | flags2 | bit `0x1` clip, bit `0x2` owns the array at `+0x60` |
 | `+0x60` | `u32[2]` | arr | array freed by the release (`0x0024838A`) |
 | `+0x68` | `u32[2]` | half | the descriptor half of the current run |
 | `+0x70` | `u32` | frames | run length in frames |
@@ -107,14 +107,14 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 `0x00244960(parent, child)` attaches a child only when it has no parent yet, through `0x00248220`
 (`0x00244960`-`0x00244965`), which appends it to the parent's children, links the siblings, counts it and stores the parent
 (`0x00248230`-`0x00248267`). An active parent activates an attached child that may be activated (`0x002473F0`, which sends
-message 6, `0x002482AE`-`0x002482C7`). A parent with bit 5 passes it to the child and to every descendant of the child
+message 6, `0x002482AE`-`0x002482C7`). A parent with bit `0x20` passes it to the child and to every descendant of the child
 through the pre-order walker `0x002463F0(widget, callback, value)` with the bit setter `0x002418E0` (`0x00248271`-`0x002482A0`).
 
 Two shortcuts use the main root `[0x0208EA28]`:
 
 - `0x00246AC0(widget)` opens a widget under it (`0x00246AD0`).
-- `0x00247950(widget, on)` attaches a widget that has no parent to it with bit 1 set to `on`. For a widget that has a
-  parent it sets bit 1 to `on` through `0x00247870`, which also runs the activation `0x002473F0` when bit 5 is set
+- `0x00247950(widget, on)` attaches a widget that has no parent to it with bit `0x2` set to `on`. For a widget that has a
+  parent it sets bit `0x2` to `on` through `0x00247870`, which also runs the activation `0x002473F0` when bit `0x20` is set
   (`0x0024795C`-`0x0024797A`).
 - `0x00247980(parent, widget, on)` does the same under a parent the caller gives; `0x00228130` calls it.
 
@@ -127,8 +127,8 @@ The message record and every id are in [Widget messages](widget-messages.md).
 
 ### Draw order and the two draw passes
 
-`0x00247930(widget, priority)` stores a widget's draw priority at `+0x44` (100 when built) and sets bit 13 on its
-parent. When the walker `0x00244980` reaches a widget with bit 13, it re-sorts that widget's children with `0x002479B0`
+`0x00247930(widget, priority)` stores a widget's draw priority at `+0x44` (100 when built) and sets bit `0x2000` on its
+parent. When the walker `0x00244980` reaches a widget with bit `0x2000`, it re-sorts that widget's children with `0x002479B0`
 and clears the bit (`0x00244990`-`0x0024499F`):
 
 1. Each child's priority, position in the list and pointer go into the scratch table `0x0208ED60`
@@ -145,26 +145,26 @@ and clears the bit (`0x00244990`-`0x0024499F`):
 6. The children are relinked in that order (`0x00247A51`-`0x00247AB1`).
 
 The root draw passes `0x002450B0` and `0x00245110` set `0x0208F564` to 0 and to 1 and walk the tree with `0x00245E60`. A
-widget's own content is drawn only in the pass equal to its `+0x40` bit 24, with bit 28 clear (`0x0024623A`-`0x0024624B`);
-its box is drawn in that pass when `+0x40` bit 7 is also set (`0x002461BB`-`0x002461CE`).
+widget's own content is drawn only in the pass equal to its `+0x40` bit `0x1000000`, with bit `0x10000000` clear (`0x0024623A`-`0x0024624B`);
+its box is drawn in that pass when `+0x40` bit `0x80` is also set (`0x002461BB`-`0x002461CE`).
 `0x00247730(widget, pass)` sets that bit on a widget and every descendant.
 
 `0x00245E60` takes each widget's box from `0x00246480(widget, box)` (`0x00245F50`):
 
 - the position and size from `+0x98`, an inner rectangle the size of the widget, scale 1.0 at box `+0x1C` and
   `+0x20`, and the alpha `+0xA0`;
-- with bit 7, the signed bytes `+0xAC`/`+0xAD` added to the position, the inner offset from `+0xA4`/`+0xA5`, and
-  `+0xA6`/`+0xA7` added to the inner size, plus `+0xAE`/`+0xAF` with bit 27;
+- with bit `0x80`, the signed bytes `+0xAC`/`+0xAD` added to the position, the inner offset from `+0xA4`/`+0xA5`, and
+  `+0xA6`/`+0xA7` added to the inner size, plus `+0xAE`/`+0xAF` with bit `0x8000000`;
 - then the running opening or closing run, through `0x00244A20`.
 
 It returns 1 when a float at box `+0x10`-`+0x18` is not 0 or the scale is not 1.0. `0x00246450` returns the position
-alone, with the same bit 7 offset.
+alone, with the same bit `0x80` offset.
 
 The box itself is a nine-piece panel. `0x00245E60` sets up a draw record (`0x002D8530`) and calls `0x002455A0` when
-`+0x40` bit 8 is set, otherwise `0x00245170` (`0x002461D9`-`0x002461F0`). `0x00245170(widget, record)` draws nothing while
+`+0x40` bit `0x100` is set, otherwise `0x00245170` (`0x002461D9`-`0x002461F0`). `0x00245170(widget, record)` draws nothing while
 `0x002DD4B0()` (the dword `0x0215E6D0`) is 0. Otherwise:
 
-1. It takes the atlas `0x0208EAA0` (`cm_win_c`), or `0x0208EAB0` with `+0x40` bit 22, and nine consecutive 8-byte
+1. It takes the atlas `0x0208EAA0` (`cm_win_c`), or `0x0208EAB0` with `+0x40` bit `0x400000`, and nine consecutive 8-byte
    pieces from the index its header gives at `+0x44`: `i16` x and y, then 12-bit width and height.
 2. The middle column is the widget width `+0x9C` less the two corner widths plus `+0xA6`; the middle row the height
    `+0x9E` less the two corner heights plus `+0xA7`. The panel starts at `+0xA4`, `+0xA5`.
@@ -178,7 +178,7 @@ The box itself is a nine-piece panel. `0x00245E60` sets up a draw record (`0x002
 (`0x00246480`) plus that of every ancestor up the `+0x10` chain, for `0x003EE420` (`0x003EE511`, `0x003EE51F`).
 `0x003EE420` also steps four fades of its object with `0x003EEBD0(object, up)` (`0x003EE6A4`). Each moves by
 `1 / ([0x01DFE0B4] x 9600 / 1000)` and is clamped to 0-1: `+0x1D0` up when `up` is non-zero, `+0x88` up with `+0x1D4`
-bit 8, and `+0x188` and `+0x1B8` up with `+0x1D4` bit 9; each goes down otherwise.
+bit `0x100`, and `+0x188` and `+0x1B8` up with `+0x1D4` bit `0x200`; each goes down otherwise.
 
 `0x003EEA80(block, kind, flag, element, fade)` draws the sprite records of the two `0x30`-byte blocks at `+0x170` and
 `+0x1A0` of that object (`0x003EE612`, `0x003EE637`, with the fade `+0x1D0`), while the block's `+0x18` is positive:
@@ -192,24 +192,24 @@ bit 8, and `+0x188` and `+0x1B8` up with `+0x1D4` bit 9; each goes down otherwis
 `0x003EE8C0(object, text, a, b)` sets those fades up for a new text. The object holds two 0x1E0-byte
 text entries at `+0xC0`, and the index `+0x4B0` toggles between them:
 
-1. It clears bits 8 and 9 of the old entry's `+0x1D4`, moves the index and sets both bits on the new one.
+1. It clears bits `0x100` and `0x200` of the old entry's `+0x1D4`, moves the index and sets both bits on the new one.
 2. It copies up to 0x80 bytes of `text` into the entry (`0x00254F30`); a null or empty text leaves it empty.
-3. It clears bit 9 again when `a` and `b` are both 0, zeroes `+0x1D0`, `+0x88`, `+0x188` and `+0x1B8`,
+3. It clears bit `0x200` again when `a` and `b` are both 0, zeroes `+0x1D0`, `+0x88`, `+0x188` and `+0x1B8`,
    keeps `a` at `+0x18C` and `b` at `+0x1BC`, and runs `0x002B3400(entry + 0xA0, 0, 0)`.
 
 The battle menu's title writer `0x0027D480` (`0x0027D52F`) and `0x00298250` (`0x002984C0`, on its `+0xC0`) call it.
 
 Two helpers set those offset bytes:
 
-- `0x002476E0(widget, d)` adds the low bytes of the four words at `d` to `+0xA4`-`+0xA7` when bit 7 is set and bit 8
+- `0x002476E0(widget, d)` adds the low bytes of the four words at `d` to `+0xA4`-`+0xA7` when bit `0x80` is set and bit `0x100`
   clear; `0x002A70B0` calls it.
-- `0x00247810(widget)` reads the three bits 16-18 of `+0x44`. With bit 18 clear it sets `+0xAD` to -7 when bit 17 is
-  set and to 6 otherwise, and `+0xAC` the same way from bit 16; with bit 18 set it writes only the -7 values.
+- `0x00247810(widget)` reads the three bits 16-18 of `+0x44`. With bit `0x40000` clear it sets `+0xAD` to -7 when bit `0x20000` is
+  set and to 6 otherwise, and `+0xAC` the same way from bit `0x10000`; with bit `0x40000` set it writes only the -7 values.
   `0x00227EE0`, `0x002A6A80` and the confirmation window `0x0057C480` call it.
-- `0x002478D0(widget, on)` sets or clears bit 18, the per-tick skip, on a widget and every descendant (first child
+- `0x002478D0(widget, on)` sets or clears bit `0x40000`, the per-tick skip, on a widget and every descendant (first child
   `+0x18`, next sibling `+0x20`); `0x00285290` calls it.
 
-`0x00247780(on)` sets bit 0 of `0x0208ED58`. While it is set, both passes also call `0x00245510` for a root whose `+0xC0`
+`0x00247780(on)` sets bit `0x1` of `0x0208ED58`. While it is set, both passes also call `0x00245510` for a root whose `+0xC0`
 is 1, which hands the root's position and alpha to `0x00367940` (`0x002450D7`-`0x002450F5`, `0x00245137`-`0x00245149`); the
 first pass does so only while `0x0208F568` is 0. The script verbs `fsmenu_showcursor` and `fsmenu_hidecursor` set and
 clear the bit (`0x00510964`, `0x005109A3`).
@@ -219,11 +219,11 @@ clear the bit (`0x00510964`, `0x005109A3`).
 Five UI tick functions (`0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, `0x002508E0`) each flip the parity `0x0208ED5C`
 (`0x002481A0`) and run the drain `0x00248030` over the root widgets:
 
-1. A widget with bit 10 set is released (`0x00248086`-`0x00248097`).
-2. Every other widget gets message 2 unless bit 18 is set, and its generation bit is restamped (`0x002480DB`-`0x00248110`).
+1. A widget with bit `0x400` set is released (`0x00248086`-`0x00248097`).
+2. Every other widget gets message 2 unless bit `0x40000` is set, and its generation bit is restamped (`0x002480DB`-`0x00248110`).
 
 `0x002284F0` also runs the drain (`0x0022865C`). So message 2 reaches every live widget once per UI tick. The same ticks give the focus widget its input turn
-(`0x002481C0`): message 10, or 11 when a widget up its parent chain has bit 9 set (`0x002481D0`-`0x0024820D`).
+(`0x002481C0`): message 10, or 11 when a widget up its parent chain has bit `0x200` set (`0x002481D0`-`0x0024820D`).
 
 ### The focus stack
 
@@ -235,7 +235,7 @@ Five UI tick functions (`0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, 
 
 - `0x002470D0(widget)` takes the focus: it pushes the widget (`0x00244640`) and switches to it (`0x00244830`).
 - A full stack drops its oldest entry (`0x00244650`-`0x002446C2`).
-- `0x00244830` clears the old widget's bit 4 and sends it message 9, then sets the new widget's bit 4 and sends it
+- `0x00244830` clears the old widget's bit `0x10` and sends it message 9, then sets the new widget's bit `0x10` and sends it
   message 8.
 - `0x002448D0(widget)` gives the focus up. When the widget holds the focus (it is compared with `0x0208EBC0` only, not
   with the stack's top), the top entry is cleared and popped and the new top, or none, takes the focus
@@ -265,7 +265,7 @@ returns 1, state 4, then message 15 (`0x00244EF5`).
 
 Every tick the walker `0x00244970` steps each active widget with `0x00246C20`, which sends message 25 first, steps one tween
 channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) or 20 (backward)
-(`0x0024701E`-`0x0024706B`). When a closing run ends, a widget with bit 6 set is torn down (`0x002449C3`).
+(`0x0024701E`-`0x0024706B`). When a closing run ends, a widget with bit `0x40` set is torn down (`0x002449C3`).
 
 `0x0208F570` advances through the five tick functions. `0x00228700` saves it in `0x01FD46F4` (`0x00228738`-`0x0022874F`), and
 `0x00228130` writes the saved value back (`0x0022818C`, `0x0022819C`).
@@ -279,11 +279,11 @@ refuses while any of the other three bits is set, records the start value, the c
 | Bit | Starter | Animates | Message per step |
 |---:|---|---|---|
 | `0` | `0x002468A0(widget, x, y, curve, ms)` | the position `+0x98`/`+0x9A` | 22, and 17 at the end |
-| `1` | `0x00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit 0 or 1 keeps the right or bottom edge in place (`0x00246EAE`-`0x00246EDE`) | 21 |
+| `1` | `0x00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit `0x1` or `0x2` keeps the right or bottom edge in place (`0x00246EAE`-`0x00246EDE`) | 21 |
 | `2` | `0x00247300(widget, from, to, curve, ms)` | the float `+0x8C` | 23 |
 | `3` | `0x002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`0x00244D74`-`0x00244DC1`) | none |
 
-`0x00247260` starts bit 1 like `0x00247130` and then replaces the curve with its sixth argument. `0x002468A0` sends 17
+`0x00247260` starts bit `0x2` like `0x00247130` and then replaces the curve with its sixth argument. `0x002468A0` sends 17
 twice instead of starting when the widget is already at the target (`0x002468DE`-`0x00246922`).
 
 Each tick `0x00246C20` steps the lowest running bit. The elapsed frames are multiplied by the rate `+0xB8` while the
@@ -305,7 +305,7 @@ The curve function `0x00248F40(curve, length, t)` returns 1.0 once `t` reaches `
 Many menu rows fade their alpha `+0xA0` or colour byte `+0xA1` with a pair of helpers that keep their state in the row
 widget's own `+0xC0`-`+0xD3`:
 
-- `0x002D04F0(widget, to, which, curve, ms)` starts the fade: bit 0 of `+0xC0` running, bits 2-5 the curve, bits 6-7
+- `0x002D04F0(widget, to, which, curve, ms)` starts the fade: bit `0x1` of `+0xC0` running, bits 2-5 the curve, bits 6-7
   `which` (above 0 for `+0xA1`), the start value at `+0xC4`, the change at `+0xC8`, the length `ms x 60 / 1000`
   frames at `+0xCC` and the start frame `0x0208F570` at `+0xD0`.
 - `0x002D0410(widget)`, run each tick by the row, writes `start + change x 0x00248F40(curve, length, now - start)` to the
@@ -316,10 +316,10 @@ The Party Menu's member rows, the Status and Equip rows and the license board us
 
 ### Teardown
 
-1. `0x00244F00` asks for the close: with bits 0 and 5 set it starts a closing run, otherwise it sends message 15 and tears
+1. `0x00244F00` asks for the close: with bits `0x1` and `0x20` set it starts a closing run, otherwise it sends message 15 and tears
    the widget down now (`0x00244F0A`-`0x00244F39`).
 2. `0x00245020` gives up the focus, sends message 18 to the widget and every descendant (`0x002473B0`), and releases it. A
-   widget with bit 5 is instead deactivated and marked for release on the next tick (`0x00245072`-`0x0024509B`).
+   widget with bit `0x20` is instead deactivated and marked for release on the next tick (`0x00245072`-`0x0024509B`).
 3. The release `0x002482E0` releases the children, unlinks the widget, frees its array, sends message 24, clears the
    procedure, frees the storage and jumps to `+0x08` when set (`0x00248308`-`0x00248405`).
 
@@ -391,13 +391,13 @@ the heap.
 | its consumer | `0x00394530` | `0x1D0` | `0x003939B0` | `0x02AEE4C8` |
 
 The script verbs `fsttl_initialize` (`0x00511EA0`) and `fsttl_opencommand` (`0x00511F90`) build them. The asset publishes
-itself on message 1 and sets `+0xC0` bit 0 on message 16. The consumer refuses to be built before the asset exists
+itself on message 1 and sets `+0xC0` bit `0x1` on message 16. The consumer refuses to be built before the asset exists
 (`0x00394543`), and each tick it waits for that bit (`0x00393A88`-`0x00393A9F`) and passes the asset's `+0xD0` on to
 `0x003946B0`.
 
-The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+0xC0` bit 0 (`0x00394500`),
+The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+0xC0` bit `0x1` (`0x00394500`),
 `fsttl_opencommandsync` waits through `0x003944D0`, which answers 0 while `0x01EFAC12` is 2 and the consumer's `+0xC4`
-bit 1 is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit 2 (`0x00394350`). The consumer opens its
+bit `0x2` is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit `0x4` (`0x00394350`). The consumer opens its
 confirm through `0x00394380` and paints its rows with `0x00393950`, which, when `0x00264150`
 answers non-zero, recolours row 0 with colour 1 and the others with colour 0 (`0x00393240`), and sets each row's picture cell.
 
@@ -423,16 +423,16 @@ own code uses.
 | `+0x98` | `i16` | x | `+0x98` of the target tab strip: its x on screen, tween channel 0's first word. `0x002465F0` clears it with `+0x9A` (`0x00246711`); the strip's message 1 sets it from its layout record (`0x0027CC9E`); `0x00276960` (`0x00276B95`) and `0x0027DCA0` with an argument (`0x0027DD60`) place it at the centred x; otherwise `0x0027DCA0` moves it half way there each call and snaps within 1 (`0x0027DDA8`, `0x0027DDC8`, `0x0027DDD7`); a position tween's step `0x00246C20` writes it (`0x00246D2A`, `0x00246D69`, `0x00246EBF`). The draw walk reads it for the box (`0x00245EB9` in `0x00245E60`, `0x00246499` in `0x00246480`). |
 | `+0x9A` | `u8[38]` | header9A | the widget header from `+0x9A` to `+0xBF` (The header above) |
 | `+0xC0` | `u8` | padC0 | cleared with the object; read and written by no other instruction; nothing fixes its width |
-| `+0xC1` | `u8` | filter | `+0xC1` of the target tab strip: the target filter, 1 or 0, from bit 2 of `+0x61CC`; written by `0x00276960` (`0x00276992`) and the battle menu's refresh (`0x0027A22C`), read by the strip's tick (`0x0027C9AB`) and passed to `0x0027AF80`, which for filter 1 skips rows with flag bit 1 and units with KO, Stone or bit 31, and for every filter skips units whose byte `+0x0A` (`0x002647E0`) has bit 2 (filter 0) or bit 0 (filter 1). |
+| `+0xC1` | `u8` | filter | `+0xC1` of the target tab strip: the target filter, 1 or 0, from bit `0x4` of `+0x61CC`; written by `0x00276960` (`0x00276992`) and the battle menu's refresh (`0x0027A22C`), read by the strip's tick (`0x0027C9AB`) and passed to `0x0027AF80`, which for filter 1 skips rows with flag bit `0x2` and units with KO, Stone or bit `0x80000000`, and for every filter skips units whose byte `+0x0A` (`0x002647E0`) has bit `0x4` (filter 0) or bit `0x1` (filter 1). |
 | `+0xC2` | `u16` | action | `+0xC2` of the target tab strip: the action id whose targets the tabs offer, copied from `+0x61BA` by `0x00276960` (`0x002769A4`) and the refresh (`0x0027A232`); read by the strip's tick (`0x0027C9B3`), which puts it at `+0x1C` of the target list requests of `0x0027AF80` and `0x0027B090` (the action id of the list builder `0x0031EB20`). |
 | `+0xC4` | `u32` | member | `+0xC4` of the target tab strip: the handle of the acting party member, copied from `+0x61BC` by `0x00276960` (`0x0027699E`) and the refresh (`0x0027A226`); read by the strip's tick (`0x0027C9BA`) as the member of the target list requests (`+0x08` of `0x0031EB20`'s list block). |
-| `+0xC8` | `i16` | markedList | `+0xC8` of the target tab strip: the target list kind 16-19 whose tab is marked; `0x00276830` stores it (`0x00276943`) after drawing the other tabs one palette further on. The strip's tick reads it (`0x0027CA02`, `0x0027CB38`) and always enables the marked kind's tab: 16 bit 1, 17 bit 2, 18 bit 8, 19 bit 4. |
+| `+0xC8` | `i16` | markedList | `+0xC8` of the target tab strip: the target list kind 16-19 whose tab is marked; `0x00276830` stores it (`0x00276943`) after drawing the other tabs one palette further on. The strip's tick reads it (`0x0027CA02`, `0x0027CB38`) and always enables the marked kind's tab: 16 bit `0x2`, `0x20000` bit `0x4`, `0x40000` bit `0x100`, `0x80000` bit `0x4`. |
 | `+0xCA` | `u8` | recheckTicks | `+0xCA` of the target tab strip: ticks since the enabled tabs were last re-checked. The strip's tick adds 1 (`0x0027C94B`) and, while it is 30 or less (`0x0027C951`), while the strip's and its first item's tween channel 0 are idle and no run was started on the strip (`0x0027C965`-`0x0027C995`), re-checks the tabs and sets it to 0 (`0x0027C9C1`); above 30 it lays the tabs out from `+0xCF` unchanged. `0x00276960` (`0x00276BA8`, `0x00276BB1`) and the refresh (`0x0027A240`) set it to 0. |
 | `+0xCB` | `i8` | tutorialGroup | `+0xCB` of the target tab strip: the tutorial command group, the low byte of `+0x61C2`, stored by `0x00276960` (`0x002769AC`) and the refresh (`0x0027A239`); the strip's tick reads it (`0x0027C9A2`) for the word `+0x04` of the list-`0x1C` request of `0x0027AF80`, the group the tutorial limits ask `0x0032A320` about. |
 | `+0xCC` | `u8` | arrow6Ticks | `+0xCC` of the target tab strip: ticks left of side arrow 6's nudge. The battle menu sets 4 when a negative tab step marks a tab (`0x0027A2C1`); while it is not 0 the strip's tick draws item 6 2 lower and takes 1 off (`0x0027C917`, `0x0027C928`). |
 | `+0xCD` | `u8` | arrow7Ticks | `+0xCD` of the target tab strip: the same for side arrow 7, set to 4 for a positive tab step (`0x0027A2B5`); the strip's tick reads and lowers it (`0x0027C8DB`, `0x0027C8EC`). |
-| `+0xCE` | `u8` | requestedMask | `+0xCE` of the target tab strip: the tab mask the menu asked for (bits 1, 2, 8 and 4 for tabs 0-3), the `0x00276960` argument from `+0x61E4`, stored at `0x002769CA`; the strip's tick starts each re-check from it (`0x0027C99B`), dropping bit 4 when `0x0027AF80` finds no row of list `0x1C` and bit 8 when `0x0027B090` finds none of list `0xF`. |
-| `+0xCF` | `u8` | enabledMask | `+0xCF` of the target tab strip: the tabs currently enabled. `0x00276960` stores the requested mask (`0x002769D0`), drops bits 8 and 4 (`0x002769EA`, `0x00276A12`), reads it (`0x00276A2F`, `0x00276AFF`, `0x00276B4E`) and stores the result (`0x00276AEF`); the strip's tick stores each re-check (`0x0027CB24`) and otherwise reads it (`0x0027CB4F`) and stores it back with the marked kind's bit (`0x0027CC62`); `0x0027DCA0` reads it to centre the strip (`0x0027DCCE`, `0x0027DD14`). The side arrows are hidden when exactly one tab is enabled (mask 1, 2, 4 or 8; `0x00276B55`-`0x00276B69`, `0x0027DD1B`-`0x0027DD2F`). |
+| `+0xCE` | `u8` | requestedMask | `+0xCE` of the target tab strip: the tab mask the menu asked for (bits `0x2`, 2, 8 and 4 for tabs 0-3), the `0x00276960` argument from `+0x61E4`, stored at `0x002769CA`; the strip's tick starts each re-check from it (`0x0027C99B`), dropping bit `0x10` when `0x0027AF80` finds no row of list `0x1C` and bit `0x100` when `0x0027B090` finds none of list `0xF`. |
+| `+0xCF` | `u8` | enabledMask | `+0xCF` of the target tab strip: the tabs currently enabled. `0x00276960` stores the requested mask (`0x002769D0`), drops bits `0x8` and `0x4` (`0x002769EA`, `0x00276A12`), reads it (`0x00276A2F`, `0x00276AFF`, `0x00276B4E`) and stores the result (`0x00276AEF`); the strip's tick stores each re-check (`0x0027CB24`) and otherwise reads it (`0x0027CB4F`) and stores it back with the marked kind's bit (`0x0027CC62`); `0x0027DCA0` reads it to centre the strip (`0x0027DCCE`, `0x0027DD14`). The side arrows are hidden when exactly one tab is enabled (mask 1, 2, 4 or 8; `0x00276B55`-`0x00276B69`, `0x0027DD1B`-`0x0027DD2F`). |
 
 ### The battle menu
 
@@ -464,26 +464,26 @@ after them. Its private messages 33-52 set or read the fields below ([Widget mes
 | `+0x61DC` | `i16` | layout11W | width of that item, written once (`0x00279FAF`); read by no instruction. |
 | `+0x61DE` | `i16` | layout11H | height of that item, written once (`0x00279FBD`); read by no instruction. |
 | `+0x61E0` | `i16` | memberType | the type (`+0x60` of the party status record, 0-5) of the member message 38 names, from `0x00272EE0` (`0x0027A91A`); -1 when the message has no second argument (`0x0027A928`) or `0x00254560`(3) answers non-zero (`0x0027A8F3`). Senders: `0x002778C0` at `0x0027826B` and the menu itself after building a panel (`0x0027A66B`). The panel `0x00276D30` picks its picture cell by it and draws none above 5 (`0x0027735B`). |
-| `+0x61E2` | `i8` | markListKind | the target list kind whose tab to mark, from message 50 with `+0x61CC` bit 12 (`0x0027A80A`), sent by `0x002778C0` at `0x00279AAD` with its list kind; the next tick passes it to `0x00276830` when the tab strip is opening or open (`0x0027A29B`). |
+| `+0x61E2` | `i8` | markListKind | the target list kind whose tab to mark, from message 50 with `+0x61CC` bit `0x1000` (`0x0027A80A`), sent by `0x002778C0` at `0x00279AAD` with its list kind; the next tick passes it to `0x00276830` when the tab strip is opening or open (`0x0027A29B`). |
 | `+0x61E3` | `i8` | tabStep | the last tab step: message 51 stores it (`0x0027A81C`), sent by `0x002778C0` with the L1 or R1 step from `0x0027B430` (`0x00277F24`) and with -1 (`0x00278EB8`, constant `0x00915BD0`); the tick that marks a tab nudges arrow 7 for a positive step and arrow 6 for a negative one (`0x0027A2AA`, `0x0027A2B5`, `0x0027A2C1`) and sets it to 0 (`0x0027A2D2`); building the strip sets it to 0 (`0x0027A184`). |
-| `+0x61E4` | `u32` | tabMask | the target tabs the chosen action allows (bits 1, 2, 8, 4 for tabs 0-3): message 52 stores it (`0x0027A9A2`), sent by `0x002778C0` (`0x0027849A`-`0x002784F8`) with 7 for any list but kind 11 and otherwise a mask from the row's target bits; read for the tab strip's requested mask (`0x0027A166`) and each new panel's `+0x3000` (`0x0027A509`). |
+| `+0x61E4` | `u32` | tabMask | the target tabs the chosen action allows (bits `0x2`, `0x4`, `0x100`, `0x10` for tabs 0-3): message 52 stores it (`0x0027A9A2`), sent by `0x002778C0` (`0x0027849A`-`0x002784F8`) with 7 for any list but kind 11 and otherwise a mask from the row's target bits; read for the tab strip's requested mask (`0x0027A166`) and each new panel's `+0x3000` (`0x0027A509`). |
 | `+0x61E8` | `u8[8]` | tail | cleared with the object; read and written by no other instruction; nothing fixes its width |
 
 | `+0x61CC` bit | Meaning |
 |---:|---|
 | 1 | which panel slot the next panel goes in: flipped after a panel (`0x0027A6E6`-`0x0027A6FE`) or the Dismiss confirmation (`0x0027A397`-`0x0027A3AE`) is built; read as the slot (`0x0027A2D9`, `0x0027A37B`, `0x0027A3FF`) |
-| 2 | the target filter: message 33's second argument (`0x0027A79A`-`0x0027A7AA`); read for the tab strip (`0x0027A14D`, `0x0027A205`) and each panel's `+0x2FF0` bit 11 (`0x0027A52B`); message 47 answers it (`0x0027A775`) |
+| 2 | the target filter: message 33's second argument (`0x0027A79A`-`0x0027A7AA`); read for the tab strip (`0x0027A14D`, `0x0027A205`) and each panel's `+0x2FF0` bit `0x800` (`0x0027A52B`); message 47 answers it (`0x0027A775`) |
 | 3 | set when a panel is built (`0x0027A638`), cleared by message 37 (`0x0027A756`); while it is clear message 32 goes out with 1 (`0x0027A60E`) |
-| 4 | message 48's argument bit 0 (`0x0027A958`-`0x0027A966`); at a panel build cleared for list kinds 16-19 (`0x0027A4A6`), otherwise set when the count `0x0035D4E0` returns is above 1 and the kind is not 5-7 or 10-19 (`0x0027A4AF`-`0x0027A4E2`); each tick bit 13 follows it (`0x0027A716`-`0x0027A749`) |
+| 4 | message 48's argument bit `0x1` (`0x0027A958`-`0x0027A966`); at a panel build cleared for list kinds 16-19 (`0x0027A4A6`), otherwise set when the count `0x0035D4E0` returns is above 1 and the kind is not 5-7 or 10-19 (`0x0027A4AF`-`0x0027A4E2`); each tick bit `0x2000` follows it (`0x0027A716`-`0x0027A749`) |
 | 5 | Dismiss asked: set by message 41 (`0x0027A8D1`); the tick builds the confirmation `0x0027AA70` when `0x00265680`, `0x00254550` and `0x00241A50(1)` allow it, and clears it (`0x0027A309`-`0x0027A3C9`) |
 | 6 | set by the panel `0x00276D30` (`0x00276F92`), the confirmation (`0x0027AB3F`) and `0x0028F970` (`0x0028F9D4`); the tick clears it and sends message 53 to both panels (`0x0027A052`-`0x0027A0C0`) |
-| 7 | set on every tick (`0x0027A0F8`); while it is set and bit 6 clear, a tick that finds no panel and no tab strip releases the menu (`0x0027A1A0`-`0x0027A1F9`) |
-| 8 | the router request's bit 10 when built (`0x002766E5`-`0x00276704`); copied to each panel's `+0x2FF0` bit 17 (`0x0027A4E8`-`0x0027A503`) |
-| 9 | message 46's argument (`0x0027A982`-`0x0027A994`); copied to each panel's `+0x2FF0` bit 18 (`0x0027A443`-`0x0027A458`) |
+| 7 | set on every tick (`0x0027A0F8`); while it is set and bit `0x40` clear, a tick that finds no panel and no tab strip releases the menu (`0x0027A1A0`-`0x0027A1F9`) |
+| 8 | the router request's bit `0x400` when built (`0x002766E5`-`0x00276704`); copied to each panel's `+0x2FF0` bit `0x20000` (`0x0027A4E8`-`0x0027A503`) |
+| 9 | message 46's argument (`0x0027A982`-`0x0027A994`); copied to each panel's `+0x2FF0` bit `0x40000` (`0x0027A443`-`0x0027A458`) |
 | 10 | set when built (`0x00276722`); the first tick plays sound 4 (`0x00249C60`) and clears it (`0x0027A032`-`0x0027A048`) |
 | 11 | tab strip wanted: set by message 42 (`0x0027A8DF`); the tick builds or refreshes the strip and clears it (`0x0027A0FF`-`0x0027A247`); also cleared at `0x0027A0EE`, `0x0027A7CA` (message 49, which closes the strip) and `0x0027A85B` |
 | 12 | tab mark pending: set by message 50 (`0x0027A7FB`); the tick marks the tab and clears it (`0x0027A251`-`0x0027A2C8`) |
-| 13 | message 48's argument bit 0 (`0x0027A936`-`0x0027A952`) and the tick (`0x0027A716`-`0x0027A749`); read by the panel `0x00276D30` (`0x002775E7`) |
+| 13 | message 48's argument bit `0x1` (`0x0027A936`-`0x0027A952`) and the tick (`0x0027A716`-`0x0027A749`); read by the panel `0x00276D30` (`0x002775E7`) |
 
 ### The title command consumer
 
@@ -497,7 +497,7 @@ The consumer of [The title asset and its consumer](#the-title-asset-and-its-cons
 | `+0x00` | `u8[192]` | header | the widget header (The header above) |
 | `+0xC0` | `u8` | startRow | the row the title command list starts on: the argument of fsttl_opencommand (`0x00511F90` -> `0x00394530`), carried as byte +8 of message 1 (`0x003939F7`) and stored at `0x00393A18`; read once, when the list is set up, to move the list there with `0x002D4650` (`0x00393BC8`). |
 | `+0xC1` | `u8[3]` | padC1 | cleared with the object (`0x00246626`); read and written by no other instruction; nothing fixes its width |
-| `+0xC4` | `u32` | flags | cleared on message 1 (`0x003939FD`). Bit 0: the command list is set up (`0x00393C1C`), tested each tick (`0x00393A7A`). Bit 1: the opening transition has finished, set on message 19 (`0x00393A6C`); fsttl_opencommandsync waits through `0x003944D0` until it is set (`0x003944E0`). Bit 2: close asked, set by fsttl_closecommand through `0x00394350` (`0x0039435C`, `0x0039436A`) and cleared when fsttl_opencommand finds the consumer with `+0x7C` bit 5 clear (`0x003945BB`; with the bit set it opens it again, `0x003945A4`); with bits 0, 1 and 2 the tick closes the consumer (`0x00393C32`-`0x00393C45`), and on destruction bit 2 makes `0x01EFAC12` = 6 (`0x00393DF1`). |
+| `+0xC4` | `u32` | flags | cleared on message 1 (`0x003939FD`). Bit `0x1`: the command list is set up (`0x00393C1C`), tested each tick (`0x00393A7A`). Bit `0x2`: the opening transition has finished, set on message 19 (`0x00393A6C`); fsttl_opencommandsync waits through `0x003944D0` until it is set (`0x003944E0`). Bit `0x4`: close asked, set by fsttl_closecommand through `0x00394350` (`0x0039435C`, `0x0039436A`) and cleared when fsttl_opencommand finds the consumer with `+0x7C` bit `0x20` clear (`0x003945BB`; with the bit set it opens it again, `0x003945A4`); with bits `0x1`, 1 and 2 the tick closes the consumer (`0x00393C32`-`0x00393C45`), and on destruction bit `0x4` makes `0x01EFAC12` = 6 (`0x00393DF1`). |
 | `+0xC8` | `void*` | commandList | the title command list widget: 0 on message 1 (`0x00393A03`), then the widget of layout item 0 once `0x003946B0` has built the layout (`0x00393AC2`-`0x00393ACD`). Read to enable it (`0x00393BA0`, `0x002D45C0`), set its bytes `+0xFC` and `+0xFE` to `0xFF` (`0x00393BAC`, `0x00393BBA`), move it to the start row (`0x00393BCF`), store the consumer as its owner and `0x00393950` as its row painter (`0x00393BDB`, `0x00393BF7`), run its cursor each input turn (`0x00393C51`, `0x002D3900`), and set its `+0xFC` to 2 on an answer (`0x00393D7B`). |
 | `+0xD0` | `char[256]` | text | a 256-byte text buffer: `0x002B4090`(`0x100`, self + `0xD0`, source) fills it (`0x00393B60`-`0x00393B74`) and its address goes to layout item 2's `+0x18` (`0x00393B83`) |
 
@@ -526,7 +526,7 @@ Each of the two `0x1620`-byte pages inside the list widget (`+0xF0` and `+0x1710
 | `+0x4F4` | `u16` | listActionA | +0x34 of the target-list block: 0x0031EB20 passes it as the first argument of GambitConfig_ClassifyActionTargetPairCompatibility 0x00327A10 (0x0031FB26-0x0031FB30) |
 | `+0x4F8` | `u16` | listActionB | +0x38 of the target-list block: 0x0031EB20 passes it as the second argument of 0x00327A10 (0x0031FA34-0x0031FA3F) |
 | `+0x4FC` | `u32` | listValue3C | +0x3C of the target-list block: 0x0031EB20 copies it to its frame (0x0031F9AC-0x0031F9B6) |
-| `+0x508` | `u32` | listFlags | +0x48 of the target-list block: 0x0031EB20 takes bit 0 of it as a flag for three of its codes (0x0031EB71, 0x0031ED58, 0x0031F8A7) |
+| `+0x508` | `u32` | listFlags | +0x48 of the target-list block: 0x0031EB20 takes bit `0x1` of it as a flag for three of its codes (0x0031EB71, 0x0031ED58, 0x0031F8A7) |
 
 ### The battle-menu panel's sprites
 
@@ -537,7 +537,7 @@ Each `0x3010`-byte panel of the battle menu (procedure `0x00276D30`) keeps four 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | item | the sprite node's pointer to its item in the layout file (written for every node by the list decoder at `0x002433EB`), copied with the template; the drawer `0x0029F5D0` does not read it |
-| `+0x08` | `u16` | word08 | the node's flags, from the list decoder (`0x002433EE`-`0x00243428`): bit 0 shown, bits 2 to 5 the node type; copied with the template; the panel's draws do not test it |
+| `+0x08` | `u16` | word08 | the node's flags, from the list decoder (`0x002433EE`-`0x00243428`): bit `0x1` shown, bits `0x3C` the node type; copied with the template; the panel's draws do not test it |
 | `+0x0A` | `i16` | int0A | the frame: the drawer takes the source x, y, width and height from the sub-image record `+0x20` + frame x 8 (`0x0029F5DA`-`0x0029F622`); the node constructor `0x0029F4C0` sets it (`0x0029F520`) |
 | `+0x0C` | `i16` | word0C | the x the sprite is drawn at, plus the drawer's x argument (`0x0029F63B`-`0x0029F64B`); the panel moves it with the panel (`0x002772DF`, `0x0027729D`, `0x002772B3`, `0x002772C9`) and sets sprite 1's (`0x00277421`, `0x0027754B`) |
 | `+0x0E` | `i16` | word0E | the y the sprite is drawn at, plus the drawer's y argument (`0x0029F650`-`0x0029F663`); moved with the panel (`0x002772EA`, `0x002772A8`, `0x002772BE`, `0x002772D4`) and set for sprite 1 (`0x00277449`, `0x00277574`) |
@@ -557,9 +557,9 @@ These fields sit in each `0x3010`-byte panel; the offsets are from the start of 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x01C0` | `void*` | qword01C0 | the first 8 bytes of the panel's copy of a text node, +0x1C0-+0x1EF: node 0 of the child widget that node 2 of the panel's layout +0x2FF8 holds, copied whole when the panel is built (0x0027713A-0x00277153). These 8 bytes are the node's pointer to its layout item (0x002433EB); the panel draws the copy with the text drawer 0x0029FBD0 unless +0x2FF0 bit 10 is set (0x002777DF-0x002777F5), and the drawer does not read them |
+| `+0x01C0` | `void*` | qword01C0 | the first 8 bytes of the panel's copy of a text node, +0x1C0-+0x1EF: node 0 of the child widget that node 2 of the panel's layout +0x2FF8 holds, copied whole when the panel is built (0x0027713A-0x00277153). These 8 bytes are the node's pointer to its layout item (0x002433EB); the panel draws the copy with the text drawer 0x0029FBD0 unless +0x2FF0 bit `0x400` is set (0x002777DF-0x002777F5), and the drawer does not read them |
 | `+0x01F0` | `u8[12]` | field01F0 | the first 12 bytes of a second text-node copy, +0x1F0-+0x21F: node 1 of the panel's layout, copied when the panel is built (0x0027716C-0x00277185): the item pointer and the node flags +0x1F8; no instruction of the menu code (0x00270000-0x002A0000) reads them |
-| `+0x0200` | `u8[16]` | vector0200 | +0x200-+0x20F of the second text-node copy: width +0x200, height +0x202 and, at +0x208, the string, which the list widget 0x002778C0 sets for a panel with +0x2FF0 bit 10 (the list kinds 16 to 19) to PARTY, FOES, RESERVE or ALLIES (texts 0x4A49-0x4A4C of menu_expansion.bin; 0x0027930C-0x0027939B), reaching the panel through its +0xD0 (0x002778EF) |
+| `+0x0200` | `u8[16]` | vector0200 | +0x200-+0x20F of the second text-node copy: width +0x200, height +0x202 and, at +0x208, the string, which the list widget 0x002778C0 sets for a panel with +0x2FF0 bit `0x400` (the list kinds 16 to 19) to PARTY, FOES, RESERVE or ALLIES (texts 0x4A49-0x4A4C of menu_expansion.bin; 0x0027930C-0x0027939B), reaching the panel through its +0xD0 (0x002778EF) |
 | `+0x0210` | `u8[16]` | vector0210 | +0x210-+0x21F of the second text-node copy: +0x210 the node's encoded picture address, which the text drawer resolves with 0x0020E600 (0x0029FDE2-0x0029FDF8) and 0x002778C0 sets to 0x0020E620(0) with each of those strings (0x0027933A, 0x0027935E, 0x0027937F, 0x002793A0); +0x214 the colour, +0x218 the scale and +0x21C the mode bytes, copied from the layout (0x00277181-0x00277185) |
 | `+0x2FE8` | `void*` | qword2FE8 | the cursor block that keeps the stack of opened lists, the battle menu's +0x61B0 copied when the panel is built (0x0027A58D-0x0027A594); the list widget 0x002778C0 reads it through its +0xD0 (0x0027819E, 0x002781EE, 0x00278522, 0x0027881F, 0x002794F7, 0x0027981E, 0x002798D7), and 0x0027D330, called with the panel at 0x00278A2F, stores the cursor positions through it (0x0027D391-0x0027D3DD) |
 | `+0x2FF6` | `u16` | word2FF6 | the tutorial command group, the battle menu's +0x61C2 copied when the panel is built (0x0027A432-0x0027A43C); 0x002778C0 puts it in the word +0x153A of its list request (0x00279296-0x0027929E) |

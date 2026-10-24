@@ -68,13 +68,13 @@ The member's answer for the node sets the purchase flags through the table at `0
 
 | Answer | Flags |
 |---|---|
-| 0, can be obtained | bit 14 when the cost is at most the member's LP (`0x0055C492`), and bit 15 |
-| 1, owned | bits 12 and 13, state 5 (`0x0055C472`) |
-| `2` | bit 15 unless bit 12 |
+| 0, can be obtained | bit `0x4000` when the cost is at most the member's LP (`0x0055C492`), and bit `0x8000` |
+| 1, owned | bits `0x1000` and `0x2000`, state 5 (`0x0055C472`) |
+| `2` | bit `0x8000` unless bit `0x1000` |
 | `3`, `4`, `5`, `8` | the square is emptied (`0x0055C4CA`) |
 
-`0x0055E090` then turns bit 15 into bit 12 on each square next to an owned one. So bit 13 means owned, bit 12
-obtainable now, bit 14 affordable and bit 15 obtainable later. The state nibble, bits 4-7, takes four values:
+`0x0055E090` then turns bit `0x8000` into bit `0x1000` on each square next to an owned one. So bit `0x2000` means owned, bit `0x1000`
+obtainable now, bit `0x4000` affordable and bit `0x8000` obtainable later. The state nibble, bits 4-7, takes four values:
 
 | State | Meaning | Set by |
 |---:|---|---|
@@ -88,7 +88,7 @@ state-4 square shows its LP cost when zoomed in.
 
 ### Corner shapes
 
-`0x0055DEA0` gives each square a corner piece in bits 0-3 from the squares to its left, above and above-left
+`0x0055DEA0` gives each square a corner piece in bits `0xF` from the squares to its left, above and above-left
 (`0x0055DF32`-`0x0055DF94`). It looks the three tests up in the 2 x 7 table at `0x00D230F8`, using the second row when the
 square itself is empty, and stores the entry plus 1. `0x0055AE80` draws the piece half a cell offset, so the grid of
 squares also forms the grid of joins between them.
@@ -110,7 +110,7 @@ every frame.
 ### Preview
 
 The chooser's preview control closes it with the board in hand, and the window opens the board screen with the
-preview flag (`0x005590E3`, `0x00557B90`). In the view (`+0x570` bit 10, `0x0055CEB2`):
+preview flag (`0x005590E3`, `0x00557B90`). In the view (`+0x570` bit `0x400`, `0x0055CEB2`):
 
 - the board shown is the previewed one (`0x0055B436`);
 - the cursor starts on Essentials, node `0x1F` (`0x0055E600`);
@@ -151,7 +151,7 @@ mover is `0x0055AA00`, on `+0x563`.
 
 | Notice (`listhelp_license.bin`) | When |
 |---|---|
-| "{name} has learned a new Mist ability!" (`0x426C`) | the member's Mist count grew (`+0x570` bit 5) |
+| "{name} has learned a new Mist ability!" (`0x426C`) | the member's Mist count grew (`+0x570` bit `0x20`) |
 | "The character can now summon Espers under the Mist command in the Battle Menu." (`0x4269`) | the first Esper obtained |
 | "The character can now perform quickenings under the Mist command ..." (`0x426A`) | the first Quickening obtained |
 | "The license for the Esper {name} has been added to the board!" (`0x426B`) | when the board opens with a new Esper square (`0x0055E9E0`) |
@@ -161,7 +161,7 @@ Obtaining the Second Board ends with the chooser opening for the member's second
 
 ### Grid helpers
 
-- `0x0055E3F0(view, state, test)` gives state 4 to squares next to one passing `0x00556580` (bit 13, owned) and state 1
+- `0x0055E3F0(view, state, test)` gives state 4 to squares next to one passing `0x00556580` (bit `0x2000`, owned) and state 1
   to those passing `0x00556570` (a node other than `0xFFFF`) (`0x0055C3E5`, `0x0055C3F6`).
 - `0x00556590(square)` returns the art row's word `+0x22` of `[0x02CA9670]` for a state-4 square, or the default at
   `+0x5A62` when it has no art row; 0 for other states.
@@ -274,7 +274,7 @@ The board screen is the `0x110`-byte widget with procedure `0x00561390` that `0x
 | `+0x0E8` | `u8[32]` | gap0E8 | read and written by no function; nothing fixes its width |
 | `+0x108` | `u8` | chooserByte | the creation record's byte `+0x18` (`0x005615C6`-`0x005615CA`): `0xFF` from the member picker (`0x00560C81`-`0x00560C98`), the board chooser's own `+0xDC` when it hands over (`0x005590D4`-`0x005590E3`); passed back as the third argument of `0x00558F20` when the screen hands over to the chooser (`0x0056148C`-`0x005614A1`) |
 | `+0x109` | `u8[3]` | gap109 | read and written by no function; nothing fixes its width |
-| `+0x10C` | `u32` | flags | bit 0: on destroy, sends the owner the command `0x8003` (`0x00247510`) instead of handing back (`0x00561424`-`0x0056143C`); no access sets it. Bit 1: the owner's byte `+0x185` (`0x00561593`-`0x005615A5`); no access reads it. Bit 2: the creation record's `+0x08` bit 0 (`0x005615AB`-`0x005615BE`), 1 from the board chooser when the board changed (`0x005590A5`-`0x005590E3`), 0 from the member picker; on destroy, set: the member goes back to the owner and `0x00558F20`(owner, 1, `+0x108`) builds the chooser (`0x0056147A`-`0x005614A1`); clear: the owner is opened again (`0x00561460`-`0x00561470`) |
+| `+0x10C` | `u32` | flags | bit `0x1`: on destroy, sends the owner the command `0x8003` (`0x00247510`) instead of handing back (`0x00561424`-`0x0056143C`); no access sets it. Bit `0x2`: the owner's byte `+0x185` (`0x00561593`-`0x005615A5`); no access reads it. Bit `0x4`: the creation record's `+0x08` bit `0x1` (`0x005615AB`-`0x005615BE`), 1 from the board chooser when the board changed (`0x005590A5`-`0x005590E3`), 0 from the member picker; on destroy, set: the member goes back to the owner and `0x00558F20`(owner, 1, `+0x108`) builds the chooser (`0x0056147A`-`0x005614A1`); clear: the owner is opened again (`0x00561460`-`0x00561470`) |
 
 ### The board view's fields
 
@@ -287,7 +287,7 @@ beside this page. A field reached by no instruction in that table says so.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8[192]` | header | the widget header (Widgets, The header): the build arm installs the descriptor `0x00D22FE0` (`0x0055CE86`-`0x0055CE90`), sets `+0x40` bits 25 and 21 (`0x0055D0D0`, `0x0055D0E6`) and stores a float at `+0x8C` (`0x0055D0FD`); the destroy arm clears bit 21 (`0x0055CDB6`) |
+| `+0x000` | `u8[192]` | header | the widget header (Widgets, The header): the build arm installs the descriptor `0x00D22FE0` (`0x0055CE86`-`0x0055CE90`), sets `+0x40` bits `0x2000000` and `0x200000` (`0x0055D0D0`, `0x0055D0E6`) and stores a float at `+0x8C` (`0x0055D0FD`); the destroy arm clears bit `0x200000` (`0x0055CDB6`) |
 | `+0x0C0` | `u8[8]` | gap0C0 | reached by no instruction in the table |
 | `+0x0C8` | `void*` | square | the cursor's square record (LicenseSquare), written by the procedure's take-square arm (`0x0055D73A`; Obtaining a license) and `0x0055E9E0` (`0x0055ECEF`): the purchase passes it to `0x0055A180` and reads its `+0x30` category against `0x1E`, the Second Board (`0x0055F444`, `0x0055F491`), and its `+0x0B` rule byte (`0x0055F586`); `0x0055DD70` reads it (`0x0055DD8E`) |
 | `+0x0D0` | `void*` | square0D0 | a square from the `+0x418` entries, stored by `0x0055E9E0` (`0x0055EC64`-`0x0055EC6C`); read by no instruction in the table |
@@ -333,10 +333,10 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x51E` | `i16` | scrollY |  |
 | `+0x520` | `i16` | x520 | two words the build's layout pass writes (`0x0055D34C`, `0x0055D373`) and `0x0055AB20` reads (`0x0055AB5E`, `0x0055AB65`) |
 | `+0x522` | `i16` | y522 |  |
-| `+0x524` | `u32` | flags524 | bit 0: set and cleared by `0x0055C740` (`0x0055CA15`, `0x0055CBA5`, `0x0055CC64`) and tested there (`0x0055CC6B`), set by `0x0055E9E0` (`0x0055ED70`), cleared at a rebuild (`0x0055DBFE`) |
+| `+0x524` | `u32` | flags524 | bit `0x1`: set and cleared by `0x0055C740` (`0x0055CA15`, `0x0055CBA5`, `0x0055CC64`) and tested there (`0x0055CC6B`), set by `0x0055E9E0` (`0x0055ED70`), cleared at a rebuild (`0x0055DBFE`) |
 | `+0x528` | `f32` | scale528 | from the layout at `0x0055C530` (`0x0055C590`); the build's layout pass writes and reads it (`0x0055D268`-`0x0055D484`) |
 | `+0x52C` | `f32` | angle52C | advanced by a constant every purchase tick (`0x0055F706`-`0x0055F716`); `0x0055BAC0` reads it (`0x0055BDDA`) |
-| `+0x530` | `u32` | panFlags | `0x0055B8C0` clears bits 1, 3, 4 and 5 and sets bits 0 and 2 when it starts a pan (`0x0055B90C`-`0x0055B91E`); `0x0055F1C0` reads and rewrites it (`0x0055F1C9`, `0x0055F213`); `0x0055C740` reads it (`0x0055C7F9`) |
+| `+0x530` | `u32` | panFlags | `0x0055B8C0` clears bits `0x2`, `0x8`, `0x10` and `0x20` and sets bits `0x1` and `0x4` when it starts a pan (`0x0055B90C`-`0x0055B91E`); `0x0055F1C0` reads and rewrites it (`0x0055F1C9`, `0x0055F213`); `0x0055C740` reads it (`0x0055C7F9`) |
 | `+0x534` | `i16` | panFromX | the pan `0x0055B8C0` starts: from the current offsets, by the deltas to the cursor square, 6 frames from the UI tick (`0x0055B929`-`0x0055B953`); `0x0055F1C0` runs it (`0x0055F1DF`-`0x0055F2A4`) |
 | `+0x536` | `i16` | panFromY |  |
 | `+0x538` | `i16` | panDeltaX |  |
@@ -376,9 +376,9 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x569` | `u8` | effectKind | `0x002D6680`'s result (`0x00560187`); read by the mover (`0x0055AA63`, `0x0055AA92`) |
 | `+0x56A` | `u16` | moverWord | a word the mover reads and writes (`0x0055AAA9`-`0x0055AAF1`) |
 | `+0x56C` | `u32` | effectNode | the node the effect plays for (`0x0055F76A`, `0x0056017C`) |
-| `+0x570` | `u32` | flags | bit 0 set by the purchase `0x0055DD70` (`0x0055DD7F`) and cleared by the sweep (`0x0055B3D6`); bit 1 set once the panel has been filled (`0x00561280`); bit 2 set at build and when a refresh is served (`0x0055CF2E`, `0x0055F573`), cleared at stage start (`0x0055F453`); bit 3 makes `0x0055FAE0` answer 2; bit 5 a pending refresh, served and cleared at stage 0 (`0x0055F53C`-`0x0055F550`); bits 6-7 set at a rebuild and a purchase (`0x0055DC22`, `0x0055F46D`); bit 9 set when the Second Board square is bought (`0x0055F4A2`); bit 10 from the creation record's `+0x10C` bit 2 (`0x0055CEB2`-`0x0055CEC6`): a scripted open, which keeps the child `+0x578` and skips the member read (`0x0055B436`, `0x0055DC9B`); bit 11 the cursor goes to the centre (`0x0055E7AF`) |
+| `+0x570` | `u32` | flags | bit `0x1` set by the purchase `0x0055DD70` (`0x0055DD7F`) and cleared by the sweep (`0x0055B3D6`); bit `0x2` set once the panel has been filled (`0x00561280`); bit `0x4` set at build and when a refresh is served (`0x0055CF2E`, `0x0055F573`), cleared at stage start (`0x0055F453`); bit `0x8` makes `0x0055FAE0` answer 2; bit `0x20` a pending refresh, served and cleared at stage 0 (`0x0055F53C`-`0x0055F550`); bits `0xC0` set at a rebuild and a purchase (`0x0055DC22`, `0x0055F46D`); bit `0x200` set when the Second Board square is bought (`0x0055F4A2`); bit `0x400` from the creation record's `+0x10C` bit `0x4` (`0x0055CEB2`-`0x0055CEC6`): a scripted open, which keeps the child `+0x578` and skips the member read (`0x0055B436`, `0x0055DC9B`); bit `0x800` the cursor goes to the centre (`0x0055E7AF`) |
 | `+0x574` | `u8[4]` | gap574 | reached by no instruction in the table |
-| `+0x578` | `void*` | child578 | the `0xC8`-byte widget `0x00561E90` builds when it is 0 (`0x00561EA5`-`0x00561EEF`); the rebuild closes and clears it unless `+0x570` bit 10 (`0x0055DC9B`-`0x0055DCDA`) |
+| `+0x578` | `void*` | child578 | the `0xC8`-byte widget `0x00561E90` builds when it is 0 (`0x00561EA5`-`0x00561EEF`); the rebuild closes and clears it unless `+0x570` bit `0x400` (`0x0055DC9B`-`0x0055DCDA`) |
 
 ### The members on each board
 
@@ -400,7 +400,7 @@ The board chooser is the `0x390`-byte widget with procedure `0x00557DB0` that th
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00557DB0` |
-| `+0x0C0` | `void*` | window | the chooser window `0x00558FB0` that built the chooser: the creation record's first qword (`0x00557FE1`). On destroy the chooser clears the window's `+0xC8` and [`0x0209AC30`] + `0x320` (`0x005582C5`-`0x005582DC`); command `0x8002` sets the window's `+0xE0` bit 1 and `+0xDC` to the board the command carries, or clears the bit and stores `0xFF` for `0xFF`, and closes the window (`0x005583BE`-`0x0055841D`) |
+| `+0x0C0` | `void*` | window | the chooser window `0x00558FB0` that built the chooser: the creation record's first qword (`0x00557FE1`). On destroy the chooser clears the window's `+0xC8` and [`0x0209AC30`] + `0x320` (`0x005582C5`-`0x005582DC`); command `0x8002` sets the window's `+0xE0` bit `0x2` and `+0xDC` to the board the command carries, or clears the bit and stores `0xFF` for `0xFF`, and closes the window (`0x005583BE`-`0x0055841D`) |
 | `+0x0C8` | `void*` | memberPanel | the `0xD0`-byte panel with procedure `0x00558CE0` that `0x00558C40` builds while this is 0 and opens under the main root, copying `+0xE8` into the keyboard cell `0x02CA8FE0` (`0x00558C55`-`0x00558CC7`); built at stage 2 (`0x00557EDD`) and again on a member switch, which closes the old one first (`0x0055878F`-`0x005587AE`); stage 4 shows the member's boards in it through `0x00558E70` (`0x00557E7B`); command `0x8002` closes it (`0x0055838C`-`0x0055839F`) |
 | `+0x0D0` | `void*` | descriptionBox | the `0x3D8`-byte description box with procedure `0x00556F90` that `0x00556EC0` builds for the shown board while this is 0 (`0x00556ED5`-`0x00556F26`); turning the wheel writes the board to its `+0x3D1` and the board less 1 to `+0x3D2` (`0x00558536`-`0x00558551`); command `0x8002` and the confirm close it (`0x005583A6`-`0x005583B7`, `0x0055866F`-`0x00558682`) |
 | `+0x0D8` | `void*` | picturesPart | the `0xE0`-byte part with procedure `0x00557760`, which draws the chooser's pictures through `0x005574C0`: built by `0x00557370` at the wheel centre less `0x28` in y on construction (`0x005581AC`, `0x005573CB`), closed by `0x00557340` on command `0x8002` (`0x00557349`-`0x0055735A`) |
@@ -411,7 +411,7 @@ The board chooser is the `0x390`-byte widget with procedure `0x00557DB0` that th
 | `+0x140` | `void*` | atlasC2 | the member picker's `+0xF0`, the lic_8_c2 label the board screen stores there (`0x005616FE`-`0x00561738`), copied through the window's `+0xC0` on construction (`0x00557FF7`-`0x00558005`); the pictures part copies it to its `+0xC8` when built (`0x005579D2`) |
 | `+0x148` | `void*` | atlasC3 | the member picker's `+0xF8`, the lic_8_c3 label (`0x0056175E`-`0x00561765`), copied on construction (`0x0055800C`-`0x0055801A`); the pictures part copies it to its `+0xD0` (`0x005579E0`) |
 | `+0x150` | `void*` | backAtlas | the member picker's `+0x100`, the lic_bk label (`0x0056169E`-`0x005616A8`), copied on construction (`0x00558021`-`0x0055802F`); the name part copies it to its `+0xE0` (`0x00556986`) |
-| `+0x158` | `u32` | turnBits | the wheel's turn: bit 0 a turn is running and bits 2-5 its curve, set to curve 1 by `0x00558A10` (`0x00558A84`-`0x00558A8B`); `0x00558AF0` steps while bits 0-1 are set, passing bits 2-5 to `0x00248F40`, and clears bits 0-1 when the turn is done (`0x00558AF9`-`0x00558B3E`) |
+| `+0x158` | `u32` | turnBits | the wheel's turn: bit `0x1` a turn is running and bits 2-5 its curve, set to curve 1 by `0x00558A10` (`0x00558A84`-`0x00558A8B`); `0x00558AF0` steps while bits 0-1 are set, passing bits 2-5 to `0x00248F40`, and clears bits 0-1 when the turn is done (`0x00558AF9`-`0x00558B3E`) |
 | `+0x15C` | `i16` | turnFrom | the angle in degrees when the turn started, the low word of `+0x350` (`0x00558A98`, `0x00558AB8`); `0x00558AF0` adds the turned part of `+0x160` to it (`0x00558B35`, `0x00558B58`) |
 | `+0x15E` | `i16` | turnTo | the board the wheel turns to: the shown board on construction (`0x00558135`) and each turn (`0x00558AB1`); `0x00558A10` does nothing when asked for the same board (`0x00558A30`) and turns the short way, through 360, when the boards are 0 and 11 (`0x00558A4F`-`0x00558A7E`) |
 | `+0x160` | `i16` | turnBy | the degrees to turn, the board x 30 less `+0x15C` (`0x00558AA5`-`0x00558AC4`); `0x00558AF0` adds it times the curve's 0 to 1 to `+0x15C` (`0x00558B2E`, `0x00558B4D`) |
@@ -422,7 +422,7 @@ The board chooser is the `0x390`-byte widget with procedure `0x00557DB0` that th
 | `+0x34C` | `f32` | angle | the wheel's angle in radians, (360 - `+0x350`) / 180 x pi, written by `0x00558AF0` every tick (`0x00558B7B`-`0x00558B9D`); the parts `0x005565E0`, `0x005569F0` and `0x0055A340` draw by it (`0x00556629`, `0x00556712`, `0x00556B58`, `0x0055A392`, `0x0055A48F`) |
 | `+0x350` | `i32` | degrees | the wheel's angle in degrees, 30 a board: the shown board x 30 on construction, moved by 360 when the boards are 0 and 11 (`0x00558132`-`0x00558169`, `0x00558A67`-`0x00558A7E`); stepped to `+0x15C` + `+0x160` x t during a turn and to the end when it finishes (`0x00558B45`, `0x00558B75`) |
 | `+0x354` | `u32` | member | the member's roster slot: the window's `+0xD8` on construction (`0x00557FEB`-`0x00557FF1`), [`0x0209AC30`] + `0xDE0` on a member switch (`0x00558775`-`0x00558783`); `0x00282DF0` resolves it for the member's boards (`0x005580E9`, `0x00558434`, `0x005585D9`, `0x005588E1`) |
-| `+0x358` | `i8` | board | the board shown, 0-11: the member's active board `0x003236B0`, or the window's `+0xDC` when `+0x388` bit 1 is set, 0 for none (`0x005580E0`-`0x00558122`); `0x00557B90` steps it by one with the two directions, wrapping between 11 and 0, and posts the turn command `0x8000` (`0x00557C49`-`0x00557CB1`); `0x00556EC0` builds the description box for it (`0x00556EE2`); stage 4 sets its bit in `+0x364` (`0x00557E2D`); the confirm stores it (`0x00558637`-`0x00558652`) |
+| `+0x358` | `i8` | board | the board shown, 0-11: the member's active board `0x003236B0`, or the window's `+0xDC` when `+0x388` bit `0x2` is set, 0 for none (`0x005580E0`-`0x00558122`); `0x00557B90` steps it by one with the two directions, wrapping between 11 and 0, and posts the turn command `0x8000` (`0x00557C49`-`0x00557CB1`); `0x00556EC0` builds the description box for it (`0x00556EE2`); stage 4 sets its bit in `+0x364` (`0x00557E2D`); the confirm stores it (`0x00558637`-`0x00558652`) |
 | `+0x359` | `u8[3]` | gap359 | read and written by no function; nothing fixes its width |
 | `+0x35C` | `i32` | centreX | the wheel centre's x, half the screen width `0x01E0C1D8` (`0x0055816F`-`0x00558186`); the parts are placed and the effects started at it (`0x005581AC`-`0x005581F1`, `0x0055898F`, `0x005585F0`, `0x0055890B`) |
 | `+0x360` | `i32` | centreY | the wheel centre's y, half the screen height `0x01E0C1DC` less `0x17` (`0x0055817F`-`0x005581A6`); the parts sit `0x28`, `0x2A` and `0x2B` above it (`0x005581A2`-`0x005581C1`) |
@@ -443,7 +443,7 @@ The board chooser is the `0x390`-byte widget with procedure `0x00557DB0` that th
 | `+0x384` | `u8` | cue1 | the second cue, sound `0x4A` (`0x00558610`) |
 | `+0x385` | `u8` | cue2 | the third cue, sound `0x6B` (`0x00558619`) |
 | `+0x386` | `u8[2]` | gap386 | read and written by no function; nothing fixes its width |
-| `+0x388` | `u32` | flags | bit 0: input is held: set on construction (`0x00558235`), by a step (`0x00557CDD`) and when the confirm question opens (`0x00558475`, `0x005584E1`), cleared at stages 2 and 4 (`0x00557E4C`, `0x00557EEA`) and by the answer No (`0x005586EE`); the input turn does nothing while it is set (`0x00558261`). Bit 1: start at the window's board: the window's `+0xE0` bit 1 (`0x00558036`-`0x0055804C`), tested at `0x005580E0`. Bit 2: the member has no first board, so the confirm stores a first board through `0x00323740` rather than a second through `0x003236F0` (`0x00558475`, `0x005584DE`, `0x00558630`-`0x00558652`) |
+| `+0x388` | `u32` | flags | bit `0x1`: input is held: set on construction (`0x00558235`), by a step (`0x00557CDD`) and when the confirm question opens (`0x00558475`, `0x005584E1`), cleared at stages 2 and 4 (`0x00557E4C`, `0x00557EEA`) and by the answer No (`0x005586EE`); the input turn does nothing while it is set (`0x00558261`). Bit `0x2`: start at the window's board: the window's `+0xE0` bit `0x2` (`0x00558036`-`0x0055804C`), tested at `0x005580E0`. Bit `0x4`: the member has no first board, so the confirm stores a first board through `0x00323740` rather than a second through `0x003236F0` (`0x00558475`, `0x005584DE`, `0x00558630`-`0x00558652`) |
 | `+0x38C` | `u8[4]` | tail38C | read and written by no function; nothing fixes its width |
 
 ## Shipped data

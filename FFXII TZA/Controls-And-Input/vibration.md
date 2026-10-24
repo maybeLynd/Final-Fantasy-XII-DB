@@ -75,7 +75,7 @@ to the next pair. A pair with duration 0 ends its track, and a slot whose two tr
 
 - `0x0035B4B0(mask)` adds the bits to `0x02EC0B40` and moves every playing slot whose mask shares a bit to state 3.
 - `0x0035B510(mask)` removes the bits and moves every slot in state 3 back to 2, whatever its mask.
-- `0x00226280` calls `0x0035B4B0(5)` when bit 29 of the flags it combines is clear and `0x0035B510(0xFF)` otherwise
+- `0x00226280` calls `0x0035B4B0(5)` when bit `0x20000000` of the flags it combines is clear and `0x0035B510(0xFF)` otherwise
   (`0x002264AE`, `0x002264B7`).
 
 So `vibplay`'s mask 2 is never paused, and an effect's mask 1 is.
@@ -95,11 +95,11 @@ menu frame and the capture-backed frame first clear the four levels with `0x0035
 
 On every poll `0x0035F420` calls `0x0035F590` (`0x0035F548`):
 
-1. With the channel's flag bit 2 set, the large value is the envelope `+0x16` times the actuator-1 level `+0x07`,
-   shifted right 14, and the small value is bit 21 of the envelope `+0x16` times the actuator-0 level `+0x06`
+1. With the channel's flag bit `0x4` set, the large value is the envelope `+0x16` times the actuator-1 level `+0x07`,
+   shifted right 14, and the small value is bit `0x200000` of the envelope `+0x16` times the actuator-0 level `+0x06`
    (`0x0035F61B`-`0x0035F639`: multiplied, shifted right 14, then right 7, then masked with 1); without it both are 0.
-2. It hands them through `0x008628F0` to `0x001E1120(pad +0x02, small, large)`, and sets flag bit 4 when either level it read
-   is non-zero. `0x0035FCA0` clears bit 4 before each poll (`0x0035FCE8`).
+2. It hands them through `0x008628F0` to `0x001E1120(pad +0x02, small, large)`, and sets flag bit `0x10` when either level it read
+   is non-zero. `0x0035FCA0` clears bit `0x10` before each poll (`0x0035FCE8`).
 3. `0x001E1120` sends zeros instead unless the input manager's last-device byte `+0x38` says the pad was used last
    (`0x00197780`) and `0x00228480` answers 0 (`0x001E1148`-`0x001E116F`).
 4. `0x00198E80` takes the n-th registered controller of kind 2 (`0x0079D620`, `0x00796FC0(2, n)`) and `0x007A1080` stores the
@@ -117,9 +117,9 @@ vibration.
 
 ### The Vibration Function setting
 
-The Config option Vibration Function is bit 13 of the options word `*0x0215E6E0`. `0x002DE080` stores it from the Config
+The Config option Vibration Function is bit `0x2000` of the options word `*0x0215E6E0`. `0x002DE080` stores it from the Config
 screen (`0x00240865`) and `0x002DDA30` applies it when the options are loaded; both pass it to `0x0035FF30(0, bit)`,
-which sets or clears flag bit 2 of channel 0 (`0x002DDAA4`). `0x0035FF30` has no other caller, so nothing sets that bit
+which sets or clears flag bit `0x4` of channel 0 (`0x002DDAA4`). `0x0035FF30` has no other caller, so nothing sets that bit
 for channel 1.
 
 ### The fade-out
@@ -129,7 +129,7 @@ the step `+0x18`:
 
 | While | Count | What happens |
 |---|---|---|
-| vibrating (flag bit 4) | `+0x12` past `0x6DF` (1759 polls) | the step becomes -546: the envelope falls |
+| vibrating (flag bit `0x10`) | `+0x12` past `0x6DF` (1759 polls) | the step becomes -546: the envelope falls |
 | vibrating | `+0x12` past `0x6FE` (1790 polls) | the envelope is held at 0 while `+0x10` counts |
 | vibrating | `+0x10` past `0xB3` (180 polls) | the step becomes +546 and the counts restart |
 | not vibrating | `+0x14` reaches `0xB4` (180 polls) | the envelope returns to `0x4000` and `+0x12` to 0 |
@@ -180,9 +180,9 @@ The eight recorded handles at `0x022C8030` are `u32`s that `0x0035B270` clears w
 | `0x022C8040` | `u32[2]` | 0 | recorded handles 4 and 5 | as for `0x022C8038`, `0x0035B270` at `0x0035B2C7` | as for `0x022C8038` |
 | `0x022C8048` | `u32[2]` | 0 | recorded handles 6 and 7 | as for `0x022C8038`, `0x0035B270` at `0x0035B2CE` | as for `0x022C8038` |
 | `0x02EC0F60` | `u8` | 0 | slot 31's next byte: `0x0035B270` chains slot i to slot i + 1 and ends the free list here with `0xFF` (`0x0035B288`, `0x0035B29D`); later the list code moves it like any slot's | `0x0035B270` (`0x0035B288`, `0x0035B29D`); `0x0035B1A0` (`0x0035B216`, `0x0035B226`); `0x0035B2F0` (`0x0035B346`) | `0x0035B1A0` (`0x0035B1D0`, `0x0035B1F6`, `0x0035B20E`); `0x0035B2F0` (`0x0035B31F`); `0x0035AF20` (`0x0035B143`) |
-| `0x022CB5C0` | `u8` | 0 | the large value `0x0035F590` computes for the pad (actuator 1), 0 without the channel's flag bit 2 or without bit 1 of the argument byte that `0x022CB600` keeps (`0x0035F5BB`-`0x0035F602`) | `0x0035F590` (`0x0035F5BB`, `0x0035F5FA`, `0x0035F602`) | `0x008628F0`, which hands it to `0x001E1120` as the large value (`0x008628F7`), through the address `0x0035F590` passes (`0x0035F668`) |
+| `0x022CB5C0` | `u8` | 0 | the large value `0x0035F590` computes for the pad (actuator 1), 0 without the channel's flag bit `0x4` or without bit `0x2` of the argument byte that `0x022CB600` keeps (`0x0035F5BB`-`0x0035F602`) | `0x0035F590` (`0x0035F5BB`, `0x0035F5FA`, `0x0035F602`) | `0x008628F0`, which hands it to `0x001E1120` as the large value (`0x008628F7`), through the address `0x0035F590` passes (`0x0035F668`) |
 | `0x022CB5C1` | `u8` | 0 | the small value, 0 or 1 (`0x0035F60F`-`0x0035F641`) | `0x0035F590` (`0x0035F5BB`, `0x0035F639`, `0x0035F641`) | `0x008628F0` (`0x008628FB`), the same way |
-| `0x022CB600` | `u8` | 0 | the byte `0x0035F590`'s third argument points to, `& 3`: bit 1 lets the large value be computed and bit 0 the small one (`0x0035F5D7`, `0x0035F60F`); stored when either is; `0x0035F590` passes its address to `0x008628F0` (`0x0035F661`), which does not use that argument | `0x0035F590` (`0x0035F5D0`, `0x0035F650`) | no instruction |
+| `0x022CB600` | `u8` | 0 | the byte `0x0035F590`'s third argument points to, `& 3`: bit `0x2` lets the large value be computed and bit `0x1` the small one (`0x0035F5D7`, `0x0035F60F`); stored when either is; `0x0035F590` passes its address to `0x008628F0` (`0x0035F661`), which does not use that argument | `0x0035F590` (`0x0035F5D0`, `0x0035F650`) | no instruction |
 
 No other instruction reaches these globals. The handles' address is taken only by `0x0035AE30`, `0x0035B380`,
 `0x0035B460`, `0x0035B5D0` and `0x0035B650`, the slots' by the slot functions above, and the address of `0x022CB5C0` and

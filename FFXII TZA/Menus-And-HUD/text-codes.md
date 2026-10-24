@@ -38,8 +38,8 @@ selector, is:
 | `0F 40`-`0F 6B`, the icons | 3 | `0x002AEB20`, which always returns 2 |
 | most escapes | 4 | `0x003FFAB0`, `0x003FFB90`, `0x003FFC60`, `0x003FFDA0`, `0x003FFEE0` |
 | `0F 1`, `0F l` | 5 | `0x003FFF10`, `0x003FFCE0` |
-| `0F 8`, `0F o` | 4, or 5 when bits 0-2 of the first payload byte are set | `0x003FFB00` |
-| `0F )` | 3 + the larger of 1 and bits 0-2 of the first payload byte | `0x003FFBC0` |
+| `0F 8`, `0F o` | 4, or 5 when bits `0x7` of the first payload byte are set | `0x003FFB00` |
+| `0F )` | 3 + the larger of 1 and bits `0x7` of the first payload byte | `0x003FFBC0` |
 | `0F *` | 4 + bits 0-6 of the second payload byte | `0x003FFD70` |
 
 Token `0x08` is 3 bytes (`0x002AD011`), tokens `0x0B`-`0x0D` move nothing (`0x002AC6CA`), and every other token is 1
@@ -56,9 +56,9 @@ stops at a zero byte and writes one. The battle log's
 
 ### Choice lists
 
-Token `0x0E` (`0x002AC825`, parser `0x003FFDF0`) is a choice list. Bits 0-6 of its first byte give the option count;
-when bit 0 of the fourth byte is set, a field of one bit per option follows, one byte per seven options. Each option
-is a length byte (bits 0-6) and that many bytes of text, which may hold codes of its own. An option whose bit is set
+Token `0x0E` (`0x002AC825`, parser `0x003FFDF0`) is a choice list. Bits `0x7F` of its first byte give the option count;
+when bit `0x1` of the fourth byte is set, a field of one bit per option follows, one byte per seven options. Each option
+is a length byte (bits `0x7F`) and that many bytes of text, which may hold codes of its own. An option whose bit is set
 in the text context's mask `+0x84` is left out (`0x002AC957`). The list stops on its own `00`, so a list always ends
 its string.
 
@@ -120,8 +120,8 @@ The four blank tokens scale with the text size and letter spacing (`0x002ACC97`-
 | `0F /` | the type-out speed (`0x002A91EA`-`0x002A93AE`) |
 | `0F "` | the pager's rate value `+0x9E` (`0x002AD1ED`, `0x002A9442`-`0x002A94C1`) |
 | `0F ;` | read by the pager at `0x002A94CD` |
-| `0F p` | sets pager flag bit 20 (`0x002A9670`-`0x002A96E2`) |
-| `0F 9` | sets `+0xA7` and pager flag bit 21 (`0x002AE190`-`0x002AE1A1`) |
+| `0F p` | sets pager flag bit `0x100000` (`0x002A9670`-`0x002A96E2`) |
+| `0F 9` | sets `+0xA7` and pager flag bit `0x200000` (`0x002AE190`-`0x002AE1A1`) |
 | `0F =` | sets `+0xAE` (`0x002AE1DB`, `0x002A96EA`) |
 | `0F :` | resets the text state without ending the run (`0x002AE1B1`) |
 

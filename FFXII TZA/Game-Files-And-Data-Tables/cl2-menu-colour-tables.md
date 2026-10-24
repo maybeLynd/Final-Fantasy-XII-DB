@@ -77,6 +77,31 @@ Measured over every `.cl2` in the archive and every `menumap_common.bin`.
 | `menumap_common.bin` | nine copies, 1,760 bytes; entry table at `0x0C` with 48 entries; byte `+1` is 1 in entry 40 and 2 in entry 46, 0 elsewhere |
 | selected | entry 40 requests `0xE2` (`Loca_gil`), entry 46 requests `0xE3` (`Loca_bhm`); no entry selects `0xE4` |
 
+[`cl2-menu-colour-tables-cl2-rows.tsv`](cl2-menu-colour-tables-cl2-rows.tsv) lists the 20 files, with size,
+SHA-256, kind-7 id, the language ids whose path array names each copy with their size-table entries, and
+every header field, then all 1,056 colours of the three distinct contents: the raw RGBA, the alpha the
+upload makes of it, the palette and pixel value the colour serves, and how many pixels of the selecting map
+entry's pictures carry that value.
+
+- `Loca_gil.cl2` recolours the two pictures of map entry 40, the Great Crystal maps `gil_i01` and `gil_i02`,
+  and `Loca_bhm.cl2` the four of entry 46, the Sky Fortress Bahamut maps `bhm_a01`, `bhm_a02`, `bhm_a03` and
+  `bhm_b01`. Those pictures have the same pixel counts in all nine languages.
+- Language ids 0, 6, 9 and 10 read the `in` copies; ids 1 to 5, 7, 8 and 11 read their own folder's (`us`,
+  `fr`, `de`, `it`, `es`, `kr`, `ch`, `cn`). Every size table gives `0xE2` and `0xE3` their 2,112 bytes.
+- For an 8-bit picture `0x00181000` makes one 256-colour palette per 256 colours (`0x00181039`), so the 512
+  colours are palettes 0 and 1. Within a palette, pixel value `v` takes colour `v` with its bits `0x8` and
+  `0x10` exchanged (`0x00181064`-`0x00181108`): colour 8 serves pixel value 16. Every pixel value from 0 to 255
+  occurs in the pictures.
+- 239 colours of each 512-colour table have alpha `0xFF`, above the PS2 opaque `0x80`; the TSV marks them
+  out of range, and the upload draws them at 255 like `0x80`. Every other alpha is at most `0x6F`.
+- `Loca_rbl.cl2` (`0xE4`, 32 colours, `ch` and `in`) is selected by no map entry: byte `+1` is 0 in the 46
+  other entries of all nine `menumap_common.bin` copies, so the pane loader never asks for `0xE1 + 3`. The
+  US, FR, DE, IT, ES, KR and CN size tables hold -1 for it.
+- A replacement keeps its palette at `0x10 + headerSize + imageSize`, `colours x 4` bytes long, and a count
+  below `0x4000`, or `0x0024A480` keeps no palette for the picture (`0x0024A4AA`). Colours past the last
+  multiple of 256 serve no 8-bit picture. The read is sized by the size table, so a file of another size
+  needs its entries changed.
+
 ## Loader behaviour
 
 ### The reader

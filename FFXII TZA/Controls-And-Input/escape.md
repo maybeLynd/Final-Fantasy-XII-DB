@@ -29,7 +29,7 @@ nothing else touches them (`0x002541D4`-`0x00254258`):
 
 1. While R2 is held, the override is cleared, and on the first frame of the press the toggle flips
    (`0x002541D4`-`0x002541FD`); the latch then stays set.
-2. When R2 is released, input snapshot bit 9 (`0x02F97360`) is set and `0x00862CF0` does not answer 1, the toggle and the
+2. When R2 is released, input snapshot bit `0x200` (`0x02F97360`) is set and `0x00862CF0` does not answer 1, the toggle and the
    override are set to 1 (`0x0025420A`-`0x00254228`), and the latch is left set.
 3. Otherwise, when the override is set or the area's town bit is set (`0x00313F60`), the toggle is set to 0
    (`0x0025422A`-`0x0025423B`).
@@ -43,15 +43,15 @@ does not flip the toggle.
 
 `0x00252B60(toggle, force)` decides what reaches the flag (`0x00252B60`-`0x00252C7F`):
 
-1. With input snapshot bit 25 set it does nothing (`0x00252B7A`-`0x00252B86`).
-2. When the aggregate action policy `0x002E0FA0` has bit 6, bit 9 or bit 10 set, or `0x00237260` answers non-zero, the
-   toggle becomes 0 with `force` 1 (`0x00252B8C`-`0x00252BB3`). Bit 9 also sets the quiet bit through `0x00366950`.
+1. With input snapshot bit `0x2000000` set it does nothing (`0x00252B7A`-`0x00252B86`).
+2. When the aggregate action policy `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or `0x00237260` answers non-zero, the
+   toggle becomes 0 with `force` 1 (`0x00252B8C`-`0x00252BB3`). Bit `0x200` also sets the quiet bit through `0x00366950`.
 3. A `0x020927CC` of 1 does the same (`0x00252BB6`-`0x00252BC1`).
 4. The battle mode register `0x0035C6F0` can replace the toggle, in the next two steps.
-5. With bit 2 or 3 of the register set, the toggle becomes input snapshot bit 9, or 0 when policy bit 10 is set
+5. With bit `0x4` or `0x8` of the register set, the toggle becomes input snapshot bit `0x200`, or 0 when policy bit `0x400` is set
    (`0x00252BCD`-`0x00252BEC`). It writes `0x0035C880(0xC, (register & 4) * 2)`, then `0x0035C880(0xC, 0)` when the toggle
    is 0, and sets the quiet bit (`0x00252BEF`-`0x00252C0C`).
-6. Otherwise, with bit 0 of the register set, the toggle becomes the register's bit 1 (`0x00252C13`-`0x00252C25`).
+6. Otherwise, with bit `0x1` of the register set, the toggle becomes the register's bit `0x2` (`0x00252C13`-`0x00252C25`).
 7. Only when `0x003603B0` and `0x003603C0` both answer 0 does it arm (`0x00252C28`-`0x00252C5D`). While the toggle is 1 it
    runs the arming step `0x00366870` and passes on the armed bit from `0x003669F0` instead of the toggle. While the
    toggle is 0 it runs the disarm step `0x003667E0`. Otherwise the toggle is passed on unarmed.
@@ -70,25 +70,25 @@ otherwise (`0x00254EC5`).
 
 ### Arming
 
-The arming state is the word `0x022CBE1A`. Both steps return at once when the battle mode register has bit 0 set
+The arming state is the word `0x022CBE1A`. Both steps return at once when the battle mode register has bit `0x1` set
 (`0x00366874`-`0x0036687B`, `0x003667E4`-`0x003667EB`).
 
-1. `0x00366870` counts frames in `0x022CBE18`. On the first frame, bit 0 clear, it restarts the count and starts a
-   repeating sound, block slot `0x52`, and sets bit 4 (`0x0036688D`-`0x003668E0`).
-2. When the count reaches `0x022CBE08` it pins the count there and sets the armed bit, bit 2, and on that frame only
-   also bit 3 (`0x00366902`-`0x00366918`).
-3. Every frame it clears bits 1 and 6 and sets bit 0 (`0x0036691C`-`0x00366928`).
+1. `0x00366870` counts frames in `0x022CBE18`. On the first frame, bit `0x1` clear, it restarts the count and starts a
+   repeating sound, block slot `0x52`, and sets bit `0x10` (`0x0036688D`-`0x003668E0`).
+2. When the count reaches `0x022CBE08` it pins the count there and sets the armed bit, bit `0x4`, and on that frame only
+   also bit `0x8` (`0x00366902`-`0x00366918`).
+3. Every frame it clears bits `0x2` and `0x40` and sets bit `0x1` (`0x0036691C`-`0x00366928`).
 4. `0x003667E0` plays the disarm cue, block slot `0x2A` through `0x00249C60`, when the armed bit is set, `0x00265680`
-   answers non-zero and the quiet bit, bit 6, is clear (`0x003667ED`-`0x0036680D`).
-5. It then stops the repeating sound if it plays, clears bits 0, 2, 3, 4, 5 and 6, and sets bit 1
+   answers non-zero and the quiet bit, bit `0x40`, is clear (`0x003667ED`-`0x0036680D`).
+5. It then stops the repeating sound if it plays, clears bits `0x1`, `0x4`, `0x8`, `0x10`, `0x20` and `0x40`, and sets bit `0x2`
    (`0x00366812`-`0x0036685B`).
 
 `0x022CBE08` is 30 times the frame-time base `0x01DFE0B4`, set once by `0x00366B80` (`0x003670A6`-`0x003670B7`): one second
 of frames. Until it is reached `0x003669F0` answers 0, the applier passes 0, and the flag does not change.
 
 Two setters skip the count. `0x00366960(on)`, run by `0x0028E580`, writes the count word `0x022CBE18` with the full
-delay and the arming word `0x022CBE1A` with `0x25` (bits 0, 2 and 5: armed at once), or clears both for 0.
-`0x003667B0(on)`, run by `0x00280140`, sets or clears bit 7 of the arming word.
+delay and the arming word `0x022CBE1A` with `0x25` (bits `0x1`, `0x4` and `0x20`: armed at once), or clears both for 0.
+`0x003667B0(on)`, run by `0x00280140`, sets or clears bit `0x80` of the arming word.
 
 The escape widget `0x00366B80`, built by `0x00366740` from `0x00253A30`, draws its parts with two helpers: `0x00367110(points,
 node, x)` writes five points through `0x00862980`: (0, 0), (x - w, top / 2), (left - w / 2, top + h / 2),
@@ -122,12 +122,12 @@ The escape widget is the `0xE0`-byte widget at `0x022CBE20` with procedure `0x00
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00366B80` |
 | `+0xC0` | `void*` | atlas | the image label battle_4_c (the name at `0x009152B0` through `0x01E0C1E8`), looked up with `0x0024A5A0` on construction (`0x003670DC`-`0x003670E1`); no function reads it back |
-| `+0xC8` | `void*` | latch | the address of the latch words `0x022CBE18` that `0x00366740` passes as the construct message's second argument (`0x00367096`-`0x0036709A`). The draw fills the gauge from the count word `+0x00` against the delay `0x022CBE08` (`0x00366C5B`-`0x00366C6A`, `0x00366CE6`-`0x00366D0D`); the update reads the arming word `+0x02`: bit 7 runs the disarm `0x003667E0` (`0x00366F0E`-`0x00366F1B`), bit 3 or 5 starts the pulse and is cleared (`0x00366F40`-`0x00366F8C`), bit 2 keeps the pulse running (`0x00366F9C`-`0x00366FAC`), bits 0 and 1 fade the picture in and out (`0x00366FE6`-`0x0036701D`) |
-| `+0xD0` | `i16` | alpha | the picture's alpha, 0 to 128: set to 128 when a pulse starts with bit 5 (`0x00366F5B`); rises by 128 / [`0x022CBE0C`] per update while arming bit 0 is set and falls to 0 while bit 1 is set, when no pulse runs (`0x00366FE6`-`0x00367037`); while a pulse runs the draw sets it to 96 + 32 sin(pi x frames since `+0xD4` / 30) (`0x00366BEC`-`0x00366C29`). The draw draws nothing while it is 0 (`0x00366BD0`) and scales each node's alpha `+0x58` by it (`0x00366DDC`-`0x00366E10`) |
-| `+0xD2` | `i16` | brightness | the picture's brightness scale: 255 when a pulse starts with bit 3 and without bit 5 (`0x00366F71`-`0x00366F80`), 128 with bit 5 (`0x00366F5B`); each update takes 128 / [`0x022CBE14`] from it down to 128 (`0x00366FB4`-`0x00366FD0`). The draw multiplies the draw record's brightness `+0x5A` by it over 128 (`0x00366D6F`-`0x00366D86`) |
+| `+0xC8` | `void*` | latch | the address of the latch words `0x022CBE18` that `0x00366740` passes as the construct message's second argument (`0x00367096`-`0x0036709A`). The draw fills the gauge from the count word `+0x00` against the delay `0x022CBE08` (`0x00366C5B`-`0x00366C6A`, `0x00366CE6`-`0x00366D0D`); the update reads the arming word `+0x02`: bit `0x80` runs the disarm `0x003667E0` (`0x00366F0E`-`0x00366F1B`), bit `0x8` or 5 starts the pulse and is cleared (`0x00366F40`-`0x00366F8C`), bit `0x4` keeps the pulse running (`0x00366F9C`-`0x00366FAC`), bits `0x1` and `0x2` fade the picture in and out (`0x00366FE6`-`0x0036701D`) |
+| `+0xD0` | `i16` | alpha | the picture's alpha, 0 to 128: set to 128 when a pulse starts with bit `0x20` (`0x00366F5B`); rises by 128 / [`0x022CBE0C`] per update while arming bit `0x1` is set and falls to 0 while bit `0x2` is set, when no pulse runs (`0x00366FE6`-`0x00367037`); while a pulse runs the draw sets it to 96 + 32 sin(pi x frames since `+0xD4` / 30) (`0x00366BEC`-`0x00366C29`). The draw draws nothing while it is 0 (`0x00366BD0`) and scales each node's alpha `+0x58` by it (`0x00366DDC`-`0x00366E10`) |
+| `+0xD2` | `i16` | brightness | the picture's brightness scale: 255 when a pulse starts with bit `0x8` and without bit `0x20` (`0x00366F71`-`0x00366F80`), 128 with bit `0x20` (`0x00366F5B`); each update takes 128 / [`0x022CBE14`] from it down to 128 (`0x00366FB4`-`0x00366FD0`). The draw multiplies the draw record's brightness `+0x5A` by it over 128 (`0x00366D6F`-`0x00366D86`) |
 | `+0xD4` | `u32` | pulseStart | the frame counter `0x0208F570` when the pulse started (`0x00366F90`-`0x00366F96`); the draw's pulse takes the frames since then (`0x00366BEC`-`0x00366BF5`) |
-| `+0xD8` | `u16` | pulsing | 1 while the armed pulse runs: set with `+0xDA` by one dword store when arming bit 3 or 5 is seen (`0x00366F65`, `0x00366F76`); the update clears it while arming bit 2 is clear (`0x00366FA6`-`0x00366FAC`). While it is set the update leaves the alpha alone (`0x00366FD8`), the draw pulses the alpha (`0x00366BDE`) and draws the ring copy (`0x00366E2B`) |
-| `+0xDA` | `u16` | ringScale | the scale of the expanding copy, in 256ths: `0x100` when the pulse starts with bit 3 (`0x00366F76`), `0x200` with bit 5 (`0x00366F65`); each update adds `0x20` up to `0x200` (`0x00366F20`-`0x00366F38`). While it is below `0x200` the draw draws each node a second time at this scale with its alpha times (`0x200` - scale) / 256 (`0x00366E35`-`0x00366E8B`) |
+| `+0xD8` | `u16` | pulsing | 1 while the armed pulse runs: set with `+0xDA` by one dword store when arming bit `0x8` or `0x20` is seen (`0x00366F65`, `0x00366F76`); the update clears it while arming bit `0x4` is clear (`0x00366FA6`-`0x00366FAC`). While it is set the update leaves the alpha alone (`0x00366FD8`), the draw pulses the alpha (`0x00366BDE`) and draws the ring copy (`0x00366E2B`) |
+| `+0xDA` | `u16` | ringScale | the scale of the expanding copy, in 256ths: `0x100` when the pulse starts with bit `0x8` (`0x00366F76`), `0x200` with bit `0x20` (`0x00366F65`); each update adds `0x20` up to `0x200` (`0x00366F20`-`0x00366F38`). While it is below `0x200` the draw draws each node a second time at this scale with its alpha times (`0x200` - scale) / 256 (`0x00366E35`-`0x00366E8B`) |
 | `+0xDC` | `u8[4]` | tail0DC | read and written by no function; nothing fixes its width |
 
 ## State
@@ -138,9 +138,9 @@ picture's alpha `+0xD0` and brightness `+0xD2` by 128 divided by them; its draw 
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CBE0C` | `i32` | 0 | the frames the picture takes to fade, 30 times the base over 6, so 5: while the arming word `0x022CBE1A` has bit 0 the alpha rises by `128 / 5` a frame to 128, and while it has bit 1 it falls to 0 (`0x00366FE6`-`0x00367037`); the pulse of an armed escape replaces both | `0x00366B80` (`0x003670D0`) | `0x00366B80` (`0x00366FF3`, `0x00367024`) |
+| `0x022CBE0C` | `i32` | 0 | the frames the picture takes to fade, 30 times the base over 6, so 5: while the arming word `0x022CBE1A` has bit `0x1` the alpha rises by `128 / 5` a frame to 128, and while it has bit `0x2` it falls to 0 (`0x00366FE6`-`0x00367037`); the pulse of an armed escape replaces both | `0x00366B80` (`0x003670D0`) | `0x00366B80` (`0x00366FF3`, `0x00367024`) |
 | `0x022CBE10` | `i32` | 0 | 30 times the base, the same value as `0x022CBE08`; nothing reads it | `0x00366B80` (`0x003670C0`) | no instruction |
-| `0x022CBE14` | `i32` | 0 | the frames the picture's brightness takes to settle, 20 times the base: when the escape is armed with bit 3 and without bit 5 the brightness jumps to 255 (`0x00366F71`-`0x00366F80`), and each update takes `128 / 20` from it down to 128 (`0x00366FB4`-`0x00366FD0`) | `0x00366B80` (`0x003670D6`) | `0x00366B80` (`0x00366FB9`) |
+| `0x022CBE14` | `i32` | 0 | the frames the picture's brightness takes to settle, 20 times the base: when the escape is armed with bit `0x8` and without bit `0x20` the brightness jumps to 255 (`0x00366F71`-`0x00366F80`), and each update takes `128 / 20` from it down to 128 (`0x00366FB4`-`0x00366FD0`) | `0x00366B80` (`0x003670D6`) | `0x00366B80` (`0x00366FB9`) |
 | `0x022CBE20` | `void*` | 0 | the escape widget: the `0xE0`-byte widget with procedure `0x00366B80` that `0x00366740` creates through `0x00244F50` and opens (`0x00246AC0`), passing it the address `0x022CBE18` | `0x00366740` (`0x0036678D`), run by the field set-up `0x00253A30` (`0x00253A57`); `0x00366A00`, 0 after it destroys the widget with `0x00245020` (`0x00366A15`), run by `0x00252DE0` (`0x00252E15`) | `0x00366740`, which builds it only while it is 0 (`0x00366753`); `0x00366A00` (`0x00366A04`) |
 
 No other instruction reaches these four.

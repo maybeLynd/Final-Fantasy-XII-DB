@@ -29,8 +29,8 @@ then open its window with `0x002E16B0`; the settings apply to the next window op
 | `mesopenspeed`, `mesopenspeed_1b` | `0x1A`, `0x1B` | `0x002E1D10` | the run lengths, each the value times 33 ms or a negative value kept: `mesopenspeed` (`0x00350B50`) sets the opening run `+0x30` and writes -1 to the closing run `+0x34`; `mesopenspeed_1b` (`0x003510D0`) sets both |
 | `askpos`, `debug_mesask_43` | `0x13`, `0x2043` | `0x002E1D50` | the choice list's start row `+0x24`, cancel row `+0x28` and cancel switch `+0x39`, with the flag `+0x3B` |
 | `setaskselectignore` | `0x475` | `0x002E20D0` | sets or clears bit n of the hidden-choices mask `+0x18` |
-| `setmeswinactive` | `0x476` | `0x002E2160` | bit 0 of `+0x44`: the next window opens without taking the focus |
-| `setmeswinhidestatus` | `0x3D3` | `0x002E21E0` | on the open window: 2 sets bit 20 of its `+0x40`, any other value clears it (`0x002A31F0`) |
+| `setmeswinactive` | `0x476` | `0x002E2160` | bit `0x1` of `+0x44`: the next window opens without taking the focus |
+| `setmeswinhidestatus` | `0x3D3` | `0x002E21E0` | on the open window: 2 sets bit `0x100000` of its `+0x40`, any other value clears it (`0x002A31F0`) |
 | `setmesmacro` | `0x1A8` | `0x002E1B70` | entry n of the slot's 32 macros at `0x0215F540 + slot x 0x100`: a kind and a value |
 | `updatemesmacro` | `0x1A9` | `0x002E22A0` | re-reads macro n into the open window (`0x002A30B0`) |
 | `shapewin`, `debug_meswinrect`, `mes`, `aask_1ff` | `0x17C`, `0x2020`, `0x461`, `0x1FF` | `0x002E1F80` | the window rectangle `+0x10`-`+0x16`, with the flag `+0x3A` |
@@ -39,7 +39,7 @@ then open its window with `0x002E16B0`; the settings apply to the next window op
 | `mes`, `aask_1ff` | | `0x002E1F40` | the window kind `+0x3C` |
 
 Verb names and ids are those of the [verb table](../Scripts-And-Script-Commands/verb-table.md). `messync` and
-`messync2` (`0x11`, `0x129`) set bit 1 and bit 0 of `+0x3E` (`0x00357820`, through `0x002E1E70` and `0x002E1E40`).
+`messync2` (`0x11`, `0x129`) set bit `0x2` and bit `0x1` of `+0x3E` (`0x00357820`, through `0x002E1E70` and `0x002E1E40`).
 
 ### Opening a window
 
@@ -79,7 +79,7 @@ open: it does nothing while `+0x60` is set and sets it after the move (`0x002E05
 - the `askpos` rows `+0x24` and `+0x28` and the cancel switch `+0x39`, read at `0x002E1978`-`0x002E1981`; only their flag
   `+0x3B` is cleared, by the same word write as `+0x3A` (`0x002E19A1`);
 - the choice byte `+0x38`, the style `+0x3D` (read at `0x002E174B`) and the `messync` bits `+0x3E`;
-- bits 1-7 of `+0x44`; the open clears bit 0 only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
+- bits 1-7 of `+0x44`; the open clears bit `0x1` only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
   stores `value & 1`);
 - the `setshapeanime` animation `+0x46`-`+0x4B` and `+0x50`-`+0x53`, which only `0x003E9440` writes
   (`0x003E9451`-`0x003E9468`) and only `0x003E9320` reads (`0x003E9380`-`0x003E9391`);
@@ -108,8 +108,8 @@ once the page is done (1, 6 and any other); for pager states 2, 4 and 6 it also 
 | State | Set by | Means |
 |---:|---|---|
 | `1` | `0x002E16B0`; the drain on answer 1 | the text is running |
-| `2` | answer 2 with `+0x3E` bits 0 and 1 clear; with bit 0 set, the tick after state 3 | done, the window stays |
-| `3` | answer 2 with bit 1 set; with bit 0 set, a confirm press (`0x002A29A0`, `0x002E0B35`-`0x002E0B4D`); a choice slot on answer 2 | done and acknowledged |
+| `2` | answer 2 with `+0x3E` bits `0x1` and `0x2` clear; with bit `0x1` set, the tick after state 3 | done, the window stays |
+| `3` | answer 2 with bit `0x2` set; with bit `0x1` set, a confirm press (`0x002A29A0`, `0x002E0B35`-`0x002E0B4D`); a choice slot on answer 2 | done and acknowledged |
 | `4` | answer 3 | a choice list is open |
 | `6` | the close paths | closing |
 | `7` | the close paths; `0x002E1130` answers 7 for an empty slot | no window |
@@ -124,15 +124,15 @@ are not taken (`0x002E0AB1`-`0x002E0AD2`). `0x002A29A0` answers the confirm butt
 (`+0x3C5` negative) and 0 while the log of a focused window is open.
 
 The getters the verbs read are `0x002E1130` (the state), `0x002E10F0` (`+0x0C`), `0x002E1080` (`+0x2C`, read by
-`mesisselect`), `0x002E1170` (`+0x40`, read by the `aask_1ff` poll `0x0034BDC0`) and `0x002E10C0` (bit 0 of `+0x3E`).
+`mesisselect`), `0x002E1170` (`+0x40`, read by the `aask_1ff` poll `0x0034BDC0`) and `0x002E10C0` (bit `0x1` of `+0x3E`).
 
 ### Waiting on a window
 
 `messync`'s poll `0x00348920` calls `0x00357790`, which keeps the script waiting by answering 1
 ([native commands](../Scripts-And-Script-Commands/native-commands.md): a poll that returns odd keeps waiting):
 
-- state 3 with `+0x3E` bit 0 clear: 0, the script goes on and the window stays;
-- state 3 with bit 0 set: the window is closed with `0x002E08C0` and the wait goes on;
+- state 3 with `+0x3E` bit `0x1` clear: 0, the script goes on and the window stays;
+- state 3 with bit `0x1` set: the window is closed with `0x002E08C0` and the wait goes on;
 - state 6: it waits only when the call's own flag byte `+0xD` is set;
 - state 7: 0;
 - any other state: 1.
@@ -143,15 +143,15 @@ It also sets `0x022C7F88` to 1 (`0x0035780F`).
 
 `0x002E08C0(slot)` closes a slot's window: it starts the window's closing run (`0x002A2720`), sets state 6, calls
 `0x002F1C50([0x0215F1B6])` when `+0x40` is -1, and writes `0xFE` to `+0x40`. Once the window reports its run over
-(`0x002A28B0`, bit 9 of its `+0x40` clear), the drain destroys it with `0x002A2830`, clears the slot and sets state 7
+(`0x002A28B0`, bit `0x200` of its `+0x40` clear), the drain destroys it with `0x002A2830`, clears the slot and sets state 7
 (`0x002E0A2E`-`0x002E0A64`).
 
 `0x002E06F0` closes all eight slots the same way. The script unload `0x0032ED80(n)` calls `0x002E0780(n)`, which closes and
 destroys at once every window whose `+0x3F` is n (`0x0032EEBF`).
 
-`0x002A2720(window)` starts the closing run (`0x00244DD0`) unless bit 20 of `+0x40` or bit 5 of `+0x7C` is set, and, for a
+`0x002A2720(window)` starts the closing run (`0x00244DD0`) unless bit `0x100000` of `+0x40` or bit `0x20` of `+0x7C` is set, and, for a
 window that keeps a log, clears the log rows (`0x0209C700`, `0x280` bytes) and the published text `0x0209C980`/`0x0209C988`.
-`0x002A27C0` asks a window to close: it sets bit 6 of `+0x40`, then runs the closing run when bits 0 and 5 are set and
+`0x002A27C0` asks a window to close: it sets bit `0x40` of `+0x40`, then runs the closing run when bits `0x1` and `0x20` are set and
 otherwise sends message 15 and destroys it at once (`0x00245020`). `0x002A27F0` closes with a run of 1 ms, which is 0
 frames.
 
@@ -176,9 +176,9 @@ obtained-item notice and the talking-message host (`0x0035E4C5`, `0x00474271`).
 |---:|---|
 | `1` | register (above) |
 | `2` | per tick: the mode step `0x002A7720`, the conversation window's signals, the log scroll `0x002A5930`, the parts `0x002A3F90` |
-| `3` | when bit 22 of `+0x3E8` is set (kind 14, `0x002A70B0`), a box through `0x00392A00` in colours `0x54`-`0x57` of the colour table `0x002DD7E0` |
+| `3` | when bit `0x400000` of `+0x3E8` is set (kind 14, `0x002A70B0`), a box through `0x00392A00` in colours `0x54`-`0x57` of the colour table `0x002DD7E0` |
 | `4` | draws the text (`0x002A4430`, or `0x002A4830` in the log), then the parts (`0x002A4EE0`) and the caption (`0x002A4170`) |
-| `10` | input: after `+0x3BC` ticks of delay, `0x002A5CC0` in mode 0, `0x002A5F40` in the log; a caption window with bit 18 closes on confirm (`0x002A66D0`) |
+| `10` | input: after `+0x3BC` ticks of delay, `0x002A5CC0` in mode 0, `0x002A5F40` in the log; a caption window with bit `0x40000` closes on confirm (`0x002A66D0`) |
 | `12` | the choice list's cursor, confirm and cancel (below) |
 | `15` | closing: the signals close (`0x002A8410`) and so does the mask |
 | `18` | destroyed: parts freed (`0x002A2860`), signals destroyed (`0x002A84F0`), mask destroyed, entry cleared |
@@ -222,22 +222,22 @@ an option number into its row and `0x002B2CE0` a row into its option. The mask i
 last two set to 0 (`0x002B3284`-`0x002B32B6`).
 
 When the list starts (`0x002A9066`), the start row is option `+0xA4` and the cancel row `+0xA5`, from the token, or from
-`askpos` when bit 17 of `+0xB0` is set; `0x002A3210` sets that bit and copies the cancel switch to bit 18. In the list:
+`askpos` when bit `0x20000` of `+0xB0` is set; `0x002A3210` sets that bit and copies the cancel switch to bit `0x40000`. In the list:
 
 - Up and Down move one row and wrap round only on a fresh press; with Triangle held they jump to the first or last
   row (`0x002B3B20`). A move plays sound 1, a jump `0x17`.
 - Confirm plays sound 2, ends the list (pager state 6) and leaves the option at `+0x54` (`0x002A9D05`-`0x002A9D32`).
-- Cancel with bit 18 set plays 3 and moves the cursor to the cancel row without answering; with no
+- Cancel with bit `0x40000` set plays 3 and moves the cursor to the cancel row without answering; with no
   cancel row it plays 5 (`0x002A9D3A`-`0x002A9D9C`).
 
 The window answers the list's messages (`0x002A66E7`-`0x002A6801`): `0x8000` keeps the option under the cursor at
 `+0x124`, `0x8001` sets pager state 6 with that option, and `0x8002` gives the list its cancel mode in `+0xFE` (`0xFF`
-without bit 18, 3 with a cancel row, after moving the list there with `0x002D4840`, and 5 without one).
+without bit `0x40000`, `0x8` with a cancel row, after moving the list there with `0x002D4840`, and 5 without one).
 
 ### The message log
 
-A conversation window (kind 16, which the open marks with bit 12 of `+0x3E8`, `0x002A721E`) keeps its pages as rows of `0x28` bytes at `0x0209C700` unless bit 14 is set; bit 16 of `+0x3E8` records that it keeps them (`0x002A733A`-`0x002A735C`), and the closing start `0x002A2720` clears the rows of a window with bit 16 set (`0x002A2763`, `0x002A277E`). Its mode is
-bits 8-10 of `+0x3E8`:
+A conversation window (kind 16, which the open marks with bit `0x1000` of `+0x3E8`, `0x002A721E`) keeps its pages as rows of `0x28` bytes at `0x0209C700` unless bit `0x4000` is set; bit `0x10000` of `+0x3E8` records that it keeps them (`0x002A733A`-`0x002A735C`), and the closing start `0x002A2720` clears the rows of a window with bit `0x10000` set (`0x002A2763`, `0x002A277E`). Its mode is
+bits `0x700` of `+0x3E8`:
 
 1. In mode 0, while the text is not typing, Triangle pressed without cancel opens the log (`0x002A5CC0`) when the
    window has earlier text: the cursor `+0x3C0` goes to the last of the `+0x3C1` rows, the scroll `+0x3BE` to that
@@ -301,22 +301,22 @@ flag `0x6F` is clear ([time stop and freeze](../Engine-Core/time-stop-and-freeze
 clears it (`0x002A5CB6`). Only `0x003E95E0` sets it. It takes window i from the slot table (`0x002E1040`: entry i of the
 `0x68`-byte slots at `0x0215F200`, i clamped to 0-7), writes part i's priority byte (`0x003E9626`), sets `+0x3F2` to 1
 (`0x003E961E`) and ors `0x20` into `+0x3F3` (`0x003E962B`). So the parts are re-sorted after a script changes a
-priority, and `0x002A4EE0` draws the shown parts in that order, centred when bit 1 is set. `0x002A2860` frees the arrays.
+priority, and `0x002A4EE0` draws the shown parts in that order, centred when bit `0x2` is set. `0x002A2860` frees the arrays.
 
 ### Skipping
 
 While any actor-manager slot has a skip pending (`0x00267310` for slots 0-4), the drain calls `0x002A38C0(1)`
 (`0x002E09DD`). For every window, `0x002A3730` marks the text window as skipping (`+0x3C5` = `0x80`) and steps its pager
 until a page end, a choice list or an answer, and `0x002A36A0` finishes every part's animation and tweens at once
-(`0x002A7D30`) and freezes the parts (bit 7 of `+0x3F3`). `0x002A38C0(0)` clears the freeze and `+0x3C5`.
+(`0x002A7D30`) and freezes the parts (bit `0x80` of `+0x3F3`). `0x002A38C0(0)` clears the freeze and `+0x3C5`.
 
 `0x002A3730` also calls `0x002B3950(text)` (`0x002A37C9`). It moves the page counter `+0x8C` on by one, keeping the old
-value at `+0x8E` and the new one at `+0x90`. It clears `+0x88`, the low byte of `+0xB0` and bit 19 of `+0xB0`, and
+value at `+0x8E` and the new one at `+0x90`. It clears `+0x88`, the low byte of `+0xB0` and bit `0x80000` of `+0xB0`, and
 sets `+0x9B` and `+0x9D` to 1.
 
 ### Captions and sizes
 
-Kinds 13 and 14 build caption windows (bit 13 of `+0x3E8`) with `0x002A70B0`. A kind 14 window matches its width to the
+Kinds 13 and 14 build caption windows (bit `0x2000` of `+0x3E8`) with `0x002A70B0`. A kind 14 window matches its width to the
 other caption window `0x002A3F50` finds, and `0x002A4030` widens a caption window and its two frame parts. `0x002A5460`
 measures a caption's text plus 4, and `0x002A5520` gives the y of a style-3 caption: `0x0028F810`, or the screen height
 `0x01E0C1DC` when that is negative, less 5 font sizes and 38 times `0x0024ABA0`. `0x002A6F80` places the caption window of
@@ -338,12 +338,12 @@ window's messages 15 and 18 close and destroy it. Its layout keys are on [screen
 The HUD switch `0x00251F40` ([HUD](hud.md)) hides and shows windows with the rest of the HUD:
 
 - `0x0035D0E0` walks the widget tree from `0x0208EA28` (`0x0035D280`) and starts the closing run (`0x002A2720`) of every
-  window with parts (`+0x44` bits 19-20 equal to `0x100000`, set by `0x002A2AD0`) whose `+0x40` bit 20 is clear
-  (`0x0035E5C0`). With bit 7 of `[0x020927EC]` it takes every window with parts (`0x0035E5A0`) and then every text window
+  window with parts (`+0x44` bits 19-20 equal to `0x100000`, set by `0x002A2AD0`) whose `+0x40` bit `0x100000` is clear
+  (`0x0035E5C0`). With bit `0x80` of `[0x020927EC]` it takes every window with parts (`0x0035E5A0`) and then every text window
   (`0x180000`, `0x0035E580`). It then marks slot 6's window inactive (`0x002E2010(6, 0)`).
 - `0x0035D1B0` reopens them the same way (`0x0035D2D0`, `0x00246AC0`) and marks slot 6's window active (`0x002E2010(6, 1)`).
 
-`0x002A2720` itself skips a window whose `+0x40` bit 20 is set, so `setmeswinhidestatus(slot, 2)` keeps a window up
+`0x002A2720` itself skips a window whose `+0x40` bit `0x100000` is set, so `setmeswinhidestatus(slot, 2)` keeps a window up
 while the HUD is off.
 
 ### Message macros
@@ -372,7 +372,7 @@ The escape is listed on [text codes](text-codes.md).
 - otherwise by the id's class (`0x00309440`, [item and ability ids](../Engine-Core/item-and-ability-ids.md)):
   classes 5-12 and 17 give one line with the count `times` for a single id and nothing for a list;
 - key items (13) give one line, or a line per id with count 1 for a list, and are never written to the battle log
-  (bit 0 of `+0x08`, `0x002A5B69`, `0x002A5B82`);
+  (bit `0x1` of `+0x08`, `0x002A5B69`, `0x002A5B82`);
 - reward packages (14) give their gil and up to two item lines from `0x0030AEA0`, each times `times`;
 - any other class gives nothing.
 
@@ -404,13 +404,13 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | `+0x3B` | `u8` | askSet | `askpos` was used |
 | `+0x3C` | `i8` | kind | window kind for the next window |
 | `+0x3D` | `u8` | style | window style 0-4 |
-| `+0x3E` | `u8` | sync | bit 0 and bit 1 from `messync` |
+| `+0x3E` | `u8` | sync | bit `0x1` and bit `0x2` from `messync` |
 | `+0x3F` | `u8` | owner | the value `0x002640D0` read at the open |
 | `+0x40` | `i8` | lastKind | the kind of the open window; `0xFE` after a close |
 | `+0x41` | `u8` | answered | the answer was copied |
 | `+0x42` | `u8` | hasParts | the window gets picture parts |
 | `+0x43` | `u8` | flag43 | the reset writes 0 |
-| `+0x44` | `u8` | noFocus | bit 0: open without the focus; bits 1-7 are never set |
+| `+0x44` | `u8` | noFocus | bit `0x1`: open without the focus; bits 1-7 are never set |
 | `+0x45` | `u8` | - | no instruction reads or writes it |
 | `+0x46` | `u16` | animLast | `setshapeanime` last frame; `0x003E9320` passes it to the part's `+0x2F` |
 | `+0x48` | `u16` | animFirst | first frame of the loop, to the part's `+0x30` |
@@ -430,7 +430,7 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `PictureSlot*` | picture | an entry of `0x0209C510` |
-| `+0x08` | `u32` | flags | bit 0 shown, 1 centred, 2 frames running, 3 colour tween, 4 scale tween; bit 5 is set on every part when it is built (`0x002A2AD0`) |
+| `+0x08` | `u32` | flags | bit `0x1` shown, 1 centred, 2 frames running, 3 colour tween, 4 scale tween; bit `0x20` is set on every part when it is built (`0x002A2AD0`) |
 | `+0x0D` | `u8` | palette | from the frame when `0xFF` |
 | `+0x0E` | `i8` | priority | draw order, highest first |
 | `+0x10` | `i16[2]` | pos | x, y |
@@ -464,7 +464,7 @@ The window, `0x410` bytes from `0x002A2C00`; the fields listed here are those of
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | used | bit 0 |
+| `+0x00` | `u32` | used | bit `0x1` |
 | `+0x08` | `void*` | image | the image label `0x0024A440` made |
 | `+0x10` | `u8*` | groups | the picture's group table |
 | `+0x18` | `u8*` | frames | the picture's frame table |
@@ -537,7 +537,7 @@ The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A
 ## Modding notes
 
 - `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+0x7C`:
-  bits 12-21 take `open & 0x3FF` and bits 22-31 `close << 22` (`0x002A2FAF`-`0x002A2FDF`), so values above 31
+  bits `0x3FF000` take `open & 0x3FF` and bits 22-31 `close << 22` (`0x002A2FAF`-`0x002A2FDF`), so values above 31
   (31 × 33 = 1,023 ms) wrap round.
 - The eighth simultaneous window (registry entry 7) is not removed from the registry when it is destroyed; the entry
   keeps pointing at the destroyed widget, which the loops over `0x0209C4D0` (`0x002A28E0`, `0x002A29A0`, `0x002A38C0`,

@@ -54,7 +54,7 @@ Each line is read from the shipped files in these steps:
 | `+0x1E` | `u8[11]` | stats | `0x0030C470`, `0x0030C650` | Strength `+0x1E`/`+0x1F`, Magick Power `+0x21`/`+0x22`, Vitality `+0x24`/`+0x25`, Speed `+0x27`/`+0x28`: base and growth in 1/128 per level |
 | `+0x2A` | `u8` | evade | `0x002FEF30` (`0x002FF095`) | innate evade |
 | `+0x2B` | `u8` | size | `0x0023A570` | unit `+0x68` = this byte, unit `+0x6C` = this byte × 1.5 |
-| `+0x2C` | `u8` | flags | `0x0023AC80`, `0x00317480` | bits 3-4 the catch-up rule; bit 6 sets stats `+0x00` bit 2 (below) |
+| `+0x2C` | `u8` | flags | `0x0023AC80`, `0x00317480` | bits 3-4 the catch-up rule; bit `0x40` sets stats `+0x00` bit `0x4` (below) |
 | `+0x2D` | `u8` | unread2D | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; `0xFF` on every row |
 | `+0x2E` | `u8` | levelBonus | `0x0023AC80`, `0x00317480` | the starting level (0 means 1), and the levels added to the catch-up average |
 | `+0x30` | `u16` | nameWord | `0x0031C5D0`, `0x0023A570`, `0x00329220`, `0x00536310` | the name, bank 8 |
@@ -78,8 +78,8 @@ The bytes `+0x02`-`+0x03`, `+0x1C`, `+0x20`, `+0x23`, `+0x26`, `+0x29`, `+0x2F`,
 
 No instruction writes a row after `battle_pack.bin` is loaded, and no instruction reads the bytes `+0x08`-`+0x09`,
 `+0x2D`, `+0x74`-`+0x79` or `+0x7C`-`+0x7D`. With no reader and no writer nothing fixes their width, so the layout
-gives them as byte arrays and the TSV as their bytes. Bit 0 of `+0x2C` is set on four rows (Ashe, Fran, Penelo and Amalia) and tested by no
-instruction: `0x0023AC80` tests bit 6 (`0x0023AF22`) and `0x00317480` takes bits 3-4 (`0x003174D9`-`0x003174E7`).
+gives them as byte arrays and the TSV as their bytes. Bit `0x1` of `+0x2C` is set on four rows (Ashe, Fran, Penelo and Amalia) and tested by no
+instruction: `0x0023AC80` tests bit `0x40` (`0x0023AF22`) and `0x00317480` takes bits `0x18` (`0x003174D9`-`0x003174E7`).
 
 ### The push weight
 
@@ -125,7 +125,7 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 
 - `+0x2C` bits 3-4 are the catch-up rule of [Party members](party-members.md): 1 on the first join, 2 on every
   join, anything else never (`0x003174D9`-`0x0031750D`).
-- `+0x2C` bit 6 makes `0x0023AC80` set stats `+0x00` bit 2. `0x00305AB0` then sends the unit to the order set at unit
+- `+0x2C` bit `0x40` makes `0x0023AC80` set stats `+0x00` bit `0x4`. `0x00305AB0` then sends the unit to the order set at unit
   `+0x6E0` instead of the queued `+0x6F8` (`0x00305BFB`-`0x00305C58`).
 - `+0x07` is returned by `0x0031B8E0(row)`. Its callers are the two jumps of `0x0031B950(seat)`, which reads the
   selector in seat *seat* of slot map 4; the chocobo handlers `0x00304060` and `0x00304140` hand the value to

@@ -9,8 +9,8 @@ addresses: "0x0215F1C0, 0x002E1C20, 0x002E1CA0, 0x002E1CD0, 0x002E0FA0, 0x002545
 
 - During a scene, a movie or a screen fade, the main menu, the battle command menu and the map do not open.
 - Changing the party leader and cycling targets in the field stop working at the same moments.
-- Event skip with Start is offered only while a scene allows it, and Start's event-skip arm never runs while a movie plays (bit 19). Story movies have a skip of their own, run by the scene's script: Start shows or hides a "[confirm button] Skip" prompt, and the confirm button while the prompt shows ends the movie with a half-second fade. The title screen's opening movie ends on Start or the confirm button, with no prompt.
-- Escape Mode switches itself off while availability bit 6, 9 or 10 is held (the table below; [Escape Mode](escape.md)).
+- Event skip with Start is offered only while a scene allows it, and Start's event-skip arm never runs while a movie plays (bit `0x80000`). Story movies have a skip of their own, run by the scene's script: Start shows or hides a "[confirm button] Skip" prompt, and the confirm button while the prompt shows ends the movie with a half-second fade. The title screen's opening movie ends on Start or the confirm button, with no prompt.
+- Escape Mode switches itself off while availability bit `0x40`, `0x200` or `0x400` is held (the table below; [Escape Mode](escape.md)).
 
 ## How it works
 
@@ -23,7 +23,7 @@ row blocks that bit's actions.
 |---|---|
 | `0x002E1C20(row, bit)` | sets one bit (`0x002E1C20`-`0x002E1C23` tests the row) |
 | `0x002E1CA0(row, bit)` | clears one bit, with the same test |
-| `0x002E1CD0(clear, row)` | sets the mask `0x139203`, bits 0, 1, 9, 12, 15, 16, 17 and 20, or clears it (`0x002E1CE3`) |
+| `0x002E1CD0(clear, row)` | sets the mask `0x139203`, bits `0x1`, `0x2`, `0x200`, `0x1000`, `0x8000`, `0x10000`, `0x20000` and `0x100000`, or clears it (`0x002E1CE3`) |
 | `0x002E1BE0(index, on)` | sets or clears row 1 bit `index` for indexes 0-18 (`0x002E1BFE`, `0x002E1C0B`) |
 | direct `or` and `and` | row 4 (`0x002E245F`, `0x002E2417`, `0x002E06C3`) and row 7 (`0x002E2248`, `0x002E2265`, `0x002E0D2A`), with the mask `0x100203` |
 
@@ -33,8 +33,8 @@ start `0x00266D10` clears them through `0x002E1450` (`0x00267155`).
 
 ### The combined mask
 
-`0x002E0FA0` returns the OR of the 16 rows (`0x002E0FA9`-`0x002E1005`). While bit 16 of the busy word `0x022CB720` is set,
-it clears bit 19 from the answer (`0x002E1009`, `0x00360360(0x10)`). The movie verb `moviestandby` sets that busy bit (`0x0035B840`)
+`0x002E0FA0` returns the OR of the 16 rows (`0x002E0FA9`-`0x002E1005`). While bit `0x10000` of the busy word `0x022CB720` is set,
+it clears bit `0x80000` from the answer (`0x002E1009`, `0x00360360(0x10)`). The movie verb `moviestandby` sets that busy bit (`0x0035B840`)
 and `movieend` clears it (`0x0035B8D0`), so event skip is refused for the whole movie. 29 call sites in 25 functions
 read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 
@@ -43,7 +43,7 @@ read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 | Row | Holder | Bits |
 |---:|---|---|
 | `0` | the movie verbs `moviestandby` `0x368` (its handler `0x00356460` is a jump to `0x0035B840` at `0x00356467`; `0x0035B861`, `0x0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0x0035B816`, `0x0035B967`); the event-skip arm `0x00360980`, from verb `skipstart` `0x51A` (`0x0034D3BB`; `0x003609A7`, `0x003609B3`), and its release `0x00360A50`, from `0x003603F0` and `0x00360A20` (`0x00360B06`, `0x00360B12`); the title screen (`0x00394112`, `0x003940CB`); actor and field loads (`0x002678EB`, `0x0025D41A`, `0x0025D5A9`) | `0`, `1`, `9`, `12`, `13`, `15`-`17`, `19`, `20`, `21` |
-| `1` | verb `setmenudisablestatus` `0x3A5` through `0x002E1BE0` (`0x0035276D`); bit 21 for the movie player (`0x001B82E4`, `0x001B76C8`, `0x001B80A4`, `0x001B84BE`), saving and loading (`0x0058252C`, `0x005823F8`, `0x005828B4`, `0x00582F1B`), the title screen (`0x00393A29`, `0x00393E07`), a Config screen widget (`0x0023FC78`, `0x0024024B`) and the callback `0x002CEB40` that `0x002CEFA0` installs (`0x002CEDE5`, `0x002CEBB6`) | `0`-`18`, `21` |
+| `1` | verb `setmenudisablestatus` `0x3A5` through `0x002E1BE0` (`0x0035276D`); bit `0x200000` for the movie player (`0x001B82E4`, `0x001B76C8`, `0x001B80A4`, `0x001B84BE`), saving and loading (`0x0058252C`, `0x005823F8`, `0x005828B4`, `0x00582F1B`), the title screen (`0x00393A29`, `0x00393E07`), a Config screen widget (`0x0023FC78`, `0x0024024B`) and the callback `0x002CEB40` that `0x002CEFA0` installs (`0x002CEDE5`, `0x002CEBB6`) | `0`-`18`, `21` |
 | `2` | battle selection, `0x00313A00`, below | `0`-`8`, `10`-`12`, `20` |
 | `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`0x00344C84`, `0x00345704`, `0x0034515F`, `0x003464E8`) and `0x00268D10`/`0x00263050` | the mask |
 | `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0`, `1`, `9`, `20` |
@@ -78,13 +78,13 @@ party-down window `0x0035D6B0` (`0x0035D858`), `0x0035D8D0` (`0x0035D90A`-`0x003
 The other row-8 writers are the battle command menu (`0x00276715`, `0x00279FE9`), the party-down window itself
 (`0x0035D73B`-`0x0035D84C`), the chocobo dismount and ride (`0x0035C990`-`0x0035CA2D`, `0x0035CF30`-`0x0035CF79`), and the
 target cursor: `0x003C8990` and `0x003C8A50` (`0x003C8A0A`, `0x003C8AF2`) and the callback `0x003C8B70` that `0x003C8A20`
-installs, which clears bit 0 five times (`0x003C8C97`-`0x003C9085`).
+installs, which clears bit `0x1` five times (`0x003C8C97`-`0x003C9085`).
 
 ### Battle selection
 
 `0x00313A00` rewrites row 2 every field frame (`0x00313A68`-`0x00313AF5`). Bits 0, 2-8, 11, 12 and 20 are set while a
-battle unit is selected (`0x02089350`). Bit 1 is set then, or while Escape Mode is on (`0x00253B90`). Bit 10 follows the
-area's bit 15 (`0x00377C20`). It is called from the field frame (`0x00234624`) and from `0x00313DB0`.
+battle unit is selected (`0x02089350`). Bit `0x2` is set then, or while Escape Mode is on (`0x00253B90`). Bit `0x400` follows the
+area's bit `0x8000` (`0x00377C20`). It is called from the field frame (`0x00234624`) and from `0x00313DB0`.
 
 ### The Start button
 
@@ -106,15 +106,15 @@ sets row 7 through `0x002E2240(1)` (`0x002E2248`). On close, `0x00229510` clears
 | `18` | the target cursor (`0x003C9176`, `0x003C919F`) |
 | `21` | opening the pause menu (`0x002283DA`, `0x002283E7`) and the audio hold (`0x00229B03`) |
 
-No reader tests bits 7, 14, 15 or 20.
+No reader tests bits `0x80`, `0x4000`, `0x8000` or `0x100000`.
 
-Bits 13 and 19 do not block anything: they steer Start's event-skip arm. Bit 19 must be set for that arm to run
-at all (`0x002288F6`), which is why the movie busy bit clears it. Inside the Start handler `0x002287D0`, with bit 19 set, the arm it passes to `0x00228700` is 1 only when bit 13 is set and
+Bits `0x2000` and `0x80000` do not block anything: they steer Start's event-skip arm. Bit `0x80000` must be set for that arm to run
+at all (`0x002288F6`), which is why the movie busy bit clears it. Inside the Start handler `0x002287D0`, with bit `0x80000` set, the arm it passes to `0x00228700` is 1 only when bit `0x2000` is set and
 `0x003606B0` finds a non-zero word among `0x022CB9C4`, `0x022CB9C8` and `0x022CB9CC`, and 2 otherwise
 (`0x002288F6`-`0x00228911`). `0x00360880` walks the same three words, takes the lowest set bit of each and runs that skip
 through `0x00360710`.
 
-`0x00228380`, which holds the bit-21 test, first starts the task `0x00228490` when `0x0017E4C0` answers 0
+`0x00228380`, which holds the bit `0x200000` test, first starts the task `0x00228490` when `0x0017E4C0` answers 0
 (`0x0022839B`-`0x002283AE`). `0x0017E4C0` reads the application's byte `+0x27`, the window-active byte: application slot 14
 (`0x007A0B40`) stores it, called by the window procedure with 1 when a new window is in front (`0x0079914C`) and by
 `0x007A4150`, which also posts message `0x8001` to show or hide the cursor. The task's pointer `0x01FD4948` is the cell
@@ -132,7 +132,7 @@ same verb sequence.
 - The skip function runs once a frame (`wait(1)`, `700D`). It reads the newly pressed buttons with `padt` (`6ED5`;
   `0x00355440` returns the mapped word `0x02AD9E0C` through `0x0036FFD0`) and the player's state with `getmoviestatus`
   (`6EDB`), and returns, closing window 3, as soon as the state is not 3, playing (`6EE1`-`6EE8`, `7016`).
-- Start, bit 3 of that word ([Controls](controls.md)), toggles a prompt (`6EEB`-`6EF2`, `6F45`-`6F4B`). To show it,
+- Start, bit `0x8` of that word ([Controls](controls.md)), toggles a prompt (`6EEB`-`6EF2`, `6F45`-`6F4B`). To show it,
   `amest` (`6F2A`) opens message window 3 with the image's text entry 1, the confirm-button icon (escape `0F 60`)
   and "Skip", at x 120, y 817. To hide it, `mesclose(3)` (`6F39`).
 - `0x002E1F80` stores the position at `+0x10` and `+0x12` of window slot 3 of `0x0215F200` (`0x68` bytes a slot). The
@@ -183,7 +183,7 @@ which copies each one; the table names these three the readers above.
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0215F1C0` | `u32` | 0 | row 0, the movie and event-skip row | the row 0 holders above; 0 (`0x002E0672`, `0x002E1564`) | the readers above |
-| `0x0215F1C4` | `u32` | 0 | row 1, the menu-disable row | `0x002E1BE0` (`0x002E1BFE`, `0x002E1C0B`); 0 (`0x002E0672`, `0x002E1564`) | the readers above; `0x002E1020` from `0x002283E2` and `0x00229B12` (bit 21); `0x002E1BE0` |
+| `0x0215F1C4` | `u32` | 0 | row 1, the menu-disable row | `0x002E1BE0` (`0x002E1BFE`, `0x002E1C0B`); 0 (`0x002E0672`, `0x002E1564`) | the readers above; `0x002E1020` from `0x002283E2` and `0x00229B12` (bit `0x200000`); `0x002E1BE0` |
 | `0x0215F1C8` | `u32` | 0 | row 2, battle selection | `0x00313A00` through `0x002E1C20` and `0x002E1CA0`; `0x00229510` as the Start screen closes (`0x00229554`, `0x00229562`); 0 (`0x002E0679`, `0x002E156B`) | the readers above |
 | `0x0215F1CC` | `u32` | 0 | row 3, the quest windows | the row 3 holders above; 0 (`0x002E0679`, `0x002E156B`) | the readers above |
 | `0x0215F1D0` | `u32` | 0 | row 4, the screen mask | `0x002E2400` (`0x002E2417`), `0x002E2440` (`0x002E245F`), `0x002E06B0` (`0x002E06C3`); 0 (`0x002E0680`, `0x002E1572`) | the readers above |
@@ -204,7 +204,7 @@ No other instruction reaches the table. The table's address is taken by `0x002E1
 
 ### The Start handler's gate
 
-The Start handler `0x002287D0` goes on to its arms when Start is newly pressed (pressed set 0 bit 3,
+The Start handler `0x002287D0` goes on to its arms when Start is newly pressed (pressed set 0 bit `0x8`,
 `0x0022889A`-`0x002288AB`), when `0x003641F0` or `0x00227D70` asks for an arm, or when the global below is not 0
 (`0x002288AE`-`0x002288BD`). After it calls `0x00228700`, which answers 1 when it builds the event-skip task, it stores 0
 there on a non-zero answer and keeps the old value otherwise (`0x00228916`-`0x00228922`).
@@ -225,6 +225,6 @@ No other instruction reaches `0x01FD46F8`; only `0x00228922` stores to it.
 
 ## Related
 
-- [Escape Mode](escape.md) - the toggle bits 6, 9 and 10 force off.
+- [Escape Mode](escape.md) - the toggle bits `0x40`, `0x200` and `0x400` force off.
 - [Keymap file](keymap-file.md) - the buttons the arbiter reads.
 - [Menu requests](../Menus-And-HUD/menus.md) - the request ids and the router.

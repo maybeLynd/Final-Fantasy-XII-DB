@@ -46,32 +46,32 @@ The roll finds the target's battle unit (`0x0031B860`) and, for an enemy-side un
 stats record at unit `+0x698` is 1), reads the enemy's record at unit `+0xE60`
 (`0x003903AD`-`0x003903DB`). Its words `+0x32`, `+0x34` and `+0x36` are the common, uncommon and rare item,
 `0xFFFF` meaning none. Byte `+0x14` of the spawn record at unit `+0x6A0` holds one bit per item still
-available: bit 0, 1 and 2.
+available: bit `0x1`, `0x2` and `0x4`.
 
 The attempt ends as "nothing to steal" in either of these cases:
 
 - all three item words are `0xFFFF` (`0x003903DB`-`0x003903F3`);
 - an item word is set and its bit is clear (`0x0039041E`, `0x0039044D`, `0x0039047E`).
 
-That exit sets bit 23 (`0x800000`) of the result's `+0x2C` and `0x02AEDFBC` = 1, and returns
+That exit sets bit `0x800000` (`0x800000`) of the result's `+0x2C` and `0x02AEDFBC` = 1, and returns
 (`0x0039048A`-`0x003904A0`).
 
 ### When the availability bits change
 
 `BattleUnit_ApplyUnitDefinition` (`0x0023A570`) sets them when the spawn record is fresh, that is when
-its byte `+0` has neither bit 0 nor bit 2 (`0x0023A791`). It writes byte `+0x14` = 0 and then sets bit
+its byte `+0` has neither bit `0x1` nor bit `0x4` (`0x0023A791`). It writes byte `+0x14` = 0 and then sets bit
 k for each of the three item words that is not `0xFFFF` (`0x0023A7AE`-`0x0023A7E4`).
 
-A won item clears its bit twice: the result's first step `0x00385BA0` clears bit 2, 1 and 0 for the won
+A won item clears its bit twice: the result's first step `0x00385BA0` clears bit `0x4`, `0x2` and `0x1` for the won
 rare, uncommon and common item (`0x00385C17`, `0x00385C41`, `0x00385C6B`), and the applier clears it again
 (`0x0031146F`). Because any set item word with a clear bit blocks the next attempt, an enemy can be
 stolen from successfully once.
 
 ### The Thief's Cuffs test
 
-The roll branches on bit 1 of context byte `+0x1C` (`0x003904A5`). Context bytes `+0x1A`-`+0x29` merge the
+The roll branches on bit `0x2` of context byte `+0x1C` (`0x003904A5`). Context bytes `+0x1A`-`+0x29` merge the
 user's two augment layers: bit `id & 7` of byte `+0x1A + id / 8` is set when the user's stats record has
-augment `id` in its layer `+0x68` or `+0x78` (`0x00384820`-`0x00384858`). Bit 1 of `+0x1C` is therefore
+augment `id` in its layer `+0x68` or `+0x78` (`0x00384820`-`0x00384858`). Bit `0x2` of `+0x1C` is therefore
 the augment Thievery (17).
 
 Thief's Cuffs are equipment row 354 of `battle_pack.bin` (named in the equipment-name table), and the
@@ -105,7 +105,7 @@ Without the bit, the roll draws a new number only after the previous test missed
    `0x00390635`), otherwise the attempt fails (`0x00390495`).
 4. Otherwise the attempt fails (`0x00390621`-`0x00390626`).
 
-A failure here sets `0x02AEDFBC` = 1 and leaves bit 23 clear. For an enemy with all three items:
+A failure here sets `0x02AEDFBC` = 1 and leaves bit `0x800000` clear. For an enemy with all three items:
 
 ```python
 rare = 0.03
@@ -129,7 +129,7 @@ uncommon and 2 for the rare (the `test` and `cmp` after each draw). `0x0017D450`
 (`0x00386001`). After the slots, the resolver:
 
 1. sets the result kind `+0x04` to 6 when `0x02AEDFBC` is set (`0x003866C1`-`0x003866CA`), and for kind 6
-   clears bits 0, 2 and 3 of `+0x18` (`0x003866EB`);
+   clears bits `0x1`, `0x4` and `0x8` of `+0x18` (`0x003866EB`);
 2. copies `0x02AEE04C`, `0x02AEE04D` and `0x02AEE04E` into the result's `+0x32`, `+0x33` and `+0x34`
    (`0x003867F1`-`0x0038680C`).
 
@@ -144,8 +144,8 @@ The post-result dispatcher `0x00469EC0` posts the steal lines
 
 | Outcome | Event | Site |
 |---|---|---|
-| Failed, bit 23 set | `0x33` (steal failed, nothing to steal) | `0x0046A3C4`-`0x0046A3F0` |
-| Failed, bit 23 clear | `0x34` (couldn't steal from) | `0x0046A3C4`-`0x0046A3F0` |
+| Failed, bit `0x800000` set | `0x33` (steal failed, nothing to steal) | `0x0046A3C4`-`0x0046A3F0` |
+| Failed, bit `0x800000` clear | `0x34` (couldn't steal from) | `0x0046A3C4`-`0x0046A3F0` |
 | Won items | the stolen-goods lines of `0x0046A870` | `0x0046A504` |
 
 `0x0046A870` gathers the won items into a three-entry list at `0x02EBB540` (`0x0046AC90` adds 1 to the count

@@ -426,6 +426,16 @@ through `r14`.
 
 An adapter is chosen by `0x006253D0` only when all three of DeviceID, LUIDLow and LUIDHigh match.
 
+`0x006253D0` also prepares a multimedia timer period: it clears the byte `0x02CF2544` (`0x0062542A`) and
+keeps the minimum period `timeGetDevCaps` reports in `0x02CF2540`, or -1 when the call fails
+(`0x00625463`).
+
+The render thread's block `0x19` arm `0x006234A0` ([screen
+fades](../Graphics/screen-fades.md)) begins it on one path with
+`timeBeginPeriod([0x02CF2540])` while `0x02CF2544` is 0, setting the byte to 1 when the call succeeds
+(`0x006236B1`-`0x006236D3`), and on the other ends it with `timeEndPeriod`, clearing the byte
+(`0x0062380A`-`0x00623831`). `0x0062B5A0` ends a period still begun (`0x0062B781`-`0x0062B790`).
+
 ### Message-pump callbacks
 
 `0x007980A0` registers two callbacks after the window is created, each with the `PWindow` on its stack (`[rbp - 0x40]`)

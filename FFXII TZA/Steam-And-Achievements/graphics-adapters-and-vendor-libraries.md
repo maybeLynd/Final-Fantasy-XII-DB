@@ -66,9 +66,9 @@ through `0x0017D9C0` → `0x001DF2B0`:
 
 | Sample count | Bit | MSAA value |
 |---:|---:|---|
-| 2 | 1 | MSAA2X |
-| 4 | 2 | MSAA4X |
-| 8 | 3 | MSAA8X, and bit 4 CSAA16x when more than 16 quality levels |
+| 2 | `0x2` | MSAA2X |
+| 4 | `0x4` | MSAA4X |
+| 8 | `0x8` | MSAA8X, and bit `0x10` CSAA16x when more than 16 quality levels |
 | 16 | 5 | CSAA16XQ |
 
 Bit `0x1` (Off) comes from the settings constructor `0x001DE050`. The Anti-Aliasing row cycles with

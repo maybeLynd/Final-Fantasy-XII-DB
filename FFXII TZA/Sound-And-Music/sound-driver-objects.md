@@ -23,7 +23,7 @@ The driver gives every object it creates an eight-byte handle, and every call na
 | `4`-`7` | a serial number, one more than the last one given to that kind |
 
 `0x007B2CB0` writes all three for a sound (`0x007B2E49`-`0x007B2E4F`), `0x007B1660` for a bank, `0x007B5690` for a track,
-`0x007B5D20` for a voice and `0x007B72B0` for a music. A lookup takes the slot, checks it is live (bit 0 of the list node's
+`0x007B5D20` for a voice and `0x007B72B0` for a music. A lookup takes the slot, checks it is live (bit `0x1` of the list node's
 `+0x1C`) and compares the whole handle with the object's own copy, so a handle of an object that has ended finds
 nothing:
 
@@ -112,7 +112,7 @@ takes one away, both atomically; `0x007D0810` puts back the base vtables when a 
 
 `0x007A87C0(bank, out, id, ...)` (from `0x00221C70`, `0x007A4A10` and the `Lay` tick `0x007F0820`) looks the bank up and
 calls `0x007D0940` for a sound bank or `0x007D08F0` for a music bank; `0x007A86E0` takes only a music bank. `0x007A4A10(out,
-id)` first finds the bank by number and asks for the sound with bit 30 set, meaning a sound number rather than an
+id)` first finds the bank by number and asks for the sound with bit `0x40000000` set, meaning a sound number rather than an
 index (`0x007A4A7C`).
 
 1. `0x007B2CB0` takes a `0x540` block and a node in the sound list; with no block it prints "sound heap empty. could
@@ -123,7 +123,7 @@ index (`0x007A4A7C`).
    hash table.
 
 `0x007B72B0` does the same for a music through `0x007B7460`. That checks the music number against the bank's count
-("music number is out of range"), resolves a number with bit 30 set through `0x007A8EA0`, and adds the music's track
+("music number is out of range"), resolves a number with bit `0x40000000` set through `0x007A8EA0`, and adds the music's track
 need to `0x02EADBB0`: `0x007B7960` counts it from the music's sections and mode transitions in an in-memory bank, and a
 streaming bank gives its stream count `+0x94`. Over the budget `0x02EADBB4`, 32, it prints "track count exceeded
 numMusicTracks" and goes on.
@@ -131,7 +131,7 @@ numMusicTracks" and goes on.
 ### Reading a sound's header
 
 `0x007A8A50(bank, out, id)` copies one sound's or music's header into an info record, fields `+0x100` to `+0x11C`, without playing it: an id
-with bit 30 set is a number, found by `0x007A8F40` in a sound bank or `0x007A8EA0` in a music bank. `0x007A6C10` fills the
+with bit `0x40000000` set is a number, found by `0x007A8F40` in a sound bank or `0x007A8EA0` in a music bank. `0x007A6C10` fills the
 record from a sound header and `0x007A6AC0` from a music header, reading each field only when the header's version byte
 is new enough; `0x007A6990` fills it from an instrument. `0x007A6DB0(handle, out)` fills the same record for a playing
 object of kind 2, 8 or 9.
@@ -149,8 +149,8 @@ the driver thread (`0x007AB5C0`):
 | `0x007A7F70` | 2, 8 | `0x0F` | `0x0B` | slot 8, pitch |
 | `0x007A7E90` | 2, 8, 9 | `0x10` | | slot 9, panning (four values) |
 | `0x007A8390` | 2, 8 | `0x11` | `0x0C` | slot 18 (`0x007BECD0`): ramps one of the `0x30`-byte values at `+0x248` |
-| `0x007A7E00` | 2, 8, 9 | `0x12` | | slot 10 (`0x007BE510`): sets bit 0 of `+0x518` and writes 1 and 5.0 at `+0x1DC`, `+0x20C` and `+0x23C`; 0 clears them |
-| `0x007A8300` | 2, 8, 9 | `0x13` | | slot 11 (`0x007BEC70`): sets bit 1 of `+0x518` and writes 1 and 5.0 at `+0xAC`; 0 clears them |
+| `0x007A7E00` | 2, 8, 9 | `0x12` | | slot 10 (`0x007BE510`): sets bit `0x1` of `+0x518` and writes 1 and 5.0 at `+0x1DC`, `+0x20C` and `+0x23C`; 0 clears them |
+| `0x007A8300` | 2, 8, 9 | `0x13` | | slot 11 (`0x007BEC70`): sets bit `0x2` of `+0x518` and writes 1 and 5.0 at `+0xAC`; 0 clears them |
 | `0x007A7CC0` | 2, 8, 9 | `0x14` | | slot 12 (`0x007BE3E0`): stores a byte at `+0x3F8` |
 | `0x007A7D50` | 2, 8, 9 | `0x15` | | slot 13, low-pass |
 | `0x007A7C30` | 2, 8, 9 | `0x16` | | slot 14 (`0x007BE3D0`): stores `+0x508` |
@@ -189,8 +189,8 @@ its own slot:
 | `0x007A67D0` | slot 28, three values (`0x007BD6F0`) | slot 26 |
 | `0x007A71F0` | the switch value (`0x007BD9D0`; `0x007CEF00` for an instrument) | slot 24 |
 | `0x007A7350` | slot 26 (`0x007BDBB0`) | slot 18 |
-| `0x007A74D0` | slot 30, bit 1 of `+0x518` | slot 29 |
-| `0x007A6600` | slot 29, bit 0 of `+0x518` | slot 28 |
+| `0x007A74D0` | slot 30, bit `0x2` of `+0x518` | slot 29 |
+| `0x007A6600` | slot 29, bit `0x1` of `+0x518` | slot 28 |
 | `0x007A5FB0` | slot 31, `+0x508` | slot 32 |
 | `0x007A76A0` | slot 34 with an index; for a sound `0x007BDD20`, the value of one ramp of `+0x248` | slot 22 |
 | `0x007A6130` | `+0x504` of a sound | slot 27 |
@@ -268,7 +268,7 @@ those of the sequence list `0x02EAD600` and its helpers; the other lists and que
 | `+0x08` | `void*` | prev | previous node (`0x007B6AD0`, `0x007AF448`) |
 | `+0x10` | `void*` | next | next node, in the free chain or in the list (`0x007B6AD9`, `0x007AF440`) |
 | `+0x18` | `i32` | slot | the node's index, which a handle carries in its bytes 2-3 (`0x007B6AC4`); -1 until the chain is built (`0x007B51AC`) |
-| `+0x1C` | `u32` | flags | bit 0 set while the node holds an object: set by an append (`0x007AF450`), cleared by `0x007B2880` (`0x007B28EA`), tested by every lookup (`0x007B50A0`) |
+| `+0x1C` | `u32` | flags | bit `0x1` set while the node holds an object: set by an append (`0x007AF450`), cleared by `0x007B2880` (`0x007B28EA`), tested by every lookup (`0x007B50A0`) |
 | `+0x20` | `void*` | object | the object in the slot, stored by an append (`0x007AF455`) and returned by the lookups (`0x007B50A7`) |
 
 `DriverQueue` (`0x30` bytes, offsets from the start of the queue):
@@ -386,7 +386,7 @@ it passes it to.
   logs "sound heap empty. could not create sound object" and returns -1 the same way (`0x007BC013`-`0x007BC06C`).
 - No instrument exists in the shipped game: the pool of 32 is built only when start-up block `+0x28` is not 0, and
   `0x00210760` leaves it 0 (`0x00210831`).
-- A sound id with bit 30 set names a sound by its number in the bank, not by its index.
+- A sound id with bit `0x40000000` set names a sound by its number in the bank, not by its index.
 - A handle stays safe to use after its object ends: the serial check makes every call on it do nothing.
 
 ## Related

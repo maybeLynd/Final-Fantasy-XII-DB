@@ -81,7 +81,7 @@ result `0x0034D460` follows
 Seven verbs share one shape: pop a value, collect the members with `0x0031B670` (selector 0) and
 `0x0031B680` (selector 1), and call one setter on each of up to four in both groups. The collector
 `0x0031B5A0` walks the first four slots of map 1, resolves each selector to a battle unit
-(`0x002367A0`), keeps units with byte `+0` bit 4 whose record at `+0x698` has byte `+5` clear, and
+(`0x002367A0`), keeps units with byte `+0` bit `0x10` whose record at `+0x698` has byte `+5` clear, and
 splits them on whether the record's byte `+4` lies in 7 to 25: selector 1 takes the guests,
 selector 0 everyone else. The object handed to the setter is the unit's `+0x10`, the actor record.
 

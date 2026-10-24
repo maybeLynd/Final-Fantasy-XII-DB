@@ -131,7 +131,7 @@ centre in footprint space. When the centre is less than 1 from `c`:
 
 - a closed edge whose closest point lies inside the edge pushes the centre directly away from `c`
   until it is a radius away, mapped back through `0x02089280`; the push is added to the centre and
-  to `+0x40`, and flag bit 4 is set;
+  to `+0x40`, and flag bit `0x10` is set;
 - a closed edge whose closest point is an end vertex records the vertex in `0x020891F0` (16 at most);
 - an open edge leads into the neighbour, which is visited (`0x02088FE0`) and handled the same way.
 

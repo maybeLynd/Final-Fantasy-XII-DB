@@ -86,7 +86,7 @@ each of party slots 0-3 that the action may target while it has KO, Stone or X-Z
 
 `0x003247F0(unit)` rebuilds the list (`0x00324857`-`0x00324ED2`):
 
-1. It clears it. A unit that is inactive, has KO, Stone or X-Zone without the field's bit 15, or is an
+1. It clears it. A unit that is inactive, has KO, Stone or X-Zone without the field's bit `0x8000`, or is an
    enemy-table unit whose spawn record's first byte has a bit of `0x30` keeps it empty (`0x00324881`-`0x003248D0`).
 2. It marks every active unit that passes the eligibility test `0x002FFEF0` (`0x00324920`-`0x0032496E`). An
    enemy-table unit whose class row byte `+0x18 & 0x0E` is 4 notices all of them, and steps 3-6 are skipped
@@ -101,12 +101,12 @@ each of party slots 0-3 that the action may target while it has KO, Stone or X-Z
    counter `0x0208D45C` is kept (`0x00324D34`-`0x00324DCF`). An action's first pass over a target sets the
    attacker's entry to the counter plus `10 * (int)(0x01DFE0B8 * 30.0)`, 300 as shipped (`0x00319206`-`0x0031923F`),
    and so does the special-sequence target loop `0x0030EC00` through `0x00317670` (`0x0030ED0C`, `0x003176AE`).
-6. With bit 4 of the battle flags `0x02089340`, the unit's current target `+0x710` is kept
+6. With bit `0x10` of the battle flags `0x02089340`, the unit's current target `+0x710` is kept
    (`0x00324DD1`-`0x00324E09`).
 7. **Lure.** When a kept unit of another side has Lure, only Lure units and units of its own side or of no
    side go into the list (`0x00324E30`-`0x00324ECB`).
 
-Bit 0 of the list's first byte is cleared at the end (`0x00324ED2`).
+Bit `0x1` of the list's first byte is cleared at the end (`0x00324ED2`).
 
 ### When the list is rebuilt
 
@@ -115,19 +115,19 @@ non-zero (1 in the image; no instruction writes it), it first calls `0x00324F20`
 
 | Case | Result |
 |---|---|
-| bit 0 of `+0xBC0` set | full rebuild |
+| bit `0x1` of `+0xBC0` set | full rebuild |
 | the unit's slot `+0xEA9 & 7` equals the generation `0x022C2578` | full rebuild |
 | otherwise | the old list is kept, minus inactive units and units with KO, Stone or X-Zone (`0x00324F45`-`0x0032504C`) |
 
 The generation steps by one, modulo 8, each time the field frame `0x00234590` runs (`0x00325060`, `0x002346FE`),
-so with both running every frame a unit rebuilds its list in full one frame in eight. Bit 0 is set through
+so with both running every frame a unit rebuilds its list in full one frame in eight. Bit `0x1` is set through
 `0x00316D30` when the unit is reset for reuse (`0x00236B03`) and when its action is cancelled (`0x003087D2`).
 
 ### An order in flight
 
 `0x00308610`, the unit's combat frame, handles the order it is carrying out (`0x0030868B`-`0x003087D2`):
 
-1. With no order and unit flag bit 5 clear, the unit is cancelled with `0x003105D0`, bit 5 is set and its id
+1. With no order and unit flag bit `0x20` clear, the unit is cancelled with `0x003105D0`, bit `0x20` is set and its id
    goes into the 64-entry ring `0x022BE984` (`0x00308695`-`0x003086E5`).
 2. When `0x002FFB60` reports an interrupt reason, the order is cancelled and the perception list re-armed
    (`0x003086FC`-`0x00308703`, `0x003087BE`-`0x003087D2`).

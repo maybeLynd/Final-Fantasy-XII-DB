@@ -445,12 +445,39 @@ State 7 builds this image at `+0xE8` of the transaction record; the storage requ
 (`0x00582540`) names only the numbered slot file. How the slot files are written and deleted is on
 [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md).
 
+[`standard-file-formats-icon-rows.tsv`](standard-file-formats-icon-rows.tsv) lists the four files, with
+size, SHA-256, kind-7 id and the language ids that load each copy, then every field of `icon.sys` and
+`icon1.ico`: the 16 fields of `icon.sys`, the five header fields, 36 vertices, animation header, frame
+record and texture of `icon1.ico`, each with the code that reads it.
+
+- Of `icon.sys` the image takes bytes `+0x0C` to `+0xBF`: `0x005832B0` copies one dword and eleven 16-byte
+  blocks (`0x005835AF`-`0x0058363C`), ending at the file's last byte. Bytes `+0x00` to `+0x0B` are not copied:
+  the image is cleared, and the game writes its own `PS2D` (`0x00583307`) and line break.
+- In the PS2 layout these bytes are the memory-card browser's background (transparency 109 of 128 and four
+  corner colours, (39, 24, 6) on the left and (186, 164, 125) on the right), three light directions and
+  colours and the ambient light of the 3D icon.
+- `icon1.ico` is a one-shape, one-frame model of 36 vertices with a 128 x 128 texture of 16-bit texels,
+  which ends the file. Of the functions that hold the save object, `0x00582790`, `0x00582860`, `0x00582FC0`,
+  `0x005832B0` and every other reader of its global `0x02CA99B8`, only `0x00582FC0` reads `+0x118`, to free the
+  buffer (`0x00583010`).
+- A replacement `icon.sys` needs at least `0xC0` bytes and a matching size-table entry for id `0x2C`, as the
+  copy reads `0xC0` bytes of the buffer and the read is sized by the table. No field holds a value out of
+  range.
+
 ### The boot descriptor
 
 `ps2data/cdi/in/system.cnf` is kind 0, id 0: entry 0 of the array `0x01E461F0`, which `0x002DF9A0`
 stores at `0x0215F000`. Every `.fst` sizes it at 57 bytes. It is the first of seven kind-0 paths; the
 other six, the PS2 executable `SLPM_667.50` and the modules `ioprp300.img`, `mcman.irx`, `mcserv.irx`,
 `dbcman.irx` and `libsd.irx`, ship nowhere in the archive.
+
+Its three lines are the PS2 console's boot settings: `BOOT2` names the program the console starts,
+`cdrom0:\SLPM_667.50;1` (the disc file `SLPM_667.50`, file version 1), `VER` is the disc version 0.01 and `VMODE`
+the video mode, NTSC. No `.exe` or `.dll` in `x64` holds the text `BOOT2`, `VER =`, `VMODE =` or `cdrom0`, or any
+of the three lines, ASCII or UTF-16, in any case; `SLPM_667.50` occurs once, in the path
+`program\dvd\in\SLPM_667.50` at `0x00A029C0`.
+[`standard-file-formats-system-cnf-rows.tsv`](standard-file-formats-system-cnf-rows.tsv) lists the lines with the
+file's SHA-256.
 
 ### Movies
 

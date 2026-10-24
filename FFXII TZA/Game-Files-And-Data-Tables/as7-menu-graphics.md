@@ -127,7 +127,7 @@ every later block of 2,048 ids. For those the procedure binds the `itemgra_c` at
 
 The other 9,728 ids from 1920 to `0x7FFF` pass the test, because their slot modulo 32 is 0 to 9: ids 1920 to 2559
 (slots 32 to 41) test the bits of slots 0 to 9, and so do ids `2048 × k + 1920` to `2048 × k + 2559` up to 32640 to
-32767 (`0x7FFF` is slot 513 and tests bit 1).
+32767 (`0x7FFF` is slot 513 and tests bit `0x2`).
 
 `0x00292050` then reads the container at `+0xD0 + 16 × slot` with the full
 slot (`0x00292075`-`0x0029207F`): `+0x2D0` for slot 32 up to `+0x20E0` for slot 513, all past the end of the `0x170`-byte

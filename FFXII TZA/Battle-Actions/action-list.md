@@ -35,7 +35,7 @@ Each line is read from the shipped `battle_pack.bin` in these steps:
 5. element bits by the names on [Elements](../Damage-And-Battle-Formulas/elements.md), status bits by the names in
    [Statuses](../Status-Effects-And-KO/statuses.md)' table;
 6. each flag word kept as hex, with beside it only the bits that have a named effect on
-   [Action definition row](action-definition-row.md); `+0x2C` bits 12 and 15 take their names from
+   [Action definition row](action-definition-row.md); `+0x2C` bits `0x1000` and `0x8000` take their names from
    [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) (`0x0030846A`, `0x003084B3`).
 
 ### Properties of the shipped rows

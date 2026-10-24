@@ -141,7 +141,7 @@ A shop is opened for the player in one of two ways, both from the zone script of
 
 `place` gives the map (region) and script of each zone script that does either. Every one of the 57 shops has one; the Street Vendor's shop 13 and Dyce's shop 18 have two. Shop 16, the Baknamy Merchant, is opened only by the second route: in Cloister of the Highborn (Necrohol of Nabudis) the Baknamy merchant actor of `bds_b01` opens it (`openfullscreenmenu_48d(2, 16)`) after the party is placed before it, and is never given a shop name.
 
-The Clan Provisioner's actor in Muthru Bazaar (Rabanastre) is a Mysterious Merchant until bit 0 of script global byte `0x041D` is set, and takes the shop's name only after that (`rbn_a02`). Montblanc sets the bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`). The shop's rank-1 list is therefore on sale from joining the clan.
+The Clan Provisioner's actor in Muthru Bazaar (Rabanastre) is a Mysterious Merchant until bit `0x1` of script global byte `0x041D` is set, and takes the shop's name only after that (`rbn_a02`). Montblanc sets the bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`). The shop's rank-1 list is therefore on sale from joining the clan.
 
 ## Columns
 

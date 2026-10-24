@@ -205,7 +205,7 @@ reads it.
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022CBAB8` | `u8[8]` | 0 | template `+0x08`-`+0x0F`, zeroed (`0x00363078`) and then overwritten by the stores below | `0x00362F70` | the four template copies |
-| `0x022CBAB9` | `u8` | 0 | template `+0x09`, the shape: bit 7 cleared, so shape 0, the ellipse | `0x00362F70` (`0x0036307F`) | `0x00362F70` (the same `and`); the four template copies |
+| `0x022CBAB9` | `u8` | 0 | template `+0x09`, the shape: bit `0x80` cleared, so shape 0, the ellipse | `0x00362F70` (`0x0036307F`) | `0x00362F70` (the same `and`); the four template copies |
 | `0x022CBABA` | `u32` | 0 | template `+0x0A`-`+0x0D`: `0x7F`, 0, 100, 100 | `0x00362F70` (`0x003630DD`) | the four template copies |
 | `0x022CBABE` | `u8` | 0 | template `+0x0E`: 100 | `0x00362F70` (`0x003630C1`) | the four template copies |
 | `0x022CBAC0` | `f32` | 0 | template `+0x10`: the range, 20.0 | `0x00362F70` (`0x0036308D`, `0x003630EE`) | the four template copies |

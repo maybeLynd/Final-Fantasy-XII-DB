@@ -545,7 +545,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   side (0 up, 1 down, 2 left, 3 right) that `0x003BD6F0` scores lowest, 0xFF for none.
 - `0x003BCAF0(type)`, for the World Map host `0x00552250`: with a non-zero type it clears the bit set `+0x270`,
   and when byte `+0xC8` is 1 it stores the type at `+0xC9` and sets the bits of both areas of every route
-  of that type (state bit 8 of `0x003BD480`).
+  of that type (state bit `0x8` of `0x003BD480`).
 - `0x003BFEA0(region)` answers whether the current field's area (`0x003148F0`, `0x00264F90`, `0x00254380`) is in
   the region, or, for an area outside the table, whether the region is 0; `0x003BFE10` uses it.
 - `0x003C0BE0(area)` answers whether a shown area's map key item `+0x16` is owned (`0x00309EC0`), for

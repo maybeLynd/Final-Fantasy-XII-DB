@@ -21,12 +21,14 @@ addresses: "0x0029BE50, 0x0029A0A0, 0x00299090, 0x002986E0, 0x00297C10, 0x002973
 
 `0x0029BE50` is the list widget, `0xB68` bytes, built by `0x002964D0` when the party has a member (`0x0035BB60`) and kept at
 `[0x0209BE80] + 0x10F78` ([HUD](hud.md)). `0x0028FD70` builds it, and the widget `0x0029BC80` at `+0x10FC8` beside it
-(`0x00296AA0`). On a chocobo ride (`0x00303EC0`) it closes both, and while action policy bit 10 is set it closes the list
-and shows the widget `0x0029C530` at `[0x0209C300]` instead (`0x00297100`). `0x00290E10` closes the list and `0x00296A70` the widget beside it;
-`0x002970C0` closes `[0x0209C300]`. Each close first sets bit 16 of the widget's `+0x40` when `0x002544B0` answers 1.
+(`0x00296AA0`).
 
-`0x0028FD70` also calls `0x003CA1E0` (`0x0028FD99`), which, when the object at `[0x02B47758]` exists, clears bit 1 and sets
-bit 0 of its `+0xA90`.
+On a chocobo ride (`0x00303EC0`) it closes both, and while action policy bit `0x400` is set it closes the list
+and shows the widget `0x0029C530` at `[0x0209C300]` instead (`0x00297100`). `0x00290E10` closes the list and `0x00296A70` the widget beside it;
+`0x002970C0` closes `[0x0209C300]`. Each close first sets bit `0x10000` of the widget's `+0x40` when `0x002544B0` answers 1.
+
+`0x0028FD70` also calls `0x003CA1E0` (`0x0028FD99`), which, when the object at `[0x02B47758]` exists, clears bit `0x2` and sets
+bit `0x1` of its `+0xA90`.
 
 On message 1 the list reads its layout, layout record `0x15`, takes the member count from `0x022C8064`, the leader's
 index from `0x022C8074` (`0x0035BAE0`), and builds the header `0x0029B700` at `+0xB38` (`0x0029BEAB`-`0x0029BF2A`).
@@ -35,15 +37,15 @@ index from `0x022C8074` (`0x0035BAE0`), and builds the header `0x0029B700` at `+
 ### Building the rows
 
 Each frame (message 2) the list checks the member count. When it changed it releases its rows and bars, clears the
-four member cells (`0x0028F830`), and sets bit 6 of `+0xB4A`; once they are gone it rebuilds through `0x0029BB40`
+four member cells (`0x0028F830`), and sets bit `0x40` of `+0xB4A`; once they are gone it rebuilds through `0x0029BB40`
 (`0x0029C124`, `0x0029C134`):
 
-1. A member record with a type and a handle gets a row kind in `+0xB44 + i`: 2 for flag bit 1 (types 7-25), 3 for
-   flag bit 2 (types 27-39), 1 otherwise.
+1. A member record with a type and a handle gets a row kind in `+0xB44 + i`: 2 for flag bit `0x2` (types 7-25), 3 for
+   flag bit `0x4` (types 27-39), 1 otherwise.
 2. A waiting kind builds the `0x160`-byte row `0x0029A0A0` at `+0x240 + i x 0x160`, with the list at its `+0x120`
    (`0x0029BBD3`).
 3. Once the list has finished opening, it builds one `0xD8`-byte action bar `0x00299090` per member at
-   `+0x7C0 + i x 0xD8` and sets `+0xB4A` bit 4 (`0x0029C374`-`0x0029C38C`).
+   `+0x7C0 + i x 0xD8` and sets `+0xB4A` bit `0x10` (`0x0029C374`-`0x0029C38C`).
 
 The member records are the `0xC0`-byte records at `0x022C8080 + i x 0xC0` (`0x0035BB20`), described on
 [Party member status record](../Characters-And-Objects/party-member-status-record.md).
@@ -85,7 +87,7 @@ A row's flag word `+0xD8` (`+0x318 + i x 0x160` in the list) drives its effects:
 
 `0x00296FB0(amplitude, base, phase)` is `base + amplitude x sin((frame x rate - phase) x pi / 15)`, with the rate 1, or
 one over the speed steps while the game runs at speed (`0x00229DF0`, `0x00229E70`). A row whose shown status has flag
-bit 1 at `+0x25` is also drawn at half brightness (`+0x5A`, `0x0029A267`-`0x0029A282`).
+bit `0x2` at `+0x25` is also drawn at half brightness (`+0x5A`, `0x0029A267`-`0x0029A282`).
 
 ### Flashes
 
@@ -94,9 +96,9 @@ by the popup's kind byte `+0x0D`:
 
 | Kind | Flash |
 |---|---|
-| `1`, `5` | HP: bit 5, `0x00297040(list, handle, 0)` |
-| `3`, `7` | MP: bit 6, `0x00297040(list, handle, 1)`, not on a row of kind 3 |
-| `2`, `6` | status pulse: bit 4, `0x00296E90` |
+| `1`, `5` | HP: bit `0x20`, `0x00297040(list, handle, 0)` |
+| `3`, `7` | MP: bit `0x40`, `0x00297040(list, handle, 1)`, not on a row of kind 3 |
+| `2`, `6` | status pulse: bit `0x10`, `0x00296E90` |
 
 `0x002994E0` draws the HP flash as a highlight sprite round the union of the HP digit nodes (`0x00271DB0`), as wide as
 the digit frame plus 24 for each node past the first (`0x002998D0`). For the draw it sets the widget's
@@ -160,7 +162,7 @@ The row shows the counter's value at `+0x50` while it runs, and the record's val
 `0x00297FE0(row, record)` copies the status presence word `+0x44` into the row's status record at `+0xF0` and steps it
 with `0x00272F80(+0xF0, 30, 0)`. With n statuses to show, each shows for `max(36 - 6n, 12)` frames in display order,
 after a blank of `ceil(30 / that)` periods (`0x00272F80`). The mark shows the status's sprite and its name, text
-`0x46B7` plus the status, such as "KO" (`0x46B7`) or "Stone" (`0x46B8`), in colour 5 when the status has flag bit 0
+`0x46B7` plus the status, such as "KO" (`0x46B7`) or "Stone" (`0x46B8`), in colour 5 when the status has flag bit `0x1`
 at `+0x25` and 4 otherwise.
 
 The display orders are four tables of pointers to copies of the 32 status rows, class `0x1A`, that `0x00273BA0` builds
@@ -177,7 +179,7 @@ at `0x022C8B08 + 0x1500`, `+0x1600`, `+0x1700` and `+0x1800` (`0x0035D490`):
 
 1. The member rows and the Status pane first fill n entries with `0xFEFE` (`0x002D0280(list, n)`).
 2. `0x002D02C0(list, n, mask, order)` writes, for each status of the mask below n, its number, its byte for the order
-   (`+0x20`-`+0x24` of its class `0x1A` record) and bit 0 of its `+0x25`, and answers how many have a byte other than
+   (`+0x20`-`+0x24` of its class `0x1A` record) and bit `0x1` of its `+0x25`, and answers how many have a byte other than
    `0xFF`.
 3. `0x002D03B0(list, n)` sorts them by that byte, highest first (`0x00249CE0` with the comparator `0x002D0270`).
 
@@ -198,8 +200,8 @@ The Status pane `0x002C59D0` keeps 32 such entries at `+0xC8` and its mask at `+
   nine party records hold (`0x00282DF0`: `+0x60` not negative, the mask `+0x44`).
 
 The HP number's colour comes from the statuses present, in order 0 (`0x00271FB0`, `0x00297D62`): colour `0xB5` when one
-has bit 4 at `+0x25` and `0xB6` for bit 3, pulsing by `128 + 32 x sin(frame x pi / 30)` (`0x00271EF0`); a status with
-bit 1 at `+0x25` halves each channel, `c x 0x40 >> 7` in place of `c x 0x80 >> 7` (`0x00297D67`-`0x00297DAE`).
+has bit `0x10` at `+0x25` and `0xB6` for bit `0x8`, pulsing by `128 + 32 x sin(frame x pi / 30)` (`0x00271EF0`); a status with
+bit `0x2` at `+0x25` halves each channel, `c x 0x40 >> 7` in place of `c x 0x80 >> 7` (`0x00297D67`-`0x00297DAE`).
 
 ### The summon gauge
 
@@ -209,19 +211,19 @@ summon timer `+0x5AD8` and its length `+0x5ADC` (`0x0029A39D`-`0x0029A407`). Lit
 `sin(frame x pi / 60)`; the segment being used up fades by the time left in it, the first never below `0x20`.
 
 `0x0029B490(row, on)` steps a six-frame mark through the frames `4`, `0x16`, `0x17`, `0x18`, `0x19` and `5` while the
-record's flag bit 17 is set and back while it is clear (`0x0029A5D9`). `0x0029AFE0` pulses node `0xB8`'s
-brightness between `0x80` and `0xFF` while flag bit 7 is set.
+record's flag bit `0x20000` is set and back while it is clear (`0x0029A5D9`). `0x0029AFE0` pulses node `0xB8`'s
+brightness between `0x80` and `0xFF` while flag bit `0x80` is set.
 
 ### The action bar
 
 The bar `0x00299090` keeps its state in the member's `0x20`-byte cell (`0x0028F830`), cleared when the member's type
-changes. It shows while the record's flag bit 9 is set or its action id `+0x5C` or issued command `+0x5E` is below
-`0x4000`, and flag bit 6 is clear; otherwise it closes once its count `+0xCA` passes 3. Each frame
+changes. It shows while the record's flag bit `0x200` is set or its action id `+0x5C` or issued command `+0x5E` is below
+`0x4000`, and flag bit `0x40` is clear; otherwise it closes once its count `+0xCA` passes 3. Each frame
 `0x002986E0(bar, record)`:
 
-1. shows the action's name (class `0x14`, `0x0029FB50`) once flag bit 13 is set and the id changed;
+1. shows the action's name (class `0x14`, `0x0029FB50`) once flag bit `0x2000` is set and the id changed;
 2. fills to `pct = +0x3C x 100 / +0x40` percent, a maximum of 0 counting as 100 (`0x00298BD0`-`0x00298BD5`), or 100
-   with flag bit 12;
+   with flag bit `0x1000`;
 3. on reaching 100 flashes for 8 frames with `sin(t x pi / 15)` (state 1), then fades out by 16 a frame (state 2);
 4. blends two colour pairs from `0x002DD7E0`, each channel `c0 + (c1 - c0) x f / 256` (`0x002752E0`), and cycles a
    four-key colour track (`0x00274870`, `0x00271E50`) while `0x00226BA0` answers 0:
@@ -238,13 +240,13 @@ changes. It shows while the record's flag bit 9 is set or its action id `+0x5C` 
 Request 3 ([Menus](menus.md)) reaches `0x00290500(1)`, which runs `0x00296BE0(list, 1)`:
 
 1. A list already in pick mode 2 refuses; otherwise the mode `+0xB49` becomes 1 with the handler `0x00297640`.
-2. `0x00299BD0` offers each row whose member has a handle, is not KO (flag bit 0), has flag bit 6 clear and passes
+2. `0x00299BD0` offers each row whose member has a handle, is not KO (flag bit `0x1`), has flag bit `0x40` clear and passes
    `0x002739D0`; the others are refused.
 3. The cursor starts on the leader, or the next offered row (`0x00296D96`, `0x00296DA7`).
 4. The header closes, the overlay `0x0029C9D0` opens over the rows, and the list takes the focus (`0x002470D0`).
 
 `0x00296BE0(list, 0)` undoes it: the header reopens, the focus is given up, the overlay closes and every row loses
-bits 0, 1, 2 and 7.
+bits `0x1`, `0x2`, `0x4` and `0x80`.
 
 ### The buttons
 
@@ -285,7 +287,7 @@ The battle menu turns the list into its cursor for a target list of party member
 which runs `0x00297170`:
 
 1. In mode 1 it refuses. Otherwise `+0xB50` points at the target page, `0x0029AEF0` offers the rows whose member is on
-   the page and refuses the others and those whose entry has flag bit 1, the greyed bit, and `0x0029AE50` puts the
+   the page and refuses the others and those whose entry has flag bit `0x2`, the greyed bit, and `0x0029AE50` puts the
    cursor on entry `start`.
 2. The list takes the focus with mode 2 (`0x002470D0`).
 3. `0x002904D0(0, 0)` ends it: the frame at `+0x180` closes, the focus is given up and the marks are cleared.
@@ -299,7 +301,7 @@ The menu works the list through small calls:
 | `0x00290520`, `0x002905B0` | read and set the last answer `+0xB43` (`0x00296570`) |
 | `0x00290470` | 3 when there is no list |
 | `0x002969F0(list, handler, context)`, `0x002969E0(list, hook)` | set the handler `+0xB20` with its context `+0xB30`, and the draw hook `+0xB28` |
-| `0x00296ED0(list, on)` | sets bit 8 of `+0xB4A`, which opens the frame `0x0029C770` round the rows; off clears the row marks |
+| `0x00296ED0(list, on)` | sets bit `0x100` of `+0xB4A`, which opens the frame `0x0029C770` round the rows; off clears the row marks |
 | `0x00296E00(list, handle)` | writes 3 into the member's cell `+0x1A` |
 
 The frame and the leader-mode overlay `0x0029C9D0` take their box from `0x002974E0`: the first row of kind 1, stretched
@@ -319,7 +321,7 @@ The counter record, `0x58` bytes, two per member at `0x0209BF40`:
 | `+0x08` | `i32[3]` | points | the three points between |
 | `+0x14` | `i16` | t | progress, 0 to `0x400` |
 | `+0x16` | `i16` | step | `0x400` / length in frames |
-| `+0x26` | `u16` | flags | bit 0 at rest, bit 1 registered |
+| `+0x26` | `u16` | flags | bit `0x1` at rest, bit `0x2` registered |
 | `+0x28` | `CounterRecord*` | next | in the HUD's list |
 | `+0x30` | `CounterRecord*` | prev | |
 | `+0x38` | `fn*` | callback | messages 0 to 6 |
@@ -338,10 +340,10 @@ The row widget `0x0029A0A0`, `0x160` bytes, four at the list's `+0x240`:
 |---|---|---|---|
 | `+0x0DC` | `u8` | hpFrame | the HP frame in use (What a row shows): 1 for values below 100, 2 below 1000, 3 for 1000 and above, of the larger of HP and the cap `+0x28`; `0x00297710` stores it (`0x00297751`) and swaps the frame's nodes only when it changes (`0x0029773E`-`0x00297747`). The HP digit draws `0x00297D10` and `0x00297E70` take their digit node from the tables `0x00916300` and `0x00916308` by it and draw frame + 1 digits (`0x00297DC3`-`0x00297DE8`, `0x00297E89`-`0x00297E9F`, `0x00297F1D`), and the HP flash `0x002994E0` picks its nodes by it (`0x00299522`) |
 | `+0x0F0` | `u8[24]` | statusCycle | the status cycle record, below; `0x00297FE0` passes `+0xF0` to `0x00272F80` (`0x00298014`, `0x00298036`) |
-| `+0x112` | `i16` | dimFade | the fade of nodes 0-2 for flag bit 7 (Row effects): `0x00298130` adds `0x20` a frame up to `0x100` while the bit is set and takes `0x20` off down to 0 once it is clear (`0x00298145`-`0x0029817A`), then gives the alpha of each of the four corner colours of nodes 0-2 the value `a x (0x100 - t) / 256` (`0x00298182`-`0x00298241`) |
-| `+0x118` | `i16` | noStatusNode | 4: the node of the child layout at node `+0xE0` that is drawn (its `+0x08` bit 0) only while no status is shown, `+0x100` = 0 (`0x0029A982`-`0x0029A9A7`, `0x0029ABAE`-`0x0029ABD7`); `0x00297880`, choosing the MP frame, writes it with `+0x11A` as the dword `0x10004` (`0x00297A6A`, `0x00297B5A`) |
+| `+0x112` | `i16` | dimFade | the fade of nodes 0-2 for flag bit `0x80` (Row effects): `0x00298130` adds `0x20` a frame up to `0x100` while the bit is set and takes `0x20` off down to 0 once it is clear (`0x00298145`-`0x0029817A`), then gives the alpha of each of the four corner colours of nodes 0-2 the value `a x (0x100 - t) / 256` (`0x00298182`-`0x00298241`) |
+| `+0x118` | `i16` | noStatusNode | 4: the node of the child layout at node `+0xE0` that is drawn (its `+0x08` bit `0x1`) only while no status is shown, `+0x100` = 0 (`0x0029A982`-`0x0029A9A7`, `0x0029ABAE`-`0x0029ABD7`); `0x00297880`, choosing the MP frame, writes it with `+0x11A` as the dword `0x10004` (`0x00297A6A`, `0x00297B5A`) |
 | `+0x11A` | `i16` | mpDigitNode | 1: the node of the same child layout that `0x0029A8E0` draws the MP number into as three digits when it differs from `+0x138` (`0x0029A904`-`0x0029A925`), and the first of the nodes n, n + 1 and n + 2 round which `0x002996E0` draws the MP flash (`0x0029972B`-`0x0029975E`, `0x002997A9`) |
-| `+0x128` | `i32` | markStep | the step of the six-frame mark of `0x0029B490` (The summon gauge): 1 more each call up to 11 while the record's flag bit 17 is set, 1 less down to 0 while it is clear (`0x0029B4F1`-`0x0029B51D`); the frame shown is entry step / 2 of the six, written to node 0 of the child layout at node `+0xE0` (`0x0029B523`-`0x0029B535`) |
+| `+0x128` | `i32` | markStep | the step of the six-frame mark of `0x0029B490` (The summon gauge): 1 more each call up to 11 while the record's flag bit `0x20000` is set, 1 less down to 0 while it is clear (`0x0029B4F1`-`0x0029B51D`); the frame shown is entry step / 2 of the six, written to node 0 of the child layout at node `+0xE0` (`0x0029B523`-`0x0029B535`) |
 | `+0x148` | `u32[3]` | mpBarLevel | one level per MP bar, 0 to `0x100`: each draw `0x0029A930` adds 16 to bar i's while i is below the charges `+0x86` and takes 16 off otherwise (`0x0029ACD0`-`0x0029ACEC`), and colours the bar from its three-key track at that level (`0x00271AB0` at `0x0029AD1C`, `0x0029AD21`-`0x0029ADF4`); the loop runs over the bar count `+0x87`, 1 to 3 (`0x0029AB51`-`0x0029AB8F`, `0x0029ADF9`-`0x0029AE09`) |
 
 The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30, 0, 0, 0)` (`0x00272F60`):
@@ -352,7 +354,7 @@ The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30,
 | `+0x04` | `u32` | counted | the mask at the last count: when the mask differs from it and either nothing was counted or the period has moved on, `0x00272F80` stores the mask here, counts again and sets `+0x08` to -1 (`0x0027302D`-`0x0027305C`) |
 | `+0x08` | `i16` | shown | the period being shown, from the frame counter `0x0208F570` (`0x00273012`-`0x0027302A`, stored at `0x00273099`); -1 after a count (`0x00273058`), 0 when nothing counts (`0x00273067`) |
 | `+0x0A` | `i16` | count | statuses counted (`0x00275E40`, stored at `0x00273051`); it sets each status's period, `max(36 - 6n, 12)` frames (`0x00272FC0`-`0x00273000`), and 0 shows nothing (`0x00273061`) |
-| `+0x10` | `void*` | status | the status row shown, or 0: the n-th counted status of the mask in the order once the blank periods have passed (`0x002730A3`-`0x0027314B`), 0 during them and when nothing counts (`0x0027306B`); `0x00297FE0` shows its text `0x46B7` plus `+0x98` and its colour from `+0x25` bit 0 (`0x0029803B`-`0x002980B8`), and answers 1 when a mark appeared or went (`0x00298020`, `0x0029804C`) |
+| `+0x10` | `void*` | status | the status row shown, or 0: the n-th counted status of the mask in the order once the blank periods have passed (`0x002730A3`-`0x0027314B`), 0 during them and when nothing counts (`0x0027306B`); `0x00297FE0` shows its text `0x46B7` plus `+0x98` and its colour from `+0x25` bit `0x1` (`0x0029803B`-`0x002980B8`), and answers 1 when a mark appeared or went (`0x00298020`, `0x0029804C`) |
 
 ### The gil window
 
@@ -363,7 +365,7 @@ The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x002A1FB0` |
-| `+0xC0` | `u32` | countFlags | bit 0 (with bit 1 tested as the pair 3): a gil count is running, set by `0x002A1DC0` (`0x002A1E47`-`0x002A1E60`), which also clears bits 1-5 and so picks curve 0 in bits 2-5; the tick clears bits 0-1 when the count ends (`0x002A238A`) and passes bits 2-5 to `0x00248F40` as the curve (`0x002A231F`-`0x002A2344`). `0x002A1DC0` refuses a new count (`0x002A1DE6`) and the idle test `0x002A2620` answers 0 (`0x002A262C`) while bits 0-1 are set |
+| `+0xC0` | `u32` | countFlags | bit `0x1` (with bit `0x2` tested as the pair 3): a gil count is running, set by `0x002A1DC0` (`0x002A1E47`-`0x002A1E60`), which also clears bits `0x3E` and so picks curve 0 in bits 2-5; the tick clears bits `0x3` when the count ends (`0x002A238A`) and passes bits `0x3C` to `0x00248F40` as the curve (`0x002A231F`-`0x002A2344`). `0x002A1DC0` refuses a new count (`0x002A1DE6`) and the idle test `0x002A2620` answers 0 (`0x002A262C`) while bits `0x3` are set |
 | `+0xC4` | `i32` | countFrom | the gil shown when the count started: `0x002A1DC0` copies the shown amount `+0xEC` (`0x002A1E41`); the tick shows countFrom + countBy x t (`0x002A2352`-`0x002A2380`) and countFrom + countBy at the end (`0x002A2391`) |
 | `+0xC8` | `i32` | countBy | the gil change being counted: `0x002A1DC0` stores the change `0x002524C0` allows, the request clamped so the total stays within 0-99,999,999 (`0x002A1E5A`); read by the tick (`0x002A2349`) |
 | `+0xCC` | `u32` | countFrames | the count's length in frames: `0x002A1DC0` sets `0x15`, 21 frames (`0x002A1E72`); the tick passes it to `0x00248F40` (`0x002A2338`) |
@@ -372,7 +374,7 @@ The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1
 | `+0xD8` | `void*` | limitDialog | the message window state 3 opens with message `0x856` through `0x00241C90` (`0x002A2234`-`0x002A2296`); state 4 waits until it is 0 (`0x002A220E`). The command message 12 sets it to 0 (`0x002A21AB`) and state 4 clears it again (`0x002A2228`) |
 | `+0xE0` | `void*` | layoutBlock | the layout block the window places itself from: the creation record's first qword (`0x002A257F`), or the menu layout block [`0x0209AC30`] + `0x90` when that is 0 (`0x002A25B3`-`0x002A25C1`); the opening and the tick resolve its `+0x20` (`0x0020E600`) and read entry `+0xE8`'s x, y, width and height (`0x002A207B`-`0x002A20CC`, `0x002A24FD`-`0x002A2527`) |
 | `+0xE8` | `i16` | layoutEntry | the 20-byte entry of the layout block the window uses: from the creation record's `+0x08` (`0x002A258A`), 0 with the default block (`0x002A25CA`); read at `0x002A208A` and `0x002A2504` |
-| `+0xEA` | `u16` | mode | from the creation record's `+0x0A` (`0x002A2575`; 3 from fs_foodwinopen's creator `0x002A1D40`). Mode 1 makes the tick show the party's gil, GameState_GetGil `0x00253690`, every tick (`0x002A21CA`-`0x002A21D9`); mode 3 picks the frame `0x00916408` over `0x00916430` (`0x002A20FB`); any other mode hides layout items 0 and 3 by clearing bit 0 of their `+0x08` (`0x002A211D`-`0x002A213A`) |
+| `+0xEA` | `u16` | mode | from the creation record's `+0x0A` (`0x002A2575`; 3 from fs_foodwinopen's creator `0x002A1D40`). Mode 1 makes the tick show the party's gil, GameState_GetGil `0x00253690`, every tick (`0x002A21CA`-`0x002A21D9`); mode 3 picks the frame `0x00916408` over `0x00916430` (`0x002A20FB`); any other mode hides layout items 0 and 3 by clearing bit `0x1` of their `+0x08` (`0x002A211D`-`0x002A213A`) |
 | `+0xEC` | `i32` | shown | the gil amount drawn: from the creation record's `+0x0C` (`0x002A256B`), the opening value `0x002A1D40` passes; mode 1 refreshes it each tick (`0x002A21D9`); a count moves it (`0x002A2380`, `0x002A2394`). The tick draws it as 8 digits in layout item 6 (`0x0029F6E0`, `0x002A23B7`, `0x002A23DC`); `0x002A1DC0` tests it plus the change against 99,999,999 and starts the count from it (`0x002A1DF3`, `0x002A1E3B`) |
 | `+0xF0` | `i16` | pauseFrames | frames left after a count: state 2 sets 24 (`0x002A22B5`); state 1 plays sound `0x1A` (`0x00249C60`) and `0x0024A1A0`([`0x01E0CDCC`]) at 20 (`0x002A22C1`) and counts it down (`0x002A22E0`, `0x002A22E7`); state 4 sets it to 0 with the state and overflow bytes in one dword store of `0xFF0000` (`0x002A221E`) |
 | `+0xF2` | `i8` | state | the count's state: 0 counting (set by `0x002A1DC0`, `0x002A1E50`), 2 count done (`0x002A1E2E` when the allowed change is 0, `0x002A239A` at the end), 1 pausing (`0x002A22AE`), 3 the limit message is due (`0x002A2313`), 4 waiting for it (`0x002A229D`; the command message 12 also sets 4, `0x002A21A4`), -1 idle (`0x002A2300`, `0x002A221E`, and the construct message's word store `0xFF`, `0x002A25A5`). The tick dispatches on it (`0x002A21DF`); the idle test `0x002A2620` answers 1 only for -1 (`0x002A2638`) |
@@ -414,7 +416,7 @@ It keeps a copy of the two text nodes' colour and rectangle, which nothing reads
 | `+0xDC` | `u8[4]` | pad0DC | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
 | `+0xE0` | `u16` | word0E0 | set to 0 at the end of message 1 (`0x0029C755`); no instruction reads it |
 | `+0xE2` | `u8[4]` | pad0E2 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
-| `+0xE6` | `u16` | runBits | bit 3 is set when the opening run starts (message 14, `0x0029C579`) and bit 2 when closing begins (message 15, `0x0029C569`); `0x00297100` clears bits 0-1 when it finds the panel already built (`0x00297132`-`0x00297137`). No instruction tests the word |
+| `+0xE6` | `u16` | runBits | bit `0x8` is set when the opening run starts (message 14, `0x0029C579`) and bit `0x4` when closing begins (message 15, `0x0029C569`); `0x00297100` clears bits 0-1 when it finds the panel already built (`0x00297132`-`0x00297137`). No instruction tests the word |
 | `+0xE8` | `u8[8]` | pad0E8 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
 
 ## State
@@ -452,15 +454,15 @@ the count. `0x0031EB20` sets that entry to -1 on entry (`0x0031EB46`) and change
 `0xC`-`0x10` (`0x0031F402`), so for these two codes it stays -1.
 
 With `arg` not 0, the rebuild opens the leader choice (request 3) by itself when all of these hold
-(`0x0035BEC1`-`0x0035BF2F`): `0x022C8068` is not 0, the leader's record has flag bit 6, some listed member has flag bits 1,
-2 and 6 clear, block bit 2 is clear, a listed member has flag bit 0, and `0x02092730` is 0. A refused request clears the
-two bits it set (`0x0035BF38`, `0x0035BF3F`). None of this runs when bit 3 of `0x022C83E8` is set and `0x00303EC0()`
+(`0x0035BEC1`-`0x0035BF2F`): `0x022C8068` is not 0, the leader's record has flag bit `0x40`, some listed member has flag bits `0x2`,
+2 and 6 clear, block bit `0x4` is clear, a listed member has flag bit `0x1`, and `0x02092730` is 0. A refused request clears the
+two bits it set (`0x0035BF38`, `0x0035BF3F`). None of this runs when bit `0x8` of `0x022C83E8` is set and `0x00303EC0()`
 answers non-zero; the rebuild then calls `0x002547D0(1)` instead (`0x0035BE98`-`0x0035BEBC`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022C8066` | `u16` | 0 | the number of listed members whose flag bit 1 is clear (not types 7-25); a member with bit 1 instead puts its type in `0x022C8076` | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BE42`); `0x0035BB70`, `0x0035C560`, the block cleared | `0x0035BC50`, its own increment (`0x0035BE42`) |
-| `0x022C8068` | `u32` | 0 | the number of listed members whose flag bit 6 is clear, bit 6 clear being one of the leader choice's tests for a row (`0x00299BD0`) | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BDEF`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BDEF`; `0x0035BEC7`, where 0 skips the leader choice) |
+| `0x022C8066` | `u16` | 0 | the number of listed members whose flag bit `0x2` is clear (not types 7-25); a member with bit `0x2` instead puts its type in `0x022C8076` | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BE42`); `0x0035BB70`, `0x0035C560`, the block cleared | `0x0035BC50`, its own increment (`0x0035BE42`) |
+| `0x022C8068` | `u32` | 0 | the number of listed members whose flag bit `0x40` is clear, bit `0x40` clear being one of the leader choice's tests for a row (`0x00299BD0`) | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BDEF`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BDEF`; `0x0035BEC7`, where 0 skips the leader choice) |
 | `0x022C8070` | `u32` | 0 | the party leader's type, the byte at battle block `+0x5AA4` (`0x003271D0`), copied at each rebuild | `0x0035BC50` (`0x0035BD7C`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BE2A`, which finds the leader's record); `0x0035BAA0(type)` (`0x0035BAA6`), which does nothing for the type already stored and otherwise writes the new type to `+0x5AA4` (`0x00327850`) and rebuilds with `0x0035BC50(0)` |
 | `0x022C83F4` | `i32` | 0 | list `0x1A`'s default entry, -1 after every rebuild | `0x0035BC50` (`0x0035BCDB`); `0x0035C560` | no instruction names it |
 | `0x022C847C` | `i32` | 0 | list `0x14`'s default entry, -1 after every rebuild | `0x0035BC50` (`0x0035BF6E`); `0x0035C560` | no instruction names it |

@@ -68,7 +68,7 @@ bank B (`0x00426A12` to `0x00426B84`). The actor side's `0x002EA320` and `0x002E
 ### The motion invokers
 
 Five more bespoke invokers act on the presentation entry (`rdx`) and the stream (`r8`) directly,
-without the banks. "Starting the entry" means: state word `+0x04` = 1, bit 1 of `+0x08`, and the
+without the banks. "Starting the entry" means: state word `+0x04` = 1, bit `0x2` of `+0x08`, and the
 speed `+0x20` = the stream's `+0x340`.
 
 | Id | Invoker | What it does |

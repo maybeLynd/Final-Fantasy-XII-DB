@@ -102,7 +102,7 @@ otherwise `0x003B2310` starts the read, and a refused read clears the entry and 
 
 `0x003B1BA0(owner, targets, count, id, n)` plays an entry. With `n` 0 it needs state 5: it makes a
 kind-7 instance on the entry's context (`0x0024B270`), records it at `+0x10`, sets state 6 and copies
-flag bit 1 into the instance's hold bit `0x40` of `+0x368`. With `n` non-zero it needs state 5 or
+flag bit `0x2` into the instance's hold bit `0x40` of `+0x368`. With `n` non-zero it needs state 5 or
 later and only passes `n` to `0x0024FE70` for the existing instance, putting `n` in the low nibble of
 `+0x378`. `0x003B2470(id)` returns an entry's instance.
 

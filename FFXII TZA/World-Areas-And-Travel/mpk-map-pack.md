@@ -295,7 +295,7 @@ of 0xFFFF is a tombstone that every walker skips.
 
 On first touch `0x003E8020` runs `0x003E8990`, which clears state bits `0x8` and `0x10`, rewinds the animation
 slot (`0x00473500(slot, -1.0, -1.0)`), sets its rate to 0 (`0x004735D0`) and sets the sound emitter's
-flags with `0x00363A90`. A toggle with bit 1 clear runs `0x003E85B0` and sets the bit; with bit 1 set it
+flags with `0x00363A90`. A toggle with bit `0x2` clear runs `0x003E85B0` and sets the bit; with bit `0x2` set it
 runs `0x003E8690` and clears it:
 
 - `0x003E85B0` sets the animation slot's rate to 0, turns the light's loop off and stops its animation

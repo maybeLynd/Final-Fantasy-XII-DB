@@ -42,7 +42,7 @@ children; `0x0046E6F0` rebuilds it after every acquire (`0x0046E4D0`), release a
 A skeleton entry's dword `+0x9C` is its skeleton kind, 0 or 2 (an `@FTR` node table, see
 [model files](model-files-cm-ca.md)), and `+0xA0` the skeleton resource. The bone array `+0x84` holds
 `+0x88` bones of `0x290` bytes; after them come `+0x88` u16 slots whose first `+0x8A` list the bones
-built from pool values (node flag bit 8), then the extra slots.
+built from pool values (node flag bit `0x100`), then the extra slots.
 
 - `0x00373DC0(bone)`, from the skeleton builder `0x00372820`, puts a bone at rest: identity at
   `+0x1F0` and `+0x230` (`0x0046D120`), `(0, 0, 0, 1)` at `+0x1A0` and `+0x1C0`, 1.0 at `+0x1E0` to
@@ -110,7 +110,7 @@ key names a listed bone of the parent is then tied to that bone:
 
 - the parent's bone gets the child bone's address at `+0x278` and its node number at `+0x27C`, so
   motion values written to it also reach the child bone;
-- the child bone copies the parent bone's matrices `+0xC0` and `+0x150` (`0x0046D100`) and sets bit 1 of
+- the child bone copies the parent bone's matrices `+0xC0` and `+0x150` (`0x0046D100`) and sets bit `0x2` of
   `+0x280`;
 - when the child bone's parent bone is a root (that bone's saved link is −1), the child bone's
   `+0x270` becomes −1 and `+0x276` takes the parent bone's `+0x270`.

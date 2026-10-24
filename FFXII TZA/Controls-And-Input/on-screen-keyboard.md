@@ -58,7 +58,7 @@ an unbound control gets the empty cap `0x6C` and the panel's dim colour.
 | Panel | Built, updated | Title | Controls (group, slots) | Profiles |
 |---:|---|---|---|---|
 | `1` | `0x00286010`, `0x00287E60` | Character Movement, or Cursor Movement while a movement-key mode is on | LY_N, LY_P, LX_N, LX_P (1: 7, 6, 5, 4) | the first |
-| `2` | `0x002862A0`, `0x002880B0` | Camera Movement, or Scroll while mode bit 2 is on | RY_N, RY_P, RX_N, RX_P (1: 3, 2, 1, 0) | the first |
+| `2` | `0x002862A0`, `0x002880B0` | Camera Movement, or Scroll while mode bit `0x4` is on | RY_N, RY_P, RX_N, RX_P (1: 3, 2, 1, 0) | the first |
 | `3` | `0x00286500`, `0x002882F0` | Change Leader/Change Target | Up, Down, Left, Right (0: 4, 6, 7, 5) | all three |
 | `4` | `0x00286780`, `0x00288500` | Cancel, Confirm, Battle Menu, Party Menu, one row each | Cross, Circle, Square, Triangle (0: 14, 13, 15, 12) | all three |
 | `5` | `0x00286A80`, `0x002887B0` | Map Transparency, Display Map | L3, Select (0: 1, 0) | all three |
@@ -66,9 +66,9 @@ an unbound control gets the empty cap `0x6C` and the panel's dim colour.
 | `7` | `0x002870D0`, `0x00288DB0` | Pause Game, Regular Game Speed, Double Game Speed, Quadruple Game Speed, Toggle Walk/Run | Start (0: 3), Speed1-3, WalkMode (2: 0-3) | the first |
 
 The titles are the text ids at `0x00286010` (`0x542`, or `0x54C` when `0x001E0EE0` reports any of mode bits 0-2),
-`0x002862A0` (`0x547`, or `0x58E` with mode bit 2 from `0x001E0F00(2)`) and `0x00286500` (`0x561`), and the per-row tables
+`0x002862A0` (`0x547`, or `0x58E` with mode bit `0x4` from `0x001E0F00(2)`) and `0x00286500` (`0x561`), and the per-row tables
 at `0x00915DD0` (panel 4), `0x00286AA4`-`0x00286AAF` (panel 5), `0x00915DE0` (panel 6) and `0x00915DF0` with `0x0028711E`
-(panel 7). With mode bit 2 on, panel 6 reads the second table at `0x00915E00` instead: Escape,
+(panel 7). With mode bit `0x4` on, panel 6 reads the second table at `0x00915E00` instead: Escape,
 Previous, Next, Zoom and Reset Camera (`0x00286E8D`-`0x00286EC0`). In panel 7 an unbound control hides its cell
 (`0x0028735A`).
 

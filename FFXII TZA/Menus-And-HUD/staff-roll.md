@@ -50,9 +50,11 @@ The roll object starts in line mode 1 (`0x0053E4EE`).
 
 `0x0053DD20(line, roll, font, v)` fills the line's 32-byte record:
 
-- **The text.** When bit 15 of v is set, the text is id 25000 + (v & `0x7FFF`), else id 26000 + v
-  (`0x0053DD90`-`0x0053DDA5`), looked up by `0x002F9860`. Text group 25 is `menu03.bin` (loader id 65) and group 26 is
-  `menu04.bin` (loader id 66), so a value with bit 15 shows row v & `0x7FFF` of `menu03.bin`, the roles, and any
+- **The text.** When bit `0x8000` of v is set, the text is id 25000 + (v & `0x7FFF`), else id 26000 + v
+  (`0x0053DD90`-`0x0053DDA5`), looked up by `0x002F9860`.
+
+  Text group 25 is `menu03.bin` (loader id 65) and group 26 is
+  `menu04.bin` (loader id 66), so a value with bit `0x8000` shows row v & `0x7FFF` of `menu03.bin`, the roles, and any
   other value shows row v of `menu04.bin`, the names. Both files are lists of `ex00` rows in UTF-16
   ([Text codes](text-codes.md)).
 - **Line mode 1** (`0x0053DFFB`-`0x0053E0A3`): the line takes a row of its own at the cursor. Alignment 0 puts its left

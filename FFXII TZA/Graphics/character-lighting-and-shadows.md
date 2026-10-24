@@ -74,7 +74,7 @@ it is multiplied by the multiplier and its alpha set to 1.0.
 
 - Ambient mode, record byte `+0x5E0`: 1 blends each ambient toward the record's colour `+0x5D0` by
   `+0x5DC` (for additive ones, once on their sum at the end); 2 multiplies by `+0x5DC`. A light with
-  request `+5` bit 4 is exempt.
+  request `+5` bit `0x10` is exempt.
 - Light scale: the gather copies record `+0x5EC` to `0x02B3F518`; while `0x02B3F502` is set it multiplies the
   colour and strength of every light whose `+5` is below `0x80`.
 - Group bits: `0x002E8610(actor, group, on)` sets or clears bit `group & 31` of the record's `+0x28C`.
@@ -111,6 +111,16 @@ The model instance's draw setup `0x004FD4B0` calls it with the instance's record
 (`+0xE8`, `+0xF0`) and colour (`+0x90`) into the global block `0x02CA8110`, then scales the ambient: rgb
 by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit `0x1`, by `+0x248`.
 That is how a character's fade and script colour reach its lighting ([character fades](character-fades.md)).
+
+The ambient is the block's `+0xC0`-`+0xCC`: `0x004FD4B0` reads red, green and blue (`0x02CA81D0`,
+`0x02CA81D4`, `0x02CA81D8`) and stores each back multiplied (`0x004FD5CC`-`0x004FD618`), and writes the alpha
+`0x02CA81DC`.
+
+Before the light call `0x004FD4B0` copies the record's matrix `+0x180`-`+0x1BF` into
+`0x02CA8000`-`0x02CA803F` (`0x004FD505`-`0x004FD52F`). Later it keeps the translation of its second argument
+(`+0x30`-`+0x38`, copied to the instance's `+0x160`) at `0x02EBA4A0` (x and y, one 8-byte store,
+`0x004FDA95`) and `0x02EBA4A8` (z, `0x004FDAA3`), which the render update `0x0053AB50` reads (`0x0053C8C3`,
+`0x0053C8E1`, `0x0053C8F0`).
 
 ### The installed light matrix
 

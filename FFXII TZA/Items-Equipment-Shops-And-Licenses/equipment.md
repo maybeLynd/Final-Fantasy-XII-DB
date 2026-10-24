@@ -37,8 +37,8 @@ hands with `0x00318B40`. When the slot it set has changed, it rebuilds the stats
 refreshes the unit (`0x00324470`). Only that slot is compared (`0x0031A6BB`, `0x0031A4B2`, `0x0031A5DA`).
 
 `0x0031A510` also
-re-records the fighting units and reloads their models (`0x00324380`) unless `flags` bit 0 is set (`0x0031A5F5`-`0x0031A610`);
-the five-slot callers `0x0031A710` and `0x0031A300` pass bit 0 and do that once at the end.
+re-records the fighting units and reloads their models (`0x00324380`) unless `flags` bit `0x1` is set (`0x0031A5F5`-`0x0031A610`);
+the five-slot callers `0x0031A710` and `0x0031A300` pass bit `0x1` and do that once at the end.
 
 The worn counts are kept only while the member is in the party: joining adds an owned and a worn copy of every
 piece, and leaving removes them ([Party members](../Party/party-members.md)). So the starting gear and the
@@ -81,7 +81,7 @@ rows:
 - `0x003FCDE0(pane)`, run by `0x003FCD20`, hides every member mark and shows those of the nine party records that
   `0x00282FA0` passes, one spacing apart.
 
-The list marks a piece through `0x0027F030`: bit 0 when `0x00317B70` refuses it, and bit 2 for an ammunition
+The list marks a piece through `0x0027F030`: bit `0x1` when `0x00317B70` refuses it, and bit `0x4` for an ammunition
 mismatch. The helpers:
 
 - `0x002CCA10(class)` answers whether a class is an ammunition weapon, 7, 8, 9 or 17; `0x002CCA00` whether it is

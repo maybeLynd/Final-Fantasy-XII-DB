@@ -47,12 +47,12 @@ The header's `+0x0C` and `+0x18` are offsets from the start of the section, reba
 | `+0x04` | `u8` | subType | kind of item, copied to the query record `+0x2C` (`0x0031C9C4`) |
 | `+0x05` | `u8` | pad05 | 0 on every row |
 | `+0x06` | `u8` | sortKey | the Optimise tie-break: equal values go to the higher id (`0x002F7C3C`) |
-| `+0x07` | `u8` | slotFlags | bits 7-5 slot, bit 4 no license, bit 2 hits flying, bit 1 cannot sell; table below |
+| `+0x07` | `u8` | slotFlags | bits 7-5 slot, bit `0x10` no license, bit `0x4` hits flying, bit `0x2` cannot sell; table below |
 | `+0x08` | `u8` | ordinal | order of the row inside its class (`0x0031C9CB`) |
 | `+0x09` | `u8` | class | equipment class 0-26; sets the group and the pairing (`0x0031E9F0`) |
 | `+0x0A` | `u32` | pad0A | 0 on every row |
 | `+0x0E` | `u16` | helpId | extra text id, through `0x002F9860` (`0x0031C9B0`); 0 on every row |
-| `+0x10` | `u8` | chargeWeight | summed over the five equipped items to slow the charge while battle flag `0x022C314C` bit 6 is set (`0x002F9C00`) |
+| `+0x10` | `u8` | chargeWeight | summed over the five equipped items to slow the charge while battle flag `0x022C314C` bit `0x40` is set (`0x002F9C00`) |
 | `+0x11` | `i8` | offHandClass | the class an off-hand item must have; -1 for none (`0x002F7EC0`, `0x00317930`) |
 | `+0x12` | `u16` | price | buy price in gil (`0x0031C981`) |
 | `+0x14` | `u32` | pad14 | 0 on every row |
@@ -68,7 +68,7 @@ The header's `+0x0C` and `+0x18` are offsets from the start of the section, reba
 | `+0x24` | `u8` | b24 | weapons: 0, 3, 5, 7, 8 or 10; 0 on every other row; read by no instruction, so it has no effect (below) |
 | `+0x25` | `u8` | reachKind | weapons: which range pair sets the near and middle distance (`0x00320D70` at `0x00320D93`) |
 | `+0x26` | `u8` | motionClass | weapons: attack motion class, through the map at `0x02EBF180`, main-hand rows only (`0x003203B0` at `0x0032041E`) |
-| `+0x27` | `u8` | chargeBase | weapons: charge time base for actions with flag `+0x0C` bit 27 (`0x002F8410` at `0x002F851A`) |
+| `+0x27` | `u8` | chargeBase | weapons: charge time base for actions with flag `+0x0C` bit `0x8000000` (`0x002F8410` at `0x002F851A`) |
 | `+0x28` | `u32` | bonusRecord | offset of the bonus record from section offset `0x7144`, 0-4200; rebased at load (`0x0023823E`) |
 | `+0x2C` | `u16` | attackEffect | weapons: low 15 bits = the effect a plain Attack shows (`0x0030AC50` at `0x0030AD56`) |
 | `+0x2E` | `u16` | pad2E | 0 on every row |
@@ -108,7 +108,7 @@ What each record field does to a unit is on [Stats](../Damage-And-Battle-Formula
 | 7-5 | the slot: 0 main hand, 1 off hand (shields and ammunition), 2 head, 3 body, 4 accessory | the slot test `0x00317930` (`0x00317A18`), Optimise `0x002F7A10` (`0x002F7A87`), the shop classifier `0x002FABD0` (`0x002FAC9D`) |
 | 4 | needs no license | the license test skips the item (`0x00323CDF`) |
 | 2 | reaches flying targets | `0x00390CF6` for weapon actions, formula slot 12 (`0x0038895B`) |
-| 1 | cannot be sold | copied to the query record `+0x54` bit 0 (`0x0031CA3C`-`0x0031CA47`), which the shop turns into price bit 31 (`0x0057DED0`) |
+| 1 | cannot be sold | copied to the query record `+0x54` bit `0x1` (`0x0031CA3C`-`0x0031CA47`), which the shop turns into price bit `0x80000000` (`0x0057DED0`) |
 | 0, 3 | not set on any row | - |
 
 ### The class byte and the group
@@ -181,7 +181,7 @@ placeholder rows named "NOT USED" and "Reserve".
 | Field | Values in rows 0-419 |
 |---|---|
 | `+0x12` price | 0 to 56,000; Unarmed 0, Broadsword 390, Flametongue 4,000; 1 on 34 of the rows below 420, among them Excalibur, Gendarme, the Genji Shield and the 13 Reserve rows, and on every `NOT USED` row from 420 on; Ribbon 10 |
-| `+0x07` bit 1 | set on 21 rows: Hero's Blade, Treaty-Blade, Sword of Kings, Joyeuse, Chirijiraden, both Nightmare rows, Flimsy Blade, Manufacted Nethicite, Goddess's Magicite, Dawn Shard and ten Reserve rows (the `cannot_sell` column of [`equipment-list.tsv`](equipment-list.tsv)) |
+| `+0x07` bit `0x2` | set on 21 rows: Hero's Blade, Treaty-Blade, Sword of Kings, Joyeuse, Chirijiraden, both Nightmare rows, Flimsy Blade, Manufacted Nethicite, Goddess's Magicite, Dawn Shard and ten Reserve rows (the `cannot_sell` column of [`equipment-list.tsv`](equipment-list.tsv)) |
 | `+0x10` | 0 on 260 rows, 1 on 72, 2 on 84, 3 on 1, 5 on 3 |
 | `+0x18` on weapons | 10 on 144, 100 on 42, 20 on 10, 30 on 3, 200 on 1 |
 | `+0x19` on weapons | 20-29, and 104 on ten of the eleven maces and on Joyeuse below row 420, and on the `NOT USED` rows 463-466 (class 15); the mace Bonebreaker has 27 |
@@ -223,7 +223,7 @@ is compared.
 
 ## Modding notes
 
-- Price is `+0x12`; making an item unsellable is `+0x07` bit 1.
+- Price is `+0x12`; making an item unsellable is `+0x07` bit `0x2`.
 - Changing `+0x24` changes nothing: no code reads it.
 - A weapon's damage formula is `+0x19`; its element `+0x1E`; its on-hit statuses `+0x1F` and `+0x20`.
 - The class `+0x09` decides how the game reads `+0x18`-`+0x1A`: a row moved to another group changes meaning.

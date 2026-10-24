@@ -27,7 +27,7 @@ The block holds:
   `0x0030B6A0` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md));
 - the seats, leader and battle mode ([Party slots](party-slots.md),
   [Battle mode](../Engine-Core/party-control-modes.md));
-- the mode flags `+0x5B04`, whose bits 0 and 1 the status view `0x00329220` tests for its flag bits 10 and 11; the
+- the mode flags `+0x5B04`, whose bits `0x1` and `0x2` the status view `0x00329220` tests for its flag bits `0x400` and `0x800`; the
   screens read members through that view, the battle menu's target window `0x002BFD20` among them
   ([Party member status record](../Characters-And-Objects/party-member-status-record.md),
   [Battle menu](../Menus-And-HUD/battle-menu.md));

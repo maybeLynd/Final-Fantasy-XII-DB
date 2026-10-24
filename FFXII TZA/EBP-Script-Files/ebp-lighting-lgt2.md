@@ -17,7 +17,7 @@ map pack ([map pack](../World-Areas-And-Travel/mpk-map-pack.md), slot 17), bound
 Slot 14 of the [EBP script container](ebp-script-container.md) directory, present only in event
 scripts. The walker `0x003304A0` passes it to `0x00330110` only for actor managers 1 to 4 (`0x0033066B`
 skips manager 0). `0x00330110` stores the pointer at `0x022C6E20 + manager × 8` (`0x00330140`) and clears
-pending bit 16; when the manager's pending word empties, the finaliser `0x0032F1B0` binds it with
+pending bit `0x10000`; when the manager's pending word empties, the finaliser `0x0032F1B0` binds it with
 `0x0037AA90(section, manager)` (`0x0032F1F9`). The manager index is the light group.
 
 ## Layouts

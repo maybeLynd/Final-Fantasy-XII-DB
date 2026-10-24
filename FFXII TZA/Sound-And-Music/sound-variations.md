@@ -46,7 +46,7 @@ bank's `seq ` chunk. A sequence record is read by its version byte `+0`:
 
 The sound record also holds the candidate count at `+5`, the category at `+6`, the sound's number at `+8`, the last
 pick or cursor at `+1`, the cycle interval in milliseconds at `+0x10`/`+0x14`, the cycle group limit at `+0x18` and
-the allow-repeat bit 5 of `+0x19`. The select writes `+1` into the loaded bank data, so every object made from one
+the allow-repeat bit `0x20` of `+0x19`. The select writes `+1` into the loaded bank data, so every object made from one
 record shares it.
 
 ### Sets
@@ -58,7 +58,7 @@ group byte join it, and only the first one's weight counts. A plain or switched 
 
 | Kind | Rule |
 |---|---|
-| Random | every set of weight 0 plays; one draw `rand() % 101` (`0x007E5325`-`0x007E5348`) picks a weighted set by running total; a repeat of `+1` is replaced by the heaviest other weighted set unless `+0x19` bit 5 allows it |
+| Random | every set of weight 0 plays; one draw `rand() % 101` (`0x007E5325`-`0x007E5348`) picks a weighted set by running total; a repeat of `+1` is replaced by the heaviest other weighted set unless `+0x19` bit `0x20` allows it |
 | Order | every set of non-zero weight plays; the weight-0 sets take turns, one per play, through the cursor `+1`, which wraps (`0x007E5BC7`-`0x007E5BD2`) |
 | Cycle | as Random, but a set whose group still sounds is also replaced (`0x007E5E80`); while fewer than `+0x18` groups sound it picks again every `rand() % (max - min + 1) + min` milliseconds (`0x007E65B0`, `0x007E6620`) |
 | Switch | every candidate whose `low <= v < high` plays, with `v` a named value: `default`, `distance`, or a lookup by name (`0x007BD9D0`) |

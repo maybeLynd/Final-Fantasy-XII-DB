@@ -23,7 +23,7 @@ content widget with procedure `0x002D1420` that holds the rows (`0x002D14FC`, `0
 
 | Record | List | Meaning |
 |---|---|---|
-| `+0x00` bit 0 | `+0xE0` bit 23 | a scroll-only list, with no cursor (`0x002D165D`) |
+| `+0x00` bit `0x1` | `+0xE0` bit `0x800000` | a scroll-only list, with no cursor (`0x002D165D`) |
 | `+0x08` | `+0xD8` | the rows' data |
 | `+0x10` | `+0xE8` | the item count, a `u16`, which also sizes the content widget (`0x002D14E0`) |
 | `+0x14` | `+0xEC` | columns |
@@ -68,7 +68,7 @@ The notices are listed on [widget messages](widget-messages.md).
 `0x002D4A40(list, kind, rows, columns)` moves the content widget to the view's position with the position tween
 `0x002468A0` ([Widgets](widgets.md)). It does nothing when the content is already there. Kind 1 places it at once;
 otherwise the run lasts the frames `0x002D1870` gives, as `frames x 1000 / 60` ms, with curve 1, curve 5 for kind 7
-(which also sets `+0xE0` bit 24) and curve 0 for kinds 3, 9 and 10 (`0x002D4AE4`-`0x002D4B2B`).
+(which also sets `+0xE0` bit `0x1000000`) and curve 0 for kinds 3, 9 and 10 (`0x002D4AE4`-`0x002D4B2B`).
 
 ### The content position
 
@@ -101,16 +101,16 @@ The channel record `0x022CAE90` is described on [Controls](../Controls-And-Input
 
 `0x002D3BA0` steps the list from the pad each turn. It uses `0x002D1B10` for a scroll-only list and `0x002D1DB0` for a list
 with a cursor, then animates the move and plays its sound. Holding Up or Down (`0x50`) counts at `+0x10B`, one per tick
-with no gap of 3 ticks or more, and at 80 it sets `+0xE4` bit 13 and steps again in the same turn
+with no gap of 3 ticks or more, and at 80 it sets `+0xE4` bit `0x2000` and steps again in the same turn
 (`0x002D3CDF`-`0x002D3D4D`).
 
 `0x002D1B10(list, pressed, repeat, held)` moves a scroll-only list's view and answers how:
 
 | Input | View | Answer |
 |---|---|---|
-| Triangle held with Up or Down | a page up or down, unless `+0xE4` bit 13 is set | `4` |
+| Triangle held with Up or Down | a page up or down, unless `+0xE4` bit `0x2000` is set | `4` |
 | Up, Down | one row | `2` |
-| Up at the top, Down at the bottom, on a fresh press | wraps round, unless `+0xE4` bit 24 is set | `3` |
+| Up at the top, Down at the bottom, on a fresh press | wraps round, unless `+0xE4` bit `0x1000000` is set | `3` |
 | Left, Right | one column, wrapping the same way | 2 or 3 |
 
 Bits `0x1000`, `0x2000`, `0x4000` and `0x8000` of the answer say up, down, left or right.
@@ -121,9 +121,9 @@ the view while the view can still scroll, and a page stops `+0x107` rows from th
 
 | Input | Move | Answer |
 |---|---|---|
-| Triangle held with Up or Down | the view by one page less a row, the cursor too when the view is held at its margin; at the margin, the cursor to the first or last shown row unless `+0xE4` bit 24 is set; nothing when bit 13 is set | `4`, `5`, `6` |
+| Triangle held with Up or Down | the view by one page less a row, the cursor too when the view is held at its margin; at the margin, the cursor to the first or last shown row unless `+0xE4` bit `0x1000000` is set; nothing when bit `0x2000` is set | `4`, `5`, `6` |
 | Up, Down, with at least two rows | the cursor row, or the view once the cursor is at its margin | `1`, `2` |
-| Up at the top, Down at the bottom, on a fresh press | wraps to the other end and one column on, unless `+0xE4` bit 24 is set | `3` |
+| Up at the top, Down at the bottom, on a fresh press | wraps to the other end and one column on, unless `+0xE4` bit `0x1000000` is set | `3` |
 | Left, Right | the cursor column, or the view's column, wrapping the same way into the next row | `1`, `2`, `3` |
 
 After a move the cursor is pulled back onto the last item, and the direction bit is set only when something moved.
@@ -132,19 +132,19 @@ After a move the cursor is pulled back onto the last item, and the direction bit
 
 `0x002D2D40(list, answer)` plays the step's sound:
 
-- answers 1-3, a move: the list's sound `+0xFF`, 1 when it is 0 and none when it is -1; nothing while `+0xE0` bit 22
-  is set; with `+0xE4` bit 29 the block-bank sound `0x003A11F0` gives, played through `0x002DF220(id, 0x40, 0x7F)` while
+- answers 1-3, a move: the list's sound `+0xFF`, 1 when it is 0 and none when it is -1; nothing while `+0xE0` bit `0x400000`
+  is set; with `+0xE4` bit `0x20000000` the block-bank sound `0x003A11F0` gives, played through `0x002DF220(id, 0x40, 0x7F)` while
   `0x02091098` is 0 ([Sound effects](../Sound-And-Music/sound-effects.md));
-- answers 4-6, a jump: sound `0x17` through `0x00249C60`, or `0x00249CA0` with `+0xE4` bit 29.
+- answers 4-6, a jump: sound `0x17` through `0x00249C60`, or `0x00249CA0` with `+0xE4` bit `0x20000000`.
 
 ### Other switches
 
-- `0x002D45C0(list, on)` sets `+0xE0` bit 16 and, when the focus widget is the list or one of its ancestors and every
+- `0x002D45C0(list, on)` sets `+0xE0` bit `0x10000` and, when the focus widget is the list or one of its ancestors and every
   one of them is active, can take the focus and is not mid-run, calls `0x003689E0(on)`.
-- `0x002D49C0(list, on)` sets `+0xE4` bit 21 and clears `+0x118` when it is turned off; the gambit editor and its
+- `0x002D49C0(list, on)` sets `+0xE4` bit `0x200000` and clears `+0x118` when it is turned off; the gambit editor and its
   condition list use it (`0x00569812`, `0x0056AB7F`).
 - `0x002D49F0(list, kind)`, used by the Clan Primer's family index, scrolls with `0x002D4A40` and, when it scrolled, `+0xE4`
-  bit 27 is set and the kind is 8-10, passes the frames to `0x00368860`.
+  bit `0x8000000` is set and the kind is 8-10, passes the frames to `0x00368860`.
 
 ### The hand cursor
 
@@ -155,28 +155,28 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 
 - `0x00368270()` resets the block: every position to none, mode 1 and flags `0x115`.
 - `0x00368010(pos, widget, plain)`, from `0x00368360`, adds up a widget's position and its ancestors' (next at
-  `+0x10`, `0x00246480`): with flag bit 5 through each widget's rotation and scale (`0x00398910`, `0x003985B0`,
-  `0x00398C50`) about its centre, with flag bit 9 from a widget's `+0x84`/`+0x8C` while its `+0x80` bit 0 is set,
-  and with flag bit 6 it scales the alpha byte `+0x0E` by each widget's `+0x24` / 128. `plain` skips all three.
+  `+0x10`, `0x00246480`): with flag bit `0x20` through each widget's rotation and scale (`0x00398910`, `0x003985B0`,
+  `0x00398C50`) about its centre, with flag bit `0x200` from a widget's `+0x84`/`+0x8C` while its `+0x80` bit `0x1` is set,
+  and with flag bit `0x40` it scales the alpha byte `+0x0E` by each widget's `+0x24` / 128. `plain` skips all three.
 - `0x00367820(widget, pos)`, from `0x00368360`, answers whether a request starts a slide. A widget other than the
-  holder clears flag bit 7 and gets 1; while the fade is 2 or 3 it answers 1; an unchanged target answers 0, and
-  a held target (`pos` flag bit 8) is recorded without a slide.
+  holder clears flag bit `0x80` and gets 1; while the fade is 2 or 3 it answers 1; an unchanged target answers 0, and
+  a held target (`pos` flag bit `0x100`) is recorded without a slide.
 - `0x00367200(frames)`, the step, slides in mode 2 (`0x00367ED0`) and fills the trail, returning to mode 1 at the
   end; in mode 1 it ages the trail and counts down the hold `0x022CBE34`, then starts the fade out. It runs the
-  bounce while flag bit 4 is set and steps the fade.
-- `0x003676D0()`, from the step (`0x00367340`), moves the cursor in mode 2. With flag bit 2 it takes the progress
+  bounce while flag bit `0x10` is set and steps the fade.
+- `0x003676D0()`, from the step (`0x00367340`), moves the cursor in mode 2. With flag bit `0x4` it takes the progress
   `0x00248F40(0x022CBE5C, 0x022CBE60, 0x022CBE5E)`, shifts both the start `0x022CBE48`/`0x022CBE4A` and the target
   `0x022CBE4C`/`0x022CBE4E` by `0x022CBE58`/`0x022CBE5A` when either is non-zero, and sets the position `0x022CBE38`/`0x022CBE3A`
   to start + (target - start) x progress.
-- Without flag bit 2, `0x003676D0` jumps to the target (`0x00368940`) and clears `0x022CBE5E` and `0x022CBE70`.
-- `0x003676B0()` sets flag bit 11 and calls the step; the widget draw passes `0x00250540`, `0x002506D0` and `0x002508E0`
+- Without flag bit `0x4`, `0x003676D0` jumps to the target (`0x00368940`) and clears `0x022CBE5E` and `0x022CBE70`.
+- `0x003676B0()` sets flag bit `0x800` and calls the step; the widget draw passes `0x00250540`, `0x002506D0` and `0x002508E0`
   run it.
-- `0x00368300()` answers whether the hand is drawn: a mode, flag bit 1 or a fade other than hidden, a position,
-  and flag bit 2 or a target.
-- `0x00368830(on)` sets or clears flag bit 4, which allows the bounce (`0x005641F0`, `0x00564650`, `0x005680E0`,
+- `0x00368300()` answers whether the hand is drawn: a mode, flag bit `0x2` or a fade other than hidden, a position,
+  and flag bit `0x4` or a target.
+- `0x00368830(on)` sets or clears flag bit `0x10`, which allows the bounce (`0x005641F0`, `0x00564650`, `0x005680E0`,
   `0x005687F0`). `0x003688A0(n)`, from `0x002D3BA0`, and `0x003687C0(flags, n)`, from `0x00368360`, start a bounce whose
-  first phase lasts n frames while bit 4 is set; `0x003688A0` takes -1 as 2, and `0x003687C0` does nothing for -1
-  (`0x003687C8`); `0x003687C0` stops it when the request's bit 1 is set.
+  first phase lasts n frames while bit `0x10` is set; `0x003688A0` takes -1 as 2, and `0x003687C0` does nothing for -1
+  (`0x003687C8`); `0x003687C0` stops it when the request's bit `0x2` is set.
 - `0x003688E0(frames)`, from `0x00368360` and `0x003689E0`, starts a fade in over `frames`: from a fade out (`0x022CBE87` = 2)
   it keeps the progress, `0x022CBE8A = 0x022CBE8A * frames / 0x022CBE88` (`0x0036890E`-`0x00368923`); from hidden (3) it
   starts at the full count, `0x022CBE8A = 0x022CBE88 = frames` (`0x003688F6`-`0x003688FE`).
@@ -190,8 +190,8 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 | `+0x0C0` | `void*` | content | the content widget that holds the rows |
 | `+0x0C8` | `void*` | owner | gets `0x8000` and the other notices |
 | `+0x0D8` | `void*` | data | the rows' data |
-| `+0x0E0` | `u32` | flags | bit 16 from `0x002D45C0`, 22 silent, 23 scroll-only, 24 a wrap is running |
-| `+0x0E4` | `u32` | flags2 | bit 13 fast or no paging, 21 from `0x002D49C0`, 24 no wrap, 27 Clan Primer hook, 29 block-bank sounds |
+| `+0x0E0` | `u32` | flags | bit `0x10000` from `0x002D45C0`, 22 silent, 23 scroll-only, 24 a wrap is running |
+| `+0x0E4` | `u32` | flags2 | bit `0x2000` fast or no paging, 21 from `0x002D49C0`, 24 no wrap, 27 Clan Primer hook, 29 block-bank sounds |
 | `+0x0E8` | `u16` | items | item count |
 | `+0x0EA` | `u16` | colWidth | column width |
 | `+0x0EC` | `u8` | columns | columns |
@@ -215,7 +215,7 @@ The globals in the first three tables belong to the hand cursor's block `0x022CB
 
 ### The bounce
 
-The bounce runs while flag bit 4 of `0x022CBE32` is set and the phase `0x022CBE3D` is 1 to 4. The step `0x00367200` adds
+The bounce runs while flag bit `0x10` of `0x022CBE32` is set and the phase `0x022CBE3D` is 1 to 4. The step `0x00367200` adds
 its frames to `0x022CBE3E`; once that passes the phase's length, the byte at `0x022CBE40` + phase - 1 (`0x0036759E`), it
 moves to the next phase with the count at 0. After phase 4 it starts again at phase 1 with the lengths 2, 6, 4 and
 30 (`0x003675AB`-`0x003675CE`). `0x00367ED0` shifts the hand by:
@@ -228,14 +228,14 @@ phase 1, 4:  offset = 0
 
 The offset is negated when `0x022CBE36` is 2 and added to x when `0x022CBE3C` is 0, to y when it is 1 (`0x00367F5B`-`0x00367F83`).
 
-These start a bounce, each only while flag bit 4 is set:
+These start a bounce, each only while flag bit `0x10` is set:
 
 - `0x003687C0(flags, n)` sets the lengths n, 6, 4, 30 and phase 1, does nothing when n is -1, and sets phase 0, whatever
-  flag bit 4, when `flags` bit 1 is set; `0x00368360` passes the slide's frames + 2 (`0x00368675`).
+  flag bit `0x10`, when `flags` bit `0x2` is set; `0x00368360` passes the slide's frames + 2 (`0x00368675`).
 - `0x003688A0(n)` sets n (2 for -1), 6, 4, 30 and phase 1; `0x00368860(n)` the same with n + 2 (2 when n is -3).
 - `0x00368360` sets 0, 6, 4, 30 for a request whose byte `+0x08` is 2 (`0x00368702`), and 2, 6, 4, 30 when it places the
-  hand at once without the request's `+0x0A` bit 1 (`0x00368767`).
-- `0x00367200` sets 2, 6, 4, 30 when a slide ends, unless flag bit 10 is set (`0x003673BB`-`0x003673CC`).
+  hand at once without the request's `+0x0A` bit `0x2` (`0x00368767`).
+- `0x00367200` sets 2, 6, 4, 30 when a slide ends, unless flag bit `0x400` is set (`0x003673BB`-`0x003673CC`).
 
 The Clan Primer's list step `0x00570CE0` copies the eight bytes `0x022CBE3C`-`0x022CBE43` out with `0x00367EC0` before it
 steps the list (`0x00570D6F`) and puts them back with `0x00368820` on the path that puts the list's view and cursor back where they were with `0x002D47C0`
@@ -281,17 +281,17 @@ It reads them through the block's address (`0x00367A30`, `0x00367A47`, `0x00367A
 ### The request
 
 `0x00368360` turns a request's position into a screen position (`0x00368010`) and adds the request's offset `+0x04`/`+0x06`
-when its `+0x0A` bit 8 is set, giving the target. `0x00367820` starts a slide only when the target changed and the
+when its `+0x0A` bit `0x100` is set, giving the target. `0x00367820` starts a slide only when the target changed and the
 position before the offset differs from `0x022CBE50`/`0x022CBE52`. With the same position and a new offset it retargets a
 sliding hand, or moves a resting one there at once, without a slide (`0x0036787B`-`0x003678D9`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CBE50` | `i16` | 0 | x of the last request's position before its offset; the target itself when the hand is placed at once; `0x8000` for none | `0x00367200`, `0x8000` when a fade out ends with flag bit 7 (`0x00367658`); `0x00367820` (`0x003678CE`); `0x003678F0`, `0x8000` (`0x00367934`); `0x00368270`, `0x8000` (`0x003682AD`); `0x00368360` (`0x003686DD`; the target: `0x00368723`); `0x00368940`, `0x8000` without a position (`0x003689C9`) | `0x00367820` (`0x0036787B`) |
+| `0x022CBE50` | `i16` | 0 | x of the last request's position before its offset; the target itself when the hand is placed at once; `0x8000` for none | `0x00367200`, `0x8000` when a fade out ends with flag bit `0x80` (`0x00367658`); `0x00367820` (`0x003678CE`); `0x003678F0`, `0x8000` (`0x00367934`); `0x00368270`, `0x8000` (`0x003682AD`); `0x00368360` (`0x003686DD`; the target: `0x00368723`); `0x00368940`, `0x8000` without a position (`0x003689C9`) | `0x00367820` (`0x0036787B`) |
 | `0x022CBE52` | `i16` | 0 | y of the same | `0x00367200` (`0x00367658`); `0x00367820` (`0x003678D9`); `0x003678F0` (`0x00367934`); `0x00368270` (`0x003682AD`); `0x00368360` (`0x003686E9`; the target: `0x00368744`); `0x00368940` (`0x003689C9`) | `0x00367820` (`0x00367887`) |
 | `0x022CBE54` | `i16` | 0 | x of the last request's offset, 0 when it had none; the next request's offset minus this is the shift `0x022CBE58` | `0x00368360` (`0x003684D6`) | `0x00368360` (`0x003684AA`) |
 | `0x022CBE56` | `i16` | 0 | y of the same, for `0x022CBE5A` | `0x00368360` (`0x003684DD`) | `0x00368360` (`0x003684BC`) |
-| `0x022CBE86` | `u8` | 0 | the hand's alpha while flag bit 6 is set, in place of the fade's: every request that sets the flags stores `0x80`, full, first | `0x00368360`, `0x80` (`0x0036854F`) | `0x00367940` (`0x003679D6`) |
+| `0x022CBE86` | `u8` | 0 | the hand's alpha while flag bit `0x40` is set, in place of the fade's: every request that sets the flags stores `0x80`, full, first | `0x00368360`, `0x80` (`0x0036854F`) | `0x00367940` (`0x003679D6`) |
 
 Nothing else reads or writes these globals. The block's address is taken only by `0x00367940` and `0x00368270`, with `0x022CBE4C` handed to
 `0x00368940` by `0x003676D0`, which reads only the target there.
@@ -300,12 +300,12 @@ Nothing else reads or writes these globals. The block's address is taken only by
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02CA8F30` | `i32` | 0 | 0 after the content widget draws its rows on message 4 (`0x002D2600`, or `0x002D28E0` with list `+0xE0` bit 25), 1 after any message other than 1, 4 and 17, which it passes to `0x005C5230` | `0x002D1420` (1: `0x002D143F`; 0: `0x002D14B5`, `0x002D14C6`) | no instruction |
+| `0x02CA8F30` | `i32` | 0 | 0 after the content widget draws its rows on message 4 (`0x002D2600`, or `0x002D28E0` with list `+0xE0` bit `0x2000000`), 1 after any message other than 1, 4 and 17, which it passes to `0x005C5230` | `0x002D1420` (1: `0x002D143F`; 0: `0x002D14B5`, `0x002D14C6`) | no instruction |
 
 ## Modding notes
 
 - A row painter is any function the record's `+0x20` names; the list calls it for each shown row.
-- Setting `+0xE4` bit 24 stops a list from wrapping round.
+- Setting `+0xE4` bit `0x1000000` stops a list from wrapping round.
 
 ## Related
 

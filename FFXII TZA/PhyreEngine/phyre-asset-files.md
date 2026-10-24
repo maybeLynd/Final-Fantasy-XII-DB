@@ -233,6 +233,23 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | `idmaps.txt` | `gamedata/d3d11/artdata/shared/idmaps.txt`: 4,061,418 bytes, 75,624 CRLF lines, 37,812 key and value pairs, every key distinct and none equal to its value; no `#` in any line |
 | file end | every mesh file ends exactly after its index and vertex buffers, every all-zero file at the end of its array table; in a texture file the image bytes exceed `m_maxTextureBufferSize` in 33,705 and equal it in 89 |
 
+`gamedata/d3d11/artdata/shared/phyremaps.txt` beside it (8,492,839 bytes, 94,682 CRLF lines) holds 47,341 pairs: a
+map texture's path under `/GameData/D3D11/ArtData/map/` and the file under `/GameData/D3D11/ArtData/shared/map/`
+that holds it. The values are exactly the 9,529 files of `shared/map/`. No key is a shipped file, and each key is
+named by at least one of the 914 map asset lists. `0x001A9940` reads it for the map art
+([Map art](../World-Areas-And-Travel/map-art.md)).
+
+- Each shared file carries one asset id, an `ArtData/...dds` string in its first 64 KiB. For 9,529 pairs the key is
+  that id's own path; the other 37,812 keys are exactly the `idmaps.txt` keys.
+- For every `idmaps.txt` pair both ids reach the same shared file, and that file carries the pair's value. No value
+  is also a key.
+- The remaster thus stores each distinct map texture once: up to 338 map texture paths share one file, and
+  `idmaps.txt` sends an import of any of their ids to the id the file carries.
+- The longest key is 91 characters and the longest value 119; the longest `idmaps.txt` id is 69.
+- [`phyre-asset-files-shared-maps-rows.tsv`](phyre-asset-files-shared-maps-rows.tsv) gives every `phyremaps.txt`
+  pair with its line, whether its key is the carried id or an `idmaps.txt` key (with that line), the row of the
+  carried id's own pair, and how many map asset lists name the path.
+
 ## Loader behaviour
 
 ### Preconditions
@@ -301,7 +318,7 @@ words of every member record. The string pool is left as it is.
   passed over.
 - `0x0059D590` converts every object: `0x00599670` fills each with its runtime class's default instance,
   then `0x0059B090` copies each member present in both the file and the runtime class from its file
-  position to its runtime position. A header class (runtime flag bit 2) also keeps the bytes after
+  position to its runtime position. A header class (runtime flag bit `0x4`) also keeps the bytes after
   its file size, up to `m_objectsSize`.
   - When the load context's byte `+0x18` is set it then runs the runtime
   class's descriptor slot `+0x00` forwards over every object (`0x0059FDB0(descriptor, objects, count, 1)` at

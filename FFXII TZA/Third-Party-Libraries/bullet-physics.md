@@ -74,6 +74,12 @@ exit-time destructor `0x008B3BE0` and its unwind funclet `0x008A09F0` (`_Init_th
 stays 0, so `0x00698C80` returns before doing anything; and even a direct call to `0x006A0310` returns
 `0x15` because the three solver slots stay null.
 
+The manager also holds an array: a count word at `+0x30` (`0x02E4B020`), whose bit `0x80000000`
+marks memory the array does not own, and a data pointer at `+0x38` (`0x02E4B028`). The constructor
+zeroes both (`0x00691278`, `0x0069127B`). The destructor `0x008B3BE0` frees the data when that bit is
+clear and the pointer is non-null (`0x00584730`), then zeroes both again (`0x008B3C1C`, `0x008B3C23`).
+No other instruction names them, so the array is never filled.
+
 ### Building the world
 
 When its inputs exist, `0x006A0310` builds a `btAxisSweep3` broadphase of 16,384 handles over the

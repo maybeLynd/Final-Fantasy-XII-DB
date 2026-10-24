@@ -59,15 +59,15 @@ widget at `+0x08`.
   when none has it; `0x002C9F80` does the same but changes nothing then, and `0x002C9FD0(set, colour)`
   colours every row. `0x002C9F20(row, colour)` and `0x002C9E60(row)` write and read one row's colour, grey
   `0x80808080` when it has no widget.
-- `0x002CA010(set, id, on)` sets or clears bit 1 of the widget's `+0xF0` for the row with the id, or for
-  every row with id -1; `0x002CA0C0(row, on)` does the same with bit 2. `0x002CA0E0(row, dx, dy)` moves a
+- `0x002CA010(set, id, on)` sets or clears bit `0x2` of the widget's `+0xF0` for the row with the id, or for
+  every row with id -1; `0x002CA0C0(row, on)` does the same with bit `0x4`. `0x002CA0E0(row, dx, dy)` moves a
   row's widget by (dx, dy) and keeps the offset at `+0xEC`, `+0xEE`.
 
 Entries and Inventory categories remember a first visit in a save-wide flag:
 
 - `0x002CD920(id)` gives the flag of an entry id, `0x002CDE20(id)` answers whether it is set (`0x00252D10`; 1
   for an id without one) and `0x002CDE50(id, v)` writes it (`0x00252D40`).
-- The entry dispatcher sets the flag when it opens an entry and then sets the row's bit 2 from it
+- The entry dispatcher sets the flag when it opens an entry and then sets the row's bit `0x4` from it
   (`0x00282310`, `0x002CA0C0` at `0x00282329`); the Inventory does the same for its categories (`0x0056633C`,
   `0x00566354`).
 - When the Party Menu meets an entry whose flag is clear (`0x00281127`), it shows the notice whose caption case
@@ -94,7 +94,7 @@ Entries and Inventory categories remember a first visit in a save-wide flag:
 
 On the Status and Equip screen, `0x002C2200(member)` and `0x002C2240(member)` step to the previous or next
 member: `0x0027ED10` and `0x0027F360` walk the nine member slots at `[0x0209AC30] + 0xAC8` from the current one
-`+0xDE0`, skipping empty slots (`+0x60` below 0) and, while `+0xD3C` bit `0x10` is set, slots with flag bit 1
+`+0xDE0`, skipping empty slots (`+0x60` below 0) and, while `+0xD3C` bit `0x10` is set, slots with flag bit `0x2`
 or `+0x60` of 6 or more. On a move they play sound `0x51` (`0x00249C60`) and refresh the screen (`0x002C2C50`).
 
 The menu state block `[0x0209AC30]` is set up by `0x002800F0`, from `0x00253970`, which points it at `0x0209AC60` and
@@ -103,12 +103,12 @@ clears its `0xE00` bytes once. `0x00282EA0(slot)` gives the index, 0 to 8, of th
 
 `0x002845E0(row, record)`, from `0x00283E40`, lays out a member-list row for a party record:
 
-- it places the row by the panel's `+0xFC` bit 3, at alpha `0x80` with the bit and `0x58` without, and hides it
+- it places the row by the panel's `+0xFC` bit `0x8`, at alpha `0x80` with the bit and `0x58` without, and hides it
   for a record whose position `+0x60` is negative;
 - it orders it by `(0x2F - position) x 2` (`0x00247930`) and takes its frame from the position clamped to 0-15
   by `0x002C9BD0`, which the license screens `0x00558CE0` and `0x005618E0` also use;
-- it shows its marks from the record's flags `+0x00` bits 1 and 17 and `+0x44` bits 0, 1 and 31 (colour 4 when
-  any is set) and from the panel's `+0xFC` bits 4 and 5.
+- it shows its marks from the record's flags `+0x00` bits `0x2` and `0x20000` and `+0x44` bits `0x1`, `0x2` and `0x80000000` (colour 4 when
+  any is set) and from the panel's `+0xFC` bits `0x10` and `0x20`.
 
 `0x002847C0(row)`, from `0x002C1FF0`, narrows nodes 0, 1, 2, 3 and 5 of a row to 0.75 of their authored widths
 (`0x00254A00` returns 0.75, and its `0x002DDC50` test always holds), node 5 by 2 more, and moves nodes 1 and 2 left by
@@ -129,12 +129,12 @@ kept at `[0x0209AC30] + 0x2E0` (`0x002CBF34`-`0x002CBF48`), and on message 1 it 
 | Offset | Part | Size | Procedure |
 |---|---|---:|---|
 | `+0xC0` | the arrow strip | `0xF8` | `0x002CABF0` |
-| `+0xC8` | the stat labels, made only when bit 0 of the build word is set (`0x002CC09D`) | `0xD0` | `0x002CB150` |
+| `+0xC8` | the stat labels, made only when bit `0x1` of the build word is set (`0x002CC09D`) | `0xD0` | `0x002CB150` |
 | `+0xD0`-`+0x117` | nine 8-byte pointers to the rows, row i at `+0xD0` + 8 x i | `0x110` | `0x002CA6C0` |
-| `+0x118`-`+0x15F` | nine 8-byte pointers to the rows' difference widgets, row i's at `+0x118` + 8 x i, made only when bit 0 of the build word is set (`0x002CC10A`) | `0xE8` | `0x002CB4B0` |
+| `+0x118`-`+0x15F` | nine 8-byte pointers to the rows' difference widgets, row i's at `+0x118` + 8 x i, made only when bit `0x1` of the build word is set (`0x002CC10A`) | `0xE8` | `0x002CB4B0` |
 
 The build word is `+0x10` of the parameter block that the construct message carries at `+8` (`0x002CBFE7`), not a
-word of the panel. Only the shop's builder sets its bit 0 (`0x002CBDC8` stores 7); the Status and Equip builder
+word of the panel. Only the shop's builder sets its bit `0x1` (`0x002CBDC8` stores 7); the Status and Equip builder
 stores `(screen == Status) << 3` (`0x002C24BF`-`0x002C24CE`, `0x002CBF00`-`0x002CBF09`) and the gambit editor stores 8
 (`0x0056958E`).
 
@@ -163,8 +163,8 @@ the rows and the arrow strip only.
 - `0x002CAFE0(strip, n, step, mode, keep)` takes the arrow strip at `+0xC0` and, as n, the panel's byte
   `+0x168` (`0x002CB831`-`0x002CB83F`, `0x002CB97B`-`0x002CB998`, `0x002CBA0F`-`0x002CBA1D`, `0x002CC460`-`0x002CC47A`):
   - it hides the strip's four arrow nodes, the list at the strip's `+0x60`;
-  - when the strip is shown (its `+0x40` bit 0), n is above 1 and the strip's `+0xF0` bit 1 is clear, it shows
-    one pair, chosen by `+0xF0` bit 0, in colour 2 for mode 1 and 0 otherwise;
+  - when the strip is shown (its `+0x40` bit `0x1`), n is above 1 and the strip's `+0xF0` bit `0x2` is clear, it shows
+    one pair, chosen by `+0xF0` bit `0x1`, in colour 2 for mode 1 and 0 otherwise;
   - without `keep` it places the list's node 2 (n - 1) x step to the left of its base (`0x002CB0FE`-`0x002CB111`)
     and stores that offset, negated, in the strip's `+0xEE` (`0x002CB0F7`).
 - `0x002CA3B0(widget, node, target, curve, ms)` starts a fade of a node's brightness `+0x3B` toward `target`,
@@ -192,15 +192,15 @@ The four objects' own fields, beyond the widget header ([Widgets](widgets.md)) a
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header: the build takes its rect `+0x98`-`+0x9E` from the layout `0x002432B0` returns for the creation record's two words, with the header's `+0x50` passed by address (`0x002CBFD1`-`0x002CC02F`), and installs the animation descriptor `0x00916FA8` through `0x00247570` (`0x002CC036`-`0x002CC040`, the header's `+0x48`); a builder that finds a record already kept at [`0x0209AC30`] + `0x2E0` builds none and goes on only when that record's `+0x7C` bit `0x20` is set (`0x002CBE1A`, `0x002CBE9F`, `0x002CBF51`); message 18 clears the block's `+0x2E0` (`0x002CBFB3`-`0x002CBFBD`) |
-| `+0x0C0` | `void*` | strip | the arrow strip (above); with bit 16 of `+0x168` the build adds 8 to the strip's `+0x98` and 4 to its `+0x9A` and runs `0x00247870` on it (`0x002CC21D`-`0x002CC25C`) |
+| `+0x0C0` | `void*` | strip | the arrow strip (above); with bit `0x10000` of `+0x168` the build adds 8 to the strip's `+0x98` and 4 to its `+0x9A` and runs `0x00247870` on it (`0x002CC21D`-`0x002CC25C`) |
 | `+0x0C8` | `void*` | labels | the stat labels (above), 0 outside the shop's panel; `0x002CC2A0` reads it at `0x002CC47F` |
 | `+0x0D0` | `void*[9]` | rows | the nine rows (above); `0x002CB8D0` (`0x002CB901`-`0x002CB922`), `0x002CBA50` (`0x002CBA79`-`0x002CBAB0`), `0x002CBC50` (`0x002CBCC0`) and `0x002CC660` (`0x002CC6E0`) walk them |
 | `+0x118` | `void*[9]` | differences | the nine difference widgets (above), 0 outside the shop's panel |
 | `+0x160` | `i16` | rowX | row 0's `+0x98` and `+0x9C`, its x and width, copied at the build (`0x002CC185`-`0x002CC1E0`) |
 | `+0x162` | `i16` | rowW |  |
-| `+0x164` | `i16` | diffX | the same of difference widget 0, or of row 0 when there is none (`0x002CC1A2`-`0x002CC1F0`); `0x002CC2A0` places the rows from `+0x164`/`+0x166` when bits 16-19 of `+0x168` are set, else from `+0x160`/`+0x162` (`0x002CC2BF`-`0x002CC300`) |
+| `+0x164` | `i16` | diffX | the same of difference widget 0, or of row 0 when there is none (`0x002CC1A2`-`0x002CC1F0`); `0x002CC2A0` places the rows from `+0x164`/`+0x166` when bits `0xF0000` of `+0x168` are set, else from `+0x160`/`+0x162` (`0x002CC2BF`-`0x002CC300`) |
 | `+0x166` | `i16` | diffW |  |
-| `+0x168` | `u32` | flags | byte 0: the rows shown, zeroed and counted by `0x002CC2A0` (`0x002CC33E`, `0x002CC431`), the n `0x002CAFE0` takes (above), read by `0x002CBC50` and `0x002CC660` before they walk the rows (`0x002CBC7B`, `0x002CC68D`); bit 8: the build counted at most one party slot whose stats record (`0x00282DF0`) has a non-negative `+0x60` word and, when the menu block's `+0xD3C` bit `0x10` is set, passes `0x00282FA0` (written as byte `+0x169`, `0x002CC12B`-`0x002CC155` and `0x002CC261`-`0x002CC26C`; tested at `0x002CC379` and by the strip at `0x002CAC3D`); bit 9: a copy of bit 16 (`0x002CC272`-`0x002CC280`); bits 16-19: the creation block's byte `+0x0C`, the mode (`0x002CC045`-`0x002CC059`), also read as the word `+0x16A` by `0x002CC4F0` (`0x002CC513`, `0x002CC550`); bit 16 also moves the strip (above); bit 17 set by `0x002CB850` at `0x002CB86D` and cleared at `0x002CB87E`; bit 20: the block's `+0x10` bit `0x4` (`0x002CC065`-`0x002CC078`); bits 20-21 tested by `0x002CBA50`, `0x002CC2A0` and `0x002CC4F0` (`0x002CBAA8`, `0x002CC37F`, `0x002CC574`); bits 22-23: `0x002CC4F0` sets bit 22 and clears bit 23 when the item's class (the first dword of `0x0035D330`(1, id << 16)) is 8, 9, 11 or 12 and clears both otherwise (`0x002CC59E`-`0x002CC5D6`), only with bits 20-21 set and an id other than `0xFFFF` (`0x002CC574`-`0x002CC592`); `0x002CC2A0` tests both at `0x002CC36D` |
+| `+0x168` | `u32` | flags | byte 0: the rows shown, zeroed and counted by `0x002CC2A0` (`0x002CC33E`, `0x002CC431`), the n `0x002CAFE0` takes (above), read by `0x002CBC50` and `0x002CC660` before they walk the rows (`0x002CBC7B`, `0x002CC68D`); bit `0x100`: the build counted at most one party slot whose stats record (`0x00282DF0`) has a non-negative `+0x60` word and, when the menu block's `+0xD3C` bit `0x10` is set, passes `0x00282FA0` (written as byte `+0x169`, `0x002CC12B`-`0x002CC155` and `0x002CC261`-`0x002CC26C`; tested at `0x002CC379` and by the strip at `0x002CAC3D`); bit `0x200`: a copy of bit `0x10000` (`0x002CC272`-`0x002CC280`); bits `0xF0000`: the creation block's byte `+0x0C`, the mode (`0x002CC045`-`0x002CC059`), also read as the word `+0x16A` by `0x002CC4F0` (`0x002CC513`, `0x002CC550`); bit `0x10000` also moves the strip (above); bit `0x20000` set by `0x002CB850` at `0x002CB86D` and cleared at `0x002CB87E`; bit `0x100000`: the block's `+0x10` bit `0x4` (`0x002CC065`-`0x002CC078`); bits `0x300000` tested by `0x002CBA50`, `0x002CC2A0` and `0x002CC4F0` (`0x002CBAA8`, `0x002CC37F`, `0x002CC574`); bits `0xC00000`: `0x002CC4F0` sets bit `0x400000` and clears bit `0x800000` when the item's class (the first dword of `0x0035D330`(1, id << 16)) is 8, 9, 11 or 12 and clears both otherwise (`0x002CC59E`-`0x002CC5D6`), only with bits `0x300000` set and an id other than `0xFFFF` (`0x002CC574`-`0x002CC592`); `0x002CC2A0` tests both at `0x002CC36D` |
 | `+0x16C` | `u8[4]` | gap16C | reached by no instruction in the table |
 
 The strip's own fields, from its procedure `0x002CABF0` (message 1 the build at `0x002CAEBC`, message 2 the tick at
@@ -214,9 +214,9 @@ The strip's own fields, from its procedure `0x002CABF0` (message 1 the build at 
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header; the build takes its rect `+0x98`-`+0x9E` from `0x002432B0` with 7 (`0x002CAEC3`-`0x002CAF19`) and gives nodes 2 and 3 the texts `0x466D` and `0x4670`, hidden (`0x002CAF29`-`0x002CAF70`); the record's build then moves the rect (above) |
 | `+0xC0` | `u8[20]` | tween | a record of the WidgetFade shape below, stepped by the tick (`0x002CADEA`-`0x002CAE5A`) into `+0xE4`; the tick clears its bits `0x1`-`0x2` when the tween ends (`0x002CAE2D`); no other writer in the table |
-| `+0xD8` | `void*` | panel | the record, from the creation message's `+0x10` (`0x002CAF7D`); the draw reads it and draws nothing while its `+0x168` bit 8 or 9 is set (`0x002CAC2D`-`0x002CAC47`) |
+| `+0xD8` | `void*` | panel | the record, from the creation message's `+0x10` (`0x002CAF7D`); the draw reads it and draws nothing while its `+0x168` bit `0x100` or `0x200` is set (`0x002CAC2D`-`0x002CAC47`) |
 | `+0xE0` | `u32` | buildTick | the frame counter `0x0208F570` at the build (`0x002CAF8A`); the colour pulse feeds it to `0x002CC8D0` and paints nodes 0 to 3 with the result (`0x002CAC95`-`0x002CAD69`) |
-| `+0xE4` | `i16` | x | row 0's `+0x98`, or difference widget 0's when the record's `+0x168` bits 16-19 are set (`0x002CAF90`-`0x002CAFB8`); the tween's result each tick (`0x002CAE5E`); the draw's x (`0x002CAC5E`) |
+| `+0xE4` | `i16` | x | row 0's `+0x98`, or difference widget 0's when the record's `+0x168` bits `0xF0000` are set (`0x002CAF90`-`0x002CAFB8`); the tween's result each tick (`0x002CAE5E`); the draw's x (`0x002CAC5E`) |
 | `+0xE6` | `i16` | y | their `+0x9A` (`0x002CAFBF`-`0x002CAFC3`); the draw's y, plus one (`0x002CAC56`-`0x002CAC65`) |
 | `+0xE8` | `i16` | push1 | 4 when the menu block's byte `+0xDE9` bit `0x2` is set, then one less each tick to 0 (`0x002CAD79`-`0x002CAD88`, `0x002CADD0`-`0x002CADD5`); subtracted from node 1's x (`0x002CAE7B`) |
 | `+0xEA` | `i16` | push0 | the same for bit `0x1` (`0x002CAD8F`-`0x002CAD9E`, `0x002CADBD`-`0x002CADC2`); added to node 0's x (`0x002CAE9C`); the block's two bits are cleared once read (`0x002CADE3`) |
@@ -246,7 +246,7 @@ widget and in place for the row (above):
 fadeFrames with the curve (`0x002CA302`-`0x002CA32B`); at 1.0 (`0x01CEBBA8`) it writes fadeFrom + fadeDelta and clears bits
 `0x1`-`0x2` (`0x002CA33B`-`0x002CA34B`), otherwise fadeFrom + fadeDelta x progress (`0x002CA354`-`0x002CA37C`); the brightness
 `b` goes to the node's `+0x3B` and to its four vertex colours `+0x28`-`+0x34` as the grey `b | b << 8 | b << 16` with
-bit 31 set (`0x002CA37F`-`0x002CA39C`).
+bit `0x80000000` set (`0x002CA37F`-`0x002CA39C`).
 
 A row's fields beyond the header and the fade record:
 
@@ -259,10 +259,10 @@ A row's fields beyond the header and the fade record:
 | `+0x0E8` | `char[16]` | numText2 | the second's (`0x002CAB5E`) |
 | `+0x0F8` | `char[8]` | signText1 | the first difference's sign text, "ex00" and "+" or "-" (`0x00365668`-`0x00365690` through `0x0029CCF0`), which the sign node's `+0x18` points at (`0x002CAB1D`, `0x002CAB85`; `0x002CC864`-`0x002CC86B`) |
 | `+0x100` | `char[8]` | signText2 | the second's (`0x002CAB4A`) |
-| `+0x108` | `void*` | panel | the record, from the creation block's `+0x10` (`0x002CA792`-`0x002CA796`); on message 2 the row clears its `+0x50` bit `0x1` when the record's `+0x168` bit 16 is set and sets it otherwise (`0x002CA6FF`-`0x002CA723`) |
+| `+0x108` | `void*` | panel | the record, from the creation block's `+0x10` (`0x002CA792`-`0x002CA796`); on message 2 the row clears its `+0x50` bit `0x1` when the record's `+0x168` bit `0x10000` is set and sets it otherwise (`0x002CA6FF`-`0x002CA723`) |
 
 The row's build (message 1, `0x002CA734`-`0x002CA7A9`) takes its rect from `0x002432B0` with 6, like the record's, and clears
-`+0x50` bit `0x1` when the record's bit 16 is set.
+`+0x50` bit `0x1` when the record's bit `0x10000` is set.
 
 A difference widget's fields beyond the header and the fade record:
 
@@ -276,7 +276,7 @@ A difference widget's fields beyond the header and the fade record:
 | `+0xE4` | `u32` | bright | 1 when node 11 fades toward `0x80` (`0x002CA8EB`, `0x002CB42A`), 0 toward `0x20` (`0x002CB41D`); on message 2 its bit `0x1` is copied into the shown bit of nodes 0 to 8 (`0x002CB52B`-`0x002CB5FB`) |
 
 On message 1 (`0x002CB60B`-`0x002CB70F`) the difference widget takes its rect from `0x002432B0` with 9, stores slot and panel,
-and when the record's `+0x168` bits 16-19 are set sets its `+0x50` bit `0x1`, shows node 11 and nodes 0 to 8 and hides
+and when the record's `+0x168` bits `0xF0000` are set sets its `+0x50` bit `0x1`, shows node 11 and nodes 0 to 8 and hides
 node 16; with the bits clear it clears `+0x50` bit `0x1`. On message 2 it steps its fade (`0x002CB4EE`) and then does the
 same `+0x50` choice (`0x002CB4F3`-`0x002CB517`), shows node 11 and copies `+0xE4` into nodes 0 to 8.
 
@@ -297,7 +297,7 @@ Status and Equip passes 1 (`0x002C24BA`) and the shop 0 (`0x0057AD55`). Message 
 | `+0x0EC` | `i32[9]` | preview | the nine values with the highlighted piece |
 | `+0x110` | `u16` | opener | `0x003FE410`'s argument, stored by message 1 (`0x003FE689`) |
 | `+0x112` | `u8[2]` | gap112 | read and written by none of the panel's functions |
-| `+0x114` | `u32` | flags | bit 0: the current numbers in colour 2, otherwise colour 0 (`0x003FE521`) |
+| `+0x114` | `u32` | flags | bit `0x1`: the current numbers in colour 2, otherwise colour 0 (`0x003FE521`) |
 
 The refreshers fill both rows from two comparisons, as worn and with the candidate set (`0x003FE8C0`-`0x003FE9D6`,
 `0x003FEB90`-`0x003FECA6`). Row i takes stats byte `+0x0A`, `+0x0B`, `+0x0C`, `+0x11`, `+0x12`, `+0x06`, `+0x07`, `+0x08`
@@ -353,11 +353,11 @@ The special-attack window `0x002D5EB0` shows one party member's entry (status re
 table of 24-byte entries:
 
 - `0x002D5280(window, entries, n, step)` finds the member's entry by its handle, keeps it at `+0x150`, picks the
-  current choice among its `+0x12` choices (`+0x06` words), sets `+0x142` bit 2 from the entry's `+0x14` unless
+  current choice among its `+0x12` choices (`+0x06` words), sets `+0x142` bit `0x4` from the entry's `+0x14` unless
   `step` is given, and shows the choice's action name (class `0x14`, `0x002B58B0`) in node 1; `0x002D54B0(window,
   action)` shows a given action's name there.
 - `0x002D5170(window, kind, plain)` builds the title at `+0xC0`: text `0x4669`, `0x466A` or `0x466C` by kind, or
-  `0x46B4` with `+0x142` bit 2 or `plain`, followed by the member's name (`0x00296600`).
+  `0x46B4` with `+0x142` bit `0x4` or `plain`, followed by the member's name (`0x00296600`).
 - `0x002D53F0(window, value, max)` writes value x 100 into node 1 (`0x0029F6E0`, grey `0x80808080`) and gives node
   0's gauge value x 100 / max (`0x00225580`), 0 for a max of 0.
 - On opening (message 1, `0x002D5F30`) the time `+0x740` and its maximum `+0x744` both take the value `0x00309E40`
@@ -368,7 +368,7 @@ table of 24-byte entries:
   runs it with the entry's count `+0x13`.
 - The child `0x0028B860`, built by `0x002899A0` under the window, takes its box from the HUD sprite set
   (`0x0035D460()`) on message 1. On message 2, 90 frames after the time `+0xC0` that message 6 stamps, it
-  closes (`0x00244DD0`, or `0x00245020` with `+0xC4` bit 1), unless message 15 has set `+0xC4` bit 0.
+  closes (`0x00244DD0`, or `0x00245020` with `+0xC4` bit `0x2`), unless message 15 has set `+0xC4` bit `0x1`.
 - Its draw (message 4) takes `t = min(frame - +0xC0, 90) x 256 / 90` and reads the four-key track `0x00915E10` at
   `t` with `0x00271AB0` ([Party list](party-list.md)): the widget's `+0x5A` takes the key byte `+7`, `+0x58` the byte
   `+6` `>> 1`, and the key field `+10` is the `s` with which `0x0028B700` draws the set's piece `+0x88` at
@@ -456,7 +456,7 @@ The party leader choice is the `0xC8`-byte widget at `0x022CA428` with procedure
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0035D6B0` |
 | `+0xC0` | `i32` | delay | the steps left before the question opens: the construct message sets `0x18` (`0x0035D89C`); each step message 2 on which `0x001EDEC0`(`+0xB4`) answers non-zero lowers it while it is above 0 (`0x0035D7D2`-`0x0035D7DE`), and at 0 the question opens (`0x0035D7E4`) |
-| `+0xC4` | `u32` | flags | bit 0: the question box is open, set after `0x0035C660` opens it (`0x0035D7F1`, `0x0035D808`) so it opens once, cleared by the construct message (`0x0035D895`); bit 1: the field teardown `0x0035BB70` is closing the window (`0x0035BBB1`), and then message 18 skips its own restore of the menu state (`0x0035D6FC`) |
+| `+0xC4` | `u32` | flags | bit `0x1`: the question box is open, set after `0x0035C660` opens it (`0x0035D7F1`, `0x0035D808`) so it opens once, cleared by the construct message (`0x0035D895`); bit `0x2`: the field teardown `0x0035BB70` is closing the window (`0x0035BBB1`), and then message 18 skips its own restore of the menu state (`0x0035D6FC`) |
 
 ### The menu state block
 
@@ -490,13 +490,13 @@ menu screens share.
 | `+0x140` | `void*` | statusEquipScreen | the Status and Equip screen `0x002C2320`: set when it opens (`0x002C2363`), cleared when it returns to the Party Menu (`0x002C25DB`) |
 | `+0x148` | `void*` | slotNames | the slot-name widget `0x003FEE40` (Weapon, Off-hand, Helm, Armor, Accessory), built by `0x003FEDC0` (`0x003FEE17`) and released and cleared by `0x003FD2C0` (`0x003FD335`-`0x003FD341`) |
 | `+0x150` | `void*` | equipList | the equipment list `0x003FDFE0` ("Change equipment."), built by `0x003FDA20` (`0x003FDA69`) and cleared by the list (`0x003FE072`) |
-| `+0x158` | `void*` | licenseMemberPick | the License Board's member pick `0x00560910`: set when it opens (`0x00560A40`), with partyFlags bit 4 set (`0x00560A4E`); cleared when it leaves (`0x005609BD`), with bit 4 cleared (`0x005609CB`) |
+| `+0x158` | `void*` | licenseMemberPick | the License Board's member pick `0x00560910`: set when it opens (`0x00560A40`), with partyFlags bit `0x10` set (`0x00560A4E`); cleared when it leaves (`0x005609BD`), with bit `0x10` cleared (`0x005609CB`) |
 | `+0x160` | `void*` | gambitPane | the gambit editor's pane in entry 4 of its table `0x02CA96E0` (the cell `0x02CA9700`): the editor `0x005691E0` copies it here when it opens (`0x00569507`-`0x0056951A`) and clears this when it leaves through `0x002814E0`(`0x4B9`) (`0x0056927A`) |
 | `+0x168` | `void*` | inventory | the Inventory screen `0x00565E00`: set when it opens (`0x00565E50`), cleared on its message 18 (`0x0056622F`) (Inventory screen) |
 | `+0x170` | `void*[33]` | tabPanes | the tab panes of the Inventory and the shops, the pane of slot s at +8 x s: the table `0x00D233A0` gives categories `0x405`-`0x409` and `0x40D`-`0x40F` slots 0-7 and the shop tab keys `0x597`-`0x5AF` slots 8-32 (the 33-entry search `0x00563FD0`-`0x00563FE1`); `0x00564B90` stores a built pane (`0x00564C40`), the pane procedure `0x005651E0` clears its slot (`0x005655CA`), and `0x00563FC0`, `0x00564A60`, `0x00565190` and `0x005659B0` look a pane up (Inventory screen) |
 | `+0x278` | `void*` | infoPanel | the Party Menu panel `0x002CF940` (mrppack unit 6 record 6) that `0x002CF8B0` builds for the Party Menu and the shop list: set when it opens (`0x002CFC3B`), cleared when it closes (`0x002CF978`) |
 | `+0x280` | `void*` | gradient | the menu background gradient `0x002CE7E0` (picture party_grd_2), built by `0x002CD800` (`0x002CD85C`) and cleared by the gradient (`0x002CE841`); `0x002C98C0` closes it (`0x002C98D4`) |
-| `+0x288` | `void*` | summonNameRow | the name row `0x002CF740` (mrppack unit 6 record 10) that `0x002CF710` builds only while an Esper is summoned (partyFlags bit 3) and this is 0 (`0x002CF717`-`0x002CF728`): set at `0x002CF7E8`, cleared on its message `0x12` (`0x002CF77E`) |
+| `+0x288` | `void*` | summonNameRow | the name row `0x002CF740` (mrppack unit 6 record 10) that `0x002CF710` builds only while an Esper is summoned (partyFlags bit `0x8`) and this is 0 (`0x002CF717`-`0x002CF728`): set at `0x002CF7E8`, cleared on its message `0x12` (`0x002CF77E`) |
 | `+0x290` | `void*` | screenLayer0 | screen layer kind 0: `0x002CCD40` builds the `0xF0`-byte fade layer `0x002CCE70` of kind k at `+0x290` + 8 x k (`0x002CCD62`-`0x002CCDA6`) under that kind's root (`0x002CCDB5`-`0x002CCDEA`), and `0x002CCBC0`(k, frames) closes it; kind 0 comes from `0x002CCCF0` (`0x002CCD21`) and goes under the menu root `0x0208EA28`; `0x002CCBA0` closes it (`0x002CCBA7`) |
 | `+0x298` | `void*` | screenLayer1 | screen layer kind 1, from `0x002CCCA0` (`0x002CCCD6`), under `0x0208EA28`; `0x002CCB10`, `0x002CCB30` and `0x002CCC30` close it (`0x002CCB17`, `0x002CCB37`, `0x002CCC37`) and `0x002CD150` reads it (`0x002CD159`) |
 | `+0x2A0` | `void*` | screenLayer2 | screen layer kind 2, from the pause task `0x00228C70` (`0x00229109`-`0x00229127`), under `0x0208EA38`; the event-skip task closes it (`0x002CCBC0`(2, `0x1000`) at `0x00228192`-`0x002281A2`) |
@@ -514,7 +514,7 @@ menu screens share.
 | `+0x300` | `void*` | itemPictureLoader | the item-picture loader `0x00291D90` (itemgra_c pictures for the ten entries at `0x0209BEA0`): set when it opens (`0x00291F96`), cleared when it closes (`0x00291DD2`); the area controller waits while this or pictureLoader is set (`0x002802F2`-`0x00280308`) |
 | `+0x308` | `void*` | pictureLoader | the picture loader `0x002CEB40` for the entries at `0x0209E638` that `0x002CEFA0` installs: set at `0x002CEDB7`, cleared when it closes (`0x002CEB87`); the pause screen takes the focus only while this is 0 (`0x002470ED`) (Pause screen) |
 | `+0x310` | `void*` | silhouette | the gambit editor's character silhouette `0x002CF440`: set when it opens (`0x002CF620`), cleared when it closes (`0x002CF489`) |
-| `+0x318` | `void*` | memberOrderWatch | the `0xF0`-byte widget `0x00283A10` that `0x002839B0` builds once (`0x002839BB`-`0x002839E0`; also from the shop list and `0x0035CA70`): when created it copies the nine records' member ids `+0x60` to its `+0xC0`-`+0xE0` (`0x00283A51`-`0x00283AF9`). Each step runs `0x00283B30`: after the member order changes it waits for the party read-in (`0x00324360`, done when `0x0037CB50` reports it), then re-records the fighting units and reloads their models (`0x00324380`), goes round once more if `+0xE8` bit 0 flags a further change, then stops (state 0). `0x00283940` releases it and clears this (`0x00283963`) |
+| `+0x318` | `void*` | memberOrderWatch | the `0xF0`-byte widget `0x00283A10` that `0x002839B0` builds once (`0x002839BB`-`0x002839E0`; also from the shop list and `0x0035CA70`): when created it copies the nine records' member ids `+0x60` to its `+0xC0`-`+0xE0` (`0x00283A51`-`0x00283AF9`). Each step runs `0x00283B30`: after the member order changes it waits for the party read-in (`0x00324360`, done when `0x0037CB50` reports it), then re-records the fighting units and reloads their models (`0x00324380`), goes round once more if `+0xE8` bit `0x1` flags a further change, then stops (state 0). `0x00283940` releases it and clears this (`0x00283963`) |
 | `+0x320` | `void*` | licenseBoardView | the License Board's open board chooser `0x00557DB0` (built by `0x00557AE0`, `0x00557B4D`) or grid view `0x0055CD40` (built by `0x0055C690`, `0x0055C6FD`); each clears it when it closes (`0x005582CE`, `0x0055CDC4`) (License Board screen) |
 | `+0x328` | `void*` | confirmWindow | the confirm window `0x0057C480` (Dialogs): set when it opens (`0x0057C4D9`), cleared when it ends (`0x0057CC83`) |
 | `+0x330` | `void*` | commandRowSet | the command-row set being filled (Command rows and first visits above): `0x002CD4D0`(set, rows, n) clears n 32-byte rows and points this at the set (`0x002CD4E5`-`0x002CD4FD`); `0x002CD3C0` appends a row with its id and two texts (`0x002CD3D3`-`0x002CD403`), `0x002CD420` returns row i and `0x002CD4B0` the count |
@@ -540,12 +540,12 @@ menu screens share.
 | `+0x3D0` | `void*` | layoutPack | mrppack_ys.bin, kind 7, id `0xD3`, requested by `0x002808D0` (`0x002808E0`-`0x00280916`); `0x00280980` takes layoutUnits from it (`0x0028098B`-`0x002809AA`) |
 | `+0x3D8` | `void*` | picturePack | tex2pack_ys.bin, kind 7, id `0xD7`, requested by `0x00280750` with `0x00280670` as its completion (`0x00280840`-`0x0028086D`); `0x00280670` binds its pictures to the ten picture names (`0x002806A0`-`0x002806D1`) |
 | `+0x3E0` | `i16` | mapReturnAction | word +0 of the 6-byte record the location map or its overlay hands back through `0x00285F00` (`0x00285F09`) (Map screens): `0x002814E0` passes the record to `0x0028E690` (`0x00281572`-`0x00281579`), which does nothing for 0 and 3, reopens the location map (`0x002B9D30`) for 1 and the World Map host `0x00550400` for any other value (`0x0028E6A5`-`0x0028E712`); `0x002814E0` then branches on it (`0x00281585`) |
-| `+0x3E2` | `u16` | mapReturnPage | word +2 of that record, written with +0 (`0x00285F09`): the page, bit 15 set; `0x0028E690` hands it to the map it reopens (`0x0028E6C4`, `0x0028E72F`) |
+| `+0x3E2` | `u16` | mapReturnPage | word +2 of that record, written with +0 (`0x00285F09`): the page, bit `0x8000` set; `0x0028E690` hands it to the map it reopens (`0x0028E6C4`, `0x0028E72F`) |
 | `+0x3E4` | `i16` | mapReturnPosition | word +4 of that record (`0x00285F13`); `0x0028E690` passes it to the World Map (`0x0028E75A`) |
 | `+0x3E6` | `u8[2]` | gap3E6 | read and written by no function; nothing fixes its width |
-| `+0x3E8` | `u8[16]` | mapViewResume | the 16-byte record copied whole by `0x00285EE0` (`0x00285EEA`) from the notice board list (`0x0037E481`-`0x0037E488`) or the Clan Primer's hunt list (`0x00579B86`-`0x00579B8D`): `0x002804E0` opens the World Map (`0x0028E790`) when bit 8 of its dword `+0x08` is set and the location map (`0x0028E630`) when it is clear, for the area in its dword `+0x00` (`0x002804EB`-`0x002805C3`); `0x00575580` reopens the Clan Primer straight into Hunts from it (Clan Primer) |
+| `+0x3E8` | `u8[16]` | mapViewResume | the 16-byte record copied whole by `0x00285EE0` (`0x00285EEA`) from the notice board list (`0x0037E481`-`0x0037E488`) or the Clan Primer's hunt list (`0x00579B86`-`0x00579B8D`): `0x002804E0` opens the World Map (`0x0028E790`) when bit `0x100` of its dword `+0x08` is set and the location map (`0x0028E630`) when it is clear, for the area in its dword `+0x00` (`0x002804EB`-`0x002805C3`); `0x00575580` reopens the Clan Primer straight into Hunts from it (Clan Primer) |
 | `+0x3F8` | `u32` | areaWait | the dword the area controller hands to `0x0032E4D0` in state 1 (`0x00280357`); no instruction writes it, so it keeps the 0 of the first clear (`0x00280110`), and `0x0032E4D0` answers 0 for 0 (`0x0032E4DB`, `0x0032E50B`) |
-| `+0x3FC` | `i32` | requestedField | the field the next teardown of the area controller travels to: `0x00285EC0` writes it (`0x00285ED8`) with bit 8 of areaFlags (Game over), and the controller reads it through its `+0xC0`, which points at `+0x3F8` (`0x0028044C`, `0x00280252`, `0x00280279`) |
+| `+0x3FC` | `i32` | requestedField | the field the next teardown of the area controller travels to: `0x00285EC0` writes it (`0x00285ED8`) with bit `0x100` of areaFlags (Game over), and the controller reads it through its `+0xC0`, which points at `+0x3F8` (`0x0028044C`, `0x00280252`, `0x00280279`) |
 | `+0x400` | `u32` | areaFlags | the area controller's state (low byte) and requests (the table below), reached through the controller's or the event-skip task's `+0xC0` (`0x0028044C`, `0x0022828E`) |
 | `+0x404` | `u8[4]` | gap404 | read and written by no function; nothing fixes its width |
 | `+0x408` | `u8[192]` | record0 | party record 0, a Party member status record (the layout on the Party member status record page) that `0x00283270` builds through `0x00320040`(3, 0, record) (`0x00283350`-`0x00283368`) for slot 0 of the gameplay roster, map 3 (Party slots); slots 0-3 are the active party |
@@ -561,8 +561,8 @@ menu screens share.
 | `+0xB10` | `u8[26]` | activeMember | one byte per member id (record `+0x60`): 1 when the member's record is one of the first four (the active party), 0 for the reserve; written by `0x00283270` when its argument is non-zero (`0x0028337D`-`0x00283393`) and by `0x00284C90` (`0x00284E43`); read by `0x002858A0`, `0x002C1FF0` and `0x0035CA70` (`0x00285963`, `0x002C2124`, `0x0035CD9C`) (Chocobos and airships) |
 | `+0xB2A` | `u8` | activeCount | the number of records 0-3 with a member (`+0x60` not negative): cleared and counted by `0x00283270` (`0x002832B9`, `0x002833A7`); read by `0x002CC2A0`, `0x005691E0` and `0x0056AB00` (`0x002CC307`, `0x005694B0`, `0x0056AC13`) |
 | `+0xB2B` | `u8` | reserveCount | the number of records 4-8 with a member: cleared and counted by `0x00283270` (`0x002832AB`, `0x002833AF`); read with activeCount (`0x002CC30F`, `0x005694A9`, `0x0056AC0B`) |
-| `+0xB2C` | `u8` | mainCount | the number of members with an id of 5 or less and record flag bit 1 clear, the six main characters: cleared and counted by `0x00283270` (`0x0028329D`, `0x002833C5`-`0x002833D2`); read by `0x002CC2A0`, `0x002CDAE0`, `0x003FD6B0`, `0x003FD860`, `0x0055F780`, `0x0055F830`, `0x005636F0` and `0x00563B10` |
-| `+0xB2D` | `u8` | guestId | the member id of a guest in the party (record flag bit 1), or `0xFF`: `0x00283270` (`0x002832C7`, `0x002833FB`-`0x00283400`); `0x002CEAE0` loads the guest's portrait face_guest id + `0x10` into guestPortrait (`0x002CEAF4`) |
+| `+0xB2C` | `u8` | mainCount | the number of members with an id of 5 or less and record flag bit `0x2` clear, the six main characters: cleared and counted by `0x00283270` (`0x0028329D`, `0x002833C5`-`0x002833D2`); read by `0x002CC2A0`, `0x002CDAE0`, `0x003FD6B0`, `0x003FD860`, `0x0055F780`, `0x0055F830`, `0x005636F0` and `0x00563B10` |
+| `+0xB2D` | `u8` | guestId | the member id of a guest in the party (record flag bit `0x2`), or `0xFF`: `0x00283270` (`0x002832C7`, `0x002833FB`-`0x00283400`); `0x002CEAE0` loads the guest's portrait face_guest id + `0x10` into guestPortrait (`0x002CEAF4`) |
 | `+0xB2E` | `u8[526]` | partyMarks | the party-mark bitmap of Party marks: one byte per equipment, technick or magick id, bit n for member n; `0x002826F0` and `0x00282A40` build it and `0x00282F10` reads it (`0x00282868`-`0x002829B5`, `0x00282BA7`-`0x00282CF9`, `0x00282F66`); the highest index, `0x20D` for magick `0x3051`, ends at `+0xD3C` |
 | `+0xD3C` | `u32` | partyFlags | the party's menu conditions, rebuilt by `0x00283270` (the table below) |
 | `+0xD40` | `u8[32]` | weaponSlot | the Weapon slot row of the current member, a MenuEquipSlotRow below: `0x0027F210` fills the five rows from the member's equipment words `+0x98`-`+0xA8` (record `+0x9A` + 4 x k) each time currentMember changes (`0x0027F240`-`0x0027F2BA`, through `0x00285F20` and the member steps) |
@@ -584,7 +584,7 @@ menu screens share.
 | `+0xDED` | `u8` | startHold | the Start presses still to swallow after an event skip: the event-skip task sets 3 when it ends (`0x00228210`), and the Start handler `0x002287D0`, with no event-skip task and no area controller, takes one off and does nothing else while it is above 0 (`0x0022884B`-`0x0022885E`) |
 | `+0xDEE` | `u8` | savedMusicVolume | the music volume to bring back when the menu closes: the mode-screen task stores the volume `0x002DE350` reports when it opens a menu and, when it is above 50, fades the music to 50 over 60 frames (`0x002DEE50`; `0x0027FEC8`-`0x0027FEF6`, `0x0027FF1C`-`0x0027FF4A`), otherwise stores 0; the Party Menu (`0x00281206`-`0x0028122D`) and the return to the menu (`0x002815A2`-`0x002815C1`) fade it back and clear this; `0x0027EFA0` clears it for a game over (`0x0027F00C`) |
 | `+0xDEF` | `u8` | modeScreenOpening | 1 while a mode screen is opening: set by the mode-screen task (`0x0027FDC0`, `0x0027FFBC`) and `0x0027EFA0` (`0x0027F01F`), cleared by the area controller (`0x00280292`); `0x00254A70` answers 1 while it is 0 (`0x00254A77`) (Screen fades) |
-| `+0xDF0` | `i32` | openLength | the length of the screen's opening run: the mode-screen task stores 1 when the request word has bit 15 and 200 otherwise (`0x0027FD83`-`0x0027FDAB`, through `0x002CC9F0`); `0x002CC9B0` returns it for the location map, the World Map, `0x005542D0` and `0x00581310` (`0x002BB194`, `0x005529F2`, `0x0055491D`, `0x00581333`), which hand it to `0x002CC960` or `0x002CC9C0` |
+| `+0xDF0` | `i32` | openLength | the length of the screen's opening run: the mode-screen task stores 1 when the request word has bit `0x8000` and `0x100000000000000000000000000000000000000000000000000` otherwise (`0x0027FD83`-`0x0027FDAB`, through `0x002CC9F0`); `0x002CC9B0` returns it for the location map, the World Map, `0x005542D0` and `0x00581310` (`0x002BB194`, `0x005529F2`, `0x0055491D`, `0x00581333`), which hand it to `0x002CC960` or `0x002CC9C0` |
 | `+0xDF4` | `i32` | shopArenaPending | 1 after the mode-screen task opens a shop (`0x0027FCCE`): the area controller's message `0x12` then puts arena 11 back to mode 0 through `0x0024AB60` and clears this (`0x0028018B`-`0x002801A4`) (Resource arena) |
 | `+0xDF8` | `i32` | chosenEntry | the Party Menu entry chosen last, its menu_command.bin id: the Party Menu writes it (`0x00280E30`, `0x002810FC`); the Equip comparisons test it for Equip, `0x4B6` (`0x00293791`, `0x002943CA`, `0x00294F3E`, `0x00295554`, `0x00295ACB`) (Menus) |
 | `+0xDFC` | `u8[4]` | tail | read and written by no function; nothing fixes its width |
@@ -618,10 +618,10 @@ The layout units of `layoutUnits` and the functions that read them:
 
 | Bits | Meaning |
 |---|---|
-| 0-7 | the controller's state: 0 when it opens (`0x00280453`); its step runs state 1 (`0x00280357`), which ends in 2 (`0x002803CC`), and state 2 (`0x002802C8`); `0x0027F2E0` writes 2, or 1 when bit 9 is set and bit 10 clear (`0x0027F31E`-`0x0027F33B`) |
+| 0-7 | the controller's state: 0 when it opens (`0x00280453`); its step runs state 1 (`0x00280357`), which ends in 2 (`0x002803CC`), and state 2 (`0x002802C8`); `0x0027F2E0` writes 2, or 1 when bit `0x200` is set and bit `0x400` clear (`0x0027F31E`-`0x0027F33B`) |
 | 8 | a field change is requested: set with `requestedField` by `0x00285EC0` (`0x00285EC7`), and with field 0 by the controller's state 1 (`0x002803A3`-`0x002803B3`); cleared by the controller when it closes (`0x0028024E`) |
-| 9, 10 | set together by `0x00285E60` (`0x00285E6B`, `0x00285E7C`); cleared by the controller's state 1 after it resets the save image (`0x00280380`-`0x00280395`), and bit 9 makes the controller's close restore the world (`0x002801E4`-`0x00280246`) |
-| 11 | bit 15 of the request that opened the controller (`0x00280481`-`0x0028049B`); `0x0027F2E0` closes slot 0 over 1 frame instead of 200 while it is set, then clears it (`0x0027F2F2`-`0x0027F301`, `0x0027F349`) |
+| 9, 10 | set together by `0x00285E60` (`0x00285E6B`, `0x00285E7C`); cleared by the controller's state 1 after it resets the save image (`0x00280380`-`0x00280395`), and bit `0x200` makes the controller's close restore the world (`0x002801E4`-`0x00280246`) |
+| 11 | bit `0x8000` of the request that opened the controller (`0x00280481`-`0x0028049B`); `0x0027F2E0` closes slot 0 over 1 frame instead of 200 while it is set, then clears it (`0x0027F2F2`-`0x0027F301`, `0x0027F349`) |
 | 12 | set by the event-skip task when it opens (`0x00228295`) |
 | 13 | set or cleared by `0x00285EA0(on)` (`0x00285EAA`-`0x00285EB6`), cleared by the event-skip task when it opens (`0x002282A3`) |
 | 14 | passed to `0x00244630` when the event-skip task ends (`0x002281FB`-`0x00228204`); none of the writers above sets it |
@@ -631,11 +631,11 @@ The layout units of `layoutUnits` and the functions that read them:
 | Bit | Set when | Read by |
 |---:|---|---|
 | 0 | some member's gambit set has more than 10 slots (byte `+0x32` of the copy `0x00327BE0` makes, `0x00283406`-`0x00283423`; [Gambits screen](gambit-screen.md)) | the gambit editor (`0x00569482`) |
-| 1 | a guest is in the party (record flag bit 1, `0x002833E0`-`0x002833ED`) | the guest portrait (`0x002CE998`, `0x002CEAEB`) |
+| 1 | a guest is in the party (record flag bit `0x2`, `0x002833E0`-`0x002833ED`) | the guest portrait (`0x002CE998`, `0x002CEAEB`) |
 | 2 | the party is riding a chocobo (`0x00303EE0`, `0x002832DC`-`0x002832F8`) | the member list, which refuses party changes with "You cannot change party members while mounted" (`0x0BE1`, `0x00285DEB`-`0x00285DF5`; `0x00284CD4`) |
 | 3 | an Esper is summoned (`0x003135E0`, `0x002832FE`-`0x0028331A`) | the member list ("You cannot remove a summoner with an active Esper from the party", `0x0BE2`, `0x00285DFC`-`0x00285E06`; `0x00284CDC`), `0x002830A0` (`0x002830AB`) and `0x002CF710` (`0x002CF717`) |
 | 4 | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel sets it from its creation record (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
-| 5 | bit 10 of the action policy `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
+| 5 | bit `0x400` of the action policy `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
 
 `stepFlash` (`+0xDE9`), which step arrow flashes for 4 frames:
 
@@ -676,10 +676,10 @@ Accessory), and the description window at `+0x2F8`:
 
 The Party Menu's name panel `0x002C13C0` copies its layout record's fields into six globals on message 1
 (`0x002C1448`-`0x002C148C`). On message 4 it clips the current member's name to a rectangle at the panel's position plus
-these offsets and draws it, scrolling it while bit 16 of the name entry's `+0x18` is set (`0x002C1649`-`0x002C1756`).
+these offsets and draws it, scrolling it while bit `0x10000` of the name entry's `+0x18` is set (`0x002C1649`-`0x002C1756`).
 
 The language test `0x00254A10`, true for the `kr`, `ch`, `jp` and `cn` settings, picks one of two left offsets and one
-of two widths. `0x002C38B0` and `0x002C4720`, which build the name entries of the list and four-pane panels, set bit 16 of an
+of two widths. `0x002C38B0` and `0x002C4720`, which build the name entries of the list and four-pane panels, set bit `0x10000` of an
 entry when the name is wider than the width the same test picks, a signed 32-bit compare (`0x002C3A32`; `0x002C48B2`, `0x002C4A53`, `0x002C4CBD`, `0x002C4F2B`).
 The rectangle takes each value's low 16 bits; the text position takes the whole `i32`.
 

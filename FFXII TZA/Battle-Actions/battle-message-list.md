@@ -30,9 +30,9 @@ have 100. The event ids and texts below are the US table's.
 |---|---|
 | `event_id` | the row index, as the posting code passes it |
 | `slot0`-`slot3` | the argument kind in row bytes `+0`, `+1`, `+2` and `+5`: user name (1), target name (2), status name (5), item or number (7), action name (8), or a context number (3, 4, 6, 9); blank for none |
-| `always_shown` | `yes` when bit 7 of row byte `+3` is set, so the 24-unit visibility rule does not apply (`0x00469570`) |
-| `category` | bits 2-6 of row byte `+3`, passed with the line (`0x005369C0`) |
-| `rate_limited` | `yes` when bit 0 of row byte `+4` is set, so a repeat for the same unit is dropped for 450 clock ticks (`0x0046AB10`) |
+| `always_shown` | `yes` when bit `0x80` of row byte `+3` is set, so the 24-unit visibility rule does not apply (`0x00469570`) |
+| `category` | bits `0x7C` of row byte `+3`, passed with the line (`0x005369C0`) |
+| `rate_limited` | `yes` when bit `0x1` of row byte `+4` is set, so a repeat for the same unit is dropped for 450 clock ticks (`0x0046AB10`) |
 | `text_readable` | the text with every code written as a named placeholder. A string or number insert of slot n becomes the slot's kind, `[user]`, `[target]`, `[action]`, `[status]`, `[item]` or `[number]` (`{0F}{31}{8n}{80}{80}`, `{0F}{2D}{8n}{80}`). `[article of X]` is the article string of X's word row (`{0F}{6E}{80}{8n}`, word-row string 2, for example "a "). `[count of N, or the article of X for one]` is `{0F}{6C}`, and `[X, plural when N is above 1]` is `{0F}{6D}`, which takes the row's plural template ([Text codes](../Menus-And-HUD/text-codes.md)). A line break with its baseline code is `[newline]`; the colour and baseline codes `{0F}{29}..` and `{0F}{3C}..` are removed, and the one-byte characters `{99}` and `{9A}` are `!` and `?`. Rows `0x0B` and `0x0C` hold only the byte `0xC7`, kept as `{C7}` |
 | `text_us` | the US text as stored: letters and `. , ' - :` decoded, the byte after each `{0F}` and all other bytes as `{hh}`, line breaks as `\n` |
 

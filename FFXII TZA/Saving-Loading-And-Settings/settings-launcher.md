@@ -112,6 +112,25 @@ The file is plain `key=value` lines. On reading, `Program.LoadIniFile` matches e
 `Program.SaveIniFile` turns it back. It rewrites the whole file from what it read plus its changes, so keys it
 does not know are kept.
 
+That holds when the read succeeds. A key given twice makes the read throw (`Dictionary.Add`); the launcher then
+starts with no keys, every box takes its default, and a save writes only its own keys and `Language`. Lines
+without `=` are skipped.
+
+- Values it cannot use: a `ScreenMode` outside the three selects full-screen, a `FrameLimit` other than `60`
+  selects 30 FPS, and a `VSync` other than `Off` and `Adaptive` selects on. A `Quality` outside the four keys
+  becomes an extra item with the text Custom, which writes the same value back.
+- A missing `WindowSize` selects the first size and a missing `Resolution` the last. A `WindowSize` not in the list
+  is raised to at least 640 x 360 and added to it in size order; a `Resolution` not in the list selects the listed
+  size nearest in pixel count.
+- These raise an exception the launcher does not catch: a `MasterVolume` that is not a number (`int.Parse` while
+  the window loads), a `WindowSize` without `*` in windowed mode, a `LastX` or `LastY` that is not a number in
+  borderless mode, an adapter field or `FrameLimit` outside the 32-bit range, and a `Monitor` of 0 or less on the
+  stored adapter.
+- [`settings-launcher-instances-rows.tsv`](settings-launcher-instances-rows.tsv) lists every key the launcher
+  reads or writes, its 24 controls, 12 box items, eight gamepad bits, the files it opens, the 12 `PathConfig`
+  elements and the 22 members it never uses or never assigns, each with the method that uses it and where its text
+  sits in the binary.
+
 In borderless mode the resolution box shows the size of the screen that holds the point
 `LastX`, `LastY` from the file. When no screen holds it, it takes the screen whose bottom-right corner is nearest,
 measured with `LastX` for both coordinates, and with no screen at all it falls back to `Resolution` or the primary
@@ -133,6 +152,9 @@ shows the exception's message.
   `Joy.FindJoysticks`, `Joy.AcquireJoystick`), ORs their hats and first four buttons into one mask with a
   three-tick repeat gate, and types keys for it (`ConfigForm.timer1_Tick`): up is Shift+Tab, down is Tab, left and right are the arrow keys, and button one clicks
   the focused button or the open message box's button.
+- The mask holds the hat as left `0x1`, right `0x2`, up `0x4` and down `0x8` (angles 27000, 9000, 0 and 18000) and
+  the first four buttons as `0x10`, `0x20`, `0x40` and `0x80` (`Joy.handleInput`). Button one is `0x20`, the
+  controller's second button; nothing reads `0x10`, `0x40` or `0x80`.
 
 ### Leftovers in the program
 
@@ -142,6 +164,23 @@ shows the exception's message.
   constant "Ver  1.0.4.0", the assembly version.
 - The Custom quality item is removed from its box unless the file already says `VQ_CUSTOM` (`ConfigForm_Load`), and
   the frame-limit and VSync boxes write their key on every change, not only on save.
+- `PathConfig` has twelve elements: besides `IniFile` and `ResetFile`, `FFX`, `FFX2`, `SideStory`, `LastMission`
+  and `Credit` each name `Hello.exe`, and their five `Param` elements are empty. Only `IniFile` and `ResetFile` are
+  read.
+- The VSync box's designer name is `comboBox_FrameLimit`, the frame-limit box's name. A `Text[@Control]` naming
+  `comboBox_FrameLimit` labels the frame-limit box, which is added first, and one naming `comboBox_Vsync` names no
+  control.
+- The resolution box's 26 design-time sizes (2560 x 1440 twice) and the version label's design text
+  `Ver  1.0.0.1` never show: the screen-mode selection refills the box, and `SetVersionInfo` sets the label.
+- `SetVersionInfo` cuts the first line of `code_steam.txt` and of `data.txt` between its first space and its first
+  `on`, discards the result, and throws in the window's constructor when the cut's length is negative, as for a
+  line without `on`; neither file ships.
+- Declared and never used: the methods `LoadVBFImage`, `RetriveMonitorResolutions`, `Pause`, `ToSBC`, `ToDBC`,
+  `GetXmlSelectorNodeByLanguage` and `stopTimer`, the import `AllocConsole`, and the properties `LanguagePath`,
+  `LangAndSizePath`, `MainFormHandle`, `FocusMessage`, `MaxScreenWidth`, `MaxScreenHeight`, `ResetButton`,
+  `DefaultButton`, `ApplyButton` and `VersionNumber`.
+- `OnVolumeChanged` and `mSharedMemoryObject` are never assigned, so the `Volume` key test in `SetIniString` calls
+  nothing and `MainFormHandle` never maps its shared memory.
 
 ## Shipped data
 
@@ -183,6 +222,25 @@ program opens it. The controls the game uses are in the `keymap.ini` of the Docu
 - Put in the Documents folder in place of the game's file, it is not used: its first line, `[Setting]`, is neither
   a `[KeyboardN]` header nor a binding, so the read stops there with profile 1 empty. The game then installs its
   default controls and writes them over the file when it shuts down.
+
+`ConfigData\GaussianFilter\GaussianFilterSetting.ini` (619 bytes, CRLF) holds a `[Setting]` section with `Count=5`
+and the sections `[Custom1]` to `[Custom5]`. Each gives a band of screen sizes by `StartWidth`, `EndWidth`,
+`StartHeight` and `EndHeight`, and a `BigKernel`, `Factor` and `BlendAmount` for it: 15x15 up to 800 x 600, 7x7 up
+to 1280 x 720, 5x5 up to 1600 x 900, 3x3 up to 1920 x 1080 and 3x3 from there to 32767 x 2160. `Factor` is 0.91
+and `BlendAmount` 0.5 in all five.
+
+- No shipped program opens it: no `.exe` or `.dll` in `x64` holds the text `GaussianFilterSetting`, `ConfigData`,
+  `[Setting`, `BigKernel=`, `StartWidth=` or any other of its keys with its `=`, ASCII or UTF-16, in any case.
+- The game sets the three values itself. The developer console labels render-parameter fields `+0x19C` "Gaussian
+  Filter big kernel" (0 3x3, 1 5x5, 2 7x7, 3 15x15), `+0x1A0` "Gaussian Filter factor" and `+0x1A4` "Gaussian
+  Filter blend amount" (`0x001CDFF0`, `0x001D0787`).
+- In play they are 3x3, the screen height divided by 1080.0 and 0.5: the constructor `0x0018CD90` stores 0 and 0.5,
+  and the copiers take `+0x08`, `+0x0C` and `+0x10` of the object `0x001DC510` returns, which `0x001DC3D0` sets to 0,
+  height / 1080.0 and 0.5 ([YEBIS and PPFX](../Third-Party-Libraries/yebis-ppfx-post-effects.md)).
+- Editing the file therefore changes nothing. At 1920 x 1080 the game's factor is 1.0, where the file says 0.91.
+- [`settings-launcher-gaussianfiltersetting-rows.tsv`](settings-launcher-gaussianfiltersetting-rows.tsv) lists its
+  42 lines with their offsets, the game's value for each key and where the key's text occurs in the shipped
+  programs.
 
 ## Modding notes
 

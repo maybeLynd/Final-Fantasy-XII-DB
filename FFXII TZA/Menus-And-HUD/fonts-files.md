@@ -41,8 +41,8 @@ read 8 bytes late.
 ### Requested files
 
 A `.dat` is requested when its folder's `fontlist.ah` names it (`0x001B4930`). The builder loads the `.dat` header's
-`flags` (`0x001B4E19`) and requests the `.ker` when bit 0 is set (`0x001B5024`, request `0x001B5750`, reader `0x001B5230`)
-and the `.fex` when bit 1 is set (`0x001B5045`, request `0x001B5480`, reader `0x001B4C00`). Those two requests are the
+`flags` (`0x001B4E19`) and requests the `.ker` when bit `0x1` is set (`0x001B5024`, request `0x001B5750`, reader `0x001B5230`)
+and the `.fex` when bit `0x2` is set (`0x001B5045`, request `0x001B5480`, reader `0x001B4C00`). Those two requests are the
 only code in the game that names a `.ker` or a `.fex`. That gives 62 of the 63 `.dat`, 25 of the 34 `.ker` and
 12 of the 14 `.fex` files. The ones never requested are:
 

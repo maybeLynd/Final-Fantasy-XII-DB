@@ -45,7 +45,7 @@ loader `0x00236C30`, and every byte of every row is read by its arm.
 
 - The four headers give 21, 5, 8 and 32 rows of 4, 4, 2 and 4 bytes, one TSV line each.
 - Example rows: comac row 0 is Attack, text 3000 "Attack with weapon in hand."; mgccategory row 0
-  is White Magicks; attribute row 0 is Fire and row 7 Dark, the bits 0 and 7 of Elements; sobicategory row 18 is
+  is White Magicks; attribute row 0 is Fire and row 7 Dark, the bits `0x1` and `0x80` of Elements; sobicategory row 18 is
   Shield, the class of Buckler.
 - comac rows 9, 10 and 12 have no name word (0) and no text.
 

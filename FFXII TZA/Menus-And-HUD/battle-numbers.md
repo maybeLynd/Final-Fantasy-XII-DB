@@ -19,7 +19,7 @@ beyond a set distance.
 The popups live in a ring of 64 records of 0x50 bytes at `[0x02B457D0]`; the byte `0x02B443C0` is the next slot.
 `0x003BBCD0`, from the field set-up `0x00253A30` (`0x00253A39`), points `0x02B457D0` at the block `0x02B443D0` and clears its
 `0x1400` bytes; `0x003BBB30`, from `0x0028E190` (`0x0028E1BE`), does the same after `0x0028FB60`.
-`0x003BBD00(request)` posts one and returns the slot with bit 5 set, or `0xFF` when it refuses:
+`0x003BBD00(request)` posts one and returns the slot with bit `0x20` set, or `0xFF` when it refuses:
 
 1. it refuses when the ring is absent, when the next slot is still in use, and for a status word whose record
    `0x0035D330(0x1A, status)` has `+0x24` = `-1`;
@@ -49,7 +49,7 @@ sets the step `+0x3A` to 1 and the kind `+0x3C` from the request's byte `+0x0C`:
 |---:|---|---|
 | 0, number | `0x003283D0(unit, amount, isHeal, b)` for HP ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)) and MP ([MP](../Status-Effects-And-KO/mp.md)) | the digits of the absolute amount (`0x003EFD00`) at `+0x40`, their count `+0x3F`, the atlas `battle_4_c` (`0x0024A5A0`), the colour `0x002DD7E0(0x00D227A8[colour])` at `+0x0C` and its palette `0x002DD7B0` at `+0x3D` |
 | 1, picture | `0x00328480(unit, frame)`, from the result reactions `0x00307300` (frames 0, 2, 4 and 5) and the auto-attack start `0x00312FA0` (frame 3) | the frame `+0x3F`, the atlas `battle_4_p`, two colours from the byte pairs at `0x00D22780` |
-| 2, status word | `0x003284D0(unit, status)` ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)) | step 3, the status's name (`0x002B58B0` of the record's `+0x18`) laid out by `0x002B3050`, palette 4, and the colour by the record's `+0x25`: bit 1 colour 1, bit 2 `0x12`, bit 3 `0xB6`, bit 4 `0xF3`, else grey `0x80808080` |
+| 2, status word | `0x003284D0(unit, status)` ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)) | step 3, the status's name (`0x002B58B0` of the record's `+0x18`) laid out by `0x002B3050`, palette 4, and the colour by the record's `+0x25`: bit `0x2` colour 1, bit `0x4` `0x12`, bit `0x8` `0xB6`, bit `0x10` `0xF3`, else grey `0x80808080` |
 
 ### Number colours
 
@@ -67,19 +67,19 @@ names an entry of the menu colour table through `0x00D227A8`:
 ### Ageing
 
 `0x003BBA60` runs once per 60 fps tick from the subsystem pump ([Subsystem update flags](../Engine-Core/subsystem-update-flags.md)).
-While bit 1 of the update word `0x01EFE31C` is set (`0x003BBF90`, from `0x002547C0`), it steps each live popup with
+While bit `0x2` of the update word `0x01EFE31C` is set (`0x003BBF90`, from `0x002547C0`), it steps each live popup with
 `0x00505500` and frees it when that returns 1:
 
 - a number or picture adds its step `+0x3A` to its age `+0x38` and ends past age 37;
 - a status word first waits out its delay `+0x44`, then ages by 6 a frame up to 128 and by its step after that,
   ending past 256.
 
-The same call moves the layer's alpha `0x01EFE320` by 0.2 toward 1.0 while bit 1 of `0x01EFE31D` is set and toward 0
+The same call moves the layer's alpha `0x01EFE320` by 0.2 toward 1.0 while bit `0x2` of `0x01EFE31D` is set and toward 0
 otherwise.
 
 ### Drawing
 
-`0x003BBB60` draws nothing while the layer's alpha is 0 and `0x01EFE31D` bit 1 is clear. Otherwise it walks the ring from
+`0x003BBB60` draws nothing while the layer's alpha is 0 and `0x01EFE31D` bit `0x2` is clear. Otherwise it walks the ring from
 the newest popup: status words through `0x0028A090` into the screen-space list (`0x003F1520`, `0x003F1530`), numbers and
 pictures through `0x00505560`, which jumps on the kind `+0x3C` to `0x00505E00` (0, a number) or `0x00505570` (1, a
 picture). It ends with `0x0028EE10`.

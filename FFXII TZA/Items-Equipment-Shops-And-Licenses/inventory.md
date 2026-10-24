@@ -69,14 +69,14 @@ The packed handler has four channels, chosen by `channel` (`0x002FD198`-`0x002FD
 | `3` | the region-two byte | 0 to 99 | `0x002FD1BF`-`0x002FD237` |
 
 A rise on channel 1 also sets the item's ever-owned bit (`0x002FD323`-`0x002FD34B`). A relative channel-1 change with
-`flags` bit 0 posts the obtain message through `0x0046A630`, in both handlers (`0x002FD2AD`-`0x002FD37C`,
+`flags` bit `0x1` posts the obtain message through `0x0046A630`, in both handlers (`0x002FD2AD`-`0x002FD37C`,
 `0x002FD4FB`-`0x002FD509`).
 
 Neither handler has a channel 4: the packed handler returns 0 without writing
 (`0x002FD1B5`-`0x002FD1B9`), and the bit handler sets or clears the bit as for any channel. The bit handler
 ignores the channel: a result below 1 clears the bit and 1 or more sets it (`0x002FD49D`-`0x002FD4E5`). The bundle and
 gil classes act only on a relative channel-1 change and call `0x003008A0` again for each nested grant
-(`0x002FD53F`-`0x002FD8B4`). A package selector, `0xAxxx`, gives its second triple when `flags` bit 1 is set and its
+(`0x002FD53F`-`0x002FD8B4`). A package selector, `0xAxxx`, gives its second triple when `flags` bit `0x1` is set and its
 first otherwise (`0x002FD6BA`).
 
 Most callers use three wrappers. `0x00300B80(id, delta, flags)` is a relative channel-1 change, for adding and
@@ -90,10 +90,10 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 
 | Id | Bits of the party flag word `+4` | Sites |
 |---|---|---|
-| a magick | bit 0, and one of bits 1-5 for its school, the action row's `+0x2C & 7` through the table `0x01EECF98` | `0x003009F7`, `0x00300A47`-`0x00300B5A` |
-| a technick | bit 6 | `0x003009E7` |
-| a Quickening | bit 7 | `0x003009D4` |
-| an Esper | bit 8 | `0x003009C1` |
+| a magick | bit `0x1`, and one of bits 1-5 for its school, the action row's `+0x2C & 7` through the table `0x01EECF98` | `0x003009F7`, `0x00300A47`-`0x00300B5A` |
+| a technick | bit `0x40` | `0x003009E7` |
+| a Quickening | bit `0x80` | `0x003009D4` |
+| an Esper | bit `0x100` | `0x003009C1` |
 
 ### Who changes it
 
@@ -186,7 +186,7 @@ The list functions:
 
 - The clear-all `0x003047F0` stores 0 in every count and bit word (`0x0030482A`) and ends by tail-jumping to
   `0x00253480` (`0x0030483D`), which empties all twelve inventory lists (above; `0x00253240(i, 1)`: every id `0xFFFF`,
-  the count at `[0x020927C0] + 0x47B8 + 4i` = 0) and clears every bit of `[0x020927C0] + 0x3244` but bit 0 and bit 0
+  the count at `[0x020927C0] + 0x47B8 + 4i` = 0) and clears every bit of `[0x020927C0] + 0x3244` but bit `0x1` and bit `0x1`
   of `+0x3245`; the party block reset `0x002370E5` and
   the scenario presets `0x00239B22` call it.
   - `0x0035C560` calls `0x00253480` directly (`0x0035C584`), right after the HUD reset `0x0028F8B0`
@@ -204,7 +204,7 @@ only writer instruction (`0x00254F1F`).
 
 It first reports the difference to counter 6 for a gain or counter 7 for a
 loss (`0x00316A50`, `0x00254EF1`-`0x00254F02`), then keeps the value between 0 and 99,999,999 (`0x00254F07`-`0x00254F15`).
-`0x003004B0(delta, flags)` adds, floored at 0, and with `flags` bit 0 posts the gil line (`0x003004C3`-`0x003004E5`);
+`0x003004B0(delta, flags)` adds, floored at 0, and with `flags` bit `0x1` posts the gil line (`0x003004C3`-`0x003004E5`);
 `0x00300500` sets, floored at 0.
 
 Shops, the bazaar, kill rewards, chests, quest rewards, member joins, the gil

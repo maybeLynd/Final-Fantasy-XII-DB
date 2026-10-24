@@ -202,7 +202,7 @@ Block `+0x70` keeps a mask at `+0x10`. Its workers `0x0051DBF0` (add) and `0x005
 |---|---|
 | `+0x19`, channel A | 2 when mask bit `0x4`, else 3 when bit `0x8` (Invisible), else `0xFF` |
 | `+0x31`, channel B | 0 when bit `0x1` (Immobilize), else 1 when bit `0x2` (Slow), else `0xFF` |
-| `+0x33` | mask bit 4 (Stop) |
+| `+0x33` | mask bit `0x10` (Stop) |
 
 `0x0051E3A0` returns at once while control is denied and display is not. Otherwise it runs the wanted, shown, changing
 and step protocol for each channel: channel A installs `0x0051E0A0` for 2 and `0x0051DC90` for 3, channel B `0x0051DE30` for

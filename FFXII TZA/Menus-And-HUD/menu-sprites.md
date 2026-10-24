@@ -55,7 +55,7 @@ to the texture descriptor as the palette number (`0x002DB8C5`-`0x002DB8D3`).
 ### Drawing
 
 `0x002D8BB0(widget, open)` brackets a group of draws: the first open sets the clip to the whole screen through `0x00249FD0(0)`, and
-the last close sets it to the widget's clip box `+0x48` when `+0x5C` bit 17 is set. Three forwarders reach the sprite draw
+the last close sets it to the widget's clip box `+0x48` when `+0x5C` bit `0x20000` is set. Three forwarders reach the sprite draw
 `0x002DB080(widget, atlas, source, destination, record, 0, scale)`:
 
 | Forwarder | Destination | Record |
@@ -64,16 +64,16 @@ the last close sets it to the widget's clip box `+0x48` when `+0x5C` bit 17 is s
 | `0x002D8C80(widget, atlas, source, box)` | `box`, stretched | the default |
 | `0x002D8D10(widget, atlas, source, box, record, scale)` | `box` | the caller's |
 
-The draw pass gives each widget a fresh `0xA0`-byte draw record from `0x002D8C00` (`0x00245EA7`): clip on (`+0x5C` bit 17),
+The draw pass gives each widget a fresh `0xA0`-byte draw record from `0x002D8C00` (`0x00245EA7`): clip on (`+0x5C` bit `0x20000`),
 alpha `0x80` at `+0x5A`, colour `0x80808080` at `+0x90` and `+0x94`, and 1.0 at `+0x60`, `+0x68` and `+0x6C`.
 
-`0x002D8530` applies its clip box `+0x48`, or none when bit 17 is clear, through `0x00249FD0`; `0x002DD2F0(record, box)` clips
+`0x002D8530` applies its clip box `+0x48`, or none when bit `0x20000` is clear, through `0x00249FD0`; `0x002DD2F0(record, box)` clips
 to `box` moved by the record's `+0x50`/`+0x52` and cut to its clip box (`0x00249EE0`), or to an empty box when they do not
 meet. For the sprite draw (`0x002DBD81`), `0x002DD910` maps the four corners of a quad from the menu's space, centred on 2048, onto the render target, using
 the target's width and height (`0x00182EB0`, `0x00182E80`, 1920 and 1080 without a display) and the aspect `0x00182EE0`.
 
-The record's first word flips the source left to right (bit 0, `0x002DB1B8`) and top to bottom (bit 1, `0x002DB1D0`); a
-non-zero float at `+0x04` rotates the sprite (`0x002DB22F`), about `+0x10`/`+0x12` when bit 2 is set and about the
+The record's first word flips the source left to right (bit `0x1`, `0x002DB1B8`) and top to bottom (bit `0x2`, `0x002DB1D0`); a
+non-zero float at `+0x04` rotates the sprite (`0x002DB22F`), about `+0x10`/`+0x12` when bit `0x4` is set and about the
 centre otherwise; a pointer at `+0x08` supplies four corner colours.
 
 ### The hand cursor
@@ -158,17 +158,17 @@ The draw record that `0x002D8D10` passes on:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | flags | bit 0 flip left to right, bit 1 flip top to bottom, bit 2 rotate about `+0x10` |
+| `+0x00` | `u32` | flags | bit `0x1` flip left to right, bit `0x2` flip top to bottom, bit `0x4` rotate about `+0x10` |
 | `+0x04` | `f32` | angle | 0 for no rotation |
 | `+0x08` | `u8*` | corners | four RGBA corner colours, or null for the widget's colour `+0x90` |
-| `+0x10` | `i16[2]` | pivot | rotation centre when bit 2 is set |
+| `+0x10` | `i16[2]` | pivot | rotation centre when bit `0x4` is set |
 
 The widget draw record, `0xA0` bytes, that `0x002D8C00` fills for each widget in the draw pass (kept at the widget's
 `+0x38`, `0x00245EB0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x5C` | `u32` | flags | byte 0 is the text palette, handed to the text context by `0x002DD680` (`0x002DD69E`-`0x002DD6A5`) and `0x002DD5D0` (`0x002DD5F1`); bit 17 turns the clip on: set by the fill (`0x002D8C16`), kept for a child only when the parent's record has it (`0x0024614D`-`0x0024616F`), and `0x002D8530` clips to `+0x48` only while it is set (`0x002D8530`-`0x002D8544`); bit 18 makes the sprite draw ignore the corner colours and draw flat in the record's colour (`0x002DB53F`, `0x002DB988`-`0x002DB99B`, `0x002DBAB5`) |
+| `+0x5C` | `u32` | flags | byte 0 is the text palette, handed to the text context by `0x002DD680` (`0x002DD69E`-`0x002DD6A5`) and `0x002DD5D0` (`0x002DD5F1`); bit `0x20000` turns the clip on: set by the fill (`0x002D8C16`), kept for a child only when the parent's record has it (`0x0024614D`-`0x0024616F`), and `0x002D8530` clips to `+0x48` only while it is set (`0x002D8530`-`0x002D8544`); bit `0x40000` makes the sprite draw ignore the corner colours and draw flat in the record's colour (`0x002DB53F`, `0x002DB988`-`0x002DB99B`, `0x002DBAB5`) |
 | `+0x60` | `f32` | textSize | the text size, 1.0 from the fill (`0x002D8C58`): `0x002DD680` hands it to the text context's `+0x34` (`0x002DD6AF`-`0x002DD6B4`) and `0x002DD5D0` to the UTF-16 one (`0x002DD5EC`); the help line sets it to 1.0 before it draws (`0x002BF909`) |
 | `+0x68` | `f32` | f68 | 1.0 from the fill (`0x002D8C5F`); the draw pass saves the whole record before a node's draw message and copies it back after (`0x0024625B`-`0x002462BA`, `0x002462E5`-`0x00246344`) |
 | `+0x6C` | `f32` | f6C | 1.0 from the fill (`0x002D8C66`); saved and restored with the record in the same way |

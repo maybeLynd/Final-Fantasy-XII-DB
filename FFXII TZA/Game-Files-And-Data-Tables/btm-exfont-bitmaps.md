@@ -136,6 +136,24 @@ Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 an
 | rounded cell sizes | 16 x 32, 32 x 32, 32 x 64 and 64 x 32 in faces 6 and 7; 16 x 32 and 32 x 32 in faces 8 to 11 |
 | `us` faces 8 to 11 | the first 78 records equal the `in` records; the 49 extra cells lie wholly past the end of the 29,184- and 32,256-byte sheets |
 
+[`btm-exfont-bitmaps-btm-rows.tsv`](btm-exfont-bitmaps-btm-rows.tsv) lists the 12 sheets, with size,
+SHA-256, face, slot, kind-7 id and the language ids that load each with their size-table entries, then the
+1,132 cells the glyph tables place in them: the tables that place the cell, its code and character, cell and
+rounded size, sheet offset and length, whether it lies inside the sheet, its SHA-256 and non-zero texels,
+and how often each language's staff-roll text asks for its code.
+
+- Each cell is the PS2-era pixel pattern of one staff-roll letter. The `in` sheets, read by language ids 0
+  to 6, 9 and 10, are asked for 38 of the 78 cells of font A (faces 6 and 7), 63 of font B (faces 8 and 9)
+  and 66 of font C (faces 10 and 11); the `ch` sheets, read by id 8, for 35, 63 and 63.
+- Each of the others is fetched by no line: no staff-roll line set in its font, in any language that loads
+  the sheet, holds its code once `0x003647E0` has taken out the codes below `0x21`, `0x3000` and the `0x7B`
+  escapes. The TSV names those languages per cell.
+- The 49 cells that only the `us` tables place in faces 8 to 11 start 512 to 20,992 bytes past the end of
+  their sheet; the TSV marks them out of range. No staff-roll line of language ids 1 to 6, the ids that use
+  the `us` tables, asks for them, so they are never fetched.
+- Inside each sheet the 78 cells of a table cover every byte exactly once, and every code a staff-roll line
+  asks for has a record in its font's table, for every language id.
+
 ## Loader behaviour
 
 ### Requesting a sheet

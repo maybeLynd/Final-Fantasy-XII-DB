@@ -1066,7 +1066,7 @@ otherwise (`0x00455C04`, `0x0045A964`, `0x0045B15F`, `0x0045B542`).
 
 Some arms submit their chunk twice. With bits 1-2 of the definition byte that chose the arm at 3, they store 2 in a
 pass word before the first submission and 0 before the second. With 2 they submit once with 2, and with 1 or 0 once
-with 0. The pass words are `0x02AE0280` (`0x8C`), `0x02AE09D0` and `0x02AE1940` (`0x90`), `0x02AE2F90` (`0x92`), and bit 1
+with 0. The pass words are `0x02AE0280` (`0x8C`), `0x02AE09D0` and `0x02AE1940` (`0x90`), `0x02AE2F90` (`0x92`), and bit `0x2`
 of `0x02AE1BF8` (`0x90`).
 
 No other function writes these words. The only boot writers are each template's builder and its `memset`.

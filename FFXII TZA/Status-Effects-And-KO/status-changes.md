@@ -30,8 +30,8 @@ Some moments refuse every status change, such as while the battle is frozen or a
 |---|---|---|
 | adding | mode 3 or 4 | the change sets a bit |
 | starts timers | mode 0 or 3 | the duration and beat are written |
-| reaction | flags bit 4 clear | the status reaction may play |
-| message | flags bit 1 clear | the battle message may post |
+| reaction | flags bit `0x10` clear | the status reaction may play |
+| message | flags bit `0x2` clear | the battle message may post |
 | was present | `(+0x3C \| +0x64) & bit` | the status was there before |
 
 Its fourteen call sites include the result applier `0x003112F0` (`0x0031153A`, `0x0031159F`), the HP write `0x00300530`
@@ -50,7 +50,7 @@ and flags through (`0x0030EAE4`-`0x0030EAFC`). `0x0030E990` is used by:
 
 ### What refuses a change
 
-With flags bit 0 clear, two gates run on the target and source units (`0x0030E420`-`0x0030E45A`):
+With flags bit `0x1` clear, two gates run on the target and source units (`0x0030E420`-`0x0030E45A`):
 
 - `0x0030B9B0` refuses any change when the battle-wide mask or the target's own mask has a low bit set;
 - when adding, `0x0030B8E0` refuses KO, Stone and X-Zone (the mask `0x80000003`) when either mask has a high bit
@@ -59,16 +59,16 @@ With flags bit 0 clear, two gates run on the target and source units (`0x0030E42
 | Mask bit | Set when | Site |
 |---|---|---|
 | battle 0 | the battle flags `0x02089340` have a bit of `0x3080` | `0x0030B77F`-`0x0030B799` |
-| battle 1 | byte `0x022C2158` bit 0 | `0x0030B7A3`-`0x0030B7B0` |
-| battle 2, 3, 4 | battle flags bit 10, 9 or 11, the defeat latches ([KO and Game Over](ko-and-game-over.md)) | `0x0030B7B4`-`0x0030B7DA` |
-| unit 3 | the unit's `+4` bit 5, unless `0x022C2160` is 5 or 6 | `0x0030B817`-`0x0030B830` |
-| unit 0 | unit flag bit 8 | `0x0030B83C`-`0x0030B847` |
-| unit 1 | unit flag bit 30, for a source on the other side | `0x0030B84C`-`0x0030B85B` |
+| battle 1 | byte `0x022C2158` bit `0x1` | `0x0030B7A3`-`0x0030B7B0` |
+| battle 2, 3, 4 | battle flags bit `0x400`, `0x200` or `0x800`, the defeat latches ([KO and Game Over](ko-and-game-over.md)) | `0x0030B7B4`-`0x0030B7DA` |
+| unit 3 | the unit's `+4` bit `0x20`, unless `0x022C2160` is 5 or 6 | `0x0030B817`-`0x0030B830` |
+| unit 0 | unit flag bit `0x100` | `0x0030B83C`-`0x0030B847` |
+| unit 1 | unit flag bit `0x40000000`, for a source on the other side | `0x0030B84C`-`0x0030B85B` |
 | unit 4 | the target is party row 26 | `0x0030B860`-`0x0030B87E` |
 | unit high 0 | the developer setting `+0xC20` is 1, for a party record | `0x0030B883`-`0x0030B8AA` |
 | unit high 1 | the developer setting `+0xC20` is 2 | `0x0030B8B6`-`0x0030B8C3` |
 
-A unit counts only while its flag bit 4 is set (`0x0030B80D`). The setting `+0xC20` is the console's
+A unit counts only while its flag bit `0x10` is set (`0x0030B80D`). The setting `+0xC20` is the console's
 "Invincible" entry ([Debug menu commands](../Engine-Core/debug-menu-commands.md)),
 0 in normal play. The HP write uses the same two gates ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)).
 
@@ -78,7 +78,7 @@ When adding KO, Stone or X-Zone (`0x0030E460`-`0x0030E4BD`):
 
 1. A summoned Esper, a party record of type `0x1B`-`0x27`, goes straight to the defeat cleanup
    `0x00300FC0(unit, 0)` and nothing else happens: no status bit, no message, no reward (`0x0030E478`-`0x0030E49C`).
-2. A unit that already has one of the three keeps it, and the change is refused, unless bit 15 of the active
+2. A unit that already has one of the three keeps it, and the change is refused, unless bit `0x8000` of the active
    field record is set (`0x0030E4A9`-`0x0030E4BD`).
 
 ### The status words
@@ -110,7 +110,7 @@ When presence changed, in this order (`0x0030E5D1`-`0x0030E828`):
 
 1. **A result record.** Adding builds an empty one (`0x00386A50`). Removing builds one with `0x00386A70`, which
    only for Bubble (28) on a unit with HP sets current HP to `(HP + 1) / 2`, half rounded up
-   (`0x00386A94`-`0x00386AB0`). The record is applied by `0x003112F0` when it is live, `+0x2C` bit 0
+   (`0x00386A94`-`0x00386AB0`). The record is applied by `0x003112F0` when it is live, `+0x2C` bit `0x1`
    (`0x0030E610`-`0x0030E638`).
 2. **Cancelled statuses.** When adding, each status in the new one's cancel mask, row `+0x0C` of the status
    table `[0x02EBF118]`, is removed with `0x0030E360(target, source, i, 0, 0, flags | 0x200, mode 0)`
@@ -123,7 +123,7 @@ When presence changed, in this order (`0x0030E5D1`-`0x0030E828`):
    for Stone and `0x11` "is cast into the void." for X-Zone, for a party-side unit only
    (`0x0030E704`-`0x0030E727`, `0x0046A831`-`0x0046A85A`; [Battle message list](../Battle-Actions/battle-message-list.md)).
 5. **The status's own arm**, below (`0x0030E729`-`0x0030E759`).
-6. **The rebuild.** Unless flags bit 9 is set, `0x0030FED0` rebuilds the unit's derived stats and auto-statuses
+6. **The rebuild.** Unless flags bit `0x200` is set, `0x0030FED0` rebuilds the unit's derived stats and auto-statuses
    (`0x0030E816`-`0x0030E828`; [Augments](../Damage-And-Battle-Formulas/augments.md)).
 
 ### Each status's arm
@@ -136,8 +136,8 @@ target has a battle unit; without one the function goes straight to the rebuild 
 | KO (0) | `0x0030E80A` | the defeat cleanup `0x00300FC0(unit, 0)`, then the rewards `0x00312280(source, unit)` | `0x00301140`, the recovery |
 | Stone (1) | `0x0030E850` | event `0x200C`, then the same as KO | the recovery |
 | X-Zone (31) | `0x0030E85E` | event `0x200E`, then the same as KO | the recovery |
-| Petrify (2) | `0x0030E7DD` | unit `+0xE9A` bit 1 = the source is a party record | nothing |
-| Poison (8) | `0x0030E7B3` | unit `+0xE9A` bit 0 = the source is a party record | nothing |
+| Petrify (2) | `0x0030E7DD` | unit `+0xE9A` bit `0x2` = the source is a party record | nothing |
+| Poison (8) | `0x0030E7B3` | unit `+0xE9A` bit `0x1` = the source is a party record | nothing |
 | Sleep (4) | `0x0030E75B` | event `0x2001` | event `0x2001` |
 | Confuse (5), Berserk (27) | `0x0030E770` | `0x00300140(unit, cancel)`, then `0x00307D10` | the same |
 | every other status | `0x0030E816` | nothing | nothing |
@@ -154,7 +154,7 @@ control with `0x0023B040` (`0x00301063`-`0x003010C0`; [Party leader](../Party/pa
 ## Modding notes
 
 - The cancel mask is data: editing a status row's `+0x0C` changes which statuses it removes, with no code change.
-- A caller can skip the gates with flags bit 0, the reaction with bit 4 and the message with bit 1.
+- A caller can skip the gates with flags bit `0x1`, the reaction with bit `0x10` and the message with bit `0x2`.
 - Only the KO, Stone, X-Zone, Petrify, Poison, Sleep, Confuse and Berserk arms do anything beyond the status bit
   and its timers; a new effect for any other status needs code.
 

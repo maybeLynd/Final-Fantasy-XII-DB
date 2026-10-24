@@ -39,7 +39,7 @@ The row id is a party member's type byte (stats `+0x04`). An id counts only when
 `0x00321850(enemy, id, value, mode)` changes one entry (`0x00321850`-`0x003219CC`):
 
 1. It does nothing unless the enemy is an enemy-table unit (stats `+0x05` = 1, `0x003218D0`) that is not KO,
-   Stone or X-Zone, unless bit 15 of the active field record waives that (`0x003218A6`-`0x003218BA`).
+   Stone or X-Zone, unless bit `0x8000` of the active field record waives that (`0x003218A6`-`0x003218BA`).
 2. The new value is `old + value` for mode 0 or `value` for mode 1 (`0x00321914`-`0x0032191A`).
 3. A new value of 0 or less becomes 1 when the old value was above 0 (`0x0032191D`-`0x00321923`).
 4. When the value rises and no entry of the enemy is above 1 (`0x00321770`), it gets 10 more

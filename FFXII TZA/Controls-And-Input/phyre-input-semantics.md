@@ -289,8 +289,8 @@ codes 1-3.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `void*` | m_name | the action name, compared by `0x00873C70` (read through `0x00873C40`); m_name (ptr), registered by `0x0086D670` (`0x00632960` at `0x0086D705`); no shipped .phyre file declares PInputAction; the destructor `0x0086C830` frees it when it owns the text (bit 0 clear; `0x0086C8E4`) |
-| `+0x10` | `u32` | sourceCount | m_inputSources count; bit 31 is masked off (`0x0079E2E4`) |
+| `+0x08` | `void*` | m_name | the action name, compared by `0x00873C70` (read through `0x00873C40`); m_name (ptr), registered by `0x0086D670` (`0x00632960` at `0x0086D705`); no shipped .phyre file declares PInputAction; the destructor `0x0086C830` frees it when it owns the text (bit `0x1` clear; `0x0086C8E4`) |
+| `+0x10` | `u32` | sourceCount | m_inputSources count; bit `0x80000000` is masked off (`0x0079E2E4`) |
 | `+0x14` | `u8[4]` | pad14 | the four bytes between the source count at `+0x10` and the source pointer at `+0x18`, the array header the destructor `0x0086C830` clears (`0x0086C8BB`, `0x0086C8BF`); no registered member covers it (`0x0086B2B0` registers the `0x28`-byte class at `0x0086B300`) |
 | `+0x18` | `void*` | sources | m_inputSources, the source pointers `0x0079E2C0` walks |
 

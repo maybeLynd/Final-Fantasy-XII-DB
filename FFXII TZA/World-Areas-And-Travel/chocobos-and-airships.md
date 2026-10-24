@@ -157,7 +157,7 @@ A mount starts the ride timer through the mode transition table, not through the
    and the chocobo (`0x0031B8C0(3)`, the unit of roster entry 3) exists: `0x00311E20()` refreshes the
    camera target and `0x0035CFA0(1)` starts the dismount task;
 3. when slot 2 has expired and turbo is on: the chocobo's render mode is set to 3, `+0x5AEC` = 0,
-   animation `0x2001` is requested and bit 1 is cleared.
+   animation `0x2001` is requested and bit `0x2` is cleared.
 
 Turbo (`0x00303F00(on)`) sets `+0x5AEC`, puts the chocobo's render record in mode 1 (on) or 3 (off)
 and, when the bit changes:
@@ -228,7 +228,7 @@ the first such tick (kept at `+0xC0`) the red, green and blue are scaled by `(12
 128`, `ticks` counted on the UI tick counter `0x0208F570` (`0x003CA603`-`0x003CA64A`, `sinf` through `0x00861F0E`).
 
 The control window reads its buttons on message `0x1F`, which `0x003CA200` sends while it is up and its `+0x2E0`
-bit 4 is set (from `0x00253C70`, `0x00253F6B`). Its legend is scene `0xC` of the button legend (`0x0029DA70`), and its
+bit `0x10` is set (from `0x00253C70`, `0x00253F6B`). Its legend is scene `0xC` of the button legend (`0x0029DA70`), and its
 two keys are signals 13 and 14 ([small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md)), which
 the shipped table ties to buttons `0x16` and `0x17`, so `0x0029DBE0` returns the confirm mask `0x01E0C2A0` and the
 cancel mask `0x01E0C2A4`:

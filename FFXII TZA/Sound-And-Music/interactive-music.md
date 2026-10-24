@@ -172,7 +172,7 @@ The pass recomputes a value only when its ramp moved, and hands it to every voic
 | panning | slot 28 | `0x007CCC30` | `0x007EDE90` |
 | sends | the end methods of type 3, or the send ramp `+0x840` during a reverb end | `0x007CD110` | `0x007EE470` |
 
-Granular pitch and the pitch shifter switch apply only when header byte `+0x0A` has bit 0 set (`0x007CBF70`,
+Granular pitch and the pitch shifter switch apply only when header byte `+0x0A` has bit `0x1` set (`0x007CBF70`,
 `0x007CBDD0`), and the ramp `+0x340` joins the pitch only then (`0x007C6370`); no shipped music sets it
 ([Audio effects](audio-effects.md)). `0x007CE730` gives each layer voice the volume times its own factor: `0x007C5E60` for the current set (layer
 ramp `+0x3A0 + 0x30 x i`, factor `+0x5BC + 4 x i`, and the blend of the two modes' layer values) and `0x007C6A80` for
@@ -190,8 +190,8 @@ value goes (`0x007CFD00`): 1 the volume factor `+0x5B8`, 2 the pitch factor `+0x
 ### Modes
 
 A mode gives eight layer volumes and four more values. `0x007C8A00` fills a `0x34`-byte block from a mode record: `+0x10`,
-`+0x14` (a pitch, as `2^(x/12)` when bit 1 of byte `+0x01` is set), `+0x18`, `+0x1C` (1.0 for a version-0 record),
-two flags from bits 0 and 2 of byte `+0x01`, and the eight layer values from the record's `ModeParam` for the section
+`+0x14` (a pitch, as `2^(x/12)` when bit `0x2` of byte `+0x01` is set), `+0x18`, `+0x1C` (1.0 for a version-0 record),
+two flags from bits `0x1` and `0x4` of byte `+0x01`, and the eight layer values from the record's `ModeParam` for the section
 (`0x007D04C0`). `0x007C6E10` resets a block: layer 0 at 1.0, the other layers 0, the four values 1.0 and both flags clear.
 
 `0x007C8E60` fills a block between two modes at a blend `t`, and `0x007C8CE0` blends two blocks the same way. Values mix

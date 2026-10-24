@@ -34,9 +34,9 @@ tests both, so an id behaves the same whichever layer holds it. The damage formu
 4. Nothing else happens unless the id's presence in either layer changed (`0x0030E269`-`0x0030E280`).
 5. A result record is built: for a set, `0x00386AE0`, which does something only for id 52; for a clear, an empty
    one (`0x0030E286`-`0x0030E2DA`).
-6. With flags bit 1 clear, `0x0046A790` (set) or `0x0046A720` (clear) posts the message of ids 55-57 (`0x0030E2DF`-`0x0030E301`).
+6. With flags bit `0x2` clear, `0x0046A790` (set) or `0x0046A720` (clear) posts the message of ids 55-57 (`0x0030E2DF`-`0x0030E301`).
 7. Ids 104-113 change the gambit-slot count, below (`0x0030E303`-`0x0030E317`).
-8. Unless flags bit 9 is set, the augments are rebuilt (`0x0030E31C`-`0x0030E329`).
+8. Unless flags bit `0x200` is set, the augments are rebuilt (`0x0030E31C`-`0x0030E329`).
 
 ### Who switches them
 
@@ -72,9 +72,9 @@ Two paths set `+0x68` in shipped play:
 | `51` | Mana Spring, Unleash | the cost `0x002F95D0` gives the holder is 0 once its two earlier routes are passed: a party record's Quickenings (`0xD0`-`0xE1`) and Esper summons (`0x106`-`0x112`) keep the row cost (`0x002F9640`-`0x002F9667`, `0x002F9806`), and a holder with augment 32 gets the gil cost `10 * trunc(cost * 64 / 50)` (`0x002F9674`-`0x002F9682`, `0x002F97E4`-`0x002F9802`), 120 gil for a cost of 10 ([MP gain and cost](mp.md)) | `0x002F97A3`-`0x002F97E0` |
 | `52` | Shift | an enemy holder's weakness moves to one element drawn at random; it absorbs every other element and loses its immunity to the drawn one; again on each hit on its weakness (Shift's weakness, below) | `0x00386B0C`, `0x0038B78D`, `0x0038C1ED` |
 | `53` | Enrage, Limit Break | Attack and orders charge instantly | `0x002F85A6`-`0x002F888A` |
-| `54` | Chain Magick, Limit Break, Unleash | actions with row `+0x0C` bit 13 charge instantly | `0x002F8627`-`0x002F862D` |
-| `55` | Force Barrier, Perfect Defense | Paling: actions with row `+0x0C` bit 14 are nullified | `0x00390E4B`-`0x00390EEE` |
-| `56` | Magick Barrier, Perfect Defense | Magick Shield: actions with row `+0x0C` bit 13 are nullified | `0x00390EA3`-`0x00390EEE` |
+| `54` | Chain Magick, Limit Break, Unleash | actions with row `+0x0C` bit `0x2000` charge instantly | `0x002F8627`-`0x002F862D` |
+| `55` | Force Barrier, Perfect Defense | Paling: actions with row `+0x0C` bit `0x4000` are nullified | `0x00390E4B`-`0x00390EEE` |
+| `56` | Magick Barrier, Perfect Defense | Magick Shield: actions with row `+0x0C` bit `0x2000` are nullified | `0x00390EA3`-`0x00390EEE` |
 | `57` | Wall | White Wind: harmful statuses do not land on the holder | `0x00387D25`-`0x00387D72` |
 | `59` | Chain Reaction | an effect of its own is not yet located; the shipped AI tests it with the generic has/lacks test to pick its phase (30 set lines and 114 test lines in 11 areas) | `0x00302478` |
 
