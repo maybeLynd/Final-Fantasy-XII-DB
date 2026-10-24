@@ -52,13 +52,20 @@ rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
 
 ### Where each key item comes from
 
-`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+`sources` joins tables already in the database by id, and reads the scripts where a table stops short. It holds one part per kind of source, the parts separated by `;`:
 
 - `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
-- `scene gift:` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). Scripts that no map loads are left out.
+- `scene gift (urn):`, `scene gift (talk):`, `scene gift (touch):`, `scene gift (map event):` and `scene gift (event scene):` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). The label says how the gift is handed over:
+  - urn: the giving actor keeps a treasure flag (`settreasureflag`, `istreasureflag`), so it gives once;
+  - talk: the gift comes from the actor's talk slot (slot 2, or a function `sysReqchg` puts in slot 2), or from a function that only such a function requests;
+  - touch: the same for the touch slots 3 and 4;
+  - map event: the gift comes from a function the map's script runs by itself (`main`, `init` or a function they request);
+  - event scene: the gift is in an event script, named by the maps whose scripts play it;
+  - gifts in scripts that no map loads are left out.
+- `seller:` the map (region) and script of each map seller who sells it, with the price ([Price list](../Rewards-EXP-Gil-And-Loot/price-list.md)). The seller's talk keeps the maps and their prices in two lists, offers the maps the player does not hold, takes the price and gives the chosen map; [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md) lists that gift with its item chosen at run time.
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
-`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+A part that names more than 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
 
 ### Rows that are not items
 
@@ -68,6 +75,23 @@ rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
 - `teleport destination`: a named row of g_daiji_data, ids `0x8040`-`0x805F`: the key item a gate crystal gives and its teleport list names ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)). Zertinan Caverns and The Feywood are in the table, but no script gives them.
 - `status word`: q_daiji rows 13-15, "Available", "Accepted" and "Complete!".
 - `key item`: every other named row, and `Reserve` for the Reserve rows.
+
+### What each key item is for
+
+`used_for` lists what takes, tests or reads each key item, one part per kind of use, the parts separated by `;`:
+
+- `map screens:` for an area map, the area whose points and locations the map screens show once the map is owned. `menumap_area.bin` lists one map key item per persistence group, and `0x002543F0` answers whether it is owned ([Map screens](../Menus-And-HUD/map-screens.md), "What is shown"; [Menu map files](../Game-Files-And-Data-Tables/menu-map-files.md)).
+- `taken:` each map (region) and script whose script takes it from the player (`subitem`, [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md)).
+- `trophy trade:` for the 30 trophies, the three hunters at the Hunters' Camp who take them, and whose counts open the Outfitters' sales ([Equipment list](equipment-list.md), "Where each piece of equipment comes from").
+- `tested:` each map (region) and script whose script tests whether the player holds it (`haveitem`, with the id written in the script or stored in a variable by the same function), and what the test decides:
+  - that is what the block the test controls does, or the blocks of the conditions that read the stored result;
+  - the outcomes named are a map jump, an event scene, taking an item, a gift, a quest step, story progress, a party member, gil, a map exit, the map's passable floors and walls, whether an actor is shown, whether an actor answers the player, and dialogue;
+  - "other script steps" means the block does none of these;
+  - the map sellers' and trophy hunters' tests of their own lists are left out, since they are the sale and the trade.
+- `teleport:` for a teleport destination, the number of map scripts whose gate crystal tests it to build its teleport list ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)).
+- `monograph:` for a monograph or the Canopic Jar, the monsters whose monograph slot needs it ([Bestiary](../Enemy-Spawning/bestiary.md)).
+
+A `taken:` or `tested:` part that names more than 10 places gives its count and the first ones. `not yet located` marks a key item for which none of these is found: the five Candles, the teleport destinations Zertinan Caverns and The Feywood, Writ of Transit, Crescent Stone, Rusted Scrap of Armor, Treaty-Blade, Dusty Letter, Time-worn Necklace and Windvane. The status words read `not an item: a status word`, and the Reserve rows `-`.
 
 ## Columns
 
@@ -81,7 +105,8 @@ rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
 | `text_id`, `description` | `+0x06` and its shipped text |
 | `explanation` | the table it comes from, and whether its description is empty; "a Reserve row" for the others |
 | `kind` | map, teleport destination, status word, key item or Reserve ("Rows that are not items" above) |
-| `sources` | where the key item is obtained, one part per kind of source ("Where each key item comes from" above); `-` for none |
+| `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over and the map sellers ("Where each key item comes from" above); `-` for none |
+| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above); `not yet located` when none is found |
 
 ## Related
 

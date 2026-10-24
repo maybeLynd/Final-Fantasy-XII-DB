@@ -152,8 +152,10 @@ fog request that a new map leaves at `0x02ADD108`.
 | `0x02EBB7CC` | `u32` | 0 | the map request's colour word, the floor byte on top | `0x003ECCA0`, the map default `0x02EBB804` (`0x003ECCED`); `0x003ECAC0` (`0x003ECAFE`, `0x003ECC7A`) | `0x003ECAC0` (`0x003ECB9A`); `0x003ECE60` (`0x003ECE91`, scaling red, green and blue before it submits) |
 | `0x02ADD108` | `i32` | 0 | the priority of the fog request `0x02ADD108`-`0x02ADD117`: 10 | `0x00378120`, 10 when a map is set up (`0x003781D6`), after copying the environment's near, far and colour to `0x02ADD10C`-`0x02ADD114` (`0x003781AB`-`0x003781C9`) | `0x003ED170`, as the request's priority, compared signed with the kept one (`0x003ED176`-`0x003ED178`); `0x00377520` passes `0x02ADD108` (`0x0037753F`) |
 
-`0x00377520`, from `0x0022A770`, `0x0022B0B0` and `0x00314820`, submits the fog request while `0x02ADD118` is set and either
-`0x02EBF9C8` or `0x02ADD0F4` is non-zero, then clears `0x02ADD0F4` (`0x00377524`-`0x0037754B`).
+`0x00377520`, from `0x0022A770`, `0x0022B0B0` and `0x00314820`, submits the fog request while `0x02ADD118` is set and
+`0x02EBF9C8` is non-zero (`0x00377524`-`0x00377546`), then clears `0x02ADD0F4` (`0x0037754B`). It also submits when `0x02ADD0F4`
+is non-zero (`0x00377536`), but every store to `0x02ADD0F4` writes 0 (`0x0037754B`, `0x0037832E`, `0x00378A8C`), so only
+`0x02EBF9C8` triggers the request.
 
 ## Modding notes
 

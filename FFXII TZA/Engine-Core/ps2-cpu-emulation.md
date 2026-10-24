@@ -199,32 +199,21 @@ read by nothing.
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x022D8F08` | `u32` | save depth (0x0036D930 / 0x0036D8E0) |  |
-
-`0x022D8F10`  16 B × 32  GPR[0..31]: $zero at +0, v0 at `0x022D8F30`, t0 at `0x022D8F90` (see table) `0x022D9110`  16 B       HI `0x022D9120`  16 B       LO:
-
-| Address | Type | Name | Meaning |
-|---|---|---|---|
-| `0x022D9130` | `u32` | CLIP (24 bits used); 0x022D9478 u32 its mirror |  |
+| `0x022D8F10` | `u8[32][16]` | GPR[0..31]: $zero at +0, v0 at 0x022D8F30, t0 at 0x022D8F90 (see table) |  |
+| `0x022D9110` | `u8[16]` | HI |  |
+| `0x022D9120` | `u8[16]` | LO |  |
+| `0x022D9130` | `u32` | CLIP (24 bits used) |  |
+| `0x022D9478` | `u32` | its mirror |  |
 | `0x022D9138` | `u32` | RNG stream enable (not a register) |  |
-
-`0x022D9144`..0x022D916C   scalar scratch of eleven bodies:
-
-| Address | Type | Name | Meaning |
-|---|---|---|---|
+| `0x022D9144` | `...` | scalar scratch of eleven bodies, 0x022D9144 to 0x022D916C |  |
 | `0x022D9198` | `f32` | Q |  |
 | `0x022D91A0` | `f32[4]` | ACC |  |
-| `0x022D91B0` | `f32[4] × 31` | vf01..vf31 at 0x022D91A0 + 16n |  |
-
-`0x022D93A0`..0x022D942F   cleared by `0x0036D9E0`, otherwise unreferenced:
-
-| Address | Type | Name | Meaning |
-|---|---|---|---|
+| `0x022D91B0` | `f32[31][4]` | vf01..vf31 at 0x022D91A0 + 16n |  |
+| `0x022D93A0` | `...` | 0x022D93A0 to 0x022D942F, cleared by 0x0036D9E0, otherwise unreferenced |  |
 | `0x022D9470` | `u8` | flag byte: 0x80 by 0x0036DD90, 0x40 by 0x0036DDA0; never read |  |
 | `0x01EF93F0` | `f32[4]` | vf00 = (0, 0, 0, 1); image constant copied by 0x0036DD80 |  |
-
-```
-0x02EC0800  16 B × n   saved register values; 0x02EC0A00 the saved addresses
-```
+| `0x02EC0800` | `...` | saved register values, 16 B each |  |
+| `0x02EC0A00` | `...` | the saved addresses |  |
 
 ## Shipped data
 

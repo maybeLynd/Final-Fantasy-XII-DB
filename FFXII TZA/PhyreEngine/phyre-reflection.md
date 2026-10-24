@@ -392,16 +392,16 @@ Descriptor vtable slots (PClassDescriptorConcrete&lt;PAnimatableComponent&gt;, `
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `visit` | every | member of the class and its ancestors (`0x0063E2E0`) |
-| `+0x18` | `get` | the | value from a script context |
-| `+0x20` | `put` | the | value into a script context |
-| `+0x38` | `scalar` | deleting | destructor |
-| `+0x40` | `attach` | a | member (`0x0062EFD0`) |
-| `+0x48` | `detach` | a | member (`0x0062F080`) |
-| `+0x50` | `construct` | in | place; returns false for a class without one (`0x00657140`) |
-| `+0x58` | `destruct` | in | place (`0x0063FC60`) |
-| `+0x60` | `register` | the | members (_purecall in ForType&lt;T&gt;) |
-| `+0x68` | `push` | the | object's held objects of a named class to a script and count them; -1 by default (`0x00660570`) |
+| `+0x00` | `...` | visit every member of the class and its ancestors (0x0063E2E0) |  |
+| `+0x18` | `...` | get the value from a script context |  |
+| `+0x20` | `...` | put the value into a script context |  |
+| `+0x38` | `...` | scalar deleting destructor |  |
+| `+0x40` | `...` | attach a member (0x0062EFD0) |  |
+| `+0x48` | `...` | detach a member (0x0062F080) |  |
+| `+0x50` | `...` | construct in place; returns false for a class without one (0x00657140) |  |
+| `+0x58` | `...` | destruct in place (0x0063FC60) |  |
+| `+0x60` | `...` | register the members (_purecall in ForType&lt;T&gt;) |  |
+| `+0x68` | `...` | push the object's held objects of a named class to a script and count them; -1 by default (0x00660570) |  |
 
 One class overrides slot `+0x68`: `PEntity` (`0x006AB3F0`, which reorders the arguments for `0x006AB540`). It looks the
 name up in the namespace (`0x0063BA10`), returns -1 unless that class is `PComponent` or derives from it, and

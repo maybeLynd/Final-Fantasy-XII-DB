@@ -314,21 +314,66 @@ and the scene-reset byte runs `0x001C7290` (when `0x01F81288` differs from `0x01
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02CB7FD0` | `the` | render | settings object, `0x1028` bytes (constructor `0x005DC720`) |
+| `0x02CB7FD0` | `...` | the render settings object, 0x1028 bytes (constructor 0x005DC720) |  |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000-0x18F` | `console-tunable` | floats, | one shader constant each (graphics-settings.tsv) |
-| `+0x190-0x38F` | `8` | x | 64-byte shadow-map matrices (`0x001F0AD0`, per frame) |
-| `+0x390-0x434` | `shadow` | scalars | (`0x001F0AD0`, per frame); `+0x3E4` the live slot count |
-| `+0x42C` | `u8` | mMapEnableShadowFade; | `+0x438`..+`0x444` mMapShadowFadeSpeed, FadeRange, FlyingFadeSpeed, FlyingFadeRange |
-| `+0x450-0x470` | `copied` | field | by field into the snapshot; `+0x460` the last slot's far plane (`0x001EF6D0`, per frame) `+0x478`/`+0x480`   constant-buffer binding list (`0x18`-byte entries, kind byte at +2, 23 kinds); `+0x488` stride |
-| `+0x498` | `ring` | length; | `+0x4B0` lock; `+0x4D8` slot index `+0x4E0`, `+0xA78`  two `0x598`-byte snapshot slots; block image at slot `+0x110` (= `+0x5F0`, `+0xB88`) |
+| `+0x000-0x18F` | `...` | console-tunable floats, one shader constant each (graphics-settings.tsv) |  |
+| `+0x190-0x38F` | `...` | 8 x 64-byte shadow-map matrices (0x001F0AD0, per frame) |  |
+| `+0x390-0x434` | `...` | shadow scalars (0x001F0AD0, per frame); +0x3E4 the live slot count |  |
+| `+0x42C` | `u8` | mMapEnableShadowFade |  |
+| `+0x438-0x444` | `...` | mMapShadowFadeSpeed, FadeRange, FlyingFadeSpeed, FlyingFadeRange |  |
+| `+0x450-0x470` | `...` | copied field by field into the snapshot; +0x460 the last slot's far plane (0x001EF6D0, per frame) |  |
+| `+0x478` | `...` | constant-buffer binding list (0x18-byte entries, kind byte at +2, 23 kinds) | with `+0x480` |
+| `+0x480` | `...` | constant-buffer binding list (0x18-byte entries, kind byte at +2, 23 kinds) | with `+0x478` |
+| `+0x488` | `...` | stride |  |
+| `+0x498` | `...` | ring length |  |
+| `+0x4B0` | `...` | lock |  |
+| `+0x4D8` | `...` | slot index |  |
+| `+0x4E0` | `...` | two 0x598-byte snapshot slots; block image at slot +0x110 (= +0x5F0, +0xB88) | with `+0xA78` |
+| `+0xA78` | `...` | two 0x598-byte snapshot slots; block image at slot +0x110 (= +0x5F0, +0xB88) | with `+0x4E0` |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01F7F5F0` | `= 0x01F81300` | post-process parameter object (0x4A8): +0xA0/+0xA1/+0x1F0 EnableYebis, +0xF0 mGammaValue, +0x110..+0x120 DOF, +0x17C contrast, +0x198 EnableAO, +0x1C0 SAO fade, +0x1DC HBAO fade, +0x1E9 AODepthFullRes, +0x334..+0x33C motion blur, +0x4A2 u8 linear tonemap |  |
-| `0x01F82EA8` | `= 0x01F812C8` | shadow object (0xB08, ctor 0x001EF2D0): +0x000 EnableShadow, +0xEC..+0xF4 ShadowValue R/G/B, +0x13C slot count, +0x148 + n*0xD8 slot cameras, +0x1C0 + n*0xD8 matrices, +0x82C/+0x830 decay, +0x848 map size, +0x870.. cascade partitions, +0x890/+0x894 PCF sizes, +0x898 ShadowBias, +0xAFE/+0xB00/+0xB04 resize request |  |
+| `0x01F7F5F0` | `void*` | post-process parameter object = 0x01F81300 (0x4A8 bytes) |  |
+| `0x01F82EA8` | `void*` | shadow object = 0x01F812C8 (0xB08 bytes, ctor 0x001EF2D0) |  |
+
+Post-process parameter object (`0x01F81300`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0A0` | `...` | EnableYebis | with `+0xA1` and `+0x1F0` |
+| `+0x0A1` | `...` | EnableYebis | with `+0xA0` and `+0x1F0` |
+| `+0x1F0` | `...` | EnableYebis | with `+0xA0` and `+0xA1` |
+| `+0x0F0` | `...` | mGammaValue |  |
+| `+0x110-0x120` | `...` | DOF |  |
+| `+0x17C` | `...` | contrast |  |
+| `+0x198` | `...` | EnableAO |  |
+| `+0x1C0` | `...` | SAO fade |  |
+| `+0x1DC` | `...` | HBAO fade |  |
+| `+0x1E9` | `...` | AODepthFullRes |  |
+| `+0x334-0x33C` | `...` | motion blur |  |
+| `+0x4A2` | `u8` | linear tonemap |  |
+
+Shadow object (`0x01F812C8`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `...` | EnableShadow |  |
+| `+0x0EC-0x0F4` | `...` | ShadowValue R/G/B |  |
+| `+0x13C` | `...` | slot count |  |
+| `+0x148` | `...` | slot cameras, + n*0xD8 |  |
+| `+0x1C0` | `...` | matrices, + n*0xD8 |  |
+| `+0x82C` | `...` | decay | with `+0x830` |
+| `+0x830` | `...` | decay | with `+0x82C` |
+| `+0x848` | `...` | map size |  |
+| `+0x870` | `...` | cascade partitions, from here |  |
+| `+0x890` | `...` | PCF sizes | with `+0x894` |
+| `+0x894` | `...` | PCF sizes | with `+0x890` |
+| `+0x898` | `...` | ShadowBias |  |
+| `+0xAFE` | `...` | resize request | with `+0xB00` and `+0xB04` |
+| `+0xB00` | `...` | resize request | with `+0xAFE` and `+0xB04` |
+| `+0xB04` | `...` | resize request | with `+0xAFE` and `+0xB00` |
 
 ```
 0x01F82ED8..0x01F82F08  the second settings run (character light); 0x01DFE190 EnableIBL byte

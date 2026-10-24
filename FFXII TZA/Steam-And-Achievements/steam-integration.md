@@ -160,20 +160,27 @@ The interface context, as `SteamInternal_ContextInit` returns it (`0x001F3AE0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `SteamClient017` | +0x58 | STEAMHTTP_INTERFACE_VERSION002 |
-| `+0x08` | `SteamUser019` | +0x60 | STEAMUNIFIEDMESSAGES_INTERFACE_VERSION001 |
-| `+0x10` | `SteamFriends015` | +0x68 | SteamController005 |
-| `+0x18` | `SteamUtils009` | +0x70 | STEAMUGC_INTERFACE_VERSION010 |
-| `+0x20` | `SteamMatchMaking009` | +0x78 | STEAMAPPLIST_INTERFACE_VERSION001 |
-| `+0x28` | `STEAMUSERSTATS_INTERFACE_VERSION011` | +0x80 | STEAMMUSIC_INTERFACE_VERSION001 |
-| `+0x30` | `STEAMAPPS_INTERFACE_VERSION008` | +0x88 | STEAMMUSICREMOTE_INTERFACE_VERSION001 |
-| `+0x38` | `SteamMatchMakingServers002` | +0x90 | STEAMHTMLSURFACE_INTERFACE_VERSION_003 |
-| `+0x40` | `SteamNetworking005` | +0x98 | STEAMINVENTORY_INTERFACE_V002 |
-| `+0x48` | `STEAMREMOTESTORAGE_INTERFACE_VERSION014` | +0xA0 | STEAMVIDEO_INTERFACE_V002 |
-
-```
-+0x50  STEAMSCREENSHOTS_INTERFACE_VERSION003
-```
+| `+0x00` | `...` | SteamClient017 |  |
+| `+0x08` | `...` | SteamUser019 |  |
+| `+0x10` | `...` | SteamFriends015 |  |
+| `+0x18` | `...` | SteamUtils009 |  |
+| `+0x20` | `...` | SteamMatchMaking009 |  |
+| `+0x28` | `...` | STEAMUSERSTATS_INTERFACE_VERSION011 |  |
+| `+0x30` | `...` | STEAMAPPS_INTERFACE_VERSION008 |  |
+| `+0x38` | `...` | SteamMatchMakingServers002 |  |
+| `+0x40` | `...` | SteamNetworking005 |  |
+| `+0x48` | `...` | STEAMREMOTESTORAGE_INTERFACE_VERSION014 |  |
+| `+0x50` | `...` | STEAMSCREENSHOTS_INTERFACE_VERSION003 |  |
+| `+0x58` | `...` | STEAMHTTP_INTERFACE_VERSION002 |  |
+| `+0x60` | `...` | STEAMUNIFIEDMESSAGES_INTERFACE_VERSION001 |  |
+| `+0x68` | `...` | SteamController005 |  |
+| `+0x70` | `...` | STEAMUGC_INTERFACE_VERSION010 |  |
+| `+0x78` | `...` | STEAMAPPLIST_INTERFACE_VERSION001 |  |
+| `+0x80` | `...` | STEAMMUSIC_INTERFACE_VERSION001 |  |
+| `+0x88` | `...` | STEAMMUSICREMOTE_INTERFACE_VERSION001 |  |
+| `+0x90` | `...` | STEAMHTMLSURFACE_INTERFACE_VERSION_003 |  |
+| `+0x98` | `...` | STEAMINVENTORY_INTERFACE_V002 |  |
+| `+0xA0` | `...` | STEAMVIDEO_INTERFACE_V002 |  |
 
 The achievement manager, `0x80` bytes at `[0x01F83450]`:
 

@@ -283,16 +283,20 @@ The render-parameter block fields this page uses (`0x4A8` bytes at `0x01F7F5F0`)
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0F4` | `f32` | glare luminance | `+0x0F8`  f32     glare threshold |
-| `+0x110` | `u8` | depth-of-field enable | `+0x114`  f32     focus distance |
-| `+0x118` | `f32` | aperture f-number | `+0x11C`  f32     f-number scale |
+| `+0x0F4` | `f32` | glare luminance |  |
+| `+0x0F8` | `f32` | glare threshold |  |
+| `+0x110` | `u8` | depth-of-field enable |  |
+| `+0x114` | `f32` | focus distance |  |
+| `+0x118` | `f32` | aperture f-number |  |
+| `+0x11C` | `f32` | f-number scale |  |
 | `+0x120` | `f32` | lens (35.0) |  |
 | `+0x184` | `i32` | SMAA quality |  |
 | `+0x198` | `u8` | EnableAO |  |
 | `+0x1A8` | `f32[6]` | SAO bias, radius, intensity: Chr, then Sce |  |
 | `+0x1C4` | `f32[6]` | HBAO angle bias, radius, contrast: Chr, then Sce |  |
 | `+0x344` | `i32` | 1 = HBAO |  |
-| `+0x3E8` | `u8` | anti-aliasing built | `+0x3E9`  u8      anti-aliasing configured |
+| `+0x3E8` | `u8` | anti-aliasing built |  |
+| `+0x3E9` | `u8` | anti-aliasing configured |  |
 | `+0x4A3` | `u8` | PostAA is SMAA |  |
 
 ## Shipped data

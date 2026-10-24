@@ -189,8 +189,8 @@ Struct SpawnKeepImage base=payload+`0xE240` size=`0x20010`:
 |---|---|---|---|
 | `+0x00000` | `u16` | fieldIdA | `0x02089372` (`0x00233440` writes, `0x00233550` restores) |
 | `+0x00002` | `u16` | fieldIdB | `0x02089370` |
-| `+0x00010` | `u8[65536] bank2` | the 64 entries of 0x250 bytes at [0x0208E698]; 0x9400 bytes copied, the rest zero |  |
-| `+0x10010` | `u8[65536] bank1` | the 64 entries at [0x0208E690]; written on save, not restored |  |
+| `+0x00010` | `u8[65536]` | bank2 | the 64 entries of `0x250` bytes at [`0x0208E698`]; `0x9400` bytes copied, the rest zero |
+| `+0x10010` | `u8[65536]` | bank1 | the 64 entries at [`0x0208E690`]; written on save, not restored |
 
 `0x00233440` zeroes the image first and copies the banks in `0x128` passes of `0x80` bytes; `0x00233550`
 restores bank 2 and the two field ids only.

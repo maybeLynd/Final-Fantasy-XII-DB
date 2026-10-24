@@ -232,12 +232,17 @@ A first-pool shadow slot (`0xE0` bytes, 160 at `[0x02B40528]`), the ramp fields:
 | `+0x40` | `u8` | bit 0 enabled |  |
 | `+0x41` | `u8` | bit 0 paused, bit 1 hidden |  |
 | `+0x43` | `u8` | counter, cross-fade |  |
-| `+0x50` | `f32[2]` | channel 0: anchor offset | `+0x60`  f32[2]  its step |
-| `+0x58` | `f32[2]` | channel 2: extent scales | `+0x68`  f32[2]  its step |
-| `+0x70` | `f32` | channel 1: rotation | `+0x74`  f32     its step |
-| `+0x78` | `f32` | channel 3: strength | `+0x7C`  f32     its step |
+| `+0x50` | `f32[2]` | channel 0: anchor offset |  |
+| `+0x60` | `f32[2]` | its step |  |
+| `+0x58` | `f32[2]` | channel 2: extent scales |  |
+| `+0x68` | `f32[2]` | its step |  |
+| `+0x70` | `f32` | channel 1: rotation |  |
+| `+0x74` | `f32` | its step |  |
+| `+0x78` | `f32` | channel 3: strength |  |
+| `+0x7C` | `f32` | its step |  |
 | `+0x80` | `f32[6]` | the cross-fade's previous values |  |
-| `+0x98` | `f32` | cross-fade weight input | `+0x9C`  f32     its step |
+| `+0x98` | `f32` | cross-fade weight input |  |
+| `+0x9C` | `f32` | its step |  |
 | `+0xC0` | `f32[6]` | the values last built |  |
 
 `0x003B56D0` takes the first of the 160 slots whose `+0x40` bit `0x1` is clear and returns 0 when none is free

@@ -260,11 +260,15 @@ PApplication  (base of GameApplication; address in `0x02EA5368`):
 | `+0x01E` | `u8` | resize pending (slot 12, run setup) |  |
 | `+0x01F` | `u8` | window-style refresh pending |  |
 | `+0x020` | `u8` | screen-mode change pending (slot 12) |  |
-| `+0x021` | `u8` | focus request pending (slot 13) | `+0x026` u8  restore (1) or minimise (0) |
-| `+0x022` | `u8` | monitor re-check pending (slot 19) | `+0x023` u8  skip the next re-check |
+| `+0x021` | `u8` | focus request pending (slot 13) |  |
+| `+0x026` | `u8` | restore (1) or minimise (0) |  |
+| `+0x022` | `u8` | monitor re-check pending (slot 19) |  |
+| `+0x023` | `u8` | skip the next re-check |  |
 | `+0x024` | `u8` | window moved (slot 20) |  |
 | `+0x028` | `u8` | title-bar or border mouse press (slot 17) |  |
-| `+0x029` | `u8` | resize pending (slot 18) | `+0x02C` i32 width  `+0x030` i32 height |
+| `+0x029` | `u8` | resize pending (slot 18) |  |
+| `+0x02C` | `i32` | width |  |
+| `+0x030` | `i32` | height |  |
 | `+0x03C` | `i32` | frame rate used for a full-screen switch |  |
 | `+0x040` | `f64` | total elapsed time |  |
 | `+0x048` | `f64` | frame delta |  |
@@ -278,10 +282,13 @@ PApplication  (base of GameApplication; address in `0x02EA5368`):
 | `+0xD10` | `void*` | render-interface parameter block (0x01F403A8) |  |
 | `+0xD18` | `void*` | per-frame function: 0x00793E8C (slot 28) or 0x00793E98 (slot 29) |  |
 | `+0xD20` | `u8` | full screen |  |
-| `+0xD24` | `i32` | width (default 1280) | `+0xD28` i32 height (default 720) |
+| `+0xD24` | `i32` | width (default 1280) |  |
+| `+0xD28` | `i32` | height (default 720) |  |
 | `+0xD98` | `void*` | input-recording stream |  |
-| `+0xDB8` | `u32` | viewport count | `+0xDC0` ptr viewport array |
-| `+0xDE8` | `void*` | 96 MiB arena | `+0xDF0` ptr 2 MiB block |
+| `+0xDB8` | `u32` | viewport count |  |
+| `+0xDC0` | `void*` | viewport array |  |
+| `+0xDE8` | `void*` | 96 MiB arena |  |
+| `+0xDF0` | `void*` | 2 MiB block |  |
 | `+0xDF8` | `void*` | input object |  |
 
 The application vtable slots the framework calls, named by the framework's own log strings where it

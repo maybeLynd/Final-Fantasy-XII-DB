@@ -122,6 +122,8 @@ Section header (`0x30`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | tag |  |
+| `+0x08` | `u32` | length | header included; the @FMR consumer requires more than `0x30` (`0x0041D33F`) |
+| `+0x0C` | `u32` | count | records in the section: the @FTR consumer multiplies it by `0x149` (`0x003712FE`), the @FLD consumer bounds its loop by it (`0x0041FFAF`) |
 | `+0x10` | `char[32]` | name | zero-padded |
 
 @FRP container:
@@ -184,5 +186,4 @@ bank blob.
 ## Related
 
 - [The resource owner](resource-ownership-and-disposal.md): how a loaded resource is owned and released.
-- [FRP object container](../17-Presentation-Rendering/model-files-cm-ca.md
-): the `@FRP` files on disk.
+- [FRP object container](../Graphics/model-files-cm-ca.md): the `@FRP` files on disk.

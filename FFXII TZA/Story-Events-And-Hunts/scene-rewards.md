@@ -42,7 +42,7 @@ table rows are three `subitem` calls in `fon_b01` and one `additemmes` there.
 
 ### The shared give routines
 
-230 shipping scripts carry a copy of a shared routine actor that gives, `イベント特殊効果画面`, or its variants `_EV`
+231 shipping scripts carry a copy of a shared routine actor that gives, `イベント特殊効果画面`, or its variants `_EV`
 and `_RRP`. A
 routine function shows the "obtained" window and gives the value of one variable: one of three script globals at
 `0xC88`, `0xC8C` and `0xCF0`, or a variable of the script itself. A caller stores the item in that variable and

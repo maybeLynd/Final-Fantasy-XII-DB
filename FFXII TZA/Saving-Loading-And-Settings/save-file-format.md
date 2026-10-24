@@ -92,7 +92,7 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x1A` | `u8` | minutes | (ticks / 3600) mod 60, by `0x00254CC0` |
 | `+0x1B` | `u8` | seconds | (ticks / 60) mod 60, by `0x00254CC0` |
 | `+0x1C` | `u8[4]` | pad | not written by the enumerated writers |
-| `+0x20` | `u8[28] roster` | seven 4-byte entries, 0x00583D60: character id, level, jobs (high and low nibble), flags; unused entries start with 0xFF |  |
+| `+0x20` | `u8[28]` | roster | seven 4-byte entries, `0x00583D60`: character id, level, jobs (high and low nibble), flags; unused entries start with `0xFF` |
 | `+0x3C` | `u32` | esper | the summoned Esper's character row: `0x003200A0` sets its flag bit 0 when summon mode is on (block `+0x5B04` bit 0, `0x003135E0`) and copies the row byte block `+0x5AD4` (`0x003137E0`); `0x00583D60` stores it, else `0xFF` (`0x00583F08`-`0x00583F0D`); the slot pane's ESPER row shows its name when it is not `0xFF` (`0x0057EFE0`, `0x0057F0CC`) |
 | `+0x40` | `u32` | counter | counter kind `0x11` (`0x003166F0`) when story flag `0x400B` is set, else untouched |
 | `+0x44` | `u32` | clanrank | `0x00315390`() when story flag `0x400B` is set, else 0 |
@@ -108,8 +108,8 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x64` | `u32` | blocksize constant 0x7410, the battle-state block's size |  |
 | `+0x68` | `u32` | magic2 | `0x0131F3EA`, tested by `0x00255260` |
 | `+0x6C` | `u32` | size2 | `0x4818`, tested by `0x00255260`; the image-backed state block's size |
-| `+0x70` | `u8[36] stash` | the mode-3 stash: +0x70 ticks, +0x78 hours, +0x7A minutes, +0x7B seconds, +0x7C walked (0x00320D50), +0x80 to +0x93 the five dwords of the world-transition record (0x00584210; the last stored at 0x005842B1 and read back at 0x0058435C) |  |
-| `+0x94` | `u8[364] rest` | zeroed by the image clears; not written by the enumerated writers |  |
+| `+0x70` | `u8[36]` | stash | the mode-3 stash: `+0x70` ticks, `+0x78` hours, `+0x7A` minutes, `+0x7B` seconds, `+0x7C` walked (`0x00320D50`), `+0x80` to `+0x93` the five dwords of the world-transition record (`0x00584210`; the last stored at `0x005842B1` and read back at `0x0058435C`) |
+| `+0x94` | `u8[364]` | rest | zeroed by the image clears; not written by the enumerated writers |
 
 The roster loop (`0x00583DC2`-`0x00583EEB`) walks party pages 0-8 from `0x00282DF0(page)`, skips a page
 whose word `+0x60` is negative or whose flag bit 1 is set, and writes for each page `{+0x60 low

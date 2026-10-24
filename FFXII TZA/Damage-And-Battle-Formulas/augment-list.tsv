@@ -1,6 +1,6 @@
 id	term	name	name_jp	license	text_id	text	value	value_reader	value_use	timer_slot	explanation
-0	Stability	NOT USED	ノックバックなし				0				Stability: an unused row, with no English text
-1	Safety	NOT USED	セーフティ		13001		0				Safety: an unused row, with no English text
+0	Stability	NOT USED	ノックバックなし				0				Stability: no English text (the shipped name reads NOT USED); a target with it is never knocked back: calculator slot 6 skips its knockback roll (0x00388444-0x0038844E); carried by 343 bestiary rows, among them Gilgamesh and Judge
+1	Safety	NOT USED	セーフティ		13001		0				Safety: no English text (the shipped name reads NOT USED); calculator slot 0, the first slot of recipes 9, 10, 12, 14 and 15 (Warp, Kill, Death, Syphon, Gravity), makes a target with it immune (0x00387F40-0x00387F4C), the status add 0x00387BB0 answers 0 for KO on it (0x00387BF5-0x00387C0C), and Elixir and Megalixir give it the full restore without the Reverse flip (slot 129, 0x0038E084-0x0038E098); carried by 518 bestiary rows, among them Gilgamesh and Dead Bones
 2	Accuracy Boost	NOT USED	精神統一		13002	Improves chance to hit.	0				Accuracy Boost: Improves chance to hit.
 3	Shield Boost	NOT USED	盾回避アップ		13003	Improves chance to block with a shield.	10	0x00387FD0, 0x00389370	added to the shield-block chance		Shield Boost: Improves chance to block with a shield; value 10, added to the shield-block chance
 4	Evasion Boost	NOT USED	見切る		13004	Improves chance of avoiding attacks.	0				Evasion Boost: Improves chance of avoiding attacks.
@@ -32,33 +32,33 @@ id	term	name	name_jp	license	text_id	text	value	value_reader	value_use	timer_slo
 30	Spellbound	Increases duration of status effects.	有効ステータスの持続時間延長	Spellbound	13030	NOT USED	0				Spellbound: Increases duration of status effects.
 31	Piercing Magick	NOT USED	リフレク貫通		13031	Magicks will not bounce off targets with Reflect status.	0				Piercing Magick: Magicks will not bounce off targets with Reflect status.
 32	Offering	NOT USED	ギル魔法		13032	Enables casting of magicks with gil, rather than MP.	0				Offering: Enables casting of magicks with gil, rather than MP.
-33	Veil	NOT USED	聴覚索敵回避		13033	NOT USED	0				Veil: an unused row, with no English text
-34	Life Cloak	NOT USED	嗅覚索敵回避		13034	NOT USED	0				Life Cloak: an unused row, with no English text
+33	Veil	NOT USED	聴覚索敵回避		13033	NOT USED	0				Veil: no English text (the shipped name reads NOT USED); an enemy's radius check on its class row byte +0x25 passes over a unit with it (0x003247F0, 0x00324BAF-0x00324BB9); no carrier located in the bestiary, gear, party table or enemy orders
+34	Life Cloak	NOT USED	嗅覚索敵回避		13034	NOT USED	0				Life Cloak: no English text (the shipped name reads NOT USED); an enemy's check on its class row byte +0x26, for units below 40 % HP, passes over a unit with it (0x003247F0, 0x00324CEC-0x00324CF6); no carrier located in the bestiary, gear, party table or enemy orders
 35	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 36	Parsimony	NOT USED	消費MP半減		13036	Reduces MP cost by half.	0				Parsimony: Reduces MP cost by half.
 37	Tread Lightly	NOT USED	トラップ回避		13037	Move safely past traps.	0				Tread Lightly: Move safely past traps.
-38	Cartridge	NOT USED	カートリッジ				0				Cartridge: an unused row, with no English text
+38	Cartridge	NOT USED	カートリッジ				0				Cartridge: no English text (the shipped name reads NOT USED); its effect is not yet located, and no carrier is located in the bestiary, gear, party table or enemy orders
 39	Emptiness	NOT USED	魔法封印		13039	Reduces MP to 0.	0				Emptiness: Reduces MP to 0.
-40	Resist Piercing	NOT USED	ぐにゃぐにゃ				0				Resist Piercing: an unused row, with no English text
-41	Anti-Libra	NOT USED	ライブラ無効				0				Anti-Libra: an unused row, with no English text
+40	Resist Piercing	NOT USED	ぐにゃぐにゃ				0				Resist Piercing: no English text (the shipped name reads NOT USED); damage to a target with it from a user whose main hand is a gun or a measure is x0.125 (calculator slot 97, 0x0038BCF6-0x0038BD00); carried by 148 bestiary rows, among them Necrofiend and Flan
+41	Anti-Libra	NOT USED	ライブラ無効				0				Anti-Libra: no English text (the shipped name reads NOT USED); the target information window 0x002BFD20 tests it in the target's party status copy (+0x51 bit 1, 0x002BFFAA) and lays the window out by another branch (0x002BFFB3-0x002BFFB6), whose visible result is not yet located; carried by 358 bestiary rows, among them Gilgamesh and Larva Eater
 42	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 43	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 44	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 45	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 46	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 47	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
-48	Stoneskin	NOT USED	ダメージ軽減				0				Stoneskin: an unused row, with no English text
-49	Attack Boost	NOT USED	ダメージ上乗せ				0				Attack Boost: an unused row, with no English text
-50	Double-Edged	NOT USED	HP消費攻撃				0				Double-Edged: an unused row, with no English text
-51	Spellspring	NOT USED	消費MP０				0				Spellspring: an unused row, with no English text
-52	Elemental Shift	NOT USED	バリアチェンジ				0				Elemental Shift: an unused row, with no English text
-53	Celerity	NOT USED	攻撃CT０				0				Celerity: an unused row, with no English text
-54	Swiftcast	NOT USED	魔法CT０				0				Swiftcast: an unused row, with no English text
+48	Stoneskin	NOT USED	ダメージ軽減				0				Stoneskin: no English text (the shipped name reads NOT USED); damage to the holder is cut to 70 %, except from 0xB3 (0x00390F8B-0x00390FC3); set by Greater Barrier and by enemy orders (130 lines in 72 areas); carried by 54 bestiary rows, among them Crusader and Undin Entite
+49	Attack Boost	NOT USED	ダメージ上乗せ				0				Attack Boost: no English text (the shipped name reads NOT USED); the holder's damage x1.2 (0x0038F89B-0x0038F8B8); set by Battle Cry and by enemy orders (130 lines in 79 areas); carried by 30 bestiary rows, among them Magick Pot and Omega Mark XII
+50	Double-Edged	NOT USED	HP消費攻撃				0				Double-Edged: no English text (the shipped name reads NOT USED); the holder's damage x2 (0x0038F8BE-0x0038F8D0); set by Saber and by enemy orders (90 lines in 60 areas)
+51	Spellspring	NOT USED	消費MP０				0				Spellspring: no English text (the shipped name reads NOT USED); the holder's MP cost is 0 once the Quickening, Esper and gil-cost routes are passed (0x002F97A3-0x002F97E0); set by Mana Spring, Unleash and enemy orders (79 lines in 56 areas); carried by 25 bestiary rows, among them Ixion and Hell Wyrm
+52	Elemental Shift	NOT USED	バリアチェンジ				0				Elemental Shift: no English text (the shipped name reads NOT USED); an enemy holder's weakness moves to one element drawn at random, and again on each hit on its weakness (0x00386B0C, 0x0038B78D, 0x0038C1ED); set by Shift; carried by 8 bestiary rows, among them Omega Mark XII and Trickster
+53	Celerity	NOT USED	攻撃CT０				0				Celerity: no English text (the shipped name reads NOT USED); the holder's Attack and orders charge instantly (0x002F85A6-0x002F888A); set by Enrage, Limit Break and enemy orders (179 lines in 88 areas); carried by 11 bestiary rows, among them Magick Pot and Omega Mark XII
+54	Swiftcast	NOT USED	魔法CT０				0				Swiftcast: no English text (the shipped name reads NOT USED); the holder's actions with row +0x0C bit 13 charge instantly (0x002F8627-0x002F862D); set by Chain Magick, Limit Break, Unleash and enemy orders (106 lines in 65 areas); carried by 15 bestiary rows and the party table's Ultima and Zodiark rows
 55	Physical-Immunity	NOT USED	物理絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	3	Paling: a timed effect, slot 3, 120 x 30 steps by default
 56	Magick-Immunity	NOT USED	魔法絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	4	Magick Shield: a timed effect, slot 4, 120 x 30 steps by default
 57	Status-Immunity	NOT USED	障害絶対防御				120	0x00387020	the default timer: value x 30 x the frame base	5	White Wind: a timed effect, slot 5, 120 x 30 steps by default
-58	Damage Spikes	NOT USED	反撃				0				Damage Spikes: an unused row, with no English text
-59	Suicidal	NOT USED	自爆起動				0				Suicidal: an unused row, with no English text
+58	Damage Spikes	NOT USED	反撃				0				Damage Spikes: no English text (the shipped name reads NOT USED); a hit on the holder costs the attacker a twentieth of the damage, held to 9,999 (0x00390F2F-0x00390F85); carried by 103 bestiary rows, among them Undin Entite and Storm Elemental
+59	Suicidal	NOT USED	自爆起動				0				Suicidal: no English text (the shipped name reads NOT USED); the enemy AI's has and lacks tests read it to pick a phase (0x00302478); an effect of its own is not yet located; set by Chain Reaction and by enemy orders (30 lines in 11 areas)
 60	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 61	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)
 62	Battle Lore	Increases physical attack damage.	物理攻撃が強くなる	Battle Lore			1	0x002FEF30	added to Strength (list 0x00D10290)		Battle Lore: Increases physical attack damage; value 1, added to Strength (list 0x00D10290)

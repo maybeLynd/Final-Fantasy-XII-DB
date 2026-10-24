@@ -40,7 +40,7 @@ The TGA image and the PS2 icon pair are little-endian; the CSV tables and JSON d
 | `+0x00` | `u8` | id length | 0 |
 | `+0x01` | `u8` | colour-map type | 0 |
 | `+0x02` | `u8` | image type | 2 (uncompressed true colour) |
-| `+0x03` | `u8[9]` | colour | map, origin 0 |
+| `+0x03` | `u8[9]` | colour map, origin 0 |  |
 | `+0x0C` | `u16` | width | 1920   <- read |
 | `+0x0E` | `u16` | height | 1080   <- read |
 | `+0x10` | `u8` | bits per pixel | 24 |
@@ -79,11 +79,8 @@ Soft-particle entry, 4 bytes, indexed by the effect number (per-type tables) or 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | GroupId | (bg only) |
-
-`+0x00`/`+0x01`  u8  UseSoftParticle != 'N'   (`+0x00` per type, `+0x01` bg):
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
+| `+0x00` | `u8` | UseSoftParticle != 'N' | (`+0x00` per type, `+0x01` bg); with `+0x01` |
+| `+0x01` | `u8` | UseSoftParticle != 'N' | (`+0x00` per type, `+0x01` bg); with `+0x00` |
 | `+0x02` | `u16` | SoftParticleFactor | (per type: 10 when "Yes" has no number) |
 
 Bg map record, 16 bytes at `0x02F93340`, one per run of rows with the same Map:

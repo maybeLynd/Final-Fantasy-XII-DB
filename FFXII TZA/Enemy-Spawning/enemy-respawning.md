@@ -32,11 +32,11 @@ The HP modifier `0x00300530` is the one path to a death. On its lethal branch, w
 record at `+0x698` has kind byte `+0x05` = 1 (an enemy built from the enemy definition table,
 [battle unit construction](../Characters-And-Objects/battle-unit-construction.md)), it takes the spawn
 record at unit `+0x6A0` and increments its death count `+0x08` (`0x00300801`). It then reads the
-frame counter through `0x0032A150`, divides it by `(int)(30.0 * [0x01DFE0B8])` with an unsigned `div`
+step counter through `0x0032A150`, divides it by `(int)(30.0 * [0x01DFE0B8])` with an unsigned `div`
 (`0x00300820`) and stores the quotient at `+0x0C` (`0x00300829`): the second of the death.
 
-The divisor is 30 at the 30 fps setting and 60 at 60 fps, so the stamp is in whole seconds at
-either rate. It then calls the group table's death handler `0x00306F00` (`0x0030082F`). When that returns 1 the
+The divisor is 30 at the 30 fps setting and 60 at 60 fps, so the stamp is in whole seconds of
+normal-speed play at either rate. It then calls the group table's death handler `0x00306F00` (`0x0030082F`). When that returns 1 the
 group completed, and the modifier skips its own death presentation event (`0x00300836`); otherwise
 it dispatches, when a local flag allows it, `0x200E` when its argument has bit 8, else `0x2007` or
 `0x2008` by a second argument (`0x00300838`-`0x0030085F`).
@@ -61,8 +61,8 @@ cooldowns. A committed entry keeps its numbers: the roll happens once per bank l
 
 ### The clock
 
-The counter `0x0208D45C` is advanced by `0x0032A100`, which the field frame `0x00234590` calls once per
-frame (`0x002345CA`): when timer 0 reports done (`0x003EBB70(0)`) it restarts it (`0x003EBBB0(0, 0, 1)`,
+The counter `0x0208D45C` is advanced by `0x0032A100`, which the field frame orchestrator `0x00234590` calls once per
+simulation step (`0x002345CA`): when timer 0 reports done (`0x003EBB70(0)`) it restarts it (`0x003EBBB0(0, 0, 1)`,
 `0x003EBD00(0)`), then reads the timer's value through `0x003EBA90(0)` and increments the counter only
 when that value differs from the one it kept at `0x022C317C` (`0x0032A12A`-`0x0032A135`). The only other
 writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
@@ -191,7 +191,7 @@ bit 4. The row-12 inhibitions stay until their off form runs.
 
 ### Delivering the completion to the script
 
-`0x00307030` runs once per field frame from `0x00234590` (`0x00234717`). It does nothing while the gate
+`0x00307030` runs once per simulation step from the orchestrator `0x00234590` (`0x00234717`). It does nothing while the gate
 `0x00233D20` is closed: `0x02089340 & 0xF00` must be 0 and time-stop request 10 must not be raised
 (`0x00226BD0(10)` = 0, [the time-stop
 registry](../Engine-Core/time-stop-and-freeze.md)).
@@ -236,8 +236,11 @@ Both branches flip the parity byte `0x0208D454` and then shift the history: `0x0
 `0x02089370 = field`, `0x02089374 = counter`. The compare is against the field from two moves ago, so
 the restore fires on the pattern A, B, A within the window; entering B again from B wipes.
 
-The window is in seconds because the counter difference is in frames and the multiplier is the
-frames per second. `0x00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `0x00235330`
+The window is in seconds because the counter difference is in simulation steps and the multiplier is the
+steps per second at normal speed (30 or 60). The high-speed mode runs two or four steps a frame, so there the window
+lasts 150 or 75 wall-clock seconds; menus and time stop do not advance the counter.
+
+`0x00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `0x00235330`
 returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep` (`0x005107F0`), which
 no shipped script calls, so the window is 300 seconds everywhere. After a reset the previous-field
 word is `0xFFFF` (sign-extended to -1 at `0x002337CD`) and `0x003148F0` never returns a negative, so the
@@ -307,19 +310,21 @@ Struct SpawnKeepImage size=`0x20010`   (`0x00233440` writes, `0x00233550` restor
 |---|---|---|---|
 | `+0x00000` | `u16` | fieldTwoAgo | `0x02089372` |
 | `+0x00002` | `u16` | fieldLast | `0x02089370` |
-| `+0x00010` | `u8[37888] bank2` | [0x0208E698]; restored by 0x00233550 |  |
-| `+0x10010` | `u8[37888] bank1` | [0x0208E690]; written, never restored |  |
+| `+0x00010` | `u8[37888]` | bank2 | [`0x0208E698`]; restored by `0x00233550` |
+| `+0x10010` | `u8[37888]` | bank1 | [`0x0208E690`]; written, never restored |
 
 Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x0208D45C` | `u32` | frame counter, +1 per field frame whose timer 0 moved (0x0032A100); 0 at reset |  |
+| `0x0208D45C` | `u32` | step counter, +1 per simulation step whose timer 0 moved (0x0032A100); 0 at reset |  |
 | `0x01DFE0B8` | `f32` | frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale) |  |
-| `0x02089370` | `u16` | last field | `0x02089372`  u16  field two transitions ago |
+| `0x02089370` | `u16` | last field |  |
+| `0x02089372` | `u16` | field two transitions ago |  |
 | `0x02089374` | `u32` | counter at the last transition |  |
 | `0x0208936C` | `i32` | return window, seconds (300) |  |
-| `0x0208D454` | `u8` | bank parity | `0x0208D354`  u16[2][64]  spawn-history counters |
+| `0x0208D454` | `u8` | bank parity |  |
+| `0x0208D354` | `u16[2][64]` | spawn-history counters |  |
 | `0x02EBF190` | `void*` | battle-state block; dword +0 stamp 0x05071901 |  |
 | `0x02089340` | `u32` | battle flags: bit 1 nothing pending, bit 5 and 7 the lock, bits 8-11 close the gate |  |
 | `0x02098E68` | `void*` | the 64-word field table; word 3 receives the completed group |  |
@@ -339,7 +344,7 @@ Globals:
 
 A kill, in order: the HP modifier bumps `+0x08` and stamps `+0x0C`; `0x00306F00` sets the dead bit and
 tests the mask; on completion the lock engages and the arm is chosen; the reaction handler raises
-the flag for a mode other than 1 when the death track ends; the next field frame with an open gate
+the flag for a mode other than 1 when the death track ends; the next simulation step with an open gate
 posts the group number; the zone script wakes and runs the aftermath.
 
 An area entry, in order (`0x002342F0`): the cap `0x0208D458` = 28, the area reset `0x00239960` when
@@ -349,7 +354,7 @@ uncommitted entries.
 
 ## State
 
-The live bank and the history bank, the four history and window globals, the frame counter and its
+The live bank and the history bank, the four history and window globals, the step counter and its
 last timer value, the parity and the two counter banks, the group table, unit `+0xE98`/`+0xE99` and flag
 bits 33 and 47, and word 3 of the field table. Only bank 2 and the two field words reach a save,
 and only the autosave's restore brings them back.
@@ -357,7 +362,7 @@ and only the autosave's restore brings them back.
 ## Modding notes
 
 - A respawn wait is `cooldown + 1` seconds by script and `cooldown` seconds by the native selector,
-  both in whole seconds at either frame rate. Changing `>` to `>=`, or comparing in frames, shifts
+  both in whole seconds at either frame rate. Changing `>` to `>=`, or comparing in steps, shifts
   every respawn in the game.
 - The death limit and cooldown are rolled per entry from `base + rand % (range + 1)`; set the range
   to 0 for a fixed value.

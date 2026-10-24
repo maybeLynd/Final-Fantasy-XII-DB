@@ -196,9 +196,13 @@ The copy is a GS transfer inside GS memory, built by `0x00505150(packet, transfe
 | `+0x06` | `u8` | 0 disables the record |  |
 | `+0x07` | `u8` | selects the single stage while 0x02B59D68 is 0 |  |
 | `+0x10` | `f32` | copied to the VU0 bank at 0x022D9390 |  |
-| `+0x20` | `f32` | global phase | `+0x24`  f32  speed      `+0x28`  f32  amplitude |
+| `+0x20` | `f32` | global phase |  |
+| `+0x24` | `f32` | speed |  |
+| `+0x28` | `f32` | amplitude |  |
 | `+0x2C` | `u32` | encoded pointer to the record's preset row |  |
-| `+0x30` | `f32` | per-record phase | `+0x34`  f32  speed      `+0x38`  f32  amplitude |
+| `+0x30` | `f32` | per-record phase |  |
+| `+0x34` | `f32` | speed |  |
+| `+0x38` | `f32` | amplitude |  |
 | `+0x3C` | `u16` | bone (command 0x3F) |  |
 | `+0x3E` | `u8` | per-record preset, 0 = off |  |
 | `+0x3F` | `u8` | bit 0 / bit 1 re-draw the global / per-record pair; bit 3 the command's flag |  |
@@ -232,7 +236,8 @@ Choice table (offsets from its start):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | source texture slot | `+0x01`  u8   destination texture slot |
+| `+0x00` | `u8` | source texture slot |  |
+| `+0x01` | `u8` | destination texture slot |  |
 | `+0x0C` | `u16` | offset of the rectangle table, from +0x0C |  |
 | `+0x0E` | `u16` | choice count |  |
 | `+0x10` | `u16[count]` | choice c's sequence is at +0x10 + 2c + this value |  |
@@ -246,11 +251,17 @@ rectangle table:  +0 / +2 destination x, y; +4 / +6 width, height; +0x0E + 4v / 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | in use | `+0x02`  u16   non-zero stops stepping (`0x004775E0`) |
-| `+0x04` | `u32` | handle | `+0x08`  u32   render record |
+| `+0x00` | `u16` | in use |  |
+| `+0x02` | `u16` | non-zero stops stepping (0x004775E0) |  |
+| `+0x04` | `u32` | handle |  |
+| `+0x08` | `u32` | render record |  |
 | `+0x0C` | `u32` | variant |  |
-| `+0x10` | `u8[8] active` | +0x18 | u8[8] re-pick    `+0x20`  u8[8] event (`0xFF` none) |
-| `+0x28` | `u8[8] choice` | +0x30 | u8[8] frame      `+0x38`  u8[8] ticks in the frame |
+| `+0x10` | `u8[8]` | active |  |
+| `+0x18` | `u8[8]` | re-pick |  |
+| `+0x20` | `u8[8]` | event (0xFF none) |  |
+| `+0x28` | `u8[8]` | choice |  |
+| `+0x30` | `u8[8]` | frame |  |
+| `+0x38` | `u8[8]` | ticks in the frame |  |
 
 The record's functions are listed in
 [model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv](model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv).

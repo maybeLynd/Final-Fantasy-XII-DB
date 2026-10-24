@@ -71,12 +71,18 @@ stores each entry's offset from the container, or −1 when the entry is absent 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x1F8` | `void*` | the @FRP container (0x00504940) |  |
-| `+0x208` | `u32` | @FOR offset | `+0x214`  u32   @FEF offset |
-| `+0x20C` | `u32` | @FDM offset | `+0x218`  u32   @FTE offset |
-| `+0x210` | `u32` | @FTR offset | `+0x21C`  u32   @FCT offset |
-| `+0x220` | `u32` | @FCP offset | `+0x230`  ptr   the @FEF section (`0x00504940`) |
-| `+0x0B8` | `i8` | the @FOR record key | `+0xB9`  s8    the option number |
-| `+0x0B3` | `u8` | LOD levels (+0x3A + 1) | `+0xBA`  s8    the palette page (`0x00504D20`) |
+| `+0x208` | `u32` | @FOR offset |  |
+| `+0x214` | `u32` | @FEF offset |  |
+| `+0x20C` | `u32` | @FDM offset |  |
+| `+0x218` | `u32` | @FTE offset |  |
+| `+0x210` | `u32` | @FTR offset |  |
+| `+0x21C` | `u32` | @FCT offset |  |
+| `+0x220` | `u32` | @FCP offset |  |
+| `+0x230` | `void*` | the @FEF section (0x00504940) |  |
+| `+0x0B8` | `i8` | the @FOR record key |  |
+| `+0x0B9` | `i8` | the option number |  |
+| `+0x0B3` | `u8` | LOD levels (+0x3A + 1) |  |
+| `+0x0BA` | `i8` | the palette page (0x00504D20) |  |
 
 ### @FCP, the parameter block
 
@@ -190,11 +196,13 @@ record +(i+1) x 0x20   part i's selector bytes
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x30` | `u8` | count, then u8 texture slots uploaded with every draw |  |
-| `+0x40` | `records,` | 0x20 | bytes each, `+0x0C` of the header many |
+| `+0x40` | `...` | records, 0x20 bytes each, +0x0C of the header many |  |
 | `+0x00` | `u32` | VRAM bytes, a multiple of 0x2000 |  |
-| `+0x04` | `u16` | width | `+0x06`  u16  height |
+| `+0x04` | `u16` | width |  |
+| `+0x06` | `u16` | height |  |
 | `+0x08` | `u16` | GS pixel format: 0x13 8-bit indexed, 0x14 4-bit indexed |  |
-| `+0x0A` | `u16` | upload width | `+0x0C`  u16  upload height |
+| `+0x0A` | `u16` | upload width |  |
+| `+0x0C` | `u16` | upload height |  |
 | `+0x14` | `u32` | upload bytes = upload width x height x 4 |  |
 | `+0x18` | `u32` | pixel data offset, from the entry |  |
 
@@ -202,10 +210,11 @@ record +(i+1) x 0x20   part i's selector bytes
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `records,` | 0x10 | bytes each, `+0x0C` of the header many |
+| `+0x30` | `...` | records, 0x10 bytes each, +0x0C of the header many |  |
 | `+0x00` | `u16` | VRAM bytes (0x2000) |  |
 | `+0x02` | `u16` | palette bytes (colours = bytes / 4) |  |
-| `+0x04` | `u8` | upload width | `+0x05`  u8   pages (4) |
+| `+0x04` | `u8` | upload width |  |
+| `+0x05` | `u8` | pages (4) |  |
 | `+0x06` | `u16` | upload height |  |
 | `+0x0C` | `u32` | data offset, from the entry: four pages of palette-bytes each |  |
 

@@ -118,7 +118,7 @@ augment to allow them:
 - No instruction reads the Essentials license bit, owned-square byte `+0x197`, by itself.
 
 So the commands are innate to every character, and the row's help text, "Slightly raises max HP." (text id 13062),
-describes nothing the game does with augment 114.
+describes a behaviour this census did not locate for augment 114 (Project notes).
 
 ### Properties of the shipped rows
 

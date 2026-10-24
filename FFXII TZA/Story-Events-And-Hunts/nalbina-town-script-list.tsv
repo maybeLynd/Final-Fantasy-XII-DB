@@ -1,0 +1,6 @@
+script	kind	place	actors	functions	rows	shared_actors
+nac_a01	zone	West Barbican (Nalbina Town), field 630	46	300	22	5
+nac_a02	zone	Jajim Bazaar (Nalbina Town), field 631	50	320	46	1
+nac_a03	zone	West Ward (Nalbina Town), field 632	51	381	52	0
+nac_b01	zone	Aerodrome (Nalbina Town), field 800	38	261	30	0
+nac_a0300	scene	scene, event 125	24	167	6	0

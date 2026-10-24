@@ -1,0 +1,11 @@
+script	kind	place	actors	functions	rows	shared_actors
+bul_a01	zone	Hall of the Light (Mt Bur-Omisace), field 736	17	91	7	1
+bul_a02	zone	Hall of the Light (Mt Bur-Omisace), field 737	15	55	2	1
+bul_a03	zone	Temple Grounds (Mt Bur-Omisace), field 738	32	148	9	1
+bul_b01	zone	Temple Approach (Mt Bur-Omisace), field 741	28	113	8	0
+bul_b02	zone	Sand-strewn Pass (Mt Bur-Omisace), field 742	36	178	10	5
+bul_a0100	scene	scene, event 193	28	342	20	0
+bul_a0101	scene	scene, event 194	26	318	32	0
+bul_a0200	scene	scene, event 195	22	265	15	0
+bul_a0201	scene	scene, event 196	24	274	25	0
+bul_a0380	scene	scene, event 740	8	47	1	0

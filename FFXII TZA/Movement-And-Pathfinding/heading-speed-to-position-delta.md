@@ -128,8 +128,7 @@ rewritten, not only before bring-up.
   accumulator and touches nothing else (`+0x61C` keeps its value).
 
 The record is Presentation's ([character render record
-array](../17-Presentation-Rendering/character-render-records.md
-));
+array](../Graphics/character-render-records.md));
 this is Presentation writing back into Movement.
 
 ### Integration and the displacement measure
@@ -211,8 +210,10 @@ Movement context (actor `+0xB8`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `f32[3]` | position |  |
-| `+0x040` | `f32[3]` | offset | added on the three-dimensional path when `+0x107` bit 1 (subtracted after the flat solve) |
-| `+0x0A0` | `f32` | pitch | `+0xA4` f32 yaw              `+0xA8` f32 facing (facing page) |
+| `+0x040` | `f32[3]` | offset added on the three-dimensional path when +0x107 bit 1 (subtracted after the flat solve) |  |
+| `+0x0A0` | `f32` | pitch |  |
+| `+0x0A4` | `f32` | yaw |  |
+| `+0x0A8` | `f32` | facing (facing page) |  |
 | `+0x0B8` | `f32` | last squared displacement |  |
 | `+0x0D0` | `f32` | requested speed |  |
 | `+0x0F0` | `void*` | steering request: +0x24 f32 speed, +0x28 u8 kind, +0x29 u8 mode |  |
@@ -232,7 +233,8 @@ Movement body (controller `+0x138`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x070` | `f32[4] the cell solver's displacement` | +0x90 u32 bit 4 the solver moved the body |  |
+| `+0x070` | `f32[4]` | the cell solver's displacement |  |
+| `+0x090` | `u32` | bit 4 the solver moved the body |  |
 | `+0x0C8` | `f32` | published locomotion rate, 108 * speed |  |
 | `+0x110` | `u32` | mask word (0x002E9BB0 / 0x002EC5B0) |  |
 
@@ -240,12 +242,20 @@ Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i16` | id, -1 empty | `+0x006` i16  -1 required for the save/latch block |
-| `+0x0CC` | `u16` | state & 0xFFF | `+0x284` u32  bit 27 gates the save/latch block; non-zero gates the publish |
-| `+0x240` | `f32[3]` | pitch, | yaw, 0.0 from `0x002E5C10` |
+| `+0x000` | `i16` | id, -1 empty |  |
+| `+0x006` | `i16` | -1 required for the save/latch block |  |
+| `+0x0CC` | `u16` | state & 0xFFF |  |
+| `+0x284` | `u32` | bit 27 gates the save/latch block; non-zero gates the publish |  |
+| `+0x240` | `f32[3]` | pitch, yaw, 0.0 from 0x002E5C10 |  |
 | `+0x457` | `i8` | frame counter, against [0x01DFE0B4] * 30 |  |
-| `+0x610` | `f32 yaw, +0x614 f32 speed, +0x618 f32 accumulator, +0x61C u16 flags` | the incoming group |  |
-| `+0x620` | `f32 yaw, +0x624 f32 speed, +0x628 f32 accumulator, +0x62C u16 flags` | the previous group; +0x62C bit 0 = latch |  |
+| `+0x610` | `f32` | yaw | the incoming group |
+| `+0x614` | `f32` | speed | the incoming group |
+| `+0x618` | `f32` | accumulator | the incoming group |
+| `+0x61C` | `u16` | flags | the incoming group |
+| `+0x620` | `f32` | yaw | the previous group |
+| `+0x624` | `f32` | speed | the previous group |
+| `+0x628` | `f32` | accumulator | the previous group |
+| `+0x62C` | `u16` | flags | the previous group; bit 0 = latch |
 
 ```
 battle unit: +0x158 f32 speed, +0x15C f32 yaw, +0x160 f32 facing, +0x174 f32 pitch; flag bit 18 holds the speed
@@ -300,5 +310,4 @@ mode; the body's `+0x70`, `+0x90`, `+0xC8` and `+0x110`; the render record's `+0
 - [Movement bodies and separation](movement-bodies-and-separation.md): the body the step is solved against.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the driver.
 - [Battle units](../Characters-And-Objects/battle-units.md): the unit fields the intent is read from.
-- [Character render record array](../17-Presentation-Rendering/character-render-records.md
-): the record the override reads.
+- [Character render record array](../Graphics/character-render-records.md): the record the override reads.

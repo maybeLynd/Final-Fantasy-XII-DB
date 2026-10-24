@@ -288,11 +288,11 @@ bytes) and copies its bytes into the globals listed in the layout below.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32[31] settings` | the 31 settings, offset = index * 4; 0x001DE050, 0x001DF350, 0x001DF340 |  |
-| `+0x07C` | `u8[972] tables` | the value tables 0x001DF240 fills from 0x01DFD850, 0x01DFD9A0 and 0x01DFDAF0 (81 dwords each at +0x7C, +0x1C0 and +0x304) |  |
+| `+0x000` | `u32[31]` | settings | the 31 settings, offset = index * 4; `0x001DE050`, `0x001DF350`, `0x001DF340` |
+| `+0x07C` | `u8[972]` | tables | the value tables `0x001DF240` fills from `0x01DFD850`, `0x01DFD9A0` and `0x01DFDAF0` (81 dwords each at `+0x7C`, `+0x1C0` and `+0x304`) |
 | `+0x448` | `u32` | count | 81 after `0x001DF240` |
 | `+0x44C` | `u32` | msaa | bit set of the supported MSAA values: 1 from `0x001DE050`, more bits from `0x001DF2B0`; read by `0x001DF2C0` |
-| `+0x450` | `u16[260] path` | the ini path, wcscpy_s by 0x001DE050 |  |
+| `+0x450` | `u16[260]` | path | the ini path, wcscpy_s by `0x001DE050` |
 | `+0x658` | `u16` | fresh | `0x0101` from `0x001DE050`, 0 after a file load (`0x001DED50`) |
 | `+0x65A` | `u8` | fresh2 | 1 from `0x001DE050`, 0 after a file load |
 | `+0x65B` | `u8` | pad | not written by `0x001DE050`, `0x001DED50` or `0x001DF240` |
@@ -319,7 +319,7 @@ bytes) and copies its bytes into the globals listed in the layout below.
 | `+0x10` | `u8` | opt10 | to `0x02B62DB6` |
 | `+0x11` | `u8` | opt11 | to `0x02B62DB7` |
 | `+0x12` | `u8` | opt12 | to `0x02B62DB8` |
-| `+0x13` | `u8[2] unread13` | not copied |  |
+| `+0x13` | `u8[2]` | unread13 | not copied |
 | `+0x15` | `u8` | opt15 | to `0x02B62DBB` (not reset by `0x00408BA0`) |
 | `+0x16` | `u8` | opt16 | to `0x02B62DBC` |
 

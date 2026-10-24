@@ -9,9 +9,9 @@ addresses: "0x002F8060, 0x002FB8C0, 0x002FB3B0, 0x002FA230, 0x002FA740, 0x002FAE
 
 Some fields hide traps. Walking onto one makes it go off: the party member who stepped on it, or
 everyone near it, takes damage, loses MP, catches a status, loses gil, or is healed, and a line in
-the battle log says that someone triggered a trap. A trap that has gone off stays spent until the
-field is loaded again; every load rolls each trap's arm chance afresh, whether or not it went off
-before. With Libra on a party member, the traps show as markers on the ground; without it
+the battle log says that someone triggered a trap. A trap that has gone off stays spent while you
+stay on the map. Each time the map's trap setup runs, every trap's arm chance is rolled afresh, whether or not
+it went off before. With Libra on a party member, the traps show as markers on the ground; without it
 they are invisible.
 
 Every trap the game ships is listed in [the trap list](trap-list.tsv): the map and region it is on,
@@ -78,8 +78,9 @@ advances modulo 3. `0x002FA230` zeroes the whole ring; it runs from the battle r
 
 A cleared bit therefore stays cleared only until the next `settrapresource` for the field, which
 rolls every trap again and replaces the field's ring entry without reading the old mask
-(`0x002FA740`); the ring keeps the three most recent fields' masks, but nothing restores a spent trap
-from it.
+(`0x002FA740`); the ring keeps the three most recent fields' masks, and its only readers are the firing
+`0x002F8060` and the marker pass `0x002F82F0`, each on the current field's entry, so the arming walk never takes a mask
+back from it.
 
 ### Who can spring a trap
 
@@ -280,7 +281,8 @@ Over the 1,114 `us` zone and event scripts (one file is not an `EBP2` container)
 
 Every table reference is tag 3. Tables hold 1 to 16 records; 285 hold one. All 489 real traps
 have flag id `0xFF`, so no shipped trap ever sets a persistent flag and none is ever skipped at
-arming: a field's traps are rolled afresh at every load, and the persistent-flag path exists only
+arming: a field's traps are rolled afresh every time its `settrapresource` runs (an unconditional call in the
+`init` of its `btl_trap_ctrl` actor), and the persistent-flag path exists only
 for authored data that does not ship. The arm chance is 100 in 487 traps and 60 in the two traps
 of `rbl_n02` (rows 260 and 261 twice over). Byte `+0x0B` is 0 everywhere.
 

@@ -107,13 +107,20 @@ Struct MeshQuery  (the walker's record, built on the caller's stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[4]` | delta = end - start (w from end) | `+0x10`  ptr  start point |
-| `+0x18` | `void*` | end point | `+0x20`  ptr  the hit point written |
-| `+0x28` | `void*` | per-cell callback | `+0x30`  f32  best t (starts at the length) |
-| `+0x34` | `f32` | segment length | `+0x38`  i32  stop at the first hit when set |
-| `+0x3C` | `i16` | current cell | `+0x3E`  i16  cell list start |
-| `+0x40` | `i16` | cell list count | `+0x42`  i16  hit id (`0xFFFF` none) |
-| `+0x44` | `i16` | state: 0 none, 1 marker only, 2 hit | `+0x46`  i16  query kind |
+| `+0x00` | `f32[4]` | delta = end - start (w from end) |  |
+| `+0x10` | `void*` | start point |  |
+| `+0x18` | `void*` | end point |  |
+| `+0x20` | `void*` | the hit point written |  |
+| `+0x28` | `void*` | per-cell callback |  |
+| `+0x30` | `f32` | best t (starts at the length) |  |
+| `+0x34` | `f32` | segment length |  |
+| `+0x38` | `i32` | stop at the first hit when set |  |
+| `+0x3C` | `i16` | current cell |  |
+| `+0x3E` | `i16` | cell list start |  |
+| `+0x40` | `i16` | cell list count |  |
+| `+0x42` | `i16` | hit id (0xFFFF none) |  |
+| `+0x44` | `i16` | state: 0 none, 1 marker only, 2 hit |  |
+| `+0x46` | `i16` | query kind |  |
 
 `0x0022F430(part, q)` walks the segment through the collision grid. The cell of a point is
 `0x00233050`: column `(x + originX) / cellW`, row `(z + originZ) / cellH` after subtracting half a
@@ -157,7 +164,8 @@ Struct EmitterVolume  base=[`0x022CBAF0`] + offset:
 | `+0x09` | `u8` | kind (& 0x7F): 0 ellipse, 1 rectangle, 2 segment chain |  |
 | `+0x14` | `u32` | segment count (kind 2) |  |
 | `+0x20` | `f32[4]` | centre |  |
-| `+0x30` | `f32` | extent a | `+0x34`  f32  extent b |
+| `+0x30` | `f32` | extent a |  |
+| `+0x34` | `f32` | extent b |  |
 | `+0x40` | `f32[8]` | segments (kind 2): start f32[4], direction f32[4], 0x20 bytes each |  |
 | `+0x50` | `f32` | rotation angle |  |
 
@@ -222,14 +230,15 @@ Shape record (a collision wall record is one):
 |---|---|---|---|
 | `+0x00` | `i32` | type: 0 sphere, 1 cylinder, 2 box |  |
 | `+0x04` | `u32` | attribute word (collision mesh; the primitives do not read it) |  |
-| `+0x10` | `f32[16]` | forward | transform (unit frame to world) |
-| `+0x50` | `f32[16]` | inverse | transform (world to unit frame) |
+| `+0x10` | `f32[16]` | forward transform (unit frame to world) |  |
+| `+0x50` | `f32[16]` | inverse transform (world to unit frame) |  |
 
 Collision polygon (`0x20` bytes at [part + `0x10`]):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[3]` | plane normal | `+0x0C`  u32  attribute word |
+| `+0x00` | `f32[3]` | plane normal |  |
+| `+0x0C` | `u32` | attribute word |  |
 | `+0x10` | `u16[3]` | vertex indices into the 0x10-byte vertices at [part + 0x08] |  |
 
 Globals:
@@ -244,14 +253,14 @@ Globals:
 | `0x00D112A0` | `f32[4]` | {0.999, 1.001, -0.999, 0}; 0x00D112A4 is the box margin |  |
 | `0x00908DE8` | `i32[3]` | {1, 2, 0}, the next-vertex table |  |
 | `0x00908DF8` | `i32[4]` | {0, 1, 2, -1}, the cell-list offsets |  |
-| `0x0209A3E0` | `override` | entries, | 8 bytes each; walls and polygons use entries 32-63 |
+| `0x0209A3E0` | `...` | override entries, 8 bytes each; walls and polygons use entries 32-63 |  |
 | `0x022CBAF0` | `void*` | base of the emitter volume records |  |
-| `0x022D9130` | `/ 0x022D9478` | the CLIP word and its copy |  |
-
-`0x022D9198`, `0x022D91A0`, `0x022D92A0`-`0x022D935F`, `0x022D9470`  the VU0 register image:
-
-| Address | Type | Name | Meaning |
-|---|---|---|---|
+| `0x022D9130` | `...` | the CLIP word |  |
+| `0x022D9478` | `...` | the CLIP word's copy |  |
+| `0x022D9198` | `f32` | the VU0 register image: Q |  |
+| `0x022D91A0` | `f32[4]` | the VU0 register image: ACC |  |
+| `0x022D92A0` | `...` | the VU0 register image: vector registers 0x022D92A0 to 0x022D935F |  |
+| `0x022D9470` | `u8` | the VU0 register image: flag byte |  |
 | `0x01EF93F0` | `f32[4]` | the vf00 image {0, 0, 0, 1} |  |
 
 ## Shipped data

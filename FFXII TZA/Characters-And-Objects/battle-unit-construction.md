@@ -173,8 +173,8 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 | `+0x02` | `u8` | counterSlot | spawn counter index, `0xFF` for none |
 | `+0x03` | `u8` | flags | bits 0-1 the tracked-HP class (`0x00328FF0`, flag bit 43); bit 4: unit `+0x58` = 7 (`0x00238BF0`), the motion height without its random part (`0x002362A4`), a test of the gambit selector (`0x0030268D`); bit 5: the shadow kind, through `0x002E8A10` |
 | `+0x08` | `u16` | nameRef | bank << 11 \| entry into `0x02EBF170` |
-| `+0x0A` | `i16[3] scalePercent` | 0 means 100; divided by 100 and handed to 0x002E5FD0 (0x00238D1B-0x00238D68) |  |
-| `+0x11` | `u8[2] variant` | +0x12 then +0x11, the model's variant bytes (0x0031C5AB, 0x0031C5B1) |  |
+| `+0x0A` | `i16[3]` | scalePercent | 0 means 100; divided by 100 and handed to `0x002E5FD0` (`0x00238D1B`-`0x00238D68`) |
+| `+0x11` | `u8[2]` | variant | `+0x12` then `+0x11`, the model's variant bytes (`0x0031C5AB`, `0x0031C5B1`) |
 | `+0x13` | `u8` | animSet | `0xFF` for the weapon's (`0x003202F0`) |
 | `+0x15` | `u8` | flags2 | bit 0 Attack and weapon evade, bit 1 shield and magick evade from the stat rows (`0x002FEF30`); bit 2 also sets flag bit 43; bit 3 (`0x0031AACF`) and bits 3-4 (`0x0031AB39`) in the target-information query `0x0031AA30` |
 | `+0x16` | `u16` | equipment0 |  |
@@ -183,22 +183,22 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 | `+0x22` | `u16` | rewardRow | row of `0x02EBF148` (unit `+0xE70`) |
 | `+0x24` | `u16` | rewardLevelRow | row of `0x02EBF140` (unit `+0xE78`) |
 | `+0x26` | `i16` | voiceBank | negative for the model's (`0x003212E0`) |
-| `+0x28` | `u16[5] drops` | the five drop slots (0x003180F0) |  |
+| `+0x28` | `u16[5]` | drops | the five drop slots (`0x003180F0`) |
 | `+0x32` | `u16` | steal0 | `0xFFFF` for none; record `+0x14` bit 0 |
 | `+0x34` | `u16` | steal1 | bit 1 |
 | `+0x36` | `u16` | steal2 | bit 2 |
-| `+0x38` | `u32[2] partIds` | part 8 entries 0 and 1 of the model rebuild (0x0031C000 through 0x0031BEC0) |  |
-| `+0x40` | `u8[2] partLinks` | their attach links, 0x00D107F8[byte] (0x0031BE30) |  |
-| `+0x42` | `u8[2] extraChance` | the two Monograph drop chances (0x003180F0) |  |
-| `+0x44` | `u16[2] poach` | 95 % and 5 % (0x00390680) |  |
-| `+0x48` | `u16[4] extraDrops` | key item, item, key item, item (0x003180F0) |  |
-| `+0x50` | `u16[4] logicRows` | rows of 0x02EBF168 for orders 0-3; +0x50 at install (unit +0x6E0), all four | through `0x002FDDA0` and `0x00239040` |
+| `+0x38` | `u32[2]` | partIds | part 8 entries 0 and 1 of the model rebuild (`0x0031C000` through `0x0031BEC0`) |
+| `+0x40` | `u8[2]` | partLinks | their attach links, `0x00D107F8`[byte] (`0x0031BE30`) |
+| `+0x42` | `u8[2]` | extraChance | the two Monograph drop chances (`0x003180F0`) |
+| `+0x44` | `u16[2]` | poach | 95 % and 5 % (`0x00390680`) |
+| `+0x48` | `u16[4]` | extraDrops | key item, item, key item, item (`0x003180F0`) |
+| `+0x50` | `u16[4]` | logicRows | rows of `0x02EBF168` for orders 0-3; `+0x50` at install (unit `+0x6E0`), all four through `0x002FDDA0` and `0x00239040` |
 
 Struct PartyRow table=`0x02EBF130` (stride at table `+0x08`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0A` | `u16[5] equipment` | slots 0-4 |  |
+| `+0x0A` | `u16[5]` | equipment | slots 0-4 |
 | `+0x14` | `u16` | gambitPreset |  |
 | `+0x16` | `u16` | baseHp |  |
 | `+0x1A` | `u16` | baseMp |  |
@@ -230,8 +230,8 @@ Class row (`0x02EBF150`):
 | `+0x26` | `u8` | lowHpRadius | units below 40 % HP (`0x003247F0`) |
 | `+0x27` | `u8` | scale2 | unit `+0x6C` |
 | `+0x28` | `u8` | flags28 | bit 0 the view query's height (`0x0031B08D`); bit 1 no chain (`0x00317F09`) |
-| `+0x29` | `u8[5] affinity` | absorb, halve, nullify, weak, potency (0x002FEF30) |  |
-| `+0x30` | `u16[8] words30` | no reader among the four readers of 0x02EBF150 and the 47 loads of unit | `+0xE68`, each followed to its fields |
+| `+0x29` | `u8[5]` | affinity | absorb, halve, nullify, weak, potency (`0x002FEF30`) |
+| `+0x30` | `u16[8]` | words30 | no reader among the four readers of `0x02EBF150` and the 47 loads of unit `+0xE68`, each followed to its fields |
 | `+0x40` | `u16` | modelFamily | the same-model run (`0x00317F77`) |
 | `+0x52` | `u16` | species | `0xFFFF` none (`0x003171C0`) |
 

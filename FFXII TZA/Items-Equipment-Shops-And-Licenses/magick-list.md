@@ -49,12 +49,20 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
 
 ### Where each magick comes from
 
-`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+`sources` joins tables already in the database by id, and reads the scripts where a table stops short. It holds one part per kind of source, the parts separated by `;`:
 
-- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
+  - from the start;
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or the value alone where no script writes it, which is so for 500 (below);
+  - from a clan rank, with the rank's shipped name;
+  - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
-A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
+
+No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
+
+The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
 `-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
 
@@ -77,7 +85,7 @@ A shop list goes on sale once it or any list above it on the shop's ladder meets
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
-| `sources` | where the magick is obtained, one part per kind of source ("Where each magick comes from" above); `-` for none |
+| `sources` | where the magick is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name ("Where each magick comes from" above); `-` for none |
 | `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every magick names at least one, since the action bypass bit (bit 13 of the action row's second flag word, `0x00323F52`) is clear on all 81 magick actions |
 
 ## Related

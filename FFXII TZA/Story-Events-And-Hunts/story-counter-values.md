@@ -78,7 +78,8 @@ not test the counter, such as `touch`, `touchon` and named event functions, whic
 | `unreachable_in` | where those writes are, as `script actor.function` |
 | `developer_writes` | writes in the `evt_t` developer scripts |
 | `developer_scripts` | those scripts, with `xN` for N writes |
-| `explanation` | what the value marks, in English: the developers' name for it from the `evt_t0505` scenario menu (below), translated, then the maps whose scripts write it, as map name (region) from `planmapname.bin`; empty for the two values with neither |
+| `explanation` | what the value marks, in English: the developers' name for it from the `evt_t0505` scenario menu (below), translated, then the maps whose scripts write it, as map name (region) from `planmapname.bin`; for the two values with neither, 1899 and 4090, the developer menu that sets it and the value it precedes |
+| `developer_name` | the developers' own name for the value: each `SF_` line of the `evt_t0505` scenario menu that writes it, in menu order, `;` between lines; `-` for the values the menu has no line for |
 
 ### The developers' names
 
@@ -92,7 +93,7 @@ names cover 310 of the 313 values.
 - `シナリオ段階N` marks the start and end of eleven scenario stages; `MS_` lines name map unlocks.
 - Proper names are the English the game ships for the same Japanese word, found by pairing each `in` line with
   the `us` line in the same slot: the word banks, `planmapname.bin`, `npcdic.bin`, the text groups and the
-  scripts' message banks. A name with no shipped English is left out and the scene described without it.
+  scripts' message banks. A name with no shipped English is left out of `explanation`, which describes the scene without it; `developer_name` keeps the menu line itself.
 - Place words are the shipped area and region names of `planmapname.bin` and battle word bank 12.
 - Value 70 is the one case where the developers' word is the shipped name of a different monster:
   `キラートマト` is Deadly Nightshade in word bank 8, but `dst_a01` writes 70 during the first hunt, between 65

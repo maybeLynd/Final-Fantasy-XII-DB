@@ -78,7 +78,7 @@ Shot record:
 |---|---|---|---|
 | `+0x00` | `u32` | - | 0 |
 | `+0x04` | `u32` | length | to the next record |
-| `+0x08` | `char[24] name` | copied with strncpy(…, 24) |  |
+| `+0x08` | `char[24]` | name | copied with strncpy(…, 24) |
 | `+0x20` | `u32` | attach | attachment word (`0x002572E0`) |
 | `+0x24` | `u16` | eyeJoint | joint for eye attach modes 1 and 2 |
 | `+0x26` | `u16` | targetJoint joint for target attach modes 1 and 2 |  |
@@ -122,7 +122,7 @@ Ease curve (array B):
 | `+0x0C` | `f32` | startValue |  |
 | `+0x10` | `f32` | end | time; the normaliser |
 | `+0x14` | `f32` | endValue | at or after end, and with no keys |
-| `+0x18` | `key[keys],` | 0x24 | bytes: `+0x10` a, `+0x14` b, `+0x18` c, `+0x1C` d, `+0x20` span |
+| `+0x18` | `...` | key[keys], 0x24 bytes: +0x10 a, +0x14 b, +0x18 c, +0x1C d, +0x20 span |  |
 
 Path (array C):
 
@@ -133,7 +133,7 @@ Path (array C):
 | `+0x06` | `u16` | arcs |  |
 | `+0x08` | `f32[3]` | start | at parameter 0 or below |
 | `+0x14` | `f32[3]` | end | at parameter 1 or above |
-| `+0x20` | `segment[segments],` | 0x38 | bytes: x a b c d, y a b c d, z a b c d, `+0x30` span |
+| `+0x20` | `...` | segment[segments], 0x38 bytes: x a b c d, y a b c d, z a b c d, +0x30 span |  |
 
 ```
 then arc[arcs]: f32 distance, f32 parameter

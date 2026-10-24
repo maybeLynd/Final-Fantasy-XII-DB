@@ -212,7 +212,7 @@ Batcher (`0x01F811E8`), `0x4300` bytes, built by `0x001ADD30`:
 | `+0x2328` | `0x58 x 64` | batches |  |
 | `+0x3928` | `i32` | current batch, -1 when empty |  |
 | `+0x3930` | `...` | register mirror, 0x178 bytes (0x001B1910) |  |
-| `+0x3AA8` | `f32[16]` | 3D | matrix copied by `0x001B2000` |
+| `+0x3AA8` | `f32[16]` | 3D matrix copied by 0x001B2000 |  |
 | `+0x3AFC` | `f32` | 1.6 (0x001ADD30) |  |
 | `+0x3B00` | `...` | UISize.json values |  |
 
@@ -224,22 +224,31 @@ Batch, `0x58` bytes (`+0x2328` + `0x58` * i):
 | `+0x08` | `void*` | palette |  |
 | `+0x10` | `u32` | clamp word 1 | default 1 |
 | `+0x14` | `u32` | clamp mode | default 1; the emitters pass 2 (region) |
-| `+0x18` | `u32` | min u | `+0x1C` min v, `+0x20` max u, `+0x24` max v |
+| `+0x18` | `u32` | min u |  |
+| `+0x1C` | `...` | min v |  |
+| `+0x20` | `...` | max u |  |
+| `+0x24` | `...` | max v |  |
 | `+0x28` | `u32` | clamp set | `0x001B22F0` |
 | `+0x2C` | `u32` | width | default 1 |
 | `+0x30` | `u32` | height | default 1 |
-| `+0x38` | `void*` | vertices begin | `+0x40` end, `+0x48` capacity, `+0x50` allocator |
+| `+0x38` | `void*` | vertices begin |  |
+| `+0x40` | `...` | end |  |
+| `+0x48` | `...` | capacity |  |
+| `+0x50` | `...` | allocator |  |
 
 Register mirror (`+0x3930`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x3930` | `u32` | width | `+0x3934` height |
-| `+0x3938` | `char[256] texture name` | sprintf'd by 0x001B2410 |  |
-| `+0x3A38` | `u32` | palette | `+0x3A3C` .. `+0x3A48` `0x001B2410`'s last four |
-| `+0x3A4C` | `u32[4] colour` | 0x80 each after 0x001B1910 |  |
+| `+0x3930` | `u32` | width |  |
+| `+0x3934` | `...` | height |  |
+| `+0x3938` | `char[256]` | texture name | sprintf'd by `0x001B2410` |
+| `+0x3A38` | `u32` | palette |  |
+| `+0x3A3C-0x3A48` | `...` | 0x001B2410's last four |  |
+| `+0x3A4C` | `u32[4]` | colour | `0x80` each after `0x001B1910` |
 | `+0x3A60` | `u32` | table value | from `0x008F80F8` |
-| `+0x3A68` | `u64` | ALPHA_1 | `+0x3A70` TEST_1 |
+| `+0x3A68` | `u64` | ALPHA_1 |  |
+| `+0x3A70` | `...` | TEST_1 |  |
 
 ## State
 

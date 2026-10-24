@@ -151,7 +151,7 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 | `+0x120` | `i32` | delta | ramp distance |
 | `+0x124` | `i32` | now | ramp result |
 | `+0x130` | `u32` | style | bit 0 picks the seconds-only timer format (`0x00407720`) |
-| `+0x134` | `char[64] text` | the formatted timer (0x00407720) |  |
+| `+0x134` | `char[64]` | text | the formatted timer (`0x00407720`) |
 
 ### The gauge window
 

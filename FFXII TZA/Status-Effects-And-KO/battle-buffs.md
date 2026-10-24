@@ -76,7 +76,7 @@ Two paths set `+0x68` in shipped play:
 | `55` | Force Barrier, Perfect Defense | Paling: actions with row `+0x0C` bit 14 are nullified | `0x00390E4B`-`0x00390EEE` |
 | `56` | Magick Barrier, Perfect Defense | Magick Shield: actions with row `+0x0C` bit 13 are nullified | `0x00390EA3`-`0x00390EEE` |
 | `57` | Wall | White Wind: harmful statuses do not land on the holder | `0x00387D25`-`0x00387D72` |
-| `59` | Chain Reaction | no effect of its own; the shipped AI tests it to pick its phase | `0x00302478` |
+| `59` | Chain Reaction | an effect of its own is not yet located; the shipped AI tests it with the generic has/lacks test to pick its phase (30 set lines and 114 test lines in 11 areas) | `0x00302478` |
 
 The ability ids 48-57 also have set orders, `0x40C2`-`0x40CB`, as every id 0-63 does. The shipped order sets contain
 set orders for every id in the table but 52, and clear orders for all but 11, 31, 52 and 59.

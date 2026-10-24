@@ -66,7 +66,7 @@ SHK1 (section 11):
 | `+0x08` | `u16` | dataOffset | first curve, from the section start |
 | `+0x0A` | `u16` | - | 0; not read |
 | `+0x0C` | `u32` | - | 0; not read |
-| `+0x10` | `record[records],` | 0x60 | bytes |
+| `+0x10` | `...` | record[records], 0x60 bytes |  |
 | `+0x00` | `char[24]` | name | read only by the name lookup, which never runs |
 | `+0x18` | `u32` | duration | read as a u16 |
 | `+0x1C` | `u32` | - | 0; not read |

@@ -20,7 +20,7 @@ on [Effect files](effect-files-efx-efb.md).
 | kind 11 | 512 | 366 | the magic effects `m0000`-`m0511`, played with English voices |
 | kind 38 | 512 | 366 | the same ids played with Japanese voices |
 | kind 12 | 894 | 532 | the event effects a zone script loads by number: `e` 0-511 (ids 0-511), `l` 0-63 (ids 512-575) and `q` 0-319 (ids 576-895) |
-| character effects | 125 | 125 | `h0001`-`h0125` in `jp/chara`, bound to 117 model names (9 `g`, 82 `m`, 26 `s`) |
+| character effects | 125 | 125 | `h0001`-`h0125` in `jp/chara`, bound to 144 model names: 82 monsters (`m`), 27 NPCs (`n`), 9 gadgets (`g`) and 26 summons (`s`); 14 of the files serve more than one model |
 
 Kinds 10, 11 and 38 use one path array for every language. Kind 12's array differs by text
 language: 312 of the 532 shipped event effects have per-language copies (`us`, `fr`, `de`, `it`, `es`,

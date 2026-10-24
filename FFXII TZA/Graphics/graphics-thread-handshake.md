@@ -206,7 +206,8 @@ GS environment globals (seeded by `0x0036D280`):
 | `0x022D8ED0` | `u64` | ZBUF_1 value |  |
 | `0x022D8ED8` | `u32` | clear colour |  |
 | `0x022D8EDC` | `u32` | clear colour on 1 |  |
-| `0x022D8EF0` | `f32` | width / 2000 | `0x022D8EF4`  f32  height / 2000 |
+| `0x022D8EF0` | `f32` | width / 2000 |  |
+| `0x022D8EF4` | `f32` | height / 2000 |  |
 
 The spin census is beside this page in [`graphics-thread-handshake-inert-spin-census.tsv`](graphics-thread-handshake-inert-spin-census.tsv): every
 backward loop in 38,161 listed bodies whose body only tests registers, 19 in all. Seventeen are the

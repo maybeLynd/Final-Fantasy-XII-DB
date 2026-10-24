@@ -104,9 +104,12 @@ and shows the message (`0x0035E500`, `0x0035DF40`).
 The presence ledger at `0x02EC3E60` is a ring of three `{field, value bits, mask bits}` entries with
 its cursor at `0x02EC3E84` and count at `0x02EC3E88`. Its other users are the clear `0x002FA260` (called
 from `0x00233C10` and `0x00237DF0`), `0x002FA470` (called from `0x002341C0`, which adds an entry for field
-`0x022BE940` with mask `0xFF` and value 0) and the reorder `0x002F7FA0`. None of them, nor `0x002FAED0`,
-reads the value or mask bits to decide presence (immediate-address references to
-`0x02EC3E60..0x02EC3E88`), so a chest's presence is re-rolled every time `setuptreasure` runs.
+`0x022BE940` with mask `0xFF` and value 0) and the reorder `0x002F7FA0`.
+
+None of them, nor `0x002FAED0`, reads the value or mask bits to decide presence: the ring's address is formed only in these three
+functions, `0x002FAED0` and `0x002FAFD0`, and is handed only to `0x002FB430` and `0x002F7FA0`, which keep no
+copy of it, and the image holds no absolute or image-relative copy of it. So `setuptreasure` rolls
+a chest's presence every time it runs.
 
 `0x022BE940` is the field `0x002FA520` stores from `0x003148F0()` when an area is initialised
 (`0x0023446C`), so the teardown's entry names the field being left.
@@ -233,7 +236,8 @@ flag, the interaction latch `0x0208CD18`, the presence ledger, and the equipment
   party joins alike. The discovery bits are set on the first copy only for mode-1 grants, so the
   action ids a party join grants through `0x00300490` set none.
 - A chest's contents are decided when it is opened, by the roll in `0x002FAFD0`; its presence is
-  decided when `setuptreasure` runs and is never remembered.
+  decided by the roll in `0x002FAED0` each time `setuptreasure` runs, and the chest code does not read
+  back the ledger that roll writes.
 - Joining the party grants the character's equipment and starting items; leaving takes only the
   equipment back.
 - `additemmes` grants after the message closes, `additem` before it shows.
@@ -245,3 +249,4 @@ flag, the interaction latch `0x0208CD18`, the presence ledger, and the equipment
 - [Loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md): the inventory mutator in full.
 - [Gil](../Rewards-EXP-Gil-And-Loot/gil.md): the gil setter and its clamp.
 - [Script verb table](verb-table.md): the ids and handlers.
+- See also [treasure chests](../World-Areas-And-Travel/treasure-chests.md): every shipped chest, where it stands and what it holds with the odds of each content.

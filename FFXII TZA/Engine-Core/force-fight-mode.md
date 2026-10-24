@@ -100,9 +100,13 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 | `0x01E0C2B8` | `u32` | force fight mode: 1 fighting (image value), 0 fleeing |  |
 | `0x02B4053C` | `u8` | enable byte 1: 0 in the image; 1 from the boot, the manager-0 unload and debug_setfightstatusbyevent |  |
 | `0x02B4053D` | `u8` | enable byte 2: 0 in the image; 1 from the boot |  |
-| `0x020927E0` | `u32` | the R2 toggle state (1 = fleeing requested) | `0x020927E4`  u8  its press edge   `0x01E0C2B4`  u32  the device-poll override |
-| `0x020927CC` | `u32` | forces the state to 0 when 1 | `0x022C83EC`  u32  the mode register (`0x0035C6F0` / `0x0035C880`) |
-| `0x022CB726` | `/ 0x022CB728` | the two skip predicates that refuse an unforced write |  |
+| `0x020927E0` | `u32` | the R2 toggle state (1 = fleeing requested) |  |
+| `0x020927E4` | `u8` | its press edge |  |
+| `0x01E0C2B4` | `u32` | the device-poll override |  |
+| `0x020927CC` | `u32` | forces the state to 0 when 1 |  |
+| `0x022C83EC` | `u32` | the mode register (0x0035C6F0 / 0x0035C880) |  |
+| `0x022CB726` | `...` | the two skip predicates that refuse an unforced write | with `0x022CB728` |
+| `0x022CB728` | `...` | the two skip predicates that refuse an unforced write | with `0x022CB726` |
 
 ## Shipped data
 

@@ -29,7 +29,7 @@ archive mount. It runs these in order:
    `0x2000`/`0x4000` when it is zero ([game settings](../Saving-Loading-And-Settings/game-settings.md));
 4. `0x00184660([0x01E0280C])`, the PS2 emulation reset `0x0036D990` (the `vf00` image `0x01EF93F0` =
    `{0, 0, 0, 1}` and two log lines through `0x0017D280`), `0x0022CB90`, `0x0037DF90`, `0x0037E0F0`;
-   `0x01FD4A78` = `0x1FE0000`; `0x002DF9A0(language)`; `0x00184960(1)` (the time-base suppressor, below);
+   `0x01FD4A78` = the address `0x01FE0000`; `0x002DF9A0(language)`; `0x00184960(1)` (the time-base suppressor, below);
    `0x00862BD0(language)`; the build-id files (below);
 5. a call to the return stub `0x0016D6A0` with `0x7D` after `0x00184960(1)`, a compiled-out hook; two
    more such calls follow the state cells and precede `0x00266D10`;
@@ -254,21 +254,39 @@ Globals written by the boot fixer:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02EB4234` | `u8` | generator first-use latch | `0x02EB3870`  u32[624] Mersenne Twister state |
-| `0x01DFE0B4` | `u32` | frame base 1 or 2 | `0x01DFE0B8` / `0x01DFE0BC`  f32 time base 1.0 / 2.0 and 1.0 / 0.5 |
-| `0x01F82E38` | `u32` | 60 fps mode flag | `0x01DFE0C0`  u32  the mode suppressor |
-| `0x01F82E3C` | `u8` | timer period begun | `0x01F82E40`  u32  the period |
+| `0x02EB4234` | `u8` | generator first-use latch |  |
+| `0x02EB3870` | `u32[624]` | Mersenne Twister state |  |
+| `0x01DFE0B4` | `u32` | frame base 1 or 2 |  |
+| `0x01DFE0B8` | `f32` | time base 1.0 / 2.0 |  |
+| `0x01DFE0BC` | `f32` | time base 1.0 / 0.5 |  |
+| `0x01F82E38` | `u32` | 60 fps mode flag |  |
+| `0x01DFE0C0` | `u32` | the mode suppressor |  |
+| `0x01F82E3C` | `u8` | timer period begun |  |
+| `0x01F82E40` | `u32` | the period |  |
 | `0x02064ACC` | `u32` | pacer ticks per frame: 2 / [0x01DFE0B4] |  |
-| `0x01E0C2A0` | `u32` | confirm mask | `0x01E0C2A4`  u32  cancel mask       `0x01FD4A64` u32 DecideButton non-zero |
-| `0x01E02814` | `u32` | language index | `0x01E0281C`  u32  10 |
-| `0x01F7F490` | `/ 0x01F7F4A0` | the code_steam.txt and data.txt ids |  |
-| `0x01FD49F0` | `.. 0x01FD4A40, 0x01FD4A18, 0x01FD4A20, 0x01FD4A90` | the eleven block pointers |  |
-
-`0x02064AA4`, `0x02064AC0` .. `0x02064AD4`  the main state machine's cells     `0x01FD4A78` u32 `0x1FE0000`:
-
-| Address | Type | Name | Meaning |
-|---|---|---|---|
-| `0x022C2528` | `u32` | the -nologo flag | `0x022D7FD0`  arena table, `0xA8` per id, 15 ids |
+| `0x01E0C2A0` | `u32` | confirm mask |  |
+| `0x01E0C2A4` | `u32` | cancel mask |  |
+| `0x01FD4A64` | `u32` | DecideButton non-zero |  |
+| `0x01E02814` | `u32` | language index |  |
+| `0x01E0281C` | `u32` | 10 |  |
+| `0x01F7F490` | `...` | the code_steam.txt id |  |
+| `0x01F7F4A0` | `...` | the data.txt id |  |
+| `0x01FD49F0` | `void*` | block of arena 5 |  |
+| `0x01FD49F8` | `void*` | block of arena 2 |  |
+| `0x01FD4A00` | `void*` | block of arena 3 |  |
+| `0x01FD4A08` | `void*` | block of arena 4 |  |
+| `0x01FD4A10` | `void*` | block of arena 6 |  |
+| `0x01FD4A18` | `void*` | block of arena 11 |  |
+| `0x01FD4A20` | `void*` | the unregistered 0x80000 block |  |
+| `0x01FD4A30` | `void*` | block of arena 7 |  |
+| `0x01FD4A38` | `void*` | block of arena 8 |  |
+| `0x01FD4A40` | `void*` | block of arena 9 |  |
+| `0x01FD4A90` | `void*` | the unregistered 1 MiB block, the per-model oscillator table |  |
+| `0x02064AA4` | `u32` | the main state machine's cell |  |
+| `0x02064AC0` | `...` | the main state machine's cells 0x02064AC0 to 0x02064AD4 |  |
+| `0x01FD4A78` | `void*` | 0x01FE0000 (0x01FE4A9F rounded down to 64 KiB, 0x0022A13F-0x0022A152) |  |
+| `0x022C2528` | `u32` | the -nologo flag |  |
+| `0x022D7FD0` | `...` | arena table, 0xA8 per id, 15 ids |  |
 
 ## Shipped data
 

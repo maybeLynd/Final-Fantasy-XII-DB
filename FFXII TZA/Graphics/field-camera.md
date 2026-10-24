@@ -20,8 +20,13 @@ over the leader's shoulder to look at that actor.
 A camera record whose mode `+0xF0` is 1 is built by `0x00259990` ([scripted camera](scripted-camera.md)).
 Its `+0xF4` picks one of the 0x860-byte camera controllers at `0x02097D30`. Each frame `0x003D9E20` reads the
 target cursor, and `0x003D9930(controller, view, controller + 0x630)` runs `0x0032AEC0` on the follow camera
-at controller `+0x2B0`; while the byte `0x02098DE9` is set, `0x003D9950` only republishes the last eye and
-look point. `0x003D99B0` sets a controller up (`0x0032B600`) and `0x003D9B80` resets it (`0x0032B790`).
+at controller `+0x2B0`.
+
+While the byte `0x02098DE9` is set, `0x003D9950` runs instead. It publishes controller `+0x00`, the vector
+`0x0025A540` stores in both controllers, as the eye (copied to `+0x90`), and the followed transform's
+position at `+0x630`, raised by `+0x64`, as the look point (copied to `+0x70`), through `0x003CC080`
+(`0x003D9950`-`0x003D99AA`). `0x003D99B0` sets a controller up (`0x0032B600`) and `0x003D9B80` resets it
+(`0x0032B790`).
 
 The followed transform at controller `+0x630` gives the position and the leader's facing, taken as
 `atan2(+0x18, +0x10)` (`0x0032CE40`). The look point is that position raised by `+0x11C`, 1.3
@@ -214,26 +219,34 @@ Follow camera (controller + `0x2B0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x060` | `f32[4] look point` | followed position + 0x11C up |  |
+| `+0x060` | `f32[4]` | look point | followed position + `0x11C` up |
 | `+0x070` | `f32` | heading | 0 to 2π |
 | `+0x07C` | `f32` | height level | 0 to 1 |
 | `+0x080` | `...` | orbit block | look `+0xA0`, heading `+0xB0`, pitch `+0xB4`, distance `+0xB8` (`0x0032DF40`) |
 | `+0x0C0` | `u32` | state | probe hits `0x1`-`0x8`, `0x4000000` pulled in, `0x8000000` leader moving |
 | `+0x0F4` | `i32` | stick dead zone 50 |  |
-| `+0x0F8` | `f32` | heading rate | `+0x0FC` level rate |
+| `+0x0F8` | `f32` | heading rate |  |
+| `+0x0FC` | `...` | level rate |  |
 | `+0x100` | `f32` | rate divisor | 1.0 idle, `0x00229E70`() under input |
-| `+0x104` | `f32` | wall turn | `+0x108` wall lift, `+0x10C` auto-rotation |
+| `+0x104` | `f32` | wall turn |  |
+| `+0x108` | `...` | wall lift |  |
+| `+0x10C` | `...` | auto-rotation |  |
 | `+0x11C` | `f32` | look height | 1.3 |
-| `+0x120` | `f32` | distance scale | `+0x124` its hold count |
-| `+0x128` | `f32` | floor lift | `+0x12C` its hold count |
+| `+0x120` | `f32` | distance scale |  |
+| `+0x124` | `...` | its hold count |  |
+| `+0x128` | `f32` | floor lift |  |
+| `+0x12C` | `...` | its hold count |  |
 | `+0x140` | `...` | four test segments, 0x60 apart |  |
 | `+0x2C0` | `void*` | followed transform |  |
 | `+0x2C8` | `void*` | collision part | `0x0026E500`(0) |
-| `+0x2E0` | `f32[4] follow eye` | +0x2F0 follow look |  |
-| `+0x300` | `f32[4] framing eye` | +0x310 framing look |  |
+| `+0x2E0` | `f32[4]` | follow eye |  |
+| `+0x2F0` | `...` | follow look |  |
+| `+0x300` | `f32[4]` | framing eye |  |
+| `+0x310` | `...` | framing look |  |
 | `+0x320` | `i32` | framing count | 0 to 15 x [`0x01DFE0B4`] |
-| `+0x330` | `f32[4] published eye` | +0x340 published look |  |
-| `+0x350` | `f32[4]` | point | of interest |
+| `+0x330` | `f32[4]` | published eye |  |
+| `+0x340` | `...` | published look |  |
+| `+0x350` | `f32[4]` | point of interest |  |
 | `+0x360` | `u32` | framed actor |  |
 | `+0x368` | `f32` | travelled distance |  |
 | `+0x370` | `i32` | recentre deflection |  |

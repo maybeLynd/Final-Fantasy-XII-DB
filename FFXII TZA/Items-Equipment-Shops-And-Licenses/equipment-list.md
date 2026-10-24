@@ -54,16 +54,38 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
 
 ### Where each piece of equipment comes from
 
-`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+`sources` joins tables already in the database by id, and reads the scripts where a table stops short. It holds one part per kind of source, the parts separated by `;`:
 
-- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
+  - from the start;
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or the value alone where no script writes it, which is so for 500 (below);
+  - from a clan rank, with the rank's shipped name;
+  - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
 - `steal:`, `drop:`, `poach:` and `monograph:` the monsters whose enemy definitions hold its id in those slots, read from the area files ([Bestiary](../Enemy-Spawning/bestiary.md)). Definitions that no map script places, and the units named "No name", are left out.
-- `scene gift:` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). Scripts that no map loads are left out.
-- `reward package:` a package that holds it, is named by a reward selector ([Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)) and is given by no script.
+- `scene gift (urn):`, `scene gift (talk):`, `scene gift (touch):`, `scene gift (map event):` and `scene gift (event scene):` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). The label says how the gift is handed over:
+  - urn: the giving actor keeps a treasure flag (`settreasureflag`, `istreasureflag`), so it gives once;
+  - talk: the gift comes from the actor's talk slot (slot 2, or a function `sysReqchg` puts in slot 2), or from a function that only such a function requests;
+  - touch: the same for the touch slots 3 and 4;
+  - map event: the gift comes from a function the map's script runs by itself (`main`, `init` or a function they request);
+  - event scene: the gift is in an event script, named by the maps whose scripts play it;
+  - gifts in scripts that no map loads are left out.
+- `trophy trade:` the Hunters' Camp (Phon Coast) sale, with the price ([Price list](../Rewards-EXP-Gil-And-Loot/price-list.md)), how many trophies each hunter must hold, and the package:
+  - the Shifty-Eyed Man, later named Outfitters, sells 31 reward packages for gil, each once;
+  - he offers a package only after the player has given enough trophies to the three hunters Atak, Blok and Stok;
+  - each hunter takes one trophy at a time, any of the 30 trophy key items `0x80B9`-`0x80D6`, and counts the trophies given to him;
+  - the seller opens his menu only once quest 71 has reached progress 70, which the three hunters set (`fon_b01`).
+- `hunt reward:` the hunt whose report gives it, with the package and the map (region) and script that report it ([Hunts](../Story-Events-And-Hunts/hunts.md), [Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)):
+  - the script verb `questresultwindow(n)` opens the reward window for quest n and grants at once the package its selector names ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
+  - the selector is `0xA000` + the text index of entry n of `questbase.bin` (`0x00344C60`, `0x00473C90`), which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
+  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; none is.
 - `starting equipment:` the main characters who wear it when the game begins ([Party table](../Party/party-table.md)).
 
-A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
+
+No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
+
+The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
 A part that names more than 15 monsters or 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents, and the starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
@@ -104,7 +126,7 @@ A part that names more than 15 monsters or 10 places gives its count, the first 
 | `bonus_record` | the bonus record's index: `+0x28` / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+0x30` |
 | `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
-| `sources` | where the piece of equipment is obtained, one part per kind of source ("Where each piece of equipment comes from" above); `-` for none |
+| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward ("Where each piece of equipment comes from" above); `-` for none |
 | `licence` | the licence squares that grant it, by name and node, or `none needed` ("The licence it needs" above) |
 
 ## Related

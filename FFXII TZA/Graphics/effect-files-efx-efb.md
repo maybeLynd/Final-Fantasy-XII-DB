@@ -62,8 +62,8 @@ Chunk:
 | `+0x04` | `u16` | flag | `0x100` selects the run paths; `0x101`, `0x102` and `0x103` select other routes |
 | `+0x06` | `u16` | type |  |
 | `+0x08` | `i32` | bias | stored at `0x02EBB738` before each record handler runs |
-| `+0x0C` | `record` | header, | read by the record handler |
-| `+0x10` | `record` | payload |  |
+| `+0x0C` | `...` | record header, read by the record handler |  |
+| `+0x10` | `...` | record payload |  |
 
 | Type | Record header at `+0x0C` | Payload at `+0x10` | Handler |
 |---|---|---|---|
@@ -80,7 +80,7 @@ Chunk:
 | `+0x00` | `u8` | index, written by the handler from the header byte |  |
 | `+0x0A` | `u8[11]` | eleven bytes |  |
 | `+0x16` | `u8` | high nibble: index of the last non-zero byte of the eleven (0 when none), recomputed at load |  |
-| `+0x2C` | `u32[29]` | slots, | reset to the encoded null at load |
+| `+0x2C` | `u32[29]` | slots, reset to the encoded null at load |  |
 
 EFB file:
 

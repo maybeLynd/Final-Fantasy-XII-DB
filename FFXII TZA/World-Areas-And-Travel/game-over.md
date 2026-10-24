@@ -220,22 +220,28 @@ Root block [`0x0209AC30`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0B8` | `void*` | mode-screen task | `+0x0C0`  ptr   area controller (`0x00280A00` refuses while set) |
+| `+0x0B8` | `void*` | mode-screen task |  |
+| `+0x0C0` | `void*` | area controller (0x00280A00 refuses while set) |  |
 | `+0x0D0` | `void*` | pause task 0x00228C70 |  |
 | `+0x3FC` | `i32` | requested field (0x00285EC0) |  |
 | `+0x400` | `u32` | bit 8 field request pending; bits 9/10 restore pending/verified; bit 11 cleared by 0x0027F2E0; | bit 13 set by `0x00285EA0`; low byte rewritten by `0x0027F2E0` |
-| `+0xDEE` | `u8` | cleared by 0x0027EFA0 | `+0xDEF`  u8    1 while a mode screen opens, 0 after the controller's message |
+| `+0xDEE` | `u8` | cleared by 0x0027EFA0 |  |
+| `+0xDEF` | `u8` | 1 while a mode screen opens, 0 after the controller's message |  |
 
 Struct GameOverTask size=`0x108`   (`0x00244F50`(`0x108`, `0x003EF830`, 0); `0x02B5F1C8` points at it):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0xB4` | `u32` | tick handle (0x001EDEC0) |  |
-| `+0xC0` | `i32` | state 0..8 | `+0x0C4`  i32   countdown frames |
-| `+0xD0` | `void*` | image task 0x003EF2E0 | `+0x0D8`  ptr   timing task `0x003EEEC0` |
-| `+0xE0` | `void*` | logo task 0x003EF4A0 | `+0x0E8`  ptr   prompt task `0x003EF050` |
-| `+0xF0` | `i32` | 1 once message 0x10 arrived |  |
-| `+0xF8` | `reg` | texture registration (0x00393460) | `+0x100`  reg   texture registration (`0x003933F0`) |
+| `+0x0B4` | `u32` | tick handle (0x001EDEC0) |  |
+| `+0x0C0` | `i32` | state 0..8 |  |
+| `+0x0C4` | `i32` | countdown frames |  |
+| `+0x0D0` | `void*` | image task 0x003EF2E0 |  |
+| `+0x0D8` | `void*` | timing task 0x003EEEC0 |  |
+| `+0x0E0` | `void*` | logo task 0x003EF4A0 |  |
+| `+0x0E8` | `void*` | prompt task 0x003EF050 |  |
+| `+0x0F0` | `i32` | 1 once message 0x10 arrived |  |
+| `+0x0F8` | `reg` | texture registration (0x00393460) |  |
+| `+0x100` | `reg` | texture registration (0x003933F0) |  |
 
 Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0x00360C20` reads, `0x00360D70` releases):
 
@@ -245,15 +251,18 @@ Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0
 | `+0x01` | `u8` | image id (7 = gameover_c) |  |
 | `+0x02` | `u8` | flags: bit 0 release requested, bit 1 fading (0x00361200) |  |
 | `+0x03` | `u8` | result byte returned by 0x00361630 |  |
-| `+0x08` | `void*` | payload | `+0x14`  u32  handle from `0x001DBB80`(id) |
+| `+0x08` | `void*` | payload |  |
+| `+0x14` | `u32` | handle from 0x001DBB80(id) |  |
 
 Title-return bytes:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x022CB720` | `u8` | busy mask (0 = idle; 0x003321E0 refreshes bit 7; 0x00360100 sets, 0x003601B0/0x003601C0 modify, 0x00360370 clears) |  |
-| `0x022CB724` | `u32` | written 0x5A by 0x00360120 | `0x022CB726`  u8   1 after the teardown |
-| `0x022CB727` | `u8` | cleared by 0x00360120 | `0x022CB72A`  u8   softwarereset request (`0x003603D0`) |
+| `0x022CB724` | `u16` | written 0x5A by 0x00360120 |  |
+| `0x022CB726` | `u8` | 1 after the teardown |  |
+| `0x022CB727` | `u8` | cleared by 0x00360120 |  |
+| `0x022CB72A` | `u8` | softwarereset request (0x003603D0) |  |
 | `0x022CB72B` | `u8` | title-map request (0x003603E0, from the area controller when +0x3FC is 0x0C) |  |
 
 | Address | Type | Name | Meaning |
@@ -265,11 +274,16 @@ Request and mode:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x0215F1A0` | `u8` | request pending | `0x0215F1A1`  u8  latch that refuses `0x002E1B10` |
-| `0x0215F1A4` | `u32` | request id | `0x0215F1A8`  u32  request parameter |
-| `0x02092730` | `u32` | current mode | `0x02092734`  u32  mode parameter     `0x020927D8`  u32  raw mode |
+| `0x0215F1A0` | `u8` | request pending |  |
+| `0x0215F1A1` | `u8` | latch that refuses 0x002E1B10 |  |
+| `0x0215F1A4` | `u32` | request id |  |
+| `0x0215F1A8` | `u32` | request parameter |  |
+| `0x02092730` | `u32` | current mode |  |
+| `0x02092734` | `u32` | mode parameter |  |
+| `0x020927D8` | `u32` | raw mode |  |
 | `0x022C83E8` | `u32` | bit 8 game over posted, bit 1 armed, bit 0 and bit 4 the 0x18 and 0x17 posts |  |
-| `0x00254C70` | `u8[]` | mode-request arm table (id - 1 → arm) | `0x00254C58`  u32[6]  arm jump table |
+| `0x00254C70` | `u8[]` | mode-request arm table (id - 1 → arm) |  |
+| `0x00254C58` | `u32[6]` | arm jump table |  |
 
 ## Shipped data
 
@@ -337,5 +351,4 @@ actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.
 - [UI request router](../Menus-And-HUD/menus.md): the area controller's messages.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): KO's row and the status groups.
 - [Boss fights](../Battle-Actions/boss-fights.md): the jump lock that keeps a party in a fight.
-- [The screen-fade layers](../17-Presentation-Rendering/screen-fades.md
-): `0x002EFA70`.
+- [The screen-fade layers](../Graphics/screen-fades.md): `0x002EFA70`.

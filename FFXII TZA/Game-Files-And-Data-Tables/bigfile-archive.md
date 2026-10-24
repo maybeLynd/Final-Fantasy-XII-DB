@@ -202,6 +202,7 @@ The last 16 bytes of the file are the MD5 of `[0, indexSize)`.
 | `+0x48` | `u64` | archive offset | |
 | `+0x50` | `u64` | skipped | bytes in whole blocks skipped |
 | `+0x58` | `u32` | length | the request |
+| `+0x60` | `void*` | entry | the entry record the request reads from (the handle's `18`), stored by the planner `0x0019A770` |
 | `+0x88` | `u32` | state | `5` done, `6` failed |
 | `+0x90` | `u32` | busy | |
 

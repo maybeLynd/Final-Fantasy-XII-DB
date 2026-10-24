@@ -8,9 +8,14 @@ addresses: "0x0022A490, 0x0022A580, 0x00229F00, 0x00229EA0, 0x0022B6E0, 0x0022B7
 ## What the player sees
 
 Every frame the pad is read, the world is simulated a whole number of steps, the camera follows,
-sound is mixed, the picture is drawn and the loop waits for the next tick. At 60 frames per second
-the world still advances in 30 frames-per-second steps: on some frames the accumulator carries over
-and nothing in the world moves, which is why fast turns can look stepped.
+sound is mixed, the picture is drawn and the loop waits for the next tick. In ordinary field play every frame runs
+exactly one step, at 30 and at 60 frames per second alike; at 60 the frame waits one tick instead of two.
+
+A frame in
+which the world does not move comes from special paths only: the frame after the step budget is cleared, a script that
+slows the game, and a few frames of particular cutscenes at 60 frames per second, which are skipped or run twice to keep
+their timing. The camera still moves on such a frame. At 60 frames per second some subsystems run only on alternate
+frames.
 
 The high-speed mode
 doubles or quadruples the number of steps a frame earns, but only after a step in which nothing
@@ -108,6 +113,11 @@ in the camera, the end-of-frame list and the pacer. `0x001EC690` advances the co
 among others reads: once when `0x001EC760` returns 0, and in the pass loop's first step. The event-slot
 pusher `0x0020AF10` zeroes it (`0x0020AFAA`).
 
+`0x001EC760` returns 1 at 30 fps (`0x01F82E38` clear, `0x001EC776`). At 60 fps it returns 0 or 2 at listed frames of
+particular scenes, picked during an event (`0x001EC560`) by the cut-scene name (`0x001C50C0`), the scene word `0x01EF9218` or
+story progress (`0x00265270`) and the frame counter `0x01F832C4`, and outside one by the values `0x0024DE30` reports; it
+returns 1 otherwise.
+
 Before the pad, once per `0x01E02824` with `0x00264610(0)` non-null, the deferred `0x0026B730(0x01E02808
 & 0xFFFF)` runs. Each pass of the loop then:
 
@@ -162,6 +172,16 @@ After the steps come three groups:
 With `0x0017E4E0()` non-zero the frame runs `0x002506D0` and, when `0x001EC560()`, the camera block
 (its `0x00314370(1)` and `0x0037D4C0` each only while `0x02064AA0` is 0) followed by `0x0035AE30`,
 `0x00360120` and the `0x00358370()` pair, and nothing else.
+
+At the end of every pass the accumulator gains `[0x02064AC8] × [0x02064AC4]` (`0x0022AE18`-`0x0022AE34`). The step gain
+`0x02064AC8` is 1.0 at boot (`0x0022A1C8`) and after `0x002628B0` and `0x003601D0`; the verb `gameratio` (`0x14F`, `0x00343EE0`)
+sets it to its float argument when that is at least 0.05. With the gain and the speed factor at 1.0 every pass runs one
+step and leaves the accumulator at 1.0, so a pass runs no step only after the accumulator is zeroed (above), with a gain
+below 1.0, or when `0x001EC760` returns 0; a speed factor of 2.0 or 4.0 runs two or four steps a pass.
+
+At 60 fps, while the suppressor `0x01DFE0C0` is clear, the predicate `0x001EDE80` answers the frame parity `0x02064AD8` plus the
+steps already run this pass instead of 1 (`0x001EDE9B`-`0x001EDEA7`), so its callers (`0x002507C0`, `0x0025DF00`, `0x0028E290`,
+`0x0032E040`, `0x003E00C0`, `0x003FA790`, `0x00477480`) run on alternate frames; `0x00184960` sets the suppressor.
 
 ### The speed mode
 
@@ -250,7 +270,8 @@ or clears one bit, the script-skip begin `0x00360710(bit, slot)` sets it for a n
 skip end `0x00360A50` clears it, and `0x00267310` returns the whole byte, so any pending skip opts the
 slot in.
 
-Slot 0 never gets a bit, so the field never fast-forwards: the repeats exist for the
+Slot 0 never gets a bit, so the field slot is never repeated inside a step (the high-speed mode speeds the field up by
+earning two or four steps a frame, see the speed mode below): the repeats exist for the
 cutscene managers during `skipexec`. The post-pass `0x003DB1F0` walks a live slot's records:
 for a record whose byte `+0x63` is set it turns every `1` at `+0x11` of the `+0x89` entries of
 stride `0x14` at `[+0xA0]` into `2`, then runs `0x003DB6E0` on every record and shifts `+0x63` right
@@ -280,9 +301,10 @@ tick-active word is cleared.
 behind the menu:
 
 1. bit 13 of the battle-state word `0x02089340` is cleared;
-2. the clock: `0x0032A150()` before and after `0x0032A100` ([enemy
-   respawning](../Enemy-Spawning/enemy-respawning.md)); bit 2 = the counter did not
-   move;
+2. the clock: `0x0032A150()` before and after `0x0032A100`, which adds 1 to `0x0208D45C` when timer 0 moved; bit 2 = the counter
+   did not move. The area-return window compares that counter with `(int)(30 × [0x01DFE0B8]) × 300` and expires when the
+   difference is greater (9,000 steps at 30 fps, 18,000 at 60: 300 seconds at normal speed) ([enemy
+   respawning](../Enemy-Spawning/enemy-respawning.md));
 3. unless `0x0035C700()` or `0x00306BB0()`: UI request `0x0B` when `0x002371B0()` holds, else `0x18` when
    `0x00237140()` holds (`0x0035C7A0`);
 4. `0x00313A00` (row 2 of [action availability](../Controls-And-Input/action-availability.md)); then, when the force-fight predicate `0x00253B90()` differs from the inverse of bit 3,
@@ -342,12 +364,16 @@ loaded, unit flag bit 3 must be set and bit 16 clear. Then:
 bit 4 set, bits 0 and 5 to 13 cleared at once. The boot's battle work init `0x002368D0` zeroes the
 word.
 
-The area initialisation also runs three resets: `0x00307FF0` (`0x00234432`) clears `0x022C1F48` bits 1 and
-2 and zeroes `0x022C1F40`, as the engagement update does ([force-fight mode](force-fight-mode.md));
-`0x00322190` (`0x00234437`) zeroes the sixteen `u16` words at `0x0208D334` that `0x0031B4F0` reads and
-`0x00328D90` writes; `0x0030C3F0` (`0x0023445E`) zeroes the 32 records of 12 bytes at `0x022C1DB0`, one per
-unit slot byte `+0xEA9`, where `0x00312FA0` saves a unit's `+0xDC8` word and `+0xE58` dword and
-`0x00308270` restores them.
+The area initialisation also runs three resets:
+
+- `0x00307FF0` (`0x00234432`) clears `0x022C1F48` bits 1 and 2 and zeroes `0x022C1F40`, as the engagement
+  update does ([force-fight mode](force-fight-mode.md)).
+- `0x00322190` (`0x00234437`) zeroes the sixteen `u16` words at `0x0208D334`. The script verbs write and
+  read them through `0x00328D90` (`0x00328D9F`) and `0x0031B4F0` (`0x0031B4FF`), and the order code through
+  `0x00329E60` (`0x00329F0C`) and `0x00321190` (`0x0032125C`), each for an index of at most 15.
+- `0x0030C3F0` (`0x0023445E`) zeroes the 32 records of 12 bytes at `0x022C1DB0`, one per unit slot byte
+  `+0xEA9`, where `0x00312FA0` saves a unit's `+0xDC8` word and `+0xE58` dword and `0x00308270`
+  restores them.
 
 | Bit | Set by | Cleared by | Meaning |
 |---|---|---|---|
@@ -403,27 +429,43 @@ Main loop cells (`0x02064AA0` ..):
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02064AA0` | `u32` | the pump's flag | `0x02064AA4`  u32  0 |
-| `0x02064AA8` | `u32` | steps this pass | `0x02064AC0`  f32  time accumulator |
-| `0x02064AC4` | `f32` | speed factor | `0x02064AC8`  f32  step gain (1.0) |
-| `0x02064ACC` | `u32` | pacer ticks per frame | `0x02064AD0`  u8   game-step count |
-| `0x02064AD1` | `u8` | 0x02064AD2 | u8   speed permit (`0x00358550`: `0x022C7F9A` == `0x1F`) |
-| `0x02064AD3` | `u8` | state 0-6 | `0x02064AD4`  f32  1.0 |
-| `0x01FD4A68` | `u32` | 1 in states 4 and 6 | `0x01FD4A84`  u32  1 in states 2, 3 and 5 |
-| `0x01FD4A80` | `u32` | frame counter | `0x01FD4A74`  u32  speed pad latch   `0x01FD4A8C`  u32  one-shot 1.0 accumulator reload |
-| `0x01FD4A98` | `i32` | speed index 0-2 | `0x00908BA8`  f32[4]  speed table {1.0, 2.0, 4.0, 0.0} |
+| `0x02064AA0` | `u32` | the pump's flag |  |
+| `0x02064AA4` | `u32` | 0 |  |
+| `0x02064AA8` | `u32` | steps this pass |  |
+| `0x02064AC0` | `f32` | time accumulator |  |
+| `0x02064AC4` | `f32` | speed factor |  |
+| `0x02064AC8` | `f32` | step gain (1.0) |  |
+| `0x02064ACC` | `u32` | pacer ticks per frame |  |
+| `0x02064AD0` | `u8` | game-step count |  |
+| `0x02064AD1` | `u8` |  |  |
+| `0x02064AD2` | `u8` | speed permit (0x00358550: 0x022C7F9A == 0x1F) |  |
+| `0x02064AD3` | `u8` | state 0-6 |  |
+| `0x02064AD4` | `f32` | 1.0 |  |
+| `0x01FD4A68` | `u32` | 1 in states 4 and 6 |  |
+| `0x01FD4A84` | `u32` | 1 in states 2, 3 and 5 |  |
+| `0x01FD4A80` | `u32` | frame counter |  |
+| `0x01FD4A74` | `u32` | speed pad latch |  |
+| `0x01FD4A8C` | `u32` | one-shot 1.0 accumulator reload |  |
+| `0x01FD4A98` | `i32` | speed index 0-2 |  |
+| `0x00908BA8` | `f32[4]` | speed table {1.0, 2.0, 4.0, 0.0} |  |
 | `0x022C7F9A` | `u8` | step permit byte (bits 1-4 = the four preconditions; 1 at boot and after every step) |  |
-| `0x01E02820` | `f32` | accumulator at the top of the pass | `0x02064AEC`  ptr  end-of-step callback (called once, then cleared) |
+| `0x01E02820` | `f32` | accumulator at the top of the pass |  |
+| `0x02064AEC` | `void*` | end-of-step callback (called once, then cleared) |  |
 
 Tick globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022C2548` | `u32` | tick in progress | `0x022C252C` / `0x022C2530`  u32 tick counters |
-| `0x01EED060` | `/ 0x01EED064` | i32 | the deferred mode request (-1 none) |
+| `0x022C2548` | `u32` | tick in progress |  |
+| `0x022C252C` | `u32` | tick counters | with `0x022C2530` |
+| `0x022C2530` | `u32` | tick counters | with `0x022C252C` |
+| `0x01EED060` | `i32` | the deferred mode request (-1 none) | with `0x01EED064` |
+| `0x01EED064` | `i32` | the deferred mode request (-1 none) | with `0x01EED060` |
 | `0x02099ABC` | `u32` | manager request mask (bits 0-4) |  |
-| `0x02098E10` | `actor-manager` | slots, | 5 x `0x288`: `+0x201` u8 sub-step opt-in |
-| `0x02089340` | `u32` | the battle-state word | `0x0208E6A8` / `0x0208E6A4`  the one-shot callback and its handle |
+| `0x02098E10` | `...` | actor-manager slots, 5 x 0x288: +0x201 u8 sub-step opt-in |  |
+| `0x02089340` | `u32` | the battle-state word |  |
+| `0x0208E6A8` | `void*` | the one-shot callback |  |
+| `0x0208E6A4` | `u32` | its handle |  |
 
 ## Shipped data
 
@@ -463,8 +505,8 @@ slots' `+0x201` bytes.
 
 ## Modding notes
 
-- The simulation is a fixed-step accumulator: a hook that runs per frame runs zero, one or more
-  times per simulation step, and a port must keep the step gain at 1.0 to match.
+- The simulation is a fixed-step accumulator: a frame runs zero, one or more simulation steps, so a hook that runs per
+  frame and one that runs per step see different counts; a port must keep the step gain at 1.0 to match.
 - The camera block is the carry frame's substitute for a step: a port that runs it after every
   step moves the camera twice on stepped frames and not at all on carry frames.
 - High speed is a permit, not a multiplier: the speed index only takes effect after a step in

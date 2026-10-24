@@ -114,8 +114,8 @@ description entries from `+0x80`. It passes `+0x80` to `0x006D58D0` as the input
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x78` | `void*` | link to the record that was the list head |  |
-| `+0x80` | `4` | input | description entries, 16 bytes each |
-| `+0xC0` | `1` | output | description entry |
+| `+0x80` | `...` | 4 input description entries, 16 bytes each |  |
+| `+0xC0` | `...` | 1 output description entry |  |
 
 ```
 entry: +0x00 ptr semantic (0 in every morph entry), +0x08 u32 data type

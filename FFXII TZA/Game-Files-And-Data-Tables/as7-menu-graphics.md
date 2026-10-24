@@ -36,7 +36,7 @@ All multi-byte fields are big-endian.
 | `+0x00` | `u8[2]` | "A7" | read by no function: the container buffers reach only the walker `0x0024AA00` (from `0x00292390` at `0x00292768` and `0x002CEFD0` at `0x002CF2B4` and `0x002CF2CE`), which starts at byte `+0x02`, and the codec `0x00248500`, which reads the page streams and the dictionary; the slot and widget copies `0x00291D90`, `0x00292050`, `0x002CEB40` and `0x002C8EE0` move the pointer only; nothing fixes its width |
 | `+0x02` | `u16be` | count | number of pages |
 | `+0x04` | `u32be` | dictOff | file offset of the dictionary blob |
-| `+0x08` | `u32be[count] pageOff` | file offset of each page's token stream |  |
+| `+0x08` | `u32be[count]` | pageOff | file offset of each page's token stream |
 
 ```
 ...    page streams
@@ -116,11 +116,24 @@ update (message 2):
    flips each time, and re-uploads the atlas (`0x0024A1D0`).
 
 The id is signed. On the update the procedure does nothing for an id with bit 15 set (`0x0029269A`-`0x0029269D`).
-For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which tests that bit of the object's word
-`+0x168` as a 16-bit mask (`0x00292063`-`0x0029206D`). `0x00291D90` sets bits 0 to 9, one per slot, so sheets 0 to 7
-answer and ids 0 to 511 (512 pictures, highest 511) decode. An id from 512 to `0x7FFF` finds no container: the procedure
-binds the `itemgra_c` atlas as it stands (`0x00292702`-`0x00292712`, `0x0029F580`) without decoding, so the row shows
-whatever the atlas last held.
+For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which shifts 1 left by the slot with a 32-bit shift,
+keeps the low 16 bits and tests them against the object's word `+0x168` (`0x00292063`-`0x0029206D`); the shift counts the
+slot modulo 32.
+
+`0x00291D90` sets bits 0 to 9, one per slot, so sheets 0 to 7 answer and ids 0 to 511 (512 pictures,
+highest 511) decode. An id whose slot modulo 32 is 10 to 31 finds no container: ids 512 to 1919, and the same band in
+every later block of 2,048 ids. For those the procedure binds the `itemgra_c` atlas as it stands (`0x00292702`-`0x00292712`,
+`0x0029F580`) without decoding.
+
+The other 9,728 ids from 1920 to `0x7FFF` pass the test, because their slot modulo 32 is 0 to 9: ids 1920 to 2559
+(slots 32 to 41) test the bits of slots 0 to 9, and so do ids `2048 × k + 1920` to `2048 × k + 2559` up to 32640 to
+32767 (`0x7FFF` is slot 513 and tests bit 1).
+
+`0x00292050` then reads the container at `+0xD0 + 16 × slot` with the full
+slot (`0x00292075`-`0x0029207F`): `+0x2D0` for slot 32 up to `+0x20E0` for slot 513, all past the end of the `0x170`-byte
+object (`0x002920C0` creates it through `0x00244F50`). A zero there is treated as no container; any other value is decoded
+as a container by `0x0024AA00`, with the palette at `Item_Clut + sheet × 1,024` for sheet 30 or more, past the 7,168-byte
+file. What the row shows for these ids depends on the memory after the object.
 
 The toggle and the last sheet are shared by every item picture, so the atlas holds two item pictures at
 once: a third decode overwrites the older one, and both are drawn with the palette of the last sheet
@@ -149,6 +162,8 @@ uploaded all the same.
 - A real sheet 7 needs an eighth palette: `Item_Clut.bin` ships with seven.
 - Picture ids are `sheet × 64 + page`, 512 in all (0 to 511). A ninth sheet needs a container in slot 10, which the
   ten-slot request list of `0x00291C80` and the `+0x168` bits do not provide.
+- Keep picture ids at 0 to 511. Above that only the ids whose slot modulo 32 is 10 to 31 are refused; the others read a
+  container pointer from past the end of the item-graphic object.
 - Request sizes come from the file-size tables, so a resized file needs its kind 7 entry changed there.
 
 ## Related

@@ -28,7 +28,9 @@ The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the 
 | `+0x00` | `u32` | handle: kind << 28 \| serial (0x02EBEF60) |  |
 | `+0x04` | `u32` | set by 0x003B0FD0 |  |
 | `+0x08` | `void*` | the instance |  |
-| `+0x10` | `u8` | effect number; | `+0x11` u8 target test;  `+0x12` u8 kind |
+| `+0x10` | `u8` | effect number |  |
+| `+0x11` | `u8` | target test |  |
+| `+0x12` | `u8` | kind |  |
 | `+0x13` | `u8` | bits 1-2: request kind (3 for 100-103 and 0x94, 1 when the number's 0x01EFE260 byte is 1, else 0) |  |
 
 - `0x003B0980` returns the first free entry; with all 36 taken it ends the first instance whose

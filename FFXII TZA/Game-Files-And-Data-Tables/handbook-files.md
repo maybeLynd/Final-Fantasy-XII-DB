@@ -147,7 +147,7 @@ A string entry:
 | `+0x00` | `u16` | textAt | offset of the text from the entry itself; `0xFFFF` = none (an empty line) |
 | `+0x02` | `u8` | opCount | line-program operations (`0x00577A40`) |
 | `+0x03` | `u8` | pad |  |
-| `+0x04` | `{u8` | op, | u8 index, u8 value, u8 pad}[opCount] |
+| `+0x04` | `...` | {u8 op, u8 index, u8 value, u8 pad}[opCount] |  |
 
 ```
 ...    text in the game's encoded text, zero-terminated
@@ -288,7 +288,10 @@ When slot 1 finishes loading, `0x00575710` registers the bundle's sheet when `sh
 
 `0x00575B80` binds a picture when slot 2's page lies in the file's window and differs from the bound one: it
 registers the TIM2 at `pictureAt[page - first]` as the image label `hb_tex` (`0x0024A440`). It does nothing
-for `tutorial`, so Traveler's Tips shows no picture.
+for `tutorial`, so Traveler's Tips shows no picture: the entry page still requests the page's file into
+slot 2 (`0x005778F0` → `0x00575DD0`, which has no family test), so `menuhandbook_tutorial001.dat` loads, but no
+`hb_tex` label is made, and the picture pane `0x00570630` draws nothing because `0x00576C70`, its only source, returns
+slot 2's label `+0xF8`, which stays 0 (`0x0057068E`).
 
 ### Address width
 
@@ -307,7 +310,10 @@ record in `0x005760A0`, the sheet in `0x00575710`, the picture in `0x00575B80`),
 - Bestiary lore appears in slot order and stops at the first locked slot; a slot after a locked one never shows.
 - Set the Bestiary slot-count byte to the bundle record's `slots`; the detail record copies that many thresholds.
 - A line program changes save nibbles and bits each time its line is shown; shipped strings have none.
-- Traveler's Tips pictures are never drawn, whatever the page map says.
+- Traveler's Tips pictures are never drawn, whatever the page map says: the only binder, `0x00575B80`, refuses
+  family 4 (`0x00575BD2`). Only `tutorial001` is ever loaded (page 0, a 1,024 x 448 parchment); `tutorial002` to
+  `tutorial008` hold pages 4 to 29, which the one-page page map cannot name, and all 26 are the same "Dummy"
+  placeholder with the page number.
 
 ## Related
 

@@ -313,7 +313,7 @@ Colour-look block (record `+0x20`):
 | `+0x38` | `u8` | state | Petrify and Doom |
 | `+0x39` | `u8` | count | the remembered Petrify or Doom count |
 | `+0x3A` | `u8` | hold | control deny |
-| `+0x40` | `f32[4] offset` | the tint's colour offset |  |
+| `+0x40` | `f32[4]` | offset | the tint's colour offset |
 
 Second block (record `+0x70`):
 

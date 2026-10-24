@@ -130,7 +130,7 @@ differ.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[32] name` | "ambient" makes the slot's +0x34 = 0 |  |
+| `+0x00` | `char[32]` | name | "ambient" makes the slot's `+0x34` = 0 |
 | `+0x20` | `f32` | start | first frame (`0x00466C40`) |
 | `+0x24` | `f32` | end | last frame (`0x00466BB0`) |
 | `+0x28` | `i16` | targets | target count |
@@ -150,7 +150,7 @@ again in 16-byte units. A track starts with its own header and then its keys:
 | `+0x08` | `i16` | targetId | stored at the target's `+0x46` |
 | `+0x0A` | `i16` | targetId2 | stored at the target's `+0x44` |
 | `+0x0C` | `i32` | target | the target's index in the slot |
-| `+0x10` | `f32[4] key0` | time, value, in-slope, out-slope; keyCount keys of 16 bytes from here |  |
+| `+0x10` | `f32[4]` | key0 | time, value, in-slope, out-slope; keyCount keys of 16 bytes from here |
 
 `0x00466E70` allocates the slot's track records (0x18 bytes each: key data, time `+0x08`, value
 `+0x0C`, key index `+0x10`) and its 0x130-byte targets, and sets bit `channel` of each target's
@@ -398,9 +398,16 @@ bytes.
 `0x00331990(field)` requests the block pack in mode 0 and the field's own pack in mode 1 through
 `0x00378A60(field, index, mode)`:
 
-1. Mode 0 returns at once when `0x02ADD0E0` is non-negative and equals `0x02ADD0DC`: the block pack
-   already bound is kept. Otherwise `0x00378230(1)` tears the previous packs down (when no load is
-   pending, `0x0032F3D0(0)`) and `0x003784A0` releases the sound sections.
+1. Mode 0 returns at once when `0x02ADD0E0` is non-negative and equals `0x02ADD0DC`
+   (`0x00378AD6`-`0x00378AE6`); its own index is not compared. Otherwise `0x00378230(1)` tears the
+   previous packs down (when no load is pending, `0x0032F3D0(0)`) and `0x003784A0` releases the sound
+   sections. So the bound block pack is kept only while one is bound and the last mode-1 index
+   was 0:
+   - `0x02ADD0E0` only ever holds -1 or 0: -1 from the loader reset (`0x00377D29`) and from `0x003784A0`
+     when it releases a bound block pack (`0x003784C9`), otherwise the copy of `0x02ADD0E4` that
+     `0x00378120` makes when it binds the pending block pack (`0x00378175`-`0x0037817B`), and nothing
+     writes `0x02ADD0E4`.
+   - `0x02ADD0DC` is written only by mode 1 (`0x00378AC9`).
 2. Mode 1 drops the minimap texture (`0x003C63A0(0)`), stores the index at `0x02ADD0DC` and tears down
    with `0x00378230(keep)`, keeping the mode-1 world object only when the same index is loaded again
    with `0x02ADD0EA` clear.
@@ -538,6 +545,5 @@ otherwise.
 - [The map sound list](../Sound-And-Music/map-sounds.md)
 - [The menu-map container](../Game-Files-And-Data-Tables/menu-map-files.md)
 - [section_014, the LGT2 light set](../EBP-Script-Files/ebp-lighting-lgt2.md)
-- [The EFX and EFB effect containers](../17-Presentation-Rendering/effect-files-efx-efb.md
-)
+- [The EFX and EFB effect containers](../Graphics/effect-files-efx-efb.md)
 - [MRP menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md)

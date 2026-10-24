@@ -9,7 +9,7 @@ addresses: "0x0215F1C0, 0x002E1C20, 0x002E1CA0, 0x002E1CD0, 0x002E0FA0, 0x002545
 
 - During a scene, a movie or a screen fade, the main menu, the battle command menu and the map do not open.
 - Changing the party leader and cycling targets in the field stop working at the same moments.
-- Event skip with Start is offered only while a scene allows it, and never while a movie plays.
+- Event skip with Start is offered only while a scene allows it, and Start's event-skip arm never runs while a movie plays (bit 19). Story movies have a skip of their own, run by the scene's script: Start shows or hides a "[confirm button] Skip" prompt, and the confirm button while the prompt shows ends the movie with a half-second fade. The title screen's opening movie ends on Start or the confirm button, with no prompt.
 - Escape Mode switches itself off while availability bit 6, 9 or 10 is held (the table below; [Escape Mode](escape.md)).
 
 ## How it works
@@ -119,6 +119,44 @@ through `0x00360710`.
 (`0x007A0B40`) stores it, called by the window procedure with 1 when a new window is in front (`0x0079914C`) and by
 `0x007A4150`, which also posts message `0x8001` to show or hide the cursor. The task's pointer `0x01FD4948` is the cell
 `0x00228480` tests.
+
+### The movie skip
+
+Story movies are skipped by the scene's script, not by Start's event-skip arm. The offsets below are in the script
+section of `us/event/bhm_d/bhm_d0101/bhm_d0101.ebp`; the 35 `movieSkip監督` actors of the `us` scripts decode to the
+same verb sequence.
+
+- The director starts the movie with `movieplay` (`6178`), files function 1 of actor 4, the skip actor's `Skip監視`,
+  with `REQ` (`618A`), and parks on it with `REQWAIT` (`6191`) before `movieplaysync` (`6192`) and `movieend`
+  (`6195`).
+- The skip function runs once a frame (`wait(1)`, `700D`). It reads the newly pressed buttons with `padt` (`6ED5`;
+  `0x00355440` returns the mapped word `0x02AD9E0C` through `0x0036FFD0`) and the player's state with `getmoviestatus`
+  (`6EDB`), and returns, closing window 3, as soon as the state is not 3, playing (`6EE1`-`6EE8`, `7016`).
+- Start, bit 3 of that word ([Controls](controls.md)), toggles a prompt (`6EEB`-`6EF2`, `6F45`-`6F4B`). To show it,
+  `amest` (`6F2A`) opens message window 3 with the image's text entry 1, the confirm-button icon (escape `0F 60`)
+  and "Skip", at x 120, y 817. To hide it, `mesclose(3)` (`6F39`).
+- `0x002E1F80` stores the position at `+0x10` and `+0x12` of window slot 3 of `0x0215F200` (`0x68` bytes a slot). The
+  x would be 60 if `getscreenaspect` answered 0, but its source `0x0053DD10` always answers 1.
+- The confirm button while the prompt shows (`6F51`-`6F60`) skips; `get_pad_ok` gives Circle `0x2000` or Cross
+  `0x4000` by `0x01FD4A64` (`0x002E12B0`).
+- The skip plays a sound (`6F69`), runs `straightpcmtrans(0x1D, 0)` (`6F72`), fades the screen out and waits for
+  it (`6F75`-`6F87`), cancels every effect (`6F8A`) and, while the state is still 3, calls `moviecancel` (`6F9D`);
+  then `movieend` (`6FA0`). It sets file variable 3 to 1 (`6FBB`-`6FBE`), closes windows 0-7 and returns.
+- `moviecancel`'s begin `0x0033FEC0` reaches `0x001B83B0(player, 1)` through `0x0035B720`: it sets `+0xBAC` and, unless
+  the state is 0, 5 or 6, sets state 6 with half a second at `+0x10` (`0x001B83B7`-`0x001B83D1`), the fade the
+  player's update runs down to state 5 ([Movies](../Graphics/movies.md)).
+- Its poll `0x00357300` waits only while `0x0035B740` answers 1 to 3, which state 6 does not, and its result
+  `0x0033FA20` runs `movieend`'s `0x0035B8D0`.
+- The director sees the skip as the end of its wait: the skip function's return ends `REQWAIT`, and
+  `movieplaysync` polls the same `0x00357300`, so it ends at once. The director then tests file variable 3, which it
+  cleared before the movie (`615D`).
+- When it is set, bhm_d0101 fades the music out and stops it (`61A1`-`61C3`) and, after `skipstart(0)` (`6201`),
+  runs `skipexec(0)` (`6204`-`6211`), the scene's event skip
+  ([Event scenes](../Scripts-And-Script-Commands/event-scenes.md)).
+- The title map `ttl_a01`'s `ムービースキップ` actor ends its movie on Start or the confirm button, with no prompt,
+  while the state is 3 (`216B4`-`216C7`; `moviecancel` at `21739`), and `ttl_c01`'s `movie_skip_ctrl` cancels a
+  playing movie when it is requested (`214D5`). Of the 37 `us` scripts that call `moviestandby`, the staff roll
+  `men_z0005` is the one that calls no `moviecancel`.
 
 ### Menu requests
 

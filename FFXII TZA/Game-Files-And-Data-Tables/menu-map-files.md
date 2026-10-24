@@ -111,7 +111,7 @@ Record directory (at recordsOff):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count | one record per zone field |
-| `+0x04` | `u16[count] offset` | each record's offset from the directory start |  |
+| `+0x04` | `u16[count]` | offset | each record's offset from the directory start |
 
 Record:
 
@@ -127,7 +127,7 @@ Picture table (at picturesOff):
 |---|---|---|---|
 | `+0x00` | `u16` | count | pictures; `0x003C26C0` reads only the low byte |
 | `+0x02` | `u16` | keysOff | key array, from the table start |
-| `+0x04` | `i32[count] picture` | TIM2 picture, from the table start; -1 = none |  |
+| `+0x04` | `i32[count]` | picture | TIM2 picture, from the table start; -1 = none |
 | `+0x04` | `+ 4*count` | s32[count] placement | NPS2 record, from the table start |
 
 ```
@@ -173,7 +173,7 @@ Header:
 | `+0x04` | `u32` | - | 202 |
 | `+0x08` | `u8` | - | 0 |
 | `+0x09` | `u8` | count | records (48); every accessor bounds the index by it |
-| `+0x0A` | `u16[count] offset` | each record's offset from the file start |  |
+| `+0x0A` | `u16[count]` | offset | each record's offset from the file start |
 
 Record, one per sub-location:
 
@@ -241,7 +241,7 @@ Directory (at dirOff), one entry per sub-location:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count | 48 |
-| `+0x04` | `entry[count],` | 8 | bytes: |
+| `+0x04` | `...` | entry[count], 8 bytes: |  |
 | `+0x00` | `u8` | group | persistence group |
 | `+0x01` | `u8` | palette | 0 = none, else kind 7 id `0xE1` + palette |
 | `+0x02` | `i16` | gate | story gate; -1 = none (`0x003C12B0`) |
@@ -252,14 +252,14 @@ Maps (at mapsOff):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | count | 369 |
-| `+0x02` | `u16[count] value` | low byte: explored cells a map needs |  |
+| `+0x02` | `u16[count]` | value | low byte: explored cells a map needs |
 
 Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count | 77 |
-| `+0x04` | `entry[count],` | 8 | bytes: |
+| `+0x04` | `...` | entry[count], 8 bytes: |  |
 | `+0x00` | `u16` | counter | story counter at which it applies |
 | `+0x02` | `u16` | gate | story gate; `0xFFFF` = none |
 | `+0x04` | `u8` | file | guide file number |
@@ -276,7 +276,7 @@ Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
 | `+0x0A` | `u16` | tim2Off | TIM2 picture, from the file start; `0xFFFF` = none |
 | `+0x0C` | `u16` | - | 0 |
 | `+0x0E` | `u16` | count | lines |
-| `+0x10` | `entry[count],` | 8 | bytes: |
+| `+0x10` | `...` | entry[count], 8 bytes: |  |
 | `+0x00` | `u16` | counter | copy of the schedule entry's counter |
 | `+0x02` | `u16` | gate | copy of the schedule entry's gate |
 | `+0x04` | `u16` | text | string offset from textOff; `0xFFFF` = none |

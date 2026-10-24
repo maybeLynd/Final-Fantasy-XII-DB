@@ -20,8 +20,7 @@ gap is, and a swing closes the angle and stops when it is closed.
 ### The command and the request
 
 Authored command `0x1A` ([authored
-commands](../17-Presentation-Rendering/authored-presentation-commands.md
-))
+commands](../Graphics/authored-presentation-commands.md))
 is handled by `0x00520C10`: when the current render record (`0x00422D50`) has a motion section
 (`+0x370`) it calls `0x003E6340(record, mode)` on its own record argument with the command's word
 `+2` (the gate reads the current record, the request is built on the argument). The builder returns at
@@ -63,9 +62,13 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | 0 | `+0x02`  u16  mode (the command's word +2) |
-| `+0x04` | `f32` | distance | `+0x08`  f32  0 (left as it was for mode `0x10`) |
-| `+0x0C` | `f32` | relative heading | `+0x10`  f32[3] unit direction   `+0x1C` f32 1.0 |
+| `+0x00` | `u16` | 0 |  |
+| `+0x02` | `u16` | mode (the command's word +2) |  |
+| `+0x04` | `f32` | distance |  |
+| `+0x08` | `f32` | 0 (left as it was for mode 0x10) |  |
+| `+0x0C` | `f32` | relative heading |  |
+| `+0x10` | `f32[3]` | unit direction |  |
+| `+0x1C` | `f32` | 1.0 |  |
 
 ### The pool
 
@@ -106,8 +109,7 @@ the two profile rows no authored command names.
 
 ### The profiles
 
-Every animation container carries one `@FRM` child ([container](../17-Presentation-Rendering/model-files-cm-ca.md
-)).
+Every animation container carries one `@FRM` child ([container](../Graphics/model-files-cm-ca.md)).
 When a presentation entry is set up (`0x0041D220`) it looks the child up by tag (`0x00409660`,
 `0x00409A30`) and, when the child's size `+8` exceeds `0x30`, keeps the body `child + 0x30` at the
 entry's `+0x378` and the profile table `body + [body + 8]` at `+0x37C` (-1 for none).
@@ -196,20 +198,38 @@ Pool entry (`0x60` bytes, 128 at [`0x02B3F530`]):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | active | `+0x01` u8 turn armed   `+0x02` u8 move armed   `+0x04` i32 counter (-1 at take) |
-| `+0x08` | `f32` | sign of request +8 | `+0x0C` f32 sign of request `+0xC` |
-| `+0x10` | `f32` | \|angle0\| * 2/pi or 1.0 | `+0x14` f32 the same for angle1 |
-| `+0x18` | `f32` | accumulator axis 0 | `+0x1C` f32 accumulator axis 1 |
-| `+0x20` | `MoveTurnRequest` | (0x20 | bytes): `+0x20` u16 0, `+0x22` u16 mode, `+0x24` f32 distance, `+0x28` f32 angle0, |
-| `+0x2C` | `f32` | relative | heading, `+0x30` f32[3] direction, `+0x3C` f32 w |
-| `+0x40` | `void*` | previous | `+0x48` ptr next   `+0x50` u32 serial << 8 \| index |
+| `+0x00` | `u8` | active |  |
+| `+0x01` | `u8` | turn armed |  |
+| `+0x02` | `u8` | move armed |  |
+| `+0x04` | `i32` | counter (-1 at take) |  |
+| `+0x08` | `f32` | sign of request +8 |  |
+| `+0x0C` | `f32` | sign of request +0xC |  |
+| `+0x10` | `f32` | \|angle0\| * 2/pi or 1.0 |  |
+| `+0x14` | `f32` | the same for angle1 |  |
+| `+0x18` | `f32` | accumulator axis 0 |  |
+| `+0x1C` | `f32` | accumulator axis 1 |  |
+| `+0x20` | `MoveTurnRequest` | request (0x20 bytes, fields below) |  |
+| `+0x20` | `u16` | 0 |  |
+| `+0x22` | `u16` | mode |  |
+| `+0x24` | `f32` | distance |  |
+| `+0x28` | `f32` | angle0 |  |
+| `+0x2C` | `f32` | relative heading |  |
+| `+0x30` | `f32[3]` | direction |  |
+| `+0x3C` | `f32` | w |  |
+| `+0x40` | `void*` | previous |  |
+| `+0x48` | `void*` | next |  |
+| `+0x50` | `u32` | serial << 8 \| index |  |
 
 Record list (render record `+0x550`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | enabled | `+0x08` ptr profile table   `+0x10` ptr own profile (mode `0x16`) |
-| `+0x18` | `void*` | head | `+0x20` ptr tail            `+0x28` u32 disabled (`0x003AF320`) |
+| `+0x00` | `u32` | enabled |  |
+| `+0x08` | `void*` | profile table |  |
+| `+0x10` | `void*` | own profile (mode 0x16) |  |
+| `+0x18` | `void*` | head |  |
+| `+0x20` | `void*` | tail |  |
+| `+0x28` | `u32` | disabled (0x003AF320) |  |
 
 ```
 render record: +0xD8 handle, +0xE0 resolved base, +0xE8 offset of the table; +0xF0 handle, +0xF8 resolved base, +0x100 offset of the own profile
@@ -267,9 +287,7 @@ each entry's counter, armed bytes and two accumulators.
 
 - [Movement step](heading-speed-to-position-delta.md): the pass-through path that consumes `move`.
 - [Facing and steering](facing-and-steering.md): the integrator's direct arm that consumes `turn`.
-- [Authored commands](../17-Presentation-Rendering/authored-presentation-commands.md
-):
+- [Authored commands](../Graphics/authored-presentation-commands.md):
   the command stream and the other handlers.
-- [FRP container](../17-Presentation-Rendering/model-files-cm-ca.md
-):
+- [FRP container](../Graphics/model-files-cm-ca.md):
   the `@FRM` child.

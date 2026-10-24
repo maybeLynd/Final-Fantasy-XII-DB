@@ -466,37 +466,75 @@ Locomotion block (unit `+0x80`; the solver's "state" and "flag block" are the sa
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u32` | flag word: bits 0-4 steering mode, 5-14 countdown, 15 orbit direction |  |
-| `+0x004` | `f32` | orbit radius | `+0x10` f32 stored path distance   `+0x14` u8 stall counter (60)   `+0x18`/`+0x1C` f32 last solve x, z |
+| `+0x004` | `f32` | orbit radius |  |
+| `+0x010` | `f32` | stored path distance |  |
+| `+0x014` | `u8` | stall counter (60) |  |
+| `+0x018` | `f32` | last solve x |  |
+| `+0x01C` | `f32` | last solve z |  |
 | `+0x021` | `u8` | bit 0 heading byte valid; bits 1-2 last turn direction |  |
 | `+0x02C` | `u8` | heading as byte * pi/128 |  |
 | `+0x038` | `u32` | bit 1 too far, bit 2 within reach, bit 3 turning, bits 6-7 detour side |  |
 | `+0x03C` | `u32` | bit 0 fast latch, bit 3 detour pending, bits 4-7 attempt counter |  |
 | `+0x040` | `i32` | goal kind (1 unit, 2 unit with margin) |  |
 | `+0x060-0x090` | `f32[4] x4` | the four positions the context copies |  |
-| `+0x0D0` | `f32` | stop radius | `+0xD8` f32 speed   `+0xDC` f32 desired heading   `+0xF4` f32 pitch   `+0xE0` f32 current heading |
-| `+0x0E4` | `f32` | turn rate moving | `+0xE8` f32 turn rate standing |
-| `+0x0EC` | `f32` | slow turn rate | `+0xF0` f32 fast turn rate |
-| `+0x0F8` | `f32` | speedA | `+0xFC` f32 speedB     `+0x104` f32 speed threshold |
-| `+0x108` | `f32` | step scale (2.0 floor) | `+0x10C`/`+0x110` f32 collision radii   `+0x118` f32 heading cap |
-
-`+0x120`/`+0x124`/`+0x128`  f32 reach values     `+0x12C` f32 orbit length    `+0x130` i32 sidestep odds:
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `+0x140` | `f32[3] direction` | +0x150 u32 target handle | `+0x160` i32 goal kind |
+| `+0x0D0` | `f32` | stop radius |  |
+| `+0x0D8` | `f32` | speed |  |
+| `+0x0DC` | `f32` | desired heading |  |
+| `+0x0F4` | `f32` | pitch |  |
+| `+0x0E0` | `f32` | current heading |  |
+| `+0x0E4` | `f32` | turn rate moving |  |
+| `+0x0E8` | `f32` | turn rate standing |  |
+| `+0x0EC` | `f32` | slow turn rate |  |
+| `+0x0F0` | `f32` | fast turn rate |  |
+| `+0x0F8` | `f32` | speedA |  |
+| `+0x0FC` | `f32` | speedB |  |
+| `+0x104` | `f32` | speed threshold |  |
+| `+0x108` | `f32` | step scale (2.0 floor) |  |
+| `+0x10C` | `f32` | collision radii | with `+0x110` |
+| `+0x110` | `f32` | collision radii | with `+0x10C` |
+| `+0x118` | `f32` | heading cap |  |
+| `+0x120` | `f32` | reach values | with `+0x124` and `+0x128` |
+| `+0x124` | `f32` | reach values | with `+0x120` and `+0x128` |
+| `+0x128` | `f32` | reach values | with `+0x120` and `+0x124` |
+| `+0x12C` | `f32` | orbit length |  |
+| `+0x130` | `i32` | sidestep odds |  |
+| `+0x140` | `f32[3]` | direction |  |
+| `+0x150` | `u32` | target handle |  |
+| `+0x160` | `i32` | goal kind |  |
 | `+0x170` | `u32` | flags (unit +0x1F0): bit 0 speedA, bit 1 speedB, bits 2-4 the fast-latch condition, bit 9 |  |
-| `+0x174` | `u8` | mover class (unit +0x1F4) | `+0x176` u8 bit 2 detours allowed   `+0x177` u8 slot |
+| `+0x174` | `u8` | mover class (unit +0x1F4) |  |
+| `+0x176` | `u8` | bit 2 detours allowed |  |
+| `+0x177` | `u8` | slot |  |
 
 Solver context (stack, `0x110` bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `position (block +0x60)` | +0x10 step point (+0x70) | `+0x20` route goal (`+0x80`) |
-| `+0x30` | `destination (+0x90; the step and spacing distances)` | +0x40 target position | `+0x50` detour point  `+0x60` leader position |
-| `+0xA0` | `radius` | +0xA4 target radius | `+0xA8` target bearing  `+0xAC` stop distance |
-| `+0xB0` | `speed out` | +0xB4 desired heading | `+0xB8` pitch  `+0xBC` limited heading |
-| `+0xC0` | `step scale` | +0xC8 distance to the route goal, or to the target | `+0xCC` flags copy (bit 7, bit 10 detour)  `+0xD0` bit 0 leader reachable |
-| `+0xE0` | `target actor` | +0xE8 leader actor | `+0xF0` unit  `+0xF8` target unit  `+0x100` / `+0x108` the block |
+| `+0x000` | `...` | position (block +0x60) |  |
+| `+0x010` | `...` | step point (+0x70) |  |
+| `+0x020` | `...` | route goal (+0x80) |  |
+| `+0x030` | `...` | destination (+0x90; the step and spacing distances) |  |
+| `+0x040` | `...` | target position |  |
+| `+0x050` | `...` | detour point |  |
+| `+0x060` | `...` | leader position |  |
+| `+0x0A0` | `...` | radius |  |
+| `+0x0A4` | `...` | target radius |  |
+| `+0x0A8` | `...` | target bearing |  |
+| `+0x0AC` | `...` | stop distance |  |
+| `+0x0B0` | `...` | speed out |  |
+| `+0x0B4` | `...` | desired heading |  |
+| `+0x0B8` | `...` | pitch |  |
+| `+0x0BC` | `...` | limited heading |  |
+| `+0x0C0` | `...` | step scale |  |
+| `+0x0C8` | `...` | distance to the route goal, or to the target |  |
+| `+0x0CC` | `...` | flags copy (bit 7, bit 10 detour) |  |
+| `+0x0D0` | `...` | bit 0 leader reachable |  |
+| `+0x0E0` | `...` | target actor |  |
+| `+0x0E8` | `...` | leader actor |  |
+| `+0x0F0` | `...` | unit |  |
+| `+0x0F8` | `...` | target unit |  |
+| `+0x100` | `...` | the block | with `+0x108` |
+| `+0x108` | `...` | the block | with `+0x100` |
 
 ## Shipped data
 

@@ -1,0 +1,6 @@
+script	kind	place	actors	functions	rows	shared_actors
+ald_a01	zone	Alley of Muted Sighs (Old Archades), field 762	49	234	39	5
+ald_a02	zone	Alley of Low Whispers (Old Archades), field 763	38	166	47	1
+ald_a0179	scene	scene, event 728	16	134	8	0
+ald_a0180	scene	scene, event 727	13	145	12	0
+ald_a0200	scene	scene, event 173	26	200	5	0

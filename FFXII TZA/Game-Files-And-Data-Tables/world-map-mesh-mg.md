@@ -125,7 +125,11 @@ MeshObject (World Map host + `0xC0`):
 | `+0x08` | `void*` | sub-mesh 1 | set by the binder |
 | `+0x10` | `void*` | file buffer |  |
 | `+0x18` | `void*` | w_menu.mrp request |  |
-| `+0x20` | `void*` | w_shade_p image entry; +0x28..+0x40 w_main0..w_main3; +0x48 w_icon_p, +0x50 w_line01, +0x58 w_line02 |  |
+| `+0x20` | `void*` | w_shade_p image entry |  |
+| `+0x28-0x40` | `...` | w_main0..w_main3 image entries |  |
+| `+0x48` | `...` | w_icon_p image entry |  |
+| `+0x50` | `...` | w_line01 image entry |  |
+| `+0x58` | `...` | w_line02 image entry |  |
 | `+0x70` | `void*` | cursol_4_p image entry |  |
 | `+0x78` | `void*` | w_line01 image entry, looked up by the binder |  |
 

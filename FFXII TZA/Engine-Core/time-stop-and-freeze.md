@@ -228,17 +228,88 @@ speed-mode block) and `0x00226BD0(id)` tests one bit (`0x0025C830` tests 10).
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01FD4160` | `+ id*0x18` | record A: +0 u64 permission bits, +0x14 u8 flag |  |
-| `0x01FD4400` | `+ id*0x18` | record B: +0 u64 permission bits, +0x10 i32 fade (-1 none; 0 before the first apply), +0x14 u8 flag |  |
-| `0x01FD46A0` | `u64 combined A` | 0x01FD46B8 | u64 combined B      `0x01FD46B0` / `0x01FD46C8`  unused copies |
-| `0x01FD46D0` | `u8 dirty` | 0x01FD46D1 | u8 skip the audio block once      `0x01FD46D4`  u32 active ids |
+| `0x01FD4160` | `...` | record A, 0x18 bytes per id at 0x01FD4160 + id*0x18 (below) |  |
+| `0x01FD4400` | `...` | record B, 0x18 bytes per id at 0x01FD4400 + id*0x18 (below) |  |
+| `0x01FD46A0` | `u64` | combined A |  |
+| `0x01FD46B8` | `u64` | combined B |  |
+| `0x01FD46B0` | `...` | unused copies | with `0x01FD46C8` |
+| `0x01FD46C8` | `...` | unused copies | with `0x01FD46B0` |
+| `0x01FD46D0` | `u8` | dirty |  |
+| `0x01FD46D1` | `u8` | skip the audio block once |  |
+| `0x01FD46D4` | `u32` | active ids |  |
+| `0x02099DE3` | `...` | hold bytes 0x02099DE3 to 0x02099DE7, u8 each (0x02099DE5 / 0x02099DE6 select ids 5 / 4, 0x02099DE7 the flag) |  |
+| `0x0209215E` | `u16` | effect group masks | with `0x02092162` |
+| `0x02092162` | `u16` | effect group masks | with `0x0209215E` |
+| `0x0215FD44` | `u8` | source bytes (bit 0) | with `0x0215FD45` |
+| `0x0215FD45` | `u8` | source bytes (bit 0) | with `0x0215FD44` |
+| `0x0215F1B3` | `u8` | source byte (bit 0) |  |
+| `0x020926E4` | `u16` | flags | the fade ramp |
+| `0x020926E6` | `u16` | frames | the fade ramp |
+| `0x020926E8` | `f32` | value | the fade ramp |
+| `0x020926EC` | `f32` | target | the fade ramp |
+| `0x020926F0` | `f32` | step | the fade ramp |
 
-Record (actor):  `+0x10C` u32 set 2 live, `+0x110` / `+0x114` pending set / clear controller [record+`0xC0`]:  `+0x158` / `+0x15C` / `+0x160` set 5;  `+0x164` / `+0x168` / `+0x16C` set 4;  `+0x170` / `+0x174` / `+0x178` set 3 battle unit [record+`0x30`]`+0xED0`:  `+0x40` / `+0x54` / `+0x60` set 1;  `+0x44` / `+0x4C` / `+0x58` set 6;  `+0x48` / `+0x50` / `+0x5C` set 7 manager: `+0x10` bit 0 live, `+0x28` exemptions skipped when non-zero, `+0x1D6` count, `+0x1DE` first, `+0x1F0` fade list, `+0x1F8` its count `0x02099DE3`..0x02099DE7  u8 hold bytes (`0x02099DE5` / `0x02099DE6` select ids 5 / 4, `0x02099DE7` the flag):
+Record A:
 
-| Address | Type | Name | Meaning |
+| Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0x0209215E` | `/ 0x02092162` | u16 effect group masks | `0x0215FD44` / `0x0215FD45`  u8 source bytes (bit 0)     `0x0215F1B3`  u8 (bit 0) |
-| `0x020926E4` | `u16 flags, 0x020926E6 u16 frames, 0x020926E8 f32 value, 0x020926EC f32 target, 0x020926F0 f32 step` | the fade ramp |  |
+| `+0x00` | `u64` | permission bits |  |
+| `+0x14` | `u8` | flag |  |
+
+Record B:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u64` | permission bits |  |
+| `+0x10` | `i32` | fade (-1 none; 0 before the first apply) |  |
+| `+0x14` | `u8` | flag |  |
+
+Record (actor):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10C` | `u32` | set 2 live |  |
+| `+0x110` | `...` | pending set |  |
+| `+0x114` | `...` | pending clear |  |
+
+Controller [record+`0xC0`]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x158` | `...` | set 5 | with `+0x15C` and `+0x160` |
+| `+0x15C` | `...` | set 5 | with `+0x158` and `+0x160` |
+| `+0x160` | `...` | set 5 | with `+0x158` and `+0x15C` |
+| `+0x164` | `...` | set 4 | with `+0x168` and `+0x16C` |
+| `+0x168` | `...` | set 4 | with `+0x164` and `+0x16C` |
+| `+0x16C` | `...` | set 4 | with `+0x164` and `+0x168` |
+| `+0x170` | `...` | set 3 | with `+0x174` and `+0x178` |
+| `+0x174` | `...` | set 3 | with `+0x170` and `+0x178` |
+| `+0x178` | `...` | set 3 | with `+0x170` and `+0x174` |
+
+Battle unit [record+`0x30`]`+0xED0`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x40` | `...` | set 1 | with `+0x54` and `+0x60` |
+| `+0x54` | `...` | set 1 | with `+0x40` and `+0x60` |
+| `+0x60` | `...` | set 1 | with `+0x40` and `+0x54` |
+| `+0x44` | `...` | set 6 | with `+0x4C` and `+0x58` |
+| `+0x4C` | `...` | set 6 | with `+0x44` and `+0x58` |
+| `+0x58` | `...` | set 6 | with `+0x44` and `+0x4C` |
+| `+0x48` | `...` | set 7 | with `+0x50` and `+0x5C` |
+| `+0x50` | `...` | set 7 | with `+0x48` and `+0x5C` |
+| `+0x5C` | `...` | set 7 | with `+0x48` and `+0x50` |
+
+Manager:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x010` | `...` | bit 0 live |  |
+| `+0x028` | `...` | exemptions skipped when non-zero |  |
+| `+0x1D6` | `...` | count |  |
+| `+0x1DE` | `...` | first |  |
+| `+0x1F0` | `...` | fade list |  |
+| `+0x1F8` | `...` | its count |  |
 
 ## Shipped data
 

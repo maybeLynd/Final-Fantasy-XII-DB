@@ -92,12 +92,25 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00080` | `group 2 sub-object` | +0x5380 | group 1 sub-object       `+0x57E0`  groups 5 and 14 sub-object |
-| `+0x07EA0` | `group 16 sub-object` | +0x7FB0 | group 9 sub-object       `+0xA0`    group 12 sub-object |
-| `+0x0A0D0` | `group 8 sub-object` | +0x10EF0 / +0x10F00 | group 3's list and its rebuilt head |
-| `+0x10F10` | `/ +0x10F20` | group 6's two objects | `+0x10F30`  group 4's object   `+0x10F40`  group 13's object |
-| `+0x10F68` | `u32` | flags: | bit 1 written by group 7, bit 3 gates group 3's `0x002917E0` call, bit 8 gates group 12 |
-| `+0x10F6C` | `u32, +0x10F70 u16, +0x10F72 u16` | group 3's arguments | `+0x10F78`  group 5's gate   `+0x10F80`  group 15's gate |
+| `+0x00080` | `...` | group 2 sub-object |  |
+| `+0x05380` | `...` | group 1 sub-object |  |
+| `+0x057E0` | `...` | groups 5 and 14 sub-object |  |
+| `+0x07EA0` | `...` | group 16 sub-object |  |
+| `+0x07FB0` | `...` | group 9 sub-object |  |
+| `+0x000A0` | `...` | group 12 sub-object |  |
+| `+0x0A0D0` | `...` | group 8 sub-object |  |
+| `+0x10EF0` | `...` | group 3's list |  |
+| `+0x10F00` | `...` | group 3's rebuilt head |  |
+| `+0x10F10` | `...` | group 6's two objects | with `+0x10F20` |
+| `+0x10F20` | `...` | group 6's two objects | with `+0x10F10` |
+| `+0x10F30` | `...` | group 4's object |  |
+| `+0x10F40` | `...` | group 13's object |  |
+| `+0x10F68` | `u32` | flags: bit 1 written by group 7, bit 3 gates group 3's 0x002917E0 call, bit 8 gates group 12 |  |
+| `+0x10F6C` | `u32` | group 3's arguments |  |
+| `+0x10F70` | `u16` | group 3's arguments |  |
+| `+0x10F72` | `u16` | group 3's arguments |  |
+| `+0x10F78` | `...` | group 5's gate |  |
+| `+0x10F80` | `...` | group 15's gate |  |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|

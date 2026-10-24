@@ -179,7 +179,7 @@ set. The counter and the kernels (`0x02EA24A0`) are referenced only from this ro
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32[624] state` | the MT19937 state vector; 0x00866D60 (seed), 0x00866B90 (twist) |  |
+| `+0x000` | `u32[624]` | state | the MT19937 state vector; `0x00866D60` (seed), `0x00866B90` (twist) |
 | `+0x9C0` | `i32` | index | next word to draw, 624 = refill needed; `0x00866D60`, `0x00866B90`, `0x00863BF0`, `0x00863C80` |
 | `+0x9C4` | `u8` | seeded | 0 until the first seed; `0x00863BF0`, `0x00863C80`, `0x00863D30` |
 | `+0x9C5` | `u8[3]` | pad | not written by the five functions |
@@ -188,7 +188,7 @@ set. The counter and the kernels (`0x02EA24A0`) are referenced only from this ro
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32[624] state` | the MT19937 state vector; 0x0018D740 (seed), 0x0018EE20 (twist) |  |
+| `+0x000` | `u32[624]` | state | the MT19937 state vector; `0x0018D740` (seed), `0x0018EE20` (twist) |
 | `+0x9C0` | `u64` | cursor | pointer to the next word; `0x0018EE20`, `0x001946E0` |
 | `+0x9C8` | `u32` | count | words left before a refill; `0x0018EE20`, `0x001946E0` |
 | `+0x9CC` | `u8[4]` | pad | read and written by none of the three functions; nothing fixes its width |

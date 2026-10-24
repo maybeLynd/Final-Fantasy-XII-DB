@@ -138,7 +138,7 @@ Struct BattleUnitPathState base=unit+`0x200` size=`0x490`:
 | `+0x00` | `i32` | current | the waypoint index the walker is on (`0x00383670` reads and writes it) |
 | `+0x0C` | `u16[2]` | endpoints | `0xFFFF` after `0x003839C0` |
 | `+0x10` | `u8[128]` | predecessor | the next waypoint after each index; `0xFF` after `0x003839F0` |
-| `+0x90` | `f32[2][128] waypoints` | x and z per index; 0x00383670 copies entry i to its output at +0 and +8 |  |
+| `+0x90` | `f32[2][128]` | waypoints | x and z per index; `0x00383670` copies entry i to its output at +0 and +8 |
 
 `0x00383670(position, _, out, state, arg)` follows the predecessor chain from `current` while
 `0x00383A30` reports each step reached, calls `0x00383C90` for the chosen index, copies that waypoint's

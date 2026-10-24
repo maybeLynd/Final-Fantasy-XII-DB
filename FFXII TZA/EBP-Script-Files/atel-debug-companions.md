@@ -58,7 +58,7 @@ Block:
 |---|---|---|---|
 | `+0x00` | `u32` | lineCount |  |
 | `+0x04` | `u32` | textOffset | file offset of the block's first line |
-| `+0x08` | `page[ceil(lineCount` | / | 32)] |
+| `+0x08` | `...` | page[ceil(lineCount / 32)] |  |
 
 ```
 page   u16 lineStart[32], then u32 nextPageBase (absent after the last page)

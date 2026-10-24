@@ -105,22 +105,22 @@ NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-name
 `0x00315390` returns the highest rank, 12 down to 1, whose three requirements the player meets
 (`0x003153B5`-`0x003153E1`): the clan points, achievement counter 17 at `+0x3868` of the block `0x002536A0` returns
 (`0x0031539A`-`0x003153A4`); the count `0x00316480` returns; and the number of the thirty awards at `+0x3844` of that
-block that are earned, `0x00316670`. The twelve rows are at `0x00D105D0`, eight bytes each:
+block that are earned, `0x00316670`. The twelve rows are at `0x00D105D0`, eight bytes each; the word at `+0x06` is the rank's name, which `0x003153F0(rank)` resolves through `0x002F9860` (`0x003153FF`-`0x0031540A`); `0x0056F470` passes it the rank `0x00315390` returns (`0x0056F482`, `0x0056F4AE`):
 
-| Rank | Clan points | Count | Awards |
-|---:|---:|---:|---:|
-| 1 | 0 | 0 | 0 |
-| 2 | 700 | 2 | 0 |
-| 3 | 8,000 | 4 | 0 |
-| 4 | 20,000 | 8 | 0 |
-| 5 | 30,000 | 10 | 0 |
-| 6 | 40,000 | 12 | 0 |
-| 7 | 100,000 | 14 | 0 |
-| 8 | 200,000 | 16 | 0 |
-| 9 | 250,000 | 24 | 0 |
-| 10 | 300,000 | 28 | 0 |
-| 11 | 500,000 | 32 | 0 |
-| 12 | 1,000,000 | 44 | 30 |
+| Rank | Name | Clan points | Count | Awards |
+|---:|---|---:|---:|---:|
+| 1 | Moppet | 0 | 0 | 0 |
+| 2 | Hedge Knight | 700 | 2 | 0 |
+| 3 | Rear Guard | 8,000 | 4 | 0 |
+| 4 | Vanguard | 20,000 | 8 | 0 |
+| 5 | Headhunter | 30,000 | 10 | 0 |
+| 6 | Ward of Justice | 40,000 | 12 | 0 |
+| 7 | Brave Companion | 100,000 | 14 | 0 |
+| 8 | Riskbreaker | 200,000 | 16 | 0 |
+| 9 | Paragon of Justice | 250,000 | 24 | 0 |
+| 10 | High Guardian | 300,000 | 28 | 0 |
+| 11 | Knight of the Round | 500,000 | 32 | 0 |
+| 12 | Order of Ambrosia | 1,000,000 | 44 | 30 |
 
 `0x00316480` counts the entries of the quest list at `0x022C2550` whose quest is ordered or cleared and whose
 scenario value reaches the entry's minimum (`0x00316520`-`0x0031654D`).
@@ -132,9 +132,20 @@ clan-rank lists in shop 2, the Clan Provisioner. The story thresholds run from 0
 5,350. Shops 29-36 share one name, Assistant Storekeeper; the other repeated names are Traveling Merchant (0, 1,
 21, 22), Tetran (14, 20) and Dyce (15, 17, 18).
 
+### Where each shop is
+
+A shop is opened for the player in one of two ways, both from the zone script of its map:
+
+- the vendor actor's script calls `setshopname` with the shop's number, directly or through a list whose elements carry `0x1000` + the shop (an actor that reads such a list calls `setnpcname` for an element below `0x1000` and `setshopname` with the low 12 bits of any other);
+- the talk that sells calls `openfullscreenmenu_48d(2, shop)` (verb `0x48D`, `0x003462D0`), which opens the shop screen on that shop.
+
+`place` gives the map (region) and script of each zone script that does either. Every one of the 57 shops has one; the Street Vendor's shop 13 and Dyce's shop 18 have two. Shop 16, the Baknamy Merchant, is opened only by the second route: in Cloister of the Highborn (Necrohol of Nabudis) the Baknamy merchant actor of `bds_b01` opens it (`openfullscreenmenu_48d(2, 16)`) after the party is placed before it, and is never given a shop name.
+
+The Clan Provisioner's actor in Muthru Bazaar (Rabanastre) is a Mysterious Merchant until bit 0 of script global byte `0x041D` is set, and takes the shop's name only after that (`rbn_a02`). Montblanc sets the bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`). The shop's rank-1 list is therefore on sale from joining the clan.
+
 ## Columns
 
-`shops.tsv`, one row per stock list, in the order the ladder is walked:
+[`shops.tsv`](shops.tsv), one row per stock list, in the order the ladder is walked:
 
 | Column | Meaning |
 |---|---|
@@ -146,6 +157,7 @@ clan-rank lists in shop 2, the Clan Provisioner. The story thresholds run from 0
 | `classes` | the kinds of goods in the list |
 | `stock_ids` | the list's encoded ids, in order |
 | `stock` | their names from the shipped text tables, in the same order |
+| `place` | the map (region) and script whose script gives an actor the shop ("Where each shop is" above), `or` between two |
 
 A list is sold when its own entry or an earlier one in the ladder is the first whose condition the player meets.
 

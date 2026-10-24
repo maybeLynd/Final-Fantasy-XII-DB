@@ -234,26 +234,26 @@ The element update `0x003FC510` runs the element through its states:
 | `+0x00` | `i32` | slot | 0-9, the index into the presence table; written by `0x00319B10` |
 | `+0x04` | `i32` | state | 0 free, 1 falling, 2 landed, 3-6 blinking, 7 last blink; `0x00319CA0`, `0x00319600` |
 | `+0x08` | `u32` | stamp | frame counter `0x0208D45C` when the pickup landed; `0x00319600` |
-| `+0x0C` | `u8[4] pad` | read and written by none of the five pool functions (the stamp store 0x00319754 is a dword); nothing fixes its width |  |
+| `+0x0C` | `u8[4]` | pad | read and written by none of the five pool functions (the stamp store `0x00319754` is a dword); nothing fixes its width |
 | `+0x10` | `u64` | prev | pointer to the previous live pickup; `0x00319CA0`, `0x00319600`, `0x00319920`, `0x003197B0` |
 | `+0x18` | `u64` | next | pointer to the next live pickup; same writers |
-| `+0x20` | `u8[56] drops` | seven entries {u16 item, u16 pad, i32 count}, 0xFFFF = empty; copied by 0x00319CA0 |  |
+| `+0x20` | `u8[56]` | drops | seven entries {u16 item, u16 pad, i32 count}, `0xFFFF` = empty; copied by `0x00319CA0` |
 | `+0x58` | `u32` | handle | the pickup object; `0x00319CA0` |
-| `+0x5C` | `u8[4] tail` | read and written by none of the five pool functions (0x00319B10, 0x00319CA0, 0x00319600, 0x00319920, 0x003197B0); nothing fixes its width |  |
+| `+0x5C` | `u8[4]` | tail | read and written by none of the five pool functions (`0x00319B10`, `0x00319CA0`, `0x00319600`, `0x00319920`, `0x003197B0`); nothing fixes its width |
 
 `LootPresenceRecord` (`0x20` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | present | 1 when a position is published; `0x002FB2D0`, `0x002FB2A0`, `0x002FB250` |
-| `+0x01` | `u8[15] pad` | not written by the four presence functions |  |
-| `+0x10` | `f32[4] position` | x, y, z, 1.0; 0x002FB2D0 |  |
+| `+0x01` | `u8[15]` | pad | not written by the four presence functions |
+| `+0x10` | `f32[4]` | position | x, y, z, 1.0; `0x002FB2D0` |
 
 `LootPickupDescriptor` (`0x18` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[4] position` | x, y, z, 1.0; 0x00319CA0 |  |
+| `+0x00` | `f32[4]` | position | x, y, z, 1.0; `0x00319CA0` |
 | `+0x10` | `i32` | look | `0x00319A20` result, 0-2 |
 | `+0x14` | `i32` | level | chain level 0-3 through `0x01EED3A8` |
 

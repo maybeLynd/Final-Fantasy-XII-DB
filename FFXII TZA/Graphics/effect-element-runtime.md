@@ -419,6 +419,47 @@ index)` finds one. Each subtype has an initialiser, run through `0x004FF110`, an
   `0x004FF1B0` calls `0x00537F10` for subtype 1 and `0x005382F0` for the others; `0x004FF1F0` calls `0x005382F0` for 0,
   `0x00537F70` for 1 and `0x00538320` for 2 and 3.
 
+### Aiming an object
+
+`0x004FEAD0(object, position)` sets a path object's orientation. It builds the object's matrix from its `+0x90` sample in
+the record's kind `+0xC4` (`0x00398480`, `0x004FEAF9`). Unless the record's `+0xC5` is set, it then adds the position it is
+given to the object's point `+0x80` (`0x004FEB12`-`0x004FEB92`). After that the record's aim mode `+0xC3` picks what the
+object faces (`0x004FEB9C`-`0x004FEBCD`):
+
+| Aim mode `+0xC3` | What the object faces |
+|---|---|
+| 1 | the point it kept at `+0xC0`, copied to the aim point `0x02CA80C0` (`0x004FEDF3`-`0x004FEDFA`) |
+| 2 | the orientation of the anchor at `+0xD0` (`0x00537C50`), or at `+0xE0` for subtype 1 (`0x00537EE0`), copied into the aim matrix `0x02CA80D0` |
+| 3 | the orientation of the anchor at `+0x170` for subtype 1 (`0x00537F40`), at `+0x160` for subtypes 2 and 3 (`0x00538780`), or at `+0xD0` for subtype 0 (`0x00537C50`), copied into `0x02CA80D0` |
+| 4 | the point of the anchor at `+0xD0` (`0x005382F0`), or at `+0xE0` for subtype 1 (`0x00537F10`), written to `0x02CA80C0` |
+| 5 | the point of the anchor at `+0xD0` for subtype 0 (`0x005382F0`), at `+0x170` for subtype 1 (`0x00537F70`), or at `+0x160` for subtypes 2 and 3 (`0x00538320`), written to `0x02CA80C0` |
+| 0, or above 5 | nothing: the matrix stays as built (`0x004FEBCD`) |
+
+- For modes 2 and 3 the anchor query `0x003A4290` writes the anchor's matrix into `0x02CA80D0`-`0x02CA810F`. `0x004FEAD0` then
+  sets the last row `0x02CA8100` to `(0, 0, 0, 1)` from `0x008C5FD0`, which keeps the turn and drops the move (`0x004FECDF`,
+  `0x004FED01`, `0x004FED23`, `0x004FED45`, `0x004FED81`, `0x004FEDA3`, `0x004FEDC5`, `0x004FEDE7`).
+- For modes 1, 4 and 5 the point query `0x003A56F0` writes the anchor's point into `0x02CA80C0`, with its last lane set to
+  1.0 (`0x003A5766`, `0x003A576B`), and adds the anchor's offsets to it.
+- `0x004FEAD0` then subtracts the object's point from it, giving the aim vector: the point `+0x80`, or the position it
+  was given when `+0xC5` is set (`0x004FEE02`-`0x004FEE85`). The difference goes through the vector cells
+  `0x022D92E0`-`0x022D92EC` and is stored back in `0x02CA80C0` (`0x004FEE99`).
+- The record's kind `+0xC4` then picks the builder (table at `0x004FF068`): `0x003A2690` for kinds 0 and 2, `0x003A2570` for
+  1 and 4, `0x003A2440` for 3 and 5 (`0x004FEEB7`-`0x004FEF12`); a kind above 5 skips the builder and keeps the matrix as
+  it stands (`0x004FEEAE`-`0x004FEEB1`).
+- Each builder makes a rotation from the aim vector and the object's `+0xD0`. It normalises with `0x003A27C0` and
+  crosses with `0x00398390`. An aim vector of 0 leaves the identity (`0x003A247A`, `0x003A24A3`). `0x004FEAD0` copies the
+  result into `0x02CA80D0`-`0x02CA810F` (`0x004FEF17`-`0x004FEF3B`).
+- In every mode from 1 to 5, `0x00397910(0x02CA80D0, object, object)` then combines the aim matrix with the object's
+  matrix (`0x004FEF42`-`0x004FEF4F`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA80C0` | `vec` | 0 (zero-filled tail of `.data`) | the aim point, then the aim vector: an anchor's point (modes 4 and 5) or the kept point `+0xC0` (mode 1), less the object's point | `0x004FEAD0` (`0x004FEDFA`, `0x004FEE99`); `0x003A56F0` (`0x003A5766`, `0x003A576B`; adds at `0x003A5804`-`0x003A5825`, `0x003A5941`-`0x003A5958`, `0x003A667F`-`0x003A6690`, `0x003A6756`-`0x003A6787`, `0x003A6889`-`0x003A68AC`), through `0x003A56C0` from `0x005382F0`, `0x00537F10`, `0x00537F70` and `0x00538320` | `0x004FEAD0` (`0x004FEE09`); `0x003A2440` (`0x003A2473`, `0x003A247F`, `0x003A248D`, `0x003A2499`), `0x003A2570` (`0x003A25A3`, `0x003A25AF`, `0x003A25BD`, `0x003A25C9`), `0x003A2690` (`0x003A26C3`, `0x003A26CF`, `0x003A26DD`, `0x003A26E9`), through `0x004FEEDE`, `0x004FEEF8`, `0x004FEF12`; `0x003A56F0` (`0x003A57FF`-`0x003A581F`, `0x003A5930`-`0x003A593C`, `0x003A666E`-`0x003A668A`, `0x003A6717`, `0x003A6747`-`0x003A6781`, `0x003A6884`-`0x003A68A6`) |
+| `0x02CA80D0` | `vec` | 0 (zero-filled tail of `.data`) | row 0 of the aim matrix | `0x004FEAD0` (`0x004FEF1A`); `0x003A4290` (`0x003A43BC`, `0x003A536B`, `0x003A5437`, `0x003A540C`, `0x003A540F`), through `0x00537C50`, `0x00537EE0`, `0x00537F40` and `0x00538780` | `0x00397910` (`0x00397966`, through `0x004FEF45`) |
+| `0x02CA80E0` | `vec` | 0 (zero-filled tail of `.data`) | row 1 of the aim matrix | `0x004FEAD0` (`0x004FEF25`); `0x003A4290` (`0x003A43C3`, `0x003A5372`, `0x003A543E`, `0x003A5413`, `0x003A5417`), through the same four queries | `0x00397910` (`0x0039796E`, through `0x004FEF45`) |
+| `0x02CA80F0` | `vec` | 0 (zero-filled tail of `.data`) | row 2 of the aim matrix | `0x004FEAD0` (`0x004FEF30`); `0x003A4290` (`0x003A43CB`, `0x003A537A`, `0x003A5446`, `0x003A541B`, `0x003A541F`), through the same four queries | `0x00397910` (`0x0039797F`, through `0x004FEF45`) |
+| `0x02CA8100` | `vec` | 0 (zero-filled tail of `.data`) | row 3 of the aim matrix, the move: `(0, 0, 0, 1)` in modes 2 and 3 | `0x004FEAD0` (`0x004FEF3B`; `(0, 0, 0, 1)` at `0x004FECDF`, `0x004FED01`, `0x004FED23`, `0x004FED45`, `0x004FED81`, `0x004FEDA3`, `0x004FEDC5`, `0x004FEDE7`); `0x003A4290` (`0x003A43D3`, `0x003A43ED`, `0x003A5382`, `0x003A5423`, `0x003A5427`, `0x003A5454`, `0x003A5467`, `0x003A5489`, `0x003A54F1`, `0x003A54FC`, `0x003A5501`), through the same four queries | `0x003A4290` (`0x003A43DD`, `0x003A43E8`, `0x003A43F8`, `0x003A545E`, `0x003A5484`); `0x00397910` (`0x0039798E`, through `0x004FEF45`) |
+
 ### Timeline tracks
 
 The instance's block at `+0x130` (`[0x02EBEFB0]`) holds sixteen timeline players. `0x003A7050` steps
@@ -571,12 +612,14 @@ Effect instance (`0x3B0`, `0x0024B270`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u8` | kind (the group and the list 0x020910F0[kind]) |  |
-| `+0x120` | `block` | published | at `0x02EBEF98` |
-| `+0x130` | `block` | published | at `0x02EBEFB0` |
-| `+0x1B8` | `u32` | frame stamp; +0x1C0 first emitter |  |
-| `+0x2E0` | `cull` | record | (first byte `0xFF`: use the definition's) |
+| `+0x120` | `...` | block published at 0x02EBEF98 |  |
+| `+0x130` | `...` | block published at 0x02EBEFB0 |  |
+| `+0x1B8` | `u32` | frame stamp |  |
+| `+0x1C0` | `...` | first emitter |  |
+| `+0x2E0` | `...` | cull record (first byte 0xFF: use the definition's) |  |
 | `+0x340` | `void*` | effect context |  |
-| `+0x348` | `void*` | next, +0x350 previous |  |
+| `+0x348` | `void*` | next |  |
+| `+0x350` | `...` | previous |  |
 | `+0x36A` | `u8` | flags: bit 0 draws every emitter |  |
 | `+0x378` | `u16` | high nibble: display layer |  |
 | `+0x3A8` | `u16` | stamp from 0x00181DD0() |  |
@@ -587,30 +630,40 @@ Emitter:
 |---|---|---|---|
 | `+0x008` | `void*` | next emitter |  |
 | `+0x024` | `u32` | births |  |
-| `+0x028` | `u32` | emission limit (frames); +0x02C f32 age; +0x030 s32 whole frame; +0x034 f32 last firing |  |
-| `+0x0A0-0x0F0` | `sampled` | spawn | values (`+0x0F0` colour) |
-| `+0x100` | `void*` | emitter record (0x800); +0x108 element definition (0xA00) |  |
-| `+0x118` | `void*` | active head; +0x120 free head; +0x128 active tail |  |
-| `+0x130` | `void*` | parent element; +0x139 u8 stop emitting |  |
+| `+0x028` | `u32` | emission limit (frames) |  |
+| `+0x02C` | `f32` | age |  |
+| `+0x030` | `i32` | whole frame |  |
+| `+0x034` | `f32` | last firing |  |
+| `+0x0A0-0x0F0` | `...` | sampled spawn values (+0x0F0 colour) |  |
+| `+0x100` | `void*` | emitter record (0x800) |  |
+| `+0x108` | `...` | element definition (0xA00) |  |
+| `+0x118` | `void*` | active head |  |
+| `+0x120` | `...` | free head |  |
+| `+0x128` | `...` | active tail |  |
+| `+0x130` | `void*` | parent element |  |
+| `+0x139` | `u8` | stop emitting |  |
 
 Element:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | type (from definition +0x44) |  |
-| `+0x01` | `u8` | flags: bit 0 draw skip |  |
-| `+0x02` | `u16` | draw counter |  |
-| `+0x08` | `void*` | emitter; +0x010 parent; +0x018 emitter record; +0x020 definition |  |
-| `+0x28` | `void*` | previous; +0x030 next |  |
-| `+0x38` | `u32` | frame stamp at the last update |  |
-| `+0x3C` | `f32` | age; +0x040 s32 whole age; +0x044 s32 track frame; +0x048 s32 updates |  |
-| `+0x4C` | `i32` | lifetime (0 none) |  |
-
-`+0x060`        position:
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `+0x1D0` | `i32[8]` | last | firing per spawn slot (-1 unfired) |
+| `+0x000` | `u8` | type (from definition +0x44) |  |
+| `+0x001` | `u8` | flags: bit 0 draw skip |  |
+| `+0x002` | `u16` | draw counter |  |
+| `+0x008` | `void*` | emitter |  |
+| `+0x010` | `...` | parent |  |
+| `+0x018` | `...` | emitter record |  |
+| `+0x020` | `...` | definition |  |
+| `+0x028` | `void*` | previous |  |
+| `+0x030` | `...` | next |  |
+| `+0x038` | `u32` | frame stamp at the last update |  |
+| `+0x03C` | `f32` | age |  |
+| `+0x040` | `i32` | whole age |  |
+| `+0x044` | `i32` | track frame |  |
+| `+0x048` | `i32` | updates |  |
+| `+0x04C` | `i32` | lifetime (0 none) |  |
+| `+0x060` | `...` | position |  |
+| `+0x1D0` | `i32[8]` | last firing per spawn slot (-1 unfired) |  |
 | `+0x1F0` | `u32` | colour (0x80808080 neutral) |  |
 | `+0x224` | `u16` | hold word from 0x00250000() |  |
 
@@ -670,22 +723,21 @@ The kind lists `0x020910F0[kind]` are eight-byte heads, cleared with the rest of
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02091108` | `void*` | 0 (zero-filled tail) | the head of the kind-3 list, `0x020910F0[3]`; the frame's draw setup `0x0024D540` takes its first instance, makes that instance's context `+0x340` current at `0x02F97340` and the instance itself `0x02F97348` (`0x0024D573`-`0x0024D5A0`) | `0x0024C970` (`0x0024CA05`, `0x0024C983`); as the head of kind `kind`: `0x0024B270` (`0x0024B35A`), `0x0024C3C0` (`0x0024C3FB`), `0x0024C460` (`0x0024C531`), `0x0024DB80` (`0x0024DBF1`), `0x0024E7D0` (`0x0024E841`), `0x0024F4D0` (`0x0024F540`), each through `0x020910A0` + `0x50`; the unlinks `0x0024EE10` (`0x0024EE32`) and `0x0024EE60` (`0x0024EEA5`, through the head's address `0x0024EE72`) | `0x0024D540` (`0x0024D573`); as the head of kind `kind`: `0x0024B270` (`0x0024B324`), `0x0024C3C0` (`0x0024C3CD`), `0x0024C460` (`0x0024C47A`), `0x0024DB80` (`0x0024DBAA`), `0x0024E7D0` (`0x0024E7FA`), `0x0024F4D0` (`0x0024F4FA`), through `0x020910A0` + `0x50`; `0x0024B9B0` (`0x0024BA12`), `0x0024D050` (`0x0024D070`, walking every head from `0x0024D05F`), `0x0024D370` (`0x0024D38B`), `0x0024E210` (`0x0024E225`), `0x0024E2F0` (`0x0024E313`), `0x0024E6D0` (`0x0024E6F6`), `0x0024EE60` (`0x0024EE76`), `0x0024F680` (`0x0024F696`), `0x0024F8D0` (`0x0024F8E1`), `0x0024F920` (`0x0024F938`), `0x0024FDA0` (`0x0024FDBF`) |
-
-| `0x020910B0` | `ptr` | 0 (zero-filled tail) | `0x020910A0[2]`, the head of the kind-2 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9B8`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
-| `0x020910B8` | `ptr` | 0 (zero-filled tail) | `0x020910A0[3]`, the head of the kind-3 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9BF`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
-| `0x020910C0` | `ptr` | 0 (zero-filled tail) | `0x020910A0[4]`, the head of the kind-4 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9C6`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
-| `0x020910C8` | `ptr` | 0 (zero-filled tail) | `0x020910A0[5]`, the head of the kind-5 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9CD`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
-| `0x020910D0` | `ptr` | 0 (zero-filled tail) | `0x020910A0[6]`, the head of the kind-6 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9D4`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
-| `0x020910D8` | `ptr` | 0 (zero-filled tail) | `0x020910A0[7]`, the head of the kind-7 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9DB`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
-| `0x020910E0` | `ptr` | 0 (zero-filled tail) | `0x020910A0[8]`, the head of the kind-8 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9E2`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`) |
-| `0x020910E8` | `ptr` | 0 (zero-filled tail) | `0x020910A0[9]`, the head of the kind-9 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9E9`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`) |
-| `0x02091100` | `ptr` | 0 (zero-filled tail) | `0x020910F0[2]`, the head of the kind-2 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024C9FE`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
-| `0x02091110` | `ptr` | 0 (zero-filled tail) | `0x020910F0[4]`, the head of the kind-4 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA0C`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
-| `0x02091118` | `ptr` | 0 (zero-filled tail) | `0x020910F0[5]`, the head of the kind-5 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA13`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
-| `0x02091120` | `ptr` | 0 (zero-filled tail) | `0x020910F0[6]`, the head of the kind-6 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA1A`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
-| `0x02091130` | `ptr` | 0 (zero-filled tail) | `0x020910F0[8]`, the head of the kind-8 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA28`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
-| `0x02091138` | `ptr` | 0 (zero-filled tail) | `0x020910F0[9]`, the head of the kind-9 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA2F`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
-| `0x02091148` | `ptr` | 0 (zero-filled tail) | entry 1 of the effect callback table `0x02091140`. `0x0024F780(n, f)` stores entry `n`, and its one caller `0x0036E310` passes 0 | `0x0024C970`, 0 (`0x0024C983`; `0x0024CAD6`); `0x0024F780` (`0x0024F78A`, entry `n`) | no instruction names it |
+| `0x020910B0` | `void*` | 0 (zero-filled tail) | `0x020910A0[2]`, the head of the kind-2 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9B8`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
+| `0x020910B8` | `void*` | 0 (zero-filled tail) | `0x020910A0[3]`, the head of the kind-3 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9BF`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
+| `0x020910C0` | `void*` | 0 (zero-filled tail) | `0x020910A0[4]`, the head of the kind-4 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9C6`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
+| `0x020910C8` | `void*` | 0 (zero-filled tail) | `0x020910A0[5]`, the head of the kind-5 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9CD`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
+| `0x020910D0` | `void*` | 0 (zero-filled tail) | `0x020910A0[6]`, the head of the kind-6 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9D4`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
+| `0x020910D8` | `void*` | 0 (zero-filled tail) | `0x020910A0[7]`, the head of the kind-7 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9DB`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`); `0x0024C640` (`0x0024C658`, which walks kinds 1 to 7) |
+| `0x020910E0` | `void*` | 0 (zero-filled tail) | `0x020910A0[8]`, the head of the kind-8 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9E2`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`) |
+| `0x020910E8` | `void*` | 0 (zero-filled tail) | `0x020910A0[9]`, the head of the kind-9 context list (a context's kind is its byte `+0`) | `0x0024C970`, 0 (`0x0024C983`, the `0x1670`-byte clear; `0x0024C9E9`); `0x0024B3A0` (`0x0024B457`); `0x0024F410` (`0x0024F438`); `0x0024C550`, 0 (`0x0024C5C1`) | `0x0024B3A0` (`0x0024B438`); `0x0024F610` (`0x0024F61F`); `0x0024C550` (`0x0024C5A0`) |
+| `0x02091100` | `void*` | 0 (zero-filled tail) | `0x020910F0[2]`, the head of the kind-2 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024C9FE`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
+| `0x02091110` | `void*` | 0 (zero-filled tail) | `0x020910F0[4]`, the head of the kind-4 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA0C`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
+| `0x02091118` | `void*` | 0 (zero-filled tail) | `0x020910F0[5]`, the head of the kind-5 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA13`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
+| `0x02091120` | `void*` | 0 (zero-filled tail) | `0x020910F0[6]`, the head of the kind-6 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA1A`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
+| `0x02091130` | `void*` | 0 (zero-filled tail) | `0x020910F0[8]`, the head of the kind-8 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA28`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
+| `0x02091138` | `void*` | 0 (zero-filled tail) | `0x020910F0[9]`, the head of the kind-9 instance list (linked through `+0x348` / `+0x350`) | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA2F`); `0x0024B270` (`0x0024B35A`); `0x0024C3C0` (`0x0024C3FB`); `0x0024C460` (`0x0024C531`); `0x0024DB80` (`0x0024DBF1`); `0x0024E7D0` (`0x0024E841`); `0x0024F4D0` (`0x0024F540`); `0x0024EE10` (`0x0024EE32`); `0x0024EE60` (`0x0024EEA5`, through the entry's address) | `0x0024B270` (`0x0024B324`); `0x0024B9B0` (`0x0024BA12`); `0x0024C3C0` (`0x0024C3CD`); `0x0024C460` (`0x0024C47A`); `0x0024D050` (`0x0024D070`, every kind in turn); `0x0024D370` (`0x0024D38B`); `0x0024DB80` (`0x0024DBAA`); `0x0024E210` (`0x0024E225`); `0x0024E2F0` (`0x0024E313`); `0x0024E6D0` (`0x0024E6F6`); `0x0024E7D0` (`0x0024E7FA`); `0x0024EE60` (`0x0024EE76`); `0x0024F4D0` (`0x0024F4FA`); `0x0024F680` (`0x0024F696`); `0x0024F8D0` (`0x0024F8E1`); `0x0024F920` (`0x0024F938`); `0x0024FDA0` (`0x0024FDBF`) |
+| `0x02091148` | `void*` | 0 (zero-filled tail) | entry 1 of the effect callback table `0x02091140`. `0x0024F780(n, f)` stores entry `n`, and its one caller `0x0036E310` passes 0 | `0x0024C970`, 0 (`0x0024C983`; `0x0024CAD6`); `0x0024F780` (`0x0024F78A`, entry `n`) | no instruction names it |
 | `0x0209216C` | `u16` | 0 (zero-filled tail) | the word after the two queue counts `0x02092168` (blocks at `0x02091150`) and `0x0209216A` (render targets at `0x02091950`), cleared by the effect init | `0x0024C970`, 0 (`0x0024C983`; `0x0024CA80`) | no instruction names it |
 | `0x020925C0` | `u8` | 0 (zero-filled tail) | cleared by the effect init | `0x0024C970`, 0 (`0x0024C983`; `0x0024CADD`) | no instruction names it |
 | `0x020925D0` | `u64` | 0 (zero-filled tail) | cleared by the effect init | `0x0024C970`, 0 (`0x0024C983`; `0x0024CAE3`) | no instruction names it |

@@ -196,7 +196,7 @@ The construction info `0x0069FB10` fills, as `0x008542B0` reads it:
 |---|---|---|---|
 | `+0x00` | `f32` | mass |  |
 | `+0x08` | `void*` | motionState | 0 |
-| `+0x10` | `f32[16] startWorldTransform` | identity |  |
+| `+0x10` | `f32[16]` | startWorldTransform | identity |
 | `+0x50` | `void*` | collisionShape | the compound |
 | `+0x60` | `f32[4]` | localInertia |  |
 | `+0x70` | `f32[2]` | linearDamping, angularDamping | from `+0xC0`, clamped to 0..1 by `0x00854080` |

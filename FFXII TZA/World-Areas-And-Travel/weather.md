@@ -7,11 +7,20 @@ addresses: "0x0026D910, 0x0025ACA0, 0x0025ABA0, 0x002658B0, 0x002620E0, 0x002659
 
 ## What the player sees
 
-Some areas are always clear, some are always raining, and some change: the Giza Plains flip between
-dry and rains, the Ozmone Plain between clear, rain and heavy rain, the Paramina Rift between calm and
-snowstorm. The weather is decided at the moment you enter the area and never changes while you stay
-there. Leaving and coming back rolls again. The weather you left an area in is kept in the save, and
-story events can force one.
+Some areas are always clear, some are always raining, and some change: the Ozmone Plain between clear,
+rain and heavy rain, the Paramina Rift between calm and snowstorm. The Giza Plains' Dry and Rains are
+not weather: they are two separate sets of maps, and the exit you take into the plains picks the set
+from the story and the play clock (see [the Giza Plains seasons](#the-giza-plains-seasons)).
+
+The weather is decided each time you arrive on a map, before you can move, and it never changes while you
+stay there; some cutscenes and one boss ending change the wind and the sun in the sky for the rest of
+the visit.
+
+Arriving on another map decides again, but not always by chance: 430 maps always use their first
+weather, maps whose script picks the weather choose again only when you arrive from certain maps and
+otherwise keep the weather you came with, and the other maps roll starting from the weather you came
+with. The game remembers one weather, the last map's; it is kept in the save, and loading a save
+normally decides again starting from it.
 
 The weather is more than the sky. Strong wind, rain, snow and sand each change the damage of some
 elements, which is why Fire is weaker in the rain and Wind is stronger in a storm, and the map itself
@@ -49,7 +58,13 @@ Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it w
 
 `0x002620E0(managerRecord)` runs once per zone start, from the field runtime pass `0x0025D9E0`. It
 returns at once unless the manager index at `+0x28` is 0 (the zone's own manager), and it skips its
-body when bit 2 of the byte at `+0x10` is already set; it sets that bit itself at the end. The body:
+body when bit 2 of the byte at `+0x10` is already set; it sets that bit itself at the end
+(`0x002621A4`).
+
+The manager bind `0x0026C8C0`, run on every zone load when the zone's script arrives
+(`0x003304A0` → `0x0032F850`, `0x0032F966`), clears it again (`0x0026CD3F`), so the body runs on every map
+entry, including a return to the area the game keeps in memory. Before it, the start pass runs the
+zone's setup actor (`0x0025DB31`-`0x0025DB74`), which may already have chosen the slot. The body:
 
 1. `0x00259B30()` and `0x003E8980(0)`.
 2. `0x0025ACA0()`, the roll, which tail-calls the apply.
@@ -117,8 +132,12 @@ roll is 0, 1 or 2 depending on the branch, and a reimplementation must draw the 
 Two slots can be in play inside one call. The gameplay wind class of step 6 is extracted with the
 requested slot `req + 1` (`0x0026DA2C`-`0x0026DA31`), while the model selection of step 5, the two table
 lookups and the sky refresh use the committed slot re-read from the payload. They differ only when
-the restore flag dropped the request: after a scripted `setweatherslot` arms the flag, the next zone
-entry whose roll lands elsewhere publishes one slot's combat wind under another slot's sky.
+the restore flag dropped the request: after the setup actor's `setweatherslot` arms the flag, the roll
+of the same zone start, when it lands elsewhere, publishes one slot's combat wind under another slot's
+sky.
+
+Shipped data reaches this: 41 scripted zones author `100, 0, 0`, so a scripted slot 2 or 3 is
+moved to slot 1 by `0x0025ABA0` and the wind class is read from slot 1's entry.
 
 ### The environment variant in map_ref.bin
 
@@ -217,8 +236,9 @@ select, matches no arm of `0x0038B220` and so scales nothing.
 
 ### What the slot does to the map
 
-The roll path, and only the roll path, rebinds the map to the slot through step 4 of `0x002620E0`;
-the verb path ends at the sky refresh. `0x00379290` sets `0x02ADD0E9` to 1 and calls
+Only the roll path rebinds the map, through step 4 of `0x002620E0`; the verb path ends at the sky
+refresh. Because the verb works only before `0x002620E0` in the same start pass, the rebind always uses
+the slot the setup script chose. `0x00379290` sets `0x02ADD0E9` to 1 and calls
 `0x0026E8D0(0x00265920())` when the area runtime `0x02ADD090` exists, else clears it and runs the preset
 rebuild `0x00379630`. `0x0026E8D0(slot)`:
 
@@ -257,7 +277,7 @@ non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0x
 
 | id | name | handler | what it does |
 |---|---|---|---|
-| 0x21A | `setweatherslot(n)` | `0x003565C0` | when the running manager (`0x002640C0()`) has `+0x28` = 0, byte `+0x12` non-zero and the actor's word matches `[manager] + 0x50`: clamps `n` to 1 to 3, calls `0x0026D910(n)` and then `0x0026D8F0()`, which sets `payload[0x1061]` to 1 so the next zone entry keeps this slot |
+| 0x21A | `setweatherslot(n)` | `0x003565C0` | when the running manager (`0x002640C0()`) has `+0x28` = 0, byte `+0x12` non-zero and the actor's word matches `[manager] + 0x50`: clamps `n` to 1 to 3, calls `0x0026D910(n)` and then `0x0026D8F0()`, which sets `payload[0x1061]` to 1 so the roll that follows in the same start pass keeps it. Byte `+0x12` is set by the bind (`0x0026CD28`, when header word `+0x50` names a setup actor) and cleared at `0x0025DB79`, just before `0x002620E0`, so the verb acts only while the setup actor runs its start functions |
 | 0x40C | `getweatherslot()` | `0x00356250` | returns `0x00265920()` |
 | 0x481 | `setmapwind(elevation, azimuth, preset)` | `0x0034B6C0` | `0x002E3D40(1, preset, azimuth, elevation)`: the sky from the operands, the table bypassed |
 | 0x482 | `defaultmapwind()` | `0x0034BD10` | `0x002E3D40(0, 0, 0, 0)`: the sky from the table for the committed slot |
@@ -265,8 +285,32 @@ non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0x
 | 0x2024 | `debug_setweather` | `0x0050C7F0` | pops one operand and returns |
 | 0x209F | `debug_setlockweatherslot(n)` | `0x00510720` | pops one operand and runs a guard check; writes nothing |
 
-The verb's guard means a script running on an actor other than the zone's own calls
-`setweatherslot` and nothing happens, without any report.
+The verb's guard means a call from any actor other than the zone's setup actor, or any call after the
+zone has started, does nothing, without any report. In the shipped `us` scripts all 1,744 calls are in
+actor `setup` of 122 zone scripts and none of the 345 event scripts calls it, so the weather slot never
+changes during a visit. Cutscenes change the sky instead: 152 event scripts call `setmapwind` 168
+times, and zone `wdl_b01` calls it after its boss; that sets the wind preset and sun through
+`0x002E3D40` mode 1 and leaves the slot and the combat classes alone.
+
+### The Giza Plains seasons
+
+The Giza Plains' Dry and Rains are two sets of fields, not weather slots: fields 236 to 249 are the Dry
+and author `100, 0, 0`, and fields 253 to 270 are the Rains and author `30, 50, 20`, with `sav_e01`
+and `sav_f01` to `sav_f03` choosing the slot in `setup`. 26 zone scripts compute `mp_sav季節` (payload
+`+0x988`) in their `mapjump` functions and jump to the Dry field on 1 and the Rains field on 0 (for
+example `rbn_a18` to 236 or 253, `ozm_a01` to 247 or 264). The rule:
+
+- Before the first Rains visit is recorded (`+0x984` = 0): a story counter below 1,475 (`0x5C3`) gives
+  the Dry; 1,620 (`0x654`) and above gives the Rains and records `getplayhour()` (verb `0x2ED`) mod 3
+  at `+0x986`/`+0x985`; in between gives the Rains.
+- Recording it: entering `sav_d01`, `sav_f01`, `sav_f02` or `sav_f03` with the counter at 1,620 or
+  above sets `+0x984` to 1; `sav_d01` resets it to 0 below that.
+- After that the season is `(getplayloophour() - offset) % 3`: 0 gives the Rains and anything else the
+  Dry, so the Rains come back for one play-time hour in three. `getplayloophour` (`0x0034A0E0` →
+  `0x002542B0`) is the hours of the frame counter at `[0x020927C0] + 0x47E8`, modulo 9,999.
+- The exits set map-jump group flag `0x107` for the Rains or `0x108` for the Dry and release the
+  other. The scripts test the story counter directly, and `mapjumpgroupflagrom.bin` plays no part,
+  because these ids lack bit 14.
 
 ### Boot and the first apply
 
@@ -288,7 +332,7 @@ the map-side globals, and `0x002628B0` (`0x00262B53`) sets `0x0209A6FC` to 1 at 
 | `+0x10` | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0x0026DA10-0x0026DA26) |  |
 | `+0x14` | `i32` | table14Off offset of a count dword then u32[count], the terrain class per field group: the load completion 0x002678A0 adds it to the base (0x002678A7) and keeps the sum at 0x02099D90, which 0x00263DD0 indexes by the unit's group word without a bound check (0x00263E00) |  |
 | `+0x18` | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0x0026DA66-0x0026DA7D) |  |
-| `+0x1C` | `u8[20] unused2` | zero in the shipped file; read and written by no function: no instruction of the nine functions that load the image pointer 0x02099D88 (0x00264ED0, 0x00264F10, 0x00264F40, 0x00264F90, 0x00264FD0, 0x002678A0, 0x00268750, 0x0026D910, 0x0026DB30) reads or writes +0x1C to +0x2F; nothing fixes its width |  |
+| `+0x1C` | `u8[20]` | unused2 | zero in the shipped file; read and written by no function: no instruction of the nine functions that load the image pointer `0x02099D88` (`0x00264ED0`, `0x00264F10`, `0x00264F40`, `0x00264F90`, `0x00264FD0`, `0x002678A0`, `0x00268750`, `0x0026D910`, `0x0026DB30`) reads or writes `+0x1C` to `+0x2F`; nothing fixes its width |
 
 `MapRefFieldRow` (`0x8` bytes, offsets from the start of the row):
 
@@ -386,20 +430,23 @@ Entering an area with the triple 0, 30, 70 while the saved slot is 2:
 5. `0x002620E0` instantiates the effect rows enabled for slot 3, binds the slot's models, textures and
    lighting through `0x00379290`, and sets its latch bit.
 
-A story script forcing the weather:
+A zone script choosing the weather:
 
-1. `setweatherslot(1)` on the zone's own actor applies slot 1 and arms the restore flag.
-2. The sky and the combat classes change at once; the map models and effects do not, because the
-   verb path never reaches `0x00379290`.
-3. On the next zone entry the roll's result is dropped, slot 1 stays committed, the flag is cleared,
-   and the map is bound to slot 1.
+1. The bind sets manager `+0x12`; the start pass runs `setup`, whose `map()` picks a slot (from
+   `lastmap()`, the story counter and the save global `mp_last_weather`, payload `+0x940`) and calls
+   `setweatherslot(n)`.
+2. `0x0026D910(n)` commits slot n, publishes its combat classes and refreshes the sky; `0x0026D8F0` arms
+   the restore flag.
+3. `0x0025DB79` clears `+0x12`, and `0x002620E0` rolls: the result is dropped (`0x0026D951`), slot n stays,
+   the flag is cleared (`0x0026DA92`), and effects, models, textures and lighting are bound to slot n.
+4. A later `setweatherslot` in that visit fails the `+0x12` test (`0x003565E2`) and does nothing.
 
 ## State
 
 | address | contents | written by |
 |---|---|---|
 | payload `+0x1060` | committed slot 0 to 2 | `0x0026D910` (`0x0026D95E`) |
-| payload `+0x1061` | restore flag | `0x0026D8F0` sets; `0x0026D910` clears (`0x0026DA92`) |
+| payload `+0x1061` | restore flag | `0x0026D8F0` sets (`0x0026D8F9`); `0x00268320` sets it after a load when `0x0209AC10` is 0 (`0x0026836C`; the load screen sets `0x0209AC10` at `0x00582E98`, so a normal load leaves the flag as loaded, 0 in any save made in the field); `0x0026D910` clears (`0x0026DA92`); the store of 0 at `0x00280213` never runs, because `0x0020E5A0()` returns `0x005C5230()` = 0, not 5 |
 | `0x02099D88`, `0x02099D90` | the `map_ref.bin` image and the address of its `+0x14` table | the map_ref loader `0x00268750` and its completion `0x002678A0` |
 | `0x02ADD0B0` | the MWeather image | `0x00378F70`, `0x00378540` (zeroed) |
 | `0x02099DA8`, `0x02099DAC`, `0x02099DB0`, `0x02099DBC` | the published variant | `0x0026D910`; `0x0026AB40` for the last |

@@ -312,7 +312,7 @@ Index data block, fields used here:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x0C` | `u8` | index type: 8 = 32-bit |  |
-| `+0x18` | `PSharray` | of | `0x48`-byte buffer records; `+0x00` of a record is the ID3D11Buffer |
+| `+0x18` | `...` | PSharray of 0x48-byte buffer records; +0x00 of a record is the ID3D11Buffer |  |
 | `+0x68` | `u32` | m_offsetInIndexBuffer |  |
 | `+0x6C` | `u32` | bit 0: buffers bound |  |
 

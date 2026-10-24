@@ -76,10 +76,13 @@ cursor `0x02CA5FF8` back to the reservation `0x02CA5FF4` and zeroes `0x02CA5FFC`
 `0x02F8C200`, keeps the width `0x022D8EAC` at `0x02F8F214` and places five block addresses after the surfaces,
 moving them up by `(width - 0x200) x 0x540 / 64` for a width above `0x200` (0 at the shipped 512):
 
-| Address | Type | Name | Meaning |
-|---|---|---|---|
-| `0x02F8F200` | `= 0x3B00` | 0x02F8F204 = 0x2A00 + d | `0x02F8F208` = `0x3C00` + d |
-| `0x02F8F20C` | `=` | 0x3B00 | + d `0x02F8F210` = `0x3C00` + d |
+| Address | Value |
+|---|---|
+| `0x02F8F200` | `0x3B00` |
+| `0x02F8F204` | `0x2A00` + d |
+| `0x02F8F208` | `0x3C00` + d |
+| `0x02F8F20C` | `0x3B00` + d |
+| `0x02F8F210` | `0x3C00` + d |
 
 ### The surfaces as textures
 

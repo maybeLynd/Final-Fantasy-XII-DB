@@ -226,8 +226,7 @@ report the rising and the falling edge of that byte.
 
 Each pumped object is a lazily built singleton: a global pointer, an ensure function that
 allocates a fixed size and constructs on first use, and a getter. The screen fade `0x01F82CE0` is a
-`0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) ([screen fade](../17-Presentation-Rendering/screen-fades.md
-)).
+`0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) ([screen fade](../Graphics/screen-fades.md)).
 
 Its update `0x001D9080` draws first: inside a `"ScreenImage"` scope `0x001D8BB0` emits a quad over the screen
 (corners from `0x001D8B20`) with colour 255, 255, 255 and the level `+0x1C` as alpha.
@@ -349,16 +348,15 @@ GameApplication  (static, `0x01F7E350`, `0x1140` bytes; base Phyre::PFramework::
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | vtable 0x008C5760 |  |
-| `+0x27` | `u8` | base byte written by slot 14 |  |
-| `+0x48` | `f64` | frame delta, read by the tick |  |
-
-`+0x090`, `+0x0E8`  passed to the render manager's constructor:
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `+0x0D24` | `i32` | viewport width | `+0xD28`  i32  viewport height |
-| `+0x1130` | `void*` | slot 2's first argument | `+0x1138` i32  slot 2's second argument |
+| `+0x0000` | `void*` | vtable 0x008C5760 |  |
+| `+0x0027` | `u8` | base byte written by slot 14 |  |
+| `+0x0048` | `f64` | frame delta, read by the tick |  |
+| `+0x0090` | `...` | passed to the render manager's constructor | with `+0x0E8` |
+| `+0x00E8` | `...` | passed to the render manager's constructor | with `+0x090` |
+| `+0x0D24` | `i32` | viewport width |  |
+| `+0x0D28` | `i32` | viewport height |  |
+| `+0x1130` | `void*` | slot 2's first argument |  |
+| `+0x1138` | `i32` | slot 2's second argument |  |
 | `+0x113C` | `u8` | startup latch: 0 until the init job finishes, 1 after |  |
 | `+0x113D` | `u8` | run-once guard of the frame tick |  |
 
@@ -366,26 +364,45 @@ Vtables:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x008C5760` | `GameApplication,` | 31 | slots (table above) |
-| `0x01CB2508` | `Phyre::PFramework::PApplication,` | 31 | slots; RTTI locator at `0x01CB2500` |
+| `0x008C5760` | `...` | GameApplication, 31 slots (table above) |  |
+| `0x01CB2508` | `...` | Phyre::PFramework::PApplication, 31 slots; RTTI locator at 0x01CB2500 |  |
 
 Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x01F7E340` | `void*` | 0x80-byte object built by the init job |  |
-| `0x01F7F4B0` | `f64` | the frame delta published by the pump | `0x01F7F4B8` u8 second pass flag |
-| `0x01F7F4C0` | `/ 0x01F7F4C8 / 0x01F7F4D0 / 0x01F7F4D8 / 0x01F7F4E0` | the small objects of the init burst |  |
-| `0x01F7F598` | `void*` | render manager (0xDD8) | `0x01F7F5D0` ptr camera pair (`0x270`)   `0x01F7F5D8` ptr running byte (3) |
-| `0x01F7F5E0` | `/ 0x01F7F5E8` | the object reset and the vector emptied on the 0x01FD4A88 path |  |
-| `0x01F810F0` | `void*` | pause flag (1 byte) | `0x01F810F8` / `0x01F81100`  AsyncJobManager (`0x158` each) |
-| `0x01F81160` | `void*` | AsyncLoadManager | `0x01F81168` ptr map-art context (`0x520`; `0x01F81170` its `0xA0` list) |
-| `0x01F81218` | `void*` | movie player (0xBB8; a PCameraPerspective at +0x5A0) | `0x01F81240` ptr model asset cache (`0x238`) |
-| `0x01F81248` | `void*` | recycle queue (0x108) | `0x01F81258` ptr procedural-texture context (`0x1B8`) |
-| `0x01F81260` | `void*` | SaveloadManager (0xA78) | `0x01F81270` ptr MultipleDebugDisplay (`0x4670`) |
-| `0x01F82CE0` | `void*` | screen fade (0x38) | `0x01F82D30` / `0x01F82D31`  u8 second-pass latch pair: armed by `0x001E0550`, set by `0x001E0560`, cleared by `0x001E0590` |
+| `0x01F7F4B0` | `f64` | the frame delta published by the pump |  |
+| `0x01F7F4B8` | `u8` | second pass flag |  |
+| `0x01F7F4C0` | `...` | the small objects of the init burst | with `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
+| `0x01F7F4C8` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
+| `0x01F7F4D0` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D8` and `0x01F7F4E0` |
+| `0x01F7F4D8` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4E0` |
+| `0x01F7F4E0` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` |
+| `0x01F7F598` | `void*` | render manager (0xDD8) |  |
+| `0x01F7F5D0` | `void*` | camera pair (0x270) |  |
+| `0x01F7F5D8` | `void*` | running byte (3) |  |
+| `0x01F7F5E0` | `...` | the object reset on the 0x01FD4A88 path |  |
+| `0x01F7F5E8` | `...` | the vector emptied on the 0x01FD4A88 path |  |
+| `0x01F810F0` | `void*` | pause flag (1 byte) |  |
+| `0x01F810F8` | `void*` | AsyncJobManager (0x158 each) | with `0x01F81100` |
+| `0x01F81100` | `void*` | AsyncJobManager (0x158 each) | with `0x01F810F8` |
+| `0x01F81160` | `void*` | AsyncLoadManager |  |
+| `0x01F81168` | `void*` | map-art context (0x520) |  |
+| `0x01F81170` | `void*` | the map-art context's 0xA0 list |  |
+| `0x01F81218` | `void*` | movie player (0xBB8; a PCameraPerspective at +0x5A0) |  |
+| `0x01F81240` | `void*` | model asset cache (0x238) |  |
+| `0x01F81248` | `void*` | recycle queue (0x108) |  |
+| `0x01F81258` | `void*` | procedural-texture context (0x1B8) |  |
+| `0x01F81260` | `void*` | SaveloadManager (0xA78) |  |
+| `0x01F81270` | `void*` | MultipleDebugDisplay (0x4670) |  |
+| `0x01F82CE0` | `void*` | screen fade (0x38) |  |
+| `0x01F82D30` | `u8` | second-pass latch pair: armed by 0x001E0550, set by 0x001E0560, cleared by 0x001E0590 | with `0x01F82D31` |
+| `0x01F82D31` | `u8` | second-pass latch pair: armed by 0x001E0550, set by 0x001E0560, cleared by 0x001E0590 | with `0x01F82D30` |
 | `0x01FD4A68` | `u32` | written by the main state machine; gates the callback ring and the pass count |  |
-| `0x01FD4A88` | `u8` | the reset-then-pump request | `0x02064AA0` u32 the pump mode   `0x02064AD0` u8 game step count |
+| `0x01FD4A88` | `u8` | the reset-then-pump request |  |
+| `0x02064AA0` | `u32` | the pump mode |  |
+| `0x02064AD0` | `u8` | game step count |  |
 
 `LoadingPage`, `0x40` bytes at `[0x01F82CD8]` (`0x001D89D0`):
 

@@ -186,22 +186,34 @@ Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022C7FA0` | `camera` | basis: | +0 u32 stale, +8 f32 cached stick yaw, `+0xC` f32 smoothed output bearing, |
+| `0x022C7FA0` | `...` | camera basis (fields below) |  |
+| `0x022C7FD0` | `f32[4]` | the camera-relative movement vector this tick |  |
+| `0x022C7FE0` | `u32` | controlled character handle (also read by 0x00338490) |  |
+| `0x022C7FE4` | `u32` | pending handle |  |
+| `0x022C7FE8` | `u32` | second handle |  |
+| `0x022C7FEC` | `u32` | override handle (debug only) |  |
+| `0x022C7FF0` | `f32` | displacement, this tick |  |
+| `0x022C7FF4` | `f32` | displacement, last tick |  |
+| `0x022C7FF8` | `u8` | handle change kind (1 request, 2 summon party) |  |
+| `0x022C7FF9` | `u8` | walk-key latch |  |
+| `0x022C7FFC` | `u32` | zeroed by the stick read |  |
+| `0x022C8000` | `u32` | suppression bit set |  |
+| `0x022C8004` | `u8[4]` | lock bytes 0x022C8004..0x022C8007 |  |
+| `0x022C8008` | `f32` | stick magnitude / 128 |  |
+| `0x022C800C` | `u32` | walk toggle |  |
+| `0x01EF9220` | `f32` | dead zone 50.0 |  |
+| `0x01EF9224` | `f32` | floor 0.1 |  |
+| `0x01EF9228` | `f32[4]` | band widths 0.2, 0.7, 0.05, 1.0 |  |
+
+Camera basis at `0x022C7FA0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `f32[4]` | row | 0, `+0x20` f32[4] row 1 |
-
-| Address | Type | Name | Meaning |
-|---|---|---|---|
-| `0x022C7FD0` | `f32[4]` | the camera-relative movement vector this tick |  |
-| `0x022C7FE0` | `u32` | controlled character handle (also read by 0x00338490) | `0x022C7FE4` u32 pending handle   `0x022C7FE8` u32 second handle |
-| `0x022C7FEC` | `u32` | override handle (debug only) | `0x022C7FF0`/`0x022C7FF4` f32 displacement, this and last |
-| `0x022C7FF8` | `u8` | handle change kind (1 request, 2 summon party) | `0x022C7FF9` u8 walk-key latch   `0x022C7FFC` u32 zeroed by the stick read |
-| `0x022C8000` | `u32` | suppression bit set | `0x022C8004`..0x022C8007 u8[4] lock bytes |
-| `0x022C8008` | `f32` | stick magnitude / 128 | `0x022C800C` u32 walk toggle |
-| `0x01EF9220` | `f32` | dead zone 50.0 | `0x01EF9224` f32 floor 0.1 |
-| `0x01EF9228` | `f32[4]` | band | widths 0.2, 0.7, 0.05, 1.0 |
+| `+0x00` | `u32` | stale |  |
+| `+0x08` | `f32` | cached stick yaw |  |
+| `+0x0C` | `f32` | smoothed output bearing |  |
+| `+0x10` | `f32[4]` | row 0 |  |
+| `+0x20` | `f32[4]` | row 1 |  |
 
 ```
 body placement (0x00265970): +0x98 f32 [0x01DFE0B8] * 30 * 3.6 * run speed (the body's +0xC8)

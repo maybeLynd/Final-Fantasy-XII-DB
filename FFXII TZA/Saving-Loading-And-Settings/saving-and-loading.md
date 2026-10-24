@@ -183,8 +183,9 @@ The callback `0x00581B70(kind, error, record)` accepts only the kind the current
 
 - 1 to 2; 2 to 3, or to 7 in the short variant (`0x00581BFD`-`0x00581C06`); 3 to 4 with the counter
   `+0xCE` cleared; 4 to 7; 7 to 8.
-- States 5 and 6 share state 4's arm and are never entered: the counter is incremented and tested
-  against zero first.
+- States 5 and 6 share state 4's arm, and no call reaches them: the dispatcher's two callers (`0x005819F0`,
+  `0x00581B70`) ask for steps 1, 2, 3, 4, 7 and 8, and for 4 + index only while the index is below 1
+  (`0x00581C94`-`0x00581CA0`, after the increment at `0x00581C81`).
 - On the last completion, or on any error, it posts message `0x1D` with class `0xF`, the device
   byte from the queue's `+0x39A` and the error code to the controller, and releases the record.
 - On an error it also restores the image's `+0x50` from `+0xD4` and raises bit 2 in the gauge's
@@ -528,7 +529,7 @@ The table holds 200 entries at `0x02B407C0`; slot `n` is entry `n` (`0x003BB3E0`
 | `+0x00` | `u8[16]` | pad10 | not written by `0x008621E0` |
 | `+0x10` | `i32` | size | the file's length from ftell (`0x008621E0`) |
 | `+0x14` | `u8[12]` | pad14 | not written by `0x008621E0` |
-| `+0x20` | `char[32] name` | the file name, prefix plus three digits (0x008621E0) |  |
+| `+0x20` | `char[32]` | name | the file name, prefix plus three digits (`0x008621E0`) |
 
 `DisableAutosaveRow` (`0x10` bytes, offsets from the start of the record):
 

@@ -1,0 +1,62 @@
+family	family_name	section	caption_id	caption	first_entry	entries	caption_shown	maps
+4	Traveler's Tips	0	71405	Tricks of the Trade	0	4	always	
+4	Traveler's Tips	1	71402	The Ways of War	4	7	always	
+4	Traveler's Tips	2	71403	The Ways of Strength	11	3	always	
+4	Traveler's Tips	3	71404	The Ways of Wealth	14	2	always	
+5	Bestiary	0	70805	The Dalmasca Sands	0	7	once part of a listed map has been explored; until then it reads ???	1 The Stepping; 20 Galtea Downs
+5	Bestiary	1	70826	Giza Plains	7	12	once part of a listed map has been explored; until then it reads ???	11 Throne Road; 16 Starfall Field
+5	Bestiary	2	70820	The Garamsythe Waterway	19	8	once part of a listed map has been explored; until then it reads ???	29 North Spur Sluiceway; 37 Overflow Cloaca
+5	Bestiary	3	70823	The Barheim Passage	27	14	once part of a listed map has been explored; until then it reads ???	80 Great Eastern Passage
+5	Bestiary	4	70842	The Lhusu Mines	41	8	once part of a listed map has been explored; until then it reads ???	102 Shaft Entry
+5	Bestiary	5	70806	The Yensan Sandsea	49	6	once part of a listed map has been explored; until then it reads ???	126 Platform 1 - East Tanks
+5	Bestiary	6	70836	The Tomb of Raithwall	55	8	once part of a listed map has been explored; until then it reads ???	144 Hall of the Destroyer
+5	Bestiary	7	70870	Ozmone Plain	63	8	once part of a listed map has been explored; until then it reads ???	151 Field of Fallen Wings
+5	Bestiary	8	70873	Golmore Jungle	71	7	once part of a listed map has been explored; until then it reads ???	275 Paths of Chained Light
+5	Bestiary	9	70875	The Henne Mines	78	8	once part of a listed map has been explored; until then it reads ???	162 North Entrance
+5	Bestiary	10	70882	Paramina Rift	86	12	once part of a listed map has been explored; until then it reads ???	294 Fading Vale; 298 Icebound Flow
+5	Bestiary	11	70883	The Stilshrine of Miriam	98	14	once part of a listed map has been explored; until then it reads ???	303 Walk of Sky
+5	Bestiary	12	70859	The Mosphoran Highwaste	112	8	once part of a listed map has been explored; until then it reads ???	212 Southern Skirts; 213 Summit Path
+5	Bestiary	13	70860	The Salikawood	120	5	once part of a listed map has been explored; until then it reads ???	201 The Omen-Spur
+5	Bestiary	14	70847	Phon Coast	125	8	once part of a listed map has been explored; until then it reads ???	189 The Reseta Strand
+5	Bestiary	15	70848	Tchita Uplands	133	4	once part of a listed map has been explored; until then it reads ???	177 Uazcuff Hills; 184 Realm of the Elder Dream
+5	Bestiary	16	70849	The Sochen Cave Palace	137	8	once part of a listed map has been explored; until then it reads ???	241 Falls of Time; 244 Doubt Abandoned
+5	Bestiary	17	70874	The Feywood	145	15	once part of a listed map has been explored; until then it reads ???	286 Walk of Flitting Rifts
+5	Bestiary	18	70876	The Ancient City of Giruvegan	160	12	once part of a listed map has been explored; until then it reads ???	328 Gate of Water
+5	Bestiary	19	70865	The Ridorana Cataract	172	2	once part of a listed map has been explored; until then it reads ???	317 Footfalls of the Past
+5	Bestiary	20	70866	The Pharos	174	14	once part of a listed map has been explored; until then it reads ???	340 The Wellspring
+5	Bestiary	21	70835	Zertinan Caverns	188	9	once part of a listed map has been explored; until then it reads ???	41 Invitation to Heresy; 45 Halls of Ardent Darkness; 46 The Balamka Fault; 48 Darkened Wharf; 49 Canopy of Clay
+5	Bestiary	22	70850	Cerobi Steppe	197	4	once part of a listed map has been explored; until then it reads ???	261 Old Elanise Road; 264 Journey's Rest; 266 South Liavell Hills
+5	Bestiary	23	70857	The Nabreus Deadlands	201	5	once part of a listed map has been explored; until then it reads ???	222 Greencrag; 232 Field of the Fallen Lord
+5	Bestiary	24	70858	The Necrohol of Nabudis	206	5	once part of a listed map has been explored; until then it reads ???	233 Hall of Effulgent Light; 237 Hall of Slumbering Might
+5	Bestiary	25	71346	Marks	211	32	always	
+5	Bestiary	26	71347	Elite Marks	243	18	always	
+5	Bestiary	27	71341	Espers	261	13	always	
+5	Bestiary	28	71348	Bosses	274	18	always	
+5	Bestiary	29	71396	Rare Game	292	80	always	
+5	Bestiary	30	71397	Humanoids	372	5	always	
+5	Bestiary	31	71012	The Archadian Empire	377	7	always	
+0	story	0	71300		0	5	always	
+0	story	1	71301		5	38	always	
+0	story	2	71302		43	17	always	
+0	story	3	71303		60	9	always	
+1	world	0	71310		0	5	always	
+1	world	1	71312		5	16	always	
+1	world	2	71313		21	8	always	
+1	world	3	71314		29	3	always	
+1	world	4	71315		32	13	always	
+1	world	5	71316		45	8	always	
+1	world	6	71317		53	4	always	
+1	world	7	71318		57	5	always	
+1	world	8	71319		62	7	always	
+1	world	9	71320		69	5	always	
+2	person	0	71326		0	10	always	
+2	person	1	71327		10	16	always	
+2	person	2	71328		26	12	always	
+2	person	3	71329		38	19	always	
+3	knowledge	0	71336		0	11	always	
+3	knowledge	1	71337		11	4	always	
+3	knowledge	2	71338		15	22	always	
+3	knowledge	3	71339		37	9	always	
+3	knowledge	4	71340		46	5	always	
+3	knowledge	5	71342		51	37	always	
+3	knowledge	6	71343		88	12	always	

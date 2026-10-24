@@ -114,7 +114,7 @@ start of pair k and the byte at `+7 + 2k` its end.
 |---|---|---|---|
 | `+0x00` | `char[8]` | "bwind\0\0\0" | tag, compared by no reader |
 | `+0x08` | `u32` | count | 15 |
-| `+0x0C` | `{u16` | width, | u16 rows}[count] |
+| `+0x0C` | `...` | {u16 width, u16 rows}[count] |  |
 
 ### signe: key_signal_data.bin
 
@@ -149,10 +149,12 @@ scene          u8 scene id, u8 a, u8 b, u8 n, then {u8 signal (section 1 index),
 | `+0x000` | `u8[3]` | scale A, red, green, blue, in hundredths |  |
 | `+0x003` | `u8[3]` | scale B, in hundredths |  |
 | `+0x006` | `u8[4]` | colour of the full-screen tint |  |
-| `+0x280` | `f32` | copied to 0x02AE9660 | `+0x284` f32  copied to `0x02AE9664` |
+| `+0x280` | `f32` | copied to 0x02AE9660 |  |
+| `+0x284` | `f32` | copied to 0x02AE9664 |  |
 | `+0x288` | `f32` | tint size factor (0x02AE9650 and scaled copies) |  |
 | `+0x28C` | `f32` | copied to 0x02AE9668 |  |
-| `+0x290` | `u32, +0x294 u32` | two words whose difference is split in thirds for the tint's layers |  |
+| `+0x290` | `u32` | two words whose difference is split in thirds for the tint's layers | with `+0x294` |
+| `+0x294` | `u32` | two words whose difference is split in thirds for the tint's layers | with `+0x290` |
 | `+0x298` | `u8[8]` | zero |  |
 
 The file has no tag: its first four bytes `64 50 3C 64` are record 0's scale bytes.

@@ -168,7 +168,7 @@ unit is placed by `btlAtelSetUnitFinish` (`0x0023A513`) and from `0x00233AD0` (`
 | `+0x16` | `u8[2]` | pad16 | written only by the clear `0x00386C62`; read by no instruction; nothing fixes its width |
 | `+0x18` | `f32` | walkLeft | the walk distance left after the last MP step: `0x002F9400` compares the new distance with it (`0x002F9474`) and stores what is left (`0x002F95A6`) (MP gain and cost) |
 | `+0x1C` | `u32` | circle | bit 0: the unit joins the circling formation once KO'd, set by `0x0033CB10` (`0x0033CB60`) when action-timeline event 2 or 6 reaches a KO'd unit (`0x00325651`); bit 1: it has reached its place (`0x0033DA73`); both read by the mode-2 movement `0x0033D890` (`0x0033D953`, `0x0033DA77`) (Battle locomotion) |
-| `+0x20` | `u8[32] pad20` | read and written by no function; nothing fixes its width |  |
+| `+0x20` | `u8[32]` | pad20 | read and written by no function; nothing fixes its width |
 
 ## Modding notes
 

@@ -268,7 +268,6 @@ The update then:
 | `0x02AEDDB0` | view × `0x02AEDD30` |
 | `0x02AEDE30` | view × a projection with near 1.0 and far 1000 (`0x003CBC40`) |
 | `0x02AEDF94` | the heading, `atan2f` of the view's `0x02AEDE90` and `0x02AEDE98` |
-
 | `0x02B40470` | `0x02AED500` × the working camera's projection (`0x003CBB30`), copied there by `0x003B4150`; the update `0x003820C0` does it on one of its paths, and only while `0x00182570` returns 0; and `0x002F5550` and `0x00474710` also call `0x003B4150` |
 
 `0x003B40B0(z)` and `0x003B40F0(z)` turn a depth into `(m[+0x38] − z × m[+0x28]) / (m[+0x3C] − z × m[+0x2C])`
@@ -327,7 +326,7 @@ Camera record [8] at `0x02097300`, stride `0x110`:
 |---|---|---|---|
 | `+0x00` | `f32[4]` | eye | source eye for the rebuild |
 | `+0x10` | `f32[4]` | target | source target for the rebuild |
-| `+0x20` | `u8[208] view` | the camera below |  |
+| `+0x20` | `u8[208]` | view | the camera below |
 | `+0xF0` | `u32` | mode | 1, 2, 3 or other (`0x00259820`) |
 | `+0xF4` | `u32` | param | for mode 1 |
 

@@ -29,7 +29,7 @@ The machine `0x0037B4D0(record)` (thunk `0x0037B4C0`) works on a 12-byte record:
 
 Every transition keeps bit 7 and writes the new state. A call runs states until one has to wait
 (return 0) or state 23 is reached (return 1). An actor that no longer resolves returns 1 at once,
-and nothing runs while `0x00377DB0()` (the byte `0x02ADD0D8`) is 0.
+and nothing runs while `0x00377DB0()` (the dword `0x02ADD0D8`) is 0.
 
 ### The states
 

@@ -217,6 +217,5 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0x00
   for the unit's current action and is used only by the query-record builder `0x0031ADB0`. It takes
   one object's body size as the larger of its `0x00265090` pair through `0x0030A160` (`0x00320FF6`;
   `0x0030A16E`-`0x0030A179`).
-- [The FCP character parameter block](../17-Presentation-Rendering/model-files-cm-ca.md
-)
+- [The FCP character parameter block](../Graphics/model-files-cm-ca.md)
   - the per-character parameters behind weapon-flag actions.
