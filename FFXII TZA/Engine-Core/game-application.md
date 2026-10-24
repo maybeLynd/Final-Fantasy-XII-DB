@@ -400,6 +400,7 @@ Globals:
 | `0x01F7F598` | `void*` | render manager (0xDD8) |  |
 | `0x01F7F5D0` | `void*` | camera pair (0x270) |  |
 | `0x01F7F5D8` | `void*` | running byte (3) |  |
+| `0x01F7F5C0` | `void*` | the camera pair's +0x08 (0x0018A620() + 8), stored once by 0x00189CE0 (0x00189D63) under the | thread-safe static guard `0x01F7F5C8` (`0x008092FC`, `0x0080929C`); no instruction names it after that store |
 | `0x01F7F5E0` | `...` | the object reset on the 0x01FD4A88 path |  |
 | `0x01F7F5E8` | `...` | the vector emptied on the 0x01FD4A88 path |  |
 | `0x01F810F0` | `void*` | pause flag (1 byte) |  |

@@ -60,19 +60,24 @@ rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
   - talk: the gift comes from the actor's talk slot (slot 2, or a function `sysReqchg` puts in slot 2), or from a function that only such a function requests;
   - touch: the same for the touch slots 3 and 4;
   - map event: the gift comes from a function the map's script runs by itself (`main`, `init` or a function they request);
-  - event scene: the gift is in an event script, named by the maps whose scripts play it;
-  - gifts in scripts that no map loads are left out.
+  - event scene: the gift is in an event script, named by the maps whose scripts play it.
+- `gift in a script no field loads (no zone-script entry and no path in the executable):` the script, the actor and the functions of each such gift ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), "Where a script is"):
+  - the zone script `mic_b07` ships in the archive, and its gate crystal actor `system_crystal_actor` gives 25 teleport destinations in 26 gifts, Rabanastre (`0x8040`) in both `init` and talk and the other 24 in talk;
+  - no entry of the zone-script array names `mic_b07` and the executable holds no path to it, so no field loads it;
+  - the developer scripts `evt_t*` are not scene-rewards rows ("Scope" there) and are not joined.
 - `seller:` the map (region) and script of each map seller who sells it, with the price ([Price list](../Rewards-EXP-Gil-And-Loot/price-list.md)). The seller's talk keeps the maps and their prices in two lists, offers the maps the player does not hold, takes the price and gives the chosen map; [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md) lists that gift with its item chosen at run time.
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
-A part that names more than 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+Every part names every source. A cell that would be longer than 1,000 characters moves its longest parts, longest first, to [`item-sources.tsv`](item-sources.tsv) until it fits, and gives for each moved part its label, its count and the table, as `drop (28): in item-sources.tsv` for the Potion.
+
+That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. No treasure chest gives a key item: the chest records' item words name items, equipment, loot, magicks and technicks ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)).
 
 ### Rows that are not items
 
 `kind` tells the key items from the other named rows:
 
 - `map`: a named row of m_daiji_data, ids `0x8000`-`0x803F`: the area maps, with five Candles among them (Garamsythe, Barheim, Lhusu, Henne and Feywood).
-- `teleport destination`: a named row of g_daiji_data, ids `0x8040`-`0x805F`: the key item a gate crystal gives and its teleport list names ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)). Zertinan Caverns and The Feywood are in the table, but no script gives them.
+- `teleport destination`: a named row of g_daiji_data, ids `0x8040`-`0x805F`: the key item a gate crystal gives and its teleport list names ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)). Zertinan Caverns and The Feywood are in the table and are the key items of the World Map's areas of those names, but none of the zone and event scripts gives them.
 - `status word`: q_daiji rows 13-15, "Available", "Accepted" and "Complete!".
 - `key item`: every other named row, and `Reserve` for the Reserve rows.
 
@@ -81,6 +86,8 @@ A part that names more than 10 places gives its count, the first ones and the ta
 `used_for` lists what takes, tests or reads each key item, one part per kind of use, the parts separated by `;`:
 
 - `map screens:` for an area map, the area whose points and locations the map screens show once the map is owned. `menumap_area.bin` lists one map key item per persistence group, and `0x002543F0` answers whether it is owned ([Map screens](../Menus-And-HUD/map-screens.md), "What is shown"; [Menu map files](../Game-Files-And-Data-Tables/menu-map-files.md)).
+- `location map:` for the five Candles, the zones of their dungeon that the location map shows only while the Candle is held: `menumap_location.bin` gives each such zone the Candle as its gate, and `0x003C18A0` passes a key-item gate only while `0x00309EC0` reports the item owned ([Menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), "lmap").
+- `World Map:` for a teleport destination, the World Map area whose key item it is: `0x003BD480` marks the area owned while the item is held, and in the map's screen mode 4 `0x003C08B0` shows the area only then (`0x003C0BE0`, [Menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), "wmap").
 - `taken:` each map (region) and script whose script takes it from the player (`subitem`, [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md)).
 - `trophy trade:` for the 30 trophies, the three hunters at the Hunters' Camp who take them, and whose counts open the Outfitters' sales ([Equipment list](equipment-list.md), "Where each piece of equipment comes from").
 - `tested:` each map (region) and script whose script tests whether the player holds it (`haveitem`, with the id written in the script or stored in a variable by the same function), and what the test decides:
@@ -88,10 +95,13 @@ A part that names more than 10 places gives its count, the first ones and the ta
   - the outcomes named are a map jump, an event scene, taking an item, a gift, a quest step, story progress, a party member, gil, a map exit, the map's passable floors and walls, whether an actor is shown, whether an actor answers the player, and dialogue;
   - "other script steps" means the block does none of these;
   - the map sellers' and trophy hunters' tests of their own lists are left out, since they are the sale and the trade.
+- `named in messages:` each map (region) and script whose script puts the item's name into a message (`setmesmacro` with the id written in the script).
 - `teleport:` for a teleport destination, the number of map scripts whose gate crystal tests it to build its teleport list ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)).
-- `monograph:` for a monograph or the Canopic Jar, the monsters whose monograph slot needs it ([Bestiary](../Enemy-Spawning/bestiary.md)).
+- `monograph:` for a monograph or the Canopic Jar, the monsters whose monograph slot needs it, each name once, then the definitions no map script places with their area and row ([Bestiary](../Enemy-Spawning/bestiary.md)).
 
-A `taken:` or `tested:` part that names more than 10 places gives its count and the first ones. `not yet located` marks a key item for which none of these is found: the five Candles, the teleport destinations Zertinan Caverns and The Feywood, Writ of Transit, Crescent Stone, Rusted Scrap of Armor, Treaty-Blade, Dusty Letter, Time-worn Necklace and Windvane. The status words read `not an item: a status word`, and the Reserve rows `-`.
+Every `used_for` part names every use; a long cell moves its longest parts to [`item-sources.tsv`](item-sources.tsv) as `sources` does. A key item with none of these parts gets `census:`, the number of zone and event scripts read here and what none of them does with it: they give Writ of Transit, Rusted Scrap of Armor, Treaty-Blade and Dusty Letter, and none of them takes, tests or names these four; none of them gives, takes, tests or names the Time-worn Necklace. The status words read `not an item: a status word`, and the Reserve rows `-`.
+
+The census of those five ids reaches past the scripts read here: no instruction of the executable holds one as an immediate, no table of its data sections or of the map and quest menu files holds one, and of the developer scripts `evt_t*`, which the scene-rewards table leaves out, only `evt_t0505` holds one: it gives the Writ.
 
 ## Columns
 
@@ -105,11 +115,12 @@ A `taken:` or `tested:` part that names more than 10 places gives its count and 
 | `text_id`, `description` | `+0x06` and its shipped text |
 | `explanation` | the table it comes from, and whether its description is empty; "a Reserve row" for the others |
 | `kind` | map, teleport destination, status word, key item or Reserve ("Rows that are not items" above) |
-| `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over and the map sellers ("Where each key item comes from" above); `-` for none |
-| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above); `not yet located` when none is found |
+| `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over and the map sellers ("Where each key item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
+| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `census:` and the number of scripts it covers when none is found |
 
 ## Related
 
 - [Item and ability ids: the sixteen-bit id space, the fifteen inventory classes, the thirty-two-class validator and the query record](../Engine-Core/item-and-ability-ids.md)
 - [Loot list: every loot id with its name, price, sell price, sort order and description](loot-list.md)
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
+- [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)

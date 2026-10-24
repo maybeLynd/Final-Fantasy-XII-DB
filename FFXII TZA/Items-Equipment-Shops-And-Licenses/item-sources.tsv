@@ -7788,6 +7788,14 @@ id	name	part	entry
 0x806C	Canopic Jar	used_for monograph	Zu
 0x806C	Canopic Jar	used_for monograph	Axebeak (enw_b row 8: a definition no map script places)
 0x806C	Canopic Jar	used_for monograph	Dead Bones (bog_a row 3: a definition no map script places)
+0x8079	Shadestone	used_for tested	Throne Road (Giza Plains) [sav_a01], deciding other script steps
+0x8079	Shadestone	used_for tested	Warrior's Wash (Giza Plains) [sav_a02], deciding a map exit, whether an actor answers the player, dialogue
+0x8079	Shadestone	used_for tested	Gizas North Bank (Giza Plains) [sav_a03], deciding a map exit, whether an actor answers the player, dialogue
+0x8079	Shadestone	used_for tested	Toam Hills (Giza Plains) [sav_a04], deciding other script steps
+0x8079	Shadestone	used_for tested	Nomad Village (Giza Plains) [sav_b01], deciding a gift, dialogue
+0x8079	Shadestone	used_for tested	Starfall Field (Giza Plains) [sav_c01], deciding a map exit, whether an actor answers the player, dialogue
+0x8079	Shadestone	used_for tested	Crystal Glade (Giza Plains) [sav_c02], deciding other script steps
+0x8079	Shadestone	used_for tested	Gizas South Bank (Giza Plains) [sav_c03], deciding a map exit, whether an actor answers the player, dialogue
 0x3004	Cura	shop	Desert Merchant (later Lohen) (shop 10) in The Western Divide (Dalmasca Westersand) from story progress 1240 (Start of the mystery of the Dawn Shard)
 0x3004	Cura	shop	Dyce (shop 17) in Trail of Fading Warmth (Nam-Yensa Sandsea) from story progress 1330 (After the Urutan-Yensa appear)
 0x3004	Cura	shop	Dyce (shop 18) in Valley of the Dead (The Tomb of Raithwall) or Sea Breeze Lane (Balfonheim Port) from story progress 1330 (After the Urutan-Yensa appear)

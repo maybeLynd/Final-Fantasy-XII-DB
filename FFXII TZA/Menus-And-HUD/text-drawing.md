@@ -154,6 +154,15 @@ On the offscreen path, each line is drawn in five ordered steps (`0x001E8664`-`0
    alpha on its right ones (`0x00214A67`-`0x00214AA8`). `0x002148F0` makes the target its layer-0 texture (`0x001E8AAF`), and
    `0x002145A0` maps each corner through the matrix `+0x11C` into clip space (`0x00214A62`).
 
+Steps 1 and 5 are the executes (vtable slot 1) of a `FontBorderOrderedObject` (`0x00212F70`, slot
+`0x00906D58`) and the `FontBorderOrderedResetObject` (`0x00213040`, slot `0x00906DA8`). `0x00212F70` keeps in
+the byte `0x01FD3AC0` whether the context's bit-0 bracket was open (`0x00609710`: bit `0x1` of the
+context's `+0x08`, stored at `0x00212F92`), closes it when it was (`0x00600A60(ctx, 2)`), binds the ladder
+target `[object + 0x18]` (`0x00186800`, `0x0060D4F0`) and opens it (`0x005FEFD0(ctx, 1)`).
+
+`0x00213040` closes it, restores the screen target (`0x001893C0`) and opens it again (`0x005FEFD0(ctx, 0)`) only when
+`0x01FD3AC0` is set (`0x00213063`), so the pair leaves the bracket as step 1 found it.
+
 The font display's constructor `0x001E71B0` builds the reset object through `0x00212D60`, which writes its vtable and
 clears `+0x18`.
 

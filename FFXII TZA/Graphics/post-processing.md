@@ -129,6 +129,24 @@ eased over ten frames when they change (`0x0018EF94` to `0x0018F2BD`). With `d` 
 0.15 c(d - 4.4, 0, 4) - 0.2 c(d - 6, 0, 3)) x [block +0x11C]`. While easing, each frame moves both values by
 `(target - current) / (10 x [0x01DFE0B4] - n)`, `n` counting the frames already eased.
 
+The script verb `unkCall_5bd` (`0x05BD`, helper `0x002E30D0`; [verb
+table](../Scripts-And-Script-Commands/verb-table.md)) holds the focus on one bone of a model.
+`0x00382B50(render index, bone, distance)` stores the three at `0x02AEDFA0`, `0x02AEDFA4` and `0x02AEDFA8`
+(`0x00382B58`, `0x00382B5E`, `0x00382B50`); `0x00382910` sets `0x02AEDFA0` to -1 at boot (`0x003829A4`), and the
+verb's off form and the game-over reset pass -1. Each model's render update `0x0053AB50` calls
+`0x00382BF0` with its record index (`0x0053CF85`), which does nothing unless the index is
+`0x02AEDFA0`'s (`0x00382C09`).
+
+For the held model, when its render record exists and its `+0x284` is non-zero, `0x00382BF0` takes
+the origin of bone `[0x02AEDFA4]` (`0x00421E20(record, bone, 0, matrix)`, `0x00382C4B`), transforms it, with
+w = 1.0, by the camera matrix copy `0x02CA7F80` (`0x00202B70`) and requests mode 2 with `[0x02AEDFA8]` minus the
+point's camera-space z (`0x00182870(2, distance, 0)`, `0x00382CA7`-`0x00382CBC`).
+
+`0x00182870` hands the
+request to the render parameters (`0x00194490`: `+0x124` the mode, `+0x128` the distance), so the
+focus follows the bone. When the record is gone or its `+0x284` is 0, it requests mode 0 with
+-1.0 and sets `0x02AEDFA0` to -1 (`0x00382CD9`-`0x00382CEB`).
+
 While the block's byte `+0x164` is set, the render pass list `0x00187950` marks the point at `+0x168`
 and `+0x16C` (`0x0018D320`) on screen. It maps the point from 0 to 1 into clip space with y flipped
 and calls `0x001862B0(manager, x, y)`, which reserves 0x50 bytes of a render-thread callback
