@@ -95,7 +95,7 @@ Each sub-step aims the centre at `position + unit(move) * min(step, remaining)` 
 stages:
 
 1. Penetration rounds: the penetration query (below) runs on the centre's cell over bank 1, or
-   banks 0 and 1 for a flier, with dynamic shapes included and, for a flier, the bit-26 walls. A body
+   banks 0 and 1 for a flier, with dynamic shapes included and, for a flier, the bit `0x4000000` walls. A body
    with a radius above 2.0 also floods the neighbouring cells (`0x0022E340`).
 2. When the deepest penetration is above 0.01, the summed push (its vertical part dropped for a
    walker) is normalised, scaled by that depth and added to the centre and to `+0x40`, and flag bit
@@ -203,7 +203,7 @@ on the cell (`0x0022F830`) and floods on from the neighbour point.
 ### The camera's variant
 
 `0x0022DE60(query)` is the same test as `0x0022D7E0` with three differences: the plane distance may be
-as low as -0.001, ids from `0x5000` and the bit-26 rule are not tested, and its edge contact
+as low as -0.001, ids from `0x5000` and the bit `0x4000000` rule are not tested, and its edge contact
 `0x0022EAC0` points along the sum of the polygon's normal and, when the edge has a neighbour (the `i16` at
 polygon `+0x16` is not negative), the normal of the polygon across that edge, rescaled to the contact's
 length. A sphere therefore slides over a crease instead of catching on it; across an open edge the
@@ -217,7 +217,7 @@ the start by the deepest penetration. `0x00230C00` forwards to it.
 
 `0x00231690(part, push, id, axes, centre, kind, dynamic, placement)` runs `0x0022D7E0` once on the
 centre's cell and returns the deepest penetration, with the push and the id written out; kind bit `0x1`
-selects banks 0-2, or banks 0-1 with the bit-26 walls when `dynamic` is set; a placement with a
+selects banks 0-2, or banks 0-1 with the bit `0x4000000` walls when `dynamic` is set; a placement with a
 radius above 2.0 adds the flood. `0x003D97E0` ray casts (`0x00230B60`), and on a hit takes the hit's
 normal (`0x00232160`) and moves the hit point 0.1 along it; on a miss the normal is zero.
 

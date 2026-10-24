@@ -434,7 +434,7 @@ The area initialisation also runs three resets:
 | 8 | `0x00300FC0` when the torn-down unit's id is `0x003590D0()` (request `0x17`); the orchestrator's `0x17` latch | the latch; `0x002342F0` | the leader is incapacitated |
 | 9 | `0x00300FC0` when `0x00237260()` (request `0x18`); the `0x18` latch | the latch; `0x002342F0` | every active low-type party member is down |
 | 10 | `0x00300FC0` when `0x002372E0()` (request `0x0B`) | `0x002342F0` | the whole roster is down |
-| 11 | `0x00300FC0` when `0x002373C0()`; the orchestrator's bit-11 test | the orchestrator; `0x002342F0` | the summoner of `0x003137F0()` is out of play |
+| 11 | `0x00300FC0` when `0x002373C0()`; the orchestrator's bit `0x800` test | the orchestrator; `0x002342F0` | the summoner of `0x003137F0()` is out of play |
 | 12 | `0x00238B00(1)`, from `0x002628B0`, `0x002678C0`, `0x0026C8C0` and `0x0025D580` | `0x00238B00(0)`; `0x002342F0` | brackets a definition load or unload |
 | 13 | `0x00238B20(1)`, from `0x0025B740` only | `0x00238B20(0)`; the orchestrator at the top of every step; `0x002342F0` | |
 | 23 | the verb `btlAtelSetDebugRotControlMode` (`0x0050F2E0`) | the same verb with 0 | a script mode flag |

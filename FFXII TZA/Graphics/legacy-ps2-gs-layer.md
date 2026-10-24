@@ -130,7 +130,7 @@ at `0x0209A6E8` and sets the dirty word `0x0209A708` (`0x0026E8E7`); `0x0026E960
 is bound (`0x0026E9B0`). These are its only two non-zero stores; the reset `0x0026E1D0` clears it. The stores of 1 at
 `0x0026E221` and `0x0026E9A6` go to the neighbouring word `0x0209A6FC`.
 
-The draw's pass-bit-0 block calls `0x0036F430` and `0x0036F450`, which call `0x0026E290` with 0 and 1.
+The draw's pass bit `0x1` block calls `0x0036F430` and `0x0036F450`, which call `0x0026E290` with 0 and 1.
 While a map is bound and its `+0x120` is non-zero, `0x0026E290` runs `0x002F7380(map, [0x0209A668])` when
 the dirty word is set and then clears it (`0x0026E2C4`, `0x0026E2C9`), and then calls the map's
 `+0x130` handler with the pass. That handler is `0x002F4520`, installed by the map set-up

@@ -193,7 +193,7 @@ A zone and B marker (one point space: A first, then B):
 | `+0x04` | `u8[4]` | next | four neighbouring points (`0x003BE810`); `0xFF` = none |
 | `+0x08` | `u16[2]` | - | copied to the draw row |
 | `+0x0C` | `u16` | fieldId | A: the zone's field id s32      label       B: destination label text id; -1 = destination's name |
-| `+0x0E` | `i16` | gate | A: story gate |
+| `+0x0E` | `u16` | gate | A: `0xFFFF` = none; a key item when flags `+0x10` have a bit of `0xFC0` (`0x00309EC0`), otherwise a story flag (`0x0032A8A0`); decoded by `0x003C18A0` |
 | `+0x10` | `u32` | flags | A: bits 0-1 picture variant, bits 2-5 zone group |
 | `+0x10` | `u8` | - | B: copied to the draw row |
 | `+0x11` | `u8` | dest | B: destination sub-location |

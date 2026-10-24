@@ -187,7 +187,8 @@ The structures below are the ones the mechanisms above use.
 | `+0x00` | `void*` | descriptor | class descriptor of the object |
 | `+0x08` | `void*` | object | the engine object |
 
-The `PObjectAccessor` failure record at `0x02E41000`:
+The `PObjectAccessor` failure record at `0x02E41000`, with the line at `0x02E41008` and the function at
+`0x02E41010` (747 accessors store all three, for example `0x005997D0`, `0x005997E5` and `0x005997EF`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

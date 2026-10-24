@@ -285,7 +285,7 @@ Every drawing command (`GiColorRect`, `GiNormal`, `GiPolyGT4T`, `GiPrim`, `GiScr
 
 - The reset commands' executes (`0x001F3210`, `0x001F3260`) never read the command: they call
   `0x00188730` (default target) or `0x001893C0` on the render manager, closing and reopening the
-  context's bit-0 bracket (`0x00609710`, `0x00600A60(ctx, 3)`, `0x005FEFD0(ctx, 0)`) around it.
+  context's bit `0x1` bracket (`0x00609710`, `0x00600A60(ctx, 3)`, `0x005FEFD0(ctx, 0)`) around it.
 
 ### Render blocks
 

@@ -42,7 +42,7 @@ Many families call the same few runtime functions:
 
 | Function | Body | Called by |
 |---|---|---|
-| `0x0016D6A0` | `ret 0` | the guarded static teardowns, the bit-2 arm of the deleting destructors (so that arm frees nothing), the global handle reads, the three-float record adapters |
+| `0x0016D6A0` | `ret 0` | the guarded static teardowns, the bit `0x4` arm of the deleting destructors (so that arm frees nothing), the global handle reads, the three-float record adapters |
 | `0x00584730` | `if (p) jmp 0x0019C570`, and `0x0019C570` is `jmp [0x008C2B70]`, the `_aligned_free` import | the deleting destructors, the owned-buffer resets, the static object fixups |
 | `0x00210EC0` | `or r8d, -1; xor edx, edx; jmp 0x0085E730`, and `0x0085E730` is `jmp [0x008C2B40]`, `malloc` | the lazy singleton allocators |
 | `0x00808B90` | `atexit`: calls `_onexit` (`0x00808B40`) and returns 0 or -1 | the static initialisers, as their tail jump |

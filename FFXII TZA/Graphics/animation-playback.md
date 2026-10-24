@@ -142,7 +142,7 @@ skeleton's byte `+0xA7` (`0x00372A50`). For each node (`0x00372A80`-`0x00372CA8`
   (`0x00372AFB`-`0x00372B34`). With a parent, the node becomes its first child `+0x274` when that is −1,
   else it is inserted after the first child in the sibling chain `+0x272` (`0x00372B5C`-`0x00372B99`);
   without one it joins node 0's chain (`0x00372B45`-`0x00372B53`).
-- A flag-bit-8 node then copies `+0xF0` to `+0x1B0` and `+0x130`, gets 1.0 at `+0x100`-`+0x10C`,
+- A node with flag bit `0x100` then copies `+0xF0` to `+0x1B0` and `+0x130`, gets 1.0 at `+0x100`-`+0x10C`,
   `+0x140`-`+0x14C`, `+0x19C`, `+0x1AC`, `+0x1CC` and `+0x1D0`-`+0x1DC`, and is listed in the next
   u16 slot (`0x00372BA1`-`0x00372C97`); any other node gets none of that.
 
@@ -196,10 +196,10 @@ then for each listed bone (`0x00373970`-`0x00373CA3`):
   byte `+0xA7` has 1 in its low nibble, else `+0x40` (`0x0037397B`-`0x00373998`);
 - takes its source matrix: the parent's `+0x80` (`+0x270`), else the `+0x276` bone's `+0x80` in the
   parent skeleton that entry `+0x0C` names, else node 0's `+0x1F0` (`0x0037399E`-`0x003739DD`);
-- with `+0x280` bit `0x10` set takes the second-set path (the `+0x96` bit-5 set): `+0x1A0`
+- with `+0x280` bit `0x10` set takes the second-set path (the `+0x96` bit `0x20` set): `+0x1A0`
   as a matrix (`0x00477130`) times `+0xC0`, the translation `+0xF0` plus `+0x1C0` (`0x00202B10`), the scale `+0x100` times `+0x1E0`
   (`0x00202D80`), then `+0x230`, the source, the row scales and `+0x150` (`0x003739EA`-`0x00373B51`);
-  otherwise `0x00372610(source, +0xC0, +0x230, +0x100, +0x150)`
+- with that bit clear, takes `0x00372610(source, +0xC0, +0x230, +0x100, +0x150)`
   ([the tie](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton));
 - copies `0x02AD9E40`, the product before `+0x150`, into `+0x80`, and `0x02AD9E80`, the product with
   `+0x150`, into the slot `+0x284` names (`0x00373B8A`-`0x00373BB8`);

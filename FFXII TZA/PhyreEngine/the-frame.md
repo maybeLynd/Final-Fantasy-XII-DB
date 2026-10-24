@@ -39,8 +39,8 @@ bit 4 is set, and sets the mask's byte `+8` to 1 (`0x00358640`).
 The draw opens a `mainLoopDraw` scope (`0x001EB150`) and returns at once when `0x01FD4A70` is set (clearing
 it and setting `0x02064AE4`). While `0x02064AE4` is clear it writes the GS register batch (`0x0036D400`,
 below), with both arguments forced to 1 in the alternate draw. It then runs these passes in order, each
-behind one bit of its mask entry. `0x00332420(3)` runs first when bit `0x40` or bit `0x2` is set, then the bit-2
-pass (`0x00377230`) and the bit-0 pass, then `0x00332420(0)` when bit `0x40` or bit `0x2` is set:
+behind one bit of its mask entry. `0x00332420(3)` runs first when bit `0x40` or bit `0x2` is set, then the bit `0x4`
+pass (`0x00377230`) and the bit `0x1` pass, then `0x00332420(0)` when bit `0x40` or bit `0x2` is set:
 
 | Bit | Accessor | What it gates in `0x0022B0B0` |
 |---|---|---|

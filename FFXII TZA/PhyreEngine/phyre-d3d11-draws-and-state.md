@@ -227,6 +227,20 @@ parameter records: start and count as `u16` at `+0x1C0`/`+0x1C8` (value paramete
 `+0x240`/`+0x248` (resource parameters), `0x20` apart per stage, with the record arrays at `+0x1D8`
 and `+0x258`.
 
+`0x001630E0` and `0x001630B0` build the vertex and pixel caches at start-up through
+`0x006155B0(cache, views, samplers, constant buffers)`, which stores the three setters and clears
+the arrays: `VSSetShaderResources`, `VSSetSamplers` and `VSSetConstantBuffers` through the thunks
+`0x00616F0C`, `0x00616F18` and `0x00616EA8` (context slots `0xC8`, `0xD0`, `0x38`), and the `PS` ones
+through `0x00616EB0`, `0x00616EC0` and `0x00616ED0` (`0x40`, `0x50`, `0x80`).
+
+A few draws bind fixed slots straight through the cache: each compares the slot with the object
+it needs and calls the stage's setter for that slot alone when they differ. The slots are the
+vertex stage's constant buffer 0 (`0x02CEDEB0`, setter `0x02CEDEF0`) and the pixel stage's views 0 to
+5 (`0x02CEE3D0`-`0x02CEE3F8`, setter `0x02CEE7D0`), sampler 0 (`0x02CEE7D8`, setter `0x02CEE858`) and
+constant buffer 0 (`0x02CEE860`, setter `0x02CEE8A0`). The draws are `0x0061E760`, `0x006227D0`,
+`0x006C8CA0` and `0x006CA8D0`; for example `0x006C96EF`-`0x006C9714` binds view 1 with
+`setter(ctx, 1, 1, &view)`.
+
 `0x0062A0A0` reads each resource record's slot (`+0x04`, −1 skips it) and the parameter at its offset
 (`+0x00`) in the pass's block, and fills the pending arrays by parameter type:
 
@@ -388,6 +402,8 @@ Compare functions (`0x0061C010`) and stencil operations (`0x0061C150`):
 | `0x02CEDA20`, `0x02CEE3D0`, `0x02CEED80`, `0x02CEF730` | vertex, pixel, geometry and compute stage caches |
 | `0x02CF00E0`, `0x02CF0A90` | the two further stage caches, emptied by the compute path |
 | `0x01F2DE98`, `0x01F2DEA8`, `0x01F2DEB8`, `0x01F2DEC8` | the shader last set on each of the four stages |
+| `0x01F2DED8`, `0x01F2DEE8` | the hull and domain shader last set; only the state reset `0x0061C2B0` (called by `0x006CBEA0`, `0x006CC058`) names them: it clears each and, when it was non-zero, calls its setter with null (`0x01F2DED0` = `0x00616E24`, context slot `0x1E0`, `HSSetShader`; `0x01F2DEE0` = `0x00616E54`, slot `0x200`, `DSSetShader`; `0x0061C43C`, `0x0061C45D`) |
+| `0x01F2DF08` | the input layout last set; `0x00629E50`, `0x0061E760`, `0x006227D0`, `0x006C8CA0` and `0x006CA8D0` call `IASetInputLayout` (`0x01F2DF00` = `0x00616EDC`, slot `0x88`) only when it differs (`0x0061E934`-`0x0061E93F`), and `0x0061C2B0` clears it (`0x0061C4B7`) |
 | `0x02CF6ABC`–`0x02CF6ABE` | set once a missing 2D, 3D or cube-map view is logged |
 
 ## Modding notes

@@ -60,9 +60,9 @@ stores the test square, the GS screen position `x / 16 − 0x700` and `y / 16 �
 the half size `+0x1B6` (`0x00377100`), and the depth (`0x003770D0`). The release `0x00461250` frees the slot.
 
 Each draw `0x00461270` repeats the projection, stores the square again in both forms (`0x00377130`,
-`0x00377100`) and the depth, and for a bit-5 flare sets the light direction from `0x02AEEAD0` with w 1.0
-(`0x00377160`) and clears flag bit 2. When the projection fails, a bit-5 flare sets flag bit 2 instead.
-A bit-5 flare also passes its screen position, `(x − 1792) / 512` and `(y − 1824) / 448`, to
+`0x00377100`) and the depth, and for a bit `0x20` flare sets the light direction from `0x02AEEAD0` with w 1.0
+(`0x00377160`) and clears flag bit 2. When the projection fails, a bit `0x20` flare sets flag bit 2 instead.
+A bit `0x20` flare also passes its screen position, `(x − 1792) / 512` and `(y − 1824) / 448`, to
 `0x00182830`, which stores it at render-parameter block `+0x36C` and `+0x370` (`0x00194470`);
 `0x0018EEE0` copies the pair into the post-process command at `+0x44` and `+0x48` (`0x0018F3F5`).
 
