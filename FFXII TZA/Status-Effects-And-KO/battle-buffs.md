@@ -64,12 +64,12 @@ Two paths set `+0x68` in shipped play:
 | `7` | order `0x4099` | with id 6, it parries at twice its Speed instead | `0x003884B3`-`0x003884D8` |
 | `11` | order `0x409D` | the holder's attacks deal ×1.5 at full HP (×1.4 off the party side) | `0x0038BC54`-`0x0038BCA3`; constants `0x00901B3C`, `0x00901B38` |
 | `16` | order `0x40A2` | weather and terrain do not scale elemental damage to or from the holder | `0x0038B226`-`0x0038B23D` |
-| `18` | order `0x40A4` | the holder's attacks always hit | `0x00388F2A`-`0x00388F37` |
+| `18` | order `0x40A4` | Saboteur: calculator slot 21 starts the holder's hit chance at 100 instead of row `+0x12` less the target's Vitality plus the holder's Magick Power. Slot 21 is in recipes 3, 8, 9, 10, 12, 14, 15, 68 and 72 ([Formula recipes](../Damage-And-Battle-Formulas/formula-recipes.md)); the weapon recipe 20 does not run it. The later slots still act on the chance: in recipe 3, slot 31 halves it against a target with Shell (`0x00389230`-`0x0038924F`), and slot 40 then misses on a draw of `MT19937 % 100` at or above it (`0x00389674`-`0x003896A0`) | `0x00388F2A`-`0x00388F37`, `0x00388F8C`-`0x00388FA1` |
 | `31` | order `0x40B1` | the target's Reflect does not bounce the holder's magick | `0x00390DFA`-`0x00390E39` |
 | `48` | Greater Barrier | damage to the holder is cut to 70 %, except from `0xB3` | `0x00390F8B`-`0x00390FC3` |
 | `49` | Battle Cry | the holder's damage ×1.2 | `0x0038F89B`-`0x0038F8B8`; constant `0x008FCC90` |
 | `50` | Saber | the holder's damage ×2 | `0x0038F8BE`-`0x0038F8D0` |
-| `51` | Mana Spring, Unleash | the holder's actions cost nothing | `0x002F97A3`-`0x002F97E0` |
+| `51` | Mana Spring, Unleash | the cost `0x002F95D0` gives the holder is 0 once its two earlier routes are passed: a party record's Quickenings (`0xD0`-`0xE1`) and Esper summons (`0x106`-`0x112`) keep the row cost (`0x002F9640`-`0x002F9667`, `0x002F9806`), and a holder with augment 32 gets the gil cost `10 * trunc(cost * 64 / 50)` (`0x002F9674`-`0x002F9682`, `0x002F97E4`-`0x002F9802`), 120 gil for a cost of 10 ([MP gain and cost](mp.md)) | `0x002F97A3`-`0x002F97E0` |
 | `52` | Shift | the holder's weakness moves to a random element, and again on each hit on it | `0x00386B0C`, `0x0038B78D`, `0x0038C1ED` |
 | `53` | Enrage, Limit Break | Attack and orders charge instantly | `0x002F85A6`-`0x002F888A` |
 | `54` | Chain Magick, Limit Break, Unleash | actions with row `+0x0C` bit 13 charge instantly | `0x002F8627`-`0x002F862D` |
@@ -88,9 +88,25 @@ byte `+6`; a byte above 7 means no timer (`0x0030EA9D`-`0x0030EAB9`). A negative
 row `+4` × 30 × frame base. Only ids 55, 56 and 57 have a slot, 3, 4 and 5, with `+4` = 120: 3,600 steps, two
 minutes at one step per frame.
 
-Each periodic step `0x00385570` counts every timed id held in either layer down by one; at 0 it puts the id in the
-result's clear list, and the result applier clears it (`0x003855CD`-`0x00385645`,
-[Status timers](status-timers.md)). The messages are:
+Each periodic step `0x00385570` walks the ids held in either layer whose row byte `+6` is not `0xFF`
+(`0x003855CD`-`0x00385623`, [Status timers](status-timers.md)) and reads the slot's timer as a signed 16-bit value:
+
+- A timer of 0 or below is left alone (`0x0038562E`-`0x00385631`).
+- A positive one loses 1 into the result's timer words `+0x42`, which the result applier copies back to `+0x17C`
+  (`0x00385636`-`0x00385645`, `0x00311824`).
+- The step that takes it from 1 to 0 also puts the id in the result's clear list `+0x3E` (`0x0038563C`); a timer
+  already at 0 queues nothing.
+
+The applier clears each listed id with `0x0030E130` in mode 0 and timer 0 (`0x003117E4`-`0x00311807`), and mode 0
+clears `+0x68` only (`0x0030E23E`-`0x0030E24E`):
+
+- held in `+0x68` only: the id goes, and the fall message below posts;
+- held in both layers: the `+0x68` bit goes, the id stays in effect through `+0x78`, and the function returns
+  before the message (`0x0030E269`-`0x0030E280`);
+- held in `+0x78` only: mode 0 finds no `+0x68` bit and returns at once (`0x0030E23E`-`0x0030E244`); the id stays in
+  effect with its timer at 0.
+
+The messages are:
 
 | Id | Rises | Falls |
 |---:|---|---|

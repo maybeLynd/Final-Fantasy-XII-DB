@@ -92,11 +92,17 @@ Modes 0 and 3 then write the status's duration `+0xBC[s]` and beat `+0x13C[s]` (
 negative argument takes the default: the duration from `0x00387730`, the beat from `0x003876D0`
 ([Status timers](status-timers.md)).
 
-### Nothing happens unless presence changes
+### What an unchanged presence skips
 
 A status is present when either `+0x64` or `+0x3C` holds it. When presence is the same after the write as before,
-the function returns there (`0x0030E5B7`-`0x0030E5CB`). So adding a status to one word while the other already holds
-it, or removing it from one word while the other still holds it, changes the bit and nothing else.
+the function returns there (`0x0030E5B7`-`0x0030E5CB`), before the result record, the cancelled statuses, the
+reaction, the message, the arm and the rebuild below.
+
+The bit change and, in modes 0 and 3, the duration and beat stores (`0x0030E594`, `0x0030E5AF`) come before that test
+and stay made. So adding a status with mode 3 while `+0x3C`
+already holds it restarts its duration and beat, and removing it from `+0x64` with mode 0 while `+0x3C` still
+holds it writes the duration and beat it is given, 0 and 0 from `0x0030E990` (`0x0030E998`-`0x0030E9A4`). In modes 1, 2,
+4 and 5 such a change moves the bit alone.
 
 ### What a change does
 

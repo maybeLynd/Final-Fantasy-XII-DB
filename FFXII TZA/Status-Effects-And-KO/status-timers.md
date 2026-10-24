@@ -77,8 +77,10 @@ at 0, it loses it (`0x00386F78`-`0x00386FF3`).
 
 ### Buff timers
 
-`0x00385570` counts down the buff timers at `+0x17C` by one each step, and clears a buff whose timer reaches 0
-([Battle buffs](battle-buffs.md); `0x003855CD`-`0x00385645`).
+`0x00385570` counts down the buff timers at `+0x17C` ([Battle buffs](battle-buffs.md); `0x003855CD`-`0x00385645`).
+It reads each timer as a signed 16-bit value and leaves one at 0 or below alone (`0x0038562E`-`0x00385631`); a
+positive one loses 1, and the step that takes it from 1 to 0 queues the buff for removal from the battle layer
+`+0x68` (`0x00385636`-`0x0038563C`). A buff that gear or a licence also holds in `+0x78` stays in effect.
 
 ### Area drains
 
@@ -101,8 +103,32 @@ multiple of 10 × frame base:
    (`0x002F8E70`) and nobody committed against it (`+0xEA8`).
 2. A counter, word `+0x14` of its 64-byte record, rises by one each step; any failed test resets it to 0
    (`0x00386A27`, `0x00386A2C`).
-3. Every 30 × frame base steps it heals a share of its maximum HP: nothing for the first 10 such points,
-   1 % up to 30, 2 % up to 50, and 5 % from then on (`0x003869A2`-`0x00386A23`).
+3. Every 30 × frame base steps, starting with the counter at 0, it stores a share of its maximum HP as the
+   result's HP change: 0 % for the first 10 such points, 1 % up to 30, 2 % up to 50, and 5 % from then on
+   (`0x003869A2`-`0x00386A23`). The 0 % points still store, a change of 0 (`0x003869B2`, `0x00386A23`).
+
+### How the stages share the HP change
+
+The result's `+0x24` is the HP change, and bit 8 of its `+0x2C` sends it to the HP write: the applier adds it
+with `0x00300530`, or sets HP to it with `0x00300520` when bit 3 is also set (`0x00311608`-`0x00311668`). The reset
+leaves `+0x24` at 0 (`0x003848F5`). The stages then write it in order:
+
+| Stage | What it does to `+0x24` | Sites |
+|---|---|---|
+| Status countdown | adds: Poison its loss, Sap −1, Regen its heal, each setting bit 8; Doom's last step instead stores 0 and sets bits 8 and 3 | `0x00386D3A`, `0x00386D96`, `0x00386DF2`, `0x00386E1A`, `0x00386E2C`; `0x00386EFF`-`0x00386F06` |
+| Buff timers | leaves `+0x24` and `+0x2C` as they are | `0x00385570`-`0x00385675` |
+| HP area drain | on a drain point sets bit 8 and replaces it with the loss, −1 or −(the amount above) | `0x00385D03`, `0x00385D33`, `0x00385D62` |
+| Out-of-combat healing | on a healing point replaces it with the share; a share above 0 sets bit 8, a share of 0 leaves bit 8 as it was | `0x003869E3`, `0x00386A23` |
+
+The last stage that writes decides the change. For a unit of max HP 1,600 with a Poison beat of −100: with the
+HP area drain on the same step the change is −16; on one of an enemy's first 10 healing points it is 0, bit 8
+still set by Poison; on a 1 % point it is +16; on a step with neither, −100.
+
+Every store the four stages make to
+`+0x2C` is an `or` (`0x00386D20`, `0x00386D3D`, `0x00386D8F`, `0x00386D9B`, `0x00386EFF`, `0x00385D03`, `0x00385D9D`,
+`0x003869E3`), so after Doom's last step a later drain or heal value is set as the HP.
+The HP Critical test reads `+0x24` at the end of the countdown (`0x00386F78`-`0x00386F91`), before the two later
+stages write it.
 
 ### After the first apply
 
