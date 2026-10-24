@@ -415,6 +415,24 @@ lines as key and value) and registers its teardown `0x008B1B10`. An id found as 
 its value; the result is hashed and looked up in the registry (`0x00674F60`) under the same lock.
 `0x0063B040`, which works through a cluster's `PAssetReferenceImport` lists, and `0x00677CE0` call it.
 
+The map is a guarded local static of `0x00676BD0` at `0x02D3ECA8` (guard `0x02D3ECE0`, `_Init_thread_header` at
+`0x00676C44`), laid out like the thread-name map of [runtime services](../Compiler-And-C-Runtime/runtime-services.md):
+
+- `+0x08`, `0x02D3ECB0`, and `+0x10`, `0x02D3ECB8`: the anchor's two links, both set to the anchor.
+- `+0x18`, `0x02D3ECC0`: the root, set to 0.
+- `+0x20`: the colour byte, set to 0.
+- `+0x28`: the count, set to 0.
+- `+0x30`, `0x02D3ECD8`: the plain EASTL allocator vtable `0x008F6500`.
+
+The byte `0x02D3ECA0` records that `idmaps.txt` has been loaded (`0x00676CA2`-`0x00676CAA`). The search walks from the
+root and treats the anchor as "not found":
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02D3ECB0` | `void*` | 0 (zero-filled tail of `.data`) | the map anchor's first link, which the constructor points at the anchor itself | `0x00676BD0` (`0x00676C69`); the tree code through the map's address (`0x00676CB1` to `0x00677030`, which hands it to `0x00675580`); those instructions are not yet located | `0x00676BD0` forms its address as the search's end (`0x00676C28`, `0x00676D85`); the tree code, as for its stores |
+| `0x02D3ECC0` | `void*` | 0 (zero-filled tail of `.data`) | the map's root node, 0 while empty | `0x00676BD0`, 0 (`0x00676C77`); the tree code, as for `0x02D3ECB0` | `0x00676BD0` (`0x00676CF9`), where the search starts; the teardown `0x008B1B10` (`0x008B1B1D`), which hands it to `0x001A49C0` |
+| `0x02D3ECD8` | `void*` | 0 (zero-filled tail of `.data`) | the map's allocator, the plain vtable `0x008F6500` | `0x00676BD0` (`0x00676C62`) | not yet located: the node allocation in the tree code reaches it through the map's address |
+
 The map is a tree of `std::string` pairs: `0x00675580` returns the value for a key, inserting an empty
 one when the key is missing; `0x00677AD0` finds the first node not below a key; `0x00675300` copies a
 pair and `0x00675440` destroys one.

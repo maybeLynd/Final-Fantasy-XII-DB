@@ -111,6 +111,17 @@ The game code that uses it is `0x0020A800`, called from `0x0020AC30`. It compile
 against it (`0x00203790`), so it tests whether a path has the form `…\plan_master\<name>\event\…`. The
 regex routines that only this use reaches are listed in [`msvc-containers-stl-regex-char.tsv`](msvc-containers-stl-regex-char.tsv).
 
+`0x0020A800` reaches the regex traits' `std::collate<char>` through `0x00203E60` (`0x0020A849`), the library's `use_facet`.
+1. Under the lock `_Lockit` it keeps the cached facet in a local.
+2. It looks the facet's id `collate<char>::id` (import `0x008C2580`) up in the locale and then in the global locale.
+3. When neither has the facet it returns the cached one. When there is none, `0x00207FB0` builds it (vtable `0x00905888`,
+   `std::collate<char>`), or `bad cast` is thrown (`0x00203F05`-`0x00203F29`).
+4. A new facet is cached, its reference is taken (`[vtable + 8]`) and it is registered with `0x00808850`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F83430` | `void*` | 0 (zero-filled tail of `.data`) | the cached `std::collate<char>` facet of `0x00203E60` | `0x00203E60` (`0x00203F34`, the facet `0x00207FB0` built) | `0x00203E60` (`0x00203E87`) |
+
 The rest of the instantiation, 92 bodies between `0x002031A0` and `0x0020B000`, is listed in
 [`msvc-containers-stl-regex-char-members.tsv`](msvc-containers-stl-regex-char-members.tsv) with one function that refers to each. All but four
 are called only from `0x0020A800` and the routines of the first list. The node destructors `0x002043A0`

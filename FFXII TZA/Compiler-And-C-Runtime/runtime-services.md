@@ -123,6 +123,16 @@ The game's own threads are made by the start-up step `0x00368ED0`, which keeps `
 - `0x003691B0(n)` releases the semaphore `[0x022CFEEC + 4 x n]` (`0x00863800`) for `0x0035E760`, `0x0035EA40` and
   `0x0035EB70`.
 
+`0x00368C80`, after it creates the worker, and `0x00369080`, which `0x00369170` calls (`0x00369174`) before it waits on the
+semaphore `0x022D7F90`, both take a worker index from `0x022D7FB4` and store 0 there. When the index they took is not 0,
+they wait for the job word `0x022D7F70`, give that worker's thread (`0x022CFEF4 + 4 x n`) priority `0x24` and worker 0's
+thread priority `0x22` (`0x00863520`). Every store that names `0x022D7FB4` writes 0, so the index they take is 0 and
+both skip that step.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022D7FB4` | `i32` | 0 (zero-filled tail of `.data`) | the worker whose thread priority the next hand-over resets; 0 throughout | `0x00368C80`, 0 (`0x00368CAD`, `0x00368D65`, `0x00368D7B`); `0x00369080`, 0 (`0x0036908D`, `0x003690A8`) | `0x00368C80` (`0x00368D58`, `0x00368D98`); `0x00369080` (`0x00369084`, `0x003690C5`); each sign-extends it |
+
 ### The PhyreEngine lock
 
 The PhyreEngine layer builds its lock from a Win32 event and two counters, in a `0x28`-byte record

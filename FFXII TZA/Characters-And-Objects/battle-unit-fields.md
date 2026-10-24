@@ -205,6 +205,23 @@ The unit bytes between the named fields, by range. The locomotion block at `+0x8
 | `+0xEAA` | `u8[2]` | span0EAA | the two bytes after the slot index +0xEA9, before +0xEAC; zeroed with the slot by 0x00234480 (0x002344D2) |
 | `+0xEB4` | `u8[156]` | tail0EB4 | the bytes from +0xEB4 to the end of the 0xF50-byte unit; 0x0031AD90 returns the address +0xED0 inside them (0x0031AD92); zeroed with the slot by 0x00234480 (0x002344D2) |
 
+### The action snapshot slots
+
+The saved block at `[+0xB88]` is one of 8 slots of `0x4F0` bytes at `0x022BEFC0`; the byte `0x022BEFB0` marks the slots in
+use, one bit per slot.
+
+The engage auto-attack `0x00312FA0` calls `0x0030EFF0(unit)` (`0x0031307B`). Unless flag bit 24 is
+set, or the action id `+0x714` is at most `0x21E` with `+0x6B4` at 6 or more, it takes a free slot from `0x0030DFA0`
+(`0x0030F02A`), copies the action state `+0x6B0`-`+0xB9F` into it, clears the action state and stores the slot at
+`+0xB88` (`0x0030F0F1`). With all 8 slots taken, `0x0030DFA0` returns 0 and nothing is saved.
+
+The next-action selector's
+`0x00308270` calls `0x0030EDA0` (`0x003082C6`), which copies the slot back and frees its bit.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022BEFB0` | `u8` | 0 (zero-filled tail of `.data`) | the slots in use: bit n set while slot n (`0x022BEFC0 + 0x4F0 x n`) holds a unit's suspended action state | `0x0030DFA0`, the free slot's bit on (`0x0030DFF7`, `bts`; address formed at `0x0030DFA2`); `0x0030EDA0`, the restored slot's bit off (`0x0030EE97`, `btr`; address formed at `0x0030EE82`); `0x0030E010`, all 8 bits off (`0x0030E04C`), from the area initialisation `0x002342F0` (`0x0023439C`) | `0x0030DFA0` (`0x0030DFD2`, `0x0030DFEE`); `0x0030EDA0` (`0x0030EE8C`); `0x0030E010` (`0x0030E010`) |
+
 ## Related
 
 - [Battle units](battle-units.md): the pool, the bind and the flag word.

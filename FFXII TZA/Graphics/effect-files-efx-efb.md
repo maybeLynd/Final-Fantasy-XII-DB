@@ -385,6 +385,14 @@ context's byte `+2` (`0x0026FD00`–`0x0026FD26`).
 It then publishes the rows: `0x02F8F228` points past the last blob, `0x02F8F23A` holds the row count
 and `0x02F8F238` is set (`0x0026FD3A`–`0x0026FD56`); it returns 1.
 
+The loader also copies the low byte of the file's `u16` blob count `+0x08` into `0x02F8F239` (`0x0026FD3A`-`0x0026FD3E`)
+and stores 0 in `0x02F8F220` (`0x0026FD5D`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02F8F220` | `u32` | 0 (zero-filled tail of `.data`) | a word of the bank's state that every store sets to 0 | the bank reset `0x0026F9F0` (`0x0026F9F9`); `0x0026FB90` (`0x0026FD5D`, from `r15d`, zeroed at `0x0026FBAB` and not written after) | not yet located: the bases that `0x0026FFA0` (`0x0026FFA8`) and `0x002700F0` (`0x002700F8`) form at this address reach only the channel bytes from `+0x1C`, `0x02F8F23C` |
+| `0x02F8F239` | `u8` | 0 (zero-filled tail of `.data`) | the low byte of the loaded file's blob count | `0x0026FB90` (`0x0026FD3E`); cleared by the 4-byte stores at `0x02F8F238`: `0x0026F9F0` (`0x0026FA02`), `0x0026FB90` before a reload (`0x0026FBC0`) and the bank disposal `0x0026FF50` (`0x0026FF69`) | not yet located: every located read of `0x02F8F238` is a 1-byte compare (`0x0026F9D0`, `0x0026FA99`, `0x0026FAED`, `0x0026FBAE`, `0x0026FE6B`, `0x0026FF54`, `0x0027016B`) |
+
 ### The rows
 
 `0x0026FAD0(channel, slot, …)` does nothing until a bank is loaded, or when an instance for the

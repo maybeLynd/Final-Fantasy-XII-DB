@@ -25,6 +25,15 @@ The loader is the `0xC8`-byte task at `0x02CA8A78` with procedure `0x0053EB90` t
 | `+0xC0` | `u32` | logoLoaded | set to 1 by message 16 (a resource batch has loaded), the logo picture sf_logo_c.tm2 the construct message requested (`0x0053EBCF`); each tick (message 2) waits until the six font slots 7-12 are ready (`0x003657E0`), texts `0x19` and `0x1A` are resident (`0x002F8040`) and this is set (`0x0053EC2B`), then clears the task pointer `0x02CA8A78` and releases itself (`0x0053EC3A`, `0x0053EC41`), which lets the fsroll_initialize poll go on |
 | `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
 
+The logo picture outlives the loader. The loader's message 1 requests `sf_logo_c` (`0x00D22E80`) through `0x002493D0`
+when `0x02CA8A88` is still 0 (`0x0053ECA6`-`0x0053ECE7`). Command 6 of `0x0053F0D0` puts the picture in the next line of the
+roll's table, with line kind 3 (`0x0053F1EA`-`0x0053F209`). The finaliser task `0x0053EEA0`, on its message 1, releases the
+picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053EF32`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA8A88` | `void*` | 0 (zero-filled tail of `.data`) | the staff roll's logo picture | `0x0053EB90` (`0x0053ECE7`); `0x0053EEA0`, 0 (`0x0053EF32`) | `0x0053EB90` (`0x0053ECA6`); `0x0053EEA0` (`0x0053EF15`); `0x0053F0D0` (`0x0053F1EA`) |
+
 ## Columns
 
 | Column | Meaning |
@@ -142,6 +151,25 @@ The puppet binds are a pool of 32 records of `0x48` bytes from `0x02B5E120`: `0x
 `0x00266D10`, links them into the free list; `0x003EB500`, run by the area unload `0x002628B0`, releases every bound
 one and `0x003EB5F0(v)` those whose byte `+0x41` is v. `0x00265F90(binding)` resets a binding: render
 index -1, the three floats at `+0x14`-`+0x1C` to -1.0 and the default flags.
+
+The field signs are 8 slots in four arrays: a text pointer at `0x02B59C40 + 8 x n`, a second pointer at
+`0x02B59C80 + 8 x n`, the live word at `0x02B59CC0 + 4 x n` and the first argument at `0x02B59CE0 + 4 x n`.
+`0x003DF760(a, n, live, text, second)` fills slot n (`0x003DF76F`-`0x003DF787`), and `0x003DF5B0` zeroes every slot
+(`0x003DF5BC`-`0x003DF65D`). `0x003DF810` passes the highest live slot to `0x0029CAB0`, a jump to `0x002900C0`, or clears the
+sign when no slot is live. The 12 callers of `0x003DF760` pass slots 1 to 7:
+
+- 1 and 2: the contact passes `0x0025C230` and `0x0025C830`;
+- 3: the interaction pass `0x00268D10`;
+- 1 to 5: the clears in `0x00314020`;
+- 6 and 7: `setfieldsign`;
+- 4 and 5: `setfieldsignonce`;
+- 7: the area unload `0x002628B0`, a clear.
+
+No located caller passes slot 0, so slot 0 stays clear.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B59C40` | `void*` | 0 (zero-filled tail of `.data`) | slot 0's text pointer | `0x003DF5B0`, 0 (`0x003DF656`), from the area unload `0x002628B0` (`0x00262CE5`) and the jump at `0x003DF6E0`; `0x003DF760`, through the slot index (`0x003DF76F`), for slot 0 from no located caller | `0x003DF810` (`0x003DF895`, through the slot index), when slot 0 is the highest live slot; it passes the pointer to `0x0029CAB0` |
 
 ## Related
 

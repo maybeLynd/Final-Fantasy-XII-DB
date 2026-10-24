@@ -98,6 +98,15 @@ nothing reads `0x02CED884`.
 - For library 1, `0x00158DE0` instead resolves `nvapi_pepQueryInterface` into `0x02EAE0E8`, a path no
   caller takes.
 
+The hook pair is kept only when the pre-call hook exists and the post-call hook does not
+(`0x00158E57`-`0x00158E76`). So the post-call slot is 0 whenever the pair is kept, and the wrappers' post-call step
+never runs. Each wrapper tests each slot before it calls through it:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAE0F0` | `void*` | 0 (zero-filled tail of `.data`) | the NVAPI pre-call hook, interface `0x33C7358C` | `0x00158DE0`, the query's answer (`0x00158E4A`) and 0 when the pair is dropped (`0x00158E6F`) | `0x00158DE0` (`0x00158E57`); the wrappers `0x00158FE0` (`0x00159041`), `0x001590B0` (`0x00159111`), `0x00159180` (`0x001591F2`) and `0x00159270` (`0x001592D8`), which call it with the interface id and a cookie slot |
+| `0x02EAE0F8` | `void*` | 0 (zero-filled tail of `.data`) | the NVAPI post-call hook, interface `0x593E8644`; 0 whenever the pair is kept | `0x00158DE0`, the query's answer (`0x00158E5F`) and 0 when the pair is dropped (`0x00158E76`) | the wrappers `0x00158FE0` (`0x0015906C`), `0x001590B0` (`0x0015913C`), `0x00159180` (`0x0015922D`) and `0x00159270` (`0x00159305`), which would pass it the id, the cookie and the result |
+
 ### Calling NVAPI
 
 The four wrappers share one shape: they raise the in-call counter `0x02EAE128` (locked add), call

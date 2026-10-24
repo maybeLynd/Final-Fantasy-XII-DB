@@ -483,6 +483,16 @@ The teardown `0x00378230(releaseWorld)` frees every stored section, unbinds the 
 pictures and placements and resets the ambient colour; `0x003784A0` frees the block pack's world
 object, the loose effect bank and the two sound sections.
 
+The effect bank `0x003784A0` frees is the block at `0x02ADD0A0`. When the pointer is non-zero it disposes of the type-2
+effect contexts (`0x0026FF50`), frees the block (`0x003697F0`) and zeroes the pointer. The loose bank's two completions
+publish at `0x02ADD088`, not at `0x02ADD0A0`, and no store that puts a block in `0x02ADD0A0` is located yet. The split also
+zeroes the dword after the map number `0x02ADD078`:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02ADD07C` | `u32` | 0 (zero-filled tail of `.data`) | the dword after the map number `0x02ADD078`, zeroed when the block pack is split | `0x00378BC0`, 0 (`0x00378E2A`, `ebp` cleared at `0x00378C2C`) | not yet located: no RIP-relative, image-base-relative or disp32 reference reads it, and the dword read of `0x02ADD078` (`0x00377623`) stops before it |
+| `0x02ADD0A0` | `void*` | 0 (zero-filled tail of `.data`) | the effect-bank block `0x003784A0` frees | the loader reset `0x00377CC0`, 0 (`0x00377D48`); `0x003784A0`, 0 after the free (`0x003784ED`); a store of a block is not yet located | `0x003784A0` (`0x003784D3`, the test; `0x003784E1`, the block passed to `0x003697F0`) |
+
 The world objects go through two helpers. `0x0026EAC0`, called by `0x00378230` while a mode-1 `YM00` is
 current, releases the mode-1 object `0x0209A670`, runs `0x003ECF70` and clears the model block
 (`0x0026E640`); `0x0026EAF0`, called by `0x003784A0`, does the same and then releases the mode-0 object

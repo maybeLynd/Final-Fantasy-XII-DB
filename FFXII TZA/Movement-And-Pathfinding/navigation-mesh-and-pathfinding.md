@@ -217,6 +217,19 @@ Beside the mesh the area keeps a coarse grid, built once per area (`0x003924B0`,
 cell at `[0x02AEE0A8]` and a mask scratch at `[0x02AEE0B0]`. Each record is a bitset of 288 obstacle
 ids.
 
+`0x003924B0`, run by the area initialisation `0x002342F0` (`0x0023441E`), takes the grid's extent from `0x00383740`. That
+returns four floats: the low x and z from the dataset's words `+4` and `+6`, and the high x and z, the low value
+plus the product of bytes `+0` and `+2` (x) or `+1` and `+3` (z). The build stores them as two three-float corners, low at `0x02AEE070` and high at
+`0x02AEE080`. The middle float of each corner is copied from a stack dword that neither function writes
+(`[rsp + 0x24]`, `[rsp + 0x34]`). The queries read only the low x and z:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02AEE074` | `f32` | 0 (zero-filled tail of `.data`) | the low corner's middle float: the stack dword at `[rsp + 0x24]`, which nothing in the build sets | `0x003924B0` (`0x003925DB`) | not yet located: the corner's readers (`0x00391410`, `0x00391710`, `0x00391A30`, `0x00391D90`, `0x00392200`) read `0x02AEE070` and `0x02AEE078` as single floats |
+| `0x02AEE080` | `f32` | 0 (zero-filled tail of `.data`) | the grid's high x, from `0x00383740`'s third output | `0x003924B0` (`0x003925B1`) | not yet located, as for `0x02AEE074`; the build uses the value in a register for the column count (`0x00392565`) |
+| `0x02AEE084` | `f32` | 0 (zero-filled tail of `.data`) | the high corner's middle float: the stack dword at `[rsp + 0x34]`, which nothing in the build sets | `0x003924B0` (`0x003925F4`) | not yet located, as for `0x02AEE074` |
+| `0x02AEE088` | `f32` | 0 (zero-filled tail of `.data`) | the grid's high z, from `0x00383740`'s fourth output | `0x003924B0` (`0x003925C1`) | not yet located, as for `0x02AEE074`; the build uses the value in a register for the row count (`0x00392579`) |
+
 `0x00392740` refills it every field frame (`0x00234849` in `0x00234590`): it zeroes the count `0x02AEE0BC`,
 every record, every occupancy byte and the 128-slot actor list at `0x02AEE0C0`, then assigns ids:
 

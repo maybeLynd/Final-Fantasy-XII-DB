@@ -173,6 +173,14 @@ file exists and the flag `0x02B40E04` is set, the previous save is first copied 
 flag is then cleared); the temporary file is copied over the slot's file (`CopyFileW`), and on
 failure `sav_org` is copied back when one was made, else the slot file is removed.
 
+"When one was made" is a word that outlives the save. `0x00866200` loads it (`0x00866593`) and zeroes it only while
+`0x02B40E04` is set (`0x00866599`-`0x008665A9`); with the flag clear it keeps whatever an earlier save left there. So a
+failed copy after a save without the flag can restore the `sav_org` of an earlier save:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EB386C` | `i32` | 0 (zero-filled tail of `.data`) | non-zero when the `sav_org` copy succeeded | `0x00866200`: its old value, or 0 while `0x02B40E04` is set (`0x008665A9`); the `CopyFileW` result of the backup (`0x008665CD`) | `0x00866200`: `0x00866593`; `0x008665F3`, after a failed copy, to choose between copying `sav_org` back and removing the slot file |
+
 The two paths are the temp directory (`GetTempPathW`, 260 characters) joined with the wide names at `0x01CCFD70`
 and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name to the directory string
 (`0x00865FF0`) and moves the result into `out` (`0x008662C3`, `0x00866328`).

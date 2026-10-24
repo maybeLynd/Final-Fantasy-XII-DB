@@ -160,6 +160,15 @@ It reads the block handle from word `+0x30 + 4 × group` of a binding (`0x002E9F
 - Otherwise the id is the block's registry slot × 512 + variant, or -1 when the handle no longer matches
   its registry record (`0x003A1240`, called at `0x002E9FB2`).
 
+Before any of that, `0x002E9D90` returns -1, so no sound plays, unless both bytes `0x0215FD54` and `0x0215FD55` are set
+(`0x002E9DC5`-`0x002E9DD5`). The script binder `0x0026C8C0` sets both to 1 through `0x002EC590(1)` and `0x002EC5A0(1)`
+(`0x0026CA75`, `0x0026CA7F`). Those calls are their setters' only calls in the image, so the bytes stay 0 until the
+first script binding:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0215FD55` | `u8` | 0 (zero-filled tail of `.data`) | the second of the two gate bytes of the character sound player, 1 once a script has been bound | `0x002EC5A0` (`0x002EC5A0`, its argument), from `0x0026C8C0` (`0x0026CA7F`, 1) | `0x002E9D90` (`0x002E9DC5`) |
+
 ## Modding notes
 
 - Row n of `charseinfo_<letter>` is model `<letter>` number n; rows are found by position, so insert none

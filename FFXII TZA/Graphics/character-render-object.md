@@ -175,6 +175,31 @@ current GS command buffer (`0x005044B0`, closing a full block with `0x00504450`)
 At boot `0x00475310` (`0x0036F4FC`) fills part of that block: `+0xC4` 10.0, `+0xC8` 150.0, `+0xCC` 1.5, `+0xE0` 16.0,
 `+0xE4` and `+0xE8` 4.0, `+0xD4` 5, `+0xD8` `0x40`, and 0 in `+0xC0` and `+0xD0`.
 
+Those words from `+0xC0` are the focus pass's settings, a record at `0x02EBA4C0`. The focus verbs set four of them:
+`setfocusstatus` (`0x135`, `0x003542E0`) sets `+0xC0` through `0x003799C0`, `setfocuslength` (`0x130`, `0x00352DE0`)
+sets `+0xC4` through `0x003799D0`, `setfocusrange` (`0x131`, `0x00353240`) sets `+0xC8` through `0x003799F0`, and
+`setfocusshift` (`0x133`, `0x00353AA0`) sets `+0xCC` through `0x00379A00`.
+
+The area unload `0x002628B0` turns the pass off
+(`0x003799C0(0)`, `0x00262C16`). Each frame `0x00475390` (through the jump at `0x0036F440`) passes the record to the GS sprite
+builder `0x00474710` while `+0xC0` is non-zero and `+0xD0` is 0; `0x00474710` reads it through `r14`.
+
+The copy of the
+whole block in `0x004FDDA0` (`0x004FE100`-`0x004FE175`) carries every word into the GS buffer, and then overwrites
+`+0xE0`-`+0xE8` of the copy with the vector `0x02AEDF10` (`0x004FE1F5`-`0x004FE215`). So the boot values there reach no
+consumer that is located yet.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBA4B8` | `f32` | 0 (zero-filled tail of `.data`) | the third float of the vector `0x02AEDF10` that `0x004FDDA0` keeps, from the copy's `+0xE8` | `0x004FDDA0` (`0x004FE233`) | `0x0053AB50` (`0x0053C94F`), which adds it, times a scale, to the third float of a point; the next frame's block copy in `0x004FDDA0` |
+| `0x02EBA4C4` | `f32` | 0 (zero-filled tail of `.data`) | the focus length, 10.0 at boot | `0x00475310` (`0x00475322`); `0x003799D0` (`0x003799D0`), for `setfocuslength` | `0x00474710` (`0x0047486A`, `0x00474AC6`); the block copy in `0x004FDDA0` |
+| `0x02EBA4C8` | `f32` | 0 (zero-filled tail of `.data`) | the focus range, 150.0 at boot | `0x00475310` (`0x00475332`); `0x003799F0` (`0x003799F0`), for `setfocusrange` | `0x00474710` (`0x00474862`, `0x00474AC0`); the block copy in `0x004FDDA0` |
+| `0x02EBA4CC` | `f32` | 0 (zero-filled tail of `.data`) | the focus shift, 1.5 at boot | `0x00475310` (`0x00475342`); `0x00379A00` (`0x00379A00`), for `setfocusshift` | `0x00474710` (`0x00474857`, `0x0047509F`, `0x004750B6`); the block copy in `0x004FDDA0` |
+| `0x02EBA4D0` | `u32` | 0 (zero-filled tail of `.data`) | non-zero holds the focus pass back; only ever set to 0 | `0x00475310`, 0 (`0x00475358`) | `0x00475390` (`0x00475399`); the block copy in `0x004FDDA0` |
+| `0x02EBA4E0` | `f32` | 0 (zero-filled tail of `.data`) | 16.0 from boot | `0x00475310` (`0x0047534A`) | the block copy in `0x004FDDA0`, which then overwrites the copied word; another reader is not yet located |
+| `0x02EBA4E4` | `f32` | 0 (zero-filled tail of `.data`) | 4.0 from boot | `0x00475310` (`0x00475373`) | as for `0x02EBA4E0` |
+| `0x02EBA4E8` | `f32` | 0 (zero-filled tail of `.data`) | 4.0 from boot; the 8-byte store also zeroes `0x02EBA4EC` | `0x00475310` (`0x0047537D`) | as for `0x02EBA4E0` |
+
 `0x0041E4D0` draws them through `0x00477F20`: it sorts the instances with `+0x08` bit 0 set into a list by
 the sort key `+0x04` (head at bank `+0x60`, link `+0x02`, `0x004781E0`), then calls `0x00504700` for each
 whose skeleton entry passes the frame-state test. `0x00504700` calls `0x0053D780` once, or twice when

@@ -245,6 +245,28 @@ and -5 with result 7. Any other status goes to the command's handler:
 
 The result is kept at `0x02B40E18` (`0x003BB420` returns it) and the busy flag at `0x02B40E10` (`0x003BB430`).
 
+The handlers keep their own words beside the command:
+
+- Each handler is a switch on the step `0x02B40E14`; the worker's has 18 steps (`0x003BAEEE`-`0x003BAF1E`).
+- A file is described by `0x38`-byte descriptors from `0x02B40EC8`: the name at `+0x00`, the buffer at `+0x28`, the size
+  at `+0x30` and a start offset at `+0x34`. A positive offset is passed to `0x008625D0` before the read or write
+  (`0x003BA85B`-`0x003BA860`, `0x003BAB92`-`0x003BAB97`, `0x003BB039`-`0x003BB040`).
+- `0x003BB9B0` copies up to 5 descriptors; the worker walks them with an index against a count (`0x003BB166`-`0x003BB177`).
+- The write waits before it closes the file: it adds the frame time, at least 0.001 (`0x0017D270`, `0x003BB097`-`0x003BB0BB`),
+  until 1.0 has passed while `0x00583920` reports a save write, or 0.1 otherwise (`0x003BB0C7`-`0x003BB0E9`).
+- The device check counts its retries and gives up, with the busy flag clear, after the fifth (`0x003BADA0`-`0x003BADBC`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B40E14` | `i32` | 0 (zero-filled tail of `.data`) | the running command's step | 42 stores in the handlers, the starters and the poll: the worker `0x003BAEB0` at 11 sites (`0x003BAF36` to `0x003BB1BE`), `0x003BA7B0` at 8 (`0x003BA7DB` to `0x003BA930`), the poll `0x003BB790` at `0x003BB876`; `0x003BB440` stores 1 with the result 0 (`0x003BB49C`, an 8-byte store); the 8-byte busy stores at `0x02B40E10` (`0x003BB8EA`, `0x003BB996`, `0x003BBA36`) zero it | `0x003BA5F0` (`0x003BA5F4`), `0x003BA680` (`0x003BA684`), `0x003BA720` (`0x003BA724`), `0x003BA7B0` (`0x003BA7B4`), `0x003BA990` (`0x003BA9A2`), `0x003BAC90` (`0x003BAC96`), `0x003BAEB0` (`0x003BAEEE`) |
+| `0x02B40E24` | `i32` | 0 (zero-filled tail of `.data`) | the open file's handle | `0x003BA7B0` (`0x003BA853`), `0x003BA990` (`0x003BAB8A`), `0x003BAEB0` (`0x003BB02E`), each the non-negative result of the open | `0x003BA7B0` (`0x003BA8A8`, the read; `0x003BA8C6`, the close); `0x003BA990` (`0x003BAB9C`, `0x003BABB5`); `0x003BAEB0` (`0x003BB08F`, `0x003BB0EF`) |
+| `0x02B40E28` | `char[]` | 0 (zero-filled tail of `.data`) | the file name of command 8 | `0x003BB6A0`, the name copied up to its NUL (`0x003BB6B9`-`0x003BB6DE`); `0x003BB4C0`, an empty name (`0x003BB50E`) | as a path, through its address: `0x003BA720` to `0x003BA3E0` (`0x003BA735`); `0x003BA7B0` to `0x008620D0` (`0x003BA7F7`); `0x003BAEB0` to `0x008620D0` (`0x003BAF4F`, `0x003BAF8B`) |
+| `0x02B40EC0` | `i32` | 0 (zero-filled tail of `.data`) | the device check's retry count | `0x003BAC90`, 0 (`0x003BAD5C`) and 1 more (`0x003BADA8`); 0 at 15 other sites in the handlers and starters (`0x003BA66C` to `0x003BBA2F`) | `0x003BAC90` (`0x003BADA0`), which gives up above 4 |
+| `0x02B40EFC` | `i32` | 0 (zero-filled tail of `.data`) | descriptor 0's start offset (`+0x34`) | `0x003BB440` (`0x003BB470`) and `0x003BB920` (`0x003BB973`), their second argument; `0x003BB4C0`, 0 (`0x003BB527`) | `0x003BA7B0` (`0x003BA84D`); `0x003BA990` (`0x003BAB82`) |
+| `0x02B40FE0` | `i32` | 0 (zero-filled tail of `.data`) | the number of descriptors | `0x003BB920`, 1 (`0x003BB981`, an 8-byte store that also zeroes the index); `0x003BB9B0`, its count (`0x003BB9D3`); `0x003BB4C0`, 0 (`0x003BB53B`) | `0x003BB9B0` (`0x003BBA1B`, its copy loop); `0x003BAEB0` (`0x003BB169`) |
+| `0x02B40FE4` | `i32` | 0 (zero-filled tail of `.data`) | the descriptor the worker is on | `0x003BAEB0`, 1 more (`0x003BB170`); 0 from `0x003BB9B0` (`0x003BBA48`) and the other starters (`0x003BB2D2` to `0x003BB77A`, 9 sites); `0x003BB920`, with the count (`0x003BB981`) | `0x003BAEB0` (`0x003BAEBA`), which picks the descriptor `0x02B40EC8 + 0x38 x index` |
+| `0x02B4112C` | `f32` | 0 (zero-filled tail of `.data`) | the time the write has waited before its close | `0x003BAEB0`: 0 (`0x003BB074`, `0x003BB0F8`), and the frame time added (`0x003BB0BB`) | `0x003BAEB0` (`0x003BB0AB`, `0x003BB0E2`) |
+
 ### The slot scan
 
 `0x0057F6B0` queues kind 1 with the callback `0x0057F630`, then kind `0xA` with the pattern `FFXII_*`, the
@@ -341,6 +363,14 @@ capacity):
 - Close (`0x00866200`) writes the vector as a new container to a temporary file and copies it over the
   slot file (see the format page). Every written file is a replaced copy, never written in place;
   step 8's 8-byte write loads the file step 7 wrote, patches its first 8 bytes and rewrites it.
+
+The stream calls keep one open file. Each acts only for handle 0 (`test ecx, ecx` at the head of each) and works on
+the object at `0x02EAF8E8`. The opener `0x008624D0` first closes a file still open, writing it out through `0x00866200`
+(`0x00862508`), and then keeps the new one:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EAF8E8` | `void*` | 0 (zero-filled tail of `.data`) | the open file's byte-vector object from `0x008666B0` | `0x008624D0`, 0 after closing the old file (`0x0086250D`) and the new object (`0x00862548`); the closer `0x008620E0`, 0 (`0x008620FB`) | `0x008624D0` (`0x008624F4`); `0x008620E0` (`0x008620E8`), which passes it to `0x00866200`; the read `0x00862590` (`0x0086259D`), the seek `0x008625D0` (`0x008625D8`) and the write `0x00862620` (`0x0086262D`) |
 
 ### The autosave on an area change
 

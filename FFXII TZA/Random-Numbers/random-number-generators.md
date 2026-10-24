@@ -173,6 +173,15 @@ u = (w & 0x7FFFFFFF) * 2^-31;             # 0x0074C0C8-0x0074C0D1
 The arithmetic shift makes this differ from the reference xorshift128 whenever `t` has its top bit
 set. The counter and the kernels (`0x02EA24A0`) are referenced only from this routine.
 
+The kernels are six sets of `0x400` bytes, one for each grid side from 3 to 8 (`0x02EA24A0 + 0x400 x (side - 3)`,
+`0x0074BF8B`-`0x0074BF8F`), the side being the square root of the sample count. The first run builds all six and then
+sets a byte (`0x0074BF10`-`0x0074BF20`, `0x0074C286`). Later runs rebuild only the set for the current side, and only while
+the effect's byte `+0x1F8` is set (`0x0074BEFC`-`0x0074BF0E`). So each later rebuild draws again from the counter.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EA3CA4` | `u8` | 0 (zero-filled tail of `.data`) | 1 once all six kernel sets have been built | `0x0074BDE0`, 1 (`0x0074C286`) | `0x0074BDE0` (`0x0074BEE0`) |
+
 ## Layouts
 
 `Mt19937State` (`0x9C8` bytes, offsets from the start of the record):

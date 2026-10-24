@@ -394,6 +394,20 @@ ready and the lane loaded; its result `0x0050D810` binds the stored pointer and 
 `charcachedisposeall` calls both with −1, which clears the whole holder word of every live entry and
 the manager's group word in every idle lane record.
 
+`lock_charmotion_once` (`0x011C`) keeps an area's models through its next release, once. Its handler `0x0034D350` is
+`mov ecx, 1` and a jump to `0x0026AF70`, a seven-byte store that the function list does not hold. Three release paths
+read the byte. While it is 0 each calls `0x002E4000` and `0x002E3E20` for the manager; while it is 1 they skip
+both, so the manager's holds on its models survive:
+
+- the definition-payload arm `0x0025AFC0`, for manager 0 only, then clears the byte;
+- the field-runtime record step `0x00261F90`, which leaves it;
+- the manager unload `0x002628B0`. That read is dead, because the unload first calls `0x005C5230`, which returns 0, and on
+  that 0 stores 0 into the byte before the test.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02099DA0` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot model hold: 1 skips the two model releases at the next release that reads it | `0x0026AF70`, 1 (`0x0026AF70`, from `0x0034D350`); `0x0025AFC0`, 0 (`0x0025B02F`); `0x002628B0`, 0 (`0x00262D4B`, `0x00262D8F`, `bpl` 0); the start-up reset `0x00266D10`, 0 (`0x00266DF7`, `esi` cleared at `0x00266D3E`) | `0x0025AFC0` (`0x0025AFFB`); `0x00261F90` (`0x00261FDA`); `0x002628B0` (`0x00262D63`) |
+
 `0x0037B4D0`, the party member rebuild, is the fifth caller of the bind. The resolver `0x002E97C0` has
 20 call sites in 11 functions; the bind `0x002E28E0` has five callers: `0x003409F0`, `0x00342640`,
 `0x00355210`, `0x0050D810` and `0x0037B4D0`.

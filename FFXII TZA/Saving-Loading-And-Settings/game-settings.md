@@ -351,6 +351,18 @@ bytes) and copies its bytes into the globals listed in the layout below.
 | `0x01E0C2A0` / `0x01E0C2A4` | `u16` | confirm and cancel masks | `0x0022A4F0`, boot mode 0 |
 | `0x02B62DA8`-`0x02B62DC1` | bytes | the FF12CONFIG block | `0x00408BA0`, `0x00408C30` |
 
+`0x002DDE60` builds the options template in a `0x28`-byte staging copy at `0x0215E6E8` and does not write it into the
+record directly. It copies the `.rdata` template `0x00917268`-`0x0091728F` into the copy (`0x002DDE6F`-`0x002DDE9F`). It sets
+bit 17 of dword 0 to `0x005C5230() == 2` (`0x002DDEB2`-`0x002DDEC5`), which is always 0 because that stub returns 0. Then
+it copies the staging copy into the record at `[0x0215E6E0]` (`0x002DDECB`-`0x002DDEEF`), and the patches after that go to
+the record:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0215E6E8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 0-3 of the staging copy: `0x35` with bit 17 clear, `0x00620400`, 0 and `0x00010000` | `0x002DDE60` (`0x002DDE88`, 16 bytes; `0x002DDEC5`, dword 0) | `0x002DDE60` (`0x002DDEB2`, dword 0; `0x002DDECB`, 16 bytes) |
+| `0x0215E6F8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 4-7 of the staging copy, all 0 in the template | `0x002DDE60` (`0x002DDE9F`) | `0x002DDE60` (`0x002DDEDC`) |
+| `0x0215E708` | `u64` | 0 (zero-filled tail of `.data`) | the last 8 bytes of the staging copy, 0 in the template | `0x002DDE60` (`0x002DDE97`) | `0x002DDE60` (`0x002DDEE7`) |
+
 ## Modding notes
 
 - Values in GameSetting.ini are matched by name, case-insensitively; a numeric value is accepted

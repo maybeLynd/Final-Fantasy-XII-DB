@@ -496,6 +496,11 @@ The record bytes between the fields the store names, by range; `+0x411` and `+0x
 
 - The record array, the tail and the four banks live for the whole run; nothing frees them.
 
+- `0x02EBB740` (`ptr`) and `0x02EBB748` (`u32`), both 0 at start (zero-filled tail of `.data`): the simulation step
+  `0x00426090` (`0x004260D1`, `0x004260D8`) and the frame end `0x0042ED60` (`0x0042ED6D`, `0x0042ED74`) copy the record array's
+  base `[0x022C6F28]` into `0x02EBB740` and store 0 in `0x02EBB748` before their dirty-word walks `0x00427DE0`. A reader of
+  either word is not yet located: no RIP-relative, image-base-relative or address-forming reference names them.
+
 ## Modding notes
 
 - The pool size is the allocation size `0x48930` in `0x003325D0`; the tail is addressed at fixed offsets

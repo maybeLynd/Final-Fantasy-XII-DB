@@ -172,6 +172,14 @@ four synthetic calls.
 The party block's three maps and leader byte, the roster pointer array, busy bit 19, and the
 per-actor bytes the setters write.
 
+The roster pointer array `0x0209A1F0` holds four actor pointers, eight bytes each. `0x00269C70(actor, slot)` empties the
+actor's old slot (`+0x12`) and stores the actor in the new one. The world and field resets clear the whole array with
+two 16-byte stores of 0, and the second store covers slots 2 and 3:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209A200` | `ptr[2]` | 0 (zero-filled tail of `.data`) | roster slots 2 and 3: the live actors of the third and fourth party members | `0x00269C70` (`0x00269CC8`, 0 for the old slot; `0x00269CE1`, the actor), from `0x002681C0`, `0x003261D0`, `0x003273D0` and `0x0050C610`; 0 from `0x0025BFB0` (`0x0025C01F`), `0x002695A0` (`0x002695B7`) and `0x0026DB30` (`0x0026DB5A`) | by slot from the array's start, which `0x0025B2E0` (`0x0025B2FC`), `0x0025C230` (`0x0025C39B`), `0x0025C830` (`0x0025CC56`), `0x0025D9E0` (`0x0025DC4D`), `0x00263560` (`0x002635A1`), the getters `0x00263750` (`0x00263758`), `0x00263770` (`0x00263780`) and `0x002637B0` (`0x002637B8`), `0x00268530` (`0x00268545`), `0x00268690` (`0x002686BB`), `0x00269530` (`0x00269541`), `0x00269C70` (`0x00269C82`), `0x0026C3E0` (`0x0026C41B`) and `0x0026C5D0` (`0x0026C5E5`) form |
+
 ## Modding notes
 
 - `setbattlemember` is all-or-nothing on availability, on the lock and on free slots, but changes

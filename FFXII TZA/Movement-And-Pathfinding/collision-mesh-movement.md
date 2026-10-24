@@ -61,6 +61,18 @@ the frame by the radii (x by `+0x80`, z by `+0x84`, each floored at 0.01) and th
 reciprocals. A point mapped through `0x020892C0` lands in a space where the footprint is the unit
 circle; `0x02089280` maps a vector back.
 
+Before it builds the frame, `0x0022EF20` sets two words below it to 1. After `0x00380A70` has put the placement's position
+in the frame's translation row (`0x00380B53`-`0x00380B6A`, the frame's address in `rdx` from `0x0022EF3B`), it zeroes that
+row's x, y and z. The rigid inverse `0x00217610` (through `0x0022EF81`) and the scaling `0x00217150` (through `0x0022F00F`) are
+the only code that reads the row, since the vector transform `0x00202B90` reads rows 0 to 2 only:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02089270` | `u32` | 0 (zero-filled tail of `.data`) | set to 1 on every frame build | `0x0022EF20` (`0x0022EF42`) | not yet located: no RIP-relative, image-base-relative or address-forming reference names it |
+| `0x02089274` | `u32` | 0 (zero-filled tail of `.data`) | set to 1 on every frame build | `0x0022EF20` (`0x0022EF4F`) | not yet located, as for `0x02089270` |
+| `0x020892B0` | `f32[2]` | 0 (zero-filled tail of `.data`) | the frame's translation x and y, `0x02089280 + 0x30`: 0 once the frame is built | `0x00380A70` (`0x00380B53`, `0x00380B59`, through `0x0022EF59`); `0x0022EF20`, 0 with one 8-byte store (`0x0022EF65`); `0x00217150` (`0x002175FB`, the whole row, through `0x0022F00F`) | `0x00217610` (`0x00217633`, the whole row, through `0x0022EF81`); `0x00217150` (`0x0021744C`, `0x00217454`, through `0x0022F00F`) |
+| `0x020892B8` | `f32` | 0 (zero-filled tail of `.data`) | the frame's translation z, `0x02089280 + 0x38`: 0 once the frame is built | `0x00380A70` (`0x00380B5F`, through `0x0022EF59`); `0x0022EF20`, 0 (`0x0022EF77`); `0x00217150` (`0x002175FB`, through `0x0022F00F`) | `0x00217610` (`0x00217633`, through `0x0022EF81`); `0x00217150` (`0x00217459`, through `0x0022F00F`) |
+
 ### The sweep
 
 `0x00380C40(placement, move)` is the entry, run by the body solver `0x003DB140` on the body's `+0x30`

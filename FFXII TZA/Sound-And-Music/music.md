@@ -125,6 +125,14 @@ While an event manager's skip mask is set (`0x00267310`), the music verbs play n
 3. The skip-end stage `0x003608D0` starts the recorded track through `0x003614E0` with a 16-frame change, or only sets its
    volume when it already plays.
 
+The record is three words that `0x00360960(track, section, resume)` stores (`0x00360960`-`0x00360971`). The skip-end stage
+reads the track and the resume flag (`0x003608D4`, `0x003608E7`, `0x003608F9`, `0x0036090F`), but no reader of the second word
+has been found yet:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CB9B4` | `i32` | 0 (zero-filled tail of `.data`) | the recorded section. While a skip runs, `musicplay`'s result `0x00342F80` records its argument `+0x0C`, the section an unskipped play hands to `0x002DEC80` (`0x00342FB5`, `0x00342FE6`); the other verbs and `skipexec` record 0 | `0x00360960` (`0x0036096B`), from `0x00342F80`, `0x00343C60`, `0x00345010`, `0x00345B60`, `0x00346C00` and `0x00350EC0`; `0x00360710`, 0 (`0x00360785`, `ebp` 0 from `0x00360720`) | not yet located: no RIP-relative, image-base-relative or address-forming reference names it |
+
 ### The music version
 
 The Config option for the music version ([Game settings](../Saving-Loading-And-Settings/game-settings.md)) reaches the

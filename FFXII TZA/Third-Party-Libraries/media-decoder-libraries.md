@@ -425,6 +425,7 @@ flags being 0 or 1, and `0x001790A0`, the subblock predictor, reads the third ta
 | `0x02F97508` | `void*` | 0 (zero-filled tail of `.data`) | the first set's pointer for `+0xFA0`: `0x00173040`, or `0x00173360` with the feature | `0x0016F080` (`0x0016F1C4`) | `0x00175CA0` (`0x00175DFB`, to `+0xFA0`) |
 | `0x02F97518` | `void*` | 0 (zero-filled tail of `.data`) | the first set's pointer for `+0xFA8`: `0x00172F00`, or `0x00173270` with the feature | `0x0016F080` (`0x0016F1D6`) | `0x00175CA0` (`0x00175E09`, to `+0xFA8`) |
 | `0x02F97510` | `void*` | 0 (zero-filled tail of `.data`) | the second set's pointer for `+0xFA8`: `0x001263AD`, or `0x00127104` with the feature | `0x0016F080` (`0x0016F179`) | `0x00175CA0` (`0x00175E3C`, to `+0xFA8`) |
+| `0x02F97500` | `void*` | 0 (zero-filled tail of `.data`) | the first set's pointer for `+0xFB0`: `0x00172DC0`, or `0x00173180` with the feature | `0x0016F080` (`0x0016F192`) | `0x00175CA0` (`0x00175E17`, to `+0xFB0` at `0x00175E51`) |
 
 ## Modding notes
 

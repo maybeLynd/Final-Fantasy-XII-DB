@@ -435,6 +435,16 @@ no instruction loads that pointer.
 `0x01EEBAE4` and `0x022BE7DC`, set together by `0x002F4510` (from `0x001D1660`), bound the record indices of a pass: an entry
 is drawn only when it is not below `0x022BE7DC` and not above `0x01EEBAE4`, both signed compares (`0x002F4906`-`0x002F491E`).
 
+The effect-texture placer `0x002D83B0` (called at `0x00501285` and `0x00501405`) keeps its textures in the `0x10`-byte
+entries of the block at `0x02F8DA00`. It walks the entries from the first while each starts no more than one unit past
+the end of the one before, counting them (`0x002D8410`-`0x002D843A`). At the first empty entry it returns -1 when that
+end equals `[0x02F8F200]` (`0x002D847B`-`0x002D8486`, `0x002D850F`); otherwise it raises `0x0215E6B0` to the count
+(`0x002D848C`-`0x002D8494`) and places the texture there.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0215E6B0` | `i32` | 0 (zero-filled tail of `.data`) | the largest number of entries `0x002D83B0` has walked before placing a texture at the end of the run | `0x002D83B0` (`0x002D8494`, only when the count is greater, a signed compare) | `0x002D83B0` (`0x002D848C`); another reader is not yet located |
+
 ## Modding notes
 
 - The texture budget is the same on every machine: 176 GS pages less the rebuild's two totals,

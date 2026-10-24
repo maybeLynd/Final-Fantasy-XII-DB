@@ -94,6 +94,16 @@ empty stack spins forever, and `0x0036BC60` spins forever when asked to allocate
 
 `0x0036C140` reads the same four fields back from stack 0's top entry.
 
+The current tag `0x022D8E1C`, which `0x0036BC60` stores at a new block's `+0x16` (`0x0036BE8D`), has a stack of its own:
+31 bytes at `0x022D8DD0`. `0x0036C1A0(tag)` pushes the current tag and makes `tag` current, doing nothing at a depth of
+31 or more; `0x0036C110()` pops it while the depth is not negative. Each has 21 call sites (the map pack's `0x00378030`
+among them, around its allocation). A pop at depth 0 still runs: the depth becomes -1 and the tag comes from
+`0x022D8DCF`, the byte before the stack.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022D89C8` | `i32` | 0 (zero-filled tail of `.data`) | the depth of the tag stack at `0x022D8DD0` | `0x00369D30`, 0 while no arena is enabled (`0x00369D8A`, an 8-byte store that also zeroes `0x022D89CC`); `0x0036C1A0`, 1 more (`0x0036C1C2`); `0x0036C110`, 1 less (`0x0036C123`) | `0x0036C1A0` (`0x0036C1A0`, sign-extended); `0x0036C110` (`0x0036C110`) |
+
 ### Blocks
 
 Every block, used or free, starts with a `0x40`-byte header written by `0x0036A490`: magic `0xFF12` at

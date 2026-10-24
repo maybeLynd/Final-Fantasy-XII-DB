@@ -204,6 +204,16 @@ way it tail-calls `0x0040AAD0(preset, azimuth, elevation)`:
 3. `0x0040B430` normalises the vector into `0x02CA43A0` and publishes its tangent with the almost-up
    reference `{0, 1, 1e-5}` into `0x02CA43B0`.
 
+`0x0040B430`, called from `0x0040AAD0` (`0x0040ABC6`) and `0x0040DB70` (`0x0040DB97`), builds the tangent from the reference
+and the direction with `0x00202E10` (`0x0040B522`). It scales the result by 1 over its length, or by 0 when the length is
+below the constant at `0x00908E10`, and stores three floats (`0x0040B581`-`0x0040B592`). The model simulation stage
+`0x0040FF30` reads the tangent as one 16-byte value (`0x0041008A`), copies it to `0x022D91E0` (`0x004100D1`) and takes its
+third float (`0x004100E0`):
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA43B8` | `f32` | 0 (zero-filled tail of `.data`) | the tangent's third float | `0x0040B430` (`0x0040B592`) | `0x0040FF30`, within the 16-byte read of `0x02CA43B0` (`0x0041008A`) |
+
 The six wind presets (`0x01EFFA30`, floats then a mode dword):
 
 | preset | +0 | +4 | +8 | +0xC | +0x10 | +0x14 | mode |

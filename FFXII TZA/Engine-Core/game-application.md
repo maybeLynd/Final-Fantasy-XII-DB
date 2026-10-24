@@ -66,6 +66,24 @@ directories (`0x0059A770("../../..")`), runs `0x0019B190()`, mounts `../FFXII_TZ
 `0x0019CDE0`, the debug display `0x001C2F00`, `0x001DBA40`) and `0x00182F70` with the viewport size
 `+0xD24`/`+0xD28`. The archive path is relative to the executable.
 
+Three more words that the boot and the application object write:
+
+- `0x0059A770(path)` only stores the path it is given in `0x02CA9D80`. Slot 2 gives it `"../../.."` (`0x008C5858`,
+  `0x0017CED3`-`0x0017CEDD`).
+- The burst's `0x001D6990` builds an 8-byte object at `0x01F82CB8` on first use and clears its `+0x00`.
+- The getter of that object is `0x001D69F0`, and its one caller `0x00862BD0(language)` passes the object to
+  `0x001D68F0(object, language)`. That stores at `+0x00` the address of a word by language (jump table `0x001D6958`, through `0x001D68FF`): `0x01F82CA8` for 0 and 10,
+  `0x01F82C88` for 1 and 6, `0x01F82C90` for 2, `0x01F82C98` for 3, `0x01F82CA0` for 4 and `0x01F82CB0` for 5. For 7 to 9, and
+  above 10, it stores 0.
+- Slot 16, `0x00227D40(value)`, takes the lock `0x01F7F510` (`0x0017ED20`), stores the value in `0x01FD46DC` and 1 in
+  `0x01FD46D8`, and leaves through the unlock `0x0017F760`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F82CB8` | `void*` | 0 (zero-filled tail of `.data`) | the language object: 8 bytes whose `+0x00` points at the language's word, or holds 0 | `0x001D6990` (`0x001D69CA`, the object; `0x001D69D6`, 0 when the allocation `0x00210EC0` fails), from the burst `0x0017D4C0` (`0x0017D5B3`) | `0x001D6990` (`0x001D6996`, `0x001D69A5`); `0x001D69F0` (`0x001D69F6`, `0x001D6A05`), from `0x00862BD0` (`0x00862BD8`) |
+| `0x01FD46D8` | `u32` | 0 (zero-filled tail of `.data`) | 1 once slot 16 has stored a value in `0x01FD46DC` | `0x00227D40` (`0x00227D53`), from slot 16 `0x0017D210` (`0x0017D222`) | not yet located: no RIP-relative, image-base-relative or address-forming reference names it |
+| `0x02CA9D80` | `void*` | 0 (zero-filled tail of `.data`) | the base path: the string `"../../.."` | `0x0059A770` (`0x0059A770`), from slot 2 `0x0017CEB0` (`0x0017CEDD`) | not yet located, as for `0x01FD46D8` |
+
 `0x0017DAC0(on)` reads the Sticky Keys settings (`SystemParametersInfoW` action `0x3A`) and, when
 their hot-key bit 2 differs from `on`, writes them back with that bit changed (action `0x3B`): the
 boot turns the Sticky Keys shortcut off and the shutdown's `0x0017DAC0(1)` turns it on

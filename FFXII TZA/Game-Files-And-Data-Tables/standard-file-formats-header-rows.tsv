@@ -1,0 +1,185 @@
+file	line	kind	symbol	value	comment	comment_english	shipped_data
+us/worldmap/menumap_sub.h	14	define	menumap_sub_image_MAX	18	１つのサブロケーション内の最大画像数	most images in one sub-location	
+us/worldmap/menumap_sub.h	15	define	menumap_sub_info_MAX	17	１つのサブロケーション内の最大情報数	most info entries in one sub-location	
+us/worldmap/menumap_sub.h	17	define	menumap_sub_data_size_double_MAX	(320 * 1024)	最大データサイズ（ダブルバッファ）	largest data size, double-buffered	
+us/worldmap/menumap_sub.h	18	define	menumap_sub_data_size_single_MAX	(512 * 1024)	最大データサイズ（シングルバッファ）	largest data size, single-buffered	
+us/worldmap/menumap_world.h	16	define	menumap_world_region_0	0	なし	none	
+us/worldmap/menumap_world.h	17	define	menumap_world_region_1	1	ダルマスカ地方	Dalmasca	
+us/worldmap/menumap_world.h	18	define	menumap_world_region_2	2	ナブディス地方	Nabradia	
+us/worldmap/menumap_world.h	19	define	menumap_world_region_3	3	アルケイディス地方	Archadia	
+us/worldmap/menumap_world.h	20	define	menumap_world_region_4	4	バンクール地方	Valendia	
+us/worldmap/menumap_world.h	21	define	menumap_world_region_5	5	プルヴァマ	Purvama	
+us/worldmap/menumap_world.h	22	define	menumap_world_region_6	6	ヤクト・エンサ	Jagd Yensa	
+us/worldmap/menumap_world.h	23	define	menumap_world_region_7	7	ヤクト・ディフォール	Jagd Difohr	
+us/worldmap/menumap_world.h	24	define	menumap_world_region_8	8	ヤクト・ラムーダ	Jagd Ramooda	
+us/worldmap/menumap_world.h	25	define	menumap_world_region_9	9			
+us/worldmap/menumap_world.h	26	define	menumap_world_region_10	10			
+us/worldmap/menumap_world.h	27	define	menumap_world_region_11	11			
+us/worldmap/menumap_world.h	28	define	menumap_world_region_MAX	11	リージョン数	region count	12 region slots (0 to 11)
+us/worldmap/menumap_world.h	33	define	menumap_world_area_none	0	なし	none	
+us/worldmap/menumap_world.h	34	define	menumap_world_area_rbn	1	王都ラバナスタ	Rabanastre	
+us/worldmap/menumap_world.h	35	define	menumap_world_area_grm	2	ガラムサイズ水路	Garamsythe Waterway	
+us/worldmap/menumap_world.h	36	define	menumap_world_area_nal	3	ナルビナ城塞	Nalbina Fortress, upper level	
+us/worldmap/menumap_world.h	37	define	menumap_world_area_mic	4	バルハイム地下道	Barheim Passage	
+us/worldmap/menumap_world.h	38	define	menumap_world_area_dst	5	東ダルマスカ砂漠	Dalmasca Estersand	
+us/worldmap/menumap_world.h	39	define	menumap_world_area_wdl	6	西ダルマスカ砂漠	Dalmasca Westersand	
+us/worldmap/menumap_world.h	40	define	menumap_world_area_sav	7	ギーザ草原	Giza Plains, dry season	
+us/worldmap/menumap_world.h	41	define	menumap_world_area_mnt	8	モスフォーラ山地	Mosphoran Highwaste	
+us/worldmap/menumap_world.h	42	define	menumap_world_area_frs	9	サリカ樹林	The Salikawood	
+us/worldmap/menumap_world.h	43	define	menumap_world_area_bog	10	死都ナブディス	Nabreus Deadlands	
+us/worldmap/menumap_world.h	44	define	menumap_world_area_bds	11	ナブディス王宮	Nabudis palace, surface	
+us/worldmap/menumap_world.h	45	define	menumap_world_area_alc	12	帝都アルケイディス	Archades	
+us/worldmap/menumap_world.h	46	define	menumap_world_area_dor	13	ドラクロア研究所	Draklor Laboratory	
+us/worldmap/menumap_world.h	47	define	menumap_world_area_fon	14	フォーン海沿岸	Phon Coast	
+us/worldmap/menumap_world.h	48	define	menumap_world_area_pla	15	ツィッタ大草原	Tchita Uplands	
+us/worldmap/menumap_world.h	49	define	menumap_world_area_rui	16	ソーヘン地下宮殿	Sochen Cave Palace	
+us/worldmap/menumap_world.h	50	define	menumap_world_area_ozm	17	オズモーネ平原	Ozmone Plain	
+us/worldmap/menumap_world.h	51	define	menumap_world_area_glf	18	ガリフ・コミューン	Jahara	
+us/worldmap/menumap_world.h	52	define	menumap_world_area_hne	19	ヘネ魔石鉱	Henne Mines	
+us/worldmap/menumap_world.h	53	define	menumap_world_area_byu	20	空中都市ビュエルバ	Bhujerba	
+us/worldmap/menumap_world.h	54	define	menumap_world_area_lus	21	ルース魔石鉱	Lhusu Mines	
+us/worldmap/menumap_world.h	55	define	menumap_world_area_ene	22	東エンサ大砂海	Ogir-Yensa Sandsea	
+us/worldmap/menumap_world.h	56	define	menumap_world_area_enw	23	西エンサ大砂海	Nam-Yensa Sandsea	
+us/worldmap/menumap_world.h	57	define	menumap_world_area_rwg	24	レイスウォールの王墓	The Tomb of Raithwall	
+us/worldmap/menumap_world.h	58	define	menumap_world_area_ztc	25	ゼルテニアン洞窟	Zertinan Caverns	
+us/worldmap/menumap_world.h	59	define	menumap_world_area_gol	26	ゴルモア大森林	Golmore Jungle	
+us/worldmap/menumap_world.h	60	define	menumap_world_area_vic	27	ヴィエラ・コミューン	Eruyt Village	
+us/worldmap/menumap_world.h	61	define	menumap_world_area_mfr	28	幻妖の森	The Feywood	
+us/worldmap/menumap_world.h	62	define	menumap_world_area_gil	29	古代都市ギル・ヴェガン	The Great Crystal	
+us/worldmap/menumap_world.h	63	define	menumap_world_area_bul	30	神都ブルオミシェイス	Mt Bur-Omisace	
+us/worldmap/menumap_world.h	64	define	menumap_world_area_pbc	31	パラミナ大峡谷	Paramina Rift	
+us/worldmap/menumap_world.h	65	define	menumap_world_area_mrm	32	ミリアム遺跡	Stilshrine of Miriam	
+us/worldmap/menumap_world.h	66	define	menumap_world_area_srb	33	セロビ台地	Cerobi Steppe	
+us/worldmap/menumap_world.h	67	define	menumap_world_area_var	34	港町バーフォンハイム	Balfonheim Port	
+us/worldmap/menumap_world.h	68	define	menumap_world_area_rwf	35	リドルアナ大瀑布	Ridorana Cataract	
+us/worldmap/menumap_world.h	69	define	menumap_world_area_dgl	36	リドルアナ大灯台	Pharos - Third Ascent	
+us/worldmap/menumap_world.h	70	define	menumap_world_area_rsn	37	空中要塞リヴァイアサン	Dreadnought Leviathan	
+us/worldmap/menumap_world.h	71	define	menumap_world_area_bhm	38	空中要塞バハムート	Sky Fortress Bahamut	
+us/worldmap/menumap_world.h	72	define	menumap_world_area_MAX	38	エリア数	area count	39 areas (0 to 38)
+us/worldmap/menumap_world.h	77	define	menumap_world_route_MAX	6	１つのエリアからの最大通常ルート数	most normal routes from one area	
+us/worldmap/menumap_world.h	78	define	menumap_world_route_ex_MAX	6	１つのエリアからの最大特殊ルート数	most special routes from one area	
+us/worldmap/menumap_world.h	80	define	menumap_world_route_normal_ALL	45	全通常ルート数	all normal routes	45
+us/worldmap/menumap_world.h	81	define	menumap_world_route_ex_ALL	15	全特殊ルート数	all special routes	15
+us/worldmap/menumap_world.h	82	define	menumap_world_route_ALL	60	全ルート数	all routes	60
+us/worldmap/menumap_world.h	84	define	menumap_world_route_type_normal	0	通常ルートタイプ	normal route type	
+us/worldmap/menumap_world.h	85	define	menumap_world_route_type_MAX	16	最大ルートタイプ	highest route type	
+us/worldmap/menumap_world.h	90	define	menumap_world_quest_MAX	0	シュトラール号行き先拡張クエスト数	quests that add Strahl destinations	
+us/worldmap/menumap_world.h	95	define	menumap_world_shutoral_MAX	18	シュトラール号行き先データ数	Strahl destination entries	18
+us/worldmap/menumap_world.h	100	define	menumap_location_MAX	4	１つのエリア内の最大ロケーション数	most locations in one area	
+us/worldmap/menumap_world.h	101	define	menumap_location_ALL	59	全ロケーション数	all locations	
+us/worldmap/menumap_world.h	106	define	menumap_sublocation_rbn01_s01	0	ラバナスタ市街地	Rabanastre streets	
+us/worldmap/menumap_world.h	107	define	menumap_sublocation_fon01_s01	1	フォーン海沿岸	Phon Coast	
+us/worldmap/menumap_world.h	108	define	menumap_sublocation_mic01_s01	2	バルハイム地下道	Barheim Passage	
+us/worldmap/menumap_world.h	109	define	menumap_sublocation_bds01_s01	3	ナブディス王宮地表部	Nabudis palace, surface	
+us/worldmap/menumap_world.h	110	define	menumap_sublocation_bog01_s01	4	死都ナブディス	Nabreus Deadlands	
+us/worldmap/menumap_world.h	111	define	menumap_sublocation_ene01_s01	5	東エンサ大砂海	Ogir-Yensa Sandsea	
+us/worldmap/menumap_world.h	112	define	menumap_sublocation_enw01_s01	6	西エンサ大砂海	Nam-Yensa Sandsea	
+us/worldmap/menumap_world.h	113	define	menumap_sublocation_grm01_s01	7	ガラムサイズ水路	Garamsythe Waterway	
+us/worldmap/menumap_world.h	114	define	menumap_sublocation_nac01_s01	8	ナルビナ街部＞ナルビナ上層	Nalbina Town, then Nalbina upper level	
+us/worldmap/menumap_world.h	115	define	menumap_sublocation_naf01_s01	9	ナルビナ城塞上層	Nalbina Fortress, upper level	
+us/worldmap/menumap_world.h	116	define	menumap_sublocation_nal01_s01	10	雑居房＞ナルビナ上層	the Stockade, then Nalbina upper level	
+us/worldmap/menumap_world.h	117	define	menumap_sublocation_ozm01_s01	11	オズモーネ平原	Ozmone Plain	
+us/worldmap/menumap_world.h	118	define	menumap_sublocation_rwg01_s01	12	レイスウォール王墓	The Tomb of Raithwall	
+us/worldmap/menumap_world.h	119	define	menumap_sublocation_sav01_s01	13	ギーザ草原乾季	Giza Plains, dry season	
+us/worldmap/menumap_world.h	120	define	menumap_sublocation_slm01_s01	14	ラバナスタ地下街	Lowtown	
+us/worldmap/menumap_world.h	121	define	menumap_sublocation_wdl01_s01	15	西ダルマスカ砂漠	Dalmasca Westersand	
+us/worldmap/menumap_world.h	122	define	menumap_sublocation_ztc01_s01	16	ゼルテニアン洞窟	Zertinan Caverns	
+us/worldmap/menumap_world.h	123	define	menumap_sublocation_glf01_s01	17	ガリフコミューン	Jahara	
+us/worldmap/menumap_world.h	124	define	menumap_sublocation_hne01_s01	18	ヘネ魔石鉱	Henne Mines	
+us/worldmap/menumap_world.h	125	define	menumap_sublocation_mfr01_s01	19	幻妖の森	The Feywood	
+us/worldmap/menumap_world.h	126	define	menumap_sublocation_vic01_s01	20	ヴィエラコミューン	Eruyt Village	
+us/worldmap/menumap_world.h	127	define	menumap_sublocation_dst01_s01	21	東ダルマスカ砂漠	Dalmasca Estersand	
+us/worldmap/menumap_world.h	128	define	menumap_sublocation_rrp01_s01	22	ラバナスタ王宮	Royal Palace of Rabanastre	
+us/worldmap/menumap_world.h	129	define	menumap_sublocation_alc01_s01	23	アルケイディス市街地	Archades streets	
+us/worldmap/menumap_world.h	130	define	menumap_sublocation_alc01_s02	24	アルケイディスダウンタウン	Old Archades	
+us/worldmap/menumap_world.h	131	define	menumap_sublocation_frs01_s01	25	サリカ樹林	The Salikawood	
+us/worldmap/menumap_world.h	132	define	menumap_sublocation_byu01_s01	26	ビュエルバ	Bhujerba	
+us/worldmap/menumap_world.h	133	define	menumap_sublocation_lus01_s01	27	ルース魔石鉱	Lhusu Mines	
+us/worldmap/menumap_world.h	134	define	menumap_sublocation_mnt01_s01	28	モスフォーラ山地	Mosphoran Highwaste	
+us/worldmap/menumap_world.h	135	define	menumap_sublocation_mrm01_s01	29	ミリアム遺跡	Stilshrine of Miriam	
+us/worldmap/menumap_world.h	136	define	menumap_sublocation_pbc01_s01	30	パラミナ大峡谷	Paramina Rift	
+us/worldmap/menumap_world.h	137	define	menumap_sublocation_pla01_s01	31	ツィッタ大草原	Tchita Uplands	
+us/worldmap/menumap_world.h	138	define	menumap_sublocation_rsn01_s01	32	リヴァイアサン艦内	inside the Leviathan	
+us/worldmap/menumap_world.h	139	define	menumap_sublocation_rui01_s01	33	ソーヘン地下宮殿	Sochen Cave Palace	
+us/worldmap/menumap_world.h	140	define	menumap_sublocation_rwf01_s01	34	リドルアナ大瀑布	Ridorana Cataract	
+us/worldmap/menumap_world.h	141	define	menumap_sublocation_srb01_s01	35	セロビ台地	Cerobi Steppe	
+us/worldmap/menumap_world.h	142	define	menumap_sublocation_var01_s01	36	港町バーフォンハイム	Balfonheim Port	
+us/worldmap/menumap_world.h	143	define	menumap_sublocation_gol01_s01	37	ゴルモア大森林	Golmore Jungle	
+us/worldmap/menumap_world.h	144	define	menumap_sublocation_bul01_s01	38	神都ブルオミシェイス	Mt Bur-Omisace	
+us/worldmap/menumap_world.h	145	define	menumap_sublocation_gil01_s01	39	古代都市ギルヴェガン	The Great Crystal	
+us/worldmap/menumap_world.h	146	define	menumap_sublocation_gil01_s02	40	コアクリスタル	Crystal core	
+us/worldmap/menumap_world.h	147	define	menumap_sublocation_dor01_s01	41	ドラクロア研究所	Draklor Laboratory	
+us/worldmap/menumap_world.h	148	define	menumap_sublocation_rbl03_s01	42		Pharos - First Ascent	
+us/worldmap/menumap_world.h	149	define	menumap_sublocation_rbl02_s01	43		Pharos - First Ascent	
+us/worldmap/menumap_world.h	150	define	menumap_sublocation_rbl01_s01	44		Pharos - First Ascent	
+us/worldmap/menumap_world.h	151	define	menumap_sublocation_rbl04_s01	45		Pharos - First Ascent	
+us/worldmap/menumap_world.h	152	define	menumap_sublocation_bhm01_s01	46	バハムート	Bahamut	
+us/worldmap/menumap_world.h	153	define	menumap_sublocation_sav01_s02	47	ギーザ草原雨期	Giza Plains, rainy season	
+us/worldmap/menumap_world.h	155	define	menumap_sublocation_MAX	2	１つのロケーション内の最大サブロケーション数	most sub-locations in one location	
+us/worldmap/menumap_world.h	156	define	menumap_sublocation_ALL	48	全サブロケーション数	all sub-locations	48 sloc files
+us/worldmap/menumap_world.h	161	define	menumap_zone_MAX	20	１つのサブロケーション内の最大ゾーン数	most zones in one sub-location	
+us/worldmap/menumap_world.h	162	define	menumap_zone_marker_MAX	16	１つのサブロケーション内の最大マーカー数	most markers in one sub-location	
+us/worldmap/menumap_world.h	163	define	menumap_zone_data_MAX	24	１つのサブロケーション内の最大データ（ゾーン＋マーカー）数	most data entries (zones + markers) in one sub-location	
+us/worldmap/menumap_world.h	165	define	menumap_zone_invalid_group	0	無効グループ	invalid group	
+us/worldmap/menumap_world.h	170	define	menumap_zone_route_route_MAX	59	１つのサブロケーション内の最大ゾーンルート数	most zone routes in one sub-location	
+us/worldmap/menumap_world_debug.h	24	debug offset	rbn01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	25	debug offset	fon01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	26	debug offset	mic01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	27	debug offset	bds01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	28	debug offset	bog01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	29	debug offset	ene01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	30	debug offset	enw01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	31	debug offset	grm01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	32	debug offset	nac01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	33	debug offset	naf01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	34	debug offset	nal01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	35	debug offset	ozm01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	36	debug offset	rwg01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	37	debug offset	sav01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	38	debug offset	slm01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	39	debug offset	wdl01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	40	debug offset	ztc01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	41	debug offset	glf01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	42	debug offset	hne01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	43	debug offset	mfr01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	44	debug offset	vic01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	45	debug offset	dst01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	46	debug offset	rrp01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	47	debug offset	alc01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	48	debug offset	alc01_s02	(0, 0)			
+us/worldmap/menumap_world_debug.h	49	debug offset	frs01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	50	debug offset	byu01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	51	debug offset	lus01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	52	debug offset	mnt01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	53	debug offset	mrm01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	54	debug offset	pbc01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	55	debug offset	pla01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	56	debug offset	rsn01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	57	debug offset	rui01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	58	debug offset	rwf01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	59	debug offset	srb01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	60	debug offset	var01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	61	debug offset	gol01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	62	debug offset	bul01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	63	debug offset	gil01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	64	debug offset	gil01_s02	(0, 0)			
+us/worldmap/menumap_world_debug.h	65	debug offset	dor01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	66	debug offset	rbl03_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	67	debug offset	rbl02_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	68	debug offset	rbl01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	69	debug offset	rbl04_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	70	debug offset	bhm01_s01	(0, 0)			
+us/worldmap/menumap_world_debug.h	71	debug offset	sav01_s02	(0, 0)			
+us/worldmap/menumap_world_debug.h	74	define	menumap_world_debug_data_max	(sizeof(menumap_world_debug_data) / sizeof(*menumap_world_debug_data))			
+us/quest/menuquest.h	14	define	menuquest_NUM	66	クエスト数	quest count	66 records in menuquest.dat
+us/quest/menuquest.h	15	define	menuquest_MAX	172	最大クエストＩＤ	highest quest id	highest quest id 172
+us/quest/menuquest.h	17	define	menuquest_group_NUM	3	グループ数	group count	3 groups
+us/quest/menuquest.h	18	define	menuquest_group_MAX	3	最大グループＩＤ	highest group id	highest group id 2
+kr/quest/menuquest.h	14	define	menuquest_NUM	66	クエスト数	quest count	66 records in menuquest.dat
+kr/quest/menuquest.h	15	define	menuquest_MAX	172	最大クエストＩＤ	highest quest id	highest quest id 172
+kr/quest/menuquest.h	17	define	menuquest_group_NUM	3	グループ数	group count	3 groups
+kr/quest/menuquest.h	18	define	menuquest_group_MAX	3	最大グループＩＤ	highest group id	highest group id 2
+cn/quest/menuquest.h	14	define	menuquest_NUM	66	クエスト数	quest count	66 records in menuquest.dat
+cn/quest/menuquest.h	15	define	menuquest_MAX	172	最大クエストＩＤ	highest quest id	highest quest id 172
+cn/quest/menuquest.h	17	define	menuquest_group_NUM	3	グループ数	group count	3 groups
+cn/quest/menuquest.h	18	define	menuquest_group_MAX	3	最大グループＩＤ	highest group id	highest group id 2

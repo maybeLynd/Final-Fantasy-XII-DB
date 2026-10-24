@@ -110,6 +110,18 @@ tail flag bit 0 on:
 - `+0xD3` bit 3: the record has `+0x284` bit 21 and `+0xD2` bit 3, and its view depth plus its extent is
   below minus the near limit at tail `+0x20`.
 
+The visibility test `0x0046C180` asks `0x003B3F10(box)` where the box lies against the view. For each of the eight
+corners, it takes the corner's x, y and z from the box's two corner vectors through the index table
+`0x00D114C4`-`0x00D11523`, three indices a corner (`0x003B3F73`-`0x003B3FB1`). It transforms the corner with the view
+matrix at `0x02B403F0` (`0x00202C90`, `0x00202B70`) and builds a six-bit outcode: x, y and z each above `|w|` or below
+`-|w|` (`0x003B3FE0`-`0x003B4030`). It returns 3 when every corner is outside the same side, 1 when some corner is
+outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
+
+| Global | Type | Start | Meaning | Written | Read |
+|---|---|---|---|---|---|
+| `0x02B404B0` | `u32` | 0 | the outcode history: each corner shifts it left by 6 and puts its own outcode in bits 0-5 | `0x003B3F10` (`0x003B4042`) | `0x003B3F10`: the shift (`0x003B4033`), then the OR and the AND over the corners (`0x003B404F`, `0x003B4055`), whose result keeps bits 0-5 (`0x003B4064`, `0x003B4070`) |
+| `0x02B404B3` | `u8` | 0 | the history's top byte, set to 0 after each corner, so the word holds the last four corners' outcodes | `0x003B3F10` (`0x003B4048`, the byte of `ebp`, 0 from `0x003B3F65`) | through the word reads above |
+
 - `puppet_setcharclipone(d, v)` (`0x0569`, `0x00340890`) sets two of these inputs on the render record
   of puppet `d` (`0x003EB700`) when it is live: `0x003EB8C0` writes `v` into bit 4 of `+0xD2`, and
   `0x003EB960` writes it into bit 3 of `+0x304` and raises bit 6 of `+0x290`, whose processor
@@ -232,6 +244,14 @@ at `0x0025919B`) fills them every time it runs:
 `0x003B4310` forms the base at `0x003B438A` and reads the count (`0x003B441F`) and the key pointer (`0x003B4427`, `0x003B4460`)
 of the record's curve, then the keys around the record's phase (`0x003B4433`, `0x003B446C`-`0x003B4488`). So curve 0 dips
 from full to nothing and back once per period, and curve 1 twice.
+
+The pool keeps a byte count of its records. Taking a record adds 1 and the unlink `0x003B42B0` takes 1 away. The step
+`0x003B4840` frees a record whose lifetime has run out (`0x003B48D7`) without changing the count, so the count runs ahead
+of the records in use. Its only other store is the reset's 0:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B404C0` | `u8` | 0 (zero-filled tail of `.data`) | the records taken less the records unlinked through `0x003B42B0`; wraps at 256 | `0x003B4160`, 1 more (`0x003B419D`, `inc`); `0x003B42B0`, 1 less (`0x003B42CE`, `dec`); the reset `0x003B4790`, 0 (`0x003B481F`) | not yet located beyond the `inc` and `dec` themselves: no other RIP-relative, image-base-relative or disp32 reference names it |
 
 ### Into the model instance
 

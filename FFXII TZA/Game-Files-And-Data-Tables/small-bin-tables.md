@@ -273,6 +273,18 @@ and `0x02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor
 entry with the higher priority byte, the first on a tie, or 0 when none is active or bit 0 or 1 of
 `0x02B40518` is set; `0x003B53C0` clears both entries before the read.
 
+`0x003B4B60(actor, id)` fills entry 0 when `id` is the first id of the table `0x01EEBAA0` (`0x002EA030(0)`), and entry 1
+when it is the second. The entry gets the actor, the effect from byte `+0xCD` (entry 0) or `+0xCE` (entry 1) of the
+actor's `0x003E56C0` record, the id as its priority byte and state 1. Before entry 1 takes a new actor, the old actor's
+effect ends (`0x003E6AA0(record, 2)`) and the state becomes 2. Each routine compares the winning entry before and after
+it runs, reading each entry as one qword with `cmove`/`cmovb`, and calls `0x003B4FD0` when the winner changed.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B4050A` | `u8` | 0 (zero-filled tail of `.data`) | entry 0's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B53E3`); `0x003B4B60`, 1 (`0x003B4C51`); `0x003B4DA0` (`0x003B4DF6`); `0x003B4E50` (`0x003B4F01`); `0x003B4FD0`, 2 (`0x003B5047`); `0x003B5180` (`0x003B5229`); `0x003B5520`, 2 (`0x003B557D`) | `0x003B4B60` (`0x003B4B6A`, `0x003B4BD6`, `0x003B4D24`); `0x003B4E50` (`0x003B4E56`, `0x003B4F55`); `0x003B4FD0` (`0x003B4FF2`); `0x003B5180` (`0x003B518A`, `0x003B52A1`); `0x003B5340` (`0x003B5354`); `0x003B5470` (`0x003B549A`); `0x003B5520` (`0x003B5528`, `0x003B55E4`); and as part of the qword at `0x02B40508` (`0x003B4B8A`, `0x003B4D3F`, `0x003B4E7D`, `0x003B4F7B`, `0x003B51A7`, `0x003B52BA`, `0x003B536F`, `0x003B55FC`) |
+| `0x02B40511` | `u8` | 0 (zero-filled tail of `.data`) | entry 1's priority: the id `0x003B4B60` was given | `0x003B4B60` (`0x003B4D16`); with the word at `0x02B40510`: `0x003B53C0`, 0 (`0x003B53F7`), `0x003B4DA0` (`0x003B4E37`), `0x003B5180` (`0x003B5284`) | `0x003B4B60` (`0x003B4BA0`, `0x003B4D55`); `0x003B4E50` (`0x003B4E8F`, `0x003B4F8D`); `0x003B5180` (`0x003B51BD`, `0x003B529A`); `0x003B5340` (`0x003B538C`); `0x003B5520` (`0x003B5610`); and as part of the qword at `0x02B40510` (`0x003B4BAB`, `0x003B4D60`, `0x003B4E9A`, `0x003B4F98`, `0x003B51C8`, `0x003B52D0`, `0x003B5392`, `0x003B5616`) |
+| `0x02B40512` | `u8` | 0 (zero-filled tail of `.data`) | entry 1's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B5400`); `0x003B4B60`, 2 (`0x003B4CC3`) and 1 (`0x003B4D1D`); `0x003B4DA0` (`0x003B4E3E`); `0x003B4E50` (`0x003B4F5F`); `0x003B4FD0`, 2 (`0x003B509F`); `0x003B5180` (`0x003B528B`); `0x003B5520` (`0x003B55DE`) | `0x003B4B60` (`0x003B4B92`, `0x003B4C79`, `0x003B4D47`); `0x003B4E50` (`0x003B4E5E`, `0x003B4EF7`); `0x003B4FD0` (`0x003B504E`); `0x003B5180` (`0x003B51AF`, `0x003B5293`); `0x003B5340` (`0x003B5377`); `0x003B5470` (`0x003B547A`); `0x003B5520` (`0x003B5584`, `0x003B5684`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |
+
 - `0x0036FBB0` first runs `0x003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
   `+0x284` = 0; state 2, `0x003B4EFE`, `0x003B4F5D`) and calls `0x003B4FD0` when the winner changes (`0x003B4FBF`).
   - It then

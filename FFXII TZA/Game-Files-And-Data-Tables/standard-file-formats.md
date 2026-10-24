@@ -173,7 +173,7 @@ the name from the four-entry table at `0x01F26568`: `warning.tga`, `SQEX Logo si
 It maps the language from `0x00229E40` to a folder (1 `us`, 2 `fr`, 3 `de`, 4 `it`, 5 `es`, 10 `in`;
 any other language gets an empty folder), formats `/GameData/titleimage/<folder>/<name>` with
 `"%s%s/%s"`, and probes it with `0x002DF8E0`. When the probe gives less than 1 byte it formats the path
-again with folder `in`. Only `in/` ships, so every language shows the `in/` images, and indexes 2
+again with folder `in`. Only `in/` ships, so every language reads the `in/` images, and indexes 2
 and 3 name files that ship nowhere.
 
 The path goes to `0x00183180` → `0x001D8D60`, the decoder. It opens a stream on the path, returns
@@ -182,6 +182,22 @@ width and height (`0x00184380`), reads `width × height × 3` bytes straight aft
 them to `0x001EE820` with its flip flag fixed at 0 (`0x001D8E9E`). `0x001EE820` writes each pixel as
 bytes 2, 1, 0 and `0xFF`, row 0 first. Nothing reads the image type, depth or descriptor, so a
 compressed, 32-bit or bottom-up TGA loads wrong.
+
+Scripts ask for an image with verb `0x5A2`, whose native `0x0034E340` passes its argument on to
+`0x00473E80`. Of the four, the player only ever sees the SQUARE ENIX logo:
+
+| Index | File | Ships | Requested by | When the game shows it |
+|---|---|---|---|---|
+| 0 | `warning.tga` | yes, in `in/` | `スクリーン表示.Warning_page` of `ttl_a01` | never: the title loop of `ttl_a01` does not request it in any language set; only the `cn` and `kr` copies named `ttl_a01_e3` do, and the game loads no zone script by that name |
+| 1 | `SQEX Logo size_FFX.tga` | yes, in `in/` | `スクリーン表示.Logo_page` of `ttl_a01` | before the title screen while `isFirstStartDone()` is 0: the SQUARE ENIX logo, white on black |
+| 2 | `rating_01.tga` | no | `スクリーン表示.ESRBrating_page` of `ttl_a01` | never: the request needs verb `0x5B4` to be true |
+| 3 | `thankyou.tga` | no | `RETURNTOTITLE.ShowMessage` of scenes `fon_b0100` and `lus_g0100`, and `RETURNTOTITLE.ShowThankyoupage` of the `ch`, `cn` and `kr` `gol_c01` and `nal_d01` | never: every request sits under verb `0x5B4` |
+
+Verbs `0x5B1` and `0x5B4` both run `0x00355930`, which stores 0 as the verb's result through `0x0026B4E0`, so
+both are always false. The script branches they guard are a build's rating page, its "thank you" return
+to the title and the title's event 0; the autosave notice, shown while `0x5B4` is false, does appear.
+`warning.tga` is a Japanese notice (ご注意) that distributing the game over the internet without the
+rights holder's permission, or knowingly downloading such a copy, is illegal.
 
 ### Per-map render options: opt.csv
 
@@ -273,6 +289,32 @@ back to `JsonData/init.json` through an output file stream (`0x00202930`).
 - `0x001C2F50` (from `0x0017D6E0`) parses `/Tools/AutoTest/MapIndex.json` for a `MapIndex` value; no such
   file ships.
 
+The walker is the auto-test that visits every map in turn. Each frame the pump calls it. It does nothing unless the
+application object's auto-test byte `+0x10D4` is set (`0x001C2F7C`), which retail never sets, and its own enable word
+`0x01F8127C` is non-zero (`0x001C2F89`). Its steps:
+
+1. While `0x01DF6E40` is set it reads the starting index `MapIndex` from `/Tools/AutoTest/MapIndex.json` (path
+   pointer `0x01DF6E38` to `0x008F9E00`), stores it in `0x01F81278` (`0x00200B80`, `0x001C30B2`), and clears the byte.
+2. While the arrival word `0x01EEBADC` is set it moves the index on by one. For an index up to `0x522`, if the map
+   table's entry `0x01DF6E60 + index × 0x10` has a name pointer at `+0x08`, it clears the arrival word and makes the
+   call `0x0016D6A0(0x4B, entry +0x00, 0)` (`0x001C30E3`-`0x001C3110`). That stub only returns, so the jump is compiled out.
+   Past `0x522` it sets the document's `MapIndex` to 0 (`0x001FEDA0`, `0x001C3218`).
+3. While the arrival word is 0 it waits. Once the application time (`0x0017D8D0`, the application object's `+0x40`)
+   less `0x022BDD50` is above 120.0 (`0x008F9E30`), it puts the current index in the document's `MapIndex` (`0x001C332E`)
+   and stores 1 through a null pointer (`0x001C3339`, `rbx` 0), which stops the game.
+4. A fade that starts on a layer whose last fade had finished arms both words. `0x002EFA70` sets each to 1 when it is
+   0, and `0x022BDD50` to 0 ([Screen fades](../Graphics/screen-fades.md)).
+5. The `eventsync` verbs' begins `0x00355F60` (`0x00ED`) and `0x00355970` (`0x00EE`) set the arrival word to 1 when the
+   auto-test byte reads 1 (`0x001C3370`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01DF6E40` | `u8` | 1 | 1 until the walker has read its starting index | `0x001C2F50`, 0 (`0x001C30B8`) | `0x001C2F50` (`0x001C2FAA`) |
+| `0x01F81278` | `i32` | 0 (zero-filled tail of `.data`) | the map table index the walker is on | `0x001C2F50` (`0x001C30B2`, from the file; `0x001C30DD`, plus 1) | `0x001C2F50` (`0x001C30D5`, `0x001C3115`, `0x001C332E`) |
+| `0x01F8127C` | `u32` | 0 (zero-filled tail of `.data`) | the walker's enable word, non-zero after the first fade that starts on a finished layer | `0x002EFA70` (`0x002EFB7E`, 1 when it was 0) | `0x001C2F50` (`0x001C2F89`, its low byte); `0x002EFA70` (`0x002EFB67`) |
+| `0x01EEBADC` | `u32` | 1 | the arrival word: set when a map has been reached, cleared when the walker moves on | `0x001C2F50`, its low byte 0 (`0x001C30FF`, a 1-byte store; the other bytes are 0 from the start); `0x002EFA70` (`0x002EFB90`, 1 when it was 0); `0x00355970` (`0x00355983`) and `0x00355F60` (`0x00355F73`), 1 | `0x001C2F50` (`0x001C30C8`, its low byte); `0x002EFA70` (`0x002EFB84`) |
+| `0x022BDD50` | `f64` | 0 (zero-filled tail of `.data`) | the time base of the walker's 120-second wait; the only store writes 0.0 | `0x002EFA70` (`0x002EFB72`) | `0x001C2F50` (`0x001C3227`) |
+
 ### The document-name strings
 
 The map and cutscene loaders keep their document names in static EASTL strings (`+0x00` begin, `+0x08` end,
@@ -343,6 +385,19 @@ none.
 
 No string in the executable, ASCII or UTF-16, in any case, names `monstertoweapon.json`,
 `parametersmanageruisizestruct.csv`, `ff12mapjump_custom_nocrystal.csv` or any of the six `.h` files.
+
+The six `.h` files are C headers that the developers' converters (`CnvWorldMap`, `CnvSubLocation`, `CnvQuestData`)
+wrote from the spreadsheets `ff12worldmapdata.xls` and `ff12menuquest.xls`.
+[`standard-file-formats-header-rows.tsv`](standard-file-formats-header-rows.tsv) lists their 136 `#define` lines and the 48 rows of the debug
+offset table, with an English reading of every Japanese comment.
+
+- Where the shipped data counts the same thing, the TSV gives that count beside the define. 12 region slots,
+  39 areas, 60 World Map routes (45 normal, 15 special), 18 Strahl destinations and 48 sub-location files all
+  match; the region and area `_MAX` values are the highest index (11 and 38).
+- Each language's `menuquest.dat` (`us`, `kr`, `cn`) holds 66 quests, the highest quest id 172, in three groups,
+  as its header says; `menuquest_group_MAX` is 3 while the highest group id is 2.
+- `menumap_world_debug.h` defines its table only under `#ifdef DEBUG` and gives every sub-location the offset
+  (0, 0).
 `JsonData/debugMenuSettings.json` (`0x008FCCB0`) is a string with no code reference and no shipped file.
 
 ## Modding notes

@@ -282,6 +282,12 @@ own record at fourteen sites.
 No other instruction reaches `0x022CA524`: no other RIP-relative, image-base-relative or 32-bit offset reference names
 it.
 
+The id-form record's id word:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CA486` | `u16` | 0 (zero-filled tail) | `+6` of the id-form record `0x022CA480`: the id the caller asks about | `0x0035D380`, the id argument (`0x0035D396`), from its 15 call sites (the first `0x0027BADE`, the last `0x0057DF35`); the `0x98`-byte clear (`0x0035D3BB`) when the fill returns negative | `0x0031C5D0`, through the record's address (`0x0035D38C`), in its class arms: 73 word reads of `+6`, from `0x0031C61F` to `0x0031D9EF` |
+
 The menus are those callers: the gambit screen's row and page builders (`0x00567B60`, `0x0056B100`,
 `0x0056AE80`), the licence screens (`0x00558CE0`, `0x005618E0`) and the battle menu's title
 `0x0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),

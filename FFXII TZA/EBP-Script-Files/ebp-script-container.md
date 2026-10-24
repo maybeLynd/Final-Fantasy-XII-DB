@@ -141,6 +141,13 @@ Script id `0xD4` (namespace 8 index `0x350`, `event/pre_z/pre_z0000` in the `us`
 preloaded once by `0x0032F430` into `0x022C6F10`; a request for it copies that image into the new
 buffer and walks it at once instead of reading the file.
 
+`0x0032F430` sizes the preload with `0x0032E400(8, 0x350)` (`0x0032F617`), allocates it and files its read with `0x0032E620`
+(`0x0032F670`); the size it keeps is the length `0x00330310` copies:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C6D3C` | `i32` | 0 (zero-filled tail of `.data`) | the byte size of the preloaded script `0xD4` at `0x022C6F10` | `0x0032F430`, 0 (`0x0032F611`) and then the size `0x0032E400` returned when it is above 0 (`0x0032F65B`) | `0x00330310`, for a request of `0xD4` while `0x022C6F10` is set: as the read size (`0x00330347`) and as the `memcpy` length into the new buffer (`0x003303FD`, sign-extended) |
+
 ### The directory walk
 
 `0x003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0` (`0x003304D9`) and the

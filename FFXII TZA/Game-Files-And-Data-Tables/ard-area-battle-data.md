@@ -197,6 +197,17 @@ table at `+0x80` of area slot 0's loaded data. For each record it:
 
 When the lists end it calls `0x003601C0(10)` and removes itself.
 
+`0x0037C910(argument)` clears the task's words and stores the argument. The field set-up `0x00261F90` passes 1
+(`0x00261FC1`), and `0x003473A0` and the entry-read step `0x00359800` give it 0. The task runs as eleven states (jump table
+`0x0037C6F8`), and its state 9 moves to the next list: it zeroes the record index `0x02ADD950` and adds 1 to the list
+index. The walk ends after list 1, or after list 2 when the argument was 1. State 10 then clears `0x02ADD968` and the
+argument (`0x0037C6C3`-`0x0037C6D4`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02ADD955` | `i8` | 0 (zero-filled tail of `.data`) | the list being walked: 0 root 0's trailer, 1 root 1's, 2 the `{id, mask}` table at `+0x80` of area slot 0's data | `0x0037C910`, 0 (`0x0037C932`); the task `0x0037C3F0`, 1 more (`0x0037C6A8`) | the task `0x0037C3F0`: `0x0037C430`, `0x0037C4E0`, `0x0037C566`, `0x0037C5AD` and `0x0037C661`, which compare it with 2; `0x0037C493`, as the root number passed to `0x003EA650` (sign-extended); `0x0037C689`, to step it |
+| `0x02ADD970` | `u32` | 0 (zero-filled tail of `.data`) | the task's argument: 1 adds the third list | `0x0037C910`, the argument (`0x0037C918`); the task, 0 at its end (`0x0037C6D4`) | the task (`0x0037C695`), which makes the list limit 3 when it is 1 and 2 otherwise |
+
 ### Models kept through an area change
 
 When an area slot is unloaded (slots 1–3 in `0x002628B0`, slot 0 in `0x0025AFC0`, which `0x0032F850` and

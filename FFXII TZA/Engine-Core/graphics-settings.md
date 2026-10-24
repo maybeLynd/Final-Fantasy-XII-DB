@@ -52,6 +52,19 @@ calls `0x001C51D0(map, "key")` (its only caller), a three-level chain: the given
 `Common` section of the current scene map (`0x01F813D8 + 0x01F813F8 × 0x10` when `0x01F81418` is set,
 else `0x01DF6E50`'s), then `0x01F81328`, then `0x01F813C8`.
 
+`0x001C3D50(mode)` keeps the mode in `0x01F81418` and picks the document whose cut section it reads.
+- In mode 0 that is `0x01DF6E50`.
+- In mode 1, the second-screen run, it is `0x01DF6E58`. The cut section comes from `0x001FF6B0(document, name)`
+  (`0x001C3E9F`-`0x001C3EBB`).
+- `0x001C3D50` sets `0x01DF6E58` on every call that gets past its first tests. Normally it holds the slot's `_2ndScreen`
+  document, `0x01F813D8 + slot × 0x10` (`0x001C3E78`). In mode 1, while the crossfade byte `0x01F81280` is set and that
+  document is absent (`0x00200BE0`), it holds the slot's main document `0x01F813A8 + slot × 0x10` instead (`0x001C3E5A`).
+  When the document it picked is also absent, the call returns 0 (`0x001C3E84`-`0x001C3E8B`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01DF6E58` | `void*` | `0x01F813D8`, slot 0's second-screen document | the document a second-screen (mode 1) cutscene settings run reads its cut section from | `0x001C3D50` (`0x001C3E5A`, `0x001C3E78`) | `0x001C3D50` (`0x001C3E98`, in mode 1 only; in mode 0 `rcx` is replaced by `0x01DF6E50`'s value at `0x001C3EB8`) |
+
 `0x001C52C0(map, section, key)` is the same chain for a
 key inside a section, used three times by the cutscene loader (`0x001C4760`-`0x001C47BA`).
 `0x001CC9A0(out, n)` makes the decimal string of n (`"%d"`, `0x008F6D3C`) that `0x001C5570` and `0x001CC600` append to

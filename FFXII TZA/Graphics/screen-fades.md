@@ -322,6 +322,20 @@ Both schedule tests in `0x0037DEA0` are unsigned: the fade-in fires once the ela
 start byte `+0x01` (`0x0037DEDF`), and the fade-out once they are not below `end - outLength - outLead` (`0x0037DF44`), so a
 difference below 0 compares as a large unsigned value.
 
+`fadecolor(r, g, b, a)` (`0x00BA`, `0x00340080`) pops its four arguments and jumps to `0x002EFE10(r, g, b, a)`. That
+stores them in the one-shot colour `0x022BDD58`-`0x022BDD5B` and sets `0x022BDD5C` (`0x002EFE10`-`0x002EFE2A`). The next
+`0x002EFA70` copies the four bytes into the record's descriptor `+0x28`-`+0x2B` and clears `0x022BDD5C`
+(`0x002EFBDE`-`0x002EFC0A`).
+
+The pool's handle words lie `0x70` apart from `0x02EBFA48`, and the last record's is `0x02EC07D8`. Each walk of the pool
+stops at the first record with no handle, so it reads this word only after the 31 records before it.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022BDD59` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot colour's green | `0x002EFE10` (`0x002EFE1D`, from `fadecolor`'s second argument) | `0x002EFA70` (`0x002EFBE9`, into the descriptor `+0x29`) |
+| `0x022BDD5A` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot colour's blue | `0x002EFE10` (`0x002EFE23`, from the third argument) | `0x002EFA70` (`0x002EFBF4`, into the descriptor `+0x2A`) |
+| `0x02EC07D8` | `u32` | 0 (zero-filled tail of `.data`) | the handle `+0x68` of record 31, the pool's last; 0 when that record is free | 0 from `0x00374930` (`0x00374940`) and `0x00375120` (`0x00375133`), the loops over all 32; `0x00375900` (`0x003759BB`, the new handle when the record goes in last); `0x00375A20` (`0x00375AC3`, record 30 moved down to make room); 0 from `0x00375470` (`0x003754E2`) and `0x00375F80` (`0x00376020`) after a removal | `0x00375900` (`0x00375937`); `0x00374950` (`0x00374970`, `0x003749B9`); `0x00374FD0` (`0x0037501A`); `0x00375500` (`0x0037556A`, `0x00375633`); `0x00375AE0` (`0x00375AF5`); `0x00375470` (`0x00375490`; the move at `0x003754DF`); `0x00375F80` (`0x00375FE0`; the move at `0x0037601D`) |
+
 ## Modding notes
 
 - A fade-out stays on screen until a fade-in on the same layer; leaving one out of a script leaves
