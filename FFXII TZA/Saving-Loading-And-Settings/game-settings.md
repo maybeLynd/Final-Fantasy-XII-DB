@@ -102,7 +102,8 @@ onward. The old value-name rows for the numeric settings hold only the `none` po
 4. After the last line, every setting the file did not name, and every preset-controlled setting
    while Quality is not 3 (Custom), is reloaded from the defaults column selected by Quality.
 5. When Language is neither `jp` (0) nor `kr` or `ch` (6, 7), three value-table pairs at
-   `0x01DFDA58`, `0x01DFDBA8` and `0x01DFDCF8` are set to `{12, 13}`.
+   `0x01DFDA58`, `0x01DFDBA8` and `0x01DFDCF8` are set to `{12, 13}`: entries 18 and 19 of the three id tables, 12 into
+   those words and 13 into `0x01DFDA5C`, `0x01DFDBAC` and `0x01DFDCFC` (`0x001DECBA`, `0x001DECCE`, `0x001DECE2`).
 
 The parser reads the text through a string stream: `0x001DF7D0` copies the text into the stream's
 buffer and sets its pointers, `0x001A9E10` builds the key and value strings, `0x001DFA00` returns a
@@ -340,7 +341,7 @@ The block's other bytes are not taken from the file:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u32[31]` | settings | the 31 settings, offset = index * 4; `0x001DE050`, `0x001DF350`, `0x001DF340` |
-| `+0x07C` | `u8[972]` | tables | the value tables `0x001DF240` fills from `0x01DFD850`, `0x01DFD9A0` and `0x01DFDAF0` (81 dwords each at `+0x7C`, `+0x1C0` and `+0x304`) |
+| `+0x07C` | `u8[972]` | tables | the value tables `0x001DF240` fills from `0x01DFDA10`, `0x01DFDB60` and `0x01DFDCB0` (81 dwords each at `+0x7C`, `+0x1C0` and `+0x304`) |
 | `+0x448` | `u32` | count | 81 after `0x001DF240` |
 | `+0x44C` | `u32` | msaa | bit set of the supported MSAA values: 1 from `0x001DE050`, more bits from `0x001DF2B0`; read by `0x001DF2C0` |
 | `+0x450` | `u16[260]` | path | the ini path, wcscpy_s by `0x001DE050` |

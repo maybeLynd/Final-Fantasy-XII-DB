@@ -661,6 +661,7 @@ hand the block, and by the fade tick `0x003DE160` (`0x003DE177`) for its copy.
 | `0x02B58C39` | `+0x01` | `u8` | the mask: 1 after a reset | `0x003DDD10`, `0x003DE320`; `0x003DE360`: 0 (`0x003DE373`), 3 (`0x003DE37B`), 2 (`0x003DE383`), 1 (`0x003DE38B`) |
 | `0x02B58C3A` | `+0x02` | `u8` | the noise type: 0 after a reset | `0x003DDD10`, `0x003DE320`; `0x003DE3A0`: 3 (`0x003DE3B3`), 2 (`0x003DE3BB`), 1 (`0x003DE3C3`), 0 (`0x003DE3CB`) |
 | `0x02B58C3B` | `+0x03` | `u8` | the screen type: 1 after a reset | `0x003DDD10`, `0x003DE320`; `0x003DE430`: 2 (`0x003DE434`), 1 (`0x003DE440`) |
+| `0x02B58C40` | `+0x08` | `f32` | the strength: 0.5 after a reset; `0x0024EC00` copies it to the live `0x02092680` (`0x0024EC2B`) and the fade tick `0x003DE160` reads it (`0x003DE183`, `0x003DE1B3`) | `0x003DDD10` (`0x003DDDE3`, 0.5 from `0x01CEBB70` at `0x003DDD9F`); `0x003DE320` (`0x003DE33B`); `movebluraplpha` (`0x0322`, `0x0033FEA0`) through `0x003DE350` (`0x003DE350`, from `0x0033FEB0`) |
 
 The object motion blur block `0x02B58C20` is reset to zero with `0x80` at `+0x07` by `0x003DDD10` (`0x003DDDB8`, `0x003DDDD2`,
 `0x003DDDEB`, `0x003DDDF2`) and by `objmblurplay` (`0x003DE480`: `0x003DE498`, `0x003DE49F`, `0x003DE4A6`, `0x003DE4AD`), each an

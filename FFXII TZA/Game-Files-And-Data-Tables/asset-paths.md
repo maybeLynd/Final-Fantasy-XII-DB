@@ -83,6 +83,7 @@ entries for ids 9 and 10 point at the default arm too. Every arm ends by storing
 | `0x0215F128` | 37 | `void*` | 0 (zero-filled tail) | per language, below | `0x002DF9A0`, by the language's arm |
 | `0x0215F130` | 38 | `void*` | 0 (zero-filled tail) | `0x01EBE740` | `0x002DF9A0` (`0x002DFB8C`) |
 | `0x0215F138` | 39 | `void*` | 0 (zero-filled tail) | `0x01ECB7E0` | `0x002DF9A0` (`0x002DFB9A`) |
+| `0x0215F140` | 40 | `void*` | 0 (zero-filled tail) | `0x0215F160`, a zero-filled qword that only this store's `lea` names | `0x002DF9A0` (`0x002DFBA8`) |
 
 | Kind (global) | 1 US | 2 FR | 3 DE | 4 IT | 5 ES | 6 UK | 7 KR | 8 CH | 11 CN | 0, 9, 10 and above 11 |
 |---|---|---|---|---|---|---|---|---|---|---|

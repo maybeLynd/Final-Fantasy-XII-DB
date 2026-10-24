@@ -209,6 +209,12 @@ copies the default instance of every inline object member, across the class and 
   (`0x00680030`) and returns the list record to the cluster's pool at `+0x50` (`0x00680200`).
 - `absorb` (`0x00638FB0`) moves every list of another cluster into this one (see below).
 
+Each method is a `0x28`-byte node (`0x01F2E140`, `0x01F2E190`, `0x01F2E1E0`, `0x01F2E230`) built behind its own guard and
+appended to the descriptor's method list, whose anchor is `0x02CF8810`, the descriptor's `+0x90`, and whose tail word is
+`0x02CF8818`. Each append reads the tail, links the node after it and stores the node as the new tail (`0x006354EE`,
+`0x0063550D`; `0x0063559E`, `0x006355BD`; `0x0063564C`, `0x0063566B`; `0x006356FA`, `0x00635719`). The teardowns `0x008AF2B0`,
+`0x008AF370`, `0x008AF310` and `0x008AF220` unlink the nodes at exit.
+
 A cluster's `+0x78` points at the world it belongs to, whose per-type table (count `+0x10`, entries
 `+0x18`) holds `0x20`-byte entries indexed by each descriptor's
 `+0xEC`. An entry heads the lists of its class and counts their objects at `+0x10` and the lists at
@@ -856,6 +862,14 @@ the value the class's own code leaves:
 The 69 array-type descriptors are in `array-getter`: each getter sets bit `0x2` while it builds the descriptor
 and clears it after installing the Concrete vtable.
 
+A getter keeps its class name in a static of its own and fills it from the first caller that passes a name. For
+`PArray<PUInt32>` the getter `0x005B4E00` builds the descriptor `0x02CB3B50` with the name in `0x02CB5BC8` (`0x005B4E78`,
+`0x005B4E9D`), 0 on the first call; once a caller passes a name while the descriptor's name `0x02CB3B80` is 0, it stores
+that name in both (`0x005B4F31`, `0x005B4F3F`, `0x005B4F46`).
+
+`0x005B1D90` passes `[0x01F2D110]` (`0x005B1DB5`), which the image points at the text `PArray<PUInt32>` (`0x00D329D8`); the
+calls at `0x005B1DFF`, `0x005B82DC`, `0x005B82EE`, `0x005BB255`, `0x005C7982`, `0x005C7E32` and `0x005CACA0` give no name.
+
 Every instruction in the game that writes or reads a descriptor's `+0xFC` is a row of
 [phyre-reflection-class-flag-sites.tsv](phyre-reflection-class-flag-sites.tsv): 1006 rows, one per bit and access.
 926 instructions touch the word: 380 through a pointer and 546 at a descriptor's static address. Nothing
@@ -982,6 +996,14 @@ of every class and sets it back to 0 (`0x00638DAB`).
   and `0x11` for an object with no name.
 - `type-tree`: the link words `0x01F2E788`-`0x01F2E7A8` of the header `0x01F2E780`; `0x00636280` and `0x00638F00` set
   them to the header's address, an empty tree, behind guard `0x02CF9524`.
+
+The `PLOD` enumerations register their values in two named registries. `0x006D9680` adds a `PLODMetricType` (vtable
+`0x00D8DCA8`) to the list `0x02EA06D8`, and the initialisers `0x00168850`, `0x00168870` and `0x00168890` register
+`DistanceToBoundBox` (`0x01F323A8`), `DistanceToNode` (`0x01F32390`) and `ScreenSize` (`0x01F323C0`) through it.
+
+`0x001688B0` and `0x001688D0` register the `PLODBlendType` (vtable `0x00D8DD88`) values `Distance` (`0x01F323D8`) and `Time`
+(`0x01F323F0`) through `0x006D9A70` into `0x02EA0748`. Each record holds its vtable at `+0x00`, its name at `+0x08` and the list
+link at `+0x10`; the teardowns `0x008B76B0`, `0x008B7710`, `0x008B7770`, `0x008B77E0` and `0x008B7840` unlink them at exit.
 
 ### More method and script-function records
 

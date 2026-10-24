@@ -219,7 +219,7 @@ state `0xC`. Their close path `0x002D6F90` ends by calling `0x003CA0A0` (`0x002D
 
 Verbs `0x599` (`lockmapjump`, handler `0x0034AD70`) and `0x59A` (`unlockmapjump`, `0x0034B1C0`) set and
 clear bit `0x4` of byte `+0x200` of the current field context `0x002640C0()`. `0x00264830` reports a lock when
-any of managers 0 to 2 (`0x02098E20`, stride `0x288`) has `+0x10` bit `0x1` and `+0x200` bit `0x4` set; the mapjump
+any of managers 0 to 2 (`0x02098E10`, stride `0x288`) has `+0x10` bit `0x1` and `+0x200` bit `0x4` set; the mapjump
 poll waits on it. A script that locks and never unlocks holds every pending jump.
 
 ### The jump-index verbs
@@ -343,8 +343,8 @@ third.
 | `0x022C6E48` | `u64[5]` | pending-load mask per manager; bit `0x1` the start hold | `0x0032FC30`, `0x0032FCA0`, `0x00330310`, `0x0032ED70`, `0x00332130`, the load callbacks |
 | `0x022CB720` | `u32` | the busy mask | the table above |
 | `0x02099D70` | `void*` | current field context | the actor manager runtime |
-| `0x02098E20` | 5 × `0x288` | the actor managers | the actor manager runtime |
-| `0x02099DB8` | `u32` | sum of the active managers' `+0x1D4` over managers 0 to 2 | `0x00266D10` (`0x002670C7`), `0x002628B0` (`0x00262F04`), `0x0025B500` (`0x0025B558`), `0x0025C830` (`0x0025D400`) |
+| `0x02098E10` | 5 × `0x288` | the actor managers; `0x02098E20` is manager 0's `+0x10` flag byte, bit `0x1` the active bit | the actor manager runtime |
+| `0x02099DB8` | `u32` | sum of the active managers' `+0x1E4` over managers 0 to 2 (`0x02098FF4`, `0x0209927C`, `0x02099504`) | `0x00266D10` (`0x002670C7`), `0x002628B0` (`0x00262F04`), `0x0025B500` (`0x0025B558`), `0x0025C830` (`0x0025D400`) |
 | `0x022C6D28`, `0x022C6D40` | `i32[5]` each | the request context per manager | `0x0032FCA0` |
 
 ## Modding notes

@@ -747,6 +747,11 @@ loop over the slots stops at 8.
 - `CRenderTexture::BeginTiling` (`0x00722A40`) counts the bound targets into `0x02EA190C` and keeps its first, third and
   fourth arguments and the 16 bytes at its second in `0x02EA1908`, `0x01F3CB38`, `0x02EA1910` and `0x02EA1938`. No
   instruction reads those five. `EndTiling` (`0x00722C80`) clears both arrays and `0x02EA1908`.
+- `0x02EA18B1` is 1 while tiling is on: `BeginTiling` returns at once when it is set (`0x00722A44`) and sets it
+  (`0x00722C30`); `EndTiling` tests it (`0x00722C84`) and clears it (`0x00722E21`, `r8d` cleared at `0x00722CD5`).
+- `BeginTemporaryFilter` `0x006F2560` (`0x006F25EB`) and `EndPostEffectScene_PreProcess` `0x006F8740` (`0x006F8D78`, its copy to
+  `CPostEffect` `+0xCE2`) read the flag, and so do `0x00721B10`, `0x00722110`, `0x007224C0`, `0x007226E0`, `0x00722800`, `0x00722900`
+  and `0x00722E80`.
 - The game calls `BeginTiling` itself at `0x005FED6F` (`0x005FECF0`) and `0x0060F9A0` (`0x0060F830`).
 
 ### Device and resource registry

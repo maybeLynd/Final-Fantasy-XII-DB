@@ -254,6 +254,9 @@ The draws are `0x0061E760`, `0x006227D0`,
 `setter(ctx, 1, 1, &view)`. Views 2, 3 and 4 (`0x02CEE3E0`, `0x02CEE3E8`, `0x02CEE3F0`) are bound the same way at
 `0x006C9721`-`0x006C9735`, `0x006C97AD`-`0x006C97C0` and `0x006C90C5`-`0x006C90D6`.
 
+View 1's cached view is the word `0x02CEE3D8`: `0x006C8CA0` compares the record's `+0x168` with it (`0x006C96EF`) and, when
+they differ, stores the new view (`0x006C9702`) and calls the setter with slot 1 (`0x006C9714`).
+
 `0x0062A0A0` reads each resource record's slot (`+0x04`, −1 skips it) and the parameter at its offset
 (`+0x00`) in the pass's block, and fills the pending arrays by parameter type:
 

@@ -208,6 +208,10 @@ Those last seven number and clear the tables from `0x02B581A0` to `0x02B5EC88`: 
 `0x13602` and colour `0x80FFFFFF`, 16 records, 5 × 8 slots, 32 records numbered `0x20` to `0x3F`
 with a 28-node list, and eight pairs of 0 and `0x100`.
 
+Among its own stores the reset zeroes the byte `0x02099DA2` (`0x00267166`, `sil` cleared at `0x00266D3E`). No other
+RIP-relative, image-base-relative or address-forming reference names it, and the bytes beside it, `0x02099DA1` and
+`0x02099DA3`, are read and written one byte at a time.
+
 The `0x48`-byte records are the [script gauges](../Menus-And-HUD/script-gauges.md)' record pool, which `0x003E7DF0`
 (called at `0x00266E3D`) builds; its layout is on that page.
 

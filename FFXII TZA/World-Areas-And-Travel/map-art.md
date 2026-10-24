@@ -83,6 +83,18 @@ count - 1 skips it. For a match:
   (from `0x001E1D90`) unregisters it from `0x01F82D60` (`0x001F8B30`), frees its five vectors (`+0x18`, `+0x38`,
   `+0x58`, `+0x78`, `+0x98`) and ends with `0x00212C80`.
 
+Each `MapRenderObject` holds a slot of the registry `0x01F82D60` at `+0x10`. The static initialiser `0x0015CC90` builds the
+registry with `0x001E1520(0x01F82D60, 20000)` (`0x0015CC94`, `0x0015CCA0`): a vector of 20000 slots of `0x18` bytes
+(`0x001E5370`) and two EASTL sets of slot addresses, the free set at `0x01F82D80` and the in-use set at `0x01F82DB8`. It puts
+every slot in the free set (`0x00199DB0` at `0x001E1644`), so the free set's size `0x01F82DA8` starts at 20000; `0x00199DB0`
+adds one per insert (`0x00199E93`, `0x00199ED3`).
+
+`0x001E1670` takes the free set's first slot, the node at `0x01F82D90`, while that size is non-zero (`0x001E1979`, `0x001E1983`).
+It lowers the size (`0x001E1998`), unlinks the node and frees its `0x28` bytes through the set's allocator `0x01F82DB0`
+(`0x001E19CC`), inserts the slot into the in-use set (`0x001E19EC`), and stores the slot at `+0x10` and the object at the
+slot's `+0x08` (`0x001E19F6`, `0x001E1A0C`). The destructor `0x001E1C90` hands the slot to `0x001F8B30` (`0x001E1CB7`), which
+moves it back into the free set (`0x001F8BCB`).
+
 ### Material extras for each model
 
 `0x001A7F10` pairs textures with their companions. For each texture of the list whose name ends in

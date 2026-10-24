@@ -322,7 +322,7 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x094` | `u8[8]` | channelHead |  |
 | `+0x0A0` | `u8*` | resourceEntries | 20-byte entries |
 | `+0x0A8` | `u8*` | waitSlots | 40-byte slots (field runtime page) |
-| `+0x0B8` | `u8*` | movementContext | `0x230` bytes at `+0x120` |
+| `+0x0B8` | `u8*` | movementContext | at `+0x120`: `0x80` bytes for sequences 1-2 (class 1), `0x20` for 3-4 (class 2), `0x230` for 5-7 (class 3), null for sequence 0 |
 | `+0x0C0` | `u8*` | secondaryContext 0x188 bytes at +0x350, class 3 only |  |
 | `+0x0C8` | `u16[18]` | overrides | `0xFFFF` at init |
 | `+0x0F6` | `u16` | entryGroup | 0 at init; stamped by `0x0026CE60` |

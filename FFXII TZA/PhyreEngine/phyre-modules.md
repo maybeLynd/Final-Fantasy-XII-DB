@@ -319,6 +319,22 @@ class's loaded list, is `0x006C4CD0`, which jumps to `0x006C68B0`. That function
 |---|---|---|---|---|---|
 | `0x02E5ACF0` | `u8` | 0 | set to 1 each time `0x006C68B0` runs | `0x006C68B0` (`0x006C68BE`) | none: no RIP-relative, image-base-relative or disp32 reference outside the store names it |
 
+### The default class layout interface
+
+`0x01F2E0D0` is the one shared `Phyre::PClassLayoutInterface` (vtable `0x00D26BE0`, RTTI
+`.?AVPClassLayoutInterface@Phyre@@`), initialised data that already holds its vtable. `0x006372B0` returns its address
+(`0x006372D7`) behind a thread-safe guard on `0x02CF9404` (`0x008092FC`, `0x0080929C`) that registers the exit routine `0x008AF500`
+(`0x006372FF`), which stores the vtable again (`0x008AF507`).
+
+The child-class visitors take it as their layout interface: `PFindNestedClassVisitor` (`0x00D276F8`) in `0x0059BED0`
+(`0x0059C0F1`), and `PDeleteChildrenVisitor` (`0x00D2D310`) in `0x005A3E50`, `0x005D18C0`, `0x006CEE50` and `0x006D9E30` (`0x005A3E6A`,
+`0x005D18DA`, `0x006CEE6A`, `0x006D9E4A`). `0x005FD2A0` passes it to `0x005FD700` (`0x005FD3AD`), and `0x00639C80` compares a layout
+pointer with it (`0x00639D30`, `0x00639D35`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F2E0D0` | `PClassLayoutInterface` | the vtable `0x00D26BE0` | the shared default class layout interface | `0x008AF500`, the vtable at exit (`0x008AF507`) | through the address `0x006372B0` returns (`0x006372D7`), by the seven callers above |
+
 ### Hierarchy triangle tables
 
 The `PHierarchy` init `0x0087AE00` passes the static `0x02EBA2A8` and level 2 to `0x0087A8C0` (`0x0087AE21`, `0x0087AE26`).
