@@ -54,7 +54,19 @@ What each offset holds:
 | `+0x10F78` | the party list widget ([Party list](party-list.md)) |
 | `+0x10FC0` | the pool |
 
-The `+0x5380` part's draw `0x00289A10` queues each number through `0x0028A790(entry, list, buffer, alpha)`, unless
+The `+0x5380` part holds three pools, which `0x0028A080` clears (`0x440` bytes). Its update `0x00289970` ends each
+pool's entries in turn (`0x00289979`, `0x00289981`, `0x0028998E`):
+
+- twelve `0x30`-byte EXP and LP numbers at `+0x000`, listed from `+0x420`, claimed by `0x00289BD0` and timed out by
+  `0x0028A550`. The number pop-up `0x0028FB80` calls `0x00289D00` twice (`0x0028FBAA`, `0x0028FBC8`), and `0x00289D00` claims
+  through `0x00289BD0` (`0x00289D4C`);
+- six `0x28`-byte combo counts at `+0x240`, listed from `+0x428`, claimed by `0x00289D70` and ended by `0x0028A350`.
+  The combo count arrives from `0x00307300` through `0x0028E920` (`0x00307676`), which jumps to `0x00289D70` (`0x0028E935`);
+- six `0x28`-byte pictures at `+0x330`, listed from `+0x430`, claimed by `0x00289F50` and ended by `0x0028A620`. The
+  action timeout `0x0030AF30` adds one through `0x00290540` (`0x0030B03D`), which jumps to `0x00289F50` (`0x00290585`).
+
+The part's draw `0x00289A10` draws the lists through `0x0028B140` (`0x00289AE7`, `0x00289B2D`) and `0x0028AAA0`
+(`0x00289B7C`), and the pictures through `0x0028A790(entry, list, buffer, alpha)` (`0x00289BAC`), unless
 the entry's `+0x14` is set: a sprite at the entry's position with w = -1, the picture of `0x0035D3D0` at its cell,
 and a size and alpha from the 5-key track `0x00915F68` at the entry's time `+0x10`; the alpha is scaled by
 `0x00272DE0()` x `alpha` while `+0x0C` is set and is 0 otherwise.
@@ -455,7 +467,7 @@ Scripts reach it through a word of hide bits, one per verb family:
 | Function | Does |
 |---|---|
 | `0x00254E70` | runs the HUD switch `0x00251F40` with the saved value `[0x020927E8]` |
-| `0x00290EB0(hud)` | while `+0x10F90` holds a caption index (not -1): when the `0xE8`-byte widget at `+0x10D20` or `+0x10E08` (chosen by `+0x10F68` bit `0x80`) still exists (`0x00273A20`) it only calls `0x00245020`; otherwise it opens it with the procedure `0x003F8250`, places it at `+0x10F94`/`+0x10F96`, sets its text with `0x003F8030`, sets `+0x10F90` back to -1 and flips bit `0x80` |
+| `0x00290EB0(hud)` | while `+0x10F90` holds a caption index (not -1): when the `0xE8`-byte widget at `+0x10D20` or `+0x10E08` (chosen by `+0x10F68` bit `0x80`) still exists (`0x00273A20`) it only calls `0x00245020`; otherwise it builds it in place through `0x00245000` (`0x00290F16`, size `0xE8` at `0x00290F11`) with the procedure `0x00290FF0` (`0x00290F0A`), which on message 4 writes 4 to `[+0x38] + 0x5C` and tail-jumps to `0x003F7F50` (`0x00290FFD`), keeps it at `+0x10F88` (`0x00290F1E`), places it at `+0x10F94`/`+0x10F96`, sets its text with `0x003F8030`, sets `+0x10F90` back to -1 and flips bit `0x80` |
 | `0x003F8030(widget, n)` | the text `0x002F9860([0x00D11E30 + 16n])` at `+0xC0`; the box is the measured text (`0x0029CD90`) plus 4 |
 | `0x003F8790(widget, mode)` | run by `0x003F8250` (`0x003F8362`, `0x003F83F3`): matches the four children at `+0xC0`-`+0xD8` against the four ids at `[+0xE0] + 0x740`. A child whose id `+0xE0` is still listed moves to that id's slot, sliding to y = (3 - slot) x 0x12 (`0x002468A0`) when the slot changed; any other child is closed (`0x00244F00`); a listed id with no child gets one from `0x003F8640(widget, id, slot)`, opened with `0x00244960` for mode 0 or `0x00246AD0` otherwise. Every child then takes the widest `+0xD0`, and it returns the number of listed ids |
 | `0x003F8490(widget)` | finds a free slot among the eight `0xE8`-byte child slots from `+0x000`: it steps the index `+0x750`, wrapping from 7 to 0, and returns the first slot for which `0x00273A20` answers 0, or 0 after eight; `0x003F8640` takes its slot this way (`0x003F8688`) |
@@ -582,6 +594,24 @@ The part at `+0x7FB0` holds six `0x110`-byte records, one per unit whose level w
 | `+0x104` | `i16` | consumeCursor0104 | the pump's index into `+0xF8`, wrapping at 3 (`0x002968AC`, `0x002968F3`-`0x002968FC`) |
 | `+0x106` | `i16` | produceCursor0106 | the producer's index into `+0xF8`, wrapping at 3 (`0x00296736`-`0x0029675D`, `0x002967CB`-`0x002967FD`, `0x00296807`-`0x00296839`) |
 | `+0x108` | `u8[8]` | unobservedSpan0108 | read and written by no function; nothing fixes its width |
+
+### The labels of the part at +0xA0
+
+Next to its markers the part at `+0xA0` writes a name: an area's name, or text `0x3EC`. It keeps eight
+`0x250`-byte screen labels at its `+0x4020`, listed from `+0x52A0` (links `+0x240` and `+0x248`).
+
+- `0x003F8EA0`, run by `0x0028FA70` (`0x0028FA87`), clears the list head and all eight labels, `0x1280` bytes from
+  `+0x4020` (`0x003F8EBA`).
+- Before its two passes `0x003F8EC0` clears bit `0x2` of `+0x23C` on every listed label (`0x003F8F60`). The passes are
+  `0x003F9720(part, 0)` (`0x003F8F90`) and `0x003F9720(part, 1)` (`0x003F8F9D`), over the zone script's lists 0 and 1.
+- For each marker `0x003F9720` takes a label whose `+0x23C` bit `0x1` is clear (`0x003F9270`, `0x003F9961`). It sets
+  `+0x238` and `+0x23A` (`0x003F9972`, `0x003F997F`) and appends the label to the list (`0x003F99A8`, `0x003F9A2F`,
+  `0x003F9A36`).
+- It copies the text into `+0x130` through `0x003F92B0` (`0x003F9A4E`), which takes the area name from `0x00377870`
+  (`0x003F9314`) or text `0x3EC` from `0x002F9860` (`0x003F935C`). It lays the text out with `0x002B3400` (`0x003F9A67`) and
+  sets `+0x23C` bits `0x1` and `0x2` (`0x003F9A78`).
+- After the passes `0x003F8EC0` sets the alpha `+0x33` to 0 on each label that no marker claimed again, the ones
+  without bit `0x2` (`0x003F8FB9`). `0x003F8C70` hands each listed label to `0x003F14D0` (`0x003F8CF3`).
 
 ### The sprites of the part at +0xA0
 

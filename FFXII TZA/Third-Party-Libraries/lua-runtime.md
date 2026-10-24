@@ -127,6 +127,27 @@ The `io`, `os`, `debug` and `package` functions, among them `io.open`
 (`0x00825660`, which checks its mode against `[rwa]%+?b?` and opens a `FILE*`) and `package.loadlib`
 (`0x00828580`), are therefore present and unreachable.
 
+### Objects and the collector
+
+Every collectable object is created by `luaC_newobj` (`0x0081A620`). It allocates through `0x00823670` (`0x0081A644`),
+writes the type tag at `+0x08` (`0x0081A664`) and the current white, global `+0x54` bits `0x3`, at `+0x09`
+(`0x0081A670`). It then links the object at `+0x00` into the list it is given, or into the all-objects list at global
+`+0x60` (`0x0081A659`, `0x0081A67A`).
+
+| Object | Constructor | Tag | Size |
+|---|---|---|---|
+| C closure | `0x0081ECA0` (`0x0081ECC0`), from `lua_pushcclosure` `0x00810470` (`0x008104C5`) | `0x26` | `(nupvalues + 2) << 4` (`0x0081ECA6`, `0x0081ECB4`) |
+| Lua closure | `0x0081ECD0` (`0x0081ECF3`), from `0x00823310` (`0x00823345`), `0x0082BE30` (`0x0082BE61`) and `0x0082E910` (`0x0082E96A`, `0x0082E9C8`) | 6 | `nupvalues * 8 + 0x20` (`0x0081ECE6`) |
+| long string | `0x0081EFB0` (`0x0081F003`) | `0x14` | `length + 0x21` (`0x0081EFEB`) |
+| short string, up to `0x28` bytes | `0x0081F1F0` (`0x0081F258`), from `0x0081EDC0` (`0x0081EE72`), which `0x0081EFB0` jumps to (`0x0081EFD0`) | 4 | `length + 0x21` (`0x0081F234`) |
+| userdata | `0x0081F050` (`0x0081F079`), from `0x00810240` (`0x00810269`) | 7 | `length + 0x30` (`0x0081F071`) |
+
+The collector's sweeps `0x0081B050` (`0x0081B0EC`) and `0x0081B1A0` (`0x0081B24C`) free a dead object through `0x00819C90`.
+It picks an arm by tag from the byte table `0x00819D50` and frees the same size through `0x00823670`: Lua closure
+`0x00819CD5`, C closure `0x00819CEA`, userdata `0x00819D09` and strings `0x00819D20`. A short string first decrements the
+string table's count at global `+0x38` (`0x00819D12`). No code in the image creates a state (above), so these
+functions run only on a state built outside the executable.
+
 ### Interpreter bodies outside the member list
 
 Three of the largest Lua functions are not in `lua-runtime-members.tsv`; each carries Lua's own

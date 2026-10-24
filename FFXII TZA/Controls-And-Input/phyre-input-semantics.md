@@ -129,6 +129,13 @@ The pad-button, key and mouse slots read a code through the semantic's own slot 
 `0x00874185`, `0x008741A9`, `0x008741CB`, `0x008741E1`). The axis slot calls `0x00879750` directly (`0x00873FC2`), since the axis
 vtable has no slot 1. In `0x00874170` the test of `+0x38` reads the code of `+0x30` (`0x008741A2`).
 
+### Where the input mapper lives
+
+The player's controls are read through one input mapper that lasts the whole run. It is part of the application
+object itself, at its `+0xE00`: the application's constructor `0x00792350` runs the mapper constructor `0x00792DD0` there
+(`0x00792515`) and then stores that address at `+0xDF8` (`0x00792557`). The mapper's descriptor destroy slot `0x0061ECF0`
+only returns 1, so nothing tears the mapper down.
+
 ### Reading a source: the evaluator chain
 
 The application's input object at `+0xDF8`, which its script method `getInputMapper` returns (`0x0079D000`), is a
