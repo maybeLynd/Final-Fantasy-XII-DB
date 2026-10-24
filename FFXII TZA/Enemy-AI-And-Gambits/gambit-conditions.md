@@ -131,9 +131,20 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
   HP while the summon timer, battle state `+0x5AD8`, is below 20 (`0x00303523`-`0x00303554`); every Esper's
   preset starts with it ([Gambits](gambits.md)).
 
+### Where each gambit condition comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `shop:` each shop that sells it, by name and number in [Shops](../Items-Equipment-Shops-And-Licenses/shops.md), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](../Items-Equipment-Shops-And-Licenses/shops.md), "Choosing a list").
+
+`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+
 ## Columns
 
-`gambit-conditions.tsv`, one row per condition:
+[`gambit-conditions.tsv`](gambit-conditions.tsv), one row per condition:
 
 | Column | Meaning |
 |---|---|
@@ -147,6 +158,7 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 | `pick` | the rule that chooses one target from what the first test kept |
 | `menu_position` | column and row on the gambit menu grid built by `0x00238880` (`0x002389DA`-`0x002389F9`), or `-` |
 | `sites` | the evaluator cases that show the row, and the relation filter |
+| `sources` | where the gambit condition is obtained, one part per kind of source ("Where each gambit condition comes from" above); `-` for none |
 
 ## Related
 

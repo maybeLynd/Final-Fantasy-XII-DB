@@ -7,7 +7,7 @@ addresses: "0x02EBF100, 0x0031C5D0, 0x0031C7F5, 0x0031C81A, 0x0031C83E, 0x0031C8
 
 ## What it lists
 
-`item-list.tsv` holds one line for each of the 64 rows of the item table that registry slot `0x02EBF100` reaches
+[`item-list.tsv`](item-list.tsv) holds one line for each of the 64 rows of the item table that registry slot `0x02EBF100` reaches
 (`battle_pack.bin` directory entry `+0x4C`). Row *n* is item id *n*, `0x0000`-`0x003F`: the class-5 arm of
 `0x0031C5D0` multiplies the id by the table's row size (`0x0031C7E1`-`0x0031C7F3`).
 
@@ -49,6 +49,21 @@ The row layout:
   writes), sort order 0 and icon frame 37, and action row 82 spends it ("Restore a small amount of HP to one ally.");
   row 6, Phoenix Down, has sort order 8, price 200, and action row 88, which removes KO.
 
+### Where each item comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
+- `steal:`, `drop:`, `poach:` and `monograph:` the monsters whose enemy definitions hold its id in those slots, read from the area files ([Bestiary](../Enemy-Spawning/bestiary.md)). Definitions that no map script places, and the units named "No name", are left out.
+- `scene gift:` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). Scripts that no map loads are left out.
+- `reward package:` a package that holds it, is named by a reward selector ([Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)) and is given by no script.
+- `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+
+A part that names more than 15 monsters or 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents, and the starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
+
 ## Columns
 
 | Column | Meaning |
@@ -66,6 +81,7 @@ The row layout:
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
+| `sources` | where the item is obtained, one part per kind of source ("Where each item comes from" above); `-` for none |
 
 ## Related
 

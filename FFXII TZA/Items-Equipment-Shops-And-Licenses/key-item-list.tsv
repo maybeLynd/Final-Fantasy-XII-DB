@@ -1,513 +1,513 @@
-id	table	row	name	sort_order	icon_frame	b00	text_id	description	explanation
-0x8000	m_daiji	0	Rabanastre	0	112	0	20000		a key item from m_daiji; its description text is empty
-0x8001	m_daiji	1	Nalbina Fortress	1	112	1	20001		a key item from m_daiji; its description text is empty
-0x8002	m_daiji	2	Bhujerba	2	112	2	20002		a key item from m_daiji; its description text is empty
-0x8003	m_daiji	3	Jahara	3	112	3	20003		a key item from m_daiji; its description text is empty
-0x8004	m_daiji	4	Eruyt Village	4	112	4	20004		a key item from m_daiji; its description text is empty
-0x8005	m_daiji	5	Mt Bur-Omisace	5	112	5	20005		a key item from m_daiji; its description text is empty
-0x8006	m_daiji	6	Archades	6	112	6	20006		a key item from m_daiji; its description text is empty
-0x8007	m_daiji	7	Balfonheim Port	7	112	7	20007		a key item from m_daiji; its description text is empty
-0x8008	m_daiji	8	Dalmasca Estersand	8	112	8	20008		a key item from m_daiji; its description text is empty
-0x8009	m_daiji	9	Dalmasca Westersand	9	112	9	20009		a key item from m_daiji; its description text is empty
-0x800A	m_daiji	10	Giza Plains	10	112	10	20010		a key item from m_daiji; its description text is empty
-0x800B	m_daiji	11	Ogir-Yensa Sandsea	11	112	11	20011		a key item from m_daiji; its description text is empty
-0x800C	m_daiji	12	Nam-Yensa Sandsea	12	112	12	20012		a key item from m_daiji; its description text is empty
-0x800D	m_daiji	13	Mosphoran Highwaste	13	112	13	20013		a key item from m_daiji; its description text is empty
-0x800E	m_daiji	14	Salikawood	14	112	14	20014		a key item from m_daiji; its description text is empty
-0x800F	m_daiji	15	Nabreus Deadlands	15	112	15	20015		a key item from m_daiji; its description text is empty
-0x8010	m_daiji	16	Ozmone Plain	16	112	16	20016		a key item from m_daiji; its description text is empty
-0x8011	m_daiji	17	Golmore Jungle	17	112	17	20017		a key item from m_daiji; its description text is empty
-0x8012	m_daiji	18	Feywood	18	112	18	20018		a key item from m_daiji; its description text is empty
-0x8013	m_daiji	19	Paramina Rift	19	112	19	20019		a key item from m_daiji; its description text is empty
-0x8014	m_daiji	20	Phon Coast	20	112	20	20020		a key item from m_daiji; its description text is empty
-0x8015	m_daiji	21	Tchita Uplands	21	112	21	20021		a key item from m_daiji; its description text is empty
-0x8016	m_daiji	22	Cerobi Steppe	22	112	22	20022		a key item from m_daiji; its description text is empty
-0x8017	m_daiji	23	Ridorana Cataract	23	112	23	20023		a key item from m_daiji; its description text is empty
-0x8018	m_daiji	24	Garamsythe Waterway	24	112	24	20024		a key item from m_daiji; its description text is empty
-0x8019	m_daiji	25	Barheim Passage	25	112	25	20025		a key item from m_daiji; its description text is empty
-0x801A	m_daiji	26	Zertinan Caverns	26	112	26	20026		a key item from m_daiji; its description text is empty
-0x801B	m_daiji	27	Lhusu Mines	27	112	27	20027		a key item from m_daiji; its description text is empty
-0x801C	m_daiji	28	Tomb of Raithwall	28	112	28	20028		a key item from m_daiji; its description text is empty
-0x801D	m_daiji	29	Necrohol of Nabudis	29	112	29	20029		a key item from m_daiji; its description text is empty
-0x801E	m_daiji	30	Henne Mines	30	112	30	20030		a key item from m_daiji; its description text is empty
-0x801F	m_daiji	31	Giruvegan	31	112	31	20031		a key item from m_daiji; its description text is empty
-0x8020	m_daiji	32	Stilshrine of Miriam	32	112	32	20032		a key item from m_daiji; its description text is empty
-0x8021	m_daiji	33	Sochen Cave Palace	33	112	33	20033		a key item from m_daiji; its description text is empty
-0x8022	m_daiji	34	Draklor Laboratories	34	112	34	20034		a key item from m_daiji; its description text is empty
-0x8023	m_daiji	35	Reserve	35	112	35	20035		a Reserve row
-0x8024	m_daiji	36	Leviathan	36	112	36	20036		a key item from m_daiji; its description text is empty
-0x8025	m_daiji	37	Bahamut	37	112	37	20037		a key item from m_daiji; its description text is empty
-0x8026	m_daiji	38	Royal Palace of Rabanastre	38	112	38	20038		a key item from m_daiji; its description text is empty
-0x8027	m_daiji	39	Garamsythe Candle	39	112	39	20039		a key item from m_daiji; its description text is empty
-0x8028	m_daiji	40	Barheim Candle	40	112	40	20040		a key item from m_daiji; its description text is empty
-0x8029	m_daiji	41	Lhusu Candle	41	112	41	20041		a key item from m_daiji; its description text is empty
-0x802A	m_daiji	42	Henne Candle	42	112	42	20042		a key item from m_daiji; its description text is empty
-0x802B	m_daiji	43	Feywood Candle	43	112	43	20043		a key item from m_daiji; its description text is empty
-0x802C	m_daiji	44	Nalbina Dungeons	44	112	44	20044		a key item from m_daiji; its description text is empty
-0x802D	m_daiji	45	Pharos: First Ascent	45	112	45	20045		a key item from m_daiji; its description text is empty
-0x802E	m_daiji	46	Pharos: Second Ascent	46	112	46	20046		a key item from m_daiji; its description text is empty
-0x802F	m_daiji	47	Pharos: Third Ascent	47	112	47	20047		a key item from m_daiji; its description text is empty
-0x8030	m_daiji	48	Reserve	48	0	0	20048		a Reserve row
-0x8031	m_daiji	49	Reserve	49	0	0	20049		a Reserve row
-0x8032	m_daiji	50	Reserve	50	0	0	20050		a Reserve row
-0x8033	m_daiji	51	Reserve	51	0	0	20051		a Reserve row
-0x8034	m_daiji	52	Reserve	52	0	0	20052		a Reserve row
-0x8035	m_daiji	53	Reserve	53	0	0	20053		a Reserve row
-0x8036	m_daiji	54	Reserve	54	0	0	20054		a Reserve row
-0x8037	m_daiji	55	Reserve	55	0	0	20055		a Reserve row
-0x8038	m_daiji	56	Reserve	56	0	0	20056		a Reserve row
-0x8039	m_daiji	57	Reserve	57	0	0	20057		a Reserve row
-0x803A	m_daiji	58	Reserve	58	0	0	20058		a Reserve row
-0x803B	m_daiji	59	Reserve	59	0	0	20059		a Reserve row
-0x803C	m_daiji	60	Reserve	60	0	0	20060		a Reserve row
-0x803D	m_daiji	61	Reserve	61	0	0	20061		a Reserve row
-0x803E	m_daiji	62	Reserve	62	0	0	20062		a Reserve row
-0x803F	m_daiji	63	Reserve	63	0	0	20063		a Reserve row
-0x8040	g_daiji	0	Rabanastre	0	113	64	20064		a key item from g_daiji; its description text is empty
-0x8041	g_daiji	1	Reserve	1	0	0	20065		a Reserve row
-0x8042	g_daiji	2	Nalbina Fortress	2	113	66	20066		a key item from g_daiji; its description text is empty
-0x8043	g_daiji	3	Barheim Passage	3	113	67	20067		a key item from g_daiji; its description text is empty
-0x8044	g_daiji	4	The Salikawood	4	113	68	20068		a key item from g_daiji; its description text is empty
-0x8045	g_daiji	5	Nabreus Deadlands	5	113	69	20069		a key item from g_daiji; its description text is empty
-0x8046	g_daiji	6	Reserve	6	113	70	20070		a Reserve row
-0x8047	g_daiji	7	Archades	7	113	71	20071		a key item from g_daiji; its description text is empty
-0x8048	g_daiji	8	The Sochen Cave Palace	8	113	72	20072		a key item from g_daiji; its description text is empty
-0x8049	g_daiji	9	The Henne Mines	9	113	73	20073		a key item from g_daiji; its description text is empty
-0x804A	g_daiji	10	Bhujerba	10	113	74	20074		a key item from g_daiji; its description text is empty
-0x804B	g_daiji	11	The Lhusu Mines	11	113	75	20075		a key item from g_daiji; its description text is empty
-0x804C	g_daiji	12	The Tomb of Raithwall	12	113	76	20076		a key item from g_daiji; its description text is empty
-0x804D	g_daiji	13	Zertinan Caverns	13	113	77	20077		a key item from g_daiji; its description text is empty
-0x804E	g_daiji	14	Golmore Jungle	14	113	78	20078		a key item from g_daiji; its description text is empty
-0x804F	g_daiji	15	The Feywood	15	113	79	20079		a key item from g_daiji; its description text is empty
-0x8050	g_daiji	16	Giruvegan	16	113	80	20080		a key item from g_daiji; its description text is empty
-0x8051	g_daiji	17	The Stilshrine of Miriam	17	113	81	20081		a key item from g_daiji; its description text is empty
-0x8052	g_daiji	18	The Port at Balfonheim	18	113	82	20082		a key item from g_daiji; its description text is empty
-0x8053	g_daiji	19	The Pharos at Ridorana	19	113	83	20083		a key item from g_daiji; its description text is empty
-0x8054	g_daiji	20	Jahara	20	113	83	20084		a key item from g_daiji; its description text is empty
-0x8055	g_daiji	21	Eruyt Village	21	113	84	20085		a key item from g_daiji; its description text is empty
-0x8056	g_daiji	22	Mt Bur-Omisace	22	113	85	20086		a key item from g_daiji; its description text is empty
-0x8057	g_daiji	23	Dalmasca Estersand	23	113	86	20087		a key item from g_daiji; its description text is empty
-0x8058	g_daiji	24	Dalmasca Westersand	24	113	87	20088		a key item from g_daiji; its description text is empty
-0x8059	g_daiji	25	Mosphoran Highwaste	25	113	88	20089		a key item from g_daiji; its description text is empty
-0x805A	g_daiji	26	Ogir-Yensa Sandsea	26	113	89	20090		a key item from g_daiji; its description text is empty
-0x805B	g_daiji	27	The Phon Coast	27	113	90	20091		a key item from g_daiji; its description text is empty
-0x805C	g_daiji	28	Tchita Uplands	28	113	91	20092		a key item from g_daiji; its description text is empty
-0x805D	g_daiji	29	Reserve	29	0	0	20093		a Reserve row
-0x805E	g_daiji	30	Reserve	30	0	0	20094		a Reserve row
-0x805F	g_daiji	31	Reserve	31	0	0	20095		a Reserve row
-0x8060	q_daiji	0	Blue Bottle	73	114	96	20096	"This small bottle contains a message: ""Truth lies just beyond falsehood. CDZCKZMCRANZS"""	a key item from q_daiji
-0x8061	q_daiji	1	Green Bottle	75	114	97	20097	"This small bottle contains a message: ""Skip on stones to far bank's shore, by skipping stones return once more. SSADLNIAKLADHAUETDNREA"""	a key item from q_daiji
-0x8062	q_daiji	2	Red Bottle	77	114	98	20098	"This small bottle contains a message: ""Foothills rise in mountains' shadow. nhIiQsTUrEe"""	a key item from q_daiji
-0x8063	q_daiji	3	Yellow Bottle	79	114	99	20099	"This small bottle contains a message: ""Dragons stir among the eaters of the wind. 1 2 - - 5 - 7 - 9 -"""	a key item from q_daiji
-0x8064	q_daiji	4	Black Bottle	81	114	100	20100	"This small bottle contains a message: ""Easy as a, b, c, so count yourself lucky. 19-12-21-9-3-5-7-1-20-5-18-1-20-19"""	a key item from q_daiji
-0x8065	q_daiji	5	Sage's Monograph	0	114	101	20101	Possession of this text enables the acquisition of superior loot from elementals.	a key item from q_daiji
-0x8066	q_daiji	6	Hunter's Monograph	1	114	102	20102	Possession of this text enables the acquisition of superior loot from beasts and avions.	a key item from q_daiji
-0x8067	q_daiji	7	Knight's Monograph	2	114	103	20103	Possession of this text enables the acquisition of superior loot from giants and insects.	a key item from q_daiji
-0x8068	q_daiji	8	Dragoon's Monograph	3	114	104	20104	Possession of this text enables the acquisition of superior loot from dragons and plants.	a key item from q_daiji
-0x8069	q_daiji	9	Mage's Monograph	4	114	105	20105	Possession of this text enables the acquisition of superior loot from fiends.	a key item from q_daiji
-0x806A	q_daiji	10	Warmage's Monograph	5	114	106	20106	Possession of this text enables the acquisition of superior loot from amorphs and undead.	a key item from q_daiji
-0x806B	q_daiji	11	Scholar's Monograph	6	114	107	20107	Possession of this text enables the acquisition of superior loot from constructs.	a key item from q_daiji
-0x806C	q_daiji	12	Canopic Jar	7	114	108	20108	A cursed jar said to hold the power to entrap a beast's soul, forever binding it as an arcana.	a key item from q_daiji
-0x806D	q_daiji	13	Available	8	114	109	20109		a key item from q_daiji; its description text is empty
-0x806E	q_daiji	14	Accepted	9	114	110	20110		a key item from q_daiji; its description text is empty
-0x806F	q_daiji	15	Complete!	10	114	111	20111		a key item from q_daiji; its description text is empty
-0x8070	q_daiji	16	Writ of Transit	12	114	112	20112	A writ given you by Tomaj granting its bearer right of passage through the east gate for the acquisition of foodstuffs.	a key item from q_daiji
-0x8071	q_daiji	17	Clan Primer	11	114	113	20113	A reference containing clan exploits, hunt log, bestiary, and adventuring tips.	a key item from q_daiji
-0x8072	q_daiji	18	Galbana Lilies	13	114	114	20114	Red flowers that grow only in Dalmasca. You found them after defeating the Rogue Tomato.	a key item from q_daiji
-0x8073	q_daiji	19	Cactus Flower	34	114	115	20115	A rare flower that comes into bloom once every few years. Its petals have medicinal value, with those harvested from cacti turned cactoid said to be particularly potent.	a key item from q_daiji
-0x8074	q_daiji	20	Tube Fuse	18	114	116	20116	A tube fuse pieced together from scavenged parts. It may not be much to look at, but it is well crafted.	a key item from q_daiji
-0x8075	q_daiji	21	Sword of the Order	19	114	117	20117	A sword signifying a place among the Order of the Knights of Dalmasca. Dalan has tasked you with its delivery.	a key item from q_daiji
-0x8076	q_daiji	22	No. 1 Brig Key	20	114	118	20118	This key opens the bulkhead of a brig aboard Leviathan.	a key item from q_daiji
-0x8077	q_daiji	23	Systems Access Key	21	114	119	20119	This key grants access to Leviathan's security system, which controls the ship's internal alarm.	a key item from q_daiji
-0x8078	q_daiji	24	Dawn Shard	23	51	120	20120	A piece of magicite left by King Raithwall. It signifies descent from the Dynast-King.	a key item from q_daiji
-0x8079	q_daiji	25	Shadestone	14	114	121	20121	A dark, fist-sized stone. When exposed to the energies of the sun, it becomes a type of magicite known as sunstone.	a key item from q_daiji
-0x807A	q_daiji	26	Sunstone	15	114	122	20122	A piece of magicite made from shadestone that has been imbued with the power of the sun. Sunstone is commonly used as a source of heat and light.	a key item from q_daiji
-0x807B	q_daiji	27	Feather of the Flock	61	114	123	20123	A legendary cockatrice feather with a brilliant white sheen. Touching the feather, you feel a strange bond with the cockatrices...	a key item from q_daiji
-0x807C	q_daiji	28	Ring of the Toad	45	114	124	20124	A jade ring bearing the likeness of a toad. The ring holds special meaning to the villagers who call Giza Plains their home.	a key item from q_daiji
-0x807D	q_daiji	29	Silent Urn	55	114	125	20125	An urn given you by the villagers of Giza Plains. It is used to entrap the souls of beasts.	a key item from q_daiji
-0x807E	q_daiji	30	Site 3 Key	56	114	126	20126	This key grants access to Site 3 of the Lhusu Mines.	a key item from q_daiji
-0x807F	q_daiji	31	Site 11 Key	57	114	127	20127	This key grants access to Site 11 of the Lhusu Mines.	a key item from q_daiji
-0x8080	q_daiji	32	Crescent Stone	16	114	128	20128	A stone cutting given you by Dalan. It is needed to reach the treasury in the Royal Palace. A lion is emblazoned on its face.	a key item from q_daiji
-0x8081	q_daiji	33	Medallion of Bravery	70	114	129	20129	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji
-0x8082	q_daiji	34	Medallion of Might	66	114	130	20130	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji
-0x8083	q_daiji	35	Medallion of Love	72	114	131	20131	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji
-0x8084	q_daiji	36	Lusterless Medallion	65	114	132	20132	A medallion that opens a door within the Palace of Nabudis. It is inert, its magicks long lost.	a key item from q_daiji
-0x8085	q_daiji	37	Stone of the Condemner	64	114	133	20133	"A piece of magicite said to open the way to a forbidden place. An inscription carved in the stone's back reads: ""He with power, trust it not."""	a key item from q_daiji
-0x8086	q_daiji	38	Errmonea Leaf	44	114	134	20134	A medicinal herb found on Ozmone Plain. It has long been used in the treatment of fevers.	a key item from q_daiji
-0x8087	q_daiji	39	Rabbit's Tail	46	114	135	20135	The tail of a vorpal bunny, a legendary black dreamhare found in Golmore Jungle. It is a prized reagent.	a key item from q_daiji
-0x8088	q_daiji	40	Ann's Letter	58	114	136	20136	A letter written by Ann, chief steward aboard one of the East Ivalice Company's airships. It is addressed to her six sisters, each of whom works a different airship route.	a key item from q_daiji
-0x8089	q_daiji	41	Manufacted Nethicite	22	49	137	20137	A special kind of magicite developed by the Archadian Empire. Unlike ordinary magicite, this absorbs magicks.	a key item from q_daiji
-0x808A	q_daiji	42	Rusted Scrap of Armor	50	114	138	20138	A scrap of metal that looks as though it may once have been part of a piece of armor. You found it lodged between the claws of the Lindwyrm.	a key item from q_daiji
-0x808B	q_daiji	43	Sword of Kings	25	52	139	20139	The sword left by King Raithwall. It is capable of destroying nethicite.	a key item from q_daiji
-0x808C	q_daiji	44	Treaty-Blade	33	53	140	20140	The blade given Ashe by the Occuria. It has the power to cut new shards of nethicite.	a key item from q_daiji
-0x808D	q_daiji	45	Dusty Letter	40	114	141	20141	"A letter left in a deserted building in Lowtown. ""East South- east East Southwest Southeast"" is scrawled across the page."	a key item from q_daiji
-0x808E	q_daiji	46	Serpentwyne Must	43	114	142	20142	A liquid base used in the fermentation of the finest serpentwyne. You obtained it after defeating the Marilith.	a key item from q_daiji
-0x808F	q_daiji	47	Dull Fragment	67	114	143	20143	One of four pieces of a broken medallion. You obtained it beyond the sluice gates in the Garamsythe Waterway.	a key item from q_daiji
-0x8090	q_daiji	48	Blackened Fragment	68	114	144	20144	One of four pieces of a broken medallion. You received it as a reward for finding and returning Samal's stolen articles.	a key item from q_daiji
-0x8091	q_daiji	49	Grimy Fragment	69	114	145	20145	One of four pieces of a broken medallion. You obtained it with the help of Filo and Kytes.	a key item from q_daiji
-0x8092	q_daiji	50	Stolen Articles	54	114	146	20146	A bundle of articles stolen by the contrite thief, only to be stolen once again by Orthros. Don't tease the...flan?	a key item from q_daiji
-0x8093	q_daiji	51	Barheim Key	35	114	147	20147	An oddly shaped key received from the leader of a band of thieves. The key opens a door into the Barheim Passage.	a key item from q_daiji
-0x8094	q_daiji	52	Muramata	36	114	148	20148	A fishing rod crafted by a master swordsmith. The rod is light, easily handled, and surpassingly strong.	a key item from q_daiji
-0x8095	q_daiji	53	Matamune	37	114	149	20149	A cursed fishing rod that drinks the lifeblood of the fish it hooks. You obtained it from Gilgamesh, ancient man of mystery.	a key item from q_daiji
-0x8096	q_daiji	54	Cactoid Compact	38	114	150	20150	A symbol of friendship conveyed upon trusted allies of the cactoids. They hold the bearers of such compacts in high honor.	a key item from q_daiji
-0x8097	q_daiji	55	Cactoid Commendation	39	114	151	20151	A token given to cactoids who have distinguished themselves among the grove. The other races of Ivalice take little notice.	a key item from q_daiji
-0x8098	q_daiji	56	Merchant's Armband	52	114	152	20152	An armband worn by the staff at Clio's Technicks in Bhujerba. The store's name is neatly embroidered on its surface.	a key item from q_daiji
-0x8099	q_daiji	57	Pilika's Diary	53	114	153	20153	A diary kept by Pilika, a member of the staff at Clio's Technicks in Bhujerba. It chronicles her day-to-day affairs.	a key item from q_daiji
-0x809A	q_daiji	58	Ring of the Light	51	114	154	20154	A ring worn by followers of the Light of Kiltia. The crest of Faram, the Father, is etched in its band.	a key item from q_daiji
-0x809B	q_daiji	59	Viera Rucksack	47	114	155	20155	A bundle dropped by a viera traveler as she fled a vyraal. The cloth is dyed with an intricate pattern of trees.	a key item from q_daiji
-0x809C	q_daiji	60	Time-worn Necklace	63	114	156	20156	A beautiful necklace in the Galtean style. You found it in Nalbina and took it as your own.	a key item from q_daiji
-0x809D	q_daiji	61	Reserve	27	0	157	20157		a Reserve row
-0x809E	q_daiji	62	Lab Access Card	28	114	158	20158	A Draklor Laboratory security card. It bears the seal of the Archadian Empire.	a key item from q_daiji
-0x809F	q_daiji	63	Reserve	29	0	159	20159		a Reserve row
-0x80A0	q_daiji	64	Reserve	30	0	160	20160		a Reserve row
-0x80A1	q_daiji	65	Reserve	31	0	161	20161		a Reserve row
-0x80A2	q_daiji	66	Reserve	32	0	162	20162		a Reserve row
-0x80A3	q_daiji	67	Moonsilver Medallion	71	114	163	20163	A medallion made of moonsilver, a very rare metal. These medallions are traditionally given to loved ones as a token of affection.	a key item from q_daiji
-0x80A4	q_daiji	68	Wanly Limned Message	74	114	164	20164	"The message contained in the blue bottle. Pallid letters shimmer on the page: ""River...unde...o"""	a key item from q_daiji
-0x80A5	q_daiji	69	Green-hued Message	76	114	165	20165	"The message contained in the green bottle. Emerald letters shimmer on the page: ""Forest...rgro...w"""	a key item from q_daiji
-0x80A6	q_daiji	70	Vermillion Message	78	114	166	20166	"The message contained in the red bottle. Vermillion letters shimmer on the page: ""Fire...undb...h"""	a key item from q_daiji
-0x80A7	q_daiji	71	Auric Message	80	114	167	20167	"The message contained in the yellow bottle. Gilt letters shimmer on the page: ""Ash...ridg...er"""	a key item from q_daiji
-0x80A8	q_daiji	72	Onyx Message	82	114	168	20168	"The message contained in the black bottle. Jet-black letters shimmer on the page: ""Darkness...eton...e"""	a key item from q_daiji
-0x80A9	q_daiji	73	Reserve	114	0	169	20169		a Reserve row
-0x80AA	q_daiji	74	Reserve	115	0	170	20170		a Reserve row
-0x80AB	q_daiji	75	Reserve	116	0	171	20171		a Reserve row
-0x80AC	q_daiji	76	Goddess's Magicite	17	50	172	20172	A piece of magicite you found in the treasury of the Royal Palace of Rabanastre. It must be extremely valuable.	a key item from q_daiji
-0x80AD	q_daiji	77	Gift of the Great-chief	62	114	173	20173	A gift prepared by the garif Great-chief in hopes of acquiring some Giza cockatrices. It is addressed to Brunoa, the nomad elder in the Giza Plains.	a key item from q_daiji
-0x80AE	q_daiji	78	Broken Key	41	114	174	20174	A broken, useless key. Sorbet had been meaning to get it fixed.	a key item from q_daiji
-0x80AF	q_daiji	79	Sluice Gate Key	42	114	175	20175	A key needed to operate the sluice gates. It used to be broken, but Sorbet had his brother repair it.	a key item from q_daiji
-0x80B0	q_daiji	80	Reserve	117	0	176	20176		a Reserve row
-0x80B1	q_daiji	81	Wind Globe	59	114	177	20177	A globe fashioned of silver rings decorated with arcane patterns.	a key item from q_daiji
-0x80B2	q_daiji	82	Windvane	60	114	178	20178	A device for reading the winds. It is used to navigate through sandstorms on the open desert.	a key item from q_daiji
-0x80B3	q_daiji	83	Reserve	118	0	179	20179		a Reserve row
-0x80B4	q_daiji	84	Dragon Scale	48	114	180	20180	A scale found on the corpse of a vyraal. Natural philosophers studying wyrms and their kin are known to pay well for such.	a key item from q_daiji
-0x80B5	q_daiji	85	Ageworn Key	49	114	181	20181	A key bartered in exchange for a dragon scale. It is said to open the way to the lair of a great wyrm.	a key item from q_daiji
-0x80B6	q_daiji	86	Soul Ward Key	26	114	182	20182	A key to a door in the Sochen Cave Palace. Dire beasts are imprisoned within.	a key item from q_daiji
-0x80B7	q_daiji	87	Lente's Tear	24	114	183	20183	A charm made by the viera. It grants passage through the barriers of Golmore Jungle.	a key item from q_daiji
-0x80B8	q_daiji	88	Shelled Trophy	83	114	184	20184	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80B9	q_daiji	89	Fur-scaled Trophy	84	114	185	20185	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80BA	q_daiji	90	Bony Trophy	85	114	186	20186	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80BB	q_daiji	91	Fanged Trophy	86	114	187	20187	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80BC	q_daiji	92	Hide-covered Trophy	87	114	188	20188	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80BD	q_daiji	93	Maned Trophy	88	114	189	20189	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80BE	q_daiji	94	Fell Trophy	89	114	190	20190	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80BF	q_daiji	95	Accursed Trophy	90	114	191	20191	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C0	q_daiji	96	Beaked Trophy	91	114	192	20192	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C1	q_daiji	97	Maverick Trophy	92	114	193	20193	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C2	q_daiji	98	Soulless Trophy	93	114	194	20194	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C3	q_daiji	99	Leathern Trophy	94	114	195	20195	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C4	q_daiji	100	Sickle Trophy	95	114	196	20196	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C5	q_daiji	101	Vengeful Trophy	96	114	197	20197	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C6	q_daiji	102	Gravesoil Trophy	97	114	198	20198	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C7	q_daiji	103	Metallic Trophy	98	114	199	20199	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C8	q_daiji	104	Slimy Trophy	99	114	200	20200	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80C9	q_daiji	105	Scythe Trophy	100	114	201	20201	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80CA	q_daiji	106	Feathered Trophy	101	114	202	20202	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80CB	q_daiji	107	Skull Trophy	102	114	203	20203	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80CC	q_daiji	108	Mind Trophy	103	114	204	20204	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80CD	q_daiji	109	Eternal Trophy	104	114	205	20205	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80CE	q_daiji	110	Clawed Trophy	105	114	206	20206	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80CF	q_daiji	111	Odiferous Trophy	106	114	207	20207	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D0	q_daiji	112	Whiskered Trophy	107	114	208	20208	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D1	q_daiji	113	Frigid Trophy	108	114	209	20209	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D2	q_daiji	114	Ensanguined Trophy	109	114	210	20210	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D3	q_daiji	115	Cruel Trophy	110	114	211	20211	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D4	q_daiji	116	Adamantine Trophy	111	114	212	20212	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D5	q_daiji	117	Reptilian Trophy	112	114	213	20213	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D6	q_daiji	118	Vile Trophy	113	114	214	20214	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji
-0x80D7	q_daiji	119	Reserve	119	0	0	20215		a Reserve row
-0x80D8	q_daiji	120	Reserve	120	0	0	20216		a Reserve row
-0x80D9	q_daiji	121	Reserve	121	0	0	20217		a Reserve row
-0x80DA	q_daiji	122	Reserve	122	0	0	20218		a Reserve row
-0x80DB	q_daiji	123	Reserve	123	0	0	20219		a Reserve row
-0x80DC	q_daiji	124	Reserve	124	0	0	20220		a Reserve row
-0x80DD	q_daiji	125	Reserve	125	0	0	20221		a Reserve row
-0x80DE	q_daiji	126	Reserve	126	0	0	20222		a Reserve row
-0x80DF	q_daiji	127	Reserve	127	0	0	20223		a Reserve row
-0x80E0	q_daiji	128	Reserve	128	0	0	20224		a Reserve row
-0x80E1	q_daiji	129	Reserve	129	0	0	20225		a Reserve row
-0x80E2	q_daiji	130	Reserve	130	0	0	20226		a Reserve row
-0x80E3	q_daiji	131	Reserve	131	0	0	20227		a Reserve row
-0x80E4	q_daiji	132	Reserve	132	0	0	20228		a Reserve row
-0x80E5	q_daiji	133	Reserve	133	0	0	20229		a Reserve row
-0x80E6	q_daiji	134	Reserve	134	0	0	20230		a Reserve row
-0x80E7	q_daiji	135	Reserve	135	0	0	20231		a Reserve row
-0x80E8	q_daiji	136	Reserve	136	0	0	20232		a Reserve row
-0x80E9	q_daiji	137	Reserve	137	0	0	20233		a Reserve row
-0x80EA	q_daiji	138	Reserve	138	0	0	20234		a Reserve row
-0x80EB	q_daiji	139	Reserve	139	0	0	20235		a Reserve row
-0x80EC	q_daiji	140	Reserve	140	0	0	20236		a Reserve row
-0x80ED	q_daiji	141	Reserve	141	0	0	20237		a Reserve row
-0x80EE	q_daiji	142	Reserve	142	0	0	20238		a Reserve row
-0x80EF	q_daiji	143	Reserve	143	0	0	20239		a Reserve row
-0x80F0	q_daiji	144	Reserve	144	0	0	20240		a Reserve row
-0x80F1	q_daiji	145	Reserve	145	0	0	20241		a Reserve row
-0x80F2	q_daiji	146	Reserve	146	0	0	20242		a Reserve row
-0x80F3	q_daiji	147	Reserve	147	0	0	20243		a Reserve row
-0x80F4	q_daiji	148	Reserve	148	0	0	20244		a Reserve row
-0x80F5	q_daiji	149	Reserve	149	0	0	20245		a Reserve row
-0x80F6	q_daiji	150	Reserve	150	0	0	20246		a Reserve row
-0x80F7	q_daiji	151	Reserve	151	0	0	20247		a Reserve row
-0x80F8	q_daiji	152	Reserve	152	0	0	20248		a Reserve row
-0x80F9	q_daiji	153	Reserve	153	0	0	20249		a Reserve row
-0x80FA	q_daiji	154	Reserve	154	0	0	20250		a Reserve row
-0x80FB	q_daiji	155	Reserve	155	0	0	20251		a Reserve row
-0x80FC	q_daiji	156	Reserve	156	0	0	20252		a Reserve row
-0x80FD	q_daiji	157	Reserve	157	0	0	20253		a Reserve row
-0x80FE	q_daiji	158	Reserve	158	0	0	20254		a Reserve row
-0x80FF	q_daiji	159	Reserve	159	0	0	20255		a Reserve row
-0x8100	q_daiji	160	Reserve	160	0	0	20256		a Reserve row
-0x8101	q_daiji	161	Reserve	161	0	0	20257		a Reserve row
-0x8102	q_daiji	162	Reserve	162	0	0	20258		a Reserve row
-0x8103	q_daiji	163	Reserve	163	0	0	20259		a Reserve row
-0x8104	q_daiji	164	Reserve	164	0	0	20260		a Reserve row
-0x8105	q_daiji	165	Reserve	165	0	0	20261		a Reserve row
-0x8106	q_daiji	166	Reserve	166	0	0	20262		a Reserve row
-0x8107	q_daiji	167	Reserve	167	0	0	20263		a Reserve row
-0x8108	q_daiji	168	Reserve	168	0	0	20264		a Reserve row
-0x8109	q_daiji	169	Reserve	169	0	0	20265		a Reserve row
-0x810A	q_daiji	170	Reserve	170	0	0	20266		a Reserve row
-0x810B	q_daiji	171	Reserve	171	0	0	20267		a Reserve row
-0x810C	q_daiji	172	Reserve	172	0	0	20268		a Reserve row
-0x810D	q_daiji	173	Reserve	173	0	0	20269		a Reserve row
-0x810E	q_daiji	174	Reserve	174	0	0	20270		a Reserve row
-0x810F	q_daiji	175	Reserve	175	0	0	20271		a Reserve row
-0x8110	q_daiji	176	Reserve	176	0	0	20272		a Reserve row
-0x8111	q_daiji	177	Reserve	177	0	0	20273		a Reserve row
-0x8112	q_daiji	178	Reserve	178	0	0	20274		a Reserve row
-0x8113	q_daiji	179	Reserve	179	0	0	20275		a Reserve row
-0x8114	q_daiji	180	Reserve	180	0	0	20276		a Reserve row
-0x8115	q_daiji	181	Reserve	181	0	0	20277		a Reserve row
-0x8116	q_daiji	182	Reserve	182	0	0	20278		a Reserve row
-0x8117	q_daiji	183	Reserve	183	0	0	20279		a Reserve row
-0x8118	q_daiji	184	Reserve	184	0	0	20280		a Reserve row
-0x8119	q_daiji	185	Reserve	185	0	0	20281		a Reserve row
-0x811A	q_daiji	186	Reserve	186	0	0	20282		a Reserve row
-0x811B	q_daiji	187	Reserve	187	0	0	20283		a Reserve row
-0x811C	q_daiji	188	Reserve	188	0	0	20284		a Reserve row
-0x811D	q_daiji	189	Reserve	189	0	0	20285		a Reserve row
-0x811E	q_daiji	190	Reserve	190	0	0	20286		a Reserve row
-0x811F	q_daiji	191	Reserve	191	0	0	20287		a Reserve row
-0x8120	q_daiji	192	Reserve	192	0	0	20288		a Reserve row
-0x8121	q_daiji	193	Reserve	193	0	0	20289		a Reserve row
-0x8122	q_daiji	194	Reserve	194	0	0	20290		a Reserve row
-0x8123	q_daiji	195	Reserve	195	0	0	20291		a Reserve row
-0x8124	q_daiji	196	Reserve	196	0	0	20292		a Reserve row
-0x8125	q_daiji	197	Reserve	197	0	0	20293		a Reserve row
-0x8126	q_daiji	198	Reserve	198	0	0	20294		a Reserve row
-0x8127	q_daiji	199	Reserve	199	0	0	20295		a Reserve row
-0x8128	q_daiji	200	Reserve	200	0	0	20296		a Reserve row
-0x8129	q_daiji	201	Reserve	201	0	0	20297		a Reserve row
-0x812A	q_daiji	202	Reserve	202	0	0	20298		a Reserve row
-0x812B	q_daiji	203	Reserve	203	0	0	20299		a Reserve row
-0x812C	q_daiji	204	Reserve	204	0	0	20300		a Reserve row
-0x812D	q_daiji	205	Reserve	205	0	0	20301		a Reserve row
-0x812E	q_daiji	206	Reserve	206	0	0	20302		a Reserve row
-0x812F	q_daiji	207	Reserve	207	0	0	20303		a Reserve row
-0x8130	q_daiji	208	Reserve	208	0	0	20304		a Reserve row
-0x8131	q_daiji	209	Reserve	209	0	0	20305		a Reserve row
-0x8132	q_daiji	210	Reserve	210	0	0	20306		a Reserve row
-0x8133	q_daiji	211	Reserve	211	0	0	20307		a Reserve row
-0x8134	q_daiji	212	Reserve	212	0	0	20308		a Reserve row
-0x8135	q_daiji	213	Reserve	213	0	0	20309		a Reserve row
-0x8136	q_daiji	214	Reserve	214	0	0	20310		a Reserve row
-0x8137	q_daiji	215	Reserve	215	0	0	20311		a Reserve row
-0x8138	q_daiji	216	Reserve	216	0	0	20312		a Reserve row
-0x8139	q_daiji	217	Reserve	217	0	0	20313		a Reserve row
-0x813A	q_daiji	218	Reserve	218	0	0	20314		a Reserve row
-0x813B	q_daiji	219	Reserve	219	0	0	20315		a Reserve row
-0x813C	q_daiji	220	Reserve	220	0	0	20316		a Reserve row
-0x813D	q_daiji	221	Reserve	221	0	0	20317		a Reserve row
-0x813E	q_daiji	222	Reserve	222	0	0	20318		a Reserve row
-0x813F	q_daiji	223	Reserve	223	0	0	20319		a Reserve row
-0x8140	q_daiji	224	Reserve	224	0	0	20320		a Reserve row
-0x8141	q_daiji	225	Reserve	225	0	0	20321		a Reserve row
-0x8142	q_daiji	226	Reserve	226	0	0	20322		a Reserve row
-0x8143	q_daiji	227	Reserve	227	0	0	20323		a Reserve row
-0x8144	q_daiji	228	Reserve	228	0	0	20324		a Reserve row
-0x8145	q_daiji	229	Reserve	229	0	0	20325		a Reserve row
-0x8146	q_daiji	230	Reserve	230	0	0	20326		a Reserve row
-0x8147	q_daiji	231	Reserve	231	0	0	20327		a Reserve row
-0x8148	q_daiji	232	Reserve	232	0	0	20328		a Reserve row
-0x8149	q_daiji	233	Reserve	233	0	0	20329		a Reserve row
-0x814A	q_daiji	234	Reserve	234	0	0	20330		a Reserve row
-0x814B	q_daiji	235	Reserve	235	0	0	20331		a Reserve row
-0x814C	q_daiji	236	Reserve	236	0	0	20332		a Reserve row
-0x814D	q_daiji	237	Reserve	237	0	0	20333		a Reserve row
-0x814E	q_daiji	238	Reserve	238	0	0	20334		a Reserve row
-0x814F	q_daiji	239	Reserve	239	0	0	20335		a Reserve row
-0x8150	q_daiji	240	Reserve	240	0	0	20336		a Reserve row
-0x8151	q_daiji	241	Reserve	241	0	0	20337		a Reserve row
-0x8152	q_daiji	242	Reserve	242	0	0	20338		a Reserve row
-0x8153	q_daiji	243	Reserve	243	0	0	20339		a Reserve row
-0x8154	q_daiji	244	Reserve	244	0	0	20340		a Reserve row
-0x8155	q_daiji	245	Reserve	245	0	0	20341		a Reserve row
-0x8156	q_daiji	246	Reserve	246	0	0	20342		a Reserve row
-0x8157	q_daiji	247	Reserve	247	0	0	20343		a Reserve row
-0x8158	q_daiji	248	Reserve	248	0	0	20344		a Reserve row
-0x8159	q_daiji	249	Reserve	249	0	0	20345		a Reserve row
-0x815A	q_daiji	250	Reserve	250	0	0	20346		a Reserve row
-0x815B	q_daiji	251	Reserve	251	0	0	20347		a Reserve row
-0x815C	q_daiji	252	Reserve	252	0	0	20348		a Reserve row
-0x815D	q_daiji	253	Reserve	253	0	0	20349		a Reserve row
-0x815E	q_daiji	254	Reserve	254	0	0	20350		a Reserve row
-0x815F	q_daiji	255	Reserve	255	0	0	20351		a Reserve row
-0x8160	q_daiji	256	Reserve	256	0	0	20352		a Reserve row
-0x8161	q_daiji	257	Reserve	257	0	0	20353		a Reserve row
-0x8162	q_daiji	258	Reserve	258	0	0	20354		a Reserve row
-0x8163	q_daiji	259	Reserve	259	0	0	20355		a Reserve row
-0x8164	q_daiji	260	Reserve	260	0	0	20356		a Reserve row
-0x8165	q_daiji	261	Reserve	261	0	0	20357		a Reserve row
-0x8166	q_daiji	262	Reserve	262	0	0	20358		a Reserve row
-0x8167	q_daiji	263	Reserve	263	0	0	20359		a Reserve row
-0x8168	q_daiji	264	Reserve	264	0	0	20360		a Reserve row
-0x8169	q_daiji	265	Reserve	265	0	0	20361		a Reserve row
-0x816A	q_daiji	266	Reserve	266	0	0	20362		a Reserve row
-0x816B	q_daiji	267	Reserve	267	0	0	20363		a Reserve row
-0x816C	q_daiji	268	Reserve	268	0	0	20364		a Reserve row
-0x816D	q_daiji	269	Reserve	269	0	0	20365		a Reserve row
-0x816E	q_daiji	270	Reserve	270	0	0	20366		a Reserve row
-0x816F	q_daiji	271	Reserve	271	0	0	20367		a Reserve row
-0x8170	q_daiji	272	Reserve	272	0	0	20368		a Reserve row
-0x8171	q_daiji	273	Reserve	273	0	0	20369		a Reserve row
-0x8172	q_daiji	274	Reserve	274	0	0	20370		a Reserve row
-0x8173	q_daiji	275	Reserve	275	0	0	20371		a Reserve row
-0x8174	q_daiji	276	Reserve	276	0	0	20372		a Reserve row
-0x8175	q_daiji	277	Reserve	277	0	0	20373		a Reserve row
-0x8176	q_daiji	278	Reserve	278	0	0	20374		a Reserve row
-0x8177	q_daiji	279	Reserve	279	0	0	20375		a Reserve row
-0x8178	q_daiji	280	Reserve	280	0	0	20376		a Reserve row
-0x8179	q_daiji	281	Reserve	281	0	0	20377		a Reserve row
-0x817A	q_daiji	282	Reserve	282	0	0	20378		a Reserve row
-0x817B	q_daiji	283	Reserve	283	0	0	20379		a Reserve row
-0x817C	q_daiji	284	Reserve	284	0	0	20380		a Reserve row
-0x817D	q_daiji	285	Reserve	285	0	0	20381		a Reserve row
-0x817E	q_daiji	286	Reserve	286	0	0	20382		a Reserve row
-0x817F	q_daiji	287	Reserve	287	0	0	20383		a Reserve row
-0x8180	q_daiji	288	Reserve	288	0	0	20384		a Reserve row
-0x8181	q_daiji	289	Reserve	289	0	0	20385		a Reserve row
-0x8182	q_daiji	290	Reserve	290	0	0	20386		a Reserve row
-0x8183	q_daiji	291	Reserve	291	0	0	20387		a Reserve row
-0x8184	q_daiji	292	Reserve	292	0	0	20388		a Reserve row
-0x8185	q_daiji	293	Reserve	293	0	0	20389		a Reserve row
-0x8186	q_daiji	294	Reserve	294	0	0	20390		a Reserve row
-0x8187	q_daiji	295	Reserve	295	0	0	20391		a Reserve row
-0x8188	q_daiji	296	Reserve	296	0	0	20392		a Reserve row
-0x8189	q_daiji	297	Reserve	297	0	0	20393		a Reserve row
-0x818A	q_daiji	298	Reserve	298	0	0	20394		a Reserve row
-0x818B	q_daiji	299	Reserve	299	0	0	20395		a Reserve row
-0x818C	q_daiji	300	Reserve	300	0	0	20396		a Reserve row
-0x818D	q_daiji	301	Reserve	301	0	0	20397		a Reserve row
-0x818E	q_daiji	302	Reserve	302	0	0	20398		a Reserve row
-0x818F	q_daiji	303	Reserve	303	0	0	20399		a Reserve row
-0x8190	q_daiji	304	Reserve	304	0	0	20400		a Reserve row
-0x8191	q_daiji	305	Reserve	305	0	0	20401		a Reserve row
-0x8192	q_daiji	306	Reserve	306	0	0	20402		a Reserve row
-0x8193	q_daiji	307	Reserve	307	0	0	20403		a Reserve row
-0x8194	q_daiji	308	Reserve	308	0	0	20404		a Reserve row
-0x8195	q_daiji	309	Reserve	309	0	0	20405		a Reserve row
-0x8196	q_daiji	310	Reserve	310	0	0	20406		a Reserve row
-0x8197	q_daiji	311	Reserve	311	0	0	20407		a Reserve row
-0x8198	q_daiji	312	Reserve	312	0	0	20408		a Reserve row
-0x8199	q_daiji	313	Reserve	313	0	0	20409		a Reserve row
-0x819A	q_daiji	314	Reserve	314	0	0	20410		a Reserve row
-0x819B	q_daiji	315	Reserve	315	0	0	20411		a Reserve row
-0x819C	q_daiji	316	Reserve	316	0	0	20412		a Reserve row
-0x819D	q_daiji	317	Reserve	317	0	0	20413		a Reserve row
-0x819E	q_daiji	318	Reserve	318	0	0	20414		a Reserve row
-0x819F	q_daiji	319	Reserve	319	0	0	20415		a Reserve row
-0x81A0	q_daiji	320	Reserve	320	0	0	20416		a Reserve row
-0x81A1	q_daiji	321	Reserve	321	0	0	20417		a Reserve row
-0x81A2	q_daiji	322	Reserve	322	0	0	20418		a Reserve row
-0x81A3	q_daiji	323	Reserve	323	0	0	20419		a Reserve row
-0x81A4	q_daiji	324	Reserve	324	0	0	20420		a Reserve row
-0x81A5	q_daiji	325	Reserve	325	0	0	20421		a Reserve row
-0x81A6	q_daiji	326	Reserve	326	0	0	20422		a Reserve row
-0x81A7	q_daiji	327	Reserve	327	0	0	20423		a Reserve row
-0x81A8	q_daiji	328	Reserve	328	0	0	20424		a Reserve row
-0x81A9	q_daiji	329	Reserve	329	0	0	20425		a Reserve row
-0x81AA	q_daiji	330	Reserve	330	0	0	20426		a Reserve row
-0x81AB	q_daiji	331	Reserve	331	0	0	20427		a Reserve row
-0x81AC	q_daiji	332	Reserve	332	0	0	20428		a Reserve row
-0x81AD	q_daiji	333	Reserve	333	0	0	20429		a Reserve row
-0x81AE	q_daiji	334	Reserve	334	0	0	20430		a Reserve row
-0x81AF	q_daiji	335	Reserve	335	0	0	20431		a Reserve row
-0x81B0	q_daiji	336	Reserve	336	0	0	20432		a Reserve row
-0x81B1	q_daiji	337	Reserve	337	0	0	20433		a Reserve row
-0x81B2	q_daiji	338	Reserve	338	0	0	20434		a Reserve row
-0x81B3	q_daiji	339	Reserve	339	0	0	20435		a Reserve row
-0x81B4	q_daiji	340	Reserve	340	0	0	20436		a Reserve row
-0x81B5	q_daiji	341	Reserve	341	0	0	20437		a Reserve row
-0x81B6	q_daiji	342	Reserve	342	0	0	20438		a Reserve row
-0x81B7	q_daiji	343	Reserve	343	0	0	20439		a Reserve row
-0x81B8	q_daiji	344	Reserve	344	0	0	20440		a Reserve row
-0x81B9	q_daiji	345	Reserve	345	0	0	20441		a Reserve row
-0x81BA	q_daiji	346	Reserve	346	0	0	20442		a Reserve row
-0x81BB	q_daiji	347	Reserve	347	0	0	20443		a Reserve row
-0x81BC	q_daiji	348	Reserve	348	0	0	20444		a Reserve row
-0x81BD	q_daiji	349	Reserve	349	0	0	20445		a Reserve row
-0x81BE	q_daiji	350	Reserve	350	0	0	20446		a Reserve row
-0x81BF	q_daiji	351	Reserve	351	0	0	20447		a Reserve row
-0x81C0	q_daiji	352	Reserve	352	0	0	20448		a Reserve row
-0x81C1	q_daiji	353	Reserve	353	0	0	20449		a Reserve row
-0x81C2	q_daiji	354	Reserve	354	0	0	20450		a Reserve row
-0x81C3	q_daiji	355	Reserve	355	0	0	20451		a Reserve row
-0x81C4	q_daiji	356	Reserve	356	0	0	20452		a Reserve row
-0x81C5	q_daiji	357	Reserve	357	0	0	20453		a Reserve row
-0x81C6	q_daiji	358	Reserve	358	0	0	20454		a Reserve row
-0x81C7	q_daiji	359	Reserve	359	0	0	20455		a Reserve row
-0x81C8	q_daiji	360	Reserve	360	0	0	20456		a Reserve row
-0x81C9	q_daiji	361	Reserve	361	0	0	20457		a Reserve row
-0x81CA	q_daiji	362	Reserve	362	0	0	20458		a Reserve row
-0x81CB	q_daiji	363	Reserve	363	0	0	20459		a Reserve row
-0x81CC	q_daiji	364	Reserve	364	0	0	20460		a Reserve row
-0x81CD	q_daiji	365	Reserve	365	0	0	20461		a Reserve row
-0x81CE	q_daiji	366	Reserve	366	0	0	20462		a Reserve row
-0x81CF	q_daiji	367	Reserve	367	0	0	20463		a Reserve row
-0x81D0	q_daiji	368	Reserve	368	0	0	20464		a Reserve row
-0x81D1	q_daiji	369	Reserve	369	0	0	20465		a Reserve row
-0x81D2	q_daiji	370	Reserve	370	0	0	20466		a Reserve row
-0x81D3	q_daiji	371	Reserve	371	0	0	20467		a Reserve row
-0x81D4	q_daiji	372	Reserve	372	0	0	20468		a Reserve row
-0x81D5	q_daiji	373	Reserve	373	0	0	20469		a Reserve row
-0x81D6	q_daiji	374	Reserve	374	0	0	20470		a Reserve row
-0x81D7	q_daiji	375	Reserve	375	0	0	20471		a Reserve row
-0x81D8	q_daiji	376	Reserve	376	0	0	20472		a Reserve row
-0x81D9	q_daiji	377	Reserve	377	0	0	20473		a Reserve row
-0x81DA	q_daiji	378	Reserve	378	0	0	20474		a Reserve row
-0x81DB	q_daiji	379	Reserve	379	0	0	20475		a Reserve row
-0x81DC	q_daiji	380	Reserve	380	0	0	20476		a Reserve row
-0x81DD	q_daiji	381	Reserve	381	0	0	20477		a Reserve row
-0x81DE	q_daiji	382	Reserve	382	0	0	20478		a Reserve row
-0x81DF	q_daiji	383	Reserve	383	0	0	20479		a Reserve row
-0x81E0	q_daiji	384	Reserve	384	0	0	20480		a Reserve row
-0x81E1	q_daiji	385	Reserve	385	0	0	20481		a Reserve row
-0x81E2	q_daiji	386	Reserve	386	0	0	20482		a Reserve row
-0x81E3	q_daiji	387	Reserve	387	0	0	20483		a Reserve row
-0x81E4	q_daiji	388	Reserve	388	0	0	20484		a Reserve row
-0x81E5	q_daiji	389	Reserve	389	0	0	20485		a Reserve row
-0x81E6	q_daiji	390	Reserve	390	0	0	20486		a Reserve row
-0x81E7	q_daiji	391	Reserve	391	0	0	20487		a Reserve row
-0x81E8	q_daiji	392	Reserve	392	0	0	20488		a Reserve row
-0x81E9	q_daiji	393	Reserve	393	0	0	20489		a Reserve row
-0x81EA	q_daiji	394	Reserve	394	0	0	20490		a Reserve row
-0x81EB	q_daiji	395	Reserve	395	0	0	20491		a Reserve row
-0x81EC	q_daiji	396	Reserve	396	0	0	20492		a Reserve row
-0x81ED	q_daiji	397	Reserve	397	0	0	20493		a Reserve row
-0x81EE	q_daiji	398	Reserve	398	0	0	20494		a Reserve row
-0x81EF	q_daiji	399	Reserve	399	0	0	20495		a Reserve row
-0x81F0	q_daiji	400	Reserve	400	0	0	20496		a Reserve row
-0x81F1	q_daiji	401	Reserve	401	0	0	20497		a Reserve row
-0x81F2	q_daiji	402	Reserve	402	0	0	20498		a Reserve row
-0x81F3	q_daiji	403	Reserve	403	0	0	20499		a Reserve row
-0x81F4	q_daiji	404	Reserve	404	0	0	20500		a Reserve row
-0x81F5	q_daiji	405	Reserve	405	0	0	20501		a Reserve row
-0x81F6	q_daiji	406	Reserve	406	0	0	20502		a Reserve row
-0x81F7	q_daiji	407	Reserve	407	0	0	20503		a Reserve row
-0x81F8	q_daiji	408	Reserve	408	0	0	20504		a Reserve row
-0x81F9	q_daiji	409	Reserve	409	0	0	20505		a Reserve row
-0x81FA	q_daiji	410	Reserve	410	0	0	20506		a Reserve row
-0x81FB	q_daiji	411	Reserve	411	0	0	20507		a Reserve row
-0x81FC	q_daiji	412	Reserve	412	0	0	20508		a Reserve row
-0x81FD	q_daiji	413	Reserve	413	0	0	20509		a Reserve row
-0x81FE	q_daiji	414	Reserve	414	0	0	20510		a Reserve row
-0x81FF	q_daiji	415	Reserve	415	0	0	20511		a Reserve row
+id	table	row	name	sort_order	icon_frame	b00	text_id	description	explanation	kind	sources
+0x8000	m_daiji	0	Rabanastre	0	112	0	20000		a key item from m_daiji; its description text is empty	map	first join: Vaan
+0x8001	m_daiji	1	Nalbina Fortress	1	112	1	20001		a key item from m_daiji; its description text is empty	map	first join: Vaan, Reks
+0x8002	m_daiji	2	Bhujerba	2	112	2	20002		a key item from m_daiji; its description text is empty	map	-
+0x8003	m_daiji	3	Jahara	3	112	3	20003		a key item from m_daiji; its description text is empty	map	-
+0x8004	m_daiji	4	Eruyt Village	4	112	4	20004		a key item from m_daiji; its description text is empty	map	-
+0x8005	m_daiji	5	Mt Bur-Omisace	5	112	5	20005		a key item from m_daiji; its description text is empty	map	-
+0x8006	m_daiji	6	Archades	6	112	6	20006		a key item from m_daiji; its description text is empty	map	-
+0x8007	m_daiji	7	Balfonheim Port	7	112	7	20007		a key item from m_daiji; its description text is empty	map	-
+0x8008	m_daiji	8	Dalmasca Estersand	8	112	8	20008		a key item from m_daiji; its description text is empty	map	-
+0x8009	m_daiji	9	Dalmasca Westersand	9	112	9	20009		a key item from m_daiji; its description text is empty	map	-
+0x800A	m_daiji	10	Giza Plains	10	112	10	20010		a key item from m_daiji; its description text is empty	map	-
+0x800B	m_daiji	11	Ogir-Yensa Sandsea	11	112	11	20011		a key item from m_daiji; its description text is empty	map	scene gift: Platform 1 - East Tanks (Ogir-Yensa Sandsea) [ene_a01]
+0x800C	m_daiji	12	Nam-Yensa Sandsea	12	112	12	20012		a key item from m_daiji; its description text is empty	map	scene gift: Platform 1 - East Tanks (Ogir-Yensa Sandsea) [ene_a01]
+0x800D	m_daiji	13	Mosphoran Highwaste	13	112	13	20013		a key item from m_daiji; its description text is empty	map	-
+0x800E	m_daiji	14	Salikawood	14	112	14	20014		a key item from m_daiji; its description text is empty	map	scene gift: Trunkwall Road (The Salikawood) [frs_a02]
+0x800F	m_daiji	15	Nabreus Deadlands	15	112	15	20015		a key item from m_daiji; its description text is empty	map	scene gift: Vale of Lingering Sorrow (Nabreus Deadlands) [bog_a03]
+0x8010	m_daiji	16	Ozmone Plain	16	112	16	20016		a key item from m_daiji; its description text is empty	map	-
+0x8011	m_daiji	17	Golmore Jungle	17	112	17	20017		a key item from m_daiji; its description text is empty	map	scene gift: Paths of Chained Light (Golmore Jungle) [gol_a01]
+0x8012	m_daiji	18	Feywood	18	112	18	20018		a key item from m_daiji; its description text is empty	map	scene gift: Walk of Stolen Truths (The Feywood) [mfr_a02]
+0x8013	m_daiji	19	Paramina Rift	19	112	19	20019		a key item from m_daiji; its description text is empty	map	-
+0x8014	m_daiji	20	Phon Coast	20	112	20	20020		a key item from m_daiji; its description text is empty	map	-
+0x8015	m_daiji	21	Tchita Uplands	21	112	21	20021		a key item from m_daiji; its description text is empty	map	-
+0x8016	m_daiji	22	Cerobi Steppe	22	112	22	20022		a key item from m_daiji; its description text is empty	map	-
+0x8017	m_daiji	23	Ridorana Cataract	23	112	23	20023		a key item from m_daiji; its description text is empty	map	scene gift: Colosseum (Ridorana Cataract) [rwf_d01]
+0x8018	m_daiji	24	Garamsythe Waterway	24	112	24	20024		a key item from m_daiji; its description text is empty	map	scene gift: East Waterway Control (Garamsythe Waterway) [grm_a06]
+0x8019	m_daiji	25	Barheim Passage	25	112	25	20025		a key item from m_daiji; its description text is empty	map	scene gift: Great Eastern Passage (Barheim Passage) [mic_a02]
+0x801A	m_daiji	26	Zertinan Caverns	26	112	26	20026		a key item from m_daiji; its description text is empty	map	scene gift: The Balamka Fault (Zertinan Caverns) [ztc_c01]
+0x801B	m_daiji	27	Lhusu Mines	27	112	27	20027		a key item from m_daiji; its description text is empty	map	-
+0x801C	m_daiji	28	Tomb of Raithwall	28	112	28	20028		a key item from m_daiji; its description text is empty	map	scene gift: Royal Passage (The Tomb of Raithwall) [rwg_c01]
+0x801D	m_daiji	29	Necrohol of Nabudis	29	112	29	20029		a key item from m_daiji; its description text is empty	map	scene gift: Cloister of Solace (Necrohol of Nabudis) [bds_f01]
+0x801E	m_daiji	30	Henne Mines	30	112	30	20030		a key item from m_daiji; its description text is empty	map	scene gift: Phase 1 Shaft (Henne Mines) [hne_a03]
+0x801F	m_daiji	31	Giruvegan	31	112	31	20031		a key item from m_daiji; its description text is empty	map	scene gift: The Trimahla Water-Steps (Giruvegan) [gil_b01]
+0x8020	m_daiji	32	Stilshrine of Miriam	32	112	32	20032		a key item from m_daiji; its description text is empty	map	scene gift: Ward of Steel (Stilshrine of Miriam) [mrm_c01]
+0x8021	m_daiji	33	Sochen Cave Palace	33	112	33	20033		a key item from m_daiji; its description text is empty	map	scene gift: Mirror of the Soul (Sochen Cave Palace) [rui_a02]
+0x8022	m_daiji	34	Draklor Laboratories	34	112	34	20034		a key item from m_daiji; its description text is empty	map	scene gift: a scene played in Draklor Laboratory [dor_z0100]
+0x8023	m_daiji	35	Reserve	35	112	35	20035		a Reserve row	Reserve	-
+0x8024	m_daiji	36	Leviathan	36	112	36	20036		a key item from m_daiji; its description text is empty	map	scene gift: a scene played in Port Launch (Dreadnought Leviathan) [rsn_a0100]
+0x8025	m_daiji	37	Bahamut	37	112	37	20037		a key item from m_daiji; its description text is empty	map	-
+0x8026	m_daiji	38	Royal Palace of Rabanastre	38	112	38	20038		a key item from m_daiji; its description text is empty	map	scene gift: Cellar Stores (Royal Palace) [rrp_a01]
+0x8027	m_daiji	39	Garamsythe Candle	39	112	39	20039		a key item from m_daiji; its description text is empty	map	scene gift: East Sluice Control (Garamsythe Waterway) [grm_e03]
+0x8028	m_daiji	40	Barheim Candle	40	112	40	20040		a key item from m_daiji; its description text is empty	map	scene gift: The Zeviah Span (Barheim Passage) [mic_e02]
+0x8029	m_daiji	41	Lhusu Candle	41	112	41	20041		a key item from m_daiji; its description text is empty	map	scene gift: Site 5 (Lhusu Mines) [lus_f02]
+0x802A	m_daiji	42	Henne Candle	42	112	42	20042		a key item from m_daiji; its description text is empty	map	scene gift: Phase 2 Dig (Henne Mines) [hne_c01]
+0x802B	m_daiji	43	Feywood Candle	43	112	43	20043		a key item from m_daiji; its description text is empty	map	scene gift: White Magick's Embrace (The Feywood) [mfr_c01]
+0x802C	m_daiji	44	Nalbina Dungeons	44	112	44	20044		a key item from m_daiji; its description text is empty	map	scene gift: a scene played in The Confiscatory (Nalbina Dungeons) [nal_c0200]
+0x802D	m_daiji	45	Pharos: First Ascent	45	112	45	20045		a key item from m_daiji; its description text is empty	map	scene gift: Wellspring Labyrinth (Pharos - First Ascent) [rbl_b01]
+0x802E	m_daiji	46	Pharos: Second Ascent	46	112	46	20046		a key item from m_daiji; its description text is empty	map	scene gift: Station of Suffering (Pharos - Second Ascent) [rbl_l01]
+0x802F	m_daiji	47	Pharos: Third Ascent	47	112	47	20047		a key item from m_daiji; its description text is empty	map	scene gift: Spire Ravel - 1st Flight (Pharos - Third Ascent) [rbl_n01]
+0x8030	m_daiji	48	Reserve	48	0	0	20048		a Reserve row	Reserve	-
+0x8031	m_daiji	49	Reserve	49	0	0	20049		a Reserve row	Reserve	-
+0x8032	m_daiji	50	Reserve	50	0	0	20050		a Reserve row	Reserve	-
+0x8033	m_daiji	51	Reserve	51	0	0	20051		a Reserve row	Reserve	-
+0x8034	m_daiji	52	Reserve	52	0	0	20052		a Reserve row	Reserve	-
+0x8035	m_daiji	53	Reserve	53	0	0	20053		a Reserve row	Reserve	-
+0x8036	m_daiji	54	Reserve	54	0	0	20054		a Reserve row	Reserve	-
+0x8037	m_daiji	55	Reserve	55	0	0	20055		a Reserve row	Reserve	-
+0x8038	m_daiji	56	Reserve	56	0	0	20056		a Reserve row	Reserve	-
+0x8039	m_daiji	57	Reserve	57	0	0	20057		a Reserve row	Reserve	-
+0x803A	m_daiji	58	Reserve	58	0	0	20058		a Reserve row	Reserve	-
+0x803B	m_daiji	59	Reserve	59	0	0	20059		a Reserve row	Reserve	-
+0x803C	m_daiji	60	Reserve	60	0	0	20060		a Reserve row	Reserve	-
+0x803D	m_daiji	61	Reserve	61	0	0	20061		a Reserve row	Reserve	-
+0x803E	m_daiji	62	Reserve	62	0	0	20062		a Reserve row	Reserve	-
+0x803F	m_daiji	63	Reserve	63	0	0	20063		a Reserve row	Reserve	-
+0x8040	g_daiji	0	Rabanastre	0	113	64	20064		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8041	g_daiji	1	Reserve	1	0	0	20065		a Reserve row	Reserve	-
+0x8042	g_daiji	2	Nalbina Fortress	2	113	66	20066		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8043	g_daiji	3	Barheim Passage	3	113	67	20067		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8044	g_daiji	4	The Salikawood	4	113	68	20068		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8045	g_daiji	5	Nabreus Deadlands	5	113	69	20069		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8046	g_daiji	6	Reserve	6	113	70	20070		a Reserve row	Reserve	-
+0x8047	g_daiji	7	Archades	7	113	71	20071		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8048	g_daiji	8	The Sochen Cave Palace	8	113	72	20072		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8049	g_daiji	9	The Henne Mines	9	113	73	20073		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x804A	g_daiji	10	Bhujerba	10	113	74	20074		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x804B	g_daiji	11	The Lhusu Mines	11	113	75	20075		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x804C	g_daiji	12	The Tomb of Raithwall	12	113	76	20076		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x804D	g_daiji	13	Zertinan Caverns	13	113	77	20077		a key item from g_daiji; its description text is empty	teleport destination	-
+0x804E	g_daiji	14	Golmore Jungle	14	113	78	20078		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x804F	g_daiji	15	The Feywood	15	113	79	20079		a key item from g_daiji; its description text is empty	teleport destination	-
+0x8050	g_daiji	16	Giruvegan	16	113	80	20080		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8051	g_daiji	17	The Stilshrine of Miriam	17	113	81	20081		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8052	g_daiji	18	The Port at Balfonheim	18	113	82	20082		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8053	g_daiji	19	The Pharos at Ridorana	19	113	83	20083		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8054	g_daiji	20	Jahara	20	113	83	20084		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8055	g_daiji	21	Eruyt Village	21	113	84	20085		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8056	g_daiji	22	Mt Bur-Omisace	22	113	85	20086		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8057	g_daiji	23	Dalmasca Estersand	23	113	86	20087		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8058	g_daiji	24	Dalmasca Westersand	24	113	87	20088		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x8059	g_daiji	25	Mosphoran Highwaste	25	113	88	20089		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x805A	g_daiji	26	Ogir-Yensa Sandsea	26	113	89	20090		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x805B	g_daiji	27	The Phon Coast	27	113	90	20091		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x805C	g_daiji	28	Tchita Uplands	28	113	91	20092		a key item from g_daiji; its description text is empty	teleport destination	scene gift (80): Tsenoble (Archades) [alc_c01], Aerodrome (Archades) [alc_e01], Alley of Muted Sighs (Old Archades) [ald_a01], Antechamber (Sky Fortress Bahamut) [bhm_a04], The Muted Scarp (Nabreus Deadlands) [bog_a02], Succor Midst Sorrow (Nabreus Deadlands) [bog_b02], Sand-strewn Pass (Mt Bur-Omisace) [bul_b02], Lhusu Square (Bhujerba) [byu_a04], Aerodrome (Bhujerba) [byu_b01], 70th Floor (Draklor Laboratory) [dor_c12], and 70 more in scene-rewards.tsv
+0x805D	g_daiji	29	Reserve	29	0	0	20093		a Reserve row	Reserve	-
+0x805E	g_daiji	30	Reserve	30	0	0	20094		a Reserve row	Reserve	-
+0x805F	g_daiji	31	Reserve	31	0	0	20095		a Reserve row	Reserve	-
+0x8060	q_daiji	0	Blue Bottle	73	114	96	20096	"This small bottle contains a message: ""Truth lies just beyond falsehood. CDZCKZMCRANZS"""	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8061	q_daiji	1	Green Bottle	75	114	97	20097	"This small bottle contains a message: ""Skip on stones to far bank's shore, by skipping stones return once more. SSADLNIAKLADHAUETDNREA"""	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8062	q_daiji	2	Red Bottle	77	114	98	20098	"This small bottle contains a message: ""Foothills rise in mountains' shadow. nhIiQsTUrEe"""	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8063	q_daiji	3	Yellow Bottle	79	114	99	20099	"This small bottle contains a message: ""Dragons stir among the eaters of the wind. 1 2 - - 5 - 7 - 9 -"""	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8064	q_daiji	4	Black Bottle	81	114	100	20100	"This small bottle contains a message: ""Easy as a, b, c, so count yourself lucky. 19-12-21-9-3-5-7-1-20-5-18-1-20-19"""	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8065	q_daiji	5	Sage's Monograph	0	114	101	20101	Possession of this text enables the acquisition of superior loot from elementals.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD066)
+0x8066	q_daiji	6	Hunter's Monograph	1	114	102	20102	Possession of this text enables the acquisition of superior loot from beasts and avions.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD063)
+0x8067	q_daiji	7	Knight's Monograph	2	114	103	20103	Possession of this text enables the acquisition of superior loot from giants and insects.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD064)
+0x8068	q_daiji	8	Dragoon's Monograph	3	114	104	20104	Possession of this text enables the acquisition of superior loot from dragons and plants.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD065)
+0x8069	q_daiji	9	Mage's Monograph	4	114	105	20105	Possession of this text enables the acquisition of superior loot from fiends.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD07C)
+0x806A	q_daiji	10	Warmage's Monograph	5	114	106	20106	Possession of this text enables the acquisition of superior loot from amorphs and undead.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD07D)
+0x806B	q_daiji	11	Scholar's Monograph	6	114	107	20107	Possession of this text enables the acquisition of superior loot from constructs.	a key item from q_daiji	key item	bazaar: Forgotten Grimoire (0xD07E)
+0x806C	q_daiji	12	Canopic Jar	7	114	108	20108	A cursed jar said to hold the power to entrap a beast's soul, forever binding it as an arcana.	a key item from q_daiji	key item	bazaar: Morbid Urn (0xD07F)
+0x806D	q_daiji	13	Available	8	114	109	20109		a key item from q_daiji; its description text is empty	status word	-
+0x806E	q_daiji	14	Accepted	9	114	110	20110		a key item from q_daiji; its description text is empty	status word	-
+0x806F	q_daiji	15	Complete!	10	114	111	20111		a key item from q_daiji; its description text is empty	status word	-
+0x8070	q_daiji	16	Writ of Transit	12	114	112	20112	A writ given you by Tomaj granting its bearer right of passage through the east gate for the acquisition of foodstuffs.	a key item from q_daiji	key item	scene gift: The Sandsea (Rabanastre) [rbn_a16]
+0x8071	q_daiji	17	Clan Primer	11	114	113	20113	A reference containing clan exploits, hunt log, bestiary, and adventuring tips.	a key item from q_daiji	key item	scene gift: The Sandsea (Rabanastre) [rbn_a16]
+0x8072	q_daiji	18	Galbana Lilies	13	114	114	20114	Red flowers that grow only in Dalmasca. You found them after defeating the Rogue Tomato.	a key item from q_daiji	key item	scene gift: a scene played in The Stepping (Dalmasca Estersand) [dst_a0181]
+0x8073	q_daiji	19	Cactus Flower	34	114	115	20115	A rare flower that comes into bloom once every few years. Its petals have medicinal value, with those harvested from cacti turned cactoid said to be particularly potent.	a key item from q_daiji	key item	scene gift: Yardang Labyrinth (Dalmasca Estersand) [dst_a02]
+0x8074	q_daiji	20	Tube Fuse	18	114	116	20116	A tube fuse pieced together from scavenged parts. It may not be much to look at, but it is well crafted.	a key item from q_daiji	key item	scene gift: The Lightworks (Barheim Passage) [mic_a01]
+0x8075	q_daiji	21	Sword of the Order	19	114	117	20117	A sword signifying a place among the Order of the Knights of Dalmasca. Dalan has tasked you with its delivery.	a key item from q_daiji	key item	scene gift: Dalan's House (Lowtown) [slm_a03]
+0x8076	q_daiji	22	No. 1 Brig Key	20	114	118	20118	This key opens the bulkhead of a brig aboard Leviathan.	a key item from q_daiji	key item	scene gift: Central Brig Access (Dreadnought Leviathan) [rsn_d01]
+0x8077	q_daiji	23	Systems Access Key	21	114	119	20119	This key grants access to Leviathan's security system, which controls the ship's internal alarm.	a key item from q_daiji	key item	scene gift: Brig No. 1 (Dreadnought Leviathan) [rsn_y01]
+0x8078	q_daiji	24	Dawn Shard	23	51	120	20120	A piece of magicite left by King Raithwall. It signifies descent from the Dynast-King.	a key item from q_daiji	key item	scene gift: Battle Launch (Light Cruiser Shiva) [rsn_z02], a scene played in Chamber of First Light (The Tomb of Raithwall) [rwg_e0100]
+0x8079	q_daiji	25	Shadestone	14	114	121	20121	A dark, fist-sized stone. When exposed to the energies of the sun, it becomes a type of magicite known as sunstone.	a key item from q_daiji	key item	scene gift: Nomad Village (Giza Plains) [sav_b01], a scene played in Crystal Glade (Giza Plains) [sav_c0280]
+0x807A	q_daiji	26	Sunstone	15	114	122	20122	A piece of magicite made from shadestone that has been imbued with the power of the sun. Sunstone is commonly used as a source of heat and light.	a key item from q_daiji	key item	scene gift: Warrior's Wash (Giza Plains) [sav_a02], Gizas North Bank (Giza Plains) [sav_a03], Starfall Field (Giza Plains) [sav_c01], Gizas South Bank (Giza Plains) [sav_c03]
+0x807B	q_daiji	27	Feather of the Flock	61	114	123	20123	A legendary cockatrice feather with a brilliant white sheen. Touching the feather, you feel a strange bond with the cockatrices...	a key item from q_daiji	key item	scene gift: Tracks of the Beast (Giza Plains) [sav_g01]
+0x807C	q_daiji	28	Ring of the Toad	45	114	124	20124	A jade ring bearing the likeness of a toad. The ring holds special meaning to the villagers who call Giza Plains their home.	a key item from q_daiji	key item	scene gift: Starfall Field (Giza Plains) [sav_f01]
+0x807D	q_daiji	29	Silent Urn	55	114	125	20125	An urn given you by the villagers of Giza Plains. It is used to entrap the souls of beasts.	a key item from q_daiji	key item	scene gift: Crystal Glade (Giza Plains) [sav_f02]
+0x807E	q_daiji	30	Site 3 Key	56	114	126	20126	This key grants access to Site 3 of the Lhusu Mines.	a key item from q_daiji	key item	scene gift: The Staras Residence (Bhujerba) [byu_a17]
+0x807F	q_daiji	31	Site 11 Key	57	114	127	20127	This key grants access to Site 11 of the Lhusu Mines.	a key item from q_daiji	key item	scene gift: Hunters' Camp (Phon Coast) [fon_b01]
+0x8080	q_daiji	32	Crescent Stone	16	114	128	20128	A stone cutting given you by Dalan. It is needed to reach the treasury in the Royal Palace. A lion is emblazoned on its face.	a key item from q_daiji	key item	scene gift: a scene played in Dalan's House (Lowtown) [slm_a0380]
+0x8081	q_daiji	33	Medallion of Bravery	70	114	129	20129	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji	key item	scene gift: Overlooking Eternity (Nabreus Deadlands) [bog_b04]
+0x8082	q_daiji	34	Medallion of Might	66	114	130	20130	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji	key item	scene gift: Cloister of Solace (Necrohol of Nabudis) [bds_f01], Cloister of Reason (Necrohol of Nabudis) [bds_g01]
+0x8083	q_daiji	35	Medallion of Love	72	114	131	20131	A medallion that opens a door within the Palace of Nabudis. Magick energies ebb and flow within.	a key item from q_daiji	key item	scene gift: Overlooking Eternity (Nabreus Deadlands) [bog_b04]
+0x8084	q_daiji	36	Lusterless Medallion	65	114	132	20132	A medallion that opens a door within the Palace of Nabudis. It is inert, its magicks long lost.	a key item from q_daiji	key item	scene gift: Overlooking Eternity (Nabreus Deadlands) [bog_b04]
+0x8085	q_daiji	37	Stone of the Condemner	64	114	133	20133	"A piece of magicite said to open the way to a forbidden place. An inscription carved in the stone's back reads: ""He with power, trust it not."""	a key item from q_daiji	key item	scene gift: Temple Grounds (Mt Bur-Omisace) [bul_a03]
+0x8086	q_daiji	38	Errmonea Leaf	44	114	134	20134	A medicinal herb found on Ozmone Plain. It has long been used in the treatment of fevers.	a key item from q_daiji	key item	scene gift: The Shred (Ozmone Plain) [ozm_c01]
+0x8087	q_daiji	39	Rabbit's Tail	46	114	135	20135	The tail of a vorpal bunny, a legendary black dreamhare found in Golmore Jungle. It is a prized reagent.	a key item from q_daiji	key item	scene gift: The Rustling Chapel (Golmore Jungle) [gol_b01]
+0x8088	q_daiji	40	Ann's Letter	58	114	136	20136	A letter written by Ann, chief steward aboard one of the East Ivalice Company's airships. It is addressed to her six sisters, each of whom works a different airship route.	a key item from q_daiji	key item	scene gift: Sky Saloon (Skyferry) [asp_a02]
+0x8089	q_daiji	41	Manufacted Nethicite	22	49	137	20137	A special kind of magicite developed by the Archadian Empire. Unlike ordinary magicite, this absorbs magicks.	a key item from q_daiji	key item	scene gift: a scene played in Port Section (Dreadnought Leviathan) [rsn_b0100]
+0x808A	q_daiji	42	Rusted Scrap of Armor	50	114	138	20138	A scrap of metal that looks as though it may once have been part of a piece of armor. You found it lodged between the claws of the Lindwyrm.	a key item from q_daiji	key item	scene gift: Garden of Life's Circle (Tchita Uplands) [pla_b04]
+0x808B	q_daiji	43	Sword of Kings	25	52	139	20139	The sword left by King Raithwall. It is capable of destroying nethicite.	a key item from q_daiji	key item	scene gift: Vault of the Champion (Stilshrine of Miriam) [mrm_f01]
+0x808C	q_daiji	44	Treaty-Blade	33	53	140	20140	The blade given Ashe by the Occuria. It has the power to cut new shards of nethicite.	a key item from q_daiji	key item	scene gift: a scene played in Siti Bhrusuna (Giruvegan) [gil_z0100]
+0x808D	q_daiji	45	Dusty Letter	40	114	141	20141	"A letter left in a deserted building in Lowtown. ""East South- east East Southwest Southeast"" is scrawled across the page."	a key item from q_daiji	key item	scene gift: Residence (Lowtown) [slm_a04]
+0x808E	q_daiji	46	Serpentwyne Must	43	114	142	20142	A liquid base used in the fermentation of the finest serpentwyne. You obtained it after defeating the Marilith.	a key item from q_daiji	key item	scene gift: Invitation to Heresy (Zertinan Caverns) [ztc_a01]
+0x808F	q_daiji	47	Dull Fragment	67	114	143	20143	One of four pieces of a broken medallion. You obtained it beyond the sluice gates in the Garamsythe Waterway.	a key item from q_daiji	key item	scene gift: Central Waterway Control (Garamsythe Waterway) [grm_e13]
+0x8090	q_daiji	48	Blackened Fragment	68	114	144	20144	One of four pieces of a broken medallion. You received it as a reward for finding and returning Samal's stolen articles.	a key item from q_daiji	key item	scene gift: North Sprawl (Lowtown) [slm_a01]
+0x8091	q_daiji	49	Grimy Fragment	69	114	145	20145	One of four pieces of a broken medallion. You obtained it with the help of Filo and Kytes.	a key item from q_daiji	key item	scene gift: Yugri's Magicks (Rabanastre) [rbn_a10]
+0x8092	q_daiji	50	Stolen Articles	54	114	146	20146	A bundle of articles stolen by the contrite thief, only to be stolen once again by Orthros. Don't tease the...flan?	a key item from q_daiji	key item	scene gift: Southern Sluiceway (Garamsythe Waterway) [grm_e04]
+0x8093	q_daiji	51	Barheim Key	35	114	147	20147	An oddly shaped key received from the leader of a band of thieves. The key opens a door into the Barheim Passage.	a key item from q_daiji	key item	scene gift: South Bank Village (Dalmasca Estersand) [dst_b01]
+0x8094	q_daiji	52	Muramata	36	114	148	20148	A fishing rod crafted by a master swordsmith. The rod is light, easily handled, and surpassingly strong.	a key item from q_daiji	key item	scene gift: Chivany Breakwater (Balfonheim Port) [var_a05]
+0x8095	q_daiji	53	Matamune	37	114	149	20149	A cursed fishing rod that drinks the lifeblood of the fish it hooks. You obtained it from Gilgamesh, ancient man of mystery.	a key item from q_daiji	key item	scene gift: The Zeviah Span (Barheim Passage) [mic_e02]
+0x8096	q_daiji	54	Cactoid Compact	38	114	150	20150	A symbol of friendship conveyed upon trusted allies of the cactoids. They hold the bearers of such compacts in high honor.	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8097	q_daiji	55	Cactoid Commendation	39	114	151	20151	A token given to cactoids who have distinguished themselves among the grove. The other races of Ivalice take little notice.	a key item from q_daiji	key item	scene gift: a scene played in South Bank Village, North Bank Village (Dalmasca Estersand) [dst_b0100]
+0x8098	q_daiji	56	Merchant's Armband	52	114	152	20152	An armband worn by the staff at Clio's Technicks in Bhujerba. The store's name is neatly embroidered on its surface.	a key item from q_daiji	key item	scene gift: Khus Skygrounds (Bhujerba) [byu_a07]
+0x8099	q_daiji	57	Pilika's Diary	53	114	153	20153	A diary kept by Pilika, a member of the staff at Clio's Technicks in Bhujerba. It chronicles her day-to-day affairs.	a key item from q_daiji	key item	scene gift: Clio's Technicks (Bhujerba) [byu_a15]
+0x809A	q_daiji	58	Ring of the Light	51	114	154	20154	A ring worn by followers of the Light of Kiltia. The crest of Faram, the Father, is etched in its band.	a key item from q_daiji	key item	scene gift: Silverflow's End (Paramina Rift) [pbc_c03]
+0x809B	q_daiji	59	Viera Rucksack	47	114	155	20155	A bundle dropped by a viera traveler as she fled a vyraal. The cloth is dyed with an intricate pattern of trees.	a key item from q_daiji	key item	scene gift: The Northsward (Cerobi Steppe) [srb_b04]
+0x809C	q_daiji	60	Time-worn Necklace	63	114	156	20156	A beautiful necklace in the Galtean style. You found it in Nalbina and took it as your own.	a key item from q_daiji	key item	-
+0x809D	q_daiji	61	Reserve	27	0	157	20157		a Reserve row	Reserve	-
+0x809E	q_daiji	62	Lab Access Card	28	114	158	20158	A Draklor Laboratory security card. It bears the seal of the Archadian Empire.	a key item from q_daiji	key item	scene gift: a scene played in Draklor Laboratory [dor_z0100]
+0x809F	q_daiji	63	Reserve	29	0	159	20159		a Reserve row	Reserve	-
+0x80A0	q_daiji	64	Reserve	30	0	160	20160		a Reserve row	Reserve	-
+0x80A1	q_daiji	65	Reserve	31	0	161	20161		a Reserve row	Reserve	-
+0x80A2	q_daiji	66	Reserve	32	0	162	20162		a Reserve row	Reserve	-
+0x80A3	q_daiji	67	Moonsilver Medallion	71	114	163	20163	A medallion made of moonsilver, a very rare metal. These medallions are traditionally given to loved ones as a token of affection.	a key item from q_daiji	key item	scene gift: Alley of Muted Sighs (Old Archades) [ald_a01]
+0x80A4	q_daiji	68	Wanly Limned Message	74	114	164	20164	"The message contained in the blue bottle. Pallid letters shimmer on the page: ""River...unde...o"""	a key item from q_daiji	key item	scene gift: Echoes of the Past (Nabreus Deadlands) [bog_a05], Piebald Path (The Salikawood) [frs_c02], Central Waterway Control (Garamsythe Waterway) [grm_e13], Babbling Vale (Mosphoran Highwaste) [mnt_d01]
+0x80A5	q_daiji	69	Green-hued Message	76	114	165	20165	"The message contained in the green bottle. Emerald letters shimmer on the page: ""Forest...rgro...w"""	a key item from q_daiji	key item	scene gift: Echoes of the Past (Nabreus Deadlands) [bog_a05], Piebald Path (The Salikawood) [frs_c02], Central Waterway Control (Garamsythe Waterway) [grm_e13], Babbling Vale (Mosphoran Highwaste) [mnt_d01]
+0x80A6	q_daiji	70	Vermillion Message	78	114	166	20166	"The message contained in the red bottle. Vermillion letters shimmer on the page: ""Fire...undb...h"""	a key item from q_daiji	key item	scene gift: Echoes of the Past (Nabreus Deadlands) [bog_a05], Piebald Path (The Salikawood) [frs_c02], Central Waterway Control (Garamsythe Waterway) [grm_e13], Babbling Vale (Mosphoran Highwaste) [mnt_d01]
+0x80A7	q_daiji	71	Auric Message	80	114	167	20167	"The message contained in the yellow bottle. Gilt letters shimmer on the page: ""Ash...ridg...er"""	a key item from q_daiji	key item	scene gift: Crossfield (Cerobi Steppe) [srb_a02], The Terraced Bank (Cerobi Steppe) [srb_a03], North Liavell Hills (Cerobi Steppe) [srb_b01], The Northsward (Cerobi Steppe) [srb_b04]
+0x80A8	q_daiji	72	Onyx Message	82	114	168	20168	"The message contained in the black bottle. Jet-black letters shimmer on the page: ""Darkness...eton...e"""	a key item from q_daiji	key item	scene gift: Echoes of the Past (Nabreus Deadlands) [bog_a05], Piebald Path (The Salikawood) [frs_c02], Central Waterway Control (Garamsythe Waterway) [grm_e13], Babbling Vale (Mosphoran Highwaste) [mnt_d01]
+0x80A9	q_daiji	73	Reserve	114	0	169	20169		a Reserve row	Reserve	-
+0x80AA	q_daiji	74	Reserve	115	0	170	20170		a Reserve row	Reserve	-
+0x80AB	q_daiji	75	Reserve	116	0	171	20171		a Reserve row	Reserve	-
+0x80AC	q_daiji	76	Goddess's Magicite	17	50	172	20172	A piece of magicite you found in the treasury of the Royal Palace of Rabanastre. It must be extremely valuable.	a key item from q_daiji	key item	scene gift: a scene played in The Confiscatory (Nalbina Dungeons) [nal_c0200], Treasure Room No. 8 (Royal Palace) [rrp_a05]
+0x80AD	q_daiji	77	Gift of the Great-chief	62	114	173	20173	A gift prepared by the garif Great-chief in hopes of acquiring some Giza cockatrices. It is addressed to Brunoa, the nomad elder in the Giza Plains.	a key item from q_daiji	key item	scene gift: The Elderknoll (Jahara) [glf_a03]
+0x80AE	q_daiji	78	Broken Key	41	114	174	20174	A broken, useless key. Sorbet had been meaning to get it fixed.	a key item from q_daiji	key item	scene gift: West Sluice Control (Garamsythe Waterway) [grm_e05]
+0x80AF	q_daiji	79	Sluice Gate Key	42	114	175	20175	A key needed to operate the sluice gates. It used to be broken, but Sorbet had his brother repair it.	a key item from q_daiji	key item	scene gift: Westgate (Rabanastre) [rbn_a19]
+0x80B0	q_daiji	80	Reserve	117	0	176	20176		a Reserve row	Reserve	-
+0x80B1	q_daiji	81	Wind Globe	59	114	177	20177	A globe fashioned of silver rings decorated with arcane patterns.	a key item from q_daiji	key item	scene gift: Windtrace Dunes (Dalmasca Westersand) [wdl_a05]
+0x80B2	q_daiji	82	Windvane	60	114	178	20178	A device for reading the winds. It is used to navigate through sandstorms on the open desert.	a key item from q_daiji	key item	scene gift: Westgate (Rabanastre) [rbn_a19]
+0x80B3	q_daiji	83	Reserve	118	0	179	20179		a Reserve row	Reserve	-
+0x80B4	q_daiji	84	Dragon Scale	48	114	180	20180	A scale found on the corpse of a vyraal. Natural philosophers studying wyrms and their kin are known to pay well for such.	a key item from q_daiji	key item	scene gift: The Whitecap (Balfonheim Port) [var_a14]
+0x80B5	q_daiji	85	Ageworn Key	49	114	181	20181	A key bartered in exchange for a dragon scale. It is said to open the way to the lair of a great wyrm.	a key item from q_daiji	key item	scene gift: Old Elanise Road (Cerobi Steppe) [srb_a01], Crossfield (Cerobi Steppe) [srb_a02], The Terraced Bank (Cerobi Steppe) [srb_a03], Journey's Rest (Cerobi Steppe) [srb_a04], North Liavell Hills (Cerobi Steppe) [srb_b01], South Liavell Hills (Cerobi Steppe) [srb_b02], Feddik River (Cerobi Steppe) [srb_b03], The Northsward (Cerobi Steppe) [srb_b04]
+0x80B6	q_daiji	86	Soul Ward Key	26	114	182	20182	A key to a door in the Sochen Cave Palace. Dire beasts are imprisoned within.	a key item from q_daiji	key item	scene gift: The Chosen Path (Tchita Uplands) [pla_a06], The Nameless Spring (Tchita Uplands) [pla_b06]
+0x80B7	q_daiji	87	Lente's Tear	24	114	183	20183	A charm made by the viera. It grants passage through the barriers of Golmore Jungle.	a key item from q_daiji	key item	scene gift: a scene played in Fane of the Path (Eruyt Village) [vic_a0300]
+0x80B8	q_daiji	88	Shelled Trophy	83	114	184	20184	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: The Vaddu Strand (Phon Coast) [fon_c02]
+0x80B9	q_daiji	89	Fur-scaled Trophy	84	114	185	20185	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: No. 10 Channel (Garamsythe Waterway) [grm_e07]
+0x80BA	q_daiji	90	Bony Trophy	85	114	186	20186	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: East-West Bypass (Barheim Passage) [mic_e01], The Zeviah Span (Barheim Passage) [mic_e02]
+0x80BB	q_daiji	91	Fanged Trophy	86	114	187	20187	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Corridor of Sand (Dalmasca Westersand) [wdl_a02]
+0x80BC	q_daiji	92	Hide-covered Trophy	87	114	188	20188	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Broken Sands (Dalmasca Estersand) [dst_c02]
+0x80BD	q_daiji	93	Maned Trophy	88	114	189	20189	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Starfall Field (Giza Plains) [sav_c01]
+0x80BE	q_daiji	94	Fell Trophy	89	114	190	20190	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: The Undershore (Zertinan Caverns) [ztc_b01]
+0x80BF	q_daiji	95	Accursed Trophy	90	114	191	20191	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Site 5 (Lhusu Mines) [lus_f02], Site 6 South (Lhusu Mines) [lus_f03]
+0x80C0	q_daiji	96	Beaked Trophy	91	114	192	20192	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: South Tank Approach (Ogir-Yensa Sandsea) [ene_a09]
+0x80C1	q_daiji	97	Maverick Trophy	92	114	193	20193	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Yellow Sands (Nam-Yensa Sandsea) [enw_a04]
+0x80C2	q_daiji	98	Soulless Trophy	93	114	194	20194	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Northfall Passage (The Tomb of Raithwall) [rwg_c03]
+0x80C3	q_daiji	99	Leathern Trophy	94	114	195	20195	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Skyreach Ridge (Mosphoran Highwaste) [mnt_b03]
+0x80C4	q_daiji	100	Sickle Trophy	95	114	196	20196	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Piebald Path (The Salikawood) [frs_c02]
+0x80C5	q_daiji	101	Vengeful Trophy	96	114	197	20197	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: The Slumbermead (Nabreus Deadlands) [bog_b01]
+0x80C6	q_daiji	102	Gravesoil Trophy	97	114	198	20198	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Hall of the Ivory Covenant (Necrohol of Nabudis) [bds_c01]
+0x80C7	q_daiji	103	Metallic Trophy	98	114	199	20199	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: The Switchback (Ozmone Plain) [ozm_a02]
+0x80C8	q_daiji	104	Slimy Trophy	99	114	200	20200	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Pithead Junction B (Henne Mines) [hne_a06]
+0x80C9	q_daiji	105	Scythe Trophy	100	114	201	20201	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: The Needlebrake (Golmore Jungle) [gol_a02]
+0x80CA	q_daiji	106	Feathered Trophy	101	114	202	20202	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Walk of Dancing Shadow (The Feywood) [mfr_a03]
+0x80CB	q_daiji	107	Skull Trophy	102	114	203	20203	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: A Vikaari Kanbhru Ra (The Great Crystal) [gil_i02]
+0x80CC	q_daiji	108	Mind Trophy	103	114	204	20204	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Karydine Glacier (Paramina Rift) [pbc_b03]
+0x80CD	q_daiji	109	Eternal Trophy	104	114	205	20205	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Ward of Velitation (Stilshrine of Miriam) [mrm_d01]
+0x80CE	q_daiji	110	Clawed Trophy	105	114	206	20206	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Cape Tialan (Phon Coast) [fon_a05]
+0x80CF	q_daiji	111	Odiferous Trophy	106	114	207	20207	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: The Highlands (Tchita Uplands) [pla_a03]
+0x80D0	q_daiji	112	Whiskered Trophy	107	114	208	20208	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Uazcuff Hills (Tchita Uplands) [pla_a01]
+0x80D1	q_daiji	113	Frigid Trophy	108	114	209	20209	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Destiny's March (Sochen Cave Palace) [rui_b01]
+0x80D2	q_daiji	114	Ensanguined Trophy	109	114	210	20210	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Mirror of the Soul (Sochen Cave Palace) [rui_a02]
+0x80D3	q_daiji	115	Cruel Trophy	110	114	211	20211	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Crossfield (Cerobi Steppe) [srb_a02]
+0x80D4	q_daiji	116	Adamantine Trophy	111	114	212	20212	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Feddik River (Cerobi Steppe) [srb_b03]
+0x80D5	q_daiji	117	Reptilian Trophy	112	114	213	20213	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Echoes from Time's Garden (Ridorana Cataract) [rwf_a03]
+0x80D6	q_daiji	118	Vile Trophy	113	114	214	20214	Proof that the bearer has hunted rare game. The hunters of the Phon Coast collect such trophies.	a key item from q_daiji	key item	scene gift: Station of Ascension (Pharos - Second Ascent) [rbl_m01]
+0x80D7	q_daiji	119	Reserve	119	0	0	20215		a Reserve row	Reserve	-
+0x80D8	q_daiji	120	Reserve	120	0	0	20216		a Reserve row	Reserve	-
+0x80D9	q_daiji	121	Reserve	121	0	0	20217		a Reserve row	Reserve	-
+0x80DA	q_daiji	122	Reserve	122	0	0	20218		a Reserve row	Reserve	-
+0x80DB	q_daiji	123	Reserve	123	0	0	20219		a Reserve row	Reserve	-
+0x80DC	q_daiji	124	Reserve	124	0	0	20220		a Reserve row	Reserve	-
+0x80DD	q_daiji	125	Reserve	125	0	0	20221		a Reserve row	Reserve	-
+0x80DE	q_daiji	126	Reserve	126	0	0	20222		a Reserve row	Reserve	-
+0x80DF	q_daiji	127	Reserve	127	0	0	20223		a Reserve row	Reserve	-
+0x80E0	q_daiji	128	Reserve	128	0	0	20224		a Reserve row	Reserve	-
+0x80E1	q_daiji	129	Reserve	129	0	0	20225		a Reserve row	Reserve	-
+0x80E2	q_daiji	130	Reserve	130	0	0	20226		a Reserve row	Reserve	-
+0x80E3	q_daiji	131	Reserve	131	0	0	20227		a Reserve row	Reserve	-
+0x80E4	q_daiji	132	Reserve	132	0	0	20228		a Reserve row	Reserve	-
+0x80E5	q_daiji	133	Reserve	133	0	0	20229		a Reserve row	Reserve	-
+0x80E6	q_daiji	134	Reserve	134	0	0	20230		a Reserve row	Reserve	-
+0x80E7	q_daiji	135	Reserve	135	0	0	20231		a Reserve row	Reserve	-
+0x80E8	q_daiji	136	Reserve	136	0	0	20232		a Reserve row	Reserve	-
+0x80E9	q_daiji	137	Reserve	137	0	0	20233		a Reserve row	Reserve	-
+0x80EA	q_daiji	138	Reserve	138	0	0	20234		a Reserve row	Reserve	-
+0x80EB	q_daiji	139	Reserve	139	0	0	20235		a Reserve row	Reserve	-
+0x80EC	q_daiji	140	Reserve	140	0	0	20236		a Reserve row	Reserve	-
+0x80ED	q_daiji	141	Reserve	141	0	0	20237		a Reserve row	Reserve	-
+0x80EE	q_daiji	142	Reserve	142	0	0	20238		a Reserve row	Reserve	-
+0x80EF	q_daiji	143	Reserve	143	0	0	20239		a Reserve row	Reserve	-
+0x80F0	q_daiji	144	Reserve	144	0	0	20240		a Reserve row	Reserve	-
+0x80F1	q_daiji	145	Reserve	145	0	0	20241		a Reserve row	Reserve	-
+0x80F2	q_daiji	146	Reserve	146	0	0	20242		a Reserve row	Reserve	-
+0x80F3	q_daiji	147	Reserve	147	0	0	20243		a Reserve row	Reserve	-
+0x80F4	q_daiji	148	Reserve	148	0	0	20244		a Reserve row	Reserve	-
+0x80F5	q_daiji	149	Reserve	149	0	0	20245		a Reserve row	Reserve	-
+0x80F6	q_daiji	150	Reserve	150	0	0	20246		a Reserve row	Reserve	-
+0x80F7	q_daiji	151	Reserve	151	0	0	20247		a Reserve row	Reserve	-
+0x80F8	q_daiji	152	Reserve	152	0	0	20248		a Reserve row	Reserve	-
+0x80F9	q_daiji	153	Reserve	153	0	0	20249		a Reserve row	Reserve	-
+0x80FA	q_daiji	154	Reserve	154	0	0	20250		a Reserve row	Reserve	-
+0x80FB	q_daiji	155	Reserve	155	0	0	20251		a Reserve row	Reserve	-
+0x80FC	q_daiji	156	Reserve	156	0	0	20252		a Reserve row	Reserve	-
+0x80FD	q_daiji	157	Reserve	157	0	0	20253		a Reserve row	Reserve	-
+0x80FE	q_daiji	158	Reserve	158	0	0	20254		a Reserve row	Reserve	-
+0x80FF	q_daiji	159	Reserve	159	0	0	20255		a Reserve row	Reserve	-
+0x8100	q_daiji	160	Reserve	160	0	0	20256		a Reserve row	Reserve	-
+0x8101	q_daiji	161	Reserve	161	0	0	20257		a Reserve row	Reserve	-
+0x8102	q_daiji	162	Reserve	162	0	0	20258		a Reserve row	Reserve	-
+0x8103	q_daiji	163	Reserve	163	0	0	20259		a Reserve row	Reserve	-
+0x8104	q_daiji	164	Reserve	164	0	0	20260		a Reserve row	Reserve	-
+0x8105	q_daiji	165	Reserve	165	0	0	20261		a Reserve row	Reserve	-
+0x8106	q_daiji	166	Reserve	166	0	0	20262		a Reserve row	Reserve	-
+0x8107	q_daiji	167	Reserve	167	0	0	20263		a Reserve row	Reserve	-
+0x8108	q_daiji	168	Reserve	168	0	0	20264		a Reserve row	Reserve	-
+0x8109	q_daiji	169	Reserve	169	0	0	20265		a Reserve row	Reserve	-
+0x810A	q_daiji	170	Reserve	170	0	0	20266		a Reserve row	Reserve	-
+0x810B	q_daiji	171	Reserve	171	0	0	20267		a Reserve row	Reserve	-
+0x810C	q_daiji	172	Reserve	172	0	0	20268		a Reserve row	Reserve	-
+0x810D	q_daiji	173	Reserve	173	0	0	20269		a Reserve row	Reserve	-
+0x810E	q_daiji	174	Reserve	174	0	0	20270		a Reserve row	Reserve	-
+0x810F	q_daiji	175	Reserve	175	0	0	20271		a Reserve row	Reserve	-
+0x8110	q_daiji	176	Reserve	176	0	0	20272		a Reserve row	Reserve	-
+0x8111	q_daiji	177	Reserve	177	0	0	20273		a Reserve row	Reserve	-
+0x8112	q_daiji	178	Reserve	178	0	0	20274		a Reserve row	Reserve	-
+0x8113	q_daiji	179	Reserve	179	0	0	20275		a Reserve row	Reserve	-
+0x8114	q_daiji	180	Reserve	180	0	0	20276		a Reserve row	Reserve	-
+0x8115	q_daiji	181	Reserve	181	0	0	20277		a Reserve row	Reserve	-
+0x8116	q_daiji	182	Reserve	182	0	0	20278		a Reserve row	Reserve	-
+0x8117	q_daiji	183	Reserve	183	0	0	20279		a Reserve row	Reserve	-
+0x8118	q_daiji	184	Reserve	184	0	0	20280		a Reserve row	Reserve	-
+0x8119	q_daiji	185	Reserve	185	0	0	20281		a Reserve row	Reserve	-
+0x811A	q_daiji	186	Reserve	186	0	0	20282		a Reserve row	Reserve	-
+0x811B	q_daiji	187	Reserve	187	0	0	20283		a Reserve row	Reserve	-
+0x811C	q_daiji	188	Reserve	188	0	0	20284		a Reserve row	Reserve	-
+0x811D	q_daiji	189	Reserve	189	0	0	20285		a Reserve row	Reserve	-
+0x811E	q_daiji	190	Reserve	190	0	0	20286		a Reserve row	Reserve	-
+0x811F	q_daiji	191	Reserve	191	0	0	20287		a Reserve row	Reserve	-
+0x8120	q_daiji	192	Reserve	192	0	0	20288		a Reserve row	Reserve	-
+0x8121	q_daiji	193	Reserve	193	0	0	20289		a Reserve row	Reserve	-
+0x8122	q_daiji	194	Reserve	194	0	0	20290		a Reserve row	Reserve	-
+0x8123	q_daiji	195	Reserve	195	0	0	20291		a Reserve row	Reserve	-
+0x8124	q_daiji	196	Reserve	196	0	0	20292		a Reserve row	Reserve	-
+0x8125	q_daiji	197	Reserve	197	0	0	20293		a Reserve row	Reserve	-
+0x8126	q_daiji	198	Reserve	198	0	0	20294		a Reserve row	Reserve	-
+0x8127	q_daiji	199	Reserve	199	0	0	20295		a Reserve row	Reserve	-
+0x8128	q_daiji	200	Reserve	200	0	0	20296		a Reserve row	Reserve	-
+0x8129	q_daiji	201	Reserve	201	0	0	20297		a Reserve row	Reserve	-
+0x812A	q_daiji	202	Reserve	202	0	0	20298		a Reserve row	Reserve	-
+0x812B	q_daiji	203	Reserve	203	0	0	20299		a Reserve row	Reserve	-
+0x812C	q_daiji	204	Reserve	204	0	0	20300		a Reserve row	Reserve	-
+0x812D	q_daiji	205	Reserve	205	0	0	20301		a Reserve row	Reserve	-
+0x812E	q_daiji	206	Reserve	206	0	0	20302		a Reserve row	Reserve	-
+0x812F	q_daiji	207	Reserve	207	0	0	20303		a Reserve row	Reserve	-
+0x8130	q_daiji	208	Reserve	208	0	0	20304		a Reserve row	Reserve	-
+0x8131	q_daiji	209	Reserve	209	0	0	20305		a Reserve row	Reserve	-
+0x8132	q_daiji	210	Reserve	210	0	0	20306		a Reserve row	Reserve	-
+0x8133	q_daiji	211	Reserve	211	0	0	20307		a Reserve row	Reserve	-
+0x8134	q_daiji	212	Reserve	212	0	0	20308		a Reserve row	Reserve	-
+0x8135	q_daiji	213	Reserve	213	0	0	20309		a Reserve row	Reserve	-
+0x8136	q_daiji	214	Reserve	214	0	0	20310		a Reserve row	Reserve	-
+0x8137	q_daiji	215	Reserve	215	0	0	20311		a Reserve row	Reserve	-
+0x8138	q_daiji	216	Reserve	216	0	0	20312		a Reserve row	Reserve	-
+0x8139	q_daiji	217	Reserve	217	0	0	20313		a Reserve row	Reserve	-
+0x813A	q_daiji	218	Reserve	218	0	0	20314		a Reserve row	Reserve	-
+0x813B	q_daiji	219	Reserve	219	0	0	20315		a Reserve row	Reserve	-
+0x813C	q_daiji	220	Reserve	220	0	0	20316		a Reserve row	Reserve	-
+0x813D	q_daiji	221	Reserve	221	0	0	20317		a Reserve row	Reserve	-
+0x813E	q_daiji	222	Reserve	222	0	0	20318		a Reserve row	Reserve	-
+0x813F	q_daiji	223	Reserve	223	0	0	20319		a Reserve row	Reserve	-
+0x8140	q_daiji	224	Reserve	224	0	0	20320		a Reserve row	Reserve	-
+0x8141	q_daiji	225	Reserve	225	0	0	20321		a Reserve row	Reserve	-
+0x8142	q_daiji	226	Reserve	226	0	0	20322		a Reserve row	Reserve	-
+0x8143	q_daiji	227	Reserve	227	0	0	20323		a Reserve row	Reserve	-
+0x8144	q_daiji	228	Reserve	228	0	0	20324		a Reserve row	Reserve	-
+0x8145	q_daiji	229	Reserve	229	0	0	20325		a Reserve row	Reserve	-
+0x8146	q_daiji	230	Reserve	230	0	0	20326		a Reserve row	Reserve	-
+0x8147	q_daiji	231	Reserve	231	0	0	20327		a Reserve row	Reserve	-
+0x8148	q_daiji	232	Reserve	232	0	0	20328		a Reserve row	Reserve	-
+0x8149	q_daiji	233	Reserve	233	0	0	20329		a Reserve row	Reserve	-
+0x814A	q_daiji	234	Reserve	234	0	0	20330		a Reserve row	Reserve	-
+0x814B	q_daiji	235	Reserve	235	0	0	20331		a Reserve row	Reserve	-
+0x814C	q_daiji	236	Reserve	236	0	0	20332		a Reserve row	Reserve	-
+0x814D	q_daiji	237	Reserve	237	0	0	20333		a Reserve row	Reserve	-
+0x814E	q_daiji	238	Reserve	238	0	0	20334		a Reserve row	Reserve	-
+0x814F	q_daiji	239	Reserve	239	0	0	20335		a Reserve row	Reserve	-
+0x8150	q_daiji	240	Reserve	240	0	0	20336		a Reserve row	Reserve	-
+0x8151	q_daiji	241	Reserve	241	0	0	20337		a Reserve row	Reserve	-
+0x8152	q_daiji	242	Reserve	242	0	0	20338		a Reserve row	Reserve	-
+0x8153	q_daiji	243	Reserve	243	0	0	20339		a Reserve row	Reserve	-
+0x8154	q_daiji	244	Reserve	244	0	0	20340		a Reserve row	Reserve	-
+0x8155	q_daiji	245	Reserve	245	0	0	20341		a Reserve row	Reserve	-
+0x8156	q_daiji	246	Reserve	246	0	0	20342		a Reserve row	Reserve	-
+0x8157	q_daiji	247	Reserve	247	0	0	20343		a Reserve row	Reserve	-
+0x8158	q_daiji	248	Reserve	248	0	0	20344		a Reserve row	Reserve	-
+0x8159	q_daiji	249	Reserve	249	0	0	20345		a Reserve row	Reserve	-
+0x815A	q_daiji	250	Reserve	250	0	0	20346		a Reserve row	Reserve	-
+0x815B	q_daiji	251	Reserve	251	0	0	20347		a Reserve row	Reserve	-
+0x815C	q_daiji	252	Reserve	252	0	0	20348		a Reserve row	Reserve	-
+0x815D	q_daiji	253	Reserve	253	0	0	20349		a Reserve row	Reserve	-
+0x815E	q_daiji	254	Reserve	254	0	0	20350		a Reserve row	Reserve	-
+0x815F	q_daiji	255	Reserve	255	0	0	20351		a Reserve row	Reserve	-
+0x8160	q_daiji	256	Reserve	256	0	0	20352		a Reserve row	Reserve	-
+0x8161	q_daiji	257	Reserve	257	0	0	20353		a Reserve row	Reserve	-
+0x8162	q_daiji	258	Reserve	258	0	0	20354		a Reserve row	Reserve	-
+0x8163	q_daiji	259	Reserve	259	0	0	20355		a Reserve row	Reserve	-
+0x8164	q_daiji	260	Reserve	260	0	0	20356		a Reserve row	Reserve	-
+0x8165	q_daiji	261	Reserve	261	0	0	20357		a Reserve row	Reserve	-
+0x8166	q_daiji	262	Reserve	262	0	0	20358		a Reserve row	Reserve	-
+0x8167	q_daiji	263	Reserve	263	0	0	20359		a Reserve row	Reserve	-
+0x8168	q_daiji	264	Reserve	264	0	0	20360		a Reserve row	Reserve	-
+0x8169	q_daiji	265	Reserve	265	0	0	20361		a Reserve row	Reserve	-
+0x816A	q_daiji	266	Reserve	266	0	0	20362		a Reserve row	Reserve	-
+0x816B	q_daiji	267	Reserve	267	0	0	20363		a Reserve row	Reserve	-
+0x816C	q_daiji	268	Reserve	268	0	0	20364		a Reserve row	Reserve	-
+0x816D	q_daiji	269	Reserve	269	0	0	20365		a Reserve row	Reserve	-
+0x816E	q_daiji	270	Reserve	270	0	0	20366		a Reserve row	Reserve	-
+0x816F	q_daiji	271	Reserve	271	0	0	20367		a Reserve row	Reserve	-
+0x8170	q_daiji	272	Reserve	272	0	0	20368		a Reserve row	Reserve	-
+0x8171	q_daiji	273	Reserve	273	0	0	20369		a Reserve row	Reserve	-
+0x8172	q_daiji	274	Reserve	274	0	0	20370		a Reserve row	Reserve	-
+0x8173	q_daiji	275	Reserve	275	0	0	20371		a Reserve row	Reserve	-
+0x8174	q_daiji	276	Reserve	276	0	0	20372		a Reserve row	Reserve	-
+0x8175	q_daiji	277	Reserve	277	0	0	20373		a Reserve row	Reserve	-
+0x8176	q_daiji	278	Reserve	278	0	0	20374		a Reserve row	Reserve	-
+0x8177	q_daiji	279	Reserve	279	0	0	20375		a Reserve row	Reserve	-
+0x8178	q_daiji	280	Reserve	280	0	0	20376		a Reserve row	Reserve	-
+0x8179	q_daiji	281	Reserve	281	0	0	20377		a Reserve row	Reserve	-
+0x817A	q_daiji	282	Reserve	282	0	0	20378		a Reserve row	Reserve	-
+0x817B	q_daiji	283	Reserve	283	0	0	20379		a Reserve row	Reserve	-
+0x817C	q_daiji	284	Reserve	284	0	0	20380		a Reserve row	Reserve	-
+0x817D	q_daiji	285	Reserve	285	0	0	20381		a Reserve row	Reserve	-
+0x817E	q_daiji	286	Reserve	286	0	0	20382		a Reserve row	Reserve	-
+0x817F	q_daiji	287	Reserve	287	0	0	20383		a Reserve row	Reserve	-
+0x8180	q_daiji	288	Reserve	288	0	0	20384		a Reserve row	Reserve	-
+0x8181	q_daiji	289	Reserve	289	0	0	20385		a Reserve row	Reserve	-
+0x8182	q_daiji	290	Reserve	290	0	0	20386		a Reserve row	Reserve	-
+0x8183	q_daiji	291	Reserve	291	0	0	20387		a Reserve row	Reserve	-
+0x8184	q_daiji	292	Reserve	292	0	0	20388		a Reserve row	Reserve	-
+0x8185	q_daiji	293	Reserve	293	0	0	20389		a Reserve row	Reserve	-
+0x8186	q_daiji	294	Reserve	294	0	0	20390		a Reserve row	Reserve	-
+0x8187	q_daiji	295	Reserve	295	0	0	20391		a Reserve row	Reserve	-
+0x8188	q_daiji	296	Reserve	296	0	0	20392		a Reserve row	Reserve	-
+0x8189	q_daiji	297	Reserve	297	0	0	20393		a Reserve row	Reserve	-
+0x818A	q_daiji	298	Reserve	298	0	0	20394		a Reserve row	Reserve	-
+0x818B	q_daiji	299	Reserve	299	0	0	20395		a Reserve row	Reserve	-
+0x818C	q_daiji	300	Reserve	300	0	0	20396		a Reserve row	Reserve	-
+0x818D	q_daiji	301	Reserve	301	0	0	20397		a Reserve row	Reserve	-
+0x818E	q_daiji	302	Reserve	302	0	0	20398		a Reserve row	Reserve	-
+0x818F	q_daiji	303	Reserve	303	0	0	20399		a Reserve row	Reserve	-
+0x8190	q_daiji	304	Reserve	304	0	0	20400		a Reserve row	Reserve	-
+0x8191	q_daiji	305	Reserve	305	0	0	20401		a Reserve row	Reserve	-
+0x8192	q_daiji	306	Reserve	306	0	0	20402		a Reserve row	Reserve	-
+0x8193	q_daiji	307	Reserve	307	0	0	20403		a Reserve row	Reserve	-
+0x8194	q_daiji	308	Reserve	308	0	0	20404		a Reserve row	Reserve	-
+0x8195	q_daiji	309	Reserve	309	0	0	20405		a Reserve row	Reserve	-
+0x8196	q_daiji	310	Reserve	310	0	0	20406		a Reserve row	Reserve	-
+0x8197	q_daiji	311	Reserve	311	0	0	20407		a Reserve row	Reserve	-
+0x8198	q_daiji	312	Reserve	312	0	0	20408		a Reserve row	Reserve	-
+0x8199	q_daiji	313	Reserve	313	0	0	20409		a Reserve row	Reserve	-
+0x819A	q_daiji	314	Reserve	314	0	0	20410		a Reserve row	Reserve	-
+0x819B	q_daiji	315	Reserve	315	0	0	20411		a Reserve row	Reserve	-
+0x819C	q_daiji	316	Reserve	316	0	0	20412		a Reserve row	Reserve	-
+0x819D	q_daiji	317	Reserve	317	0	0	20413		a Reserve row	Reserve	-
+0x819E	q_daiji	318	Reserve	318	0	0	20414		a Reserve row	Reserve	-
+0x819F	q_daiji	319	Reserve	319	0	0	20415		a Reserve row	Reserve	-
+0x81A0	q_daiji	320	Reserve	320	0	0	20416		a Reserve row	Reserve	-
+0x81A1	q_daiji	321	Reserve	321	0	0	20417		a Reserve row	Reserve	-
+0x81A2	q_daiji	322	Reserve	322	0	0	20418		a Reserve row	Reserve	-
+0x81A3	q_daiji	323	Reserve	323	0	0	20419		a Reserve row	Reserve	-
+0x81A4	q_daiji	324	Reserve	324	0	0	20420		a Reserve row	Reserve	-
+0x81A5	q_daiji	325	Reserve	325	0	0	20421		a Reserve row	Reserve	-
+0x81A6	q_daiji	326	Reserve	326	0	0	20422		a Reserve row	Reserve	-
+0x81A7	q_daiji	327	Reserve	327	0	0	20423		a Reserve row	Reserve	-
+0x81A8	q_daiji	328	Reserve	328	0	0	20424		a Reserve row	Reserve	-
+0x81A9	q_daiji	329	Reserve	329	0	0	20425		a Reserve row	Reserve	-
+0x81AA	q_daiji	330	Reserve	330	0	0	20426		a Reserve row	Reserve	-
+0x81AB	q_daiji	331	Reserve	331	0	0	20427		a Reserve row	Reserve	-
+0x81AC	q_daiji	332	Reserve	332	0	0	20428		a Reserve row	Reserve	-
+0x81AD	q_daiji	333	Reserve	333	0	0	20429		a Reserve row	Reserve	-
+0x81AE	q_daiji	334	Reserve	334	0	0	20430		a Reserve row	Reserve	-
+0x81AF	q_daiji	335	Reserve	335	0	0	20431		a Reserve row	Reserve	-
+0x81B0	q_daiji	336	Reserve	336	0	0	20432		a Reserve row	Reserve	-
+0x81B1	q_daiji	337	Reserve	337	0	0	20433		a Reserve row	Reserve	-
+0x81B2	q_daiji	338	Reserve	338	0	0	20434		a Reserve row	Reserve	-
+0x81B3	q_daiji	339	Reserve	339	0	0	20435		a Reserve row	Reserve	-
+0x81B4	q_daiji	340	Reserve	340	0	0	20436		a Reserve row	Reserve	-
+0x81B5	q_daiji	341	Reserve	341	0	0	20437		a Reserve row	Reserve	-
+0x81B6	q_daiji	342	Reserve	342	0	0	20438		a Reserve row	Reserve	-
+0x81B7	q_daiji	343	Reserve	343	0	0	20439		a Reserve row	Reserve	-
+0x81B8	q_daiji	344	Reserve	344	0	0	20440		a Reserve row	Reserve	-
+0x81B9	q_daiji	345	Reserve	345	0	0	20441		a Reserve row	Reserve	-
+0x81BA	q_daiji	346	Reserve	346	0	0	20442		a Reserve row	Reserve	-
+0x81BB	q_daiji	347	Reserve	347	0	0	20443		a Reserve row	Reserve	-
+0x81BC	q_daiji	348	Reserve	348	0	0	20444		a Reserve row	Reserve	-
+0x81BD	q_daiji	349	Reserve	349	0	0	20445		a Reserve row	Reserve	-
+0x81BE	q_daiji	350	Reserve	350	0	0	20446		a Reserve row	Reserve	-
+0x81BF	q_daiji	351	Reserve	351	0	0	20447		a Reserve row	Reserve	-
+0x81C0	q_daiji	352	Reserve	352	0	0	20448		a Reserve row	Reserve	-
+0x81C1	q_daiji	353	Reserve	353	0	0	20449		a Reserve row	Reserve	-
+0x81C2	q_daiji	354	Reserve	354	0	0	20450		a Reserve row	Reserve	-
+0x81C3	q_daiji	355	Reserve	355	0	0	20451		a Reserve row	Reserve	-
+0x81C4	q_daiji	356	Reserve	356	0	0	20452		a Reserve row	Reserve	-
+0x81C5	q_daiji	357	Reserve	357	0	0	20453		a Reserve row	Reserve	-
+0x81C6	q_daiji	358	Reserve	358	0	0	20454		a Reserve row	Reserve	-
+0x81C7	q_daiji	359	Reserve	359	0	0	20455		a Reserve row	Reserve	-
+0x81C8	q_daiji	360	Reserve	360	0	0	20456		a Reserve row	Reserve	-
+0x81C9	q_daiji	361	Reserve	361	0	0	20457		a Reserve row	Reserve	-
+0x81CA	q_daiji	362	Reserve	362	0	0	20458		a Reserve row	Reserve	-
+0x81CB	q_daiji	363	Reserve	363	0	0	20459		a Reserve row	Reserve	-
+0x81CC	q_daiji	364	Reserve	364	0	0	20460		a Reserve row	Reserve	-
+0x81CD	q_daiji	365	Reserve	365	0	0	20461		a Reserve row	Reserve	-
+0x81CE	q_daiji	366	Reserve	366	0	0	20462		a Reserve row	Reserve	-
+0x81CF	q_daiji	367	Reserve	367	0	0	20463		a Reserve row	Reserve	-
+0x81D0	q_daiji	368	Reserve	368	0	0	20464		a Reserve row	Reserve	-
+0x81D1	q_daiji	369	Reserve	369	0	0	20465		a Reserve row	Reserve	-
+0x81D2	q_daiji	370	Reserve	370	0	0	20466		a Reserve row	Reserve	-
+0x81D3	q_daiji	371	Reserve	371	0	0	20467		a Reserve row	Reserve	-
+0x81D4	q_daiji	372	Reserve	372	0	0	20468		a Reserve row	Reserve	-
+0x81D5	q_daiji	373	Reserve	373	0	0	20469		a Reserve row	Reserve	-
+0x81D6	q_daiji	374	Reserve	374	0	0	20470		a Reserve row	Reserve	-
+0x81D7	q_daiji	375	Reserve	375	0	0	20471		a Reserve row	Reserve	-
+0x81D8	q_daiji	376	Reserve	376	0	0	20472		a Reserve row	Reserve	-
+0x81D9	q_daiji	377	Reserve	377	0	0	20473		a Reserve row	Reserve	-
+0x81DA	q_daiji	378	Reserve	378	0	0	20474		a Reserve row	Reserve	-
+0x81DB	q_daiji	379	Reserve	379	0	0	20475		a Reserve row	Reserve	-
+0x81DC	q_daiji	380	Reserve	380	0	0	20476		a Reserve row	Reserve	-
+0x81DD	q_daiji	381	Reserve	381	0	0	20477		a Reserve row	Reserve	-
+0x81DE	q_daiji	382	Reserve	382	0	0	20478		a Reserve row	Reserve	-
+0x81DF	q_daiji	383	Reserve	383	0	0	20479		a Reserve row	Reserve	-
+0x81E0	q_daiji	384	Reserve	384	0	0	20480		a Reserve row	Reserve	-
+0x81E1	q_daiji	385	Reserve	385	0	0	20481		a Reserve row	Reserve	-
+0x81E2	q_daiji	386	Reserve	386	0	0	20482		a Reserve row	Reserve	-
+0x81E3	q_daiji	387	Reserve	387	0	0	20483		a Reserve row	Reserve	-
+0x81E4	q_daiji	388	Reserve	388	0	0	20484		a Reserve row	Reserve	-
+0x81E5	q_daiji	389	Reserve	389	0	0	20485		a Reserve row	Reserve	-
+0x81E6	q_daiji	390	Reserve	390	0	0	20486		a Reserve row	Reserve	-
+0x81E7	q_daiji	391	Reserve	391	0	0	20487		a Reserve row	Reserve	-
+0x81E8	q_daiji	392	Reserve	392	0	0	20488		a Reserve row	Reserve	-
+0x81E9	q_daiji	393	Reserve	393	0	0	20489		a Reserve row	Reserve	-
+0x81EA	q_daiji	394	Reserve	394	0	0	20490		a Reserve row	Reserve	-
+0x81EB	q_daiji	395	Reserve	395	0	0	20491		a Reserve row	Reserve	-
+0x81EC	q_daiji	396	Reserve	396	0	0	20492		a Reserve row	Reserve	-
+0x81ED	q_daiji	397	Reserve	397	0	0	20493		a Reserve row	Reserve	-
+0x81EE	q_daiji	398	Reserve	398	0	0	20494		a Reserve row	Reserve	-
+0x81EF	q_daiji	399	Reserve	399	0	0	20495		a Reserve row	Reserve	-
+0x81F0	q_daiji	400	Reserve	400	0	0	20496		a Reserve row	Reserve	-
+0x81F1	q_daiji	401	Reserve	401	0	0	20497		a Reserve row	Reserve	-
+0x81F2	q_daiji	402	Reserve	402	0	0	20498		a Reserve row	Reserve	-
+0x81F3	q_daiji	403	Reserve	403	0	0	20499		a Reserve row	Reserve	-
+0x81F4	q_daiji	404	Reserve	404	0	0	20500		a Reserve row	Reserve	-
+0x81F5	q_daiji	405	Reserve	405	0	0	20501		a Reserve row	Reserve	-
+0x81F6	q_daiji	406	Reserve	406	0	0	20502		a Reserve row	Reserve	-
+0x81F7	q_daiji	407	Reserve	407	0	0	20503		a Reserve row	Reserve	-
+0x81F8	q_daiji	408	Reserve	408	0	0	20504		a Reserve row	Reserve	-
+0x81F9	q_daiji	409	Reserve	409	0	0	20505		a Reserve row	Reserve	-
+0x81FA	q_daiji	410	Reserve	410	0	0	20506		a Reserve row	Reserve	-
+0x81FB	q_daiji	411	Reserve	411	0	0	20507		a Reserve row	Reserve	-
+0x81FC	q_daiji	412	Reserve	412	0	0	20508		a Reserve row	Reserve	-
+0x81FD	q_daiji	413	Reserve	413	0	0	20509		a Reserve row	Reserve	-
+0x81FE	q_daiji	414	Reserve	414	0	0	20510		a Reserve row	Reserve	-
+0x81FF	q_daiji	415	Reserve	415	0	0	20511		a Reserve row	Reserve	-

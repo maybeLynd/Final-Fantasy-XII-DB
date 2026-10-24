@@ -2,12 +2,12 @@
 title: "Equipment list: every weapon, shield, armor, accessory and ammunition row with its name, class, price, stats, elements, statuses and bonuses"
 kind: "reference"
 category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0F8, 0x0031C5D0, 0x0031C911, 0x0031C981, 0x002FEF30, 0x0031E9F0, 0x00388409, 0x0038BE30"
+addresses: "0x02EBF0F8, 0x0031C5D0, 0x0031C911, 0x0031C981, 0x002FEF30, 0x0031E9F0, 0x00388409, 0x0038BE30, 0x00317B70, 0x00317930, 0x00323C60, 0x002F8FA0"
 ---
 
 ## What it lists
 
-`equipment-list.tsv` holds one line for each of the 557 rows of the equipment table that registry slot `0x02EBF0F8`
+[`equipment-list.tsv`](equipment-list.tsv) holds one line for each of the 557 rows of the equipment table that registry slot `0x02EBF0F8`
 reaches (`battle_pack.bin` directory entry `+0x38`). The meaning of every field, and the code that reads it, is on
 [Equipment row](equipment-row.md); this page is the shipped content of that table.
 
@@ -52,6 +52,25 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
   `+0x1A` = 14 (Attack) and `+0x11` = 18 (it takes a shield in the off hand); row 0, Unarmed, has Attack 12 and the
   class name Unarmed.
 
+### Where each piece of equipment comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
+- `steal:`, `drop:`, `poach:` and `monograph:` the monsters whose enemy definitions hold its id in those slots, read from the area files ([Bestiary](../Enemy-Spawning/bestiary.md)). Definitions that no map script places, and the units named "No name", are left out.
+- `scene gift:` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). Scripts that no map loads are left out.
+- `reward package:` a package that holds it, is named by a reward selector ([Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)) and is given by no script.
+- `starting equipment:` the main characters who wear it when the game begins ([Party table](../Party/party-table.md)).
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+
+A part that names more than 15 monsters or 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents, and the starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
+
+### The licence it needs
+
+`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `none needed` marks a row whose `+0x07` bit 4 is set, which `0x00323C60` passes without the board (`0x00323CDF`).
+
 ## Columns
 
 | Column | Meaning |
@@ -85,6 +104,8 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
 | `bonus_record` | the bonus record's index: `+0x28` / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+0x30` |
 | `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
+| `sources` | where the piece of equipment is obtained, one part per kind of source ("Where each piece of equipment comes from" above); `-` for none |
+| `licence` | the licence squares that grant it, by name and node, or `none needed` ("The licence it needs" above) |
 
 ## Related
 

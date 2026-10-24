@@ -2,12 +2,12 @@
 title: "Technick list: every technick with its name, shop price, sort order, power, statuses and texts"
 kind: "reference"
 category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0E8, 0x0031C5D0, 0x0031CEEB, 0x0031CF08, 0x00306340"
+addresses: "0x02EBF0E8, 0x0031C5D0, 0x0031CEEB, 0x0031CF08, 0x00306340, 0x00323EC0, 0x002F8FA0"
 ---
 
 ## What it lists
 
-`technick-list.tsv` holds one line for each of the 24 rows of the technick table that registry slot `0x02EBF0E8`
+[`technick-list.tsv`](technick-list.tsv) holds one line for each of the 24 rows of the technick table that registry slot `0x02EBF0E8`
 reaches (`battle_pack.bin` directory entry `+0x7C`). Row *n* is technick id `0x4000` + *n*: the class-9 arm of
 `0x0031C5D0` subtracts `0x4000` from the id and multiplies by the row size (`0x0031CEB3`-`0x0031CEC8`).
 
@@ -38,6 +38,21 @@ Every one-byte text code goes through the glyph table of the shipped `us` font `
 - Example rows: row 0, First Aid, has price 600 and action row 158; row 11, Steal, has price
   1200, sort order 0 and action row 169, the Steal row of [Action list](../Battle-Actions/action-list.md).
 
+### Where each technick comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+
+`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+
+### The licence it needs
+
+`licence` names the licence squares whose node lists the technick's action row (`action`) among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character use it: `0x00323EC0` tests an action through the node mask that `0x002F8FA0` builds ([Licenses](licenses.md), "The test").
+
 ## Columns
 
 | Column | Meaning |
@@ -52,6 +67,8 @@ Every one-byte text code goes through the glyph table of the shipped `us` font `
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
+| `sources` | where the technick is obtained, one part per kind of source ("Where each technick comes from" above); `-` for none |
+| `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every technick names at least one, since the action bypass bit (bit 13 of the action row's second flag word, `0x00323F52`) is clear on all 24 technick actions |
 
 ## Related
 

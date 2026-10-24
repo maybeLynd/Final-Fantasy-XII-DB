@@ -7,7 +7,7 @@ addresses: "0x02EBF098, 0x0031C5D0, 0x0031CBA3, 0x0031CBC1, 0x0031CBE0, 0x0031CB
 
 ## What it lists
 
-`loot-list.tsv` holds one line for each of the 512 rows of the loot table that registry slot `0x02EBF098` reaches
+[`loot-list.tsv`](loot-list.tsv) holds one line for each of the 512 rows of the loot table that registry slot `0x02EBF098` reaches
 (`battle_pack.bin` directory entry `+0x84`). Row *n* is loot id `0x2000` + *n*, inventory class 7
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): the class-7 arm of `0x0031C5D0`
 subtracts `0x2000` from the id and multiplies by the row size (`0x0031CBA3`-`0x0031CBBE`).
@@ -41,6 +41,24 @@ The row layout, as the class-7 arm copies it:
 - Example rows: row 0, Teleport Stone, has price 200 (sells for 100), text 14000 "A stone
   allowing instantaneous transport between two gate crystals." and sort order 0; row 32, Earth Stone, has price 70.
 
+### Where each loot comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
+- `steal:`, `drop:`, `poach:` and `monograph:` the monsters whose enemy definitions hold its id in those slots, read from the area files ([Bestiary](../Enemy-Spawning/bestiary.md)). Definitions that no map script places, and the units named "No name", are left out.
+- `scene gift:` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). Scripts that no map loads are left out.
+- `reward package:` a package that holds it, is named by a reward selector ([Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)) and is given by no script.
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+
+A part that names more than 15 monsters or 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents, and the starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
+
+### What it is used for
+
+`used_in` lists the bazaar goods that need the loot sold before they are offered ([`bazaar.tsv`](bazaar.tsv), `unlocked_by_selling`), with the good's id and the count to sell.
+
 ## Columns
 
 | Column | Meaning |
@@ -51,6 +69,8 @@ The row layout, as the class-7 arm copies it:
 | `price`, `sell_price` | `+0x00` in gil, and half of it rounded down |
 | `text_id`, `description` | `+0x02` and its shipped text |
 | `explanation` | the sell price, or that a shop will not buy it, or "a Reserve row" |
+| `sources` | where the loot is obtained, one part per kind of source ("Where each loot comes from" above); `-` for none |
+| `used_in` | the bazaar goods that need it sold, with the good's id and the count; `-` for none |
 
 ## Related
 

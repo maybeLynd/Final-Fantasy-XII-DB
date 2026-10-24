@@ -2,12 +2,12 @@
 title: "Magick list: every magick with its name, school, shop price, sort order, MP cost, power, element, statuses and texts"
 kind: "reference"
 category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0F0, 0x0031C5D0, 0x0031CD4C, 0x0031CD69, 0x0031CDBE, 0x0031CDC5, 0x02EBF110, 0x00306340"
+addresses: "0x02EBF0F0, 0x0031C5D0, 0x0031CD4C, 0x0031CD69, 0x0031CDBE, 0x0031CDC5, 0x02EBF110, 0x00306340, 0x00323EC0, 0x002F8FA0"
 ---
 
 ## What it lists
 
-`magick-list.tsv` holds one line for each of the 81 rows of the magick table that registry slot `0x02EBF0F0` reaches
+[`magick-list.tsv`](magick-list.tsv) holds one line for each of the 81 rows of the magick table that registry slot `0x02EBF0F0` reaches
 (`battle_pack.bin` directory entry `+0x78`). Row *n* is magick id `0x3000` + *n*: the class-8 arm of `0x0031C5D0`
 subtracts `0x3000` from the id and multiplies by the row size (`0x0031CD0D`-`0x0031CD28`).
 
@@ -47,6 +47,21 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
 - Example rows: row 0, Cure, has price 200, action row 0 (8 MP, power 20), school 0, "White
   Magicks"; row 79, Gravity, has price 2300, action row 79 and school 2, "Time Magicks".
 
+### Where each magick comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), and when the list that holds it goes on sale: from the start, from a story progress value with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md); the value alone where that table has no row for it, which is so for 500), or from a clan rank.
+- `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list").
+
+`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+
+### The licence it needs
+
+`licence` names the licence squares whose node lists the magick's action row (`action`) among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character use it: `0x00323EC0` tests an action through the node mask that `0x002F8FA0` builds ([Licenses](licenses.md), "The test").
+
 ## Columns
 
 | Column | Meaning |
@@ -62,6 +77,8 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
+| `sources` | where the magick is obtained, one part per kind of source ("Where each magick comes from" above); `-` for none |
+| `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every magick names at least one, since the action bypass bit (bit 13 of the action row's second flag word, `0x00323F52`) is clear on all 81 magick actions |
 
 ## Related
 

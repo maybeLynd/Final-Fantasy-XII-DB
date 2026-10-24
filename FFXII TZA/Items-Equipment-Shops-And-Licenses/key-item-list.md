@@ -7,7 +7,7 @@ addresses: "0x02EBF090, 0x02EBF088, 0x02EBF080, 0x02EBF078, 0x0031C5D0, 0x0031D1
 
 ## What it lists
 
-`key-item-list.tsv` holds one line for each of the 512 key-item ids `0x8000`-`0x81FF`, inventory class 13
+[`key-item-list.tsv`](key-item-list.tsv) holds one line for each of the 512 key-item ids `0x8000`-`0x81FF`, inventory class 13
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)). The class-13 arm of `0x0031C5D0` splits
 the range over three tables of 10-byte rows:
 
@@ -50,6 +50,25 @@ rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
   `0x8060` is row 0 of q_daiji_data, sort order 73, icon frame 114, text 20096, "This small bottle contains a
   message: ...".
 
+### Where each key item comes from
+
+`sources` joins tables already in the database by id. It holds one part per kind of source, the parts separated by `;`:
+
+- `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
+- `scene gift:` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). Scripts that no map loads are left out.
+- `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
+
+`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+
+### Rows that are not items
+
+`kind` tells the key items from the other named rows:
+
+- `map`: a named row of m_daiji_data, ids `0x8000`-`0x803F`: the area maps, with five Candles among them (Garamsythe, Barheim, Lhusu, Henne and Feywood).
+- `teleport destination`: a named row of g_daiji_data, ids `0x8040`-`0x805F`: the key item a gate crystal gives and its teleport list names ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)). Zertinan Caverns and The Feywood are in the table, but no script gives them.
+- `status word`: q_daiji rows 13-15, "Available", "Accepted" and "Complete!".
+- `key item`: every other named row, and `Reserve` for the Reserve rows.
+
 ## Columns
 
 | Column | Meaning |
@@ -61,6 +80,8 @@ rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
 | `b00` | `+0x00` |
 | `text_id`, `description` | `+0x06` and its shipped text |
 | `explanation` | the table it comes from, and whether its description is empty; "a Reserve row" for the others |
+| `kind` | map, teleport destination, status word, key item or Reserve ("Rows that are not items" above) |
+| `sources` | where the key item is obtained, one part per kind of source ("Where each key item comes from" above); `-` for none |
 
 ## Related
 
