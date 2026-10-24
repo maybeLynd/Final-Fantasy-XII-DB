@@ -59,11 +59,15 @@ scenes](titles-scenes.md).
   (`btlAtelResetNgPlus`, `fsttl_newgamestart`); the other returns to the title (`softwarereset`).
 - Trial Mode hands over to `ttl_d01`: every Trial Mode stage script (`tri_`) runs the same `トライアル監督.main`, and
   only on field 1311 (`tri_t05`, the last stage) does it load event 427 (`pos_z0000`) and then jump to field 1147.
+  That stage's clear also unlocks the achievement Imperator (40, verb `0x5AD`) before `mapjump(0x047b, 0, 1)`
+  ([Achievements](../Steam-And-Achievements/achievements.md)).
 - Trial Mode completion (`ttl_d01`, field 1147): `監督.main` fills in the play time and asks "Congratulations on
   completing Trial Mode! ... Your triumph has gained you access to New Game-. In New Game-, your characters will gain
   no experience." with Begin New Game- and Return to title. The first starts New Game- (`btlAtelResetNgMinus`,
   `fsttl_newgamestart`); the other returns to the title.
-- Both questions are asked with the choice verb `aask_1ff`.
+- Both questions are asked with the choice verb `aask_1ff`. They are not the only way in: the title screen's New Game
+  list offers Begin New Game+ and Begin New Game- on every start
+  ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
 - `ttl_c01` (field 14) is a second title script, with the actors `titlecommand`, `titlemenu`, `configcommand` and
   `movie_skip_ctrl`; its rows are the `title_c_fade` fades.
 - The ten scene scripts `ttl_z0000` to `ttl_z0009` are location titles; [Location title scenes](titles-scenes.md)

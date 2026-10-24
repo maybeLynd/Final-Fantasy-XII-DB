@@ -98,6 +98,30 @@ The twelve slots `0x02EBF1A0`–`0x02EBF1F8` hold `board_1.bin` to `board_12.bin
 - The boot loop is the only caller of `0x00238260` and files the twelve requests back to back, so the
   six-board test passes for every board unless six reads finish while it is still filing.
 
+Each board has its own slot and setter, `0x30` bytes apart. Every slot is a `ptr`, 0 until its read completes:
+
+| Board | File | Slot | Setter | Store |
+|---|---|---|---|---|
+| 1 | `board_1.bin` | `0x02EBF1A0` | `0x00238390` | `0x002383AA` |
+| 2 | `board_2.bin` | `0x02EBF1A8` | `0x002383C0` | `0x002383DA` |
+| 3 | `board_3.bin` | `0x02EBF1B0` | `0x002383F0` | `0x0023840A` |
+| 4 | `board_4.bin` | `0x02EBF1B8` | `0x00238420` | `0x0023843A` |
+| 5 | `board_5.bin` | `0x02EBF1C0` | `0x00238450` | `0x0023846A` |
+| 6 | `board_6.bin` | `0x02EBF1C8` | `0x00238480` | `0x0023849A` |
+| 7 | `board_7.bin` | `0x02EBF1D0` | `0x002384B0` | `0x002384CA` |
+| 8 | `board_8.bin` | `0x02EBF1D8` | `0x002384E0` | `0x002384FA` |
+| 9 | `board_9.bin` | `0x02EBF1E0` | `0x00238510` | `0x0023852A` |
+| 10 | `board_10.bin` | `0x02EBF1E8` | `0x00238540` | `0x0023855A` |
+| 11 | `board_11.bin` | `0x02EBF1F0` | `0x00238570` | `0x0023858A` |
+| 12 | `board_12.bin` | `0x02EBF1F8` | `0x002385A0` | `0x002385BA` |
+
+Each setter reads its slot first and frees the board there through `0x003844F0` (for board 3, `0x002383F9`-`0x00238405`).
+`0x00238260` takes the setters' addresses (`0x0023827D`-`0x002382F9`) for the requests it files. The boot's battle work
+init `0x002368D0` zeroes all twelve slots with one `rep stosq` (`0x002369E5`-`0x00236A01`) before `0x00238260` files the
+reads. Readers reach a slot by
+board number from the array's start `0x02EBF1A0`, which `0x00233E00`, `0x00237630`, `0x00238260`, `0x00328990`, `0x003FC900`,
+`0x0055B3F0`, `0x0055E2C0`, `0x0055E600`, `0x0055F830`, `0x00560070` and `0x00560610` form.
+
 The license screen reads a board through `0x0055BFF0`, indexing the slots by the signed byte
 `[obj + 0x558]` and reading the `licd` header (`+4` width, `+6` height, `u16` cells from `+8`).
 `0x0055B3F0` fills `[obj + 0x558]` from `0x003236B0(member)`, which returns the member's battle record byte
