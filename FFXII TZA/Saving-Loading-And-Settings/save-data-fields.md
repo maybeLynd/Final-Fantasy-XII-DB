@@ -199,7 +199,7 @@ Before it reaches the pair, `0x00229B40` copies the header and the payload up to
 (`0xE240` bytes: `0x1C4` passes of `0x80` and a `0x40`-byte tail) and the first `0x8000` bytes of the
 battle-state block from the active buffer `0x002EF640()` to the staging buffer `0x002EF620()`.
 
-Which pair is used depends on bit 12 of the battle-state block's flag dword (`0x00236760`, set and
+Which pair is used depends on bit `0x1000` of the battle-state block's flag dword (`0x00236760`, set and
 cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its only caller `0x003145E0`
 (`0x003147BB`):
 
@@ -218,7 +218,7 @@ Struct SaveTransitionRecord base=payload+`0x4E460` size=`0x2C`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | mode | `0x0208D455` as a dword (`0x00584580`) |
-| `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field here (`0x00314731`) when bit 12 is clear and the field is not 12, and `0x00584580`'s `0x002EF3C0` overwrites it unless `0x003145E0` returned early |
+| `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field here (`0x00314731`) when bit `0x1000` is clear and the field is not 12, and `0x00584580`'s `0x002EF3C0` overwrites it unless `0x003145E0` returned early |
 | `+0x08` | `u8[16]` | blockA | battle-state block `+0x5AE0`-`+0x5AEF` (`0x002EF3C0`) |
 | `+0x18` | `u8[16]` | blockB | battle-state block `+0x5AD0`-`+0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
 | `+0x28` | `u32` | flags | battle-state block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit 0 from bit 1 of `+0x18` |
@@ -249,8 +249,9 @@ the save layer itself does to it:
   copies each of the 40 members' selected gambit bank, `+0x5B10 + (3k + [+0x7370 + 4k]) * 0x34`, to
   `+0x90 + k * 0x1C8`. That is where the older block layout keeps it, and where `0x00235AF0` reads it
   from when it migrates an older block on load.
-- Bits 12, 13 and 14 of the flag dword at `+0x04` are read by `0x00236760`, `0x00236740` and `0x00236780`
-  and copied into the header's `+0x57` by `0x00583D60`.
+- Bits `0x1000` (Trial Mode stash), `0x2000` (New Game+) and `0x4000` (New Game-) of the flag dword at `+0x04`
+  are read by `0x00236760`, `0x00236740` and `0x00236780` and copied into the header's `+0x57` bits `0x1`, `0x2` and
+  `0x4` by `0x00583D60` ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
 
 ## Related
 

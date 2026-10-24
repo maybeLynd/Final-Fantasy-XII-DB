@@ -105,14 +105,17 @@ six number parts listed at `0x01F2CD10` and shows its own part `+0xD0`.
 `0x0057FB00(row, list, header)` fills a status-2 row from the cached header:
 
 - the region text is the region name of the area `+0x4C` (`0x003778B0`) and the area text its name
-  (`0x00377B60`); with flag `+0x57` bit 0 set the row also shows its parts `+0xB8` to `+0xC8`, draws a
+  (`0x00377B60`); with flag `+0x57` bit `0x1` set the row also shows its parts `+0xB8` to `+0xC8`, draws a
   frame (`0x002DC290`) and names the area `+0x80` instead, or `+0x4C` when that is 0;
 - in the demo (`0x00264150`) the region text of persistence groups 7, 22, 25 and 29 (`0x00264F90`) is
   replaced by the `menu_message.bin` text `0x7EC`, `0x7EB`, `0x7EE` or `0x7ED` (`0x002F9860`), and the
   play time then shows zeros;
 - the play time is hours `+0x18`, minutes `+0x1A` and seconds `+0x1B`, the last two capped at 59,
   drawn as three, two and two digits (`0x00393160`); 1,000 hours or more show 999:59:59;
-- flag `+0x57` bit 2 shows the part `+0xD8`.
+- flag `+0x57` bit `0x4` (New Game-) shows the part `+0xD8`, which every other row hides
+  (`0x0057FBA1`-`0x0057FBB3`, `0x0057FBFC`-`0x0057FC0E`): the "New Game−" badge, a 198 × 30 sprite from
+  `DataFace_c.tm2` (atlas `dataface_c`, sub-image 0, frame 18) at the row's top left
+  ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
 
 Moving the cursor (sub-command `0x8000`) calls `0x0057EFE0(pane, header)` for a status-2 slot and hides
 the pane for any other. `0x0057EFE0` fills the status pane, whose labels are ESPER (`0x875`), CLAN RANK
@@ -364,7 +367,7 @@ SaveloadManager (`0x01F81260`, `0x001C18E0`) to `0x001C1720(manager, field, stor
 
 1. It returns 0 when the manager's dword `+0x0C` is not 0 (the constructor `0x001C0E20` clears it) or
    the field id is not positive.
-2. When bit 12 of the battle-state block's flag dword is set (`0x00236760`), the story value is replaced
+2. When bit `0x1000` of the battle-state block's flag dword is set (`0x00236760`), the story value is replaced
    by -2.
 3. It walks the rows of the vector at `+0x50` (16 bytes each, see Layouts). A row matches when its
    field equals the field, its entrance is 0 or equal, and its story value is 0, equal, or its variable
@@ -536,7 +539,7 @@ The table holds 200 entries at `0x02B407C0`; slot `n` is entry `n` (`0x003BB3E0`
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | field | the destination field id (`0x001C1720`) |
-| `+0x04` | `i32` | story | 0 any story counter; otherwise the counter it must equal; -2 matches only while battle-state bit 12 is set |
+| `+0x04` | `i32` | story | 0 any story counter; otherwise the counter it must equal; -2 matches only while battle-state bit `0x1000` is set |
 | `+0x08` | `i32` | entrance | 0 any entrance; otherwise the entrance it must equal |
 | `+0x0C` | `i32` | variable | 0 none; otherwise the row also matches while `0x002EF390`(variable) is true |
 
@@ -551,9 +554,23 @@ Measured from `gamedata/disableautosavelist/disableautosavelist.txt` in the arch
 | Field only, always excluded | 21 rows: fields 12, 13, 50, 769, 854, 858, 860, 862, 864, 866, 867, 868, 869, 910, 912, 914, 918, 922, 924, 1113, 1147 |
 | Field and entrance | 1 row: field 1140, entrance 9 |
 | Field and story counter | 28 rows, story values 16 to 6750 (for example `48,301`) |
-| Story -2 (battle-state bit 12) | 10 rows: fields 1155 to 1299 in steps of 16 |
+| Story -2 (battle-state bit `0x1000`) | 10 rows: fields 1155 to 1299 in steps of 16 |
 | Story -1 with a variable | 13 rows, variables 15 to 56; two of them (field 1124) also name entrance 5 or 4 |
 | Empty second column | 1 row, `1113,,5303`, which parses as field 1113 alone |
+
+[`saving-and-loading-disable-autosave-rows.tsv`](saving-and-loading-disable-autosave-rows.tsv) lists all 73 rows in file order: the line as shipped, its four
+columns, the field's zone, map name and region, the story stage a story value names, the script variable's name
+and the boss whose fight it tracks, and the rule in words. What the rows show:
+
+- The ten story -2 rows are the Trial Mode stages 1, 11, 21 and so on to 91 (fields 1155 to 1299, `tri_a01` to
+  `tri_s01`): the story value -2 stands for battle-state bit `0x1000` (`0x00236760`), so entering those stages in
+  Trial Mode does not autosave.
+- Each of the 13 variable rows names a boss flag (`g_btl_...`). The zone scripts set it to 1 when the fight is
+  waiting and to 2 once it is won, so the area change skips the autosave only while that boss is still to be
+  fought: for example field 441 (Cloister of Solace) while Humbaba Mistant waits (variable 15, image byte
+  `+0xC0F`). The TSV names the scripts that write each value.
+- Field 769 (`vic_a04`) is listed, but the US script table holds no script for that field, so no area change
+  reaches it and its row never matches; `vic_a04.ebp` still ships in the archive.
 
 ## Operations
 

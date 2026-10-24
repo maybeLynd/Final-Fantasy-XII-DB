@@ -17,7 +17,7 @@ Four augments, each carried by one piece of equipment, change this per member:
 - Stagnation, "Reduces EXP earned to 0." (Firefly);
 - Lobbying, "Convert all license points earned to gil." (Cat-ear Hood).
 
-A game started as New Game Minus earns no EXP at all, though LP and gil are still paid. EXP stops at
+A game started in New Game- earns no EXP at all, though LP and gil are still paid. EXP stops at
 99,999,999 and LP at 99,999. A member levels up as soon as their EXP reaches the next level's total;
 the last level is 99. While the script's summon mode is on, the whole EXP goes to one unit.
 
@@ -117,20 +117,26 @@ whose augment byte `+0x1A` carries the augment:
 
 1. When the recipient's stats byte `+0x69` or `+0x79` has bit `0x10` set, `level × LP × 5` is added to
    the kill's gil and the recipient's LP becomes 0 (see the gil page).
-2. Unless bit 14 of `[0x02EBF190] + 4` is set (`0x00236780`), EXP is added to `+0x18C`, capped at
-   99,999,999. Bit 14 is New Game Minus: the script verb `btlAtelResetNgMinus` (`0x308B`, `0x0050F490`
-   jumping to `0x00238A50`) sets bit 2 of `0x02089344`, and `0x00239960` copies it into bit 14 when it applies
-   the starting preset (`0x00239A6C`-`0x00239A7E`), keeping bits 12-14 across the battle-state reset
-   (`0x002399D7`-`0x00239A45`).
+2. Unless bit `0x4000` of `[0x02EBF190] + 4` is set (`0x00236780`), EXP is added to `+0x18C`, capped at
+   99,999,999. Bit `0x4000` is New Game- (see below).
 3. The new level: starting from `+0x1C2`, the level rises while `0x002F8F20(level)` is positive and not
    above the EXP total.
 4. LP is added to `+0x190`, capped at 99,999, and metered as counter kind 11 (`0x00316A50(0xB, LP)`).
 5. `0x0030C650(record, newLevel, 0)` applies the level change.
 
+How bit `0x4000` gets set ([New Game+ and New Game-](strong-and-weak-mode.md)):
+
+- The script verb `btlAtelResetNgMinus` (`0x308B`, `0x0050F490` jumping to `0x00238A50`) and the title's
+  "Begin New Game-" row (`0x00240182`) set bit `0x4` of `0x02089344`.
+- `0x00239960` moves it into bit `0x4000` when it applies a scenario preset (`0x00239A6C`-`0x00239A7E`); a new game
+  applies preset 0 at its first area start (`0x003942F9`).
+- The preset step keeps bits `0x1000`, `0x2000` and `0x4000` across the battle-state reset
+  (`0x002399D7`-`0x00239A45`).
+
 After the loop, `0x0028FB80(enemy id, exp, lp)` posts the amounts, clamped to 999,999 and 999, to the HUD's reward display
 (`0x00289D00` on `[0x0209BE80] + 0x5380`, once for EXP and once for LP). It uses EXP and LP computed with no
 recipient (`0x002F8BB0(0, enemy)`, `0x002F90C0(0, enemy)`): divided as above but never doubled, and EXP
-shows as 0 while bit 14 of `[0x02EBF190] + 4` is set.
+shows as 0 while bit `0x4000` of `[0x02EBF190] + 4` (New Game-) is set (`0x00312505`-`0x00312513`).
 
 ### The level table
 
@@ -174,3 +180,4 @@ level 21 at 61,056, level 31 at 223,374, level 51 at 1,249,590, level 71 at 4,07
 - [Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters](gil.md)
 - [Kill chain: chain count, chain level, the chain coin and resets](kill-chain.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md)
+- [New Game+ and New Game-](strong-and-weak-mode.md) - the two alternative new games.

@@ -1,0 +1,74 @@
+line	text	field	zone	map_name	region	story	story_stage	entrance	variable	variable_name	boss	entered	rule
+1	1140,0,9	1140	rbl_n01	Spire Ravel - 1st Flight	Pharos - Third Ascent	0		9	0			yes	no autosave entering field 1140 at entrance 9 at any story stage
+2	12,	12	ttl_a01		Pharos at Ridorana	0		0	0			yes	no autosave entering field 12 at any story stage
+3	13,	13	ttl_b01		Pharos at Ridorana	0		0	0			yes	no autosave entering field 13 at any story stage
+4	48,301	48	nal_a01	Stockade	Nalbina Dungeons	301	After the vision of Reks. Written in West Ward (Nalbina Town); Rabanastre.	0	0			yes	no autosave entering field 48 while the story counter is exactly 301
+5	866,	866	alc_z01		Archades	0		0	0			yes	no autosave entering field 866 at any story stage
+6	867,	867	alc_z02		Archades	0		0	0			yes	no autosave entering field 867 at any story stage
+7	922,	922	bhm_y01		Sky Fortress Bahamut	0		0	0			yes	no autosave entering field 922 at any story stage
+8	924,	924	bhm_z01		Sky Fortress Bahamut	0		0	0			yes	no autosave entering field 924 at any story stage
+9	912,	912	byu_w01		Bhujerba	0		0	0			yes	no autosave entering field 912 at any story stage
+10	914,	914	byu_x01		Bhujerba	0		0	0			yes	no autosave entering field 914 at any story stage
+11	864,	864	byu_y01		Bhujerba	0		0	0			yes	no autosave entering field 864 at any story stage
+12	862,	862	byu_z01		Bhujerba	0		0	0			yes	no autosave entering field 862 at any story stage
+13	854,	854	dor_z01		Draklor Laboratory	0		0	0			yes	no autosave entering field 854 at any story stage
+14	860,	860	rbn_x01		Rabanastre	0		0	0			yes	no autosave entering field 860 at any story stage
+15	910,	910	rbn_y01		Rabanastre	0		0	0			yes	no autosave entering field 910 at any story stage
+16	50,	50	rbn_z01		Rabanastre	0		0	0			yes	no autosave entering field 50 at any story stage
+17	918,	918	var_z01		Balfonheim Port	0		0	0			yes	no autosave entering field 918 at any story stage
+18	769,	769	vic_a04			0		0	0			no: the us script array names no script for it	no autosave entering field 769 at any story stage
+19	868,	868	alc_z03		Archades	0		0	0			yes	no autosave entering field 868 at any story stage
+20	869,	869	alc_z04		Archades	0		0	0			yes	no autosave entering field 869 at any story stage
+21	1147,	1147	ttl_d01		Pharos at Ridorana	0		0	0			yes	no autosave entering field 1147 at any story stage
+22	858,	858	glf_z01		Jahara	0		0	0			yes	no autosave entering field 858 at any story stage
+23	329,265	329	grm_d01	Overflow Cloaca	Garamsythe Waterway	265	After the Flan battle. Written in Southern Sluiceway (Garamsythe Waterway).	0	0			yes	no autosave entering field 329 while the story counter is exactly 265
+24	49,303	49	nal_b01	Arena	Nalbina Dungeons	303	After the pebble. Written in Stockade (Nalbina Dungeons).	0	0			yes	no autosave entering field 49 while the story counter is exactly 303
+25	69,333	69	mic_c01	Terminus No. 4	Barheim Passage	333	After Basch's apology. Written in North-South Junction (Barheim Passage).	0	0			yes	no autosave entering field 69 while the story counter is exactly 333
+26	564,930	564	rsn_d01	Central Brig Access	Dreadnought Leviathan	930	After the Leviathan tutorial. Written in Port Section (Dreadnought Leviathan).	0	0			yes	no autosave entering field 564 while the story counter is exactly 930
+27	552,1000	552	rsn_a01	Port Launch	Dreadnought Leviathan	1000	After Penelo rejoins. Written in Port Section (Dreadnought Leviathan).	0	0			yes	no autosave entering field 552 while the story counter is exactly 1000
+28	403,1338	403	rwg_a01	Valley of the Dead	The Tomb of Raithwall	1338	Arrival at the Nam-Yensa Sandsea. Written in Augur Hill, The Sandscale Bank (Nam-Yensa Sandsea).	0	0			yes	no autosave entering field 403 while the story counter is exactly 1338
+29	407,1364	407	rwg_b02	Hall of the Sentinel	The Tomb of Raithwall	1364	After entering the Tomb of Raithwall. Written in Hall of the Destroyer (The Tomb of Raithwall).	0	0			yes	no autosave entering field 407 while the story counter is exactly 1364
+30	871,1450	871	rsn_z01	Bridge	Dreadnought Leviathan	1450	After the Leviathan returns. Written in Valley of the Dead (The Tomb of Raithwall).	0	0			yes	no autosave entering field 871 while the story counter is exactly 1450
+31	872,1460	872	rsn_z02	Battle Launch	Light Cruiser Shiva	1460	After a small fighter launches from the Leviathan. Written in Bridge (Dreadnought Leviathan).	0	0			yes	no autosave entering field 872 while the story counter is exactly 1460
+32	722,1820	722	hne_b01	Ore Separation	Henne Mines	1820	After Mjrn. Written in Staging Shaft (Henne Mines).	0	0			yes	no autosave entering field 722 while the story counter is exactly 1820
+33	456,-1,0,17	456	gol_c01	Dell of the Dreamer	Golmore Jungle	-1		0	17	g_btl_エルダードラゴン	Elder Wyrm	yes	no autosave entering field 456 while script variable 17 (image byte +0xC11) is 1, that is while the fight with Elder Wyrm is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by gol_c01_global_gol_c01)
+34	612,2100	612	mrm_e01	Hall of Worth	Stilshrine of Miriam	2100	After the Vinuskar battle; map unlock: Stilshrine of Miriam, metal dragon map. Written in Ward of Steel (Stilshrine of Miriam).	0	0			yes	no autosave entering field 612 while the story counter is exactly 2100
+35	737,2290	737	bul_a02	Hall of the Light	Mt Bur-Omisace	2290	After the attack on the refugee camp. Written in Temple Approach (Mt Bur-Omisace).	0	0			yes	no autosave entering field 737 while the story counter is exactly 2290
+36	158,-1,0,22	158	frs_b02	Grand Bower	The Salikawood	-1		0	22	g_btl_ボムキング	King Bomb	yes	no autosave entering field 158 while script variable 22 (image byte +0xC16) is 1, that is while the fight with King Bomb is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by frs_b02_global_frs_b02)
+37	187,3100	187	rui_a04	Doubt Abandoned	Sochen Cave Palace	3100	After the memory; after the memory of Rasler. Written in Hunters' Camp (Phon Coast).	0	0			yes	no autosave entering field 187 while the story counter is exactly 3100
+38	200,3130	200	rui_d01	Hall of Lambent Darkness	Sochen Cave Palace	3130	After the Sochen Cave Palace. Written in Doubt Abandoned (Sochen Cave Palace).	0	0			yes	no autosave entering field 200 while the story counter is exactly 3130
+39	198,3150	198	rui_c01	Hall of Shadowlight	Sochen Cave Palace	3150	After the Mandragoras battle; map unlock: Sochen Cave Palace, Mandragora map. Written in Hall of Lambent Darkness (Sochen Cave Palace).	0	0			yes	no autosave entering field 198 while the story counter is exactly 3150
+40	286,3440	286	dor_b01	Energy Transitarium	Draklor Laboratory	3440	After the first half of Cid and the sky pirate Reddas. Written in 70th Floor (Draklor Laboratory).	0	0			yes	no autosave entering field 286 while the story counter is exactly 3440
+41	545,4160	545	mfr_b01	Redolent Glade	The Feywood	4160	After the Mist wall opens. Written in Antiquity's End (The Feywood).	0	0			yes	no autosave entering field 545 while the story counter is exactly 4160
+42	687,4250	687	gil_a02	Gate of Water	Giruvegan	4250	After To the ancient city of Giruvegan; after Break the seal of Giruvegan. Written in Gate of Earth (Giruvegan).	0	0			yes	no autosave entering field 687 while the story counter is exactly 4250
+43	698,4370	698	gil_d01	Gate of Wind	Giruvegan	4370	After the Crystal Core. Written in Crystal Core (The Great Crystal).	0	0			yes	no autosave entering field 698 while the story counter is exactly 4370
+44	1113,,5303	1113	rbl_c01	Dunes of Profaning Wind	Pharos - First Ascent	0		0	0			yes	no autosave entering field 1113 at any story stage
+45	1121,5320	1121	rbl_f01	Marsh of Profaning Wind	Pharos - First Ascent	5320	Used the Pharos teleporter. Written in Wellspring Ravel - 1st Flight (Pharos - First Ascent).	0	0			yes	no autosave entering field 1121 while the story counter is exactly 5320
+46	1132,5320	1132	rbl_j01	Cleft of Profaning Wind	Pharos - Second Ascent	5320	Used the Pharos teleporter. Written in Wellspring Ravel - 1st Flight (Pharos - First Ascent).	0	0			yes	no autosave entering field 1132 while the story counter is exactly 5320
+47	670,5320	670	dgl_h01	Heaven's Challenge	Pharos - Third Ascent	5320	Used the Pharos teleporter. Written in Wellspring Ravel - 1st Flight (Pharos - First Ascent).	0	0			yes	no autosave entering field 670 while the story counter is exactly 5320
+48	666,5370	666	dgl_f01	Womb of the Sun-cryst	Pharos - Third Ascent	5370	After To the summit. Written in Empyrean Ravel (Pharos - Third Ascent).	0	0			yes	no autosave entering field 666 while the story counter is exactly 5370
+49	668,5450	668	dgl_g01	Womb of the Sun-cryst	Pharos - Third Ascent	5450	After the nethicite drawn together. Written in Womb of the Sun-cryst (Pharos - Third Ascent).	0	0			yes	no autosave entering field 668 while the story counter is exactly 5450
+50	826,6000	826	var_a04	Saccio Lane	Balfonheim Port	6000	After Vaan on the ship; after Destroy the Sun-cryst. Written in Womb of the Sun-cryst (Pharos - Third Ascent).	0	0			yes	no autosave entering field 826 while the story counter is exactly 6000
+51	782,6750	782	bhm_c01	Central Shaft	Sky Fortress Bahamut	6750	After the bond. Written in Central Lift (Sky Fortress Bahamut).	0	0			yes	no autosave entering field 782 while the story counter is exactly 6750
+52	1155,-2	1155	tri_a01	Stage 1	Trial Mode	-2		0	0			yes	no autosave entering field 1155 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+53	1171,-2	1171	tri_c01	Stage 11	Trial Mode	-2		0	0			yes	no autosave entering field 1171 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+54	1187,-2	1187	tri_e01	Stage 21	Trial Mode	-2		0	0			yes	no autosave entering field 1187 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+55	1203,-2	1203	tri_g01	Stage 31	Trial Mode	-2		0	0			yes	no autosave entering field 1203 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+56	1219,-2	1219	tri_i01	Stage 41	Trial Mode	-2		0	0			yes	no autosave entering field 1219 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+57	1235,-2	1235	tri_k01	Stage 51	Trial Mode	-2		0	0			yes	no autosave entering field 1235 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+58	1251,-2	1251	tri_m01	Stage 61	Trial Mode	-2		0	0			yes	no autosave entering field 1251 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+59	1267,-2	1267	tri_o01	Stage 71	Trial Mode	-2		0	0			yes	no autosave entering field 1267 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+60	1283,-2	1283	tri_q01	Stage 81	Trial Mode	-2		0	0			yes	no autosave entering field 1283 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+61	1299,-2	1299	tri_s01	Stage 91	Trial Mode	-2		0	0			yes	no autosave entering field 1299 in Trial Mode (the story value -2 stands for battle-state flag 0x1000, 0x00236760)
+62	1124,-1,5,55	1124	rbl_g02	Penumbra - North	Pharos - Subterra	-1		5	55	g_btl_スザク	Phoenix	yes	no autosave entering field 1124 at entrance 5 while script variable 55 (image byte +0xC37) is 1, that is while the fight with Phoenix is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by rbl_g02_global_rbl_g02)
+63	1124,-1,4,55	1124	rbl_g02	Penumbra - North	Pharos - Subterra	-1		4	55	g_btl_スザク	Phoenix	yes	no autosave entering field 1124 at entrance 4 while script variable 55 (image byte +0xC37) is 1, that is while the fight with Phoenix is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by rbl_g02_global_rbl_g02)
+64	202,-1,0,24	202	rui_e01	Hall of the Wroth God	Sochen Cave Palace	-1		0	24	g_btl_魔神竜	Hell Wyrm	yes	no autosave entering field 202 while script variable 24 (image byte +0xC18) is 1, that is while the fight with Hell Wyrm is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by rui_e01_global_rui_e01)
+65	682,-1,0,56	682	dgl_n01	Hell's Challenge	Pharos - Subterra	-1		0	56	g_btl_おんみょうし	Shadowseer	yes	no autosave entering field 682 while script variable 56 (image byte +0xC38) is 1, that is while the fight with Shadowseer is pending (1 set by dgl_n01_global_dgl_n01, rbn_a14_global_rbn_a14; 2 once it is won, set by dgl_n01_global_dgl_n01)
+66	441,-1,0,15	441	bds_f01	Cloister of Solace	Necrohol of Nabudis	-1		0	15	g_btl_フンババ	Humbaba Mistant	yes	no autosave entering field 441 while script variable 15 (image byte +0xC0F) is 1, that is while the fight with Humbaba Mistant is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by bds_f01_global_bds_f01)
+67	444,-1,0,16	444	bds_g01	Cloister of Reason	Necrohol of Nabudis	-1		0	16	g_btl_フューリー	Fury	yes	no autosave entering field 444 while script variable 16 (image byte +0xC10) is 1, that is while the fight with Fury is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by bds_g01_global_bds_g01)
+68	438,-1,0,26	438	bds_e01	The Crucible	Necrohol of Nabudis	-1		0	26	g_btl_カオス	Chaos	yes	no autosave entering field 438 while script variable 26 (image byte +0xC1A) is 1, that is while the fight with Chaos is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by bds_e01_global_bds_e01)
+69	223,-1,0,35	223	mnt_c01	Empyrean Seat	Mosphoran Highwaste	-1		0	35	g_btl_エクスデス	Exodus	yes	no autosave entering field 223 while script variable 35 (image byte +0xC23) is 1, that is while the fight with Exodus is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by mnt_c01_global_mnt_c01)
+70	733,-1,0,27	733	hne_e01	Special Charter Dig	Henne Mines	-1		0	27	g_btl_ゾディアーク	Zodiark	yes	no autosave entering field 733 while script variable 27 (image byte +0xC1B) is 1, that is while the fight with Zodiark is pending (1 set by pre_z0000_pre_z0000; 2 once it is won, set by hne_e01_global_hne_e01)
+71	369,-1,0,18	369	lus_c01	Tasche Span	Lhusu Mines	-1		0	18	g_btl_ギルガメッシュA	Gilgamesh	yes	no autosave entering field 369 while script variable 18 (image byte +0xC12) is 1, that is while the fight with Gilgamesh is pending (1 set by rbn_a14_global_rbn_a14; 2 once it is won, set by lus_c01_global_lus_c01)
+72	376,-1,0,19	376	lus_e01	Site 7	Lhusu Mines	-1		0	19	g_btl_ギルガメッシュB	Gilgamesh	yes	no autosave entering field 376 while script variable 19 (image byte +0xC13) is 1, that is while the fight with Gilgamesh is pending (1 set by lus_c01_global_lus_c01, lus_e01_global_lus_e01; 2 once it is won, set by lus_e01_global_lus_e01)
+73	279,16	279	naf_b01	Lower Apartments	Nalbina Fortress	16	After tutorial 1. Written in Inner Ward (Nalbina Fortress).	0	0			yes	no autosave entering field 279 while the story counter is exactly 16

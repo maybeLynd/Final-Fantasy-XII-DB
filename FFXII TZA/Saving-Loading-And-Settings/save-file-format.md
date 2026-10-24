@@ -101,7 +101,7 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x50` | `u32` | savecount 0x00583D60's second argument (the controller's +0xD0); in the written image the save counter 0x02CA99B4, saturating at 0xFFFFFFFF (0x0057E3CE-0x0057E3DD) |  |
 | `+0x54` | `u8` | slot | `0x00583D60`'s first argument: the save slot (controller `+0xCD` from `0x00581DA0` at `0x00581EE7`; 0 from `0x005844A0` at `0x005844BE`) |
 | `+0x55` | `u8[2]` | pad2 | not written by the enumerated writers |
-| `+0x57` | `u8` | flags | bit 0 from `0x00236760` (stash pending), bit 1 from `0x00236740`, bit 2 from `0x00236780` (`0x00583F5A`-`0x00583F7D`) |
+| `+0x57` | `u8` | flags | bit `0x1` from `0x00236760` (Trial Mode stash pending), bit `0x2` from `0x00236740` (New Game+), bit `0x4` from `0x00236780` (New Game-) (`0x00583F5A`-`0x00583F7D`) |
 | `+0x58` | `u32` | date | constant `0x20050223`, written by `0x00253A80` and never read |
 | `+0x5C` | `u32` | clearsize constant 0x1538, the size 0x002EF2DD clears at payload +0 |  |
 | `+0x60` | `u32` | stamp | constant `0x05071901`, the battle-state block's stamp |
@@ -212,7 +212,7 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
    - any other mode with flag bit 0 set: the stash is restored, `0x00329E40(walked)` re-seats the
      accumulator, `0x00269A20(image + 0xE240)` and `0x002EF410(image + 0x4E660)` run, the flag is
      cleared, `0x01E0C3EC` is zeroed, bit 0 of the battle block's `+0x5B04` is cleared
-     (`0x0058437D`-`0x0058438C`) and `0x0023A390(0)` clears the block's `+4` bit 12.
+     (`0x0058437D`-`0x0058438C`) and `0x0023A390(0)` clears the block's `+4` bit `0x1000`.
    - Both paths then reseed the gameplay generator from the clock (see the
      [random number generators page](../Random-Numbers/random-number-generators.md)).
 

@@ -123,23 +123,24 @@ activated with `0x00316DF0(record, 0)`. `removepartymember(sel)` (`0x0354`) clea
 `removeguestbattlemember`) and the treasure flag verbs are on [party verbs](party-verbs.md) and
 [script name bindings](script-name-bindings.md).
 
-Activation `0x00316DF0(record, arg)` acts only on a record whose flags bit 4 is clear. Unless arg bit
-1 is set while `0x00236740()` is 0, it first calls `0x00317480(record)` and, when `0x00236740()` is
-non-zero and flags bit 3 is clear, `0x0030C470(record, 0x5A)`. For a party-side record (`+5` = 0)
+Activation `0x00316DF0(record, arg)` acts only on a record whose flags bit `0x10` is clear. Unless arg bit
+`0x2` is set outside New Game+ (`0x00236740()` = 0), it first calls `0x00317480(record)` and, in New Game+
+with flags bit `0x8` clear, grows the record to level 90 with `0x0030C470(record, 0x5A, 0)` (`0x00316E2E`-`0x00316E3D`;
+[New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)). For a party-side record (`+5` = 0)
 with selector below `0x1A`:
 
 - a main character (selector below 7) gets each of the five equipment words at `+0x50` as one owned
   item (`0x00300B80`) and one equipped count (`0x0030C410`, which counts class-1 ids other than
   `0x1000`);
-- on the first activation (flags bit 3 clear), each entry of the `+0x88` list selected by the mask
+- on the first activation (flags bit `0x8` clear), each entry of the `+0x88` list selected by the mask
   word at `+0xB8` grants its low half as an item; for a main character the id at `+0x22` of the
   action row its high half names is granted too (`0x00300490` below `0x1000`, `0x00300B80` otherwise);
 - also on the first activation, the ten starting pairs of the character's row in `0x02EBF130`
   (`+0x58` ids, `+0x34` counts) and the starting gil `+0x3E` (`0x003004B0`).
 
-Every activation then sets flags bits 3 and 4 and writes `+0x48`: `max(+0x48, 1)` when status bit
-16 is set (`+0x64 | +0x3C`), otherwise `+0x24`, doubled when status bit 28 is set. Deactivation
-`0x00323540` removes each equipped item once (`0x0030F9A0`, `0x00300B80(item, −1)`) and clears bit 4.
+Every activation then sets flags bits `0x8` and `0x10` and writes `+0x48`: `max(+0x48, 1)` when status bit
+`0x10000` is set (`+0x64 | +0x3C`), otherwise `+0x24`, doubled when status bit `0x10000000` is set. Deactivation
+`0x00323540` removes each equipped item once (`0x0030F9A0`, `0x00300B80(item, −1)`) and clears bit `0x10`.
 
 ### Taking and giving back everything
 
@@ -204,7 +205,7 @@ gil              0x003004B0(n, notify) = max(0, gil + n); 0x00254EE0 stores min(
 chest record     +0 index in the field, +8 flags (bit 6 random gil), +9 opened-flag id, +0xA presence %, +0xB item %
 chest contents   +0xC/+0xE item words, +0x10/+0x12 alternate item words, +0x14 gil, +0x16 alternate gil
 presence ledger  0x02EC3E60: 3 × {u32 field, u32 value bits, u32 mask bits}, cursor 0x02EC3E84, count 0x02EC3E88
-party record     [0x02EBF190] + 8 + selector × 0x1C8: +0 flags (bit 3 first activation, bit 4 active), +0x50 u16[5] equipment,
+party record     [0x02EBF190] + 8 + selector × 0x1C8: +0 flags (bit 0x8 first activation, bit 0x10 active), +0x50 u16[5] equipment,
                  +0x5A u16[5] saved equipment, +0x88 u32[] grants with mask +0xB8 and count +0xBA
 backup counts    [0x02EBF190] + 0x4F84 (class 0) and + 0x5004 (class 1), 0x83C bytes
 ```
