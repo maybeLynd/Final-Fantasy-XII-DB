@@ -323,6 +323,13 @@ and the scene-reset byte runs `0x001C7290` (when `0x01F81288` differs from `0x01
 | `+0x0C` | `f32` | value3 | from `+0x11C` |
 | `+0x10` | `f32` | value4 | from `+0x120` |
 
+Slot 0's saved copy is `0x01FD3AF0` (enable), `0x01FD3AF4` (focus), `0x01FD3AF8` (aperture), `0x01FD3AFC` and `0x01FD3B00`;
+slot 1's is `0x01FD3B04`, `0x01FD3B08`, `0x01FD3B0C`, `0x01FD3B10` and `0x01FD3B14`. The crossfade's rising edge copies
+`+0x110` to `+0x120` into both: `0x00214C75` and `0x00214C7F` for slot 0, `0x00214C88` and `0x00214C92` for slot 1. A held
+request stores its enable with `setne` and its focus or aperture with `movss` (`0x00214D9E` and `0x00214D96` for slot 0,
+`0x00214E01` and `0x00214DF9` for slot 1). Slot 1's pending bytes are `0x01FD3AE1` (full request) and `0x01FD3AE5`
+(enable-only request).
+
 ## Layouts
 
 | Address | Type | Name | Meaning |
@@ -446,7 +453,15 @@ name `0x01F81358`, to the scene-map lookup `0x001FF6B0` (`0x001C3EA6`), which co
 | `0x01F812E8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` end of the copy | `0x0015C650` (`0x0015C683`, `0x0015C6C9`, `0x0015C6F7`, `0x0015C714`); `0x001A52A0` (`0x001A538E`, `0x001A53D3`); `0x001A5760` (`0x001A57BC`) | `0x001A52A0` (`0x001A52C0`, `0x001A5318`, `0x001A53A0`, `0x001A53B7`, `0x001A53C5`, `0x001A53D3`); `0x001A5760` (`0x001A5774`, `0x001A5798`, `0x001A57BC`, `0x001A57C2`, `0x001A57CF`); `0x001FF4F0` (`0x001FF530`, `0x001FF59E`, `0x001FF60D`) |
 | `0x01F812F0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the copy | `0x0015C650` (`0x0015C66E`, `0x0015C6D9`, `0x0015C6FE`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6A40` (`0x008A6A4D`) |
 
-No other instruction reaches these words: no other RIP-relative, image-base-relative or disp32 reference names them,
+`0x001C3C30(mode)` also keeps three words of its own, in the zero-filled tail of `.data`:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F813FC` | `i32` | 0 | the mode of the last cutscene settings run that `0x001C3D50` reported done; a call with the same mode and no swap pending returns at once (`0x001C3CE8`-`0x001C3CF2`) | `0x001C3C30` (`0x001C3D3E`) | `0x001C3C30` (`0x001C3CE8`, `0x001C3D33`) |
+| `0x01F81410` | `i32` | 0 | the scene-map swaps still to make: a mode-0 call with the swap byte set takes one and flips the scene-map index `0x01F813F8` between 0 and 1 (`0x001C3CFC`-`0x001C3D20`) | `0x001C5930` (`0x001C5EB1` 2; `0x001C5ECB` 1, or 2 while `0x01F81414` is set); `0x001C6E20` (`0x001C71D0` 2; `0x001C71EA` the same 1 or 2); `0x001C7290` (`0x001C72EB` 0); `0x001C3C30` (`0x001C3D20`) | `0x001C3C30` (`0x001C3CFC`) |
+| `0x01F81414` | `u8` | 0 | the swap byte: set by a mode-0 call that finds the countdown `0x01F81284` at 1, as it steps it to 0 (`0x001C3CB4`-`0x001C3CD9`); cleared when the last pending swap is taken (`0x001C3D26`) | `0x001C3C30` (`0x001C3CD9`, `0x001C3D26`); `0x001C7290` (`0x001C72F1` 0) | `0x001C3C30` (`0x001C3CC8`, `0x001C3CE1`); `0x001C5930` (`0x001C5EBD`); `0x001C6E20` (`0x001C71DC`) |
+
+No other instruction reaches the string's words: no other RIP-relative, image-base-relative or disp32 reference names them,
 and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
 
 ## Modding notes

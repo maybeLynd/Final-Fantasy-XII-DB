@@ -408,6 +408,10 @@ The channel bytes are 64 flag bytes at `0x02F8F23C`, one per channel (an instanc
 `0x02F8F27C`, one per issuing manager (the instance's word `+0x06`). The bank reset `0x0026F9F0` (called from `0x00259180`
 at `0x002591E1`) sets all 96 to 3 with twelve 8-byte stores, from `0x02F8F23C` to `0x02F8F294` (`0x0026FA12`-`0x0026FA5F`).
 
+The twelve stores are seven bytes apart, from `0x0026FA12`. `0x02F8F23C`, `0x02F8F244`, `0x02F8F24C`, `0x02F8F254`,
+`0x02F8F25C`, `0x02F8F264`, `0x02F8F26C` and `0x02F8F274` take the channel bytes 0-63 eight at a time; `0x02F8F27C`,
+`0x02F8F284`, `0x02F8F28C` and `0x02F8F294` take the manager bytes 0-31.
+
 The update pass holds a bank instance (state 1 then runs only `0x003A7EE0` and `0x003A93F0`) when its channel byte or
 its manager byte has neither bit 0 nor bit 2 (`0x0024BB2B`-`0x0024BB51`), and the draw gate `0x0024D770` refuses one
 unless both bytes have bit 1 (`0x0024D7CD`-`0x0024D7E9`):
