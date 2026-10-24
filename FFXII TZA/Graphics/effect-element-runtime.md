@@ -566,42 +566,53 @@ release arm; 18 types have sub-range arms (9 with a release). 65 types have an a
 
 ## Layouts
 
-```
-effect instance (0x3B0, 0x0024B270)
-+0x000  u8    kind (the group and the list 0x020910F0[kind])
-+0x120        block published at 0x02EBEF98
-+0x130        block published at 0x02EBEFB0
-+0x1B8  u32   frame stamp; +0x1C0 first emitter
-+0x2E0        cull record (first byte 0xFF: use the definition's)
-+0x340  ptr   effect context
-+0x348  ptr   next, +0x350 previous
-+0x36A  u8    flags: bit 0 draws every emitter
-+0x378  u16   high nibble: display layer
-+0x3A8  u16   stamp from 0x00181DD0()
+Effect instance (`0x3B0`, `0x0024B270`):
 
-emitter
-+0x008  ptr   next emitter
-+0x024  u32   births
-+0x028  u32   emission limit (frames); +0x02C f32 age; +0x030 s32 whole frame; +0x034 f32 last firing
-+0x0A0..+0x0F0 sampled spawn values (+0x0F0 colour)
-+0x100  ptr   emitter record (0x800); +0x108 element definition (0xA00)
-+0x118  ptr   active head; +0x120 free head; +0x128 active tail
-+0x130  ptr   parent element; +0x139 u8 stop emitting
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u8` | kind (the group and the list 0x020910F0[kind]) |  |
+| `+0x120` | `block` | published | at `0x02EBEF98` |
+| `+0x130` | `block` | published | at `0x02EBEFB0` |
+| `+0x1B8` | `u32` | frame stamp; +0x1C0 first emitter |  |
+| `+0x2E0` | `cull` | record | (first byte `0xFF`: use the definition's) |
+| `+0x340` | `void*` | effect context |  |
+| `+0x348` | `void*` | next, +0x350 previous |  |
+| `+0x36A` | `u8` | flags: bit 0 draws every emitter |  |
+| `+0x378` | `u16` | high nibble: display layer |  |
+| `+0x3A8` | `u16` | stamp from 0x00181DD0() |  |
 
-element
-+0x000  u8    type (from definition +0x44)
-+0x001  u8    flags: bit 0 draw skip
-+0x002  u16   draw counter
-+0x008  ptr   emitter; +0x010 parent; +0x018 emitter record; +0x020 definition
-+0x028  ptr   previous; +0x030 next
-+0x038  u32   frame stamp at the last update
-+0x03C  f32   age; +0x040 s32 whole age; +0x044 s32 track frame; +0x048 s32 updates
-+0x04C  s32   lifetime (0 none)
-+0x060        position
-+0x1D0  s32[8] last firing per spawn slot (-1 unfired)
-+0x1F0  u32   colour (0x80808080 neutral)
-+0x224  u16   hold word from 0x00250000()
-```
+Emitter:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x008` | `void*` | next emitter |  |
+| `+0x024` | `u32` | births |  |
+| `+0x028` | `u32` | emission limit (frames); +0x02C f32 age; +0x030 s32 whole frame; +0x034 f32 last firing |  |
+| `+0x0A0-0x0F0` | `sampled` | spawn | values (+`0x0F0` colour) |
+| `+0x100` | `void*` | emitter record (0x800); +0x108 element definition (0xA00) |  |
+| `+0x118` | `void*` | active head; +0x120 free head; +0x128 active tail |  |
+| `+0x130` | `void*` | parent element; +0x139 u8 stop emitting |  |
+
+Element:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | type (from definition +0x44) |  |
+| `+0x01` | `u8` | flags: bit 0 draw skip |  |
+| `+0x02` | `u16` | draw counter |  |
+| `+0x08` | `void*` | emitter; +0x010 parent; +0x018 emitter record; +0x020 definition |  |
+| `+0x28` | `void*` | previous; +0x030 next |  |
+| `+0x38` | `u32` | frame stamp at the last update |  |
+| `+0x3C` | `f32` | age; +0x040 s32 whole age; +0x044 s32 track frame; +0x048 s32 updates |  |
+| `+0x4C` | `i32` | lifetime (0 none) |  |
+
++`0x060`        position:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x1D0` | `i32[8]` | last | firing per spawn slot (-1 unfired) |
+| `+0x1F0` | `u32` | colour (0x80808080 neutral) |  |
+| `+0x224` | `u16` | hold word from 0x00250000() |  |
 
 ## Operations
 

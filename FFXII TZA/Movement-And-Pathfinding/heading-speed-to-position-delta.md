@@ -193,46 +193,61 @@ the speed from `+0x158`.
 
 ## Layouts
 
+WorldActor (actor record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x03` | `u8` | classAndSequence | movement: (v & `0xE0`) == `0x60`; position read: v >> 5 in {1, 3} |
+| `+0x08` | `u8` | flags08 | bit 1 flat-motion enable; bit 2 measure displacement in 3-D |
+| `+0x09` | `u8` | flags09 | bit 0 required for flat motion |
+| `+0x0C` | `u8` | flags0C | bit 4 set by the speed setter on a change |
+| `+0x18` | `u8` | lifecycle | 1 refuses the frame driver |
+| `+0x30` | `void*` | battleUnit |  |
+| `+0xB8` | `void*` | movementContext |  |
+| `+0xC0` | `void*` | controller (secondary context) |  |
+
+Movement context (actor +`0xB8`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `f32[3]` | position |  |
+| `+0x040` | `f32[3]` | offset | added on the three-dimensional path when +`0x107` bit 1 (subtracted after the flat solve) |
+| `+0x0A0` | `f32` | pitch | +`0xA4` f32 yaw              +`0xA8` f32 facing (facing page) |
+| `+0x0B8` | `f32` | last squared displacement |  |
+| `+0x0D0` | `f32` | requested speed |  |
+| `+0x0F0` | `void*` | steering request: +0x24 f32 speed, +0x28 u8 kind, +0x29 u8 mode |  |
+| `+0x0F8` | `f32` | pass-through magnitude; negative = unset, repaired to the speed |  |
+| `+0x107` | `u8` | bit 1 apply the +0x40 offset |  |
+
+Controller (actor +`0xC0`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `i32` | render record id, -1 none |  |
+| `+0x138` | `void*` | movement body |  |
+| `+0x14F` | `u8` | bit 0 refuses movement |  |
+| `+0x151` | `u8` | bit 0 or bit 1 = three-dimensional motion |  |
+
+Movement body (controller +`0x138`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x070` | `f32[4] the cell solver's displacement` | +0x90 u32 bit 4 the solver moved the body |  |
+| `+0x0C8` | `f32` | published locomotion rate, 108 * speed |  |
+| `+0x110` | `u32` | mask word (0x002E9BB0 / 0x002EC5B0) |  |
+
+Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `i16` | id, -1 empty | +`0x006` i16  -1 required for the save/latch block |
+| `+0x0CC` | `u16` | state & 0xFFF | +`0x284` u32  bit 27 gates the save/latch block; non-zero gates the publish |
+| `+0x240` | `f32[3]` | pitch, | yaw, 0.0 from `0x002E5C10` |
+| `+0x457` | `i8` | frame counter, against [0x01DFE0B4] * 30 |  |
+| `+0x610` | `f32 yaw, +0x614 f32 speed, +0x618 f32 accumulator, +0x61C u16 flags` | the incoming group |  |
+| `+0x620` | `f32 yaw, +0x624 f32 speed, +0x628 f32 accumulator, +0x62C u16 flags` | the previous group; +0x62C bit 0 = latch |  |
+
 ```
-WorldActor (actor record)
-+0x03  u8   classAndSequence   movement: (v & 0xE0) == 0x60; position read: v >> 5 in {1, 3}
-+0x08  u8   flags08            bit 1 flat-motion enable; bit 2 measure displacement in 3-D
-+0x09  u8   flags09            bit 0 required for flat motion
-+0x0C  u8   flags0C            bit 4 set by the speed setter on a change
-+0x18  u8   lifecycle          1 refuses the frame driver
-+0x30  ptr  battleUnit
-+0xB8  ptr  movementContext
-+0xC0  ptr  controller (secondary context)
-
-movement context (actor +0xB8)
-+0x00  f32[3] position
-+0x40  f32[3] offset added on the three-dimensional path when +0x107 bit 1 (subtracted after the flat solve)
-+0xA0  f32   pitch              +0xA4 f32 yaw              +0xA8 f32 facing (facing page)
-+0xB8  f32   last squared displacement
-+0xD0  f32   requested speed
-+0xF0  ptr   steering request: +0x24 f32 speed, +0x28 u8 kind, +0x29 u8 mode
-+0xF8  f32   pass-through magnitude; negative = unset, repaired to the speed
-+0x107 u8    bit 1 apply the +0x40 offset
-
-controller (actor +0xC0)
-+0x00  i32  render record id, -1 none
-+0x138 ptr  movement body
-+0x14F u8   bit 0 refuses movement
-+0x151 u8   bit 0 or bit 1 = three-dimensional motion
-
-movement body (controller +0x138)
-+0x70  f32[4] the cell solver's displacement     +0x90 u32 bit 4 the solver moved the body
-+0xC8  f32   published locomotion rate, 108 * speed
-+0x110 u32   mask word (0x002E9BB0 / 0x002EC5B0)
-
-character render record ([0x022C6F28] + id * 0x740, 160 records)
-+0x000 i16  id, -1 empty         +0x006 i16  -1 required for the save/latch block
-+0x0CC u16  state & 0xFFF        +0x284 u32  bit 27 gates the save/latch block; non-zero gates the publish
-+0x240 f32[3] pitch, yaw, 0.0 from 0x002E5C10
-+0x457 i8   frame counter, against [0x01DFE0B4] * 30
-+0x610 f32 yaw, +0x614 f32 speed, +0x618 f32 accumulator, +0x61C u16 flags   the incoming group
-+0x620 f32 yaw, +0x624 f32 speed, +0x628 f32 accumulator, +0x62C u16 flags   the previous group; +0x62C bit 0 = latch
-
 battle unit: +0x158 f32 speed, +0x15C f32 yaw, +0x160 f32 facing, +0x174 f32 pitch; flag bit 18 holds the speed
 ```
 

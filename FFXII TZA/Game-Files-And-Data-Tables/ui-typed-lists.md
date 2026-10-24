@@ -90,7 +90,7 @@ Items are variable-length and say their own length, so the walk steps over any t
 
 ### Type fields
 
-```
+```python
 type 1, 16 bytes      +0x0C u32  list record to build as a child widget
 type 2 and 9, 36 bytes
                       +0x0C u16  atlas name record index

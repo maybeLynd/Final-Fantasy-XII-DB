@@ -41,8 +41,7 @@ Struct NavDataset base=section:
 | `+0x14` | `off` | portals | 8 B each: u16 vertexA, u16 vertexB, u8 gated (+4), u8 mapId (+5), u8 classMask (+6) |
 | `+0x18` | `off` | regions | `0x22` B each: +2 u16 triangleCount, +`0x14` u16 triangleIndex[] |
 | `+0x1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = none |
-| `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, |
-| `+0x08` | `off` | cellTable | (u16 per cell), +`0xC` off listPool |
+| `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, +8 off cellTable (u16 per cell), +`0xC` off listPool |
 | `+0x24` | `u32` | trailer record count (at most 32 used) |  |
 | `+0x28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius +`0xC`, f32 radius2 +`0x10`, f32 +`0x14` (kind 1; read by the segment query only) |
 

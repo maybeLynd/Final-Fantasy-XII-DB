@@ -44,135 +44,48 @@ the remaining languages use `in`. The same arrays name `menumap_guide05.bin` to 
 
 Each of the two slots at `+0x120` of the map-data widget is `0xA8` bytes.
 
-```struct MapSlot base=[mapdata+0x120]+i*0xA8 size=0xA8
-+0x00    ptr             file                   the menumap_sub file of the slot, requested through 0x00249180 by
-                                                0x003C1F00 (0x003C200D-0x003C2012); 0x003C22B0 frees it with 0x003697F0 and
-                                                clears it (0x003C22D5-0x003C22E4), and the release 0x003C2210 does the same
-                                                for both slots (0x003C2250-0x003C225F)
-+0x08    ptr             keys                   the file's key array, the table at the file's word +0x0A plus that
-                                                table's word +0x02, set when the file has arrived (0x003C2727-0x003C273F);
-                                                each picture's name is formatted from a key's field id word and
-                                                variant byte (0x003C27F4-0x003C2808); 0x003C0CF0 reports the slot ready once
-                                                it is set (0x003C0D23)
-+0x10    u8              subLocation            the sub-location n the slot holds, stored by 0x003C1F00 (0x003C1FF2);
-                                                0x003C0CF0, 0x003C21C0 and the sloc readers 0x003BE2D0, 0x003BECA0, 0x003BF520
-                                                and 0x003BF5E0 find a slot by it (0x003C0D08, 0x003C21D9, 0x003BE30E,
-                                                0x003BECDE, 0x003BF558, 0x003BF620); 0x003C26C0 reads it when registering
-                                                (0x003C26EC)
-+0x11    u8[1]           gap11                  read and written by no function; nothing fixes its width
-+0x12    u8              palette                the palette byte +0x10 of cmap entry n, copied when the slot is
-                                                requested (0x003C2015-0x003C201A); passed with each picture to its
-                                                registration (0x003C2815): non-zero names the .cl2 at +0x118 of the
-                                                widget
-+0x13    u8              pictureCount           the number of pictures, the first byte of the key table
-                                                (0x003C2730-0x003C2733); 0x003C22B0 and 0x003C2210 release that many handles
-                                                and set it to 0
-+0x14    u8[4]           gap14                  read and written by no function; nothing fixes its width
-+0x18    ptr[18]         pictures               the registered pictures loca_<fieldId>_<variant>, one handle per key
-                                                whose offset is not -1 (0x0024A480 in 0x003C26C0); released with 0x0024A680
-                                                and cleared by 0x003C22B0 and 0x003C2210 (0x003C2249-0x003C2268); the
-                                                registering loop stores a handle only where the qword is still 0
-                                                (0x003C2780-0x003C2784) and runs over the key count +0x13, offset -1
-                                                keys included, with no test against 18 (0x003C283A): from the first
-                                                slot the 19th key lands on the second slot's +0x00 file pointer,
-                                                written only while that slot holds no file; from the second slot it
-                                                lands on the widget's +0x270 areaBits, and later keys past the
-                                                widget's 0x278 bytes
-```
+`MapSlot` (`0xA8` bytes, offsets from the start of the [mapdata+0x120]+i*0xA8):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | file | the menumap_sub file of the slot, requested through `0x00249180` by `0x003C1F00` (`0x003C200D`-`0x003C2012`); `0x003C22B0` frees it with `0x003697F0` and clears it (`0x003C22D5`-`0x003C22E4`), and the release `0x003C2210` does the same for both slots (`0x003C2250`-`0x003C225F`) |
+| `+0x08` | `void*` | keys | the file's key array, the table at the file's word +`0x0A` plus that table's word +`0x02`, set when the file has arrived (`0x003C2727`-`0x003C273F`); each picture's name is formatted from a key's field id word and variant byte (`0x003C27F4`-`0x003C2808`); `0x003C0CF0` reports the slot ready once it is set (`0x003C0D23`) |
+| `+0x10` | `u8` | subLocation | the sub-location n the slot holds, stored by `0x003C1F00` (`0x003C1FF2`); `0x003C0CF0`, `0x003C21C0` and the sloc readers `0x003BE2D0`, `0x003BECA0`, `0x003BF520` and `0x003BF5E0` find a slot by it (`0x003C0D08`, `0x003C21D9`, `0x003BE30E`, `0x003BECDE`, `0x003BF558`, `0x003BF620`); `0x003C26C0` reads it when registering (`0x003C26EC`) |
+| `+0x11` | `u8[1]` | gap11 | read and written by no function; nothing fixes its width |
+| `+0x12` | `u8` | palette | the palette byte +`0x10` of cmap entry n, copied when the slot is requested (`0x003C2015`-`0x003C201A`); passed with each picture to its registration (`0x003C2815`): non-zero names the .cl2 at +`0x118` of the widget |
+| `+0x13` | `u8` | pictureCount | the number of pictures, the first byte of the key table (`0x003C2730`-`0x003C2733`); `0x003C22B0` and `0x003C2210` release that many handles and set it to 0 |
+| `+0x14` | `u8[4]` | gap14 | read and written by no function; nothing fixes its width |
+| `+0x18` | `void*[18]` | pictures | the registered pictures loca_&lt;fieldId&gt;_&lt;variant&gt;, one handle per key whose offset is not -1 (`0x0024A480` in `0x003C26C0`); released with `0x0024A680` and cleared by `0x003C22B0` and `0x003C2210` (`0x003C2249`-`0x003C2268`); the registering loop stores a handle only where the qword is still 0 (`0x003C2780`-`0x003C2784`) and runs over the key count +`0x13`, offset -1 keys included, with no test against 18 (`0x003C283A`): from the first slot the 19th key lands on the second slot's +`0x00` file pointer, written only while that slot holds no file; from the second slot it lands on the widget's +`0x270` areaBits, and later keys past the widget's `0x278` bytes |
 
 ### The map-data widget's fields
 
 The map-data widget is the `0x278`-byte widget at `0x02B457E0` with procedure `0x003BC4E0` (The map-data widget below).
 
-```struct MapDataWidget base=record size=0x278
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x003BC4E0
-+0xC0    ptr             owner                  the widget told when loads finish: the creation record's first qword
-                                                (0x003BC91E-0x003BC921), replaced by 0x003BC9F0's second argument when a
-                                                quest's map data is asked for (0x003BCA16); 0x003BC3E0 sends it 0x100 when
-                                                the tables have loaded, 0x101 when the quest data has, 0x102 when the
-                                                map data request ends (0x003BC702-0x003BC71E, 0x003BC86E-0x003BC88C,
-                                                0x003BC7FE-0x003BC813)
-+0xC8    u8              stage                  0 while the tables load, 1 once they have (0x003BC709), 2 while the
-                                                widget is being released by 0x003BBFB0 (0x003BBFDA); the loaded message is
-                                                handled by it (0x003BC593-0x003BC6CD); 0x003BC9F0 and 0x003BCAF0 act only at 1
-                                                (0x003BCA0D, 0x003BCB21); 0 with +0xC9 on creation (0x003BC8F8)
-+0xC9    u8              routeType              the route type 0x003BCAF0 last marked (0x003BCB32); 0x003BD040 compares it
-                                                with 0x0F (0x003BD0FF)
-+0xCA    u8              screenMode             the map screen's mode, stored by the screens that read the maps:
-                                                0x003BD1B0, 0x003BE3A0, 0x003BED70, 0x003BF7C0, 0x003BFFF0, 0x003C00C0, 0x003C0180,
-                                                0x003C0450 and 0x003C0890 (0x003BD1EE, 0x003BE424, 0x003BEDBC, 0x003BF7F9,
-                                                0x003C0014, 0x003C00E4, 0x003C01A7, 0x003C0483, 0x003C0897); 0x003BCBA0 and
-                                                0x003BCDE0 test it for 6 (0x003BCC64, 0x003BCEC0), 0x003BF7C0 for 0 (0x003BF828)
-                                                and 0x003C08B0 uses it as its test (0x003C0955); 0 on creation (0x003BC8FF)
-+0xCB    u8              questSteps             the number of steps of the selected quest, 0x00473B70(0) when the quest
-                                                data has loaded (0x003BC836-0x003BC83B); the step readers 0x003BD1B0,
-                                                0x003BD9F0, 0x003BDB30, 0x003BDCD0, 0x003BF9A0 and 0x003C0A00 loop to it
-                                                (0x003BD312, 0x003BDA5D, 0x003BDBC9, 0x003BDD58, 0x003BFA2B, 0x003C0A5B)
-+0xCC    u16             quest                  the quest 0x003BC9F0 is asked to show (0x003BCA1D); 0x003BC260 tests it with
-                                                0x0046B240, 0x00315DC0 and 0x00380170 and hands it to 0x0046B180
-                                                (0x003BC269-0x003BC2A6); 0x003BCAB0 and 0x003C0A00 look it up (0x003BCAB9,
-                                                0x003C0AAA-0x003C0ADD)
-+0xCE    u16             questEntry             0x0037EDB0's answer for +0xCC (0x003BCA77-0x003BCA8E, 0x003BCAB9-0x003BCAD8),
-                                                handed to 0x0037FD50 with the widget
-+0xD0    u32             flags                  0 on creation (0x003BC8F2). Bits 0 and 1: glyph sheets 6 and 0x17 were
-                                                missing and are loaded by the widget (0x003BC37A-0x003BC3B3), released on
-                                                destroy (0x003BC522-0x003BC543). Bit 2: a guide file is held at +0xF8
-                                                (0x003C1EDC). Bits 3, 4, 5: menumap_world, menumap_location and
-                                                menumap_common are held (0x003BC6D9-0x003BC6FB), cleared as each is freed
-                                                (0x003BC009-0x003BC06F, 0x003BC5D2-0x003BC610). Bit 6: the guide
-                                                picture +0x108 is registered (0x003BC76A-0x003BC76D); 0x003BD860 and 0x003BD890 test
-                                                it (0x003BD86F, 0x003BD89C). Bit 7: the quest's map data is loading
-                                                (0x003BC7E4), cleared when it ends (0x003BC5A9); the release waits for it
-                                                (0x003BC0FF). Bit 8: the quest data has loaded (0x003BC82A); 0x003BC160
-                                                tests it (0x003BC19D). Bits 9 and 10: 0x0037F130 and 0x0037F140 answers
-                                                (0x003BC841-0x003BC878); bit 10 picks the labels in mode 6 (0x003BD42A,
-                                                0x003BDC43, 0x003BE5E1). Bit 11: show every point whatever its gate: set
-                                                and cleared by the location pages 0x003BE3A0 and 0x003BED70 (0x003BE48A,
-                                                0x003BE430, 0x003BF023, 0x003BEDC6), tested by 0x003BCBA0, 0x003BDFF0, 0x003BED70,
-                                                0x003C12B0 and 0x003C1A20 (0x003BCC58, 0x003BE061, 0x003BEE44, 0x003C13F6,
-                                                0x003C1B27). Bit 12: set by 0x003BE3A0 on its first pass (0x003BE41A), which
-                                                sets bit 13 for location 0x0D or 0x2F and bit 14 for 0x2F
-                                                (0x003BE3F1-0x003BE414)
-+0xD4    u8[4]           gap0D4                 read and written by no function; nothing fixes its width
-+0xD8    ptr             worldTable             menumap_world.bin, kind-7 resource 0xA2, requested by 0x003BC2D0 when
-                                                the world argument is set (0x003BC2F8-0x003BC31B); freed by 0x003BBFB0 and
-                                                the loaded message (0x003BC004-0x003BC010, 0x003BC5CD-0x003BC5D9); 0x003BCAF0
-                                                walks its routes (0x003BCAFE)
-+0xE0    ptr             locationTable          menumap_location.bin, kind-7 resource 0xA3, requested when the
-                                                location argument is set (0x003BC326-0x003BC349); freed as +0xD8
-                                                (0x003BC037-0x003BC04A, 0x003BC5EC-0x003BC5F8)
-+0xE8    ptr             commonTable            menumap_common.bin, kind-7 resource 0xA4, always requested
-                                                (0x003BC350-0x003BC373); 0x003C1DF0 picks the guide entry from it
-                                                (0x003C1E15-0x003C1E48); freed as +0xD8 (0x003BC06A-0x003BC07D,
-                                                0x003BC60B-0x003BC617)
-+0xF0    ptr             guideEntry             the guide entry 0x003BD950 returns for the common table
-                                                (0x003C1E15-0x003C1E59); its byte +4 picks the guide file
-                                                (0x003C1E9D-0x003C1EB1) and its word +6 the picture (0x003BC78E-0x003BC7A3);
-                                                0x003BD890 reads it (0x003BD8B1)
-+0xF8    ptr             guideFile              menumap_guide<n>.bin, kind-7 resource 0x496 + the entry's byte +4,
-                                                requested by 0x003C1DF0 (0x003C1EA7-0x003C1ECC); freed with the guide
-                                                picture by 0x003BBFB0, 0x003BC970 and the loaded message
-                                                (0x003BC0C1-0x003BC0DB, 0x003BC652-0x003BC665)
-+0x100   ptr             guideText              the text 0x003BD8F0 returns for the guide entry's picture when the guide
-                                                file has loaded (0x003BC7A7-0x003BC7B3); 0 on creation (0x003BC8E4)
-+0x108   ptr             guidePicture           the guide picture, registered by 0x003BD8F0 through +0x108 and set up
-                                                with 0x0039BEC0 and 0x0017FBC0(4) (0x003BC795-0x003BC7CD); 0x003BD860 returns
-                                                it; released with 0x0039BB60 and 0x0017FA70(4) and cleared
-                                                (0x003BC0A9-0x003BC0BA, 0x003BC637-0x003BC64B, 0x003BC9A9)
-+0x110   ptr             clutTable              the third table of clutpack_ys.bin, 0x0035D520's answer, set by 0x003C2100
-                                                while it is 0 (0x003C212C-0x003C213B); pictures without a .cl2 use it
-                                                (0x003C27A0); 0x003C20D0 and the destroy clear it (0x003C20E7, 0x003BC553)
-+0x118   ptr             cl2Palette             the .cl2 palette, kind-7 resource 0xE1 + the cmap entry's palette byte
-                                                (1 Loca_gil.cl2, 2 Loca_bhm.cl2), requested by 0x003C1F00, replacing the
-                                                one before (0x003C2024-0x003C209D); pictures with a palette use it
-                                                (0x003C2794); freed on destroy (0x003BC55A-0x003BC56B)
-+0x120   u8[336]         slots                  the two MapSlot records (above), cleared on creation with +0x270
-                                                (0x003BC8C7-0x003BC914)
-+0x270   u32[2]          areaBits               one bit per area, 64 areas: 0x003BCAF0 clears it and sets the bits of
-                                                both areas of every route of the given type (0x003BCB1A-0x003BCB85);
-                                                0x003BD480 and 0x003C08B0 read an area's bit (0x003BD601, 0x003C09A3)
-```
+`MapDataWidget` (`0x278` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003BC4E0` |
+| `+0x0C0` | `void*` | owner | the widget told when loads finish: the creation record's first qword (`0x003BC91E`-`0x003BC921`), replaced by `0x003BC9F0`'s second argument when a quest's map data is asked for (`0x003BCA16`); `0x003BC3E0` sends it `0x100` when the tables have loaded, `0x101` when the quest data has, `0x102` when the map data request ends (`0x003BC702`-`0x003BC71E`, `0x003BC86E`-`0x003BC88C`, `0x003BC7FE`-`0x003BC813`) |
+| `+0x0C8` | `u8` | stage | 0 while the tables load, 1 once they have (`0x003BC709`), 2 while the widget is being released by `0x003BBFB0` (`0x003BBFDA`); the loaded message is handled by it (`0x003BC593`-`0x003BC6CD`); `0x003BC9F0` and `0x003BCAF0` act only at 1 (`0x003BCA0D`, `0x003BCB21`); 0 with +`0xC9` on creation (`0x003BC8F8`) |
+| `+0x0C9` | `u8` | routeType | the route type `0x003BCAF0` last marked (`0x003BCB32`); `0x003BD040` compares it with `0x0F` (`0x003BD0FF`) |
+| `+0x0CA` | `u8` | screenMode | the map screen's mode, stored by the screens that read the maps: `0x003BD1B0`, `0x003BE3A0`, `0x003BED70`, `0x003BF7C0`, `0x003BFFF0`, `0x003C00C0`, `0x003C0180`, `0x003C0450` and `0x003C0890` (`0x003BD1EE`, `0x003BE424`, `0x003BEDBC`, `0x003BF7F9`, `0x003C0014`, `0x003C00E4`, `0x003C01A7`, `0x003C0483`, `0x003C0897`); `0x003BCBA0` and `0x003BCDE0` test it for 6 (`0x003BCC64`, `0x003BCEC0`), `0x003BF7C0` for 0 (`0x003BF828`) and `0x003C08B0` uses it as its test (`0x003C0955`); 0 on creation (`0x003BC8FF`) |
+| `+0x0CB` | `u8` | questSteps | the number of steps of the selected quest, `0x00473B70`(0) when the quest data has loaded (`0x003BC836`-`0x003BC83B`); the step readers `0x003BD1B0`, `0x003BD9F0`, `0x003BDB30`, `0x003BDCD0`, `0x003BF9A0` and `0x003C0A00` loop to it (`0x003BD312`, `0x003BDA5D`, `0x003BDBC9`, `0x003BDD58`, `0x003BFA2B`, `0x003C0A5B`) |
+| `+0x0CC` | `u16` | quest | the quest `0x003BC9F0` is asked to show (`0x003BCA1D`); `0x003BC260` tests it with `0x0046B240`, `0x00315DC0` and `0x00380170` and hands it to `0x0046B180` (`0x003BC269`-`0x003BC2A6`); `0x003BCAB0` and `0x003C0A00` look it up (`0x003BCAB9`, `0x003C0AAA`-`0x003C0ADD`) |
+| `+0x0CE` | `u16` | questEntry | `0x0037EDB0`'s answer for +`0xCC` (`0x003BCA77`-`0x003BCA8E`, `0x003BCAB9`-`0x003BCAD8`), handed to `0x0037FD50` with the widget |
+| `+0x0D0` | `u32` | flags | 0 on creation (`0x003BC8F2`). Bits 0 and 1: glyph sheets 6 and `0x17` were missing and are loaded by the widget (`0x003BC37A`-`0x003BC3B3`), released on destroy (`0x003BC522`-`0x003BC543`). Bit 2: a guide file is held at +`0xF8` (`0x003C1EDC`). Bits 3, 4, 5: menumap_world, menumap_location and menumap_common are held (`0x003BC6D9`-`0x003BC6FB`), cleared as each is freed (`0x003BC009`-`0x003BC06F`, `0x003BC5D2`-`0x003BC610`). Bit 6: the guide picture +`0x108` is registered (`0x003BC76A`-`0x003BC76D`); `0x003BD860` and `0x003BD890` test it (`0x003BD86F`, `0x003BD89C`). Bit 7: the quest's map data is loading (`0x003BC7E4`), cleared when it ends (`0x003BC5A9`); the release waits for it (`0x003BC0FF`). Bit 8: the quest data has loaded (`0x003BC82A`); `0x003BC160` tests it (`0x003BC19D`). Bits 9 and 10: `0x0037F130` and `0x0037F140` answers (`0x003BC841`-`0x003BC878`); bit 10 picks the labels in mode 6 (`0x003BD42A`, `0x003BDC43`, `0x003BE5E1`). Bit 11: show every point whatever its gate: set and cleared by the location pages `0x003BE3A0` and `0x003BED70` (`0x003BE48A`, `0x003BE430`, `0x003BF023`, `0x003BEDC6`), tested by `0x003BCBA0`, `0x003BDFF0`, `0x003BED70`, `0x003C12B0` and `0x003C1A20` (`0x003BCC58`, `0x003BE061`, `0x003BEE44`, `0x003C13F6`, `0x003C1B27`). Bit 12: set by `0x003BE3A0` on its first pass (`0x003BE41A`), which sets bit 13 for location `0x0D` or `0x2F` and bit 14 for `0x2F` (`0x003BE3F1`-`0x003BE414`) |
+| `+0x0D4` | `u8[4]` | gap0D4 | read and written by no function; nothing fixes its width |
+| `+0x0D8` | `void*` | worldTable | menumap_world.bin, kind-7 resource `0xA2`, requested by `0x003BC2D0` when the world argument is set (`0x003BC2F8`-`0x003BC31B`); freed by `0x003BBFB0` and the loaded message (`0x003BC004`-`0x003BC010`, `0x003BC5CD`-`0x003BC5D9`); `0x003BCAF0` walks its routes (`0x003BCAFE`) |
+| `+0x0E0` | `void*` | locationTable | menumap_location.bin, kind-7 resource `0xA3`, requested when the location argument is set (`0x003BC326`-`0x003BC349`); freed as +`0xD8` (`0x003BC037`-`0x003BC04A`, `0x003BC5EC`-`0x003BC5F8`) |
+| `+0x0E8` | `void*` | commonTable | menumap_common.bin, kind-7 resource `0xA4`, always requested (`0x003BC350`-`0x003BC373`); `0x003C1DF0` picks the guide entry from it (`0x003C1E15`-`0x003C1E48`); freed as +`0xD8` (`0x003BC06A`-`0x003BC07D`, `0x003BC60B`-`0x003BC617`) |
+| `+0x0F0` | `void*` | guideEntry | the guide entry `0x003BD950` returns for the common table (`0x003C1E15`-`0x003C1E59`); its byte +4 picks the guide file (`0x003C1E9D`-`0x003C1EB1`) and its word +6 the picture (`0x003BC78E`-`0x003BC7A3`); `0x003BD890` reads it (`0x003BD8B1`) |
+| `+0x0F8` | `void*` | guideFile | menumap_guide&lt;n&gt;.bin, kind-7 resource `0x496` + the entry's byte +4, requested by `0x003C1DF0` (`0x003C1EA7`-`0x003C1ECC`); freed with the guide picture by `0x003BBFB0`, `0x003BC970` and the loaded message (`0x003BC0C1`-`0x003BC0DB`, `0x003BC652`-`0x003BC665`) |
+| `+0x100` | `void*` | guideText | the text `0x003BD8F0` returns for the guide entry's picture when the guide file has loaded (`0x003BC7A7`-`0x003BC7B3`); 0 on creation (`0x003BC8E4`) |
+| `+0x108` | `void*` | guidePicture | the guide picture, registered by `0x003BD8F0` through +`0x108` and set up with `0x0039BEC0` and `0x0017FBC0`(4) (`0x003BC795`-`0x003BC7CD`); `0x003BD860` returns it; released with `0x0039BB60` and `0x0017FA70`(4) and cleared (`0x003BC0A9`-`0x003BC0BA`, `0x003BC637`-`0x003BC64B`, `0x003BC9A9`) |
+| `+0x110` | `void*` | clutTable | the third table of clutpack_ys.bin, `0x0035D520`'s answer, set by `0x003C2100` while it is 0 (`0x003C212C`-`0x003C213B`); pictures without a .cl2 use it (`0x003C27A0`); `0x003C20D0` and the destroy clear it (`0x003C20E7`, `0x003BC553`) |
+| `+0x118` | `void*` | cl2Palette | the .cl2 palette, kind-7 resource `0xE1` + the cmap entry's palette byte (1 Loca_gil.cl2, 2 Loca_bhm.cl2), requested by `0x003C1F00`, replacing the one before (`0x003C2024`-`0x003C209D`); pictures with a palette use it (`0x003C2794`); freed on destroy (`0x003BC55A`-`0x003BC56B`) |
+| `+0x120` | `u8[336]` | slots | the two MapSlot records (above), cleared on creation with +`0x270` (`0x003BC8C7`-`0x003BC914`) |
+| `+0x270` | `u32[2]` | areaBits | one bit per area, 64 areas: `0x003BCAF0` clears it and sets the bits of both areas of every route of the given type (`0x003BCB1A`-`0x003BCB85`); `0x003BD480` and `0x003C08B0` read an area's bit (`0x003BD601`, `0x003C09A3`) |
 
 ### The map files
 
@@ -183,48 +96,70 @@ the buffer address, so the readers assume a buffer below 4 GiB.
 
 ### sloc: menumap_subNN.bin
 
+Header:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "sloc" |
+| `+0x04` | `u32` | - | 100 |
+| `+0x08` | `u16` | recordsOff | record directory, from the file start (`0x10` in every file) |
+| `+0x0A` | `u16` | picturesOff picture table, from the file start |  |
+| `+0x0C` | `u32` | - | 0 |
+
+Record directory (at recordsOff):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | count | one record per zone field |
+| `+0x04` | `u16[count] offset` | each record's offset from the directory start |  |
+
+Record:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | fieldId | the zone's field id |
+| `+0x02` | `u16` | lcmOff | LCMPOS1 block, from the record start; `0xFFFF` = none |
+| `+0x04` | `u16` | naviOff | NAVIICN2 block, from the record start; `0xFFFF` = none |
+
+Picture table (at picturesOff):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | count | pictures; `0x003C26C0` reads only the low byte |
+| `+0x02` | `u16` | keysOff | key array, from the table start |
+| `+0x04` | `i32[count] picture` | TIM2 picture, from the table start; -1 = none |  |
+| `+0x04` | `+ 4*count` | s32[count] placement | NPS2 record, from the table start |
+
 ```
-header
-+0x00  char[4]  magic       "sloc"
-+0x04  u32      -           100
-+0x08  u16      recordsOff  record directory, from the file start (0x10 in every file)
-+0x0A  u16      picturesOff picture table, from the file start
-+0x0C  u32      -           0
-
-record directory (at recordsOff)
-+0x00  u32      count       one record per zone field
-+0x04  u16[count] offset    each record's offset from the directory start
-
-record
-+0x00  u16      fieldId     the zone's field id
-+0x02  u16      lcmOff      LCMPOS1 block, from the record start; 0xFFFF = none
-+0x04  u16      naviOff     NAVIICN2 block, from the record start; 0xFFFF = none
-
-picture table (at picturesOff)
-+0x00  u16      count       pictures; 0x003C26C0 reads only the low byte
-+0x02  u16      keysOff     key array, from the table start
-+0x04  s32[count] picture   TIM2 picture, from the table start; -1 = none
-+0x04 + 4*count  s32[count] placement  NPS2 record, from the table start
 keysOff: {u16 fieldId, u8 variant, u8 0}[count]
-
-NPS2 record (32 bytes)
-+0x00  char[4]  magic       "NPS2"
-+0x18  f32      width       the picture's width on the page
-+0x1C  f32      height      the picture's height on the page
-
-NAVIICN2 block
-+0x00  char[8]  magic       "NAVIICN2"; byte +7 must be above '1'
-+0x08  u16      kinds       icon kinds present (10 in every block)
-+0x0A + 4k  u16  offset     kind k's entries, from the block start (k = 1 to 9)
-+0x0C + 4k  u16  count      kind k's entry count
-
-icon entry (16 bytes)
-+0x00  s16[2]   from        start of the pointer line
-+0x04  s16[2]   at          icon position
-+0x08  s16      icon        icon number
-+0x0A  s16      gate        story gate (0x0032A8A0)
-+0x0C  u8[4]    -
 ```
+
+NPS2 record (32 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "NPS2" |
+| `+0x18` | `f32` | width | the picture's width on the page |
+| `+0x1C` | `f32` | height | the picture's height on the page |
+
+NAVIICN2 block:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[8]` | magic | "NAVIICN2"; byte +7 must be above '1' |
+| `+0x08` | `u16` | kinds | icon kinds present (10 in every block) |
+| `+0x0A` | `+ 4k` | u16 | offset     kind k's entries, from the block start (k = 1 to 9) |
+| `+0x0C` | `+ 4k` | u16 | count      kind k's entry count |
+
+Icon entry (16 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i16[2]` | from | start of the pointer line |
+| `+0x04` | `i16[2]` | at | icon position |
+| `+0x08` | `i16` | icon | icon number |
+| `+0x0A` | `i16` | gate | story gate (`0x0032A8A0`) |
+| `+0x0C` | `u8[4]` | - |  |
 
 The pictures are TIM2 images ([TIM2 images](tim2-images.md)); the files end with the NPS2 records.
 
@@ -351,37 +286,48 @@ The strings are zero-terminated game text ([Text drawing](../Menus-And-HUD/text-
 
 ### wmap: menumap_world.bin
 
-```
-header
-+0x00  char[4]  magic       "wmap"
-+0x04  u32      -           0xCA
-+0x08  u16      regionsOff  0x14
-+0x0A  u16      areasOff    0x48
-+0x0C  u16      routesOff   0x5C8
-+0x0E  u16      -           0
-+0x10  u16      destsOff    0x7AC
-+0x12  u16      -           0
+Header:
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "wmap" |
+| `+0x04` | `u32` | - | `0xCA` |
+| `+0x08` | `u16` | regionsOff | `0x14` |
+| `+0x0A` | `u16` | areasOff | `0x48` |
+| `+0x0C` | `u16` | routesOff | `0x5C8` |
+| `+0x0E` | `u16` | - | 0 |
+| `+0x10` | `u16` | destsOff | `0x7AC` |
+| `+0x12` | `u16` | - | 0 |
+
+```
 regions: u32 count, s32 name text id[count]; -1 = none
 areas:   u32 count, area[count] of 28 bytes, then extra[count] of 8 bytes
+```
 
-area
-+0x00  s16[2]   x, y        position on the World Map
-+0x04  u8[4]    next        four neighbouring areas
-+0x08  u16      until       story counter at which the area disappears; 0xFFFF = never
-+0x0A  u8       region      0 = never shown
-+0x0B  u8       picture     area picture number
-+0x0C  s16[2]   -           copied beside the name
-+0x10  s32      name        area name text id (repeated at +0x18)
-+0x14  s16      gate        story gate; -1 = none
-+0x16  s16      item        area map key item; -1 = none
-+0x18  s32      name2
+Area:
 
-extra
-+0x00  s16      gate        story gate; -1 = none
-+0x02  u8       type        type byte used while the area is hidden
-+0x03  u8[5]    -           0
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i16[2]` | x, y | position on the World Map |
+| `+0x04` | `u8[4]` | next | four neighbouring areas |
+| `+0x08` | `u16` | until | story counter at which the area disappears; `0xFFFF` = never |
+| `+0x0A` | `u8` | region | 0 = never shown |
+| `+0x0B` | `u8` | picture | area picture number |
+| `+0x0C` | `i16[2]` | - | copied beside the name |
+| `+0x10` | `i32` | name | area name text id (repeated at +`0x18`) |
+| `+0x14` | `i16` | gate | story gate; -1 = none |
+| `+0x16` | `i16` | item | area map key item; -1 = none |
+| `+0x18` | `i32` | name2 |  |
 
+Extra:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i16` | gate | story gate; -1 = none |
+| `+0x02` | `u8` | type | type byte used while the area is hidden |
+| `+0x03` | `u8[5]` | - | 0 |
+
+```
 route: {u8 areaA, u8 areaB, u8 type, u8 0, s16 x, s16 y}
 destination: {u16 value, u8 area, u8 0}
 ```

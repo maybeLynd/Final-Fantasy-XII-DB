@@ -411,20 +411,13 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 
 Three ranges the table above does not list:
 
-```struct MovementBody base=record size=0x130
-+0x10    u8[8]           cleared010             the eight bytes before the pair bitmap +0x18: the allocation 0x003DA8A0
-                                                zeroes them with the bitmap (0x003DA9A0) and the pool initialiser
-                                                0x003DAE30 zeroes them for every body (0x003DAE6D)
-+0x50    f32[4]          modelTint              the colour the actor's models are tinted with (red, green, blue,
-                                                fourth): 0x002E4A40 hands the first three to 0x002EDD70 for each of the
-                                                actor's models (0x002E4AD9-0x002E4B44), white when the controller's +0x151
-                                                bit 5 is set; 0x002ED6A0 refreshes it from the ground tint +0x60
-                                                (0x002ED6CF-0x002ED6E4) or, with actor byte +0xB bit 6 set, from a fresh
-                                                sample at the position through 0x0026E530 (0x0026E5A1); four 1.0 at
-                                                allocation (0x00380C05-0x00380C1A)
-+0x118   u8              cleared118             set to 0 with the owner byte +0x119 by the allocation's word store
-                                                (0x003DA995)
-```
+`MovementBody` (`0x130` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x010` | `u8[8]` | cleared010 | the eight bytes before the pair bitmap +`0x18`: the allocation `0x003DA8A0` zeroes them with the bitmap (`0x003DA9A0`) and the pool initialiser `0x003DAE30` zeroes them for every body (`0x003DAE6D`) |
+| `+0x050` | `f32[4]` | modelTint | the colour the actor's models are tinted with (red, green, blue, fourth): `0x002E4A40` hands the first three to `0x002EDD70` for each of the actor's models (`0x002E4AD9`-`0x002E4B44`), white when the controller's +`0x151` bit 5 is set; `0x002ED6A0` refreshes it from the ground tint +`0x60` (`0x002ED6CF`-`0x002ED6E4`) or, with actor byte +`0xB` bit 6 set, from a fresh sample at the position through `0x0026E530` (`0x0026E5A1`); four 1.0 at allocation (`0x00380C05`-`0x00380C1A`) |
+| `+0x118` | `u8` | cleared118 | set to 0 with the owner byte +`0x119` by the allocation's word store (`0x003DA995`) |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|

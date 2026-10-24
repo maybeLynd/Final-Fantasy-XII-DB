@@ -145,69 +145,38 @@ creates a state (see the Lua runtime page), so they never run.
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct PClassCallableMethodScript base=record size=0x68
-+0x00    u8[80]          methodRecord           the method record the class shares with the methods 0x00632FB0
-                                                registers: list links at +0x00 and +0x08 (0x00682E75, 0x00682EED), the
-                                                class descriptor at +0x10 (0x00682E88), the name at +0x18 (0x00682E8F),
-                                                and at +0x28 a pointer to the invoker at +0x30, whose vtable 0x00D6FDB8
-                                                and back-pointer 0x00682E30 stores (0x00682F04-0x00682F10); no registered
-                                                member covers it (0x006812B0 registers the 0x68-byte class at 0x006812FA)
-+0x58    ptr             m_nameAsString         the method's name: 0x00682E30 (entered through 0x00680510) walks a loaded
-                                                instance list of the class (count +0x70, objects +0x58 of the list),
-                                                copies this name with bit 0 cleared into the record's name at +0x18
-                                                (0x00682E7C-0x00682E8F) and links the record into the method list at +0x90
-                                                of the class descriptor at its +0x10 unless a method of that name is
-                                                already there (0x00682E93-0x00682EF7); m_nameAsString (ptr), registered by
-                                                0x00681D80 (0x00632960 at 0x00681E7F); no shipped .phyre file declares
-                                                PClassCallableMethodScript
-+0x60    ptr             m_entryPoint           m_entryPoint (ptr), registered by 0x00681D80 (0x00632960 at 0x00681EED); no
-                                                shipped .phyre file declares PClassCallableMethodScript
-```
+`PClassCallableMethodScript` (`0x68` bytes, offsets from the start of the record):
 
-```struct PScript base=record size=0x58
-+0x30    ptr             m_onLoadEntryPoint     m_onLoadEntryPoint (ptr), registered by 0x006822E0 (0x00632960 at
-                                                0x00682540); no shipped .phyre file declares PScript; cleared by the
-                                                placement constructor 0x00680F40 (0x00680F5B)
-+0x38    ptr             m_onUnloadEntryPoint   m_onUnloadEntryPoint (ptr), registered by 0x006822E0 (0x00632960 at
-                                                0x006825B2); no shipped .phyre file declares PScript; cleared by the
-                                                placement constructor 0x00680F40 (0x00680F5F)
-+0x40    ptr             m_defaultEntryPoint    m_defaultEntryPoint (ptr), registered by 0x006822E0 (0x00632960 at
-                                                0x00682624); no shipped .phyre file declares PScript; cleared by the
-                                                placement constructor 0x00680F40 (0x00680F63)
-+0x48    ptr             m_sourceName           the script's source name; low bit is a flag and is cleared when
-                                                0x00683C30 reads it (0x00683C36-0x00683C3D); m_sourceName (ptr), registered
-                                                by 0x006822E0 (0x00632960 at 0x00682696); no shipped .phyre file declares
-                                                PScript; cleared by the placement constructor 0x00680F40 (0x00680F67)
-+0x50    u8              m_isPersistent         m_isPersistent (u8), registered by 0x006822E0 (0x00632960 at 0x00682709); no
-                                                shipped .phyre file declares PScript; cleared by the placement
-                                                constructor 0x00680F40 (0x00680F6B)
-+0x51    u8[3]           pad51                  alignment bytes after m_isPersistent (u8 at +0x50) up to
-                                                m_executionInterval (+0x54; 1 from the placement constructor 0x00680F40,
-                                                0x00680F6E); no registered member covers it (0x00681400 registers the
-                                                0x58-byte class at 0x00681450)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[80]` | methodRecord | the method record the class shares with the methods `0x00632FB0` registers: list links at +`0x00` and +`0x08` (`0x00682E75`, `0x00682EED`), the class descriptor at +`0x10` (`0x00682E88`), the name at +`0x18` (`0x00682E8F`), and at +`0x28` a pointer to the invoker at +`0x30`, whose vtable `0x00D6FDB8` and back-pointer `0x00682E30` stores (`0x00682F04`-`0x00682F10`); no registered member covers it (`0x006812B0` registers the `0x68`-byte class at `0x006812FA`) |
+| `+0x58` | `void*` | m_nameAsString | the method's name: `0x00682E30` (entered through `0x00680510`) walks a loaded instance list of the class (count +`0x70`, objects +`0x58` of the list), copies this name with bit 0 cleared into the record's name at +`0x18` (`0x00682E7C`-`0x00682E8F`) and links the record into the method list at +`0x90` of the class descriptor at its +`0x10` unless a method of that name is already there (`0x00682E93`-`0x00682EF7`); m_nameAsString (ptr), registered by `0x00681D80` (`0x00632960` at `0x00681E7F`); no shipped .phyre file declares PClassCallableMethodScript |
+| `+0x60` | `void*` | m_entryPoint | m_entryPoint (ptr), registered by `0x00681D80` (`0x00632960` at `0x00681EED`); no shipped .phyre file declares PClassCallableMethodScript |
 
-```struct PScriptCallbackHandler base=record size=0x18
-+0x00    ptr             m_entryPoint           m_entryPoint (ptr), registered by 0x006827C0 (0x00632960 at 0x00682849); no
-                                                shipped .phyre file declares PScriptCallbackHandler
-```
+`PScript` (`0x58` bytes, offsets from the start of the record):
 
-```struct PScheduler base=record size=0x2F8
-+0x99    u8[7]           bytes99                the bytes between the byte at +0x98 and the handle at +0xA0 of the
-                                                handle wrapper at +0x98: the scheduler's slot 3 0x00685DB0 passes +0x98
-                                                to 0x005CD6D0 (0x00685E82-0x00685E8C), which clears the byte (0x005CD6DE) and
-                                                closes the handle with CloseHandle (0x005CD6E1-0x005CD6E5); no registered
-                                                member covers it (0x00681350 registers the 0x2F8-byte class at 0x006813A0)
-+0xA8    u8[1]           byteA8                 the flag of the handle wrapper at +0x98: 0x005CD6D0 clears it after
-                                                closing the handle (0x005CD6EB), reached from the scheduler's slot 3
-                                                0x00685DB0 (0x00685E8C); no registered member covers it (0x00681350
-                                                registers the 0x2F8-byte class at 0x006813A0)
-+0xA9    u8[591]         tailA9                 the rest of the scheduler up to its 0x2F8-byte end: slot 3 0x00685DB0
-                                                waits with Sleep(1) until the pointers at +0xD8 and +0xE0 agree
-                                                (0x00685EA0-0x00685EE7), then clears +0xD8, +0xE0, +0xC0, +0xC8 and the
-                                                dword at +0xD0 (0x00685EE9-0x00685EF9); no registered member covers it
-                                                (0x00681350 registers the 0x2F8-byte class at 0x006813A0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x30` | `void*` | m_onLoadEntryPoint | m_onLoadEntryPoint (ptr), registered by `0x006822E0` (`0x00632960` at `0x00682540`); no shipped .phyre file declares PScript; cleared by the placement constructor `0x00680F40` (`0x00680F5B`) |
+| `+0x38` | `void*` | m_onUnloadEntryPoint | m_onUnloadEntryPoint (ptr), registered by `0x006822E0` (`0x00632960` at `0x006825B2`); no shipped .phyre file declares PScript; cleared by the placement constructor `0x00680F40` (`0x00680F5F`) |
+| `+0x40` | `void*` | m_defaultEntryPoint | m_defaultEntryPoint (ptr), registered by `0x006822E0` (`0x00632960` at `0x00682624`); no shipped .phyre file declares PScript; cleared by the placement constructor `0x00680F40` (`0x00680F63`) |
+| `+0x48` | `void*` | m_sourceName | the script's source name; low bit is a flag and is cleared when `0x00683C30` reads it (`0x00683C36`-`0x00683C3D`); m_sourceName (ptr), registered by `0x006822E0` (`0x00632960` at `0x00682696`); no shipped .phyre file declares PScript; cleared by the placement constructor `0x00680F40` (`0x00680F67`) |
+| `+0x50` | `u8` | m_isPersistent | m_isPersistent (u8), registered by `0x006822E0` (`0x00632960` at `0x00682709`); no shipped .phyre file declares PScript; cleared by the placement constructor `0x00680F40` (`0x00680F6B`) |
+| `+0x51` | `u8[3]` | pad51 | alignment bytes after m_isPersistent (u8 at +`0x50`) up to m_executionInterval (+`0x54`; 1 from the placement constructor `0x00680F40`, `0x00680F6E`); no registered member covers it (`0x00681400` registers the `0x58`-byte class at `0x00681450`) |
+
+`PScriptCallbackHandler` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | m_entryPoint | m_entryPoint (ptr), registered by `0x006827C0` (`0x00632960` at `0x00682849`); no shipped .phyre file declares PScriptCallbackHandler |
+
+`PScheduler` (`0x2F8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x99` | `u8[7]` | bytes99 | the bytes between the byte at +`0x98` and the handle at +`0xA0` of the handle wrapper at +`0x98`: the scheduler's slot 3 `0x00685DB0` passes +`0x98` to `0x005CD6D0` (`0x00685E82`-`0x00685E8C`), which clears the byte (`0x005CD6DE`) and closes the handle with CloseHandle (`0x005CD6E1`-`0x005CD6E5`); no registered member covers it (`0x00681350` registers the `0x2F8`-byte class at `0x006813A0`) |
+| `+0xA8` | `u8[1]` | byteA8 | the flag of the handle wrapper at +`0x98`: `0x005CD6D0` clears it after closing the handle (`0x005CD6EB`), reached from the scheduler's slot 3 `0x00685DB0` (`0x00685E8C`); no registered member covers it (`0x00681350` registers the `0x2F8`-byte class at `0x006813A0`) |
+| `+0xA9` | `u8[591]` | tailA9 | the rest of the scheduler up to its `0x2F8`-byte end: slot 3 `0x00685DB0` waits with Sleep(1) until the pointers at +`0xD8` and +`0xE0` agree (`0x00685EA0`-`0x00685EE7`), then clears +`0xD8`, +`0xE0`, +`0xC0`, +`0xC8` and the dword at +`0xD0` (`0x00685EE9`-`0x00685EF9`); no registered member covers it (`0x00681350` registers the `0x2F8`-byte class at `0x006813A0`) |
 
 ### Binding records
 

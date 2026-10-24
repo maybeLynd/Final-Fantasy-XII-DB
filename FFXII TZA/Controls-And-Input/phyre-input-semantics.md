@@ -302,9 +302,11 @@ codes 1-3.
 | `+0x028` | `u8[8]` | bytes28 | the eight bytes between the qword the constructor `0x00792DD0` clears at +`0x20` (`0x00792DEA`) and the one it clears at +`0x30` (`0x00792DEE`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
 | `+0x2BC` | `u8[4]` | bytes2BC | the four bytes between the dword the constructor `0x00792DD0` sets to `0x17` at +`0x2B8` (`0x00792E1F`) and the qword it clears at +`0x2C0` (`0x00792E30`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
 
-```struct PMeshInstanceSegmentContext base=record size=0x48
-+0x2C  u8[4]  pad2C  the four bytes between the dword the placement constructor 0x005CF520 sets to -1 at +0x28 (0x005CF53B) and the qword it clears at +0x30 (0x005CF542); no registered member covers it (0x005D9890 registers the 0x48-byte class at 0x005D98DA)
-```
+`PMeshInstanceSegmentContext` (`0x48` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x2C` | `u8[4]` | pad2C | the four bytes between the dword the placement constructor `0x005CF520` sets to -1 at +`0x28` (`0x005CF53B`) and the qword it clears at +`0x30` (`0x005CF542`); no registered member covers it (`0x005D9890` registers the `0x48`-byte class at `0x005D98DA`) |
 
 ### Registry globals
 

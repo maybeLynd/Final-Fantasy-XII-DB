@@ -116,15 +116,19 @@ per component (`0x004307C0`) or as one shared factor (`0x004308D0`).
 
 ## Layouts
 
+Expression record (`0x10`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | operand A payload (reference or curve address, encoded) |  |
+| `+0x04` | `u32` | operand B payload |  |
+| `+0x08` | `u16` | operand A curve period (0 = none) |  |
+| `+0x0A` | `u16` | operand B curve period |  |
+| `+0x0C` | `u8` | operand A kind (0 absent, 1 reference, 2+ curve pair count) |  |
+| `+0x0D` | `u8` | operand B kind |  |
+| `+0x0E` | `u16` | bits 0-1 A curve mode, bits 2-3 B curve mode, bits 4-7 operator |  |
+
 ```
-expression record (0x10)
-+0x00  u32  operand A payload (reference or curve address, encoded)
-+0x04  u32  operand B payload
-+0x08  u16  operand A curve period (0 = none)
-+0x0A  u16  operand B curve period
-+0x0C  u8   operand A kind (0 absent, 1 reference, 2+ curve pair count)
-+0x0D  u8   operand B kind
-+0x0E  u16  bits 0-1 A curve mode, bits 2-3 B curve mode, bits 4-7 operator
 curve pair   s32 x, s32 y
 ```
 

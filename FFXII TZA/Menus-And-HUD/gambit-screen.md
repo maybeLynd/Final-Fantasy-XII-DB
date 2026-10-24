@@ -200,17 +200,14 @@ target row, page and entry, then only confirm (`0x002D66A0`).
 
 The member-scoped pane is the `0xD0`-byte widget at `0x02CA96D8` with procedure `0x005677A0`.
 
-```struct GambitMemberPane base=record size=0xD0
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x005677A0
-+0xC0    u8[8]           pad0C0                 read and written by no function; nothing fixes its width
-+0xC8    u32             items67Shown           bit 0 is copied into bit 0, the shown bit, of layout items 6 and 7 of
-                                                the pane each tick while the gambit screen exists (0x00567817,
-                                                0x0056782E); the construct message sets 1 (0x0056785F); the gambit
-                                                screen's 0x0056B4D0 sets it to 1 in one arm (0x0056B557) and to 0 in
-                                                another (0x0056B58D)
-+0xCC    u8[4]           pad0CC                 read and written by no function; nothing fixes its width
-```
+`GambitMemberPane` (`0xD0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x005677A0` |
+| `+0xC0` | `u8[8]` | pad0C0 | read and written by no function; nothing fixes its width |
+| `+0xC8` | `u32` | items67Shown | bit 0 is copied into bit 0, the shown bit, of layout items 6 and 7 of the pane each tick while the gambit screen exists (`0x00567817`, `0x0056782E`); the construct message sets 1 (`0x0056785F`); the gambit screen's `0x0056B4D0` sets it to 1 in one arm (`0x0056B557`) and to 0 in another (`0x0056B58D`) |
+| `+0xCC` | `u8[4]` | pad0CC | read and written by no function; nothing fixes its width |
 
 ## Shipped data
 

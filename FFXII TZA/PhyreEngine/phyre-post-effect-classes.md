@@ -151,193 +151,97 @@ access tables per class:
 
 `PDeferredLightingBase` holds 129 light slots of `0x80` bytes: 128 at `+0x50`, drawn in order up to the count `+0x4110`, and one at `+0x4050`, drawn first (`0x0065A46C`-`0x0065A4A4`). The light renderer `0x0065A960` (slot in `r8`) turns a slot into the shader parameters whose handles `0x00656936`-`0x006569D7` and `0x00654C23`-`0x00654C40` look up by name (`DeferredPos`, `DeferredDir`, `DeferredColor`, `DeferredSpotAngles`, `DeferredAttenParams`, `DeferredShadowMask`, `DeferredWorldTransform`). The constructor `0x006458A0` gives every slot the defaults below (`0x006458E0`-`0x00645977`).
 
-```struct PDeferredLightingSlot0080 base=record size=0x80
-+0x00    f32             yAxisX                 x of the light's y axis, row 1 of the DeferredWorldTransform the light
-                                                renderer 0x0065A960 builds (0x0065AB05) and scales by the light's width
-                                                (0x0065AD47); 0 from the constructor 0x006458A0 (0x006458E0)
-+0x04    f32             yAxisY                 y of the light's y axis (0x0065AB0A, scaled at 0x0065AD42); 1.0 from the
-                                                constructor (0x006458E2)
-+0x08    f32             yAxisZ                 z of the light's y axis (0x0065AB10, scaled at 0x0065AD3A); 0 from the
-                                                constructor (0x006458E2)
-+0x0C    f32             xAxisX                 x of the light's x axis, row 0 of the DeferredWorldTransform
-                                                (0x0065AAE6), scaled by the light's width (0x0065ADE5); 1.0 from the
-                                                constructor (0x00645906)
-+0x10    f32             directionX             x of the light's direction (its z axis): 0x0065A960
-                                                sends +0x10/+0x14/+0x18 as the shader parameter DeferredDir
-                                                (0x0065AA63-0x0065AAC2) and as row 2 of the DeferredWorldTransform scaled
-                                                by the range +0x58 (0x0065AB2D, 0x0065ACC2); 0 from the constructor
-                                                (0x006458EA)
-+0x14    f32             directionY             y of the light's direction (0x0065AA68, 0x0065AB32, 0x0065ACBD); 0 from the
-                                                constructor (0x006458EE)
-+0x18    f32             directionZ             z of the light's direction (0x0065AA63, 0x0065AB37, 0x0065ACB5); 1.0 from
-                                                the constructor (0x006458F1)
-+0x1C    f32             xAxisY                 y of the light's x axis (0x0065AAE0, scaled at 0x0065ADD3); 0 from the
-                                                constructor (0x0064590D)
-+0x20    f32             positionX              x of the light's position: 0x0065A960 sends +0x20/+0x24/+0x28 as the
-                                                shader parameter DeferredPos (0x0065A9EC-0x0065AA46) and as row 3 of the
-                                                DeferredWorldTransform (0x0065AB52); 0 from the constructor (0x006458F8)
-+0x24    f32             positionY              y of the light's position (0x0065A9F2, 0x0065AB57); 0 from the constructor
-                                                (0x006458F8)
-+0x28    f32             positionZ              z of the light's position (0x0065A9EC, 0x0065AB5D); 0 from the constructor
-                                                (0x006458FC)
-+0x2C    f32             xAxisZ                 z of the light's x axis (0x0065AADA, scaled at 0x0065ADC8); 0 from the
-                                                constructor (0x00645910, after 1.0 at 0x006458FF)
-+0x30    f32[4]          colour                 the light's colour, copied whole into the shader parameter
-                                                DeferredColor (0x0065AF27-0x0065AF79); four 1.0 from the constructor
-                                                (0x00645913-0x00645928)
-+0x40    u8[16]          bytes040               16 bytes the constructor sets to 0 (0x00645928 high half, 0x00645930,
-                                                0x00645934 low half); the light renderer 0x0065A960, the only reader of
-                                                the slots in the census of the class's methods, reads none of them
-                                                (every slot displacement it uses is listed in Project notes); nothing
-                                                fixes the width
-+0x50    i32             kind                   the light kind: 0x0065A960 submits the pass 0x02D373C0 with the object
-                                                at +0x4120 for 0 (0x0065B109-0x0065B151), the pass 0x02D373E0 with +0x4128 for
-                                                2 (0x0065B164-0x0065B1AA) and the pass 0x02D37400 with the class's material
-                                                items +0x30 for 1 (0x0065B1B6-0x0065B1EE); 2 is the spot light, whose
-                                                transform takes its width from the cone angle +0x60
-                                                (0x0065ABB5-0x0065ABCF); 0 from the constructor (0x00645934)
-+0x54    f32             attenuationStart       the first value of the shader parameter DeferredAttenParams
-                                                (0x0065B02D-0x0065B085): the distance where the fall-off starts; 50.0 from
-                                                the constructor (0x00645938)
-+0x58    f32             range                  the light's range: the second value of DeferredAttenParams (0x0065B028)
-                                                and the scale of the transform's direction row and, for kinds other
-                                                than 2, of its width (0x0065ABA1-0x0065ABAC); 100.0 from the constructor
-                                                (0x0064593F)
-+0x5C    f32             innerConeAngle         the spot light's inner angle: DeferredSpotAngles is (inner - 1e-6,
-                                                outer + 1e-6, cos of each) (0x0065AF8E-0x0065AFCF); 0 from the constructor
-                                                (0x0064593F high half)
-+0x60    f32             outerConeAngle         the spot light's outer angle: the second and fourth DeferredSpotAngles
-                                                values (0x0065AF8E-0x0065AFA1), and for kind 2 the transform's width is
-                                                tan(angle) * range (0x0065ABBB-0x0065ABCF); 1.0 from the constructor
-                                                (0x00645947)
-+0x64    i32             castsShadow            non-zero when the light casts a shadow: DeferredShadowMask is all 0
-                                                when it is 0, otherwise 1.0 in the channel +0x68 (0x0065B096-0x0065B0B2);
-                                                0 from the constructor (0x00645947 high half)
-+0x68    i32             shadowChannel          the shadow-mask channel, 0 to 3, set to 1.0 in DeferredShadowMask
-                                                (0x0065B0A3-0x0065B0A6); 0 from the constructor (0x0064594F)
-+0x6C    f32             f32One006C             1.0 from the constructor (0x00645952); the light renderer 0x0065A960, the
-                                                only reader of the slots in the census of the class's methods, does
-                                                not read it
-+0x70    f32             f32Max0070             3.4028235e38 (FLT_MAX, 0x7F7FFFFF) from the constructor (0x00645959);
-                                                the light renderer 0x0065A960 does not read it
-+0x74    u8[12]          tail074                12 bytes the constructor sets to 0 (0x00645959 high half, 0x00645961); the
-                                                light renderer 0x0065A960 reads none of them; nothing fixes the width
-```
+`PDeferredLightingSlot0080` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `f32` | yAxisX | x of the light's y axis, row 1 of the DeferredWorldTransform the light renderer `0x0065A960` builds (`0x0065AB05`) and scales by the light's width (`0x0065AD47`); 0 from the constructor `0x006458A0` (`0x006458E0`) |
+| `+0x04` | `f32` | yAxisY | y of the light's y axis (`0x0065AB0A`, scaled at `0x0065AD42`); 1.0 from the constructor (`0x006458E2`) |
+| `+0x08` | `f32` | yAxisZ | z of the light's y axis (`0x0065AB10`, scaled at `0x0065AD3A`); 0 from the constructor (`0x006458E2`) |
+| `+0x0C` | `f32` | xAxisX | x of the light's x axis, row 0 of the DeferredWorldTransform (`0x0065AAE6`), scaled by the light's width (`0x0065ADE5`); 1.0 from the constructor (`0x00645906`) |
+| `+0x10` | `f32` | directionX | x of the light's direction (its z axis): `0x0065A960` sends +`0x10`/+`0x14`/+`0x18` as the shader parameter DeferredDir (`0x0065AA63`-`0x0065AAC2`) and as row 2 of the DeferredWorldTransform scaled by the range +`0x58` (`0x0065AB2D`, `0x0065ACC2`); 0 from the constructor (`0x006458EA`) |
+| `+0x14` | `f32` | directionY | y of the light's direction (`0x0065AA68`, `0x0065AB32`, `0x0065ACBD`); 0 from the constructor (`0x006458EE`) |
+| `+0x18` | `f32` | directionZ | z of the light's direction (`0x0065AA63`, `0x0065AB37`, `0x0065ACB5`); 1.0 from the constructor (`0x006458F1`) |
+| `+0x1C` | `f32` | xAxisY | y of the light's x axis (`0x0065AAE0`, scaled at `0x0065ADD3`); 0 from the constructor (`0x0064590D`) |
+| `+0x20` | `f32` | positionX | x of the light's position: `0x0065A960` sends +`0x20`/+`0x24`/+`0x28` as the shader parameter DeferredPos (`0x0065A9EC`-`0x0065AA46`) and as row 3 of the DeferredWorldTransform (`0x0065AB52`); 0 from the constructor (`0x006458F8`) |
+| `+0x24` | `f32` | positionY | y of the light's position (`0x0065A9F2`, `0x0065AB57`); 0 from the constructor (`0x006458F8`) |
+| `+0x28` | `f32` | positionZ | z of the light's position (`0x0065A9EC`, `0x0065AB5D`); 0 from the constructor (`0x006458FC`) |
+| `+0x2C` | `f32` | xAxisZ | z of the light's x axis (`0x0065AADA`, scaled at `0x0065ADC8`); 0 from the constructor (`0x00645910`, after 1.0 at `0x006458FF`) |
+| `+0x30` | `f32[4]` | colour | the light's colour, copied whole into the shader parameter DeferredColor (`0x0065AF27`-`0x0065AF79`); four 1.0 from the constructor (`0x00645913`-`0x00645928`) |
+| `+0x40` | `u8[16]` | bytes040 | 16 bytes the constructor sets to 0 (`0x00645928` high half, `0x00645930`, `0x00645934` low half); the light renderer `0x0065A960`, the only reader of the slots in the census of the class's methods, reads none of them (every slot displacement it uses is listed in Project notes); nothing fixes the width |
+| `+0x50` | `i32` | kind | the light kind: `0x0065A960` submits the pass `0x02D373C0` with the object at +`0x4120` for 0 (`0x0065B109`-`0x0065B151`), the pass `0x02D373E0` with +`0x4128` for 2 (`0x0065B164`-`0x0065B1AA`) and the pass `0x02D37400` with the class's material items +`0x30` for 1 (`0x0065B1B6`-`0x0065B1EE`); 2 is the spot light, whose transform takes its width from the cone angle +`0x60` (`0x0065ABB5`-`0x0065ABCF`); 0 from the constructor (`0x00645934`) |
+| `+0x54` | `f32` | attenuationStart | the first value of the shader parameter DeferredAttenParams (`0x0065B02D`-`0x0065B085`): the distance where the fall-off starts; 50.0 from the constructor (`0x00645938`) |
+| `+0x58` | `f32` | range | the light's range: the second value of DeferredAttenParams (`0x0065B028`) and the scale of the transform's direction row and, for kinds other than 2, of its width (`0x0065ABA1`-`0x0065ABAC`); 100.0 from the constructor (`0x0064593F`) |
+| `+0x5C` | `f32` | innerConeAngle | the spot light's inner angle: DeferredSpotAngles is (inner - 1e-6, outer + 1e-6, cos of each) (`0x0065AF8E`-`0x0065AFCF`); 0 from the constructor (`0x0064593F` high half) |
+| `+0x60` | `f32` | outerConeAngle | the spot light's outer angle: the second and fourth DeferredSpotAngles values (`0x0065AF8E`-`0x0065AFA1`), and for kind 2 the transform's width is tan(angle) * range (`0x0065ABBB`-`0x0065ABCF`); 1.0 from the constructor (`0x00645947`) |
+| `+0x64` | `i32` | castsShadow | non-zero when the light casts a shadow: DeferredShadowMask is all 0 when it is 0, otherwise 1.0 in the channel +`0x68` (`0x0065B096`-`0x0065B0B2`); 0 from the constructor (`0x00645947` high half) |
+| `+0x68` | `i32` | shadowChannel | the shadow-mask channel, 0 to 3, set to 1.0 in DeferredShadowMask (`0x0065B0A3`-`0x0065B0A6`); 0 from the constructor (`0x0064594F`) |
+| `+0x6C` | `f32` | f32One006C | 1.0 from the constructor (`0x00645952`); the light renderer `0x0065A960`, the only reader of the slots in the census of the class's methods, does not read it |
+| `+0x70` | `f32` | f32Max0070 | 3.4028235e38 (FLT_MAX, `0x7F7FFFFF`) from the constructor (`0x00645959`); the light renderer `0x0065A960` does not read it |
+| `+0x74` | `u8[12]` | tail074 | 12 bytes the constructor sets to 0 (`0x00645959` high half, `0x00645961`); the light renderer `0x0065A960` reads none of them; nothing fixes the width |
 
 ### Reflected members
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct PAtmosphericsBase base=record size=0x288
-+0x61    u8              m_renderDebugTextures  m_renderDebugTextures (u8), registered by 0x00648100 (0x00632960 at
-                                                0x006485E4); no shipped .phyre file declares PAtmosphericsBase; the
-                                                constructor 0x00645520 clears it with +0x60 (word store 0x0064554C)
-+0x90    f32[4]          m_betaR                m_betaR (f32[4]), registered by 0x00648100 (0x00632960 at 0x006482DB); no
-                                                shipped .phyre file declares PAtmosphericsBase; the constructor
-                                                0x00645520 sets it to (0.0058, 0.0135, 0.0331) (0x00645571-0x00645585)
-+0xA0    f32[4]          m_betaM                m_betaM (f32[4]), registered by 0x00648100 (0x00632960 at 0x0064834A); no
-                                                shipped .phyre file declares PAtmosphericsBase; the constructor
-                                                0x00645520 sets it to (0.004, 0.004, 0.004) (0x0064558F-0x006455A3)
-+0xCC    f32[4]          m_sunDir               m_sunDir (f32[4]), registered by 0x00648100 (0x00632960 at 0x00648506); no
-                                                shipped .phyre file declares PAtmosphericsBase; the constructor
-                                                0x00645520 sets it to (0, 1, 0): its qword stores write 20.0 to +0xC8
-                                                and 0 to +0xCC, then 1.0 to +0xD0 and 0 to +0xD4 (0x006455E9, 0x006455F4)
-```
+`PAtmosphericsBase` (`0x288` bytes, offsets from the start of the record):
 
-```struct PCelShadingBase base=record size=0xC0
-+0x64    f32[4]          m_lightColor           m_lightColor (f32[4]), registered by 0x00648620 (0x00632960 at 0x006487FB);
-                                                no shipped .phyre file declares PCelShadingBase; the constructor
-                                                0x006457E0 sets it to (1, 1, 1, 1) (0x00645813-0x00645828)
-+0x74    f32[4]          m_edgeColor            m_edgeColor (f32[4]), registered by 0x00648620 (0x00632960 at 0x0064886A);
-                                                no shipped .phyre file declares PCelShadingBase; the constructor
-                                                0x006457E0 sets it to (0, 0, 0, 1) (0x00645828-0x00645834)
-+0x84    u8[60]          bytes84                the bytes after m_edgeColor (+0x74) up to the end of the 0xC0-byte
-                                                class; the constructor 0x006457E0 clears +0x88 to +0xBF
-                                                (0x0064583E-0x00645868); no registered member covers it (0x00644100
-                                                registers the 0xC0-byte class at 0x0064414A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x61` | `u8` | m_renderDebugTextures | m_renderDebugTextures (u8), registered by `0x00648100` (`0x00632960` at `0x006485E4`); no shipped .phyre file declares PAtmosphericsBase; the constructor `0x00645520` clears it with +`0x60` (word store `0x0064554C`) |
+| `+0x90` | `f32[4]` | m_betaR | m_betaR (f32[4]), registered by `0x00648100` (`0x00632960` at `0x006482DB`); no shipped .phyre file declares PAtmosphericsBase; the constructor `0x00645520` sets it to (0.0058, 0.0135, 0.0331) (`0x00645571`-`0x00645585`) |
+| `+0xA0` | `f32[4]` | m_betaM | m_betaM (f32[4]), registered by `0x00648100` (`0x00632960` at `0x0064834A`); no shipped .phyre file declares PAtmosphericsBase; the constructor `0x00645520` sets it to (0.004, 0.004, 0.004) (`0x0064558F`-`0x006455A3`) |
+| `+0xCC` | `f32[4]` | m_sunDir | m_sunDir (f32[4]), registered by `0x00648100` (`0x00632960` at `0x00648506`); no shipped .phyre file declares PAtmosphericsBase; the constructor `0x00645520` sets it to (0, 1, 0): its qword stores write 20.0 to +`0xC8` and 0 to +`0xCC`, then 1.0 to +`0xD0` and 0 to +`0xD4` (`0x006455E9`, `0x006455F4`) |
 
-```struct PDeferredLightingBase base=record size=0x41D8
-+0x40D0  f32[4]          m_ambientColor         the ambient colour: the composite worker 0x00659EC0 reads its four
-                                                floats as a parameter value (0x0065A41F-0x0065A43D) and 0x006515C0 passes
-                                                its address as one (0x00652336); m_ambientColor (f32[4]), registered by
-                                                0x006488A0 (0x00632960 at 0x0064892E); no shipped .phyre file declares
-                                                PDeferredLightingBase
-+0x40E0  f32[4]          m_fogColor             the fog colour: the composite worker 0x00659EC0 passes its address as a
-                                                parameter value (0x0065A26B); m_fogColor (f32[4]), registered by
-                                                0x006488A0 (0x00632960 at 0x00648C37); no shipped .phyre file declares
-                                                PDeferredLightingBase
-+0x40F8  f32             m_fogAmount            the fog amount: the composite worker 0x00659EC0 writes it as the fourth
-                                                float of the fog parameter (0x0065A1F3-0x0065A20A); m_fogAmount (f32),
-                                                registered by 0x006488A0 (0x00632960 at 0x00648BC8); no shipped .phyre file
-                                                declares PDeferredLightingBase
-+0x40FC  f32[3]          floats40FC             three floats the constructor 0x006458A0 sets to 1.0, 0 and 1.0
-                                                (0x00645A9B, 0x00645AA6); no registered member covers it (0x006442E0
-                                                registers the 0x41D8-byte class at 0x0064432A)
-+0x4114  u32             passState              a state the lighting code steps: 0 from the constructor 0x006458A0
-                                                (0x00645AC5); 0x006553D0 tests it for 0 (0x006553DA) and sets it to 3
-                                                (0x006555AC); 0x00655690 tests it for 0 (0x0065569D); 0x0065C330 reads it
-                                                (0x0065C345); the composite worker 0x00659EC0 compares it with 3
-                                                (0x00659EF8); no registered member covers it (0x006442E0 registers the
-                                                0x41D8-byte class at 0x0064432A)
-+0x4118  ptr             materialCopy           the lighting pass's own copy of the effect material: 0x00654B00 makes it
-                                                with 0x00600120 (stored at 0x00654B6E) and copies m_effectMaterial's
-                                                parameter buffer into it when the sizes match (0x00654B79-0x00654B95); the
-                                                workers 0x00650D40, 0x006515C0, 0x006525F0, 0x00659EC0 and 0x0065A960 read it
-                                                for every pass parameter they set (for example 0x0065218C, 0x00659F85); no
-                                                registered member covers it (0x006442E0 registers the 0x41D8-byte class
-                                                at 0x0064432A)
-+0x4120  ptr             pointer4120            a pointer 0x00655EC0 sets (0x00655EE2) and 0x0065D2A0 releases and clears
-                                                (0x0065D2C2, 0x0065D2D6); 0x00654B00 returns 0x15 while it is null
-                                                (0x00654B0F) and passes it on (0x00654BCB), as does 0x0065A960 (0x0065B11E);
-                                                0x006568D0 tests it (0x006568DA); 0 from the constructor 0x006458A0
-                                                (0x00645AD2); no registered member covers it (0x006442E0 registers the
-                                                0x41D8-byte class at 0x0064432A)
-+0x41D1  u8[7]           pad41D1                the bytes after m_instantLightsEnabled (u8 at +0x41D0) up to the end
-                                                of the 0x41D8-byte class; no registered member covers it (0x006442E0
-                                                registers the 0x41D8-byte class at 0x0064432A)
-```
+`PCelShadingBase` (`0xC0` bytes, offsets from the start of the record):
 
-```struct PScreenSpaceReflectionBase base=record size=0xB0
-+0x50    f32             m_minReflectionDirZ    m_minReflectionDirZ (f32), registered by 0x006496A0 (0x00632960 at
-                                                0x0064972E); no shipped .phyre file declares PScreenSpaceReflectionBase;
-                                                the constructor 0x00646250 sets it to 0 (0x00646271)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x64` | `f32[4]` | m_lightColor | m_lightColor (f32[4]), registered by `0x00648620` (`0x00632960` at `0x006487FB`); no shipped .phyre file declares PCelShadingBase; the constructor `0x006457E0` sets it to (1, 1, 1, 1) (`0x00645813`-`0x00645828`) |
+| `+0x74` | `f32[4]` | m_edgeColor | m_edgeColor (f32[4]), registered by `0x00648620` (`0x00632960` at `0x0064886A`); no shipped .phyre file declares PCelShadingBase; the constructor `0x006457E0` sets it to (0, 0, 0, 1) (`0x00645828`-`0x00645834`) |
+| `+0x84` | `u8[60]` | bytes84 | the bytes after m_edgeColor (+`0x74`) up to the end of the `0xC0`-byte class; the constructor `0x006457E0` clears +`0x88` to +`0xBF` (`0x0064583E`-`0x00645868`); no registered member covers it (`0x00644100` registers the `0xC0`-byte class at `0x0064414A`) |
 
-```struct PDepthOfFieldBase base=record size=0x80
-+0x5C    u8[36]          bytes5C                the bytes after m_focusBlurRange (+0x58) up to the end of the
-                                                0x80-byte class; no registered member covers it (0x006444C0 registers
-                                                the 0x80-byte class at 0x0064450A)
-```
+`PDeferredLightingBase` (`0x41D8` bytes, offsets from the start of the record):
 
-```struct PGlowBase base=record size=0xA0
-+0x68    u8[56]          bytes68                the bytes after m_glowLuminanceScale (+0x64) up to the end of the
-                                                0xA0-byte class; the constructor 0x00645E50 clears them
-                                                (0x00645E75-0x00645E98); no registered member covers it (0x00644880
-                                                registers the 0xA0-byte class at 0x006448CA)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x40D0` | `f32[4]` | m_ambientColor | the ambient colour: the composite worker `0x00659EC0` reads its four floats as a parameter value (`0x0065A41F`-`0x0065A43D`) and `0x006515C0` passes its address as one (`0x00652336`); m_ambientColor (f32[4]), registered by `0x006488A0` (`0x00632960` at `0x0064892E`); no shipped .phyre file declares PDeferredLightingBase |
+| `+0x40E0` | `f32[4]` | m_fogColor | the fog colour: the composite worker `0x00659EC0` passes its address as a parameter value (`0x0065A26B`); m_fogColor (f32[4]), registered by `0x006488A0` (`0x00632960` at `0x00648C37`); no shipped .phyre file declares PDeferredLightingBase |
+| `+0x40F8` | `f32` | m_fogAmount | the fog amount: the composite worker `0x00659EC0` writes it as the fourth float of the fog parameter (`0x0065A1F3`-`0x0065A20A`); m_fogAmount (f32), registered by `0x006488A0` (`0x00632960` at `0x00648BC8`); no shipped .phyre file declares PDeferredLightingBase |
+| `+0x40FC` | `f32[3]` | floats40FC | three floats the constructor `0x006458A0` sets to 1.0, 0 and 1.0 (`0x00645A9B`, `0x00645AA6`); no registered member covers it (`0x006442E0` registers the `0x41D8`-byte class at `0x0064432A`) |
+| `+0x4114` | `u32` | passState | a state the lighting code steps: 0 from the constructor `0x006458A0` (`0x00645AC5`); `0x006553D0` tests it for 0 (`0x006553DA`) and sets it to 3 (`0x006555AC`); `0x00655690` tests it for 0 (`0x0065569D`); `0x0065C330` reads it (`0x0065C345`); the composite worker `0x00659EC0` compares it with 3 (`0x00659EF8`); no registered member covers it (`0x006442E0` registers the `0x41D8`-byte class at `0x0064432A`) |
+| `+0x4118` | `void*` | materialCopy | the lighting pass's own copy of the effect material: `0x00654B00` makes it with `0x00600120` (stored at `0x00654B6E`) and copies m_effectMaterial's parameter buffer into it when the sizes match (`0x00654B79`-`0x00654B95`); the workers `0x00650D40`, `0x006515C0`, `0x006525F0`, `0x00659EC0` and `0x0065A960` read it for every pass parameter they set (for example `0x0065218C`, `0x00659F85`); no registered member covers it (`0x006442E0` registers the `0x41D8`-byte class at `0x0064432A`) |
+| `+0x4120` | `void*` | pointer4120 | a pointer `0x00655EC0` sets (`0x00655EE2`) and `0x0065D2A0` releases and clears (`0x0065D2C2`, `0x0065D2D6`); `0x00654B00` returns `0x15` while it is null (`0x00654B0F`) and passes it on (`0x00654BCB`), as does `0x0065A960` (`0x0065B11E`); `0x006568D0` tests it (`0x006568DA`); 0 from the constructor `0x006458A0` (`0x00645AD2`); no registered member covers it (`0x006442E0` registers the `0x41D8`-byte class at `0x0064432A`) |
+| `+0x41D1` | `u8[7]` | pad41D1 | the bytes after m_instantLightsEnabled (u8 at +`0x41D0`) up to the end of the `0x41D8`-byte class; no registered member covers it (`0x006442E0` registers the `0x41D8`-byte class at `0x0064432A`) |
 
-```struct PPostEffectBase base=record size=0x50
-+0x08    u8[8]           bytes08                cleared by the base constructor 0x006461B0 (0x006461D2); no registered
-                                                member covers it (0x00645000 registers the 0x50-byte class at 0x00645050)
-+0x34    u8[4]           bytes34                the four bytes between the dword at +0x30 and the pointer at +0x38; no
-                                                registered member covers it (0x00645000 registers the 0x50-byte class at
-                                                0x00645050)
-+0x42    u8[2]           pad42                  alignment bytes after m_enabled (u8 at +0x41) up to width (+0x44); no
-                                                registered member covers it (0x00645000 registers the 0x50-byte class at
-                                                0x00645050)
-+0x44    u32             width                  width: slot 1 0x00655DC0 writes it (0x00655E12), slot 3 0x00657680
-                                                (0x00657680), 0x00657690 (0x006576B6) and 0x00655AC0 (0x00655B53); slot 7
-                                                0x00653CD0 returns it; no registered member covers it (0x00645000
-                                                registers the 0x50-byte class at 0x00645050)
-+0x48    u32             height                 height: slot 1 0x00655DC0 writes it (0x00655E08), slot 3 0x00657680
-                                                (0x00657685), 0x00657690 (0x006576BB) and 0x00655AC0 (0x00655B59); slot 8
-                                                0x00653B20 returns it; no registered member covers it (0x00645000
-                                                registers the 0x50-byte class at 0x00645050)
-+0x4C    u8[4]           bytes4C                the bytes after height (+0x48) up to the end of the 0x50-byte class;
-                                                no registered member covers it (0x00645000 registers the 0x50-byte class
-                                                at 0x00645050)
-```
+`PScreenSpaceReflectionBase` (`0xB0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x50` | `f32` | m_minReflectionDirZ | m_minReflectionDirZ (f32), registered by `0x006496A0` (`0x00632960` at `0x0064972E`); no shipped .phyre file declares PScreenSpaceReflectionBase; the constructor `0x00646250` sets it to 0 (`0x00646271`) |
+
+`PDepthOfFieldBase` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x5C` | `u8[36]` | bytes5C | the bytes after m_focusBlurRange (+`0x58`) up to the end of the `0x80`-byte class; no registered member covers it (`0x006444C0` registers the `0x80`-byte class at `0x0064450A`) |
+
+`PGlowBase` (`0xA0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x68` | `u8[56]` | bytes68 | the bytes after m_glowLuminanceScale (+`0x64`) up to the end of the `0xA0`-byte class; the constructor `0x00645E50` clears them (`0x00645E75`-`0x00645E98`); no registered member covers it (`0x00644880` registers the `0xA0`-byte class at `0x006448CA`) |
+
+`PPostEffectBase` (`0x50` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u8[8]` | bytes08 | cleared by the base constructor `0x006461B0` (`0x006461D2`); no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
+| `+0x34` | `u8[4]` | bytes34 | the four bytes between the dword at +`0x30` and the pointer at +`0x38`; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
+| `+0x42` | `u8[2]` | pad42 | alignment bytes after m_enabled (u8 at +`0x41`) up to width (+`0x44`); no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
+| `+0x44` | `u32` | width | width: slot 1 `0x00655DC0` writes it (`0x00655E12`), slot 3 `0x00657680` (`0x00657680`), `0x00657690` (`0x006576B6`) and `0x00655AC0` (`0x00655B53`); slot 7 `0x00653CD0` returns it; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
+| `+0x48` | `u32` | height | height: slot 1 `0x00655DC0` writes it (`0x00655E08`), slot 3 `0x00657680` (`0x00657685`), `0x00657690` (`0x006576BB`) and `0x00655AC0` (`0x00655B59`); slot 8 `0x00653B20` returns it; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
+| `+0x4C` | `u8[4]` | bytes4C | the bytes after height (+`0x48`) up to the end of the `0x50`-byte class; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
 
 ## Shipped data
 

@@ -38,27 +38,33 @@ Offsets are from the start of the file. Every offset field is relative to the fi
 
 ### hctg: the family catalog
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "hctg"; the loaders ignore it |
+| `+0x04` | `u32` | version | 102; not read |
+| `+0x08` | `u16` | family | low nibble = family number 0-5 (`0x00576740`); the word >> 4 is copied out (`0x00576030`) |
+| `+0x0A` | `u16` | recordsAt | offset of the entry records |
+| `+0x0C` | `u16` | pageMapAt | offset of the page map, u16[pageCount] |
+| `+0x0E` | `u16` | entryCount | entries; bounds every record index |
+| `+0x10` | `u16` | pageCount | pages; bounds every page number (`0x00575DD0`) |
+| `+0x12` | `u16` | sectionCount sections; bounds every caption index (0x00576A50) |  |
+| `+0x14` | `u16` | textBundles | number of hdat files; the first picture file follows them (`0x005773D2`) |
+| `+0x16` | `u8[2]` | pictureFiles number of picture files the page map names; read by no function: the catalog readers 0x005778F0, 0x00575D10, 0x00575DD0, 0x00576030, 0x005760A0, 0x005766E0, 0x00576740 and 0x00576A50 (the functions that load [slot 0 +0xF0]) read nothing at +0x16; nothing fixes its width |  |
+| `+0x18` | `i32` | caption[sectionCount] | text id of each section caption; -1 = none |
+
 ```
-+0x00  char[4]  magic        "hctg"; the loaders ignore it
-+0x04  u32      version      102; not read
-+0x08  u16      family       low nibble = family number 0-5 (0x00576740); the word >> 4 is copied out (0x00576030)
-+0x0A  u16      recordsAt    offset of the entry records
-+0x0C  u16      pageMapAt    offset of the page map, u16[pageCount]
-+0x0E  u16      entryCount   entries; bounds every record index
-+0x10  u16      pageCount    pages; bounds every page number (0x00575DD0)
-+0x12  u16      sectionCount sections; bounds every caption index (0x00576A50)
-+0x14  u16      textBundles  number of hdat files; the first picture file follows them (0x005773D2)
-+0x16  u8[2]    pictureFiles number of picture files the page map names; read by no function: the catalog readers 0x005778F0, 0x00575D10, 0x00575DD0, 0x00576030, 0x005760A0, 0x005766E0, 0x00576740 and 0x00576A50 (the functions that load [slot 0 +0xF0]) read nothing at +0x16; nothing fixes its width
-+0x18  i32      caption[sectionCount]   text id of each section caption; -1 = none
 ...    u16      gateCount, u16 gateAt[gateCount]   caption gates, offsets from gateCount's own position
 ```
 
 A caption gate, reached through `gateAt[section]`:
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | flags | low nibble: copied to the caption record +`0x0A`; high nibble: condition count C |
+| `+0x01` | `u8` | mapCount | M |
+| `+0x02` | `u16` | condition[C] | encoded ids tested with `0x00309EC0`(id, 0) |
+
 ```
-+0x00  u8   flags      low nibble: copied to the caption record +0x0A; high nibble: condition count C
-+0x01  u8   mapCount   M
-+0x02  u16  condition[C]   encoded ids tested with 0x00309EC0(id, 0)
 ...    u16  map[M]         map numbers
 ```
 
@@ -123,21 +129,27 @@ Bestiary, 16 bytes per entry:
 
 A record, `4 + 4 x slots + 8` bytes:
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | slots | text slots |
+| `+0x01` | `u8` | serial | read by no function: the bundle, [slot 1 +`0xF0`], is loaded by `0x00576300` (`0x00576376`), `0x00577A40` (`0x00577A8E`) and the sheet registration `0x00575710` (`0x00575750`, which reads +`0x0C` of the bundle only), and the two record readers take +`0x00` and the tail after the slots; nothing fixes its width |
+| `+0x02` | `u8[2]` | entry | the record's entry number; read by no function: the bundle is loaded by `0x00576300`, `0x00577A40` and `0x00575710` (as +`0x01`), and no instruction of the three reads a record's +`0x02`; nothing fixes its width |
+| `+0x04` | `i32` | string[slots] | offset from stringsAt of each slot's string entry |
+
 ```
-+0x00  u8   slots       text slots
-+0x01  u8   serial      read by no function: the bundle, [slot 1 +0xF0], is loaded by 0x00576300 (0x00576376), 0x00577A40 (0x00577A8E) and the sheet registration 0x00575710 (0x00575750, which reads +0x0C of the bundle only), and the two record readers take +0x00 and the tail after the slots; nothing fixes its width
-+0x02  u8[2]  entry     the record's entry number; read by no function: the bundle is loaded by 0x00576300, 0x00577A40 and 0x00575710 (as +0x01), and no instruction of the three reads a record's +0x02; nothing fixes its width
-+0x04  i32  string[slots]   offset from stringsAt of each slot's string entry
 ...    u16, u16, u16, u8, u8   copied to the entry's line record +0x48, +0x4A, +0x4C, +0x4E (0x00576300)
 ```
 
 A string entry:
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | textAt | offset of the text from the entry itself; `0xFFFF` = none (an empty line) |
+| `+0x02` | `u8` | opCount | line-program operations (`0x00577A40`) |
+| `+0x03` | `u8` | pad |  |
+| `+0x04` | `{u8` | op, | u8 index, u8 value, u8 pad}[opCount] |
+
 ```
-+0x00  u16  textAt     offset of the text from the entry itself; 0xFFFF = none (an empty line)
-+0x02  u8   opCount    line-program operations (0x00577A40)
-+0x03  u8   pad
-+0x04  {u8 op, u8 index, u8 value, u8 pad}[opCount]
 ...    text in the game's encoded text, zero-terminated
 ```
 

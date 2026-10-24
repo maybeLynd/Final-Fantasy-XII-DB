@@ -32,25 +32,29 @@ All multi-byte fields are little-endian.
 
 The file is a TIM2 file with the magic changed, one picture and no pixel data.
 
-```
-+0x00  u8[4]    "CLT2"     read by no function: the table pointer, widget +0x118, is loaded by the draw 0x003C26C0 (0x003C2794), which hands it to 0x0024A9E0 (+0x06 and the picture header from +0x10), and by the releases 0x003C1F00 (0x003C2024) and 0x003BC4E0 (0x003BC55A); nothing fixes its width
-+0x04  u8       version    4
-+0x05  u8       format     0
-+0x06  u16      pictures   1; read by 0x0024A9E0 as the bound of the picture index, which is 0 here
-+0x08  u8[8]    zero
-picture header (+0x10)
-+0x10  u32      totalSize  file size - 0x10; not read
-+0x14  u32      clutSize   colours x 4; not read
-+0x18  u32      imageSize  0; read
-+0x1C  u16      headerSize 0x30; read
-+0x1E  u16      colours    read
-+0x20  u8       pictFormat 0
-+0x21  u8       mipmaps    0
-+0x22  u8       clutType   3 (32-bit colours); not read
-+0x23  u8       imageType  5 or 4; not read
-+0x24  u8[28]   zero
-+0x40  u8[4][colours]  palette: R, G, B, A
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[4]` | "CLT2" | read by no function: the table pointer, widget +`0x118`, is loaded by the draw `0x003C26C0` (`0x003C2794`), which hands it to `0x0024A9E0` (+`0x06` and the picture header from +`0x10`), and by the releases `0x003C1F00` (`0x003C2024`) and `0x003BC4E0` (`0x003BC55A`); nothing fixes its width |
+| `+0x04` | `u8` | version | 4 |
+| `+0x05` | `u8` | format | 0 |
+| `+0x06` | `u16` | pictures | 1; read by `0x0024A9E0` as the bound of the picture index, which is 0 here |
+| `+0x08` | `u8[8]` | zero |  |
+
+Picture header (+`0x10`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10` | `u32` | totalSize | file size - `0x10`; not read |
+| `+0x14` | `u32` | clutSize | colours x 4; not read |
+| `+0x18` | `u32` | imageSize | 0; read |
+| `+0x1C` | `u16` | headerSize 0x30; read |  |
+| `+0x1E` | `u16` | colours | read |
+| `+0x20` | `u8` | pictFormat 0 |  |
+| `+0x21` | `u8` | mipmaps | 0 |
+| `+0x22` | `u8` | clutType | 3 (32-bit colours); not read |
+| `+0x23` | `u8` | imageType | 5 or 4; not read |
+| `+0x24` | `u8[28]` | zero |  |
+| `+0x40` | `u8[4][colours]` | palette: R, G, B, A |  |
 
 The palette starts at `+0x10 + headerSize + imageSize`. The alpha byte is on the PS2 scale, where `0x80` is
 opaque.

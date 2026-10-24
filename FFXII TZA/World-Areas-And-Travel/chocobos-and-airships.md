@@ -501,8 +501,7 @@ Struct TurboMark size=`0x58`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[32]` | alpha tween (0x002726C0 / 0x002727C0 at 0x003CAF5F / 0x003CAF6A); +0x14 i16 its value |  |
-| `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; |  |
-| `+0x34` | `i16` | its | value |
+| `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; | +`0x34` i16 its value |
 | `+0x40` | `void*` | the mark's layout item, item 3 + k of the record (0x003CB36E) |  |
 | `+0x48` | `u32` | bit 0 shown, bit 1 spent, bit 2 alpha tween running, bit 3 colour tween running |  |
 

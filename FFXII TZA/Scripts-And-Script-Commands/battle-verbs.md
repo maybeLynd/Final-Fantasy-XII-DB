@@ -201,7 +201,7 @@ on every actor of the scene range that has a battle unit, when scene byte `+0x10
 
 ## Layouts
 
-```
+```python
 battle unit   +0 u32 flags (bit 14 issued command, bit 22 no attacker registration, bit 23 stance), +4 u32 (bits 9-10 emergency, bit 16 engaged),
               +0x6B0 bit 1 issued without target, +0x6E0 / +0x6E8 / +0x6F0 / +0x6F8 order sets, +0x700..+0x717 action block:
               +0x708 action context, +0x710 target focus, +0x714 u16 action id; +0x718..+0x72F copy of the block,

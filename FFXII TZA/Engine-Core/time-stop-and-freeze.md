@@ -226,19 +226,19 @@ speed-mode block) and `0x00226BD0(id)` tests one bit (`0x0025C830` tests 10).
 
 ## Layouts
 
-```
-0x01FD4160 + id*0x18  record A: +0 u64 permission bits, +0x14 u8 flag
-0x01FD4400 + id*0x18  record B: +0 u64 permission bits, +0x10 i32 fade (-1 none; 0 before the first apply), +0x14 u8 flag
-0x01FD46A0  u64 combined A      0x01FD46B8  u64 combined B      0x01FD46B0 / 0x01FD46C8  unused copies
-0x01FD46D0  u8 dirty            0x01FD46D1  u8 skip the audio block once      0x01FD46D4  u32 active ids
-record (actor):  +0x10C u32 set 2 live, +0x110 / +0x114 pending set / clear
-controller [record+0xC0]:  +0x158 / +0x15C / +0x160 set 5;  +0x164 / +0x168 / +0x16C set 4;  +0x170 / +0x174 / +0x178 set 3
-battle unit [record+0x30]+0xED0:  +0x40 / +0x54 / +0x60 set 1;  +0x44 / +0x4C / +0x58 set 6;  +0x48 / +0x50 / +0x5C set 7
-manager: +0x10 bit 0 live, +0x28 exemptions skipped when non-zero, +0x1D6 count, +0x1DE first, +0x1F0 fade list, +0x1F8 its count
-0x02099DE3..0x02099DE7  u8 hold bytes (0x02099DE5 / 0x02099DE6 select ids 5 / 4, 0x02099DE7 the flag)
-0x0209215E / 0x02092162  u16 effect group masks     0x0215FD44 / 0x0215FD45  u8 source bytes (bit 0)     0x0215F1B3  u8 (bit 0)
-0x020926E4 u16 flags, 0x020926E6 u16 frames, 0x020926E8 f32 value, 0x020926EC f32 target, 0x020926F0 f32 step  the fade ramp
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01FD4160` | `+ id*0x18` | record A: +0 u64 permission bits, +0x14 u8 flag |  |
+| `0x01FD4400` | `+ id*0x18` | record B: +0 u64 permission bits, +0x10 i32 fade (-1 none; 0 before the first apply), +0x14 u8 flag |  |
+| `0x01FD46A0` | `u64 combined A` | 0x01FD46B8 | u64 combined B      `0x01FD46B0` / `0x01FD46C8`  unused copies |
+| `0x01FD46D0` | `u8 dirty` | 0x01FD46D1 | u8 skip the audio block once      `0x01FD46D4`  u32 active ids |
+
+Record (actor):  +`0x10C` u32 set 2 live, +`0x110` / +`0x114` pending set / clear controller [record+`0xC0`]:  +`0x158` / +`0x15C` / +`0x160` set 5;  +`0x164` / +`0x168` / +`0x16C` set 4;  +`0x170` / +`0x174` / +`0x178` set 3 battle unit [record+`0x30`]+`0xED0`:  +`0x40` / +`0x54` / +`0x60` set 1;  +`0x44` / +`0x4C` / +`0x58` set 6;  +`0x48` / +`0x50` / +`0x5C` set 7 manager: +`0x10` bit 0 live, +`0x28` exemptions skipped when non-zero, +`0x1D6` count, +`0x1DE` first, +`0x1F0` fade list, +`0x1F8` its count `0x02099DE3`..0x02099DE7  u8 hold bytes (`0x02099DE5` / `0x02099DE6` select ids 5 / 4, `0x02099DE7` the flag):
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x0209215E` | `/ 0x02092162` | u16 effect group masks | `0x0215FD44` / `0x0215FD45`  u8 source bytes (bit 0)     `0x0215F1B3`  u8 (bit 0) |
+| `0x020926E4` | `u16 flags, 0x020926E6 u16 frames, 0x020926E8 f32 value, 0x020926EC f32 target, 0x020926F0 f32 step` | the fade ramp |  |
 
 ## Shipped data
 

@@ -216,32 +216,43 @@ every caller and is not reentrant.
 
 ## Layouts
 
-```
-shape record (a collision wall record is one)
-+0x00  i32     type: 0 sphere, 1 cylinder, 2 box
-+0x04  u32     attribute word (collision mesh; the primitives do not read it)
-+0x10  f32[16] forward transform (unit frame to world)
-+0x50  f32[16] inverse transform (world to unit frame)
+Shape record (a collision wall record is one):
 
-collision polygon (0x20 bytes at [part + 0x10])
-+0x00  f32[3]  plane normal    +0x0C  u32  attribute word
-+0x10  u16[3]  vertex indices into the 0x10-byte vertices at [part + 0x08]
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i32` | type: 0 sphere, 1 cylinder, 2 box |  |
+| `+0x04` | `u32` | attribute word (collision mesh; the primitives do not read it) |  |
+| `+0x10` | `f32[16]` | forward | transform (unit frame to world) |
+| `+0x50` | `f32[16]` | inverse | transform (world to unit frame) |
 
-globals
-0x00D11200  f32[6][4]  unit-cube faces {n, 1}: +x, -x, +y, -y, +z, -z
-0x00D11260  f32[4]     {0, 0, 0, 1}, the sphere's centre
-0x00D11270  f32[4]     {0, 0, 0, 1}, the cylinder's axis point
-0x00D11280  f32[4]     {0, 1, 0, 1}, the top cap plane
-0x00D11290  f32[4]     {0, -1, 0, 1}, the bottom cap plane
-0x00D112A0  f32[4]     {0.999, 1.001, -0.999, 0}; 0x00D112A4 is the box margin
-0x00908DE8  i32[3]     {1, 2, 0}, the next-vertex table
-0x00908DF8  i32[4]     {0, 1, 2, -1}, the cell-list offsets
-0x0209A3E0  override entries, 8 bytes each; walls and polygons use entries 32-63
-0x022CBAF0  ptr        base of the emitter volume records
-0x022D9130 / 0x022D9478  the CLIP word and its copy
-0x022D9198, 0x022D91A0, 0x022D92A0-0x022D935F, 0x022D9470  the VU0 register image
-0x01EF93F0  f32[4]     the vf00 image {0, 0, 0, 1}
-```
+Collision polygon (`0x20` bytes at [part + `0x10`]):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `f32[3]` | plane normal | +`0x0C`  u32  attribute word |
+| `+0x10` | `u16[3]` | vertex indices into the 0x10-byte vertices at [part + 0x08] |  |
+
+Globals:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x00D11200` | `f32[6][4]` | unit-cube faces {n, 1}: +x, -x, +y, -y, +z, -z |  |
+| `0x00D11260` | `f32[4]` | {0, 0, 0, 1}, the sphere's centre |  |
+| `0x00D11270` | `f32[4]` | {0, 0, 0, 1}, the cylinder's axis point |  |
+| `0x00D11280` | `f32[4]` | {0, 1, 0, 1}, the top cap plane |  |
+| `0x00D11290` | `f32[4]` | {0, -1, 0, 1}, the bottom cap plane |  |
+| `0x00D112A0` | `f32[4]` | {0.999, 1.001, -0.999, 0}; 0x00D112A4 is the box margin |  |
+| `0x00908DE8` | `i32[3]` | {1, 2, 0}, the next-vertex table |  |
+| `0x00908DF8` | `i32[4]` | {0, 1, 2, -1}, the cell-list offsets |  |
+| `0x0209A3E0` | `override` | entries, | 8 bytes each; walls and polygons use entries 32-63 |
+| `0x022CBAF0` | `void*` | base of the emitter volume records |  |
+| `0x022D9130` | `/ 0x022D9478` | the CLIP word and its copy |  |
+
+`0x022D9198`, `0x022D91A0`, `0x022D92A0`-`0x022D935F`, `0x022D9470`  the VU0 register image:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01EF93F0` | `f32[4]` | the vf00 image {0, 0, 0, 1} |  |
 
 ## Shipped data
 

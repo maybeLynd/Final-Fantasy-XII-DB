@@ -416,429 +416,242 @@ twelve floats, as (`+0xC`, `+0x1C`, `+0x2C`, 0), (`+0`, `+4`, `+8`, 0), (`+0x10`
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct PConstantBufferBase base=record size=0xC
-+0x00    u32             m_size                 m_size (u32), registered by 0x005E3B70 (0x00632960 at 0x005E3BF5); no
-                                                shipped .phyre file declares PConstantBufferBase; the placement
-                                                constructor 0x005CE780 clears +0x00 to +0x07 (0x005CE787)
-+0x04    u8[4]           bytes04                cleared with m_size by the placement constructor 0x005CE780 (0x005CE787);
-                                                no registered member covers it (0x005D8FC0 registers the 0xC-byte class
-                                                at 0x005D9010)
-+0x09    u8[3]           pad09                  the bytes after the byte the placement constructor 0x005CE780 clears
-                                                at +0x08 (0x005CE78A) up to the end of the 0xC-byte class; no registered
-                                                member covers it (0x005D8FC0 registers the 0xC-byte class at 0x005D9010)
-```
+`PConstantBufferBase` (`0xC` bytes, offsets from the start of the record):
 
-```struct PDataBlockBase base=record size=0x20
-+0x00    u32             m_stride               m_stride (u32), registered by 0x00665620 (0x00632960 at 0x00665721); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PDataBlockBase; the placement constructor 0x00660A20
-                                                clears it with m_elementCount (0x00660A27)
-+0x04    u32             m_elementCount         m_elementCount (u32), registered by 0x00665620 (0x00632960 at 0x00665794);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PDataBlockBase; cleared with m_stride by the
-                                                placement constructor 0x00660A20 (0x00660A27)
-+0x1E    u8[2]           pad1E                  the bytes after the word the placement constructor 0x00660A20 sets to
-                                                0x300 at +0x1C (0x00660A34) up to the end of the 0x20-byte class; no
-                                                registered member covers it (0x00661BD0 registers the 0x20-byte class at
-                                                0x00661C20)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_size | m_size (u32), registered by `0x005E3B70` (`0x00632960` at `0x005E3BF5`); no shipped .phyre file declares PConstantBufferBase; the placement constructor `0x005CE780` clears +`0x00` to +`0x07` (`0x005CE787`) |
+| `+0x04` | `u8[4]` | bytes04 | cleared with m_size by the placement constructor `0x005CE780` (`0x005CE787`); no registered member covers it (`0x005D8FC0` registers the `0xC`-byte class at `0x005D9010`) |
+| `+0x09` | `u8[3]` | pad09 | the bytes after the byte the placement constructor `0x005CE780` clears at +`0x08` (`0x005CE78A`) up to the end of the `0xC`-byte class; no registered member covers it (`0x005D8FC0` registers the `0xC`-byte class at `0x005D9010`) |
 
-```struct PIndexDataBlockBase base=record size=0x14
-+0x00    u32             m_minimumIndex         m_minimumIndex (u32), registered by 0x006660D0 (0x00632960 at 0x006662B7);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PIndexDataBlockBase; the placement
-                                                constructor 0x0065EC80 clears it with m_maximumIndex (0x0065EC87)
-+0x04    u32             m_maximumIndex         m_maximumIndex (u32), registered by 0x006660D0 (0x00632960 at 0x0066632A);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PIndexDataBlockBase; cleared with
-                                                m_minimumIndex by the placement constructor 0x0065EC80 (0x0065EC87)
-+0x08    u32             m_elementCount         m_elementCount (u32), registered by 0x006660D0 (0x00632960 at 0x006661D5);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PIndexDataBlockBase; cleared by the
-                                                placement constructor 0x0065EC80 (0x0065EC8A)
-+0x0F    u8[1]           pad0F                  the byte after the byte the placement constructor 0x0065EC80 clears
-                                                at +0x0E (0x0065EC93), before the dword it clears at +0x10 (0x0065EC96); no
-                                                registered member covers it (0x00662080 registers the 0x14-byte class at
-                                                0x006620D0)
-```
+`PDataBlockBase` (`0x20` bytes, offsets from the start of the record):
 
-```struct PLODLevel base=record size=0x38
-+0x18    f32             m_minimumThreshold     m_minimumThreshold (f32), registered by 0x006C5FF0 (0x00632960 at
-                                                0x006C617E); the cluster loader binds it by name (0x0059B430) in the 2,091
-                                                shipped .phyre files that declare PLODLevel; the placement constructor
-                                                0x006C4A60 sets it to 0 (0x006C4A82) and m_maximumThreshold (+0x1C) to
-                                                10000.0 (0x006C4A85)
-+0x24    u8[4]           bytes24                the bytes at +0x24, after +0x20 and before +0x28; no registered member
-                                                covers it (0x006C4F70 registers the 0x38-byte class at 0x006C4FC0)
-+0x34    u8[4]           bytes34                the bytes after +0x30 up to the end of the 0x38-byte class; no
-                                                registered member covers it (0x006C4F70 registers the 0x38-byte class at
-                                                0x006C4FC0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_stride | m_stride (u32), registered by `0x00665620` (`0x00632960` at `0x00665721`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockBase; the placement constructor `0x00660A20` clears it with m_elementCount (`0x00660A27`) |
+| `+0x04` | `u32` | m_elementCount | m_elementCount (u32), registered by `0x00665620` (`0x00632960` at `0x00665794`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockBase; cleared with m_stride by the placement constructor `0x00660A20` (`0x00660A27`) |
+| `+0x1E` | `u8[2]` | pad1E | the bytes after the word the placement constructor `0x00660A20` sets to `0x300` at +`0x1C` (`0x00660A34`) up to the end of the `0x20`-byte class; no registered member covers it (`0x00661BD0` registers the `0x20`-byte class at `0x00661C20`) |
 
-```struct PMeshInstanceSegmentStreamBinding base=record size=0x18
-+0x08    ptr             m_name                 m_name (ptr), registered by 0x005E68B0 (0x00632960 at 0x005E69B0); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PMeshInstanceSegmentStreamBinding; cleared by the
-                                                placement constructor 0x005CEEF0 (0x005CEEFA)
-+0x10    u16             m_nameHash             m_nameHash (u16), registered by 0x005E68B0 (0x00632960 at 0x005E6A23); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PMeshInstanceSegmentStreamBinding; cleared with
-                                                m_index and m_inputSet by the placement constructor 0x005CEEF0 (dword
-                                                store 0x005CEEFE)
-+0x12    u8              m_index                m_index (u8), registered by 0x005E68B0 (0x00632960 at 0x005E6A96); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PMeshInstanceSegmentStreamBinding; cleared by the
-                                                placement constructor 0x005CEEF0 (0x005CEEFE)
-+0x13    u8              m_inputSet             m_inputSet (u8), registered by 0x005E68B0 (0x00632960 at 0x005E6B09); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PMeshInstanceSegmentStreamBinding; cleared by the
-                                                placement constructor 0x005CEEF0 (0x005CEEFE)
-+0x14    u8[4]           bytes14                the bytes after m_inputSet (u8 at +0x13) up to the end of the
-                                                0x18-byte class; no registered member covers it (0x005D9930 registers
-                                                the 0x18-byte class at 0x005D9980)
-```
+`PIndexDataBlockBase` (`0x14` bytes, offsets from the start of the record):
 
-```struct PMeshSegmentBase base=record size=0x30
-+0x00    u32             m_materialIndex        m_materialIndex (u32), registered by 0x00666E90 (0x00632960 at 0x00666F1E);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PMeshSegmentBase; the placement constructor
-                                                0x0065EA30 sets it to 0 (0x0065EA3E)
-+0x2C    u8[4]           bytes2C                the bytes after the dword the placement constructor 0x0065EA30 clears
-                                                at +0x28 (0x0065EA5D) up to the end of the 0x30-byte class; no registered
-                                                member covers it (0x00662480 registers the 0x30-byte class at 0x006624D0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_minimumIndex | m_minimumIndex (u32), registered by `0x006660D0` (`0x00632960` at `0x006662B7`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockBase; the placement constructor `0x0065EC80` clears it with m_maximumIndex (`0x0065EC87`) |
+| `+0x04` | `u32` | m_maximumIndex | m_maximumIndex (u32), registered by `0x006660D0` (`0x00632960` at `0x0066632A`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockBase; cleared with m_minimumIndex by the placement constructor `0x0065EC80` (`0x0065EC87`) |
+| `+0x08` | `u32` | m_elementCount | m_elementCount (u32), registered by `0x006660D0` (`0x00632960` at `0x006661D5`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockBase; cleared by the placement constructor `0x0065EC80` (`0x0065EC8A`) |
+| `+0x0F` | `u8[1]` | pad0F | the byte after the byte the placement constructor `0x0065EC80` clears at +`0x0E` (`0x0065EC93`), before the dword it clears at +`0x10` (`0x0065EC96`); no registered member covers it (`0x00662080` registers the `0x14`-byte class at `0x006620D0`) |
 
-```struct PModifierNetwork base=record size=0x70
-+0x00    u32             m_totalOutputElementSize m_totalOutputElementSize (u32), registered by 0x006D0FA0 (0x00632960 at
-                                                  0x006D126A); the cluster loader binds it by name (0x0059B430) in the 3
-                                                  shipped .phyre files that declare PModifierNetwork; the placement
-                                                  constructor 0x006CFA50 clears it (0x006CFA76)
-+0x04    u8[4]           bytes04                the bytes after m_totalOutputElementSize (+0x00), before the dword the
-                                                placement constructor 0x006CFA50 clears at +0x08 (0x006CFA57); no
-                                                registered member covers it (0x006CFC50 registers the 0x70-byte class at
-                                                0x006CFCA0)
-+0x18    u32             m_totalInputCount      m_totalInputCount (u32), registered by 0x006D0FA0 (0x00632960 at
-                                                0x006D10D0); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare PModifierNetwork; the placement
-                                                constructor 0x006CFA50 clears it (0x006CFA73)
-+0x1C    u8[4]           bytes1C                the bytes after m_totalInputCount (+0x18), before the dword the
-                                                placement constructor 0x006CFA50 clears at +0x20 (0x006CFA5E); no
-                                                registered member covers it (0x006CFC50 registers the 0x70-byte class at
-                                                0x006CFCA0)
-+0x50    u32             m_totalPersistentStateSize m_totalPersistentStateSize (u32), registered by 0x006D0FA0 (0x00632960
-                                                    at 0x006D13C1); the cluster loader binds it by name (0x0059B430) in
-                                                    the 3 shipped .phyre files that declare PModifierNetwork; the
-                                                    placement constructor 0x006CFA50 clears it with
-                                                    m_totalStateBlockSize (0x006CFA80)
-+0x54    u32             m_totalStateBlockSize  m_totalStateBlockSize (u32), registered by 0x006D0FA0 (0x00632960 at
-                                                0x006D1434); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare PModifierNetwork; the placement
-                                                constructor 0x006CFA50 clears it with m_totalPersistentStateSize
-                                                (0x006CFA80)
-+0x58    u8              m_isCompiled           m_isCompiled (u8), registered by 0x006D0FA0 (0x00632960 at 0x006D14A7); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetwork; the placement constructor
-                                                0x006CFA50 clears it (0x006CFA84)
-+0x59    u8[7]           pad59                  the bytes after m_isCompiled (u8 at +0x58), before the dword the
-                                                placement constructor 0x006CFA50 clears at +0x60 (0x006CFA6C); no
-                                                registered member covers it (0x006CFC50 registers the 0x70-byte class at
-                                                0x006CFCA0)
-```
+`PLODLevel` (`0x38` bytes, offsets from the start of the record):
 
-```struct PModifierNetworkDynamicMeshSegment base=record size=0x18
-+0x08    u32             m_segmentInputGroupStart m_segmentInputGroupStart (u32), registered by 0x006BCA20 (0x00632960 at
-                                                  0x006BCB20); the cluster loader binds it by name (0x0059B430) in the 3
-                                                  shipped .phyre files that declare
-                                                  PModifierNetworkDynamicMeshSegment; cleared with
-                                                  m_segmentOutputGroupStart by the placement constructor 0x005CEEF0
-                                                  (0x005CEEFA)
-+0x0C    u32             m_segmentOutputGroupStart m_segmentOutputGroupStart (u32), registered by 0x006BCA20 (0x00632960
-                                                   at 0x006BCB93); the cluster loader binds it by name (0x0059B430) in the
-                                                   3 shipped .phyre files that declare
-                                                   PModifierNetworkDynamicMeshSegment; cleared with
-                                                   m_segmentInputGroupStart by the placement constructor 0x005CEEF0
-                                                   (0x005CEEFA)
-+0x10    u32             m_modifierOutputsAreConsumed m_modifierOutputsAreConsumed (u32), registered by 0x006BCA20
-                                                      (0x00632960 at 0x006BCC06); the cluster loader binds it by name
-                                                      (0x0059B430) in the 3 shipped .phyre files that declare
-                                                      PModifierNetworkDynamicMeshSegment; cleared by the placement
-                                                      constructor 0x005CEEF0 (0x005CEEFE)
-+0x14    u8[4]           bytes14                the bytes after m_modifierOutputsAreConsumed (+0x10) up to the end of
-                                                the 0x18-byte class; no registered member covers it (0x006BBB70
-                                                registers the 0x18-byte class at 0x006BBBC0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x18` | `f32` | m_minimumThreshold | m_minimumThreshold (f32), registered by `0x006C5FF0` (`0x00632960` at `0x006C617E`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PLODLevel; the placement constructor `0x006C4A60` sets it to 0 (`0x006C4A82`) and m_maximumThreshold (+`0x1C`) to 10000.0 (`0x006C4A85`) |
+| `+0x24` | `u8[4]` | bytes24 | the bytes at +`0x24`, after +`0x20` and before +`0x28`; no registered member covers it (`0x006C4F70` registers the `0x38`-byte class at `0x006C4FC0`) |
+| `+0x34` | `u8[4]` | bytes34 | the bytes after +`0x30` up to the end of the `0x38`-byte class; no registered member covers it (`0x006C4F70` registers the `0x38`-byte class at `0x006C4FC0`) |
 
-```struct PModifierNetworkInstanceInput base=record size=0x20
-+0x08    u32             m_elementSize          m_elementSize (u32), registered by 0x006C3580 (0x00632960 at 0x006C3612); no
-                                                shipped .phyre file declares PModifierNetworkInstanceInput; cleared
-                                                with +0x0C by the placement constructor 0x006C2960 (0x006C2967)
-+0x0C    u8[4]           bytes0C                cleared with m_elementSize by the placement constructor 0x006C2960
-                                                (0x006C2967); no registered member covers it (0x006C2EF0 registers the
-                                                0x20-byte class at 0x006C2F3A)
-```
+`PMeshInstanceSegmentStreamBinding` (`0x18` bytes, offsets from the start of the record):
 
-```struct PSamplerStateBase base=record size=0x20
-+0x05    u8[3]           pad05                  the bytes after the byte the placement constructor 0x005D5FE0 sets to 1
-                                                at +0x04 (0x005D5FED) up to m_lodBias (+0x08); no registered member
-                                                covers it (0x005D9E70 registers the 0x20-byte class at 0x005D9EC0)
-+0x08    f32             m_lodBias              m_lodBias (f32), registered by 0x005E7070 (0x00632960 at 0x005E734C); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PSamplerStateBase; the placement constructor
-                                                0x005D5FE0 sets it to 0 (0x005D5FF1)
-+0x10    u32             m_borderColor          m_borderColor (u32), registered by 0x005E7070 (0x00632960 at 0x005E7432);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
-                                                .phyre files that declare PSamplerStateBase; the placement constructor
-                                                0x005D5FE0 sets it to 0 with the qword store that writes 1.0 to +0x0C
-                                                (0x005D5FF4)
-+0x14    u32             m_baseLevel            m_baseLevel (u32), registered by 0x005E7070 (0x00632960 at 0x005E74A5); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PSamplerStateBase; the placement constructor
-                                                0x005D5FE0 sets it to 0 (0x005D5FFC)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `void*` | m_name | m_name (ptr), registered by `0x005E68B0` (`0x00632960` at `0x005E69B0`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PMeshInstanceSegmentStreamBinding; cleared by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
+| `+0x10` | `u16` | m_nameHash | m_nameHash (u16), registered by `0x005E68B0` (`0x00632960` at `0x005E6A23`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PMeshInstanceSegmentStreamBinding; cleared with m_index and m_inputSet by the placement constructor `0x005CEEF0` (dword store `0x005CEEFE`) |
+| `+0x12` | `u8` | m_index | m_index (u8), registered by `0x005E68B0` (`0x00632960` at `0x005E6A96`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PMeshInstanceSegmentStreamBinding; cleared by the placement constructor `0x005CEEF0` (`0x005CEEFE`) |
+| `+0x13` | `u8` | m_inputSet | m_inputSet (u8), registered by `0x005E68B0` (`0x00632960` at `0x005E6B09`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PMeshInstanceSegmentStreamBinding; cleared by the placement constructor `0x005CEEF0` (`0x005CEEFE`) |
+| `+0x14` | `u8[4]` | bytes14 | the bytes after m_inputSet (u8 at +`0x13`) up to the end of the `0x18`-byte class; no registered member covers it (`0x005D9930` registers the `0x18`-byte class at `0x005D9980`) |
 
-```struct PSceneRenderPass base=record size=0x50
-+0x48    u8              m_platformsAreInclude  m_platformsAreInclude (u8), registered by 0x005E7E60 (0x00632960 at
-                                                0x005E81A5); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PSceneRenderPass; the placement
-                                                constructor 0x005D27B0 clears it (0x005D27DD)
-+0x49    u8[7]           pad49                  the bytes after m_platformsAreInclude (u8 at +0x48) up to the end of
-                                                the 0x50-byte class; no registered member covers it (0x005D9F20
-                                                registers the 0x50-byte class at 0x005D9F70)
-```
+`PMeshSegmentBase` (`0x30` bytes, offsets from the start of the record):
 
-```struct PShader base=record size=0x40
-+0x04    u8[4]           bytes04                the bytes after the dword the placement constructor 0x005D3C60 sets to
-                                                0xF at +0x00 (0x005D3C67), before the dword it clears at +0x08
-                                                (0x005D3C6D); no registered member covers it (0x005DA070 registers the
-                                                0x40-byte class at 0x005DA0C0)
-+0x38    u32             m_parameterBufferSize  m_parameterBufferSize (u32), registered by 0x005E81E0 (0x00632960 at
-                                                0x005E8424); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShader; the placement constructor
-                                                0x005D3C60 sets it to 0 (0x005D3C82)
-+0x3C    u8[4]           bytes3C                the bytes after m_parameterBufferSize (+0x38) up to the end of the
-                                                0x40-byte class; no registered member covers it (0x005DA070 registers
-                                                the 0x40-byte class at 0x005DA0C0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_materialIndex | m_materialIndex (u32), registered by `0x00666E90` (`0x00632960` at `0x00666F1E`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PMeshSegmentBase; the placement constructor `0x0065EA30` sets it to 0 (`0x0065EA3E`) |
+| `+0x2C` | `u8[4]` | bytes2C | the bytes after the dword the placement constructor `0x0065EA30` clears at +`0x28` (`0x0065EA5D`) up to the end of the `0x30`-byte class; no registered member covers it (`0x00662480` registers the `0x30`-byte class at `0x006624D0`) |
 
-```struct PShaderParameterCaptureBufferLocationTypeConstantBuffer base=record size=0x10
-+0x04    u32             m_constantBufferLocation m_constantBufferLocation (u32), registered by 0x005E89C0 (0x00632960 at
-                                                  0x005E8A4E); the cluster loader binds it by name (0x0059B430) in the
-                                                  2,184 shipped .phyre files that declare
-                                                  PShaderParameterCaptureBufferLocationTypeConstantBuffer; the
-                                                  placement constructor 0x005D7DE0 clears +0x04 to +0x0B (0x005D7DEA)
-+0x08    u32             m_size                 m_size (u32), registered by 0x005E89C0 (0x00632960 at 0x005E8ABD); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare
-                                                PShaderParameterCaptureBufferLocationTypeConstantBuffer; cleared with
-                                                m_constantBufferLocation by the placement constructor 0x005D7DE0
-                                                (0x005D7DEA)
-+0x0D    u8[3]           pad0D                  the bytes after the byte the placement constructor 0x005D7DE0 sets to
-                                                0x34 at +0x0C (0x005D7DEE) up to the end of the 0x10-byte class; no
-                                                registered member covers it (0x005DA6D0 registers the 0x10-byte class at
-                                                0x005DA71A)
-```
+`PModifierNetwork` (`0x70` bytes, offsets from the start of the record):
 
-```struct PShape base=record size=0x38
-+0x00    u32             m_indexCount           m_indexCount (u32), registered by 0x006673A0 (0x00632960 at 0x00667544); no
-                                                shipped .phyre file declares PShape; the placement constructor
-                                                0x006611F0 sets it to 0 (0x006611F7)
-+0x04    u8[4]           pad04                  alignment bytes between m_indexCount (+0x00) and m_indices (PArray
-                                                at +0x08); no registered member covers it (0x006625D0 registers the
-                                                0x38-byte class at 0x00662620)
-+0x18    u32             m_vertexCount          m_vertexCount (u32), registered by 0x006673A0 (0x00632960 at 0x006676C1); no
-                                                shipped .phyre file declares PShape; the placement constructor
-                                                0x006611F0 sets it to 0 (0x00661200)
-+0x1C    u8[4]           pad1C                  alignment bytes between m_vertexCount (+0x18) and m_vertexData (PArray
-                                                at +0x20); no registered member covers it (0x006625D0 registers the
-                                                0x38-byte class at 0x00662620)
-+0x32    u8[6]           pad32                  the bytes after m_indexFormat (u8 at +0x31; the placement constructor
-                                                0x006611F0 sets +0x30 and +0x31 to 0x34 at 0x0066120A) up to the end of
-                                                the 0x38-byte class; no registered member covers it (0x006625D0
-                                                registers the 0x38-byte class at 0x00662620)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_totalOutputElementSize m_totalOutputElementSize (u32), registered by 0x006D0FA0 (0x00632960 at | `0x006D126A`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA76`) |
+| `+0x04` | `u8[4]` | bytes04 | the bytes after m_totalOutputElementSize (+`0x00`), before the dword the placement constructor `0x006CFA50` clears at +`0x08` (`0x006CFA57`); no registered member covers it (`0x006CFC50` registers the `0x70`-byte class at `0x006CFCA0`) |
+| `+0x18` | `u32` | m_totalInputCount | m_totalInputCount (u32), registered by `0x006D0FA0` (`0x00632960` at `0x006D10D0`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA73`) |
+| `+0x1C` | `u8[4]` | bytes1C | the bytes after m_totalInputCount (+`0x18`), before the dword the placement constructor `0x006CFA50` clears at +`0x20` (`0x006CFA5E`); no registered member covers it (`0x006CFC50` registers the `0x70`-byte class at `0x006CFCA0`) |
+| `+0x50` | `u32` | m_totalPersistentStateSize m_totalPersistentStateSize (u32), registered by 0x006D0FA0 (0x00632960 | at `0x006D13C1`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it with m_totalStateBlockSize (`0x006CFA80`) |
+| `+0x54` | `u32` | m_totalStateBlockSize | m_totalStateBlockSize (u32), registered by `0x006D0FA0` (`0x00632960` at `0x006D1434`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it with m_totalPersistentStateSize (`0x006CFA80`) |
+| `+0x58` | `u8` | m_isCompiled | m_isCompiled (u8), registered by `0x006D0FA0` (`0x00632960` at `0x006D14A7`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA84`) |
+| `+0x59` | `u8[7]` | pad59 | the bytes after m_isCompiled (u8 at +`0x58`), before the dword the placement constructor `0x006CFA50` clears at +`0x60` (`0x006CFA6C`); no registered member covers it (`0x006CFC50` registers the `0x70`-byte class at `0x006CFCA0`) |
 
-```struct PStreamInputDescD3D11 base=record size=0x20
-+0x00    ptr             m_semantic             m_semantic (ptr), registered by 0x00618390 (0x00632960 at 0x0061841D); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PStreamInputDescD3D11
-+0x10    u32             m_semanticIndex        m_semanticIndex (u32), registered by 0x00618390 (0x00632960 at 0x00618503);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
-                                                .phyre files that declare PStreamInputDescD3D11
-+0x14    u32             m_d3dFormat            m_d3dFormat (u32), registered by 0x00618390 (0x00632960 at 0x00618576); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PStreamInputDescD3D11
-+0x18    u32             m_inputSlot            m_inputSlot (u32), registered by 0x00618390 (0x00632960 at 0x006185E9); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PStreamInputDescD3D11
-+0x1C    u8[4]           bytes1C                the bytes after m_inputSlot (+0x18) up to the end of the 0x20-byte
-                                                class; no registered member covers it (0x00615170 registers the
-                                                0x20-byte class at 0x006151C0)
-```
+`PModifierNetworkDynamicMeshSegment` (`0x18` bytes, offsets from the start of the record):
 
-```struct PStructuredBufferBase base=record size=0x14
-+0x00    u32             m_elementCount         m_elementCount (u32), registered by 0x005EAAA0 (0x00632960 at 0x005EAB2E);
-                                                no shipped .phyre file declares PStructuredBufferBase; the placement
-                                                constructor 0x005D0090 clears +0x00 to +0x07 (0x005D0097)
-+0x04    u32             m_elementSize          m_elementSize (u32), registered by 0x005EAAA0 (0x00632960 at 0x005EABA1); no
-                                                shipped .phyre file declares PStructuredBufferBase; cleared with
-                                                m_elementCount by the placement constructor 0x005D0090 (0x005D0097)
-+0x08    u32             m_flags                m_flags (u32), registered by 0x005EAAA0 (0x00632960 at 0x005EAC14); no
-                                                shipped .phyre file declares PStructuredBufferBase; the placement
-                                                constructor 0x005D0090 clears +0x08 to +0x0F (0x005D009A)
-+0x0C    u8[4]           bytes0C                cleared with m_flags by the placement constructor 0x005D0090 (0x005D009A);
-                                                no registered member covers it (0x005DB910 registers the 0x14-byte class
-                                                at 0x005DB960)
-+0x11    u8[3]           pad11                  the bytes after the byte the placement constructor 0x005D0090 clears
-                                                at +0x10 (0x005D009E) up to the end of the 0x14-byte class; no registered
-                                                member covers it (0x005DB910 registers the 0x14-byte class at 0x005DB960)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u32` | m_segmentInputGroupStart m_segmentInputGroupStart (u32), registered by 0x006BCA20 (0x00632960 at | `0x006BCB20`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared with m_segmentOutputGroupStart by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
+| `+0x0C` | `u32` | m_segmentOutputGroupStart m_segmentOutputGroupStart (u32), registered by 0x006BCA20 (0x00632960 | at `0x006BCB93`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared with m_segmentInputGroupStart by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
+| `+0x10` | `u32` | m_modifierOutputsAreConsumed m_modifierOutputsAreConsumed (u32), registered by 0x006BCA20 | (`0x00632960` at `0x006BCC06`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared by the placement constructor `0x005CEEF0` (`0x005CEEFE`) |
+| `+0x14` | `u8[4]` | bytes14 | the bytes after m_modifierOutputsAreConsumed (+`0x10`) up to the end of the `0x18`-byte class; no registered member covers it (`0x006BBB70` registers the `0x18`-byte class at `0x006BBBC0`) |
 
-```struct PTexture3DBase base=record size=0x38
-+0x28    u32             m_width                m_width (u32), registered by 0x005EAD90 (0x00632960 at 0x005EAE22); no
-                                                shipped .phyre file declares PTexture3DBase
-+0x2C    u32             m_height               m_height (u32), registered by 0x005EAD90 (0x00632960 at 0x005EAE95); no
-                                                shipped .phyre file declares PTexture3DBase
-+0x30    u32             m_depth                m_depth (u32), registered by 0x005EAD90 (0x00632960 at 0x005EAF08); no
-                                                shipped .phyre file declares PTexture3DBase
-+0x34    u8[4]           bytes34                the bytes after m_depth (+0x30) up to the end of the 0x38-byte class;
-                                                no registered member covers it (0x005DBBA0 registers the 0x38-byte class
-                                                at 0x005DBBEA)
-```
+`PModifierNetworkInstanceInput` (`0x20` bytes, offsets from the start of the record):
 
-```struct PTextureCommonBase base=record size=0x28
-+0x0A    u8[2]           pad0A                  the bytes after the word the placement constructor 0x005D7B60 sets to
-                                                0x300 at +0x08 (0x005D7B71), before the qword it clears at +0x0C
-                                                (0x005D7B77); no registered member covers it (0x005DBC40 registers the
-                                                0x28-byte class at 0x005DBC90)
-+0x10    u32             m_mipmapCount          m_mipmapCount (u32), registered by 0x005EAF40 (0x00632960 at 0x005EB0B9);
-                                                the cluster loader binds it by name (0x0059B430) in the 35,978 shipped
-                                                .phyre files that declare PTextureCommonBase; the placement
-                                                constructor 0x005D7B60 clears it with the qword store at +0x0C
-                                                (0x005D7B77)
-+0x14    u32             m_maxMipLevel          m_maxMipLevel (u32), registered by 0x005EAF40 (0x00632960 at 0x005EB12C);
-                                                the cluster loader binds it by name (0x0059B430) in the 35,978 shipped
-                                                .phyre files that declare PTextureCommonBase; the placement
-                                                constructor 0x005D7B60 clears it (0x005D7B7B)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u32` | m_elementSize | m_elementSize (u32), registered by `0x006C3580` (`0x00632960` at `0x006C3612`); no shipped .phyre file declares PModifierNetworkInstanceInput; cleared with +`0x0C` by the placement constructor `0x006C2960` (`0x006C2967`) |
+| `+0x0C` | `u8[4]` | bytes0C | cleared with m_elementSize by the placement constructor `0x006C2960` (`0x006C2967`); no registered member covers it (`0x006C2EF0` registers the `0x20`-byte class at `0x006C2F3A`) |
 
-```struct PTextureCubeMapBase base=record size=0x30
-+0x28    u32             m_size                 m_size (u32), registered by 0x005EB2B0 (0x00632960 at 0x005EB339); the
-                                                cluster loader binds it by name (0x0059B430) in the 6,781 shipped .phyre
-                                                files that declare PTextureCubeMapBase; the placement constructor
-                                                0x005D1700 sets it to 0 (0x005D1722)
-+0x2C    u8[4]           bytes2C                the bytes after m_size (+0x28) up to the end of the 0x30-byte class;
-                                                no registered member covers it (0x005DBD90 registers the 0x30-byte class
-                                                at 0x005DBDDA)
-```
+`PSamplerStateBase` (`0x20` bytes, offsets from the start of the record):
 
-```struct PTimeIntervalController base=record size=0x28
-+0x18    f32             m_parentBase           the parent time at which the interval starts: 0x005C5330 takes the
-                                                parent controller's time (slot +0x20 of +0x10, or the global time at
-                                                0x02CACF14) minus it (0x005C5383); m_parentBase (f32), registered by
-                                                0x005B2990 (0x00632960 at 0x005B2A94); no shipped .phyre file declares
-                                                PTimeIntervalController
-+0x1C    f32             m_localBase            the local time at the start of the interval: 0x005C5330 adds it last
-                                                (0x005C53B5), so the result is m_localBase + sign * ((t - m_parentBase)
-                                                mod abs(m_localRange)); m_localBase (f32), registered by 0x005B2990
-                                                (0x00632960 at 0x005B2B07); no shipped .phyre file declares
-                                                PTimeIntervalController
-+0x20    f32             m_localRange           the interval's length: 0x005C5330 wraps the elapsed parent time into it
-                                                with fmodf (0x005C5362-0x005C5392); a negative length runs the interval
-                                                backwards (sign -1.0, 0x005C5371); m_localRange (f32), registered by
-                                                0x005B2990 (0x00632960 at 0x005B2B7A); no shipped .phyre file declares
-                                                PTimeIntervalController
-+0x24    u8[4]           bytes24                the bytes after m_localRange (+0x20) up to the end of the 0x28-byte
-                                                class; no registered member covers it (0x005A9340 registers the
-                                                0x28-byte class at 0x005A938A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x05` | `u8[3]` | pad05 | the bytes after the byte the placement constructor `0x005D5FE0` sets to 1 at +`0x04` (`0x005D5FED`) up to m_lodBias (+`0x08`); no registered member covers it (`0x005D9E70` registers the `0x20`-byte class at `0x005D9EC0`) |
+| `+0x08` | `f32` | m_lodBias | m_lodBias (f32), registered by `0x005E7070` (`0x00632960` at `0x005E734C`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSamplerStateBase; the placement constructor `0x005D5FE0` sets it to 0 (`0x005D5FF1`) |
+| `+0x10` | `u32` | m_borderColor | m_borderColor (u32), registered by `0x005E7070` (`0x00632960` at `0x005E7432`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSamplerStateBase; the placement constructor `0x005D5FE0` sets it to 0 with the qword store that writes 1.0 to +`0x0C` (`0x005D5FF4`) |
+| `+0x14` | `u32` | m_baseLevel | m_baseLevel (u32), registered by `0x005E7070` (`0x00632960` at `0x005E74A5`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSamplerStateBase; the placement constructor `0x005D5FE0` sets it to 0 (`0x005D5FFC`) |
 
-```struct PTrigger base=record size=0x58
-+0x50    u8              m_enabled              whether the trigger is enabled; m_enabled (u8), registered by 0x006A7EE0
-                                                (0x00632960 at 0x006A8159); no shipped .phyre file declares PTrigger; the
-                                                script methods getEnabled (registered at 0x006A827F) and setEnabled
-                                                (0x006A8349) read and write it through 0x006A9150 and 0x006A9280; the
-                                                placement constructor 0x006A7B10 sets it to 1 (0x006A7B61)
-+0x51    u8[7]           pad51                  the bytes after m_enabled (u8 at +0x50) up to the end of the 0x58-byte
-                                                class; no registered member covers it (0x006A7BA0 registers the
-                                                0x58-byte class at 0x006A7BF0)
-```
+`PSceneRenderPass` (`0x50` bytes, offsets from the start of the record):
 
-```struct PVertexStream base=record size=0x18
-+0x00    u32             m_offset               m_offset (u32), registered by 0x00667A60 (0x00632960 at 0x00667B61); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PVertexStream; the placement constructor 0x0065F960
-                                                sets it to 0 (0x0065F967)
-+0x04    u8[4]           bytes04                the bytes after m_offset (+0x00), before the qword the placement
-                                                constructor 0x0065F960 clears at +0x08 (0x0065F969); no registered member
-                                                covers it (0x006627E0 registers the 0x18-byte class at 0x00662830)
-+0x12    u8[6]           bytes12                the bytes after the word the placement constructor 0x0065F960 sets to
-                                                0xFF34 at +0x10 (0x0065F96D) up to the end of the 0x18-byte class; no
-                                                registered member covers it (0x006627E0 registers the 0x18-byte class at
-                                                0x00662830)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x48` | `u8` | m_platformsAreInclude | m_platformsAreInclude (u8), registered by `0x005E7E60` (`0x00632960` at `0x005E81A5`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSceneRenderPass; the placement constructor `0x005D27B0` clears it (`0x005D27DD`) |
+| `+0x49` | `u8[7]` | pad49 | the bytes after m_platformsAreInclude (u8 at +`0x48`) up to the end of the `0x50`-byte class; no registered member covers it (`0x005D9F20` registers the `0x50`-byte class at `0x005D9F70`) |
 
-```struct PDebugUtils base=record size=0x58
-+0x0C    u8[4]           bytes0C                +0xC to +0xF; no registered member covers it (0x00791C20 registers the
-                                                0x58-byte class at 0x00791C70)
-+0x18    u8[56]          bytes18                +0x18 to +0x4F; no registered member covers it (0x00791C20 registers the
-                                                0x58-byte class at 0x00791C70)
-+0x51    u8[7]           pad51                  the bytes after m_autoClear (u8 at +0x50) up to the end of the
-                                                0x58-byte class; no registered member covers it (0x00791C20 registers
-                                                the 0x58-byte class at 0x00791C70)
-```
+`PShader` (`0x40` bytes, offsets from the start of the record):
 
-```struct PShaderParameterCaptureBufferLocationType base=record size=0x4
-+0x03    u8[1]           pad03                  the byte after m_type (u8 at +0x02) up to the end of the 4-byte class;
-                                                no registered member covers it (0x005DA630 registers the 0x4-byte class
-                                                at 0x005DA67A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u8[4]` | bytes04 | the bytes after the dword the placement constructor `0x005D3C60` sets to `0xF` at +`0x00` (`0x005D3C67`), before the dword it clears at +`0x08` (`0x005D3C6D`); no registered member covers it (`0x005DA070` registers the `0x40`-byte class at `0x005DA0C0`) |
+| `+0x38` | `u32` | m_parameterBufferSize | m_parameterBufferSize (u32), registered by `0x005E81E0` (`0x00632960` at `0x005E8424`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShader; the placement constructor `0x005D3C60` sets it to 0 (`0x005D3C82`) |
+| `+0x3C` | `u8[4]` | bytes3C | the bytes after m_parameterBufferSize (+`0x38`) up to the end of the `0x40`-byte class; no registered member covers it (`0x005DA070` registers the `0x40`-byte class at `0x005DA0C0`) |
 
-```struct PDynamicMesh base=record size=0x38
-+0x00    ptr             vtable                 the vtable pointer, 0x00D68DF0 for the class: stored by 0x00662A50
-                                                (0x00662A57) and 0x00663080 (0x0066309E); 0x00671E80 calls through its
-                                                slot +0x28 (0x00671F87-0x00671F9C); no registered member covers it (0x00661E80
-                                                registers the 0x38-byte class at 0x00661ED0)
-+0x30    u8[8]           dword30                0x00662A50 clears the dword at +0x30 (0x00662A6E); no registered member
-                                                covers it (0x00661E80 registers the 0x38-byte class at 0x00661ED0)
-```
+`PShaderParameterCaptureBufferLocationTypeConstantBuffer` (`0x10` bytes, offsets from the start of the record):
 
-```struct PDynamicMeshInstance base=record size=0x18
-+0x10    u8[8]           dword10                the constructors 0x005DBF60 and 0x005DC0B0 clear the dword at +0x10
-                                                (0x005DBF71, 0x005DC0CD); +0x08 holds the constructor's second argument
-                                                (0x005DBF6D); no registered member covers it (0x005D9120 registers the
-                                                0x18-byte class at 0x005D9170)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u32` | m_constantBufferLocation m_constantBufferLocation (u32), registered by 0x005E89C0 (0x00632960 at | `0x005E8A4E`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; the placement constructor `0x005D7DE0` clears +`0x04` to +`0x0B` (`0x005D7DEA`) |
+| `+0x08` | `u32` | m_size | m_size (u32), registered by `0x005E89C0` (`0x00632960` at `0x005E8ABD`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; cleared with m_constantBufferLocation by the placement constructor `0x005D7DE0` (`0x005D7DEA`) |
+| `+0x0D` | `u8[3]` | pad0D | the bytes after the byte the placement constructor `0x005D7DE0` sets to `0x34` at +`0x0C` (`0x005D7DEE`) up to the end of the `0x10`-byte class; no registered member covers it (`0x005DA6D0` registers the `0x10`-byte class at `0x005DA71A`) |
 
-```struct PModifierNetworkDynamicMesh base=record size=0x78
-+0x3C    u8[4]           pad3C                  the four bytes between the array count at +0x38 and its pointer
-                                                at +0x40, both released by the destructor 0x006BBC70 (0x006BBCEF, 0x006BBCFB);
-                                                no registered member covers it (0x006BBAD0 registers the 0x78-byte class
-                                                at 0x006BBB1A)
-+0x4C    u8[4]           pad4C                  the four bytes between the array count at +0x48 and its pointer
-                                                at +0x50, both released by the destructor 0x006BBC70 (0x006BBCCD, 0x006BBCD9);
-                                                no registered member covers it (0x006BBAD0 registers the 0x78-byte class
-                                                at 0x006BBB1A)
-+0x5C    u8[4]           pad5C                  the four bytes between the array count at +0x58 and its pointer
-                                                at +0x60, both released by the destructor 0x006BBC70 (0x006BBCAB, 0x006BBCB7);
-                                                no registered member covers it (0x006BBAD0 registers the 0x78-byte class
-                                                at 0x006BBB1A)
-+0x6C    u8[4]           pad6C                  the four bytes between the array count at +0x68 and its pointer
-                                                at +0x70, both released by the destructor 0x006BBC70 (0x006BBC87, 0x006BBC93);
-                                                no registered member covers it (0x006BBAD0 registers the 0x78-byte class
-                                                at 0x006BBB1A)
-```
+`PShape` (`0x38` bytes, offsets from the start of the record):
 
-```struct PModifierNetworkDynamicMeshInstance base=record size=0x28
-+0x1C    u8[4]           pad1C                  the four bytes between the array count at +0x18 and its pointer
-                                                at +0x20, both released by the destructor 0x005E2AF0 (0x005E2B13, 0x005E2B1F);
-                                                no registered member covers it (0x005D99E0 registers the 0x28-byte class
-                                                at 0x005D9A2A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_indexCount | m_indexCount (u32), registered by `0x006673A0` (`0x00632960` at `0x00667544`); no shipped .phyre file declares PShape; the placement constructor `0x006611F0` sets it to 0 (`0x006611F7`) |
+| `+0x04` | `u8[4]` | pad04 | alignment bytes between m_indexCount (+`0x00`) and m_indices (PArray at +`0x08`); no registered member covers it (`0x006625D0` registers the `0x38`-byte class at `0x00662620`) |
+| `+0x18` | `u32` | m_vertexCount | m_vertexCount (u32), registered by `0x006673A0` (`0x00632960` at `0x006676C1`); no shipped .phyre file declares PShape; the placement constructor `0x006611F0` sets it to 0 (`0x00661200`) |
+| `+0x1C` | `u8[4]` | pad1C | alignment bytes between m_vertexCount (+`0x18`) and m_vertexData (PArray at +`0x20`); no registered member covers it (`0x006625D0` registers the `0x38`-byte class at `0x00662620`) |
+| `+0x32` | `u8[6]` | pad32 | the bytes after m_indexFormat (u8 at +`0x31`; the placement constructor `0x006611F0` sets +`0x30` and +`0x31` to `0x34` at `0x0066120A`) up to the end of the `0x38`-byte class; no registered member covers it (`0x006625D0` registers the `0x38`-byte class at `0x00662620`) |
 
-```struct PShadowRenderer base=record size=0x10
-+0x04    u8[4]           bytes04                +0x4 to +0x7; no registered member covers it (0x005DB7C0 registers the
-                                                0x10-byte class at 0x005DB810)
-```
+`PStreamInputDescD3D11` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | m_semantic | m_semantic (ptr), registered by `0x00618390` (`0x00632960` at `0x0061841D`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PStreamInputDescD3D11 |
+| `+0x10` | `u32` | m_semanticIndex | m_semanticIndex (u32), registered by `0x00618390` (`0x00632960` at `0x00618503`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PStreamInputDescD3D11 |
+| `+0x14` | `u32` | m_d3dFormat | m_d3dFormat (u32), registered by `0x00618390` (`0x00632960` at `0x00618576`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PStreamInputDescD3D11 |
+| `+0x18` | `u32` | m_inputSlot | m_inputSlot (u32), registered by `0x00618390` (`0x00632960` at `0x006185E9`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PStreamInputDescD3D11 |
+| `+0x1C` | `u8[4]` | bytes1C | the bytes after m_inputSlot (+`0x18`) up to the end of the `0x20`-byte class; no registered member covers it (`0x00615170` registers the `0x20`-byte class at `0x006151C0`) |
+
+`PStructuredBufferBase` (`0x14` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_elementCount | m_elementCount (u32), registered by `0x005EAAA0` (`0x00632960` at `0x005EAB2E`); no shipped .phyre file declares PStructuredBufferBase; the placement constructor `0x005D0090` clears +`0x00` to +`0x07` (`0x005D0097`) |
+| `+0x04` | `u32` | m_elementSize | m_elementSize (u32), registered by `0x005EAAA0` (`0x00632960` at `0x005EABA1`); no shipped .phyre file declares PStructuredBufferBase; cleared with m_elementCount by the placement constructor `0x005D0090` (`0x005D0097`) |
+| `+0x08` | `u32` | m_flags | m_flags (u32), registered by `0x005EAAA0` (`0x00632960` at `0x005EAC14`); no shipped .phyre file declares PStructuredBufferBase; the placement constructor `0x005D0090` clears +`0x08` to +`0x0F` (`0x005D009A`) |
+| `+0x0C` | `u8[4]` | bytes0C | cleared with m_flags by the placement constructor `0x005D0090` (`0x005D009A`); no registered member covers it (`0x005DB910` registers the `0x14`-byte class at `0x005DB960`) |
+| `+0x11` | `u8[3]` | pad11 | the bytes after the byte the placement constructor `0x005D0090` clears at +`0x10` (`0x005D009E`) up to the end of the `0x14`-byte class; no registered member covers it (`0x005DB910` registers the `0x14`-byte class at `0x005DB960`) |
+
+`PTexture3DBase` (`0x38` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x28` | `u32` | m_width | m_width (u32), registered by `0x005EAD90` (`0x00632960` at `0x005EAE22`); no shipped .phyre file declares PTexture3DBase |
+| `+0x2C` | `u32` | m_height | m_height (u32), registered by `0x005EAD90` (`0x00632960` at `0x005EAE95`); no shipped .phyre file declares PTexture3DBase |
+| `+0x30` | `u32` | m_depth | m_depth (u32), registered by `0x005EAD90` (`0x00632960` at `0x005EAF08`); no shipped .phyre file declares PTexture3DBase |
+| `+0x34` | `u8[4]` | bytes34 | the bytes after m_depth (+`0x30`) up to the end of the `0x38`-byte class; no registered member covers it (`0x005DBBA0` registers the `0x38`-byte class at `0x005DBBEA`) |
+
+`PTextureCommonBase` (`0x28` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0A` | `u8[2]` | pad0A | the bytes after the word the placement constructor `0x005D7B60` sets to `0x300` at +`0x08` (`0x005D7B71`), before the qword it clears at +`0x0C` (`0x005D7B77`); no registered member covers it (`0x005DBC40` registers the `0x28`-byte class at `0x005DBC90`) |
+| `+0x10` | `u32` | m_mipmapCount | m_mipmapCount (u32), registered by `0x005EAF40` (`0x00632960` at `0x005EB0B9`); the cluster loader binds it by name (`0x0059B430`) in the 35,978 shipped .phyre files that declare PTextureCommonBase; the placement constructor `0x005D7B60` clears it with the qword store at +`0x0C` (`0x005D7B77`) |
+| `+0x14` | `u32` | m_maxMipLevel | m_maxMipLevel (u32), registered by `0x005EAF40` (`0x00632960` at `0x005EB12C`); the cluster loader binds it by name (`0x0059B430`) in the 35,978 shipped .phyre files that declare PTextureCommonBase; the placement constructor `0x005D7B60` clears it (`0x005D7B7B`) |
+
+`PTextureCubeMapBase` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x28` | `u32` | m_size | m_size (u32), registered by `0x005EB2B0` (`0x00632960` at `0x005EB339`); the cluster loader binds it by name (`0x0059B430`) in the 6,781 shipped .phyre files that declare PTextureCubeMapBase; the placement constructor `0x005D1700` sets it to 0 (`0x005D1722`) |
+| `+0x2C` | `u8[4]` | bytes2C | the bytes after m_size (+`0x28`) up to the end of the `0x30`-byte class; no registered member covers it (`0x005DBD90` registers the `0x30`-byte class at `0x005DBDDA`) |
+
+`PTimeIntervalController` (`0x28` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x18` | `f32` | m_parentBase | the parent time at which the interval starts: `0x005C5330` takes the parent controller's time (slot +`0x20` of +`0x10`, or the global time at `0x02CACF14`) minus it (`0x005C5383`); m_parentBase (f32), registered by `0x005B2990` (`0x00632960` at `0x005B2A94`); no shipped .phyre file declares PTimeIntervalController |
+| `+0x1C` | `f32` | m_localBase | the local time at the start of the interval: `0x005C5330` adds it last (`0x005C53B5`), so the result is m_localBase + sign * ((t - m_parentBase) mod abs(m_localRange)); m_localBase (f32), registered by `0x005B2990` (`0x00632960` at `0x005B2B07`); no shipped .phyre file declares PTimeIntervalController |
+| `+0x20` | `f32` | m_localRange | the interval's length: `0x005C5330` wraps the elapsed parent time into it with fmodf (`0x005C5362`-`0x005C5392`); a negative length runs the interval backwards (sign -1.0, `0x005C5371`); m_localRange (f32), registered by `0x005B2990` (`0x00632960` at `0x005B2B7A`); no shipped .phyre file declares PTimeIntervalController |
+| `+0x24` | `u8[4]` | bytes24 | the bytes after m_localRange (+`0x20`) up to the end of the `0x28`-byte class; no registered member covers it (`0x005A9340` registers the `0x28`-byte class at `0x005A938A`) |
+
+`PTrigger` (`0x58` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x50` | `u8` | m_enabled | whether the trigger is enabled; m_enabled (u8), registered by `0x006A7EE0` (`0x00632960` at `0x006A8159`); no shipped .phyre file declares PTrigger; the script methods getEnabled (registered at `0x006A827F`) and setEnabled (`0x006A8349`) read and write it through `0x006A9150` and `0x006A9280`; the placement constructor `0x006A7B10` sets it to 1 (`0x006A7B61`) |
+| `+0x51` | `u8[7]` | pad51 | the bytes after m_enabled (u8 at +`0x50`) up to the end of the `0x58`-byte class; no registered member covers it (`0x006A7BA0` registers the `0x58`-byte class at `0x006A7BF0`) |
+
+`PVertexStream` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_offset | m_offset (u32), registered by `0x00667A60` (`0x00632960` at `0x00667B61`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PVertexStream; the placement constructor `0x0065F960` sets it to 0 (`0x0065F967`) |
+| `+0x04` | `u8[4]` | bytes04 | the bytes after m_offset (+`0x00`), before the qword the placement constructor `0x0065F960` clears at +`0x08` (`0x0065F969`); no registered member covers it (`0x006627E0` registers the `0x18`-byte class at `0x00662830`) |
+| `+0x12` | `u8[6]` | bytes12 | the bytes after the word the placement constructor `0x0065F960` sets to `0xFF34` at +`0x10` (`0x0065F96D`) up to the end of the `0x18`-byte class; no registered member covers it (`0x006627E0` registers the `0x18`-byte class at `0x00662830`) |
+
+`PDebugUtils` (`0x58` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u8[4]` | bytes0C | +`0xC` to +`0xF`; no registered member covers it (`0x00791C20` registers the `0x58`-byte class at `0x00791C70`) |
+| `+0x18` | `u8[56]` | bytes18 | +`0x18` to +`0x4F`; no registered member covers it (`0x00791C20` registers the `0x58`-byte class at `0x00791C70`) |
+| `+0x51` | `u8[7]` | pad51 | the bytes after m_autoClear (u8 at +`0x50`) up to the end of the `0x58`-byte class; no registered member covers it (`0x00791C20` registers the `0x58`-byte class at `0x00791C70`) |
+
+`PShaderParameterCaptureBufferLocationType` (`0x4` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x03` | `u8[1]` | pad03 | the byte after m_type (u8 at +`0x02`) up to the end of the 4-byte class; no registered member covers it (`0x005DA630` registers the `0x4`-byte class at `0x005DA67A`) |
+
+`PDynamicMesh` (`0x38` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | vtable | the vtable pointer, `0x00D68DF0` for the class: stored by `0x00662A50` (`0x00662A57`) and `0x00663080` (`0x0066309E`); `0x00671E80` calls through its slot +`0x28` (`0x00671F87`-`0x00671F9C`); no registered member covers it (`0x00661E80` registers the `0x38`-byte class at `0x00661ED0`) |
+| `+0x30` | `u8[8]` | dword30 | `0x00662A50` clears the dword at +`0x30` (`0x00662A6E`); no registered member covers it (`0x00661E80` registers the `0x38`-byte class at `0x00661ED0`) |
+
+`PDynamicMeshInstance` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10` | `u8[8]` | dword10 | the constructors `0x005DBF60` and `0x005DC0B0` clear the dword at +`0x10` (`0x005DBF71`, `0x005DC0CD`); +`0x08` holds the constructor's second argument (`0x005DBF6D`); no registered member covers it (`0x005D9120` registers the `0x18`-byte class at `0x005D9170`) |
+
+`PModifierNetworkDynamicMesh` (`0x78` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x3C` | `u8[4]` | pad3C | the four bytes between the array count at +`0x38` and its pointer at +`0x40`, both released by the destructor `0x006BBC70` (`0x006BBCEF`, `0x006BBCFB`); no registered member covers it (`0x006BBAD0` registers the `0x78`-byte class at `0x006BBB1A`) |
+| `+0x4C` | `u8[4]` | pad4C | the four bytes between the array count at +`0x48` and its pointer at +`0x50`, both released by the destructor `0x006BBC70` (`0x006BBCCD`, `0x006BBCD9`); no registered member covers it (`0x006BBAD0` registers the `0x78`-byte class at `0x006BBB1A`) |
+| `+0x5C` | `u8[4]` | pad5C | the four bytes between the array count at +`0x58` and its pointer at +`0x60`, both released by the destructor `0x006BBC70` (`0x006BBCAB`, `0x006BBCB7`); no registered member covers it (`0x006BBAD0` registers the `0x78`-byte class at `0x006BBB1A`) |
+| `+0x6C` | `u8[4]` | pad6C | the four bytes between the array count at +`0x68` and its pointer at +`0x70`, both released by the destructor `0x006BBC70` (`0x006BBC87`, `0x006BBC93`); no registered member covers it (`0x006BBAD0` registers the `0x78`-byte class at `0x006BBB1A`) |
+
+`PModifierNetworkDynamicMeshInstance` (`0x28` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at +`0x18` and its pointer at +`0x20`, both released by the destructor `0x005E2AF0` (`0x005E2B13`, `0x005E2B1F`); no registered member covers it (`0x005D99E0` registers the `0x28`-byte class at `0x005D9A2A`) |
+
+`PShadowRenderer` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u8[4]` | bytes04 | +`0x4` to +`0x7`; no registered member covers it (`0x005DB7C0` registers the `0x10`-byte class at `0x005DB810`) |
 
 ## Shipped data
 

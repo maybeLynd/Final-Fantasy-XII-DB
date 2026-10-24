@@ -36,71 +36,106 @@ All multi-byte fields are little-endian.
 
 All offsets are from the section start unless a record is named.
 
+CML1 (section 8):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "CML1"; never compared |
+| `+0x04` | `u32` | count | rows |
+| `+0x08` | `u32[2]` | - | 0; not read |
+
++`0x10`  row[count]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | nameOffset | name, from the section start |
+| `+0x04` | `i32` | camera | CAM7 record number; -1 = none |
+| `+0x08` | `u32` | - | zeroed at load |
+| `+0x0C` | `u32` | - | low byte zeroed at load |
+
 ```
-CML1 (section 8)
-+0x00  char[4]  magic       "CML1"; never compared
-+0x04  u32      count       rows
-+0x08  u32[2]   -           0; not read
-+0x10  row[count]
-       +0x00  u32  nameOffset  name, from the section start
-       +0x04  i32  camera      CAM7 record number; -1 = none
-       +0x08  u32  -           zeroed at load
-       +0x0C  u32  -           low byte zeroed at load
 then the names, NUL-terminated; zero fill to 0x40
+```
 
-CAM7 (section 9)
-+0x00  char[4]  magic       "CAM7"; anything else and nothing is bound
-+0x04  u32      cameras     shot records
-+0x08  u32      countB      ease curves
-+0x0C  u32      countC      paths
-+0x10  u32[3]   -           0; not read
-+0x1C  u32      first       first shot record, from the section start
+CAM7 (section 9):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "CAM7"; anything else and nothing is bound |
+| `+0x04` | `u32` | cameras | shot records |
+| `+0x08` | `u32` | countB | ease curves |
+| `+0x0C` | `u32` | countC | paths |
+| `+0x10` | `u32[3]` | - | 0; not read |
+| `+0x1C` | `u32` | first | first shot record, from the section start |
+
+```
 then the shot records, the ease curves and the paths, back to back
+```
 
-shot record
-+0x00  u32      -           0
-+0x04  u32      length      to the next record
-+0x08  char[24] name        copied with strncpy(…, 24)
-+0x20  u32      attach      attachment word (0x002572E0)
-+0x24  u16      eyeJoint    joint for eye attach modes 1 and 2
-+0x26  u16      targetJoint joint for target attach modes 1 and 2
-+0x28  commands             keys and segments, then 0xFF and three pad bytes
+Shot record:
 
-key (type 1, 0x40 bytes)
-+0x00  u8       1
-+0x04  f32[3]   eye
-+0x14  f32[3]   target
-+0x24  f32      angle       to the view's +0x20
-+0x28  f32      fov         degrees
-+0x2C  f32[2]   follow      path-follow values
-+0x38  f32      followLead  path-follow value
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | - | 0 |
+| `+0x04` | `u32` | length | to the next record |
+| `+0x08` | `char[24] name` | copied with strncpy(…, 24) |  |
+| `+0x20` | `u32` | attach | attachment word (`0x002572E0`) |
+| `+0x24` | `u16` | eyeJoint | joint for eye attach modes 1 and 2 |
+| `+0x26` | `u16` | targetJoint joint for target attach modes 1 and 2 |  |
+| `+0x28` | `commands` | keys and segments, then 0xFF and three pad bytes |  |
+
+Key (type 1, `0x40` bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | 1 |  |
+| `+0x04` | `f32[3]` | eye |  |
+| `+0x14` | `f32[3]` | target |  |
+| `+0x24` | `f32` | angle | to the view's +`0x20` |
+| `+0x28` | `f32` | fov | degrees |
+| `+0x2C` | `f32[2]` | follow | path-follow values |
+| `+0x38` | `f32` | followLead | path-follow value |
+
+```
 (+0x10, +0x20, +0x34, +0x3C not read)
+```
 
-segment (type 2, 0x2C bytes)
-+0x00  u8       2
-+0x04  u16[13]  timing      bit 15 set: ease curve (bits 0-14); else frames
-+0x1E  u16      eyePath     bit 15 set: path (bits 0-13); bit 14: progress is a distance
-+0x20  u16      targetPath  as eyePath
-+0x22  u16      duration    frames
-+0x24  u8       kind        0-6; see Playing a shot
-+0x25  u8       absolute    non-zero: the path offsets replace the pose
+Segment (type 2, `0x2C` bytes):
 
-ease curve (array B)
-+0x00  u32      length      0x18 + 0x24 * keys
-+0x04  u32      keys
-+0x08  f32      start       time; at or before it the value is +0x0C
-+0x0C  f32      startValue
-+0x10  f32      end         time; the normaliser
-+0x14  f32      endValue    at or after end, and with no keys
-+0x18  key[keys], 0x24 bytes: +0x10 a, +0x14 b, +0x18 c, +0x1C d, +0x20 span
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | 2 |  |
+| `+0x04` | `u16[13]` | timing | bit 15 set: ease curve (bits 0-14); else frames |
+| `+0x1E` | `u16` | eyePath | bit 15 set: path (bits 0-13); bit 14: progress is a distance |
+| `+0x20` | `u16` | targetPath | as eyePath |
+| `+0x22` | `u16` | duration | frames |
+| `+0x24` | `u8` | kind | 0-6; see Playing a shot |
+| `+0x25` | `u8` | absolute | non-zero: the path offsets replace the pose |
 
-path (array C)
-+0x00  u16      length      0x20 + 0x38 * segments + 8 * arcs
-+0x04  u16      segments
-+0x06  u16      arcs
-+0x08  f32[3]   start       at parameter 0 or below
-+0x14  f32[3]   end         at parameter 1 or above
-+0x20  segment[segments], 0x38 bytes: x a b c d, y a b c d, z a b c d, +0x30 span
+Ease curve (array B):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | length | `0x18` + `0x24` * keys |
+| `+0x04` | `u32` | keys |  |
+| `+0x08` | `f32` | start | time; at or before it the value is +`0x0C` |
+| `+0x0C` | `f32` | startValue |  |
+| `+0x10` | `f32` | end | time; the normaliser |
+| `+0x14` | `f32` | endValue | at or after end, and with no keys |
+| `+0x18` | `key[keys],` | 0x24 | bytes: +`0x10` a, +`0x14` b, +`0x18` c, +`0x1C` d, +`0x20` span |
+
+Path (array C):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | length | `0x20` + `0x38` * segments + 8 * arcs |
+| `+0x04` | `u16` | segments |  |
+| `+0x06` | `u16` | arcs |  |
+| `+0x08` | `f32[3]` | start | at parameter 0 or below |
+| `+0x14` | `f32[3]` | end | at parameter 1 or above |
+| `+0x20` | `segment[segments],` | 0x38 | bytes: x a b c d, y a b c d, z a b c d, +`0x30` span |
+
+```
 then arc[arcs]: f32 distance, f32 parameter
 ```
 

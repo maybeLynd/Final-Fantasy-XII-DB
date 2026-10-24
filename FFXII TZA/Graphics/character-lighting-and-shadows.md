@@ -277,10 +277,11 @@ and [second pool](character-lighting-and-shadows-shadow-pool-v2-slot-accesses.ts
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct PShadowCaster base=record size=0x80
-+0x20    u8[48]          bytes20                +0x20 to +0x4F; no registered member covers it (0x006C0D50 registers the
-                                                0x80-byte class at 0x006C0DA0)
-```
+`PShadowCaster` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x20` | `u8[48]` | bytes20 | +`0x20` to +`0x4F`; no registered member covers it (`0x006C0D50` registers the `0x80`-byte class at `0x006C0DA0`) |
 
 ### Light requests and shadow records
 

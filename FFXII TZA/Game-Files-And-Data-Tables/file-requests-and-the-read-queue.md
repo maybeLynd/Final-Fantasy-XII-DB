@@ -222,7 +222,7 @@ a signed word of a record (a word of −1 sign-extends to −1, which the builde
 
 ## Layouts
 
-```
+```python
 slot (0x80)   +0x00 u64 counter sum, +0x08 u64 counter at issue, +0x10 next, +0x18 prev,
               +0x20 u8 state, +0x21 u8 kind, +0x22 u8 chunked, +0x23 u8 part result, +0x24 s32 index (or path),
               +0x28 s32 bytes (current part), +0x2C s32 file offset, +0x30 s32 part cap, +0x34 s32 remaining,

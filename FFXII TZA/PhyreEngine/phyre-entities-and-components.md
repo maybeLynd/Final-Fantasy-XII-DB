@@ -99,10 +99,11 @@ pointer leaves both null. The physics functions `0x006A1A70` and `0x006A1DD0` ca
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct PNameComponent base=record size=0x30
-+0x28    ptr             m_name                 m_name (ptr), registered by 0x006AFC20 (0x00632960 at 0x006AFCB2); no
-                                                shipped .phyre file declares PNameComponent
-```
+`PNameComponent` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x28` | `void*` | m_name | m_name (ptr), registered by `0x006AFC20` (`0x00632960` at `0x006AFCB2`); no shipped .phyre file declares PNameComponent |
 
 `PQuarryComponent` (`0x68` bytes, offsets from the start of the record):
 
@@ -118,11 +119,11 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x20` | `void*` | m_entryPoint | m_entryPoint (ptr), registered by `0x006CD000` (`0x00632960` at `0x006CD0FF`); no shipped .phyre file declares PScriptableComponent |
 | `+0x30` | `u8[16]` | bytes30 | +`0x30` to +`0x3F`; no registered member covers it (`0x006CCF50` registers the `0x40`-byte class at `0x006CCF9A`) |
 
-```struct PTriggerReceiverComponent base=record size=0x58
-+0x24    u8[4]           bytes24                the four bytes after the dword the constructor 0x006CDF00 clears
-                                                at +0x20 (0x006CDF36), before m_entryHandler at +0x28; no registered member
-                                                covers it (0x006CDFF0 registers the 0x58-byte class at 0x006CE03A)
-```
+`PTriggerReceiverComponent` (`0x58` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x24` | `u8[4]` | bytes24 | the four bytes after the dword the constructor `0x006CDF00` clears at +`0x20` (`0x006CDF36`), before m_entryHandler at +`0x28`; no registered member covers it (`0x006CDFF0` registers the `0x58`-byte class at `0x006CE03A`) |
 
 ### Entities and components
 

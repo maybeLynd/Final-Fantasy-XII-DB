@@ -115,47 +115,28 @@ its `+0x26D` is set.
 
 The overlay is the `0xD0`-byte widget at `0x01FD4940` with procedure `0x00229590` (Building the overlay above).
 
-```struct PauseOverlay base=record size=0xD0
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x00229590
-+0xC0    u32             state                  the overlay's stage, 0-4 (The stages above): the construct message
-                                                sets 0 (0x00229985), or 1 when its argument is non-zero and it opens
-                                                screen layer 3 at once (0x00229A9D); the tick dispatches on it
-                                                (0x0022974E) and moves it to 1 (0x00229941), 2 (0x002298F7) and 4
-                                                (0x00229843); message 15, the close, sets 3 (0x00229605); state 4 sets 0
-                                                as it releases the overlay (0x002297BF)
-+0xC4    u32             savedBehindCamera      the behind-camera switch 0x02098354 saved when the game pauses
-                                                (0x0025A850, 0x00229881) and restored when it resumes (0x0022981D); 1 at
-                                                construction (0x0022998B)
-+0xC8    u32             layerOpen              the construct message's argument (0x00229979): non-zero opens screen
-                                                layer 3 at construction (0x00229A47); state 0 sets it to 1 when it opens
-                                                the layer (0x0022994B). The draw message draws the battle-atlas sprite
-                                                only while it and +0xCC are set (0x00229632)
-+0xCC    u32             paused                 1 while the game is paused: state 1 sets it as it pauses ("PauseMenu
-                                                Open", 0x00229870); state 3 undoes the pause only when it is set and
-                                                clears it (0x002297E5, 0x002297F0); 0 at construction (0x0022997F). The draw
-                                                message draws the sprite only while it is set (0x00229614)
-```
+`PauseOverlay` (`0xD0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00229590` |
+| `+0xC0` | `u32` | state | the overlay's stage, 0-4 (The stages above): the construct message sets 0 (`0x00229985`), or 1 when its argument is non-zero and it opens screen layer 3 at once (`0x00229A9D`); the tick dispatches on it (`0x0022974E`) and moves it to 1 (`0x00229941`), 2 (`0x002298F7`) and 4 (`0x00229843`); message 15, the close, sets 3 (`0x00229605`); state 4 sets 0 as it releases the overlay (`0x002297BF`) |
+| `+0xC4` | `u32` | savedBehindCamera | the behind-camera switch `0x02098354` saved when the game pauses (`0x0025A850`, `0x00229881`) and restored when it resumes (`0x0022981D`); 1 at construction (`0x0022998B`) |
+| `+0xC8` | `u32` | layerOpen | the construct message's argument (`0x00229979`): non-zero opens screen layer 3 at construction (`0x00229A47`); state 0 sets it to 1 when it opens the layer (`0x0022994B`). The draw message draws the battle-atlas sprite only while it and +`0xCC` are set (`0x00229632`) |
+| `+0xCC` | `u32` | paused | 1 while the game is paused: state 1 sets it as it pauses ("PauseMenu Open", `0x00229870`); state 3 undoes the pause only when it is set and clears it (`0x002297E5`, `0x002297F0`); 0 at construction (`0x0022997F`). The draw message draws the sprite only while it is set (`0x00229614`) |
 
 ### The inactive-window task
 
 The task is the `0xD0`-byte widget at `0x01FD4948` with procedure `0x002284F0` (The inactive-window task above).
 
-```struct InactiveWindowTask base=record size=0xD0
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x002284F0
-+0xC0    u32             state                  the task's state: 0 at construction (0x0022864A); the input turn sets 1
-                                                when the cancel word arrives (0x00228570); the tick, in state 1, closes
-                                                the overlay, releases the task and sets 3 (0x00228599, 0x002285C2)
-+0xC4    u8[4]           pad0C4                 read and written by no function; nothing fixes its width
-+0xC8    ptr             pendingFocus           the widget that asked for the focus while the task held it: the focus
-                                                call 0x002470D0 hands such a request to 0x002286B0 (0x002470FF), which sends
-                                                the widget its message 10 and keeps it here (0x002286E3); when the task
-                                                is destroyed (message 18) it gives the focus to this widget
-                                                (0x00228532); the release 0x002482E0 clears it through 0x00228450 when the
-                                                widget being released is the one kept (0x0022845C, 0x00228465); 0 at
-                                                construction (0x00228643)
-```
+`InactiveWindowTask` (`0xD0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x002284F0` |
+| `+0xC0` | `u32` | state | the task's state: 0 at construction (`0x0022864A`); the input turn sets 1 when the cancel word arrives (`0x00228570`); the tick, in state 1, closes the overlay, releases the task and sets 3 (`0x00228599`, `0x002285C2`) |
+| `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
+| `+0xC8` | `void*` | pendingFocus | the widget that asked for the focus while the task held it: the focus call `0x002470D0` hands such a request to `0x002286B0` (`0x002470FF`), which sends the widget its message 10 and keeps it here (`0x002286E3`); when the task is destroyed (message 18) it gives the focus to this widget (`0x00228532`); the release `0x002482E0` clears it through `0x00228450` when the widget being released is the one kept (`0x0022845C`, `0x00228465`); 0 at construction (`0x00228643`) |
 
 ## Modding notes
 

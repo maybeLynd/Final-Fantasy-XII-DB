@@ -151,32 +151,36 @@ entry point. The TLS block itself is used: the thread-safe local statics keep ea
 
 ## Layouts
 
-```
-initialiser tables (.rdata), qwords
-  0x008C31D0          null              __xc_a
-  0x008C31D8          0x00808D5C          .CRT$XCAA
-  0x008C31E0..31E8    0x0016A290 0x0016A29C .CRT$XCL
-  0x008C31F0..5670    1,169 entries     .CRT$XCU
-  0x008C5678          null              __xc_z
-  0x008C5680          null              __xi_a
-  0x008C5688..5698    0x00808C90 0x00808D4C 0x00809124
-  0x008C56A0          null              __xi_z
-  0x008C56B8..56E0    nulls only        .CRT$XP*, .CRT$XT*
+Initialiser tables (.rdata), qwords:
 
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x008C31D0` | `null` | __xc_a | `0x008C31D8`          `0x00808D5C`          .CRT$XCAA `0x008C31E0`..31E8    `0x0016A290` `0x0016A29C` .CRT$XCL `0x008C31F0`..5670    1,169 entries     .CRT$XCU |
+| `0x008C5678` | `null` | __xc_z |  |
+| `0x008C5680` | `null` | __xi_a | `0x008C5688`..5698    `0x00808C90` `0x00808D4C` `0x00809124` |
+| `0x008C56A0` | `null` | __xi_z | `0x008C56B8`..56E0    nulls only        .CRT$XP*, .CRT$XT* |
+
+```
 start-up state 0x02EAECF8 (u32)
   0  not started   1  initialisers running   2  initialisers done
-
-module exit tables (encoded qwords, each set to encode(-1) by 0x00808988)
-  0x02EAED08  first, last, end    atexit table
-  0x02EAED20  first, last, end    at_quick_exit table
-
-IMAGE_TLS_DIRECTORY64 at 0x01CEBED8
-  +0x00  u64  StartAddressOfRawData   0x03004000
-  +0x08  u64  EndAddressOfRawData     0x03004008
-  +0x10  u64  AddressOfIndex          0x02EAED3C
-  +0x18  u64  AddressOfCallBacks      0x008C56B0   first entry null
-  +0x20  u32  SizeOfZeroFill          0
 ```
+
+Module exit tables (encoded qwords, each set to encode(-1) by `0x00808988`):
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x02EAED08` | `first, last, end` | atexit table |  |
+| `0x02EAED20` | `first, last, end` | at_quick_exit table |  |
+
+IMAGE_TLS_DIRECTORY64 at `0x01CEBED8`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u64` | StartAddressOfRawData | `0x03004000` |
+| `+0x08` | `u64` | EndAddressOfRawData | `0x03004008` |
+| `+0x10` | `u64` | AddressOfIndex | `0x02EAED3C` |
+| `+0x18` | `u64` | AddressOfCallBacks | `0x008C56B0`   first entry null |
+| `+0x20` | `u32` | SizeOfZeroFill | 0 |
 
 ## Shipped data
 

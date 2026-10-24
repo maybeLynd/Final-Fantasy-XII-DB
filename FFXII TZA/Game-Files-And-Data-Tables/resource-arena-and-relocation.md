@@ -276,7 +276,7 @@ page.
 
 ## Layouts
 
-```
+```python
 arena record   0x022D7FD0 + i*0xA8: +0x00 u8, +0x01 u8 index, +0x02 u8 dirty, +0x08 name header, +0x10 heap start,
                +0x18 heap middle, +0x20 bitmap, +0x28 page map, +0x30 slot table, +0x38 slot end, +0x40 free slot,
                +0x48 used slot, +0x50 tree root, +0x58 u32 pages, +0x5C u32 heap size, +0x60 u16 tag, +0x62 u8 moved,

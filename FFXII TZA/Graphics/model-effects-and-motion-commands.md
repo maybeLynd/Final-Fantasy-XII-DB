@@ -63,11 +63,14 @@ keys are motion frames. The commands themselves are the authored presentation co
 
 ### @FMW, the channel data
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u32` | channel count |  |
+| `+0x30` | `u32` | offset of the value streams, from the entry |  |
+| `+0x34` | `u32` | 1 = packed form (u16 channel table, 0x00409170); otherwise the u32 table form (0x00409150) |  |
+| `+0x40` | `u16[count] or u32[count]` | channel descriptor offsets, from the entry |  |
+
 ```
-+0x0C  u32  channel count
-+0x30  u32  offset of the value streams, from the entry
-+0x34  u32  1 = packed form (u16 channel table, 0x00409170); otherwise the u32 table form (0x00409150)
-+0x40  u16[count] or u32[count]  channel descriptor offsets, from the entry
 packed descriptor:  +0x00 u8 frame count, +0x01 u8 n, +0x04 u32[n] frame-stream offsets,
                     then per key {u32 value-stream offset (low 17 bits), f32 bias, f32 scale}
 ```

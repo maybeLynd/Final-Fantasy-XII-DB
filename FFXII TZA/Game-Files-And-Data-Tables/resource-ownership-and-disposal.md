@@ -235,7 +235,7 @@ origins `+0x870` and `+0x878` are not in those walks.
 
 ## Layouts
 
-```
+```python
 bank entry (0x50)      +0x00 u16 slot (0xFFFF free), +0x04 u32 mode (0 copy, 1 retained),
                        +0x10 inline buffer (0x20: +0x08 data, +0x10 capacity, +0x14 growth, +0x18 used),
                        +0x30 source handle, +0x38 cached pointer, +0x40 u32 size, +0x44 s32 ticket (-1 none, 0 none free)

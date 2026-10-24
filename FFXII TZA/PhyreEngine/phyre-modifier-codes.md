@@ -111,10 +111,13 @@ Each morph initialiser owns a `0xD0`-byte static: the `0x78`-byte record, a link
 description entries from `+0x80`. It passes `+0x80` to `0x006D58D0` as the input table and `+0xC0` as the output table
 (the record's `+0x18` and `+0x28`), then stores the entries itself:
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x78` | `void*` | link to the record that was the list head |  |
+| `+0x80` | `4` | input | description entries, 16 bytes each |
+| `+0xC0` | `1` | output | description entry |
+
 ```
-+0x78  ptr   link to the record that was the list head
-+0x80  4 input description entries, 16 bytes each
-+0xC0  1 output description entry
 entry: +0x00 ptr semantic (0 in every morph entry), +0x08 u32 data type
 ```
 

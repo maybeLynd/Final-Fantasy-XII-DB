@@ -24,10 +24,13 @@ releases the roots.
 
 All multi-byte fields are little-endian.
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[8]` | magic | "FF12POS3"; only byte 7 is read, as a version |
+| `+0x08` | `u32` | size | `0x10` + `0x30` × count |
+| `+0x0C` | `u32` | count | records |
+
 ```
-+0x00  char[8]  magic   "FF12POS3"; only byte 7 is read, as a version
-+0x08  u32      size    0x10 + 0x30 × count
-+0x0C  u32      count   records
 +0x10  record[count]
 +size  u32      0x0000000A
 ```

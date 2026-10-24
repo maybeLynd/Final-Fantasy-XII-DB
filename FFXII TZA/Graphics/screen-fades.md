@@ -233,19 +233,24 @@ FadeLayer[7] at `0x022BDD60`, stride `0x30`:
 | `+0x05` | `u8` | direction | 0 out, 1 in |
 | `+0x08` | `...` | descriptor | `0x28` bytes, below |
 
-```
-Kind-1 descriptor (record +0x08; pool record +0x00)
-+0x00  u8    kind        1
-+0x01  u8    stage/blend  low nibble stage (default 6), high nibble blend (default 3)
-+0x02  u8    class       1
-+0x03  u8    priority    default 0
-+0x1C  u8    flags       bit 0 fade-in
-+0x20  u32   colour      RGBA bytes, alpha 0x80 full
-+0x24  u32   duration    2 x frames
-pool record only:
-+0x68  u32   handle
-+0x6C  u32   counter
-```
+Kind-1 descriptor (record +`0x08`; pool record +`0x00`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | kind | 1 |
+| `+0x01` | `u8` | stage/blend | low nibble stage (default 6), high nibble blend (default 3) |
+| `+0x02` | `u8` | class | 1 |
+| `+0x03` | `u8` | priority | default 0 |
+| `+0x1C` | `u8` | flags | bit 0 fade-in |
+| `+0x20` | `u32` | colour | RGBA bytes, alpha `0x80` full |
+| `+0x24` | `u32` | duration | 2 x frames |
+
+Pool record only:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x68` | `u32` | handle |  |
+| `+0x6C` | `u32` | counter |  |
 
 The pool copies 0x68 bytes, more than the 0x28 a fade record has; the bytes past `+0x28` come
 from the next layer's record and the kind-1 code reads none of them.

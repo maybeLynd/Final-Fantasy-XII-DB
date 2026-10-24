@@ -149,117 +149,65 @@ a texture.
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct PAssetReference base=record size=0x50
-+0x30    ptr             m_id                   the asset's id; m_id (ptr), registered by 0x00675740 (0x00632960 at
-                                                0x006757D9); the cluster loader binds it by name (0x0059B430) in the
-                                                35,984 shipped .phyre files that declare PAssetReference; the script
-                                                method getID (registered at 0x00675999) returns its address through
-                                                0x005C4D20
-+0x48    ptr             cluster                the cluster the reference belongs to: when one cluster absorbs
-                                                another, 0x00677550 sets it on every object of a list whose class
-                                                derives from PAssetReference (0x0067757A, 0x00677590); no registered
-                                                member covers it (0x006751A0 registers the 0x50-byte class at 0x006751F0)
-```
+`PAssetReference` (`0x50` bytes, offsets from the start of the record):
 
-```struct PAssetReferenceImport base=record size=0x18
-+0x08    ptr             m_id                   the id an asset import names; the user-fixup reader 0x0059E880 keeps a
-                                                PAssetReferenceImport record as raw bytes; m_id (ptr), registered by
-                                                0x00675DA0 (0x00632960 at 0x00675E4B); the cluster loader binds it by name
-                                                (0x0059B430) in the 2,091 shipped .phyre files that declare
-                                                PAssetReferenceImport; the placement constructor 0x00674E50 clears it
-                                                (0x00674E7A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x30` | `void*` | m_id | the asset's id; m_id (ptr), registered by `0x00675740` (`0x00632960` at `0x006757D9`); the cluster loader binds it by name (`0x0059B430`) in the 35,984 shipped .phyre files that declare PAssetReference; the script method getID (registered at `0x00675999`) returns its address through `0x005C4D20` |
+| `+0x48` | `void*` | cluster | the cluster the reference belongs to: when one cluster absorbs another, `0x00677550` sets it on every object of a list whose class derives from PAssetReference (`0x0067757A`, `0x00677590`); no registered member covers it (`0x006751A0` registers the `0x50`-byte class at `0x006751F0`) |
 
-```struct PDataBlockD3D11 base=record size=0x88
-+0x70    u32             m_offsetInVertexBuffer where the block's data starts in the file's vertex buffer: 0x00670070
-                                                creates the block's immutable buffer from the file data at this offset
-                                                (0x006700C1); m_offsetInVertexBuffer (u32), registered by 0x00665870
-                                                (0x00632960 at 0x00665A03); the cluster loader binds it by name (0x0059B430)
-                                                in the 2,091 shipped .phyre files that declare PDataBlockD3D11
-+0x78    u32             m_dataSize             the size of the block's data: 0x00670070 creates the block's buffer with
-                                                this byte width (0x006700B1); m_dataSize (u32), registered by 0x00665870
-                                                (0x00632960 at 0x00665990); the cluster loader binds it by name (0x0059B430)
-                                                in the 2,091 shipped .phyre files that declare PDataBlockD3D11
-+0x7C    u8[4]           bytes7C                the bytes after m_dataSize (+0x78), before +0x80; no registered member
-                                                covers it (0x00661D30 registers the 0x88-byte class at 0x00661D7A)
-```
+`PAssetReferenceImport` (`0x18` bytes, offsets from the start of the record):
 
-```struct PIndexDataBlockD3D11 base=record size=0x80
-+0x68    u32             m_offsetInIndexBuffer  the offset of the block's indices in the index buffer: the indexed
-                                                draw 0x006224E0 passes it as the binding offset (0x00622539);
-                                                m_offsetInIndexBuffer (u32), registered by 0x00666380 (0x00632960 at
-                                                0x00666513); the cluster loader binds it by name (0x0059B430) in the 2,091
-                                                shipped .phyre files that declare PIndexDataBlockD3D11
-+0x70    u32             m_dataSize             the size of the block's index data; m_dataSize (u32), registered by
-                                                0x00666380 (0x00632960 at 0x006664A0); the cluster loader binds it by name
-                                                (0x0059B430) in the 2,091 shipped .phyre files that declare
-                                                PIndexDataBlockD3D11
-+0x74    u8[4]           bytes74                the bytes after m_dataSize (+0x70), before +0x78; no registered member
-                                                covers it (0x006621E0 registers the 0x80-byte class at 0x0066222A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `void*` | m_id | the id an asset import names; the user-fixup reader `0x0059E880` keeps a PAssetReferenceImport record as raw bytes; m_id (ptr), registered by `0x00675DA0` (`0x00632960` at `0x00675E4B`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PAssetReferenceImport; the placement constructor `0x00674E50` clears it (`0x00674E7A`) |
 
-```struct PMaterial base=record size=0x28
-+0x10    u32             m_flag                 m_flag (u32), registered by 0x005E4AA0 (0x00632960 at 0x005E4C18); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PMaterial
-+0x14    u8[4]           bytes14                the bytes after m_flag (+0x10), before +0x18; no registered member
-                                                covers it (0x005D9520 registers the 0x28-byte class at 0x005D9570)
-```
+`PDataBlockD3D11` (`0x88` bytes, offsets from the start of the record):
 
-```struct PModifierNetworkInfoPacket base=record size=0x20
-+0x00    u32             m_size                 m_size (u32), registered by 0x006D1810 (0x00632960 at 0x006D18A5); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkInfoPacket
-+0x04    u32             m_modifierCodeCount    the number of 0x20-byte modifier-code records that follow the packet:
-                                                0x006D4CF0 reads it to hand them to the visitor (0x006D4D0E);
-                                                m_modifierCodeCount (u32), registered by 0x006D1810 (0x00632960 at
-                                                0x006D1918); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare PModifierNetworkInfoPacket
-+0x08    u32             m_modifierInstanceCount the number of 0x20-byte modifier-instance records after the codes:
-                                                 0x006D4CF0 reads it (0x006D4D1A); m_modifierInstanceCount (u32),
-                                                 registered by 0x006D1810 (0x00632960 at 0x006D198B); the cluster loader
-                                                 binds it by name (0x0059B430) in the 3 shipped .phyre files that
-                                                 declare PModifierNetworkInfoPacket
-+0x0C    u16             m_inputCount           counted with m_outputCount for the two-byte buffer entries after the
-                                                instances: 0x006D4CF0 reads it (0x006D4D11); m_inputCount (u16),
-                                                registered by 0x006D1810 (0x00632960 at 0x006D19FE); the cluster loader
-                                                binds it by name (0x0059B430) in the 3 shipped .phyre files that declare
-                                                PModifierNetworkInfoPacket
-+0x0E    u16             m_outputCount          counted with m_inputCount for the two-byte buffer entries: 0x006D4CF0
-                                                reads it (0x006D4D22); m_outputCount (u16), registered by 0x006D1810
-                                                (0x00632960 at 0x006D1A71); the cluster loader binds it by name (0x0059B430)
-                                                in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket
-+0x14    u32             m_totalPersistentStateSize m_totalPersistentStateSize (u32), registered by 0x006D1810 (0x00632960
-                                                    at 0x006D1B56); the cluster loader binds it by name (0x0059B430) in
-                                                    the 3 shipped .phyre files that declare PModifierNetworkInfoPacket
-+0x18    u32             m_totalStateBlockSize  m_totalStateBlockSize (u32), registered by 0x006D1810 (0x00632960 at
-                                                0x006D1BC9); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare PModifierNetworkInfoPacket
-+0x1C    u32             m_spuModifierCodeSize  m_spuModifierCodeSize (u32), registered by 0x006D1810 (0x00632960 at
-                                                0x006D1C3C); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare PModifierNetworkInfoPacket
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x70` | `u32` | m_offsetInVertexBuffer where the block's data starts in the file's vertex buffer: 0x00670070 | creates the block's immutable buffer from the file data at this offset (`0x006700C1`); m_offsetInVertexBuffer (u32), registered by `0x00665870` (`0x00632960` at `0x00665A03`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
+| `+0x78` | `u32` | m_dataSize | the size of the block's data: `0x00670070` creates the block's buffer with this byte width (`0x006700B1`); m_dataSize (u32), registered by `0x00665870` (`0x00632960` at `0x00665990`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
+| `+0x7C` | `u8[4]` | bytes7C | the bytes after m_dataSize (+`0x78`), before +`0x80`; no registered member covers it (`0x00661D30` registers the `0x88`-byte class at `0x00661D7A`) |
 
-```struct POccluderGeometryObject base=record size=0x30
-+0x00    u32             m_planeCount           the plane count: 0x006DA380 hands (count + 3) / 4 Matrix4 records of
-                                                planes to the visitor (0x006DA3A0); m_planeCount (u32), registered by
-                                                0x006D9FC0 (0x00632960 at 0x006DA051); no shipped .phyre file declares
-                                                POccluderGeometryObject
-+0x04    u32             m_vertexCount          the vertex count: 0x006DA380 hands that many Point3 records to the
-                                                visitor (0x006DA3D4); m_vertexCount (u32), registered by 0x006D9FC0
-                                                (0x00632960 at 0x006DA0C0); no shipped .phyre file declares
-                                                POccluderGeometryObject
-+0x08    u32             m_edgeCount            the edge count: 0x006DA380 hands that many 4-byte entries to the visitor
-                                                (0x006DA3FE); m_edgeCount (u32), registered by 0x006D9FC0 (0x00632960 at
-                                                0x006DA12F); no shipped .phyre file declares POccluderGeometryObject
-+0x0C    u8[4]           pad0C                  alignment bytes between m_edgeCount (+0x08) and m_minBounds (16-byte
-                                                vector at +0x10); no registered member covers it (0x006D9F00 registers
-                                                the 0x30-byte class at 0x006D9F50)
-+0x10    f32[4]          m_minBounds            m_minBounds (f32[4]), registered by 0x006D9FC0 (0x00632960 at 0x006DA19E);
-                                                no shipped .phyre file declares POccluderGeometryObject
-+0x20    f32[4]          m_maxBounds            m_maxBounds (f32[4]), registered by 0x006D9FC0 (0x00632960 at 0x006DA20D);
-                                                no shipped .phyre file declares POccluderGeometryObject
-```
+`PIndexDataBlockD3D11` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x68` | `u32` | m_offsetInIndexBuffer | the offset of the block's indices in the index buffer: the indexed draw `0x006224E0` passes it as the binding offset (`0x00622539`); m_offsetInIndexBuffer (u32), registered by `0x00666380` (`0x00632960` at `0x00666513`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockD3D11 |
+| `+0x70` | `u32` | m_dataSize | the size of the block's index data; m_dataSize (u32), registered by `0x00666380` (`0x00632960` at `0x006664A0`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockD3D11 |
+| `+0x74` | `u8[4]` | bytes74 | the bytes after m_dataSize (+`0x70`), before +`0x78`; no registered member covers it (`0x006621E0` registers the `0x80`-byte class at `0x0066222A`) |
+
+`PMaterial` (`0x28` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10` | `u32` | m_flag | m_flag (u32), registered by `0x005E4AA0` (`0x00632960` at `0x005E4C18`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PMaterial |
+| `+0x14` | `u8[4]` | bytes14 | the bytes after m_flag (+`0x10`), before +`0x18`; no registered member covers it (`0x005D9520` registers the `0x28`-byte class at `0x005D9570`) |
+
+`PModifierNetworkInfoPacket` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_size | m_size (u32), registered by `0x006D1810` (`0x00632960` at `0x006D18A5`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x04` | `u32` | m_modifierCodeCount | the number of `0x20`-byte modifier-code records that follow the packet: `0x006D4CF0` reads it to hand them to the visitor (`0x006D4D0E`); m_modifierCodeCount (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1918`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x08` | `u32` | m_modifierInstanceCount the number of 0x20-byte modifier-instance records after the codes: | `0x006D4CF0` reads it (`0x006D4D1A`); m_modifierInstanceCount (u32), registered by `0x006D1810` (`0x00632960` at `0x006D198B`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x0C` | `u16` | m_inputCount | counted with m_outputCount for the two-byte buffer entries after the instances: `0x006D4CF0` reads it (`0x006D4D11`); m_inputCount (u16), registered by `0x006D1810` (`0x00632960` at `0x006D19FE`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x0E` | `u16` | m_outputCount | counted with m_inputCount for the two-byte buffer entries: `0x006D4CF0` reads it (`0x006D4D22`); m_outputCount (u16), registered by `0x006D1810` (`0x00632960` at `0x006D1A71`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x14` | `u32` | m_totalPersistentStateSize m_totalPersistentStateSize (u32), registered by 0x006D1810 (0x00632960 | at `0x006D1B56`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x18` | `u32` | m_totalStateBlockSize | m_totalStateBlockSize (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1BC9`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x1C` | `u32` | m_spuModifierCodeSize | m_spuModifierCodeSize (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1C3C`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+
+`POccluderGeometryObject` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_planeCount | the plane count: `0x006DA380` hands (count + 3) / 4 Matrix4 records of planes to the visitor (`0x006DA3A0`); m_planeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA051`); no shipped .phyre file declares POccluderGeometryObject |
+| `+0x04` | `u32` | m_vertexCount | the vertex count: `0x006DA380` hands that many Point3 records to the visitor (`0x006DA3D4`); m_vertexCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA0C0`); no shipped .phyre file declares POccluderGeometryObject |
+| `+0x08` | `u32` | m_edgeCount | the edge count: `0x006DA380` hands that many 4-byte entries to the visitor (`0x006DA3FE`); m_edgeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA12F`); no shipped .phyre file declares POccluderGeometryObject |
+| `+0x0C` | `u8[4]` | pad0C | alignment bytes between m_edgeCount (+`0x08`) and m_minBounds (16-byte vector at +`0x10`); no registered member covers it (`0x006D9F00` registers the `0x30`-byte class at `0x006D9F50`) |
+| `+0x10` | `f32[4]` | m_minBounds | m_minBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA19E`); no shipped .phyre file declares POccluderGeometryObject |
+| `+0x20` | `f32[4]` | m_maxBounds | m_maxBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA20D`); no shipped .phyre file declares POccluderGeometryObject |
 
 ## Shipped data
 

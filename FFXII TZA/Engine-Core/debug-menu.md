@@ -374,18 +374,24 @@ No arm of `0x001D1660` writes `+0x00`, `+0x04`, `+0xC1C` or `+0xC24`.
 
 ## Layouts
 
-```
-0x01F81428  ptr  the console object (0x10E8), from 0x001D50D0
-  +0x130 + id*8  char*  row labels, ids 1-294 (0x001D0390)
-  +0xA70  u8  open (always 0)   +0xA74  u32 mode   +0xA88  page   +0xA90  row count   +0xAAC  i32 weather-slot override
-  +0xAB4  u32 field id for the code table   +0xC56  u8 information page   +0x10B0 / +0x10B4  rows of ids 9 and 10
-0x008FCE00  u32[15][22]  the page table (id, 0 = none)
-0x001D4C1C  u32[282]  arm RVAs for ids 12-293; 0x001D4BFA the shared do-nothing arm; 0x001D4C09 the out-of-range arm
-0x01DF6E68  {char* code; u32 index+1; u32 0}[1314]  the authored-code table (601 codes)
-0x01F832B0  u32[5] event-slot counts   0x01F832E8 / 0x01F832E9  u8 classification   0x01F832F0  string[5]   0x01F83390  vector[5]   0x01DFE40C  i32 slot marker
-0x01F82D20  ptr  the game-setting object the Config rows read
-0x022C7F90 + i*4  u16  display flag words (0x00358330(i)); word 1 gates the menu draw
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01F81428` | `void*` | the console object (0x10E8), from 0x001D50D0 |  |
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x130` | `+ id*8` | char* | row labels, ids 1-294 (`0x001D0390`) |
+| `+0xA70` | `u8` | open (always 0) | +`0xA74`  u32 mode   +`0xA88`  page   +`0xA90`  row count   +`0xAAC`  i32 weather-slot override |
+| `+0xAB4` | `u32 field id for the code table` | +0xC56 | u8 information page   +`0x10B0` / +`0x10B4`  rows of ids 9 and 10 |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x008FCE00` | `u32[15][22]` | the page table (id, 0 = none) |  |
+| `0x001D4C1C` | `u32[282]` | arm RVAs for ids 12-293; 0x001D4BFA the shared do-nothing arm; 0x001D4C09 the out-of-range arm |  |
+| `0x01DF6E68` | `{char* code; u32 index+1; u32 0}[1314]` | the authored-code table (601 codes) |  |
+| `0x01F832B0` | `u32[5] event-slot counts` | 0x01F832E8 / 0x01F832E9 | u8 classification   `0x01F832F0`  string[5]   `0x01F83390`  vector[5]   `0x01DFE40C`  i32 slot marker |
+| `0x01F82D20` | `void*` | the game-setting object the Config rows read |  |
+| `0x022C7F90` | `+ i*4` | u16 | display flag words (`0x00358330`(i)); word 1 gates the menu draw |
 
 `MultipleDebugDisplay`, `0x4670` bytes at `[0x01F81270]` (constructor `0x001C1D40`):
 

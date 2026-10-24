@@ -29,11 +29,14 @@ stopping dead; that is the coast-down latch at the end of this page.
 
 The channels are eight bytes each at record `+0x4C0`; channel `n` is at `+0x4C0 + 8n`:
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i16` | base, Q12 (0x1000 = 1.0) |  |
+| `+0x02` | `i16` | delta: target - base |  |
+| `+0x04` | `i16` | progress, 0 to 0x1000 |  |
+| `+0x06` | `i16` | step per update; 0 = at rest |  |
+
 ```
-+0x0  i16  base, Q12 (0x1000 = 1.0)
-+0x2  i16  delta: target - base
-+0x4  i16  progress, 0 to 0x1000
-+0x6  i16  step per update; 0 = at rest
 value = base + ((delta * progress) >> 12)
 ```
 

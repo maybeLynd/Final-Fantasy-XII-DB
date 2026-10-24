@@ -204,7 +204,7 @@ request, refused when bit 15 of the target or of the value is set, value stored 
 
 ## Layouts
 
-```
+```python
 actor record   +6 u16 busy channels, +0x10 u8 outstanding requests, +0x11 s8 current wait slot,
                +0x1C u32 arming mask (bit n = slot n), +0x24/+0x26 u16 channel marks,
                +0x60 u8 free head, +0x61 u8 detached head, +0x62 u8 selected entry, +0x63 u8 flags,

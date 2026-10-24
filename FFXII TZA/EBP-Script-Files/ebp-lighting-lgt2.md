@@ -24,14 +24,17 @@ pending bit 16; when the manager's pending word empties, the finaliser `0x0032F1
 
 All multi-byte fields are little-endian.
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "LGT2", compared as the dword `0x3254474C` |
+| `+0x04` | `u16` | listOffset | start of the chunk chain, from the section start |
+| `+0x06` | `u16` | 0 |  |
+| `+0x08` | `u16` | 1 or 2, not read |  |
+| `+0x0A` | `u16` | lightCount | light records |
+| `+0x0C` | `u32` | 0 |  |
+| `+0x10` | `record[lightCount]` | 0x70 bytes each |  |
+
 ```
-+0x00  char[4]  magic       "LGT2", compared as the dword 0x3254474C
-+0x04  u16      listOffset  start of the chunk chain, from the section start
-+0x06  u16      0
-+0x08  u16      1 or 2, not read
-+0x0A  u16      lightCount  light records
-+0x0C  u32      0
-+0x10  record[lightCount]   0x70 bytes each
 [listOffset] chunk chain, each chunk {u16 size; u16 type; ...}; size 0 ends the chain
 ```
 

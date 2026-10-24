@@ -17,17 +17,13 @@ from other authored sources otherwise; the argument counts are measured on the h
 
 The loader is the `0xC8`-byte task at `0x02CA8A78` with procedure `0x0053EB90` that `0x0053ED10` starts for `fsroll_initialize`.
 
-```struct StaffRollLoader base=record size=0xC8
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x0053EB90
-+0xC0    u32             logoLoaded             set to 1 by message 16 (a resource batch has loaded), the logo picture
-                                                sf_logo_c.tm2 the construct message requested (0x0053EBCF); each tick
-                                                (message 2) waits until the six font slots 7-12 are ready (0x003657E0),
-                                                texts 0x19 and 0x1A are resident (0x002F8040) and this is set
-                                                (0x0053EC2B), then clears the task pointer 0x02CA8A78 and releases itself
-                                                (0x0053EC3A, 0x0053EC41), which lets the fsroll_initialize poll go on
-+0xC4    u8[4]           pad0C4                 read and written by no function; nothing fixes its width
-```
+`StaffRollLoader` (`0xC8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0053EB90` |
+| `+0xC0` | `u32` | logoLoaded | set to 1 by message 16 (a resource batch has loaded), the logo picture sf_logo_c.tm2 the construct message requested (`0x0053EBCF`); each tick (message 2) waits until the six font slots 7-12 are ready (`0x003657E0`), texts `0x19` and `0x1A` are resident (`0x002F8040`) and this is set (`0x0053EC2B`), then clears the task pointer `0x02CA8A78` and releases itself (`0x0053EC3A`, `0x0053EC41`), which lets the fsroll_initialize poll go on |
+| `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
 
 ## Columns
 

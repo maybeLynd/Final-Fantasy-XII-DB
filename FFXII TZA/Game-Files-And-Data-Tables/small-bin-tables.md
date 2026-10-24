@@ -50,60 +50,28 @@ for Japanese, UK, ASIA and IN.
 
 The button legend host is the `0x3F8`-byte widget at `0x0209C498` with procedure `0x0029E110` (Button legend below).
 
-```struct ButtonLegendHost base=record size=0x3F8
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x0029E110
-+0xC0    i16             offsetX                added to the legend pane's x: the word 0x0209C494 on construction
-                                                (0x0029E251-0x0029E261), then 0x0029E770's first argument (0x0029E77C);
-                                                0x0029DCE0 places the pane at +0xC4 + this less the widest-entry
-                                                difference (0x0029DD69-0x0029DD7E)
-+0xC2    i16             offsetY                added to the pane's y: the screen height 0x01E0C1DC less 0x01E0C584 (8) on
-                                                construction (0x0029E268-0x0029E27E), then 0x0029E770's second argument
-                                                (0x0029E783); 0x0029DCE0 places the pane at +0xC6 + this less the pane's
-                                                height (0x0029DD77-0x0029DD89)
-+0xC4    i16             anchorX                the pane's anchor x: 0x0029E730's first argument, which then re-places
-                                                the pane (0x0029E73C, 0x0029E74A); 0 on construction by a qword store
-                                                with +0xC6 and +0xC8 (0x0029E28C) and when 0x0029E330 shows a new legend, by a
-                                                dword store with +0xC6 (0x0029E381); read by 0x0029DCE0 (0x0029DD69)
-+0xC6    i16             anchorY                the pane's anchor y: 0x0029E730's second argument (0x0029E743); cleared
-                                                with +0xC4; read by 0x0029DCE0 (0x0029DD77)
-+0xC8    u32             flags                  bit 0: the pane draws no entries while it is set (0x0029D7E8); set by
-                                                0x0029E0C0 (0x0029E0CC), cleared by 0x0029E7B0 (0x0029E7BC)
-+0xCC    u16             openMs                 the pane's opening time in milliseconds, 200 on construction
-                                                (0x0029E293, a dword store with +0xCE), set by 0x0029E750 (0x0029E75C);
-                                                0x0029E3B0 writes it into the new pane's run length (0x0029E43D-0x0029E453)
-                                                and the pane turns it into frames, ms x 60 / 1000 (0x0029D634-0x0029D648)
-+0xCE    u16             closeMs                the pane's closing time in milliseconds, 200 on construction
-                                                (0x0029E293), set by 0x0029E6B0 (0x0029E6BC); 0x0029DF20 writes it into the
-                                                closing pane's run (0x0029DF3C-0x0029DF55) and the pane turns it into
-                                                frames (0x0029D6B6-0x0029D6CA)
-+0xD0    u16             showDelay              frames before the procedure's tick shows the legend of scene +0xD2
-                                                through 0x0029E330 (0x0029E217-0x0029E23F); 0 on construction (0x0029E29D) and
-                                                set by no function, so the countdown never runs
-+0xD2    u16             showScene              the scene the delayed show passes to 0x0029E330 (0x0029E238); written by
-                                                no function
-+0xD4    u16             paneCloseDelay         frames before the tick closes the open pane with 0x0029DF20
-                                                (0x0029E1F9-0x0029E212); 0 on construction with +0xD6 (0x0029E2A4) and set
-                                                by no function
-+0xD6    u16             closeDelay             frames before the tick closes the whole host (0x0029E1BE-0x0029E1E7); 0 on
-                                                construction (0x0029E2A4) and set by no function
-+0xD8    u8[128]         gap0D8                 read and written by no function; nothing fixes its width
-+0x158   ptr             openPane               the pane showing the legend, one of the two at +0x160 and +0x2A8:
-                                                0x0029E3B0 picks +0x160 + 0x148 x +0x3F0 (0x0029E414-0x0029E434); 0x0029DCE0
-                                                places it (0x0029DCFC); 0x0029DDF0 compares the new legend with its +0xD0
-                                                (0x0029DE09, 0x0029DE47); 0x0029DF20 closes it and clears this
-                                                (0x0029DF30-0x0029DF6C); 0x0029DFB0 and 0x0029E6D0 read it (0x0029DFCE,
-                                                0x0029E6DF); 0 on construction and when the host closes (0x0029E2AA,
-                                                0x0029E197)
-+0x160   u8[328]         pane0                  the first legend pane, a 0x148-byte widget with procedure 0x0029D550
-                                                that 0x0029D4D0 builds in place through 0x00245000; asked to close when
-                                                the host closes (message 15, 0x0029E16F-0x0029E176)
-+0x2A8   u8[328]         pane1                  the second legend pane, built and closed as +0x160 (0x0029E17B-0x0029E189)
-+0x3F0   u8              nextPane               which pane opens next, 0 or 1: 0 on construction (0x0029E2B6); 0x0029DF20
-                                                flips it when it closes a pane (0x0029DF77-0x0029DF81); 0x0029E3B0 reads it
-                                                (0x0029E41B)
-+0x3F1   u8[7]           tail3F1                read and written by no function; nothing fixes its width
-```
+`ButtonLegendHost` (`0x3F8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0029E110` |
+| `+0x0C0` | `i16` | offsetX | added to the legend pane's x: the word `0x0209C494` on construction (`0x0029E251`-`0x0029E261`), then `0x0029E770`'s first argument (`0x0029E77C`); `0x0029DCE0` places the pane at +`0xC4` + this less the widest-entry difference (`0x0029DD69`-`0x0029DD7E`) |
+| `+0x0C2` | `i16` | offsetY | added to the pane's y: the screen height `0x01E0C1DC` less `0x01E0C584` (8) on construction (`0x0029E268`-`0x0029E27E`), then `0x0029E770`'s second argument (`0x0029E783`); `0x0029DCE0` places the pane at +`0xC6` + this less the pane's height (`0x0029DD77`-`0x0029DD89`) |
+| `+0x0C4` | `i16` | anchorX | the pane's anchor x: `0x0029E730`'s first argument, which then re-places the pane (`0x0029E73C`, `0x0029E74A`); 0 on construction by a qword store with +`0xC6` and +`0xC8` (`0x0029E28C`) and when `0x0029E330` shows a new legend, by a dword store with +`0xC6` (`0x0029E381`); read by `0x0029DCE0` (`0x0029DD69`) |
+| `+0x0C6` | `i16` | anchorY | the pane's anchor y: `0x0029E730`'s second argument (`0x0029E743`); cleared with +`0xC4`; read by `0x0029DCE0` (`0x0029DD77`) |
+| `+0x0C8` | `u32` | flags | bit 0: the pane draws no entries while it is set (`0x0029D7E8`); set by `0x0029E0C0` (`0x0029E0CC`), cleared by `0x0029E7B0` (`0x0029E7BC`) |
+| `+0x0CC` | `u16` | openMs | the pane's opening time in milliseconds, 200 on construction (`0x0029E293`, a dword store with +`0xCE`), set by `0x0029E750` (`0x0029E75C`); `0x0029E3B0` writes it into the new pane's run length (`0x0029E43D`-`0x0029E453`) and the pane turns it into frames, ms x 60 / 1000 (`0x0029D634`-`0x0029D648`) |
+| `+0x0CE` | `u16` | closeMs | the pane's closing time in milliseconds, 200 on construction (`0x0029E293`), set by `0x0029E6B0` (`0x0029E6BC`); `0x0029DF20` writes it into the closing pane's run (`0x0029DF3C`-`0x0029DF55`) and the pane turns it into frames (`0x0029D6B6`-`0x0029D6CA`) |
+| `+0x0D0` | `u16` | showDelay | frames before the procedure's tick shows the legend of scene +`0xD2` through `0x0029E330` (`0x0029E217`-`0x0029E23F`); 0 on construction (`0x0029E29D`) and set by no function, so the countdown never runs |
+| `+0x0D2` | `u16` | showScene | the scene the delayed show passes to `0x0029E330` (`0x0029E238`); written by no function |
+| `+0x0D4` | `u16` | paneCloseDelay | frames before the tick closes the open pane with `0x0029DF20` (`0x0029E1F9`-`0x0029E212`); 0 on construction with +`0xD6` (`0x0029E2A4`) and set by no function |
+| `+0x0D6` | `u16` | closeDelay | frames before the tick closes the whole host (`0x0029E1BE`-`0x0029E1E7`); 0 on construction (`0x0029E2A4`) and set by no function |
+| `+0x0D8` | `u8[128]` | gap0D8 | read and written by no function; nothing fixes its width |
+| `+0x158` | `void*` | openPane | the pane showing the legend, one of the two at +`0x160` and +`0x2A8`: `0x0029E3B0` picks +`0x160` + `0x148` x +`0x3F0` (`0x0029E414`-`0x0029E434`); `0x0029DCE0` places it (`0x0029DCFC`); `0x0029DDF0` compares the new legend with its +`0xD0` (`0x0029DE09`, `0x0029DE47`); `0x0029DF20` closes it and clears this (`0x0029DF30`-`0x0029DF6C`); `0x0029DFB0` and `0x0029E6D0` read it (`0x0029DFCE`, `0x0029E6DF`); 0 on construction and when the host closes (`0x0029E2AA`, `0x0029E197`) |
+| `+0x160` | `u8[328]` | pane0 | the first legend pane, a `0x148`-byte widget with procedure `0x0029D550` that `0x0029D4D0` builds in place through `0x00245000`; asked to close when the host closes (message 15, `0x0029E16F`-`0x0029E176`) |
+| `+0x2A8` | `u8[328]` | pane1 | the second legend pane, built and closed as +`0x160` (`0x0029E17B`-`0x0029E189`) |
+| `+0x3F0` | `u8` | nextPane | which pane opens next, 0 or 1: 0 on construction (`0x0029E2B6`); `0x0029DF20` flips it when it closes a pane (`0x0029DF77`-`0x0029DF81`); `0x0029E3B0` reads it (`0x0029E41B`) |
+| `+0x3F1` | `u8[7]` | tail3F1 | read and written by no function; nothing fixes its width |
 
 ### The small tables
 
@@ -123,15 +91,19 @@ All multi-byte fields are little-endian.
 
 ### VIB0: eventvib.bin
 
-```
-+0x00  char[4]  "VIB0"         tag, compared by no reader
-+0x04  u32      count          patterns
-+0x08  u32[count]              offset of each pattern from the file start; rewritten to addresses at load
-pattern
-+0x00  u16      track 2 start  pair index where the second track begins
-+0x02  u16                     not read
-+0x04  {u8 duration, u8 level}[]   track 1 begins at pair 0; a duration of 0 ends a track
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | "VIB0" | tag, compared by no reader |
+| `+0x04` | `u32` | count | patterns |
+| `+0x08` | `u32[count]` | offset of each pattern from the file start; rewritten to addresses at load |  |
+
+Pattern:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | track 2 start | pair index where the second track begins |
+| `+0x02` | `u16` | not read |  |
+| `+0x04` | `{u8 duration, u8 level}[]` | track 1 begins at pair 0; a duration of 0 ends a track |  |
 
 A pair's level ramps to the next pair's level over its duration, so the level byte at `+5 + 2k` is the
 start of pair k and the byte at `+7 + 2k` its end.
@@ -146,12 +118,15 @@ start of pair k and the byte at `+7 + 2k` its end.
 
 ### signe: key_signal_data.bin
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[8]` | "signe\0\0\0" | tag, compared by no reader |
+| `+0x08` | `u16` | offset of section 0 (buttons) |  |
+| `+0x0A` | `u16` | offset of section 1 (signals) |  |
+| `+0x0C` | `u16` | offset of section 2 (scenes) |  |
+| `+0x0E` | `u16` | not read |  |
+
 ```
-+0x00  char[8]  "signe\0\0\0"  tag, compared by no reader
-+0x08  u16      offset of section 0 (buttons)
-+0x0A  u16      offset of section 1 (signals)
-+0x0C  u16      offset of section 2 (scenes)
-+0x0E  u16      not read
 section 0      u32 count, then {u32 name text id, u32 button mask}[count]
 section 1      u32 count, then u32[count]: bits 0-23 label text id, bits 24-31 button (section 0 index)
 section 2      u32 count, then u16 offset[count] from the section start to each scene

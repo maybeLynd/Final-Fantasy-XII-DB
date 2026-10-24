@@ -21,15 +21,21 @@ four bits of the pointer.
 
 ## Layouts
 
-```
-+0x00  u32  count     entries that follow
-+0x04  entry[count]   4 bytes each
-then zero padding to the section's 0x40-byte boundary
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | count | entries that follow |
+| `+0x04` | `entry[count]` | 4 bytes each |  |
 
-entry
-+0x00  u16  number    model number within its letter class
-+0x02  u16  letter    ASCII letter class, high byte 0
 ```
+then zero padding to the section's 0x40-byte boundary
+```
+
+Entry:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | number | model number within its letter class |
+| `+0x02` | `u16` | letter | ASCII letter class, high byte 0 |
 
 Read as one little-endian dword, an entry is `(letter << 16) | number`, which is the engine's bound
 id: bits 16 to 23 are the letter class and bits 0 to 15 the number

@@ -136,21 +136,19 @@ allocates the new block (alignment 8) and copies the kept elements, and a failed
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```python
-+0x00    u32             m_count                element count in bits 0-30; bit 31 = storage not owned; m_count (u32), registered by 0x005B5460 (0x00632960 at 0x005B55FA); shipped files name each instantiation, such as PArray<PAnimationChannel *>, each registered by its own template descriptor; the member getter 0x006065E0 returns it with bit 31 cleared (0x006065F3)
-```
+`PArray` (`0x10` bytes, offsets from the start of the record):
 
-```struct PShadowSplit base=record size=0xE8
-+0x00    u8[192]         bytes00                +0x0 to +0xBF; no registered member covers it (0x006C0E00 registers the
-                                                0xE8-byte class at 0x006C0E50)
-+0xCC    u8[4]           bytesCC                the four bytes after m_farPlane (+0xC8): the placement constructor
-                                                0x006C0A80 writes 10.0 to m_farPlane and 0 here with one qword store
-                                                (0x006C0A87); no registered member covers it (0x006C0E00 registers the
-                                                0xE8-byte class at 0x006C0E50)
-+0xE4    u8[4]           bytesE4                the bytes after the dword the placement constructor 0x006C0A80 clears
-                                                at +0xE0 (0x006C0AAB) up to the end of the 0xE8-byte class; no registered
-                                                member covers it (0x006C0E00 registers the 0xE8-byte class at 0x006C0E50)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_count | element count in bits 0-30; bit 31 = storage not owned; m_count (u32), registered by `0x005B5460` (`0x00632960` at `0x005B55FA`); shipped files name each instantiation, such as PArray&lt;PAnimationChannel *&gt;, each registered by its own template descriptor; the member getter `0x006065E0` returns it with bit 31 cleared (`0x006065F3`) |
+
+`PShadowSplit` (`0xE8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | bytes00 | +`0x0` to +`0xBF`; no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
+| `+0xCC` | `u8[4]` | bytesCC | the four bytes after m_farPlane (+`0xC8`): the placement constructor `0x006C0A80` writes 10.0 to m_farPlane and 0 here with one qword store (`0x006C0A87`); no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
+| `+0xE4` | `u8[4]` | bytesE4 | the bytes after the dword the placement constructor `0x006C0A80` clears at +`0xE0` (`0x006C0AAB`) up to the end of the `0xE8`-byte class; no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
 
 ### Array and string headers
 

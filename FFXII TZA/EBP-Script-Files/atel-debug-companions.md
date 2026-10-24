@@ -47,14 +47,20 @@ So `0x003306E0` returns without registering any file, and no string in the execu
 
 ### .sbn, the source text
 
-```
-+0x00  u32  blockCount         2 (ctrl, evctrl) or 3 (btlctrl, mapctrl)
-+0x04  u32  blockOffset[blockCount]   the first is 4 × (blockCount + 1)
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | blockCount | 2 (ctrl, evctrl) or 3 (btlctrl, mapctrl) |
+| `+0x04` | `u32` | blockOffset[blockCount] | the first is 4 × (blockCount + 1) |
 
-block
-+0x00  u32  lineCount
-+0x04  u32  textOffset         file offset of the block's first line
-+0x08  page[ceil(lineCount / 32)]
+Block:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | lineCount |  |
+| `+0x04` | `u32` | textOffset | file offset of the block's first line |
+| `+0x08` | `page[ceil(lineCount` | / | 32)] |
+
+```
 page   u16 lineStart[32], then u32 nextPageBase (absent after the last page)
 ```
 

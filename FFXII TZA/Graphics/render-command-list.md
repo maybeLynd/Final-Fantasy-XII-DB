@@ -379,19 +379,21 @@ GS command buffer record (`0x02EBEFC0`, `0x02EBEFD8`), `0x18` bytes:
 
 The command classes and their vtables, in vtable order from `0x00902F90` (stride 0x20):
 
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x00902F90` | `SetRendererCameraObj` | 0x00903110 MonsterGallerySoftParticleEnable | `0x00903290` ZBufferObj |
+| `0x00902FB0` | `BegineSceneObj` | 0x00903130 RenderMapOpaqueObj | `0x009032B0` VideoObj |
+| `0x00902FD0` | `EndSceneObj` | 0x00903150 RenderOpaqueObj | `0x009032D0` RazorMarkerPushObj |
+| `0x00902FF0` | `BegineScene0Obj` | 0x00903170 RenderAfterWaterObj | `0x009032F0` RazorMarkerPopObj |
+| `0x00903010` | `EndScene0Obj` | 0x00903190 MaskBorderObj | `0x00903310` FastClearObj |
+| `0x00903030` | `CopyBufferObj` | 0x009031B0 RenderSSSObj | `0x00903330` DisableMsaaObj |
+| `0x00903050` | `CopyDepthBufferObj` | 0x009031D0 PostProcessObj | `0x00903350` EnableMsaaObj |
+| `0x00903070` | `Ps2DofObj` | 0x009031F0 AmbientOcclusionObj | `0x00903370` SetPrimIdEnableObj |
+| `0x00903090` | `SetScreenIndexToPostProcess 0x00903210 GaussianFilterObj` | 0x00903390 EnableDofObj | ManagerObj                  `0x00903230` CopyFrontBufferForVFXObj          `0x009033B0` SetDofObj |
+| `0x009030B0` | `ApplyJsonForCutSceneObj` | 0x00903250 CopyFrontBufferForChrRefraction | `0x009033D0` GiResetRenderTargetObj |
+| `0x009030D0` | `ReadPresetDofForCutSceneObj` | 0x00903270 | CopyFrontBufferForWaterRefraction `0x009033F0` GiResetDefaultRenderTargetObj |
+
 ```
-0x00902F90 SetRendererCameraObj        0x00903110 MonsterGallerySoftParticleEnable  0x00903290 ZBufferObj
-0x00902FB0 BegineSceneObj              0x00903130 RenderMapOpaqueObj                0x009032B0 VideoObj
-0x00902FD0 EndSceneObj                 0x00903150 RenderOpaqueObj                   0x009032D0 RazorMarkerPushObj
-0x00902FF0 BegineScene0Obj             0x00903170 RenderAfterWaterObj               0x009032F0 RazorMarkerPopObj
-0x00903010 EndScene0Obj                0x00903190 MaskBorderObj                     0x00903310 FastClearObj
-0x00903030 CopyBufferObj               0x009031B0 RenderSSSObj                      0x00903330 DisableMsaaObj
-0x00903050 CopyDepthBufferObj          0x009031D0 PostProcessObj                    0x00903350 EnableMsaaObj
-0x00903070 Ps2DofObj                   0x009031F0 AmbientOcclusionObj               0x00903370 SetPrimIdEnableObj
-0x00903090 SetScreenIndexToPostProcess 0x00903210 GaussianFilterObj                 0x00903390 EnableDofObj
-         ManagerObj                  0x00903230 CopyFrontBufferForVFXObj          0x009033B0 SetDofObj
-0x009030B0 ApplyJsonForCutSceneObj     0x00903250 CopyFrontBufferForChrRefraction   0x009033D0 GiResetRenderTargetObj
-0x009030D0 ReadPresetDofForCutSceneObj 0x00903270 CopyFrontBufferForWaterRefraction 0x009033F0 GiResetDefaultRenderTargetObj
 0x009030F0 RenderMonsterGalleryChara
 ```
 

@@ -332,49 +332,17 @@ The cursor's setters:
 
 The field's target cursor is the `0xD8`-byte widget at `0x02B47730` with procedure `0x003C8B70` (The field target cycle above).
 
-```struct FieldTargetCursor base=record size=0xD8
-+0x00    u8[192]         header                 the widget header, written by the constructor 0x002465F0 (Widgets, The
-                                                header); procedure 0x003C8B70
-+0xC0    u32             stateBits              the cursor's state bits, bits 1 and 3 cleared on construction
-                                                (0x003C9222). Bit 0: set when the cursor gains the focus (message 8,
-                                                0x003C8F8F); the next input turn only clears it (0x003C8BCF-0x003C8BE1). Bit
-                                                1: tested and cleared by 0x003C8950 after 0x00268620 (0x003C8960, 0x003C8975),
-                                                cleared after a confirm (0x003C8F6A); no access sets it. Bit 2: the
-                                                target is shown: set while the pad's L2 is held (0x003C917C), cleared on
-                                                each turn in pad mode (0x003C9134), toggled by a new keyboard L2 press
-                                                (0x003C91AA-0x003C91BB), cleared when the target record shows nothing
-                                                (0x003C90D7); 0x003C8B20, 0x003C94F0 and 0x003C9590 test it. Bit 3: a pick is
-                                                waiting at +0xCC (0x003C8E7B); 0x003C9570 tests it and 0x003C9550 clears it
-+0xC4    u32             chosenTarget           the handle of the chosen target, stored by 0x003C9420; 0 on construction
-                                                (0x003C9211) and when the cycle opens or a Left or Right press finds no
-                                                target, by a qword store that also clears +0xC8 (0x003C8806, 0x003C8CBA,
-                                                0x003C8D8F). 0x003C87B0 keeps it while 0x003C9370 finds it in the target
-                                                list (0x003C8841-0x003C8858); each tick the cursor closes with way 4 when
-                                                it has left the list, has no actor or is no longer targetable
-                                                (0x003C8FAA-0x003C9051); 0x003C8B50 returns it when the way +0xD0 is 1
-                                                (0x003C8B5C-0x003C8B65)
-+0xC8    u32             shownTarget            the handle of the target the cursor shows, stored by 0x003C93E0, 0 when
-                                                0x00273710 refuses it or it is the controlled character
-                                                (0x003C90EA-0x003C9126); 0 on construction and whenever the cursor closes
-                                                (0x003C89E8, 0x003C8ACF, 0x003C8C7E, 0x003C8D53, 0x003C8DFF, 0x003C8F16,
-                                                0x003C906C). 0x003C8B20 returns it while bit 2 is set, 0x003C9590 answers
-                                                whether it is set, and a confirm hands it to 0x0028F260
-                                                (0x003C8F54-0x003C8F5E)
-+0xCC    u32             pick                   the handle 0x0028F5B0 answers when the interaction button is pressed on
-                                                an actor 0x00265460, 0x002647D0 and 0x0025B4C0 accept (0x003C8E44-0x003C8E82);
-                                                the cursor sets bit 3 and closes with way 1 (0x003C8E76). 0x003C9570
-                                                returns it while bit 3 is set (0x003C9585)
-+0xD0    u32             closeWay               how the cursor last closed, 0 on construction (0x003C9229): 1 a target
-                                                confirmed or a pick taken (0x003C8EFD, and 0x003C8A50 for 1 and 2), 3
-                                                cancelled (0x003C8DE2, 0x003C8990), 4 the target was lost or Escape Mode
-                                                armed (0x003C9051), 5 Left found no target, before or wrapping round
-                                                (0x003C8C61), 6 Right found none (0x003C8D36); 0x003C8A50(n) stores the
-                                                others as given (0x003C8AB8). 0x003C87B0 picks the next target from it
-                                                (0x003C880D): the nearest for 0 and 4, the kept target for 1, 3 and 7,
-                                                none for 2, and for 5 and 6 the leftmost or rightmost by the direction
-                                                still held (0x003C889D-0x003C88BB)
-+0xD4    u8[4]           tail0D4                read and written by no function; nothing fixes its width
-```
+`FieldTargetCursor` (`0xD8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003C8B70` |
+| `+0xC0` | `u32` | stateBits | the cursor's state bits, bits 1 and 3 cleared on construction (`0x003C9222`). Bit 0: set when the cursor gains the focus (message 8, `0x003C8F8F`); the next input turn only clears it (`0x003C8BCF`-`0x003C8BE1`). Bit 1: tested and cleared by `0x003C8950` after `0x00268620` (`0x003C8960`, `0x003C8975`), cleared after a confirm (`0x003C8F6A`); no access sets it. Bit 2: the target is shown: set while the pad's L2 is held (`0x003C917C`), cleared on each turn in pad mode (`0x003C9134`), toggled by a new keyboard L2 press (`0x003C91AA`-`0x003C91BB`), cleared when the target record shows nothing (`0x003C90D7`); `0x003C8B20`, `0x003C94F0` and `0x003C9590` test it. Bit 3: a pick is waiting at +`0xCC` (`0x003C8E7B`); `0x003C9570` tests it and `0x003C9550` clears it |
+| `+0xC4` | `u32` | chosenTarget | the handle of the chosen target, stored by `0x003C9420`; 0 on construction (`0x003C9211`) and when the cycle opens or a Left or Right press finds no target, by a qword store that also clears +`0xC8` (`0x003C8806`, `0x003C8CBA`, `0x003C8D8F`). `0x003C87B0` keeps it while `0x003C9370` finds it in the target list (`0x003C8841`-`0x003C8858`); each tick the cursor closes with way 4 when it has left the list, has no actor or is no longer targetable (`0x003C8FAA`-`0x003C9051`); `0x003C8B50` returns it when the way +`0xD0` is 1 (`0x003C8B5C`-`0x003C8B65`) |
+| `+0xC8` | `u32` | shownTarget | the handle of the target the cursor shows, stored by `0x003C93E0`, 0 when `0x00273710` refuses it or it is the controlled character (`0x003C90EA`-`0x003C9126`); 0 on construction and whenever the cursor closes (`0x003C89E8`, `0x003C8ACF`, `0x003C8C7E`, `0x003C8D53`, `0x003C8DFF`, `0x003C8F16`, `0x003C906C`). `0x003C8B20` returns it while bit 2 is set, `0x003C9590` answers whether it is set, and a confirm hands it to `0x0028F260` (`0x003C8F54`-`0x003C8F5E`) |
+| `+0xCC` | `u32` | pick | the handle `0x0028F5B0` answers when the interaction button is pressed on an actor `0x00265460`, `0x002647D0` and `0x0025B4C0` accept (`0x003C8E44`-`0x003C8E82`); the cursor sets bit 3 and closes with way 1 (`0x003C8E76`). `0x003C9570` returns it while bit 3 is set (`0x003C9585`) |
+| `+0xD0` | `u32` | closeWay | how the cursor last closed, 0 on construction (`0x003C9229`): 1 a target confirmed or a pick taken (`0x003C8EFD`, and `0x003C8A50` for 1 and 2), 3 cancelled (`0x003C8DE2`, `0x003C8990`), 4 the target was lost or Escape Mode armed (`0x003C9051`), 5 Left found no target, before or wrapping round (`0x003C8C61`), 6 Right found none (`0x003C8D36`); `0x003C8A50`(n) stores the others as given (`0x003C8AB8`). `0x003C87B0` picks the next target from it (`0x003C880D`): the nearest for 0 and 4, the kept target for 1, 3 and 7, none for 2, and for 5 and 6 the leftmost or rightmost by the direction still held (`0x003C889D`-`0x003C88BB`) |
+| `+0xD4` | `u8[4]` | tail0D4 | read and written by no function; nothing fixes its width |
 
 ## State
 

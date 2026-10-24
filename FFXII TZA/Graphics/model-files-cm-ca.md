@@ -82,17 +82,19 @@ stores each entry's offset from the container, or −1 when the entry is absent 
 
 Entry 0 of every `.cm`. The payload starts at entry `+0x30`; offsets are from the payload.
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | 4 |  |
+| `+0x01` | `u8` | non-zero: 0x0041F340 allocates a second per-node block and sets record +0x284 bit 0x10000; | id `0x40000000` returns it |
+| `+0x02` | `u16[17]` | offset of sections 1 to 17, 0 = absent (section n at +2n) |  |
+| `+0x24` | `u32` | length of section 2, copied after the skeleton |  |
+| `+0x2C` | `u8[6]` | event map (0x0041E5B0), 0x7F ends it |  |
+| `+0x32` | `u8` | version, 0x0A |  |
+| `+0x3A` | `u16` | bone for special id 0x104 (0x003E5AD0) |  |
+| `+0x3C` | `u16` | bone for special id 0x105 |  |
+| `+0x3E` | `u16` | bone for special id 0x106 |  |
+
 ```
-+0x00  u8        4
-+0x01  u8        non-zero: 0x0041F340 allocates a second per-node block and sets record +0x284 bit 0x10000;
-                 id 0x40000000 returns it
-+0x02  u16[17]   offset of sections 1 to 17, 0 = absent (section n at +2n)
-+0x24  u32       length of section 2, copied after the skeleton
-+0x2C  u8[6]     event map (0x0041E5B0), 0x7F ends it
-+0x32  u8        version, 0x0A
-+0x3A  u16       bone for special id 0x104 (0x003E5AD0)
-+0x3C  u16       bone for special id 0x105
-+0x3E  u16       bone for special id 0x106
 section 1 +0x14C u16[32]  bone for special ids 0 to 31 (0x003E5AD0)
 section 2        copied verbatim after the skeleton core (0x00372820)
 section 7        the pose sequencer's events (model-oscillators-and-pose-sequencer.md)
@@ -130,11 +132,14 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
 
 ### @FTR, the skeleton
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x30` | `u16` | node count again, read as a word by 0x00409240 (0x0040924A) |  |
+| `+0x34` | `u32` | offset of the value pool, from the entry |  |
+| `+0x38` | `u16` | extra u16 slots after the node list (equal to the @FDM key count) |  |
+| `+0x40` | `u32[n]` | per node: (record offset from the entry << 12) \| node number |  |
+
 ```
-+0x30  u16       node count again, read as a word by 0x00409240 (0x0040924A)
-+0x34  u32       offset of the value pool, from the entry
-+0x38  u16       extra u16 slots after the node list (equal to the @FDM key count)
-+0x40  u32[n]    per node: (record offset from the entry << 12) | node number
 record +0x00  u32  bits 0-11 the node's key, bits 12-23 its parent (0xFFF = none), bits 24-31 0xFF
 record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 30 is set)
 ```
@@ -153,17 +158,20 @@ index for bit 31 and sixteen more when bits `0x200100` are both set, and 0 other
 
 ### @FOR, variants and distance LOD
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x30` | `u8` | record count |  |
+| `+0x32` | `u8` | table B stride per option number |  |
+| `+0x33` | `u8` | option numbers allowed (row +0xB9 is clamped below it) |  |
+| `+0x34` | `u16` | table A offset (0x40) |  |
+| `+0x36` | `u16` | table B offset |  |
+| `+0x38` | `u16` | offset of the records, 0xE0 bytes each |  |
+| `+0x3A` | `u8` | LOD distance count (0, 1 or 2) |  |
+| `+0x3B` | `u8` | highest LOD level |  |
+| `+0x3C` | `u16` | first LOD distance, centimetres |  |
+| `+0x3E` | `u16` | second LOD distance, centimetres |  |
+
 ```
-+0x30  u8     record count
-+0x32  u8     table B stride per option number
-+0x33  u8     option numbers allowed (row +0xB9 is clamped below it)
-+0x34  u16    table A offset (0x40)
-+0x36  u16    table B offset
-+0x38  u16    offset of the records, 0xE0 bytes each
-+0x3A  u8     LOD distance count (0, 1 or 2)
-+0x3B  u8     highest LOD level
-+0x3C  u16    first LOD distance, centimetres
-+0x3E  u16    second LOD distance, centimetres
 record +0x00   u8    key
 record +0x05   u8[]  selector count per part
 record +0x18   f32   the model's scale

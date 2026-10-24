@@ -65,27 +65,40 @@ eventlist.csv         274,0,240,0                                  four integers
 
 What the readers keep:
 
-```
-opt.csv entry (tree node +0x24, keyed by the map-name hash)
-+0x00  u8   ForceMSAAOff starts with Y or y
-+0x01  u8   FlipMapOpaqueOrder starts with Y or y
-+0x02  u8   SMAA starts with Y or y
-+0x03  u8   ForceNoOpaqueChrFirst starts with Y or y
+Opt.csv entry (tree node +`0x24`, keyed by the map-name hash):
 
-soft-particle entry, 4 bytes, indexed by the effect number (per-type tables)
-or by row number (softparticle_bg.csv)
-+0x00  u8   GroupId                (bg only)
-+0x00/+0x01  u8  UseSoftParticle != 'N'   (+0x00 per type, +0x01 bg)
-+0x02  u16  SoftParticleFactor     (per type: 10 when "Yes" has no number)
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | ForceMSAAOff starts with Y or y |  |
+| `+0x01` | `u8` | FlipMapOpaqueOrder starts with Y or y |  |
+| `+0x02` | `u8` | SMAA starts with Y or y |  |
+| `+0x03` | `u8` | ForceNoOpaqueChrFirst starts with Y or y |  |
 
-bg map record, 16 bytes at 0x02F93340, one per run of rows with the same Map
-+0x00  char[14]  map name
-+0x0E  u16       first row of the run
+Soft-particle entry, 4 bytes, indexed by the effect number (per-type tables) or by row number (softparticle_bg.csv):
 
-eventList.csv record, 8 bytes
-+0x00  u16  second field
-+0x04  u32  third field          the first and fourth fields are read and dropped
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | GroupId | (bg only) |
+
++`0x00`/+`0x01`  u8  UseSoftParticle != 'N'   (+`0x00` per type, +`0x01` bg):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x02` | `u16` | SoftParticleFactor | (per type: 10 when "Yes" has no number) |
+
+Bg map record, 16 bytes at `0x02F93340`, one per run of rows with the same Map:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[14]` | map name |  |
+| `+0x0E` | `u16` | first row of the run |  |
+
+EventList.csv record, 8 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | second field |  |
+| `+0x04` | `u32` | third field | the first and fourth fields are read and dropped |
 
 ### JSON documents
 

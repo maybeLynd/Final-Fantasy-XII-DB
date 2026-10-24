@@ -181,20 +181,26 @@ neither arm.
 
 ## Layouts
 
+Pool entry (`0x60` bytes, 128 at [`0x02B3F530`]):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | active | +`0x01` u8 turn armed   +`0x02` u8 move armed   +`0x04` i32 counter (-1 at take) |
+| `+0x08` | `f32` | sign of request +8 | +`0x0C` f32 sign of request +`0xC` |
+| `+0x10` | `f32` | \|angle0\| * 2/pi or 1.0 | +`0x14` f32 the same for angle1 |
+| `+0x18` | `f32` | accumulator axis 0 | +`0x1C` f32 accumulator axis 1 |
+| `+0x20` | `MoveTurnRequest` | (0x20 | bytes): +`0x20` u16 0, +`0x22` u16 mode, +`0x24` f32 distance, +`0x28` f32 angle0, |
+| `+0x2C` | `f32` | relative | heading, +`0x30` f32[3] direction, +`0x3C` f32 w |
+| `+0x40` | `void*` | previous | +`0x48` ptr next   +`0x50` u32 serial << 8 \| index |
+
+Record list (render record +`0x550`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | enabled | +`0x08` ptr profile table   +`0x10` ptr own profile (mode `0x16`) |
+| `+0x18` | `void*` | head | +`0x20` ptr tail            +`0x28` u32 disabled (`0x003AF320`) |
+
 ```
-pool entry (0x60 bytes, 128 at [0x02B3F530])
-+0x00  u8   active     +0x01 u8 turn armed   +0x02 u8 move armed   +0x04 i32 counter (-1 at take)
-+0x08  f32  sign of request +8       +0x0C f32 sign of request +0xC
-+0x10  f32  |angle0| * 2/pi or 1.0   +0x14 f32 the same for angle1
-+0x18  f32  accumulator axis 0       +0x1C f32 accumulator axis 1
-+0x20  MoveTurnRequest (0x20 bytes): +0x20 u16 0, +0x22 u16 mode, +0x24 f32 distance, +0x28 f32 angle0,
-       +0x2C f32 relative heading, +0x30 f32[3] direction, +0x3C f32 w
-+0x40  ptr  previous   +0x48 ptr next   +0x50 u32 serial << 8 | index
-
-record list (render record +0x550)
-+0x00  u32  enabled   +0x08 ptr profile table   +0x10 ptr own profile (mode 0x16)
-+0x18  ptr  head      +0x20 ptr tail            +0x28 u32 disabled (0x003AF320)
-
 render record: +0xD8 handle, +0xE0 resolved base, +0xE8 offset of the table; +0xF0 handle, +0xF8 resolved base, +0x100 offset of the own profile
 presentation entry: +0x370 motion section; +0x378 @FRM body; +0x37C profile table (-1 none)
 globals: 0x02B3F530 pool; 0x02B3F538 serial; 0x02B3F53C refuses new requests; 0x02B3F540 stops the step

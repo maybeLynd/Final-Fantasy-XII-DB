@@ -35,30 +35,44 @@ All multi-byte fields are little-endian.
 
 Offsets are from the section start unless a record is named.
 
-```
-CML1 (section 10): the layout of section 8
-+0x00  char[4]  magic       "CML1"; never compared
-+0x04  u32      count       rows
-+0x08  u32[2]   -           0; not read
-+0x10  row[count]
-       +0x00  u32  nameOffset  name, from the section start
-       +0x04  i32  shake       SHK1 record number; -1 = none
-       +0x08  u32  -           zeroed at load
-       +0x0C  u32  -           low byte zeroed at load
-then the names, NUL-terminated; zero fill to 0x40
+CML1 (section 10): the layout of section 8:
 
-SHK1 (section 11)
-+0x00  char[4]  magic       "SHK1"; anything else and nothing is stored
-+0x04  u16      records     0 = no curve table is built
-+0x06  u16      curves
-+0x08  u16      dataOffset  first curve, from the section start
-+0x0A  u16      -           0; not read
-+0x0C  u32      -           0; not read
-+0x10  record[records], 0x60 bytes
-       +0x00  char[24]  name      read only by the name lookup, which never runs
-       +0x18  u32       duration  read as a u16
-       +0x1C  u32       -         0; not read
-       +0x20  u16[32]   curve     slot k: 0 = none, else curve number + 1
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "CML1"; never compared |
+| `+0x04` | `u32` | count | rows |
+| `+0x08` | `u32[2]` | - | 0; not read |
+
++`0x10`  row[count]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | nameOffset | name, from the section start |
+| `+0x04` | `i32` | shake | SHK1 record number; -1 = none |
+| `+0x08` | `u32` | - | zeroed at load |
+| `+0x0C` | `u32` | - | low byte zeroed at load |
+
+```
+then the names, NUL-terminated; zero fill to 0x40
+```
+
+SHK1 (section 11):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[4]` | magic | "SHK1"; anything else and nothing is stored |
+| `+0x04` | `u16` | records | 0 = no curve table is built |
+| `+0x06` | `u16` | curves |  |
+| `+0x08` | `u16` | dataOffset | first curve, from the section start |
+| `+0x0A` | `u16` | - | 0; not read |
+| `+0x0C` | `u32` | - | 0; not read |
+| `+0x10` | `record[records],` | 0x60 | bytes |
+| `+0x00` | `char[24]` | name | read only by the name lookup, which never runs |
+| `+0x18` | `u32` | duration | read as a u16 |
+| `+0x1C` | `u32` | - | 0; not read |
+| `+0x20` | `u16[32]` | curve | slot k: 0 = none, else curve number + 1 |
+
+```
 dataOffset: curve[curves], each starting with an i32 length
 ```
 

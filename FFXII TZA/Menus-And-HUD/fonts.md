@@ -183,58 +183,57 @@ data for it (`0x001B62A5`-`0x001B6332`).
 `0x001B4D70` allocates `0x120` bytes (`0x001B4E73`) and builds the font with `0x001FC060` (`0x001B4EC5`), which takes the
 header's values as arguments and stores each.
 
-```struct Font base=font size=0x120
-+0x00  u32       fontId            header +0x00 (0x001FC089)
-+0x04  u8[4]     pad04             not written by the constructor 0x001FC060; 0x00210EC0 allocates the font (0x001B4E73)
-+0x08  ptr       atlas             the atlas texture: 0 from the constructor (0x001FC08D), set by 0x00213560 from the
-                                   atlas completion 0x001B6230 (0x001B6332)
-+0x10  ptr       shadow            the shadow atlas texture: 0 (0x001FC091), set by 0x00213540 from 0x001B6110 (0x001B6212)
-+0x18  u32       glyphCount        header +0x04 (0x001FC095); 0x001FDF80 compares it with glyphsCount
-+0x1C  u32       metricA           header +0x20 (0x001FC09F); returned by 0x001FDDC0
-+0x20  u32       metricB           header +0x24 (0x001FC0A9)
-+0x24  u32       atlasW            header +0x08 (0x001FC0AC)
-+0x28  u32       atlasH            header +0x0C (0x001FC0B0)
-+0x2C  u32       cellW             header +0x10 (0x001FC0B8)
-+0x30  u32       cellH             header +0x14 (0x001FC0C2)
-+0x34  f32       scale             header +0x18 (0x001FC0CE); returned by 0x001FDDB0, which 0x001E9BF0 calls (0x001E9BFC)
-+0x38  u8[8]     glyphsPad         map of the glyph records by key, filed by 0x001FDCC0 and looked up by 0x001FDEC0 (0x001FC0E4); not written by the constructor
-+0x40  ptr       glyphsHeadA       header node, first word: 0 (0x001FC0F3), then the header itself (0x001FC111)
-+0x48  ptr       glyphsHeadB       header node, second word: 0 (0x001FC0F6), then the header itself (0x001FC114)
-+0x50  ptr       glyphsRoot        root node: 0 when empty (0x001FC0FA, 0x001FC118); 0x001FC580 starts here (0x001FC587)
-+0x58  u8        glyphsHeadFlag    0 (0x001FC11C)
-+0x59  u8[7]     glyphsPad21       zeroed by the qword store at 0x001FC0FE
-+0x60  u32       glyphsCount       entries: 0 (0x001FC120); 0x001FD010 raises it (0x001FD0BB, 0x001FD14E)
-+0x64  u8[4]     glyphsPad2C       not written by the constructor
-+0x68  ptr       glyphsAlloc       the "EASTL map" allocator name (0x008F4120), set by 0x001EDF00 (0x001FC10C)
-+0x70  u8[8]     kerningPad        map of the kerning pairs, filed by 0x001FDC10 and looked up by 0x001FDDD0 (0x001FC134); not written by the constructor
-+0x78  ptr       kerningHeadA      header node, first word: 0 (0x001FC143), then the header itself (0x001FC161)
-+0x80  ptr       kerningHeadB      header node, second word: 0 (0x001FC146), then the header itself (0x001FC164)
-+0x88  ptr       kerningRoot       root node: 0 when empty (0x001FC14A, 0x001FC168)
-+0x90  u8        kerningHeadFlag   0 (0x001FC16C)
-+0x91  u8[7]     kerningPad21      zeroed by the qword store at 0x001FC14E
-+0x98  u32       kerningCount      entries: 0 (0x001FC170)
-+0x9C  u8[4]     kerningPad2C      not written by the constructor
-+0xA0  ptr       kerningAlloc      the "EASTL map" allocator name (0x008F4120), set by 0x001EDF00 (0x001FC15C)
-+0xA8  u8[8]     expansionPad      map of the expansion lists by key, filled by 0x001FDB90 and 0x001FDB50 and found by 0x001FDD60 (0x001FC184); not written by the constructor
-+0xB0  ptr       expansionHeadA    header node, first word: 0 (0x001FC196), then the header itself (0x001FC1B4)
-+0xB8  ptr       expansionHeadB    header node, second word: 0 (0x001FC199), then the header itself (0x001FC1B7)
-+0xC0  ptr       expansionRoot     root node: 0 when empty (0x001FC19D, 0x001FC1BB)
-+0xC8  u8        expansionHeadFlag 0 (0x001FC1BF)
-+0xC9  u8[7]     expansionPad21    zeroed by the qword store at 0x001FC1A1
-+0xD0  u32       expansionCount    entries: 0 (0x001FC1C3)
-+0xD4  u8[4]     expansionPad2C    not written by the constructor
-+0xD8  ptr       expansionAlloc    the "EASTL map" allocator name (0x008F4120), set by 0x001EDF00 (0x001FC1AF)
-+0xE0  ptr       atlasNameBegin    atlas name <name>.dds.phyre (0x001FE080, 0x001B4FB8), first character; the empty
-                                   string 0x02EBA2E0 from the constructor (0x001FC1F5); 0x001FDF10 copies the name for the request
-+0xE8  ptr       atlasNameEnd      end of the characters; 0x02EBA2E0 when empty (0x001FC1FC)
-+0xF0  ptr       atlasNameCap      end of the buffer; 0x02EBA2E1 when empty (0x001FC20A)
-+0xF8  ptr       atlasNameAlloc    the "EASTL basic_string" allocator name (0x008F6600), set by 0x001EDF00 (0x001FC1E9)
-+0x100 ptr       shadowNameBegin   shadow name <name>_shadow.dds.phyre (0x001FE020, 0x001B4FF3), first character;
-                                   0x02EBA2E0 when empty (0x001FC239); 0x001FDE60 copies the name for the request
-+0x108 ptr       shadowNameEnd     end of the characters; 0x02EBA2E0 when empty (0x001FC240)
-+0x110 ptr       shadowNameCap     end of the buffer; 0x02EBA2E1 when empty (0x001FC247)
-+0x118 ptr       shadowNameAlloc   the "EASTL basic_string" allocator name (0x008F6600), set by 0x001EDF00 (0x001FC234)
-```
+`Font` (`0x120` bytes, offsets from the start of the font):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u32` | fontId | header +`0x00` (`0x001FC089`) |
+| `+0x004` | `u8[4]` | pad04 | not written by the constructor `0x001FC060`; `0x00210EC0` allocates the font (`0x001B4E73`) |
+| `+0x008` | `void*` | atlas | the atlas texture: 0 from the constructor (`0x001FC08D`), set by `0x00213560` from the atlas completion `0x001B6230` (`0x001B6332`) |
+| `+0x010` | `void*` | shadow | the shadow atlas texture: 0 (`0x001FC091`), set by `0x00213540` from `0x001B6110` (`0x001B6212`) |
+| `+0x018` | `u32` | glyphCount | header +`0x04` (`0x001FC095`); `0x001FDF80` compares it with glyphsCount |
+| `+0x01C` | `u32` | metricA | header +`0x20` (`0x001FC09F`); returned by `0x001FDDC0` |
+| `+0x020` | `u32` | metricB | header +`0x24` (`0x001FC0A9`) |
+| `+0x024` | `u32` | atlasW | header +`0x08` (`0x001FC0AC`) |
+| `+0x028` | `u32` | atlasH | header +`0x0C` (`0x001FC0B0`) |
+| `+0x02C` | `u32` | cellW | header +`0x10` (`0x001FC0B8`) |
+| `+0x030` | `u32` | cellH | header +`0x14` (`0x001FC0C2`) |
+| `+0x034` | `f32` | scale | header +`0x18` (`0x001FC0CE`); returned by `0x001FDDB0`, which `0x001E9BF0` calls (`0x001E9BFC`) |
+| `+0x038` | `u8[8]` | glyphsPad | map of the glyph records by key, filed by `0x001FDCC0` and looked up by `0x001FDEC0` (`0x001FC0E4`); not written by the constructor |
+| `+0x040` | `void*` | glyphsHeadA | header node, first word: 0 (`0x001FC0F3`), then the header itself (`0x001FC111`) |
+| `+0x048` | `void*` | glyphsHeadB | header node, second word: 0 (`0x001FC0F6`), then the header itself (`0x001FC114`) |
+| `+0x050` | `void*` | glyphsRoot | root node: 0 when empty (`0x001FC0FA`, `0x001FC118`); `0x001FC580` starts here (`0x001FC587`) |
+| `+0x058` | `u8` | glyphsHeadFlag | 0 (`0x001FC11C`) |
+| `+0x059` | `u8[7]` | glyphsPad21 | zeroed by the qword store at `0x001FC0FE` |
+| `+0x060` | `u32` | glyphsCount | entries: 0 (`0x001FC120`); `0x001FD010` raises it (`0x001FD0BB`, `0x001FD14E`) |
+| `+0x064` | `u8[4]` | glyphsPad2C | not written by the constructor |
+| `+0x068` | `void*` | glyphsAlloc | the "EASTL map" allocator name (`0x008F4120`), set by `0x001EDF00` (`0x001FC10C`) |
+| `+0x070` | `u8[8]` | kerningPad | map of the kerning pairs, filed by `0x001FDC10` and looked up by `0x001FDDD0` (`0x001FC134`); not written by the constructor |
+| `+0x078` | `void*` | kerningHeadA | header node, first word: 0 (`0x001FC143`), then the header itself (`0x001FC161`) |
+| `+0x080` | `void*` | kerningHeadB | header node, second word: 0 (`0x001FC146`), then the header itself (`0x001FC164`) |
+| `+0x088` | `void*` | kerningRoot | root node: 0 when empty (`0x001FC14A`, `0x001FC168`) |
+| `+0x090` | `u8` | kerningHeadFlag | 0 (`0x001FC16C`) |
+| `+0x091` | `u8[7]` | kerningPad21 | zeroed by the qword store at `0x001FC14E` |
+| `+0x098` | `u32` | kerningCount | entries: 0 (`0x001FC170`) |
+| `+0x09C` | `u8[4]` | kerningPad2C | not written by the constructor |
+| `+0x0A0` | `void*` | kerningAlloc | the "EASTL map" allocator name (`0x008F4120`), set by `0x001EDF00` (`0x001FC15C`) |
+| `+0x0A8` | `u8[8]` | expansionPad | map of the expansion lists by key, filled by `0x001FDB90` and `0x001FDB50` and found by `0x001FDD60` (`0x001FC184`); not written by the constructor |
+| `+0x0B0` | `void*` | expansionHeadA | header node, first word: 0 (`0x001FC196`), then the header itself (`0x001FC1B4`) |
+| `+0x0B8` | `void*` | expansionHeadB | header node, second word: 0 (`0x001FC199`), then the header itself (`0x001FC1B7`) |
+| `+0x0C0` | `void*` | expansionRoot | root node: 0 when empty (`0x001FC19D`, `0x001FC1BB`) |
+| `+0x0C8` | `u8` | expansionHeadFlag 0 (0x001FC1BF) |  |
+| `+0x0C9` | `u8[7]` | expansionPad21 | zeroed by the qword store at `0x001FC1A1` |
+| `+0x0D0` | `u32` | expansionCount | entries: 0 (`0x001FC1C3`) |
+| `+0x0D4` | `u8[4]` | expansionPad2C | not written by the constructor |
+| `+0x0D8` | `void*` | expansionAlloc | the "EASTL map" allocator name (`0x008F4120`), set by `0x001EDF00` (`0x001FC1AF`) |
+| `+0x0E0` | `void*` | atlasNameBegin | atlas name &lt;name&gt;.dds.phyre (`0x001FE080`, `0x001B4FB8`), first character; the empty string `0x02EBA2E0` from the constructor (`0x001FC1F5`); `0x001FDF10` copies the name for the request |
+| `+0x0E8` | `void*` | atlasNameEnd | end of the characters; `0x02EBA2E0` when empty (`0x001FC1FC`) |
+| `+0x0F0` | `void*` | atlasNameCap | end of the buffer; `0x02EBA2E1` when empty (`0x001FC20A`) |
+| `+0x0F8` | `void*` | atlasNameAlloc | the "EASTL basic_string" allocator name (`0x008F6600`), set by `0x001EDF00` (`0x001FC1E9`) |
+| `+0x100` | `void*` | shadowNameBegin | shadow name &lt;name&gt;_shadow.dds.phyre (`0x001FE020`, `0x001B4FF3`), first character; `0x02EBA2E0` when empty (`0x001FC239`); `0x001FDE60` copies the name for the request |
+| `+0x108` | `void*` | shadowNameEnd | end of the characters; `0x02EBA2E0` when empty (`0x001FC240`) |
+| `+0x110` | `void*` | shadowNameCap | end of the buffer; `0x02EBA2E1` when empty (`0x001FC247`) |
+| `+0x118` | `void*` | shadowNameAlloc | the "EASTL basic_string" allocator name (`0x008F6600`), set by `0x001EDF00` (`0x001FC234`) |
 
 ### Kerning between two glyphs
 

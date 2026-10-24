@@ -106,140 +106,61 @@ offset to its run-time member's offset by the routine `0x0059D2D0` chose, or ski
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
 
-```struct CD3D11_BLEND_DESC base=record size=0x108
-+0x00    i32             AlphaToCoverageEnable  D3D11_BLEND_DESC AlphaToCoverageEnable of a pass state's m_blendDesc,
-                                                which the pass-state builder 0x0061DE20 passes to
-                                                ID3D11Device::CreateBlendState (slot +0xA0, 0x0061DF2F);
-                                                AlphaToCoverageEnable (i32), registered by 0x00613800 (0x00632960 at
-                                                0x00613902); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare CD3D11_BLEND_DESC
-+0x04    i32             IndependentBlendEnable D3D11_BLEND_DESC IndependentBlendEnable of a pass state's m_blendDesc,
-                                                passed to CreateBlendState by 0x0061DE20 (0x0061DF2F);
-                                                IndependentBlendEnable (i32), registered by 0x00613800 (0x00632960 at
-                                                0x00613971); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare CD3D11_BLEND_DESC
-```
+`CD3D11_BLEND_DESC` (`0x108` bytes, offsets from the start of the record):
 
-```struct CD3D11_DEPTH_STENCIL_DESC base=record size=0x34
-+0x00    i32             DepthEnable            D3D11_DEPTH_STENCIL_DESC DepthEnable of a pass state's m_depthDesc,
-                                                which 0x0061DE20 passes to ID3D11Device::CreateDepthStencilState
-                                                (slot +0xA8, 0x0061DF88); DepthEnable (i32), registered by 0x00613A30 (0x00632960
-                                                at 0x00613B32); the cluster loader binds it by name (0x0059B430) in the
-                                                2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC
-+0x0C    i32             StencilEnable          D3D11_DEPTH_STENCIL_DESC StencilEnable, passed to
-                                                CreateDepthStencilState by 0x0061DE20 (0x0061DF88); StencilEnable (i32),
-                                                registered by 0x00613A30 (0x00632960 at 0x00613C7D); the cluster loader
-                                                binds it by name (0x0059B430) in the 2,184 shipped .phyre files that
-                                                declare CD3D11_DEPTH_STENCIL_DESC
-+0x10    u8              StencilReadMask        D3D11_DEPTH_STENCIL_DESC StencilReadMask, passed to
-                                                CreateDepthStencilState by 0x0061DE20 (0x0061DF88); StencilReadMask (u8),
-                                                registered by 0x00613A30 (0x00632960 at 0x00613CEC); the cluster loader
-                                                binds it by name (0x0059B430) in the 2,184 shipped .phyre files that
-                                                declare CD3D11_DEPTH_STENCIL_DESC
-+0x11    u8              StencilWriteMask       D3D11_DEPTH_STENCIL_DESC StencilWriteMask, passed to
-                                                CreateDepthStencilState by 0x0061DE20 (0x0061DF88); StencilWriteMask (u8),
-                                                registered by 0x00613A30 (0x00632960 at 0x00613D5B); the cluster loader
-                                                binds it by name (0x0059B430) in the 2,184 shipped .phyre files that
-                                                declare CD3D11_DEPTH_STENCIL_DESC
-+0x12    u8[2]           pad12                  alignment bytes after StencilWriteMask (u8 at +0x11) up to FrontFace
-                                                at +0x14; no registered member covers it (0x00613A30 registers the
-                                                0x34-byte class at 0x00613AAA)
-+0x14    u32[4]          FrontFace              D3D11_DEPTH_STENCIL_DESC FrontFace: the stencil fail, depth-fail and
-                                                pass operations and the stencil function for front faces, passed to
-                                                CreateDepthStencilState by 0x0061DE20 (0x0061DF88); FrontFace (u32[4]),
-                                                registered by 0x00613A30 (0x00632960 at 0x00613DCA); the cluster loader
-                                                binds it by name (0x0059B430) in the 2,184 shipped .phyre files that
-                                                declare CD3D11_DEPTH_STENCIL_DESC
-+0x24    u32[4]          BackFace               D3D11_DEPTH_STENCIL_DESC BackFace: the same four values for back
-                                                faces, passed to CreateDepthStencilState by 0x0061DE20 (0x0061DF88);
-                                                BackFace (u32[4]), registered by 0x00613A30 (0x00632960 at 0x00613E39); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare CD3D11_DEPTH_STENCIL_DESC
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i32` | AlphaToCoverageEnable | D3D11_BLEND_DESC AlphaToCoverageEnable of a pass state's m_blendDesc, which the pass-state builder `0x0061DE20` passes to ID3D11Device::CreateBlendState (slot +`0xA0`, `0x0061DF2F`); AlphaToCoverageEnable (i32), registered by `0x00613800` (`0x00632960` at `0x00613902`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_BLEND_DESC |
+| `+0x04` | `i32` | IndependentBlendEnable D3D11_BLEND_DESC IndependentBlendEnable of a pass state's m_blendDesc, | passed to CreateBlendState by `0x0061DE20` (`0x0061DF2F`); IndependentBlendEnable (i32), registered by `0x00613800` (`0x00632960` at `0x00613971`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_BLEND_DESC |
 
-```struct CD3D11_RASTERIZER_DESC base=record size=0x28
-+0x08    i32             FrontCounterClockwise  D3D11_RASTERIZER_DESC FrontCounterClockwise of a pass state's
-                                                m_rasterDesc, which 0x0061DE20 passes to
-                                                ID3D11Device::CreateRasterizerState (slot +0xB0, 0x0061DE70) and again
-                                                in a copy with FillMode 2, wireframe (0x0061DEB6, 0x0061DEE9);
-                                                FrontCounterClockwise (i32), registered by 0x00613E80 (0x00632960 at
-                                                0x0061405E); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare CD3D11_RASTERIZER_DESC
-+0x0C    i32             DepthBias              D3D11_RASTERIZER_DESC DepthBias, passed to CreateRasterizerState by
-                                                0x0061DE20 (0x0061DE70, 0x0061DEE9); DepthBias (i32), registered by 0x00613E80
-                                                (0x00632960 at 0x006140CD); the cluster loader binds it by name (0x0059B430)
-                                                in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC
-+0x10    f32             DepthBiasClamp         D3D11_RASTERIZER_DESC DepthBiasClamp, passed to CreateRasterizerState
-                                                by 0x0061DE20 (0x0061DE70, 0x0061DEE9); DepthBiasClamp (f32), registered by
-                                                0x00613E80 (0x00632960 at 0x0061413C); the cluster loader binds it by name
-                                                (0x0059B430) in the 2,184 shipped .phyre files that declare
-                                                CD3D11_RASTERIZER_DESC
-+0x14    f32             SlopeScaledDepthBias   D3D11_RASTERIZER_DESC SlopeScaledDepthBias, passed to
-                                                CreateRasterizerState by 0x0061DE20 (0x0061DE70, 0x0061DEE9);
-                                                SlopeScaledDepthBias (f32), registered by 0x00613E80 (0x00632960 at
-                                                0x006141AB); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare CD3D11_RASTERIZER_DESC
-+0x18    i32             DepthClipEnable        D3D11_RASTERIZER_DESC DepthClipEnable, passed to CreateRasterizerState
-                                                by 0x0061DE20 (0x0061DE70, 0x0061DEE9); DepthClipEnable (i32), registered by
-                                                0x00613E80 (0x00632960 at 0x0061421A); the cluster loader binds it by name
-                                                (0x0059B430) in the 2,184 shipped .phyre files that declare
-                                                CD3D11_RASTERIZER_DESC
-+0x1C    i32             ScissorEnable          D3D11_RASTERIZER_DESC ScissorEnable, passed to CreateRasterizerState
-                                                by 0x0061DE20 (0x0061DE70, 0x0061DEE9); ScissorEnable (i32), registered by
-                                                0x00613E80 (0x00632960 at 0x00614289); the cluster loader binds it by name
-                                                (0x0059B430) in the 2,184 shipped .phyre files that declare
-                                                CD3D11_RASTERIZER_DESC
-+0x20    i32             MultisampleEnable      D3D11_RASTERIZER_DESC MultisampleEnable, passed to
-                                                CreateRasterizerState by 0x0061DE20 (0x0061DE70, 0x0061DEE9);
-                                                MultisampleEnable (i32), registered by 0x00613E80 (0x00632960 at
-                                                0x006142F8); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare CD3D11_RASTERIZER_DESC
-+0x24    i32             AntialiasedLineEnable  D3D11_RASTERIZER_DESC AntialiasedLineEnable, passed to
-                                                CreateRasterizerState by 0x0061DE20 (0x0061DE70, 0x0061DEE9);
-                                                AntialiasedLineEnable (i32), registered by 0x00613E80 (0x00632960 at
-                                                0x00614367); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare CD3D11_RASTERIZER_DESC
-```
+`CD3D11_DEPTH_STENCIL_DESC` (`0x34` bytes, offsets from the start of the record):
 
-```struct D3D11_RENDER_TARGET_BLEND_DESC base=record size=0x20
-+0x00    i32             BlendEnable            D3D11_RENDER_TARGET_BLEND_DESC BlendEnable of one of the eight
-                                                RenderTarget entries of a CD3D11_BLEND_DESC, passed to
-                                                CreateBlendState by 0x0061DE20 (0x0061DF2F); BlendEnable (i32), registered
-                                                by 0x00614640 (0x00632960 at 0x00614742); the cluster loader binds it by
-                                                name (0x0059B430) in the 2,184 shipped .phyre files that declare
-                                                D3D11_RENDER_TARGET_BLEND_DESC
-+0x1C    u8              RenderTargetWriteMask  D3D11_RENDER_TARGET_BLEND_DESC RenderTargetWriteMask, passed to
-                                                CreateBlendState by 0x0061DE20 (0x0061DF2F); RenderTargetWriteMask (u8),
-                                                registered by 0x00614640 (0x00632960 at 0x00614A45); the cluster loader
-                                                binds it by name (0x0059B430) in the 2,184 shipped .phyre files that
-                                                declare D3D11_RENDER_TARGET_BLEND_DESC
-+0x1D    u8[3]           pad1D                  the bytes after RenderTargetWriteMask (u8 at +0x1C) up to the
-                                                0x20-byte stride of the RenderTarget array (eight entries from +0x08
-                                                of the 0x108-byte CD3D11_BLEND_DESC); no registered member covers it
-                                                (0x00614640 registers the 0x20-byte class at 0x006146BA)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i32` | DepthEnable | D3D11_DEPTH_STENCIL_DESC DepthEnable of a pass state's m_depthDesc, which `0x0061DE20` passes to ID3D11Device::CreateDepthStencilState (slot +`0xA8`, `0x0061DF88`); DepthEnable (i32), registered by `0x00613A30` (`0x00632960` at `0x00613B32`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC |
+| `+0x0C` | `i32` | StencilEnable | D3D11_DEPTH_STENCIL_DESC StencilEnable, passed to CreateDepthStencilState by `0x0061DE20` (`0x0061DF88`); StencilEnable (i32), registered by `0x00613A30` (`0x00632960` at `0x00613C7D`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC |
+| `+0x10` | `u8` | StencilReadMask | D3D11_DEPTH_STENCIL_DESC StencilReadMask, passed to CreateDepthStencilState by `0x0061DE20` (`0x0061DF88`); StencilReadMask (u8), registered by `0x00613A30` (`0x00632960` at `0x00613CEC`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC |
+| `+0x11` | `u8` | StencilWriteMask | D3D11_DEPTH_STENCIL_DESC StencilWriteMask, passed to CreateDepthStencilState by `0x0061DE20` (`0x0061DF88`); StencilWriteMask (u8), registered by `0x00613A30` (`0x00632960` at `0x00613D5B`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC |
+| `+0x12` | `u8[2]` | pad12 | alignment bytes after StencilWriteMask (u8 at +`0x11`) up to FrontFace at +`0x14`; no registered member covers it (`0x00613A30` registers the `0x34`-byte class at `0x00613AAA`) |
+| `+0x14` | `u32[4]` | FrontFace | D3D11_DEPTH_STENCIL_DESC FrontFace: the stencil fail, depth-fail and pass operations and the stencil function for front faces, passed to CreateDepthStencilState by `0x0061DE20` (`0x0061DF88`); FrontFace (u32[4]), registered by `0x00613A30` (`0x00632960` at `0x00613DCA`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC |
+| `+0x24` | `u32[4]` | BackFace | D3D11_DEPTH_STENCIL_DESC BackFace: the same four values for back faces, passed to CreateDepthStencilState by `0x0061DE20` (`0x0061DF88`); BackFace (u32[4]), registered by `0x00613A30` (`0x00632960` at `0x00613E39`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_DEPTH_STENCIL_DESC |
 
-```struct PAnimationClipBindingChannelMap base=record size=0x4
-+0x00    i16             m_destSlotArrayIndex   m_destSlotArrayIndex (i16), registered by 0x005B0930 (0x00632960 at
-                                                0x005B09C5); the cluster loader binds it by name (0x0059B430) in the 2
-                                                shipped .phyre files that declare PAnimationClipBindingChannelMap
-+0x02    u16             m_interp               m_interp (u16), registered by 0x005B0930 (0x00632960 at 0x005B0A38); the
-                                                cluster loader binds it by name (0x0059B430) in the 2 shipped .phyre
-                                                files that declare PAnimationClipBindingChannelMap
-```
+`CD3D11_RASTERIZER_DESC` (`0x28` bytes, offsets from the start of the record):
 
-```struct PAnimationDataSourceListEntry base=record size=0x98
-+0x08    u32             m_inputCount           m_inputCount (u32), registered by 0x005B0E70 (0x00632960 at 0x005B0F70); no
-                                                shipped .phyre file declares PAnimationDataSourceListEntry
-+0x8C    u32             m_destSlotArray        m_destSlotArray (u32), registered by 0x005B0E70 (0x00632960 at 0x005B1058);
-                                                no shipped .phyre file declares PAnimationDataSourceListEntry
-+0x90    u32             m_persistentBufferOffset m_persistentBufferOffset (u32), registered by 0x005B0E70 (0x00632960 at
-                                                  0x005B10CB); no shipped .phyre file declares
-                                                  PAnimationDataSourceListEntry
-+0x94    u32             m_preprocessBufferOffset m_preprocessBufferOffset (u32), registered by 0x005B0E70 (0x00632960 at
-                                                  0x005B113E); no shipped .phyre file declares
-                                                  PAnimationDataSourceListEntry
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `i32` | FrontCounterClockwise | D3D11_RASTERIZER_DESC FrontCounterClockwise of a pass state's m_rasterDesc, which `0x0061DE20` passes to ID3D11Device::CreateRasterizerState (slot +`0xB0`, `0x0061DE70`) and again in a copy with FillMode 2, wireframe (`0x0061DEB6`, `0x0061DEE9`); FrontCounterClockwise (i32), registered by `0x00613E80` (`0x00632960` at `0x0061405E`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x0C` | `i32` | DepthBias | D3D11_RASTERIZER_DESC DepthBias, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); DepthBias (i32), registered by `0x00613E80` (`0x00632960` at `0x006140CD`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x10` | `f32` | DepthBiasClamp | D3D11_RASTERIZER_DESC DepthBiasClamp, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); DepthBiasClamp (f32), registered by `0x00613E80` (`0x00632960` at `0x0061413C`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x14` | `f32` | SlopeScaledDepthBias | D3D11_RASTERIZER_DESC SlopeScaledDepthBias, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); SlopeScaledDepthBias (f32), registered by `0x00613E80` (`0x00632960` at `0x006141AB`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x18` | `i32` | DepthClipEnable | D3D11_RASTERIZER_DESC DepthClipEnable, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); DepthClipEnable (i32), registered by `0x00613E80` (`0x00632960` at `0x0061421A`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x1C` | `i32` | ScissorEnable | D3D11_RASTERIZER_DESC ScissorEnable, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); ScissorEnable (i32), registered by `0x00613E80` (`0x00632960` at `0x00614289`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x20` | `i32` | MultisampleEnable | D3D11_RASTERIZER_DESC MultisampleEnable, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); MultisampleEnable (i32), registered by `0x00613E80` (`0x00632960` at `0x006142F8`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+| `+0x24` | `i32` | AntialiasedLineEnable | D3D11_RASTERIZER_DESC AntialiasedLineEnable, passed to CreateRasterizerState by `0x0061DE20` (`0x0061DE70`, `0x0061DEE9`); AntialiasedLineEnable (i32), registered by `0x00613E80` (`0x00632960` at `0x00614367`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_RASTERIZER_DESC |
+
+`D3D11_RENDER_TARGET_BLEND_DESC` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i32` | BlendEnable | D3D11_RENDER_TARGET_BLEND_DESC BlendEnable of one of the eight RenderTarget entries of a CD3D11_BLEND_DESC, passed to CreateBlendState by `0x0061DE20` (`0x0061DF2F`); BlendEnable (i32), registered by `0x00614640` (`0x00632960` at `0x00614742`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare D3D11_RENDER_TARGET_BLEND_DESC |
+| `+0x1C` | `u8` | RenderTargetWriteMask | D3D11_RENDER_TARGET_BLEND_DESC RenderTargetWriteMask, passed to CreateBlendState by `0x0061DE20` (`0x0061DF2F`); RenderTargetWriteMask (u8), registered by `0x00614640` (`0x00632960` at `0x00614A45`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare D3D11_RENDER_TARGET_BLEND_DESC |
+| `+0x1D` | `u8[3]` | pad1D | the bytes after RenderTargetWriteMask (u8 at +`0x1C`) up to the `0x20`-byte stride of the RenderTarget array (eight entries from +`0x08` of the `0x108`-byte CD3D11_BLEND_DESC); no registered member covers it (`0x00614640` registers the `0x20`-byte class at `0x006146BA`) |
+
+`PAnimationClipBindingChannelMap` (`0x4` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i16` | m_destSlotArrayIndex | m_destSlotArrayIndex (i16), registered by `0x005B0930` (`0x00632960` at `0x005B09C5`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingChannelMap |
+| `+0x02` | `u16` | m_interp | m_interp (u16), registered by `0x005B0930` (`0x00632960` at `0x005B0A38`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingChannelMap |
+
+`PAnimationDataSourceListEntry` (`0x98` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u32` | m_inputCount | m_inputCount (u32), registered by `0x005B0E70` (`0x00632960` at `0x005B0F70`); no shipped .phyre file declares PAnimationDataSourceListEntry |
+| `+0x8C` | `u32` | m_destSlotArray | m_destSlotArray (u32), registered by `0x005B0E70` (`0x00632960` at `0x005B1058`); no shipped .phyre file declares PAnimationDataSourceListEntry |
+| `+0x90` | `u32` | m_persistentBufferOffset m_persistentBufferOffset (u32), registered by 0x005B0E70 (0x00632960 at | `0x005B10CB`); no shipped .phyre file declares PAnimationDataSourceListEntry |
+| `+0x94` | `u32` | m_preprocessBufferOffset m_preprocessBufferOffset (u32), registered by 0x005B0E70 (0x00632960 at | `0x005B113E`); no shipped .phyre file declares PAnimationDataSourceListEntry |
 
 `PAnimationEvent` (`0x8` bytes, offsets from the start of the record):
 
@@ -248,113 +169,81 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `f32` | m_time | m_time (f32), registered by `0x005B1180` (`0x00632960` at `0x005B120E`); no shipped .phyre file declares PAnimationEvent |
 | `+0x04` | `u32` | m_id | m_id (u32), registered by `0x005B1180` (`0x00632960` at `0x005B1281`); no shipped .phyre file declares PAnimationEvent |
 
-```struct PAnimationSlotFilterDeferredLoad base=record size=0x10
-+0x08    ptr             m_nodeName             m_nodeName (ptr), registered by 0x005B1F90 (0x00632960 at 0x005B2090); no
-                                                shipped .phyre file declares PAnimationSlotFilterDeferredLoad
-```
+`PAnimationSlotFilterDeferredLoad` (`0x10` bytes, offsets from the start of the record):
 
-```struct PContextVariantFoldingTable base=record size=0x14
-+0x00    u32             m_contextVariantIndex  m_contextVariantIndex (u32), registered by 0x005E3C30 (0x00632960 at
-                                                0x005E3CBA); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PContextVariantFoldingTable
-+0x04    u32             m_contextVariantVpIndex m_contextVariantVpIndex (u32), registered by 0x005E3C30 (0x00632960 at
-                                                 0x005E3D29); the cluster loader binds it by name (0x0059B430) in the
-                                                 2,184 shipped .phyre files that declare PContextVariantFoldingTable
-+0x08    u32             m_contextVariantFpIndex m_contextVariantFpIndex (u32), registered by 0x005E3C30 (0x00632960 at
-                                                 0x005E3D98); the cluster loader binds it by name (0x0059B430) in the
-                                                 2,184 shipped .phyre files that declare PContextVariantFoldingTable
-+0x0C    u32             m_contextVariantGsIndex m_contextVariantGsIndex (u32), registered by 0x005E3C30 (0x00632960 at
-                                                 0x005E3E07); the cluster loader binds it by name (0x0059B430) in the
-                                                 2,184 shipped .phyre files that declare PContextVariantFoldingTable
-+0x10    u32             m_contextVariantCsIndex m_contextVariantCsIndex (u32), registered by 0x005E3C30 (0x00632960 at
-                                                 0x005E3E76); the cluster loader binds it by name (0x0059B430) in the
-                                                 2,184 shipped .phyre files that declare PContextVariantFoldingTable
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `void*` | m_nodeName | m_nodeName (ptr), registered by `0x005B1F90` (`0x00632960` at `0x005B2090`); no shipped .phyre file declares PAnimationSlotFilterDeferredLoad |
 
-```struct PDynamicDataBlock base=record size=0x28
-+0x00    u32             m_stride               m_stride (u32), registered by 0x00665A40 (0x00632960 at 0x00665ACE); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PDynamicDataBlock
-+0x04    u32             m_elementCount         m_elementCount (u32), registered by 0x00665A40 (0x00632960 at 0x00665B41);
-                                                the cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PDynamicDataBlock
-```
+`PContextVariantFoldingTable` (`0x14` bytes, offsets from the start of the record):
 
-```struct PDynamicSegmentDesc base=record size=0x10
-+0x00    u32             m_startStreamIndex     m_startStreamIndex (u32), registered by 0x00665EB0 (0x00632960 at
-                                                0x00665F3E); the cluster loader binds it by name (0x0059B430) in the 2,091
-                                                shipped .phyre files that declare PDynamicSegmentDesc
-+0x04    u32             m_streamCount          m_streamCount (u32), registered by 0x00665EB0 (0x00632960 at 0x00665FB1);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PDynamicSegmentDesc
-+0x08    u32             m_elementCount         m_elementCount (u32), registered by 0x00665EB0 (0x00632960 at 0x00666024);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,091 shipped
-                                                .phyre files that declare PDynamicSegmentDesc
-+0x0C    i32             m_indexCount           m_indexCount (i32), registered by 0x00665EB0 (0x00632960 at 0x00666097); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,091 shipped .phyre
-                                                files that declare PDynamicSegmentDesc
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_contextVariantIndex | m_contextVariantIndex (u32), registered by `0x005E3C30` (`0x00632960` at `0x005E3CBA`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PContextVariantFoldingTable |
+| `+0x04` | `u32` | m_contextVariantVpIndex m_contextVariantVpIndex (u32), registered by 0x005E3C30 (0x00632960 at | `0x005E3D29`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PContextVariantFoldingTable |
+| `+0x08` | `u32` | m_contextVariantFpIndex m_contextVariantFpIndex (u32), registered by 0x005E3C30 (0x00632960 at | `0x005E3D98`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PContextVariantFoldingTable |
+| `+0x0C` | `u32` | m_contextVariantGsIndex m_contextVariantGsIndex (u32), registered by 0x005E3C30 (0x00632960 at | `0x005E3E07`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PContextVariantFoldingTable |
+| `+0x10` | `u32` | m_contextVariantCsIndex m_contextVariantCsIndex (u32), registered by 0x005E3C30 (0x00632960 at | `0x005E3E76`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PContextVariantFoldingTable |
 
-```struct PMeshInstanceAttachPoint base=record size=0x18
-+0x10    u32             m_sourceMatrixIndex    m_sourceMatrixIndex (u32), registered by 0x005E6400 (0x00632960 at
-                                                0x005E656E); no shipped .phyre file declares PMeshInstanceAttachPoint
-+0x14    u8[4]           bytes14                the bytes after m_sourceMatrixIndex (+0x10) up to the end of the
-                                                0x18-byte class; no registered member covers it (0x005D9730 registers
-                                                the 0x18-byte class at 0x005D9780)
-```
+`PDynamicDataBlock` (`0x28` bytes, offsets from the start of the record):
 
-```struct PModifierAndInputs base=record size=0x20
-+0x08    u32             m_persistentStateOffset m_persistentStateOffset (u32), registered by 0x006D0D50 (0x00632960 at
-                                                 0x006D0E51); the cluster loader binds it by name (0x0059B430) in the 3
-                                                 shipped .phyre files that declare PModifierAndInputs
-+0x0C    u32             m_stateBlockOffset     m_stateBlockOffset (u32), registered by 0x006D0D50 (0x00632960 at
-                                                0x006D0EC4); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare PModifierAndInputs
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_stride | m_stride (u32), registered by `0x00665A40` (`0x00632960` at `0x00665ACE`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PDynamicDataBlock |
+| `+0x04` | `u32` | m_elementCount | m_elementCount (u32), registered by `0x00665A40` (`0x00632960` at `0x00665B41`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PDynamicDataBlock |
 
-```struct PModifierNetworkBuffer base=record size=0x18
-+0x08    u32             m_modifier             m_modifier (u32), registered by 0x006D1580 (0x00632960 at 0x006D1681); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkBuffer
-+0x0C    u32             m_stream               m_stream (u32), registered by 0x006D1580 (0x00632960 at 0x006D16F4); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkBuffer
-+0x10    u32             m_elementSize          m_elementSize (u32), registered by 0x006D1580 (0x00632960 at 0x006D1767);
-                                                the cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkBuffer
-+0x14    u32             m_info                 m_info (u32), registered by 0x006D1580 (0x00632960 at 0x006D17DA); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkBuffer
-```
+`PDynamicSegmentDesc` (`0x10` bytes, offsets from the start of the record):
 
-```struct PModifierNetworkInfoPacket_Buffer base=record size=0x2
-+0x00    u16             m_elementSize          m_elementSize (u16), registered by 0x006D1C70 (0x00632960 at 0x006D1CFC);
-                                                the cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkInfoPacket_Buffer
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_startStreamIndex | m_startStreamIndex (u32), registered by `0x00665EB0` (`0x00632960` at `0x00665F3E`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDynamicSegmentDesc |
+| `+0x04` | `u32` | m_streamCount | m_streamCount (u32), registered by `0x00665EB0` (`0x00632960` at `0x00665FB1`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDynamicSegmentDesc |
+| `+0x08` | `u32` | m_elementCount | m_elementCount (u32), registered by `0x00665EB0` (`0x00632960` at `0x00666024`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDynamicSegmentDesc |
+| `+0x0C` | `i32` | m_indexCount | m_indexCount (i32), registered by `0x00665EB0` (`0x00632960` at `0x00666097`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDynamicSegmentDesc |
 
-```struct PModifierNetworkInfoPacket_ModifierCode base=record size=0x20
-+0x08    u32             m_inputCount           m_inputCount (u32), registered by 0x006D1D30 (0x00632960 at 0x006D1E38); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkInfoPacket_ModifierCode
-+0x0C    u32             m_outputCount          m_outputCount (u32), registered by 0x006D1D30 (0x00632960 at 0x006D1EAB);
-                                                the cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkInfoPacket_ModifierCode
-```
+`PMeshInstanceAttachPoint` (`0x18` bytes, offsets from the start of the record):
 
-```struct PModifierNetworkInfoPacket_ModifierInstance base=record size=0x20
-+0x00    u32             m_persistentStateOffset m_persistentStateOffset (u32), registered by 0x006D1EE0 (0x00632960 at
-                                                 0x006D1F75); the cluster loader binds it by name (0x0059B430) in the 3
-                                                 shipped .phyre files that declare
-                                                 PModifierNetworkInfoPacket_ModifierInstance
-+0x04    u32             m_stateBlockOffset     m_stateBlockOffset (u32), registered by 0x006D1EE0 (0x00632960 at
-                                                0x006D1FE8); the cluster loader binds it by name (0x0059B430) in the 3
-                                                shipped .phyre files that declare
-                                                PModifierNetworkInfoPacket_ModifierInstance
-+0x08    u8              m_codeIndex            m_codeIndex (u8), registered by 0x006D1EE0 (0x00632960 at 0x006D205B); the
-                                                cluster loader binds it by name (0x0059B430) in the 3 shipped .phyre
-                                                files that declare PModifierNetworkInfoPacket_ModifierInstance
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10` | `u32` | m_sourceMatrixIndex | m_sourceMatrixIndex (u32), registered by `0x005E6400` (`0x00632960` at `0x005E656E`); no shipped .phyre file declares PMeshInstanceAttachPoint |
+| `+0x14` | `u8[4]` | bytes14 | the bytes after m_sourceMatrixIndex (+`0x10`) up to the end of the `0x18`-byte class; no registered member covers it (`0x005D9730` registers the `0x18`-byte class at `0x005D9780`) |
+
+`PModifierAndInputs` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u32` | m_persistentStateOffset m_persistentStateOffset (u32), registered by 0x006D0D50 (0x00632960 at | `0x006D0E51`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierAndInputs |
+| `+0x0C` | `u32` | m_stateBlockOffset | m_stateBlockOffset (u32), registered by `0x006D0D50` (`0x00632960` at `0x006D0EC4`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierAndInputs |
+
+`PModifierNetworkBuffer` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u32` | m_modifier | m_modifier (u32), registered by `0x006D1580` (`0x00632960` at `0x006D1681`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkBuffer |
+| `+0x0C` | `u32` | m_stream | m_stream (u32), registered by `0x006D1580` (`0x00632960` at `0x006D16F4`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkBuffer |
+| `+0x10` | `u32` | m_elementSize | m_elementSize (u32), registered by `0x006D1580` (`0x00632960` at `0x006D1767`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkBuffer |
+| `+0x14` | `u32` | m_info | m_info (u32), registered by `0x006D1580` (`0x00632960` at `0x006D17DA`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkBuffer |
+
+`PModifierNetworkInfoPacket_Buffer` (`0x2` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | m_elementSize | m_elementSize (u16), registered by `0x006D1C70` (`0x00632960` at `0x006D1CFC`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_Buffer |
+
+`PModifierNetworkInfoPacket_ModifierCode` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u32` | m_inputCount | m_inputCount (u32), registered by `0x006D1D30` (`0x00632960` at `0x006D1E38`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierCode |
+| `+0x0C` | `u32` | m_outputCount | m_outputCount (u32), registered by `0x006D1D30` (`0x00632960` at `0x006D1EAB`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierCode |
+
+`PModifierNetworkInfoPacket_ModifierInstance` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_persistentStateOffset m_persistentStateOffset (u32), registered by 0x006D1EE0 (0x00632960 at | `0x006D1F75`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
+| `+0x04` | `u32` | m_stateBlockOffset | m_stateBlockOffset (u32), registered by `0x006D1EE0` (`0x00632960` at `0x006D1FE8`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
+| `+0x08` | `u8` | m_codeIndex | m_codeIndex (u8), registered by `0x006D1EE0` (`0x00632960` at `0x006D205B`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
 
 `PModifierNetworkInstancePacketInput` (`0x8` bytes, offsets from the start of the record):
 
@@ -363,62 +252,45 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `u32` | m_source | m_source (u32), registered by `0x006C36C0` (`0x00632960` at `0x006C374E`); no shipped .phyre file declares PModifierNetworkInstancePacketInput |
 | `+0x04` | `u32` | m_list | m_list (u32), registered by `0x006C36C0` (`0x00632960` at `0x006C37C1`); no shipped .phyre file declares PModifierNetworkInstancePacketInput |
 
-```struct POctreeData base=record size=0x38
-+0x08    f32[4]          m_cachedPosition       m_cachedPosition (f32[4]), registered by 0x008786F0 (0x00632960 at
-                                                0x008787F0); no shipped .phyre file declares POctreeData
-+0x30    u8[8]           bytes30                the bytes after m_prev (+0x28) up to the end of the 0x38-byte class;
-                                                no registered member covers it (0x00877D40 registers the 0x38-byte class
-                                                at 0x00877D90)
-```
+`POctreeData` (`0x38` bytes, offsets from the start of the record):
 
-```struct PParameterBufferBase base=record size=0x4
-+0x00    u32             m_parameterBufferSize  m_parameterBufferSize (u32), registered by 0x005E6E70 (0x00632960 at
-                                                0x005E6EF8); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PParameterBufferBase
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `f32[4]` | m_cachedPosition | m_cachedPosition (f32[4]), registered by `0x008786F0` (`0x00632960` at `0x008787F0`); no shipped .phyre file declares POctreeData |
+| `+0x30` | `u8[8]` | bytes30 | the bytes after m_prev (+`0x28`) up to the end of the `0x38`-byte class; no registered member covers it (`0x00877D40` registers the `0x38`-byte class at `0x00877D90`) |
 
-```struct PPhysicsBoxBase base=record size=0x80
-+0x70    f32[4]          m_halfExtents          m_halfExtents (f32[4]), registered by 0x00693EC0 (0x00632960 at 0x00693F49);
-                                                no shipped .phyre file declares PPhysicsBoxBase
-```
+`PParameterBufferBase` (`0x4` bytes, offsets from the start of the record):
 
-```struct PPhysicsCallbackData base=record size=0x28
-+0x20    f32             m_amount               m_amount (f32), registered by 0x00693F80 (0x00632960 at 0x006940E6); no
-                                                shipped .phyre file declares PPhysicsCallbackData
-+0x24    u8[4]           bytes24                the bytes after m_amount (+0x20) up to the end of the 0x28-byte class;
-                                                no registered member covers it (0x0068F430 registers the 0x28-byte class
-                                                at 0x0068F480)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_parameterBufferSize | m_parameterBufferSize (u32), registered by `0x005E6E70` (`0x00632960` at `0x005E6EF8`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PParameterBufferBase |
 
-```struct PPhysicsCharacterControllerBase base=record size=0x130
-+0x18    f32[4]          m_scale                m_scale (f32[4]), registered by 0x006949A0 (0x00632960 at 0x00694F99); no
-                                                shipped .phyre file declares PPhysicsCharacterControllerBase; the
-                                                constructor 0x00690FC0 sets it to (1, 1, 1) (0x00690FD5-0x00690FE3)
-+0x28    f32[4]          m_gravity              m_gravity (f32[4]), registered by 0x006949A0 (0x00632960 at 0x00694A3C); no
-                                                shipped .phyre file declares PPhysicsCharacterControllerBase; the
-                                                constructor 0x00690FC0 sets it to (0, -19.6, 0) (0x00690FEA-0x00690FF4)
-+0x44    u8[4]           bytes44                the bytes at +0x44, after +0x40 and before +0x48; no registered member
-                                                covers it (0x0068F810 registers the 0x130-byte class at 0x0068F860)
-+0xE0    f32             m_rotate               m_rotate (f32), registered by 0x006949A0 (0x00632960 at 0x00694B93); no
-                                                shipped .phyre file declares PPhysicsCharacterControllerBase; the
-                                                constructor 0x00690FC0 clears it with m_right (qword store 0x0069109F)
-+0xE4    f32             m_right                m_right (f32), registered by 0x006949A0 (0x00632960 at 0x00694C06); no
-                                                shipped .phyre file declares PPhysicsCharacterControllerBase; the
-                                                constructor 0x00690FC0 clears it with m_rotate (0x0069109F)
-+0xE8    f32             m_forward              m_forward (f32), registered by 0x006949A0 (0x00632960 at 0x00694C79); no
-                                                shipped .phyre file declares PPhysicsCharacterControllerBase; the
-                                                constructor 0x00690FC0 clears it (0x006910A6)
-+0x104   u8              m_jump                 m_jump (u8), registered by 0x006949A0 (0x00632960 at 0x00694D5F); no shipped
-                                                .phyre file declares PPhysicsCharacterControllerBase; the constructor
-                                                0x00690FC0 clears it with m_isOnGround (word store 0x006910E8)
-+0x105   u8              m_isOnGround           whether the character stands on the ground; m_isOnGround (u8),
-                                                registered by 0x006949A0 (0x00632960 at 0x00694DD2); no shipped .phyre file
-                                                declares PPhysicsCharacterControllerBase; the script method
-                                                getIsOnGround (registered at 0x006953E2) returns it through 0x006A3A90;
-                                                the constructor 0x00690FC0 clears it (0x006910E8)
-+0x107   u8[1]           pad107                 the byte after +0x106, before +0x108; no registered member covers it
-                                                (0x0068F810 registers the 0x130-byte class at 0x0068F860)
-```
+`PPhysicsBoxBase` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x70` | `f32[4]` | m_halfExtents | m_halfExtents (f32[4]), registered by `0x00693EC0` (`0x00632960` at `0x00693F49`); no shipped .phyre file declares PPhysicsBoxBase |
+
+`PPhysicsCallbackData` (`0x28` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x20` | `f32` | m_amount | m_amount (f32), registered by `0x00693F80` (`0x00632960` at `0x006940E6`); no shipped .phyre file declares PPhysicsCallbackData |
+| `+0x24` | `u8[4]` | bytes24 | the bytes after m_amount (+`0x20`) up to the end of the `0x28`-byte class; no registered member covers it (`0x0068F430` registers the `0x28`-byte class at `0x0068F480`) |
+
+`PPhysicsCharacterControllerBase` (`0x130` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x018` | `f32[4]` | m_scale | m_scale (f32[4]), registered by `0x006949A0` (`0x00632960` at `0x00694F99`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the constructor `0x00690FC0` sets it to (1, 1, 1) (`0x00690FD5`-`0x00690FE3`) |
+| `+0x028` | `f32[4]` | m_gravity | m_gravity (f32[4]), registered by `0x006949A0` (`0x00632960` at `0x00694A3C`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the constructor `0x00690FC0` sets it to (0, -19.6, 0) (`0x00690FEA`-`0x00690FF4`) |
+| `+0x044` | `u8[4]` | bytes44 | the bytes at +`0x44`, after +`0x40` and before +`0x48`; no registered member covers it (`0x0068F810` registers the `0x130`-byte class at `0x0068F860`) |
+| `+0x0E0` | `f32` | m_rotate | m_rotate (f32), registered by `0x006949A0` (`0x00632960` at `0x00694B93`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the constructor `0x00690FC0` clears it with m_right (qword store `0x0069109F`) |
+| `+0x0E4` | `f32` | m_right | m_right (f32), registered by `0x006949A0` (`0x00632960` at `0x00694C06`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the constructor `0x00690FC0` clears it with m_rotate (`0x0069109F`) |
+| `+0x0E8` | `f32` | m_forward | m_forward (f32), registered by `0x006949A0` (`0x00632960` at `0x00694C79`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the constructor `0x00690FC0` clears it (`0x006910A6`) |
+| `+0x104` | `u8` | m_jump | m_jump (u8), registered by `0x006949A0` (`0x00632960` at `0x00694D5F`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the constructor `0x00690FC0` clears it with m_isOnGround (word store `0x006910E8`) |
+| `+0x105` | `u8` | m_isOnGround | whether the character stands on the ground; m_isOnGround (u8), registered by `0x006949A0` (`0x00632960` at `0x00694DD2`); no shipped .phyre file declares PPhysicsCharacterControllerBase; the script method getIsOnGround (registered at `0x006953E2`) returns it through `0x006A3A90`; the constructor `0x00690FC0` clears it (`0x006910E8`) |
+| `+0x107` | `u8[1]` | pad107 | the byte after +`0x106`, before +`0x108`; no registered member covers it (`0x0068F810` registers the `0x130`-byte class at `0x0068F860`) |
 
 `PPhysicsMaterial` (`0xC` bytes, offsets from the start of the record):
 
@@ -428,72 +300,44 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x04` | `f32` | m_staticFriction | m_staticFriction (f32), registered by `0x006955D0` (`0x00632960` at `0x006956D1`); no shipped .phyre file declares PPhysicsMaterial |
 | `+0x08` | `f32` | m_restitution | m_restitution (f32), registered by `0x006955D0` (`0x00632960` at `0x00695744`); no shipped .phyre file declares PPhysicsMaterial |
 
-```struct PPhysicsPlaneBase base=record size=0x80
-+0x70    f32[4]          m_equationCoefficient  m_equationCoefficient (f32[4]), registered by 0x006959F0 (0x00632960 at
-                                                0x00695A79); no shipped .phyre file declares PPhysicsPlaneBase
-```
+`PPhysicsPlaneBase` (`0x80` bytes, offsets from the start of the record):
 
-```struct PPhysicsRigidBodyBase base=record size=0x118
-+0x38    f32[4]          m_initialPosition      m_initialPosition (f32[4]), registered by 0x00696470 (0x00632960 at
-                                                0x00696665); no shipped .phyre file declares PPhysicsRigidBodyBase; the
-                                                script method setInitialPosition (registered at 0x00696F49) writes it
-                                                through 0x006A5790; the constructor 0x006912F0 clears +0x38 to +0x43
-                                                (0x0069133D, 0x00691341)
-+0x58    f32[4]          m_inertiaTensor        m_inertiaTensor (f32[4]), registered by 0x00696470 (0x00632960 at
-                                                0x0069674B); no shipped .phyre file declares PPhysicsRigidBodyBase; the
-                                                constructor 0x006912F0 clears +0x58 to +0x63 (0x0069134C, 0x00691354)
-+0x68    f32[4]          m_initialLinearVelocity m_initialLinearVelocity (f32[4]), registered by 0x00696470 (0x00632960 at
-                                                 0x006967BE); no shipped .phyre file declares PPhysicsRigidBodyBase; the
-                                                 constructor 0x006912F0 clears it (0x00691358, 0x0069135C)
-+0x78    f32[4]          m_initialAngularVelocity m_initialAngularVelocity (f32[4]), registered by 0x00696470 (0x00632960
-                                                  at 0x00696831); no shipped .phyre file declares PPhysicsRigidBodyBase;
-                                                  the constructor 0x006912F0 clears it (0x0069135F, 0x00691363)
-+0x88    f32[4]          m_scale                m_scale (f32[4]), registered by 0x00696470 (0x00632960 at 0x00696A93); no
-                                                shipped .phyre file declares PPhysicsRigidBodyBase; the constructor
-                                                0x006912F0 sets it to (1, 1, 1) (0x00691369-0x0069137D)
-+0xE1    u8[3]           bytesE1                the bytes after the byte the constructor 0x006912F0 sets to 0xF at +0xE0
-                                                (0x006913D2), before m_mass (+0xE4); no registered member covers it
-                                                (0x006902F0 registers the 0x118-byte class at 0x00690340)
-+0xE4    f32             m_mass                 m_mass (f32), registered by 0x00696470 (0x00632960 at 0x0069650C); no
-                                                shipped .phyre file declares PPhysicsRigidBodyBase; the script method
-                                                getMass (registered at 0x006970DD) returns it through 0x006A3B00; the
-                                                constructor 0x006912F0 clears it (0x006913D9)
-+0xE8    u8              m_rigidBodyType        m_rigidBodyType (u8), registered by 0x00696470 (0x00632960 at 0x0069657F);
-                                                no shipped .phyre file declares PPhysicsRigidBodyBase; the constructor
-                                                0x006912F0 clears it with a word store that sets +0xE9 to 1 (0x006913DF)
-+0xEA    u8[6]           bytesEA                the bytes after the byte at +0xE9 (set to 1 by the constructor
-                                                0x006912F0, 0x006913DF), before +0xF0; no registered member covers it
-                                                (0x006902F0 registers the 0x118-byte class at 0x00690340)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x70` | `f32[4]` | m_equationCoefficient | m_equationCoefficient (f32[4]), registered by `0x006959F0` (`0x00632960` at `0x00695A79`); no shipped .phyre file declares PPhysicsPlaneBase |
 
-```struct PPhysicsShapeBase base=record size=0x68
-+0x08    u8              m_hollow               m_hollow (u8), registered by 0x00697320 (0x00632960 at 0x006973B2); no
-                                                shipped .phyre file declares PPhysicsShapeBase
-+0x09    u8[3]           pad09                  alignment bytes after m_hollow (u8 at +0x08) up to m_mass (f32
-                                                at +0x0C); no registered member covers it (0x006904E0 registers the
-                                                0x68-byte class at 0x00690530)
-+0x0C    f32             m_mass                 m_mass (f32), registered by 0x00697320 (0x00632960 at 0x00697425); no
-                                                shipped .phyre file declares PPhysicsShapeBase
-+0x10    f32             m_density              m_density (f32), registered by 0x00697320 (0x00632960 at 0x00697498); no
-                                                shipped .phyre file declares PPhysicsShapeBase
-+0x14    u8[4]           bytes14                the bytes after m_density (+0x10), before +0x18; no registered member
-                                                covers it (0x006904E0 registers the 0x68-byte class at 0x00690530)
-+0x50    f32[4]          m_scale                m_scale (f32[4]), registered by 0x00697320 (0x00632960 at 0x006975F0); no
-                                                shipped .phyre file declares PPhysicsShapeBase
-```
+`PPhysicsRigidBodyBase` (`0x118` bytes, offsets from the start of the record):
 
-```struct PPhysicsWorldBase base=record size=0x60
-+0x00    f32[4]          m_gravity              m_gravity (f32[4]), registered by 0x00698180 (0x00632960 at 0x00698280); no
-                                                shipped .phyre file declares PPhysicsWorldBase; the placement
-                                                constructor 0x0068B9E0 sets it to (0, -9.8, 0) (0x0068B9E5-0x0068B9F0)
-+0x14    f32[4]          m_worldMin             m_worldMin (f32[4]), registered by 0x00698180 (0x00632960 at 0x00698366); no
-                                                shipped .phyre file declares PPhysicsWorldBase; the placement
-                                                constructor 0x0068B9E0 sets it to (-5000, -5000, -5000)
-                                                (0x0068B9FA-0x0068BA08)
-+0x24    f32[4]          m_worldMax             m_worldMax (f32[4]), registered by 0x00698180 (0x00632960 at 0x006983D9); no
-                                                shipped .phyre file declares PPhysicsWorldBase; the placement
-                                                constructor 0x0068B9E0 sets it to (5000, 5000, 5000) (0x0068BA0F-0x0068BA1D)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x38` | `f32[4]` | m_initialPosition | m_initialPosition (f32[4]), registered by `0x00696470` (`0x00632960` at `0x00696665`); no shipped .phyre file declares PPhysicsRigidBodyBase; the script method setInitialPosition (registered at `0x00696F49`) writes it through `0x006A5790`; the constructor `0x006912F0` clears +`0x38` to +`0x43` (`0x0069133D`, `0x00691341`) |
+| `+0x58` | `f32[4]` | m_inertiaTensor | m_inertiaTensor (f32[4]), registered by `0x00696470` (`0x00632960` at `0x0069674B`); no shipped .phyre file declares PPhysicsRigidBodyBase; the constructor `0x006912F0` clears +`0x58` to +`0x63` (`0x0069134C`, `0x00691354`) |
+| `+0x68` | `f32[4]` | m_initialLinearVelocity m_initialLinearVelocity (f32[4]), registered by 0x00696470 (0x00632960 at | `0x006967BE`); no shipped .phyre file declares PPhysicsRigidBodyBase; the constructor `0x006912F0` clears it (`0x00691358`, `0x0069135C`) |
+| `+0x78` | `f32[4]` | m_initialAngularVelocity m_initialAngularVelocity (f32[4]), registered by 0x00696470 (0x00632960 | at `0x00696831`); no shipped .phyre file declares PPhysicsRigidBodyBase; the constructor `0x006912F0` clears it (`0x0069135F`, `0x00691363`) |
+| `+0x88` | `f32[4]` | m_scale | m_scale (f32[4]), registered by `0x00696470` (`0x00632960` at `0x00696A93`); no shipped .phyre file declares PPhysicsRigidBodyBase; the constructor `0x006912F0` sets it to (1, 1, 1) (`0x00691369`-`0x0069137D`) |
+| `+0xE1` | `u8[3]` | bytesE1 | the bytes after the byte the constructor `0x006912F0` sets to `0xF` at +`0xE0` (`0x006913D2`), before m_mass (+`0xE4`); no registered member covers it (`0x006902F0` registers the `0x118`-byte class at `0x00690340`) |
+| `+0xE4` | `f32` | m_mass | m_mass (f32), registered by `0x00696470` (`0x00632960` at `0x0069650C`); no shipped .phyre file declares PPhysicsRigidBodyBase; the script method getMass (registered at `0x006970DD`) returns it through `0x006A3B00`; the constructor `0x006912F0` clears it (`0x006913D9`) |
+| `+0xE8` | `u8` | m_rigidBodyType | m_rigidBodyType (u8), registered by `0x00696470` (`0x00632960` at `0x0069657F`); no shipped .phyre file declares PPhysicsRigidBodyBase; the constructor `0x006912F0` clears it with a word store that sets +`0xE9` to 1 (`0x006913DF`) |
+| `+0xEA` | `u8[6]` | bytesEA | the bytes after the byte at +`0xE9` (set to 1 by the constructor `0x006912F0`, `0x006913DF`), before +`0xF0`; no registered member covers it (`0x006902F0` registers the `0x118`-byte class at `0x00690340`) |
+
+`PPhysicsShapeBase` (`0x68` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u8` | m_hollow | m_hollow (u8), registered by `0x00697320` (`0x00632960` at `0x006973B2`); no shipped .phyre file declares PPhysicsShapeBase |
+| `+0x09` | `u8[3]` | pad09 | alignment bytes after m_hollow (u8 at +`0x08`) up to m_mass (f32 at +`0x0C`); no registered member covers it (`0x006904E0` registers the `0x68`-byte class at `0x00690530`) |
+| `+0x0C` | `f32` | m_mass | m_mass (f32), registered by `0x00697320` (`0x00632960` at `0x00697425`); no shipped .phyre file declares PPhysicsShapeBase |
+| `+0x10` | `f32` | m_density | m_density (f32), registered by `0x00697320` (`0x00632960` at `0x00697498`); no shipped .phyre file declares PPhysicsShapeBase |
+| `+0x14` | `u8[4]` | bytes14 | the bytes after m_density (+`0x10`), before +`0x18`; no registered member covers it (`0x006904E0` registers the `0x68`-byte class at `0x00690530`) |
+| `+0x50` | `f32[4]` | m_scale | m_scale (f32[4]), registered by `0x00697320` (`0x00632960` at `0x006975F0`); no shipped .phyre file declares PPhysicsShapeBase |
+
+`PPhysicsWorldBase` (`0x60` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `f32[4]` | m_gravity | m_gravity (f32[4]), registered by `0x00698180` (`0x00632960` at `0x00698280`); no shipped .phyre file declares PPhysicsWorldBase; the placement constructor `0x0068B9E0` sets it to (0, -9.8, 0) (`0x0068B9E5`-`0x0068B9F0`) |
+| `+0x14` | `f32[4]` | m_worldMin | m_worldMin (f32[4]), registered by `0x00698180` (`0x00632960` at `0x00698366`); no shipped .phyre file declares PPhysicsWorldBase; the placement constructor `0x0068B9E0` sets it to (-5000, -5000, -5000) (`0x0068B9FA`-`0x0068BA08`) |
+| `+0x24` | `f32[4]` | m_worldMax | m_worldMax (f32[4]), registered by `0x00698180` (`0x00632960` at `0x006983D9`); no shipped .phyre file declares PPhysicsWorldBase; the placement constructor `0x0068B9E0` sets it to (5000, 5000, 5000) (`0x0068BA0F`-`0x0068BA1D`) |
 
 `PRaycastResult` (`0x30` bytes, offsets from the start of the record):
 
@@ -502,223 +346,160 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `f32[4]` | m_contactPoint | m_contactPoint (f32[4]), registered by `0x00698500` (`0x00632960` at `0x0069858E`); no shipped .phyre file declares PRaycastResult |
 | `+0x10` | `f32[4]` | m_contactNormal | m_contactNormal (f32[4]), registered by `0x00698500` (`0x00632960` at `0x00698601`); no shipped .phyre file declares PRaycastResult |
 
-```struct PRenderTargetBase base=record size=0x10
-+0x09    u8              m_msaaType             m_msaaType (u8), registered by 0x005E6F30 (0x00632960 at 0x005E6FC2); no
-                                                shipped .phyre file declares PRenderTargetBase
-+0x0A    u8[2]           pad0A                  alignment bytes after m_msaaType (u8 at +0x09) up to
-                                                m_renderTargetFlags (+0x0C); no registered member covers it (0x005D9D20
-                                                registers the 0x10-byte class at 0x005D9D70)
-+0x0C    i32             m_renderTargetFlags    m_renderTargetFlags (i32), registered by 0x005E6F30 (0x00632960 at
-                                                0x005E7035); no shipped .phyre file declares PRenderTargetBase
-```
+`PRenderTargetBase` (`0x10` bytes, offsets from the start of the record):
 
-```struct PShaderComputeProgramD3D11 base=record size=0x90
-+0x80    u32             m_dimX                 m_dimX (u32), registered by 0x00617810 (0x00632960 at 0x006178A2); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderComputeProgramD3D11
-+0x84    u32             m_dimY                 m_dimY (u32), registered by 0x00617810 (0x00632960 at 0x00617915); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderComputeProgramD3D11
-+0x88    u32             m_dimZ                 m_dimZ (u32), registered by 0x00617810 (0x00632960 at 0x00617988); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderComputeProgramD3D11
-+0x8C    u8[4]           bytes8C                the bytes after m_dimZ (+0x88) up to the end of the 0x90-byte class;
-                                                no registered member covers it (0x00614D10 registers the 0x90-byte class
-                                                at 0x00614D5A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x09` | `u8` | m_msaaType | m_msaaType (u8), registered by `0x005E6F30` (`0x00632960` at `0x005E6FC2`); no shipped .phyre file declares PRenderTargetBase |
+| `+0x0A` | `u8[2]` | pad0A | alignment bytes after m_msaaType (u8 at +`0x09`) up to m_renderTargetFlags (+`0x0C`); no registered member covers it (`0x005D9D20` registers the `0x10`-byte class at `0x005D9D70`) |
+| `+0x0C` | `i32` | m_renderTargetFlags | m_renderTargetFlags (i32), registered by `0x005E6F30` (`0x00632960` at `0x005E7035`); no shipped .phyre file declares PRenderTargetBase |
 
-```struct PShaderParameterCaptureBufferLocation base=record size=0x2
-+0x00    u16             m_offset               m_offset (u16), registered by 0x005E8790 (0x00632960 at 0x005E8811); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderParameterCaptureBufferLocation
-```
+`PShaderComputeProgramD3D11` (`0x90` bytes, offsets from the start of the record):
 
-```struct PShaderParameterCaptureBufferTextureBase base=record size=0x10
-+0x04    u32             m_textureBufferIndex   m_textureBufferIndex (u32), registered by 0x005E9350 (0x00632960 at
-                                                0x005E94CA); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare
-                                                PShaderParameterCaptureBufferTextureBase
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x80` | `u32` | m_dimX | m_dimX (u32), registered by `0x00617810` (`0x00632960` at `0x006178A2`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderComputeProgramD3D11 |
+| `+0x84` | `u32` | m_dimY | m_dimY (u32), registered by `0x00617810` (`0x00632960` at `0x00617915`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderComputeProgramD3D11 |
+| `+0x88` | `u32` | m_dimZ | m_dimZ (u32), registered by `0x00617810` (`0x00632960` at `0x00617988`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderComputeProgramD3D11 |
+| `+0x8C` | `u8[4]` | bytes8C | the bytes after m_dimZ (+`0x88`) up to the end of the `0x90`-byte class; no registered member covers it (`0x00614D10` registers the `0x90`-byte class at `0x00614D5A`) |
 
-```struct PShaderPassInfo base=record size=0x30
-+0x00    ptr             m_vertexEntryPoint     m_vertexEntryPoint (ptr), registered by 0x005E9C20 (0x00632960 at
-                                                0x005E9CA9); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassInfo
-+0x08    ptr             m_fragmentEntryPoint   m_fragmentEntryPoint (ptr), registered by 0x005E9C20 (0x00632960 at
-                                                0x005E9D86); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassInfo
-+0x10    ptr             m_geometryEntryPoint   m_geometryEntryPoint (ptr), registered by 0x005E9C20 (0x00632960 at
-                                                0x005E9E63); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassInfo
-+0x18    ptr             m_computeEntryPoint    m_computeEntryPoint (ptr), registered by 0x005E9C20 (0x00632960 at
-                                                0x005E9F40); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassInfo
-+0x20    u32             m_vertexProfile        m_vertexProfile (u32), registered by 0x005E9C20 (0x00632960 at 0x005E9D18);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
-                                                .phyre files that declare PShaderPassInfo
-+0x24    u32             m_fragmentProfile      m_fragmentProfile (u32), registered by 0x005E9C20 (0x00632960 at
-                                                0x005E9DF5); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassInfo
-+0x28    u32             m_geometryProfile      m_geometryProfile (u32), registered by 0x005E9C20 (0x00632960 at
-                                                0x005E9ED2); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassInfo
-+0x2C    u32             m_computeProfile       m_computeProfile (u32), registered by 0x005E9C20 (0x00632960 at 0x005E9FAF);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
-                                                .phyre files that declare PShaderPassInfo
-```
+`PShaderParameterCaptureBufferLocation` (`0x2` bytes, offsets from the start of the record):
 
-```struct PShaderPassStateBase base=record size=0x4
-+0x00    u32             m_importantState       m_importantState (u32), registered by 0x005EA310 (0x00632960 at 0x005EA395);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
-                                                .phyre files that declare PShaderPassStateBase
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | m_offset | m_offset (u16), registered by `0x005E8790` (`0x00632960` at `0x005E8811`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocation |
 
-```struct PShaderPassStateD3D11 base=record size=0x190
-+0x04    u8[40]          m_rasterDesc           the rasterizer description: the pass-state builder 0x0061DE20 creates
-                                                the rasterizer state at +0x168 from it (0x0061DE5B-0x0061DE70) and a
-                                                wireframe copy at +0x170 (0x0061DEA9-0x0061DEE9); m_rasterDesc
-                                                (CD3D11_RASTERIZER_DESC), registered by 0x00617E60 (0x00632960 at
-                                                0x00617EF2); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassStateD3D11
-+0x2C    u8[52]          m_depthDesc            the depth-stencil description: 0x0061DE20 creates the depth-stencil
-                                                state at +0x178 from it (0x0061DF73-0x0061DF88); m_depthDesc
-                                                (CD3D11_DEPTH_STENCIL_DESC), registered by 0x00617E60 (0x00632960 at
-                                                0x00617F65); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderPassStateD3D11
-+0x168   ptr[4]          stateObjects           the four D3D11 state objects 0x0061DE20 creates: rasterizer +0x168
-                                                (RSSetState), rasterizerAlt +0x170 (the wireframe copy, used when
-                                                context +0x9C4 is 2), depthStencil +0x178 (OMSetDepthStencilState),
-                                                blend +0x180 (OMSetBlendState); 0x0061DE20 builds each only while its
-                                                slot is null (0x0061DE4C, 0x0061DE9F, 0x0061DF05, 0x0061DF5E); no registered
-                                                member covers it (0x00614F90 registers the 0x190-byte class at 0x00614FDA)
-+0x188   u8              m_stencilRef           stencilRef, passed with the depth-stencil state by 0x0061D260;
-                                                m_stencilRef (u8), registered by 0x00617E60 (0x00632960 at 0x0061804B); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderPassStateD3D11
-+0x189   u8[7]           pad189                 the bytes after m_stencilRef (u8 at +0x188) up to the end of the
-                                                0x190-byte class; no registered member covers it (0x00614F90 registers
-                                                the 0x190-byte class at 0x00614FDA)
-```
+`PShaderParameterCaptureBufferTextureBase` (`0x10` bytes, offsets from the start of the record):
 
-```struct PShaderProgramD3D11 base=record size=0x78
-+0x28    u32             m_constantBufferSize   m_constantBufferSize (u32), registered by 0x00618080 (0x00632960 at
-                                                0x006181B0); the cluster loader binds it by name (0x0059B430) in the 2,184
-                                                shipped .phyre files that declare PShaderProgramD3D11
-+0x2C    u32             m_globalConstantBufferIndex m_globalConstantBufferIndex (u32), registered by 0x00618080
-                                                     (0x00632960 at 0x00618223); the cluster loader binds it by name
-                                                     (0x0059B430) in the 2,184 shipped .phyre files that declare
-                                                     PShaderProgramD3D11
-+0x30    u8[64]          bytes30                the bytes after m_globalConstantBufferIndex (+0x2C), before
-                                                m_shaderProfile (+0x70); no registered member covers it (0x00615030
-                                                registers the 0x78-byte class at 0x0061507A)
-+0x70    u32             m_shaderProfile        m_shaderProfile (u32), registered by 0x00618080 (0x00632960 at 0x00618296);
-                                                the cluster loader binds it by name (0x0059B430) in the 2,184 shipped
-                                                .phyre files that declare PShaderProgramD3D11
-+0x74    u8[4]           bytes74                the bytes after m_shaderProfile (+0x70) up to the end of the 0x78-byte
-                                                class; no registered member covers it (0x00615030 registers the
-                                                0x78-byte class at 0x0061507A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u32` | m_textureBufferIndex | m_textureBufferIndex (u32), registered by `0x005E9350` (`0x00632960` at `0x005E94CA`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferTextureBase |
 
-```struct PShaderSource base=record size=0x28
-+0x08    ptr             m_entry                m_entry (ptr), registered by 0x005EA560 (0x00632960 at 0x005EA65F); no
-                                                shipped .phyre file declares PShaderSource
-+0x20    u32             m_profile              m_profile (u32), registered by 0x005EA560 (0x00632960 at 0x005EA76B); no
-                                                shipped .phyre file declares PShaderSource
-+0x24    u8[4]           bytes24                the bytes after m_profile (+0x20) up to the end of the 0x28-byte
-                                                class; no registered member covers it (0x005DB5C0 registers the
-                                                0x28-byte class at 0x005DB610)
-```
+`PShaderPassInfo` (`0x30` bytes, offsets from the start of the record):
 
-```struct PShaderStreamDefinition base=record size=0x18
-+0x08    ptr             m_name                 m_name (ptr), registered by 0x005EA7A0 (0x00632960 at 0x005EA831); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderStreamDefinition
-+0x14    u16             m_nameHash             m_nameHash (u16), registered by 0x005EA7A0 (0x00632960 at 0x005EA9F8); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderStreamDefinition
-+0x17    u8              m_index                m_index (u8), registered by 0x005EA7A0 (0x00632960 at 0x005EAA6B); the
-                                                cluster loader binds it by name (0x0059B430) in the 2,184 shipped .phyre
-                                                files that declare PShaderStreamDefinition
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | m_vertexEntryPoint | m_vertexEntryPoint (ptr), registered by `0x005E9C20` (`0x00632960` at `0x005E9CA9`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x08` | `void*` | m_fragmentEntryPoint | m_fragmentEntryPoint (ptr), registered by `0x005E9C20` (`0x00632960` at `0x005E9D86`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x10` | `void*` | m_geometryEntryPoint | m_geometryEntryPoint (ptr), registered by `0x005E9C20` (`0x00632960` at `0x005E9E63`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x18` | `void*` | m_computeEntryPoint | m_computeEntryPoint (ptr), registered by `0x005E9C20` (`0x00632960` at `0x005E9F40`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x20` | `u32` | m_vertexProfile | m_vertexProfile (u32), registered by `0x005E9C20` (`0x00632960` at `0x005E9D18`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x24` | `u32` | m_fragmentProfile | m_fragmentProfile (u32), registered by `0x005E9C20` (`0x00632960` at `0x005E9DF5`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x28` | `u32` | m_geometryProfile | m_geometryProfile (u32), registered by `0x005E9C20` (`0x00632960` at `0x005E9ED2`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
+| `+0x2C` | `u32` | m_computeProfile | m_computeProfile (u32), registered by `0x005E9C20` (`0x00632960` at `0x005E9FAF`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassInfo |
 
-```struct PSkeletonJointBounds base=record size=0x20
-+0x0C    u32             m_hierarchyMatrixIndex m_hierarchyMatrixIndex (u32), registered by 0x00667700 (0x00632960 at
-                                                0x00667878); the cluster loader binds it by name (0x0059B430) in the 2,091
-                                                shipped .phyre files that declare PSkeletonJointBounds
-```
+`PShaderPassStateBase` (`0x4` bytes, offsets from the start of the record):
 
-```struct PSkinBoneRemap base=record size=0x4
-+0x00    u16             m_hierarchyMatrixIndex m_hierarchyMatrixIndex (u16), registered by 0x00667920 (0x00632960 at
-                                                0x006679AE); the cluster loader binds it by name (0x0059B430) in the 2,091
-                                                shipped .phyre files that declare PSkinBoneRemap
-+0x02    u16             m_skeletonMatrixIndex  m_skeletonMatrixIndex (u16), registered by 0x00667920 (0x00632960 at
-                                                0x00667A21); the cluster loader binds it by name (0x0059B430) in the 2,091
-                                                shipped .phyre files that declare PSkinBoneRemap
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | m_importantState | m_importantState (u32), registered by `0x005EA310` (`0x00632960` at `0x005EA395`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassStateBase |
 
-```struct PTexture2DBase base=record size=0x30
-+0x28    u32             m_width                m_width (u32), registered by 0x005EAC50 (0x00632960 at 0x005EACE2); the
-                                                cluster loader binds it by name (0x0059B430) in the 31,368 shipped
-                                                .phyre files that declare PTexture2DBase
-+0x2C    u32             m_height               m_height (u32), registered by 0x005EAC50 (0x00632960 at 0x005EAD55); the
-                                                cluster loader binds it by name (0x0059B430) in the 31,368 shipped
-                                                .phyre files that declare PTexture2DBase
-```
+`PShaderPassStateD3D11` (`0x190` bytes, offsets from the start of the record):
 
-```struct PTriggerReceiverTypeCallbackData base=record size=0x28
-+0x20    u32             m_entryCount           m_entryCount (u32), registered by 0x006CD960 (0x00632960 at 0x006CDB3C); no
-                                                shipped .phyre file declares PTriggerReceiverTypeCallbackData
-+0x24    u8[4]           bytes24                the bytes after m_entryCount (+0x20) up to the end of the 0x28-byte
-                                                class; no registered member covers it (0x006CD8A0 registers the
-                                                0x28-byte class at 0x006CD8F0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x004` | `u8[40]` | m_rasterDesc | the rasterizer description: the pass-state builder `0x0061DE20` creates the rasterizer state at +`0x168` from it (`0x0061DE5B`-`0x0061DE70`) and a wireframe copy at +`0x170` (`0x0061DEA9`-`0x0061DEE9`); m_rasterDesc (CD3D11_RASTERIZER_DESC), registered by `0x00617E60` (`0x00632960` at `0x00617EF2`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassStateD3D11 |
+| `+0x02C` | `u8[52]` | m_depthDesc | the depth-stencil description: `0x0061DE20` creates the depth-stencil state at +`0x178` from it (`0x0061DF73`-`0x0061DF88`); m_depthDesc (CD3D11_DEPTH_STENCIL_DESC), registered by `0x00617E60` (`0x00632960` at `0x00617F65`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassStateD3D11 |
+| `+0x168` | `void*[4]` | stateObjects | the four D3D11 state objects `0x0061DE20` creates: rasterizer +`0x168` (RSSetState), rasterizerAlt +`0x170` (the wireframe copy, used when context +`0x9C4` is 2), depthStencil +`0x178` (OMSetDepthStencilState), blend +`0x180` (OMSetBlendState); `0x0061DE20` builds each only while its slot is null (`0x0061DE4C`, `0x0061DE9F`, `0x0061DF05`, `0x0061DF5E`); no registered member covers it (`0x00614F90` registers the `0x190`-byte class at `0x00614FDA`) |
+| `+0x188` | `u8` | m_stencilRef | stencilRef, passed with the depth-stencil state by `0x0061D260`; m_stencilRef (u8), registered by `0x00617E60` (`0x00632960` at `0x0061804B`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderPassStateD3D11 |
+| `+0x189` | `u8[7]` | pad189 | the bytes after m_stencilRef (u8 at +`0x188`) up to the end of the `0x190`-byte class; no registered member covers it (`0x00614F90` registers the `0x190`-byte class at `0x00614FDA`) |
 
-```struct PPhysicsCapsuleBase base=record size=0x88
-+0x7C    u8[4]           bytes7C                the bytes at +0x7C, before +0x80; no registered member covers it
-                                                (0x0068F580 registers the 0x88-byte class at 0x0068F5CA)
-```
+`PShaderProgramD3D11` (`0x78` bytes, offsets from the start of the record):
 
-```struct PPhysicsCharacterCamera base=record size=0x208
-+0x08    u8[8]           bytes08                cleared by the constructor 0x00690F00 (0x00690F13); no registered member
-                                                covers it (0x0068F6C0 registers the 0x208-byte class at 0x0068F710)
-+0x28    u8[8]           bytes28                the constructor 0x00690F00 writes 1.0 to +0x28 and 0 to +0x2C with one
-                                                qword store (0x00690F3A); no registered member covers it (0x0068F6C0
-                                                registers the 0x208-byte class at 0x0068F710)
-+0x38    u8[16]          bytes38                the constructor 0x00690F00 writes 0 to +0x38, 0.3 to +0x3C and 0
-                                                to +0x40 (qword stores 0x00690F49, 0x00690F51); the camera position the
-                                                script method getCameraPosition returns starts at +0x48 (0x006A3960); no
-                                                registered member covers it (0x0068F6C0 registers the 0x208-byte class
-                                                at 0x0068F710)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x28` | `u32` | m_constantBufferSize | m_constantBufferSize (u32), registered by `0x00618080` (`0x00632960` at `0x006181B0`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderProgramD3D11 |
+| `+0x2C` | `u32` | m_globalConstantBufferIndex m_globalConstantBufferIndex (u32), registered by 0x00618080 | (`0x00632960` at `0x00618223`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderProgramD3D11 |
+| `+0x30` | `u8[64]` | bytes30 | the bytes after m_globalConstantBufferIndex (+`0x2C`), before m_shaderProfile (+`0x70`); no registered member covers it (`0x00615030` registers the `0x78`-byte class at `0x0061507A`) |
+| `+0x70` | `u32` | m_shaderProfile | m_shaderProfile (u32), registered by `0x00618080` (`0x00632960` at `0x00618296`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderProgramD3D11 |
+| `+0x74` | `u8[4]` | bytes74 | the bytes after m_shaderProfile (+`0x70`) up to the end of the `0x78`-byte class; no registered member covers it (`0x00615030` registers the `0x78`-byte class at `0x0061507A`) |
 
-```struct PPhysicsCylinderBase base=record size=0x80
-+0x7C    u8[4]           bytes7C                the bytes at +0x7C, before +0x80; no registered member covers it
-                                                (0x0068FA00 registers the 0x80-byte class at 0x0068FA4A)
-```
+`PShaderSource` (`0x28` bytes, offsets from the start of the record):
 
-```struct PPhysicsSphereBase base=record size=0x78
-+0x74    u8[4]           bytes74                the bytes at +0x74, up to the end of the 0x78-byte class; no
-                                                registered member covers it (0x006906D0 registers the 0x78-byte class at
-                                                0x0069071A)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `void*` | m_entry | m_entry (ptr), registered by `0x005EA560` (`0x00632960` at `0x005EA65F`); no shipped .phyre file declares PShaderSource |
+| `+0x20` | `u32` | m_profile | m_profile (u32), registered by `0x005EA560` (`0x00632960` at `0x005EA76B`); no shipped .phyre file declares PShaderSource |
+| `+0x24` | `u8[4]` | bytes24 | the bytes after m_profile (+`0x20`) up to the end of the `0x28`-byte class; no registered member covers it (`0x005DB5C0` registers the `0x28`-byte class at `0x005DB610`) |
 
-```struct PPhysicsTaperedCapsule base=record size=0x88
-+0x84    u8[4]           bytes84                the bytes after +0x80 up to the end of the 0x88-byte class; no
-                                                registered member covers it (0x00690810 registers the 0x88-byte class at
-                                                0x0069085A)
-```
+`PShaderStreamDefinition` (`0x18` bytes, offsets from the start of the record):
 
-```struct PPhysicsTaperedCylinder base=record size=0x88
-+0x84    u8[4]           bytes84                the bytes after +0x80 up to the end of the 0x88-byte class; no
-                                                registered member covers it (0x006908B0 registers the 0x88-byte class at
-                                                0x006908FA)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `void*` | m_name | m_name (ptr), registered by `0x005EA7A0` (`0x00632960` at `0x005EA831`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderStreamDefinition |
+| `+0x14` | `u16` | m_nameHash | m_nameHash (u16), registered by `0x005EA7A0` (`0x00632960` at `0x005EA9F8`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderStreamDefinition |
+| `+0x17` | `u8` | m_index | m_index (u8), registered by `0x005EA7A0` (`0x00632960` at `0x005EAA6B`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderStreamDefinition |
 
-```struct PStreamInputLayoutD3D11 base=record size=0x18
-+0x10    u8[8]           bytes10                the bytes after m_streams (PArray at +0x00) up to the end of the
-                                                0x18-byte class; no registered member covers it (0x00615220 registers
-                                                the 0x18-byte class at 0x00615270)
-```
+`PSkeletonJointBounds` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u32` | m_hierarchyMatrixIndex m_hierarchyMatrixIndex (u32), registered by 0x00667700 (0x00632960 at | `0x00667878`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PSkeletonJointBounds |
+
+`PSkinBoneRemap` (`0x4` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | m_hierarchyMatrixIndex m_hierarchyMatrixIndex (u16), registered by 0x00667920 (0x00632960 at | `0x006679AE`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PSkinBoneRemap |
+| `+0x02` | `u16` | m_skeletonMatrixIndex | m_skeletonMatrixIndex (u16), registered by `0x00667920` (`0x00632960` at `0x00667A21`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PSkinBoneRemap |
+
+`PTexture2DBase` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x28` | `u32` | m_width | m_width (u32), registered by `0x005EAC50` (`0x00632960` at `0x005EACE2`); the cluster loader binds it by name (`0x0059B430`) in the 31,368 shipped .phyre files that declare PTexture2DBase |
+| `+0x2C` | `u32` | m_height | m_height (u32), registered by `0x005EAC50` (`0x00632960` at `0x005EAD55`); the cluster loader binds it by name (`0x0059B430`) in the 31,368 shipped .phyre files that declare PTexture2DBase |
+
+`PTriggerReceiverTypeCallbackData` (`0x28` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x20` | `u32` | m_entryCount | m_entryCount (u32), registered by `0x006CD960` (`0x00632960` at `0x006CDB3C`); no shipped .phyre file declares PTriggerReceiverTypeCallbackData |
+| `+0x24` | `u8[4]` | bytes24 | the bytes after m_entryCount (+`0x20`) up to the end of the `0x28`-byte class; no registered member covers it (`0x006CD8A0` registers the `0x28`-byte class at `0x006CD8F0`) |
+
+`PPhysicsCapsuleBase` (`0x88` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x7C` | `u8[4]` | bytes7C | the bytes at +`0x7C`, before +`0x80`; no registered member covers it (`0x0068F580` registers the `0x88`-byte class at `0x0068F5CA`) |
+
+`PPhysicsCharacterCamera` (`0x208` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `u8[8]` | bytes08 | cleared by the constructor `0x00690F00` (`0x00690F13`); no registered member covers it (`0x0068F6C0` registers the `0x208`-byte class at `0x0068F710`) |
+| `+0x28` | `u8[8]` | bytes28 | the constructor `0x00690F00` writes 1.0 to +`0x28` and 0 to +`0x2C` with one qword store (`0x00690F3A`); no registered member covers it (`0x0068F6C0` registers the `0x208`-byte class at `0x0068F710`) |
+| `+0x38` | `u8[16]` | bytes38 | the constructor `0x00690F00` writes 0 to +`0x38`, 0.3 to +`0x3C` and 0 to +`0x40` (qword stores `0x00690F49`, `0x00690F51`); the camera position the script method getCameraPosition returns starts at +`0x48` (`0x006A3960`); no registered member covers it (`0x0068F6C0` registers the `0x208`-byte class at `0x0068F710`) |
+
+`PPhysicsCylinderBase` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x7C` | `u8[4]` | bytes7C | the bytes at +`0x7C`, before +`0x80`; no registered member covers it (`0x0068FA00` registers the `0x80`-byte class at `0x0068FA4A`) |
+
+`PPhysicsSphereBase` (`0x78` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x74` | `u8[4]` | bytes74 | the bytes at +`0x74`, up to the end of the `0x78`-byte class; no registered member covers it (`0x006906D0` registers the `0x78`-byte class at `0x0069071A`) |
+
+`PPhysicsTaperedCapsule` (`0x88` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x84` | `u8[4]` | bytes84 | the bytes after +`0x80` up to the end of the `0x88`-byte class; no registered member covers it (`0x00690810` registers the `0x88`-byte class at `0x0069085A`) |
+
+`PPhysicsTaperedCylinder` (`0x88` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x84` | `u8[4]` | bytes84 | the bytes after +`0x80` up to the end of the `0x88`-byte class; no registered member covers it (`0x006908B0` registers the `0x88`-byte class at `0x006908FA`) |
+
+`PStreamInputLayoutD3D11` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10` | `u8[8]` | bytes10 | the bytes after m_streams (PArray at +`0x00`) up to the end of the `0x18`-byte class; no registered member covers it (`0x00615220` registers the `0x18`-byte class at `0x00615270`) |
 
 ## Shipped data
 

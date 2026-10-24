@@ -84,19 +84,25 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 
 ## Layouts
 
-```
-0x01E0C464  u32  the enable word; 0xFFFFFFFF in the image; readers: the sixteen tests in 0x0028E290; writers: none
-0x01E0C2B0  u16  the pump argument; bit 0 enables group 6; writers 0x00226280 and 0x0036D840 through 0x002547C0, and 0x00253970
-0x0209BE80  ptr  the UI manager object
-  +0x80    group 2 sub-object          +0x5380  group 1 sub-object       +0x57E0  groups 5 and 14 sub-object
-  +0x7EA0  group 16 sub-object         +0x7FB0  group 9 sub-object       +0xA0    group 12 sub-object
-  +0xA0D0  group 8 sub-object          +0x10EF0 / +0x10F00  group 3's list and its rebuilt head
-  +0x10F10 / +0x10F20  group 6's two objects   +0x10F30  group 4's object   +0x10F40  group 13's object
-  +0x10F68 u32 flags: bit 1 written by group 7, bit 3 gates group 3's 0x002917E0 call, bit 8 gates group 12
-  +0x10F6C u32, +0x10F70 u16, +0x10F72 u16  group 3's arguments   +0x10F78  group 5's gate   +0x10F80  group 15's gate
-0x02092748  u32  set to 1 around the 0x00184960 call in 0x002507C0
-0x0208F570  u32  accumulates 0x00184950() per 0x002507C0 call
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01E0C464` | `u32` | the enable word; 0xFFFFFFFF in the image; readers: the sixteen tests in 0x0028E290; writers: none |  |
+| `0x01E0C2B0` | `u16` | the pump argument; bit 0 enables group 6; writers 0x00226280 and 0x0036D840 through 0x002547C0, and 0x00253970 |  |
+| `0x0209BE80` | `void*` | the UI manager object |  |
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00080` | `group 2 sub-object` | +0x5380 | group 1 sub-object       +`0x57E0`  groups 5 and 14 sub-object |
+| `+0x07EA0` | `group 16 sub-object` | +0x7FB0 | group 9 sub-object       +`0xA0`    group 12 sub-object |
+| `+0x0A0D0` | `group 8 sub-object` | +0x10EF0 / +0x10F00 | group 3's list and its rebuilt head |
+| `+0x10F10` | `/ +0x10F20` | group 6's two objects | +`0x10F30`  group 4's object   +`0x10F40`  group 13's object |
+| `+0x10F68` | `u32` | flags: | bit 1 written by group 7, bit 3 gates group 3's `0x002917E0` call, bit 8 gates group 12 |
+| `+0x10F6C` | `u32, +0x10F70 u16, +0x10F72 u16` | group 3's arguments | +`0x10F78`  group 5's gate   +`0x10F80`  group 15's gate |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x02092748` | `u32` | set to 1 around the 0x00184960 call in 0x002507C0 |  |
+| `0x0208F570` | `u32` | accumulates 0x00184950() per 0x002507C0 call |  |
 
 ## Shipped data
 

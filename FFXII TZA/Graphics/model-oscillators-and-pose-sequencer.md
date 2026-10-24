@@ -188,20 +188,23 @@ The copy is a GS transfer inside GS memory, built by `0x00505150(packet, transfe
 
 ### The oscillator record
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | encoded pointer to the 0x30-byte entries |  |
+| `+0x04` | `u8` | entry count |  |
+| `+0x05` | `u8` | non-zero: +0x0C must resolve to a live object first |  |
+| `+0x06` | `u8` | 0 disables the record |  |
+| `+0x07` | `u8` | selects the single stage while 0x02B59D68 is 0 |  |
+| `+0x10` | `f32` | copied to the VU0 bank at 0x022D9390 |  |
+| `+0x20` | `f32` | global phase | +`0x24`  f32  speed      +`0x28`  f32  amplitude |
+| `+0x2C` | `u32` | encoded pointer to the record's preset row |  |
+| `+0x30` | `f32` | per-record phase | +`0x34`  f32  speed      +`0x38`  f32  amplitude |
+| `+0x3C` | `u16` | bone (command 0x3F) |  |
+| `+0x3E` | `u8` | per-record preset, 0 = off |  |
+| `+0x3F` | `u8` | bit 0 / bit 1 re-draw the global / per-record pair; bit 3 the command's flag |  |
+| `+0x40` | `f32[4]` | direction (command 0x3F) |  |
+
 ```
-+0x00  u32   encoded pointer to the 0x30-byte entries
-+0x04  u8    entry count
-+0x05  u8    non-zero: +0x0C must resolve to a live object first
-+0x06  u8    0 disables the record
-+0x07  u8    selects the single stage while 0x02B59D68 is 0
-+0x10  f32   copied to the VU0 bank at 0x022D9390
-+0x20  f32   global phase      +0x24  f32  speed      +0x28  f32  amplitude
-+0x2C  u32   encoded pointer to the record's preset row
-+0x30  f32   per-record phase  +0x34  f32  speed      +0x38  f32  amplitude
-+0x3C  u16   bone (command 0x3F)
-+0x3E  u8    per-record preset, 0 = off
-+0x3F  u8    bit 0 / bit 1 re-draw the global / per-record pair; bit 3 the command's flag
-+0x40  f32[4]  direction (command 0x3F)
 entry +0x02  u8   0 skips the entry
 entry +0x20  f32  weight
 entry +0x29  u8   low nibble: weighted apply
@@ -212,18 +215,29 @@ entry +0x2A  u8   bit 0: apply at full weight
 
 Section 7 starts at payload `+ [+0x0E]` (`0x003E6F50`); offsets below are from the section unless noted.
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16[8]` | offset of each event's records |  |
+
+Event record (6 bytes, at the event's offset + 6 x variant):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | slot |  |
+| `+0x01` | `u8` | pick byte for a random choice |  |
+| `+0x02` | `u16` | rel: 0xFFFF = no choices; the choice table starts at record + 2 + rel |  |
+| `+0x04` | `u8` | 0 = disabled |  |
+
+Choice table (offsets from its start):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | source texture slot | +`0x01`  u8   destination texture slot |
+| `+0x0C` | `u16` | offset of the rectangle table, from +0x0C |  |
+| `+0x0E` | `u16` | choice count |  |
+| `+0x10` | `u16[count]` | choice c's sequence is at +0x10 + 2c + this value |  |
+
 ```
-+0x00  u16[8]   offset of each event's records
-event record (6 bytes, at the event's offset + 6 x variant):
-  +0x00  u8   slot
-  +0x01  u8   pick byte for a random choice
-  +0x02  u16  rel: 0xFFFF = no choices; the choice table starts at record + 2 + rel
-  +0x04  u8   0 = disabled
-choice table (offsets from its start):
-  +0x00  u8   source texture slot      +0x01  u8   destination texture slot
-  +0x0C  u16  offset of the rectangle table, from +0x0C
-  +0x0E  u16  choice count
-  +0x10  u16[count]  choice c's sequence is at +0x10 + 2c + this value
 sequence:  u16 frame count, then per frame {u16 duration in ticks, u8 end action, u8 value}
 rectangle table:  +0 / +2 destination x, y; +4 / +6 width, height; +0x0E + 4v / +0x10 + 4v source x, y for value v
 ```

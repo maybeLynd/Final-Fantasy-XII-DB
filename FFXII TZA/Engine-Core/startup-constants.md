@@ -250,20 +250,25 @@ Step 4's `0x00184660` ends with `0x00248410`, which sets `0x0208ECC0` / `0x0208E
 
 ## Layouts
 
-```
-globals written by the boot fixer
-0x02EB4234  u8    generator first-use latch        0x02EB3870  u32[624] Mersenne Twister state
-0x01DFE0B4  u32   frame base 1 or 2               0x01DFE0B8 / 0x01DFE0BC  f32 time base 1.0 / 2.0 and 1.0 / 0.5
-0x01F82E38  u32   60 fps mode flag                 0x01DFE0C0  u32  the mode suppressor
-0x01F82E3C  u8    timer period begun               0x01F82E40  u32  the period
-0x02064ACC  u32   pacer ticks per frame: 2 / [0x01DFE0B4]
-0x01E0C2A0  u32   confirm mask                     0x01E0C2A4  u32  cancel mask       0x01FD4A64 u32 DecideButton non-zero
-0x01E02814  u32   language index                   0x01E0281C  u32  10
-0x01F7F490 / 0x01F7F4A0  the code_steam.txt and data.txt ids
-0x01FD49F0 .. 0x01FD4A40, 0x01FD4A18, 0x01FD4A20, 0x01FD4A90  the eleven block pointers
-0x02064AA4, 0x02064AC0 .. 0x02064AD4  the main state machine's cells     0x01FD4A78 u32 0x1FE0000
-0x022C2528  u32   the -nologo flag                 0x022D7FD0  arena table, 0xA8 per id, 15 ids
-```
+Globals written by the boot fixer:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x02EB4234` | `u8` | generator first-use latch | `0x02EB3870`  u32[624] Mersenne Twister state |
+| `0x01DFE0B4` | `u32` | frame base 1 or 2 | `0x01DFE0B8` / `0x01DFE0BC`  f32 time base 1.0 / 2.0 and 1.0 / 0.5 |
+| `0x01F82E38` | `u32` | 60 fps mode flag | `0x01DFE0C0`  u32  the mode suppressor |
+| `0x01F82E3C` | `u8` | timer period begun | `0x01F82E40`  u32  the period |
+| `0x02064ACC` | `u32` | pacer ticks per frame: 2 / [0x01DFE0B4] |  |
+| `0x01E0C2A0` | `u32` | confirm mask | `0x01E0C2A4`  u32  cancel mask       `0x01FD4A64` u32 DecideButton non-zero |
+| `0x01E02814` | `u32` | language index | `0x01E0281C`  u32  10 |
+| `0x01F7F490` | `/ 0x01F7F4A0` | the code_steam.txt and data.txt ids |  |
+| `0x01FD49F0` | `.. 0x01FD4A40, 0x01FD4A18, 0x01FD4A20, 0x01FD4A90` | the eleven block pointers |  |
+
+`0x02064AA4`, `0x02064AC0` .. `0x02064AD4`  the main state machine's cells     `0x01FD4A78` u32 `0x1FE0000`:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x022C2528` | `u32` | the -nologo flag | `0x022D7FD0`  arena table, `0xA8` per id, 15 ids |
 
 ## Shipped data
 
