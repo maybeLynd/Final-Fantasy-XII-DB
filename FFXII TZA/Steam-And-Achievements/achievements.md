@@ -169,7 +169,7 @@ The descriptor, `0x00D10460 + index x 8`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | kind | 0 no counter, 2 signed word, 4 signed dword (`0x00316A81`, `0x003166F0`) |
-| `+0x01` | `u8` | offset | the counter's byte offset in block +`0x384C` |
+| `+0x01` | `u8` | offset | the counter's byte offset in block `+0x384C` |
 | `+0x02` | `u8` | mode | test, see the evaluator |
 | `+0x03` | `u8` | - | 0 in all 30 |
 | `+0x04` | `i32` | param | target, exact value, u16 range pair or monster-list index |

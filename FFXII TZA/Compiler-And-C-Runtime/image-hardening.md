@@ -169,7 +169,7 @@ _RDATA    0x03005000   0x000A250      0x000A400   R--
 .reloc    0x0305C000   0x0039360      0x0039400   R--
 ```
 
-Scalar-conversion tree node, `0x30` bytes, guard dword at +`0x30` (`0x02CAAD10`..0x02CACC58):
+Scalar-conversion tree node, `0x30` bytes, guard dword at `+0x30` (`0x02CAAD10`..0x02CACC58):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

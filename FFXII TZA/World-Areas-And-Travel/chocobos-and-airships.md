@@ -444,7 +444,7 @@ Everything in a flight is therefore a gil write, a scene and a map jump
 
 ## Layouts
 
-Struct ChocoboRide base=[`0x02EBF190`]+`0x5AE0` size=`0x10`:
+Struct ChocoboRide base=[`0x02EBF190`]`+0x5AE0` size=`0x10`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -459,11 +459,11 @@ Struct RideHudRecord size=`0x34`     filled by `0x003200A0`(0, out); zeroed firs
 |---|---|---|---|
 | `+0x04` | `u32` | flags | bit 0 riding (`0x00303EE0`), bit 1 turbo on (`0x003045F0`) |
 | `+0x08` | `void*` | chocobo | the unit of roster entry 3 in chocobo mode, else 0 (`0x00303E90`) |
-| `+0x0C` | `f32` | rideLeft | +`0x5AE4` (`0x00304660`) |
-| `+0x10` | `f32` | turboLeft | +`0x5AE8` (`0x00304670`) |
-| `+0x14` | `u32` | charges | bits 2-3 of +`0x5AE0` (`0x00304610`) |
-| `+0x18` | `u32` | leaderRow | block byte +`0x5AA4` (`0x00304630`, `0x003271D0`) |
-| `+0x1C` | `u32` | summon | bit 0 an Esper is out (`0x003135E0`); +`0x20` to +`0x33` the summon's fields (`0x00313590`, `0x00313820`, `0x00313830`, `0x003137E0`, `0x003137F0`); when set, +`0x04` to +`0x18` stay 0 |
+| `+0x0C` | `f32` | rideLeft | `+0x5AE4` (`0x00304660`) |
+| `+0x10` | `f32` | turboLeft | `+0x5AE8` (`0x00304670`) |
+| `+0x14` | `u32` | charges | bits 2-3 of `+0x5AE0` (`0x00304610`) |
+| `+0x18` | `u32` | leaderRow | block byte `+0x5AA4` (`0x00304630`, `0x003271D0`) |
+| `+0x1C` | `u32` | summon | bit 0 an Esper is out (`0x003135E0`); `+0x20` to `+0x33` the summon's fields (`0x00313590`, `0x00313820`, `0x00313830`, `0x003137E0`, `0x003137F0`); when set, `+0x04` to `+0x18` stay 0 |
 
 Struct TimerSlot base=`0x02B5EBC0` size=`0x14` count=8     slot 1 the ride, slot 2 the dash and the summon timer:
 
@@ -477,14 +477,14 @@ Struct TimerSlot base=`0x02B5EBC0` size=`0x14` count=8     slot 1 the ride, slot
 | `+0x11` | `u8` | expired | 1 from `0x003EBD00`, the ticker and the reset; 0 from every load (`0x003EBCD7`, `0x003EBC34`); the loaders' zero-step store of 1 (`0x003EBC24`, `0x003EBCD0`) is unreachable |
 | `+0x12` | `u8[2]` | no instruction in the census reaches it |  |
 
-Struct RideHudManager size=`0xAA0` at [`0x02B47758`]     procedure `0x003CA860`; the widget header to +`0xC0`:
+Struct RideHudManager size=`0xAA0` at [`0x02B47758`]     procedure `0x003CA860`; the widget header to `+0xC0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C0` | `RideHudMarks` | the marks widget, 0x1E0 bytes, built by 0x003CB0C0; the manager reads its +0x1C8 as a | sign-extended dword at its own +`0x288` (`0x003CA8FC`) and its +`0x1D4` at +`0x294` (`0x003CA9B4`, `0x003CAA18`) |
+| `+0x0C0` | `RideHudMarks` | the marks widget, 0x1E0 bytes, built by 0x003CB0C0; the manager reads its +0x1C8 as a | sign-extended dword at its own `+0x288` (`0x003CA8FC`) and its `+0x1D4` at `+0x294` (`0x003CA9B4`, `0x003CAA18`) |
 | `+0x2A0` | `u8[448]` | the control window 0x003CAB00: +0xC0 and +0x140 its two 0x80-byte labels |  |
 | `+0x460` | `u8[400]` | the TIME root 0x003CAE00; its +0xC0 holds the 0xD0-byte timer 0x003CA530 |  |
-| `+0x5F0` | `u8[1184]` | the Dismount dialog 0x003CA310; +0xC0 its window, closed by the hide (0x003CA988, through the | manager's +`0x6B0`); +`0x490` flags (bit 0 window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit 1 first tick pending), +`0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
+| `+0x5F0` | `u8[1184]` | the Dismount dialog 0x003CA310; +0xC0 its window, closed by the hide (0x003CA988, through the | manager's `+0x6B0`); `+0x490` flags (bit 0 window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit 1 first tick pending), `+0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
 | `+0xA90` | `u32` | bits 0-1 the request: 1 show, 2 hide, cleared when acted on |  |
 
 Struct RideHudMarks size=`0x1E0` at manager+`0xC0`     procedure `0x003CB150`:
@@ -501,7 +501,7 @@ Struct TurboMark size=`0x58`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[32]` | alpha tween (0x002726C0 / 0x002727C0 at 0x003CAF5F / 0x003CAF6A); +0x14 i16 its value |  |
-| `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; | +`0x34` i16 its value |
+| `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; | `+0x34` i16 its value |
 | `+0x40` | `void*` | the mark's layout item, item 3 + k of the record (0x003CB36E) |  |
 | `+0x48` | `u32` | bit 0 shown, bit 1 spent, bit 2 alpha tween running, bit 3 colour tween running |  |
 

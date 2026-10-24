@@ -294,7 +294,7 @@ Presentation record, `0x02B59D80` + slot × `0x150`:
 | `+0x140` | `u32` | setBits |  |
 | `+0x144` | `u32` | clearedBits |  |
 
-Colour-look block (record +`0x20`):
+Colour-look block (record `+0x20`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -315,7 +315,7 @@ Colour-look block (record +`0x20`):
 | `+0x3A` | `u8` | hold | control deny |
 | `+0x40` | `f32[4] offset` | the tint's colour offset |  |
 
-Second block (record +`0x70`):
+Second block (record `+0x70`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -364,6 +364,11 @@ Measured from the executable image.
 - `0x02B59D70`, `0x02B59D71`: the control-deny and display-deny latches; `0x0215FD44`, `0x0215FD45` their requester bits.
 - `0x02B3F518`: the light scale of the character being lit; `0x02B3F501` the class filter; `0x02B3F502` the scale enable.
 - `0x02CB8390`: the vector Slow and Immobilize store.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F20534` | `u32` | 21 | the entry count of the one-float table at `0x01F209F0` (0.75, 0.5, 0.25, 0, 0.33, 0.67, nine entries of 1.0, 0.67, 0.33, 0, 0.25, 0.5, 0.75), the second of the four counts from `0x01F20530`; `0x0046FBF0` doubles it and resamples the table to the new count with `0x0033E5E0` (`0x0046FC58`-`0x0046FC6B`) | `0x0046FBF0` (`0x0046FC23`) | `0x0046FBF0` (`0x0046FC15`, `0x0046FC58`) |
+| `0x02CA4ED0` | `u32` | 0 (zero-filled tail) | the dword just past the 32 records of `0x30` bytes at `0x02CA48D0`; the start-up clear `0x0042F000` stores 0 in it before it clears each record's handle | `0x0042F000` (`0x0042F009`) | no instruction names it apart from that store |
 
 ## Modding notes
 

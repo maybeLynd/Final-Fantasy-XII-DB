@@ -51,7 +51,7 @@ Light record, as its readers use it:
 | `+0x20` | `u8` | lightKind 6 is folded into the object's colour; any other kind is passed on in the light list |  |
 | `+0x21` | `u8` | priority | 0 to 5 remapped at bind; the highest kind-6 light becomes the object's key light |
 | `+0x22` | `u8` | 5 on a kind-6 light makes +0x30..+0x38 multipliers |  |
-| `+0x23` | `u8` | filter | 1 with +`0x24` = 2: +`0x28` must equal the object's id; 3: +`0x28` is a mask (+`0x24` 7 include, 6 exclude) |
+| `+0x23` | `u8` | filter | 1 with `+0x24` = 2: `+0x28` must equal the object's id; 3: `+0x28` is a mask (`+0x24` 7 include, 6 exclude) |
 | `+0x24` | `u8` | test |  |
 | `+0x25` | `u8` | bit 0x10 exempts the light from the object's blend |  |
 | `+0x27` | `u8` | flags | bit `0x1` not added to the summed colour; bits 2 to 7 an exclusion mask (bit `0x20` set on group 0) |

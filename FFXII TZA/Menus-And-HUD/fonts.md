@@ -165,25 +165,25 @@ The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'
 |---|---|---|---|
 | `+0x000` | `u32` | count | 0 from the constructor (`0x001B395B`); `0x001B5CC0` reads it to form the slot key count x 32 + id (`0x001B5CFD`-`0x001B5D02`); `0x001B4590` forms count x 32 + 2 and + 3 (`0x001B45F1`-`0x001B45F7`, `0x001B4686`-`0x001B4696`); `0x001B6470` and `0x001B6510` read it the same way (`0x001B649F`, `0x001B653A`); `0x001FDF70` returns it, to `0x0017FC00` (`0x0017FC0C`-`0x0017FC14`) |
 | `+0x004` | `u8[4]` | pad004 | written by no instruction in the table |
-| `+0x008` | `void*` | namesBegin | the name vector: 0 from the constructor (`0x001B3966`); `0x001B4930` pushes the listed names through its end +`0x10` and capacity +`0x18` (`0x001B4AED`-`0x001B4B04`); `0x001B5140` walks it from begin to end (`0x001B5152`-`0x001B51A1`) |
+| `+0x008` | `void*` | namesBegin | the name vector: 0 from the constructor (`0x001B3966`); `0x001B4930` pushes the listed names through its end `+0x10` and capacity `+0x18` (`0x001B4AED`-`0x001B4B04`); `0x001B5140` walks it from begin to end (`0x001B5152`-`0x001B51A1`) |
 | `+0x010` | `void*` | namesEnd |  |
 | `+0x018` | `void*` | namesCap |  |
 | `+0x020` | `void*` | namesAlloc | the EASTL allocator name `0x008C5F58`, set by `0x001EDF00` (`0x001B397C`) |
-| `+0x028` | `u8[56]` | fonts | the fonts by id, an EASTL map: +`0x08` header node pointing at itself, +`0x10` its mirror, +`0x18` root, +`0x20` flag byte, +`0x28` count, +`0x30` allocator `0x008F4120`; built at `0x001B3993`-`0x001B39DE`; `0x001B4590`, `0x001B4C00`, `0x001B51C0`, `0x001B5230`, `0x001B5480`, `0x001B5750` and `0x001B58E0` search it from its header +`0x30` (`0x001B4639`, `0x001B4C71`, `0x001B51F8`, `0x001B5292`, `0x001B54E0`, `0x001B57B0`, `0x001B5937`) and read the node they find, not the manager |
-| `+0x060` | `u8[56]` | atlasRequests | the atlas requests by font id, the same shape: built at `0x001B39E3`-`0x001B3A2E`; `0x001B58E0` files a request (lea +`0x60` at `0x001B59C2`, +`0x68` and +`0x78` at `0x001B596D`-`0x001B5971`) |
-| `+0x098` | `u8[56]` | shadowRequests | the shadow-atlas requests by font id, the same shape: built at `0x001B3A33`-`0x001B3A72`; `0x001B58E0` files one when the shadow path is taken (+`0x98`, +`0xA0`, +`0xB0` at `0x001B5ACF`, `0x001B5A80`, `0x001B5A79`) |
-| `+0x0D0` | `u8[192]` | requestPool | built by `0x001B36D0`(+`0xD0`, `0x200`, 0) (`0x001B3A75`-`0x001B3A84`), `0xC0` bytes (The pools below); `0x001B4C00`, `0x001B4D70`, `0x001B5230`, `0x001B5480` and `0x001B5750` take it by address (`0x001B4D2A`, `0x001B5089`, `0x001B52F5`, `0x001B54F4`, `0x001B57C4`) |
-| `+0x190` | `u8[192]` | slotPool | built by `0x001B3540`(+`0x190`, 10, 0) (`0x001B3A8A`-`0x001B3A97`), `0xC0` bytes; `0x001B5330`, `0x001B5CC0`, `0x001B6350`, `0x001B6470` and `0x001B6510` take it by address (`0x001B53D0`, `0x001B5D09`, `0x001B6398`, `0x001B6485`, `0x001B651F`); `0x001B5B60` works inside it: the tree at +`0x1F0` with its root +`0x200` is the pool's second map (+`0x190` + `0x58` + 8) and the byte +`0x248` is that pool's flag +`0xB8` (`0x001B5BBD`-`0x001B5C17`) |
-| `+0x250` | `void*` | pendingBegin | a second vector, 8-byte entries: 0 from the constructor (`0x001B3AA9`-`0x001B3AB0`), allocator `0x008C5F58` at +`0x268` (`0x001B3ABF`); `0x001B6350` pushes (`0x001B635D`-`0x001B63E3`); `0x001B47A0` and `0x001B5330` remove the matching entry (memmove `0x008C2A40` at `0x001B47FF` and `0x001B5383`, then +`0x258` -= 8 at `0x001B4805` and `0x001B5389`): `0x001B47A0` the entry whose +`0x04` is the id and +`0x10` is 0, `0x001B5330` the entry equal to +`0x270` |
+| `+0x028` | `u8[56]` | fonts | the fonts by id, an EASTL map: `+0x08` header node pointing at itself, `+0x10` its mirror, `+0x18` root, `+0x20` flag byte, `+0x28` count, `+0x30` allocator `0x008F4120`; built at `0x001B3993`-`0x001B39DE`; `0x001B4590`, `0x001B4C00`, `0x001B51C0`, `0x001B5230`, `0x001B5480`, `0x001B5750` and `0x001B58E0` search it from its header `+0x30` (`0x001B4639`, `0x001B4C71`, `0x001B51F8`, `0x001B5292`, `0x001B54E0`, `0x001B57B0`, `0x001B5937`) and read the node they find, not the manager |
+| `+0x060` | `u8[56]` | atlasRequests | the atlas requests by font id, the same shape: built at `0x001B39E3`-`0x001B3A2E`; `0x001B58E0` files a request (lea `+0x60` at `0x001B59C2`, `+0x68` and `+0x78` at `0x001B596D`-`0x001B5971`) |
+| `+0x098` | `u8[56]` | shadowRequests | the shadow-atlas requests by font id, the same shape: built at `0x001B3A33`-`0x001B3A72`; `0x001B58E0` files one when the shadow path is taken (`+0x98`, `+0xA0`, `+0xB0` at `0x001B5ACF`, `0x001B5A80`, `0x001B5A79`) |
+| `+0x0D0` | `u8[192]` | requestPool | built by `0x001B36D0`(`+0xD0`, `0x200`, 0) (`0x001B3A75`-`0x001B3A84`), `0xC0` bytes (The pools below); `0x001B4C00`, `0x001B4D70`, `0x001B5230`, `0x001B5480` and `0x001B5750` take it by address (`0x001B4D2A`, `0x001B5089`, `0x001B52F5`, `0x001B54F4`, `0x001B57C4`) |
+| `+0x190` | `u8[192]` | slotPool | built by `0x001B3540`(`+0x190`, 10, 0) (`0x001B3A8A`-`0x001B3A97`), `0xC0` bytes; `0x001B5330`, `0x001B5CC0`, `0x001B6350`, `0x001B6470` and `0x001B6510` take it by address (`0x001B53D0`, `0x001B5D09`, `0x001B6398`, `0x001B6485`, `0x001B651F`); `0x001B5B60` works inside it: the tree at `+0x1F0` with its root `+0x200` is the pool's second map (`+0x190` + `0x58` + 8) and the byte `+0x248` is that pool's flag `+0xB8` (`0x001B5BBD`-`0x001B5C17`) |
+| `+0x250` | `void*` | pendingBegin | a second vector, 8-byte entries: 0 from the constructor (`0x001B3AA9`-`0x001B3AB0`), allocator `0x008C5F58` at `+0x268` (`0x001B3ABF`); `0x001B6350` pushes (`0x001B635D`-`0x001B63E3`); `0x001B47A0` and `0x001B5330` remove the matching entry (memmove `0x008C2A40` at `0x001B47FF` and `0x001B5383`, then `+0x258` -= 8 at `0x001B4805` and `0x001B5389`): `0x001B47A0` the entry whose `+0x04` is the id and `+0x10` is 0, `0x001B5330` the entry equal to `+0x270` |
 | `+0x258` | `void*` | pendingEnd |  |
 | `+0x260` | `void*` | pendingCap |  |
 | `+0x268` | `void*` | pendingAlloc |  |
 | `+0x270` | `void*` | current | 0 from the constructor (`0x001B3AC4`); `0x001B47A0` tests it for 0, stores one, hands it to `0x001B4590` and clears it (`0x001B47AA`-`0x001B4844`); `0x001B5330` reads it eight times (`0x001B5336`-`0x001B53D7`); `0x001B6430` writes the found entry or 0 (`0x001B6459`, `0x001B6461`) |
-| `+0x278` | `void*[16]` | slots | zeroed by the constructor (rep stosq x16, `0x001B3AD9`); `0x001B4590` stores a record at the first empty slot, the index being the count of used ones, and stores nothing when none is empty (`0x001B45B1`-`0x001B45D9`); `0x001B6470`(manager, id, slot) takes a record from the slot pool (`0x001BA860` on +`0x190`, `0x001B6485`) and stores it into the given slot when that slot is 0 (`0x001B64B3`-`0x001B64BD`); `0x001B5B60` clears each slot whose record's +`0x08` matches (`0x001B5B94`-`0x001B5C7A`); `0x001B5CC0` clears each slot whose record has byte +`0x00` at 0 and +`0x18` at count x 32 + id, returning the record to the pool (`0x001B5CF0`-`0x001B5D28`); `0x001B6510` takes a record from the slot pool (`0x001BA860` on +`0x190`, `0x001B651F`-`0x001B6526`), sets its +`0x18` to count x 32 + id (`0x001B653A`-`0x001B654D`) and tail-jumps to `0x001B4590` (`0x001B655B`), which stores it |
+| `+0x278` | `void*[16]` | slots | zeroed by the constructor (rep stosq x16, `0x001B3AD9`); `0x001B4590` stores a record at the first empty slot, the index being the count of used ones, and stores nothing when none is empty (`0x001B45B1`-`0x001B45D9`); `0x001B6470`(manager, id, slot) takes a record from the slot pool (`0x001BA860` on `+0x190`, `0x001B6485`) and stores it into the given slot when that slot is 0 (`0x001B64B3`-`0x001B64BD`); `0x001B5B60` clears each slot whose record's `+0x08` matches (`0x001B5B94`-`0x001B5C7A`); `0x001B5CC0` clears each slot whose record has byte `+0x00` at 0 and `+0x18` at count x 32 + id, returning the record to the pool (`0x001B5CF0`-`0x001B5D28`); `0x001B6510` takes a record from the slot pool (`0x001BA860` on `+0x190`, `0x001B651F`-`0x001B6526`), sets its `+0x18` to count x 32 + id (`0x001B653A`-`0x001B654D`) and tail-jumps to `0x001B4590` (`0x001B655B`), which stores it |
 | `+0x2F8` | `void*` | italicVal | pointer slots the layout loader `0x001CA600` stores the three float keys FontItalicVal, FontItalicScale and FontShadowAlphaMuti through (`0x001CC589`, `0x001CC5AF`, `0x001CC5D5`; [Screen layouts](screen-layouts.md)): `0x001B44A0` points them at `0x01E0CF90`, `0x01E0CF94` and `0x01DF6DE0` (`0x001B4551`-`0x001B4574`); `0x001B5210` reads the third (`0x001B5210`) |
 | `+0x300` | `void*` | italicScale |  |
 | `+0x308` | `void*` | shadowAlphaMul |  |
-| `+0x310` | `u8[104]` | tail | no instruction in the table reaches it (the constructor's last store is the slot clear ending at +`0x2F8`) |
+| `+0x310` | `u8[104]` | tail | no instruction in the table reaches it (the constructor's last store is the slot clear ending at `+0x2F8`) |
 
 The `0xC0`-byte pools built by `0x001B36D0` and `0x001B3540` open the same way: a vector `{begin, end, cap}` with the
 allocator name `0x008C5F58` at `+0x18`, an EASTL map at `+0x20` (allocator `0x008F3CB0` at `+0x50`), a second map at
@@ -227,18 +227,18 @@ header's values as arguments and stores each.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32` | fontId | header +`0x00` (`0x001FC089`) |
+| `+0x000` | `u32` | fontId | header `+0x00` (`0x001FC089`) |
 | `+0x004` | `u8[4]` | pad04 | not written by the constructor `0x001FC060`; `0x00210EC0` allocates the font (`0x001B4E73`) |
 | `+0x008` | `void*` | atlas | the atlas texture: 0 from the constructor (`0x001FC08D`), set by `0x00213560` from the atlas completion `0x001B6230` (`0x001B6332`) |
 | `+0x010` | `void*` | shadow | the shadow atlas texture: 0 (`0x001FC091`), set by `0x00213540` from `0x001B6110` (`0x001B6212`) |
-| `+0x018` | `u32` | glyphCount | header +`0x04` (`0x001FC095`); `0x001FDF80` compares it with glyphsCount |
-| `+0x01C` | `u32` | metricA | header +`0x20` (`0x001FC09F`); returned by `0x001FDDC0` |
-| `+0x020` | `u32` | metricB | header +`0x24` (`0x001FC0A9`) |
-| `+0x024` | `u32` | atlasW | header +`0x08` (`0x001FC0AC`) |
-| `+0x028` | `u32` | atlasH | header +`0x0C` (`0x001FC0B0`) |
-| `+0x02C` | `u32` | cellW | header +`0x10` (`0x001FC0B8`) |
-| `+0x030` | `u32` | cellH | header +`0x14` (`0x001FC0C2`) |
-| `+0x034` | `f32` | scale | header +`0x18` (`0x001FC0CE`); returned by `0x001FDDB0`, which `0x001E9BF0` calls (`0x001E9BFC`) |
+| `+0x018` | `u32` | glyphCount | header `+0x04` (`0x001FC095`); `0x001FDF80` compares it with glyphsCount |
+| `+0x01C` | `u32` | metricA | header `+0x20` (`0x001FC09F`); returned by `0x001FDDC0` |
+| `+0x020` | `u32` | metricB | header `+0x24` (`0x001FC0A9`) |
+| `+0x024` | `u32` | atlasW | header `+0x08` (`0x001FC0AC`) |
+| `+0x028` | `u32` | atlasH | header `+0x0C` (`0x001FC0B0`) |
+| `+0x02C` | `u32` | cellW | header `+0x10` (`0x001FC0B8`) |
+| `+0x030` | `u32` | cellH | header `+0x14` (`0x001FC0C2`) |
+| `+0x034` | `f32` | scale | header `+0x18` (`0x001FC0CE`); returned by `0x001FDDB0`, which `0x001E9BF0` calls (`0x001E9BFC`) |
 | `+0x038` | `u8[8]` | glyphsPad | map of the glyph records by key, filed by `0x001FDCC0` and looked up by `0x001FDEC0` (`0x001FC0E4`); not written by the constructor |
 | `+0x040` | `void*` | glyphsHeadA | header node, first word: 0 (`0x001FC0F3`), then the header itself (`0x001FC111`) |
 | `+0x048` | `void*` | glyphsHeadB | header node, second word: 0 (`0x001FC0F6`), then the header itself (`0x001FC114`) |

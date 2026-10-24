@@ -393,7 +393,7 @@ The notice window is the `0x1D8`-byte widget with procedure `0x00474100` that `0
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00474100` |
 | `+0x0C0` | `void*` | window | the message window the construct message opens for the copied text with `0x002A3090` (`0x00474271`, stored at `0x00474276`); message 18 closes it with `0x002A27C0` (`0x0047412C`) |
 | `+0x0C8` | `char[256]` | text | the construct message's text a, copied with its terminator (`0x004741D4`-`0x004741E0`) and measured by `0x002B3050` (`0x004741FC`) |
-| `+0x1C8` | `u32[4]` | box | the four dwords of the construct message's b (`0x00474210`-`0x0047422B`); the draw message passes +`0x1D0` and +`0x1D4` to `0x001829C0` (`0x00474160`-`0x0047416C`) |
+| `+0x1C8` | `u32[4]` | box | the four dwords of the construct message's b (`0x00474210`-`0x0047422B`); the draw message passes `+0x1D0` and `+0x1D4` to `0x001829C0` (`0x00474160`-`0x0047416C`) |
 
 ### The main loop cells
 
@@ -422,7 +422,7 @@ Tick globals:
 | `0x022C2548` | `u32` | tick in progress | `0x022C252C` / `0x022C2530`  u32 tick counters |
 | `0x01EED060` | `/ 0x01EED064` | i32 | the deferred mode request (-1 none) |
 | `0x02099ABC` | `u32` | manager request mask (bits 0-4) |  |
-| `0x02098E10` | `actor-manager` | slots, | 5 x `0x288`: +`0x201` u8 sub-step opt-in |
+| `0x02098E10` | `actor-manager` | slots, | 5 x `0x288`: `+0x201` u8 sub-step opt-in |
 | `0x02089340` | `u32` | the battle-state word | `0x0208E6A8` / `0x0208E6A4`  the one-shot callback and its handle |
 
 ## Shipped data

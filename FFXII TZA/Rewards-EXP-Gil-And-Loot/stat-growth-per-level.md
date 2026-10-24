@@ -110,7 +110,7 @@ first activation (see the gil page).
 | `+0x16` | `u16` | startMaxHp | max HP at level 0 |
 | `+0x18` | `u8[2]` | hpFactors | the max-HP factor and percentage; not read by the growth code |
 | `+0x1A` | `u16` | startMaxMp | max MP at level 0 |
-| `+0x1C` | `u8[2]` | mpPercent | +`0x1C` is 0 on every row, +`0x1D` the max-MP percentage; not read by the growth code |
+| `+0x1C` | `u8[2]` | mpPercent | `+0x1C` is 0 on every row, `+0x1D` the max-MP percentage; not read by the growth code |
 | `+0x1E` | `u8` | strBase | Strength at level 0 |
 | `+0x1F` | `u8` | strGrowth | Strength gained per level, in 1/128 |
 | `+0x20` | `u8` | pad20 | 0 in every shipped row |
@@ -122,7 +122,7 @@ first activation (see the gil page).
 | `+0x26` | `u8` | pad26 | 0 in every shipped row |
 | `+0x27` | `u8` | spdBase | Speed at level 0 |
 | `+0x28` | `u8` | spdGrowth | Speed gained per level, in 1/128 |
-| `+0x29` | `...` | tail29 | +`0x29` to +`0x7F`, the rest of the row; not read by the growth code |
+| `+0x29` | `...` | tail29 | `+0x29` to `+0x7F`, the rest of the row; not read by the growth code |
 
 The whole row, with the readers of the fields the growth code skips, is on
 [party-table](../Party/party-table.md).

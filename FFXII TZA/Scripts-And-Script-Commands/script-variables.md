@@ -118,16 +118,62 @@ the slot index is 1 to 3 and the class is 0, and discards it: nothing is notifie
 
 ## Layouts
 
-```python
-descriptor table  [slot+0x78]: u32 count, then u64 per variable (dword 0 = the descriptor above)
-array header      image + offset: u32 element descriptor, u16 dimension count, u16, u32 dim[n]
-resolver record   +0 u8 6, +4 u16 kind, +8 u16 actor ordinal, +0xA u16 index, +0xC u32 descriptor, +0x10 u64 base+offset,
-                  +0x18 u32 element descriptor, +0x1C u32 flat index, +0x20 u32 value (POPV)
-reference (PUSHP) (offset + index*width) | class << 24 | 0x70000000, tag 1
-slot pointers     +0 image, +0x40 file, +0x48 global (save payload), +0x50 local region, +0x58 scratch1,
-                  +0x60 scratch2, +0x68 int pool, +0x70 float pool, +0x78 descriptors, +0x80 tags, +0x98 local callback
-banks             0x02099DF0 scratch1 (0x200), 0x02099FF0 scratch2 (0x200)
+Descriptor table [slot+`0x78`]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | count |  |
+| `+0x04` | `...` | variables | then u64 per variable (dword 0 = the descriptor above) |
+
+Array header (image + offset):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | element descriptor |  |
+| `+0x04` | `u16` | dimension count |  |
+| `+0x06` | `u16` | word06 |  |
+| `+0x08` | `...` | dim | u32 dim[n] |
+
+Resolver record:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | kind00 | 6, stored by the resolver (`0x00262667`) |
+| `+0x04` | `u16` | kind |  |
+| `+0x08` | `u16` | actor ordinal |  |
+| `+0x0A` | `u16` | index |  |
+| `+0x0C` | `u32` | descriptor |  |
+| `+0x10` | `u64` | base+offset |  |
+| `+0x18` | `u32` | element descriptor |  |
+| `+0x1C` | `u32` | flat index |  |
+| `+0x20` | `u32` | value | POPV |
+
 ```
+reference (PUSHP) (offset + index*width) | class << 24 | 0x70000000, tag 1
+```
+
+Slot pointers:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `void*` | image |  |
+| `+0x40` | `void*` | file |  |
+| `+0x48` | `void*` | global | save payload |
+| `+0x50` | `void*` | local region |  |
+| `+0x58` | `void*` | scratch1 |  |
+| `+0x60` | `void*` | scratch2 |  |
+| `+0x68` | `void*` | int pool |  |
+| `+0x70` | `void*` | float pool |  |
+| `+0x78` | `void*` | descriptors |  |
+| `+0x80` | `void*` | tags |  |
+| `+0x98` | `void*` | local callback |  |
+
+Banks:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x02099DF0` | `...` | scratch1 | `0x200` |
+| `0x02099FF0` | `...` | scratch2 | `0x200` |
 
 ## Shipped data
 

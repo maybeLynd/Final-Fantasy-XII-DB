@@ -13,10 +13,14 @@ accumulating luck.
 
 The **chain level** (0 to 3, see [the chain](kill-chain.md)) sets the drop
 *chances*: the four rarer slots go from 40 / 25 / 3 / 1 % at level 0 to 55 / 40 / 12 / 5 % at level 3,
-and the fifth slot always drops. A **run of the same model** of enemy (palette swaps such as Wolf and
-Alpha Wolf count as one model) sets the *quantities*: more than 8, 16 and 24 kills of the same model in
-a row move the quantity table up a step each time. Right after a chain break, the chances come from a
+and the fifth slot always drops. Right after a chain break, the chances come from a
 weighted roll instead of the chain level, and the more breaks in a row, the better that roll.
+
+A **run of the same model** of enemy (palette swaps such as Wolf and Alpha Wolf count as one model)
+sets the *quantities*: the run's counter moves the quantity table up a step each time it passes 8,
+16 and 24. After a reset the counter stays 0 for the first two kills and adds 1 for each further
+kill by the party of the same class and model, so kills 1, 2, 10, 11, 19 and 27 leave it at 0, 0, 8, 9, 17 and 25
+and use quantity rows 0, 0, 0, 1, 2 and 3 ([the chain](kill-chain.md)).
 
 The two extra drops are the **Monograph** drops: they roll only while the party holds the key item the
 enemy names (one of the six Monographs or the Canopic Jar), usually for Arcana, High Arcana, a Pebble
@@ -56,6 +60,13 @@ drop data is the record at `[unit+0xE60]`.
    zero it is replaced by `Loot_SelectChanceProfileByWeight` (`0x00318820`, `0x0031815C`-`0x0031816A`).
 2. **Quantity profile** = the first row of the drop table whose signed byte `+0x05` is negative or at
    least the same-model run `0x022C3160`; row 0 if none qualifies (`0x003181C7`-`0x003181EF`).
+   - With the shipped limits 8, 16, 24 and -1 this is row 0 for a run of 0-8, row 1 for 9-16,
+     row 2 for 17-24 and row 3 from 25.
+   - When the killer is a party unit, the roll reads the run after the same kill's chain update:
+     `0x00312280` calls `0x00317ED0` at `0x003122CD` (`0x003122B9`-`0x003122C8`) and the drop roll at `0x003125A1`.
+   - A kill with no party killer that the reward gate still pays through its Poison or Petrify arm
+     (`0x00312305`-`0x0031231B`, [kill rewards](kill-rewards.md)) does not update the chain, and its roll reads the run as the last
+     update left it. How kills move the run is on [the chain](kill-chain.md).
 3. **Five slots** (`0x003181F8`-`0x00318238`): slot *i* holds the item word at `record+0x28+2i`. The slot
    is kept when its word is not `0xFFFF` and `Loot_RollNormalSlotChance(profile, i)` succeeds, **or**
    when the developer-console override equals *i*. A kept slot gets quantity
@@ -97,8 +108,13 @@ Each roll is its own function:
 
 The drop roll draws once for the profile (only while `0x022C3164 > 0`),
 once per slot whose word is not `0xFFFF`, once per kept slot, and once per extra that passes its guard:
-between 0 and 13 draws, depending on the data and on earlier outcomes. The chain update draws a level
-roll and a coin roll on a continuing kill (see [the chain](kill-chain.md)).
+between 0 and 13 draws, depending on the data and on earlier outcomes.
+
+On a continuing kill the chain update draws the coin (`0x00317FC1`) and, before it, the level roll of
+`0x003183D0` (`0x0031844A`), except at level 3 (`0x003183ED`-`0x003183F1`) and when the kills since the last
+rise pass the level's threshold, which raises the level without a draw (`0x00318414`-`0x00318417`): two
+draws, or one in those two cases. A first kill and a breaking kill draw nothing
+([the chain](kill-chain.md)).
 
 ### The chain bonus from pickups
 

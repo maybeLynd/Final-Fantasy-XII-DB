@@ -63,9 +63,9 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | 0 | +`0x02`  u16  mode (the command's word +2) |
-| `+0x04` | `f32` | distance | +`0x08`  f32  0 (left as it was for mode `0x10`) |
-| `+0x0C` | `f32` | relative heading | +`0x10`  f32[3] unit direction   +`0x1C` f32 1.0 |
+| `+0x00` | `u16` | 0 | `+0x02`  u16  mode (the command's word +2) |
+| `+0x04` | `f32` | distance | `+0x08`  f32  0 (left as it was for mode `0x10`) |
+| `+0x0C` | `f32` | relative heading | `+0x10`  f32[3] unit direction   `+0x1C` f32 1.0 |
 
 ### The pool
 
@@ -120,11 +120,22 @@ alone. `0x00423B10` also resolves the bases into `+0xE0`/`+0xF8` (`0x003AB7F0` o
 list's `+0x08`/`+0x10` directly; `0x003E6E60`, with a current record (`0x00422D50`), re-derives them
 from `+0xE0 + +0xE8` and `+0xF8 + +0x100` each time it is asked.
 
-```python
+```
 table[mode]   u32   offset of the profile from the table (a 0 is not tested: the consumer reads the table head as the profile)
-profile       +0x00 u32  duration, frames      +0x04 u16 moveFrames    +0x06 u16 turnFrames
-              +0x08 f32  scale                 +0x0C u32 offset of the speed curve from the profile
-              +0x10 u16[turnFrames][2]  the two turn-rate curves
+```
+
+Profile:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | duration | frames |
+| `+0x04` | `u16` | moveFrames |  |
+| `+0x06` | `u16` | turnFrames |  |
+| `+0x08` | `f32` | scale |  |
+| `+0x0C` | `u32` | speed curve offset | offset of the speed curve from the profile |
+| `+0x10` | `...` | turn-rate curves | u16[turnFrames][2]: the two turn-rate curves |
+
+```
 speed curve   u16[moveFrames]
 ```
 
@@ -185,20 +196,20 @@ Pool entry (`0x60` bytes, 128 at [`0x02B3F530`]):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | active | +`0x01` u8 turn armed   +`0x02` u8 move armed   +`0x04` i32 counter (-1 at take) |
-| `+0x08` | `f32` | sign of request +8 | +`0x0C` f32 sign of request +`0xC` |
-| `+0x10` | `f32` | \|angle0\| * 2/pi or 1.0 | +`0x14` f32 the same for angle1 |
-| `+0x18` | `f32` | accumulator axis 0 | +`0x1C` f32 accumulator axis 1 |
-| `+0x20` | `MoveTurnRequest` | (0x20 | bytes): +`0x20` u16 0, +`0x22` u16 mode, +`0x24` f32 distance, +`0x28` f32 angle0, |
-| `+0x2C` | `f32` | relative | heading, +`0x30` f32[3] direction, +`0x3C` f32 w |
-| `+0x40` | `void*` | previous | +`0x48` ptr next   +`0x50` u32 serial << 8 \| index |
+| `+0x00` | `u8` | active | `+0x01` u8 turn armed   `+0x02` u8 move armed   `+0x04` i32 counter (-1 at take) |
+| `+0x08` | `f32` | sign of request +8 | `+0x0C` f32 sign of request `+0xC` |
+| `+0x10` | `f32` | \|angle0\| * 2/pi or 1.0 | `+0x14` f32 the same for angle1 |
+| `+0x18` | `f32` | accumulator axis 0 | `+0x1C` f32 accumulator axis 1 |
+| `+0x20` | `MoveTurnRequest` | (0x20 | bytes): `+0x20` u16 0, `+0x22` u16 mode, `+0x24` f32 distance, `+0x28` f32 angle0, |
+| `+0x2C` | `f32` | relative | heading, `+0x30` f32[3] direction, `+0x3C` f32 w |
+| `+0x40` | `void*` | previous | `+0x48` ptr next   `+0x50` u32 serial << 8 \| index |
 
-Record list (render record +`0x550`):
+Record list (render record `+0x550`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | enabled | +`0x08` ptr profile table   +`0x10` ptr own profile (mode `0x16`) |
-| `+0x18` | `void*` | head | +`0x20` ptr tail            +`0x28` u32 disabled (`0x003AF320`) |
+| `+0x00` | `u32` | enabled | `+0x08` ptr profile table   `+0x10` ptr own profile (mode `0x16`) |
+| `+0x18` | `void*` | head | `+0x20` ptr tail            `+0x28` u32 disabled (`0x003AF320`) |
 
 ```
 render record: +0xD8 handle, +0xE0 resolved base, +0xE8 offset of the table; +0xF0 handle, +0xF8 resolved base, +0x100 offset of the own profile

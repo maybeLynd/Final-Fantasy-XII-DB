@@ -43,7 +43,7 @@ CML1 (section 10): the layout of section 8:
 | `+0x04` | `u32` | count | rows |
 | `+0x08` | `u32[2]` | - | 0; not read |
 
-+`0x10`  row[count]:
+`+0x10`  row[count]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

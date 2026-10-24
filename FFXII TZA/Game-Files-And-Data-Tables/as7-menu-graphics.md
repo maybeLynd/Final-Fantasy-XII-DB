@@ -33,7 +33,7 @@ All multi-byte fields are big-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[2]` | "A7" | read by no function: the container buffers reach only the walker `0x0024AA00` (from `0x00292390` at `0x00292768` and `0x002CEFD0` at `0x002CF2B4` and `0x002CF2CE`), which starts at byte +`0x02`, and the codec `0x00248500`, which reads the page streams and the dictionary; the slot and widget copies `0x00291D90`, `0x00292050`, `0x002CEB40` and `0x002C8EE0` move the pointer only; nothing fixes its width |
+| `+0x00` | `u8[2]` | "A7" | read by no function: the container buffers reach only the walker `0x0024AA00` (from `0x00292390` at `0x00292768` and `0x002CEFD0` at `0x002CF2B4` and `0x002CF2CE`), which starts at byte `+0x02`, and the codec `0x00248500`, which reads the page streams and the dictionary; the slot and widget copies `0x00291D90`, `0x00292050`, `0x002CEB40` and `0x002C8EE0` move the pointer only; nothing fixes its width |
 | `+0x02` | `u16be` | count | number of pages |
 | `+0x04` | `u32be` | dictOff | file offset of the dictionary blob |
 | `+0x08` | `u32be[count] pageOff` | file offset of each page's token stream |  |
@@ -50,7 +50,7 @@ The dictionary blob:
 | `+0x00` | `u8` | mode | 0 or 3 decode; any other value fails |
 | `+0x01` | `u8` | b | length bit count |
 | `+0x02` | `u16be` | outLen | mode 0 only: bytes every page decodes to |
-| `+0x04` | `u8[]` | dict | mode 0; for mode 3 the dictionary starts at +`0x02` |
+| `+0x04` | `u8[]` | dict | mode 0; for mode 3 the dictionary starts at `+0x02` |
 
 In mode 3 each page stream begins with its own big-endian u16 output length instead. A page stream is tokens:
 

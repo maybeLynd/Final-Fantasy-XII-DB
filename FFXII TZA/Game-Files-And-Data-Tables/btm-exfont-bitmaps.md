@@ -46,17 +46,17 @@ Fontpack_fs.bin (offsets from the file start; `0x003643A0` binds them into the f
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | fontBlock | offset of the font block, `0x40`; to state +`0x008` |
-| `+0x04` | `u32` | palettes | offset of the palette block; to state +`0x190` |
-| `+0x08` | `u32` | sheet0 | offset of face 0's sheet; to state +`0x110` when that slot is empty |
-| `+0x0C` | `u32` | sheet0Copy | the same value as +`0x08` in all six files; read by no function |
-| `+0x10` | `u32` | sheet2 | offset of face 2's sheet; to state +`0x120` when empty |
-| `+0x14` | `u32` | sheet3 | offset of face 3's sheet; to state +`0x128` when empty |
-| `+0x18` | `u32` | sheet4 | offset of face 4's sheet; to state +`0x130` when empty |
+| `+0x00` | `u32` | fontBlock | offset of the font block, `0x40`; to state `+0x008` |
+| `+0x04` | `u32` | palettes | offset of the palette block; to state `+0x190` |
+| `+0x08` | `u32` | sheet0 | offset of face 0's sheet; to state `+0x110` when that slot is empty |
+| `+0x0C` | `u32` | sheet0Copy | the same value as `+0x08` in all six files; read by no function |
+| `+0x10` | `u32` | sheet2 | offset of face 2's sheet; to state `+0x120` when empty |
+| `+0x14` | `u32` | sheet3 | offset of face 3's sheet; to state `+0x128` when empty |
+| `+0x18` | `u32` | sheet4 | offset of face 4's sheet; to state `+0x130` when empty |
 | `+0x1C` | `u32` | end | `0xFFFFFFFF` in all six files; read by no function |
 | `+0x20` | `u8[32]` | 0xFF in all six files; read by no function |  |
 
-Palette block (640 bytes, from +`0x04` to +`0x08`):
+Palette block (640 bytes, from `+0x04` to `+0x08`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -67,7 +67,7 @@ Font block:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i16` | tableCount | number of glyph tables walked by `0x00366080` |
-| `+0x02` | `i16` | value | rounded up to even and doubled into state +`0x244` |
+| `+0x02` | `i16` | value | rounded up to even and doubled into state `+0x244` |
 | `+0x04` | `...` | table 0 | first glyph table |
 
 Glyph table:
@@ -97,9 +97,9 @@ Font state (pointer at `0x022CBE00`):
 |---|---|---|---|
 | `+0x000` | `void*` | fontpack | the loaded fontpack_fs.bin |
 | `+0x008` | `void*` | fontBlock | fontpack + u32[0] |
-| `+0x010` | `void*` | tables[16] | glyph table of face n at +`0x10` + 8n |
+| `+0x010` | `void*` | tables[16] | glyph table of face n at `+0x10` + 8n |
 | `+0x090` | `void*` | tableEnds[16] end of face n's records |  |
-| `+0x110` | `void*` | sheets[16] | .btm buffer of face n at +`0x110` + 8n |
+| `+0x110` | `void*` | sheets[16] | .btm buffer of face n at `+0x110` + 8n |
 | `+0x228` | `void*` | cacheTail | least recently used glyph cache entry |
 | `+0x230` | `void*` | cacheHead | most recently used glyph cache entry |
 | `+0x240` | `u32` | ready | bit n set when face n's sheet has arrived |

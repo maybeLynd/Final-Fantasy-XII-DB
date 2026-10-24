@@ -341,7 +341,7 @@ Camera (`0xD0`), as the update reads it:
 | `+0x0C` | `f32` | fovCopy | the second copy's field of view |
 | `+0x10` | `f32` | projScale | 1 / tan(fov / 2) |
 | `+0x20` | `f32[16]` | view | copied to `0x02AEDE70` |
-| `+0x60` | `f32[16]` | world | camera matrix; +`0x90` is its fourth row, the eye |
+| `+0x60` | `f32[16]` | world | camera matrix; `+0x90` is its fourth row, the eye |
 | `+0xA0` | `f32[4]` | target |  |
 | `+0xC4` | `f32` | roll |  |
 
@@ -433,6 +433,64 @@ The view is read as whole 16-byte rows by `0x0024C060` (`0x0024C10D`-`0x0024C130
 `0x0051CDE0` (`0x0051CF17`-`0x0051CF8E`), and as a matrix through `0x00202C70`, `0x00202D70` and `0x00202D50` by `0x0028DC00`,
 `0x002F4520`, `0x002F5550`, `0x003820C0` (`0x00382752`, `0x0038276C`, `0x003827D5`), `0x003F0170`, `0x003F0610`, `0x003F3710`,
 `0x003F5430` and `0x003F7930`.
+
+### The two transitions' state
+
+The move to the event camera is armed by `0x00255C50` and stepped by `0x00255850`; the swing back is armed by `0x00257830`
+and stepped by `0x00257520`. Besides their durations and counters they keep the values below. `behindtoeventcamera` (`0x00349FA0`) pops four values: the ease kind (`0x00349FC7`), a
+second integer (`0x00349FD1`), the frame count (`0x00349FDB`) and the shot row (`0x00349FEE`); `0x003DA300` turns the row into
+the CML1 row's word `+0x14` (`0x003DA31F`) and passes the manager's dword `+0x28` (`0x003DA316`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02096278` | `i32` | 0 | the second integer `behindtoeventcamera` pops | `0x00255C50` (`0x00255C87`) | no instruction names it apart from that store |
+| `0x0209627C` | `i32` | 0 | the move's ease kind, passed to `0x00256650(kind, t)` | `0x00255C50` (`0x00255C5B`) | `0x00255850` (`0x002558E2`) |
+| `0x02096280` | `i32` | 0 | the move's shot row; when it is 0 or more (a signed test, `0x00255908`), the transition player `0x02096520` takes as its stream the qword `+0x18` of that row of the shot list of manager `0x02096284` (`0x0025590C`-`0x0025592A`), otherwise its stream is 0 (`0x00255933`) | `0x00255C50` (`0x00255C8E`) | `0x00255850` (`0x002558ED`) |
+| `0x02096284` | `i32` | 0 | the move's manager: the stride `0xBB0` into the groups at `0x02092810` (`0x0025590C`) and the manager argument of the shot walk `0x00258350` (`0x0025594B`) | `0x00255C50` (`0x00255C63`) | `0x00255850` (`0x002558FB`) |
+| `0x02096298` | `f32` | 0 | the move's view `0x02096290`, field of view `+0x08` in radians: the behind camera's field of view eased toward the start pose's `+0x24` (`0x00255B4F`-`0x00255B64`) | `0x003CBBE0`, π/4 (`0x003CBBF1`), through `0x003CBFF0` when `0x00255C50` arms (`0x00255C94`); `0x00255850` (`0x00255B77`) | `0x0025A2C0` (`0x0025A2C6`, a 16-byte load of `+0x00` to `+0x0F`), when `0x002555D0` copies the view into camera record 5 (`0x002556A0`) |
+| `0x020962A0` | `f32` | 0 | the move's view `+0x10`, `1 / tan(fov / 2)`, or 0 when the tangent is 0 | `0x003CBBE0` (`0x003CBC1E`, `0x003CBC35`) through `0x00255C94`; `0x00255850` (`0x00255BB2`, `0x00255BCA`) | `0x0025A2C0` (`0x0025A2E8`, 16 bytes `+0x10` to `+0x1F`) from `0x002556A0` |
+| `0x02096360` | `u16` | 0 | 1 once the move has fixed its turn choice | `0x00255C50`, 0 (`0x00255C70`); `0x00255850`, 1 (`0x00255A7D`, `0x00255A97`) | `0x00255850` (`0x00255A44`) |
+| `0x02096362` | `u16` | 0 | the move's turn choice, fixed on its first step from the heading difference `d` (`0x00255A67`): 1 when `d` is 0 or more and above π, or below 0 and not below −π (`0x00255A6D`-`0x00255AA1`). Each step then adds −2π to the heading when the choice is 1 and `d` is 0 or more, and 2π when the choice is 0 and `d` is below 0 (`0x00255AB1`-`0x00255AD2`) | `0x00255850` (`0x00255A87`, `0x00255AA1`) | `0x00255850` (`0x00255AAA`) |
+| `0x020963F0` | `void*` | 0 | the start pose: an entry of the poses at `0x02096370` | `0x00255C50`, entry 0 (`0x00255CA0`); `0x00257830`, entry `index` (`0x0025784C`-`0x00257868`) | `0x00255850` (`0x00255886`, `0x002559A4`, `0x00255B2F`); `0x00257520` (`0x002575A6`, `0x00257644`, `0x00257715`); `0x00257830` (`0x00257881`) |
+| `0x02096418` | `f32` | 0 | the swing-back view `0x02096410`, field of view `+0x08` in radians: interpolated from the start pose's `+0x24` toward the behind camera's (`0x00257742`-`0x00257756`) | `0x003CBBE0`, π/4 (`0x003CBBF1`), through `0x003CBFF0` when `0x00257830` arms (`0x0025787C`); `0x00257520` (`0x00257760`) | `0x0025A2C0` (`0x0025A2C6`), when `0x002555D0` copies the view into camera record 5 (`0x00255673`) |
+| `0x02096420` | `f32` | 0 | the swing-back view `+0x10`, `1 / tan(fov / 2)`, or 0 when the tangent is 0 | `0x003CBBE0` (`0x003CBC1E`, `0x003CBC35`) through `0x0025787C`; `0x00257520` (`0x00257798`, `0x002577B0`) | `0x0025A2C0` (`0x0025A2E8`) from `0x00255673` |
+| `0x020964E0` | `u16` | 0 | 1 once the swing back has fixed its turn choice | `0x00257830`, 0 (`0x0025783E`); `0x00257520`, 1 (`0x0025766D`, `0x00257687`) | `0x00257520` (`0x00257637`) |
+| `0x020964E2` | `u16` | 0 | the swing back's turn choice, set as `0x02096362` from the difference of the heading and the start pose's `+0x28` (`0x00257654`-`0x00257691`); the heading gets −2π or 2π under the same rule (`0x002576A1`-`0x002576BA`) | `0x00257520` (`0x00257677`, `0x00257691`) | `0x00257520` (`0x0025769A`) |
+
+### The transition player
+
+The transition player at `0x02096520` is a `0x2E0`-byte shot player. `0x002556F0` clears all of it (`0x002557C9`). It is
+set up by the move's first step (`0x00255850`), by `camerahitcheck`'s run `0x002567E0`, which uses it as its scratch
+player, and by the shot start `0x00257230` for a negative channel (`0x00257258`). The shot walk `0x00258350` uses it when
+it is given a negative channel (`0x002583CB`), and through it the path offsets `0x002554E0`, `0x00256960` and `0x00256CA0`
+write its two offset vectors (`+0xF0` eye, `+0x100` target), the evaluator `0x003CC740` storing x, y and z.
+
+| Global | Field | Type | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02096528` | `+0x08` | `f32` | the segment clock: grows by `+0x10` each step (`0x00258711`-`0x0025871C`) and loses the segment length, the row's `u16` `+0x22`, when it passes it (`0x00258901`-`0x0025891E`) | `0x00255850`, 0 (`0x00255956`, 8 bytes over `+0x08` to `+0x0F`); `0x002567E0` (`0x00256893`, 8 bytes); `0x00257230` (`0x0025728D`, 8 bytes); `0x00258350` (`0x0025871C`, `0x0025891E`) | `0x00258350` (`0x00258711`, `0x00258901`) |
+| `0x02096530` | `+0x10` | `f32` | the step: the channel time less the time at `+0x0C` (`0x00258403`-`0x00258439`) | `0x00255850` (`0x0025595D`); `0x002567E0` (`0x0025689A`); `0x00257230` (`0x00257291`); `0x00258350` (`0x00258439`) | `0x00258350` (`0x00258705`) |
+| `0x02096610` | `+0xF0` | `f32` | the eye offset's x | `0x00255850` (`0x0025597D`); `0x002567E0` (`0x002568BE`); `0x00257230` (`0x002572B2`); `0x002554E0` (`0x00255532`, and through `0x003CC740`); `0x00256960` (`0x00256A55`, `0x00256AA6`); `0x00256CA0` (`0x00256D90`, `0x00256DE1`) | `0x00258350` (`0x00258592`); `0x00256960` (`0x00256C07`); `0x00256CA0` (`0x00256EDB`) |
+| `0x02096614` | `+0xF4` | `f32` | the eye offset's y | `0x00255850` (`0x00255976`, 8 bytes over `+0xF4` and `+0xF8`); `0x002567E0` (`0x002568B7`, 8 bytes); `0x00257230` (`0x002572AB`, 8 bytes); `0x002554E0` (`0x0025552F`, 8 bytes, and through `0x003CC740`); `0x00256960` (`0x00256A4E`, 8 bytes; `0x00256AAE`); `0x00256CA0` (`0x00256D89`, 8 bytes; `0x00256DE9`) | `0x00258350` (`0x0025859A`); `0x00256960` (`0x00256C24`); `0x00256CA0` (`0x00256EF8`) |
+| `0x0209661C` | `+0xFC` | `f32` | the eye offset's w, 1.0 | `0x00255850` (`0x00255983`, 8 bytes: 1.0 and `+0x100` = 0); `0x002567E0` (`0x002568C5`, the same); `0x00257230` (`0x002572B9`, the same); `0x002554E0` (`0x00255565`); `0x00256960` (`0x00256A58`); `0x00256CA0` (`0x00256D93`) | no instruction names it apart from these stores |
+| `0x02096624` | `+0x104` | `f32` | the target offset's y | `0x00255850` (`0x0025598E`, 8 bytes over `+0x104` and `+0x108`); `0x002567E0` (`0x002568D0`, 8 bytes); `0x00257230` (`0x002572C4`, 8 bytes); `0x002554E0` (`0x0025552F` on its second vector, 8 bytes, and through `0x003CC740`); `0x00256960` (`0x00256C35`); `0x00256CA0` (`0x00256F09`) | `0x00258350` (`0x002585B2`) |
+| `0x0209662C` | `+0x10C` | `f32` | the target offset's w, 1.0 | `0x00255850` (`0x00255995`); `0x002567E0` (`0x002568D7`); `0x00257230` (`0x002572CB`); `0x002554E0` (`0x00255565` on its second vector) | no instruction names it apart from these stores |
+| `0x02096644` | `+0x124` | `i32` | the current row's byte `+0x25` (`0x00258721`-`0x00258725`); while it is 0 the walk adds the offsets to the pose's eye and target (`0x002585FE`-`0x0025860F`) | `0x00255850` (`0x00255969`); `0x002567E0` (`0x002568A8`); `0x00257230` (`0x0025729C`); `0x00258350` (`0x00258725`) | `0x00258350` (`0x002585FE`) |
+| `0x02096698` | `+0x178` | `void*` | the stream position: advanced by `0x2C` past a segment (`0x00258912`) and `0x40` past a key (`0x002589AE`) | `0x00255850` (`0x0025592A`, or 0 at `0x00255933`); `0x002567E0` (`0x00256856`, `0x0025685F`); `0x00257230` (`0x0025727D`, `0x00257286`); `0x00258350` (`0x00258912`, `0x002589AE`) | `0x00258350` (`0x00258560`, `0x00258735`); `0x00258AF0` (`0x00258B1E`) |
+| `0x020966A0` | `+0x180` | `i32` | the player state: 1 while a segment runs (`0x002589B6`), 2 at the end (`0x002583E9`, `0x00258588`) | `0x00255850` (`0x00255963`); `0x002567E0` (`0x002568A1`); `0x00257230` (`0x00257295`); `0x00258350` (`0x002583E9`, `0x00258588`, `0x002589B6`) | `0x002567B0` (`0x002567D7`); `0x00258350` (`0x00258ACF`) |
+| `0x020966A9` | `+0x189` | `u8` | 1 once the eye side is attached ([EBP camera tables](../EBP-Script-Files/ebp-camera-tables.md)) | `0x00255850` (`0x0025596F`, 2 bytes over `+0x189` and `+0x18A`); `0x002567E0` (`0x002568AF`, 2 bytes); `0x00257230` (`0x002572A3`, 2 bytes); `0x00258350` (`0x002584BC`) | `0x00258350` (`0x00258491`) |
+
+### The previous view, the sub view and the shake vectors
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x020972F8` | `void*` | 0 | the view `0x00259820` published last frame, which a record of mode 2 publishes again | `0x00259820` (`0x0025993E`, a copy of `0x020972F0` after the submission) | `0x00259820` (`0x00259906`) |
+| `0x02097B84` | `f32` | 0 | the sub view `0x02097B80`'s `+0x04`: 1000.0 after a rebuild, then the second of the two words `0x0025A3D0` takes once the field is loaded (`0x0209A6F0`, or `0x02098DE4` while `0x02098DE8` is set) | `0x00259E90` (`0x00259F53`, its `0xD0`-byte clear of `0x02097B80`; `0x003CBBE0`, 1000.0, at `0x003CBC05` through `0x00259F5F`); `0x0025A3D0` (`0x0025A3DE`, the 16-byte copy over `0x02097B80`-`0x02097B8F`; `0x0025A48A`) | `0x003829D0` (`0x00382A8A`, a 16-byte load of `+0x00` to `+0x0F`), when `0x00259970` submits the sub view (`0x00259975`) |
+| `0x02AEDF74` | `f32` | 0 | the eye shake offset's y | `0x00382910` (`0x0038295A`, 8 bytes over `0x02AEDF74`-`0x02AEDF7B`); `0x00382B70` (`0x00382B81`) | `0x00202B90` (`0x00202B94`), turning the vector by the camera matrix for `0x003820C0` (`0x003823B7`, `0x003824D6`) |
+| `0x02AEDF78` | `f32` | 0 | the eye shake offset's z | `0x00382910` (`0x0038295A`); `0x00382B70` (`0x00382B8E`) | `0x00202B90` (`0x00202B9A`) from `0x003823B7` and `0x003824D6` |
+| `0x02AEDF7C` | `f32` | 0 | the eye shake offset's w: 1.0 at boot, then the gather's fourth float | `0x00382910`, 1.0 (`0x00382980`, 8 bytes: 1.0 and `0x02AEDF80` = 0); `0x00382B70` (`0x00382B9B`) | no instruction names it apart from these stores; `0x00202B90` reads x, y and z only |
+| `0x02AEDF84` | `f32` | 0 | the target shake offset's y | `0x00382910` (`0x00382967`, 8 bytes over `0x02AEDF84`-`0x02AEDF8B`); `0x00382B70` (`0x00382BB4`) | `0x00202B90` (`0x00202B94`) from `0x003823E7` and `0x003824FC` |
+| `0x02AEDF88` | `f32` | 0 | the target shake offset's z | `0x00382910` (`0x00382967`); `0x00382B70` (`0x00382BC1`) | `0x00202B90` (`0x00202B9A`) from `0x003823E7` and `0x003824FC` |
+| `0x02AEDF8C` | `f32` | 0 | the target shake offset's w: 1.0 at boot, then the gather's fourth float | `0x00382910`, 1.0 (`0x00382975`, 8 bytes: 1.0 and `0x02AEDF90` = 0); `0x00382B70` (`0x00382BCE`) | no instruction names it apart from these stores |
 
 ## Modding notes
 

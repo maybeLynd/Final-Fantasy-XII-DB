@@ -10,20 +10,26 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 The table has one row per script function of the Nalbina Dungeons that does something a player can observe. It
 covers the five zone scripts and the seven scene scripts of the area, from `plan_master/us`:
 
-| Script | Kind | Map or scene | Actors | Functions | Rows |
-|---|---|---|---:|---:|---:|
-| `nal_a01` | zone | Stockade, field `48` | 87 | 413 | 62 |
-| `nal_b01` | zone | Arena, field `49` | 17 | 44 | 1 |
-| `nal_c01` | zone | The Black Watch, field `709` | 45 | 111 | 15 |
-| `nal_c02` | zone | The Confiscatory, field `710` | 25 | 98 | 25 |
-| `nal_d01` | zone | Oubliette, field `51` | 3 | 6 | 2 |
-| `nal_a0100` | scene | event `30` | 22 | 153 | 9 |
-| `nal_b0100` | scene | event `31` | 24 | 322 | 6 |
-| `nal_b0101` | scene | event `33` | 42 | 788 | 21 |
-| `nal_c0100` | scene | event `32` | 23 | 298 | 0 |
-| `nal_c0101` | scene | event `34` | 35 | 278 | 3 |
-| `nal_c0200` | scene | event `35` | 16 | 97 | 18 |
-| `nal_d0100` | scene | event `36` | 25 | 440 | 1 |
+| Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
+|---|---|---|---:|---:|---:|---|
+| `nal_a01` | zone | Stockade, field `48` | 87 | 413 | 46 | 5 |
+| `nal_b01` | zone | Arena, field `49` | 17 | 44 | 1 | 0 |
+| `nal_c01` | zone | The Black Watch, field `709` | 45 | 111 | 15 | 0 |
+| `nal_c02` | zone | The Confiscatory, field `710` | 25 | 98 | 9 | 5 |
+| `nal_d01` | zone | Oubliette, field `51` | 3 | 6 | 2 | 0 |
+| `nal_a0100` | scene | event `30` | 22 | 153 | 9 | 0 |
+| `nal_b0100` | scene | event `31` | 24 | 322 | 6 | 0 |
+| `nal_b0101` | scene | event `33` | 42 | 788 | 21 | 0 |
+| `nal_c0100` | scene | event `32` | 23 | 298 | 0 | 0 |
+| `nal_c0101` | scene | event `34` | 35 | 278 | 3 | 0 |
+| `nal_c0200` | scene | event `35` | 16 | 97 | 18 | 0; its `system_crystal_actor` differs |
+| `nal_d0100` | scene | event `36` | 25 | 440 | 1 | 0 |
+
+The Stockade and The Confiscatory carry the five helper actors that many zone scripts share: the crystal
+(`system_crystal_actor`, `telepoeffectctrl`, `crystaldummyPC`, `saveactor`) and the key-item and message helper
+`イベント特殊効果画面`. Their functions are described once on [Shared zone-script actors](shared-zone-script-actors.md)
+and have no rows here; the Shared helpers column counts them. The scene `nal_c0200` holds an actor of the same name
+`system_crystal_actor` whose three functions only return, so it is not counted.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
 items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party. Functions that
@@ -45,9 +51,8 @@ of its actor in `other_functions`. The scenes themselves, with their dialogue, a
 - Oubliette: while the counter is at most 315, `常駐監督.main` plays scene `nal_d0100`, writes 316 and jumps to The
   Lightworks (Barheim Passage), field `53`.
 - Balthier joins in scene `nal_b0100` and Fran in scene `nal_b0101`.
-- The Stockade and The Confiscatory each hold a crystal actor, `system_crystal_actor`, whose `talk` function can
-  grant the key items named after regions (Rabanastre, Nalbina Fortress and 23 more) and whose teleport function,
-  `telepoeffectctrl.telepoeffect`, takes a Teleport Stone.
+- The Stockade and The Confiscatory each hold a crystal; what touching it does, the teleport and its Teleport
+  Stone are on [Shared zone-script actors](shared-zone-script-actors.md).
 
 ### How a call is read
 
@@ -112,12 +117,23 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `scenes` | each scene script the function loads, with its event id |
 | `party` | members who join and the fighting party a call sets |
 | `other_functions` | the actor's functions that have no row |
+| `shared_actor` | `-` for an ordinary actor; for a function of a shared helper actor that is listed, whether its body matches the shared one |
 
 In the `line_text` column, a choice list is written as `(choices: ...)`, and a value the game fills in when the line
 is shown is written `[value]`.
 
+The script list [`nalbina-dungeons-script-list.tsv`](nalbina-dungeons-script-list.tsv) holds the first table above, one row per script:
+
+| Column | Meaning |
+|---|---|
+| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `actors`, `functions` | the script's actors and functions, shared helpers included |
+| `rows` | the script's rows in the main table |
+| `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |
+
 ## Related
 
+- [Shared zone-script actors](shared-zone-script-actors.md) - the crystal, the teleport and the key-item and message helpers, described once.
 - [Nalbina Dungeons scenes](nalbina-dungeons-scenes.md) - the seven scenes these scripts load.
 - [Story flag ids](story-flag-ids.md) - every flag id with what it opens.
 - [Story counter values](story-counter-values.md) - every value scripts write to the story counter.

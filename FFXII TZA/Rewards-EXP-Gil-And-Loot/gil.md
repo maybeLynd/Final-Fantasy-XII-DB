@@ -137,8 +137,8 @@ The quest result window is the `0x100`-byte widget with procedure `0x003F4E70` t
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003F4E70` |
-| `+0xC0` | `u8` | skipSetup | the first byte of the creation record (`0x003F4F7E`, `0x003F4F81`); the only creator, `0x003F4BD0`, passes 0 (`0x003F4BED`). While it is 0 the construct message marks the image `0x01E0C1F8` (its +`0x38` bit 7), runs `0x00252B40`(9, 1) and `0x0037F3B0` (`0x003F4FE8`-`0x003F5014`); message 16 for batch 1 passes +`0xC4` to `0x0037EDB0` and keeps `0x0037E8A0`'s result at +`0xC8` (`0x003F4F07`-`0x003F4F29`); message 18 restores the saved +`0xF4` / +`0xF8` through `0x00252B40` and clears the image bit (`0x003F4EAD`); `0x003F4B40` runs `0x0037E4F0`(0) before closing the window (`0x003F4B50`) |
-| `+0xC1` | `u8[63]` | window | the window's own fields: +`0xC4` the creation record's dword +`0x10`, +`0xC8` what `0x0037E8A0` returns, +`0xD0`-+`0xF3` the `0x24` bytes the creation record points to, +`0xF4` and +`0xF8` the saved `0x02092730` and bit 0 of `0x02092734` (`0x003F4F87`-`0x003F4FE2`) |
+| `+0xC0` | `u8` | skipSetup | the first byte of the creation record (`0x003F4F7E`, `0x003F4F81`); the only creator, `0x003F4BD0`, passes 0 (`0x003F4BED`). While it is 0 the construct message marks the image `0x01E0C1F8` (its `+0x38` bit 7), runs `0x00252B40`(9, 1) and `0x0037F3B0` (`0x003F4FE8`-`0x003F5014`); message 16 for batch 1 passes `+0xC4` to `0x0037EDB0` and keeps `0x0037E8A0`'s result at `+0xC8` (`0x003F4F07`-`0x003F4F29`); message 18 restores the saved `+0xF4` / `+0xF8` through `0x00252B40` and clears the image bit (`0x003F4EAD`); `0x003F4B40` runs `0x0037E4F0`(0) before closing the window (`0x003F4B50`) |
+| `+0xC1` | `u8[63]` | window | the window's own fields: `+0xC4` the creation record's dword `+0x10`, `+0xC8` what `0x0037E8A0` returns, `+0xD0`-`+0xF3` the `0x24` bytes the creation record points to, `+0xF4` and `+0xF8` the saved `0x02092730` and bit 0 of `0x02092734` (`0x003F4F87`-`0x003F4FE2`) |
 
 ## Operations
 
@@ -148,7 +148,7 @@ Every function that changes gil: the callers of the setter and of its two wrappe
 |---|---|---|
 | `0x00312280` | `0x0031255D` | adds the kill's gil (formula above), then notifies |
 | `0x0050FAF0` | via `0x003004B0` | the chest payout, Start of script verb `btlAtelOpenTreasureMessage`: when `0x002FAFD0` reports a gil chest, adds its amount through `0x003004B0(amount, 0)` (no notification) |
-| `0x003004B0` | `0x003004D6` | adds `delta`, floors at 0, sets; when argument 2 bit 0 is set, notifies `new - old` (`0x003004DB`-`0x003004E5`); returns the new balance |
+| `0x003004B0` | `0x003004D6` | `v` = the 32-bit sum `gil + delta`, or 0 when it is negative, which includes a sum past 2,147,483,647 that wraps (`0x003004C3`-`0x003004D1`), sets `v`, which the setter stores capped at 99,999,999; when argument 2 bit 0 is set, notifies `v - old` (`0x003004DB`-`0x003004E5`); returns `v`, not the stored balance (`0x003004EF`) |
 | `0x00300500` | `0x0030050F` | floors its argument at 0, sets, returns the floored value |
 | `0x00316DF0` | via `0x003004B0` (`0x00317034`) | a party-side character's first activation (record flag `0x10` clear; character type 0-25, record flag 8 clear): grants the ten items at `+0x58` with counts at `+0x34` of the character row in `[0x02EBF130]` (row = type byte `+4`), then adds the row's u16 `+0x3E` as gil when non-zero |
 | `0x0032A7F0` | via `0x003004B0` (`0x0032A7F2`, jump) | `0x003004B0(n, 0)`; called by the script verbs `addgill` (`0x2E7`, `0x00346943` in `0x00346930`) with `n` and `subgill` (`0x2E8`, `0x00346E30`) with `-n` |

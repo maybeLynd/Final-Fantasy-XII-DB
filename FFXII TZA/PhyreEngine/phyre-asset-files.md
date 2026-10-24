@@ -106,7 +106,7 @@ nine-word records and `nMembers` six-word records) and the one the validator `0x
 | `+0x0C` | `u32` | nClasses |  |
 | `+0x10` | `u32` | nMembers |  |
 | `+0x14` | `u32` | poolSize | bytes of the string pool |
-| `+0x18` | `u8[4]` | reserved | 0 in every shipped file; read by no function on a shipped file: the validator `0x0059E070` sums +`0x08`, +`0x0C`, +`0x10`, +`0x14` and +`0x1C` against +`0x04` (`0x0059E173`-`0x0059E191`) and reads nothing else of the header, the binders take the counts and the records, and the byte swap `0x0059C180` (`0x0059C1B7`-`0x0059C1BC`) runs only when `0x0059A3B0` finds the cluster marker byte-reversed (`0x0059A3FF`-`0x0059A437`), which no shipped file is; nothing fixes its width |
+| `+0x18` | `u8[4]` | reserved | 0 in every shipped file; read by no function on a shipped file: the validator `0x0059E070` sums `+0x08`, `+0x0C`, `+0x10`, `+0x14` and `+0x1C` against `+0x04` (`0x0059E173`-`0x0059E191`) and reads nothing else of the header, the binders take the counts and the records, and the byte swap `0x0059C180` (`0x0059C1B7`-`0x0059C1BC`) runs only when `0x0059A3B0` finds the cluster marker byte-reversed (`0x0059A3FF`-`0x0059A437`), which no shipped file is; nothing fixes its width |
 | `+0x1C` | `u32` | extraSize | bytes of the block after the pool |
 | `+0x20` | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 
@@ -168,7 +168,7 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x70` | `u32` | m_offsetInVertexBuffer where the block's data starts in the file's vertex buffer: 0x00670070 | creates the block's immutable buffer from the file data at this offset (`0x006700C1`); m_offsetInVertexBuffer (u32), registered by `0x00665870` (`0x00632960` at `0x00665A03`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
 | `+0x78` | `u32` | m_dataSize | the size of the block's data: `0x00670070` creates the block's buffer with this byte width (`0x006700B1`); m_dataSize (u32), registered by `0x00665870` (`0x00632960` at `0x00665990`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
-| `+0x7C` | `u8[4]` | bytes7C | the bytes after m_dataSize (+`0x78`), before +`0x80`; no registered member covers it (`0x00661D30` registers the `0x88`-byte class at `0x00661D7A`) |
+| `+0x7C` | `u8[4]` | bytes7C | the bytes after m_dataSize (`+0x78`), before `+0x80`; no registered member covers it (`0x00661D30` registers the `0x88`-byte class at `0x00661D7A`) |
 
 `PIndexDataBlockD3D11` (`0x80` bytes, offsets from the start of the record):
 
@@ -176,14 +176,14 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x68` | `u32` | m_offsetInIndexBuffer | the offset of the block's indices in the index buffer: the indexed draw `0x006224E0` passes it as the binding offset (`0x00622539`); m_offsetInIndexBuffer (u32), registered by `0x00666380` (`0x00632960` at `0x00666513`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockD3D11 |
 | `+0x70` | `u32` | m_dataSize | the size of the block's index data; m_dataSize (u32), registered by `0x00666380` (`0x00632960` at `0x006664A0`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PIndexDataBlockD3D11 |
-| `+0x74` | `u8[4]` | bytes74 | the bytes after m_dataSize (+`0x70`), before +`0x78`; no registered member covers it (`0x006621E0` registers the `0x80`-byte class at `0x0066222A`) |
+| `+0x74` | `u8[4]` | bytes74 | the bytes after m_dataSize (`+0x70`), before `+0x78`; no registered member covers it (`0x006621E0` registers the `0x80`-byte class at `0x0066222A`) |
 
 `PMaterial` (`0x28` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x10` | `u32` | m_flag | m_flag (u32), registered by `0x005E4AA0` (`0x00632960` at `0x005E4C18`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PMaterial |
-| `+0x14` | `u8[4]` | bytes14 | the bytes after m_flag (+`0x10`), before +`0x18`; no registered member covers it (`0x005D9520` registers the `0x28`-byte class at `0x005D9570`) |
+| `+0x14` | `u8[4]` | bytes14 | the bytes after m_flag (`+0x10`), before `+0x18`; no registered member covers it (`0x005D9520` registers the `0x28`-byte class at `0x005D9570`) |
 
 `PModifierNetworkInfoPacket` (`0x20` bytes, offsets from the start of the record):
 
@@ -205,7 +205,7 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `u32` | m_planeCount | the plane count: `0x006DA380` hands (count + 3) / 4 Matrix4 records of planes to the visitor (`0x006DA3A0`); m_planeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA051`); no shipped .phyre file declares POccluderGeometryObject |
 | `+0x04` | `u32` | m_vertexCount | the vertex count: `0x006DA380` hands that many Point3 records to the visitor (`0x006DA3D4`); m_vertexCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA0C0`); no shipped .phyre file declares POccluderGeometryObject |
 | `+0x08` | `u32` | m_edgeCount | the edge count: `0x006DA380` hands that many 4-byte entries to the visitor (`0x006DA3FE`); m_edgeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA12F`); no shipped .phyre file declares POccluderGeometryObject |
-| `+0x0C` | `u8[4]` | pad0C | alignment bytes between m_edgeCount (+`0x08`) and m_minBounds (16-byte vector at +`0x10`); no registered member covers it (`0x006D9F00` registers the `0x30`-byte class at `0x006D9F50`) |
+| `+0x0C` | `u8[4]` | pad0C | alignment bytes between m_edgeCount (`+0x08`) and m_minBounds (16-byte vector at `+0x10`); no registered member covers it (`0x006D9F00` registers the `0x30`-byte class at `0x006D9F50`) |
 | `+0x10` | `f32[4]` | m_minBounds | m_minBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA19E`); no shipped .phyre file declares POccluderGeometryObject |
 | `+0x20` | `f32[4]` | m_maxBounds | m_maxBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA20D`); no shipped .phyre file declares POccluderGeometryObject |
 

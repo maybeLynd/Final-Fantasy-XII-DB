@@ -1,0 +1,30 @@
+actor	function	trigger	carried_by	requested_by	does
+system_crystal_actor	init	init	81 zone scripts	-	gives the Rabanastre key item and adds it to the teleport list when the party lacks it; reads the crystal number; names the crystal; on Succor Midst Sorrow, The Acolyte's Burden and Walk of Revelation keeps the crystal hidden until the Crystal Mimic global of that map is 2
+system_crystal_actor	main	main	81 zone scripts	-	shows the crystal and allows talking to it, or hides it; then loops, calling charefftrigger(2) once after each touch
+system_crystal_actor	touchon	touchon, touch, fieldsign1, fieldsign2	81 zone scripts	waited for by telepoeffectctrl.telepoeffect, once in each script	calls charefftrigger(1) and marks the crystal touched
+system_crystal_actor	touchoff	touchoff	81 zone scripts	-	calls charefftrigger(2) when the crystal is marked touched, and clears the mark
+system_crystal_actor	talk	talk	81 zone scripts	-	heals the party and revives the fallen; a gate crystal gives its key item the first time and adds the place to the teleport list; offers save, teleport or both as the two save-image switches allow; a save crystal offers the save; the Life Crystal only heals
+system_crystal_actor	showoff	requested	81 zone scripts	41 requests in 28 zone scripts	hides the crystal and blocks talking to it
+system_crystal_actor	showon	requested	81 zone scripts	74 requests in 48 zone scripts	shows the crystal and allows talking to it
+telepoeffectctrl	init	init	81 zone scripts	-	returns
+telepoeffectctrl	telepoeffect	requested	81 zone scripts	system_crystal_actor.talk, twice in each script	takes one Teleport Stone, plays the teleport flash, dismisses a summoned Esper or a chocobo and jumps to the destination of the chosen key item
+crystaldummyPC	init	init	81 zone scripts	-	returns
+crystaldummyPC	main	main	81 zone scripts	-	on Succor Midst Sorrow, The Acolyte's Burden and Walk of Revelation keeps that map's crystal map-icon flags in step with the Crystal Mimic globals, every frame
+crystaldummyPC	クリスタルタッチ	-	81 zone scripts	no request in the us scripts	takes the player's character and turns it toward the crystal, with setforcerelax(1)
+crystaldummyPC	クリスタルビュー	requested	81 zone scripts	system_crystal_actor.talk, once in each script	takes the player's character and turns it toward the crystal, with setforcerelax(0)
+crystaldummyPC	クリスタルリリース	requested	81 zone scripts	system_crystal_actor.talk, once in each script	waits for the motion, clears the forced pose and hands the character back
+saveactor	init	init	81 zone scripts	-	sets its local word to 0
+saveactor	main	main	81 zone scripts	-	returns
+saveactor	save_load	-	81 zone scripts	no request in the us scripts	memory card save-or-load prompt for Slot 1 (debug memory card verbs)
+saveactor	save	requested	81 zone scripts	saveactor.save_load	memory card save to one of ten slots
+saveactor	load	requested	81 zone scripts	saveactor.save_load	memory card load from one of ten slots
+イベント特殊効果画面	init	init	193 zone scripts	-	returns
+イベント特殊効果画面	だいじなものゲット	requested	193 zone scripts	91 requests	shows the obtained window for the item in g_com_set_get_label and gives it
+イベント特殊効果画面	だいじなものゲット_FADE付	requested	193 zone scripts	10 requests	the same, then fades the screen out
+イベント特殊効果画面	だいじなものゲット_MJFADE付	requested	193 zone scripts	4 requests	the same, then fades out with fadeout_d0
+イベント特殊効果画面	システムメッセージ表示	requested	193 zone scripts	53 requests	shows the system message whose number is in g_com_set_get_label
+イベント特殊効果画面	システムメッセージ表示_FADE付	requested	193 zone scripts	5 requests	the same, then fades the screen out
+イベント特殊効果画面	ゲット＆メッセージ表示	requested	193 zone scripts	38 requests	gives the item in g_com_set_get_label, then shows the system message in g_com_set_get_label_2
+イベント特殊効果画面	ゲット＆ゲット	requested	193 zone scripts	1 request	gives the items in g_com_set_get_label and g_com_set_get_label_2
+イベント特殊効果画面	GET_SYSMES_GET表示	requested	193 zone scripts	1 request	gives the item in g_com_set_get_label, shows the message in g_com_set_get_label_2, gives the item in g_com_set_get_label_3
+イベント特殊効果画面	GET_SYSMES_SYSMES表示	requested	193 zone scripts	1 request	gives the item in g_com_set_get_label, then shows the messages in g_com_set_get_label_2 and g_com_set_get_label_3

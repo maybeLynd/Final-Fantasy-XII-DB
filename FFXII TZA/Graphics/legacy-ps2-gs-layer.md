@@ -313,7 +313,7 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
 
 ## Layouts
 
-Texture record (map +`0x150` bank, from [+`0x08`]), `0x60` bytes:
+Texture record (map `+0x150` bank, from [`+0x08`]), `0x60` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -324,7 +324,7 @@ Texture record (map +`0x150` bank, from [+`0x08`]), `0x60` bytes:
 | `+0x0C` | `u16` | continues | non-zero: counted with the record before it |
 | `+0x0E` | `i16` | count, then slot | reference count during step 4; slot or `0xFFFF` after step 5 |
 
-Instance record (map +`0x178`, tag 30 of the map pack), `0x30` bytes:
+Instance record (map `+0x178`, tag 30 of the map pack), `0x30` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -333,7 +333,7 @@ Instance record (map +`0x178`, tag 30 of the map pack), `0x30` bytes:
 | `+0x0C` | `u32` | flags | bit 23 + slot: present for that weather slot |
 | `+0x1D` | `u8` | sub-index | a repeat of the previous index and sub-index is not counted again |
 
-Slot record (map +`0x218`, count +`0x228`), `0x28` bytes:
+Slot record (map `+0x218`, count `+0x228`), `0x28` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -383,6 +383,54 @@ switch `0x022D8EDC` to 0 before it files its light. Opcode `0x0A` and `0x0024D9C
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0209A6F8` | `u32` | 0 (zero-filled tail) | 1 lets the bound map draw, 0 keeps `0x0026E290` from drawing it; copied to the map's `+0x120` every world step | `0x0026E640`, 1 (`0x0026E6BA`); `0x0024D9C0`, 1 (`0x0024D9C6`); `0x003B8670`: opcode `0x0A`, 1 (`0x003B96B3`), opcode `0x0B`, 0 (`0x003B9730`) | `0x0026EB30` (`0x0026ED4E`) |
+
+### The widget draw block
+
+`0x00276430` fills the block at `0x0209AB90` for one widget draw: it first makes the matrix `0x0209AB90`-`0x0209ABCF` an
+identity with `0x00203170` (`0x00276494`-`0x002764A5`, four 16-byte stores), then writes the fields below. The widget draw
+`0x00274CB0` (from `0x00274CA0` and `0x004048E0`) reads them; it reads the matrix through `0x00202B70`, whose vector transform
+`0x00217060` loads all sixteen elements (`0x00274F2E`-`0x00274F39`, `0x00274F65`-`0x00274F93`). The two words `0x0209A760` and
+`0x0209A764` belong to the same call. Every field is 0 at load (the zero-filled tail of `.data`).
+
+| Global | Field | Type | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209A760` | - | `f32` | the call's fifth argument `u`, as a float | `0x00276430` (`0x0027652E`) | `0x00274CB0`, subtracted from and added to the transformed corners' x (`0x00274FAE`, `0x00274FD7`, `0x00274FFF`, `0x00275028`, `0x00275050`, `0x0027507D`) |
+| `0x0209A764` | - | `f32` | the sixth argument `v`, as a float | `0x00276430` (`0x00276541`) | `0x00274CB0`, the same for y (`0x00274FBF`, `0x00274FDF`, `0x00275010`, `0x00275030`, `0x00275061`, `0x00275085`) |
+| `0x0209ABA4` | `+0x14` | `f32` | the matrix's y scale: `scale` | `0x00203170`, 1.0 (`0x00203181`, 16 bytes over `+0x10` to `+0x1F`); `0x00276430` (`0x002764D6`) | `0x00217060` (`0x002170A1`) |
+| `0x0209ABC0` | `+0x30` | `f32` | the x offset: `2048 - [0x01E0C1D8] / 2 + x` | `0x00203170`, 0 (`0x00203197`, 16 bytes over `+0x30` to `+0x3F`); `0x00276430` (`0x0027651E`) | `0x00217060` (`0x002170AD`) |
+| `0x0209ABC4` | `+0x34` | `f32` | the y offset: `2048 - [0x01E0C1DC] / 2 + y` | `0x00203170`, 0 (`0x00203197`); `0x00276430` (`0x00276539`) | `0x00217060` (`0x002170D8`) |
+| `0x0209ABD0` | `+0x40` | `f32` | the rectangle's word `+0x08` | `0x00276430` (`0x00276608`) | `0x00274CB0` (`0x00274DDD`), scaled and truncated to an integer |
+| `0x0209ABD4` | `+0x44` | `f32` | the rectangle's word `+0x0C` | `0x00276430` (`0x002765FB`) | `0x00274CB0` (`0x00274DFE`), the same |
+| `0x0209ABD8` | `+0x48` | `f32` | the rectangle's word `+0x00` | `0x00276430` (`0x00276624`) | `0x00274CB0` (`0x00274DE5`), the same |
+| `0x0209ABDC` | `+0x4C` | `f32` | the rectangle's word `+0x04` | `0x00276430` (`0x00276614`) | `0x00274CB0` (`0x00274E1A`), the same |
+| `0x0209ABE0` | `+0x50` | `f32` | the widget's colour byte `+0x94` / 128 | `0x00276430` (`0x0027659D`) | `0x00274CB0` (`0x0027511D`) |
+| `0x0209ABE4` | `+0x54` | `f32` | colour byte `+0x95` / 128 | `0x00276430` (`0x002765B0`) | `0x00274CB0` (`0x00275129`) |
+| `0x0209ABE8` | `+0x58` | `f32` | colour byte `+0x96` / 128 | `0x00276430` (`0x002765CF`) | `0x00274CB0` (`0x00275146`) |
+| `0x0209ABEC` | `+0x5C` | `f32` | colour byte `+0x97` / 128 | `0x00276430` (`0x002765D7`) | `0x00274CB0` (`0x0027513E`) |
+| `0x0209ABF0` | `+0x60` | `f32` | `scale` × 8 | `0x00276430` (`0x0027661C`) | `0x00274CB0` (`0x002750C7`, `0x00275110`) |
+| `0x0209ABF4` | `+0x64` | `f32` | the widget's float `+0x00` / 4096 | `0x00276430` (`0x00276567`) | `0x00274CB0` (`0x00274FC7`, `0x00275018`, `0x0027506D`) |
+| `0x0209ABF8` | `+0x68` | `f32` | the widget's float `+0x14` / 4096 | `0x00276430` (`0x0027657F`) | `0x00274CB0` (`0x00274FCF`, `0x00275020`, `0x00275075`) |
+
+### The display records, the surface entries and the other words
+
+`0x0036D2F0` fills the two `0x28`-byte display records from a stack area that its call `0x0016D6A0` (`0x0036D34E`), a bare
+`ret`, leaves as it was; it sets only bits 0-8 of the second record's word `+0x10` to the pages per surface
+(`0x0036D399`-`0x0036D3A9`). `0x022D8EA0` points at the first record (`0x0036D3B2`) or at record `[0x022D8EA8]` (`0x0036D800`);
+no instruction loads that pointer.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022D8E70` | `u64` | 0 | the first record's `+0x20`: the 8 bytes at the set-up's stack `+0x60` | `0x0036D2F0` (`0x0036D380`) | no instruction names it apart from that store; `0x0024DEE0` reads `+0x10` of a record only |
+| `0x022D8E88` | `u8[16]` | 0 | the second record's `+0x10` to `+0x1F`: the stack bytes at `+0x78`, with bits 0-8 of the first dword set to 112, the pages per surface | `0x0036D2F0` (`0x0036D3C9`, 16 bytes) | `0x0024DEE0` (`0x0024DF8E`), the dword at `0x022D8E60` + `0x28` × `[0x022D8EA8]`, which is this one when the frame index is 1 |
+| `0x022D8E98` | `u64` | 0 | the second record's `+0x20`: the stack bytes at `+0x88` | `0x0036D2F0` (`0x0036D3D0`) | no instruction names it apart from that store |
+| `0x02AEECF8` | `u64` | 0 | the CLAMP value of the first surface entry: region clamp, maximum u = width − 1, v = height − 1; `0x0024B7B0` sets maximum u to 255 and maximum v to 223 in it (`0x0024B97C`-`0x0024B993`) | `0x0039D200` (`0x0039D29A`, in its loop over the first two entries from `0x02AEECF0`); `0x0024B7B0` (`0x0024B993`) | `0x0024B7B0` (`0x0024B97C`); `0x00431830` (`0x004318AB`), as entry `[+0xA8]` of `0x02AEE900 + 0x3F0` when that byte is 0 |
+| `0x02AEED20` | `u64` | 0 | the TEX0 value of the fourth entry: `0x620110000` with base page `0x3700` | `0x0039D200` (`0x0039D2F3`, in its loop over the entries from `0x02AEED10` to `0x02AEED4F`, then `0x0039D3C2`) | `0x0039D200` (`0x0039D3AF`); the entry readers by index, entry 3: `0x00374280` (`0x00374349`), `0x003745C0` (`0x003746AB`) and `0x00375280` (`0x0037538C`) for a descriptor kind of 6 (they take kinds 3 to 6 as entries 0 to 3), `0x004FD4B0` (`0x004FDABB`) for a signed 3-bit index of 3, `0x00431830` (`0x00431896`) for a byte `+0xA8` of 3 |
+| `0x02AEED30` | `u64` | 0 | the TEX0 value of the fifth entry: `0x620110000` with base page `0x3300` | `0x0039D200` (`0x0039D2F3`, then `0x0039D3DC`) | `0x0039D200` (`0x0039D3C9`); `0x00431830` (`0x00431896`) for a byte `+0xA8` of 4 |
+| `0x02EBB6C0` | `u64` | 0 | zeroed at start-up beside `0x02EBB6C8` | `0x00467BB0` (`0x00467BDA`) | no instruction names it apart from that store |
+| `0x01EEBAE8` | `u32` | 10000 (`0x2710`) | the last entry of the pass's draw list: the `u16` at `[map + 0x1E0 + 0x18 × pass]` + 2 × (count − 1), the count being the dword `+0x10` of that list (`0x002F4774`-`0x002F4785`), stored before `0x001808A0` each pass | `0x002F4520` (`0x002F4789`) | no instruction names it apart from that store |
+
+`0x01EEBAE4` and `0x022BE7DC`, set together by `0x002F4510` (from `0x001D1660`), bound the record indices of a pass: an entry
+is drawn only when it is not below `0x022BE7DC` and not above `0x01EEBAE4`, both signed compares (`0x002F4906`-`0x002F491E`).
 
 ## Modding notes
 

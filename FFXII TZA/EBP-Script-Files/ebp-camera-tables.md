@@ -44,7 +44,7 @@ CML1 (section 8):
 | `+0x04` | `u32` | count | rows |
 | `+0x08` | `u32[2]` | - | 0; not read |
 
-+`0x10`  row[count]:
+`+0x10`  row[count]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -91,7 +91,7 @@ Key (type 1, `0x40` bytes):
 | `+0x00` | `u8` | 1 |  |
 | `+0x04` | `f32[3]` | eye |  |
 | `+0x14` | `f32[3]` | target |  |
-| `+0x24` | `f32` | angle | to the view's +`0x20` |
+| `+0x24` | `f32` | angle | to the view's `+0x20` |
 | `+0x28` | `f32` | fov | degrees |
 | `+0x2C` | `f32[2]` | follow | path-follow values |
 | `+0x38` | `f32` | followLead | path-follow value |
@@ -118,11 +118,11 @@ Ease curve (array B):
 |---|---|---|---|
 | `+0x00` | `u32` | length | `0x18` + `0x24` * keys |
 | `+0x04` | `u32` | keys |  |
-| `+0x08` | `f32` | start | time; at or before it the value is +`0x0C` |
+| `+0x08` | `f32` | start | time; at or before it the value is `+0x0C` |
 | `+0x0C` | `f32` | startValue |  |
 | `+0x10` | `f32` | end | time; the normaliser |
 | `+0x14` | `f32` | endValue | at or after end, and with no keys |
-| `+0x18` | `key[keys],` | 0x24 | bytes: +`0x10` a, +`0x14` b, +`0x18` c, +`0x1C` d, +`0x20` span |
+| `+0x18` | `key[keys],` | 0x24 | bytes: `+0x10` a, `+0x14` b, `+0x18` c, `+0x1C` d, `+0x20` span |
 
 Path (array C):
 
@@ -133,7 +133,7 @@ Path (array C):
 | `+0x06` | `u16` | arcs |  |
 | `+0x08` | `f32[3]` | start | at parameter 0 or below |
 | `+0x14` | `f32[3]` | end | at parameter 1 or above |
-| `+0x20` | `segment[segments],` | 0x38 | bytes: x a b c d, y a b c d, z a b c d, +`0x30` span |
+| `+0x20` | `segment[segments],` | 0x38 | bytes: x a b c d, y a b c d, z a b c d, `+0x30` span |
 
 ```
 then arc[arcs]: f32 distance, f32 parameter

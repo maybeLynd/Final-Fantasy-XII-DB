@@ -250,49 +250,49 @@ The post-process command, `0xF0` bytes, that `0x0018EEE0` fills each frame and `
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | targetA | the first of the three render targets `0x006CBEA0` hands the library: `0x001867B0` of the render manager (`0x0018EF3E`); passed as the second argument of `0x0065E5C0` (`0x00193F55`) and as the third argument of the context creation `0x0065E5A0` (`0x00193DDF`); with +`0x98` set the builder also runs the colour-grading pass `0x0018F8F0` on it (`0x0018F36D`) and copies it with `0x001EE8E0` (`0x0018F3B0`) |
+| `+0x00` | `void*` | targetA | the first of the three render targets `0x006CBEA0` hands the library: `0x001867B0` of the render manager (`0x0018EF3E`); passed as the second argument of `0x0065E5C0` (`0x00193F55`) and as the third argument of the context creation `0x0065E5A0` (`0x00193DDF`); with `+0x98` set the builder also runs the colour-grading pass `0x0018F8F0` on it (`0x0018F36D`) and copies it with `0x001EE8E0` (`0x0018F3B0`) |
 | `+0x08` | `void*` | targetB | the second of the three render targets: `0x00186660` of the render manager (`0x0018EF4E`); the third argument of `0x0065E5C0` (`0x00193F51`) |
-| `+0x10` | `void*` | targetC | the third render target: `0x001868F0`(manager, 0) when +`0x98` and the builder's fifth argument are set, otherwise `0x001867C0`(manager) (`0x0018EF68`-`0x0018EF90`); the fourth argument of `0x0065E5C0` (`0x00193F4A`) |
-| `+0x18` | `f32` | glareLuminance | glare luminance, the block's +`0xF4` (`0x0018EFF3`); with the Glare option on (`0x01F82D20` +`0x34`) it is the first float `0x006CC1E0` hands CPostEffect::SetGlareParameters (`0x00193E52`), which stores it at CPostEffect +`0x6E4` |
-| `+0x1C` | `f32` | glareThreshold | glare threshold, the block's +`0xF8` (`0x0018EFFC`); the second float of the glare call (`0x00193E4D`), stored at CPostEffect +`0x6E0` |
-| `+0x20` | `u8` | dofEnable | depth-of-field enable, the block's +`0x110` (`0x0018F00C`); passed as the enable byte of the depth-of-field call `0x0065E610` while the DepthofField option (`0x01F82D20` +`0x30`) is on (`0x00193EE6`); the builder also copies it into the block's per-slot byte +`0xFC` (`0x0018F2C4`) |
-| `+0x21` | `u8` | autoFocus | the auto-focus byte: the block's +`0x164` (`0x0018F30C`), which also makes the render pass list `0x00187950` draw the focus-point marker; passed to the depth-of-field call (`0x00193ED8`), where a set byte turns the library's auto-focus on (`0x0070EC00`), aims it at +`0x30`/+`0x34` (`0x0070F3C0`) over 0.1 to 100 (`0x0070F300`) and takes the auto-focus distance (`0x006DC650`) as the focus distance (`0x006CC0C5`-`0x006CC131`) |
+| `+0x10` | `void*` | targetC | the third render target: `0x001868F0`(manager, 0) when `+0x98` and the builder's fifth argument are set, otherwise `0x001867C0`(manager) (`0x0018EF68`-`0x0018EF90`); the fourth argument of `0x0065E5C0` (`0x00193F4A`) |
+| `+0x18` | `f32` | glareLuminance | glare luminance, the block's `+0xF4` (`0x0018EFF3`); with the Glare option on (`0x01F82D20` `+0x34`) it is the first float `0x006CC1E0` hands CPostEffect::SetGlareParameters (`0x00193E52`), which stores it at CPostEffect `+0x6E4` |
+| `+0x1C` | `f32` | glareThreshold | glare threshold, the block's `+0xF8` (`0x0018EFFC`); the second float of the glare call (`0x00193E4D`), stored at CPostEffect `+0x6E0` |
+| `+0x20` | `u8` | dofEnable | depth-of-field enable, the block's `+0x110` (`0x0018F00C`); passed as the enable byte of the depth-of-field call `0x0065E610` while the DepthofField option (`0x01F82D20` `+0x30`) is on (`0x00193EE6`); the builder also copies it into the block's per-slot byte `+0xFC` (`0x0018F2C4`) |
+| `+0x21` | `u8` | autoFocus | the auto-focus byte: the block's `+0x164` (`0x0018F30C`), which also makes the render pass list `0x00187950` draw the focus-point marker; passed to the depth-of-field call (`0x00193ED8`), where a set byte turns the library's auto-focus on (`0x0070EC00`), aims it at `+0x30`/`+0x34` (`0x0070F3C0`) over 0.1 to 100 (`0x0070F300`) and takes the auto-focus distance (`0x006DC650`) as the focus distance (`0x006CC0C5`-`0x006CC131`) |
 | `+0x22` | `u8[2]` | pad022 | written and read by no function; nothing fixes its width |
-| `+0x24` | `f32` | focusDistance | focus distance (`0x00194250`): the block's +`0x128` or +`0x114`, or the eased value, by the mode at +`0x124` of the first argument (`0x0018F19A`, `0x0018F229`, `0x0018F257`); passed at `0x00193EE1` |
+| `+0x24` | `f32` | focusDistance | focus distance (`0x00194250`): the block's `+0x128` or `+0x114`, or the eased value, by the mode at `+0x124` of the first argument (`0x0018F19A`, `0x0018F229`, `0x0018F257`); passed at `0x00193EE1` |
 | `+0x28` | `f32` | apertureFNumber | aperture f-number, computed with the focus distance (`0x0018F1B7`, `0x0018F22E`, `0x0018F260`); passed at `0x00193EDC` |
-| `+0x2C` | `f32` | lens | the block's +`0x120`, the value the cutscene loader sets to 35.0 (`0x0018F2F7`); `0x00193DA0` does not read it and passes the constant 35.0 (`0x008F312C`, `0x00193EF0`) instead |
-| `+0x30` | `f32` | focusPointX | the x of the focus point, the block's +`0x168` (`0x0018F300`): the point the marker draws and the auto-focus samples (`0x00193ED3`, `0x006CC0F0`) |
-| `+0x34` | `f32` | focusPointY | the y of the focus point, the block's +`0x16C` (`0x0018F309`) (`0x00193ECB`, `0x006CC0E7`) |
+| `+0x2C` | `f32` | lens | the block's `+0x120`, the value the cutscene loader sets to 35.0 (`0x0018F2F7`); `0x00193DA0` does not read it and passes the constant 35.0 (`0x008F312C`, `0x00193EF0`) instead |
+| `+0x30` | `f32` | focusPointX | the x of the focus point, the block's `+0x168` (`0x0018F300`): the point the marker draws and the auto-focus samples (`0x00193ED3`, `0x006CC0F0`) |
+| `+0x34` | `f32` | focusPointY | the y of the focus point, the block's `+0x16C` (`0x0018F309`) (`0x00193ECB`, `0x006CC0E7`) |
 | `+0x38` | `u8[12]` | pad038 | written and read by no function; nothing fixes its width |
-| `+0x44` | `f32` | flareScreenX | the screen x of the bit-5 lens flare, the block's +`0x36C` (`0x0018F3FB`), stored by `0x00182830` through `0x00194470` from the flare draw `0x00461270`; read by no function in `0x00193DA0` or its callees |
-| `+0x48` | `f32` | flareScreenY | the screen y of the same flare, the block's +`0x370` (`0x0018F404`); read by no function in `0x00193DA0` or its callees |
-| `+0x4C` | `f32[10]` | lightShaft | the light-shaft values, the block's +`0xC4` to +`0xEB` (`0x0018F407`-`0x0018F445`): colour R, G, B (`lightShaftColorR`/`G`/`B`) and 0 for the alpha, `lightShaftLength`, `lightShaftGlareRatio`, `lightShaftMaskDepthThereshold`, `lightShaftAngleAttenuation`, `lightShaftNoiseMask` and `lightShaftNoiseFrequency` as set by `0x00194400` (`0x001C8AF5`); read by no function in `0x00193DA0` or its callees |
-| `+0x74` | `f32[8]` | lightShaftRing | the light-shaft diffraction ring, the block's +`0xA4` to +`0xC3` (`0x0018F448`-`0x0018F476`): `lightShaftDiffractionRing`, `…Radius`, `…Attenuation`, `…SpectrumOrder`, then `…OuterColorR`/`G`/`B`/`A`, as set by `0x00194370` (`0x001C8D33`); read by no function in `0x00193DA0` or its callees |
-| `+0x94` | `f32` | lightShaftOn | the block's byte +`0xEE` as a float (`0x0018F3DF`-`0x0018F3ED`); both writers of that byte, `0x001943C0` and `0x0018D640`, end with 0 on every path (`0x001943DA`, `0x0018D65A`), so the value is 0.0; read by no function in `0x00193DA0` or its callees |
-| `+0x98` | `u8` | deviceByte | the device byte +`0xD48` of the PhyreEngine application object `0x00796E20`() (`0x0018EF57`); when set the builder runs the colour-grading pass and the copy (`0x0018F323`-`0x0018F3B6`) and `0x00193DA0` passes 2.0 and mode 2 to `0x006CC170` (`0x00193E71`-`0x00193E87`) |
-| `+0x99` | `u8` | reinitialise | set when the first argument's +`0x4A1` is set or +`0xDB9` of the object `0x00189120` returns differs from its value last frame (+`0x48C`) (`0x0018EF94`-`0x0018EFAF`); when set `0x00193DA0` calls `0x006CC2F0` on the existing context instead of creating one (`0x00193DB1`) |
-| `+0x9A` | `u8` | linearTonemap | the linear-tonemap byte, the block's +`0x4A2` (`0x0018F316`); with +`0x98` clear `0x00193DA0` passes mode 1 when it is set and -1 when it is clear to `0x006CC170` (`0x00193E8F`-`0x00193EAE`) |
+| `+0x44` | `f32` | flareScreenX | the screen x of the bit-5 lens flare, the block's `+0x36C` (`0x0018F3FB`), stored by `0x00182830` through `0x00194470` from the flare draw `0x00461270`; read by no function in `0x00193DA0` or its callees |
+| `+0x48` | `f32` | flareScreenY | the screen y of the same flare, the block's `+0x370` (`0x0018F404`); read by no function in `0x00193DA0` or its callees |
+| `+0x4C` | `f32[10]` | lightShaft | the light-shaft values, the block's `+0xC4` to `+0xEB` (`0x0018F407`-`0x0018F445`): colour R, G, B (`lightShaftColorR`/`G`/`B`) and 0 for the alpha, `lightShaftLength`, `lightShaftGlareRatio`, `lightShaftMaskDepthThereshold`, `lightShaftAngleAttenuation`, `lightShaftNoiseMask` and `lightShaftNoiseFrequency` as set by `0x00194400` (`0x001C8AF5`); read by no function in `0x00193DA0` or its callees |
+| `+0x74` | `f32[8]` | lightShaftRing | the light-shaft diffraction ring, the block's `+0xA4` to `+0xC3` (`0x0018F448`-`0x0018F476`): `lightShaftDiffractionRing`, `…Radius`, `…Attenuation`, `…SpectrumOrder`, then `…OuterColorR`/`G`/`B`/`A`, as set by `0x00194370` (`0x001C8D33`); read by no function in `0x00193DA0` or its callees |
+| `+0x94` | `f32` | lightShaftOn | the block's byte `+0xEE` as a float (`0x0018F3DF`-`0x0018F3ED`); both writers of that byte, `0x001943C0` and `0x0018D640`, end with 0 on every path (`0x001943DA`, `0x0018D65A`), so the value is 0.0; read by no function in `0x00193DA0` or its callees |
+| `+0x98` | `u8` | deviceByte | the device byte `+0xD48` of the PhyreEngine application object `0x00796E20`() (`0x0018EF57`); when set the builder runs the colour-grading pass and the copy (`0x0018F323`-`0x0018F3B6`) and `0x00193DA0` passes 2.0 and mode 2 to `0x006CC170` (`0x00193E71`-`0x00193E87`) |
+| `+0x99` | `u8` | reinitialise | set when the first argument's `+0x4A1` is set or `+0xDB9` of the object `0x00189120` returns differs from its value last frame (`+0x48C`) (`0x0018EF94`-`0x0018EFAF`); when set `0x00193DA0` calls `0x006CC2F0` on the existing context instead of creating one (`0x00193DB1`) |
+| `+0x9A` | `u8` | linearTonemap | the linear-tonemap byte, the block's `+0x4A2` (`0x0018F316`); with `+0x98` clear `0x00193DA0` passes mode 1 when it is set and -1 when it is clear to `0x006CC170` (`0x00193E8F`-`0x00193EAE`) |
 | `+0x9B` | `u8[1]` | pad09B | written and read by no function; nothing fixes its width |
-| `+0x9C` | `f32[16]` | cameraMatrix | the camera matrix, the block's +`0x440` to +`0x47F` (`0x0018F47D`-`0x0018F4AE`), which `0x00189CE0` copies from the camera `0x001AC950` through `0x001941F0`; its address goes to `0x006CC1F0` (`0x00193E0A`), which hands the previous matrix to `0x00707220` and this one to `0x00706F60` (CPostEffect +`0x654` and +`0x5D4`) |
-| `+0xDC` | `f32` | cameraNear | the block's +`0x480` (`0x0018F4BB`), default 0.1 (`0x0018D007`), the camera's +`0xCBC` (`0x00189EA2`); the first float of `0x006CC260` (`0x00193E2E`), which becomes CPostEffect +`0x5A4` |
-| `+0xE0` | `f32` | cameraFar | the block's +`0x484` (`0x0018F4C7`), default 1000.0 (`0x0018D011`), the camera's +`0xCC0`; the second float of `0x006CC260` (`0x00193E26`), CPostEffect +`0x5A8` |
-| `+0xE4` | `f32` | cameraAngle | the block's +`0x488` (`0x0018F4D3`), default 0.785398 (π / 4, `0x0018D01B`), the camera's +`0xCC4`; the third float of `0x006CC260` (`0x00193E1B`), which halves it (`0x006CC29A`); `0x00706C20` halves it again and stores its tangent at CPostEffect +`0x5B0` (`0x00706C26`-`0x00706C98`) |
+| `+0x9C` | `f32[16]` | cameraMatrix | the camera matrix, the block's `+0x440` to `+0x47F` (`0x0018F47D`-`0x0018F4AE`), which `0x00189CE0` copies from the camera `0x001AC950` through `0x001941F0`; its address goes to `0x006CC1F0` (`0x00193E0A`), which hands the previous matrix to `0x00707220` and this one to `0x00706F60` (CPostEffect `+0x654` and `+0x5D4`) |
+| `+0xDC` | `f32` | cameraNear | the block's `+0x480` (`0x0018F4BB`), default 0.1 (`0x0018D007`), the camera's `+0xCBC` (`0x00189EA2`); the first float of `0x006CC260` (`0x00193E2E`), which becomes CPostEffect `+0x5A4` |
+| `+0xE0` | `f32` | cameraFar | the block's `+0x484` (`0x0018F4C7`), default 1000.0 (`0x0018D011`), the camera's `+0xCC0`; the second float of `0x006CC260` (`0x00193E26`), CPostEffect `+0x5A8` |
+| `+0xE4` | `f32` | cameraAngle | the block's `+0x488` (`0x0018F4D3`), default 0.785398 (π / 4, `0x0018D01B`), the camera's `+0xCC4`; the third float of `0x006CC260` (`0x00193E1B`), which halves it (`0x006CC29A`); `0x00706C20` halves it again and stores its tangent at CPostEffect `+0x5B0` (`0x00706C26`-`0x00706C98`) |
 | `+0xE8` | `u8[8]` | pad0E8 | written and read by no function; nothing fixes its width |
 
 The render-parameter block fields this page uses (`0x4A8` bytes at `0x01F7F5F0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0F4` | `f32` | glare luminance | +`0x0F8`  f32     glare threshold |
-| `+0x110` | `u8` | depth-of-field enable | +`0x114`  f32     focus distance |
-| `+0x118` | `f32` | aperture f-number | +`0x11C`  f32     f-number scale |
+| `+0x0F4` | `f32` | glare luminance | `+0x0F8`  f32     glare threshold |
+| `+0x110` | `u8` | depth-of-field enable | `+0x114`  f32     focus distance |
+| `+0x118` | `f32` | aperture f-number | `+0x11C`  f32     f-number scale |
 | `+0x120` | `f32` | lens (35.0) |  |
 | `+0x184` | `i32` | SMAA quality |  |
 | `+0x198` | `u8` | EnableAO |  |
 | `+0x1A8` | `f32[6]` | SAO bias, radius, intensity: Chr, then Sce |  |
 | `+0x1C4` | `f32[6]` | HBAO angle bias, radius, contrast: Chr, then Sce |  |
 | `+0x344` | `i32` | 1 = HBAO |  |
-| `+0x3E8` | `u8` | anti-aliasing built | +`0x3E9`  u8      anti-aliasing configured |
+| `+0x3E8` | `u8` | anti-aliasing built | `+0x3E9`  u8      anti-aliasing configured |
 | `+0x4A3` | `u8` | PostAA is SMAA |  |
 
 ## Shipped data
@@ -316,6 +316,18 @@ The render-parameter block fields this page uses (`0x4A8` bytes at `0x01F7F5F0`)
 | `0x01F82C80` | the frame-marker table |
 | `0x02CC0388` | the pool of `0x20`-byte pass records for passes created at run time: built by `0x00162330` (`0x0067FFB0`: 256 records, alignment 8, named `PSceneRenderPassType`), its free list filled by `0x00680150` when empty, reset by `0x005FDDF0` (`0x006803D0`), destroyed at exit by `0x008AB790` |
 | `0x02CC03B0` | the pool of `0x40`-byte name buffers for those records: built by `0x001623D0` (256, alignment 1), filled, reset and destroyed in the same way (`0x008AB7B0` at exit) |
+
+The frame-marker table keeps four words of its own beside the timestamp-disjoint query `0x01F81838` and the query rings
+`0x01F81880` (128 queries per ring, `0x400` bytes apart). They are 0 at load (the zero-filled tail of `.data`). The
+context `0x01F81840` is called through its slots `0xD8`, `0xE0` and `0xE8` (Begin, End and GetData of a Direct3D 11
+device context).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F81830` | `f32` | 0 | the timestamp frequency in ticks per second: `0x001D6040` ends the disjoint query, polls GetData until it answers and stores the frequency it returns as a float (`0x001D60E3`-`0x001D614C`); both this and the Begin in `0x001D6170` run only while the frequency's magnitude is below `1e-6` (`0x001D60BC`-`0x001D60E1`, `0x001D620A`-`0x001D622F`), so it is measured once | `0x001D6040` (`0x001D614C`) | `0x001D6040` (`0x001D60BC`); `0x001D6170` (`0x001D620A`); `0x001D5650`, the divisor of each tick difference (`0x001D5786`, `0x001D5885`) |
+| `0x01F81834` | `i32` | 0 | the ring that takes this frame's timestamps, 0 to 4: `0x001D5650` advances it to `(ring + 1) mod 5`, a signed division by 5 (`0x001D58A7`-`0x001D58D4`) | `0x001D5970`, 0 (`0x001D5A77`); `0x001D5650` (`0x001D58D4`) | `0x001D5650` (`0x001D565B`, `0x001D58A7`); `0x001D6250` (`0x001D6264`, `0x001D629B`), which ends the next query of this ring and marks the ring written in the dword at `0x01F81850` + 4 × ring |
+| `0x01F81840` | `void*` | 0 | the device context the queries run on: the pointer at `+0x110` of the object `0x00624670` returns (`0x001D5A13`-`0x001D5A1F`) | `0x001D5970` (`0x001D5A1F`) | `0x001D5650` (`0x001D572D`, `0x001D57C7`, `0x001D5822`); `0x001D6040` (`0x001D60E3`, `0x001D6100`); `0x001D6170` (`0x001D6231`); `0x001D6250` (`0x001D628B`) |
+| `0x01F81848` | `i32` | 0 | the ring read back this frame, `(0x01F81834 + 1) mod 5`: `0x001D5650` reads that ring only when its written dword at `0x01F81850` is 1 (`0x001D5698`) and gets each query with GetData (`0x001D5720`-`0x001D5751`) | `0x001D5650` (`0x001D5691`) | `0x001D5650` (`0x001D5720`, `0x001D577D`, `0x001D5815`) |
 
 ## Modding notes
 

@@ -320,10 +320,10 @@ and the scene-reset byte runs `0x001C7290` (when `0x01F81288` differs from `0x01
 |---|---|---|---|
 | `+0x000-0x18F` | `console-tunable` | floats, | one shader constant each (graphics-settings.tsv) |
 | `+0x190-0x38F` | `8` | x | 64-byte shadow-map matrices (`0x001F0AD0`, per frame) |
-| `+0x390-0x434` | `shadow` | scalars | (`0x001F0AD0`, per frame); +`0x3E4` the live slot count |
-| `+0x42C` | `u8` | mMapEnableShadowFade; | +`0x438`..+`0x444` mMapShadowFadeSpeed, FadeRange, FlyingFadeSpeed, FlyingFadeRange |
-| `+0x450-0x470` | `copied` | field | by field into the snapshot; +`0x460` the last slot's far plane (`0x001EF6D0`, per frame) +`0x478`/+`0x480`   constant-buffer binding list (`0x18`-byte entries, kind byte at +2, 23 kinds); +`0x488` stride |
-| `+0x498` | `ring` | length; | +`0x4B0` lock; +`0x4D8` slot index +`0x4E0`, +`0xA78`  two `0x598`-byte snapshot slots; block image at slot +`0x110` (= +`0x5F0`, +`0xB88`) |
+| `+0x390-0x434` | `shadow` | scalars | (`0x001F0AD0`, per frame); `+0x3E4` the live slot count |
+| `+0x42C` | `u8` | mMapEnableShadowFade; | `+0x438`..+`0x444` mMapShadowFadeSpeed, FadeRange, FlyingFadeSpeed, FlyingFadeRange |
+| `+0x450-0x470` | `copied` | field | by field into the snapshot; `+0x460` the last slot's far plane (`0x001EF6D0`, per frame) `+0x478`/`+0x480`   constant-buffer binding list (`0x18`-byte entries, kind byte at +2, 23 kinds); `+0x488` stride |
+| `+0x498` | `ring` | length; | `+0x4B0` lock; `+0x4D8` slot index `+0x4E0`, `+0xA78`  two `0x598`-byte snapshot slots; block image at slot `+0x110` (= `+0x5F0`, `+0xB88`) |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|

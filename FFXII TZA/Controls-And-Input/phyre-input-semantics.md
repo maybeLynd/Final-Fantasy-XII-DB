@@ -233,17 +233,17 @@ codes 1-3.
 | `+0x10` | `void*` | m_typeSemantic | one of the 25 type objects; compared by `0x0079DA10` |
 | `+0x18` | `u32` | m_id | the device index: keyboard below 7, pad below 18 (`0x0079DA7D`, `0x0079DCE0`); m_id (u32), registered by `0x0086DA70` (`0x00632960` at `0x0086DB71`); no shipped .phyre file declares PInputSource |
 | `+0x1C` | `u8` | m_invert | 1 makes the sign -1.0 (`0x0079DA1D`); m_invert (u8), registered by `0x0086DA70` (`0x00632960` at `0x0086DBE0`); no shipped .phyre file declares PInputSource |
-| `+0x1D` | `u8[3]` | pad1D | alignment bytes after m_invert (u8 at +`0x1C`) up to m_scale (f32 at +`0x20`); no registered member covers it (`0x0086B410` registers the `0x28`-byte class at `0x0086B460`) |
+| `+0x1D` | `u8[3]` | pad1D | alignment bytes after m_invert (u8 at `+0x1C`) up to m_scale (f32 at `+0x20`); no registered member covers it (`0x0086B410` registers the `0x28`-byte class at `0x0086B460`) |
 | `+0x20` | `f32` | m_scale | multiplies the result (`0x0079E291`); 1.0 from the constructor; m_scale (f32), registered by `0x0086DA70` (`0x00632960` at `0x0086DC4F`); no shipped .phyre file declares PInputSource |
-| `+0x24` | `u8[4]` | pad24 | the bytes after m_scale (+`0x20`) up to the end of the `0x28`-byte base class, where the derived sources' own fields start; no registered member covers it (`0x0086B410` registers the `0x28`-byte class at `0x0086B460`) |
+| `+0x24` | `u8[4]` | pad24 | the bytes after m_scale (`+0x20`) up to the end of the `0x28`-byte base class, where the derived sources' own fields start; no registered member covers it (`0x0086B410` registers the `0x28`-byte class at `0x0086B460`) |
 
 `PInputSourceJoypadButton` (`0x40` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[40]` | base | the PInputSource fields |
-| `+0x28` | `u32` | positiveCode | code of +`0x30`, written by `0x00873FE0` |
-| `+0x2C` | `u32` | negativeCode | code of +`0x38`, written by `0x00873FE0` |
+| `+0x28` | `u32` | positiveCode | code of `+0x30`, written by `0x00873FE0` |
+| `+0x2C` | `u32` | negativeCode | code of `+0x38`, written by `0x00873FE0` |
 | `+0x30` | `void*` | m_positiveButtonSemantic | a pad-button object |
 | `+0x38` | `void*` | m_negativeButtonSemantic | a pad-button object |
 
@@ -252,8 +252,8 @@ codes 1-3.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[40]` | base | the PInputSource fields |
-| `+0x28` | `u32` | positiveCode | code of +`0x30`, written by `0x00874080` |
-| `+0x2C` | `u32` | negativeCode | code of +`0x38`, written by `0x00874080` |
+| `+0x28` | `u32` | positiveCode | code of `+0x30`, written by `0x00874080` |
+| `+0x2C` | `u32` | negativeCode | code of `+0x38`, written by `0x00874080` |
 | `+0x30` | `void*` | m_positiveKeySemantic | a key object |
 | `+0x38` | `void*` | m_negativeKeySemantic | a key object |
 
@@ -262,8 +262,8 @@ codes 1-3.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[40]` | base | the PInputSource fields; the X and Y classes share this layout |
-| `+0x28` | `u32` | modifierButtonCode | code of +`0x30`, written by `0x00874170` |
-| `+0x2C` | `u32` | modifierKeyCode | code of +`0x38`, written by `0x00874170` |
+| `+0x28` | `u32` | modifierButtonCode | code of `+0x30`, written by `0x00874170` |
+| `+0x2C` | `u32` | modifierKeyCode | code of `+0x38`, written by `0x00874170` |
 | `+0x30` | `void*` | m_modifierButtonSemantic | a mouse-button object |
 | `+0x38` | `void*` | m_modifierKeySemantic | a key object |
 
@@ -272,8 +272,8 @@ codes 1-3.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[40]` | base | the PInputSource fields |
-| `+0x28` | `u32` | axisCode | code of +`0x30`, written by `0x00873FB0` and the constructor `0x00869E20` |
-| `+0x2C` | `u8[4]` | pad2C | alignment bytes between axisCode (u32 at +`0x28`) and m_joypadAxisSemantic (pointer at +`0x30`); no registered member covers it (`0x0086B4C0` registers the `0x38`-byte class at `0x0086B50A`) |
+| `+0x28` | `u32` | axisCode | code of `+0x30`, written by `0x00873FB0` and the constructor `0x00869E20` |
+| `+0x2C` | `u8[4]` | pad2C | alignment bytes between axisCode (u32 at `+0x28`) and m_joypadAxisSemantic (pointer at `+0x30`); no registered member covers it (`0x0086B4C0` registers the `0x38`-byte class at `0x0086B50A`) |
 | `+0x30` | `void*` | m_joypadAxisSemantic | an axis object |
 
 `PInputSourceMouseButton` (`0x38` bytes, offsets from the start of the record):
@@ -281,8 +281,8 @@ codes 1-3.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[40]` | base | the PInputSource fields |
-| `+0x28` | `u32` | buttonCode | code of +`0x30`, written by `0x00874120` and the constructor `0x0086C520` |
-| `+0x2C` | `u8[4]` | pad2C | alignment bytes between buttonCode (u32 at +`0x28`) and m_mouseButtonSemantic (pointer at +`0x30`); no registered member covers it (`0x0086BCE0` registers the `0x38`-byte class at `0x0086BD2A`) |
+| `+0x28` | `u32` | buttonCode | code of `+0x30`, written by `0x00874120` and the constructor `0x0086C520` |
+| `+0x2C` | `u8[4]` | pad2C | alignment bytes between buttonCode (u32 at `+0x28`) and m_mouseButtonSemantic (pointer at `+0x30`); no registered member covers it (`0x0086BCE0` registers the `0x38`-byte class at `0x0086BD2A`) |
 | `+0x30` | `void*` | m_mouseButtonSemantic | a mouse-button object |
 
 `PInputAction` (`0x28` bytes, offsets from the start of the record):
@@ -291,22 +291,22 @@ codes 1-3.
 |---|---|---|---|
 | `+0x08` | `void*` | m_name | the action name, compared by `0x00873C70` (read through `0x00873C40`); m_name (ptr), registered by `0x0086D670` (`0x00632960` at `0x0086D705`); no shipped .phyre file declares PInputAction; the destructor `0x0086C830` frees it when it owns the text (bit 0 clear; `0x0086C8E4`) |
 | `+0x10` | `u32` | sourceCount | m_inputSources count; bit 31 is masked off (`0x0079E2E4`) |
-| `+0x14` | `u8[4]` | pad14 | the four bytes between the source count at +`0x10` and the source pointer at +`0x18`, the array header the destructor `0x0086C830` clears (`0x0086C8BB`, `0x0086C8BF`); no registered member covers it (`0x0086B2B0` registers the `0x28`-byte class at `0x0086B300`) |
+| `+0x14` | `u8[4]` | pad14 | the four bytes between the source count at `+0x10` and the source pointer at `+0x18`, the array header the destructor `0x0086C830` clears (`0x0086C8BB`, `0x0086C8BF`); no registered member covers it (`0x0086B2B0` registers the `0x28`-byte class at `0x0086B300`) |
 | `+0x18` | `void*` | sources | m_inputSources, the source pointers `0x0079E2C0` walks |
 
 `PInputMapper` (`0x2C8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x014` | `u8[4]` | bytes14 | the four bytes after the dword the constructor `0x00792DD0` clears at +`0x10` (`0x00792EFF`), before the qword it clears at +`0x18` (`0x00792DE6`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
-| `+0x028` | `u8[8]` | bytes28 | the eight bytes between the qword the constructor `0x00792DD0` clears at +`0x20` (`0x00792DEA`) and the one it clears at +`0x30` (`0x00792DEE`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
-| `+0x2BC` | `u8[4]` | bytes2BC | the four bytes between the dword the constructor `0x00792DD0` sets to `0x17` at +`0x2B8` (`0x00792E1F`) and the qword it clears at +`0x2C0` (`0x00792E30`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
+| `+0x014` | `u8[4]` | bytes14 | the four bytes after the dword the constructor `0x00792DD0` clears at `+0x10` (`0x00792EFF`), before the qword it clears at `+0x18` (`0x00792DE6`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
+| `+0x028` | `u8[8]` | bytes28 | the eight bytes between the qword the constructor `0x00792DD0` clears at `+0x20` (`0x00792DEA`) and the one it clears at `+0x30` (`0x00792DEE`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
+| `+0x2BC` | `u8[4]` | bytes2BC | the four bytes between the dword the constructor `0x00792DD0` sets to `0x17` at `+0x2B8` (`0x00792E1F`) and the qword it clears at `+0x2C0` (`0x00792E30`); no registered member covers it (`0x00791CD0` registers the `0x2C8`-byte class at `0x00791D20`) |
 
 `PMeshInstanceSegmentContext` (`0x48` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x2C` | `u8[4]` | pad2C | the four bytes between the dword the placement constructor `0x005CF520` sets to -1 at +`0x28` (`0x005CF53B`) and the qword it clears at +`0x30` (`0x005CF542`); no registered member covers it (`0x005D9890` registers the `0x48`-byte class at `0x005D98DA`) |
+| `+0x2C` | `u8[4]` | pad2C | the four bytes between the dword the placement constructor `0x005CF520` sets to -1 at `+0x28` (`0x005CF53B`) and the qword it clears at `+0x30` (`0x005CF542`); no registered member covers it (`0x005D9890` registers the `0x48`-byte class at `0x005D98DA`) |
 
 ### Registry globals
 

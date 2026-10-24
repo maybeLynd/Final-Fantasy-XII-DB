@@ -33,7 +33,7 @@ All multi-byte fields are little-endian.
 | `+0x04` | `u32` | length | bytes of image; the section's slot may be padded beyond it |
 | `+0x08` | `u32` | authorOff | -> NUL-terminated author name |
 | `+0x0C` | `u32` | sourceOff | -> NUL-terminated source file name, "&lt;script&gt;.src" |
-| `+0x10` | `u32` | stampOff | -> NUL-terminated build stamp "MM/DD HH:MM", at +`0x90` |
+| `+0x10` | `u32` | stampOff | -> NUL-terminated build stamp "MM/DD HH:MM", at `+0x90` |
 | `+0x14` | `i32` | typeCounts | -> u16 8, then u16 count[8]: directory entries per actor type |
 | `+0x18` | `i32` | directory | -> u32 count, then `0x30`-byte actor entries sorted by type |
 | `+0x1C` | `u32` | zero | 0 |
@@ -48,7 +48,7 @@ All multi-byte fields are little-endian.
 | `+0x40` | `u32` | mspOff | the msp area (class 3, packed references with tag 3) |
 | `+0x44` | `u32` | localSize | size of the local variable storage, 0 in the file |
 | `+0x48` | `u32` | localOff | the local variable storage |
-| `+0x4C` | `u32` | namePool | NUL-terminated names: +`0x48` + +`0x44` rounded up to 16 |
+| `+0x4C` | `u32` | namePool | NUL-terminated names: `+0x48` + `+0x44` rounded up to 16 |
 | `+0x50` | `i16` | startActor | actor ordinal `0x00266C50` starts, -1 for none |
 | `+0x52` | `i16` | entryDefault | entry-point index used for -1 or any negative request |
 | `+0x54` | `u32` | entryPointsA | -> u32 count, 32-byte records (`0x00264B90` kind 0) |
@@ -75,10 +75,10 @@ All multi-byte fields are little-endian.
 | `+0x00` | `u32` | nameOff | into the name pool: the actor's name |
 | `+0x04` | `u16` | type | actor type 0..7 |
 | `+0x06` | `u16` | partySlot | `0xFF`, or `0x80`..0x83 for a party member's script |
-| `+0x08` | `u32` | codeStart | bytecode base -> actor record +`0x58` |
+| `+0x08` | `u32` | codeStart | bytecode base -> actor record `+0x58` |
 | `+0x0C` | `u32` | word0C | never more than the bytes to the next entry's code |
-| `+0x10` | `u32` | functions | -> u32 count, {u32 nameOff, u32 codeOff}[count] -> record +`0x48` |
-| `+0x14` | `u32` | jumps | -> u32 count, u32 codeOff[count] -> record +`0x50` |
+| `+0x10` | `u32` | functions | -> u32 count, {u32 nameOff, u32 codeOff}[count] -> record `+0x48` |
+| `+0x14` | `u32` | jumps | -> u32 count, u32 codeOff[count] -> record `+0x50` |
 | `+0x18` | `u32` | slotFooter | -> s16 18, s16 function[18], one per entry slot |
 | `+0x1C` | `u32` | localOff | this actor's slice of the local storage |
 | `+0x20` | `u8[16]` | rest of the entry |  |

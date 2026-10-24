@@ -379,7 +379,7 @@ also copies the view matrix at `0x02AEDEF0`, `0x003A56F0`, and the actor service
 
 ## Layouts
 
-Rig (resource entry +`0x94`):
+Rig (resource entry `+0x94`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -392,7 +392,7 @@ Rig (resource entry +`0x94`):
 | `+0x70` | `u32[2]` | linkedRec | encoded record pointers |
 | `+0x78` | `u32[2]` | linkedBones encoded bone arrays |  |
 
-Staged look command (render record +`0x580`):
+Staged look command (render record `+0x580`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -460,6 +460,65 @@ executable image.
 - `0x02B59D64`: suppresses the physics applies.
 - `0x02B59D68`: set during status-display denial; suppresses the status-motion applies.
 - `0x022C6F28 + 0x48800`: the head of the active-record list both per-record phases walk.
+
+### The motion tables' counts and scales
+
+The Float bob, nod and head shake tables hold one entry per frame at 30 fps. Their counts and per-pattern scales are
+image values that only the 60 fps stretch, `0x0033F020` through `0x004718F0`, `0x00472580` and `0x00473210`, writes: each
+count is doubled in place and each scale halved, and the nod and head shake counts are also copied, as their low
+byte, into the byte tables their updates read. Every compare below is unsigned.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F223A0` | `u32` | 60 | the Float cycle `0x01F223B0`'s entry count: the phase `+1` wraps to 0 when it is not below it (`0x00471755`-`0x0047175F`) | `0x004718F0` (`0x00471912`) | `0x004718F0` (`0x004718F4`); `0x004716A0` (`0x00471755`) |
+| `0x01F223A4` | `u32` | 28 | the rise curve `0x01F22590`'s count, also the count `0x01F22760` is stretched to: while active, the counter `+2` stops at count − 1 (`0x0047178E`-`0x0047179A`) | `0x004718F0` (`0x00471918`) | `0x004718F0` (`0x0047190A`, `0x00471931`, `0x00471961`); `0x004716A0` (`0x0047178E`) |
+| `0x01F223A8` | `u32` | 30 | the settle curve `0x01F22670`'s count, also the count `0x01F227A0` is stretched to: while inactive, the running byte `+3` clears when `+2` reaches it (`0x0047171B`-`0x00471723`); the set-up `0x00471660` (from `0x003E3D70`) starts `+2` at its low byte − 1 (`0x00471684`-`0x0047168D`) | `0x004718F0` (`0x00471926`) | `0x004718F0` (`0x0047191E`, `0x00471949`, `0x00471979`); `0x004716A0` (`0x0047171B`); `0x00471660` (`0x00471684`, a byte load) |
+
+The nod keeps eight patterns: the count of pattern *p* is the `u32` at `0x01F227E0` + 4*p*, the length of its two
+three-channel signed-byte curves from `0x01F22800` (`0x00472660`-`0x00472800`), and its byte copy at `0x01F240F0` + *p* is
+what the pattern pick `0x004723E0` stores at the controller's `+0x1C` (`0x0047250D`-`0x0047251D`). The scale of curve *n*
+of pattern *p* is the `f32` entry 2*p* + *n* from `0x01F23FF0`, which `0x00471B60` multiplies into each sample
+(`0x00471CBA`, `0x00471CFC`, `0x00471D38`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F227E4` | `u32` | 60 | nod pattern 1's count | `0x00472580` (`0x004725CD`) | `0x00472580` (`0x004725A0`, `0x004726B0`, `0x004726C8`) |
+| `0x01F227E8` | `u32` | 90 | nod pattern 2's count | `0x00472580` (`0x004725E5`) | `0x00472580` (`0x004725C4`, `0x004726E0`, `0x004726F8`) |
+| `0x01F227EC` | `u32` | 60 | nod pattern 3's count | `0x00472580` (`0x00472607`) | `0x00472580` (`0x004725DF`, `0x00472710`, `0x00472728`) |
+| `0x01F227F0` | `u32` | 60 | nod pattern 4's count | `0x00472580` (`0x00472637`) | `0x00472580` (`0x00472601`, `0x00472740`, `0x00472758`) |
+| `0x01F227F4` | `u32` | 60 | nod pattern 5's count | `0x00472580` (`0x00472654`) | `0x00472580` (`0x00472627`, `0x00472770`, `0x00472788`) |
+| `0x01F227F8` | `u32` | 60 | nod pattern 6's count | `0x00472580` (`0x00472674`) | `0x00472580` (`0x00472648`, `0x004727A0`, `0x004727B8`) |
+| `0x01F227FC` | `u32` | 60 | nod pattern 7's count | `0x00472580` (`0x00472687`) | `0x00472580` (`0x0047266C`, `0x004727D0`, `0x004727E8`) |
+| `0x01F240F1` | `u8` | 60 | nod pattern 1's frame count | `0x00472580` (`0x004725D4`) | `0x004723E0` (`0x00472510`) |
+| `0x01F240F2` | `u8` | 90 | nod pattern 2's frame count | `0x00472580` (`0x0047260E`) | `0x004723E0` (`0x00472510`) |
+| `0x01F240F3` | `u8` | 60 | nod pattern 3's frame count | `0x00472580` (`0x00472615`) | `0x004723E0` (`0x00472510`) |
+| `0x01F240F4` | `u8` | 60 | nod pattern 4's frame count | `0x00472580` (`0x00472641`) | `0x004723E0` (`0x00472510`) |
+| `0x01F240F5` | `u8` | 60 | nod pattern 5's frame count | `0x00472580` (`0x0047265A`) | `0x004723E0` (`0x00472510`) |
+| `0x01F240F6` | `u8` | 60 | nod pattern 6's frame count | `0x00472580` (`0x0047267A`) | `0x004723E0` (`0x00472510`) |
+| `0x01F240F7` | `u8` | 60 | nod pattern 7's frame count | `0x00472580` (`0x0047268D`) | `0x004723E0` (`0x00472510`) |
+| `0x01F24000` | `f32` | 6.06e-05 | the scale of pattern 2's curve 0; the 16-byte store also covers pattern 2's curve 1 and pattern 3's two (`0x01F24004`-`0x01F2400F`) | `0x00472580` (`0x004725EC`) | `0x00472580` (`0x004725B9`); `0x00471B60` (`0x00471CBA`, `0x00471CFC`, `0x00471D38`) |
+| `0x01F24010` | `f32` | 1.95e-04 | pattern 4's curve 0; the store covers patterns 4 and 5 | `0x00472580` (`0x00472620`) | `0x00472580` (`0x004725F3`); `0x00471B60` (`0x00471CBA`, `0x00471CFC`, `0x00471D38`) |
+| `0x01F24020` | `f32` | 7.44e-05 | pattern 6's curve 0; the store covers patterns 6 and 7 | `0x00472580` (`0x00472662`) | `0x00472580` (`0x0047262D`); `0x00471B60` (`0x00471CBA`, `0x00471CFC`, `0x00471D38`) |
+
+The head shake keeps five patterns: the count of pattern *p* is the `u32` at `0x01F24100` + 4*p*, the length of its
+three curves (`0x00473308`-`0x00473445`), and its byte copy at `0x01F264A8` + *p* is the frame count `0x00472970` takes when
+it starts the pattern (`0x00472A34`). The scale of bone *n* of pattern *p* is the `f32` entry 3*p* + *n* from `0x01F24118`
+(`0x00472A3D`-`0x00472A48`), multiplied into each channel (`0x00472B22`, `0x00472B5B`, `0x00472B94`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F24104` | `u32` | 100 | head shake pattern 1's count | `0x00473210` (`0x00473267`) | `0x00473210` (`0x00473237`, `0x0047333D`, `0x00473355`, `0x0047336D`) |
+| `0x01F24108` | `u32` | 100 | pattern 2's count | `0x00473210` (`0x00473287`) | `0x00473210` (`0x0047325A`, `0x00473385`, `0x0047339D`, `0x004733B5`) |
+| `0x01F2410C` | `u32` | 100 | pattern 3's count | `0x00473210` (`0x004732B7`) | `0x00473210` (`0x00473281`, `0x004733CD`, `0x004733E5`, `0x004733FD`) |
+| `0x01F24110` | `u32` | 100 | pattern 4's count | `0x00473210` (`0x004732CD`) | `0x00473210` (`0x004732A8`, `0x00473415`, `0x0047342D`, `0x00473445`) |
+| `0x01F264A9` | `u8` | 100 | pattern 1's frame count | `0x00473210` (`0x0047326E`) | `0x00472970` (`0x00472A34`) |
+| `0x01F264AA` | `u8` | 100 | pattern 2's frame count | `0x00473210` (`0x0047328D`) | `0x00472970` (`0x00472A34`) |
+| `0x01F264AB` | `u8` | 100 | pattern 3's frame count | `0x00473210` (`0x004732BD`) | `0x00472970` (`0x00472A34`) |
+| `0x01F24128` | `f32` | 1.94e-04 | the scale of pattern 1's bone 1; the 16-byte store also covers pattern 1's bone 2 and pattern 2's bones 0 and 1 (`0x01F2412C`-`0x01F24137`) | `0x00473210` (`0x0047329E`) | `0x00473210` (`0x00473260`); `0x00472970` (`0x00472B22`, `0x00472B5B`, `0x00472B94`) |
+| `0x01F24138` | `f32` | 2.88e-04 | pattern 2's bone 2; the store also covers pattern 3's three bones (`0x01F2413C`-`0x01F24147`) | `0x00473210` (`0x004732D9`) | `0x00473210` (`0x004732AE`); `0x00472970` (`0x00472B22`, `0x00472B5B`, `0x00472B94`) |
+| `0x01F24148` | `f32` | 1.18e-04 | pattern 4's bone 0 | `0x00473210` (`0x004732EC`) | `0x00473210` (`0x004732E0`); `0x00472970` (`0x00472B22`, `0x00472B5B`, `0x00472B94`) |
+| `0x01F2414C` | `f32` | 1.94e-04 | pattern 4's bone 1 | `0x00473210` (`0x00473296`) | `0x00473210` (`0x00473228`); `0x00472970` (`0x00472B22`, `0x00472B5B`, `0x00472B94`) |
+| `0x01F24150` | `f32` | 2.88e-04 | pattern 4's bone 2 | `0x00473210` (`0x00473300`) | `0x00473210` (`0x004732F4`); `0x00472970` (`0x00472B22`, `0x00472B5B`, `0x00472B94`) |
 
 ## Modding notes
 

@@ -27,29 +27,67 @@ the table at `[0x02099D88]`.
 
 All multi-byte fields are little-endian.
 
-```python
-FF12AR03 header (0x30 bytes, offsets from the start of the file)
-+0x00  char[8]  'FF12AR03'       never read
-+0x08  u32      0
-+0x0C  u32      trailer offset   0 = no trailer
-+0x10  u32[8]   section directory, slot k at +0x10 + 4k, 0 = absent
-               slot 0 st2e, 84-byte class rows          -> 0x02EBF150
-               slot 1 order-set directory               -> 0x02EBF168
-               slot 2 st2e, 88-byte enemy definitions   -> 0x02EBF120
-               slot 3, slot 4 never read
-               slot 5 st2e, 56-byte base stat rows      -> 0x02EBF148
-               slot 6 st2e, 56-byte growth stat rows    -> 0x02EBF140
-               slot 7 motion-file overrides             -> 0x02B58178
+FF12AR03 header (`0x30` bytes, offsets from the start of the file):
 
-slot 1         +0x00 u16 count, +0x02 u16 100 (in all 166 area files), +0x04 count + 1 u32 offsets
-               from the section (the last is the end)
-slot 7         +0x00 u32 count, +0x04 12 bytes, then count records of 0x10:
-               +0x00 u32 bound model id, +0x04 u16 weapon class, +0x06 u16 motion, +0x08 u16 file index
-trailer        +0x00 u32 count, then count records {u32 bound model id, u32 lane mask}
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `char[8]` | 'FF12AR03' | never read |
+| `+0x08` | `u32` | dword08 | 0 |
+| `+0x0C` | `u32` | trailer offset | 0 = no trailer |
+| `+0x10` | `u32[8]` | section directory | slot k at `+0x10` + 4k, 0 = absent |
+| `+0x10` | `u32` | slot 0 | st2e, 84-byte class rows -> `0x02EBF150` |
+| `+0x14` | `u32` | slot 1 | order-set directory -> `0x02EBF168` |
+| `+0x18` | `u32` | slot 2 | st2e, 88-byte enemy definitions -> `0x02EBF120` |
+| `+0x1C` | `u32` | slot 3 | never read |
+| `+0x20` | `u32` | slot 4 | never read |
+| `+0x24` | `u32` | slot 5 | st2e, 56-byte base stat rows -> `0x02EBF148` |
+| `+0x28` | `u32` | slot 6 | st2e, 56-byte growth stat rows -> `0x02EBF140` |
+| `+0x2C` | `u32` | slot 7 | motion-file overrides -> `0x02B58178` |
 
-.nmb           +0x00 u16 count, +0x02 u16 100, +0x04 u32 offsets[count + 1] from the file start
-               (the last is the file size), then the entries
-```
+Slot 1:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | count |  |
+| `+0x02` | `u16` | word02 | 100 (in all 166 area files) |
+| `+0x04` | `...` | offsets | count + 1 u32 offsets from the section (the last is the end) |
+
+Slot 7, then count records of `0x10`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | count |  |
+| `+0x04` | `u8[12]` | bytes04 | 12 bytes |
+
+Slot 7 record (`0x10`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | bound model id |  |
+| `+0x04` | `u16` | weapon class |  |
+| `+0x06` | `u16` | motion |  |
+| `+0x08` | `u16` | file index |  |
+
+Trailer, then count records:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | count |  |
+
+Trailer record:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | bound model id |  |
+| `+0x04` | `u32` | lane mask |  |
+
+.nmb:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | count |  |
+| `+0x02` | `u16` | version | 100 |
+| `+0x04` | `...` | offsets | u32 offsets[count + 1] from the file start (the last is the file size), then the entries |
 
 The `st2e` tables use the shared table header ([authored data tables](authored-data-tables.md)).
 The fields of the enemy definitions and class rows are on

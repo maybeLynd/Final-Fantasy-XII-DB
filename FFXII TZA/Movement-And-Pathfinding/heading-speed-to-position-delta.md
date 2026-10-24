@@ -206,20 +206,20 @@ WorldActor (actor record):
 | `+0xB8` | `void*` | movementContext |  |
 | `+0xC0` | `void*` | controller (secondary context) |  |
 
-Movement context (actor +`0xB8`):
+Movement context (actor `+0xB8`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `f32[3]` | position |  |
-| `+0x040` | `f32[3]` | offset | added on the three-dimensional path when +`0x107` bit 1 (subtracted after the flat solve) |
-| `+0x0A0` | `f32` | pitch | +`0xA4` f32 yaw              +`0xA8` f32 facing (facing page) |
+| `+0x040` | `f32[3]` | offset | added on the three-dimensional path when `+0x107` bit 1 (subtracted after the flat solve) |
+| `+0x0A0` | `f32` | pitch | `+0xA4` f32 yaw              `+0xA8` f32 facing (facing page) |
 | `+0x0B8` | `f32` | last squared displacement |  |
 | `+0x0D0` | `f32` | requested speed |  |
 | `+0x0F0` | `void*` | steering request: +0x24 f32 speed, +0x28 u8 kind, +0x29 u8 mode |  |
 | `+0x0F8` | `f32` | pass-through magnitude; negative = unset, repaired to the speed |  |
 | `+0x107` | `u8` | bit 1 apply the +0x40 offset |  |
 
-Controller (actor +`0xC0`):
+Controller (actor `+0xC0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -228,7 +228,7 @@ Controller (actor +`0xC0`):
 | `+0x14F` | `u8` | bit 0 refuses movement |  |
 | `+0x151` | `u8` | bit 0 or bit 1 = three-dimensional motion |  |
 
-Movement body (controller +`0x138`):
+Movement body (controller `+0x138`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -240,8 +240,8 @@ Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i16` | id, -1 empty | +`0x006` i16  -1 required for the save/latch block |
-| `+0x0CC` | `u16` | state & 0xFFF | +`0x284` u32  bit 27 gates the save/latch block; non-zero gates the publish |
+| `+0x000` | `i16` | id, -1 empty | `+0x006` i16  -1 required for the save/latch block |
+| `+0x0CC` | `u16` | state & 0xFFF | `+0x284` u32  bit 27 gates the save/latch block; non-zero gates the publish |
 | `+0x240` | `f32[3]` | pitch, | yaw, 0.0 from `0x002E5C10` |
 | `+0x457` | `i8` | frame counter, against [0x01DFE0B4] * 30 |  |
 | `+0x610` | `f32 yaw, +0x614 f32 speed, +0x618 f32 accumulator, +0x61C u16 flags` | the incoming group |  |

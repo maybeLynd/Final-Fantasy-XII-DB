@@ -29,7 +29,7 @@ The motion entries are read when a presentation entry is set up to play a motion
 |---|---|---|---|
 | `+0x00` | `'@FEF',` | u32 | kind 0, u32 length, u32 1 |
 | `+0x10` | `char[32]` | the container's name |  |
-| `+0x30` | `a` | complete | EFX0010 effect file: u32 +`0x08` = 1.0f, u32 +`0x0C` = entry length - `0x30` |
+| `+0x30` | `a` | complete | EFX0010 effect file: u32 `+0x08` = 1.0f, u32 `+0x0C` = entry length - `0x30` |
 
 ### @FMC, the command block
 
@@ -86,7 +86,7 @@ literals add to the previous key's frame.
 |---|---|---|---|
 | `+0x0C` | `u32` | 1 |  |
 | `+0x10` | `char[32]` | the .ca file's name |  |
-| `+0x30` | `payload:` | byte | +`0x01` to `0x003E18D0`, byte +`0x02` low six bits to skeleton +`0xA4`, u32 +`0x08` offset of a second region, from the payload (0 = none) |
+| `+0x30` | `payload:` | byte | `+0x01` to `0x003E18D0`, byte `+0x02` low six bits to skeleton `+0xA4`, u32 `+0x08` offset of a second region, from the payload (0 = none) |
 
 ### The version-1 .ca slot table
 

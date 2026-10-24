@@ -117,13 +117,13 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x20` | `void*` | m_entryPoint | m_entryPoint (ptr), registered by `0x006CD000` (`0x00632960` at `0x006CD0FF`); no shipped .phyre file declares PScriptableComponent |
-| `+0x30` | `u8[16]` | bytes30 | +`0x30` to +`0x3F`; no registered member covers it (`0x006CCF50` registers the `0x40`-byte class at `0x006CCF9A`) |
+| `+0x30` | `u8[16]` | bytes30 | `+0x30` to `+0x3F`; no registered member covers it (`0x006CCF50` registers the `0x40`-byte class at `0x006CCF9A`) |
 
 `PTriggerReceiverComponent` (`0x58` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x24` | `u8[4]` | bytes24 | the four bytes after the dword the constructor `0x006CDF00` clears at +`0x20` (`0x006CDF36`), before m_entryHandler at +`0x28`; no registered member covers it (`0x006CDFF0` registers the `0x58`-byte class at `0x006CE03A`) |
+| `+0x24` | `u8[4]` | bytes24 | the four bytes after the dword the constructor `0x006CDF00` clears at `+0x20` (`0x006CDF36`), before m_entryHandler at `+0x28`; no registered member covers it (`0x006CDFF0` registers the `0x58`-byte class at `0x006CE03A`) |
 
 ### Entities and components
 

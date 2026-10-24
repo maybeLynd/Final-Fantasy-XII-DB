@@ -162,7 +162,7 @@ Map container, as `0x001A3380` uses it:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `node` | anchor | its +`0x00` rightmost, +`0x08` leftmost, +`0x10` root |
+| `+0x08` | `node` | anchor | its `+0x00` rightmost, `+0x08` leftmost, `+0x10` root |
 | `+0x28` | `u32` | count |  |
 | `+0x30` | `void*` | allocator | the allocator object itself |
 

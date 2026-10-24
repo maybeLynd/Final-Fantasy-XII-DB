@@ -292,27 +292,27 @@ Render context (`0x005FD050`), fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `u32` | DepthFunc | compare function (context +`0x9F4`) |
-| `+0x0C` | `u32` | StencilEnable | (context +`0x9F8`) |
-| `+0x14` | `u32[4]` | FrontFace | fail, depth-fail and pass operations, function (context +`0xA00`) |
-| `+0x24` | `u32[4]` | BackFace | the same for back faces (context +`0xA10`) |
+| `+0x08` | `u32` | DepthFunc | compare function (context `+0x9F4`) |
+| `+0x0C` | `u32` | StencilEnable | (context `+0x9F8`) |
+| `+0x14` | `u32[4]` | FrontFace | fail, depth-fail and pass operations, function (context `+0xA00`) |
+| `+0x24` | `u32[4]` | BackFace | the same for back faces (context `+0xA10`) |
 
 `D3D11_BLEND_DESC` (`0x108` bytes, offsets from the start of the context+0xA20):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `u32` | BlendEnable | render target 0 (context +`0xA28`) |
-| `+0x0C` | `u32` | SrcBlend | (context +`0xA2C`) |
-| `+0x10` | `u32` | DestBlend | (context +`0xA30`) |
-| `+0x18` | `u32` | SrcBlendAlpha | (context +`0xA38`) |
-| `+0x1C` | `u32` | DestBlendAlpha | (context +`0xA3C`) |
+| `+0x08` | `u32` | BlendEnable | render target 0 (context `+0xA28`) |
+| `+0x0C` | `u32` | SrcBlend | (context `+0xA2C`) |
+| `+0x10` | `u32` | DestBlend | (context `+0xA30`) |
+| `+0x18` | `u32` | SrcBlendAlpha | (context `+0xA38`) |
+| `+0x1C` | `u32` | DestBlendAlpha | (context `+0xA3C`) |
 
 Index data block, fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x0C` | `u8` | index type: 8 = 32-bit |  |
-| `+0x18` | `PSharray` | of | `0x48`-byte buffer records; +`0x00` of a record is the ID3D11Buffer |
+| `+0x18` | `PSharray` | of | `0x48`-byte buffer records; `+0x00` of a record is the ID3D11Buffer |
 | `+0x68` | `u32` | m_offsetInIndexBuffer |  |
 | `+0x6C` | `u32` | bit 0: buffers bound |  |
 
@@ -340,9 +340,9 @@ Index data block, fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32` | dirty | the same block as context +`0x9C0` |
+| `+0x000` | `u32` | dirty | the same block as context `+0x9C0` |
 | `+0x168` | `void*` | rasterizer | RSSetState |
-| `+0x170` | `void*` | rasterizerAlt | used when context +`0x9C4` is 2 |
+| `+0x170` | `void*` | rasterizerAlt | used when context `+0x9C4` is 2 |
 | `+0x178` | `void*` | depthStencil | OMSetDepthStencilState |
 | `+0x180` | `void*` | blend | OMSetBlendState |
 | `+0x188` | `u8` | stencilRef |  |

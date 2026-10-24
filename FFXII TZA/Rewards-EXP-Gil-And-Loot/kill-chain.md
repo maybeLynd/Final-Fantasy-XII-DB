@@ -62,6 +62,12 @@ When the class matches, the chain continues (`0x00317F2D`-`0x00318065`):
 3. The same-model run `0x022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
    share) equals the previous one at `0x022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
    stores the new model id (`0x00317F70`-`0x00317FB6`). This run chooses the loot quantity table.
+   - Only this step stores a model id: `0x00317FB6` is the one RIP-relative write to `0x022C316C`, beside
+     the reset's -1 through `0x022C3168` (`0x003183BE`). The first-kill path (`0x003180BB`-`0x003180D0`) and the
+     break path (`0x0031806C`-`0x003180B5`) leave it.
+   - After a reset (`0x022C316C` = -1, `0x003183BE`) the first kill stores only the class, the second
+     stores the model and leaves the run at 0, and each further kill of the same class and model
+     adds 1, so kill *n* of such a run leaves it at *n* - 2, up to the cap of 999.
 4. `EnemyChain_TryAdvanceRank` (`0x003183D0`, 315 bytes) tries to raise the chain level (`0x00317FBC`); see
    below.
 5. The coin: three LCG steps on the shared gameplay generator `0x022C256C` (multiplier `0x41C64E6D`,
@@ -197,7 +203,7 @@ then the clock value (`0x00863D4D`-`0x00863D6A`). It does not touch `0x022C256C`
 | `0x022C3160` | `u32` | same-model run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) |
 | `0x022C3164` | `u32` | breaks in a row, cap 999 | `0x003180B5`; zeroed by a continuing kill (`0x00317F6A`) |
 | `0x022C3168` | `i32` | previous kill's class byte; negative before the first kill | `0x003180D0` |
-| `0x022C316C` | `u32` | previous kill's model id | `0x00317FB6` |
+| `0x022C316C` | `u32` | model id stored by the last continuing kill whose model differed from it; -1 after a reset | `0x00317FB6`; `0x003183BE` (-1) |
 | `0x022C3170` | `u32` | chain length at the last level rise | `0x003184DC`; zeroed on a break (`0x00318091`) |
 | `0x022C3174` | `u32` | loot pickups since the last level rise | `0x00319974` (+1); `0x003184EC` (0); zeroed on a break |
 | `0x022C3178` | `u32` | bit 0: the coin | `0x003180C6` |

@@ -138,7 +138,7 @@ Trail entry, [`0x02CA8420`] + slot × `0x3C0`:
 | `+0x008` | `f32` | opacity | the character's |
 | `+0x00C` | `f32` | init20 | 20.0 at create |
 | `+0x010` | `f32` | fade |  |
-| `+0x014` | `f32` | param14 | descriptor +`0x0C` |
+| `+0x014` | `f32` | param14 | descriptor `+0x0C` |
 | `+0x018` | `void*` | prev |  |
 | `+0x020` | `void*` | next |  |
 | `+0x030` | `f32[16][4]` | tip | w = tip speed figure |

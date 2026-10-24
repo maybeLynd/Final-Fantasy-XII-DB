@@ -148,7 +148,7 @@ threads, and `0x006BAED0` closes the four semaphores and frees job list B and th
 | `+0x24` | `u32` | capacity | jobs per list |
 | `+0x28` | `void*` | listA | even generations |
 | `+0x30` | `void*` | profiles | one PProcessorProfileTimelineCpu per worker |
-| `+0x38` | `u8[16]` | start0 | semaphore record: handle, then created byte at +`0x08` |
+| `+0x38` | `u8[16]` | start0 | semaphore record: handle, then created byte at `+0x08` |
 | `+0x48` | `u8[16]` | start1 |  |
 | `+0x58` | `u8[16]` | done0 |  |
 | `+0x68` | `u8[16]` | done1 |  |

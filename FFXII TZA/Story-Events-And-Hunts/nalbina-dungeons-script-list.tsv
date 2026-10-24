@@ -1,0 +1,13 @@
+script	kind	place	actors	functions	rows	shared_actors
+nal_a01	zone	Stockade (Nalbina Dungeons), field 48	87	413	46	5
+nal_b01	zone	Arena (Nalbina Dungeons), field 49	17	44	1	0
+nal_c01	zone	The Black Watch (Nalbina Dungeons), field 709	45	111	15	0
+nal_c02	zone	The Confiscatory (Nalbina Dungeons), field 710	25	98	9	5
+nal_d01	zone	Oubliette (Nalbina Dungeons), field 51	3	6	2	0
+nal_a0100	scene	scene, event 30	22	153	9	0
+nal_b0100	scene	scene, event 31	24	322	6	0
+nal_b0101	scene	scene, event 33	42	788	21	0
+nal_c0100	scene	scene, event 32	23	298	0	0
+nal_c0101	scene	scene, event 34	35	278	3	0
+nal_c0200	scene	scene, event 35	16	97	18	0; differs: system_crystal_actor
+nal_d0100	scene	scene, event 36	25	440	1	0

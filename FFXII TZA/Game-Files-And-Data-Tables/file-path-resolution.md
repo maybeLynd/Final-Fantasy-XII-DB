@@ -176,14 +176,54 @@ reached the end of the list.
 
 ## Layouts
 
-```python
-stream          +0x10 name copy (bit 0 = borrowed), +0x20 frame: +0x20 u32 size, +0x28 Win32 handle (-1),
-                +0x30 archive reader (0), +0x38 u8 selector, +0x40 cache view (-1), +0x48 u32 cache key
-cache entry     +0x00 data, +0x08 u32 size, +0x0C s16, +0x0E s16, +0x10 u8 views open, +0x14 u32 kind
-cache view      +0x00 data, +0x08 u32 size, +0x0C u32 position
-cache manager   +0x00 limit, +0x10 usage, +0x18 owner (+0xE8 word), +0x20 key map (header +0x28, root +0x38),
-                +0x30 entry list, +0x48 count, +0x58 lock, +0x80 / +0x84 protected words, +0x88 hits, +0x90 bytes, +0x98 map
-```
+Stream:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x10` | `...` | name copy | bit 0 = borrowed |
+| `+0x20` | `...` | frame | the frame; the rows below are its fields |
+| `+0x20` | `u32` | size |  |
+| `+0x28` | `...` | Win32 handle | -1 |
+| `+0x30` | `...` | archive reader | 0 |
+| `+0x38` | `u8` | selector |  |
+| `+0x40` | `...` | cache view | -1 |
+| `+0x48` | `u32` | cache key |  |
+
+Cache entry:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | data |  |
+| `+0x08` | `u32` | size |  |
+| `+0x0C` | `i16` | word0C |  |
+| `+0x0E` | `i16` | word0E |  |
+| `+0x10` | `u8` | views open |  |
+| `+0x14` | `u32` | kind |  |
+
+Cache view:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | data |  |
+| `+0x08` | `u32` | size |  |
+| `+0x0C` | `u32` | position |  |
+
+Cache manager:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | limit |  |
+| `+0x10` | `...` | usage |  |
+| `+0x18` | `...` | owner | `+0xE8` word |
+| `+0x20` | `...` | key map | header `+0x28`, root `+0x38` |
+| `+0x30` | `...` | entry list |  |
+| `+0x48` | `...` | count |  |
+| `+0x58` | `...` | lock |  |
+| `+0x80` | `...` | protected word | one of the two protected words |
+| `+0x84` | `...` | protected word | one of the two protected words |
+| `+0x88` | `...` | hits |  |
+| `+0x90` | `...` | bytes |  |
+| `+0x98` | `...` | map |  |
 
 | | Route 1 (cache) | Route 2 (archive) |
 |---|---|---|

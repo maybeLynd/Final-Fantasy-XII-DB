@@ -292,7 +292,7 @@ Actor record size table   `0x01E0C328`, 8 rows of 4 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | class | 0 to 3; indexes the manager's words +`0x1D0` and the record's byte +3 |
+| `+0x00` | `u8` | class | 0 to 3; indexes the manager's words `+0x1D0` and the record's byte +3 |
 | `+0x01` | `u8` | (none) | 0 or 1; read by nothing |
 | `+0x02` | `u16` | size | record bytes before rounding to 16 rows   0: class 0 `0x328`   1: class 1 `0x3A8`   2: class 1 `0x330`   3: class 2 `0x348` 4: class 2 `0x2D0`   5: class 3 `0x6E0`   6: class 3 `0x6E0`   7: class 3 `0x668` |
 
@@ -301,7 +301,7 @@ Actor pool block:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | n, the record count |  |
-| `+0x08` | `void*` | record pointers, n entries | +header           -    manager +`0x1F0` points here +2*header         -    records, each round16(size) bytes, in row order |
+| `+0x08` | `void*` | record pointers, n entries | +header           -    manager `+0x1F0` points here +2*header         -    records, each round16(size) bytes, in row order |
 
 Ring buffer (`0x006CC5A0`):
 
@@ -309,7 +309,7 @@ Ring buffer (`0x006CC5A0`):
 |---|---|---|---|
 | `+0x08` | `void*` | block | from the alloc argument |
 | `+0x10` | `u32` | size + 0x10 | the dword at block + this value is zeroed |
-| `+0x14` | `u32` | 0 | +`0x28`, +`0x38`               two objects set up by `0x005CD0E0`(p, 1) |
+| `+0x14` | `u32` | 0 | `+0x28`, `+0x38`               two objects set up by `0x005CD0E0`(p, 1) |
 | `+0x4C` | `u32` | size + 0x20 |  |
 | `+0x58` | `void*` | release function |  |
 

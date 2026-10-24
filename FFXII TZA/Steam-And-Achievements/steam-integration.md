@@ -179,7 +179,7 @@ The achievement manager, `0x80` bytes at `[0x01F83450]`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | appId | utilities slot +`0x48`; compared with each callback's first field |
+| `+0x00` | `i32` | appId | utilities slot `+0x48`; compared with each callback's first field |
 | `+0x08` | `void*` | entries | `0x01DFE410`, `0x198` bytes per entry |
 | `+0x10` | `i32` | count | 41 |
 | `+0x14` | `i32` | achieved | entries 1-40 achieved |

@@ -133,12 +133,12 @@ page's rows in a cache of 17 rows of `0x20` bytes, rows 0 to 16, at `+0xE0`-`+0x
 |---|---|---|---|
 | `+0x00` | `void*` | name | the entry's name (`0x002B58B0`), or text `0x4C7` for an entry not yet owned |
 | `+0x08` | `u16` | id | the condition or action id; `0xFFFF` for an empty row |
-| `+0x0A` | `u8` | icon | the condition row's +`0x2C`; for an action, +`0x2C` of the item record its +`0x2C` names, 0 when that is `0xFFFF` |
+| `+0x0A` | `u8` | icon | the condition row's `+0x2C`; for an action, `+0x2C` of the item record its `+0x2C` names, 0 when that is `0xFFFF` |
 | `+0x0B` | `u8` | pad0B | 0; the fillers do not write it |
-| `+0x0C` | `u16` | number | the count shown with text `0x465F`, for an action whose item record (its own record when it names none) has kind 5 at +`0x00` (that record's +`0x24`) or 8 (the action's +`0x24`) (`0x0056A9AA`-`0x0056AA17`) |
+| `+0x0C` | `u16` | number | the count shown with text `0x465F`, for an action whose item record (its own record when it names none) has kind 5 at `+0x00` (that record's `+0x24`) or 8 (the action's `+0x24`) (`0x0056A9AA`-`0x0056AA17`) |
 | `+0x0E` | `u8[2]` | pad0E | 0; the fillers do not write them |
 | `+0x10` | `u8` | state | the enumerator's state for the entry; `0x0F` for one not yet owned |
-| `+0x11` | `u8` | hasNumber | 1 when +`0x0C` is shown |
+| `+0x11` | `u8` | hasNumber | 1 when `+0x0C` is shown |
 | `+0x12` | `u8` | flag12 | written 0 by both fillers; read by the list at `0x0056BB46` |
 | `+0x13` | `u8[5]` | pad13 | 0; the fillers do not write them |
 | `+0x18` | `void*` | help | the entry's help text, or `0xCD8` or `0xCD7` for one not yet owned |

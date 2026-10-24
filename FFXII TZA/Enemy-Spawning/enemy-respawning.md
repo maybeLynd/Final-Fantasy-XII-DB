@@ -299,7 +299,7 @@ Struct SpawnRecordRespawnFields in the spawn record (`0x250` bytes, spawn-record
 | `+0x0C` | `u32` | deathSecond | `0x00300829`: counter / fps |
 | `+0x10` | `u16` | cooldown | `0x002395A0`: base + rand % (range + 1), or 0; whole seconds |
 | `+0x12` | `u8` | historyCounter | low byte of the row's `0x0208D354` counter at install |
-| `+0x17` | `u8` | persistenceKey | zeroed with +`0x16` by `0x00236860` / `0x00237080`; +`0x18` the authored key the resets restore it from |
+| `+0x17` | `u8` | persistenceKey | zeroed with `+0x16` by `0x00236860` / `0x00237080`; `+0x18` the authored key the resets restore it from |
 
 Struct SpawnKeepImage size=`0x20010`   (`0x00233440` writes, `0x00233550` restores):
 

@@ -351,9 +351,9 @@ Eighty entries: floors 0x00-0x1F, walls 0x20-0x3F, mj groups 0x40-0x4F.
 |---|---|---|---|
 | `+0x00` | `f32[3]` | normal | plane normal, dotted with a vertex in `0x0022DE60` and `0x0022D7E0` |
 | `+0x0C` | `u32` | attr | the attribute word (field table in How it works) |
-| `+0x10` | `i16[3]` | vertex | indices into the `0x10`-byte vertex array at [part + 8]; `0x00231A90` reads the vertex colour at +`0xC` |
+| `+0x10` | `i16[3]` | vertex | indices into the `0x10`-byte vertex array at [part + 8]; `0x00231A90` reads the vertex colour at `+0xC` |
 | `+0x16` | `i16[3]` | neighbour | polygon id across each edge, -1 for none (`0x0022F9B0`) |
-| `+0x1C` | `u8[4]` | tail | read and written by no function: the polygon array [part + `0x10`] is reached from the map `0x0209A678` by `0x0026E100`, `0x0026E350`, `0x0026E530`, `0x0026E640`, `0x0026E960`, `0x00377560` and `0x00377AB0`, and the polygon readers `0x00230A40`, `0x0022CC50`, `0x0022D4B0`, `0x0022D7E0`, `0x0022DE60`, `0x0022F9B0`, `0x00231A90`, `0x00232090`, `0x002321D0`, `0x00233110` (and its callers `0x00380D30`, `0x00231400`) and `0x00233230` read and write nothing from +`0x1C` to +`0x1F`; nothing fixes its width |
+| `+0x1C` | `u8[4]` | tail | read and written by no function: the polygon array [part + `0x10`] is reached from the map `0x0209A678` by `0x0026E100`, `0x0026E350`, `0x0026E530`, `0x0026E640`, `0x0026E960`, `0x00377560` and `0x00377AB0`, and the polygon readers `0x00230A40`, `0x0022CC50`, `0x0022D4B0`, `0x0022D7E0`, `0x0022DE60`, `0x0022F9B0`, `0x00231A90`, `0x00232090`, `0x002321D0`, `0x00233110` (and its callers `0x00380D30`, `0x00231400`) and `0x00233230` read and write nothing from `+0x1C` to `+0x1F`; nothing fixes its width |
 
 `RouteEdge` (`0x8` bytes, offsets from the start of the edge):
 
@@ -364,7 +364,7 @@ Eighty entries: floors 0x00-0x1F, walls 0x20-0x3F, mj groups 0x40-0x4F.
 | `+0x04` | `i8` | hasEntry | -1 when the edge has no override entry (`0x00383850`) |
 | `+0x05` | `u8` | entry | override table entry passed to `0x0026E300` (`0x00383850`, `0x0033D3E0`) |
 | `+0x06` | `u8` | kinds | authored kind bitmask, bit k means kind k may use the edge |
-| `+0x07` | `u8` | pad | read by no function: the edge table [graph + `0x14`] is reached by `0x00383850` (+`0x04` to +`0x06`), `0x0033D3E0` (+`0x05`, +`0x06`), `0x00382FF0` and `0x00383C90` (+`0x00`, +`0x02`) and the relocation `0x00384160`, and none of the ten byte reads at +7 of an 8-byte-stride record in the image belongs to a function that reaches the graph; nothing fixes its width |
+| `+0x07` | `u8` | pad | read by no function: the edge table [graph + `0x14`] is reached by `0x00383850` (`+0x04` to `+0x06`), `0x0033D3E0` (`+0x05`, `+0x06`), `0x00382FF0` and `0x00383C90` (`+0x00`, `+0x02`) and the relocation `0x00384160`, and none of the ten byte reads at +7 of an 8-byte-stride record in the image belongs to a function that reaches the graph; nothing fixes its width |
 
 The edge table is `[graph + 0x14]` and the node-pair adjacency table `[graph + 0x1C]`, both resolved
 through `0x0020E600`; `graph + 0xA` is the node count.

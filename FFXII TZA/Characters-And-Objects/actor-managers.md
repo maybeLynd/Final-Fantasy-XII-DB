@@ -168,7 +168,7 @@ Struct ActorManagerSlot base=`0x02098E10` size=`0x288` count=5:
 | `+0x008` | `u8*` | recordPool | count dword then record pointers (`0x0026CE60`, `0x00358940`) |
 | `+0x010` | `u8` | flags | bit 0 live (`0x0026CE60` sets), bit 2 field initialised, bits 3-4 the slot-0 request steps, bit 5 hold, bit 7 field busy |
 | `+0x011` | `u8` | flags2 | bit 0 copy of flags bit 7, bit 1 trigger, bit 2 suspended, bit 3 blocks the request path |
-| `+0x012` | `u8` | drivePending | 1 at bind when the payload's i16 +`0x50` is not negative |
+| `+0x012` | `u8` | drivePending | 1 at bind when the payload's i16 `+0x50` is not negative |
 | `+0x013` | `u8` | requestFlag | 1 at bind, cleared by `0x0026CE60` (`0x002673F0`) |
 | `+0x014` | `u8` | bindFlag | 1 at bind |
 | `+0x015` | `u8` | notSlot3 | 1 unless the slot index is 3 |
@@ -181,19 +181,19 @@ Struct ActorManagerSlot base=`0x02098E10` size=`0x288` count=5:
 | `+0x028` | `i32` | slotIndex |  |
 | `+0x030` | `i32` | bindCounter | zeroed at bind |
 | `+0x038` | `i32` | passCounter2 | zeroed at bind, incremented by the pass |
-| `+0x040` | `u8*` | fileHome | payload + payload +`0x38` (`0x0026CE60`) |
+| `+0x040` | `u8*` | fileHome | payload + payload `+0x38` (`0x0026CE60`) |
 | `+0x048` | `u8*` | globalHome | the persistent save payload |
-| `+0x050` | `u8*` | localBase | payload + payload +`0x48` |
+| `+0x050` | `u8*` | localBase | payload + payload `+0x48` |
 | `+0x058` | `u8*` | scratch1 | `0x02099DF0` |
 | `+0x060` | `u8*` | scratch2 | `0x02099FF0` |
-| `+0x068` | `u8*` | section20 | payload + payload +`0x20` |
-| `+0x070` | `u8*` | section24 | payload + payload +`0x24` |
-| `+0x078` | `u8*` | descriptors | payload + payload +`0x28` |
-| `+0x080` | `u8*` | section2C | payload + payload +`0x2C` |
+| `+0x068` | `u8*` | section20 | payload + payload `+0x20` |
+| `+0x070` | `u8*` | section24 | payload + payload `+0x24` |
+| `+0x078` | `u8*` | descriptors | payload + payload `+0x28` |
+| `+0x080` | `u8*` | section2C | payload + payload `+0x2C` |
 | `+0x088` | `void*` | callback | the bind's third argument or `0x00267930` |
 | `+0x098` | `void*` | resolver | `0x00264E30` |
 | `+0x0D8` | `u8*` | cameraShotTable | side A's definition table (setter `0x0026CE00`) |
-| `+0x0E0` | `u8*` | cameraSection | set by `0x0026CE20`; `0x0026CE60` runs `0x002572E0` when this and +`0xD8` are set |
+| `+0x0E0` | `u8*` | cameraSection | set by `0x0026CE20`; `0x0026CE60` runs `0x002572E0` when this and `+0xD8` are set |
 | `+0x0F0` | `u8*` | cameraShakeTable side B's definition table (setter 0x0026D3A0) |  |
 | `+0x100` | `u8*` | section100 | set by `0x0026CE40` |
 | `+0x110` | `u8[96]` | entriesA | four 24-byte camera-shot drivers |
@@ -208,7 +208,7 @@ Struct ActorManagerSlotEntry size=`0x18`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | definitionValue | the table row's +`0x14` |
+| `+0x00` | `u32` | definitionValue | the table row's `+0x14` |
 | `+0x04` | `i32` | lookupIndex | the reverse-lookup subscript, clamped non-negative on side A |
 | `+0x08` | `u16` | bound | 1 at bind, 0 on reset and clear |
 | `+0x0A` | `i16` | recordIndex | -1 when unbound |

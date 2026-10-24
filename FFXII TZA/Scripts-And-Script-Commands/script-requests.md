@@ -204,19 +204,73 @@ request, refused when bit 15 of the target or of the value is set, value stored 
 
 ## Layouts
 
-```python
-actor record   +6 u16 busy channels, +0x10 u8 outstanding requests, +0x11 s8 current wait slot,
-               +0x1C u32 arming mask (bit n = slot n), +0x24/+0x26 u16 channel marks,
-               +0x60 u8 free head, +0x61 u8 detached head, +0x62 u8 selected entry, +0x63 u8 flags,
-               +0x88 u8 channels, +0x89 u8 entries, +0x8C u8 tail[8], +0x94 u8 head[8],
-               +0xA0 entry array, +0xA8 wait-slot array, +0xC8 u16 slot cache[18]
-entry (0x14)   +0 next, +1 prev, +2 channel, +3 requester wait slot, +4 u16 function, +6 u16 requester ordinal,
-               +8 u32 requester manager, +0xC u32 requester return offset, +0x10 mode, +0x11 state, +0x12 flags
-descriptor     +0 kind, +1 mode, +2 channel, +3 wait slot, +4 u16 function, +6 u16 ordinal, +8 flags,
-               +0xC u32 manager, +0x10 u32 return offset
-wait slot      +0 pc, +8 X, +0xC Y, +0x14 kind, +0x15 phase, +0x16 serviced, +0x18.. wait operands
-pool table     0x01E0C328: 8 rows of {u8 class, u8 small pool, u16}; small pool = 6 channels, 8 entries
-```
+Actor record:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x06` | `u16` | busy channels |  |
+| `+0x10` | `u8` | outstanding requests |  |
+| `+0x11` | `i8` | current wait slot |  |
+| `+0x1C` | `u32` | arming mask | bit n = slot n |
+| `+0x24` | `u16` | channel marks | one of the two channel marks |
+| `+0x26` | `u16` | channel marks | one of the two channel marks |
+| `+0x60` | `u8` | free head |  |
+| `+0x61` | `u8` | detached head |  |
+| `+0x62` | `u8` | selected entry |  |
+| `+0x63` | `u8` | flags |  |
+| `+0x88` | `u8` | channels |  |
+| `+0x89` | `u8` | entries |  |
+| `+0x8C` | `u8[8]` | tail |  |
+| `+0x94` | `u8[8]` | head |  |
+| `+0xA0` | `...` | entry array |  |
+| `+0xA8` | `...` | wait-slot array |  |
+| `+0xC8` | `u16[18]` | slot cache |  |
+
+Entry (`0x14`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | next |  |
+| `+0x01` | `...` | prev |  |
+| `+0x02` | `...` | channel |  |
+| `+0x03` | `...` | requester wait slot |  |
+| `+0x04` | `u16` | function |  |
+| `+0x06` | `u16` | requester ordinal |  |
+| `+0x08` | `u32` | requester manager |  |
+| `+0x0C` | `u32` | requester return offset |  |
+| `+0x10` | `...` | mode |  |
+| `+0x11` | `...` | state |  |
+| `+0x12` | `...` | flags |  |
+
+Descriptor:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | kind |  |
+| `+0x01` | `...` | mode |  |
+| `+0x02` | `...` | channel |  |
+| `+0x03` | `...` | wait slot |  |
+| `+0x04` | `u16` | function |  |
+| `+0x06` | `u16` | ordinal |  |
+| `+0x08` | `...` | flags |  |
+| `+0x0C` | `u32` | manager |  |
+| `+0x10` | `u32` | return offset |  |
+
+Wait slot:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | pc |  |
+| `+0x08` | `...` | X |  |
+| `+0x0C` | `...` | Y |  |
+| `+0x14` | `...` | kind |  |
+| `+0x15` | `...` | phase |  |
+| `+0x16` | `...` | serviced |  |
+| `+0x18` | `...` | wait operands | from `+0x18` on |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01E0C328` | `...` | pool table | 8 rows of {u8 class, u8 small pool, u16}; small pool = 6 channels, 8 entries |
 
 ## Shipped data
 

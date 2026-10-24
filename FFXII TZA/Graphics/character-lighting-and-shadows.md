@@ -281,7 +281,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x20` | `u8[48]` | bytes20 | +`0x20` to +`0x4F`; no registered member covers it (`0x006C0D50` registers the `0x80`-byte class at `0x006C0DA0`) |
+| `+0x20` | `u8[48]` | bytes20 | `+0x20` to `+0x4F`; no registered member covers it (`0x006C0D50` registers the `0x80`-byte class at `0x006C0DA0`) |
 
 ### Light requests and shadow records
 

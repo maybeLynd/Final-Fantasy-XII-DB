@@ -130,7 +130,7 @@ picture). It ends with `0x0028EE10`.
 | `+0x3D` | `u8` | palette | `0x002DD7B0` of the colour; 4 for a status word |
 | `+0x3E` | `u8` | spread | position 0 to 4 |
 | `+0x3F` | `u8` | count | digits, picture frame or status |
-| `+0x40` | `char[8]` | text | kind 0: the digits; kind 2: `0x002B3050` writes +`0x40` and +`0x42` and +`0x44` is the delay |
+| `+0x40` | `char[8]` | text | kind 0: the digits; kind 2: `0x002B3050` writes `+0x40` and `+0x42` and `+0x44` is the delay |
 
 ## Modding notes
 

@@ -113,7 +113,7 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | m_isSDF | m_isSDF (u8), registered by `0x0067CFE0` (`0x00632960` at `0x0067D0E1`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFont |
-| `+0x01` | `u8[3]` | pad01 | alignment bytes after m_isSDF (u8 at +`0x00`) up to m_fontSize (u32 at +`0x04`); no registered member covers it (`0x0067CA70` registers the `0x38`-byte class at `0x0067CAC0`) |
+| `+0x01` | `u8[3]` | pad01 | alignment bytes after m_isSDF (u8 at `+0x00`) up to m_fontSize (u32 at `+0x04`); no registered member covers it (`0x0067CA70` registers the `0x38`-byte class at `0x0067CAC0`) |
 | `+0x04` | `u32` | m_fontSize | m_fontSize (u32), registered by `0x0067CFE0` (`0x00632960` at `0x0067D072`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFont |
 | `+0x08` | `f32` | m_lineSpacing | the font's line spacing: a line feed drops the pen's y by the line scale times it (`0x0067B530` reads it at `0x0067B75B`); m_lineSpacing (f32), registered by `0x0067CFE0` (`0x00632960` at `0x0067D154`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFont |
 | `+0x0C` | `f32` | m_baselineOffset | m_baselineOffset (f32), registered by `0x0067CFE0` (`0x00632960` at `0x0067D1C7`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFont |
@@ -122,13 +122,13 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | m_characterCode | the character code the text builder `0x0067B530` searches the table for (`0x0067B739`); m_characterCode (i32), registered by `0x0067D3B0` (`0x00632960` at `0x0067D43E`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; the placement constructor `0x0067C660` clears +`0x00` to +`0x07` (`0x0067C667`) |
+| `+0x00` | `i32` | m_characterCode | the character code the text builder `0x0067B530` searches the table for (`0x0067B739`); m_characterCode (i32), registered by `0x0067D3B0` (`0x00632960` at `0x0067D43E`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; the placement constructor `0x0067C660` clears `+0x00` to `+0x07` (`0x0067C667`) |
 | `+0x04` | `i32` | m_kernPairs | number of kerning triples: the kerning lookup `0x0067B4C0` reads it (`0x0067B4C5`); m_kernPairs (i32), registered by `0x0067D3B0` (`0x00632960` at `0x0067D4B1`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; cleared by the placement constructor `0x0067C660` (`0x0067C667`) |
 | `+0x08` | `i32` | m_kernOffset | first triple, in 32-bit units: the kerning lookup `0x0067B4C0` reads it (`0x0067B4DA`); m_kernOffset (i32), registered by `0x0067D3B0` (`0x00632960` at `0x0067D524`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; cleared by the placement constructor `0x0067C660` (`0x0067C66A`) |
 | `+0x14` | `f32` | m_width | the glyph's width in the quad `0x0067B530` builds (`0x0067B7DA`); m_width (f32), registered by `0x0067D3B0` (`0x00632960` at `0x0067D60C`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; cleared by the placement constructor `0x0067C660` (`0x0067C66E`) |
 | `+0x18` | `f32` | m_height | the glyph's height in the quad `0x0067B530` builds (`0x0067B7C3`); m_height (f32), registered by `0x0067D3B0` (`0x00632960` at `0x0067D67F`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; cleared by the placement constructor `0x0067C660` (`0x0067C66E`) |
 | `+0x2C` | `u8` | m_rotated | when set, `0x0067B530` swaps the glyph's texture coordinates (`0x0067B818`); m_rotated (u8), registered by `0x0067D3B0` (`0x00632960` at `0x0067D7DC`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PBitmapFontCharInfo; cleared by the placement constructor `0x0067C660` (`0x0067C672`) |
-| `+0x2D` | `u8[3]` | pad2D | the bytes after m_rotated (u8 at +`0x2C`) up to the end of the `0x30`-byte record; no registered member covers it (`0x0067CB20` registers the `0x30`-byte class at `0x0067CB70`) |
+| `+0x2D` | `u8[3]` | pad2D | the bytes after m_rotated (u8 at `+0x2C`) up to the end of the `0x30`-byte record; no registered member covers it (`0x0067CB20` registers the `0x30`-byte class at `0x0067CB70`) |
 
 ### Text objects and character records
 

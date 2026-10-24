@@ -196,7 +196,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0xD4` | `u8[4]` | bytesD4 | the bytes after m_height (+`0xD0`) up to the end of the `0xD8`-byte class; no registered member covers it (`0x006ACFF0` registers the `0xD8`-byte class at `0x006AD03A`) |
+| `+0xD4` | `u8[4]` | bytesD4 | the bytes after m_height (`+0xD0`) up to the end of the `0xD8`-byte class; no registered member covers it (`0x006ACFF0` registers the `0xD8`-byte class at `0x006AD03A`) |
 
 ## State
 

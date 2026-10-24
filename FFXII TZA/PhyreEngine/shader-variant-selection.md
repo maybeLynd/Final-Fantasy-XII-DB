@@ -168,10 +168,10 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x38` | `u16` | m_largestShaderPassCount m_largestShaderPassCount (u16), registered by 0x005E45B0 (0x00632960 at | `0x005E4867`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
-| `+0x3A` | `u8[6]` | pad3A | the bytes after m_largestShaderPassCount (u16 at +`0x38`) up to m_tweakableShaderParameterDefinitions at +`0x40`; no registered member covers it (`0x005D9280` registers the `0x68`-byte class at `0x005D92D0`) |
+| `+0x3A` | `u8[6]` | pad3A | the bytes after m_largestShaderPassCount (u16 at `+0x38`) up to m_tweakableShaderParameterDefinitions at `+0x40`; no registered member covers it (`0x005D9280` registers the `0x68`-byte class at `0x005D92D0`) |
 | `+0x60` | `u16` | m_tweakableParameterBufferSize m_tweakableParameterBufferSize (u16), registered by 0x005E45B0 | (`0x00632960` at `0x005E49F3`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
 | `+0x62` | `u16` | m_untweakableParameterBufferSize m_untweakableParameterBufferSize (u16), registered by | `0x005E45B0` (`0x00632960` at `0x005E4A62`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
-| `+0x64` | `u8[4]` | pad64 | the bytes after m_untweakableParameterBufferSize (u16 at +`0x62`) up to the end of the `0x68`-byte class; no registered member covers it (`0x005D9280` registers the `0x68`-byte class at `0x005D92D0`) |
+| `+0x64` | `u8[4]` | pad64 | the bytes after m_untweakableParameterBufferSize (u16 at `+0x62`) up to the end of the `0x68`-byte class; no registered member covers it (`0x005D9280` registers the `0x68`-byte class at `0x005D92D0`) |
 
 `PMaterialSwitch` (`0x10` bytes, offsets from the start of the record):
 

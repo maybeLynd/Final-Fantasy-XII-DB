@@ -696,15 +696,15 @@ Kind-`0x54` payload (from `0x00436D00`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | flags: bits 0-2 -> object +0x18C; bit 0 adds the index lists |  |
-| `+0x02` | `u16` | triangles | -> +`0x10` |
-| `+0x04` | `u16` | quads | -> +`0x12` |
-| `+0x06` | `u16` | positions | -> +`0x14`, array +`0x20`, 16 bytes each, w set to 1.0 |
-| `+0x08` | `u16` | vectors | -> +`0x16`, array +`0x24`, 16 bytes each |
-| `+0x0A` | `u16` | 4-byte entries | -> +`0x18`, array +`0x28` |
-| `+0x0C` | `u16` | 8-byte entries | -> +`0x1A`, array +`0x2C` |
-| `+0x0E` | `u16` | id bytes | -> +`0x1C`, ids +`0x180`, handles +`0x184` (8 bytes each) |
-| `+0x10` | `u16` | 20-byte records | -> +`0x1E`, copied inline to +`0x30` |
-| `+0x12` | `positions,` | vectors, | 4-byte, 8-byte and 20-byte arrays in that order; with flags bit 0, two index lists of 6 x triangles + 8 x quads bytes (+`0x170`, +`0x174`); then one byte per triangle and quad (+`0x188`); then the id bytes |
+| `+0x02` | `u16` | triangles | -> `+0x10` |
+| `+0x04` | `u16` | quads | -> `+0x12` |
+| `+0x06` | `u16` | positions | -> `+0x14`, array `+0x20`, 16 bytes each, w set to 1.0 |
+| `+0x08` | `u16` | vectors | -> `+0x16`, array `+0x24`, 16 bytes each |
+| `+0x0A` | `u16` | 4-byte entries | -> `+0x18`, array `+0x28` |
+| `+0x0C` | `u16` | 8-byte entries | -> `+0x1A`, array `+0x2C` |
+| `+0x0E` | `u16` | id bytes | -> `+0x1C`, ids `+0x180`, handles `+0x184` (8 bytes each) |
+| `+0x10` | `u16` | 20-byte records | -> `+0x1E`, copied inline to `+0x30` |
+| `+0x12` | `positions,` | vectors, | 4-byte, 8-byte and 20-byte arrays in that order; with flags bit 0, two index lists of 6 x triangles + 8 x quads bytes (`+0x170`, `+0x174`); then one byte per triangle and quad (`+0x188`); then the id bytes |
 
 Element fields the verified draws read:
 
@@ -722,7 +722,7 @@ Definition fields the verified draws read:
 | `+0x030` | `blend` | track | (mode 6) and alpha percent |
 | `+0x044` | `u8` | element type |  |
 | `+0x049` | `u8` | bits 5-7 blend mode |  |
-| `+0x190` | `mesh-index` | track | (`0x05`); +`0x590` u8 bit 4 mesh-index mode; +`0x5A0` u32[32] mesh handles |
+| `+0x190` | `mesh-index` | track | (`0x05`); `+0x590` u8 bit 4 mesh-index mode; `+0x5A0` u32[32] mesh handles |
 
 ## Shipped data
 

@@ -101,7 +101,7 @@ Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
 | `+0x1C` | `u8` | runtimeParameter | 0 to 2, set by `0x0026D910` while initState is 0, passed to `0x00180620` |
 | `+0x1D` | `u8` | initState | 1 from `0x00268320` and `0x0026D8F0`, cleared by `0x0026D910` |
 | `+0x1E` | `u8` | flags1 | bit 5 cleared by `0x003145E0`, set by `0x00314530` |
-| `+0x1F` | `u8` | flags2 | bit 6: the music override at +`0x1534` is in force (`0x0026A720`, `0x0026DE20`) |
+| `+0x1F` | `u8` | flags2 | bit 6: the music override at `+0x1534` is in force (`0x0026A720`, `0x0026DE20`) |
 
 With load mode 3 and the header's flag bit 0 clear, `0x00584210` copies the five dwords `+0x1044` to
 `+0x1057` into the header's `+0x80` to `+0x93` (`0x0058427B`-`0x005842B1`), zeroes `destinationEntrance`
@@ -219,9 +219,9 @@ Struct SaveTransitionRecord base=payload+`0x4E460` size=`0x2C`:
 |---|---|---|---|
 | `+0x00` | `i32` | mode | `0x0208D455` as a dword (`0x00584580`) |
 | `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field here (`0x00314731`) when bit 12 is clear and the field is not 12, and `0x00584580`'s `0x002EF3C0` overwrites it unless `0x003145E0` returned early |
-| `+0x08` | `u8[16]` | blockA | battle-state block +`0x5AE0`-+`0x5AEF` (`0x002EF3C0`) |
-| `+0x18` | `u8[16]` | blockB | battle-state block +`0x5AD0`-+`0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
-| `+0x28` | `u32` | flags | battle-state block +`0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit 0 from bit 1 of +`0x18` |
+| `+0x08` | `u8[16]` | blockA | battle-state block `+0x5AE0`-`+0x5AEF` (`0x002EF3C0`) |
+| `+0x18` | `u8[16]` | blockB | battle-state block `+0x5AD0`-`+0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
+| `+0x28` | `u32` | flags | battle-state block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit 0 from bit 1 of `+0x18` |
 
 `0x002EF540` fills the whole record from the `0x2C` bytes at `0x021B28E0` during `0x00229B40`. The restore
 `0x002EF410` copies `+0x08` to block `+0x5AE0` and `+0x28` to `+0x5B04`; when bit 1 of `+0x18` is set it

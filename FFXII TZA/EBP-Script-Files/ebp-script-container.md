@@ -45,10 +45,10 @@ All multi-byte fields are little-endian.
 |---|---|---|---|
 | `+0x00` | `u32` | magic | 'EBP2' in every shipped container |
 | `+0x04` | `u32` | slotCount | 20; slot n is dispatched only when slotCount > n |
-| `+0x08` | `u8[4]` | reserved | 0 in all 10,036 containers; read by no function: the buffer `0x022C6C00`[manager] is stored by `0x00330310` (`0x003303C5`) and `0x0032F430` (`0x0032F450`), freed by `0x0032ED80` (`0x0032F127`-`0x0032F139`), and read by the walk `0x003304A0`, which takes the slot count +`0x04` and the offsets from +`0x10` and hands the handlers section addresses; the preload copy of script `0xD4` (`0x00330407`) moves the image whole; nothing fixes its width |
-| `+0x0C` | `u8[4]` | reserved | 0 in all 10,036 containers; read by no function: the buffer `0x022C6C00`[manager] is stored by `0x00330310` (`0x003303C5`) and `0x0032F430` (`0x0032F450`), freed by `0x0032ED80` (`0x0032F127`-`0x0032F139`), and read by the walk `0x003304A0`, which takes the slot count +`0x04` and the offsets from +`0x10` and hands the handlers section addresses; the preload copy of script `0xD4` (`0x00330407`) moves the image whole; nothing fixes its width |
+| `+0x08` | `u8[4]` | reserved | 0 in all 10,036 containers; read by no function: the buffer `0x022C6C00`[manager] is stored by `0x00330310` (`0x003303C5`) and `0x0032F430` (`0x0032F450`), freed by `0x0032ED80` (`0x0032F127`-`0x0032F139`), and read by the walk `0x003304A0`, which takes the slot count `+0x04` and the offsets from `+0x10` and hands the handlers section addresses; the preload copy of script `0xD4` (`0x00330407`) moves the image whole; nothing fixes its width |
+| `+0x0C` | `u8[4]` | reserved | 0 in all 10,036 containers; read by no function: the buffer `0x022C6C00`[manager] is stored by `0x00330310` (`0x003303C5`) and `0x0032F430` (`0x0032F450`), freed by `0x0032ED80` (`0x0032F127`-`0x0032F139`), and read by the walk `0x003304A0`, which takes the slot count `+0x04` and the offsets from `+0x10` and hands the handlers section addresses; the preload copy of script `0xD4` (`0x00330407`) moves the image whole; nothing fixes its width |
 | `+0x10` | `u32[20]` | sectionOff | indexed by section number; file-relative offset, 0 = absent |
-| `+0x60` | `u8[32]` | padding | 0; the first section starts at +`0x80` |
+| `+0x60` | `u8[32]` | padding | 0; the first section starts at `+0x80` |
 
 A section has no stored length: it runs to the next present offset, and the last one to the end of
 the file. The walker passes each section on as `fileBase + offset` with the manager index in the

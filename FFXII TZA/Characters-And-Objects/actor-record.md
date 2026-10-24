@@ -276,7 +276,7 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x009` | `u8` | flags09 |  |
 | `+0x00B` | `u8` | flags0B |  |
 | `+0x00C` | `u8` | flags0C | bit 0 the wait resolver's id match |
-| `+0x00D` | `u8` | flags0D | bit 6 set while the +`0x38` callback runs |
+| `+0x00D` | `u8` | flags0D | bit 6 set while the `+0x38` callback runs |
 | `+0x00E` | `u8` | flags0E | bits 0-3 the class nibble (`0x00263C20`): 4 class 1, 5 class 3 (`0x00265FF0`) |
 | `+0x010` | `u8` | pendingRequests | resource requests the initialiser issued; 0 = idle for the field runtime |
 | `+0x011` | `i8` | currentWaitSlot |  |
@@ -291,9 +291,9 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x030` | `u8*` | battleUnit | `0x002134A0` |
 | `+0x038` | `void* frameCallback` | 0x00233F70 for a unit-bound record |  |
 | `+0x040` | `u8*` | scriptEntry | the payload's entry for this actor |
-| `+0x048` | `u8*` | functionTable | payload + entry +`0x10` |
-| `+0x050` | `u8*` | jumpTable | payload + entry +`0x14` |
-| `+0x058` | `u8*` | bytecodeBase | payload + entry +`0x08` |
+| `+0x048` | `u8*` | functionTable | payload + entry `+0x10` |
+| `+0x050` | `u8*` | jumpTable | payload + entry `+0x14` |
+| `+0x058` | `u8*` | bytecodeBase | payload + entry `+0x08` |
 | `+0x060` | `u8` | entryFreeListHead |  |
 | `+0x061` | `u8` | detachedEntryListHead |  |
 | `+0x062` | `u8` | selectedEntryIndex |  |
@@ -306,7 +306,7 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x094` | `u8[8]` | channelHead |  |
 | `+0x0A0` | `u8*` | resourceEntries | 20-byte entries |
 | `+0x0A8` | `u8*` | waitSlots | 40-byte slots (field runtime page) |
-| `+0x0B8` | `u8*` | movementContext | `0x230` bytes at +`0x120` |
+| `+0x0B8` | `u8*` | movementContext | `0x230` bytes at `+0x120` |
 | `+0x0C0` | `u8*` | secondaryContext 0x188 bytes at +0x350, class 3 only |  |
 | `+0x0C8` | `u16[18] overrides` | 0xFFFF at init |  |
 | `+0x0F6` | `u16` | entryGroup | 0 at init; stamped by `0x0026CE60` |

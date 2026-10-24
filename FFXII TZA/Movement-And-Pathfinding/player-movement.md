@@ -186,11 +186,11 @@ Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022C7FA0` | `camera` | basis: | +0 u32 stale, +8 f32 cached stick yaw, +`0xC` f32 smoothed output bearing, |
+| `0x022C7FA0` | `camera` | basis: | +0 u32 stale, +8 f32 cached stick yaw, `+0xC` f32 smoothed output bearing, |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `f32[4]` | row | 0, +`0x20` f32[4] row 1 |
+| `+0x10` | `f32[4]` | row | 0, `+0x20` f32[4] row 1 |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|

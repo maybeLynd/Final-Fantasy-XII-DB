@@ -359,7 +359,7 @@ Command object (OrderedObject), `0x18` bytes and up:
 | `+0x00` | `void*` | vtable | three slots: destroy, execute(object, device), class key |
 | `+0x08` | `void*` | target | 0 from `0x00212CC0`; forwarded by `0x00212C60` and `0x00215320` |
 | `+0x10` | `u8` | flush select | 1 from `0x00212CC0`; 0 for the four settings commands |
-| `+0x18` | `...` | class fields | PostProcessObj: u32 mode; GiReset*: u32 key; SetDofObj: u8 +`0x18`, f32 +`0x1C`, f32 +`0x20` |
+| `+0x18` | `...` | class fields | PostProcessObj: u32 mode; GiReset*: u32 key; SetDofObj: u8 `+0x18`, f32 `+0x1C`, f32 `+0x20` |
 
 GeometryInstanceOrderedObject (vtable `0x00903920`), `0x28` bytes from [`0x01F7F4C0`]:
 

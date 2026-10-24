@@ -179,8 +179,8 @@ Three Bullet functions are not in [`bullet-physics-members.tsv`](bullet-physics-
 | `+0x068` | `f32[3]` | linearVelocity |  |
 | `+0x078` | `f32[3]` | angularVelocity |  |
 | `+0x088` | `f32[3]` | scale | multiplies every child's scale |
-| `+0x098` | `void*` | material | friction at +`0x04`, restitution at +`0x08` |
-| `+0x0B0` | `u32` | childCount | bit 31 is a flag; one child is stored inline at +`0xB8` |
+| `+0x098` | `void*` | material | friction at `+0x04`, restitution at `+0x08` |
+| `+0x0B0` | `u32` | childCount | bit 31 is a flag; one child is stored inline at `+0xB8` |
 | `+0x0B8` | `void*` | children | the child array, or the single child itself |
 | `+0x0C0` | `f32[2]` | damping | linear, angular |
 | `+0x0E0` | `u8` | collisionGroup | index into the world's mask table |
@@ -199,7 +199,7 @@ The construction info `0x0069FB10` fills, as `0x008542B0` reads it:
 | `+0x10` | `f32[16] startWorldTransform` | identity |  |
 | `+0x50` | `void*` | collisionShape | the compound |
 | `+0x60` | `f32[4]` | localInertia |  |
-| `+0x70` | `f32[2]` | linearDamping, angularDamping | from +`0xC0`, clamped to 0..1 by `0x00854080` |
+| `+0x70` | `f32[2]` | linearDamping, angularDamping | from `+0xC0`, clamped to 0..1 by `0x00854080` |
 | `+0x78` | `f32[2]` | friction, restitution | from the material |
 | `+0x80` | `f32` | linearSleepingThreshold | 0.8 |
 | `+0x84` | `f32` | angularSleepingThreshold | 1.0 |

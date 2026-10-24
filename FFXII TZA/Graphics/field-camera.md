@@ -217,15 +217,15 @@ Follow camera (controller + `0x2B0`):
 | `+0x060` | `f32[4] look point` | followed position + 0x11C up |  |
 | `+0x070` | `f32` | heading | 0 to 2π |
 | `+0x07C` | `f32` | height level | 0 to 1 |
-| `+0x080` | `...` | orbit block | look +`0xA0`, heading +`0xB0`, pitch +`0xB4`, distance +`0xB8` (`0x0032DF40`) |
+| `+0x080` | `...` | orbit block | look `+0xA0`, heading `+0xB0`, pitch `+0xB4`, distance `+0xB8` (`0x0032DF40`) |
 | `+0x0C0` | `u32` | state | probe hits `0x1`-`0x8`, `0x4000000` pulled in, `0x8000000` leader moving |
 | `+0x0F4` | `i32` | stick dead zone 50 |  |
-| `+0x0F8` | `f32` | heading rate | +`0x0FC` level rate |
+| `+0x0F8` | `f32` | heading rate | `+0x0FC` level rate |
 | `+0x100` | `f32` | rate divisor | 1.0 idle, `0x00229E70`() under input |
-| `+0x104` | `f32` | wall turn | +`0x108` wall lift, +`0x10C` auto-rotation |
+| `+0x104` | `f32` | wall turn | `+0x108` wall lift, `+0x10C` auto-rotation |
 | `+0x11C` | `f32` | look height | 1.3 |
-| `+0x120` | `f32` | distance scale | +`0x124` its hold count |
-| `+0x128` | `f32` | floor lift | +`0x12C` its hold count |
+| `+0x120` | `f32` | distance scale | `+0x124` its hold count |
+| `+0x128` | `f32` | floor lift | `+0x12C` its hold count |
 | `+0x140` | `...` | four test segments, 0x60 apart |  |
 | `+0x2C0` | `void*` | followed transform |  |
 | `+0x2C8` | `void*` | collision part | `0x0026E500`(0) |

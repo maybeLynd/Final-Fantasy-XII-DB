@@ -271,11 +271,11 @@ Ten call sites in `0x0064A000`–`0x006560E0` use it.
 | `+0x0168` | `u32` | featureLevel | `0xB000` or higher |
 | `+0x0170` | `u8[392]` | backBuffer | PTexture2D; ring texture 0 is the swap chain's buffer 0 |
 | `+0x02F8` | `u8[392]` | depth | PTexture2D in DEPTH24S8 |
-| `+0x0480` | `u8[80]` | colourTarget | PRenderTarget; sample count at +`0x09` |
-| `+0x04D0` | `u8[80]` | depthTarget | PRenderTarget; sample count at +`0x09` |
+| `+0x0480` | `u8[80]` | colourTarget | PRenderTarget; sample count at `+0x09` |
+| `+0x04D0` | `u8[80]` | depthTarget | PRenderTarget; sample count at `+0x09` |
 | `+0x06F0` | `u32` | uploadSlot | set by `0x00626D90` |
-| `+0x0708` | `u8[88]` | vertexIndexUpload | UploadBufferPair, sizes from +`0xF4` and +`0xF8` |
-| `+0x0760` | `u8[88]` | rawUpload | UploadBufferPair, sizes from +`0xFC` and +`0x100` |
+| `+0x0708` | `u8[88]` | vertexIndexUpload | UploadBufferPair, sizes from `+0xF4` and `+0xF8` |
+| `+0x0760` | `u8[88]` | rawUpload | UploadBufferPair, sizes from `+0xFC` and `+0x100` |
 | `+0x07B8` | `void*` | indirectArgs | 16-byte ID3D11Buffer, feature level 11.0 |
 | `+0x1850` | `f64` | startClock | clock() at creation |
 | `+0x1878` | `void*` | factory | IDXGIFactory |
@@ -296,7 +296,7 @@ Ten call sites in `0x0064A000`–`0x006560E0` use it.
 | `+0x1C` | `u32` | SampleCount | 1-16 |
 | `+0x20` | `u32` | SampleQuality | 0 |
 | `+0x24` | `u32` | BufferUsage | `0x20` |
-| `+0x28` | `u32` | BufferCount | from context +`0x184C` |
+| `+0x28` | `u32` | BufferCount | from context `+0x184C` |
 | `+0x30` | `void*` | OutputWindow | the window argument |
 | `+0x38` | `u32` | Windowed | 1 |
 | `+0x3C` | `u32` | SwapEffect | 0 |
@@ -312,8 +312,8 @@ Ten call sites in `0x0064A000`–`0x006560E0` use it.
 | `+0x28` | `u32[2]` | indexUsed | bytes to upload |
 | `+0x30` | `u32` | vertexSize | 4 MiB by default |
 | `+0x34` | `u32` | indexSize | 1 MiB by default; the buffers are 16 bytes larger |
-| `+0x38` | `void*[2]` | vertexCopy | main-memory copies; unordered-access views in the pair at +`0x760` |
-| `+0x48` | `void*[2]` | indexCopy | main-memory copies; unordered-access views in the pair at +`0x760` |
+| `+0x38` | `void*[2]` | vertexCopy | main-memory copies; unordered-access views in the pair at `+0x760` |
+| `+0x48` | `void*[2]` | indexCopy | main-memory copies; unordered-access views in the pair at `+0x760` |
 
 `TextureFormat` (`0x38` bytes, offsets from the start of the record):
 
@@ -338,7 +338,7 @@ Ten call sites in `0x0064A000`–`0x006560E0` use it.
 | `+0x10` | `u32` | mips | mip count given to the size setter |
 | `+0x14` | `u32` | levels | derived level count |
 | `+0x18` | `u32` | flags | `0x2` generate mips, `0x100` render target, `0x400` UAV |
-| `+0x20` | `void*` | renderTarget | sample count at +`0x09` |
+| `+0x20` | `void*` | renderTarget | sample count at `+0x09` |
 | `+0x28` | `u32` | width |  |
 | `+0x2C` | `u32` | height |  |
 | `+0x30` | `u32` | depth | PTexture3D only |

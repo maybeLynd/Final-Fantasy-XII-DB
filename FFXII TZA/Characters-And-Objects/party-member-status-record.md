@@ -137,39 +137,39 @@ Struct PartyMemberStatusRecord size=`0xC0`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | flags | the flag word above |
-| `+0x04` | `u32` | actorHandle | the roster member's handle, or the owning unit's +`0x08` |
-| `+0x08` | `u32` | focusHandle | the unit's +`0x710` while acting |
+| `+0x04` | `u32` | actorHandle | the roster member's handle, or the owning unit's `+0x08` |
+| `+0x08` | `u32` | focusHandle | the unit's `+0x710` while acting |
 | `+0x10` | `u8*` | name | the party row's name text; the empty string when a unit owns the record |
-| `+0x18` | `u32` | unitField64 | unit +`0x64` |
-| `+0x1C` | `u32` | unitField68 | unit +`0x68` |
-| `+0x20` | `i32` | hp | stats +`0x48` |
-| `+0x24` | `i32` | hpMaxEffective | stats +`0x24`, or max(hp, 1) under status bit 16 |
+| `+0x18` | `u32` | unitField64 | unit `+0x64` |
+| `+0x1C` | `u32` | unitField68 | unit `+0x68` |
+| `+0x20` | `i32` | hp | stats `+0x48` |
+| `+0x24` | `i32` | hpMaxEffective | stats `+0x24`, or max(hp, 1) under status bit 16 |
 | `+0x28` | `i32` | hpCap | hpMaxEffective doubled under status bit 28 |
-| `+0x2C` | `i32` | mp | stats +`0x4C` |
-| `+0x30` | `i32` | mpCapacity | stats +`0x28` |
+| `+0x2C` | `i32` | mp | stats `+0x4C` |
+| `+0x30` | `i32` | mpCapacity | stats `+0x28` |
 | `+0x34` | `i32` | mpCapacityShown mpCapacity, or 0 when layer bytes +0x6C or +0x7C carry bit 7 |  |
-| `+0x38` | `i32` | secondary | stats +`0x06` |
-| `+0x3C` | `u32` | actionField768 | unit +`0x768` while acting |
-| `+0x40` | `u32` | actionField76C | unit +`0x76C` while acting |
-| `+0x44` | `u32` | statusPresence | stats +`0x64` \| +`0x3C` |
-| `+0x48` | `u32` | statusWord | stats +`0x3C` |
-| `+0x4C` | `u8[16]` | mergedLayers | stats +`0x68` OR +`0x78`, byte-wise |
-| `+0x5C` | `u16` | actionId | the unit's +`0x714`, or `0x00387090`(stats) from phase 9 |
-| `+0x5E` | `u16` | issuedCommand | unit +`0xBA0` while unit flag bit 14 |
-| `+0x60` | `u16` | type | stats +`0x04` |
-| `+0x62` | `u16` | kind | stats +`0x05` |
-| `+0x64` | `u16` | classRowWord52 | [unit + `0xE68`] +`0x52` for a kind-1 record |
-| `+0x66` | `u8[32]` | countdown | low byte of duration dword +`0xBC` + 4s, minus 1, for present statuses 2 and 6, else `0xFE` |
-| `+0x86` | `u8` | charges | stats +`0x4E` |
-| `+0x87` | `u8` | bars | stats +`0x37` |
-| `+0x88` | `u8` | spawnCounter | spawn record +`0x12` |
-| `+0x89` | `u8[5]` | affinity | stats +`0x40` .. +`0x44` |
-| `+0x90` | `i32` | experience | stats +`0x18C` (full) |
+| `+0x38` | `i32` | secondary | stats `+0x06` |
+| `+0x3C` | `u32` | actionField768 | unit `+0x768` while acting |
+| `+0x40` | `u32` | actionField76C | unit `+0x76C` while acting |
+| `+0x44` | `u32` | statusPresence | stats `+0x64` \| `+0x3C` |
+| `+0x48` | `u32` | statusWord | stats `+0x3C` |
+| `+0x4C` | `u8[16]` | mergedLayers | stats `+0x68` OR `+0x78`, byte-wise |
+| `+0x5C` | `u16` | actionId | the unit's `+0x714`, or `0x00387090`(stats) from phase 9 |
+| `+0x5E` | `u16` | issuedCommand | unit `+0xBA0` while unit flag bit 14 |
+| `+0x60` | `u16` | type | stats `+0x04` |
+| `+0x62` | `u16` | kind | stats `+0x05` |
+| `+0x64` | `u16` | classRowWord52 | [unit + `0xE68`] `+0x52` for a kind-1 record |
+| `+0x66` | `u8[32]` | countdown | low byte of duration dword `+0xBC` + 4s, minus 1, for present statuses 2 and 6, else `0xFE` |
+| `+0x86` | `u8` | charges | stats `+0x4E` |
+| `+0x87` | `u8` | bars | stats `+0x37` |
+| `+0x88` | `u8` | spawnCounter | spawn record `+0x12` |
+| `+0x89` | `u8[5]` | affinity | stats `+0x40` .. `+0x44` |
+| `+0x90` | `i32` | experience | stats `+0x18C` (full) |
 | `+0x94` | `i32` | toNextLevel | curve(level) - experience (full) |
-| `+0x98` | `u32[6]` | equipment | stats +`0x50` .. +`0x5A`, each << 16 (full) |
-| `+0xB0` | `i32` | lp | stats +`0x190` (full) |
+| `+0x98` | `u32[6]` | equipment | stats `+0x50` .. `+0x5A`, each << 16 (full) |
+| `+0xB0` | `i32` | lp | stats `+0x190` (full) |
 | `+0xB4` | `u16[3]` | partyRowBytes | party row +4 .. +6 |
-| `+0xBA` | `u8` | level | stats +`0x1C2` (full) |
+| `+0xBA` | `u8` | level | stats `+0x1C2` (full) |
 | `+0xBB` | `u8` | licenceCount | set bits among licence bits 0-17 (full) |
 
 The sixth equipment word at `+0xAC` is the stats record's `+0x5A`, not a sixth slot: see the

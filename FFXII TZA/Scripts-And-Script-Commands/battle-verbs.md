@@ -201,18 +201,58 @@ on every actor of the scene range that has a battle unit, when scene byte `+0x10
 
 ## Layouts
 
-```python
-battle unit   +0 u32 flags (bit 14 issued command, bit 22 no attacker registration, bit 23 stance), +4 u32 (bits 9-10 emergency, bit 16 engaged),
-              +0x6B0 bit 1 issued without target, +0x6E0 / +0x6E8 / +0x6F0 / +0x6F8 order sets, +0x700..+0x717 action block:
-              +0x708 action context, +0x710 target focus, +0x714 u16 action id; +0x718..+0x72F copy of the block,
-              +0x748 transient-set target, +0x750 / +0x754 shared target, +0xBA0 u16 issued command id, +0xBA4 bit 15 set on issue,
-              +0xBB8 issued target, +0xDCC u32, +0xE80 u64[2] script abilities, +0xE90 u32 script statuses,
-              +0xEA4 attackers mask, +0xEA8 u8 attacker count, +0xEA9 u8 unit index
-order sets    0x01EEC3C0 party default, 0x01EEC410 non-party default, 0x01EEC2D0 issued transient, 0x01EEC2B0 engage auto-attack,
-              0x01EEC320 / 0x01EEC370 status cases, 0x01EEC298 final fallback
-stance table  0x01EFE9D0: u32 motion ids 0x1001, 0x1001, 0x101A, 0x1018, 0x1019, 0x1009, 0x100A, 0x403D, 0x101C, 0x301B, …
-render record [0x022C6F28] + idx × 0x740: +0x40B bits 0-1 drawn state, +0x284 bit 19 set by draw and sheathe, +0x294 motion flags
-```
+Battle unit:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u32` | unitFlags | low dword of the u64: bit 14 issued command, bit 22 no attacker registration, bit 23 stance |
+| `+0x004` | `u32` | unitFlags high dword | bits 9-10 emergency (bits 41-42 of the u64), bit 16 engaged |
+| `+0x6B0` | `...` | commandStanceFlags | bit 1 issued without target |
+| `+0x6E0` | `...` | order set | one of the four order sets |
+| `+0x6E8` | `...` | order set | one of the four order sets |
+| `+0x6F0` | `...` | order set | one of the four order sets |
+| `+0x6F8` | `...` | order set | one of the four order sets |
+| `+0x700-0x717` | `...` | action block | holds the next three rows |
+| `+0x708` | `...` | action context |  |
+| `+0x710` | `...` | target focus |  |
+| `+0x714` | `u16` | action id |  |
+| `+0x718-0x72F` | `...` | block copy | copy of the block |
+| `+0x748` | `...` | transient-set target |  |
+| `+0x750` | `...` | shared target |  |
+| `+0x754` | `...` | shared target |  |
+| `+0xBA0` | `u16` | issued command id |  |
+| `+0xBA4` | `u16` | issued order flags | the flags word of the issued order at `+0xBA0`: bit 15 set on issue (`0x00311DBB`) |
+| `+0xBB8` | `...` | issued target |  |
+| `+0xDCC` | `u32` | stanceRecheckDeadlineTick |  |
+| `+0xE80` | `u64[2]` | script abilities |  |
+| `+0xE90` | `u32` | script statuses |  |
+| `+0xEA4` | `...` | attackers mask |  |
+| `+0xEA8` | `u8` | attacker count |  |
+| `+0xEA9` | `u8` | unit index |  |
+
+Order sets:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01EEC3C0` | `...` | order set | party default |
+| `0x01EEC410` | `...` | order set | non-party default |
+| `0x01EEC2D0` | `...` | order set | issued transient |
+| `0x01EEC2B0` | `...` | order set | engage auto-attack |
+| `0x01EEC320` | `...` | order set | status cases |
+| `0x01EEC370` | `...` | order set | status cases |
+| `0x01EEC298` | `...` | order set | final fallback |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01EFE9D0` | `...` | stance table | u32 motion ids `0x1001`, `0x1001`, `0x101A`, `0x1018`, `0x1019`, `0x1009`, `0x100A`, `0x403D`, `0x101C`, `0x301B`, … |
+
+Render record [`0x022C6F28`] + idx × `0x740`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x284` | `...` | objectFlags | bit 19 set by draw and sheathe |
+| `+0x294` | `...` | motion flags |  |
+| `+0x40B` | `...` | flagByte40B | bits 0-1 drawn state |
 
 ## Shipped data
 

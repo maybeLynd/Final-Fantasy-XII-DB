@@ -108,7 +108,7 @@ Globals:
 | `+0x2098E10` | `SceneManager[5]` | managers | manager `m` at `+ m × 0x288`, five slots ([actor managers](../Characters-And-Objects/actor-managers.md)); 0 is the zone, 1 to 3 the scenes |
 | `+0x22C6E48` | `u64[4]` | pendingLoad | per manager; bit 0 is the start hold |
 | `+0x22C6D20` | `u8[4]` | unloadRequest | per manager |
-| `+0x22CB730` | `SkipEntry[32]` | skips | entry `i + m × 8`, stride 16 |
+| `+0x22CB730` | `SkipEntry[40]` | skips | entry `i + m × 8`, stride 16; the initialiser `0x003604D0` builds 5 groups of 8 (`0x00360559`, `0x0036056D`) |
 | `+0x22CB9C0` | `u32[6]` | skipArmed | per mask index |
 | `+0x22CB9D8` | `u32[6]` | skipExecuted | per mask index |
 | `+0x1F81218` | `MoviePlayer` | movie | the movie player |

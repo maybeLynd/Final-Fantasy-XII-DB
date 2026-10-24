@@ -117,15 +117,48 @@ bank, and sets flag bit 0. Its three callers are inside the render root builder 
 
 ## Layouts
 
-```python
-section header  0x30: +0x00 u32 tag, +0x10 char[32] name (zero-padded)
-@FRP container  +0x00 '@FRP' (0x50524640), +0x04 u32 version (0 or 1), +0x0C u32 count,
-                v0: +0x30 u32[count] offsets from +0x30; v1: +0x30 u32 columns, +0x34 u32 rows, +0x40 u32[count] offsets from +0x40 (0 = empty)
-resource entry  +0x04 u32 mode, +0x18 inline handle (mode 0), +0x30 handle, +0x38 cached base (mode 1)
-descriptor      +0x08 directory handle, +0x10 directory (0x20-byte records, +0x10 encoded bank address),
-                +0x28 bank blob, +0x30 slot handle, +0x38 slots (0x10 each: +0x00 s32 key, -1 empty; +0x08 s32 next),
-                +0x40 s32 first slot, +0x48 s32 row stride, +0x4C u32 bank shift, +0x50 u32 row mask, +0x54 u32 capacity
-```
+Section header (`0x30`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | tag |  |
+| `+0x10` | `char[32]` | name | zero-padded |
+
+@FRP container:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `...` | magic | '@FRP' (`0x50524640`) |
+| `+0x04` | `u32` | version | 0 or 1 |
+| `+0x0C` | `u32` | count |  |
+| `+0x30` | `...` | offsets | v0: u32[count] offsets from `+0x30` |
+| `+0x30` | `u32` | columns | v1 |
+| `+0x34` | `u32` | rows | v1 |
+| `+0x40` | `...` | offsets | v1: u32[count] offsets from `+0x40` (0 = empty) |
+
+Resource entry:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u32` | mode |  |
+| `+0x18` | `...` | inline handle | mode 0 |
+| `+0x30` | `...` | handle |  |
+| `+0x38` | `...` | cached base | mode 1 |
+
+Descriptor:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x08` | `...` | directory handle |  |
+| `+0x10` | `...` | directory | `0x20`-byte records, `+0x10` encoded bank address |
+| `+0x28` | `...` | bank blob |  |
+| `+0x30` | `...` | slot handle |  |
+| `+0x38` | `...` | slots | `0x10` each: `+0x00` s32 key, -1 empty; `+0x08` s32 next |
+| `+0x40` | `i32` | first slot |  |
+| `+0x48` | `i32` | row stride |  |
+| `+0x4C` | `u32` | bank shift |  |
+| `+0x50` | `u32` | row mask |  |
+| `+0x54` | `u32` | capacity |  |
 
 The shared name buffer is listed in
 [`resource-sections-name-scratch-accesses.tsv`](resource-sections-name-scratch-accesses.tsv).

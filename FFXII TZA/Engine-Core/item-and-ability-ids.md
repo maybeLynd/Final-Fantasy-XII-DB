@@ -313,24 +313,82 @@ the only free value is the largest the byte can hold.
 
 ## Layouts
 
-```python
-encoded id (u16): nibble = id >> 12 (0..0xE), index = id & 0xFFF; class = nibble + 5; 0xFFFF = none
-0x01EEBCC0  descriptor[15], 0x58 each (layout above); 0x01EEBCF8 = record 0's class
-[0x02EBF190] + 0x4748  u16[64]  items          +0x47C8  u16[420] equipment     +0x4B10  u16[512] loot
-[0x02EBF190] + 0x4F10  u16[6]   magicks bits   +0x4F1C  u16[2]   technicks     +0x4F20  u16[16]  gambit conditions
-[0x02EBF190] + 0x4F40  u16[32]  key items      +0x4F80  u16[2]   quickenings   +0x57C0  items ever-owned bits
-[0x02EBF190] + 0x57C8  u8[512]  loot sold tally   +0x59C8  u8[128] masked with 0xF8 by the rebaser
-[0x02EBF190] + 0x04    u32  discovery bits: 0 magick, 2..0x20 school, 0x40 technick, 0x80 / 0x100 quickenings
-packed word: bits 0-9 total (0..99), bits 10-15 reserved
-0x00323054  u32[32]  validator arm RVAs by class - 1 (29 distinct)
-0x0031E598  u32[32]  query filler arm RVAs by class - 1 (28 distinct)
-EncodedIdQueryRecord (0x98): +0 u32 class; +4 u32 row | +6 u16 id; +8 ptr aux text; +0x10 ptr description; +0x18 ptr name;
-  +0x20 s32 channel 0; +0x24 s32 channel 1; +0x28.. class-specific; 0x022CA520 the row-form copy, 0x022CA480 the id-form copy
-reward package row (12): u32 gil, u16 item, u16 count, u16 item, u16 count
-package selector row (12): u16 id[3], u16 id[3]
-bazaar good row (36): u16 name, u16 desc, (u16 item, u8 count, u8)[3], u32 price, u16, (u16 loot, u16 count)[3], u16
-0x01EED1B0  {ptr map, u32 count}[11] by nibble: the derived-index category maps
 ```
+encoded id (u16): nibble = id >> 12 (0..0xE), index = id & 0xFFF; class = nibble + 5; 0xFFFF = none
+```
+
+Globals:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01EEBCC0` | `ItemClassDescriptor[15]` | descriptors | `0x58` each (layout above); `0x01EEBCF8` = record 0's class |
+| `0x00323054` | `u32[32]` | validator arm RVAs | by class - 1 (29 distinct) |
+| `0x0031E598` | `u32[32]` | query filler arm RVAs | by class - 1 (28 distinct) |
+| `0x01EED1B0` | `...` | category maps | the derived-index category maps, by nibble: {ptr map, u32 count}[11] |
+
+Battle state block [`0x02EBF190`]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0004` | `u32` | discovery bits | 0 magick, 2..0x20 school, `0x40` technick, `0x80` / `0x100` quickenings |
+| `+0x4748` | `u16[64]` | items |  |
+| `+0x47C8` | `u16[420]` | equipment |  |
+| `+0x4B10` | `u16[512]` | loot |  |
+| `+0x4F10` | `u16[6]` | magicks bits |  |
+| `+0x4F1C` | `u16[2]` | technicks |  |
+| `+0x4F20` | `u16[16]` | gambit conditions |  |
+| `+0x4F40` | `u16[32]` | key items |  |
+| `+0x4F80` | `u16[2]` | quickenings |  |
+| `+0x57C0` | `...` | items ever-owned bits |  |
+| `+0x57C8` | `u8[512]` | loot sold tally |  |
+| `+0x59C8` | `u8[128]` | inventoryPackedFlags | masked with `0xF8` by the rebaser |
+
+```
+packed word: bits 0-9 total (0..99), bits 10-15 reserved
+```
+
+EncodedIdQueryRecord (`0x98`); `0x022CA520` the row-form copy, `0x022CA480` the id-form copy:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | class |  |
+| `+0x04` | `u32` | row | row form; the id form has `+0x06` u16 id instead |
+| `+0x06` | `u16` | id | id form |
+| `+0x08` | `void*` | aux text |  |
+| `+0x10` | `void*` | description |  |
+| `+0x18` | `void*` | name |  |
+| `+0x20` | `i32` | channel 0 |  |
+| `+0x24` | `i32` | channel 1 |  |
+| `+0x28` | `...` | class-specific | from `+0x28` on |
+
+Reward package row (12):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | gil |  |
+| `+0x04` | `u16` | item |  |
+| `+0x06` | `u16` | count |  |
+| `+0x08` | `u16` | item |  |
+| `+0x0A` | `u16` | count |  |
+
+Package selector row (12):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16[3]` | id |  |
+| `+0x06` | `u16[3]` | id |  |
+
+Bazaar good row (36):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | name |  |
+| `+0x02` | `u16` | desc |  |
+| `+0x04-0x0F` | `u8[12]` | items | (u16 item, u8 count, u8)[3] |
+| `+0x10` | `u32` | price |  |
+| `+0x14` | `u16` | word14 |  |
+| `+0x16-0x21` | `u8[12]` | loot | (u16 loot, u16 count)[3] |
+| `+0x22` | `u16` | word22 |  |
 
 ## Shipped data
 

@@ -276,17 +276,66 @@ page.
 
 ## Layouts
 
-```python
-arena record   0x022D7FD0 + i*0xA8: +0x00 u8, +0x01 u8 index, +0x02 u8 dirty, +0x08 name header, +0x10 heap start,
-               +0x18 heap middle, +0x20 bitmap, +0x28 page map, +0x30 slot table, +0x38 slot end, +0x40 free slot,
-               +0x48 used slot, +0x50 tree root, +0x58 u32 pages, +0x5C u32 heap size, +0x60 u16 tag, +0x62 u8 moved,
-               +0x90 free list bottom, +0x98 free list top, +0xA0 pressure callback
-block header   +0x00 u16 0xFF12, +0x02 u8 category (0x022D8E18, stamped at 0x0036A15F; 0xFF when free), +0x03 u8 arena, +0x04/+0x08/+0x0C/+0x10 encoded links,
-               +0x14 u8 bit 0 allocated, +0x15 u8 bit 0 top, bit 1 in tree, bit 2 not movable, bit 3 set while 0x022D8E28,
-               +0x16 u8 tag, +0x18 s32 size, +0x1C u16 check word, +0x1E u16 label tag, +0x20 encoded slot,
-               +0x24/+0x28/+0x2C encoded tree links, +0x34 char[8] label, +0x3E u16 must be 0 on free; payload +0x40
-handle slot    +0x00 u16 next, +0x02 u16 previous, +0x04 u8 arena, +0x05 u8 in use, +0x06 u16 check word, +0x08 header
-```
+Arena record (`0x022D7FD0` + i*`0xA8`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | byte00 |  |
+| `+0x01` | `u8` | index |  |
+| `+0x02` | `u8` | dirty |  |
+| `+0x08` | `...` | name header |  |
+| `+0x10` | `...` | heap start |  |
+| `+0x18` | `...` | heap middle |  |
+| `+0x20` | `...` | bitmap |  |
+| `+0x28` | `...` | page map |  |
+| `+0x30` | `...` | slot table |  |
+| `+0x38` | `...` | slot end |  |
+| `+0x40` | `...` | free slot |  |
+| `+0x48` | `...` | used slot |  |
+| `+0x50` | `...` | tree root |  |
+| `+0x58` | `u32` | pages |  |
+| `+0x5C` | `u32` | heap size |  |
+| `+0x60` | `u16` | tag |  |
+| `+0x62` | `u8` | moved |  |
+| `+0x90` | `...` | free list bottom |  |
+| `+0x98` | `...` | free list top |  |
+| `+0xA0` | `...` | pressure callback |  |
+
+Block header (payload `+0x40`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | magic | `0xFF12` |
+| `+0x02` | `u8` | category | `0x022D8E18`, stamped at `0x0036A15F`; `0xFF` when free |
+| `+0x03` | `u8` | arena |  |
+| `+0x04` | `...` | encoded link | one of the four encoded links |
+| `+0x08` | `...` | encoded link | one of the four encoded links |
+| `+0x0C` | `...` | encoded link | one of the four encoded links |
+| `+0x10` | `...` | encoded link | one of the four encoded links |
+| `+0x14` | `u8` | allocFlags | bit 0 allocated |
+| `+0x15` | `u8` | blockFlags | bit 0 top, bit 1 in tree, bit 2 not movable, bit 3 set while `0x022D8E28` |
+| `+0x16` | `u8` | tag |  |
+| `+0x18` | `i32` | size |  |
+| `+0x1C` | `u16` | check word |  |
+| `+0x1E` | `u16` | label tag |  |
+| `+0x20` | `...` | encoded slot |  |
+| `+0x24` | `...` | encoded tree link | one of the three encoded tree links |
+| `+0x28` | `...` | encoded tree link | one of the three encoded tree links |
+| `+0x2C` | `...` | encoded tree link | one of the three encoded tree links |
+| `+0x34` | `char[8]` | label |  |
+| `+0x3E` | `u16` | guardWord | must be 0 on free |
+| `+0x40` | `...` | payload |  |
+
+Handle slot:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | next |  |
+| `+0x02` | `u16` | previous |  |
+| `+0x04` | `u8` | arena |  |
+| `+0x05` | `u8` | in use |  |
+| `+0x06` | `u16` | check word |  |
+| `+0x08` | `...` | header |  |
 
 `ArenaStackEntry` (`0x10` bytes, offsets from the start of the 0x022D89D0+(stack*32+depth)*0x10):
 

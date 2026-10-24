@@ -438,65 +438,65 @@ The solver context's fields, from the context builder `0x00336710` and the solve
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x40` | `f32[2]` | targetPosXY | x and y of the target position: `0x00336710` zeroes them (`0x0033695D`) and, when the block's goal kind +`0x160` is 3 or its +`0x40` is 1 or 2, fills x, y and z from the target actor through `0x002646C0` (`0x003369ED`-`0x003369FC`); `0x00334E00` takes +`0x40` as its probe point when the block's +`0x40` is 1 (`0x00334E4B`) |
-| `+0x48` | `f32` | targetPosZ | z of the target position: 0 from `0x00336710` (`0x00336961`), then the target actor's z through `0x002646C0` (r9 = +`0x48`, `0x003369ED`) |
+| `+0x40` | `f32[2]` | targetPosXY | x and y of the target position: `0x00336710` zeroes them (`0x0033695D`) and, when the block's goal kind `+0x160` is 3 or its `+0x40` is 1 or 2, fills x, y and z from the target actor through `0x002646C0` (`0x003369ED`-`0x003369FC`); `0x00334E00` takes `+0x40` as its probe point when the block's `+0x40` is 1 (`0x00334E4B`) |
+| `+0x48` | `f32` | targetPosZ | z of the target position: 0 from `0x00336710` (`0x00336961`), then the target actor's z through `0x002646C0` (r9 = `+0x48`, `0x003369ED`) |
 | `+0x4C` | `f32` | targetPosW | w of the target position, 1.0 from `0x00336710` (`0x00336965`) |
-| `+0x70` | `f32[4]` | toStepPoint | the vector from the position (+`0x00`) to the step point (+`0x10`): `0x00336710` computes it with the vector subtract `0x00203080` (`0x0033683F`-`0x0033684A`; the store is `0x002030C9`) |
-| `+0x80` | `f32[4]` | toRouteGoal | the vector from the position (+`0x00`) to the route goal (+`0x20`): `0x00336710` computes it with `0x00203080` (`0x00336820`-`0x0033683A`) |
-| `+0xA0` | `f32` | radius | the unit's collision radius, the larger of the block's +`0x10C` and +`0x110` (`0x003367C2`-`0x003367D9`); the stop distance adds it (`0x00336A82`) and `0x003343D0` compares it with the horizontal distance to the target position (`0x00334432`) |
+| `+0x70` | `f32[4]` | toStepPoint | the vector from the position (`+0x00`) to the step point (`+0x10`): `0x00336710` computes it with the vector subtract `0x00203080` (`0x0033683F`-`0x0033684A`; the store is `0x002030C9`) |
+| `+0x80` | `f32[4]` | toRouteGoal | the vector from the position (`+0x00`) to the route goal (`+0x20`): `0x00336710` computes it with `0x00203080` (`0x00336820`-`0x0033683A`) |
+| `+0xA0` | `f32` | radius | the unit's collision radius, the larger of the block's `+0x10C` and `+0x110` (`0x003367C2`-`0x003367D9`); the stop distance adds it (`0x00336A82`) and `0x003343D0` compares it with the horizontal distance to the target position (`0x00334432`) |
 | `+0xA4` | `f32` | targetRadius | the target's radius: 0 from `0x00336710` (`0x00336984`), then the larger of the two floats `0x00265090` returns for the target actor (`0x00336A25`-`0x00336A42`); the stop distance adds it (`0x00336A8A`) and `0x00334E00` uses radius + targetRadius + 0.1 as its reach (`0x00334E39`-`0x00334E4F`) |
-| `+0xA8` | `f32` | targetBearing | the bearing from the unit to the target: `0x004687F0` on target position minus position (`0x00336A3D`-`0x00336A5D`); `0x0033BAA0` turns the limited heading +`0xBC` toward it with `0x00334120` (`0x0033BC26`-`0x0033BC39`) |
-| `+0xAC` | `f32` | stopDistance | the stop distance: radius + targetRadius + 0.1 when the block's +`0x40` is 1 (`0x00336A7C`-`0x00336A9A`), otherwise the block's +`0xD0` (`0x00336AA4`-`0x00336AAA`); `0x0033A570` compares the horizontal distance to the destination with it (`0x0033A5B5`) |
-| `+0xB0` | `f32` | speed | the solver's output speed: 0 from `0x00336710` (`0x003367D2`), the step distance `0x00339BF0` from the default solver (`0x0033BF2A`), 0 when `0x0033C870` claims a detour (`0x0033C989`); `0x00336CE0` writes it to the block's +`0xD8` (`0x00336D7C`-`0x00336D95`) |
-| `+0xB4` | `f32` | desiredHeading | the desired heading: the block's +`0xDC` on entry (`0x003367E1`-`0x003367E7`); `0x00336CE0` writes it back to +`0xDC` (`0x00336D85`-`0x00336DA6`) |
-| `+0xB8` | `f32` | pitch | the pitch: the block's +`0xF4` on entry (`0x003367ED`-`0x003367F3`); the class solver `0x003394A0` sets pi/2 (`0x00339545`); `0x00336CE0` writes it back to +`0xF4` (`0x00336D9D`-`0x00336DB7`) |
-| `+0xBC` | `f32` | limitedHeading | the limited heading: the block's +`0xE0` on entry (`0x003367F9`-`0x003367FF`); `0x0033BAA0` turns it toward the target bearing (`0x0033BC3E`) and `0x0033C870` sets it to the detour bearing (`0x0033C8D6`); `0x00336CE0` writes it back to +`0xE0` (`0x00336DAE`-`0x00336DC5`) |
-| `+0xC0` | `f32` | stepScale | the step scale: the height above the ground at which the probes place points: the block's +`0x108` (`0x00336870`-`0x00336878`), raised to 2.0 below 2.0 unless the unit's definition byte +`0x18` has mode 2 (`0x0033689F`-`0x003368AC`); `0x0033A720` sets a point's y to the ground height `0x003208C0` plus this (`0x0033A97C`-`0x0033A990`), as does `0x00335180` (`0x0033552F`-`0x00335541`) |
-| `+0xC8` | `f32` | goalDistance | the horizontal distance from the position to the route goal +`0x20` (Vector3_ComputeXZDistance `0x004686D0`, `0x00336942`-`0x0033694E`), replaced by the distance to the target position when a target is resolved (`0x00336A59`-`0x00336A6D`) |
-| `+0xCC` | `u32` | flags | the block's flag word +`0x170` on entry (`0x00336827`-`0x00336834`), written back by `0x00336CE0` (`0x00336D8E`-`0x00336DD3`); bit 7 is set when `0x0033BD70` stores a detour point at +`0x50` (`0x0033BEBE`-`0x0033BEC8`) and cleared by the default solver `0x0033BED0` (`0x0033BF1D`); bit 10 is the detour in progress, tested by `0x0033C870` (`0x0033C889`), cleared with bit 7 set when it ends (`0x0033C8DE`-`0x0033C8EF`) and set when it starts one (`0x0033C97F`) |
-| `+0xD0` | `u32` | leaderReachable | bit 0: cleared by `0x00336710` (`0x003368B6`) and set when `0x0033D3E0`(ctx, leader position +`0x60`, 1) does not return 1 for a unit with order `0x4124`, or `0x4022` while the party is fleeing (`0x003368E8`-`0x00336932`); the step distance `0x00339BF0` then measures from the leader position (`0x00339D3A`-`0x00339D43`) |
-| `+0xD8` | `void*` | unitActor | the unit's actor: the handle at BattleUnit +`0x8` of the block's slot +`0x177` resolved by `0x0031ABE0` (`0x00336805`-`0x00336819`) |
-| `+0xE0` | `void*` | targetActor | the target's actor: the block's handle +`0x150` resolved by `0x003588B0` (`0x003369C5`-`0x003369D0`), set only when a target is sought; read for its radius by `0x00336710` (`0x00336A14`) and `0x0033A720` (`0x0033AA80`), and passed to the obstruction probe by `0x003343D0` (`0x00334484`) |
-| `+0xE8` | `void*` | leaderActor | the party leader's actor, +`0x10` of the unit `0x003272A0` returns (`0x003368C7`-`0x003368DC`), or 0 with no leader (`0x0033693B`); `0x0033C200` and `0x0033C310` read it (`0x0033C28C`, `0x0033C368`) |
-| `+0xF0` | `void*` | unit | the BattleUnit of the block's slot byte +`0x177` (`0x0033684F`-`0x00336869`); the solvers read its order word +`0x714` (`0x003368E8`-`0x003368F4`) |
-| `+0xF8` | `void*` | targetUnit | the target's BattleUnit: 0 from `0x00336710` (`0x00336956`), then the block's handle +`0x150` resolved by `0x0031B7E0` (`0x003369B3`-`0x003369BE`); `0x0033BAA0` and `0x00338140` read it (`0x0033BB0E`, `0x003381F0`) |
+| `+0xA8` | `f32` | targetBearing | the bearing from the unit to the target: `0x004687F0` on target position minus position (`0x00336A3D`-`0x00336A5D`); `0x0033BAA0` turns the limited heading `+0xBC` toward it with `0x00334120` (`0x0033BC26`-`0x0033BC39`) |
+| `+0xAC` | `f32` | stopDistance | the stop distance: radius + targetRadius + 0.1 when the block's `+0x40` is 1 (`0x00336A7C`-`0x00336A9A`), otherwise the block's `+0xD0` (`0x00336AA4`-`0x00336AAA`); `0x0033A570` compares the horizontal distance to the destination with it (`0x0033A5B5`) |
+| `+0xB0` | `f32` | speed | the solver's output speed: 0 from `0x00336710` (`0x003367D2`), the step distance `0x00339BF0` from the default solver (`0x0033BF2A`), 0 when `0x0033C870` claims a detour (`0x0033C989`); `0x00336CE0` writes it to the block's `+0xD8` (`0x00336D7C`-`0x00336D95`) |
+| `+0xB4` | `f32` | desiredHeading | the desired heading: the block's `+0xDC` on entry (`0x003367E1`-`0x003367E7`); `0x00336CE0` writes it back to `+0xDC` (`0x00336D85`-`0x00336DA6`) |
+| `+0xB8` | `f32` | pitch | the pitch: the block's `+0xF4` on entry (`0x003367ED`-`0x003367F3`); the class solver `0x003394A0` sets pi/2 (`0x00339545`); `0x00336CE0` writes it back to `+0xF4` (`0x00336D9D`-`0x00336DB7`) |
+| `+0xBC` | `f32` | limitedHeading | the limited heading: the block's `+0xE0` on entry (`0x003367F9`-`0x003367FF`); `0x0033BAA0` turns it toward the target bearing (`0x0033BC3E`) and `0x0033C870` sets it to the detour bearing (`0x0033C8D6`); `0x00336CE0` writes it back to `+0xE0` (`0x00336DAE`-`0x00336DC5`) |
+| `+0xC0` | `f32` | stepScale | the step scale: the height above the ground at which the probes place points: the block's `+0x108` (`0x00336870`-`0x00336878`), raised to 2.0 below 2.0 unless the unit's definition byte `+0x18` has mode 2 (`0x0033689F`-`0x003368AC`); `0x0033A720` sets a point's y to the ground height `0x003208C0` plus this (`0x0033A97C`-`0x0033A990`), as does `0x00335180` (`0x0033552F`-`0x00335541`) |
+| `+0xC8` | `f32` | goalDistance | the horizontal distance from the position to the route goal `+0x20` (Vector3_ComputeXZDistance `0x004686D0`, `0x00336942`-`0x0033694E`), replaced by the distance to the target position when a target is resolved (`0x00336A59`-`0x00336A6D`) |
+| `+0xCC` | `u32` | flags | the block's flag word `+0x170` on entry (`0x00336827`-`0x00336834`), written back by `0x00336CE0` (`0x00336D8E`-`0x00336DD3`); bit 7 is set when `0x0033BD70` stores a detour point at `+0x50` (`0x0033BEBE`-`0x0033BEC8`) and cleared by the default solver `0x0033BED0` (`0x0033BF1D`); bit 10 is the detour in progress, tested by `0x0033C870` (`0x0033C889`), cleared with bit 7 set when it ends (`0x0033C8DE`-`0x0033C8EF`) and set when it starts one (`0x0033C97F`) |
+| `+0xD0` | `u32` | leaderReachable | bit 0: cleared by `0x00336710` (`0x003368B6`) and set when `0x0033D3E0`(ctx, leader position `+0x60`, 1) does not return 1 for a unit with order `0x4124`, or `0x4022` while the party is fleeing (`0x003368E8`-`0x00336932`); the step distance `0x00339BF0` then measures from the leader position (`0x00339D3A`-`0x00339D43`) |
+| `+0xD8` | `void*` | unitActor | the unit's actor: the handle at BattleUnit `+0x8` of the block's slot `+0x177` resolved by `0x0031ABE0` (`0x00336805`-`0x00336819`) |
+| `+0xE0` | `void*` | targetActor | the target's actor: the block's handle `+0x150` resolved by `0x003588B0` (`0x003369C5`-`0x003369D0`), set only when a target is sought; read for its radius by `0x00336710` (`0x00336A14`) and `0x0033A720` (`0x0033AA80`), and passed to the obstruction probe by `0x003343D0` (`0x00334484`) |
+| `+0xE8` | `void*` | leaderActor | the party leader's actor, `+0x10` of the unit `0x003272A0` returns (`0x003368C7`-`0x003368DC`), or 0 with no leader (`0x0033693B`); `0x0033C200` and `0x0033C310` read it (`0x0033C28C`, `0x0033C368`) |
+| `+0xF0` | `void*` | unit | the BattleUnit of the block's slot byte `+0x177` (`0x0033684F`-`0x00336869`); the solvers read its order word `+0x714` (`0x003368E8`-`0x003368F4`) |
+| `+0xF8` | `void*` | targetUnit | the target's BattleUnit: 0 from `0x00336710` (`0x00336956`), then the block's handle `+0x150` resolved by `0x0031B7E0` (`0x003369B3`-`0x003369BE`); `0x0033BAA0` and `0x00338140` read it (`0x0033BB0E`, `0x003381F0`) |
 
-Locomotion block (unit +`0x80`; the solver's "state" and "flag block" are the same record):
+Locomotion block (unit `+0x80`; the solver's "state" and "flag block" are the same record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u32` | flag word: bits 0-4 steering mode, 5-14 countdown, 15 orbit direction |  |
-| `+0x004` | `f32` | orbit radius | +`0x10` f32 stored path distance   +`0x14` u8 stall counter (60)   +`0x18`/+`0x1C` f32 last solve x, z |
+| `+0x004` | `f32` | orbit radius | `+0x10` f32 stored path distance   `+0x14` u8 stall counter (60)   `+0x18`/`+0x1C` f32 last solve x, z |
 | `+0x021` | `u8` | bit 0 heading byte valid; bits 1-2 last turn direction |  |
 | `+0x02C` | `u8` | heading as byte * pi/128 |  |
 | `+0x038` | `u32` | bit 1 too far, bit 2 within reach, bit 3 turning, bits 6-7 detour side |  |
 | `+0x03C` | `u32` | bit 0 fast latch, bit 3 detour pending, bits 4-7 attempt counter |  |
 | `+0x040` | `i32` | goal kind (1 unit, 2 unit with margin) |  |
 | `+0x060-0x090` | `f32[4] x4` | the four positions the context copies |  |
-| `+0x0D0` | `f32` | stop radius | +`0xD8` f32 speed   +`0xDC` f32 desired heading   +`0xF4` f32 pitch   +`0xE0` f32 current heading |
-| `+0x0E4` | `f32` | turn rate moving | +`0xE8` f32 turn rate standing |
-| `+0x0EC` | `f32` | slow turn rate | +`0xF0` f32 fast turn rate |
-| `+0x0F8` | `f32` | speedA | +`0xFC` f32 speedB     +`0x104` f32 speed threshold |
-| `+0x108` | `f32` | step scale (2.0 floor) | +`0x10C`/+`0x110` f32 collision radii   +`0x118` f32 heading cap |
+| `+0x0D0` | `f32` | stop radius | `+0xD8` f32 speed   `+0xDC` f32 desired heading   `+0xF4` f32 pitch   `+0xE0` f32 current heading |
+| `+0x0E4` | `f32` | turn rate moving | `+0xE8` f32 turn rate standing |
+| `+0x0EC` | `f32` | slow turn rate | `+0xF0` f32 fast turn rate |
+| `+0x0F8` | `f32` | speedA | `+0xFC` f32 speedB     `+0x104` f32 speed threshold |
+| `+0x108` | `f32` | step scale (2.0 floor) | `+0x10C`/`+0x110` f32 collision radii   `+0x118` f32 heading cap |
 
-+`0x120`/+`0x124`/+`0x128`  f32 reach values     +`0x12C` f32 orbit length    +`0x130` i32 sidestep odds:
+`+0x120`/`+0x124`/`+0x128`  f32 reach values     `+0x12C` f32 orbit length    `+0x130` i32 sidestep odds:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x140` | `f32[3] direction` | +0x150 u32 target handle | +`0x160` i32 goal kind |
+| `+0x140` | `f32[3] direction` | +0x150 u32 target handle | `+0x160` i32 goal kind |
 | `+0x170` | `u32` | flags (unit +0x1F0): bit 0 speedA, bit 1 speedB, bits 2-4 the fast-latch condition, bit 9 |  |
-| `+0x174` | `u8` | mover class (unit +0x1F4) | +`0x176` u8 bit 2 detours allowed   +`0x177` u8 slot |
+| `+0x174` | `u8` | mover class (unit +0x1F4) | `+0x176` u8 bit 2 detours allowed   `+0x177` u8 slot |
 
 Solver context (stack, `0x110` bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `position (block +0x60)` | +0x10 step point (+0x70) | +`0x20` route goal (+`0x80`) |
-| `+0x30` | `destination (+0x90; the step and spacing distances)` | +0x40 target position | +`0x50` detour point  +`0x60` leader position |
-| `+0xA0` | `radius` | +0xA4 target radius | +`0xA8` target bearing  +`0xAC` stop distance |
-| `+0xB0` | `speed out` | +0xB4 desired heading | +`0xB8` pitch  +`0xBC` limited heading |
-| `+0xC0` | `step scale` | +0xC8 distance to the route goal, or to the target | +`0xCC` flags copy (bit 7, bit 10 detour)  +`0xD0` bit 0 leader reachable |
-| `+0xE0` | `target actor` | +0xE8 leader actor | +`0xF0` unit  +`0xF8` target unit  +`0x100` / +`0x108` the block |
+| `+0x00` | `position (block +0x60)` | +0x10 step point (+0x70) | `+0x20` route goal (`+0x80`) |
+| `+0x30` | `destination (+0x90; the step and spacing distances)` | +0x40 target position | `+0x50` detour point  `+0x60` leader position |
+| `+0xA0` | `radius` | +0xA4 target radius | `+0xA8` target bearing  `+0xAC` stop distance |
+| `+0xB0` | `speed out` | +0xB4 desired heading | `+0xB8` pitch  `+0xBC` limited heading |
+| `+0xC0` | `step scale` | +0xC8 distance to the route goal, or to the target | `+0xCC` flags copy (bit 7, bit 10 detour)  `+0xD0` bit 0 leader reachable |
+| `+0xE0` | `target actor` | +0xE8 leader actor | `+0xF0` unit  `+0xF8` target unit  `+0x100` / `+0x108` the block |
 
 ## Shipped data
 

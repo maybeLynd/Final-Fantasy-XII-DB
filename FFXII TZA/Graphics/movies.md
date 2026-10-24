@@ -32,7 +32,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x04` | `u8[4]` | pad04 | the four bytes between the material count at +`0x00` (returned by the script accessor getMaterialCount, `0x005C4CC0`) and the material pointer at +`0x08` of the PSharray header; no registered member covers it (`0x00662280` registers the `0x10`-byte class at `0x006622D0`) |
+| `+0x04` | `u8[4]` | pad04 | the four bytes between the material count at `+0x00` (returned by the script accessor getMaterialCount, `0x005C4CC0`) and the material pointer at `+0x08` of the PSharray header; no registered member covers it (`0x00662280` registers the `0x10`-byte class at `0x006622D0`) |
 
 ### Movie files and the player
 

@@ -122,23 +122,32 @@ guard (u32, .data)
    0           never built
   -1           being built by one thread
   0x80000001+  built; the epoch at which it finished
-
-per-thread TLS block (template at 0x03004000)
-  +0x04  u32   epoch        starts 0x80000000
-
-runtime globals
-  0x01F44850  u32           global epoch, starts 0x80000000
-  0x02EAED40  CRITICAL_SECTION
-  0x02EAED68  CONDITION_VARIABLE
-  0x02EAED70  HANDLE        event, 0 when the condition variable is used
-  0x02EAED78  u64           encoded SleepConditionVariableCS
-  0x02EAED80  u64           encoded WakeAllConditionVariable
-
-descriptor pair static (0x005C3B10's 0x02CB5D48)
-  +0x00  u64   descriptor   address | 1
-  +0x08  u64   zero
-  +0x10  u32   guard
 ```
+
+Per-thread TLS block (template at `0x03004000`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `u32` | epoch | starts `0x80000000` |
+
+Runtime globals:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01F44850` | `u32` | global epoch | starts `0x80000000` |
+| `0x02EAED40` | `CRITICAL_SECTION` | critical section |  |
+| `0x02EAED68` | `CONDITION_VARIABLE` | condition variable |  |
+| `0x02EAED70` | `HANDLE` | event | 0 when the condition variable is used |
+| `0x02EAED78` | `u64` | sleep | encoded SleepConditionVariableCS |
+| `0x02EAED80` | `u64` | wake | encoded WakeAllConditionVariable |
+
+Descriptor pair static (`0x005C3B10`'s `0x02CB5D48`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u64` | descriptor | address \| 1 |
+| `+0x08` | `u64` | zero |  |
+| `+0x10` | `u32` | guard |  |
 
 ## Shipped data
 

@@ -521,34 +521,34 @@ The backdrop is the `0x140`-byte widget at `0x020927F0` with procedure `0x002509
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x002509D0` |
 | `+0x0C0` | `void*` | captureBuffer | the capture buffer in resource arena 2 that `0x00251010` allocates for types 0 and 1 (`0x002510BC`); the stage-7 captures go through it (`0x0025115C`, `0x00251206`) and `0x00251E00` hands it to `0x0036CAD0` after each (`0x00251E56`-`0x00251E69`); the draw reads it (`0x00251599`, `0x002516ED`, `0x00251CD3`); the teardown frees it with `0x003697F0` (`0x002509FF`-`0x00250A12`) |
-| `+0x0C8` | `void*` | firstCapture | the first capture target (`0x00182B40`), made by `0x00251010` (`0x002510E8`) and filled by a stage-7 capture (`0x0025116F`); the draw binds it with the palette when +`0xE8` bit 0 is set (`0x00251815`); released by the teardown with `0x00182CA0` (`0x00250A19`-`0x00250A2A`) |
+| `+0x0C8` | `void*` | firstCapture | the first capture target (`0x00182B40`), made by `0x00251010` (`0x002510E8`) and filled by a stage-7 capture (`0x0025116F`); the draw binds it with the palette when `+0xE8` bit 0 is set (`0x00251815`); released by the teardown with `0x00182CA0` (`0x00250A19`-`0x00250A2A`) |
 | `+0x0D0` | `void*` | secondCapture | the second capture target, made by `0x00251010` (`0x002510FD`) and captured into (`0x00251215`); drawn plainly while the progress is below 1.0 (`0x00251628`); released by the teardown (`0x00250A31`-`0x00250A42`) |
 | `+0x0D8` | `void*` | composite | the composite target: 0 from `0x00251010` (`0x00251104`); at full progress the draw allocates it and queues a stage-5 capture into it (`0x00251C5D`-`0x00251C76`), and while it exists draws it alone as a kind-2 quad (`0x002513A6`, `0x0025148F`, `0x00251CE6`); below full progress it is released first (`0x0025150D`-`0x00251525`); released by the teardown (`0x00250A49`-`0x00250A5A`) |
 | `+0x0E0` | `u8[4]` | gap0E0 | read and written by no function; nothing fixes its width |
-| `+0x0E4` | `i16` | type | the backdrop type 0-3, the creation record's word +`0x00` (`0x00250A93`-`0x00250A96`): types 0 and 1 use the field picture, 2 and 3 draw opaque black; read by `0x00250E90`, `0x00250F30`, `0x00251010`, the draw and `0x00251E00` (`0x00250EA9`, `0x00250F46`, `0x0025103A`, `0x002512EF`, `0x00251E10`) |
+| `+0x0E4` | `i16` | type | the backdrop type 0-3, the creation record's word `+0x00` (`0x00250A93`-`0x00250A96`): types 0 and 1 use the field picture, 2 and 3 draw opaque black; read by `0x00250E90`, `0x00250F30`, `0x00251010`, the draw and `0x00251E00` (`0x00250EA9`, `0x00250F46`, `0x0025103A`, `0x002512EF`, `0x00251E10`) |
 | `+0x0E6` | `i16` | state | 1 created (`0x00250A8C`), 3 fading in then 4, 5 fading out then 6, 7 pulsing then 8: set by `0x00251010` (`0x0025104F`, `0x00251241`), `0x00250F30` (`0x00250F73`-`0x00250FF7`), `0x00250C50` (`0x00250C68`) and the stepper `0x00250CA0` (`0x00250DD8`-`0x00250DF4`); `0x00251D20` and `0x00251D50` report it (`0x00251D35`, `0x00251D65`) |
 | `+0x0E8` | `u32` | flags | bit 0 set on creation (`0x00250A7B`): the capture and its palette are in use (`0x0025123A`, `0x002516B2`), and `0x00251D20` answers 2 while it is clear (`0x00251D2C`); bit 2: hidden, the draw draws nothing (`0x002512E2`), set or cleared by `0x00251F00` (`0x00251F0C`-`0x00251F19`); bit 3: linear fade-out, set by `0x00251F20` (`0x00251F2C`-`0x00251F39`), cleared on creation (`0x00250AB2`), read by the stepper (`0x00250D5F`) |
 | `+0x0EC` | `u8[4]` | gapEC | read and written by no function; nothing fixes its width |
 | `+0x0F0` | `u64` | zeroF0 | 0, stored on creation (`0x00250AD2`); no function reads it |
 | `+0x0F8` | `void*` | overlayPalette | the palette the overlay draws with: [`0x0209AC30`] + `0x390` + `0x40` for type 0 or + `0x3A8` + `0x40` for type 1 on creation (`0x00250B4B`, `0x00250BB1`), handed to `0x002553C0` (`0x00250C1F`); `0x00250E90` swaps it (`0x00250ECC`, `0x00250EE0`); the draw binds it (`0x00251806`) |
-| `+0x100` | `void*` | picturePixels | the pixels of the first picture of the TIM2 at [`0x0209AC30`] + `0x388` (`0x0024A9E0`), the picture's header plus its word +`0x0C` (`0x00250B17`-`0x00250B1E`, `0x00250B84`); made into the texture `0x0209AC38` once (`0x00250BE3`); read by the draw (`0x00251A9B`) |
+| `+0x100` | `void*` | picturePixels | the pixels of the first picture of the TIM2 at [`0x0209AC30`] + `0x388` (`0x0024A9E0`), the picture's header plus its word `+0x0C` (`0x00250B17`-`0x00250B1E`, `0x00250B84`); made into the texture `0x0209AC38` once (`0x00250BE3`); read by the draw (`0x00251A9B`) |
 | `+0x108` | `void*` | picturePalette | that picture's palette, past its pixels (`0x00250B25`-`0x00250B32`, `0x00250B98`); made into `0x0209AC40` once (`0x00250C0C`); read by the draw (`0x00251BA0`) |
-| `+0x110` | `f32` | progress | the fade's progress, 0 to 1.0: 0 on creation (`0x00250ACC`); the stepper sets it to +`0x114` + +`0x118` x `0x00248F40`(kind, frames, elapsed) (`0x00250E0E`-`0x00250E23`); the draw draws the menu picture at it and makes the composite at exactly 1.0 (`0x0025138F`, `0x0025164A`, `0x002518CB`, `0x00251C01`, `0x00251C46`); `0x00250E50` and `0x00250F30` start a fade from it (`0x00250E5C`, `0x00250F92`) |
+| `+0x110` | `f32` | progress | the fade's progress, 0 to 1.0: 0 on creation (`0x00250ACC`); the stepper sets it to `+0x114` + `+0x118` x `0x00248F40`(kind, frames, elapsed) (`0x00250E0E`-`0x00250E23`); the draw draws the menu picture at it and makes the composite at exactly 1.0 (`0x0025138F`, `0x0025164A`, `0x002518CB`, `0x00251C01`, `0x00251C46`); `0x00250E50` and `0x00250F30` start a fade from it (`0x00250E5C`, `0x00250F92`) |
 | `+0x114` | `f32` | progressFrom | the progress when the fade started, stored by `0x00250E50` and `0x00250F30` (`0x00250E68`, `0x00250F9D`); read by the stepper (`0x00250E1B`) |
 | `+0x118` | `f32` | progressBy | the change the fade makes, toward 1.0 or 0, stored by `0x00250E50` and `0x00250F30` (`0x00250E70`, `0x00250FA9`); read by the stepper (`0x00250E0E`) |
 | `+0x11C` | `u32` | fadeStart | the frame counter `0x0208F570` when the fade started (`0x00250E7E`, `0x00250FB7`); 0 on creation and when the fade ends (`0x00250A9D`, `0x00250DB0`); the stepper counts from it (`0x00250D13`) |
-| `+0x120` | `u16` | fadeInFrames | the fade-in length in frames, the creation record's word +`0x04` (`0x00250AA3`-`0x00250AA7`); used by the stepper in state 3 (`0x00250D8F`) and as the overlay's length when the capture starts (`0x00251263`) |
-| `+0x122` | `u16` | fadeOutFrames | the fade-out length, the creation record's word +`0x08` (`0x00250AAE`, `0x00250AC5`), set by `0x00251EE0` (`0x00251EEC`); used in state 5 (`0x00250D72`) and for the overlay by `0x00250F30` (`0x00250FC9`) |
+| `+0x120` | `u16` | fadeInFrames | the fade-in length in frames, the creation record's word `+0x04` (`0x00250AA3`-`0x00250AA7`); used by the stepper in state 3 (`0x00250D8F`) and as the overlay's length when the capture starts (`0x00251263`) |
+| `+0x122` | `u16` | fadeOutFrames | the fade-out length, the creation record's word `+0x08` (`0x00250AAE`, `0x00250AC5`), set by `0x00251EE0` (`0x00251EEC`); used in state 5 (`0x00250D72`) and for the overlay by `0x00250F30` (`0x00250FC9`) |
 | `+0x124` | `f32` | pulseProgress | the pulse's progress: 0 when `0x00250C50` starts it (`0x00250C85`), stepped by `0x00250CA0` (`0x00250E30`); the draw multiplies the pulse strength by it (`0x00251890`) |
 | `+0x128` | `u8` | strength | 25 on creation (`0x00250ADF`); the kind-5 quad's first strength byte (`0x0025185C`-`0x00251864`) |
 | `+0x129` | `u8` | pulseStrength | 25 on creation for type 1 (`0x00250B0D`), then `0x00250C50`'s first argument (`0x00250C61`); the draw adds it times the pulse progress in state 7 (`0x00251871`-`0x00251890`) |
 | `+0x12A` | `u16` | pulseFrames | the pulse's length, `0x00250C50`'s second argument (`0x00250C7D`); read by the stepper (`0x00250D54`) |
 | `+0x12C` | `u32` | pulseStart | the frame counter when the pulse started (`0x00250C70`-`0x00250C76`); 0 on creation and when the pulse ends (`0x00250AD9`, `0x00250DCE`); the stepper counts from it (`0x00250D1D`, `0x00250D4D`) |
-| `+0x130` | `f32` | overlayAlpha | the overlay's alpha, eased from 0 by the stepper from +`0x13C` over +`0x13A` frames, scaled by +`0x134` (`0x00250CFD`); 0 when `0x00250F30`, `0x00251010` or `0x00251EA0` restart it (`0x00250FDC`, `0x00251271`, `0x00251EC7`); the draw multiplies by it (`0x00251939`) |
+| `+0x130` | `f32` | overlayAlpha | the overlay's alpha, eased from 0 by the stepper from `+0x13C` over `+0x13A` frames, scaled by `+0x134` (`0x00250CFD`); 0 when `0x00250F30`, `0x00251010` or `0x00251EA0` restart it (`0x00250FDC`, `0x00251271`, `0x00251EC7`); the draw multiplies by it (`0x00251939`) |
 | `+0x134` | `f32` | overlayScale | the overlay's scale: 1.0 from `0x00250F30` and `0x00251010` (`0x00250FE6`, `0x0025127B`), `0x00251EA0`'s first argument (`0x00251EB2`); read by the draw (`0x00251931`) |
 | `+0x138` | `u8` | overlayRising | the overlay's direction: 1 from `0x00251010` (`0x00251285`), 0 from `0x00250F30` (`0x00250FF0`), `0x00251EA0`'s third argument (`0x00251ED1`); the draw tests it (`0x0025192A`) |
 | `+0x139` | `u8[1]` | gap139 | read and written by no function; nothing fixes its width |
-| `+0x13A` | `u16` | overlayFrames | the overlay's length in frames: +`0x120` from `0x00251010` (`0x0025126A`), +`0x122` from `0x00250F30` (`0x00250FD0`), `0x00251EA0`'s second argument (`0x00251EC0`); read by the stepper (`0x00250CDF`) |
+| `+0x13A` | `u16` | overlayFrames | the overlay's length in frames: `+0x120` from `0x00251010` (`0x0025126A`), `+0x122` from `0x00250F30` (`0x00250FD0`), `0x00251EA0`'s second argument (`0x00251EC0`); read by the stepper (`0x00250CDF`) |
 | `+0x13C` | `u32` | overlayStart | the frame counter when the overlay started (`0x0025125D`, `0x00250FC3`, `0x00251EBA`); 0 on creation and when it ends (`0x00250AE6`, `0x00250D09`); the stepper counts from it (`0x00250CC1`) |
 
 ## Shipped data
@@ -571,6 +571,72 @@ Counted in the decompiled `us` scripts (1,114 files); the calls and scripts per 
 | `blurlayer` | 1,031 calls, all stage 5 |
 | `blurtrans` | 415 calls, all blend 3 |
 | `blurprior` | no calls |
+
+## State
+
+Every global below is 0 at load (the zero-filled tail of `.data`). The boot set-up `0x0024C970` clears `0x1670` bytes
+from `0x020910A0` (`0x0024C983`), which covers the live blocks from `0x020925F0` to `0x020926BF`.
+
+### The live blocks
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x020925F2` | `u8` | 0 | the soft focus block's size byte `+0x02`: always 4, which makes `0x003AB500` work at `0x40` (3 would give `0x80`, 2 `0x100`, any other value 0; `0x003AB525`-`0x003AB54B`) | `0x0024FAE0`, 4 (`0x0024FB83`), after its 16-byte copy over `0x020925F0`-`0x020925FF` (`0x0024FAEF`); `0x0024C970` (`0x0024CA87`, 8 bytes over `0x020925F0`-`0x020925F7`) | `0x003AB500` (`0x003AB525`, `0x003AB61D`), which `0x0024D540` hands the block (`0x0024D6D7`) |
+| `0x02092680` | `f32` | 0 | the live motion blur strength `+0x08` | `0x0024EC00` (`0x0024EC2E`) | `0x0024EA10` (`0x0024EA5B`) |
+| `0x020926A0` | `u32` | 0 | motion blur descriptor handle 0 of eight (`0x020926A0` to `0x020926BC`) | `0x0024EA10` (`0x0024EAFB`, 16 bytes over handles 0 to 3, from the request `0x003AAA50` filled); `0x0024EC00`, 0 (`0x0024ED1C`, 8 bytes over handles 0 and 1); `0x0024EB20`, 0 (`0x0024EBDB`) | `0x0024EB20` (`0x0024EBD0`) |
+| `0x020926A8` | `u32` | 0 | handle 2 | `0x0024EA10` (`0x0024EAFB`); `0x0024EC00`, 0 (`0x0024ED23`, 8 bytes over handles 2 and 3); `0x0024EB20`, 0 (`0x0024EBDB`) | `0x0024EB20` (`0x0024EBD0`) |
+| `0x020926B0` | `u32` | 0 | handle 4 | `0x0024EA10` (`0x0024EB02`, 16 bytes over handles 4 to 7); `0x0024EC00`, 0 (`0x0024ED2A`, 8 bytes over handles 4 and 5); `0x0024EB20`, 0 (`0x0024EBDB`) | `0x0024EB20` (`0x0024EBD0`) |
+| `0x020926B8` | `u32` | 0 | handle 6 | `0x0024EA10` (`0x0024EB02`); `0x0024EC00`, 0 (`0x0024ED31`, 8 bytes over handles 6 and 7); `0x0024EB20`, 0 (`0x0024EBDB`) | `0x0024EB20` (`0x0024EBD0`) |
+
+`0x0024EB20` walks the eight handles from `0x020926A0` (`0x0024EBA9`-`0x0024EBE5`): it calls the release `0x00375470` for a
+handle of 0 and stores 0.
+
+### The staging blocks
+
+The cut-in staging block `0x02B59D20` is reset by `0x003DF900` (from the area changes `0x002628B0` and `0x00266D10`) and read
+only as a whole: `cutinplay` (`0x003DF8F0`) passes it to `0x0024CF50`, which loads `+0x00` to `+0x0F` (`0x0024CF5B`),
+`+0x10` to `+0x1F` (`0x0024CF65`) and `+0x20` to `+0x23` (`0x0024CF70`) into the live block `0x02092640`.
+
+| Global | Field | Type | Meaning | Set by |
+|---|---|---|---|---|
+| `0x02B59D21` | `+0x01` | `u8` | the line fade bit; `0x003DF990` also reads it (`0x003DF990`) to keep its other bits | `0x003DF900` (`0x003DF909`, 8 bytes over `+0x00` to `+0x07`, then bit 0 cleared at `0x003DF910`); `0x003DF990` (`0x003DF9A0`) |
+| `0x02B59D24` | `+0x04` | `f32` | x | `0x003DF900` (`0x003DF909`; `0x003DF92C`, 16 bytes over `+0x04` to `+0x13`); `0x003DF9C0` (`0x003DF9C0`) |
+| `0x02B59D28` | `+0x08` | `f32` | y | `0x003DF900` (`0x003DF92C`); `0x003DF9C0` (`0x003DF9C8`) |
+| `0x02B59D30` | `+0x10` | `f32` | the line width, 2.0 after a reset (the fourth float of `0x00D117A0`) | `0x003DF900` (`0x003DF917`, 8 bytes over `+0x10` to `+0x17`; `0x003DF92C`); `0x003DF9B0` (`0x003DF9B0`) |
+| `0x02B59D34` | `+0x14` | `f32` | u | `0x003DF900` (`0x003DF917`; `0x003DF933`, 8 bytes over `+0x14` to `+0x1B`); `0x003DFA30` (`0x003DFA30`) |
+| `0x02B59D38` | `+0x18` | `f32` | v | `0x003DF900` (`0x003DF91E`, 8 bytes over `+0x18` to `+0x1F`; `0x003DF933`); `0x003DFA30` (`0x003DFA38`) |
+| `0x02B59D3C` | `+0x1C` | `u8` | colour byte 0, `0x80` after a reset | `0x003DF900` (`0x003DF91E`; `0x003DF93A`, `0x80808080` over `+0x1C` to `+0x1F`); `0x003DF950`, its first argument (`0x003DF950`) |
+| `0x02B59D3D` | `+0x1D` | `u8` | colour byte 1, `0x80` after a reset | `0x003DF900` (`0x003DF91E`, `0x003DF93A`); `0x003DF950`, its second argument (`0x003DF956`) |
+| `0x02B59D3E` | `+0x1E` | `u8` | colour byte 2, `0x80` after a reset | `0x003DF900` (`0x003DF91E`, `0x003DF93A`); `0x003DF950`, its third argument (`0x003DF95C`) |
+| `0x02B59D3F` | `+0x1F` | `u8` | colour byte 3, `0x80` after a reset | `0x003DF900` (`0x003DF91E`, `0x003DF93A`); `0x003DF950`, its fourth argument (`0x003DF963`) |
+| `0x02B59D40` | `+0x20` | `u8` | line colour byte 0, 0 after a reset | `0x003DF900` (`0x003DF944`, `0x80000000` over `+0x20` to `+0x23`); `0x003DF970`, its first argument (`0x003DF970`) |
+| `0x02B59D41` | `+0x21` | `u8` | line colour byte 1, 0 after a reset | `0x003DF900` (`0x003DF944`); `0x003DF970`, its second argument (`0x003DF976`) |
+| `0x02B59D42` | `+0x22` | `u8` | line colour byte 2, 0 after a reset | `0x003DF900` (`0x003DF944`); `0x003DF970`, its third argument (`0x003DF97C`) |
+| `0x02B59D43` | `+0x23` | `u8` | line colour byte 3, `0x80` after a reset | `0x003DF900` (`0x003DF944`); `0x003DF970`, its fourth argument (`0x003DF983`) |
+
+The motion blur staging block `0x02B58C38` is reset to the bytes 1, 1, 0, 1 (`0x01000101`) by `0x003DDD10` (`0x003DDDBF`,
+8 bytes over `+0x00` to `+0x07`, then `0x003DDDD9`) and by `0x003DE320` (`0x003DE32A`, `0x003DE331`). It is read as 8 bytes
+by `0x0024EC00` (`0x0024EC1F`), which `moveblurplay` (`0x003DE310`) and `moveblurfade` with a result of 0 (`0x003DE2B1`)
+hand the block, and by the fade tick `0x003DE160` (`0x003DE177`) for its copy.
+
+| Global | Field | Type | Meaning | Set by |
+|---|---|---|---|---|
+| `0x02B58C39` | `+0x01` | `u8` | the mask: 1 after a reset | `0x003DDD10`, `0x003DE320`; `0x003DE360`: 0 (`0x003DE373`), 3 (`0x003DE37B`), 2 (`0x003DE383`), 1 (`0x003DE38B`) |
+| `0x02B58C3A` | `+0x02` | `u8` | the noise type: 0 after a reset | `0x003DDD10`, `0x003DE320`; `0x003DE3A0`: 3 (`0x003DE3B3`), 2 (`0x003DE3BB`), 1 (`0x003DE3C3`), 0 (`0x003DE3CB`) |
+| `0x02B58C3B` | `+0x03` | `u8` | the screen type: 1 after a reset | `0x003DDD10`, `0x003DE320`; `0x003DE430`: 2 (`0x003DE434`), 1 (`0x003DE440`) |
+
+The object motion blur block `0x02B58C20` is reset to zero with `0x80` at `+0x07` by `0x003DDD10` (`0x003DDDB8`, `0x003DDDD2`,
+`0x003DDDEB`, `0x003DDDF2`) and by `objmblurplay` (`0x003DE480`: `0x003DE498`, `0x003DE49F`, `0x003DE4A6`, `0x003DE4AD`), each an
+8-byte store over `+0x00`, `+0x08` or `+0x10` and a byte store at `+0x07`. Its only address goes to the bare `ret`
+`0x0016D6A0` (`0x003DE48A`, `0x003DE491`), and no instruction reads its fields:
+
+| Global | Field | Type | Meaning | Set by |
+|---|---|---|---|---|
+| `0x02B58C21` | `+0x01` | `u8` | the limit alpha, the argument truncated | `0x003DE460` (`0x003DE465`); `0x003DDD10` (`0x003DDDB8`); `0x003DE480` (`0x003DE498`) |
+| `0x02B58C24` | `+0x04` | `u8` | colour byte 0 | `0x003DE450` (`0x003DE452`, a 4-byte copy of its argument's dword over `+0x04` to `+0x07`); `0x003DDD10` (`0x003DDDB8`); `0x003DE480` (`0x003DE498`) |
+| `0x02B58C27` | `+0x07` | `u8` | `0x80` after every store | `0x003DE450` (`0x003DE452`, then `0x80` at `0x003DE458`); `0x003DDD10` (`0x003DDDB8`, then `0x80` at `0x003DDDD2`); `0x003DE480` (`0x003DE498`, then `0x80` at `0x003DE49F`) |
+| `0x02B58C28` | `+0x08` | `f32` | the power | `0x003DE470` (`0x003DE470`); `0x003DDD10`, 0 (`0x003DDDEB`, 8 bytes over `+0x08` to `+0x0F`); `0x003DE480`, 0 (`0x003DE4A6`) |
+| `0x02B58C30` | `+0x10` | `u8[8]` | zero after every reset; nothing fixes its width | `0x003DDD10` (`0x003DDDF2`, 8 bytes); `0x003DE480` (`0x003DE4AD`, 8 bytes) |
 
 ## Modding notes
 

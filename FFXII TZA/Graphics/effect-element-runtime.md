@@ -588,7 +588,7 @@ Emitter:
 | `+0x008` | `void*` | next emitter |  |
 | `+0x024` | `u32` | births |  |
 | `+0x028` | `u32` | emission limit (frames); +0x02C f32 age; +0x030 s32 whole frame; +0x034 f32 last firing |  |
-| `+0x0A0-0x0F0` | `sampled` | spawn | values (+`0x0F0` colour) |
+| `+0x0A0-0x0F0` | `sampled` | spawn | values (`+0x0F0` colour) |
 | `+0x100` | `void*` | emitter record (0x800); +0x108 element definition (0xA00) |  |
 | `+0x118` | `void*` | active head; +0x120 free head; +0x128 active tail |  |
 | `+0x130` | `void*` | parent element; +0x139 u8 stop emitting |  |
@@ -606,7 +606,7 @@ Element:
 | `+0x3C` | `f32` | age; +0x040 s32 whole age; +0x044 s32 track frame; +0x048 s32 updates |  |
 | `+0x4C` | `i32` | lifetime (0 none) |  |
 
-+`0x060`        position:
+`+0x060`        position:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -663,6 +663,13 @@ The scale is `0x02096810`-`0x0209681C`. `0x0024FCF0` copies the instance's
 | `0x02096D21` | `u8` | 0 (zero-filled tail) | set to 0 by the reset | `0x00259250` (`0x00259342`) | no instruction names it |
 | `0x02096D24` | `f32` | 0 (zero-filled tail) | set to 0.0 by the reset, before `0x02096D28` = 1 | `0x00259250` (`0x00259285`) | no instruction names it |
 | `0x02F8F320` | `u32` | 0 (zero-filled tail) | set to 1 by the field step `0x00258D70` and the menu step `0x00258E40` before they update the effects | `0x00258D70`, 1 (`0x00258DC1`, `edi` = 1 from `0x00258D95`); `0x00258E40`, 1 (`0x00258E74`) | no instruction names it |
+
+The kind lists `0x020910F0[kind]` are eight-byte heads, cleared with the rest of `0x020910A0`-`0x0209270F` by `0x0024C970`
+(`0x0024C983`, and the 8-byte stores `0x0024C9F0`-`0x0024CA05`). The head of kind 3 is also read by name:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02091108` | `void*` | 0 (zero-filled tail) | the head of the kind-3 list, `0x020910F0[3]`; the frame's draw setup `0x0024D540` takes its first instance, makes that instance's context `+0x340` current at `0x02F97340` and the instance itself `0x02F97348` (`0x0024D573`-`0x0024D5A0`) | `0x0024C970` (`0x0024CA05`, `0x0024C983`); as the head of kind `kind`: `0x0024B270` (`0x0024B35A`), `0x0024C3C0` (`0x0024C3FB`), `0x0024C460` (`0x0024C531`), `0x0024DB80` (`0x0024DBF1`), `0x0024E7D0` (`0x0024E841`), `0x0024F4D0` (`0x0024F540`), each through `0x020910A0` + `0x50`; the unlinks `0x0024EE10` (`0x0024EE32`) and `0x0024EE60` (`0x0024EEA5`, through the head's address `0x0024EE72`) | `0x0024D540` (`0x0024D573`); as the head of kind `kind`: `0x0024B270` (`0x0024B324`), `0x0024C3C0` (`0x0024C3CD`), `0x0024C460` (`0x0024C47A`), `0x0024DB80` (`0x0024DBAA`), `0x0024E7D0` (`0x0024E7FA`), `0x0024F4D0` (`0x0024F4FA`), through `0x020910A0` + `0x50`; `0x0024B9B0` (`0x0024BA12`), `0x0024D050` (`0x0024D070`, walking every head from `0x0024D05F`), `0x0024D370` (`0x0024D38B`), `0x0024E210` (`0x0024E225`), `0x0024E2F0` (`0x0024E313`), `0x0024E6D0` (`0x0024E6F6`), `0x0024EE60` (`0x0024EE76`), `0x0024F680` (`0x0024F696`), `0x0024F8D0` (`0x0024F8E1`), `0x0024F920` (`0x0024F938`), `0x0024FDA0` (`0x0024FDBF`) |
 
 ## Modding notes
 

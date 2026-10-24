@@ -79,17 +79,30 @@ from it.
 
 ### Who can spring a trap
 
-The trigger walk is `0x002F8060(unit, out, count)`, called once per party member from the periodic
-tick `0x00310DB0` (`0x00310FC9`). The tick reaches it only for a unit whose stats record is a party
-member (kind 0) outside the Esper band 27-39, outside a town (`0x00377C20`), while the battle state
-`0x022C2160` is neither 5 nor 6, when `0x00265680()` is non-zero, `0x0030B770()` and `0x0030B7F0(unit)` are
-0 and unit flag bit 36 is clear. `0x002F8060` itself refuses, returning -1, when the unit's stats:
+The trigger walk is `0x002F8060(unit, out, count)`. Its one caller is the per-unit periodic tick
+`0x00310DB0` (`0x00310FC9`; [what the periodic tick does](../Status-Effects-And-KO/status-timers.md)).
+The tick filters out no kind on this path: its one kind test (`0x00310E41`-`0x00310E55`) sends an Esper
+(kind 0, type 27-39) through the dismiss check first and every other unit straight to `0x00310F02`. It reaches
+the call when:
+
+- the area is not a town (`0x00377C20`) and the battle state `0x022C2160` is neither 5 nor 6
+  (`0x00310E02`-`0x00310E1B`);
+- `0x00265680()` is non-zero, `0x0030B770()` and `0x0030B7F0(unit, 0)` are 0 and unit flag bit 36 is
+  clear (`0x00310F12`-`0x00310F4F`);
+- for an Esper, the dismiss check between these two gates did not end the tick through `0x003138D0(0)`
+  (`0x00310E5B`-`0x00310EFD`).
+
+`0x002F8060` itself refuses, returning the no-action id `0xFFFF` (`0x002F8095` sets -1, `0x002F82C6` returns its
+low 16 bits), when the unit's stats:
 
 - carry bit 26 in the combined status words `+0x3C | +0x64`;
 - carry bit 5 in either layer byte `+0x6C` or `+0x7C`: augment 37 (Tread Lightly, "Move safely past traps"),
   the Float status's effect ([the two layers](../Status-Effects-And-KO/statuses.md),
   [battle text banks](../Game-Files-And-Data-Tables/battle-text-tables.md));
-- have kind 1, or kind 0 with the type byte `+0x04` in 27-39.
+- have kind 1, an enemy (`0x002F80F3`-`0x002F80FA`), or kind 0 with the type byte `+0x04` in 27-39, an
+  Esper (`0x002F810D`-`0x002F8115`). A kind-0 unit of any other type passes this test, the main
+  characters 0-6, the guests 7-25 and the Chocobo 26 among them
+  ([the type partition](../Characters-And-Objects/battle-unit-construction.md)).
 
 ### The proximity test
 
@@ -134,11 +147,11 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 
 | Rows | Slot | Effect |
 |---|---|---|
-| 246, 247, 248 | 106 (`0x0038CD60`) | HP damage `(1 + roll % power) × (1 + roll % level)`, `power` the row's `+0x10` (30, 90, 180), `level` the target's `+0x1C2`, into `0x02AEE004` |
-| 249, 257 | 107 (`0x0038CE40`) | the same product into the MP loss slot `0x02AEE00C` (power 20, 100) |
-| 260 | 108 (`0x0038CF20`) | the same product into the HP gain slot `0x02AEE008` (power 80): "healing nearby allies" |
-| 261 | 109 (`0x0038D000`) | the same product into the MP gain slot `0x02AEE010` (power 50): "energizing nearby allies" |
-| 259 | 163 (`0x0038F6F0`) | gil loss `(1 + roll % 99) × (1 + roll % level)`: "Your pockets feel lighter" |
+| 246, 247, 248 | 106 (`0x0038CD60`) | HP damage `(1 + a) × (1 + b)` into `0x02AEE004`: first `a = draw % level` (`0x0038CD7B`), `level` the target's `+0x1C2`, then `b = draw % power` (`0x0038CE12`), `power` the row's `+0x10` (30, 90, 180); an operand of 0 skips its draw and gives 0 (`0x0038CD6F`-`0x0038CD79`, `0x0038CDD7`-`0x0038CDDA`) |
+| 249, 257 | 107 (`0x0038CE40`) | the same product, draws and skips into the MP loss slot `0x02AEE00C` (power 20, 100; draws `0x0038CE5B`, `0x0038CEF2`) |
+| 260 | 108 (`0x0038CF20`) | the same product, draws and skips into the HP gain slot `0x02AEE008` (power 80; draws `0x0038CF3B`, `0x0038CFD2`): "healing nearby allies" |
+| 261 | 109 (`0x0038D000`) | the same product, draws and skips into the MP gain slot `0x02AEE010` (power 50; draws `0x0038D01B`, `0x0038D0B2`): "energizing nearby allies" |
+| 259 | 163 (`0x0038F6F0`) | gil loss `(1 + a) × (1 + b)`, `a = draw % level` first (`0x0038F719`), then `b = draw % 99`, the row's `+0x10` (`0x0038F7BA`), with the same skips: "Your pockets feel lighter" |
 | 250 to 256, 258 | 181 | the row's `+0x18` status mask: Sap; Confuse and Berserk; Petrify; Blind; Silence; Reverse and Disable; Disease; Oil |
 
 ### Marking the trap's effect
@@ -266,8 +279,9 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 
 - Arming is a field-load action of the zone script: `settrapresource` runs once per script, and
   the mask it produces is per field, kept for the three most recently armed fields.
-- The trigger walk runs inside the periodic tick for party members only, so enemies and guests
-  never spring a trap, and a trap fires at most once per tick call.
+- The trigger walk runs inside each unit's periodic tick and refuses enemies (kind 1) and Espers
+  (kind 0, type 27-39) (`0x002F80F3`-`0x002F8115`); the status refusals and the tick's gates apply to
+  every other unit alike, guests (type 7-25) included. A trap fires at most once per tick call.
 - The two outcomes of a trap are authored; the 75/25 split and the 1.3 radius are constants in
   the code, and the arm chance and gather radius are per record.
 - `0x002F8060` is one of two functions in the image that both draw the generator and call a

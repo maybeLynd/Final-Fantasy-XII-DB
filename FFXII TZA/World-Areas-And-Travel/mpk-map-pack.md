@@ -70,10 +70,10 @@ shipped pack fills them.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[4]` | magic | "YM00" |
-| `+0x04` | `u8[4]` | stamp | an export value; read by none of `0x002F6AB0` (which starts at +`0x10`), the world-object builders `0x0026E760` and `0x0026E7D0` that hand it the section, or the pack walker `0x00378BC0`; nothing fixes its width |
-| `+0x08` | `u8[8]` | author | an export tag; read by none of `0x002F6AB0` (which starts at +`0x10`), the world-object builders `0x0026E760` and `0x0026E7D0` that hand it the section, or the pack walker `0x00378BC0`; nothing fixes its width |
+| `+0x04` | `u8[4]` | stamp | an export value; read by none of `0x002F6AB0` (which starts at `+0x10`), the world-object builders `0x0026E760` and `0x0026E7D0` that hand it the section, or the pack walker `0x00378BC0`; nothing fixes its width |
+| `+0x08` | `u8[8]` | author | an export tag; read by none of `0x002F6AB0` (which starts at `+0x10`), the world-object builders `0x0026E760` and `0x0026E7D0` that hand it the section, or the pack walker `0x00378BC0`; nothing fixes its width |
 | `+0x10` | `u32` | count | 17 in all 461 sections; `0x002F6AB0` reads it at [base + `0x10`] |
-| `+0x14` | `u32[]` | index | count + 1 entries of {u24 offset in 16-byte units from +`0x10`, u8 tag}; the last is the end sentinel with tag `0xFF` |
+| `+0x14` | `u32[]` | index | count + 1 entries of {u24 offset in 16-byte units from `+0x10`, u8 tag}; the last is the end sentinel with tag `0xFF` |
 
 Before the walk `0x002F6AB0` sets `+0x120` to 1 and `+0x110` to 0, and clears the first 0x48 bytes of
 the two 0x68-byte sub-records at `+0x40` and `+0xA8` with `0x00231F50`, nine qword stores of 0
@@ -135,7 +135,7 @@ differ.
 | `+0x24` | `f32` | end | last frame (`0x00466BB0`) |
 | `+0x28` | `i16` | targets | target count |
 | `+0x2A` | `u16` | group | model group the clip belongs to |
-| `+0x2C` | `i16` | mapCount | 0, or the count of 16-byte map entries from +`0x30` that replace +`0x28` |
+| `+0x2C` | `i16` | mapCount | 0, or the count of 16-byte map entries from `+0x30` that replace `+0x28` |
 | `+0x2E` | `u8` | flags | bit 0: `0x02EBB6E4` = this slot |
 
 After the clip header (and its map entries) comes a track list: a count and one offset per track,
@@ -147,8 +147,8 @@ again in 16-byte units. A track starts with its own header and then its keys:
 |---|---|---|---|
 | `+0x00` | `i32` | keyCount |  |
 | `+0x04` | `u8` | channel | the target field the track drives (`0x00466420`) |
-| `+0x08` | `i16` | targetId | stored at the target's +`0x46` |
-| `+0x0A` | `i16` | targetId2 | stored at the target's +`0x44` |
+| `+0x08` | `i16` | targetId | stored at the target's `+0x46` |
+| `+0x0A` | `i16` | targetId2 | stored at the target's `+0x44` |
 | `+0x0C` | `i32` | target | the target's index in the slot |
 | `+0x10` | `f32[4] key0` | time, value, in-slope, out-slope; keyCount keys of 16 bytes from here |  |
 
@@ -163,7 +163,7 @@ again in 16-byte units. A track starts with its own header and then its keys:
 |---|---|---|---|
 | `+0x00` | `void*` | clip |  |
 | `+0x08` | `void*` | clipActive | non-null for a live slot; every accessor tests it |
-| `+0x10` | `void*` | mapEntries | when clip +`0x2C` is non-zero |
+| `+0x10` | `void*` | mapEntries | when clip `+0x2C` is non-zero |
 | `+0x18` | `void*` | trackList |  |
 | `+0x20` | `void*` | tracks | `0x18` bytes each |
 | `+0x28` | `void*` | targets | `0x130` bytes each |
@@ -500,6 +500,21 @@ The area initialisation `0x00266D10` resets the loader once through `0x00377CC0`
 and world object pointer is zeroed, `0x02ADD0E0` becomes -1, `0x02ADD118` 1 and `0x02ADD130` the text
 `none`, the start-up tables are requested again (`0x00378540`), and the pending and bind words
 (`0x02ADD0EC`, `0x02ADD0F0`) and `0x02ADD0EA` are cleared.
+
+### The map colour and the buffer list's header
+
+The section-11 colour `0x0209A3A0`-`0x0209A3AC` is reset to (1.0, 1.0, 1.0, 1.0) by `0x0026E1D0` (`0x0026E23F`, one 16-byte
+store) and set by the map set-up `0x002F6AB0` from the three integers `0x00466140` unpacks from dword 1, each scaled by 1/128
+(`0x002F6E0D`-`0x002F6E53`), with alpha 1.0 (`0x002F6E27`). The body-colour reader `0x00231A90` returns it
+when the body's polygon index is negative (a signed test, `0x00231C52`-`0x00231C55`), and the polygon's vertex colour
+otherwise.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209A3A4` | `f32` | 0 (zero-filled tail) | the colour's second float: bits 8-15 of dword 1 (`0x00466147`-`0x0046614D`) / 128 | `0x0026E1D0`, 1.0 (`0x0026E23F`); `0x002F6AB0` (`0x002F6E3C`) | `0x00231A90` (`0x00231DEE`) |
+| `0x0209A3A8` | `f32` | 0 (zero-filled tail) | the third float: bits 16-23 (`0x00466152`-`0x0046615B`) / 128 | `0x0026E1D0`, 1.0 (`0x0026E23F`); `0x002F6AB0` (`0x002F6E47`) | `0x00231A90` (`0x00231DFB`) |
+| `0x02EBB6B0` | `i32` | 0 (zero-filled tail) | the buffer list's entry size: -1 from the list set-up `0x00536120`, then `0x28`; the append `0x005360C0` allocates it plus `0x10` (`0x005360D0`-`0x005360D8`) and copies that many bytes, a sign-extended count (`0x005360FD`) | `0x00536120` (`0x00536130`, as `+0x10` of the list at `0x02EBB6A0`); `0x00467BB0` (`0x00467BC7`) | `0x005360C0` (`0x005360D0`, `0x005360FD`), from `0x00467BF0` (`0x00467C87`) |
+| `0x02EBB6B8` | `void*` | 0 (zero-filled tail) | the list's release callback, `0x00467B20`; the unlink `0x00536140` calls it on the entry's data (`0x0053615B`-`0x0053616D`) | `0x00536120`, 0 (`0x0053612C`); `0x00467BB0` (`0x00467BD1`) | `0x00536140` (`0x0053615B`), from `0x00467CB0` |
 
 ## Modding notes
 

@@ -34,16 +34,16 @@ Struct NavDataset base=section:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | 1 |  |
-| `+0x04` | `u16` | vertexCount | +`0x06` u16 triangleCount (the whole-mesh test's bound) |
-| `+0x08` | `u16` | portalCount | +`0x0A` u16 regionCount, at most 128 (the search's arrays) |
+| `+0x04` | `u16` | vertexCount | `+0x06` u16 triangleCount (the whole-mesh test's bound) |
+| `+0x08` | `u16` | portalCount | `+0x0A` u16 regionCount, at most 128 (the search's arrays) |
 | `+0x0C` | `off` | vertices | 8 B each: f32 x, f32 z |
 | `+0x10` | `off` | triangles | 8 B each: u16 vertex[3], u16 region |
 | `+0x14` | `off` | portals | 8 B each: u16 vertexA, u16 vertexB, u8 gated (+4), u8 mapId (+5), u8 classMask (+6) |
-| `+0x18` | `off` | regions | `0x22` B each: +2 u16 triangleCount, +`0x14` u16 triangleIndex[] |
+| `+0x18` | `off` | regions | `0x22` B each: +2 u16 triangleCount, `+0x14` u16 triangleIndex[] |
 | `+0x1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = none |
-| `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, +8 off cellTable (u16 per cell), +`0xC` off listPool |
+| `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, +8 off cellTable (u16 per cell), `+0xC` off listPool |
 | `+0x24` | `u32` | trailer record count (at most 32 used) |  |
-| `+0x28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius +`0xC`, f32 radius2 +`0x10`, f32 +`0x14` (kind 1; read by the segment query only) |
+| `+0x28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius `+0xC`, f32 radius2 `+0x10`, f32 `+0x14` (kind 1; read by the segment query only) |
 
 Portal index 0 means no portal, so the adjacency entries are 1-based and record 0 is padding.
 Across the 461 shipped sections every triangle names a region that lists it back, the adjacency
@@ -367,11 +367,11 @@ Battle unit:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x080` | `locomotion block (the solver's argument)` | +0xD0 | f32[4]  search start point |
-| `+0x0E0` | `f32[4]` | mover position read by the follower | +`0xF0`  f32[4]  the waypoint written |
-| `+0x100` | `f32[4]` | goal | +`0x158` u32     zeroed on flag bits 7 and 10 |
-| `+0x1F0` | `u32` | step flags | +`0x1F4` u8      mover class |
+| `+0x0E0` | `f32[4]` | mover position read by the follower | `+0xF0`  f32[4]  the waypoint written |
+| `+0x100` | `f32[4]` | goal | `+0x158` u32     zeroed on flag bits 7 and 10 |
+| `+0x1F0` | `u32` | step flags | `+0x1F4` u8      mover class |
 | `+0x200` | `NavPath (0x490 bytes)` | +0x698 ptr | handler checked on a failed search |
-| `+0x708` | `void*` | order record (word +4: 0x200, 0x100) | +`0x714` u16     action id |
+| `+0x708` | `void*` | order record (word +4: 0x200, 0x100) | `+0x714` u16     action id |
 
 ## Shipped data
 

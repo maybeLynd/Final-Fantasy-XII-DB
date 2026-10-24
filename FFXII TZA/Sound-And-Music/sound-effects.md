@@ -195,8 +195,8 @@ and `+0x80` (`0x007EF946`). A sound's four curved ramps from `+0x88` (`0x01CB5A2
 | `+0x20` | `u8` | active | 1 while the ramp runs; `0x007CA560` sets it (`0x007CA5EB`) |
 | `+0x21` | `u8[3]` | pad21 | read and written by no function; nothing fixes its width |
 | `+0x24` | `u32` | limited | 1: the ramp keeps to its rise and fall rates (read `0x007CA5D2`, `0x007BE207`); set to 1 by `0x007BE510` (`0x007BE533`), `0x007BEC70` (`0x007BEC9F`) and `0x007BDDA0` (`0x007BDEB7`); 0 from every builder (e.g. `0x007AA1D2`, `0x007AC611`, `0x007BC9D2`, `0x007E7B43`, `0x007EF9D1`, `0x007F3E0D`, `0x007B8DDC`) and from `0x007BE579`-`0x007BE585`, `0x007BECBD`, `0x007BDEC1`, `0x007C0531`, `0x007C055B`-`0x007C05A4` |
-| `+0x28` | `f32` | riseRate | the most the value may rise per second when limited: duration is at least the rise over this (`0x007CA5F6`, `0x007BE23A`); 5.0 from `0x007BE510` (`0x007BE533`) and `0x007BEC70` (`0x007BEC9F`); the header entry's +`0x10` from `0x007BDDA0` (`0x007BDEB7`); copied by `0x007BFFA0` |
-| `+0x2C` | `f32` | fallRate | the most the value may fall per second when limited (`0x007CA617`, `0x007BE256`); 5.0 from `0x007BE510` (`0x007BE547`, `0x007BE555`, `0x007BE563`) and `0x007BEC70` (`0x007BECA7`); the header entry's +`0x14` from `0x007BDDA0` (`0x007BDEBC`); copied by `0x007BFFA0` |
+| `+0x28` | `f32` | riseRate | the most the value may rise per second when limited: duration is at least the rise over this (`0x007CA5F6`, `0x007BE23A`); 5.0 from `0x007BE510` (`0x007BE533`) and `0x007BEC70` (`0x007BEC9F`); the header entry's `+0x10` from `0x007BDDA0` (`0x007BDEB7`); copied by `0x007BFFA0` |
+| `+0x2C` | `f32` | fallRate | the most the value may fall per second when limited (`0x007CA617`, `0x007BE256`); 5.0 from `0x007BE510` (`0x007BE547`, `0x007BE555`, `0x007BE563`) and `0x007BEC70` (`0x007BECA7`); the header entry's `+0x14` from `0x007BDDA0` (`0x007BDEBC`); copied by `0x007BFFA0` |
 
 ## State
 

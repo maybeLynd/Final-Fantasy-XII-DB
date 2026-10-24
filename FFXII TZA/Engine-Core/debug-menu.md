@@ -381,8 +381,8 @@ No arm of `0x001D1660` writes `+0x00`, `+0x04`, `+0xC1C` or `+0xC24`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x130` | `+ id*8` | char* | row labels, ids 1-294 (`0x001D0390`) |
-| `+0xA70` | `u8` | open (always 0) | +`0xA74`  u32 mode   +`0xA88`  page   +`0xA90`  row count   +`0xAAC`  i32 weather-slot override |
-| `+0xAB4` | `u32 field id for the code table` | +0xC56 | u8 information page   +`0x10B0` / +`0x10B4`  rows of ids 9 and 10 |
+| `+0xA70` | `u8` | open (always 0) | `+0xA74`  u32 mode   `+0xA88`  page   `+0xA90`  row count   `+0xAAC`  i32 weather-slot override |
+| `+0xAB4` | `u32 field id for the code table` | +0xC56 | u8 information page   `+0x10B0` / `+0x10B4`  rows of ids 9 and 10 |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
@@ -431,7 +431,7 @@ The capture fields of the cube-map object:
 | `+0x194` | `f32` | angleB | the second angle in mode 3, negated; 0 |
 | `+0x1E0` | `i32` | span | degrees covered in mode 3; 180 |
 | `+0x1E4` | `i32` | slices | frames in mode 3; 3 |
-| `+0x1E8` | `f32` | fov | 0.785; the console's +`0xC24` path |
+| `+0x1E8` | `f32` | fov | 0.785; the console's `+0xC24` path |
 
 The console fields the camera override reads:
 

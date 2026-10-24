@@ -300,17 +300,17 @@ target heading `+0x34` of slot `i` (`context + 0x154 + 0x80 * i`), with `i` capp
 
 ## Layouts
 
-Movement context (actor +`0xB8`), class 3:
+Movement context (actor `+0xB8`), class 3:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x030` | `f32[4]` | start | snapshot of the position (`0x0026AF10`) |
 | `+0x038` | `f32` | heading of a class-1 object (also +0x48) |  |
 | `+0x098` | `f32 / +0x9C f32` | untimed-turn frame scales, by resume shape |  |
-| `+0x0A0` | `f32` | pitch | +`0xA4` f32 desired heading (yaw) |
-| `+0x0A8` | `f32` | facing | +`0xAC` f32 facing aux (pitch lane of the render triple) |
-| `+0x0B4` | `f32` | steer channel heading mirror | +`0x224` f32 steer channel pitch mirror |
-| `+0x0DC` | `u8` | slot selector 0 or 1 | +`0xF0` ptr cursor to the selected slot |
+| `+0x0A0` | `f32` | pitch | `+0xA4` f32 desired heading (yaw) |
+| `+0x0A8` | `f32` | facing | `+0xAC` f32 facing aux (pitch lane of the render triple) |
+| `+0x0B4` | `f32` | steer channel heading mirror | `+0x224` f32 steer channel pitch mirror |
+| `+0x0DC` | `u8` | slot selector 0 or 1 | `+0xF0` ptr cursor to the selected slot |
 | `+0x120` | `SteeringRecord[0]` | +0x1A0 SteeringRecord[1] | `0x80` bytes each |
 
 Struct SteeringRecord size=`0x80`:
@@ -319,20 +319,20 @@ Struct SteeringRecord size=`0x80`:
 |---|---|---|---|
 | `+0x00` | `f32[4]` | target | position {x, y, z, 1.0}, or {ordinal, manager} for an actor target |
 | `+0x10` | `f32[3] resume parameters` | +0x1C u32 resume target handle |  |
-| `+0x20` | `f32` | reach (setreachr) | +`0x24` f32 requested speed, scaled |
-| `+0x28` | `u8` | movement mode (bit 7 = untimed turn) | +`0x29` u8 steering mode 0-4 |
-| `+0x2A` | `u8` | target kind 0 position, 1 actor | +`0x2B` u8 configured ramp mode (setaccr) |
+| `+0x20` | `f32` | reach (setreachr) | `+0x24` f32 requested speed, scaled |
+| `+0x28` | `u8` | movement mode (bit 7 = untimed turn) | `+0x29` u8 steering mode 0-4 |
+| `+0x2A` | `u8` | target kind 0 position, 1 actor | `+0x2B` u8 configured ramp mode (setaccr) |
 | `+0x2C` | `f32` | ramp acceleration, scaled; 0.0 collapses modes 2-4 to 1 |  |
-| `+0x34` | `f32` | target heading | +`0x38` f32 turn start heading |
+| `+0x34` | `f32` | target heading | `+0x38` f32 turn start heading |
 | `+0x3C` | `f32` | spin rate (mode 1) |  |
-| `+0x50` | `f32` | yaw approach cap | +`0x54` f32 pitch approach cap (`0x002E5B60` / `0x002E5B90`) |
-| `+0x58` | `f32` | turn step, pi/20 | +`0x5C` f32 pi, never read |
+| `+0x50` | `f32` | yaw approach cap | `+0x54` f32 pitch approach cap (`0x002E5B60` / `0x002E5B90`) |
+| `+0x58` | `f32` | turn step, pi/20 | `+0x5C` f32 pi, never read |
 | `+0x60` | `i16` | steer channel frames +0x62 u8 flags: bits 0-2 shape, 3-5 selector, 6 direction, 7 initiator |  |
-| `+0x63` | `u8` | steer arm state | +`0x64` u8 returned by `0x002E6300`   +`0x65` u8 teardown gate |
+| `+0x63` | `u8` | steer arm state | `+0x64` u8 returned by `0x002E6300`   `+0x65` u8 teardown gate |
 | `+0x66` | `i16` | curve / total frames +0x68 i16 turn frames |  |
 | `+0x6A` | `u8` | bit 0 one-shot latch +0x6C f32 initiator turn step |  |
 | `+0x70` | `f32` | steer target heading +0x74 f32 steer target pitch |  |
-| `+0x78` | `f32` | turn frame index | +`0x7C` f32 raw move speed (re-armed each frame) |
+| `+0x78` | `f32` | turn frame index | `+0x7C` f32 raw move speed (re-armed each frame) |
 
 ## Shipped data
 

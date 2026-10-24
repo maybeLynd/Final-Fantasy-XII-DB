@@ -51,7 +51,7 @@ reader of the directory. Each sub-mesh starts with a header whose offsets count 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[16]` | name | NUL-padded; the binder overwrites +`0x00`..+`0x07` with an image-entry pointer |
+| `+0x00` | `char[16]` | name | NUL-padded; the binder overwrites `+0x00`..+`0x07` with an image-entry pointer |
 | `+0x10` | `i32` | indexStart | first index-stream entry of the slot's run (sub-mesh 1 path) |
 | `+0x14` | `i32` | indexCount | entries in the run (sub-mesh 1 path) |
 | `+0x18` | `i16[4]` | colour | R, G, B, A; `0x80` = 1.0 |
@@ -64,7 +64,7 @@ Sub-mesh 0 (tiles):
 |---|---|---|---|
 | `+0x00` | `f32` | s | fraction of the bound texture's width |
 | `+0x04` | `f32` | t | fraction of the bound texture's height |
-| `+0x08` | `f32[2]` | - | 1.0 in every shipped vertex; copied with the whole vertex array into the tile packet's UNPACK chunk (`0x005556A0` at `0x00555786`: V4-32, two 16-byte quads per vertex, so these are the z and w of the first quad), which nothing on this port decodes (Drawing the tiles); the draw that reaches the GPU binds the sprite batcher's `0x30`-byte vertices, built from +`0x00`, +`0x04` and +`0x10` only (`0x005558E0`-`0x00555957`), so the GPU never sees these bytes; no instruction reads them (`0x00274780`'s other callers, `0x00563110` and `0x0055A8A0`, read the slots and sub-mesh 1) |
+| `+0x08` | `f32[2]` | - | 1.0 in every shipped vertex; copied with the whole vertex array into the tile packet's UNPACK chunk (`0x005556A0` at `0x00555786`: V4-32, two 16-byte quads per vertex, so these are the z and w of the first quad), which nothing on this port decodes (Drawing the tiles); the draw that reaches the GPU binds the sprite batcher's `0x30`-byte vertices, built from `+0x00`, `+0x04` and `+0x10` only (`0x005558E0`-`0x00555957`), so the GPU never sees these bytes; no instruction reads them (`0x00274780`'s other callers, `0x00563110` and `0x0055A8A0`, read the slots and sub-mesh 1) |
 | `+0x10` | `f32[4]` | x, y, z, w | position |
 
 Sub-mesh 1 (strips):

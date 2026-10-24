@@ -296,17 +296,17 @@ third.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | destinationField | payload +`0x1044`: the map being jumped to; also `0x01EED064` while pending (`0x003145E0`) |
-| `+0x04` | `i32` | destinationEntrance | payload +`0x1048`: the entrance index (`0x003145E0`, `0x00314D80`) |
-| `+0x08` | `i32` | previousField | payload +`0x104C`: the old destinationField (`0x003145E0`) |
-| `+0x0C` | `i32` | previousEntrance | payload +`0x1050`: the old destinationEntrance (`0x003145E0`) |
-| `+0x10` | `u32` | mode | payload +`0x1054`: the mode argument (`0x003145E0`, `0x00314DA0`) |
-| `+0x14` | `i32` | persistenceGroup | payload +`0x1058`: `0x00264F90`(destinationField) (`0x003145E0`) |
-| `+0x18` | `i32` | loadedField | payload +`0x105C`: destinationField (`0x003145E0`, `0x00314530`) |
-| `+0x1C` | `u8` | startSelector | payload +`0x1060`: 0 to 2, written by `0x0026D910` while +`0x1D` is 0 and passed to `0x00180620`; read by `0x002620E0` when `0x0017D490`() is not positive |
-| `+0x1D` | `u8` | initPending | payload +`0x1061`: set to 1 by `0x00268320` and `0x0026D8F0`, cleared by `0x0026D910` after it has written +`0x1C` |
-| `+0x1E` | `u8` | flags | payload +`0x1062`: bit 5 cleared by `0x003145E0` and set by `0x00314530`; bit 2 written by `0x00314D00`; bits 0 and 7 read by the area-flag accessors |
-| `+0x1F` | `u8` | flags2 | payload +`0x1063`: bits 4-5 the MP-regime override (area flags page); bit 6 selects payload +`0x1534` as the music number (`0x0026DE20`) |
+| `+0x00` | `i32` | destinationField | payload `+0x1044`: the map being jumped to; also `0x01EED064` while pending (`0x003145E0`) |
+| `+0x04` | `i32` | destinationEntrance | payload `+0x1048`: the entrance index (`0x003145E0`, `0x00314D80`) |
+| `+0x08` | `i32` | previousField | payload `+0x104C`: the old destinationField (`0x003145E0`) |
+| `+0x0C` | `i32` | previousEntrance | payload `+0x1050`: the old destinationEntrance (`0x003145E0`) |
+| `+0x10` | `u32` | mode | payload `+0x1054`: the mode argument (`0x003145E0`, `0x00314DA0`) |
+| `+0x14` | `i32` | persistenceGroup | payload `+0x1058`: `0x00264F90`(destinationField) (`0x003145E0`) |
+| `+0x18` | `i32` | loadedField | payload `+0x105C`: destinationField (`0x003145E0`, `0x00314530`) |
+| `+0x1C` | `u8` | startSelector | payload `+0x1060`: 0 to 2, written by `0x0026D910` while `+0x1D` is 0 and passed to `0x00180620`; read by `0x002620E0` when `0x0017D490`() is not positive |
+| `+0x1D` | `u8` | initPending | payload `+0x1061`: set to 1 by `0x00268320` and `0x0026D8F0`, cleared by `0x0026D910` after it has written `+0x1C` |
+| `+0x1E` | `u8` | flags | payload `+0x1062`: bit 5 cleared by `0x003145E0` and set by `0x00314530`; bit 2 written by `0x00314D00`; bits 0 and 7 read by the area-flag accessors |
+| `+0x1F` | `u8` | flags2 | payload `+0x1063`: bits 4-5 the MP-regime override (area flags page); bit 6 selects payload `+0x1534` as the music number (`0x0026DE20`) |
 
 ## Operations
 

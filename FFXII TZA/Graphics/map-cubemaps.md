@@ -119,11 +119,11 @@ mode.
 
 ## Layouts
 
-Probe (`0x001AA840`), pointed to from manager +`0xF0`:
+Probe (`0x001AA840`), pointed to from manager `+0xF0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `vec` | variants | `0x30` bytes each; +`0x08` vector of six texture pointers |
+| `+0x00` | `vec` | variants | `0x30` bytes each; `+0x08` vector of six texture pointers |
 | `+0x20` | `f32` | x | cubeMapConfigs.txt; default 80 |
 | `+0x24` | `f32` | y | default 2 |
 | `+0x28` | `f32` | z | default 60 |

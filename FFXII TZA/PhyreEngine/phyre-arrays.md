@@ -146,9 +146,9 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[192]` | bytes00 | +`0x0` to +`0xBF`; no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
-| `+0xCC` | `u8[4]` | bytesCC | the four bytes after m_farPlane (+`0xC8`): the placement constructor `0x006C0A80` writes 10.0 to m_farPlane and 0 here with one qword store (`0x006C0A87`); no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
-| `+0xE4` | `u8[4]` | bytesE4 | the bytes after the dword the placement constructor `0x006C0A80` clears at +`0xE0` (`0x006C0AAB`) up to the end of the `0xE8`-byte class; no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
+| `+0x00` | `u8[192]` | bytes00 | `+0x0` to `+0xBF`; no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
+| `+0xCC` | `u8[4]` | bytesCC | the four bytes after m_farPlane (`+0xC8`): the placement constructor `0x006C0A80` writes 10.0 to m_farPlane and 0 here with one qword store (`0x006C0A87`); no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
+| `+0xE4` | `u8[4]` | bytesE4 | the bytes after the dword the placement constructor `0x006C0A80` clears at `+0xE0` (`0x006C0AAB`) up to the end of the `0xE8`-byte class; no registered member covers it (`0x006C0E00` registers the `0xE8`-byte class at `0x006C0E50`) |
 
 ### Array and string headers
 

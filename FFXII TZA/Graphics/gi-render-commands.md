@@ -354,11 +354,11 @@ Display-list record (`0x02F8F2F8` + `0x28` * i):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | argument | passed to +`0x10` |
+| `+0x00` | `void*` | argument | passed to `+0x10` |
 | `+0x08` | `u32` | sort key | `0x003A3A50` compares this dword |
 | `+0x0C` | `u32` | appender count |  |
-| `+0x10` | `void*` | function | called with +`0x00` when non-null |
-| `+0x18` | `void*` | node | filed through `0x0020E630` when +`0x10` and +`0x00` are null |
+| `+0x10` | `void*` | function | called with `+0x00` when non-null |
+| `+0x18` | `void*` | node | filed through `0x0020E630` when `+0x10` and `+0x00` are null |
 | `+0x20` | `u8` | flags | bit 0: `0x003A2BD0` first; bit 1: post-processing point; bit 2: defer to `0x02AEF420` |
 
 Render block, `0x80` bytes:
@@ -366,7 +366,7 @@ Render block, `0x80` bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | opcode | `0x01`-`0x2F` |
-| `+0x08` | `...` | payload | for `0x2F`: +`0x08` function, +`0x10` argument |
+| `+0x08` | `...` | payload | for `0x2F`: `+0x08` function, `+0x10` argument |
 
 ```python
 render context 0x02CC0410 (static, constructed by 0x00615840)

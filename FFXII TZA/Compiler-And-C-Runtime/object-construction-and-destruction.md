@@ -150,17 +150,22 @@ scalar deleting destructor, as the call sites see it
   edx = flags   0x1  free the storage
                 0x4  sized delete (0x0016D6A0, frees nothing) instead of 0x00584730
   rax = object on return
-
-counted buffer, 16 bytes
-  +0x00  u32   count     bits 0..30 element count, bit 31 storage not owned
-  +0x08  u64   data      pointer; the element itself when the count is below 2 (inline form)
-
-PInputSource vtable, 0x20 bytes per class from 0x01CD6260
-  -0x08  u64   locator   RTTI complete-object locator
-  +0x00  u64   slot0     scalar deleting destructor
-  +0x08  u64   slot1
-  +0x10  u64   slot2
 ```
+
+Counted buffer, 16 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | count | bits 0..30 element count, bit 31 storage not owned |
+| `+0x08` | `u64` | data | pointer; the element itself when the count is below 2 (inline form) |
+
+PInputSource vtable, `0x20` bytes per class from `0x01CD6260`; the u64 at `-0x08` is the RTTI complete-object locator:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u64` | slot0 | scalar deleting destructor |
+| `+0x08` | `u64` | slot1 |  |
+| `+0x10` | `u64` | slot2 |  |
 
 ## Shipped data
 

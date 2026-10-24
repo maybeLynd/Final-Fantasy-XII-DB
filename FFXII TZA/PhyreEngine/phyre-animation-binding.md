@@ -197,7 +197,7 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x60` | `u32` | m_keyCount | m_keyCount (u32), registered by `0x005AF0A0` (`0x00632960` at `0x005AF242`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannel; the placement constructor `0x005A26F0` sets it to 0 (`0x005A2742`) |
-| `+0x64` | `u8[4]` | pad64 | the bytes after m_keyCount (+`0x60`) up to the end of the `0x68`-byte class; no registered member covers it (`0x005A80B0` registers the `0x68`-byte class at `0x005A80FA`) |
+| `+0x64` | `u8[4]` | pad64 | the bytes after m_keyCount (`+0x60`) up to the end of the `0x68`-byte class; no registered member covers it (`0x005A80B0` registers the `0x68`-byte class at `0x005A80FA`) |
 
 `PAnimationChannelTarget` (`0x38` bytes, offsets from the start of the record):
 
@@ -205,14 +205,14 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x28` | `void*` | m_name | path or name; bit 0 of the pointer is masked off; m_name (ptr), registered by `0x005AF3B0` (`0x00632960` at `0x005AF9AB`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannelTarget; the script method getTargetName (registered at `0x005AF5C9`) returns it through `0x005C5320`, which clears bit 0; the placement constructor `0x005A0F60` clears it (`0x005A0F99`) |
 | `+0x30` | `u32` | m_index | array index; m_index (u32), registered by `0x005AF3B0` (`0x00632960` at `0x005AFA1E`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannelTarget; the script method getTargetIndex (registered at `0x005AF693`) returns it through `0x0079CFA0`; the placement constructor `0x005A0F60` clears it (`0x005A0F9D`) |
-| `+0x34` | `u8[4]` | pad34 | the bytes after m_index (+`0x30`) up to the end of the `0x38`-byte class; no registered member covers it (`0x005A81F0` registers the `0x38`-byte class at `0x005A8240`) |
+| `+0x34` | `u8[4]` | pad34 | the bytes after m_index (`+0x30`) up to the end of the `0x38`-byte class; no registered member covers it (`0x005A81F0` registers the `0x38`-byte class at `0x005A8240`) |
 
 `PAnimationChannelTimes` (`0x18` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | m_keyCount | m_keyCount (u32), registered by `0x005AFA60` (`0x00632960` at `0x005AFB8C`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannelTimes; the placement constructor `0x005A5090` sets it to 0 (`0x005A5097`) |
-| `+0x04` | `u8[4]` | pad04 | alignment bytes between m_keyCount (u32 at +`0x00`) and m_timeKeys (PArray at +`0x08`); no registered member covers it (`0x005A82A0` registers the `0x18`-byte class at `0x005A82F0`) |
+| `+0x04` | `u8[4]` | pad04 | alignment bytes between m_keyCount (u32 at `+0x00`) and m_timeKeys (PArray at `+0x08`); no registered member covers it (`0x005A82A0` registers the `0x18`-byte class at `0x005A82F0`) |
 
 `PAnimationClip` (`0x38` bytes, offsets from the start of the record):
 
@@ -233,30 +233,30 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `u32` | m_valueWidthAndKeyCount m_valueWidthAndKeyCount (u32), registered by 0x005B0A70 (0x00632960 at | `0x005B0B7C`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingDataBlockCache; the placement constructor `0x005A4C40` clears +`0x10` to +`0x17` with one qword store (`0x005A4C4E`) |
+| `+0x10` | `u32` | m_valueWidthAndKeyCount m_valueWidthAndKeyCount (u32), registered by 0x005B0A70 (0x00632960 at | `0x005B0B7C`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingDataBlockCache; the placement constructor `0x005A4C40` clears `+0x10` to `+0x17` with one qword store (`0x005A4C4E`) |
 | `+0x14` | `u16` | m_sourceChannelIndex | m_sourceChannelIndex (u16), registered by `0x005B0A70` (`0x00632960` at `0x005B0B09`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingDataBlockCache; cleared with m_valueWidthAndKeyCount by the placement constructor `0x005A4C40` (`0x005A4C4E`) |
-| `+0x16` | `u8[2]` | pad16 | the bytes after m_sourceChannelIndex (u16 at +`0x14`) up to the end of the `0x18`-byte class; cleared with it by the placement constructor `0x005A4C40` (`0x005A4C4E`); no registered member covers it (`0x005A8560` registers the `0x18`-byte class at `0x005A85B0`) |
+| `+0x16` | `u8[2]` | pad16 | the bytes after m_sourceChannelIndex (u16 at `+0x14`) up to the end of the `0x18`-byte class; cleared with it by the placement constructor `0x005A4C40` (`0x005A4C4E`); no registered member covers it (`0x005A8560` registers the `0x18`-byte class at `0x005A85B0`) |
 
 `PAnimationNetworkInstance` (`0x78` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C` | `u8[4]` | pad0C | the four bytes between the array count at +`0x08` and its pointer at +`0x10`, both released by the destructor `0x005A9F10` (`0x005A9FA7`, `0x005A9FB3`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
-| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at +`0x18` and its pointer at +`0x20`, both released by the destructor `0x005A9F10` (`0x005A9F85`, `0x005A9F91`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
+| `+0x0C` | `u8[4]` | pad0C | the four bytes between the array count at `+0x08` and its pointer at `+0x10`, both released by the destructor `0x005A9F10` (`0x005A9FA7`, `0x005A9FB3`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
+| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at `+0x18` and its pointer at `+0x20`, both released by the destructor `0x005A9F10` (`0x005A9F85`, `0x005A9F91`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 | `+0x38` | `u32` | m_slotArrayElementsRequired m_slotArrayElementsRequired (u32), registered by 0x005B14E0 | (`0x00632960` at `0x005B1716`); no shipped .phyre file declares PAnimationNetworkInstance |
-| `+0x3C` | `u8[4]` | bytes3C | the four bytes after m_slotArrayElementsRequired (+`0x38`), before the array count at +`0x40`; no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
-| `+0x44` | `u8[4]` | pad44 | the four bytes between the array count at +`0x40` and its pointer at +`0x48`, both released by the destructor `0x005A9F10` (`0x005A9F63`, `0x005A9F6F`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
+| `+0x3C` | `u8[4]` | bytes3C | the four bytes after m_slotArrayElementsRequired (`+0x38`), before the array count at `+0x40`; no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
+| `+0x44` | `u8[4]` | pad44 | the four bytes between the array count at `+0x40` and its pointer at `+0x48`, both released by the destructor `0x005A9F10` (`0x005A9F63`, `0x005A9F6F`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 | `+0x50` | `u32` | m_preprocessBufferSize m_preprocessBufferSize (u32), registered by 0x005B14E0 (0x00632960 at | `0x005B1827`); no shipped .phyre file declares PAnimationNetworkInstance |
-| `+0x54` | `u8[4]` | bytes54 | the four bytes after m_preprocessBufferSize (+`0x50`), before the array count at +`0x58`; no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
-| `+0x5C` | `u8[4]` | pad5C | the four bytes between the array count at +`0x58` and its pointer at +`0x60`, both released by the destructor `0x005A9F10` (`0x005A9F41`, `0x005A9F4D`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
+| `+0x54` | `u8[4]` | bytes54 | the four bytes after m_preprocessBufferSize (`+0x50`), before the array count at `+0x58`; no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
+| `+0x5C` | `u8[4]` | pad5C | the four bytes between the array count at `+0x58` and its pointer at `+0x60`, both released by the destructor `0x005A9F10` (`0x005A9F41`, `0x005A9F4D`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 
 `PAnimationSlotListIndex` (`0x18` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C` | `u32` | m_targetIndex | m_targetIndex (u32), registered by `0x005B20D0` (`0x00632960` at `0x005B2243`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationSlotListIndex; the placement constructor `0x005A3CB0` sets it to 0 with the qword store that sets m_interp (+`0x08`) to 3 (`0x005A3CB7`) |
+| `+0x0C` | `u32` | m_targetIndex | m_targetIndex (u32), registered by `0x005B20D0` (`0x00632960` at `0x005B2243`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationSlotListIndex; the placement constructor `0x005A3CB0` sets it to 0 with the qword store that sets m_interp (`+0x08`) to 3 (`0x005A3CB7`) |
 | `+0x10` | `u32` | m_nodeCentricReIndex | m_nodeCentricReIndex (u32), registered by `0x005B20D0` (`0x00632960` at `0x005B22B6`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationSlotListIndex; the placement constructor `0x005A3CB0` sets it to 0 (`0x005A3CC2`) |
-| `+0x14` | `u8[4]` | pad14 | the bytes after m_nodeCentricReIndex (+`0x10`) up to the end of the `0x18`-byte class; no registered member covers it (`0x005A8F60` registers the `0x18`-byte class at `0x005A8FB0`) |
+| `+0x14` | `u8[4]` | pad14 | the bytes after m_nodeCentricReIndex (`+0x10`) up to the end of the `0x18`-byte class; no registered member covers it (`0x005A8F60` registers the `0x18`-byte class at `0x005A8FB0`) |
 
 `PNode` (`0x68` bytes, offsets from the start of the record):
 
@@ -268,19 +268,19 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at +`0x18` and its pointer at +`0x20`, both released by the destructor `0x005AA0E0` (`0x005AA126`, `0x005AA132`); no registered member covers it (`0x005A8E10` registers the `0x40`-byte class at `0x005A8E5A`) |
+| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at `+0x18` and its pointer at `+0x20`, both released by the destructor `0x005AA0E0` (`0x005AA126`, `0x005AA132`); no registered member covers it (`0x005A8E10` registers the `0x40`-byte class at `0x005A8E5A`) |
 
 `PAnimationAdditiveBlenderController` (`0x38` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x2C` | `u8[4]` | pad2C | the four bytes between the array count at +`0x28` and its pointer at +`0x30`, both released by the destructor `0x005A9CF0` (`0x005A9D11`, `0x005A9D1D`); no registered member covers it (`0x005A7F70` registers the `0x38`-byte class at `0x005A7FBA`) |
+| `+0x2C` | `u8[4]` | pad2C | the four bytes between the array count at `+0x28` and its pointer at `+0x30`, both released by the destructor `0x005A9CF0` (`0x005A9D11`, `0x005A9D1D`); no registered member covers it (`0x005A7F70` registers the `0x38`-byte class at `0x005A7FBA`) |
 
 `PAnimationBlenderController` (`0x28` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at +`0x18` and its pointer at +`0x20`, both released by the destructor `0x005AC9B0` (`0x005AC9D3`, `0x005AC9DF`); no registered member covers it (`0x005A8010` registers the `0x28`-byte class at `0x005A805A`) |
+| `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at `+0x18` and its pointer at `+0x20`, both released by the destructor `0x005AC9B0` (`0x005AC9D3`, `0x005AC9DF`); no registered member covers it (`0x005A8010` registers the `0x28`-byte class at `0x005A805A`) |
 
 `PAnimationHierarchyNode` (`0x10` bytes, offsets from the start of the record):
 
@@ -292,7 +292,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x2C` | `u8[4]` | pad2C | the four bytes between the array count at +`0x28` and its pointer at +`0x30`, both released by the destructor `0x005AA1D0` (`0x005AA1F1`, `0x005AA1FD`); no registered member covers it (`0x005A9150` registers the `0x38`-byte class at `0x005A919A`) |
+| `+0x2C` | `u8[4]` | pad2C | the four bytes between the array count at `+0x28` and its pointer at `+0x30`, both released by the destructor `0x005AA1D0` (`0x005AA1F1`, `0x005AA1FD`); no registered member covers it (`0x005A9150` registers the `0x38`-byte class at `0x005A919A`) |
 
 ### Binding records
 
@@ -363,7 +363,7 @@ Instruction-level access tables per class, beside this page:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x100` | `u32` | inputCount | bit 31 masked |
-| `+0x108` | `void*` | inputs | `0x10` bytes each: source node at +`0x00`, output index at +`0x08` |
+| `+0x108` | `void*` | inputs | `0x10` bytes each: source node at `+0x00`, output index at `+0x08` |
 | `+0x110` | `u32` | outputCount | bit 31 masked |
 | `+0x118` | `void*` | outputs | `0x0C` bytes each: size, state (0, 1 placed, 2 released), slot |
 | `+0x120` | `u32` | readerCount | bit 31 masked |

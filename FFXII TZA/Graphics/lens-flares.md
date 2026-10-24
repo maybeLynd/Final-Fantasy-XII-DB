@@ -196,24 +196,24 @@ Last it copies the eight entries, with their visibility, to `+0xE4` under the lo
 | `+0x00` | `u32` | handle | serial << 8 \| slot; 0 = free |
 | `+0x04` | `u32` | depth | 24-bit screen depth (`0x003770D0`) |
 | `+0x08` | `f32` | visibility | 0 to 1, eased toward the query result |
-| `+0x0C` | `f32` | visibilityFrozen | copy of +`0x08` (`0x00376D80`) |
-| `+0x10` | `f32` | fadeA | eased, radius +`0x34` |
+| `+0x0C` | `f32` | visibilityFrozen | copy of `+0x08` (`0x00376D80`) |
+| `+0x10` | `f32` | fadeA | eased, radius `+0x34` |
 | `+0x14` | `f32` | fadeAFrozen | copy (`0x00376D80`) |
-| `+0x18` | `f32` | fadeB | eased, radius +`0x38` |
+| `+0x18` | `f32` | fadeB | eased, radius `+0x38` |
 | `+0x1C` | `f32` | fadeBFrozen | copy (`0x00376D80`) |
-| `+0x20` | `f32` | fadeC | eased, radius +`0x3C` |
+| `+0x20` | `f32` | fadeC | eased, radius `+0x3C` |
 | `+0x24` | `f32` | fadeCFrozen | copy (`0x00376D80`) |
 | `+0x28` | `f32` | fadeAOut | read by `0x00376A50` |
 | `+0x2C` | `f32` | fadeBOut | read by `0x00376A20` |
 | `+0x30` | `f32` | fadeCOut | read by `0x00376AC0` |
-| `+0x34` | `f32` | radiusA | definition +`0x1F0` |
-| `+0x38` | `f32` | radiusB | definition +`0x1F4` |
-| `+0x3C` | `f32` | radiusC | definition +`0x1F8` |
-| `+0x40` | `f32` | dimStrength | definition +`0x1DC` |
-| `+0x44` | `f32[3]` | lightColour | definition +`0x1E0` to +`0x1E8` |
+| `+0x34` | `f32` | radiusA | definition `+0x1F0` |
+| `+0x38` | `f32` | radiusB | definition `+0x1F4` |
+| `+0x3C` | `f32` | radiusC | definition `+0x1F8` |
+| `+0x40` | `f32` | dimStrength | definition `+0x1DC` |
+| `+0x44` | `f32[3]` | lightColour | definition `+0x1E0` to `+0x1E8` |
 | `+0x50` | `u32` | light | light handle, 0 = none |
 | `+0x54` | `u16` | flags | bit 0 dimming and light, bit 1 fades A and B, bit 2 set at creation and while unprojected, bit 3 frozen |
-| `+0x60` | `f32[4]` | lightDirection | request +`0x20` (`0x00377160`) |
+| `+0x60` | `f32[4]` | lightDirection | request `+0x20` (`0x00377160`) |
 | `+0x70` | `i32[4]` | testSquare | y0, y1, x1, x0 in GS pixels (`0x00377100`) |
 | `+0x80` | `f32[4]` | floatSquare | x0, x1, y0, y1 in GS coordinates; the query corners (`0x00377130`) |
 
@@ -236,7 +236,7 @@ Last it copies the eight entries, with their visibility, to `+0xE4` under the lo
 | `+0x000` | `u32` | count | entries appended this frame |
 | `+0x004` | `u8[224]` | pending | eight OcclusionEntry, filled by `0x001B2680` |
 | `+0x0E4` | `u8[224]` | results | eight OcclusionEntry, written by `0x001B2A30` under the lock |
-| `+0x1C8` | `u64` | queries | pointer to +`0x1D0` once the queries exist |
+| `+0x1C8` | `u64` | queries | pointer to `+0x1D0` once the queries exist |
 | `+0x1D0` | `u64[8]` | query | pointers, one occlusion query per entry |
 | `+0x210` | `u8[8]` | issued | a query is in flight |
 | `+0x218` | `u8[40]` | lock | initialised by `0x005CC8A0` |

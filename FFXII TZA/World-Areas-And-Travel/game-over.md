@@ -220,22 +220,22 @@ Root block [`0x0209AC30`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0B8` | `void*` | mode-screen task | +`0x0C0`  ptr   area controller (`0x00280A00` refuses while set) |
+| `+0x0B8` | `void*` | mode-screen task | `+0x0C0`  ptr   area controller (`0x00280A00` refuses while set) |
 | `+0x0D0` | `void*` | pause task 0x00228C70 |  |
 | `+0x3FC` | `i32` | requested field (0x00285EC0) |  |
 | `+0x400` | `u32` | bit 8 field request pending; bits 9/10 restore pending/verified; bit 11 cleared by 0x0027F2E0; | bit 13 set by `0x00285EA0`; low byte rewritten by `0x0027F2E0` |
-| `+0xDEE` | `u8` | cleared by 0x0027EFA0 | +`0xDEF`  u8    1 while a mode screen opens, 0 after the controller's message |
+| `+0xDEE` | `u8` | cleared by 0x0027EFA0 | `+0xDEF`  u8    1 while a mode screen opens, 0 after the controller's message |
 
 Struct GameOverTask size=`0x108`   (`0x00244F50`(`0x108`, `0x003EF830`, 0); `0x02B5F1C8` points at it):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0xB4` | `u32` | tick handle (0x001EDEC0) |  |
-| `+0xC0` | `i32` | state 0..8 | +`0x0C4`  i32   countdown frames |
-| `+0xD0` | `void*` | image task 0x003EF2E0 | +`0x0D8`  ptr   timing task `0x003EEEC0` |
-| `+0xE0` | `void*` | logo task 0x003EF4A0 | +`0x0E8`  ptr   prompt task `0x003EF050` |
+| `+0xC0` | `i32` | state 0..8 | `+0x0C4`  i32   countdown frames |
+| `+0xD0` | `void*` | image task 0x003EF2E0 | `+0x0D8`  ptr   timing task `0x003EEEC0` |
+| `+0xE0` | `void*` | logo task 0x003EF4A0 | `+0x0E8`  ptr   prompt task `0x003EF050` |
 | `+0xF0` | `i32` | 1 once message 0x10 arrived |  |
-| `+0xF8` | `reg` | texture registration (0x00393460) | +`0x100`  reg   texture registration (`0x003933F0`) |
+| `+0xF8` | `reg` | texture registration (0x00393460) | `+0x100`  reg   texture registration (`0x003933F0`) |
 
 Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0x00360C20` reads, `0x00360D70` releases):
 
@@ -245,7 +245,7 @@ Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0
 | `+0x01` | `u8` | image id (7 = gameover_c) |  |
 | `+0x02` | `u8` | flags: bit 0 release requested, bit 1 fading (0x00361200) |  |
 | `+0x03` | `u8` | result byte returned by 0x00361630 |  |
-| `+0x08` | `void*` | payload | +`0x14`  u32  handle from `0x001DBB80`(id) |
+| `+0x08` | `void*` | payload | `+0x14`  u32  handle from `0x001DBB80`(id) |
 
 Title-return bytes:
 

@@ -405,34 +405,34 @@ Binding entry   `0x0215FDA0` + slot*`0x40`, 128 slots:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `prev,` | +0x08 | next (free / requested / live / retired list) |
-| `+0x10` | `u32` | load | handle (`0x0036B160`), +`0x14` u32 bound id |
+| `+0x10` | `u32` | load | handle (`0x0036B160`), `+0x14` u32 bound id |
 | `+0x18` | `u8` | state: | bit1 ready, bit2 release pending, bit3 not registered with the render system |
 | `+0x19` | `u8` | pins: | bits0-1 keep at count 0, bit2 no load buffer, bit3 created with a holder, bit4 kept by `0x002E3E90` |
-| `+0x1A` | `u16` | own | slot, +`0x1C` s16 reference count, +`0x1E` s16 lane record index (-1 none) |
-| `+0x20` | `u16` | holder | bits (one per manager), +`0x24` u32 stamp (+`0x26` always 0) |
-| `+0x28` | `u32` | claimed | lanes, +`0x2C` u32 lanes with a positive size +`0x30`, +`0x34`, +`0x38` u32 sub-resources (-1 none) |
+| `+0x1A` | `u16` | own | slot, `+0x1C` s16 reference count, `+0x1E` s16 lane record index (-1 none) |
+| `+0x20` | `u16` | holder | bits (one per manager), `+0x24` u32 stamp (`+0x26` always 0) |
+| `+0x28` | `u32` | claimed | lanes, `+0x2C` u32 lanes with a positive size `+0x30`, `+0x34`, `+0x38` u32 sub-resources (-1 none) |
 
-Lane record     `0x02161DA0` + i*`0x120`, 32 records +`0x00`/+`0x08` links (free `0x0215FD70`, idle `0x0215FD68`, pending `0x0215FD80`) +`0x10`/+`0x18` unload-queue node (`0x0215FD90`):
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `+0x20` | `u16` | own | index, +`0x22` u16 owner slot |
-| `+0x24` | `loaded,` | +0x28 | to load, +`0x2C` queued for unload, +`0x34` loading |
-| `+0x38` | `hold` | mask, | +`0x3C` tested with +`0x38`, +`0x40` mask read by `0x002E9C60`, +`0x44` keep on load |
-| `+0x48-0x5B` | `five` | group | words, +`0x5C` u32 owner's stamp |
-| `+0x60` | `u32[32]` | lane | handles, +`0xE0` s16[32] lane counts |
-
-Chest record    +`0x00` u8 index in the field, +`0x04` s16 x tenths, +`0x06` s16 z tenths, +`0x08` u8 facing (bits 0-5) and random gil (bit 6),:
+Lane record     `0x02161DA0` + i*`0x120`, 32 records `+0x00`/`+0x08` links (free `0x0215FD70`, idle `0x0215FD68`, pending `0x0215FD80`) `+0x10`/`+0x18` unload-queue node (`0x0215FD90`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x09` | `u8` | opened-flag | id, +`0x0A` u8 presence %, +`0x0B`..+`0x17` contents (reward verbs) |
+| `+0x20` | `u16` | own | index, `+0x22` u16 owner slot |
+| `+0x24` | `loaded,` | +0x28 | to load, `+0x2C` queued for unload, `+0x34` loading |
+| `+0x38` | `hold` | mask, | `+0x3C` tested with `+0x38`, `+0x40` mask read by `0x002E9C60`, `+0x44` keep on load |
+| `+0x48-0x5B` | `five` | group | words, `+0x5C` u32 owner's stamp |
+| `+0x60` | `u32[32]` | lane | handles, `+0xE0` s16[32] lane counts |
 
-Presentation    [actor+`0xC0`]: +`0x00` render index, +`0x04` bound id, +`0x08` entry, +`0x10` flags:
+Chest record    `+0x00` u8 index in the field, `+0x04` s16 x tenths, `+0x06` s16 z tenths, `+0x08` u8 facing (bits 0-5) and random gil (bit 6),:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x12` | `i8` | motion | lane, +`0x14C`, +`0x14D` variant bytes b and c; attach slots +`0x30`, +`0x60`, +`0x90`, +`0xC0`, +`0xF0` (`0x30` each) |
+| `+0x09` | `u8` | opened-flag | id, `+0x0A` u8 presence %, `+0x0B`..+`0x17` contents (reward verbs) |
+
+Presentation    [actor+`0xC0`]: `+0x00` render index, `+0x04` bound id, `+0x08` entry, `+0x10` flags:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x12` | `i8` | motion | lane, `+0x14C`, `+0x14D` variant bytes b and c; attach slots `+0x30`, `+0x60`, `+0x90`, `+0xC0`, `+0xF0` (`0x30` each) |
 
 `0x002ED6F0`, letter class → resource kind, file index, lane count:
 

@@ -303,17 +303,17 @@ BattleUnit fields this page uses:
 | `+0x000` | `u64` | flags: bit 2 active, 3 definition applied, 4 drive, 21 cap-tracked, 26 candidate prepared, | 40 special range, 45 not an initial placement, 49 activated once |
 | `+0x038` | `void*` | candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids |  |
 | `+0x040` | `void*` | lane map: u8 count, u8 slot per lane (0xFF none) |  |
-| `+0x04C` | `f32` | mode-2 threshold | +`0x50` u8 despawn mode 0/1/2     +`0x51` u8 anchor record |
-| `+0x057` | `i8` | the unit's own lane | +`0x58` u8 category byte |
-| `+0x188` | `f32` | vertical lift | +`0x1F6` u8 height mode: bit 3 = probe |
-| `+0x698` | `void*` | stats record (+0x05 kind) | +`0x6A0` ptr spawn record   +`0xE68` ptr definition record |
+| `+0x04C` | `f32` | mode-2 threshold | `+0x50` u8 despawn mode 0/1/2     `+0x51` u8 anchor record |
+| `+0x057` | `i8` | the unit's own lane | `+0x58` u8 category byte |
+| `+0x188` | `f32` | vertical lift | `+0x1F6` u8 height mode: bit 3 = probe |
+| `+0x698` | `void*` | stats record (+0x05 kind) | `+0x6A0` ptr spawn record   `+0xE68` ptr definition record |
 
 Field format-class-0 record (`0x003DFD00`(0, id, rec)):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | type: 0 point, 1 box, 2 ellipse |  |
-| `+0x04` | `f32` | width | +`0x08`  f32  depth |
+| `+0x04` | `f32` | width | `+0x08`  f32  depth |
 | `+0x10` | `f32[3]` | position | or centre |
 | `+0x1C` | `f32` | heading |  |
 

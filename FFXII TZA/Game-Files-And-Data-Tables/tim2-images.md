@@ -28,7 +28,7 @@ binders call `0x0024A1D0` directly on TIM2s inside a pack (`0x00246A10` binds fi
 
 All multi-byte fields are little-endian.
 
-TIM2 file header (16 bytes; the first picture always starts at +`0x10`):
+TIM2 file header (16 bytes; the first picture always starts at `+0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -60,16 +60,16 @@ Picture header (`0x30` bytes, then the game block or eXt area up to header size)
 
 A registered glyph sheet carries a game block at picture `+0x30` instead of an `eXt` area:
 
-Glyph-sheet block (picture +`0x30`; present when headerSize > `0x30`):
+Glyph-sheet block (picture `+0x30`; present when headerSize > `0x30`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `u32` | flags | low nibble 1 for the gate (file +`0x40` of picture 0); `0x4000` = offsets converted; bits `0x18000` select the sheet in `0x0039BA30` |
+| `+0x30` | `u32` | flags | low nibble 1 for the gate (file `+0x40` of picture 0); `0x4000` = offsets converted; bits `0x18000` select the sheet in `0x0039BA30` |
 | `+0x34` | `u32` | self | written: handle of this picture |
 | `+0x38` | `u32` | next | written: handle of the following picture, or of address 0 when that picture has a block |
-| `+0x3C` | `u32` | offsetA | offset from +`0x30`, converted once to a handle |
-| `+0x44` | `u32` | offsetB | offset from +`0x30`, converted once to a handle |
-| `+0x48` | `u32` | offsetC | offset from +`0x30`, converted once to a handle |
+| `+0x3C` | `u32` | offsetA | offset from `+0x30`, converted once to a handle |
+| `+0x44` | `u32` | offsetB | offset from `+0x30`, converted once to a handle |
+| `+0x48` | `u32` | offsetC | offset from `+0x30`, converted once to a handle |
 | `+0x4C` | `u16` | bandBase | written: `0x2A00` + `0xA0` x (row / 128) |
 | `+0x4E` | `u16` | bandRow | written: row mod 128 |
 

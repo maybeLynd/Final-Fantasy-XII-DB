@@ -222,18 +222,57 @@ a signed word of a record (a word of −1 sign-extends to −1, which the builde
 
 ## Layouts
 
-```python
-slot (0x80)   +0x00 u64 counter sum, +0x08 u64 counter at issue, +0x10 next, +0x18 prev,
-              +0x20 u8 state, +0x21 u8 kind, +0x22 u8 chunked, +0x23 u8 part result, +0x24 s32 index (or path),
-              +0x28 s32 bytes (current part), +0x2C s32 file offset, +0x30 s32 part cap, +0x34 s32 remaining,
-              +0x38 destination (current part), +0x40 delivery/failure callback, +0x48 cancel callback,
-              +0x50 part callback, +0x58 u32 slot index, +0x5C u32, +0x60 u32 callback word, +0x64 u32 id,
-              +0x70 destination (start)
-descriptor    +0x00 s32 file offset, +0x08 u32 callback word, +0x10 delivery/failure callback, +0x18 cancel callback
-queue         0x022C51C0 pending head, 0x022C51C8 pending tail, 0x022C51D0 free head, 0x022C51D8 kind, 0x022C51DC index,
-              0x022C51F0 256 size override pointers, 0x01EED498 request counter
-read status   0x0215EFF4: -1 in flight, >= 0 delivered, other negative failed
-```
+Slot (`0x80`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u64` | counter sum |  |
+| `+0x08` | `u64` | counter at issue |  |
+| `+0x10` | `...` | next |  |
+| `+0x18` | `...` | prev |  |
+| `+0x20` | `u8` | state |  |
+| `+0x21` | `u8` | kind |  |
+| `+0x22` | `u8` | chunked |  |
+| `+0x23` | `u8` | part result |  |
+| `+0x24` | `i32` | index | or path |
+| `+0x28` | `i32` | bytes | current part |
+| `+0x2C` | `i32` | file offset |  |
+| `+0x30` | `i32` | part cap |  |
+| `+0x34` | `i32` | remaining |  |
+| `+0x38` | `...` | destination | current part |
+| `+0x40` | `...` | delivery/failure callback |  |
+| `+0x48` | `...` | cancel callback |  |
+| `+0x50` | `...` | part callback |  |
+| `+0x58` | `u32` | slot index |  |
+| `+0x5C` | `u32` | requesterZeroed5C |  |
+| `+0x60` | `u32` | callback word |  |
+| `+0x64` | `u32` | id |  |
+| `+0x70` | `...` | destination | start |
+
+Descriptor:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i32` | file offset |  |
+| `+0x08` | `u32` | callback word |  |
+| `+0x10` | `...` | delivery/failure callback |  |
+| `+0x18` | `...` | cancel callback |  |
+
+Queue:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x022C51C0` | `...` | pending head |  |
+| `0x022C51C8` | `...` | pending tail |  |
+| `0x022C51D0` | `...` | free head |  |
+| `0x022C51D8` | `...` | kind |  |
+| `0x022C51DC` | `...` | index |  |
+| `0x022C51F0` | `void*[256]` | size overrides | 256 size override pointers |
+| `0x01EED498` | `...` | request counter |  |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x0215EFF4` | `...` | read status | -1 in flight, >= 0 delivered, other negative failed |
 
 The fields are listed access by access in
 [`file-requests-and-the-read-queue-slot-accesses.tsv`](file-requests-and-the-read-queue-slot-accesses.tsv),

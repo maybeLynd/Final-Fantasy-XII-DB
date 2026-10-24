@@ -276,7 +276,7 @@ those of the sequence list `0x02EAD600` and its helpers; the other lists and que
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | vtable | the queue class, set by its static initialiser; its exit handler puts back `0x01CB4470` (`0x008B8779`) |
-| `+0x08` | `void*` | cells | the cells, `0x18` bytes each: class `0x01CB45D8`, the queued pointer at +`0x08` and the next cell at +`0x10` (`0x007AB2FE`-`0x007AB317`) |
+| `+0x08` | `void*` | cells | the cells, `0x18` bytes each: class `0x01CB45D8`, the queued pointer at `+0x08` and the next cell at `+0x10` (`0x007AB2FE`-`0x007AB317`) |
 | `+0x10` | `void*` | free | first free cell (`0x007AB336`) |
 | `+0x18` | `void*` | first | first queued cell (`0x007AB371`) |
 | `+0x20` | `void*` | last | last queued cell (`0x007AB377`) |

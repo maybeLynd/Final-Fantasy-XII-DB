@@ -34,13 +34,13 @@ The file is a TIM2 file with the magic changed, one picture and no pixel data.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[4]` | "CLT2" | read by no function: the table pointer, widget +`0x118`, is loaded by the draw `0x003C26C0` (`0x003C2794`), which hands it to `0x0024A9E0` (+`0x06` and the picture header from +`0x10`), and by the releases `0x003C1F00` (`0x003C2024`) and `0x003BC4E0` (`0x003BC55A`); nothing fixes its width |
+| `+0x00` | `u8[4]` | "CLT2" | read by no function: the table pointer, widget `+0x118`, is loaded by the draw `0x003C26C0` (`0x003C2794`), which hands it to `0x0024A9E0` (`+0x06` and the picture header from `+0x10`), and by the releases `0x003C1F00` (`0x003C2024`) and `0x003BC4E0` (`0x003BC55A`); nothing fixes its width |
 | `+0x04` | `u8` | version | 4 |
 | `+0x05` | `u8` | format | 0 |
 | `+0x06` | `u16` | pictures | 1; read by `0x0024A9E0` as the bound of the picture index, which is 0 here |
 | `+0x08` | `u8[8]` | zero |  |
 
-Picture header (+`0x10`):
+Picture header (`+0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

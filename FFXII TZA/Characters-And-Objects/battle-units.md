@@ -220,7 +220,7 @@ Struct BattleUnit size=`0xF50` count=32 base=[`0x0208E688`]:
 | `+0x008` | `u32` | handle | `0x003589B0`(actor) at bind |
 | `+0x010` | `u8*` | actor | the bound actor record |
 | `+0x020` | `i32` | bound | 1 after the bind walk (`0x00234A00`) |
-| `+0x057` | `u8` | entryGroup | actor +`0xF6` at bind |
+| `+0x057` | `u8` | entryGroup | actor `+0xF6` at bind |
 | `+0x698` | `u8*` | stats | the combat stats record (unit-stats-fields page) |
 | `+0x6A0` | `u8*` | spawnRecord |  |
 | `+0xE68` | `u8*` | classRow |  |

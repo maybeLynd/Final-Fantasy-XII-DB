@@ -208,20 +208,53 @@ on both of its sides ([save data fields](../Saving-Loading-And-Settings/save-dat
 
 ## Layouts
 
-```python
-[0x02EBF190] + 0x5B04  u32  the mode word: bit 0 summon, bit 1 chocobo, bit 2 event party, bit 3 event party 2
-[0x02EBF190] + 0x5B08  u32  the previous level (written by the dispatcher with commit)
-[0x02EBF190] + 0x5AD0  u16  summon flags (bit 1 the timer runs)   +0x5AD4 u8 the Esper's row (0x1B after reset)   +0x5AD5 u8 the summoner's row
-[0x02EBF190] + 0x5AD8 / +0x5ADC  f32  the summon timers
-[0x02EBF190] + 0x5AE0  u32  ride flags (bit 0 timers armed, bit 1 turbo on, bits 2-3 charges)   +0x5AE4 f32 ride time   +0x5AE8 f32 turbo time   +0x5AEC u32 last turbo argument
-[0x02EBF190] + 0x5A48  nine 2-byte selector entries   +0x5AA4 u8 the saved leader
-[0x02EBF190] + 0x5A5A / +0x5A6C / +0x5A90  nine 2-byte entries each, the selection maps (entries 0-3 rebuilt by level)   +0x5A7E  the selector's full copy
-0x01EECFC0  ptr[5][4]  the transition table: rows = levels 0-4; columns = enter, leave, enter with commit, leave with commit
-[0x02ADD100]  the area record table: +4 count, +8 rows of 3 bytes; word bit 15 = town, byte +2 bits 4-6 = the town's row
-0x0215FD44 / 0x0215FD45  u8  source bytes; bit 2 = the town flag (the dispatcher), bit 0 the world-lock apply
-0x02B59D70 / 0x02B59D71  u8  "any bit set" of the two source bytes
-transition record: +4 0x021B28E4, +8 the ride block (16 bytes), +0x18 the summon block (16 bytes), +0x28 the mode word
-```
+Battle state block [`0x02EBF190`]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x5A48` | `u8[18]` | selector entries | nine 2-byte selector entries |
+| `+0x5A5A` | `u8[18]` | selection map | one of the three selection maps, nine 2-byte entries each (entries 0-3 rebuilt by level) |
+| `+0x5A6C` | `u8[18]` | selection map | one of the three selection maps, nine 2-byte entries each (entries 0-3 rebuilt by level) |
+| `+0x5A7E` | `...` | selector copy | the selector's full copy |
+| `+0x5A90` | `u8[18]` | selection map | one of the three selection maps, nine 2-byte entries each (entries 0-3 rebuilt by level) |
+| `+0x5AA4` | `u8` | saved leader |  |
+| `+0x5AD0` | `u16` | summon flags | bit 1 the timer runs |
+| `+0x5AD4` | `u8` | Esper's row | `0x1B` after reset |
+| `+0x5AD5` | `u8` | summoner's row |  |
+| `+0x5AD8` | `f32` | summon timer | one of the two summon timers |
+| `+0x5ADC` | `f32` | summon timer | one of the two summon timers |
+| `+0x5AE0` | `u32` | ride flags | bit 0 timers armed, bit 1 turbo on, bits 2-3 charges |
+| `+0x5AE4` | `f32` | ride time |  |
+| `+0x5AE8` | `f32` | turbo time |  |
+| `+0x5AEC` | `u32` | last turbo argument |  |
+| `+0x5B04` | `u32` | mode word | bit 0 summon, bit 1 chocobo, bit 2 event party, bit 3 event party 2 |
+| `+0x5B08` | `u32` | previous level | written by the dispatcher with commit |
+
+Globals:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x01EECFC0` | `void*[5][4]` | transition table | rows = levels 0-4; columns = enter, leave, enter with commit, leave with commit |
+| `0x0215FD44` | `u8` | source byte | one of the two source bytes; bit 2 = the town flag (the dispatcher), bit 0 the world-lock apply |
+| `0x0215FD45` | `u8` | source byte | one of the two source bytes; bit 2 = the town flag (the dispatcher), bit 0 the world-lock apply |
+| `0x02B59D70` | `u8` | any-bit byte | "any bit set" of the two source bytes |
+| `0x02B59D71` | `u8` | any-bit byte | "any bit set" of the two source bytes |
+
+The area record table [`0x02ADD100`]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `...` | count |  |
+| `+0x08` | `...` | rows | rows of 3 bytes; word bit 15 = town, byte +2 bits 4-6 = the town's row |
+
+Transition record:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x04` | `...` | captured 0x021B28E4 |  |
+| `+0x08` | `u8[16]` | ride block | the ride block (16 bytes) |
+| `+0x18` | `u8[16]` | summon block | the summon block (16 bytes) |
+| `+0x28` | `...` | mode word |  |
 
 ## Shipped data
 

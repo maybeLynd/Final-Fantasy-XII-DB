@@ -353,12 +353,12 @@ GameApplication  (static, `0x01F7E350`, `0x1140` bytes; base Phyre::PFramework::
 | `+0x27` | `u8` | base byte written by slot 14 |  |
 | `+0x48` | `f64` | frame delta, read by the tick |  |
 
-+`0x090`, +`0x0E8`  passed to the render manager's constructor:
+`+0x090`, `+0x0E8`  passed to the render manager's constructor:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0D24` | `i32` | viewport width | +`0xD28`  i32  viewport height |
-| `+0x1130` | `void*` | slot 2's first argument | +`0x1138` i32  slot 2's second argument |
+| `+0x0D24` | `i32` | viewport width | `+0xD28`  i32  viewport height |
+| `+0x1130` | `void*` | slot 2's first argument | `+0x1138` i32  slot 2's second argument |
 | `+0x113C` | `u8` | startup latch: 0 until the init job finishes, 1 after |  |
 | `+0x113D` | `u8` | run-once guard of the frame tick |  |
 
@@ -411,48 +411,48 @@ The render manager (`0xDD8` bytes at `[0x01F7F598]`, built by `0x00184F20`, its 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8[2]` | pendingRequests | two request bytes the pass list `0x00187950` serves at its end (`0x001885DB`-`0x001885F5`): byte +`0x00` (set to 1 by `0x0017D120`, the application's slot 10, by `0x001825A0` and by the installer `0x00186CD0` at `0x00187191`) runs `0x00188B10`, which clears both (`0x00188B22`); otherwise byte +`0x01` (set by `0x00189520`(manager, n) with the new multisample count at +`0xDC8`, `0x00189520`-`0x00189524`) runs `0x00188DA0`, which clears it (`0x00188DA6`) and re-applies the count to the targets; while +`0x01` is set the pass list publishes +`0xDC8` to `0x01DF0900` (`0x00187A6D`-`0x00187A7A`); 0 from the constructor `0x00184F20` (`0x00184F43`) |
+| `+0x000` | `u8[2]` | pendingRequests | two request bytes the pass list `0x00187950` serves at its end (`0x001885DB`-`0x001885F5`): byte `+0x00` (set to 1 by `0x0017D120`, the application's slot 10, by `0x001825A0` and by the installer `0x00186CD0` at `0x00187191`) runs `0x00188B10`, which clears both (`0x00188B22`); otherwise byte `+0x01` (set by `0x00189520`(manager, n) with the new multisample count at `+0xDC8`, `0x00189520`-`0x00189524`) runs `0x00188DA0`, which clears it (`0x00188DA6`) and re-applies the count to the targets; while `+0x01` is set the pass list publishes `+0xDC8` to `0x01DF0900` (`0x00187A6D`-`0x00187A7A`); 0 from the constructor `0x00184F20` (`0x00184F43`) |
 | `+0x002` | `u8` | frameDone | set to 1 by `0x00183260` (`0x00183273`) and by the installer (`0x00187194`), cleared at the end of each pass list (`0x001885FA`); `0x00187540` returns it to the frame pump; 0 from the constructor (`0x00184F48`) |
-| `+0x018` | `u32` | settingD50 | the settings object's +`0xD50` ([`0x02EA5368`] through `0x00796E20`), copied by the installer `0x00186CD0` (`0x00186D42`-`0x00186D4D`); every test of it sits behind `0x005C5230`, which returns 0 (`0x005C5230` xor eax, eax), so it decides nothing (`0x00186139`-`0x00186142`, `0x00186420`-`0x00186429`, `0x00186EC8`-`0x00186ED1`, `0x00187FA8`-`0x00187FB5`, `0x0018848C`-`0x00188495`); 0 from the constructor (`0x00184F56`) |
-| `+0x01E` | `u8[2]` | span001E | the two bytes between the bank selector +`0x1D` and the first camera block +`0x20` |
-| `+0xAE4` | `i32` | viewportX | x of the saved viewport: `0x00188AC0` hands +`0xAE4`, +`0xAE8`, +`0xAEC` and +`0xAF0` to the device's viewport setter `0x0060F6B0` as x, y, width and height when +`0xAE0` is non-zero (`0x00188AC4`-`0x00188AF7`); called from `0x001F29E0` (`0x001F29F8`) |
+| `+0x018` | `u32` | settingD50 | the settings object's `+0xD50` ([`0x02EA5368`] through `0x00796E20`), copied by the installer `0x00186CD0` (`0x00186D42`-`0x00186D4D`); every test of it sits behind `0x005C5230`, which returns 0 (`0x005C5230` xor eax, eax), so it decides nothing (`0x00186139`-`0x00186142`, `0x00186420`-`0x00186429`, `0x00186EC8`-`0x00186ED1`, `0x00187FA8`-`0x00187FB5`, `0x0018848C`-`0x00188495`); 0 from the constructor (`0x00184F56`) |
+| `+0x01E` | `u8[2]` | span001E | the two bytes between the bank selector `+0x1D` and the first camera block `+0x20` |
+| `+0xAE4` | `i32` | viewportX | x of the saved viewport: `0x00188AC0` hands `+0xAE4`, `+0xAE8`, `+0xAEC` and `+0xAF0` to the device's viewport setter `0x0060F6B0` as x, y, width and height when `+0xAE0` is non-zero (`0x00188AC4`-`0x00188AF7`); called from `0x001F29E0` (`0x001F29F8`) |
 | `+0xAE8` | `i32` | viewportY | y of the saved viewport (`0x00188ADA`) |
 | `+0xAEC` | `i32` | viewportWidth | width of the saved viewport (`0x00188AD3`) |
 | `+0xAF0` | `i32` | viewportHeight | height of the saved viewport (`0x00188ACD`) |
-| `+0xB00` | `u8[8]` | span0B00 | the eight bytes between the qword +`0xAF8` and the render-target table +`0xB08` |
-| `+0xB08` | `void*` | sceneTarget | the scene render target in use, element 0 of the target table +`0xB08`-+`0xB28` that `0x001867B0` and `0x00186910` index with +`0xC30` (`0x001867B6`, `0x0018695D`); the installer sets it to +`0xB28` (`0x00186E0D`-`0x00186E14`), the pass list resets it to +`0xB28` (`0x00187A33`-`0x00187A3A`, `0x00188606`-`0x0018860D`) and `0x00189530` picks +`0xB28` or +`0xB30` by its flag (`0x0018953B`, `0x0018954A`) |
-| `+0xB10` | `void*` | targetB10 | element 1 of the target table: a screen-size render target made by `0x001EE040` (`0x00186E1B`-`0x00186E57`) in format `0x02CF7480`, or `0x02CF76E8` when the settings byte +`0xD48` is set; `0x001867C0` returns it |
+| `+0xB00` | `u8[8]` | span0B00 | the eight bytes between the qword `+0xAF8` and the render-target table `+0xB08` |
+| `+0xB08` | `void*` | sceneTarget | the scene render target in use, element 0 of the target table `+0xB08`-`+0xB28` that `0x001867B0` and `0x00186910` index with `+0xC30` (`0x001867B6`, `0x0018695D`); the installer sets it to `+0xB28` (`0x00186E0D`-`0x00186E14`), the pass list resets it to `+0xB28` (`0x00187A33`-`0x00187A3A`, `0x00188606`-`0x0018860D`) and `0x00189530` picks `+0xB28` or `+0xB30` by its flag (`0x0018953B`, `0x0018954A`) |
+| `+0xB10` | `void*` | targetB10 | element 1 of the target table: a screen-size render target made by `0x001EE040` (`0x00186E1B`-`0x00186E57`) in format `0x02CF7480`, or `0x02CF76E8` when the settings byte `+0xD48` is set; `0x001867C0` returns it |
 | `+0xB18` | `void*` | targetB18 | element 2 of the target table: a screen-size render target with the multisample count `0x02CB8084` (`0x00186E5E`-`0x00186E8D`); `0x00188DA0` re-applies the count to it (`0x00188DD9`-`0x00188DED`); `0x001867A0` returns it |
-| `+0xB28` | `void*` | targetB28 | element 4 of the target table: the screen-size multisampled scene target (sample count from the settings' +`0xD3C`, format by its +`0xD48`; `0x00186D37`-`0x00186DD6`); `0x001868F0` returns it for a non-zero argument (`0x001868F4`); `0x00188DA0` re-applies the count (`0x00188DC6`) |
-| `+0xB30` | `void*` | targetB30 | the screen-size single-sample counterpart of +`0xB28` (`0x00186DDD`-`0x00186E06`); `0x001868F0` returns it for 0 (`0x001868FC`) |
-| `+0xB38` | `void*` | targetB38 | a render target the installer makes only when `0x005C5230`() is non-zero and +`0x18` is 0 (`0x00186EC8`-`0x00186F03`); `0x005C5230` returns 0, so the installer skips it; read by `0x00188730` (`0x001888A8`) and `0x001893C0` (`0x001893F4`) |
-| `+0xB48` | `void*` | pingTargetA | first of the screen-size targets the getters index with +`0xDD0` (`0x00186FC4`-`0x00186FED`): `0x00186840` and its siblings return [+`0xB48` + 8 * index], or [+`0xB50` + 8 * index] when +`0xDBB` is set and `0x0017F280` agrees (`0x00186862`-`0x0018688A`) |
-| `+0xB50` | `void*` | pingTargetB | second of those targets (`0x00186FF4`-`0x0018701D`), element 1 of the +`0xB48` pair and element 0 of the +`0xB50` pair (`0x00186875`, `0x001869EC`) |
-| `+0xB58` | `void*` | resolveTarget | the target in use from the pair +`0xB60` (multisampled) and +`0xB68`: +`0xB60` while +`0xDB9` is clear and +`0xDBA` set, else +`0xB68` (`0x00187A41`-`0x00187A66`, `0x00188E16`-`0x00188E38`); the installer starts it at +`0xB60` (`0x00186FB6`-`0x00186FBD`); `0x00186660` returns it |
-| `+0xB70` | `u8[8]` | span0B70 | the eight bytes between the target +`0xB68` and the target +`0xB78` |
-| `+0xB78` | `void*` | viewportTarget | a render target at the viewport size +`0xAD8` x +`0xADC`, or 3840 x 2160 when the boot byte +`0xDB8` is set or +`0xC30` is 3 (`0x00187024`-`0x00187077`); `0x00186A80` returns it |
-| `+0xB88` | `u8` | byte0B88 | the byte after the qword +`0xB80`, before +`0xB89` |
-| `+0xB89` | `u8[7]` | span0B89 | the seven bytes between the byte +`0xB88` and the target array +`0xB90` |
+| `+0xB28` | `void*` | targetB28 | element 4 of the target table: the screen-size multisampled scene target (sample count from the settings' `+0xD3C`, format by its `+0xD48`; `0x00186D37`-`0x00186DD6`); `0x001868F0` returns it for a non-zero argument (`0x001868F4`); `0x00188DA0` re-applies the count (`0x00188DC6`) |
+| `+0xB30` | `void*` | targetB30 | the screen-size single-sample counterpart of `+0xB28` (`0x00186DDD`-`0x00186E06`); `0x001868F0` returns it for 0 (`0x001868FC`) |
+| `+0xB38` | `void*` | targetB38 | a render target the installer makes only when `0x005C5230`() is non-zero and `+0x18` is 0 (`0x00186EC8`-`0x00186F03`); `0x005C5230` returns 0, so the installer skips it; read by `0x00188730` (`0x001888A8`) and `0x001893C0` (`0x001893F4`) |
+| `+0xB48` | `void*` | pingTargetA | first of the screen-size targets the getters index with `+0xDD0` (`0x00186FC4`-`0x00186FED`): `0x00186840` and its siblings return [`+0xB48` + 8 * index], or [`+0xB50` + 8 * index] when `+0xDBB` is set and `0x0017F280` agrees (`0x00186862`-`0x0018688A`) |
+| `+0xB50` | `void*` | pingTargetB | second of those targets (`0x00186FF4`-`0x0018701D`), element 1 of the `+0xB48` pair and element 0 of the `+0xB50` pair (`0x00186875`, `0x001869EC`) |
+| `+0xB58` | `void*` | resolveTarget | the target in use from the pair `+0xB60` (multisampled) and `+0xB68`: `+0xB60` while `+0xDB9` is clear and `+0xDBA` set, else `+0xB68` (`0x00187A41`-`0x00187A66`, `0x00188E16`-`0x00188E38`); the installer starts it at `+0xB60` (`0x00186FB6`-`0x00186FBD`); `0x00186660` returns it |
+| `+0xB70` | `u8[8]` | span0B70 | the eight bytes between the target `+0xB68` and the target `+0xB78` |
+| `+0xB78` | `void*` | viewportTarget | a render target at the viewport size `+0xAD8` x `+0xADC`, or 3840 x 2160 when the boot byte `+0xDB8` is set or `+0xC30` is 3 (`0x00187024`-`0x00187077`); `0x00186A80` returns it |
+| `+0xB88` | `u8` | byte0B88 | the byte after the qword `+0xB80`, before `+0xB89` |
+| `+0xB89` | `u8[7]` | span0B89 | the seven bytes between the byte `+0xB88` and the target array `+0xB90` |
 | `+0xB90` | `void*[10]` | fixedTargetsA | ten fixed-size render targets the installer makes from the size table `0x008C5D80` (50 x 60, 100 x 60, 150 x 60, 200 x 60, 360 x 60, 960 x 60, 1920 x 108, 1920 x 220, 1920 x 540, 1920 x 1080; `0x00187090`-`0x001870C2`); `0x00186800` returns entry i, the last for i of 10 or more (`0x00186800`-`0x00186810`) |
 | `+0xBE0` | `void*[10]` | fixedTargetsB | a second set of ten targets of the same sizes (`0x001870AE`-`0x001870D4`); `0x001867E0` returns entry i, the last for i of 10 or more (`0x001867E0`-`0x001867F0`) |
-| `+0xCD5` | `u8[3]` | span0CD5 | the three bytes between the byte +`0xCD4` and the capture state +`0xCD8` |
-| `+0xCDC` | `u8[4]` | span0CDC | the four bytes between the capture state +`0xCD8` and the capture colour target +`0xCE0` |
-| `+0xCE0` | `void*` | captureColourTarget | the colour target `0x00188730` binds while the capture state +`0xCD8` is 1 (`0x00188748`-`0x00188788`), its width +`0x28` and height +`0x2C` giving the viewport (`0x0018879B`-`0x001887D8`); 0 from the installer (`0x001870FF`) |
+| `+0xCD5` | `u8[3]` | span0CD5 | the three bytes between the byte `+0xCD4` and the capture state `+0xCD8` |
+| `+0xCDC` | `u8[4]` | span0CDC | the four bytes between the capture state `+0xCD8` and the capture colour target `+0xCE0` |
+| `+0xCE0` | `void*` | captureColourTarget | the colour target `0x00188730` binds while the capture state `+0xCD8` is 1 (`0x00188748`-`0x00188788`), its width `+0x28` and height `+0x2C` giving the viewport (`0x0018879B`-`0x001887D8`); 0 from the installer (`0x001870FF`) |
 | `+0xCE8` | `void*` | captureDepthTarget | the depth target `0x00188730` binds with it (`0x0018876A`-`0x00188796`); 0 from the installer (`0x00187106`) |
-| `+0xCF4` | `u8[4]` | span0CF4 | the four bytes between the capture width +`0xCF0` and the capture buffer +`0xCF8` |
+| `+0xCF4` | `u8[4]` | span0CF4 | the four bytes between the capture width `+0xCF0` and the capture buffer `+0xCF8` |
 | `+0xD00` | `f32` | clearArg0 | first of the four float arguments of the last FastClearObj command, kept by `0x00185CD0` (`0x00185D01`) before it forwards them to `0x0018B710` (`0x00185D71`); called from `0x00182280` (`0x001822E6`); 0 from the installer (`0x0018717C`) |
 | `+0xD04` | `f32` | clearArg1 | second FastClearObj argument (`0x00185D0A`) |
 | `+0xD08` | `f32` | clearArg2 | third FastClearObj argument (`0x00185D13`); 0 from the installer (`0x00187183`) |
 | `+0xD0C` | `f32` | clearArg3 | fourth FastClearObj argument (`0x00185D1B`) |
-| `+0xD11` | `u8[3]` | span0D11 | the three bytes between the byte +`0xD10` and the float +`0xD14` (5.0 from the constructor) |
-| `+0xD19` | `u8[47]` | span0D19 | the 47 bytes between the byte +`0xD18` and the byte +`0xD48` |
-| `+0xD48` | `u8` | byte0D48 | the byte after the 47-byte span +`0xD19`, before +`0xD49` |
-| `+0xD49` | `u8[19]` | span0D49 | the 19 bytes between the byte +`0xD48` and the byte +`0xD5C` |
-| `+0xD5D` | `u8[67]` | span0D5D | the 67 bytes between the byte +`0xD5C` and the dword +`0xDA0` |
+| `+0xD11` | `u8[3]` | span0D11 | the three bytes between the byte `+0xD10` and the float `+0xD14` (5.0 from the constructor) |
+| `+0xD19` | `u8[47]` | span0D19 | the 47 bytes between the byte `+0xD18` and the byte `+0xD48` |
+| `+0xD48` | `u8` | byte0D48 | the byte after the 47-byte span `+0xD19`, before `+0xD49` |
+| `+0xD49` | `u8[19]` | span0D49 | the 19 bytes between the byte `+0xD48` and the byte `+0xD5C` |
+| `+0xD5D` | `u8[67]` | span0D5D | the 67 bytes between the byte `+0xD5C` and the dword `+0xDA0` |
 | `+0xDA8` | `u32` | captureStep | set to 6 by the 4K capture driver `0x00187860` when it moves from state 1 to 3 and from 3 to 4 (`0x0018789B`, `0x001878BD`) |
-| `+0xDC6` | `u8[2]` | span0DC6 | the two bytes between the byte +`0xDC5` and the pending multisample count +`0xDC8` |
-| `+0xDCD` | `u8[3]` | span0DCD | the three bytes between the byte +`0xDCC` and the dword +`0xDD0` |
-| `+0xDD4` | `u8[4]` | span0DD4 | the last four bytes of the `0xDD8`-byte manager, after the dword +`0xDD0` |
+| `+0xDC6` | `u8[2]` | span0DC6 | the two bytes between the byte `+0xDC5` and the pending multisample count `+0xDC8` |
+| `+0xDCD` | `u8[3]` | span0DCD | the three bytes between the byte `+0xDCC` and the dword `+0xDD0` |
+| `+0xDD4` | `u8[4]` | span0DD4 | the last four bytes of the `0xDD8`-byte manager, after the dword `+0xDD0` |
 
 
 ## Shipped data

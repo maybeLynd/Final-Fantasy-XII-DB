@@ -64,7 +64,7 @@ through `0x0024A440` (the readers are in `0x00406A60`); every shipped list has n
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 read by no instruction: the decoder takes bits 0-9 (`0x002432E3`) and bit 28 (`0x00243329`), its 113 callers read +`0x04` to +`0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: +`0x1088`, +`0x109C` and +`0x10B0` of the block at +`0x8FA0`), whose first dwords no instruction reads bit 28     copied to bit 0 of the built list's header bits 29-31 0 in all 7,665 records; read by no instruction (the same readers as bits 10-27: the decoder takes bits 0-9 and 28, the 113 callers read +`0x04` to +`0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
+| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 read by no instruction: the decoder takes bits 0-9 (`0x002432E3`) and bit 28 (`0x00243329`), its 113 callers read `+0x04` to `+0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: `+0x1088`, `+0x109C` and `+0x10B0` of the block at `+0x8FA0`), whose first dwords no instruction reads bit 28     copied to bit 0 of the built list's header bits 29-31 0 in all 7,665 records; read by no instruction (the same readers as bits 10-27: the decoder takes bits 0-9 and 28, the 113 callers read `+0x04` to `+0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
 | `+0x04` | `i16` | x | the list's rectangle, copied by the widgets that own it |
 | `+0x06` | `i16` | y |  |
 | `+0x08` | `u16` | width |  |
@@ -90,43 +90,71 @@ Items are variable-length and say their own length, so the walk steps over any t
 
 ### Type fields
 
-```python
-type 1, 16 bytes      +0x0C u32  list record to build as a child widget
-type 2 and 9, 36 bytes
-                      +0x0C u16  atlas name record index
-                      +0x0E u16  sub-image code
-                      +0x10 u16  record offset from the code's record (frame)
-                      +0x12 u16  palette selector; 0xFF takes byte 7 of the sub-image record
-                      +0x14 u32[4] vertex colours, one per corner
-type 4, 28 bytes      nothing past the header is read
-type 5, 24 bytes      +0x0C u32  colour
-                      +0x10 u8   scale in percent; 0 means 100
-                      +0x11 u8   text mode byte
-                      +0x12 u16  stored in bits 6-15 of the node flags
-                      +0x14 s32  string id; -1 = no text
-type 7, 72 bytes      +0x0C u16  atlas name record index
-                      +0x0E u16  sub-image code of the base record
-                      +0x13 u8   bit 1: the fill keeps the background's palette and colour
-                      +0x14 s16  background x, y offset (+0x16)
-                      +0x18 u16  background left cap, middle, right cap (+0x1A, +0x1C), records from the base
-                      +0x1E u16  background palette selector (0xFF = record default)
-                      +0x20 u16  background length
-                      +0x22 u16  background height
-                      +0x24 u32  background colour
-                      +0x28 s16  fill x, y offset (+0x2A)
-                      +0x2C u16  fill left cap, middle, right cap (+0x2E, +0x30)
-                      +0x32 u16  fill palette selector (0xFF = record default)
-                      +0x34 u16  fill length at the maximum
-                      +0x36 u16  fill height
-                      +0x38 u32  fill colour
-                      +0x3C u32  overlay colour
-                      +0x40 u16  overlay atlas name record index; 0xFFFF = no overlay
-                      +0x42 u16  overlay sub-image code
-                      +0x44 u8   overlay palette selector (0xFF = record default)
-type 8, 44 bytes      +0x0C u16  list record to show in a grid
-                      +0x0E u8   columns
-                      +0x0F u8   rows
-```
+Type 1, 16 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u32` | list record | list record to build as a child widget |
+
+Type 2 and 9, 36 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u16` | atlas record | atlas name record index |
+| `+0x0E` | `u16` | sub-image | sub-image code |
+| `+0x10` | `u16` | frame | record offset from the code's record |
+| `+0x12` | `u16` | palette | palette selector; `0xFF` takes byte 7 of the sub-image record |
+| `+0x14` | `u32[4]` | vertex colours | one per corner |
+
+A type 4 item is 28 bytes, and nothing past its header is read.
+
+Type 5, 24 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u32` | colour | text colour |
+| `+0x10` | `u8` | scale | scale in percent; 0 means 100 |
+| `+0x11` | `u8` | text mode | text mode byte |
+| `+0x12` | `u16` | node flag bits | stored in bits 6-15 of the node flags |
+| `+0x14` | `i32` | string id | -1 = no text |
+
+Type 7, 72 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u16` | atlas record | atlas name record index |
+| `+0x0E` | `u16` | base sub-image | sub-image code of the base record |
+| `+0x13` | `u8` | fill palette flag | bit 1: the fill keeps the background's palette and colour |
+| `+0x14` | `i16` | background x | x offset |
+| `+0x16` | `i16` | background y | y offset |
+| `+0x18` | `u16` | background left | left cap, records from the base |
+| `+0x1A` | `u16` | background middle | middle, records from the base |
+| `+0x1C` | `u16` | background right | right cap, records from the base |
+| `+0x1E` | `u16` | background palette | palette selector (`0xFF` = record default) |
+| `+0x20` | `u16` | background length | length |
+| `+0x22` | `u16` | background height | height |
+| `+0x24` | `u32` | background colour | colour |
+| `+0x28` | `i16` | fill x | x offset |
+| `+0x2A` | `i16` | fill y | y offset |
+| `+0x2C` | `u16` | fill left | left cap, records from the base |
+| `+0x2E` | `u16` | fill middle | middle, records from the base |
+| `+0x30` | `u16` | fill right | right cap, records from the base |
+| `+0x32` | `u16` | fill palette | palette selector (`0xFF` = record default) |
+| `+0x34` | `u16` | fill length | length at the maximum |
+| `+0x36` | `u16` | fill height | height |
+| `+0x38` | `u32` | fill colour | colour |
+| `+0x3C` | `u32` | overlay colour | colour |
+| `+0x40` | `u16` | overlay atlas | atlas name record index; `0xFFFF` = no overlay |
+| `+0x42` | `u16` | overlay sub-image | sub-image code |
+| `+0x44` | `u8` | overlay palette | palette selector (`0xFF` = record default) |
+
+Type 8, 44 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0C` | `u16` | list record | list record to show in a grid |
+| `+0x0E` | `u8` | columns | columns |
+| `+0x0F` | `u8` | rows | rows |
 
 ### Atlas name record (16 bytes)
 

@@ -65,7 +65,7 @@ eventlist.csv         274,0,240,0                                  four integers
 
 What the readers keep:
 
-Opt.csv entry (tree node +`0x24`, keyed by the map-name hash):
+Opt.csv entry (tree node `+0x24`, keyed by the map-name hash):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -80,7 +80,7 @@ Soft-particle entry, 4 bytes, indexed by the effect number (per-type tables) or 
 |---|---|---|---|
 | `+0x00` | `u8` | GroupId | (bg only) |
 
-+`0x00`/+`0x01`  u8  UseSoftParticle != 'N'   (+`0x00` per type, +`0x01` bg):
+`+0x00`/`+0x01`  u8  UseSoftParticle != 'N'   (`+0x00` per type, `+0x01` bg):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -119,7 +119,7 @@ Icon.sys (192 bytes; the PS2 icon.sys layout cut at `0xC0`):
 | `+0x0C` | `u32` | 109 | background transparency |
 | `+0x10` | `u32[4][4]` | background corner colours (39,24,6,0 / 186,164,125,0 alternating) |  |
 | `+0x50` | `f32[3][4]` | light directions (0.5, 0.5, 0.5, 0) |  |
-| `+0x80` | `f32[3][4], f32[4]` | light colours, ambient | (a full PS2 icon.sys continues with the title at +`0xC0` and three icon names; this one ends here) |
+| `+0x80` | `f32[3][4], f32[4]` | light colours, ambient | (a full PS2 icon.sys continues with the title at `+0xC0` and three icon names; this one ends here) |
 
 Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 

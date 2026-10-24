@@ -233,7 +233,7 @@ FadeLayer[7] at `0x022BDD60`, stride `0x30`:
 | `+0x05` | `u8` | direction | 0 out, 1 in |
 | `+0x08` | `...` | descriptor | `0x28` bytes, below |
 
-Kind-1 descriptor (record +`0x08`; pool record +`0x00`):
+Kind-1 descriptor (record `+0x08`; pool record `+0x00`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

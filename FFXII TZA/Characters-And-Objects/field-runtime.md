@@ -38,7 +38,7 @@ Struct ActorManagerSlot base=`0x02098E10` size=`0x288`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8*` | payload | the bound definition payload; its i16 +`0x50` is the designated record's ordinal |
+| `+0x000` | `u8*` | payload | the bound definition payload; its i16 `+0x50` is the designated record's ordinal |
 | `+0x008` | `u8*` | recordPool | i32 count, then count record pointers (`0x00358940`) |
 | `+0x010` | `u8` | flags | bit 0 bound, bit 2 field initialised, bit 3 and bit 4 the slot-0 request steps, bit 5 the `0x02ADD968` hold, bit 6 music selected, bit 7 field busy |
 | `+0x011` | `u8` | flags2 | bit 0 a copy of flags bit 7, bit 1 one-shot trigger, bit 2 suspended, bit 3 blocks the request path |
@@ -204,7 +204,7 @@ Struct ActorWaitSlot size=`0x28`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | stamp | kind 4 compares it with the record's +`0x58` |
+| `+0x00` | `i32` | stamp | kind 4 compares it with the record's `+0x58` |
 | `+0x14` | `u8` | waitKind | 0 parked, 1 or 2 runnable, 3-7 the waits above |
 | `+0x15` | `u8` | commandPhase | 0 begin pending, 1 polling, 2 int result pending, 3 float result pending (`0x002621D0`) |
 | `+0x16` | `u8` | parked | set when a visit ends held |
