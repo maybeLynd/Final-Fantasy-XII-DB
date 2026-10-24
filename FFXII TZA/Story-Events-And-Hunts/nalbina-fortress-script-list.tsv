@@ -1,0 +1,12 @@
+script	kind	place	actors	functions	rows	shared_actors
+naf_a01	zone	Aerial Gardens (Nalbina Fortress), field 274	25	157	25	0
+naf_a02	zone	Inner Ward (Nalbina Fortress), field 275	37	142	15	0
+naf_b01	zone	Lower Apartments (Nalbina Fortress), field 279	31	54	6	0
+naf_b02	zone	Upper Apartments (Nalbina Fortress), field 280	24	71	4	5
+naf_b04	zone	The Highhall (Nalbina Fortress), field 282	22	93	5	0
+naf_a0100	scene	scene, event 240	26	326	10	0
+naf_a0101	scene	scene, event 241	1	2	0	0
+naf_a0201	scene	scene, event 247	27	243	4	0
+naf_b0100	scene	scene, event 242	17	127	5	0
+naf_b0400	scene	scene, event 243	19	120	3	0
+naf_b0401	scene	scene, event 244	28	255	7	0

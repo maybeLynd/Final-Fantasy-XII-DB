@@ -1,0 +1,11 @@
+script	kind	place	actors	functions	rows	shared_actors
+ozm_a01	zone	Field of Fallen Wings (Ozmone Plain), field 525	26	43	13	0
+ozm_a02	zone	The Switchback (Ozmone Plain), field 526	31	51	16	0
+ozm_a03	zone	Haulo Green (Ozmone Plain), field 527	33	51	17	0
+ozm_b01	zone	Dagan Flats (Ozmone Plain), field 530	26	37	10	0
+ozm_b02	zone	Field of Light Winds (Ozmone Plain), field 531	24	37	7	0
+ozm_b03	zone	The Greensnake (Ozmone Plain), field 532	21	29	6	0
+ozm_b04	zone	Sunlit Path (Ozmone Plain), field 533	39	152	14	5
+ozm_c01	zone	The Shred (Ozmone Plain), field 536	55	147	24	1
+ozm_b0400	scene	scene, event 268	22	151	6	0
+ozm_c0180	scene	scene, event 396	25	103	2	0

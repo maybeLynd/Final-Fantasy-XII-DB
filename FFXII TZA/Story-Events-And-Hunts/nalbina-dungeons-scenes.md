@@ -53,7 +53,7 @@ made by the scene script itself comes first.
 | `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
 | `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / ` |
-| `items` | items the scene's own functions give or take, by name |
+| `items` | items the scene's own functions give or take, by name; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene or by its loading function after the load, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene or by its loading function after the load, with the first sentence of each explanation on [story counter values](story-counter-values.md) |

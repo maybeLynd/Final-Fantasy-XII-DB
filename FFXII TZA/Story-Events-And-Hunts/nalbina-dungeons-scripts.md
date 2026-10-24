@@ -105,13 +105,13 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `place` | for a zone script, its map (region); for a scene script, `scene, event` and its event id |
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
-| `speaker` | for a row with lines, the names `setnpcname` gives the actor |
-| `lines` | the section 2 entries the function passes to the message verbs |
-| `line_text` | the `us` text of those entries, in the same order, separated by ` / ` |
+| `speaker` | the names `setnpcname` gives the actor, filled only for a row whose lines include a section 2 line; a system message is not spoken by the actor |
+| `lines` | the section 2 entries the function passes to the message verbs, and `system message N` for each message from the shared system-message list that the key-item and system-message helper shows for the function ([Shared zone-script actors](shared-zone-script-actors.md)), at the place of the request; two numbers joined by `or` are the values the function's stores leave, and which one is shown is decided at run time |
+| `line_text` | the `us` text of those entries, in the same order, separated by ` / `; for a `system message N` entry, the text of message N in the system-message list |
 | `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | each value written to the story counter, with the first sentence of its explanation on [story counter values](story-counter-values.md) |
 | `counter_tested` | each comparison of the story counter, as the relation and the decimal value |
-| `items` | items received or lost, with their names; `treasure chest` and its record reference for a chest |
+| `items` | items received or lost, with their names; `treasure chest` and its record reference for a chest; for a request of the helper, the item the requesting function hands over; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
 | `jumps` | each `mapjump`: the target map (region), its field id and the entrance |
 | `battles` | `boss gauge shown`, `every foe in a group removed`, `every foe in group 0 removed` |
 | `scenes` | each scene script the function loads, with its event id |

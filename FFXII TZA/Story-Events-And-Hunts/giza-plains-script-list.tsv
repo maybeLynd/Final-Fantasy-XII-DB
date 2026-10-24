@@ -1,0 +1,23 @@
+script	kind	place	actors	functions	rows	shared_actors
+sav_a01	zone	Throne Road (Giza Plains), field 236	37	96	16	1
+sav_a02	zone	Warrior's Wash (Giza Plains), field 237	41	142	17	1
+sav_a03	zone	Gizas North Bank (Giza Plains), field 238	49	153	21	1
+sav_a04	zone	Toam Hills (Giza Plains), field 239	37	94	15	1
+sav_b01	zone	Nomad Village (Giza Plains), field 243	68	432	74	5
+sav_c01	zone	Starfall Field (Giza Plains), field 247	48	155	25	1
+sav_c02	zone	Crystal Glade (Giza Plains), field 248	41	153	16	5
+sav_c03	zone	Gizas South Bank (Giza Plains), field 249	43	144	18	1
+sav_d01	zone	Throne Road (Giza Plains), field 253	28	81	12	0
+sav_d02	zone	Warrior's Wash (Giza Plains), field 254	23	32	9	0
+sav_d03	zone	Gizas North Bank (Giza Plains), field 255	24	73	9	0
+sav_d04	zone	Toam Hills (Giza Plains), field 256	27	78	11	0
+sav_e01	zone	Nomad Village (Giza Plains), field 260	32	136	9	5
+sav_f01	zone	Starfall Field (Giza Plains), field 264	34	100	15	1
+sav_f02	zone	Crystal Glade (Giza Plains), field 265	38	165	11	5
+sav_f03	zone	Gizas South Bank (Giza Plains), field 266	31	75	13	0
+sav_g01	zone	Tracks of the Beast (Giza Plains), field 270	27	52	12	1
+sav_b0100	scene	scene, event 170	24	118	22	0
+sav_b0180	scene	scene, event 719	10	53	1	0
+sav_b0181	scene	scene, event 737	8	41	13	0
+sav_c0280	scene	scene, event 717	10	58	16	0
+sav_c0281	scene	scene, event 718	9	46	3	0

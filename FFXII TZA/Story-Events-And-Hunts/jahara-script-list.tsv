@@ -1,0 +1,8 @@
+script	kind	place	actors	functions	rows	shared_actors
+glf_a01	zone	Banks of the Sogoht (Jahara), field 751	46	225	22	5
+glf_a02	zone	Lull of the Land (Jahara), field 752	64	392	30	1
+glf_a03	zone	The Elderknoll (Jahara), field 753	43	165	11	1
+glf_z01	zone	glf_z01 (Jahara), field 858	8	15	4	0
+glf_a0200	scene	scene, event 327	22	217	34	0
+glf_a0300	scene	scene, event 325	29	210	20	0
+glf_z0100	scene	scene, event 326	18	203	43	0
