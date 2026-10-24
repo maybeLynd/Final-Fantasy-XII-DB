@@ -250,6 +250,24 @@ The sampler builder `0x0061D9C0` turns the engine's filter bytes into a `D3D11_F
 | 5 | `0x11` | `0x15` |
 | any other | `0x00` | `0x00` |
 
+The run setup's `0x0064A0E0` (called at `0x0079F50C`, [Phyre application](phyre-application.md)) builds two
+samplers this way. Unless bit `0x80` of an object's `+0x34` is set (`0x02D34734`, `0x02D3515C`), it presets the
+five bytes at `+0x18` and passes them to `0x0061D9C0` (`0x0064A3F9`-`0x0064A46A`, `0x0064A482`-`0x0064A4EC`). It builds the
+second only when the first returns 0.
+
+| Byte offset | object `0x02D34700` | object `0x02D35128` |
+|---|---|---|
+| `+0x18` | `0x02D34718` = 0 | `0x02D35140` = 1 |
+| `+0x19` | `0x02D34719` = 0 | `0x02D35141` = 1 |
+| `+0x1A` | `0x02D3471A` = 2 | `0x02D35142` = 2 |
+| `+0x1B` | `0x02D3471B` = 2 | `0x02D35143` = 2 |
+| `+0x1C` | `0x02D3471C` = 2 | `0x02D35144` = 2 |
+
+At its start `0x0064A0E0` points `0x02D35178` at `0x01F2E820`. When the pointer named other storage and bit
+`0x80000000` of the word `0x02D35170` was clear, it first passes that storage and the word's low 31 bits to
+`0x001B7170`. It then stores `0x01F2E820`, sets the word to `0x80000001` (`0x0064A0EB`-`0x0064A149`) and writes 2 at
+`0x01F2E838` (`0x0064A13B`).
+
 ### GPU timer queries
 
 `0x00615790` builds an object with three Direct3D queries from `CreateQuery` (`+0xC0`): a

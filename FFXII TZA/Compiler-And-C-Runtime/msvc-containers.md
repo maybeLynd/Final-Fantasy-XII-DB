@@ -121,6 +121,7 @@ regex routines that only this use reaches are listed in [`msvc-containers-stl-re
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01F83430` | `void*` | 0 (zero-filled tail of `.data`) | the cached `std::collate<char>` facet of `0x00203E60` | `0x00203E60` (`0x00203F34`, the facet `0x00207FB0` built) | `0x00203E60` (`0x00203E87`) |
+| `0x01F811D8` | `void*` | 0 (zero-filled tail of `.data`) | the cached `std::ctype<char>` facet of `0x001AA6C0`, the same steps with `ctype<char>::id` (import `0x008C2530`) | `0x001AA6C0` (`0x001AA798`, the facet `ctype<char>::_Getcat` (import `0x008C25A0`) built) | `0x001AA6C0` (`0x001AA6EA`) |
 
 The rest of the instantiation, 92 bodies between `0x002031A0` and `0x0020B000`, is listed in
 [`msvc-containers-stl-regex-char-members.tsv`](msvc-containers-stl-regex-char-members.tsv) with one function that refers to each. All but four

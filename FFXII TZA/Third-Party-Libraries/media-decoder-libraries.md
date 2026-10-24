@@ -411,7 +411,15 @@ flags being 0 or 1, and `0x001790A0`, the subblock predictor, reads the third ta
 | `0x02EBA360`, `0x02EBA368` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when only `+0xF14` is 1: `0x00148EB0`, `0x00148D10` | `0x001740A0` (`0x001740ED`, `0x0017414F`) | the indexed reads at `0x00174275` and `0x001743FD` |
 | `0x02EBA370`, `0x02EBA378` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when both are 1: `0x00148DE0`, `0x00148C40` | `0x001740A0` (`0x001740FB`, `0x0017415D`) | the indexed reads at `0x00174275` and `0x001743FD` |
 | `0x02EBA380` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 0: `0x00148B70` | `0x001740A0` (`0x0017416B`) | `0x001790A0`, through the table address it loads at `0x001790DF` |
-| `0x02EBA388`-`0x02EBA3C8` | `void*` | 0 (zero-filled tail of `.data`) | third table, entries 1 to 9: `0x00149370`, `0x00179460`, `0x001793B0`, `0x00179600`, `0x00179810`, `0x00179700`, `0x001794F0`, the pointer then held at `0x02F974F8`, and `0x00148AF0` | `0x001740A0` (`0x00174179`, `0x00174187`, `0x00174195`, `0x001741A3`, `0x001741B1`, `0x001741BF`, `0x001741CD`, `0x001741DB`, `0x001741E9`) | `0x001790A0`, through the same table address |
+| `0x02EBA388` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 1: `0x00149370` | `0x001740A0` (`0x00174179`) | `0x001790A0`, through the table address it loads at `0x001790DF` |
+| `0x02EBA390` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 2: `0x00179460` | `0x001740A0` (`0x00174187`) | the same |
+| `0x02EBA398` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 3: `0x001793B0` | `0x001740A0` (`0x00174195`) | the same |
+| `0x02EBA3A0` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 4: `0x00179600` | `0x001740A0` (`0x001741A3`) | the same |
+| `0x02EBA3A8` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 5: `0x00179810` | `0x001740A0` (`0x001741B1`) | the same |
+| `0x02EBA3B0` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 6: `0x00179700` | `0x001740A0` (`0x001741BF`) | the same |
+| `0x02EBA3B8` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 7: `0x001794F0` | `0x001740A0` (`0x001741CD`) | the same |
+| `0x02EBA3C0` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 8: the pointer then held at `0x02F974F8` | `0x001740A0` (`0x001741DB`) | the same |
+| `0x02EBA3C8` | `void*` | 0 (zero-filled tail of `.data`) | third table, entry 9: `0x00148AF0` | `0x001740A0` (`0x001741E9`) | the same |
 
 ### Sub-pixel predictor pointers
 

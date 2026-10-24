@@ -93,6 +93,9 @@ Both outcomes of the roll are written to the presence ledger (`0x002FB430`, a ri
 - it is handed only to `0x002FB430` and the reorder `0x002F7FA0`, which keep no copy of it, and the image holds no
   absolute or image-relative copy of it.
 
+The clear `0x002FA260` zeroes the ledger with 8-byte stores at `0x02EC3E60`, `0x02EC3E68`, `0x02EC3E70`, `0x02EC3E78` and
+`0x02EC3E80` and a 4-byte store at `0x02EC3E88` (`0x002FA262`-`0x002FA285`).
+
 So `setuptreasure` rolls a chest whose flag is clear every time it runs, and nothing in the chest code carries an
 earlier roll or opening into that roll.
 

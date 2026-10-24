@@ -115,6 +115,10 @@ variant entry's `+0x08` count. On false, `0x0060B980` first calls the renderer's
 | `[3]` | `0x8` | the per-instance block from `0x00600F30`, then passed to `0x0060A010` (after `0x00609D80` for a dynamic mesh instance) |
 | `[4]` | none | for a dynamic mesh instance whose slot 1 reports a size: a preprocess ring block of that size, filled by its slot 2 |
 
+For each parameter it walks, `0x00602EA0` reads the type byte `+0x03` (`0x00603356`) and handles types `0x30` and
+`0x31`. Any other type prints the type-id message at `0x00D4B3C8` (`0x005CDAA0`) once,
+setting the byte `0x02CE9D9C` (`0x00603382`-`0x00603396`), and the walk goes on to the next parameter (`0x00603717`).
+
 A non-zero result from `0x0060A010` is returned. `0x0060B980` then reserves `table` bytes from the
 parameter ring and passes everything to `0x0060C020`, which writes the segment's render blocks.
 

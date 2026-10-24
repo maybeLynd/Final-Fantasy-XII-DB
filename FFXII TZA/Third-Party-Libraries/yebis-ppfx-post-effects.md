@@ -828,6 +828,30 @@ Four more first-call tables fill with an 8-byte store of -1 and then their value
 | `0x02EA1544` | `i32` | 0 (zero-filled tail) | entry 1, 3 | `0x006F9030` (`0x006FAFE0`; `0x006FAFFD`) | `0x006F9030` (`0x006FB01D`) |
 | `0x02EA1548` | `u8` | 0 (zero-filled tail) | 1 once that table is filled | `0x006F9030` (`0x006FAFF6`) | `0x006F9030` (`0x006FAFD7`) |
 
+`0x006FE7F0` hands the effect pass two colour matrices through its last two out-parameters (`0x006FEC8D`,
+`0x006FECA4`): the matrix at `+0x7A4` when the byte `+0x924` is set and the one at `+0x7E4` when `+0x925` is set,
+otherwise 0 (`0x006FE97D`-`0x006FE999`). Two statics, each behind a thread-safe static guard (`0x02EA15E0`, `0x02EA1630`;
+`0x008092FC`, `0x0080929C`), can stand in for them:
+
+- It copies the matrix at `+0x92C`, composed with the colour-space conversion when `+0x96C` differs from
+  `+0x970` (`0x006FEA23`-`0x006FEA64`). When the copy is not the identity (`0x007124B0`), it is stored at `0x02EA15A0`,
+  multiplied by the `+0x7E4` matrix when there is one (the 4×4 product `0x006F1070`), and becomes the second
+  out-parameter (`0x006FEA97`-`0x006FEAD2`).
+- The second static, `0x02EA15F0`, would be filled the same way from a matrix built as the identity on the stack
+  (`0x006FEB37`-`0x006FEB8A`). The identity test always passes, so its stores (`0x006FEBA5`-`0x006FEBC4`) never run, it
+  stays 0, and the first out-parameter is passed on as it was.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EA15A0` | `f32[4]` | 0 (zero-filled tail) | row 0 of the colour matrix copy | `0x006FE7F0` (`0x006FEA97`) | `0x006F1070` through the pointer passed at `0x006FEABF`; `0x006FE7F0`'s callers (`0x006F440A`, `0x006F6F3C`, `0x006F73DD`, `0x006FB1F7`) through its last out-parameter (`0x006FECA4`) |
+| `0x02EA15B0` | `f32[4]` | 0 (zero-filled tail) | row 1 | `0x006FE7F0` (`0x006FEA9F`) | the same |
+| `0x02EA15C0` | `f32[4]` | 0 (zero-filled tail) | row 2 | `0x006FE7F0` (`0x006FEAA7`) | the same |
+| `0x02EA15D0` | `f32[4]` | 0 (zero-filled tail) | row 3 | `0x006FE7F0` (`0x006FEAAF`) | the same |
+| `0x02EA15F0` | `f32[4]` | 0 (zero-filled tail) | row 0 of the second static, 0 at run time | `0x006FE7F0` (`0x006FEBA5`, never reached) | its address is taken only on the same unreached path (`0x006FEBD3`, `0x006FEBDA`, `0x006FEBE6`) |
+| `0x02EA1600` | `f32[4]` | 0 (zero-filled tail) | row 1 of the second static | `0x006FE7F0` (`0x006FEBB1`, never reached) | the same |
+| `0x02EA1610` | `f32[4]` | 0 (zero-filled tail) | row 2 of the second static | `0x006FE7F0` (`0x006FEBBD`, never reached) | the same |
+| `0x02EA1620` | `f32[4]` | 0 (zero-filled tail) | row 3 of the second static | `0x006FE7F0` (`0x006FEBC4`, never reached) | the same |
+
 Three more words of the library:
 
 | Global | Type | Start | Meaning | Set by | Read by |

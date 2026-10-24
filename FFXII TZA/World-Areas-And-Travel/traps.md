@@ -76,6 +76,9 @@ present the mask is replaced and 1 is returned; otherwise the record is written 
 advances modulo 3. `0x002FA230` zeroes the whole ring; it runs from the battle runtime reset
 `0x00237DF0` and from the battle-state block bind `0x00233C10` (`0x00233CC0`).
 
+The clear writes 8-byte stores at `0x02EC3EA0`, `0x02EC3EA8`, `0x02EC3EB0`, `0x02EC3EB8` and `0x02EC3EC0` and a 4-byte
+store at `0x02EC3EC8` (`0x002FA232`-`0x002FA255`).
+
 A cleared bit therefore stays cleared only until the next `settrapresource` for the field, which
 rolls every trap again and replaces the field's ring entry without reading the old mask
 (`0x002FA740`); the ring keeps the three most recent fields' masks, and its only readers are the firing

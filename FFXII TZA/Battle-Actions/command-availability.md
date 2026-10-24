@@ -55,8 +55,8 @@ check `0x002FFB60` (`0x002FFC7C`, its reason 6). In order:
 5. **Statuses:** `0x0030E9C0(stats, mask)` with mask `0x8000201B` (status bits `0x1`, `0x2`, `0x8`, `0x10`, `0x2000`, `0x80000000`), or
    `0x8000221B` (adding bit `0x200`) when the row has bit `0x80000` of `+0x0C` or kind byte `+0x1E` = 1 (Magicks).
 
-   With a status in the mask it returns 10 for Silence (bit `0x200`), 7 for Stop (3), 8 for Sleep (4), 11 for
-   Disable (13), 9 for Confuse (5), 12 for Berserk (27), else 6 - in that priority; bits `0x20` and `0x8000000` are
+   With a status in the mask it returns 10 for Silence (bit `0x200`), 7 for Stop (bit `0x8`), 8 for Sleep (bit `0x10`), 11 for
+   Disable (bit `0x2000`), 9 for Confuse (bit `0x20`), 12 for Berserk (bit `0x8000000`), else 6 - in that priority; bits `0x20` and `0x8000000` are
    never in the mask here.
 6. **Disabled commands:** `0x0031A7B0(stats, id)` - for a party-side unit only - returns `0x16`, `0x17`,
    `0x18` or `0x19` when the row's kind `+0x1E` is 0, 1, 2 or 3 and bit `0x4`, `0x8`, `0x10` or `0x20` of the battle flags

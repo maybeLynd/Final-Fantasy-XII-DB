@@ -83,6 +83,17 @@ two kind-`0x0D` quads in stage 5:
   textures once (`0x02B3F470`, `0x02B3F488`) and bound by a second kind 4, drawn with the line colour,
   the negated line width and a span of ±73 about its centre. Type 1 stops after the picture.
 
+The draws read the live block's line width `0x02092650` (`+0x10`, `0x0024CD13`) and line colour `0x02092660`
+(`+0x20`, `0x0024CCC3`). After the block they keep five handles from `0x00375900`:
+
+- `0x02092664`, draw 0's capture (`0x0024CE90`);
+- `0x02092668`, draw 1's bind (`0x0024CC8B`);
+- `0x0209266C`, `0x02092670` and `0x02092674`, the three handles `0x003AA6B0` leaves in its parameter block at `+0x50`,
+  `+0x54` and `+0x58` (`0x0024CD55`-`0x0024CD67`).
+
+`0x0024CF50` zeroes all five when it allocates the target (`0x0024CFD5`-`0x0024CFE3`). `cutinclear`'s `0x0024CEB0`
+releases each that is not 0 through `0x00375470` and zeroes it (`0x0024CF1B`-`0x0024CF3A`).
+
 ### Motion blur
 
 `moveblurplay` (`0x003DE310`) passes the staging block `0x02B58C38` to `0x0024EC00`, which clears bit `0x10`,
@@ -101,6 +112,12 @@ The four type verbs write the staging block with the mappings of the layout belo
 bit `0x20` is up (and clears bit `0x20`), otherwise 1 unless the capture-once bit is set. With the flag down,
 `0x003AAA50` writes 1 to `0x01FD4A70`, and the scene draw `0x0022B0B0` answers by returning before it
 draws (`0x0022B196`), so the scene is not drawn at all.
+
+The mask byte picks the blur's colour table. The first time `0x003AAA50` runs, `0x02B3F4A0` is 0: it makes three
+palette textures with `0x001837A0(table, 0x100, 1)` from the 256-entry tables `0x01EFACA0`, `0x01EFB0A0` and
+`0x01EFB4A0` (`0x400` bytes each), keeps them at `0x02B3F420`, `0x02B3F428` and `0x02B3F430`, and sets `0x02B3F4A0` to 1
+(`0x003AAC04`-`0x003AAC68`). Masks 1, 2 and 3 use them in that order. Mask 0 uses no palette: the texture is 0 and
+the table is the request's `+0x28`, which `0x0024EA10` leaves 0 (`0x003AAC72`-`0x003AACC3`).
 
 - Strength exactly 1.0, flag down and a third target `0x02092698` present: one kind-4 bind of that
   target and one kind-2 quad, the stored frame shown as it is. The third target is captured at the
