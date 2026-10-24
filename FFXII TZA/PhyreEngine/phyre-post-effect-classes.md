@@ -78,6 +78,17 @@ effect `+0x30`), calls `0x0060B980`, and ends with `0x00600A60`. The selector's 
 returns the item at the index it is given, or null past the end. `0x0060B980` then selects the effect
 variant as on [Shader variant selection](shader-variant-selection.md).
 
+The instance the workers draw is the one `0x02D34710` points to. The run setup's `0x0064A0E0` passes the static
+`0x01F2E8E0` and the array `0x02D35170` to `0x0060DF70`, then stores the static's address there (`0x0064A3E3`,
+`0x0064A40C`); the application shutdown's `0x0064AD60` stores 0 (`0x0064AE55`). Each worker loads it as the instance
+argument of `0x0060B980`:
+
+- `0x00652940` (`0x00652A35`), `0x006587F0` (`0x00658B4B`), `0x00658BA0` (`0x00658DCB`, `0x00658EEF`, `0x00659022`);
+- `0x00659080` (`0x006593BF`, `0x006594E0`, `0x00659762`, `0x00659947`, `0x006599FF`), `0x00659A90` (`0x00659BD3`),
+  `0x00659C20` (`0x00659E6F`), `0x00659EC0` (`0x0065A371`, `0x0065A573`);
+- `0x0065A640` (`0x0065A7D0`, `0x0065A909`), `0x0065A960` (`0x0065B1F2`), `0x0065BA00` (`0x0065BC2D`, `0x0065BCF5`,
+  `0x0065BE57`, `0x0065C006`).
+
 ### How instances come to exist
 
 Each class's `PClassDescriptorConcrete<T>` vtable carries a construct-in-place factory at slot 10

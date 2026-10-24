@@ -202,7 +202,7 @@ consumer that is located yet.
 | `0x02EBA4C8` | `f32` | 0 (zero-filled tail of `.data`) | the focus range, 150.0 at boot | `0x00475310` (`0x00475332`); `0x003799F0` (`0x003799F0`), for `setfocusrange` | `0x00474710` (`0x00474862`, `0x00474AC0`); the block copy in `0x004FDDA0` |
 | `0x02EBA4CC` | `f32` | 0 (zero-filled tail of `.data`) | the focus shift, 1.5 at boot | `0x00475310` (`0x00475342`); `0x00379A00` (`0x00379A00`), for `setfocusshift` | `0x00474710` (`0x00474857`, `0x0047509F`, `0x004750B6`); the block copy in `0x004FDDA0` |
 | `0x02EBA4D0` | `u32` | 0 (zero-filled tail of `.data`) | non-zero holds the focus pass back; only ever set to 0 | `0x00475310`, 0 (`0x00475358`) | `0x00475390` (`0x00475399`); the block copy in `0x004FDDA0` |
-| `0x02EBA4E0` | `f32` | 0 (zero-filled tail of `.data`) | 16.0 from boot | `0x00475310` (`0x0047534A`) | the block copy in `0x004FDDA0`, which then overwrites the copied word; another reader is not yet located |
+| `0x02EBA4E0` | `f32` | 0 (zero-filled tail of `.data`) | 16.0 from boot | `0x00475310` (`0x0047534A`) | the block copy in `0x004FDDA0`, which then overwrites the copied word; the focus pass `0x00474710`, which gets the record from `0x00475390` (`0x004753A2`), reads nothing at its `+0x20`, and no other RIP-relative, image-base-relative or address-forming reference names it |
 | `0x02EBA4E4` | `f32` | 0 (zero-filled tail of `.data`) | 4.0 from boot | `0x00475310` (`0x00475373`) | as for `0x02EBA4E0` |
 | `0x02EBA4E8` | `f32` | 0 (zero-filled tail of `.data`) | 4.0 from boot; the 8-byte store also zeroes `0x02EBA4EC` | `0x00475310` (`0x0047537D`) | as for `0x02EBA4E0` |
 

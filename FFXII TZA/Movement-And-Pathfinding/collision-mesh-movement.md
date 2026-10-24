@@ -68,8 +68,8 @@ the only code that reads the row, since the vector transform `0x00202B90` reads 
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02089270` | `u32` | 0 (zero-filled tail of `.data`) | set to 1 on every frame build | `0x0022EF20` (`0x0022EF42`) | not yet located: no RIP-relative, image-base-relative or address-forming reference names it |
-| `0x02089274` | `u32` | 0 (zero-filled tail of `.data`) | set to 1 on every frame build | `0x0022EF20` (`0x0022EF4F`) | not yet located, as for `0x02089270` |
+| `0x02089270` | `u32` | 0 (zero-filled tail of `.data`) | set to 1 on every frame build | `0x0022EF20` (`0x0022EF42`) | no other RIP-relative, image-base-relative or address-forming reference names it |
+| `0x02089274` | `u32` | 0 (zero-filled tail of `.data`) | set to 1 on every frame build | `0x0022EF20` (`0x0022EF4F`) | as for `0x02089270` |
 | `0x020892B0` | `f32[2]` | 0 (zero-filled tail of `.data`) | the frame's translation x and y, `0x02089280 + 0x30`: 0 once the frame is built | `0x00380A70` (`0x00380B53`, `0x00380B59`, through `0x0022EF59`); `0x0022EF20`, 0 with one 8-byte store (`0x0022EF65`); `0x00217150` (`0x002175FB`, the whole row, through `0x0022F00F`) | `0x00217610` (`0x00217633`, the whole row, through `0x0022EF81`); `0x00217150` (`0x0021744C`, `0x00217454`, through `0x0022F00F`) |
 | `0x020892B8` | `f32` | 0 (zero-filled tail of `.data`) | the frame's translation z, `0x02089280 + 0x38`: 0 once the frame is built | `0x00380A70` (`0x00380B5F`, through `0x0022EF59`); `0x0022EF20`, 0 (`0x0022EF77`); `0x00217150` (`0x002175FB`, through `0x0022F00F`) | `0x00217610` (`0x00217633`, through `0x0022EF81`); `0x00217150` (`0x00217459`, through `0x0022F00F`) |
 

@@ -251,7 +251,7 @@ of the records in use. Its only other store is the reset's 0:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02B404C0` | `u8` | 0 (zero-filled tail of `.data`) | the records taken less the records unlinked through `0x003B42B0`; wraps at 256 | `0x003B4160`, 1 more (`0x003B419D`, `inc`); `0x003B42B0`, 1 less (`0x003B42CE`, `dec`); the reset `0x003B4790`, 0 (`0x003B481F`) | not yet located beyond the `inc` and `dec` themselves: no other RIP-relative, image-base-relative or disp32 reference names it |
+| `0x02B404C0` | `u8` | 0 (zero-filled tail of `.data`) | the records taken less the records unlinked through `0x003B42B0`; wraps at 256 | `0x003B4160`, 1 more (`0x003B419D`, `inc`); `0x003B42B0`, 1 less (`0x003B42CE`, `dec`); the reset `0x003B4790`, 0 (`0x003B481F`) | only the `inc` and `dec` themselves: no other RIP-relative, image-base-relative or disp32 reference names it |
 
 ### Into the model instance
 

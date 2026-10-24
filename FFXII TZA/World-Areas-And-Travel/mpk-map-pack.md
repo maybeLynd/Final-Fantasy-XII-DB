@@ -494,8 +494,8 @@ zeroes the dword after the map number `0x02ADD078`:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02ADD07C` | `u32` | 0 (zero-filled tail of `.data`) | the dword after the map number `0x02ADD078`, zeroed when the block pack is split | `0x00378BC0`, 0 (`0x00378E2A`, `ebp` cleared at `0x00378C2C`) | not yet located: no RIP-relative, image-base-relative or disp32 reference reads it, and the dword read of `0x02ADD078` (`0x00377623`) stops before it |
-| `0x02ADD0A0` | `void*` | 0 (zero-filled tail of `.data`) | the effect-bank block `0x003784A0` frees | the loader reset `0x00377CC0`, 0 (`0x00377D48`); `0x003784A0`, 0 after the free (`0x003784ED`); a store of a block is not yet located | `0x003784A0` (`0x003784D3`, the test; `0x003784E1`, the block passed to `0x003697F0`) |
+| `0x02ADD07C` | `u32` | 0 (zero-filled tail of `.data`) | the dword after the map number `0x02ADD078`, zeroed when the block pack is split | `0x00378BC0`, 0 (`0x00378E2A`, `ebp` cleared at `0x00378C2C`) | no RIP-relative, image-base-relative or disp32 reference reads it, and the dword read of `0x02ADD078` (`0x00377623`) stops before it |
+| `0x02ADD0A0` | `void*` | 0 (zero-filled tail of `.data`) | the effect-bank block `0x003784A0` frees | the loader reset `0x00377CC0`, 0 (`0x00377D48`); `0x003784A0`, 0 after the free (`0x003784ED`); no store of a block: no other RIP-relative, image-base-relative or address-forming reference names it, the indexed section stores from `0x02ADD010` and `0x02ADD030` cover four slots each (`0x00378C48`, `0x00378C74`), and no 8-byte pointer or 4-byte RVA in the image holds its address | `0x003784A0` (`0x003784D3`, the test; `0x003784E1`, the block passed to `0x003697F0`) |
 
 The world objects go through two helpers. `0x0026EAC0`, called by `0x00378230` while a mode-1 `YM00` is
 current, releases the mode-1 object `0x0209A670`, runs `0x003ECF70` and clears the model block

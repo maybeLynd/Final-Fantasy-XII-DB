@@ -163,6 +163,11 @@ copies the data, expands it with `0x00536DD0`, or with `0x00537030`. In `0x00536
 copies `b >> 1` literal bytes, and an odd one with the next byte copies `(next >> 4) + 3` bytes from
 `((word >> 1) & 0x7FF) + 1` bytes back.
 
+`0x00536F30` keeps the size in `0x02CA8A70` (`0x00536F55`) and the read position, 12 or 16 past the header's start, in
+`0x02CA8A74` (`0x00536F64`). Each expander reads the size (`0x00536DD2`, `0x00537036`) and the position (`0x00536DEA`,
+`0x00537050`) once, writes until its output count reaches the size, and stores the position back after each byte
+it takes (`0x00536E2B`, `0x00536E74`, `0x00536F10`; `0x00537090`, `0x005370C3`, `0x00537143`).
+
 ## Modding notes
 
 - The path comes from the executable's static array for the kind, so only ids that already have a path

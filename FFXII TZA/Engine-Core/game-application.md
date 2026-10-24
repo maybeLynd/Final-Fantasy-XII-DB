@@ -81,8 +81,8 @@ Three more words that the boot and the application object write:
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01F82CB8` | `void*` | 0 (zero-filled tail of `.data`) | the language object: 8 bytes whose `+0x00` points at the language's word, or holds 0 | `0x001D6990` (`0x001D69CA`, the object; `0x001D69D6`, 0 when the allocation `0x00210EC0` fails), from the burst `0x0017D4C0` (`0x0017D5B3`) | `0x001D6990` (`0x001D6996`, `0x001D69A5`); `0x001D69F0` (`0x001D69F6`, `0x001D6A05`), from `0x00862BD0` (`0x00862BD8`) |
-| `0x01FD46D8` | `u32` | 0 (zero-filled tail of `.data`) | 1 once slot 16 has stored a value in `0x01FD46DC` | `0x00227D40` (`0x00227D53`), from slot 16 `0x0017D210` (`0x0017D222`) | not yet located: no RIP-relative, image-base-relative or address-forming reference names it |
-| `0x02CA9D80` | `void*` | 0 (zero-filled tail of `.data`) | the base path: the string `"../../.."` | `0x0059A770` (`0x0059A770`), from slot 2 `0x0017CEB0` (`0x0017CEDD`) | not yet located, as for `0x01FD46D8` |
+| `0x01FD46D8` | `u32` | 0 (zero-filled tail of `.data`) | 1 once slot 16 has stored a value in `0x01FD46DC` | `0x00227D40` (`0x00227D53`), from slot 16 `0x0017D210` (`0x0017D222`) | no other RIP-relative, image-base-relative or address-forming reference names it, and the stores beside it are byte and dword stores that stop short of it (`0x00225CF3`, `0x002265C1`, `0x00226B3E`, `0x00227D4D`) |
+| `0x02CA9D80` | `void*` | 0 (zero-filled tail of `.data`) | the base path: the string `"../../.."` | `0x0059A770` (`0x0059A770`), from slot 2 `0x0017CEB0` (`0x0017CEDD`) | no other RIP-relative, image-base-relative or address-forming reference names it; the address `0x0059FE20` forms beside it (`0x0059FE4E`) is the list anchor `0x02CA9D88`, the next word |
 
 `0x0017DAC0(on)` reads the Sticky Keys settings (`SystemParametersInfoW` action `0x3A`) and, when
 their hot-key bit `0x4` differs from `on`, writes them back with that bit changed (action `0x3B`): the

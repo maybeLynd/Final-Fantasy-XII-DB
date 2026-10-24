@@ -61,6 +61,11 @@ only when bits `0x1`, `0x8` and `0x10` of `0x020926E4` are clear); `PS2 DOF`; `G
 `mask border 2`. In draw 1, `0x01FD49E8` is 0 unless bit `0x1` is set, which removes AO, water and
 post-processing from the second draw.
 
+The draw stores its first argument, the draw index, at `0x01FD4A6C` (`0x0022B0DF`). Each `post-processing render` scope
+passes that word to `0x00182970` (`0x0022B4F1`, `0x0022B55D`, the two places), which hands it with the object `0x0018CA40`
+returns to `0x0018C610`. `0x003A3740` (from `0x0024D540`, `0x00259030` and `0x002590F0`) opens the same scope and passes the
+word the same way (`0x003A3851`).
+
 ### The pass mask
 
 `0x022C7F90` holds one dword per draw: the low `u16` is the pass bits read above, the high `u16` a second

@@ -131,7 +131,7 @@ has been found yet:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CB9B4` | `i32` | 0 (zero-filled tail of `.data`) | the recorded section. While a skip runs, `musicplay`'s result `0x00342F80` records its argument `+0x0C`, the section an unskipped play hands to `0x002DEC80` (`0x00342FB5`, `0x00342FE6`); the other verbs and `skipexec` record 0 | `0x00360960` (`0x0036096B`), from `0x00342F80`, `0x00343C60`, `0x00345010`, `0x00345B60`, `0x00346C00` and `0x00350EC0`; `0x00360710`, 0 (`0x00360785`, `ebp` 0 from `0x00360720`) | not yet located: no RIP-relative, image-base-relative or address-forming reference names it |
+| `0x022CB9B4` | `i32` | 0 (zero-filled tail of `.data`) | the recorded section. While a skip runs, `musicplay`'s result `0x00342F80` records its argument `+0x0C`, the section an unskipped play hands to `0x002DEC80` (`0x00342FB5`, `0x00342FE6`); the other verbs and `skipexec` record 0 | `0x00360960` (`0x0036096B`), from `0x00342F80`, `0x00343C60`, `0x00345010`, `0x00345B60`, `0x00346C00` and `0x00350EC0`; `0x00360710`, 0 (`0x00360785`, `ebp` 0 from `0x00360720`) | no other RIP-relative, image-base-relative or address-forming reference names it |
 
 ### The music version
 
