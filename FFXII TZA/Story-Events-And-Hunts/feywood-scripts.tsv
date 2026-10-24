@@ -1,0 +1,132 @@
+script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
+mfr_a01	Walk of Flitting Rifts (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Rustling Chapel (Golmore Jungle), field 453, entrance 2	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Icebound Flow (Paramina Rift), field 469, entrance 4	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	__MJ_CTRL002	mapjump	mapjump	-	0	The chocobo refuses to go any further.	-	-	-	-	-	-	Walk of Stolen Truths (The Feywood), field 540, entrance 1	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	__MJ_CTRL003	mapjump	mapjump	-	0	The chocobo refuses to go any further.	-	-	-	-	-	-	Walk of Dancing Shadow (The Feywood), field 541, entrance 1	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	EventDirector	main	main	-	-	-	0x0027: Opens the location map's exits between Golmore Jungle and The Feywood / 0x0028: Opens the location map's exits between Paramina Rift and The Feywood	-	0x0027: Opens the location map's exits between Golmore Jungle and The Feywood / 0x0028: Opens the location map's exits between Paramina Rift and The Feywood	-	-	-	-	-	ttl_z0000, event 215	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	map_chocomj	init	init	-	-	-	0x012F: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0130: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0131: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0132: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0133: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions	0x012F: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0130: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0131: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0132: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions / 0x0133: Set or tested in The Muted Scarp, Field of the Fallen Lord (Nabreus Deadlands); The Stepping, Yardang Labyrinth, Banks of the Nebra and 1 more (Dalmasca Estersand); East Junction, Central Junction (Ogir-Yensa Sandsea); 13 more regions	-	-	-	-	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000200	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000218	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000230	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000248	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000260	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000278	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000290	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002a8	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002c0	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002d8	-	-	-	-	1	-
+mfr_a01	Walk of Flitting Rifts (The Feywood)	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002f0	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Flitting Rifts (The Feywood), field 539, entrance 3	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Dancing Shadow (The Feywood), field 541, entrance 2	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Dancing Shadow (The Feywood), field 541, entrance 3	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Antiquity's End (The Feywood), field 542, entrance 1	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000200	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000218	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000230	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000248	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000260	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000278	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000290	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002a8	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002c0	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002d8	-	-	-	-	1	-
+mfr_a02	Walk of Stolen Truths (The Feywood)	ロケ地図	talk	talk	-	system message 97	Your location map for this area is complete!	Bank512, second half 0x0010: Set or tested in Walk of Stolen Truths (The Feywood)	-	-	-	-	receives Feywood	-	-	-	-	2	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Flitting Rifts (The Feywood), field 539, entrance 4	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Stolen Truths (The Feywood), field 540, entrance 2	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Stolen Truths (The Feywood), field 540, entrance 3	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Antiquity's End (The Feywood), field 542, entrance 2	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Phase 2 Shaft (Henne Mines), field 728, entrance 3	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	EventDirector	main	main	-	-	-	0x0029: Opens the location map's exits between Henne Mines and The Feywood	-	0x0029: Opens the location map's exits between Henne Mines and The Feywood	-	-	-	-	-	ttl_z0000, event 215	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	hunt_kansi	main	main	-	-	-	-	-	-	-	-	receives Feathered Trophy	-	every foe in a group removed	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000180	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000198	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001b0	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001c8	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001e0	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001f8	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000210	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000228	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000240	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000258	-	-	-	-	1	-
+mfr_a03	Walk of Dancing Shadow (The Feywood)	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000270	-	-	-	-	1	-
+mfr_a04	Antiquity's End (The Feywood)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+mfr_a04	Antiquity's End (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Stolen Truths (The Feywood), field 540, entrance 4	-	-	-	1	-
+mfr_a04	Antiquity's End (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Walk of Dancing Shadow (The Feywood), field 541, entrance 4	-	-	-	1	-
+mfr_a04	Antiquity's End (The Feywood)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Redolent Glade (The Feywood), field 545, entrance 3; Redolent Glade (The Feywood), field 545, entrance 1; Redolent Glade (The Feywood), field 545, entrance 2	-	-	-	1	-
+mfr_a04	Antiquity's End (The Feywood)	SAKIYOMI_mfr_a0400	init	init	-	-	-	-	-	-	-	below 4160	-	-	-	mfr_a0400, event 353	-	4	-
+mfr_a04	Antiquity's End (The Feywood)	SAKIYOMI_mfr_a0400	sakiyomi_init	-	-	-	-	-	-	-	-	-	-	-	-	mfr_a0400, event 353	-	4	-
+mfr_a04	Antiquity's End (The Feywood)	メッセージ	メッセージ表示	requested by イベントレクト.touchon, 進入不可.touchon	-	25	A dense Mist prevents you from advancing.	-	-	-	-	-	-	-	-	-	-	1	-
+mfr_a04	Antiquity's End (The Feywood)	イベントレクト	touchon	touchon	-	-	-	-	-	-	4160: After the Mist wall opens	-	-	-	-	-	-	3	-
+mfr_a04	Antiquity's End (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000040	-	-	-	-	1	-
+mfr_b01	Redolent Glade (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Antiquity's End (The Feywood), field 542, entrance 3	-	-	-	1	-
+mfr_b01	Redolent Glade (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	White Magick's Embrace (The Feywood), field 548, entrance 1	-	-	-	1	-
+mfr_b01	Redolent Glade (The Feywood)	EventDirector	main	main	-	-	-	-	-	-	4200: After the Rafflesia battle; map unlock: The Feywood, the way to Giruvegan	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	mfr_b0100, event 350; mfr_b0101, event 351; pos_z0000, event 427	-	1	-
+mfr_b01	Redolent Glade (The Feywood)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	1	-
+mfr_b01	Redolent Glade (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+mfr_b01	Redolent Glade (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Redolent Glade (The Feywood), field 545, entrance 2	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Ice Field of Clearsight (The Feywood), field 549, entrance 1	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001c0	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001d8	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001f0	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000208	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000220	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000238	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000250	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000268	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000280	-	-	-	-	1	-
+mfr_c01	White Magick's Embrace (The Feywood)	ロケ地図	talk	talk	-	system message 122	The candle reveals hidden areas on your map of the [value]!	Bank512, second half 0x0011: Set or tested in White Magick's Embrace (The Feywood)	-	-	-	-	receives Feywood Candle	-	-	-	-	2	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	White Magick's Embrace (The Feywood), field 548, entrance 2	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Edge of Reason (The Feywood), field 550, entrance 1; Ice Field of Clearsight (The Feywood), field 549, entrance 1	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora00	touchon	touchon	-	-	-	0x00CD: Shows a map icon in Ice Field of Clearsight (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora01	touchon	touchon	-	-	-	0x00CF: Shows a map icon in Ice Field of Clearsight (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora02	touchon	touchon	-	-	-	0x00CC: Shows a map icon in Ice Field of Clearsight (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora03	touchon	touchon	-	-	-	0x00CE: Shows a map icon in Ice Field of Clearsight (The Feywood) / 0x015D: Draws the location map's link between Ice Field of Clearsight (The Feywood) and The Edge of Reason (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora00_fs	talk	talk	-	1	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora01_fs	talk	talk	-	1	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora02_fs	talk	talk	-	1	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	hokora03_fs	talk	talk	-	1	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000280	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000298	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002b0	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002c8	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002e0	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002f8	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000310	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000328	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000340	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000358	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000370	-	-	-	-	1	-
+mfr_c02	Ice Field of Clearsight (The Feywood)	treasure_11	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000388	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Ice Field of Clearsight (The Feywood), field 549, entrance 2	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	常駐監督	main	main	-	-	-	0x002A: Opens the location map's exits between Giruvegan and The Feywood	-	-	-	below 4250	-	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	イベント管理	ベリアス開門_再生	requested by gil_gate.talk	-	-	-	-	-	-	4230: After the Giruvegan gate	-	-	Gate of Earth (Giruvegan), field 686, entrance 4	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	SAKIYOMI_mfr_c0300	init	init	-	-	-	-	-	-	-	below 4250	-	-	-	mfr_c0300, event 352	-	4	-
+mfr_c03	The Edge of Reason (The Feywood)	SAKIYOMI_mfr_c0300	sakiyomi_init	-	-	-	-	-	-	-	-	-	-	-	-	mfr_c0300, event 352	-	4	-
+mfr_c03	The Edge of Reason (The Feywood)	MAP_SECOND_DIRECTOR	再来訪イベント開始	requested by gil_gate.talk	-	-	-	-	-	-	-	-	-	Gate of Earth (Giruvegan), field 686, entrance 4	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	MAP_SECOND_DIRECTOR	再出立イベント開始	-	-	-	-	-	-	-	-	-	-	The Edge of Reason (The Feywood), field 550, entrance 2	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora00	touchon	touchon	-	-	-	0x00C9: Shows a map icon in The Edge of Reason (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora01	touchon	touchon	-	-	-	0x00C8: Shows a map icon in The Edge of Reason (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora02	touchon	touchon	-	-	-	0x00CA: Shows a map icon in The Edge of Reason (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora03	touchon	touchon	-	-	-	0x00C7: Shows a map icon in The Edge of Reason (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora04	touchon	touchon	-	-	-	0x00CB: Shows a map icon in The Edge of Reason (The Feywood)	-	-	-	-	-	-	-	-	-	3	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora00_fs	talk	talk	-	2	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora01_fs	talk	talk	-	2	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora02_fs	talk	talk	-	2	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora03_fs	talk	talk	-	2	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c03	The Edge of Reason (The Feywood)	hokora04_fs	talk	talk	-	2	"Voiceless words chime within your head: ""In this sanctum shall the pilgrim find truth and illusion both. Illusion betokens the true way."""	-	-	-	-	-	-	-	-	-	-	2	-
+mfr_c03	The Edge of Reason (The Feywood)	gil_gate	talk	talk	-	4; 5; 6; 7	"""Gigas summoner, gate's power is yours to claim. Beyond the One gate lies sacred Giruvegan. Over the One gate the Gigas holds sway."" / ""Illusion lights true path's way. Stray not and the One gate shall ye reach."" / Strong magicks bind the gate. It will not open. / The elements have battered this gate over long years. It will not open."	0x00C6: Shows a map icon in The Edge of Reason (The Feywood) / 0x010D: Opens the location map's exits between Giruvegan and The Feywood	-	-	-	below 4250	-	-	-	-	-	2	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000280	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000298	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002b0	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002c8	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002e0	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002f8	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000310	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000328	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000340	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000358	-	-	-	-	1	-
+mfr_c03	The Edge of Reason (The Feywood)	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000370	-	-	-	-	1	-
+mfr_b0101	scene, event 351	DIRECTOR	main	main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	1	-
+mfr_b0101	scene, event 351	CAMERA	カット１	requested by AD.カット１_ad	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	6	-

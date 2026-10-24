@@ -1,0 +1,11 @@
+scene	event_id	loaded_by	lines	synopsis	items	party	flags_set	counter_set	next
+ttl_z0000	215	-	0	-	-	-	-	-	-
+ttl_z0001	216	-	0	-	-	-	-	-	-
+ttl_z0002	217	-	0	-	-	-	-	-	-
+ttl_z0003	430	-	0	-	-	-	-	-	-
+ttl_z0004	431	-	0	-	-	-	-	-	-
+ttl_z0005	432	-	0	-	-	-	-	-	-
+ttl_z0006	433	-	0	-	-	-	-	-	-
+ttl_z0007	434	-	0	-	-	-	-	-	-
+ttl_z0008	358	-	0	-	-	-	-	-	-
+ttl_z0009	436	-	0	-	-	-	0x002F: Opens the location map's exits between Garamsythe Waterway and Royal Palace	-	-

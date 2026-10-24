@@ -1,0 +1,95 @@
+script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
+rrp_a01	Cellar Stores (Royal Palace)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+rrp_a01	Cellar Stores (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	200: After the sky pirate Balthier arrives; Balthier and Fran appear	-	-	-	-	ttl_z0009, event 436	-	1	-
+rrp_a01	Cellar Stores (Royal Palace)	movieSkip監督	Skip監視	requested by 常駐ディレクター.main	-	26	Skip	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a01	Cellar Stores (Royal Palace)	イベント特殊効果画面_RRP	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in g_com_set_get_label	-	-	-	-	1	-
+rrp_a01	Cellar Stores (Royal Palace)	イベント特殊効果画面_RRP	ゲット＆メッセージ表示_音量復帰ナシ	requested by ラ王宮地図宝壺.talk	-	14	(empty string)	-	-	-	-	-	receives the item held in g_com_set_get_label	-	-	-	-	1	-
+rrp_a01	Cellar Stores (Royal Palace)	Map_Director	init	init	-	-	-	0x0053: Set or tested in Cellar Stores (Royal Palace)	-	-	-	-	-	-	-	-	-	1	-
+rrp_a01	Cellar Stores (Royal Palace)	door_gunbit	talk	talk	-	-	-	-	-	-	-	-	-	Cellars (Royal Palace), field 568, entrance 1	-	-	-	5	-
+rrp_a01	Cellar Stores (Royal Palace)	futa	talk	talk	-	29	Vaan I've made it this far...I'm not going back empty-handed.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a01	Cellar Stores (Royal Palace)	ラ王宮地図宝壺	talk	talk	-	-	-	Bank512, second half 0x0000: Set or tested in Cellar Stores (Royal Palace)	-	-	-	-	-	-	-	-	-	2	-
+rrp_a02	Cellars (Royal Palace)	常駐監督	init	init	-	-	-	-	-	-	-	-	-	-	-	rrp_z9900, event 605	-	1	-
+rrp_a02	Cellars (Royal Palace)	常駐監督	階段下	requested by 地下イベントレクト.touch	-	20; 21	Have you gathered up all of the occasionals? ...Good. You'll be on clean-up duty when the fete's over. Wait here until we're ready for you. / No one goes to the upper floor until we give the order. Step out of line and you will be punished.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	常駐監督	止められる１	requested by 練習用レクト.touch	-	0; 22	Wait here until I've further directions for you. / ...What's he doing? Trying to go upstairs?	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	常駐監督	こっちこっち制御０１	requested by 使用シーク01.talk	-	23; 24; 25; 26; 27; 28	Okay, so press to call the guard. I'll handle him when he comes, and you make for the stairs! Ah, get too close and he's liable to notice you. Let's give 'er a try! / You...weren't the swiftest pup in the litter, were you? Okay, one more time! So press to call the guard. I'll handle him when he comes, and you make for the stairs! Ah, get too close and he's liable to notice you. Let's give 'er another try! / Call the guard by pressing ! / (empty string) / Now's yer chance! Get goin'! / I said, press !	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	練習用レクト	touch	touch	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	4	-
+rrp_a02	Cellars (Royal Palace)	先行促し01	touch	touch	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	6	-
+rrp_a02	Cellars (Royal Palace)	先行促し02	touch	touch	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	6	-
+rrp_a02	Cellars (Royal Palace)	先行促し03	touch	touch	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	6	-
+rrp_a02	Cellars (Royal Palace)	door1	talk	talk	-	-	-	-	-	-	-	-	-	Cellar Stores (Royal Palace), field 567, entrance 2	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	door_gunbit	talk	talk	-	-	-	-	-	-	-	-	-	Lower Halls (Royal Palace), field 569, entrance 1	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000000	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000018	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000030	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000048	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000060	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000078	-	-	-	-	1	-
+rrp_a02	Cellars (Royal Palace)	帝国兵01	ヴァン捕獲	requested by 監視役.ミニゲーム監視	Imperial	0	Wait here until I've further directions for you.	-	-	-	-	-	-	-	-	-	-	12	-
+rrp_a02	Cellars (Royal Palace)	男使用人01	talk	talk	Palace Servant	1	We'll let you know what to do shortly. Just a little longer, please.	-	-	-	-	-	-	-	-	-	-	6	-
+rrp_a02	Cellars (Royal Palace)	男使用人04	talk	talk	Palace Servant	2	Did you see the parade for the new consul? I had to work! Missed the whole thing... Come to think of it, I missed the Lady Ashe's wedding parade, too...	-	-	-	-	-	-	-	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	男使用人05	talk	talk	Palace Servant	3; 4	In times past, when the royal house flourished, a court painter gifted two signets to the King: one of a hawk, the other of a lion. While neither became the official seal of our kingdom, the King liked them, and so placed them in the halls of the palace. You can see the actual articles here on the floor above. / In times past, when the royal house flourished, a court painter gifted two signets to the King: one of a hawk, the other of a lion. While neither became the official seal of our kingdom, the King liked them, and so placed them in the halls of the palace. You can see the actual articles here on the floor above. They say the King liked the lion signet in particular. I've seen it myself, and it does have a certain aura to it.	-	-	-	-	-	-	-	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	男使用人07	talk	talk	Palace Servant	5; 6	Me, I was hired to help with the fete tonight. You too, huh? Hey, you know what I heard? They say there's going to be food and wine at the fete fit for a king...or a consul. Migelo's outdone himself! / When I told my friend I'd be helping at the fete this morning, she got jealous and spent all afternoon trying to think of a way to sneak in. Hah! As though she even could!	-	-	-	-	-	-	-	-	-	-	6	-
+rrp_a02	Cellars (Royal Palace)	女使用人01	talk	talk	Palace Servant	7	I thought I'd be able to see Lord Vayne, but they have me on clean-up. Too bad, eh?	-	-	-	-	-	-	-	-	-	-	7	-
+rrp_a02	Cellars (Royal Palace)	女使用人02	talk	talk	Palace Servant	8; 9	They were smart to keep most of the soldiers out of the palace for the fete. Who could eat with all those people in armor standing around? / When the Empire took over the palace, the army examined everything, floor to ceiling. They left nothing untouched. You think they were looking for some sort of secret door? Don't think they found anything, anyway.	-	-	-	-	-	-	-	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	女使用人03	talk	talk	Palace Servant	10	I've not seen you around. Were you hired especially for the fete tonight? Then you should be waiting over by the stairs. Down the corridor to the end.	-	-	-	-	-	-	-	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	使用シーク01	talk	talk	Palace Servant	11; 12; 13; 14	Eh? Back already. Look, if you're worried about me, don't be. You stay up there long as you like. Actually, I'm gettin' along much better than I expected with this soldier here. Quite the conversationalist, him. / Clean-up for the fete? Hrmm... Maybe there'll be some leftover...treats? / Trying to go upstairs, ain't you! I know... Yer hungry! I don't blame you. An empty stomach'd make me want to crash the fete, too! No, no, no use tryin' to hide it! Look here, I'll help you out. / Now! Up the stairs, quick!	-	-	-	-	-	-	-	-	-	-	7	-
+rrp_a02	Cellars (Royal Palace)	使用バンガ02	talk	talk	Palace Servant	15; 16	Here to help with the fete? Me as well. Nice to meet ya. Ever since I was a runt, I wondered what it was like inside the palace. I gotta tell ya, I'm excited about tonight! / I'm having myself a little exploration 'round the palace. Lots of interesting things in here... and guards to make sure I don't take 'em.	-	-	-	-	-	-	-	-	-	-	6	-
+rrp_a02	Cellars (Royal Palace)	使用バンガ04	talk	talk	Palace Servant	17; 18	I hope that fete gets done with quick. There's something I want to see on the upper floor. / I heard from one of my friends, a servant here, that in the halls upstairs there're these painted signets. He says there's two of 'em, and that they're each as glorious as the other. That's what I want to go see.	-	-	-	-	-	-	-	-	-	-	5	-
+rrp_a02	Cellars (Royal Palace)	ヴァン	レクト先行01	-	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	8	-
+rrp_a02	Cellars (Royal Palace)	ヴァン	レクト先行02	-	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	8	-
+rrp_a02	Cellars (Royal Palace)	ヴァン	レクト先行03	-	-	19	Now's your chance!	-	-	-	-	-	-	-	-	-	-	8	-
+rrp_a03	Lower Halls (Royal Palace)	常駐ディレクター	init	init	-	-	-	-	-	-	-	not 0	-	-	-	rrp_z9900, event 605	-	0	-
+rrp_a03	Lower Halls (Royal Palace)	常駐ディレクター	main	main	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	0	-
+rrp_a03	Lower Halls (Royal Palace)	常駐イベント	マップジャンプ直後	requested by 常駐ディレクター.main	-	11; 0	"Vaan What was it Old Dalan said? ""The signet yearns for sunstone's strength, to light the clouded way."" But there was more... Oh yeah! ""Once in the palace, you'll find the signet tile. Give to it the sun's power, and it will light your path."" Looks like I've got a signet to find. / (empty string)"	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	開錠呪符イベント	はい	requested by 隠し扉FS.talk	-	-	-	-	-	-	210: After the palace mechanism	-	-	Secret Passage (Royal Palace), field 570, entrance 1	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	正紋章イベント	初回	requested by 正紋章.talk	-	13	Lion Signet The light of the sun flows into the signet. The hidden way is lit.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	偽紋章イベント	起動	requested by 偽紋章.talk	-	14; 15	Hawk Signet Nothing happens. / Hawk Signet A signet representing a hawk is painted on the floor. It does not respond to the [value].	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	監視監督	監視	requested by 常駐ディレクター.main, 捕獲監視監督.捕獲監視	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	4	-
+rrp_a03	Lower Halls (Royal Palace)	リセット監督	リセット	requested by 捕獲監視監督.捕獲監視	-	16; 0	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others! / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	台詞監督	駒01捕獲時台詞	requested by リセット監督.リセット	-	16	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others!	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	台詞監督	駒02捕獲時台詞	requested by リセット監督.リセット	-	16	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others!	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	台詞監督	駒03捕獲時台詞	requested by リセット監督.リセット	-	16	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others!	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a03	Lower Halls (Royal Palace)	隠し扉FS	talk	talk	-	3	There's something not quite right about this wall. You can feel a faint draft coming from the other side...	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	偽隠し扉FS01	talk	talk	-	5	There's something not quite right about this wall. You look closely, but find nothing out of the ordinary.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	偽隠し扉FS02	talk	talk	-	5	There's something not quite right about this wall. You look closely, but find nothing out of the ordinary.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	正紋章	talk	talk	-	8	Lion Signet The signet has been infused with the light of the sun. The hidden way is lit.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	door1	talk	talk	-	-	-	-	-	-	-	-	-	Cellars (Royal Palace), field 568, entrance 2	-	-	-	5	-
+rrp_a03	Lower Halls (Royal Palace)	door3	talk	talk	-	-	-	-	-	-	-	-	-	The Garden Stairs (Royal Palace), field 572, entrance 1	-	-	-	5	-
+rrp_a03	Lower Halls (Royal Palace)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000000	-	-	-	-	1	-
+rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	マップジャンプ直後	requested by 常駐ディレクター.main	-	6; 7	Vaan Well, that takes care of the secret passage. Now where's this treasure... / Vaan Hey, watch it! Guess it's not leaving me much choice.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	はい	requested by 扉.talk	-	-	-	-	-	-	215: After the treasury's treasure	-	-	Treasure Room No. 8 (Royal Palace), field 571, entrance 0	-	-	-	1	-
+rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	バネ	-	-	3	There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	バネ済	-	-	2	There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	解除	requested by ゲットFS.talk	-	8	Switch You hear a mechanical click from behind.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a04	Secret Passage (Royal Palace)	扉	talk	talk	-	2; 3	There's more to this wall than meets the eye, but what is it...? / There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	3	-
+rrp_a04	Secret Passage (Royal Palace)	いつわりの壁	talk	talk	-	9	It's tightly shut.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a05	Treasure Room No. 8 (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	220: After Balthier and Fran; after the party	-	receives Goddess's Magicite	The Garden Stairs (Royal Palace), field 572, entrance 0	-	rrp_a0500, event 266	-	1	-
+rrp_a06	The Garden Stairs (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	-	-	-	-	-	rrp_a0600, event 258	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	あいつらは	requested by 監視監督.Movie監視	-	1	What's going on?	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	イフリート	requested by 監視監督.Movie監視	-	2	The Ifrit, eh? That's quite an entrance.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	手回しがよ	requested by 監視監督.Movie監視	-	3	Impeccable timing. If I didn't know better, I'd say they were waiting all along.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	あ、こらっ	requested by 監視監督.Movie監視	-	4	Stop running!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	さぁ、ボウ	requested by 監視監督.Movie監視	-	5	End of the line!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	観念して、	requested by 監視監督.Movie監視	-	6	You have something that belongs to me.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	ここにもい	requested by 監視監督.Movie監視	-	7	More this way!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	行け！フラ	requested by 監視監督.Movie監視	-	8	Fran! Let's move!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	そらよっと	requested by 監視監督.Movie監視	-	9	Off with you!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	放せこのヤ	requested by 監視監督.Movie監視	-	10	Let go of me!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	じたばたす	requested by 監視監督.Movie監視	-	11	Keep this up and I will!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	どうした？	requested by 監視監督.Movie監視	-	12	What's going on, Fran?	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	わからない	requested by 監視監督.Movie監視	-	13	I don't know. It's not heeding me.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	ちっ、どう	requested by 監視監督.Movie監視	-	14	I don't have time for this.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	うあ、ちょ	requested by 監視監督.Movie監視	-	15	I— I'm slipping!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	くそっ！	requested by 監視監督.Movie監視	-	16	Not good!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	movieSkip監督	Skip監視	requested by ムービー開始位置.touchon	-	17	Skip	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a06	The Garden Stairs (Royal Palace)	ムービー開始位置	touchon	touchon	-	-	-	-	-	-	225: After the falling airship	-	-	East Spur Stairs (Garamsythe Waterway), field 314, entrance 4	-	-	-	4	-
+rrp_a06	The Garden Stairs (Royal Palace)	door1	talk	talk	-	18	Vaan Between the guards and whoever those two were, it's not safe that way. No turning back now.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット４	requested by AD.カット４_ad	-	0; 1	Quite a performance. / Who are you?	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット６	requested by AD.カット６_ad	-	2	I play the leading man, who else?	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット７	requested by AD.カット７_ad	-	3; 4	Fran, the magicite. / Now then. I'll take that.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット８	requested by AD.カット８_ad	-	5	No you won't. I found it. It's mine.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット９	requested by AD.カット９_ad	-	6	And then when I take it from you, it'll be mine.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット１３	requested by AD.カット１３_ad	-	7	Exit stage right.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット１４	requested by AD.カット１４_ad	-	8	The gods do not smile on us.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット１５	requested by AD.カット１５_ad	-	9	I like it better that way.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_z9900	scene, event 605	ボイス監督	main	main	-	0; 1; 2	Vaan Hellooo! / Vaan Over here! / Vaan Hey, bucket head!	-	-	-	-	-	-	-	-	-	-	2	-

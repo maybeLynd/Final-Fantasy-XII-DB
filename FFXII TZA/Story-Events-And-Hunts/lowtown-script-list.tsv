@@ -1,0 +1,13 @@
+script	kind	place	actors	functions	rows	shared_actors
+slm_a01	zone	North Sprawl (Lowtown), field 701	51	281	34	1
+slm_a02	zone	South Sprawl (Lowtown), field 702	46	245	31	1
+slm_a03	zone	Dalan's House (Lowtown), field 703	35	195	15	1
+slm_a04	zone	Residence (Lowtown), field 704	19	100	6	1
+slm_z01	zone	Dalan's Marker (Lowtown), field 856	8	15	1	0
+slm_a0100	scene	scene, event 110	36	312	17	0
+slm_a0101	scene	scene, event 113	17	109	19	0
+slm_a0280	scene	scene, event 720	11	74	26	0
+slm_a0300	scene	scene, event 112	16	88	1	0
+slm_a0380	scene	scene, event 722	12	105	24	0
+slm_a0381	scene	scene, event 714	12	80	19	0
+slm_z0100	scene	scene, event 111	20	266	15	0

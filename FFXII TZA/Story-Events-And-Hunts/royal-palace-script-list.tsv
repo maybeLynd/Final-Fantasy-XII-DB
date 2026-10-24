@@ -1,0 +1,10 @@
+script	kind	place	actors	functions	rows	shared_actors
+rrp_a01	zone	Cellar Stores (Royal Palace), field 567	24	103	9	5
+rrp_a02	zone	Cellars (Royal Palace), field 568	52	260	30	0
+rrp_a03	zone	Lower Halls (Royal Palace), field 569	81	473	18	0
+rrp_a04	zone	Secret Passage (Royal Palace), field 570	16	95	7	0
+rrp_a05	zone	Treasure Room No. 8 (Royal Palace), field 571	8	38	1	0
+rrp_a06	zone	The Garden Stairs (Royal Palace), field 572	15	79	20	0
+rrp_a0500	scene	scene, event 266	25	219	8	0
+rrp_a0600	scene	scene, event 258	12	59	0	0
+rrp_z9900	scene	scene, event 605	3	8	1	0

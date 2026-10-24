@@ -1,0 +1,9 @@
+script	kind	place	actors	functions	rows	shared_actors
+srb_a01	zone	Old Elanise Road (Cerobi Steppe), field 497	41	152	41	1
+srb_a02	zone	Crossfield (Cerobi Steppe), field 498	44	159	41	1
+srb_a03	zone	The Terraced Bank (Cerobi Steppe), field 499	41	153	38	1
+srb_a04	zone	Journey's Rest (Cerobi Steppe), field 500	26	141	25	5
+srb_b01	zone	North Liavell Hills (Cerobi Steppe), field 503	42	157	40	1
+srb_b02	zone	South Liavell Hills (Cerobi Steppe), field 504	41	152	42	1
+srb_b03	zone	Feddik River (Cerobi Steppe), field 505	43	152	39	1
+srb_b04	zone	The Northsward (Cerobi Steppe), field 506	47	165	44	1

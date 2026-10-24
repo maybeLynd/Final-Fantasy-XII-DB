@@ -1,0 +1,11 @@
+script	kind	place	actors	functions	rows	shared_actors
+pbc_a01	zone	Fading Vale (Paramina Rift), field 463	20	81	8	5
+pbc_a02	zone	Head of the Silverflow (Paramina Rift), field 464	27	43	13	0
+pbc_a03	zone	Freezing Gorge (Paramina Rift), field 465	23	37	11	0
+pbc_b01	zone	Frozen Brook (Paramina Rift), field 468	29	45	14	0
+pbc_b02	zone	Icebound Flow (Paramina Rift), field 469	26	42	13	0
+pbc_b03	zone	Karydine Glacier (Paramina Rift), field 470	30	47	14	0
+pbc_c01	zone	Path of the Firstfall (Paramina Rift), field 473	27	95	11	5
+pbc_c02	zone	Spine of the Icewyrm (Paramina Rift), field 474	20	30	6	0
+pbc_c03	zone	Silverflow's End (Paramina Rift), field 475	31	58	17	1
+pbc_a0300	scene	scene, event 269	18	118	6	0
