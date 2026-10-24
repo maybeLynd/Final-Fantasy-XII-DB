@@ -472,6 +472,11 @@ push into the next candidate position.
 The pool and its two list heads, the 32 masks and the candidate set, the running mean and its
 centre, each body's placement, accumulators, counters and pair bitmap.
 
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA6038` | `f32` | 0 (zero-filled tail of `.data`) | the centre's y. `0x0046AFA0`, which the tick `0x00314020` runs (`0x003140CA`), divides the sums `0x02CA6040`, `0x02CA6044` and `0x02CA6048` by the count `0x02CA604C` (1.0 when the count is 0) into `0x02CA6034`-`0x02CA603C` and zeroes the sums and the count (`0x0046AFA0`-`0x0046B017`). no instruction in the index adds to the y sum, so the centre's y stays 0.0 as far as this census reaches | `0x0046AFA0` (`0x0046B00F`) | no instruction names it |
+| `0x02CA6044` | `f32` | 0 (zero-filled tail of `.data`) | the y sum: `0x0046AD20` adds only to the x and z sums, so this stays 0 | `0x0046AFA0`, 0 (`0x0046AFD9`) | `0x0046AFA0` (`0x0046AFC3`) |
+
 ## Modding notes
 
 - Layers and owners are the cheap switches: equal layers pair, equal non-zero owners never do,

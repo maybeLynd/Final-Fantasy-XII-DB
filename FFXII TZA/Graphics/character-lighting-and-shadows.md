@@ -112,6 +112,20 @@ The model instance's draw setup `0x004FD4B0` calls it with the instance's record
 by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit 0, by `+0x248`.
 That is how a character's fade and script colour reach its lighting ([character fades](character-fades.md)).
 
+### The installed light matrix
+
+Before it evaluates each light, `0x003ABD50` copies its first matrix (light `+5` bits 1-3 clear) or its second into the
+64 bytes `0x02B3F4B0`-`0x02B3F4EF` (`0x003ABE86`-`0x003ABEDD`); `0x003AC110` copies its matrix the same way (`0x003AC470`-`0x003AC49C`).
+The light bodies read it element by element: the directional body `0x003AD540` turns the direction by rows 0 to 2,
+and the point, plane, segment and spot bodies also take row 3.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B3F4B0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 0 of the light matrix | `0x003ABD50` (`0x003ABE91`, `0x003ABEB9`); `0x003AC110` (`0x003AC47B`) | `0x003AD540` (`0x003AD722`, `0x003AD770`, `0x003AD797`); `0x003AD830` (`0x003AD9C8`, `0x003ADA06`, `0x003ADA41`); `0x003ADC40` (`0x003ADECA`, `0x003ADF05`, `0x003ADF3D`); `0x003AE0E0` (`0x003AE274`, `0x003AE2B2`, `0x003AE2ED`); `0x003AE4C0` (`0x003AE674`, `0x003AE6B3`, `0x003AE6EF`) |
+| `0x02B3F4C0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 1 of the light matrix | `0x003ABD50` (`0x003ABE9C`, `0x003ABEC5`); `0x003AC110` (`0x003AC486`) | `0x003AD540` (`0x003AD72F`, `0x003AD756`, `0x003AD78A`); `0x003AD830` (`0x003AD9D8`, `0x003ADA13`, `0x003ADA4E`); `0x003ADC40` (`0x003ADED5`, `0x003ADF0D`, `0x003ADF45`); `0x003AE0E0` (`0x003AE284`, `0x003AE2BF`, `0x003AE2FA`); `0x003AE4C0` (`0x003AE685`, `0x003AE6C0`, `0x003AE6FC`) |
+| `0x02B3F4D0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 2 of the light matrix | `0x003ABD50` (`0x003ABEA7`, `0x003ABED1`); `0x003AC110` (`0x003AC491`) | `0x003AD540` (`0x003AD73C`, `0x003AD763`, `0x003AD7A4`); `0x003AD830` (`0x003AD9E9`, `0x003ADA24`, `0x003ADA5F`); `0x003ADC40` (`0x003ADEE9`, `0x003ADF21`, `0x003ADF59`); `0x003AE0E0` (`0x003AE295`, `0x003AE2D0`, `0x003AE30B`); `0x003AE4C0` (`0x003AE696`, `0x003AE6D1`, `0x003AE70D`) |
+| `0x02B3F4E0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 3 of the light matrix | `0x003ABD50` (`0x003ABEDD`); `0x003AC110` (`0x003AC49C`) | `0x003AD830` (`0x003AD98D`, `0x003AD99F`, `0x003AD9B1`); `0x003ADC40` (`0x003ADD9F`, `0x003ADDAC`, `0x003ADDBA`, `0x003ADDF7`, `0x003ADE07`, `0x003ADEA3`, `0x003ADEB4`); `0x003AE0E0` (`0x003AE239`, `0x003AE24B`, `0x003AE25D`); `0x003AE4C0` (`0x003AE63A`, `0x003AE64B`, `0x003AE65D`) |
+
 ### The map's character-light settings
 
 Render-object slot 8, `0x001F9B20(object, block, f)`, copies the block into every part record's

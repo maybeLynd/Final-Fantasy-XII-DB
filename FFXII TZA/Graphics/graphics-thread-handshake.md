@@ -237,6 +237,38 @@ to even, writes them back and copies them beside the GS environment globals (`0x
 Nothing else reads or writes the two copies: no other RIP-relative, image-base-relative or 32-bit offset reference
 names them.
 
+### The set-ups' own words
+
+`0x0035E820` starts by storing -1 in `0x022CA62C` and zeroing the tick counters, then fills a semaphore descriptor at
+`0x022CAE40` and makes two semaphores from it with `0x00863540`, which reads only the descriptor's maximum count `+0x04`
+and initial count `+0x08` (`0x0086355E`, `0x00863565`): `[0x022CA610]` with a maximum of `0x10000` and `[0x022CA618]` with a
+maximum of 1, both starting at 0. It then starts the pacer's worker `0x0035EA40` as a thread (`0x008636E0`, `0x00863610`),
+spins until the worker reports itself running (`0x022CA630`, `0x0035E930`) and registers `0x0035EC90` as handler 0.
+
+`0x00368DD0` starts the TkSyncv thread from a thread descriptor at `0x022CFEA0`. `0x008636E0` reads three of the
+descriptor's words: the entry `+0x08` (`0x0086376B`), the stack size `+0x18` (`0x00863789`, passed to the thread's
+creation) and the priority `+0x28` (`0x00863781`), which `0x00863430` turns into the thread priority `(32 - p) / 2`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CA5F8` | `u32` | 0 (zero-filled tail of `.data`) | 1 once the set-up has run; while it is non-zero, `0x0035E760` and each pass of the worker `0x0035EA40` call `0x003691B0(0)` when handler 0 of the table `0x022CFF10` (the address `0x00369160` returns) is set | `0x0035E820`, 1 (`0x0035E84D`) | `0x0035E760` (`0x0035E764`); `0x0035EA40` (`0x0035EB0E`) |
+| `0x022CA604` | `u32` | 0 (zero-filled tail of `.data`) | the pacer's mode, its second argument. While `0x022CA608` is 0, the handler `0x0035EC90` uses it once the sync count has reached its target (`0x0035ECCC`): mode 1 sets the pending flag `0x022CA600` only on a sync with bit 13 of `0x022CA60C` clear, mode 2 only with that bit set, any other value on every sync | `0x0035E820`, 0 (`0x0035E88A`); `0x0035EB70` (`0x0035EC28`) | `0x0035EC90` (`0x0035ECCC`) |
+| `0x022CA628` | `u32` | 0 (zero-filled tail of `.data`) | the tick count the pacer was last given, `max(n, 1)` with a signed compare (`cmovg`, `0x0035EC1C`), the value it also stores at `0x022CA5F4`; 1 after the set-up | `0x0035E820`, 1 (`0x0035E85D`); `0x0035EB70` (`0x0035EC5F`) | no instruction names it |
+| `0x022CA62C` | `i32` | 0 (zero-filled tail of `.data`) | the handle the set-up gets from `0x005C5230(2, 0x0035E760, -1)` (`0x0035E984`), -1 while none is held. A set-up that finds a handle held (not -1, `0x0035E948`) first passes it back through `0x005C5230` (`0x0035E956`, `0x0035E966`). `0x005C5230` is `xor eax, eax; ret`, so the word is 0 after every set-up | `0x0035E820`: -1 (`0x0035E828`, `0x0035E96B`); the result (`0x0035E98E`) | `0x0035E820` (`0x0035E948`, `0x0035E95B`) |
+| `0x022CA634` | `u32` | 0 (zero-filled tail of `.data`) | the worker's run flag: the set-up sets it before it starts `0x0035EA40`, which loops while it is non-zero; the shutdown `0x0035E700` clears it, releases both semaphores and sleeps 1 ms at a time until the worker's running flag `0x022CA630` is 0 | `0x0035E820`, 1 (`0x0035E910`); `0x0035E700`, 0 (`0x0035E70B`) | `0x0035EA40` (`0x0035EA71`, `0x0035EAA0`, `0x0035EACD`, `0x0035EB30`) |
+| `0x022CAE44` | `u32` | 0 (zero-filled tail of `.data`) | the semaphore descriptor's maximum count: `0x10000` for `[0x022CA610]`, then 1 for `[0x022CA618]`. The first store is 8 bytes and also writes 0 into the initial count `0x022CAE48` | `0x0035E820` (`0x0035E896`, 8 bytes; `0x0035E8BA`, 1) | `0x00863540` (`0x0086355E`), through the descriptor `0x0035E820` passes (`0x0035E8A7`, `0x0035E8C4`) |
+| `0x022CAE54` | `u32` | 0 (zero-filled tail of `.data`) | descriptor `+0x14`, set to 0; `0x00863540` does not read it | `0x0035E820`, 0 (`0x0035E8A1`) | no instruction names it |
+| `0x022CFEA8` | `void*` | 0 (zero-filled tail of `.data`) | the TkSyncv thread descriptor's entry, `0x00369100` | `0x00368DD0` (`0x00368E3B`) | `0x008636E0` (`0x0086376B`), through the descriptor `0x00368DD0` passes (`0x00368E97`) |
+| `0x022CFEB0` | `void*` | 0 (zero-filled tail of `.data`) | `0x022CBEA0`, the `0x4000` bytes just below the descriptor; `0x008636E0` does not read it | `0x00368DD0` (`0x00368E52`) | no instruction names it |
+| `0x022CFEB8` | `u32` | 0 (zero-filled tail of `.data`) | the stack size, `0x4000` | `0x00368DD0` (`0x00368E31`) | `0x008636E0` (`0x00863789`), through the descriptor |
+| `0x022CFEC0` | `void*` | 0 (zero-filled tail of `.data`) | `0x02EAF6D0`, the address the vertical-sync set-up also puts in its own descriptor (`0x0035E8F5`); `0x008636E0` does not read it | `0x00368DD0` (`0x00368E72`) | no instruction names it |
+| `0x022CFEC8` | `u32` | 0 (zero-filled tail of `.data`) | the priority, `0x1E`, which `0x00863430` sets as thread priority 1 | `0x00368DD0` (`0x00368E65`) | `0x008636E0` (`0x00863781`), through the descriptor |
+| `0x022CFED4` | `u32` | 0 (zero-filled tail of `.data`) | descriptor `+0x34`, set to 0; `0x008636E0` does not read it | `0x00368DD0` (`0x00368E4C`) | no instruction names it |
+| `0x022CFEE8` | `u32` | 0 (zero-filled tail of `.data`) | the low 32 bits of the address `0x008636E0` returns for the thread (the 8-byte holder of its thread object) | `0x00368DD0` (`0x00368EAE`) | no instruction names it |
+| `0x022CFEFC` | `u32` | 0 (zero-filled tail of `.data`) | the maximum count `0x10000` of the semaphore descriptor `0x022CFEF8`, from which `0x00368DD0` makes both `[0x022CFEEC]` and `[0x022CFEF0]`. The store is 8 bytes and also writes 0 into the initial count `0x022CFF00` | `0x00368DD0` (`0x00368DE7`, 8 bytes) | `0x00863540` (`0x0086355E`), through the descriptor `0x00368DD0` passes (`0x00368E06`, `0x00368E18`) |
+| `0x022CFF0C` | `u32` | 0 (zero-filled tail of `.data`) | descriptor `+0x14`, set to 0; `0x00863540` does not read it | `0x00368DD0` (`0x00368E00`) | no instruction names it |
+| `0x022D7FB8` | `u8` | 0 (zero-filled tail of `.data`) | the TkSyncv thread's index `n`: `0x00368DD0` stores 0 and passes the byte's address as the thread's argument (`0x00368E84` to `0x008636E0`, `0x00368E9F` to `0x00863610`); the thread body `0x00369100` reads it and uses it for its semaphores and its handler | `0x00368DD0`, 0 (`0x00368E79`) | `0x00369100` (`0x0036910A`), through the argument |
+
 ## Modding notes
 
 - Read this code from disassembly: the decompiler removes all eleven settle-spins.

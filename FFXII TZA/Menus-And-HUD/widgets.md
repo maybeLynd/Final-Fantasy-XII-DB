@@ -267,7 +267,8 @@ Every tick the walker `0x00244970` steps each active widget with `0x00246C20`, w
 channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) or 20 (backward)
 (`0x0024701E`-`0x0024706B`). When a closing run ends, a widget with bit 6 set is torn down (`0x002449C3`).
 
-`0x0208F570` only advances: the five tick functions add to it, and `0x0022819C` resets it.
+`0x0208F570` advances through the five tick functions. `0x00228700` saves it in `0x01FD46F4` (`0x00228738`-`0x0022874F`), and
+`0x00228130` writes the saved value back (`0x0022818C`, `0x0022819C`).
 
 ### Tweens
 

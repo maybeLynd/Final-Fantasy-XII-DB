@@ -241,7 +241,9 @@ Kind-1 descriptor (record `+0x08`; pool record `+0x00`):
 | `+0x01` | `u8` | stage/blend | low nibble stage (default 6), high nibble blend (default 3) |
 | `+0x02` | `u8` | class | 1 |
 | `+0x03` | `u8` | priority | default 0 |
+| `+0x04` | `u8[24] zero` | zero for this kind (the start's qword clears); copied with the descriptor |  |
 | `+0x1C` | `u8` | flags | bit 0 fade-in |
+| `+0x1D` | `u8[3] zero` | zero for this kind; copied with the descriptor |  |
 | `+0x20` | `u32` | colour | RGBA bytes, alpha `0x80` full |
 | `+0x24` | `u32` | duration | 2 x frames |
 

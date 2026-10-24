@@ -2,7 +2,7 @@
 title: "Bestiary: every enemy definition of every area with its name, level, stats, elements, statuses, loot and rewards"
 kind: "reference"
 category: "Enemy spawning"
-addresses: "0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A570, 0x0023AC80, 0x002FEF30, 0x0030C470, 0x002398F0, 0x002394C0, 0x002390B0, 0x0023A3B0, 0x002F8BB0, 0x002F90C0, 0x00312280, 0x00317090, 0x00390390, 0x00390680, 0x003180F0, 0x00238BF0, 0x0031C2F0, 0x002ED6F0, 0x002DF9A0, 0x00264ED0, 0x0031C540, 0x0026D610, 0x002E6090, 0x002E28E0, 0x0042FB80, 0x00420480, 0x0041F340, 0x00504F00, 0x00504840, 0x004772E0"
+addresses: "0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A570, 0x0023AC80, 0x002FEF30, 0x0030C470, 0x002398F0, 0x002394C0, 0x002390B0, 0x0023A3B0, 0x002F8BB0, 0x002F90C0, 0x00312280, 0x00317090, 0x00390390, 0x00390680, 0x003180F0, 0x00238BF0, 0x0031C2F0, 0x002ED6F0, 0x002DF9A0, 0x00264ED0, 0x0031C540, 0x0026D610, 0x002E6090, 0x002E28E0, 0x0042FB80, 0x00420480, 0x0041F340, 0x00504F00, 0x00504840, 0x004772E0, 0x003171C0, 0x00315820, 0x00315420, 0x005760A0, 0x003214B0, 0x002B58B0, 0x01EC73A0, 0x00D23740, 0x0038D400, 0x00315D50, 0x01EED130, 0x00316930, 0x002DFC0A"
 ---
 
 ## What it lists
@@ -50,6 +50,44 @@ Each line is read as the game reads the files:
 5. The model: the class row's dword `+0x00` is a bound id (letter class in bits 16-23, number in bits 0-15).
    `0x002ED6F0` turns it into a resource kind and file index, and the file name is that index's entry of the kind's
    path array ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
+6. The Clan Primer Bestiary entry: the class row's word `+0x52` (below), and the entry's name from the US Bestiary
+   catalog `menuhandbook_monster.bin`, read as the entry page reads it (next section).
+
+### The Clan Primer Bestiary entry
+
+The class row's word `+0x52` is the number of the Clan Primer Bestiary entry whose kill count the enemy's defeats
+raise, for every entry but the two of step 2 ([Clan Primer](../Menus-And-HUD/clan-primer.md), [Handbook files](../Game-Files-And-Data-Tables/handbook-files.md)):
+
+1. At a defeat, `0x003171C0` reads `[[enemy + 0xE68] + 0x52]` (`0x00317213`) and, unless it is `0xFFFF` or the actor's
+   class nibble is 3, passes it to `0x00315820` through the thunk `0x00253750`
+   ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)).
+2. `0x00315820` keeps the count plus one in the save byte `+0x3404` + that number (`0x0031588E`), for a number below
+   `0x200` for which `0x00315D50` returns -1.
+   - It returns another value for two numbers of its `menuhandbook.bin` list, which `0x01EED130` pairs with a
+     quest: entry 251, Gilgamesh, with 167, and entry 259, Shadowseer, with 170.
+   - A defeat leaves those two counts unchanged, so the 11 Gilgamesh and 3 Shadowseer definitions name an entry
+     their defeats do not count.
+   - The field-frame sweep `0x00316930` sets each of the two counts to 1 once `0x00315DC0` passes for its quest
+     ([Achievements](../Steam-And-Achievements/achievements.md)).
+3. The entry page's record builder `0x005760A0(record, n)` reads entry *n*'s kill count through `0x00315420(n)`
+   (`0x00576227`), which reads the same byte, save `+0x3404` + *n* (`0x0031545C`).
+4. The same builder takes the entry's name from the catalog: the `i32` at `+0x00` of the 12-byte record *n*, a
+   battle-text word for the Bestiary, resolved by `0x003214B0` (`0x0057617B`) and read as string 0 of its row by
+   `0x002B58B0` (`0x00576185`).
+
+The catalog is kind-7 resource `0x354`, the Bestiary family's base id at `0x00D23740` + 2 × 5 (`0x00575C60`). The US
+build's kind-7 path array `0x01EC73A0`, which `0x002DF9A0` loads in its US case (`0x002DFC0A`) and stores at `0x0215F038` (`0x002DFF7F`), names
+`myoshiok/us/handbook/menuhandbook_monster.bin` for it. Its 384 entry names are all words of bank 8, the monster
+names. One entry serves every variant of a monster: Wolf and Alpha Wolf both count for entry 2, Wolf.
+
+The 21 definitions whose name word reads No name in the `us` text are placed by the `PRISON_` functions of `nal_a`
+and `nal_b`, the `COCKATRICE_` functions of `sav_b`, the `SND_MAN_` and `SND_WOMAN_` functions of `rbn_a`, and the
+`THIRD_` functions of `rui_a` and `srb_b`. Sixteen use a model from the `npc` model folder, the five of `sav_b` one
+from the `monster` folder.
+
+The `fr` `battle_pack.bin` keeps a label at each of those words: `prison_human`, `prison_bangaa`, `prison_seeq`,
+`siiku_cocka`, `2kyu_simin_men`, `2kyu_simin_women`, `seeq_event` and `viera_event`. Each line's explanation gives
+the word, its `fr` text, its model's folder and the zone-script functions that place it.
 
 The 31 `bts_` test-battle scripts under `plan_map` hold the other 517 placements of the shipped scripts. The US
 kind-5 array names none of them, so no area load runs them, and they are left out.
@@ -160,7 +198,7 @@ chocobo definition has variant 0 and one of these colours:
 | Offset | Type | Field | Read by |
 |---|---|---|---|
 | `+0x00` | `u32` | model, a bound id | `0x0031C2F0` |
-| `+0x04` | `u8` | type, unit `+0x55` | `0x0023A570` |
+| `+0x04` | `u8` | type, unit `+0x55`; when the source unit's is 13, the Drain slot `0x0038D400` exchanges the target's HP loss and gain with the source's (`0x0038D4D9`-`0x0038D50B`), and its final block then rewrites part of them ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) | `0x0023A570` |
 | `+0x05` | `u8` | class, unit `+0x56`, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)) | `0x0023A570` |
 | `+0x06` | `u16` | unit `+0x52`; 0 in every row | `0x0023A570` |
 | `+0x10` | `i16` | push weight: a positive value divided by 10 is the weight the separation tick gives the body, as the party table's `+0x7A` ([Party table](../Party/party-table.md)); any other value goes over unchanged, and the -1 of 221 rows makes the body one an overlap never moves (`0x00314E10` gives a negative weight a share of 0) | `0x00238BF0` (`0x00238CEB`) → `0x0026DAC0` ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)) |
@@ -177,7 +215,7 @@ chocobo definition has variant 0 and one of these colours:
 | `+0x29` | `u8[5]` | absorb, halve, nullify, weak, potency | `0x002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
 | `+0x30` | `u8[16]` | read and written by no instruction (below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
 | `+0x40` | `u16` | model family, the same-model run | `0x00317ED0` (`0x00317F77`) |
-| `+0x52` | `u16` | species, `0xFFFF` none | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
+| `+0x52` | `u16` | Clan Primer Bestiary entry, `0xFFFF` none (above) | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
 
 The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) are 0 in every row.
 
@@ -244,7 +282,9 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `name` | the shipped name |
 | `placements`, `level` | how many placements the us map scripts make, and the level ranges `base`-`base + range` they set |
 | `class_row`, `model`, `model_id` | the class row, its model's file name and bound id |
-| `type`, `class`, `species`, `model_family` | class row `+0x04`, `+0x05`, `+0x52` (empty for none), `+0x40` |
+| `type`, `class` | class row `+0x04` and `+0x05`, as numbers |
+| `primer_entry`, `primer_name` | class row `+0x52`, the Clan Primer Bestiary entry (empty for none), and that entry's name in the US Bestiary catalog |
+| `model_family` | class row `+0x40` |
 | `base_row`, `growth_row` | definition `+0x22`, `+0x24` |
 | `hp` ... `magick_evade` | the stats `0x002FEF30` builds at a placement's base level without order adjustments: the base row plus the gear's bonus records, Attack and evades from the gear unless `+0x15` says otherwise, capped as on [Stats](../Damage-And-Battle-Formulas/stats.md) |
 | `*_per_level` | the growth row's value added per level above the base |
@@ -257,7 +297,7 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `weapon`, `weapon_element`, `weapon_status`, `off_hand` | the two equipment ids by name; the main-hand row's element and on-hit status |
 | `variant` | definition `+0x12` (the colour) then `+0x11` (the model variant), as "colour, variant" |
 | `start_hp` ... `class_bytes30` | the remaining fields as the layout tables above name them, raw; `push_weight` is class row `+0x10` divided by 10, and `class_bytes30` the sixteen bytes of `+0x30` |
-| `explanation` | a one-line summary of the placements, HP, elements, rewards and steals |
+| `explanation` | a one-line summary of the placements, HP, elements, rewards and steals; for a No name line also its name word, that word's `fr` text, its model's folder, the functions that place it and its Clan Primer entry |
 
 A value that differs between placements of one definition is listed once per variant, separated by ` / `.
 

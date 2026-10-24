@@ -218,6 +218,12 @@ Of the 51 read requests in the executable, the one that passes kind `0x1A` as a 
 but never starts: nothing stores the state that begins the build
 ([authored data tables](authored-data-tables.md)).
 
+The cache's next-entry index:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B58174` | `i32` | 0 (zero-filled tail of `.data`) | the next of the sixteen 12-byte motion-size cache entries at `0x02B580B0`. On a miss `0x003DC8D0` fills entry `[0x02B58174]` (`0x003DC928`-`0x003DC953`) and, once the file and its size are found, advances the index to `(index + 1) mod 16` (`0x003DC989`-`0x003DC99F`, a signed remainder of a value that stays 0 to 15) | `0x003DCBC0`, 0 (`0x003DCC31`); `0x003DC8D0` (`0x003DC99F`) | `0x003DC8D0` (`0x003DC928`, `0x003DC989`) |
+
 ## Modding notes
 
 - Keep slots 0, 1 and 2: they are bound even when their offset is 0, which binds the header itself

@@ -1139,6 +1139,46 @@ record itself and frees the name buffer `+0x18` when bit 0 of `+0x20` is set.
 | `0x02D3F7A0` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6CC78` | `0x006788C0` (`0x00678B00`) | callers of the method, through the record |
 | `0x02D3F7A8` | `u8[16]` | 0 (zero-filled tail of `.data`) | the caller object's member-function pointer: `0x00679110` and 0. `0x00679110` stores its float argument at `+0xC4` and jumps to slot 1 | `0x006788C0` (`0x00678B0C`, one 16-byte store) | the caller object's slots, through the object |
 
+### Five `PAssetReference` script callables
+
+The `PAssetReference` member registrar `0x00675740` registers `m_id`, `m_asset` and `m_assetType`, each behind its own
+thread-safe guard (`0x00632960` at `0x006757D9`, `0x0067584C`, `0x006758BE`). For `m_asset` it also builds, behind the guard
+`0x02D3E9F0`, a dynamic-type helper at `0x02D3E9D0`: `0x00633100` points the helper's `+0x08` at the member record
+`0x02D3E910`, sets the member's attribute bit `0x4` and stores the helper's address in the member's `+0x50`
+(`0x02D3E960`). The registrar then gives the helper its own vtable and member-function pointer.
+
+Outside the guard, on every call, the registrar stores the helper's address in `0x02D3E960` again (`0x00675954`). At
+exit `0x008B1D50` restores the vtable and runs `0x00633770`, which stores the base vtable `0x00D58098` and clears the
+member's `+0x50`.
+
+It then builds five records the way the `PCameraProjection` registrar above does: the methods `getID`, `getAsset`
+and `getAssetType` in the method list `+0x90` (looked up with `0x005A7A40`), and the script functions
+`GetAssetReferenceByAsset` and `GetAssetReferenceByID` in the script-function list `+0xA0` (looked up with
+`0x005A0470`). Each record's `+0x28` is set to 0 inside its guarded block. The caller object and the record's pointer
+to it are stored after the guard, on every call. The exit teardowns (`0x008B1CE0`, `0x008B1C20`, `0x008B1C80`, `0x008B1B40`,
+`0x008B1BA0`) unlink the records as above.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02D3E960` | `void*` | 0 (zero-filled tail of `.data`) | `m_asset` member record (`0x02D3E910`) `+0x50`: its dynamic-type helper `0x02D3E9D0` | `0x00633100` (`0x00633116`), through the helper `0x00675740` passes (`0x0067591C`); `0x00675740` (`0x00675954`); `0x00633770`, 0 (`0x0063377E`), at exit through the helper's `+0x08` | users of the member, through the record |
+| `0x02D3E9D0` | `void*` | 0 (zero-filled tail of `.data`) | the helper's vtable: `0x00D58098` from `0x00633100`, then `0x00D6C378` (slot 0 `0x00675700`, the helper's destructor) | `0x00633100` (`0x0063310B`), through the helper address `0x00675740` passes; `0x00675740` (`0x00675928`); `0x00675700` (`0x00675713`) and `0x00633770` (`0x00633777`), through the object; `0x008B1D50` (`0x008B1D5E`) | users of the member, through `0x02D3E960` |
+| `0x02D3E9E0` | `u8[16]` | 0 (zero-filled tail of `.data`) | the helper's member-function pointer: `0x00677A70` and 0. `0x00677A70` returns the qword at `+0x40` of its object | `0x00675740` (`0x00675934`, one 16-byte store) | the helper's slots, through the object |
+| `0x02D3EA28` | `void*` | 0 (zero-filled tail of `.data`) | `getID` record (`0x02D3EA00`) `+0x28`: the caller object `0x02D3EA30` | `0x00675740` (`0x0067599E`, 0; `0x00675A2C`, `0x02D3EA30`) | callers of the method, through the record |
+| `0x02D3EA30` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6C520` (slot 0 `0x006B4170`) | `0x00675740` (`0x00675A12`) | callers of the method, through the record |
+| `0x02D3EA38` | `u8[16]` | 0 (zero-filled tail of `.data`) | the caller object's member-function pointer: `0x005C4D20` and 0. `0x005C4D20` returns its object's address plus `0x30` | `0x00675740` (`0x00675A1E`, one 16-byte store) | the caller object's slots, through the object |
+| `0x02D3EA88` | `void*` | 0 (zero-filled tail of `.data`) | `getAsset` record (`0x02D3EA60`) `+0x28`: the caller object `0x02D3EA90` | `0x00675740` (`0x00675A76`, 0; `0x00675B04`, `0x02D3EA90`) | callers of the method, through the record |
+| `0x02D3EA90` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6C550` (slot 0 `0x006B4170`) | `0x00675740` (`0x00675AEA`) | callers of the method, through the record |
+| `0x02D3EA98` | `u8[16]` | 0 (zero-filled tail of `.data`) | the caller object's member-function pointer: `0x00677A50` and 0. `0x00677A50` copies the qwords at `+0x38` and `+0x40` of its object into its result | `0x00675740` (`0x00675AF6`, one 16-byte store) | the caller object's slots, through the object |
+| `0x02D3EAE8` | `void*` | 0 (zero-filled tail of `.data`) | `getAssetType` record (`0x02D3EAC0`) `+0x28`: the caller object `0x02D3EAF0` | `0x00675740` (`0x00675B4E`, 0; `0x00675BDC`, `0x02D3EAF0`) | callers of the method, through the record |
+| `0x02D3EAF0` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6C580` (slot 0 `0x006B4170`) | `0x00675740` (`0x00675BC2`) | callers of the method, through the record |
+| `0x02D3EAF8` | `u8[16]` | 0 (zero-filled tail of `.data`) | the caller object's member-function pointer: `0x00677A70` and 0 | `0x00675740` (`0x00675BCE`, one 16-byte store) | the caller object's slots, through the object |
+| `0x02D3EB48` | `void*` | 0 (zero-filled tail of `.data`) | `GetAssetReferenceByAsset` record (`0x02D3EB20`) `+0x28`: the caller object `0x02D3EB50` | `0x00675740` (`0x00675C26`, 0; `0x00675CA6`, `0x02D3EB50`) | callers of the script function, through the record |
+| `0x02D3EB50` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6C4C0` (slot 0 `0x0067E690`) | `0x00675740` (`0x00675C8A`) | callers of the script function, through the record |
+| `0x02D3EB58` | `void*` | 0 (zero-filled tail of `.data`) | the function the caller object calls, `0x00676A70` | `0x00675740` (`0x00675C98`) | the caller object's slots, through the object |
+| `0x02D3EBA8` | `void*` | 0 (zero-filled tail of `.data`) | `GetAssetReferenceByID` record (`0x02D3EB80`) `+0x28`: the caller object `0x02D3EBB0` | `0x00675740` (`0x00675CF0`, 0; `0x00675D70`, `0x02D3EBB0`) | callers of the script function, through the record |
+| `0x02D3EBB0` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6C4F0` (slot 0 `0x0067E690`) | `0x00675740` (`0x00675D54`) | callers of the script function, through the record |
+| `0x02D3EBB8` | `void*` | 0 (zero-filled tail of `.data`) | the function the caller object calls, `0x00676BD0` | `0x00675740` (`0x00675D62`) | the caller object's slots, through the object |
+
 ## Modding notes
 
 - A class's members exist only in code. A new field needs a new registration; a file cannot add one

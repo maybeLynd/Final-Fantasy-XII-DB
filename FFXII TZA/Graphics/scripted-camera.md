@@ -434,6 +434,27 @@ The view is read as whole 16-byte rows by `0x0024C060` (`0x0024C10D`-`0x0024C130
 `0x002F4520`, `0x002F5550`, `0x003820C0` (`0x00382752`, `0x0038276C`, `0x003827D5`), `0x003F0170`, `0x003F0610`, `0x003F3710`,
 `0x003F5430` and `0x003F7930`.
 
+### The Screen Shake rows
+
+The accumulator `0x02EBF380 + draw × 0x20` of the Screen Shake option holds two rows of `0x20` bytes,
+`0x02EBF380`-`0x02EBF3BF`, indexed by the same draw number in both functions. `0x0037D970` writes a row's `+0x00`-`+0x08`
+and, with one 16-byte store, `+0x0C`-`+0x1B` (`0x0037DA23`-`0x0037DA45`).
+
+The gather `0x0037D4C0` adds `+0x00`-`+0x08` to
+the eye offset, `+0x0C`-`+0x14` to the target offset and `+0x18` to the roll it hands to `0x00382B70`
+(`0x0037D769`-`0x0037D7C4`); it does not read `+0x1C`. `0x0037D890`, which `0x00314020` (`0x003140F5`) and `0x003143D0`
+(`0x003143F0`) run, zeroes both rows with eight 8-byte stores (`0x0037D917`-`0x0037D948`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EBF388` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x08` (the eye offset's z) and `+0x0C` (the target offset's x) | `0x0037D970` (`0x0037DA3A`; `0x0037DA45`, 16 bytes); `0x0037D890`, 0 (`0x0037D91E`) | `0x0037D4C0` (`0x0037D77B`, `0x0037D781`) |
+| `0x02EBF390` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x10` and `+0x14`, the target offset's y and z | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D925`) | `0x0037D4C0` (`0x0037D787`, `0x0037D78D`) |
+| `0x02EBF398` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x18`, the roll offset, and `+0x1C`, written with it and not read | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D92C`) | `0x0037D4C0` (`0x0037D793`, `+0x18` only) |
+| `0x02EBF3A0` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x00` and `+0x04`, the eye offset's x and y | `0x0037D970` (`0x0037DA23`, `0x0037DA2E`); `0x0037D890`, 0 (`0x0037D933`) | `0x0037D4C0` (`0x0037D770`, `0x0037D775`) |
+| `0x02EBF3A8` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x08` and `+0x0C` | `0x0037D970` (`0x0037DA3A`; `0x0037DA45`); `0x0037D890`, 0 (`0x0037D93A`) | `0x0037D4C0` (`0x0037D77B`, `0x0037D781`) |
+| `0x02EBF3B0` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x10` and `+0x14` | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D941`) | `0x0037D4C0` (`0x0037D787`, `0x0037D78D`) |
+| `0x02EBF3B8` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x18` and `+0x1C` | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D948`) | `0x0037D4C0` (`0x0037D793`, `+0x18` only) |
+
 ### The two transitions' state
 
 The move to the event camera is armed by `0x00255C50` and stepped by `0x00255850`; the swing back is armed by `0x00257830`
