@@ -280,7 +280,7 @@ The board screen is the `0x110`-byte widget with procedure `0x00561390` that `0x
 
 The board view is the `0x580`-byte widget with procedure `0x0055CD40` that `0x0055C690` builds (The board screen's
 fields, `+0xC8`). Its fields come from the procedure's build arm (message 1, `0x0055CDE6`-`0x0055D150`), its destroy arm
-(message 18, `0x0055CD84`-`0x0055CDD2`) and every access of the view in `license-board-screen-board-view-accesses.tsv`
+(message 18, `0x0055CD84`-`0x0055CDD2`) and every access of the view in [`license-board-screen-board-view-accesses.tsv`](license-board-screen-board-view-accesses.tsv)
 beside this page. A field reached by no instruction in that table says so.
 
 `BoardView` (`0x580` bytes, offsets from the start of the record):

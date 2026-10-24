@@ -184,7 +184,7 @@ The comparison `0x0030A4E0` also returns a warning code, which the Equip screen 
 are on [Stats](../Damage-And-Battle-Formulas/stats.md#the-equipment-comparisons-warnings).
 
 The four objects' own fields, beyond the widget header ([Widgets](widgets.md)) and the parts listed above, are in
-`menu-screens-member-record-panel-accesses.tsv` beside this page, every access with the object it reaches (its
+[`menu-screens-member-record-panel-accesses.tsv`](menu-screens-member-record-panel-accesses.tsv) beside this page, every access with the object it reaches (its
 `object` column). The record is the `0x170` widget at `[0x0209AC30] + 0x2E0`:
 
 `MemberRecordPanel` (`0x170` bytes, offsets from the start of the record):

@@ -90,7 +90,7 @@ The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10
 (`0x2380` bytes, `0x001E71B0`); its constructor `0x001B3940` sets up a name vector, three maps keyed by font id
 (`+0x28`, `+0x60`, `+0x98`), two pools (`0x001B36D0`, `0x001B3540`) and 16 slots from `+0x278`.
 
-The manager's layout is in Layouts (The font manager), with every access in `fonts-font-manager-accesses.tsv` beside
+The manager's layout is in Layouts (The font manager), with every access in [`fonts-font-manager-accesses.tsv`](fonts-font-manager-accesses.tsv) beside
 this page.
 
 - `0x001B58E0(manager, id)`, from `0x001B4D70`, requests the font's atlas through the asynchronous loader
@@ -157,7 +157,7 @@ A `.fex` is chunks of `{key, count, value[count]}` to the end of the file. The v
 ### The font manager
 
 The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'s stores and every access of the object
-(`fonts-font-manager-accesses.tsv` beside this page):
+([`fonts-font-manager-accesses.tsv`](fonts-font-manager-accesses.tsv) beside this page):
 
 `FontMgr` (`0x378` bytes, offsets from the start of the [0x01F81200]):
 
