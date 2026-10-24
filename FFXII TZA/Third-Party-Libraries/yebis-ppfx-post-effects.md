@@ -51,6 +51,25 @@ them load a literal format string, 386 distinct. Most are a prefix naming the so
 by the message, such as "..\src\GPU\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: " (113 sites).
 The game's own code never calls it.
 
+`0x006DF480` formats the message into the `0x800`-byte buffer `0x02EA0BA0` (`__stdio_common_vsprintf`, `0x006DF4CC`) and
+passes it to the callback in `0x02EA0B88` when one is set (`0x006DF4EF`), otherwise to `OutputDebugStringA`
+(`0x006DF4FA`). The only store to `0x02EA0B88` is `0x006DF3A0`, which no instruction calls and no 8-byte pointer in the
+image names, so the messages go to the debugger output.
+
+Each call site tests two words first:
+
+- `0x01F3BA80`, 2 in the image, must be at least 1 before a message of any kind;
+- `0x01F3BA90`, 1 in the image, before the 240 ERROR messages, and `0x01F3BA8C`, 1 in the image, before the 41
+  WARNING messages, so both kinds print;
+- `0x02EA0B40`, 0, before the 86 plain messages that name their source file and line, and `0x02EA0B44`, 0, before
+  15 plain messages such as the `IPfxBaseContext::Initialize()` banner, so none of those prints.
+
+While `0x02EA0B44` is 0, each of the device functions `0x00725AA0`, `0x00725C80`, `0x00725E40`, `0x00725FF0`, `0x007261B0`,
+`0x00726360`, `0x00726550`, `0x00726700`, `0x007268C0` and `0x00726A70` also skips one more block (for example `0x00725AF5`).
+
+No instruction stores any of the five words: no RIP-relative store, address-forming instruction or 8-byte pointer
+names them, and no base-plus-displacement operand reaches them through the image base.
+
 ### Methods named by their diagnostics
 
 The messages a function prints name its method:

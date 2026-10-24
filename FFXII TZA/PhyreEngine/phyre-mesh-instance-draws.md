@@ -45,6 +45,22 @@ For each segment:
 
 A segment with no technique or no variant is skipped.
 
+The `0x48`-byte record is a `PMeshInstanceSegmentContext`. `PMeshInstance` (descriptor `0x02CB6E80`) registers the
+array of them as its member `m_segmentContext` at `+0x48` (`0x005E5865`), with the type name
+`PArray<PMeshInstanceSegmentContext>` (`0x005E5806`): the count at `+0x48` and the records at `+0x50`, one per
+segment. The draw takes segment i's record at `+0x50` plus i × `0x48` (`0x0060BC0A`, `0x0060BC0E`, `0x0060BC13`).
+
+In the record, `+0x28` is the variant entry's index and `+0x30` the effect variant it belongs to (`0x0060BD44`,
+`0x0060BDCF`), and the reflected member `m_streamBindings` at `+0x38` is a
+`PSharray<PMeshInstanceSegmentStreamBinding *>` (count `+0x38`, array `+0x40`; `0x005E6860`). The descriptor's
+construct slot `0x005CF520` clears `+0x00` to `+0x23`, sets `+0x28` to -1 (`0x005CF53B`) and clears `+0x30` and the
+bindings (`0x005CF542`, `0x005CF546`, `0x005CF549`).
+
+Its copy slot `0x005CF610` copies the record field by field (`0x005CF628`, `0x005CF62F`, `0x005CF638`, `0x005CF640`,
+`0x005CF647`) and the bindings through
+`0x00646C00`. Its destroy slot `0x005CEBA0` frees the bindings' array when bit `0x80000000` of the count is clear
+and the count is above 1 (`0x005CEBC7`, `0x005CEBD2`) and zeroes the pair (`0x005CEBD9`, `0x005CEBDD`).
+
 ### Segment overrides
 
 When the instance's word `+0x98` is non-zero, step *i* of the loop reads the instance's
