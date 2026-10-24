@@ -183,6 +183,103 @@ The comparison `0x0030A4E0` also returns a warning code, which the Equip screen 
 ("Equipping a shield will remove your two-handed weapon." and the others); every code, its condition and its line
 are on [Stats](../Damage-And-Battle-Formulas/stats.md#the-equipment-comparisons-warnings).
 
+The four objects' own fields, beyond the widget header ([Widgets](widgets.md)) and the parts listed above, are in
+`menu-screens-member-record-panel-accesses.tsv` beside this page, every access with the object it reaches (its
+`object` column). The record is the `0x170` widget at `[0x0209AC30] + 0x2E0`:
+
+`MemberRecordPanel` (`0x170` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u8[192]` | header | the widget header: the build takes its rect +`0x98`-+`0x9E` from the layout `0x002432B0` returns for the creation record's two words, with the header's +`0x50` passed by address (`0x002CBFD1`-`0x002CC02F`), and installs the animation descriptor `0x00916FA8` through `0x00247570` (`0x002CC036`-`0x002CC040`, the header's +`0x48`); a builder that finds a record already kept at [`0x0209AC30`] + `0x2E0` builds none and goes on only when that record's +`0x7C` bit `0x20` is set (`0x002CBE1A`, `0x002CBE9F`, `0x002CBF51`); message 18 clears the block's +`0x2E0` (`0x002CBFB3`-`0x002CBFBD`) |
+| `+0x0C0` | `void*` | strip | the arrow strip (above); with bit 16 of +`0x168` the build adds 8 to the strip's +`0x98` and 4 to its +`0x9A` and runs `0x00247870` on it (`0x002CC21D`-`0x002CC25C`) |
+| `+0x0C8` | `void*` | labels | the stat labels (above), 0 outside the shop's panel; `0x002CC2A0` reads it at `0x002CC47F` |
+| `+0x0D0` | `void*[9]` | rows | the nine rows (above); `0x002CB8D0` (`0x002CB901`-`0x002CB922`), `0x002CBA50` (`0x002CBA79`-`0x002CBAB0`), `0x002CBC50` (`0x002CBCC0`) and `0x002CC660` (`0x002CC6E0`) walk them |
+| `+0x118` | `void*[9]` | differences | the nine difference widgets (above), 0 outside the shop's panel |
+| `+0x160` | `i16` | rowX | row 0's +`0x98` and +`0x9C`, its x and width, copied at the build (`0x002CC185`-`0x002CC1E0`) |
+| `+0x162` | `i16` | rowW |  |
+| `+0x164` | `i16` | diffX | the same of difference widget 0, or of row 0 when there is none (`0x002CC1A2`-`0x002CC1F0`); `0x002CC2A0` places the rows from +`0x164`/+`0x166` when bits 16-19 of +`0x168` are set, else from +`0x160`/+`0x162` (`0x002CC2BF`-`0x002CC300`) |
+| `+0x166` | `i16` | diffW |  |
+| `+0x168` | `u32` | flags | byte 0: the rows shown, zeroed and counted by `0x002CC2A0` (`0x002CC33E`, `0x002CC431`), the n `0x002CAFE0` takes (above), read by `0x002CBC50` and `0x002CC660` before they walk the rows (`0x002CBC7B`, `0x002CC68D`); bit 8: the build counted at most one party slot whose stats record (`0x00282DF0`) has a non-negative +`0x60` word and, when the menu block's +`0xD3C` bit `0x10` is set, passes `0x00282FA0` (written as byte +`0x169`, `0x002CC12B`-`0x002CC155` and `0x002CC261`-`0x002CC26C`; tested at `0x002CC379` and by the strip at `0x002CAC3D`); bit 9: a copy of bit 16 (`0x002CC272`-`0x002CC280`); bits 16-19: the creation block's byte +`0x0C`, the mode (`0x002CC045`-`0x002CC059`), also read as the word +`0x16A` by `0x002CC4F0` (`0x002CC513`, `0x002CC550`); bit 16 also moves the strip (above); bit 17 set by `0x002CB850` at `0x002CB86D` and cleared at `0x002CB87E`; bit 20: the block's +`0x10` bit `0x4` (`0x002CC065`-`0x002CC078`); bits 20-21 tested by `0x002CBA50`, `0x002CC2A0` and `0x002CC4F0` (`0x002CBAA8`, `0x002CC37F`, `0x002CC574`); bits 22-23: `0x002CC4F0` sets bit 22 and clears bit 23 when the item's class (the first dword of `0x0035D330`(1, id << 16)) is 8, 9, 11 or 12 and clears both otherwise (`0x002CC59E`-`0x002CC5D6`), only with bits 20-21 set and an id other than `0xFFFF` (`0x002CC574`-`0x002CC592`); `0x002CC2A0` tests both at `0x002CC36D` |
+| `+0x16C` | `u8[4]` | gap16C | reached by no instruction in the table |
+
+The strip's own fields, from its procedure `0x002CABF0` (message 1 the build at `0x002CAEBC`, message 2 the tick at
+`0x002CAD79`, message 3 the colour pulse at `0x002CAC95`, message 4 the draw at `0x002CAC2D`) and from `0x002CAFE0` (above):
+`+0xEE` is written by `0x002CAFE0` (`0x002CB0F7`) and read by the strip's tick (`0x002CAE74`), and `+0xF0` is read at
+`0x002CB069`.
+
+`MemberRecordStrip` (`0xF8` bytes, offsets from the start of the strip):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header; the build takes its rect +`0x98`-+`0x9E` from `0x002432B0` with 7 (`0x002CAEC3`-`0x002CAF19`) and gives nodes 2 and 3 the texts `0x466D` and `0x4670`, hidden (`0x002CAF29`-`0x002CAF70`); the record's build then moves the rect (above) |
+| `+0xC0` | `u8[20]` | tween | a record of the WidgetFade shape below, stepped by the tick (`0x002CADEA`-`0x002CAE5A`) into +`0xE4`; the tick clears its bits `0x1`-`0x2` when the tween ends (`0x002CAE2D`); no other writer in the table |
+| `+0xD8` | `void*` | panel | the record, from the creation message's +`0x10` (`0x002CAF7D`); the draw reads it and draws nothing while its +`0x168` bit 8 or 9 is set (`0x002CAC2D`-`0x002CAC47`) |
+| `+0xE0` | `u32` | buildTick | the frame counter `0x0208F570` at the build (`0x002CAF8A`); the colour pulse feeds it to `0x002CC8D0` and paints nodes 0 to 3 with the result (`0x002CAC95`-`0x002CAD69`) |
+| `+0xE4` | `i16` | x | row 0's +`0x98`, or difference widget 0's when the record's +`0x168` bits 16-19 are set (`0x002CAF90`-`0x002CAFB8`); the tween's result each tick (`0x002CAE5E`); the draw's x (`0x002CAC5E`) |
+| `+0xE6` | `i16` | y | their +`0x9A` (`0x002CAFBF`-`0x002CAFC3`); the draw's y, plus one (`0x002CAC56`-`0x002CAC65`) |
+| `+0xE8` | `i16` | push1 | 4 when the menu block's byte +`0xDE9` bit `0x2` is set, then one less each tick to 0 (`0x002CAD79`-`0x002CAD88`, `0x002CADD0`-`0x002CADD5`); subtracted from node 1's x (`0x002CAE7B`) |
+| `+0xEA` | `i16` | push0 | the same for bit `0x1` (`0x002CAD8F`-`0x002CAD9E`, `0x002CADBD`-`0x002CADC2`); added to node 0's x (`0x002CAE9C`); the block's two bits are cleared once read (`0x002CADE3`) |
+| `+0xEC` | `i16` | minus1 | -1 at the build (`0x002CAF73`-`0x002CAF76`); no read in the table |
+| `+0xEE` | `i16` | offset | the list's node 2 offset, negated, stored by `0x002CAFE0` (`0x002CB0F7`) and added to node 1's x by the tick (`0x002CAE74`) |
+| `+0xF0` | `u32` | arrowFlags | bit `0x1` which pair, bit `0x2` hides (above); read at `0x002CB069` |
+| `+0xF4` | `u8[4]` | gapF4 | reached by no instruction in the table |
+
+The tick also places the arrows: node 1 at its layout x (`[+0x60] + 8`, layout `+4`) plus `+0xEE` minus `+0xE8`, node 0
+at its layout x plus `+0xEA`, both at their layout y (`0x002CAE65`-`0x002CAEAB`).
+
+A row and a difference widget keep their fade in one record at `+0xC0`, written by `0x002CA3B0` for the difference
+widget and in place for the row (above):
+
+`WidgetFade` (`0x14` bytes, offsets from the start of the row):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | fadeFlags | bit `0x1`: running, set by every starter and cleared with bit `0x2` when the fade ends (`0x002CA34B`); bits `0x4`-`0x20`: the curve `0x00248F40` takes ((flags >> 2) & `0xF`, `0x002CA310`-`0x002CA31E`), `0x002CA3B0`'s curve argument (`0x002CA3C7`-`0x002CA3E3`) or 1 from the rows' starters (`0x45` at `0x002CA87E`, `0x002CA9C0`, `0x002CA635`, `0x002CA664`); bit `0x40`: set by every starter; bits `0x2` and `0x80` and above: kept by the starters' masks, no write in the table |
+| `+0x04` | `i16` | fadeFrom | the node's brightness +`0x3B` when the fade started (`0x002CA3EA`-`0x002CA3F2`, `0x002CA889`-`0x002CA890`) |
+| `+0x06` | `i16` | fadeNode | the node's index in the widget's list +`0x60`: `0x002CA3B0`'s argument (`0x002CA3FA`), 11 for the difference widget (`0x002CA8CC`, `0x002CB3FA`); 0 for the row (`0x002CA89E`, `0x002CA9E0`, `0x002CA641`, `0x002CA670`) |
+| `+0x08` | `i16` | fadeDelta | target minus fadeFrom (`0x002CA3EE`-`0x002CA402`, `0x002CA884`-`0x002CA897`) |
+| `+0x0C` | `u32` | fadeFrames | the length in frames: `0x002CA3B0`'s ms argument times 60 over 1000 (`0x002CA3D6`, `0x002CA417`-`0x002CA428`); the rows' starters write 6 (`0x002CA8B2`, `0x002CA9F4`, `0x002CA6A2`) |
+| `+0x10` | `u32` | fadeStart | the frame counter `0x0208F570` when the fade started (`0x002CA40A`-`0x002CA410`, `0x002CA8A6`-`0x002CA8AC`) |
+
+`0x002CA2E0` runs while bit `0x1` or `0x2` is set: it asks `0x00248F40` for the progress of the frames since fadeStart over
+fadeFrames with the curve (`0x002CA302`-`0x002CA32B`); at 1.0 (`0x01CEBBA8`) it writes fadeFrom + fadeDelta and clears bits
+`0x1`-`0x2` (`0x002CA33B`-`0x002CA34B`), otherwise fadeFrom + fadeDelta x progress (`0x002CA354`-`0x002CA37C`); the brightness
+`b` goes to the node's `+0x3B` and to its four vertex colours `+0x28`-`+0x34` as the grey `b | b << 8 | b << 16` with
+bit 31 set (`0x002CA37F`-`0x002CA39C`).
+
+A row's fields beyond the header and the fade record:
+
+`MemberRecordRow` (`0x110` bytes, offsets from the start of the row):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x0D4` | `u32` | slot | the party slot, from the creation block's +8 (`0x002CA789`-`0x002CA78C`); `0x00282DF0`(slot) is the member's stats record (`0x002CA5EA`, `0x002CA7E2`, `0x002CA84D`, `0x002CA9A0`, `0x002CB913`, `0x002CBA93`, `0x002CBCC3`, `0x002CC359`, `0x002CC3C4`, `0x002CC6E3`) |
+| `+0x0D8` | `char[16]` | numText1 | the first difference's number as text, which `0x002CC780` writes through `0x0029FF60` and the number node's +`0x18` points at (`0x002CAB31`, `0x002CAB90`; `0x002A0030`) |
+| `+0x0E8` | `char[16]` | numText2 | the second's (`0x002CAB5E`) |
+| `+0x0F8` | `char[8]` | signText1 | the first difference's sign text, "ex00" and "+" or "-" (`0x00365668`-`0x00365690` through `0x0029CCF0`), which the sign node's +`0x18` points at (`0x002CAB1D`, `0x002CAB85`; `0x002CC864`-`0x002CC86B`) |
+| `+0x100` | `char[8]` | signText2 | the second's (`0x002CAB4A`) |
+| `+0x108` | `void*` | panel | the record, from the creation block's +`0x10` (`0x002CA792`-`0x002CA796`); on message 2 the row clears its +`0x50` bit `0x1` when the record's +`0x168` bit 16 is set and sets it otherwise (`0x002CA6FF`-`0x002CA723`) |
+
+The row's build (message 1, `0x002CA734`-`0x002CA7A9`) takes its rect from `0x002432B0` with 6, like the record's, and clears
+`+0x50` bit `0x1` when the record's bit 16 is set.
+
+A difference widget's fields beyond the header and the fade record:
+
+`MemberRecordDifference` (`0xE8` bytes, offsets from the start of the difference):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0xD4` | `u32` | slot | the party slot, from the creation block's +8 (`0x002CB660`-`0x002CB663`; read at `0x002CA8BC`, `0x002CB37A`, `0x002CBAD2`) |
+| `+0xD8` | `void*` | panel | the record, from the block's +`0x10` (`0x002CB669`-`0x002CB66D`; read at `0x002CB4F3`) |
+| `+0xE0` | `u32` | worn | 1 when the piece is the one worn, else 0 (above; `0x002CA824`, `0x002CAA86`, `0x002CAA93`); its bit `0x1` is copied into the shown bit of nodes 16 and 10 (`0x002CA8FF`-`0x002CA92F`, `0x002CB443`-`0x002CB46F`) and tested at `0x002CB3C9` |
+| `+0xE4` | `u32` | bright | 1 when node 11 fades toward `0x80` (`0x002CA8EB`, `0x002CB42A`), 0 toward `0x20` (`0x002CB41D`); on message 2 its bit `0x1` is copied into the shown bit of nodes 0 to 8 (`0x002CB52B`-`0x002CB5FB`) |
+
+On message 1 (`0x002CB60B`-`0x002CB70F`) the difference widget takes its rect from `0x002432B0` with 9, stores slot and panel,
+and when the record's `+0x168` bits 16-19 are set sets its `+0x50` bit `0x1`, shows node 11 and nodes 0 to 8 and hides
+node 16; with the bits clear it clears `+0x50` bit `0x1`. On message 2 it steps its fade (`0x002CB4EE`) and then does the
+same `+0x50` choice (`0x002CB4F3`-`0x002CB517`), shows node 11 and copies `+0xE4` into nodes 0 to 8.
+
 ### The Equip screen's stat panel
 
 The Equip screen's stat panel lists Attack Power, Defense, Magick Resist, Evade, Magick Evade, Strength, Magick

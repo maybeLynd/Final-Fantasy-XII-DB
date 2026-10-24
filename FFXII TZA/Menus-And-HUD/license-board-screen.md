@@ -276,6 +276,110 @@ The board screen is the `0x110`-byte widget with procedure `0x00561390` that `0x
 | `+0x109` | `u8[3]` | gap109 | read and written by no function; nothing fixes its width |
 | `+0x10C` | `u32` | flags | bit 0: on destroy, sends the owner the command `0x8003` (`0x00247510`) instead of handing back (`0x00561424`-`0x0056143C`); no access sets it. Bit 1: the owner's byte +`0x185` (`0x00561593`-`0x005615A5`); no access reads it. Bit 2: the creation record's +`0x08` bit 0 (`0x005615AB`-`0x005615BE`), 1 from the board chooser when the board changed (`0x005590A5`-`0x005590E3`), 0 from the member picker; on destroy, set: the member goes back to the owner and `0x00558F20`(owner, 1, +`0x108`) builds the chooser (`0x0056147A`-`0x005614A1`); clear: the owner is opened again (`0x00561460`-`0x00561470`) |
 
+### The board view's fields
+
+The board view is the `0x580`-byte widget with procedure `0x0055CD40` that `0x0055C690` builds (The board screen's
+fields, `+0xC8`). Its fields come from the procedure's build arm (message 1, `0x0055CDE6`-`0x0055D150`), its destroy arm
+(message 18, `0x0055CD84`-`0x0055CDD2`) and every access of the view in `license-board-screen-board-view-accesses.tsv`
+beside this page. A field reached by no instruction in that table says so.
+
+`BoardView` (`0x580` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u8[192]` | header | the widget header (Widgets, The header): the build arm installs the descriptor `0x00D22FE0` (`0x0055CE86`-`0x0055CE90`), sets +`0x40` bits 25 and 21 (`0x0055D0D0`, `0x0055D0E6`) and stores a float at +`0x8C` (`0x0055D0FD`); the destroy arm clears bit 21 (`0x0055CDB6`) |
+| `+0x0C0` | `u8[8]` | gap0C0 | reached by no instruction in the table |
+| `+0x0C8` | `void*` | square | the cursor's square record (LicenseSquare), written by the procedure's take-square arm (`0x0055D73A`; Obtaining a license) and `0x0055E9E0` (`0x0055ECEF`): the purchase passes it to `0x0055A180` and reads its +`0x30` category against `0x1E`, the Second Board (`0x0055F444`, `0x0055F491`), and its +`0x0B` rule byte (`0x0055F586`); `0x0055DD70` reads it (`0x0055DD8E`) |
+| `+0x0D0` | `void*` | square0D0 | a square from the +`0x418` entries, stored by `0x0055E9E0` (`0x0055EC64`-`0x0055EC6C`); read by no instruction in the table |
+| `+0x0D8` | `void*` | memberStats | the member's record from `0x00282DF0`(+`0x160`), stored when a pending refresh is served (`0x0055F55C`) |
+| `+0x0E0` | `u8[32]` | block0E0 | `0x00561BE0` fills it with `0x00202C70` and hands it to `0x0039ADE0` (`0x00561C30`-`0x00561C77`) |
+| `+0x100` | `u8[32]` | block100 | `0x00559540` fills it the same way (`0x00559570`-`0x005595C3`) |
+| `+0x120` | `void*` | squares | the square array, `0x38` bytes a square, allocated and zeroed by `0x0055B560` (`0x0055B620`-`0x0055B63C`), freed on destroy (`0x0055CDAA`-`0x0055CDAF`; LicenseSquare above) |
+| `+0x128` | `void*` | cells | the board's cell bytes, width x height, allocated by `0x0055B3F0` from the licd file (`0x0055B4AA`-`0x0055B4B7`) and freed before a rebuild and on destroy (`0x0055DC57`, `0x0055CD97`) |
+| `+0x130` | `void*` | owner | the board screen that built the view: the creation record's first qword (`0x0055CE95`-`0x0055CE98`); the rebuild writes the member slot into its +`0xD0` (`0x0055DC15`), the destroy clears its +`0xC8` (`0x0055CDCB`-`0x0055CDD2`), the take-square arm reads it (`0x0055D55C`-`0x0055D6CF`) |
+| `+0x138` | `void*` | preview | the widget `0x00561830` builds when it is 0 (`0x00561845`-`0x0056188F`) and `0x00561800` closes and clears (`0x00561809`-`0x0056181A`); the rebuild closes it first (`0x0055DC7B`-`0x0055DC8C`) |
+| `+0x140` | `void*[4]` | panes | the four detail panes (Detail panel and member switch): taken by address and walked by `0x005597C0`, `0x00559800`, `0x00559860`, `0x0055A180` and `0x0055A1F0` (`0x005597CA`, `0x00559811`, `0x00559884`, `0x0055A1A3`, `0x0055A214`); `0x0055FB20` reads the pane +`0x55D` names (`0x0055FB59`) |
+| `+0x160` | `u32` | member | the member's roster slot: the owner's +`0xD0` at build (`0x0055CEA6`-`0x0055CEAC`), the menu block's word +`0xDE0` at a rebuild (`0x0055DBF0`-`0x0055DC07`); passed to `0x00282DF0` by `0x0055A1F0`, `0x0055B3F0`, `0x0055BFF0`, `0x0055E2C0`, `0x0055E600` and `0x0055F3E0` |
+| `+0x164` | `u8[4]` | gap164 | reached by no instruction in the table |
+| `+0x168` | `void*[5]` | pictures | the owner's +`0xE8`, +`0xE0`, +`0xF8`, +`0x100` and +`0xF0` copied at build (`0x0055CEDA`-`0x0055CF3B`): the loaded pictures and art table the screen keeps (The board screen's fields); read at `0x0055AEAA`, `0x0055AB51`, `0x0055B6DC` and `0x0055CF86` |
+| `+0x190` | `u8` | litOn | 1, as a word with +`0x191` = 0, at a rebuild, a purchase start and the stage changes (`0x0055DAF6`, `0x0055DC2C`, `0x0055EE80`, `0x0055F240`, `0x0055F310`, `0x0055F477`); `0x0055F1C0` steps it (`0x0055F2D5`-`0x0055F2FC`) and clears it (`0x0055F32C`, `0x0055F33C`) |
+| `+0x191` | `u8` | pulse | the cursor's pulse step (Grid helpers): `0x0055F1C0` writes it (`0x0055F35F`, `0x0055F39D`, `0x0055F3D3`; 0 as the high byte of the word stores to +`0x190`), `0x0055B6D0` reads it (`0x0055B6E6`) |
+| `+0x192` | `u8` | gap192 | reached by no instruction in the table |
+| `+0x193` | `u8` | litPhase | 0 at the same sites as +`0x190` and stepped by `0x0055F1C0` (`0x0055F2E0`-`0x0055F36C`) |
+| `+0x194` | `u8` | gap194 | reached by no instruction in the table |
+| `+0x195` | `u8[4]` | litColour | the bytes 1E 06 04 1E at the same sites (`0x0055DB06`, `0x0055DC3C`, `0x0055EE90`, `0x0055F250`, `0x0055F320`, `0x0055F487`) |
+| `+0x199` | `u8[7]` | gap199 | reached by no instruction in the table |
+| `+0x1A0` | `u8[192]` | artEntries | 16 twelve-byte entries the build unpacks from the art table: two words copied, two 12-bit fields of its dword +4, and bytes from the table's second part (`0x0055CF8D`-`0x0055D02A`) |
+| `+0x260` | `u8[168]` | artEntries2 | 14 more of the same shape from the table's next part (`0x0055D030`-`0x0055D0CA`) |
+| `+0x308` | `void*[32]` | changed | the changed squares a fill lists with the collect bit set (`0x0055B388`; The change sweep); `0x0055DD70` takes the list by address (`0x0055DDD8`) |
+| `+0x408` | `i8` | changedCount the number listed: 0 at a fill with the collect bit (0x0055B31C), at most 32 | (`0x0055B379`), raised with each listing (`0x0055B390`); `0x0055DD70` compares and sign-extends it (`0x0055DDC6`, `0x0055DE6F`) |
+| `+0x409` | `u8[7]` | gap409 | reached by no instruction in the table |
+| `+0x410` | `u8[208]` | added | 13 entries of 16 bytes, one per square the board read `0x0055BFF0` adds: the column byte at +`0x00`, the row byte at +`0x01` and the square pointer at +`0x08` (`0x0055C2CD`-`0x0055C2F2`); the procedure's announce arm (`0x0055D870`) announces them (`0x0055D884`-`0x0055D8A7`) and `0x0055E9E0` reads them (`0x0055EA44`, `0x0055EC64`) |
+| `+0x4E0` | `u8` | secondCol | the Second Board square's entry, the same shape: column, row and square (`0x0055C322`-`0x0055C330`); read at `0x0055EB78`, `0x0055EB69`, `0x0055D8D8`, `0x0055D8F5` and `0x0055EB49`; the square +`0x4E8` is also 0 when a board is read (`0x0055C02F`) and rewritten at `0x0055D911` |
+| `+0x4E1` | `u8` | secondRow |  |
+| `+0x4E8` | `void*` | secondSquare |  |
+| `+0x4F0` | `i8` | addedCount | the entries at +`0x410`: 0 at build (`0x0055CF5B`, as a word with +`0x4F1`), raised by the board read (`0x0055C2FA`), compared with +`0x4F1` by the rebuild before the cursor square's node test (`0x0055DD0F`-`0x0055DD1D`) and by `0x0055E9E0` (`0x0055EA18`, `0x0055EC49`) |
+| `+0x4F1` | `i8` | addedNext | the next entry to announce: the announce arm reads and raises it (`0x0055D870`-`0x0055D8B4`), `0x0055E9E0` reads it (`0x0055EA11`, `0x0055EB2D`, `0x0055EC42`) |
+| `+0x4F2` | `char[26]` | text | the text `0x0055BAC0` writes on a square (State; formatted by `0x00365B30`) |
+| `+0x50C` | `i16` | winX | four words `0x0055B960` reads to place a square on screen with the cursor, the cell size and the scroll +`0x51C`/+`0x51E` (`0x0055B996`-`0x0055B9DA`); written by the build's layout pass (`0x0055D291`-`0x0055D2F2`); the purchase takes +`0x50C` by address (`0x0055F677`) |
+| `+0x50E` | `i16` | winY |  |
+| `+0x510` | `i16` | winW |  |
+| `+0x512` | `i16` | winH |  |
+| `+0x514` | `i16` | viewX | the view rect from the layout record (`0x0055D3B6`-`0x0055D4D3`): `0x0055C530` averages +`0x514` with +`0x518` into the scroll centre +`0x51C` and +`0x516` with +`0x51A` into +`0x51E` (`0x0055C63A`-`0x0055C66B`); `0x0055C740` and `0x0055E9E0` read them (`0x0055CCAF`-`0x0055CCF4`, `0x0055EACE`-`0x0055EAFF`) |
+| `+0x516` | `i16` | viewY |  |
+| `+0x518` | `i16` | viewW |  |
+| `+0x51A` | `i16` | viewH |  |
+| `+0x51C` | `i16` | scrollX | the scroll centre; the purchase pans it by `0x0055B960`'s result toward the square and ends its stage when both reach their targets (`0x0055F699`-`0x0055F6DF`); `0x0055C740` moves it (`0x0055CC56`-`0x0055CD04`); `0x0055BAC0` reads both (`0x0055BB1C`, `0x0055BB2D`) |
+| `+0x51E` | `i16` | scrollY |  |
+| `+0x520` | `i16` | x520 | two words the build's layout pass writes (`0x0055D34C`, `0x0055D373`) and `0x0055AB20` reads (`0x0055AB5E`, `0x0055AB65`) |
+| `+0x522` | `i16` | y522 |  |
+| `+0x524` | `u32` | flags524 | bit 0: set and cleared by `0x0055C740` (`0x0055CA15`, `0x0055CBA5`, `0x0055CC64`) and tested there (`0x0055CC6B`), set by `0x0055E9E0` (`0x0055ED70`), cleared at a rebuild (`0x0055DBFE`) |
+| `+0x528` | `f32` | scale528 | from the layout at `0x0055C530` (`0x0055C590`); the build's layout pass writes and reads it (`0x0055D268`-`0x0055D484`) |
+| `+0x52C` | `f32` | angle52C | advanced by a constant every purchase tick (`0x0055F706`-`0x0055F716`); `0x0055BAC0` reads it (`0x0055BDDA`) |
+| `+0x530` | `u32` | panFlags | `0x0055B8C0` clears bits 1, 3, 4 and 5 and sets bits 0 and 2 when it starts a pan (`0x0055B90C`-`0x0055B91E`); `0x0055F1C0` reads and rewrites it (`0x0055F1C9`, `0x0055F213`); `0x0055C740` reads it (`0x0055C7F9`) |
+| `+0x534` | `i16` | panFromX | the pan `0x0055B8C0` starts: from the current offsets, by the deltas to the cursor square, 6 frames from the UI tick (`0x0055B929`-`0x0055B953`); `0x0055F1C0` runs it (`0x0055F1DF`-`0x0055F2A4`) |
+| `+0x536` | `i16` | panFromY |  |
+| `+0x538` | `i16` | panDeltaX |  |
+| `+0x53A` | `i16` | panDeltaY |  |
+| `+0x53C` | `u32` | panFrames | 6 |
+| `+0x540` | `u32` | panStart | the UI tick `0x0208F570` when the pan started |
+| `+0x544` | `i16` | offsetX | the current square offsets: set at build from the cursor and cell size (`0x0055C5FD`, `0x0055C620`), compared by the pan before it moves (`0x0055B8F4`-`0x0055B917`), written by the pan (`0x0055F21A`, `0x0055F239`) and `0x0055E9E0` (`0x0055EA6C`-`0x0055ED88`) |
+| `+0x546` | `i16` | offsetY |  |
+| `+0x548` | `u32` | effectHandle the handle 0x003B2D80 returns at build (0x0055D136), read and rewritten by the destroy | arm's release (`0x0055D1A9`-`0x0055D1BE`) |
+| `+0x54C` | `u16` | squareCount | columns x rows (`0x0055E3CE`); read by the grid helpers `0x0055DEA0` (`0x0055DF15`, `0x0055DF4A`, `0x0055DF76`), `0x0055E090` (`0x0055E0EA`, `0x0055E139`, `0x0055E188`, `0x0055E1CE`) and `0x0055E3F0` (`0x0055E475`, `0x0055E4CC`, `0x0055E524`, `0x0055E575`) |
+| `+0x54E` | `i8` | defaultCol | the cursor's default square, the centre, written with +`0x550` (`0x0055E7CE`, `0x0055E7E8`; also `0x0055E620`, `0x0055E812`, `0x0055E9A5`); read at `0x0055ED19`, `0x0055ED23` |
+| `+0x54F` | `i8` | defaultRow |  |
+| `+0x550` | `i8` | cursorCol | the cursor square (Grid helpers) |
+| `+0x551` | `i8` | cursorRow |  |
+| `+0x552` | `i8` | cols | copies of +`0x559` and +`0x55A` (`0x0055E3B7`-`0x0055E3C0`) |
+| `+0x553` | `i8` | rows |  |
+| `+0x554` | `i8` | cellW | half the square size `0x01F2CACC`, both (`0x0055C598`-`0x0055C5AE`) |
+| `+0x555` | `i8` | cellH |  |
+| `+0x556` | `i8` | centreCol | `0xFF` at build (`0x0055CF64`), the centre at `0x0055E600` (`0x0055E7C2`, `0x0055E7DC`); also written at `0x0055CBC3`, `0x0055CBD8`, `0x0055E806`-`0x0055E818` and `0x0055E999`-`0x0055E9AB` |
+| `+0x557` | `i8` | centreRow |  |
+| `+0x558` | `i8` | board | the member's board from `0x003236B0`, `0xFF` for none (`0x0055B44B`-`0x0055B45A`); `0xFF` at build (`0x0055CF80`) |
+| `+0x559` | `i8` | width | the licd width and height plus one (`0x0055B48A`-`0x0055B4A2`); 0 at `0x0055B45C` |
+| `+0x55A` | `i8` | height |  |
+| `+0x55B` | `u8` | b55B | 3 at build (`0x0055CF4B`) and the board read (`0x0055C347`); written by the announce arm (`0x0055D87A`, `0x0055D8E1`; as a word with +`0x55C` at `0x0055D908`, `0x0055D925`) and `0x0055E9E0` (`0x0055EB3D`, `0x0055EC1A`, `0x0055ECAF`, `0x0055ED05`, `0x0055ED7D`, `0x0055EEDF`); read at `0x0055E9EF` |
+| `+0x55C` | `u8` | b55C | written and read by `0x0055E9E0` (`0x0055EB36`, `0x0055EC28`, `0x0055EC37`) |
+| `+0x55D` | `u8` | pane | the current detail pane 0-3, cycled by the rebuild (`0x0055DBF7`-`0x0055DC0F`) and the announce arm (`0x0055D8BA`-`0x0055D8C5`), indexing the panes at `0x0055FB59` |
+| `+0x55E` | `u8` | stage | the purchase stage 0-4 (Obtaining a license) |
+| `+0x55F` | `u8` | gap55F | reached by no instruction in the table |
+| `+0x560` | `u16` | stageFrames | the stage's countdown: `0x10` when the pan ends, `0x45` for the lit square, 0 on the others, decremented each tick (`0x0055F5F2`-`0x0055F6ED`) |
+| `+0x562` | `u8` | boardByte87 | the board file's byte +`0x87` (`0x0055C029`); read at `0x0055DA99` |
+| `+0x563` | `u8` | effectPhase | 0 idle; 1 when `0x00560070` arms the square effect (`0x0056013A`); 4 when `0x0055F740` arms it (`0x0055F75C`); the mover `0x0055AA00` writes 2 and `0x302` as a word with +`0x564` (`0x0055AAA0`, `0x0055AAF8`) and copies +`0x564` into it (`0x0055AAD9`-`0x0055AAE0`); `0x0055FF90` answers 1 while it is 0 (`0x0055FFA5`) |
+| `+0x564` | `u8` | phase564 | read by the mover (`0x0055AAD9`) and written with +`0x563` as above |
+| `+0x565` | `u8` | effectOn | 1 at both arms (`0x0055F763`, `0x00560141` with +`0x566`); the mover reads and clears it (`0x0055AA06`, `0x0055AB07`) |
+| `+0x566` | `u8` | effectB |  |
+| `+0x567` | `i8` | effectCol | the effect's square (`0x0056014A`-`0x00560150`); the mover reads them (`0x0055AA40`, `0x0055AA6F`) |
+| `+0x568` | `i8` | effectRow |  |
+| `+0x569` | `u8` | effectKind | `0x002D6680`'s result (`0x00560187`); read by the mover (`0x0055AA63`, `0x0055AA92`) |
+| `+0x56A` | `u16` | moverWord | a word the mover reads and writes (`0x0055AAA9`-`0x0055AAF1`) |
+| `+0x56C` | `u32` | effectNode | the node the effect plays for (`0x0055F76A`, `0x0056017C`) |
+| `+0x570` | `u32` | flags | bit 0 set by the purchase `0x0055DD70` (`0x0055DD7F`) and cleared by the sweep (`0x0055B3D6`); bit 1 set once the panel has been filled (`0x00561280`); bit 2 set at build and when a refresh is served (`0x0055CF2E`, `0x0055F573`), cleared at stage start (`0x0055F453`); bit 3 makes `0x0055FAE0` answer 2; bit 5 a pending refresh, served and cleared at stage 0 (`0x0055F53C`-`0x0055F550`); bits 6-7 set at a rebuild and a purchase (`0x0055DC22`, `0x0055F46D`); bit 9 set when the Second Board square is bought (`0x0055F4A2`); bit 10 from the creation record's +`0x10C` bit 2 (`0x0055CEB2`-`0x0055CEC6`): a scripted open, which keeps the child +`0x578` and skips the member read (`0x0055B436`, `0x0055DC9B`); bit 11 the cursor goes to the centre (`0x0055E7AF`) |
+| `+0x574` | `u8[4]` | gap574 | reached by no instruction in the table |
+| `+0x578` | `void*` | child578 | the `0xC8`-byte widget `0x00561E90` builds when it is 0 (`0x00561EA5`-`0x00561EEF`); the rebuild closes and clears it unless +`0x570` bit 10 (`0x0055DC9B`-`0x0055DCDA`) |
+
 ### The members on each board
 
 The board chooser keeps one `0x28`-byte record per board at its `+0x16C`, twelve in all.

@@ -100,6 +100,54 @@ A gambit line copies its flags from the condition row's `+0x0E`, which is 0 in e
 test only has to find one unit. Every test, opcode and pick rule of the shipped conditions is on
 [Gambit conditions](gambit-conditions.md).
 
+### The walk end to end
+
+This section follows one line from the walk to the commit, with the candidate list it carries. The pieces are the
+sections above and [Gambit conditions](gambit-conditions.md); this section strings them together and adds the list
+record and the picker's selection, read at `0x003014C0`, `0x0030F130`, `0x003087E0` and `0x003083B0`.
+
+1. **The order.** `0x00305CC0` hands `0x003014C0(unit, order, &action, &target)` one 24-byte order (`0x00305DD2`). The
+   evaluator zeroes `*target` (`0x003014ED`), decodes the action word into `*action` (`0x00308EC0`, `0x00301500`) and
+   runs the actor checks (One line's test).
+2. **The candidates.** `0x0030F130(unit, action, out)` fills a `0x208`-byte candidate list (Layouts):
+   - with the unit's float `+0x6D0` at 0 it copies the unit's own perception list `+0xBC0` whole
+     (`0x0030F163`-`0x0030F1C6`);
+   - otherwise it clears the list (`0x00316CF0`) and appends each perception entry (`+0xBC8`, `0x10` bytes each,
+     `+0xBC4` of them) whose unit lies within `max(0x00265090 radii) + +0x6D0` of the unit's `+0x6C0`
+     (`0x00319460`, `0x0030F1F0`-`0x0030F25A`);
+   - then, for party slots 0-3 (`0x0031B810`), it appends the member when the action's status mask (`0x003872D0`)
+     meets the member's statuses `+0x64 | +0x3C` in bits 0, 1 or 31 (`0x0030F266`-`0x0030F2B2`): an action that
+     removes KO, Stone or X-Zone sees those members even when perception does not.
+3. **The tests.** Each of the order's three tests that runs (The target tests) writes the units it keeps with
+   `0x00301AD0(unit, order, action, i, list, out)` into the list at the output pointer:
+   - the pointer starts at the evaluator's frame `+0x460` and moves to `+0x460 + (i + 1) x 0x208` after test i runs
+     unchained (`0x00301750`-`0x00301768`); a skipped test leaves it where it is;
+   - a chained test i + 1 reads a copy of test i's list (frame `+0x40`) and writes over test i's list
+     (`0x003016E2`-`0x0030174B`).
+4. **The pick.** For an action id up to `0x21E`, the order `0x4023`, or the orders `0x4122`, `0x4123`, `0x414B` and
+   `0x414E` (`0x0030177A`-`0x003017AD`), `0x003087E0(unit, list, out, action)` picks from the list at frame `+0x460`: the
+   first test that ran, or the last test chained to it.
+   - It drops every unit `0x003083B0(unit, candidate unit, action)` answers 1 for, the candidate's battle unit from
+     its entry (`0x0031B760`, `0x00308839`-`0x00308848`;
+     [Gambit conditions](gambit-conditions.md#units-the-action-would-not-change)).
+   - With key type 1 (the integer arm, `0x003089C3`) or 2 (the float arm, `0x00308873`) at list `+0x01` it keeps the
+     units with the highest (pick rule 3) or lowest (pick rule 2) key, ties kept together (`0x00308873`-`0x00308AEB`); any
+     other pick rule with those key types keeps no unit, so the line fails (`0x00308925`, `0x00308A6A`). With any other
+     key type it walks the list plain and keeps every unit that passed the filter (`0x00308825`-`0x0030886E`).
+   - With more than one unit left, pick rule 1 draws `0x00328370() % count` (`0x00308B0D`-`0x00308B1C`); any other rule
+     takes the unit nearest to the deciding unit by `0x0031E620(unit + 0xE0, candidate + 0xE0)` (`0x00308B2F`-`0x00308B76`);
+     the result is an index into the output list.
+5. **The target.** An empty output fails the line (`0x003017C4`-`0x003017CD`); otherwise `*target` is the chosen unit's
+   actor handle `+0x08`, read through the entry's actor and its `+0x30` unit (`0x003017CF`-`0x003017E7`;
+   [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md)), and the evaluator returns 1. Any other action word
+   returns 1 with `*target` still 0 (`0x003017E9`).
+6. **The commit.** `0x00305CC0` passes `(order, *action, *target)` to `0x0030F760` (`0x00305DF4`) and the walk ends as
+   The walk, step 3, says ([Committing an action](../Battle-Actions/action-commit.md)).
+
+So a "Foe: HP < 50%" line reaches the commit only for a foe in perception that passes the relation and HP tests, is
+not a unit the action would not change, and has the lowest HP % among them, the nearest on a tie
+(`0x00308B2F`-`0x00308B76`).
+
 ### Which units a condition may pick
 
 `0x0030BD00(unit, candidate, mode)` admits a candidate by the relation mode (`0x0030BD27`-`0x0030BE3E`). It first asks
@@ -234,6 +282,19 @@ One gambit condition, a row of `battle_pack.bin` section 7 (`0x02EBF0D8`, 32 byt
 | `+0x1A` | `i16` | operand1 | second test operand (`0x00327F0A`) |
 | `+0x1C` | `i16` | operand2 | third test operand, 0 in every row (`0x00327F22`) |
 | `+0x1E` | `u16` | pad1E | 0 in every row |
+
+One candidate list, `0x208` bytes: the unit's perception list at `+0xBC0`, the evaluator's three test lists and the
+picker's output all have this shape (`0x00316CF0` clears one, keeping bit 0 of `+0x00`; `0x00316CD0` appends). The entries
+are laid out on [Area of effect](../Battle-Actions/area-of-effect.md#layouts):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | flags | bit 0 is kept across a clear (`0x00316D10`-`0x00316D16`); the other bits are cleared with the list |
+| `+0x01` | `u8` | keyType | 0 none, 1 integer keys, 2 float keys: set with the pick rule by the selector (key 1 at `0x003022C7`, key 2 at `0x003027F4`, both bytes as a word at `0x00301ECC`); the picker reads it at `0x00308813` |
+| `+0x02` | `u8` | pickRule | with key type 1 or 2: 2 lowest, 3 highest, any other value keeps no unit (`0x00308923`, `0x00308A68`); with any other key type: 1 random, any other value nearest (`0x00308B0D`) |
+| `+0x03` | `u8` | pad03 | moved only by the whole-list copies in `0x0030F130` and `0x003014C0` (read at `0x0030F177`, `0x003016F7`; written at `0x0030F181`, `0x00301705`) and zeroed by the clear's memset (`0x00316D0B`); no instruction of `0x003014C0`, `0x0030F130`, `0x00301AD0`, `0x003087E0` or `0x00316CF0` reads it alone |
+| `+0x04` | `i32` | count | entries in use; the append refuses at 32 (`0x00316CD4`); read at `0x00308828`, `0x00308AFB` |
+| `+0x08` | `u8[512]` | entries | 32 entries of 16 bytes ([Area of effect](../Battle-Actions/area-of-effect.md) layout): `+0x00` the unit's actor (unit `+0x10`, `0x0030F242`, `0x0030F2A1`), `+0x08` the test's key, i32 or f32, `+0x0C` copied with the entry (`0x0030885B`, `0x00308A14`, `0x003088C8`) |
 
 ## Shipped data
 
