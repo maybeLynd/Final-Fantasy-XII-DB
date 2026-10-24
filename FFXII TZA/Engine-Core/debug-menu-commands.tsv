@@ -91,7 +91,7 @@ id	label	arm	kind	field	step	bound	note	slice
 101	Advanced panorama:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	C
 102	Current GPU Temperature:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	C
 103	Camera Over Write (O to capture):	0x001D2AFD	toggle	obj+0xC0C	-	0/1	off edge copies live engine fields +0xCC4/+0xCC8/+0xCCC into obj+0xC10/0xC14/0xC18 (ids 104-106)	C
-104	FOV:	0x001D2B4D	nudge	obj+0xC10	±0.0x00555556	-	subss/addss, one constant	C
+104	FOV:	0x001D2B4D	nudge	obj+0xC10	±0.00555556	-	subss/addss, one constant	C
 105	Aspect Ratio:	0x001D2B83	nudge	obj+0xC14	±0.01	-	subss/addss, one constant	C
 106	Camera scale:	0x001D2BB9	nudge	obj+0xC18	×0.99 / ×1.01	-	mulss by two different constants; a down-up round trip multiplies by 0.9999	C
 107	Cube map factor:	0x001D1FB0	nudge	0x02CB8140	±0.05	-	subss/addss, one constant	C

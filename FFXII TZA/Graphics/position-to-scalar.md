@@ -70,7 +70,7 @@ more) to `0x02EBB7E0`–`0x02EBB7EF` and, when `clear` is non-zero, drops the ke
 
 The map's own request is built at `0x02EBB7C0` with priority 0 by `0x003ECCA0` while a map's settings are loaded
 (`0x02EBB808` and `0x0209A660` set). `0x003ECAC0(request, target, t)` moves it toward a target: for `t`
-above `0.99609375` it copies the target's near, far and colour, for `t` above `0.0x00390625` it
+above `0.99609375` it copies the target's near, far and colour, for `t` above `0.00390625` it
 interpolates them, and otherwise does nothing. Each distance becomes `v = cur x (1 - t) + target x t`
 stored as `trunc(v)`, plus 1 when `v - trunc(v) > 0.5`; each colour byte (split by `0x00466140`, packed by
 `0x00466170`) becomes `trunc(cur x (1 - t) + target x t)` (`0x003ECAC0`-`0x003ECC9C`).

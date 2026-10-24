@@ -51,8 +51,10 @@ preparation slot that sets the attack value `0x02AEE058`, the defence value `0x0
 | 104 | 15 (Mace), and Joyeuse | 79 `0x0038AE50` |
 | 64 | 58 rows from 420 on, all named `NOT USED`: 57 of class 0 and one of class 9 (gun) | 76 `0x0038AAF0` |
 
-The ammunition classes 23-26 have recipe 0; the ammunition supplies only its element
-([Elements](elements.md)).
+The ammunition classes 23-26 have recipe 0: the main hand's bow, crossbow, gun or hand-bomb supplies the recipe.
+Equipped ammunition adds to the swing in two ways. Its Attack, byte `+0x1A` of its row, goes into Attack Power
+through equipment group 1 in the stats rebuild (`0x002FF495`-`0x002FF499`; [Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)),
+and its element is the attack's ([Elements](elements.md)).
 
 ### The stat scale
 
@@ -68,7 +70,7 @@ slot 79       scale = 1 + Mag * (Lv + Mag) / 256        0x0038AE56-0x0038AE9F
 slot 72       scale = Str * (Lv + Str) / 256            0x0038A68F-0x0038A6C5
 ```
 
-The divisions are float multiplications by `0.0x00390625` (`0x009088D8`), or a division by 218.0 (`0x00D112D0`).
+The divisions are float multiplications by 1/256 (`0x009088D8`), or a division by 218.0 (`0x00D112D0`).
 
 ### Attack, variance and defence
 

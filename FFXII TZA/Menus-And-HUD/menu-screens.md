@@ -130,8 +130,8 @@ kept at `[0x0209AC30] + 0x2E0` (`0x002CBF34`-`0x002CBF48`), and on message 1 it 
 |---|---|---:|---|
 | `+0xC0` | the arrow strip | `0xF8` | `0x002CABF0` |
 | `+0xC8` | the stat labels, made only when bit 0 of the build word is set (`0x002CC09D`) | `0xD0` | `0x002CB150` |
-| `+0xD0` + 8 x i | row i of nine | `0x110` | `0x002CA6C0` |
-| `+0x118` + 8 x i | row i's difference widget, made only when bit 0 of the build word is set (`0x002CC10A`) | `0xE8` | `0x002CB4B0` |
+| `+0xD0`-`+0x117` | nine 8-byte pointers to the rows, row i at `+0xD0` + 8 x i | `0x110` | `0x002CA6C0` |
+| `+0x118`-`+0x15F` | nine 8-byte pointers to the rows' difference widgets, row i's at `+0x118` + 8 x i, made only when bit 0 of the build word is set (`0x002CC10A`) | `0xE8` | `0x002CB4B0` |
 
 The build word is `+0x10` of the parameter block that the construct message carries at `+8` (`0x002CBFE7`), not a
 word of the panel. Only the shop's builder sets its bit 0 (`0x002CBDC8` stores 7); the Status and Equip builder
