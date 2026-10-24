@@ -55,18 +55,68 @@ The list widget keeps a chain of callback records `{fn*, argument, previous, nex
 | `15` | technicks, list `0xB` | "Technicks" |
 | `16`-`19` | a target list, codes `0x10`, `0xD`, `0xF`, `0x1C` (`0x01E0C398`) | the action's name |
 
-The command lists are `{flag, id}` pairs (`0x0031EB88`-`0x0031EBEC`):
+The command lists are `{flag, id}` pairs; each list's row count is an immediate (`0x0031EBA2`, `0x0031EBBF`,
+`0x0031EBEC`; `0x0031EB83`-`0x0031EBEC`):
 
 | List | Table | Rows |
 |---:|---|---|
-| `6` | `0x00D10650` | Attack, Magicks & Technicks, Mist, Dismiss, Gambits, Items |
+| `6` | `0x00D10650`, or `0x00D10660` while bit `0x800` of `[0x02EBF190] + 4` is set (`0x0031EBCC`-`0x0031EBE8`); the two hold the same six pairs | Attack, Magicks & Technicks, Mist, Dismiss, Gambits, Items |
+| `7` | `0x00D10670` | command 14 (shipped name "NOT USED cancellation"), Attack, command 4 ("NOT USED concentration"), Magicks & Technicks, Mist, Dismiss, Gambits, Items |
 | `8` | `0x00D10680` | White, Black, Time, Green and Arcane Magicks, Technicks |
 | `9` | `0x00D1065C` | Summon, Quickening |
+
+`0x00311B20` sets bit `0x800` of `[0x02EBF190] + 4` when it issues Attack (`0x96`) to every living member in party
+slots 0-3, its fifth argument not 0 (`0x00311BC8`-`0x00311BD7`), and clears it when it issues Attack to one target
+(`0x00311C8C`); for any other action it leaves the bit as it is (`0x00311BC6`).
 
 Mist is listed only while `0x003135C0` is 0, and Dismiss only while it is 1 ([Command availability](../Battle-Actions/command-availability.md)),
 so the top list shows one of the two. Each row is checked with `0x00318CD0`, which leaves it out, greys it with a reason,
 or lists it (`0x0031ECA3`-`0x0031ED3D`). An action list keeps the actions of the list's kind byte `+0x1E` (and school
 `+0x2C & 7`) that the member owns and has left (`0x00317BC0`), with their MP, Mist charge or item count.
+
+### The list codes
+
+`0x0031EB20` reads the list code at the block's `+0x00`. Codes 1 to 35 go through the 35 index bytes at `0x0031FBA4` to
+one of eleven arms at `0x0031FB78` (`0x0031EB43`-`0x0031EB6F`); code 0 and codes above 35 return -1 (`0x0031EB4C`). Every
+code starts from an empty list: count `+0x40` = 0 and default entry `+0x44` = -1 (`0x0031EB40`, `0x0031EB46`).
+
+| Code | List | Rows from | Stops at |
+|---:|---|---|---|
+| `1` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `2` | no call in the exe passes this code | none: `0x0031FB63` returns -1, as for a code above 35 | - |
+| `3` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `4` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `5` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `6` | the top commands, menu kind 1 (`0x0027E0A6`), and the label widths `0x00273E30` (`0x002742AC`) | `0x00D10650`, or `0x00D10660` while bit `0x800` of `[0x02EBF190] + 4` is set (`0x0031EBCC`-`0x0031EBE8`) | 6 rows (`0x0031EBEC`) |
+| `7` | eight commands: command 14 (shipped name "NOT USED cancellation"), Attack, command 4 ("NOT USED concentration"), Magicks & Technicks, Mist, Dismiss, Gambits, Items; no call in the exe passes this code | `0x00D10670` (`0x0031EBB8`) | 8 rows (`0x0031EBBF`) |
+| `8` | Magicks & Technicks, menu kind 2 (`0x0027E0EE`), and `0x00273E30` (`0x0027438C`) | `0x00D10680` (`0x0031EBAF`) | 6 rows (`0x0031EBEC`) |
+| `9` | Mist, menu kind 3 (`0x0027E0CA`), and `0x00273E30` (`0x002742AC`) | `0x00D1065C` (`0x0031EB9B`) | 2 rows (`0x0031EBA2`) |
+| `0xA` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0xB` | an action list: menu kinds 4-8, 10-15 and 20, and `0x00273E30` (`0x002744F3`) | the actions whose kind byte `+0x1E` is the block's `+0x14` and, for magicks, whose school `+0x2C & 7` is `+0x18` (`0x0031EF77`-`0x0031EF8D`), ids 0 to `0x115` (`0x0031EF63`); for items, technicks and magicks `0x00250270` then puts the rows in the order of inventory list 0, 8 or 9 ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `0x0025029D`-`0x002502C2`) | 512 (`0x0031EE94`) |
+| `0xC` | a target list of allies and foes ([Target selection](../Battle-Actions/target-selection.md)); no call in the exe passes this code | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
+| `0xD` | the ally target list, menu kind 17, and the tab check at `0x0027C811` | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
+| `0xE` | the allies on screen; no call in the exe passes this code | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
+| `0xF` | the members at member-map positions 4-8, menu kind 18, and the tab checks `0x0027B090` (`0x0027B0C6`) and `0x0027B6C0` (`0x0027B6FE`) | the bytes at `[0x02EBF190] + 0x5A7E` (`0x0031F473`) | positions 4-8 (`0x0031F435`, `0x0031F522`); 512 (`0x0031F441`) |
+| `0x10` | the foe target list, menu kind 16 | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
+| `0x11` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x12` | the living enemy-side units (stats `+0x05` not 0), which `0x0031E880` asks for `0x003B8260` (`0x003B82B6`, `0x003B82D7`), the handler of action timeline opcodes 50 and 51 (`0x003B9559`, `0x003B956F`) | the battle unit slots (`0x0031F714`) | 512 (`0x0031F747`) |
+| `0x13` | the living enemy-side units on screen (`0x0031F7BB`); no call in the exe passes this code | the battle unit slots | 512 (`0x0031F747`) |
+| `0x14` | the living party-side units (stats `+0x05` = 0), for the party list (`0x0035BF4B`, [Party list](party-list.md)) | the battle unit slots | 512 (`0x0031F747`) |
+| `0x15` | the living party-side units on screen (`0x0031F7BB`); no call in the exe passes this code | the battle unit slots | 512 (`0x0031F747`) |
+| `0x16` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x17` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x18` | the list that action `0x9B` opens, menu kind 9 (`0x0027E2D8`): the builder flags the `0x9B` row with `0x20` (`0x0031F17F`-`0x0031F187`), and the classifier answers 9 for such a row (`0x0027C5AA`); a confirmed row issues action `0x9C`, or `0x9D` for the member's current entry and for Remove (`0x0027C613`-`0x0027C665`) | none in the shipped executable: the builder's arm returns the empty list, no instruction stores to the page's row cells or count but the builder's, and the action that opens the list, `0x9B` (with `0x9C` and `0x9D` it issues), is a Reserve row of the action table ([Action list](../Battle-Actions/action-list.md)) | - |
+| `0x19` | the actions of one kind that a member owns: the Party Menu's list panel, magicks (`0x002C3960`), and its four-pane panel, technicks, Quickenings and summons (`0x002C47FF`, `0x002C4972`, `0x002C4E79`) | the id list at `0x0208CD20` for the block's `+0x14`, or at `0x0208CE70` for school `+0x18` ([Action definition row](../Battle-Actions/action-definition-row.md); `0x0031F8ED`-`0x0031F920`) | the list's own count (`0x0031F976`); this arm has no 512 test |
+| `0x1A` | the actors that `0x0046B4C0` lists, for the party list (`0x0035BCC3`) | actor managers 0-2 (`0x0031F5CB`, `0x0031F6FE`) | 512 (`0x0031F620`) |
+| `0x1B` | a party member's foe list: the builder runs it in place of `0xC` and `0x10` (`0x0031F305`) | `0x0046B870`, actor managers 0-2 | 512 (`0x0031F620`) |
+| `0x1C` | the target list of menu kind 19, and the tab checks at `0x002769F6`, `0x0027C7D8` and `0x0027C9CE` | `0x0046B690`, actor managers 0-2 | 512 (`0x0031F620`) |
+| `0x1D` | the licenses a member owns, for the Party Menu's four-pane panel (`0x002C4B3B`) | bit *n* of the member record's `+0x194` for license node *n* ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md); `0x0031F850`-`0x0031F862`) | the node count `[0x02EBF038] + 4` (`0x0031F81F`); 512 (`0x0031F82D`) |
+| `0x1E` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x1F` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x20` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x21` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x22` | a page of the gambit actions ([Gambits screen](gambit-screen.md); `0x0056A930`, `0x0056AF65`) | the grid at `0x0208D308`, page `+0x3C` below `[0x0208D300]` (`0x0031F9AF`-`0x0031F9BF`) | the page width `[0x0208D301]` (`0x0031F9C5`); 512 (`0x0031F9E0`); the first id that `0x00322C50(0x14)` refuses (`0x0031FA10`) |
+| `0x23` | a page of the gambit conditions (`0x0056B1D4`, `0x0056BD0F`) | the grid at `0x0208D318`, page `+0x3C` below `[0x0208D310]` (`0x0031FAA6`-`0x0031FAB2`) | the page width `[0x0208D311]` (`0x0031FAB8`); 512 (`0x0031FAD0`); the first id that `0x00322C50(0xB)` refuses (`0x0031FB00`) |
 
 ### Row painters
 
@@ -211,7 +261,7 @@ Confirm (`0x8001`) runs the classifier `0x0027C3D0` (`0x0027841E`), which answer
 | an action | its target list, or the action at once when it needs no target choice |
 | a greyed row | refused with sound 5 |
 
-The Gambits row is command 13 of lists 6 and 9 (`0x0027C457`, table `0x0027C6D0`). The classifier reads the member's
+The Gambits row is command 13 of list 6; the classifier's command arm, which serves list codes 6 and 9, picks it (`0x0027C457`, table `0x0027C6D0`). The classifier reads the member's
 switch (`0x00309B40`), writes the opposite with `0x00311AF0`, and answers `0x17` when it turned the gambits on and `0x19`
 when it turned them off (`0x0027C4F3`-`0x0027C529`). The list widget then (`0x00278559`-`0x002785AC`):
 
@@ -475,9 +525,25 @@ The callers reach these cells only through the address `0x00404F50` returns, fro
 `0x004063FA`, `0x004067C8` and `0x00407D8E`. No other instruction reaches them. `0x02B62D90` is taken only by `0x00404F50`, at
 `0x0040507F` and `0x004050A7`.
 
+The boss value table `0x02EC1380` holds two entries of `0x18` bytes: `+0x00` the unit's slot (`i32`), `+0x04` its
+class (`u32`), then HP `+0x08`, max HP `+0x0C`, MP `+0x10` and max MP `+0x14`, each `i32` (`0x0031B690` sign-extends
+MP and max MP from the stats record's `i16` words `+0x4C` and `+0x28`, `0x0031B6FD`-`0x0031B70F`).
+
+The area-change step
+`0x002342F0` resets both entries through `0x003221B0` (`0x00234428`): slot -1, every other word 0. `0x0031B690` walks the two
+entries (`0x0031B6C0`-`0x0031B720`) and skips one whose class is 0. The one call of `0x00328FF0`, at `0x0023AA04`, registers
+entry 0, so entry 1 keeps slot -1 and class 0: no located code registers it, since the one registrar's one call passes
+entry 0 and nothing else forms the table's address (the walker `0x0031B690` and the reset only).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02EC1398` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's unit slot; -1 after each reset | `0x003221B0` (`0x003221B9`, the 8-byte 0 over `0x02EC1398`-`0x02EC139F`; `0x003221D6`, -1) | `0x0031B690` (`0x0031B6C5`) on its second pass, only when entry 1's class `0x02EC139C` is not 0; it passes the slot to `0x00236820` |
+| `0x02EC13A8` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's MP; the reset's 8-byte store also zeroes max MP `0x02EC13AC` | `0x003221B0` (`0x003221F5`); `0x0031B690` (`0x0031B701`) on its second pass, past the same class test | `0x004061F0` (`0x004064A4`) through the entry address `0x00404F50` returns (`0x00404F88`-`0x00404F8C`), when the bar's flag `+0x130` bit 2 is set |
+
 ## Modding notes
 
-- The top command list is the six pairs at `0x00D10650`; reordering them reorders the menu.
+- The top command list is the six pairs at `0x00D10650`, or at `0x00D10660` while bit `0x800` of `[0x02EBF190] + 4` is
+  set; reordering a table reorders the menu, and the two tables hold the same pairs.
 - A command's label and help are words `+2` and `+0` of its battle command row.
 - A new refusal reason needs a row in `0x0027C150` to show text.
 

@@ -176,6 +176,24 @@ Quickenings in the chain have cost, a `u8`:
 No other instruction reaches these cells. The block's addresses are taken by `0x0030D550`, `0x0030D810`, `0x0030DB70` and
 `0x00313120` only.
 
+The chain's choices and the script's Quickening scene keep three more words:
+
+- `0x00309C40`, from `0x002D5EB0`, draws the chain's choices through `0x002F88B0` and then adds one to `0x022C217C`. It hands
+  `0x022C217C + 1` to `0x002F88B0` in `r8d` (`0x00309C70`-`0x00309C8C`), but `0x002F88B0` overwrites `r8d` before any read of it
+  (`0x002F89E5`), so the count does not change the draw.
+- `getspattackskillinfo(&unit, &action)` (`0x029A`, `0x00348330`) asks `0x00309C00` for the Quickening the chain reported.
+  When `0x022C2178` is not -1, `0x00309C00` writes that index and the user `0x022C218C`, and sets `0x022C2178` back to -1.
+  Then, reported or not, the bridge copies the two script variables into a two-deep history (`0x0034838F`-`0x003483B3`).
+- `spattackplay(n)` (`0x029D`, `0x003495A0`) runs the chain step `0x00313120(n)`. It then looks for `n` among the two
+  users, newer first (`0x003495BC`-`0x003495DD`), and on a match stores that entry's index in `0x01EF9218`
+  (`0x003495E8`-`0x003495F2`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C217C` | `u32` | 0 | the choice draws since the last chain step | `0x00309C40`, plus 1 (`0x00309DF6`, `0x00309E2D`); `0x00313120`, 0 (`0x003133D2`, `ebp` 0 from `0x003132C1`); `0x0030D720`, 0 with the 8-byte store at `0x0030D751` | `0x00309C40` (`0x00309C70`) |
+| `0x01EF9208` | `i32` | -1 | the user of the previous `getspattackskillinfo` | `0x00348330` (`0x00348397`, the newer user `0x01EF920C`) | `0x003495A0` (`0x003495D0`, the second compare, through the address it forms at `0x003495C3`) |
+| `0x01EF9210` | `i32` | -1 | the Quickening index of the previous `getspattackskillinfo` | `0x00348330` (`0x003483A3`, the newer index `0x01EF9214`) | `0x003495A0` (`0x003495EF`, for a match on `0x01EF9208`, through the address it forms at `0x003495E8`) |
+
 ## Modding notes
 
 - The scene flag is bit 30 of an action row's word `+0x0C`; clearing it makes the action run as an

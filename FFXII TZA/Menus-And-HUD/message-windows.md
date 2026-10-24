@@ -523,6 +523,17 @@ object). All are 0 in the file. These read the entries, by index or in turn:
 
 No other instruction reaches these globals. The image-base-relative accesses of `0x002A6190` reach the registry only by
 the index `+0x3B8`, which is below 8.
+
+### The line copy
+
+The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A4430` with the address in `rdx`
+(`0x002A4464`), and the log's redraw `0x002A4830` from the image base plus `0x1F7C630` (`0x002A4A89`, `0x002A4D66`).
+`0x002A5F40` measures the copy through `0x002B2880` (`0x002A5F52`, `0x002A5F59`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209C634` | `f32` | 0 (zero-filled tail of `.data`) | `+0x04` of the line copy; after the copy the log's redraw stores there the font-1 height `0x0017F880` (23.0 when font 1 is not registered), cut to a whole number | `0x002A4430` (`0x002A446E`, 16 bytes); `0x002A4830` (`0x002A4A90`, `0x002A4D87`, 16 bytes; the height at `0x002A4B18`, `0x002A4E05`) | `0x002B2970` (`0x002B29A6`, 16 bytes), through `0x002B2880` from `0x002A5F40` |
+
 ## Modding notes
 
 - `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+0x7C`:

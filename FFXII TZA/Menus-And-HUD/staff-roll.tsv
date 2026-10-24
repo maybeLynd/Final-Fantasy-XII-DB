@@ -1,0 +1,951 @@
+order	row	position	font	source	source_row	script_line	text_us	text_in	text_fr
+1	1	left, at 80	B	menu03.bin	1	68	Main System & Event Programmer	Original Game Design & Int'l Director	Main System & Event Programmer
+2	2	left, at 128	A	menu04.bin	1	70	Hiroyuki Ito (Game Design)	Hiroyuki Ito	Hiroyuki Ito (Game Design)
+3	3	left, at 80	B	menu03.bin	0	73	Directors	Director	Directors
+4	4	left, at 128	A	menu04.bin	0	75	Hiroshi Minagawa	Hiroshi Minagawa	Hiroshi Minagawa
+5	5	left, at 100	B	menu03.bin	2	81	Programming Supervisor	Main System & Event Programmer	Programming Supervisor
+6	6	centred	A	menu04.bin	2	84	Takashi Katano	Takashi Katano	Takashi Katano
+7	7	left, at 100	B	menu03.bin	3	90	Main Character Design	Lead Realtime Rendering Programmer	Main Character Design
+8	8	left, at 148	A	menu04.bin	3	92	Taku Murata	Yoshinori Tsuchida	Taku Murata
+9	9	left, at 100	B	menu03.bin	4	95	Art Direction	Programming Supervisor	Art Direction
+10	10	left, at 148	A	menu04.bin	4	97	Akihiko Yoshida	Taku Murata	Akihiko Yoshida
+11	11	left, at 90	B	menu03.bin	5	103	Visual Design & Character Texture Supervisor	Main Character Design	Visual Design & Character Texture Supervisor
+12	12	left, at 105	B	menu03.bin	6	105	Visual Effects Director	& Background Design Supervisor	Visual Effects Director
+13	13	centred	A	menu04.bin	5	108	Hideo Minaba	Akihiko Yoshida	Hideo Minaba
+14	14	left, at 80	B	menu03.bin	7	114	Image Illustration	Art Direction	Image Illustration
+15	15	left, at 138	A	menu04.bin	6	116	Isamu Kamikokuryo	Hideo Minaba	Isamu Kamikokuryo
+16	16	left, at 138	A	menu04.bin	7	118	Hiroshi Minagawa	Isamu Kamikokuryo	Hiroshi Minagawa
+17	17	left, at 80	B	menu03.bin	8	121	Music Production & Composition	Visual Design & Character Texture Supervisor	Music Production & Composition
+18	18	left, at 138	A	menu04.bin	8	123	Jiro Mifune	Hiroshi Minagawa	Jiro Mifune
+19	19	left, at 135	B	menu03.bin	9	129	Battle System Design	Visual Effects Director	Battle System Design
+20	20	left, at 183	A	menu04.bin	9	131	Yoshitaka Amano	Jiro Mifune	Yoshitaka Amano
+21	21	left, at 135	B	menu03.bin	10	134	Event Direction	Background Visual Effects	Event Direction
+22	22	left, at 183	A	menu04.bin	10	136	Hitoshi Sakimoto	Yoshinori Ogura	Hitoshi Sakimoto
+23	23	left, at 120	B	menu03.bin	11	142	Movie Direction	Lead Motion Designer	Movie Direction
+24	24	left, at 168	A	menu04.bin	11	144	Kazutoyo Maehiro	Takeo Suzuki	Kazutoyo Maehiro
+25	25	left, at 120	B	menu03.bin	12	147	Sound Effects Director	Event Motion Designer	Sound Effects Director
+26	26	left, at 168	A	menu04.bin	12	149	Jun Akiyama	Hiroaki Saotome	Jun Akiyama
+27	27	left, at 105	B	menu03.bin	13	155	Scenario	Hi-polygon Facial Models & Textures	Scenario
+28	28	left, at 153	A	menu04.bin	13	157	Eiji Fujii	Takahiro Matsuhira	Eiji Fujii
+29	29	left, at 105	B	menu03.bin	14	160	Lead In-game Event Designer	Hi-polygon Facial Motion	Lead In-game Event Designer
+30	30	left, at 153	A	menu04.bin	14	162	Tomohiro Yajima	Takeshi Sadohara	Tomohiro Yajima
+31	31	left, at 115	B	menu03.bin	15	168	Lead Map System Designer	Battle System Design	Lead Map System Designer
+32	32	centred	A	menu04.bin	15	170	Daisuke Watanabe	Kazutoyo Maehiro	Daisuke Watanabe
+33	33	left, at 120	B	menu03.bin	16	176	Lead Menu System Designer	Event Direction	Lead Menu System Designer
+34	34	left, at 168	A	menu04.bin	16	178	Miwa Shoda	Jun Akiyama	Miwa Shoda
+35	35	left, at 120	B	menu03.bin	17	181	Lead Realtime Rendering Programmer	Scenario	Lead Realtime Rendering Programmer
+36	36	left, at 168	A	menu04.bin	17	183	Takeshi Iwabuchi	Daisuke Watanabe	Takeshi Iwabuchi
+37	37	left, at 168	A	menu04.bin	18	185	Masahiro Kataoka	Miwa Shoda	Masahiro Kataoka
+38	38	left, at 105	B	menu03.bin	18	191	Hi-polygon Facial Models & Textures	Lead In-game Event Designers	Hi-polygon Facial Models & Textures
+39	39	left, at 153	A	menu04.bin	19	193	Kazuhiro Kataoka	Takeshi Iwabuchi	Kazuhiro Kataoka
+40	40	left, at 153	A	menu04.bin	20	195	Yuichi Murasawa	Masahiro Kataoka	Yuichi Murasawa
+41	41	left, at 115	B	menu03.bin	19	201	Lead Motion Designer	Lead Map System Designer	Lead Motion Designer
+42	42	left, at 163	A	menu04.bin	21	203	Yoshinori Tsuchida	Kazuhiro Kataoka	Yoshinori Tsuchida
+43	43	left, at 115	B	menu03.bin	20	206	Event Motion Designer	Lead Menu System Designer	Event Motion Designer
+44	44	left, at 163	A	menu04.bin	22	208	Takahiro Matsuhira	Yuichi Murasawa	Takahiro Matsuhira
+45	45	left, at 125	B	menu03.bin	21	214	Hi-polygon Facial Motion	Sound Effects Director	Hi-polygon Facial Motion
+46	46	centred	A	menu04.bin	23	216	Takeo Suzuki	Tomohiro Yajima	Takeo Suzuki
+47	47	centred	B	menu03.bin	22	222	Story & Concept	Movie Direction	Story & Concept
+48	48	centred	A	menu04.bin	24	224	Hiroaki Saotome	Eiji Fujii	Hiroaki Saotome
+49	49	left, at 120	B	menu03.bin	23	230	GAME DESIGN	Image Illustration	GAME DESIGN
+50	50	centred	A	menu04.bin	25	232	Takeshi Sadohara	Yoshitaka Amano	Takeshi Sadohara
+51	51	centred	B	menu03.bin	24	238	In-game Event Design	Music Production & Composition	In-game Event Design
+52	52	centred	A	menu04.bin	26	240	Yasumi Matsuno	Hitoshi Sakimoto	Yasumi Matsuno
+53	53	left, at 120	B	menu03.bin	25	246	Cut Scene Events	Story & Concept	Cut Scene Events
+54	54	centred	A	menu04.bin	27	248	Mizue Tanaka	Yasumi Matsuno	Mizue Tanaka
+55	55	centred	B	menu03.bin	26	254	Dialogue	CAST	Dialogue
+56	56	left of centre by 10	B	menu04.bin	28	260	Yusuke Matsuda	Vaan	Yusuke Matsuda
+57	56	right of centre by 10	C	menu04.bin	29	261	Minori Miura	Bobby Edner	Minori Miura
+58	57	left of centre by 10	B	menu04.bin	30	260	Hidehito Tanba	Penelo	Hidehito Tanba
+59	57	right of centre by 10	C	menu04.bin	31	261	Yuichi Nakamura	Cat Taber	Yuichi Nakamura
+60	58	left of centre by 10	B	menu04.bin	32	260	Yaeko Sato	Balthier	Yaeko Sato
+61	58	right of centre by 10	C	menu04.bin	33	261	Ryoko Kato	Gideon Emery	Ryoko Kato
+62	59	left of centre by 10	B	menu04.bin	34	260	Sayako Ohzono	Fran	Sayako Ohzono
+63	59	right of centre by 10	C	menu04.bin	35	261	Yusuke Kodama	Nicole Fantl	Yusuke Kodama
+64	60	left of centre by 10	B	menu04.bin	36	260	Shota Shimoda	Ashe	Shota Shimoda
+65	60	right of centre by 10	C	menu04.bin	37	261	Masaru Taniguchi	Kari Wahlgren	Masaru Taniguchi
+66	61	left of centre by 10	B	menu04.bin	38	260	Rie Suzuki	Basch	Rie Suzuki
+67	61	right of centre by 10	C	menu04.bin	39	261	Kyoko Kitahara	Keith Ferguson	Kyoko Kitahara
+68	62	left of centre by 10	B	menu04.bin	40	269	Hiroshi Tomomatsu	Vayne	Hiroshi Tomomatsu
+69	62	right of centre by 10	C	menu04.bin	41	270	Genki Yamashita	Elijah Alexander	Genki Yamashita
+70	63	left of centre by 10	B	menu04.bin	42	269	Kazuyuki Miura	Larsa	Kazuyuki Miura
+71	63	right of centre by 10	C	menu04.bin	43	270	Motoharu Tanaka	Johnny McKeown	Motoharu Tanaka
+72	64	left of centre by 10	B	menu04.bin	44	269	Takaaki Hirose	Gabranth	Takaaki Hirose
+73	64	right of centre by 10	C	menu04.bin	45	270	Naomi Fukui	Michael Rodgers	Naomi Fukui
+74	65	left of centre by 10	B	menu04.bin	46	269	Takashi Isowaki	Cid	Takashi Isowaki
+75	65	right of centre by 10	C	menu04.bin	47	270	Noritsugu Mochizuki	John Lee	Noritsugu Mochizuki
+76	66	left of centre by 10	B	menu04.bin	48	269	Satoshi Ogata	Al-Cid	Satoshi Ogata
+77	66	right of centre by 10	C	menu04.bin	49	270	Atsushi Ebisawa	David Rasner	Atsushi Ebisawa
+78	67	left of centre by 10	B	menu04.bin	50	269	Satoshi Ogata	Reddas	Satoshi Ogata
+79	67	right of centre by 10	C	menu04.bin	51	270	Noritsugu Mochizuki	Phil LaMarr	Noritsugu Mochizuki
+80	68	left of centre by 10	B	menu04.bin	52	269	Kenichi Matsudo	Ondore	Kenichi Matsudo
+81	68	right of centre by 10	C	menu04.bin	53	270	Akihiro Yamaguchi	Tom Kane	Akihiro Yamaguchi
+82	69	left of centre by 10	B	menu04.bin	54	269	Naoki Hamaguchi	Vossler	Naoki Hamaguchi
+83	69	right of centre by 10	C	menu04.bin	55	270	Daiki Hoshina	Nolan North 	Daiki Hoshina
+84	70	left of centre by 10	B	menu04.bin	56	278	Yoshinori Tsuchida	Rasler	Yoshinori Tsuchida
+85	70	right of centre by 10	C	menu04.bin	57	279	Daiki Hoshina	Andrew Philpot	Daiki Hoshina
+86	71	left of centre by 10	B	menu04.bin	58	278	Naoki Hamaguchi	Reks	Naoki Hamaguchi
+87	71	right of centre by 10	C	menu04.bin	59	279	Shinichi Fujisawa	Yuri Lowenthal	Shinichi Fujisawa
+88	72	left of centre by 10	B	menu04.bin	60	278	Noriyasu Arata	Emperor Gramis	Noriyasu Arata
+89	72	right of centre by 10	C	menu04.bin	61	279	Mitsuru Nagai	Roger L. Jackson	Mitsuru Nagai
+90	73	left of centre by 10	B	menu04.bin	62	278	Tonny WaiMan Koo	Ghis	Tonny WaiMan Koo
+91	73	right of centre by 10	C	menu04.bin	63	279	Akiyoshi Masuda	Mark Wing-Davey	Akiyoshi Masuda
+92	74	left of centre by 10	B	menu04.bin	64	278	Takashi Honjo	Bergan	Takashi Honjo
+93	74	right of centre by 10	C	menu04.bin	65	279	Shiho Tamura	Gary Martin	Shiho Tamura
+94	75	left of centre by 10	B	menu04.bin	66	278	Airi Yoshioka	Drace	Airi Yoshioka
+95	75	right of centre by 10	C	menu04.bin	67	279	Ryoma Ito	Julia Fletcher	Ryoma Ito
+96	76	left of centre by 10	B	menu04.bin	68	278	Masateru Ikeda	Zargabaath	Masateru Ikeda
+97	76	right of centre by 10	C	menu04.bin	69	279	Kiyoshi Arai	Simon Templeman	Kiyoshi Arai
+98	77	left of centre by 10	B	menu04.bin	70	278	Chikako Nakano	Jote	Chikako Nakano
+99	77	right of centre by 10	C	menu04.bin	71	279	Nao Ikeda	Michelle Arthur	Nao Ikeda
+100	78	left of centre by 10	B	menu04.bin	72	278	Akiyoshi Kontani	Mjrn	Akiyoshi Kontani
+101	78	right of centre by 10	C	menu04.bin	73	279	Yoshihiro Hirota	April Stewart	Yoshihiro Hirota
+102	79	centred	B	menu03.bin	27	287	Battle System	MOTION ACTORS	Battle System
+103	80	left of centre by 10	B	menu04.bin	74	292	Ayumi Namae	Vaan	Ayumi Namae
+104	80	right of centre by 10	C	menu04.bin	75	293	Nobuya Aoki	Kouhei Takeda	Nobuya Aoki
+105	81	left of centre by 10	B	menu04.bin	76	292	Kazunari Kajio	Penelo	Kazunari Kajio
+106	81	right of centre by 10	C	menu04.bin	77	293	Shinsaku Kozuma	Yuna Mikuni	Shinsaku Kozuma
+107	82	left of centre by 10	B	menu04.bin	78	292	Kunihiko Noguchi	Balthier	Kunihiko Noguchi
+108	82	right of centre by 10	C	menu04.bin	79	293	Yoshinori Ogura	Sean Ryan	Yoshinori Ogura
+109	83	left of centre by 10	B	menu04.bin	80	292	Manabu Daishima	Fran	Manabu Daishima
+110	83	right of centre by 10	C	menu04.bin	81	293	Yukiko Sasaki	Hiroko Harada	Yukiko Sasaki
+111	84	left of centre by 10	B	menu04.bin	82	292	Kazushi Urata	Ashe	Kazushi Urata
+112	84	right of centre by 10	C	menu04.bin	83	293	Takato Ito	Mei Yoshikawa	Takato Ito
+113	85	left of centre by 10	B	menu04.bin	84	292	Shinichi Mochizuki	Basch	Shinichi Mochizuki
+114	85	right of centre by 10	C	menu04.bin	85	293	Hirokazu Takano	Makoto Onaga	Hirokazu Takano
+115	86	centred	B	menu03.bin	28	302	Map System	GAME DESIGN	Map System
+116	87	left, at 64	B	menu03.bin	29	306	SYSTEM PROGRAMMING	Int'l Lead In-game Event Designer	SYSTEM PROGRAMMING
+117	88	left of centre by 10	C	menu04.bin	1023	309	-	-	-
+118	88	right of centre by 10	C	menu04.bin	86	310	Takeshi Sanda	Mizue Tanaka	Takeshi Sanda
+119	89	left of centre by 10	B	menu03.bin	30	314	Battle	In-game Event Designers	Battle
+120	89	right of centre by 10	C	menu04.bin	87	315	Hideaki Morita	Yusuke Matsuda	Hideaki Morita
+121	90	left of centre by 10	C	menu04.bin	1023	318	-	-	-
+122	90	right of centre by 10	C	menu04.bin	88	319	Daisuke Komatsu	Minori Miura	Daisuke Komatsu
+123	91	left of centre by 10	B	menu03.bin	31	324	Realtime Camera	Cut Scene Events	Realtime Camera
+124	91	right of centre by 10	C	menu04.bin	89	325	Kana Yamazaki	Hidehito Tanba	Kana Yamazaki
+125	92	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+126	92	right of centre by 10	C	menu04.bin	90	329	Norifumi Nagaoka	Yuichi Nakamura	Norifumi Nagaoka
+127	93	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+128	93	right of centre by 10	C	menu04.bin	91	329	Tsuyoshi Okahisa	Yaeko Sato	Tsuyoshi Okahisa
+129	94	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+130	94	right of centre by 10	C	menu04.bin	92	329	Hiroyuki Sano	Ryoko Kato	Hiroyuki Sano
+131	95	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+132	95	right of centre by 10	C	menu04.bin	93	329	Jun Sakurai	Sayako Ohzono	Jun Sakurai
+133	96	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+134	96	right of centre by 10	C	menu04.bin	94	329	Tatsuhiro Okamoto	Yusuke Kodama	Tatsuhiro Okamoto
+135	97	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+136	97	right of centre by 10	C	menu04.bin	95	329	Hiroki Mitsushima	Shota Shimoda	Hiroki Mitsushima
+137	98	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+138	98	right of centre by 10	C	menu04.bin	96	329	Shin Ienaka	Masaru Taniguchi	Shin Ienaka
+139	99	left of centre by 10	C	menu04.bin	1023	328	-	-	-
+140	99	right of centre by 10	C	menu04.bin	97	329	Rei Fukuzawa	Rie Suzuki	Rei Fukuzawa
+141	100	left of centre by 10	B	menu03.bin	32	334	CG Tool Support	Dialogue	CG Tool Support
+142	100	right of centre by 10	C	menu04.bin	98	335	Tsutomu Inagaki	Kyoko Kitahara	Tsutomu Inagaki
+143	101	left of centre by 10	B	menu03.bin	33	344	Development Tools	Battle System	Development Tools
+144	101	right of centre by 10	C	menu04.bin	99	345	Motohiro Murakami	Hiroshi Tomomatsu	Motohiro Murakami
+145	102	left of centre by 10	C	menu04.bin	1023	348	-	-	-
+146	102	right of centre by 10	C	menu04.bin	100	349	Takayuki Yoshikawa	Genki Yamashita	Takayuki Yoshikawa
+147	103	left of centre by 10	C	menu04.bin	1023	348	-	-	-
+148	103	right of centre by 10	C	menu04.bin	101	349	Rinnosuke Kawai	Kazuyuki Miura	Rinnosuke Kawai
+149	104	left, at 64	B	menu03.bin	34	355	Database Technical Support	Int'l Lead Map System Designer	Database Technical Support
+150	105	left of centre by 10	C	menu04.bin	1023	358	-	-	-
+151	105	right of centre by 10	C	menu04.bin	102	359	Yasunori Yanagawa	Motoharu Tanaka	Yasunori Yanagawa
+152	106	left of centre by 10	B	menu03.bin	35	362	REALTIME RENDERING PROGRAMMING	Map System Designers	REALTIME RENDERING PROGRAMMING
+153	106	right of centre by 10	C	menu04.bin	103	363	Tohru Ohshita	Takaaki Hirose	Tohru Ohshita
+154	107	left of centre by 10	C	menu04.bin	1023	366	-	-	-
+155	107	right of centre by 10	C	menu04.bin	104	367	Daichi Nakagawa	Naomi Fukui	Daichi Nakagawa
+156	108	centred	B	menu03.bin	36	373	Map Rendering	SYSTEM PROGRAMMING	Map Rendering
+157	109	left, at 64	B	menu03.bin	37	377	Character Motion	Int'l Battle & Main System	Character Motion
+158	110	left of centre by 10	C	menu04.bin	1023	380	-	-	-
+159	110	right of centre by 10	C	menu04.bin	105	381	Yoshiyuki Shikano	Takashi Isowaki	Yoshiyuki Shikano
+160	111	left of centre by 10	B	menu03.bin	38	384	Character Model	Battle	Character Model
+161	111	right of centre by 10	C	menu04.bin	106	385	Masato Shida	Noritsugu Mochizuki	Masato Shida
+162	112	left of centre by 10	B	menu03.bin	39	394	Visual Effects	Realtime Camera	Visual Effects
+163	112	right of centre by 10	C	menu04.bin	107	395	Kohji Takino	Satoshi Ogata	Kohji Takino
+164	113	left of centre by 10	B	menu03.bin	40	404	Menu	CG Tool Support	Menu
+165	113	right of centre by 10	C	menu04.bin	108	405	Tsuyoshi Wada	Atsushi Ebisawa	Tsuyoshi Wada
+166	114	left of centre by 10	B	menu03.bin	41	414	ART DESIGN	Development Tools	ART DESIGN
+167	114	right of centre by 10	C	menu04.bin	109	415	Nobuyuki Suzuki	Satoshi Ogata	Nobuyuki Suzuki
+168	115	left of centre by 10	C	menu04.bin	1023	418	-	-	-
+169	115	right of centre by 10	C	menu04.bin	110	419	Shinpei Murakami	Noritsugu Mochizuki	Shinpei Murakami
+170	116	left, at 64	B	menu03.bin	42	424	STORYBOARD	Database Technical Support	STORYBOARD
+171	117	left of centre by 10	C	menu04.bin	1023	427	-	-	-
+172	117	right of centre by 10	C	menu04.bin	111	428	Takeshi Kawamorita	Kenichi Matsudo	Takeshi Kawamorita
+173	118	centred	B	menu03.bin	43	433	3D MAP & BACKGROUND DESIGN	REALTIME RENDERING PROGRAMMING	3D MAP & BACKGROUND DESIGN
+174	119	left of centre by 10	B	menu03.bin	44	437	REALTIME MODEL DESIGNERS	Map Rendering	REALTIME MODEL DESIGNERS
+175	119	right of centre by 10	C	menu04.bin	112	438	Kohki Ishinuma	Akihiro Yamaguchi	Kohki Ishinuma
+176	120	left of centre by 10	B	menu03.bin	45	447	TEXTURING	Character Motion	TEXTURING
+177	120	right of centre by 10	C	menu04.bin	113	448	Saeko Terada	Naoki Hamaguchi	Saeko Terada
+178	121	left of centre by 10	B	menu03.bin	46	457	Lead Texture Designers	Character Model	Lead Texture Designers
+179	121	right of centre by 10	C	menu04.bin	114	458	Yasuyuki Kawamata	Daiki Hoshina	Yasuyuki Kawamata
+180	122	left of centre by 10	B	menu03.bin	47	467	Texture Designers	Visual Effects	Texture Designers
+181	122	right of centre by 10	C	menu04.bin	115	468	Mayumi Furuzawa	Yoshinori Tsuchida	Mayumi Furuzawa
+182	123	left of centre by 10	C	menu04.bin	1023	471	-	-	-
+183	123	right of centre by 10	C	menu04.bin	116	472	Takeo Sasaki	Daiki Hoshina	Takeo Sasaki
+184	124	left of centre by 10	C	menu04.bin	1023	471	-	-	-
+185	124	right of centre by 10	C	menu04.bin	117	472	Subaru Ganbe	Naoki Hamaguchi	Subaru Ganbe
+186	125	left of centre by 10	B	menu03.bin	48	477	MOTION DESIGN	Menu	MOTION DESIGN
+187	125	right of centre by 10	C	menu04.bin	118	478	Eiichiro Nakatsu	Shinichi Fujisawa	Eiichiro Nakatsu
+188	126	left of centre by 10	C	menu04.bin	1023	482	-	-	-
+189	126	right of centre by 10	C	menu04.bin	119	483	Shinya Senzaki	Noriyasu Arata	Shinya Senzaki
+190	127	left of centre by 10	C	menu04.bin	1023	482	-	-	-
+191	127	right of centre by 10	C	menu04.bin	120	483	Makoto Yagishita	Mitsuru Nagai	Makoto Yagishita
+192	128	centred	B	menu03.bin	49	490	Player Character Battle Motion	ART DESIGN	Player Character Battle Motion
+193	129	left of centre by 10	C	menu04.bin	121	496	Yuji Mitsuishi	Tonny WaiMan Koo	Yuji Mitsuishi
+194	129	right of centre by 10	C	menu04.bin	122	496	Toru Shiozaki	Akiyoshi Masuda	Toru Shiozaki
+195	130	left of centre by 10	C	menu04.bin	123	496	Nozomu Nishiiri	Takashi Honjo	Nozomu Nishiiri
+196	130	right of centre by 10	C	menu04.bin	124	496	Kazumichi Kimura	Shiho Tamura	Kazumichi Kimura
+197	131	left of centre by 10	C	menu04.bin	125	496	Yoshinari Hirata	Airi Yoshioka	Yoshinari Hirata
+198	131	right of centre by 10	C	menu04.bin	126	496	Minako Tsuchiya	Ryoma Ito	Minako Tsuchiya
+199	132	left of centre by 10	C	menu04.bin	127	496	Noriaki Kayanuma	Masateru Ikeda	Noriaki Kayanuma
+200	132	right of centre by 10	C	menu04.bin	128	496	Shohei Muta	Kiyoshi Arai	Shohei Muta
+201	133	left of centre by 10	C	menu04.bin	129	496	Takeshi Miyazawa	Chikako Nakano	Takeshi Miyazawa
+202	133	right of centre by 10	C	menu04.bin	130	496	Masahiko Mitsunami	Nao Ikeda	Masahiko Mitsunami
+203	134	left of centre by 10	C	menu04.bin	131	496	Rika Ojima	Akiyoshi Kontani	Rika Ojima
+204	134	right of centre by 10	C	menu04.bin	132	496	Keiichirou Takahashi	Yoshihiro Hirota	Keiichirou Takahashi
+205	135	left of centre by 10	C	menu04.bin	133	496	Mitsuharu Fushie	Ayumi Namae	Mitsuharu Fushie
+206	135	right of centre by 10	C	menu04.bin	134	496	Chiho Kawase	Nobuya Aoki	Chiho Kawase
+207	136	left of centre by 10	C	menu04.bin	135	496	Noriyuki Komoda	Kazunari Kajio	Noriyuki Komoda
+208	137	centred	B	menu03.bin	50	503	Battle Motion	STORYBOARD	Battle Motion
+209	138	left of centre by 10	C	menu04.bin	136	509	Masaaki Kazeno	Shinsaku Kozuma	Masaaki Kazeno
+210	138	right of centre by 10	C	menu04.bin	137	509	Kohji Machida	Kunihiko Noguchi	Kohji Machida
+211	139	centred	B	menu03.bin	51	516	Event Motion	3D MAP & BACKGROUND DESIGN	Event Motion
+212	140	left of centre by 10	C	menu04.bin	138	522	Ryotaro Hashimoto	Manabu Daishima	Ryotaro Hashimoto
+213	140	right of centre by 10	C	menu04.bin	139	522	Haruya Ishii	Yukiko Sasaki	Haruya Ishii
+214	141	left of centre by 10	C	menu04.bin	140	522	Keiji Inoue	Kazushi Urata	Keiji Inoue
+215	141	right of centre by 10	C	menu04.bin	141	522	Takuo Ueda	Takato Ito	Takuo Ueda
+216	142	left of centre by 10	C	menu04.bin	142	522	Nobuyoshi Mihara	Shinichi Mochizuki	Nobuyoshi Mihara
+217	142	right of centre by 10	C	menu04.bin	143	522	Ikumi Hachiro	Hirokazu Takano	Ikumi Hachiro
+218	143	left of centre by 10	C	menu04.bin	144	522	Seiji Nanase	Takeshi Sanda	Seiji Nanase
+219	143	right of centre by 10	C	menu04.bin	145	522	Nao Amano	Hideaki Morita	Nao Amano
+220	144	left of centre by 10	C	menu04.bin	146	522	Rie Koyama	Daisuke Komatsu	Rie Koyama
+221	144	right of centre by 10	C	menu04.bin	147	522	Yutaka Kasama	Kana Yamazaki	Yutaka Kasama
+222	145	left of centre by 10	C	menu04.bin	148	522	Tatsuru Nakaza	Norifumi Nagaoka	Tatsuru Nakaza
+223	145	right of centre by 10	C	menu04.bin	149	522	Masato Muramatsu	Tsuyoshi Okahisa	Masato Muramatsu
+224	146	left of centre by 10	C	menu04.bin	150	522	Tomomi Fujino	Hiroyuki Sano	Tomomi Fujino
+225	146	right of centre by 10	C	menu04.bin	151	522	Tsunataro Yoshida	Jun Sakurai	Tsunataro Yoshida
+226	147	left of centre by 10	C	menu04.bin	152	522	Takahiro Sugita	Tatsuhiro Okamoto	Takahiro Sugita
+227	147	right of centre by 10	C	menu04.bin	153	522	Yasuyuki Sogame	Hiroki Mitsushima	Yasuyuki Sogame
+228	148	left of centre by 10	C	menu04.bin	154	522	Reiko Kitaichi	Shin Ienaka	Reiko Kitaichi
+229	148	right of centre by 10	C	menu04.bin	155	522	Yukie Wakamoto	Rei Fukuzawa	Yukie Wakamoto
+230	149	left of centre by 10	C	menu04.bin	156	522	Satoru Uchida	Tsutomu Inagaki	Satoru Uchida
+231	149	right of centre by 10	C	menu04.bin	157	522	Ryo Hirao	Motohiro Murakami	Ryo Hirao
+232	150	left of centre by 10	C	menu04.bin	158	522	Daigo Nakamura	Takayuki Yoshikawa	Daigo Nakamura
+233	150	right of centre by 10	C	menu04.bin	159	522	Osamu Honma	Rinnosuke Kawai	Osamu Honma
+234	151	left of centre by 10	C	menu04.bin	160	522	Tomohiro Naka	Yasunori Yanagawa	Tomohiro Naka
+235	151	right of centre by 10	C	menu04.bin	161	522	Tadashi Soeda	Tohru Ohshita	Tadashi Soeda
+236	152	left of centre by 10	C	menu04.bin	162	522	Jun Kusaka	Daichi Nakagawa	Jun Kusaka
+237	152	right of centre by 10	C	menu04.bin	163	522	Mika Anzai	Yoshiyuki Shikano	Mika Anzai
+238	153	left of centre by 10	C	menu04.bin	164	522	Yoichiro Hori	Masato Shida	Yoichiro Hori
+239	153	right of centre by 10	C	menu04.bin	165	522	Ryuichi Onuma	Kohji Takino	Ryuichi Onuma
+240	154	left of centre by 10	C	menu04.bin	166	522	Yasuhide Hino	Tsuyoshi Wada	Yasuhide Hino
+241	154	right of centre by 10	C	menu04.bin	167	522	Mieko Saka	Nobuyuki Suzuki	Mieko Saka
+242	155	left of centre by 10	C	menu04.bin	168	522	Yu Segoe	Shinpei Murakami	Yu Segoe
+243	155	right of centre by 10	C	menu04.bin	169	522	Masaki Imamura	Takeshi Kawamorita	Masaki Imamura
+244	156	left of centre by 10	C	menu04.bin	170	522	Kazuhiro Kimura	Kohki Ishinuma	Kazuhiro Kimura
+245	156	right of centre by 10	C	menu04.bin	171	522	Ryoma Araki	Saeko Terada	Ryoma Araki
+246	157	left of centre by 10	C	menu04.bin	172	522	Yukihide Kimura	Yasuyuki Kawamata	Yukihide Kimura
+247	157	right of centre by 10	C	menu04.bin	173	522	Hisashi Ohshio	Mayumi Furuzawa	Hisashi Ohshio
+248	158	left of centre by 10	C	menu04.bin	174	522	Yoshiaki Iizuka	Takeo Sasaki	Yoshiaki Iizuka
+249	158	right of centre by 10	C	menu04.bin	175	522	Takeshi Oda	Subaru Ganbe	Takeshi Oda
+250	159	centred	B	menu03.bin	52	529	Event Motion & Motion Capture	REALTIME MODEL DESIGNERS	Event Motion & Motion Capture
+251	160	left of centre by 10	C	menu04.bin	176	535	Toshiaki Watanabe	Eiichiro Nakatsu	Toshiaki Watanabe
+252	160	right of centre by 10	C	menu04.bin	177	535	Satomi Tsuchida	Shinya Senzaki	Satomi Tsuchida
+253	161	left of centre by 10	C	menu04.bin	178	535	Hiroko Miura	Makoto Yagishita	Hiroko Miura
+254	161	right of centre by 10	C	menu04.bin	179	535	Kaoru Minemoto	Yuji Mitsuishi	Kaoru Minemoto
+255	162	left of centre by 10	C	menu04.bin	180	535	Sei Ikeda	Toru Shiozaki	Sei Ikeda
+256	162	right of centre by 10	C	menu04.bin	181	535	Mitsuki Sato	Nozomu Nishiiri	Mitsuki Sato
+257	163	left of centre by 10	C	menu04.bin	182	535	Hanae Karasawa	Kazumichi Kimura	Hanae Karasawa
+258	163	right of centre by 10	C	menu04.bin	183	535	Tomoyuki Arai	Yoshinari Hirata	Tomoyuki Arai
+259	164	left of centre by 10	C	menu04.bin	184	535	Satomi Hongo	Minako Tsuchiya	Satomi Hongo
+260	164	right of centre by 10	C	menu04.bin	185	535	Takeshi Tateishi	Noriaki Kayanuma	Takeshi Tateishi
+261	165	left of centre by 10	C	menu04.bin	186	535	Yuka Miyamoto	Shohei Muta	Yuka Miyamoto
+262	165	right of centre by 10	C	menu04.bin	187	535	Koichi Ebe	Takeshi Miyazawa	Koichi Ebe
+263	166	left of centre by 10	C	menu04.bin	188	535	Taiji Tsuchiya	Masahiko Mitsunami	Taiji Tsuchiya
+264	166	right of centre by 10	C	menu04.bin	189	535	Nobuki Ando	Rika Ojima	Nobuki Ando
+265	167	left of centre by 10	C	menu04.bin	190	535	Noriko Ikeda	Keiichirou Takahashi	Noriko Ikeda
+266	167	right of centre by 10	C	menu04.bin	191	535	Fumiko Hoshino	Mitsuharu Fushie	Fumiko Hoshino
+267	168	left of centre by 10	C	menu04.bin	192	535	Yuko Hatae	Chiho Kawase	Yuko Hatae
+268	168	right of centre by 10	C	menu04.bin	193	535	Mayumi Kubota	Noriyuki Komoda	Mayumi Kubota
+269	169	centred	B	menu03.bin	53	542	Facial Motion	TEXTURING	Facial Motion
+270	170	centred	B	menu03.bin	54	545	MENU DESIGN	Lead Texture Designers	MENU DESIGN
+271	171	left of centre by 10	C	menu04.bin	194	551	Makoto Ohta	Masaaki Kazeno	Makoto Ohta
+272	171	right of centre by 10	C	menu04.bin	195	551	Naoto Endo	Kohji Machida	Naoto Endo
+273	172	left of centre by 10	C	menu04.bin	196	551	Akira Iwata	Ryotaro Hashimoto	Akira Iwata
+274	172	right of centre by 10	C	menu04.bin	197	551	Kimitoshi Tsumura	Haruya Ishii	Kimitoshi Tsumura
+275	173	left of centre by 10	C	menu04.bin	198	551	Akihiro Tsuchiya	Keiji Inoue	Akihiro Tsuchiya
+276	173	right of centre by 10	C	menu04.bin	199	551	Tetsuichiro Kitagawa	Takuo Ueda	Tetsuichiro Kitagawa
+277	174	left of centre by 10	C	menu04.bin	200	551	Mitsuharu Fukai	Nobuyoshi Mihara	Mitsuharu Fukai
+278	175	centred	B	menu03.bin	55	558	Visual Design & Layout	Texture Designers	Visual Design & Layout
+279	176	left of centre by 10	C	menu04.bin	201	564	Hiroshi Kamohara	Ikumi Hachiro	Hiroshi Kamohara
+280	176	right of centre by 10	C	menu04.bin	202	564	Kazuyuki Ikumori	Seiji Nanase	Kazuyuki Ikumori
+281	177	left of centre by 10	C	menu04.bin	203	564	Koichiro Shiratori	Nao Amano	Koichiro Shiratori
+282	177	right of centre by 10	C	menu04.bin	204	564	Hirotaka Sawada	Rie Koyama	Hirotaka Sawada
+283	178	left of centre by 10	C	menu04.bin	205	564	Junichi Hayashi	Yutaka Kasama	Junichi Hayashi
+284	178	right of centre by 10	C	menu04.bin	206	564	Hideki Mizoguchi	Tatsuru Nakaza	Hideki Mizoguchi
+285	179	left of centre by 10	C	menu04.bin	207	564	Koji Tanaka	Masato Muramatsu	Koji Tanaka
+286	179	right of centre by 10	C	menu04.bin	208	564	Kaori Sato	Tomomi Fujino	Kaori Sato
+287	180	centred	B	menu03.bin	56	571	Character Effects	MOTION DESIGN	Character Effects
+288	181	centred	B	menu03.bin	57	574	VISUAL EFFECTS DESIGN	Player Character Battle Motion	VISUAL EFFECTS DESIGN
+289	182	left of centre by 10	C	menu04.bin	209	580	Yasuharu Yoshizawa	Tsunataro Yoshida	Yasuharu Yoshizawa
+290	182	right of centre by 10	C	menu04.bin	210	580	Keiichi Kojima	Takahiro Sugita	Keiichi Kojima
+291	183	left of centre by 10	C	menu04.bin	211	580	Hiroyuki Honda	Yasuyuki Sogame	Hiroyuki Honda
+292	183	right of centre by 10	C	menu04.bin	212	580	Hiroshi Fujiwara	Reiko Kitaichi	Hiroshi Fujiwara
+293	184	left of centre by 10	C	menu04.bin	213	580	Takeshi Tateishi	Yukie Wakamoto	Takeshi Tateishi
+294	185	centred	B	menu03.bin	58	587	CG MOVIES	Battle Motion	CG MOVIES
+295	186	left of centre by 10	C	menu04.bin	214	593	Kazuhito Shimada	Satoru Uchida	Kazuhito Shimada
+296	186	right of centre by 10	C	menu04.bin	215	593	Fred T.Y. Hui	Ryo Hirao	Fred T.Y. Hui
+297	187	left of centre by 10	C	menu04.bin	216	593	Kenichi Isaka	Daigo Nakamura	Kenichi Isaka
+298	187	right of centre by 10	C	menu04.bin	217	593	Mamoru Tagata	Osamu Honma	Mamoru Tagata
+299	188	left of centre by 10	C	menu04.bin	218	593	Tadahiro Inoue	Tomohiro Naka	Tadahiro Inoue
+300	188	right of centre by 10	C	menu04.bin	219	593	Ken Yuasa	Tadashi Soeda	Ken Yuasa
+301	189	left of centre by 10	C	menu04.bin	220	593	Naomi Horigome	Jun Kusaka	Naomi Horigome
+302	189	right of centre by 10	C	menu04.bin	221	593	Takashi Nakano	Mika Anzai	Takashi Nakano
+303	190	left of centre by 10	C	menu04.bin	222	593	Takeshi Maruyama	Yoichiro Hori	Takeshi Maruyama
+304	190	right of centre by 10	C	menu04.bin	223	593	Toshihide Funato	Ryuichi Onuma	Toshihide Funato
+305	191	centred	B	menu03.bin	59	600	Character Model Supervisors	Event Motion	Character Model Supervisors
+306	192	left of centre by 10	C	menu04.bin	224	606	Yuji Yamazaki	Yasuhide Hino	Yuji Yamazaki
+307	192	right of centre by 10	C	menu04.bin	225	606	Mio Tagiri	Mieko Saka	Mio Tagiri
+308	193	left of centre by 10	C	menu04.bin	226	606	Yoshihito Ikuta	Yu Segoe	Yoshihito Ikuta
+309	193	right of centre by 10	C	menu04.bin	227	606	Masahiro Hamada	Masaki Imamura	Masahiro Hamada
+310	194	left of centre by 10	C	menu04.bin	228	606	Yujiro Tada	Kazuhiro Kimura	Yujiro Tada
+311	194	right of centre by 10	C	menu04.bin	229	606	Jun Usui	Ryoma Araki	Jun Usui
+312	195	left of centre by 10	C	menu04.bin	230	606	Hiroto Ide	Yukihide Kimura	Hiroto Ide
+313	195	right of centre by 10	C	menu04.bin	231	606	Takayuki Hayashi	Hisashi Ohshio	Takayuki Hayashi
+314	196	left of centre by 10	C	menu04.bin	232	606	Masumi Hakamada	Yoshiaki Iizuka	Masumi Hakamada
+315	196	right of centre by 10	C	menu04.bin	233	606	Eiji Kitada	Takeshi Oda	Eiji Kitada
+316	197	left of centre by 10	C	menu04.bin	234	606	Takafumi Nishimura	Toshiaki Watanabe	Takafumi Nishimura
+317	197	right of centre by 10	C	menu04.bin	235	606	Sanae Nakanishi	Satomi Tsuchida	Sanae Nakanishi
+318	198	left of centre by 10	C	menu04.bin	236	606	Seth Thompson	Hiroko Miura	Seth Thompson
+319	199	centred	B	menu03.bin	60	613	Character Technical Supervisors	Event Motion & Motion Capture	Character Technical Supervisors
+320	200	left of centre by 10	C	menu04.bin	237	619	Takuya Suzuki	Kaoru Minemoto	Takuya Suzuki
+321	200	right of centre by 10	C	menu04.bin	238	619	Taku Watanabe	Sei Ikeda	Taku Watanabe
+322	201	left of centre by 10	C	menu04.bin	239	619	Tomohiko Osugi	Mitsuki Sato	Tomohiko Osugi
+323	202	centred	B	menu03.bin	61	626	Set & Prop Supervisors	Facial Motion	Set & Prop Supervisors
+324	203	left of centre by 10	C	menu04.bin	240	632	Keiji Sakamoto	Hanae Karasawa	Keiji Sakamoto
+325	203	right of centre by 10	C	menu04.bin	241	632	Yoko Abe	Tomoyuki Arai	Yoko Abe
+326	204	centred	B	menu03.bin	62	639	Animation Supervisors	MENU DESIGN	Animation Supervisors
+327	205	centred	B	menu03.bin	63	642	Motion Capture Supervisor	Visual Design & Layout	Motion Capture Supervisor
+328	206	left of centre by 10	C	menu04.bin	242	648	Masayo Tateishi	Satomi Hongo	Masayo Tateishi
+329	206	right of centre by 10	C	menu04.bin	243	648	Satoshi Naito	Takeshi Tateishi	Satoshi Naito
+330	207	left of centre by 10	C	menu04.bin	244	648	Kazuhiko Kosono	Yuka Miyamoto	Kazuhiko Kosono
+331	207	right of centre by 10	C	menu04.bin	245	648	Masahiro Nishimura	Koichi Ebe	Masahiro Nishimura
+332	208	centred	B	menu03.bin	64	655	VFX Supervisors	Character Effects	VFX Supervisors
+333	209	left of centre by 10	C	menu04.bin	246	661	Hikaru Murakami	Taiji Tsuchiya	Hikaru Murakami
+334	209	right of centre by 10	C	menu04.bin	247	661	Atsushi Osako	Nobuki Ando	Atsushi Osako
+335	210	centred	B	menu03.bin	225	667	QA Coordinator	License Board Design	-
+336	211	centred	C	menu04.bin	645	670	Shinichiro Eto	Yukio Nakatani	Shinichiro Eto
+337	212	centred	B	menu03.bin	65	675	Lighting Supervisor	VISUAL EFFECTS DESIGN	Lighting Supervisor
+338	213	left of centre by 10	C	menu04.bin	248	681	Tomoya Suzuki	Noriko Ikeda	Tomoya Suzuki
+339	213	right of centre by 10	C	menu04.bin	249	681	Hiroko Masuda	Fumiko Hoshino	Hiroko Masuda
+340	214	left of centre by 10	C	menu04.bin	250	681	Hiroki Minami	Yuko Hatae	Hiroki Minami
+341	214	right of centre by 10	C	menu04.bin	251	681	Keiko Imamura	Mayumi Kubota	Keiko Imamura
+342	215	left of centre by 10	C	menu04.bin	252	681	Shuntaro Furukawa	Makoto Ohta	Shuntaro Furukawa
+343	215	right of centre by 10	C	menu04.bin	253	681	Ayako Kuroda	Naoto Endo	Ayako Kuroda
+344	216	centred	B	menu03.bin	66	688	Composite Supervisor	CG MOVIES	Composite Supervisor
+345	217	centred	B	menu03.bin	67	691	Editor	Character Model Supervisors	Editor
+346	218	left of centre by 10	C	menu04.bin	1023	695	-	-	-
+347	218	right of centre by 10	C	menu04.bin	254	696	Yasuko Asakura	Akira Iwata	Yasuko Asakura
+348	219	left of centre by 10	C	menu04.bin	1023	697	-	-	-
+349	219	right of centre by 10	C	menu04.bin	255	698	Ren Kikuchi	Kimitoshi Tsumura	Ren Kikuchi
+350	220	centred	B	menu03.bin	68	702	Sequence Leads	Character Technical Supervisors	Sequence Leads
+351	221	left of centre by 10	C	menu04.bin	1023	706	-	-	-
+352	221	right of centre by 10	C	menu04.bin	256	707	Soichi Shirakabe	Akihiro Tsuchiya	Soichi Shirakabe
+353	222	left of centre by 10	C	menu04.bin	1023	708	-	-	-
+354	222	right of centre by 10	C	menu04.bin	257	709	Kaoru Chikaoka	Tetsuichiro Kitagawa	Kaoru Chikaoka
+355	223	left of centre by 10	C	menu04.bin	1023	710	-	-	-
+356	223	right of centre by 10	C	menu04.bin	258	711	Makoto Waragai	Mitsuharu Fukai	Makoto Waragai
+357	224	left of centre by 10	B	menu03.bin	69	716	Crowd Simulation Leads	Set & Prop Supervisors	Crowd Simulation Leads
+358	224	right of centre by 10	C	menu04.bin	259	717	Kotaro Beppu	Hiroshi Kamohara	Kotaro Beppu
+359	225	left of centre by 10	C	menu04.bin	1023	720	-	-	-
+360	225	right of centre by 10	C	menu04.bin	260	721	Keisuke Miyazaki	Kazuyuki Ikumori	Keisuke Miyazaki
+361	226	left of centre by 10	B	menu03.bin	70	726	Character Model Designers	Animation Supervisors	Character Model Designers
+362	226	right of centre by 10	C	menu04.bin	261	727	Taku Wakisaka	Koichiro Shiratori	Taku Wakisaka
+363	227	left of centre by 10	C	menu04.bin	1023	730	-	-	-
+364	227	right of centre by 10	C	menu04.bin	262	731	Hirofumi Kawai	Hirotaka Sawada	Hirofumi Kawai
+365	228	left of centre by 10	B	menu03.bin	71	736	Character Technical Designers	Motion Capture Supervisor	Character Technical Designers
+366	228	right of centre by 10	C	menu04.bin	263	737	Genichi Kawada	Junichi Hayashi	Genichi Kawada
+367	229	left of centre by 10	B	menu03.bin	72	746	Set & Prop Designers	VFX Supervisors	Set & Prop Designers
+368	229	right of centre by 10	C	menu04.bin	264	747	Hiroki Miyazaki	Hideki Mizoguchi	Hiroki Miyazaki
+369	230	left of centre by 10	C	menu04.bin	1023	750	-	-	-
+370	230	right of centre by 10	C	menu04.bin	265	751	Hirotaka Sato	Koji Tanaka	Hirotaka Sato
+371	231	left of centre by 10	B	menu03.bin	73	756	Animation Designers	Lighting Supervisor	Animation Designers
+372	231	right of centre by 10	C	menu04.bin	266	757	Masashi Nakata	Kaori Sato	Masashi Nakata
+373	232	left of centre by 10	B	menu03.bin	74	766	Motion Capture Designers	Composite Supervisor	Motion Capture Designers
+374	232	right of centre by 10	C	menu04.bin	267	767	Manabu Ishizaki	Yasuharu Yoshizawa	Manabu Ishizaki
+375	233	left of centre by 10	B	menu03.bin	75	776	VFX Designers	Editor	VFX Designers
+376	233	right of centre by 10	C	menu04.bin	268	777	Hazuki Fujimoto	Keiichi Kojima	Hazuki Fujimoto
+377	234	left of centre by 10	B	menu03.bin	76	786	CG Engineers	Sequence Leads	CG Engineers
+378	234	right of centre by 10	C	menu04.bin	269	787	Ryosuke Inagaki	Hiroyuki Honda	Ryosuke Inagaki
+379	235	left of centre by 10	C	menu04.bin	1023	790	-	-	-
+380	235	right of centre by 10	C	menu04.bin	270	791	Saika Aoki	Hiroshi Fujiwara	Saika Aoki
+381	236	left of centre by 10	C	menu04.bin	1023	790	-	-	-
+382	236	right of centre by 10	C	menu04.bin	271	791	Momo Nakabayashi	Takeshi Tateishi	Momo Nakabayashi
+383	237	left of centre by 10	C	menu04.bin	1023	790	-	-	-
+384	237	right of centre by 10	C	menu04.bin	272	791	Norimichi Kurosawa	Kazuhito Shimada	Norimichi Kurosawa
+385	238	left of centre by 10	C	menu04.bin	1023	793	-	-	-
+386	238	right of centre by 10	C	menu04.bin	646	794	Junko Kuroda	Yoshinori Osaki	Junko Kuroda
+387	239	left of centre by 10	B	menu03.bin	77	798	Visual Works Coordinators	Crowd Simulation Leads	Visual Works Co-ordinators
+388	239	right of centre by 10	C	menu04.bin	273	799	Atsuko Hashimoto	Fred T.Y. Hui	Atsuko Hashimoto
+389	240	left of centre by 10	C	menu04.bin	1023	802	-	-	-
+390	240	right of centre by 10	C	menu04.bin	274	803	Hisako Sakurai	Kenichi Isaka	Hisako Sakurai
+391	241	centred	B	menu03.bin	78	809	Movie Producers	Character Model Designers	Movie Producers
+392	242	left of centre by 10	C	menu04.bin	275	815	Hiroshi Kuwabara	Mamoru Tagata	Hiroshi Kuwabara
+393	242	right of centre by 10	C	menu04.bin	276	815	Satoshi Tsukamoto	Tadahiro Inoue	Satoshi Tsukamoto
+394	243	left of centre by 10	C	menu04.bin	277	815	Hayato Matsuo	Ken Yuasa	Hayato Matsuo
+395	243	right of centre by 10	C	menu04.bin	278	815	Masaharu Iwata	Naomi Horigome	Masaharu Iwata
+396	244	left of centre by 10	C	menu04.bin	279	815	Keiji Kawamori	Takashi Nakano	Keiji Kawamori
+397	244	right of centre by 10	C	menu04.bin	280	815	Minoru Akao	Takeshi Maruyama	Minoru Akao
+398	245	left of centre by 10	C	menu04.bin	281	815	Satoshi Akamatsu	Toshihide Funato	Satoshi Akamatsu
+399	245	right of centre by 10	C	menu04.bin	282	815	Shojiro Nakaoka	Yuji Yamazaki	Shojiro Nakaoka
+400	246	centred	B	menu03.bin	79	822	SOUND	Character Technical Designers	SOUND
+401	247	left of centre by 10	C	menu04.bin	283	828	Makoto Ise	Mio Tagiri	Makoto Ise
+402	247	right of centre by 10	C	menu04.bin	284	828	Kenichi Mikoshiba	Yoshihito Ikuta	Kenichi Mikoshiba
+403	248	left of centre by 10	C	menu04.bin	285	828	Natsuko Sugiyama	Masahiro Hamada	Natsuko Sugiyama
+404	248	right of centre by 10	C	menu04.bin	286	828	Kazuhiro Hosoe	Yujiro Tada	Kazuhiro Hosoe
+405	249	left of centre by 10	C	menu04.bin	287	828	Rieko Shimura	Jun Usui	Rieko Shimura
+406	250	centred	B	menu03.bin	80	835	Additional Composition	Set & Prop Designers	Additional Composition
+407	251	left of centre by 10	C	menu04.bin	288	841	Natsuko Sugiyama	Hiroto Ide	Natsuko Sugiyama
+408	251	right of centre by 10	C	menu04.bin	289	841	Masayuki Tanaka	Takayuki Hayashi	Masayuki Tanaka
+409	252	left of centre by 10	C	menu04.bin	290	841	Masashi Kitagawa	Masumi Hakamada	Masashi Kitagawa
+410	252	right of centre by 10	C	menu04.bin	291	841	Kazuki Hamamoto 	Eiji Kitada	Kazuki Hamamoto 
+411	253	left of centre by 10	C	menu04.bin	292	841	408 THX suite (THX pm3 certified)	Takafumi Nishimura	408 THX suite (THX pm3 certified)
+412	253	right of centre by 10	C	menu04.bin	293	841	Kazutaka Someya	Sanae Nakanishi	Kazutaka Someya
+413	254	left of centre by 10	C	menu04.bin	294	841	Yuka Kitazawa	Seth Thompson	Yuka Kitazawa
+414	254	right of centre by 10	C	menu04.bin	295	841	Asako Odajima	Takuya Suzuki	Asako Odajima
+415	255	left of centre by 10	C	menu04.bin	296	841	Katsuhisa Sadayasu	Taku Watanabe	Katsuhisa Sadayasu
+416	255	right of centre by 10	C	menu04.bin	297	841	Chiaki Ikejima	Tomohiko Osugi	Chiaki Ikejima
+417	256	left of centre by 10	C	menu04.bin	298	841	Hitoshi Sakimoto	Keiji Sakamoto	Hitoshi Sakimoto
+418	257	centred	B	menu03.bin	81	848	Synthesizers	Animation Designers	Synthesisers
+419	258	left of centre by 10	C	menu04.bin	299	854	Hayato Matsuo	Yoko Abe	Hayato Matsuo
+420	258	right of centre by 10	C	menu04.bin	300	854	Yuji Saito	Masayo Tateishi	Yuji Saito
+421	259	left of centre by 10	C	menu04.bin	301	854	Masaru	Satoshi Naito	Masaru
+422	259	right of centre by 10	C	menu04.bin	302	854	Toshiyuki Yoshida	Kazuhiko Kosono	Toshiyuki Yoshida
+423	260	left of centre by 10	C	menu04.bin	303	854	Toshiaki Ota	Masahiro Nishimura	Toshiaki Ota
+424	260	right of centre by 10	C	menu04.bin	304	854	Masato Matsuda	Hikaru Murakami	Masato Matsuda
+425	261	left of centre by 10	C	menu04.bin	305	854	Midori Takada	Atsushi Osako	Midori Takada
+426	261	right of centre by 10	C	menu04.bin	306	854	Tomoko Kusakari	Tomomi Moriyasu	Tomoko Kusakari
+427	262	centred	B	menu03.bin	82	861	Programmer	Motion Capture Designers	Programmer
+428	263	left of centre by 10	C	menu04.bin	307	867	Marie Oishi	Tomoya Suzuki	Marie Oishi
+429	263	right of centre by 10	C	menu04.bin	308	867	Kazuya Honma Group	Hiroko Masuda	Kazuya Honma Group
+430	264	left of centre by 10	C	menu04.bin	309	867	Osamu Matsumoto Group	Hiroki Minami	Osamu Matsumoto Group
+431	264	right of centre by 10	C	menu04.bin	310	867	Hiroyuki Minami Group	Keiko Imamura	Hiroyuki Minami Group
+432	265	centred	B	menu03.bin	83	874	Tool Programmer	VFX Designers	Tool Programmer
+433	266	left of centre by 10	C	menu04.bin	311	880	Kiyoshi Sato	Shuntaro Furukawa	Kiyoshi Sato
+434	266	right of centre by 10	C	menu04.bin	312	880	Takashi Asahi	Ayako Kuroda	Takashi Asahi
+435	267	left of centre by 10	C	menu04.bin	313	880	Yoshio Kizu	Yasuko Asakura	Yoshio Kizu
+436	267	right of centre by 10	C	menu04.bin	314	880	Satoshi Shoji	Ren Kikuchi	Satoshi Shoji
+437	268	left of centre by 10	C	menu04.bin	315	880	Keiko Narita	Soichi Shirakabe	Keiko Narita
+438	268	right of centre by 10	C	menu04.bin	316	880	Tadashi Hoshino	Kaoru Chikaoka	Tadashi Hoshino
+439	269	left of centre by 10	C	menu04.bin	317	880	Satoshi Kobayashi	Makoto Waragai	Satoshi Kobayashi
+440	270	centred	B	menu03.bin	84	887	Movie Sound Editors	CG Engineers	Movie Sound Editors
+441	271	left of centre by 10	C	menu04.bin	318	893	Josuke Ohata	Kotaro Beppu	Josuke Ohata
+442	271	right of centre by 10	C	menu04.bin	319	893	Masatsugu Shinozaki Group	Keisuke Miyazaki	Masatsugu Shinozaki Group
+443	272	left of centre by 10	C	menu04.bin	320	893	Tomoyuki Asakawa	Taku Wakisaka	Tomoyuki Asakawa
+444	272	right of centre by 10	C	menu04.bin	321	893	Koji Haishima	Hirofumi Kawai	Koji Haishima
+445	273	left of centre by 10	C	menu04.bin	322	893	Victor Studio	Genichi Kawada	Victor Studio
+446	273	right of centre by 10	C	menu04.bin	323	893	IMAGINE Inc.	Hiroki Miyazaki	IMAGINE Inc.
+447	274	left of centre by 10	C	menu04.bin	324	893	Nobuo Uematsu	Hirotaka Sato	Nobuo Uematsu
+448	274	right of centre by 10	C	menu04.bin	325	893	Angela Aki	Masashi Nakata	Angela Aki
+449	275	left of centre by 10	C	menu04.bin	326	893	Kenichiro Fukui	Manabu Ishizaki	Kenichiro Fukui
+450	276	centred	B	menu03.bin	85	900	Sound Editors	Visual Works Coordinators	Sound Editors
+451	277	left of centre by 10	C	menu04.bin	327	906	Gen-ittetsu Group	Hazuki Fujimoto	Gen-ittetsu Group
+452	277	right of centre by 10	C	menu04.bin	328	906	Mitsuhiro Ohta	Ryosuke Inagaki	Mitsuhiro Ohta
+453	278	left of centre by 10	C	menu04.bin	329	906	Akira Yamamoto	Saika Aoki	Akira Yamamoto
+454	278	right of centre by 10	C	menu04.bin	330	906	Isao Arima	Momo Nakabayashi	Isao Arima
+455	279	left of centre by 10	C	menu04.bin	331	906	Kenji Nakai	Norimichi Kurosawa	Kenji Nakai
+456	279	right of centre by 10	C	menu04.bin	332	906	ONKIO HAUS / STUDIO 1043	Atsuko Hashimoto	ONKIO HAUS / STUDIO 1043
+457	280	left of centre by 10	C	menu04.bin	333	906	(C)2006 Solid Co., Ltd ,	Hisako Sakurai	(C)2006 Solid Co., Ltd ,
+458	281	centred	B	menu03.bin	86	913	Dialogue Editor	Movie Producers	Dialogue Editor
+459	282	left of centre by 10	C	menu04.bin	334	919	Taro Hakase	Hiroshi Kuwabara	Taro Hakase
+460	282	right of centre by 10	C	menu04.bin	335	919	Hitoshi Sakimoto	Satoshi Tsukamoto	Hitoshi Sakimoto
+461	283	centred	B	menu03.bin	87	926	Project Manager	SOUND	Project Manager
+462	284	left of centre by 10	B	menu03.bin	88	930	Project Coordinator	Additional Composition	Project Co-ordinator
+463	284	right of centre by 10	C	menu04.bin	336	931	Yuji Toriyama	Hayato Matsuo	Yuji Toriyama
+464	285	left of centre by 10	C	menu04.bin	1023	934	-	-	-
+465	285	right of centre by 10	C	menu04.bin	337	935	Katsumi Ohtani	Masaharu Iwata	Katsumi Ohtani
+466	286	left of centre by 10	B	menu03.bin	89	940	Project Assistant	Synthesizers	Project Assistant
+467	286	right of centre by 10	C	menu04.bin	338	941	Miho Kitagawa	Keiji Kawamori	Miho Kitagawa
+468	287	left of centre by 10	B	menu03.bin	90	950	Mixing Studio	Programmer	Mixing Studio
+469	287	right of centre by 10	C	menu04.bin	339	951	Robby Wada	Minoru Akao	Robby Wada
+470	288	left of centre by 10	B	menu03.bin	91	960	Mixing Engineer	Tool Programmer	Mixing Engineer
+471	288	right of centre by 10	C	menu04.bin	340	961	HATS UNLIMITED CO.,LTD.	Satoshi Akamatsu	HATS UNLIMITED CO.,LTD.
+472	289	left of centre by 10	B	menu03.bin	92	970	Assistant Engineers	Movie Sound Editors	Assistant Engineers
+473	289	right of centre by 10	C	menu04.bin	341	971	Ein Associates	Shojiro Nakaoka	Ein Associates
+474	290	left of centre by 10	C	menu04.bin	1023	974	-	-	-
+475	290	right of centre by 10	C	menu04.bin	342	975	Vaan	Makoto Ise	Vaan
+476	291	left of centre by 10	B	menu03.bin	93	980	Post Production Manager	Sound Editors	Post Production Manager
+477	291	right of centre by 10	C	menu04.bin	343	981	Bobby Edner	Kenichi Mikoshiba	Bobby Edner
+478	292	left of centre by 10	C	menu04.bin	1023	984	-	-	-
+479	292	right of centre by 10	C	menu04.bin	344	985	Penelo	Natsuko Sugiyama	Penelo
+480	293	left of centre by 10	C	menu04.bin	1023	984	-	-	-
+481	293	right of centre by 10	C	menu04.bin	345	985	Cat Taber	Kazuhiro Hosoe	Cat Taber
+482	294	left of centre by 10	C	menu04.bin	1023	984	-	-	-
+483	294	right of centre by 10	C	menu04.bin	346	985	Balthier	Rieko Shimura	Balthier
+484	295	left of centre by 10	B	menu03.bin	94	990	Opening & Ending Themes	Dialogue Editor	Opening & Ending Themes
+485	295	right of centre by 10	C	menu04.bin	347	991	Gideon Emery	Natsuko Sugiyama	Gideon Emery
+486	296	left of centre by 10	B	menu03.bin	95	1000	Composer	Project Manager	Composer
+487	296	right of centre by 10	C	menu04.bin	348	1001	Fran	Masayuki Tanaka	Fran
+488	297	left of centre by 10	B	menu03.bin	96	1010	Orchestral Arrangement	Project Coordinator	Orchestral Arrangement
+489	297	right of centre by 10	C	menu04.bin	349	1011	Nicole Fantl	Masashi Kitagawa	Nicole Fantl
+490	298	left of centre by 10	B	menu03.bin	97	1020	Producer	Project Assistant	Producer
+491	298	right of centre by 10	C	menu04.bin	350	1021	Ashe	Kazuki Hamamoto 	Ashe
+492	299	left of centre by 10	B	menu03.bin	98	1030	Director	Mixing Studio	Director
+493	300	left, at 158	C	menu04.bin	351	1033	Kari Wahlgren	408 THX suite (THX pm3 certified)	Kari Wahlgren
+494	301	left, at 296	C	menu04.bin	352	1035	Basch	at Sony PCL Inc.	Basch
+495	302	left of centre by 10	B	menu03.bin	99	1039	Recording Engineer	Mixing Engineer	Recording Engineer
+496	302	right of centre by 10	C	menu04.bin	353	1040	Keith Ferguson	Kazutaka Someya	Keith Ferguson
+497	303	left of centre by 10	B	menu03.bin	100	1049	Musician Coordinator	Assistant Engineers	Musician Co-ordinator
+498	303	right of centre by 10	C	menu04.bin	354	1050	Vayne	Yuka Kitazawa	Vayne
+499	304	left of centre by 10	C	menu04.bin	1023	1053	-	-	-
+500	304	right of centre by 10	C	menu04.bin	355	1054	Elijah Alexander	Asako Odajima	Elijah Alexander
+501	305	left of centre by 10	C	menu04.bin	1023	1053	-	-	-
+502	305	right of centre by 10	C	menu04.bin	356	1054	Larsa	Katsuhisa Sadayasu	Larsa
+503	306	left of centre by 10	B	menu03.bin	101	1059	Piano	Post Production Manager	Piano
+504	306	right of centre by 10	C	menu04.bin	357	1060	Johnny McKeown	Chiaki Ikejima	Johnny McKeown
+505	307	centred	B	menu03.bin	102	1071	Percussion	Opening & Ending Themes	Percussion
+506	308	left of centre by 10	B	menu03.bin	103	1075	Percussion	Composer	Percussion
+507	308	right of centre by 10	C	menu04.bin	358	1076	Gabranth	Hitoshi Sakimoto	Gabranth
+508	309	left of centre by 10	B	menu03.bin	104	1085	Percussion	Orchestral Arrangement	Percussion
+509	309	right of centre by 10	C	menu04.bin	359	1086	Michael Rodgers	Hayato Matsuo	Michael Rodgers
+510	310	left of centre by 10	B	menu03.bin	105	1096	Trumpet	Producer	Trumpet
+511	310	right of centre by 10	C	menu04.bin	360	1097	Cid	Yuji Saito	Cid
+512	311	left of centre by 10	B	menu03.bin	106	1106	Trombone	Director	Trombone
+513	311	right of centre by 10	C	menu04.bin	361	1107	John Lee	Masaru	John Lee
+514	312	left of centre by 10	B	menu03.bin	107	1117	Harp	Recording Engineer	Horn
+515	312	right of centre by 10	C	menu04.bin	362	1118	Al-Cid	Toshiyuki Yoshida	Al-Cid
+516	313	left of centre by 10	B	menu03.bin	108	1127	Tuba	Musician Coordinator	Tuba
+517	313	right of centre by 10	C	menu04.bin	363	1128	David Rasner	Toshiaki Ota	David Rasner
+518	314	left of centre by 10	B	menu03.bin	109	1138	Flute	Piano	Flute
+519	314	right of centre by 10	C	menu04.bin	364	1139	Reddas	Masato Matsuda	Reddas
+520	315	left of centre by 10	B	menu03.bin	110	1148	Flute	Percussion	Flute
+521	315	right of centre by 10	C	menu04.bin	365	1149	Phil LaMarr	Midori Takada	Phil LaMarr
+522	316	left of centre by 10	B	menu03.bin	111	1158	Oboe	Percussion	Oboe
+523	316	right of centre by 10	C	menu04.bin	366	1159	Ondore	Tomoko Kusakari	Ondore
+524	317	left of centre by 10	B	menu03.bin	112	1168	Oboe	Percussion	Oboe
+525	317	right of centre by 10	C	menu04.bin	367	1169	Tom Kane	Marie Oishi	Tom Kane
+526	318	left of centre by 10	B	menu03.bin	113	1178	Clarinet	Trumpet	Clarinet
+527	318	right of centre by 10	C	menu04.bin	368	1179	Raminas	Kazuya Honma Group	Raminas
+528	319	left of centre by 10	B	menu03.bin	114	1188	Clarinet	Trombone	Clarinet
+529	320	left, at 223	C	menu04.bin	369	1191	Nick Jameson	Osamu Matsumoto Group	Nick Jameson
+530	321	left of centre by 10	B	menu03.bin	115	1194	Bassoon	Horn	Bassoon
+531	321	right of centre by 10	C	menu04.bin	370	1195	Rasler	Hiroyuki Minami Group	Rasler
+532	322	left of centre by 10	B	menu03.bin	116	1204	Strings	Tuba	Strings
+533	322	right of centre by 10	C	menu04.bin	371	1205	Andrew Philpot	Kiyoshi Sato	Andrew Philpot
+534	323	left of centre by 10	B	menu03.bin	117	1214	Harp	Flute	Harp
+535	323	right of centre by 10	C	menu04.bin	372	1215	Reks	Takashi Asahi	Reks
+536	324	left of centre by 10	B	menu03.bin	118	1224	Conductor	Flute	Conductor
+537	324	right of centre by 10	C	menu04.bin	373	1225	Yuri Lowenthal	Yoshio Kizu	Yuri Lowenthal
+538	325	left of centre by 10	B	menu03.bin	119	1234	Recording Studio	Oboe	Recording Studio
+539	325	right of centre by 10	C	menu04.bin	374	1235	Vossler	Satoshi Shoji	Vossler
+540	326	left of centre by 10	B	menu03.bin	120	1244	Coordination	Oboe	Co-ordination
+541	326	right of centre by 10	C	menu04.bin	375	1245	Nolan North 	Keiko Narita	Nolan North 
+542	327	left of centre by 10	B	menu03.bin	121	1254	"""Kiss Me Good-Bye"" (featured in FINAL FANTASY XII)"	Clarinet	"""Kiss Me Good-Bye"" (featured in FINAL FANTASY XII)"
+543	327	right of centre by 10	C	menu04.bin	376	1255	Migelo, Gilgamesh	Tadashi Hoshino	Migelo, Gilgamesh
+544	328	left of centre by 10	B	menu03.bin	122	1264	Composer & Producer	Clarinet	Composer & Producer
+545	328	right of centre by 10	C	menu04.bin	377	1265	John DiMaggio	Satoshi Kobayashi	John DiMaggio
+546	329	left of centre by 10	B	menu03.bin	123	1274	Vocals/Piano/Lyrics	Bassoon	Vocals/Piano/Lyrics
+547	329	right of centre by 10	C	menu04.bin	378	1275	Garif Great-chief	Josuke Ohata	Garif Great-chief
+548	330	left of centre by 10	B	menu03.bin	124	1284	Arrangement	Strings	Arrangement
+549	331	left, at 208	C	menu04.bin	379	1287	Michael Chinyamurindi	Masatsugu Shinozaki Group	Michael Chinyamurindi
+550	332	left of centre by 10	B	menu03.bin	125	1290	Strings	Harp	Strings
+551	332	right of centre by 10	C	menu04.bin	380	1291	Gran Kiltias Anastasis	Tomoyuki Asakawa	Gran Kiltias Anastasis
+552	333	left of centre by 10	B	menu03.bin	126	1300	Guitar	Conductor	Guitar
+553	333	right of centre by 10	C	menu04.bin	381	1301	Dwight Schultz	Koji Haishima	Dwight Schultz
+554	334	left of centre by 10	B	menu03.bin	127	1311	Bass	Recording Studio	Bass
+555	334	right of centre by 10	C	menu04.bin	382	1312	Emperor Gramis	Victor Studio	Emperor Gramis
+556	335	left of centre by 10	B	menu03.bin	128	1321	Drums & Percussion	Coordination	Drums & Percussion
+557	335	right of centre by 10	C	menu04.bin	383	1322	Roger L. Jackson	IMAGINE Inc.	Roger L. Jackson
+558	336	centred	B	menu03.bin	129	1332	Recording & Mixing Engineer	"""Kiss Me Good-Bye"" (featured in FINAL FANTASY XII)"	Recording & Mixing Engineer
+559	337	left of centre by 10	B	menu03.bin	130	1336	Recording Studio	Composer & Producer	Recording Studio
+560	337	right of centre by 10	C	menu04.bin	384	1337	Ghis	Nobuo Uematsu	Ghis
+561	338	left of centre by 10	B	menu03.bin	131	1346	"Symphonic Poem ""Hope"""	Vocals/Piano/Lyrics	"Symphonic Poem ""Hope"""
+562	338	right of centre by 10	C	menu04.bin	385	1347	Mark Wing-Davey	Angela Aki	Mark Wing-Davey
+563	339	left of centre by 10	B	menu03.bin	132	1356	CAST	Arrangement	CAST
+564	339	right of centre by 10	C	menu04.bin	386	1357	Bergan	Kenichiro Fukui	Bergan
+565	340	left of centre by 10	B	menu03.bin	133	1367	SUPPORTING CAST	Strings	SUPPORTING CAST
+566	340	right of centre by 10	C	menu04.bin	387	1368	Gary Martin	Gen-ittetsu Group	Gary Martin
+567	341	left of centre by 10	B	menu03.bin	134	1377	MOTION ACTORS	Guitar	MOTION ACTORS
+568	341	right of centre by 10	C	menu04.bin	388	1378	Drace	Mitsuhiro Ohta	Drace
+569	342	left of centre by 10	B	menu03.bin	135	1387	CG STUNT ACTORS	Bass	CG STUNT ACTORS
+570	342	right of centre by 10	C	menu04.bin	389	1388	Julia Fletcher	Akira Yamamoto	Julia Fletcher
+571	343	left of centre by 10	B	menu03.bin	136	1397	US RECORDING	Drums & Percussion	US RECORDING
+572	343	right of centre by 10	C	menu04.bin	390	1398	Zargabaath	Isao Arima	Zargabaath
+573	344	left, at 128	B	menu03.bin	137	1409	Recording Engineers	Recording & Mixing Engineer	Recording Engineers
+574	345	left, at 265	C	menu04.bin	391	1411	Simon Templeman	Kenji Nakai	Simon Templeman
+575	346	left of centre by 10	B	menu03.bin	138	1415	Assistant Recording Engineer	Recording Studio	Assistant Recording Engineer
+576	347	left, at 208	C	menu04.bin	392	1418	Venat	ONKIO HAUS / STUDIO 1043	Venat
+577	348	centred	B	menu03.bin	139	1423	Technical Supervisor	"Symphonic Poem ""Hope"""	Technical Supervisor
+578	349	centred	C	menu04.bin	393	1427	Anita Carey	Taro Hakase	Anita Carey
+579	350	centred	C	menu04.bin	394	1428	Gerun King	Hitoshi Sakimoto	Gerun King
+580	351	centred	C	menu04.bin	395	1430	Bernice Stegers	Yuji Toriyama	Bernice Stegers
+581	352	centred	C	menu04.bin	396	1432	Jote	Katsumi Ohtani	Jote
+582	353	centred	C	menu04.bin	397	1433	Michelle Arthur	Miho Kitagawa	Michelle Arthur
+583	354	centred	C	menu04.bin	398	1434	Mjrn	Robby Wada	Mjrn
+584	355	centred	C	menu04.bin	399	1436	April Stewart	HATS UNLIMITED CO.,LTD.	April Stewart
+585	356	centred	C	menu04.bin	400	1437	Ba'Gamnan	Ein Associates	Ba'Gamnan
+586	357	centred	B	menu03.bin	140	1442	Dialogue Editor	SUPPORTING CAST	Dialogue Editor
+587	358	left of centre by 10	B	menu04.bin	401	1448	Steve Blum	Raminas	Steve Blum
+588	358	right of centre by 10	C	menu04.bin	402	1449	Kytes	Nick Jameson	Kytes
+589	359	left of centre by 10	B	menu04.bin	403	1448	Conner Demita	Anastasis, Dalan	Conner Demita
+590	359	right of centre by 10	C	menu04.bin	404	1449	Havharo	Dwight Schultz	Havharo
+591	360	left of centre by 10	B	menu04.bin	405	1448	Chris Edgerly	Migelo, Gilgamesh	Chris Edgerly
+592	360	right of centre by 10	C	menu04.bin	406	1449	Rinok	John DiMaggio	Rinok
+593	361	left of centre by 10	B	menu04.bin	407	1448	April Stewart	Garif Great-chief	April Stewart
+594	361	right of centre by 10	C	menu04.bin	408	1449	Kytes	Michael Chinyamurindi	Kytes
+595	362	left of centre by 10	B	menu04.bin	409	1448	Conner Demita	Venat	Conner Demita
+596	362	right of centre by 10	C	menu04.bin	410	1449	Tomaj	Anita Carey	Tomaj
+597	363	left of centre by 10	B	menu04.bin	411	1448	Phil LaMarr	Gerun King	Phil LaMarr
+598	363	right of centre by 10	C	menu04.bin	412	1449	Havharo	Bernice Stegers	Havharo
+599	364	left of centre by 10	B	menu04.bin	413	1448	Chris Edgerly	Ba'Gamnan	Chris Edgerly
+600	364	right of centre by 10	C	menu04.bin	414	1449	Tomesi	Steve Blum	Tomesi
+601	365	left of centre by 10	B	menu04.bin	415	1448	David Rasner	Kytes	David Rasner
+602	365	right of centre by 10	C	menu04.bin	416	1449	Celebrant	Conner Demita	Celebrant
+603	366	left of centre by 10	B	menu04.bin	417	1448	Tom Kane	Havharo	Tom Kane
+604	366	right of centre by 10	C	menu04.bin	418	1449	Adjunct	Chris Edgerly	Adjunct
+605	367	centred	B	menu03.bin	141	1455	ADR Editors	Additional Voices	ADR Editors
+606	368	centred	C	menu04.bin	419	1459	Roger L Jackson	John Demita	Roger L Jackson
+607	369	centred	C	menu04.bin	420	1459	Senator	Scott Menville	Senator
+608	370	centred	C	menu04.bin	421	1459	Nick Jameson	Jonathan Nichols	Nick Jameson
+609	371	centred	C	menu04.bin	422	1459	Gilgamesh	Phil Proctor	Gilgamesh
+610	372	centred	C	menu04.bin	423	1459	John DiMaggio	Jill Talley	John DiMaggio
+611	373	centred	B	menu03.bin	142	1467	MOTION CAPTURE	CG STUNT ACTORS	MOTION CAPTURE
+612	374	centred	C	menu04.bin	424	1469	-	"Mark ""Cadogan"" Iacampo"	-
+613	375	centred	C	menu04.bin	425	1470	-	"Jay ""Noe"" Noyes"	-
+614	376	centred	C	menu04.bin	426	1471	-	"Keiichi ""Stephan"" Tada"	-
+615	377	centred	C	menu04.bin	427	1472	-	"Yukie ""Fox"" Yamada"	-
+616	378	centred	B	menu03.bin	143	1477	Casting	US RECORDING	Casting
+617	379	centred	B	menu03.bin	144	1481	Actors' Production Management	STUDIOPOLIS	Actors' Production Management
+618	380	left of centre by 10	B	menu03.bin	145	1485	CONTRACTORS	Recording Engineers	CONTRACTORS
+619	380	right of centre by 10	C	menu04.bin	428	1486	John Demita	Eric Lewis	John Demita
+620	381	left of centre by 10	C	menu04.bin	1023	1489	-	-	-
+621	381	right of centre by 10	C	menu04.bin	429	1490	Scott Menville	Ernie Sheesley	Scott Menville
+622	382	left of centre by 10	C	menu04.bin	1023	1489	-	-	-
+623	382	right of centre by 10	C	menu04.bin	430	1490	Jonathan Nichols	Kirk Rogers	Jonathan Nichols
+624	383	left, at 64	B	menu03.bin	146	1495	CG Movie Creation & Support	Assistant Recording Engineer	CG Movie Creation & Support
+625	384	left of centre by 10	C	menu04.bin	1023	1498	-	-	-
+626	384	right of centre by 10	C	menu04.bin	431	1499	Phil Proctor	Joe Moeller	Phil Proctor
+627	385	left of centre by 10	B	menu03.bin	147	1502	CGCG Inc.	Technical Supervisor	CGCG Inc.
+628	385	right of centre by 10	C	menu04.bin	432	1503	Jill Talley	Denny Densmore	Jill Talley
+629	386	left of centre by 10	B	menu03.bin	148	1512	LiNDA Inc. / Griot Inc.	Dialogue Editor	LiNDA Inc. / Griot Inc.
+630	386	right of centre by 10	C	menu04.bin	433	1513	Cat Taber	Terry Reiff	Cat Taber
+631	387	left of centre by 10	B	menu03.bin	149	1522	Slicon Studio	ADR Editors	Slicon Studio
+632	387	right of centre by 10	C	menu04.bin	434	1523	Chris Edgerly	Eric Lewis	Chris Edgerly
+633	388	left of centre by 10	C	menu04.bin	1023	1526	-	-	-
+634	388	right of centre by 10	C	menu04.bin	435	1527	Conner Demita	Ernie Sheesley	Conner Demita
+635	389	left of centre by 10	B	menu03.bin	150	1533	Digital Frontier Inc.	Recording Studio	Digital Frontier Inc.
+636	389	right of centre by 10	C	menu04.bin	436	1534	David Rasner	STUDIOPOLIS	David Rasner
+637	390	left of centre by 10	B	menu03.bin	151	1543	2D Field & Gadget Design Support	Studio Manager	2D Field & Gadget Design Support
+638	390	right of centre by 10	C	menu04.bin	437	1544	Dwight Schultz	Laura Lopez	Dwight Schultz
+639	391	left of centre by 10	B	menu03.bin	152	1554	KUSANAGI Co., LTD.	Dialogue Editorial	KUSANAGI Co., LTD.
+640	391	right of centre by 10	C	menu04.bin	438	1555	Elijah Alexander	STUDIOPOLIS	Elijah Alexander
+641	392	left of centre by 10	B	menu03.bin	153	1564	Music Production	Producer	Music Production
+642	392	right of centre by 10	C	menu04.bin	439	1565	Gary Martin	Alexander O. Smith	Gary Martin
+643	393	left of centre by 10	B	menu03.bin	154	1574	PROJECT MANAGEMENT	Line Producer	PROJECT MANAGEMENT
+644	393	right of centre by 10	C	menu04.bin	440	1575	Gideon Emery	Michael Hack	Gideon Emery
+645	394	left, at 64	B	menu03.bin	155	1584	Lead Production Coordinator	Voice Director / Casting Director	Lead Production Co-ordinator
+646	395	left of centre by 10	C	menu04.bin	1023	1587	-	-	-
+647	395	right of centre by 10	C	menu04.bin	441	1588	Jill Talley	Jack Fletcher	Jill Talley
+648	396	centred	B	menu03.bin	156	1595	Production Coordinator	MOTION CAPTURE	Production Co-ordinator
+649	397	left, at 128	B	menu03.bin	157	1599	Production Assistants	Casting	Production Assistants
+650	398	left, at 188	C	menu04.bin	442	1601	John Demita	Masayuki Sugahara (BE MINE)	John Demita
+651	399	left, at 128	B	menu03.bin	158	1605	LOCALIZATION	Actors' Production Management	LOCALISATION
+652	400	left, at 188	C	menu04.bin	443	1609	John DiMaggio	INFRAMINCE CO.,LTD.	John DiMaggio
+653	401	left, at 188	C	menu04.bin	444	1609	John Lee	J.CLIP	John Lee
+654	402	left, at 188	C	menu04.bin	445	1609	Johnny McKeown	KIDT CREW	Johnny McKeown
+655	403	left, at 188	C	menu04.bin	446	1609	Jonathan Nichols	SARAH PROJECT	Jonathan Nichols
+656	404	left, at 188	C	menu04.bin	447	1609	Julia Fletcher	WAKAKOMA Pro	Julia Fletcher
+657	405	left, at 188	C	menu04.bin	448	1609	Kari Wahlgren	YOUGO OFFICE	Kari Wahlgren
+658	406	left, at 188	C	menu04.bin	449	1609	Keith Ferguson	ZENITH INC.	Keith Ferguson
+659	407	centred	B	menu03.bin	159	1615	Localization Directors	CONTRACTORS	Localisation Directors
+660	408	centred	B	menu03.bin	160	1619	Localization Coordinators	CG Movie Creation & Support	Localisation Co-ordinators
+661	409	centred	B	menu03.bin	161	1623	Localization Supervisor	CGCG Inc.	Localisation Supervisor
+662	410	left of centre by 10	C	menu04.bin	450	1629	Mark Wing-Davey	Ivan C	Mark Wing-Davey
+663	410	right of centre by 10	C	menu04.bin	451	1629	Michael Chinyamurindi	Sareana Sun	Michael Chinyamurindi
+664	411	left of centre by 10	C	menu04.bin	452	1629	Michael Rodgers	Tsai Shui-Wen	Michael Rodgers
+665	411	right of centre by 10	C	menu04.bin	453	1629	Michelle Arthur	Steven Tsai	Michelle Arthur
+666	412	left of centre by 10	C	menu04.bin	454	1629	Nick Jameson	Marty Wu	Nick Jameson
+667	412	right of centre by 10	C	menu04.bin	455	1629	Nicole Fantl	Tony Wang	Nicole Fantl
+668	413	left of centre by 10	C	menu04.bin	456	1629	Nolan North 	Ally Liu	Nolan North 
+669	413	right of centre by 10	C	menu04.bin	457	1629	Phil LaMarr	Cheng So-Young	Phil LaMarr
+670	414	left of centre by 10	C	menu04.bin	458	1629	Phil Proctor	Huang Burning	Phil Proctor
+671	414	right of centre by 10	C	menu04.bin	459	1629	Roger L Jackson	Yang Po-chin	Roger L Jackson
+672	415	left of centre by 10	C	menu04.bin	460	1629	Scott Menville	Yang Kuo-Wei	Scott Menville
+673	415	right of centre by 10	C	menu04.bin	461	1629	Simon Templeman	Fish Hong	Simon Templeman
+674	416	left of centre by 10	C	menu04.bin	462	1629	Steve Blum	Fionn Yen	Steve Blum
+675	416	right of centre by 10	C	menu04.bin	463	1629	Tom Kane	Wu Li-Ya	Tom Kane
+676	417	left of centre by 10	C	menu04.bin	464	1629	Yuri Lowenthal	Wang Yao-Cheng	Yuri Lowenthal
+677	417	right of centre by 10	C	menu04.bin	465	1629	-	Chan Pi-Ching	-
+678	418	left of centre by 10	C	menu04.bin	466	1629	-	Chiang Chu-Tzu	-
+679	418	right of centre by 10	C	menu04.bin	467	1629	-	Hsiao Feng-Yi	-
+680	419	left of centre by 10	C	menu04.bin	468	1629	-	Coddy Hsieh	-
+681	419	right of centre by 10	C	menu04.bin	469	1629	-	Tonny Fang	-
+682	420	left of centre by 10	C	menu04.bin	470	1629	-	Eric Wang	-
+683	420	right of centre by 10	C	menu04.bin	471	1629	-	Alen Fang	-
+684	421	left of centre by 10	C	menu04.bin	472	1629	-	Lu Tung-Yuan	-
+685	421	right of centre by 10	C	menu04.bin	473	1629	-	Wang Cheng-Yang	-
+686	422	left of centre by 10	C	menu04.bin	474	1629	-	Su Mei-Yao	-
+687	422	right of centre by 10	C	menu04.bin	475	1629	-	Paggy Liou	-
+688	423	centred	B	menu03.bin	162	1638	Translators	LiNDA Inc. / Griot Inc.	Translation
+689	424	left of centre by 10	C	menu04.bin	476	1644	-	Hiroyuki Hayashida	-
+690	424	right of centre by 10	C	menu04.bin	477	1644	-	Masashi Sakamoto	-
+691	425	left of centre by 10	C	menu04.bin	478	1644	-	Kanako Tani	-
+692	425	right of centre by 10	C	menu04.bin	479	1644	-	Jitsuhisa Shibata	-
+693	426	left of centre by 10	C	menu04.bin	480	1644	-	Yuetsu Murakami	-
+694	426	right of centre by 10	C	menu04.bin	481	1644	-	Mamoru Kushiro	-
+695	427	left of centre by 10	C	menu04.bin	482	1644	-	Yasunobu Arahori	-
+696	427	right of centre by 10	C	menu04.bin	483	1644	-	Takaharu Tobe	-
+697	428	left of centre by 10	C	menu04.bin	484	1644	-	Nobuaki Ebihara	-
+698	428	right of centre by 10	C	menu04.bin	485	1644	-	Yoshihiro Ozawa	-
+699	429	left of centre by 10	C	menu04.bin	486	1644	-	Masashi Fujiura	-
+700	429	right of centre by 10	C	menu04.bin	487	1644	-	Tomohiro Yonemichi	-
+701	430	centred	B	menu03.bin	163	1652	PUBLICITY	Slicon Studio	PUBLICITY
+702	431	centred	C	menu04.bin	488	1654	-	Koji Matsumoto	-
+703	432	centred	B	menu03.bin	164	1660	Publicity Producer	Digital Frontier Inc.	Publicity Producer
+704	433	centred	B	menu03.bin	165	1667	Publicity Lead	2D Field & Gadget Design Support	Publicity Lead
+705	434	centred	B	menu03.bin	166	1671	Publicity Staff	KUSANAGI Co., LTD.	Publicity Staff
+706	435	left of centre by 10	C	menu04.bin	489	1677	Vaan	Nobuhito Sue	Vaan
+707	435	right of centre by 10	C	menu04.bin	490	1677	Kouhei Takeda	Hideyasu Narita	Kouhei Takeda
+708	436	left of centre by 10	C	menu04.bin	491	1677	Penelo	Ayu Kawamoto	Penelo
+709	436	right of centre by 10	C	menu04.bin	492	1677	Yuna Mikuni	Yoji Nakaza	Yuna Mikuni
+710	437	centred	B	menu03.bin	167	1687	Publicity Assistant	Music Production	Publicity Assistant
+711	438	centred	C	menu04.bin	493	1689	Balthier	Basiscape CO.,LTD.	Balthier
+712	439	centred	B	menu03.bin	168	1694	General Producer	PROJECT MANAGEMENT	General Producer
+713	440	left, at 100	B	menu03.bin	169	1698	SALES & MARKETING	Lead Production Coordinator	SALES & MARKETING
+714	441	left, at 265	C	menu04.bin	494	1702	Sean Ryan	Hiroaki Kato	Sean Ryan
+715	442	left, at 100	B	menu03.bin	170	1707	Senior Vice President	Production Coordinator	Senior Vice President
+716	443	left, at 265	C	menu04.bin	495	1711	Fran	Hiroyuki Ogawa	Fran
+717	444	left, at 100	B	menu03.bin	171	1716	General Manager	Production Assistants	General Manager
+718	445	left, at 265	C	menu04.bin	496	1720	Hiroko Harada	Yuko Fujii	Hiroko Harada
+719	446	left, at 265	C	menu04.bin	497	1720	Ashe	Emiko Nishiyama	Ashe
+720	447	centred	B	menu03.bin	172	1726	Senior Managers	LOCALIZATION	Senior Managers
+721	448	left of centre by 10	B	menu03.bin	173	1730	Staff	General Manager	Staff
+722	448	right of centre by 10	C	menu04.bin	498	1731	Mei Yoshikawa	Masashi Hiramatsu	Mei Yoshikawa
+723	449	left of centre by 10	B	menu03.bin	174	1740	SALES ADMINISTRATION	Localization Directors	SALES ADMINISTRATION
+724	449	right of centre by 10	C	menu04.bin	499	1741	Basch	Satoko Kondo	Basch
+725	450	left of centre by 10	C	menu04.bin	1023	1742	-	-	-
+726	450	right of centre by 10	C	menu04.bin	500	1743	Makoto Onaga	Tomoko Kondo	Makoto Onaga
+727	451	left of centre by 10	B	menu03.bin	175	1747	Managers	Localization Coordinators	Managers
+728	451	right of centre by 10	C	menu04.bin	501	1748	"Mark ""Cadogan"" Iacampo"	Seiko Braswell	"Mark ""Cadogan"" Iacampo"
+729	452	left of centre by 10	C	menu04.bin	1023	1751	-	-	-
+730	452	right of centre by 10	C	menu04.bin	502	1752	"Jay ""Noe"" Noyes"	Satoshi Toyoda	"Jay ""Noe"" Noyes"
+731	453	left of centre by 10	B	menu03.bin	176	1757	Staff	Localization Supervisor	Staff
+732	453	right of centre by 10	C	menu04.bin	503	1758	"Keiichi ""Stephan"" Tada"	Kazuyoshi Tashiro	"Keiichi ""Stephan"" Tada"
+733	454	left of centre by 10	B	menu03.bin	177	1767	TECHNICAL RESEARCH	Translators	TECHNICAL RESEARCH
+734	454	right of centre by 10	C	menu04.bin	504	1768	"Yukie ""Fox"" Yamada"	Alexander O. Smith 	"Yukie ""Fox"" Yamada"
+735	455	left of centre by 10	C	menu04.bin	1023	1771	-	-	-
+736	455	right of centre by 10	C	menu04.bin	505	1772	Joe Moeller	Joseph Reeder	Joe Moeller
+737	456	left of centre by 10	B	menu03.bin	178	1777	Managers	Editor	Managers
+738	456	right of centre by 10	C	menu04.bin	506	1778	Denny Densmore	Morgan Morris Rushton	Denny Densmore
+739	457	centred	B	menu03.bin	179	1789	Chief Engineers	PUBLICITY	Chief Engineers
+740	458	left of centre by 10	B	menu03.bin	226	1793	Assistant Coordinators	Senior Publicity Producer	-
+741	458	right of centre by 10	C	menu04.bin	647	1794	Noriko Watanabe	Ryutaro Sasaki	Noriko Watanabe
+742	459	left of centre by 10	B	menu03.bin	180	1803	Chief Coordinator	Publicity Producer	Chief Coordinator
+743	459	right of centre by 10	C	menu04.bin	507	1804	Terry Reiff	Yuka Naito	Terry Reiff
+744	460	left of centre by 10	B	menu03.bin	181	1813	Engineers	Publicity Assistants	Engineers
+745	460	right of centre by 10	C	menu04.bin	508	1814	Eric Lewis	Shiho Tsuyuki	Eric Lewis
+746	461	left of centre by 10	C	menu04.bin	1023	1817	-	-	-
+747	461	right of centre by 10	C	menu04.bin	509	1818	Ernie Sheesley	Hiroyuki Toyama	Ernie Sheesley
+748	462	left of centre by 10	B	menu03.bin	227	1823	QA Team	Senior Managers	-
+749	462	right of centre by 10	C	menu04.bin	648	1824	Akane Kakui	Shinji Hashimoto	Akane Kakui
+750	463	left of centre by 10	C	menu04.bin	1023	1827	-	-	-
+751	463	right of centre by 10	C	menu04.bin	649	1828	Konomi Shimano	Yoichi Haraguchi	Konomi Shimano
+752	464	left of centre by 10	B	menu03.bin	182	1833	Coordinator	General Producer	Co-ordinator
+753	464	right of centre by 10	C	menu04.bin	510	1834	STUDIOPOLIS	Koji Taguchi	STUDIOPOLIS
+754	465	centred	B	menu03.bin	183	1844	Assistant Engineers	SALES & MARKETING	Assistant Engineers
+755	466	left of centre by 10	B	menu03.bin	184	1848	Assistant Coordinators	Senior Vice President	Assistant Coordinators
+756	466	right of centre by 10	C	menu04.bin	511	1849	Laura Lopez	Shinji Hashimoto	Laura Lopez
+757	467	left of centre by 10	B	menu03.bin	185	1858	LINE COORDINATORS	General Manager	LINE CO-ORDINATORS
+758	467	right of centre by 10	C	menu04.bin	512	1859	STUDIOPOLIS	Tomoyoshi Oosaki	STUDIOPOLIS
+759	468	left of centre by 10	B	menu03.bin	186	1868	Manager	Senior Managers	Manager
+760	468	right of centre by 10	C	menu04.bin	513	1869	Alexander O. Smith	Tsutomu Yamada	Alexander O. Smith
+761	469	left of centre by 10	C	menu04.bin	1023	1872	-	-	-
+762	469	right of centre by 10	C	menu04.bin	514	1873	Michael Hack	Satoshi Kashiwazaki	Michael Hack
+763	470	left of centre by 10	C	menu04.bin	1023	1872	-	-	-
+764	470	right of centre by 10	C	menu04.bin	515	1873	Jack Fletcher	Koji Takada	Jack Fletcher
+765	471	left of centre by 10	B	menu03.bin	187	1878	Staff	Staff	Staff
+766	471	right of centre by 10	C	menu04.bin	516	1879	-	Aki Yamamoto	-
+767	472	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+768	472	right of centre by 10	C	menu04.bin	517	1883	-	Haruko Matsumoto	-
+769	473	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+770	473	right of centre by 10	C	menu04.bin	518	1883	-	Kazuo Kusakawa	-
+771	474	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+772	474	right of centre by 10	C	menu04.bin	519	1883	-	Koji Shirasugi	-
+773	475	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+774	475	right of centre by 10	C	menu04.bin	520	1883	-	Koji Suga	-
+775	476	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+776	476	right of centre by 10	C	menu04.bin	521	1883	-	Makoto Tsuda	-
+777	477	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+778	477	right of centre by 10	C	menu04.bin	522	1883	-	Masahiro Matsumoto	-
+779	478	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+780	478	right of centre by 10	C	menu04.bin	523	1883	-	Ryoma Tajima	-
+781	479	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+782	479	right of centre by 10	C	menu04.bin	524	1883	-	Saori Habara	-
+783	480	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+784	480	right of centre by 10	C	menu04.bin	525	1883	-	Shinya Nakamura	-
+785	481	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+786	481	right of centre by 10	C	menu04.bin	526	1883	-	Tomomi Iwakura	-
+787	482	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+788	482	right of centre by 10	C	menu04.bin	527	1883	-	Tomomi Tuchide	-
+789	483	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+790	483	right of centre by 10	C	menu04.bin	528	1883	-	Toshihide Nomura	-
+791	484	left of centre by 10	C	menu04.bin	1023	1882	-	-	-
+792	484	right of centre by 10	C	menu04.bin	529	1883	-	Yuken Furo	-
+793	485	centred	B	menu03.bin	188	1889	LEGAL & INTELLECTUAL PROPERTY	SALES ADMINISTRATION	LEGAL & INTELLECTUAL PROPERTY
+794	486	left of centre by 10	B	menu03.bin	189	1893	General Manager	Managers	General Manager
+795	486	right of centre by 10	C	menu04.bin	530	1894	-	Hisano Arai	-
+796	487	left of centre by 10	C	menu04.bin	1023	1897	-	-	-
+797	487	right of centre by 10	C	menu04.bin	531	1898	-	Shinobu Hidaki	-
+798	488	left of centre by 10	B	menu03.bin	190	1903	Staff	Staff	Staff
+799	488	right of centre by 10	C	menu04.bin	532	1904	-	Toyoaki Miyazaki	-
+800	489	left of centre by 10	C	menu04.bin	1023	1907	-	-	-
+801	489	right of centre by 10	C	menu04.bin	533	1908	Masayuki Sugahara (BE MINE)	Aki Moriwaki	Masayuki Sugahara (BE MINE)
+802	490	left of centre by 10	C	menu04.bin	1023	1907	-	-	-
+803	490	right of centre by 10	C	menu04.bin	534	1908	INFRAMINCE CO.,LTD.	Atsuko Okuda	INFRAMINCE CO.,LTD.
+804	491	left of centre by 10	C	menu04.bin	1023	1907	-	-	-
+805	491	right of centre by 10	C	menu04.bin	535	1908	J.CLIP	Kaori Nakanishi	J.CLIP
+806	492	centred	B	menu03.bin	191	1914	RATINGS	TECHNICAL RESEARCH	RATINGS
+807	493	left of centre by 10	B	menu03.bin	192	1918	Ratings Advisors	Managers	Ratings Advisors
+808	493	right of centre by 10	C	menu04.bin	536	1919	KIDT CREW	Shin Yamamoto	KIDT CREW
+809	494	left of centre by 10	C	menu04.bin	1023	1922	-	-	-
+810	494	right of centre by 10	C	menu04.bin	537	1923	SARAH PROJECT	Takayuki Komine	SARAH PROJECT
+811	495	left of centre by 10	B	menu03.bin	193	1928	QUALITY ASSURANCE	Engineers	QUALITY ASSURANCE
+812	495	right of centre by 10	C	menu04.bin	538	1929	WAKAKOMA Pro	Shingo Niwano	WAKAKOMA Pro
+813	496	left of centre by 10	C	menu04.bin	1023	1932	-	-	-
+814	496	right of centre by 10	C	menu04.bin	539	1933	YOUGO OFFICE	Yasushi Shimizu	YOUGO OFFICE
+815	497	left of centre by 10	C	menu04.bin	1023	1932	-	-	-
+816	497	right of centre by 10	C	menu04.bin	540	1933	ZENITH INC.	Takayuki Arai	ZENITH INC.
+817	498	left of centre by 10	B	menu03.bin	194	1938	Coordinator	Coordinator	Co-ordinators
+818	498	right of centre by 10	C	menu04.bin	541	1939	Ivan C	Junko Kuroda	Ivan C
+819	499	centred	B	menu03.bin	195	1950	Assistant Coordinators	LINE COORDINATORS	Assistant Co-ordinator
+820	500	left of centre by 10	B	menu03.bin	196	1954	Technical Engineers	Manager	Technical Engineers
+821	500	right of centre by 10	C	menu04.bin	542	1955	Sareana Sun	Ken Narita	Sareana Sun
+822	501	left of centre by 10	B	menu03.bin	197	1964	Technical Assistant	Staff	Technical Assistant
+823	501	right of centre by 10	C	menu04.bin	543	1965	Tsai Shui-Wen	Takako Yamashita	Tsai Shui-Wen
+824	502	left of centre by 10	C	menu04.bin	1023	1968	-	-	-
+825	502	right of centre by 10	C	menu04.bin	544	1969	Steven Tsai	Nobuyuki Kashihara	Steven Tsai
+826	503	left of centre by 10	C	menu04.bin	1023	1968	-	-	-
+827	503	right of centre by 10	C	menu04.bin	545	1969	Marty Wu	Yutaka Kurosu	Marty Wu
+828	504	left of centre by 10	C	menu04.bin	1023	1968	-	-	-
+829	504	right of centre by 10	C	menu04.bin	546	1969	Tony Wang	Daiki Sakoda	Tony Wang
+830	505	centred	B	menu03.bin	198	1975	Senior Testers	LEGAL & INTELLECTUAL PROPERTY	Senior Testers
+831	506	left of centre by 10	B	menu03.bin	199	1979	Testers	General Manager	Testers
+832	506	right of centre by 10	C	menu04.bin	547	1980	Ally Liu	Yasuhiko Hasegawa	Ally Liu
+833	507	left of centre by 10	B	menu03.bin	200	1989	Technical Director	Staff	Technical Director
+834	507	right of centre by 10	C	menu04.bin	548	1990	Cheng So-Young	Takahiro Fujii	Cheng So-Young
+835	508	left of centre by 10	C	menu04.bin	1023	1993	-	-	-
+836	508	right of centre by 10	C	menu04.bin	549	1994	Huang Burning	Hiroshi Harada	Huang Burning
+837	509	left of centre by 10	C	menu04.bin	1023	1993	-	-	-
+838	509	right of centre by 10	C	menu04.bin	550	1994	Yang Po-chin	Ayako Hino	Yang Po-chin
+839	510	centred	B	menu03.bin	201	2000	Manager	RATINGS	Manager
+840	511	left of centre by 10	B	menu03.bin	202	2004	General Manager	Ratings Advisors	General Manager
+841	511	right of centre by 10	C	menu04.bin	551	2005	Yang Kuo-Wei	Reiko Kondo	Yang Kuo-Wei
+842	512	left of centre by 10	C	menu04.bin	1023	2008	-	-	-
+843	512	right of centre by 10	C	menu04.bin	552	2009	Fish Hong	Sueko Kogai	Fish Hong
+844	513	centred	B	menu03.bin	203	2015	INFORMATION CENTER	QUALITY ASSURANCE	INFORMATION CENTER
+845	514	left of centre by 10	B	menu03.bin	204	2019	Manager	Coordinator	Manager
+846	514	right of centre by 10	C	menu04.bin	553	2020	Fionn Yen	Takafumi Matsui	Fionn Yen
+847	515	left of centre by 10	B	menu03.bin	205	2029	Coordinator	Assistant Coordinators	Coordinator
+848	515	right of centre by 10	C	menu04.bin	554	2030	Wu Li-Ya	Kentaro Hayashi	Wu Li-Ya
+849	516	left of centre by 10	C	menu04.bin	1023	2033	-	-	-
+850	516	right of centre by 10	C	menu04.bin	555	2034	Wang Yao-Cheng	Yusuke Yamakura	Wang Yao-Cheng
+851	517	left of centre by 10	B	menu03.bin	206	2039	Supervisors	Technical Engineers	Supervisors
+852	517	right of centre by 10	C	menu04.bin	556	2040	Chan Pi-Ching	Kazuya Okamoto	Chan Pi-Ching
+853	518	left of centre by 10	C	menu04.bin	1023	2043	-	-	-
+854	518	right of centre by 10	C	menu04.bin	557	2044	Chiang Chu-Tzu	Hisato Iwatsuki	Chiang Chu-Tzu
+855	519	left of centre by 10	B	menu03.bin	207	2049	SPECIAL THANKS	Technical Assistant	SPECIAL THANKS
+856	519	right of centre by 10	C	menu04.bin	558	2050	Hsiao Feng-Yi	Yusuke Sadamasa	Hsiao Feng-Yi
+857	520	centred	B	menu03.bin	208	2060	PRODUCTION EXECUTIVE	Testers	PRODUCTION EXECUTIVE
+858	521	left of centre by 10	C	menu04.bin	559	2066	Coddy Hsieh	Mei Ito	Coddy Hsieh
+859	521	right of centre by 10	C	menu04.bin	560	2066	Tonny Fang	Mitsugu Kobayashi	Tonny Fang
+860	522	left of centre by 10	C	menu04.bin	561	2066	Eric Wang	Yuki Mizuno	Eric Wang
+861	522	right of centre by 10	C	menu04.bin	562	2066	Alen Fang	Noriyoshi Ohta	Alen Fang
+862	523	left of centre by 10	C	menu04.bin	563	2066	Lu Tung-Yuan	Jun Okazaki	Lu Tung-Yuan
+863	523	right of centre by 10	C	menu04.bin	564	2066	Wang Cheng-Yang	Yuri Kato	Wang Cheng-Yang
+864	524	left of centre by 10	C	menu04.bin	565	2066	Su Mei-Yao	Yusuke Kitamura	Su Mei-Yao
+865	524	right of centre by 10	C	menu04.bin	566	2066	Paggy Liou	Susumu Kurihara	Paggy Liou
+866	525	left of centre by 10	C	menu04.bin	567	2066	Hiroyuki Hayashida	Shintaro Gunji	Hiroyuki Hayashida
+867	525	right of centre by 10	C	menu04.bin	568	2066	Masashi Sakamoto	Daisuke Kobayashi	Masashi Sakamoto
+868	526	left of centre by 10	C	menu04.bin	569	2066	Kanako Tani	Toru Saito	Kanako Tani
+869	526	right of centre by 10	C	menu04.bin	570	2066	Jitsuhisa Shibata	Hidefumi Sakama	Jitsuhisa Shibata
+870	527	left of centre by 10	C	menu04.bin	571	2066	Yuetsu Murakami	Masaki Takatsu	Yuetsu Murakami
+871	527	right of centre by 10	C	menu04.bin	572	2066	Mamoru Kushiro	Kenji Nishikawa	Mamoru Kushiro
+872	528	left of centre by 10	C	menu04.bin	573	2066	Yasunobu Arahori	Kengo Murata	Yasunobu Arahori
+873	528	right of centre by 10	C	menu04.bin	574	2066	Takaharu Tobe	Masanori Monma	Takaharu Tobe
+874	529	left of centre by 10	C	menu04.bin	575	2066	Nobuaki Ebihara	Kazuki Yasuda	Nobuaki Ebihara
+875	529	right of centre by 10	C	menu04.bin	576	2066	Yoshihiro Ozawa	Hiroyuki Yamada	Yoshihiro Ozawa
+876	530	left of centre by 10	C	menu04.bin	577	2066	Masashi Fujiura	Yasuhiro Yamada	Masashi Fujiura
+877	530	right of centre by 10	C	menu04.bin	578	2066	Tomohiro Yonemichi	Ellie Horiuchi	Tomohiro Yonemichi
+878	531	centred	B	menu04.bin	594	2073	Alexander O. Smith 	...and All QA Staff	Alexander O. Smith 
+879	532	left of centre by 10	B	menu03.bin	209	2078	EXECUTIVE PRODUCERS	Technical Director	EXECUTIVE PRODUCERS
+880	532	right of centre by 10	C	menu04.bin	595	2079	Joseph Reeder	Hideyuki Kato	Joseph Reeder
+881	533	left of centre by 10	B	menu03.bin	210	2088	& Background Design Supervisor	Manager	& Background Design Supervisor
+882	533	right of centre by 10	C	menu04.bin	596	2089	Yuka Naito	Yukihiro Shibuya	Yuka Naito
+883	534	left of centre by 10	B	menu03.bin	211	2098	Background Visual Effects	General Manager	Background Visual Effects
+884	534	right of centre by 10	C	menu04.bin	597	2099	Ayako Kawamoto	Koji Yamashita	Ayako Kawamoto
+885	535	centred	B	menu03.bin	228	2109	QA Translators	COMMUNITY & SERVICE DIVISION	-
+886	536	left, at 60	B	menu03.bin	229	2113	Localization & QA Director	Operation Section Director	-
+887	537	left, at 265	C	menu04.bin	650	2117	Keisuke Takahashi	Shosaku Takabayashi	Keisuke Takahashi
+888	538	left, at 60	B	menu03.bin	230	2123	Executive Director of Community & Service	Back-end Support Group Manager	-
+889	539	left, at 265	C	menu04.bin	651	2127	Kosei Shimoda	Yukio Koura	Kosei Shimoda
+890	540	left, at 60	B	menu03.bin	231	2133	Senior Manager of Operations	Back-end Support Group Staff	-
+891	541	left, at 265	C	menu04.bin	652	2137	Makoto Hosoda	Maki Matsuda	Makoto Hosoda
+892	542	left, at 265	C	menu04.bin	653	2137	Naoki Kasahara	Takahiko Kinoshita	Naoki Kasahara
+893	543	left, at 60	B	menu03.bin	232	2143	Information Center Manager	Information Center Manager	-
+894	544	left, at 265	C	menu04.bin	654	2147	Satoru Takeno	Ryuji Kudo	Satoru Takeno
+895	545	left, at 60	B	menu03.bin	233	2153	Information Center Supervisors	Information Center Supervisors	-
+896	546	left, at 265	C	menu04.bin	655	2157	Hajime Tomon	Natsuyo Takada	Hajime Tomon
+897	547	left, at 265	C	menu04.bin	656	2157	Sota Onji	Noriko Nakanome	Sota Onji
+898	548	left, at 265	C	menu04.bin	657	2157	Junpei Takeba	-	Junpei Takeba
+899	549	left, at 265	C	menu04.bin	658	2157	Kae Murata	...and All Support Staff	Kae Murata
+900	550	centred	B	menu03.bin	216	2165	Producer	SQUARE ENIX, INC.	Producer
+901	551	left, at 100	B	menu03.bin	217	2169	Line Producer	Project Coordination	Line Producer
+902	552	left, at 265	C	menu04.bin	603	2173	Tsutomu Yamada	Kumiko Hakushi	Tsutomu Yamada
+903	553	left, at 265	C	menu04.bin	604	2173	Satoshi Kashiwazaki	Naoko Yamamura-Rice	Satoshi Kashiwazaki
+904	554	left, at 265	C	menu04.bin	605	2173	Koji Takada	Emi Maurer	Koji Takada
+905	555	left, at 100	B	menu03.bin	218	2179	Voice Director / Casting Director	Executive Director, Sales & Marketing	Voice Director / Casting Director
+906	556	left, at 265	C	menu04.bin	606	2183	Atsuko Onishi	Shinji Futami	Atsuko Onishi
+907	557	left, at 100	B	menu03.bin	219	2189	General Manager	Senior Vice President	General Manager
+908	558	left, at 265	C	menu04.bin	607	2193	Haruko Matsumoto	Shinji Hashimoto	Haruko Matsumoto
+909	559	left, at 100	B	menu03.bin	220	2199	SQUARE ENIX, INC.	VP, Legal Affairs & General Counsel	-
+910	560	left, at 265	C	menu04.bin	608	2203	Kazuo Kusakawa	Neal Black	Kazuo Kusakawa
+911	561	left, at 100	B	menu03.bin	221	2209	Quality Assurance Manager	President & COO	-
+912	562	left, at 265	C	menu04.bin	609	2213	Koji Shirasugi	Daishiro Okada	Koji Shirasugi
+913	563	centred	B	menu03.bin	222	2219	Assistant QA Manager	SPECIAL THANKS	-
+914	564	centred	C	menu04.bin	610	2225	Koji Suga	Mariko Suzuki (YOSHITAKA AMANO OFFICE)	Koji Suga
+915	565	centred	C	menu04.bin	611	2225	Makoto Tsuda	Yuki Someya (YOSHITAKA AMANO OFFICE)	Makoto Tsuda
+916	566	centred	C	menu04.bin	612	2225	Masahiro Matsumoto	Kumiko Saeki (Basiscape CO.,LTD.)	Masahiro Matsumoto
+917	567	centred	C	menu04.bin	613	2230	Mika Ikeda	Shutaro Yokoyama	Mika Ikeda
+918	568	centred	C	menu04.bin	614	2230	Ryoma Tajima	Daisuke Tsumanuma	Ryoma Tajima
+919	569	centred	C	menu04.bin	615	2230	Saori Habara	Futoshi Katsuyama	Saori Habara
+920	570	centred	C	menu04.bin	616	2230	Shinya Nakamura	Nobuo Ito	Shinya Nakamura
+921	571	centred	C	menu04.bin	617	2230	Tomohiro Chiba	Naoto Uenaka	Tomohiro Chiba
+922	572	centred	C	menu04.bin	618	2230	Toshihide Nomura	Yusuke Matsui	Toshihide Nomura
+923	573	centred	C	menu04.bin	619	2230	Yuken Furo	Madoka Tanaka	Yuken Furo
+924	574	centred	C	menu04.bin	620	2230	Hisano Arai	Naoko Yoshiyama	Hisano Arai
+925	575	centred	C	menu04.bin	621	2230	Shinobu Hidaki	Ayako Kawamoto	Shinobu Hidaki
+926	576	centred	C	menu04.bin	622	2230	Toyoaki Miyazaki	Emiko Sato	Toyoaki Miyazaki
+927	577	centred	C	menu04.bin	623	2230	Aki Moriwaki	Kiminori Ohya	Aki Moriwaki
+928	578	centred	C	menu04.bin	624	2230	Shin Yamamoto	Tetsuya　Hiraoka	Shin Yamamoto
+929	579	centred	C	menu04.bin	625	2230	Takayuki Komine	Akira Kashiwagi	Takayuki Komine
+930	580	centred	C	menu04.bin	626	2230	Shin Yamamoto	Takashi Idogawa	Shin Yamamoto
+931	581	centred	C	menu04.bin	627	2230	Shinichi Shibata	Kensuke Matsushita	Shinichi Shibata
+932	582	centred	C	menu04.bin	628	2230	Toshiaki Naito	Masako Miyoshi	Toshiaki Naito
+933	583	centred	C	menu04.bin	629	2230	Takayuki Komine	Soushi Yoshida	Takayuki Komine
+934	584	centred	C	menu04.bin	630	2230	Shingo Niwano	Izumi Tsukushi	Shingo Niwano
+935	585	centred	C	menu04.bin	631	2230	Yasushi Shimizu	Hidemi Matsuzuka	Yasushi Shimizu
+936	586	centred	C	menu04.bin	632	2230	Takayuki Arai	Miyako Kibe	Takayuki Arai
+937	587	centred	C	menu04.bin	633	2230	Tomohiro Hayasaka	Kensuke Tanaka	Tomohiro Hayasaka
+938	588	centred	C	menu04.bin	634	2230	Tetsuya Okamoto	Kyoko Saito	Tetsuya Okamoto
+939	589	centred	C	menu04.bin	635	2230	Kazuhiro Kasai	Kaori Shibayama	Kazuhiro Kasai
+940	590	centred	C	menu04.bin	636	2230	Muneto Watanabe	"Kenichi ""Gustav"" Iwao"	Muneto Watanabe
+941	591	centred	C	menu04.bin	638	2243	Nozomi Kurihara	Hironobu Sakaguchi	Nozomi Kurihara
+942	592	centred	C	menu04.bin	639	2254	Nobuyoshi Yamada	ALL FINAL FANTASY XII STAFF	Nobuyoshi Yamada
+943	593	centred	C	menu04.bin	640	2255	Hideyo Yoshida	ALL SQUARE ENIX STAFF	Hideyo Yoshida
+944	594	centred	C	menu04.bin	641	2256	Maiko Ohtani	...and ALL FANS OF FINAL FANTASY	Maiko Ohtani
+945	595	centred	-	sf_logo_c	0	2260	picture cell 0	picture cell 0	picture cell 0
+946	596	centred	-	sf_logo_c	2	2263	picture cell 2	picture cell 2	picture cell 2
+947	597	centred	B	menu03.bin	223	2270	Senior QA Coordinator	EXECUTIVE PRODUCERS	-
+948	598	centred	C	menu04.bin	642	2272	Kenichi Matsudo	Youichi Wada	Kenichi Matsudo
+949	599	centred	C	menu04.bin	643	2274	Naoto Shimada	Akitoshi Kawazu	Naoto Shimada
+950	600	centred	-	sf_logo_c	3	2283	picture cell 3	picture cell 3	picture cell 3

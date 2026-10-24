@@ -1,0 +1,533 @@
+text_set	source	source_row	text
+text_us	menu03.bin	212	STUDIOPOLIS
+text_us	menu03.bin	213	Recording Studio
+text_us	menu03.bin	214	Studio Manager
+text_us	menu03.bin	215	Dialogue Editorial
+text_us	menu03.bin	224	QA Associates
+text_us	menu03.bin	234	Information Center Representatives
+text_us	menu03.bin	235	Public Relations
+text_us	menu03.bin	236	Product Marketing
+text_us	menu03.bin	237	Project Coordination
+text_us	menu03.bin	238	Marketing Communications
+text_us	menu03.bin	239	Sales
+text_us	menu03.bin	240	Executive Director, Sales & Marketing
+text_us	menu03.bin	241	Senior Vice President
+text_us	menu03.bin	242	VP, Legal Affairs & General Counsel
+text_us	menu03.bin	243	President & COO
+text_us	menu03.bin	245	Director (North American Version)
+text_us	menu03.bin	246	Editor
+text_us	menu03.bin	247	Additional Voices
+text_us	menu04.bin	579	Koji Matsumoto
+text_us	menu04.bin	580	Nobuhito Sue
+text_us	menu04.bin	581	Hideyasu Narita
+text_us	menu04.bin	582	Ayu Kawamoto
+text_us	menu04.bin	583	Yoji Nakaza
+text_us	menu04.bin	584	Basiscape CO.,LTD.
+text_us	menu04.bin	585	Hiroaki Kato
+text_us	menu04.bin	586	Hiroyuki Ogawa
+text_us	menu04.bin	587	Kaori Shibayama
+text_us	menu04.bin	588	Yuko Fujii
+text_us	menu04.bin	589	Emiko Nishiyama
+text_us	menu04.bin	590	Satoko Kondo
+text_us	menu04.bin	593	Kazuyoshi Tashiro
+text_us	menu04.bin	598	Emiko Sato
+text_us	menu04.bin	599	Shiho Tsuyuki
+text_us	menu04.bin	600	Hiroyuki Toyama
+text_us	menu04.bin	601	Shinji Hashimoto
+text_us	menu04.bin	602	Tomoyoshi Oosaki
+text_us	menu04.bin	637	Katsuyoshi Konishi
+text_us	menu04.bin	644	Takashi Sannohe
+text_us	menu04.bin	659	Chie Kigami
+text_us	menu04.bin	660	Ken Narita
+text_us	menu04.bin	661	Takako Yamashita
+text_us	menu04.bin	662	Miyuki Miyazaki
+text_us	menu04.bin	663	Nobuyuki Kashihara
+text_us	menu04.bin	664	Yutaka Kurosu
+text_us	menu04.bin	665	Sachie Aoki
+text_us	menu04.bin	666	Yasuhiko Hasegawa
+text_us	menu04.bin	667	Takahiro Fujii
+text_us	menu04.bin	668	Hiroshi Harada
+text_us	menu04.bin	669	Ayako Hino
+text_us	menu04.bin	670	Reiko Kondo
+text_us	menu04.bin	671	Sueko Kogai
+text_us	menu04.bin	672	Kiminori Ohya
+text_us	menu04.bin	673	Takafumi Matsui
+text_us	menu04.bin	674	Kentaro Hayashi
+text_us	menu04.bin	675	Kentaro Hayashi
+text_us	menu04.bin	676	Hideki Yamashita
+text_us	menu04.bin	677	Kazuya Okamoto
+text_us	menu04.bin	678	Hisato Iwatsuki
+text_us	menu04.bin	679	Yusuke Sadamasa
+text_us	menu04.bin	680	Taku Kato
+text_us	menu04.bin	681	Yuji Hatori
+text_us	menu04.bin	682	Toshihiro Takemoto
+text_us	menu04.bin	683	Ikaru Koike
+text_us	menu04.bin	684	Hiroyuki Omura
+text_us	menu04.bin	685	Yoshito Nabeshima
+text_us	menu04.bin	686	Yusuke Kitamura
+text_us	menu04.bin	687	Kazuki Yasuda
+text_us	menu04.bin	688	Hidefumi Sakama
+text_us	menu04.bin	689	Kengo Murata
+text_us	menu04.bin	690	Mitsugu Kobayashi
+text_us	menu04.bin	691	Susumu Kurihara
+text_us	menu04.bin	692	Masaki Nakamura
+text_us	menu04.bin	693	Ryouta Minami
+text_us	menu04.bin	694	Shintaro Gunji
+text_us	menu04.bin	695	Noriyoshi Ohta
+text_us	menu04.bin	696	Kenji Nishikawa
+text_us	menu04.bin	697	Toru Saito
+text_us	menu04.bin	698	Ai Sato
+text_us	menu04.bin	699	Kentaro Noguchi
+text_us	menu04.bin	700	Jun Okazaki
+text_us	menu04.bin	701	Mei Ito
+text_us	menu04.bin	702	Kousuke Sone
+text_us	menu04.bin	703	Masaki Takatsu
+text_us	menu04.bin	704	Takafumi Itakura
+text_us	menu04.bin	705	Takaaki Hagiwara
+text_us	menu04.bin	706	Tomomi Chigira
+text_us	menu04.bin	707	Ellie Horiuchi
+text_us	menu04.bin	708	Yuki Mizuno
+text_us	menu04.bin	709	Mao Fujimura
+text_us	menu04.bin	710	Yutaro Nagatomo
+text_us	menu04.bin	711	Daisuke Kobayashi
+text_us	menu04.bin	712	Yasuhiro Yamada
+text_us	menu04.bin	713	Kazumasa Oshida
+text_us	menu04.bin	766	...and All QA Staff
+text_us	menu04.bin	767	Hideyuki Kato
+text_us	menu04.bin	768	Yukihiro Shibuya
+text_us	menu04.bin	769	Koji Yamashita
+text_us	menu04.bin	770	Tomomi Iwakura
+text_us	menu04.bin	771	Maki Matsuda
+text_us	menu04.bin	772	Natsuyo Takada
+text_us	menu04.bin	773	Megumi Wakuta
+text_us	menu04.bin	774	Noriko Nakanome
+text_us	menu04.bin	775	Mariko Suzuki (YOSHITAKA AMANO OFFICE)
+text_us	menu04.bin	776	Yuki Someya (YOSHITAKA AMANO OFFICE)
+text_us	menu04.bin	777	Kumiko Saeki (Basiscape CO.,LTD.)
+text_us	menu04.bin	778	Shutaro Yokoyama
+text_us	menu04.bin	779	Daisuke Tsumanuma
+text_us	menu04.bin	780	Futoshi Katsuyama
+text_us	menu04.bin	781	Nobuo Ito
+text_us	menu04.bin	782	Naoto Uenaka
+text_us	menu04.bin	783	Yusuke Matsui
+text_us	menu04.bin	784	Madoka Tanaka
+text_us	menu04.bin	785	Naoko Yoshiyama
+text_us	menu04.bin	786	Tetsuya　Hiraoka
+text_us	menu04.bin	787	Akira Kashiwagi
+text_us	menu04.bin	788	Takashi Idogawa
+text_us	menu04.bin	789	Kensuke Matsushita
+text_us	menu04.bin	790	Masako Miyoshi
+text_us	menu04.bin	791	Soushi Yoshida
+text_us	menu04.bin	792	Izumi Tsukushi
+text_us	menu04.bin	793	Hidemi Matsuzuka
+text_us	menu04.bin	794	Miyako Kibe
+text_us	menu04.bin	795	Kensuke Tanaka
+text_us	menu04.bin	796	Kyoko Saito
+text_us	menu04.bin	797	Kaori Shibayama
+text_us	menu04.bin	798	"Kenichi ""Gustav"" Iwao"
+text_us	menu04.bin	805	Hironobu Sakaguchi
+text_us	menu04.bin	806	ALL FINAL FANTASY XII STAFF
+text_us	menu04.bin	807	ALL SQUARE ENIX STAFF
+text_us	menu04.bin	808	...and ALL FANS OF FINAL FANTASY
+text_us	menu04.bin	809	Youichi Wada
+text_us	menu04.bin	810	Akitoshi Kawazu
+text_us	menu04.bin	811	at Sony PCL Inc.
+text_us	menu04.bin	812	VIRGO MUSIC & SQUARE ENIX Co., Ltd.
+text_us	menu04.bin	813	Old Dalan
+text_us	menu04.bin	814	(...)
+text_us	menu04.bin	815	(...)
+text_us	menu04.bin	816	Tetsuya Hiraoka
+text_us	menu04.bin	817	Tomomi Moriyasu
+text_us	menu04.bin	818	Anastasis, Dalan
+text_us	menu04.bin	819	Dwight Schultz
+text_us	menu04.bin	820	Eric Lewis
+text_us	menu04.bin	821	Ernie Sheesley
+text_us	menu04.bin	822	Kirk Rogers
+text_us	menu04.bin	823	Masashi Hiramatsu
+text_us	menu04.bin	824	Tomoko Kondo
+text_us	menu04.bin	825	Seiko Braswell
+text_us	menu04.bin	826	Satoshi Toyoda
+text_us	menu04.bin	827	Koji Taguchi
+text_us	menu04.bin	829	"David ""Ribs"" Carrillo"
+text_us	menu04.bin	830	Mohammed A.C. Wright
+text_us	menu04.bin	831	Mathew Clift
+text_us	menu04.bin	832	Jason Sanders
+text_us	menu04.bin	833	Glenn Lee
+text_us	menu04.bin	834	Bryan D. Chen
+text_us	menu04.bin	835	Johnny Fournier
+text_us	menu04.bin	836	Jeremy Goldsmith
+text_us	menu04.bin	837	Erik Carpenter
+text_us	menu04.bin	838	Cris Y. Cheng
+text_us	menu04.bin	839	Robert Dryburgh
+text_us	menu04.bin	840	Joshua D. Boden
+text_us	menu04.bin	841	Lucas Goodman
+text_us	menu04.bin	842	Darren S. Harvey
+text_us	menu04.bin	843	Kevin Kim
+text_us	menu04.bin	844	Eric Lea
+text_us	menu04.bin	845	Noel Lynch
+text_us	menu04.bin	846	Nick Madonna
+text_us	menu04.bin	847	Scott Melzer
+text_us	menu04.bin	848	Francisco Miranda
+text_us	menu04.bin	849	Chintan Patel
+text_us	menu04.bin	850	Joseph Pirante
+text_us	menu04.bin	851	Thomas Rios
+text_us	menu04.bin	852	Fredrick Sykes
+text_us	menu04.bin	853	Noah Woo
+text_us	menu04.bin	854	Frederick Sykes
+text_us	menu04.bin	855	Arthur T. Kawamoto
+text_us	menu04.bin	856	Elijah Smolko
+text_us	menu04.bin	857	Yutaka Sano
+text_us	menu04.bin	858	Yasu Kurosawa 
+text_us	menu04.bin	859	Franko F. Fonseca 
+text_us	menu04.bin	860	Walter Brame 
+text_us	menu04.bin	861	Carl Hidalgo
+text_us	menu04.bin	862	Sean Michael
+text_us	menu04.bin	863	Jereme Skelton
+text_us	menu04.bin	864	"Neil ""Tak"" Herrera"
+text_us	menu04.bin	865	Sonia Im
+text_us	menu04.bin	866	Charlie Sinhaseni
+text_us	menu04.bin	867	Frederick K. Hashi
+text_us	menu04.bin	868	Fernando Bustamante
+text_us	menu04.bin	869	Felice V. Wu
+text_us	menu04.bin	870	Philip Ser
+text_us	menu04.bin	871	Issei Shimizu
+text_us	menu04.bin	872	Kumiko Hakushi
+text_us	menu04.bin	873	Naoko Yamamura-Rice
+text_us	menu04.bin	874	Emi Maurer
+text_us	menu04.bin	875	Patrick H. Cervantes
+text_us	menu04.bin	876	Jonathan Cooperson
+text_us	menu04.bin	877	Tim Law
+text_us	menu04.bin	878	Wilbur Lin
+text_us	menu04.bin	879	Parker Sapp
+text_us	menu04.bin	880	Ron Kurtz
+text_us	menu04.bin	881	Alaine C. de Leon
+text_us	menu04.bin	882	Kanji Tashiro
+text_us	menu04.bin	883	Traci Jones
+text_us	menu04.bin	884	Shundea K. Brooks
+text_us	menu04.bin	885	Shinji Futami
+text_us	menu04.bin	886	Shinji Hashimoto
+text_us	menu04.bin	887	Neal Black
+text_us	menu04.bin	888	Daishiro Okada
+text_us	menu04.bin	890	Morgan Morris Rushton
+text_in	menu03.bin	212	INFORMATION CENTER
+text_in	menu03.bin	213	Manager
+text_in	menu03.bin	214	Coordinator
+text_in	menu03.bin	215	Supervisors
+text_in	menu04.bin	579	STAFF21
+text_in	menu04.bin	580	STAFF22
+text_in	menu04.bin	581	STAFF23
+text_in	menu04.bin	582	STAFF24
+text_in	menu04.bin	583	STAFF25
+text_in	menu04.bin	584	STAFF26
+text_in	menu04.bin	585	STAFF27
+text_in	menu04.bin	586	STAFF28
+text_in	menu04.bin	587	STAFF29
+text_in	menu04.bin	588	STAFF30
+text_in	menu04.bin	589	STAFF31
+text_in	menu04.bin	590	STAFF32
+text_in	menu04.bin	591	STAFF33
+text_in	menu04.bin	592	STAFF34
+text_in	menu04.bin	593	STAFF35
+text_in	menu04.bin	598	Tomomi Iwakura
+text_in	menu04.bin	599	Maki Matsuda
+text_in	menu04.bin	600	Natsuyo Takada
+text_in	menu04.bin	601	Megumi Wakuta
+text_in	menu04.bin	602	Noriko Nakanome
+text_fr	menu03.bin	212	STUDIOPOLIS
+text_fr	menu03.bin	213	Recording Studio
+text_fr	menu03.bin	214	Studio Manager
+text_fr	menu03.bin	215	Dialogue Editorial
+text_fr	menu03.bin	245	Director (European Versions)
+text_fr	menu03.bin	246	English Editor
+text_fr	menu03.bin	247	Additional Voices
+text_fr	menu03.bin	249	English Translators
+text_fr	menu03.bin	250	German Translators
+text_fr	menu03.bin	251	French Translators
+text_fr	menu03.bin	252	Italian Translators
+text_fr	menu03.bin	253	Spanish Translators
+text_fr	menu03.bin	255	SQUARE ENIX LTD.
+text_fr	menu03.bin	256	Production Manager
+text_fr	menu03.bin	257	Associate Localisation Producer
+text_fr	menu03.bin	258	QA Supervisor
+text_fr	menu03.bin	259	Assistant QA Supervisor
+text_fr	menu03.bin	260	QA Translator
+text_fr	menu03.bin	261	UK QA Co-ordinator
+text_fr	menu03.bin	262	UK QA Team
+text_fr	menu03.bin	263	French QA Co-ordinator
+text_fr	menu03.bin	264	French QA Team
+text_fr	menu03.bin	265	German QA Co-ordinator
+text_fr	menu03.bin	266	German QA Team
+text_fr	menu03.bin	267	Italian QA Co-ordinator
+text_fr	menu03.bin	268	Italian QA Team
+text_fr	menu03.bin	269	Spanish QA Co-ordinator
+text_fr	menu03.bin	270	Spanish QA Team
+text_fr	menu03.bin	271	Localisation Team
+text_fr	menu03.bin	272	Marketing Communications Manager
+text_fr	menu03.bin	273	UK PR Manager
+text_fr	menu03.bin	274	UK Sales Director
+text_fr	menu03.bin	275	Senior European Marketing Manager
+text_fr	menu03.bin	276	Senior Vice President - Sales and Marketing
+text_fr	menu03.bin	277	Senior Vice President
+text_fr	menu03.bin	278	President CEO
+text_fr	menu04.bin	579	Koji Matsumoto
+text_fr	menu04.bin	580	Nobuhito Sue
+text_fr	menu04.bin	581	Hideyasu Narita
+text_fr	menu04.bin	582	Ayu Kawamoto
+text_fr	menu04.bin	583	Yoji Nakaza
+text_fr	menu04.bin	584	Basiscape CO.,LTD.
+text_fr	menu04.bin	585	Hiroaki Kato
+text_fr	menu04.bin	586	Hiroyuki Ogawa
+text_fr	menu04.bin	587	Kaori Shibayama
+text_fr	menu04.bin	588	Yuko Fujii
+text_fr	menu04.bin	589	Emiko Nishiyama
+text_fr	menu04.bin	590	Satoko Kondo
+text_fr	menu04.bin	593	Kazuyoshi Tashiro
+text_fr	menu04.bin	598	Emiko Sato
+text_fr	menu04.bin	599	Shiho Tsuyuki
+text_fr	menu04.bin	600	Hiroyuki Toyama
+text_fr	menu04.bin	601	Shinji Hashimoto
+text_fr	menu04.bin	602	Tomoyoshi Oosaki
+text_fr	menu04.bin	637	Katsuyoshi Konishi
+text_fr	menu04.bin	644	Takashi Sannohe
+text_fr	menu04.bin	659	Chie Kigami
+text_fr	menu04.bin	660	Ken Narita
+text_fr	menu04.bin	661	Takako Yamashita
+text_fr	menu04.bin	662	Miyuki Miyazaki
+text_fr	menu04.bin	663	Nobuyuki Kashihara
+text_fr	menu04.bin	664	Yutaka Kurosu
+text_fr	menu04.bin	665	Sachie Aoki
+text_fr	menu04.bin	666	Yasuhiko Hasegawa
+text_fr	menu04.bin	667	Takahiro Fujii
+text_fr	menu04.bin	668	Hiroshi Harada
+text_fr	menu04.bin	669	Ayako Hino
+text_fr	menu04.bin	670	Reiko Kondo
+text_fr	menu04.bin	671	Sueko Kogai
+text_fr	menu04.bin	672	Takafumi Matsui
+text_fr	menu04.bin	673	Kiminori Ohya
+text_fr	menu04.bin	674	Kentaro Hayashi
+text_fr	menu04.bin	675	Kentaro Hayashi
+text_fr	menu04.bin	676	Hideki Yamashita
+text_fr	menu04.bin	677	Kazuya Okamoto
+text_fr	menu04.bin	678	Hisato Iwatsuki
+text_fr	menu04.bin	679	Yusuke Sadamasa
+text_fr	menu04.bin	680	Taku Kato
+text_fr	menu04.bin	681	Yuji Hatori
+text_fr	menu04.bin	682	Toshihiro Takemoto
+text_fr	menu04.bin	683	Ikaru Koike
+text_fr	menu04.bin	684	Hiroyuki Omura
+text_fr	menu04.bin	685	Mitsugu Kobayashi
+text_fr	menu04.bin	686	Masaki Nakamura
+text_fr	menu04.bin	687	Toru Saito
+text_fr	menu04.bin	688	Shintaro Gunji
+text_fr	menu04.bin	689	Kenji Nishikawa
+text_fr	menu04.bin	690	Mei Ito
+text_fr	menu04.bin	691	Jun Okazaki
+text_fr	menu04.bin	692	Susumu Kurihara
+text_fr	menu04.bin	693	Ryouta Minami
+text_fr	menu04.bin	694	Kengo Murata
+text_fr	menu04.bin	695	Yoshito Nabeshima
+text_fr	menu04.bin	696	Kazuki Yasuda
+text_fr	menu04.bin	697	Noriyoshi Ohta
+text_fr	menu04.bin	698	Hidefumi Sakama
+text_fr	menu04.bin	699	Yusuke Kitamura
+text_fr	menu04.bin	700	Ai Sato
+text_fr	menu04.bin	701	Daisuke Kobayashi
+text_fr	menu04.bin	702	Masaki Takatsu
+text_fr	menu04.bin	703	Kousuke Sone
+text_fr	menu04.bin	704	Takafumi Itakura
+text_fr	menu04.bin	705	Takaaki Hagiwara
+text_fr	menu04.bin	706	Tomomi Chigira
+text_fr	menu04.bin	707	Ellie Horiuchi
+text_fr	menu04.bin	708	Yuki Mizuno
+text_fr	menu04.bin	709	Mao Fujimura
+text_fr	menu04.bin	710	Yutaro Nagatomo
+text_fr	menu04.bin	711	Yasuhiro Yamada
+text_fr	menu04.bin	712	Kazumasa Oshida
+text_fr	menu04.bin	713	Yuri Kato
+text_fr	menu04.bin	714	Aoi Abe
+text_fr	menu04.bin	715	Chihiro Suzuki
+text_fr	menu04.bin	716	Mie Takarabe
+text_fr	menu04.bin	717	Hirotoshi Toda
+text_fr	menu04.bin	718	Takayuki Kashiwabara
+text_fr	menu04.bin	719	Masatoshi Yoshifuji
+text_fr	menu04.bin	720	Nami Ebihara
+text_fr	menu04.bin	721	Hiroyuki Yamada
+text_fr	menu04.bin	722	Yuka Fujii
+text_fr	menu04.bin	723	Koumi Arai
+text_fr	menu04.bin	724	Takatoshi Kimura
+text_fr	menu04.bin	725	Naoki Kumada
+text_fr	menu04.bin	726	Daigo Abe
+text_fr	menu04.bin	766	...and All QA Staff
+text_fr	menu04.bin	767	Hideyuki Kato
+text_fr	menu04.bin	768	Yukihiro Shibuya
+text_fr	menu04.bin	769	Koji Yamashita
+text_fr	menu04.bin	770	Tomomi Iwakura
+text_fr	menu04.bin	771	Maki Matsuda
+text_fr	menu04.bin	772	Natsuyo Takada
+text_fr	menu04.bin	773	Megumi Wakuta
+text_fr	menu04.bin	774	Noriko Nakanome
+text_fr	menu04.bin	775	Mariko Suzuki (YOSHITAKA AMANO OFFICE)
+text_fr	menu04.bin	776	Yuki Someya (YOSHITAKA AMANO OFFICE)
+text_fr	menu04.bin	777	Kumiko Saeki (Basiscape CO.,LTD.)
+text_fr	menu04.bin	778	Shutaro Yokoyama
+text_fr	menu04.bin	779	Daisuke Tsumanuma
+text_fr	menu04.bin	780	Futoshi Katsuyama
+text_fr	menu04.bin	781	Nobuo Ito
+text_fr	menu04.bin	782	Naoto Uenaka
+text_fr	menu04.bin	783	Yusuke Matsui
+text_fr	menu04.bin	784	Madoka Tanaka
+text_fr	menu04.bin	785	Naoko Yoshiyama
+text_fr	menu04.bin	786	Tetsuya　Hiraoka
+text_fr	menu04.bin	787	Akira Kashiwagi
+text_fr	menu04.bin	788	Takashi Idogawa
+text_fr	menu04.bin	789	Kensuke Matsushita
+text_fr	menu04.bin	790	Masako Miyoshi
+text_fr	menu04.bin	791	Soushi Yoshida
+text_fr	menu04.bin	792	Izumi Tsukushi
+text_fr	menu04.bin	793	Hidemi Matsuzuka
+text_fr	menu04.bin	794	Miyako Kibe
+text_fr	menu04.bin	795	Kensuke Tanaka
+text_fr	menu04.bin	796	Kyoko Saito
+text_fr	menu04.bin	797	Kaori Shibayama
+text_fr	menu04.bin	798	"Kenichi ""Gustav"" Iwao"
+text_fr	menu04.bin	805	Hironobu Sakaguchi
+text_fr	menu04.bin	806	ALL FINAL FANTASY XII STAFF
+text_fr	menu04.bin	807	ALL SQUARE ENIX STAFF
+text_fr	menu04.bin	808	...and ALL FANS OF FINAL FANTASY
+text_fr	menu04.bin	809	Youichi Wada
+text_fr	menu04.bin	810	Akitoshi Kawazu
+text_fr	menu04.bin	811	at Sony PCL Inc.
+text_fr	menu04.bin	812	VIRGO MUSIC & SQUARE ENIX Co., Ltd.
+text_fr	menu04.bin	813	Old Dalan
+text_fr	menu04.bin	814	(...)
+text_fr	menu04.bin	815	(...)
+text_fr	menu04.bin	816	Tetsuya Hiraoka
+text_fr	menu04.bin	817	Tomomi Moriyasu
+text_fr	menu04.bin	818	Anastasis, Dalan
+text_fr	menu04.bin	819	Dwight Schultz
+text_fr	menu04.bin	820	Eric Lewis
+text_fr	menu04.bin	821	Ernie Sheesley
+text_fr	menu04.bin	822	Kirk Rogers
+text_fr	menu04.bin	823	Masashi Hiramatsu
+text_fr	menu04.bin	824	Tomoko Kondo
+text_fr	menu04.bin	825	Seiko Braswell
+text_fr	menu04.bin	826	Satoshi Toyoda
+text_fr	menu04.bin	827	Koji Taguchi
+text_fr	menu04.bin	829	"David ""Ribs"" Carrillo"
+text_fr	menu04.bin	830	Mohammed A.C. Wright
+text_fr	menu04.bin	831	Mathew Clift
+text_fr	menu04.bin	832	Jason Sanders
+text_fr	menu04.bin	833	Glenn Lee
+text_fr	menu04.bin	834	Bryan D. Chen
+text_fr	menu04.bin	835	Johnny Fournier
+text_fr	menu04.bin	836	Jeremy Goldsmith
+text_fr	menu04.bin	837	Erik Carpenter
+text_fr	menu04.bin	838	Cris Y. Cheng
+text_fr	menu04.bin	839	Robert Dryburgh
+text_fr	menu04.bin	840	Joshua D. Boden
+text_fr	menu04.bin	841	Lucas Goodman
+text_fr	menu04.bin	842	Darren S. Harvey
+text_fr	menu04.bin	843	Kevin Kim
+text_fr	menu04.bin	844	Eric Lea
+text_fr	menu04.bin	845	Noel Lynch
+text_fr	menu04.bin	846	Nick Madonna
+text_fr	menu04.bin	847	Scott Melzer
+text_fr	menu04.bin	848	Francisco Miranda
+text_fr	menu04.bin	849	Chintan Patel
+text_fr	menu04.bin	850	Joseph Pirante
+text_fr	menu04.bin	851	Thomas Rios
+text_fr	menu04.bin	852	Fredrick Sykes
+text_fr	menu04.bin	853	Noah Woo
+text_fr	menu04.bin	854	Frederick Sykes
+text_fr	menu04.bin	855	Arthur T. Kawamoto
+text_fr	menu04.bin	856	Elijah Smolko
+text_fr	menu04.bin	857	Yutaka Sano
+text_fr	menu04.bin	858	Yasu Kurosawa 
+text_fr	menu04.bin	859	Franko F. Fonseca 
+text_fr	menu04.bin	860	Walter Brame 
+text_fr	menu04.bin	861	Carl Hidalgo
+text_fr	menu04.bin	862	Sean Michael
+text_fr	menu04.bin	863	Jereme Skelton
+text_fr	menu04.bin	864	"Neil ""Tak"" Herrera"
+text_fr	menu04.bin	865	Sonia Im
+text_fr	menu04.bin	866	Charlie Sinhaseni
+text_fr	menu04.bin	867	Frederick K. Hashi
+text_fr	menu04.bin	868	Fernando Bustamante
+text_fr	menu04.bin	869	Felice V. Wu
+text_fr	menu04.bin	870	Philip Ser
+text_fr	menu04.bin	871	Issei Shimizu
+text_fr	menu04.bin	872	Kumiko Hakushi
+text_fr	menu04.bin	873	Naoko Yamamura-Rice
+text_fr	menu04.bin	874	Emi Maurer
+text_fr	menu04.bin	875	Patrick H. Cervantes
+text_fr	menu04.bin	876	Jonathan Cooperson
+text_fr	menu04.bin	877	Tim Law
+text_fr	menu04.bin	878	Wilbur Lin
+text_fr	menu04.bin	879	Parker Sapp
+text_fr	menu04.bin	880	Ron Kurtz
+text_fr	menu04.bin	881	Alaine C. de Leon
+text_fr	menu04.bin	882	Kanji Tashiro
+text_fr	menu04.bin	883	Traci Jones
+text_fr	menu04.bin	884	Shundea K. Brooks
+text_fr	menu04.bin	885	Shinji Futami
+text_fr	menu04.bin	886	Shinji Hashimoto
+text_fr	menu04.bin	887	Neal Black
+text_fr	menu04.bin	888	Daishiro Okada
+text_fr	menu04.bin	890	Morgan Morris Rushton
+text_fr	menu04.bin	892	Marcus Wehner
+text_fr	menu04.bin	893	Andreas Wollny
+text_fr	menu04.bin	894	Laurent Sautière
+text_fr	menu04.bin	895	Mathieu Daujam
+text_fr	menu04.bin	896	Manuela Suriano
+text_fr	menu04.bin	897	Paola Calcagno
+text_fr	menu04.bin	898	Eduardo López Herrero
+text_fr	menu04.bin	899	Carmen Mangirón Hevia
+text_fr	menu04.bin	901	Seb Ohsan Berthelsen
+text_fr	menu04.bin	902	Alex Moresby
+text_fr	menu04.bin	903	André Woitczyk
+text_fr	menu04.bin	904	Lorenzo Grimaldi
+text_fr	menu04.bin	905	Andii Yamanaka
+text_fr	menu04.bin	906	Morgan Morris Rushton
+text_fr	menu04.bin	907	Douglas Brown
+text_fr	menu04.bin	908	Sofie Dodgson
+text_fr	menu04.bin	909	Shanshan Dong
+text_fr	menu04.bin	910	Liban Hassan
+text_fr	menu04.bin	911	Winson Ting
+text_fr	menu04.bin	912	Matthieu Falletti
+text_fr	menu04.bin	913	Cédric Berthomé
+text_fr	menu04.bin	914	Yann Gendrot
+text_fr	menu04.bin	915	Mathieu Goulin
+text_fr	menu04.bin	916	Romain Guerreiro
+text_fr	menu04.bin	917	Pierre Lardeux
+text_fr	menu04.bin	918	Thibaut Salembier
+text_fr	menu04.bin	919	Stefanie Jahn
+text_fr	menu04.bin	920	Alexander Böning
+text_fr	menu04.bin	921	Pierre Debba
+text_fr	menu04.bin	922	Werner Nemetz 
+text_fr	menu04.bin	923	Sascha A. Zaman T.
+text_fr	menu04.bin	924	Andrea Zenk
+text_fr	menu04.bin	926	Dario de Cesare
+text_fr	menu04.bin	927	Mauro Braghieri
+text_fr	menu04.bin	928	Simone Della Fornace
+text_fr	menu04.bin	929	Elisa Giribaldi
+text_fr	menu04.bin	930	Marco Intermite
+text_fr	menu04.bin	931	Piermaria Mendolicchio
+text_fr	menu04.bin	932	Andrea Prodomo
+text_fr	menu04.bin	933	Raúl Nieto García
+text_fr	menu04.bin	934	Iria Lamas Pérez                   
+text_fr	menu04.bin	935	Ana Lastra Álvarez               
+text_fr	menu04.bin	936	Pedro Núñez Bernal
+text_fr	menu04.bin	937	Adrián Palacios Serrano
+text_fr	menu04.bin	938	David Samhan Arias
+text_fr	menu04.bin	939	Píndaro Vargas Farías
+text_fr	menu04.bin	940	Alessandro Bovenzi
+text_fr	menu04.bin	941	Stefanie Deinet
+text_fr	menu04.bin	942	José Gallego
+text_fr	menu04.bin	943	Erwan Jegouzo
+text_fr	menu04.bin	944	Stéphanie Journau
+text_fr	menu04.bin	945	Alex Huhtala
+text_fr	menu04.bin	946	Doug Bone
+text_fr	menu04.bin	947	David Dyett
+text_fr	menu04.bin	948	Michael Sherlock
+text_fr	menu04.bin	949	Tomohiro Yoshikai
+text_fr	menu04.bin	950	John Yamamoto

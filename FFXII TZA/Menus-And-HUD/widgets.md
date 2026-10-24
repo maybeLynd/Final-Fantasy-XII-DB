@@ -520,7 +520,7 @@ Each of the two `0x1620`-byte pages inside the list widget (`+0xF0` and `+0x1710
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x4C4` | `u8[4]` | listBlock04 | +0x04 of the target-list block at +0x4C0 that the list builder 0x0031EB20 fills for this page (0x0027D740 calls it with this + 0x4C0 at 0x0027D865 and 0x0027D891); read and written by no function; nothing fixes its width |
+| `+0x4C4` | `i32` | tutorialGroup | the tutorial group, the target-list block's +0x04: 0x0027E050 (0x0027E2F7-0x0027E305) and 0x0027D740 (0x0027D82F-0x0027D836) store the sign-extended word +0x153A; 0x0031EB20 passes it as the group to 0x0032A320 for command rows (0x0031ED00) and to 0x0032A230 for action rows (0x0031F1AA) |
 | `+0x4D8` | `u32` | listFilter | +0x18 of the target-list block: 0x0027E050 stores it together with the list mode +0x4D4 as one qword (0x0027E118, on the page at this + 0xF0 + i x 0x1620 from 0x002793FA); 0x0031EB20 compares it with a candidate action row's +0x2C & 7 (0x0031EF8A) and, when it is not 0xFF, indexes the table at 0x0208CE70 with it (0x0031F907) |
 | `+0x4EC` | `u8` | listSlot | +0x2C of the target-list block: 0x0031EB20 reads it and goes on only for a value up to 0x27 before it looks in the stats records at [0x02EBF190] (0x0031F7E9-0x0031F7F5) |
 | `+0x4F4` | `u16` | listActionA | +0x34 of the target-list block: 0x0031EB20 passes it as the first argument of GambitConfig_ClassifyActionTargetPairCompatibility 0x00327A10 (0x0031FB26-0x0031FB30) |
@@ -583,6 +583,16 @@ bytes from `0x0208EAC0`, `0x00247CED`) and makes the matrix `0x0208ECD0` the ide
 No other instruction reaches these cells. The focus stack's base `0x0208EAC0` is taken by `0x00244640`, `0x00244700`,
 `0x002448D0` and `0x00247AE0` only, the matrix `0x0208ECD0` by `0x00245E60` and `0x00247AE0` only, the matrices `0x0208EC10` and
 `0x0208EC50` by the functions in their rows.
+
+The post-load widget `0x00394130` ([loading a save](../Saving-Loading-And-Settings/loading-a-save.md)) keeps itself in
+`0x02AEE4D0`. The End handler of verb `0x705D` reaches it through `0x00394640` (a jump at `0x00512130`), which builds the
+`0xF0`-byte widget with `0x00244F50(0xF0, 0x00394130, 0)` only while `0x02AEE4D0` is 0, so a second load cannot make a
+second widget. On message `0x12` the widget frees the title asset kept at `0x02AEE4C0`, when there is one
+(`0x00244F00`), clears `0x02AEE4D0` (`0x00394155`-`0x00394168`) and passes the message on to `0x005C5230`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02AEE4D0` | `void*` | 0 (zero-filled tail of `.data`) | the post-load widget while it lives | `0x00394130`: itself on message 1 (`0x003942B2`), 0 on message `0x12` (`0x00394168`) | `0x00394640` (`0x00394640`), from the End handler of verb `0x705D` (`0x00512130`) |
 
 ## Modding notes
 

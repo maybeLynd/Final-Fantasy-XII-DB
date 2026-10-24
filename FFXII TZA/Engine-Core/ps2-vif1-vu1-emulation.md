@@ -57,7 +57,7 @@ it before every packet list, so programs live only for the list that installed t
 | `0x02064E30` to `0x02068E2F` | `0x4000` | VU memory, 1,024 cells of 16 bytes |
 | `0x02068E30` to `0x02088E2F` | `0x20000` | the installed-program table, one x64 pointer per VU address |
 | `0x02088E30` to `0x02088E53` | — | BASE, OFFSET, status, WL, CYCLE, installed count, installed list |
-| `0x02064E1C`, `0x02064E28` | 4 each | TOP and TOPS |
+| `0x02064E1C`, `0x02064E28` | u16 each | TOP and TOPS |
 | `0x02064B00` to `0x02064E2F` | — | the microprograms' own working words: 16-bit cell indices (`0x02064B0C`, `0x02064DB0`, `0x02064DB4`, `0x02064DB8`, `0x02064DD0`) and float scratch |
 | `0x02064DEC` | u16 | the sticky status flags: `0x0022CC40` sets `0x40` (zero) and `0x0022CC30` sets `0x80` (sign); they are its only writers, and 40 microprograms call them at 116 sites each |
 

@@ -252,7 +252,7 @@ in all nine language trees under `ps2data`:
 
 Every walk ends on its terminator followed only by zero bytes. The copies inside `battle_pack.bin` are counted once.
 The 14,652 credits strings in `menu03.bin` are UTF-16 (tag `ex00`, written by `0x00365660`) and hold no codes. Event
-script section 2 holds 949,262 of the 1,083,172 codes other than the space in the `total` column (87.6%).
+script section 2 holds 949,262 of the 1,083,172 codes other than the space `0x04` in the `total` column (87.6%).
 
 Sixteen strings in `evt_t0080.ebp` and `evt_t0086.ebp` of the `ch`, `cn`, `in` and `kr` trees hold choice lists
 whose option lengths do not fit the 7-bit field. The interpreter masks the length the same way (`0x002AC946`), so it
