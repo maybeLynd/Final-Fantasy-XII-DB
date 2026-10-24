@@ -201,6 +201,10 @@ frames)`). `0x00226A50` and `0x00226AB0` fold sets 6 and 7 for one actor outside
 `0x00263560` drives both hooks for the four roster actors from the hold bytes `0x02099DE3` to
 `0x02099DE6`, also zeroing their movement speed.
 
+`0x02099DE4`, the second hold byte, gets 0 from the unload `0x002628B0` (`0x00262BD7`) and from the boot `0x00266D10`
+(`0x00266F45`), each time between two calls of `0x00263560`, which ORs it with `0x02099DE3`, `0x02099DE5` and `0x02099DE6`
+(`0x00263576`).
+
 At run time only `0x0026A290` writes `0x02099DE3`: it is the handler of the verb `setmutekiparty`
 (`0x0337`, through `0x003452B0`), stores the popped value there and runs `0x00263560`. With manager 0
 active (`0x02098E20` bit `0x1`) a non-zero

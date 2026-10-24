@@ -224,6 +224,7 @@ the effect's byte `+0x1F8` is set (`0x0074BEFC`-`0x0074BF0E`). So each later reb
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `0x02EB3870` | 624 × `u32` | gameplay MT state | `0x00866D60`, `0x00866B90` |
+| `0x02EB422C` | `u32` | the state's last word, `state[623]`: the refill stops its loop before it (`0x00866CE2`) and computes it alone from itself, `state[0]` and `state[396]` at `0x02EB3EA0` (`0x00866D1D`, `0x00866D3B`, `0x00866D4E`) | `0x00866B90` (`0x00866D54`) |
 | `0x02EB4230` | `i32` | gameplay MT index | `0x00866D60`, `0x00866B90`, `0x00863BF0`, `0x00863C80` |
 | `0x02EB4234` | `u8` | gameplay MT seeded flag | `0x00863BF0`, `0x00863C80`, `0x00863D30` |
 | `0x022C256C` | `u32` | shared LCG state | `0x00328370`, the seven inline sites, `0x00328D80` |

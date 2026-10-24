@@ -247,6 +247,17 @@ run only inside a world, which the game never builds (above).
 
 No other instruction reaches these six globals.
 
+Five more words of the library, which run only inside a world too:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F44CC0` | `u8` | 1 | report once: the AABB update `0x00840DF0`, for an object whose box overflows, prints "Overflow in AABB, object removed from simulation" (`0x01CCE6A0`) and the bug-report line (`0x01CCE6E0`) through the debug drawer's slot `+0x40` only while it is set, and clears it | `0x00840DF0` (`0x00840EFE`, 0) | `0x00840DF0` (`0x00840ED7`) |
+| `0x02EAF388` | `i32` | 0 (zero-filled tail of `.data`) | the most nodes one walk of a bounding-volume tree has visited: each of the four tree walks keeps the larger of it and its own count | `0x008456B0` (`0x008457E3`); `0x00845800` (`0x00845F1B`); `0x00846040` (`0x0084614E`); `0x00846170` (`0x008465D7`) | the same four (`0x008457D1`, `0x00845EDB`, `0x0084613C`, `0x0084658A`) |
+| `0x02EAF3B8` | `i32` | 0 (zero-filled tail of `.data`) | the count of penetration-depth checks: the GJK closest-points routine `0x0084CB30` adds 1 before it calls the depth solver (`0x0084D3E9`) | `0x0084CB30` (`0x0084D38D`, `inc`) | only that increment |
+| `0x02EAF3BC` | `i32` | 0 (zero-filled tail of `.data`) | the count of GJK checks: `0x0084CB30` adds 1 on each run, after its two-dimensional test of the shape types 17 and 18 | `0x0084CB30` (`0x0084CCDA`, `inc`) | only that increment |
+| `0x02EAF3C4` | `i32` | 0 (zero-filled tail of `.data`) | the next rigid-body id: `0x008542B0`, which builds a rigid body from its construction info, gives the body the value at `+0x234` and adds 1 | `0x008542B0` (`0x00854490`) | `0x008542B0` (`0x00854477`) |
+| `0x02EAF3C8` | `i32` | 0 (zero-filled tail of `.data`) | the count of continuous-collision sweeps: `0x00857970` adds 1 for a body whose step moves it farther than its non-zero threshold `+0x118` and whose shape type is below `0x14`, then sweeps the shape (`0x00857A39`-`0x00857AAE`) | `0x00857970` (`0x00857A9D`, `inc`) | only that increment |
+
 ## Modding notes
 
 - The whole route is dormant. Adding `PPhysicsWorld` and `PPhysicsRigidBody` objects to a cluster is

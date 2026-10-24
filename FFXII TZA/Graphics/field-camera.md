@@ -257,6 +257,7 @@ Follow camera (controller + `0x2B0`):
 | Address | What |
 |---|---|
 | `0x02097D30` | the camera controllers, 0x860 bytes each |
+| `0x02B4E3F0`, `0x02B4E3F4`, `0x02B4E3F8` | the framed actor's position x, y and z, the first three floats of a `0xB0`-byte copy of its movement body's placement `+0x30` (`0x003D9ED1`): `0x003D9E20` writes them from `0x002E7F70` (`0x003D9F4F`, `0x003D9F65`, `0x003D9F5D`) and raises `0x02B4E4A6` (`0x003D9F6D`); `0x003D9FB0` zeroes the `0xC0` bytes from `0x02B4E3F0` (`0x003D9FB2`) |
 | `0x02B4E4A0`, `0x02B4E4A5` | the framed actor and its flag (`0x003D9E20`) |
 | `0x022C3184`, `0x022C3188` | the curve's highest and lowest `y`, 7.6 and −0.7 (`0x0032B600`) |
 | `0x01EED478` | the curve's end points |

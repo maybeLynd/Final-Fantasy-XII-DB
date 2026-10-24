@@ -47,7 +47,7 @@ The element's byte `+0x102` is the slot the owner and target reads take ([target
 |---|---|---|
 | 1 | the owner's record (`0x003A3FD0`, `0x003A440B`) | yes |
 | 2 | the target's record (`0x003A6BA0`, `0x003A4432`) | yes |
-| 3, 11 | the camera matrix `0x02AEDEF0`; kind 11 takes the position `0x02AED600`-`0x02AED608`. The third axis is scaled by tan(pi/8) / tan(fov / 2), fov the angle `0x02AED568`, or 45 degrees in Super Wide mode while `0x02AED568` and `0x02AED56C` are above 1.0 (`0x003A44C3`-`0x003A4553`) | no |
+| 3, 11 | the camera matrix `0x02AEDEF0`; kind 11 takes the position `0x02AED600`, `0x02AED604` and `0x02AED608`, x, y and z (`0x003A449C`, `0x003A44A9`, `0x003A44B6`), which `0x003820C0` moves on by a vector each call (`0x0038241F`, `0x00382434`, `0x0038244A`). The third axis is scaled by tan(pi/8) / tan(fov / 2), fov the angle `0x02AED568`, or 45 degrees in Super Wide mode while `0x02AED568` and `0x02AED56C` are above 1.0 (`0x003A44C3`-`0x003A4553`) | no |
 | 4 | the record of the actor in `effectactor` slot `n` (`0x003A40F0`, through the tables `0x003A4220` uses) | yes |
 | 5 | the record of the party-focus actor (`0x003590D0`, `0x002E9B80`) | yes |
 | 6 | the `n`-th member of manager 0 that has a record (`0x00263FF0`, `0x00263C30`, `0x00358940`) | yes |

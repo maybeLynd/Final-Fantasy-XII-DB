@@ -53,6 +53,10 @@ Every entry is on exactly one doubly linked list through `+0x00` (previous) and 
 - **live**, head `0x0215FD58`. The request pump moves each requested entry here once its load is filed.
 - **retired**, head `0x0215FD88`. The re-lister moves an entry here when its last holder lets go.
 
+The loops in `0x002EA320` link the middle records and leave the end links to single stores: slot 0's next,
+`0x0215FDA8` (`0x002EA3CB`), and slot 127's previous, `0x02161D60` (`0x002EA404`); for the lane records, record 0's next
+`0x02161DA8` (`0x002EA425`) and record 31's previous `0x02164080` (`0x002EA47D`).
+
 `0x002EA320` (called from `0x00266D10`) also clears the other heads, loads the ten character SE tables through
 `0x002EA530` (`0x002EA34F`; [character SE tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)),
 fills the lane records, and

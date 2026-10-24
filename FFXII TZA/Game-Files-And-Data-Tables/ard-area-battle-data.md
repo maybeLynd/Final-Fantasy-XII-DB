@@ -206,6 +206,8 @@ argument (`0x0037C6C3`-`0x0037C6D4`).
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02ADD955` | `i8` | 0 (zero-filled tail of `.data`) | the list being walked: 0 root 0's trailer, 1 root 1's, 2 the `{id, mask}` table at `+0x80` of area slot 0's data | `0x0037C910`, 0 (`0x0037C932`); the task `0x0037C3F0`, 1 more (`0x0037C6A8`) | the task `0x0037C3F0`: `0x0037C430`, `0x0037C4E0`, `0x0037C566`, `0x0037C5AD` and `0x0037C661`, which compare it with 2; `0x0037C493`, as the root number passed to `0x003EA650` (sign-extended); `0x0037C689`, to step it |
+| `0x02ADD958` | `void*` | 0 (zero-filled tail of `.data`) | the current record's name binding, the answer of `0x002EAE20` | the task `0x0037C3F0` (`0x0037C536`); `0x0037C910`, 0 (`0x0037C924`) | the task: `0x002E4C20` (`0x0037C550`), `0x002EB5D0` (`0x0037C5D9`), `0x002ECA30` (`0x0037C60B`) and `0x002E4C30` (`0x0037C631`) |
+| `0x02ADD960` | `void*` | 0 (zero-filled tail of `.data`) | the answer of `0x002EB5D0(binding, lane)` for the lane being tried; a non-zero answer sends the lane to `0x002ECA30` | the task (`0x0037C5ED`); `0x0037C910`, 0 (`0x0037C92B`) | the task, from the register it stores (`0x0037C5F4`) |
 | `0x02ADD970` | `u32` | 0 (zero-filled tail of `.data`) | the task's argument: 1 adds the third list | `0x0037C910`, the argument (`0x0037C918`); the task, 0 at its end (`0x0037C6D4`) | the task (`0x0037C695`), which makes the list limit 3 when it is 1 and 2 otherwise |
 
 ### Models kept through an area change

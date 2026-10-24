@@ -24,6 +24,15 @@ the bind and the pass store it there, `0x002640C0` returns it and `0x002640D0` r
 `+0x28`. Three one-byte getters take a slot index: `0x002673F0` returns `+0x13`, `0x00267310` returns
 `+0x201`, and the field pass reads `+0x10`.
 
+Slot 0's `flags3` byte `+0x17` is `0x02098E27`. `0x0025D5D0` clears its bit `0x80`; seven functions call it (`0x00342828`,
+`0x00343804`, `0x00343C96`, `0x0034442F`, `0x00345BDA`, `0x00346D08`, `0x00347AA2`), among them `0x00342770`, the begin of the verb
+`musicplay` ([music](../Sound-And-Music/music.md)). `0x002628B0` (`0x00262E60`), `0x00266D10` (`0x0026701D`), `0x0026A2A0` (`0x0026A2C9`)
+and `0x0026C8C0` (`0x0026CCD7`) test its bit `0x8`, the first two then slot 1's at `0x020990AF` (`0x00262E72`, `0x00267036`).
+
+`0x00265680` (`0x002656AE`) and `0x002672B0` (`0x002672B5`) walk the five slots' `+0x17` from `0x02098E27` in steps of `0x288`
+until `0x02099ACF`, and answer 1 only when every slot whose `+0x10` has bit `0x1` holds both bits `0x1` and `0x2` there
+(`0x002656CB`, `0x002672CF`).
+
 ### The bind
 
 `0x0026C8C0(slot, payload, callback)` binds a loaded definition payload to a slot (its stack frame

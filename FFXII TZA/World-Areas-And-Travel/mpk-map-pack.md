@@ -362,6 +362,10 @@ and keeps its width and height (`u16 +0x14` and `+0x16` of the texture header) a
 | `+0x1C` | `f32` | height |  |
 | `+0x20` | `u8[32]` | pad2 | zero |
 
+`0x00379870` hands `0x003C6380` the placement's width and height cut to whole numbers (`0x003798DA`, `0x003798DE`), and
+`0x003C6380` keeps them as floats at `0x02B45808` and `0x02B4580C` (`0x003C638E`, `0x003C6396`), beside the position
+`0x02B45800` and `0x02B45804` that `0x003C6360` stores.
+
 ### WD and MRP, carried but unread
 
 Slot 1 is a wave bank: a `WD` magic, `u16 +2` bank id (46 distinct values, 0x1FA to 0x251), `u32 +4`
@@ -517,6 +521,9 @@ The area initialisation `0x00266D10` resets the loader once through `0x00377CC0`
 and world object pointer is zeroed, `0x02ADD0E0` becomes -1, `0x02ADD118` 1 and `0x02ADD130` the text
 `none`, the start-up tables are requested again (`0x00378540`), and the pending and bind words
 (`0x02ADD0EC`, `0x02ADD0F0`) and `0x02ADD0EA` are cleared.
+
+The text is five bytes, `none` and its terminator, copied from `0x008C5928` as a dword to `0x02ADD130` and a byte to
+`0x02ADD134` (`0x00377CCE`, `0x00377CDB`); the teardown `0x00378230` writes it the same way (`0x00378471`, `0x0037848F`).
 
 ### The map colour and the buffer list's header
 

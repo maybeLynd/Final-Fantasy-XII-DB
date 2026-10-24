@@ -443,7 +443,8 @@ end equals `[0x02F8F200]` (`0x002D847B`-`0x002D8486`, `0x002D850F`); otherwise i
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x0215E6B0` | `i32` | 0 (zero-filled tail of `.data`) | the largest number of entries `0x002D83B0` has walked before placing a texture at the end of the run | `0x002D83B0` (`0x002D8494`, only when the count is greater, a signed compare) | `0x002D83B0` (`0x002D848C`); another reader is not yet located |
+| `0x0215E6B0` | `i32` | 0 (zero-filled tail of `.data`) | the largest number of entries `0x002D83B0` has walked before placing a texture at the end of the run | `0x002D83B0` (`0x002D8494`, only when the count is greater, a signed compare) | `0x002D83B0` (`0x002D848C`), the compare before that store; no other RIP-relative instruction names it |
+| `0x0215E6B4` | `i32` | 0 (zero-filled tail of `.data`) | the same for palettes: the largest number of entries the palette placer `0x002D81D0` has walked in the `0x10`-byte entries from `0x02F8C200` before placing a palette at the end of the run | `0x002D81D0` (`0x002D82C7`, only when the count is greater, a signed compare) | `0x002D81D0` (`0x002D82B6`), the compare before that store; no other RIP-relative instruction names it |
 
 ## Modding notes
 

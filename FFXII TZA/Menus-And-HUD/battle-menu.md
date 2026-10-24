@@ -537,7 +537,10 @@ entry 0 and nothing else forms the table's address (the walker `0x0031B690` and 
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x02EC1388` | `i32` | 0 (zero-filled tail of `.data`) | entry 0's HP; the reset's 8-byte store also zeroes max HP `0x02EC138C` | `0x003221B0` (`0x003221E0`); `0x0031B690` (`0x0031B6E7`) on its first pass, past the class test | `0x004061F0` (`0x00406479`, `0x004064A9`) through the entry address `0x00404F50` returns |
+| `0x02EC1390` | `i32` | 0 (zero-filled tail of `.data`) | entry 0's MP; the reset's 8-byte store also zeroes max MP `0x02EC1394` | `0x003221B0` (`0x003221E7`); `0x0031B690` (`0x0031B701`) on its first pass, past the class test | `0x004061F0` (`0x004064A4`, when the bar's flag `+0x130` bit `0x4` is set) through the entry address `0x00404F50` returns |
 | `0x02EC1398` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's unit slot; -1 after each reset | `0x003221B0` (`0x003221B9`, the 8-byte 0 over `0x02EC1398`-`0x02EC139F`; `0x003221D6`, -1) | `0x0031B690` (`0x0031B6C5`) on its second pass, only when entry 1's class `0x02EC139C` is not 0; it passes the slot to `0x00236820` |
+| `0x02EC13A0` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's HP; the reset's 8-byte store also zeroes max HP `0x02EC13A4` | `0x003221B0` (`0x003221EE`); `0x0031B690` (`0x0031B6E7`) on its second pass, past the class test | `0x004061F0` (`0x00406479`, `0x004064A9`) through the entry address `0x00404F50` returns |
 | `0x02EC13A8` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's MP; the reset's 8-byte store also zeroes max MP `0x02EC13AC` | `0x003221B0` (`0x003221F5`); `0x0031B690` (`0x0031B701`) on its second pass, past the same class test | `0x004061F0` (`0x004064A4`) through the entry address `0x00404F50` returns (`0x00404F88`-`0x00404F8C`), when the bar's flag `+0x130` bit `0x4` is set |
 
 ## Modding notes

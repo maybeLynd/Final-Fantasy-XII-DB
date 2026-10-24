@@ -257,6 +257,12 @@ awards with `0x00577550(7)` (`0x005750AF`, `0x00316930`). `0x00572920` lays out 
    it, so the model appears only in the menu.
 6. Closing the entry (`0x001846B0`, `0x00570355`) frees the model and restores `0x02CB8138`.
 
+The byte `0x01F82E20` marks that the viewer has started the model's motion. `0x001EC060` sets it to 1 (`0x001EC453`) when
+it is clear (`0x001EC434`) and the viewer's `+0x26E` is 0 (`0x001EC43D`), and then calls `0x002EF100(+0x134, +0x224)` (`0x001EC45A`),
+which plays the motion with bit `0x2000` (`0x002EF111`). `0x001EB9B0`, from `0x00181DF0`, stores a new model id at
+`+0x134` and clears the byte (`0x001EB9B6`). Only with the byte set and the model settled (`0x002EF030` answering 1)
+does `0x001EC060` draw it, under the scope `mainLoopMenuMonsterDraw` (`0x001EC0C5`, `0x001EC0CE`).
+
 The loader settles a request with `0x002EED80` (`0x002EE975`), only on a pass where `0x0216420C` is 1, which it clears:
 
 - with a model shown (`0x0216423C` = 1) and `0x00181DD0()` answering 0, it releases it (`0x002EEB20([0x02164238])`) and clears

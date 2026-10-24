@@ -24,6 +24,9 @@ the active-list head `0x02B57CC0`. `0x003DAE30`, from the actor system's initial
 `0xFFFF`), zeroes `+0x10`-`+0x17` and `+7`, sets the free head to 0 and the active head to empty,
 zeroes `0x02B57CC8` and `0x02B57CD0`, and zeroes the 32 sector masks at `0x02B57CE0`.
 
+The loop leaves the two end links to single stores: body 0's previous, the word `0x02B4E4C0` (`0x003DAE79`), and body
+127's next, `0x02B57B92` (`0x003DAE88`).
+
 `0x003DA8A0()` pops the free head and returns null when it is `0xFFFF`; it links the body at the
 head of the active list, zeroes `+0x30`-`+0xDF`, sets `+0x82` = `0xFFFF`, `+0x88` = 0, runs
 `0x00380B80` on the placement, sets `+8` = 1.0, `+6` = 0, `+0x10`-`+0x27` = 0, `+0xE8` = 0, runs
@@ -428,7 +431,7 @@ Three ranges the table above does not list:
 | `0x02B57CC8` | `void*` | frameListHead | first placement linked by `0x003DB0D0` |
 | `0x02B57CD0` | `void*` | frameListTail | last placement linked |
 | `0x02B57CE0` | `u64[64]` | sectorMasks | 32 sectors, two words each |
-| `0x02B57EE0` | `u64[2]` | candidates | the candidate set of `0x003DAAB0` |
+| `0x02B57EE0` | `u64[2]` | candidates | the candidate set of `0x003DAAB0`, the qwords `0x02B57EE0` and `0x02B57EE8`, both zeroed as it starts (`0x003DAAB3`, `0x003DAABA`) |
 | `0x02CA6034` | `f32` | centreX | sector centre x (`0x02CA603C` z) |
 | `0x02CA6040` | `f32` | sumX | running sum of x (`0x02CA6048` z, `0x02CA604C` the count) |
 

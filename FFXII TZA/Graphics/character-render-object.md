@@ -172,6 +172,12 @@ current GS command buffer (`0x005044B0`, closing a full block with `0x00504450`)
 3. a copy of the 0x150-byte block `0x02EBA400` with the matrices at `+0x10` and `+0x50`, the vector `0x02AEDF10` at
    `+0xE0` (kept at `0x02EBA4B0`), and 1791.97 and 1823.97 at `+0xA0` and `+0xA4`.
 
+Those matrices are the two copies. Rows `0x02CA7F80`, `0x02CA7F90`, `0x02CA7FA0` and `0x02CA7FB0` hold the first, from
+`0x02AEDE70` (`0x004FDDD7`-`0x004FDE03`), and go to `+0x50`-`+0x8F` (`0x004FE192`-`0x004FE1B3`). Rows `0x02CA7FC0`,
+`0x02CA7FD0`, `0x02CA7FE0` and `0x02CA7FF0` hold the second, from `0x02AEDD30` (`0x004FDE11`-`0x004FDE34`), and go to
+`+0x10`-`+0x4F` (`0x004FE1C1`-`0x004FE1E2`). The render update `0x0053AB50` also takes the second's address
+(`0x0053C1C7`, `0x0053C869`, `0x0053CE39`, `0x0053CF71`).
+
 At boot `0x00475310` (`0x0036F4FC`) fills part of that block: `+0xC4` 10.0, `+0xC8` 150.0, `+0xCC` 1.5, `+0xE0` 16.0,
 `+0xE4` and `+0xE8` 4.0, `+0xD4` 5, `+0xD8` `0x40`, and 0 in `+0xC0` and `+0xD0`.
 

@@ -191,6 +191,7 @@ The chain's choices and the script's Quickening scene keep three more words:
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022C217C` | `u32` | 0 | the choice draws since the last chain step | `0x00309C40`, plus 1 (`0x00309DF6`, `0x00309E2D`); `0x00313120`, 0 (`0x003133D2`, `ebp` 0 from `0x003132C1`); `0x0030D720`, 0 with the 8-byte store at `0x0030D751` | `0x00309C40` (`0x00309C70`) |
+| `0x022C2180` | `u32` | 0 | the Quickenings the chain has played | `0x00313120`, plus 1 at each chain step (`0x003133AC`); `0x0030D720`, 0 with the 8-byte store at `0x0030D751` | `0x00305F10` (`0x00305F26`), which shows the last action's name through `0x002902D0` and passes it as the second argument (`0x00305FF3`), or `0xC8` when that action is a Concurrence row, `0xE2` to `0xF1` (`0x00305F2F`, `0x00305F37`, `0x00305F42`) |
 | `0x01EF9208` | `i32` | -1 | the user of the previous `getspattackskillinfo` | `0x00348330` (`0x00348397`, the newer user `0x01EF920C`) | `0x003495A0` (`0x003495D0`, the second compare, through the address it forms at `0x003495C3`) |
 | `0x01EF9210` | `i32` | -1 | the Quickening index of the previous `getspattackskillinfo` | `0x00348330` (`0x003483A3`, the newer index `0x01EF9214`) | `0x003495A0` (`0x003495EF`, for a match on `0x01EF9208`, through the address it forms at `0x003495E8`) |
 

@@ -24,6 +24,12 @@ first free entry, makes its handle `counter << 8 | index` (the counter `0x02B3F5
 head is `0x02B3F508` and tail `0x02B3F510` (previous at `+0x08`, next at `+0x10`). `0x003ABD00(handle)`
 returns the request block when the handle still matches.
 
+The byte `0x02B3F500` counts the entries in use: `0x003AB960` adds 1 (`0x003AB988`) and `0x003ABCA0` takes 1 off when it
+releases one (`0x003ABCBE`). The pool clear `0x003ABB60` frees all 128 entries and empties the list, sets the count to 0
+(`0x003ABB91`), then files one entry at once and sets it to 1 (`0x003ABBFC`). The set-up `0x003AC890` allocates the
+pool (`0x3800` bytes) when it has none, and one 8-byte store at `0x003AC8D0` zeroes `0x02B3F500`, `0x02B3F501`,
+`0x02B3F503` and the counter `0x02B3F504` and sets `0x02B3F502` to 1.
+
 For the falloff kinds the create routine stores `1 / range²` from the range at request `+0x0C`: at
 request `+0x30` for kinds 2 and 5, `+0x40` for kind 3, `+0x48` for kind 4. Kind 4 also gets
 `1 / (+0x40 − +0x44)` at `+0x4C`, and kind 5 a squared length, a dot product and a reciprocal from its
@@ -122,6 +128,9 @@ Before the light call `0x004FD4B0` copies the record's matrix `+0x180`-`+0x1BF` 
 `0x004FDA95`) and `0x02EBA4A8` (z, `0x004FDAA3`), which the render update `0x0053AB50` reads (`0x0053C8C3`,
 `0x0053C8E1`, `0x0053C8F0`).
 
+The four rows of the copied matrix are `0x02CA8000`, `0x02CA8010`, `0x02CA8020` and `0x02CA8030`, one 16-byte store each from
+the record's `+0x180`, `+0x190`, `+0x1A0` and `+0x1B0` (`0x004FD505`, `0x004FD513`, `0x004FD521`, `0x004FD52F`).
+
 ### The installed light matrix
 
 Before it evaluates each light, `0x003ABD50` copies its first matrix (light `+5` bits `0xE` clear) or its second into the
@@ -135,6 +144,18 @@ and the point, plane, segment and spot bodies also take row 3.
 | `0x02B3F4C0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 1 of the light matrix | `0x003ABD50` (`0x003ABE9C`, `0x003ABEC5`); `0x003AC110` (`0x003AC486`) | `0x003AD540` (`0x003AD72F`, `0x003AD756`, `0x003AD78A`); `0x003AD830` (`0x003AD9D8`, `0x003ADA13`, `0x003ADA4E`); `0x003ADC40` (`0x003ADED5`, `0x003ADF0D`, `0x003ADF45`); `0x003AE0E0` (`0x003AE284`, `0x003AE2BF`, `0x003AE2FA`); `0x003AE4C0` (`0x003AE685`, `0x003AE6C0`, `0x003AE6FC`) |
 | `0x02B3F4D0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 2 of the light matrix | `0x003ABD50` (`0x003ABEA7`, `0x003ABED1`); `0x003AC110` (`0x003AC491`) | `0x003AD540` (`0x003AD73C`, `0x003AD763`, `0x003AD7A4`); `0x003AD830` (`0x003AD9E9`, `0x003ADA24`, `0x003ADA5F`); `0x003ADC40` (`0x003ADEE9`, `0x003ADF21`, `0x003ADF59`); `0x003AE0E0` (`0x003AE295`, `0x003AE2D0`, `0x003AE30B`); `0x003AE4C0` (`0x003AE696`, `0x003AE6D1`, `0x003AE70D`) |
 | `0x02B3F4E0` | `f32[4]` | 0 (zero-filled tail of `.data`) | row 3 of the light matrix | `0x003ABD50` (`0x003ABEDD`); `0x003AC110` (`0x003AC49C`) | `0x003AD830` (`0x003AD98D`, `0x003AD99F`, `0x003AD9B1`); `0x003ADC40` (`0x003ADD9F`, `0x003ADDAC`, `0x003ADDBA`, `0x003ADDF7`, `0x003ADE07`, `0x003ADEA3`, `0x003ADEB4`); `0x003AE0E0` (`0x003AE239`, `0x003AE24B`, `0x003AE25D`); `0x003AE4C0` (`0x003AE63A`, `0x003AE64B`, `0x003AE65D`) |
+
+Each light body forms the light's colour by subtype, as `0x003ACAA0` does, in the 16 bytes from `0x02B3F4F0` and
+reads it back into its result, scaled by the shape's falloff where it has one. The directional body `0x003AD540`
+copies all 16 bytes (`0x003AD68D`), then keeps `0.299|r|`, `0.587|g|` and `0.114|b|` in the first three and adds
+them for the strength at result `+0x1C` (`0x003AD6A3`-`0x003AD7D6`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B3F4F0` | `f32` | 0 (zero-filled tail of `.data`) | the red of the light being evaluated | `0x003AD540` (`0x003AD57A`, `0x003AD5AB`, `0x003AD5F6`, `0x003AD62B`, `0x003AD65B`; `0x003AD6DE`, the absolute red times 0.299); `0x003AD830` (`0x003AD862`, `0x003AD893`, `0x003AD8DE`, `0x003AD913`, `0x003AD943`); `0x003ADC40` (`0x003ADC84`, `0x003ADCB5`, `0x003ADD00`, `0x003ADD35`, `0x003ADD65`); `0x003AE0E0` (`0x003AE10E`, `0x003AE13F`, `0x003AE18A`, `0x003AE1BF`, `0x003AE1EF`); `0x003AE4C0` (`0x003AE50D`, `0x003AE53E`, `0x003AE589`, `0x003AE5BE`, `0x003AE5EE`) | `0x003AD540` (`0x003AD68D`, all 16 bytes; `0x003AD6A3`; `0x003AD7C6`); `0x003AD830` (`0x003ADAF9`, `0x003ADB58`); `0x003ADC40` (`0x003ADF9A`, `0x003ADFE4`); `0x003AE0E0` (`0x003AE35C`, `0x003AE3D9`); `0x003AE4C0` (`0x003AE7D9`, `0x003AE8A3`) |
+| `0x02B3F4F4` | `f32` | 0 (zero-filled tail of `.data`) | the green of the light being evaluated | `0x003AD540` (`0x003AD587`, `0x003AD5BE`, `0x003AD60A`, `0x003AD63E`, `0x003AD669`; `0x003AD6F5`, the absolute green times 0.587); `0x003AD830` (`0x003AD86F`, `0x003AD8A6`, `0x003AD8F2`, `0x003AD926`, `0x003AD951`); `0x003ADC40` (`0x003ADC91`, `0x003ADCC8`, `0x003ADD14`, `0x003ADD48`, `0x003ADD73`); `0x003AE0E0` (`0x003AE11B`, `0x003AE152`, `0x003AE19E`, `0x003AE1D2`, `0x003AE1FD`); `0x003AE4C0` (`0x003AE51A`, `0x003AE551`, `0x003AE59D`, `0x003AE5D1`, `0x003AE5FC`) | `0x003AD540` (`0x003AD68D`; `0x003AD6D3`; `0x003AD7BE`); `0x003AD830` (`0x003ADB05`, `0x003ADB68`); `0x003ADC40` (`0x003ADFF4`); `0x003AE0E0` (`0x003AE368`, `0x003AE3E9`); `0x003AE4C0` (`0x003AE7E9`, `0x003AE8B7`) |
+| `0x02B3F4F8` | `f32` | 0 (zero-filled tail of `.data`) | the blue of the light being evaluated | `0x003AD540` (`0x003AD594`, `0x003AD5D1`, `0x003AD677`; `0x003AD701`, the absolute blue times 0.114); `0x003AD830` (`0x003AD87C`, `0x003AD8B9`, `0x003AD95F`); `0x003ADC40` (`0x003ADC9E`, `0x003ADCDB`, `0x003ADD81`); `0x003AE0E0` (`0x003AE128`, `0x003AE165`, `0x003AE20B`); `0x003AE4C0` (`0x003AE527`, `0x003AE564`, `0x003AE60A`) | `0x003AD540` (`0x003AD68D`; `0x003AD6AB`; `0x003AD7CE`); `0x003AD830` (`0x003ADB12`, `0x003ADB79`); `0x003ADC40` (`0x003AE005`); `0x003AE0E0` (`0x003AE375`, `0x003AE3FA`); `0x003AE4C0` (`0x003AE7FA`, `0x003AE8CC`) |
+| `0x02B3F4FC` | `f32` | 0 (zero-filled tail of `.data`) | the alpha of the light being evaluated | `0x003AD540` (`0x003AD5DE`, `0x003AD685`); `0x003AD830` (`0x003AD8C6`, `0x003AD96D`); `0x003ADC40` (`0x003ADCE8`, `0x003ADD8F`); `0x003AE0E0` (`0x003AE172`, `0x003AE219`); `0x003AE4C0` (`0x003AE571`, `0x003AE618`) | `0x003AD540` (`0x003AD68D`); `0x003AD830` (`0x003ADB1F`, `0x003ADB8A`); `0x003ADC40` (`0x003AE016`); `0x003AE0E0` (`0x003AE382`, `0x003AE40B`); `0x003AE4C0` (`0x003AE8F2`) |
 
 ### The map's character-light settings
 
@@ -205,6 +226,11 @@ a frame (from `0x0036F410`) as the product, component by component, of four colo
 ambient `0x0209A370`, the scene colour `0x0209A380` (copied from `0x020926C0` by `0x003769E0`), the script
 colour `0x0209A390` and the summon-colour multiplier `0x0209A3C0`. `0x0026E1D0` resets the scene colour,
 the script colour and the product to 1.0.
+
+The script colour's four floats are `0x0209A390`, `0x0209A394`, `0x0209A398` and `0x0209A39C`, the setters' first to fourth
+arguments: `0x00379080` stores them at `0x003790AA`, `0x003790A2`, `0x003790B3` and `0x003790BB`, and `0x00379110` at `0x0037911B`,
+`0x00379123`, `0x0037912B` and `0x00379133`. `0x0026E1D0` (`0x0026E238`) and the teardown `0x00378230` (`0x00378354`) set all four
+with one 16-byte store, and `0x0026E1A0` multiplies by all four at once (`0x0026E1AE`).
 
 - `setmapambient(r, g, b, a)` (`0x0104`, `0x00379080`) stores the script colour and also writes
   `r, g, b` into the ambient of all five light groups (`0x02EBF460 + 0x50 × g`, `0x002ECE40`);

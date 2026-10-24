@@ -117,6 +117,19 @@ whose `0x60`-byte nodes hold two `std::string`s at `+0x20` and `+0x40`, with the
 `0x00677030`, through the jump thunk `0x00677340` (`0x001A998D`). Its `atexit` teardown `0x008A69A0` hands the root to `0x001A49C0`, which walks the nodes,
 frees both strings and returns each node through slot 3 of the allocator.
 
+The static's words, as the first-use code builds them (`0x001A99C5`-`0x001A9A07`):
+
+- `0x01F81190` and `0x01F81198`, the first two links of the tree anchor, both set to the anchor itself (`0x001A99EA`,
+  `0x001A99F1`);
+- `0x01F811A0`, the root: 0 (`0x001A99FA`), and read by the teardown (`0x008A69AD`);
+- `0x01F811A8`, the anchor's colour byte, cleared by an 8-byte store and a byte store (`0x001A99CE`, `0x001A9A01`);
+- `0x01F811B0`, the node count, 0 (`0x001A9A07`);
+- `0x01F811B8`, the plain EASTL allocator vtable `0x008F6500` (`0x001A99DC`).
+
+`0x01F811C0` is the thread-safe static guard (`0x008092FC`, `0x0080929C`; `0x001A995F`-`0x001A9A19`). The byte `0x01F811C4`
+is set to 1 before the file is read (`0x001A997C`), so later calls return the tree without reading it again
+(`0x001A9967`).
+
 ### The memory log that logs nothing
 
 Each of the three memory methods of `allocator_memory_log` begins by testing the pointer

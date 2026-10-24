@@ -213,6 +213,10 @@ at `0x01F83460` (vtable `0x009064B8`) share the first `0x30` bytes:
 | `+0x2C` | `i32` | count | GPUs found |
 | `+0x30` | `void*` | gpuHandles | NVIDIA: the first of the GPU handles, one per GPU |
 
+In `AmdAdapterInfo` the vector words are `0x01F83470` (`idsBegin`), `0x01F83478` (`idsEnd`) and `0x01F83480`
+(`idsCapacity`). Its exit routine `0x008A7360` destroys the 24-byte `AdapterIds` between begin and end (`0x008A73D6`,
+`0x008A73DD`, `0x001CD050`) and zeroes the three words (`0x008A740D`, `0x008A7415`).
+
 `AmdAdapterInfo` continues, `0xD0` bytes in all:
 
 | Offset | Type | Name | Meaning |

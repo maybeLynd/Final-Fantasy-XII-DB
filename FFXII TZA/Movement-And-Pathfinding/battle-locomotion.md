@@ -572,6 +572,55 @@ x, y and z of the sampled enemy's position through the three pointer arguments o
 (`0x0033E000`), from an enemy of mode 4. The area initialisation `0x0033A380` clears the 0x30 bytes
 `0x022C7CE0`-`0x022C7D0F`.
 
+The mode 1 and mode 3 bodies drive formations of their own with six more words of the block, which `0x0033A380` clears
+with its first two 8-byte stores (`0x0033A386`, `0x0033A38D`). Once a frame, while `0x022C7D04` bit `0x1` is clear, the mode 1
+body `0x0033DFD0` runs `0x00337D90` (`0x0033E000`). That sampler counts the enemies in mode 1 into `0x022C7CEA` (`0x00337DAB`,
+`0x00337E17`), takes the centre from the enemy in mode 4, and runs the phase byte `0x022C7CE6` on the frame count `0x022C7CE4`,
+which it lowers by one a call while it is above 0 (`0x00338115`):
+
+- phase 0: the count becomes `150 x [0x01DFE0B4] + rand() % (150 x [0x01DFE0B4])` frames (`0x0033801D`, `0x0033804D`), and one word store
+  makes the phase 1 and `0x022C7CE7` 0 (`0x00338033`); the call then goes on as in phase 1;
+- phase 1: the angle `0x022C7CE0` advances by `2pi x 2 / (30 x [0x01DFE0B4] x 13.823)` radians (`0x01CEBC78`, `0x01CEBC08`, `0x00D10B10`),
+  negated while `0x022C7CEC` is set (`0x003380BC`); at a count of 0 the phase becomes 2 with 15 frames (`0x00338063`, `0x0033806A`),
+  and while the mode 4 enemy's order word `+0x714` is `0x13` it becomes 3 with `90 x [0x01DFE0B4]` frames (`0x00338082`, `0x00338089`);
+- phase 2, a pause: at a count of 0 `0x022C7CE7` goes from 0 to 1 with `30 x [0x01DFE0B4]` frames (`0x00338002`, `0x00338008`) and from 1
+  to 2 with half that (`0x00337FEB`, `0x00337FE4`); from 2 the phase returns to 0 and `0x022C7CEC` flips (`0x00337FC5`, `0x00337FCE`);
+- phase 3: the centre is sampled again (`0x00337EFB`); while `0x022C7CE7` is 0 (`0x00337F00`) the angle advances by twice the
+  phase 1 step, and the phase stays 3 while the order word is `0x13` and becomes 0 otherwise (`0x00337F3A`).
+
+The body then places each mode 1 unit. Unit `0x022C7CE9` of the `0x022C7CEA` (`0x0033E02B`, `0x0033E005`) stands at the angle
+`0x022C7CE0 + place x 2pi / count`, 0 apart with one unit, 2.2 from the centre (`0x00D10AF0`), and in phase 3 at 1.2 plus
+`0x022C7CE4 / (90 x [0x01DFE0B4])` (`0x0033E04A`, `0x0033E067`, `0x008FCC90`). In phase 3 with `0x022C7CE7` at 1 its limited heading turns
+by 0.4189 radians a call, the sign from `0x022C7CEC` (`0x0033E14A`, `0x0033E153`, `0x0033E164`, `0x0091602C`).
+
+The mode 3 body `0x0033DB60` drives one walk on the same count and phase words, lowering `0x022C7CE4` by one a call while it
+is above 0 (`0x0033DD0F`). Its direction is turned by `0x022C7CE8` quarter turns (`0x0033DC80`, times 90 degrees) and bent by
+0.0091 radians, one way while `0x022C7CE7` is 0 and the other way otherwise (`0x0033DBD8`, `0x00D10ACC`, `0x00D10B14`). Each phase
+sets the speed `+0xB0` from the full speed, `+0xF8` of `[unit+0x108]`; the target is the unit at `+0xF0`:
+
+- phase 0: speed 0; when the count is 0 and the target's order word is `0x21F` or above or is `0x96`, or the target's
+  `+0x76C` less its `+0x768` is 6000 or more, `rand()` decides whether `0x022C7CE7` flips (`0x0033DF11`, `0x0033DF34`),
+  `0x022C7CE8` steps one quarter turn, up while `0x022C7CE7` is 0, within 0 to 3 (`0x0033DF4F`, `0x0033DF61`), and the phase
+  becomes 1 with 60 frames (`0x0033DF6C`, `0x0033DF73`);
+- phase 1: speed `(60 - count) / 60` of full (`0x0033DE84`), and phase 2 at a count of 0 (`0x0033DEC1`);
+- phase 2: full speed; when the distance `0x004686D0` returns is below 30 frames of travel at full speed (`0x0033DE19`,
+  `0x01CEBB70`) the phase becomes 3 with 60 frames (`0x0033DE26`, `0x0033DE2D`), and when the target no longer passes the
+  phase 0 test it becomes 4 with 60 (`0x0033DE78`, `0x0033DF73`);
+- phase 3: speed `count / 60` of full; at 0 the phase returns to 0 with the count `0x02EC0F80`, `240 x [0x01DFE0B4]` (`0x0033DDCB`,
+  `0x0033DDD2`);
+- phase 4: the same slowing; at 0 phase and count return to 0 (`0x0033DD7B`, `0x0033DD82`).
+
+The six words:
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C7CE4` | `u16` | 0 (zero-filled tail) | the frame count of the mode 1 and mode 3 phases | `0x00337D90` (`0x00337FE4`, `0x00338008`, `0x0033804D`, `0x0033806A`, `0x00338089`; one less at `0x00338115`); `0x0033DB60` (`0x0033DD0F`, `0x0033DD82`, `0x0033DDCB`, `0x0033DE26`, `0x0033DF73`); `0x0033A380`, 0 (`0x0033A386`) | `0x00337D90` (`0x00337F93`, `0x00338054`, `0x003380FE`); `0x0033DB60` (`0x0033DCFB`, `0x0033DD6E`, `0x0033DDB7`, `0x0033DEB4`, `0x0033DF08`); `0x0033DFD0` (`0x0033E067`) |
+| `0x022C7CE6` | `u8` | 0 (zero-filled tail) | the phase: 0 to 3 for mode 1, 0 to 4 for mode 3 | `0x00337D90` (`0x00337F3A`, `0x00337FC5`, `0x00338033` as the low byte of a word store of 1, `0x00338063`, `0x00338082`); `0x0033DB60` (`0x0033DD7B`, `0x0033DDD2`, `0x0033DE2D`, `0x0033DE78`, `0x0033DEC1`, `0x0033DF6C`); `0x0033A380`, 0 (`0x0033A386`) | `0x00337D90` (`0x00337EB1`, `0x00337F18`); `0x0033DB60` (`0x0033DD16`); `0x0033DFD0` (`0x0033E04A`, `0x0033E14A`) |
+| `0x022C7CE7` | `u8` | 0 (zero-filled tail) | mode 1's pause step, 0 to 2; mode 3's turn sense, 0 or 1 | `0x00337D90` (`0x00337FEB`, `0x00338002`; 0 with the word store at `0x00338033`); `0x0033DB60` (`0x0033DF34`); `0x0033A380`, 0 (`0x0033A386`) | `0x00337D90` (`0x00337F00`, `0x00337FA1`); `0x0033DB60` (`0x0033DBD8`, `0x0033DF27`); `0x0033DFD0` (`0x0033E153`) |
+| `0x022C7CE8` | `i8` | 0 (zero-filled tail) | mode 3's direction in quarter turns, 0 to 3 | `0x0033DB60` (`0x0033DF4F`, `0x0033DF61`); `0x0033A380`, 0 (`0x0033A38D`) | `0x0033DB60` (`0x0033DC80`, `0x0033DF3A`) |
+| `0x022C7CEA` | `u8` | 0 (zero-filled tail) | the count of enemies in mode 1, taken again each sampler call | `0x00337D90`, 0 (`0x00337DAB`) and one more per unit (`0x00337E17`); `0x0033A380`, 0 (`0x0033A38D`) | `0x0033DFD0` (`0x0033E005`) |
+| `0x022C7CEC` | `u8` | 0 (zero-filled tail) | mode 1's turn direction: the angle goes backwards while it is set | `0x00337D90`, flipped as the pause ends (`0x00337FCE`); `0x0033A380`, 0 (`0x0033A38D`) | `0x00337D90` (`0x00337F4D`, `0x00337FBC`, `0x003380BC`); `0x0033DFD0` (`0x0033E164`) |
+
 The two rows below give every access to the two globals, including the reads and writes in the callees the code
 passes their addresses to; no image-base-relative reference or disp32 displacement names either global.
 

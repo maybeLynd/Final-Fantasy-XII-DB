@@ -103,6 +103,11 @@ slot's name, its vector `0x01F83390 + slot × 0x20` and its count; in every case
 `0x01DFE40C` at -1. The setter `0x0020AC30` calls it, and so does `0x001EC4B0` (from `0x00360120` and from
 `0x00356D40`, the begin of `eventdispose_f2`), which then raises the byte `0x01FD3AE3` (`0x00214B30`).
 
+The shared name is a static string: `0x01F832C8` its begin, `0x01F832D0` its end and `0x01F832D8` its capacity end, with
+its allocator at `0x01F832E0`. The initialiser `0x0015DBB0` builds it empty (`0x0015DBDC`); `0x0020A760` empties it by
+setting the end back to the begin (`0x0020A774`, `0x0020A787`); and `0x001C50C0` copies it out through `0x001A4BF0`
+(`0x001C50EA`).
+
 On that byte `0x00214C30` runs `0x001C5040`, which empties `0x01F812A8`, clears the two scene maps of the
 current index `0x01F813F8` (`0x01F813A8` and `0x01F813D8`, through `0x00202880`) and sets that index's
 words at `0x01F81400` and `0x01F81408` to -1. Script call `0x5C9` (`0x00352F00`) pushes `0x001EC500()`, the

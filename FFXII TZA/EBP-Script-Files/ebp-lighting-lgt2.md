@@ -76,6 +76,39 @@ A type-5 sub-entry is a curve with the ease-curve layout of the camera tables an
 `0x18 + 0x24 * keys`, `+0x04` keys, start and end time and value, then the keys): the animation hands each one to
 the same evaluator, `0x003CC5F0` ([EBP camera tables](ebp-camera-tables.md) has the layout in full).
 
+A light group is `0x50` bytes; the five groups sit at `0x02EBF420 + 0x50 x g`. The bind `0x0037AA90` stores each chunk by
+its type through the jump table `0x0037AC7C`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8*` | section | the bound LGT2 section |
+| `+0x08` | `u8*` | range | type 0 chunk (`0x0037AB2A`) |
+| `+0x10` | `u8*` | bound | type 1 chunk (`0x0037AB33`) |
+| `+0x18` | `u8*` | cuts | type 2 chunk (`0x0037AB43`) |
+| `+0x20` | `u8*` | index | type 3 chunk (`0x0037AB8B`) |
+| `+0x28` | `u8*` | ids | type 6 chunk (`0x0037AB91`) |
+| `+0x30` | `u8*` | sets | type 7 chunk (`0x0037ABE0`) |
+| `+0x38` | `u32*` | curves | type 5 slot table, the chunk + 8 (`0x0037AB9E`) |
+| `+0x40` | `f32[3]` | colour | 1.0 after a reset |
+| `+0x4C` | `u8` | ready |  |
+
+| Group | `+0x00` | `+0x10` | `+0x20` | `+0x30` | `+0x40` | `+0x44` | `+0x48` | `+0x4C` |
+|---|---|---|---|---|---|---|---|---|
+| 0 | `0x02EBF420` | `0x02EBF430` | `0x02EBF440` | `0x02EBF450` | `0x02EBF460` | `0x02EBF464` | `0x02EBF468` | `0x02EBF46C` |
+| 1 | `0x02EBF470` | `0x02EBF480` | `0x02EBF490` | `0x02EBF4A0` | `0x02EBF4B0` | `0x02EBF4B4` | `0x02EBF4B8` | `0x02EBF4BC` |
+| 2 | `0x02EBF4C0` | `0x02EBF4D0` | `0x02EBF4E0` | `0x02EBF4F0` | `0x02EBF500` | `0x02EBF504` | `0x02EBF508` | `0x02EBF50C` |
+| 3 | `0x02EBF510` | `0x02EBF520` | `0x02EBF530` | `0x02EBF540` | `0x02EBF550` | `0x02EBF554` | `0x02EBF558` | `0x02EBF55C` |
+| 4 | `0x02EBF560` | `0x02EBF570` | `0x02EBF580` | `0x02EBF590` | `0x02EBF5A0` | `0x02EBF5A4` | `0x02EBF5A8` | `0x02EBF5AC` |
+
+`0x00379F70`, from the boot `0x00266D10` and from `0x00379D00`, resets all five groups: 16-byte zero stores over `+0x00`
+to `+0x3F`, 1.0 into the three colour floats and 0 into `+0x4C` (group 0: `0x00379FA8`, `0x00379FC8`, `0x00379FDA`,
+`0x00379FE9`, `0x00379F90`, `0x00379F84`, `0x00379F77`, `0x00379FA1`). `0x0037B230` resets one group the same way.
+
+`0x00379F70` also rebuilds the default request `0x02ADD8E0`. It zeroes its `0x50` bytes (`0x0037A0EA`) and stores the
+dword `0x01050006` at `+0x00`, kind 6 with `+0x02` 5 and the filter byte 1 (`0x0037A101`), the test byte `0x02ADD8E4` = 1
+(`0x0037A10D`), the flags `0x02ADD8E7` = `0x20`, the exclusion bit that group 0's records get (`0x0037A0EF`, `0x0037A114`),
+and four 1.0 at `+0x10` (`0x0037A11A`).
+
 ## Shipped data
 
 Measured over all 10,036 EBP2 containers in the nine language trees.
@@ -141,7 +174,8 @@ record's request (`record + 0x20`):
 - then the range of every type-2 cut whose status is non-zero.
 
 The list starts with a default request at `0x02ADD8E0`. Each frame the collector first copies group 0's
-`+0x40` to `+0x48` (1.0 after a reset) into that request at `0x02ADD8F0` to `0x02ADD8F8`. When a group
+`+0x40`, `+0x44` and `+0x48` (1.0 after a reset, read at `0x02EBF460`, `0x02EBF464` and `0x02EBF468`) into that
+request's `0x02ADD8F0`, `0x02ADD8F4` and `0x02ADD8F8` (`0x0037AD78`, `0x0037ADA1`, `0x0037AD99`). When a group
 has a type-1 chunk (`+0x10`), the collector calls `0x00265020` for it each frame and discards the
 results; no shipped file has one.
 

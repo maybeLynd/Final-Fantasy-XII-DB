@@ -212,6 +212,9 @@ third float (`0x004100E0`):
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x02CA43A4` | `f32` | 0 (zero-filled tail of `.data`) | the normalised direction's second float | `0x0040B430` (`0x0040B510`) | `0x00202E10`, through the address of `0x02CA43A0` that `0x0040B430` passes (`0x0040B4C4`, `0x0040B522`) |
+| `0x02CA43A8` | `f32` | 0 (zero-filled tail of `.data`) | the normalised direction's third float | `0x0040B430` (`0x0040B519`) | `0x00202E10`, as for `0x02CA43A4` |
+| `0x02CA43B4` | `f32` | 0 (zero-filled tail of `.data`) | the tangent's second float | `0x0040B430` (`0x0040B58A`) | `0x0040FF30`, within the 16-byte read of `0x02CA43B0` (`0x0041008A`) |
 | `0x02CA43B8` | `f32` | 0 (zero-filled tail of `.data`) | the tangent's third float | `0x0040B430` (`0x0040B592`) | `0x0040FF30`, within the 16-byte read of `0x02CA43B0` (`0x0041008A`) |
 
 The six wind presets (`0x01EFFA30`, floats then a mode dword):

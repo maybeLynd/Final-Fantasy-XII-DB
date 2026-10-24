@@ -118,6 +118,11 @@ returns 1, adds the step to the slot, and repeats until `0x0037CB50` reports the
 or more going up, below 0 going down). It then calls `0x00233AA0` (`0x0030D8B0(1)`, `0x00326500`,
 `0x00311E10(0)`, `0x00311E20`) and clears the task pointer `0x02EBF400`.
 
+In the read-in record `0x0037C730` stores the state byte `0x02EBF3F8` as 0 (`0x0037C7DB`), the slot `0x02EBF3F9` (`0x0037C7E1`),
+the pass `0x02EBF3FA` as 0 (`0x0037C7D4`) and the saved byte `0x02EBF3FB` from `0x002DEBD0` (`0x0037C7F1`). The world tick's
+`0x0037C1A0` fills the tick record the same way: `0x02EBF3D8` (`0x0037C229`), `0x02EBF3D9` (`0x0037C22F`), `0x02EBF3DA`
+(`0x0037C222`) and `0x02EBF3DB` (`0x0037C23F`).
+
 `0x0037B4B0(actor)` writes 0 to the parts-requested byte `+0x23` of a non-null actor (`0x0037B4B5`). `0x0031A300`
 (`0x0031A3B8`) and `0x00324380` (`0x003243B0`) walk the battle units (`0x00236820(i)`) and call it on each unit's bound actor
 `+0x10`; `0x003261D0` (`0x00326490`) and `0x003273D0` (`0x003277A0`) also call it.
@@ -185,8 +190,8 @@ from `0x00266D10`.
 
 ```python
 rebuild record  +0 u32 encoded actor, +4 u32 pending handle, +8 u8 state | 0x80 place, +9 s8 slot, +0xA u8 pass, +0xB u8 saved byte
-read-in record  0x02EBF3F0 (+0xC 0x02EBF3FC mode, +0xD 0x02EBF3FD step, +0xE 0x02EBF3FE slot, +0x10 0x02EBF400 task)
-tick record     0x02EBF3D0 (0x02EBF3DE slot in progress, 0x02EBF3E0 slot mask)
+read-in record  0x02EBF3F0 (+0x8 0x02EBF3F8 state, +0x9 0x02EBF3F9 slot, +0xA 0x02EBF3FA pass, +0xB 0x02EBF3FB saved byte, +0xC 0x02EBF3FC mode, +0xD 0x02EBF3FD step, +0xE 0x02EBF3FE slot, +0x10 0x02EBF400 task)
+tick record     0x02EBF3D0 (+0x8 0x02EBF3D8 state, +0x9 0x02EBF3D9 slot, +0xA 0x02EBF3DA pass, +0xB 0x02EBF3DB saved byte, 0x02EBF3DE slot in progress, 0x02EBF3E0 slot mask)
 actor           +0x20 s8 pool entry, +0x23 u8 parts requested (bit 0x1 main, 1 part 0, 2 part 1, 3-4 part 8)
 pool entry      0x022D9AB0 (2) / 0x022D9AE0 (4), 0x18 each: +0 state (3 loaded), +1, +2 index bytes, +0xC, +0x10 loads, +0x14 id, +0x16 count
 ```

@@ -289,6 +289,19 @@ target.
 |---|---|---|---|---|---|
 | `0x02EA1718` | `f32` | 0 (zero-filled tail of `.data`) | `-3.40282e+38` (`0xFF7FFFFF`): the lesser of `-FLT_MAX` (`0x01F3C514` with the sign mask `0x01CEBDA0`) and `FLT_MIN` (`0x01F3C510`), the start of the largest-channel search | `0x00712910` (`0x00712A90`), once behind guard `0x02EA171C` | `0x00712910` (`0x00712A9D`) |
 
+`0x007125B0` turns a colour temperature into an RGB scale, which its callers `0x00710FC0` and `0x007110C0` multiply into a matrix (`0x006F1070`). On its first call,
+while the byte `0x01F3CA50` is 1, it clears the byte (`0x007126CF`), takes the chromaticity `0x00712380` computes for
+6500 K (`0x45CB2000`), makes it an RGB colour with the caller's luminance (`0x006E1530`), and keeps the reciprocals of
+the three channels (`0x00712748`-`0x00712760`). Every call multiplies the requested temperature's colour by them
+(`0x007127D0`-`0x007127E0`), so 6500 K comes out with equal channels.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01F3CA50` | `u8` | 1 | the reference white is still to be made | `0x007125B0`, 0 (`0x007126CF`) | `0x007125B0` (`0x007126B3`) |
+| `0x02EA1708` | `f32` | 0 (zero-filled tail of `.data`) | 1 / red of the 6500 K colour | `0x007125B0` (`0x00712748`) | `0x007125B0` (`0x007127D0`) |
+| `0x02EA170C` | `f32` | 0 (zero-filled tail of `.data`) | 1 / green of the 6500 K colour | `0x007125B0` (`0x00712758`) | `0x007125B0` (`0x007127D8`) |
+| `0x02EA1710` | `f32` | 0 (zero-filled tail of `.data`) | 1 / blue of the 6500 K colour | `0x007125B0` (`0x00712760`) | `0x007125B0` (`0x007127E0`) |
+
 ## Modding notes
 
 - Hook a holder before its gate or after it, never between the header and the footer. Returning early,

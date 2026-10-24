@@ -163,7 +163,7 @@ Globals:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x2B57EF0` | `CommandTable*[16]` | families | `0x003DC2D0` writes `0x01F26720` to all, then `0x01EED700`, `0x01F281B0`, `0x01F29418` and `0x01F29440` to families 0, 3, 5 and 7 |
+| `+0x2B57EF0` | `CommandTable*[16]` | families | `0x003DC2D0` writes `0x01F26720` to all, then `0x01EED700`, `0x01F281B0`, `0x01F29418` and `0x01F29440` to families 0, 3, 5 and 7: `0x02B57EF0`, `0x02B57F08`, `0x02B57F18` and `0x02B57F28` (`0x003DC2F7`, `0x003DC305`, `0x003DC313`, `0x003DC321`) |
 | `+0x2099011` | `u8` | skipMask | manager slot `+0x201`, at `+ manager × 0x288`; one bit per skip index |
 | `+0x2099DE8` | `u8[8]` | effectSignals | effect total signals, one bit per signal number |
 | `+0x209A2A0` | `u8[8]` | motionSignals | motion total signals |

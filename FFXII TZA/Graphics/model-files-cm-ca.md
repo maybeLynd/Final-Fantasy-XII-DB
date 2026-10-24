@@ -275,6 +275,10 @@ record +(i+1) x 0x20   part i's selector bytes
 - The record-system reset `0x00425DC0` runs `0x0051D1D0` first: it zeroes the 16 KiB of emulated VU
   memory at `0x02064E30`, calls `0x00258EE0(3)`, and binds the embedded texture and palette to GS
   addresses `0x2A00` and `0x2E00` (`0x002D7E00`).
+- The image's three statics: `0x02CA842C` is 1 once it is made, which `0x0051D220` tests (`0x0051D226`) and
+  sets (`0x0051D27A`); `0x02CA8430` keeps the 64 × 64 texture's handle from `0x00184140` (`0x0051D295`) and
+  `0x02CA8438` the palette's from `0x001837A0` with 256 entries (`0x0051D2B9`). `0x0051D1D0` binds the two
+  (`0x0051D1F2`, `0x0051D206`).
 - Authored command `0x1F` reaches `0x003E6710(record, on)`: on runs `0x0051DB60` on the copy, which sets
   its word `+0x06` to 1 and resets each entry (`+0x14` = 1.0, `+0x00` and `+0x10` cleared, `+0x1C4`
   = 1, `0x100` bytes at `+0xA0` zeroed); off runs `0x00519720`.
@@ -345,7 +349,9 @@ to `0xFFFF`) and forgets through `0x00521300`. The live count is `0x02CA8458` an
 
 The draw places the selected textures in GS memory through two windows over the addresses from
 `12 × width × height` of the GS frame (`0x022D8EAC`, `0x022D8EB4`) up to `0x3C0000`. Window `i` has a
-low cursor `0x02EBA460[i]` and a high cursor `0x02EBA468[i]`.
+low cursor `0x02EBA460[i]` and a high cursor `0x02EBA468[i]`: window 0's are `0x02EBA460` and `0x02EBA468`,
+window 1's `0x02EBA464` and `0x02EBA46C` (`0x00537AA0` indexes them by window). `0x00537B10` sets window 1's
+(`0x00537B77`, `0x00537B84`-`0x00537B91`).
 
 - `0x00537AA0(window, size, end)` takes `size` bytes from the low end (0) or the high end (1) and
   returns their start, or 0 when they do not fit; `0x00537AF0(window, size)` only tests the fit.

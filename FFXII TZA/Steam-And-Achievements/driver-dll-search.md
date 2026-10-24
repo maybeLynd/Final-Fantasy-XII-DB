@@ -135,8 +135,9 @@ is cut; `0x00159E60` and `0x00159EF0` duplicate a string, the second at most `n`
 | Address | What |
 |---|---|
 | `0x02EAECE0` | the Windows build, 0 until read |
-| `0x02EAEBC0` | the version record of the 6.1 test; `0x01F41FA8` holds its result, 1 on an older Windows |
+| `0x02EAEBC0` | the version record of the 6.1 test, `0x11C` bytes (`0x00159D1F`): the major version 6 at `0x02EAEBC4` (`0x00159D29`), the minor version 1 at `0x02EAEBC8` (`0x00159D33`) and the service pack 0 at `0x02EAECD4` (`0x00159D3D`); `0x01F41FA8` holds its result, 1 on an older Windows |
 | `0x02EAEAA0`, `0x02EAEAE0`, `0x02EAEB38` | `Setupapi.dll`, `Shell32.dll`, `Advapi32.dll` |
+| `0x02EAEAE8` | `SHGetFolderPathW` from `Shell32.dll`, looked up once (`0x00159BD0`) and read back on later calls (`0x00159BD9`) |
 
 ## Modding notes
 

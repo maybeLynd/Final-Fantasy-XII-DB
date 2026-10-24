@@ -152,6 +152,11 @@ static) with `0x005DC200`: a `PProcessorProfileTimelineCpu` at `+0x20`, the stat
 of 0x28 bytes from `+0x30`, two handles at `+0x2840` and `+0x2850`, and four 0x10-byte records from
 `+0x2860`. It registers `0x008ADDE0` with `atexit`.
 
+`PRenderer`'s slot 2, `0x00600D20`, posts a range to the queue. It waits on the handle at `+0x2840` (`0x005CD840`),
+fills the slot that the index `0x02CE6F54` (`+0x2834`) names with the start and end of the pending blocks (renderer
+`+0x88`, `+0x90`) at slot `+0x00` and `+0x08` and the renderer's `+0x78` at `+0x20` (`0x00600DC5`-`0x00600DD9`),
+moves the index on modulo 256 (`0x00600DEB`), and signals the slot's event at `+0x10` (`0x005CD5E0`).
+
 At exit `0x008ADDE0` stops the thread through
 `0x00610420`, which, while the state is 1, sets it to 2, calls `0x00609720(queue, 0, 0, 0)`, waits for
 the thread (`0x005CD330`) and closes the 256 slot events and the two handles (`0x005CD700`,

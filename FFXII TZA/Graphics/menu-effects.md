@@ -33,7 +33,8 @@ instances and zeroes each record's id and instance without touching the counter.
    `(counter & 0x0FFFFFFF) | 0x40000000`.
 3. It creates an instance (`0x0024B270`) from an `0x3B0`-byte request with word `0x104` and the id.
 4. It takes a free record (`0x003B2BC0`). When all 64 are in use, `0x003B2BC0` frees the oldest record's instance
-   (`0x0024EE60`), shifts the table down one record and returns the last one, so a spawn never fails for lack of room.
+   (`0x0024EE60`), shifts the table down one record and returns the last one, `0x02EBE598` (`0x003B2C92`), so a spawn never
+   fails for lack of room.
 5. It stores the id, the instance and the four arguments in the record, and sets up the instance: `+0x320`-`+0x328` = 1.0,
    `+0x330` = `0x80808080`, `+0x340` = the context, `+0x370` = `0x102`, `+0x373` = `kind`, `+0x39C` = 1.0, and flag bits
    in `+0x368`, `+0x36A` and `+0x378`. A kind of `0x13` adds 2.45 to the instance's `+0x304`.
@@ -44,7 +45,7 @@ No registry routine reads `+0x10`-`+0x1C` back, and callers only ever hold ids.
 ### Removing
 
 - `0x003B2AA0(id)` finds the record, frees its instance (`0x0024EE60`), moves the later records down and clears the last
-  record's id.
+  record's id, `0x02EBE598` (`0x003B2B22`; `0x003B2930` clears it at `0x003B299B`).
 - `0x003B2930(instance)` does the same compaction for the record holding that instance without freeing it. The effect
   system calls it from `0x0024B580` and `0x0024B9B0` when it frees an instance itself.
 

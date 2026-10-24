@@ -209,6 +209,11 @@ every slot to block `0x2A00`, 640 pixels wide, 4-bit (PSM `0x14`), at `x = 0` an
 row, `width` x `height` from the picture header. `0x003EFDF0` builds each transfer: GS registers `0x50` to
 `0x53`, the pixels from `picture + headerSize`, then `0x3F`.
 
+The font pack's picture is kept apart by `0x0039C150`: `0x02AEE858` points at its picture header, `0x10` bytes past the
+TIM2 file at `0x02AEE850` (`0x0039C1D0`), and `0x02AEE860` at its pixels, the header plus its `u16 +0x0C` header size
+(`0x0039C1DF`). `0x0039BDA0` reads both for the 32 x 16 transfer (`0x0039BDBD`, `0x0039BDC8`), and so does `0x0039BD50`
+(`0x0039BD5D`, `0x0039BD77`).
+
 ## Modding notes
 
 - Keep a replacement `.tm2` a single 16-byte-aligned picture at `+0x10`: the binder reads no picture count

@@ -103,11 +103,16 @@ it is done (`0x00327125`). `0x00327360`, run by the area
 initialisation `0x002342F0` (`0x00234459`), clears the mark, sets `0x022C25A4` to `0xFF` and each record's type word to
 `0xFFFF` and id to 0.
 
-Seat 2's member word and seat 3's unit id, two of the record words above:
+The records' member words and unit ids, seat 0's member word being the base `0x022C25B0`:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x022C25B4` | `u32` | 0 (zero-filled tail of `.data`) | seat 0's record `+4`: the unit id `+8` of the unit that held the member when the menu opened, 0 for an empty seat | `0x00326BB0`, 0 (`0x00326C0A`) and then the id (`0x00326CAC`, through `rsi + 3`); `0x00327360`, 0 (`0x00327369`) | `0x00326D60` (`0x00327110`, through `rsi + 3` from `0x022C25B1`) |
+| `0x022C25E0` | `u16` | 0 (zero-filled tail of `.data`) | seat 1's record `+0`: the low byte is the member's type, `0xFF` for an empty seat; `0x022C25E1` holds the same type | `0x00326BB0`, the word `0xFFFF` (`0x00326C10`) and then the type byte (`0x00326C8C`, through `rsi - 1`); `0x00327360`, the word `0xFFFF` (`0x00327391`) | `0x00326D60`, a byte at a time as it walks the four records from `0x022C25B0` (`0x00326DFB`, `0x00326E11`, `0x00326F46`) |
+| `0x022C25E4` | `u32` | 0 (zero-filled tail of `.data`) | seat 1's record `+4`: the unit id `+8` of the unit that held the member when the menu opened, 0 for an empty seat | `0x00326BB0`, 0 (`0x00326C19`) and then the id (`0x00326CAC`, through `rsi + 3`); `0x00327360`, 0 (`0x0032736F`) | `0x00326D60` (`0x00327110`, through `rsi + 3` from `0x022C25B1`) |
 | `0x022C2610` | `u16` | 0 (zero-filled tail of `.data`) | seat 2's record `+0`: the low byte is the member's type, `0xFF` for an empty seat; `0x022C2611` holds the same type | `0x00326BB0`, the word `0xFFFF` (`0x00326C1F`) and then the type byte (`0x00326C8C`, through `rsi - 1`); `0x00327360`, the word `0xFFFF` (`0x0032739A`) | `0x00326D60`, a byte at a time as it walks the four records from `0x022C25B0` (`0x00326DFB`, `0x00326E11`, `0x00326F46`) |
+| `0x022C2614` | `u32` | 0 (zero-filled tail of `.data`) | seat 2's record `+4`: the unit id `+8` of the unit that held the member when the menu opened, 0 for an empty seat | `0x00326BB0`, 0 (`0x00326C28`) and then the id (`0x00326CAC`, through `rsi + 3`); `0x00327360`, 0 (`0x00327375`) | `0x00326D60` (`0x00327110`, through `rsi + 3` from `0x022C25B1`) |
+| `0x022C2640` | `u16` | 0 (zero-filled tail of `.data`) | seat 3's record `+0`: the low byte is the member's type, `0xFF` for an empty seat; `0x022C2641` holds the same type | `0x00326BB0`, the word `0xFFFF` (`0x00326C2E`) and then the type byte (`0x00326C8C`, through `rsi - 1`); `0x00327360`, the word `0xFFFF` (`0x003273A3`) | `0x00326D60`, a byte at a time as it walks the four records from `0x022C25B0` (`0x00326DFB`, `0x00326E11`, `0x00326F46`) |
 | `0x022C2644` | `u32` | 0 (zero-filled tail of `.data`) | seat 3's record `+4`: the unit id `+8` of the unit that held the member when the menu opened, 0 for an empty seat | `0x00326BB0`, 0 (`0x00326C37`) and then the id (`0x00326CAC`, through `rsi + 3`); `0x00327360`, 0 (`0x0032737B`) | `0x00326D60` (`0x00327110`, through `rsi + 3` from `0x022C25B1`), which compares it with the id of the unit that now holds the member and passes both to `0x0024C600` (`0x00327117`) when they differ |
 
 ## Layouts

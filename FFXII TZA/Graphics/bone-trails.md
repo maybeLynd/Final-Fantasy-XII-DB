@@ -57,6 +57,10 @@ four handles that is not `0xFFFF` (`0x0051CDC0`). `0x003E74C0(record)` frees eac
 header: live count `0x02CA8400`, flag byte `0x02CA8402`, serial `0x02CA8404`, list head `0x02CA8408` and tail `0x02CA8410`. It
 builds the parameter template at `0x02CA8A90` (`0x005409C0`) and binds the engine's trail image from `0x01F2A220`.
 
+The image is 64 × 64 with 256 colours. `0x0051C270` keeps the texture's handle from `0x00184140` in `0x02EBA478`
+(`0x0051C2C6`) and the palette's from `0x001837A0` in `0x02EBA470` (`0x0051C2EC`); `0x0051BC70` binds them to GS
+addresses `0x2A00` (`0x0051BFD6`) and `0x2E00` (`0x0051BFEA`) through `0x002D7E00`.
+
 `0x0051CC30` takes the first entry whose handle is 0; with none free it returns 0 and the trail is not made. It sets the
 handle to `serial << 8 | slot` (the serial wraps to 1 above `0xFFFFFF`), on = 1, opacity 1.0, `+0xC` = 20.0, fade 0,
 copies the descriptor, clears the histories, takes the first sample and appends the entry to the list.

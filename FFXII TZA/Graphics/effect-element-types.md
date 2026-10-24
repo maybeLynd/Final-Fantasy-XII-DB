@@ -77,6 +77,8 @@ count, each recorded type with its name (`0x002FBA60`) and each distinct type on
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02EC32D0` | `u32` | 0 (zero-filled tail) | the number of definition types recorded at `0x02EC29C0` during the last type-1 parse, at most 512 | `0x002FC4A0`, 0 (its clear from `0x02EC29C0`, `0x002FC570`; the 8-byte store at `0x02EC32CC`, `0x002FC5C7`); `0x005004C0`, +1 (`0x005004F9`) | `0x005004C0` (`0x005004DC`, `0x005004F9`); `0x002FC4A0` (`0x002FC667`, `0x002FC6A3`, `0x002FC70D`, `0x002FC751`, `0x002FC7B7`) |
+| `0x02EC32C0` | `u32` | 0 (zero-filled tail) | the id word `+0x20` of the type-1 context being parsed | `0x002FC4A0`, 0 (its clear from `0x02EC29C0`, `0x002FC570`), then the id (`0x002FC57A`) | no RIP-relative instruction reads it |
+| `0x02EC32C8` | `u32` | 0 (zero-filled tail) | 1 once a type-1 parse has run | `0x002FC4A0`, 0 (its clear, `0x002FC570`), then 1 after the parse (`0x002FC5DD`) | no RIP-relative instruction reads it |
 
 ### Types 0x00 to 0x0A
 
@@ -1000,7 +1002,9 @@ is given. Every access below is 16 bytes.
 
 `0x0024C060` passes the view's address to two functions. `0x00397910` multiplies it by the effect matrix `0x02AEEA20` into
 `0x02AEEBF0` (`0x0024C2CE`-`0x0024C2E3`). For a menu effect `0x0039D480` copies it to the camera rotation `0x02AEEAA0`-`0x02AEEADF`
-(`0x0024C226`, `0x0024C2B1`-`0x0024C2BD`).
+(`0x0024C226`, `0x0024C2B1`-`0x0024C2BD`). Its rows are `0x02AEEAA0`, `0x02AEEAB0`, `0x02AEEAC0` and `0x02AEEAD0` (`0x0039D4AB`, `0x0039D4BB`,
+`0x0039D4C6`, `0x0039D4D1`); `0x0024C060` reads the first three for the camera-facing matrix (`0x0024C302`, `0x0024C310`, `0x0024C328`),
+and `0x00460BC0` reads `0x02AEEAB0` at `0x00460DAA`.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

@@ -586,6 +586,8 @@ set (`0x003A73BD`), and `0x0024C870` calls it (`0x0024C8D4`).
 | `0x02092190` | `u32` | 0 (zero-filled tail) | 1 once opcode `0x1C` or `0x1D` has moved the owner actor; while it is non-zero `0x0024C870` restores nothing | `0x003B8670`, 1: opcode `0x1C` (`0x003B8F79`), opcode `0x1D` (`0x003B9064`); `0x0024C6B0`, 0 (`0x0024C6CF`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C870` (`0x0024C88D`) |
 | `0x02092194` | `f32` | 0 (zero-filled tail) | the owner actor's saved facing (`0x00265200`), restored with `0x0026B5A0` | `0x003B8670`: opcode `0x1C` (`0x003B8F23`), opcode `0x1D` (`0x003B9018`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C6B0` (`0x0024C788`) |
 | `0x0209219C` | `u32` | 0 (zero-filled tail) | the owner actor's saved `+0x09` bit `0x40` (`0x00263E70`), restored with `0x0026A3A0` after `0x0209218C` | `0x003B8670`: opcode `0x1C` (`0x003B8F3E`), opcode `0x1D` (`0x003B9033`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C6B0` (`0x0024C75A`) |
+| `0x020921AC` | `u32` | 0 (zero-filled tail) | the target actor's saved `+0x08` bit `0x8` (`0x00263F70`); `0x0026A430` puts it back into `+0x08` bit `0x8` and `+0x09` bit `0x40` | `0x0024B6F0` (`0x0024B76B`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C870` (`0x0024C8F9`) |
+| `0x020921B4` | `f32` | 0 (zero-filled tail) | the target actor's saved facing (`0x00265200`), restored with `0x0026B5A0` | `0x0024B6F0` (`0x0024B75B`); `0x0024C970`, 0 (`0x0024C983`) | `0x0024C870` (`0x0024C935`) |
 
 ### The method tables
 

@@ -437,8 +437,8 @@ The map is a guarded local static of `0x00676BD0` at `0x02D3ECA8` (guard `0x02D3
 
 - `+0x08`, `0x02D3ECB0`, and `+0x10`, `0x02D3ECB8`: the anchor's two links, both set to the anchor.
 - `+0x18`, `0x02D3ECC0`: the root, set to 0.
-- `+0x20`: the colour byte, set to 0.
-- `+0x28`: the count, set to 0.
+- `+0x20`, `0x02D3ECC8`: the colour byte, set to 0 (`0x00676C54`, an 8-byte store, then `0x00676C7E`, one byte).
+- `+0x28`, `0x02D3ECD0`: the count, set to 0 (`0x00676C84`).
 - `+0x30`, `0x02D3ECD8`: the plain EASTL allocator vtable `0x008F6500`.
 
 The byte `0x02D3ECA0` records that `idmaps.txt` has been loaded (`0x00676CA2`-`0x00676CAA`). The search walks from the
@@ -446,9 +446,9 @@ root and treats the anchor as "not found":
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02D3ECB0` | `void*` | 0 (zero-filled tail of `.data`) | the map anchor's first link, which the constructor points at the anchor itself | `0x00676BD0` (`0x00676C69`); the tree code through the map's address (`0x00676CB1` to `0x00677030`, which hands it to `0x00675580`); those instructions are not yet located | `0x00676BD0` forms its address as the search's end (`0x00676C28`, `0x00676D85`); the tree code, as for its stores |
+| `0x02D3ECB0` | `void*` | 0 (zero-filled tail of `.data`) | the map anchor's first link, which the constructor points at the anchor itself | `0x00676BD0` (`0x00676C69`); the tree code through the map's address (`0x00676CB1` to `0x00677030`, which hands it to `0x00675580`) | `0x00676BD0` forms its address as the search's end (`0x00676C28`, `0x00676D85`); the tree code, as for its stores |
 | `0x02D3ECC0` | `void*` | 0 (zero-filled tail of `.data`) | the map's root node, 0 while empty | `0x00676BD0`, 0 (`0x00676C77`); the tree code, as for `0x02D3ECB0` | `0x00676BD0` (`0x00676CF9`), where the search starts; the teardown `0x008B1B10` (`0x008B1B1D`), which hands it to `0x001A49C0` |
-| `0x02D3ECD8` | `void*` | 0 (zero-filled tail of `.data`) | the map's allocator, the plain vtable `0x008F6500` | `0x00676BD0` (`0x00676C62`) | not yet located: the node allocation in the tree code reaches it through the map's address |
+| `0x02D3ECD8` | `void*` | 0 (zero-filled tail of `.data`) | the map's allocator, the plain vtable `0x008F6500` | `0x00676BD0` (`0x00676C62`) | the node allocation in the tree code, through the map's address (`0x00676CB1` to `0x00677030`, which hands it to `0x00675580`) |
 
 The map is a tree of `std::string` pairs: `0x00675580` returns the value for a key, inserting an empty
 one when the key is missing; `0x00677AD0` finds the first node not below a key; `0x00675300` copies a

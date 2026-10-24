@@ -254,7 +254,7 @@ slots), each zeroed; `0x003A76F0` empties the `0x600` table `[0x02EBEFA8]` (256 
 
 | Type | Arm | What it does |
 |---|---|---|
-| `0x401` | inline | the effect camera: the 64-byte matrix at `+8` goes to `0x02AEE9E0` through `0x0039D430`, which then calls `0x0039AFA0` and copies the workbench matrix to `0x02AEECB0` (`0x003970A0`); `0x003CC0F0` resets the camera record `0x02096D30` and copies the matrix to its `+0x60`, the dwords `+0x48`–`+0x54` are stored at its `+0x00`, `+0x04`, `+0x08` and `+0x10`, and the record is submitted with priority `0x64` (`0x003829D0`) while `0x02096887` is set |
+| `0x401` | inline | the effect camera: the 64-byte matrix at `+8` goes to `0x02AEE9E0` through `0x0039D430`, which then calls `0x0039AFA0` and copies the workbench matrix to `0x02AEECB0` (`0x003970A0`); `0x003CC0F0` resets the camera record `0x02096D30` and copies the matrix to its `+0x60`, the dwords `+0x48`–`+0x54` are stored at its `+0x00`, `+0x04`, `+0x08` and `+0x10` (`0x02096D30`, `0x02096D34`, `0x02096D38`, `0x02096D40`; `0x003ED96F`-`0x003ED98A`), and the record is submitted with priority `0x64` (`0x003829D0`) while `0x02096887` is set |
 | `0x500` | `0x003A75B0` | frees every `0x600` record of `[0x02EBEFA8]` and zeroes the table; when the context's byte `+3` bit `0x1` is set (the records sit in the run block) it frees only their 29 slot targets whose byte `+1` is 0, then the context's `+0x888` block |
 | `0x510` | `0x003A7CB0` | frees all 128 `0x700` records |
 | `0x520` | `0x003A9510` | frees the `0x800` records |

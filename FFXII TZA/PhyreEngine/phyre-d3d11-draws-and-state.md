@@ -285,6 +285,10 @@ write lowers and raises the array's dirty range.
   compute cache's `+0x9A8` and `+0x9AC`, `0x00622E6F`-`0x00622E8E`);
 - sets the shader through its cache and flushes the stage cache with `0x006238E0`.
 
+The other three caches keep their changed range in the same two words: vertex `0x02CEE3C8` and `0x02CEE3CC`
+(`0x00623252`-`0x00623271`), pixel `0x02CEED78` and `0x02CEED7C` (`0x00622FD1`-`0x00622FF0`), geometry `0x02CEF728` and
+`0x02CEF72C` (`0x006230B5`-`0x006230D4`). Each takes the lowest and highest slot it has set.
+
 The vertex and geometry paths then unbind the compute UAVs once (`0x01F2DE88`). The pixel path first
 binds the shader's UAVs (`+0x30`) after the render targets with `0x0061E340`: up to 8 views from the
 slot after the last render target (`+0x6D0`), through `OMSetRenderTargetsAndUnorderedAccessViews`
@@ -419,7 +423,9 @@ Compare functions (`0x0061C010`) and stencil operations (`0x0061C150`):
 | `0x01F2DE98`, `0x01F2DEA8`, `0x01F2DEB8`, `0x01F2DEC8` | the shader last set on each of the four stages |
 | `0x01F2DED8`, `0x01F2DEE8` | the hull and domain shader last set; only the state reset `0x0061C2B0` (called by `0x006CBEA0`, `0x006CC058`) names them: it clears each and, when it was non-zero, calls its setter with null (`0x01F2DED0` = `0x00616E24`, context slot `0x1E0`, `HSSetShader`; `0x01F2DEE0` = `0x00616E54`, slot `0x200`, `DSSetShader`; `0x0061C43C`, `0x0061C45D`) |
 | `0x01F2DF08` | the input layout last set; `0x00629E50`, `0x0061E760`, `0x006227D0`, `0x006C8CA0` and `0x006CA8D0` call `IASetInputLayout` (`0x01F2DF00` = `0x00616EDC`, slot `0x88`) only when it differs (`0x0061E934`-`0x0061E93F`), and `0x0061C2B0` clears it (`0x0061C4B7`) |
-| `0x02CF6ABC`–`0x02CF6ABE` | set once a missing 2D, 3D or cube-map view is logged |
+| `0x02CF6ABC` | set once the missing 2D view message (`0x00D54E60`) is logged (`0x0062A1F3`, `0x0062A212`) |
+| `0x02CF6ABD` | the same for the 3D form (`0x00D54E90`; `0x0062A289`, `0x0062A2A8`) |
+| `0x02CF6ABE` | the same for the cube-map form (`0x0062A327`, `0x0062A34A`) |
 
 ## Modding notes
 

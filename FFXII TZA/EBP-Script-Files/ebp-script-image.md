@@ -204,7 +204,7 @@ record's `+0x10` bit `0x1`.
 |---|---|---|
 | `+0x54`, `+0x84` | `0x00264B90`, version above 2 | the first four dwords of 32-byte record `index`; `0x00377AB0` and `0x00377900` take three as a position and convert the fourth with `0x003A1C50` |
 | `+0x5C`, `+0x74` | `0x00264390`, modes 0 and 1 | a pointer to `0x1C`-byte record `index` |
-| `+0x60` | `0x002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `0x00264260` |
+| `+0x60` | `0x002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `0x00264260`; for an older version `0x002642C0` widens 8-byte record `index` from `0x00264260` into one static copy and returns its address (`0x0026436F`): `0x0209A290` and `0x0209A292` take the record's words `+0` and `+2` (`0x00264334`, `0x0026433F`), `0x0209A294` is `0xFFFF` (`0x0026435F`), `0x0209A296` is 0 (`0x00264368`), and `0x0209A298` and `0x0209A29A` take its words `+4` and `+6` (`0x0026434A`, `0x00264355`); every such call rewrites the copy |
 | `+0x64` | `0x002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
 | `+0x68` | `0x003B7210` | first runs `0x002E6420` (`0x003B7231`), which calls `0x00428FE0(record, 0)` on the character render record of every actor of managers 0 to 2 that has one, then binds the first list's actors through `0x00262F50` (`0x003B72C1`): entry 0 to `[0x02EBCC68]`, entry i to `[0x02EBCAC0 + 8 × (i − 1)]` while `i − 1 < [0x02EBCBC0]` |
 | `+0x6C` | `0x002641B0` | base of the reference's class (`0x00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |

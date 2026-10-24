@@ -453,6 +453,12 @@ name `0x01F81358`, to the scene-map lookup `0x001FF6B0` (`0x001C3EA6`), which co
 | `0x01F812E8` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` end of the copy | `0x0015C650` (`0x0015C683`, `0x0015C6C9`, `0x0015C6F7`, `0x0015C714`); `0x001A52A0` (`0x001A538E`, `0x001A53D3`); `0x001A5760` (`0x001A57BC`) | `0x001A52A0` (`0x001A52C0`, `0x001A5318`, `0x001A53A0`, `0x001A53B7`, `0x001A53C5`, `0x001A53D3`); `0x001A5760` (`0x001A5774`, `0x001A5798`, `0x001A57BC`, `0x001A57C2`, `0x001A57CF`); `0x001FF4F0` (`0x001FF530`, `0x001FF59E`, `0x001FF60D`) |
 | `0x01F812F0` | `void*` | 0 (zero-filled tail of `.data`) | `+0x10` capacity end of the copy | `0x0015C650` (`0x0015C66E`, `0x0015C6D9`, `0x0015C6FE`); `0x001A52A0` (`0x001A537F`) | `0x001A52A0` (`0x001A52BB`, `0x001A534C`, `0x001A535E`); `0x008A6A40` (`0x008A6A4D`) |
 
+The previous cut name is the same kind of string: `0x01F81338` its begin, `0x01F81340` its end and `0x01F81348` its
+capacity end. The initialiser `0x0015CB10` builds it, storing the end at `0x0015CB89` or, for an empty name, `0x0015CBB7`,
+and again after the copy (`0x0015CBD4`). `0x001C3C30` passes the end to the copy `0x001A5760` (`0x001C3C79`), and `0x001C7290`
+empties the string: it loads the end (`0x001C72B1`), moves the terminator to the begin and sets the end back to the
+begin (`0x001C72DC`).
+
 `0x001C3C30(mode)` also keeps three words of its own, in the zero-filled tail of `.data`:
 
 | Global | Type | Start | Meaning | Set by | Read by |

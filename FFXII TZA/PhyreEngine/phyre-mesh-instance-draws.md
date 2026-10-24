@@ -221,6 +221,11 @@ setup `0x0079F150` gives it the 2 MiB block it allocates (`+0xDF0` of the applic
 capacity `0x200000`, and write and oldest positions at the start; then it creates the lock
 (`0x005CD0A0`).
 
+The first use, behind the guard `0x02E522C8` (`0x008092FC`, `0x0080929C`), builds the lock (`0x005CC8A0`) and zeroes the
+rest (`0x006B6468`-`0x006B6487`): the start `0x02E52298`, the end `0x02E522A0`, the capacity `0x02E522A8`, the write and
+oldest positions `0x02E522B0` and `0x02E522B8` (one 16-byte store) and the last block `0x02E522C0`. It registers its
+teardown with `atexit` (`0x006B648E`).
+
 `0x006B6510(ring, size)` takes a block of `size` rounded up to 16, plus a 16-byte header:
 
 1. It returns null when that is not below the capacity (`+0x38`) or the ring has no write position.

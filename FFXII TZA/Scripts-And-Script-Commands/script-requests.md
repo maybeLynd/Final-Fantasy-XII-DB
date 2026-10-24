@@ -296,6 +296,11 @@ immediate re-selection. Per `RET`: unhook, notify, free, re-select.
 The entry pool, channel heads and tails, the busy mask, the detached list, the wait slots and the
 arming mask of every actor record, and the talk candidate at `0x0209A2B4` to `0x0209A2BC`.
 
+`0x0209A2B8` is the candidate's record index, the record's `u16` at `+0x000`, beside its manager slot `0x0209A2B4`. The talk
+tests `0x0025BAD0` (`0x0025BDD1`) and `0x0025BE50` (`0x0025BF76`) set it, and so does `0x0025AAD0` (`0x0025AAF2`) when its first
+argument is 0; `0x0025D650` (`0x0025D66A`) and the boot `0x00266D10` (`0x002670F8`) set it to -1. The talk filer `0x00268D10` passes it to `0x00358940` (`0x00268D58`), and
+`0x00268650` passes it to `0x003587C0` (`0x00268668`).
+
 ## Modding notes
 
 - A script's `REQ` channel is the only priority: a higher channel pre-empts a running lower one at

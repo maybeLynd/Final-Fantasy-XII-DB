@@ -249,6 +249,10 @@ The 52 token strings are four copies of the same 13: copy 1 from `0x01F83090` to
 - `\/` of copy 4 (`0x01FD4058`), by JsonBox's `SolidusEscaper` `0x002165B0`
   ([Third-party libraries](third-party-libraries.md)).
 
+Copy 4's `\r` sits at `0x01FD40D8`, with its end at `0x01FD40E0` and its capacity end at `0x01FD40E8`. `0x001600D0` builds
+it, setting the capacity end to 0 (`0x001600EE`) and then to the end of its block (`0x0016015E`) or, for an empty
+string, `0x02EBA2E1` (`0x00160183`); its exit routine `0x008A80A0` reads it (`0x008A80AD`) before it frees the block.
+
 `\u` and `\/` of copy 1, and every other string of copies 2 to 4, are read only by their own destructors.
 
 ### The empty string value and the empty map
