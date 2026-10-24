@@ -1,0 +1,32 @@
+script	kind	place	actors	functions	rows	shared_actors
+lus_a01	zone	Shaft Entry (Lhusu Mines), field 357	35	113	20	0
+lus_a02	zone	Oltam Span (Lhusu Mines), field 358	28	58	10	0
+lus_a03	zone	Transitway 1 (Lhusu Mines), field 359	38	111	21	0
+lus_a04	zone	Transitway 2 (Lhusu Mines), field 360	21	64	6	5
+lus_b01	zone	Shunia Twinspan (Lhusu Mines), field 365	32	46	13	0
+lus_b02	zone	Site 2 (Lhusu Mines), field 366	30	91	11	0
+lus_b03	zone	Site 3 (Lhusu Mines), field 367	25	36	10	0
+lus_c01	zone	Tasche Span (Lhusu Mines), field 369	17	24	5	0
+lus_d01	zone	Site 9 (Lhusu Mines), field 372	48	185	24	0
+lus_d03	zone	Site 11 (Lhusu Mines), field 374	38	108	17	0
+lus_e01	zone	Site 7 (Lhusu Mines), field 376	18	29	5	0
+lus_f01	zone	Lasche Span (Lhusu Mines), field 901	15	22	5	0
+lus_f02	zone	Site 5 (Lhusu Mines), field 902	43	121	21	1
+lus_f03	zone	Site 6 South (Lhusu Mines), field 903	25	36	10	0
+lus_f04	zone	Site 6 North (Lhusu Mines), field 904	16	20	3	0
+lus_f05	zone	Staging Area (Lhusu Mines), field 905	16	47	4	5
+lus_g01	zone	Site 2 (Lhusu Mines), field 933	32	62	17	0
+lus_g02	zone	Shunia Twinspan (Lhusu Mines), field 934	23	35	11	0
+lus_g03	zone	Transitway 1 (Lhusu Mines), field 935	25	37	12	0
+lus_g04	zone	Oltam Span (Lhusu Mines), field 936	20	28	7	0
+lus_a0100	scene	scene, event 296	32	253	8	0
+lus_a0180	scene	scene, event 702	10	41	2	0
+lus_c0100	scene	scene, event 290	14	88	1	0
+lus_c0101	scene	scene, event 291	12	58	5	0
+lus_c0102	scene	scene, event 292	15	78	0	0
+lus_e0100	scene	scene, event 293	14	70	2	0
+lus_e0101	scene	scene, event 294	13	63	4	0
+lus_e0102	scene	scene, event 295	19	111	0	0
+lus_g0100	scene	scene, event 297	30	507	2	0
+lus_g0101	scene	scene, event 299	17	66	1	0
+lus_g0280	scene	scene, event 701	9	29	0	0

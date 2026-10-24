@@ -1,0 +1,11 @@
+scene	event_id	loaded_by	lines	synopsis	items	party	flags_set	counter_set	next
+rbl_c0100	376	rbl_c01 常駐ディレクター.main	0	-	-	-	-	-	rbl_c0101, event 377
+rbl_c0101	377	rbl_c01 常駐ディレクター.main	0	-	-	-	-	-	rbl_c0100, event 376
+rbl_f0100	392	rbl_f01 常駐ディレクター.main	0	-	-	-	-	-	rbl_f0101, event 126
+rbl_f0101	126	rbl_f01 常駐ディレクター.main	0	-	-	-	-	-	rbl_f0100, event 392
+rbl_g0200	129	rbl_g02 常駐ディレクター.main	0	-	-	-	-	-	rbl_g0201, event 136
+rbl_g0201	136	rbl_g02 常駐ディレクター.main	0	-	-	-	-	-	rbl_g0200, event 129; pos_z0000, event 427
+rbl_j0100	127	rbl_j01 常駐ディレクター.main	0	-	-	-	-	-	rbl_j0101, event 128
+rbl_j0101	128	rbl_j01 常駐ディレクター.main	0	-	-	-	-	-	rbl_j0100, event 127; pos_z0000, event 427
+rbl_n0200	378	rbl_n02 SAKIYOMI_ev_rbl_n0200.init; rbl_n02 SAKIYOMI_ev_rbl_n0200.sakiyomi_init	0	-	-	-	-	-	-
+rbl_q0100	379	rbl_q01 Read_Event_RBL_Q01.init; rbl_q01 Read_Event_RBL_Q01.sakiyomi_init	15	The din of the Mist grows greater. / The Sun-cryst must be near. / I wonder if she'll really do it. / Take revenge against the Empire. / I mean, I know how she must feel. / It's hard losing someone you care about. / Something we all got in common. / But, you know, no matter how hard we try, we can't change the past. / There's nothing that can bring them back. / Still, sometimes, when I close my eyes... / I can see them so clearly. / Illusions of the past. / You think to have cast them off, only to find them years later, unwearying, unrelenting. / The past can bind a man as surely as irons. / Cut the true path. But will she?	-	-	-	-	-

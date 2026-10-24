@@ -1,0 +1,42 @@
+script	kind	place	actors	functions	rows	shared_actors
+rbl_a01	zone	The Wellspring (Pharos - First Ascent), field 1101	41	177	18	5
+rbl_a02	zone	Horizon's Break (Pharos - First Ascent), field 1102	27	137	7	5
+rbl_a03	zone	The Reach (Pharos - Second Ascent), field 1103	48	216	25	5
+rbl_a04	zone	Reach of the Damned (Pharos - Second Ascent), field 1104	29	145	7	5
+rbl_a05	zone	Reach of the Occult (Pharos - Second Ascent), field 1105	28	148	5	5
+rbl_b01	zone	Wellspring Labyrinth (Pharos - First Ascent), field 1111	50	166	24	1
+rbl_c01	zone	Dunes of Profaning Wind (Pharos - First Ascent), field 1113	17	41	4	0
+rbl_c02	zone	Blackrock Vault (Pharos - First Ascent), field 1114	9	52	2	0
+rbl_d01	zone	Wellspring Ravel - 1st Flight (Pharos - First Ascent), field 1115	56	203	15	0
+rbl_d02	zone	Wellspring Ravel - 2nd Flight (Pharos - First Ascent), field 1116	32	88	7	0
+rbl_e01	zone	Wellspring Ravel - 3rd Flight (Pharos - First Ascent), field 1118	43	139	11	0
+rbl_e02	zone	Wellspring Ravel - 4th Flight (Pharos - First Ascent), field 1119	29	84	5	0
+rbl_f01	zone	Marsh of Profaning Wind (Pharos - First Ascent), field 1121	10	20	3	0
+rbl_f02	zone	Horizon's Cusp (Pharos - First Ascent), field 1122	31	148	10	0
+rbl_g01	zone	Penumbra - Interior (Pharos - Subterra), field 1123	29	122	8	0
+rbl_g02	zone	Penumbra - North (Pharos - Subterra), field 1124	56	188	18	0
+rbl_g03	zone	Penumbra - South (Pharos - Subterra), field 1125	44	157	13	0
+rbl_h01	zone	Umbra - Interior (Pharos - Subterra), field 1126	29	121	7	0
+rbl_h02	zone	Umbra - North (Pharos - Subterra), field 1127	45	159	14	0
+rbl_h03	zone	Umbra - South (Pharos - Subterra), field 1128	55	178	17	0
+rbl_i01	zone	Abyssal - Interior (Pharos - Subterra), field 1129	29	121	7	0
+rbl_i02	zone	Abyssal - North (Pharos - Subterra), field 1130	58	188	20	0
+rbl_i03	zone	Abyssal - South (Pharos - Subterra), field 1131	59	190	20	0
+rbl_j01	zone	Cleft of Profaning Wind (Pharos - Second Ascent), field 1132	14	24	6	0
+rbl_j02	zone	The Bounds of Truth (Pharos - Second Ascent), field 1133	37	168	21	0
+rbl_k01	zone	Station of Banishment (Pharos - Second Ascent), field 1134	34	102	16	0
+rbl_l01	zone	Station of Suffering (Pharos - Second Ascent), field 1136	37	131	14	1
+rbl_m01	zone	Station of Ascension (Pharos - Second Ascent), field 1138	38	119	16	0
+rbl_n01	zone	Spire Ravel - 1st Flight (Pharos - Third Ascent), field 1140	66	205	29	1
+rbl_n02	zone	Spire Ravel - 2nd Flight (Pharos - Third Ascent), field 1141	74	200	33	0
+rbl_q01	zone	Empyrean Ravel (Pharos - Third Ascent), field 1143	42	178	14	5
+rbl_c0100	scene	scene, event 376	19	81	0	0
+rbl_c0101	scene	scene, event 377	20	77	0	0
+rbl_f0100	scene	scene, event 392	14	61	0	0
+rbl_f0101	scene	scene, event 126	13	57	0	0
+rbl_g0200	scene	scene, event 129	11	68	0	0
+rbl_g0201	scene	scene, event 136	13	47	0	0
+rbl_j0100	scene	scene, event 127	13	59	0	0
+rbl_j0101	scene	scene, event 128	15	55	0	0
+rbl_n0200	scene	scene, event 378	14	58	0	0
+rbl_q0100	scene	scene, event 379	17	143	15	0

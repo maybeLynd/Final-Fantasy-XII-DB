@@ -134,7 +134,7 @@ Two callers ask for lines:
 |---:|---|
 | `1`, `2` | shown; `0x0028F9E0` answers 1 for these two |
 | `3` | closing; `0x00290B70` turns 2 into 3, and `0x00290B90(unit)` does so for every line from the unit |
-| `5` | dead; `0x00290BE0` gives every line state 5 and sets its `+0x83C` to 0 |
+| `5` | dead; `0x00290BE0` gives every line of the `+0x10F10` chain state 5 at `+0x850`, clears its `+0x842` bit 1 and sets its `+0x83C` to 0 (`0x003F5030`, entered at `0x00290BF6` when the chain is not empty; next line `+0x868`) |
 
 Group 6 of the pump frees the dead lines (`0x00291B90`, through `0x00273B40`) and steps the rest (`0x003F6100`, which runs
 `0x003F5CB0` per line).
@@ -302,6 +302,7 @@ The `+0x10F30` marks join two units, a at `+0x2D0` and b at `+0x2D4`:
 | `0x003F7380(list, mark)`, `0x003F73D0(list, a)` | append a mark (next `+0x300`, previous `+0x308`), and find the mark whose unit a is `a` |
 | `0x003F7490(list)` | run by `0x00290C00`: state 4 for every mark whose unit a or b no longer resolves (`0x003588B0`) |
 | `0x003F6FD0(mark)` | closes a mark for `0x002908C0` and `0x00291010`: state 1 becomes 4, other states except 0 and 4 become 3 |
+| `0x00290940(handle)` | drops a unit's marks: with the list present it enters `0x003F7000(list, handle)` (`0x00290953`), which closes every mark whose unit (`+0x2D0`) is the handle: state 1 becomes 4, any state other than 0 and 4 becomes 3 (`0x003F7015`-`0x003F703A`); marks in state 0 or 4 are left; the target-line watcher `0x0035DAF0` calls it (`0x0035DB70`, `0x0035DBEC`) |
 | `0x003F77F0(mark)` | when both units are set, a has a party record (`0x002732E0`) whose `+0x5C` is not -1 and `0x002739D0` passes, binds the `targetline_p` cell 4 when `0x0030BEF0` answers above 0 and 1 otherwise (`0x00271650`); otherwise it closes the mark like `0x003F6FD0` |
 | `0x003F7BC0(mark)` | eases `+0x2E0` by 0.35 a step toward the gap between the two units, less both radii (`0x002645D0`, plus 1 for b), clamped to 10 and divided by 10: `g = length(+0x290 - +0x280) - (ra + rb + 1)`, `+0x2E0 += (min(max(g, 0), 10) / 10 - +0x2E0) x 0.35` (`0x003F7C52`-`0x003F7C8B`) |
 | `0x003F7760(mark)` | turns the orientation `+0x2A0` by 0.35 toward the direction from a to b (`0x00270A10`, `0x00270CF0`) |

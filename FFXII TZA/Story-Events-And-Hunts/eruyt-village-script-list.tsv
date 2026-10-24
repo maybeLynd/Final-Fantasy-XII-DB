@@ -1,0 +1,9 @@
+script	kind	place	actors	functions	rows	shared_actors
+vic_a01	zone	Fane of the Path (Eruyt Village), field 766	48	215	28	1
+vic_a02	zone	The Spiritwood (Eruyt Village), field 767	78	298	39	0
+vic_a03	zone	Road of Verdant Praise (Eruyt Village), field 768	23	76	17	5
+vic_a0100	scene	scene, event 253	25	402	23	0
+vic_a0280	scene	scene, event 733	18	72	0	0
+vic_a0300	scene	scene, event 255	25	300	32	0
+vic_a0301	scene	scene, event 256	20	181	13	0
+vic_a0380	scene	scene, event 734	13	62	1	0

@@ -1,0 +1,28 @@
+script	kind	place	actors	functions	rows	shared_actors
+alc_a01	zone	Grand Arcade (Archades), field 635	46	329	19	0
+alc_a02	zone	Highgarden Terrace (Archades), field 636	20	109	8	1
+alc_b03	zone	Molberry (Archades), field 640	40	337	29	1
+alc_b04	zone	Trant (Archades), field 641	34	243	22	1
+alc_b05	zone	Charlotte's Magickery (Archades), field 642	15	100	8	1
+alc_b06	zone	Bulward's Technicks (Archades), field 643	18	111	9	1
+alc_c01	zone	Tsenoble (Archades), field 756	46	325	23	5
+alc_e01	zone	Aerodrome (Archades), field 794	34	204	20	5
+alc_f01	zone	Nilbasse (Archades), field 745	39	298	26	1
+alc_f02	zone	Rienna (Archades), field 746	35	279	26	1
+alc_f03	zone	Vint's Armaments (Archades), field 747	17	112	9	1
+alc_f04	zone	Granch's Requisites (Archades), field 748	16	98	8	1
+alc_f05	zone	Lebleu's Gambits (Archades), field 749	17	104	8	1
+alc_z01	zone	alc_z01 (Archades), field 866	7	9	1	0
+alc_z02	zone	alc_z02 (Archades), field 867	7	9	1	0
+alc_z03	zone	alc_z03 (Archades), field 868	7	9	1	0
+alc_z04	zone	alc_z04 (Archades), field 869	7	9	1	0
+alc_a0100	scene	scene, event 307	18	81	2	0
+alc_a0280	scene	scene, event 731	11	112	17	0
+alc_b0400	scene	scene, event 306	23	213	6	0
+alc_c0180	scene	scene, event 732	12	116	12	0
+alc_z0100	scene	scene, event 300	13	106	35	0
+alc_z0101	scene	scene, event 301	12	164	45	0
+alc_z0102	scene	scene, event 303	12	67	6	0
+alc_z0103	scene	scene, event 304	18	158	16	0
+alc_z0104	scene	scene, event 305	36	383	16	0
+alc_z0200	scene	scene, event 302	26	215	12	0

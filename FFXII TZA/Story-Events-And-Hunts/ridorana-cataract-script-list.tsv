@@ -1,0 +1,13 @@
+script	kind	place	actors	functions	rows	shared_actors
+rwf_a01	zone	Footfalls of the Past (Ridorana Cataract), field 509	18	55	6	5
+rwf_a03	zone	Echoes from Time's Garden (Ridorana Cataract), field 511	27	42	13	0
+rwf_b01	zone	City of Other Days (Ridorana Cataract), field 517	27	40	12	0
+rwf_b02	zone	Path of Hidden Blessing (Ridorana Cataract), field 518	18	50	6	5
+rwf_c01	zone	They Who Thirst Not (Pharos - First Ascent), field 522	23	77	12	0
+rwf_d01	zone	Colosseum (Ridorana Cataract), field 898	26	68	16	1
+rwf_a0100	scene	scene, event 372	19	139	6	0
+rwf_c0100	scene	scene, event 370	13	70	0	0
+rwf_c0101	scene	scene, event 371	13	56	0	0
+rwf_c0102	scene	scene, event 373	18	195	7	0
+rwf_d0100	scene	scene, event 374	12	54	0	0
+rwf_d0101	scene	scene, event 375	14	53	0	0

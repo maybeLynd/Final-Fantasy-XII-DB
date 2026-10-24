@@ -1,0 +1,14 @@
+script	kind	place	actors	functions	rows	shared_actors
+dgl_f01	zone	Womb of the Sun-cryst (Pharos - Third Ascent), field 666	7	9	2	0
+dgl_g01	zone	Womb of the Sun-cryst (Pharos - Third Ascent), field 668	12	20	3	0
+dgl_h01	zone	Heaven's Challenge (Pharos - Third Ascent), field 670	8	11	1	0
+dgl_n01	zone	Hell's Challenge (Pharos - Subterra), field 682	17	24	1	0
+dgl_a0100	scene	scene, event 383	8	32	0	0
+dgl_a0101	scene	scene, event 384	13	72	0	0
+dgl_f0100	scene	scene, event 385	23	173	2	0
+dgl_g0100	scene	scene, event 386	32	1181	1	0
+dgl_g0101	scene	scene, event 387	37	399	17	0
+dgl_g0102	scene	scene, event 388	27	427	21	0
+dgl_g0103	scene	scene, event 389	31	196	18	0
+dgl_h0100	scene	scene, event 380	15	100	0	0
+dgl_h0101	scene	scene, event 381	16	88	1	0
