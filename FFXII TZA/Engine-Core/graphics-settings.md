@@ -160,6 +160,12 @@ The character render-object manager's constructor `0x001BC9D0` registers `0x001B
 writes the block's `+0x184` (`0x02CB8154`): 0 while byte `+0x118` of `0x001EBA40()` is set, otherwise `0x01DFE194`
 when `0x01DFE190` is set and that value is at least 0.001 in size, else 0.
 
+Two more fields follow the light direction and the far plane. The byte `+0x464` (`0x02CB8434`) switches subsurface
+scattering: its execute `0x001F3740` does nothing unless both it and `0x01DFE0C4` are set (`0x001F3749`, `0x001F3759`), and
+the developer menu `0x001D1660` flips it (`0x001D298A`). The float `+0x468` (`0x02CB8438`) is a tunable that the developer
+menu steps (`0x001D29AA`, `0x001D29BF`) and the console prints (`0x001CE8BD`); the snapshot copies both (`0x006089F2`,
+`0x006089FF`).
+
 ### The shadow matrices
 
 `+0x190` to `+0x38F` is an array of eight 64-byte matrices and `+0x390` to `+0x434` the shadow
