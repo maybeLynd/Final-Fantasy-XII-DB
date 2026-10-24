@@ -694,6 +694,7 @@ These tables stay beside this page. Each lists one generated family or one per-c
 | [phyre-reflection-phyre-class-f4-offset-adjustment.tsv](phyre-reflection-phyre-class-f4-offset-adjustment.tsv) | 179 | `+0xF4` per class |
 | [phyre-reflection-phyre-default-instances.tsv](phyre-reflection-phyre-default-instances.tsv) | 173 | default instance per class |
 | [phyre-reflection-phyre-class-default-buffers.tsv](phyre-reflection-phyre-class-default-buffers.tsv) | 384 | the `+0xC0`, `+0xC8` and `+0xD0` buffers per class |
+| [phyre-reflection-array-type-names.tsv](phyre-reflection-array-type-names.tsv) | 69 | the class name each array-type getter receives, with one call that passes it |
 | [phyre-reflection-phyre-class-descriptor-vtable.tsv](phyre-reflection-phyre-class-descriptor-vtable.tsv) | 315 | each class's descriptor vtable and its slots |
 | [phyre-reflection-phyre-class-descriptor-accesses.tsv](phyre-reflection-phyre-class-descriptor-accesses.tsv) | 168 | instructions that access descriptor fields |
 | [phyre-reflection-p-type-default-u-int-accesses.tsv](phyre-reflection-p-type-default-u-int-accesses.tsv) | 16 | accesses to the `PTypeDefault<unsigned int>` object |
@@ -868,7 +869,18 @@ A getter keeps its class name in a static of its own and fills it from the first
 that name in both (`0x005B4F31`, `0x005B4F3F`, `0x005B4F46`).
 
 `0x005B1D90` passes `[0x01F2D110]` (`0x005B1DB5`), which the image points at the text `PArray<PUInt32>` (`0x00D329D8`); the
-calls at `0x005B1DFF`, `0x005B82DC`, `0x005B82EE`, `0x005BB255`, `0x005C7982`, `0x005C7E32` and `0x005CACA0` give no name.
+calls at `0x005B1DFF`, `0x005B82DC`, `0x005B82EE`, `0x005BB255`, `0x005C7982`, `0x005C7E32`, `0x005CACA0` and `0x005CACBB` give no
+name.
+
+All 69 getters are named this way. 682 direct calls reach them, none by a jump, and no RIP-relative address form
+or 8-byte pointer in the image names a getter. 98 of the calls load the name from an image pointer to a static
+string, the other 584 give no name, and no getter receives two different names.
+
+The 69 names, each with one call that passes it, are in
+[phyre-reflection-array-type-names.tsv](phyre-reflection-array-type-names.tsv), and the 69 rows of
+[phyre-reflection-phyre-class-default-buffers.tsv](phyre-reflection-phyre-class-default-buffers.tsv) carry them.
+Each getter passes the instance size to `0x00632D80` from a register it zeroes, as `0x005B4E00` does (`0x005B4E3E`,
+`0x005B4E99`): `0x10`, or `0x50` for `PSharray<PDataBlockBufferD3D11>` and `PSharray<PIndexDataBlockBufferD3D11>`.
 
 Every instruction in the game that writes or reads a descriptor's `+0xFC` is a row of
 [phyre-reflection-class-flag-sites.tsv](phyre-reflection-class-flag-sites.tsv): 1006 rows, one per bit and access.

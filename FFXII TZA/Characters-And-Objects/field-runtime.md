@@ -138,7 +138,7 @@ it, the rest of the body is skipped.
 Every record 0 to `recordCount - 1` is fetched with `0x00358940`: on slot index 0 a record whose
 `+0x08` bit `0x40` is clear gets the same `0x00269860` arming and the bit; a record whose `+0x10` is not 0
 marks the pass busy, is driven through `0x0025DF00`, and its `+0x14` bit `0x40` is folded into the return
-value. `0x002F1A30(1)` (a scan of the 32 entries at `0x022BDEDE` under the mask `0x022BE7C0`) sets slot 0's
+value. `0x002F1A30(1)` (a music track end still pending among the scheduled tasks, [frame update order](../Engine-Core/frame-update-order.md)) sets slot 0's
 flags2 bit `0x2` on slot 0; a set flags2 bit `0x2` marks the pass busy and is cleared.
 
 The same arming call is made outside the pass by `0x00269800(slot)`, which runs `0x00269860(record, 1)`

@@ -340,6 +340,73 @@ stores the result, floored at 0, back into `0x022CBB28`.
 Then `0x003E7650`, `0x0025D950`, `0x00263660`, `0x002EEEB0` (`0x002EE430`, `0x002EF050`), and the
 tick-active word is cleared.
 
+### The scheduled tasks
+
+Several things the player watches play out over a set number of frames are scheduled tasks: the crossfade from a
+still of the picture into the live scene, the motion blur fading in or out, a music change and the end of a fading
+track, a party member's model being read in, the walk that loads the models an area's battle data names, the extra
+files some models load, and the short hold after a message window closes. Behind the full menu the crossfade, the
+blur fade and that hold wait while the others go on.
+
+At double and quadruple speed every task advances once per world step except the end of a fading music track, which
+advances only on the frame's first step, so a music fade keeps its length in frames.
+
+The table `0x022BDEC0` holds 32 tasks of `0x48` bytes, and bit i of the mask `0x022BE7C0` marks task i as taken.
+`0x002F16B0()` takes the lowest free task (`0x002F16C3`, `0x002F16D3`) and sets its bit (`0x002F16DE`). It zeroes the
+counter `+0x00` and the length `+0x04` (`0x002F16F4`), the end routine `+0x08` (`0x002F16F7`), the step routine `+0x10`
+(`0x002F16FB`) and `+0x28` (`0x002F1702`), and stores the task's index at `+0x18` (`0x002F16FF`).
+
+The take sets the step `+0x1C` to 1 and the tag `+0x1E` to 0 with one dword store (`0x002F1706`), and the menu byte
+`+0x20` to 1 (`0x002F170A`). With all 32 tasks taken it returns 0 (`0x002F16D5`).
+
+The runner `0x002F1780(kind, invert, force)` is reached only through `0x002F1770(kind, force)`, which passes invert as 0
+(`0x002F1773`, `0x002F1775`). It visits the taken tasks in index order. A kind-1 pass skips a task whose menu byte is 0
+(`0x002F17E2`, `0x002F17E8`, `0x002F17EC`), and a pass without force skips a task tagged 1 (`0x002F17FC`, `0x002F1801`).
+
+For each task it runs, the runner calls the step routine with the task (`0x002F1814`). Once the counter has reached
+the length (`0x002F1826`) it calls the end routine (`0x002F1840`), sets the step to 1 (`0x002F184F`) and clears the task's
+bit (`0x002F1859`). Last it adds the step to the counter (`0x002F1860`, `0x002F1864`), so a task with step 0 never reaches
+its length by counting.
+
+`0x002F1770` runs from six sites:
+
+- the simulation tick `0x00314020` (`0x003142C1`), with the tick's own mode and argument: kind 0 with the frame's
+  first-step flag from the field frame (`0x0022ABD8`), kind 1 with force 1 from the full menu frame and the
+  capture-backed frame (`0x0022BA23`, `0x0022BCCF`);
+- the field frame when it skips the tick, kind 0 with the first-step flag (`0x0022ABE5`);
+- the start-up and title states, kind 0 with force 1 (`0x0022B701`, `0x0022B803`);
+- the area unload `0x002628B0`, kind 0 with force 1, twice (`0x00262AD7`, `0x00262B2C`).
+
+| Taker | The task | Step routine | End routine | Length, step | Menu byte |
+|---|---|---|---|---|---|
+| `0x002EA6E0` (`0x002EA70B`) | a model's extra files ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) | `0x002E60F0` | none | `+0x04` = `0x30009`, step 0 | 1 |
+| `0x002F1A90` (`0x002F1AE6`) | the crossfade ([script screen effects](../Graphics/script-screen-effects.md)) | `0x002F18D0` | `0x002F1950` | frames × `[0x01DFE0B4]`, step 1 | 0 (`0x002F1B30`) |
+| `0x002F1C50` (`0x002F1C66`) | the hold after a message window closes ([controls](../Controls-And-Input/controls.md)) | none | `0x002F18A0` | n × `[0x01DFE0B4]`, step 1 (`0x002F1CAF`) | 0 (`0x002F1C7D`) |
+| `0x00361170` (`0x0036119B`), `0x00361200` (`0x00361276`) | the end of a fading music track ([music](../Sound-And-Music/music.md)) | none | `0x00361080` | the length / `0x00184950()` + 1, step 1 and tag 1 (`0x003611AC`, `0x00361296`) | 1 |
+| `0x003614E0` (`0x0036153B`, `0x00361585`) | a music change ([music](../Sound-And-Music/music.md)) | `0x00361340` or `0x00360EE0` | `0x00361460` | 8 or 5, step 0 (`0x003615CE`) | 1 |
+| `0x0037C910` (`0x0037C938`) | the walk over an area's battle data ([ARD](../Game-Files-And-Data-Tables/ard-area-battle-data.md)) | `0x0037C3F0` | none | 10, step 0 | 1 |
+| `0x0037C980`, `0x0037CA00`, `0x0037CA80` (`0x0037C984`, `0x0037CA04`, `0x0037CA84`) | the party read-in ([party control modes](party-control-modes.md)) | `0x0037C730` | none | 4, step 0 | 1 |
+| `0x003DE240`, `0x003DE2A0` (`0x003DE265`, `0x003DE2CC`) | the motion blur fade ([script screen effects](../Graphics/script-screen-effects.md)) | `0x003DE160` | `0x003DE1F0` | frames, step 1 | 0 (`0x003DE291`, `0x003DE2F8`) |
+
+Two tasks are also kept by address. `0x022BE7C8` is the crossfade: `0x002F1A90` stores it (`0x002F1AF2`) and its end
+routine `0x002F1950` clears it (`0x002F19E7`). `0x002F1A20` returns its low 32 bits to `0x001CC600` (`0x001CC7B9`), `0x0022A770`
+(`0x0022AA47`, `0x0022ACEE`) and `0x00353700` (`0x00353704`). `0x002F1A70` copies its length into its counter, so the next
+pass that runs it ends it; the unload (`0x00262B76`), `0x003600D0` (`0x003600E6`) and `0x003601D0` (`0x003602CE`) call it.
+
+`0x022BE7D0` is the message-window hold: `0x002F1C50(n)` takes it when none is kept (`0x002F1C5A`, `0x002F1C66`,
+`0x002F1C72`), and its end routine `0x002F18A0` clears it (`0x002F18B1`). `0x002F1710()` ends it at once: the counter becomes
+the length (`0x002F1739`), the end routine runs (`0x002F1749`), the step becomes 1 (`0x002F174B`) and the bit is cleared
+(`0x002F1756`). Square (`0x00253F93`), `0x0025AAD0` (`0x0025AB10`) and the unload (`0x00262A82`) call it.
+
+`0x002F1A30(tag)` answers 1 while a taken task carries that tag (`0x002F1A41`, `0x002F1A4E`, `0x002F1A54`). Of the thirteen
+takers only the two music track ends set tag 1, so `0x002F1A30(1)` asks whether a track end is still pending. The
+drive pass asks it (`0x0025DD6E`, [field runtime](../Characters-And-Objects/field-runtime.md)), and so do the game-over
+states (`0x003EF349`, `0x003EF423`), the chocobo state machine `0x0035CA70` (`0x0035CBC4`), `0x003466F0` (`0x003466F9`) and
+`0x00347310` (`0x0034732B`); `0x0034DB30` passes a value of its own (`0x0034DBCE`).
+
+The boot `0x00266D10` clears the mask and both kept tasks through `0x002F1A00` (`0x00266E2E`; `0x002F1A02`, `0x002F1A08`,
+`0x002F1A0F`).
+
 ### The field frame orchestrator
 
 `0x00234590(slot)` returns at once for any slot but 0, so it runs once per simulation step and never
@@ -544,6 +611,10 @@ slots' `+0x201` bytes.
 | `0x0208D33C` | `u16[4]` | 0 (zero-filled tail of `.data`) | words 4 to 7 of the sixteen `u16` words at `0x0208D334`. `0x00329E60` stores word `n` and `0x00321190` reads it, each only for `n` from 0 to 15 (an unsigned bound: `cmp` with 15 and `ja` at `0x00329F03` and at `0x00321253`) | `0x00322190`, 0 (`0x00322199`, one 8-byte store); `0x00329E60` (`0x00329F0C`, the word `n`) | `0x00321190` (`0x0032125C`, the word `n`) |
 | `0x0208D344` | `u16[4]` | 0 (zero-filled tail of `.data`) | words 8 to 11 of the sixteen `u16` words at `0x0208D334`. `0x00329E60` stores word `n` and `0x00321190` reads it, each only for `n` from 0 to 15 (an unsigned bound: `cmp` with 15 and `ja` at `0x00329F03` and at `0x00321253`) | `0x00322190`, 0 (`0x003221A0`, one 8-byte store); `0x00329E60` (`0x00329F0C`, the word `n`) | `0x00321190` (`0x0032125C`, the word `n`) |
 | `0x0208D34C` | `u16[4]` | 0 (zero-filled tail of `.data`) | words 12 to 15 of the sixteen `u16` words at `0x0208D334`. `0x00329E60` stores word `n` and `0x00321190` reads it, each only for `n` from 0 to 15 (an unsigned bound: `cmp` with 15 and `ja` at `0x00329F03` and at `0x00321253`) | `0x00322190`, 0 (`0x003221A7`, one 8-byte store); `0x00329E60` (`0x00329F0C`, the word `n`) | `0x00321190` (`0x0032125C`, the word `n`) |
+| `0x022BDEC0` | `task[32]` | 0 (zero-filled tail of `.data`) | the 32 scheduled tasks of `0x48` bytes: counter `+0x00`, length `+0x04`, end routine `+0x08`, step routine `+0x10`, index `+0x18`, step `+0x1C`, tag `+0x1E`, menu byte `+0x20`, the taker's own words from `+0x28` | `0x002F16B0`, which clears a task as it takes it; the takers fill the routines and the length | the runner `0x002F1780`, `0x002F1710`, `0x002F1A30`, `0x002F1A70` |
+| `0x022BE7C0` | `u32` | 0 (zero-filled tail of `.data`) | the taken mask: bit i set while task i is taken | `0x002F16B0` (`0x002F16DE`), the runner (`0x002F1859`), `0x002F1710` (`0x002F1756`), `0x002F1A00` (`0x002F1A02`) | `0x002F16B0`, the runner (`0x002F178A`, `0x002F1816`, `0x002F1842`), `0x002F1A30` |
+| `0x022BE7C8` | `void*` | 0 (zero-filled tail of `.data`) | the running crossfade's task | `0x002F1A90` (`0x002F1AF2`), `0x002F1950` (`0x002F19E7`), `0x002F1A00` (`0x002F1A08`) | `0x002F1A20`, `0x002F1A70`, `0x002F1A90` (`0x002F1AB5`, `0x002F1B18`, `0x002F1BBE`, `0x002F1BE6`, `0x002F1C2F`) |
+| `0x022BE7D0` | `void*` | 0 (zero-filled tail of `.data`) | the message-window hold's task | `0x002F1C50` (`0x002F1C72`), `0x002F18A0` (`0x002F18B1`), `0x002F1A00` (`0x002F1A0F`) | `0x002F1710` (`0x002F1716`), `0x002F1C50` (`0x002F1C5A`, `0x002F1C9D`) |
 | `0x022CA620` | `u32` | 0 (zero-filled tail of `.data`) | a copy of `0x022CA60C` that the pacer `0x0035EB70` takes on the game thread (`0x0035EC4D`-`0x0035EC53`) | `0x0035EB70` (`0x0035EC53`) | no instruction names it |
 | `0x022CA638` | `u32` | 0 (zero-filled tail of `.data`) | the write index of the 256 frame deadlines (`f64`) at `0x022CA640` that the pacer's worker `0x0035EA40` waits on. `0x0035E9B0(t)`, which `0x0022A580` calls with -16.0 and 17.0 (`0x0022A670`, `0x0022A700`), stores `t` at `0x022CA640 + 8 × index` (`0x0035E9C1`), releases the semaphore `[0x022CA610]` (`0x0035E9CD`) and stores `(index + 1) & 0xFF` (`0x0035E9D2`-`0x0035E9DD`); the worker reads the deadlines with its own index (`0x0035EADC`) | `0x0035E9B0` (`0x0035E9DD`) | `0x0035E9B0` (`0x0035E9B4`, `0x0035E9D2`) |
 | `0x02EBF3DC` | `u8` | 0 (zero-filled tail of `.data`) | the step of state 1's gate `0x0037C2E0`: 0 and 1 fetch the next entry, 2 holds on the current record `0x02ADD948`, 3 goes back to 1, 4 is done. The gate stores the step when it holds (2, `0x0037C3AF`, returning 1) and when it finishes (4, `0x0037C39C`, returning 0), and resumes from it on its next call | `0x0037C2E0` (`0x0037C39C`, `0x0037C3AF`); `0x0037CB30`, 0 (`0x0037CB37`), from the start-up's first-screen set-up (`0x0022B795`) | `0x0037C2E0` (`0x0037C2E6`) |

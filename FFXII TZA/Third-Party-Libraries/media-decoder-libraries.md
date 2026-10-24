@@ -146,6 +146,45 @@ processor count (`GetNativeSystemInfo`, at least 1) at `+0x2228` and the SIMD fe
 writes the qword `+0xBC0` = 1 (`0x00172CA1`) and zeroes `+0xBC8`, `+0xC00`, `+0x2224`, `+0x770`,
 `+0x1938`, `+0x1944` and `+0x194C`.
 
+### The decoder's memory while a movie plays
+
+The decoder's memory exists only while a movie is open. The movie open creates it, and its close releases it, so the
+memory a cutscene movie uses is gone once the movie ends. Offsets below are from the decoder instance unless a line
+says otherwise.
+
+- **The codec context, `0x330` bytes.** libvpx's init `0x0016E110` (interface slot `+0x10`) calls `0x0016E070` at
+  `0x0016E1B7`. It allocates `0x347` bytes (`0x0016E07E`), aligns the block to 16 bytes and clears `0x330` bytes
+  (`0x0016E0A5`). The context keeps the decoder instance at `+0x1B0`.
+- **The macroblock decoder, `0x12A0` bytes, at `+0x0000`.** The create sets its block pointers through `0x0016FA40`
+  (`0x0016F3E2`), and the decode body refreshes it through `0x0016FB80` before each frame (`0x0016E977`). It holds 25 block
+  records of `0x38` bytes from its `+0x860`: 16 luma, 4 + 4 chroma and one second-order block.
+- **The common state at `+0x12C0`.** `0x00172C30` fills it (above). Its first `0x160` bytes are the error record the
+  create's `setjmp` uses (`+0x1318`, `+0x1320`). In the same state are the loop-filter tables at `+0x1ED0` (`0xD10`
+  bytes), the last frame's probabilities at `+0x2C29` and the current frame's at `+0x3082` (`0x459` bytes each), and
+  the post-processing state at `+0x34F0` (`0xC40` bytes).
+- **The frame buffers.** When a key frame brings a new size, the decode body calls `0x001728C0` (`0x0016E744`). It
+  releases the old set through `0x00172750` (`0x001728E5`), then allocates four `0x90`-byte frame records from `+0x1A40`
+  through `0x00179C80` (`0x00172963`, loop bound 4 at `0x0017297E`), and two more at `+0x1CA0` (`0x0017299E`) and `+0x1D30`
+  (`0x00172AE1`).
+- **The mode grid.** The same call allocates `0x4C`-byte records for a grid one record wider and one row taller than
+  the frame's macroblocks (`0x00172A3F`-`0x00172A47`). It keeps the block at `+0x1EA8` (`0x00172A73`) and the first visible
+  record, one row and one record in, at `+0x1EB0` (`0x00172A9E`).
+  `0x00172750` frees it (`0x00172881`) and nulls the pointer (`0x001728A2`).
+- **The readers.** The frame decode `0x00175EF0` runs from `0x0016F840` (`0x0016F98E`), which the decode body calls at
+  `0x0016EA2D`. It starts the mode reader at `+0x42C0` (`0x00175F32`), and the eight partition readers of `0x30` bytes
+  from `+0x4140` through `0x00175A00` (`0x00176BCD`). On a key frame it resets the current probabilities through
+  `0x00175CA0` (`0x0017625D`).
+- **Post-processing.** Get frame `0x0016EA80` runs the post-processor `0x00177A70` (`0x0016EB25`), which seeds its noise
+  through `0x00177850` (`0x00177D86`).
+- **Decoder threads.** The decode body starts the threads through `0x00171480` (`0x0016E617`), which allocates one
+  `0x18`-byte start record per thread. Each thread has its own macroblock decoder in the array at `[+0x4410]` (count
+  `+0x4390`). The decode body copies the current frame record into each one's `+0xE70` (`0x0016E8BF`) and refreshes
+  each one through `0x0016FB80` (`0x0016E958`).
+- **The close.** `vpx_codec_destroy` `0x0016DDD0` (`0x0067AAAB`) calls interface slot `+0x18`, `0x0016E210`. When
+  `+0x4380` is set it stops the threads through `0x00171790` (`0x0016E245`). It frees the thread memory through
+  `0x00172160` (`0x0016E24D`) and the frame buffers and mode grid through `0x00172750` (`0x0016E259`). Then it frees the
+  instance (`0x0016E262`) and the context (`0x0016E276`) through the CRT free.
+
 ### Decoder bodies and kernels outside the member lists
 
 Five bodies the decoder calls are in neither libvpx list:

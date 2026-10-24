@@ -96,8 +96,12 @@ player `0x002E9D90` behind the `charseplay` verbs plays nothing.
 (`0x00360650`) in its scratch and releases it at once (`0x00360A20`); otherwise it waits through four
 stages (`0x0025C070`; `0x003608D0`, which starts the track `skipexec` recorded, or only sets its volume
 when it already plays
-([music](../Sound-And-Music/music.md)); `0x00360D60`; the resource queue idle through `0x002F1A30` and
-`0x0032E520`), releases, and waits one more stage on `0x00229EB0`.
+([music](../Sound-And-Music/music.md)); `0x00360D60`; then no music track end still scheduled and no load pending), releases,
+and waits one more stage on `0x00229EB0`.
+
+The third stage asks the scheduled-task test `0x002F1A30(1)` (`0x0034DBCE`, [frame update
+order](../Engine-Core/frame-update-order.md)) and then `0x0032E520(1)` (`0x0034DBD9`), and stays while either
+answers non-zero (`0x0034DBD5`, `0x0034DBE0`). The argument is 1 from `0x0034DB49` on that path.
 
 ## Layouts
 

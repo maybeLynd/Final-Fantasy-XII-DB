@@ -429,7 +429,7 @@ depth word is `((0xFFFF - a - k * t) << 12) | 0xFF0`:
 live scene. Unless the issuer's manager is skipping it calls `0x002F1A90(flags, mode, frames)`, which
 acts when `frames` is positive or flag bit `0x2` is set:
 
-- With no crossfade running it makes the task `[0x022BE7C8]` (`0x002F16B0`) with the per-frame body
+- With no crossfade running it makes the scheduled task ([frame update order](../Engine-Core/frame-update-order.md)) `[0x022BE7C8]` (`0x002F16B0`) with the per-frame body
   `0x002F18D0` and the end `0x002F1950`, and keeps the flags at `+0x28`, the mode at `+0x38` and the
   length `frames × [0x01DFE0B4]` (`frames` alone when `0x001EDDA0()` is non-zero) at `+0x04`. Flag bit `0x2`
   adds one frame to the length.
