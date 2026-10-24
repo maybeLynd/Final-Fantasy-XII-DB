@@ -148,7 +148,7 @@ No script writes story progress 500. The values the scripts write go from 490 (A
 
 The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
-`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+`-` means that none of these tables names a source. No treasure chest gives a gambit condition: the chest records' item words name items, equipment, loot, magicks and technicks ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)).
 
 ## Columns
 

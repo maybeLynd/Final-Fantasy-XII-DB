@@ -56,6 +56,11 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
   - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or the value alone where no script writes it, which is so for 500 (below);
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
+- `treasure chest (N):` every treasure chest that can give it, N chests in all ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)). 62 magicks have a chest part, 31 of them no other source.
+  - an entry is a map (region) and zone script with the chest numbers (actor `treasure_NN`), and `(once)` for a one-time chest;
+  - then the chance that an opening gives it, and in brackets the chance with the Diamond Armlet on the party leader where that differs, as `40% (Diamond Armlet 0%)`;
+  - chests of one map with the same chance share an entry; whether a chest is there at all is a separate roll, its presence in the treasure chest list;
+  - the 40 chests of `bts_z01`, `pre_a01` and `pre_b01` stand in zone scripts no field loads, and their entries say so.
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
 A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
@@ -64,7 +69,9 @@ No script writes story progress 500. The values the scripts write go from 490 (A
 
 The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
-`-` means that none of these tables names a source. The joined tables do not include treasure chest contents.
+Every part names every source. A cell that would be longer than 1,000 characters moves its longest parts, longest first, to [`item-sources.tsv`](item-sources.tsv) until it fits, and gives for each moved part its label, its count and the table, as `drop (28): in item-sources.tsv` for the Potion.
+
+That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source.
 
 ### The licence it needs
 
@@ -85,7 +92,7 @@ The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) unti
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
-| `sources` | where the magick is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name ("Where each magick comes from" above); `-` for none |
+| `sources` | where the magick is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name, the treasure chests that hold it with the odds ("Where each magick comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
 | `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every magick names at least one, since the action bypass bit (bit 13 of the action row's second flag word, `0x00323F52`) is clear on all 81 magick actions |
 
 ## Related
@@ -93,3 +100,4 @@ The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) unti
 - [Action list: every attack, magick, technick, item use, summon, Quickening, Concurrence, Foecraft move and trap with its cost, power, element, statuses, area and texts](../Battle-Actions/action-list.md)
 - [Technick list: every technick with its name, shop price, sort order, power, statuses and texts](technick-list.md)
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
+- [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)

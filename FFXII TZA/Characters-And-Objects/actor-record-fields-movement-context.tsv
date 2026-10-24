@@ -399,7 +399,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x0026629A	0x80	a	lea rdx, [r14 + 0x80]	actor +0xB8, the actor in rcx	
 0x00266AD0	FUN_00266ad0	0x00266B26	0x80	addr	lea r8, [rax + 0x80]	ctor	region planter; lea computes an address inside this embedded context
 0x0026B2E0	FUN_0026b2e0	0x0026B332	0x80	addr	lea rdx, [rcx + 0x80]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
-0x003DA860	FUN_003da860	0x003DA880	0x80	w	movss dword ptr [rdx], xmm2	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x80 - sixth 0x10 block, undeclared in fields.tsv
+0x003DA860	FUN_003da860	0x003DA880	0x80	w	movss dword ptr [rdx], xmm2	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x80 - sixth 0x10 block
 0x003DA860	FUN_003da860	0x003DA884	0x84	w	movss dword ptr [rdx + 4], xmm3	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x84
 0x00265FF0	FUN_00265ff0	0x0026631F	0x98	w	mov dword ptr [r14 + 0x98], 0x3f000000	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x0026632A	0x9c	w	mov dword ptr [r14 + 0x9c], 0x3f2b851f	actor +0xB8, the actor in rcx	

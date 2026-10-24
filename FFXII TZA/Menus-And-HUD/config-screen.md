@@ -67,6 +67,9 @@ A row:
 
 | Command | Label | Options | Stored in the options record | Runs at once |
 |---:|---|---|---|---|
+| `0x18` | Start a new game | - | - | closes the title list and starts a new game; mode 1 only |
+| `0x1A` | Begin New Game+ | - | - | `0x00238A20` (`0x0024018C`), then as `0x18` ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)); mode 1 only |
+| `0x19` | Begin New Game- | - | - | `0x00238A50` (`0x00240182`), then as `0x18`; mode 1 only |
 | `0x20`, `0x21` | Graphics Settings, Controls | - | - | opens the screen |
 | `0x04` | Battle Mode | Wait, Active | dword 0 bit 3 (`0x002DE060`) | - |
 | `0x05` | Battle Speed | 6 steps | dword 0 bits 4-11 (`0x002DE0F0`) | - |
@@ -84,8 +87,15 @@ A row:
 | `0x17` | Restore Defaults | - | the whole record | below |
 | `0x24`, `0x25` | Max. LP, Max. Gil | Acquire | - | below; mode 0 only |
 
-Every row reaches `0x00240750(command, index)` and the setter switch `0x002407F0` (`0x00240818`-`0x00240959`). The options record
-is `*0x0215E6E0`, inside the save image. The labels are `menu_command.bin` and the help lines `help_menu.bin`.
+Every row but `0x18`, `0x19` and `0x1A` reaches `0x00240750(command, index)` and the setter switch `0x002407F0`
+(`0x00240818`-`0x00240959`). `0x00240750` is called only by the row widgets `0x0023D6B0`, `0x0023DB40`, `0x0023E770` and
+`0x0023EBE0`. The three title rows get no widget: their lists `0x01E0BF60[0x18]`-`[0x1A]` (`0x01E0A880`, `0x01E0A930`,
+`0x01E0A9E0`) have layout kind 13, which the builder's switch skips (`0x0023EE6C`-`0x0023EE74`), and their confirm is
+`0x00240173` (`0x00240065`-`0x00240080`).
+
+The options record is `*0x0215E6E0`, inside the save image. The labels are
+`menu_command.bin`, except the three title rows' labels, which are `menu_message.bin` 34, 191 and 190 (ids 2034,
+2191 and 2190 through `0x002F9860`); the help lines are `help_menu.bin` (117, 396 and 397 for the title rows).
 
 `0x0023EFC0(screen)`, run by `0x0023FBE0` (`0x0023FCB6`), sets up Config's list widget. The row count comes from list
 `0x01E0BF60[origin]` (`+0xC2` 0-2, any other as 0), the row painter `0x0023F8B0` goes to list `+0x120` (`0x0023F06E`),

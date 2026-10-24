@@ -20,10 +20,10 @@ the battle state instead (`0x00237DF0`), and any other negative number, or a num
 (`[0x02EBF030]+4`, 50 in the shipped section 60), does nothing (`0x00239993`-`0x002399BB`). Otherwise
 (`0x002399E9`-`0x00239DE8`):
 
-1. The party block is reset, keeping bits 12-14 of its flag word and taking bits 1 and 2 of the battle flags
-   `0x02089344` into its bits 13 and 14; all forty member records are set up again from the party table with
-   `0x0023AC80` ([Party data](party-data.md), [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md);
-   `0x002399E9`-`0x00239ACE`).
+1. The party block is reset, keeping bits `0x1000`, `0x2000` and `0x4000` of its flag word and moving bits `0x2`
+   and `0x4` of the battle flags `0x02089344` into its bits `0x2000` (New Game+) and `0x4000` (New Game-), clearing
+   them in `0x02089344`. All forty member records are rebuilt from the party table with `0x0023AC80`
+   (`0x002399E9`-`0x00239ACE`; [Party data](party-data.md), [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
 2. The scenario's gil is set with `0x00300500` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)), the inventory
    emptied, and up to 64 entries granted, each an id and a count set with `0x00300BA0`
    ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `0x00239B11`-`0x00239B5F`).
@@ -37,6 +37,8 @@ the battle state instead (`0x00237DF0`), and any other negative number, or a num
 Of the 1,114 `us` scripts of `plan_master`, one shipping script calls the verb: `naf_b04` asks for set 1. The
 developer test script `evt_t0505` calls it five times, for sets 0 (twice), 2 and 3 and for a number held in a
 script variable. The other eight language folders make the same calls.
+
+Every new game also asks for set 0: the new-game widget `0x00394130` stores 0 through `0x0023A110` when it is built (`0x003942F9`).
 
 ### A member's preset
 

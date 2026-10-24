@@ -62,14 +62,21 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
-- `steal:`, `drop:`, `poach:` and `monograph:` the monsters whose enemy definitions hold its id in those slots, read from the area files ([Bestiary](../Enemy-Spawning/bestiary.md)). Definitions that no map script places, and the units named "No name", are left out.
+- `treasure chest (N):` every treasure chest that can give it, N chests in all ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)). 367 pieces of equipment have a chest part, 6 of them no other source.
+  - an entry is a map (region) and zone script with the chest numbers (actor `treasure_NN`), and `(once)` for a one-time chest;
+  - then the chance that an opening gives it, and in brackets the chance with the Diamond Armlet on the party leader where that differs, as `40% (Diamond Armlet 0%)`;
+  - chests of one map with the same chance share an entry; whether a chest is there at all is a separate roll, its presence in the treasure chest list;
+  - the 40 chests of `bts_z01`, `pre_a01` and `pre_b01` stand in zone scripts no field loads, and their entries say so.
+- `steal:`, `drop:`, `poach:` and `monograph:` the monsters whose enemy definitions hold its id in those slots, read from the area files ([Bestiary](../Enemy-Spawning/bestiary.md)). No definition is left out:
+  - three are placed by no map script, and each is named with its area and row, as `Dead Bones (bog_a row 3: a definition no map script places)`: Dead Bones (`bog_a` row 3), Axebeak (`enw_b` row 8) and Omega Mark XII (`gil_i` row 7), variants of monsters that other definitions place;
+  - a unit whose name word reads No name is listed by its definition id, area and row, as `unnamed unit 0x0100 (nal_b row 0)`; the bestiary row's explanation gives the functions that place it.
 - `scene gift (urn):`, `scene gift (talk):`, `scene gift (touch):`, `scene gift (map event):` and `scene gift (event scene):` each map (region) and script whose script gives it, with the reward package when the gift is one ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), [Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). The label says how the gift is handed over:
   - urn: the giving actor keeps a treasure flag (`settreasureflag`, `istreasureflag`), so it gives once;
   - talk: the gift comes from the actor's talk slot (slot 2, or a function `sysReqchg` puts in slot 2), or from a function that only such a function requests;
   - touch: the same for the touch slots 3 and 4;
   - map event: the gift comes from a function the map's script runs by itself (`main`, `init` or a function they request);
   - event scene: the gift is in an event script, named by the maps whose scripts play it;
-  - gifts in scripts that no map loads are left out.
+  - of the scene-rewards gifts in a zone script that no field loads, every one is a teleport destination in `mic_b07` ([Key item list](key-item-list.md), "Where each key item comes from"); the developer scripts `evt_t*` are not scene-rewards rows ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), "Scope") and are not joined.
 - `trophy trade:` the Hunters' Camp (Phon Coast) sale, with the price ([Price list](../Rewards-EXP-Gil-And-Loot/price-list.md)), how many trophies each hunter must hold, and the package:
   - the Shifty-Eyed Man, later named Outfitters, sells 31 reward packages for gil, each once;
   - he offers a package only after the player has given enough trophies to the three hunters Atak, Blok and Stok;
@@ -87,7 +94,9 @@ No script writes story progress 500. The values the scripts write go from 490 (A
 
 The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
-A part that names more than 15 monsters or 10 places gives its count, the first ones and the table that holds the rest. `-` means that none of these tables names a source. The joined tables do not include treasure chest contents, and the starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
+Every part names every source. A cell that would be longer than 1,000 characters moves its longest parts, longest first, to [`item-sources.tsv`](item-sources.tsv) until it fits, and gives for each moved part its label, its count and the table, as `drop (28): in item-sources.tsv` for the Potion.
+
+That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. The starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
 ### The licence it needs
 
@@ -126,10 +135,11 @@ A part that names more than 15 monsters or 10 places gives its count, the first 
 | `bonus_record` | the bonus record's index: `+0x28` / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+0x30` |
 | `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
-| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward ("Where each piece of equipment comes from" above); `-` for none |
+| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward, the treasure chests that hold it with the odds ("Where each piece of equipment comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
 | `licence` | the licence squares that grant it, by name and node, or `none needed` ("The licence it needs" above) |
 
 ## Related
 
 - [Equipment row: every field of a weapon, shield, armor, accessory or ammunition data row and its bonus record](equipment-row.md)
 - [Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script](../Damage-And-Battle-Formulas/augments.md)
+- [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
