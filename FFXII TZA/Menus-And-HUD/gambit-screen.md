@@ -108,6 +108,11 @@ eight bytes a page from `+0x300`, from the run state of `0x0056A3D0` and the tab
   9 `0x8A`, else `0x88`;
 - the page and row of the line's current entry go to `+0x595` and `+0x599`/`+0x59A` (page 0, row 0 when absent), and an
   entry equal to the argument with state 0 returns 1 and stores its page and row at the editor's `+0x334`/`+0x335`.
+- `0x0056B4D0` keeps the shown row at `+0x599` and the row it was asked for at `+0x59A`, both signed bytes. With bit 0 of
+  `+0x5A0` set it writes the new row to both and clears the bit (`0x0056B921`-`0x0056B93A`); otherwise it copies `+0x59A`
+  back to `+0x599` (`0x0056B94F`-`0x0056B95E`).
+- A row past the page's last, its row count `+2` less 1 compared as signed numbers, sets `+0x599` to that last row while `+0x59A` keeps the row asked for (`0x0056B940`-`0x0056B94D`,
+  `0x0056B964`-`0x0056B981`), so the cursor returns to it on a longer page.
 
 The rows use painters at `+0x120`: `0x0056BBD0` for a condition (the name, in colour 2 when its state byte is not 0)
 and `0x0056A780` for an action, which adds the icon frame and, when its byte `+0x11` is set, the number `+0x0C` with text

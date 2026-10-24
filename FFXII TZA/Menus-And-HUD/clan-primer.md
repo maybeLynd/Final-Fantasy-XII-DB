@@ -154,8 +154,13 @@ The hunt host `[0x02CA9748]` (`0x00579AF0`) shows two lists, open and cleared:
    (`0x0039BEC0`), and for Traveler's Tips and the Bestiary also registers it as a font (`0x0017FBC0(6)`; `0x0017FA90`,
    `0x0017F790`). The `story`, `world`, `person` and `knowledge` bundles carry a sheet in every language; the Bestiary
    and Traveler's Tips bundles carry one only in `kr`, `ch`, `cn` and `in`.
-4. Slot 2 makes the entry's picture into the image label `hb_tex` (`0x00575B80`). The Traveler's Tips page never asks
-   for a picture (`0x00575B80` skips kind 4), so its eight picture files ship unused.
+4. Slot 2 makes the entry's picture into the image label `hb_tex` (`0x00575B80`). Traveler's Tips asks for one:
+   opening an entry requests page 0's file, `menuhandbook_tutorial001.dat`, into slot 2 (`0x00575DD0`), but `0x00575B80`
+   refuses family 4 (`0x00575BD2`), so no label is made and the picture pane `0x00570630` draws nothing (`0x00576C70`
+   returns 0, `0x0057068E`).
+
+   The other seven picture files are never requested: they hold pages 4 to 29, which the one-page page map cannot
+   name, and every picture in them is a "Dummy" placeholder.
 5. A request to a busy slot waits in its queue (`0x00575A50`). Each slot reports to the back panel when its content is
    ready or freed.
 
