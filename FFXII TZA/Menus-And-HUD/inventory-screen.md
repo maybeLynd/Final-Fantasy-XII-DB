@@ -193,6 +193,21 @@ The tab strip at `+0xC8` of a screen is shared with the shop, equipment and gamb
   two tabs, the latter also offsetting the strip by its width;
 - `0x00566B70(marker, tab, x, curve, ms)` starts the marker's move to `x` over `ms x 60 / 1000` frames.
 
+## State
+
+The description box `0x00292390` shows an item picture by id: on message 12 it keeps the id at `+0x102C8`, and on its
+next message 2 it decodes picture `id & 63` of sheet `id >> 6` and copies its `ListItemIconW` × `ListItemIconH`
+pixels, 64 × 96 (`0x01E0C470`, `0x01E0C474`), into the `itemgra_c` atlas
+([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)).
+
+After the copy it stores where that picture lies in an eight-column grid of such cells (`0x002928A9`-`0x002928FE`). The id is a signed `i16`; a negative id
+skips the update (`0x0029269D`), so the remainders below are taken of a non-negative id.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01E0C478` | `i32` | -1 | the last decoded picture's x in the grid: (`id` mod 64) mod 8 × `ListItemIconW` | `0x00292390` (`0x002928D3`) | no instruction names it |
+| `0x01E0C47C` | `i32` | -1 | its y: (`id` mod 64) / 8 × `ListItemIconH` | `0x00292390` (`0x002928FE`) | no instruction names it |
+
 ## Modding notes
 
 - A category appears only once its save-wide flag is set; clearing the flag hides the row.

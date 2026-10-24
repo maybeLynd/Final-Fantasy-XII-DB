@@ -1,0 +1,13 @@
+script	kind	place	actors	functions	rows	shared_actors
+ztc_a01	zone	Invitation to Heresy (Zertinan Caverns), field 576	29	53	13	1
+ztc_a02	zone	Sandfalls (Zertinan Caverns), field 577	34	93	10	0
+ztc_a03	zone	Hourglass Basin (Zertinan Caverns), field 578	33	82	11	0
+ztc_b01	zone	The Undershore (Zertinan Caverns), field 581	33	74	11	5
+ztc_b02	zone	Halls of Ardent Darkness (Zertinan Caverns), field 582	22	33	9	0
+ztc_c01	zone	The Balamka Fault (Zertinan Caverns), field 585	37	67	15	1
+ztc_c02	zone	Drybeam Cavern (Zertinan Caverns), field 586	27	41	11	0
+ztc_c03	zone	Darkened Wharf (Zertinan Caverns), field 587	25	36	8	0
+ztc_c04	zone	Canopy of Clay (Zertinan Caverns), field 588	23	68	6	0
+ztc_d01	zone	Athroza Quicksands (Zertinan Caverns), field 590	20	53	10	0
+ztc_d0100	scene	scene, event 320	18	106	0	0
+ztc_d0101	scene	scene, event 321	19	109	13	0

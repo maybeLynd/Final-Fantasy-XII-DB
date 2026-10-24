@@ -1,0 +1,14 @@
+script	kind	place	actors	functions	rows	shared_actors
+bog_a01	zone	Greencrag (Nabreus Deadlands), field 167	15	22	5	0
+bog_a02	zone	The Muted Scarp (Nabreus Deadlands), field 168	23	113	8	5
+bog_a03	zone	Vale of Lingering Sorrow (Nabreus Deadlands), field 169	25	49	9	1
+bog_a04	zone	Hope's Reach (Nabreus Deadlands), field 170	13	17	2	0
+bog_a05	zone	Echoes of the Past (Nabreus Deadlands), field 171	32	71	13	1
+bog_b01	zone	The Slumbermead (Nabreus Deadlands), field 175	33	53	17	0
+bog_b02	zone	Succor Midst Sorrow (Nabreus Deadlands), field 176	19	56	4	5
+bog_b03	zone	The Fog Mutters (Nabreus Deadlands), field 177	19	26	5	0
+bog_b04	zone	Overlooking Eternity (Nabreus Deadlands), field 178	24	94	6	1
+bog_b05	zone	Lifeless Strand (Nabreus Deadlands), field 179	26	40	12	0
+bog_b06	zone	Field of the Fallen Lord (Nabreus Deadlands), field 180	24	37	12	0
+bog_a0200	scene	scene, event 140	13	68	0	0
+bog_a0201	scene	scene, event 133	16	127	5	0

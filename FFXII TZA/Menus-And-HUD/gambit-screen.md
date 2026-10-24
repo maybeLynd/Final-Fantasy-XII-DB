@@ -216,6 +216,48 @@ The member-scoped pane is the `0xD0`-byte widget at `0x02CA96D8` with procedure 
 | condition list | 15 pages of up to 17, 255 conditions placed |
 | action list | 11 pages: 1, 17, 17, 17, 17, 13, 17, 17, 17, 17 and 7 actions |
 
+## State
+
+### The pane pointers
+
+The three editors keep themselves in `0x02CA96E0` + 8 × slot, slot 0-2 at `+0x35C` (`0x005692CD`-`0x005692EB`), and the
+three pane roles in `0x02CA96F8` (left, the previous set), `0x02CA9700` (centre) and `0x02CA9708` (right, the next set):
+
+- On message 1 the editor whose slot is the member's selected set takes the centre with layout record 6, slot = set
+  + 1 modulo 3 the right with record 8, and slot = set + 2 modulo 3 the left with record 7 (`0x005692EF`-`0x005693A6`).
+- On L2 the centre and left panes slide right by `0x780` and the right pane jumps left by `0xF00`; on R2 the mirror.
+  The roles then rotate (`0x005699F0`-`0x00569BED`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02CA9708` | `void*` | 0 | the right pane's editor, the one showing the next set, which R2 brings in | `0x005691E0`: message 1 (`0x0056934E`); L2, the old centre (`0x00569AD9`); R2, the old left pane (`0x00569BD9`); message 18, 0 when the closing editor's slot is 2, through `0x02CA96F8` + 8 × slot (`0x00569293`) | `0x005691E0`: `0x005698C8` (kept in `r13` for the slides at `0x00569A88` and `0x00569B5B`), `0x00569AA1`, `0x00569ACB`, `0x00569B7A`, `0x00569BBF` |
+
+### The silhouette
+
+The character silhouette `0x002CF440`, built by `0x002CF3E0` under the editor, draws the picture loader's two pictures at
+its `+0xF0` and `+0xF8` (`[0x0209AC30] + 0x308`), one above the other:
+
+- On message 1 it scales its four sizes by the whole-number quotient of `SilhouetteWidth` (`0x01E0CF54`, 640 in
+  `UISize.json`) over the upper width, a signed 32-bit divide (`0x002CF660`-`0x002CF66F`), and stores the factor
+  (`0x002CF68A`).
+- The first open gives 640 / 256 = 2, so the sizes become 512; every later open gives 640 / 512 = 1 and keeps them.
+- On message 4 it draws the upper picture at `SilhouettePosX` (`0x0209E628`) and the widget's `+0xC0` plus
+  `SilhouettePosY` (`0x01E0CF6C`), and the lower one below it (`0x002CF4FA`-`0x002CF5C6`); each size is read as its low 16
+  bits.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01E0CF58` | `i32` | 256 | the upper picture's width, and the divisor of the scale | `0x002CF440` (`0x002CF69E`) | `0x002CF440` (`0x002CF65A`; `0x002CF519`) |
+| `0x01E0CF5C` | `i32` | 256 | the upper picture's height, and the lower picture's offset below it | `0x002CF440` (`0x002CF6B0`) | `0x002CF440` (`0x002CF666`; `0x002CF525`, `0x002CF59A`) |
+| `0x01E0CF60` | `i32` | 256 | the lower picture's width | `0x002CF440` (`0x002CF6C8`) | `0x002CF440` (`0x002CF696`; `0x002CF5A6`) |
+| `0x01E0CF64` | `i32` | 256 | the lower picture's height | `0x002CF440` (`0x002CF6D2`) | `0x002CF440` (`0x002CF6A8`; `0x002CF5B2`) |
+| `0x01E0CF68` | `f32` | 2.5 | the scale of the last open: 2.0 at the first, 1.0 after | `0x002CF440` (`0x002CF68A`) | no instruction names it |
+
+No other instruction names `0x02CA9708` or `0x01E0CF58`-`0x01E0CF6B`. The table `0x02CA96E0` is also indexed by `0x005679D0`,
+`0x00567AE0`, `0x00567B60`, `0x00567D80`, `0x00568230`, `0x005683F0`, `0x00568460`, `0x005685B0`, `0x005688D0`, `0x00568940`,
+`0x00568990`, `0x00568A30`, `0x00568BB0`, `0x00568FE0` and `0x0056A140`, each with a set number or a slot, so within
+`0x02CA96E0`-`0x02CA96F7`.
+
 ## Modding notes
 
 - A condition's or action's place in the lists is its grid column and row in the condition or action table.

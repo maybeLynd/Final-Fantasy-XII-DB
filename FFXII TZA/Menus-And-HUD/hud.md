@@ -620,6 +620,23 @@ The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F939
 | `+0xF0` | `i32` | kind | the picture kind the draw switches on: -1 chain_item, -2 targetline_p, -3 chainflash, any other the picture `+0xE0` (`0x003F0F55`-`0x003F111C`); 0 from the reset and the part (`0x003F015C`, `0x003F9606`) |
 | `+0xF4` | `u8[12]` | unobservedTail0F4 | read and written by no function; nothing fixes its width |
 
+### The target-line watcher
+
+The target-line watcher is the `0xD0`-byte widget at `0x022C83A8` with procedure `0x0035DAF0`. `0x0035DC60`, run by the
+field set-up `0x00253A10` (`0x00253A1E`), builds it while the cell is 0 (`0x0035DC64`-`0x0035DC82`); message 18 clears the
+cell (`0x0035DB30`). Each tick it keeps one `+0x10F30` mark (Line marks above) from the controlled character to that
+character's target.
+
+`TargetLineWatcher` (`0xD0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0035DAF0` |
+| `+0xC0` | `u32` | dword0C0 | the low half of the qword message 1 stores as 0 (`0x0035DC36`), the store that also clears `+0xC4`; no instruction reads it |
+| `+0xC4` | `u32` | shownCharacter | the controlled character's handle `0x022C806C` as the watcher last saw it: each tick (message 2), while a current party record exists (`0x022C8078`), it compares `0x022C806C` with this (`0x0035DB49`-`0x0035DB6A`); on a change it drops the old handle's mark when there was one (`0x00290940`, `0x0035DB70`) and stores the new handle (`0x0035DB75`) with its target. 0 on message 1 (`0x0035DC36`) |
+| `+0xC8` | `u32` | shownTarget | the current party record's target, its `+0x08` (`0x0035DB65`), as last seen: stored with a new character (`0x0035DB7B`) or when only the target changed (`0x0035DB9F`-`0x0035DBAB`); 0 on message 1 (`0x0035DC3D`). For a target that is set, is not the character, and for which `0x00320CA0` answers 1 with bits 0-1 of its word clear, it asks for a `+0x10F30` mark from the character to the target (`0x00290300`, which runs `0x00291010`; `0x0035DBB9`-`0x0035DBD5`); otherwise it drops the character's mark (`0x00290940`, `0x0035DBEC`) |
+| `+0xCC` | `u8[4]` | pad0CC | accessed by no instruction of the procedure or of the cell's creator; nothing fixes its width |
+
 ## State
 
 | Global | Type | Start | Meaning | Set by | Read by |

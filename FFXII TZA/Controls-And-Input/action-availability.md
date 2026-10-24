@@ -164,6 +164,19 @@ which copies each one; the table names these three the readers above.
 No other instruction reaches the table. The table's address is taken by `0x002E1020`, `0x002E1C20`, `0x002E1CA0` and
 `0x002E1CD0`, and `0x0215F1D0` by `0x002E09A0` and `0x002E0FA0`.
 
+### The Start handler's gate
+
+The Start handler `0x002287D0` goes on to its arms when Start is newly pressed (pressed set 0 bit 3,
+`0x0022889A`-`0x002288AB`), when `0x003641F0` or `0x00227D70` asks for an arm, or when the global below is not 0
+(`0x002288AE`-`0x002288BD`). After it calls `0x00228700`, which answers 1 when it builds the event-skip task, it stores 0
+there on a non-zero answer and keeps the old value otherwise (`0x00228916`-`0x00228922`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01FD46F8` | `u32` | 0 | stays 0: it lies in the zero-initialised tail of `.data` (past the section's `0x18E400` file bytes), and its one store writes 0 or the value already there, so the test at `0x002288AE` never opens the arms by it; the arms open on a new Start press or an arm request | `0x002287D0`, 0 or its own value (`0x00228922`) | `0x002287D0` (`0x002288AE`, `0x00228916`) |
+
+No other instruction reaches `0x01FD46F8`; only `0x00228922` stores to it.
+
 ## Modding notes
 
 - To keep a menu shut from a script, `setmenudisablestatus` owns row 1 bits 0-18; the other rows are rewritten by

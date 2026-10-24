@@ -433,6 +433,19 @@ pointers are on [Config screen](config-screen.md).
 
 No other instruction reaches either.
 
+### The Parameter Settings screen
+
+The Parameter Settings screen is the `0xC8`-byte widget at `0x0208E6C8` with procedure `0x00240AD0` (above). On message 1
+it decodes record `0x10` of the layout file at `[0x0209AC30] + 0x60` into its `+0x50` (`0x002432B0`,
+`0x00240C41`-`0x00240C59`); its two rows are painted by `0x00240A60` ([Config screen](config-screen.md)).
+
+`ParameterSettingsScreen` (`0xC8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00240AD0` |
+| `+0xC0` | `void*` | commandList | the two-row list (Max. LP, Max. Gil): the list widget node 0 of the screen's layout holds at its `+0x18`, taken on message 1 (`0x00240C9D`-`0x00240CA8`). Message 1 sizes it to 2 rows (`0x002D48C0`, `0x00240CAF`), makes this screen its `+0xD8` (`0x00240D2A`), installs the row painter `0x00240A60` at its `+0x120` (`0x00240D38`) and puts the cursor on row 0 (`0x002D46F0`, `0x00240D46`); message 10 runs it (`0x002D3900`, `0x00240C34`). The list's notices read the cursor row from its `+0xF2`, `+0xF4`, `+0xEC`, `+0xEE` and `+0xED` (`0x00240B70`-`0x00240BA1`, `0x00240BD7`-`0x00240C08`): `0x8000` shows the row's help text from the pairs at `0x00914C60` (`0x00240C0A`-`0x00240C20`), `0x8001` on row 0 sets 99,999 LP (`0x00305A00`, `0x00240BBB`) and on row 1 99,999,999 gil (`0x003058B0`, `0x00240BAE`) |
+
 ### The leader choice window
 
 The party leader choice is the `0xC8`-byte widget at `0x022CA428` with procedure `0x0035D6B0`.
@@ -658,6 +671,41 @@ Accessory), and the description window at `+0x2F8`:
 | `+0xCC` | `i32` | width | 0 when the window opens (`0x00293059`); `0x002932F0`(n) writes n (`0x00293303`), which the Inventory uses to size the line to its widest category name (Inventory screen); read by no function |
 | `+0xD0` | `i32` | mode | the window's mode from the opening message's argument: 1 gives 6, 2 gives 4, 3 gives 5, 4 gives 7 and any other 1 (`0x0029305F`-`0x002930A3`); read by no function |
 | `+0xD4` | `u8[4]` | tail | read and written by no function; nothing fixes its width |
+
+### Static values of three screens
+
+The Party Menu's name panel `0x002C13C0` copies its layout record's fields into six globals on message 1
+(`0x002C1448`-`0x002C148C`). On message 4 it clips the current member's name to a rectangle at the panel's position plus
+these offsets and draws it, scrolling it while bit 16 of the name entry's `+0x18` is set (`0x002C1649`-`0x002C1756`).
+
+The language test `0x00254A10`, true for the `kr`, `ch`, `jp` and `cn` settings, picks one of two left offsets and one
+of two widths. `0x002C38B0` and `0x002C4720`, which build the name entries of the list and four-pane panels, set bit 16 of an
+entry when the name is wider than the width the same test picks, a signed 32-bit compare (`0x002C3A32`; `0x002C48B2`, `0x002C4A53`, `0x002C4CBD`, `0x002C4F2B`).
+The rectangle takes each value's low 16 bits; the text position takes the whole `i32`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x01E0CEBC` | `i32` | 128 | the name's left offset when the language test is true: the record's `+0x0C` (`i16`) | `0x002C13C0` (`0x002C1457`) | `0x002C13C0` (`0x002C1682`) |
+| `0x01E0CEC0` | `i32` | 116 | the left offset otherwise: the same `+0x0C` | `0x002C13C0` (`0x002C1461`) | `0x002C13C0` (`0x002C1675`) |
+| `0x01E0CEC4` | `i32` | 33 | the top offset, `+0x0E` (`i16`), also the text's y | `0x002C13C0` (`0x002C146B`) | `0x002C13C0` (`0x002C1697`, `0x002C1708`, `0x002C173D`) |
+| `0x01E0CEC8` | `i32` | 340 | the clip width when the language test is true: `+0x10` (`u16`) | `0x002C13C0` (`0x002C1475`) | `0x002C13C0` (`0x002C16B8`); `0x002C38B0` (`0x002C39B0`); `0x002C4720` (`0x002C483F`) |
+| `0x01E0CECC` | `i32` | 352 | the clip width otherwise: `+0x10` less 12 | `0x002C13C0` (`0x002C1482`) | `0x002C13C0` (`0x002C16A8`); `0x002C38B0` (`0x002C399D`); `0x002C4720` (`0x002C4828`) |
+| `0x01E0CED0` | `i32` | 55 | the clip height, `+0x12` (`u16`) | `0x002C13C0` (`0x002C148C`) | `0x002C13C0` (`0x002C16B1`) |
+
+The record is `[[panel + 0x60] + 0x100]` (`0x002C1448`-`0x002C144C`).
+
+For the Equip screen's Optimise preview, `0x003FE720` with mode `0x402` stores the set `0x002F9F20` builds: slots 0-3 as
+eight bytes at `0x02B5F210` (`0x003FE82E`) and slot 4 in the global below. The equipment row painter `0x003FF1F0` reads the
+word of slot *i* of `0x02B5F210` for row *i* while its pane's `+0x178` is `0x402`, and shows that item in place of the
+worn one when they differ (`0x003FF25A`-`0x003FF2BB`).
+
+The menu background gradient `0x002CE7E0`, on message 18, tests the global `0x02CA972C`. When it is not 0 it clears it
+and has `0x00577BD0` send message 16 to the Clan Primer widget at `[0x02CA9730]` (`0x002CE848`-`0x002CE85A`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02B5F218` | `u16` | 0 | the Optimise set's accessory, slot 4; `0xFFFF` for none | `0x003FE720` (`0x003FE839`) | `0x003FF1F0`, row 4 (`0x003FF280`, through `0x02B5F210` + 2 × row) |
+| `0x02CA972C` | `u32` | 0 | stays 0: the one store, `0x002CE854`, writes 0, so the gradient never sends the message | `0x002CE7E0`, 0 (`0x002CE854`) | `0x002CE7E0` (`0x002CE848`) |
 
 ## Columns
 

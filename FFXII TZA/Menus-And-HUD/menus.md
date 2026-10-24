@@ -172,6 +172,19 @@ No shipped code path or script posts ids 4, 7, 8, 9, 13, 14, 16, 20, 21 and 23. 
 body `0x0050DAB0`, which posts any id its script passes (`0x0050DAC4`); no script calls it. Ids 15 and 18 are reached only by
 selectors 3 and 1, which no script calls.
 
+## State
+
+The script menu host `0x002D70F0`, which `0x002D7070` builds for the parameters `0x40` and `0x41` above,
+marks itself open in the global below. The Party Menu's picture loader `0x002CEB40` tests it when it opens: while the
+host is open it sets bit 21 of row 1 through `0x002E1C20(1, 21)` (`0x002CEDD4`-`0x002CEDE5`), which blocks the pause
+menu ([Action availability](../Controls-And-Input/action-availability.md)).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209E66C` | `u32` | 0 | 1 while the script menu host is open | `0x002D70F0`: 1 on message 1 (`0x002D7361`), 0 on message 15 (`0x002D713A`) | `0x002CEB40`, on message 1 (`0x002CEDD4`) |
+
+No other instruction names `0x0209E66C`.
+
 ## Modding notes
 
 - A script opens a screen with `openfullscreenmenu_48d(selector, parameter)`; bit 15 on the selector skips the fade.

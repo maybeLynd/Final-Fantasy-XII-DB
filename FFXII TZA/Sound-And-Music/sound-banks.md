@@ -76,6 +76,31 @@ their own number, and `se007` by id 1. The index file is read into a block (`0x0
 `se002`. Their callbacks `0x003A1390`, `0x003A1330` and `0x003A12D0` register each one (`0x003A1650`), keep its handle at
 `0x02AEF3FC`, `0x02AEF400` or `0x02AEF404`, and mark the record permanent.
 
+The table holds 66 entries of the record layout, `0x02AEEDC0`-`0x02AEF3EF`: the 64 records, then two list heads.
+
+- The start-up loop sets entry *r* to next *r* + 1 (`0x003A1447`), previous *r* - 1 (`0x003A144E`), block -1
+  (`0x003A1454`), index *r* (`0x003A1443`) and generation and use count 0 (`0x003A145B`, `0x003A1457`), while *r* is below
+  `0x42`, a signed 32-bit compare (`0x003A1463`).
+- Entry 64 heads the list of registered records, sorted by block. `0x003A0C90` starts its walk at its `+0x00`
+  (`0x003A0CA0`) and, for a block lower than every registered one, links the new record after it, taking its index
+  `+0x08`, 64, as the new record's previous link (`0x003A0CB1`, `0x003A0CFF`, `0x003A0D66`).
+- Entry 65 heads the free list. Its `+0x00` is `0x02AEF3D8`, and `0x003A0F80` gives a freed record its index `+0x08`,
+  65, as the previous link (`0x003A101B`, `0x003A1039`).
+- The start-up stores below close both lists, so records 0-63 form the free list and the block list is empty.
+- A new block takes the free list's first record. With the free list empty `0x003A0C90` answers -1
+  (`0x003A0D2C`-`0x003A0D35`), so at most 64 blocks are registered at once.
+- Every link is an `i16` read sign-extended, and a negative link ends a walk.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x02AEEDC2` | `i16` | 0 | record 0's previous link: 65 at start-up, the free-list head | `0x003A13F0`: -1 (`0x003A144E`), then `0x41` (`0x003A1497`); the link updates, when record 0 is the record or a neighbour: `0x003A0C90` (`0x003A0D96`, `0x003A0DA3`), `0x003A0F80` (`0x003A1039`, `0x003A1047`), `0x003A1750` (`0x003A17AE`, `0x003A17B9`) | `0x003A1750` (`0x003A175C`), when record 0 is unlinked |
+| `0x02AEF3A8` | `i16` | 0 | record 63's next link: -1 at start-up, the end of the free list | `0x003A13F0`: 64 (`0x003A1447`), then -1 (`0x003A1468`); the link updates: `0x003A0C90` (`0x003A0D9B`, `0x003A0DA8`), `0x003A0F80` (`0x003A103E`), `0x003A1750` (`0x003A17A5`, `0x003A17B6`) | `0x003A0C90` (`0x003A0CD4`, `0x003A0D63`); `0x003A1750` (`0x003A1764`) |
+| `0x02AEF3C0` | `i16` | 0 | the block list's first record, entry 64's next link; -1 while no block is registered | `0x003A13F0`: 65 (`0x003A1447`), then -1 (`0x003A1481`); `0x003A0C90`, a new first record (`0x003A0DA8`); `0x003A1750`, when the first record is unlinked (`0x003A17A5`) | `0x003A0C90` (`0x003A0CA0`, which stops on a negative value at `0x003A0CBA`; `0x003A0D63`) |
+| `0x02AEF3C2` | `i16` | 0 | entry 64's previous link: -1 at start-up | `0x003A13F0`: 63 (`0x003A144E`), then -1 (`0x003A1474`) | no instruction names it; `0x003A1750` reads the previous link only of the record it unlinks, the free list's first record (`0x003A0D5E`) or a record named by a handle (`0x003A100E`) |
+| `0x02AEF3DA` | `i16` | 0 | entry 65's previous link: -1 at start-up | `0x003A13F0`: 64 (`0x003A144E`), then -1 (`0x003A148B`) | no instruction names it; as for `0x02AEF3C2` |
+
+`0x003A13F0` is called once, by the boot `0x00266D10` (`0x00266DF0`).
+
 ### Sound ids
 
 A sound id is `registry slot << 9 + sound slot`. `0x003A1180(slot)` builds it from the current block handle at

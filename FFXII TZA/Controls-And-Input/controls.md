@@ -474,6 +474,62 @@ The toggle and the set are skipped while bit 18 of `0x002E0FA0()` is set (`0x003
 No other instruction reaches these globals. `0x00195DF0` and `0x00198B60` reach records 2-4 relative to the image base,
 at the sites listed.
 
+### Where a game frame reads the history
+
+Each poll advances byte `+0x00` of the channel record, the ring slot of the newest frame, by 1 modulo 16
+(`0x0035FCE0`-`0x0035FCEE`, `0x0035FDEA`-`0x0035FDF5`). Once per game frame `0x0035FF90` catches the read position `+0x01` up
+to it:
+
+1. With `0x01FD4A84` set it stores the number of polls since the last game frame at `+0x08`: `+0x00` less `+0x01`,
+   taken 16 lower first when `+0x01` is the larger (both bytes zero-extended, `0x00360030`).
+2. When that count is above `0x00184950()`, the number of 1/60 s periods in a game frame (a signed 32-bit compare,
+   `0x00360054`), the count becomes that number and `+0x01` moves on by it only; the remaining polls are taken by the
+   next game frame (`0x00360052`-`0x00360062`).
+3. With `0x01FD4A84` clear the count is 0 and `+0x01` keeps its value.
+
+When `0x00408B00()` answers 1 it does this for both channels through `rdi` = `0x022CAE98` + channel × `0x294`
+(`0x0035FFC0`-`0x00360007`); otherwise for channel 0 only, by the addresses.
+
+The history readers take a channel and a step `k` of 0 or less and read slot `+0x01` + `k` modulo 16. `0x002498B0`
+and `0x0036FDF0` walk `k` from 1 - `+0x08` to 0, so they OR exactly the polls the game frame has caught up with
+(`0x0024992D`-`0x002499A4`, `0x0036FE55`-`0x0036FEB8`).
+
+`0x0036FDF0` keeps a second copy of set 0's words for each channel. It ORs the polls' repeat, pressed and released
+words (frame `+0x08`, `+0x0C`, `+0x10`) into the globals below, then passes each through the channel's button map,
+sixteen signed bytes at record `+0x284` that `0x0035F260` sets to 0-15 (`0x0035F3C3`-`0x0035F3DB`): bit i of the result
+is bit `map[i]`, and a negative entry drops the bit (`0x0035EDE0`). The mapped words go to `0x02AD9E08`, `0x02AD9E0C` and
+`0x02AD9E10` + 2 × channel (`0x0036FEEA`, `0x0036FF01`, `0x0036FF30`). The held word, frame `+0x04`, goes the same way
+through `0x02AD9E20`.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022CAE91` | `u8` | 0 | channel 0's read position, the ring slot of the newest poll the game frame has taken | `0x0035F260`: the record cleared (`memset`, `0x0035F2F2`), then 0 (`0x0035F30F`); `0x0035FF90` (`0x00360065`; `0x0035FFFA` in the two-channel loop) | `0x0035FF90` (`0x00360020`; `0x0035FFC7`); the history readers, through `0x022CAE90` + channel × `0x294`: `0x0035EE50` (`0x0035EE6F`), `0x0035EEB0` (`0x0035EED5`), `0x0035EF10` (`0x0035EF2F`), `0x0035EF70` (`0x0035EF8F`), `0x0035EFD0` (`0x0035EFEF`), `0x0035F030` (`0x0035F04F`), `0x0035F090` (`0x0035F0AF`), `0x0035F150` (`0x0035F16C`), `0x0035F1A0` (`0x0035F1BF`), `0x0035F200` (`0x0035F21F`) |
+| `0x022CAE98` | `u8` | 0 | channel 0's poll count for the current game frame, at most `0x00184950()` | `0x0035F260`, the record cleared (`0x0035F2F2`); `0x0035FF90` (`0x00360040`, `0x0036005A`; `0x0035FFE1`, `0x0035FFF3` in the loop) | `0x0035FF90` (`0x0036004B`; `0x0035FFE8`); `0x0035F130(channel)` (`0x0035F141`), called by `0x002498B0` (`0x00249928`) and `0x0036FDF0` (`0x0036FE46`) |
+| `0x02AD9E24` | `u16` | 0 | channel 0's repeat word of set 0, ORed over the game frame's polls before the button map | `0x0036FDF0`: 0 with channel 1's word in a 32-bit store (`0x0036FE14`), the ORs (`0x0036FE8A`); `0x0036FD90(channel)`, 0 (`0x0036FDA9`) | `0x0036FDF0` (`0x0036FEC9`), into `0x02AD9E08` |
+| `0x02AD9E28` | `u16` | 0 | channel 0's pressed word of set 0, the same way | `0x0036FDF0`: 0 with channel 1's word (`0x0036FE1E`), the ORs (`0x0036FE9B`); `0x0036FD90`, 0 (`0x0036FDB1`) | `0x0036FDF0` (`0x0036FEE0`), into `0x02AD9E0C` |
+| `0x02AD9E2C` | `u16` | 0 | channel 0's released word of set 0, the same way | `0x0036FDF0`: 0 with channel 1's word (`0x0036FE28`), the ORs (`0x0036FEAC`); `0x0036FD90`, 0 (`0x0036FDB9`) | `0x0036FDF0` (`0x0036FEF7`), into `0x02AD9E10` |
+
+`0x0036FD90(channel)` clears the channel's three ORed words and its mapped words at `0x02AD9E08`-`0x02AD9E10`. It sign-extends
+the channel and doubles it, and the result must be below 4 as an unsigned 64-bit compare, so only channels 0 and 1
+pass; any other value ends in the range-check failure (`0x0036FD9A`, `0x0036FDDE`). The field tick `0x00314020` calls
+`0x0036FD90(0)` when `0x00228480()` answers 0 (`0x003142B0`-`0x003142B6`).
+
+No other instruction reaches `0x02AD9E24`-`0x02AD9E2F`, and the two record bytes are reached only through the record
+addresses at the sites listed.
+
+### The Party Menu's wheel stop
+
+`0x0027E810(notches)` is the stop of `0x002D0580` for the Party Menu's member list, the widget at `[0x0209AC30] + 0xF8`, whose
+rows are the pointers at `+0xC0`, cursor `+0x117` (`i8`) and last row `+0x118` (`i8`); a row is shown when bit 0 of
+its `+0x40` is set. The member list's input step `0x00284EC0` calls it once per notch and stops moving when it answers
+1 (`0x00285140`-`0x0028515B`). A positive notch total moves up.
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x0209AC28` | `u32` | 0 | 1 while the stop is armed. It is armed when the cursor is on the shown row after the first shown row and the wheel turns up (`0x0027E937`), or on the shown row before the last shown row and it turns down (`0x0027E9AE`). While it is armed, the cursor is on row 0 turning up or on the last shown row turning down, and the wheel is still turning (`0x001E0E30`), `0x0027E810` answers 1 (`0x0027E8A6`-`0x0027E8AB`); with the cursor anywhere else it disarms (`0x0027E8B2`) | `0x0027E810` (`0x0027E8B2`, `0x0027E937`, `0x0027E9AE`) | `0x0027E810` (`0x0027E82D`) |
+
+No other instruction reaches `0x0209AC28`.
+
 ## Modding notes
 
 - A pad code (11-27) written into keymap.ini is polled like a key, but the six controls above ignore it.

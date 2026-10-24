@@ -76,7 +76,7 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 | `count` | the count or gil amount, or the expression that computes it |
 | `item_source` | where the item comes from, as in the table above |
 | `through` | for a routine give, the routine actor and function the caller requested; otherwise `-` |
-| `explanation` | where the give happens, as map name (region): see below |
+| `explanation` | where the give or take happens, as map name (region): see below; a give reads "Given in", a take (`subitem`, `subgill`) "Taken in" |
 
 ### Where a script is
 

@@ -1,0 +1,13 @@
+script	kind	place	actors	functions	rows	shared_actors
+mnt_a01	zone	Southern Skirts (Mosphoran Highwaste), field 209	22	35	10	0
+mnt_a02	zone	Summit Path (Mosphoran Highwaste), field 210	29	47	14	0
+mnt_b01	zone	Rays of Ashen Light (Mosphoran Highwaste), field 215	27	52	13	0
+mnt_b02	zone	Empyrean Way (Mosphoran Highwaste), field 216	27	40	12	0
+mnt_b03	zone	Skyreach Ridge (Mosphoran Highwaste), field 217	24	43	11	0
+mnt_b04	zone	Trail of Sky-flung Stone (Mosphoran Highwaste), field 218	28	67	11	0
+mnt_b05	zone	Northern Skirts (Mosphoran Highwaste), field 219	28	43	12	0
+mnt_b06	zone	Halny Crossing (Mosphoran Highwaste), field 220	12	19	5	0
+mnt_c01	zone	Empyrean Seat (Mosphoran Highwaste), field 223	10	15	2	0
+mnt_d01	zone	Babbling Vale (Mosphoran Highwaste), field 1151	88	329	63	5
+mnt_c0100	scene	scene, event 130	12	89	0	0
+mnt_c0101	scene	scene, event 131	15	76	13	0

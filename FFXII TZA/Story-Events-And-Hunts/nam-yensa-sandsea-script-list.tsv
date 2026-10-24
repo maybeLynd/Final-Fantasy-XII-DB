@@ -1,0 +1,13 @@
+script	kind	place	actors	functions	rows	shared_actors
+enw_a01	zone	The Urutan-Yensa Sea (Nam-Yensa Sandsea), field 390	22	32	9	0
+enw_a02	zone	Withering Shores (Nam-Yensa Sandsea), field 391	32	78	13	1
+enw_a03	zone	Augur Hill (Nam-Yensa Sandsea), field 392	29	65	13	0
+enw_a04	zone	Yellow Sands (Nam-Yensa Sandsea), field 393	34	72	15	0
+enw_a05	zone	The Sandscale Bank (Nam-Yensa Sandsea), field 394	28	116	9	5
+enw_b01	zone	Demesne of the Sandqueen (Nam-Yensa Sandsea), field 398	29	42	12	0
+enw_b02	zone	Trail of Fading Warmth (Nam-Yensa Sandsea), field 399	24	73	8	0
+enw_b03	zone	Simoon Bluff (Nam-Yensa Sandsea), field 400	27	41	13	0
+enw_c01	zone	Withering Shores (Nam-Yensa Sandsea), field 1153	22	85	8	0
+enw_a0580	scene	scene, event 259	3	11	1	0
+enw_c0100	scene	scene, event 328	16	104	5	0
+enw_c0101	scene	scene, event 329	23	106	0	0

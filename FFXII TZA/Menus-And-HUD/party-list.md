@@ -382,6 +382,41 @@ The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1
 | `+0xF6` | `u8` | maskHold | set to 1 every tick the mask widget [`0x0209C610`] exists (`0x002A24B0`); once the mask is gone the tick counts it down (`0x002A24BC`-`0x002A24C9`) and slides the window back to its layout y only after it is 0 |
 | `+0xF7` | `u8` | bottomAnchor | from the creation record's `+0x11` (`0x002A259F`; 0 from `0x002A1D40`): non-zero places the window at the screen height `0x1C0` less its height less `0x002C9430`(`0x81`) plus 12 when it opens (`0x002A209F`-`0x002A20F4`), and with `0x002C9430`(1) each tick while it is not running (`0x002A23EB`-`0x002A2426`) |
 
+### The location panel
+
+The location panel is the `0xF0`-byte widget at `0x0209C300` with procedure `0x0029C530` that `0x00297100` shows instead
+of the list (The list and its rows above). On message 1 it decodes record `0x14` of the layout file at
+`[0x0209AC30] + 8` into its `+0x50` (`0x002432B0`, `0x0029C589`-`0x0029C5B5`) and fills three nodes:
+
+- node 3, the name of the field's region (`0x003778B0`): of the transition field when gate `0x5E` answers non-zero,
+  of the current field otherwise (`0x0029C602`-`0x0029C64A`);
+- node 4, the area name of the current field (`0x00377B60`, `0x0029C65A`-`0x0029C679`);
+- node 5, the frame `0x002543D0` gives for the field's group (`0x0029C699`-`0x0029C6A6`).
+
+It keeps a copy of the two text nodes' colour and rectangle, which nothing reads back.
+
+`LocationPanel` (`0xF0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0029C530` |
+| `+0xC0` | `u32` | regionTextColour | the colour (`+0x24`) of node 3, the text node that gets the region name, copied on message 1 (`0x0029C6C1`-`0x0029C6C9`); no instruction reads it back |
+| `+0xC4` | `i16` | regionTextX | node 3's x (`+0x0C`), copied on message 1 (`0x0029C6CF`-`0x0029C6D3`); no instruction reads it back |
+| `+0xC6` | `i16` | regionTextY | node 3's y (`+0x0E`), copied on message 1 (`0x0029C6DA`-`0x0029C6DE`); no instruction reads it back |
+| `+0xC8` | `u16` | regionTextWidth | node 3's width (`+0x10`), copied on message 1 (`0x0029C6E5`-`0x0029C6E9`); no instruction reads it back |
+| `+0xCA` | `u16` | regionTextHeight | node 3's height (`+0x12`), copied on message 1 (`0x0029C6F0`-`0x0029C6F4`); no instruction reads it back |
+| `+0xCC` | `u8[4]` | pad0CC | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
+| `+0xD0` | `u32` | areaTextColour | the colour (`+0x24`) of node 4, the text node that gets the area name, copied on message 1 (`0x0029C6FB`-`0x0029C706`); no instruction reads it back |
+| `+0xD4` | `i16` | areaTextX | node 4's x (`+0x0C`), copied on message 1 (`0x0029C70C`-`0x0029C710`); no instruction reads it back |
+| `+0xD6` | `i16` | areaTextY | node 4's y (`+0x0E`), copied on message 1 (`0x0029C717`-`0x0029C71B`); no instruction reads it back |
+| `+0xD8` | `u16` | areaTextWidth | node 4's width (`+0x10`), copied on message 1 (`0x0029C722`-`0x0029C726`); no instruction reads it back |
+| `+0xDA` | `u16` | areaTextHeight | node 4's height (`+0x12`), copied on message 1 (`0x0029C72D`-`0x0029C734`); no instruction reads it back |
+| `+0xDC` | `u8[4]` | pad0DC | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
+| `+0xE0` | `u16` | word0E0 | set to 0 at the end of message 1 (`0x0029C755`); no instruction reads it |
+| `+0xE2` | `u8[4]` | pad0E2 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
+| `+0xE6` | `u16` | runBits | bit 3 is set when the opening run starts (message 14, `0x0029C579`) and bit 2 when closing begins (message 15, `0x0029C569`); `0x00297100` clears bits 0-1 when it finds the panel already built (`0x00297132`-`0x00297137`). No instruction tests the word |
+| `+0xE8` | `u8[8]` | pad0E8 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
+
 ## State
 
 The target window's pair of counters is the two `0x58`-byte records `0x0209C240` (HP) and `0x0209C298` (MP). The
@@ -401,6 +436,38 @@ the `0xC0` bytes from `0x0209C240` (`0x0029626F`).
 
 No other instruction reaches these three. The two records' addresses are taken by `0x00296260`, `0x00296360` and
 `0x002962C0` only.
+
+### The rebuild's counts and lists
+
+`0x0035BC50(arg)` rebuilds the party block `0x022C8060` from the four party members (`0x00320040`, `0x0035BDB0`-`0x0035BE69`).
+It first clears the member count `0x022C8064` and the next six bytes with one 8-byte store (`0x0035BD6D`). A member is
+listed when its type `+0x60` is not negative and its handle `+0x04` is not 0. The block is also cleared whole by
+`0x0035BB70` (`0x348` bytes, `0x0035BB85`) and `0x0035C560` (`0x23C8` bytes, `0x0035C573`).
+
+The rebuild also builds two lists with the list builder `0x0031EB20`
+([Target selection](../Battle-Actions/target-selection.md)): code `0x1A` into `0x022C83F0` (count) and `0x022C83F8`
+(entries), and code `0x14`, the living party-side units, into `0x022C8478` and `0x022C8480`, keeping only the units
+`0x00273800` passes (`0x0035BFC0`-`0x0035BFFE`). It copies each list header's default entry `+0x44` into the word after
+the count. `0x0031EB20` sets that entry to -1 on entry (`0x0031EB46`) and changes it only in its unit-slot walk for codes
+`0xC`-`0x10` (`0x0031F402`), so for these two codes it stays -1.
+
+With `arg` not 0, the rebuild opens the leader choice (request 3) by itself when all of these hold
+(`0x0035BEC1`-`0x0035BF2F`): `0x022C8068` is not 0, the leader's record has flag bit 6, some listed member has flag bits 1,
+2 and 6 clear, block bit 2 is clear, a listed member has flag bit 0, and `0x02092730` is 0. A refused request clears the
+two bits it set (`0x0035BF38`, `0x0035BF3F`). None of this runs when bit 3 of `0x022C83E8` is set and `0x00303EC0()`
+answers non-zero; the rebuild then calls `0x002547D0(1)` instead (`0x0035BE98`-`0x0035BEBC`).
+
+| Global | Type | Start | Meaning | Set by | Read by |
+|---|---|---|---|---|---|
+| `0x022C8066` | `u16` | 0 | the number of listed members whose flag bit 1 is clear (not types 7-25); a member with bit 1 instead puts its type in `0x022C8076` | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BE42`); `0x0035BB70`, `0x0035C560`, the block cleared | `0x0035BC50`, its own increment (`0x0035BE42`) |
+| `0x022C8068` | `u32` | 0 | the number of listed members whose flag bit 6 is clear, bit 6 clear being one of the leader choice's tests for a row (`0x00299BD0`) | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BDEF`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BDEF`; `0x0035BEC7`, where 0 skips the leader choice) |
+| `0x022C8070` | `u32` | 0 | the party leader's type, the byte at battle block `+0x5AA4` (`0x003271D0`), copied at each rebuild | `0x0035BC50` (`0x0035BD7C`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BE2A`, which finds the leader's record); `0x0035BAA0(type)` (`0x0035BAA6`), which does nothing for the type already stored and otherwise writes the new type to `+0x5AA4` (`0x00327850`) and rebuilds with `0x0035BC50(0)` |
+| `0x022C83F4` | `i32` | 0 | list `0x1A`'s default entry, -1 after every rebuild | `0x0035BC50` (`0x0035BCDB`); `0x0035C560` | no instruction names it |
+| `0x022C847C` | `i32` | 0 | list `0x14`'s default entry, -1 after every rebuild | `0x0035BC50` (`0x0035BF6E`); `0x0035C560` | no instruction names it |
+
+No other instruction names these five. The block's address is also returned by `0x0035D320` (21 call sites) and
+passed to `0x0035E5F0` by `0x0035D070`; the code at each call reads the block's `+0x0C`, `+0x14` and `+0x18` and the
+member records, and `0x0035E5F0` writes from `+0x4A0` on.
 
 ## Modding notes
 

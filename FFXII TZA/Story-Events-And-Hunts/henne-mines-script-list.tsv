@@ -1,0 +1,22 @@
+script	kind	place	actors	functions	rows	shared_actors
+hne_a01	zone	North Entrance (Henne Mines), field 712	22	78	10	0
+hne_a02	zone	Pithead Junction A (Henne Mines), field 713	24	76	10	0
+hne_a03	zone	Phase 1 Shaft (Henne Mines), field 714	32	84	7	1
+hne_a04	zone	Phase 1 Dig (Henne Mines), field 715	35	80	16	0
+hne_a05	zone	Crossover A (Henne Mines), field 716	24	63	8	0
+hne_a06	zone	Pithead Junction B (Henne Mines), field 717	28	75	7	0
+hne_a07	zone	Staging Shaft (Henne Mines), field 718	24	96	6	5
+hne_a08	zone	Crossover B (Henne Mines), field 719	20	55	4	0
+hne_b01	zone	Ore Separation (Henne Mines), field 722	16	67	10	0
+hne_c01	zone	Phase 2 Dig (Henne Mines), field 725	41	107	19	1
+hne_c02	zone	Crossover C (Henne Mines), field 726	30	77	13	0
+hne_c03	zone	Pithead Junction C (Henne Mines), field 727	23	67	8	0
+hne_c04	zone	Phase 2 Shaft (Henne Mines), field 728	32	82	17	0
+hne_d01	zone	Special Charter Shaft (Henne Mines), field 730	35	86	18	0
+hne_e01	zone	Special Charter Dig (Henne Mines), field 733	12	51	6	0
+hne_a0700	scene	scene, event 344	27	186	7	0
+hne_b0100	scene	scene, event 340	13	62	0	0
+hne_b0101	scene	scene, event 341	15	63	2	0
+hne_b0102	scene	scene, event 345	30	362	12	0
+hne_e0100	scene	scene, event 342	12	52	0	0
+hne_e0101	scene	scene, event 343	16	65	14	0

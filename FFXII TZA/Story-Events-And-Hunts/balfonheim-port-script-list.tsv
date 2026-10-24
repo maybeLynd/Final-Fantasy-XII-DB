@@ -1,0 +1,17 @@
+script	kind	place	actors	functions	rows	shared_actors
+var_a01	zone	Sea Breeze Lane (Balfonheim Port), field 823	48	263	21	5
+var_a02	zone	Gallerina Marketplace (Balfonheim Port), field 824	26	160	15	0
+var_a03	zone	Quayside Court (Balfonheim Port), field 825	32	216	21	0
+var_a04	zone	Saccio Lane (Balfonheim Port), field 826	27	185	13	1
+var_a05	zone	Chivany Breakwater (Balfonheim Port), field 827	25	131	12	1
+var_a06	zone	Canal Lane (Balfonheim Port), field 828	21	130	15	1
+var_a11	zone	Beruny's Armaments (Balfonheim Port), field 833	13	76	5	0
+var_a12	zone	Odo's Technicks (Balfonheim Port), field 834	13	76	6	0
+var_a13	zone	Port Villa (Balfonheim Port), field 835	15	77	4	0
+var_a14	zone	The Whitecap (Balfonheim Port), field 836	18	100	15	1
+var_a15	zone	Port Villa (Balfonheim Port), field 837	18	90	5	0
+var_b01	zone	Aerodrome (Balfonheim Port), field 797	31	153	19	5
+var_z01	zone	var_z01 (Balfonheim Port), field 918	8	19	1	1
+var_z0100	scene	scene, event 393	22	276	64	0
+var_z0101	scene	scene, event 394	23	316	26	0
+var_z0102	scene	scene, event 395	21	267	33	0
