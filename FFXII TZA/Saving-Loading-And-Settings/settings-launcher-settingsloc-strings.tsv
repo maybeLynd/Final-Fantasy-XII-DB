@@ -1,0 +1,289 @@
+language	line	element	selector	text	read_by	what_it_sets
+jp	4	LanguageName		日本語	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+jp	5	Font		MS PGothic	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+jp	6	ConfigTitle		ゲーム設定	ConfigForm_Load	the window title
+jp	7	msg_Caption		エラー	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+jp	8	msg_Content		FINAL FANTASY Ⅻ THE ZODIAC AGEに関連するプログラムが既に実行されています。	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+jp	9	msg_WarningCaption		入力デバイス設定	MsgForm.OnPaint	the title of the reset confirmation box
+jp	10	msg_WarningContent		入力デバイス設定をリセットして初期状態に戻しますか？	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+jp	11	msg_ErrorDiskFull		ディスクの空き容量が足りません。 FINAL FANTASY Ⅻ THE ZODIAC AGEのデータをセーブするには100KB以上の容量が必要です。	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+jp	12	Text	Control=label_Video	グラフィック	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+jp	13	Text	Control=label_DisplayAdapter	グラフィックアダプター	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+jp	14	Text	Control=label_Resolution	解像度	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+jp	15	Text	Control=label_ScreenMode	画面モード	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+jp	16	Text	Control=label_VideoQualitySetting	グラフィッククオリティ	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+jp	17	Text	Control=label_FrameLimit	描画制限	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+jp	18	Text	Control=label_Vsync	垂直同期	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+jp	19	Text	Control=label_ResetDeviceSetting	入力デバイス設定	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+jp	20	Text	Control=button_reset	初期設定に戻す	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+jp	21	Text	Control=button_ok	OK	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+jp	22	Text	Control=button_cancel	キャンセル	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+jp	23	Text	Control=button_apply	適用	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+jp	24	Text	Key=SM_WINDOW	ウィンドウ	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+jp	25	Text	Key=SM_FULLSCREEN	フルスクリーン	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+jp	26	Text	Key=SM_BORDERLESS	仮想フルスクリーン	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+jp	27	Text	Key=VQ_LOW	速度重視	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+jp	28	Text	Key=VQ_MEDIUM	標準	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+jp	29	Text	Key=VQ_HIGH	画質重視	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+jp	30	Text	Key=VQ_CUSTOM	カスタム	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+jp	31	Text	Key=FL_THIRTYFRAME	30フレーム	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+jp	32	Text	Key=FL_SIXTYFRAME	60フレーム	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+jp	33	Text	Key=VSYNC_ON	オン	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+jp	34	Text	Key=VSYNC_OFF	オフ	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+jp	35	Text	Key=VSYNC_AUTO	適応	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+en	38	LanguageName		English	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+en	39	Font		Microsoft Sans Serif	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+en	40	ConfigTitle		Game Settings	ConfigForm_Load	the window title
+en	41	msg_Caption		Error	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+en	42	msg_Content		A program related to FINAL FANTASY Ⅻ THE ZODIAC AGE is already running.	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+en	43	msg_WarningCaption		Controls	MsgForm.OnPaint	the title of the reset confirmation box
+en	44	msg_WarningContent		Revert all control settings to default?	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+en	45	msg_ErrorDiskFull		Insufficient disk space. In order to create a save game, at least 100KB of free space is required.	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+en	46	Text	Control=label_Video	Video	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+en	47	Text	Control=label_DisplayAdapter	Display Adapter	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+en	48	Text	Control=label_Resolution	Resolution	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+en	49	Text	Control=label_ScreenMode	Screen Mode	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+en	50	Text	Control=label_VideoQualitySetting	Video Quality	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+en	51	Text	Control=label_FrameLimit	Framerate Limits	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+en	52	Text	Control=label_Vsync	Vsync	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+en	53	Text	Control=label_ResetDeviceSetting	Controls	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+en	54	Text	Control=button_reset	Default	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+en	55	Text	Control=button_ok	OK	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+en	56	Text	Control=button_cancel	Cancel	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+en	57	Text	Control=button_apply	Apply	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+en	58	Text	Key=SM_WINDOW	Windowed Mode	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+en	59	Text	Key=SM_FULLSCREEN	Full-Screen Mode	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+en	60	Text	Key=SM_BORDERLESS	Borderless Mode	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+en	61	Text	Key=VQ_LOW	Low	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+en	62	Text	Key=VQ_MEDIUM	Medium	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+en	63	Text	Key=VQ_HIGH	High	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+en	64	Text	Key=VQ_CUSTOM	Custom	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+en	65	Text	Key=FL_THIRTYFRAME	30 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+en	66	Text	Key=FL_SIXTYFRAME	60 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+en	67	Text	Key=VSYNC_ON	On	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+en	68	Text	Key=VSYNC_OFF	Off	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+en	69	Text	Key=VSYNC_AUTO	Adaptive	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+cn	72	LanguageName		简体中文	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+cn	73	Font		Microsoft YaHei	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+cn	74	ConfigTitle		游戏设置	ConfigForm_Load	the window title
+cn	75	msg_Caption		错误	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+cn	76	msg_Content		相同的FINAL FANTASY Ⅻ THE ZODIAC AGE相关程序已经在运行。	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+cn	77	msg_WarningCaption		操控	MsgForm.OnPaint	the title of the reset confirmation box
+cn	78	msg_WarningContent		是否将一切操控设置恢复为默认？	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+cn	79	msg_ErrorDiskFull		磁盘空间不足。为了创建游戏存档，至少需要100KB的可用空间。	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+cn	80	Text	Control=label_Video	视频	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+cn	81	Text	Control=label_DisplayAdapter	显示适配器	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+cn	82	Text	Control=label_Resolution	分辨率	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+cn	83	Text	Control=label_ScreenMode	屏幕模式	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+cn	84	Text	Control=label_VideoQualitySetting	视频质量	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+cn	85	Text	Control=label_FrameLimit	帧速率限制	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+cn	86	Text	Control=label_Vsync	垂直同步	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+cn	87	Text	Control=label_ResetDeviceSetting	操控	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+cn	88	Text	Control=button_reset	默认	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+cn	89	Text	Control=button_ok	确定	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+cn	90	Text	Control=button_cancel	取消	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+cn	91	Text	Control=button_apply	应用	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+cn	92	Text	Key=SM_WINDOW	窗口模式	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+cn	93	Text	Key=SM_FULLSCREEN	全屏模式	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+cn	94	Text	Key=SM_BORDERLESS	无边框模式	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+cn	95	Text	Key=VQ_LOW	低	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+cn	96	Text	Key=VQ_MEDIUM	中	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+cn	97	Text	Key=VQ_HIGH	高	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+cn	98	Text	Key=VQ_CUSTOM	自定义	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+cn	99	Text	Key=FL_THIRTYFRAME	每秒30帧	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+cn	100	Text	Key=FL_SIXTYFRAME	每秒60帧	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+cn	101	Text	Key=VSYNC_ON	ON	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+cn	102	Text	Key=VSYNC_OFF	OFF	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+cn	103	Text	Key=VSYNC_AUTO	适应	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+ch	106	LanguageName		繁體中文	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+ch	107	Font		Microsoft YaHei	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+ch	108	ConfigTitle		遊戲設定	ConfigForm_Load	the window title
+ch	109	msg_Caption		錯誤	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+ch	110	msg_Content		相同的FINAL FANTASY Ⅻ THE ZODIAC AGE相關程式已經在運行。	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+ch	111	msg_WarningCaption		控制	MsgForm.OnPaint	the title of the reset confirmation box
+ch	112	msg_WarningContent		重設控制設定？	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+ch	113	msg_ErrorDiskFull		磁碟空間不足。為了建立儲存的遊戲，至少需要100KB 的可用空間。	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+ch	114	Text	Control=label_Video	影片	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+ch	115	Text	Control=label_DisplayAdapter	顯示配接器	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+ch	116	Text	Control=label_Resolution	解析度	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+ch	117	Text	Control=label_ScreenMode	螢幕模式	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+ch	118	Text	Control=label_VideoQualitySetting	影片品質	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+ch	119	Text	Control=label_FrameLimit	影格率限制	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+ch	120	Text	Control=label_Vsync	垂直同步	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+ch	121	Text	Control=label_ResetDeviceSetting	控制	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+ch	122	Text	Control=button_reset	預設值	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+ch	123	Text	Control=button_ok	確定	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+ch	124	Text	Control=button_cancel	取消	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+ch	125	Text	Control=button_apply	套用	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+ch	126	Text	Key=SM_WINDOW	視窗模式	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+ch	127	Text	Key=SM_FULLSCREEN	全螢幕模式	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+ch	128	Text	Key=SM_BORDERLESS	無邊框視窗	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+ch	129	Text	Key=VQ_LOW	低	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+ch	130	Text	Key=VQ_MEDIUM	中	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+ch	131	Text	Key=VQ_HIGH	高	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+ch	132	Text	Key=VQ_CUSTOM	自訂	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+ch	133	Text	Key=FL_THIRTYFRAME	30FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+ch	134	Text	Key=FL_SIXTYFRAME	60FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+ch	135	Text	Key=VSYNC_ON	ON	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+ch	136	Text	Key=VSYNC_OFF	OFF	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+ch	137	Text	Key=VSYNC_AUTO	適應	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+fr	140	LanguageName		Français	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+fr	141	Font		Microsoft Sans Serif	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+fr	142	ConfigTitle		Paramètres du jeu	ConfigForm_Load	the window title
+fr	143	msg_Caption		Erreur	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+fr	144	msg_Content		FINAL FANTASY Ⅻ THE ZODIAC AGE, ou programme relatif, est déjà en cours d'exécution.	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+fr	145	msg_WarningCaption		Commandes	MsgForm.OnPaint	the title of the reset confirmation box
+fr	146	msg_WarningContent		Rétablir tous les paramètres de commande par défaut ?	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+fr	147	msg_ErrorDiskFull		Espace disque insuffisant. Un minimum de 100Ko d'espace disque disponible est nécessaire pour créer des données de sauvegarde.	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+fr	148	Text	Control=label_Video	Vidéo	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+fr	149	Text	Control=label_DisplayAdapter	Adapteur d'affichage	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+fr	150	Text	Control=label_Resolution	Résolution	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+fr	151	Text	Control=label_ScreenMode	Mode d'affichage	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+fr	152	Text	Control=label_VideoQualitySetting	Qualité de l'image	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+fr	153	Text	Control=label_FrameLimit	Limite de la fréquence d'images	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+fr	154	Text	Control=label_Vsync	Synchronisation verticale	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+fr	155	Text	Control=label_ResetDeviceSetting	Commandes	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+fr	156	Text	Control=button_reset	Par défaut	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+fr	157	Text	Control=button_ok	OK	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+fr	158	Text	Control=button_cancel	Annuler	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+fr	159	Text	Control=button_apply	Confirmer	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+fr	160	Text	Key=SM_WINDOW	Fenêtré	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+fr	161	Text	Key=SM_FULLSCREEN	Plein écran	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+fr	162	Text	Key=SM_BORDERLESS	Sans bordure	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+fr	163	Text	Key=VQ_LOW	Basse	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+fr	164	Text	Key=VQ_MEDIUM	Moyenne	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+fr	165	Text	Key=VQ_HIGH	Élevée	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+fr	166	Text	Key=VQ_CUSTOM	Personnalisée	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+fr	167	Text	Key=FL_THIRTYFRAME	30 images par seconde	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+fr	168	Text	Key=FL_SIXTYFRAME	60 images par seconde	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+fr	169	Text	Key=VSYNC_ON	Oui	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+fr	170	Text	Key=VSYNC_OFF	Non	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+fr	171	Text	Key=VSYNC_AUTO	Adaptive	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+de	174	LanguageName		Deutsch	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+de	175	Font		Microsoft Sans Serif	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+de	176	ConfigTitle		Einstellungen	ConfigForm_Load	the window title
+de	177	msg_Caption		Fehler	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+de	178	msg_Content		Es läuft bereits eine Instanz des Programmes FINAL FANTASY Ⅻ THE ZODIAC AGE.	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+de	179	msg_WarningCaption		Steuerung	MsgForm.OnPaint	the title of the reset confirmation box
+de	180	msg_WarningContent		Alle Steuerungseinstellungen auf Standard zurücksetzen?	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+de	181	msg_ErrorDiskFull		Unzureichender Speicherplatz. Um einen Speicherstand anzulegen, werden mindestens 100KB freier Speicher benötigt.	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+de	182	Text	Control=label_Video	Video	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+de	183	Text	Control=label_DisplayAdapter	Grafikkarte	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+de	184	Text	Control=label_Resolution	Auflösung	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+de	185	Text	Control=label_ScreenMode	Bildschirmmodus	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+de	186	Text	Control=label_VideoQualitySetting	Videoqualität	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+de	187	Text	Control=label_FrameLimit	Bildratenlimitierung	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+de	188	Text	Control=label_Vsync	V-Sync	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+de	189	Text	Control=label_ResetDeviceSetting	Steuerung	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+de	190	Text	Control=button_reset	Standard	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+de	191	Text	Control=button_ok	OK	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+de	192	Text	Control=button_cancel	Abbrechen	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+de	193	Text	Control=button_apply	Übernehmen	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+de	194	Text	Key=SM_WINDOW	Im Fenster	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+de	195	Text	Key=SM_FULLSCREEN	Vollbildschirm	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+de	196	Text	Key=SM_BORDERLESS	Randloses Fenster	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+de	197	Text	Key=VQ_LOW	Niedrig	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+de	198	Text	Key=VQ_MEDIUM	Mittel	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+de	199	Text	Key=VQ_HIGH	Hoch	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+de	200	Text	Key=VQ_CUSTOM	Benutzerdefiniert	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+de	201	Text	Key=FL_THIRTYFRAME	30 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+de	202	Text	Key=FL_SIXTYFRAME	60 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+de	203	Text	Key=VSYNC_ON	an	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+de	204	Text	Key=VSYNC_OFF	aus	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+de	205	Text	Key=VSYNC_AUTO	Anpassungsfähig	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+it	208	LanguageName		Italiano	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+it	209	Font		Microsoft Sans Serif	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+it	210	ConfigTitle		Impostazioni di gioco	ConfigForm_Load	the window title
+it	211	msg_Caption		Errore	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+it	212	msg_Content		Un programma analogo a FINAL FANTASY Ⅻ THE ZODIAC AGE  è già in esecuzione.	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+it	213	msg_WarningCaption		Comandi	MsgForm.OnPaint	the title of the reset confirmation box
+it	214	msg_WarningContent		Vuoi ripristinare la configurazione dei comandi?	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+it	215	msg_ErrorDiskFull		Spazio su disco insufficiente. Per creare un file di salvataggio, servono almeno 100KB di spazio libero.	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+it	216	Text	Control=label_Video	Video	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+it	217	Text	Control=label_DisplayAdapter	Adattatore video	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+it	218	Text	Control=label_Resolution	Risoluzione	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+it	219	Text	Control=label_ScreenMode	Modalità schermo	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+it	220	Text	Control=label_VideoQualitySetting	Qualità video	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+it	221	Text	Control=label_FrameLimit	Limiti del framerate	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+it	222	Text	Control=label_Vsync	Sincronizzazione verticale	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+it	223	Text	Control=label_ResetDeviceSetting	Comandi	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+it	224	Text	Control=button_reset	Predefinito	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+it	225	Text	Control=button_ok	OK	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+it	226	Text	Control=button_cancel	Annulla	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+it	227	Text	Control=button_apply	Applica	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+it	228	Text	Key=SM_WINDOW	Modalità finestra	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+it	229	Text	Key=SM_FULLSCREEN	Modalità schermo intero	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+it	230	Text	Key=SM_BORDERLESS	Modalità senza bordi	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+it	231	Text	Key=VQ_LOW	Bassa	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+it	232	Text	Key=VQ_MEDIUM	Media	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+it	233	Text	Key=VQ_HIGH	Alta	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+it	234	Text	Key=VQ_CUSTOM	Personalizzata	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+it	235	Text	Key=FL_THIRTYFRAME	30 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+it	236	Text	Key=FL_SIXTYFRAME	60 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+it	237	Text	Key=VSYNC_ON	On	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+it	238	Text	Key=VSYNC_OFF	Off	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+it	239	Text	Key=VSYNC_AUTO	Adattabile	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+es	242	LanguageName		Español	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+es	243	Font		Microsoft Sans Serif	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+es	244	ConfigTitle		Ajustes del juego	ConfigForm_Load	the window title
+es	245	msg_Caption		Error	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+es	246	msg_Content		Ya se está ejecutando un programa relacionado con FINAL FANTASY Ⅻ THE ZODIAC AGE.	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+es	247	msg_WarningCaption		Controles	MsgForm.OnPaint	the title of the reset confirmation box
+es	248	msg_WarningContent		¿Quieres restablecer todos los controles predeterminados?	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+es	249	msg_ErrorDiskFull		Espacio insuficiente en el disco. Se necesitan al menos 100 KB de espacio libre para guardar la partida.	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+es	250	Text	Control=label_Video	Vídeo	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+es	251	Text	Control=label_DisplayAdapter	Adaptador de vídeo	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+es	252	Text	Control=label_Resolution	Resolución	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+es	253	Text	Control=label_ScreenMode	Modo de pantalla	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+es	254	Text	Control=label_VideoQualitySetting	Calidad de vídeo	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+es	255	Text	Control=label_FrameLimit	Límites de FPS	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+es	256	Text	Control=label_Vsync	Sincronización vertical	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+es	257	Text	Control=label_ResetDeviceSetting	Controles	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+es	258	Text	Control=button_reset	Predeterminado	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+es	259	Text	Control=button_ok	Aceptar	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+es	260	Text	Control=button_cancel	Cancelar	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+es	261	Text	Control=button_apply	Aplicar	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+es	262	Text	Key=SM_WINDOW	Modo ventana	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+es	263	Text	Key=SM_FULLSCREEN	Modo pantalla completa	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+es	264	Text	Key=SM_BORDERLESS	Modo sin bordes	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+es	265	Text	Key=VQ_LOW	Baja	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+es	266	Text	Key=VQ_MEDIUM	Media	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+es	267	Text	Key=VQ_HIGH	Alta	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+es	268	Text	Key=VQ_CUSTOM	Personalizada	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+es	269	Text	Key=FL_THIRTYFRAME	30 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+es	270	Text	Key=FL_SIXTYFRAME	60 FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+es	271	Text	Key=VSYNC_ON	Sí	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+es	272	Text	Key=VSYNC_OFF	No	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+es	273	Text	Key=VSYNC_AUTO	Adaptable	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)
+kr	276	LanguageName		한국어	nothing	no effect: SetLanguageComboBox, the one method named for a language list, has an empty body
+kr	277	Font		Gulim	ConfigForm_Load (ChangeControlFonts, DropDownWidth) and MsgForm.OnPaint	the font family of every control of the window, the adapter list's drop-down width and the message boxes (9.75 pt)
+kr	278	ConfigTitle		게임 설정	ConfigForm_Load	the window title
+kr	279	msg_Caption		오류	MsgForm.OnPaint and Program.SaveIniFile	the title of the second-copy error box and the disk-full box, and of the box that shows any other save error's message
+kr	280	msg_Content		동일한 FINAL FANTASY Ⅻ THE ZODIAC AGE 관련 프로그램이 이미 실행 중입니다.	MsgForm.OnPaint	the text of the box a second copy of the launcher shows before it exits (Program.IsSingleInstance)
+kr	281	msg_WarningCaption		컨트롤	MsgForm.OnPaint	the title of the reset confirmation box
+kr	282	msg_WarningContent		모든 컨트롤 설정을 기본 값으로 복원하시겠습니까?	MsgForm.OnPaint	the question in the reset confirmation box; OK deletes keymap.ini
+kr	283	msg_ErrorDiskFull		디스크 공간이 부족합니다. 저장 게임을 생성하려면 최소한100KB의 빈 공간이 필요합니다.	MsgForm.OnPaint	the text shown when saving GameSetting.ini fails with HRESULT 0x80070027 or 0x80070070
+kr	284	Text	Control=label_Video	비디오	ConfigForm_Load (Controls[name].Text)	the text of the Video heading
+kr	285	Text	Control=label_DisplayAdapter	디스플레이 어댑터	ConfigForm_Load (Controls[name].Text)	the text of the Display Adapter label
+kr	286	Text	Control=label_Resolution	해상도	ConfigForm_Load (Controls[name].Text)	the text of the Resolution label
+kr	287	Text	Control=label_ScreenMode	화면 모드	ConfigForm_Load (Controls[name].Text)	the text of the Screen Mode label
+kr	288	Text	Control=label_VideoQualitySetting	비디오 품질	ConfigForm_Load (Controls[name].Text)	the text of the Video Quality label
+kr	289	Text	Control=label_FrameLimit	프레임레이트 한도	ConfigForm_Load (Controls[name].Text)	the text of the frame-limit label
+kr	290	Text	Control=label_Vsync	수직동기	ConfigForm_Load (Controls[name].Text)	the text of the VSync label
+kr	291	Text	Control=label_ResetDeviceSetting	컨트롤	ConfigForm_Load (Controls[name].Text)	the text of the label beside the reset button
+kr	292	Text	Control=button_reset	기본 값	ConfigForm_Load (Controls[name].Text)	the text of the reset button
+kr	293	Text	Control=button_ok	확인	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the OK button; also the OK button of every message box (MsgForm.OnPaint)
+kr	294	Text	Control=button_cancel	취소	ConfigForm_Load (Controls[name].Text) and MsgForm.OnPaint	the text of the Cancel button; also the Cancel button of the reset and disk-full message boxes (MsgForm.OnPaint)
+kr	295	Text	Control=button_apply	적용	ConfigForm_Load (Controls[name].Text)	the text of the Apply button
+kr	296	Text	Key=SM_WINDOW	창 모드	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_WINDOW (design-time text Windowed Mode)
+kr	297	Text	Key=SM_FULLSCREEN	전체 화면 모드	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_FULLSCREEN (design-time text Full-Screen Mode)
+kr	298	Text	Key=SM_BORDERLESS	여백이 없는 창 모드	ConfigForm_Load (ComboboxItem.Value)	the item text in the Screen Mode box for ScreenMode=SM_BORDERLESS (design-time text Borderless Mode)
+kr	299	Text	Key=VQ_LOW	낮음	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_LOW (design-time text Low)
+kr	300	Text	Key=VQ_MEDIUM	중간	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_MEDIUM (design-time text Medium)
+kr	301	Text	Key=VQ_HIGH	높음	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box for Quality=VQ_HIGH (design-time text High)
+kr	302	Text	Key=VQ_CUSTOM	사용자 지정	ConfigForm_Load (ComboboxItem.Value)	the item text in the Video Quality box, listed only when the file already says VQ_CUSTOM for Quality=VQ_CUSTOM (design-time text Custom)
+kr	303	Text	Key=FL_THIRTYFRAME	30FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=30 (design-time text 30FPS)
+kr	304	Text	Key=FL_SIXTYFRAME	60FPS	ConfigForm_Load (ComboboxItem.Value)	the item text in the frame-limit box for FrameLimit=60 (design-time text 60FPS)
+kr	305	Text	Key=VSYNC_ON	켜기	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=On (design-time text on)
+kr	306	Text	Key=VSYNC_OFF	끄기	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Off (design-time text off)
+kr	307	Text	Key=VSYNC_AUTO	조정식	ConfigForm_Load (ComboboxItem.Value)	the item text in the VSync box for VSync=Adaptive (design-time text auto)

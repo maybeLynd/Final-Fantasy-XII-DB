@@ -216,6 +216,40 @@ When a map is entered, `0x001A7A50` hashes the map name (the text after the back
 (ForceNoOpaqueChrFirst) to `+0x419` of the map-art object; a miss sets both to 0. `0x001A7A50` does not
 use bytes 0 and 2.
 
+[`standard-file-formats-opt-rows.tsv`](standard-file-formats-opt-rows.tsv) lists the 459 rows in file order:
+the line as shipped, the map name and its hash, the four flags as `0x001A9050` keeps them, the zones whose
+map-art lookup uses the row, with their field ids, map names and regions, and what the row changes. What the
+rows do:
+
+- FlipMapOpaqueOrder reverses the order the map's solid scenery is drawn in. It is Yes on seven maps: North
+  End and Muthru Bazaar in Rabanastre, Sea Breeze Lane in Balfonheim Port, Platform 1 - Refinery in the
+  Ogir-Yensa Sandsea, Augur Hill in the Nam-Yensa Sandsea, the Fane of the Path in Eruyt Village, and the
+  Quietened Trace and Grand Bower of the Salikawood.
+- The map walk of `RenderMapOpaqueObj` (`0x001F3570`) passes `+0x418` to `0x0018B1B0` as its reverse flag
+  (`0x001F35FF`-`0x001F361B`): 0 runs the map entries of the render command list from the first filed to the
+  last, 1 from the last to the first.
+- ForceNoOpaqueChrFirst takes the characters' solid parts out of the map's opaque pass and leaves them to
+  the general opaque pass. It is Yes on nine maps: the six Royal Palace maps from the Cellar Stores to the
+  Garden Stairs (`rrp_a01` to `rrp_a06`), the Hall of the Light at Mt Bur-Omisace, the bridge of the
+  Dreadnought Leviathan (`rsn_z01`) and the Rabanastre map `rbn_x01`.
+- On a frame whose map pass posted `RenderMapOpaqueObj` (`0x001809A0`), its draw `0x001F3570` normally walks the
+  characters' opaque objects just before the map's (`0x001F3586`-`0x001F35D0`), and the draw of
+  `RenderOpaqueObj`, `0x001F36B0`, leaves them out (`0x001F36B9`-`0x001F36D7`). With `+0x419` set, `0x001F3594`
+  skips that walk and `0x001F36C7` lets `0x001F36B0` draw them where `RenderOpaqueObj` sits in the list (filed
+  by `0x0017F070` at `0x0022B38F`).
+- ForceMSAAOff (Yes on no map) and SMAA (Yes on all 459) change nothing: the entry has one lookup,
+  `0x001A7A50`, which keeps bytes 1 and 3 only (`0x001A7BA2`, `0x001A7BAD`), and the tree at `+0x3E0` of the
+  map-art context is addressed only by its builder `0x001A2130`, the reader `0x001A9050` and that lookup.
+- A map with no row gets both bytes 0 (`0x001A7BD6`): scenery first to last and characters before it. One zone
+  is in that case, `ttl_d01` (pack `tst0102`). No two shipped names share a hash, so no map takes another's
+  row.
+- A flag is Yes only when it starts with `Y` or `y` (`0x001A91B6`-`0x001A91F6`), so `1`, `true` or an empty
+  field is No. A line without exactly five fields is skipped, and a later row whose name hashes the same
+  replaces the earlier entry (`0x001A9253`).
+- Seven rows are never looked up. `fon0113` and `mrm0213` are no zone's map pack, and `dst0109`, `dst0110`,
+  `frs0109`, `frs0110` and `gil0303` belong to the zones that `0x00379A10` sends to the art of `dst0103`,
+  `dst0105`, `frs0101`, `frs0106` and `gil0301`, whose rows they use instead.
+
 ### Soft-particle tables
 
 `0x0024C970` (from `0x00259180`) clears four 0x800-byte tables and reads `chara`, `event`, `magic` and
@@ -231,6 +265,55 @@ use bytes 0 and 2.
   `N`, factor with `"%d"`. Each time the map name differs from the previous row's, it appends a
   16-byte record (name, first row) to `0x02F93340`. The row count goes to `0x02092714` and the map count
   to `0x02092718`. VFXName is not stored.
+
+[`standard-file-formats-softparticle-rows.tsv`](standard-file-formats-softparticle-rows.tsv) lists the 853
+effect rows of the four per-type tables and
+[`standard-file-formats-softparticle-bg-rows.tsv`](standard-file-formats-softparticle-bg-rows.tsv) the 2,373
+rows of `softparticle_bg.csv`, each in file order with the values the readers keep, the effect file or the
+map and zones it joins to, whether the game reads it and what it changes. What the rows do:
+
+- With the Soft Particles option on, a soft effect fades out where it comes close to the scenery or a
+  character behind it, instead of cutting a hard edge into them. The fade spans the factor divided by 100 in
+  depth: 0.1 for the shipped 10, up to 5 for the five map rows with 500.
+- Effects drawn as a `GiSprite` (`0x008647C0`) or a VU program packet (`0x001DB840`) take the answer of
+  `0x0024D140` and pass it to the primitive renderer's slot `+0x58` (`0x006CAD90`, called at `0x008646D3` and
+  `0x001DB416`), which keeps the switch at `+0x208E8` and the factor at `+0x208EC`; `0x006C8920` copies both
+  into the draw record at `+0x854` and `+0x858`.
+- The draw `0x006C8CA0` turns the fade on only when the record's Soft Particles option byte `+0x855` is set as
+  well (`0x006C982E`-`0x006C98B6`; slot `+0x60`, `0x006CADB0`, stores the option), and uploads
+  `softParticleEnabled` and `softParticleFactor` to the pixel-shader constants (`$Globals` `+0x28` and
+  `+0x38`).
+- The three pixel shaders that read them (`0x01F33068`, `0x01F346B8`, `0x01F39544`) take both depths as 100 /
+  (1000 - 999.9 x d), the scene's from the depth texture, and multiply the effect's alpha by their
+  difference over the factor, capped at 1. A pixel more than 0.5 behind the scene keeps its alpha.
+- Magic effects are soft but for 29 of the 362, 21 of them Quickening and Concurrence cinematics (ids 120 to
+  153); 146 of the 147 listed common-bank effects are soft, all but `c0141`; no event effect is, all 218
+  rows being No. Four character effects are soft: those of the Bomb and the Pineapple (`h0003`), the King
+  Bomb (`h0033`), the Purobolos (`h0034`) and the Air Cutter Remora (`h0090`, factor 30).
+- On the maps, 288 of the 2,373 rows say Yes, and 125 of them, on 94 maps, reach an effect the map draws,
+  with factors from 10 to 500. The key is the effect's channel: `0x0024D140` compares the map-bank instance's
+  word `+4` with each GroupId of the map's run (`0x0024D221`-`0x0024D246`), and every shipped GroupId is a
+  channel from 0 to 63.
+- An effect number a table does not list is hard with factor 0.1, because `0x0024C970` clears the tables
+  first; so is any number of 512 or more (`0x0024D1CE`, `0x0024D26B`, `0x0024D297`, `0x0024D2C0`). Location and
+  quest effects have event ids from 512 up (`0x003B2310`, copied into the context at `0x003B2242`), so they are
+  never soft.
+- In the per-type files a value is Yes unless it starts with a capital `N` (`0x0024F325`), so `no` or `0` is
+  Yes. A Yes whose text does not scan as `Yes,%d`, such as `Yes`, `yes,20` or `Yes,abc`, gets factor 10
+  (`0x0024F371`); a line that does not scan as `%c%d.efx,%s` is skipped (`0x0024F323`). Any letter may stand
+  before the number.
+- In `softparticle_bg.csv` a GroupId that does not scan drops the row (`0x0024F110`); a factor that does not
+  scan repeats the previous row's, since `0x0024F149` ignores the scan's result; a GroupId above 255 keeps
+  only its low byte (`0x0024F129`), so 261 acts as 5. A map with no rows stores -1 as its first row
+  (`0x0024F83F`), and all its effects are hard (`0x0024D1F8`).
+- 820 map rows are never read. 210 are on 39 maps no zone loads, the 14 `dgl01` maps and test maps such as
+  `rbn_test` among them; 162 are in a second run of 14 maps of Giruvegan, the Great Crystal and the Golmore
+  Jungle, as `0x0024F790` takes only a map's first run (`0x0024F810`-`0x0024F835`); 442 repeat a channel an
+  earlier row of the run names, and the first match wins (`0x0024D23C`).
+- The other 6 name a channel no row of the map's effect bank uses (`rbn0101`, `rbn0301`, `var0103`). Of the
+  per-type rows, 15 name effects the game never loads: `h0000`, which the character-effect table does not
+  name, and the event effects 0, 11 to 13, 47, 48, 95 to 98, 172 and 190 to 192, which no script loads with
+  `effectread` or `effectread_e0`.
 
 ### Event prefetch schedule: eventList.csv
 
@@ -399,6 +482,33 @@ offset table, with an English reading of every Japanese comment.
 - `menumap_world_debug.h` defines its table only under `#ifdef DEBUG` and gives every sub-location the offset
   (0, 0).
 `JsonData/debugMenuSettings.json` (`0x008FCCB0`) is a string with no code reference and no shipped file.
+
+[`standard-file-formats-mapjump-nocrystal-rows.tsv`](standard-file-formats-mapjump-nocrystal-rows.tsv) lists
+the 1,776 rows of `prefetchdata/ff12mapjump_custom_nocrystal.csv` in file order. Each row names a source
+zone and a zone it leads to, by internal name and field id, followed by eleven empty columns; the TSV adds
+both places and the `mapjump` calls of the source zone's US script that reach the destination.
+
+- No code reads the file, so it changes nothing in the game. Besides the census above, the only strings
+  holding `csv` in any case are the seven read paths (`opt.csv`, `eventList.csv` and the five soft-particle
+  names, each referenced by one function), and no string holds `crystal` or `ff12map`, so no format string
+  can build the name.
+- Every prefetch path is `/PrefetchData/` (`0x00900648`) with a language folder and a fixed tail: `common.txt`
+  (`0x001DA610`), `Maps/<map>.txt` (`0x001DA290`), `eventList.csv` (`0x001D9A40`) and `Events/<n>.txt`
+  (`0x001D9DA0`), whose add-on form is the one path without a language. None ends at the folder's top level,
+  the executable imports no directory search, and no prefetch list, `.ah`, JSON, CSV or text file in the
+  archive names the file.
+- The rows are the zone-to-zone jumps the zone scripts make, without the crystal warps: 1,616 pairs are
+  literal `mapjump` destinations of the source zone's script and 27 are reached through a variable the
+  script sets; 26 are pairs the scripts reach only with mode 10, the gate-crystal warp's mode. Every name
+  agrees with its field id in the [zone asset list](../World-Areas-And-Travel/zone-asset-list.md).
+- The other 107 rows name jumps no script spells out: 99 link each Trial Mode stage to the next (`tri_a01`
+  to `tri_t05`), where the stage script computes the destination; the rest lead from `bhm_c01`, `ttl_a01`
+  and `ttl_b01` to `naf_a01`, from three `dor_e` rooms to `dor_e01`, and from `var_b01` to `rwf_a01` and
+  `bhm_z01`.
+- The other way round, 1,995 literal mode-10 calls in the scripts name a pair the file does not list,
+  against 20 pairs of the other modes: 9 lead to fields without a zone script (293, 294, 434 and 769), 6
+  from the three `dor_a` rooms to `dor_c12` and `dor_e01`, 3 to `byu_b01`, one from `fon_b01` to `fon_a04`,
+  and one from `gil_a01` to itself.
 
 ## Modding notes
 

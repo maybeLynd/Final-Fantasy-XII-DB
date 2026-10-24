@@ -282,6 +282,57 @@ bytes) and copies its bytes into the globals listed in the layout below.
 - Both dwords are -1 in the image, so `0x02B62DAD` stays 0 and neither branch runs in the shipped
   game.
 
+Of the file's 2,048 bytes, only `+0x06` and `+0x10` can change what the player sees, and both are 0 in the shipped
+file. They override the Vibration Function and Screen Shake options whenever the options are reset to their
+defaults: 1 turns the option on, 2 turns it off, and any other value keeps the default. A loaded save keeps its own
+options. [`game-settings-ff12config-values.tsv`](game-settings-ff12config-values.tsv) gives every byte: its shipped
+value, the global it is copied to, its readers, and what another value does.
+
+- `0x002DDA30` reads `+0x06` and `+0x10` through the getters `0x00408B80` and `0x00408B40` (`0x002DDA3B`, `0x002DDA66`) only
+  when it is entered with 1. The options-defaults installer `0x002DDE60` enters it with 1 (`0x002DE035`) at start-up,
+  on the title screen, on the return to the title and for Restore Defaults; the save-load applier `0x002DE050` enters
+  it with 0.
+- Value 1 ORs `0x2000` (Vibration Function) or `0x4000` (Screen Shake) into dword 0 of the options record, and value
+  2 clears that bit (`0x002DDA51`-`0x002DDA8B`). The bits then go to `0x0035FF30`, which lets the pad's motors run
+  ([Vibration](../Controls-And-Input/vibration.md)), and to `0x0037DDC0`, which gates the camera-shake row
+  ([Scripted camera](../Graphics/scripted-camera.md)).
+- `+0x0D` is the start value of the HDD-use flag `0x02B62DB1`, which the script verb `getusehdd` (`0x376`, `0x00341DD0`)
+  returns unchanged. `setusehdd` (`0x375`, `0x00341980`) stores its argument != 0 and the `hddinstall` and
+  `networkhddinstall` result `0x003447F0` stores 1, both through `0x00408EC0`. None of the 1,114 decompiled US scripts
+  calls these verbs ([Verb table](../Scripts-And-Script-Commands/verb-table.md)).
+- `+0x0A` (236, Throne Road) never picks a field. The start-up `0x003318C0` and the return to the title `0x00331920` use
+  `0x02B62DB4` only while `0x02B62DAD` is 1, which needs `0x01E02804` not negative, and then that dword's low word has
+  replaced the file's value. With the shipped -1 both request field 12, `ttl_a01` (`0x00331903`, `0x0033196D`).
+- `+0x02` is compared with 3 at 15 sites in five functions (getter `0x00408B10`), each behind a test of `0x02B62DAB`
+  that skips the comparison on 1. The loader stores the file's value and sets `0x02B62DAB` to 1 in the same run
+  (`0x00408CCB`, `0x00408D89`), and only the reset `0x00408BA0` also writes that byte, with 1, so the file's value is
+  never compared.
+- `+0x04` is read once, at start-up (`0x003694E2`): 1 passes 1 and any other value 0 to `0x0016D6A0`, which is a bare
+  `ret`.
+- `+0x03`, `+0x08`, `+0x09`, `+0x0C`, `+0x0E`, `+0x0F`, `+0x11`, `+0x12`, `+0x15` and `+0x16` are copied and never
+  read. The reset `0x00408BA0` and the loader's stores are the only instructions that reach their globals: no other
+  rip-relative operand, image-base-relative displacement, immediate, data qword or RVA in the image reaches the
+  block.
+- `+0x00`, `+0x01`, `+0x05`, `+0x07`, `+0x13`, `+0x14` and every byte from `+0x17` on are not copied: the loader
+  reads only the offsets in the layout from its stack copy (`0x00408CBB`-`0x00408D79`).
+
+The loader zeroes a `0x800`-byte buffer with `memset` and reads at most `0x800` bytes into it (`0x00408C80`,
+`0x00408CAE`), so a shorter entry reads as if padded with zeros and anything past `0x800` is never read. Without the
+entry no byte is copied and the reset values stay, which plays the same as the shipped file: neither override byte
+is set in either. The entry is read once per start, in start-up step 8
+([Startup constants](../Engine-Core/startup-constants.md)).
+
+The block's other bytes are not taken from the file:
+
+- `0x02B62DAB` is always 1, and the getter `0x00408B30` reads it only for the 15 tests above.
+- `0x02B62DAD` selects the start-up field: 0 requests field 12, 1 the field in `0x02B62DB4`, and 2 passes the old-save
+  number `0x02B62DC0` to the empty `0x0016D6A0` and requests none (`0x003318C4`-`0x003318FE`). It is 0 in the shipped game.
+- `0x02B62DB9` is the debug-status flag. It is reset to 0, and no other instruction in the image writes it. While it
+  is 0, a jump to field 0 goes to field 12 (`0x00314463`-`0x0031446E`), the pad updates `0x0035FCA0` and `0x0035FF90`
+  handle channel 0 only, and the verb `debug_getdebugstatus` (`0x20A6`, `0x0050DFC0`) returns 0.
+- `0x02B62DBA` is reset to 0 and never read. `0x02B62DC0`, a u16, is written only in the old-save branch (`0x00408E87`)
+  and read by `0x00408B20` at `0x003318EA` and `0x00331953`.
+
 ## Layouts
 
 `GameSettingObject` (`0x65C` bytes, offsets from the start of the record):
@@ -349,7 +400,7 @@ bytes) and copies its bytes into the globals listed in the layout below.
 | `0x01DFE0B4` / `0x01DFE0B8` / `0x01DFE0BC` | `i32` / `f32` / `f32` | the time base | `0x001EDDC0` |
 | `0x01F82E38` | `i32` | the 60 fps gate | `0x001EDDC0` |
 | `0x01E0C2A0` / `0x01E0C2A4` | `u16` | confirm and cancel masks | `0x0022A4F0`, boot mode 0 |
-| `0x02B62DA8`-`0x02B62DC1` | bytes | the FF12CONFIG block | `0x00408BA0`, `0x00408C30` |
+| `0x02B62DA8`-`0x02B62DC1` | bytes | the FF12CONFIG block | `0x00408BA0`, `0x00408C30`, `0x00408EC0` |
 
 `0x002DDE60` builds the options template in a `0x28`-byte staging copy at `0x0215E6E8` and does not write it into the
 record directly. It copies the `.rdata` template `0x00917268`-`0x0091728F` into the copy (`0x002DDE6F`-`0x002DDE9F`). It sets
@@ -372,6 +423,8 @@ the record:
 - FrameLimit is the only setting that rescales timed behaviour; everything that reads
   `0x01DFE0B8` follows it.
 - The Config screen's options are stored in the save image, so editing a save edits them.
+- Of FF12CONFIG only `+0x06` and `+0x10` change the game: 1 turns Vibration Function or Screen Shake on and 2 off
+  whenever the options are reset to their defaults; a loaded save keeps its own options.
 
 ## Related
 

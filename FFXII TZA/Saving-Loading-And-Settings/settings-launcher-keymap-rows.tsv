@@ -1,0 +1,39 @@
+line	section	key	value	value_in_game_code_numbering	game_profile1_counterpart	comparison	read_by
+1	Setting			section header			nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+2	Setting	ButtonCount	16	16, the number of key lines in [Button]		matches the 16 lines of [Button]	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+3	Setting	AnalogCount	8	8, the number of key lines in [Analog]		matches the 8 lines of [Analog]	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+4	Setting	KeyCount	3	3, the number of key lines in [KeyFunction]		matches the 3 lines of [KeyFunction]	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+5	Button			section header			nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+6	Button	key1	40	40, Key_M (keyboard)	slot 0 Select (group 0 entry 0)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+7	Button	key2	79	79, Key_Tab (keyboard)	slot 1 L3 (group 0 entry 1)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+8	Button	key3	35	35, Key_H (keyboard)	slot 2 R3 (group 0 entry 2)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+9	Button	key4	64	64, Key_Escape (keyboard)	slot 3 Start (group 0 entry 3)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+10	Button	key5	36	36, Key_I (keyboard)	slot 4 Up (group 0 entry 4)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+11	Button	key6	39	39, Key_L (keyboard)	slot 5 Right (group 0 entry 5)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+12	Button	key7	38	38, Key_K (keyboard)	slot 6 Down (group 0 entry 6)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+13	Button	key8	37	37, Key_J (keyboard)	slot 7 Left (group 0 entry 7)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+14	Button	key9	55	55, Key_2 (keyboard)	slot 8 L2 (group 0 entry 8)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+15	Button	key10	118	118, Key_Left_Shift (keyboard)	slot 9 R2 (group 0 entry 9)	differs: the game default is 117 Left Control	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+16	Button	key11	54	54, Key_1 (keyboard)	slot 10 L1 (group 0 entry 10)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+17	Button	key12	56	56, Key_3 (keyboard)	slot 11 R1 (group 0 entry 11)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+18	Button	key13	45	45, Key_R (keyboard)	slot 12 Triangle (group 0 entry 12)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+19	Button	key14	80	80, Key_Space (keyboard)	slot 13 Circle (group 0 entry 13)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+20	Button	key15	30	30, Key_C (keyboard)	slot 14 Cross (group 0 entry 14)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+21	Button	key16	33	33, Key_F (keyboard)	slot 15 Square (group 0 entry 15)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+22	Analog			section header			nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+23	Analog	key1	92	92, Key_Right (keyboard)	slot 16 RX_P (group 1 entry 0)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+24	Analog	key2	91	91, Key_Left (keyboard)	slot 17 RX_N (group 1 entry 1)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+25	Analog	key3	94	94, Key_Down (keyboard)	slot 18 RY_P (group 1 entry 2)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+26	Analog	key4	93	93, Key_Up (keyboard)	slot 19 RY_N (group 1 entry 3)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+27	Analog	key5	31	31, Key_D (keyboard)	slot 20 LX_P (group 1 entry 4)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+28	Analog	key6	28	28, Key_A (keyboard)	slot 21 LX_N (group 1 entry 5)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+29	Analog	key7	46	46, Key_S (keyboard)	slot 22 LY_P (group 1 entry 6)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+30	Analog	key8	50	50, Key_W (keyboard)	slot 23 LY_N (group 1 entry 7)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+31	KeyFunction			section header			nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+32	KeyFunction	key1	65	65, Key_F1 (keyboard)	slot 24 Speed1 (group 2 entry 0)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+33	KeyFunction	key2	66	66, Key_F2 (keyboard)	slot 25 Speed2 (group 2 entry 1)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+34	KeyFunction	key3	67	67, Key_F3 (keyboard)	slot 26 Speed3 (group 2 entry 2)	same as the game default	nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+35	Mouse			section header			nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+36	Mouse	Left	14	14, Button_3 (pad button; also Button_Triangle, Button_Y)	no counterpart: the game's keymap has no mouse section		nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+37	Mouse	Middle	3	3, mouse button code 3 (no registered name)	no counterpart: the game's keymap has no mouse section		nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file
+38	Mouse	Right	15	15, Button_4 (pad button; also Button_L1, Button_LB)	no counterpart: the game's keymap has no mouse section		nothing: neither FFXII_TZA.exe nor FFXII_TZA_GameSetting.exe opens this file

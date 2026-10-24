@@ -49,6 +49,31 @@ name, five message texts (`msg_Caption`, `msg_Content`, `msg_WarningCaption`, `m
 its name and `Text[@Key]` names a box item (`SM_WINDOW`, `VQ_LOW`, `FL_SIXTYFRAME`, `VSYNC_AUTO` and the rest). When the primary screen is under 720 pixels high, elements marked `small` are used
 as well (`Program.XmlNodeSelectorCondition`).
 
+Each of the nine `Lang` elements of the shipped file (`jp`, `en`, `cn`, `ch`, `fr`, `de`, `it`, `es` and `kr`) has
+the same 32 entries; [`settings-launcher-settingsloc-strings.tsv`](settings-launcher-settingsloc-strings.tsv) lists
+all 288 with their text and what each one sets. Only the launcher reads the file: the game's executable does not
+contain its name.
+
+- `ConfigTitle` is the window title, and `Font` is the font of every control, of the adapter list's width measure
+  and of the message boxes. Each `Text[@Control]` sets the text of the control it names, matched without regard to
+  case, so `button_reset` labels `button_Reset`. Each `Text[@Key]` sets the text of one box item; the item still
+  writes its own key to `GameSetting.ini`.
+- `msg_Caption` and `msg_Content` are the box a second copy of the launcher shows before it exits;
+  `msg_WarningCaption` and `msg_WarningContent` are the Reset question; `msg_ErrorDiskFull` is the disk-full text,
+  under the `msg_Caption` title. The boxes' OK and Cancel buttons take the `button_ok` and `button_cancel` texts
+  (`MsgForm.OnPaint`).
+- `LanguageName` is never read: the name does not occur in the launcher's binary, and
+  `SetLanguageComboBox(XmlDocument)` has an empty body and no caller.
+- The shipped file marks no `Lang` element `small`, so a screen under 720 pixels high gets the same texts.
+- The launcher opens the file by its bare name, in its working folder. A missing file, or a language code with no
+  `Lang`, leaves the texts built into the window: English labels, the title FINAL FANTASY X/X-2 Launcher, and
+  message boxes without text.
+- `LoadXmlFile` drops everything before the first CRLF, so the XML declaration must stay on its own line, and a
+  file with no CRLF stops the launcher with an exception before its window opens.
+- A `Text[@Control]` naming no control, a `Key` given twice in one language, or a `Lang` without `ConfigTitle` or
+  `Font` raises an exception while the window loads. A `Key` the launcher does not use is ignored, and a font that
+  Windows lacks is replaced by Microsoft Sans Serif.
+
 ### The display list
 
 `Program.GetDisplayAdapter` keeps every DXGI adapter that has at least one output (SharpDX `Factory1`). The
@@ -141,6 +166,24 @@ The game imports nothing else from `d3dcompiler_47.dll`: its one caller, `0x0078
 ([Yebis post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md)). No shader is compiled at run
 time. The shipped install has no `steam_appid.txt`.
 
+The `keymap.ini` in `ConfigData` is not the control file, and changing or deleting it changes nothing: no shipped
+program opens it. The controls the game uses are in the `keymap.ini` of the Documents folder, in another format
+([Keymap file](../Controls-And-Input/keymap-file.md)). The shipped file is 38 lines of text in five sections;
+[`settings-launcher-keymap-rows.tsv`](settings-launcher-keymap-rows.tsv) lists every line.
+
+- Read in the game's control codes ([Control names](../Controls-And-Input/control-names.md)), `[Button]` key1-key16,
+  `[Analog]` key1-key8 and `[KeyFunction]` key1-key3 are the game's built-in profile 1, slots 0-26 in order, with one
+  difference: `[Button]` key10, R2, is 118 (Left Shift) where the game's default is 117 (Left Control). No line holds
+  WalkMode, slot 27.
+- `[Setting]` gives the length of each of those lists (16, 8 and 3). `[Mouse]` gives Left 14, Middle 3 and Right
+  15, which in the game's numbering are Triangle, the third mouse-button code and L1.
+- The text `ConfigData` occurs in no file of `x64`, the game, the launcher and the DLLs alike, and the archive has
+  no keymap entry. The game builds its one `keymap.ini` path from the Documents folder (`0x00197EE0`), and
+  the launcher's Reset deletes the file of that name in the same folder (`Program.InitGlobalConfig`).
+- Put in the Documents folder in place of the game's file, it is not used: its first line, `[Setting]`, is neither
+  a `[KeyboardN]` header nor a binding, so the read stops there with profile 1 empty. The game then installs its
+  default controls and writes them over the file when it shuts down.
+
 ## Modding notes
 
 - The launcher only edits `GameSetting.ini`; editing the file by hand does the same, and the game reads it on the
@@ -148,6 +191,8 @@ time. The shipped install has no `steam_appid.txt`.
 - `Quality` Low, Medium and High overwrite the ten preset settings on every game start whatever the file says
   for them ([Game settings](game-settings.md)); the launcher has no box for those ten.
 - Deleting `keymap.ini` by hand has the same effect as the Reset button.
+- Neither the game nor the launcher opens `ConfigData\keymap.ini`; the controls are in the Documents folder's
+  `keymap.ini`.
 
 ## Related
 
