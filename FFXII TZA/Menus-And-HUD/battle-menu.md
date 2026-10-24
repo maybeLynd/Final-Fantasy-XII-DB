@@ -206,10 +206,30 @@ Confirm (`0x8001`) runs the classifier `0x0027C3D0` (`0x0027841E`), which answer
 |---|---|
 | Attack | the foe list for action `0x96` (`0x0027C469`) |
 | Items, Summon, Quickening, Magicks & Technicks, Mist, a school | that list |
-| Gambits | switches the member's gambits on or off at once (`0x00311AF0`, `0x0027C512`) and closes |
+| Gambits | switches the member's gambits on or off at once (`0x00311AF0`, `0x0027C512`); the menu stays open on the same list (below) |
 | Dismiss | the Dismiss confirmation |
 | an action | its target list, or the action at once when it needs no target choice |
 | a greyed row | refused with sound 5 |
+
+The Gambits row is command 13 of lists 6 and 9 (`0x0027C457`, table `0x0027C6D0`). The classifier reads the member's
+switch (`0x00309B40`), writes the opposite with `0x00311AF0`, and answers `0x17` when it turned the gambits on and `0x19`
+when it turned them off (`0x0027C4F3`-`0x0027C529`). The list widget then (`0x00278559`-`0x002785AC`):
+
+1. sets the list's confirm sound `+0xFC` to `0x12` for on or `0x13` for off (`0x00278569`, `0x00278577`), which the
+   list's step plays once the widget answers the confirm with 0 (`0x002D4114`-`0x002D4154`);
+2. runs its page tasks through `0x00274BD0(head, first, 0xFF)` (`0x00278592`), the rebuild `0x0027D740` of each open page
+   whose `+0x1528` bit 10 is set (Refreshing an open list, above);
+3. sets the countdown `+0x2DB4` to 6 (`0x002785A3`) and answers 0 (`0x002785AA`); this path does not call the close
+   `0x00244F00`, which the answer `0x1B` does (`0x00278632`).
+
+The countdown drops by one on each update (messages 10 and 11) that reaches `0x00277F7A`, and stops at 0
+(`0x00277F82`-`0x00277F88`). While it is not 0 and the page's `+0x1528` bit 17 is set, the list's `+0xE4` bit 5 is set
+(`0x00277F3D`-`0x00277F68`), and the list's step then does not pass a confirm press on (`0x002D40AE`). The page build
+(message 31) sets bit 17 for menu kind 9, list `0x18`, and clears it for every other kind (`0x00279527`-`0x00279541`,
+`0x0027E2D8`), so on the top list the countdown runs without blocking a press.
+
+The answer `0x17` also follows the actions `0x9C` and `0x9D` that the classifier issues at once (`0x0027C5FE`,
+`0x0027C642`, `0x0027C665`), and they take the same path.
 
 A new list of the same panel is rebuilt in place and pushed on the stack; a target list opens in a new panel. Cancel
 pops the stack and closes the menu when it is empty (`0x002787AF`).

@@ -66,10 +66,10 @@ its string.
 
 | Token | Does |
 |---|---|
-| `0x01` | a blank the width of `0x0017F920(0)` (`0x002ACC04`) |
+| `0x01` | a blank the width of `0x0017F920(0)` (`0x002ACC04`), the current font's `metricB`, font record `+0x20` (header `+0x24`), through `0x001E9840` and `0x001F49E0` ([Fonts](fonts.md)) |
 | `0x02` | a line break: the next line is measured, justified and indented by `+0xAA` (`0x002AC6D1`) |
 | `0x03` | the page end: the interpreter stops the run (`0x002AC6AE`), and the pager waits for the confirm button (`0x002A8DC7`, `0x002A97CD`-`0x002A9808`) |
-| `0x04` | the ordinary space, the width of `0x0017F920(1)` |
+| `0x04` | the ordinary space, the width of `0x0017F920(1)` (`0x002ACBFD`), the current font's `metricA`, font record `+0x1C` (header `+0x20`), through `0x001E9840` and `0x001FDDC0` ([Fonts](fonts.md)) |
 | `0x05` | a column mark: a blank of 15 units that records the column widths (`0x002ACCF3`) |
 | `0x06` | a blank of 10.0 (`0x008F8180`) |
 | `0x07` | a blank of 10 units, or 26 when `0x00254A10` returns 0 and `0x00229E40` returns 7 |

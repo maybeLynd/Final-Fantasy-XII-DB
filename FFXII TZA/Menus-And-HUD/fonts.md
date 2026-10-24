@@ -121,8 +121,23 @@ All multi-byte fields are little-endian.
 | `+0x14` | `u32` | cellH | equal to every glyph record's cellH |
 | `+0x18` | `f32` | scale | divides advances and kerning (`0x001E9C01`) |
 | `+0x1C` | `u32` | flags | bit 0 asks for .ker, bit 1 for .fex |
-| `+0x20` | `u32` | metricA | copied to font record `+0x1C` |
-| `+0x24` | `u32` | metricB | copied to font record `+0x20` |
+| `+0x20` | `u32` | metricA | the space width: copied to font record `+0x1C`, which the space token `0x04` reads (below) |
+| `+0x24` | `u32` | metricB | the blank width: copied to font record `+0x20`, which the blank token `0x01` reads (below) |
+
+This is the `0x28`-byte header of the 62 listed `.dat` files. The one unlisted file, `us/fontex_expand.dat`, has a
+`0x20`-byte header that stops after `flags`, with no `metricA` or `metricB` ([Font files](fonts-files.md)).
+
+The two widths are read through `0x0017F920(which)`:
+
+1. `0x0017F920` takes the text renderer `[0x01F811F8]` (`0x001B5FA0`) and jumps to `0x001E9840` (`0x0017F939`).
+2. `0x001E9840` takes the current font from the renderer's `+0x00` and returns `metricA` through `0x001FDDC0`
+   (`[font + 0x1C]`) when `which` is not 0, and `metricB` through `0x001F49E0` (`[font + 0x20]`) when it is 0; with no
+   font it returns 0 (`0x001E9840`-`0x001E9857`).
+3. The text interpreter `0x002AC5F0` passes 0 for the blank token `0x01` and 1 for the space token `0x04`
+   (`0x002ACBAB`-`0x002ACC06`, [Text codes](text-codes.md)), and `0x002B0280` does the same for the two tokens
+   (`0x002B0E1E`-`0x002B0E82`).
+4. The space width, 1, is also asked for by the fixed-advance escape `0F 20` with no glyph (`0x002AD105`), by
+   `0x002B0280` at `0x002B1224`, and by `0x00364530` and `0x003647E0` (`0x0036461C`, `0x003648EA`).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -232,8 +247,8 @@ header's values as arguments and stores each.
 | `+0x008` | `void*` | atlas | the atlas texture: 0 from the constructor (`0x001FC08D`), set by `0x00213560` from the atlas completion `0x001B6230` (`0x001B6332`) |
 | `+0x010` | `void*` | shadow | the shadow atlas texture: 0 (`0x001FC091`), set by `0x00213540` from `0x001B6110` (`0x001B6212`) |
 | `+0x018` | `u32` | glyphCount | header `+0x04` (`0x001FC095`); `0x001FDF80` compares it with glyphsCount |
-| `+0x01C` | `u32` | metricA | header `+0x20` (`0x001FC09F`); returned by `0x001FDDC0` |
-| `+0x020` | `u32` | metricB | header `+0x24` (`0x001FC0A9`) |
+| `+0x01C` | `u32` | metricA | header `+0x20` (`0x001FC09F`); the space width: returned by `0x001FDDC0` when `0x001E9840` is asked for 1, as for the space token `0x04` (`0x002ACBFD`) |
+| `+0x020` | `u32` | metricB | header `+0x24` (`0x001FC0A9`); the blank width: returned by `0x001F49E0` when `0x001E9840` is asked for 0, as for the blank token `0x01` (`0x002ACC04`) |
 | `+0x024` | `u32` | atlasW | header `+0x08` (`0x001FC0AC`) |
 | `+0x028` | `u32` | atlasH | header `+0x0C` (`0x001FC0B0`) |
 | `+0x02C` | `u32` | cellW | header `+0x10` (`0x001FC0B8`) |

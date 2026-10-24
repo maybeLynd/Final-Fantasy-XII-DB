@@ -139,6 +139,28 @@ into a status name, kind 7 into an item name or a number (`0xE000` + n), and kin
 name; kind 4 is formatted through a sub-template taken from the message table's text heap
 (`0x002B4090`).
 
+The kind 4 sub-template is drawn in two colours chosen by a colour class. `0x00536410` takes the class from
+`0x00536190(flag, id)` (`0x00536463`), with the request's dword `+4` split into the flag, bit 15, and the message id,
+bits 0-14 (`0x00536448`-`0x0053645B`). `0x00536190` reads bits 0-1 of the message row's byte `+3` (`0x005361E2`-`0x005361E6`):
+
+| Bits 0-1 | Class, flag clear | Class, flag set | Sites |
+|---:|---:|---:|---|
+| `0` | 7 | 7 | `0x005361FD` |
+| `1` | 0 | 2 | `0x0053625E`-`0x0053626C` |
+| `2` | 1 | 3 | `0x0053623F`-`0x0053624B` |
+| `3` | 4 | 5 | `0x00536227`-`0x0053622C` |
+
+`0x00536190` has one more arm, which returns 6 (`0x00536212`), and it is taken when the masked value is 4
+(`0x005361F8`-`0x005361FB`), which the mask to bits 0-1 leaves out; so from `0x00536190`'s entry the class is 0-5 or 7.
+
+The kind 4 arm (`0x0053668C`) passes the class to `0x0035D430(class, 0)`, `0x0035D400(class, 0)`, `0x0035D430(class, 1)` and
+`0x0035D400(class, 1)` (`0x005366CF`-`0x005366FC`). Each reads entry `2 x class + n` of the byte table `0x00D10C60` and
+returns that entry's colour from the menu colour table `0x0215E6C8` (`0x002DD7E0`) or its palette byte (`0x002DD7B0`);
+the four values go to `0x002B4090` with the sub-template (`0x00536701`-`0x00536723`).
+
+The table holds `0x18 0x19`, `0x1A 0x1B`, `0x14 0x15`, `0x16 0x17`, `0x1D 0x1D`, `0x1C 0x1C`, `0x1E 0x1E` and
+`0x1F 0x1F` for classes 0-7.
+
 The helpers behind those arguments:
 
 - `0x00536310(stats, &flag)` gives the name id. For a unit whose actor has a name id of 0 or more
@@ -162,7 +184,7 @@ The helpers behind those arguments:
 | `+0x00` | `u8` | slot0 | argument kind of slot 0 (`0x005369C0`, `0x00536410`) |
 | `+0x01` | `u8` | slot1 | argument kind of slot 1 |
 | `+0x02` | `u8` | slot2 | argument kind of slot 2 |
-| `+0x03` | `u8` | flags3 | bit 7: always shown (`0x00469570`); bits 2-6: category (`0x005369C0`); bits 0-1 dropped by `0x005369C0` |
+| `+0x03` | `u8` | flags3 | bit 7: always shown (`0x00469570`); bits 2-6: category (`0x005369C0`); bits 0-1 dropped by `0x005369C0` and read by `0x00536190` as the colour class of a kind 4 argument (`0x005361E2`) |
 | `+0x04` | `u8` | flags4 | bit 0: repeat-limited (`0x0046AB10`) |
 | `+0x05` | `u8` | slot3 | argument kind of slot 3 |
 | `+0x06` | `u16` | zero6 | 0 in every shipped row |

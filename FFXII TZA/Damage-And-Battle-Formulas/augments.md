@@ -134,6 +134,23 @@ a changed count is posted as a hit or heal reaction with the difference (`0x0032
 [HP and KO](hp-and-ko.md)), which `0x003283D0` posts as a battle number through `0x003BBD00` (`0x00328462`,
 [Battle numbers](../Menus-And-HUD/battle-numbers.md)).
 
+### Damage Spikes
+
+Damage Spikes (58) is bit `0x4` of the layer bytes `+0x6F` and `+0x7F`. After the recipe's slots the resolver calls
+`0x00390F20(source, target, &context)` (`0x003863F8`), which tests it on the target first (`0x00390F2F`-`0x00390F46`). When the target holds it in either layer
+and the damage the action resolved, the scratch word `0x02AEE004` ([Damage formula](damage-formula.md)), is not -1,
+the user's HP loss `0x02AEE014` grows by the damage divided by 20, truncated, or is set to it while it is -1, and is
+then held to 9,999 (`0x00390F48`-`0x00390F85`):
+
+```python
+spikes = trunc(damage / 20)                  multiply by 0x66666667, keep the high word >> 3, round toward 0
+userHpLoss = min(9999, (userHpLoss == -1 ? 0 : userHpLoss) + spikes)
+```
+
+The damage is read before Greater Barrier's cut later in the same function (`0x00390F8B`-`0x00390FC3`). The resolver
+then puts the user's HP gain minus that loss in result `+0x20` (`0x00386642`, `0x0038665B`). A 2,000-damage hit costs the
+attacker 100 HP, and a hit of 19 or less costs nothing.
+
 ### Saboteur
 
 Saboteur (18) is bit `0x4` of the layer bytes `+0x6A` and `+0x7A` and of the context byte `+0x1C`. Its one

@@ -7,8 +7,10 @@ addresses: "0x002625E7, 0x002626A8, 0x0026CAF8, 0x002EF2B0, 0x00265270, 0x02098E
 
 ## What the player sees
 
-- The story moves forward one scene at a time and never back: a scene that has played does not play again, and towns,
-  people and menus change after it.
+- In normal play the story moves forward one scene at a time: the zone scripts start most scenes behind a test of the
+  story counter, so a scene that has played is passed over, and towns, people and menus change after it.
+- The counter itself keeps no order. Each script write stores its value whatever the counter held, so a script that
+  writes an earlier value moves the story back (How scenes move it on, below).
 - Loading a save puts every scene, talk and menu back where the story stood.
 
 ## How it works
@@ -54,6 +56,11 @@ Every script write is a literal, and 268 writes in shipping scripts are reachabl
 
 The first value a shipping script writes is 13 (`naf_a01` `常駐監督.main`) and the last 7,150 (`bhm_d01`
 `ボス監督.main`).
+
+The order comes from those tests, not from the store. `POPV` (`0x00267E60`) pops the value and stores it through
+`0x0026D530` (`0x00267F37`), whose signed 16-bit arm clamps it to -32,767 to 32,768 and writes the word without reading
+the old one (`0x0026D5C4`-`0x0026D5E3`). A write of a value below the counter's lowers it, and a write in item 3 runs
+whenever its function runs, whatever the counter holds.
 
 ### Values only the developer menus set
 

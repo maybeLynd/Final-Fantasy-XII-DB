@@ -115,8 +115,8 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x11D` | `u8` | userLevel | `0xFF` none (step 4) |
 | `+0x11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11) |
 | `+0x126` | `u8[2]` | zero126 | written only by the two clears (below); read by no instruction; nothing fixes its width |
-| `+0x128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` (step 12) |
-| `+0x12C` | `u8[4]` | affinityClr | cleared out of the same bytes (step 12) |
+| `+0x128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` (step 12), the immune, absorb, weak and half masks the rebuild copies to stats `+0x43`, `+0x41`, `+0x40`, `+0x42` (`0x0031043F`-`0x0031046D`); Elemental Shift's `0x00384B10` writes `+0x129` (every element but the drawn one) and `+0x12A` (the drawn one) (`0x00384BE6`, `0x00384BFC`; [Battle buffs](../Status-Effects-And-KO/battle-buffs.md)) |
+| `+0x12C` | `u8[4]` | affinityClr | cleared out of the same bytes after the sets (step 12); `0x00384B10` writes `+0x12C` (OR-ed with the drawn element), `+0x12D` (the drawn one) and `+0x12E` (every element but the drawn one) (`0x00384C0B`, `0x00384BF1`, `0x00384BDC`) |
 | `+0x130` | `u16` | packedParam | -1 by the word store `0x00384991` in `0x003848E0`; the handler `0x003907E0` stores byte `+0x10` × 100 + byte `+0x11` of action row `[0x02AEDFD4]` (`0x00390877`-`0x00390893`); `0x00319F50` reads it after the resolver returns (`0x0031A0D2`, `0x0031A0DF`) |
 | `+0x132` | `u8[2]` | zero132 | written only by the clears (below); read by no instruction; nothing fixes its width |
 | `+0x134` | `f32` | knockback | zeroed by `0x003848E0`; with flagsB bit 3 the resolver stores `0x00385E50`'s value here (`0x0038680F`-`0x0038682E`; [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) |

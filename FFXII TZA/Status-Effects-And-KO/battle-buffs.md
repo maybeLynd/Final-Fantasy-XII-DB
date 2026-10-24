@@ -9,7 +9,7 @@ addresses: "0x0030E130, 0x0030EA40, 0x00387020, 0x00385570, 0x002FDDA0, 0x003112
 
 Many enemies change how they fight partway through a battle: they put up a Paling against physical attacks, a
 Magick Shield against magick or a White Wind against harmful statuses, use Battle Cry or Enrage to hit harder,
-or Shift to move their weakness. Paling, Magick Shield and White Wind come with a message when they rise and
+or Shift to move their weakness to one element and absorb all the others. Paling, Magick Shield and White Wind come with a message when they rise and
 when they fall, and last two minutes. The others last until the enemy drops them.
 
 ## How it works
@@ -70,7 +70,7 @@ Two paths set `+0x68` in shipped play:
 | `49` | Battle Cry | the holder's damage ×1.2 | `0x0038F89B`-`0x0038F8B8`; constant `0x008FCC90` |
 | `50` | Saber | the holder's damage ×2 | `0x0038F8BE`-`0x0038F8D0` |
 | `51` | Mana Spring, Unleash | the cost `0x002F95D0` gives the holder is 0 once its two earlier routes are passed: a party record's Quickenings (`0xD0`-`0xE1`) and Esper summons (`0x106`-`0x112`) keep the row cost (`0x002F9640`-`0x002F9667`, `0x002F9806`), and a holder with augment 32 gets the gil cost `10 * trunc(cost * 64 / 50)` (`0x002F9674`-`0x002F9682`, `0x002F97E4`-`0x002F9802`), 120 gil for a cost of 10 ([MP gain and cost](mp.md)) | `0x002F97A3`-`0x002F97E0` |
-| `52` | Shift | the holder's weakness moves to a random element, and again on each hit on it | `0x00386B0C`, `0x0038B78D`, `0x0038C1ED` |
+| `52` | Shift | an enemy holder's weakness moves to one element drawn at random; it absorbs every other element and loses its immunity to the drawn one; again on each hit on its weakness (Shift's weakness, below) | `0x00386B0C`, `0x0038B78D`, `0x0038C1ED` |
 | `53` | Enrage, Limit Break | Attack and orders charge instantly | `0x002F85A6`-`0x002F888A` |
 | `54` | Chain Magick, Limit Break, Unleash | actions with row `+0x0C` bit 13 charge instantly | `0x002F8627`-`0x002F862D` |
 | `55` | Force Barrier, Perfect Defense | Paling: actions with row `+0x0C` bit 14 are nullified | `0x00390E4B`-`0x00390EEE` |
@@ -80,6 +80,10 @@ Two paths set `+0x68` in shipped play:
 
 The ability ids 48-57 also have set orders, `0x40C2`-`0x40CB`, as every id 0-63 does. The shipped order sets contain
 set orders for every id in the table but 52, and clear orders for all but 11, 31, 52 and 59.
+
+Ids outside the table act the same from this layer as from `+0x78`. One that meets Greater Barrier is Damage Spikes
+(58, [Augments](../Damage-And-Battle-Formulas/augments.md)): both are tested in `0x00390F20`, Damage Spikes first, so it reads
+the damage before Greater Barrier's cut (`0x00390F4E`-`0x00390F85`, then `0x00390F8B`-`0x00390FC3`).
 
 ### Timers and messages
 
@@ -119,10 +123,24 @@ list](../Battle-Actions/battle-message-list.md)).
 
 ### Shift's weakness
 
-Setting id 52 builds a result with `0x00386AE0`, which draws one element at random through `0x00384B10` and makes it
-the holder's only weakness through the result applier (`0x00386B0C`-`0x00386BD9`, `0x0030E2DA`). The element slots 95
-and 99 draw again, leaving out the element that hit, when a holder of id 52 is hit on its weakness
-([Elements](../Damage-And-Battle-Formulas/elements.md)).
+Setting id 52 builds a result with `0x00386AE0`, which draws one element through `0x00384B10` (`0x00386B0C`-`0x00386BD9`,
+`0x0030E2DA`). `0x00384B10(leaveOut, context)` counts the elements not in `leaveOut`, takes a random draw (`0x00384BA6`)
+modulo that count and picks that element, bit `s` (`0x00384B28`-`0x00384BCA`). It then fills the result's affinity bytes together
+(`0x00384BCD`-`0x00384C0B`):
+
+| Result byte offset | Value | Change on the enemy |
+|---|---|---|
+| `+0x12A` | `s` | weakness `s` added |
+| `+0x12E` | every bit but `s` | every other weakness cleared |
+| `+0x129` | every bit but `s` | every other element absorbed |
+| `+0x12D` | `s` | absorption of `s` cleared |
+| `+0x12C` | `s` OR-ed in | immunity to `s` cleared |
+
+The result applier ORs the set bytes into the enemy record first and clears the clear bytes after
+(`0x0031193C`-`0x00311A7E`, [Action results](../Battle-Actions/action-results.md)), so the holder ends weak to `s`
+only, absorbing every other element, not immune to `s`, its halved elements unchanged. The bytes act on an
+enemy-side target only. The element slots 95 and 99 draw again, leaving out the element that hit, when a holder of
+id 52 is hit on its weakness (`0x0038B7E9`, `0x0038C3B5`; [Elements](../Damage-And-Battle-Formulas/elements.md)).
 
 ### Gambit slots
 

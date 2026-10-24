@@ -97,10 +97,16 @@ sub-commands:
 |---|---|
 | `0x8102` | closes the bar (`0x00244F00`) |
 | `0x8103` | shows the row's help: "Sort items in default order by category." (`0xCC1`), "Sort by item strength." (`0xCC2`), "Sort by amount." (`0xCC3`) |
-| `0x8104`-`0x8106` | the three sorts, Auto-sort (`0x4A8`), By Strength (`0x4A9`) and By Quantity (`0x4AA`), passed as 0-2 to `0x002527B0(7, ...)` and `0x00565CD0` |
+| `0x8104`-`0x8106` | the three sorts, Auto-sort (`0x4A8`), By Strength (`0x4A9`) and By Quantity (`0x4AA`): the code minus `0x8103`, 1-3, is stored as the tab's sort through `0x002527B0(7, tab, ...)` (`0x005667DD`), and the code minus `0x8104`, 0-2, is passed to `0x00565CD0` (`0x005667FD`) |
+
+`0x002527B0(7, tab, v)` stores `v` in the byte `+0x70 + tab` of `[0x020927C0]`, the tab clamped to 0-31 (`0x002527F7`,
+`0x0025280A`), and `0x002526F0(7, tab, 1)` reads it back (`0x00252763`, `0x00252777`). When the bar opens, a stored value
+other than 0 puts the cursor on the row whose code is `0x8103` plus that value (`0x005668F7`-`0x00566905`, `0x0057CD00` at
+`0x005669A5`, `0x002D4650` at `0x005669C1`); with 0, or when that row is not listed, the cursor starts on row 0
+(`0x00566900`, `0x0057CD37`).
 
 `0x00565CD0(screen, tab, sort)` sorts the tab's list (`0x00252F40` of the list id at `0x00D23960 + 4 x tab`) through
-`0x00249CE0` with one of six comparators, and does nothing for a list of fewer than two items. Each comparator reads the
+`0x00249CE0` with one of five comparators (`0x00565D43`-`0x00565D7F`), and does nothing for a list of fewer than two items. Each comparator reads the
 two items' query records (`0x0035D330(1, id << 16)`,
 [item and ability ids](../Engine-Core/item-and-ability-ids.md)) and falls back to the next rule on a tie:
 
