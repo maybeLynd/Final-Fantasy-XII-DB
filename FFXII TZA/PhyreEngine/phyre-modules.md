@@ -88,7 +88,7 @@ The start-up calls it directly when the message loop ends; the `atexit` call tha
 and does nothing.
 
 At process exit each module's `atexit` destructor writes the base vtable back and unlinks the object.
-Slot 0, `0x005A0CB0`, does the same and frees the object when bit 0 of its flag argument is set.
+Slot 0, `0x005A0CB0`, does the same and frees the object when bit `0x1` of its flag argument is set.
 
 ### What each module holds
 
@@ -117,7 +117,7 @@ the init registers.
 The `PHierarchy` init `0x0087AE00` also sets up the static at `0x02EBA2A8` (`0x0087A8C0`), an object of three
 arrays at `+0x00`, `+0x10` and `+0x20`. The module shutdown `0x0087AE80` frees the first and last and
 the `POctreeChildren` pool; the static's `atexit` destructor `0x0087A830`, registered by `0x0016D5A0`
-through `0x008C1570`, frees each of the three that the object owns (bit 31 of its count clear).
+through `0x008C1570`, frees each of the three that the object owns (bit `0x80000000` of its count clear).
 
 The pool shutdowns `0x00879270` and `0x008792A0`, and the renderer's `0x00610630`, empty a pool with
 `0x006803D0` and then trim it with `0x00680210`, which returns every element on the free list to its
@@ -322,7 +322,7 @@ class's loaded list, is `0x006C4CD0`, which jumps to `0x006C68B0`. That function
 ### Hierarchy triangle tables
 
 The `PHierarchy` init `0x0087AE00` passes the static `0x02EBA2A8` and level 2 to `0x0087A8C0` (`0x0087AE21`, `0x0087AE26`).
-That function sizes two of the static's three `{u32 count, ptr buffer}` arrays from the level. Bit 31 of a count
+That function sizes two of the static's three `{u32 count, ptr buffer}` arrays from the level. Bit `0x80000000` of a count
 marks a buffer the array does not own, which no code frees. It starts them as an octahedron: six corners
 (`0x0087A99B`-`0x0087AA35`) and eight triangles (`0x0087AA42`-`0x0087AADD`). It then subdivides the triangles once per
 level, starting at `0x0087AB50`.
@@ -395,7 +395,7 @@ shutdown `0x00610630` runs `0x005FE200` (`0x00610658`), which takes the lock, re
 | `0x02CB8458` | `u16` | 0 (zero-filled tail of `.data`) | the size of one block, from `0x005FD700`, rounded up to 16 bytes | `0x005FD2A0` (`0x005FD3EF`); `0x005FE200` (`0x005FE2A6`, 0) | no instruction names it |
 | `0x02CB8460` | `void*` | 0 (zero-filled tail of `.data`) | the blocks, allocated by `0x0017D260` with 16-byte alignment and zeroed | `0x005FD2A0` (`0x005FD406`); `0x005FE200` (`0x005FE2BF`, 0, after freeing it) | `0x005FE200` (`0x005FE2B3`) |
 | `0x02CB8468` | `u32` | 0 (zero-filled tail of `.data`) | the number of blocks: the argument rounded up to even, 64 | `0x005FD2A0` (`0x005FD40D`); `0x005FE200` (`0x005FE2AD`, 0) | no instruction names it |
-| `0x02CB8470` | `u32` | 0 (zero-filled tail of `.data`) | the number of `0x50`-byte constant-buffer objects at `0x02CB8478`, also 64; bit 31 set marks objects the array does not own. Each is built by `0x00615550`, resized by `0x00628050(object, 8)` when its `+0x18` count is not 8, and given `0x5E4` at `+0x00` | `0x005FD2A0` (`0x005FD4CD`); `0x005FE200` (`0x005FE32A`, 0) | `0x005FD2A0` (`0x005FD427`, `0x005FD4AC`); `0x005FE200` (`0x005FE265`, `0x005FE298`, `0x005FE2C6`) |
+| `0x02CB8470` | `u32` | 0 (zero-filled tail of `.data`) | the number of `0x50`-byte constant-buffer objects at `0x02CB8478`, also 64; bit `0x80000000` set marks objects the array does not own. Each is built by `0x00615550`, resized by `0x00628050(object, 8)` when its `+0x18` count is not 8, and given `0x5E4` at `+0x00` | `0x005FD2A0` (`0x005FD4CD`); `0x005FE200` (`0x005FE32A`, 0) | `0x005FD2A0` (`0x005FD427`, `0x005FD4AC`); `0x005FE200` (`0x005FE265`, `0x005FE298`, `0x005FE2C6`) |
 | `0x02CB84A8` | `u32` | 0 (zero-filled tail of `.data`) | 0 when the blocks are allocated | `0x005FD2A0` (`0x005FD413`) | no instruction names it |
 
 `0x005FD2A0` also zeroes the `0xB30` bytes from `0x02CB84B0` (`0x005FD534`).
@@ -403,7 +403,7 @@ shutdown `0x00610630` runs `0x005FE200` (`0x00610658`), which takes the lock, re
 ### Statics the `PAnimation` shutdown clears
 
 The `PAnimation` shutdown `0x005CB150` empties two more statics after the job pool. The first is an array of
-`{u32 count, ptr buffer}` whose buffer it frees when bit 31 of the count is clear; the exit destructor `0x008A9240`,
+`{u32 count, ptr buffer}` whose buffer it frees when bit `0x80000000` of the count is clear; the exit destructor `0x008A9240`,
 registered by `0x00160BE0`, does the same. The second group follows the channel-semantic count `0x02CACF18` and the
 `0x100` bytes of semantic slots from `0x02CACF20` (see [animation binding](phyre-animation-binding.md)); it clears them
 only when the array's buffer equals `0x02CAD020` (`0x005CB192`). Every instruction that names any of these globals

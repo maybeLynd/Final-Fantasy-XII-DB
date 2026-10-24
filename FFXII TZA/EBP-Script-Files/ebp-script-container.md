@@ -101,16 +101,16 @@ Measured over every `.ebp` in `FFXII_TZA.vbf`.
 
 ### Requesting a script
 
-`0x0032FC30(manager, id)` calls `0x0032FCA0` and, for manager 0, sets bit 0 of the manager's pending
+`0x0032FC30(manager, id)` calls `0x0032FCA0` and, for manager 0, sets bit `0x1` of the manager's pending
 word. `0x0032FCA0`:
 
 1. tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28`
    and `0x022C6D40`;
 2. picks the namespace and index from the table above;
 3. for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer
-   `0x022C6E70` (pending bit 13), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit 12);
+   `0x022C6E70` (pending bit `0x2000`), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit `0x1000`);
 4. for managers 1 to 3, requests index + 3 of namespace 8 into the `0x208`-byte buffer `0x022C6EE8`
-   (bit 15) and the same index of namespace 37 into `0x022C6EC0` (bit 14); each request is made only
+   (bit `0x8000`) and the same index of namespace 37 into `0x022C6EC0` (bit `0x4000`); each request is made only
    when `0x0032E400` reports a size;
 5. pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE`
    for manager 3 when that arena is enabled (`0x0036B200`), otherwise 5;
@@ -126,10 +126,10 @@ for all five managers, by `0x0032F430`.
 `0x00330310(manager, id, namespace, index)`:
 
 1. takes the size from `0x0032E400`, which rounds the size table's figure up to a multiple of 64;
-2. sets pending bit 17;
+2. sets pending bit `0x20000`;
 3. allocates that many bytes with `0x0036A100` in the current arena and labels the block with
    `0x0036C660` (source name `atelload.c`, tag `0x95C`);
-4. stores the buffer at `0x022C6C00[manager]`, sets the manager record's `+0x11` bit 3, and forms the
+4. stores the buffer at `0x022C6C00[manager]`, sets the manager record's `+0x11` bit `0x8`, and forms the
    packed value `buffer | manager`;
 5. calls `0x00332250`, which for namespaces 5, 8 and 37 cuts a folder name out of the path (such as
    `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value (`0x0017FA90`);
@@ -151,7 +151,7 @@ buffer and walks it at once instead of reading the file.
 ### The directory walk
 
 `0x003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0` (`0x003304D9`) and the
-manager from the low nibble. It sets pending bit 1, and bit 9 when slot 12 is present
+manager from the low nibble. It sets pending bit `0x2`, and bit `0x200` when slot 12 is present
 (`0x003304DE`–`0x003304F5`). It then tests each slot in a fixed order with the same five steps:
 `slotCount > n` (unsigned), offset non-zero, `base + offset`, `or` the manager into the low nibble,
 call the handler. There is no loop and no table: fifteen `cmp dword ptr [rdi + 4], n` sites cover
@@ -185,15 +185,15 @@ and are not tracked per manager. Section 14 is only stored; `0x0032F1B0` binds i
 | 17 | `0x00330310` | the end of the walk (`0x00330696`) |
 
 The other handlers clear bits 4 to 8, 10, 11 and 16, which nothing on this route sets. Every
-clearer applies the same rule: when the word without bit 0 becomes zero it clears the record's
-`+0x11` bit 3; when the whole word goes from non-zero to zero it runs `0x0032F1B0(manager)`.
+clearer applies the same rule: when the word without bit `0x1` becomes zero it clears the record's
+`+0x11` bit `0x8`; when the whole word goes from non-zero to zero it runs `0x0032F1B0(manager)`.
 
 `0x0032F1B0` binds section 14 through `0x0037AA90` for managers above 0, with its light bookkeeping
 (`0x0037B230`, `0x003DE920`, `0x0037B290`), then runs `0x0026CE60`, which builds the manager's actors from the
 image ([actor managers](../Characters-And-Objects/actor-managers.md)), and `0x00263C30`.
-Bit 0 therefore holds `0x0032F1B0` back after every part has arrived, until `0x00332130` clears it
+Bit `0x1` therefore holds `0x0032F1B0` back after every part has arrived, until `0x00332130` clears it
 (its callers include `0x00354B20`, `0x00354E80` and `0x00378120`).
-For manager 0, `0x0032F850` and `0x0032FB70` also run `0x0025AFC0(0)` once bits 1 and 9 are both clear.
+For manager 0, `0x0032F850` and `0x0032FB70` also run `0x0025AFC0(0)` once bits `0x2` and `0x200` are both clear.
 
 ### Teardown
 

@@ -67,8 +67,8 @@ Poison" picks the nearest poisoned foe.
 ### HP and MP in a condition
 
 The HP and MP a condition compares are previewed by `0x00308C20`. It starts from current HP (`+0x48`) or MP
-(`+0x4C`) and, when the deciding character is a party record and the line's action row has bit 12 (HP) or
-bit 15 (MP) of word `+0x2C`, adds the previewed result of every action already committed against the unit
+(`+0x4C`) and, when the deciding character is a party record and the line's action row has bit `0x1000` (HP) or
+bit `0x8000` (MP) of word `+0x2C`, adds the previewed result of every action already committed against the unit
 (the mask `+0xEA4`, each attacker's action `+0x714`, `0x00308B90`). The sum is clamped to 0 and the maximum
 (`0x00308C86`-`0x00308D7D`).
 
@@ -84,23 +84,23 @@ a random pick (`0x00308848`-`0x00308AD0`). When no unit is kept, the order fails
 walk goes on to the next line.
 
 `0x003083B0` answers 0 at once when the deciding unit is an enemy (stats `+0x05` = 1), when the action id is
-above `0x21E` (`0x003083E1`-`0x003083FD`), or when the action row has bit 5 of `+0x36` and the candidate's byte
+above `0x21E` (`0x003083E1`-`0x003083FD`), or when the action row has bit `0x20` of `+0x36` and the candidate's byte
 `+0x55` is `0x0D` (`0x0030844B`-`0x00308457`). Otherwise it answers 1 only when every effect the action row marks
 would change nothing on the candidate (`0x0030846A`-`0x003085E6`):
 
 | Row bit | Effect | Changes nothing when | Sites |
 |---|---|---|---|
-| `+0x2C` bit 12 | restores HP | current HP `+0x48` is at least the maximum: max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1 | `0x0030846A`-`0x003084B1` |
-| `+0x2C` bit 15 | restores MP | current MP `+0x4C` is at least max MP `+0x28`, which counts as 0 when byte `+0x6C` or `+0x7C` is negative | `0x003084B3`-`0x003084E1` |
-| `+0x36` bit 1 | removes statuses | `0x0031C500` finds none of them on the candidate (the action's mask from `0x003872D0` ANDed with the statuses `+0x64` and `+0x3C`), or each one is also removed by the action of a unit already committed against it | `0x003084EF`-`0x00308565` |
-| `+0x36` bit 0 | adds statuses | `0x00320AF0` finds none still to add, or each one is also added by the action of a unit already committed against it | `0x0030856F`-`0x003085DE` |
+| `+0x2C` bit `0x1000` | restores HP | current HP `+0x48` is at least the maximum: max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1 | `0x0030846A`-`0x003084B1` |
+| `+0x2C` bit `0x8000` | restores MP | current MP `+0x4C` is at least max MP `+0x28`, which counts as 0 when byte `+0x6C` or `+0x7C` is negative | `0x003084B3`-`0x003084E1` |
+| `+0x36` bit `0x2` | removes statuses | `0x0031C500` finds none of them on the candidate (the action's mask from `0x003872D0` ANDed with the statuses `+0x64` and `+0x3C`), or each one is also removed by the action of a unit already committed against it | `0x003084EF`-`0x00308565` |
+| `+0x36` bit `0x1` | adds statuses | `0x00320AF0` finds none still to add, or each one is also added by the action of a unit already committed against it | `0x0030856F`-`0x003085DE` |
 
 The units already committed against the candidate are the bits of its mask `+0xEA4`, each unit's action being
 its `+0x714` ([Committing an action](../Battle-Actions/action-commit.md); `0x00308520`-`0x00308535`, `0x003085A0`-`0x003085B4`).
 
 `0x00320AF0(user, candidate, action)` returns the action's status mask `+0x18` without the candidate's statuses
 `+0x64 | +0x3C`, and 0 when either stats record is missing (`0x00320AF9`-`0x00320B13`). The mask comes from
-`0x003875D0`, which returns it only for a row with bit 0 of `+0x36` set and bit 9 of `+0x2C` clear
+`0x003875D0`, which returns it only for a row with bit `0x1` of `+0x36` set and bit `0x200` of `+0x2C` clear
 (`0x00387629`). An action row with none of the four bits is never passed over.
 
 So an "Ally: status = Poison" line whose action removes Poison skips an ally whose Poison an action already
@@ -146,7 +146,7 @@ A shop list goes on sale once it or any list above it on the shop's ladder meets
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
-The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
+The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit `0x1` of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
 `-` means that none of these tables names a source. No treasure chest gives a gambit condition: the chest records' item words name items, equipment, loot, magicks and technicks ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)).
 

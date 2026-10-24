@@ -64,7 +64,7 @@ A null override leaves the renderer's pass record in use.
 
 ### The matrix palette
 
-The palette holds one 64-byte matrix per mesh matrix (mesh `+0x30`, bit 31 masked) after one
+The palette holds one 64-byte matrix per mesh matrix (mesh `+0x30`, bit `0x80000000` masked) after one
 leading slot. Up to `0x80` entries it lies on the stack; above that it is a block of the preprocess
 ring buffer (`0x006B6410`, `0x006B64F0`), whose data starts `0x10` bytes in.
 
@@ -281,8 +281,8 @@ The structures below are the ones the mechanisms above use.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | flags | `0x1`, `0x2`, `0x4`, `0x8`: which parameter blocks the draw builds |
-| `+0x08` | `u32` | blockCount | render blocks per draw; bit 31 masked |
-| `+0x18` | `u32` | parameterCount | bit 31 masked |
+| `+0x08` | `u32` | blockCount | render blocks per draw; bit `0x80000000` masked |
+| `+0x18` | `u32` | parameterCount | bit `0x80000000` masked |
 | `+0x20` | `void*` | parameters | PShaderParameterDefinition records, `0x18` bytes each |
 | `+0x28` | `u32` | extraCount | counted into the table size |
 | `+0x38` | `u32` | instanceBlockSize | per-instance parameter block, its first u32 included |
@@ -294,7 +294,7 @@ The structures below are the ones the mechanisms above use.
 | `+0x00` | `u16` | m_arrayElementCount |  |
 | `+0x02` | `u8` | m_parameterType | selects the value (tables above) |
 | `+0x03` | `u8` | m_dataType | `0x30` writes matrices as 4x3 |
-| `+0x08` | `void*` | m_name | bit 0 masked off |
+| `+0x08` | `void*` | m_name | bit `0x1` masked off |
 | `+0x10` | `u16` | offset | m_bufferLoc: offset in the block |
 | `+0x12` | `u16` | sizeAndLight | low 13 bits size, top 3 bits light slot |
 | `+0x14` | `u32` | m_constantBufferLocation |  |

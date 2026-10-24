@@ -37,7 +37,7 @@ page). In order (`0x0031256B`-`0x003125B4`):
 
 - The unit is the party leader's battle unit: the focus handle `0x022C7FE0` (`0x003590D0`) resolved
   by `0x003588B0` to its registry entry, and the unit is `[entry+0x30]` (`0x00263E30`). It is used only
-  when `0x02089340` has bit 4 set and the unit's first byte has bit 3 (`0x003194AD`-`0x003194D2`);
+  when `0x02089340` has bit `0x10` set and the unit's first byte has bit `0x8` (`0x003194AD`-`0x003194D2`);
   otherwise the unit is null.
 - `0x003377C0` returns 0 for a null unit or one without an actor (`0x003377E3`-`0x003377F6`), so in that
   case no pickup is made.
@@ -46,7 +46,7 @@ page). In order (`0x0031256B`-`0x003125B4`):
   once.
 - Otherwise it queries the units around the position (`0x00391D10` at `0x003378B2`, or `0x003920F0` at
   `0x003378E6` when a coordinate is NaN, up to 32 results) and walks them (`0x00337900`-`0x00337987`).
-  - Skipped: the acting unit itself; a result whose `[+0xE68]` byte `+0x18` bits 1-3 equal 1
+  - Skipped: the acting unit itself; a result whose `[+0xE68]` byte `+0x18` bits `0xE` equal 1
     when the leader's own equal 4; every result while `0x00314EB0(acting)` is 0.
   - Each remaining result is classed by `0x00313F80(acting, result)`; any classed result makes the
     function return 0 (`0x0033798D`-`0x0033799A`).
@@ -202,7 +202,7 @@ nothing when `0x0209BE80` is 0:
 | 6 | end every element | `0x003FA900` |
 
 `0x003FA160` takes the first free of 13 elements of `0x2A0` bytes at manager `+0x270` (free when
-`+0x272` bit 0 is clear) and fills it:
+`+0x272` bit `0x1` is clear) and fills it:
 
 - state `+0x260` = 1, fall speed `+0x264` = -0.25, appearance `+0x268`, chain level `+0x26C`;
 - start position `+0x00` = the descriptor's position, rest position `+0x10` = its x and z with the

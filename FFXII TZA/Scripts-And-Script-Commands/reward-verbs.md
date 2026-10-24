@@ -36,10 +36,10 @@ and writes nothing.
 When its fourth argument is 1, the old count is below 1 and the new count is above 0, it sets
 discovery bits in `[0x02EBF190] + 4`:
 
-- class 3: bit 0, plus `0x01EECF98[s]`, where s is word `+0x2C & 7` (below 5) of the `0x02EBF138` row
+- class 3: bit `0x1`, plus `0x01EECF98[s]`, where s is word `+0x2C & 7` (below 5) of the `0x02EBF138` row
   that byte `+2` of the `0x02EBF0F0` row `id − 0x3000` names;
-- class 4: bit 6;
-- key items: bit 7 for `0xC000` to `0xC011`, bit 8 for `0xC012` to `0xC01E`.
+- class 4: bit `0x40`;
+- key items: bit `0x80` for `0xC000` to `0xC011`, bit `0x100` for `0xC012` to `0xC01E`.
 
 Grants made with another mode set no bits: `0x00300490` (mode 4) and `0x0030C410` (mode 2).
 
@@ -83,7 +83,7 @@ The latch runs the opening in three steps:
    (`0x00325311`). `0x00317850` plays motion `0x2008` on the chest, starts the chest's effect (`0x002EACD0`, handle kept at
    `0x0208CD1C`) and clears the latch (`0x003178A3`).
 3. `0x0032A170`, once the latch is 0, resets the chest's motion (`0x002EBB80`), plays `0x2001` on the opener, releases the
-   effect (`0x003B0770`) when the handle is valid, clears bit 6 of `0x02089340` and sets the handle to -1.
+   effect (`0x003B0770`) when the handle is valid, clears bit `0x40` of `0x02089340` and sets the handle to -1.
 
 `btlAtelOpenTreasureMessage(ref)` (`0x3037`, begin `0x0050FAF0`) is the payout. It takes a message
 record (`0x0035E550`), resolves the chest record through the reference and runs `0x002FAFD0`:
@@ -91,12 +91,12 @@ record (`0x0035E550`), resolves the chest record through the reference and runs 
 1. The opened flag is set (`0x0032AD70(record[9], 1)`) when byte `+9` is not `0xFF`, and the
    per-field presence ledger is marked (`0x002FB430(0x02EC3E60, field, record[0], 0)`).
 2. `rand % 100` at or above byte `+0xB` gives an item, below it gil.
-3. The alternate contents apply when the unit `0x003272A0` returns has `+0x6B` or `+0x7B` bit 1 set
+3. The alternate contents apply when the unit `0x003272A0` returns has `+0x6B` or `+0x7B` bit `0x2` set
    and none of the statuses `0x80000003`.
 4. Item: a second `rand % 100` picks word `+0x10` (below 95) or `+0x12` with the alternate flag,
    otherwise `+0xC` (below 50) or `+0xE`. `0xFFFF` gives nothing; any other id gives one.
 5. Gil: word `+0x16` with the alternate flag, otherwise `+0x14`. A word of 0 gives nothing. With
-   record flag `+8` bit 6 the amount is `rand % word + 1`.
+   record flag `+8` bit `0x40` the amount is `rand % word + 1`.
 
 The verb then grants the item through `0x00300B80(item, 1, 0)` or the gil through `0x003004B0(gil, 0)`
 and shows the message (`0x0035E500`, `0x0035DF40`).
@@ -174,9 +174,9 @@ calls `0x00283270(1)`, sets `+0x1C3`/`+0x1C4` to `0xFFFF` and `+0x1C5` to `0xFF`
 
 `questresultwindow(n)` (`0x037C`, begin `0x00344C60`) resolves the quest row (`0x00473C90`, falling
 back to row 0), takes capability row 3 (`0x002E1CD0(0, 3)`), opens the window through `0x00290130` and
-raises busy bit 13 (`0x003601B0(0xD)`). `0x00290130` grants at once, when the window opens: it builds
+raises busy bit `0x2000` (`0x003601B0(0xD)`). `0x00290130` grants at once, when the window opens: it builds
 the reward bundle (`0x003F8C60`, `0x0029014D`) and grants it (`0x003F4AA0`, `0x0029015B`), adding gil
-straight through `0x00254EE0` (`gil + [bundle + 4]`) when flag bit 0 is set, and `(item, count)`
+straight through `0x00254EE0` (`gil + [bundle + 4]`) when flag bit `0x1` is set, and `(item, count)`
 pairs and single ids through `0x00300B80`.
 
 ### Verbs that look like rewards and write nothing
@@ -200,9 +200,9 @@ The debug give-all verbs add 99 of every id (`0x003008A0(id, 99, 0, 1, 0)`): ite
 
 ```python
 inventory call   0x003008A0(item id, n, set, mode, arg): class = id >> 12, index = id & 0xFFF, class count at 0x01EEBCFC + class × 0x58
-discovery bits   [0x02EBF190] + 4: bit 0 and 0x01EECF98[school] for magicks, bit 6 technicks, bit 7 key items 0xC000..0xC011, bit 8 0xC012..0xC01E
+discovery bits   [0x02EBF190] + 4: bit 0x1 and 0x01EECF98[school] for magicks, bit 0x40 technicks, bit 0x80 key items 0xC000..0xC011, bit 0x100 0xC012..0xC01E
 gil              0x003004B0(n, notify) = max(0, gil + n); 0x00254EE0 stores min(total, 99,999,999) and logs counter 6 or 7
-chest record     +0 index in the field, +8 flags (bit 6 random gil), +9 opened-flag id, +0xA presence %, +0xB item %
+chest record     +0 index in the field, +8 flags (bit 0x40 random gil), +9 opened-flag id, +0xA presence %, +0xB item %
 chest contents   +0xC/+0xE item words, +0x10/+0x12 alternate item words, +0x14 gil, +0x16 alternate gil
 presence ledger  0x02EC3E60: 3 × {u32 field, u32 value bits, u32 mask bits}, cursor 0x02EC3E84, count 0x02EC3E88
 party record     [0x02EBF190] + 8 + selector × 0x1C8: +0 flags (bit 0x8 first activation, bit 0x10 active), +0x50 u16[5] equipment,

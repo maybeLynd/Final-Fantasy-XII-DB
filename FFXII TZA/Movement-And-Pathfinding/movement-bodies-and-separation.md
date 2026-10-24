@@ -52,10 +52,10 @@ presentation and re-creates; the releasers `0x002E3D00` and `0x002E3AF0` run fro
 presentation release and the manager release ([actor record](../Characters-And-Objects/actor-record.md)).
 A body lives exactly as long as its actor's presentation.
 
-`0x0026A7C0(record, on)` (verb `setfloatstatus`) sets or clears the controller's `+0x151` bit 1 and
-re-runs `0x002682D0`; `0x0026ACE0` writes the same byte's bit 5. `0x002646A0` returns an actor's body,
+`0x0026A7C0(record, on)` (verb `setfloatstatus`) sets or clears the controller's `+0x151` bit `0x2` and
+re-runs `0x002682D0`; `0x0026ACE0` writes the same byte's bit `0x20`. `0x002646A0` returns an actor's body,
 `0x00264670` the ground height kept at the movement context's `+0xD4`, and `0x002644C0` and `0x00264EA0`
-the controller's `+0x151` bits 0 and 7.
+the controller's `+0x151` bits `0x1` and `0x80`.
 
 ### The shape
 
@@ -101,7 +101,7 @@ authored base and a scaled copy:
 | `+0x0DE` | `u8` | talkFollowsBody | the talk ellipse copies the body radii |
 | `+0x0DF` | `u8` | touchFollowsBody | the touch ellipse copies the body radii |
 | `+0x0FC` | `f32` | margin | separation margin, the mean of the scaled body radii |
-| `+0x107` | `u8` | offsetUse | bit 0 the offset moves the interaction point, bit 1 it moves the body |
+| `+0x107` | `u8` | offsetUse | bit `0x1` the offset moves the interaction point, bit `0x2` it moves the body |
 
 `Ellipse` (0x10 bytes):
 
@@ -121,7 +121,7 @@ own margin (`0x003DA890`); `0x0026B2D0` (verb `setradius`) passes one radius for
 
 `0x0026BBC0(record, a, b)` sets the talk ellipse and clears `+0xDE`; `0x0026BF60` sets the touch ellipse
 and clears `+0xDF`. For a class-1 object the same setters write the context's `+0x40` and `+0x30`
-pairs unscaled, and `0x0026BF60` also sets `+0x5D` bit 1. The verbs reach them through:
+pairs unscaled, and `0x0026BF60` also sets `+0x5D` bit `0x2`. The verbs reach them through:
 
 - `0x0026BB50` (one radius for both; verb `debug_settalkradius`), `0x00239370(record, angle, height,
   radius)` (verb `btlAtelSetEventData`: each value only when not negative, through `0x0026BB50`,
@@ -129,7 +129,7 @@ pairs unscaled, and `0x0026BF60` also sets `+0x5D` bit 1. The verbs reach them t
 - `0x0023B260` (verb `btlAtelTreasureInit`: talk 1.5, touch 4.0) and `0x0023B2A0(record, touch, talk)`
   (verb `btlAtelTreasureInitWithRange`);
 - `0x0026BD50` and `0x0026BFF0` (verbs `settalkwh`, `setwh`, `setrect`, `settouchwh`, `fieldsign`), which
-  take absolute values; for a class-1 object they set `+0x5D` bit 2 or 1 and keep the inner (talk)
+  take absolute values; for a class-1 object they set `+0x5D` bit `0x4` or `0x2` and keep the inner (talk)
   pair no larger than the outer (touch) pair.
 
 `0x0026B940` (verb `talkang`) sets the talk half-angle `+0xBC` (class 1 `+0x50`); `0x0026BA00` (verb
@@ -137,16 +137,18 @@ pairs unscaled, and `0x0026BF60` also sets `+0x5D` bit 1. The verbs reach them t
 and re-sizes; `0x0026BC70` (verb `fieldsign`) writes the angle of the touch and talk ellipses
 (`0x003DA850`) and the wrapped angle to `+0x48`, which for a class-3 actor is the offset's z.
 
-The offset: `0x0026B170(record, x, y, z)` stores it, sets actor byte `+0x0D` bit 5 when it is non-zero
-(clears it for zero) and, when `+0x107` bit 1 is set and the offset changed, re-places the actor at its
-position (`0x0026B0C0`). `0x0026B230(record, bits)` writes `+0x107` bits 0 and 1 and re-places the
-actor when bit 1 changes; the verb `setposoffset` runs both. `0x0026BA70` (verb `settalkradiusoffset`)
-stores the offset, sets bit 0 and clears bit 1, re-placing when bit 1 was set; `0x0026BB00` (verb
+The offset: `0x0026B170(record, x, y, z)` stores it, sets actor byte `+0x0D` bit `0x20` when it is non-zero
+(clears it for zero) and, when `+0x107` bit `0x2` is set and the offset changed, re-places the actor at its
+position (`0x0026B0C0`). `0x0026B230(record, bits)` writes `+0x107` bits `0x1` and `0x2` and re-places the
+actor when bit `0x2` changes; the verb `setposoffset` runs both.
+
+`0x0026BA70` (verb `settalkradiusoffset`)
+stores the offset, sets bit `0x1` and clears bit `0x2`, re-placing when bit `0x2` was set; `0x0026BB00` (verb
 `fieldsign`) gives it an absolute point and stores the difference from the position.
 
 The interaction point is what `0x00265390(record, &x, &y, &z)` returns: a class-1 object's `+0x10`
 triple; for class 3 the position raised by the controller's `+0x140 + +0x144`, plus the offset when
-`+0x107` bit 0 is set.
+`+0x107` bit `0x1` is set.
 
 The talk test `0x0025BAD0` builds the same point, refuses a focus actor outside
 the height band (`+0xC8` above, `+0xCC` below, both times the scale's y) unless `+0xDD` (the lower edge also less the focus actor's own height), needs the
@@ -192,7 +194,7 @@ direction state 3 to 5. `0x0041F730` starts `+0x420` at 0.013333.
 Both thresholds are `@FCP` section 9 words ([model files](../Graphics/model-files-cm-ca.md),
 property ids `09 00 DD FF`):
 
-- The walk threshold `0x003E58B0(record)` is section 9's float `+0x34`, or `+0x30` while the record's `+0x284` bit 18 is
+- The walk threshold `0x003E58B0(record)` is section 9's float `+0x34`, or `+0x30` while the record's `+0x284` bit `0x40000` is
   set (`0x003E58CF`-`0x003E58F9`), times the three scales `+0x260`, `+0x160` and `+0x26C`; 0.013333 (`0x00D117B8`) for a
   record with no `@FCP` payload or no section 9.
 - The run threshold `+0x420` has three writers, all through `0x002E86B0`. The presentation set-up hands the actor's
@@ -227,15 +229,15 @@ The body's `+0x30` is the actor's field placement. `0x00380D30(placement, candid
 field (`0x0026E500(0)`) and the candidate's cell (`0x00233050`, `0x00233110`); when the cell `+0x52` is
 valid it stores the field's blocked-class mask (`0x00232090`) at `+0x5E` and, unless the placement's
 class byte `+0x50` is in it, copies the candidate's four floats, stores the ground height
-(`0x00231890`) at `+0x7C` and into the position's y unless flag `+0x60` bit 0 holds; a blocked class
+(`0x00231890`) at `+0x7C` and into the position's y unless flag `+0x60` bit `0x1` holds; a blocked class
 sets the cell to -2.
 
 `0x003808A0(placement, field)` then returns at once with `+0x54` = `0xFFFF`
 when the cell is negative (the -2 included), so a blocked placement keeps its stale attribute
 words; otherwise it reads the cell record (`[field + 0x10] + cell
-* 32`, attribute dword `+0xC`) through the mask table `0x0209A2D0` (`0x00232020`): bits 13-17 to `+0x56`,
-bits 3-6 to `+0x58`, `0x00231F80`'s bits to `+0x5A`, attribute bit 12 to flag bit 2; `0x00231A90`; the
-second cell `+0x54`'s height to `+0x90` with flag bit 3 when above the ground height; and its tail
+* 32`, attribute dword `+0xC`) through the mask table `0x0209A2D0` (`0x00232020`): bits `0x3E000` to `+0x56`,
+bits `0x78` to `+0x58`, `0x00231F80`'s bits to `+0x5A`, attribute bit `0x1000` to flag bit `0x4`; `0x00231A90`; the
+second cell `+0x54`'s height to `+0x90` with flag bit `0x8` when above the ground height; and its tail
 steps `+0x80`/`+0x84` toward `+0x64`/`+0x68` by at most 0.25 per step, re-resolving the cell
 (`0x00233050`, `0x00232760`) until within 0.01.
 
@@ -265,8 +267,8 @@ the count are updated even when the record pointer is null.
 
 The driver's tail `0x002E6330` also appends the body's placement to a frame list (head `0x02B57CC8`,
 tail `0x02B57CD0`, linked through the placement's `+0xA0`; `0x003DB0D0`) when actor byte `+0x09` has bit
-6, `0x002E9FE0` holds and the controller's `+0x14E` is set; while `0x00263FB0()` is 1 it also needs the
-controller's `+0x151` bit 7 (`0x00264EA0`). `0x003DAE20` returns the list's head; the highest-top search
+`0x40`, `0x002E9FE0` holds and the controller's `+0x14E` is set; while `0x00263FB0()` is 1 it also needs the
+controller's `+0x151` bit `0x80` (`0x00264EA0`). `0x003DAE20` returns the list's head; the highest-top search
 `0x0046DB50` walks it ([geometry primitives](geometry-primitives.md)).
 
 ### The separation pass
@@ -332,9 +334,9 @@ reads the accumulators it writes.
 ### Consuming the push
 
 `0x002E5180(record)`, from the world tick's per-slot step (`0x002623A0`, `0x0025E400`), clears the
-controller's `+0x151` bit 2, stores the ground height (`0x003DADE0`) at the movement context's
+controller's `+0x151` bit `0x4`, stores the ground height (`0x003DADE0`) at the movement context's
 `+0xD4` and, when the body's `+0xEC` is set, re-runs the integrator with a zero delta and mode 1
-(`0x002E5610`), adds the measure to `+0xB8` and sets bit 2; when clear it zeroes the accumulators
+(`0x002E5610`), adds the measure to `+0xB8` and sets bit `0x4`; when clear it zeroes the accumulators
 (`0x003DA9F0`: `+0x100`-`+0x108`, `+0xE8`, `+0xEC`, `+0xED`, `+0xEE`) and `+0xEF`.
 
 The re-run's
@@ -344,17 +346,17 @@ clears the same accumulators (`0x003DA9F0`) and `+0xEF` outside the tick unless 
 `+0x18` is 1; the `setpos2` verbs run it.
 
 The step then measures
-the frame's displacement (planar unless record byte `+0x08` bit 2), zeroes it when record byte
-`+0x0D` has bit 2 or 4 (clearing both), caps it by `0x002E8000` for the focus actor when positive
-and `+0x0C` bit 4 is clear, stores it at the context's `+0xEC`, hands it to the render record
+the frame's displacement (planar unless record byte `+0x08` bit `0x4`), zeroes it when record byte
+`+0x0D` has bit `0x4` or `0x10` (clearing both), caps it by `0x002E8000` for the focus actor when positive
+and `+0x0C` bit `0x10` is clear, stores it at the context's `+0xEC`, hands it to the render record
 (`0x00420A10`) and the unit (`0x00329A80`), runs `0x002E4A40` and `0x002E6000(record, 0)`, and clears
-`+0x0C` bit 4.
+`+0x0C` bit `0x10`.
 
 ### The mask word
 
-`0x0025B470(record, w)`, run by the verbs `bindp`, `bindhitobj` and `setweight`, keeps only bit 4 of
+`0x0025B470(record, w)`, run by the verbs `bindp`, `bindhitobj` and `setweight`, keeps only bit `0x10` of
 the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `w` outside a town
-(the town flag `0x00377C20`) with actor byte `+0x15` zero, sets bit 4.
+(the town flag `0x00377C20`) with actor byte `+0x15` zero, sets bit `0x10`.
 
 ## Layouts
 
@@ -381,7 +383,7 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x088` | `u16` | mjGroup | attribute bits 3-6; `FFFF` at allocation (`0x00380B80`) |
 | `+0x08A` | `u16` | groundField | `0x00231F80`'s bits; `FFFF` at allocation (`0x00380B80`) |
 | `+0x08E` | `u16` | blockedMask | the field's blocked kinds (`0x00232090`) |
-| `+0x090` | `u32` | flags | bits 0-1 from the controller's `+0x151`, bit 2 attribute bit 12, bit 3 second height above, bit 4 the solver moved the body; bits 0-4 cleared at allocation (`0x00380B80`) |
+| `+0x090` | `u32` | flags | bits 0-1 from the controller's `+0x151`, bit `0x4` attribute bit `0x1000`, bit `0x8` second height above, bit `0x10` the solver moved the body; bits `0x1F` cleared at allocation (`0x00380B80`) |
 | `+0x094` | `f32[3]` | sizeCopy | copies of the two radii and the height; 0.5, 0.5, 2.0 at allocation (`0x00380B80`) |
 | `+0x0A0` | `f32[3]` | innerShape | the percentage-scaled radii and top; 0.5, 0.5, 2.0 at allocation (`0x00380B80`) |
 | `+0x0AC` | `f32` | groundHeight | plane height underfoot; 0 at allocation (`0x00380B80`) |
@@ -416,7 +418,7 @@ Three ranges the table above does not list:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x010` | `u8[8]` | cleared010 | the eight bytes before the pair bitmap `+0x18`: the allocation `0x003DA8A0` zeroes them with the bitmap (`0x003DA9A0`) and the pool initialiser `0x003DAE30` zeroes them for every body (`0x003DAE6D`) |
-| `+0x050` | `f32[4]` | modelTint | the colour the actor's models are tinted with (red, green, blue, fourth): `0x002E4A40` hands the first three to `0x002EDD70` for each of the actor's models (`0x002E4AD9`-`0x002E4B44`), white when the controller's `+0x151` bit 5 is set; `0x002ED6A0` refreshes it from the ground tint `+0x60` (`0x002ED6CF`-`0x002ED6E4`) or, with actor byte `+0xB` bit 6 set, from a fresh sample at the position through `0x0026E530` (`0x0026E5A1`); four 1.0 at allocation (`0x00380C05`-`0x00380C1A`) |
+| `+0x050` | `f32[4]` | modelTint | the colour the actor's models are tinted with (red, green, blue, fourth): `0x002E4A40` hands the first three to `0x002EDD70` for each of the actor's models (`0x002E4AD9`-`0x002E4B44`), white when the controller's `+0x151` bit `0x20` is set; `0x002ED6A0` refreshes it from the ground tint `+0x60` (`0x002ED6CF`-`0x002ED6E4`) or, with actor byte `+0xB` bit `0x40` set, from a fresh sample at the position through `0x0026E530` (`0x0026E5A1`); four 1.0 at allocation (`0x00380C05`-`0x00380C1A`) |
 | `+0x118` | `u8` | cleared118 | set to 0 with the owner byte `+0x119` by the allocation's word store (`0x003DA995`) |
 
 | Address | Type | Name | Meaning |

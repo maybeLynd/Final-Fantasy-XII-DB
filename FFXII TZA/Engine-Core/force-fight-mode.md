@@ -23,7 +23,7 @@ predicate `0x00253B90()` (thunk `0x0030C0D0`) returns `flag == 0`: true means fl
 reader tests it that way round. The second reader `0x00253BA0()` returns the flag only while the
 enable `0x003BA2E0()` holds and 0 otherwise; its two callers are the battle menu's opener
 `0x00276650` (the `0x61F0` widget) and the menu's message procedure `0x00276D30`, whose message-2 arm
-treats a set `+0x2FF0` bit 14 as the mode being on.
+treats a set `+0x2FF0` bit `0x4000` as the mode being on.
 
 `0x003BA2E0()` is true when both bytes `0x02B4053C` and `0x02B4053D` are non-zero. Both are 0 in the
 image; the boot `0x00266D10` writes 1 to both (`0x003BA300(1)`, `0x003BA310(1)`), the manager-0 area
@@ -55,26 +55,26 @@ order](frame-update-order.md)) with `force` = 0, on every pass that reaches the 
 The arbiter keeps the toggle in `0x020927E0`: it flips on each press while `0x0017DE10()` holds and
 the edge byte `0x020927E4` was clear, is forced to 1 by the device poll path (`0x00862CF0`, with
 `0x01E0C2B4`), and is cleared when `0x01E0C2B4` is 1 or the area is a town (the town flag
-`0x00377C20()`, bit 15 of the area's flag word, [area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
+`0x00377C20()`, bit `0x8000` of the area's flag word, [area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
 `0x00252B60(state, flag)` re-decides the state before the write:
 
-- it returns at once when the input snapshot `0x02F97362` has bit 9;
-- `0x002E0FA0()` bit 6 forces the state to 0 with `flag` = 1; else bit 9 does the same and runs
-  `0x00366950`; else bit 10 or `0x00237260()` (every active party member down) does the same; then
+- it returns at once when the input snapshot `0x02F97362` has bit `0x200`;
+- `0x002E0FA0()` bit `0x40` forces the state to 0 with `flag` = 1; else bit `0x200` does the same and runs
+  `0x00366950`; else bit `0x400` or `0x00237260()` (every active party member down) does the same; then
   `0x020927CC` = 1 does the same;
-- the mode register `0x0035C6F0()` (`0x022C83EC`): with bits 2 and 3 clear and bit 0 set the state
-  is its bit 1; with bit 2 or 3 set the state is the snapshot's bit 9 (`0x02F97360`, 0 under policy
-  bit 10), `0x0035C880(0xC, (register & 4) × 2)` and, for state 0, `0x0035C880(0xC, 0)`, then
+- the mode register `0x0035C6F0()` (`0x022C83EC`): with bits `0x4` and `0x8` clear and bit `0x1` set the state
+  is its bit `0x2`; with bit `0x4` or `0x8` set the state is the snapshot's bit `0x200` (`0x02F97360`, 0 under policy
+  bit `0x400`), `0x0035C880(0xC, (register & 4) × 2)` and, for state 0, `0x0035C880(0xC, 0)`, then
   `0x00366950`;
 - unless a skip predicate holds, the arming counter runs (`0x003669F0`, then `0x003667E0` for state
-  0 or `0x00366870` for state 1), and a non-zero state is replaced by `0x003669F0()`, bit 2 of
+  0 or `0x00366870` for state 1), and a non-zero state is replaced by `0x003669F0()`, bit `0x4` of
   `0x022CBE1A`: the flag drops to 0 only once the counter has armed.
 
 The arming counter is audible. `0x00366870` starts sound `0x52` (`0x003A1180`, then
-`0x002DF220`) on its first pass, keeping the handle in `0x022CBE1C` and bit 4 of `0x022CBE1A`;
+`0x002DF220`) on its first pass, keeping the handle in `0x022CBE1C` and bit `0x10` of `0x022CBE1A`;
 `0x003667E0` stops that sound if it still plays (`0x002DEE80`, `0x002DF0F0`) and, when the counter had
-armed (bit 2) and `0x00265680()` holds with bit 6 clear, plays sound `0x2A` (`0x00249C60`)
+armed (bit `0x4`) and `0x00265680()` holds with bit `0x40` clear, plays sound `0x2A` (`0x00249C60`)
 ([sound effects](../Sound-And-Music/sound-effects.md)).
 
 ### What fleeing changes
@@ -85,12 +85,12 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 |---|---|
 | `0x002FFCF0` | refuses every command with reason `0x24` for a party-side unit without Confuse or Berserk (status `0x08000020`), except Dismiss (`0x113`) and Dismount (`0x95`) ([command availability](../Battle-Actions/command-availability.md)) |
 | `0x00308610`, `0x0030C010` | the combat frame skips the combo continuation `0x0030FA00` for a unit without Confuse or Berserk, and `0x0030C010` answers "no" to the same question ([combos](../Battle-Actions/combos.md)) |
-| `0x00307D10` | the engagement update: for a unit that is not the chocobo (`0x1A`) and not in a town, with the two statuses clear, it clears `0x022C1F48` bits 1 and 2, zeroes `0x022C1F40` and the unit's `+0xDCC`, and clears unit `+4` bits 9, 10 and 16 (bit 16 = engaged); the other arm (fighting, or the chocobo, a town or a status set) runs the bit-9 path through `0x00307CE0`, `0x0030BF20` and `0x0030B050`; it runs when a status is added or removed (`0x0030E360`, at `0x0030E7AC`, [status changes](../Status-Effects-And-KO/status-changes.md)) and when the stats block is recomputed (`0x002FEF30`, [stats](../Damage-And-Battle-Formulas/stats.md)) |
+| `0x00307D10` | the engagement update: for a unit that is not the chocobo (`0x1A`) and not in a town, with the two statuses clear, it clears `0x022C1F48` bits `0x2` and `0x4`, zeroes `0x022C1F40` and the unit's `+0xDCC`, and clears unit `+4` bits `0x200`, `0x400` and `0x10000` (bit `0x10000` = engaged); the other arm (fighting, or the chocobo, a town or a status set) runs the bit-9 path through `0x00307CE0`, `0x0030BF20` and `0x0030B050`; it runs when a status is added or removed (`0x0030E360`, at `0x0030E7AC`, [status changes](../Status-Effects-And-KO/status-changes.md)) and when the stats block is recomputed (`0x002FEF30`, [stats](../Damage-And-Battle-Formulas/stats.md)) |
 | `0x00307FF0` | the two global writes alone (`0x022C1F48 &= 0xF9`, `0x022C1F40` = 0), run by the area initialisation `0x002342F0` and by `0x002348E0`, which first tears down every enemy unit (`0x00300E40`) |
-| `0x00308130` | "may the unit engage", after running `0x00307D10`, answers false for a unit with the two statuses clear; otherwise true for unit `+4` bit 16, and false when `0x022C1F48` bit 0 is clear. With bit 0 set it first arms the clock through `0x003081E0` (`0x00308192`): when unit `+0` bit 23 is clear and `+0xDCC` is 0, `+0xDCC = trunc(0x0032A150() + trunc([0x01DFE0B8] * 30) * ((0x00328370() & 3) * 0.25 + 0.5))`, the sum stored as an integer. It then answers true when unit `+0x698` is null or that block's byte `+5` is non-zero (`0x003081A1`, `0x003081A9`), and otherwise when the clock `0x0032A150()` is at or past `+0xDCC` (`0x003081B2`) |
+| `0x00308130` | "may the unit engage", after running `0x00307D10`, answers false for a unit with the two statuses clear; otherwise true for unit `+4` bit `0x10000`, and false when `0x022C1F48` bit `0x1` is clear. With bit `0x1` set it first arms the clock through `0x003081E0` (`0x00308192`): when unit `+0` bit `0x800000` is clear and `+0xDCC` is 0, `+0xDCC = trunc(0x0032A150() + trunc([0x01DFE0B8] * 30) * ((0x00328370() & 3) * 0.25 + 0.5))`, the sum stored as an integer. It then answers true when unit `+0x698` is null or that block's byte `+5` is non-zero (`0x003081A1`, `0x003081A9`), and otherwise when the clock `0x0032A150()` is at or past `+0xDCC` (`0x003081B2`) |
 | `0x00309A90` | the approach distance is 3.8 at party-control level 1 or 2.2 otherwise, instead of the fighting value 24.0 ([party control modes](party-control-modes.md)) |
 | `0x00313A00` | the capability row writes: the second of its fourteen bits is set (`0x002E1C20`) instead of cleared (`0x002E1CA0`) while a unit's action is being shown (`0x02089350`, [Action phases](../Battle-Actions/action-phases.md)) or the party is fleeing |
-| `0x00234590` | the orchestrator's reset loop runs once each time the predicate changes against the battle-state word's bit 3 ([frame update order](frame-update-order.md)) |
+| `0x00234590` | the orchestrator's reset loop runs once each time the predicate changes against the battle-state word's bit `0x8` ([frame update order](frame-update-order.md)) |
 | `0x00336710`, `0x00339BF0`, `0x0033A720`, `0x0033C310`, `0x0033CEF0` | battle locomotion: order `0x4022` counts as the engaged order `0x4124` while fleeing; the arrival divisors are 1.5 and 0.25 while fleeing against 3 and 5 while fighting; for a party unit on order `0x4022` the turn class is `0xA0` instead of `0xC0` and the search flag 4 instead of 2, while a fighting party unit on `0x4022` gets speed `+0xFC` outright in `0x00339BF0` ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)) |
 
 ## Layouts
@@ -131,15 +131,15 @@ mode register.
 
 The party's battle hold: `0x00307E70`, run once per field frame (`0x00234703`), keeps the party in its battle state for
 90 frames after the last member stops fighting. It collects up to four party members (`0x0031B810`) without the
-statuses `0x80000003` (or with `0x00377C20`) into `0x022C1788`, moves bit 2 of `0x022C1F48` into bit 1 and sets bit 2 again
-when one of them is engaged (`+4` bit 16) and has none of the statuses `0x8800203B` (`0x00307EE1`-`0x00307F3F`). Then:
+statuses `0x80000003` (or with `0x00377C20`) into `0x022C1788`, moves bit `0x4` of `0x022C1F48` into bit `0x2` and sets bit `0x4` again
+when one of them is engaged (`+4` bit `0x10000`) and has none of the statuses `0x8800203B` (`0x00307EE1`-`0x00307F3F`). Then:
 
-1. With bit 2 set (fighting this frame) the hold is 0.
-2. With bit 1 set (fighting the frame before) it notes the frame counter `0x0032A150()` in `0x022C1F40` and starts the
+1. With bit `0x4` set (fighting this frame) the hold is 0.
+2. With bit `0x2` set (fighting the frame before) it notes the frame counter `0x0032A150()` in `0x022C1F40` and starts the
    hold at `3 x trunc([0x01DFE0B8] x 30)`, 90 as shipped (`0x00307F53`-`0x00307F75`).
 3. Otherwise a running hold becomes `[0x022C1F40] + 90 - 0x0032A150()` (`0x00307F77`-`0x00307FA5`).
 
-Bit 0 of `0x022C1F48` is then set while bit 2 is set or the hold is not 0 (`0x00307FB4`-`0x00307FDB`).
+Bit `0x1` of `0x022C1F48` is then set while bit `0x4` is set or the hold is not 0 (`0x00307FB4`-`0x00307FDB`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

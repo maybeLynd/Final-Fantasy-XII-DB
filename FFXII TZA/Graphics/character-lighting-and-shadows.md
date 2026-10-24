@@ -38,7 +38,7 @@ resets them to 1.0.
 ### Choosing a character's lights
 
 `0x003ACC10(list, out, colour scale, out ambient, record, id, placement)` walks the list. It skips a light
-when `(request +7 >> 2) & (0x02B3F501 | 0x02B3F520)` is non-zero or bit 1 of `+7` is set. Then the scope:
+when `(request +7 >> 2) & (0x02B3F501 | 0x02B3F520)` is non-zero or bit `0x1` of `+7` is set. Then the scope:
 
 | Scope `+3` | Sub `+4` | The light is taken when |
 |---:|---:|---|
@@ -60,7 +60,7 @@ By type (request `+0`):
 
 - 6, ambient: subtype 5 makes it the multiplier for the final ambient; otherwise `0x003ACAA0` evaluates
   it, scaled by `0x02B3F51C` while `0x02B3F503` is set, then the character's ambient mode applies, an
-  additive light (bit 0 of `+7` clear) joins the running sum, and a higher priority (`+1`), or equal
+  additive light (bit `0x1` of `+7` clear) joins the running sum, and a higher priority (`+1`), or equal
   priority and greater strength, makes it the winner.
 - 7: the character's own list, fetched from record `+0x108` (`0x0037AD40`). Its entries use scope 1 sub 2
   (id match) and scope 3 with the character's group bits (`0x003AED20`: record `+0x28C`; sub 7 needs a
@@ -109,12 +109,12 @@ camera-anchored light at `+0xD0`. A direction too short after normalising become
 
 The model instance's draw setup `0x004FD4B0` calls it with the instance's record (`+0xF8`), matrices
 (`+0xE8`, `+0xF0`) and colour (`+0x90`) into the global block `0x02CA8110`, then scales the ambient: rgb
-by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit 0, by `+0x248`.
+by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit `0x1`, by `+0x248`.
 That is how a character's fade and script colour reach its lighting ([character fades](character-fades.md)).
 
 ### The installed light matrix
 
-Before it evaluates each light, `0x003ABD50` copies its first matrix (light `+5` bits 1-3 clear) or its second into the
+Before it evaluates each light, `0x003ABD50` copies its first matrix (light `+5` bits `0xE` clear) or its second into the
 64 bytes `0x02B3F4B0`-`0x02B3F4EF` (`0x003ABE86`-`0x003ABEDD`); `0x003AC110` copies its matrix the same way (`0x003AC470`-`0x003AC49C`).
 The light bodies read it element by element: the directional body `0x003AD540` turns the direction by rows 0 to 2,
 and the point, plane, segment and spot bodies also take row 3.
@@ -157,7 +157,7 @@ entry index first.
 | `+0x10` | `void*` | followed | the actor of seteventlightactor |
 | `+0x20` | `u8[80]` | request | copy of the light request |
 
-The defaults of the copy are type 2, priority `0xC0`, scope 1 sub-kind 1, bit 0 of `+0x05` set,
+The defaults of the copy are type 2, priority `0xC0`, scope 1 sub-kind 1, bit `0x1` of `+0x05` set,
 range 10.0, colour (1, 1, 1, 0), position w 1.0 and direction (1, 1, 1, 1).
 
 - `bindl(n, kind)` (`0x0136`, `0x003DE4C0`) unbinds whatever the calling actor held (`0x0025AB30`),
@@ -174,7 +174,7 @@ range 10.0, colour (1, 1, 1, 0), position w 1.0 and direction (1, 1, 1, 1).
   `seteventlightdir(n, a, b)` (`0x013C`, `0x003DEA70`) turns the unit z vector by the two angles,
   normalises it (`0x003A1890`) and stores it at request `+0x30`.
 - `seteventlightrange(n, r)` (`0x013B`, `0x003DEAC0`), only for an entry with a type, stores `r` at
-  request `+0x0C` and clears bit 0 of `+0x05`; a negative `r` sets the bit and stores 1.0 instead.
+  request `+0x0C` and clears bit `0x1` of `+0x05`; a negative `r` sets the bit and stores 1.0 instead.
 - `seteventlightcorn(n, inner, outer)` (`0x0144`, `0x003DE8A0`) stores `cos(inner)` and `cos(outer)` at
   request `+0x40` and `+0x44`, with `inner` at least 0 and `outer` at least `inner`.
 
@@ -210,12 +210,12 @@ the script colour and the product to 1.0.
 `m_shadowCasterType` at `+0x08`, `m_splits` at `+0x10`, `m_zbias` at `+0x50`). Its constructor
 `0x006C0EB0` sets `m_shadowCasterType` to the first value record of `PShadowCasterType` at `0x01F2EDC8`,
 named `NoShadow` (the next are `PCFShadowMap` and `CascadedShadowMap`), `m_splits` empty, `m_zbias`
-1.0e-5, and initialises the state block at `+0x58` (`0x005DC400`, then bytes 1, 1, 2, 2 and `+0x74` bit 6).
+1.0e-5, and initialises the state block at `+0x58` (`0x005DC400`, then bytes 1, 1, 2, 2 and `+0x74` bit `0x40`).
 
 ### The two shadow pools
 
 A render record holds up to two shadow entries, chosen by its shadow kind (record `+0xC0` bits 3-4).
-`0x00427DE0` sets the kind from `(+0x304 >> 12) & 3` through `0x003E73B0` when `+0x290` bit 22 is set;
+`0x00427DE0` sets the kind from `(+0x304 >> 12) & 3` through `0x003E73B0` when `+0x290` bit `0x400000` is set;
 kind 1 takes a second-pool entry and kind 0 frees it, and the handle is copied to the presentation
 entry's `+0x360`.
 
@@ -246,22 +246,22 @@ base offset (`+0xA8`, `+0xA0`, `+0xA4` of the header) to `0x003B5CE0`. `0x003B5E
 shadow overrides in the slot, flagged in byte `+0x40`:
 
 - first, for each override flagged by the previous motion, it writes the kept value into the channel
-  and its cross-fade copy and clears a counter: bit 1 the offset (`+0xA0`, `+0xA4`; counter `+0x00`),
-  bit 2 the rotation (`+0xB0`; counter `+0x03`, the strength's), bit 3 the extent scales (`+0xA8`,
-  `+0xAC`; counter `+0x02`), and bit 4 the base offset (`+0xB4`, `+0xB8` into `+0x48`, `+0x4C`);
+  and its cross-fade copy and clears a counter: bit `0x2` the offset (`+0xA0`, `+0xA4`; counter `+0x00`),
+  bit `0x4` the rotation (`+0xB0`; counter `+0x03`, the strength's), bit `0x8` the extent scales (`+0xA8`,
+  `+0xAC`; counter `+0x02`), and bit `0x10` the base offset (`+0xB4`, `+0xB8` into `+0x48`, `+0x4C`);
 - then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`;
   `+0x10`, `+0x54`; `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees) and copies the word's
-  bits 0, 1, 3, 2, 4 and 5 into the flags' bits 1 to 6; it ends by clearing the four counters.
+  bits `0x1`, `0x2`, `0x8`, `0x4`, `0x10` and `0x20` into the flags' bits 1 to 6; it ends by clearing the four counters.
 
 ### Each frame
 
 `0x00426420` runs `0x00426340` on every active record while tail `+0x42` is 1 and `+0x43` is 0:
 
 1. it puts both entries in their off state (`0x003B6900(h, 6)`, `0x003AFD00(h, 0)`);
-2. it stops unless `+0x284` bits 2, 6, 7 and 12 are set, the record has no parent and `+0x2AE` bit 1
+2. it stops unless `+0x284` bits `0x4`, `0x40`, `0x80` and `0x1000` are set, the record has no parent and `+0x2AE` bit `0x2`
    is clear;
 3. kind 0 with a first-pool entry: `0x003B6900(h, 4)`, then the strength (`0x003B6B80`) is record `+0x27C`
-   when `+0xC0` bit 1 is set, otherwise `0x003B5980(h)`;
+   when `+0xC0` bit `0x2` is set, otherwise `0x003B5980(h)`;
 4. kind 1 with a second-pool entry: `0x003AFD00(h, 1)`.
 
 `0x003B5980` measures the distance `d` from the entry's bone (`0x00421FF0`) to the camera position
@@ -276,9 +276,9 @@ while one is non-zero, adds its step to its value (`+0x24` by `+0x2C`, `+0x28` b
 
 ### The shadow verbs
 
-- `setshadowlod` (`0x286`, `0x00342CF0`): `0x002E8950(actor, 1)` sets `+0xC0` bit 1 and `0x002E89B0` stores
+- `setshadowlod` (`0x286`, `0x00342CF0`): `0x002E8950(actor, 1)` sets `+0xC0` bit `0x2` and `0x002E89B0` stores
   the value, clamped to 0..1, at `+0x27C`. `clearshadowlod` (`0x287`) clears the bit.
-- `setshadowalpha` (`0x284`, `0x00342410`): `0x002E88A0(actor, 1)` sets `+0xC0` bit 2 and `0x002E8900` stores
+- `setshadowalpha` (`0x284`, `0x00342410`): `0x002E88A0(actor, 1)` sets `+0xC0` bit `0x4` and `0x002E8900` stores
   the value at `+0x274`. `clearshadowalpha` (`0x285`) clears the bit.
 
 Each finds the record through the actor's `+0xC0` context, whose first word is the record index. Every
@@ -310,8 +310,8 @@ A light request (entry `+0x20`):
 | `+0x02` | `u8` | subtype (ambient colour form; 5 = multiplier) |  |
 | `+0x03` | `u8` | scope |  |
 | `+0x04` | `u8` | scope sub-kind |  |
-| `+0x05` | `u8` | bit 4 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale |  |
-| `+0x07` | `u8` | bit 0 exclusive (not additive); bit 1 skip; bits 2-7 class |  |
+| `+0x05` | `u8` | bit 0x10 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale |  |
+| `+0x07` | `u8` | bit 0x1 exclusive (not additive); bit 0x2 skip; bits 2-7 class |  |
 | `+0x08` | `u32` | target: id, handle or group mask |  |
 | `+0x0C` | `f32` | range |  |
 | `+0x10` | `f32[4]` | colour |  |
@@ -321,7 +321,7 @@ A light request (entry `+0x20`):
 
 - The cap is six directional lights per character after priority; a seventh never reaches the shader.
 - An exclusive ambient of the highest priority silences every other ambient on that character.
-- Group numbers wrap at 32: group 32 is bit 0 again.
+- Group numbers wrap at 32: group 32 is bit `0x1` again.
 
 ## Related
 

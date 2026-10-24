@@ -32,7 +32,7 @@ no entry. The lookup:
    `0x00264E40` to a list number: kinds 0, 1 and 2 to list 0, kind 3 to list 2, kind 4 to list 1,
    kind 5 to list 3, kind 8 to list 4, any other kind to none;
 2. `0x002649B0(list, index)` reads the list from the primary manager's payload: `0x00264AE0(list)`
-   returns section `list` of the table at payload `+[0x70]` when slot 0's flag bit 0 is set;
+   returns section `list` of the table at payload `+[0x70]` when slot 0's flag bit `0x1` is set;
 3. the section holds a count at `+0x00` and entries of `0x20` bytes from `+0x10`; an index at or
    above the count gives none, and for lists 0 and 1 the entry's byte `+0x1C` must have bit
    `[0x02ADD0E8]` (`0x00377860`) set.
@@ -52,12 +52,12 @@ flag byte of the zone transition record ([save data fields](../Saving-Loading-An
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
-| `setsaveramtelepostatus(v)` | `0x305` | `0x00350240` | `0x00314D00(v == 0)`: bit 2 becomes 1 when `v` is 0, 0 otherwise |
-| `getsaveramtelepostatus()` | `0x30A` | `0x00351940` | returns 1 while bit 2 is 0 (`0x00314B60`) |
-| `setsaveramsavestatus(v)` | `0x306` | `0x00350600` | `0x00314C70(v == 0)`: bit 3 becomes 1 when `v` is 0 |
-| `getsaveramsavestatus()` | `0x30B` | `0x00351CE0` | returns 1 while bit 3 is 0 (`0x00314B00`) |
+| `setsaveramtelepostatus(v)` | `0x305` | `0x00350240` | `0x00314D00(v == 0)`: bit `0x4` becomes 1 when `v` is 0, 0 otherwise |
+| `getsaveramtelepostatus()` | `0x30A` | `0x00351940` | returns 1 while bit `0x4` is 0 (`0x00314B60`) |
+| `setsaveramsavestatus(v)` | `0x306` | `0x00350600` | `0x00314C70(v == 0)`: bit `0x8` becomes 1 when `v` is 0 |
+| `getsaveramsavestatus()` | `0x30B` | `0x00351CE0` | returns 1 while bit `0x8` is 0 (`0x00314B00`) |
 
-So bit 2 means teleporting is off and bit 3 means saving is off; a script passes 1 to allow and 0
+So bit `0x4` means teleporting is off and bit `0x8` means saving is off; a script passes 1 to allow and 0
 to forbid. The crystal reads both getters when it builds its menu: both allowed gives the
 save-or-teleport question, saving alone gives a save prompt, teleporting alone a teleport prompt.
 
@@ -69,20 +69,20 @@ the last rows:
 
 | Bit | Set by | Reader | Meaning |
 |---|---|---|---|
-| `+0x1062` bit 0 | `setsaverambattlestatus(v)` `0x303` `0x0034F870` → `0x00314B80(v == 0)` | `getsaverambattlestatus` `0x308` `0x00350FD0`; `0x00377700` returns 1 only while the bit is 0 and byte 2 of the area's record has bit 0 clear | battle off |
-| bit 1 | `setsaveramsummonstatus(v)` `0x304` `0x0034FDC0` → `0x00314CD0(v == 0)` | `getsaveramsummonstatus` `0x309` `0x00351380` only | summoning off |
-| bit 2 | `setsaveramtelepostatus` (above) | `getsaveramtelepostatus`; `0x0026DB30` | teleporting off |
-| bit 3 | `setsaveramsavestatus` (above) | `getsaveramsavestatus` | saving off |
-| bit 4 | `setsaveramshutoralstatus(v)` `0x307` `0x00350AE0` → `0x00314CA0(v == 0)` | `getsaveramshutoralstatus` `0x30C` `0x00352080` only | script-defined switch |
-| bit 5 | `0x00314530` sets it on the restore path, `0x003145E0` clears it when a jump is staged | `0x0026DB30` | a load is being restored |
-| bit 6 | `setnavimapjamming(v)` `0x37D` `0x00346E10` → `0x00314BB0(v != 0)` | `0x00377780`, from the map screens `0x003C4070`, `0x004001D0`, `0x004006A0`, `0x00400E80`, `0x004017D0`, `0x00401D40` | the area map is jammed |
-| bit 7 | `setmist(v)` `0x46A` `0x00343CC0` → `0x00314BE0(v)`: `v` at most 0 clears it and `+0x1063` bits 4-5; a positive `v` sets it and stores `v & 3` in those bits | `0x00377BA0` (thunk `0x00320160`): the stored level when the bit is set, else bits 12-13 of the area's record | mist level override |
-| `+0x1063` bits 0-1 | `setsaveramnavimapstatus(v)` `0x3C7` `0x00349420` → `0x00314C40(v & 3)` | `0x00377750`, from `0x003C5E00`, `0x003C6000`, `0x003C5FB0`: 1 gives 1, 2 gives 0, 0 and 3 give 1 | area map availability |
+| `+0x1062` bit `0x1` | `setsaverambattlestatus(v)` `0x303` `0x0034F870` → `0x00314B80(v == 0)` | `getsaverambattlestatus` `0x308` `0x00350FD0`; `0x00377700` returns 1 only while the bit is 0 and byte 2 of the area's record has bit `0x1` clear | battle off |
+| bit `0x2` | `setsaveramsummonstatus(v)` `0x304` `0x0034FDC0` → `0x00314CD0(v == 0)` | `getsaveramsummonstatus` `0x309` `0x00351380` only | summoning off |
+| bit `0x4` | `setsaveramtelepostatus` (above) | `getsaveramtelepostatus`; `0x0026DB30` | teleporting off |
+| bit `0x8` | `setsaveramsavestatus` (above) | `getsaveramsavestatus` | saving off |
+| bit `0x10` | `setsaveramshutoralstatus(v)` `0x307` `0x00350AE0` → `0x00314CA0(v == 0)` | `getsaveramshutoralstatus` `0x30C` `0x00352080` only | script-defined switch |
+| bit `0x20` | `0x00314530` sets it on the restore path, `0x003145E0` clears it when a jump is staged | `0x0026DB30` | a load is being restored |
+| bit `0x40` | `setnavimapjamming(v)` `0x37D` `0x00346E10` → `0x00314BB0(v != 0)` | `0x00377780`, from the map screens `0x003C4070`, `0x004001D0`, `0x004006A0`, `0x00400E80`, `0x004017D0`, `0x00401D40` | the area map is jammed |
+| bit `0x80` | `setmist(v)` `0x46A` `0x00343CC0` → `0x00314BE0(v)`: `v` at most 0 clears it and `+0x1063` bits `0x30`; a positive `v` sets it and stores `v & 3` in those bits | `0x00377BA0` (thunk `0x00320160`): the stored level when the bit is set, else bits 12-13 of the area's record | mist level override |
+| `+0x1063` bits `0x3` | `setsaveramnavimapstatus(v)` `0x3C7` `0x00349420` → `0x00314C40(v & 3)` | `0x00377750`, from `0x003C5E00`, `0x003C6000`, `0x003C5FB0`: 1 gives 1, 2 gives 0, 0 and 3 give 1 | area map availability |
 | `+0x1063` bits 4-5 | `setmist` (above) | `0x00377BA0` | the mist level |
-| `+0x1063` bit 6 | `0x0026A720` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` | the music override at `+0x1534` is in force |
+| `+0x1063` bit `0x40` | `0x0026A720` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` | the music override at `+0x1534` is in force |
 
-`0x00314A00`, reached from `0x002695A0` in the manager unload `0x002628B0` (`0x00262CEF`), clears bits 0,
-1, 6 and 7 of `+0x1062` and bits 0-5 of `+0x1063` when a zone is left. Bits 2, 3, 4 and 5 are not
+`0x00314A00`, reached from `0x002695A0` in the manager unload `0x002628B0` (`0x00262CEF`), clears bits `0x1`,
+1, 6 and 7 of `+0x1062` and bits 0-5 of `+0x1063` when a zone is left. Bits `0x4`, `0x8`, `0x10` and `0x20` are not
 touched there, so the save and teleport switches survive a zone change, as the save image does.
 
 ### When teleporting is switched back on
@@ -93,10 +93,10 @@ touched there, so the save and teleport switches survive a zone change, as the s
 1. it reads the persistence group of the field being entered (`0x003148F0`, payload `+0x1044`) and
    of the field being left (`0x00314870`, payload `+0x104C`); the group is word `+0x06` of the field's
    row in the field table at `[0x02099D88]`;
-2. when the two differ and bit 5 is clear (`0x0026DBF4` tests `0x20`), it calls `0x003149E0`
-   (`0x0026DBFD`), which clears bit 2;
+2. when the two differ and bit `0x20` is clear (`0x0026DBF4` tests `0x20`), it calls `0x003149E0`
+   (`0x0026DBFD`), which clears bit `0x4`;
 3. it clears the group persistent bank `0x02099FF0` (`0x200` bytes) on a group change, and again
-   whenever the transition mode `+0x1054` (`0x003148D0`) has bit 3 set, the bit a teleport arrival
+   whenever the transition mode `+0x1054` (`0x003148D0`) has bit `0x8` set, the bit a teleport arrival
    carries.
 
 The story also drives the bit directly. In the `us` corpus `setsaveramtelepostatus` is called only
@@ -115,8 +115,8 @@ The crystal's `talk` function suspends battle, waits seven frames, calls `healal
 
 | Mask bit | What is restored | Function |
 |---|---|---|
-| 1 | HP to its maximum (`+0x24`, doubled under status bit 28; `max(HP, 1)` under status bit 16); an Esper record at or below 0 HP also gets `0x003243F0(unit)` | `0x0030F340` via `0x00300530(record, delta, 0, 0x217)` |
-| 2 | MP to its capacity (`+0x28`, 0 while layer bytes `+0x6C` or `+0x7C` carry bit 7) and the secondary word `+0x06` to capacity times `+0x37` | `0x0030F5A0` via `0x00300CE0` and `0x00300BC0` |
+| 1 | HP to its maximum (`+0x24`, doubled under status bit `0x10000000`; `max(HP, 1)` under status bit `0x10000`); an Esper record at or below 0 HP also gets `0x003243F0(unit)` | `0x0030F340` via `0x00300530(record, delta, 0, 0x217)` |
+| 2 | MP to its capacity (`+0x28`, 0 while layer bytes `+0x6C` or `+0x7C` carry bit `0x80`) and the secondary word `+0x06` to capacity times `+0x37` | `0x0030F5A0` via `0x00300CE0` and `0x00300BC0` |
 | 4 | the statuses in set A, `[0x0208D320]` | `0x0030F690` → `0x0030E360(record, 0, status, 0, 0, 0x217, 0)` per bit, then `0x0030FED0(record, 0x217)` |
 | 8 | the statuses in set B, `[0x0208D324]` | the same |
 | 16 | statuses 2, 6, 8 and 10 (`0x544`) in addition | the same |
@@ -124,11 +124,11 @@ The crystal's `talk` function suspends battle, waits seven frames, calls `healal
 `0x00359C60` maps the argument: 1 and anything outside 1-5 give 7 (HP, MP, set A), 2 gives `0xF`,
 3 gives 4, 4 gives `0xC`, 5 gives `0x10`. The crystal passes 0, so it heals HP and MP and clears
 set A. The two sets are built by `0x00237CA0` from the status table at `[0x02EBF118]`: a status whose
-row word `+0x06` has bit 13 goes to set A, the others to set B. When status 0 (KO) is cleared,
-`0x0030F690` also clears bit 26 of the unit flag word unless the record has a terminal status and
+row word `+0x06` has bit `0x2000` goes to set A, the others to set B. When status 0 (KO) is cleared,
+`0x0030F690` also clears bit `0x4000000` of the unit flag word unless the record has a terminal status and
 the area is a town (`0x00377C20`).
 
-`btladjustsystem(n)` (`0x517`, `0x0034AAB0`) calls `0x002FEAC0(n)`: for an odd `n` it clears bit 0 of
+`btladjustsystem(n)` (`0x517`, `0x0034AAB0`) calls `0x002FEAC0(n)`: for an odd `n` it clears bit `0x1` of
 `0x022C3178`, zeroes `0x022C3158`, `0x022C3160` and `0x022C3170` and sets `0x022C3168` to -1.
 
 ### The save menu
@@ -156,11 +156,11 @@ the result is never negative. `gettelepoindex` (`0x32D`, `0x00342490`) and `gets
 1. Start `0x003462D0` stores the byte `0x02064AD0` (`0x00229EB0`) at `ctx + 4` and 0 at `ctx + 8`, pops
    the parameter and then the id, and calls `0x002E1A60(id, param)`, `0x002E1690` (latch `0x0215F1A1` = 1)
    and `0x002E0650` (done byte `0x0215F1AE` = 0).
-2. `0x002E1A60` maps the id through `0x002E0DA0`: with bit 15 preserved, `id & 0x7FFF` 0 gives `0x11`,
+2. `0x002E1A60` maps the id through `0x002E0DA0`: with bit `0x8000` preserved, `id & 0x7FFF` 0 gives `0x11`,
    1 gives `0x12`, 2 gives `0xA`, 3 gives `0xF`, 4 gives `0x13`, 5 gives 6, 6 gives `0x16`, anything
    else 2; for id 6 the parameter is remapped (0, 1, 2 to `0x40`, `0x41`, `0x42`, else 0).
    The crystal's `0x8005` becomes category `0x8006`.
-3. Unless the latch is already set, or the category is 2 while `0x002E0FA0()` has bit 0, it writes
+3. Unless the latch is already set, or the category is 2 while `0x002E0FA0()` has bit `0x1`, it writes
    `0x0215F1A0` = 1, `0x0215F1A4` = category and `0x0215F1A8` = parameter.
 4. Poll `0x00352E00` returns 1 (keep waiting) while `0x0215F1AE` is 0 (`0x002E0F80`).
 5. End `0x00346DA0` pushes `0x00254710()`: the word at `[0x0209BE80] + 0x10FAC` when the menu state
@@ -195,7 +195,7 @@ if (getsummonmodebit() || getchocobomodebit()) sumcho_byebye();
 switch (destination key item) { case 0x8040: mapjump(0x132, 4, 10); ... default: mapjump(142, 3, 10); }
 ```
 
-The warp is the ordinary `mapjump` verb with mode 10 (bits 1 and 3), so it goes through the
+The warp is the ordinary `mapjump` verb with mode 10 (bits `0x2` and `0x8`), so it goes through the
 `mapjump` poll and `0x00314440` exactly as [zone changes](zone-changes-and-mapjump.md) describes; the
 destination field and entrance are authored per key item (the table under Shipped data).
 
@@ -205,28 +205,28 @@ true. The test:
 
 1. `0x0024DE70(handle)` switches on the handle's top nibble: 1 to `0x002FCA00`, 5, 6 and 9 to
    `0x003B0AD0`, 7 to `0x003B2510`, 8 to `0x00375AE0`, anything else gives 0;
-2. a result of 2 or 3 means the effect is still playing, provided `0x0024E210(handle, 3)`, bit 7 of
+2. a result of 2 or 3 means the effect is still playing, provided `0x0024E210(handle, 3)`, bit `0x80` of
    the effect record's `+0x36A`, is still 0;
 3. for the effect pool, `0x003B0AD0` returns 2 for an effect whose byte `+0x370` is 0 and 3 for 1
-   or 2, once its word `+0x378` has bit 8.
+   or 2, once its word `+0x378` has bit `0x100`.
 
 ### The arrival
 
 The destination zone's `system_terepo_ctrl` tests `(getmapjumpmode() & 8) && nowjumpindex() ==
-gettelepoindex()`. When true, `init` sets mode bit 4 (`setmapjumpmode(mode | 16)`), cancels the
+gettelepoindex()`. When true, `init` sets mode bit `0x10` (`setmapjumpmode(mode | 16)`), cancels the
 fade and holds the screen white, and `main` plays sound 96, calls `calltelepoeffect()`, waits and
 fades in. `calltelepoeffect` (`0x333`, `0x00344170`) is `0x00269060()` then `0x00183070()`:
 
 - `0x00269060` runs `0x00268690(9)`: for each of the four party entries `0x0209A1F0[0..3]` that passes
   `0x002EA6A0`, the encoded handle (`0x003589B0`) is collected and `0x0036E700(0, n, handles, 9)` plays
   `0x003B02A0(0, handles, n, [0x01EF9400 + 9 * 4], 5)`, the dword being `0x8C`, then `0x0024F920(handle, 1)`;
-  then `0x00314DA0(0x003148D0() & ~0x18)` clears mode bits 3 and 4 in payload `+0x1054`.
+  then `0x00314DA0(0x003148D0() & ~0x18)` clears mode bits `0x8` and `0x10` in payload `+0x1054`.
 - `0x00183070` runs `0x001D8770` on the loading page `[0x01F82CD8]` (`0x001D8A60`; built by `0x001D89D0` with
   the `LoadingPage` vtable): `+0x08` = 0; when the fading-out byte `+0x24` is 0 it becomes 1 and the
   fade timer `+0x20` is zeroed; the armed byte `+0x1D` = 0. The loading page starts fading out.
 
 The field pass runs the same two calls once the field has settled after any arrival whose mode has
-bit 3 ([field runtime](../Characters-And-Objects/field-runtime.md)).
+bit `0x8` ([field runtime](../Characters-And-Objects/field-runtime.md)).
 
 ## Layouts
 
@@ -234,8 +234,8 @@ Struct ZoneTransitionFlags base=payload+`0x1062` size=2:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | flags1 | bit 0 battle off, bit 1 summoning off, bit 2 teleporting off, bit 3 saving off, bit 4 script switch, bit 5 restore pending, bit 6 map jammed, bit 7 mist override |
-| `+0x01` | `u8` | flags2 | bits 0-1 map availability, bits 4-5 mist level, bit 6 music override in force |
+| `+0x00` | `u8` | flags1 | bit `0x1` battle off, bit `0x2` summoning off, bit `0x4` teleporting off, bit `0x8` saving off, bit `0x10` script switch, bit `0x20` restore pending, bit `0x40` map jammed, bit `0x80` mist override |
+| `+0x01` | `u8` | flags2 | bits 0-1 map availability, bits 4-5 mist level, bit `0x40` music override in force |
 
 Struct MenuRequest base=`0x0215F1A0` size=`0x10`:
 
@@ -250,11 +250,11 @@ Struct MenuRequest base=`0x0215F1A0` size=`0x10`:
 
 ```python
 heal(mask):
-  bit 1   HP   = max HP  # 0x0030F340
-  bit 2   MP   = capacity  # 0x0030F5A0
-  bit 4   clear statuses in [0x0208D320]
-  bit 8   clear statuses in [0x0208D324]
-  bit 16  clear statuses 0x544 as well
+  bit 0x1   HP   = max HP  # 0x0030F340
+  bit 0x2   MP   = capacity  # 0x0030F5A0
+  bit 0x4   clear statuses in [0x0208D320]
+  bit 0x8   clear statuses in [0x0208D324]
+  bit 0x10  clear statuses 0x544 as well
 healall(0) = heal(7)
 teleport_allowed = (payload[0x1062] & 0x04) == 0
 save_allowed     = (payload[0x1062] & 0x08) == 0
@@ -336,9 +336,9 @@ The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 
   the `openfullscreenmenu_48d` Poll until `0x0022B8C0` writes the done byte, so the crystal is held
   for as long as the save screen is open.
 - A teleport is `mapjump(field, entrance, 10)`: it has no transition path of its own, and the
-  destination zone recognises it by mode bit 3 and the arrival entrance `+0x52`.
+  destination zone recognises it by mode bit `0x8` and the arrival entrance `+0x52`.
 - The save and teleport switches travel in the transition record of the save image: a loaded save
-  brings its own values, and the restore path's bit 5 keeps `0x0026DB30` from re-enabling teleport
+  brings its own values, and the restore path's bit `0x20` keeps `0x0026DB30` from re-enabling teleport
   during the load.
 
 ## State
@@ -347,7 +347,7 @@ The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 
 |---|---|---|
 | payload `+0x1062`, `+0x1063` | u8, u8 | the flag bytes above (`0x002EF2B0` base) |
 | payload `+0x1048` | i32 | the staged entrance `setnowjumpindex` writes |
-| payload `+0x1054` | u32 | the transition mode; bit 3 teleport arrival, bit 4 arrival presentation running |
+| payload `+0x1054` | u32 | the transition mode; bit `0x8` teleport arrival, bit `0x10` arrival presentation running |
 | `0x0215F1A0`-`0x0215F1AF` | struct | the menu request |
 | `0x020927D8` | i32 | the menu state `0x00254710` tests for `0x11` and `0x12` |
 | `0x0208D320`, `0x0208D324` | u32 | status sets A and B (`0x00237CA0`) |
@@ -359,7 +359,7 @@ The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 
 
 ## Modding notes
 
-- To open or close a gate crystal, set or clear bit 2 of payload `+0x1062` (or call
+- To open or close a gate crystal, set or clear bit `0x4` of payload `+0x1062` (or call
   `setsaveramtelepostatus`); the next crystal touch rebuilds its menu from the two getters.
 - A new destination needs a key item `0x803F + n`, an entry in the `telepoeffect` switch of every
   crystal script and a crystal script answering `getcrystalid(3, 0)` with `n`; the engine side
@@ -367,7 +367,7 @@ The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 
 - The Teleport Stone cost, the list and the key items are inventory and script-global writes;
   `mapjump` mode 10 and the `+0x52` entrance are what the destination needs to run its arrival.
 - The heal is `heal(7)`: changing the crystal to cure set-B statuses means `healall(2)` in the
-  script, or moving a status into set A by setting bit 13 of its status-table word `+0x06`.
+  script, or moving a status into set A by setting bit `0x2000` of its status-table word `+0x06`.
 
 ## Related
 

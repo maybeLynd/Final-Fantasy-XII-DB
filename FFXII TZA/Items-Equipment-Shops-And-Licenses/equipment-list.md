@@ -92,7 +92,7 @@ A shop list goes on sale once it or any list above it on the shop's ladder meets
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
-The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
+The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit `0x1` of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
 Every part names every source. A cell that would be longer than 1,000 characters moves its longest parts, longest first, to [`item-sources.tsv`](item-sources.tsv) until it fits, and gives for each moved part its label, its count and the table, as `drop (28): in item-sources.tsv` for the Potion.
 
@@ -100,7 +100,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 
 ### The licence it needs
 
-`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `none needed` marks a row whose `+0x07` bit 4 is set, which `0x00323C60` passes without the board (`0x00323CDF`).
+`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `none needed` marks a row whose `+0x07` bit `0x10` is set, which `0x00323C60` passes without the board (`0x00323CDF`).
 
 ## Columns
 
@@ -127,7 +127,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `hp`, `mp`, `strength`, `magick_power`, `vitality`, `speed` | the bonus record's stat bonuses |
 | `statuses_held`, `status_immune` | the bonus record's statuses the wearer has, and those it cannot get |
 | `absorb`, `nullify`, `halve`, `weak`, `potency` | the bonus record's element sets |
-| `no_license`, `hits_flying`, `cannot_sell` | `yes` for bits 4, 2 and 1 of `+0x07` |
+| `no_license`, `hits_flying`, `cannot_sell` | `yes` for bits `0x10`, `0x4` and `0x2` of `+0x07` |
 | `b24` | weapons (classes 0-17): `+0x24`, one value per weapon kind |
 | `reach_kind` | weapons (classes 0-17): `+0x25`, the range pair that sets the near and middle distance (`0x00320D93`) |
 | `motion_class` | weapons (classes 0-17): `+0x26`, the attack motion class (`0x0032041E`) |

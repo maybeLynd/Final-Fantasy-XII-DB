@@ -126,7 +126,7 @@ depends on what ran first.
   `0x0016D6A0` and do nothing (see [image hardening](image-hardening.md)).
 - 405 more are short tail jumps of up to four instructions.
 - 224, nearly all 82 bytes, are list unlinks registered by lazy statics: they splice a node out of an intrusive
-  doubly linked list, point the node at itself, and free `+0x18` through `0x00584730` only when bit 0 of
+  doubly linked list, point the node at itself, and free `+0x18` through `0x00584730` only when bit `0x1` of
   `+0x20` is set (`0x008A8D40`).
 - 327 are 95-byte registry unlinks registered by C++ initialisers: they store the base vtable back
   into the object and remove it from a singly linked registry list by its `+0x10` link (`0x008B76B0`,
@@ -275,7 +275,7 @@ The other readers come in pairs with the same code, one per registry:
   argument and return `0x13` when no object has the name;
 - `0x00876590` and `0x00877160` count the list and copy the object pointers into the array they are passed. When the
   array's count already matches they reuse its buffer (`0x008765C5`); otherwise they give it a new buffer of that
-  many pointers, freeing the old one when bit 31 of its count word is clear. They return 0, or `0xD` when the
+  many pointers, freeing the old one when bit `0x80000000` of its count word is clear. They return 0, or `0xD` when the
   allocation fails;
 - `0x00876670` and `0x00877240` return the object whose name matches, or 0.
 
@@ -303,7 +303,7 @@ one.
 
 Two C++ initialisers do nothing but register a teardown: `0x00167310` (slot `0x008C43E0`) registers `0x008B5C40`, and
 `0x00167320` (slot `0x008C4428`) registers `0x008B5CA0`. Each teardown destroys one static array of two words. It frees
-the buffer through `0x00584730` only when bit 31 of the count word is clear and the buffer is set, then zeroes both
+the buffer through `0x00584730` only when bit `0x80000000` of the count word is clear and the buffer is set, then zeroes both
 words. No other instruction names either array, so both stay 0 and the teardown frees nothing.
 
 | Global | Type | Start | Meaning | Set by | Read by |
@@ -313,9 +313,9 @@ words. No other instruction names either array, so both stay 0 and the teardown 
 | `0x02E56560` | `u32` | 0 (zero-filled tail of `.data`) | count word of the array that `0x008B5CA0` destroys; stays 0 | `0x008B5CA0` (`0x008B5CD6`), 0 | `0x008B5CA0` (`0x008B5CAD`) |
 | `0x02E56568` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array; stays 0 | `0x008B5CA0` (`0x008B5CCF`), 0 | `0x008B5CA0` (`0x008B5CBC`) |
 
-Three more teardowns destroy statics of the same two-word shape, `{u32 count, ptr buffer}` with bit 31 of the count
+Three more teardowns destroy statics of the same two-word shape, `{u32 count, ptr buffer}` with bit `0x80000000` of the count
 marking a buffer the array does not own. Each is registered by a C++ initialiser that does nothing else, or nothing
-else with these words, and each frees the buffer through `0x00584730` only when bit 31 is clear and the buffer is set
+else with these words, and each frees the buffer through `0x00584730` only when bit `0x80000000` is clear and the buffer is set
 (`0x008B7BE0` and `0x008B7CB0` also only when the count is above 1), then zeroes both words. Every instruction that
 names one of these globals is in its teardown.
 

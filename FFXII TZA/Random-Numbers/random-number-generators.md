@@ -62,7 +62,7 @@ The seed function has exactly two callers:
 
 ```python
 t = _time64(NULL);                                        # IAT 0x008C3060, called at 0x0058439F
-seed = (((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF) + 0x258 * frameCounter;  # 0x005843A5-0x005843B2, btr bit 31 at 0x005843BE; 0x005843B4, 0x005843C2; all 32-bit, wrapping
+seed = (((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF) + 0x258 * frameCounter;  # 0x005843A5-0x005843B2, btr bit 0x80000000 at 0x005843BE; 0x005843B4, 0x005843C2; all 32-bit, wrapping
 ```
 
 `frameCounter` is `0x01FD4A80`, which the application frame dispatcher `0x0022A580` increments once

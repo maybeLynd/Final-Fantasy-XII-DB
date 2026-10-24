@@ -29,6 +29,18 @@ subclasses. Each subclass has one static instance in `.data`, starting at `0x01F
 `LOW_RES_PARTICLES`'s installer (`0x00167140`) also writes 0 to `+0x24`. After static initialization
 `0x02E522E0` is 10.
 
+Each switch's count word `+0x20` is stored by its installer in step 2, and its `atexit` teardown subtracts it from
+`0x02E522E0` again:
+
+- `NUM_LIGHTS`: `0x01F2EBE8`, stored at `0x0016710B`, teardown `0x008B5930`;
+- `LOD_BLEND`: `0x01F2EC10`, `0x001670BA`, `0x008B58B0`;
+- `INSTANCING_ENABLED`: `0x01F2EC38`, `0x0016706A`, `0x008B5830`;
+- `SHADER_LOD_LEVEL`: `0x01F2EC60`, `0x001671FA`, `0x008B5AB0`;
+- `ORTHO_CAMERA`: `0x01F2EC88`, `0x0016724A`, `0x008B5B30`;
+- `INDICES_16BIT`: `0x01F2ECB0`, `0x001671AA`, `0x008B5A30`;
+- `SKINNING_ENABLED`: `0x01F2ECD8`, `0x0016729A`, `0x008B5BB0`;
+- `LOW_RES_PARTICLES`: `0x01F2ED00`, `0x0016715A`, `0x008B59B0`; its `+0x24` is `0x01F2ED04` (`0x0016716B`).
+
 ### Registration
 
 `0x006B8D20(switch)` returns `0x11` when `+0x08` (the name) is null, walks the list headed at
@@ -39,7 +51,7 @@ without linking, and otherwise links the switch at the head and returns 0.
 
 `0x00606A20(effect, a2, a3, out, record)` is called only from `0x0060BDEF` in `0x0060B980`:
 
-1. When the effect's variant count (`+0x58`, bit 31 masked off) is 0 it returns −1.
+1. When the effect's variant count (`+0x58`, bit `0x80000000` masked off) is 0 it returns −1.
 2. It reserves `0x02E522E0 × 4` bytes on the stack and points a cursor at the start, so the total is the
    buffer bound, not the key length.
 3. For each non-null entry of the effect's switch array (`+0x50`, count `+0x48`) it calls vtable
@@ -77,7 +89,7 @@ For a `PCamera` (members registered by `0x006784E0`), `+0x6C` is the last float 
 
 ### NUM_LIGHTS
 
-`0x006B9120` walks the light array at `a3` (`+0x10` count with bit 31 masked, `+0x18` pointers). It
+`0x006B9120` walks the light array at `a3` (`+0x10` count with bit `0x80000000` masked, `+0x18` pointers). It
 keeps a light when the mask at `+0x18` of its light type (`light+0x20`) meets the effect's word
 `+0x00`. For a kept light it takes the shadow-caster type (`[light+0x18]+0x08`) and uses its index
 `+0x1C` when that type's mask `+0x18` meets the effect's `+0x04`, else 0, so a shadowless light is

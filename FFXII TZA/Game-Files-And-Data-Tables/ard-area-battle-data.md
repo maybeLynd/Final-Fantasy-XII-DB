@@ -214,7 +214,7 @@ When an area slot is unloaded (slots 1–3 in `0x002628B0`, slot 0 in `0x0025AFC
 `0x0032FB70` call), the game:
 
 1. runs `0x0035A3A0`, which, for each trailer record of both roots whose model is already loaded
-   (`0x002E4C20`), sets the binding's keep bit (`+0x19` bit 0) and the hold bits of lane 0 and of
+   (`0x002E4C20`), sets the binding's keep bit (`+0x19` bit `0x1`) and the hold bits of lane 0 and of
    every lane in the mask (`0x002ECAB0(id, lane, 1)`);
 2. releases the area's models (`0x002E4000`, `0x002E3E20`), which the keep bit and hold bits survive;
 3. runs `0x0035AC60`, which clears the keep bits and hold bits again.

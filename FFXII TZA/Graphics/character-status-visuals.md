@@ -39,7 +39,7 @@ the record whose `+4` is a render-record index; both return dword `+0xC0 + 4n`, 
 
 For each record it reads the unit's status word through `0x00320BB0`: the OR of the stats record's `+0x64` and `+0x3C`
 ([Statuses](../Status-Effects-And-KO/statuses.md)). Stop is left out of the word while the unit's action id
-`+0x714` is `0x21E` or lower and its action phase `+0x6B4` is 9 or more, or while bit 24 of its flag word is set
+`+0x714` is `0x21E` or lower and its action phase `+0x6B4` is 9 or more, or while bit `0x1000000` of its flag word is set
 (`0x00320C10`-`0x00320C37`). `0x00320BB0` also writes whether the stats record's kind byte `+5` is 1 (an enemy) to the record's
 `+0x84`.
 
@@ -53,14 +53,14 @@ the record's flag dword `+0xC0 + 4 × bit`. Then, changed or not, it runs the tw
 
 | Status (bit) | What the arm does beyond the flag dword |
 |---|---|
-| Stone (1) | colour look 0; bit 5 of render record `+0x304` through `0x00428F10`, which raises dirty bit 28 of `+0x290` |
+| Stone (1) | colour look 0; bit `0x20` of render record `+0x304` through `0x00428F10`, which raises dirty bit `0x10000000` of `+0x290` |
 | Petrify (2), Berserk (27), Doom (6), Blind (7) | colour looks 1, 2, 3, 4 |
 | Poison (8), Silence (9), Sap (10), Oil (11), Disable (13), Disease (16) | colour looks 5, 6, 7, 8, 9, 10 |
 | HP Critical (29) | colour look 13 |
-| Stop (3) | second-block index 4; `+0x304` bit 5 as for Stone; `0x003E1310(rig, 0, 1 or 0)` stores the value in byte `+7` of rig slot 0, which makes the rig frame pass that slot a time input of 0 |
+| Stop (3) | second-block index 4; `+0x304` bit `0x20` as for Stone; `0x003E1310(rig, 0, 1 or 0)` stores the value in byte `+7` of rig slot 0, which makes the rig frame pass that slot a time input of 0 |
 | Immobilize (14) | second-block index 0; rig controller 7 on or off |
 | Slow (15), Invisible (24) | second-block indexes 1 and 3 |
-| Sleep (4), Confuse (5) | rig controller 3 and the look controller's byte `+0x1C` bits 1 and 2 |
+| Sleep (4), Confuse (5) | rig controller 3 and the look controller's byte `+0x1C` bits `0x2` and `0x4` |
 | Float (26) | rig controller 6 on or off |
 | KO (0), Bubble (28), X-Zone (31) | nothing |
 | bits 12, 17-23, 25, 30 | no arm |
@@ -88,7 +88,7 @@ The update `0x0046FD00(block, render record, display deny, control deny)` runs e
 
 1. It stores the render record at `+0x28` and the hold byte `+0x3A`: the control-deny byte, or 0 while display is
    denied.
-2. When the wanted look `+5` differs from the shown look `+4`, it copies it over and sets the changing bit, bit 0 of
+2. When the wanted look `+5` differs from the shown look `+4`, it copies it over and sets the changing bit, bit `0x1` of
    `+7`.
 3. It calls the step at `+0x18`; with no step, the changing bit is the answer. A step returns 1 only when its look has
    fully left.
@@ -101,7 +101,7 @@ mode and stores the look's step. Indexes 11 and 12 have no arm in the push; inde
 
 `0x003E75A0` resets every block in use of the 32 from `0x02B59D80`, and `0x003E7D50` one block. Each
 reset runs `0x00470000` on the block's `+0x20`, which clears the mask and the bits of byte `+7`
-above bit 0, sets the shown and wanted looks (`+4`, `+5`) to `0xFF` and releases the two lights
+above bit `0x1`, sets the shown and wanted looks (`+4`, `+5`) to `0xFF` and releases the two lights
 `+8` and `+0xC` (`0x003ABCA0`), and then `0x0051DC60` on `+0x70`.
 
 ### The record mode
@@ -200,8 +200,8 @@ Block `+0x70` keeps a mask at `+0x10`. Its workers `0x0051DBF0` (add) and `0x005
 
 | Byte | Value |
 |---|---|
-| `+0x19`, channel A | 2 when mask bit 2, else 3 when bit 3 (Invisible), else `0xFF` |
-| `+0x31`, channel B | 0 when bit 0 (Immobilize), else 1 when bit 1 (Slow), else `0xFF` |
+| `+0x19`, channel A | 2 when mask bit `0x4`, else 3 when bit `0x8` (Invisible), else `0xFF` |
+| `+0x31`, channel B | 0 when bit `0x1` (Immobilize), else 1 when bit `0x2` (Slow), else `0xFF` |
 | `+0x33` | mask bit 4 (Stop) |
 
 `0x0051E3A0` returns at once while control is denied and display is not. Otherwise it runs the wanted, shown, changing
@@ -213,7 +213,7 @@ every frame. While display is denied it then writes fade channel 5 = 1.0 (`0x004
 These steps use a phase stepping by `0.033 × [0x01DFE0BC]` and an envelope moving by `0.1 × [0x01DFE0BC]`:
 
 - Invisible, `0x0051DC90`: fade channel 5 = `1 - (0.6 + 0.2p) × envelope`, or `1 - (0.88 + 0.08p) × envelope` when the
-  block's `+0x14` (the record's enemy flag) is set; `0x00428AF0(record, 1, 1, 0x60)` sets `+0x304` bits 17, 18 and the
+  block's `+0x14` (the record's enemy flag) is set; `0x00428AF0(record, 1, 1, 0x60)` sets `+0x304` bits `0x20000`, `0x40000` and the
   byte at bits 19-26. Leaving restores 1.0 and clears them ([Character fades](character-fades.md)).
 - Index 2, `0x0051E0A0`: fade channel 5 = `1 - envelope`. No status selects it.
 - Slow, `0x0051E170`, while render record `+0x114` holds a shadow: with `s = (0.5 + 0.3p) × envelope`, the shadow's
@@ -236,8 +236,8 @@ object (record `+0x6B8`) with 1 or 0. The shadow pool is 160 entries of `0xE0` b
   the enable byte `0x02B3F502` and sets `0x02B59D68`; clearing reverses all three. `0x002EA8B0` keeps its requester bits in
   `0x0215FD45`.
 
-Bit 0 of the requester bytes comes from the `ctrldenystatus` and `dispdenystatus` verbs
-([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), bit 2 from the town flag
+Bit `0x1` of the requester bytes comes from the `ctrldenystatus` and `dispdenystatus` verbs
+([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), bit `0x4` from the town flag
 ([Party control modes](../Engine-Core/party-control-modes.md)). Class 5 (byte `+7` = `0x80`) is the status
 lights, so display denial switches them off and lifts the dimming while the steps keep running.
 
@@ -302,7 +302,7 @@ Colour-look block (record `+0x20`):
 | `+0x04` | `u8` | shown |  |
 | `+0x05` | `u8` | wanted | lowest set bit, `0xFF` = none |
 | `+0x06` | `u8` | frame | flash and cycle counter |
-| `+0x07` | `u8` | flags | bit 0 changing, bits 1-7 entry count |
+| `+0x07` | `u8` | flags | bit `0x1` changing, bits 1-7 entry count |
 | `+0x08` | `u32` | light0 | handle |
 | `+0x0C` | `u32` | light1 | handle |
 | `+0x10` | `u32` | target | the render-record index the lights belong to |

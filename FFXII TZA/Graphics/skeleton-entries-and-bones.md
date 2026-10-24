@@ -19,10 +19,10 @@ A skeleton entry knows its own index (`+0x04`), the index of the skeleton it han
 (`+0x10`). The bank keeps an update list at `+0x60` in which a parent always comes before its
 children; `0x0046E6F0` rebuilds it after every acquire (`0x0046E4D0`), release and attach.
 
-- `0x0046E6F0` first runs `0x0046E950` on every entry, which clears bit 1 of `+0x00` and forgets a
+- `0x0046E6F0` first runs `0x0046E950` on every entry, which clears bit `0x2` of `+0x00` and forgets a
   parent index whose entry is gone (`+0x08` and the word `+0x14` set to −1). It then appends, pass
   after pass, every entry with a skeleton (`+0xA0`) whose parent is none or already listed
-  (`0x00537260`), marking it with bit 1.
+  (`0x00537260`), marking it with bit `0x2`.
 - `0x0046E2B0(bank, index)` releases an entry: it clears it (`0x003721E0`), frees its slot (`0x0051FCF0`)
   and rebuilds the list. The record teardown `0x0041E860` calls it for the record's `+0x18`.
 - `0x0046E590(bank, child, parent, slot)` attaches one skeleton to another through `0x00370180`, which
@@ -47,20 +47,20 @@ built from pool values (node flag bit 8), then the extra slots.
 - `0x00373DC0(bone)`, from the skeleton builder `0x00372820`, puts a bone at rest: identity at
   `+0x1F0` and `+0x230` (`0x0046D120`), `(0, 0, 0, 1)` at `+0x1A0` and `+0x1C0`, 1.0 at `+0x1E0` to
   `+0x1EC`, the flags `+0x280` cleared, the links `+0x270` to `+0x276` and `+0x27C` set to −1,
-  `+0x278` null, byte `+0x28A` = 3, bits 0 and 1 of `+0x28B` set and bit 2 clear.
-- `0x00372280(entry)`, from `0x0041CF00`, `0x00422A30` and `0x00424550`, resets each listed bone: it clears bit 4 of `+0x280` and sets `+0x1A0` and `+0x1C0` back to `(0, 0, 0, 1)`.
+  `+0x278` null, byte `+0x28A` = 3, bits `0x1` and `0x2` of `+0x28B` set and bit `0x4` clear.
+- `0x00372280(entry)`, from `0x0041CF00`, `0x00422A30` and `0x00424550`, resets each listed bone: it clears bit `0x10` of `+0x280` and sets `+0x1A0` and `+0x1C0` back to `(0, 0, 0, 1)`.
 - `0x00372510(entry)`, from `0x00424D80`, fills the extra slots with `0x7FFF`, as many as the model's
-  `@FTR` header word `+0x38` gives, and clears bit 12 of the entry's `+0x00`. `0x00371330(entry, i)` returns
+  `@FTR` header word `+0x38` gives, and clears bit `0x1000` of the entry's `+0x00`. `0x00371330(entry, i)` returns
   extra slot `i` of a kind-2 skeleton when `i` is below that count, else 0; `0x0053AB50` calls it.
 - `0x003725A0(entry, bone)` holds when the bone is listed. `0x003737C0(entry, key)` returns the first
-  node with flag bit 8 whose key (`0x00409250`) matches, and `0x00372760(entry, name)` the record whose
+  node with flag bit `0x100` whose key (`0x00409250`) matches, and `0x00372760(entry, name)` the record whose
   name at `+0x00` of the `0x4C`-byte kind-0 records matches; both return −1 otherwise.
 
 ### Bone points
 
 `0x00421E20(record, point, mode, out)` turns a point id into a matrix. Ids `0x107` and `0x108` stand for
 the record's words `+0x2F4` and `+0x2F6`, and `0x300` to `0x3FF` go to `0x003710E0`. Otherwise, with
-bit 7 of the skeleton entry's `+0x00` clear, `0x00370E30` finds the bone by the name `0x00422310` gives;
+bit `0x80` of the skeleton entry's `+0x00` clear, `0x00370E30` finds the bone by the name `0x00422310` gives;
 with it set and an id of `0xFF` or more, `0x00370FA0` finds it by the key from `0x00422380`.
 
 Both return null unless the bone is listed. They return the bone matrix (`+0x80`) and write to `out`
@@ -93,8 +93,8 @@ Two callers take a record's centre point:
 
 Before `0x0041BEE0` binds a motion's bone channels it runs `0x00370BB0`, which lists the skeleton's bones as
 12-byte nodes (index, previous, next) in the scratch list at `[0x01EF9438]`, with the head at `+0x00` and
-the count at `+0x1804`. Kind 0 lists every record (`0x00370BD0`; with bit 5 of the entry's `+0x00` set
-only records whose word `+0x22` is 1 or 7) and kind 2 every node with flag bit 8 (`0x00370CD0`).
+the count at `+0x1804`. Kind 0 lists every record (`0x00370BD0`; with bit `0x20` of the entry's `+0x00` set
+only records whose word `+0x22` is 1 or 7) and kind 2 every node with flag bit `0x100` (`0x00370CD0`).
 `0x00370E00` then claims the node whose key matches each channel, unlinking it (`0x00373540`).
 
 `[0x01EF9438]` normally points at `0x02AD9EC0` (`0x00370DE0`); `0x00426090` and `0x004262E0` point it at
@@ -105,7 +105,7 @@ only records whose word `+0x22` is 1 or 7) and kind 2 every node with flag bit 8
 `0x0046E640(bank, child, parent, slot)` ties a kind-2 skeleton to another (`0x00370390`, which jumps to
 `0x00373160`): the child's `+0x08` takes the parent's index, and slot −1 stores the child's index in
 the parent's `+0x10` while any other slot goes to the child's word `+0x14`. Every listed child bone
-saves its parent link `+0x270` in `+0x28E`. With slot −1, a bone whose node has flag bit 8 and whose
+saves its parent link `+0x270` in `+0x28E`. With slot −1, a bone whose node has flag bit `0x100` and whose
 key names a listed bone of the parent is then tied to that bone:
 
 - the parent's bone gets the child bone's address at `+0x278` and its node number at `+0x27C`, so
@@ -118,7 +118,7 @@ key names a listed bone of the parent is then tied to that bone:
 `0x0046E370(bank, child)` undoes it through `0x00370BA0` (kind 2 only) and `0x00373380`: when the parent's
 `+0x10` names the child it is set to −1 and every listed parent bone's `+0x278` and `+0x27C` are
 cleared; the child's `+0x08` and `+0x14` become −1, its first bone's `+0x1F0` the identity, and each
-listed bone clears bit 1 of `+0x280`, takes its parent link back from the node (bits 12 to 23, with
+listed bone clears bit `0x2` of `+0x280`, takes its parent link back from the node (bits 12 to 23, with
 `0xFFF` meaning none) and sets `+0x276` to −1.
 
 `0x00372610(a, b, c, scale, d)`, called by the final-pose composer `0x00373860`, multiplies `a`, `b` and

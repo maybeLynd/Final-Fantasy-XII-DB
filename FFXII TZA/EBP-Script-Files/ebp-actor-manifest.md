@@ -67,15 +67,15 @@ stem by the rules above, whether that stem ships, and how many `us` containers u
 
 ### Binding
 
-- The walker sets pending bit 9 of the manager's word in `0x022C6E48` when slot 12 is present
+- The walker sets pending bit `0x200` of the manager's word in `0x022C6E48` when slot 12 is present
   (`0x003304F0`), then calls `0x0032FB70` (`0x003305FA`).
 - `0x0032FB70` splits the argument into manager index (low four bits) and pointer, stores the pointer
   at `0x022C6DA8 + index × 8` (`0x0032FB9B`) and passes it to `0x0026CE40`, which stores it at `+0x100` of
   the manager's `0x288`-byte record (`0x0026CE51`;
   [actor managers](../Characters-And-Objects/actor-managers.md)).
-- It clears bit 9 (`0x0032FBB3`) and, when the pending word has emptied, runs the manager's finaliser
+- It clears bit `0x200` (`0x0032FBB3`) and, when the pending word has emptied, runs the manager's finaliser
   `0x0032F1B0`.
-- When the pending word holds no bit other than bit 0, it also clears bit `0x08` of byte `+0x11` of the
+- When the pending word holds no bit other than bit `0x1`, it also clears bit `0x08` of byte `+0x11` of the
   manager record that `0x00263FF0` returns.
 - For manager 0, when bits `0x202` of the pending word are clear, it runs `0x0025AFC0(0)` and
   `0x002EACC0(0x00331990, [0x022C6D28])`.

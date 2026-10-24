@@ -29,7 +29,7 @@ Nothing moves while the screen is dark, and a second jump asked for in that time
    - it completes when the result `0x003BB420()` is 0 and opens the insufficient-disk-space popup when it is not
      (`0x0057E53C`-`0x0057E599`).
 4. **The fade-out.** After staging returns, the funnel requests manager 0 with `0x0026A5F0(0)` (`0x003144A1`); then,
-   unless the mode's bit 0 is set (`0x003144A6`), fade slot 2 starts when `0x002EFD20(2)` reports it idle
+   unless the mode's bit `0x1` is set (`0x003144A6`), fade slot 2 starts when `0x002EFD20(2)` reports it idle
    (`0x003144B1`-`0x003144E5`) ([screen fades](../Graphics/screen-fades.md)).
 5. **The teardown.** On the next simulation tick `0x00314020` reinitialises and unloads every requested manager before
    any actor runs, releasing what each manager held

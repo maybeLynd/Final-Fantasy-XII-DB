@@ -19,8 +19,8 @@ cleared a bit would freeze that part of the interface while the rest kept moving
 
 `0x01E0C464` is a dword that holds `0xFFFFFFFF` in the image. Its sixteen read sites are all inside
 `0x0028E290`, the interface pump, and no instruction in the image writes it. The pump tests bits
-0 to 3, 5, 6 and 7 as byte tests and bits 8 to 15 as dword tests; bit 4 (`0x0010`) is tested
-nowhere. Bit 1 is tested twice, so sixteen tests gate sixteen groups over fifteen distinct bits.
+0 to 3, 5, 6 and 7 as byte tests and bits 8 to 15 as dword tests; bit `0x10` (`0x0010`) is tested
+nowhere. Bit `0x2` is tested twice, so sixteen tests gate sixteen groups over fifteen distinct bits.
 
 ### Where the pump runs
 
@@ -48,32 +48,32 @@ condition the pump adds, and the sub-object or field the handler receives.
 |---|---|---|---|---|
 | 1 | `0x0001` | byte | | `0x00289970(manager + 0x5380)` |
 | 2 | `0x0002` | byte | `0x001EDE80()` non-zero | `0x003F8B40(manager + 0x80)` |
-| 3 | `0x0004` | byte | | `0x002917E0(manager, [+0x10F6C], [+0x10F70], [+0x10F72])` only with `+0x10F68` bit 3; then, under the enable bit alone, with `[+0x10F00]` set `0x0028C4C0` and `+0x10F00 = 0x0028D1C0([+0x10F00])`, else `+0x10EF0` = 0 |
+| 3 | `0x0004` | byte | | `0x002917E0(manager, [+0x10F6C], [+0x10F70], [+0x10F72])` only with `+0x10F68` bit `0x8`; then, under the enable bit alone, with `[+0x10F00]` set `0x0028C4C0` and `+0x10F00 = 0x0028D1C0([+0x10F00])`, else `+0x10EF0` = 0 |
 | 4 | `0x0008` | byte | `[+0x10F30]` set | `0x003F6BB0`, then `+0x10F30 = 0x003F7050([+0x10F30])` |
 | 5 | `0x0020` | byte | `[+0x10F78]` set | `0x003F9F40(manager + 0x57E0)` |
-| 6 | `0x0002` | byte | the pump argument's bit 0 | `0x00291B90(manager)`, `0x003F6100([+0x10F10])`, and with `[+0x10F20]` set `0x003F24D0()` rebuilds `+0x10F20` and `0x003F24A0` runs on the new object |
-| 7 | `0x1000` | dword | | `+0x10F68` bit 1 = bit 0 of `0x0030C300()` |
+| 6 | `0x0002` | byte | the pump argument's bit `0x1` | `0x00291B90(manager)`, `0x003F6100([+0x10F10])`, and with `[+0x10F20]` set `0x003F24D0()` rebuilds `+0x10F20` and `0x003F24A0` runs on the new object |
+| 7 | `0x1000` | dword | | `+0x10F68` bit `0x2` = bit `0x1` of `0x0030C300()` |
 | 8 | `0x0040` | byte | | `0x003F80D0(manager + 0xA0D0)` |
 | 9 | `0x0080` | byte | | `0x00296860(manager + 0x7FB0, 6)` |
 | 10 | `0x2000` | dword | | `0x00290CF0(manager)` |
 | 11 | `0x4000` | dword | | `0x00290EB0(manager)` |
-| 12 | `0x0100` | dword | `+0x10F68` bit 8 | `0x003F8EC0(manager + 0xA0)` |
+| 12 | `0x0100` | dword | `+0x10F68` bit `0x100` | `0x003F8EC0(manager + 0xA0)` |
 | 13 | `0x0200` | dword | `[+0x10F40]` set | `+0x10F40 = 0x003F31B0([+0x10F40], 0x00290DF0)` |
 | 14 | `0x0400` | dword | | `0x003FA790(manager + 0x57E0)` |
 | 15 | `0x8000` | dword | `[+0x10F80]` set | `0x002C6180()` |
 | 16 | `0x0800` | dword | | `0x0028C870(manager + 0x7EA0)`, the pump's last act |
 
-The order is not the bit order: bit 12 runs seventh, bits 13 and 14 before bit 8, and bit 11 last.
-Bit 1 gates two groups at two points of the frame, the second only when the pump's argument has
-bit 0.
+The order is not the bit order: bit `0x1000` runs seventh, bits `0x2000` and `0x4000` before bit `0x100`, and bit `0x800` last.
+Bit `0x2` gates two groups at two points of the frame, the second only when the pump's argument has
+bit `0x1`.
 
 The argument is the 16-bit word `0x01E0C2B0`. `0x00253970`, the interface start-up, stores
 `0xF`. `0x00226280`, the world-lock apply that runs at the end of every field frame, stores through
-`0x002547C0` the value `0xF` when the AND of the lock table's first words has bit 36, else `0xE`,
-with bits 2 and 3 cleared when that AND lacks bit 37. So a lock record that clears bit 36 skips group 6 for
+`0x002547C0` the value `0xF` when the AND of the lock table's first words has bit `0x1000000000`, else `0xE`,
+with bits `0x4` and `0x8` cleared when that AND lacks bit `0x2000000000`. So a lock record that clears bit `0x1000000000` skips group 6 for
 every frame it is held, while the other fifteen groups keep running.
 
-`0x0036D840(on)` sets or clears bits 2 and 3 of two remembered words, `0x02EC0B24` and `0x02EC0B28`, and stores the
+`0x0036D840(on)` sets or clears bits `0x4` and `0x8` of two remembered words, `0x02EC0B24` and `0x02EC0B28`, and stores the
 first through the same setter and the second as the HUD draw word `0x01E0C2AC` (`0x00254840`, `0x0036D873`;
 [HUD](../Menus-And-HUD/hud.md)).
 
@@ -87,7 +87,7 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x01E0C464` | `u32` | the enable word; 0xFFFFFFFF in the image; readers: the sixteen tests in 0x0028E290; writers: none |  |
-| `0x01E0C2B0` | `u16` | the pump argument; bit 0 enables group 6; writers 0x00226280 and 0x0036D840 through 0x002547C0, and 0x00253970 |  |
+| `0x01E0C2B0` | `u16` | the pump argument; bit 0x1 enables group 6; writers 0x00226280 and 0x0036D840 through 0x002547C0, and 0x00253970 |  |
 | `0x0209BE80` | `void*` | the UI manager object |  |
 
 | Offset | Type | Name | Meaning |
@@ -105,7 +105,7 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 | `+0x10F20` | `...` | group 6's two objects | with `+0x10F10` |
 | `+0x10F30` | `...` | group 4's object |  |
 | `+0x10F40` | `...` | group 13's object |  |
-| `+0x10F68` | `u32` | flags: bit 1 written by group 7, bit 3 gates group 3's 0x002917E0 call, bit 8 gates group 12 |  |
+| `+0x10F68` | `u32` | flags: bit 0x2 written by group 7, bit 0x8 gates group 3's 0x002917E0 call, bit 0x100 gates group 12 |  |
 | `+0x10F6C` | `u32` | group 3's arguments |  |
 | `+0x10F70` | `u16` | group 3's arguments |  |
 | `+0x10F72` | `u16` | group 3's arguments |  |
@@ -122,7 +122,7 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 | Fact | Value |
 |---|---|
 | the enable word | `0xFFFFFFFF` in the image, no writer |
-| groups, distinct bits | 16, 15 (bit 4 unused) |
+| groups, distinct bits | 16, 15 (bit `0x10` unused) |
 | test widths | 8 byte tests (bits 0 to 7), 8 dword tests (bits 8 to 15) |
 | `0x00296860`'s second argument | 6 |
 
@@ -143,9 +143,9 @@ object pointers the gates test.
   to use it, since nothing in the game writes it.
 - A port that iterates bits 0 to 15 in order runs the groups in the wrong order; the frame order
   above is the one the handlers were written against.
-- Bit 1 is one bit for two groups; a one-bit-per-subsystem design cannot express it.
+- Bit `0x2` is one bit for two groups; a one-bit-per-subsystem design cannot express it.
 - Group 6 is the only group the game switches off at run time, through the pump argument rather
-  than the enable word: a world lock whose record clears bit 36 holds it for the lock's duration.
+  than the enable word: a world lock whose record clears bit `0x1000000000` holds it for the lock's duration.
 - Half the tests are byte-wide: a port that stores the word as a byte loses bits 8 to 15.
 
 ## Related

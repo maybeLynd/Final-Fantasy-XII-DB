@@ -26,7 +26,7 @@ Every trap belongs to the field's zone script. The script header's word `+0x6C` 
 `{u32 count = 1; u32 packedRef}`, and `0x002641B0(slot, index)` resolves entry `index` of that list
 for manager `slot` ([section 000](../EBP-Script-Files/ebp-script-image.md)):
 
-1. the reference's tag (bits 24-26) must not be 2, and a zero reference means the script has no
+1. the reference's tag (bits `0x7000000`) must not be 2, and a zero reference means the script has no
    table;
 2. the table is `0x00265770(slot, tag) + (reference & 0xFFFFFF)`; for tag 3, every shipped
    reference, the base is the script image plus its header word `+0x40`
@@ -43,7 +43,7 @@ manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A
 
 1. the previous marker resource `0x02B5EC94`, if any, is released (`0x002EBD60(prev, 0)`,
    `0x002E3DC0(prev)`);
-2. the new resource is stored, its load flag set (`0x002EBD60(resource, 1)`: bit 0 of byte `+0x19`
+2. the new resource is stored, its load flag set (`0x002EBD60(resource, 1)`: bit `0x1` of byte `+0x19`
    of the matching entry in the resource lists at `0x0215FD58` and `0x0215FD78`), and the arming walk
    `0x002FA740` runs (its only caller, `0x003EC679`).
 
@@ -92,7 +92,7 @@ the call when:
 
 - the area is not a town (`0x00377C20`) and the battle state `0x022C2160` is neither 5 nor 6
   (`0x00310E02`-`0x00310E1B`);
-- `0x00265680()` is non-zero, `0x0030B770()` and `0x0030B7F0(unit, 0)` are 0 and unit flag bit 36 is
+- `0x00265680()` is non-zero, `0x0030B770()` and `0x0030B7F0(unit, 0)` are 0 and unit flag bit `0x1000000000` is
   clear (`0x00310F12`-`0x00310F4F`);
 - for an Esper, the dismiss check between these two gates did not end the tick through `0x003138D0(0)`
   (`0x00310E5B`-`0x00310EFD`).
@@ -100,8 +100,8 @@ the call when:
 `0x002F8060` itself refuses, returning the no-action id `0xFFFF` (`0x002F8095` sets -1, `0x002F82C6` returns its
 low 16 bits), when the unit's stats:
 
-- carry bit 26 in the combined status words `+0x3C | +0x64`;
-- carry bit 5 in either layer byte `+0x6C` or `+0x7C`: augment 37 (Tread Lightly, "Move safely past traps"),
+- carry bit `0x4000000` in the combined status words `+0x3C | +0x64`;
+- carry bit `0x20` in either layer byte `+0x6C` or `+0x7C`: augment 37 (Tread Lightly, "Move safely past traps"),
   the Float status's effect ([the two layers](../Status-Effects-And-KO/statuses.md),
   [battle text banks](../Game-Files-And-Data-Tables/battle-text-tables.md));
 - have kind 1, an enemy (`0x002F80F3`-`0x002F80FA`), or kind 0 with the type byte `+0x04` in 27-39, an
@@ -133,7 +133,7 @@ On a hit, in order:
    (height zeroed) is within the radius of the point;
 4. `0x0046A9D0(stats, action)` posts the battle message: row 3 for action `0x103`, row 1 for
    `0x104`, row 2 for `0x105`, row 0 for anything else ([battle log](../Battle-Actions/battle-log.md));
-5. `0x003EC700(i, 3)` retires marker `i` (`0x002E7410`: render record `+0x294` bit 27 set, `+0x304`
+5. `0x003EC700(i, 3)` retires marker `i` (`0x002E7410`: render record `+0x294` bit `0x8000000` set, `+0x304`
    top five bits = 3);
 6. the bit is cleared in the ring (`0x002FB3B0`) and the walk returns the action id. At most one
    trap fires per call, and the first in index order wins when two overlap.
@@ -162,7 +162,7 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 ### Marking the trap's effect
 
 Between steps 1 and 2 above, the tick hands the effect handle `0x002EACD0` returned to `0x0024ED50`
-(`0x00311070`-`0x00311072`). `0x0024ED50` routes it by the handle's top four bits and sets bit 11 (`0x800`)
+(`0x00311070`-`0x00311072`). `0x0024ED50` routes it by the handle's top four bits and sets bit `0x800` (`0x800`)
 of the effect record's `u16` at `+0x36A`:
 
 | Top four bits | Body | Record lookup |
@@ -178,13 +178,13 @@ non-zero (`0x00319F10`).
 ### Showing the markers
 
 `settrapshowstatus(v)` (`0x547`, handler `0x00355E00` → `0x003EC6C0`) shows or hides all sixteen
-marker slots at once outside a town: `0x002ED3A0(0x003EB720(i), v)` sets bit 1 of the marker's render
-record `+0x304` to `v` and bit 4 of `+0x290`. `0x003EB720(i)` returns slot `i` of the marker table
+marker slots at once outside a town: `0x002ED3A0(0x003EB720(i), v)` sets bit `0x2` of the marker's render
+record `+0x304` to `v` and bit `0x10` of `+0x290`. `0x003EB720(i)` returns slot `i` of the marker table
 `0x02B5EA20` (`i` below 32, byte `+0x40` set) plus `0x10`.
 
 Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot pre-pass `0x00234590`
 (`0x00234861`), tests `0x0030C300()`: any of the nine party slots (`0x00320AB0(i, 1)`) alive or in a
-town whose status words carry bit 30, Libra. On the change from no Libra to Libra the byte
+town whose status words carry bit `0x40000000`, Libra. On the change from no Libra to Libra the byte
 `0x022BE944` becomes 1 and every live trap's marker gets mode 1 (`0x003EC700(i, 1)`); on the change
 back it becomes 0 and the markers get mode 2.
 
@@ -368,7 +368,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 ## Related
 
 - [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the flag the firing sets and the arming tests.
-- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): Libra (bit 30) and the statuses the trap rows inflict.
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): Libra (bit `0x40000000`) and the statuses the trap rows inflict.
 - [What the periodic tick does](../Status-Effects-And-KO/status-timers.md): the caller of the trigger walk.
 - [Battle log](../Battle-Actions/battle-log.md): the four trap messages.
 - [The action definition row](../Battle-Actions/action-definition-row.md) and [the count clock and bank recipes](../Damage-And-Battle-Formulas/weapon-formulas.md): the rows and their slots.

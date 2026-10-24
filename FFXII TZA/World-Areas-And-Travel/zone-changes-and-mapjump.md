@@ -34,7 +34,7 @@ The Poll handler `0x00355350` runs every frame. In state 0 it does the following
 
 1. Takes the current field context `c = 0x002640C0()` (`[0x02099D70]`).
 2. When `c+0x28` is 0 and byte `c+0x16` is 0 it waits (returns 1) while `0x02099DB8` (`0x00264180`) is
-   non-zero or while `0x00264830` finds a manager with `+0x10` bit 0 and `+0x200` bit 2 set (the jump
+   non-zero or while `0x00264830` finds a manager with `+0x10` bit `0x1` and `+0x200` bit `0x4` set (the jump
    lock).
 3. Calls `0x001D6AE0(map)`, a guarded indirect call on the file-cache object.
 4. Calls `0x00314440(map, entrance, mode, 1)`. A non-zero result means the resource queue is busy; the
@@ -68,7 +68,7 @@ if (0x01EED064 < 0) {                                   // no jump pending
 return 0;
 ```
 
-`mode` bit 0 set means no fade-out from this request; bits 1 and 2 shape the fade call. A request made
+`mode` bit `0x1` set means no fade-out from this request; bits `0x2` and `0x4` shape the fade call. A request made
 while `0x01EED064` is non-negative is dropped without error. `0x0026A5F0(0)` ORs bits 0 to 3 into the
 manager request mask `0x02099ABC` (requesting manager 0 also requests 1, 2 and 3).
 
@@ -82,12 +82,12 @@ Callers of `0x00314440`: the mapjump poll (`0x003553CF`), `0x00280140` (`0x00280
 
 1. `0x0032E520(0)` drains the resource queue; with `nonblocking` it calls `0x0032E520(1)` and returns 1
    when the queue is busy.
-2. `0x0026E0D0(0, 0)`, busy bit 12 set (`0x003601B0(0xC)` at `0x0031463E`), `0x0026A5F0(1)`, `(2)`, `(3)`.
+2. `0x0026E0D0(0, 0)`, busy bit `0x1000` set (`0x003601B0(0xC)` at `0x0031463E`), `0x0026A5F0(1)`, `(2)`, `(3)`.
 3. The transition record in the persistent payload (`0x002EF2B0`): `+0x104C` = old `+0x1044`; `+0x1044`
    = map, also copied to `0x01EED064`; `+0x1050` = old `+0x1048`; `+0x1048` = entrance; `+0x1054` = mode;
-   `+0x1058` = `0x00264F90(map)`, the persistence group; `+0x105C` = map; `+0x1062` bit 5 cleared.
+   `+0x1058` = `0x00264F90(map)`, the persistence group; `+0x105C` = map; `+0x1062` bit `0x20` cleared.
 4. `0x005C5230()`, which returns 0 (`0x003146E5`); `0x022C2540` = 0; `0x002EFA70(3, 0, 1, 0)` (fade slot 3, `0x00314700`).
-5. Steps 5 and 6 run only when `0x01EED064` is non-negative (`0x00314705`-`0x0031470C`): `s = 0x00236760()` (bit 12 of
+5. Steps 5 and 6 run only when `0x01EED064` is non-negative (`0x00314705`-`0x0031470C`): `s = 0x00236760()` (bit `0x1000` of
    `[0x02EBF190]+4`). For destination `0xC`: `0x00287D00(0)` and `0x01E0C3EC` = 1. For any other destination the
    map id is written to the runtime buffer at `0x002EF640() + 0x4E664` only when `s` is 0 (`0x00314731`), and
    `0x003C8670()` runs whatever `s` is (`0x00314744`).
@@ -99,16 +99,16 @@ Callers of `0x00314440`: the mapjump poll (`0x003553CF`), `0x00280140` (`0x00280
 Field `0xC` is the title map (`ttl_a01`, see the file table below): a request for map 0 becomes `0xC`
 when the input channel mode is 0, and staging `0xC` skips the runtime-buffer write.
 
-`0x00314530` is the restore path: it requests managers 1, 2, 3 and 0, sets `+0x1062` bit 5, copies
+`0x00314530` is the restore path: it requests managers 1, 2, 3 and 0, sets `+0x1062` bit `0x20`, copies
 `+0x1044` to `0x01EED064` and `+0x105C`, clears `0x022C2540`, starts fade slot 2 with `0x002EFA70(2, 0, 0, 0)`,
 sets `0x022C2528` = 1 and notifies the file cache. `0x003145E0` is also called by the area initialisation
-`0x00266D10` (`0x00267127`). `0x00314D00(v)` writes bit 2 of `+0x1062`.
+`0x00266D10` (`0x00267127`). `0x00314D00(v)` writes bit `0x4` of `+0x1062`.
 
 ### The tick tears the old zone down and starts the load
 
 `0x00314020`, the simulation tick, runs this before any actor:
 
-1. `0x0025BFB0` drains the request mask `0x02099ABC`: when bit 0 is set, `0x0026CE60(m)` reinitialises every
+1. `0x0025BFB0` drains the request mask `0x02099ABC`: when bit `0x1` is set, `0x0026CE60(m)` reinitialises every
    requested manager from 4 down to 0 and the party roster `0x0209A1F0` to `0x0209A208` is cleared; then
    every requested manager is unloaded with `0x002628B0(m)` and its bit cleared.
 2. `0x01EED060` is reset to -1 when non-negative.
@@ -116,7 +116,7 @@ sets `0x022C2528` = 1 and notifies the file cache. `0x003145E0` is also called b
    then `0x01EED064` = -1.
 
 `0x0032FC30(0, map)` calls `0x003EA6E0(map, byte 0x022C6D1D)`, then `0x0032FCA0(0, map)`, `0x0025D4D0(0)`, and sets
-bit 0 of `0x022C6E48`, the start hold. A branch guarded by `0x005C5230(5)` is dead in this build.
+bit `0x1` of `0x022C6E48`, the start hold. A branch guarded by `0x005C5230(5)` is dead in this build.
 
 That dead branch calls `0x003319D0(map)`. It takes the zone's `.ebp` path (namespace 5, index
 `map * 3`) and makes four sibling paths with `0x00331F50`, which replaces every occurrence of one
@@ -148,8 +148,8 @@ It then queues the asynchronous loads, each setting a bit of the manager's pendi
 | `base + 3` from namespace `0x25` (callback `0x003317C0`) | `0x4000` | managers 1 to 3 |
 | the primary payload, `0x00330310(m, ctx, ns, base)` (callback `0x003304A0`) | `0x20000` | all |
 
-Pending bit 0 is a start hold, not a load. `0x0032ED70(m)` sets it, `0x0032F6C0(m)` reads the mask without
-it, and `0x00332130(m)` clears it; when the mask thereby becomes 0, `0x00332130` clears manager `+0x11` bit 3
+Pending bit `0x1` is a start hold, not a load. `0x0032ED70(m)` sets it, `0x0032F6C0(m)` reads the mask without
+it, and `0x00332130(m)` clears it; when the mask thereby becomes 0, `0x00332130` clears manager `+0x11` bit `0x8`
 and calls `0x0032F1B0(m)` to finalise the manager. For the zone, `0x00378120` (called by `0x003775D0` at
 `0x003776DD`) binds the new area's navigation data and then calls `0x00332130(0)`, so the zone's actors and
 scripts cannot start before its navigation exists.
@@ -174,7 +174,7 @@ the bit loaded into `ecx` before the call:
 | 18 | `0x00342C90` (`0x00342C99`) | `0x00343325` |
 | 19 | nine party-command verb bodies (`0x0034C3B1`, `0x0034CCD9`, `0x0034CE3B`, `0x0034D542`, `0x00350184`, `0x00350D17`, `0x00351A66`, `0x003521C8`, `0x00352B05`) | `0x0034C398`, `0x0034CE18`, `0x003506B4` (bit `0x13` plus a selector), `0x0034D465` |
 
-`0x003321E0` sets bit 7 when any of the five pending masks has a bit other than bit 0 set and clears it
+`0x003321E0` sets bit `0x80` when any of the five pending masks has a bit other than bit `0x1` set and clears it
 otherwise. `0x00360120`, called from the main loop, runs `0x003321E0` and, when the whole mask is 0 and byte
 `0x022CB72A` or `0x022CB72B` is set, runs the resume routine `0x003601D0`. `0x002628B0` zeroes the mask through
 `0x00360100` (`0x00262B9E`); the boot routine `0x0022A0B0` calls `0x00360370` (`0x0022A39E`).
@@ -182,11 +182,11 @@ otherwise. `0x00360120`, called from the main loop, runs `0x003321E0` and, when 
 ### The zone is ready
 
 `0x0025D9E0`, the per-manager field pass, calls `0x002620E0(manager)` at `0x0025DB7D` and `0x0025DC27`. Only
-manager 0 gets past its first test (`+0x28` == 0). On the first pass for a load (`+0x10` bit 2 clear) it
+manager 0 gets past its first test (`+0x28` == 0). On the first pass for a load (`+0x10` bit `0x4` clear) it
 runs the start work once: `0x00259B30`, `0x003E8980(0)`, `0x0025ACA0`, `0x0026FAD0(0, n, 0)` and `0x0026FAD0(0x1F,
 n, 0)` with `n` = `0x0017D490()` when positive, else payload byte `+0x1060` plus 1, then `0x00379860(n)`,
-`0x00379290`, `0x003DE920(0, 1)`, `0x00363B40`, and sets `+0x10` bit 2. On every pass it clears busy bits 11 and
-12. This is the moment the new zone counts as started; with bit 7 also clear the mask carries no
+`0x00379290`, `0x003DE920(0, 1)`, `0x00363B40`, and sets `+0x10` bit `0x4`. On every pass it clears busy bits `0x800` and
+12. This is the moment the new zone counts as started; with bit `0x80` also clear the mask carries no
 transition reason.
 
 ### Scenes use the same loader
@@ -218,8 +218,8 @@ state `0xC`. Their close path `0x002D6F90` ends by calling `0x003CA0A0` (`0x002D
 ### The jump lock
 
 Verbs `0x599` (`lockmapjump`, handler `0x0034AD70`) and `0x59A` (`unlockmapjump`, `0x0034B1C0`) set and
-clear bit 2 of byte `+0x200` of the current field context `0x002640C0()`. `0x00264830` reports a lock when
-any of managers 0 to 2 (`0x02098E20`, stride `0x288`) has `+0x10` bit 0 and `+0x200` bit 2 set; the mapjump
+clear bit `0x4` of byte `+0x200` of the current field context `0x002640C0()`. `0x00264830` reports a lock when
+any of managers 0 to 2 (`0x02098E20`, stride `0x288`) has `+0x10` bit `0x1` and `+0x200` bit `0x4` set; the mapjump
 poll waits on it. A script that locks and never unlocks holds every pending jump.
 
 ### The jump-index verbs
@@ -234,7 +234,7 @@ or write the transition record:
 | `0x91` `nowjumpindex()` | `0x0033F7F0` | the entrance `+0x1048` resolved by `0x00264CE0` against manager 0's header: -1 gives `short +0x52`, -2 `+0x78`, -3 `+0x7A`, other negatives `+0x52`, then clamped to 0 or above |
 | `0x92` `lastmap()` | `0x0033FC40` | payload `+0x104C` (`0x00314870`) |
 | `0x93` `lastjumpindex()` | `0x0033FFF0` | payload `+0x1050` (`0x00314850`) |
-| `0xD5` `mapjumpstatus(v)` | `0x0034A250` | bit 0 of byte `+0x17` of the current field context |
+| `0xD5` `mapjumpstatus(v)` | `0x0034A250` | bit `0x1` of byte `+0x17` of the current field context |
 | `0x211` `getmapjumpposbyindex(i, ...)` | `0x003538F0` | x, y, z and angle of entrance `i` into four script variables |
 | `0x2C5` `effectkeepmapjump(v)` | `0x0033FC20` | `0x0036E9B0(v, 1)` |
 | `0x323` `getmapjumpanglebyindex(i)` | `0x00353490` | the angle of entrance `i` |
@@ -242,7 +242,7 @@ or write the transition record:
 | `0x331` `getmapjumpmode()` | `0x00343930` | payload `+0x1054` (`0x003148D0`) |
 | `0x332` `setmapjumpmode(v)` | `0x00343D90` | payload `+0x1054` (`0x00314DA0`) |
 | `0x3D1` `setnowjumpindex(i)` | `0x0034AC10` | payload `+0x1048` (`0x00314D80`) |
-| `0x40B` `clearmapjumpstatus()` | `0x0033F940` to `0x0025D580` | `0x00238B00(0)`; leaves the `0x02099DA7` hold (`0x00250960`); `0x002E1CD0(1)`; clears busy bit 12; `0x00225CD0(0x13)`; `0x00226280()` |
+| `0x40B` `clearmapjumpstatus()` | `0x0033F940` to `0x0025D580` | `0x00238B00(0)`; leaves the `0x02099DA7` hold (`0x00250960`); `0x002E1CD0(1)`; clears busy bit `0x1000`; `0x00225CD0(0x13)`; `0x00226280()` |
 | `0x56D` `setposparty_mapjump(x, y, z, angle)` | `0x0033F070` | pops four floats and calls `0x0037D000({x, y, z, 1.0}, angle, 0)`: formation placement of party slots 0 to 3 around the point (`0x0031BD60`, `0x0031BAC0`, `0x0026B0C0`), each member turned to the angle |
 | `0x576` `fadeout_check_nextmap(map)` | `0x00343710` | when `0x0026DEF0(map)` is negative, `0x00361200(-1, 1, 1)` fades the four music slots at `0x022CB9F0` |
 | `0x4EA` `set_ignore_mapjump_func(v)` | `0x00510720` | pops its argument and tail-jumps to `0x0016D6A0`, a `ret 0` stub: a no-op |
@@ -260,7 +260,7 @@ manager 0, writes zeros when there is no such record and passes the angle throug
 
 `0x0026DEF0(map)` reads the per-area music number table `0x003EAA70` (blocks of 128
 area ids under `[0x02B5E0D0]`, entries selected by the story variable `0x00265270()`); when the number is
-negative or its byte in `[0x022CBA50]` lacks bit 0 (`0x00361010`) it returns `0x5B` while the summon mode
+negative or its byte in `[0x022CBA50]` lacks bit `0x1` (`0x00361010`) it returns `0x5B` while the summon mode
 `0x003135C0` is on and `0x5A` while `0x00303EC0` reports non-zero.
 
 ### What names a map
@@ -305,8 +305,8 @@ third.
 | `+0x18` | `i32` | loadedField | payload `+0x105C`: destinationField (`0x003145E0`, `0x00314530`) |
 | `+0x1C` | `u8` | startSelector | payload `+0x1060`: 0 to 2, written by `0x0026D910` while `+0x1D` is 0 and passed to `0x00180620`; read by `0x002620E0` when `0x0017D490`() is not positive |
 | `+0x1D` | `u8` | initPending | payload `+0x1061`: set to 1 by `0x00268320` and `0x0026D8F0`, cleared by `0x0026D910` after it has written `+0x1C` |
-| `+0x1E` | `u8` | flags | payload `+0x1062`: bit 5 cleared by `0x003145E0` and set by `0x00314530`; bit 2 written by `0x00314D00`; bits 0 and 7 read by the area-flag accessors |
-| `+0x1F` | `u8` | flags2 | payload `+0x1063`: bits 4-5 the MP-regime override (area flags page); bit 6 selects payload `+0x1534` as the music number (`0x0026DE20`) |
+| `+0x1E` | `u8` | flags | payload `+0x1062`: bit `0x20` cleared by `0x003145E0` and set by `0x00314530`; bit `0x4` written by `0x00314D00`; bits `0x1` and `0x80` read by the area-flag accessors |
+| `+0x1F` | `u8` | flags2 | payload `+0x1063`: bits 4-5 the MP-regime override (area flags page); bit `0x40` selects payload `+0x1534` as the music number (`0x0026DE20`) |
 
 ## Operations
 
@@ -315,19 +315,19 @@ third.
 | `0x00354D00` | mapjump Start: pops map, entrance, mode |
 | `0x00355350` | mapjump Poll: waits for quiet, requests, waits for the context to change |
 | `0x00314440` | the request: staging, manager reinitialisation, fade, file-cache notice |
-| `0x003145E0` | staging: transition record, busy bit 12, autosave decision |
+| `0x003145E0` | staging: transition record, busy bit `0x1000`, autosave decision |
 | `0x00314530` | the restore path's re-request of the current field |
 | `0x00314020` | the tick: drains `0x02099ABC`, consumes `0x01EED064` |
 | `0x0025BFB0` | reinitialises and unloads the requested managers |
 | `0x0026A5F0(m)` | ORs manager `m` into `0x02099ABC`; 0 also requests 1 to 3 |
-| `0x0032FC30(m, ctx)` | area refresh, begins the load, sets pending bit 0 |
+| `0x0032FC30(m, ctx)` | area refresh, begins the load, sets pending bit `0x1` |
 | `0x0032FCA0(m, ctx)` | chooses namespace and index, queues the loads |
 | `0x00330310` | the primary payload load, pending bit `0x20000` |
 | `0x0032ED70` / `0x0032F6C0` / `0x00332130` | set the start hold, read the mask without it, release the hold |
-| `0x003321E0` | busy bit 7 from the pending masks |
+| `0x003321E0` | busy bit `0x80` from the pending masks |
 | `0x00360120` | main-loop busy check and resume |
 | `0x003601B0` / `0x003601C0` / `0x00360360` | busy set, clear, test |
-| `0x002620E0` | the ready point: start work once, busy bits 11 and 12 off |
+| `0x002620E0` | the ready point: start work once, busy bits `0x800` and `0x1000` off |
 | `0x00264830` | the jump-lock test over managers 0 to 2 |
 | `0x00264CE0` | entrance aliases -1, -2, -3 |
 | `0x00377AB0` | entrance position and angle |
@@ -340,7 +340,7 @@ third.
 |---|---|---|---|
 | `0x01EED064` | `i32` | pending map id, -1 when none | `0x003145E0`, `0x00314530`, `0x00314020` |
 | `0x02099ABC` | `u32` | manager request mask | `0x0026A5F0`, `0x0025BFB0` |
-| `0x022C6E48` | `u64[5]` | pending-load mask per manager; bit 0 the start hold | `0x0032FC30`, `0x0032FCA0`, `0x00330310`, `0x0032ED70`, `0x00332130`, the load callbacks |
+| `0x022C6E48` | `u64[5]` | pending-load mask per manager; bit `0x1` the start hold | `0x0032FC30`, `0x0032FCA0`, `0x00330310`, `0x0032ED70`, `0x00332130`, the load callbacks |
 | `0x022CB720` | `u32` | the busy mask | the table above |
 | `0x02099D70` | `void*` | current field context | the actor manager runtime |
 | `0x02098E20` | 5 × `0x288` | the actor managers | the actor manager runtime |
@@ -351,7 +351,7 @@ third.
 
 - The request `0x00314440` is the single funnel every scripted jump passes through; the poll
   `0x00355350` is already a wait loop and can be held in state 0 without touching staging.
-- A ready signal that needs no hook: busy bits 7, 11 and 12 of `0x022CB720` clear and `0x01EED064` equal
+- A ready signal that needs no hook: busy bits `0x80`, `0x800` and `0x1000` of `0x022CB720` clear and `0x01EED064` equal
   to -1.
 - The pending mask and the busy mask regenerate themselves every load; writing them breaks the load.
 - A second request while one is pending is dropped (`0x00314440` tests `0x01EED064 < 0`).

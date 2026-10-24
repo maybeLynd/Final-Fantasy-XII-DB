@@ -32,7 +32,7 @@ pushes the result back as a float. Thirteen `math` functions share that one shap
 PhyreEngine loads a chunk through `0x00683C30(L, script)`:
 
 1. When the script's data pointer `+0x18` is null it returns false without touching Lua.
-2. Otherwise it calls `luaL_loadbufferx` (`0x00812F70`) with the data, the length `+0x10` with bit 31
+2. Otherwise it calls `luaL_loadbufferx` (`0x00812F70`) with the data, the length `+0x10` with bit `0x80000000`
    cleared, the chunk name `+0x48` with its low bit cleared, and a null mode.
 3. On success it returns true. On failure it reads the error message (`0x00811530` on index -1),
    pops it (`0x00811130` with -2) and returns false; the message is not reported.
@@ -70,8 +70,8 @@ an entry of the buffer pool at `0x02E41050`; none of the three creates one.
 ### The buffer pool
 
 When the pool exists, `0x00684D10` takes its next free entry: entries are `0x28` bytes from the
-pointer at pool `+0x50`, `+0x58` counts the entries in use and `+0x48` (bit 31 cleared) is the
-capacity. It copies entry `+0x10` bytes (bit 31 cleared) from the buffer at entry `+0x18` to the one
+pointer at pool `+0x50`, `+0x58` counts the entries in use and `+0x48` (bit `0x80000000` cleared) is the
+capacity. It copies entry `+0x10` bytes (bit `0x80000000` cleared) from the buffer at entry `+0x18` to the one
 at entry `+0x08` and runs the script on the state at entry `+0x20`.
 
 On its way out it gives the entry back by decrementing `+0x58`, but only when the entry is still the
@@ -164,7 +164,7 @@ The `PScript` fields `0x00683C30` reads:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `u32` | length | bit 31 is a flag and is cleared |
+| `+0x10` | `u32` | length | bit `0x80000000` is a flag and is cleared |
 | `+0x18` | `void*` | data | null: nothing is loaded |
 | `+0x48` | `void*` | name | low bit is a flag and is cleared |
 

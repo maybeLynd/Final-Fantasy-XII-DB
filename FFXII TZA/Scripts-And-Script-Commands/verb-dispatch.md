@@ -119,7 +119,7 @@ base 0. 57 handlers call it; a store through it is a raw dword whatever the decl
 
 `PUSHACT` (`0x00261806`) packs an actor as `(word + 0xE of the actor's binding entry) << 16 |
 index | 0x4000`, or `0x8000` when the index is past the binding table's count. The request
-opcodes and `0x0025AF60` decode the same encoding: bit 14 marks a live handle, bit 15 refuses.
+opcodes and `0x0025AF60` decode the same encoding: bit `0x4000` marks a live handle, bit `0x8000` refuses.
 
 ### Results
 

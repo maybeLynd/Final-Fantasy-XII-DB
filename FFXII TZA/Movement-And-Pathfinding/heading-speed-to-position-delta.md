@@ -38,7 +38,7 @@ byte as a value and admits classes 1 and 3, and on refusal writes zeros into its
 `0x002E5030(actor, mode, override)` runs once per field-runtime pass for each scheduled record
 (`0x0025E39B` in the wait resolver `0x0025DF00`, [field runtime](../Characters-And-Objects/field-runtime.md)).
 It refuses when the record's lifecycle byte `+0x18` is 1, the controller `+0xC0` is null or its
-byte `+0x14F` has bit 0, or the class is not 3. Otherwise, with the movement context `+0xB8` and
+byte `+0x14F` has bit `0x1`, or the class is not 3. Otherwise, with the movement context `+0xB8` and
 the movement body `[controller + 0x138]`:
 
 1. when the steering request's mode byte (`[context + 0xF0] + 0x29`) is 1 to 4, it runs the
@@ -49,7 +49,7 @@ the movement body `[controller + 0x138]`:
 4. it integrates: `context + 0xB8` = `0x002E5610(actor, body, context, &delta)`, the squared
    displacement;
 5. when `0x002EA7F0(actor)` is non-zero it registers the body's cell from the context's position, plus
-   the offset at `+0x40`/`+0x48` when byte `+0x107` has bit 1 (`0x003DB020`, [movement bodies and
+   the offset at `+0x40`/`+0x48` when byte `+0x107` has bit `0x2` (`0x003DB020`, [movement bodies and
    separation](movement-bodies-and-separation.md));
 6. it runs `0x002E6330(actor)`.
 
@@ -92,11 +92,11 @@ the flat at the same requested speed.
 Two predicates on the controller at actor `+0xC0` decide the branch, and three-dimensional is the
 default:
 
-- `0x00264460(actor)` returns `(b | b >> 1) & 1` for the controller's byte `+0x151`: either bit 0 or
-  bit 1 selects three-dimensional motion. A null actor or controller returns 0.
-- `0x00267260(actor)` returns actor byte `+0x08` bit 1 when all of these hold: `0x003B7730()` is
-  non-zero, the controller is null or has `+0x14F` bit 0 clear and a body at `+0x138`, and actor
-  byte `+0x09` has bit 0.
+- `0x00264460(actor)` returns `(b | b >> 1) & 1` for the controller's byte `+0x151`: either bit `0x1` or
+  bit `0x2` selects three-dimensional motion. A null actor or controller returns 0.
+- `0x00267260(actor)` returns actor byte `+0x08` bit `0x2` when all of these hold: `0x003B7730()` is
+  non-zero, the controller is null or has `+0x14F` bit `0x1` clear and a body at `+0x138`, and actor
+  byte `+0x09` has bit `0x1`.
 
 `0x003B7730` is `0x02B40530 != 0 && 0x02B40534 != 0`. Both are zero in the image. `0x003B6ED0`, the actor
 module's reset, sets both to 1; `0x02B40530` also has the setter `0x003B7E10`, called with 1 from
@@ -112,15 +112,15 @@ rewritten, not only before bring-up.
 `id * 0x740` and returns at once for an empty record (word `+0` = -1). With the record's state
 `s = word +0xCC & 0xFFF`:
 
-- latched (`+0x62C` bit 0): `+0x624 *= 0.83`, then `yaw = +0x620` and `speed = +0x624`; the latch
+- latched (`+0x62C` bit `0x1`): `+0x624 *= 0.83`, then `yaw = +0x620` and `speed = +0x624`; the latch
   clears once that speed is at most 0.05;
-- not latched, when `+0x284` has bit 27 and word `+0x06` is -1, with `s == 0x10`, `speed == 0`
+- not latched, when `+0x284` has bit `0x8000000` and word `+0x06` is -1, with `s == 0x10`, `speed == 0`
   and the frame counter at byte `+0x457` (read signed, compared unsigned, so 0x80-0xFF qualify) at
   least `[0x01DFE0B4] * 30`: it enters the latch (`+0x624 *= 0.83`, `yaw = +0x620`, `speed =
-  +0x624`, set bit 0 of `+0x62C`);
-- not latched, same bit 27 and -1, but any of those three failing: it moves the saved group
+  +0x624`, set bit `0x1` of `+0x62C`);
+- not latched, same bit `0x8000000` and -1, but any of those three failing: it moves the saved group
   `+0x610`-`+0x61F` to `+0x620`-`+0x62F`, saves the incoming yaw and speed at `+0x610` and
-  `+0x614`, and clears `+0x61C` bit 0;
+  `+0x614`, and clears `+0x61C` bit `0x1`;
 - then, when dword `+0xC4` is not -1 and its action entry resolves (`0x0020E600` on dword `+0x10`,
   `0x0051F240`, an entry whose byte `+1` is 1): states `0x35` and `0x36` multiply the accumulator
   (`+0x618`, or `+0x628` when the latch was entered in this same call) by 0.9 and the speed by
@@ -139,10 +139,10 @@ new position:
 - without a body, the candidate is `position + delta`; with a body it is `0x002E5380 → 0x002E54A0`
   (below);
 - when the actor has a battle unit at `+0x30`, it publishes the move to the unit: `0x00329B00(handle,
-  moved, vector)` with the body's `+0x70` vector and its `+0x90` bit 4 (the cell solver moved the
-  body), or, without a body, `0x00329B00(handle, 0, NULL)`. When `0x02089340` bit 4 is set the unit's `+0x1F0` bit 9 is set
-  and `+0x1C0` receives the vector, or bit 9 is cleared;
-- the measure is planar, `dx^2 + dz^2`, when `0x00264460` is 0 and actor byte `+0x08` bit 2 is clear,
+  moved, vector)` with the body's `+0x70` vector and its `+0x90` bit `0x10` (the cell solver moved the
+  body), or, without a body, `0x00329B00(handle, 0, NULL)`. When `0x02089340` bit `0x10` is set the unit's `+0x1F0` bit `0x200` is set
+  and `+0x1C0` receives the vector, or bit `0x200` is cleared;
+- the measure is planar, `dx^2 + dz^2`, when `0x00264460` is 0 and actor byte `+0x08` bit `0x4` is clear,
   else three-dimensional;
 - the context's position `+0x00`-`+0x08` becomes the candidate.
 
@@ -152,7 +152,7 @@ delta, computes two `0x003A1D30` magnitudes under `+0xEC` that nothing reads, an
 (`0x003DA9F0`). Its other caller is `0x002E5180`.
 
 It always ends in `0x002E54A0(actor, body, context, &delta)`. On the three-dimensional path
-(`0x00267260` = 0) the delta is offset by the context's `+0x40` triple when byte `+0x107` has bit 1
+(`0x00267260` = 0) the delta is offset by the context's `+0x40` triple when byte `+0x107` has bit `0x2`
 and solved against the body (`0x003DB150(context, body, &delta)`), and the candidate is the context
 position plus the delta as it was before the offset. On the flat path (`0x00267260` non-zero)
 `0x003DB140` and `0x003DAE00` solve the delta and the offset is subtracted after.
@@ -160,13 +160,13 @@ position plus the delta as it was before the offset. On the flat path (`0x002672
 ### Setting the speed
 
 `0x0026D6F0(actor, speed, mode)`, behind the class gate, stores the speed in the steering request
-(`[context + 0xF0] + 0x24`) and at `+0xD0`, sets actor byte `+0x0C` bit 4 (changed) for mode 2 or
+(`[context + 0xF0] + 0x24`) and at `+0xD0`, sets actor byte `+0x0C` bit `0x10` (changed) for mode 2 or
 for mode 1 when the value differs, writes the body's `+0xC8` = `[0x01DFE0B8] * 30.0 * 3.6 * speed`
 (108 × speed as shipped) when the body exists.
 
-It then rewrites the body's mask word `+0x110` through `0x002E9BB0`/`0x002EC5B0`: bit 2 cleared, then for a party-roster record (`+0x12` below 4) bit 2 set
-when the speed is 0, or bit 10 set when the actor is the party focus (`0x003590D0` → `0x003588B0`),
-mode 1 also clearing bits 2 and 3. It has ten call sites.
+It then rewrites the body's mask word `+0x110` through `0x002E9BB0`/`0x002EC5B0`: bit `0x4` cleared, then for a party-roster record (`+0x12` below 4) bit `0x4` set
+when the speed is 0, or bit `0x400` set when the actor is the party focus (`0x003590D0` → `0x003588B0`),
+mode 1 also clearing bits `0x4` and `0x8`. It has ten call sites.
 
 `0x0026D6A0(actor, authored)` is the scaled form: `0x0026D6F0(actor, [0x01DFE0BC] * authored, authored
 > 0 ? 0 : 2)`. `0x0026A330(actor, speed)` calls `0x0026D6F0(actor, speed, speed > 0)` unless
@@ -187,7 +187,7 @@ otherwise. The battle-unit refresh `0x00236300` copies the yaw (`0x00263CC0`), t
 For a battle unit the producer is `0x0023A070(unit)`, run from the per-unit frame `0x00233F70`
 (`0x00234019`, `0x0023407E`): when `0x02089340` has a bit of `0x600` and the unit's stats record is kind
 0 it sets the speed to 0 (`0x0026A330(actor, 0)`); otherwise it writes the yaw from unit `+0x15C`,
-the pitch from `+0x174`, the facing from `+0x160` (`0x0026B5A0`) and, unless unit flag bit 18 is set,
+the pitch from `+0x174`, the facing from `+0x160` (`0x0026B5A0`) and, unless unit flag bit `0x40000` is set,
 the speed from `+0x158`.
 
 ## Layouts
@@ -197,9 +197,9 @@ WorldActor (actor record):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x03` | `u8` | classAndSequence | movement: (v & `0xE0`) == `0x60`; position read: v >> 5 in {1, 3} |
-| `+0x08` | `u8` | flags08 | bit 1 flat-motion enable; bit 2 measure displacement in 3-D |
-| `+0x09` | `u8` | flags09 | bit 0 required for flat motion |
-| `+0x0C` | `u8` | flags0C | bit 4 set by the speed setter on a change |
+| `+0x08` | `u8` | flags08 | bit `0x2` flat-motion enable; bit `0x4` measure displacement in 3-D |
+| `+0x09` | `u8` | flags09 | bit `0x1` required for flat motion |
+| `+0x0C` | `u8` | flags0C | bit `0x10` set by the speed setter on a change |
 | `+0x18` | `u8` | lifecycle | 1 refuses the frame driver |
 | `+0x30` | `void*` | battleUnit |  |
 | `+0xB8` | `void*` | movementContext |  |
@@ -210,7 +210,7 @@ Movement context (actor `+0xB8`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `f32[3]` | position |  |
-| `+0x040` | `f32[3]` | offset added on the three-dimensional path when +0x107 bit 1 (subtracted after the flat solve) |  |
+| `+0x040` | `f32[3]` | offset added on the three-dimensional path when +0x107 bit 0x2 (subtracted after the flat solve) |  |
 | `+0x0A0` | `f32` | pitch |  |
 | `+0x0A4` | `f32` | yaw |  |
 | `+0x0A8` | `f32` | facing (facing page) |  |
@@ -218,7 +218,7 @@ Movement context (actor `+0xB8`):
 | `+0x0D0` | `f32` | requested speed |  |
 | `+0x0F0` | `void*` | steering request: +0x24 f32 speed, +0x28 u8 kind, +0x29 u8 mode |  |
 | `+0x0F8` | `f32` | pass-through magnitude; negative = unset, repaired to the speed |  |
-| `+0x107` | `u8` | bit 1 apply the +0x40 offset |  |
+| `+0x107` | `u8` | bit 0x2 apply the +0x40 offset |  |
 
 Controller (actor `+0xC0`):
 
@@ -226,8 +226,8 @@ Controller (actor `+0xC0`):
 |---|---|---|---|
 | `+0x000` | `i32` | render record id, -1 none |  |
 | `+0x138` | `void*` | movement body |  |
-| `+0x14F` | `u8` | bit 0 refuses movement |  |
-| `+0x151` | `u8` | bit 0 or bit 1 = three-dimensional motion |  |
+| `+0x14F` | `u8` | bit 0x1 refuses movement |  |
+| `+0x151` | `u8` | bit 0x1 or bit 0x2 = three-dimensional motion |  |
 
 Movement body (controller `+0x138`):
 
@@ -245,7 +245,7 @@ Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
 | `+0x000` | `i16` | id, -1 empty |  |
 | `+0x006` | `i16` | -1 required for the save/latch block |  |
 | `+0x0CC` | `u16` | state & 0xFFF |  |
-| `+0x284` | `u32` | bit 27 gates the save/latch block; non-zero gates the publish |  |
+| `+0x284` | `u32` | bit 0x8000000 gates the save/latch block; non-zero gates the publish |  |
 | `+0x240` | `f32[3]` | pitch, yaw, 0.0 from 0x002E5C10 |  |
 | `+0x457` | `i8` | frame counter, against [0x01DFE0B4] * 30 |  |
 | `+0x610` | `f32` | yaw | the incoming group |
@@ -255,10 +255,10 @@ Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
 | `+0x620` | `f32` | yaw | the previous group |
 | `+0x624` | `f32` | speed | the previous group |
 | `+0x628` | `f32` | accumulator | the previous group |
-| `+0x62C` | `u16` | flags | the previous group; bit 0 = latch |
+| `+0x62C` | `u16` | flags | the previous group; bit `0x1` = latch |
 
 ```
-battle unit: +0x158 f32 speed, +0x15C f32 yaw, +0x160 f32 facing, +0x174 f32 pitch; flag bit 18 holds the speed
+battle unit: +0x158 f32 speed, +0x15C f32 yaw, +0x160 f32 facing, +0x174 f32 pitch; flag bit 0x40000 holds the speed
 ```
 
 ## Shipped data
@@ -300,7 +300,7 @@ mode; the body's `+0x70`, `+0x90`, `+0xC8` and `+0x110`; the render record's `+0
   to 0. If the class gate passes and an actor still will not move, look at its animation state.
 - Which integration path runs is not a caller choice: the driver always passes the controller's
   body, so the plain addition runs only when that pointer is null.
-- Actor byte `+0x08` bit 2 changes the reported displacement, not the movement.
+- Actor byte `+0x08` bit `0x4` changes the reported displacement, not the movement.
 - The flat path can be switched off mid-session by the actor-list rewrite; a creature's flat flag
   alone does not guarantee flat motion.
 

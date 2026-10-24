@@ -59,7 +59,7 @@ The button legend host is the `0x3F8`-byte widget at `0x0209C498` with procedure
 | `+0x0C2` | `i16` | offsetY | added to the pane's y: the screen height `0x01E0C1DC` less `0x01E0C584` (8) on construction (`0x0029E268`-`0x0029E27E`), then `0x0029E770`'s second argument (`0x0029E783`); `0x0029DCE0` places the pane at `+0xC6` + this less the pane's height (`0x0029DD77`-`0x0029DD89`) |
 | `+0x0C4` | `i16` | anchorX | the pane's anchor x: `0x0029E730`'s first argument, which then re-places the pane (`0x0029E73C`, `0x0029E74A`); 0 on construction by a qword store with `+0xC6` and `+0xC8` (`0x0029E28C`) and when `0x0029E330` shows a new legend, by a dword store with `+0xC6` (`0x0029E381`); read by `0x0029DCE0` (`0x0029DD69`) |
 | `+0x0C6` | `i16` | anchorY | the pane's anchor y: `0x0029E730`'s second argument (`0x0029E743`); cleared with `+0xC4`; read by `0x0029DCE0` (`0x0029DD77`) |
-| `+0x0C8` | `u32` | flags | bit 0: the pane draws no entries while it is set (`0x0029D7E8`); set by `0x0029E0C0` (`0x0029E0CC`), cleared by `0x0029E7B0` (`0x0029E7BC`) |
+| `+0x0C8` | `u32` | flags | bit `0x1`: the pane draws no entries while it is set (`0x0029D7E8`); set by `0x0029E0C0` (`0x0029E0CC`), cleared by `0x0029E7B0` (`0x0029E7BC`) |
 | `+0x0CC` | `u16` | openMs | the pane's opening time in milliseconds, 200 on construction (`0x0029E293`, a dword store with `+0xCE`), set by `0x0029E750` (`0x0029E75C`); `0x0029E3B0` writes it into the new pane's run length (`0x0029E43D`-`0x0029E453`) and the pane turns it into frames, ms x 60 / 1000 (`0x0029D634`-`0x0029D648`) |
 | `+0x0CE` | `u16` | closeMs | the pane's closing time in milliseconds, 200 on construction (`0x0029E293`), set by `0x0029E6B0` (`0x0029E6BC`); `0x0029DF20` writes it into the closing pane's run (`0x0029DF3C`-`0x0029DF55`) and the pane turns it into frames (`0x0029D6B6`-`0x0029D6CA`) |
 | `+0x0D0` | `u16` | showDelay | frames before the procedure's tick shows the legend of scene `+0xD2` through `0x0029E330` (`0x0029E217`-`0x0029E23F`); 0 on construction (`0x0029E29D`) and set by no function, so the countdown never runs |
@@ -139,7 +139,7 @@ scene          u8 scene id, u8 a, u8 b, u8 n, then {u8 signal (section 1 index),
 |---|---|---|---|
 | `+0x00` | `char[4]` | "QST1" | tag, compared by no reader |
 | `+0x04` | `i32` | count |  |
-| `+0x08` | `u32[count]` | bits 0-12 value A, bits 13-25 text index, bit 26 flag, bits 27-31 zero |  |
+| `+0x08` | `u32[count]` | bits 0-12 value A, bits 13-25 text index, bit 0x4000000 flag, bits 27-31 zero |  |
 
 ### summoneffectdata.bin
 
@@ -171,7 +171,7 @@ Measured over every copy in the archive.
 | `menubtlwndinfo.bin` | 72 bytes, nine identical copies; entry 4 is width 150, rows 8; the other 14 are width 10, rows 8 |
 | `key_signal_data.bin` | 532 bytes, nine identical copies; sections at `0x10`, `0xEC` and `0x150` with 27, 24 and 19 records; the word at `+0x0E` is `0xCCCC` |
 | `key_signal_data.bin` sections | button text ids `0x2BF4D` onward with masks of one or two bits (five masks 0); scene ids 1 to 19, 14 scenes with one signal and 5 with two; `a` is 2 on scenes 6 to 9 and 0 elsewhere, `b` is 0 on all; the last two bytes, after scene 19, are `CD CD` |
-| `questbase.bin` | 700 bytes, nine identical copies; 173 entries; value A is 718 in every entry; the text index is non-zero on 52 entries (1-6, 9 and 128-172), each equal to its entry number; bit 26 is set on entries 0 to 49 |
+| `questbase.bin` | 700 bytes, nine identical copies; 173 entries; value A is 718 in every entry; the text index is non-zero on 52 entries (1-6, 9 and 128-172), each equal to its entry number; bit `0x4000000` is set on entries 0 to 49 |
 | `summoneffectdata.bin` | 672 bytes, one copy; records 0 to 27 differ, records 28 to 63 are all scales 100 and colour `80 80 80 20` |
 | `summoneffectdata.bin` tail | 1.01, 1.01, 1.4, 0.4, 65,300 and 65,200 |
 
@@ -253,7 +253,7 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
   `0x4000`, before `0x0029DCE0` runs. `0x0029DFB0()`, from `0x0029DCE0`, returns the smallest difference between the
   first entry's width, with the argument of a leading `0F 5` code (`0x003FFAB0`), and each entry's width.
 - **Colours.** `0x0029D9D0(pane, entry, node)`, from the pane's `0x0029D550`, colours a node by the entry's flags:
-  bit 0 colour 3, bit 1 colour 7, bit 3 colour `0x106`, else 0 (`0x002DD7E0`); unless bit 15 is set it scales
+  bit `0x1` colour 3, bit `0x2` colour 7, bit `0x8` colour `0x106`, else 0 (`0x002DD7E0`); unless bit `0x8000` is set it scales
   the alpha by the pane's `+0x140` / 128.
 - `0x0029E770(a, b)` writes the two words at `[0x0209C498] + 0xC0` and `+0xC2`; the location map `0x002BA700`, the
   special-attack window `0x002D5EB0` and `0x0055E9E0` call it.
@@ -270,7 +270,7 @@ hunt-list row builder `0x0037E8D0`, which stores it in the row.
 
 `0x003B5340` returns the active summon effect (1-based) from the two 8-byte state entries at `0x02B40508`
 and `0x02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor, −1 none): the active
-entry with the higher priority byte, the first on a tie, or 0 when none is active or bit 0 or 1 of
+entry with the higher priority byte, the first on a tie, or 0 when none is active or bit `0x1` or `0x2` of
 `0x02B40518` is set; `0x003B53C0` clears both entries before the read.
 
 `0x003B4B60(actor, id)` fills entry 0 when `id` is the first id of the table `0x01EEBAA0` (`0x002EA030(0)`), and entry 1
@@ -288,7 +288,7 @@ it runs, reading each entry as one qword with `cmove`/`cmovb`, and calls `0x003B
 - `0x0036FBB0` first runs `0x003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
   `+0x284` = 0; state 2, `0x003B4EFE`, `0x003B4F5D`) and calls `0x003B4FD0` when the winner changes (`0x003B4FBF`).
   - It then
-    turns record `effect − 1`'s scale A into the floats at `0x0209A3C0`..`0x0209A3C8` and scale B into `0x0209A3D0`..`0x0209A3D8`
+    turns record `effect − 1`'s scale A into the floats `0x0209A3C0`, `0x0209A3C4`, `0x0209A3C8` and scale B into `0x0209A3D0`, `0x0209A3D4`, `0x0209A3D8`
   (each byte × 0.01) and sets bit `0x8` of the light mask `0x02B3F520` (`0x003ACA60`, `0x0036FCB7`), or sets all six to 1.0
   and clears that bit (`0x003ACA70`, `0x0036FC05`) when no effect is active
   ([Character lighting](../Graphics/character-lighting-and-shadows.md)).

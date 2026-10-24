@@ -84,7 +84,7 @@ A shop list goes on sale once it or any list above it on the shop's ladder meets
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
-The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
+The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit `0x1` of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
 Every part names every source. A cell that would be longer than 1,000 characters moves its longest parts, longest first, to [`item-sources.tsv`](item-sources.tsv) until it fits, and gives for each moved part its label, its count and the table, as `drop (28): in item-sources.tsv` for the Potion.
 
@@ -102,7 +102,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `action` | the action row that spends the item: `action_row` when that row is an item action, else empty |
 | `power`, `hit` | the action's `+0x10` and `+0x12` |
 | `element` | the action's element `+0x13` |
-| `statuses`, `status_effect` | the action's status bits `+0x18`, and whether it adds or removes them (`+0x36` bits 0 and 1) |
+| `statuses`, `status_effect` | the action's status bits `+0x18`, and whether it adds or removes them (`+0x36` bits `0x1` and `0x2`) |
 | `area_radius` | the action's `+0x06`; 0 = the target alone |
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |

@@ -23,19 +23,19 @@ the unit's current action. With a non-zero mode it first calls `0x003105D0`. An 
 refreshes the target link at `+0x778` (`0x00316CF0`, `0x00316CD0`); any other id outside
 the battle orders `0x4000..0x4166` is refused (return 0, `0x0030F7D9`-`0x0030F7EC`).
 
-It then clears `+0x700` bits 0-1, stores the context at `+0x708`, the target at `+0x710` and the id
+It then clears `+0x700` bits `0x3`, stores the context at `+0x708`, the target at `+0x710` and the id
 at `+0x714`, zeroes byte `+0x6B4`, and copies the 0x18 bytes `+0x700..+0x717` to `+0x718..+0x72F`.
-A pending no-target issue (`+0x6B0` bit 1) is consumed into `+0x6B9` from `0x022C1DB8`.
+A pending no-target issue (`+0x6B0` bit `0x2`) is consumed into `+0x6B9` from `0x022C1DB8`.
 
 For a target and an id below `0x21F`: when `0x0030AB40(unit, target, 0)` is above 1, `+0x754` takes the
 target, and when the unit's `+8` equals its `+0x24`, every unit of the `0x00236820` list with the same
 `+0x24` that is not KO'd or petrified (outside a town) gets `+0x754` = target and the unit's `+0x750`
-= target. While unit flag bit 22 (`0x400000`) is clear and the attacker is not yet registered, it
+= target. While unit flag bit `0x400000` (`0x400000`) is clear and the attacker is not yet registered, it
 sets bit `+0xEA9` of the target's `+0xEA4`, adds one to `+0xEA8`, and calls `0x00313B30(unit, target, 1)`.
 
 Its callers are 5 sites in 4 functions: the next-action selector `0x00305AB0` (`0x00305B2F`, `0x00305C9B`),
 the order-set scanner `0x00305CC0` (`0x00305DF4`), the combo continuation `0x0030FA00` (`0x0030FA5C`) and the
-engage auto-attack `0x00312FA0` (`0x003130DC`). `0x00312FA0` sets flag bit 22 just before its commit
+engage auto-attack `0x00312FA0` (`0x003130DC`). `0x00312FA0` sets flag bit `0x400000` just before its commit
 (`0x0030F760(unit, 0x01EEC2B0, 0x96, target, 0)`, target from `+0x28`, cleared on read), so that action
 never registers as an attacker.
 
@@ -43,16 +43,16 @@ never registers as an attacker.
 
 `0x00305AB0(unit, mode)` tries each source in order and stops at the first commit. The scanner
 `0x00305CC0` passes as context the 0x18-byte entry inside the set (`set + 0x20 + n × 0x18`). A town is
-a map whose word in `[0x02ADD100]` has bit 15 set (`0x00377C20`).
+a map whose word in `[0x02ADD100]` has bit `0x8000` set (`0x00377C20`).
 
-1. Flag bit 22 set: `0x00308270` first. Flag `0x4000`: the flag is cleared and the issued command
+1. Flag bit `0x400000` set: `0x00308270` first. Flag `0x4000`: the flag is cleared and the issued command
    `+0xBA0` commits with context `unit + 0xBA0` and target `+0xBB8` when its id is in
    `0x4000..0x4166` or `0x002FFCF0(id, unit)` is 0.
 2. In a town with a party record (`[+0x698] + 5` = 0): straight to step 6.
 3. Outside a town with status `0x20`, or a non-party record (`+5` = 1) with status `0x08000000`:
    scan `0x01EEC320`, then step 6.
 4. Otherwise scan the order set `+0x6E8`. Then, outside a town for a party unit with `0x08000000`:
-   scan `0x01EEC370`. Else, for a null or non-party record or one with dword bit 2: scan `+0x6E0`
+   scan `0x01EEC370`. Else, for a null or non-party record or one with dword bit `0x4`: scan `+0x6E0`
    with byte `+0x6B5`, clearing `+0x6F8` and `+0x748`. Else scan `+0x6F8` when set, then clear it.
 5. Scan `+0x6F0`.
 6. With mode 0: commit `0x01EEC298` with id `[0x01EEC298]`, no target.
@@ -61,10 +61,10 @@ a map whose word in `[0x02ADD100]` has bit 15 set (`0x00377C20`).
 
 `0x00311CF0(unit, target, arg, id, transient)` writes the issued command. It refuses (returns
 `0xFFFFFFFE`) a unit with no record `+0x698`, a unit with statuses `0x80000003` outside a town, and
-id `0x113` while `+0x714` is `0x113`; id `0x113` also clears bit 0 of word `[0x02EBF190] + 0x5AD0`.
+id `0x113` while `+0x714` is `0x113`; id `0x113` also clears bit `0x1` of word `[0x02EBF190] + 0x5AD0`.
 
-While statuses `0x8800203B` are clear it stores the id at `+0xBA0`, sets `+0xBA4` bit 15 and flag
-`0x4000`, stores the target at `+0xBB8` (with no target: the unit's own `+8`, `+0x6B0` bit 1 set and
+While statuses `0x8800203B` are clear it stores the id at `+0xBA0`, sets `+0xBA4` bit `0x8000` and flag
+`0x4000`, stores the target at `+0xBB8` (with no target: the unit's own `+8`, `+0x6B0` bit `0x2` set and
 `0x022C1DB8[+0xEA9 × 0xC]` = arg), and with a target and a non-zero transient argument stores the
 target at `+0x748` and the transient set `0x01EEC2D0` at `+0x6F8`; then it calls `0x00317E60`. It returns
 0 otherwise, including when a status drops the command silently.
@@ -81,7 +81,7 @@ script-chosen id.
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
-| `setemergency` | `0x03BF` | `0x00346EB0` | `0x00311E90`: each party-slot unit 0-3 (`0x0031B810`) that is not KO'd or petrified (statuses `0x80000003`, except in a town) is collected at `0x022C1788` and gets dword `+4` bits 9 and 10 (`0x600`); then `0x002ECF10(actor, 1, 1)` for slots 0 to 3 |
+| `setemergency` | `0x03BF` | `0x00346EB0` | `0x00311E90`: each party-slot unit 0-3 (`0x0031B810`) that is not KO'd or petrified (statuses `0x80000003`, except in a town) is collected at `0x022C1788` and gets dword `+4` bits `0x200` and `0x400` (`0x600`); then `0x002ECF10(actor, 1, 1)` for slots 0 to 3 |
 | `setemergency_one` | `0x0546` | `0x003460C0` | `0x00311F50` on the target unit (no KO or petrify check), then the draw |
 | the unnamed `0x05CC` | `0x05CC` | `0x00346620` | `0x00311F50`, then `0x002ECF10(actor, 1, mode)` with a popped mode |
 | `resetemergency` | `0x0554` | `0x00347970` | pushes 0, then for slots 0 to 3: `0x0030F2D0`, then `0x002ECF10(actor, 0, 0)` |
@@ -89,25 +89,25 @@ script-chosen id.
 | `resetemergency_one(m)` | `0x057F` | `0x00346A10` | the same for one actor |
 | `refresh_party_fightmotion(m)` | `0x0566` | `0x003446D0` | `0x00268530(m)`, then `0x0035AE10(actor, 1)` for slots 0 to 3 |
 
-Bits 9 and 10 are tested in the engagement update `0x00307D10` (`0x00307D84`, `0x00307DA7`, `0x00307DD1`):
-with bit 9 set the unit counts as engaged while `0x0030B050` finds a qualifying target, bit 10 grants
+Bits `0x200` and `0x400` are tested in the engagement update `0x00307D10` (`0x00307D84`, `0x00307DA7`, `0x00307DD1`):
+with bit `0x200` set the unit counts as engaged while `0x0030B050` finds a qualifying target, bit `0x400` grants
 one grace pass, and the bits clear themselves afterwards. `0x00307D10` also clears them at once in a
 town and when the unit flees (`0x00253B90`). `0x00311E90` and `0x00311F50` set both bits with `or [+4], 0x600`
 (`0x00311F19`, `0x00311F5E`).
 
-`0x002FEDC0`, `0x00301140` and `0x00313480` also clear bits 9, 10 and 16 (`and [+4], 0xFFFEF9FF` at
+`0x002FEDC0`, `0x00301140` and `0x00313480` also clear bits `0x200`, `0x400` and `0x10000` (`and [+4], 0xFFFEF9FF` at
 `0x002FEDC6`, `0x00301231`, `0x003134A5`). Statuses `0x08000020` hold a unit engaged without these bits.
 
 `0x0030F2D0`, whose only callers are the three reset verbs (`0x00346A35`, `0x00347413`, `0x003479B2`), clears
-bits 1-2 of `0x022C1F48`, zeroes `0x022C1F40` and `+0xDCC`, clears flag `0x800000` and `+4` bits 9, 10 and
+bits `0x6` of `0x022C1F48`, zeroes `0x022C1F40` and `+0xDCC`, clears flag `0x800000` and `+4` bits `0x200`, `0x400` and
 16, and installs the default order set at `+0x6E8`: `0x01EEC3C0` when `[+0x698] + 5` is 0, `0x01EEC410`
 otherwise.
 
 `0x002ECF10(actor, drawn, mode)` resolves the actor's render record (`[0x022C6F28] + index × 0x740`,
 used only when `+0x284` is non-zero) and continues in `0x00426130`:
 
-- Mode 1: when bits 0-1 of `+0x40B` differ from `drawn`, it sets them, plays motion `0x4035` (draw)
-  or `0x4036` (sheathe) through `0x00427320`, updates `+0x294` and sets `+0x284` bit 19. Otherwise
+- Mode 1: when bits `0x3` of `+0x40B` differ from `drawn`, it sets them, plays motion `0x4035` (draw)
+  or `0x4036` (sheathe) through `0x00427320`, updates `+0x294` and sets `+0x284` bit `0x80000`. Otherwise
   nothing.
 - Mode 2: when the state differs, or it is equal while a class 3/4 motion at `+0xCC` or `+0x3B4` has
   low 12 bits `0x35` (drawing) or `0x36` (sheathing), it snaps through `0x00426C90`; otherwise nothing.
@@ -117,10 +117,10 @@ used only when `+0x284` is non-zero) and continues in `0x00426130`:
 `0x00268530(mode)` brings the four roster actors' weapons in line with their engagement. For each
 roster actor (an owner bound to a captured member, `+0x18` = 2, is replaced by that member through
 `0x003587C0`) it asks `0x0030BFB0` whether the unit should hold its weapon drawn and calls
-`0x002ECF10(actor, drawn, mode)`; it then sets bit 1 of presentation byte `+0x154` and copies the
-answer into bit 0.
+`0x002ECF10(actor, drawn, mode)`; it then sets bit `0x2` of presentation byte `+0x154` and copies the
+answer into bit `0x1`.
 
-`0x0030BFB0` answers 0 without a battle unit or with unit bit 4 clear, unit bit 23
+`0x0030BFB0` answers 0 without a battle unit or with unit bit `0x10` clear, unit bit `0x800000`
 under any of the statuses `0x8000201B`, else `0x00308130` for a party-side unit (record byte `+5` 0)
 and `0x00308040(unit, 0)` for any other. The proximity trigger `0x0025C830` runs `0x00268530` with mode 2 when it
 starts an event (`0x0025D42E`).
@@ -131,7 +131,7 @@ sheathe motion `0x4036`.
 ### Thinking, cancelling and the stance machine
 
 `setbattlethinkstatus(v)` (`0x02AA`, `0x0034E160`) calls `0x0035A720(actor, v)`: 0 sets record byte
-`+9` bit 5 and, when the actor has a battle unit, cancels its action (`0x00233F50(actor, 1)`,
+`+9` bit `0x20` and, when the actor has a battle unit, cancels its action (`0x00233F50(actor, 1)`,
 `0x002ED020`) and stops its movement (`0x0026D6D0`); non-zero clears the bit and resets the
 presentation request (`0x00269D60`, `0x0026A770`). Both arms end with `0x00226AB0` and `0x00226A50`.
 
@@ -152,8 +152,8 @@ be idle (`0x002E71C0`), draws the weapon (state 3: `0x002ECF10(actor, 1, 1)`, `0
 `0x002E9B40(actor)` stored at `+8`), waits again, and in state 5 calls `0x003DDB40(actor, 0, +0xC)` when
 `+4` is set, then finishes at 7.
 
-`0x003DDB40` sets or clears bit 19 of the render record's `+0x284` through `0x002E8170`, from bit 7 of
-byte `+0xD` of `0x00263F40(actor)`, and plays a motion through `0x002EB3E0`: with bit 24 of its argument
+`0x003DDB40` sets or clears bit `0x80000` of the render record's `+0x284` through `0x002E8170`, from bit `0x80` of
+byte `+0xD` of `0x00263F40(actor)`, and plays a motion through `0x002EB3E0`: with bit `0x1000000` of its argument
 set (the `setforcefight` begin always sets it) the stance motion `0x01EFE9D0[a & 0xFFFFFF]` (u32
 entries, no bound check), otherwise `(actor +0x15) << 20 | a | 0x1000`. A negative argument skips
 state 5, so it draws only.
@@ -168,13 +168,13 @@ toggle ([force fight mode](../Engine-Core/force-fight-mode.md)).
 
 `btlAtelSetAbility(a, b)` (`0x3000`, `0x00510440` → `0x002390B0`) rebuilds the unit's script-granted
 ability set at `+0xE80`: `+0xE80..+0xE8F` are zeroed, then bit `31 − k` is set for each set bit `k`
-of `a` and bit `63 − k` for each set bit of `b` (`0x04000000` in `b` sets bit 37). Bits 64-127 stay
+of `a` and bit `63 − k` for each set bit of `b` (`0x04000000` in `b` sets bit `0x2000000000`). Bits 64-127 stay
 zero.
 
 `btlAtelSetStatus(ref)` (`0x3002`, `0x005103B0` → `0x002394C0`) reads a table of 32 two-bit values
 through a reference (`0x002650B0`) and sets bit `i` of `+0xE90` for value 3. Values 1 and 2 are
 applied at once through `0x0030EAE0`, only when dword `[[unit + 0x6A0]] & 5` is 0, and value 1 also
-needs `0x00328370()` bit 0, a draw of the generator at `0x022C256C`
+needs `0x00328370()` bit `0x1`, a draw of the generator at `0x022C256C`
 ([random number generators](../Random-Numbers/random-number-generators.md)).
 
 The ability list rebuild `0x0030FED0` reads both, only for a record with `+5` = 1: each `+0xE80` bit
@@ -196,7 +196,7 @@ and `0x0030C650` ([stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growt
 the pause `0x0035AB20` and the motion reset `0x0035A680`. The pause sets `0x02089340` bits `0x20`
 (`0x00238B70(1)`, which also sends motion `0x30B` through `0x002E7C10` to every flagged entry of
 `[0x0208E688]`) and `0x80` (`0x00238AE0(1)`), then calls `0x0035A590`. The motion reset calls `0x002EB430`
-on every actor of the scene range that has a battle unit, when scene byte `+0x10` bit 0 is set.
+on every actor of the scene range that has a battle unit, when scene byte `+0x10` bit `0x1` is set.
 `suspendbattle_no_resetmotion` (`0x0587`, `0x00347460` → `0x0035AB20`) is the pause alone.
 
 ## Layouts
@@ -205,9 +205,9 @@ Battle unit:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32` | unitFlags | low dword of the u64: bit 14 issued command, bit 22 no attacker registration, bit 23 stance |
-| `+0x004` | `u32` | unitFlags high dword | bits 9-10 emergency (bits 41-42 of the u64), bit 16 engaged |
-| `+0x6B0` | `...` | commandStanceFlags | bit 1 issued without target |
+| `+0x000` | `u32` | unitFlags | low dword of the u64: bit `0x4000` issued command, bit `0x400000` no attacker registration, bit `0x800000` stance |
+| `+0x004` | `u32` | unitFlags high dword | bits 9-10 emergency (bits 41-42 of the u64), bit `0x10000` engaged |
+| `+0x6B0` | `...` | commandStanceFlags | bit `0x2` issued without target |
 | `+0x6E0` | `...` | order set | one of the four order sets |
 | `+0x6E8` | `...` | order set | one of the four order sets |
 | `+0x6F0` | `...` | order set | one of the four order sets |
@@ -221,7 +221,7 @@ Battle unit:
 | `+0x750` | `...` | shared target |  |
 | `+0x754` | `...` | shared target |  |
 | `+0xBA0` | `u16` | issued command id |  |
-| `+0xBA4` | `u16` | issued order flags | the flags word of the issued order at `+0xBA0`: bit 15 set on issue (`0x00311DBB`) |
+| `+0xBA4` | `u16` | issued order flags | the flags word of the issued order at `+0xBA0`: bit `0x8000` set on issue (`0x00311DBB`) |
 | `+0xBB8` | `...` | issued target |  |
 | `+0xDCC` | `u32` | stanceRecheckDeadlineTick |  |
 | `+0xE80` | `u64[2]` | script abilities |  |
@@ -250,7 +250,7 @@ Render record [`0x022C6F28`] + idx × `0x740`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x284` | `...` | objectFlags | bit 19 set by draw and sheathe |
+| `+0x284` | `...` | objectFlags | bit `0x80000` set by draw and sheathe |
 | `+0x294` | `...` | motion flags |  |
 | `+0x40B` | `...` | flagByte40B | bits 0-1 drawn state |
 

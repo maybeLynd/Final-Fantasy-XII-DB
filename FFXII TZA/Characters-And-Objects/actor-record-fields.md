@@ -84,12 +84,12 @@ for a tagged entry; the frozen pass `0x0025E400` runs `0x002E5180` on a record w
 
 | Byte offset | Manager 0 | Other managers |
 |---|---|---|
-| `+0x08` | `(old & 0x9F) \| 0x11`, then bit 7 cleared | `(old & 0x8F) \| 1`, then bit 7 cleared |
-| `+0x0D` | `(old & 0xA2) \| 0x82`, then bit 5 cleared | `(old & 0x22) \| 2`, then bit 5 cleared |
-| `+0x14` | `(old & 0xB0) \| 0x30`; bit 7 for sequences 5 and 7 | the same |
+| `+0x08` | `(old & 0x9F) \| 0x11`, then bit `0x80` cleared | `(old & 0x8F) \| 1`, then bit `0x80` cleared |
+| `+0x0D` | `(old & 0xA2) \| 0x82`, then bit `0x20` cleared | `(old & 0x22) \| 2`, then bit `0x20` cleared |
+| `+0x14` | `(old & 0xB0) \| 0x30`; bit `0x80` for sequences 5 and 7 | the same |
 | `+0x0C` | `(old & 0x71) \| 8`, then bits 4-6 cleared | the same |
 | `+0x0E` | set to `0xF0`, then `0x00265FF0` writes the low nibble: 4 for class 1, 5 for class 3 | the same |
-| `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits 8 and 13 cleared for class 3 | the same |
+| `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits `0x100` and `0x2000` cleared for class 3 | the same |
 
 ## Related
 

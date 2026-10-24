@@ -22,7 +22,7 @@ pass `0x00259030`.
 |---:|---|---|
 | 1 | `display VFX [layer : first]` | grouped pass, then `0x0024C640` |
 | 2 | `display VFX [layer : after BG]` | the same |
-| 3 | `display VFX [layer : TsEffMan_Layer_AfterOBJ]` | no grouped pass: `0x0039D570(0)`, `0x0039D3F0`, a pair of calls chosen on `0x02F8F310` bit 2, then `0x003A3990` |
+| 3 | `display VFX [layer : TsEffMan_Layer_AfterOBJ]` | no grouped pass: `0x0039D570(0)`, `0x0039D3F0`, a pair of calls chosen on `0x02F8F310` bit `0x4`, then `0x003A3990` |
 | 4 | `display VFX [layer : in EFF]` | `0x0039CFF0(0, 0x3C00)`, `0x0036F550` unless `0x00181DD0()` is non-zero, grouped pass, `0x0039CFF0(0, 0x3700)`, `0x0024C640` |
 | 5 | `display VFX [layer : after EFF & MENU]` | `0x0036F9F0` unless `0x00181DD0()` is non-zero, then the grouped pass |
 | 6 | the same text as 5 | grouped pass |
@@ -43,8 +43,8 @@ reopen the bracket around the post-processing block, with `0x10` added to the la
 
 `0x0024D370(layer, group)` takes the list `0x020910F0[group]` and asks the group gate `0x0024D4E0`
 (`0x0024D382`–`0x0024D3AF`). The gate refuses group 8; groups 1–4 and 7 need bit `group − 1` in the AND
-of `0x02092162`, `0x02092164` and `0x02092166`; group 2 also needs `0x02F8F29E` bit 0 clear and group 5
-`0x02EBEF68` bit 0 clear (`0x0024D4E0`–`0x0024D538`).
+of `0x02092162`, `0x02092164` and `0x02092166`; group 2 also needs `0x02F8F29E` bit `0x1` clear and group 5
+`0x02EBEF68` bit `0x1` clear (`0x0024D4E0`–`0x0024D538`).
 
 For each instance the group draw publishes the group at `0x02092700` and skips the instance unless
 its `+0x3A8` equals `0x00181DD0()`, the high nibble of its word `+0x378` equals the layer, and the
@@ -54,7 +54,7 @@ current and walks its emitters through `0x003A72F0` → `0x003A8D80`, which call
 instance.
 
 `0x00441970(emitter)` returns when the emitter has no elements. Unless the instance's flag byte
-`+0x36A` has bit 0, only emitters whose definition type is `0x40`, `0x41`, `0xA1`, `0xA2`, `0xA5`
+`+0x36A` has bit `0x1`, only emitters whose definition type is `0x40`, `0x41`, `0xA1`, `0xA2`, `0xA5`
 or `0xD0` are drawn (`0x0044198E`–`0x004419CE`; the table is
 [`effect-element-runtime-effect-kind-441970.tsv`](effect-element-runtime-effect-kind-441970.tsv)). It sets the pass nibble `0x02AEE910`: definition
 byte `+0x4C` when `+0x4A` is `0x40` or more, else 8 (`0x004419F5`–`0x00441A0E`).
@@ -69,14 +69,14 @@ and stores its operand byte `+4` in `0x020926F8` (`0x003B9797`-`0x003B97A7`). Op
 | `0x020926F8` | `u8` | 0 (zero-filled tail) | the pass nibble less 8 for kind-3 instances while `0x020926E4` bit `0x400` is set | `0x003B8670`: opcode `0x3E`, its operand byte `+4` (`0x003B97A7`); `0x0024C970`, 0 (its `0x1670`-byte clear from `0x020910A0`, `0x0024C983`) | `0x00441970` (`0x004419E4`) |
 
 It then calls `0x002F4020(element, emitter)` for each element, forward from the head, or backward from
-the tail when the emitter record's byte `+0x2C4` has bits 0–1 set (`0x00441A15`–`0x00441A82`).
+the tail when the emitter record's byte `+0x2C4` has bits `0x3` set (`0x00441A15`–`0x00441A82`).
 
 ### Instance flags at draw time
 
-Before the emitter walk, `0x0024D370` reads the instance's flag byte `+0x36A`. With bit 0 set it
+Before the emitter walk, `0x0024D370` reads the instance's flag byte `+0x36A`. With bit `0x1` set it
 records the instance's target `+0x380`, when there is one, for texture id `0x3300` at 256
-× 224 (`0x002D7D90`), then calls `0x003AA2E0(0)` and skips the instance when that returns 0. With bit 1
-set it files a `GiZNormalOnOff` command with 1 (`0x0039D410`, through `0x00864E00`) and sets bit 0 of
+× 224 (`0x002D7D90`), then calls `0x003AA2E0(0)` and skips the instance when that returns 0. With bit `0x2`
+set it files a `GiZNormalOnOff` command with 1 (`0x0039D410`, through `0x00864E00`) and sets bit `0x1` of
 `0x02F8F310`, which makes the drain open with `GiTransNz` instead of `GiTrans` (`0x003A3740`).
 
 ### Widescreen and mask-border flags
@@ -132,7 +132,7 @@ stores its first row in `0x01E0C290` and the row count in `0x02092710` (up to th
 
 `0x002F4020` returns when the type byte is outside `[0x022BE7D8]`..`[0x01EEBAE0]`, or when `+0x224` is set
 while the cadence test returns 0 (`0x002F402A`–`0x002F405B`). With definition byte `+0x4D` non-zero, a
-counter in word `+2` and the cadence test set a skip bit in byte `+1` bit 0, and a set bit skips
+counter in word `+2` and the cadence test set a skip bit in byte `+1` bit `0x1`, and a set bit skips
 the draw (`0x002F4070`–`0x002F40E6`). It stores definition byte `+0x75` at `0x02AEF41C`, calls the type's
 draw method, and clears `0x02AEF41C` again (`0x002F40EC`–`0x002F4124`, `0x002F4369`).
 

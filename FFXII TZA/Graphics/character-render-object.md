@@ -99,7 +99,7 @@ clamped to 0..1.
 
 `0x0053AB50` draws a record's model. It runs the object's methods through one-line wrappers: slot 1
 (`0x0017F0B0`), slot 8 with the light block `0x02CA8110` (`0x0017F1C0`), slot 9 (`0x0017F180`), slot 21 with
-record `+0x284` bit 12 (`0x0017F220`), slots 22, 23, 24, 15, slot 26 with the record's matrices at
+record `+0x284` bit `0x1000` (`0x0017F220`), slots 22, 23, 24, 15, slot 26 with the record's matrices at
 `+0x6C0` (`0x0017F260`), slot 12, slot 17, slot 6, and slot 16 (`0x0017F210`). Slot 8 is described on
 [character lighting and shadows](character-lighting-and-shadows.md).
 
@@ -200,10 +200,10 @@ consumer that is located yet.
 | `0x02EBA4E4` | `f32` | 0 (zero-filled tail of `.data`) | 4.0 from boot | `0x00475310` (`0x00475373`) | as for `0x02EBA4E0` |
 | `0x02EBA4E8` | `f32` | 0 (zero-filled tail of `.data`) | 4.0 from boot; the 8-byte store also zeroes `0x02EBA4EC` | `0x00475310` (`0x0047537D`) | as for `0x02EBA4E0` |
 
-`0x0041E4D0` draws them through `0x00477F20`: it sorts the instances with `+0x08` bit 0 set into a list by
+`0x0041E4D0` draws them through `0x00477F20`: it sorts the instances with `+0x08` bit `0x1` set into a list by
 the sort key `+0x04` (head at bank `+0x60`, link `+0x02`, `0x004781E0`), then calls `0x00504700` for each
 whose skeleton entry passes the frame-state test. `0x00504700` calls `0x0053D780` once, or twice when
-instance `+0x244` bit 4 is set, and `0x0053D780` reaches `0x0053AB50`.
+instance `+0x244` bit `0x10` is set, and `0x0053D780` reaches `0x0053AB50`.
 
 The record teardown `0x0041E860` returns up to eight instances listed from record `+0x90` through
 `0x00478070(bank, index)`, which releases the instance with `0x00504C40` and frees its slot
@@ -212,10 +212,10 @@ and marks their pairs in the map `+0x180` free (`0xFF`), releases the `@FDM` bin
 bit 2 is set (`0x00409CA0`), releases the 32 texture slot words at `+0x100` (`0x00521250`) and resets
 the instance (`0x005049E0`).
 
-- `0x00504BC0(record, value)` sets bit 7 of byte `+1` of each of the record's instance palette
+- `0x00504BC0(record, value)` sets bit `0x80` of byte `+1` of each of the record's instance palette
   resources to `value` (`0x003CD7F0`); its caller is `0x004213E0`.
 - When the bank's byte `+0x62` is 1, `0x00477F20` walks the instances with `0x004781A0` instead of
-  sorting them: an instance with `+0x08` bit 0 takes the bank's byte `+0x66` into `+0xB2` and
+  sorting them: an instance with `+0x08` bit `0x1` takes the bank's byte `+0x66` into `+0xB2` and
   `0x003A2C80` copies its `0x260` bytes into the display list's data arena as an entry keyed by its
   `+0x04` shifted right by 4. The entry's function is the bare `ret` `0x0016D6A0`, so the drain
   draws nothing for it (`0x004781AA`–`0x004781D1`).
@@ -278,14 +278,14 @@ The render model instance, as `0x005049E0` resets it:
 | `+0x000` | `i16` | own index, -1 when free |  |
 | `+0x002` | `i16` | next in the draw list |  |
 | `+0x004` | `i32` | sort key |  |
-| `+0x008` | `u32` | bit 0 drawn |  |
+| `+0x008` | `u32` | bit 0x1 drawn |  |
 | `+0x050` | `f32[16]` | matrix, identity |  |
 | `+0x090` | `f32[4]` | colour, 1.0 |  |
 | `+0x0A0` | `f32[4]` | colour times the script colour, 1.0 |  |
 | `+0x0B0` | `i16` | composite fade, Q12, 0x1000 |  |
 | `+0x0D0` | `f32[4]` | 255.0 |  |
 | `+0x0F8` | `void*` | render record |  |
-| `+0x244` | `u32` | bit 0 blend override, bit 4 draw twice; 4 after a reset |  |
+| `+0x244` | `u32` | bit 0x1 blend override, bit 0x10 draw twice; 4 after a reset |  |
 | `+0x248` | `f32` | blend override value, 1.0 |  |
 
 The vtable has 31 slots (`0x00903B68`, read from the image):

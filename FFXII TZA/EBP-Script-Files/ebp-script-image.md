@@ -198,7 +198,7 @@ any pair's function is still filed on that actor. Filing and waiting are on
 Each reader below resolves the offset through `0x0020E600`, returns null (or a default) for a zero
 offset, and bounds the index by the table's count. `0x002658B0`, `0x00264AE0` and `0x00264870` read
 manager 0's image only; all but `0x00264B90`, `0x003B7210` and `0x0035A270` also require the manager
-record's `+0x10` bit 0.
+record's `+0x10` bit `0x1`.
 
 | Field offset | Reader | Returns |
 |---|---|---|
@@ -209,7 +209,7 @@ record's `+0x10` bit 0.
 | `+0x68` | `0x003B7210` | first runs `0x002E6420` (`0x003B7231`), which calls `0x00428FE0(record, 0)` on the character render record of every actor of managers 0 to 2 that has one, then binds the first list's actors through `0x00262F50` (`0x003B72C1`): entry 0 to `[0x02EBCC68]`, entry i to `[0x02EBCAC0 + 8 × (i − 1)]` while `i − 1 < [0x02EBCBC0]` |
 | `+0x6C` | `0x002641B0` | base of the reference's class (`0x00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
 | `+0x70` | `0x00264AE0` | image + entry `index` of the five offsets |
-| `+0x80` | `0x0035A270` | for each `{id, mask}` whose id resolves, `0x002ECAB0(id, bit, 1)` for each set bit 1 to 31 |
+| `+0x80` | `0x0035A270` | for each `{id, mask}` whose id resolves, `0x002ECAB0(id, bit, 1)` for each set bit `0xFFFFFFFE` |
 | `+0x8C` | `0x00264870` | a pointer to 16-byte record `index` |
 
 `0x00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative

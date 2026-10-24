@@ -47,7 +47,7 @@ Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it w
 `0x002658B0(slot)` returns the retention probability of a slot:
 
 1. The slot is clamped to 0 to 2 after subtracting one (`0x002658B8`-`0x002658C8`).
-2. The zone's script container must be loaded: bit 0 of `0x02098E20` set, the pointer `0x02098E10` non-null
+2. The zone's script container must be loaded: bit `0x1` of `0x02098E20` set, the pointer `0x02098E10` non-null
    and the container's first word above 6 (every shipped script has version 11).
 3. The dword at container `+0x64` is resolved through `0x0020E600` and the signed byte at
    `section + 1 + slot` is returned. The section is a count byte, always 3 in the shipped scripts, then
@@ -58,7 +58,7 @@ Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it w
 
 `0x002620E0(managerRecord)` runs once per zone start, from the field runtime pass `0x0025D9E0`. It
 returns at once unless the manager index at `+0x28` is 0 (the zone's own manager), and it skips its
-body when bit 2 of the byte at `+0x10` is already set; it sets that bit itself at the end
+body when bit `0x4` of the byte at `+0x10` is already set; it sets that bit itself at the end
 (`0x002621A4`).
 
 The manager bind `0x0026C8C0`, run on every zone load when the zone's script arrives
@@ -71,8 +71,8 @@ zone's setup actor (`0x0025DB31`-`0x0025DB74`), which may already have chosen th
 3. `0x0026FAD0(0, slot, 0)` and `0x0026FAD0(0x1F, slot, 0)`: the field's effect rows for channels 0 and
    `0x1F` are instantiated for the slot (see the map section).
 4. `0x00379860(slot)`, `0x00379290()`, `0x003DE920(0, 1)`, `0x00363B40()`.
-5. Bit 2 of `+0x10` is set.
-6. `0x003601C0(0xB)` and `0x003601C0(0xC)` run on every pass, latched or not; they clear bits 11 and
+5. Bit `0x4` of `+0x10` is set.
+6. `0x003601C0(0xB)` and `0x003601C0(0xC)` run on every pass, latched or not; they clear bits `0x800` and
    12 of the flag word the world tick page names.
 
 The slot passed in steps 3 and 4 is read fresh each time: the override when positive, else
@@ -236,7 +236,7 @@ Three readers take the published classes into combat:
   bit of the action row's byte `+0x13` matches the environment class (`0x00263E10`), the target's
   terrain class (`0x003210E0`) or the wind class 2 (`0x00263E20`); the weather and terrain element
   scaling page gives the rule table.
-- `0x003895D0` scales `0x02AEDFE0` by 0.8 and `0x00389610` by 0.5 when the wind class is 2 and bit 2 of
+- `0x003895D0` scales `0x02AEDFE0` by 0.8 and `0x00389610` by 0.5 when the wind class is 2 and bit `0x4` of
   the action's `+0x1A` is clear.
 - The AI selector `0x00301AD0` compares the environment class with an operand for equality
   (`0x00303059`-`0x00303063`).
@@ -320,7 +320,7 @@ example `rbn_a18` to 236 or 253, `ozm_a01` to 247 or 264). The rule:
   `0x002542B0`) is the hours of the frame counter at `[0x020927C0] + 0x47E8`, modulo 9,999.
 - The exits set map-jump group flag `0x107` for the Rains or `0x108` for the Dry and release the
   other. The scripts test the story counter directly, and `mapjumpgroupflagrom.bin` plays no part,
-  because these ids lack bit 14.
+  because these ids lack bit `0x4000`.
 
 ### Boot and the first apply
 
@@ -369,7 +369,7 @@ the map-side globals, and `0x002628B0` (`0x00262B53`) sets `0x0209A6FC` to 1 at 
 | `+0x00` | `u8[6]` | magic | "GRMI01" |
 | `+0x06` | `u16` | count | selector count, 776 shipped; `0x003777C0` refuses a selector at or above it |
 
-The bits follow from `+8`: entry `3 * selector + slot - 1` occupies 9 bits, low bit first; bits 0 to 2
+The bits follow from `+8`: entry `3 * selector + slot - 1` occupies 9 bits, low bit first; bits `0x7`
 the wind preset, 3 to 6 the azimuth sector, 7 to 8 the elevation class.
 
 `WindPreset` (`0x20` bytes, offsets from the start of the 0x01EFFA30):

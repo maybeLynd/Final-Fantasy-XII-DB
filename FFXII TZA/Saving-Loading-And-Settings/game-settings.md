@@ -151,7 +151,7 @@ graphics-settings apply, which then pushes five settings to their consumers in t
 ### The supported MSAA modes
 
 The dword `+0x44C` is a bit set of the MSAA values the display adapter supports. The constructor
-sets it to 1 (bit 0, Off), and `0x0017D9C0(bit)` adds one more bit through `0x001DF2B0(object, bit)`.
+sets it to 1 (bit `0x1`, Off), and `0x0017D9C0(bit)` adds one more bit through `0x001DF2B0(object, bit)`.
 
 The device setup `0x00628690` asks the device at its `+0x108` for the quality level count of format
 `0x1C` (`R8G8B8A8_UNORM`) at sample counts 2 to 32 (virtual slot `+0xF0`, `CheckMultisampleQualityLevels`
@@ -219,25 +219,25 @@ normalise), switching on the id through their index tables at `0x002407C0` and `
 | 3, 5 | 17; every other id | unchanged |
 
 The in-game options are an `0x28`-byte record inside the save image: `0x002DDE60` sets `0x0215E6E0`
-to `0x002536A0() + 8`, writes the template `{0x00000035, 0x00620400}` and patches it (bit 17 of
-dword 0 from `0x005C5230() == 2`; bit 12 of dword 0 set for locale ids 1 and 6; bit 10 of dword 1
+to `0x002536A0() + 8`, writes the template `{0x00000035, 0x00620400}` and patches it (bit `0x20000` of
+dword 0 from `0x005C5230() == 2`; bit `0x1000` of dword 0 set for locale ids 1 and 6; bit `0x400` of dword 1
 set for locale ids 0, 7, 8, 10 and 11), clears the camera-axis bits and pushes them to `0x001E1020`
 and `0x001E0FF0`, sets the music version to 1 (`0x002DF530(1, 1)`), clears the speed-mode field, sets
 the three volumes to 100 (`0x001DBA60(1.0, channel)`), and runs the platform applier `0x002DDA30(1)`.
 
 | Command | Option | Setter | Field | Getter |
 |---|---|---|---|---|
-| 4 | Battle Mode (Wait, Active) | `0x002DE060` | dword 0 bit 3 | `0x002DDC30` |
-| 5 | Battle Speed | `0x002DE0F0` | dword 0 bits 4-11, signed | `0x002DDC90` |
-| 6 | Target Lines | `0x002DE2D0` | dword 1 bit 22 | `0x002DDE00` |
-| 8 | Cursor Position | `0x002DE1E0`, `0x002DE1C0` | dword 0 bits 15 and 16 | `0x002DDD50` |
-| 9 | Vibration | `0x002DE080` | dword 0 bit 13, pushed to `0x0035FF30` | `0x002DDC40` |
-| 10 | Screen Shake | `0x002DE200` | dword 0 bit 14, pushed to `0x0037DDC0` | `0x002DDD60` |
-| 11 | Subtitles | `0x002DE230` | dword 0 bit 12 | `0x002DDD70` |
-| 12 | Camera Y-Axis | `0x002DE190` | dword 1 bit 8, pushed to `0x001E1020` | `0x002DDD20` |
-| 13 | Camera X-Axis | `0x002DE160` | dword 1 bit 9, pushed to `0x001E0FF0` | `0x002DDD00` |
-| 14 | Speed Mode Multiplier | `0x002DE250`, `0x0023B2E0` | dword 1 bits 23-26 | `0x002DDDA0` |
-| 16 | Voice language | `0x002DE2F0` | dword 1 bit 10 | `0x002DDE20` |
+| 4 | Battle Mode (Wait, Active) | `0x002DE060` | dword 0 bit `0x8` | `0x002DDC30` |
+| 5 | Battle Speed | `0x002DE0F0` | dword 0 bits `0xFF0`, signed | `0x002DDC90` |
+| 6 | Target Lines | `0x002DE2D0` | dword 1 bit `0x400000` | `0x002DDE00` |
+| 8 | Cursor Position | `0x002DE1E0`, `0x002DE1C0` | dword 0 bits `0x8000` and `0x10000` | `0x002DDD50` |
+| 9 | Vibration | `0x002DE080` | dword 0 bit `0x2000`, pushed to `0x0035FF30` | `0x002DDC40` |
+| 10 | Screen Shake | `0x002DE200` | dword 0 bit `0x4000`, pushed to `0x0037DDC0` | `0x002DDD60` |
+| 11 | Subtitles | `0x002DE230` | dword 0 bit `0x1000` | `0x002DDD70` |
+| 12 | Camera Y-Axis | `0x002DE190` | dword 1 bit `0x100`, pushed to `0x001E1020` | `0x002DDD20` |
+| 13 | Camera X-Axis | `0x002DE160` | dword 1 bit `0x200`, pushed to `0x001E0FF0` | `0x002DDD00` |
+| 14 | Speed Mode Multiplier | `0x002DE250`, `0x0023B2E0` | dword 1 bits `0x7800000` | `0x002DDDA0` |
+| 16 | Voice language | `0x002DE2F0` | dword 1 bit `0x400` | `0x002DDE20` |
 | 17 | Music version | `0x002DE110` | `+0x0E` u16, pushed to `0x002DF530` | `0x002DDCA0` |
 | 19, 20, 21 | Music, Sound Effects, Voice volume | `0x002DE0B0`, `0x002DE290`, `0x002DE310` | `+0x08`, `+0x0A`, `+0x0C` u16, at most 100, pushed to `0x002DF2B0` on channels 1-3 | `0x002DDC70`, `0x002DDDE0`, `0x002DDE40` |
 | 28 | Camera Auto-Rotation | `0x0017E740` | `0x001DF340(object, 22)` CameraRevise | `0x0017E260` |
@@ -248,7 +248,7 @@ Because the record lives in the save image, loading a save also loads these opti
 
 ### Active and Wait
 
-`0x002DE060(value)` writes bit 3 of the options dword (`0x0215E6E0`) and `0x002DDC30` reads it (1 =
+`0x002DE060(value)` writes bit `0x8` of the options dword (`0x0215E6E0`) and `0x002DDC30` reads it (1 =
 Active). `0x00255290(mode)` maps a UI mode to a halt class, -1 meaning no halt:
 
 | UI mode | Halt class |
@@ -404,13 +404,13 @@ The block's other bytes are not taken from the file:
 
 `0x002DDE60` builds the options template in a `0x28`-byte staging copy at `0x0215E6E8` and does not write it into the
 record directly. It copies the `.rdata` template `0x00917268`-`0x0091728F` into the copy (`0x002DDE6F`-`0x002DDE9F`). It sets
-bit 17 of dword 0 to `0x005C5230() == 2` (`0x002DDEB2`-`0x002DDEC5`), which is always 0 because that stub returns 0. Then
+bit `0x20000` of dword 0 to `0x005C5230() == 2` (`0x002DDEB2`-`0x002DDEC5`), which is always 0 because that stub returns 0. Then
 it copies the staging copy into the record at `[0x0215E6E0]` (`0x002DDECB`-`0x002DDEEF`), and the patches after that go to
 the record:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x0215E6E8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 0-3 of the staging copy: `0x35` with bit 17 clear, `0x00620400`, 0 and `0x00010000` | `0x002DDE60` (`0x002DDE88`, 16 bytes; `0x002DDEC5`, dword 0) | `0x002DDE60` (`0x002DDEB2`, dword 0; `0x002DDECB`, 16 bytes) |
+| `0x0215E6E8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 0-3 of the staging copy: `0x35` with bit `0x20000` clear, `0x00620400`, 0 and `0x00010000` | `0x002DDE60` (`0x002DDE88`, 16 bytes; `0x002DDEC5`, dword 0) | `0x002DDE60` (`0x002DDEB2`, dword 0; `0x002DDECB`, 16 bytes) |
 | `0x0215E6F8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 4-7 of the staging copy, all 0 in the template | `0x002DDE60` (`0x002DDE9F`) | `0x002DDE60` (`0x002DDEDC`) |
 | `0x0215E708` | `u64` | 0 (zero-filled tail of `.data`) | the last 8 bytes of the staging copy, 0 in the template | `0x002DDE60` (`0x002DDE97`) | `0x002DDE60` (`0x002DDEE7`) |
 

@@ -64,7 +64,7 @@ through `0x0024A440` (the readers are in `0x00406A60`); every shipped list has n
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 read by no instruction: the decoder takes bits 0-9 (`0x002432E3`) and bit 28 (`0x00243329`), its 113 callers read `+0x04` to `+0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: `+0x1088`, `+0x109C` and `+0x10B0` of the block at `+0x8FA0`), whose first dwords no instruction reads bit 28     copied to bit 0 of the built list's header bits 29-31 0 in all 7,665 records; read by no instruction (the same readers as bits 10-27: the decoder takes bits 0-9 and 28, the 113 callers read `+0x04` to `+0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
+| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 read by no instruction: the decoder takes bits `0x3FF` (`0x002432E3`) and bit `0x10000000` (`0x00243329`), its 113 callers read `+0x04` to `+0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: `+0x1088`, `+0x109C` and `+0x10B0` of the block at `+0x8FA0`), whose first dwords no instruction reads bit `0x10000000`     copied to bit `0x1` of the built list's header bits 29-31 0 in all 7,665 records; read by no instruction (the same readers as bits 10-27: the decoder takes bits 0-9 and 28, the 113 callers read `+0x04` to `+0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
 | `+0x04` | `i16` | x | the list's rectangle, copied by the widgets that own it |
 | `+0x06` | `i16` | y |  |
 | `+0x08` | `u16` | width |  |
@@ -80,8 +80,8 @@ Items are variable-length and say their own length, so the walk steps over any t
 |---|---|---|---|
 | `+0x00` | `u8` | item length in bytes |  |
 | `+0x01` | `u8` | type, 1-9 |  |
-| `+0x02` | `u8` | read by no instruction: the decoder reads +0x00 and +0x01 (0x00243379, 0x00243340) and bit 4 of +0x03 (0x00243329), the six constructors it calls (0x0029F4C0, 0x0029FEB0, 0x0029ED40, 0x0029F130, 0x0029F930, 0x0029ECB0) read nothing at +0x02, and the relocator 0x002A00F0 touches no item |  |
-| `+0x03` | `u8` | bit 4 (bit 28 of the first dword): drawn |  |
+| `+0x02` | `u8` | read by no instruction: the decoder reads +0x00 and +0x01 (0x00243379, 0x00243340) and bit 0x10 of +0x03 (0x00243329), the six constructors it calls (0x0029F4C0, 0x0029FEB0, 0x0029ED40, 0x0029F130, 0x0029F930, 0x0029ECB0) read nothing at +0x02, and the relocator 0x002A00F0 touches no item |  |
+| `+0x03` | `u8` | bit 0x10 (bit 0x10000000 of the first dword): drawn |  |
 | `+0x04` | `i16` | x |  |
 | `+0x06` | `i16` | y |  |
 | `+0x08` | `u16` | width |  |
@@ -170,7 +170,7 @@ The caller passes a 24-byte list header, usually at widget `+0x50`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bit 0 = record bit 28, bit 1 = 1, bits 2-17 = item count |  |
+| `+0x00` | `u32` | bit 0x1 = record bit 0x10000000, bit 0x2 = 1, bits 2-17 = item count |  |
 | `+0x08` | `void*` | the list record |  |
 | `+0x10` | `void*` | the block: count node pointers, then the nodes; null when the size is 0 |  |
 
@@ -179,7 +179,7 @@ Every node starts with the same 0x14 bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | the item |  |
-| `+0x08` | `u32` | bit 0 = item bit 28 (drawn), bits 2-5 = type & 0xF, bits 6-15 cleared for the constructor |  |
+| `+0x08` | `u32` | bit 0x1 = item bit 0x10000000 (drawn), bits 2-5 = type & 0xF, bits 6-15 cleared for the constructor |  |
 | `+0x0A` | `u16` | 0 (types 2, 9 store the frame here, type 7 a phase) |  |
 | `+0x0C` | `i16` | x, y (+0x0E), width (+0x10), height (+0x12), copied from item +0x04..+0x0B |  |
 
@@ -193,7 +193,7 @@ Every node starts with the same 0x14 bytes:
 | `+0x20` | `void*` | the first picture header (buffer + 0x10) |  |
 | `+0x28` | `void*` | a replacement palette, or null |  |
 | `+0x30` | `u64` | texture descriptor written by the layout pass |  |
-| `+0x38` | `u32` | flags: bits 0-3 caller flags, bit 5 occupied, bit 6 image bound, bit 7 in the layout, | bits 8-13 pixel format, bits 14-17 palette format, bits 18+ replacement palette colours |
+| `+0x38` | `u32` | flags: bits 0-3 caller flags, bit 0x20 occupied, bit 0x40 image bound, bit 0x80 in the layout, | bits 8-13 pixel format, bits 14-17 palette format, bits `0x40000`+ replacement palette colours |
 | `+0x40` | `u32` | number appended to the texture name, 0 for none |  |
 | `+0x44` | `u32` | value from 0x00181520 |  |
 
@@ -214,7 +214,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | item length by type | 1: 16; 2: 36; 4: 28; 5 and 6: 24; 7: 72; 8: 44; no exceptions |
 | item stream | starts at the end of the outer table; each record's items follow the previous record's; 0, 4, 8 or 12 zero bytes pad it to the name records |
 | record bits 10-27 | equal the record's own index in all 7,665 |
-| record bit 28 | clear in 234 records |
+| record bit `0x10000000` | clear in 234 records |
 | item byte `+2` | the item's position in its record, in all 30,546 |
 | item byte `+3` | `0x10` (drawn) in 27,880, 0 in 2,666 |
 | largest block | `0x1040` bytes for one list |
@@ -232,7 +232,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 ### Measuring
 
 `0x002432B0(list, file, record, parent)` resolves `[file + 0x20]` with `0x0020E600`, takes the record at
-`index × 20`, the count from bits 0-9 (`0x002432E3`) and the first item from `[record + 0x10]`. It starts a total at
+`index × 20`, the count from bits `0x3FF` (`0x002432E3`) and the first item from `[record + 0x10]`. It starts a total at
 `count × 8` and walks the items: type `item[1]` (`0x00243340`) picks a size from the jump table `0x00243514`, and the
 walk advances by `item[0]` (`0x0024337F`). Types 3, 6 and anything outside 1-9 add 0.
 
@@ -280,13 +280,13 @@ its block.
   overlay sub-image's width.
 - Type 8 (`0x0029F930`) creates a grid widget through `0x002D14E0`: columns × rows cells, each the size of the
   referenced record's width and height, with an inner widget sized to the whole grid. It decodes the referenced
-  record into the inner widget with no parent, clears bit 0 of the inner list's header, copies the item
+  record into the inner widget with no parent, clears bit `0x1` of the inner list's header, copies the item
   rectangle onto the grid and attaches the grid to the parent.
 
 ### Drawing
 
-`0x002435C0` and `0x00243C00` walk the node pointers, skip nodes whose flag bit 0 is clear, and switch on the type
-bits 2-5. Types 1, 3, 6 and 8 have no arm.
+`0x002435C0` and `0x00243C00` walk the node pointers, skip nodes whose flag bit `0x1` is clear, and switch on the type
+bits `0x3C`. Types 1, 3, 6 and 8 have no arm.
 
 - Type 2 nodes are drawn in runs: `0x002D9C40` opens a run, `0x002D9380` emits each sprite with its four vertex
   colours, and the run continues while the next node is also type 2, reopening every 12 sprites; `0x002D9B00`
@@ -308,9 +308,9 @@ bits 2-5. Types 1, 3, 6 and 8 have no arm.
   a PSM `0x14` picture is bound as `0x13` with its palette entry in a second record for register `0x16`),
   register `0x14` = 0, CLAMP_1 (register 8) to the source box, and four vertices.
 - The vertices carry the draw's colour `+0x90`-`+0x93`, the source corners as texture coordinates and the
-  destination corners at depth `+0x70`; flag bit 1 is added when the two sizes differ. `0x002D8D40` then hands the
+  destination corners at depth `+0x70`; flag bit `0x2` is added when the two sizes differ. `0x002D8D40` then hands the
   same quad to the renderer (`0x00181890` with the source box, `0x001813F0`).
-- With `+0x20` bit 26 set and an overlay atlas at `+0x90`, `0x0029ED50` then draws the overlay along the fill
+- With `+0x20` bit `0x4000000` set and an overlay atlas at `+0x90`, `0x0029ED50` then draws the overlay along the fill
   with `0x002A0440` (`0x0029F0BF`); the bar drawer `0x0029E840` calls it too (`0x0029EC7C`). `0x002A0440` emits each
   vertex with `0x002A1900(vertex, u, v, x, y, alpha, dx, dy, du, dv, draw)`, at twenty sites passing an alpha of
   `0x10` or `0x80`.
@@ -347,24 +347,24 @@ palette block and entry for 4-bit ones (`0x002D9380`, `0x002DB8A0`-`0x002DB8D3`)
   item `0x00292390` calls it.
 - `0x0029FA40(node)` centres a text node: it measures the text `+0x18` (`0x002D8B00`) and sets x `+0x0A` to the
   node's left `+0x0C` plus half its width less half the text width times the scale `+0x28`; `0x0029FAD0(node)`
-  sets `+0x0A` to the scaled text width instead and sets `+0x2D` bit 2.
+  sets `+0x0A` to the scaled text width instead and sets `+0x2D` bit `0x4`.
 - The on-screen keyboard (`0x00286010`,
   `0x002862A0`, `0x00286500`, `0x00287E60`, `0x002880B0`) and `0x0056C490` use the first, the Graphics Settings rows
   (`0x0023B6F0`) and `0x0023CAF0` the second.
-- `0x00393190(list, on)` sets or clears the drawn bit 0 of every node of a list; `0x00393220(node)` returns the
-  item's bit 28 for a drawn node, else 0 (`0x00407450`, `0x00407720`).
+- `0x00393190(list, on)` sets or clears the drawn bit `0x1` of every node of a list; `0x00393220(node)` returns the
+  item's bit `0x10000000` for a drawn node, else 0 (`0x00407450`, `0x00407720`).
 - `0x00243260(list, i, out)` copies node i's x, y, width and height (`+0x0C`-`+0x12`) into `out` and returns
   1, or returns 0 when i reaches the header's count. The verb `fsmenu_getrectlist` (`0x701D`, through
   `0x005685B0`) and `0x0056C490`, `0x0056D940`, `0x00579230` and `0x0057AC10` use it.
-- `0x00243580(list)` clears the drawn bit 0 of every node; the gambit screen (`0x00568BB0`), `0x003FCFE0`, `0x003FDDE0`
-  and five other callers use it. `0x00243E90(list)` gives every node its item's bit 28 back as the drawn bit
+- `0x00243580(list)` clears the drawn bit `0x1` of every node; the gambit screen (`0x00568BB0`), `0x003FCFE0`, `0x003FDDE0`
+  and five other callers use it. `0x00243E90(list)` gives every node its item's bit `0x10000000` back as the drawn bit
   (`0x00283E40`, `0x00292390`, `0x002D28E0`).
 - `0x00243EE0(list)` puts every node back at its item's x and y (item `+4`, `+6`): types 2, 5 and 9 into node
   `+0x0C`/`+0x0E`, type 8 into its grid widget's position `+0x98`/`+0x9A`; `0x002C4720` calls it.
 
 ### Release
 
-`0x002482E0` releases a widget. When bit 1 of the list header at its `+0x50` is set, it clears the bit, frees the
+`0x002482E0` releases a widget. When bit `0x2` of the list header at its `+0x50` is set, it clears the bit, frees the
 pointer at `+0x80` of each type-7 node (`0x0029F100`) and then frees the block.
 
 ### Atlas lookup
@@ -393,21 +393,21 @@ its six pieces from the base record.
 
 ### Registering and filling an atlas
 
-- `0x0024A4E0(name, flags)` takes the first free slot (bit 5 clear), copies the name to its NUL with no length
+- `0x0024A4E0(name, flags)` takes the first free slot (bit `0x20` clear), copies the name to its NUL with no length
   check, zeroes `+0x28` and `+0x40`, sets the flags to `(old & 0x3FF10) | (flags & 0xF) | 0xA0`, counts
   `0x02090780` and returns the slot; with all 64 busy it returns null. `0x0024A660`, run from the menu system's
   start-up `0x00253970`, zeroes the 64 slots and the count.
 - When the image arrives, `0x00249670` calls `0x0024A1D0(slot, buffer)`. It stores the buffer at `+0x18` and the
   picture header (buffer `+0x10`) at `+0x20`, copies the pixel format (bits 20-25 of the header's `GsTex0` at
-  `+0x18`) into flag bits 8-13 and the palette format (bits 51-54) into bits 14-17, and names the texture `%s` or
+  `+0x18`) into flag bits 8-13 and the palette format (bits 51-54) into bits `0x3C000`, and names the texture `%s` or
   `%s%03d` with `+0x40`.
 - Format `0x13` hands the pixels (header + header size) to `0x00181250` and the palette (header + header size +
   image size, or `+0x28` when set) to `0x00181000`. Format `0x14` copies the palette into a new block from
-  `0x0036A190` in reordered 16-colour groups, then calls `0x00181190` and `0x00180E70`. Every path sets bit 6.
+  `0x0036A190` in reordered 16-colour groups, then calls `0x00181190` and `0x00180E70`. Every path sets bit `0x40`.
 - `0x0024A440` registers and binds an already loaded image; `0x0024A480` also sets `+0x28` and the colour count.
 
-`0x0024A710(k)` lays out texture memory for slots 0 to 62 whose flags hold bits 5, 6, 7 and bit `k`, writing each
-slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit 7 leaves an atlas out of the layout.
+`0x0024A710(k)` lays out texture memory for slots 0 to 62 whose flags hold bits `0x20`, `0x40`, `0x80` and bit `k`, writing each
+slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit `0x80` leaves an atlas out of the layout.
 
 ## Modding notes
 

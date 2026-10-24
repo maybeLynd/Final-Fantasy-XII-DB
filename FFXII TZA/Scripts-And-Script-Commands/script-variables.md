@@ -24,7 +24,7 @@ out)` reads the record's first dword at `table + 4 + index × 8`:
 
 ```
 bits  0..23  offset into the class's home
-bits 24..26  class: 0 global, 1 file, 2 local, 3 msp, 4 scratch1, 5 scratch2, 7 array
+bits 0x7000000  class: 0 global, 1 file, 2 local, 3 msp, 4 scratch1, 5 scratch2, 7 array
 bit  27      float: the value is pushed with tag 2 instead of tag 1
 bits 28..31  width: 0 u8, 1 s8, 2 u16, 3 s16, 4 s32, 5 f32
 ```
@@ -41,7 +41,7 @@ It then resolves the element descriptor's class as above. The flat index is retu
 the caller scales it by the element width.
 
 The resolver fills a `0x30`-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int,
-2 float, from bit 27), `+0xA` the variable index, `+0xC` the descriptor, `+0x10` the base address
+2 float, from bit `0x8000000`), `+0xA` the variable index, `+0xC` the descriptor, `+0x10` the base address
 plus offset, `+0x18` the element descriptor and `+0x1C` the flat index.
 
 ### The six homes
@@ -93,8 +93,8 @@ writes the result there.
 `0x0026DB30`, run on every field transition, zeroes `scratch1` unconditionally. It then compares
 the persistence group word (`+6` of the map-reference row at `[0x02099D88] + [header + 4] +
 field × 8`) of the previous field (`0x00314870`) with the current one (`0x003148F0`): when they differ
-it zeroes `scratch2` and, unless the payload's `+0x1062` has bit 5, runs `0x003149E0`; it also
-zeroes `scratch2` when the transition options (`0x003148D0`) have bit 3.
+it zeroes `scratch2` and, unless the payload's `+0x1062` has bit `0x20`, runs `0x003149E0`; it also
+zeroes `scratch2` when the transition options (`0x003148D0`) have bit `0x8`.
 
 So `scratch2` lives as long
 as the player stays inside one group of fields, and `0x0025D8E0` / `0x00269A20` copy its 512 bytes

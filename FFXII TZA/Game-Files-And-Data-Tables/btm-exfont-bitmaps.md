@@ -104,7 +104,7 @@ Font state (pointer at `0x022CBE00`):
 | `+0x230` | `void*` | cacheHead | most recently used glyph cache entry |
 | `+0x240` | `u32` | ready | bit n set when face n's sheet has arrived |
 
-`0x003643A0` also sets bits 0, 2, 3, 4, 30 and 31 of `+0x240`, so faces 0, 2, 3 and 4 count as ready once the
+`0x003643A0` also sets bits `0x1`, `0x4`, `0x8`, `0x10`, `0x40000000` and `0x80000000` of `+0x240`, so faces 0, 2, 3 and 4 count as ready once the
 fontpack arrives.
 
 Both files are used as loaded. `0x003643A0` and `0x00366080` keep the addresses the
@@ -156,7 +156,7 @@ null. `0x003657E0(slot)` reads that bit. `0x00365810` does not request a face wh
 
 `0x00365570(slot)`, run by `0x0053EEA0`, gives a face back: it frees the sheet (`0x003697F0`), clears its ready bit
 and unregisters the font id `slot + 10` (`0x0017FC70`). `0x00365990()`, run by `0x00252840`, `0x002528A0`,
-`0x00252990`, `0x00252A20` and the frame's UI step `0x00252A70`, acts only while bit 30 of the ready word is set:
+`0x00252990`, `0x00252A20` and the frame's UI step `0x00252A70`, acts only while bit `0x40000000` of the ready word is set:
 it calls `0x0039BD50(0x34E0)` and uploads the buffer at state `+0x190` with `0x00474600(buffer, 0x3500, 0, 0x10,
 [+0x244])`.
 

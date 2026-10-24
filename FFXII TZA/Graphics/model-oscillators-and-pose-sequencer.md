@@ -61,7 +61,7 @@ byte `+0x02` is 0:
 - with the entry's `+0x29` low nibble set, the weight `+0x20` passes through `0x0046FAE0` (mode from the
   rig nibble: 0 → 0, 1 → 2, 2 → 1); a weight between 0 and 1 applies through `0x0040B780`, a weight of
   1 or more through `0x0040DBB0`;
-- with the low nibble clear, `+0x2A` bit 0 alone applies through `0x0040DBB0`.
+- with the low nibble clear, `+0x2A` bit `0x1` alone applies through `0x0040DBB0`.
 
 The apply works on the linked bones' pose matrices: `0x0040DBB0` loads bone `+0x80` into the VU0
 register bank (`0x0040DC93`) and computes the sway from it.
@@ -69,9 +69,9 @@ register bank (`0x0040DC93`) and computes the sway from it.
 ### Reset and settle
 
 `0x0040F390` resets the record: it keeps only the low nibble of `+0x3F` and, for each entry, sets the
-weight to 0 when `+0x2A` bit 0 is clear before resetting the entry's lists. `0x0040D890(record, n)` then
+weight to 0 when `+0x2A` bit `0x1` is clear before resetting the entry's lists. `0x0040D890(record, n)` then
 runs `n` passes of the phase step and the three stages, with the frame factor left out, and applies
-`0x0040DBB0` to the entries with `+0x2A` bit 0 on every eleventh pass.
+`0x0040DBB0` to the entries with `+0x2A` bit `0x1` on every eleventh pass.
 
 ### Switching entries on and off
 
@@ -83,18 +83,18 @@ the record's byte `+0x1A` for the entry to be switched at all.
   member that met the old mask and marks its bones as `0x0040ED90` does with 1; it then sets each
   member's enable byte `+0x02` to whether it meets the new mask, unmarks the bones of the enabled
   ones (`0x0040ED90` with 0) and stores the mask at `+0x1A`. The rig set-up calls it (`0x003E09B0`, `0x003E18D0`, `0x003E3D70`).
-- `0x003E0B50(rig, 0, index)` switches the group at entry `index` off: for each member whose bit 0 of
+- `0x003E0B50(rig, 0, index)` switches the group at entry `index` off: for each member whose bit `0x1` of
   `+0x2A` is set, it clears that bit, sets the low nibble of `+0x29` to 1 and calls
   `0x0040ED90(record, entry, 1)`; `0x003E0F00` switches on the same way, setting the bit, the nibble to 2
-  and calling `0x0040ED90` with 0. Either clears the nibble again when `+0x2A` bit 0 equals the high
+  and calling `0x0040ED90` with 0. Either clears the nibble again when `+0x2A` bit `0x1` equals the high
   nibble of `+0x29`.
 - `0x003E0E70` and `0x003E1210` do the same for the group whose word `+0x2A >> 4` equals an id
   (`0x0040DB00`, which returns `0xFFF` for none), and `0x003E1950(rig, on)` for every group whose state
   differs.
 
 `0x0040ED90(record, entry, flag)` walks the entry's chains (count byte `+0x00`, `0x40` bytes a chain)
-and, for every bone named after a chain's first link (`0x50` bytes a link, `0xFFFF` skipped), sets bit 1 of the bone's
-`+0x28A` to the flag and clears bit 2 of its `+0x28B`.
+and, for every bone named after a chain's first link (`0x50` bytes a link, `0xFFFF` skipped), sets bit `0x2` of the bone's
+`+0x28A` to the flag and clears bit `0x4` of its `+0x28B`.
 
 `0x003E4140(rig, x, y, z)`, from `0x0042C410` and `0x0042C8F0` with the record's three scale factors
 (`0x003E5770`, `0x003E5790`, `0x003E57B0`), gives the oscillator record their mean through `0x004158F0`,
@@ -112,10 +112,10 @@ on a root record (word `+6` is −1). For the record and its sub-tree (`0x004268
 the rig's oscillator record and calls `0x0040ABF0(record, preset, direction, bone, flag)`:
 
 - the preset is the low twelve bits of command word `+0x10`, forced to 0 when the bone word `+0x02`
-  is −1; the flag is bit 15 of the same word, and the direction is the three floats `+0x04`–`+0x0C`;
+  is −1; the flag is bit `0x8000` of the same word, and the direction is the three floats `+0x04`–`+0x0C`;
 - `+0x3E` takes the preset, so preset 0 stops the per-record pair;
 - otherwise `+0x40` takes the direction, `+0x50` a second vector built from it, `+0x2C` preset row
-  `preset − 1`, `+0x3C` the bone, and `+0x3F` bit 1 is raised so the pair re-draws at once.
+  `preset − 1`, `+0x3C` the bone, and `+0x3F` bit `0x2` is raised so the pair re-draws at once.
 
 `0x0041DD40` calls `0x00520100(record)`, which runs the same walk for a root record with the preset and
 the flag set to 0, so every record of the sub-tree stops its per-record pair.
@@ -205,14 +205,14 @@ The copy is a GS transfer inside GS memory, built by `0x00505150(packet, transfe
 | `+0x38` | `f32` | amplitude |  |
 | `+0x3C` | `u16` | bone (command 0x3F) |  |
 | `+0x3E` | `u8` | per-record preset, 0 = off |  |
-| `+0x3F` | `u8` | bit 0 / bit 1 re-draw the global / per-record pair; bit 3 the command's flag |  |
+| `+0x3F` | `u8` | bit 0x1 / bit 0x2 re-draw the global / per-record pair; bit 0x8 the command's flag |  |
 | `+0x40` | `f32[4]` | direction (command 0x3F) |  |
 
 ```
 entry +0x02  u8   0 skips the entry
 entry +0x20  f32  weight
 entry +0x29  u8   low nibble: weighted apply
-entry +0x2A  u8   bit 0: apply at full weight
+entry +0x2A  u8   bit 0x1: apply at full weight
 ```
 
 ### Section 7 of @FCP

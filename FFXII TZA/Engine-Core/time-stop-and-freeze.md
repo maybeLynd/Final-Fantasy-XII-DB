@@ -28,7 +28,7 @@ byte at `+0x14`. The bitset `0x01FD46D4` holds the active ids, the dirty byte `0
 apply step that something changed, and `0x01FD46A0` / `0x01FD46B8` hold the last combined A and B.
 
 A set bit in a record is an exemption. For a category `c` from 0 to 6: A bit `c` exempts the
-category from set 1, A bit `8 + c` from set 2, A bit 28 together with bit `8 + c` from set 3,
+category from set 1, A bit `8 + c` from set 2, A bit `0x10000000` together with bit `8 + c` from set 3,
 B bit `c` from set 4, B bit `8 + c` from set 5, A bit `16 + c` from set 6 and B bit `16 + c` from
 set 7.
 
@@ -48,8 +48,8 @@ Otherwise:
 
 1. the fade goes to B `+0x10`; `0x00227680(id, A, B, max(flag, 0))` builds the records, the flag
    landing at B `+0x14`; the bit and the dirty byte are set;
-2. one actor manager is walked when A bit 31 is set, three when it is clear (`0x00263FF0(m)`, live
-   when its `+0x10` bit 0 holds): every record from `+0x1DE` for `+0x1D6` entries (`0x00358940`)
+2. one actor manager is walked when A bit `0x80000000` is set, three when it is clear (`0x00263FF0(m)`, live
+   when its `+0x10` bit `0x1` holds): every record from `+0x1DE` for `+0x1D6` entries (`0x00358940`)
    gets the id's bit OR-ed into its seven pending-set words and cleared from its seven
    pending-clear words;
 3. for a manager whose `+0x28` is 0, the exemptions: for each category the id's bit is removed
@@ -57,15 +57,15 @@ Otherwise:
 
 Nothing stops yet: the apply does that.
 
-`0x00227680` starts both records from one default (A bits 24, 26 to 31, 34, 36 and 37; B bits 0 to
+`0x00227680` starts both records from one default (A bits 24, 26 to 31, 34, 36 and 37; B bits `0x1` to
 4, 8 to 12, 24, 27, 33, 35 to 37 and 40 to 44) and then runs the id's case; ids 4, 6 and 7 also
 read the flag. Ids 0, 1, 2, 3, 15, 22 and 27 share one case, 4, 6 and 7 another, 8 and 9, 16, 20
-and 21, 17 to 19, 23 and 25, 24 and 26 are pairs; id 0 runs `0x00182D10` unless the options bit 3
+and 21, 17 to 19, 23 and 25, 24 and 26 are pairs; id 0 runs `0x00182D10` unless the options bit `0x8`
 (`0x002DDC30`, the Battle Mode setting, [game settings](../Saving-Loading-And-Settings/game-settings.md))
 is set, id 12 and 17 run `0x00182CF0`, 13 and 15 run `0x00182CD0`.
 
 Those side calls set one bit of the input manager's movement-key mode byte `+0x3A` and mark
-`+0x3B`: `0x00182D10` bit 1 (`0x00198690`), `0x00182CF0` bit 0 (`0x001986B0`) and `0x00182CD0` bit 2
+`+0x3B`: `0x00182D10` bit `0x2` (`0x00198690`), `0x00182CF0` bit `0x1` (`0x001986B0`) and `0x00182CD0` bit `0x4`
 (`0x00198670`); the cancel side calls below, `0x00182DA0`, `0x00182D60` and `0x00182D40`, clear the same
 bits ([controls](../Controls-And-Input/controls.md)).
 
@@ -143,28 +143,28 @@ Read as behaviour:
 `0x00226280` runs only while the dirty byte is set and clears it at the end. It ANDs the first
 qword of every A and every B record over all twenty-eight slots into one combined pair (a
 cancelled slot holds all-ones, the identity), takes the smallest non-negative B `+0x10` as the
-fade and resets each such slot to -1, and ORs bit 41 into every slot's B. Then:
+fade and resets each such slot to -1, and ORs bit `0x20000000000` into every slot's B. Then:
 
 - `0x00226640(allExempt, fade, 0)`, the per-actor pass below, with `allExempt` set when combined B
   bits 8 to 14 are all set;
-- A bit 24 and B bit 24: `0x002EA8E0(0, ~A24)` and `0x002EA8B0(0, ~B24)`, bit 0 of the two source
-  bytes `0x0215FD44` / `0x0215FD45` ([party control modes](party-control-modes.md) writes their bit 2);
+- A bit `0x1000000` and B bit `0x1000000`: `0x002EA8E0(0, ~A24)` and `0x002EA8B0(0, ~B24)`, bit `0x1` of the two source
+  bytes `0x0215FD44` / `0x0215FD45` ([party control modes](party-control-modes.md) writes their bit `0x4`);
   the status-error verbs name them: the `ctrldeny` verbs clear A24, the `dispdeny` verbs B24;
 - A and B bits 25 to 27: two 16-bit group masks `0x0209215E` / `0x02092162` for the effect system
-  (`0x0024B9B0` reads the first; `0x0024C970` initialises both to `0x3FF`): bit 25 set gives `0x3FF`
-  (else 0 for A, `0x3EE` for B), bit 26 clear ORs `0x76`, bit 27 sets or clears bit 1, then
-  `0x108` is ORed; when A's word is exactly `0x108` and B's lacks bit 4, A's becomes `0x10C` and
-  B's gains bit 2;
-- A bit 29: `0x0035B510(0xFF)` when set, else `0x0035B4B0(5)`;
-- A bit 30 clear: `0x0025A5D0(1)` sets `0x02098DEB`; set: clears it;
-- A bits 36 and 37: `0x002547C0` gets `0xF` when bit 36 is set, else `0xE`, with bits 2 and 3
-  cleared when bit 37 is clear, the pump argument of [subsystem update
-  flags](subsystem-update-flags.md); B bit 36 the same through `0x00254840` (`0x01E0C2AC`);
-- A bit 39: `0x002E24C0(0)` sets bit 0 of `0x0215F1B3` when clear, `0x002E24E0(0)` clears it when set;
+  (`0x0024B9B0` reads the first; `0x0024C970` initialises both to `0x3FF`): bit `0x2000000` set gives `0x3FF`
+  (else 0 for A, `0x3EE` for B), bit `0x4000000` clear ORs `0x76`, bit `0x8000000` sets or clears bit `0x2`, then
+  `0x108` is ORed; when A's word is exactly `0x108` and B's lacks bit `0x10`, A's becomes `0x10C` and
+  B's gains bit `0x4`;
+- A bit `0x20000000`: `0x0035B510(0xFF)` when set, else `0x0035B4B0(5)`;
+- A bit `0x40000000` clear: `0x0025A5D0(1)` sets `0x02098DEB`; set: clears it;
+- A bits `0x1000000000` and `0x2000000000`: `0x002547C0` gets `0xF` when bit `0x1000000000` is set, else `0xE`, with bits `0x4` and `0x8`
+  cleared when bit `0x2000000000` is clear, the pump argument of [subsystem update
+  flags](subsystem-update-flags.md); B bit `0x1000000000` the same through `0x00254840` (`0x01E0C2AC`);
+- A bit `0x8000000000`: `0x002E24C0(0)` sets bit `0x1` of `0x0215F1B3` when clear, `0x002E24E0(0)` clears it when set;
 - unless the skip byte `0x01FD46D1` is set (`0x00227D30` sets it; the apply clears it instead of
   running this block): the audio group mask from B bits 32, 33 and 40 to 44 through `0x002DF370`
   and `0x002DF640` (`0x01E0CF98` = 0 or `0x100`);
-- B bit 35: `0x002EBBF0(1, B35)`, bit 1 of `0x0215FD56`, whose zero state sets bit 0 of the render
+- B bit `0x800000000`: `0x002EBBF0(1, B35)`, bit `0x2` of `0x0215FD56`, whose zero state sets bit `0x1` of the render
   table's `+0x48818` (character distance culling);
 - the combined A and B are stored at `0x01FD46A0` and `0x01FD46B8`; `0x01FD46B0` and `0x01FD46C8` receive
   two stack slots the apply never writes, and nothing reads them.
@@ -178,12 +178,12 @@ folds them (`live |= set; live &= ~clear;` both zeroed) and fires the set's hook
 | Set | Live | Pending set / clear | On change | What the live set stops |
 |---|---|---|---|---|
 | 1 | battle unit `+0x40` (`0x00359B80`: `[record + 0x30] + 0xED0`) | `+0x54` / `+0x60` | becoming non-zero: `0x0026D6D0` → `0x0026D6F0(actor, 0.0, 2)`, the movement speed written to 0 | movement |
-| 2 | record `+0x10C` | `+0x110` / `+0x114` | none | the actor's per-step tail in the drive pass `0x0025DF00`: the animation-driven step `0x003E6EF0`, the mode word `0x002681E0`, the movement step `0x002E5030` and the facing integrator `0x002E5750` run only when the set is 0 and byte `+0x13` bit 0 is clear, or byte `+0x0B` bit 5 is set; otherwise `0x002E6310` runs instead; the interpreter refuses at `0x0025E524` and `0x00264DF0` refuses the stick |
-| 3 | controller `[record + 0xC0] + 0x170` | `+0x174` / `+0x178` | `0x002E92F0`: `0x00428FE0(render record, 0x00264DC0(actor) = 0)`, which writes `+0x304` bit 4 and queues `+0x290` bit 26 or 27 | the additive motions of the character |
+| 2 | record `+0x10C` | `+0x110` / `+0x114` | none | the actor's per-step tail in the drive pass `0x0025DF00`: the animation-driven step `0x003E6EF0`, the mode word `0x002681E0`, the movement step `0x002E5030` and the facing integrator `0x002E5750` run only when the set is 0 and byte `+0x13` bit `0x1` is clear, or byte `+0x0B` bit `0x20` is set; otherwise `0x002E6310` runs instead; the interpreter refuses at `0x0025E524` and `0x00264DF0` refuses the stick |
+| 3 | controller `[record + 0xC0] + 0x170` | `+0x174` / `+0x178` | `0x002E92F0`: `0x00428FE0(render record, 0x00264DC0(actor) = 0)`, which writes `+0x304` bit `0x10` and queues `+0x290` bit `0x4000000` or `0x8000000` | the additive motions of the character |
 | 4 | controller `+0x164` | `+0x168` / `+0x16C` | none | presence: `0x002E9FE0` and `0x002E7E90` treat a kind-3 actor with a non-zero set as absent |
 | 5 | controller `+0x158` | `+0x15C` / `+0x160` | `0x002269A0` appends the actor's id to the manager's list `+0x1F0` (count `+0x1F8`) | the fade (below) |
-| 6 | battle unit `+0x44` | `+0x4C` / `+0x58` | `0x00238B40(actor, live ≠ 0 or record byte `+9` bit 5)` → battle unit `+4` bit 5 (`0x0031B760`) | the unit's stop flag |
-| 7 | battle unit `+0x48` | `+0x50` / `+0x5C` | `0x00312130(actor, live = 0 and that bit clear)` → unit flag bit 36 set while stopped | the unit's flag word |
+| 6 | battle unit `+0x44` | `+0x4C` / `+0x58` | `0x00238B40(actor, live ≠ 0 or record byte `+9` bit 0x20)` → battle unit `+4` bit `0x20` (`0x0031B760`) | the unit's stop flag |
+| 7 | battle unit `+0x48` | `+0x50` / `+0x5C` | `0x00312130(actor, live = 0 and that bit clear)` → unit flag bit `0x1000000000` set while stopped | the unit's flag word |
 
 After each manager's records, when its list is non-empty:
 
@@ -203,9 +203,9 @@ frames)`). `0x00226A50` and `0x00226AB0` fold sets 6 and 7 for one actor outside
 
 At run time only `0x0026A290` writes `0x02099DE3`: it is the handler of the verb `setmutekiparty`
 (`0x0337`, through `0x003452B0`), stores the popped value there and runs `0x00263560`. With manager 0
-active (`0x02098E20` bit 0) a non-zero
-value raises the battle-unit stop flag and flag bit 36 of every roster member and sets their
-record byte `+0x09` bit 7, and 0 clears them again while the other hold bytes are 0.
+active (`0x02098E20` bit `0x1`) a non-zero
+value raises the battle-unit stop flag and flag bit `0x1000000000` of every roster member and sets their
+record byte `+0x09` bit `0x80`, and 0 clears them again while the other hold bytes are 0.
 
 ### Cancel, unload and reset
 
@@ -213,7 +213,7 @@ record byte `+0x09` bit 7, and 0 clears them again while the other hold bytes ar
 the bit into every record's seven pending-clear words and removes it from the pending-set words;
 then both records' first qwords become all-ones, both `+0x14` bytes 0, and B `+0x10` = fade. Side
 calls: id 0 runs `0x00182DA0` unless the options bit is set, 12 and 17 run `0x00182D60`, 13 clears
-bit 41 of its B and runs `0x00182D40`, 15 runs `0x00182D40`.
+bit `0x20000000000` of its B and runs `0x00182D40`, 15 runs `0x00182D40`.
 
 `0x00225EB0` cancels every active id with fade -1 the same way (the area unload). `0x00226B30` resets
 everything: bitset, dirty and skip bytes 0, every record's first qword all-ones and `+0x14` 0,
@@ -240,9 +240,9 @@ speed-mode block) and `0x00226BD0(id)` tests one bit (`0x0025C830` tests 10).
 | `0x02099DE3` | `...` | hold bytes 0x02099DE3 to 0x02099DE7, u8 each (0x02099DE5 / 0x02099DE6 select ids 5 / 4, 0x02099DE7 the flag) |  |
 | `0x0209215E` | `u16` | effect group masks | with `0x02092162` |
 | `0x02092162` | `u16` | effect group masks | with `0x0209215E` |
-| `0x0215FD44` | `u8` | source bytes (bit 0) | with `0x0215FD45` |
-| `0x0215FD45` | `u8` | source bytes (bit 0) | with `0x0215FD44` |
-| `0x0215F1B3` | `u8` | source byte (bit 0) |  |
+| `0x0215FD44` | `u8` | source bytes (bit 0x1) | with `0x0215FD45` |
+| `0x0215FD45` | `u8` | source bytes (bit 0x1) | with `0x0215FD44` |
+| `0x0215F1B3` | `u8` | source byte (bit 0x1) |  |
 | `0x020926E4` | `u16` | flags | the fade ramp |
 | `0x020926E6` | `u16` | frames | the fade ramp |
 | `0x020926E8` | `f32` | value | the fade ramp |
@@ -304,7 +304,7 @@ Manager:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x010` | `...` | bit 0 live |  |
+| `+0x010` | `...` | bit 0x1 live |  |
 | `+0x028` | `...` | exemptions skipped when non-zero |  |
 | `+0x1D6` | `...` | count |  |
 | `+0x1DE` | `...` | first |  |
@@ -316,7 +316,7 @@ Manager:
 | Fact | Value |
 |---|---|
 | request ids | 28, slots of `0x18` bytes |
-| default record | A `0x34FD000000`, B `0x00001F3A09001F1F` (ids 0 to 3, 15, 22 drop A bits 24, 27, 29 and set B bit 24) |
+| default record | A `0x34FD000000`, B `0x00001F3A09001F1F` (ids 0 to 3, 15, 22 drop A bits `0x1000000`, `0x8000000`, `0x20000000` and set B bit `0x1000000`) |
 | records per id | the table above, all 28 cases of `0x00227680` |
 | ids never raised | 1, 3, 8, 9, 14, 20, 21 |
 | fades passed | 4 (an event taking an actor, its removal), -1 (every other engine site), the verbs' arguments |
@@ -345,7 +345,7 @@ masks and the fade ramp; the source bytes.
   slot does not compose.
 - The shortest fade among pending requests wins and is consumed; a second apply in the same state
   fades over nothing. A fade of 0 becomes one frame (`0x0024FBF0` and `0x0024FB90` clamp to 1), and the
-  ramp `0x0024BFD0` advances only while bits 8 and 9 of `0x020926E4` hold 1 or 2 and frames remain.
+  ramp `0x0024BFD0` advances only while bits `0x100` and `0x200` of `0x020926E4` hold 1 or 2 and frames remain.
 - Ids 1, 3, 8, 9, 14, 20 and 21 have records and no raiser: a mod that needs a new freeze can call
   `0x00226BE0` with one of them and get the record the case builds.
 - A request that stops movement for a category also keeps that category's gambits from moving the
@@ -355,7 +355,7 @@ masks and the fade ramp; the source bytes.
 
 - [Frame update order](frame-update-order.md): the end-of-pass apply and the speed-mode test of
   the active bitset.
-- [Subsystem update flags](subsystem-update-flags.md): the pump argument the combined A bits 36
+- [Subsystem update flags](subsystem-update-flags.md): the pump argument the combined A bits `0x1000000000`
   and 37 set.
 - [Party control modes](party-control-modes.md): the source bytes' other writer and the rider's
   entry the action display passes.

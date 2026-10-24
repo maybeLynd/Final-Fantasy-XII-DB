@@ -163,7 +163,7 @@ the clearance steps of the search and the follower.
 The mover class is the unit's byte `+0x1F4` ([battle unit fields](../Characters-And-Objects/battle-unit-fields.md)).
 
 The script verb `setmapidfloor(mapId, kind, on)` ends in `0x003792E0(mapId, kind, on)` (`0x0034385C`,
-`0x00343EB7`, `0x003441F2`), which switches on `kind` through six real arms, 0 → bit 23, 1 → 25, 2 → 26,
+`0x00343EB7`, `0x003441F2`), which switches on `kind` through six real arms, 0 → bit `0x800000`, `0x2` → 25, 2 → 26,
 3 → 27, 7 → 24, 9 → 12, the same bits as the class table: `on` non-zero stores the override with the
 bit clear (open, `0x0026E880(mapId, on == 0, bit)`), `on` = 0 stores it set (closed), and a negative
 `on` removes the override (`0x0026E850(mapId, bit, 1)`).
@@ -173,7 +173,7 @@ The shipped scripts make 106,618 such calls: 84,066 with a literal kind (2: 28,5
 return and does nothing.
 
 Every override change ends in `0x003278D0` (seven sites in the setters), which, for each live
-battle-unit slot (byte `+0` bit 4; the slot count re-read every iteration), wipes the no-route
+battle-unit slot (byte `+0` bit `0x10`; the slot count re-read every iteration), wipes the no-route
 memory and the `next[]` chain of the unit's path record. Opening or closing a door invalidates
 every unit's cached route and every remembered dead end at once.
 
@@ -193,7 +193,7 @@ The caller is the unit's navigation step `0x00325BB0(unit)` ([battle locomotion]
 run from four combat sites (`0x002FDBE9`, `0x002FDD69`, `0x00304D5B`, `0x00308341`):
 
 1. when `0x00325D90()` is 0 it runs `0x0033C9B0` on the locomotion block `+0x80` and returns true;
-2. it clears unit flag bit 18 and searches, `0x00383620(unit + 0xD0, unit + 0x100, unit + 0x200,
+2. it clears unit flag bit `0x40000` and searches, `0x00383620(unit + 0xD0, unit + 0x100, unit + 0x200,
    class, r)`, from the start point at `+0xD0` to the goal at `+0x100` into the path record at
    `+0x200`, with the class byte `+0x1F4` and `r = 1.414 * 0x0030A130(unit)`: the larger of the
    actor's two collision radii (`0x00265090`) times the `f32` at `0x00D10818`, `0x3FB4FDF4` =
@@ -202,10 +202,10 @@ run from four combat sites (`0x002FDBE9`, `0x002FDD69`, `0x00304D5B`, `0x0030834
    (`0x0016D6A0`), calls nothing, and returns false;
 4. otherwise `0x00383670(unit + 0xE0, unit + 0x100, unit + 0xF0, unit + 0x200, r)` reads the mover
    position from `+0xE0` and writes the next waypoint to `+0xF0`; the step flag word `+0x1F0`
-   takes bit 0 and bit 1 from the order record's (`[+0x708]`) word `+4` (`0x200`, `0x100`), bit 3
-   from unit flag bit 23, and bit 4 when the action id `+0x714` is below `0x21F` and not `0x96`;
-5. the solver `0x00336CE0(block, block)` runs; bit 10 of the flag word zeroes `+0x158` and runs
-   `0x00313500`; bit 7 zeroes `+0x158`, clears itself and publishes the facing
+   takes bit `0x1` and bit `0x2` from the order record's (`[+0x708]`) word `+4` (`0x200`, `0x100`), bit `0x8`
+   from unit flag bit `0x800000`, and bit `0x10` when the action id `+0x714` is below `0x21F` and not `0x96`;
+5. the solver `0x00336CE0(block, block)` runs; bit `0x400` of the flag word zeroes `+0x158` and runs
+   `0x00313500`; bit `0x80` zeroes `+0x158`, clears itself and publishes the facing
    (`0x003003F0(unit, unit + 0x140, [unit + 0x160], 0, 0)`).
 
 ### The obstacle grid
@@ -273,7 +273,7 @@ ignore y.
 | `0x00391D90(segment, out, ellipse)`, from `0x003920F0` | ends `+0x00` and `+0x10`, half-width `+0x20` | without `ellipse`: the actor's centre lies between the ends within radius plus half-width of the line, or within that of the far end; with it: `0x00468F90` |
 | `0x00391710(sector, out)`, from `0x003919B0` | centre, radius `+0x10`, start angle `+0x20`, sweep `+0x24` | the actor's circle against the sector, `0x00468A70` |
 
-`0x00391D10` and `0x003920F0` pass bit 4 of their flags as `ellipse` and hand the list on to
+`0x00391D10` and `0x003920F0` pass bit `0x10` of their flags as `ellipse` and hand the list on to
 `0x003911D0`. The segment test without `ellipse` has no cap at the start: an actor just behind the
 first end is listed only when it is also near the far end.
 
@@ -357,7 +357,7 @@ any of them in a town (the town flag `0x00377C20`), into `0x022C1788` (four at m
   finds for it in mode 2 beside the leader.
 
 Each placed unit's actor goes to its point (`0x0026B0C0`), the unit's `+0xD0` and `+0xE0` both take the
-point, `0x00392170` runs on its actor, unit flag bit 26 is set, `+0x15C` and `+0x160` take the angle,
+point, `0x00392170` runs on its actor, unit flag bit `0x4000000` is set, `+0x15C` and `+0x160` take the angle,
 and the actor's yaw and facing are set to it (`0x0026A0D0`, `0x0026B620`). `0x00313670` re-places every
 collected unit other than the leader with `0x00311F70(0, unit, 0)`.
 
@@ -386,7 +386,7 @@ Battle unit:
 | `+0x0E0` | `f32[4]` | mover position read by the follower |  |
 | `+0x0F0` | `f32[4]` | the waypoint written |  |
 | `+0x100` | `f32[4]` | goal |  |
-| `+0x158` | `u32` | zeroed on flag bits 7 and 10 |  |
+| `+0x158` | `u32` | zeroed on flag bits 0x80 and 0x400 |  |
 | `+0x1F0` | `u32` | step flags |  |
 | `+0x1F4` | `u8` | mover class |  |
 | `+0x200` | `NavPath` | (0x490 bytes) |  |

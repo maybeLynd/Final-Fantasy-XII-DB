@@ -96,7 +96,7 @@ to 0 to 255):
 
 ### The global dimming ramp
 
-`0x0024BFD0(0)` moves `0x020926E8` while bits 8 and 9 of `0x020926E4` hold 1 or 2: it counts `0x020926E6`
+`0x0024BFD0(0)` moves `0x020926E8` while bits `0x100` and `0x200` of `0x020926E4` hold 1 or 2: it counts `0x020926E6`
 down, adds the step `0x020926F0`, and at zero stores the target `0x020926EC` and clears the two bits;
 for the value 2 it then calls `0x002FD060` and `0x003B1000`. The ramp is started by `0x0024FB90` and `0x0024FBF0`, the time-stop fades on
 [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md).

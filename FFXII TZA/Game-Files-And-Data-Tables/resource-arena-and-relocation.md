@@ -118,7 +118,7 @@ It carves the allocation from the bottom or the top
 of that block. When the block holds at least `0x40` bytes beyond the allocation, room for a header
 (`0x0036BDD9`-`0x0036BDE0`), the rest becomes a free block of its own, even with an empty payload; otherwise
 the whole block is taken. It sets the allocation's
-`+0x14` bit 0 (allocated), `+0x15` bit 0 for a top allocation and `+0x16` = the current tag, and
+`+0x14` bit `0x1` (allocated), `+0x15` bit `0x1` for a top allocation and `+0x16` = the current tag, and
 returns the payload. `0x0036A100(size)` allocates bottom-up in the current arena and `0x0036A190` (through
 `0x0036A1A0`) top-down; when that fails both fall to `0x0036BFE0`.
 
@@ -131,9 +131,9 @@ non-zero, makes it format a dump of `0xB0` header bytes and `0xD0` caller bytes,
 `0x022D89BC`, call `0x0036A570(arena, 0xB)` and `exit(1)`.
 
 `0x0036A570(arena, flags, category)` walks an enabled arena and prints nothing. Per flag bit it follows
-the blocks from the heap start `+0x10` (bit 0, building a state label from each header's flags and
+the blocks from the heap start `+0x10` (bit `0x1`, building a state label from each header's flags and
 copying the name of a block of `category`, or of any block for a negative one), the free list from
-`+0x90` (bit 1), the used and free slot chains from `+0x48` and `+0x40` (bits 3 and 4) and, for bit 5,
+`+0x90` (bit `0x2`), the used and free slot chains from `+0x48` and `+0x40` (bits `0x8` and `0x10`) and, for bit `0x20`,
 the tree from `+0x50` through `0x0036A850`, which recurses on each node's `+0x24` link and follows
 `+0x28`. The labels stay in a local buffer that no output call receives.
 
@@ -181,23 +181,23 @@ hang off `+0x48`.
 
 - `0x0036A000(handle)` (and `0x003AB880`, which passes a value with clear tag bits through unchanged)
   checks that the handle is tagged, at least `0x100000`, and that the slot's `+0x06` equals the
-  header's `+0x1C`; it then takes the block out of the movable tree (when `+0x15` bit 1 says it is in
+  header's `+0x1C`; it then takes the block out of the movable tree (when `+0x15` bit `0x2` says it is in
   it) and returns the payload.
 - `0x0036D170(handle)` (and `0x003AB940`) makes the same check and, when the block is not in the tree,
-  puts it back and sets `+0x15` bit 1.
+  puts it back and sets `+0x15` bit `0x2`.
 - `0x0036B130(handle)` returns `[slot + 8] + 0x40` with no check word test, so a stale handle resolves
   to whatever the slot holds now. `0x003AB7F0` wraps it and returns 0 when the low 32 bits of the
   result are `0x40` or less.
 - `0x0036A0B0(handle)` checks only `(handle & 3) != 0 && handle >= 0x100000` (unsigned; `0x0036A0BA`-`0x0036A0C5`),
   takes
-  the header `[(handle & ~3) + 8]`, sets the block's `+0x15` bit 2 when it is clear, zeroing `+0x3E`, and returns the payload `+0x40`, or 0; `0x0036D200(handle)` clears that bit and
+  the header `[(handle & ~3) + 8]`, sets the block's `+0x15` bit `0x4` when it is clear, zeroing `+0x3E`, and returns the payload `+0x40`, or 0; `0x0036D200(handle)` clears that bit and
   `+0x3E` again. The sound-bank loaders `0x002E60F0`, `0x0036E9F0`, `0x0036EAB0`, `0x0036ED50` and `0x003A1650` use the
   first, `0x002E60F0` and `0x003A0EA0` the second.
 - `0x00369800(handle)` frees the slot (`0x0036A9C0`: unlinks it, takes the block out of the tree, zeroes
   the slot) and then the block (`0x00369860`).
 - `0x0036B160(size)` allocates a block with a handle in the current arena: bottom-up (`0x0036BC60`, then
   `0x0036BFE0`), then `0x0036C4B0(arena, payload)`, which puts the block in the movable tree (`0x0036B410`),
-  sets `+0x15` bit 1 and clears bit 2, and takes a free slot (`0x0036AF20`).
+  sets `+0x15` bit `0x2` and clears bit `0x4`, and takes a free slot (`0x0036AF20`).
 - When no slot is free, `0x0036C4B0` takes the block out of the tree again, frees it and returns 0; a slot
   value without tag bits or below `0x100000` makes it write to address 8, a deliberate crash; otherwise
   the slot's `+0x08` gets the header and the handle is returned.
@@ -227,7 +227,7 @@ something, and on any move sets record `+0x02` and the moved latch `+0x62`. It r
 moves.
 
 - **Exact pass** `0x0036AAD0`: for the free block at the head of `+0x90`, it searches the tree for a block
-  of the same size at a higher address (low 32 bits compared unsigned) whose `+0x15` bit 2 is clear,
+  of the same size at a higher address (low 32 bits compared unsigned) whose `+0x15` bit `0x4` is clear,
   and moves it into the hole.
 - **Adjacent pass** `0x0036ABE0`: for each free block, when the block physically after it is in the tree
   and not inhibited (`+0x15 & 6` = 2) and allocated, it moves that block down; otherwise it searches
@@ -333,8 +333,8 @@ Block header (payload `+0x40`):
 | `+0x08` | `...` | encoded link | one of the four encoded links |
 | `+0x0C` | `...` | encoded link | one of the four encoded links |
 | `+0x10` | `...` | encoded link | one of the four encoded links |
-| `+0x14` | `u8` | allocFlags | bit 0 allocated |
-| `+0x15` | `u8` | blockFlags | bit 0 top, bit 1 in tree, bit 2 not movable, bit 3 set while `0x022D8E28` |
+| `+0x14` | `u8` | allocFlags | bit `0x1` allocated |
+| `+0x15` | `u8` | blockFlags | bit `0x1` top, bit `0x2` in tree, bit `0x4` not movable, bit `0x8` set while `0x022D8E28` |
 | `+0x16` | `u8` | tag |  |
 | `+0x18` | `i32` | size |  |
 | `+0x1C` | `u16` | check word |  |

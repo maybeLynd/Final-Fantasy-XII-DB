@@ -31,7 +31,7 @@ colour; direction 1 fades in, back to the scene.
 2. A running or finished record releases its old effect through `0x0024CFF0` and is freed.
 3. It picks the colour (next section), stores the direction in record `+0x05`, and builds the
    descriptor: kind 1, stage `0x022BDEB4` in the low nibble of `+1`, blend `0x022BDD5D` in the high
-   nibble, class 1 in `+2`, priority `0x022BDEB0` in `+3`, bit 0 of `+0x1C` set for a fade-in, and
+   nibble, class 1 in `+2`, priority `0x022BDEB0` in `+3`, bit `0x1` of `+0x1C` set for a fade-in, and
    the duration `2 × frames` at `+0x24` (`0x002EFAF3`).
 4. `0x00375900` files the descriptor and returns its handle; `0x003B0F80(handle, 1)` registers it, and
    a non-zero handle marks the record running (`0x002EFCE7`).
@@ -70,7 +70,7 @@ Fades are one kind of screen effect. The pool holds 32 records of 0x70 bytes at 
   effect group 8 is emptied (`0x0024C550(8)`).
 
 `0x00375500(stage)` draws, in pool order, every record of that stage whose class byte is enabled in
-`0x02EC07E0` and whose `+0x10` bit 0 is clear; kind 1 goes to `0x003740B0`. The frame bodies call it
+`0x02EC07E0` and whose `+0x10` bit `0x1` is clear; kind 1 goes to `0x003740B0`. The frame bodies call it
 for stages 2, 3, 5 and 6 in the scene draw `0x0022B0B0` and stage 7 after `0x00376470`, so the stage,
 then the priority, sets the order in which fades and other screen effects cover each other.
 
@@ -182,7 +182,7 @@ on [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
 `0x0037DDD0` runs at the end of the field frame. It reads the movie player's state (`0x00184860`, the
 player object `0x01F81218` `+4`):
 
-- In state 1 or 2 (opening, ready) it clears the two issued bits (`0x02ADEDC0` bits 3 and 4), stores
+- In state 1 or 2 (opening, ready) it clears the two issued bits (`0x02ADEDC0` bits `0x8` and `0x10`), stores
   the movie's end mark and elapsed frames, and selects row `id` of the table behind registry slot
   `0x02EBF008` (`+0x0C` the data, `+0x08` the stride) into `0x02ADED98`; with no table the row is null.
 - In state 3 (playing) it updates the elapsed frames and calls `0x0037DEA0(0x02ADECD0)`.
@@ -192,10 +192,10 @@ is its counter `+0x20` times the same, less 30, or less 8 for movie id 43 (`0x00
 `0x0037DEA0` issues each fade once, both on layer 0 after `0x002EFE40(5)`, so movie fades draw in stage 5:
 
 ```
-fade-in : when bit 3 clear, inLength != 0 and elapsed >= inStart:
-          0x002EFA70(0, inLength - elapsed + inStart, 1, flags & 1); set bit 3
-fade-out: when bit 4 clear, outLength != 0 and elapsed >= end - outLength - outLead:
-          0x002EFA70(0, end - outLead - elapsed, 0, (flags & 2) != 0); set bit 4
+fade-in : when bit 0x8 clear, inLength != 0 and elapsed >= inStart:
+          0x002EFA70(0, inLength - elapsed + inStart, 1, flags & 1); set bit 0x8
+fade-out: when bit 0x10 clear, outLength != 0 and elapsed >= end - outLength - outLead:
+          0x002EFA70(0, end - outLead - elapsed, 0, (flags & 2) != 0); set bit 0x10
 ```
 
 A late first check shortens the fade by the frames already passed, so the fade still ends on time.
@@ -242,7 +242,7 @@ Kind-1 descriptor (record `+0x08`; pool record `+0x00`):
 | `+0x02` | `u8` | class | 1 |
 | `+0x03` | `u8` | priority | default 0 |
 | `+0x04` | `u8[24]` | zero | zero for this kind (the start's qword clears); copied with the descriptor |
-| `+0x1C` | `u8` | flags | bit 0 fade-in |
+| `+0x1C` | `u8` | flags | bit `0x1` fade-in |
 | `+0x1D` | `u8[3]` | zero | zero for this kind; copied with the descriptor |
 | `+0x20` | `u32` | colour | RGBA bytes, alpha `0x80` full |
 | `+0x24` | `u32` | duration | 2 x frames |
@@ -268,7 +268,7 @@ Movie fade row (registry slot `0x02EBF008`, stride 8):
 | `+0x04` | `u8` | outLength | fade-out frames, 0 for none |
 | `+0x05` | `u8` | unused | 0 in every row |
 | `+0x06` | `u8` | unused | 0 in every row |
-| `+0x07` | `u8` | flags | bit 0 white fade-in, bit 1 white fade-out |
+| `+0x07` | `u8` | flags | bit `0x1` white fade-in, bit `0x2` white fade-out |
 
 ## Shipped data
 

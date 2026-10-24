@@ -34,24 +34,24 @@ checks that `slot[handle & 0xFF]` still holds the handle and does nothing, or re
 
 | Function | Does |
 |---|---|
-| `0x00377010(handle, settings)` | copies flag bits 0 and 1, the three fade radii `+0x34` to `+0x3C`, the dimming strength `+0x40` and the light colour `+0x44` to `+0x4C` |
+| `0x00377010(handle, settings)` | copies flag bits `0x1` and `0x2`, the three fade radii `+0x34` to `+0x3C`, the dimming strength `+0x40` and the light colour `+0x44` to `+0x4C` |
 | `0x00377100(handle, rect)` | the test square in GS pixels, `+0x70` |
 | `0x00377130(handle, rect)` | the same square as floats, `+0x80` |
 | `0x003770D0(handle, depth)` | the 24-bit depth `+0x04` |
 | `0x00377160(handle, vector)` | the light direction `+0x60` |
-| `0x00377090(handle, on)` | flag bit 2 |
+| `0x00377090(handle, on)` | flag bit `0x4` |
 | `0x003769F0(handle)` | the visibility `+0x08` |
 | `0x00376A50(handle)`, `0x00376A20(handle)` | the fades `+0x28` and `+0x2C` |
 
 ### The flare element
 
-Effect element type `0xA1`, named `TsElementType_VLENSFLARE` by `0x002FBA60`, owns a slot when its definition's byte `+0x1B4` has bit 2 set. Its birth
-`0x00461090` takes a slot (`0x00376350`, with the light when bit 5 of the definition word `+0x1CE` is
-set) and keeps the handle at element `+0x294`. With bit 5 it also calls `0x001827B0(1)`, which sets byte
+Effect element type `0xA1`, named `TsElementType_VLENSFLARE` by `0x002FBA60`, owns a slot when its definition's byte `+0x1B4` has bit `0x4` set. Its birth
+`0x00461090` takes a slot (`0x00376350`, with the light when bit `0x20` of the definition word `+0x1CE` is
+set) and keeps the handle at element `+0x294`. With bit `0x20` it also calls `0x001827B0(1)`, which sets byte
 `+0xED` of the render-parameter block (`0x0018D640`). It then fills the settings from the definition
 with `0x00377010`:
 
-- flag bit 0 from bit 5 of `+0x1CE` and flag bit 1 from bit 4;
+- flag bit `0x1` from bit `0x20` of `+0x1CE` and flag bit `0x2` from bit `0x10`;
 - radii from `+0x1F0`, `+0x1F4` and `+0x1F8`;
 - the dimming strength from `+0x1DC` and the light colour from `+0x1E0` to `+0x1E8`.
 
@@ -72,7 +72,7 @@ A bit-5 flare also passes its screen position, `(x − 1792) / 512` and `(y − 
 element without a slot), scaled by the alpha byte of the element's colour over 128 unless that byte is
 `0x80`, and reads the two fades (`0x00376A50`, `0x00376A20`). The parts it draws come from the model at definition `+0x208`: the count
 `+0x1B2` of parts at the light, then up to `+0x1B3` further parts, each with an offset from the table
-at `+0x170`. With bit 3 of `+0x1B4` each part also carries the angle of the light about the screen
+at `+0x170`. With bit `0x8` of `+0x1B4` each part also carries the angle of the light about the screen
 centre, `atan2(y − 2048, x − 2048)`.
 
 With bit 4 of `+0x1CE` set each part gets a scale from the fades, chosen by the part's bits in
@@ -114,27 +114,27 @@ The draw skips the hand-over when a part's row and count reach 32 (`0x00461B3A`,
 
 The field frame runs `0x00376470` between its two draws ([the frame](../PhyreEngine/the-frame.md)).
 It reads back last frame's query results (`0x00184AA0`), resets the light scale (`0x003AC870`), clears the
-query list (`0x00184A70`), and for each slot with a handle and flag bit 3 clear:
+query list (`0x00184A70`), and for each slot with a handle and flag bit `0x8` clear:
 
-1. When flag bit 1 or 0 is set it measures `d`, the distance of the test square's centre from the
+1. When flag bit `0x2` or `0x1` is set it measures `d`, the distance of the test square's centre from the
    centre of the 512 by 448 GS screen (`0x022D8EAC`, `0x022D8EB4`).
 2. For each fade it computes `t = 1 − d / radius`, passes a positive `t` through the easing curve
    `0x0046FAE0(t, 1, 2)` (0 otherwise), takes `min(1.5 × value, 1)` as the target and moves the fade 40%
-   of the way to it. Flag bit 1 runs fade A (`+0x10`, radius `+0x34`, copied to `+0x28`) and fade B
-   (`+0x18`, radius `+0x38`, copied to `+0x2C`); flag bit 0 runs fade C (`+0x20`, radius `+0x3C`,
+   of the way to it. Flag bit `0x2` runs fade A (`+0x10`, radius `+0x34`, copied to `+0x28`) and fade B
+   (`+0x18`, radius `+0x38`, copied to `+0x2C`); flag bit `0x1` runs fade C (`+0x20`, radius `+0x3C`,
    copied to `+0x30`).
 3. The visibility target is 0 when the test square leaves the GS screen: `y0` beyond the height,
    `y1` below 1, `x1` beyond the width or `x0` below 1. Otherwise it is the query
    result whose handle matches the slot's, or the result at the slot's own position when none does.
    The visibility `+0x08` moves 40% of the way to the target.
-4. Flag bit 0 runs the dimming `0x00376AC0` (below).
+4. Flag bit `0x1` runs the dimming `0x00376AC0` (below).
 5. The four corners of the float square, at the slot's depth, are transformed by the matrix
    `0x02AEEB20` and then by the render manager's matrix `+0x6C8` (`0x0017ED50`, which applies it with
    the row transform `0x0017E7E0` and keeps the product at `0x01F7F550`), each divided by its w. The first and
    last corners, the depth and the current visibility go into the query list (`0x001849E0`).
 
 A slot without a handle still adds an empty entry. The pass ends with `0x00182530`. The two
-screen-capture states run `0x00376D80` instead, which sets flag bit 3 on every live slot, freezing its
+screen-capture states run `0x00376D80` instead, which sets flag bit `0x8` on every live slot, freezing its
 fades, and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into the word after each.
 
 ### Ending the freeze
@@ -143,10 +143,10 @@ fades, and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into the word after each
 `CLOSE FULLMENU` (`0x0022BBDE`), and the capture-backed frame `0x0022BC20` after it goes back to state 2
 (`0x0022BDCC`). For each slot with a handle (`0x00376C30`) it:
 
-1. clears flag bit 3 (`0x00376C3D`);
+1. clears flag bit `0x8` (`0x00376C3D`);
 2. copies the four kept words back: `+0x0C` to `+0x08`, `+0x14` to `+0x10`, `+0x1C` to `+0x18` and `+0x24` to
    `+0x20` (`0x00376C3A`-`0x00376C57`);
-3. when flag bit 0 is set (`0x00376C40`), dims the scene colour and the light scale and rewrites the flare light's
+3. when flag bit `0x1` is set (`0x00376C40`), dims the scene colour and the light scale and rewrites the flare light's
    request as `0x00376AC0` does (`0x00376C62`-`0x00376D43`).
 
 ### Dimming and the flare light
@@ -157,7 +157,7 @@ also sets `0x02B3F503`).
 
 When the slot has a light, it writes into the light's request (`0x003ABD00`): the direction `+0x60` to `+0x68` at request `+0x20`, the words `0x01F004E0` and `0x01F084E0` at `+0x40` and
 `+0x44`, and with `s = min(1.5 × visibility, 1) × fade C` the colour `s × +0x44`, `s × +0x48`,
-`s × +0x4C` with alpha 1.0. When `s` is 0.0001 or less it sets the skip bit 1 of request byte `+7`
+`s × +0x4C` with alpha 1.0. When `s` is 0.0001 or less it sets the skip bit `0x2` of request byte `+7`
 instead, and clears it otherwise.
 
 ### The occlusion query manager
@@ -212,7 +212,7 @@ Last it copies the eight entries, with their visibility, to `+0xE4` under the lo
 | `+0x40` | `f32` | dimStrength | definition `+0x1DC` |
 | `+0x44` | `f32[3]` | lightColour | definition `+0x1E0` to `+0x1E8` |
 | `+0x50` | `u32` | light | light handle, 0 = none |
-| `+0x54` | `u16` | flags | bit 0 dimming and light, bit 1 fades A and B, bit 2 set at creation and while unprojected, bit 3 frozen |
+| `+0x54` | `u16` | flags | bit `0x1` dimming and light, bit `0x2` fades A and B, bit `0x4` set at creation and while unprojected, bit `0x8` frozen |
 | `+0x60` | `f32[4]` | lightDirection | request `+0x20` (`0x00377160`) |
 | `+0x70` | `i32[4]` | testSquare | y0, y1, x1, x0 in GS pixels (`0x00377100`) |
 | `+0x80` | `f32[4]` | floatSquare | x0, x1, y0, y1 in GS coordinates; the query corners (`0x00377130`) |

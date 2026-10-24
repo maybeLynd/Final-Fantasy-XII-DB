@@ -16,7 +16,7 @@ faces, and advances it every frame.
 ### The presentation-entry reference container
 
 The container at root `+0x160` maps an entry id to a `0x3A0`-byte presentation entry. A node is `0x30`
-bytes: `+0x00` state (bit 0 used, bit 1 refresh on lookup), `+0x04` id, `+0x08` / `+0x0C` previous and
+bytes: `+0x00` state (bit `0x1` used, bit `0x2` refresh on lookup), `+0x04` id, `+0x08` / `+0x0C` previous and
 next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
 
 - `0x0051F240(container, id)` takes the table by the container's mode (`+0x04` low two bits: 1 direct,
@@ -37,7 +37,7 @@ next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
 - `0x0051BA40` releases: it resets the entry (`0x0041CF00`) and clears the node (`0x0051F190`) without
   comparing ids.
 - `0x0051B9F0` rebuilds every active node's cached pointer (`0x0051F620`) and every payload (`0x0041CA70`).
-- `0x0051B970` updates the entries in three walks: entries with `+0x0C` bit 12 set first (`0x0051BBE0`),
+- `0x0051B970` updates the entries in three walks: entries with `+0x0C` bit `0x1000` set first (`0x0051BBE0`),
   then twice the others (`0x0051BBF0`) with the phase word `0x02CA83F4` at 1 and then 2.
 
 ### How an entry picks its track
@@ -48,16 +48,16 @@ bytes from `+0x30`; the playing one is `+0x388`. The command handlers are on
 
 - `0x0041CD30(entry, state, n)` sets up track `n`: it walks the headers (each header's word `+4` is the
   distance to the next), writes the state defaults, and makes the track primary (entry `+0x18` /
-  `+0x20`, state flag bit 0, active) when its kind byte is 1 or the stream has one track. Its start
+  `+0x20`, state flag bit `0x1`, active) when its kind byte is 1 or the stream has one track. Its start
   cursor `+0x88` is the first command, or the command after a `0xFFFF` marker when the track has one.
 - `0x0041CFC0(entry)` resets: it keeps a snapshot of an interrupted transition (`+0x380`, `+0x384`, entry
-  `+0x2E8` bit 2), rewinds every state's cursor to its start, and leaves only the primary active.
+  `+0x2E8` bit `0x4`), rewinds every state's cursor to its start, and leaves only the primary active.
 - `0x0041C9A0(entry, n)` hands out a state other than state 0: one already holding track `n` (wiped), else
   the first inactive one.
 - Command class `0x01` (`0x00417920`) switches to a track at once (mode 0), only when the current state's
-  word is 2 (mode 1), or when entry `+0x0C` bit 6 allows (mode 2, otherwise it raises bit 7 and waits).
+  word is 2 (mode 1), or when entry `+0x0C` bit `0x40` allows (mode 2, otherwise it raises bit `0x80` and waits).
 - Command class `0x0B` (`0x00417110`) asks the selector `[0x02CA4668]` (entry kind `+0x2DC`) for a choice
-  and plays `table[choice] + addend` through class `0x01`. A record with `+0x284` bit 27 and a parent
+  and plays `table[choice] + addend` through class `0x01`. A record with `+0x284` bit `0x8000000` and a parent
   reads the parent's cached choice (`+0x4B8`..`+0x4BB` for selector kinds 0, 2, `0x0A`, `0x10`) instead.
 
 ### The choice selectors
@@ -89,21 +89,21 @@ takes `atan2` of its y and z.
 
 `0x0041C410(entry)`, from `0x0041D820`, `0x00422EB0` and `0x002EE3E0`, runs an entry only when its record's
 `+0x6E0` is 1 in main-loop state 3 (`0x00229EA0`) or 0 in any other state, the entry's `+0x0C` has
-bit 1 set and bits 18 and 23 clear, the speed `+0x340` is non-zero, and the status table entry
-`0x003E7D10(+0x6A4, 3)` is 0 or the record's `+0xC0` bit 6 is clear. In phase 1 of `0x02CA83F4` it runs
-only records with `+0x284` bit 27 and no parent, and in phase 2 it skips those.
+bit `0x2` set and bits `0x40000` and `0x800000` clear, the speed `+0x340` is non-zero, and the status table entry
+`0x003E7D10(+0x6A4, 3)` is 0 or the record's `+0xC0` bit `0x40` is clear. In phase 1 of `0x02CA83F4` it runs
+only records with `+0x284` bit `0x8000000` and no parent, and in phase 2 it skips those.
 
-- In state word `+0x24` = 1 with `+0x0C` bit 3 and `+0x2C8` bit 12 set, it resets the entry
-  (`0x0041CFC0`), clears `+0x2C8` bit 12 and `+0x0C` bit 9 and, for a positive
+- In state word `+0x24` = 1 with `+0x0C` bit `0x8` and `+0x2C8` bit `0x1000` set, it resets the entry
+  (`0x0041CFC0`), clears `+0x2C8` bit `0x1000` and `+0x0C` bit `0x200` and, for a positive
   `+0x348`, seeks there (`0x0041D820`) and sets `+0x24` to 0 when `+0x348` equals `+0x34C`, else 1.
-  With only `+0x2C8` bit 12 set and `+0x348` not −1 it sets `+0x24` to 2.
-- With the record's `+0x4B7` bit 4 set it picks the locomotion mode (`0x004255B0`).
+  With only `+0x2C8` bit `0x1000` set and `+0x348` not −1 it sets `+0x24` to 2.
+- With the record's `+0x4B7` bit `0x10` set it picks the locomotion mode (`0x004255B0`).
 - It runs every track state through the walker `0x0041DA90`, then calls `0x0041DD40` on states 1 and up
-  until a pass finds none to act on, sets `+0x0C` bit 8, and copies whether `0x003E7D10(+0x6A4, 3)` is
-  non-zero into the record's `+0xC0` bit 6.
+  until a pass finds none to act on, sets `+0x0C` bit `0x100`, and copies whether `0x003E7D10(+0x6A4, 3)` is
+  non-zero into the record's `+0xC0` bit `0x40`.
 
 `0x004255B0` gives controller 5 (`0x003E4890` → `0x0051A920`) a mode from the record's speed `+0x23C`
-(taken as 0 while `+0x62C` bit 0 is set or `0x003AEF20(+0x550)` reports): 0 below the walk threshold
+(taken as 0 while `+0x62C` bit `0x1` is set or `0x003AEF20(+0x550)` reports): 0 below the walk threshold
 `0x003E58B0` (the scale times an `@FCP` value, 0.013333 without one), 2 at or above `+0x420`, and
 otherwise 1 when the move direction `+0x244` is within 45° of the facing `+0x124`, 3 from 45° to
 135°, 4 from −45° to −135°, and 5 behind.
@@ -138,7 +138,7 @@ else the default 0) and byte 3 of dword `0x2D` (`0x63070B2D`) for state 7, and f
 Over the 1,066 shipped models the forward byte is 0 in 626 (343 of them by default), 1 in 129, 2 in 10 and 3 in
 301; the sideways and backward bytes are 0, 1 or 2; the turn byte runs 0 to 5.
 
-The selector then sets the entry's `+0x0C` bit 13. In mode 1, and in mode 2 when `0x002ED530` answers for the
+The selector then sets the entry's `+0x0C` bit `0x2000`. In mode 1, and in mode 2 when `0x002ED530` answers for the
 record's actor (`+0x108`), it times the states with two byte counters in 30 fps frames (`[0x01DFE0B4]`, 1 at 30
 fps, 2 at 60):
 
@@ -150,28 +150,28 @@ fps, 2 at 60):
   reports its motion still on byte `+0x95` = 1. States 0, 6 to 8 and above 11 clear both counters.
 
 `0x002ED530(actor)` is 0 without an actor. While the field is live (the cached copy `0x02099DE0` of `0x00265680`,
-which `0x00265760` reads) it is `0x0030BEB0`: for a party-side battle unit (stats `+0x05` = 0) with unit flag bit 3
-set, the inverse of unit flag bit 23, else 0. Otherwise it is bit 1 of the presentation record's byte `+0x29`
-when its bit 0 is set, else 0 (`0x002637D0`).
+which `0x00265760` reads) it is `0x0030BEB0`: for a party-side battle unit (stats `+0x05` = 0) with unit flag bit `0x8`
+set, the inverse of unit flag bit `0x800000`, else 0. Otherwise it is bit `0x2` of the presentation record's byte `+0x29`
+when its bit `0x1` is set, else 0 (`0x002637D0`).
 
 The state is stored at `+0x2A0`. Mode 0 returns 9 to 11 as 8 to 10 and 14 as 11; mode 1 returns 14 as 12; mode
 2 returns every state from 9 one lower, and 8 as 12 and 2 as 11 when `0x002ED530` answers, else 8 as 0. The
-return value's low word is the state; its high word is 1 minus a flag that is the record's `+0x418` bit 0, set
+return value's low word is the state; its high word is 1 minus a flag that is the record's `+0x418` bit `0x1`, set
 for states 0 and 14, and for 6 and 7 whether the turn is positive.
 
 Smaller entry helpers:
 
 - `0x0041D7E0(entry, start, end, limit)` stores the time window `+0x344`, `+0x348`, `+0x34C`, pulling
   `+0x344` down to the limit when both are set and the limit is smaller.
-- `0x0041D110(entry)` resets, clears `+0x2C8` bit 12, seeks to `+0x344` when it is set (with `+0x0C`
-  bit 28 raised around the call) and sets `+0x24` to 1.
-- `0x0041D4D0(entry, on)` sets or clears `+0x0C` bit 12, `+0x33C`, and bit 5 of every state's word
+- `0x0041D110(entry)` resets, clears `+0x2C8` bit `0x1000`, seeks to `+0x344` when it is set (with `+0x0C`
+  bit `0x10000000` raised around the call) and sets `+0x24` to 1.
+- `0x0041D4D0(entry, on)` sets or clears `+0x0C` bit `0x1000`, `+0x33C`, and bit `0x20` of every state's word
   `+0x96`.
 - `0x0041CEC0(entry)` calls bank-A slot `0x0C` (`[0x02CA4470]`) with the actor `+0x2C0` and `+0x31C` and
-  sets `+0x0C` bit 9, as the walker does at a motion's end.
+  sets `+0x0C` bit `0x200`, as the walker does at a motion's end.
 - `0x0041C970(entry, n)` returns the state playing track `n` (state `+0x80`); `0x0041C720(entry)` returns
   whether the state playing the entry's track `+0x26` has byte `+0x95` equal to 1; `0x0041C6B0(entry)`
-  returns `+0x0C` bit 15. `0x0041C3A0` is an empty function that `0x00423280` calls.
+  returns `+0x0C` bit `0x8000`. `0x0041C3A0` is an empty function that `0x00423280` calls.
 
 - `0x0041C770(entry)`, for `0x00423380`, returns the dword `+0x0C` of the first state after state 0
   whose byte `+0x95` is 1, or 0.

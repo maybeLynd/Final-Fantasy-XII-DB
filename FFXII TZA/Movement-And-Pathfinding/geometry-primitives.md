@@ -70,7 +70,7 @@ highest record top above a point.
 1`; type 1 `-1 < y < 1` and `sqrt(x^2 + z^2) < 1`; type 2 every coordinate in `(-1, 1)`; any other
 type is outside. Its one caller is `0x0022F8B0`, the per-cell wall contact test of the collision
 walker: for each id in the cell's list that names a wall record (`0x4000` to `0x4FFF`), and, when
-the query's `+0x24` is set, whose effective attribute word has bit 31 clear, it tests the point at
+the query's `+0x24` is set, whose effective attribute word has bit `0x80000000` clear, it tests the point at
 the query's `+0x18` and raises the query's `+0x20` on the first hit.
 
 ### The polygon predicates
@@ -91,16 +91,16 @@ edges that are zero or positive answer 1, so a point on an edge counts as inside
 takes the ids listed for the cell (`[part + 0x28]` from `q.+0x3E`, `q.+0x40` of them) and skips an
 id at or above `0x5000`. Each polygon's attribute word (`+0x0C`) and each wall record's (`+0x04`)
 is first overlaid with the override table: `eff = (word & ~mask) | (value & mask)` from the entry
-`0x0209A3E0 + 8 (32 + group)`, the group being bits 13-17 of the word.
+`0x0209A3E0 + 8 (32 + group)`, the group being bits `0x3E000` of the word.
 
-The low three bits of `eff` then decide: 0 is tested; 1 is tested unless bit 31 is set, and with bit 30 set only when the query
+The low three bits of `eff` then decide: 0 is tested; 1 is tested unless bit `0x80000000` is set, and with bit `0x40000000` set only when the query
 kind `q.+0x46` is not 4; 4 is tested only for kind 4; 2, 3, 5, 6 and 7 are skipped.
 
 A tested polygon gets `t = 0x0022E6D0(start, delta, {polygon, v[0]})`; when `0 <= t < best` the point
 `start + delta t / length` is put to the winding test. A tested wall record gets `t = 0x00380FA0(&hit,
-record, start, end)` with the same bound. An accepted hit with bit 23 of `eff` clear becomes the
+record, start, end)` with the same bound. An accepted hit with bit `0x800000` of `eff` clear becomes the
 new best: `q.best = t`, the hit point goes to `[q.+0x20]`, `q.+0x42 = id`, `q.state = 2`. With bit
-23 set the hit only raises `q.state` from 0 to 1, a marker that something was crossed without
+`0x800000` set the hit only raises `q.state` from 0 to 1, a marker that something was crossed without
 stopping the ray.
 
 Struct MeshQuery  (the walker's record, built on the caller's stack):
@@ -177,11 +177,11 @@ The ellipse, `0x00361DE0`: `S = u^2 + v^2`, `R = sqrt(|S / (u^2 / a^2 + v^2 / b^
 radius in the point's direction (0 when `S` is 0) and `D = sqrt(|S|)` the point's distance. When
 `R <= D` the point is outside or on the boundary and `out = centre + d (R / D)` in the original
 frame; otherwise `out = point`. The status-bit helpers run on `1 / b^2` and on `D` (a zero sets
-bit 6, a negative bit 7), not on the quotient, so a point exactly at the centre passes both,
+bit `0x40`, a negative bit `0x80`), not on the quotient, so a point exactly at the centre passes both,
 makes `R / D` a 0 by 0 division and returns NaN.
 
 The rectangle, `0x003623C0`: `lx = u / a` and `lz = v / b`. The CLIP word `0x022D9130` is shifted left
-6 and takes bit 0 for `lx > 1`, bit 1 for `lx < -1`, bit 4 for `lz > 1`, bit 5 for `lz < -1`,
+6 and takes bit `0x1` for `lx > 1`, bit `0x2` for `lx < -1`, bit `0x10` for `lz > 1`, bit `0x20` for `lz < -1`,
 then is masked to 24 bits (four generations) and copied to `0x022D9478`. With none of the four bits
 set `out = point`; otherwise `lx` and `lz` are clamped to `[-1, 1]`, `X = lx a`, `Z = lz b`, and
 `out = (centre.x + X cos(-a) - Z sin(-a), point.y, centre.z + X sin(-a) + Z cos(-a))`.
@@ -202,11 +202,11 @@ It calls `0x0025A8E0` twice per rectangle, once with the x
 extent and one with the z extent as the test radius, and recovers the x bits from the older CLIP
 generation (`>> 6`) and the z bits from the newer.
 
-With record byte `+0x0D` bit 3 the same test uses the capsule separation `0x003DA5A0` ([movement
+With record byte `+0x0D` bit `0x8` the same test uses the capsule separation `0x003DA5A0` ([movement
 bodies](movement-bodies-and-separation.md)) instead of the rectangles.
 
 `0x0025A8E0(p, rec)`, its only caller that test, is the outcode without the clamp: the CLIP word is
-shifted left 6 and takes bits 0/1 for `p.x` above `e` or below `-e`, bits 2/3 for `p.y`, bits 4/5
+shifted left 6 and takes bits `0x1`/1 for `p.x` above `e` or below `-e`, bits `0x4`/3 for `p.y`, bits `0x10`/5
 for `p.z`, with `e = |rec.+0x0C|`, and the word is copied to `0x022D9478`. The history is what lets
 one function clamp a point and the next read the outcome of the clamp before it.
 
@@ -215,7 +215,7 @@ one function clamp a point and the next read the outcome of the clamp before it.
 None of the clamps computes on the stack. They write intermediates to the emulated VU0 register
 file: `0x022D9198` (Q), `0x022D91A0` (ACC), the vector registers from `0x022D92A0` to `0x022D935F`, the
 CLIP word `0x022D9130` with its copy at `0x022D9478`, and the status word `0x022D9470`, where `0x0036DDA0`
-sets bit 6 on a zero divisor and `0x0036DD90` bit 7 on a negative one.
+sets bit `0x40` on a zero divisor and `0x0036DD90` bit `0x80` on a negative one.
 
 `0x0036DD80` rewrites the
 `vf00` image at `0x01EF93F0` to `{0, 0, 0, 1}` before each use, so the "constants" 0.0 and 1.0 the
@@ -293,7 +293,7 @@ image and the status word; the emitter record base `0x022CBAF0`.
   `-0.001` lower bound accepts a face the segment starts a hair behind.
 - The ray cast stops at the first hit only when the query's `+0x38` is set; `0x002315E0` leaves it
   clear and reports the nearest hit's state, not its position.
-- Bit 23 of a polygon's attribute word turns it into a marker: the ray reports it crossed (state 1)
+- Bit `0x800000` of a polygon's attribute word turns it into a marker: the ray reports it crossed (state 1)
   but is not stopped by it.
 - The clamps and the proximity test share one register image. Running either from a second thread,
   or from a hook that re-enters it, corrupts the other's intermediates.

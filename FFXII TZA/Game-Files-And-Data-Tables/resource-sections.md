@@ -106,7 +106,7 @@ each row's handle `+0x30` into `+0x38`.
 geometry: it stores the stride and shift, derives `rowMask` = `(1 << shift) − 1` and the capacity
 `(1 << shift) × bankCount`, clears the directory and slot buffers, allocates one blob of
 `(bankCount << shift) × rowStride` bytes in arena 6 into `+0x28`, points each directory record at its
-bank, and sets flag bit 0. Its three callers are inside the render root builder `0x0041E3A0` (called from
+bank, and sets flag bit `0x1`. Its three callers are inside the render root builder `0x0041E3A0` (called from
 `0x0033263C`):
 
 | Builder | Descriptor | Row stride | Shift | Banks | Capacity | Directory | Slots |

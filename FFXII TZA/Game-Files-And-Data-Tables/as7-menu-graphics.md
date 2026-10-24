@@ -115,7 +115,7 @@ update (message 2):
 3. It copies 64 x 96 bytes (`0x01E0C470`, `0x01E0C474`) into the `itemgra_c` pixels, at column 0 or 64 by a toggle that
    flips each time, and re-uploads the atlas (`0x0024A1D0`).
 
-The id is signed. On the update the procedure does nothing for an id with bit 15 set (`0x0029269A`-`0x0029269D`).
+The id is signed. On the update the procedure does nothing for an id with bit `0x8000` set (`0x0029269A`-`0x0029269D`).
 For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which shifts 1 left by the slot with a 32-bit shift,
 keeps the low 16 bits and tests them against the object's word `+0x168` (`0x00292063`-`0x0029206D`); the shift counts the
 slot modulo 32.

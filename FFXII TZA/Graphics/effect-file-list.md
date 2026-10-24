@@ -46,12 +46,12 @@ The columns come from the path arrays, the US size table, the archive index and 
    the palette count from byte `+0x02`, as `0x00500C00` reads them.
 4. The actions: `0x0030CBE0` runs every frame and asks `0x0030A190(row)` for the effect to load: the
    row's `+0x24`, or its cinematic id `+0x28` for rows `0xD0`-`0xF1` (the Quickenings and
-   Concurrences) while the battle state `0x022C2160` is 5 or 6; `0xFFFF`, bit 15 or flag `+0x0C` bit 30
+   Concurrences) while the battle state `0x022C2160` is 5 or 6; `0xFFFF`, bit `0x8000` or flag `+0x0C` bit `0x40000000`
    give none (`0x0030A213`-`0x0030A238`).
 5. `0x00328360` passes the id to `0x0042FCE0`, which counts the start and calls `0x002FCBF0(id)`; that
    stores it at `+0x20` of a load record and runs `0x002FC860`. Effect programs load another effect
    the same way (`0x003B8670`, opcode `0x21`).
-6. The magic kind: `0x002FC860` asks `0x002DEBB0`, which is 1 while bit 10 of the options record
+6. The magic kind: `0x002FC860` asks `0x002DEBB0`, which is 1 while bit `0x400` of the options record
    `*0x0215E6E0 + 4` is clear (`0x002DDE20`), the English voice setting ([Voices](../Sound-And-Music/voices.md)):
    kind `0x0B` then, kind `0x26` with Japanese voices.
 7. It sizes the id (`0x0032E400`) and, when there is no file, loads id 120 for ids 120-137, id 138
@@ -62,7 +62,7 @@ The columns come from the path arrays, the US size table, the archive index and 
    2 (`0x0034BC90`, `0x0034B880`, `0x0034C430`, `0x0034C0F0`, `0x0034CB80`, `0x0034C820`) to `0x003576D0`.
 9. `0x003576D0` calls `0x0036E320(manager, slot, number, variant)`, where variant 1 adds `0x1000` and
    variant 2 `0x2000` to the number (`0x0036E351`-`0x0036E36D`). `0x003B2310` turns that into the id:
-   `0x1000` becomes number + `0x200`, `0x2000` number + `0x240`, bit 15 gives `0x1FF`, and number
+   `0x1000` becomes number + `0x200`, `0x2000` number + `0x240`, bit `0x8000` gives `0x1FF`, and number
    `0xC3` gives `0x1FE` with Japanese voices (`0x003B2343`-`0x003B2391`).
 10. `0x003B2310` then sizes kind `0x0C`, falls back to `0x200` or `0x240` for the two variants when
     there is no file (`0x003B23B0`-`0x003B23C7`), and requests it (completion `0x003B22D0`).

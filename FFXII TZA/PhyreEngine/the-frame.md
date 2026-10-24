@@ -39,18 +39,18 @@ bit 4 is set, and sets the mask's byte `+8` to 1 (`0x00358640`).
 The draw opens a `mainLoopDraw` scope (`0x001EB150`) and returns at once when `0x01FD4A70` is set (clearing
 it and setting `0x02064AE4`). While `0x02064AE4` is clear it writes the GS register batch (`0x0036D400`,
 below), with both arguments forced to 1 in the alternate draw. It then runs these passes in order, each
-behind one bit of its mask entry. `0x00332420(3)` runs first when bit 6 or bit 1 is set, then the bit-2
-pass (`0x00377230`) and the bit-0 pass, then `0x00332420(0)` when bit 6 or bit 1 is set:
+behind one bit of its mask entry. `0x00332420(3)` runs first when bit `0x40` or bit `0x2` is set, then the bit-2
+pass (`0x00377230`) and the bit-0 pass, then `0x00332420(0)` when bit `0x40` or bit `0x2` is set:
 
 | Bit | Accessor | What it gates in `0x0022B0B0` |
 |---|---|---|
 | 0 | `0x00358380` | `0x003769E0`, `0x00377520`, `0x0036F410`; later `0x0036FBB0`, `0x0036F430`, `0x0036F450` and `0x00475390` |
-| 1 | `0x003582A0` | `0x0017F2F0`, `0x0017F070`, `0x00332420(2)`; this bit or bit 6: `0x00332420(3)` and `0x00332420(0)` |
+| 1 | `0x003582A0` | `0x0017F2F0`, `0x0017F070`, `0x00332420(2)`; this bit or bit `0x40`: `0x00332420(3)` and `0x00332420(0)` |
 | 2 | `0x00358350` | `0x00377230`; `0x00258EE0(4)` |
-| 3 | `0x003583B0` | `0x00252A70`, and `0x002450B0` when `0x00357780()`, after the Gaussian filter (normal draw); inside the filter `0x0017FD70` runs only when bit 3 is clear or in the alternate draw |
+| 3 | `0x003583B0` | `0x00252A70`, and `0x002450B0` when `0x00357780()`, after the Gaussian filter (normal draw); inside the filter `0x0017FD70` runs only when bit `0x8` is clear or in the alternate draw |
 | 4 | `0x003583F0` | `0x00258EE0` with 1, 2, 3, 5 and 6; `0x00375500` with 2, 3, 5 and 6; the `mask border 2` scope |
 | 5 | `0x00358300` | the first argument of `0x0036D400` |
-| 6 | `0x003582C0` | `0x00332420(1)`; this bit or bit 1: `0x00332420(3)` and `0x00332420(0)` |
+| 6 | `0x003582C0` | `0x00332420(1)`; this bit or bit `0x2`: `0x00332420(3)` and `0x00332420(0)` |
 | 7 | `0x003582E0` | the second argument of `0x0036D400` |
 | 8 | `0x003583D0` | a mid-draw block: `0x0036F2C0`, `0x00184900`, `0x0036F2F0` |
 
@@ -58,7 +58,7 @@ The named scopes, in order, are `mask border 0`; `AO render` (when `0x0017FE10()
 `Water effect` (when `0x0017FE20()` and `0x01FD49E8`, at one of two places); `post-processing render`
 (at one of two places chosen by `0x00180040()`, at most once per draw through `0x02064AE0`, and in draw 1
 only when bits `0x1`, `0x8` and `0x10` of `0x020926E4` are clear); `PS2 DOF`; `Gaussian Filter`; and
-`mask border 2`. In draw 1, `0x01FD49E8` is 0 unless bit 0 is set, which removes AO, water and
+`mask border 2`. In draw 1, `0x01FD49E8` is 0 unless bit `0x1` is set, which removes AO, water and
 post-processing from the second draw.
 
 ### The pass mask
@@ -68,7 +68,7 @@ set of flags. Bytes follow at `0x022C7F98` (`+8`), `0x022C7F99` (`+9`) and `0x02
 permit byte of [frame update order](../Engine-Core/frame-update-order.md)).
 
 `0x00358450(draw, on)`
-sets bits 0–7 of that draw's pass bits to `on`, clears bit 8 and sets bits 0–3 of its upper word. The
+sets bits 0–7 of that draw's pass bits to `on`, clears bit `0x100` and sets bits `0xF` of its upper word. The
 reset `0x00358510` (called from `0x0022A0B0`) runs it with on for draw 0 and off for draw 1, then stores
 0, 0 and 1 at `+8`, `+9` and `+0xA`. The other writers, their 105 call sites and the values they store
 are listed in [the-frame-drawmask-callers.tsv](the-frame-drawmask-callers.tsv).
@@ -211,7 +211,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 - Clearing a bit of `0x022C7F90` for a draw removes that pass from the next draw; bit 4 removes the
   `0x00258EE0` calls with 1, 2, 3, 5 and 6 and the `0x00375500` calls with 2, 3, 5 and 6; `0x00258EE0(4)` follows
-  bit 2. The routines in the callers table rewrite the mask, so a change can
+  bit `0x4`. The routines in the callers table rewrite the mask, so a change can
   be overwritten.
 - A non-zero draw-1 entry makes the field frame draw twice.
 - The 512-record capacity appears twice: in `0x003A1D50` and in `0x0036F360`'s full-buffer test.

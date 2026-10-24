@@ -43,7 +43,7 @@ Entry `2 * id` is pair `id`'s first name and entry `2 * id + 1` its second.
 
 - when the actor's `i16` at `+0x102` is negative, the name is the literal text pointer at `+0xF8`
   (the spawn entry's own text; for such an actor `0x00263A10` returns the word at `+0x100`, and 0 otherwise);
-- otherwise bit 14 of the id is stripped, the 2048-bit persistent flag bank is asked for flag `id`
+- otherwise bit `0x4000` of the id is stripped, the 2048-bit persistent flag bank is asked for flag `id`
   (`0x0032A930`, [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)), and
   `0x003EAC10(id, flagSet)` returns the first name while the flag is clear and the second once it is
   set.
@@ -52,7 +52,7 @@ Entry `2 * id` is pair `id`'s first name and entry `2 * id + 1` its second.
 callers that put the name on screen are `0x00272CB0` (the name for an actor handle resolved by
 `0x003588B0`, or the empty string `0x01CEB638`), `0x00272CE0` (copies it into a caller's buffer and, when `0x00263A10` returns non-zero, appends the
 32-character text `0x0024ABE0` builds) and the field interaction pass
-`0x00268D10`, which passes the name to `0x003DF760(..., 3, ...)` for an actor whose `+0x1C` bit 13 is
+`0x00268D10`, which passes the name to `0x003DF760(..., 3, ...)` for an actor whose `+0x1C` bit `0x2000` is
 set.
 
 ### Who sets the flag
@@ -65,7 +65,7 @@ flag-bank verbs.
 
 ### Who sets the id
 
-`0x00269F40(actor, id)` stores the id at `+0x102`; a non-negative id has bit 14 cleared first, a
+`0x00269F40(actor, id)` stores the id at `+0x102`; a non-negative id has bit `0x4000` cleared first, a
 negative one is stored as it is. Two script verbs reach it:
 
 | Verb | Id | Handler | What it does |
@@ -156,9 +156,9 @@ Examples from the `us` file:
   `id` in the 2048-bit bank. The second name needs no script change.
 - Pairs whose two strings are identical are inert: setting their flag changes nothing visible, and
   the set of visible reveals differs by language (247 ids in English, 275 in French).
-- Ids with bit 14 set reach the same pair as without it: `0x00269F40` strips the bit on store and
+- Ids with bit `0x4000` set reach the same pair as without it: `0x00269F40` strips the bit on store and
   `0x00263990` before the flag test and the lookup. The conversation setter in `0x002E16B0` passes the
-  raw word, so an id that still carries bit 14 is at least `0x800` and sets no flag.
+  raw word, so an id that still carries bit `0x4000` is at least `0x800` and sets no flag.
 - A negative name id makes the actor show its own literal text, which is how `setnpcname(-1)` is
   used by the shipped scripts.
 

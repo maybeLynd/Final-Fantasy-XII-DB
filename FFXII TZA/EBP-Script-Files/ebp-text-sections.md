@@ -39,7 +39,7 @@ Both sections have the same shape. Offsets are from the start of the section.
 ```
 +0x00   u32[n]  entry      n = (entry 0 & 0xFFFF) / 4; there is no count field
                 bits 0-15   string offset from the section start
-                bit 16      flag (section 2; see Loader behaviour)
+                bit 0x10000      flag (section 2; see Loader behaviour)
                 bits 17-31  0 in every shipped entry; never read
 +4*n    char[]  strings    NUL-terminated, back to back in entry order
                 zero fill to the next 0x40 boundary
@@ -86,7 +86,7 @@ The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy
 in the record field (`+0xA0`, `+0xA8`):
 
 1. A null bank returns `0x01CEB638`, an empty string.
-2. The id is masked to 24 bits (`0x00264D77`), so bits 24-31 of a text id do nothing.
+2. The id is masked to 24 bits (`0x00264D77`), so bits `0xFF000000` of a text id do nothing.
 3. The count is the whole first dword, sign-extended and shifted right by 2 (`0x00264D74`,
    `0x00264D7D`); an id at or above it returns `0x01CEB638` (`0x00264D83`).
 4. Otherwise the result is the section address plus the entry's low 16 bits (`0x00264D85`).
@@ -98,7 +98,7 @@ point to. Nothing compares the table with the section's length.
 ### The flag
 
 `0x002673A0(manager, id)` applies the same mask and bound to section 2 (`[manager + 0xA0]` only) and
-returns bit 0 of the entry's upper half (`0x002673C0`, `0x002673C6`). Section 3 has no such reader.
+returns bit `0x1` of the entry's upper half (`0x002673C0`, `0x002673C6`). Section 3 has no such reader.
 
 - `mes` (`0x461`, `0x00348DF0`) stores the flag in the message slot's byte `+0x38` through
   `0x002E1E00` (slot record `0x0215F200 + slot * 0x68`), returns it in the call record, and opens the
@@ -164,7 +164,7 @@ therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-
   first entry must still equal four times the entry count.
 - Use only ids inside the table. When entry 0 is flagged, the bound check no longer catches a
   bad id, and the string comes from whatever lies past the table.
-- Set bit 16 on a section 2 entry whose string holds a choice list, as the shipped banks do; `mes`
+- Set bit `0x10000` on a section 2 entry whose string holds a choice list, as the shipped banks do; `mes`
   does not open a window for a flagged entry and `aask_1ff` opens one only for a flagged entry.
 - Bits 17-31 of an entry and bits 24-31 of a text id have no effect, and section 3's flag is
   never read.

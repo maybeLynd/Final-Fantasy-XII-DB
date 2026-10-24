@@ -26,8 +26,8 @@ their vtable slot 1 while `0x01F2CDF0` is clear) and registers the destructor `0
 `atexit`.
 
 The deleting destructor, slot 0 (`0x0017CC70`), re-installs the vtable, runs the base
-destructor `0x00793250` and, with flag bit 0 set, frees: through the guarded indirect call with the size `0x1140` when bit
-2 is set, else `0x00584730(this)`.
+destructor `0x00793250` and, with flag bit `0x1` set, frees: through the guarded indirect call with the size `0x1140` when bit
+`0x4` is set, else `0x00584730(this)`.
 
 The base is `Phyre::PFramework::PApplication`: `0x00793250` writes its vtable `0x01CB2508` into
 `[this]`, and the RTTI chain names `PApplication` at displacement 0 and `Phyre::PBase` and
@@ -85,7 +85,7 @@ Three more words that the boot and the application object write:
 | `0x02CA9D80` | `void*` | 0 (zero-filled tail of `.data`) | the base path: the string `"../../.."` | `0x0059A770` (`0x0059A770`), from slot 2 `0x0017CEB0` (`0x0017CEDD`) | not yet located, as for `0x01FD46D8` |
 
 `0x0017DAC0(on)` reads the Sticky Keys settings (`SystemParametersInfoW` action `0x3A`) and, when
-their hot-key bit 2 differs from `on`, writes them back with that bit changed (action `0x3B`): the
+their hot-key bit `0x4` differs from `on`, writes them back with that bit changed (action `0x3B`): the
 boot turns the Sticky Keys shortcut off and the shutdown's `0x0017DAC0(1)` turns it on
 (platform). `0x001DBA40` starts the sound engine
 ([sound engine config](../Sound-And-Music/sound-engine-config.md)).
@@ -354,7 +354,7 @@ The pane is the `0xD0`-byte widget at `0x02CA99D0` with procedure `0x0057E8D0` t
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0057E8D0` |
-| `+0xC0` | `u32` | flags | bit 1: the device check runs in save mode, bit 0 of `0x0057EA40`'s second argument (`0x0057EAAD`-`0x0057EAC2`); 0 at construction (`0x0057E914`) |
+| `+0xC0` | `u32` | flags | bit `0x2`: the device check runs in save mode, bit `0x1` of `0x0057EA40`'s second argument (`0x0057EAAD`-`0x0057EAC2`); 0 at construction (`0x0057E914`) |
 | `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
 | `+0xC8` | `void*` | controller | the first argument of the device check `0x0057EA40`, the save and load screen that runs it (`0x0057EAB4`); 0 at construction (`0x0057E90A`) |
 

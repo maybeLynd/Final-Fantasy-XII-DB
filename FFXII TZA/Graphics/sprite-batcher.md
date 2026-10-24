@@ -176,7 +176,7 @@ bottom right. The text icons (`0x002AEB20`), `0x002AFDC0` and the HUD billboards
 Three more emitters set state around them:
 
 - `0x002DAC70(writer, widget, picture)` binds a picture. It writes A+D with TEX0_1 (`6`) from the picture's
-  `+0x30` with its palette offset from widget `+0x5C` (a 4-bit picture, `+0x38` bits 8-13 = `0x14`,
+  `+0x30` with its palette offset from widget `+0x5C` (a 4-bit picture, `+0x38` bits `0x3F00` = `0x14`,
   adds a TEX2_1 `0x16` record), then TEX1_1, TEST_1 and ALPHA_1, and closes with `0x5D76EC`. It then sets the mirror (`0x001819A0`, `0x00181910`, `0x001816B0`) and runs
   the 2D flush.
 - `0x002DD090(writer, widget)` closes an untextured run: A+D with TEST_1 and ALPHA_1, the close code

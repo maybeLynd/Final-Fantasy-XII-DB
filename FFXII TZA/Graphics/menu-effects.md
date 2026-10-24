@@ -91,7 +91,7 @@ Registry record, `0x02EBDBC0` + n × `0x28`, 64 records:
 | `+0x14` | `u32` | y |  |
 | `+0x18` | `u32` | z |  |
 | `+0x1C` | `u32` | kind |  |
-| `+0x20` | `u8` | flags | bit 0 cleared on spawn |
+| `+0x20` | `u8` | flags | bit `0x1` cleared on spawn |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|

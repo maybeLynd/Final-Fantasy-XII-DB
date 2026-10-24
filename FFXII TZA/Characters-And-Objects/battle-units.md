@@ -38,28 +38,28 @@ word value rather than every unit.
 
 ### Allocation
 
-`0x00234480(0, actor)` walks the pool from slot 0 for the first unit whose flag bit 0 is clear and
+`0x00234480(0, actor)` walks the pool from slot 0 for the first unit whose flag bit `0x1` is clear and
 returns without doing anything when all are in use. For the free slot it:
 
-1. zeroes the whole `0xF50` bytes and sets flag bit 0;
+1. zeroes the whole `0xF50` bytes and sets flag bit `0x1`;
 2. writes the slot index to `+0xEA9`;
 3. stores the unit pointer at the actor's `+0x30` (`0x002134A0`) and the actor at the unit's `+0x10`;
 4. stores the actor's encoded handle (`0x003589B0`) at `+0x08`;
-5. clears flag bit 21 and copies the actor's entry-group word `+0xF6` (`0x00263D30`) into the byte
+5. clears flag bit `0x200000` and copies the actor's entry-group word `+0xF6` (`0x00263D30`) into the byte
    `+0x57`.
 
 ### Who gets a unit
 
 `0x00265A20(slot)` is the allocator's only caller. For the primary manager only (slot index 0) it
 walks the slot's records (`0x00358940`, `recordCount` at `+0x20`) and, for each record whose byte
-`+0x14` has bit 7 set, either enters the bind branch or, once 32 records have entered it in this
-walk, clears the record's `+0x14` bit 4 instead. Every record that enters the branch is counted,
+`+0x14` has bit `0x80` set, either enters the bind branch or, once 32 records have entered it in this
+walk, clears the record's `+0x14` bit `0x10` instead. Every record that enters the branch is counted,
 whether or not `0x00234480` found a slot; the branch gives the record:
 
 - the frame callback `0x00233F70` at `+0x38` ([field runtime](field-runtime.md));
 - `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set, which is how the walk
   notices a silent allocation failure;
-- for a class-3 actor, bits 8 and 13 of `+0x1C` cleared; `+0x0E` = `(old & 0xF1) | 1`;
+- for a class-3 actor, bits `0x100` and `0x2000` of `+0x1C` cleared; `+0x0E` = `(old & 0xF1) | 1`;
 - `0x00238FA0(record, 0x0031C4C0())` when byte `+0x12` is below 4;
 - the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` cleared.
 
@@ -75,24 +75,24 @@ replaced by 1, so it runs over 1 to 2047 and a handle taken before the advance s
 
 `0x003588B0(handle)` decodes it: 0 gives null; a selector of 5 or more gives null; the manager
 `0x02098E10 + selector * 0x288` must have a record pool (`+0x08`) and a payload (`+0x00`), the index
-must be below the slot's `+0x20` and the pool's own count, the slot's `+0x10` bit 0 must be set, the
+must be below the slot's `+0x20` and the pool's own count, the slot's `+0x10` bit `0x1` must be set, the
 entry must be non-null and the actor's full word `+0x16` must equal the discriminator. `0x0031B7E0`
-then returns that actor's unit `+0x30` (`0x00263E30`) when `0x02089340` bit 4 is set; `0x0031B760(actor)`
+then returns that actor's unit `+0x30` (`0x00263E30`) when `0x02089340` bit `0x10` is set; `0x0031B760(actor)`
 is the null-guarded form of the same back-pointer read.
 
 One such handle is the target of a committed action: the commit `0x0030F760` stores it at unit `+0x710` (`0x0030F7F2`-`0x0030F82A`,
 [Action commit](../Battle-Actions/action-commit.md)).
 
 Small predicates over the same reads serve the menus and the HUD: `0x0031FCF0(actor)` is true for a
-non-null actor with a unit; `0x0031FD20(handle)` is true when `0x02089340` bit 4 is set and the handle
+non-null actor with a unit; `0x0031FD20(handle)` is true when `0x02089340` bit `0x10` is set and the handle
 resolves to an actor with a unit; `0x00273780(handle)` is true for a non-zero handle that resolves;
 `0x00273750(handle)` is true when the resolved actor's class nibble (`0x00263C20`) is 1 or 2, and
 `0x00273A00(handle)` when it is 5. `0x00358960(slot, ordinal)` returns the class bits `+0x03 >> 5` of a
 record of the slot `0x00263FF0` gives, and reads address 3 when the ordinal is out of range.
 
-Three more read the unit behind a handle, through `0x003588B0` and, while `0x02089340` bit 4 is set, `0x00263E30`:
+Three more read the unit behind a handle, through `0x003588B0` and, while `0x02089340` bit `0x10` is set, `0x00263E30`:
 
-- `0x003229A0(handle)` returns bit 0 of the unit's `+0xE9C`, which `0x002392D0` copies from bit 14 of its flag argument
+- `0x003229A0(handle)` returns bit `0x1` of the unit's `+0xE9C`, which `0x002392D0` copies from bit `0x4000` of its flag argument
   (`0x0023932A`-`0x00239339`).
 - `0x00273910(handle)` is true when the actor's class nibble is 3 and `0x003229A0` returns 0 (`0x00273934`); the HUD's
   `0x002BFD20` asks it (`0x002BFE2A`).
@@ -105,14 +105,14 @@ Three more read the unit behind a handle, through `0x003588B0` and, while `0x020
 `0x00234200(_, actor)` releases the actor's unit. With no unit it runs `0x00263980` and `0x003589A0` on
 the actor and returns. Otherwise:
 
-1. it runs `0x00300140(unit, 1)` and `0x00319140(unit, 2)`; with bit 1 of its second argument
+1. it runs `0x00300140(unit, 1)` and `0x00319140(unit, 2)`; with bit `0x2` of its second argument
    `0x00319140` calls `0x003BBC80(actor)`, which zeroes the first two qwords of every entry of the
    64-entry table at `[0x02B457D0]` (stride `0x50`) whose first qword is the unit's actor;
-2. for an enemy (stats kind 1) with flag bit 4 set, unless a terminal status is present outside a
+2. for an enemy (stats kind 1) with flag bit `0x10` set, unless a terminal status is present outside a
    town (`0x00377C20`), it copies the unit's position `+0xE0`-`+0xEF` into the spawn record's `+0x60`
-   and the yaw `+0x160` into `+0x74`, and sets the spawn record's flag bit 2
+   and the yaw `+0x160` into `+0x74`, and sets the spawn record's flag bit `0x4`
    ([spawn placement](../Enemy-Spawning/enemy-spawning.md));
-3. it zeroes the whole slot and clears bit 0; the test before the clear (`unit >= base`, else
+3. it zeroes the whole slot and clears bit `0x1`; the test before the clear (`unit >= base`, else
    `unit < base + 32 * 0xEA7900`, and `0xEA7900` is `0xF50 * 0xF50`) cannot fail for any pointer.
 
 ### The actor class
@@ -134,12 +134,12 @@ a stats record, or for a stats kind other than 0 and 1.
 
 - A party member (kind 0) gets `+0x0F` = 3 and nibble 8 when its type is 27-39, and `+0x0F` = 2 and
   nibble 1 otherwise (`0x00269F30` writes `+0x0F`).
-- An enemy (kind 1) whose spawn record byte `+0` has bit 5 clear turns a unit byte `+0x58` of 4 into
+- An enemy (kind 1) whose spawn record byte `+0` has bit `0x20` clear turns a unit byte `+0x58` of 4 into
   1; with `+0x58` = 1 it runs `0x002659A0` and `0x0025D5E0(actor, 10)`, and raises `+0x58` to 7 when the
-  enemy row's byte `+0x03` has bit 4.
-- An enemy whose spawn record has bit 5 set runs `0x00267CC0` and `0x0026B4A0(actor, 10)` instead.
+  enemy row's byte `+0x03` has bit `0x10`.
+- An enemy whose spawn record has bit `0x20` set runs `0x00267CC0` and `0x0026B4A0(actor, 10)` instead.
 - The nibble is then written by `0x00269FE0(actor, n)` with the value above, or the unit's `+0x58` for
-  an enemy when it is not 0, and `0x0026AD00(actor, on)` sets `+0x13` bit 7 for an enemy whose class
+  an enemy when it is not 0, and `0x0026AD00(actor, on)` sets `+0x13` bit `0x80` for an enemy whose class
   row byte `+0x18 & 0xE` is 4 and clears it otherwise.
 
 The writers:
@@ -147,15 +147,15 @@ The writers:
 | Function | Writes |
 |---|---|
 | `0x00269F30(actor, v)` | `+0x0F` = `v` for a non-null actor |
-| `0x00269FE0(actor, n)` | for class 3, `+0x1C` bits 8 and 13 set when `n` is 4 (each followed by `0x00268EA0` when `+0x0B` bit 3 is set) and cleared otherwise; then nibble = `n & 0xF`. The verb `setfreetargettype` (`0x0265`, `0x003528C0`) calls it on the calling actor with a popped `n` |
-| `0x002659A0(actor)` | `+0x1C` bits 8 and 13 cleared, nibble 5, `+0xF4` = 0 |
-| `0x00267CC0(actor)` | `+0x1C` bit 3 cleared, bits 8 and 13 set (with `0x00268EA0` as above), nibble 4, `+0xF4` = 2 |
-| `0x0026AD00(actor, on)` | `+0x13` bit 7 = `on != 0` |
+| `0x00269FE0(actor, n)` | for class 3, `+0x1C` bits `0x100` and `0x2000` set when `n` is 4 (each followed by `0x00268EA0` when `+0x0B` bit `0x8` is set) and cleared otherwise; then nibble = `n & 0xF`. The verb `setfreetargettype` (`0x0265`, `0x003528C0`) calls it on the calling actor with a popped `n` |
+| `0x002659A0(actor)` | `+0x1C` bits `0x100` and `0x2000` cleared, nibble 5, `+0xF4` = 0 |
+| `0x00267CC0(actor)` | `+0x1C` bit `0x8` cleared, bits `0x100` and `0x2000` set (with `0x00268EA0` as above), nibble 4, `+0xF4` = 2 |
+| `0x0026AD00(actor, on)` | `+0x13` bit `0x80` = `on != 0` |
 
 `0x00263AC0(actor)` reads `+0x0F` back: 0 for a null actor, 1 instead of 2 when the actor is the party
 focus (`0x003590D0`, `0x003588B0`, resolved with slot 0 as the current slot), else the byte itself.
 
-`0x00263AA0(actor)` and `0x00263AB0(actor)` return the signed bytes `+0x21` and `+0x22` while `+0x0F` bit 6 is set, and 0
+`0x00263AA0(actor)` and `0x00263AB0(actor)` return the signed bytes `+0x21` and `+0x22` while `+0x0F` bit `0x40` is set, and 0
 otherwise. The minimap's list build `0x003C5130` adds them to the actor's x and z (`0x003C51F5`, `0x003C520F`), so they
 move the actor's marker off its position ([Map screens](../Menus-And-HUD/map-screens.md)).
 
@@ -181,14 +181,14 @@ the roster (`0x00263750`) for `getequipitemid_468`.
 | `setcharbattlestatus(status, v)` | `0x01F0`, `0x01FC` with a member | `0x004737D0` | adds status `status` (`0x00318A90` mode 1, `0x0030EAE0`) |
 | `clearcharbattlestatus(status, v)` | `0x01F1`, `0x01FD` with a member | `0x00473690` | removes it (`0x00318A90` mode 0, `0x0030E990`) |
 | `isfusion_spattack(v)` | `0x02A1` | `0x0030C3C0` | 1 for `v` from 18 to 33, else 0 |
-| `btlAtelIsMimicName` | `0x3062` | `0x00237430` | bit 5 of the spawn record's byte `+0` (unit `+0x6A0`), 0 without one |
+| `btlAtelIsMimicName` | `0x3062` | `0x00237430` | bit `0x20` of the spawn record's byte `+0` (unit `+0x6A0`), 0 without one |
 
-`0x00234D40(actor)` returns 0 when the actor has no unit or unit flag bit 4 is clear, 2 when the stats
-record is missing or its status words `+0x3C | +0x64` carry bit 0, 1 or 31 while the town flag
+`0x00234D40(actor)` returns 0 when the actor has no unit or unit flag bit `0x10` is clear, 2 when the stats
+record is missing or its status words `+0x3C | +0x64` carry bit `0x1`, `0x2` or `0x80000000` while the town flag
 `0x00313F60` is clear, and 1 otherwise.
 
 The handle-based helpers `0x00320CA0`, `0x003206E0` and `0x00318A90` take the actor's handle
-(`0x003589B0`), need `0x02089340` bit 4, a unit and a stats record, and fail with -1 (0 for
+(`0x003589B0`), need `0x02089340` bit `0x10`, a unit and a stats record, and fail with -1 (0 for
 `0x00320CA0`). `0x00318A90` refuses statuses 0, 1 and 31 with -2 and otherwise calls the add or remove
 routine as `(stats, 0, status, -1, -1, 0x13)`. `0x003206E0(handle, which, percent)` reads HP `+0x48`
 and capacity `+0x24` for `which` = 0 and MP `i16 +0x4C` and capacity `i16 +0x28` for 1; a percent of
@@ -202,7 +202,7 @@ and turns any other value into 0.
 
 `0x00359EA0(index, focusFirst, includeHidden)` picks a party actor: it lists the members of
 `0x0031B670` (up to four) followed by those of `0x0031B680`, drops members whose model is hidden
-(`0x002E9600`: class 3 and context `+0x10` bit 3) unless `includeHidden` is set, moves the party
+(`0x002E9600`: class 3 and context `+0x10` bit `0x8`) unless `includeHidden` is set, moves the party
 focus record (`0x00264050(0)`) to the front when `focusFirst` is set and it is among the first four,
 and returns entry `index`, or null past the end.
 
@@ -216,7 +216,7 @@ Struct BattleUnit size=`0xF50` count=32 base=[`0x0208E688`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u64` | flags | bit 0 slot in use; the table below |
+| `+0x000` | `u64` | flags | bit `0x1` slot in use; the table below |
 | `+0x008` | `u32` | handle | `0x003589B0`(actor) at bind |
 | `+0x010` | `u8*` | actor | the bound actor record |
 | `+0x020` | `i32` | bound | 1 after the bind walk (`0x00234A00`) |
@@ -234,13 +234,13 @@ Globals:
 | `0x0208E6A0` | `i32` | the slot count, 32 | `0x002368D0` |
 | `0x0208E690` | `u8*` | btlKeepCharWork1 | `0x002368D0` |
 | `0x0208E698` | `u8*` | btlKeepCharWork2 | `0x002368D0` |
-| `0x02089340` | `u32` | zeroed by 0x002368D0; bit 4 gates 0x0031B7E0 |  |
+| `0x02089340` | `u32` | zeroed by 0x002368D0; bit 0x10 gates 0x0031B7E0 |  |
 
 ### The flag word
 
 Every immediate-mask write and test on `+0x00` and `+0x04` in the access table [`battle-unit-fields.tsv`](battle-unit-fields.tsv)
 by bit, plus the unit reset `0x00236A60`'s register mask
-`0xFFFF7FFDFFE7FFFD` (`0x00236A9C`-`0x00236AB1`), which clears bits 1, 19, 20, 33 and 47:
+`0xFFFF7FFDFFE7FFFD` (`0x00236A9C`-`0x00236AB1`), which clears bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and `0x800000000000`:
 
 | Bit | Set by | Cleared by | Tested by |
 |---|---|---|---|
@@ -284,14 +284,14 @@ by bit, plus the unit reset `0x00236A60`'s register mask
 | 53 | `0x002FEF30`, `0x00300140`, `0x00300E40`, `0x00301140`, `0x0030AF30` | `0x00304850`, `0x003105D0` | `0x00307300` |
 
 Other writers that apply a mask held in a register are not in the table: among them the
-`hideenemy` and `showenemy` verbs on bit 11 and the command issuer on bit 14.
+`hideenemy` and `showenemy` verbs on bit `0x800` and the command issuer on bit `0x4000`.
 
 ## Operations
 
 - A unit is zero at both ends of its life: the allocator clears the slot before the bind and the
   release clears it after copying the position out, so nothing survives into the next occupant.
 - The walk's own count stops at 32, so an allocation failure needs a slot held by a unit the walk
-  did not allocate; the record then keeps `+0x14` bit 4 and is counted as bound, but has no unit.
+  did not allocate; the record then keeps `+0x14` bit `0x10` and is counted as bound, but has no unit.
 
 ## Modding notes
 

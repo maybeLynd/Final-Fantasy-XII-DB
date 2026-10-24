@@ -87,7 +87,7 @@ file request, `+0x1C` state, `+0x20` flags, `+0x28` buffer. Only one load runs a
 
 `0x003B2830(id, n)`, for `n` of 1 to 10, calls `0x0024FE70(instance, n)` for the entry's instance and
 puts `n` in the low nibble of its word `+0x378`. `0x003B27A0(id, n)`, for `n` of 0 to 10, makes the
-instance current and passes its `+0x130` block to `0x003339C0` with `n`. `0x003B1560(flag)` clears bit 0
+instance current and passes its `+0x130` block to `0x003339C0` with `n`. `0x003B1560(flag)` clears bit `0x1`
 of `+0x20` in every entry when `flag` is 0, and otherwise passes each entry with the bit to
 `0x003B18E0`; no code calls it.
 
@@ -96,7 +96,7 @@ of `+0x20` in every entry when `flag` is 0, and otherwise passes each entry with
 `0x003B1A80(file, tag)` files a load with arena 8 selected. It takes the first entry whose id is 0,
 returning 0 when all 32 are taken, and gives it the id `0x70000000 | (serial & 0xFFFF) << 12 | (tag &
 0x3F) << 6`, the serial counting up at `0x02EBEBE0`. It stores the file number at `+0x04` and clears
-the context, the state, the buffer and flag bits 0 and 1. When another entry with the same file is in
+the context, the state, the buffer and flag bits `0x1` and `0x2`. When another entry with the same file is in
 state 5 or 6, the new entry takes that entry's context and starts in state 5;
 otherwise `0x003B2310` starts the read, and a refused read clears the entry and returns 0.
 
@@ -118,12 +118,12 @@ later and only passes `n` to `0x0024FE70` for the existing instance, putting `n`
 | 4, 7 | nothing |
 
 A removed entry closes the gap and the last entry's id `0x02EBEBB0` is cleared. `0x003B1710(spare)`
-applies the same release to every entry, skipping those with flag bit 0 when `spare` is non-zero,
+applies the same release to every entry, skipping those with flag bit `0x1` when `spare` is non-zero,
 and ends a removed entry's instance (`0x0024EE60`). `0x003B15C0(instance)`, from the free-list drain,
 removes the entry whose instance is freed, freeing its context only when no other entry for the
 same file in state 5 or 6 has one.
 
-Flag bit 0 keeps a file across an area change. `effectkeepmapjump(slot, b)` (`0x02C5`, `0x0036E9B0`)
+Flag bit `0x1` keeps a file across an area change. `effectkeepmapjump(slot, b)` (`0x02C5`, `0x0036E9B0`)
 writes it through `0x003B2750(id, b)`, and the flag is read by `0x003B24C0(id)`; both accept only an id
 whose top nibble is 7. The ordinary area unload runs only `0x0024E910`, whose `0x003B26D0` spares kept
 files. When `0x022CB726` is set, as after the title-return reset `0x003601D0`, the unload first runs
@@ -158,14 +158,14 @@ Each then calls `0x0024F9B0`, which, while bit `0x100` is set and the target exi
 
 Opcode `0x0B` files a light through `0x003B81A0(1)` (`0x003B973C`) and opcode `0x0A` releases it (`0x003B96AD`-`0x003B96CF`).
 When it holds a light, `0x003B81A0` first releases it (`0x003ABCA0`) and clears bits `0x08` and `0x10` of the light
-mask `0x02B3F501` (`0x003ACA90`). With 1 it then files a request with bytes `06 FF 00 01`, `+0x04` 1, `+0x07` bit 0 and
+mask `0x02B3F501` (`0x003ACA90`). With 1 it then files a request with bytes `06 FF 00 01`, `+0x04` 1, `+0x07` bit `0x1` and
 (1.0, 1.0, 1.0, 1.0) at `+0x10` (`0x003AB960`, `0x003B81EB`-`0x003B821E`), and sets the two mask bits again (`0x003ACA80`).
 The pool and the request are on [Character lighting and shadows](character-lighting-and-shadows.md).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02B40538` | `u32` | 0 (zero-filled tail) | the handle of that light, 0 when none; `0x0024D9C0` also releases it through `0x003B81A0(0)` (`0x0024D9DA`) | `0x003B81A0`: 0 (`0x003B81CE`), the handle (`0x003B8228`); `0x003B8670`, 0 (`0x003B96CF`) | `0x003B81A0` (`0x003B81BA`); `0x003B8670` (`0x003B96AD`) |
-| `0x020968C8` | `u8` | 0 (zero-filled tail) | flags of the block `0x00259250` resets: each reset clears bits 1 and 3 and sets bits 0 and 2, keeping the rest. No instruction sets bit 4, which opcode `0x03` tests before it sets the target slot's bit in the current instance's `+0x0C` while `+0x378` bit `0x200` is set (`0x003B8814`-`0x003B8937`), so that bit is never set there | `0x00259250` (`0x002592DA`) | `0x00259250` (`0x00259259`); `0x003B8670` (`0x003B891F`) |
+| `0x020968C8` | `u8` | 0 (zero-filled tail) | flags of the block `0x00259250` resets: each reset clears bits `0x2` and `0x8` and sets bits `0x1` and `0x4`, keeping the rest. No instruction sets bit `0x10`, which opcode `0x03` tests before it sets the target slot's bit in the current instance's `+0x0C` while `+0x378` bit `0x200` is set (`0x003B8814`-`0x003B8937`), so that bit is never set there | `0x00259250` (`0x002592DA`) | `0x00259250` (`0x00259259`); `0x003B8670` (`0x003B891F`) |
 
 No other instruction reaches these six globals: no other RIP-relative, image-base-relative or 32-bit offset reference
 names them. The addresses taken in the block that holds `0x020968C8` (`0x02096810` and `0x02096820` by `0x0024C060`,

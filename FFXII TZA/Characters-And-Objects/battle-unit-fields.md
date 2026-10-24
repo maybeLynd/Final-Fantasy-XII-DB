@@ -22,7 +22,7 @@ seven test the pointer for null and the rest are in the table.
 
 | Unit offset | Size | Region | Who establishes it |
 |---|---|---|---|
-| `+0x000` | 8 | the flag word (bit 0 slot in use; the bit table on the battle units page) | [battle units](battle-units.md) |
+| `+0x000` | 8 | the flag word (bit `0x1` slot in use; the bit table on the battle units page) | [battle units](battle-units.md) |
 | `+0x008` | 4 | the actor handle, `0x003589B0(actor)` at bind | [battle units](battle-units.md) |
 | `+0x010` | 8 | the bound actor record | [battle units](battle-units.md) |
 | `+0x020` | 4 | 1 once the bind walk has run (`0x00234A00`) | [battle units](battle-units.md) |
@@ -36,7 +36,7 @@ seven test the pointer for null and the rest are in the table.
 | `+0x694` | 3 | three bytes the reset sets to `0xFF`, `0xFFFF` | this page |
 | `+0x698` | 8 | the combat stats record | [unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) |
 | `+0x6A0` | 8 | the spawn record for an enemy, null for a party member | [battle units](battle-units.md) |
-| `+0x6B0` | 4 | the command word: bit 1 a command issued and not yet committed | [action commit](../Battle-Actions/action-commit.md) |
+| `+0x6B0` | 4 | the command word: bit `0x2` a command issued and not yet committed | [action commit](../Battle-Actions/action-commit.md) |
 | `+0x6B4` | 1 | the action phase | [action phases](../Battle-Actions/action-phases.md) |
 | `+0x6B7`, `+0x6B8` | 2 | combo progress and its saved copy | [combos](../Battle-Actions/combos.md) |
 | `+0x700` | 16 | the action block; `+0x708` the action context, `+0x710` the target focus handle, `+0x714` the action id | [action commit](../Battle-Actions/action-commit.md), [battle orders](../Battle-Actions/battle-orders.md) |
@@ -49,7 +49,7 @@ seven test the pointer for null and the rest are in the table.
 | `+0xDC8` | 2 | the reserved consumed item, `0xFFFF` when none | [command availability](../Battle-Actions/command-availability.md) |
 | `+0xE54`, `+0xE58` | 8 | the gil the preview computed and the reserved gil cost | [command availability](../Battle-Actions/command-availability.md) |
 | `+0xE60` | 8 | the definition row | [steal](../Damage-And-Battle-Formulas/steal.md) |
-| `+0xE68` | 8 | the class row the status record reads `+0x52` and `+0x12` bit 7 from | [party member status record](party-member-status-record.md) |
+| `+0xE68` | 8 | the class row the status record reads `+0x52` and `+0x12` bit `0x80` from | [party member status record](party-member-status-record.md) |
 | `+0xE80` | 16 | the innate augment source | [augments](../Damage-And-Battle-Formulas/augments.md) |
 | `+0xEA9` | 1 | the slot index, written at bind | [battle units](battle-units.md) |
 | `+0x018` | 8 | fields the table shows 1 function writing and 1 reading at `+0x18` | this page |
@@ -108,16 +108,16 @@ seven test the pointer for null and the rest are in the table.
 
 `0x00236A60(unit)` prepares a slot for its next occupant without releasing it:
 
-1. when flag bit 4 is set it first runs `0x003105D0`;
-2. it writes `0xFFFF` at `+0x695` and `0xFF` at `+0x694`, and clears flag bits 2, 3, 4, 8, 9, 10, 11
-   and 14 (`and dword +0, 0xFFFFB0E3`), bits 34, 38 and 52 (`and dword +4, 0xFFEFFFBB`) and bits 1,
+1. when flag bit `0x10` is set it first runs `0x003105D0`;
+2. it writes `0xFFFF` at `+0x695` and `0xFF` at `+0x694`, and clears flag bits `0x4`, `0x8`, `0x10`, `0x100`, `0x200`, `0x400`, `0x800`
+   and 14 (`and dword +0, 0xFFFFB0E3`), bits `0x400000000`, `0x4000000000` and `0x10000000000000` (`and dword +4, 0xFFEFFFBB`) and bits `0x2`,
    19, 20, 33 and 47 (the register mask `0xFFFF7FFDFFE7FFFD`);
 3. it zeroes `+0x698`, `+0x6A0`, `+0xE60`, `+0xE68`, `+0x24`-`+0x33`, `+0x5C`-`+0x63`, the dword
    `+0xE54`, `+0xEA4`, `+0xEA8`, `+0xDD0`, `+0x64`-`+0x6F`, and sets `+0x74` to all ones, `+0x55`-`+0x56`
    to `0xFFFF`, `+0x52` to 0 and `+0x54` to `0xFF`;
-4. it resets the perception cache at `+0xBC0` with `0x00316D30`, which forces header bit 0 on before
+4. it resets the perception cache at `+0xBC0` with `0x00316D30`, which forces header bit `0x1` on before
    its `0x208`-byte clear and restores it after, and takes the resource accumulator `0x00320450`,
-   which returns the dword `+0x70` (only for a unit with flag bit 4, a stats record and no terminal
+   which returns the dword `+0x70` (only for a unit with flag bit `0x10`, a stats record and no terminal
    status outside a town) and zeroes it;
 5. it zeroes `+0xE80`-`+0xE8F`, `+0xE90`, `+0x714` to `0xFFFF`, `+0x6B5`, `+0x6D0`, `+0x6E0`-`+0x6FF`,
    `+0x748`-`+0x757`, `+0xB90`, the low byte of `+0x6B0`, `+0x708`-`+0x713`, `+0x760`-`+0x773`, and
@@ -150,7 +150,7 @@ Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | header | bit 0 survives the reset `0x00316CF0` |
+| `+0x00` | `u8` | header | bit `0x1` survives the reset `0x00316CF0` |
 | `+0x01` | `u8[2]` | cleared by the reset |  |
 | `+0x04` | `i32` | count | at most 32; `0x00316CD0` appends at count and increments |
 | `+0x08` | `u8[512]` | entries | 32 entries of 16 bytes: the actor at +0, the outcome word at +8 (target selection page) |
@@ -162,12 +162,12 @@ Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
 | allocation | the whole `0xF50` bytes | `0x00234480` before the bind |
 | release | the whole `0xF50` bytes | `0x00234200` after the spawn-record copy |
 | reuse | `+0x80`-`+0x68F` zeroed, then `+0x20C`-`+0x20F` and `+0x210`-`+0x28F` set to all ones; the fields listed above | `0x00236A60` |
-| perception cache | `+0xBC0`-`+0xDC7`, header bit 0 forced on | `0x00316D30` from the reuse reset |
-| target buffer | `+0x778`-`+0x97F`, keeping header bit 0 | `0x00316CF0` |
+| perception cache | `+0xBC0`-`+0xDC7`, header bit `0x1` forced on | `0x00316D30` from the reuse reset |
+| target buffer | `+0x778`-`+0x97F`, keeping header bit `0x1` | `0x00316CF0` |
 
 In both target buffers, the header byte `+0x03` and the last four bytes `+0x0C`-`+0x0F` of each 16-byte entry go with the buffer as a block. The buffer clears zero them with the rest of the `0x208` bytes (`0x00316CF0`, memset at `0x00316D0B`; the perception cache's `0x00316D30`, memset at `0x00316D4E`). For the buffer at `+0x778`, `0x0030EDA0` copies them back with the action state `+0x6B0`-`+0xB9F` in its 16-byte stores (`0x0030EDB6`-`0x0030EE44`).
 
-The entry's outcome word at `+0x08` is a dword in the code: `0x002FFA14`, `0x0030019B`, `0x00300EAD` and `0x003011E0` clear its bit 10 with an `and dword`, and `0x0030071A` loads it as a dword.
+The entry's outcome word at `+0x08` is a dword in the code: `0x002FFA14`, `0x0030019B`, `0x00300EAD` and `0x003011E0` clear its bit `0x400` with an `and dword`, and `0x0030071A` loads it as a dword.
 
 ### The spans between named fields
 
@@ -210,7 +210,7 @@ The unit bytes between the named fields, by range. The locomotion block at `+0x8
 The saved block at `[+0xB88]` is one of 8 slots of `0x4F0` bytes at `0x022BEFC0`; the byte `0x022BEFB0` marks the slots in
 use, one bit per slot.
 
-The engage auto-attack `0x00312FA0` calls `0x0030EFF0(unit)` (`0x0031307B`). Unless flag bit 24 is
+The engage auto-attack `0x00312FA0` calls `0x0030EFF0(unit)` (`0x0031307B`). Unless flag bit `0x1000000` is
 set, or the action id `+0x714` is at most `0x21E` with `+0x6B4` at 6 or more, it takes a free slot from `0x0030DFA0`
 (`0x0030F02A`), copies the action state `+0x6B0`-`+0xB9F` into it, clears the action state and stores the slot at
 `+0xB88` (`0x0030F0F1`). With all 8 slots taken, `0x0030DFA0` returns 0 and nothing is saved.

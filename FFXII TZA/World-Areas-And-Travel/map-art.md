@@ -72,9 +72,9 @@ count - 1 skips it. For a match:
 - `0x001EE1D0` gives the instance a material array of its own, allocated from the pool `[0x01F81170]`
   (`0x0063A990`).
 - Every entry of its mesh's matrix-index array (count at mesh `+0x70`, entries at `+0x78`) is added to
-  the set `+0xE8`; with bit 10 of `m_extraFlag` (`+0x5C`) set, also to `+0xB0`. An instance without
-  the array puts its own index in `+0xB0` when bit 10 is set.
-- Bit 14 of `m_extraFlag` gives the index a sway entry in the map `+0x490` with the context's current speed,
+  the set `+0xE8`; with bit `0x400` of `m_extraFlag` (`+0x5C`) set, also to `+0xB0`. An instance without
+  the array puts its own index in `+0xB0` when bit `0x400` is set.
+- Bit `0x4000` of `m_extraFlag` gives the index a sway entry in the map `+0x490` with the context's current speed,
   limit and margin (`+0x480` to `+0x48C`).
 - The draw key `+0x4C8[index]` is `m_specialRenderOrder` (`+0x78`) times 0x10000 plus the index when
   the order is positive, else the index times 0x10000.
@@ -97,7 +97,7 @@ every material, one 0x220-byte record each, and the ready byte `+0x250`) and loo
 model's main texture, the `TextureSampler` texture of its first material (`0x001E3F70`):
 
 - `0x001E55C0(object, normal)` writes 1 to `EnableNormalMap` and binds `NormalMap` on every material of
-  an instance without bit 9 of `m_extraFlag`, when the entry has a normal map;
+  an instance without bit `0x200` of `m_extraFlag`, when the entry has a normal map;
 - `0x001E6110(object, specular)` does the same with `EnableSpecularMap` and `SpecularMap`;
 - the main texture is kept at `+0x260`.
 
@@ -196,25 +196,25 @@ twice and tail-jumps to `0x0018C3C0`. The calls the map draw makes:
 The draw-list build `0x002F5550` asks `0x001803A0` and `0x00180430` once (`0x002F5D4D`, `0x002F5D56`) and then
 walks the instances. For each it takes the object (`0x002F5D84`) and asks `0x001804F0` (`0x002F5D95`):
 
-- An instance whose object has bit 4 of `m_extraFlag` set (`0x001803D0`, `0x002F5DBE`) is skipped.
+- An instance whose object has bit `0x10` of `m_extraFlag` set (`0x001803D0`, `0x002F5DBE`) is skipped.
 - On the first pass after a load, while `0x022BE7E0` is 0 and the load has finished, `0x001807A0` binds
   the paletted pair of the instance's texture id (its record's `+0x04`) at `0x002F5DE2`; the pass then
   sets `0x022BE7E0` (`0x002F65D1`).
 - For an instance with a model, the hidden-model set (`0x0026E5F0`) is skipped when the map is in
-  NoModelGroupMaps or the instance has bit 5 (`0x00180410`, `0x002F5E6B`); the script-forced set
+  NoModelGroupMaps or the instance has bit `0x20` (`0x00180410`, `0x002F5E6B`); the script-forced set
   (`0x0026E5D0`) still applies.
-- With bit 2 (`0x00180600`, `0x002F5E46`) the instance is left out while its tag-24 entry's `+0xC8`
+- With bit `0x4` (`0x00180600`, `0x002F5E46`) the instance is left out while its tag-24 entry's `+0xC8`
   exceeds 1.0.
 - An instance in `+0xB0` (`0x001804A0`, `0x002F5F6C`) keeps its placement without the extra transform its
-  entry carries at `+0x50`. A model whose instance lacks bit 3 (`0x00180460`, `0x002F5F93`) is placed
-  with an identity row instead of the YM00 placement row; with bit 14 (`0x00180480`) the row is turned
+  entry carries at `+0x50`. A model whose instance lacks bit `0x8` (`0x00180460`, `0x002F5F93`) is placed
+  with an identity row instead of the YM00 placement row; with bit `0x4000` (`0x00180480`) the row is turned
   by the sway angle (`0x001802E0`, `0x002F5FE4`).
 
 At the end the build fills the two per-list masks the draw pass reads: an entry is marked culled when
 `0x00180560` (`0x002F6683`) reports the model of its instance out of view.
 
 `0x001E5080(object, matrix)` decides that test. It answers yes at once when the first instance's mesh
-has a matrix-index array, the first instance has bit 6, or any instance of the object has bit 1.
+has a matrix-index array, the first instance has bit `0x40`, or any instance of the object has bit `0x2`.
 Otherwise it multiplies the instance matrix by the view matrix of the current view (render manager
 `+0x98`, or `+0x3D0` for the sub view, `0x001854C0`) and tests each instance's bounds (`+0x38`) with
 `0x001E4B80`; any pass answers yes.
@@ -242,9 +242,9 @@ PS2 state:
 - `0x001E69A0` stores the flags at `+0xC1`, `+0xC2`, `+0xC4` and `+0xC3`, the mode per instance in
   `+0x78` (0 for instances whose byte in `+0x58` is set), the threshold at `+0xC8` unless the
   instance's own `m_alphaThreshold` (`+0x74`) is positive, and a per-instance byte in `+0x98`.
-- `0x00180830` (`0x002F4E13`) passes a mode built from bits 4 and 5 of the record's flag word `+0x0C`;
+- `0x00180830` (`0x002F4E13`) passes a mode built from bits `0x10` and `0x20` of the record's flag word `+0x0C`;
   `0x001A9DD0` stores 3, 2, 1 or 0 at `+0xD0` for 1, 2, 3 or 0.
-- `0x00180730` (`0x002F5149`) passes a mode from 0 to 4, chosen from bits 7, 8, 15 and 29 of the
+- `0x00180730` (`0x002F5149`) passes a mode from 0 to 4, chosen from bits `0x80`, `0x100`, `0x8000` and `0x20000000` of the
   record's flag word, with its vectors and matrices. `0x001A9B70` passes 1 to 4 through and any other
   value as 0; `0x001E5790` stores it at `+0xD8` and copies the data the mode uses (layout below).
 - `0x00180650` (`0x002F5225`) draws the object at once (its vtable slot `+0x08`), or stores it in the
@@ -253,7 +253,7 @@ PS2 state:
   `0x001A8F80` while `+0x2E5` is set.
 
 Before the walk of the first list the pass finds the last drawn instance whose record flag word has
-bit 10 or bit 28 set. Instances up to it are drawn at once; at it the pass calls `0x001809A0`
+bit `0x400` or bit `0x10000000` set. Instances up to it are drawn at once; at it the pass calls `0x001809A0`
 (`0x002F524B`), and every later instance is queued in the draw map. Once per frame (byte `0x01F7F50D`,
 cleared by `0x0017F270`) `0x001809A0` posts a `RenderMapOpaqueObj` command (`0x001F1D30`) on the render
 command vector `[0x01F7F5E8]`.

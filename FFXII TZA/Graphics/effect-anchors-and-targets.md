@@ -36,7 +36,7 @@ zeroes `work` and `out` and returns 0 (`0x003A53DC`-`0x003A542B`). The descripto
 | `+0x40` | `n` for the record kinds 4, 6 and 7 |
 | `+0x48` | the record kind (first table) |
 | `+0x49` | the point kind (second table) |
-| `+0x4A` | bit 0 resolve on frame 0 only and keep the result after; bit 1 skip the record's scale; bits 2-3 the height rule (third table) |
+| `+0x4A` | bit `0x1` resolve on frame 0 only and keep the result after; bit `0x2` skip the record's scale; bits `0xC` the height rule (third table) |
 | `+0x4B` | the mode `0x00421E20` takes: 0 the bone's origin, 1 the bone's end, 2 its middle |
 | `+0x4C` | a bone index for the point kinds 6 and 7 |
 | `+0x4E` | the object slot for the record kinds 9 and 13 |
@@ -51,9 +51,9 @@ The element's byte `+0x102` is the slot the owner and target reads take ([target
 | 4 | the record of the actor in `effectactor` slot `n` (`0x003A40F0`, through the tables `0x003A4220` uses) | yes |
 | 5 | the record of the party-focus actor (`0x003590D0`, `0x002E9B80`) | yes |
 | 6 | the `n`-th member of manager 0 that has a record (`0x00263FF0`, `0x00263C30`, `0x00358940`) | yes |
-| 7 | the matrix of map model `n` (`0x003A6FC0`), copied to `out` as it is, without the offset (`0x003A5368`-`0x003A5386`): the draw-list build `0x002F5550` stores each model's index in the 32 words at `0x0209A71C` under the anchor number its placement row names (`0x002F6533`-`0x002F6554`); `n` is the instance's byte `+0x376` while its `+0x368` bit 9 is set | no |
+| 7 | the matrix of map model `n` (`0x003A6FC0`), copied to `out` as it is, without the offset (`0x003A5368`-`0x003A5386`): the draw-list build `0x002F5550` stores each model's index in the 32 words at `0x0209A71C` under the anchor number its placement row names (`0x002F6533`-`0x002F6554`); `n` is the instance's byte `+0x376` while its `+0x368` bit `0x200` is set | no |
 | 8 | the centre of the instance's targets as the position (`0x003A6C30`) | no |
-| 9, 13 | the path object `0x003A8240(key, +0x4E)` finds, first advanced by `0x004FF0D0(object, 2.0)` while its `+0x103` bit 0 is clear, with the key the work object's byte `+0x42` (kind 9) or `[0x02F97348] + 0x388` (kind 13) | no |
+| 9, 13 | the path object `0x003A8240(key, +0x4E)` finds, first advanced by `0x004FF0D0(object, 2.0)` while its `+0x103` bit `0x1` is clear, with the key the work object's byte `+0x42` (kind 9) or `[0x02F97348] + 0x388` (kind 13) | no |
 | 10 | the targets' centre (`0x003A6C30`); the offset's height is added only when `0x0026E350` finds ground there | no |
 | 12, or any other | no anchor: the identity matrix at the offset (`0x003A54DD`) | no |
 | 14 | a screen position turned into a matrix (`0x0057A040`): the menu record's `+0x10`-`+0x18` for a menu-effect instance (id top nibble 4, `0x003B2CA0`), else `0x02096B2C`-`0x02096B34` | no |
@@ -64,7 +64,7 @@ On a record, the point kind picks the point; the point ids are those of
 
 | Point kind (`+0x49`) | Point |
 |---|---|
-| 1 | `model` (`0x101`), with the height `[0x02F97348] + 0x36C` while the instance's `+0x368` bit 11 is set |
+| 1 | `model` (`0x101`), with the height `[0x02F97348] + 0x36C` while the instance's `+0x368` bit `0x800` is set |
 | 2, 3 | slot 2 (`n_buki_r`) or 3 (`n_buki_l`) |
 | 4, 5 | a child's `j_blade` (`0x200`) or `n_grip` (`0x201`) |
 | 6 | bone `+0x4C` of the record's skeleton (`0x004220F0`) |
@@ -91,11 +91,11 @@ a record, and for record kinds 3 and 11, the position is then divided by the pub
 the record's own scale (`0x003E5710`) is applied when it is not 1, 1, 1 (`0x003A47B8`-`0x003A4861`). The height rule
 follows (`0x003A4868`-`0x003A489F`):
 
-| `+0x4A` bits 2-3 | Height |
+| `+0x4A` bits `0xC` | Height |
 |---|---|
 | 0 | as resolved |
 | 1 | 0 |
-| 2 | `[0x02F97348] + 0x36C` while the instance's `+0x368` bit 11 is set, else the height of the record's `model` point |
+| 2 | `[0x02F97348] + 0x36C` while the instance's `+0x368` bit `0x800` is set, else the height of the record's `model` point |
 | 3 | the ground height (`0x00264670` on the record's `+0x108`) |
 
 The random lists hold point ids; `0x003A6E60(count)` draws the index:

@@ -93,7 +93,7 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x1B` | `u8` | seconds | (ticks / 60) mod 60, by `0x00254CC0` |
 | `+0x1C` | `u8[4]` | pad | not written by the enumerated writers |
 | `+0x20` | `u8[28]` | roster | seven 4-byte entries, `0x00583D60`: character id, level, jobs (high and low nibble), flags; unused entries start with `0xFF` |
-| `+0x3C` | `u32` | esper | the summoned Esper's character row: `0x003200A0` sets its flag bit 0 when summon mode is on (block `+0x5B04` bit 0, `0x003135E0`) and copies the row byte block `+0x5AD4` (`0x003137E0`); `0x00583D60` stores it, else `0xFF` (`0x00583F08`-`0x00583F0D`); the slot pane's ESPER row shows its name when it is not `0xFF` (`0x0057EFE0`, `0x0057F0CC`) |
+| `+0x3C` | `u32` | esper | the summoned Esper's character row: `0x003200A0` sets its flag bit `0x1` when summon mode is on (block `+0x5B04` bit `0x1`, `0x003135E0`) and copies the row byte block `+0x5AD4` (`0x003137E0`); `0x00583D60` stores it, else `0xFF` (`0x00583F08`-`0x00583F0D`); the slot pane's ESPER row shows its name when it is not `0xFF` (`0x0057EFE0`, `0x0057F0CC`) |
 | `+0x40` | `u32` | counter | counter kind `0x11` (`0x003166F0`) when story flag `0x400B` is set, else untouched |
 | `+0x44` | `u32` | clanrank | `0x00315390`() when story flag `0x400B` is set, else 0 |
 | `+0x48` | `u32` | mapgroup | the area's map persistence group: `0x00254380`(`0x00264F90`(areaId)) |
@@ -112,10 +112,10 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x94` | `u8[364]` | rest | zeroed by the image clears; not written by the enumerated writers |
 
 The roster loop (`0x00583DC2`-`0x00583EEB`) walks party pages 0-8 from `0x00282DF0(page)`, skips a page
-whose word `+0x60` is negative or whose flag bit 1 is set, and writes for each page `{+0x60 low
-byte, +0xBA, +0x86 << 4 | +0x87, flags}` with flag bit 0 when the page is the leader
-(`0x003271D0`), bit 1 when the page's dword `+0` has bit 10; the page with flag bit 1 is written
-last with flag bit 2, and entries up to seven are filled with `0xFF`.
+whose word `+0x60` is negative or whose flag bit `0x2` is set, and writes for each page `{+0x60 low
+byte, +0xBA, +0x86 << 4 | +0x87, flags}` with flag bit `0x1` when the page is the leader
+(`0x003271D0`), bit `0x2` when the page's dword `+0` has bit `0x400`; the page with flag bit `0x2` is written
+last with flag bit `0x4`, and entries up to seven are filled with `0xFF`.
 
 ### The checksum
 
@@ -206,20 +206,20 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
    `0x00237DF0` runs (`0x00233C59`), which reaches `0x002370C0`: the block is zeroed, stamped, and its
    party arrays at `+0x5A48` filled with `0xFFFF` (`0x002370C0`).
 4. `0x00584210`, called from the load lifecycle `0x00582860` (`0x00582EBA`), handles the stash:
-   - load mode `0x00394450()` = 3 with header flag bit 0 clear:
+   - load mode `0x00394450()` = 3 with header flag bit `0x1` clear:
      - the play clock `+0x10` to `+0x1B` is copied to `+0x70` to `+0x7B`, the walked total
        `0x00320D50()` to `+0x7C`, and the five transition dwords `+0x1244` to `+0x1257` to `+0x80` to
        `+0x93` (`0x00584255`-`0x005842B1`);
-     - the entrance word `+0x1248` is then zeroed (`0x005842B7`), bit 0 of the battle block's `+0x5B04` is
+     - the entrance word `+0x1248` is then zeroed (`0x005842B7`), bit `0x1` of the battle block's `+0x5B04` is
        cleared (`0x005842BD`-`0x005842C4`), the tick count and the hours, minutes
        and seconds dword are zeroed (`0x005842CB`, `0x005842CF`), `0x00322200` zeroes the walked pair at the
        battle block's `+0x5AC8` and `+0x5ACC` (`0x005842D2`), and the header's walked mirror `+0x0C` is
        zeroed (`0x005842DC`);
      - `0x00314DC0` stores `0x483` as the destination field `+0x1244` (`0x005842D7`-`0x005842DF`); the
        previous field, previous entrance and mode words `+0x124C` to `+0x1257` keep their values;
-   - any other mode with flag bit 0 set: the stash is restored, `0x00329E40(walked)` re-seats the
+   - any other mode with flag bit `0x1` set: the stash is restored, `0x00329E40(walked)` re-seats the
      accumulator, `0x00269A20(image + 0xE240)` and `0x002EF410(image + 0x4E660)` run, the flag is
-     cleared, `0x01E0C3EC` is zeroed, bit 0 of the battle block's `+0x5B04` is cleared
+     cleared, `0x01E0C3EC` is zeroed, bit `0x1` of the battle block's `+0x5B04` is cleared
      (`0x0058437D`-`0x0058438C`) and `0x0023A390(0)` clears the block's `+4` bit `0x1000`.
    - Both paths then reseed the gameplay generator from the clock (see the
      [random number generators page](../Random-Numbers/random-number-generators.md)).

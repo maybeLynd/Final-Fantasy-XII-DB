@@ -255,7 +255,7 @@ slots), each zeroed; `0x003A76F0` empties the `0x600` table `[0x02EBEFA8]` (256 
 | Type | Arm | What it does |
 |---|---|---|
 | `0x401` | inline | the effect camera: the 64-byte matrix at `+8` goes to `0x02AEE9E0` through `0x0039D430`, which then calls `0x0039AFA0` and copies the workbench matrix to `0x02AEECB0` (`0x003970A0`); `0x003CC0F0` resets the camera record `0x02096D30` and copies the matrix to its `+0x60`, the dwords `+0x48`–`+0x54` are stored at its `+0x00`, `+0x04`, `+0x08` and `+0x10`, and the record is submitted with priority `0x64` (`0x003829D0`) while `0x02096887` is set |
-| `0x500` | `0x003A75B0` | frees every `0x600` record of `[0x02EBEFA8]` and zeroes the table; when the context's byte `+3` bit 0 is set (the records sit in the run block) it frees only their 29 slot targets whose byte `+1` is 0, then the context's `+0x888` block |
+| `0x500` | `0x003A75B0` | frees every `0x600` record of `[0x02EBEFA8]` and zeroes the table; when the context's byte `+3` bit `0x1` is set (the records sit in the run block) it frees only their 29 slot targets whose byte `+1` is 0, then the context's `+0x888` block |
 | `0x510` | `0x003A7CB0` | frees all 128 `0x700` records |
 | `0x520` | `0x003A9510` | frees the `0x800` records |
 | `0x530` | `0x003A98D0` | frees the `0xA00` definitions |
@@ -307,7 +307,7 @@ byte to the same loaders:
 - `0x005032D0` numbers the texture and palette slots 1 to n and expands each `0x48`-byte row into a
   `0x90`-byte sprite row: the four corners `(±0.5 x abs(w) x sx, ±0.5 x abs(h) x sy)` of its rectangle (row
   `+0x08`, `+0x0C` the size `w`, `h`; `+0x18`, `+0x1C` the scales), rotated about z by the row's angle
-  `+0x20 x 2π / 360` and offset by `+0x10`, `+0x14`; the last row gets bit 1 of `+0x70`
+  `+0x20 x 2π / 360` and offset by `+0x10`, `+0x14`; the last row gets bit `0x2` of `+0x70`
   (`0x005032D0`-`0x0050378D`).
 - `0x00503180(record)` then resolves the kind-`0x50` record's slot bytes into handles with
   `0x003AA280(key, 0x52, slot)` and `0x003AA280(key, 0x53, slot)`, and turns each row's pixel rectangle
@@ -318,7 +318,7 @@ byte to the same loaders:
 ### The kind-0x52 texture loader
 
 `0x00500C00(record, data)` reads a texture record. A first byte of `0xFF` is an empty record. Otherwise
-it keeps the byte's low six bits as the format `+0xA0`, bit 6 as the word `+0x1C8` and bit 7 as
+it keeps the byte's low six bits as the format `+0xA0`, bit `0x40` as the word `+0x1C8` and bit `0x80` as
 `+0x1CA`, the palette count from byte `+2` at `+0xA2`, a reference size from words `+4` and `+6` at
 `+0x1CC` and `+0x1CE`, and the width and height from words `+8` and `+0x0A` at both `+0xA4`/`+0xA6` and
 `+0xA8`/`+0xAA`. The palettes start at `+0x10`.
@@ -326,7 +326,7 @@ it keeps the byte's low six bits as the format `+0xA0`, bit 6 as the word `+0x1C
 Each palette gets two handles: format 0 has 16-colour palettes of `0x40` bytes and format 1 256-colour
 palettes of `0x400` bytes (`0x001837A0` and `0x00183760`); a record with palettes in any other format
 makes the loader return null. The palette data is copied to a new block at
-`+0xB0` (`0x0036A100`), or used in place when bit 3 of byte `+2` of `[0x02F97340]` is set.
+`+0xB0` (`0x0036A100`), or used in place when bit `0x8` of byte `+2` of `[0x02F97340]` is set.
 
 The texture's allocated size is the width and height rounded up to a power of two (`0x0017FEA0`). With
 `+0x1C8` set it is instead scaled to the reference size: each side is `side / reference ×
@@ -354,7 +354,7 @@ Then they commit it (`0x0062C360`).
 
 ### Uploading textures and palettes
 
-The group draw `0x0024D370` calls `0x003AA2E0(0)` for an instance whose flag byte `+0x36A` has bit 0
+The group draw `0x0024D370` calls `0x003AA2E0(0)` for an instance whose flag byte `+0x36A` has bit `0x1`
 (`0x0024D448`). Once per record table (the latch word `+0x1A` of `[0x02EBEF70]`) it uploads every record of that key:
 `0x005011B0` for a kind-`0x52` texture and `0x00501610` for a kind-`0x53` palette; it then frees the
 blocks listed at the table's `+0x10`.
@@ -365,7 +365,7 @@ blocks listed at the table's `+0x10`.
 - Its branches for format bytes `0x80` and `0x81`, which rebuild the size fields of the register
   word `+0x10` with `0x002D8150`, are never taken for a record from `0x00500C00`, which keeps only the
   low six bits of the format.
-- `0x00500C00` also keeps the header byte's bits 6 and 7 as the words `+0x1C8` and `+0x1CA`, which
+- `0x00500C00` also keeps the header byte's bits `0x40` and `0x80` as the words `+0x1C8` and `+0x1CA`, which
   `0x00501190` and `0x005011A0` return to the draws of types `0xA2`, `0xA5`, `0xA6`, `0xA8` and `0xAB`.
 
 ### The EFB loader
@@ -413,18 +413,18 @@ The twelve stores are seven bytes apart, from `0x0026FA12`. `0x02F8F23C`, `0x02F
 `0x02F8F284`, `0x02F8F28C` and `0x02F8F294` take the manager bytes 0-31.
 
 The update pass holds a bank instance (state 1 then runs only `0x003A7EE0` and `0x003A93F0`) when its channel byte or
-its manager byte has neither bit 0 nor bit 2 (`0x0024BB2B`-`0x0024BB51`), and the draw gate `0x0024D770` refuses one
-unless both bytes have bit 1 (`0x0024D7CD`-`0x0024D7E9`):
+its manager byte has neither bit `0x1` nor bit `0x4` (`0x0024BB2B`-`0x0024BB51`), and the draw gate `0x0024D770` refuses one
+unless both bytes have bit `0x2` (`0x0024D7CD`-`0x0024D7E9`):
 
 | Bit | Meaning | Written by | Read by |
 |---|---|---|---|
 | 0 (1) | the channel runs | `0x002700F0(channel, on)` (`0x0027011D` sets it, `0x0027010C` clears it); `0x0026FFA0(on)` for all 64 (`0x00270092`-`0x002700A6` set, `0x0026FFE0`-`0x00270046` clear); the update pass's rewrite below | `0x0024B9B0` (`0x0024BB36` channel, `0x0024BB49` manager); `0x0026FAD0` (`0x0026FB63`) |
 | 1 (2) | the channel is drawn | `0x00270130(channel, on)` (`0x00270144`, `0x00270148`); `0x002700C0(on)` for all 64 (`0x002700D0`-`0x002700DD`) | `0x0024D770` (`0x0024D7D1` channel, `0x0024D7E0` manager) |
-| 2 (4) | run one more step | `0x0026FAD0` (`0x0026FB69`, when bit 0 is clear); `0x002700F0(channel, 0)` and `0x0026FFA0(0)`, when bit 3 is set (`0x00270115`; `0x0026FFE0`-`0x00270046`); cleared by `0x0026FE50` (`0x0026FE92`), by `0x002700F0(channel, 1)` (`0x00270119`-`0x0027011D`), by `0x0026FFA0(1)` and by the rewrite | `0x0024B9B0` (`0x0024BB36`, `0x0024BB49`, and in the rewrite `0x0024BEBA`, `0x0024BF13`) |
+| 2 (4) | run one more step | `0x0026FAD0` (`0x0026FB69`, when bit `0x1` is clear); `0x002700F0(channel, 0)` and `0x0026FFA0(0)`, when bit `0x8` is set (`0x00270115`; `0x0026FFE0`-`0x00270046`); cleared by `0x0026FE50` (`0x0026FE92`), by `0x002700F0(channel, 1)` (`0x00270119`-`0x0027011D`), by `0x0026FFA0(1)` and by the rewrite | `0x0024B9B0` (`0x0024BB36`, `0x0024BB49`, and in the rewrite `0x0024BEBA`, `0x0024BF13`) |
 | 3 (8) | started since the last update pass | `0x0026FAD0` (`0x0026FB5D`); cleared by `0x0026FE50` (`0x0026FE92`), by the map teardown's `0x0026F420` (`0x0026F440`-`0x0026F459`) and by the rewrite | `0x002700F0` (`0x0027010F`); `0x0026FFA0` (`0x0026FFF2`, `0x0027002A`) |
 
 After the kind-2 update pass has walked a non-empty list, `0x0024B9B0` rewrites the 64 channel bytes
-(`0x0024BE75`-`0x0024BF5A`): every byte loses bit 3, and a byte that had bit 2 also loses bits 2 and 0.
+(`0x0024BE75`-`0x0024BF5A`): every byte loses bit `0x8`, and a byte that had bit `0x4` also loses bits `0x4` and `0x1`.
 
 `0x0026FFA0` and
 `0x002700C0` are called with 1 from `0x0026C8C0` (`0x0026CA61`, `0x0026CA6B`). `0x002700F0` is called by `0x003E8440`

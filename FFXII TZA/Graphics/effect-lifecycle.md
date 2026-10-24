@@ -49,7 +49,7 @@ stopped, and disappears when it ends or when the party leaves the area.
   disposed, and every loaded file that is not kept is released
   ([effect element runtime](effect-element-runtime.md#the-effect-teardown),
   [changing areas](../World-Areas-And-Travel/changing-areas.md)).
-- **A loaded file kept by its flag** (`+0x20` bit 0) survives the teardown
+- **A loaded file kept by its flag** (`+0x20` bit `0x1`) survives the teardown
   ([effect file loading](effect-file-loading.md#filing-sharing-and-releasing-a-loaded-file)).
 - **A time stop's end** releases every held instance, so all of them move again at once
   ([effect element runtime](effect-element-runtime.md#the-effect-teardown)).

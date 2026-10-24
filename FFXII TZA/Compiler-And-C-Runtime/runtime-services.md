@@ -117,7 +117,7 @@ The game's own threads are made by the start-up step `0x00368ED0`, which keeps `
   `0x00368C10` waits on the semaphore `[0x022D7F68 + 8 x n]` (`0x00863650`), runs the job at `0x022D7F70 + 8 x n` when
   one is set, clears it and lowers its priority to `0x24`, without end. `0x00368F30(n)`, for `0x0046DD50`, answers
   whether job n, or any job for a negative n, is pending.
-- `0x00368F70` creates, when `0x003692C0` reports bit 2, a thread with the start `0x00368AE0` and stores the stub
+- `0x00368F70` creates, when `0x003692C0` reports bit `0x4`, a thread with the start `0x00368AE0` and stores the stub
   call `0x005C5230(0x00368AD0, ...)` at `0x022CFF18`; `0x00368AD0` releases the semaphore it is given (`0x00863800`). `0x00368AE0` waits on its semaphore and calls `0x00368B00`, whose
   calls all reach `0x005C5230`, which returns 0, so its last polling loop never ends.
 - `0x003691B0(n)` releases the semaphore `[0x022CFEEC + 4 x n]` (`0x00863800`) for `0x0035E760`, `0x0035EA40` and

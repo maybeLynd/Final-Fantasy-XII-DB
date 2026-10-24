@@ -31,27 +31,27 @@ pointer array at `0x0209A1F0`.
 
 | Verb | Id | begin | poll | What the begin does |
 |---|---|---|---|---|
-| `addpartymember(sel)` | `0x0353` | `0x0034C030` | `0x0034C370` | stores the selector; the poll raises busy bit 19 and adds a main character to the reserve (`0x003172E0`) |
-| `removepartymember(sel)` | `0x0354` | `0x0034C030` | `0x0034CDF0` | the poll removes the main character (`0x00328B20`) and then raises bit 19 |
-| `setbattlemember(a, b, c)` | `0x0355` | `0x0034D4E0` | `0x003506A0` | hides the four roster actors, raises bit 19, pops three selectors; when every non-negative one is an available main character (`0x00359C00` through `0x0035A050`) the roster is reconciled by `0x00328DB0`; when the leader (`0x003271D0`) is not among them the first non-negative selector becomes leader (`0x00327850`), whatever the reconcile did |
+| `addpartymember(sel)` | `0x0353` | `0x0034C030` | `0x0034C370` | stores the selector; the poll raises busy bit `0x80000` and adds a main character to the reserve (`0x003172E0`) |
+| `removepartymember(sel)` | `0x0354` | `0x0034C030` | `0x0034CDF0` | the poll removes the main character (`0x00328B20`) and then raises bit `0x80000` |
+| `setbattlemember(a, b, c)` | `0x0355` | `0x0034D4E0` | `0x003506A0` | hides the four roster actors, raises bit `0x80000`, pops three selectors; when every non-negative one is an available main character (`0x00359C00` through `0x0035A050`) the roster is reconciled by `0x00328DB0`; when the leader (`0x003271D0`) is not among them the first non-negative selector becomes leader (`0x00327850`), whatever the reconcile did |
 | `removebattlemember(sel)` | `0x0358` | `0x00350160` | `0x003506A0` | only while the roster holds more than one: the member's slot is swapped with the first empty reserve slot (`0x003286E0`, `0x00321100`); no empty reserve slot, no change |
 | `setbattlememberone(sel)` | `0x0359` | `0x00350CD0` | `0x003506A0` | for a main character in roster slots 0 to 3: every non-guest in slots 0 to 2 other than it is swapped into the first empty reserve slot (`0x003287A0`); slot 3 and guests stay; one outside the roster has the same done around the roster's first member |
-| `setbattlememberlock(sel, on)` | `0x035A` | `0x00351A40` | `0x003506A0` | bit 0 of the member's stats record (`0x00328FB0`), the pin `setbattlemember` honours |
-| `addguestbattlemember(sel)` | `0x035B` | `0x00352190` | `0x003506A0` | hides the roster, raises bit 19, and places a guest absent from map 0 in the highest empty roster slot from 3 down to 1 (`0x003170E0`, `0x00326110`), activating it with `0x00316DF0` |
+| `setbattlememberlock(sel, on)` | `0x035A` | `0x00351A40` | `0x003506A0` | bit `0x1` of the member's stats record (`0x00328FB0`), the pin `setbattlemember` honours |
+| `addguestbattlemember(sel)` | `0x035B` | `0x00352190` | `0x003506A0` | hides the roster, raises bit `0x80000`, and places a guest absent from map 0 in the highest empty roster slot from 3 down to 1 (`0x003170E0`, `0x00326110`), activating it with `0x00316DF0` |
 | `removeguestbattlemember(sel)` | `0x035C` | `0x00352AF0` | `0x003506A0` | removes a guest (`0x003288F0`) |
 
-Each begin raises busy bit 19 (`0x003601B0(0x13)`) before it touches the party, and the three that
+Each begin raises busy bit `0x80000` (`0x003601B0(0x13)`) before it touches the party, and the three that
 rebuild the roster first hide the four roster actors with `0x002ECD50(actor, 0)`. Guest and main
 selectors are checked by `0x00322350`: a verb for one kind silently ignores the other.
 
 The guest activation `0x00316DF0` also grants goods. For a record of type 0 to 6 it adds each of
 its five equipment words to the inventory and equips it (`0x00300B80`, `0x0030C410`); unless the
-record's bit 3 is set it then adds up to ten items with their counts (`0x00300B80`) and an amount of
+record's bit `0x8` is set it then adds up to ten items with their counts (`0x00300B80`) and an amount of
 gil (`0x003004B0`) from a row of the party definitions `0x02EBF130`
 ([inventory](../Items-Equipment-Shops-And-Licenses/inventory.md),
 [gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
 
-`0x00328DB0(list, 3)` builds a fixed mask from map 1's first four units (a stats record with bit 0,
+`0x00328DB0(list, 3)` builds a fixed mask from map 1's first four units (a stats record with bit `0x1`,
 the lock, or a guest keeps its slot), looks each requested selector up in map 0 (a missing one
 returns −1 with nothing applied), treats one already in slots 0 to 2 as fixed, and swaps the rest
 into the unlocked slots among 0 to 2 in order; a request that runs past slot 2 also returns −1
@@ -66,11 +66,11 @@ not need `partyallread`: the read-in the shared poll waits on is started by the 
 The shared poll `0x003506A0` asks `0x003596B0` whether the party read-in is still pending: the
 read-in task's end test `0x0037CB50` reports done when no task exists (`0x02EBF400` null) or its slot
 cursor `0x02EBF3FE` has left the roster (past 3 going up, below 0 going down). While pending the
-verb keeps waiting; when done the poll clears bit 19 and returns 0. The two per-verb polls
+verb keeps waiting; when done the poll clears bit `0x80000` and returns 0. The two per-verb polls
 `0x0034C370` and `0x0034CDF0` do the add or remove on their first visit (states 0 and 1), then wait
 the same way in state 2.
 
-`partyallread` (`0x03EB`, begin `0x0034CCD0`) raises bit 19 and starts the read-in task
+`partyallread` (`0x03EB`, begin `0x0034CCD0`) raises bit `0x80000` and starts the read-in task
 (`0x0037C980`); `partyallread2` (`0x046F`, `0x0034D8B0` → `0x0037CA00`) runs it in reverse slot order.
 Their poll `0x0034E3E0` waits on the same end test, calling `0x00314D40(1)` each frame, and their
 result `0x0034D460` follows
@@ -87,13 +87,13 @@ selector 0 everyone else. The object handed to the setter is the unit's `+0x10`,
 
 | Verb | Id | Handler | Setter | What it writes |
 |---|---|---|---|---|
-| `partyusemapid(v)` | `0x040D` | `0x0033FD60` | `0x0026AD60`, then `0x00265020` and `0x002E5DF0` | actor byte `+0x08` bits 1 and 2 as an exclusive pair (bit 1 for non-zero), then re-places the actor at its own position |
-| `partyusecharhit(v)` | `0x040E` | `0x00340700` | `0x0026A430` | actor byte `+0x08` bit 3 and byte `+0x09` bit 6 to `v != 0` |
+| `partyusemapid(v)` | `0x040D` | `0x0033FD60` | `0x0026AD60`, then `0x00265020` and `0x002E5DF0` | actor byte `+0x08` bits `0x2` and `0x4` as an exclusive pair (bit `0x2` for non-zero), then re-places the actor at its own position |
+| `partyusecharhit(v)` | `0x040E` | `0x00340700` | `0x0026A430` | actor byte `+0x08` bit `0x8` and byte `+0x09` bit `0x40` to `v != 0` |
 | `partysetlod(v)` | `0x040F` | `0x00341190` | `0x002EC680` | presentation byte `+0x13` = `v`, then the refresh `0x002E8CE0` |
-| `partyshowshadow(v)` | `0x0410` | `0x00341B90` | `0x002ECD80` | presentation byte `+0x151` bit 3 = `v & 1`, then `0x002E8FD0`; skipped for a lifecycle byte of 1 or a class other than 3 |
+| `partyshowshadow(v)` | `0x0410` | `0x00341B90` | `0x002ECD80` | presentation byte `+0x151` bit `0x8` = `v & 1`, then `0x002E8FD0`; skipped for a lifecycle byte of 1 or a class other than 3 |
 | `partyshowshadow_411()` | `0x0411` | `0x00342360` | pushes 1 and jumps into `0x0410` | |
 | `partyhideshadow()` | `0x0412` | `0x00342830` | pushes 0 and jumps into `0x0410` | |
-| `setpartyprojectionshadow(v)` | `0x0413` | `0x00342B30` | `0x002E8730` | in the `0x740`-byte render record at `[0x022C6F28] + index × 0x740` with `+0x284` set: `+0x304` bits 12 and 13 become `01` for on and `00` for off, and `+0x290` bit 22 is set either way |
+| `setpartyprojectionshadow(v)` | `0x0413` | `0x00342B30` | `0x002E8730` | in the `0x740`-byte render record at `[0x022C6F28] + index × 0x740` with `+0x284` set: `+0x304` bits `0x1000` and `0x2000` become `01` for on and `00` for off, and `+0x290` bit `0x400000` is set either way |
 
 ### The standard-motion verbs
 
@@ -118,7 +118,7 @@ slots in the scratch block and, per visit, for each present slot not yet done as
 roster actors: `0x002E6BB0(actor, 1)` stops the render record's motion (`0x00427280`), drops the
 actor's motion lane (presentation byte `+0x12`) from its binding's count and group words
 (`0x002EB890`), queues it for unload when nothing holds it (`0x002E3F00`), sets the lane byte to
-`0xFF`, and resets the render record's `+0x42C` and `+0x430` and clears its `+0x284` bit 18.
+`0xFF`, and resets the render record's `+0x42C` and `+0x430` and clears its `+0x284` bit `0x40000`.
 
 ### Queries and captures
 
@@ -145,8 +145,8 @@ party block   [0x02EBF190]: +0x5A48 u16[9] master (map 0), +0x5A5A u16[9] combat
 snapshot      0x022C2580 u16[9]: the edited copy of map 0; 0x003261D0 compacts it, writes it back and starts the read-in
 roster array  0x0209A1F0: 4 × actor pointer (0x00263750)
 selector      0..6 main character, 7..25 guest (0x00322350), 0xFF empty slot
-busy bit 19   0x003601B0(0x13) / 0x003601C0(0x13): a party change in progress
-appearance    actor +0x08 bits 1-2 (map-id pair), bit 3 and +0x09 bit 6 (hit reaction); presentation +0x13 LOD, +0x151 bit 3 blob shadow; render record +0x304 bits 12-13 projection shadow
+busy bit 0x80000   0x003601B0(0x13) / 0x003601C0(0x13): a party change in progress
+appearance    actor +0x08 bits 1-2 (map-id pair), bit 0x8 and +0x09 bit 0x40 (hit reaction); presentation +0x13 LOD, +0x151 bit 0x8 blob shadow; render record +0x304 bits 12-13 projection shadow
 motion frame  push motion, float, flag; 0x003580C0 pops flag, float, motion
 ```
 
@@ -169,7 +169,7 @@ four synthetic calls.
 
 ## State
 
-The party block's three maps and leader byte, the roster pointer array, busy bit 19, and the
+The party block's three maps and leader byte, the roster pointer array, busy bit `0x80000`, and the
 per-actor bytes the setters write.
 
 The roster pointer array `0x0209A1F0` holds four actor pointers, eight bytes each. `0x00269C70(actor, slot)` empties the

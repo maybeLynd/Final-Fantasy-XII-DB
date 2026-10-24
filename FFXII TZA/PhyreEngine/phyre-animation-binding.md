@@ -203,7 +203,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x28` | `void*` | m_name | path or name; bit 0 of the pointer is masked off; m_name (ptr), registered by `0x005AF3B0` (`0x00632960` at `0x005AF9AB`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannelTarget; the script method getTargetName (registered at `0x005AF5C9`) returns it through `0x005C5320`, which clears bit 0; the placement constructor `0x005A0F60` clears it (`0x005A0F99`) |
+| `+0x28` | `void*` | m_name | path or name; bit `0x1` of the pointer is masked off; m_name (ptr), registered by `0x005AF3B0` (`0x00632960` at `0x005AF9AB`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannelTarget; the script method getTargetName (registered at `0x005AF5C9`) returns it through `0x005C5320`, which clears bit `0x1`; the placement constructor `0x005A0F60` clears it (`0x005A0F99`) |
 | `+0x30` | `u32` | m_index | array index; m_index (u32), registered by `0x005AF3B0` (`0x00632960` at `0x005AFA1E`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationChannelTarget; the script method getTargetIndex (registered at `0x005AF693`) returns it through `0x0079CFA0`; the placement constructor `0x005A0F60` clears it (`0x005A0F9D`) |
 | `+0x34` | `u8[4]` | pad34 | the bytes after m_index (`+0x30`) up to the end of the `0x38`-byte class; no registered member covers it (`0x005A81F0` registers the `0x38`-byte class at `0x005A8240`) |
 
@@ -307,7 +307,7 @@ Binding descriptor (PAnimationChannelTarget, members registered by `0x005AF3B0`)
 | `+0x10` | `void*` | m_baseObjectType |  |
 | `+0x18` | `void*` | m_baseObject |  |
 | `+0x20` | `u32` | m_type | 2 data member, 3 method, 4 function, 5 shader parameter |
-| `+0x28` | `void*` | m_name | path or name; bit 0 of the pointer is masked off |
+| `+0x28` | `void*` | m_name | path or name; bit `0x1` of the pointer is masked off |
 | `+0x30` | `u32` | m_index | array index |
 
 Target record, `0x30` bytes:
@@ -362,11 +362,11 @@ Instruction-level access tables per class, beside this page:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x100` | `u32` | inputCount | bit 31 masked |
+| `+0x100` | `u32` | inputCount | bit `0x80000000` masked |
 | `+0x108` | `void*` | inputs | `0x10` bytes each: source node at `+0x00`, output index at `+0x08` |
-| `+0x110` | `u32` | outputCount | bit 31 masked |
+| `+0x110` | `u32` | outputCount | bit `0x80000000` masked |
 | `+0x118` | `void*` | outputs | `0x0C` bytes each: size, state (0, 1 placed, 2 released), slot |
-| `+0x120` | `u32` | readerCount | bit 31 masked |
+| `+0x120` | `u32` | readerCount | bit `0x80000000` masked |
 | `+0x128` | `void*` | readers | nodes that read this node's outputs |
 | `+0x130` | `i32` | order | -1 until scheduled |
 

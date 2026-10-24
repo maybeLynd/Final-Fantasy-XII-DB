@@ -47,13 +47,13 @@ functions read it, and each takes one part:
 
 | Reader | Part | Area id from | Returns |
 |---|---|---|---|
-| `0x00377C20` (thunk `0x00313F60`) | word bit 15, the town flag | the current area (`0x003148F0`) | 0 or 1 |
-| `0x00377480` | word bit 15 | its argument | 0 or 1 |
-| `0x00377A40` | word bit 14, the area-name flag | its argument | 0 or 1 |
-| `0x00377BA0` (thunk `0x00320160`) | word bits 12-13, the MP regime | the current area, or the save override | 0 to 3 |
-| `0x003779F0` | word bits 0-11, the Map entry | its argument | 0 to 4,094, or -1 for none |
-| `0x00377700` | third byte bit 0, the hold flag | the current area, with a save veto | 0 or 1 |
-| `0x00377C70` | third byte bits 4-6, the default leader | the current area | 0 to 7 |
+| `0x00377C20` (thunk `0x00313F60`) | word bit `0x8000`, the town flag | the current area (`0x003148F0`) | 0 or 1 |
+| `0x00377480` | word bit `0x8000` | its argument | 0 or 1 |
+| `0x00377A40` | word bit `0x4000`, the area-name flag | its argument | 0 or 1 |
+| `0x00377BA0` (thunk `0x00320160`) | word bits `0x3000`, the MP regime | the current area, or the save override | 0 to 3 |
+| `0x003779F0` | word bits `0xFFF`, the Map entry | its argument | 0 to 4,094, or -1 for none |
+| `0x00377700` | third byte bit `0x1`, the hold flag | the current area, with a save veto | 0 or 1 |
+| `0x00377C70` | third byte bits `0x70`, the default leader | the current area | 0 to 7 |
 
 All seven share one prologue: load the table pointer, return the default when it is null, compare the
 area id unsigned against the count at `+4` and return the default when it is not below it, then read
@@ -63,7 +63,7 @@ the word from two byte loads, `0x00377C55` shifts by 15.
 
 These seven are the only code that reads the table. Its address is held only in `0x02ADD100`: no instruction or data
 word holds it as an absolute or image-relative value, the key `"MapInfo"` has its one reference in `0x00378540`, and
-each reader returns only its own bits. So no code reads third-byte bits 1-3 or bit 7 as a field.
+each reader returns only its own bits. So no code reads third-byte bits 1-3 or bit `0x80` as a field.
 
 ### The current area id
 
@@ -75,7 +75,7 @@ reader answers for the destination as soon as the transition is staged.
 
 ### The town flag and the out-of-play rule
 
-Bit 15 is the town flag. The combat layer treats a unit as out of play when either of its two status
+Bit `0x8000` is the town flag. The combat layer treats a unit as out of play when either of its two status
 words `+0x3C` or `+0x64` has a bit in the mask `0x80000003`, which is status 0 KO, status 1 Stone and
 status 31 X-Zone, the three statuses that permanently leave play. The waiver is always the same shape:
 
@@ -104,9 +104,9 @@ Readers worth naming:
 
 ### The MP regime and its save override
 
-Bits 12-13 select the area's MP regime. `0x00377BA0` first asks `0x00314AA0`, which returns bit 7 of
+Bits `0x3000` select the area's MP regime. `0x00377BA0` first asks `0x00314AA0`, which returns bit `0x80` of
 payload byte `+0x1062`; when it is set the function tail-jumps to `0x00314AC0` (`0x00377BB1`), which
-returns bits 4-5 of payload byte `+0x1063`, and the table is never read. Otherwise it reads the word
+returns bits `0x30` of payload byte `+0x1063`, and the table is never read. Otherwise it reads the word
 and returns `(word >> 12) & 3`. The override replaces the authored value, it does not merge with it.
 
 Four consumers read the regime, all through the thunk `0x00320160`:
@@ -123,7 +123,7 @@ selector can tell 1 from 0 or 3 from 2.
 
 ### The Map entry
 
-Bits 0-11 are the area's entry in the in-game Map. `0x003779F0` masks the word with `0xFFF` and returns
+Bits `0xFFF` are the area's entry in the in-game Map. `0x003779F0` masks the word with `0xFFF` and returns
 -1 when the result is `0xFFF` (`0x00377A23`-`0x00377A32`), so a missing table and an authored "none" are
 the same answer. Nine functions call it: the Map screen builders `0x003C5E50`, `0x003C17E0`, `0x003C60F0`,
 `0x003C8670` and `0x00576A50`, the per-map record helpers `0x002550E0`, `0x002551B0` and `0x00255200`, and the
@@ -132,7 +132,7 @@ current area's entry as already seen (`0x003160FA`).
 
 ### The area-name flag
 
-Bit 14 is read by `0x00377A40` for an explicit id. Its five callers are menu and HUD functions
+Bit `0x4000` is read by `0x00377A40` for an explicit id. Its five callers are menu and HUD functions
 (`0x003F92B0`, `0x003F9720`, `0x003C2320`, `0x003BF9A0`, `0x003C1180`). `0x003F92B0` shows the use: when the
 current area's bit is set (`0x003F92DA`) it prints the area's name from the name table through
 `0x00377870` after the location text; otherwise it prints text `0x3EC`.
@@ -146,8 +146,8 @@ are the menu location line `0x0029C530` and the save-file entry `0x0057FB00`.
 
 ### The hold flag and its save veto
 
-Bit 0 of the third byte is read inverted by `0x00377700`: it returns 1 only when the bit is clear and
-`0x00314A60` reports bit 0 of payload byte `+0x1062` clear (`0x0037772D not`, `0x0037772F test al, 1`,
+Bit `0x1` of the third byte is read inverted by `0x00377700`: it returns 1 only when the bit is clear and
+`0x00314A60` reports bit `0x1` of payload byte `+0x1062` clear (`0x0037772D not`, `0x0037772F test al, 1`,
 `0x00377733 call`, `0x0037773C mov eax, 1`). A missing table yields a zero byte (`0x00377728`), so the
 missing-table answer is 1, the permissive value. The save bit can only force the answer to 0.
 
@@ -158,7 +158,7 @@ of the party hold request the time-stop registry receives; see the time stop pag
 
 ### The default leader
 
-Bits 4-6 of the third byte are read by `0x00377C70` (`0x00377C99 shr eax, 4`, `0x00377C9C and eax, 7`). Its
+Bits `0x70` of the third byte are read by `0x00377C70` (`0x00377C99 shr eax, 4`, `0x00377C9C and eax, 7`). Its
 callers are `0x00326500`, `0x003266C0` and `0x0031C000`. `0x00326500` picks the party member the game follows
 when control returns: the saved leader at `[0x02EBF190] + 0x5AA4` at control levels 0 and 1, id `0x1A`
 at level 2, and this field at level 3, the town level (`0x0030D9A0`).
@@ -194,8 +194,8 @@ third byte. The defaults do not agree on what they mean:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | flags | bits 0-11 Map entry (`0x003779F0`), bits 12-13 MP regime (`0x00377BA0`), bit 14 area name (`0x00377A40`), bit 15 town (`0x00377C20`, `0x00377480`) |
-| `+0x02` | `u8` | options | bit 0 hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by no code, bits 4-6 default leader (`0x00377C70`), bit 7 never set and never read |
+| `+0x00` | `u16` | flags | bits `0xFFF` Map entry (`0x003779F0`), bits `0x3000` MP regime (`0x00377BA0`), bit `0x4000` area name (`0x00377A40`), bit `0x8000` town (`0x00377C20`, `0x00377480`) |
+| `+0x02` | `u8` | options | bit `0x1` hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by no code, bits `0x70` default leader (`0x00377C70`), bit `0x80` never set and never read |
 
 ## Shipped data
 
@@ -208,11 +208,11 @@ Census of the 1,154 records in `navimapdata.bin`:
 
 | Field | Shipped values |
 |---|---|
-| town flag (bit 15) | set on 193 areas |
-| area name (bit 14) | set on 155 areas, 154 of them towns |
+| town flag (bit `0x8000`) | set on 193 areas |
+| area name (bit `0x4000`) | set on 155 areas, 154 of them towns |
 | MP regime (bits 12-13) | 0 on 945, 1 on 36, 2 on 69, 3 on 104 |
 | Map entry (bits 0-11) | `0xFFF` (none) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
-| hold flag (byte 2 bit 0) | set on 170 areas, every one of them a town; the 23 towns without it are ids 0-22 |
+| hold flag (byte 2 bit `0x1`) | set on 170 areas, every one of them a town; the 23 towns without it are ids 0-22 |
 | byte 2 bits 1-3 | 0x02, 0x04 and 0x08 in eight combinations across 638 areas |
 | byte 2 bits 4-7 | 0 on every record |
 
@@ -267,13 +267,13 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 | Function | Signature | Reads | Returns |
 |---|---|---|---|
 | `0x00378540` | `()` | resource (9, 8) `"MapInfo"` | installs the table pointer through `0x00378B80` into `0x02ADD100` |
-| `0x00377C20` | `()` | word bit 15 of the current area | 0/1; 65 callers plus 47 through `0x00313F60` |
-| `0x00377480` | `(areaId)` | word bit 15 | 0/1; caller `0x0026C8C0` |
-| `0x00377A40` | `(areaId)` | word bit 14 | 0/1; five menu callers |
-| `0x00377BA0` | `()` | payload `+0x1062` bit 7, then `+0x1063` bits 4-5 or word bits 12-13 | 0-3; four callers through `0x00320160` |
-| `0x003779F0` | `(areaId)` | word bits 0-11 | 0-4,094 or -1; nine callers |
-| `0x00377700` | `()` | third byte bit 0, payload `+0x1062` bit 0 | 1 when both are clear, else 0; six callers |
-| `0x00377C70` | `()` | third byte bits 4-6 | 0-7; callers `0x00326500`, `0x003266C0`, `0x0031C000` |
+| `0x00377C20` | `()` | word bit `0x8000` of the current area | 0/1; 65 callers plus 47 through `0x00313F60` |
+| `0x00377480` | `(areaId)` | word bit `0x8000` | 0/1; caller `0x0026C8C0` |
+| `0x00377A40` | `(areaId)` | word bit `0x4000` | 0/1; five menu callers |
+| `0x00377BA0` | `()` | payload `+0x1062` bit `0x80`, then `+0x1063` bits 4-5 or word bits `0x3000` | 0-3; four callers through `0x00320160` |
+| `0x003779F0` | `(areaId)` | word bits `0xFFF` | 0-4,094 or -1; nine callers |
+| `0x00377700` | `()` | third byte bit `0x1`, payload `+0x1062` bit `0x1` | 1 when both are clear, else 0; six callers |
+| `0x00377C70` | `()` | third byte bits `0x70` | 0-7; callers `0x00326500`, `0x003266C0`, `0x0031C000` |
 | `0x003148F0` | `()` | payload `+0x1044` | the current or pending area id, negatives clamped to 0 |
 
 ## State
@@ -282,24 +282,24 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 |---|---|---|---|
 | `0x02ADD100` | `void*` | the loaded table | `0x00378540` (null), `0x00378B80` (delivery) |
 | payload `+0x1044` | `i32` | current or pending area id | the zone change (see the zone changes page) |
-| payload `+0x1062` bit 0 | bit | vetoes the hold flag | the zone change record's flag byte |
-| payload `+0x1062` bit 7 | bit | enables the MP regime override | the zone change record's flag byte |
+| payload `+0x1062` bit `0x1` | bit | vetoes the hold flag | the zone change record's flag byte |
+| payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the zone change record's flag byte |
 | payload `+0x1063` bits 4-5 | 2 bits | the overriding MP regime | the zone change record |
 | `0x02099DE7` | `u8` | the party hold parameter, `0x00377700() == 0` | `0x0026A20B`, `0x00268E29` |
 
 ## Modding notes
 
-- Setting bit 15 on an area makes it a town for every system at once: fallen party members stay in
+- Setting bit `0x8000` on an area makes it a town for every system at once: fallen party members stay in
   play, the chain resets on entry, control level 3 applies and the saved leader is ignored. Clearing it
   on a shop interior re-arms the out-of-play rule there.
 - Bits 12-13 are the only per-area MP control: 2 or 3 cuts the walk per MP point to a third, so
-  walking recovery runs three times as fast, and triples the MP gained from damage. The save override at payload `+0x1062` bit 7 / `+0x1063` bits 4-5 can
+  walking recovery runs three times as fast, and triples the MP gained from damage. The save override at payload `+0x1062` bit `0x80` / `+0x1063` bits 4-5 can
   impose a regime on any area without touching the file.
 - Bits 4-6 of the third byte are a working but unused feature: a non-zero value names the party member
   the game follows when control returns inside that town.
 - Bits 1-3 of the third byte are authored on 638 areas and read by no function: the table pointer `0x02ADD100` is
   loaded by the seven readers above and stored by the two loaders `0x00378540` and `0x00378B80`, and of the seven only
-  `0x00377700` (bit 0, `0x00377721`) and `0x00377C70` (bits 4-6, `0x00377C91`) read the third byte. Changing them does nothing.
+  `0x00377700` (bit `0x1`, `0x00377721`) and `0x00377C70` (bits `0x70`, `0x00377C91`) read the third byte. Changing them does nothing.
 - Area names and the Map pages live in `planmapname.bin`, not here; the record only carries the Map
   entry id and the name flag.
 

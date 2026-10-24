@@ -39,7 +39,7 @@ Slot 1 of that vtable is `0x005CDB90(sink, channel)`: when the channel is 4 and 
 holds it calls `DebugBreak`; otherwise it returns. The text is never read. So the log call's
 whole effect in the shipped game is the formatting. Slot 0, `0x005CD8F0`, is the deleting
 destructor: it resets the vtable, rebuilds the pointer through `0x005CDA30` when the object being
-destroyed is the live singleton, and frees the object when its flag bit 0 is set.
+destroyed is the live singleton, and frees the object when its flag bit `0x1` is set.
 
 Of the 245 sites, 206 load a literal channel: 0 at 16 sites, 1 at 80, 2 at 84 and 3 at 26. The
 other 39 compute theirs from a register. No literal is 4, so no literal site can break into a
@@ -96,7 +96,7 @@ in unless one is attached from outside.
 ### The options word
 
 `0x0016D670` returns the address of the `printf` options qword `0x02EBA3D0`, and is its only
-reference in the image. The C initializer `0x00809C50` sets bit 2 in it (`4`) and bit 1 in the
+reference in the image. The C initializer `0x00809C50` sets bit `0x4` in it (`4`) and bit `0x2` in the
 `scanf` options qword behind `0x0018A320` (`0x01F7F5B0`) before any game code runs; nothing else
 writes either, so every formatter above passes the value 4.
 
@@ -110,7 +110,7 @@ writes either, so every formatter above passes the value 4.
 | `0x02CB6150` | `void*` | the sink pointer the log call uses |  |
 | `0x02CB6158` | `i32` | guard of the sink pointer (0x005CDAA0, 0x005CD9C0, 0x005CD960, 0x008AADA0) |  |
 | `0x02EBA3D0` | `u64` | printf options, 4 after 0x00809C50 |  |
-| `0x01F7F5B0` | `u64` | scanf options, bit 1 set by 0x00809C50 |  |
+| `0x01F7F5B0` | `u64` | scanf options, bit 0x2 set by 0x00809C50 |  |
 | `0x00D360A0` | `vtable` | slot 0 0x005CD8F0 (deleting destructor), slot 1 0x005CDB90(sink, channel, text) |  |
 
 ## Shipped data

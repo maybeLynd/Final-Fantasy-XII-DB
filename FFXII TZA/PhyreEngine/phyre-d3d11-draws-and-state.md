@@ -58,7 +58,7 @@ setter is `0x00616F00`, a jump to the context's `IASetPrimitiveTopology` (`+0xC0
 The indexed draws take an index data block and the number of the buffer to use. The index format is
 `R32_UINT` (`0x2A`) when the block's type byte `+0x0C` is 8 and `R16_UINT` (`0x39`) otherwise; the
 offset is the block's `m_offsetInIndexBuffer` (`+0x68`). The buffer is entry *n* of the block's
-array of `0x48`-byte buffer records at `+0x18`, used only when bit 0 of `+0x6C` is set; otherwise a
+array of `0x48`-byte buffer records at `+0x18`, used only when bit `0x1` of `+0x6C` is set; otherwise a
 null buffer is bound.
 
 ### Indirect arguments
@@ -124,7 +124,7 @@ A vertex data block (`PDataBlockD3D11`, `0x88` bytes) and an index data block ho
 Direct3D buffers, a `PSharray` of `0x48`-byte records (vertex blocks `+0x20`, index blocks `+0x18`)
 with the ring position before it. A record holds the buffer at `+0x00`, a staging buffer at `+0x18`,
 an in-use count at `+0x20`, a `TAsyncUpdate` record at `+0x28` (owner `+0x30`, ring index `+0x38`) and
-a main-memory copy at `+0x40`. Bit 0 of `+0x74` (vertex, `0x00671B10`) or `+0x6C` (index, `0x00671B20`)
+a main-memory copy at `+0x40`. Bit `0x1` of `+0x74` (vertex, `0x00671B10`) or `+0x6C` (index, `0x00671B20`)
 marks a bound block.
 
 1. Writing takes the next record of the ring and sleeps 1 ms at a time while its in-use count is
@@ -192,7 +192,7 @@ with `0x0061E0B0`: one `D3D11_INPUT_ELEMENT_DESC` per named input of the `0x20`-
 four parameter blocks at `+0x38`–`+0x50`:
 
 1. With no current pass it takes the new one whole. With the same program it marks only the
-   parameter blocks that differ, bits 1, 2, 4 and 8 for blocks 0–3; with another program all four.
+   parameter blocks that differ, bits `0x1`, `0x2`, `0x4` and `0x8` for blocks 0–3; with another program all four.
 2. `0x0060B860` unbinds the old pass's marked blocks through `0x00627160`, which hands each stage's
    resource records for that block to `0x006272C0` to clear their pending slots.
 3. When the program changes it also clears the old one (`0x00627140`) and binds the new one:
@@ -214,9 +214,9 @@ nothing.
 sets the rasterizer state at `+0x168` (`RSSetState`, `+0x158`; the one at `+0x170` instead when the
 context's word `+0x9C4` is 2), the blend state at `+0x180` with a zero blend factor and mask
 `0xFFFFFFFF` (`+0x118`) and the depth-stencil state at `+0x178` with the stencil reference byte at
-`+0x188` (`+0x120`). `0x0061D180` applies only the states selected by bits 1, 2 and 4 of its mask, and
+`+0x188` (`+0x120`). `0x0061D180` applies only the states selected by bits `0x1`, `0x2` and `0x4` of its mask, and
 `0x0061D320` all three without the alternative rasterizer state. `0x00629680(state, value)` stores a
-byte at `+0x20` of a pass state and sets dirty bit 1.
+byte at `+0x20` of a pass state and sets dirty bit `0x1`.
 
 ### The stage caches
 
@@ -314,7 +314,7 @@ Index data block, fields used here:
 | `+0x0C` | `u8` | index type: 8 = 32-bit |  |
 | `+0x18` | `...` | PSharray of 0x48-byte buffer records; +0x00 of a record is the ID3D11Buffer |  |
 | `+0x68` | `u32` | m_offsetInIndexBuffer |  |
-| `+0x6C` | `u32` | bit 0: buffers bound |  |
+| `+0x6C` | `u32` | bit 0x1: buffers bound |  |
 
 `StageCache` (`0x9B0` bytes, offsets from the start of the 0x02CEDA20):
 

@@ -31,7 +31,7 @@ The material object (`0x58` bytes) keeps the bitmap font at `+0x40`. `0x0067BD50
 mode)` finds the first `PMaterial` (descriptor `0x02CB6B80`) among the cluster's instance lists and
 passes it to `0x0067BB30`, which sets the object up:
 
-1. it stores `0x006CCCE0(mode)` at `+0x48` (7 when that is null) and, unless bit 7 of `+0x34` is set,
+1. it stores `0x006CCCE0(mode)` at `+0x48` (7 when that is null) and, unless bit `0x80` of `+0x34` is set,
    presets the five bytes at `+0x18` to 5, 1, 2, 2, 2 before passing them to `0x0061D9C0`;
 2. it creates a parameter buffer for the found material's effect variant (`0x00600120`, `0xE` on
    failure) and copies the material's parameter buffer into it;
@@ -141,7 +141,7 @@ PBitmapFontText (`0x270`), fields used here:
 | `+0x0B8` | `void*` | vertex blocks: positions at +0x00, texture coordinates at +0x88 |  |
 | `+0x0C0` | `PIndexDataBlock` | index data block (min index +0x00, max index +0x04, count +0x08, type +0x0C = 0x0C) |  |
 | `+0x238` | `void*` | material object |  |
-| `+0x240` | `u32` | string buffer size (bit 31: not owned) |  |
+| `+0x240` | `u32` | string buffer size (bit 0x80000000: not owned) |  |
 | `+0x248` | `void*` | string bytes |  |
 | `+0x250` | `void*` | renderer of the last draw |  |
 | `+0x258` | `f32` | widest line |  |

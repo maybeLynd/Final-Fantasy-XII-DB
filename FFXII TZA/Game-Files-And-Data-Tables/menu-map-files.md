@@ -73,7 +73,7 @@ The map-data widget is the `0x278`-byte widget at `0x02B457E0` with procedure `0
 | `+0x0CB` | `u8` | questSteps | the number of steps of the selected quest, `0x00473B70`(0) when the quest data has loaded (`0x003BC836`-`0x003BC83B`); the step readers `0x003BD1B0`, `0x003BD9F0`, `0x003BDB30`, `0x003BDCD0`, `0x003BF9A0` and `0x003C0A00` loop to it (`0x003BD312`, `0x003BDA5D`, `0x003BDBC9`, `0x003BDD58`, `0x003BFA2B`, `0x003C0A5B`) |
 | `+0x0CC` | `u16` | quest | the quest `0x003BC9F0` is asked to show (`0x003BCA1D`); `0x003BC260` tests it with `0x0046B240`, `0x00315DC0` and `0x00380170` and hands it to `0x0046B180` (`0x003BC269`-`0x003BC2A6`); `0x003BCAB0` and `0x003C0A00` look it up (`0x003BCAB9`, `0x003C0AAA`-`0x003C0ADD`) |
 | `+0x0CE` | `u16` | questEntry | `0x0037EDB0`'s answer for `+0xCC` (`0x003BCA77`-`0x003BCA8E`, `0x003BCAB9`-`0x003BCAD8`), handed to `0x0037FD50` with the widget |
-| `+0x0D0` | `u32` | flags | 0 on creation (`0x003BC8F2`). Bits 0 and 1: glyph sheets 6 and `0x17` were missing and are loaded by the widget (`0x003BC37A`-`0x003BC3B3`), released on destroy (`0x003BC522`-`0x003BC543`). Bit 2: a guide file is held at `+0xF8` (`0x003C1EDC`). Bits 3, 4, 5: menumap_world, menumap_location and menumap_common are held (`0x003BC6D9`-`0x003BC6FB`), cleared as each is freed (`0x003BC009`-`0x003BC06F`, `0x003BC5D2`-`0x003BC610`). Bit 6: the guide picture `+0x108` is registered (`0x003BC76A`-`0x003BC76D`); `0x003BD860` and `0x003BD890` test it (`0x003BD86F`, `0x003BD89C`). Bit 7: the quest's map data is loading (`0x003BC7E4`), cleared when it ends (`0x003BC5A9`); the release waits for it (`0x003BC0FF`). Bit 8: the quest data has loaded (`0x003BC82A`); `0x003BC160` tests it (`0x003BC19D`). Bits 9 and 10: `0x0037F130` and `0x0037F140` answers (`0x003BC841`-`0x003BC878`); bit 10 picks the labels in mode 6 (`0x003BD42A`, `0x003BDC43`, `0x003BE5E1`). Bit 11: show every point whatever its gate: set and cleared by the location pages `0x003BE3A0` and `0x003BED70` (`0x003BE48A`, `0x003BE430`, `0x003BF023`, `0x003BEDC6`), tested by `0x003BCBA0`, `0x003BDFF0`, `0x003BED70`, `0x003C12B0` and `0x003C1A20` (`0x003BCC58`, `0x003BE061`, `0x003BEE44`, `0x003C13F6`, `0x003C1B27`). Bit 12: set by `0x003BE3A0` on its first pass (`0x003BE41A`), which sets bit 13 for location `0x0D` or `0x2F` and bit 14 for `0x2F` (`0x003BE3F1`-`0x003BE414`) |
+| `+0x0D0` | `u32` | flags | 0 on creation (`0x003BC8F2`). Bits `0x1` and `0x2`: glyph sheets 6 and `0x17` were missing and are loaded by the widget (`0x003BC37A`-`0x003BC3B3`), released on destroy (`0x003BC522`-`0x003BC543`). Bit `0x4`: a guide file is held at `+0xF8` (`0x003C1EDC`). Bits `0x8`, `0x10`, `0x20`: menumap_world, menumap_location and menumap_common are held (`0x003BC6D9`-`0x003BC6FB`), cleared as each is freed (`0x003BC009`-`0x003BC06F`, `0x003BC5D2`-`0x003BC610`). Bit `0x40`: the guide picture `+0x108` is registered (`0x003BC76A`-`0x003BC76D`); `0x003BD860` and `0x003BD890` test it (`0x003BD86F`, `0x003BD89C`). Bit `0x80`: the quest's map data is loading (`0x003BC7E4`), cleared when it ends (`0x003BC5A9`); the release waits for it (`0x003BC0FF`). Bit `0x100`: the quest data has loaded (`0x003BC82A`); `0x003BC160` tests it (`0x003BC19D`). Bits `0x200` and `0x400`: `0x0037F130` and `0x0037F140` answers (`0x003BC841`-`0x003BC878`); bit `0x400` picks the labels in mode 6 (`0x003BD42A`, `0x003BDC43`, `0x003BE5E1`). Bit `0x800`: show every point whatever its gate: set and cleared by the location pages `0x003BE3A0` and `0x003BED70` (`0x003BE48A`, `0x003BE430`, `0x003BF023`, `0x003BEDC6`), tested by `0x003BCBA0`, `0x003BDFF0`, `0x003BED70`, `0x003C12B0` and `0x003C1A20` (`0x003BCC58`, `0x003BE061`, `0x003BEE44`, `0x003C13F6`, `0x003C1B27`). Bit `0x1000`: set by `0x003BE3A0` on its first pass (`0x003BE41A`), which sets bit `0x2000` for location `0x0D` or `0x2F` and bit `0x4000` for `0x2F` (`0x003BE3F1`-`0x003BE414`) |
 | `+0x0D4` | `u8[4]` | gap0D4 | read and written by no function; nothing fixes its width |
 | `+0x0D8` | `void*` | worldTable | menumap_world.bin, kind-7 resource `0xA2`, requested by `0x003BC2D0` when the world argument is set (`0x003BC2F8`-`0x003BC31B`); freed by `0x003BBFB0` and the loaded message (`0x003BC004`-`0x003BC010`, `0x003BC5CD`-`0x003BC5D9`); `0x003BCAF0` walks its routes (`0x003BCAFE`) |
 | `+0x0E0` | `void*` | locationTable | menumap_location.bin, kind-7 resource `0xA3`, requested when the location argument is set (`0x003BC326`-`0x003BC349`); freed as `+0xD8` (`0x003BC037`-`0x003BC04A`, `0x003BC5EC`-`0x003BC5F8`) |
@@ -423,7 +423,7 @@ The widget holds up to two sloc files, in two 0xA8-byte slots at `+0x120`: data 
   draw row (`+0x24`, `+0x26`), and `0x003BED70` uses them to size the page around the drawn zones.
 - `0x00404730` draws a zone picture through the zone's explored-cell mask from `0x002551B0`, which `0x003C4AE0`
   asks for with `0x00264790()` when that is positive, and otherwise, or on a null result, takes the block at `0x02B45A50`; with no mask, or
-  with bit 15 of the element's flags, every cell is shown.
+  with bit `0x8000` of the element's flags, every cell is shown.
 - `0x00404730` places the picture with `0x003C46B0(…, element, …)`: from the element record it sets up a matrix from
   `+0x20`, turns it by -π/2 (`0xBFC90FDB`, `0x003985B0`) and by the negated `+0x1C` (`0x00398C50`), sets it at half of
   `+0x04` and `+0x08`, and combines it (`0x003977B0`) with the record's `+0x14`/`+0x18` and with a second matrix moved
@@ -466,7 +466,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - `0x003C0D30(n, i)` runs point i's gate test, `0x003C18A0` for a zone and `0x003C0F70` for a marker
   (`0x003BDDE0`, `0x003BDFF0`).
 - `0x003C0740(out, n, i)` lists, as 16-byte rows, the links of record n that `0x003BCDE0` keeps for zone point
-  i, when the point passes its gate and its draw state (`0x003BCBA0`) lacks bit 11; it returns the count.
+  i, when the point passes its gate and its draw state (`0x003BCBA0`) lacks bit `0x800`; it returns the count.
   `0x003C0890`, called by `0x00402A40`, first stores its fourth argument at the widget's `+0xCA`.
 - `0x003C1A20(out, n, kind, x, y)` lists record n's points for the location page `0x003BE3A0`: zones for kind
   0 (at most 20), markers for 1 (at most 16), both for 2 (at most 24). A zone group appears once, through
@@ -476,7 +476,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - `0x003BE950(row, dir, rows, n)` picks the next cursor point in direction dir (0 up, 1 down, 2 left, 3
   right) for `0x003C2320`. It measures from the centres of the points, a zone's from its picture size
   (`0x003BF5E0`), a marker's from its label size (`0x0029CD00`), and takes the point on that side that
-  `0x003BD6F0` scores lowest with the direction vector `0x01EFE330`, skipping zones with draw bit 11; 0xFF
+  `0x003BD6F0` scores lowest with the direction vector `0x01EFE330`, skipping zones with draw bit `0x800`; 0xFF
   when none.
 
 ### Readers of cmap
@@ -553,7 +553,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 
 ### Quest steps on the maps
 
-While the widget's `+0xD0` has bits 8 and 9, the maps read the selected quest's `QHD0` entry through
+While the widget's `+0xD0` has bits `0x100` and `0x200`, the maps read the selected quest's `QHD0` entry through
 `0x00473BB0`, `+0xCB` steps ([Quest menu files](quest-menu-files.md)):
 
 - `0x003C0E30(group)` answers whether a type-1 step's location lies in persistence group `group`

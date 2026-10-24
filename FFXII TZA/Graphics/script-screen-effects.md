@@ -49,23 +49,23 @@ Each frame the bodies queue descriptors in the screen-effect pool of
 
 1. Kind 3 copies the finished scene into a target.
 2. Kind 4 (`0x00375B90`) binds an image to a block address of the emulated GS memory, the low 14
-   bits of its qword `+0x30` (`0x2A00` on this page): with `+0x1C` bit 0 it uploads the image at
-   `+0x20`, binds the texture at `+0x50` to that address (`0x002D7E00`), and with bit 1 uploads the
+   bits of its qword `+0x30` (`0x2A00` on this page): with `+0x1C` bit `0x1` it uploads the image at
+   `+0x20`, binds the texture at `+0x50` to that address (`0x002D7E00`), and with bit `0x2` uploads the
    palette at `+0x28`.
 3. Quads of kinds 2, 5, 6, 7 and `0x0D` sample that address.
 
 The pool releases a descriptor when its handler returns 0: kind 4 does so once drawn when `+0x1C`
-bit 3 is set, kinds 2, 6 and `0x0D` when bit 6 is set. Every descriptor this page builds sets its
+bit `0x8` is set, kinds 2, 6 and `0x0D` when bit `0x40` is set. Every descriptor this page builds sets its
 bit, so an effect redraws only while its per-frame body keeps queueing, and stops the frame after
 its flag bit drops.
 
 ### Cut-in
 
 `cutinplay` (`0x003DF8F0`) passes the staging block `0x02B59D20` to `0x0024CF50`, which copies its 0x24
-bytes to `0x02092640` and, only when bit 3 of the flag word is clear, allocates the target
-`0x02092638` and raises bit 3. A second play replaces the parameters and keeps the target.
+bytes to `0x02092640` and, only when bit `0x8` of the flag word is clear, allocates the target
+`0x02092638` and raises bit `0x8`. A second play replaces the parameters and keeps the target.
 `cutinclear` (`0x003DF8E0` → `0x0024CEB0`) zeroes the type byte, releases the target and every
-recorded handle, and drops bit 3.
+recorded handle, and drops bit `0x8`.
 
 The parameter verbs only write the staging block (layout below): `cutintype` (`0x0313`, `0x003DF9F0`),
 `cutinlinefade` (`0x0314`, `0x003DF990`), `cutinpos` (`0x0315`, `0x003DF9C0`), `cutinuv` (`0x0318`,
@@ -85,11 +85,11 @@ two kind-`0x0D` quads in stage 5:
 
 ### Motion blur
 
-`moveblurplay` (`0x003DE310`) passes the staging block `0x02B58C38` to `0x0024EC00`, which clears bit 4,
+`moveblurplay` (`0x003DE310`) passes the staging block `0x02B58C38` to `0x0024EC00`, which clears bit `0x10`,
 copies the 12 bytes to `0x02092678`, and releases both targets. With screen type 1 or 2 it allocates
-two targets (`0x02092688`, `0x02092690`), raises bits 4 and 5 and zeroes the eight handles; with any
-other screen type it returns with bit 4 clear. `moveblurclear` (`0x003DE140` → `0x0024EB20`) releases
-both targets and drops bit 4. Its handle loop calls the release only for handles that are 0, which
+two targets (`0x02092688`, `0x02092690`), raises bits `0x10` and `0x20` and zeroes the eight handles; with any
+other screen type it returns with bit `0x10` clear. `moveblurclear` (`0x003DE140` → `0x0024EB20`) releases
+both targets and drops bit `0x10`. Its handle loop calls the release only for handles that are 0, which
 releases nothing; the descriptors leave the pool on their own.
 
 The four type verbs write the staging block with the mappings of the layout below:
@@ -98,7 +98,7 @@ The four type verbs write the staging block with the mappings of the layout belo
 `0x003DE430`) `+0x03`.
 
 `0x0024EA10`, in draw 0 with bit 4 up, builds the request for `0x003AAA50` with a capture flag: 1 when
-bit 5 is up (and clears bit 5), otherwise 1 unless the capture-once bit is set. With the flag down,
+bit `0x20` is up (and clears bit `0x20`), otherwise 1 unless the capture-once bit is set. With the flag down,
 `0x003AAA50` writes 1 to `0x01FD4A70`, and the scene draw `0x0022B0B0` answers by returning before it
 draws (`0x0022B196`), so the scene is not drawn at all.
 
@@ -140,12 +140,12 @@ also resets the four blur sprites, the motion blur staging block and the blur fa
 `setsoftfocusmode(on, mode, b, amount)` (`0x02AE`, handler `0x0034FA00`) calls `0x0036E810`. With
 `on` at 0 it calls the clear `0x0024FA40`. Otherwise it builds byte `+0` = 2 when `mode` is 1, else
 1, byte `+1` = `b` and float `+4` = `amount`, and calls `0x0024FAE0`: bit 0 up, the block copied to
-`0x020925F0`, a target allocated at `0x02092620` (a failed allocation drops bit 0 again) and byte
+`0x020925F0`, a target allocated at `0x02092620` (a failed allocation drops bit `0x1` again) and byte
 `+2` forced to 4.
 
-`0x003AB500` runs in draw 0 when bit 0 is up (`0x0024D6C9`). Byte `+2` picks a size word, 4 → `0x40`,
+`0x003AB500` runs in draw 0 when bit `0x1` is up (`0x0024D6C9`). Byte `+2` picks a size word, 4 → `0x40`,
 3 → `0x80`, 2 → `0x100`; since play always stores 4, it is `0x40`. It sets the draw mask so draw 0
-draws everything but the menu (bit 3) and draw 1 only bits 3 and 4, then queues a capture (stage 7,
+draws everything but the menu (bit `0x8`) and draw 1 only bits `0x8` and `0x10`, then queues a capture (stage 7,
 `0x50703`), a bind with the size word, and a kind-2 quad with `amount` and colour `80 80 80 80`.
 
 ### The mode-screen backdrop
@@ -198,7 +198,7 @@ by `0x00251F20`) then 6; 7 a pulse of `+0x129` strength over `+0x12A` frames (`0
 | 5 | `0.4 + 0.3 sin(πt/2) + 0.3 t` |
 | other | `t` |
 
-`0x00251D20()` returns the state, or 2 when `+0xE8` bit 0 is clear; `0x00251D50()` returns 1 when there is no
+`0x00251D20()` returns the state, or 2 when `+0xE8` bit `0x1` is clear; `0x00251D50()` returns 1 when there is no
 backdrop or its state is 0, 6 or 8. `0x00251EE0` sets the fade-out frames. `0x00250E90(palette)` swaps in
 another palette (`+0x40` past its header) through `0x00183760`, or, for types other than 2 and 3, restores
 type 0's palette.
@@ -231,7 +231,7 @@ first argument.
 otherwise resets the record without submitting (`0x003DDC50`). The defaults are kind 2, stage 6,
 blend 3, class 1, flags 3, offset 0, scale 1.0, rotation 0, alpha 0.5 and colour `0x80FFFFFF`.
 
-Flags 3 leaves bit 6 clear, so a submitted sprite stays in the pool until `blurstop` or a reset.
+Flags 3 leaves bit `0x40` clear, so a submitted sprite stays in the pool until `blurstop` or a reset.
 The kind-2 handler `0x003745C0` multiplies the x offset by the 16:9 factor of
 [screen mode and aspect](screen-mode-and-aspect.md). `0x003DE0A0` releases all four; the cutscene
 skip paths `0x00360710`, `0x003601D0`, `0x00360A50` and `0x003600D0` call it.
@@ -328,9 +328,9 @@ Whatever the mode, block 0 then takes the descriptor's offset (`+0x20`, `+0x24`)
 (`+0x34`), rotation (`+0x30`) and colour bytes from `+0x38`. Kind 2 scales the x offset by the 16:9 factor
 `0x0017FFD0()`.
 
-The four corner colours come from `+0x38`-`+0x47` when bit 4 of `+0x1C` is set; otherwise all four
+The four corner colours come from `+0x38`-`+0x47` when bit `0x10` of `+0x1C` is set; otherwise all four
 copy corner 0 (`0x00374545`-`0x0037455C`, `0x003748BE`-`0x003748D5`). The handlers release the descriptor once drawn when
-bit 6 of `+0x1C` is set (`0x003745A2`-`0x003745AE`, `0x0037490F`-`0x0037491B`). These are the fields of the blur sprite's
+bit `0x40` of `+0x1C` is set (`0x003745A2`-`0x003745AE`, `0x0037490F`-`0x0037491B`). These are the fields of the blur sprite's
 descriptor above, whose flags give mode 3.
 
 The summon tint also fills this template: `0x0036F9F0`, and its layered form `0x0036F550`
@@ -342,11 +342,25 @@ block 0 over blocks 1-3 (`0x0036F70D`-`0x0036F8D9`) and then changes each copy. 
 blocks, one per pass of a loop (`0x004626D0`-`0x00462FA1`, `0x004635B0`-`0x004637E2`). They write each block's colours
 through `0x00462260` (`0x00462421`) and submit through `0x003A34D0` (`0x00463004`, `0x00463C93`).
 
+In its copies `0x0036F550` rewrites three words of each block from the summon tint table's tail (`0x02AD9B60`,
+[small binary tables](../Game-Files-And-Data-Tables/small-bin-tables.md)): the depth word `+0x08` and the
+offsets `+0x10` and `+0x14`. With a the `u32` at `+0x290`, t the difference of the `u32` at `+0x294` and a, divided
+by 3 and rounded toward zero (`0x0036F6E1`-`0x0036F6F6`), and s the size factor at `+0x288` (`0x0036F7AA`), block k's
+depth word is `((0xFFFF - a - k * t) << 12) | 0xFF0`:
+
+- block 0: `0x02AE9648` (`0x0036F90A`); offsets s at `0x02AE9650` and `0x02AE9654` (`0x0036F8E4`, `0x0036F8EF`);
+- block 1: `0x02AE9738` (`0x0036F940`); offsets -0.9 x s (`0x00D10FB0`) at `0x02AE9740` and `0x02AE9744` (`0x0036F912`, `0x0036F91A`);
+- block 2: `0x02AE9828` (`0x0036F96D`); 0.8 x s (`0x008F3108`) at `0x02AE9830` (`0x0036F963`) and -0.8 x s (`0x00D10FAC`) at
+  `0x02AE9834` (`0x0036F98C`);
+- block 3: `0x02AE9918` (`0x0036F9A5`); -0.7 x s (`0x00D108F4`) at `0x02AE9920` (`0x0036F99D`) and 0.7 x s (`0x008F3104`) at
+  `0x02AE9924` (`0x0036F9AB`).
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02AE9628` | `f32` | 0 (zero-filled tail) | `q0.z`: 257.0 (`0x00D1110C`) from kinds 2 and 6, 512.0 from the summon tint; 260.0 at boot | `0x0036F550` (`0x0036F5C6`); `0x0036F9F0` (`0x0036FA77`); `0x00374280` (`0x003742AB`); `0x003745C0` (`0x003745EB`); `0x00476C80` at boot (`0x00476CE0`) | `0x0022BFF0` during each submit |
+| `0x02AE962C` | `f32` | 0 (zero-filled tail) | `q0.w`: 512.0 from the summon tint, 228.0 at boot | `0x0036F550` (`0x0036F5D0`); `0x0036F9F0` (`0x0036FA81`); `0x00476C80` at boot (`0x00476CEA`, an 8-byte store of 228.0 and 0) | `0x0022BFF0` during each submit |
 | `0x02AE9640` | `u32` | 0 (zero-filled tail) | block 0 `+0x00` (`q2.x`): 1 when the writer fills block 0, 0 when it leaves it out; 0 at boot | `0x0036F550` (`0x0036F5DA`); `0x0036F9F0` (`0x0036FA8B`); `0x00374280` (`0x00374325`, `0x00374397`, `0x003743ED`); `0x003745C0` (`0x00374665`, `0x003746FB`, `0x00374753`); `0x00462540` (`0x004626EE`, `0x004626FD`, `0x00462781`, `0x00462936`, `0x00462941`, `0x00462A00`); `0x00463460` (`0x004635D3`, `0x004635E2`, `0x0046365D`, `0x004637C1`, `0x00463823`, `0x004638E2`); `0x00476C80` at boot (`0x00476D01`) | `0x0036F550` (`0x0036F70D`, `0x0036F79E`, `0x0036F84C`); `0x0022BFF0` during each submit |
-| `0x02AE9644` | `u32` | 0 (zero-filled tail) | block 0 `+0x04`: the descriptor's `+0x1C` bit 5 (kinds 2 and 6), 1 from the summon tint; 0 at boot | `0x0036F550` (`0x0036F5F8`); `0x0036F9F0` (`0x0036FA9F`); `0x00374280` (`0x00374463`); `0x003745C0` (`0x003747E2`); `0x00476C80` at boot (`0x00476D01`) | `0x0036F550` (`0x0036F70D`, `0x0036F79E`, `0x0036F84C`); `0x0022BFF0` during each submit |
+| `0x02AE9644` | `u32` | 0 (zero-filled tail) | block 0 `+0x04`: the descriptor's `+0x1C` bit `0x20` (kinds 2 and 6), 1 from the summon tint; 0 at boot | `0x0036F550` (`0x0036F5F8`); `0x0036F9F0` (`0x0036FA9F`); `0x00374280` (`0x00374463`); `0x003745C0` (`0x003747E2`); `0x00476C80` at boot (`0x00476D01`) | `0x0036F550` (`0x0036F70D`, `0x0036F79E`, `0x0036F84C`); `0x0022BFF0` during each submit |
 | `0x02AE9648` | `u32` | 0 (zero-filled tail) | block 0 `+0x08`: `0x0FFFFFF0` from kinds 2 and 6 and the plain tint, `((0xFFFF - [0x02AD9DF0]) << 12) + 0xFF0` from the layered tint; `0x00FFFFFF` at boot | `0x0036F550` (`0x0036F90A`); `0x0036F9F0` (`0x0036FA95`); `0x00374280` (`0x00374435`); `0x003745C0` (`0x0037479B`); `0x00462540` (`0x00462B0B`); `0x00463460` (`0x004639BB`); `0x00476C80` at boot (`0x00476D05`) | `0x0036F550` (`0x0036F70D`, `0x0036F79E`, `0x0036F84C`); `0x0022BFF0` during each submit |
 | `0x02AE9654` | `f32` | 0 (zero-filled tail) | block 0 `+0x14`: the y offset, the descriptor's `+0x24` (kinds 2 and 6); 0 at boot | `0x0036F550` (`0x0036F8EF`); `0x0036F9F0` (`0x0036FA60`); `0x00374280` (`0x0037442D`); `0x003745C0` (`0x00374793`); `0x00462540` (`0x00462B00`, `0x00462C20`, `0x00462D16`, `0x00462DE5`); `0x00463460` (`0x0046398C`, `0x00463A9B`); `0x00476C80` at boot (`0x00476D0C`) | `0x0036F550` (`0x0036F716`, `0x0036F7BD`, `0x0036F85C`); `0x00462540` (`0x00462C18`, `0x00462D0E`, `0x00462DD1`); `0x00463460` (`0x00463A87`); `0x0022BFF0` during each submit |
 | `0x02AE9658` | `f32` | 0 (zero-filled tail) | block 0 `+0x18`: the quad's width, 256.0 (`0x00915A00`) in modes 1 to 6; 256.0 at boot | `0x0036F550` (`0x0036F58A`); `0x0036F9F0` (`0x0036FA1A`); `0x00374280` (`0x00374307`, `0x00374377`, `0x003743DD`); `0x003745C0` (`0x00374647`, `0x003746E3`, `0x00374743`); `0x00462540` (`0x00462703`, `0x004627D1`, `0x00462815`, `0x0046286A`, `0x0046288F`, `0x00462958`, `0x00462A06`, `0x00462E28`, `0x00462E6F`); `0x00463460` (`0x004635E8`, `0x0046369E`, `0x004636F3`, `0x00463718`, `0x0046383A`, `0x004638E8`, `0x00463ACE`); `0x00476C80` at boot (`0x00476D10`) | `0x0036F550` (`0x0036F716`, `0x0036F7BD`, `0x0036F85C`); `0x00462540` (`0x00462D90`, `0x00462DFA`, `0x00462E5F`); `0x00463460` (`0x00463A43`, `0x00463AAC`); `0x0022BFF0` during each submit |
@@ -360,23 +374,23 @@ through `0x00462260` (`0x00462421`) and submit through `0x003A34D0` (`0x00463004
 | `0x02AE9694` | `u32` | 0 (zero-filled tail) | corner colour 0, green: the descriptor's byte `+0x39` (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F65C`); `0x0036F9F0` (`0x0036FAFC`); `0x00374280` (`0x003744AB`); `0x003745C0` (`0x00374824`); `0x00476C80` at boot (`0x00476D58`); `0x00462260` (`0x00462421`, called by `0x00462540` at `0x00462ECE`, `0x00463460` at `0x00463B2B`) | `0x0036F550` (`0x0036F73D`, `0x0036F7E4`, `0x0036F883`); `0x00374280` (`0x00374545`); `0x003745C0` (`0x003748BE`); `0x00462540` (`0x00462ED3`); `0x0022BFF0` during each submit |
 | `0x02AE9698` | `u32` | 0 (zero-filled tail) | corner colour 0, blue: the descriptor's byte `+0x3A` (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F684`); `0x0036F9F0` (`0x0036FB19`); `0x00374280` (`0x003744B5`); `0x003745C0` (`0x0037482E`); `0x00476C80` at boot (`0x00476D5C`); `0x00462260` (`0x00462421`, called by `0x00462540` at `0x00462ECE`, `0x00463460` at `0x00463B2B`) | `0x0036F550` (`0x0036F73D`, `0x0036F7E4`, `0x0036F883`); `0x00374280` (`0x00374545`); `0x003745C0` (`0x003748BE`); `0x00462540` (`0x00462ED3`); `0x0022BFF0` during each submit |
 | `0x02AE969C` | `u32` | 0 (zero-filled tail) | corner colour 0, alpha: the descriptor's byte `+0x3B` (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F6AC`); `0x0036F9F0` (`0x0036FB36`); `0x00374280` (`0x003744BF`); `0x003745C0` (`0x00374838`); `0x00476C80` at boot (`0x00476D5C`); `0x00462260` (`0x00462421`, called by `0x00462540` at `0x00462ECE`, `0x00463460` at `0x00463B2B`) | `0x0036F550` (`0x0036F73D`, `0x0036F7E4`, `0x0036F883`); `0x00374280` (`0x00374545`); `0x003745C0` (`0x003748BE`); `0x00462540` (`0x00462ED3`); `0x0022BFF0` during each submit |
-| `0x02AE96A0` | `u32` | 0 (zero-filled tail) | corner colour 1, red: the descriptor's byte `+0x3C` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F62A`); `0x0036F9F0` (`0x0036FAD9`); `0x00374280` (`0x003744CF`, `0x0037454C`); `0x003745C0` (`0x00374848`, `0x003748C5`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D60`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
-| `0x02AE96A4` | `u32` | 0 (zero-filled tail) | corner colour 1, green: the descriptor's byte `+0x3D` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F652`); `0x0036F9F0` (`0x0036FAF6`); `0x00374280` (`0x0037454C`, `0x003744D9`); `0x003745C0` (`0x003748C5`, `0x00374852`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D60`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
-| `0x02AE96A8` | `u32` | 0 (zero-filled tail) | corner colour 1, blue: the descriptor's byte `+0x3E` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F67A`); `0x0036F9F0` (`0x0036FB13`); `0x00374280` (`0x0037454C`, `0x003744E3`); `0x003745C0` (`0x003748C5`, `0x0037485C`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D64`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
-| `0x02AE96AC` | `u32` | 0 (zero-filled tail) | corner colour 1, alpha: the descriptor's byte `+0x3F` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F6A2`); `0x0036F9F0` (`0x0036FB30`); `0x00374280` (`0x0037454C`, `0x003744ED`); `0x003745C0` (`0x003748C5`, `0x00374866`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D64`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
-| `0x02AE96B0` | `u32` | 0 (zero-filled tail) | corner colour 2, red: the descriptor's byte `+0x40` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F620`); `0x0036F9F0` (`0x0036FAD3`); `0x00374280` (`0x003744F7`, `0x00374554`); `0x003745C0` (`0x00374870`, `0x003748CD`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D68`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
-| `0x02AE96B4` | `u32` | 0 (zero-filled tail) | corner colour 2, green: the descriptor's byte `+0x41` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F648`); `0x0036F9F0` (`0x0036FAF0`); `0x00374280` (`0x00374554`, `0x00374501`); `0x003745C0` (`0x003748CD`, `0x0037487A`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D68`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
-| `0x02AE96B8` | `u32` | 0 (zero-filled tail) | corner colour 2, blue: the descriptor's byte `+0x42` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F670`); `0x0036F9F0` (`0x0036FB0D`); `0x00374280` (`0x00374554`, `0x0037450B`); `0x003745C0` (`0x003748CD`, `0x00374884`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D6C`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
-| `0x02AE96BC` | `u32` | 0 (zero-filled tail) | corner colour 2, alpha: the descriptor's byte `+0x43` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F698`); `0x0036F9F0` (`0x0036FB2A`); `0x00374280` (`0x00374554`, `0x00374515`); `0x003745C0` (`0x003748CD`, `0x0037488E`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D6C`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
-| `0x02AE96C0` | `u32` | 0 (zero-filled tail) | corner colour 3, red: the descriptor's byte `+0x44` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F616`); `0x0036F9F0` (`0x0036FACD`); `0x00374280` (`0x0037451F`, `0x0037455C`); `0x003745C0` (`0x00374898`, `0x003748D5`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D70`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
-| `0x02AE96C4` | `u32` | 0 (zero-filled tail) | corner colour 3, green: the descriptor's byte `+0x45` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F63E`); `0x0036F9F0` (`0x0036FAEA`); `0x00374280` (`0x0037455C`, `0x00374529`); `0x003745C0` (`0x003748D5`, `0x003748A2`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D70`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
-| `0x02AE96C8` | `u32` | 0 (zero-filled tail) | corner colour 3, blue: the descriptor's byte `+0x46` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F666`); `0x0036F9F0` (`0x0036FB07`); `0x00374280` (`0x0037455C`, `0x00374533`); `0x003745C0` (`0x003748D5`, `0x003748AC`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D74`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
-| `0x02AE96CC` | `u32` | 0 (zero-filled tail) | corner colour 3, alpha: the descriptor's byte `+0x47` with `+0x1C` bit 4 set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F68E`); `0x0036F9F0` (`0x0036FB24`); `0x00374280` (`0x0037455C`, `0x0037453D`); `0x003745C0` (`0x003748D5`, `0x003748B6`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D74`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
+| `0x02AE96A0` | `u32` | 0 (zero-filled tail) | corner colour 1, red: the descriptor's byte `+0x3C` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F62A`); `0x0036F9F0` (`0x0036FAD9`); `0x00374280` (`0x003744CF`, `0x0037454C`); `0x003745C0` (`0x00374848`, `0x003748C5`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D60`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
+| `0x02AE96A4` | `u32` | 0 (zero-filled tail) | corner colour 1, green: the descriptor's byte `+0x3D` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F652`); `0x0036F9F0` (`0x0036FAF6`); `0x00374280` (`0x0037454C`, `0x003744D9`); `0x003745C0` (`0x003748C5`, `0x00374852`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D60`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
+| `0x02AE96A8` | `u32` | 0 (zero-filled tail) | corner colour 1, blue: the descriptor's byte `+0x3E` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F67A`); `0x0036F9F0` (`0x0036FB13`); `0x00374280` (`0x0037454C`, `0x003744E3`); `0x003745C0` (`0x003748C5`, `0x0037485C`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D64`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
+| `0x02AE96AC` | `u32` | 0 (zero-filled tail) | corner colour 1, alpha: the descriptor's byte `+0x3F` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F6A2`); `0x0036F9F0` (`0x0036FB30`); `0x00374280` (`0x0037454C`, `0x003744ED`); `0x003745C0` (`0x003748C5`, `0x00374866`); `0x00462540` (`0x00462EE7`); `0x00476C80` at boot (`0x00476D64`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B93`) | `0x0036F550` (`0x0036F749`, `0x0036F7F0`, `0x0036F88F`); `0x0022BFF0` during each submit |
+| `0x02AE96B0` | `u32` | 0 (zero-filled tail) | corner colour 2, red: the descriptor's byte `+0x40` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F620`); `0x0036F9F0` (`0x0036FAD3`); `0x00374280` (`0x003744F7`, `0x00374554`); `0x003745C0` (`0x00374870`, `0x003748CD`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D68`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
+| `0x02AE96B4` | `u32` | 0 (zero-filled tail) | corner colour 2, green: the descriptor's byte `+0x41` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F648`); `0x0036F9F0` (`0x0036FAF0`); `0x00374280` (`0x00374554`, `0x00374501`); `0x003745C0` (`0x003748CD`, `0x0037487A`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D68`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
+| `0x02AE96B8` | `u32` | 0 (zero-filled tail) | corner colour 2, blue: the descriptor's byte `+0x42` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F670`); `0x0036F9F0` (`0x0036FB0D`); `0x00374280` (`0x00374554`, `0x0037450B`); `0x003745C0` (`0x003748CD`, `0x00374884`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D6C`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
+| `0x02AE96BC` | `u32` | 0 (zero-filled tail) | corner colour 2, alpha: the descriptor's byte `+0x43` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F698`); `0x0036F9F0` (`0x0036FB2A`); `0x00374280` (`0x00374554`, `0x00374515`); `0x003745C0` (`0x003748CD`, `0x0037488E`); `0x00462540` (`0x00462EEE`); `0x00476C80` at boot (`0x00476D6C`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463BC7`) | `0x0036F550` (`0x0036F755`, `0x0036F7FC`, `0x0036F89B`); `0x0022BFF0` during each submit |
+| `0x02AE96C0` | `u32` | 0 (zero-filled tail) | corner colour 3, red: the descriptor's byte `+0x44` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F616`); `0x0036F9F0` (`0x0036FACD`); `0x00374280` (`0x0037451F`, `0x0037455C`); `0x003745C0` (`0x00374898`, `0x003748D5`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D70`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
+| `0x02AE96C4` | `u32` | 0 (zero-filled tail) | corner colour 3, green: the descriptor's byte `+0x45` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F63E`); `0x0036F9F0` (`0x0036FAEA`); `0x00374280` (`0x0037455C`, `0x00374529`); `0x003745C0` (`0x003748D5`, `0x003748A2`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D70`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
+| `0x02AE96C8` | `u32` | 0 (zero-filled tail) | corner colour 3, blue: the descriptor's byte `+0x46` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F666`); `0x0036F9F0` (`0x0036FB07`); `0x00374280` (`0x0037455C`, `0x00374533`); `0x003745C0` (`0x003748D5`, `0x003748AC`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D74`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
+| `0x02AE96CC` | `u32` | 0 (zero-filled tail) | corner colour 3, alpha: the descriptor's byte `+0x47` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F68E`); `0x0036F9F0` (`0x0036FB24`); `0x00374280` (`0x0037455C`, `0x0037453D`); `0x003745C0` (`0x003748D5`, `0x003748B6`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D74`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
 | `0x02AE96E0` | `u64` | 0 (zero-filled tail) | the `CLAMP_1` value of block 0's A+D pairs: 5, or the descriptor's `+0x50` in kind 6's mode 2; 0 at boot | `0x0036F550` (`0x0036F6B6`); `0x0036F9F0` (`0x0036FB4A`); `0x00374280` (`0x00374336`, `0x003743C0`); `0x003745C0` (`0x003746AE`, `0x00374722`); `0x00462540` (`0x004628D2`, `0x00462999`, `0x00462A3E`); `0x00463460` (`0x0046375D`, `0x0046387B`, `0x00463920`); `0x00476C80` at boot (`0x00476D9A`) | `0x0036F550` (`0x0036F76F`, `0x0036F816`, `0x0036F8B5`); `0x0022BFF0` during each submit |
 | `0x02AE96F0` | `u64` | 0 (zero-filled tail) | the `TEX0_1` value: a surface entry `0x02AEECF0` + 16 x (mode - 3) in modes 3 and up, the descriptor's `+0x48` in mode 2, `[0x02AEECF0]` from the plain tint, `[0x02AEED10]` from the layered tint; 0 at boot | `0x0036F550` (`0x0036F6FF`); `0x0036F9F0` (`0x0036FB43`); `0x00374280` (`0x0037434D`); `0x003745C0` (`0x003746B9`); `0x00462540` (`0x004628DA`, `0x00462996`, `0x00462A46`); `0x00463460` (`0x00463765`, `0x00463878`, `0x00463928`); `0x00476C80` at boot (`0x00476DAC`) | `0x0036F550` (`0x0036F777`, `0x0036F81E`, `0x0036F8BD`); `0x0022BFF0` during each submit |
 | `0x02AE9700` | `u64` | 0 (zero-filled tail) | the `ALPHA_1` value: the blend word `0x01EFAC20[byte +1 >> 4]` of [screen fades](screen-fades.md) (kinds 2 and 6), `0x44` from the tint; 0 at boot | `0x0036F550` (`0x0036F6C1`); `0x0036F9F0` (`0x0036FB55`); `0x00374280` (`0x00374414`); `0x003745C0` (`0x0037477A`); `0x00462540` (`0x0046272B`, `0x004628F9`, `0x00462A64`); `0x00463460` (`0x00463610`, `0x00463784`, `0x00463946`); `0x00476C80` at boot (`0x00476DBE`) | `0x0036F550` (`0x0036F77F`, `0x0036F826`, `0x0036F8C5`); `0x0022BFF0` during each submit |
 | `0x02AE9710` | `u64` | 0 (zero-filled tail) | the `TEST_1` value: the descriptor's `+0x58`, or `0x1001` when that is 0 (kind 6), `0x1001` (kind 2, plain tint), `0x51001` (layered tint); 0 at boot | `0x0036F550` (`0x0036F6CC`); `0x0036F9F0` (`0x0036FB60`); `0x00374280` (`0x00374596`); `0x003745C0` (`0x003748F7`); `0x00462540` (`0x00462F68`, `0x00462F72`); `0x00463460` (`0x00463C42`, `0x00463C4F`); `0x00476C80` at boot (`0x00476DD0`) | `0x0036F550` (`0x0036F787`, `0x0036F82E`, `0x0036F8CD`); `0x0022BFF0` during each submit |
-| `0x02AE9720` | `u32` | 0 (zero-filled tail) | the `PRIM` value: `0x5D`, or `0x4D` (bit 4, texturing, clear) in mode 1; `0x5D` at boot | `0x0036F550` (`0x0036F6D7`); `0x0036F9F0` (`0x0036FB6B`); `0x00374280` (`0x00374358`, `0x003743FB`); `0x003745C0` (`0x003746C4`, `0x00374761`); `0x00462540` (`0x0046272F`, `0x004628FD`, `0x00462A68`); `0x00463460` (`0x00463614`, `0x00463788`, `0x0046394A`); `0x00476C80` at boot (`0x00476DE2`) | `0x0036F550` (`0x0036F78F`, `0x0036F836`, `0x0036F8D5`); `0x0022BFF0` during each submit |
+| `0x02AE9720` | `u32` | 0 (zero-filled tail) | the `PRIM` value: `0x5D`, or `0x4D` (bit `0x10`, texturing, clear) in mode 1; `0x5D` at boot | `0x0036F550` (`0x0036F6D7`); `0x0036F9F0` (`0x0036FB6B`); `0x00374280` (`0x00374358`, `0x003743FB`); `0x003745C0` (`0x003746C4`, `0x00374761`); `0x00462540` (`0x0046272F`, `0x004628FD`, `0x00462A68`); `0x00463460` (`0x00463614`, `0x00463788`, `0x0046394A`); `0x00476C80` at boot (`0x00476DE2`) | `0x0036F550` (`0x0036F78F`, `0x0036F836`, `0x0036F8D5`); `0x0022BFF0` during each submit |
 | `0x02AE9730` | `u32` | 0 (zero-filled tail) | block 1 `+0x00`: 0 from kinds 2 and 6 and the plain tint, block 0's word from the layered tint's copy; 0 at boot | `0x0036F9F0` (`0x0036FA4E`); `0x00374280` (`0x003742B3`); `0x003745C0` (`0x003745F3`); `0x00462540` (`0x004626EE`, `0x004626FD`, `0x00462781`, `0x00462936`, `0x00462941`, `0x00462A00`); `0x00463460` (`0x004635D3`, `0x004635E2`, `0x0046365D`, `0x004637C1`, `0x00463823`, `0x004638E2`); `0x00476C80` at boot (`0x00476D01`); `0x0036F550` (`0x0036F712`) | `0x0022BFF0` during each submit |
 | `0x02AE9820` | `u32` | 0 (zero-filled tail) | block 2 `+0x00`, set as block 1's; 0 at boot | `0x0036F9F0` (`0x0036FA54`); `0x00374280` (`0x003742B9`); `0x003745C0` (`0x003745F9`); `0x00462540` (`0x004626EE`, `0x004626FD`, `0x00462781`, `0x00462936`, `0x00462941`, `0x00462A00`); `0x00463460` (`0x004635D3`, `0x004635E2`, `0x0046365D`, `0x004637C1`, `0x00463823`, `0x004638E2`); `0x00476C80` at boot (`0x00476D01`); `0x0036F550` (`0x0036F7B9`) | `0x0022BFF0` during each submit |
 | `0x02AE9910` | `u32` | 0 (zero-filled tail) | block 3 `+0x00`, set as block 1's; 0 at boot | `0x0036F9F0` (`0x0036FA5A`); `0x00374280` (`0x003742BF`); `0x003745C0` (`0x003745FF`); `0x00462540` (`0x004626EE`, `0x004626FD`, `0x00462781`, `0x00462936`, `0x00462941`, `0x00462A00`); `0x00463460` (`0x004635D3`, `0x004635E2`, `0x0046365D`, `0x004637C1`, `0x00463823`, `0x004638E2`); `0x00476C80` at boot (`0x00476D01`); `0x0036F550` (`0x0036F858`) | `0x0022BFF0` during each submit |
@@ -396,23 +410,23 @@ through `0x00462260` (`0x00462421`) and submit through `0x003A34D0` (`0x00463004
 
 `crossfade(flags, mode, frames)` (`0x016F`, `0x00353260`) dissolves a still of the picture into the
 live scene. Unless the issuer's manager is skipping it calls `0x002F1A90(flags, mode, frames)`, which
-acts when `frames` is positive or flag bit 1 is set:
+acts when `frames` is positive or flag bit `0x2` is set:
 
 - With no crossfade running it makes the task `[0x022BE7C8]` (`0x002F16B0`) with the per-frame body
   `0x002F18D0` and the end `0x002F1950`, and keeps the flags at `+0x28`, the mode at `+0x38` and the
-  length `frames × [0x01DFE0B4]` (`frames` alone when `0x001EDDA0()` is non-zero) at `+0x04`. Flag bit 1
+  length `frames × [0x01DFE0B4]` (`frames` alone when `0x001EDDA0()` is non-zero) at `+0x04`. Flag bit `0x2`
   adds one frame to the length.
-- It then captures the picture: `0x00374D40(0, mode, 1)`, or, with flag bit 2, `0x00374D40(0, mode, 2)`
+- It then captures the picture: `0x00374D40(0, mode, 1)`, or, with flag bit `0x4`, `0x00374D40(0, mode, 2)`
   after a set of pass-mask calls (`0x003587B0(1)`, `0x00358720`, `0x00358640(1)` and others); `+0x30`
   records which.
-- With a crossfade already running, flag bit 0 replaces its flags and restarts the length.
+- With a crossfade already running, flag bit `0x1` replaces its flags and restarts the length.
 
 `0x00374D40(p, mode, q)` works only for a mode of 1 to 4. It takes a screen-size target once
 (`0x00182B40`, kept at `0x02ADB6D0` with the mode at `0x02ADB6D8`) and files a kind-3 descriptor, stage 7,
 class 5, with bytes `+0x1C` = 1, `+0x1D` = mode, `+0x1E` = `q` and `+0x1F` = `p`, the target at
 `+0x28` and `+0x40`; its handle goes to `0x02EC07F0`.
 
-Each frame `0x002F18D0` re-captures when flag bit 2 is set and calls `0x003756B0(+0x30, alpha)` with
+Each frame `0x002F18D0` re-captures when flag bit `0x4` is set and calls `0x003756B0(+0x30, alpha)` with
 `alpha = (L − c) / L × 255`, with `L` the length plus `[0x01DFE0B4]` and `c` the task's word `+0x00`,
 so the still fades out as `c` grows; it also sets
 byte `+0xD18` of the render manager (`0x00182610(1)`). `0x003756B0` files two descriptors while a target
@@ -424,14 +438,14 @@ and a mode exist:
   (handle `0x02EC07F8`).
 
 The end `0x002F1950` runs `0x00375F80`, which hands the target back (`0x0024B240`) and removes the three
-descriptors from the pool, undoes the pass-mask calls for flag bit 2, clears `[0x022BE7C8]` and byte
+descriptors from the pool, undoes the pass-mask calls for flag bit `0x4`, clears `[0x022BE7C8]` and byte
 `+0xD18` (`0x00182610(0)`). `0x0024B240(target)` appends a released target to the list `0x02091950` while
 its count `0x0209216A` is below 256 and otherwise frees it at once (`0x001B68D0`).
 
 ### Screen capture
 
 `setcapturescreenmode(on)` (`0x02DF`, `0x00340B90`) keeps a still of the picture in a target. A non-zero
-argument runs `0x0024E0F0`: it sets the two-bit capture mode in bits 1-2 of `0x020926E4` to 1, hands back
+argument runs `0x0024E0F0`: it sets the two-bit capture mode in bits `0x6` of `0x020926E4` to 1, hands back
 any target at `0x020926D8` and takes a full-size one (`0x00182B40`), clears the handle `0x020926E0`, and
 drops the mode again when no target came back. Zero runs `0x0024E070`, which clears the mode, hands the
 target back and removes the descriptor `0x020926E0` (`0x00375470`).
@@ -449,11 +463,11 @@ The per-frame driver `0x0024D540` calls `0x0024DEE0(draw)` (`0x0024D6E6`), which
 
 ```
 Flag word 0x020926E4 (bits this page uses)
-bit 0  soft focus up
-bits 1-2  screen capture mode: 0 off, 1 capture on the next draw 0, 2 bound each frame
-bit 3  cut-in up
-bit 4  motion blur up
-bit 5  motion blur: capture on the next frame
+bit 0x1  soft focus up
+bits 0x6  screen capture mode: 0 off, 1 capture on the next draw 0, 2 bound each frame
+bit 0x8  cut-in up
+bit 0x10  motion blur up
+bit 0x20  motion blur: capture on the next frame
 ```
 
 Cut-in staging `0x02B59D20` / live `0x02092640` (`0x24`):
@@ -461,7 +475,7 @@ Cut-in staging `0x02B59D20` / live `0x02092640` (`0x24`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | type | cutintype: 0-4 kept, else 2; 0 draws nothing; reset 2 |
-| `+0x01` | `u8` | lineFade | bit 0: cutinlinefade; reset 0 |
+| `+0x01` | `u8` | lineFade | bit `0x1`: cutinlinefade; reset 0 |
 | `+0x04` | `f32` | x | cutinpos; reset 0 |
 | `+0x08` | `f32` | y | cutinpos; reset 0 |
 | `+0x0C` | `f32` | rotation | cutinrotate, radians; reset 0 |
@@ -479,7 +493,7 @@ Motion blur staging `0x02B58C38` / live `0x02092678` (`0x0C`):
 | `+0x01` | `u8` | mask | moveblurcluttype: 1->2, 2->3, 3->0, else 1; reset 1 |
 | `+0x02` | `u8` | noise | moveblurnoisetype: 0-3 kept, else 0; reset 0; the builder ignores it |
 | `+0x03` | `u8` | screenType | moveblurscreentype: 1->2, else 1; reset 1 |
-| `+0x04` | `u8` | flags | bit 0 capture once (moveblurcaptureonce); reset 0 |
+| `+0x04` | `u8` | flags | bit `0x1` capture once (moveblurcaptureonce); reset 0 |
 | `+0x08` | `f32` | strength | movebluraplpha; reset 0.5 |
 
 Soft focus live block `0x020925F0`:
@@ -521,13 +535,13 @@ The backdrop is the `0x140`-byte widget at `0x020927F0` with procedure `0x002509
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x002509D0` |
 | `+0x0C0` | `void*` | captureBuffer | the capture buffer in resource arena 2 that `0x00251010` allocates for types 0 and 1 (`0x002510BC`); the stage-7 captures go through it (`0x0025115C`, `0x00251206`) and `0x00251E00` hands it to `0x0036CAD0` after each (`0x00251E56`-`0x00251E69`); the draw reads it (`0x00251599`, `0x002516ED`, `0x00251CD3`); the teardown frees it with `0x003697F0` (`0x002509FF`-`0x00250A12`) |
-| `+0x0C8` | `void*` | firstCapture | the first capture target (`0x00182B40`), made by `0x00251010` (`0x002510E8`) and filled by a stage-7 capture (`0x0025116F`); the draw binds it with the palette when `+0xE8` bit 0 is set (`0x00251815`); released by the teardown with `0x00182CA0` (`0x00250A19`-`0x00250A2A`) |
+| `+0x0C8` | `void*` | firstCapture | the first capture target (`0x00182B40`), made by `0x00251010` (`0x002510E8`) and filled by a stage-7 capture (`0x0025116F`); the draw binds it with the palette when `+0xE8` bit `0x1` is set (`0x00251815`); released by the teardown with `0x00182CA0` (`0x00250A19`-`0x00250A2A`) |
 | `+0x0D0` | `void*` | secondCapture | the second capture target, made by `0x00251010` (`0x002510FD`) and captured into (`0x00251215`); drawn plainly while the progress is below 1.0 (`0x00251628`); released by the teardown (`0x00250A31`-`0x00250A42`) |
 | `+0x0D8` | `void*` | composite | the composite target: 0 from `0x00251010` (`0x00251104`); at full progress the draw allocates it and queues a stage-5 capture into it (`0x00251C5D`-`0x00251C76`), and while it exists draws it alone as a kind-2 quad (`0x002513A6`, `0x0025148F`, `0x00251CE6`); below full progress it is released first (`0x0025150D`-`0x00251525`); released by the teardown (`0x00250A49`-`0x00250A5A`) |
 | `+0x0E0` | `u8[4]` | gap0E0 | read and written by no function; nothing fixes its width |
 | `+0x0E4` | `i16` | type | the backdrop type 0-3, the creation record's word `+0x00` (`0x00250A93`-`0x00250A96`): types 0 and 1 use the field picture, 2 and 3 draw opaque black; read by `0x00250E90`, `0x00250F30`, `0x00251010`, the draw and `0x00251E00` (`0x00250EA9`, `0x00250F46`, `0x0025103A`, `0x002512EF`, `0x00251E10`) |
 | `+0x0E6` | `i16` | state | 1 created (`0x00250A8C`), 3 fading in then 4, 5 fading out then 6, 7 pulsing then 8: set by `0x00251010` (`0x0025104F`, `0x00251241`), `0x00250F30` (`0x00250F73`-`0x00250FF7`), `0x00250C50` (`0x00250C68`) and the stepper `0x00250CA0` (`0x00250DD8`-`0x00250DF4`); `0x00251D20` and `0x00251D50` report it (`0x00251D35`, `0x00251D65`) |
-| `+0x0E8` | `u32` | flags | bit 0 set on creation (`0x00250A7B`): the capture and its palette are in use (`0x0025123A`, `0x002516B2`), and `0x00251D20` answers 2 while it is clear (`0x00251D2C`); bit 2: hidden, the draw draws nothing (`0x002512E2`), set or cleared by `0x00251F00` (`0x00251F0C`-`0x00251F19`); bit 3: linear fade-out, set by `0x00251F20` (`0x00251F2C`-`0x00251F39`), cleared on creation (`0x00250AB2`), read by the stepper (`0x00250D5F`) |
+| `+0x0E8` | `u32` | flags | bit `0x1` set on creation (`0x00250A7B`): the capture and its palette are in use (`0x0025123A`, `0x002516B2`), and `0x00251D20` answers 2 while it is clear (`0x00251D2C`); bit `0x4`: hidden, the draw draws nothing (`0x002512E2`), set or cleared by `0x00251F00` (`0x00251F0C`-`0x00251F19`); bit `0x8`: linear fade-out, set by `0x00251F20` (`0x00251F2C`-`0x00251F39`), cleared on creation (`0x00250AB2`), read by the stepper (`0x00250D5F`) |
 | `+0x0EC` | `u8[4]` | gapEC | read and written by no function; nothing fixes its width |
 | `+0x0F0` | `u64` | zeroF0 | 0, stored on creation (`0x00250AD2`); no function reads it |
 | `+0x0F8` | `void*` | overlayPalette | the palette the overlay draws with: [`0x0209AC30`] + `0x390` + `0x40` for type 0 or + `0x3A8` + `0x40` for type 1 on creation (`0x00250B4B`, `0x00250BB1`), handed to `0x002553C0` (`0x00250C1F`); `0x00250E90` swaps it (`0x00250ECC`, `0x00250EE0`); the draw binds it (`0x00251806`) |
@@ -604,7 +618,7 @@ only as a whole: `cutinplay` (`0x003DF8F0`) passes it to `0x0024CF50`, which loa
 
 | Global | Field | Type | Meaning | Set by |
 |---|---|---|---|---|
-| `0x02B59D21` | `+0x01` | `u8` | the line fade bit; `0x003DF990` also reads it (`0x003DF990`) to keep its other bits | `0x003DF900` (`0x003DF909`, 8 bytes over `+0x00` to `+0x07`, then bit 0 cleared at `0x003DF910`); `0x003DF990` (`0x003DF9A0`) |
+| `0x02B59D21` | `+0x01` | `u8` | the line fade bit; `0x003DF990` also reads it (`0x003DF990`) to keep its other bits | `0x003DF900` (`0x003DF909`, 8 bytes over `+0x00` to `+0x07`, then bit `0x1` cleared at `0x003DF910`); `0x003DF990` (`0x003DF9A0`) |
 | `0x02B59D24` | `+0x04` | `f32` | x | `0x003DF900` (`0x003DF909`; `0x003DF92C`, 16 bytes over `+0x04` to `+0x13`); `0x003DF9C0` (`0x003DF9C0`) |
 | `0x02B59D28` | `+0x08` | `f32` | y | `0x003DF900` (`0x003DF92C`); `0x003DF9C0` (`0x003DF9C8`) |
 | `0x02B59D30` | `+0x10` | `f32` | the line width, 2.0 after a reset (the fourth float of `0x00D117A0`) | `0x003DF900` (`0x003DF917`, 8 bytes over `+0x10` to `+0x17`; `0x003DF92C`); `0x003DF9B0` (`0x003DF9B0`) |

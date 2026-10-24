@@ -93,7 +93,7 @@ picture whose atlas slot is still empty and whose offset is not -1, it:
 3. names the picture `loca_<a>_<b>` (`sprintf "loca_%d_%d"`) from the sub file's tables and registers it through
    `0x0024A480(picture, name, flags, palette, colours)`.
 
-`0x0024A480` registers the atlas (`0x0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits 18 and
+`0x0024A480` registers the atlas (`0x0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits `0x40000` and
 up of the slot's flags and the palette at slot `+0x28`, then builds the texture (`0x0024A1D0`).
 
 ### The upload

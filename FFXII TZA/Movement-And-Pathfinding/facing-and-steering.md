@@ -70,7 +70,7 @@ record's target heading `+0x34` for class 3, or calls `0x0026B6A0(actor, angle, 
 The facing writer `0x002E5E10(actor, angle, aux, commit)` does nothing without a controller at
 `+0xC0`. With one it stores `aux` at `+0xAC`, the wrapped angle at `+0xA8`, copies the angle into
 the context's `+0x58` (`0x003DA850` on `+0x50`), into `+0x78` and `+0x68` unless actor byte `+0x0D`
-has bit 5, and, when the controller has a movement body at `+0x138`, into the body's `+0xF8`
+has bit `0x20`, and, when the controller has a movement body at `+0x138`, into the body's `+0xF8`
 followed by a rebuild of the body's placement (`0x003DAF20` with the context's `+0x104`-`+0x106`).
 
 When the controller's render record id is not -1 it hands `{aux, angle, 0}` to the render record
@@ -95,7 +95,7 @@ frees them.
 new slot is handed over clean with `0x0026AE90(actor, 0)` and `0x0026C120(actor, 0)`.
 
 `0x002EAAA0(actor)` pops: with the selector at 1 it becomes 0, the cursor is re-selected first, and
-the saved walk is replayed by the shape now under the cursor (slot 0's) in `+0x62` bits 0-2: shape 0 passes the triple at `+0x10` to `0x002EC2C0` by
+the saved walk is replayed by the shape now under the cursor (slot 0's) in `+0x62` bits `0x7`: shape 0 passes the triple at `+0x10` to `0x002EC2C0` by
 address, shape 1 passes `+0x10`, `+0x14`, `+0x18` to `0x002EBFA0` by value, any other shape resumes
 nothing; then `0x002EC3F0` and `0x002E8EE0` run. A push while pushed and a pop with nothing pushed do
 nothing.
@@ -108,20 +108,20 @@ for the lookup.
 
 The focus actor is then made to look at the starting actor: `0x002EC2C0` with its position for a
 class-1 record, `0x002EBFA0` with its handle and `0x30B` for class 3, then `0x002EC380(focus, 2, 6.0)`,
-`0x002EBE50(focus, 1)`, `+0x62` bit 7, `0x002E8EE0` and `0x002ED040(focus, 1)`. In every case the script
+`0x002EBE50(focus, 1)`, `+0x62` bit `0x80`, `0x002E8EE0` and `0x002ED040(focus, 1)`. In every case the script
 is counted at the manager's `+0x1E0` and the record's steering pushed (`0x002EAB80`). A record with a
 battle unit also has its speed set to 0 (`0x0026D6F0(record, 0, 2)`) and `0x0035AE10(record, 1)`.
 
 `0x00263050(record, op)` ends it. Op 1 decrements the count and, when none remain, runs
 `0x002E1CD0(1)`, zeroes `0x02099DE5`, sets `0x02099DE7` to `0xFF`, calls `0x00263480(record, 2 when +0x0C
-bit 7 is set, else 1)` and, with `0x0209A2A8` set and `+0x0C` non-negative, `0x00225CD0(6, 4)`; it then
+bit 0x80 is set, else 1)` and, with `0x0209A2A8` set and `+0x0C` non-negative, `0x00225CD0(6, 4)`; it then
 releases the focus actor's look (`0x002EBE50(focus, 0, 0)`, `0x002E8EE0`, `0x002ED040(focus, 0)`). In
-every case it clears record byte `+0x0B` bit 3.
+every case it clears record byte `+0x0B` bit `0x8`.
 
-It then pops at once (`0x0026320A`) unless the record's `+0x1C` bit 17 is set and either `+0x18` is
+It then pops at once (`0x0026320A`) unless the record's `+0x1C` bit `0x20000` is set and either `+0x18` is
 1 or the entry names a non-negative id (`+0xEA` when not `0xFFFF`, else the word at `+0x24` of the
 entry resolved from `+0x40`, which must hold at least `0x12` words). The deferred case sets `+0x0B`
-bit 4, and op 4, run on the entry's removal, pops (`0x00263076`) and clears the bit. Op 3 tail-calls
+bit `0x10`, and op 4, run on the entry's removal, pops (`0x00263076`) and clears the bit. Op 3 tail-calls
 `0x0025B500`.
 
 ### The steering request
@@ -138,7 +138,7 @@ context's `+0xD0`, `0x0026A640` keeps the raw speed at `+0x7C`, `0x0026AE30` sto
 means the party focus).
 
 `0x0026AE90(actor, mode)` collapses modes 2-4 to 1 when `+0x2C` is exactly 0.0, stores the mode at
-`+0x29`, and for mode 0 clears actor byte `+0x0D` bit 4, cancels (`0x002E55C0`: `+0x29` = 0,
+`+0x29`, and for mode 0 clears actor byte `+0x0D` bit `0x10`, cancels (`0x002E55C0`: `+0x29` = 0,
 `0x0026C120(actor, 0)` when `+0x28 & 0x7F` is 2, `+0x24` and the context's `+0xD0` zeroed) and zeroes
 `+0x7C`. It has 13 direct call sites; only the two move handlers hand in a non-zero mode, and
 `movecancel`, `ucmovecancel`, the `setpos` family, `setposparty`, the push and the actor teardown
@@ -165,12 +165,12 @@ While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(a
 3. when the manager's skip flag (`0x00267310(actor +0x15)`) is set, `0x0026AFE0` places the actor on the
    target at once;
 4. the remaining distance is `distance - reach`, three-dimensional (`0x003A1920`) when `0x00264460` or
-   actor byte `+0x08` bit 2 says so, else flat (`0x004686D0`);
+   actor byte `+0x08` bit `0x4` says so, else flat (`0x004686D0`);
 5. the ramp, with `v = +0x24` and `a = +0x2C`: mode 1 leaves `v`; mode 2 uses the distance from the
    start snapshot `d0`, and when `max(a, d0) < v^2 / 2a` sets `v = max(a, sqrt(2a * max(a, d0)))`;
    mode 3 does the same with the remaining distance; mode 4 both. `v` goes to the context's `+0xD0`
    and `+0xF8`;
-6. actor byte `+0x0D` bit 4 (near) is set when `[0x02164200] * +0x24 > remaining`; `0x02164200` is 3.0
+6. actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining`; `0x02164200` is 3.0
    at run time: its only writer is the setter `0x002EBE40`, called by `0x00266D10` at boot and by the
    verb `debug_charmovestopvelrratio` (`0x0050D320`);
 7. arrival, when `[0x01DFE0B8] * v > remaining`: for a position target (`+0x2A` = 0) a zero reach
@@ -186,8 +186,8 @@ the arrival scale makes a 60 fps walk end one frame earlier in distance than a 3
 `0x0026C120(actor, mode)`, 28 direct call sites, reads the old mode byte `+0x28`, stores the new one and:
 
 - mode 0: when `+0x65` is set, `0x002EBE50(actor, 0, 0)` and `0x002E8EE0(actor)`; then
-  `0x002E6300(actor, context, old)`, which returns `+0x64` when the old mode had bit 7;
-- modes 2 and 3: the turn direction bit, `+0x62` bit 6 set when `wrap(+0x34 - +0xA8)` (`0x003A1C50`)
+  `0x002E6300(actor, context, old)`, which returns `+0x64` when the old mode had bit `0x80`;
+- modes 2 and 3: the turn direction bit, `+0x62` bit `0x40` set when `wrap(+0x34 - +0xA8)` (`0x003A1C50`)
   is negative, else cleared; `+0x58` = `pi/20` (`0x3E20D97C`, nine degrees) and `+0x5C` = `pi`
   (`0x40490FDB`), the second a store nothing reads;
 - mode 4: the direction bit; then, when the frame count `+0x68` is at most `[0x01DFE0B4]` (unsigned),
@@ -200,7 +200,7 @@ taken, once, when the mode is set.
 ### The per-frame integrator
 
 `0x002E5750(actor, direct)` runs once per actor from the wait resolver (`0x0025E3AA`) and is skipped
-when actor byte `+0x18` is 1 or the controller's `+0x14F` has bit 0. With `direct` non-zero it adds
+when actor byte `+0x18` is 1 or the controller's `+0x14F` has bit `0x1`. With `direct` non-zero it adds
 the two floats of its third argument to the heading and pitch instead. Otherwise it reads the mode
 `+0x28 & 0x7F` (`0x00265600`) and the turn step `+0x58` (`0x00264750` → `0x002E4BC0`), floors the step at
 `0x3C0EFA35` (half a degree) for any active mode (`0x0026AC70` → `0x002E5B90`), and dispatches:
@@ -209,7 +209,7 @@ the two floats of its third argument to the heading and pitch instead. Otherwise
 |---|---|
 | 1 | the facing advances by the spin rate `+0x3C` (`0x002E60C0`, verb `setvelrotangzx`), through `0x0026B5A0` |
 | 2 | the facing approaches the desired heading `+0xA4` (`0x00263CC0`) by at most the step (`0x003A1AD0`), through `0x0026B5A0` |
-| 3 | the facing approaches the target `+0x34`: by the step, or, when `+0x28` bit 7 is set (an untimed turn), by the frame-counted path: first, when `0x00265510(actor)` is non-zero and `0x00265530(actor)` is at most the `0x00265630` index, `0x0026C070(actor, 0)` and, with a render record, `0x003DDAD0(actor, controller byte +0x12, 0x1000000)`; then with no render record `0x003A1AD0` and `0x0026C300(index + 1)`, with one `0x003EC040`'s animation-driven step; the skip flag snaps to the target; when the facing equals the target, `0x0026C120(actor, 0)` |
+| 3 | the facing approaches the target `+0x34`: by the step, or, when `+0x28` bit `0x80` is set (an untimed turn), by the frame-counted path: first, when `0x00265510(actor)` is non-zero and `0x00265530(actor)` is at most the `0x00265630` index, `0x0026C070(actor, 0)` and, with a render record, `0x003DDAD0(actor, controller byte +0x12, 0x1000000)`; then with no render record `0x003A1AD0` and `0x0026C300(index + 1)`, with one `0x003EC040`'s animation-driven step; the skip flag snaps to the target; when the facing equals the target, `0x0026C120(actor, 0)` |
 | 4 | timed interpolation from the start heading `+0x38` to `+0x34`: `t = +0x78 / +0x68`, `heading = start + wrap(target - start) * t`, `+0x78 += 1` (`0x0026C300`); at `t >= 1`, or when the skip flag forces it, the final heading and `0x0026C120(actor, 0)` |
 | 5 | waits while `0x002EA780` reports the render record's turn still running (`0x003E6AF0` and `0x002EA910` = 1); when it stops, `0x0026C120(actor, 0)` |
 
@@ -238,11 +238,11 @@ relatives:
    at 1;
 2. it writes the target to `+0x70` (`0x0026A8E0`) and zeroes `+0x74` and the context's `+0x224`;
 3. when the delta is at least `pi/3`, or `+0x65` is set, or the actor has no armed render entry
-   (`0x002E7600` = 0), it takes the body turn: `0x002EC380(actor, 1, frames)` (bits 3-5 of `+0x62` =
+   (`0x002E7600` = 0), it takes the body turn: `0x002EC380(actor, 1, frames)` (bits `0x38` of `+0x62` =
    1, `+0x60` = `frames / [0x01DFE0BC]`), `+0x28` |= `0x80`, `+0x68` = `(target - facing) / +0x58`
    (the raw difference; only the frame count uses the wrapped one);
 4. the body turn goes on with `+0x78` = `[0x01DFE0B4]`, `+0x64` = 1, `0x003DDAD0(actor, 0, 0x1000004 -
-   direction)` with `direction` = `+0x62` bit 6 as read at entry, and `+0x66` = the curve value;
+   direction)` with `direction` = `+0x62` bit `0x40` as read at entry, and `+0x66` = the curve value;
 5. otherwise the animation turn: `0x002EC380(actor, 2, frames)` and `+0x28` = 5;
 6. both end with `0x002EBE50(actor, 1, 1)`.
 
@@ -254,16 +254,16 @@ callers then set mode 4.
 
 `0x002EBE50(actor, op, force)` starts or clears the steer channel. Op 0 zeroes the context's `+0xB4`
 and `+0x224`. Otherwise, when `+0x63` is 0 or `force` is set, `+0xB4` takes the facing and
-`+0x224` 0; the deltas `wrap(+0x70 - +0xB4)` and, with `+0x62` bit 7 clear, `wrap(+0x74 - +0x224)`
-are taken; `+0xB4` and `+0x224` become `+0x70` and `+0x74`; and when `+0x62` bits 3-5 are 0 they
+`+0x224` 0; the deltas `wrap(+0x70 - +0xB4)` and, with `+0x62` bit `0x80` clear, `wrap(+0x74 - +0x224)`
+are taken; `+0xB4` and `+0x224` become `+0x70` and `+0x74`; and when `+0x62` bits `0x38` are 0 they
 become 2 with `+0x60` = `max(1, |delta / +0x6C|)` frames (1 when `+0x6C` is not positive). `+0x63`
 = `op`; then `0x002EC3F0` and `0x002E8EE0`.
 
-`0x002E8EE0(actor)` pushes `+0x62` bit 7 (`0x003E6BD0`) and `+0x63` (`0x003E6BC0`) into the render record
-and sets its `+0x290` bit 11.
+`0x002E8EE0(actor)` pushes `+0x62` bit `0x80` (`0x003E6BD0`) and `+0x63` (`0x003E6BC0`) into the render record
+and sets its `+0x290` bit `0x800`.
 
-`0x002EC3F0(actor)` stages the head-look request by the shape (bits 0-2) and the selector (bits
-3-5) of `+0x62`, with the one-shot latch `+0x6A` bit 0 remapping selector 2 to 1:
+`0x002EC3F0(actor)` stages the head-look request by the shape (bits `0x7`) and the selector (bits
+`0x38`) of `+0x62`, with the one-shot latch `+0x6A` bit `0x1` remapping selector 2 to 1:
 
 - shapes 0-1 go to `0x002E7650` (selector 1) or `0x002E79A0` (selector 2);
 - shapes 2-3 with selector 1 go to `0x003E6B90(record, 0, +0x10, +0x14)` and `0x003E6C00(record, 1,
@@ -279,7 +279,7 @@ The look-at verbs set the shapes:
 - `0x002EC2C0(actor, vec)` stores a position with shape 0 and sets `+0x70` from the bearing to it,
   `+0x74` and `+0x224` to 0;
 - `0x002EBFA0(actor, ordinal, manager, id)` stores an actor target with shape 1 and its handle at
-  `+0x1C`; it falls back to the position form with `0x0026A1A0(actor, 1)` (bit 7) when the target has
+  `+0x1C`; it falls back to the position form with `0x0026A1A0(actor, 1)` (bit `0x80`) when the target has
   no render record, and clears the channel (`0x002E64E0`) when the actor does not resolve.
 
 Shapes 4-7 are never written. `0x002EC510(shape, actor, target)`, called by the `raturn` verbs
@@ -327,7 +327,7 @@ Struct SteeringRecord size=`0x80`:
 | `+0x1C` | `u32` | resume target handle |  |
 | `+0x20` | `f32` | reach (setreachr) |  |
 | `+0x24` | `f32` | requested speed, scaled |  |
-| `+0x28` | `u8` | movement mode (bit 7 = untimed turn) |  |
+| `+0x28` | `u8` | movement mode (bit 0x80 = untimed turn) |  |
 | `+0x29` | `u8` | steering mode 0-4 |  |
 | `+0x2A` | `u8` | target kind 0 position, 1 actor |  |
 | `+0x2B` | `u8` | configured ramp mode (setaccr) |  |
@@ -346,7 +346,7 @@ Struct SteeringRecord size=`0x80`:
 | `+0x65` | `u8` | teardown gate |  |
 | `+0x66` | `i16` | curve / total frames |  |
 | `+0x68` | `i16` | turn frames |  |
-| `+0x6A` | `u8` | bit 0 one-shot latch |  |
+| `+0x6A` | `u8` | bit 0x1 one-shot latch |  |
 | `+0x6C` | `f32` | initiator turn step |  |
 | `+0x70` | `f32` | steer target heading |  |
 | `+0x74` | `f32` | steer target pitch |  |
@@ -380,8 +380,8 @@ replays the saved walk by its shape.
 
 ## State
 
-The context's angles, mirrors and selector; the two steering records; actor bytes `+0x0D` bits 4
-and 5, `+0x0B` bits 3 and 4 and `+0x1C` bit 17; the render record's `+0x124`, `+0x284`, `+0x290` and
+The context's angles, mirrors and selector; the two steering records; actor bytes `+0x0D` bits `0x10`
+and 5, `+0x0B` bits `0x8` and `0x10` and `+0x1C` bit `0x20000`; the render record's `+0x124`, `+0x284`, `+0x290` and
 its staged triple; the globals `0x02164200` and `0x02099DB4`.
 
 ## Modding notes

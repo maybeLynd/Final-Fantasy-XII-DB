@@ -27,8 +27,8 @@ names them for attach slots 18 and 19.
 
 Each row is read from the model's `.cm` with the layouts of [Model files](model-files-cm-ca.md):
 
-1. **The node keys.** Node *n* of the `.cm`'s `@FTR` skeleton has the key `0x00409250` returns: bits 0-11 of the node
-   record's first dword, or the `u16` at record `+0x08` when the record's flag bit 30 is set.
+1. **The node keys.** Node *n* of the `.cm`'s `@FTR` skeleton has the key `0x00409250` returns: bits `0xFFF` of the node
+   record's first dword, or the `u16` at record `+0x08` when the record's flag bit `0x40000000` is set.
 2. **The special-id bones.** `0x003E5AD0` reads section 1's `u16[32]` at `+0x14C` for special ids 0-31, and the
    `@FCP` block's `+0x3A`, `+0x3C` and `+0x3E` for ids `0x104`-`0x106`; `0xFFFF` means none.
 3. **The equipment,** the rows of [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md) whose

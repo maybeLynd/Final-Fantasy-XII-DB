@@ -104,14 +104,14 @@ arena whose base is `0x02F8F308` (`0x003A36BD`); the count is the `u16` at `0x02
 rewind `0x003A3A00`; the VFX layer passes `0x00259030` and `0x002590F0` call the drain alone. The drain sorts the records
 with the merge sort `0x003A3A50` on the `u32` at `+0x08` (`0x003A3B53`, `0x003A3C83`) and walks them:
 
-1. when `0x00180040()` is 1, the record's flag bit 1 is set, `0x0022BE90()` is 1 and `0x0022BEA0()` is 0,
+1. when `0x00180040()` is 1, the record's flag bit `0x2` is set, `0x0022BE90()` is 1 and `0x0022BEA0()` is 0,
    it inserts the post-processing block once (`0x003A3823`–`0x003A38AA`);
-2. flag bit 0 calls `0x003A2BD0` first;
+2. flag bit `0x1` calls `0x003A2BD0` first;
 3. a non-null function at `+0x10` is called with `+0x00` (`0x003A38C6`);
-4. otherwise, when `+0x00` is null: flag bit 2 clear files the node `+0x18` with `0x0020E630(node, 2)`
-   (`0x003A38DE`); flag bit 2 set appends the node to the array `0x02AEF420` (count `0x02AEF414`).
+4. otherwise, when `+0x00` is null: flag bit `0x4` clear files the node `+0x18` with `0x0020E630(node, 2)`
+   (`0x003A38DE`); flag bit `0x4` set appends the node to the array `0x02AEF420` (count `0x02AEF414`).
 
-`0x003A3A00` sets the count to 0, rewinds the data arena `0x02F8F2D0` to `0x02F8F308` and clears bit 0
+`0x003A3A00` sets the count to 0, rewinds the data arena `0x02F8F2D0` to `0x02F8F308` and clears bit `0x1`
 of `0x02F8F310`.
 
 ### From the ordered list to the render thread
@@ -192,8 +192,8 @@ CreateGeometryShader, `+0x78` CreatePixelShader and `+0xB8` CreateSamplerState.
 | `+0x18C0` | `0x006C9CD0` (`0x00625D65`) | the `PrimitiveRendererD3D11` resources: a `0x7FE0`-byte and a `0x8000`-byte buffer (`+0x90`, `+0xA8`), a `0xC0`-byte buffer at `+0x98` filled through the immediate context (`+0x110`, Map and Unmap) with a quad spanning −1 to 1, a sampler at `+0x200`, four vertex, two geometry and ten pixel shaders, two input layouts, the `PrimitiveRendererPsConstantBuffer`, `…VsConstantBuffer` and `…GsConstantBuffer`, two state blocks, and the batcher at `+0x880` (`0x006DA850`) |
 
 `0x0061DE20(state, mask)` turns a state block's descriptions into D3D11 state objects, each made
-once: with mask bit 0 the rasterizer state at `+0x168` and, from the same description with fill
-mode 2 (wireframe), a second at `+0x170`; with bit 1 the blend state at `+0x180`; with bit 2 the
+once: with mask bit `0x1` the rasterizer state at `+0x168` and, from the same description with fill
+mode 2 (wireframe), a second at `+0x170`; with bit `0x2` the blend state at `+0x180`; with bit `0x4` the
 depth-stencil state at `+0x178`. `0x0061C550` names each object (`"BlendState"`,
 `"DepthStencilState"`, `"RasterState"` and the buffer names above). `0x00624C30` passes all bits
 for each of its eight blocks.
@@ -310,7 +310,7 @@ Producers read for this page: `0x2F` `0x005FEA50`, `0x16` `0x005FEFD0`, `0x18` `
 A target view is 24 bytes: `0x005DC190(view, target, flag)` stores the target at `+0x00`, 0 at
 `+0x08` and `+0x10`, and the flag at `+0x0C`; `0x005DC1B0(view)` zeroes it.
 
-- `0x0060D4F0(ctx, view, slot)` refuses a slot above 7 (3) and any bind while bit 0 of `+0x08` is
+- `0x0060D4F0(ctx, view, slot)` refuses a slot above 7 (3) and any bind while bit `0x1` of `+0x08` is
   set (`0x16`). It keeps the view at `ctx + 0x140 + 0x18 × slot`, sets bit `slot` of byte `+0x218`
   (a null view clears it) and takes the target's width and height into `+0x14` and `+0x18` (the
   back buffer's from `0x005FD050` for a null target).
@@ -327,8 +327,8 @@ A target view is 24 bytes: `0x005DC190(view, target, flag)` stores the target at
 `FastClearObj`'s execute `0x001F2FB0` unbinds slots 1 and 7, posts the clear colour from its
 `+0x18`–`+0x24` with `0x0060D190` (block `0x09`, kept at `+0x7C0`–`+0x7CC` by `0x00628220`) when its
 byte `+0x29` is set, and the depth value 1.0 with `0x0060D270` (block `0x0C`, kept at `+0x7D0` by
-`0x00628300`) when its byte `+0x28` is set. It then opens the bracket with `0x005FEFD0`, passing bit 0
-for colour and bit 1 for depth, and restores the default target (`0x00188730`).
+`0x00628300`) when its byte `+0x28` is set. It then opens the bracket with `0x005FEFD0`, passing bit `0x1`
+for colour and bit `0x2` for depth, and restores the default target (`0x00188730`).
 
 `0x00609A30(ctx)` posts block `0x2E`, which has no payload and whose arm does nothing. Its only
 producer is `0x001D5620(marker, ctx)`, which posts it when byte `+0x08` of the marker object is set;
@@ -359,7 +359,7 @@ Display-list record (`0x02F8F2F8` + `0x28` * i):
 | `+0x0C` | `u32` | appender count |  |
 | `+0x10` | `void*` | function | called with `+0x00` when non-null |
 | `+0x18` | `void*` | node | filed through `0x0020E630` when `+0x10` and `+0x00` are null |
-| `+0x20` | `u8` | flags | bit 0: `0x003A2BD0` first; bit 1: post-processing point; bit 2: defer to `0x02AEF420` |
+| `+0x20` | `u8` | flags | bit `0x1`: `0x003A2BD0` first; bit `0x2`: post-processing point; bit `0x4`: defer to `0x02AEF420` |
 
 Render block, `0x80` bytes:
 

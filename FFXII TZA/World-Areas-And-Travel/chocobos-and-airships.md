@@ -30,21 +30,21 @@ Riding is held in the battle-state block at `[0x02EBF190]` ([the block's field m
 
 | Field | Meaning |
 |---|---|
-| `+0x5B04` bit 1 | riding |
-| `+0x5AE0` bit 0 | the ride timer is running |
-| `+0x5AE0` bit 1 | turbo is on |
+| `+0x5B04` bit `0x2` | riding |
+| `+0x5AE0` bit `0x1` | the ride timer is running |
+| `+0x5AE0` bit `0x2` | turbo is on |
 | `+0x5AE0` bits 2-3 | turbo charges, 3 on mounting |
 | `+0x5AE4` | f32, the ride time left in seconds; 180.0 on mounting |
 | `+0x5AE8` | f32, the turbo time left in seconds |
 | `+0x5AEC` | the last turbo argument |
 
-`0x00303D90(on)` is the one setter and does nothing when bit 1 already equals `on`:
+`0x00303D90(on)` is the one setter and does nothing when bit `0x2` already equals `on`:
 
 - `on`: `+0x5B04 |= 2`, `+0x5AE0 |= 0xC`, `+0x5AE4 = 180.0` (`0x43340000`);
 - off: `+0x5B04 &= ~2`; the chocobo, the actor in roster entry 3 (`0x00263750(3)`), has its render
-  record set to mode 3 (`0x002E73C0(actor, 3)`: `+0x294` bit 27 and the top five bits of `+0x304`);
+  record set to mode 3 (`0x002E73C0(actor, 3)`: `+0x294` bit `0x8000000` and the top five bits of `+0x304`);
   `+0x5AEC = 0`; when turbo was on, animation `0x2001` is requested on the chocobo (`0x002EB030`)
-  and bit 1 of `+0x5AE0` is cleared.
+  and bit `0x2` of `+0x5AE0` is cleared.
 
 Its callers are the verb thunks `0x0037CFF0` (on), `0x0037CFC0` (off) and `0x0037D100` (argument), the
 full reset `0x00304680`, the dismount task `0x0035CA70` and the special presentation `0x00306760`, whose
@@ -52,10 +52,10 @@ kind 5 mounts (the same three stores) and kind 6 dismounts.
 
 ### Riding and the mode ladder
 
-`0x0030D9A0` ranks the block's mode bits: `+0x5B04` bit 3 gives 5, bit 2 gives 4, the current area's
-record bit 15 (`0x00377C20`, a town) gives 3, bit 1 gives 2, otherwise bit 0 gives 0 or 1. So
+`0x0030D9A0` ranks the block's mode bits: `+0x5B04` bit `0x8` gives 5, bit `0x4` gives 4, the current area's
+record bit `0x8000` (`0x00377C20`, a town) gives 3, bit `0x2` gives 2, otherwise bit `0x1` gives 0 or 1. So
 `getchocobomodebit` (`0x00303EE0`, the raw bit) and `getchocobomode` (`0x00303EC0`, ladder = 2) differ:
-riding into a town, or while bit 2 or 3 is set, keeps the bit but leaves chocobo mode. `0x003135C0`
+riding into a town, or while bit `0x4` or `0x8` is set, keeps the bit but leaves chocobo mode. `0x003135C0`
 is ladder = 1.
 
 The area music follows the ladder: unless the field's own track is boss music (`0x00361010`, tested at
@@ -70,17 +70,17 @@ the dismount task stops that track again.
 | `setchocobomode(v)` | `0x3EC` | `0x003514D0` → `0x0037D100` | `0x00303D90(v)` |
 | `ridechocobo` | `0x37E` | Start `0x00347230` → `0x0037CFF0`, Poll `0x00347C60` | `0x00303D90(1)`; the Poll returns `0x005C5230() != 0`, always 0, so it ends on its first poll |
 | `getoffchocobo` | `0x37F` | Start `0x00347820` → `0x0037CFC0`, Poll `0x00347C60` | `0x00303D90(0)`, the same Poll |
-| `getchocobomodebit()` | `0x511` | `0x00356630` | `+0x5B04` bit 1 |
+| `getchocobomodebit()` | `0x511` | `0x00356630` | `+0x5B04` bit `0x2` |
 | `getchocobomode()` | `0x407` | `0x00355910` | ladder = 2 |
-| `enable_by_chocobo(v)` | `0x40A` | `0x0033F650` | bit 0 of byte `+0x0B` of the calling actor = `v != 0` |
+| `enable_by_chocobo(v)` | `0x40A` | `0x0033F650` | bit `0x1` of byte `+0x0B` of the calling actor = `v != 0` |
 | `btlAtelSetChocoboTurboMode(v)` | `0x302F` | `0x0050F8A0` | `0x00303F00(v != 0)` |
 | `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `0x430` / `0x431` | `0x0034EE20` / `0x0034DD90` | `0x0032AB60(id, 1)` / `(id, 0)`: a primary persistent flag ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md)) |
-| `setflystatus(v)` | `0x1E0` | `0x00342E50` → `0x0026A7F0` | bit 0 of the actor's secondary context `+0x151`, and `+0x152` 1 ↔ 2 with the mode word refreshed (`0x002681E0`, `0x0026A85A`) when it flips; then bits 0 and 1 of `+0x151` are copied to bits 0 and 1 of `+0x90` of the record at context `+0x138` (`0x002682D0`, `0x0026A862`) |
+| `setflystatus(v)` | `0x1E0` | `0x00342E50` → `0x0026A7F0` | bit `0x1` of the actor's secondary context `+0x151`, and `+0x152` 1 ↔ 2 with the mode word refreshed (`0x002681E0`, `0x0026A85A`) when it flips; then bits `0x1` and `0x2` of `+0x151` are copied to bits `0x1` and `0x2` of `+0x90` of the record at context `+0x138` (`0x002682D0`, `0x0026A862`) |
 
-Bit 0 of the actor byte `+0x0B` lets the rider interact with that actor: while `0x0037C860` answers non-zero, the talk,
+Bit `0x1` of the actor byte `+0x0B` lets the rider interact with that actor: while `0x0037C860` answers non-zero, the talk,
 touch and trigger tests (`0x0025BB74`, `0x0025BE8B`, `0x0025C367`, `0x0025C8D7`) and two more actor tests (`0x0025B7FB`,
 `0x002675FF`) leave out every actor without it ([actor record](../Characters-And-Objects/actor-record.md#the-verb-accessors)). The byte is cleared
-to its top two bits by the record initialiser and has bit 6 cleared by the movement defaults.
+to its top two bits by the record initialiser and has bit `0x40` cleared by the movement defaults.
 
 ### Mounting and dismounting in the scripts
 
@@ -117,7 +117,7 @@ ride is slot 1, the dash slot 2, which the summon timer also uses, `0x00313600`)
   start-up step `0x00266D10` (`0x00266D95`).
 
 The ticker is `0x003EB9A0`, run by the simulation tick `0x00314020` (`0x00314056`) when no time stop
-restricts anything (`0x00226BA0`), slot 0 is live with its field-busy bit 7 clear (`0x00267330(0)`) and its
+restricts anything (`0x00226BA0`), slot 0 is live with its field-busy bit `0x80` clear (`0x00267330(0)`) and its
 request flag `+0x13` clear (`0x002673F0(0)`; [actor managers](../Characters-And-Objects/actor-managers.md)), the
 frame mode `0x00229EA0()` is 2, `0x002672B0()` is non-zero and the field is live
 (`0x00265680`).
@@ -135,19 +135,20 @@ A mount starts the ride timer through the mode transition table, not through the
 - the next committed transition pass `0x00233AA0` (from the actor drive pass `0x0025D9E0`) finds the
   level changed to 2 and runs row 2's enter-with-commit handler `0x00304060`: it attaches the rider
   (below), loads slot 1 with `max(+0x5AE4, 2.0)`, 180 at that point, and slot 2 with `+0x5AE8`,
-  re-applies turbo from bit 1 and sets bit 0 (`0x003040BC`-`0x00304131`);
+  re-applies turbo from bit `0x2` and sets bit `0x1` (`0x003040BC`-`0x00304131`);
 - the same handler runs again on every later committed pass that finds level 2 unchanged (the
   dispatcher's "stay" call, `0x0030D915`-`0x0030D929`; `0x00304060` has no once-only test and returns early only
   when roster entry 3 has no unit, `0x00304073`-`0x00304076`): each run re-ties the rider
   and reloads both slots from `+0x5AE4` and `+0x5AE8`, which `0x00304440` keeps current;
 - the uncommitted enter handler `0x00304180` places the chocobo at the rider, builds the focus list
-  (`0x00327850`, `0x003042AE`) and sets `0x022C83E8` bit 3 (`0x0035C900(1)`, `0x003043DE`); the uncommitted leave
-  `0x00304400` clears bit 0 and detaches the rider (`0x0030440B`, `0x00304435`); the committed leave `0x00304140`
+  (`0x00327850`, `0x003042AE`) and sets `0x022C83E8` bit `0x8` (`0x0035C900(1)`, `0x003043DE`); the uncommitted leave
+  `0x00304400` clears bit `0x1` and detaches the rider (`0x0030440B`, `0x00304435`);
+- the committed leave `0x00304140`
   runs `0x0025A160` on the rider's slot and, only when the riding bit is already clear (`0x0030415E`), the
   full reset `0x00304680` and `0x0035C770(0)`.
 
 `0x00304440` runs every field frame from the tick's per-slot pre-pass `0x00234590` (`0x00234712`) while
-`+0x5AE0` bit 0 is set:
+`+0x5AE0` bit `0x1` is set:
 
 1. `+0x5AE4` = slot 1's value, or 180.0 while the debug-menu byte `+0xE1D` of `[0x001D50D0()]` is set
    (`0x0017D380`; row 229, "Enable infinite chocobo time", in the
@@ -167,13 +168,13 @@ and, when the bit changes:
   and 2.0 under FrameLimit 1, times 10.0;
 - with the debug-menu byte `+0xE1E` set (`0x0017D3A0`; row 230, "Enable infinite chocobo turbo time") it sets the
   count back to 3 (`0x00303FDD` `or 0xC`), otherwise it stores the count less one (`0x00303FED`-`0x00303FFD`);
-- it requests animation `0x2010` on the chocobo (`0x0030401A`, `0x00329A10`); off requests `0x2001`; either way bit 1
+- it requests animation `0x2010` on the chocobo (`0x0030401A`, `0x00329A10`); off requests `0x2001`; either way bit `0x2`
   is toggled (`0x00304026`-`0x0030403B`).
 
 The count is written only by the mounts (`0x00303DC6` and the special presentation's `0x00306A23`, both `or 0xC`),
 by turbo, by the reset `0x00304680` (`0x00304726`, cleared) and by the transition restore `0x002EF410` (below), so a ride
 has three dashes and gets none back. While turbo is on the chocobo's speed is doubled: `0x003045A0` multiplies the
-chocobo definition's speed by `[0x01CEBC08]` = 2.0 when bit 1 is set (`0x003045D5`-`0x003045DA`;
+chocobo definition's speed by `[0x01CEBC08]` = 2.0 when bit `0x2` is set (`0x003045D5`-`0x003045DA`;
 [player movement](../Movement-And-Pathfinding/player-movement.md)).
 
 The dash drains in slot 2 at the ticker's rate, from `[0x01DFE0B8] x 10.0` to 0 (10.0 with the image value 1.0;
@@ -205,10 +206,10 @@ for the hide in state 1. On message 2 the manager acts on `+0xA90`:
 | Request | State of the children | Then |
 |---|---|---|
 | 1, show | chocobo mode does not hold (`0x0037C860`, a thunk to `0x00303EC0`) | nothing yet |
-| 1, show | the marks widget is up and not closing (its `+0x1D4` bit 1, set on message 15) | clears the request (`0x003CAA07`-`0x003CAA2C`) |
+| 1, show | the marks widget is up and not closing (its `+0x1D4` bit `0x2`, set on message 15) | clears the request (`0x003CAA07`-`0x003CAA2C`) |
 | 1, show | none of the marks, the control window and the TIME root is up | builds the marks widget `0x003CB150` at `+0xC0` (`0x003CB0C0`, which sends it message 16) and the TIME root `0x003CAE00` at `+0x460` (`0x190` bytes), then clears the request (`0x003CA9FA`-`0x003CAA94`) |
-| 2, hide | the Dismount dialog is up | closes the dialog's window once (`+0x6B0`, marked in `+0xA80` bit 0) |
-| 2, hide | the marks widget has set up (its `+0x1D4` bit 0, read at `+0x294`) and is not closing | closes the marks, the TIME root and the control window (`+0xC0`, `+0x460`, `+0x2A0`, `0x00244F00`) and clears the request (`0x003CA96B`-`0x003CA9EE`) |
+| 2, hide | the Dismount dialog is up | closes the dialog's window once (`+0x6B0`, marked in `+0xA80` bit `0x1`) |
+| 2, hide | the marks widget has set up (its `+0x1D4` bit `0x1`, read at `+0x294`) and is not closing | closes the marks, the TIME root and the control window (`+0xC0`, `+0x460`, `+0x2A0`, `0x00244F00`) and clears the request (`0x003CA96B`-`0x003CA9EE`) |
 | 2, hide | no marks widget, or one closing | clears the request (`0x003CA9AC`, `0x003CA9C2` to `0x003CAA94`) |
 
 The children:
@@ -251,11 +252,11 @@ summon's half when an Esper is out (`0x003135E0`), else the chocobo's half while
 The marks widget `0x003CB150` shows the charges as up to three marks, and keeps the
 record `[0x0209AC30] + 0x28` at `+0x1C8` on message 1:
 
-1. Message 16 sets `+0x1D4` bit 0, decodes the child's layout from that record (`0x002432B0`) and runs
+1. Message 16 sets `+0x1D4` bit `0x1`, decodes the child's layout from that record (`0x002432B0`) and runs
    `0x003CB320`. It gives the three 0x58-byte mark records at `+0xC0` their nodes (`+0x40`, from the table
    `0x00D11758`) and shows the marks below the charge count, `+0x14` of `0x003200A0` (bits 2-3 of `+0x5AE0`,
    `0x00304610`); the count, at most 3, goes to `+0x1D0`.
-2. Message 2, while `+0x1D4` bit 0 is set, runs `0x003CAED0`. When the count has dropped, the last shown mark
+2. Message 2, while `+0x1D4` bit `0x1` is set, runs `0x003CAED0`. When the count has dropped, the last shown mark
    gets two tweens (`0x002726C0`, `0x002727C0`): the alpha of its four vertex colours over 32 steps and their
    colour over 16.
 3. While a tween runs, `0x003CAED0` writes its value (`0x00271960`) into the node's colours; a mark whose
@@ -318,7 +319,7 @@ message-12 sub-code (`0x003CA36A`-`0x003CA3E8`):
 | `0x8100`, yes, with the test passing | `0x56` | `0x0035CFA0(0)`, `0x0035D010(1)`, closes |
 | any other, or a failed test | 2 | `0x0035D010(0)`, closes |
 
-On its first tick after opening (`+0x490` bit 1) it plays sound 4 (`0x003CA3EA`-`0x003CA3FD`). With the turbo sounds
+On its first tick after opening (`+0x490` bit `0x2`) it plays sound 4 (`0x003CA3EA`-`0x003CA3FD`). With the turbo sounds
 `0x55` and 5 these are the ride's system sounds, all through `0x00249C60`.
 
 The dialog's open message runs `0x0035CF10` (`0x003CA43E`): it clears `0x022CA45C`, resets the battle menu
@@ -353,40 +354,40 @@ and no dismount task is running (`0x022CA468` = 0). The handler's open step sets
 
 ### Reset, restore and the save
 
-- `0x00304680` is the full reset: `0x00303D90(0)`, the turbo end, `+0x5AE0` bits 0, 2 and 3 cleared,
+- `0x00304680` is the full reset: `0x00303D90(0)`, the turbo end, `+0x5AE0` bits `0x1`, `0x4` and `0x8` cleared,
   the three floats zeroed, `0x0035C900(0)`. It runs from the battle runtime reset `0x00237DF0`
   (`0x00237E4B`) and from `0x00304140`, which calls it when the riding bit is clear.
 - `0x00304060` and `0x00304140` are row 2's committed enter and leave handlers of the transition table
   `0x01EECFC0` (`0x0030D8B0`; The ride timer and the turbo timer, above).
-  `0x00304060` restores a ride: it attaches the leader to the chocobo (`0x002E28C0(chocobo, leader)`, `0x00304097`, then
+  - `0x00304060` restores a ride: it attaches the leader to the chocobo (`0x002E28C0(chocobo, leader)`, `0x00304097`, then
   `0x002ECF10`; the attach below),
   reloads slot 1 with `max(+0x5AE4, 2.0)` (the floor at `0x01CEBC08`) and slot 2 with `+0x5AE8`,
-  re-applies turbo from bit 1 and sets bit 0.
+  re-applies turbo from bit `0x2` and sets bit `0x1`.
 - The ride is in the save, in the transition record ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)):
   - `0x002EF3C0` copies the whole dword `+0x5B04` into the record's `+0x28` and the ride state `+0x5AE0`-`+0x5AEF`
     into its `+0x08` (`0x002EF3D3`); `0x002EF410` writes both back;
   - when the restored ride's timer bit is set (`0x002EF45D`), `0x002EF410` also reloads slot 1 with
-    `max(+0x5AE4, 2.0)` (`0x00304790`) and slot 2 with `+0x5AE8` (`0x003047C0`), sets the riding bit and clears bit 0
+    `max(+0x5AE4, 2.0)` (`0x00304790`) and slot 2 with `+0x5AE8` (`0x003047C0`), sets the riding bit and clears bit `0x1`
     of `+0x5B04` (`0x002EF47E`-`0x002EF48C`);
-  - the restore `0x005843E0` calls `0x002EF410` only while the block's flag bit 12 is clear (`0x00236760`, tested at
+  - the restore `0x005843E0` calls `0x002EF410` only while the block's flag bit `0x1000` is clear (`0x00236760`, tested at
     `0x00584418`; the call at `0x00584423`); with the bit set it restores the second spawn-keep pair instead and clears
-    bit 1 of `+0x5B04` (`0x0058446A`), so such a load never arrives riding.
+    bit `0x2` of `+0x5B04` (`0x0058446A`), so such a load never arrives riding.
 
 ### The rider attach
 
 `0x002E28C0(mount, rider)` is `0x002E26F0(mount, rider, 15)`: the rider is tied to attach slot 15 of the mount's model.
 `0x002E26F0(parent, child, slot)` needs both actors' secondary records (`+0xC0`) and both render ids (dword `+0` of
-each, not -1, `0x002E275B`/`0x002E2764`; their low words are passed on). It detaches the child first when its secondary `+0x14F` bit 0 is set (`0x002E6B10`), sets that bit
+each, not -1, `0x002E275B`/`0x002E2764`; their low words are passed on). It detaches the child first when its secondary `+0x14F` bit `0x1` is set (`0x002E6B10`), sets that bit
 and `0x0025D540`, then:
 
-- with the child's `+0x14F` bit 2 set, it passes the child's three authored vectors to `0x0042F3B0`: secondary
+- with the child's `+0x14F` bit `0x4` set, it passes the child's three authored vectors to `0x0042F3B0`: secondary
   `+0x120` to the render record's `+0x140` (`0x00420F20`), `+0x128` to its angles `+0x120` (`0x00420CF0`) and `+0x130`
   to its scales `+0x160` (`0x00420D50`); a missing vector gives 0, 0, 0, or 1, 1, 1 for the scale;
 - otherwise `0x002EDAA0` zeroes the child record's angles and `+0x140`, then `0x0042F310` ties it;
 - both ties store the parent's render id at the child record's `+0x3CE` and the slot at `+0x3CC`, set `+0x290` bit
-  19 and clear bits 18 and 20 (`0x0042F382`-`0x0042F3A0`, `0x0042F487`-`0x0042F4A4`), a pending attachment
+  `0x80000` and clear bits `0x40000` and `0x100000` (`0x0042F382`-`0x0042F3A0`, `0x0042F487`-`0x0042F4A4`), a pending attachment
   ([character fades](../Graphics/character-fades.md), `0x0042F880`);
-- `0x0025D480` then clears the three vector pointers and bit 2, so the vectors serve one attach.
+- `0x0025D480` then clears the three vector pointers and bit `0x4`, so the vectors serve one attach.
 
 The script verb `attachinfo` (`0x0026A140`, [actor record](../Characters-And-Objects/actor-record.md)) sets the vectors for the
 next attach. The ride's path (`0x00304060` to `0x002E28C0`) sets none, and the previous attach cleared them, so the
@@ -396,7 +397,7 @@ rider sits where slot 15 of the chocobo's model puts it
 
 Slot 15 is resolved when the request service runs `0x0042F880` and `0x004215A0` on the pending tie
 ([character render records](../Graphics/character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table)).
-The tie takes the slot path because the rider's own skeleton entry has bit 7 of `+0x00` set (`0x00421649`
+The tie takes the slot path because the rider's own skeleton entry has bit `0x80` of `+0x00` set (`0x00421649`
 tests the child's entry, `0x004215CE`-`0x004215FE`; the kind-2 builder sets the bit at `0x00372CB3`); a rider
 without it would go to the named link `0x004218A0` (`0x00421838`).
 
@@ -413,7 +414,7 @@ In that file the entry is 0, so the rider's skeleton is linked to node 0, the ro
 Only an entry of `0xFFFF` would fall back to bone key `0x1E`, `n_hara`, which in `m1178` is node 1
 at (0, 1.0, 0) above the root.
 
-The slot-15 branch then sets the chocobo's `+0x284` bit 27 and the rider's bits 26 and 27, bit 6 of
+The slot-15 branch then sets the chocobo's `+0x284` bit `0x8000000` and the rider's bits `0x4000000` and `0x8000000`, bit `0x40` of
 `+0x4B7` on both, resets both presentation entries (`0x0041CFC0`), copies the 16 bytes at `0x02064AB0`
 into the rider's angles `+0x120` and runs `0x00512C80` on its `+0x650` (`0x0042177F`-`0x004217F0`).
 
@@ -449,7 +450,7 @@ Struct ChocoboRide base=[`0x02EBF190`]`+0x5AE0` size=`0x10`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | flags | bit 0 timer running, bit 1 turbo on, bits 2-3 turbo charges |
+| `+0x00` | `u32` | flags | bit `0x1` timer running, bit `0x2` turbo on, bits 2-3 turbo charges |
 | `+0x04` | `f32` | rideLeft | seconds; 180.0 at mounting (`0x00303D90`, `0x00304440`) |
 | `+0x08` | `f32` | turboLeft | seconds (`0x00303F00`, `0x00304440`) |
 | `+0x0C` | `u32` | turboArg | the last `0x00303F00` argument |
@@ -458,13 +459,13 @@ Struct RideHudRecord size=`0x34`     filled by `0x003200A0`(0, out); zeroed firs
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x04` | `u32` | flags | bit 0 riding (`0x00303EE0`), bit 1 turbo on (`0x003045F0`) |
+| `+0x04` | `u32` | flags | bit `0x1` riding (`0x00303EE0`), bit `0x2` turbo on (`0x003045F0`) |
 | `+0x08` | `void*` | chocobo | the unit of roster entry 3 in chocobo mode, else 0 (`0x00303E90`) |
 | `+0x0C` | `f32` | rideLeft | `+0x5AE4` (`0x00304660`) |
 | `+0x10` | `f32` | turboLeft | `+0x5AE8` (`0x00304670`) |
-| `+0x14` | `u32` | charges | bits 2-3 of `+0x5AE0` (`0x00304610`) |
+| `+0x14` | `u32` | charges | bits `0xC` of `+0x5AE0` (`0x00304610`) |
 | `+0x18` | `u32` | leaderRow | block byte `+0x5AA4` (`0x00304630`, `0x003271D0`) |
-| `+0x1C` | `u32` | summon | bit 0 an Esper is out (`0x003135E0`); `+0x20` to `+0x33` the summon's fields (`0x00313590`, `0x00313820`, `0x00313830`, `0x003137E0`, `0x003137F0`); when set, `+0x04` to `+0x18` stay 0 |
+| `+0x1C` | `u32` | summon | bit `0x1` an Esper is out (`0x003135E0`); `+0x20` to `+0x33` the summon's fields (`0x00313590`, `0x00313820`, `0x00313830`, `0x003137E0`, `0x003137F0`); when set, `+0x04` to `+0x18` stay 0 |
 
 Struct TimerSlot base=`0x02B5EBC0` size=`0x14` count=8     slot 1 the ride, slot 2 the dash and the summon timer:
 
@@ -485,7 +486,7 @@ Struct RideHudManager size=`0xAA0` at [`0x02B47758`]     procedure `0x003CA860`;
 | `+0x0C0` | `RideHudMarks` | the marks widget, 0x1E0 bytes, built by 0x003CB0C0; the manager reads its +0x1C8 as a | sign-extended dword at its own `+0x288` (`0x003CA8FC`) and its `+0x1D4` at `+0x294` (`0x003CA9B4`, `0x003CAA18`) |
 | `+0x2A0` | `u8[448]` | the control window 0x003CAB00: +0xC0 and +0x140 its two 0x80-byte labels |  |
 | `+0x460` | `u8[400]` | the TIME root 0x003CAE00; its +0xC0 holds the 0xD0-byte timer 0x003CA530 |  |
-| `+0x5F0` | `u8[1184]` | the Dismount dialog 0x003CA310; +0xC0 its window, closed by the hide (0x003CA988, through the | manager's `+0x6B0`); `+0x490` flags (bit 0 window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit 1 first tick pending), `+0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
+| `+0x5F0` | `u8[1184]` | the Dismount dialog 0x003CA310; +0xC0 its window, closed by the hide (0x003CA988, through the | manager's `+0x6B0`); `+0x490` flags (bit `0x1` window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit `0x2` first tick pending), `+0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
 | `+0xA90` | `u32` | bits 0-1 the request: 1 show, 2 hide, cleared when acted on |  |
 
 Struct RideHudMarks size=`0x1E0` at manager+`0xC0`     procedure `0x003CB150`:
@@ -495,7 +496,7 @@ Struct RideHudMarks size=`0x1E0` at manager+`0xC0`     procedure `0x003CB150`:
 | `+0x0C0` | `TurboMark[3]` | the three 0x58-byte mark records |  |
 | `+0x1C8` | `void*` | the field HUD layout record [0x0209AC30]+0x28, kept on message 1 (0x003CB198) |  |
 | `+0x1D0` | `u32` | the shown count, at most 3 (0x003CB3A9, 0x003CAFC1) |  |
-| `+0x1D4` | `u32` | bit 0 set up (message 16, 0x003CB1BD), bit 1 closing (message 15, 0x003CB29F) |  |
+| `+0x1D4` | `u32` | bit 0x1 set up (message 16, 0x003CB1BD), bit 0x2 closing (message 15, 0x003CB29F) |  |
 
 Struct TurboMark size=`0x58`:
 
@@ -504,7 +505,7 @@ Struct TurboMark size=`0x58`:
 | `+0x00` | `u8[32]` | alpha tween (0x002726C0 / 0x002727C0 at 0x003CAF5F / 0x003CAF6A); +0x14 i16 its value |  |
 | `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; | `+0x34` i16 its value |
 | `+0x40` | `void*` | the mark's layout item, item 3 + k of the record (0x003CB36E) |  |
-| `+0x48` | `u32` | bit 0 shown, bit 1 spent, bit 2 alpha tween running, bit 3 colour tween running |  |
+| `+0x48` | `u32` | bit 0x1 shown, bit 0x2 spent, bit 0x4 alpha tween running, bit 0x8 colour tween running |  |
 
 The timer widget keeps one field of its own, `+0xC0`, the UI tick at which the time first reached 0
 (`0x003CA653`); the control window's two labels are the only fields past its header.
@@ -552,7 +553,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 
 | Address | Kind | Role |
 |---|---|---|
-| `[0x02EBF190] + 0x5B04` | u32 | the mode bits; bit 1 riding; saved in the transition record |
+| `[0x02EBF190] + 0x5B04` | u32 | the mode bits; bit `0x2` riding; saved in the transition record |
 | `[0x02EBF190] + 0x5AE0`-`+0x5AEF` | struct | the ride state above |
 | `0x02B5EBC0` | TimerSlot[8] | slot 1 the ride, slot 2 turbo (and the summon timer) |
 | `0x022CA624` | u32 | the frame steps the ticker multiplies the step by (`0x0035E790`) |
@@ -574,11 +575,11 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - The dash length is `[0x01DFE0B8] × [0x008F8180]` (`0x00303F98`-`0x00303FA3`). Both are shared constants: `0x008F8180`
   (10.0) also scales the HUD's tenths (`0x003CA5D0`), so change the dash at the `mulss` in `0x00303F00`. The dash speed
   factor is `0x01CEBC08` (2.0), which is also the restore floor of the ride timer.
-- The three charges come from the `or 0xC` at `0x00303DC6` and `0x00306A23`; a refill needs a write of bits 2-3 of
+- The three charges come from the `or 0xC` at `0x00303DC6` and `0x00306A23`; a refill needs a write of bits `0xC` of
   `+0x5AE0`.
 - The rider's seat is the chocobo model's special-id entry 15 (`m1178.cm`, `@FCP` payload `+0x40 + 0x14C + 30`, 0 = the
   root); another node there moves the seat. `attachinfo` vectors set on the rider before the committed pass
-  (`0x002E26F0` with `+0x14F` bit 2) offset (`+0x140`) and scale (`+0x160`) it from that node; their angles are
+  (`0x002E26F0` with `+0x14F` bit `0x4`) offset (`+0x140`) and scale (`+0x160`) it from that node; their angles are
   replaced by the slot-15 branch's copy of `0x02064AB0` (`0x004217E9`).
 - A mount without a script is `0x00303D90(1)` plus flag 115; a dismount without the fade is
   `0x00303D90(0)` plus clearing the flag. The task adds the fade, the music swap and the party

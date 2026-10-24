@@ -33,7 +33,7 @@ record count at `+0x20` ([actor managers](actor-managers.md)):
    `+0x1D8`;
 4. `0x00266530(slot, block, i)` initialises every record.
 
-`0x0046BA50(m)` returns `[slot + 0x1F0]` of manager `m` (`0x00263FF0`) when the slot's `+0x10` bit 0 is set, and
+`0x0046BA50(m)` returns `[slot + 0x1F0]` of manager `m` (`0x00263FF0`) when the slot's `+0x10` bit `0x1` is set, and
 otherwise an empty table at `0x02CA6050`, whose count it zeroes; render and effect code walks records through it
 (`0x0031F607`, `0x0035E644`, `0x00465344`, `0x00465A84`).
 
@@ -58,20 +58,20 @@ wait slots 40, so the wait slots end exactly at the record's size on every row.
 
 ### The class byte
 
-Bits 5-7 of `+0x03` are the class and bits 0-4 the sequence. The movement code accepts class 3
+Bits 5-7 of `+0x03` are the class and bits `0x1F` the sequence. The movement code accepts class 3
 (`+0x03 & 0xE0 == 0x60`); the position read `0x00265020` accepts classes 1 and 3; the `setline` verb
 writes class 2 ([battle units](battle-units.md)). `0x00266BD0` seeds the flag dword `+0x1C` by
 sequence: 0 for sequence 0, `0x38` for 1 and 2, `0x40` for 3 and 4, `0x30004` for 5 and 6, `0x34C85`
-for 7, and sets `+0x14` bit 7 (battle-unit eligible) for sequences 5 and 7. A separate nibble, bits
-0-3 of `+0x0E`, is what `0x00263C20` returns as the actor class nibble.
+for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7. A separate nibble, bits
+`0xF` of `+0x0E`, is what `0x00263C20` returns as the actor class nibble.
 
 ### The initialiser
 
 `0x00266530(slot, block, i)` fills record `i` on a zeroed block:
 
-1. it clears `+0x14` bit 7, zeroes `+0xEC` and sets `+0xF5` to `0xFF`, picks the counts (8 wait
+1. it clears `+0x14` bit `0x80`, zeroes `+0xEC` and sets `+0xF5` to `0xFF`, picks the counts (8 wait
    slots and 10 resource entries, or 6 and 8 for a `sub` of 1), plants the pointers (`0x00266AD0`) and
-   seeds `+0x1C` and `+0x14` bit 7 (`0x00266BD0`);
+   seeds `+0x1C` and `+0x14` bit `0x80` (`0x00266BD0`);
 2. it writes `+0x00` = `i`, `+0x10` = 0, `+0x12` = `0xFF`, `+0x15` = the slot index, `+0x16` = 1,
    `+0x118` = `0x3C0000`, `+0x102` = `0xFFFF`, `+0x04` = `0xFF00`, `+0x20` = `0xFF`, and `+0xF8` =
    the empty string at `0x02F8F2A0`, whose own byte it writes 0;
@@ -79,10 +79,10 @@ for 7, and sets `+0x14` bit 7 (battle-unit eligible) for sequences 5 and 7. A se
    `+0x21` = 0, `+0x0A` = 0, the entry-group word `+0xF6` = 0, and zeroes `+0x28`, `+0x30`, `+0x38`,
    `+0x10C` and `+0x114`;
 4. it sets the flag bytes: `+0x14` = `(old & 0xB0) | 0x30`, `+0x0D` = `(old & 0xA2) | 0x82` and
-   `+0x08` = `(old & 0x9F) | 0x11` on manager 0 (`(old & 0x22) | 2` and `(old & 0x8F) | 1` elsewhere),
-   then `+0x0D` bit 5 and `+0x08` bit 7 cleared, `+0x0B` &= `0xC0`, `+0x0C` = `(old & 0x71) | 8` then
-   bits 4-6 cleared, `+0x09` bits 5 and 7 cleared, `+0x13` &= `0x3C`, `+0x0E` |= `0xF0` then `&= 0xF0`,
-   and for class 3 `+0x1C` bits 8 and 13 cleared;
+   `+0x08` = `(old & 0x9F) | 0x11` on manager 0 (`(old & 0x22) | 2` and `(old & 0x8F) | 1` elsewhere);
+   - then `+0x0D` bit `0x20` and `+0x08` bit `0x80` cleared, `+0x0B` &= `0xC0`, `+0x0C` = `(old & 0x71) | 8` then
+   bits 4-6 cleared, `+0x09` bits `0x20` and `0x80` cleared, `+0x13` &= `0x3C`, `+0x0E` |= `0xF0` then `&= 0xF0`,
+   and for class 3 `+0x1C` bits `0x100` and `0x2000` cleared;
 5. it binds the script entry: `+0x02` = 1, or 2 while `i` is below the payload's count word at
    `+[0x14] + 2`; `+0x40` = the entry at payload `+[0x18] + 4 + i * 0x20` (`0x30` when the payload's
    word `+0` is 8 or more); `+0x48` and `+0x50` = payload + the resolved dwords at entry `+0x10` and
@@ -109,10 +109,10 @@ for 7, and sets `+0x14` bit 7 (battle-unit eligible) for sequences 5 and 7. A se
    when the count is over 9);
 12. on channel 0 it issues the `+0x04` id (`+0xCA`, else row `+0x04` when the count is over 1), not
    counted. An id of -1 or an absent row word issues nothing;
-13. for a class-3 actor it sets `+0x1C` bit 2 from the `+0x06` id (`+0xCC`, else row `+0x06` when
-   the count is over 2), running `0x00268EA0` when `+0x0B` bit 3 is set, else clears bit 2; then bit 10
+13. for a class-3 actor it sets `+0x1C` bit `0x4` from the `+0x06` id (`+0xCC`, else row `+0x06` when
+   the count is over 2), running `0x00268EA0` when `+0x0B` bit `0x8` is set, else clears bit `0x4`; then bit `0x400`
    from the `+0x16` id (`+0xDC`, else row `+0x16` when the count is over 10) with the same call, and
-   setting bit 10 clears bit 2 again; else clears bit 10. It ends with `0x003DB280(record)`.
+   setting bit `0x400` clears bit `0x4` again; else clears bit `0x400`. It ends with `0x003DB280(record)`.
 
 ### The resource entry lists
 
@@ -141,8 +141,8 @@ walks only that channel and only when its bit in `+0x06` is set), then runs `0x0
 
 While
 `0x02099DE1` is set, `0x00269640` issues on channel 1 the `+0xC8` id (the payload row's word `+0x02`
-when `+0xC8` is `0xFFFF` and the row's count is positive) when `+0x1C` bit 0 is set, and on channel
-0 the `+0xDE` id (row word `+0x18` when the count exceeds 11) when `+0x1C` bit 11 is set, both
+when `+0xC8` is `0xFFFF` and the row's count is positive) when `+0x1C` bit `0x1` is set, and on channel
+0 the `+0xDE` id (row word `+0x18` when the count exceeds 11) when `+0x1C` bit `0x800` is set, both
 through `0x003DBB60(record, channel, id, 0, 0)`. A record whose `+0x18` is 1 issues neither.
 
 ### The handle
@@ -159,17 +159,17 @@ small accessors. Each takes the calling actor unless the row says otherwise:
 
 | Verb | Id | Accessor | What it does |
 |---|---|---|---|
-| `settargetliststatus(v)` | `0x053A` | `0x00269FC0` | `+0x0E` bit 6 = `v != 0` |
-| `setnochecktouchheightflag(v)` | `0x020F` | `0x0026BED0` | `+0x08` bit 7 = `v != 0` |
-| `fieldsign` | `0x0176` | `0x0026B480` | class 1 only: `+0x0D` bit 3 = bit 0 of the value the verb passes |
+| `settargetliststatus(v)` | `0x053A` | `0x00269FC0` | `+0x0E` bit `0x40` = `v != 0` |
+| `setnochecktouchheightflag(v)` | `0x020F` | `0x0026BED0` | `+0x08` bit `0x80` = `v != 0` |
+| `fieldsign` | `0x0176` | `0x0026B480` | class 1 only: `+0x0D` bit `0x8` = bit `0x1` of the value the verb passes |
 | `setmapjumpgroup(i)` | `0x011E` | `0x0026AD90` | stores the actor in `0x0209A210[i]`, `i` capped at 15 and a negative `i` taken as 0 |
 | `set_force_char_nearfade(v)` | `0x0552` | `0x0026AB50(1, v)` | the globals `0x02099DA4` = 1 and `0x02099DA5` = `v` |
-| `attachinfo(i, ref)` | `0x01C8` | `0x0026A140` | secondary `+0x120 + i * 8` = the address `0x002650B0` resolves `ref` to through the current slot's homes, and secondary `+0x14F` bit 2 set |
-| `setambient(r, g, b)`, `resetambient` | `0x0116`, `0x0117` | `0x0026AD40` | secondary `+0x151` bit 4 set, the colour handed to `0x0026A420`; `resetambient` passes the colour `0x00379900` returns and clears the bit again |
+| `attachinfo(i, ref)` | `0x01C8` | `0x0026A140` | secondary `+0x120 + i * 8` = the address `0x002650B0` resolves `ref` to through the current slot's homes, and secondary `+0x14F` bit `0x4` set |
+| `setambient(r, g, b)`, `resetambient` | `0x0116`, `0x0117` | `0x0026AD40` | secondary `+0x151` bit `0x10` set, the colour handed to `0x0026A420`; `resetambient` passes the colour `0x00379900` returns and clears the bit again |
 | `fetchambient`, `fetchambient_4e1(x, y, z)` | `0x04E0`, `0x04E1` | `0x0026AD40` | the same bit set, then `0x002E49B0(actor, 0)` or `0x002E49B0(actor, {x, y, z, 1.0})` |
 | `set_ignore_hitgroup(v)` | `0x0503` | `0x00269EE0` | byte `+0x119` of the collision body at secondary `+0x138` = `v` |
 | `unkCall_5d0(v)` | `0x05D0` | `0x00269F60` | through the render record the secondary context's `+0x00` names (`0x003EC200`), dword `+0x738` = `v`, with the debug print `set root bone physical` |
-| `enable_by_chocobo(v)` | `0x040A` | `0x0033F650` | `+0x0B` bit 0 = `v != 0` (`0x0033F661`-`0x0033F66A`); the bit is read only while the leader rides (below) |
+| `enable_by_chocobo(v)` | `0x040A` | `0x0033F650` | `+0x0B` bit `0x1` = `v != 0` (`0x0033F661`-`0x0033F66A`); the bit is read only while the leader rides (below) |
 
 The distance verbs `distance3d`, `distance`, `distance_290`, `distance3d_291` (`0x028E`-`0x0291`) and
 `isrange`, `isrange_296` (`0x0295`, `0x0296`) read positions through `0x00265060(actor)`, which
@@ -178,7 +178,7 @@ other actor or a null one. `0x002638F0` returns secondary `+0x140` (0 without a 
 `0x002E9BE0` the signed secondary byte `+0x13` (-1 without an actor or a context).
 
 While the leader rides a chocobo, the field leaves out every actor whose script has not called
-`enable_by_chocobo(1)`: the rider cannot talk to it, touch it or set off its trigger. Six tests read `+0x0B` bit 0,
+`enable_by_chocobo(1)`: the rider cannot talk to it, touch it or set off its trigger. Six tests read `+0x0B` bit `0x1`,
 each only when the chocobo-mode predicate `0x0037C860` (a jump to `0x00303EC0`, control-mode level 2,
 [party control modes](../Engine-Core/party-control-modes.md)) answers non-zero, and each treats an actor
 without the bit as no candidate:
@@ -192,8 +192,8 @@ without the bit as no candidate:
 
 The initialiser's `+0x0B &= 0xC0` clears the bit, so every load starts with it clear.
 
-`0x002637D0(actor, default)` returns bit 1 of the secondary byte `+0x29` when the context exists (`0x002E97B0`), its
-dword `+0x00` is not -1 and that byte's bit 0 is set, and `default` otherwise. `0x002ED530(actor)` returns
+`0x002637D0(actor, default)` returns bit `0x2` of the secondary byte `+0x29` when the context exists (`0x002E97B0`), its
+dword `+0x00` is not -1 and that byte's bit `0x1` is set, and `default` otherwise. `0x002ED530(actor)` returns
 `0x0030BEB0()` while `0x00265760()` answers non-zero and `0x002637D0(actor, 0)` otherwise; the character draw `0x004256E0`
 asks it (`0x00425B7D`, `0x00425CD1`).
 
@@ -217,11 +217,11 @@ A manager's teardown `0x002628B0` runs in two phases.
    (`0x0024CFF0`) and zeroes it.
 2. For the class-3 range it also runs `0x002693D0(record, 1)`, the per-`+0x04` teardown (`0x002E3AF0`,
    `0x003DE5F0` or `0x002E3D00` for 1, 2 or 3) and sets the `+0x04` word to `0xFF00`; then for every
-   record with `+0x14` bit 7 and a unit at `+0x30` it releases the unit (`0x00234200`) and runs
+   record with `+0x14` bit `0x80` and a unit at `+0x30` it releases the unit (`0x00234200`) and runs
    `0x002EB780`.
 3. The owning release: the block at `[slot + 0x08]` is freed with `0x003697F0`, the pointer nulled,
-   the slot's `+0x10` bit 0 and `+0x200` bit 2 cleared and `+0x13` zeroed (`0x00262D96`-`0x00262DB3`).
-4. The slot's `+0x00`, `+0x30`, `+0xE8`, `+0x1E0` and `+0x1FC` are zeroed and `+0x17` bit 3 is
+   the slot's `+0x10` bit `0x1` and `+0x200` bit `0x4` cleared and `+0x13` zeroed (`0x00262D96`-`0x00262DB3`).
+4. The slot's `+0x00`, `+0x30`, `+0xE8`, `+0x1E0` and `+0x1FC` are zeroed and `+0x17` bit `0x8` is
    cleared; the live-slot totals `0x02099DB4`/`0x02099DB8` and the flag `0x02099DA1` are recomputed over
    slots 0-2; the slot's `+0x108` callback is called once with the slot and then nulled.
 
@@ -236,21 +236,21 @@ and on slot 0 state that belongs to the field. Among its calls, in order:
 |---|---|---|
 | `0x003EC5F0` | slot 0 | calls `0x003EB6C0(i)` for `i` = 0-15, each only while `0x00377C20()` is 0 |
 | `0x003EC690` | slot 0 | releases the trap marker resource `0x02B5EC94` (`0x002EBD60(id, 0)`, `0x002E3DC0`) and zeroes it ([traps](../World-Areas-And-Travel/traps.md)) |
-| `0x003DC710` | slots 0 and 3 | each of the 16 entries of `0x14` bytes at `0x02B57F74` with state byte `+0x02` = 3, byte `+0x03` = 0 and word `+0x00` = 0 gets `+0x10` added to its dword `+0x04` (`byte +0x0F \| 0x10` when bits 4-19 come out 0), state 4, and `0x02B58170` = 1 |
+| `0x003DC710` | slots 0 and 3 | each of the 16 entries of `0x14` bytes at `0x02B57F74` with state byte `+0x02` = 3, byte `+0x03` = 0 and word `+0x00` = 0 gets `+0x10` added to its dword `+0x04` (`byte +0x0F \| 0x10` when bits `0xFFFF0` come out 0), state 4, and `0x02B58170` = 1 |
 | `0x003605A0(slot)` | a bound slot | the slot's eight skip entries at `0x022CB730 + slot * 0x80` (byte `+0` = index, `+1` = slot, `+2` and qword `+8` = 0) and its armed and executed masks `0x022CB9C0` and `0x022CB9D8` ([cutscenes](../Scripts-And-Script-Commands/event-scenes.md)) |
 | `0x003E9970(slot)` | a bound slot | stops (`0x003E98B0(i)`) each of the 64 voice slots at `0x02B5D0B0` whose byte `+0x05` is the slot ([voices](../Sound-And-Music/voices.md)) |
 | `0x003B6C20` | a bound slot | the summon group's requested count `0x02EBCC60`, its 32 handles at `0x02EBCBE0`, the unique count `0x02EBCBC0`, the leader handle `0x02EBCC70`, the 32 bytes `0x02EBCA80`-`0x02EBCA9F` and the dword `0x02EBCAA0` |
 | `0x003DEE10(slot)` | a bound slot, twice | the slot's eight event-sound entries at `0x02B59360 + (slot * 8 + i) * 0x38`, below |
-| `0x0036DE70(slot)` | a bound slot | each of the 32 script effect slots at `0x022D94B0` whose byte `+0x08` is the slot and whose word `+0x04` has a bit other than bit 2 gets word `+0x04` = 4 and, when `0x003B24C0` returns 0 for its handle `+0x00`, `0x003B18E0(handle)` ([native commands](../Scripts-And-Script-Commands/native-commands.md)) |
-| `0x0036E080(slot)` | a bound slot | zeroes every dword of the three 64-dword tables `0x022D97B0`, `0x022D98B0` and `0x022D99B0` whose bits 16-19 are the slot |
-| `0x003E91D0` | a bound slot | when slot `+0xB8` is set: `0x002A7A40(slot +0xC0)` clears bit 0 of `0x0209C510 + i * 0x20` and runs `0x0024A680(qword 0x0209C518 + i * 0x20, 0)`; then `+0xB8` = 0 |
+| `0x0036DE70(slot)` | a bound slot | each of the 32 script effect slots at `0x022D94B0` whose byte `+0x08` is the slot and whose word `+0x04` has a bit other than bit `0x4` gets word `+0x04` = 4 and, when `0x003B24C0` returns 0 for its handle `+0x00`, `0x003B18E0(handle)` ([native commands](../Scripts-And-Script-Commands/native-commands.md)) |
+| `0x0036E080(slot)` | a bound slot | zeroes every dword of the three 64-dword tables `0x022D97B0`, `0x022D98B0` and `0x022D99B0` whose bits `0xF0000` are the slot |
+| `0x003E91D0` | a bound slot | when slot `+0xB8` is set: `0x002A7A40(slot +0xC0)` clears bit `0x1` of `0x0209C510 + i * 0x20` and runs `0x0024A680(qword 0x0209C518 + i * 0x20, 0)`; then `+0xB8` = 0 |
 | `0x002E2300(0)` | a bound slot | jumps to the `ret` stub `0x0016D6A0` |
-| `0x00368AA0(3, 1)` | slot 0 | clears bit 3 of `0x02EC0B39` (`0x00368AA0(bit, on)` clears the bit for a non-zero `on` and sets it otherwise; the movie verbs and `setflickerfreemode` also call it) |
+| `0x00368AA0(3, 1)` | slot 0 | clears bit `0x8` of `0x02EC0B39` (`0x00368AA0(bit, on)` clears the bit for a non-zero `on` and sets it otherwise; the movie verbs and `setflickerfreemode` also call it) |
 | direct stores | slot 0 | `0x02099DA4` and `0x02099DA5`, the pair `set_force_char_nearfade` writes, = 0 |
 | `0x003EBD70` | slot 0 | `0x02B5EC60` = 0, frees the block `0x02B5EC68` and zeroes `0x02B5EC70`-`0x02B5EC8F` |
 | `0x003604D0` | slot 0, when `0x003603C0()` is non-zero | every slot's skip entries and masks, as `0x003605A0` does for one, and `0x022CB9BC` = 0 |
 | `0x0025A280(2, 0)` | slot 0 | dword `0x020973F0 + 2 * 0x110 + 4` = 0 and, when it was not 0, dword `0x02098570 + 4` = 0 |
-| `0x002E63D0` | slot 0 | the keep bit 4 of `+0x19` in all 128 binding entries ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) |
+| `0x002E63D0` | slot 0 | the keep bit `0x10` of `+0x19` in all 128 binding entries ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) |
 | `0x003EA200` | slot 0 | with the expanded voice memory `0x02B5E0B0` held: stops each voice slot whose byte `+0x07` is 12 and whose state byte `+0x04` is 2, 3 or 4 (`0x0032E520(0)` first for 2 and 4), runs `0x0036D160(0xC)` and frees the block |
 | `0x003E9100` | slot 0 | `0x00408200` when `0x02B5D090` is set, then `0x02B5D090` = 0 |
 | `0x002E1630` | slot 0 | returns -1 when `0x00290180()` is 0, 1 when it is 2 and 0 otherwise; a non-zero value triggers a checked indirect call |
@@ -267,7 +267,7 @@ entry in state 1 to `0x003DEFC0`.
 
 `0x0035AB50(slot)`, with that slot made current, walks the list of `{name, mask}` pairs the payload's
 dword `+0x80` names: for each name that resolves to a binding entry it clears the entry's `+0x19`
-bit 0 and, for each bit `i` from 1 to 31 set in the mask, releases the hold on lane `i` and then on
+bit `0x1` and, for each bit `i` from 1 to 31 set in the mask, releases the hold on lane `i` and then on
 lane 0 (`0x002ECAB0(id, i, 0)`, `0x002ECAB0(id, 0, 0)`).
 
 The teardown always passes slot 0 to `0x0035AB50`, after the
@@ -287,18 +287,18 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x003` | `u8` | classAndSequence bits 5-7 class, bits 0-4 sequence |  |
 | `+0x004` | `u16` | definitionState | `0xFF00` at init and at release |
 | `+0x006` | `u16` | channelActiveMask |  |
-| `+0x008` | `u8` | flags08 | bit 6 set by the field runtime's roster and record loops |
+| `+0x008` | `u8` | flags08 | bit `0x40` set by the field runtime's roster and record loops |
 | `+0x00A` | `u8` | field0A | 0 at init |
 | `+0x009` | `u8` | flags09 |  |
-| `+0x00B` | `u8` | flags0B | bit 0 usable while riding (enable_by_chocobo, `0x0033F650`) |
-| `+0x00C` | `u8` | flags0C | bit 0 the wait resolver's id match |
-| `+0x00D` | `u8` | flags0D | bit 6 set while the `+0x38` callback runs |
-| `+0x00E` | `u8` | flags0E | bits 0-3 the class nibble (`0x00263C20`): 4 class 1, 5 class 3 (`0x00265FF0`) |
+| `+0x00B` | `u8` | flags0B | bit `0x1` usable while riding (enable_by_chocobo, `0x0033F650`) |
+| `+0x00C` | `u8` | flags0C | bit `0x1` the wait resolver's id match |
+| `+0x00D` | `u8` | flags0D | bit `0x40` set while the `+0x38` callback runs |
+| `+0x00E` | `u8` | flags0E | bits `0xF` the class nibble (`0x00263C20`): 4 class 1, 5 class 3 (`0x00265FF0`) |
 | `+0x010` | `u8` | pendingRequests | resource requests the initialiser issued; 0 = idle for the field runtime |
 | `+0x011` | `i8` | currentWaitSlot |  |
 | `+0x012` | `u8` | slotTag | `0xFF`, or the entry's tag |
 | `+0x013` | `u8` | flags13 |  |
-| `+0x014` | `u8` | flags14 | bit 4 drive the battle unit, bit 6 settled, bit 7 battle-unit eligible |
+| `+0x014` | `u8` | flags14 | bit `0x10` drive the battle unit, bit `0x40` settled, bit `0x80` battle-unit eligible |
 | `+0x015` | `u8` | managerIndex |  |
 | `+0x016` | `u16` | discriminator | 1 at init |
 | `+0x01C` | `u32` | flags1C | seeded by sequence (`0x00266BD0`) |

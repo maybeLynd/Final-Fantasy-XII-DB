@@ -95,15 +95,15 @@ the 19 touch, motion and vision-tracker classes is `0x0016D6A0`; the key, joypad
 
 ### Counted buffers with an ownership bit
 
-Many records hold an array as two fields: a 32-bit count whose bit 31 marks storage the record
-does not own, and a pointer. The release helpers free the pointer through `0x00584730` only when bit 31
+Many records hold an array as two fields: a 32-bit count whose bit `0x80000000` marks storage the record
+does not own, and a pointer. The release helpers free the pointer through `0x00584730` only when bit `0x80000000`
 is clear and then zero both fields (`0x005DD620`, `0x00597B00`). A replace frees the old pointer under the
-same test before storing the new one (`0x00672990`). `0x005CA130` stores a borrowed pointer and sets bit 31
+same test before storing the new one (`0x00672990`). `0x005CA130` stores a borrowed pointer and sets bit `0x80000000`
 with the count.
 
 In some records a count of 0 or 1 keeps the element inline in the pointer field: `0x00627750` and the
 accessor `0x00623F50` use the field itself as the element when `count & 0x7FFFFFFF` is below 2, and
-dereference it otherwise. A tagged-pointer variant marks borrowed storage with bit 0 of the pointer
+dereference it otherwise. A tagged-pointer variant marks borrowed storage with bit `0x1` of the pointer
 instead (`0x005A17A0`).
 
 ### Allocator-owned containers
@@ -156,7 +156,7 @@ Counted buffer, 16 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | count | bits 0..30 element count, bit 31 storage not owned |
+| `+0x00` | `u32` | count | bits 0..30 element count, bit `0x80000000` storage not owned |
 | `+0x08` | `u64` | data | pointer; the element itself when the count is below 2 (inline form) |
 
 PInputSource vtable, `0x20` bytes per class from `0x01CD6260`; the u64 at `-0x08` is the RTTI complete-object locator:
@@ -207,7 +207,7 @@ compiler and library forms by function address; each was profiled against the im
 - An object built by the game must be freed by the deallocator its destructor names. Memory from
   another heap passed to `0x00584730` or `0x00809950` corrupts the runtime heap.
 - To find a class's size, read the `edx` value its destructor passes to the deallocator.
-- A counted buffer whose bit 31 is set is not freed by the game; set it when a record should point at
+- A counted buffer whose bit `0x80000000` is set is not freed by the game; set it when a record should point at
   memory the game must not release.
 
 ## Related

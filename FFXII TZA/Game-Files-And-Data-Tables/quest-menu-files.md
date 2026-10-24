@@ -75,9 +75,9 @@ The quest data widget is the `0x5F0`-byte widget at `0x02AED490` with procedure 
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0037F4D0` |
 | `+0x0C0` | `void*` | owner | the widget told when files are ready: 0 on creation, then the creation record's `+0x08` (`0x0037F66C`, `0x0037F6C7`-`0x0037F6CB`); `0x0037E4F0` keeps the closing owner here (`0x0037E53D`); `0x0037F340` and `0x0037F1F0` send it {`0x10`, 8} (`0x0037F358`, `0x0037F211`); destroy sends it {`0x10`, 9} (`0x0037F59C`-`0x0037F5CB`); the menuquest.nfs request names it (`0x0037F563`) |
 | `+0x0C8` | `void*` | questTable | menuquest.dat, kind-7 resource `0x128`, always requested on creation (`0x0037F72A`-`0x0037F750`); `0x0037FD50` finds a quest's group and position in it (`0x0037FD67`-`0x0037FDC4`); freed by `0x0037FA00` |
-| `+0x0D0` | `void*` | questList | menuquest.lst, kind-7 resource `0x13A`, requested when `+0xE0` bit 4 is set (`0x0037F745`-`0x0037F778`); `0x0037E5B0` and `0x0037EFC0` read the threshold and petitioner line from it (`0x0037E65F`, `0x0037E6BC`, `0x0037EFCB`); `0x0037F860` frees it and clears this (`0x0037F8A9`-`0x0037F8BA`) |
+| `+0x0D0` | `void*` | questList | menuquest.lst, kind-7 resource `0x13A`, requested when `+0xE0` bit `0x10` is set (`0x0037F745`-`0x0037F778`); `0x0037E5B0` and `0x0037EFC0` read the threshold and petitioner line from it (`0x0037E65F`, `0x0037E6BC`, `0x0037EFCB`); `0x0037F860` frees it and clears this (`0x0037F8A9`-`0x0037F8BA`) |
 | `+0x0D8` | `void*` | nameSheet | menuquest.nfs, kept by `0x0037F1F0` when it arrives and registered as glyph sheet 5 (`0x0037F2B2`-`0x0037F2C3`); `0x0037EB70` returns it (`0x0037EB7D`); `0x003800D0` tests it (`0x003800F2`); `0x0037F860` unregisters it (`0x0037F8C5`) |
-| `+0x0E0` | `u32` | flags | bits 0-4 and 7-9 cleared on creation (`0x0037F62B`). Bit 0: ready, set by `0x0037F340` with `+0xE5` = 2 (`0x0037F389`). Bits 1-4: creation bytes 0-3 (`0x0037F678`-`0x0037F6C1`): bit 1 request menuquest.nfs after the first load (`0x0037F54C`-`0x0037F574`), bit 2 read by no function, bit 3 load resource group `0x15` (`0x0037F70D`-`0x0037F71E`), bit 4 load menuquest.lst (`0x0037F745`). Bits 5 and 6 cleared on creation (`0x0037F6D2`). Bit 5: the first load has arrived (`0x0037F532`-`0x0037F546`). Bit 6: group `0x15` was requested (`0x0037F723`); `0x0037F860` releases it and clears the bit (`0x0037F88D`-`0x0037F8A1`). Bit 7: busy: set while `0x0037E350` works (`0x0037E3BE`, `0x0037E46F`) and by `0x003800A0` (`0x003800AC`-`0x003800BC`); `0x0037F160` returns it and `0x0037E4F0` then answers at once. Bits 8 and 9: the selected quest's QHD0 and QHT0 chunks are published (`0x0037FEF5`-`0x0037FF5F`); cleared on creation (`0x0037F6E5`, `0x0037F703`) and by `0x0037F860` (`0x0037F8EC`, `0x0037F902`); `0x0037EB90` and `0x0037EC70` test bit 8 (`0x0037EBC3`, `0x0037ECB4`), `0x0037F140` returns bit 9 |
+| `+0x0E0` | `u32` | flags | bits 0-4 and 7-9 cleared on creation (`0x0037F62B`). Bit `0x1`: ready, set by `0x0037F340` with `+0xE5` = 2 (`0x0037F389`). Bits 1-4: creation bytes 0-3 (`0x0037F678`-`0x0037F6C1`): bit `0x2` request menuquest.nfs after the first load (`0x0037F54C`-`0x0037F574`), bit `0x4` read by no function, bit `0x8` load resource group `0x15` (`0x0037F70D`-`0x0037F71E`), bit `0x10` load menuquest.lst (`0x0037F745`). Bits `0x20` and `0x40` cleared on creation (`0x0037F6D2`). Bit `0x20`: the first load has arrived (`0x0037F532`-`0x0037F546`). Bit `0x40`: group `0x15` was requested (`0x0037F723`); `0x0037F860` releases it and clears the bit (`0x0037F88D`-`0x0037F8A1`). Bit `0x80`: busy: set while `0x0037E350` works (`0x0037E3BE`, `0x0037E46F`) and by `0x003800A0` (`0x003800AC`-`0x003800BC`); `0x0037F160` returns it and `0x0037E4F0` then answers at once. Bits `0x100` and `0x200`: the selected quest's QHD0 and QHT0 chunks are published (`0x0037FEF5`-`0x0037FF5F`); cleared on creation (`0x0037F6E5`, `0x0037F703`) and by `0x0037F860` (`0x0037F8EC`, `0x0037F902`); `0x0037EB90` and `0x0037EC70` test bit `0x100` (`0x0037EBC3`, `0x0037ECB4`), `0x0037F140` returns bit `0x200` |
 | `+0x0E4` | `u8[1]` | gap0E4 | read and written by no function; nothing fixes its width |
 | `+0x0E5` | `u8` | stage | 0 on creation (`0x0037F650`); 1 when the first load arrives (`0x0037F53F`); 2 ready (`0x0037F390`); 3 closing without a close request and 4 closing with one, set by `0x0037E4F0` (`0x0037E594`, `0x0037E548`). At 3 the procedure retries `0x0037F860` and destroys the widget when it succeeds (`0x0037F583`-`0x0037F5D0`); destroy frees the files except at 3 (`0x0037F50B`); `0x0037F1F0`, `0x0037FBA0` and `0x0037FFD0` wait while it is 0 (`0x0037F205`, `0x0037FC75`, `0x0037FFF2`) |
 | `+0x0E6` | `u8` | group | the selected quest's group, the record's byte `+0x10`, stored by `0x0037FD50` (`0x0037FDDD`), or the group `0x0037FE40` is asked for (`0x0037FE64`); `0xFF` on creation (`0x0037F63D`); `0x0037E8D0` finds the group's file by it (`0x0037E90A`) |
@@ -174,7 +174,7 @@ Both chunks start the same way:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "QHD0" or "QHT0"; the readers ignore it |
-| `+0x04` | `u32` | count | entries; bit 31 is set once the offsets are made addresses |
+| `+0x04` | `u32` | count | entries; bit `0x80000000` is set once the offsets are made addresses |
 | `+0x08` | `u32` | entryAt[count] | offset of each entry from the chunk |
 
 A `QHD0` entry, read by `0x00473BB0(entry, step, progress)`:
@@ -256,9 +256,9 @@ state byte (1 loaded, 2 loading, 3 dropped on arrival) and the buffer at `+0x10`
   every listed buffer and empties the list.
 - `0x0037F340(widget)` sends `{0x10, 8}` to the owner's handler at `+0xC0`, then sets bit `0x1` of `+0xE0`
   and `+0xE5` = 2. `0x0037F190(owner, entry)` sends `{0x10, entry byte 1, its word +4 when that byte is 2}`.
-- `0x0037F050()` answers whether no quest data widget exists, and `0x0037F160()` returns `+0xE0` bit 7, or 0
+- `0x0037F050()` answers whether no quest data widget exists, and `0x0037F160()` returns `+0xE0` bit `0x80`, or 0
   with none; the map-data widget's `0x003BBFB0` reads both.
-- `0x0037E4F0(owner)` closes the widget for an owner. While `+0xE0` bit 7 is set it sends `{0x10, 10}` to the
+- `0x0037E4F0(owner)` closes the widget for an owner. While `+0xE0` bit `0x80` is set it sends `{0x10, 10}` to the
   owner at once. Otherwise it unregisters the glyph sheet (`0x0037F860`), keeps the owner at `+0xC0` and sets
   `+0xE5` to 3 when that returns 0, or to 4 with a close request (`0x00244F00`) and `{0x10, 9}` to the owner.
   With no widget the owner gets `{0x10, 9}`. `0x0037E350`, `0x003F4E70` and `0x00579420` call it.
@@ -296,7 +296,7 @@ The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B
 Whenever the selected quest's group file is ready (`0x0037F1F0`, `0x0037FBA0`), `0x0037FEA0` takes the quest's
 `QHD0` chunk at `sectionAt[3] + item[3]` and its `QHT0` chunk at `sectionAt[4] + item[4]`. `0x00473D50`
 and `0x00473DB0` publish them at `0x02CA6C68` and `0x02CA6C70` and, the first time, add the chunk's address to
-each `entryAt` and set bit 31 of `count`. Widget bits `0x100` and `0x200` say whether each chunk is set. `0x0037F140()` returns bit `0x200`, or 0
+each `entryAt` and set bit `0x80000000` of `count`. Widget bits `0x100` and `0x200` say whether each chunk is set. `0x0037F140()` returns bit `0x200`, or 0
 when no widget exists; the map-data widget's procedure `0x003BC4E0` reads it.
 
 - `0x00473BB0` reads step `j` of entry 0 and tests bit `min(progress / 5, 50)` of `shown` and `labelled`.
@@ -329,7 +329,7 @@ The chunk address is formed with a 32-bit addition (`0x0037FED9`-`0x0037FEDE`), 
   Only 12 parts are read.
 - The progress row has 52 values in steps of 5 of the progress byte; values past 50 for the map bits are
   read as step 50.
-- The map chunks are rebased in place once per loaded buffer; ship them with bit 31 of `count` clear, or
+- The map chunks are rebased in place once per loaded buffer; ship them with bit `0x80000000` of `count` clear, or
   their offsets are used as addresses.
 - A new group file needs a group number below 16, whose path is already in the array, and an entry in the
   size table ([File size tables](file-size-tables-fst.md)). Group 16 would request `menuquest.lst` (`0x13A`).

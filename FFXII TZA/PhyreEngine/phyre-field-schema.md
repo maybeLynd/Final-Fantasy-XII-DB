@@ -66,7 +66,7 @@ w4  attribute word; bit 0x80000000 marks a counted buffer (PArray<T>::m_els, PSh
 w5  element count of a fixed-size array, otherwise 0
 ```
 
-The attribute word in `w4`, with bit 31 masked off, is the run-time member's attribute word: bit
+The attribute word in `w4`, with bit `0x80000000` masked off, is the run-time member's attribute word: bit
 `0x2` a pointer, `0x4` a dynamic-type helper, `0x20` an enum, `0x40` an inline counted buffer, and
 the per-class bits `0x08` and `0x10`.
 
@@ -561,7 +561,7 @@ the instances (`0x0059E300`).
 - a member in the file but not in the executable, or the reverse;
 - a member whose type changed;
 - a member whose attribute word differs (run-time word without bit `0x1` against `w4` without bit
-  31);
+  `0x80000000`);
 - a fixed-size array whose element count differs from `w5`.
 
 None of these stops the load.
@@ -595,7 +595,7 @@ shipped file sets the flag.
   member's type and width (`w3`) equal to the registered ones, or its data is dropped.
 - Setting `w7` bit `0x1` on a class the executable does not have makes the loader build it from the
   file's members, under a parent that is concrete and has a default constructor.
-- The attribute word in a file must equal the registered one apart from bit 31; a different word
+- The attribute word in a file must equal the registered one apart from bit `0x80000000`; a different word
   only logs a message.
 
 ## Related

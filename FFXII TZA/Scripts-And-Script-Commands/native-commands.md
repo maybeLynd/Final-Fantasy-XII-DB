@@ -122,7 +122,7 @@ so one signal releases one waiter. Neither poll reads the skip mask.
 `0x0026BE50(n, 1)` and, when the handle is a script effect handle, the same bit in that effect slot's
 own signal bytes. The motion signals have one writer, `0x002E7080`, which `0x002EA320` (run by the boot `0x00266D10`) and `0x002EA5F0` (run by `0x002368D0`)
 install as entry `0x26` of the motion callback table `0x02CA4410` (`0x0041D6C0` stores it): it calls
-`0x0026BE90(0, 1)`, so a motion only ever raises bit 0.
+`0x0026BE90(0, 1)`, so a motion only ever raises bit `0x1`.
 
 `effectsignalsync(slot, n)` (`0x026A`) waits on one effect slot's bytes instead. Its begin
 `0x00354CB0` pops `n` and the slot and stores the slot's handle, the first dword of record `0x022D94B0
@@ -131,7 +131,7 @@ The poll `0x00355160` finishes at once on a zero handle and otherwise keeps the 
 `0x0036DFC0(handle, n)` returns 0 and the issuer's manager has a clear skip mask.
 
 `0x0036DFC0` decodes the slot with `0x003B24A0`, which accepts only a handle whose top nibble is 7 and
-takes the slot from bits 6 to 11 (any other handle returns 1 at once). It then tests bit `n` of
+takes the slot from bits `0xFC0` (any other handle returns 1 at once). It then tests bit `n` of
 the bytes at `+0x10` of that slot's record, and returns 1 and clears the bit only when it is set.
 
 ### The skip mask

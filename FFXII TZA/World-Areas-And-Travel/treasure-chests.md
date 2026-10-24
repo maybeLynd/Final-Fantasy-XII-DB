@@ -48,7 +48,7 @@ and its talk function runs the opening sequence that
 
 `ref` is a packed reference taken from the script's int pool (`PUSHI`):
 
-- the resolver `0x002650B0` switches on bits 24-26 through the table at `0x00265180`;
+- the resolver `0x002650B0` switches on bits `0x7000000` through the table at `0x00265180`;
 - every shipped chest uses tag 3, which `0x00265155` resolves to the image plus the image's msp-area offset (header
   `+0x40`) plus the low 24 bits ([section 000 of the script container](../EBP-Script-Files/ebp-script-image.md));
 - `setuptreasure`'s begin `0x00354400` resolves it at `0x0035444C` and the payout verb's begin `0x0050FAF0` at
@@ -106,7 +106,7 @@ Opening runs `0x002FAFD0` from `btlAtelOpenTreasureMessage`:
    (`0x003272A0`) exists, holds none of KO, Stone and X-Zone (`0x80000003` in its status words `+0x64 | +0x3C`,
    [statuses](../Status-Effects-And-KO/statuses.md)) and has augment 25, Treasure Hunter, in either augment
    layer (bit `0x2` of `+0x6B` or `+0x7B`, [augments](../Damage-And-Battle-Formulas/augments.md)).
-4. Gil: the word `+0x16` with Treasure Hunter, `+0x14` without. With bit 6 of `+0x08` the amount is
+4. Gil: the word `+0x16` with Treasure Hunter, `+0x14` without. With bit `0x40` of `+0x08` the amount is
    `draw % word + 1`, from 1 to the word (`0x002FB082`-`0x002FB090`); otherwise it is the word. A word of 0 gives
    nothing.
 5. Item: a second draw `% 100`. With Treasure Hunter, below 95 gives `+0x10`, otherwise `+0x12`; without it, below
@@ -170,7 +170,7 @@ Struct ChestRecord base=mspArea+refOffset size=`0x18`:
 | `+0x01` | `u8[3]` | zero | 0 in every shipped record |
 | `+0x04` | `i16` | x | tenths of a world unit (`0x002FAF60`) |
 | `+0x06` | `i16` | z | tenths of a world unit; the record holds no height |
-| `+0x08` | `u8` | facingFlags | bits 0-5 facing in 6-degree steps; bit 6 random gil (`0x002FB07C`); bit 7 0 in every record |
+| `+0x08` | `u8` | facingFlags | bits 0-5 facing in 6-degree steps; bit `0x40` random gil (`0x002FB07C`); bit `0x80` 0 in every record |
 | `+0x09` | `u8` | flagId | opened flag, set on opening and tested at placement; `0xFF` = none (`0x002FAEE2`, `0x002FAFEA`) |
 | `+0x0A` | `u8` | presence | percent; draw % 100 below it places the chest (`0x002FAF0D`) |
 | `+0x0B` | `u8` | gilChance | percent; draw % 100 below it gives gil, otherwise an item (`0x002FB036`) |
@@ -178,7 +178,7 @@ Struct ChestRecord base=mspArea+refOffset size=`0x18`:
 | `+0x0E` | `u16` | item2 | given otherwise (`0x002FB109`) |
 | `+0x10` | `u16` | thItem1 | with Treasure Hunter, given below 95 (`0x002FB0F2`) |
 | `+0x12` | `u16` | thItem2 | with Treasure Hunter, given otherwise (`0x002FB0F8`) |
-| `+0x14` | `u16` | gil | the amount, or its upper bound with bit 6 of `+0x08`; 0 = nothing (`0x002FB06F`) |
+| `+0x14` | `u16` | gil | the amount, or its upper bound with bit `0x40` of `+0x08`; 0 = nothing (`0x002FB06F`) |
 | `+0x16` | `u16` | thGil | the same with Treasure Hunter (`0x002FB069`) |
 
 Struct PresenceLedger base=`0x02EC3E60` size=`0x2C`:
@@ -226,7 +226,7 @@ there, with a fixed consumable).
 | `presence` | `+0x0A`, the percent chance the chest is there each time it is set out |
 | `gil_chance` | `+0x0B`, the percent chance an opening gives gil instead of an item |
 | `item_1`, `item_1_name`, `item_2`, `item_2_name` | `+0x0C` and `+0x0E` and their names: the two items without Treasure Hunter, 50% each of the item share |
-| `gil`, `random_gil` | `+0x14`, and `yes` when bit 6 of `+0x08` makes the amount 1 to that many |
+| `gil`, `random_gil` | `+0x14`, and `yes` when bit `0x40` of `+0x08` makes the amount 1 to that many |
 | `th_item_1`, `th_item_1_name`, `th_item_2`, `th_item_2_name`, `th_gil` | `+0x10`, `+0x12` and `+0x16`: the same with Treasure Hunter, the items 95% and 5% of the item share |
 | `contents` | every possible content of an opening without Treasure Hunter, with its odds |
 | `contents_treasure_hunter` | the same with Treasure Hunter on the leader, or `the same` |
@@ -294,7 +294,7 @@ copies of the 385 scripts hold the same records byte for byte.
 | always there (presence 100) | 531 (507 on maps) |
 | presence below 50 | 256 on maps; the lowest is 1, in 21 chests (16 of them in `bts_z01`) |
 | never gil (gil chance 0) | 580; always gil (100): 13 |
-| random gil amount (bit 6) | 1,875; fixed amount 91; the largest word 65,000 |
+| random gil amount (bit `0x40`) | 1,875; fixed amount 91; the largest word 65,000 |
 | contents different with Treasure Hunter | 1,663 (1,647 on maps); the same in 303 |
 
 Presence over all 1,966: 1 (21), 2 (5), 3 (3), 5 (21), 10 (32), 15 (2), 20 (90), 25 (19), 30 (32), 35 (25),
@@ -348,7 +348,7 @@ The 35 pieces of equipment chests give only with Treasure Hunter:
   `0xFF`.
 - Chances are whole percents per record. To make the Treasure Hunter items an even split, the 95/5 constant in
   `0x002FB0ED` has to change; the record cannot say it.
-- Clearing bit 6 of `+0x08` makes the gil amount exact.
+- Clearing bit `0x40` of `+0x08` makes the gil amount exact.
 
 ## Related
 

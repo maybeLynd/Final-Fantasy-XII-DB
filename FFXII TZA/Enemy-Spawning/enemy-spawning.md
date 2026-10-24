@@ -40,7 +40,7 @@ record](spawn-record-fields.md); its back-pointer is unit `+0x6A0`.
 Verb `0x3016` `btlAtelSetTotalEntryNumber` (`0x00510620`) resolves its scope-3 operand to a pointer
 into the script's data area and jumps to `0x0023A2E0(actor, map)`, which stores the map at unit
 `+0x40` and, for every mapped record with flags `& 5 == 0` (neither retired nor released), writes
-`+0x16` = `0xFF`, clears flag bits 0, 2 and 7, zeroes `+0x78`-`+0x7C` and restores the persistence
+`+0x16` = `0xFF`, clears flag bits `0x1`, `0x4` and `0x80`, zeroes `+0x78`-`+0x7C` and restores the persistence
 key `+0x17` from `+0x18`.
 
 Verb `0x3018` `btlAtelSetEntryStruct` (`0x005106D0`) resolves its operand the same way and jumps to
@@ -68,7 +68,7 @@ the handler of verb `0x3053` `btlAtelSetupActorStart`. Verb `0x300B` `btlAtelSet
 `0x02089368`, `0x02089364` and `0x02089360`, so in a script the arguments read `(min, max, retire)`.
 
 `0x00308D90` counts, over the `0x00236850()` battle-unit slots through `0x00236820`, the units whose flag
-word has bit 21, the bit the bind sets; verb `0x3050` returns
+word has bit `0x200000`, the bit the bind sets; verb `0x3050` returns
 it and `0x304F` the cap byte.
 
 A zone that never runs the reset has every float at 0: the candidate generator refuses an empty
@@ -86,8 +86,8 @@ result: the winning lane, or -1. The selector:
 3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (lane 0 is never offered; a
    lane past the lane map's own count is skipped). A lane is skipped when its record has
    died out (`+0x0A` non-zero and `+0x08 >= +0x0A`), or is committed and not retired (flag bit 1 set,
-   bit 0 clear) with a non-zero cooldown `+0x10` and `seconds - +0x0C < +0x10` unsigned;
-4. sets the minimum distance to `0x02089360` when the unit's flag word has bit 45 or bit 49
+   bit `0x1` clear) with a non-zero cooldown `+0x10` and `seconds - +0x0C < +0x10` unsigned;
+4. sets the minimum distance to `0x02089360` when the unit's flag word has bit `0x200000000000` or bit `0x2000000000000`
    (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`), else 0.0;
 5. for each candidate id of the lane (the table's words from `table[1 + lane]` to
    `table[2 + lane] - 1`, a short; `0x00FF` is the sentinel, `0x00235919`-`0x00235925`, and a -1 is passed
@@ -98,11 +98,11 @@ result: the winning lane, or -1. The selector:
 7. a hit records the lane and the position, and both loops run on, so the last accepted candidate
    of the highest accepting lane wins;
 8. on a win it stores the position at the record's `+0x50` and `+0x60` as whole 16-byte moves
-   (`0x00235A08`, `0x00235A0F`), sets unit flag bit 26 and returns the lane.
+   (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` and returns the lane.
 
-Bit 49 is set once per unit by the activation `0x00233AD0` (`0x00233B8C`) and never cleared, not even by
+Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0` (`0x00233B8C`) and never cleared, not even by
 the unit reset `0x00236A60` (mask `0xFFFF7FFDFFE7FFFD`, [battle units](../Characters-And-Objects/battle-units.md));
-bit 45 is set by verb `0x304D` `btlAtelCanselInitialSpawnFlag` (`0x005102D0`), which the zone scripts
+bit `0x200000000000` is set by verb `0x304D` `btlAtelCanselInitialSpawnFlag` (`0x005102D0`), which the zone scripts
 call on the fresh-placement branch. So the minimum applies to a monster that has lived once or
 that the script declared not an arrival placement.
 
@@ -114,8 +114,8 @@ failure; `0x003DFD00(0, id, rec)`) and copies the record's point at `+0x10` into
 further test, so a 0 return can leave that point in the caller's buffer (the selector ignores it).
 
 It needs the
-party leader (`0x003272A0`: the focus handle's unit, with `0x02089340` bit 4 set and the unit's flag
-bit 3), takes the leader's position (`0x00265020`) and heading (`0x00265200`), and branches on the
+party leader (`0x003272A0`: the focus handle's unit, with `0x02089340` bit `0x10` set and the unit's flag
+bit `0x8`), takes the leader's position (`0x00265020`) and heading (`0x00265200`), and branches on the
 record's first byte:
 
 - byte 0: point mode. The authored point stands. `0x0031AC90` gives the heading from the leader to
@@ -158,27 +158,27 @@ steering. `0x00308040` is the other caller, with `allSlots` = 1 and a minimum on
 
 ### Bringing a banked monster back
 
-Two selectors look for a record the keep banks preserved. Both set unit flag bit 26 on success:
+Two selectors look for a record the keep banks preserved. Both set unit flag bit `0x4000000` on success:
 
 - verb `0x304B` `btlAtelDecideEntryGroupByPreviousMap` (`0x00510230`) calls `0x002354F0`, which walks
-  the lane map from lane 0 and returns the first lane whose record has flag bit 2 (released), or -1;
+  the lane map from lane 0 and returns the first lane whose record has flag bit `0x4` (released), or -1;
 - verb `0x305F` `btlAtelDecideEntryGroupByContinuous` (`0x00510260`) calls `0x00235360`, which, for each
   mapped record with a non-zero key `+0x17`, scans the 64 history-bank records for one with flag bit
-  1 set, bit 0 or 2 set and the same key, and copies that whole `0x250`-byte record over the live
+  `0x2` set, bit `0x1` or `0x4` set and the same key, and copies that whole `0x250`-byte record over the live
   one (`0x00235460`-`0x002354DD`), returning the lane; -1 when the history bank is null or nothing
   matches.
 
 Verb `0x303C` `btlAtelSetEntryPositionForce` (`0x0050FCB0`) pops two floats and jumps to
 `0x00239410(actor, z, x)`, which writes `{x, 0, z, -}` to the unit's own record (lane `+0x57`) at
-`+0x50` and `+0x60` and sets bit 26; it returns -1 on a bad lane.
+`+0x50` and `+0x60` and sets bit `0x4000000`; it returns -1 on a bad lane.
 
 ### Binding and the unit's own candidate
 
 Verb `0x305C` `btlAtelSetKeepWorkGroup(selection, lane)` (`0x005103F0`; the first pop is the last
 script argument) jumps to `0x00239840(actor, lane, selection)`. With a negative lane it uses the
 selection as the lane. It writes the lane to unit `+0x57`, the selection
-(or -1 for a negative lane) to the record's `+0x16`, clears flag bits 0 and 2 when the selection
-changed (`0x002398C2`), restores `+0x17` from `+0x18` on a fresh record and sets unit flag bit 21, the
+(or -1 for a negative lane) to the record's `+0x16`, clears flag bits `0x1` and `0x4` when the selection
+changed (`0x002398C2`), restores `+0x17` from `+0x18` on a fresh record and sets unit flag bit `0x200000`, the
 bit the active cap counts.
 
 Verb `btlAtelSetUnit(id)` (`0x00510160`, one pop) applies a definition: `0x0023A3B0(actor, id)` first
@@ -186,38 +186,40 @@ runs `0x002355A0`, then `0x0023A570(unit, id | 0x100)`, or `0xFFFF` for an id of
 construction](../Characters-And-Objects/battle-unit-construction.md)); when `0x00237650(actor)` is then
 non-zero the handler runs `0x0037CF50(context, actor, -1)`.
 
-`0x002355A0` returns 1 at once when bit 26
+`0x002355A0` returns 1 at once when bit `0x4000000`
 is already set, and 0 when the unit's lane `+0x57` is not below the candidate table's count word,
 when the lane's range is empty, or when the drawn id is negative; otherwise it draws one candidate
 id of that lane with `0x00328370` and generates a position with `0x00236450(id, &pos)`:
 
 - record type 0: the authored point;
 - type 1: a random offset inside the box, `x = (draw % (int)(w/2 * 100)) / 100`, the same for z,
-  each negated when a further draw has bit 4 set;
+  each negated when a further draw has bit `0x10` set;
 - type 2: a random x the same way, then `z` drawn up to `sqrt((d/2)^2 - x^2 (d/2)^2 / (w/2)^2)`,
   each sign drawn;
 
 the offset is rotated into the record's frame by `0x00319390` with the record's heading. On success
-the position is stored at `+0x50` and `+0x60` and bit 26 set.
+the position is stored at `+0x50` and `+0x60` and bit `0x4000000` set.
 
 ### Activation and the height
 
-`0x00233AD0(actor)` runs the applied definition: for an active unit (flag bit 2) it posts `0x2001`
+`0x00233AD0(actor)` runs the applied definition: for an active unit (flag bit `0x4`) it posts `0x2001`
 outside a town, refreshes the actor (`0x00238BF0`), and returns early only when the definition is
-already applied (bit 3, `0x00233B3A`) and `0x0037C8C0(actor)` is 0. Otherwise it runs `0x00324450(unit)`,
-sets bit 3, runs `0x00239E10`, sets bit 49, sets the record's flag bit 1 for a kind-1 unit
-(`0x00233BA8`), and publishes the position (`0x00311F70(0, unit, 1)`) when bit 26 is clear, the status
-gate passes and `0x003278C0()` is 0. For an inactive unit it clears bit 26.
+already applied (bit `0x8`, `0x00233B3A`) and `0x0037C8C0(actor)` is 0.
+
+Otherwise it runs `0x00324450(unit)`,
+sets bit `0x8`, runs `0x00239E10`, sets bit `0x2000000000000`, sets the record's flag bit `0x2` for a kind-1 unit
+(`0x00233BA8`), and publishes the position (`0x00311F70(0, unit, 1)`) when bit `0x4000000` is clear, the status
+gate passes and `0x003278C0()` is 0. For an inactive unit it clears bit `0x4000000`.
 
 `0x00239E10` loads twelve unit parameters through `0x003204D0` (`0x00239E78`-`0x00239F5B`), ten of them into fields
 between `+0x164` and `+0x1B0` and numbers 24 and 26 into locals the later writes use, with alternate parameter numbers for a kind-1 unit whose definition byte `+0x13` is not `0xFF`; it also sets
-`+0x1F0` bit 2, `+0x1F5`, `+0x17C`, `+0x150`, `+0x19C` and `+0x1F4`, pushes `+0x184` into the render record
+`+0x1F0` bit `0x4`, `+0x1F5`, `+0x17C`, `+0x150`, `+0x19C` and `+0x1F4`, pushes `+0x184` into the render record
 (`0x002E86B0`), and ends with the battle-unit refresh `0x00236300`.
 
 Among those writes is the placement-height
 byte `+0x1F6`: 1 for a kind-0 stats record; for any other
 kind, or no stats record, from the definition record's byte `+0x18` (`[unit + 0xE68]`): 8 when bit
-4 is set, else 2 when bit 5 is set, else 1, with 4 added when bit 6 is set. For a kind-1 unit with
+`0x10` is set, else 2 when bit `0x20` is set, else 1, with 4 added when bit `0x40` is set. For a kind-1 unit with
 the probe bit it also stores `0x00236210(unit)` at `+0x188`, the vertical lift; otherwise `+0x188` = 0.
 
 Verb `0x304C` `btlAtelSetUnitFinish` (`0x00510250`, a jump) runs `0x0023A410(actor)` on the unit's own
@@ -225,9 +227,9 @@ record:
 
 1. for a fresh record (flags `& 5 == 0`) whose definition row's dword `+0x18` is non-zero,
    `0x00300520(stats, row.dw_18, 0, 0x297)`: an authored starting HP;
-2. flag bits 2 and 0 cleared;
+2. flag bits `0x4` and `0x1` cleared;
 3. `0x002FED60` or `0x002FEDC0(unit, 1)` by `0x00308010(unit, 1)`, then `0x00238BF0(unit)`;
-4. when `+0x1F6` has bit 3, `0x003208C0(x, z, &y)` probes the ground under the record's `+0x60`/`+0x68`:
+4. when `+0x1F6` has bit `0x8`, `0x003208C0(x, z, &y)` probes the ground under the record's `+0x60`/`+0x68`:
    it asks `0x0026E3C0([0x02EC1370], {x, 1.0, z, 1.0})` and writes the surface height, or 0.0 when the
    query returns -1; the return value is ignored, and `+0x188` is added (`0x0023A4D5`);
 5. `0x00300310(unit, record + 0x60, 0, 1)` places the unit at the record's candidate position, then
@@ -242,15 +244,15 @@ no error.
   the angle in radians is wrapped (`0x00316DA0`) and stored at the record's `+0x70`, then applied to
   the actor (`0x0026A0D0`, `0x0026B620`).
 - verb `0x3015` `btlAtelSetCallGroup(tag)` (`0x00510370`) → `0x002391C0`: on a record not released, clears
-  flag bit 4 and `+0x15`, then sets both to the tag when it is non-zero.
+  flag bit `0x10` and `+0x15`, then sets both to the tag when it is non-zero.
 - verb `0x3005` `btlAtelSetUnitType(n)` (`0x00510340`) → `0x002396B0`: unit `+0x58` from the table
-  `{1, 5, 3, 4}` at `0x01E09EE8` for `n` below 4, else 0; on a fresh record clears flag bit 5 and sets
+  `{1, 5, 3, 4}` at `0x01E09EE8` for `n` below 4, else 0; on a fresh record clears flag bit `0x20` and sets
   it when the byte became 4.
-- verb `0x3017` `btlAtelSetSpecialSpawnRange(f)` (`0x005107C0`) → `0x0023A200`: unit flag bit 40 set
-  for a non-zero `f`, cleared for 0; on a fresh record `+0x04` and bits 3 and 6 cleared, then `+0x04`
-  = `f` with bit 3 for `f > 0`, or `-f` with bit 6 for `f < -1.0`.
+- verb `0x3017` `btlAtelSetSpecialSpawnRange(f)` (`0x005107C0`) → `0x0023A200`: unit flag bit `0x10000000000` set
+  for a non-zero `f`, cleared for 0; on a fresh record `+0x04` and bits `0x8` and `0x40` cleared, then `+0x04`
+  = `f` with bit `0x8` for `f > 0`, or `-f` with bit `0x40` for `f < -1.0`.
 - verb `0x305E` `btlAtelIgnoreKeepWork(lane, ignored)` (`0x005104D0`) → `0x00236860(actor, _, lane)`:
-  clears bits 0, 2 and 7,
+  clears bits `0x1`, `0x4` and `0x80`,
   sets the word `+0x16` to `0x00FF` and zeroes `+0x78`-`+0x7C` of the lane's record.
 
 ### The despawn mode
@@ -265,10 +267,10 @@ when 0) and the anchor `+0x51`. The shipped scripts call it with `(1, 0, 0)` 4,9
 
 The per-unit frame `0x00233F70` (the record's `+0x38` callback, [field
 runtime](../Characters-And-Objects/field-runtime.md)) calls `0x002350C0(actor)` at `0x00234022` for a bound unit
-with flag bits 3 and 4 whose status gate passes. `0x002350C0` returns 0 unless the record's `+0x0D`
-bit 6 is set (`0x002672F0`, the drive loop's "scheduled this pass" bit), the unit exists with a non-zero
-mode `+0x50`, its stats record has a non-zero kind byte, unit flag bit 4 is set, the status words pass
-the `0x80000003` gate or the field waives it, and the record's flag bit 4 is clear. Then:
+with flag bits `0x8` and `0x10` whose status gate passes. `0x002350C0` returns 0 unless the record's `+0x0D`
+bit `0x40` is set (`0x002672F0`, the drive loop's "scheduled this pass" bit), the unit exists with a non-zero
+mode `+0x50`, its stats record has a non-zero kind byte, unit flag bit `0x10` is set, the status words pass
+the `0x80000003` gate or the field waives it, and the record's flag bit `0x10` is clear. Then:
 
 - mode 1: for party slots 0-3, a slot counts when it has flag bit 4, a stats record passing the gate,
   and is the party focus. The unit is kept when any counted slot's squared planar distance is below
@@ -278,7 +280,7 @@ the `0x80000003` gate or the field waives it, and the record's flag bit 4 is cle
   navigation position (unit `+0xE0`) is within `(+0x4C)^2` of it (`comiss`/`jbe`);
 - any other mode: 0.
 
-Retiring sets the record's flag bit 0 (`0x002352A6`), tears the unit down with `0x00300E40(unit, 1)`,
+Retiring sets the record's flag bit `0x1` (`0x002352A6`), tears the unit down with `0x00300E40(unit, 1)`,
 the one call that keeps the record's transient state, and unregisters the member from its group
 with `0x00306E60(unit, 0)`. A NaN distance retires in both modes; a party with no counted focus slot
 never retires a mode-1 unit.
@@ -316,7 +318,7 @@ BattleUnit fields this page uses:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u64` | flags: bit 2 active, 3 definition applied, 4 drive, 21 cap-tracked, 26 candidate prepared, | 40 special range, 45 not an initial placement, 49 activated once |
+| `+0x000` | `u64` | flags: bit 0x4 active, 3 definition applied, 4 drive, 21 cap-tracked, 26 candidate prepared, | 40 special range, 45 not an initial placement, 49 activated once |
 | `+0x038` | `void*` | candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids |  |
 | `+0x040` | `void*` | lane map: u8 count, u8 slot per lane (0xFF none) |  |
 | `+0x04C` | `f32` | mode-2 threshold |  |
@@ -325,7 +327,7 @@ BattleUnit fields this page uses:
 | `+0x057` | `i8` | the unit's own lane |  |
 | `+0x058` | `u8` | category byte |  |
 | `+0x188` | `f32` | vertical lift |  |
-| `+0x1F6` | `u8` | height mode: bit 3 = probe |  |
+| `+0x1F6` | `u8` | height mode: bit 0x8 = probe |  |
 | `+0x698` | `void*` | stats record (+0x05 kind) |  |
 | `+0x6A0` | `void*` | spawn record |  |
 | `+0xE68` | `void*` | definition record |  |
@@ -370,7 +372,7 @@ and rotates the banks before any of this runs.
 ## State
 
 The seven globals, the two keep banks, the unit's lane map, candidate table, lane byte, mode bytes
-and flag bits 21, 26, 45 and 49, and the record's position, candidate and flag fields. The
+and flag bits `0x200000`, `0x4000000`, `0x200000000000` and `0x2000000000000`, and the record's position, candidate and flag fields. The
 shared generator `0x00328370` advances six steps per area placement and three per random candidate
 draw.
 
@@ -381,12 +383,12 @@ draw.
   `btlAtelSetupActorStart`, for one zone. A call before the reset is overwritten.
 - Keep `retire > max`: with `retire <= max` a monster can satisfy mode-1 retirement on the frame it
   is placed. `min == max` disables automatic placement, because the generator refuses an empty band.
-- The minimum distance is per unit and opt-in: without flag bit 45 or 49 a monster may appear on
+- The minimum distance is per unit and opt-in: without flag bit `0x200000000000` or `0x2000000000000` a monster may appear on
   top of the player. `btlAtelCanselInitialSpawnFlag` on the fresh branch is the only way to
   enforce it before the unit's first activation.
 - The arc is halved with an integer divide, so an odd arc loses half a degree and 180 means plus or
   minus 90.
-- Height is decided by the definition's byte `+0x18` bit 4 and the lift the definition supplies;
+- Height is decided by the definition's byte `+0x18` bit `0x10` and the lift the definition supplies;
   a monster sunk in the floor is a definition problem, not a placement one. The candidate y is
   uninitialised until the probe runs, and a missed probe places the monster at world height 0.
 - The attempt byte is stored unclamped above 1 and read signed: 0 and 128 to 255 skip every

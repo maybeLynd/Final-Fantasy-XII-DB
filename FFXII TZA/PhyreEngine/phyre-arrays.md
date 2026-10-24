@@ -45,9 +45,9 @@ otherwise.
 
 ### The ownership bit
 
-Bit 31 of the count word marks storage the array does not own. The count is always read as
+Bit `0x80000000` of the count word marks storage the array does not own. The count is always read as
 `m_count & 0x7FFFFFFF` (`0x006065E0`, and the record hook `0x005C4CC0`). Every body that replaces the
-storage frees the old block with `_aligned_free` (`0x00584730`) only when bit 31 is clear and the block
+storage frees the old block with `_aligned_free` (`0x00584730`) only when bit `0x80000000` is clear and the block
 differs from the new one; a `PSharray` also never frees its inline slot.
 
 Class destructors free
@@ -57,7 +57,7 @@ records are made with `new[]`: `0x005C9CF0` replaces one with a new array of `n`
 `0x005A9690`), and `0x005AA280` destroys one, calling `0x005AA2F0` on each record.
 
 The set-external operation is the one that sets the bit. `0x0062A870` and `0x0060F400` refuse a count with
-bit 31 already set (5), free owned old storage, store the new pointer and write `count | 0x80000000`.
+bit `0x80000000` already set (5), free owned old storage, store the new pointer and write `count | 0x80000000`.
 `0x00673130` and `0x006AF760` do the same on the array directly. The `PSharray` forms copy a single
 element into the inline slot instead and leave the count at a plain 1, so a one-element `PSharray`
 always owns its element:
@@ -70,13 +70,13 @@ always owns its element:
 
 ### Strings in arrays
 
-A `PString` is one tagged pointer: bit 0 set marks text the string does not own. Copying a string
+A `PString` is one tagged pointer: bit `0x1` set marks text the string does not own. Copying a string
 array (`0x001C19A0`) clears the tag, measures the text and duplicates it with alignment 2, so every copy
 owns its text. `0x001C2720` frees each untagged string and then the block. `0x0063DCA0` releases a
 `PSharray<PString>`'s old storage: a single inline string, or the whole owned block through `0x001C2720`.
 
 `0x006A7800`, published by the `PString` registration `0x006A72B0`, points a string at foreign text: it
-refuses an odd pointer with 5, frees the old text when it was owned and stores the pointer with bit 0
+refuses an odd pointer with 5, frees the old text when it was owned and stores the pointer with bit `0x1`
 set (null stays null).
 
 ### The member records
@@ -88,7 +88,7 @@ object as the member's offset (`+0x48`) minus the owning descriptor's `+0xF4`.
 
 | Slot offset | Body | What it does |
 |---|---|---|
-| `+0x20` | `0x006065E0` in all 69 | the count, bit 31 masked off |
+| `+0x20` | `0x006065E0` in all 69 | the count, bit `0x80000000` masked off |
 | `+0x28` | a thunk per element type, such as `0x005C9740` | resize to a count |
 | `+0x30`, `+0x38` | `0x006045B0` (`PArray`), `0x0063B9B0` (`PSharray`) | the element pointer |
 | `+0x40` | `0x0062A870` (18 vtables), `0x0060F400` (22), `0x006A5A90` (6), others | set external storage |
@@ -106,7 +106,7 @@ storage (`0x00673130` for `PArray<unsigned int,4>`, `0x0060F2D0` for `PSharray<P
 
 Every resize body has the same shape, shown by `0x005C8BF0` (`PArray<float>`):
 
-1. When the new count equals the whole count word it returns 0 at once. An array with bit 31 set never
+1. When the new count equals the whole count word it returns 0 at once. An array with bit `0x80000000` set never
    matches, so resizing it always makes an owned copy.
 2. It allocates the new count of elements through `0x0017D260` with the element type's alignment and
    copies the first `min(old, new)` elements; for element types with a default the helper fills the
@@ -114,7 +114,7 @@ Every resize body has the same shape, shown by `0x005C8BF0` (`PArray<float>`):
 3. A failed allocation for a non-zero count returns `0xD` with the array unchanged.
 4. It frees the old storage when owned, through an element destructor for types that own memory
    (`0x005B7E10` frees the string of each `PAnimationChannelTarget`), and stores the pointer and the
-   new count with bit 31 clear.
+   new count with bit `0x80000000` clear.
 
 `PSharray` resizes (`0x0060CC60`) use the inline slot for a count of 1 and otherwise behave the same.
 `0x0060C6C0` resizes a `PArray` of `0x18`-byte elements outside the member records: `0x005E3380`
@@ -125,7 +125,7 @@ allocates the new block (alignment 8) and copies the kept elements, and a failed
 
 - Copy-assign builds owned storage for the source's count and copies into it, then frees the old
   storage when owned: `0x005AA3C0` (`PArray` of 4-byte elements), `0x005DE950` (`PSharray`). The count it
-  stores has bit 31 clear, so the copy owns its elements even when the source did not.
+  stores has bit `0x80000000` clear, so the copy owns its elements even when the source did not.
 - `0x006C5020` is the `PSharray` copy constructor: it zeroes the count before the copy-assign.
 - `0x005C0090` appends one `{qword, dword}` element to the `PArray` at `+0x100` of its object by
   reallocating with one more element; it returns 0 when the allocation fails, 1 otherwise.
@@ -140,7 +140,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | m_count | element count in bits 0-30; bit 31 = storage not owned; m_count (u32), registered by `0x005B5460` (`0x00632960` at `0x005B55FA`); shipped files name each instantiation, such as PArray&lt;PAnimationChannel *&gt;, each registered by its own template descriptor; the member getter `0x006065E0` returns it with bit 31 cleared (`0x006065F3`) |
+| `+0x00` | `u32` | m_count | element count in bits 0-30; bit `0x80000000` = storage not owned; m_count (u32), registered by `0x005B5460` (`0x00632960` at `0x005B55FA`); shipped files name each instantiation, such as PArray&lt;PAnimationChannel *&gt;, each registered by its own template descriptor; the member getter `0x006065E0` returns it with bit `0x80000000` cleared (`0x006065F3`) |
 
 `PShadowSplit` (`0xE8` bytes, offsets from the start of the record):
 
@@ -158,7 +158,7 @@ PArray&lt;T&gt; (`0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | m_count | element count in bits 0-30; bit 31 = storage not owned |
+| `+0x00` | `u32` | m_count | element count in bits 0-30; bit `0x80000000` = storage not owned |
 | `+0x08` | `void*` | m_els | elements, or null |
 
 PSharray&lt;T&gt; (8 + max(8, sizeof T): `0x10` up to 8-byte elements; `0x50` for PDataBlockBufferD3D11 and PIndexDataBlockBufferD3D11):
@@ -172,7 +172,7 @@ PString (8):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | text; bit 0 = not owned |  |
+| `+0x00` | `void*` | text; bit 0x1 = not owned |  |
 
 PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 
@@ -204,7 +204,7 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 - Elements: member slot `+0x30`; for a `PSharray` with one element, the address of `+0x08`.
 - Resize: member slot `+0x28(record, object, count)`; 0, or `0xD` when out of memory.
 - Point at foreign memory: member slot `+0x40(record, object, pointer, count)`; 5 for a count with
-  bit 31 set.
+  bit `0x80000000` set.
 
 ## Modding notes
 
@@ -214,7 +214,7 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
   element there. Resizing or copy-assigning such an array gives an owned copy.
 - A `PSharray` with one element keeps it inside the array, so code that walks the elements must take
   the address of `+0x08` rather than read it as a pointer.
-- Strings copied into arrays always become owned copies; a tagged (bit 0) string is never freed.
+- Strings copied into arrays always become owned copies; a tagged (bit `0x1`) string is never freed.
 
 ## Related
 

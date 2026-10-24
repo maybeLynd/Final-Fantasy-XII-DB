@@ -41,9 +41,9 @@ Nine opcodes file a request: `REQ`, `FREQ`, `TREQ` and their `SW` and `EW` forms
 `0x29`). All reach `0x00268850` through one of two submit tails (`0x0025F7D0`, `0x002602E1`) with two
 immediates: the kind (`R` 0, `F` 2, `T` 4) and the mode (plain 1, `SW` 2, `EW` 3). The handler pops
 the function id, then the target actor, then the channel; a float is truncated, an empty stack
-yields 0. Bit 15 set in the function id or the target refuses with 0 before anything is written.
+yields 0. Bit `0x8000` set in the function id or the target refuses with 0 before anything is written.
 
-The target word is either `(manager << 16) | ordinal` when bit 14 is set, or an ordinal in the
+The target word is either `(manager << 16) | ordinal` when bit `0x4000` is set, or an ordinal in the
 requester's own manager (`[slot + 0x28]`); `0x003587C0` resolves it against the manager's pool
 (null pool, negative ordinal or ordinal at or above the count give null).
 
@@ -81,12 +81,12 @@ slots as 1 `main`, 2 `talk`, 3 `touch`, 4 `touchon`, 5 `touchoff`, 6 `across`, 7
 Whether a slot may be filed is bit *n* of the actor's arming mask `+0x1C`. `0x00266BD0` seeds it by
 sequence type: 0 none; 1 and 2 `0x38` (touch, touchon, touchoff); 3 and 4 `0x40` (across); 5 and
 6 `0x30004` (talk, talkhold, talkterm); 7 `0x34C85` (slots 0, 2, 7, 10, 11, 14, 16 and 17). The verbs `reqenable` (`0x0026B4A0`) and `reqdisable` (`0x0025D5E0`) set
-and clear one bit; `reqdisable` refuses slots 4 and 5 while `+0x0C` bit 5 marks a stop zone, and
-for slot 16 clears `+0x0B` bit 2 and runs `0x00262740`, for 17 runs `0x002626C0`.
+and clear one bit; `reqdisable` refuses slots 4 and 5 while `+0x0C` bit `0x20` marks a stop zone, and
+for slot 16 clears `+0x0B` bit `0x4` and runs `0x00262740`, for 17 runs `0x002626C0`.
 
 Every engine filing goes through `0x003DBB60(actor, channel, function, mode, flag)` or its
 two-actor twin `0x003DBBF0(actor, requester, …)`. Both build the descriptor with requester ordinal
-`0x8000`, map mode 1 to kind 0, mode 3 to kind 2 and any other mode to itself with flag bit 0 set,
+`0x8000`, map mode 1 to kind 0, mode 3 to kind 2 and any other mode to itself with flag bit `0x1` set,
 and store `flag << 1` in the flags byte. `0x003DBB60` files in state 1; `0x003DBBF0` files in state 2
 and re-selects when the requester differs, exactly as the script path does.
 
@@ -94,14 +94,14 @@ and re-selects when the requester differs, exactly as the script path does.
 |---|---|---|
 | `0x00266530` | slot 15, the actor's function 0 and 9 `initevent` on the top channel, then 1 `main` on channel 0, all mode 2 | the record is initialised; the first three raise `+0x10` by one each; slot 15 only for images with version word 10 or more |
 | `0x0025C230` | 3 `touch` ch 3 / 8 `fieldsign1` ch 3 / 13 `fieldsign2` ch 6, mode 1; 4 `touchon` ch 4 and 5 `touchoff` ch 2, mode 0 | a class-3 actor whose record box contains a party actor (`0x003DA5A0`); the on and off edges of the contact mask at record `+0x100` |
-| `0x0025C830` | the same slots at the same channels | a class-1 trigger record with `+0x5D` bit 0 placed and bit 1 (outer box) or bit 2 (inner box) set; `touchon` with flag 2 raises a stop zone |
+| `0x0025C830` | the same slots at the same channels | a class-1 trigger record with `+0x5D` bit `0x1` placed and bit `0x2` (outer box) or bit `0x4` (inner box) set; `touchon` with flag 2 raises a stop zone |
 | `0x0025BAD0` | 16 `talkhold` ch 6 (ch 4 for type 7), mode 1, flag 5 | the focus actor stands in the talk box of a talk-armed actor; the actor is also registered as the talk candidate at `0x0209A2B4` |
-| `0x00268D10` | 2 `talk` or 10, ch 7, mode 0 | the talk button gate `0x0026DFB0` passes for the registered candidate; a filed slot 2 sets `+0x0B` bit 3, runs `0x00268EA0` and takes capability row 3 |
+| `0x00268D10` | 2 `talk` or 10, ch 7, mode 0 | the talk button gate `0x0026DFB0` passes for the registered candidate; a filed slot 2 sets `+0x0B` bit `0x8`, runs `0x00268EA0` and takes capability row 3 |
 | `0x00268EA0` | 16 `talkhold` ch 6/4 mode 1 flag 5; 17 `talkterm` ch 5 (3 for type 7) mode 2 flag 4 | the talk countdown `+0x118` is re-armed |
 | `0x0025B2E0` | 6 `across` ch 5, mode 0 | a party actor's last move crosses the type-2 line record (`0x003A17D0`) |
 | `0x0025B600` | 12 `mapjump` ch 6, mode 0 | the focus actor's collision record names a map-exit owner in `0x0209A210` and `0x003B7730` allows it |
 | `0x00269860` | 7 `spawn` (mode argument non-zero) or 14 `respawn` ch 2, mode 0, then `0x00269640` | the scripts-live byte `0x02099DE1` is set |
-| `0x00269640` | slot 0 on channel 1, then 11 `parameter` on channel 0, mode 0 | bits 0 and 11 of the mask; no shipped script declares slot 0, so only `parameter` is filed |
+| `0x00269640` | slot 0 on channel 1, then 11 `parameter` on channel 0, mode 0 | bits `0x1` and `0x800` of the mask; no shipped script declares slot 0, so only `parameter` is filed |
 | `0x00266C50` | every function of the image's `+0x58` list on the actor its `+0x50` word names, top channel, mode 2 | the manager's image is started |
 | `0x00268B10` | each `(actor, function)` pair of a list in the image's `+0x30` table, mode 0 | a scripted group request; a flag marks `+0x24` bit *channel* and raises `+0x10` on the target |
 | `0x00269BA0` | slot *n* on one actor, mode 0 | bit *n* or the force argument |
@@ -136,7 +136,7 @@ a touch files runs within the frame. A script's request on another actor is prom
 `0x003DB6E0` runs whenever `+0x63` is non-zero: it walks the channels from the highest down, and on
 each follows the chain from the head, skipping entries in state 1. The first other entry wins:
 its channel becomes the current wait slot `+0x11`, a state-2 entry is started through `0x003DBDC0`,
-the index is stored at `+0x62` and `+0x14` bit 6 (idle) is cleared. Nothing runnable sets the idle
+the index is stored at `+0x62` and `+0x14` bit `0x40` (idle) is cleared. Nothing runnable sets the idle
 bit. So higher channels pre-empt lower ones, and within a channel requests run in filing order.
 
 `0x003DBDC0` resets the wait slot (`0x0025D460` zeroes its first `0x17` bytes, the scratch beyond
@@ -184,22 +184,22 @@ non-free entry to `0x003DB2A0`; mode 3 limits the walk to one channel.
 `0x003DB2A0` removes an entry only when it is the channel head (the detached head for a mode-4
 entry). On a mismatch its loop calls `0x003DB550(actor, index)` for the removed index itself and
 reloads that entry's `next`, a value that never changes: a non-head entry that is the tail is left
-in place (the call returns flags bit 0), and a non-head entry with a successor never leaves the
+in place (the call returns flags bit `0x1`), and a non-head entry with a successor never leaves the
 loop. Every shipped caller passes a head: the recycler hands over a channel's first non-free entry
 and `RET` passes the selected index `+0x62`.
 
 It unhooks the entry (`0x003DC1B0`, which clears the run state), posts the end
 notification when the mode is 3 and the requester is not `0x8000`, calls `0x00263050(actor,
 flags >> 1)` for a flags byte of 2 or more (1 releases the world lock, 3 releases a stop zone
-through `0x0025B500`, 4 clears `+0x0B` bit 4 after `0x002EAAA0`).
+through `0x0025B500`, 4 clears `+0x0B` bit `0x10` after `0x002EAAA0`).
 
 It then advances the channel head, and when
 the channel empties clears its bit in `+6`, `+0x24` and `+0x26`. The entry then goes back on the free
-list and `+0x63` bit 1 asks for a re-selection. Its return value is bit 0 of the entry's flags, not
+list and `+0x63` bit `0x2` asks for a re-selection. Its return value is bit `0x1` of the entry's flags, not
 a delivery result.
 
 `REQCHG` (`0x34`, `0x0025AF60`) writes a cache word: slot below 18, target by the same encoding as a
-request, refused when bit 15 of the target or of the value is set, value stored at
+request, refused when bit `0x8000` of the target or of the value is set, value stored at
 `actor + 0xC8 + 2 × slot`, so a script can re-point an entry slot at another function.
 
 ## Layouts
@@ -286,7 +286,7 @@ Wait slot:
 
 Per frame, up to sixteen rounds of: the drive pass `0x0025D9E0` per manager (the driver `0x0025DF00`
 per actor; the contact, line and talk evaluators only while the manager's state byte `0x02098E20`
-has bit 7 clear), the talk filer `0x00268D10` in round 0, then `0x003DB1F0` per manager (promote,
+has bit `0x80` clear), the talk filer `0x00268D10` in round 0, then `0x003DB1F0` per manager (promote,
 select). The step's second mode (argument 1) runs one round over managers 3 and 4 only, drive
 pass and promotion per manager, without the talk filer. Per filing: admission, insert, optional
 immediate re-selection. Per `RET`: unhook, notify, free, re-select.

@@ -91,7 +91,7 @@ is **1,000,000**.
 - the unit is an enemy (stats byte `+0x05` = 1);
 - the action id is above `0x21E`;
 - the action's row in the action table `[0x02EBF138]` has byte `+0x1E` equal to 5 or 6;
-- `0x002F9820` does not report the unit as a party member with augment 32 (Offering), bit 0 of stats byte
+- `0x002F9820` does not report the unit as a party member with augment 32 (Offering), bit `0x1` of stats byte
   `+0x6C` or `+0x7C`.
 
 Augment row 32's description (id 13032) reads "Enables casting of magicks with gil, rather than
@@ -137,8 +137,8 @@ The quest result window is the `0x100`-byte widget with procedure `0x003F4E70` t
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003F4E70` |
-| `+0xC0` | `u8` | skipSetup | the first byte of the creation record (`0x003F4F7E`, `0x003F4F81`); the only creator, `0x003F4BD0`, passes 0 (`0x003F4BED`). While it is 0 the construct message marks the image `0x01E0C1F8` (its `+0x38` bit 7), runs `0x00252B40`(9, 1) and `0x0037F3B0` (`0x003F4FE8`-`0x003F5014`); message 16 for batch 1 passes `+0xC4` to `0x0037EDB0` and keeps `0x0037E8A0`'s result at `+0xC8` (`0x003F4F07`-`0x003F4F29`); message 18 restores the saved `+0xF4` / `+0xF8` through `0x00252B40` and clears the image bit (`0x003F4EAD`); `0x003F4B40` runs `0x0037E4F0`(0) before closing the window (`0x003F4B50`) |
-| `+0xC1` | `u8[63]` | window | the window's own fields: `+0xC4` the creation record's dword `+0x10`, `+0xC8` what `0x0037E8A0` returns, `+0xD0`-`+0xF3` the `0x24` bytes the creation record points to, `+0xF4` and `+0xF8` the saved `0x02092730` and bit 0 of `0x02092734` (`0x003F4F87`-`0x003F4FE2`) |
+| `+0xC0` | `u8` | skipSetup | the first byte of the creation record (`0x003F4F7E`, `0x003F4F81`); the only creator, `0x003F4BD0`, passes 0 (`0x003F4BED`). While it is 0 the construct message marks the image `0x01E0C1F8` (its `+0x38` bit `0x80`), runs `0x00252B40`(9, 1) and `0x0037F3B0` (`0x003F4FE8`-`0x003F5014`); message 16 for batch 1 passes `+0xC4` to `0x0037EDB0` and keeps `0x0037E8A0`'s result at `+0xC8` (`0x003F4F07`-`0x003F4F29`); message 18 restores the saved `+0xF4` / `+0xF8` through `0x00252B40` and clears the image bit (`0x003F4EAD`); `0x003F4B40` runs `0x0037E4F0`(0) before closing the window (`0x003F4B50`) |
+| `+0xC1` | `u8[63]` | window | the window's own fields: `+0xC4` the creation record's dword `+0x10`, `+0xC8` what `0x0037E8A0` returns, `+0xD0`-`+0xF3` the `0x24` bytes the creation record points to, `+0xF4` and `+0xF8` the saved `0x02092730` and bit `0x1` of `0x02092734` (`0x003F4F87`-`0x003F4FE2`) |
 
 ## Operations
 
@@ -148,17 +148,17 @@ Every function that changes gil: the callers of the setter and of its two wrappe
 |---|---|---|
 | `0x00312280` | `0x0031255D` | adds the kill's gil (formula above), then notifies |
 | `0x0050FAF0` | via `0x003004B0` | the chest payout, Start of script verb `btlAtelOpenTreasureMessage`: when `0x002FAFD0` reports a gil chest, adds its amount through `0x003004B0(amount, 0)` (no notification) |
-| `0x003004B0` | `0x003004D6` | `v` = the 32-bit sum `gil + delta`, or 0 when it is negative, which includes a sum past 2,147,483,647 that wraps (`0x003004C3`-`0x003004D1`), sets `v`, which the setter stores capped at 99,999,999; when argument 2 bit 0 is set, notifies `v - old` (`0x003004DB`-`0x003004E5`); returns `v`, not the stored balance (`0x003004EF`) |
+| `0x003004B0` | `0x003004D6` | `v` = the 32-bit sum `gil + delta`, or 0 when it is negative, which includes a sum past 2,147,483,647 that wraps (`0x003004C3`-`0x003004D1`), sets `v`, which the setter stores capped at 99,999,999; when argument 2 bit `0x1` is set, notifies `v - old` (`0x003004DB`-`0x003004E5`); returns `v`, not the stored balance (`0x003004EF`) |
 | `0x00300500` | `0x0030050F` | floors its argument at 0, sets, returns the floored value |
 | `0x00316DF0` | via `0x003004B0` (`0x00317034`) | a party-side character's first activation (record flag `0x10` clear; character type 0-25, record flag 8 clear): grants the ten items at `+0x58` with counts at `+0x34` of the character row in `[0x02EBF130]` (row = type byte `+4`), then adds the row's u16 `+0x3E` as gil when non-zero |
 | `0x0032A7F0` | via `0x003004B0` (`0x0032A7F2`, jump) | `0x003004B0(n, 0)`; called by the script verbs `addgill` (`0x2E7`, `0x00346943` in `0x00346930`) with `n` and `subgill` (`0x2E8`, `0x00346E30`) with `-n` |
 | `0x00239960` | via `0x00300500` (`0x00239B1D`) | applying a SetSaveData preset sets gil to the preset row's u16 `+0x0E` (an absolute set) |
 | `0x0032A800` | via `0x00300500` (`0x0032A802`, jump) | `0x00300500(n)`; called by the script verb `debug_setgill` (`0x0A3` in family 2, `0x0050DEF2` in `0x0050DEE0`) |
-| `0x002FEEB0` | `0x002FEEF3` | shop purchase: adds the item through `0x003008A0(item, count, 0, 1, flags)`, then gil = max(gil - price, 0); notifies when flags bit 0 is set |
-| `0x00310870` | `0x003108BD` | shop sale: removes the item through `0x003008A0(item, -count, 0, 1, flags)`, gil = max(gil + price, 0), notifies when flags bit 0 is set, then records the sale with `0x003008A0(item, count, 0, 3, 0)` |
-| `0x002FD530` | `0x002FD5C0` | inventory class 9 (ids `0x9000`+, slot `0x01EEC020` of the class table `0x01EEBD08`): on a mode-1 add, gil += row dword `+0` × count from table `[0x02EBF070]` row `id - 0x9000`, then notifies `new - old` when the flags argument has bit 0 set (`0x00469E80`), then grants the row's items at `+4` and `+8` |
+| `0x002FEEB0` | `0x002FEEF3` | shop purchase: adds the item through `0x003008A0(item, count, 0, 1, flags)`, then gil = max(gil - price, 0); notifies when flags bit `0x1` is set |
+| `0x00310870` | `0x003108BD` | shop sale: removes the item through `0x003008A0(item, -count, 0, 1, flags)`, gil = max(gil + price, 0), notifies when flags bit `0x1` is set, then records the sale with `0x003008A0(item, count, 0, 3, 0)` |
+| `0x002FD530` | `0x002FD5C0` | inventory class 9 (ids `0x9000`+, slot `0x01EEC020` of the class table `0x01EEBD08`): on a mode-1 add, gil += row dword `+0` × count from table `[0x02EBF070]` row `id - 0x9000`, then notifies `new - old` when the flags argument has bit `0x1` set (`0x00469E80`), then grants the row's items at `+4` and `+8` |
 | `0x002FD880` | `0x002FD8B4` | inventory class 0xE (slot `0x01EEC1D8`): on a mode-1 add, gil += `(id & 0xFFF)` × count |
-| `0x003F4AA0` | `0x003F4AC1` | applies a reward record: when bit 0 of byte `+0` is set, gil += dword `+4` (not floored before the setter; the setter's clamp applies); then grants the `+0x08`-counted `{item, count}` list at `+0x0C` and the `+0x0A`-counted single items at `+0x1C` through `0x00300B80` |
+| `0x003F4AA0` | `0x003F4AC1` | applies a reward record: when bit `0x1` of byte `+0` is set, gil += dword `+4` (not floored before the setter; the setter's clamp applies); then grants the `+0x08`-counted `{item, count}` list at `+0x0C` and the `+0x0A`-counted single items at `+0x1C` through `0x00300B80` |
 | `0x0030EF20` | `0x0030EFD8` | reserves an action's gil cost: stores `0x00309060`'s result at unit `+0xE58` (`0x0030EFC0`), then gil = max(gil - cost, 0) |
 | `0x00300280` | `0x003002F0` | refunds a party unit's reservation: gil = max(gil + `[unit+0xE58]`, 0), then clears `+0xE58` |
 | `0x00305640` | `0x0030572B` | consumes an action: clears a party unit's reservation `+0xE58` without refunding it (so the reserved deduction stands), then, for any unit, gil = max(gil - `[unit+0xE54]`, 0) as a separate charge; `+0xE54` is field `+0x08` of the action's result evaluated per target, stored by `0x00303954` (in `0x00303830`) and `0x00303B2E` (in `0x00303A00`), the last target's value standing |

@@ -30,16 +30,16 @@ a polygon and at `+4` of a wall record. Its fields, with the functions that read
 |---|---|---|---|
 | 0-2 | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons, 3 camera region | none | `0x00230A40`, `0x0022D4B0`, `0x0022CC50`, `0x00231A90`, `0x002321D0`, `0x00233230` |
 | 3-6 | mj group 0-15; selects override entry `0x40 + group` | none | `0x00232020`, `0x00230A40`, `0x00232090`, `0x00231F80`, `0x002321D0`, `0x00231A90` |
-| 12 | copied into bit 2 of the body's flag word | `setmapidfloor` kind 9 | `0x003808A0` |
+| 12 | copied into bit `0x4` of the body's flag word | `setmapidfloor` kind 9 | `0x003808A0` |
 | 13-17 | floor group 0-31; the wall group on type-1 polygons and wall records | none | every override reader below |
 | 18-22 | ground field | `setmapidfloorground` | `0x00231F80` |
-| 23-27 | block bits for movement kinds 0, 5, 1, 2, 3 (bits 23, 24, 25, 26, 27) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0`, `0x0022CC50` |
+| 23-27 | block bits for movement kinds 0, 5, 1, 2, 3 (bits `0x800000`, `0x1000000`, `0x2000000`, `0x4000000`, `0x8000000`) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0`, `0x0022CC50` |
 | 26 | on type-1 polygons and wall records: skipped by the sphere sweep | none | `0x0022D7E0` |
 | 30 | wall ignored by kind-4 queries | `setmapidwall` kind 6 | `0x0022D4B0`, `0x0022CC50` |
 | 31 | wall switched off | `setmapidwall` kind 5 | `0x0022F8B0`, `0x0022DE60`, `0x0022D7E0`, `0x0022D4B0`, `0x0022CC50` |
 
 `0x00230A40` closes a polygon to every movement kind when there is no neighbour across the edge (`0x00230A4F`) or the
-polygon type (bits 0-2, after the overrides) is not 0 (`0x00230AB9`). Otherwise kinds 0, 1, 2, 3 and 5 test their block bit;
+polygon type (bits `0x7`, after the overrides) is not 0 (`0x00230AB9`). Otherwise kinds 0, 1, 2, 3 and 5 test their block bit;
 kind 4 and kinds 6 and above have none and pass every floor polygon (`0x00230B4A`).
 
 ### The override table
@@ -158,10 +158,10 @@ A body's movement kind is the byte at `+0x50` of its navigation record, the reco
 `0x002327D0` and `0x00380D30` work on. The readers of the block bits are:
 
 - `0x00230A40(part, polygon, kind)` applies the overrides and returns 0 when `eff & 7` is not 0 (not a
-  type-0 floor polygon). Otherwise it returns 1 when the kind's bit is clear: kind 0 tests bit 23, kind
-  1 bit 25, kind 2 bit 26, kind 3 bit 27, kind 5 bit 24. Kind 4 and kinds above 5 always get 1.
+  type-0 floor polygon). Otherwise it returns 1 when the kind's bit is clear: kind 0 tests bit `0x800000`, kind
+  1 bit `0x2000000`, kind 2 bit `0x4000000`, kind 3 bit `0x8000000`, kind 5 bit `0x1000000`. Kind 4 and kinds above 5 always get 1.
 - `0x00232090(part, polygon)` packs the same five bits into a kind bitfield (bit k set means kind k is
-  blocked: bit 0 from 23, bit 1 from 25, bit 2 from 26, bit 3 from 27, bit 5 from 24) and returns 0
+  blocked: bit `0x1` from 23, bit `0x2` from 25, bit `0x4` from 26, bit `0x8` from 27, bit `0x20` from 24) and returns 0
   when `eff & 7` is not 0.
 - `0x002327D0`, the movement sweep called from `0x00380C40`, asks `0x00230A40` (`0x00232EB9`) about each
   neighbouring polygon the body is about to cross into. A 0 answer makes the sweep treat that edge as a
@@ -176,7 +176,7 @@ A body's movement kind is the byte at `+0x50` of its navigation record, the reco
   `+0x54`), using the overridden type bits.
 
 The verb's kind numbers and the reader's kind numbers differ in one place: a script that writes
-kind 7 sets bit 24, and bit 24 is what the reader tests for movement kind 5.
+kind 7 sets bit `0x1000000`, and bit `0x1000000` is what the reader tests for movement kind 5.
 
 ### What the wall bits do
 
@@ -184,23 +184,23 @@ Walls are tested by the collision callback `0x0022F8B0` (installed through `0x00
 `0x00231400`), the sphere sweep `0x0022D7E0`, and the ray casts `0x0022DE60`, `0x0022D4B0` and `0x0022CC50`.
 Each applies the wall entry to the attribute word and then decides as follows.
 
-- A set bit 31 removes the wall. `0x0022F8B0` calls the contact test `0x00381EB0` only while `eff` is below
+- A set bit `0x80000000` removes the wall. `0x0022F8B0` calls the contact test `0x00381EB0` only while `eff` is below
   `0x80000000` (and only when its record's `+0x24` is non-zero; with it zero every wall is tested).
-  `0x0022DE60` and `0x0022D7E0` skip type-1 polygons and wall records whose bit 31 is set.
-- A set bit 30 makes a type-1 polygon or wall record invisible to kind-4 queries only. `0x0022D4B0` and
+  `0x0022DE60` and `0x0022D7E0` skip type-1 polygons and wall records whose bit `0x80000000` is set.
+- A set bit `0x40000000` makes a type-1 polygon or wall record invisible to kind-4 queries only. `0x0022D4B0` and
   `0x0022CC50` read the query kind from `+0x46` of the query, keep the wall for every other kind and skip
   it for kind 4. Type-4 polygons are the mirror image: they are hit only by kind-4 queries.
-- The movement sweep sets `+0x46` to 2, or to 3 when flag bit 0 of the record is set (`0x002327D0`), so
+- The movement sweep sets `+0x46` to 2, or to 3 when flag bit `0x1` of the record is set (`0x002327D0`), so
   a `setmapidwall(g, 6, v)` never changes where a walking body stops. None of the five wall readers
   above issues a kind-4 query itself; the kind-4 caller lies outside them.
-- Bit 26 on a type-1 polygon or wall record makes `0x0022D7E0` skip it unless the query's `+0x3C` is
-  non-zero. No verb reaches bit 26 of a wall entry, so this is authored data only.
+- Bit `0x4000000` on a type-1 polygon or wall record makes `0x0022D7E0` skip it unless the query's `+0x3C` is
+  non-zero. No verb reaches bit `0x4000000` of a wall entry, so this is authored data only.
 
-### The ground field and bit 12
+### The ground field and bit `0x1000`
 
 `0x003808A0(record, part)` runs after a body moved (`0x00380C40`) or was placed (`0x00380D30`). From the
 effective attribute of the body's polygon it stores the floor group into `+0x56`, the mj group into
-`+0x58`, bit 12 into flag bit 2 of `+0x60`, and the five-bit ground field (`0x00231F80`, bits 18-22 after
+`+0x58`, bit `0x1000` into flag bit `0x4` of `+0x60`, and the five-bit ground field (`0x00231F80`, bits `0x7C0000` after
 overrides) into `+0x5A`. `0x00231F80` has that one caller (`0x0038090E`).
 
 The record is the placement at `+0x30` of an actor's movement body (`[actor + 0xC0] + 0x138`), so the
@@ -223,7 +223,7 @@ The ground field also picks an effect: the presentation command `0x18` (`0x00520
 
 Two of those effects carry a float, stored at the new effect's `+0x36C` with bit `0x800` set in its word
 `+0x368`: 148 takes the actor's `+0x144`, and 103 takes the float `+0xC0` of the record at qword `+0x138`
-of the actor's `+0xC0` record (`0x002E98C0`) when bit 3 of that record's dword `+0x90` is set (`0x002E9860`).
+of the actor's `+0xC0` record (`0x002E98C0`) when bit `0x8` of that record's dword `+0x90` is set (`0x002E9860`).
 
 ### Asking whether a bit is overridden
 
@@ -286,8 +286,8 @@ the camera update `0x003820C0` calls `0x00233230(part, 0x02AEDEE0)` (`0x003827FB
 2. `0x00233050` finds the camera's cell in the part's grid, and the polygons listed for the cell are
    walked;
 3. a type-3 polygon for which `0x002324F0` returns a negative value at the camera position applies its
-   attribute word: with bit 3 set, the value `v` in bits 16-23 sets bit `v` of `+0x48` (shown models)
-   when below 64, else bit `v - 64` of `+0x58`; with bit 4 set, the value in bits 24-31 does the same
+   attribute word: with bit `0x8` set, the value `v` in bits 16-23 sets bit `v` of `+0x48` (shown models)
+   when below 64, else bit `v - 64` of `+0x58`; with bit `0x10` set, the value in bits 24-31 does the same
    with `+0x50` (hidden models) and `+0x60`.
 
 For a model value below 64 `0x0022FF10(part, polygon, camera, v)` also writes the fade weight
@@ -320,7 +320,7 @@ channels whose bit differs from the previous frame's set `0x0209A6E0` it stops t
 
 ### A new map clears everything
 
-The field tick's request handler `0x003775D0` calls `0x00378120` (`0x003776DD`) when bit 3 of `0x02ADD0F0` is
+The field tick's request handler `0x003775D0` calls `0x00378120` (`0x003776DD`) when bit `0x8` of `0x02ADD0F0` is
 set, and `0x00378120` calls `0x0026E760` (`0x00378193`) with the new map data:
 
 1. `0x0026E640` zeroes `0x0209A6C0`, `0x0209A6C8`, `0x0209A690` to `0x0209A6B8` and the rest of the model block,
@@ -374,9 +374,9 @@ through `0x0020E600`; `graph + 0xA` is the node count.
 A script opens a gate for walking bodies and shows the open model:
 
 1. `setmapidfloor(g, 0, 1)`: `0x00343E60` pops the operands and calls `0x003792E0(g, 0, 1)`.
-2. `0x003792E0` calls `0x0026E880(g, 0, 23, 1)`: mask bit 23 of entry `g` is set and value bit 23 is 0.
+2. `0x003792E0` calls `0x0026E880(g, 0, 23, 1)`: mask bit `0x800000` of entry `g` is set and value bit `0x800000` is 0.
 3. `0x0026E880` calls `0x003278D0`, which clears the cached navigation block of every registered body
-   with bit 4 of its first byte set.
+   with bit `0x10` of its first byte set.
 4. `showmapmodel(id)`: `0x00347FD0` calls `0x00379010(id, 1)`, setting the forced-on bit and clearing the
    forced-off bit.
 5. On the next frame `0x0026E5F0()` no longer contains the model's bit and `0x002F5550` draws it; a kind-0
@@ -390,7 +390,7 @@ A body steps towards a blocked polygon:
 3. `0x00230A40` builds `eff` from the floor and mj entries, finds `eff & 7 == 0` and returns 0 because the
    kind's bit is set.
 4. `0x002327D0` treats the edge as a wall and `0x0022F9B0` slides the body along it.
-5. `0x003808A0` then records the floor group, mj group, ground field and bit 12 of the polygon the body
+5. `0x003808A0` then records the floor group, mj group, ground field and bit `0x1000` of the polygon the body
    stays on.
 
 ## State

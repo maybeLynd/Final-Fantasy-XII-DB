@@ -40,7 +40,7 @@ floats.
 
 ### The operators
 
-The operator is bits 4–7 of the word `+0x0E`. `f(n)` is a random value in `[0, n)` for positive `n`,
+The operator is bits `0xF0` of the word `+0x0E`. `f(n)` is a random value in `[0, n)` for positive `n`,
 and in `(n, 0]` for negative `n` (below).
 
 | Operator | Result | Meaning |
@@ -67,7 +67,7 @@ generator and its other users are on the [RNG page](../Random-Numbers/random-num
 
 `0x00431080(record, x, operand)` reads the operand's pairs from the address its payload decodes to.
 The count is the operand's kind byte, the period the `u16` at `+0x08` (A) or `+0x0A` (B), and the curve
-mode bits 0–1 (A) or 2–3 (B) of `+0x0E`:
+mode bits `0x3` (A) or 2–3 (B) of `+0x0E`:
 
 1. When the period is non-zero and smaller than `x`, `x` becomes `x % period`.
 2. Mode 2 or 3 gives 0.
@@ -105,12 +105,12 @@ the mode byte `+0x40`:
   component;
 - alpha is always the fourth record's own expression.
 
-With bit 2 of `+0x40` clear, the four values are clamped to 255 each (against `0x022D8F40`) and
+With bit `0x4` of `+0x40` clear, the four values are clamped to 255 each (against `0x022D8F40`) and
 packed as `r | g << 8 | b << 16 | a << 24`; there is no lower clamp, so a negative value keeps its low
-byte. With bit 2 set they are converted by `0x00430370` instead.
+byte. With bit `0x4` set they are converted by `0x00430370` instead.
 
 `0x00430B90(out, record, x)` is the float RGB form, alpha always 1.0, with the mode byte `+0x30`:
-bits 2–3 of 0 give black and of 1 white; otherwise bits 0–1 and the bytes `+0x31` and `+0x32` choose
+bits `0xC` of 0 give black and of 1 white; otherwise bits `0x3` and the bytes `+0x31` and `+0x32` choose
 which components have their own curves and which share one, and whether the spread is applied
 per component (`0x004307C0`) or as one shared factor (`0x004308D0`).
 
@@ -126,7 +126,7 @@ Expression record (`0x10`):
 | `+0x0A` | `u16` | operand B curve period |  |
 | `+0x0C` | `u8` | operand A kind (0 absent, 1 reference, 2+ curve pair count) |  |
 | `+0x0D` | `u8` | operand B kind |  |
-| `+0x0E` | `u16` | bits 0-1 A curve mode, bits 2-3 B curve mode, bits 4-7 operator |  |
+| `+0x0E` | `u16` | bits 0-1 A curve mode, bits 2-3 B curve mode, bits 0xF0 operator |  |
 
 ```
 curve pair   s32 x, s32 y

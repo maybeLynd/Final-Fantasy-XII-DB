@@ -29,27 +29,27 @@ once without a list owner (`0x003E6E60` = 0).
 Otherwise it asks the unit for a view: `0x0041F2F0(record,
 0x0C, view)` zeroes 64 bytes, stamps `+0x00` with the record's word `+0xCC` and `+0x30` with its
 `+0x110` (both overwritten: the builder zeroes the view again), and hands the view to the battle
-unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits 2 and 3.
+unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits `0x4` and `0x8`.
 
 Bit 2 writes the world position of the actor behind the unit's target handle `+0x2C` (`0x00265020`)
-into the view's `+0x10`-`+0x18` while the battle-state word `0x02089340` has bit 4.
+into the view's `+0x10`-`+0x18` while the battle-state word `0x02089340` has bit `0x10`.
 
-Bit 3 writes the
+Bit `0x8` writes the
 reach point into `+0x20`-`+0x28`: when `0x00322280()` holds, the target actor exists, either
-`0x02089340` has neither bit 9 nor bit 10 or the unit's `+0x698` record has byte `+5` = 1, and the
+`0x02089340` has neither bit `0x200` nor bit `0x400` or the unit's `+0x698` record has byte `+5` = 1, and the
 unit's reach `0x00320E10(unit, 0)` is non-zero, it is the unit's position moved by the reach along the
 bearing to the target (the sine table at `0x01F004E0`, the unit's own heading `+0x160` when the two
-coincide) and the view's `+0x3C` takes bit 0 (otherwise `+0x20` and `+0x28` are written as 0 and the bit
+coincide) and the view's `+0x3C` takes bit `0x1` (otherwise `+0x20` and `+0x28` are written as 0 and the bit
 stays clear).
 
 Its y is the unit's `+0xE4`, or the target's y plus
-1.0 when the unit's `+0x698` record has byte `+5` = 1 and its definition `+0x28` bit 0.
+1.0 when the unit's `+0x698` record has byte `+5` = 1 and its definition `+0x28` bit `0x1`.
 
 Nothing is queued when the target position equals the record's position `+0x140`/`+0x148` in x and
 z. Otherwise the request is built: for mode `0x10` and modes 3 and 4 the direction is the unit
 vector from the target position to the record's position, a step away from the target, with
 distance 1.0; for every other mode it is the vector from the record to the reach point, with the
-distance `|vector|` kept only when the view's `+0x3C` has bit 0 and zeroed otherwise (with the
+distance `|vector|` kept only when the view's `+0x3C` has bit `0x1` and zeroed otherwise (with the
 reach point unset the vector points at the world origin and only the turn acts).
 
 The relative heading is the angle from the record's facing frame
@@ -97,12 +97,12 @@ so only the newest request turns.
 heading `+0x160` (the heading itself when the two coincide), wrapped; the direction `(victim -
 attacker) / hypot` in x and z, away from the attacker; `w` = 1.0.
 
-A zero distance between the two skips it, as does the combination of `0x02089340` bits 9 and 10, a victim `+0x698` record with byte
-`+5` = 0, victim byte `+0` bit 4, and status words `+0x3C | +0x64` clear of `0x80000003` (or
+A zero distance between the two skips it, as does the combination of `0x02089340` bits `0x200` and `0x400`, a victim `+0x698` record with byte
+`+5` = 0, victim byte `+0` bit `0x10`, and status words `+0x3C | +0x64` clear of `0x80000003` (or
 `0x00377C20()` set).
 
 The request goes through `0x002E70E0(victim handle, request)`, which needs the victim actor's byte
-`+0x0D` bit 1 and a valid render record, to `0x003E65E0(record, request)`: for modes `0xE` and `0xF`,
+`+0x0D` bit `0x2` and a valid render record, to `0x003E65E0(record, request)`: for modes `0xE` and `0xF`,
 with `0x003E56C0()` null or its byte `+0x111` zero the heading is zeroed, otherwise a heading beyond
 90 degrees either way is flipped by `pi` and wrapped; then `0x003AED70` as usual. Modes 14 and 15 are
 the two profile rows no authored command names.
@@ -166,19 +166,19 @@ second curve. The speed curve is a share of the distance at the moment of the co
 covers the same fraction of the gap whatever the gap is; the two accumulators stop each axis once
 the request's angle is closed. The last entry written wins `turn` outright; `move` is a sum.
 
-`0x003E68B0` reports whether the list is enabled and non-empty (`0x003AEF20`); `0x003E6A70` returns bit 0
-when any entry has its turn byte set and bit 1 when any has its move byte set (`0x003AEF50`).
+`0x003E68B0` reports whether the list is enabled and non-empty (`0x003AEF20`); `0x003E6A70` returns bit `0x1`
+when any entry has its turn byte set and bit `0x2` when any has its move byte set (`0x003AEF50`).
 
 ### The actor update
 
 `0x0025DF00` resolves the actor's wait state and then, for an actor that passes the input gate (byte
-`+0x13` bit 0 clear and `+0x10C` zero, or byte `+0x0B` bit 5; others run `0x002E6310`) with a render
+`+0x13` bit `0x1` clear and `+0x10C` zero, or byte `+0x0B` bit `0x20`; others run `0x002E6310`) with a render
 entry whose record id is valid, computes `maxStep` as the smaller of the two radii `0x003DA710` reads
 from the movement context's `+0x50` for a class-3 actor (two uninitialised locals otherwise; `1e6`
-when actor byte `+0x13` has bit 7) and calls `0x003E6EF0`.
+when actor byte `+0x13` has bit `0x80`) and calls `0x003E6EF0`.
 
-It reads `0x003E68B0` and, when that holds and actor byte `+0x0D` has bit 1, `0x003E6A70`. The render entry's
-byte `+0x10` bit 2 and actor byte `+0x0C` bit 4 take the move bit (set here, never cleared here).
+It reads `0x003E68B0` and, when that holds and actor byte `+0x0D` has bit `0x2`, `0x003E6A70`. The render entry's
+byte `+0x10` bit 2 and actor byte `+0x0C` bit `0x10` take the move bit (set here, never cleared here).
 
 Then `0x002E5030(actor, moveBit, &move)` runs the movement step with the summed move as the
 pass-through vector when the bit is set ([movement step](heading-speed-to-position-delta.md)), and
@@ -189,7 +189,7 @@ steering](facing-and-steering.md)).
 
 The second output float is the heading and the first the
 pitch, which is why the dead first axis costs nothing. The integrator returns at once for a
-captured party member (actor `+0x18` = 1) or a controller with `+0x14F` bit 0, so those actors get
+captured party member (actor `+0x18` = 1) or a controller with `+0x14F` bit `0x1`, so those actors get
 neither arm.
 
 ## Layouts

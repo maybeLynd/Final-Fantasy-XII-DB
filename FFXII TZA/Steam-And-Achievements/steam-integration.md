@@ -136,7 +136,7 @@ The game imports no `SteamAPI_Shutdown`.
 
 The manager's callback objects have their own destructors, `0x0020C860` (`CCallbackImpl<24>`, 1101,
 `+0x20`), `0x0020C880` (`CCallbackImpl<16>`, 1102, `+0x40`) and `0x0020C840` (`CCallbackImpl<152>`, 1103,
-`+0x60`). Each calls `SteamAPI_UnregisterCallback` when bit 0 of the object's `+0x08` is set. They run
+`+0x60`). Each calls `SteamAPI_UnregisterCallback` when bit `0x1` of the object's `+0x08` is set. They run
 only from the unwind funclets `0x00899B00`, `0x00899B10` and `0x00899B20` of `0x0020C730`, when its construction
 is abandoned.
 

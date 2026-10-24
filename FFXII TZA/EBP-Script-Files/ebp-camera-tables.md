@@ -105,8 +105,8 @@ Segment (type 2, `0x2C` bytes):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | 2 |  |
-| `+0x04` | `u16[13]` | timing | bit 15 set: ease curve (bits 0-14); else frames |
-| `+0x1E` | `u16` | eyePath | bit 15 set: path (bits 0-13); bit 14: progress is a distance |
+| `+0x04` | `u16[13]` | timing | bit `0x8000` set: ease curve (bits 0-14); else frames |
+| `+0x1E` | `u16` | eyePath | bit `0x8000` set: path (bits 0-13); bit `0x4000`: progress is a distance |
 | `+0x20` | `u16` | targetPath | as eyePath |
 | `+0x22` | `u16` | duration | frames |
 | `+0x24` | `u8` | kind | 0-6; see Playing a shot |
@@ -160,7 +160,7 @@ Every count is per language tree; the CAM7 sections are byte-identical in all ni
 | segment kinds | 0: 3,406; 1: 116; 2: 57; 3: 67; 4: 8; 5 and 6 unused |
 | names | at most 23 bytes, all NUL-terminated |
 | attachment word `0x80008000` | 3,730 shots (no attachment) |
-| eye attached | 180 shots: mode 0 83, mode 1 31, mode 2 66; turn 152, hold height 7, hold ground 5, bit 9 34, bit 10 34 |
+| eye attached | 180 shots: mode 0 83, mode 1 31, mode 2 66; turn 152, hold height 7, hold ground 5, bit `0x200` 34, bit `0x400` 34 |
 | target attached | 181 shots: mode 0 83, mode 1 32, mode 2 66; turn 153, hold height 7, hold ground 1 |
 | attach mode 3 | unused |
 | eye bits 9-14 set with eye actor 0 | 11 shots; never read |
@@ -236,7 +236,7 @@ and 6 replace both with the path-follow routines `0x00256960` and `0x00256CA0`.
 `a·s³ + b·s² + c·s + d`, `s` the position inside that key. `0x003CC890` turns a distance into a
 parameter by a binary search of the arcs, and `0x003CC740` finds the segment by its span and returns
 the three cubics. A plain path word runs the whole path as the progress goes from 0 to 1
-(`0x003CC6C0`); with bit 14 the progress is a distance (`0x003CC710`).
+(`0x003CC6C0`); with bit `0x4000` the progress is a distance (`0x003CC710`).
 
 ### Attaching the eye and target
 
@@ -255,8 +255,8 @@ manager fails `0x002671F0`, gets the identity (`0x00203170`). Otherwise `0x00258
    joint `eyeJoint` or `targetJoint` from `0x002E7F10`; 2, the same from `0x002ED430`;
 4. writes the point as the position, except that "hold height" keeps the old y and "hold ground
    position" keeps the old x and z once the side is attached;
-5. with bit 9 or bit 10 of the word, finds the joint's node (`0x002ED130`) and reads the node's record
-   (`0x002EA890`): bit 9 puts its `+0x198` in `angleSub`, bit 10 its `+0x194` in `fovAdd`.
+5. with bit `0x200` or bit `0x400` of the word, finds the joint's node (`0x002ED130`) and reads the node's record
+   (`0x002EA890`): bit `0x200` puts its `+0x198` in `angleSub`, bit `0x400` its `+0x194` in `fovAdd`.
 
 The view's angle is then the pose's angle minus `angleSub`, and its fov `fov * π / 180 + fovAdd`.
 

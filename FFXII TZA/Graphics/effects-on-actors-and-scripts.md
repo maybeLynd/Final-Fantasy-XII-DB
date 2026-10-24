@@ -31,7 +31,7 @@ The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the 
 | `+0x10` | `u8` | effect number |  |
 | `+0x11` | `u8` | target test |  |
 | `+0x12` | `u8` | kind |  |
-| `+0x13` | `u8` | bits 1-2: request kind (3 for 100-103 and 0x94, 1 when the number's 0x01EFE260 byte is 1, else 0) |  |
+| `+0x13` | `u8` | bits 0x6: request kind (3 for 100-103 and 0x94, 1 when the number's 0x01EFE260 byte is 1, else 0) |  |
 
 - `0x003B0980` returns the first free entry; with all 36 taken it ends the first instance whose
   request kind is 0 or 3 (`0x0024EE60`), closes the gap and returns the last entry.
@@ -47,7 +47,7 @@ The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the 
 The last entry, `0x02EBEF48`-`0x02EBEF5F`, is the one a closed gap leaves behind. After moving the later entries up one,
 `0x003B0770` and `0x003AFFB0` clear its handle `0x02EBEF48` and its instance `0x02EBEF50` (`0x003B07F2`-`0x003B07FC`,
 `0x003B00D9`-`0x003B00E0`), and `0x003B0820` (`0x003B089D`) and `0x003B0220` (`0x003B028B`) clear its handle. When `0x003B0980` ends an instance to free an
-entry, it clears bit 0 of the last entry's `+0x13`, `0x02EBEF5B` (`0x003B0A9D`), and returns that entry (`0x003B0AA4`).
+entry, it clears bit `0x1` of the last entry's `+0x13`, `0x02EBEF5B` (`0x003B0A9D`), and returns that entry (`0x003B0AA4`).
 
 - `0x003B1260(handle, kind)`, for a kind of 1 to 10, calls `0x0024FE70(instance, kind)` with arena 8
   selected.
@@ -81,7 +81,7 @@ Every slot number is clamped to 0 to 31.
 - `effectsync` (`0x00DE`, slot 0) and `effectsync_e3(slot)` (`0x00E3`) wait while the state word
   (`0x0036E5A0`) is non-zero; a skip cancels the slot instead.
 - Cancel: `effectcancel` (`0x00DF`, slot 0) and `effectcancel_e4(slot)` (`0x00E4`) run `0x0036DDC0`,
-  which sets state 4 on a slot in any state but 0 and 4 and, unless the queue entry's flag bit 0 is
+  which sets state 4 on a slot in any state but 0 and 4 and, unless the queue entry's flag bit `0x1` is
   set (`0x003B24C0`), releases the entry (`0x003B18E0`). `effectcancelall` (`0x00E5`,
   handler `0x00350FA0` `jmp 0x0036DE20`) runs `0x003B1710` over the queue and sets every slot to state 4.
 - Triggers: `effecttriggersync` (`0x0274`, `0x0275`) waits while `0x0036E5E0(slot, n)` holds: for a
@@ -91,7 +91,7 @@ Every slot number is clamped to 0 to 31.
   `0x0036DF80`, which passes a non-free slot's id to `0x003B27A0`.
 - `effectsignal(slot, v)` (`0x0241`, `0x0036E460`) passes `v` to `0x0024F3C0`, which, for `v` = 1,
   adds 1 to bits 4 to 7 of the instance's word `+0x378`.
-- `effecthitsyncbyid` (`0x0440`) waits while `0x0036E640(id)` holds: the file reports 2 or 3 and bit 5
+- `effecthitsyncbyid` (`0x0440`) waits while `0x0036E640(id)` holds: the file reports 2 or 3 and bit `0x20`
   of the instance's `+0x36A` is clear (`0x0024E210(id, 0)`).
 
 ## Related

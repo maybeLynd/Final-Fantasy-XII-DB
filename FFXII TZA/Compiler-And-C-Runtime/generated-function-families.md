@@ -103,7 +103,7 @@ adapter gives every class the same `(descriptor, value, T **out)` call. The shar
 
 The owned-buffer reset adapters (`0x005A4830`, 59 bytes) are slot 11 of the same descriptors: their
 46 bodies appear 138 times, all at slot 11, once each in the `ForType`, `Abstract` and `Concrete`
-descriptor of one class. The instance they reset is a count word, whose bit 31 when set keeps the
+descriptor of one class. The instance they reset is a count word, whose bit `0x80000000` when set keeps the
 buffer from being freed, and a data pointer at `+8`.
 
 ### The serial-range loops
@@ -177,7 +177,7 @@ These member files beside the page are not single-form families:
 | `NativeLeaf.StaticPointerBitfieldGetter` | 14 | `0x00236780` | Loads a pointer global and returns one bit of a dword field of its object (`shr`, `and 1`). |
 | `NativeLeaf.StaticPointerNestedFieldGetter` | 14 | `0x0027E9D0` | Loads a pointer global and returns the qword at a fixed offset in what it points to. |
 | `NativeLeaf.StaticPointerNonNullPredicate` | 11 | `0x00228480` | Returns 1 when a pointer global is non-zero (`cmp [global], 0; setne al`). |
-| `NativeLeaf.TaggedStaticAddressAccessor` | 23 | `0x005C51E0` | `lea rax, [global]; or rax, 1; ret`: returns a static's address with bit 0 set. |
+| `NativeLeaf.TaggedStaticAddressAccessor` | 23 | `0x005C51E0` | `lea rax, [global]; or rax, 1; ret`: returns a static's address with bit `0x1` set. |
 | `NativeLeaf.ThreeFloatStore` | 4 | `0x00194330` | Stores `xmm1`, `xmm2` and `xmm3` into three adjacent float fields of `this`. |
 | `NativeLeaf.TwoFloatStore` | 5 | `0x00180870` | Stores `xmm1` and `xmm2` into two adjacent float fields of `this`. |
 | `NativeLeaf.VectCountFloatOrConst` | 4 | `0x001C0820` | Divides the span `[+0x60] - [+0x58]` by 20 (multiply by `0x6666666666666667`); when non-zero returns a float constant, else 0.0 when `[+0x10]` is 0, else the float at `[[+0x18]+0x24]`. |
@@ -252,7 +252,7 @@ These member files beside the page are not single-form families:
 | `NativeAdapter.ChainPredicateReleaseTail` | 5 | `0x005DD5E0` | Calls a predicate on `this`; when true calls a second function on `this`; then jumps to a third on `this`. |
 | `NativeAdapter.ConditionalDoubleCallResultTailCall` | 9 | `0x0017F040` | Saves `ecx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved ecx)`. |
 | `NativeAdapter.DoubleCallResultTailCallSavedThis` | 5 | `0x00182310` | Saves `rcx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved rcx)`. |
-| `NativeAdapter.DynamicOffsetRefFlagCall` | 5 | `0x005CA3E0` | Returns 5 when bit 31 of `r9d` is set; otherwise sets it, calls a function on `rdx + ([this+0x48] - [[this+0x18]+0xF4])` and returns 0. |
+| `NativeAdapter.DynamicOffsetRefFlagCall` | 5 | `0x005CA3E0` | Returns 5 when bit `0x80000000` of `r9d` is set; otherwise sets it, calls a function on `rdx + ([this+0x48] - [[this+0x18]+0xF4])` and returns 0. |
 | `NativeAdapter.FirstMemberInvokeFieldStore` | 7 | `0x0029F100` | When the pointer at `this+off` is non-null, calls a function on it and then clears the field. |
 | `NativeAdapter.FlagByteConditionalOp` | 4 | `0x005CE800` | When the byte at `rdx+8` is non-zero, calls `0x005CDAA0(3, string)`; when the pointer at `rdx+0x20` is non-null, calls `0x006108C0` on it; returns 1. |
 | `NativeAdapter.FlagGatedInitTailCall` | 7 | `0x00227460` | When one bit of the dword `0x01FD46D4` is clear, calls `0x00226BE0(imm, 0, 0, 0, -1, -1)` and jumps to `0x00226280`. |
@@ -269,7 +269,7 @@ These member files beside the page are not single-form families:
 | `NativeAdapter.OutRecordMemberCallTailCall` | 5 | `0x0042DCA0` | Calls `0x00426220(this, [rdx+8])`; when it returns 0, jumps to a function on `this`. |
 | `NativeAdapter.PredicateGuardConstCall` | 4 | `0x00347C60` | Calls a predicate; when non-zero calls `0x00314D40(imm)` and returns 1, else returns 0. |
 | `NativeAdapter.PredicateGuardSharedCall` | 4 | `0x0044A5F0` | Calls `0x002F2D60(this)`; when non-zero calls a function on `this` and returns 1, else returns 0. |
-| `NativeAdapter.RefFlagSetCallZero` | 5 | `0x005CA2B0` | When bit 31 of `r8d` is clear, sets it and calls a function; returns 0. |
+| `NativeAdapter.RefFlagSetCallZero` | 5 | `0x005CA2B0` | When bit `0x80000000` of `r8d` is clear, sets it and calls a function; returns 0. |
 | `NativeAdapter.TableIndexDispatchSetFlag` | 8 | `0x002E7450` | The same resolution; when `+0x284` is non-zero calls a function on the record and sets bit `0x800` of its `+0x290`. |
 | `NativeAdapter.TableIndexDispatchTailCall` | 5 | `0x002E5BC0` | Resolves the word at `[[this+0xC0]]` through the record table whose base is the qword `0x022C6F28` (stride `0x740`) and jumps to a function when the record's dword `+0x284` is non-zero. |
 | `NativeAdapter.TripleMemberChainReturnTrue` | 6 | `0x005CF750` | Calls a predicate on `rdx`; when true calls a second function on `rdx`; always calls a third on `rdx`; returns 1. |
@@ -297,7 +297,7 @@ These member files beside the page are not single-form families:
 | `NativeAdapter.OutRecordDescriptorInitReturnTrue` | 19 | `0x00866FA0` | When `rdx` is non-null writes three addresses at `+0`, `+8`, `+0x10`, zeroes `+0x18` and `+0x1C`, and stores 1.0 at `+0x20`; returns 1. |
 | `NativeAdapter.OutRecordVtablePairStore` | 7 | `0x0063EF60` | When `rdx` is non-null calls a function on it and stores two addresses at `+0` and `+8`; returns 1. |
 | `NativeAdapter.OutRecordZeroInitMemberInit` | 7 | `0x005CFF00` | When `rdx` is non-null clears `0x90` bytes there with `memset` (`0x00861EC0`) and calls an initialiser on it; returns 1. |
-| `NativeLeaf.TaggedOutRecordFloatVcall` | 5 | `0x006B3120` | Advances the cursor in the fifth argument by 8, converts the double there to float, calls `[this+8](rdx, float)`; when the third argument equals `0x006B0B20()` with bit 0 set, stores the result at `out+8`, zeroes `out+0` and returns 1, else 0. |
+| `NativeLeaf.TaggedOutRecordFloatVcall` | 5 | `0x006B3120` | Advances the cursor in the fifth argument by 8, converts the double there to float, calls `[this+8](rdx, float)`; when the third argument equals `0x006B0B20()` with bit `0x1` set, stores the result at `out+8`, zeroes `out+0` and returns 1, else 0. |
 
 ### Construction, destruction and static lifetime
 
@@ -307,7 +307,7 @@ These member files beside the page are not single-form families:
 | `CompilerGeneratedCpp.StaticContainerTeardown.IndirectAllocator` | 60 | `0x008A69F0` | When a static container holds more than one byte and a non-null begin, returns the storage through slot 3 of its allocator object. |
 | `CompilerGeneratedCpp.StaticZeroInitObjectInitializer` | 11 | `0x00169A10` | Clears a `0x50`-byte static with `memset`, constructs its lock with `0x007DF6D0`, and registers its teardown with `atexit` (`0x00808B90`). |
 | `CxxObjectLifecycle.ConditionalTeardownReturnTrue` | 29 | `0x00611A10` | When `rdx` is non-null calls a destructor on it; returns 1. |
-| `CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree` | 196 | `0x005AC810` | Deleting destructor: calls the destructor; when flag bit 0 is set frees `this` with `0x00584730`, or, when bit 2 is also set, calls `0x0016D6A0(this, size)`; returns `this`. |
+| `CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree` | 196 | `0x005AC810` | Deleting destructor: calls the destructor; when flag bit `0x1` is set frees `this` with `0x00584730`, or, when bit `0x4` is also set, calls `0x0016D6A0(this, size)`; returns `this`. |
 | `CxxObjectLifecycle.DeletingDestructor.VtableAlignedOrGuardedFree` | 14 | `0x0017CC70` | The same deleting destructor with a vtable install before the destructor call. |
 | `CxxObjectLifecycle.DerivedConstructorVtableInstall` | 27 | `0x001F1740` | Calls the base constructor on `this`, installs the derived vtable, returns `this`. |
 | `CxxObjectLifecycle.VtableInstallStub` | 42 | `0x0018D0E0` | `lea rax, [vtable]; mov [rcx], rax; ret`. |
@@ -316,15 +316,15 @@ These member files beside the page are not single-form families:
 | `Runtime.NamedRegistryRecord.StaticInitializer` | 60 | `0x0015C510` | Calls `0x005DC6F0(static, string, 0)`, then registers its teardown with `atexit`. |
 | `Runtime.NameRegistryEntry.StaticInitializer` | 56 | `0x00162430` | Calls `0x005FDCB0` with a static's address, then registers its teardown with `atexit`. |
 | `Runtime.Singleton.LazyAllocatorInitializer` | 13 | `0x0019CDE0` | When a pointer global is null, allocates a fixed size with `0x00210EC0`, constructs the object in it, and stores the pointer. |
-| `Runtime.Singleton.StaticObjectFixupRegisterRelease` | 19 | `0x008AF570` | Installs a vtable in a static; when a link static does not point at itself, calls slot `0x48` of the object in another static; calls `0x006B6700` on a member static; frees a buffer with `0x00584730` when bit 0 of a flag byte is set. |
+| `Runtime.Singleton.StaticObjectFixupRegisterRelease` | 19 | `0x008AF570` | Installs a vtable in a static; when a link static does not point at itself, calls slot `0x48` of the object in another static; calls `0x006B6700` on a member static; frees a buffer with `0x00584730` when bit `0x1` of a flag byte is set. |
 
 ### Owned buffers and allocator releases
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `Runtime.Container.OwnedBufferAlignedFreeResetReturnTrue` | 11 | `0x005C3430` | On `rdx`: when bit 31 is clear and the count is above 1, frees `+8` with `0x00584730`; zeroes both; returns 1. |
-| `Runtime.Container.OwnedBufferReset` | 25 | `0x001B6EA0` | When bit 31 of the count word at `+0` is clear frees the pointer at `+8` with `0x00584730`; zeroes both. |
-| `Runtime.Container.OwnedBufferTeardownResetReturnTrue` | 13 | `0x005C31D0` | On `rdx`: when bit 31 is clear calls a teardown with the pointer and the count; zeroes both; returns 1. |
+| `Runtime.Container.OwnedBufferAlignedFreeResetReturnTrue` | 11 | `0x005C3430` | On `rdx`: when bit `0x80000000` is clear and the count is above 1, frees `+8` with `0x00584730`; zeroes both; returns 1. |
+| `Runtime.Container.OwnedBufferReset` | 25 | `0x001B6EA0` | When bit `0x80000000` of the count word at `+0` is clear frees the pointer at `+8` with `0x00584730`; zeroes both. |
+| `Runtime.Container.OwnedBufferTeardownResetReturnTrue` | 13 | `0x005C31D0` | On `rdx`: when bit `0x80000000` is clear calls a teardown with the pointer and the count; zeroes both; returns 1. |
 | `Runtime.Container.SpanCheckMemberVcall` | 6 | `0x001AAD20` | When the span `[this] .. [this+0x10]` holds more than one byte and begins non-null, calls slot 3 of the object at `this+0x18`. |
 | `Runtime.Memory.IndirectAllocatorRelease` | 22 | `0x00185070` | When `[this]` is non-null, returns the span `[this] .. [this+0x10]` (masked to the element alignment) through slot 3 of the allocator object at `this+0x18`. |
 
@@ -345,8 +345,8 @@ These member files beside the page are not single-form families:
 | Family | Members | Example | Body |
 |---|---|---|---|
 | `NativeAdapter.BitfieldOrNodeWalk` | 9 | `0x001A20A0` | Initialises a record in `this` (zeroes `+0` to `+0x1B`, `+0x20` = `rdx+0x38`, `+0x28` = the list's first node, `+0x30` = a table address), steps it with `0x001B7CE0` until that returns true, then calls `0x001AA0A0`; returns `this`. |
-| `NativeAdapter.CountedLoopMemberInvoke` | 5 | `0x0062B020` | For each index below the count at `+0x18` (bit 31 masked, at least 1), calls `0x005CCB80(1)` while a lookup's dword is positive. |
-| `NativeAdapter.GlobalSlotFlagClearOps` | 4 | `0x003302B0` | Clears bit 13 of the qword `table[ecx]`; when no bit but bit 0 remains, calls `0x00263FF0(ecx)` and clears bit 3 of the byte at its `+0x11`; when a non-zero slot became zero, calls `0x0032F1B0(ecx)`. |
+| `NativeAdapter.CountedLoopMemberInvoke` | 5 | `0x0062B020` | For each index below the count at `+0x18` (bit `0x80000000` masked, at least 1), calls `0x005CCB80(1)` while a lookup's dword is positive. |
+| `NativeAdapter.GlobalSlotFlagClearOps` | 4 | `0x003302B0` | Clears bit `0x2000` of the qword `table[ecx]`; when no bit but bit `0x1` remains, calls `0x00263FF0(ecx)` and clears bit `0x8` of the byte at its `+0x11`; when a non-zero slot became zero, calls `0x0032F1B0(ecx)`. |
 | `NativeAdapter.MallocRecordEmplaceTailCall` | 7 | `0x0018B5D0` | Allocates `0x20` bytes through `0x0085E730` (`malloc`), constructs a record with `edx`, appends its pointer to the vector in `this` (end `+8`, capacity `+0x10`, grown by `0x001AB570`), then jumps to `0x0018AFF0(0x0018B4E0(), record)`. |
 | `NativeAdapter.MemberPredicateTreeSearch` | 6 | `0x00219E30` | Walks the circular list at `this+8` calling a predicate on each node's `+0x10` with the three other arguments; returns 1 at the first true, else 0. |
 | `NativeLeaf.BoundedTableWordLookup` | 5 | `0x0032F260` | When `ecx` is within a bound, takes a row pointer from a table; when the row's first byte is non-zero returns its dword at `+8 + edx*8`, else -1. |
@@ -373,7 +373,7 @@ These member files beside the page are not single-form families:
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `Reflection.OwnedBufferResetAdapter` | 46 | `0x005A4830` | On `rdx`: when bit 31 of the count word at `+0` is clear and the pointer at `+8` is non-null, frees it with `0x00584730`; zeroes both; returns 1 (59 bytes). |
+| `Reflection.OwnedBufferResetAdapter` | 46 | `0x005A4830` | On `rdx`: when bit `0x80000000` of the count word at `+0` is clear and the pointer at `+8` is non-null, frees it with `0x00584730`; zeroes both; returns 1 (59 bytes). |
 | `Reflection.ReturnValueAdapter` | 403 | `0x00584780` | `push rbx; sub rsp, 0x20; mov rcx, rdx; mov rbx, r8; call target; mov [rbx], rax; ...; ret` (26 bytes): calls the target with the second argument and stores the returned pointer through the third. |
 
 

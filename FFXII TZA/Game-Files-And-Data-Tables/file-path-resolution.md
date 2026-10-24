@@ -96,7 +96,7 @@ three- or four-character extension and every name ending in `b` or `m`.
   into `\`, copies through CRT `toupper` while dropping the first of two adjacent backslashes, and
   strips trailing spaces.
 - An empty key returns −1. Otherwise the key is hashed with `0x00674A00` (seed `0x1505`,
-  `hash × 33 + (signed char)c`, bit 31 cleared) and the hash is stored through the key pointer before
+  `hash × 33 + (signed char)c`, bit `0x80000000` cleared) and the hash is stored through the key pointer before
   the search.
 - Under the manager's lock (`+0x58`), the tree rooted at `+0x38` (header `+0x28`) is searched with
   unsigned compares on each node's dword `+0x20`. A miss returns −1.
@@ -180,7 +180,7 @@ Stream:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `...` | name copy | bit 0 = borrowed |
+| `+0x10` | `...` | name copy | bit `0x1` = borrowed |
 | `+0x20` | `...` | frame | the frame; the rows below are its fields |
 | `+0x20` | `u32` | size |  |
 | `+0x28` | `...` | Win32 handle | -1 |

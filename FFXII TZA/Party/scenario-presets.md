@@ -50,7 +50,7 @@ Every new game also asks for set 0: the new-game widget `0x00394130` stores 0 th
 | License Points | added to the member's License Points `+0x190`, zeroed just before (65,535 for `0xFFFF`); for one of the six main characters a value other than `0xFFFF` also learns every license square whose row byte `+7` has the member's bit, through `0x00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)) | `0x00239C05`-`0x00239D63` |
 | gear | the five equipment slots, each set with `0x0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)) | `0x00239C62`-`0x00239CBF` |
 | MP share | current MP = max MP × share / 100, or 0 with augment 39 | `0x00239CC4`-`0x00239D7F` |
-| gambit mark | the member's record flag bit 2, taken from bit 0 of the first byte of the **next** preset row | `0x00239D83`-`0x00239D94` |
+| gambit mark | the member's record flag bit `0x4`, taken from bit `0x1` of the first byte of the **next** preset row | `0x00239D83`-`0x00239D94` |
 
 ## Columns
 

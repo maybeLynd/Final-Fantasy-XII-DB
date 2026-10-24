@@ -30,20 +30,20 @@ never set in retail, so scene verbs always proceed past it.
 
 | Verb | Id | Callbacks | What it does |
 |---|---|---|---|
-| `eventread_e8(slot, id)` | `0x00E8` | begin `0x00351880`, poll `0x00351C90`, result `0x003522C0` | the begin stores both and prefetches `0x001D6A70(id, slot)`; the poll waits while manager `m` is active (`+0x10` bit 0) and busy (`+0x13`); the result queues the load `0x0032FC30(m, id)` and sets the hold `0x0032ED70(m)` |
+| `eventread_e8(slot, id)` | `0x00E8` | begin `0x00351880`, poll `0x00351C90`, result `0x003522C0` | the begin stores both and prefetches `0x001D6A70(id, slot)`; the poll waits while manager `m` is active (`+0x10` bit `0x1`) and busy (`+0x13`); the result queues the load `0x0032FC30(m, id)` and sets the hold `0x0032ED70(m)` |
 | `eventread(id)` | `0x00E7` | result `0x00353080` | slot 0, the same load after `0x00314D40(1)` |
 | `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | waits while `0x0032F6C0(m)` reports loads pending, calling `0x00314D40(1)` each poll |
 | `eventplay_ec(slot)` | `0x00EC` | result `0x00354B20` | releases the hold `0x00332130(m)`, then `0x001EC680(m)`, `0x0020AF10(m, −1)` and `0x001EC600()` |
 | `eventsync_ee(slot)` | `0x00EE` | begin `0x00353A10`, poll `0x00355970` | waits while `0x00267210(m)` is non-zero: manager active or busy |
-| `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first; waits while manager `+0x10` has bit 1 |
-| `eventstartsync_166(slot, flag)` | `0x0166` | begin `0x0034E460`, poll `0x0034EAB0` | waits while `+0x10` has bit 1, or bit 0 while the flag is set and bit 7 is set |
+| `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first; waits while manager `+0x10` has bit `0x2` |
+| `eventstartsync_166(slot, flag)` | `0x0166` | begin `0x0034E460`, poll `0x0034EAB0` | waits while `+0x10` has bit `0x2`, or bit `0x1` while the flag is set and bit `0x80` is set |
 | `eventstartsync_167()` | `0x0167` | begin `0x0034FC50`, poll `0x0034F6F0` | the begin pushes two zeros: manager 1, flag 0 |
-| `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: marks `0x022C6D20[m]` and, when the manager is active, requests its teardown through `0x0026A5F0`; a negative slot means the issuer's own manager, and the poll halts the issuer (`+0x14` bit 6) when it disposed itself |
+| `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: marks `0x022C6D20[m]` and, when the manager is active, requests its teardown through `0x0026A5F0`; a negative slot means the issuer's own manager, and the poll halts the issuer (`+0x14` bit `0x40`) when it disposed itself |
 
-The load request `0x0032FC30` queues the scene's files, and `0x0032ED70` sets bit 0 of the manager's
+The load request `0x0032FC30` queues the scene's files, and `0x0032ED70` sets bit `0x1` of the manager's
 pending-load mask at `0x022C6E48 + m × 8`. That bit is the start hold: the files are loaded when
 every other bit is clear, but the scene does not start until `eventplay` calls `0x00332130`, which
-clears bit 0 and manager `+0x11` bit 3 and, when the mask is now empty, runs the finaliser
+clears bit `0x1` and manager `+0x11` bit `0x8` and, when the mask is now empty, runs the finaliser
 `0x0032F1B0(m)`.
 
 The finaliser binds the payload's lighting sections (`0x0037AA90`), activates the
@@ -59,11 +59,11 @@ cutscene JSON hook `0x001EC600`, which returns at once in retail.
 
 | Verb | Id | Callbacks | Effect |
 |---|---|---|---|
-| `moviestandby(id)` | `0x0368` | `0x003567F0` / `0x00356050` / `0x00356460` (→ `0x0035B840(id, manager)`) | waits until `0x0035B7A0` says no fade or load is active, then denies user control, sets the arena mode to 1 (`0x0037B450(1)`, `0x0035B877`, [resource arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)), raises busy bit 16, frees `0x022C8058`, opens the movie (`0x001848A0`) and dismisses the loading page `[0x01F82CD8]` through its tail jump to `0x00183070` (`0x0035B8C4`, [game application](../Engine-Core/game-application.md)) |
+| `moviestandby(id)` | `0x0368` | `0x003567F0` / `0x00356050` / `0x00356460` (→ `0x0035B840(id, manager)`) | waits until `0x0035B7A0` says no fade or load is active, then denies user control, sets the arena mode to 1 (`0x0037B450(1)`, `0x0035B877`, [resource arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)), raises busy bit `0x10000`, frees `0x022C8058`, opens the movie (`0x001848A0`) and dismisses the loading page `[0x01F82CD8]` through its tail jump to `0x00183070` (`0x0035B8C4`, [game application](../Engine-Core/game-application.md)) |
 | `movieplay(v)` | `0x036A` | `0x00356D20` (pops a value it ignores, then `0x0035B7D0`) | switches off the field systems (`0x00358750` and its siblings, `0x002E1CD0(0, 0)`, `0x002E1C40(0, 4)`) and starts playback `0x001848C0` |
 | `getmoviestatus` | `0x036F` | `0x00340870` (→ `0x0035B740`) | returns the player's state `0x00184860` when it is 1, 2 or 3, else 0, and pumps the opening player (`0x00184880`) while it is 1 |
 | `moviecancel` | `0x036E` | `0x0033FEC0` (→ `0x0035B720`) / `0x00357300` / `0x0033FA20` | asks the player to stop, waits while the status is 1 to 3, then ends |
-| `movieend` | `0x036D` | `0x0033FA20` → `0x0035B8D0` | stops the player, frees the buffer, clears busy bit 16 and switches the field systems back on |
+| `movieend` | `0x036D` | `0x0033FA20` → `0x0035B8D0` | stops the player, frees the buffer, clears busy bit `0x10000` and switches the field systems back on |
 
 The player object at `0x01F81218` keeps its state at `+4`: 0 idle, 1 opening, 2 ready, 3 playing,
 4 the last 233 ms, 5 ending, 6 the skip fade. A script therefore reads "finished" from the last
@@ -78,13 +78,13 @@ bit in `0x022CB9C0` and clears it in `0x022CB9D8`. `skipcheck(i)` (`0x051C`) ret
 through `0x003604A0`.
 
 `skipexec(i)` (`0x0539`, `0x0034ECF0` → `0x00360710`) runs only when the manager's skip mask is
-clear and the entry is armed: state 2, executed 1, busy bit 15, the teardown of the manager's
+clear and the entry is armed: state 2, executed 1, busy bit `0x8000`, the teardown of the manager's
 sound, effects and presentation, and finally the mask bit `0x0026A5B0(manager, 1, i)` that ends
 the waits ([native commands](native-commands.md)).
 
 Part of that teardown, `0x003B08F0`, also run when a skip ends, walks the 36-entry table of 24-byte
 effect records at `0x02EBEC00` and stops at the first entry whose first dword is 0. It frees every
-entry that is not marked to keep (`+0x13` bit 0) and whose type byte `+0x10` is not `0x63`,
+entry that is not marked to keep (`+0x13` bit `0x1`) and whose type byte `+0x10` is not `0x63`,
 through `0x003B0770` and `0x0024EE60`. `0x003B0770` moves the later entries down one place, so after a
 free the walk examines the same slot again.
 
@@ -106,7 +106,7 @@ Globals:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x2098E10` | `SceneManager[5]` | managers | manager `m` at `+ m × 0x288`, five slots ([actor managers](../Characters-And-Objects/actor-managers.md)); 0 is the zone, 1 to 3 the scenes |
-| `+0x22C6E48` | `u64[4]` | pendingLoad | per manager; bit 0 is the start hold |
+| `+0x22C6E48` | `u64[4]` | pendingLoad | per manager; bit `0x1` is the start hold |
 | `+0x22C6D20` | `u8[4]` | unloadRequest | per manager |
 | `+0x22CB730` | `SkipEntry[40]` | skips | entry `i + m × 8`, stride 16; the initialiser `0x003604D0` builds 5 groups of 8 (`0x00360559`, `0x0036056D`) |
 | `+0x22CB9C0` | `u32[6]` | skipArmed | per mask index |
@@ -119,8 +119,8 @@ SceneManager (stride `0x288`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x008` | `void*` | actors | actor table: `u32` count, then actor pointers from its `+8` |
-| `+0x010` | `u8` | flags | bit 0 active |
-| `+0x011` | `u8` | loadFlags | bit 3 loading |
+| `+0x010` | `u8` | flags | bit `0x1` active |
+| `+0x011` | `u8` | loadFlags | bit `0x8` loading |
 | `+0x013` | `u8` | busy | non-zero while busy |
 | `+0x1D6` | `u16` | windowCount | entries in the ordinal window |
 | `+0x1DE` | `u16` | windowFirst | first ordinal of the window |

@@ -42,7 +42,7 @@ model loads. When nothing uses the model any more it is unloaded, and a later sc
 - **An area unload** runs the per-frame binding update itself (`0x002628B0` is one of its callers), so retired
   entries are freed as the zone goes ([script name bindings](script-name-bindings.md#the-per-frame-binding-update),
   [changing areas](../World-Areas-And-Travel/changing-areas.md)).
-- **A pinned entry** (pin bit 0 or 1) is never released: its count is clamped to 0 instead
+- **A pinned entry** (pin bit `0x1` or `0x2`) is never released: its count is clamped to 0 instead
   ([script name bindings](script-name-bindings.md#find-or-create-holders-and-the-reference-count)).
 - **A retired entry whose buffer handle is 0** is not passed to `0x002E9360`; it ends on no list and its slot stays
   lost until the binding table is set up again

@@ -27,9 +27,9 @@ the last level is 99. While the script's summon mode is on, the whole EXP goes t
 
 `0x00312280(killer, enemy)`, whose only caller is the status write `0x0030E360` when it adds KO, Stone or X-Zone
 ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)), pays EXP and LP only when the defeated unit is an
-enemy (stats byte `+0x05` = 1) whose byte `+0xE9A` has bit 3 clear, and when at least one of these
-holds: `+0xE9A` has bits 0 and 2 set, or the enemy's status words `+0x64 | +0x3C` have bit 1 set
-while `+0xE9A` bit 1 is set, or the killer is a party member (killer stats byte `+0x05` = 0).
+enemy (stats byte `+0x05` = 1) whose byte `+0xE9A` has bit `0x8` clear, and when at least one of these
+holds: `+0xE9A` has bits `0x1` and `0x4` set, or the enemy's status words `+0x64 | +0x3C` have bit `0x2` set
+while `+0xE9A` bit `0x2` is set, or the killer is a party member (killer stats byte `+0x05` = 0).
 
 ### Recipients
 
@@ -75,7 +75,7 @@ A recipient gets 0 unless all of these hold:
 The type id is the record's `chr_data` row: 0-6 the main characters, 7-25 guests and story
 variants, `0x1A` the Chocobo and `0x1B`-`0x27` the thirteen Espers (see the stat growth page).
 
-Battle mode 1 is bit 0 of `[0x02EBF190] + 0x5B04` with bits 1-3 clear outside town areas
+Battle mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with bits 1-3 clear outside town areas
 (`0x0030D9A0`). The script verb `btlAtelSetSummonMode` sets and clears that bit through `0x00313550`. In
 that mode the receiving unit is the one whose id equals byte `[0x02EBF190] + 0x5AD5`, looked up in the
 slot table at `+0x5A48` by `0x00320890`; it must still pass the recipient gate above, or nobody
@@ -106,10 +106,10 @@ whose augment byte `+0x1A` carries the augment:
 
 | Bit | Augment | Description id | Equipment (augment byte `+0x1A`) |
 |---|---|---|---|
-| `+0x6B` bit 3 | 27, EXP Boost | 13027 | Embroidered Tippet (`0x1168`) |
-| `+0x6B` bit 4 | 28, LP Boost | 13028 | Golden Amulet (`0x116F`) |
-| `+0x6B` bit 5 | 29, Stagnation | 13029 | Firefly (`0x1171`) |
-| `+0x69` bit 4 | 12, Lobbying | 13012 | Cat-ear Hood (`0x117F`) |
+| `+0x6B` bit `0x8` | 27, EXP Boost | 13027 | Embroidered Tippet (`0x1168`) |
+| `+0x6B` bit `0x10` | 28, LP Boost | 13028 | Golden Amulet (`0x116F`) |
+| `+0x6B` bit `0x20` | 29, Stagnation | 13029 | Firefly (`0x1171`) |
+| `+0x69` bit `0x10` | 12, Lobbying | 13012 | Cat-ear Hood (`0x117F`) |
 
 ### Applying them
 

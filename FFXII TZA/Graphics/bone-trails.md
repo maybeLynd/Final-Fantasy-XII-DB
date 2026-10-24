@@ -31,15 +31,15 @@ from section `+0x10`. The descriptor is copied whole into the trail entry at `+0
 ### Switching trails on and off
 
 - Authored presentation command `0x11` of the bank `0x0041D6C0` registers (`0x00520160`) stores the command's byte `+2` in
-  render record `+0x3D0` and sets bit 24 of `+0x294` ([Authored presentation commands](authored-presentation-commands.md)).
-- The record pass `0x00427DE0` sees bit 24 (`0x0042858C`) and calls `0x00425E70(record, byte +0x3D0)`, which runs `0x003E6770`
+  render record `+0x3D0` and sets bit `0x1000000` of `+0x294` ([Authored presentation commands](authored-presentation-commands.md)).
+- The record pass `0x00427DE0` sees bit `0x1000000` (`0x0042858C`) and calls `0x00425E70(record, byte +0x3D0)`, which runs `0x003E6770`
   on the record, its first child and the child's two subtrees. A command addressed to a character reaches the weapon in
   its hand this way.
 - On: when the record's first trail handle `+0x438` is `0xFFFF`, `0x003E6770` creates one entry per descriptor
   (`0x0051CC30`) and stores the handles at `+0x438`-`+0x444`. Otherwise it creates nothing.
 - Off: it calls `0x0051CC10` for each handle that is not `0xFFFF` and stores nothing, so the handles stay in place. A
   stale handle is harmless: every pool routine compares it with the entry's own `+0`.
-- `0x0042F250(record index)` is a second off path: it clears bits 18 and 19 of `+0x290`, sets bit 20 and calls
+- `0x0042F250(record index)` is a second off path: it clears bits `0x40000` and `0x80000` of `+0x290`, sets bit `0x100000` and calls
   `0x003E6770(record, 0)`.
 
 `0x0051CC10` only clears the entry's on byte `+4`; the entry keeps updating and drawing while it fades and frees itself at
@@ -64,7 +64,7 @@ copies the descriptor, clears the histories, takes the first sample and appends 
 ### Sampling a bone
 
 `0x00422170(record, bone, base out, tip out)` resolves the record's model instance and calls `0x003711D0`, or `0x003712C0`
-when the instance's first byte has bit 7. `0x003711D0` refuses a bone at or past the skeleton's count, copies the bone's
+when the instance's first byte has bit `0x80`. `0x003711D0` refuses a bone at or past the skeleton's count, copies the bone's
 world position (`+0xB0` of its `0x290`-byte runtime record) as the base, and builds the tip by putting `(length, 0, 0, 1)`
 through the bone's matrix at `+0x80`.
 
@@ -77,7 +77,7 @@ along the bone's x axis for that length.
 
 `0x0051C3C0` walks the list once a frame. For each entry:
 
-1. It skips the entry when bit 0 of `entry +5 | 0x02CA8402` is set.
+1. It skips the entry when bit `0x1` of `entry +5 | 0x02CA8402` is set.
 2. When the alternator `+7` is set or `0x001EDDA0` returns 1, the sample count rises to at most 16 and the three
    histories shift down one slot. `0x001EDDA0` returns 0 only while the 60 fps flag `0x01F82E38` is set and `0x01DFE0C0` is 0,
    so at 30 fps the histories shift every frame and at 60 fps every second frame. The alternator flips every update.
@@ -132,7 +132,7 @@ Trail entry, [`0x02CA8420`] + slot × `0x3C0`:
 |---|---|---|---|
 | `+0x000` | `u32` | handle | serial << 8 \| slot, 0 = free |
 | `+0x004` | `u8` | on |  |
-| `+0x005` | `u8` | flags | bit 0 do not update, bit 1 do not draw |
+| `+0x005` | `u8` | flags | bit `0x1` do not update, bit `0x2` do not draw |
 | `+0x006` | `u8` | samples | 1 to 16 |
 | `+0x007` | `u8` | alternator |  |
 | `+0x008` | `f32` | opacity | the character's |

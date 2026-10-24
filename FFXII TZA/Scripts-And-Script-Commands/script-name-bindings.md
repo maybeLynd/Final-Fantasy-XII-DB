@@ -36,7 +36,7 @@ at `0x02161DA0`. A handle is `(dword [entry + 0x24] << 16) | word [entry + 0x1A]
 
 `0x002E97C0` resolves a handle: 0 fails; the slot is `handle & 0x7FFF` and must be below `0x80`; the
 entry at `0x0215FDA0 + slot × 0x40` is returned only when its recomputed handle equals the argument,
-and null otherwise. A handle with bit 15 clear never matches. A stale handle names a live slot whose
+and null otherwise. A handle with bit `0x8000` clear never matches. A stale handle names a live slot whose
 stamp has moved on, so it resolves to null rather than to another model.
 
 The stamp is a dword at `+0x24`. The allocator `0x002E25E0`, the re-lister `0x002EAEB0` and the release
@@ -63,9 +63,9 @@ record `+0xA0`).
 ### Find-or-create, holders and the reference count
 
 `0x002EB540(id, selector)` searches the live list, then the requested list, for an entry whose `+0x14`
-equals the id. On a miss it allocates one, pushes it on the requested list and sets pin bit 3
+equals the id. On a miss it allocates one, pushes it on the requested list and sets pin bit `0x8`
 (`+0x19 |= 8`). Either way it sets bit `selector` of the holder word `+0x20`. `0x002EAE20(id)` does the
-same search and creation without pin bit 3 and sets holder bit 0. Neither guards its final writes
+same search and creation without pin bit `0x8` and sets holder bit `0x1`. Neither guards its final writes
 against a null allocation: with all 128 entries in use both write through a null pointer.
 
 `0x002E25E0(id)` pops the free head, increments the stamp, keeps only bits `0xC8` of `+0x19`, zeroes
@@ -73,21 +73,21 @@ against a null allocation: with all 128 entries in use both write through a null
 `+0x1E` to `0xFFFF` and `+0x30..+0x3B` to `0xFFFFFFFF`, and unlinks the entry.
 
 The bind `0x002E28E0` and the attach `0x002E3110` add one to the reference count `+0x1C` and clear
-`+0x18` bit 2. `0x002EB810(id)` and `0x002EAF70(entry)` take one away. An entry with pin bit 0 or 1 set
-(`+0x19 & 3`; `0x002EBD60(id, on)` sets bit 0) has its count clamped to 0 instead of being released.
+`+0x18` bit `0x4`. `0x002EB810(id)` and `0x002EAF70(entry)` take one away. An entry with pin bit `0x1` or `0x2` set
+(`+0x19 & 3`; `0x002EBD60(id, on)` sets bit `0x1`) has its count clamped to 0 instead of being released.
 
 Four routines release an unreferenced entry through the re-lister `0x002EAEB0`:
 
 - `0x002E3E20(selector, direction)` walks the live list only. A positive direction clears the
   selector's holder bit, a negative one clears the whole holder word. On an entry whose count is 0 or
   less it then clears the selector's bit (for any direction), and re-lists it when the holder word is
-  empty and pin bits 0-1 are clear.
+  empty and pin bits `0x3` are clear.
 - `0x002E3DC0(id)` re-lists the entry for the id when its count is 0 or less and it is not pinned.
-- `0x002E3E90(id)` does the same, except that it leaves an entry with `+0x19` bit 4 set.
+- `0x002E3E90(id)` does the same, except that it leaves an entry with `+0x19` bit `0x10` set.
 - `0x002EAF70(entry)` drops one reference and re-lists at 0 or less, unless pinned.
 
-`0x002EAEB0(entry)`: while the entry is not ready (`+0x18` bit 1 clear) and `+0x19` bit 2 is clear, it
-only sets `+0x18` bit 2 and returns, deferring the release until the load completes. Otherwise it
+`0x002EAEB0(entry)`: while the entry is not ready (`+0x18` bit `0x2` clear) and `+0x19` bit `0x4` is clear, it
+only sets `+0x18` bit `0x4` and returns, deferring the release until the load completes. Otherwise it
 increments the stamp, clears the ready bit, copies the new stamp into the entry's lane record, and
 moves the entry from the live or requested list to the head of the retired list. Every handle given
 out for the entry stops resolving at that moment.
@@ -105,7 +105,7 @@ once, the callback that `0x002EACC0` stored at `0x0215FD98` with the value at `0
 
 Retired entries are released from the tail of the list (the oldest) towards the head. An entry whose
 load handle `+0x10` is non-zero is first unloaded from the render system (`0x0041E490` through
-`0x0020E600([0x022C6F28 + 0x48830])`) unless `+0x18` bit 3 or `+0x19` bit 2 is set, then released by
+`0x0020E600([0x022C6F28 + 0x48830])`) unless `+0x18` bit `0x8` or `+0x19` bit `0x4` is set, then released by
 `0x002E9360`.
 
 An entry whose `+0x10` is 0 is not passed to `0x002E9360`: when the walk reaches the head it nulls
@@ -133,14 +133,14 @@ size: `0x002DF960`'s size rounded up to a multiple of 64 (the per-kind override 
 it). It then sets `+0x19` bit 2 and zeroes `+0x10`.
 
 A positive size gets a buffer from `0x0036B160`, whose handle goes to `+0x10`; when
-that succeeds it clears bit 2, files the load with `0x002EAD50`, and for an entry with pin bit 3
-calls `0x0036C5D0(handle, 1)`. The entry then moves to the live list and pin bit 3 is cleared.
+that succeeds it clears bit `0x4`, files the load with `0x002EAD50`, and for an entry with pin bit `0x8`
+calls `0x0036C5D0(handle, 1)`. The entry then moves to the live list and pin bit `0x8` is cleared.
 
 `0x002EAD50` files `0x0032E620(kind, index, buffer, size, record)` with the completion callback
 `0x002E4D20` and the entry as its argument. On completion `0x002E4D20` registers the model with the
-render system (`0x0041E580`) unless a release is already pending (`+0x18` bit 2), in which case it
-sets `+0x18` bit 3. It then asks `0x002EA6E0` whether sub-resources follow: when none do, it sets the
-ready bit `+0x18` bit 1 and, if a release was deferred, re-lists the entry at once.
+render system (`0x0041E580`) unless a release is already pending (`+0x18` bit `0x4`), in which case it
+sets `+0x18` bit `0x8`. It then asks `0x002EA6E0` whether sub-resources follow: when none do, it sets the
+ready bit `+0x18` bit `0x2` and, if a release was deferred, re-lists the entry at once.
 
 `0x002EA6E0` files a task with step function `0x002E60F0` when the model has a row in `0x002ED950` and
 no release is pending. `0x002E60F0` reads the row's three signed words at `+0`, `+2`, `+4`. A negative
@@ -218,9 +218,9 @@ the group: a group of 5 or more indexes past `+0x58`.
 
 `setuptreasure` (verb `0x2BE`) has begin `0x00354400`, poll `0x00354A40` and result `0x00355210`.
 
-The begin hides the actor (`0x0026A320(actor, 0)` clears `+0x0C` bit 7), pops the spot reference into
+The begin hides the actor (`0x0026A320(actor, 0)` clears `+0x0C` bit `0x80`), pops the spot reference into
 `args[2]`, and takes the chest model from the current map header: `0x0026E060` reads the word at
-`+0x88` of the header `[0x02098E10]` when `0x02098E20` bit 0 is set, the header's first word exceeds 10
+`+0x88` of the header `[0x02098E10]` when `0x02098E20` bit `0x1` is set, the header's first word exceeds 10
 and the signed word is not negative, with `[0x02099D70]` switched to `0x02098E10` for the call. Because
 `word | 0x3000000` is above `0xFFFFFF`, `0x002E9A60` takes the chest model from the calling script's
 name table at that index (`0x00263F80`). Otherwise the model is −1.
@@ -246,7 +246,7 @@ angle (`0x0026B620`, `0x0026A0D0`), sets its separation weight to −1.0 (`0x002
 (`0x002E28E0`) and sets the movement body's mask word to `0x10` (`0x002EC5B0`).
 
 `0x002FAF60` decodes the placement from the chest record, and `setuptreasure`'s result is its only
-caller. Byte `+8` is shared: bits 0-5 are the facing and bit 6 is the random-gil flag the payout
+caller. Byte `+8` is shared: bits `0x3F` are the facing and bit `0x40` is the random-gil flag the payout
 reads ([reward verbs](reward-verbs.md) has the contents fields `+0xB..+0x17`).
 
 ```python
@@ -263,7 +263,7 @@ units; codes 60 to 63 go past a full turn and are not clamped.
 ### The bind: what binding a model to an actor does
 
 `0x002E28E0(actor, entry)` needs the actor's presentation context `[actor + 0xC0]`; without one it
-only runs its tail (`0x002EB930`). With one, it marks the actor (`+0x0D` bit 1, `+0x04` = 1), takes a
+only runs its tail (`0x002EB930`). With one, it marks the actor (`+0x0D` bit `0x2`, `+0x04` = 1), takes a
 reference on the entry and clears its pending-release bit, and creates the render record with
 `0x0042FB80(entry +0x10, context +0x14C, context +0x14D)` while `0x01F7F508` holds the entry's id. The
 record's index goes to context `+0x00`, the id to `+0x04` and the entry pointer to `+0x08`.
@@ -276,7 +276,7 @@ with `0x003E7500`.
 
 It then reads keyed parameters of the model with `0x003E6150(render index, key)`: `0x09000606` to
 `[actor + 0xB8] + 0xE0`; `0x09000707` × 1.0 (`0x01DFE0BC`) to `+0xE4`; `0x09001F20` and `0x09002021` to
-`0x0026AA30`; `0x01002D4F`/`0x01002E50` in a town (`0x00377C20`: bit 15 of the map's word in `[0x02ADD100]`), otherwise
+`0x0026AA30`; `0x01002D4F`/`0x01002E50` in a town (`0x00377C20`: bit `0x8000` of the map's word in `[0x02ADD100]`), otherwise
 `0x01002143`/`0x01002244`, to `0x0026B2E0`; `0x09001D1E` to `0x00269E60`;
 `0x600A1244` (integer, `0x003E6310`) to `0x0026AF40`; and `0x09002322`, `0x09002524`, `0x09002423`, each
 × 50, to `0x0026A370`. `0x09042A2E` is read and its value never used.
@@ -301,7 +301,7 @@ so `bindh` and `bindc` on an actor that was never bound do nothing.
 A slot already in use is detached first and its entry loses one reference (`0x002EB810`). The attach
 takes a reference, creates the render record with
 `0x0042FB80(entry +0x10, 1)`, links it to the main record with `0x002EDAA0(main, link, slot)` (kinds 2
-and 4 force link `0x7FFF`) and calls `0x002EE050(slot, 1.0, 1.0, 1.0)`. Kind 2 clears render `+0x304` bit 6 and kind
+and 4 force link `0x7FFF`) and calls `0x002EE050(slot, 1.0, 1.0, 1.0)`. Kind 2 clears render `+0x304` bit `0x40` and kind
 4 sets it (when `0x01FD49EC` is set).
 
 `0x002E3C20(actor, kind, n)` detaches a slot (`0x002E3A60`) and refreshes the actor's visibility.
@@ -329,7 +329,7 @@ and 4 force link `0x7FFF`) and calls `0x002EE050(slot, 1.0, 1.0, 1.0)`. Kind 2 c
 The result callback `0x00342640` of `bindp`, `bindp2_d4` and `unkCall_5cb` ends the same way after its bind: it
 refreshes the lane index (`0x002EAC90`, `0x003426C1`) after either bind, and on every path, bound or not, it reads the
 body weight `0x00265950(actor)`, float `[[actor + 0xC0] + 0x148]` (`0x003426C9`), and tail-jumps to
-`0x0025B470(actor, weight)` (`0x003426DE`), which re-applies the body mask's bit 4
+`0x0025B470(actor, weight)` (`0x003426DE`), which re-applies the body mask's bit `0x10`
 ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)).
 
 Every begin that creates a binding does nothing when the script manager's byte at
@@ -351,7 +351,7 @@ table pointer is null.
 
 No replacement: state 1, and the
 result binds the model. A replacement: the poll binds the model itself, finds or creates the
-replacement's entry with holder bit 0, and waits in state 2; when it is ready, state 3 and the
+replacement's entry with holder bit `0x1`, and waits in state 2; when it is ready, state 3 and the
 result attaches it at `+0x90` (kind 4).
 
 `unkCall_5cb`'s poll `0x003418B0` stops at state 1 once the entry is ready, so its result always
@@ -375,16 +375,16 @@ once for a handle of 0 or one that no longer resolves.
 `stdmotionreadsync`'s poll `0x0034B8D0` reads the actor's motion lane, the signed byte
 `[actor + 0xC0] + 0x12` (`0x002E9C00`, −1 without a context), and tests it on the main entry with
 `0x002E4C30` (the lane's `+0x24` bit; 1 for a negative lane; −1 without a matching lane record). A
-loaded lane ends the poll after `0x002EAC90` (and `0x002EB380` when actor `+0x0D` bit 7 is set).
+loaded lane ends the poll after `0x002EAC90` (and `0x002EB380` when actor `+0x0D` bit `0x80` is set).
 Otherwise it claims the lane with `0x002EB9D0`, raises the loading flag and waits; it ends at once
 when the claim fails or the context has no main entry.
 
 `stdmotioneventsync` (`0x0473`) waits for a marker in the actor's motion. Its begin `0x002ECFD0`
-(through `0x003479E0`) clears bits 0 and 1 of the render record's `+0x419` (`0x0042F210` for each);
+(through `0x003479E0`) clears bits `0x1` and `0x2` of the render record's `+0x419` (`0x0042F210` for each);
 its poll `0x00347DD0` ends when either bit is set again (`0x002ECF60`, `0x0042F1C0`). The motion sets
 them through its authored command id 4, subtypes 11 and 10 (`0x00417AD0`).
 
-`debug_bindp(model)` (`0x0050D660`) finds or creates the model with `0x002EAE20` (holder bit 0), stores
+`debug_bindp(model)` (`0x0050D660`) finds or creates the model with `0x002EAE20` (holder bit `0x1`), stores
 the entry pointer itself rather than a handle, claims a free lane (`0x002EB9D0(entry, −1)`), requests
 it with `0x002EB490` and stores it with `0x002EC6B0`. Its poll `0x0050D710` waits for the entry to be
 ready and the lane loaded; its result `0x0050D810` binds the stored pointer and calls
@@ -465,7 +465,7 @@ Chest record:
 | `+0x00` | `u8` | index in the field |  |
 | `+0x04` | `i16` | x tenths |  |
 | `+0x06` | `i16` | z tenths |  |
-| `+0x08` | `u8` | facing (bits 0-5) and random gil (bit 6) |  |
+| `+0x08` | `u8` | facing (bits 0-5) and random gil (bit 0x40) |  |
 | `+0x09` | `u8` | opened-flag id |  |
 | `+0x0A` | `u8` | presence % |  |
 | `+0x0B-0x17` | `...` | contents (reward verbs) |  |

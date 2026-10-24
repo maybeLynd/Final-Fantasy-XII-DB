@@ -31,7 +31,7 @@ counter and, at 0, runs the field hold `0x00263480` and `0x00225CD0(6, 4)`.
 
 `0x00377700` returns 1 only when the field byte and the save byte are both clear: the field byte is
 `[0x02ADD100] + 8 + 3 × field + 2`, read only when the table exists and the field index is below
-its count at `+4`, otherwise taken as clear; the save byte is the persistent `+0x1062` bit 0
+its count at `+4`, otherwise taken as clear; the save byte is the persistent `+0x1062` bit `0x1`
 (`0x00314A60`, set by `setsaverambattlestatus(0)`).
 
 The field hold `0x00263480(actor, mode)` raises request 5

@@ -37,7 +37,7 @@ else 0) at `0x02EC1378`. The fields the code on this page reads:
 
 `GridHeader`: `8` `i32` columns, `C` `i32` rows, `10` `i32` cell width, `14` `i32` cell height.
 `CollisionPolygon`: `0` `f32[3]` normal, `C` `u32` attribute word, `10` `i16[3]` vertices, `16`
-`i16[3]` the neighbour across each edge, `1C` `u32` flags (bit 10 ends contacts past the third edge).
+`i16[3]` the neighbour across each edge, `1C` `u32` flags (bit `0x400` ends contacts past the third edge).
 
 A cell's list in bank `k` is the ids from `index[k (n + 1) + cell]` up to `index[k (n + 1) + cell +
 1]`. The cell of a point is the staggered-grid lookup `0x00233050` ([geometry
@@ -77,17 +77,17 @@ the only code that reads the row, since the vector transform `0x00202B90` reads 
 
 `0x00380C40(placement, move)` is the entry, run by the body solver `0x003DB140` on the body's `+0x30`
 and by the straight-walk test `0x00336AE0`. It resets the push vector `+0x40` to `{0, 0, 0, 1}` and
-clears flag `+0x60` bit 4, and does nothing more without a collision part or for a move of 0.001
+clears flag `+0x60` bit `0x10`, and does nothing more without a collision part or for a move of 0.001
 or less.
 
 With a valid polygon at `+0x52` it runs the sweep `0x002327D0(part, placement, position, move,
 polygon)`, stores the polygon it returns, stores the ground height (`0x00231890`) at `+0x7C` and into
-the position's y unless flag `+0x60` bit 0 (a flier), and normalises `+0x40` (`0x00380800`) when bit
-4 was raised. `0x003808A0` then refreshes the cell attributes.
+the position's y unless flag `+0x60` bit `0x1` (a flier), and normalises `+0x40` (`0x00380800`) when bit
+`0x10` was raised. `0x003808A0` then refreshes the cell attributes.
 
 `0x002327D0` cuts the move into sub-steps. With `rMin` and `rMax` the smaller and larger of the two
 radii, a walker uses a sub-step of `0.8 * rMin` and a penetration ellipsoid whose vertical half-axis
-is 0.1 and whose centre sits `max(0.1, rMax) / 2` above the position. A flier (flag bit 0) uses `h
+is 0.1 and whose centre sits `max(0.1, rMax) / 2` above the position. A flier (flag bit `0x1`) uses `h
 = +0x6C / 2` as the half-axis and the centre offset, and `0.8 * min(rMin, h)` as the sub-step. The
 horizontal half-axes are the frame's x axis times `+0x80` and its z axis times `+0x84`.
 
@@ -99,7 +99,7 @@ stages:
    with a radius above 2.0 also floods the neighbouring cells (`0x0022E340`).
 2. When the deepest penetration is above 0.01, the summed push (its vertical part dropped for a
    walker) is normalised, scaled by that depth and added to the centre and to `+0x40`, and flag bit
-   4 is set. Up to four rounds run; a body with a radius above 2.0 runs one.
+   `0x10` is set. Up to four rounds run; a body with a radius above 2.0 runs one.
 3. The polygon walk: `0x002324F0` names the edge of the current polygon the centre lies beyond. When
    there is one and its neighbour `+0x16` exists, is open to the body's kind byte `+0x50`
    (`0x00230A40`) and has not been visited in this sub-step (`0x02088FE0`, at most 128), the walk
@@ -162,20 +162,20 @@ The query is built on the caller's stack:
 | `+0x34` | `i16` | deepestId | its id, `FFFF` none |
 | `+0x36` | `i16` | kind | a word `0x00231690` stores from one of its stack arguments (`0x002316F0`, `0x00231708`); neither callback reads it |
 | `+0x38` | `i32` | dynamic | test ids from `0x5000` |
-| `+0x3C` | `i32` | bit26Walls | test walls with attribute bit 26 |
+| `+0x3C` | `i32` | bit26Walls | test walls with attribute bit `0x4000000` |
 
 For a direction `n`, the ellipsoid reaches `r(n) = sqrt((n . a0)^2 + (n . a1)^2 + (n . a2)^2)` from
 its centre, with `a0`-`a2` the three rows. `0x0022D7E0(query)` walks the list:
 
 - A polygon of any type other than 1 is tested; a type-1 polygon only when its wall-overridden
-  attribute word is below `0x80000000` and its bit 26 is clear or `+0x3C` is set. The test takes the
+  attribute word is below `0x80000000` and its bit `0x4000000` is clear or `+0x3C` is set. The test takes the
   distance `d = (centre - v[0]) . n` to the polygon's plane and needs `0 < d < r(n)`.
 - `0x0022E7D0` then gives the vector from the polygon to the centre: zero when the centre projects
   inside the face, else from the closest point of the first edge the centre lies outside. When that
   vector is longer than 0.001 and than `d`, its direction replaces `n` and its length `d`. With `d <
   r(n)`, `n * (r(n) - d)` is added to the push.
 - A wall record (`0x4000`-`0x4FFF`) is tested when its wall-overridden word is below `0x80000000`
-  and its bit 26 is clear or `+0x3C` is set: `0x00381D90` gives the contact normal and `0x003810B0` the
+  and its bit `0x4000000` is clear or `+0x3C` is set: `0x00381D90` gives the contact normal and `0x003810B0` the
   distance, and a distance below `r(normal)` adds `normal * (r - distance)`.
 - An id from `0x5000`, only with `+0x38` set, names entry `id - 0x5000` of the bound map's
   dynamic shapes (`[0x0209A670] + 0x1A0`, 0x10 bytes each), tested when its dword at `[map + 0x1D8] +
@@ -185,7 +185,7 @@ its centre, with `a0`-`a2` the three rows. `0x0022D7E0(query)` walks the list:
 
 Every hit whose depth is strictly greater than `+0x30` becomes the deepest, with its id at `+0x34`.
 `0x0022E7D0` answers 0, skipping the polygon, when the centre lies outside the third edge (`v[2]` to
-`v[0]`) and the polygon's flag word `+0x1C` has bit 10.
+`v[0]`) and the polygon's flag word `+0x1C` has bit `0x400`.
 
 ### Big bodies and the neighbouring cells
 
@@ -216,7 +216,7 @@ radius at -30 and +30 degrees about the line when the sphere touches, and a fina
 the start by the deepest penetration. `0x00230C00` forwards to it.
 
 `0x00231690(part, push, id, axes, centre, kind, dynamic, placement)` runs `0x0022D7E0` once on the
-centre's cell and returns the deepest penetration, with the push and the id written out; kind bit 0
+centre's cell and returns the deepest penetration, with the push and the id written out; kind bit `0x1`
 selects banks 0-2, or banks 0-1 with the bit-26 walls when `dynamic` is set; a placement with a
 radius above 2.0 adds the flood. `0x003D97E0` ray casts (`0x00230B60`), and on a hit takes the hit's
 normal (`0x00232160`) and moves the hit point 0.1 along it; on a miss the normal is zero.
@@ -247,7 +247,7 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
   p.x) n.x + (v[0].z - p.z) n.z) / n.y`; with no polygon, or `n.y` at or below 0.001, it is `p.y`.
   `0x00231820` is the same, written into `p.y`.
 - `0x00231900(part, p, typeMask)` is the highest polygon under `p`: of the bank-0 ids of `p`'s cell,
-  the polygons with `n.y` above 0.001, a type (attribute bits 0-2) whose bit is set in `typeMask`,
+  the polygons with `n.y` above 0.001, a type (attribute bits `0x7`) whose bit is set in `typeMask`,
   and `p` inside them seen from above (`0x002324F0` = -1), the one with the highest plane height wins;
   -1 without a part, a cell or a candidate.
 - `0x0026E350(p)` drops `p` onto the highest type-0 polygon of the bound map (`0x00231900(..., 1)`, then
@@ -275,7 +275,7 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
 | `+0x40` | `f32[4]` | push | push of this move, normalised by `0x00380C40` |
 | `+0x50` | `u8` | kind | the kind `0x00230A40` tests |
 | `+0x52` | `i16` | polygon | polygon under the body |
-| `+0x60` | `u32` | flags | bit 0 flier, bit 4 pushed this move |
+| `+0x60` | `u32` | flags | bit `0x1` flier, bit `0x10` pushed this move |
 | `+0x6C` | `f32` | height | a flier's ellipsoid |
 | `+0x7C` | `f32` | groundHeight | plane height under the body |
 | `+0x80` | `f32` | radiusA | stepped radius, the footprint's x |

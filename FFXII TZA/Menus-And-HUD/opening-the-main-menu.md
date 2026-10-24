@@ -14,10 +14,10 @@ does nothing.
 ## Steps
 
 1. **The post.** On Triangle the input arbiter posts id 2 to the mailbox with `0x002E1B10`, which refuses while the
-   mailbox is blocked or policy bit 0 is set ([menus](menus.md#the-mailbox),
+   mailbox is blocked or policy bit `0x1` is set ([menus](menus.md#the-mailbox),
    [action availability](../Controls-And-Input/action-availability.md#the-combined-mask)).
 2. **The delivery.** Once per world tick the drain `0x002E09A0` takes the request: it throws it away while manager
-   slot 0 is not ready, drops id 2 when `0x0037B330` answers non-zero or policy bit 0 or 3 is set, and waits while a
+   slot 0 is not ready, drops id 2 when `0x0037B330` answers non-zero or policy bit `0x1` or `0x8` is set, and waits while a
    party record is busy ([menus](menus.md#delivery)).
 3. **The router.** `0x00254B50` refuses while the request latch is set or when the combined action policy blocks the
    id, then closes what is open and dispatches by id ([menus](menus.md#the-router),

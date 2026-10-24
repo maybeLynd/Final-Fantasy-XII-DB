@@ -125,7 +125,7 @@ the file ends with a -1 where a record would start
   a 16-byte buffer and calls `0x001BE430`, which stores the record with that name at `+0x6E8` and the one
   named `<name>_town` at `+0x6F0`.
 - `0x003714A0`, run for every skeleton while its pose is composed, uses `+0x6F0` when it is set and
-  bit 15 of the current field's word in the table at `0x02ADD100` is set (`0x00377C20`); the registry's
+  bit `0x8000` of the current field's word in the table at `0x02ADD100` is set (`0x00377C20`); the registry's
   `+0x20` (`0x0017FFB0`) forces the town table with 1 and the base table with 2.
 
 ### Applying a track

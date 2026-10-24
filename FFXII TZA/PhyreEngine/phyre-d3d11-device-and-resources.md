@@ -102,8 +102,8 @@ name, code, flags, five DXGI formats)`; `0x00616210` runs `0x0062CD40` and store
 
 - the bits per pixel at `+0x14`, from a switch over the code;
 - the flags at `+0x18`: the argument's bits outside `0x7E07`, a channel mask from the same switch,
-  bit 0 for the block-compressed codes `0x0F`–`0x18` and `0x1D`, bit 1 for the depth codes
-  `0x28`–`0x2B` and `0x31`, bit 2 for the float codes `0x1E`–`0x27`.
+  bit `0x1` for the block-compressed codes `0x0F`–`0x18` and `0x1D`, bit `0x2` for the depth codes
+  `0x28`–`0x2B` and `0x31`, bit `0x4` for the float codes `0x1E`–`0x27`.
 
 `0x02CF7A30` (code `0x33`, no bits, no flags) is the null format a texture starts with. The table under Layouts lists all 35.
 
@@ -156,7 +156,7 @@ format.
 
 `0x006264F0` (3D) and `0x00626990` (cube) fill the caller's layout of up to 12 levels (layouts below).
 Level sizes come from the format's bits per pixel `bpp` (format `+0x14`). Each level's sides are
-`max(side >> 1, 1)` of the level before; for a block format (format `+0x18` bit 0) the width `w` and height `h` are
+`max(side >> 1, 1)` of the level before; for a block format (format `+0x18` bit `0x1`) the width `w` and height `h` are
 first rounded up, `(side + 3) & ~3`. A level's row pitch is `bpp x w x k >> 3`, `k` 4 for a block format and 1
 otherwise, its slice pitch `bpp x w x h >> 3` and its size the slice pitch times the depth (`0x006264F0`); a cube
 level is square, `bpp x w x w >> 3` (`0x00626990`).
@@ -196,7 +196,7 @@ the `RGBA8` format (`0x02CF7498`) have bit `0x8`, `0x10` or `0x20` respectively.
    and unmaps it (`0x0062C360`, `0x0062C570`, `0x0062C820`).
 3. It creates the texture when it is not created yet (`0x0061E200`, `0x0061E270`, `0x0061E2E0`).
 
-It then resets the fields of the sampler at `+0x568` whose word `+0x584` has bit 7 clear.
+It then resets the fields of the sampler at `+0x568` whose word `+0x584` has bit `0x80` clear.
 
 ### Constant buffers
 

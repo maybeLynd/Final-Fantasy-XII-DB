@@ -137,7 +137,7 @@ The structures below are the ones the mechanisms above use.
 | `+0x08` | `void*` | worldMatrix | PWorldMatrix; the registry key |
 | `+0x10` | `void*` | left | registry node |
 | `+0x18` | `void*` | right |  |
-| `+0x20` | `u64` | parent | parent node; bit 0 is the node colour |
+| `+0x20` | `u64` | parent | parent node; bit `0x1` is the node colour |
 | `+0x28` | `void*` | key | the world matrix again |
 | `+0x30` | `void*` | value | this entity |
 

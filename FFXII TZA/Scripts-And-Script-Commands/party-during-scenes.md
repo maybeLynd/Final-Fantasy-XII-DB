@@ -18,7 +18,7 @@ scale every time the player talks to a townsperson or opens a door.
 `hideparty` (`0x0147`, `0x003415D0`) and `showparty` (`0x0148`, `0x00342250`) call `0x002ECD50(actor,
 0 or 1)` for party slots 0 to 3 through `0x00263750`; `hideparty_without_uc` (`0x0498`,
 `0x00341CB0`) skips the controlled character. `0x002ECD50` acts only on a class-3 actor whose
-lifecycle byte is not 1: it writes bit 0 of byte `+0x10` of the presentation record (`+0xC0`) and
+lifecycle byte is not 1: it writes bit `0x1` of byte `+0x10` of the presentation record (`+0xC0`) and
 refreshes visibility through `0x002E8FD0`. It hides the body and leaves the actor and its battle
 unit in place.
 
@@ -39,24 +39,24 @@ give 0, 3 gives 2, any other value 1.
 
 `setupsummonforevent(n)` (`0x0193`, `0x00346FA0`) names a leader: the actor at ordinal `n` of the
 current manager, or for a negative `n` the controlled character (`0x003590D0`, `0x003588B0`).
-`0x003B6F80(leader)` walks the managers among 0 to 2 whose byte `+0x10` has bit 0 set and collects,
-up to 31, the handles of every actor with byte `+9` bit 4 set other than the leader; it clears
-`+9` bits 2 and 4 on every actor it visits and refreshes it (`0x0026D6D0`).
+`0x003B6F80(leader)` walks the managers among 0 to 2 whose byte `+0x10` has bit `0x1` set and collects,
+up to 31, the handles of every actor with byte `+9` bit `0x10` set other than the leader; it clears
+`+9` bits `0x4` and `0x10` on every actor it visits and refreshes it (`0x0026D6D0`).
 
 It then hands the list to `0x003B6DE0(leader, count, handles)`. That keeps the requested count (at
 most 32) at `0x02EBCC60` and the handles at `0x02EBCBE0`, and resolves each handle (`0x003588B0`). On
-each actor that resolves it clears `+9` bit 3 and sets bit 2, so a stale mark cannot drop an
+each actor that resolves it clears `+9` bit `0x8` and sets bit `0x4`, so a stale mark cannot drop an
 actor, and stores it in the slot; a handle that resolves to null leaves that slot's previous
 pointer in place.
 
-A second pass keeps each actor once, marking it with `+9` bit 3, and writes the unique ones to the
+A second pass keeps each actor once, marking it with `+9` bit `0x8`, and writes the unique ones to the
 front of the followers at `0x02EBCAC0` with their count at `0x02EBCBC0`; it reads every slot without a
 null check. The leader's handle goes to `0x02EBCC70` and its actor to `0x02EBCC68`. `0x003B6F30` calls
 it with an empty list, which is the follower-list clear above.
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
-| `hidenobattletarget` | `0x0196` | `0x00347D80` → `0x003B7770` | for every actor of the managers among 0 to 2 with `+0x10` bit 0 set: in each actor's presentation record (`[actor + 0xC0]`, which `0x002E97B0` returns), the leader gets bit `0x2` of byte `+0x10`; any other actor gets that bit from its own `+9` bit `0x4`, or from bit `0x1` of `+0x14F` of the same record; each actor with a presentation record is refreshed (`0x002E8FD0`, which tests bits `0x1`, `0x2` and `0x8` of that byte) |
+| `hidenobattletarget` | `0x0196` | `0x00347D80` → `0x003B7770` | for every actor of the managers among 0 to 2 with `+0x10` bit `0x1` set: in each actor's presentation record (`[actor + 0xC0]`, which `0x002E97B0` returns), the leader gets bit `0x2` of byte `+0x10`; any other actor gets that bit from its own `+9` bit `0x4`, or from bit `0x1` of `+0x14F` of the same record; each actor with a presentation record is refreshed (`0x002E8FD0`, which tests bits `0x1`, `0x2` and `0x8` of that byte) |
 | `showsummontarget`, `hidesummontarget` | `0x01D8`, `0x01D9` | `0x00342000`, `0x00342320` → `0x003B70B0(1)`, `0x003B70B0(0)` | for each follower, or its capturer (`0x00263F40`), with a presentation record (`0x002E97B0`): sets or clears bit `0x2` of byte `+0x10`, then refreshes visibility (`0x002E8FD0`) |
 | `setrotangzxsummonspace(a)` | `0x0199` | `0x00348660` → `0x003B8030` | pops a float and sets it as the heading (`0x0026B620`) of each follower, or of its capturer when the follower is captured (`0x00263F40`) |
 | `releaseallforsummon` | `0x019B` | `0x00348DA0` → `0x003B7A30` | runs `0x002693D0(…, 1)` on the leader and on every follower, or on its capturer when it is captured (`0x00263F40`) |
@@ -80,18 +80,18 @@ handle (`0x02EBCBE0`) when the requested count is above 0, otherwise `(0, 0, 0)`
 origin)` then places each follower and the leader, or their capturers (`0x00263F40`).
 
 `0x003B7F40` sets the position (`0x0026B0C0`) to the actor's own x and z minus the origin's, with a
-height of 0, or of `0x002ECE50(actor, 0x9000505)` when bit 0 of `+0x151` in the actor's `+0xC0`
+height of 0, or of `0x002ECE50(actor, 0x9000505)` when bit `0x1` of `+0x151` in the actor's `+0xC0`
 record is set (`0x002644C0`). It also computes the old height minus `0x00264670(actor)` but never
 uses it, so the old height is discarded rather than offset.
 
-It then sets presentation `+0x13` to 1 (`0x002EC680`), sets bit 5 of `+0x151` in the `+0xC0` record
+It then sets presentation `+0x13` to 1 (`0x002EC680`), sets bit `0x20` of `+0x151` in the `+0xC0` record
 (`0x0026ACE0`) and re-applies the render scale (`0x002E4A40`). Last, `0x003B7E20` runs the same motion
 step as `summonplaymotionall`: `0x0017F5B0(1)` when `0x022BE970` is non-zero, then
 `0x002EB030(follower, 0x1049)`.
 
 `0x003B7B00(actor)` restores one snapshot onto the actor's capturer, or the actor itself: movement
 heading (`0x0026A0D0`), heading (`0x0026B620`), position (`0x0026B0C0`), the body `+0x20` floats
-(`0x0026B720`), bit 5 of `+0x151` cleared (`0x0026ACE0`), presentation `+0x13` from the snapshot
+(`0x0026B720`), bit `0x20` of `+0x151` cleared (`0x0026ACE0`), presentation `+0x13` from the snapshot
 (`0x002EC680`) and the render scale (`0x002E4A40`).
 
 `summongethertarget(d)` (`0x0370`, `0x00340DA0` → `0x003B8140`) pops a float. It first has `0x003B7D80`
@@ -136,7 +136,7 @@ bound (`+0x18` is 0) and the two differ: the member gets `+0x18` = 1 with the ow
 re-applies the render scale; the owner copies the member's body pointers (`+0xC0` and `+0xB8`);
 `0x002681E0` refreshes both.
 
-`0x002ECCF0(owner, 1)` then sets presentation `+0x11` bit 7.
+`0x002ECCF0(owner, 1)` then sets presentation `+0x11` bit `0x80`.
 `capturepc_not_cancelbattlecommand` (`0x0582`) and the by-id form `capturepcbyentryid`
 (`0x02A2`, `0x0034C3D0`, which resolves a handle through `0x003588B0`) skip or keep the cancel.
 
@@ -164,10 +164,10 @@ reads `+0x18` of each roster pointer without testing it for null (`0x00269556`).
 
 ### Event party modes
 
-`seteventpartymode(v)` (`0x050F`, `0x0037D120`) writes bit 2 of the party block word
-`[0x02EBF190] + 0x5B04` and `seteventparty2mode` (`0x0514`) bit 3; `geteventpartymode` (`0x0510`,
+`seteventpartymode(v)` (`0x050F`, `0x0037D120`) writes bit `0x4` of the party block word
+`[0x02EBF190] + 0x5B04` and `seteventparty2mode` (`0x0514`) bit `0x8`; `geteventpartymode` (`0x0510`,
 `0x00355FE0`) returns whether the mode ladder `0x0030D9A0` reads 4, and `geteventpartymodebit`
-(`0x0513`) returns bit 2.
+(`0x0513`) returns bit `0x4`.
 
 ## Layouts
 
@@ -175,7 +175,7 @@ Globals:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x2EBF190` | `void*` | partyBlock | `+0x5B04` bit 2 event party mode, bit 3 event party mode 2 |
+| `+0x2EBF190` | `void*` | partyBlock | `+0x5B04` bit `0x4` event party mode, bit `0x8` event party mode 2 |
 | `+0x2EBCC68` | `void*` | summonLeader | the leader's actor |
 | `+0x2EBCC70` | `u32` | summonLeaderHandle | the leader's handle |
 | `+0x2EBCAC0` | `void*[32]` | followers | the unique follower actors |
@@ -187,7 +187,7 @@ Actor record fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x09` | `u8` | summonFlags | bit 2 follower, bit 3 dedup mark, bit 4 follower candidate |
+| `+0x09` | `u8` | summonFlags | bit `0x4` follower, bit `0x8` dedup mark, bit `0x10` follower candidate |
 | `+0x18` | `u8` | bindState | 1 captured, 2 capturer |
 | `+0x19` | `u8` | otherManager | the bound partner's manager |
 | `+0x1A` | `u16` | otherId | the bound partner's id |

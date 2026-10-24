@@ -28,12 +28,12 @@ cases are VIF1 commands with VIF1's field layout:
 | Code | VIF1 command | What `0x0022C970` does |
 |---|---|---|
 | `0x01` | STCYCL | low byte to CYCLE `0x02088E40`, next byte to WL `0x02088E3C` |
-| `0x02` | OFFSET | `data & 0x3FF` to `0x02088E34`, clears bit 6 of the status word `0x02088E38`, copies BASE to TOPS `0x02064E28` |
+| `0x02` | OFFSET | `data & 0x3FF` to `0x02088E34`, clears bit `0x40` of the status word `0x02088E38`, copies BASE to TOPS `0x02064E28` |
 | `0x03` | BASE | `data & 0x3FF` to `0x02088E30` |
 | `0x14`, `0x15` | MSCAL, MSCALF | runs `0x0022C8D0`, then the program installed at the largest address not above the requested one |
 | `0x4A` | MPG | the next 8 bytes are an x64 function pointer, stored at `0x02068E30 + imm16 × 8`; the address is appended to the list `0x02088E50` (count `0x02088E44`) |
 | `0x50`, `0x51` | DIRECT, DIRECTHL | calls the callback with the data pointer, the context and the flag, then skips `count × 16` bytes |
-| `0x60` to `0x7F` | UNPACK | `0x0022BFF0` with the format from bits 24 to 27, the unsigned flag bit 14, the add-TOPS flag bit 15, NUM from bits 16 to 23 and the address from the low ten bits; the mask flag bit 28 has no effect |
+| `0x60` to `0x7F` | UNPACK | `0x0022BFF0` with the format from bits 24 to 27, the unsigned flag bit `0x4000`, the add-TOPS flag bit `0x8000`, NUM from bits 16 to 23 and the address from the low ten bits; the mask flag bit `0x10000000` has no effect |
 | anything else | NOP, FLUSH, FLUSHE, FLUSHA, STMASK, STROW … | advances four bytes |
 
 On the console MPG uploads microcode. Here it uploads a pointer to a function that already is
@@ -41,12 +41,12 @@ that microcode, compiled, and MSCAL calls it with the callback and context as ar
 address is stored unmasked; the table holds 16,384 entries up to `0x02088E30`, so an address of
 `0x4000` or more would overrun into the VIF registers, and every shipped packet uses address 0.
 
-The code tests are looser than the names: UNPACK is any code with bits 5 and 6 set (so `0xE0` to
+The code tests are looser than the names: UNPACK is any code with bits `0x20` and `0x40` set (so `0xE0` to
 `0xFF`, the interrupt forms, decode as UNPACK too), DIRECT is `code - 0x50 < 2` and MSCAL
 `code - 0x14 < 2`, so MSCNT (`0x17`) takes the four-byte default.
 
 `0x0022C8D0` is the double-buffer step the console does on MSCAL: it copies TOPS into TOP
-`0x02064E1C`, then sets TOPS to BASE and clears status bit 6 if that bit was set, or to
+`0x02064E1C`, then sets TOPS to BASE and clears status bit `0x40` if that bit was set, or to
 BASE + OFFSET and sets the bit otherwise. `0x0022C930` zeroes the installed count; `0x001DB550` calls
 it before every packet list, so programs live only for the list that installed them.
 
@@ -165,14 +165,14 @@ collected copy, then `0x002104E0`, `0x002105B0(0)` and the device slot `+0x58` a
 
 ### GIF packets and the GS replay
 
-`0x0020F310` sizes a GIF packet by walking its tags: NLOOP is bits 0 to 14, EOP bit 15 ends the
+`0x0020F310` sizes a GIF packet by walking its tags: NLOOP is bits `0x7FFF`, EOP bit `0x8000` ends the
 walk, FLG bits 58 to 59 and NREG bits 60 to 63 (0 means 16). PACKED tags are
 `(NREG × NLOOP + 1) × 16` bytes, REGLIST `NREG × NLOOP` rounded up to even, times 8, plus 16, and
 IMAGE `(NLOOP + 1) × 16`. The gate byte `0x01E027C0` is 1 in the image and has no writer, so the
 sizing and the replay always run.
 
 `0x00210320` walks the same tags for the replay. It stores the device at `0x01FC35F8` and the flag at
-`0x01FD3611`, and for each tag with NLOOP above 0 reads PRE (bit 46), PRIM (bits 47 to 57), FLG and
+`0x01FD3611`, and for each tag with NLOOP above 0 reads PRE (bit `0x400000000000`), PRIM (bits 47 to 57), FLG and
 NREG, and resets Q (`0x01E027B0`) to 1.0. A PACKED tag flushes the batch and applies PRIM through `0x0020FE70` when PRE is set, then
 runs `0x0020F3E0`. A REGLIST tag with NLOOP above 0 ends the walk through the flush. An IMAGE tag
 skips `NLOOP × 16` bytes. EOP ends the walk, and a final `0x0020EC80` flushes.
@@ -192,7 +192,7 @@ PRIM, TEX0_1,
 TEX0_2, CLAMP_1, CLAMP_2, TEXA (`0x3B`), FOGCOL (`0x3D`), TEXFLUSH (`0x3F`, device slot
 `+0x128`), ALPHA_1, ALPHA_2 (`0x42`, `0x43`), TEST_1, TEST_2 (`0x47`, `0x48`) and ZBUF_1, ZBUF_2
 (`0x4E`, `0x4F`). Twenty registers in all; FRAME, SCISSOR, XYOFFSET, TEX1, PRMODE, COLCLAMP,
-DTHE, FBA, PABE, DIMX, TEXCLUT, MIPTBP and PRIM's AA1 bit 7 are ignored.
+DTHE, FBA, PABE, DIMX, TEXCLUT, MIPTBP and PRIM's AA1 bit `0x80` are ignored.
 
 PRIM (`0x0020FE70`) stores the type at `0x01F83562` and the IIP, TME, FGE, ABE, FST, CTXT and FIX bits
 at `0x01FC3600`, `0x01F8357C` to `0x01F8357F`, `0x01FC3601` and `0x01FC3602`, then `0x0020FBA0` sets the
@@ -213,7 +213,7 @@ vertices a primitive needs at `0x01F83570`, the carry at `0x01F8356C` and the in
 
 XYZF2 and XYZ2 raise the phase, saturating at the requirement, flush at 682 vertices, and convert
 the vertex with `0x00210230` into the 48-byte slot `0x01FC3620 + n × 48`. On the packed path X and Y
-are the low 16 bits of each dword times 0.0625 (the GS 12.4 fixed point) and Z is bits 4 to 27 of
+are the low 16 bits of each dword times 0.0625 (the GS 12.4 fixed point) and Z is bits `0xFFFFFF0` of
 the second qword, clamped to the upper bound `0x01FD3664` and then the lower `0x01FD3660`; with
 `0x01FD3611` set three floats are taken directly.
 
@@ -222,7 +222,7 @@ four RGBAQ bytes `0x01FC361C` to `0x01FC361F` as unnormalised floats at `+0x10`,
 matrix at `0x01FD3620` through `0x00202B70`, divides x, y, z and w by w, and copies the UV pair
 selected by the FST bit from `0x01FCB600` to `0x01FCB60C` into `+0x20`.
 
-The vertex counts only when bit 47 of its second qword (ADC) is clear and the phase has reached
+The vertex counts only when bit `0x800000000000` of its second qword (ADC) is clear and the phase has reached
 the requirement; the phase then drops to the carry and the index arm runs, appending 16-bit
 indices to `0x01FCB610` (count `0x01F83564`) with n the new vertex count: a point writes n-1; a line
 or line strip n-2, n-1; a triangle or triangle strip n-3, n-2, n-1; a fan 0, n-2, n-1; a sprite
@@ -234,8 +234,8 @@ past 682 it moves the primitive's unfinished trailing vertices to the front (for
 vertex 0).
 
 Among the state `0x0020ED30` selects, `0x0020FF10` decodes the GS TEST register of the current context
-(`0x01FC35C8`, or `0x01FC35D0` while `0x01FC3601` is set): ATE bit 0, ATST bits 1 to 3, AREF bits 4 to 11,
-AFAIL bits 12 and 13, DATE bit 14, DATM bit 15, ZTE bit 16, ZTST bits 17 and 18, into `0x01FD3668` to
+(`0x01FC35C8`, or `0x01FC35D0` while `0x01FC3601` is set): ATE bit `0x1`, ATST bits 1 to 3, AREF bits 4 to 11,
+AFAIL bits `0x1000` and `0x2000`, DATE bit `0x4000`, DATM bit `0x8000`, ZTE bit `0x10000`, ZTST bits `0x20000` and `0x40000`, into `0x01FD3668` to
 `0x01FD3684`. It hands the device (its vtable `+0x88`) the alpha test with AREF / 255 and the method
 `0x0020F2A0(ATST)`, which maps 1 to 7 onto 7, 4, 6, 3, 2, 1, 5 and anything else onto 0.
 
@@ -271,10 +271,10 @@ The working words below VU memory (`0x02064B00`, `0x330` bytes) that have a role
 ```python
 VIF command word     [31:24] code, [23:0] parameters
 MPG on this port     0x4A000000 | addr, then a u64 x64 function pointer (the console: NUM microcode words)
-UNPACK word          [27:24] format (vn << 2 | vl), bit 15 add TOPS, bit 14 unsigned, [23:16] NUM, [9:0] address
+UNPACK word          [27:24] format (vn << 2 | vl), bit 0x8000 add TOPS, bit 0x4000 unsigned, [23:16] NUM, [9:0] address
 program call         0x02068E30[ max { a in 0x02088E50 : a <= requested } ](callback, context)
 VU memory            0x02064E30 + cell * 16, cell 0..1023; TOP 0x02064E1C, TOPS 0x02064E28
-VIF registers        0x02088E30 BASE, 0x02088E34 OFFSET, 0x02088E38 status (bit 6 = second buffer), 0x02088E3C WL, 0x02088E40 CYCLE, 0x02088E44 count, 0x02088E50 list
+VIF registers        0x02088E30 BASE, 0x02088E34 OFFSET, 0x02088E38 status (bit 0x40 = second buffer), 0x02088E3C WL, 0x02088E40 CYCLE, 0x02088E44 count, 0x02088E50 list
 template object      +0 u16 word, +3 kind (0x10 plain, 0x30 registered), +4 record handle; packet words from +8
 record table         0x02EAF930 + n * 16: u32 0x4A000000 | addr, u64 program; count 0x02EB37B0
 GiVmax (0x640)       +8 flag, +0x10 ctx, +0x18 chunk page size (1,024), +0x1C chunk count, +0x20.. 64 chunk pages of {ptr, len} x16 B

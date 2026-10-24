@@ -231,16 +231,16 @@ offsets):
 
 1. Inside its guarded block it stores the node's address in `+0x00`, `+0x08` and `+0x10` (`0x0058515C`-`0x0058516A`),
    the source and destination descriptors with one 16-byte store (`0x00585176`) and the routine (`0x00585184`).
-2. On every call it sets bit 0 of `+0x10` (`0x005851BC`) and points `+0x00` and `+0x08` at the sentinel
+2. On every call it sets bit `0x1` of `+0x10` (`0x005851BC`) and points `+0x00` and `+0x08` at the sentinel
    (`0x005851CA`, `0x005851D1`).
 3. It walks down from the root comparing the source, then the destination, as unsigned values: a smaller key
    follows `+0x00`, a larger one `+0x08` (`0x00585203`-`0x0058522F`). An equal key ends the call (`0x0058523A`).
-4. Otherwise it stores the last node it visited, with bit 0 set, in its own `+0x10` (`0x0058524B`), stores itself in
+4. Otherwise it stores the last node it visited, with bit `0x1` set, in its own `+0x10` (`0x0058524B`), stores itself in
    that node's `+0x00` or `+0x08`, or in `0x01F2CDB8` when the tree is empty (`0x00585255`), and calls
    `0x0067F700(0x01F2CDA0, node)` (`0x0058525F`).
 
-`0x0067F700` rebalances while the parent's bit 0 is set (`0x0067F718`, `0x0067F9A4`) and clears the root's bit 0 before
-it returns (`0x0067F9C2`). Bit 0 set marks a red node and clear a black one: the tree is a red-black tree. Because
+`0x0067F700` rebalances while the parent's bit `0x1` is set (`0x0067F718`, `0x0067F9A4`) and clears the root's bit `0x1` before
+it returns (`0x0067F9C2`). Bit `0x1` set marks a red node and clear a black one: the tree is a red-black tree. Because
 the keys arrive in rising order, every insert walks through `+0x08` only, and step 4 stores into a `+0x08`;
 during the build a node's `+0x00` changes after step 2 only in `0x0067F700`'s rotations (`0x0067F984`).
 

@@ -147,20 +147,20 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
 
 ```
 record +0x00  u32  bits 0-11 the node's key, bits 12-23 its parent (0xFFF = none), bits 24-31 0xFF
-record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 30 is set)
+record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 0x40000000 is set)
 ```
 
-With flag bits `0x200100` both set, `0x00409300` takes one pool dword for each of bits 23, 24 and 25 as
-the node's translation x, y and z, and one pool float for each of bits 26, 27 and 28 as three angles
-in radians that `0x0046D560` turns into the rotation; otherwise the node starts at the identity. Bit 21
-makes `0x004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`. Bits 31 and 22 each skip
-one index. `0x00409250` returns the key from bits 0–11, or the u16 at `+0x08` when bit 30 is set.
+With flag bits `0x200100` both set, `0x00409300` takes one pool dword for each of bits `0x800000`, `0x1000000` and `0x2000000` as
+the node's translation x, y and z, and one pool float for each of bits `0x4000000`, `0x8000000` and `0x10000000` as three angles
+in radians that `0x0046D560` turns into the rotation; otherwise the node starts at the identity. Bit `0x200000`
+makes `0x004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`. Bits `0x80000000` and `0x400000` each skip
+one index. `0x00409250` returns the key from bits `0xFFF`, or the u16 at `+0x08` when bit `0x40000000` is set.
 
 `0x00409240(entry)` gives the node count (word `+0x30` for a kind-2 entry, dword `+0x0C` otherwise),
 `0x00409270(entry, n)` the address of node `n`'s record (`+0x40` table entry `>> 12`, 0 past the count
-or for another kind), and `0x004095A0` the address of the `+0x40` table. With flag bit 22 set,
+or for another kind), and `0x004095A0` the address of the `+0x40` table. With flag bit `0x400000` set,
 `0x004092A0(entry, record)` returns the pool dword named by the node's first pool index, skipping one
-index for bit 31 and sixteen more when bits `0x200100` are both set, and 0 otherwise.
+index for bit `0x80000000` and sixteen more when bits `0x200100` are both set, and 0 otherwise.
 
 ### @FOR, variants and distance LOD
 
@@ -289,7 +289,7 @@ section 2 length: `count` nodes of `0x290` bytes, then `count + [+0x38]` u16 slo
 - matches the model name against `skeletonmapping.bin` (see [add-motion tables](add-motion-tables.md))
   and keeps the last match at skeleton `+0xB0`;
 - builds every node. Each parent gets its first child at node `+0x274` and siblings chain through
-  `+0x272`; a node without a parent joins node 0's sibling chain. A node with flag bit 8 is built from
+  `+0x272`; a node without a parent joins node 0's sibling chain. A node with flag bit `0x100` is built from
   its pool values and its number is appended to the u16 list after the nodes; any other node starts
   at the identity;
 - fills the `[+0x38]` extra slots with `0x7FFF`;
@@ -304,7 +304,7 @@ shipped file uses it.
   with record byte `+0x5C`, and the result is the record scale that `0x003E6150` applies.
 - `0x004201F0(record, view)` runs only when the entry starts with `@FOR`. With a non-zero distance count
   it builds the windows `{0, d0 × 0.01, d1 × 0.01, 1.0e8}` in metres, or uses the record's float array
-  `+0xA0` when record byte `+0xC0` bit 0 is set.
+  `+0xA0` when record byte `+0xC0` bit `0x1` is set.
 - The level is the first window that holds the view depth (float `+0x208`; a negative depth gives
   level 0), capped at `+0x3B`. It stores `(count + 1 − level) / (count + 1)` at record `+0x2A4`, so 1.0
   is nearest, then calls `0x00421280`.
@@ -338,7 +338,7 @@ to `0xFFFF`) and forgets through `0x00521300`. The live count is `0x02CA8458` an
   `+0x100 + 2 × slot`: it releases the old entry, takes one for the texture's key (`+0x1C`), and
   copies the texture's size and register words with the base-2 logarithms of width and height.
 - `0x00504800(instance, slot)` returns the slot's width and height as one dword once the entry is
-  marked uploaded (bit 0 of `+0x1C`), else 0. `0x00521320` clears that mark and the word `+0x14` in
+  marked uploaded (bit `0x1` of `+0x1C`), else 0. `0x00521320` clears that mark and the word `+0x14` in
   all 256 entries.
 
 ### The upload area
@@ -362,11 +362,11 @@ with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00
 
 - `0x0053D4B0` writes a part's alpha and depth test: registers `0x47` and `0x48` with the reference
   `alpha × [0x02CA81DC]`, capped at `0x80` and raised to `[0x01F2CA90]` for an instance with `+0xF8` set
-  whose `0x003E56A0` entry has bit 3 of `+0x134`; the alpha is the part's bits 1–7, or the
-  instance's byte `+0xBC`. With instance `+0x08` bit 3 it writes `0x34000` instead.
+  whose `0x003E56A0` entry has bit `0x8` of `+0x134`; the alpha is the part's bits 1–7, or the
+  instance's byte `+0xBC`. With instance `+0x08` bit `0x8` it writes `0x34000` instead.
 - `0x0053D140` writes a material block: a tag (`0x10000008`, `0x50000005`), two register words per
   mode (`0x44` and `0x42`/`0x43`, or `0x4A`), per-texture pairs from the material when its flag byte
-  has bit 0 or bit 2, and the two texture handles.
+  has bit `0x1` or bit `0x4`, and the two texture handles.
 
 ### Palettes
 
@@ -424,8 +424,8 @@ and the record joins a list (head `0x02B47778`, tail `0x02B47780`, count byte `0
 
 The 128 operation records are at `[0x02B47798]`.
 
-`0x003CCF20(step)`, each simulation step from `0x00258D70` and `0x00258E40`, walks the records with bit 7
-set (clearing it unless bit 6 is set): it copies the source colours into `0x02B477A0` (`0x003CD840`),
+`0x003CCF20(step)`, each simulation step from `0x00258D70` and `0x00258E40`, walks the records with bit `0x80`
+set (clearing it unless bit `0x40` is set): it copies the source colours into `0x02B477A0` (`0x003CD840`),
 counts each operation's delay down or its time up by `step`, takes the phase (the time modulo the
 period, or reflected on odd periods in mode 1), applies the operation, and writes the result to the
 destination (`0x003D2B60`). An operation past its length is removed.
@@ -435,7 +435,7 @@ The kinds call `0x0050AC20`,
 `0x00507120` (with the second palette).
 
 `0x003CD2C0(handle)`, from the draw builder `0x0053AB50`, does the same once into `0x02B4A7A0` without
-moving time. `0x003CD6C0(handle)` returns the record; `0x003CD7C0` and `0x003CD7F0` set its bits 6 and 7;
+moving time. `0x003CD6C0(handle)` returns the record; `0x003CD7C0` and `0x003CD7F0` set its bits `0x40` and `0x80`;
 `0x003CD590` detaches its operations and clears its count; `0x003CD5D0` unregisters it; `0x003CD650(handle)`
 removes one operation from its record.
 
@@ -445,7 +445,7 @@ removes one operation from its record.
 - `@FCP` must be entry 0 and keep version `0x0A`; a lower version byte makes ids with a higher minimum
   version return the built-in defaults.
 - A model without section 9 gets the built-in defaults for every battle radius and turn rate.
-- In `@FTR`, list a parent before its children, keep node 0 the root, and set flag bits 8 and 21
+- In `@FTR`, list a parent before its children, keep node 0 the root, and set flag bits `0x100` and `0x200000`
   together with the pool values each bit reads.
 - `@FTR +0x38` must equal the `@FDM` key count; the skeleton reserves exactly that many slots.
 - The `@FOR` record's float `+0x18` scales the model's battle radii and heights with it.

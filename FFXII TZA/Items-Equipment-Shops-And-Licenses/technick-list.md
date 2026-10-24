@@ -58,7 +58,7 @@ A shop list goes on sale once it or any list above it on the shop's ladder meets
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
-The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit 0 of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
+The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) until bit `0x1` of script global byte `0x041D` is set; only then does its actor take the shop's name (`rbn_a02`). Montblanc sets that bit the first time the player talks to him in The Clan Hall (Rabanastre), with the message "You are now a member of Clan Centurio!" (`rbn_a14`).
 
 Every part names every source. A cell that would be longer than 1,000 characters moves its longest parts, longest first, to [`item-sources.tsv`](item-sources.tsv) until it fits, and gives for each moved part its label, its count and the table, as `drop (28): in item-sources.tsv` for the Potion.
 
@@ -77,13 +77,13 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `action`, `kind_name` | `+0x02`, the action row, and that row's kind |
 | `cost`, `charge_base`, `power`, `hit` | the action's `+0x0A`, `+0x09`, `+0x10`, `+0x12` |
 | `element` | the action's element `+0x13` |
-| `statuses`, `status_effect` | the action's status bits `+0x18`, and whether it adds or removes them (`+0x36` bits 0 and 1) |
+| `statuses`, `status_effect` | the action's status bits `+0x18`, and whether it adds or removes them (`+0x36` bits `0x1` and `0x2`) |
 | `range_near_tenths`, `reach_tenths`, `area_radius` | the action's `+0x02`, `+0x05`, `+0x06` |
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
 | `sources` | where the technick is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name, the treasure chests that hold it with the odds ("Where each technick comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
-| `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every technick names at least one, since the action bypass bit (bit 13 of the action row's second flag word, `0x00323F52`) is clear on all 24 technick actions |
+| `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every technick names at least one, since the action bypass bit (bit `0x2000` of the action row's second flag word, `0x00323F52`) is clear on all 24 technick actions |
 
 ## Related
 

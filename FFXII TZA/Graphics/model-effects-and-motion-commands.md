@@ -75,7 +75,7 @@ packed descriptor:  +0x00 u8 frame count, +0x01 u8 n, +0x04 u32[n] frame-stream 
                     then per key {u32 value-stream offset (low 17 bits), f32 bias, f32 scale}
 ```
 
-A stream element starts with a flag byte: bit 7 means a 16-bit little-endian literal follows, bit 6
+A stream element starts with a flag byte: bit `0x80` means a 16-bit little-endian literal follows, bit `0x40`
 means the stream's element 0 is reused, and otherwise a signed byte follows. A value is
 `literal × scale + bias` for the first key and `literal × scale + previous value` after it; frame
 literals add to the previous key's frame.
@@ -104,7 +104,7 @@ slot gives NULL. The `@FMC` blocks fill the first `80 × rows` slots and `@FRM` 
 | `.cm` command block names | every weapon: `weapon_shot`, `weapon_deact`, `weapon_active`, `weapon_ready`, `weapon_rlx_ready`; every treasure: `treasure_dead`, `treasure_ready`, `treasure_open`, `treasure_opened` |
 | `.ca` entries | 31,942 `@FMC`, 18,303 `@FMN`, 18,303 `@FMW`, 3,164 `@FRM` (one per file, named after it) |
 | version-1 `.ca` | 1,195; 80 columns in all; 1 row in 1,150, 3 in 45; `@FRM` in the last slot in all |
-| `@FMN` records | 746,592, all 22 bytes, bit 15 clear, mask bits matching the `0x8000` markers in all; no stream runs past its entry |
+| `@FMN` records | 746,592, all 22 bytes, bit `0x8000` clear, mask bits matching the `0x8000` markers in all; no stream runs past its entry |
 | `@FMW` form | packed in 110 `.cm` and 17,576 `.ca` entries, table form in 1 `.cm` and 727 `.ca` |
 | frame counts | the first byte of each of the 1,446,602 packed channel descriptors equals the paired `@FMN` duration's low byte |
 | `@FRM` payload | byte `+0x01` 1 in 2,977, 2 in 169, 4 in 18; second region present in 2,847 |
@@ -136,10 +136,10 @@ helper below first checks that the slot's id equals the handle and does nothing 
   used list (`0x02EBDB98` / `0x02EBDBA8`) and writes a new serial (`0x02EBDBB4`) into bits 6–27 of the id.
 - `0x003B3300(handle)`, from `0x0041E860`, ends the instance (`0x0024EE60`), moves the slot back to the
   free list, keeps only bits 0–5 and 28–31 of the id and clears `+0x10`.
-- `0x003B3080(handle)` sets bit 0 of `+0x30`. The update pass `0x0024B9B0` holds a kind-3 instance on any
+- `0x003B3080(handle)` sets bit `0x1` of `+0x30`. The update pass `0x0024B9B0` holds a kind-3 instance on any
   step the bit is clear in the slot its dword `+4` names, and clears the bit when it is set; `0x0042D830` sets it each time
   it processes the record, so a model's effect advances only while its character does.
-- `0x003B33A0(handle, b)` sets bit 1 of `+0x30` and stores `b` in bit 2; `0x0042D830` passes the
+- `0x003B33A0(handle, b)` sets bit `0x2` of `+0x30` and stores `b` in bit `0x4`; `0x0042D830` passes the
   result of `0x00420FB0` when `0x004210D0` allows it.
 - `0x003B3AA0(handle, v)` stores the vector at instance `+0x320` with w = 1, or 1, 1, 1, 1 when the
   instance's `+0x368` bit `0x4000` is set; `0x0042D830` passes the vector from `0x003E5710`.
@@ -193,13 +193,13 @@ The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at r
 - It walks the `@FMN` records from the start `0x00409190` gives, advancing by each record's length.
   `0x00370E00` turns the node key into a bone, and `0x0041B550` sets up the record's nine channels in a
   `0x108`-byte row (count at owner `+0x2BC`).
-- The `@FMN` duration goes to the descriptor's `+0x16`, and to `+0x18` unless state `+0x96` bit 6 is
+- The `@FMN` duration goes to the descriptor's `+0x16`, and to `+0x18` unless state `+0x96` bit `0x40` is
   set.
 - `0x0041B650` starts a channel and `0x0041A470(slot, @FMW, frame)` moves its pair of keys forward until
   the next key's frame is past the requested frame.
 - The values are written to the bone and every bone linked through `+0x278`: `0x00418650` into bone
   `+0x190`, `0x00418700` into `+0x1B0` and `0x004186A0` into `+0x1D0`, the last skipped while bone byte
-  `+0x280` bit 1 is set.
+  `+0x280` bit `0x2` is set.
 
 ### Stepping a channel
 
@@ -207,7 +207,7 @@ A channel slot keeps the current key's frame at `+0x04`, the next key's frame at
 previous and next values at `+0x08` and `+0x0C`, and two stream cursors, one for frames (`+0x10`)
 and one for values (`+0x16`): byte offset in the stream, element in the run, stream number and step
 count. A stream's flag byte also gives the run length in its low six bits: a run holds that many
-literals, or one when bit 6 is set, of one or two bytes by bit 7, and the cursor moves past the run
+literals, or one when bit `0x40` is set, of one or two bytes by bit `0x80`, and the cursor moves past the run
 when its element reaches the length.
 
 - In the packed form `0x0041BA10` steps the frame cursor and `0x0041BC40` the value cursor, moving to
@@ -224,7 +224,7 @@ when its element reaches the length.
 `0x0041ADA0(stream, …, entry, frame)`, from the seek `0x0041C850`, puts an entry at a frame: the frame
 modulo the `@FMN` duration (`+0x50`) becomes the entry's `+0x0C`, every channel moves there
 (`0x0041A8E0`), and the bones are written. `0x00418880(stream, entry)`, from the walker, does the same
-work each frame for a playing entry (bit 1 of `+0x08`) whose word `+0x0A` is 1. Both take the bones
+work each frame for a playing entry (bit `0x2` of `+0x08`) whose word `+0x0A` is 1. Both take the bones
 from the model's bone array (`0x0020E600` of model `+0x84`, `0x290` bytes a bone) and the channel rows
 from the owner's `+0x2B8` block (`0x108` bytes a row, count `+0x2BC`).
 
@@ -249,18 +249,20 @@ mode (`0x01F82E38`):
 
 At frame 0 `0x00418880` writes, for each row with a bone, the first value of each of the nine
 channels the record's mask names and that has data (`0x0041A7F0`, then `0x00418650`, `0x00418700` or
-`0x004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has none, after clearing bit 0 of
+`0x004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has none, after clearing bit `0x1` of
 the bone's byte `+0x28A`; it clears that bit on the non-zero-frame path too (`0x004194B7`).
 
 A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton
 instead (`0x0041D6F0`: `0x00409270` finds the node for the bone's `+0x27E` and `0x00409300` reads it, all
-of it into `+0xC0` when bone `+0x28B` bit 2 is set, else only the translation into `+0xF0`).
+of it into `+0xC0` when bone `+0x28B` bit `0x4` is set, else only the translation into `+0xF0`).
 
 `0x0041D180` copies the 48-byte template `0x02CA43D0` into a bone's `+0xC0` block; both appliers use
 it before rebuilding a pose. For a packed motion, `0x0041BDC0` restarts, in every row, each channel
-the mask names through `0x0041B650` at frame 0, and clears bit 7 of the entry's `+0x96`. With the entry's `+0x96` bit 4 set, `0x0041C260` (from `0x0041BEE0`) keeps each bone's current
+the mask names through `0x0041B650` at frame 0, and clears bit `0x80` of the entry's `+0x96`.
+
+With the entry's `+0x96` bit `0x10` set, `0x0041C260` (from `0x0041BEE0`) keeps each bone's current
 rotation `+0xC0` (through `0x0046D730`) at `+0x120` and the 32 bytes from `+0xF0` at `+0x130`, or
-only clears bit 10 of the descriptor when that bit is set; with bit 5 set, `0x0041C200` clears bit 4
+only clears bit `0x400` of the descriptor when that bit is set; with bit `0x20` set, `0x0041C200` clears bit `0x10`
 of each bone's word `+0x280`.
 
 ### Blending into a new motion
@@ -281,7 +283,7 @@ that takes the shorter arc. It copies the start instead when the sine-table valu
 or the dot product exceeds 1. It writes the result as the rotation of `+0xC0` (`0x00477130`) and mixes
 the translation: `+0xF0` = weight × `+0x1B0` + (1 − weight) × `+0x130`, with w = 1.
 
-With the entry's `+0x96` bit 5 set instead, the quaternion goes to bone `+0x1A0` and bit 4 of the
+With the entry's `+0x96` bit `0x20` set instead, the quaternion goes to bone `+0x1A0` and bit `0x10` of the
 bone's word `+0x280` is raised. Otherwise the channels build the matrix `0x02CA43D0`, which
 `0x0041D180` copies into the bone's `+0xC0`, with the translation copied from `+0x1B0`.
 

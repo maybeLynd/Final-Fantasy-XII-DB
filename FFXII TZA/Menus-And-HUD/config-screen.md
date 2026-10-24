@@ -71,17 +71,17 @@ A row:
 | `0x1A` | Begin New Game+ | - | - | `0x00238A20` (`0x0024018C`), then as `0x18` ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)); mode 1 only |
 | `0x19` | Begin New Game- | - | - | `0x00238A50` (`0x00240182`), then as `0x18`; mode 1 only |
 | `0x20`, `0x21` | Graphics Settings, Controls | - | - | opens the screen |
-| `0x04` | Battle Mode | Wait, Active | dword 0 bit 3 (`0x002DE060`) | - |
-| `0x05` | Battle Speed | 6 steps | dword 0 bits 4-11 (`0x002DE0F0`) | - |
-| `0x06` | Target Lines | On, Off | dword 1 bit 22 (`0x002DE2D0`) | - |
-| `0x08` | Cursor Position | Last Selection, Default | dword 0 bit 15 (`0x002DE1E0`) | clears the saved cursors (`0x002526D0`) |
-| `0x09` | Vibration Function | On, Off | dword 0 bit 13 (`0x002DE080`) | `0x0035FF30` |
-| `0x0A` | Screen Shake | On, Off | dword 0 bit 14 (`0x002DE200`) | `0x0037DDC0` |
-| `0x0B` | Subtitles | On, Off | dword 0 bit 12, set for Off (`0x002DE230`) | - |
-| `0x0C`, `0x0D` | Camera Y-Axis, Camera X-Axis | Normal, Inverted | dword 1 bits 8, 9 (`0x002DE190`, `0x002DE160`) | `0x001E1020`, `0x001E0FF0` |
-| `0x0E` | Speed Mode Multiplier | x2, x4 | dword 1 bits 23-26 (`0x002DE250`) | the game speed through `0x0023B2E0` |
-| `0x10` | Language | Japanese, English | dword 1 bit 10 (`0x002DE2F0`) | - ([Voices](../Sound-And-Music/voices.md)) |
-| `0x11` | Music | Original, Reorchestrated, and OST when offered | `+0x0E` (`0x002DE110`); OST falls back to 1 when bit 0 of `0x0017E490` is clear | the soundtrack switch, `0x002DF530(v, 1)` |
+| `0x04` | Battle Mode | Wait, Active | dword 0 bit `0x8` (`0x002DE060`) | - |
+| `0x05` | Battle Speed | 6 steps | dword 0 bits `0xFF0` (`0x002DE0F0`) | - |
+| `0x06` | Target Lines | On, Off | dword 1 bit `0x400000` (`0x002DE2D0`) | - |
+| `0x08` | Cursor Position | Last Selection, Default | dword 0 bit `0x8000` (`0x002DE1E0`) | clears the saved cursors (`0x002526D0`) |
+| `0x09` | Vibration Function | On, Off | dword 0 bit `0x2000` (`0x002DE080`) | `0x0035FF30` |
+| `0x0A` | Screen Shake | On, Off | dword 0 bit `0x4000` (`0x002DE200`) | `0x0037DDC0` |
+| `0x0B` | Subtitles | On, Off | dword 0 bit `0x1000`, set for Off (`0x002DE230`) | - |
+| `0x0C`, `0x0D` | Camera Y-Axis, Camera X-Axis | Normal, Inverted | dword 1 bits `0x100`, `0x200` (`0x002DE190`, `0x002DE160`) | `0x001E1020`, `0x001E0FF0` |
+| `0x0E` | Speed Mode Multiplier | x2, x4 | dword 1 bits `0x7800000` (`0x002DE250`) | the game speed through `0x0023B2E0` |
+| `0x10` | Language | Japanese, English | dword 1 bit `0x400` (`0x002DE2F0`) | - ([Voices](../Sound-And-Music/voices.md)) |
+| `0x11` | Music | Original, Reorchestrated, and OST when offered | `+0x0E` (`0x002DE110`); OST falls back to 1 when bit `0x1` of `0x0017E490` is clear | the soundtrack switch, `0x002DF530(v, 1)` |
 | `0x12` | Volume | - | - | a heading over the three volume rows |
 | `0x13`, `0x14`, `0x15` | Music, Sound Effects, Voice, indented | 0-100 | `+0x08`, `+0x0A`, `+0x0C` | the volume of category 1, 2 or 3 ([Sound effects](../Sound-And-Music/sound-effects.md)) |
 | `0x17` | Restore Defaults | - | the whole record | below |
@@ -228,8 +228,8 @@ Config moves its list cursor with `0x0023F240` (`0x0023FE31`), and Graphics Sett
 
 1. The list steps once (`0x002D3BA0`).
 2. When the new row may not take the cursor, it steps again, up to the row count times, through `0x0023F7D0` (Config)
-   or `0x002413E0` (the other two), each a single step with the list's `+0xE4` bit 2 set around it.
-3. When the step answered 4 to 6, or the list's `+0xE4` bit 13 is set, it first puts the cursor back (`0x002D47C0`) and
+   or `0x002413E0` (the other two), each a single step with the list's `+0xE4` bit `0x4` set around it.
+3. When the step answered 4 to 6, or the list's `+0xE4` bit `0x2000` is set, it first puts the cursor back (`0x002D47C0`) and
    tries steps with the list's bytes `+0x107`, `+0x108` and `+0xF6` set to 1, then 2 (`0x0023F660`-`0x0023F710`).
 4. When no row qualifies the cursor goes back where it was (`0x002D47C0`).
 
@@ -355,7 +355,7 @@ Config is the `0x4D8`-byte widget at `0x0208E6D8` with procedure `0x0023FBE0` (T
 | `+0x0C2` | `u8` | origin | where Config was opened from, the construct message's argument a: 0 the main menu, 1 the title's New Game list, 2 the main menu before story counter 26 (`0x0023D4FD`; the opener `0x002406D2`). Leaving Config, `0x0023ED10` returns to the Party Menu for origin 0 or 2 and clears the help line for 1 (`0x0023ED37`); `0x0023EFC0` picks the row list `0x01E0BF60`, `0x01E0BF68` or `0x01E0BF70` by it (`0x0023EFCF`); the cancel is handled apart for origin 1 (`0x0023FFAC`); it is passed on to Graphics Settings and Controls (`0x002401C5`, `0x002401F6`, `0x0024025D`, `0x00240276`) and to the row widgets and dialogs (`0x0023EECC`, `0x002400E4`, `0x00240161`); on destruction origin 1 runs `0x002E1CA0` with the leaving bit `+0xD0` (`0x00240226`) |
 | `+0x0C3` | `u8[5]` | pad0C3 | read and written by no function; nothing fixes its width |
 | `+0x0C8` | `void*` | rowList | the row list `0x01E0BF60`[mode], or 0 for a mode of 45 or more, stored by `0x0023D4F0` (`0x0023D549`); `0x0023EFC0` reads its byte `+0x01` for `0x002526F0` (`0x0023F087`) |
-| `+0x0D0` | `u32` | leaving | bit 0 set when a confirmed row's action makes Config close, after commands `0x19` and `0x1A` run `0x00238A50` and `0x00238A20` (`0x00240191`); while it is set Config's input turn does nothing (`0x0023FE24`) and the row widgets `0x0023D6B0`, `0x0023D890` and `0x0023DD10` ignore their input (`0x0023D7A0`, `0x0023D8C6`, `0x0023DD46`); on destruction with origin 1 it is passed to `0x002E1CA0` (`0x0024022F`). 0 at construction (`0x0023FC58`) |
+| `+0x0D0` | `u32` | leaving | bit `0x1` set when a confirmed row's action makes Config close, after commands `0x19` and `0x1A` run `0x00238A50` and `0x00238A20` (`0x00240191`); while it is set Config's input turn does nothing (`0x0023FE24`) and the row widgets `0x0023D6B0`, `0x0023D890` and `0x0023DD10` ignore their input (`0x0023D7A0`, `0x0023D8C6`, `0x0023DD46`); on destruction with origin 1 it is passed to `0x002E1CA0` (`0x0024022F`). 0 at construction (`0x0023FC58`) |
 | `+0x0D4` | `u8[4]` | pad0D4 | read and written by no function; nothing fixes its width |
 | `+0x0D8` | `void*` | list | the row list widget, item 0's `+0x18` in the screen's layout, set up and stored by `0x0023EFC0` (`0x0023F16F`); 0 just before (`0x0023FC84`). Config's cursor code reads it (`0x0023F190`, `0x0023F24E`, `0x0023F7EA`) and so do the input turn (`0x0023FE3E`), the draw (`0x0023FD99`-`0x0023FDEF`) and the row builder `0x0023ED80` (`0x0023EDCE`, `0x0023EEED`, `0x0023EF13`) |
 | `+0x0E0` | `u8[1008]` | rows | 42 ConfigRowSlot records (above), one `0x18`-byte slot per row (ConfigRowSlot above): cleared by the construct message (memset `0x3F0` at `0x0023FC93`), filled by the row builder `0x0023ED80` (`0x0023EE07`-`0x0023EF27`); `0x0023EF80` finds a row's slot by its command (`0x0023EF90`) |
@@ -371,7 +371,7 @@ is 0 and keeps the widget there; leaving clears it. All three are 0 in the file.
 |---|---|---|---|---|---|
 | `0x0208E6C0` | `void*` | 0 | the open Graphics Settings screen: the `0x730`-byte widget with procedure `0x0023BD40` | `0x0023BCC0` (`0x0023BD0E`); `0x0023BD40`, 0 when it reopens Config (`0x0023C517`) | `0x0023BCC0`, which opens the screen only while it is 0 (`0x0023BCD7`); `0x0023BD40`, which closes it with `0x00244F00` (`0x0023C3B1`); the row widget `0x0023B6F0`, which forwards a command `0x1C` to the screen's procedure (`0x0023B7F2`), hands the screen to the row's arm on a new press (`0x0023B86A`) and compares its row with the screen's selected row `+0x718` (`0x0023B916`); the question box `0x0023E020` (`0x0023E222`) and `0x00240A00` (`0x00240A13`, reached from `0x0017DB80`), which send it notice `0x2CA6` (message 13) |
 | `0x0208E6D0` | `void*` | 0 | the open Controls screen: the `0x4C0`-byte widget with procedure `0x0023CE10` | `0x0023CC90` (`0x0023CCDF`); `0x0023CE10`, 0 when it reopens Config (`0x0023D43F`) | `0x0023CC90`, which opens the screen only while it is 0 (`0x0023CCA8`); the binding row `0x0023C5C0`, which sends it messages 2 and 4 through `0x005841B0` (`0x0023C7A8`, `0x0023C8C3`); `0x0023CE10`, which closes it with `0x00244F00` when the player leaves with the cancel button (`0x0023D281`) |
-| `0x0208E6D8` | `void*` | 0 | the open Config screen: the `0x4D8`-byte widget with procedure `0x0023FBE0`, which stores itself on message 1 | `0x0023FBE0`: itself (`0x0023FC51`); 0 when it goes, after opening Graphics Settings or Controls for a waiting row command `0x20` or `0x21` (`0x00240284`, `0x0024026B`), or after `0x002E1CA0(1, 0x15)` for origin 1 (`0x00240252`) | the openers `0x00240680` (`0x002406B8`) and `0x002406F0` (`0x00240703`) and the two screens that reopen Config, `0x0023BD40` (`0x0023C510`) and `0x0023CE10` (`0x0023D438`), which create it only while it is 0; the row widgets `0x0023D6B0` (`0x0023D794`), `0x0023D890` (`0x0023D8BA`) and `0x0023DD10` (`0x0023DD3A`), which step only while Config's `+0xD0` bit 0 is clear |
+| `0x0208E6D8` | `void*` | 0 | the open Config screen: the `0x4D8`-byte widget with procedure `0x0023FBE0`, which stores itself on message 1 | `0x0023FBE0`: itself (`0x0023FC51`); 0 when it goes, after opening Graphics Settings or Controls for a waiting row command `0x20` or `0x21` (`0x00240284`, `0x0024026B`), or after `0x002E1CA0(1, 0x15)` for origin 1 (`0x00240252`) | the openers `0x00240680` (`0x002406B8`) and `0x002406F0` (`0x00240703`) and the two screens that reopen Config, `0x0023BD40` (`0x0023C510`) and `0x0023CE10` (`0x0023D438`), which create it only while it is 0; the row widgets `0x0023D6B0` (`0x0023D794`), `0x0023D890` (`0x0023D8BA`) and `0x0023DD10` (`0x0023DD3A`), which step only while Config's `+0xD0` bit `0x1` is clear |
 
 No other instruction reaches these three.
 ## Modding notes

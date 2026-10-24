@@ -348,7 +348,7 @@ PClassDescriptorDynamic (`0x140`), beyond the base:
 | `+0x100` | `u16` | pair compared by 0x0063D550 to skip a rebuild |  |
 | `+0x104` | `u32` | parent's instance size |  |
 | `+0x108` | `…` | three {u32, ptr} pairs at +0x108, +0x118, +0x128, zeroed by 0x00632E80 |  |
-| `+0x138` | `void*` | tagged name; +0x30 holds it with bit 0 cleared |  |
+| `+0x138` | `void*` | tagged name; +0x30 holds it with bit 0x1 cleared |  |
 
 PClassDataMember (`0x58`; arrays to `+0x64`):
 
@@ -892,18 +892,18 @@ descriptor (`0x006388C0`, `0x00639450`). Ten of its statics are in `array-getter
 | descriptor `+0x30`, 69 rows | `void*` | 0 | the descriptor's name: 0 until the getter is called with a name, then the name static's value | the getter | the getter's test of it |
 | name static, 68 rows | `void*` | 0 | the first non-null name the getter is passed; it is also the name the getter passes to `0x00632D80` | the getter (after a `cmove`) | the getter |
 | annotation `+0x00`, 69 rows | `void*` | 0 | vtable `0x00D32D50`, `PAnnotationWithValue<unsigned int>` | the getter | - |
-| annotation `+0x30`, 69 rows | `u32` | 0 | `0x7FFFFFFF`; `0x00639C80` takes it through the annotation's slot `+0x08` (`0x005C4D20`, `0x0063A05F`) and copies it into the write mask over `m_count`, leaving out bit 31 | the getter | - |
+| annotation `+0x30`, 69 rows | `u32` | 0 | `0x7FFFFFFF`; `0x00639C80` takes it through the annotation's slot `+0x08` (`0x005C4D20`, `0x0063A05F`) and copies it into the write mask over `m_count`, leaving out bit `0x80000000` | the getter | - |
 | `m_els` `+0x00`, 69 rows | `void*` | 0 | the record's `PClassDataMemberArrayDynamic<T>` vtable, installed after `0x00632A10` builds the record | the getter | - |
 | `m_els` `+0x28`, 9 rows | `u32` | 0 | attribute bit `0x40` ORed in for a `PSharray<T>` | the getter | - |
 | `m_els` `+0x58`, 69 rows | `u32` | 0 | element size: 8 in 51 getters, 4 in 13, 2 in 3, 1 and 16 in one each | the getter | - |
-| `m_els` `+0x60`, 69 rows | `void*` | 0 | `0x005C4CC0`, which returns the array's first word without bit 31 | the getter | - |
+| `m_els` `+0x60`, 69 rows | `void*` | 0 | `0x005C4CC0`, which returns the array's first word without bit `0x80000000` | the getter | - |
 | `m_els` `+0x68`, 69 rows | `void*` | 0 | 0, or `0x00671250` in the 9 `PSharray<T>` getters | the getter | - |
 | `m_els` `+0x70`, 69 rows | `void*` | 0 | the set-elements function of the element type (`0x00673130` in 19 getters, `0x006AF760` in 22) | the getter | - |
 
 In all 69 record vtables slot `+0x20` is `0x006065D0`, which calls `+0x60`; slots `+0x30` and `+0x38` are
 `0x00604580`, which calls `+0x68` or, when it is 0, reads the pointer stored in the member; slot `+0x40` is
 `0x0060F3D0`, which calls `+0x70` with a buffer and a count and returns `0x15` when it is 0. `0x00673130` frees
-a buffer the array owns, then stores the new buffer at `+0x08` and the count with bit 31 set.
+a buffer the array owns, then stores the new buffer at `+0x08` and the count with bit `0x80000000` set.
 
 ### Member records and callables
 
@@ -1126,7 +1126,7 @@ caller pointer `+0x28`, builds the caller object beside the record and points `+
 
 Each record's exit
 teardown (`0x008B1F20`, `0x008B1EC0`, registered at `0x006789FF` and `0x00678AD7`) unlinks it, points both links at the
-record itself and frees the name buffer `+0x18` when bit 0 of `+0x20` is set.
+record itself and frees the name buffer `+0x18` when bit `0x1` of `+0x20` is set.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

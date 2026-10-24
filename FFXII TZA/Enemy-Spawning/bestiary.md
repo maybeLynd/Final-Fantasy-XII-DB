@@ -109,7 +109,7 @@ arguments (`PUSHII`, a pooled int or a pooled float):
 
 The status table argument is an msp reference (tag 3, resolved by `0x002650B0`): 8 bytes at the script image's
 `[+0x40]` plus the offset. `0x0023A570` has two other callers: `0x00300E40` passes `0xFFFF` (`0x00300F6D`), and `0x003266C0`
-clears unit flag bit 26 first (`0x00326AFD`), which the enemy path requires.
+clears unit flag bit `0x4000000` first (`0x00326AFD`), which the enemy path requires.
 
 Because the reference level is the placement's own base level, every stat and reward is the base row's value at
 that level and grows by the growth row's value for each level above it ([Stats](../Damage-And-Battle-Formulas/stats.md)):
@@ -127,7 +127,7 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 |---|---|---|---|
 | `+0x00` | `u16` | class row | `0x0023A570`, `0x002FEF30`; `0x0031C2F0` reads its low byte for the model ([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)) |
 | `+0x02` | `u8` | spawn counter slot, `0xFF` none | `0x0023A570` |
-| `+0x03` | `u8` | flags: bits 0-1 the tracked-HP class (`0x00328FF0`); bit 4 the height and AI tests below; bit 5 the shadow kind | `0x0023A570`, `0x00238BF0`, `0x00236210`, `0x00301AD0` |
+| `+0x03` | `u8` | flags: bits `0x3` the tracked-HP class (`0x00328FF0`); bit `0x10` the height and AI tests below; bit `0x20` the shadow kind | `0x0023A570`, `0x00238BF0`, `0x00236210`, `0x00301AD0` |
 | `+0x04` | `u8[4]` | 0 in every row | `0x00313120` (`0x0031337B`) reads `+0x04`-`+0x06` as a party row's Quickening slots for any unit the verb `spattackplay` (`0x003495A0`) names; `+0x07` no instruction (below) |
 | `+0x08` | `u16` | name word | `0x0023A570`, `0x0031C5D0` (`0x0031DD5A`), `0x00536310` |
 | `+0x0A` | `i16[3]` | model scale in percent, 0 meaning 100 | `0x00238BF0` (`0x00238D1B`-`0x00238D68`), handed to `0x002E5FD0` |
@@ -136,7 +136,7 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 | `+0x12` | `u8` | the colour: the model row's option number (below) | `0x0031C540` (`0x0031C5AB`) |
 | `+0x13` | `u8` | animation set, `0xFF` for the weapon's | `0x003202F0` ([Action phases](../Battle-Actions/action-phases.md)) |
 | `+0x14` | `u8` | 0 in every row | no instruction (below) |
-| `+0x15` | `u8` | flags: bit 0 Attack and weapon evade from the rows; bit 1 shield and magick evade from the rows; bit 2 unit flag bit 43; bits 3-4 the target-information query | `0x002FEF30`, `0x0023A570`, `0x0031AA30` |
+| `+0x15` | `u8` | flags: bit `0x1` Attack and weapon evade from the rows; bit `0x2` shield and magick evade from the rows; bit `0x4` unit flag bit `0x80000000000`; bits `0x18` the target-information query | `0x002FEF30`, `0x0023A570`, `0x0031AA30` |
 | `+0x16` | `u16` | main-hand equipment id | `0x0023AC80` (slot 0) |
 | `+0x18` | `u32` | starting HP, 0 for none | `0x0023A410` ([Enemy spawning](enemy-spawning.md)) |
 | `+0x1C` | `u16` | off-hand equipment id | `0x0023AC80` (slot 1) |
@@ -154,12 +154,12 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 
 The `+0x03` and `+0x15` bits, by their readers:
 
-- `+0x03` bit 4: `0x00238BF0` raises the unit byte `+0x58` to 7 ([Battle units](../Characters-And-Objects/battle-units.md));
+- `+0x03` bit `0x10`: `0x00238BF0` raises the unit byte `+0x58` to 7 ([Battle units](../Characters-And-Objects/battle-units.md));
   `0x00236210` returns the motion height without its random part (`0x002362A4`); the gambit target selector
   `0x00301AD0` tests it (`0x0030268D`).
-- `+0x03` bit 5: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, bits 12-13
+- `+0x03` bit `0x20`: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, bits 12-13
   of `+0x304` ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
-- `+0x15` bit 3: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits 3 or 4: it leaves the
+- `+0x15` bit `0x8`: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits `0x8` or `0x10`: it leaves the
   reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and `0x00328530`.
 
 ### Colour and model variants
@@ -205,16 +205,16 @@ chocobo definition has variant 0 and one of these colours:
 | `+0x05` | `u8` | class, unit `+0x56`, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)), named by word bank 14 (word `0x7000` + class, 64 names; class 34 is Skeleton) | `0x0023A570` |
 | `+0x06` | `u16` | unit `+0x52`; 0 in every row | `0x0023A570` |
 | `+0x10` | `i16` | push weight: a positive value divided by 10 is the weight the separation tick gives the body, as the party table's `+0x7A` ([Party table](../Party/party-table.md)); any other value goes over unchanged, and the -1 of 221 rows makes the body one an overlap never moves (`0x00314E10` gives a negative weight a share of 0) | `0x00238BF0` (`0x00238CEB`) → `0x0026DAC0` ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)) |
-| `+0x12` | `u8` | flags: bits 0-2 the effect column; bit 4 actor `+0x09` bit 6; bit 5 the view query; bit 6 actor `+0x08` bit 3 and `+0x09` bit 6; bit 7 the pair clearance | below |
-| `+0x18` | `u8` | bits 1-3 a movement group; bits 4-6 the placement height | `0x00239E10`, `0x003247F0`, the locomotion functions below |
+| `+0x12` | `u8` | flags: bits 0-2 the effect column; bit `0x10` actor `+0x09` bit `0x40`; bit `0x20` the view query; bit `0x40` actor `+0x08` bit `0x8` and `+0x09` bit `0x40`; bit `0x80` the pair clearance | below |
+| `+0x18` | `u8` | bits `0xE` a movement group; bits 4-6 the placement height | `0x00239E10`, `0x003247F0`, the locomotion functions below |
 | `+0x20` | `u8` | combo cap: hits at most this value minus 1 | `0x00388660` (`0x00388845`, [Combos](../Battle-Actions/combos.md)) |
-| `+0x21` | `u8` | bit 1: an enemy may back off from its target | `0x003341A0` (`0x00334204`, [Action range](../Battle-Actions/action-range.md)) |
+| `+0x21` | `u8` | bit `0x2`: an enemy may back off from its target | `0x003341A0` (`0x00334204`, [Action range](../Battle-Actions/action-range.md)) |
 | `+0x22` | `u8` | facing in degrees, unit `+0x64` | `0x0023A570` |
 | `+0x23` | `u8` | unit `+0x68` | `0x0023A570` |
 | `+0x25` | `u8` | sight radius | `0x003247F0` ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)) |
 | `+0x26` | `u8` | radius for units below 40 % HP | `0x003247F0` |
 | `+0x27` | `u8` | unit `+0x6C` | `0x0023A570` |
-| `+0x28` | `u8` | bit 0 the view query's height; bit 1 the kill chain skips it | `0x0031ADB0` (`0x0031B08D`), `0x00317ED0` (`0x00317F09`) |
+| `+0x28` | `u8` | bit `0x1` the view query's height; bit `0x2` the kill chain skips it | `0x0031ADB0` (`0x0031B08D`), `0x00317ED0` (`0x00317F09`) |
 | `+0x29` | `u8[5]` | absorb, halve, nullify, weak, potency | `0x002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
 | `+0x30` | `u8[16]` | read and written by no instruction (below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
 | `+0x40` | `u16` | model family, the same-model run | `0x00317ED0` (`0x00317F77`) |
@@ -224,16 +224,16 @@ The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) ar
 
 The `+0x12` and `+0x18` bits, by their readers:
 
-- `+0x12` bits 0-2: `0x00329F80` picks the action effect from the table at `0x00D10720`, five values per effect class,
+- `+0x12` bits `0x7`: `0x00329F80` picks the action effect from the table at `0x00D10720`, five values per effect class,
   and starts none for a value above 4 (`0x00329FB3`).
-- `+0x12` bits 4 and 6: `0x00238BF0` hands bit 4 to `0x0026A3A0` (actor `+0x09` bit 6) and bit 6 to `0x0026A430`
-  (actor `+0x08` bit 3 and `+0x09` bit 6), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
-- `+0x12` bit 5: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it (`0x0031B394`).
-- `+0x12` bit 7: `0x003879C0`, `0x00390AB0` (`0x00390B93`, `0x00390C16`) and the pair clearance `0x0033D660` (`0x0033D794`)
+- `+0x12` bits `0x10` and `0x40`: `0x00238BF0` hands bit `0x10` to `0x0026A3A0` (actor `+0x09` bit `0x40`) and bit `0x40` to `0x0026A430`
+  (actor `+0x08` bit `0x8` and `+0x09` bit `0x40`), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
+- `+0x12` bit `0x20`: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it (`0x0031B394`).
+- `+0x12` bit `0x80`: `0x003879C0`, `0x00390AB0` (`0x00390B93`, `0x00390C16`) and the pair clearance `0x0033D660` (`0x0033D794`)
   ([Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
-- `+0x18` bits 1-3, the value 4: the target list notices every unit (`0x003248F8`), actor `+0x13` bit 7 is set
+- `+0x18` bits `0xE`, the value 4: the target list notices every unit (`0x003248F8`), actor `+0x13` bit `0x80` is set
   (`0x00238E23`), and `0x00233EA0`, `0x00233F70`, `0x0031E880` and `0x00325260` test it too.
-- `+0x18` bits 1-3, other values: the locomotion functions `0x003357B0`, `0x00336710`, `0x00336CE0`, `0x00337470`,
+- `+0x18` bits `0xE`, other values: the locomotion functions `0x003357B0`, `0x00336710`, `0x00336CE0`, `0x00337470`,
   `0x003377C0`, `0x00337C10`, `0x00337D90`, `0x00338490`, `0x0033A240`, `0x0033C310` and `0x0033E1F0` compare the group with 0, 1,
   2, 4 and 5.
 - `+0x18` bits 4-6: the placement height byte `+0x1F6` (`0x00239E10`, [Enemy spawning](enemy-spawning.md)).
@@ -243,16 +243,16 @@ The `+0x12` and `+0x18` bits, by their readers:
 | Offset | Type | Field | Read by |
 |---|---|---|---|
 | `+0x00` | `u16` | clan points, statistics counter 17 | `0x00317090` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
-| `+0x02` | `u8` | shield evade, with `+0x15` bit 1 | `0x002FEF30` |
-| `+0x03` | `u8` | magick evade, with `+0x15` bit 1 | `0x002FEF30` |
+| `+0x02` | `u8` | shield evade, with `+0x15` bit `0x2` | `0x002FEF30` |
+| `+0x03` | `u8` | magick evade, with `+0x15` bit `0x2` | `0x002FEF30` |
 | `+0x20` | `u32` | max HP | `0x002FEF30` |
 | `+0x24` | `i16` | max MP | `0x002FEF30` |
 | `+0x26` | `u8[4]` | Strength, Magick Power, Vitality, Speed | `0x002FEF30` |
 | `+0x2A` | `u8` | innate evade | `0x002FEF30` |
 | `+0x2B` | `u8` | Defense | `0x002FEF30` |
 | `+0x2C` | `u8` | Magick Resist | `0x002FEF30` |
-| `+0x2D` | `u8` | Attack, with `+0x15` bit 0 | `0x002FEF30` |
-| `+0x2E` | `u8` | weapon evade, with `+0x15` bit 0 | `0x002FEF30` |
+| `+0x2D` | `u8` | Attack, with `+0x15` bit `0x1` | `0x002FEF30` |
+| `+0x2E` | `u8` | weapon evade, with `+0x15` bit `0x1` | `0x002FEF30` |
 | `+0x2F` | `u8` | LP | `0x002F90C0` ([EXP, LP and level-ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md)) |
 | `+0x30` | `u32` | gil | `0x00312280` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)) |
 | `+0x34` | `i32` | EXP | `0x002F8BB0` |

@@ -74,7 +74,7 @@ Sub-mesh 1 (strips):
 | `+0x00` | `i32[4]` | colour | R, G, B, A |
 | `+0x10` | `f32[4]` | x, y, z, w | position |
 
-An index entry is a `u16`: bit 15 (`0x8000`) starts a new strip, and bits 0 to 14 are the vertex index.
+An index entry is a `u16`: bit `0x8000` (`0x8000`) starts a new strip, and bits 0 to 14 are the vertex index.
 
 ## Shipped data
 
@@ -183,8 +183,8 @@ extent to `0x02CA8F80` to `0x02CA8F8C`, then calls `0x00555D10` for each slot (`
 
 `0x00555D10(sub, slot, widget, image)` reads `indexCount` entries from `idxOff + 2 × indexStart`:
 
-- An entry with bit 15 set starts a strip: `0x00556240` re-emits the GS `PRIM` (`0x5C` textured or `0x4C`
-  untextured triangle strip, or `0x0A` line strip when bit 0 of `0x01F2CAC8` is clear) and `0x00555B90`
+- An entry with bit `0x8000` set starts a strip: `0x00556240` re-emits the GS `PRIM` (`0x5C` textured or `0x4C`
+  untextured triangle strip, or `0x0A` line strip when bit `0x1` of `0x01F2CAC8` is clear) and `0x00555B90`
   writes the slot's colour factors.
 - After 32 vertices without a restart, it opens a new packet chunk without a new `PRIM`, so the strip
   continues (`0x00555DB2`).
@@ -226,7 +226,7 @@ Nothing in the file is validated:
   `4k + 3`, so sub-mesh 0 needs four vertices per slot.
 - Sub-mesh 0's `s` and `t` are fractions of the texture size, so a replacement `w_mainN.tm2` of another
   size keeps the same mapping.
-- Each slot run in sub-mesh 1 must start with an index that has bit 15 set: the path creates its first
+- Each slot run in sub-mesh 1 must start with an index that has bit `0x8000` set: the path creates its first
   packet only on a restart, and a run that starts without one reads through a null pointer.
 - Vertex indices are bits 0 to 14, and nothing compares them with `vtxCount`; keep them inside the array.
 - Sub-mesh 1 cannot carry texture coordinates; its texture is spread over the view by screen position.

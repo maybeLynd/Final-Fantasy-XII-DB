@@ -34,7 +34,7 @@ controller.
 |---:|---|---|---|---|
 | 0 | `+0x00` | per-model oscillators, updated by `0x0040B180` | `0x004158E0`, `0x0040EE90` | - |
 | 1 | `+0x04` | bone physics | `0x00512C00`, `0x00512A80` | `denybonephysical` |
-| 2 | `+0x08` | the look controller | `0x00515600`, `0x00513150` | request bit 1 of the staged look |
+| 2 | `+0x08` | the look controller | `0x00515600`, `0x00513150` | request bit `0x1` of the staged look |
 | 3 | `+0x0C` | Confuse motion | `0x00515FE0`, `0x00515610` | the Sleep and Confuse arms |
 | 4 | `+0x10` | none | - | - |
 | 5 | `+0x14` | bone turn that the shadow follows | `0x0051B110`, `0x0051A370` | the rig rebind |
@@ -80,17 +80,17 @@ The wrapper (`0x0042DD90` for the
 lip flap, `0x0042E690`, `0x0042D8B0`, `0x0042DCD0`, `0x0042BDE0` for the others) runs on the record, its first child and the
 child's subtrees, skips records `0x00426220` rejects, and switches the controller on when the owner's bit is set and off
 when it is clear. The body-shake wrapper first copies `+0x4BC` into the controller's `+0x38`. After the walk the sync
-routine (`0x00429C40` for bit 6) copies the bit into byte `+0x40B` (bits 5, 6, 7 for the three talking-head bits).
+routine (`0x00429C40` for bit `0x40`) copies the bit into byte `+0x40B` (bits `0x20`, `0x40`, `0x80` for the three talking-head bits).
 
 `0x00426220(record, owner)` returns 1, and the wrapper skips the record, when the record is not the owner, its `+0x284`
-bit 26 is clear and its word `+0x2F8` is -1; when its bit 27 is set, its word `+0xCC` is below `0x1000` and `0x004232D0`
+bit `0x4000000` is clear and its word `+0x2F8` is -1; when its bit `0x8000000` is set, its word `+0xCC` is below `0x1000` and `0x004232D0`
 answers 0; or, for a record that is not the owner, when its byte `+0x3C` is not `'h'` and the owner's is `'b'`, or when
 it is `'h'` and its bytes `+0x3D`-`+0x41` differ from the owner's `+0x3C`-`+0x40`.
 
 ### The countdown
 
 `0x00428F80` walks the active-record list (head at `[0x022C6F28] + 0x48800`, next at each record's word `+4`) and calls
-`0x0042EE90` on each. Unless bit 1 of `+0x290` is set, for each timer whose `+0x40B` bit is set and whose value is not 0,
+`0x0042EE90` on each. Unless bit `0x2` of `+0x290` is set, for each timer whose `+0x40B` bit is set and whose value is not 0,
 it subtracts `[0x01DFE0BC]`; at 0 or below it clears the `+0x304` bit, zeroes the timer and calls the same sync routine.
 A timed lip flap ends exactly as `setkutipakustatus(0)` would, and a zero timer never counts down.
 
@@ -130,13 +130,13 @@ Two authored presentation commands of the bank `0x0041D6C0` registers drive the 
 ([Authored presentation commands](authored-presentation-commands.md)):
 
 - `0x13` (`0x00520430`), only while render record `+0x2F2` is 0, copies command bytes `+2`-`+5` to `+0x3F4`-`+0x3F6`
-  and broadcasts the switch at once through `0x00429500(record, 1)` (`0x005204D1`), holding bit 9 of `+0x290`
+  and broadcasts the switch at once through `0x00429500(record, 1)` (`0x005204D1`), holding bit `0x200` of `+0x290`
   meanwhile.
   - When byte `+2 & 0xB9` is `0x80` it instead runs `0x004288B0(record, byte +3)` and `0x0042B580(record)`
-  and clears bit 10 of `+0x290` (`0x005204EC`-`0x005204F9`).
+  and clears bit `0x400` of `+0x290` (`0x005204EC`-`0x005204F9`).
   - With no command it resets `+0x3F4` to `0x11` and broadcasts (`0x0052047B`).
   - With bit `0x40` of `+0x3F4`
-  set, the dirty-pass wrapper `0x0042BED0` switches controller 11 by bit 0 when the target word `+0x3F6` is 1, the lip
+  set, the dirty-pass wrapper `0x0042BED0` switches controller 11 by bit `0x1` when the target word `+0x3F6` is 1, the lip
   flap when it is 2, and the nod when it is 4 and `+0x3F5` is 0 or the record's piece number plus 1.
 - `0x24` (`0x005201B0`) calls `0x003DFE70(rig, index, target, frames)`, which sets the entry's counter to
   `frames × [0x01DFE0B4]` and the acceleration to `(target - speed) / frames`, or the speed itself when frames is 0.
@@ -159,7 +159,7 @@ record's piece number (`+0x413`) plus 1:
 | 9 | `0x003E1210(rig, n, id)` | case 1 by id |
 | `0x10` | `0x003E1950(rig, 0)`, or `0x003E1350(rig, 0)` | every oscillator entry off when the broadcast's `+0x70` is set, otherwise controller 0 off |
 | `0x11` | `0x003E1950(rig, 1)`, or `0x003E1610(rig, 0)` | the same, on |
-| `0x20` | inline | rig `+0x58` = `1 / +0x3F5` (1.0 for 0); the low nibble of rig byte `+0x5E` = `+0x3F6` when it is below 3, else 3; its high nibble from `+0x3F7`; sets bit 0 of rig `+0x5F` |
+| `0x20` | inline | rig `+0x58` = `1 / +0x3F5` (1.0 for 0); the low nibble of rig byte `+0x5E` = `+0x3F6` when it is below 3, else 3; its high nibble from `+0x3F7`; sets bit `0x1` of rig `+0x5F` |
 | `0x80` | `0x003E6F90` / `0x003E7040` | on the source record itself stores `0x003E6F90(record, byte +0x40A)` at the broadcast's `+0x6C`; on another record passes that value to `0x003E7040` |
 
 `0x003E0860(rig)`, from `0x002E4150`, calls one routine of each of five controllers that exist: 2
@@ -169,12 +169,12 @@ record's piece number (`+0x413`) plus 1:
 
 The look controller (slot 2) also keeps a table of `0x60`-byte entries (pointer `+0x00`, count byte
 `+0x04`) and two float pairs, `+0x20`/`+0x24` and `+0x28`/`+0x2C`. When the authored motion command
-`0x09` (`0x00417F40`) starts a motion whose header has bits 24–25 of `+0x04` equal to 2, it loads them
+`0x09` (`0x00417F40`) starts a motion whose header has bits `0x3000000` of `+0x04` equal to 2, it loads them
 from the header's block for the header kind (`+0x04 & 3`): kind 0 reads byte `+0xBE`, floats from
 `+0x44` and the pairs `+0x30`/`+0x34` and `+0x3C`/`+0x38`; kind 1 reads byte `+0xEE`, floats from
 `+0x74` and `+0x60`/`+0x64`, `+0x6C`/`+0x68`.
 
-Bit 7 of the byte sets bit 0 of the render record's `+0x66D`.
+Bit `0x80` of the byte sets bit `0x1` of the render record's `+0x66D`.
 
 - `0x003E2D20(rig, n)`, with the byte's low three bits, stores `n` at the controller's `+0x06` when it
   changes. With the high nibble of `+0x05` clear each entry's `+0x08` takes its value `+0x50 + 4n` at
@@ -193,7 +193,7 @@ at rig `+0x60` when the oscillator record's byte `+0x06` is set.
 
 ### Controller 5 and the shadow
 
-`0x0051A890` runs after controller 5's solve when bit 1 of the controller's byte `+0x17` is set, the render record has a
+`0x0051A890` runs after controller 5's solve when bit `0x2` of the controller's byte `+0x17` is set, the render record has a
 shadow (`+0x114`) and the controller's byte `+0x14` is set. It stores `-(angle × weight)` of the first entry into the
 shadow's `+0xBC` (`0x003B6B60`) and writes into the look controller's byte `+7` whether the controller's dword `+4` is
 non-zero. The rig frame zeroes the shadow's `+0xBC` first every frame.
@@ -208,7 +208,7 @@ non-zero. The rig frame zeroes the shadow's `+0xBC` first every frame.
    shadow's `+0xBC`.
 3. Solve, each behind its controller's own active field: 10, 8 (only when `0x00181DD0` is 0 and `0x001EDE80` is not), 1, 2,
    9, 11, 13, 15, 14, 5 and `0x0051A890`, 16, 6, 7, 12, 3, then `0x0051B330` (16), `0x00519170` (11) and `0x00518D50` (10).
-4. Apply 2, 9, 13, 15 while bit 1 of the rig's `+0x5F` is clear; then 8, 1, 14, 5, 12 while also the rig's byte `+0x62`
+4. Apply 2, 9, 13, 15 while bit `0x2` of the rig's `+0x5F` is clear; then 8, 1, 14, 5, 12 while also the rig's byte `+0x62`
    (bone physics denied) is 0 and `0x02B59D64` is 0.
 5. Apply 7, 3 and 6 (`0x004717E0`) while `0x02B59D68` is 0. Only the display-deny latch `0x003E7C70` writes `0x02B59D68`.
 
@@ -222,7 +222,7 @@ of the marked event slot (`0x01DFE40C`, `0x01F832B0`) at 4.
 
 | Controller | Solve | What it does |
 |---|---|---|
-| 1 bone physics | `0x005121A0` | with byte `+0x35` bit 2: an angle step wrapped at ±3.14, its rate `+0x1C` below 0.03 rad or `+0x24` above, clamped, turned into an axis-angle rotation for each of the `+0x34` entries |
+| 1 bone physics | `0x005121A0` | with byte `+0x35` bit `0x2`: an angle step wrapped at ±3.14, its rate `+0x1C` below 0.03 rad or `+0x24` above, clamped, turned into an axis-angle rotation for each of the `+0x34` entries |
 | 7 Immobilize | `0x004713A0` | an envelope `+0xC` that falls by `0.375 × [0x01DFE0BC]`; while active, the cycle `0x01F221C0` / `0x01F222B0` (length `0x01F221B0`); the offset turned by the heading `+0x124` into `+0x20`, `+0x28` |
 | 13 nod | `0x00471B60` | an envelope `+0x2C` moving by `0.125 × [0x01DFE0BC]`; pattern `+0x10` (0 to 7, 8 fading out) plays per-bone curves picked by `0x004723E0` and rebuilds each bone's rotation with `0x0046D560` |
 | 15 head shake | `0x00472970` | the same envelope on three bones; patterns 0 to 4 from `0x01F24160`, `0x01F24870`, `0x01F24F80`, `0x01F25690` and `0x01F25DA0`, state 5 a countdown, state 6 a fade that then picks one of eight next patterns at random (`0x003A6E60(8)`) |
@@ -233,7 +233,7 @@ Controller 14's apply `0x0051A280` (`0x003E0624`) multiplies the rotations of th
 `+0xC0`, `+0xC4` and `+0xC8`, by the controller's three 3 × 3 matrices at `+0x00`, `+0x40` and `+0x80`
 through `0x00519880`.
 
-- `0x003E12A0(rig, n, on)` fades controller 9 or 13 instead of cutting it: off sets bit 6 of byte `+1`
+- `0x003E12A0(rig, n, on)` fades controller 9 or 13 instead of cutting it: off sets bit `0x40` of byte `+1`
   (`0x00517610` keeps the lip flap's current values at `+0x88` and `+0x8C`; `0x00471B20` clears the
   nod's byte `+8`), and on restarts a controller that was fading. Its callers are `0x0041DD40` and
   `0x0042BED0`.
@@ -295,10 +295,10 @@ command, so a request lasts one pass and an attached piece looks where its owner
 
 | Request bit | Value or payload | What `0x003E37F0` does | Builder, verb |
 |---|---|---|---|
-| 0 | bit 22 | `0x003E0910(rig, value)` | `0x003E0B20`, `denybonephysical` |
-| 1 | bit 23 | look controller `+0x1C` bit 0 := value; on `0x00515600`, off `0x00513150` | `0x003E33E0` |
-| 2 | bit 24 | low nibble of `+0x1D` := value | `0x003E3440` |
-| 4 | bit 26 | low nibble of `+0x1E` := value | `0x003E37C0`, `lookat_maxangle_limit_lock` and `_unlock` |
+| 0 | bit `0x400000` | `0x003E0910(rig, value)` | `0x003E0B20`, `denybonephysical` |
+| 1 | bit `0x800000` | look controller `+0x1C` bit `0x1` := value; on `0x00515600`, off `0x00513150` | `0x003E33E0` |
+| 2 | bit `0x1000000` | low nibble of `+0x1D` := value | `0x003E3440` |
+| 4 | bit `0x4000000` | low nibble of `+0x1E` := value | `0x003E37C0`, `lookat_maxangle_limit_lock` and `_unlock` |
 | 5, 6 | - | `+0x8C` := 1, 0 | no builder |
 | 9 with 10 or 11 | `+0x20`-`+0x28` | `+0x60`-`+0x68`, source kind `+0x6C` := 0 (three dwords) or 1 (two) | `0x003E36F0`; `0x003E36C0`, `lookatsrcboneid` |
 | 12 with 13 or 14 | `+0x30`-`+0x38` | `+0x50`-`+0x58`, source kind `+0x5C` := 0 or 1 | the same two builders |
@@ -307,10 +307,10 @@ command, so a request lasts one pass and an attached piece looks where its owner
 | 19, 20 | float `+4` | blend: `0x003E2F30`, or `0x003E3340` | `0x003E33C0`, `0x003E33A0` |
 | 27, 28 | floats `+0x40`-`+0x48` | eyes: `0x003E2810`, `0x003E28F0` | `0x003E29D0` `eyemove_381`, `0x003E29B0` `eyemovediff_383` |
 | 29 | - | zeroes the eye object's `+0x2C`, `+0x14`, `+0x18` | `0x003E2800`, `eyemovereset` |
-| 30 | bit 31 | `0x003E3720`: look `+0x1C` bit 5 := value; set with bit 0 clear starts the neutral return | `0x003E37A0` |
+| 30 | bit `0x80000000` | `0x003E3720`: look `+0x1C` bit `0x20` := value; set with bit `0x1` clear starts the neutral return | `0x003E37A0` |
 
-Bits 15 to 20 are one group, tested in the order 15, 17, 16, 18, 19, 20; the first set one runs. `0x003E36A0` (bit 7) and
-`0x003E3570` (bit 8) are staged only from the bind path `0x002E28E0`, and `0x003E37F0` does not test them.
+Bits 15 to 20 are one group, tested in the order 15, 17, 16, 18, 19, 20; the first set one runs. `0x003E36A0` (bit `0x80`) and
+`0x003E3570` (bit `0x100`) are staged only from the bind path `0x002E28E0`, and `0x003E37F0` does not test them.
 
 ### Angles, blends and the eyes
 
@@ -331,14 +331,14 @@ Bits 15 to 20 are one group, tested in the order 15, 17, 16, 18, 19, 20; the fir
 
 `0x002EC3F0(actor)` turns the steering record `[[actor + 0xB8] + 0xF0]` into a staged look for an actor whose byte `+3`
 has `0x60` in its top three bits ([Facing and steering](../Movement-And-Pathfinding/facing-and-steering.md)). The
-shape is bits 0-2 of the record's byte `+0x62` and the selector bits 3-5; selector 2 becomes 1 when bit 0 of `+0x6A`
+shape is bits `0x7` of the record's byte `+0x62` and the selector bits `0x38`; selector 2 becomes 1 when bit `0x1` of `+0x6A`
 is set, and that bit is cleared.
 
 | Shape | Selector 1 | Selector 2 |
 |---|---|---|
-| 0, 1 | `0x002E7650`, bit 19 | `0x002E79A0`, bit 20 |
-| 2 | `0x002E7720`, bit 15 | `0x002E77F0`, bit 17 |
-| 3 | stages bit 16 with 0 frames and the angle pair `+0x10`, `+0x14` (`0x003E6B90`), then bits 9/11 and 12/14 with the pair (the actor's record index, `0x30B`) (`0x003E6C00`); raises dirty bit 11 | stages bit 18 with 1 frame and the angle pair (`0x003E6B70`); raises dirty bit 11 |
+| 0, 1 | `0x002E7650`, bit `0x80000` | `0x002E79A0`, bit `0x100000` |
+| 2 | `0x002E7720`, bit `0x8000` | `0x002E77F0`, bit `0x20000` |
+| 3 | stages bit `0x10000` with 0 frames and the angle pair `+0x10`, `+0x14` (`0x003E6B90`), then bits `0x200`/11 and 12/14 with the pair (the actor's record index, `0x30B`) (`0x003E6C00`); raises dirty bit `0x800` | stages bit `0x40000` with 1 frame and the angle pair (`0x003E6B70`); raises dirty bit `0x800` |
 
 ### Bone physics and the rebind
 
@@ -353,15 +353,15 @@ the additive bone matrices, calls each slot's reset and then its second-phase in
 
 ### The focus point
 
-`0x004288E0` walks the active-record list and calls `0x003E43D0` on every record whose `+0x290` bit 1 is clear:
+`0x004288E0` walks the active-record list and calls `0x003E43D0` on every record whose `+0x290` bit `0x2` is clear:
 
 1. `0x003E5ED0` picks a local offset. When the record's resource (`+0xF0`) has an `@FRM` chunk with a non-zero sub-block
    (`0x004234B0`), it is kind 1 and the offset is the block's `+0x3C`; otherwise kind 0 and the three floats at `+0xD4`
    of the model block (record `+0x400`, entered through its word `+2`). In kind 1 the height still comes from the model
-   block unless bit 0 of `+0x66D` is set.
+   block unless bit `0x1` of `+0x66D` is set.
 2. `0x003E5FA0` gives the frame: for kind 1 with a model block of version 3 or later naming a bone (the first of the words
    `+0x3A`, `+0x3C`, `+0x3E` that is not `0xFFFF`), that bone's matrix; otherwise the record's matrix `+0x180`. Only its
-   translation is kept, the rows come from `+0x180`, and the height is replaced by `+0x1B4` unless bit 0 of `+0x66D` is
+   translation is kept, the rows come from `+0x180`, and the height is replaced by `+0x1B4` unless bit `0x1` of `+0x66D` is
    set. The result goes to `+0x670`.
 3. Byte `+0x66C` holds two countdowns, the high nibble for kind 1 and the low for kind 0. While the current kind's is
    non-zero, the point is pulled toward the other kind's last point (`+0x690` for kind 1, `+0x660` for kind 0) by
@@ -371,7 +371,7 @@ the additive bone matrices, calls each slot's reset and then its second-phase in
    non-zero nibble by 1.
 5. `0x003E6070` fetches a second vector (`@FRM` block `+0x60`; else the `@FRM` chunk of the resource behind `+0x69C`, or
    behind `+0x430` when the motion word's low twelve bits are `0x36`; else model block `+0xEC`; else 0), and `+0x680`
-   follows it by `sqrt(0.12)`, about 0.35, a frame; bit 1 of `+0x66D` snaps it once. `+0x6A8` gets 0.
+   follows it by `sqrt(0.12)`, about 0.35, a frame; bit `0x2` of `+0x66D` snaps it once. `+0x6A8` gets 0.
 
 `0x003E5810(record, out)` returns `+0x670` plus `+0x680` turned by the record's matrix. Its callers are `0x003A4290`, which
 also copies the view matrix at `0x02AEDEF0`, `0x003A56F0`, and the actor service `0x002E9A90`. The record initialiser
@@ -409,8 +409,8 @@ Look controller (rig slot 2):
 | `+0x05` | `u8` | mode | low nibble; `0x11` when on |
 | `+0x10` | `f32[2]` | angles | current |
 | `+0x18` | `f32` | duration | minimum blend frames |
-| `+0x1C` | `u8` | state | bit 0 on, 1 asleep, 2 confused, 5 neutral |
-| `+0x1D` | `u8` | modes | low nibble from request bit 2 |
+| `+0x1C` | `u8` | state | bit `0x1` on, 1 asleep, 2 confused, 5 neutral |
+| `+0x1D` | `u8` | modes | low nibble from request bit `0x4` |
 | `+0x1E` | `u8` | limits | low nibble the angle lock |
 | `+0x50` | `f32[3]` | sourceB |  |
 | `+0x5C` | `u32` | kindB | 0 vector, 1 bones, 2 angles, 3 direction |
@@ -425,13 +425,13 @@ Render-record fields:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x304` | `u32` | flags | bits 6, 7, 8, 15, 16 the controller requests |
+| `+0x304` | `u32` | flags | bits `0x40`, `0x80`, `0x100`, `0x8000`, `0x10000` the controller requests |
 | `+0x40B` | `u8` | timedOn | bits 5-7 copies of the talking-head bits |
 | `+0x4BC` | `f32` | shake | body-shake amount |
 | `+0x640` | `f32[3]` | timers | lip flap, nod, head shake |
 | `+0x660` | `f32[3]` | lastKind1 |  |
 | `+0x66C` | `u8` | slide | high nibble kind 1, low nibble kind 0 |
-| `+0x66D` | `u8` | focusFlags bit 0 keep the source height, bit 1 snap |  |
+| `+0x66D` | `u8` | focusFlags bit 0x1 keep the source height, bit 0x2 snap |  |
 | `+0x670` | `f32[4]` | focus |  |
 | `+0x680` | `f32[4]` | second |  |
 | `+0x690` | `f32[3]` | lastKind0 |  |

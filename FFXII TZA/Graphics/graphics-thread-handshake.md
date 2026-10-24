@@ -29,10 +29,10 @@ values that pass through it are successive values of one cell, not separate fiel
 | Value or operation | Written by | Meaning on the PS2 path |
 |---|---|---|
 | buffer address `& 0x3FF0`, then a record count | the three publishers | the start and length of a DMA chain |
-| `0x100` (bit 8) | the three publishers | the start bit, "batch published" |
+| `0x100` (bit `0x100`) | the three publishers | the start bit, "batch published" |
 | nine-store burst ending in 0 | the reset `0x0036F2F0` | the channel reset sequence |
-| `and 0xFFFFFEF3` (bits 2, 3, 8 down) | the clear `0x0036F2C0` | batch accounted for |
-| `or 0x10000`, then `and 0xFFFEFEFF` | effect capture | capture bit up, then bits 8 and 16 down |
+| `and 0xFFFFFEF3` (bits `0x4`, `0x8`, `0x100` down) | the clear `0x0036F2C0` | batch accounted for |
+| `or 0x10000`, then `and 0xFFFEFEFF` | effect capture | capture bit up, then bits `0x100` and `0x10000` down |
 | 0 | `0x0036D7E0` | the vertical-sync callback's reset |
 
 ### The GS register batch
@@ -44,7 +44,7 @@ lists its callers and the pass-mask bits that supply `a` and `b`). It reads the 
 
 - FRAME_1 at `0x022D8EC8`: frame index `[0x022D8EA8]` × pages per surface `[0x022D8EB8]`, with the
   buffer width `width >> 6` in bits 16 and up (`0x0036D477`–`0x0036D4B4`);
-- ZBUF_1 at `0x022D8ED0`: twice the pages per surface, with bit 24 set (`0x0036D496`–`0x0036D4C2`).
+- ZBUF_1 at `0x022D8ED0`: twice the pages per surface, with bit `0x1000000` set (`0x0036D496`–`0x0036D4C2`).
 
 It then writes into the current GS command buffer (`0x02EBEFC0` + 0x18 × `[0x02EBEFF0]`, see
 [render command list](render-command-list.md)), one 16-byte record `{value, register}` per register:
@@ -80,7 +80,7 @@ VIF codes FLUSH (`0x11`) and DIRECT (`0x50`) with the record count. `0x0036D400`
 
 `0x003A2D80(source, bytes)` rounds the size down to whole 16-byte records, copies the batch with
 `memcpy` (`0x00861EBA`) to the staging buffer `[0x02F8F2E0]` (set to the GS buffer arena base
-`[0x01FD4A78]` by the display-list set-up at `0x003A371A`), tests the fence (below), flips bit 10 of
+`[0x01FD4A78]` by the display-list set-up at `0x003A371A`), tests the fence (below), flips bit `0x400` of
 the staging pointer (`xor 0x400`, `0x003A2DCB`), so two staging buffers alternate `0x400` bytes
 apart, and stores the address, the count, and after its guard loop `0x100` (`0x003A2E16`). It is
 called from `0x0044D80C`, `0x004537CE` and `0x00460F08`.
@@ -109,7 +109,7 @@ Each is the hoisted form `mov eax, [0x02EAF6D8]; and eax, 0x100; test eax, eax; 
 `0x0022B7E6`, `0x0022B8ED`, `0x0022BC35`), again at `0x0022A87F` and `0x0022B2FD`, in the effect-capture
 draw `0x003749F0` (`0x00374ACE` or `0x00374AD7`) and in `0x00376220`. After the fence it stores nine values with no branch between them
 (`0x0036F30D`–`0x0036F352`): the low dword of the address `0x022D9B50`, `0x7FFF0`, 0, the address twice,
-`(word & ~4) | 8`, `word & ~0x30`, `0x14D`, and 0. No instruction in the image tests bits 2, 3, 4,
+`(word & ~4) | 8`, `word & ~0x30`, `0x14D`, and 0. No instruction in the image tests bits `0x4`, `0x8`, `0x10`,
 5 or the value `0x14D`; the burst ends with the word at 0.
 
 ### The settle-spin and the clear
@@ -210,17 +210,17 @@ at `0x00368ED9` keeps.
 
 ### Effect capture
 
-The capture draws `0x003749F0` and `0x00376050` wait while bit 8 is set with a loop that reloads the
+The capture draws `0x003749F0` and `0x00376050` wait while bit `0x100` is set with a loop that reloads the
 word (`0x00374C70`–`0x00374C7A`, `0x003761E0`–`0x003761EA`), then `or` `0x10000` and immediately `and`
 `0xFFFEFEFF` (`0x00374CEC`/`0x00374CF6`, `0x003761EC`/`0x003761F6`), so the capture bit is up for one
-instruction and the `and` also drops bit 8.
+instruction and the `and` also drops bit `0x100`.
 
 ## Layouts
 
 ```
 command-state word 0x02EBA3F8, as the PS2 code uses it
   publish   word = buffer & 0x3FF0 ; word = records ; word = 0x100
-  clear     word &= 0xFFFFFEF3          bits 2, 3, 8
+  clear     word &= 0xFFFFFEF3          bits 0x4, 0x8, 0x100
   capture   word |= 0x10000 ; word &= 0xFFFEFEFF
   reset     nine stores ending in 0 (0x0036F2F0); 0 (0x0036D7E0)
 ```
@@ -292,7 +292,7 @@ creation) and the priority `+0x28` (`0x00863781`), which `0x00863430` turns into
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022CA5F8` | `u32` | 0 (zero-filled tail of `.data`) | 1 once the set-up has run; while it is non-zero, `0x0035E760` and each pass of the worker `0x0035EA40` call `0x003691B0(0)` when handler 0 of the table `0x022CFF10` (the address `0x00369160` returns) is set | `0x0035E820`, 1 (`0x0035E84D`) | `0x0035E760` (`0x0035E764`); `0x0035EA40` (`0x0035EB0E`) |
-| `0x022CA604` | `u32` | 0 (zero-filled tail of `.data`) | the pacer's mode, its second argument. While `0x022CA608` is 0, the handler `0x0035EC90` uses it once the sync count has reached its target (`0x0035ECCC`): mode 1 sets the pending flag `0x022CA600` only on a sync with bit 13 of `0x022CA60C` clear, mode 2 only with that bit set, any other value on every sync | `0x0035E820`, 0 (`0x0035E88A`); `0x0035EB70` (`0x0035EC28`) | `0x0035EC90` (`0x0035ECCC`) |
+| `0x022CA604` | `u32` | 0 (zero-filled tail of `.data`) | the pacer's mode, its second argument. While `0x022CA608` is 0, the handler `0x0035EC90` uses it once the sync count has reached its target (`0x0035ECCC`): mode 1 sets the pending flag `0x022CA600` only on a sync with bit `0x2000` of `0x022CA60C` clear, mode 2 only with that bit set, any other value on every sync | `0x0035E820`, 0 (`0x0035E88A`); `0x0035EB70` (`0x0035EC28`) | `0x0035EC90` (`0x0035ECCC`) |
 | `0x022CA628` | `u32` | 0 (zero-filled tail of `.data`) | the tick count the pacer was last given, `max(n, 1)` with a signed compare (`cmovg`, `0x0035EC1C`), the value it also stores at `0x022CA5F4`; 1 after the set-up | `0x0035E820`, 1 (`0x0035E85D`); `0x0035EB70` (`0x0035EC5F`) | no instruction names it |
 | `0x022CA62C` | `i32` | 0 (zero-filled tail of `.data`) | the handle the set-up gets from `0x005C5230(2, 0x0035E760, -1)` (`0x0035E984`), -1 while none is held. A set-up that finds a handle held (not -1, `0x0035E948`) first passes it back through `0x005C5230` (`0x0035E956`, `0x0035E966`). `0x005C5230` is `xor eax, eax; ret`, so the word is 0 after every set-up | `0x0035E820`: -1 (`0x0035E828`, `0x0035E96B`); the result (`0x0035E98E`) | `0x0035E820` (`0x0035E948`, `0x0035E95B`) |
 | `0x022CA634` | `u32` | 0 (zero-filled tail of `.data`) | the worker's run flag: the set-up sets it before it starts `0x0035EA40`, which loops while it is non-zero; the shutdown `0x0035E700` clears it, releases both semaphores and sleeps 1 ms at a time until the worker's running flag `0x022CA630` is 0 | `0x0035E820`, 1 (`0x0035E910`); `0x0035E700`, 0 (`0x0035E70B`) | `0x0035EA40` (`0x0035EA71`, `0x0035EAA0`, `0x0035EACD`, `0x0035EB30`) |

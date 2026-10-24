@@ -163,8 +163,8 @@ The initialisers write these fields of the two statics directly:
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02EA5510` | `u8[16]` | 0 (zero-filled tail of `.data`) | `+0x20`-`+0x2F` of the font atlas `0x02EA54F0`, zeroed by the initialiser that registers the atlas's exit stub | `0x00169600` (`0x00169614`, one 16-byte store of 0.0 floats) | no instruction names it |
-| `0x02EA5870` | `u32` | 0 (zero-filled tail of `.data`) | `+0x20` of the `PImGuiDynamicMesh` `0x02EA5850`: the count word of its array, `0x80000001`, one element the array does not own | `0x00169450` (`0x001694BD`) | `0x00169450` (`0x0016949D`, bit 31 tested before an old buffer is freed) |
-| `0x02EA5878` | `void*` | 0 (zero-filled tail of `.data`) | `+0x28`: the array's buffer, the object's own `0x02EA5888`; `0x00169450` frees a different buffer through `0x00584730` when bit 31 of the count is clear | `0x00169450` (`0x001694B6`) | `0x00169450` (`0x0016948A`, compared with `0x02EA5888`, whose address it loads at `0x00169491`) |
+| `0x02EA5870` | `u32` | 0 (zero-filled tail of `.data`) | `+0x20` of the `PImGuiDynamicMesh` `0x02EA5850`: the count word of its array, `0x80000001`, one element the array does not own | `0x00169450` (`0x001694BD`) | `0x00169450` (`0x0016949D`, bit `0x80000000` tested before an old buffer is freed) |
+| `0x02EA5878` | `void*` | 0 (zero-filled tail of `.data`) | `+0x28`: the array's buffer, the object's own `0x02EA5888`; `0x00169450` frees a different buffer through `0x00584730` when bit `0x80000000` of the count is clear | `0x00169450` (`0x001694B6`) | `0x00169450` (`0x0016948A`, compared with `0x02EA5888`, whose address it loads at `0x00169491`) |
 | `0x02EA5888` | `u64` | 0 (zero-filled tail of `.data`) | `+0x38`: the first qword of the array's one element, 0 | `0x00169450` (`0x0016947C`) | no instruction names it |
 | `0x02EA5890` | `u64` | 0 (zero-filled tail of `.data`) | `+0x40`: the second qword of that element, 0 | `0x00169450` (`0x00169483`) | no instruction names it |
 

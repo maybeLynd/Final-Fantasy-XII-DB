@@ -29,7 +29,7 @@ the rest of the GS model.
 `0x0036D2F0` then computes the pages per surface, `(width × height) >> 11` = 112 GS pages of 2,048
 words, into `0x022D8EB8` (`0x0036D393`), fills the two 0x28-byte display records at `0x022D8E50` and
 `0x022D8E78`, and points `0x022D8EA0` at the first. The GS register batch `0x0036D400` places the colour
-surface at page `index × 112` with PSM 0 and the Z surface at page 224 with bit 24 set
+surface at page `index × 112` with PSM 0 and the Z surface at page 224 with bit `0x1000000` set
 ([graphics thread handshake](graphics-thread-handshake.md)). With the index at 0 the frame uses
 surfaces 0 and 2 of the three the budget reserves.
 
@@ -89,12 +89,12 @@ moving them up by `(width - 0x200) x 0x540 / 64` for a width above `0x200` (0 at
 `0x0039D200`, run by the same frame set-up (`0x0024D560`), rewrites six 16-byte entries at `0x02AEECF0`, each
 a pair of values in the layout of the GS registers TEX0 and CLAMP, for draws that sample the surfaces:
 
-| Entries | TEX0 value | CLAMP value | Base page (TEX0 bits 0-13) |
+| Entries | TEX0 value | CLAMP value | Base page (TEX0 bits `0x3FFF`) |
 |---|---|---|---|
 | `0x02AEECF0`, `0x02AEED00` | `0x664100000` with `width / 64` in bits 14-19: PSM 1, 512 × 512, TCC 1 | `10` (region clamp in u and v), maximum u = width − 1, v = height − 1 | `width × height / 64` in one of the two, 0 in the other |
 | `0x02AEED10` to `0x02AEED40` | `0x620110000`: PSM 1, 256 × 256, TCC 1 | `10` with half the width and height | `0x3C00`, `0x3700`, `0x3300`, `0x3FFF` |
 
-The full-size base goes into the first entry when bits 0-8 of the FRAME_1 value `0x022D8EC8` are 0, and
+The full-size base goes into the first entry when bits `0x1FF` of the FRAME_1 value `0x022D8EC8` are 0, and
 into the second otherwise. Readers of the entries include `0x0024B7B0`, `0x0036F550`, `0x0036F9F0`,
 `0x00374280`, `0x003745C0`, `0x00431830` and `0x004FD4B0`.
 
@@ -187,7 +187,7 @@ it to `0x008620B0`, a body that returns at once; nothing is printed.
 and TRXDIR again (`0x00244355`–`0x0024439C`). It reads the frame index and the height to place the
 transfer. The GS replay honours none of these four registers.
 
-`0x002443D0(widget, node)`, also called from `0x002D2DB0` (`0x002D2F30`), sets node `+0x38` bit 8, clears bits 9-13,
+`0x002443D0(widget, node)`, also called from `0x002D2DB0` (`0x002D2F30`), sets node `+0x38` bit `0x100`, clears bits `0x3E00`,
 and stores at node `+0x30` a TEX0 word: the constant `0x40010333C` (base `0x333C`, format 1, TCC set) with the
 buffer width `0x022D8EAC` / 64, TW the highest set bit of 2 x width - 1 (9 for the shipped `0x200`) and TH 5, from
 `0x3F`. It then writes TEXA (`0x3B`) = `0x80` under one A+D GIF tag (`0x00248EB0`, `0x00248E10`).
@@ -220,9 +220,9 @@ mode of 0 to 3 chosen from `a` and `b` (`0x00376320`), and records a changed tar
 512 × 448; `0x003749F0`, `0x00376220` and `0x003A2BD0` are the others.
 
 A texture word in the GS TEX0 layout comes from `0x002D8050(word, width, height, format)`. It keeps the
-base in bits 0–13, which the caller sets, and writes the buffer width in 64-pixel units rounded up
-(1 becomes 2) in bits 14–19, the format in bits 20–25, the power-of-two exponents of the width and
-height in bits 26–29 and 30–33, and bit 34; bits 35 and 36 are cleared.
+base in bits `0x3FFF`, which the caller sets, and writes the buffer width in 64-pixel units rounded up
+(1 becomes 2) in bits `0xFC000`, the format in bits `0x3F00000`, the power-of-two exponents of the width and
+height in bits 26–29 and 30–33, and bit `0x400000000`; bits `0x800000000` and `0x1000000000` are cleared.
 
 The exponent is
 `0x002D8150(n)`, the smallest e with 2^e ≥ n, at most 10. The effect-texture placer `0x002D83B0` builds
@@ -248,7 +248,7 @@ caller's stack and a family of helpers around `0x00271450`:
 | `0x002714A0`, `0x002714C0`, `0x00271480` | reserve the record at the cursor as the chunk header `+0x18`, the GIF tag slot `+0x28` or the DIRECT header `+0x30` |
 | `0x00272390(w, records, n)` | copies `n` 16-byte records to the cursor and advances it; `0x00271290` copies without a writer |
 | `0x00271080(w)` | closes a chunk: VIF FLUSH (`0x11000000`) and `0x10000000` in the header's upper dwords |
-| `0x002710C0(w, eop)` | writes the GIF tag: A+D (`0xE`), one register, the record count as NLOOP and `eop` in bit 15 |
+| `0x002710C0(w, eop)` | writes the GIF tag: A+D (`0xE`), one register, the record count as NLOOP and `eop` in bit `0x8000` |
 | `0x00271100(w)` | writes an UNPACK header (`0x6C008000` with the count in bits 16 up) after three `0x10000000` |
 | `0x00271050(w)` | writes a DIRECT header: `0x13000000` (FLUSHA), `0x10000000`, `0x50000000` with the count |
 | `0x002712E0(w, src, ad)` | closes a DIRECT chunk of `src`, with an A+D end record `{0x8000, 0xE}` when `ad` is 1 |
@@ -311,7 +311,7 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
   `0x02064CC0` and `0x02064CC4`.
 - `0x005376D0` first folds the angle into `[−π/2, π/2]` and then sums the odd powers up to the ninth
   with the coefficients −0.16666657, 0.0083330255, −0.00019807414 and 2.601887e-06. Its
-  comparisons go through `0x005379D0(flags, vector, value)`, which builds a VU MAC flag word: bits 7
+  comparisons go through `0x005379D0(flags, vector, value)`, which builds a VU MAC flag word: bits `0x80`
   to 4 for the lanes x to w below the value, bits 3 to 0 for the lanes equal to it.
 
 ## Layouts
@@ -333,7 +333,7 @@ Instance record (map `+0x178`, tag 30 of the map pack), `0x30` bytes:
 |---|---|---|---|
 | `+0x02` | `i16` | placement row | read by `0x003A6FC0` |
 | `+0x04` | `u16` | texture record index |  |
-| `+0x0C` | `u32` | flags | bit 23 + slot: present for that weather slot |
+| `+0x0C` | `u32` | flags | bit `0x800000` + slot: present for that weather slot |
 | `+0x1D` | `u8` | sub-index | a repeat of the previous index and sub-index is not counted again |
 
 Slot record (map `+0x218`, count `+0x228`), `0x28` bytes:
@@ -417,14 +417,14 @@ identity with `0x00203170` (`0x00276494`-`0x002764A5`, four 16-byte stores), the
 ### The display records, the surface entries and the other words
 
 `0x0036D2F0` fills the two `0x28`-byte display records from a stack area that its call `0x0016D6A0` (`0x0036D34E`), a bare
-`ret`, leaves as it was; it sets only bits 0-8 of the second record's word `+0x10` to the pages per surface
+`ret`, leaves as it was; it sets only bits `0x1FF` of the second record's word `+0x10` to the pages per surface
 (`0x0036D399`-`0x0036D3A9`). `0x022D8EA0` points at the first record (`0x0036D3B2`) or at record `[0x022D8EA8]` (`0x0036D800`);
 no instruction loads that pointer.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022D8E70` | `u64` | 0 | the first record's `+0x20`: the 8 bytes at the set-up's stack `+0x60` | `0x0036D2F0` (`0x0036D380`) | no instruction names it apart from that store; `0x0024DEE0` reads `+0x10` of a record only |
-| `0x022D8E88` | `u8[16]` | 0 | the second record's `+0x10` to `+0x1F`: the stack bytes at `+0x78`, with bits 0-8 of the first dword set to 112, the pages per surface | `0x0036D2F0` (`0x0036D3C9`, 16 bytes) | `0x0024DEE0` (`0x0024DF8E`), the dword at `0x022D8E60` + `0x28` × `[0x022D8EA8]`, which is this one when the frame index is 1 |
+| `0x022D8E88` | `u8[16]` | 0 | the second record's `+0x10` to `+0x1F`: the stack bytes at `+0x78`, with bits `0x1FF` of the first dword set to 112, the pages per surface | `0x0036D2F0` (`0x0036D3C9`, 16 bytes) | `0x0024DEE0` (`0x0024DF8E`), the dword at `0x022D8E60` + `0x28` × `[0x022D8EA8]`, which is this one when the frame index is 1 |
 | `0x022D8E98` | `u64` | 0 | the second record's `+0x20`: the stack bytes at `+0x88` | `0x0036D2F0` (`0x0036D3D0`) | no instruction names it apart from that store |
 | `0x02AEECF8` | `u64` | 0 | the CLAMP value of the first surface entry: region clamp, maximum u = width − 1, v = height − 1; `0x0024B7B0` sets maximum u to 255 and maximum v to 223 in it (`0x0024B97C`-`0x0024B993`) | `0x0039D200` (`0x0039D29A`, in its loop over the first two entries from `0x02AEECF0`); `0x0024B7B0` (`0x0024B993`) | `0x0024B7B0` (`0x0024B97C`); `0x00431830` (`0x004318AB`), as entry `[+0xA8]` of `0x02AEE900 + 0x3F0` when that byte is 0 |
 | `0x02AEED20` | `u64` | 0 | the TEX0 value of the fourth entry: `0x620110000` with base page `0x3700` | `0x0039D200` (`0x0039D2F3`, in its loop over the entries from `0x02AEED10` to `0x02AEED4F`, then `0x0039D3C2`) | `0x0039D200` (`0x0039D3AF`); the entry readers by index, entry 3: `0x00374280` (`0x00374349`), `0x003745C0` (`0x003746AB`) and `0x00375280` (`0x0037538C`) for a descriptor kind of 6 (they take kinds 3 to 6 as entries 0 to 3), `0x004FD4B0` (`0x004FDABB`) for a signed 3-bit index of 3, `0x00431830` (`0x00431896`) for a byte `+0xA8` of 3 |

@@ -105,7 +105,7 @@ adds it back.
 picture count:
 
 - It stores the file at entry `+0x18` and picture `+0x10` at `+0x20`, copies TEX0 bits 20-25 (the PSM)
-  into entry `+0x38` bits 8-13 and bits 51-54 into bits 14-17, and names the texture from the entry's
+  into entry `+0x38` bits `0x3F00` and bits 51-54 into bits 14-17, and names the texture from the entry's
   name, or the name plus `%03d` of entry `+0x40`.
 - PSM `0x13`: the pixels (`0x00181250`) and the CLUT (`0x00181000`) are registered; PSM `0x14`: `0x00181190` and
   `0x00180E70`. Any other PSM registers nothing, and the entry is still marked bound (`+0x38` bit `0x40`).
@@ -114,9 +114,9 @@ picture count:
 - `0x00181000` registers one 256-colour palette per 256 CLUT colours (`0x400` bytes apart, `0x001B20B0`);
   `0x00180E70` one 16-colour palette per 16 colours (`0x40` apart). Both reorder when
   `clutType << 8 | imageType` is `0x105`, `0x205`, `0x305`, `0x4104`, `0x4204` or `0x4304`.
-- The reorder swaps bits 3 and 4 of each colour index within a 256-colour palette. In a 16-colour palette
+- The reorder swaps bits `0x8` and `0x10` of each colour index within a 256-colour palette. In a 16-colour palette
   it moves colours 8 to 15 outside the palette and leaves those entries unfilled.
-- For PSM `0x14` the binder also keeps a copy of the CLUT at entry `+0x10` with the same bit 3 and 4
+- For PSM `0x14` the binder also keeps a copy of the CLUT at entry `+0x10` with the same bit `0x8` and `0x10`
   swap; for `0x13` the entry points at the file's CLUT. A CLUT given to `0x0024A480` (entry `+0x28`, count in `+0x38` bits 18 up)
   replaces the file's.
 

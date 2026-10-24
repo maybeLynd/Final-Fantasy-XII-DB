@@ -177,7 +177,7 @@ first script binding:
   needs its new size in every `.fst`; the count is never checked against the buffer, so a count past the
   shipped rows reads past it.
 - Edit the `in` and `ch` copies alike: which one loads depends on the language.
-- Use `0xFFFF` for an empty slot; any value with bit 15 set is treated as none.
+- Use `0xFFFF` for an empty slot; any value with bit `0x8000` set is treated as none.
 - Give `block0`-`block2` only ids that name a shipped `.seb` by the rule on
   [Sound banks](../Sound-And-Music/sound-banks.md): 0-2, 200-499 or 700 and up.
 - `block0` sounds only when the model is attached to another model's first attach slot, as weapons are.

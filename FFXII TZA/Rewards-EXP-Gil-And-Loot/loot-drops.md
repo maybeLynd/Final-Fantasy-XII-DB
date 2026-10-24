@@ -137,7 +137,7 @@ The action's effect slot `0x003908A0` does, by variant:
 
 | Variant | Effect | Where |
 |---|---|---|
-| 0 | HP amount `0x02AEE008` = 10 % of the target's HP figure, dword `+0x24`; doubled when bit 28 of `+0x64 \| +0x3C` is set; dword `+0x48` (at least 1) when bit 16 is set | `0x00390A4E`-`0x00390A94` |
+| 0 | HP amount `0x02AEE008` = 10 % of the target's HP figure, dword `+0x24`; doubled when bit `0x10000000` of `+0x64 \| +0x3C` is set; dword `+0x48` (at least 1) when bit `0x10000` is set | `0x00390A4E`-`0x00390A94` |
 | 1 | MP amount `0x02AEE010` = 10 % of the `i16` at `+0x28`, or 0 when byte `+0x6C` or `+0x7C` is negative | `0x00390A17`-`0x00390A46` |
 | 2 | adds Protect (status 18) through `0x00387BB0` | `0x003908DF`-`0x003909E3` |
 | 3 | adds Shell (status 19) through `0x00387BB0` | `0x003908DF`-`0x003909E3` |

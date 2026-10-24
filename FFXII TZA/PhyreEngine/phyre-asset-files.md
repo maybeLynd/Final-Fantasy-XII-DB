@@ -361,7 +361,7 @@ dump of data under 32 bytes) and the load goes on.
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
   pointer-array entries, `0x1C` for pointer entries; `0x00595EF0`, `0x00596890`, built on the 7-bit
   varint reader `0x00597400`), so a size is a packed byte length and a count an entry count.
-- `0x0059FF40` reads an entry's two varints; the first has its low bit moved to bit 31.
+- `0x0059FF40` reads an entry's two varints; the first has its low bit moved to bit `0x80000000`.
 - The entries patch pointers and arrays inside the converted objects. One that names a member the
   runtime lacks is logged (`"Unable to find a data member in class '%s' offset at %d bytes"`).
 - An entry names an object by instance list and index. `0x0063BFA0` turns that into the object's

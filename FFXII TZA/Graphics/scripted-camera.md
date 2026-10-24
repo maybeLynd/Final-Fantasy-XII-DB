@@ -68,13 +68,13 @@ dwords 2 and 3 of the map pack's section 11 (`0x0025A359`-`0x0025A3A0`, `0x0025A
 
 Then the two transition cameras: when `0x00257520` is blending it writes record 5 from `0x02096410`
 with mode 3, and when `0x00255850` is moving it writes record 5 from `0x02096290`. Last,
-`0x0025A520(5, any)` sets bit 5 of the active mask `0x02098DEC` when any of these wrote, and clears it
+`0x0025A520(5, any)` sets bit `0x20` of the active mask `0x02098DEC` when any of these wrote, and clears it
 otherwise.
 
 ### The camera records and the active view
 
 Eight camera records of 0x110 bytes sit at `0x02097300`. `0x00259820` takes the highest set bit of
-`0x02098DEC` (bit 7 down to 0) and its record:
+`0x02098DEC` (bit `0x80` down to 0) and its record:
 
 | Record mode `+0xF0` | View published |
 |---|---|

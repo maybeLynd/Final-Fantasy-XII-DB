@@ -101,7 +101,7 @@ Measured over every `.mrp` in the archive.
 - `0x00249320(group, kind, id)` and `0x00249350(group, kind, id, heap)` call `0x00249210`, then set the request's
   completion to `0x00249660` and return the buffer. `0x00249320` always allocates from heap 3 (`0x00249324`).
   `0x003933F0(group, out[], ids[], n)` calls `0x00249320` with kind 7 for each id and stores each buffer.
-- `0x00249210` takes a free 40-byte request record from the 48 at `[0x0208F578]` (busy bit 0 of `+0x20`), gets the
+- `0x00249210` takes a free 40-byte request record from the 48 at `[0x0208F578]` (busy bit `0x1` of `+0x20`), gets the
   size from `0x0032E400`, allocates it, files `0x0032E620` with the completion `0x002495C0`, and counts the request on
   the group (`+0x18`).
 - A size below 1 files nothing and leaves the buffer null, but the record stays busy: only the completion

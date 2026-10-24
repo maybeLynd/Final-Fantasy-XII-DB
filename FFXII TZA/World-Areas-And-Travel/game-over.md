@@ -27,15 +27,15 @@ puts it at the entrance the party came in by.
 The field frame `0x00234590` checks the party every frame and, when it is wiped, posts mode `0x0B`
 through `0x0035C7A0(0x0B)` and `0x0035C7B0(0x0B, 1)`; the four wipe predicates and the post are on
 [when the game is over](../Status-Effects-And-KO/ko-and-game-over.md).
-`0x0035C7B0` refuses while a request is already pending: `0x022C83E8` bit 8, a mode `0x02092730` of
+`0x0035C7B0` refuses while a request is already pending: `0x022C83E8` bit `0x100`, a mode `0x02092730` of
 `0x0B` or `0x18`, or the request byte `0x0215F1A0`. Otherwise it runs five steps:
 
-1. sets `0x022C83E8` bit 8;
-2. halts every actor record with class `0x16` through `0x00227370` (skipped when `0x01FD46D4` bit 22 is
+1. sets `0x022C83E8` bit `0x100`;
+2. halts every actor record with class `0x16` through `0x00227370` (skipped when `0x01FD46D4` bit `0x400000` is
    set);
 3. writes the request `0x0215F1A0 = 1`, `0x0215F1A4 = 0x0B`, `0x0215F1A8 = 0` through `0x002E1B10(0x0B, 0)`,
    unless the latch `0x0215F1A1` is set;
-4. sets `0x022C83E8` bit 1;
+4. sets `0x022C83E8` bit `0x2`;
 5. locks the input group with `0x00254850(1)`.
 
 A second route needs no field frame. The main loop (`0x0022A770`) calls `0x00254E50` once per tick,
@@ -50,7 +50,7 @@ non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, clears `[0x020
 The UI request consumer `0x002E09A0` reads `0x0215F1A0` in its closing block and calls
 `0x00254B50([0x0215F1A4], [0x0215F1A8], 0)`, then clears the byte. `0x00254B50(id, p2, p3)` indexes the byte
 table at `0x00254C70` with `id - 1`: entry 10 is 5, and the jump table at `0x00254C58` sends 5 to the
-default arm `0x00254C2D`, which runs `0x0028F970()` (clears bits 4 and 10 of the menu state dword at
+default arm `0x00254C2D`, which runs `0x0028F970()` (clears bits `0x10` and `0x400` of the menu state dword at
 `[0x0209BE80] + 0x10F68`) and then `0x00280A00(0x0B, 0, 0)`.
 
 `0x00280A00(mode, p2, p3)` opens a mode screen only when the root block's `+0xC0` and `+0xB8` are
@@ -83,7 +83,7 @@ over 30 frames (`0x003611F0(0x1E)`) and sets the fade rate `0x003634B0(0x3C)`. I
   image 7 with `0x00361630(7)`: a slot of the four-entry image table at `0x022CB9F0` (Layouts); when
   no slot is free (`-1`) it releases every slot with `0x00360D70` and retries from state 1;
 - state 2 waits until the slot's state byte is 5 (`0x00360C20(7)`); state 3 is "ready";
-- state 4 counts down and then sets its end flag `+0xC4` bit 0;
+- state 4 counts down and then sets its end flag `+0xC4` bit `0x1`;
 - state 6 waits for `0x002F1A30(1)` to be 0 and becomes 7.
 
 The timing task `0x003EEEC0` starts the screen fade `0x00251D90(1, 0x3C, 0x78)`, waits until
@@ -102,7 +102,7 @@ helpers (`0x003EF770`) moves it: payload 1 puts it in state 1, payload 2 spawns 
    the descriptor at `0x00D11CA8`) at `+0xE0`, shows image 7 with `0x002DECE0(7)` and goes to state 2.
 2. At the same moment the image task enters state 4 with a display count of `0x564`, `0x3DE` or
    `0x3A2` frames when `0x002DDCA0()` returns 1, 2 or anything else; that is the word at
-   `[0x0215E6E0] + 0x0E`, a 2 downgraded to 1 when `0x0017E490()` has bit 0 clear.
+   `[0x0215E6E0] + 0x0E`, a 2 downgraded to 1 when `0x0017E490()` has bit `0x1` clear.
 3. The logo task waits 18 frames, then, once `+0xF0` is set, attaches to the parent's list; when it
    ends it sends `0x13` with payload 2, which spawns the prompt task.
 4. The prompt task `0x003EF050` ends the screen on message 10 when the image task's end flag is set
@@ -123,28 +123,28 @@ helpers (`0x003EF770`) moves it: payload 1 puts it in state 1, payload 2 spawns 
 The teardown message `0x12` unregisters the two textures (`0x00393900`, `0x003938B0`), releases the
 input locks `0x00254850(0)` and `0x00254940(0)` and runs `0x0027F2E0`.
 
-`0x0027F2E0` takes a length of 1 when bit 11 of `[0x0209AC30] + 0x400` is set and 200
+`0x0027F2E0` takes a length of 1 when bit `0x800` of `[0x0209AC30] + 0x400` is set and 200
 otherwise (`0x0027F2ED`-`0x0027F301`), closes menu slot 0 over it (`0x002C98C0` at `0x0027F306`), steps the
 mode-screen backdrop `0x020927F0` toward its fade (`0x00250F30` at `0x0027F30B`), fades fade slot 3 in over length × 60 / 1000 frames when the
 length is above 1 and slot 3 is active (`0x002CC960` at `0x0027F312`; `0x002EFD20(3)`, `0x002EFA70(3, n, 1)`).
 
-It then rewrites the low byte of `[0x0209AC30] + 0x400` from its bits 9 and 10 (2 when bit 9 is clear, 1 when bit 9 is set and bit 10
-clear, 2 when both are set) and clears bit 11.
+It then rewrites the low byte of `[0x0209AC30] + 0x400` from its bits `0x200` and `0x400` (2 when bit `0x200` is clear, 1 when bit `0x200` is set and bit `0x400`
+clear, 2 when both are set) and clears bit `0x800`.
 
 ### The request for the title map, and what it really does
 
-`0x00285EC0(field)` sets `[0x0209AC30] + 0x400` bit 8 and writes `+0x3FC = field`. Its callers are the
+`0x00285EC0(field)` sets `[0x0209AC30] + 0x400` bit `0x100` and writes `+0x3FC = field`. Its callers are the
 game-over task (`0x003EFB32`, field `0x0C`) and the pause task `0x00228C70` (`0x002291B1`, field `0x0C`).
 
 The pause task shows "This will return you to the title screen. Are you sure?" (menu text `0x85F`,
 key `0x114`) or "This will close FINAL FANTASY XII THE ZODIAC AGE" (text `0x890`, key `0x115`). A
 confirmed return fades (`0x002EFA70(2, 0x18, 0)`), waits for `0x002EFD20(2)` to report 2 and calls
 `0x00285EC0(0x0C)`; a confirmed quit calls `0x001E0FB0(0)`. The same task's skip path calls
-`0x00285EA0(1)`, which sets bit 13 of `+0x400`
+`0x00285EA0(1)`, which sets bit `0x2000` of `+0x400`
 ([the native command lifecycle](../Scripts-And-Script-Commands/native-commands.md)).
 
 The consumer is the area controller `0x00280140`, in its message `0x12` arm (`0x00280248` to
-`0x0028027C`): with bit 8 set it clears the bit and tests `+0x3FC` against `0x0C`. For `0x0C` it
+`0x0028027C`): with bit `0x100` set it clears the bit and tests `+0x3FC` against `0x0C`. For `0x0C` it
 calls `0x003603E0`, which sets the byte `0x022CB72B = 1`; for any other field it runs `0x002CFD10(-1)`
 and `0x00314440(+0x3FC, 0, 0, 0)`, a real field transition
 ([zone changes](zone-changes-and-mapjump.md)). Then `0x00251E80`, `0x00252D90`,
@@ -154,7 +154,7 @@ requested as a zone change after a game over; a title-return byte is set instead
 ### The main loop tears the field down
 
 `0x00360120` runs every main-loop iteration (`0x0022A977` and `0x0022AE00` in `0x0022A770`, and `0x0022BDDB` in
-the re-initialisation `0x0022BC20`). It refreshes the busy mask's bit 7 with `0x003321E0`, writes
+the re-initialisation `0x0022BC20`). It refreshes the busy mask's bit `0x80` with `0x003321E0`, writes
 `0x022CB724 = 0x5A` and `0x022CB727 = 0`, and when the busy mask `0x022CB720` is 0 and either title byte
 `0x022CB72A` or `0x022CB72B` is set, it runs the resume routine `0x003601D0` and then `0x0017F740(0)`,
 `0x001EC4B0(1)`, `0x001EC4B0(2)`, `0x001830A0(1)`, `0x00382B50(-1, 0, 0)`, `0x00182810(1)` and `0x00357B00`
@@ -164,7 +164,7 @@ the re-initialisation `0x0022BC20`). It refreshes the busy mask's bit 7 with `0x
 
 1. both speed scales to 1.0 (`0x00229EF0`, `0x00229EE0`), `0x00368AC0(0)`, `0x0032E520(0)`, `0x0035EA30(0)`,
    `0x0053DD10(1)`;
-2. for managers 0 to 2 with `+0x10` bit 0, the jump lock `+0x200` bit 0 is cleared;
+2. for managers 0 to 2 with `+0x10` bit `0x1`, the jump lock `+0x200` bit `0x1` is cleared;
 3. `0x002DEE90(-1)`, `0x003634A0(0)`, `0x003633B0(0)`, `0x00362850`, `0x002DF0F0(0, -1)`, `0x002DF060`,
    `0x001DC330(-1)`, `0x002DEB90(1)`, `0x005C5230`: the sound teardown, in which `0x002DF0F0(0, -1)` and
    `0x001DC330(-1)` are the audio manager's stop calls for sounds and for voices, and `0x002DEE90(-1)` calls
@@ -205,14 +205,14 @@ field-transition autosave and a manual save cannot choose it
 
 KO is cleared by the crystal, never by the game over. `healall(n)` (`0x3AF`, `0x00356500`) maps its
 argument with `0x00359C60` (1 to 7, 2 to `0x0F`, 3 to 4, 4 to `0x0C`, 5 to `0x10`, anything else to
-7) and runs `0x0030F4B0(-1, mask)`: bit 0 restores HP, bit 1 restores MP, bit 2 removes the statuses
-in `0x0208D320`, bit 3 those in `0x0208D324`, and `0x10` also removes `0x544`.
+7) and runs `0x0030F4B0(-1, mask)`: bit `0x1` restores HP, bit `0x2` restores MP, bit `0x4` removes the statuses
+in `0x0208D320`, bit `0x8` those in `0x0208D324`, and `0x10` also removes `0x544`.
 
 `0x00237CA0` builds the two groups at start-up: status `i` goes to `0x0208D320` when its status-table
-row has bit 13 of the word at `+6`, else to `0x0208D324`; KO's row carries `0xA0DF`, so `healall(0)`
+row has bit `0x2000` of the word at `+6`, else to `0x0208D324`; KO's row carries `0xA0DF`, so `healall(0)`
 revives ([the thirty-two statuses](../Status-Effects-And-KO/statuses.md)). The
-crystal also calls `btladjustsystem(1)` (`0x517`, `0x0034AAB0` to `0x002FEAC0`), which with bit 0 set
-clears `0x022C3178` bit 0, zeroes `0x022C3170`, `0x022C3160` and `0x022C3158` and sets `0x022C3168` to -1.
+crystal also calls `btladjustsystem(1)` (`0x517`, `0x0034AAB0` to `0x002FEAC0`), which with bit `0x1` set
+clears `0x022C3178` bit `0x1`, zeroes `0x022C3170`, `0x022C3160` and `0x022C3158` and sets `0x022C3168` to -1.
 
 ## Layouts
 
@@ -224,7 +224,7 @@ Root block [`0x0209AC30`]:
 | `+0x0C0` | `void*` | area controller (0x00280A00 refuses while set) |  |
 | `+0x0D0` | `void*` | pause task 0x00228C70 |  |
 | `+0x3FC` | `i32` | requested field (0x00285EC0) |  |
-| `+0x400` | `u32` | bit 8 field request pending; bits 9/10 restore pending/verified; bit 11 cleared by 0x0027F2E0; | bit 13 set by `0x00285EA0`; low byte rewritten by `0x0027F2E0` |
+| `+0x400` | `u32` | bit 0x100 field request pending; bits 0x200/10 restore pending/verified; bit 0x800 cleared by 0x0027F2E0; | bit `0x2000` set by `0x00285EA0`; low byte rewritten by `0x0027F2E0` |
 | `+0xDEE` | `u8` | cleared by 0x0027EFA0 |  |
 | `+0xDEF` | `u8` | 1 while a mode screen opens, 0 after the controller's message |  |
 
@@ -249,7 +249,7 @@ Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0
 |---|---|---|---|
 | `+0x00` | `u8` | state: 0 free, 3 loading, 4 loaded, 5 ready; 0x00360D70 releases state 5 and flags the rest |  |
 | `+0x01` | `u8` | image id (7 = gameover_c) |  |
-| `+0x02` | `u8` | flags: bit 0 release requested, bit 1 fading (0x00361200) |  |
+| `+0x02` | `u8` | flags: bit 0x1 release requested, bit 0x2 fading (0x00361200) |  |
 | `+0x03` | `u8` | result byte returned by 0x00361630 |  |
 | `+0x08` | `void*` | payload |  |
 | `+0x14` | `u32` | handle from 0x001DBB80(id) |  |
@@ -258,7 +258,7 @@ Title-return bytes:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022CB720` | `u8` | busy mask (0 = idle; 0x003321E0 refreshes bit 7; 0x00360100 sets, 0x003601B0/0x003601C0 modify, 0x00360370 clears) |  |
+| `0x022CB720` | `u8` | busy mask (0 = idle; 0x003321E0 refreshes bit 0x80; 0x00360100 sets, 0x003601B0/0x003601C0 modify, 0x00360370 clears) |  |
 | `0x022CB724` | `u16` | written 0x5A by 0x00360120 |  |
 | `0x022CB726` | `u8` | 1 after the teardown |  |
 | `0x022CB727` | `u8` | cleared by 0x00360120 |  |
@@ -281,7 +281,7 @@ Request and mode:
 | `0x02092730` | `u32` | current mode |  |
 | `0x02092734` | `u32` | mode parameter |  |
 | `0x020927D8` | `u32` | raw mode |  |
-| `0x022C83E8` | `u32` | bit 8 game over posted, bit 1 armed, bit 0 and bit 4 the 0x18 and 0x17 posts |  |
+| `0x022C83E8` | `u32` | bit 0x100 game over posted, bit 0x2 armed, bit 0x1 and bit 0x10 the 0x18 and 0x17 posts |  |
 | `0x00254C70` | `u8[]` | mode-request arm table (id - 1 → arm) |  |
 | `0x00254C58` | `u32[6]` | arm jump table |  |
 
@@ -316,7 +316,7 @@ rest is the same.
 ## State
 
 The root block's `+0x3FC`, `+0x400`, `+0xDEE` and `+0xDEF`; the request bytes `0x0215F1A0` to
-`0x0215F1A8`; `0x022C83E8` bits 1 and 8; the mode words `0x02092730`, `0x02092734` and `0x020927D8`; the
+`0x0215F1A8`; `0x022C83E8` bits `0x2` and `0x100`; the mode words `0x02092730`, `0x02092734` and `0x020927D8`; the
 game-over task, its four helpers and `0x02B5F1C8`; the image slot table; the title bytes `0x022CB720`
 to `0x022CB72B`; the layer mask `0x0215EFD8`; the input groups locked by `0x00254850` and `0x00254940`; the
 actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.

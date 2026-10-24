@@ -50,7 +50,7 @@ footer, and for a name containing `chara\h` it parses `%d.efx` and stores the nu
 
 The tickets are 32 records of `0x38` bytes at `0x02EBCD80` (`0x003B3160` builds them at start-up), with a
 free list (`0x02EBDB88`) and an in-use list (`0x02EBDB80` head, `0x02EBDB90` tail). A ticket id is the slot
-in bits 0–5, a 22-bit counter (`0x02EBDBB0`) in bits 6–27 and 3 in bits 28–31, so a recycled slot gets a
+in bits `0x3F`, a 22-bit counter (`0x02EBDBB0`) in bits 6–27 and 3 in bits 28–31, so a recycled slot gets a
 new id.
 
 The record is found by the id's low six bits; an id with slot bits 32–63 would land in the

@@ -23,10 +23,10 @@ table makes the installer read from address 0, and the game crashes.
 ### The installer and the definition id
 
 `0x0023A570(unit, id)` applies definition `id` to a unit. The id's high byte is the kind (0 party, 1
-enemy, anything else installs nothing and clears unit flag bit 26) and its low byte the row index.
+enemy, anything else installs nothing and clears unit flag bit `0x4000000`) and its low byte the row index.
 Before anything else the installer:
 
-1. remembers the unit's previous id, the stats record's word `+0x04`, when unit flag bit 2 is set
+1. remembers the unit's previous id, the stats record's word `+0x04`, when unit flag bit `0x4` is set
    (`0xFFFF` otherwise), and resets the unit with `0x00236A60` ([battle unit fields](battle-unit-fields.md));
 2. returns 0 when the battle system is down (`0x02089300` = 0);
 3. re-keys the unit (`0x00322050`) when the kind byte is not 0 or the previous id differs from both
@@ -42,7 +42,7 @@ held the old handle, stores the re-keyed unit's stats byte `+0x04` (or `0xFF`) a
 
 ### The enemy path
 
-With kind 1 the unit must have flag bit 26 set. The installer then:
+With kind 1 the unit must have flag bit `0x4000000` set. The installer then:
 
 1. takes row `index` of the enemy table `0x02EBF120` (count at `+0x04`, row stride at `+0x08`,
    rows from the section at `+0x0C`), and the class row the enemy row's word `+0x00` names in
@@ -64,8 +64,8 @@ With kind 1 the unit must have flag bit 26 set. The installer then:
 2. resolves the spawn record: `0x00236100(unit +0x40, unit +0x57)` reads the lane map's byte
    `1 + lane` (lane below the map's count byte, entry not `0xFF`) and returns
    `0x0208E690 + entry * 0x250`; no record returns 0. The stats record is that record's `+0x80`;
-3. for a fresh record (record byte `+0` without bits 0 and 2) it initialises the stats record
-   (`0x0023AC80`, below) and sets the steal bits at record `+0x14`: bits 0, 1 and 2 when the row's
+3. for a fresh record (record byte `+0` without bits `0x1` and `0x4`) it initialises the stats record
+   (`0x0023AC80`, below) and sets the steal bits at record `+0x14`: bits `0x1`, `0x2` and `0x4` when the row's
    words `+0x32`, `+0x34` and `+0x36` are not `0xFFFF`;
 4. still for a fresh record, when the row's byte `+0x02` is not `0xFF`, it reads the spawn counter
    `0x0208D354 + (0x0208D454 * 64 + byte) * 2`, stores the old value's low byte at record `+0x12` and
@@ -79,7 +79,7 @@ With kind 1 the unit must have flag bit 26 set. The installer then:
    named by word `+0x24`;
 7. registers the unit (`0x00328FF0(0, row byte +0x03 & 3, unit +0xEA9)`: the class to `0x02EC1384` and
    the slot to `0x02EC1380`, written only when the class is not 0 or the slot is negative), and sets
-   flag bit 43 when `row byte +0x03 & 3` or `row byte +0x15` bit 2 is set, else clears it.
+   flag bit `0x80000000000` when `row byte +0x03 & 3` or `row byte +0x15` bit `0x4` is set, else clears it.
 
 The name drawer `0x00272CE0` adds a letter to that name when the actor's word `+0x102` is negative, so that the
 name is the text at `+0xF8` (`0x00263990`, `0x00263A10`), and the ordinal is not 0 (`0x00272D3A`). `0x002B58F0`, through
@@ -103,8 +103,8 @@ word `+0x30` the same way, and stores `+0x6E0` = `0x02089378 + index * 0x170`, `
 
 Both paths end with: `+0x48` = 0 (the HP floor), `+0x698` = the stats record, `+0x6A0` = the spawn
 record or null, `+0x18` = the name text, `+0x54` = `0xFF`, then `0x00237040(unit)` and
-`0x002FEAB0(unit)`. When the stats record is null, or its status words `+0x3C | +0x64` carry bits 0, 1
-or 31 outside a town (`0x00377C20`), flag bit 26 is cleared and bit 1 set. Bit 2 is set and the
+`0x002FEAB0(unit)`. When the stats record is null, or its status words `+0x3C | +0x64` carry bits `0x1`, `0x2`
+or 31 outside a town (`0x00377C20`), flag bit `0x4000000` is cleared and bit `0x2` set. Bit `0x4` is set and the
 installer returns 1.
 
 ### The fresh stats record
@@ -121,8 +121,8 @@ installer returns 1.
    `0x02EBF038` whose byte `+0x07` has bit `index` set is granted (`0x00323910(record, entry, 1)`);
 5. kind 0: equipment slots 0-4 from the row's words `+0x0A`, `+0x0C`, `+0x0E`, `+0x10`, `+0x12`
    (`0x0031A630`); the gambit preset `0x00327CB0(record, row word +0x14)`, `0x00326030([0x02EBF190], index)`
-   and `0x00327DE0([0x02EBF190] + 8 + index * 0x1C8)`; and record `+0x00` bit 2 when the row's byte
-   `+0x2C` has bit 6;
+   and `0x00327DE0([0x02EBF190] + 8 + index * 0x1C8)`; and record `+0x00` bit `0x4` when the row's byte
+   `+0x2C` has bit `0x40`;
 6. kind 1: equipment slot 0 from the row's word `+0x16`, slot 1 from `+0x1C`, slots 2-4 `0xFFFF`.
 
 ### The level grower
@@ -188,12 +188,12 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 |---|---|---|---|
 | `+0x00` | `u16` | classRow | row of `0x02EBF150` (the class row at unit `+0xE68`) |
 | `+0x02` | `u8` | counterSlot | spawn counter index, `0xFF` for none |
-| `+0x03` | `u8` | flags | bits 0-1 the tracked-HP class (`0x00328FF0`, flag bit 43); bit 4: unit `+0x58` = 7 (`0x00238BF0`), the motion height without its random part (`0x002362A4`), a test of the gambit selector (`0x0030268D`); bit 5: the shadow kind, through `0x002E8A10` |
+| `+0x03` | `u8` | flags | bits 0-1 the tracked-HP class (`0x00328FF0`, flag bit `0x80000000000`); bit `0x10`: unit `+0x58` = 7 (`0x00238BF0`), the motion height without its random part (`0x002362A4`), a test of the gambit selector (`0x0030268D`); bit `0x20`: the shadow kind, through `0x002E8A10` |
 | `+0x08` | `u16` | nameRef | bank << 11 \| entry into `0x02EBF170` |
 | `+0x0A` | `i16[3]` | scalePercent | 0 means 100; divided by 100 and handed to `0x002E5FD0` (`0x00238D1B`-`0x00238D68`) |
 | `+0x11` | `u8[2]` | variant | `+0x12` then `+0x11`, the model's variant bytes (`0x0031C5AB`, `0x0031C5B1`) |
 | `+0x13` | `u8` | animSet | `0xFF` for the weapon's (`0x003202F0`) |
-| `+0x15` | `u8` | flags2 | bit 0 Attack and weapon evade, bit 1 shield and magick evade from the stat rows (`0x002FEF30`); bit 2 also sets flag bit 43; bit 3 (`0x0031AACF`) and bits 3-4 (`0x0031AB39`) in the target-information query `0x0031AA30` |
+| `+0x15` | `u8` | flags2 | bit `0x1` Attack and weapon evade, bit `0x2` shield and magick evade from the stat rows (`0x002FEF30`); bit `0x4` also sets flag bit `0x80000000000`; bit `0x8` (`0x0031AACF`) and bits 3-4 (`0x0031AB39`) in the target-information query `0x0031AA30` |
 | `+0x16` | `u16` | equipment0 |  |
 | `+0x18` | `u32` | startHp | 0 for none (`0x0023A410`) |
 | `+0x1C` | `u16` | equipment1 |  |
@@ -201,9 +201,9 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 | `+0x24` | `u16` | rewardLevelRow | row of `0x02EBF140` (unit `+0xE78`) |
 | `+0x26` | `i16` | voiceBank | negative for the model's (`0x003212E0`) |
 | `+0x28` | `u16[5]` | drops | the five drop slots (`0x003180F0`) |
-| `+0x32` | `u16` | steal0 | `0xFFFF` for none; record `+0x14` bit 0 |
-| `+0x34` | `u16` | steal1 | bit 1 |
-| `+0x36` | `u16` | steal2 | bit 2 |
+| `+0x32` | `u16` | steal0 | `0xFFFF` for none; record `+0x14` bit `0x1` |
+| `+0x34` | `u16` | steal1 | bit `0x2` |
+| `+0x36` | `u16` | steal2 | bit `0x4` |
 | `+0x38` | `u32[2]` | partIds | part 8 entries 0 and 1 of the model rebuild (`0x0031C000` through `0x0031BEC0`) |
 | `+0x40` | `u8[2]` | partLinks | their attach links, `0x00D107F8`[byte] (`0x0031BE30`) |
 | `+0x42` | `u8[2]` | extraChance | the two Monograph drop chances (`0x003180F0`) |
@@ -221,7 +221,7 @@ Struct PartyRow table=`0x02EBF130` (stride at table `+0x08`):
 | `+0x1A` | `u16` | baseMp |  |
 | `+0x1E` | `u8` | baseStat0 | with `+0x21`, `+0x24`, `+0x27`: the four float stats |
 | `+0x2B` | `u8` | scale | unit `+0x68` and `+0x6C` (times 1.5) |
-| `+0x2C` | `u8` | flags | bit 6 sets record `+0x00` bit 2 |
+| `+0x2C` | `u8` | flags | bit `0x40` sets record `+0x00` bit `0x4` |
 | `+0x2E` | `u8` | startLevel | 0 means 1 |
 | `+0x30` | `u16` | nameRef |  |
 | `+0x44` | `u16` | startLp |  |
@@ -237,16 +237,16 @@ Class row (`0x02EBF150`):
 | `+0x05` | `u8` | kind | unit `+0x56` |
 | `+0x06` | `u16` | clanEntry | unit `+0x52` |
 | `+0x10` | `i16` | separation | tenths; a positive value / 10 to `0x0026DAC0` (`0x00238CEB`) |
-| `+0x12` | `u8` | flags | bits 0-2 the effect column (`0x00329FB3`); bit 4 actor `+0x09` bit 6 (`0x0026A3A0`); bit 5 the view query's kind (`0x0031B394`); bit 6 actor `+0x08` bit 3 and `+0x09` bit 6 (`0x0026A430`); bit 7 `0x003879C0`, `0x00390AB0`, `0x0033D660` |
-| `+0x18` | `u8` | group | bits 1-3 a movement group, 4 noticing every unit (`0x003248F8`); bits 4-6 the placement height (`0x00239E10`) |
+| `+0x12` | `u8` | flags | bits `0x7` the effect column (`0x00329FB3`); bit `0x10` actor `+0x09` bit `0x40` (`0x0026A3A0`); bit `0x20` the view query's kind (`0x0031B394`); bit `0x40` actor `+0x08` bit `0x8` and `+0x09` bit `0x40` (`0x0026A430`); bit `0x80` `0x003879C0`, `0x00390AB0`, `0x0033D660` |
+| `+0x18` | `u8` | group | bits `0xE` a movement group, 4 noticing every unit (`0x003248F8`); bits 4-6 the placement height (`0x00239E10`) |
 | `+0x20` | `u8` | comboCap | hits at most this - 1 (`0x00388845`) |
-| `+0x21` | `u8` | flags21 | bit 1 an enemy may back off (`0x00334204`) |
+| `+0x21` | `u8` | flags21 | bit `0x2` an enemy may back off (`0x00334204`) |
 | `+0x22` | `u8` | facing | unit `+0x64` = value * 2π / 360 |
 | `+0x23` | `u8` | scale | unit `+0x68` |
 | `+0x25` | `u8` | sightRadius | `0x003247F0` |
 | `+0x26` | `u8` | lowHpRadius | units below 40 % HP (`0x003247F0`) |
 | `+0x27` | `u8` | scale2 | unit `+0x6C` |
-| `+0x28` | `u8` | flags28 | bit 0 the view query's height (`0x0031B08D`); bit 1 no chain (`0x00317F09`) |
+| `+0x28` | `u8` | flags28 | bit `0x1` the view query's height (`0x0031B08D`); bit `0x2` no chain (`0x00317F09`) |
 | `+0x29` | `u8[5]` | affinity | absorb, halve, nullify, weak, potency (`0x002FEF30`) |
 | `+0x30` | `u16[8]` | words30 | no reader among the four readers of `0x02EBF150` and the 47 loads of unit `+0xE68`, each followed to its fields |
 | `+0x40` | `u16` | modelFamily | the same-model run (`0x00317F77`) |

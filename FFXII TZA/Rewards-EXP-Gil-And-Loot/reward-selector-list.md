@@ -23,14 +23,14 @@ named package is described by its own row of [Reward package list](reward-packag
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16[3]` | first | the ids the class-15 handler `0x002FD640` grants, each tested for `0xFFFF` on its own |
-| `+0x06` | `u16[3]` | second | granted instead when the give's flag bit 1 is set: the sixth id whenever the fifth is not `0xFFFF` |
+| `+0x06` | `u16[3]` | second | granted instead when the give's flag bit `0x2` is set: the sixth id whenever the fifth is not `0xFFFF` |
 
 `0x0031C5D0`'s class-15 arm copies the first triple to the query record and its class-31 arm the second
 (`0x0031D712`-`0x0031D73A`).
 
 Class 30 shares that arm and copies the first triple too. `0x0030AAC0(id, &a, &b, &c, flags)`, from the hunt pane
 `0x003F4C30` (`0x003F4CAD`), reads a selector that way: it fills its own record with class 30, or 31 when `flags` has
-bit 1 (`0x0030AADC`-`0x0030AAF1`), and the id, calls `0x0031C5D0`, and returns the three words at the record's `+0x38`,
+bit `0x2` (`0x0030AADC`-`0x0030AAF1`), and the id, calls `0x0031C5D0`, and returns the three words at the record's `+0x38`,
 `+0x3A` and `+0x3C`, or -1 when the fill fails.
 
 ## Columns

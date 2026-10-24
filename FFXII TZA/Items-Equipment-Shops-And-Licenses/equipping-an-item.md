@@ -35,7 +35,7 @@ change.
 8. **The stats.** When the slot's word has changed, `0x0030FED0(record, 0x97)` rebuilds the stats and augments, and
    `0x00324470` refreshes the unit ([equipment](equipment.md#the-setters), [stats](../Damage-And-Battle-Formulas/stats.md#the-rebuild),
    [augments](../Damage-And-Battle-Formulas/augments.md#the-rebuild)).
-9. **The model.** With `flags` bit 0 clear, `0x0031A510` then re-records the fighting units and reloads their models
+9. **The model.** With `flags` bit `0x1` clear, `0x0031A510` then re-records the fighting units and reloads their models
    through `0x00324380`, which runs the model rebuild for slots 0 to 3; the equip menu and the shop pass `flags` 1,
    so their setter call does not reload ([equipment](equipment.md#the-setters),
    [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md#what-runs-it)).

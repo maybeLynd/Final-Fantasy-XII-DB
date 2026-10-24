@@ -17,7 +17,7 @@ target shapes as their weights change.
 
 A modifier code is a `0x78`-byte `PModifier` record. `0x006D58D0(record, name, fetch, kernel, inputs,
 outputs, input table, output table, …)` fills it: the name at `+0x00`, the input and output
-descriptions as two arrays the record does not own (count with bit 31 set, as in a `PArray`), the
+descriptions as two arrays the record does not own (count with bit `0x80000000` set, as in a `PArray`), the
 parameter fetch at `+0x40` and the kernel at `+0x48`, and `0xFFFFFFFF` at `+0x70`.
 
 ### The registry
@@ -130,8 +130,8 @@ The initialisers run in initialiser-table order (`0x008C45C8`-`0x008C4608`): `Mo
 and makes its record the head. No instruction reads the head or a link except these initialisers' own loads of
 the head, so nothing walks this list; the registry the resolver uses is `0x02E9FD60`.
 
-[phyre-modifier-codes-state.tsv](phyre-modifier-codes-state.tsv) has one row per static: the head, the eight links
-of `Morph23` to `Morph44` and their 80 entry words, with each writer and reader as `function (site, value)`.
+[phyre-modifier-codes-state.tsv](phyre-modifier-codes-state.tsv) has one row per static: the head, the nine links
+of `Morph22` to `Morph44` and their 90 entry words, with each writer and reader as `function (site, value)`.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

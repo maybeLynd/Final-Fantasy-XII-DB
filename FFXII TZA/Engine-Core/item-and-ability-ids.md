@@ -74,7 +74,7 @@ index at or past the class's count, reads the channel's value through `0x00309F3
 calls the descriptor's mutate handler with the same five arguments, and returns the value after.
 
 When the channel is 1 and the value went from nothing to something it also sets bits of the
-state block's flag dword `[0x02EBF190] + 4`: bit 0 for a magick, plus a school bit found in two
+state block's flag dword `[0x02EBF190] + 4`: bit `0x1` for a magick, plus a school bit found in two
 hops (byte `+2` of the magick's row in `0x02EBF0F0`, `id - 0x3000`, is an action index; word
 `+0x2C & 7` of that row in `0x02EBF138` is k, and `0x01EECF98[k]` is ORed in when k < 5); `0x40` for a
 technick; `0x80` for a quickening `0xC000` to `0xC011` and `0x100` for `0xC012` to `0xC01E`.
@@ -88,7 +88,7 @@ for mode 1, the reserved count for mode 2 and the region-B byte for mode 3. The 
 - channel 1 sets or adds the total, clamped between the reserved count and 99; when the total
   rose it sets the id's bit in region C (items' ever-owned bitset at `+0x57C0`, byte `index >> 3`,
   bit `index & 7`); then the derived-index hook `0x00325F40(id, old total, new total)` and, for a
-  relative change with flag bit 0, the "You obtain" line `0x0046A630(id, delta)`;
+  relative change with flag bit `0x1`, the "You obtain" line `0x0046A630(id, delta)`;
 - channel 0 subtracts `delta` from the reserved count (absolute: reserved = total - `delta`),
   clamped to 0 to total, and returns total minus reserved; channel 2 adds `delta` to it
   (absolute: reserved = `delta`), clamped the same way, and returns the reserved count;
@@ -105,10 +105,10 @@ The four handler-only classes act on other classes, only for `absolute` 0 and ch
 
 - class 14 (`0x002FD530`): row `{u32 gil, u16 item, u16 count, u16 item, u16 count}` of the table at
   `0x02EBF070`; gil through `0x00254EE0(0x00253690() + gil × delta)` clamped at 0, with the gil
-  "obtain" line `0x00469E80(gained)` when flag bit 0 is set, then each item that is not `0xFFFF`
+  "obtain" line `0x00469E80(gained)` when flag bit `0x1` is set, then each item that is not `0xFFFF`
   through `0x003008A0(item, count × delta, 0, 1, flags)`;
 - class 15 (`0x002FD640`): six `u16` ids in the row of `0x02EBF068`, the first triple, or the second
-  when flag bit 1 is set, each granted with `delta`; the first triple tests each id for `0xFFFF`
+  when flag bit `0x2` is set, each granted with `delta`; the first triple tests each id for `0xFFFF`
   on its own, the second grants its sixth id whenever its fifth is not `0xFFFF`;
 - class 18 (`0x002FD780`): three `(u16 item, u8 count)` pairs at `+4`, `+8` and `+0xC` of the row of
   `0x02EBF058`, each with a non-zero count granted as `count × delta`;

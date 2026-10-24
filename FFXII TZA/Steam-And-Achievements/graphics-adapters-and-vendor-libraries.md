@@ -71,11 +71,11 @@ through `0x0017D9C0` → `0x001DF2B0`:
 | 8 | 3 | MSAA8X, and bit 4 CSAA16x when more than 16 quality levels |
 | 16 | 5 | CSAA16XQ |
 
-Bit 0 (Off) comes from the settings constructor `0x001DE050`. The Anti-Aliasing row cycles with
+Bit `0x1` (Off) comes from the settings constructor `0x001DE050`. The Anti-Aliasing row cycles with
 `0x001DF2C0`, which steps the value through 0-4 modulo 5, skipping clear bits, and stores it in setting
-8 (`+0x20`). The constructor's bit 0 (`0x001DE075`, never cleared; the probe only adds bits) means the
+8 (`+0x20`). The constructor's bit `0x1` (`0x001DE075`, never cleared; the probe only adds bits) means the
 skip loop always ends, on Off at worst. Value 5 can be set in the mask but is never reached, and nothing
-sets bit 6.
+sets bit `0x40`.
 
 ### Loading NVAPI
 

@@ -163,7 +163,7 @@ behind ratio `0x0215EFD0` ([spatial sound](../Sound-And-Music/spatial-sound.md))
 
 `0x0036FD70` clears `0x02AD9E00` and runs `0x003696D0`, which releases the three handles at `0x022D7FC0` to
 `0x022D7FC8` (retrying while the stub reports busy) and sets each to -1. `0x003694D0` fills the two
-256-byte tables `0x022C5AF0` (`0x0032EAF0`) and `0x022C59F0` (`0x0032EB10`, which also sets bit 7 of its
+256-byte tables `0x022C5AF0` (`0x0032EAF0`) and `0x022C59F0` (`0x0032EB10`, which also sets bit `0x80` of its
 byte `0x1F`) with -1 for a non-zero argument, else 0.
 
 ### The subsystem resets
@@ -188,7 +188,7 @@ when their pointer is null:
 | `0x003A3670` | under arena 9, and every time rather than only when null: allocates `0x190000` at `0x02F8F2F8`, `0xC8028` at `0x02F8F300`, and `[0x02F8F2C0]` = `0x0036B080(9)` bytes at `0x02F8F2D0` (also `0x02F8F308`), with `0x02F8F2D8` = `[0x02F8F2D0]` + (s / 16) × 16 for s = `[0x02F8F2C0]`, the division signed and toward zero; `0x02F8F2E0` = `[0x01FD4A78]`; clears `0x02F8F2C5`, `0x02F8F2C6`, `0x02F8F2CC`, `0x02F8F2E8`, `0x02F8F2F0` and the low two bits of `0x02F8F310` |
 | `0x00375120` | clears 32 records at `0x02EBFA48`; writes a 16-step grey ramp (step `0x11`, alpha `0x80`) at `0x02ADB6E0` and eight 32-step ramps after it |
 | `0x002FC200` | chains the 48 records of `0x38` bytes at `0x02EC32E0` into a list (`0x02EC3D70`); clears `0x02EC19C0` (`0x1000` bytes) and copies 401 five-bit values from `0x01EEBB10` into it, one per 8 bytes |
-| `0x003B0660` | zeroes `+0x00`-`+0x03`, `+0x08`-`+0x0F` and `+0x11` of the 36 records of `0x18` bytes from `0x02EBEC00` and clears the low three bits of each `+0x13`; clears bit 0 of `0x02EBEF68` and the word `0x02EBEF60`; runs `0x0024C460` for 5, 6 and 9; then, when `0x0032E400(10)` returns n > 0, calls `0x0032E620(10, 0, [0x01FD4A30], n, 0)` and `0x0032E520(0)`, passes a zeroed `0x890`-byte request with type 5 to `0x0024B3A0`, and calls `0x003EDAD0([0x01FD4A30], its word +0xC)` |
+| `0x003B0660` | zeroes `+0x00`-`+0x03`, `+0x08`-`+0x0F` and `+0x11` of the 36 records of `0x18` bytes from `0x02EBEC00` and clears the low three bits of each `+0x13`; clears bit `0x1` of `0x02EBEF68` and the word `0x02EBEF60`; runs `0x0024C460` for 5, 6 and 9; then, when `0x0032E400(10)` returns n > 0, calls `0x0032E620(10, 0, [0x01FD4A30], n, 0)` and `0x0032E520(0)`, passes a zeroed `0x890`-byte request with type 5 to `0x0024B3A0`, and calls `0x003EDAD0([0x01FD4A30], its word +0xC)` |
 | `0x003B16B0` | clears the 32 records of `0x30` at `0x02EBE5E0` and `0x02EBEBE0` / `0x02EBEBE4` |
 | `0x0026F9F0` | fills 96 bytes at `0x02F8F23C` with 3 and sets `0x02F8F29C` = `0x100` |
 | `0x003B3160` | links two lists of 32 records of `0x38` bytes, at `0x02EBCD80` (head `0x02EBDB88`) and `0x02EBD480` (head `0x02EBDBA0`): each record's first word takes its index and `0x30000000`, `+0x20` points to the next and `+0x28` to the previous; clears `0x02EBDB80`, `0x02EBDB90`, `0x02EBDB98`, `0x02EBDBA8`, `0x02EBDBB0`, `0x02EBDBB4`; then `0x0024C550(3)` |

@@ -116,7 +116,7 @@ minimap draws the list is on [map screens](../Menus-And-HUD/map-screens.md).
 ### `setposbynaviicon`
 
 `setposbynaviicon` (`0x30D`, `0x00352430`) pops an entry number and a kind and calls `0x003DFBE0`.
-When the entry exists it sets the actor's byte `+0x0F` to the icon's low byte with bit 6 set and
+When the entry exists it sets the actor's byte `+0x0F` to the icon's low byte with bit `0x40` set and
 copies the low bytes of `from` x and y to `+0x21` and `+0x22`. When the object exists it pushes
 the object's four words and runs `setpos2_20d` (`0x00350C30`), placing the actor at the object.
 

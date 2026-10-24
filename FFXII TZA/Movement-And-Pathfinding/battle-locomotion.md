@@ -53,11 +53,11 @@ When the goal kind `+0x160` is 3, or `+0x40` is 1 or 2, the target unit of the h
 
 For a unit with order
 `0x4124`, or `0x4022` while the party is fleeing (`0x00253B90` non-zero, [force fight mode](../Engine-Core/force-fight-mode.md)), `0x0033D3E0(ctx, leader, 1)`
-sets `+0xD0` bit 0 when it does not return 1: the leader is reachable in a straight walk.
+sets `+0xD0` bit `0x1` when it does not return 1: the leader is reachable in a straight walk.
 
 ### Which solver runs
 
-`0x00336CE0` reads the unit's definition record `[unit + 0xE68]` byte `+0x18` bits 1-3: mode 1 and 3
+`0x00336CE0` reads the unit's definition record `[unit + 0xE68]` byte `+0x18` bits `0xE`: mode 1 and 3
 return without solving, mode 2 runs the class solver `0x003394A0`, anything else the default solver
 `0x0033BED0`.
 
@@ -70,7 +70,7 @@ raised by `+0xC0 + 3.2` (`0x00468700`).
 ### The default solver
 
 `0x0033BED0(ctx)`: when `0x00336040()` is 0 it zeroes the speed and runs `0x00469A50` on the unit pair.
-Otherwise it sets the speed `+0xB0` from the step distance, clears `+0xCC` bit 7, and runs in order
+Otherwise it sets the speed `+0xB0` from the step distance, clears `+0xCC` bit `0x80`, and runs in order
 the detour recovery `0x0033C870` and the stall recovery `0x0033C200`; when neither claims the step and
 the flag word's countdown bits (`0x7FE0`) are clear, it runs the spacing pass `0x00338140` for goal
 kind 1 or the heading constraint `0x0033A570` otherwise; with a countdown running it runs the
@@ -86,11 +86,11 @@ Those three paths end in `0x0033BFB0`; a step claimed by
 
 ```python
 party unit (kind 0) with order 0x4022 while fighting (0x00253B90 zero) : return speedB (+0xFC)
-flags +0x170 bit 0 : speedA (+0xF8)     bit 1 : speedB
+flags +0x170 bit 0x1 : speedA (+0xF8)     bit 0x2 : speedB
 goal kind +0x40 == 1, unit +0x768 >= +0x76C, d > stop (+0xD0)    : speedB
 rem = max(0, d - stop);  kind 2 also subtracts the actor's smaller radius + 0.5
 rem /= 7                      when the mover class +0x174 is 2 or more
-rem = dstart / 5 or * 0.25    when ctx +0xD0 bit 0, from the distance to +0x60 (fleeing: * 0.25; fighting: / 5)
+rem = dstart / 5 or * 0.25    when ctx +0xD0 bit 0x1, from the distance to +0x60 (fleeing: * 0.25; fighting: / 5)
 rem /= 3 or 1.5               otherwise (fleeing: 1.5; fighting: 3)
 v = rem * rem * speedB;  speed = clamp(v, speedA, speedB)
 speed > d                     : speed = d * 0.99
@@ -102,10 +102,10 @@ creeps in. The force-fight predicate `0x00253B90` is reached through the thunk `
 ### The turn limiter
 
 `0x003364D0(ctx, desired)` limits the heading `+0xE0` of the block. With `a = |wrap(cur - desired)|`
-(`0x0033CB70`): above 45 degrees (`0.785398`) it raises the turning flag (block `+0x38` bit 3), and
+(`0x0033CB70`): above 45 degrees (`0.785398`) it raises the turning flag (block `+0x38` bit `0x8`), and
 without that flag it returns the heading unchanged.
 
-- Above 120 degrees (`2.0944`) it latches the fast rate (`+0x3C` bit 0) when `+0x170` has all of
+- Above 120 degrees (`2.0944`) it latches the fast rate (`+0x3C` bit `0x1`) when `+0x170` has all of
   bits 2-4, and steps the heading by the latched rate (`+0xF0` fast, `+0xEC` slow) in the direction the pair
   `+0x21` bits 1-2 recorded, unconditionally; with no direction recorded it steps by the sign of
   the wrapped difference and snaps to `desired` when within the rate.
@@ -115,7 +115,7 @@ without that flag it returns the heading unchanged.
   and the turning flag.
 
 So the three angles are one hysteresis loop: entry at 45, escalation past 120 only for a unit
-whose model authors `@FCP` slot 41, whose flag bit 23 is up and which is mid-cast of something
+whose model authors `@FCP` slot 41, whose flag bit `0x800000` is up and which is mid-cast of something
 other than Attack (the three bits the navigation step maintains), release inside 20. The same
 error produces different behaviour depending on history.
 
@@ -127,7 +127,7 @@ approach helper the modes use: snap within the rate, else step by it and wrap.
 ### The steering modes
 
 The block's flag word `+0x00` carries the mode in bits 0-4, a countdown in bits 5-14 and the orbit
-direction in bit 15. `0x00339F00(ctx)` runs while the countdown is non-zero: it projects the step
+direction in bit `0x8000`. `0x00339F00(ctx)` runs while the countdown is non-zero: it projects the step
 point `+0x10` from the target `+0x40` back by `+0x110 + +0xA4 + 0.1` (the block's second collision
 radius plus the target radius) along the heading, takes the
 pitch toward it for class 3 (0 otherwise), dispatches on the mode, clears the countdown when the
@@ -147,12 +147,12 @@ speed exceeds the distance to that point, and otherwise counts it down by one.
 step point. The default solver reaches it through `0x0033A570` when the unit is farther than its stop
 distance `+0xAC` from the destination `+0x30`, or under order `0x4124` when the straight walk to the
 goal is blocked (`0x0033D3E0`); otherwise `0x0033A570` stops the unit. The spacing pass runs it for bit
-1. It works in this order:
+`0x2`. It works in this order:
 
 1. The field row: the current map (`0x003148F0`) is looked up by its first `u16` in the `move_support`
    table (`0x02EBF010`, [authored data
    tables](../Game-Files-And-Data-Tables/authored-data-tables.md)); the first matching row
-   gives a distance cap (byte `+2` / 10) and a narrow-fan flag (byte `+4` bit 0).
+   gives a distance cap (byte `+2` / 10) and a narrow-fan flag (byte `+4` bit `0x1`).
 2. A flier (mover class `+0x174` = 3) has the goal's height `+0x24` set to the terrain height
    (`0x003208C0`) plus its step scale `+0xC0`.
 3. The step point `+0x10` is the goal `+0x20`, or the look-ahead point `0x00335180` when the corridor
@@ -200,7 +200,7 @@ are set by the sign of the offset (both cleared for 0), and the attempt counter 
 mode 4, and the attempt counter rises by one up to 10, which lowers the next search's tolerance.
 
 `0x0033CC80(ctx, mode, heading, pitch, distance)` writes the aim: when the distance exceeds the
-speed `+0xB0`, the mode goes to the flag word's bits 0-4 and the point `distance` ahead along the
+speed `+0xB0`, the mode goes to the flag word's bits `0x1F` and the point `distance` ahead along the
 heading and pitch (`0x01F004C0`, `{0, 0, 1}`, scaled, turned about x by the pitch and about y by the
 heading) to block `+0x04`-`+0x0C`, the same `+0x04` mode 6 uses as its orbit radius; otherwise the
 mode and countdown are cleared.
@@ -221,7 +221,7 @@ translation row); their callers are presentation and text code outside this cate
 
 `0x00339DF0(ctx, heading)` turns the angle `a = |wrap(heading - +0xE0)|` into a steering mode. It
 indexes 48 rows of 12 bytes at `0x01EED4C0` by block byte `+0x175` (values above 7 read as 1) times
-6, plus 3 when flag `+0x170` bit 3 is clear, plus the speed band (0 at rest, 1 up to the threshold
+6, plus 3 when flag `+0x170` bit `0x8` is clear, plus the speed band (0 at rest, 1 up to the threshold
 `+0x104`, 2 above). A row holds two angles in degrees and two mode bytes: `a` above 0.01 and above
 the first angle returns 3; `a` below the second angle returns the first byte plus 1; anything else
 the second byte plus 1.
@@ -262,17 +262,17 @@ is the terrain height plus the step scale for a flier, else the unit's own.
 `0x0033A240(block)`, run from the per-unit frame `0x00233F70` (`0x00234076`) and from `0x00308610`, gives an
 enemy its own locomotion by its definition. It builds the solver context (`0x00336710(ctx, block,
 0)`) and acts only for a unit whose stats record is an enemy's (byte `+5` = 1), whose class row
-(`[unit + 0xE68]`) has a non-zero mode in byte `+0x18` bits 1-3, whose step flags `+0x1F0` have
-neither `0x1000` nor `0x2000`, and whose flag bit 18 is clear or speed `+0x158` is 0.
+(`[unit + 0xE68]`) has a non-zero mode in byte `+0x18` bits `0xE`, whose step flags `+0x1F0` have
+neither `0x1000` nor `0x2000`, and whose flag bit `0x40000` is clear or speed `+0x158` is 0.
 
 While no action is being shown (`0x02089350` = 0) it runs the mode's body: 1 `0x0033DFD0`, 2
 `0x0033D890`, 3 `0x0033DB60`. Either way it writes the context's speed, desired heading, pitch and
 limited heading back to the block's `+0xD8`, `+0xDC`, `+0xF4` and `+0xE0`.
 
 `0x0033D890(ctx)` is mode 2. While the unit's status words (`+0x3C | +0x64` of the stats record) lack
-KO (bit 0) and the battle-state word `0x02089340` lacks bit 5, the unit moves at `speedA` along its
+KO (bit `0x1`) and the battle-state word `0x02089340` lacks bit `0x20`, the unit moves at `speedA` along its
 limited heading with pitch 0. A KO'd mode-2 unit whose `0x40`-byte slot record (`0x0208DE80` indexed
-by unit byte `+0xEA9`) has `+0x1C` bit 0 joins the circling formation instead:
+by unit byte `+0xEA9`) has `+0x1C` bit `0x1` joins the circling formation instead:
 
 1. the first such unit in a frame runs `0x00337C10`, which counts the KO'd mode-2 enemies into
    `0x022C7CEB`, finds an enemy of mode 5 (the last one in the unit table) and advances the shared
@@ -280,16 +280,16 @@ by unit byte `+0xEA9`) has `+0x1C` bit 0 joins the circling formation instead:
 2. `0x00337C10` also samples the centre `0x022C7CF0` from that enemy's position: on a call
    with the counter `0x022C7D00` at 0, which starts counting when the enemy moves (speed `+0x158`
    non-zero); then, from the tenth call on, on every call until a call finds it stopped and resets
-   the counter; it sets `0x022C7D04` bit 0;
+   the counter; it sets `0x022C7D04` bit `0x1`;
 3. each circling unit takes the next place `0x022C7CE9`: its goal `+0x20` is 1.0 from the centre at
    the angle `0x022C7CE0 + place * 2pi / count` (0 apart with fewer than two), raised to its step scale
    plus 3.2, and its step scale `+0x108` becomes 1.5;
-4. within 0.1 of the goal the slot record's `+0x1C` bit 1 is set; until then the speed is `3.0 / (30
+4. within 0.1 of the goal the slot record's `+0x1C` bit `0x2` is set; until then the speed is `3.0 / (30
    * [0x01DFE0B8])`, after it the distance capped at `7.0 / (30 * [0x01DFE0B8])`;
 5. the desired heading and pitch aim at the goal (`0x004687F0`, `0x00468700`) and the limited heading
    faces the centre.
 
-The field frame clears `0x022C7D04` bit 0 and the place counter `0x022C7CE9` each frame (`0x0033B6D0`, after
+The field frame clears `0x022C7D04` bit `0x1` and the place counter `0x022C7CE9` each frame (`0x0033B6D0`, after
 `0x00338490`), and the area initialisation clears the block (`0x0033A380`). `0x00337A00`, at start-up, sets the angle step
 `0x02EC0F84` to `2 / (30 * [0x01DFE0B4])` radians and stores `[0x01DFE0B4] * 240` beside it at `0x02EC0F80`.
 `[0x01DFE0B4]` is the integer 1 in the image, so the formation turns 2 radians a second.
@@ -300,18 +300,18 @@ The field frame clears `0x022C7D04` bit 0 and the place counter `0x022C7CE9` eac
 position `+0x40` is under 0.1, it stops and clears the countdown.
 
 Otherwise, with `D` the distance
-to the destination `+0x30`, it sets block `+0x38` bit 1 when `D` exceeds `min(+0x124 + 2, +0x128)`,
-bit 2 when `D` is within `reach + 0.05` (reach = `+0x120`, or the target's own `+0x1A0` when the
+to the destination `+0x30`, it sets block `+0x38` bit `0x2` when `D` exceeds `min(+0x124 + 2, +0x128)`,
+bit `0x4` when `D` is within `reach + 0.05` (reach = `+0x120`, or the target's own `+0x1A0` when the
 target's target is this unit and its `+0x1A4` is below `+0x124`) and `0x003341A0` holds, clears bit
-1 inside the stop radius `+0xD0` and bit 2 outside it, and sets bit 1 when the pair clearance
+`0x2` inside the stop radius `+0xD0` and bit `0x4` outside it, and sets bit `0x2` when the pair clearance
 `0x0033D660` returns 0.
 
 Then:
 
-- bit 1: `0x00337A50`, the heading constraint `0x0033A720`, and the countdown cleared on success;
-- bit 2: the bearing from the step point back to the position (away from it) is probed with
+- bit `0x2`: `0x00337A50`, the heading constraint `0x0033A720`, and the countdown cleared on success;
+- bit `0x4`: the bearing from the step point back to the position (away from it) is probed with
   `0x00335B60(ctx, bearing, 0, 0.1, 0.8, 0)`; when clear the speed is `speedA`, `+0xB4` that reverse
-  bearing and `+0xBC` the limiter's result for the forward bearing; else bit 2 is cleared;
+  bearing and `+0xBC` the limiter's result for the forward bearing; else bit `0x4` is cleared;
 - neither: the randomised manoeuvre `0x003343D0`, then `0x0033BAA0` when it starts;
 - with neither bit and no countdown: speed 0, the limiter, and `0x0033BC80`.
 
@@ -325,12 +325,12 @@ distance to `b` is below `+0x1A8` and either unit's definition byte `+0x12` is n
 1. it refuses when the target unit is the unit itself, the distance to the target is within
    `+0xA0`, the mode is 6, the odds `+0x130` are -1, or the unit (`0x00335760`) is not engaged and
    not under order `0x96`; after the angle tests it also refuses while the turning flag (block
-   `+0x38` bit 3) is set;
+   `+0x38` bit `0x8`) is set;
 2. `0x003357B0` is asked about the corridor to the target; the odds halve when it reports blockers;
    `rand() % odds` must be 0;
 3. the target must lie within 120 degrees of the actor's facing and the actor within 45 degrees of
    its heading;
-4. a `rand()` bit picks the side (flag bit 15); `0x00335B60` probes `0x00334AB0`'s orbit heading, the
+4. a `rand()` bit picks the side (flag bit `0x8000`); `0x00335B60` probes `0x00334AB0`'s orbit heading, the
    other side on failure, and both failing refuses;
 5. otherwise the countdown is set to `+0x12C / 0x00334C30` quarter turns (halved for `0x0031EA90`
    class 4), the mode to 6, and the orbit radius `+0x04` to the current distance plus or minus
@@ -338,12 +338,14 @@ distance to `b` is below `+0x1A8` and either unit's definition byte `+0x12` is n
 
 ### Detour and stall recovery
 
-`0x0033C870(ctx)`: with `+0xCC` bit 10 set it finishes a detour: `0x00334E00` picks the point into
+`0x0033C870(ctx)`: with `+0xCC` bit `0x400` set it finishes a detour: `0x00334E00` picks the point into
 `+0x50`, for goal kind 1 the limited heading `+0xBC` takes the bearing from that point to the
-target, bit 10 becomes bit 7, `0x0033E1F0` resets the avoidance state, block `+0x3C` bit 3 is
-cleared, and the step is claimed. Otherwise, when `+0x176` bit 2 is set, `+0x170` bit 0 is clear,
-and either `+0x3C` bit 3, `+0x170` bit 1 or the goal `+0x20` is beyond `+0x110 + +0xA4 + 5` away, a
-reachable random detour (`0x00334E00`) claims the step with bit 10 set, the countdown cleared and
+target, bit `0x400` becomes bit `0x80`, `0x0033E1F0` resets the avoidance state, block `+0x3C` bit `0x8` is
+cleared, and the step is claimed.
+
+Otherwise, when `+0x176` bit `0x4` is set, `+0x170` bit `0x1` is clear,
+and either `+0x3C` bit `0x8`, `+0x170` bit `0x2` or the goal `+0x20` is beyond `+0x110 + +0xA4 + 5` away, a
+reachable random detour (`0x00334E00`) claims the step with bit `0x400` set, the countdown cleared and
 speed 0.
 
 `0x00334E00(ctx, out)`: for a goal of kind 1 it searches around the target position `+0x40` at
@@ -358,8 +360,8 @@ to the unit's own position with result 0.
 
 `0x0033E1F0` re-rolls the step scale `+0x108` to `2.5 + (rand() % 100) / 100` for a definition mode
 2 unit, clears the mode and countdown (the orbit bit stays), sets `+0x10` to 256.0, zeroes the
-counters, puts `rand() % 3 & 1` into the low nibble of `+0x38`, and in `+0x3C` clears bits 0-2,
-sets bit 3 to `rand() % 10 == 0` (a one in ten draw) and sets bit 8.
+counters, puts `rand() % 3 & 1` into the low nibble of `+0x38`, and in `+0x3C` clears bits `0x7`,
+sets bit `0x8` to `rand() % 10 == 0` (a one in ten draw) and sets bit `0x100`.
 
 `0x0033C200(ctx)` runs for a leader under order `0x4124` or `0x4022` with a battle in progress
 (`0x002F8E70() & 7`): `0x0033BD70` and `0x0033C310` can claim the step; otherwise, with the leader not
@@ -370,7 +372,7 @@ counts up to 60; when `0x0033C310` returned 2 the step is then claimed as well.
 
 `0x0033BD70` fires at 60: with the goal at least 20 units away and no action running, it samples the
 route at 1, 2, ... 20 units ahead (`0x003347C0`) and takes the first point on the mesh as a detour
-(`+0xCC` bit 7, `+0x50`).
+(`+0xCC` bit `0x80`, `+0x50`).
 
 `0x0033C310` runs under the same order gate (`0x4124`, or `0x4022` while fleeing) with the
 leader present and not animating a move and the remaining route under 6 units. When the unit's
@@ -387,11 +389,11 @@ and returns 1.
 
 ### Finalising the step
 
-`0x0033BFB0(ctx)` handles a unit whose flags `+0x170` have bit 9: when the angle between the
+`0x0033BFB0(ctx)` handles a unit whose flags `+0x170` have bit `0x200`: when the angle between the
 block's `+0x140` direction and the step exceeds 135 degrees, it probes the heading stored as a
-byte at block `+0x2C` (`byte * pi / 128`) and, when clear and `+0x21` bit 0 set, takes that
+byte at block `+0x2C` (`byte * pi / 128`) and, when clear and `+0x21` bit `0x1` set, takes that
 heading with the rate `+0xE8` and clears the countdown. Otherwise it stores the desired heading as
-that byte, `(wrap(h) * 128 / pi)`, 0-256 wrapped, and sets `+0x21` bit 0.
+that byte, `(wrap(h) * 128 / pi)`, 0-256 wrapped, and sets `+0x21` bit `0x1`.
 
 `0x0033BC80(ctx, point)` is the ground check for class 3 against a non-class-3 target: it probes the
 terrain height under the point (`0x003208C0`), floors it at the target's y (`+0x44`), and when
@@ -406,8 +408,8 @@ Five predicates test a step. Every non-zero exit returns a literal small integer
 |---|---|
 | `0x0033D3E0(A, B, class)` (the straight walk) | 0 when `A` is off the mesh or the walk reaches `B`'s region through portals open to `class` (`0x0026E300` 1, or 0 with the mask bit) and the segment crosses each portal (`0x00468880`); 1 when `B` is off the mesh or a region has no crossable portal: blocked |
 | `0x00335E50(A, B, w, class)` (the width walk) | 1 when the walk offset by `+w`, the walk offset by `-w`, or the lateral segment across `B` from `+w` to `-w` is blocked |
-| `0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` (forward step clearance) | 0 at once for a zero distance; otherwise 0 usable; 1 rejected by the obstruction query returning 1, the mode-3 segment test `0x00318CA0`, the width walk at `0.9 * +0x10C` (or the straight walk with flags bit 3), the grid query `0x00391410`, or the terrain test `0x0026E100`; 2 only when the obstruction query returned 2 |
-| `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit 5 is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but none blocking. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits 1-4 and 6, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
+| `0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` (forward step clearance) | 0 at once for a zero distance; otherwise 0 usable; 1 rejected by the obstruction query returning 1, the mode-3 segment test `0x00318CA0`, the width walk at `0.9 * +0x10C` (or the straight walk with flags bit `0x8`), the grid query `0x00391410`, or the terrain test `0x0026E100`; 2 only when the obstruction query returned 2 |
+| `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit `0x20` is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but none blocking. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits 1-4 and 6, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
 | `0x0033A3D0(A, B)` (path width) | 1 when the walk `B` to `A` is clear, or when a half-way lateral detour at `+-45` degrees is fully clear; 0 only when the direct walk and both detours have a blocked leg |
 | `0x00335F90(ctx)` (corridor blocked) | 1 when the width walk at `0.9 * +0x10C`, the straight walk, or, for class 3, the segment test blocks; else 0 |
 
@@ -453,8 +455,8 @@ The solver context's fields, from the context builder `0x00336710` and the solve
 | `+0xBC` | `f32` | limitedHeading | the limited heading: the block's `+0xE0` on entry (`0x003367F9`-`0x003367FF`); `0x0033BAA0` turns it toward the target bearing (`0x0033BC3E`) and `0x0033C870` sets it to the detour bearing (`0x0033C8D6`); `0x00336CE0` writes it back to `+0xE0` (`0x00336DAE`-`0x00336DC5`) |
 | `+0xC0` | `f32` | stepScale | the step scale: the height above the ground at which the probes place points: the block's `+0x108` (`0x00336870`-`0x00336878`), raised to 2.0 below 2.0 unless the unit's definition byte `+0x18` has mode 2 (`0x0033689F`-`0x003368AC`); `0x0033A720` sets a point's y to the ground height `0x003208C0` plus this (`0x0033A97C`-`0x0033A990`), as does `0x00335180` (`0x0033552F`-`0x00335541`) |
 | `+0xC8` | `f32` | goalDistance | the horizontal distance from the position to the route goal `+0x20` (Vector3_ComputeXZDistance `0x004686D0`, `0x00336942`-`0x0033694E`), replaced by the distance to the target position when a target is resolved (`0x00336A59`-`0x00336A6D`) |
-| `+0xCC` | `u32` | flags | the block's flag word `+0x170` on entry (`0x00336827`-`0x00336834`), written back by `0x00336CE0` (`0x00336D8E`-`0x00336DD3`); bit 7 is set when `0x0033BD70` stores a detour point at `+0x50` (`0x0033BEBE`-`0x0033BEC8`) and cleared by the default solver `0x0033BED0` (`0x0033BF1D`); bit 10 is the detour in progress, tested by `0x0033C870` (`0x0033C889`), cleared with bit 7 set when it ends (`0x0033C8DE`-`0x0033C8EF`) and set when it starts one (`0x0033C97F`) |
-| `+0xD0` | `u32` | leaderReachable | bit 0: cleared by `0x00336710` (`0x003368B6`) and set when `0x0033D3E0`(ctx, leader position `+0x60`, 1) does not return 1 for a unit with order `0x4124`, or `0x4022` while the party is fleeing (`0x003368E8`-`0x00336932`); the step distance `0x00339BF0` then measures from the leader position (`0x00339D3A`-`0x00339D43`) |
+| `+0xCC` | `u32` | flags | the block's flag word `+0x170` on entry (`0x00336827`-`0x00336834`), written back by `0x00336CE0` (`0x00336D8E`-`0x00336DD3`); bit `0x80` is set when `0x0033BD70` stores a detour point at `+0x50` (`0x0033BEBE`-`0x0033BEC8`) and cleared by the default solver `0x0033BED0` (`0x0033BF1D`); bit `0x400` is the detour in progress, tested by `0x0033C870` (`0x0033C889`), cleared with bit `0x80` set when it ends (`0x0033C8DE`-`0x0033C8EF`) and set when it starts one (`0x0033C97F`) |
+| `+0xD0` | `u32` | leaderReachable | bit `0x1`: cleared by `0x00336710` (`0x003368B6`) and set when `0x0033D3E0`(ctx, leader position `+0x60`, 1) does not return 1 for a unit with order `0x4124`, or `0x4022` while the party is fleeing (`0x003368E8`-`0x00336932`); the step distance `0x00339BF0` then measures from the leader position (`0x00339D3A`-`0x00339D43`) |
 | `+0xD8` | `void*` | unitActor | the unit's actor: the handle at BattleUnit `+0x8` of the block's slot `+0x177` resolved by `0x0031ABE0` (`0x00336805`-`0x00336819`) |
 | `+0xE0` | `void*` | targetActor | the target's actor: the block's handle `+0x150` resolved by `0x003588B0` (`0x003369C5`-`0x003369D0`), set only when a target is sought; read for its radius by `0x00336710` (`0x00336A14`) and `0x0033A720` (`0x0033AA80`), and passed to the obstruction probe by `0x003343D0` (`0x00334484`) |
 | `+0xE8` | `void*` | leaderActor | the party leader's actor, `+0x10` of the unit `0x003272A0` returns (`0x003368C7`-`0x003368DC`), or 0 with no leader (`0x0033693B`); `0x0033C200` and `0x0033C310` read it (`0x0033C28C`, `0x0033C368`) |
@@ -471,10 +473,10 @@ Locomotion block (unit `+0x80`; the solver's "state" and "flag block" are the sa
 | `+0x014` | `u8` | stall counter (60) |  |
 | `+0x018` | `f32` | last solve x |  |
 | `+0x01C` | `f32` | last solve z |  |
-| `+0x021` | `u8` | bit 0 heading byte valid; bits 1-2 last turn direction |  |
+| `+0x021` | `u8` | bit 0x1 heading byte valid; bits 0x6 last turn direction |  |
 | `+0x02C` | `u8` | heading as byte * pi/128 |  |
-| `+0x038` | `u32` | bit 1 too far, bit 2 within reach, bit 3 turning, bits 6-7 detour side |  |
-| `+0x03C` | `u32` | bit 0 fast latch, bit 3 detour pending, bits 4-7 attempt counter |  |
+| `+0x038` | `u32` | bit 0x2 too far, bit 0x4 within reach, bit 0x8 turning, bits 6-7 detour side |  |
+| `+0x03C` | `u32` | bit 0x1 fast latch, bit 0x8 detour pending, bits 4-7 attempt counter |  |
 | `+0x040` | `i32` | goal kind (1 unit, 2 unit with margin) |  |
 | `+0x060-0x090` | `f32[4] x4` | the four positions the context copies |  |
 | `+0x0D0` | `f32` | stop radius |  |
@@ -501,9 +503,9 @@ Locomotion block (unit `+0x80`; the solver's "state" and "flag block" are the sa
 | `+0x140` | `f32[3]` | direction |  |
 | `+0x150` | `u32` | target handle |  |
 | `+0x160` | `i32` | goal kind |  |
-| `+0x170` | `u32` | flags (unit +0x1F0): bit 0 speedA, bit 1 speedB, bits 2-4 the fast-latch condition, bit 9 |  |
+| `+0x170` | `u32` | flags (unit +0x1F0): bit 0x1 speedA, bit 0x2 speedB, bits 2-4 the fast-latch condition, bit 0x200 |  |
 | `+0x174` | `u8` | mover class (unit +0x1F4) |  |
-| `+0x176` | `u8` | bit 2 detours allowed |  |
+| `+0x176` | `u8` | bit 0x4 detours allowed |  |
 | `+0x177` | `u8` | slot |  |
 
 Solver context (stack, `0x110` bytes):
@@ -527,8 +529,8 @@ Solver context (stack, `0x110` bytes):
 | `+0x0BC` | `...` | limited heading |  |
 | `+0x0C0` | `...` | step scale |  |
 | `+0x0C8` | `...` | distance to the route goal, or to the target |  |
-| `+0x0CC` | `...` | flags copy (bit 7, bit 10 detour) |  |
-| `+0x0D0` | `...` | bit 0 leader reachable |  |
+| `+0x0CC` | `...` | flags copy (bit 0x80, bit 0x400 detour) |  |
+| `+0x0D0` | `...` | bit 0x1 leader reachable |  |
 | `+0x0E0` | `...` | target actor |  |
 | `+0x0E8` | `...` | leader actor |  |
 | `+0x0F0` | `...` | unit |  |
@@ -548,7 +550,7 @@ Solver context (stack, `0x110` bytes):
 | 5.0 (`0x009146E4`), 0.5 (`0x01CEBB70`), 3.0 (`0x008F311C`) | | the detour range and the pair margins |
 | `0x3FB4FDF4` = 1.414 | | the navigation radius factor |
 | `move_support` (`0x02EBF010`) | 120 rows; caps 1.5 (6 rows), 2.0 (102), 2.5 (12); one narrow row (map 311); map 290 listed twice, the first row (1.5) wins; every row is in [move-support.tsv](move-support.tsv) | the heading search field row |
-| `0x01EED4C0`, by byte `+0x175` | 0: above 120 degrees mode 3, below 90 (45 in the fast band) mode 2, else 1; 1: always 1; 2 and 4: always 2; 3: above 45 mode 3, else 2; 5: below 30 mode 1, else 2; 6: above 0.01 rad mode 3, else 2; 7: 2, or 1 in the slow band; the halves for flag bit 3 are identical | the steering mode table |
+| `0x01EED4C0`, by byte `+0x175` | 0: above 120 degrees mode 3, below 90 (45 in the fast band) mode 2, else 1; 1: always 1; 2 and 4: always 2; 3: above 45 mode 3, else 2; 5: below 30 mode 1, else 2; 6: above 0.01 rad mode 3, else 2; 7: 2, or 1 in the slow band; the halves for flag bit `0x8` are identical | the steering mode table |
 
 ## Operations
 

@@ -32,9 +32,9 @@ call site, `0x0025E0D3` in that driver.
 
 The interpreter keeps the manager slot in `r13`, the actor record in `r15`, the wait slot in `rsi`
 and the program counter in `r14`, loaded from the wait slot's first qword. It zeroes the shared
-stack depth at `0x02099AC0` before anything else, then checks the actor's flag byte `+0x14`: bit 6
-(halted) returns 1 at once; bit 4 or bit 5 clear returns 1 after `0x0025B500(actor)`; and when
-`+0x13` bit 0 is set or `+0x10C` is non-zero, `+0x0B` bit 5 must be set or the call returns 1
+stack depth at `0x02099AC0` before anything else, then checks the actor's flag byte `+0x14`: bit `0x40`
+(halted) returns 1 at once; bit `0x10` or bit `0x20` clear returns 1 after `0x0025B500(actor)`; and when
+`+0x13` bit `0x1` is set or `+0x10C` is non-zero, `+0x0B` bit `0x20` must be set or the call returns 1
 without it.
 
 The loop has a budget of `0x10000` instructions per call (`0x0025E4FA`), which ends the call only
@@ -131,7 +131,7 @@ opcode its mnemonic, length, handler and effect. By family:
 | Opcodes | Family | Effect |
 |---|---|---|
 | `0x00` NOP | | advance only |
-| `0x03` SYSHALT | halt | sets actor `+0x14` bit 6 and rewinds, so the script repeats it every tick |
+| `0x03` SYSHALT | halt | sets actor `+0x14` bit `0x40` and rewinds, so the script repeats it every tick |
 | `0x04` SYSTEM | | pops and discards one value |
 | `0x05` to `0x09`, `0x10`, `0x11`, `0x17`, `0x18` | logic | pop two (or one) ints, push the logical or bitwise result; `OPSRL` is an arithmetic shift |
 | `0x0A` to `0x0F` | compare | `0x0025D740` on two operands, push 0 or 1 for `== != > < >= <=` |

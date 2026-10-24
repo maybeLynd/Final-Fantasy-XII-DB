@@ -76,11 +76,11 @@ calls `0x004279B0(key, name, …)` with the 32-byte name of the current model co
 2. appends it to the pending list (tail `+0x10` / `+0x14`, links at record `+0x02` / `+0x04`);
 3. writes the record's own index into `+0x00`;
 4. runs the initialiser `0x00420480`;
-5. sets `+0x290` bit 0 and increments the live count;
+5. sets `+0x290` bit `0x1` and increments the live count;
 6. advances the cursor to the next record whose `+0x284` is 0, wrapping at 160.
 
 The initialiser ORs `0x2010F9` into `+0x284`, copies the key to `+0x1C` and the model name to `+0x3C`,
-sets `+0x284` bit 14 for a name starting `c`, `m`, `n` or `s`, stores the context at `+0x10`, finds the
+sets `+0x284` bit `0x4000` for a name starting `c`, `m`, `n` or `s`, stores the context at `+0x10`, finds the
 model's `@FCP` and `@FOR` sections through the resource-entry bank, and picks a per-model float at
 `+0x734` from the name (2.0 for `s0011`, for example; 1.0 for a name outside `s`, `m` and `n`).
 
@@ -89,26 +89,26 @@ model's `@FCP` and `@FOR` sections through the resource-entry bank, and picks a 
 `0x0042ED60` runs once per frame, from `0x00332660` at the end of the field frame
 ([frame update order](../Engine-Core/frame-update-order.md)):
 
-1. it clears tail flag bit 5, runs the active sweep `0x00427C90` and the promoter `0x00428710`;
-2. when either set bit 5 again, it refreshes the root (`0x0041E500`), re-binds every active record
+1. it clears tail flag bit `0x20`, runs the active sweep `0x00427C90` and the promoter `0x00428710`;
+2. when either set bit `0x20` again, it refreshes the root (`0x0041E500`), re-binds every active record
    (`0x0042DA30`) and calls `0x003697C0(6)`;
 3. it runs the dirty-word walk `0x00427DE0(1)` and the transform commit `0x00427BD0`.
 
 The promoter takes every pending record in order: it binds the model resources (`0x0041FCF0`), stamps
 `+0x414` from tail `+0x28`, takes a shadow entry into `+0x114` when `0x003E68E0` allows it
-([character lighting and shadows](character-lighting-and-shadows.md)), runs `0x0042C410` with tail bit 0
-held clear, clears `+0x290` bit 0 and moves the record to the end of the active list.
+([character lighting and shadows](character-lighting-and-shadows.md)), runs `0x0042C410` with tail bit `0x1`
+held clear, clears `+0x290` bit `0x1` and moves the record to the end of the active list.
 
 Removal is in two steps. `0x00429140(record)` is the request:
 
 | Record state | What `0x00429140` does |
 |---|---|
 | null | nothing, returns 0 |
-| `+0x284` bit 2 set | marks it: `+0x290` bit 1, `+0x2AE` bit 0, clears `+0x108`..`+0x113`, swaps `+0x284` bit 2 for bit 30; clears bit 1 of its presentation entry's `+0x0C` and bit 2 of its skeleton entry |
-| bit 2 clear, `+0x290` bit 0 set (still pending) | unlinks it from the pending list, decrements the live count and clears it (`0x0041F730`) |
+| `+0x284` bit `0x4` set | marks it: `+0x290` bit `0x2`, `+0x2AE` bit `0x1`, clears `+0x108`..`+0x113`, swaps `+0x284` bit `0x4` for bit `0x40000000`; clears bit `0x2` of its presentation entry's `+0x0C` and bit `0x4` of its skeleton entry |
+| bit `0x4` clear, `+0x290` bit `0x1` set (still pending) | unlinks it from the pending list, decrements the live count and clears it (`0x0041F730`) |
 | otherwise | nothing |
 
-The active sweep `0x00427C90` then retires every active record with `+0x290` bit 1: it unlinks it,
+The active sweep `0x00427C90` then retires every active record with `+0x290` bit `0x2`: it unlinks it,
 decrements the count (resetting the cursor to 0 at a count of 0), runs `0x0042F4C0`, detaches every
 child (`0x00426EC0`), frees the two shadow entries (`0x003B6000`, `0x003AFBE0`) and tears the record down
 (`0x004200A0`, which frees the record's buffers and its CharacterRenderObject, then clears the record).
@@ -127,21 +127,21 @@ Many setters broadcast a value the same way: they apply it to the record and its
 hand a small per-record body and an argument block to `0x0042EF90` for the rest of the tree.
 
 Most bodies first ask `0x00426220(record, source)` and skip the record when it answers true: a record other
-than the source is skipped when its `+0x284` bit 26 is clear and its word `+0x2F8` is −1; a record
-with bit 27 and an event below `0x1000` (`+0xCC`) is skipped when `0x004232D0` returns 0; otherwise a
+than the source is skipped when its `+0x284` bit `0x4000000` is clear and its word `+0x2F8` is −1; a record
+with bit `0x8000000` and an event below `0x1000` (`+0xCC`) is skipped when `0x004232D0` returns 0; otherwise a
 record whose name `+0x3C` starts with `h` is kept only when its next five characters equal the
 source's first five, and any other record is skipped when the source's name starts with `b`.
 
 | Body | Broadcast | What the body does to each record |
 |---|---|---|
 | `0x0042BDD0` | `0x00425E70` | `0x003E6770(record, arg +0x38)` |
-| `0x0042D810` | `0x00428B30` | copies bit 3 of the argument's byte `+0x60` into bit 3 of `+0x4B7` |
+| `0x0042D810` | `0x00428B30` | copies bit `0x8` of the argument's byte `+0x60` into bit `0x8` of `+0x4B7` |
 | `0x0042D9C0` | `0x00426650` | when `0x00421D70(record, word +0x1C)` finds a bone, stores the record at `+0x20`, the bone at `+0x28` and 1 at `+0x18` of the argument (a search) |
 | `0x0042DA00` | `0x00426770` | the same search through `0x00421E20` with the word `+0x08`, dword `+0x0C` and pointer `+0x10`, storing the result at `+0x10` |
 | `0x0042DE50` | `0x00429D40` | `0x0041FBF0(record, arg +0x38)`, then `0x00421030` |
-| `0x0042DE90` | `0x00426FA0` | sets bit 20 of `+0x284` and clears bit 6 of `+0xC0` |
-| `0x0042DEC0` | `0x00429E50` | `0x00422DF0`; with the argument's `+0x6C` set, also bit 17 of the `+0x0C` of the entry `0x00422D50` returns |
-| `0x0042DFC0` | `0x00427100` | calls `0x00422EB0`, except on a child whose `+0x2F2` is not 1, whose `+0x2F8` is −1 and whose `+0x284` bit 27 is clear; a record without a parent stores the result, or 0, at the argument's `+0x58` |
+| `0x0042DE90` | `0x00426FA0` | sets bit `0x100000` of `+0x284` and clears bit `0x40` of `+0xC0` |
+| `0x0042DEC0` | `0x00429E50` | `0x00422DF0`; with the argument's `+0x6C` set, also bit `0x20000` of the `+0x0C` of the entry `0x00422D50` returns |
+| `0x0042DFC0` | `0x00427100` | calls `0x00422EB0`, except on a child whose `+0x2F2` is not 1, whose `+0x2F8` is −1 and whose `+0x284` bit `0x8000000` is clear; a record without a parent stores the result, or 0, at the argument's `+0x58` |
 | `0x0042E050`, `0x0042E170`, `0x0042E1B0` | `0x0042A180`, `0x0042AA10`, `0x0042AB20` | the float `+0x28` through `0x00425510`, `0x00423A60` or `0x00423AB0` |
 | `0x0042E090` | `0x0042A290` | `0x00423570(record, arg +0x24)` |
 | `0x0042E130` | `0x0042A890` | below `0x1000` in word `+0x3FA`, `0x0041FC80`; then `0x00423A10` |
@@ -151,7 +151,7 @@ source's first five, and any other record is skipped when the source's name star
 | `0x0042E4F0` | `0x00428CD0` | `0x00504D20` on the record's model row (`0x003E55B0`) with dword `+0x20` |
 | `0x0042E530`, `0x0042E540` | `0x0042B690`, `0x0042B770` | `0x00420D80` or `0x00420E70` with dword `+0x74` (no filter) |
 | `0x0042E610`, `0x0042E650` | `0x0042B850`; `0x0042B970`, `0x0042BA90` | `0x00420F50` or `0x00420EA0` with dword `+0x38` |
-| `0x0042E750`, `0x0042E7A0` | `0x0042BCB0`, `0x00429020` | set bit 21 of `+0x284` when `+0x38` is non-zero, or bit 12 when it is 1 |
+| `0x0042E750`, `0x0042E7A0` | `0x0042BCB0`, `0x00429020` | set bit `0x200000` of `+0x284` when `+0x38` is non-zero, or bit `0x1000` when it is 1 |
 
 `0x00426500`, from `0x00332440`, is one such walk: `0x00425FB0(0x0042D7A0, 0x0042CF70, records)`.
 
@@ -160,10 +160,10 @@ is below `0x16`, and `+0x2CA` for the child of slot `0x16`. Unless `+0x40B` bit 
 start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x004215A0` also calls:
 
 1. it stores a slot below `0x16` at `+0x40C`, and takes the mode from the low two bits of `+0x40B`
-   (0 while `+0x284` bit 27 is set) into bits 2–3 of `+0x40B`; modes 2 and 3 go straight to step 6;
+   (0 while `+0x284` bit `0x8000000` is set) into bits `0xC` of `+0x40B`; modes 2 and 3 go straight to step 6;
 2. in mode 0, when the record's `@FCP` section 3 (`0x003E5CD0`) names a bone for the slot (word table
    at its start), it ties the child to that bone with `0x004211B0`, which links the two skeletons
-   with `0x0046E640` when the child's skeleton entry has bit 7 of its first byte and sets the child's
+   with `0x0046E640` when the child's skeleton entry has bit `0x80` of its first byte and sets the child's
    parent word `+0x06`;
 3. still in mode 0, it copies the slot's offset (section `+0x240 + 12 × slot`) to the child's
    `+0x130` with 1.0 at `+0x13C`, and stores at `+0x150` the record's three scales (`+0x160`,
@@ -177,8 +177,8 @@ start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x
 
 Small record setters beside them: `0x00420CF0(record, x, y, z)` keeps the angles `+0x120`–`+0x128` at
 `+0x250`–`+0x258` and stores the new ones, and `0x00420F20(record, x, y, z)` stores `+0x140`–`+0x148`;
-both set the fourth float to 1.0 and clear `+0x284` bit 9. `0x00421010(record, on)` sets or clears
-`+0x284` bit 3 and calls `0x00421030`; `0x004209A0` clears bit 27 and sets bit 26. `0x00421CD0` returns the
+both set the fourth float to 1.0 and clear `+0x284` bit `0x200`. `0x00421010(record, on)` sets or clears
+`+0x284` bit `0x8` and calls `0x00421030`; `0x004209A0` clears bit `0x8000000` and sets bit `0x4000000`. `0x00421CD0` returns the
 first of the `@FCP` bones for special ids `0x104` to `0x106` that is set, or 0 (always 0 below
 `@FCP` version 3).
 
@@ -193,7 +193,7 @@ restarts the entry (`0x0041D110` when its `+0x24` is 1, otherwise `+0x0C` bit `0
 `+0x354`, clears bit `0x100` when `+0x344` is −1, and calls `0x00423AB0(record, +0x2BC)`.
 
 With
-`+0x284` bit 20 set or 0 frames it instead stops the alternate entry `+0xC8` (`+0x0C` bit `0x2`,
+`+0x284` bit `0x100000` set or 0 frames it instead stops the alternate entry `+0xC8` (`+0x0C` bit `0x2`,
 `0x0041D790`) after `0x00426FA0` and returns `0x00424C40(record)`.
 
 `0x00424A40` is the same without `0x0041CFC0` and returns 0 at once when the current entry's `+0x24` is
@@ -210,11 +210,11 @@ reads three floats there.
 
 A tie is requested by `0x0042F310` or `0x0042F3B0` (`(child, parent, slot)`; [chocobos](../World-Areas-And-Travel/chocobos-and-airships.md)
 has the actor-level caller). They store the parent's id at the child's `+0x3CE`, the slot at `+0x3CC` and set
-`+0x290` bit 19. The request service `0x00427DE0` sees the bit (`0x00427F44`-`0x00427F53`) and runs `0x0042F880`. That
+`+0x290` bit `0x80000`. The request service `0x00427DE0` sees the bit (`0x00427F44`-`0x00427F53`) and runs `0x0042F880`. That
 function hands the parent, the slot and the child to `0x004215A0` (`0x0042FA1C`-`0x0042FA29`), which resolves the slot
 against the parent's skeleton entry:
 
-| Slot | Skeleton with keyed bones (entry `+0x00` bit 7 set) | Skeleton with named bones (bit 7 clear) |
+| Slot | Skeleton with keyed bones (entry `+0x00` bit `0x80` set) | Skeleton with named bones (bit `0x80` clear) |
 |---|---|---|
 | `0x7FFF` | the whole skeleton (`0x004219C0` with key −1, `0x00421661`-`0x0042166A`) | no name |
 | `0x10A` | `0x0041F010(parent, child)` (`0x004216F7`-`0x00421707`) | the name `0x00422310` gives |
@@ -226,8 +226,8 @@ A keyed tie goes through `0x004219C0(parent, key, child)` and a named one throug
 (`0x00421841`-`0x00421852`). Afterwards the child's word `+0x06` is the parent's id and `+0x2F0` the slot
 (`0x00421861`-`0x00421868`).
 
-On a keyed skeleton, slot 15 is the ride (`0x0042177F`-`0x0042180D`); the named path skips this. It sets the parent's `+0x284` bit 27 and the child's bits 26 and 27,
-and bit 6 of `+0x4B7` on both. It runs `0x0041CFC0` on both records' active presentation entries (`0x00422D50`), loads
+On a keyed skeleton, slot 15 is the ride (`0x0042177F`-`0x0042180D`); the named path skips this. It sets the parent's `+0x284` bit `0x8000000` and the child's bits `0x4000000` and `0x8000000`,
+and bit `0x40` of `+0x4B7` on both. It runs `0x0041CFC0` on both records' active presentation entries (`0x00422D50`), loads
 the child's angles `+0x120` from `0x02064AB0`, and calls `0x00512C80` on the child's `+0x650`. When the child has an
 attached child at `+0x2C8`, it re-places that child through `0x0041F010`.
 
@@ -268,19 +268,19 @@ So a weapon's blade and grip are the bones keyed `0x65E` and `0x656`, named `j_b
 ### The dirty words
 
 Requests reach a record as bits in two dwords, `+0x290` and `+0x294`. `0x00427DE0(flag)` services them
-in five walks of the active list, in fixed order, skipping records with `+0x284` bit 30:
+in five walks of the active list, in fixed order, skipping records with `+0x284` bit `0x40000000`:
 
-1. `+0x290` bits 29, 30, 2, 3, 25, then one of 19, 18 or 20, then 23, 24, 12, 22, and `+0x294` bit 26;
-2. `+0x290` bits 9, 10, 17, 11;
-3. `+0x290` bits 26, 28, 31 and 9, and `+0x294` bits 0 to 8, 10 to 20, 22 and 23, some of them in
+1. `+0x290` bits `0x20000000`, `0x40000000`, `0x4`, `0x8`, `0x2000000`, then one of 19, 18 or 20, then 23, 24, 12, 22, and `+0x294` bit `0x4000000`;
+2. `+0x290` bits `0x200`, `0x400`, `0x20000`, `0x800`;
+3. `+0x290` bits `0x4000000`, `0x10000000`, `0x80000000` and `0x200`, and `+0x294` bits 0 to 8, 10 to 20, 22 and 23, some of them in
    else-if chains;
-4. `+0x290` bits 4, 5, 6, 21, 27, 13, 14, 15, 16 and `+0x294` bits 24, 27;
-5. a record with `+0x290` bit 1 clear gets `+0x284` bit 30 cleared and, when `flag` is set, `+0x304`
-   bit 14 cleared and `+0x120`..`+0x128` copied to `+0x250`..`+0x258`; one with bit 1 set runs
-   `0x0042F4C0` again when bit 20 is set.
+4. `+0x290` bits `0x10`, `0x20`, `0x40`, `0x200000`, `0x8000000`, `0x2000`, `0x4000`, `0x8000`, `0x10000` and `+0x294` bits `0x1000000`, `0x8000000`;
+5. a record with `+0x290` bit `0x2` clear gets `+0x284` bit `0x40000000` cleared and, when `flag` is set, `+0x304`
+   bit `0x4000` cleared and `+0x120`..`+0x128` copied to `+0x250`..`+0x258`; one with bit `0x2` set runs
+   `0x0042F4C0` again when bit `0x100000` is set.
 
 Most handlers clear their bit after the call; some leave it for a later frame. With `flag` set, work
-on a record also raises `+0x294` bit 25 on the top of its parent chain, and `0x00427BD0` then composes
+on a record also raises `+0x294` bit `0x2000000` on the top of its parent chain, and `0x00427BD0` then composes
 that root's model transform (`0x00420A40`). `0x00426090` calls `0x00427DE0(0)` inside each simulation step
 (from `0x003323D0`); `0x0042ED60` calls it with 1 at the end of the frame. Each bit's test site, handler
 and setters are in
@@ -298,7 +298,7 @@ The `0x130` bytes after the records, at `0x022C6F28 + 0x48800`:
 | `+0x0C` | `i32` | live count (the allocator refuses at 160) |  |
 | `+0x10` | `i32` | pending list head |  |
 | `+0x14` | `i32` | pending list tail |  |
-| `+0x18` | `u32` | flags: bit 0 distance cull on, bit 2 set with bit 0 at start-up, | bit 4 viewer-inside fade on, bit 5 active list changed |
+| `+0x18` | `u32` | flags: bit 0x1 distance cull on, bit 0x4 set with bit 0x1 at start-up, | bit `0x10` viewer-inside fade on, bit `0x20` active list changed |
 | `+0x1C` | `f32` | distance at which the distance fade starts (34.0) |  |
 | `+0x24` | `f32` | distance fade range (4.0) |  |
 | `+0x28` | `f32` | 1/6, copied to each promoted record's +0x414 |  |
@@ -307,7 +307,7 @@ The `0x130` bytes after the records, at `0x022C6F28 + 0x48800`:
 | `+0x42` | `u8` | 1: the per-record shadow walk 0x00426420 runs |  |
 | `+0x43` | `u8` | 0: same walk, must be 0 |  |
 
-`0x004269A0` writes these defaults and `0x0042ED30` puts `+0x18` bits 0 and 2 and `+0x1C`..`+0x28` back.
+`0x004269A0` writes these defaults and `0x0042ED30` puts `+0x18` bits `0x1` and `0x4` and `+0x1C`..`+0x28` back.
 `0x00426090` stores `+0x2C` each step from the party-focus actor (`0x003590D0`, `0x002E9B80`). Every access
 is in [the tail access table](character-render-records-character-render-system-tail-accesses.tsv).
 
@@ -326,13 +326,13 @@ or, failing that, the model's `@FCM`, `@FRP` or `@FMN` section (`0x00409FA0`); t
 
 - the record has a current entry;
 - after normalising (kind 3 to `0x2036`; kind 4 to `0x2035` or `0x2036` by index; kind 5 to `0x203E`)
-  both events are of kind 1 or 2, kind 1 needing `+0x284` bit 31 set and kind 2 needing bit 28 clear;
+  both events are of kind 1 or 2, kind 1 needing `+0x284` bit `0x80000000` set and kind 2 needing bit `0x10000000` clear;
 - the pair is not index `0x3D` on both sides;
 - selector 0 with a lower priority for the candidate and `0x00424230` returning 0, or selector 2 with a
   lower priority for the candidate. Every other selector allows.
 
 Priorities are signed bytes at `0x01F00410 + (event & 0xFFF)`; the first `0x49` bytes hold values 0 to 4.
-`0x00424230` returns 1 without an entry, otherwise bit 12 of the entry's `+0x2C8` (`0x0041C760`).
+`0x00424230` returns 1 without an entry, otherwise bit `0x1000` of the entry's `+0x2C8` (`0x0041C760`).
 `0x0041FCA0` returns `+0xCE` when `+0xC8` is valid and `0x004235C0(record, +0xCE, +0xCC)` allows, else
 `+0xCC`.
 
@@ -341,7 +341,7 @@ Priorities are signed bytes at `0x01F00410 + (event & 0xFFF)`; the first `0x49` 
 `0x00427320(record, event)` posts an event. Before choosing a source it refreshes the dword `+0x110`
 from the battle view of the record's actor `+0x108` (`0x00420890`: `0x002ED500` with selector `0x80` for
 events `0x2005`, `0x2037` and `0x2039` to `0x203C`, `0x100` for the others; for `0x203A` a first query with
-`0x800` whose bit 36 makes it call `0x003B4930`).
+`0x800` whose bit `0x1000000000` makes it call `0x003B4930`).
 
 `0x00423790(record, event, last)` then decides
 whether the event may follow the last posted one, the word `+0x3B4`, with the normalising and priorities of
@@ -352,15 +352,15 @@ The event's kind picks the source resource `+0x390`:
 
 | Kind | Source |
 |---:|---|
-| 0 | the registered script motion slot that bits 20–23 (area slot) and 16–19 (slot) name (`0x003DD740`, state 4 only); `0x00423230` then clears bit 12 of the current entry's `+0x2C8` |
+| 0 | the registered script motion slot that bits 20–23 (area slot) and 16–19 (slot) name (`0x003DD740`, state 4 only); `0x00423230` then clears bit `0x1000` of the current entry's `+0x2C8` |
 | 1, 2 | `+0x430`, or `+0x42C` by the low two bits of `+0x40B` |
 | 3, 4 | `+0x430` (kind 3; `0x302F` and `0x3009` as kinds 1 and 2) or `+0x42C` (kind 4) |
 | 5 | `+0x42C` while `0x00423170` holds; otherwise the skill-motion cache entry for the actor's model and the index (`0x003DC7D0`, `0x003DCA00`), or `+0x42C` with `+0x3B4` set to `0x203D` when there is none |
 
 `0x004230A0(record, event)` then refuses kinded events of index `0x37` while the character object's byte `+0xB4` is 0
 and `0x39` and `0x3A` while its `+0xAC` is 2, which clears the source. `0x00422FD0(record, resource,
-event)`, asked by `0x00423B10`, holds when `+0x284` bit 16 is set and the resource's entry for the
-event index (index 0 for kind 5, `0x00408F80`) has bit 16 or 17 of its `+0x04`.
+event)`, asked by `0x00423B10`, holds when `+0x284` bit `0x10000` is set and the resource's entry for the
+event index (index 0 for kind 5, `0x00408F80`) has bit `0x10000` or `0x20000` of its `+0x04`.
 
 `motionplay_bb(motion, frames)` (`0x00BB`, `0x003DD8D0`) and `puppetmotionplay_41f` (`0x041F`,
 `0x003DD980`, for a puppet) post a kind-0 event: a motion id whose top byte is `0x10` to `0x1F` names
@@ -429,7 +429,7 @@ are the ones the functions on this page use:
 | `+0x03C` | `char[32]` | model name |  |
 | `+0x060` | `i16` | previous event |  |
 | `+0x064` | `i16` | model instance index (root +0xDA0) |  |
-| `+0x0C0` | `u8` | shadow kind (bits 3-4), scripted shadow LOD (bit 1), scripted shadow alpha (bit 2) |  |
+| `+0x0C0` | `u8` | shadow kind (bits 3-4), scripted shadow LOD (bit 0x2), scripted shadow alpha (bit 0x4) |  |
 | `+0x0C4` | `i32` | current presentation entry id |  |
 | `+0x0C8` | `i32` | alternate presentation entry id |  |
 | `+0x0CC` | `i16` | current event |  |
@@ -438,7 +438,7 @@ are the ones the functions on this page use:
 | `+0x118` | `u32` | shadow entry handle (pool at 0x02B3F570) |  |
 | `+0x210` | `f32[4]` | colour, 1.0 after a clear |  |
 | `+0x220` | `f32[4]` | second colour, 1.0 after a clear |  |
-| `+0x284` | `u32` | state flags (bit 14 character-model directory, bit 30 skipped by the dirty walk) |  |
+| `+0x284` | `u32` | state flags (bit 0x4000 character-model directory, bit 0x40000000 skipped by the dirty walk) |  |
 | `+0x290` | `u32` | dirty word 1 |  |
 | `+0x294` | `u32` | dirty word 2 |  |
 | `+0x400` | `void*` | the model's @FCP data |  |

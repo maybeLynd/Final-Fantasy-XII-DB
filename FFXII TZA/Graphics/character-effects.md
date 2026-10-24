@@ -85,21 +85,21 @@ arena 8 (`0x0036C1D0(8, 10)`):
   `0x003B38B0` set from the same 16 bits at `0x003B3981`), and returns 0 without one;
 - `0x003B3400` pops the handle free head `0x02EBDBA0`, appends it to the used tail (`0x02EBDBA8`, head
   `0x02EBDB98`) and stamps the serial; with no free handle `0x003B3550` returns 0;
-- for a borrowing context (`+0x02` bit 2) it publishes the context and its tables (`0x02F97340`,
+- for a borrowing context (`+0x02` bit `0x4`) it publishes the context and its tables (`0x02F97340`,
   `0x02EBEF70`-`0x02EBEFA8`) and repairs it against a moved source (`0x0024D970` when the resolved
   `+0x860` plus `+0x864` differs from `+0x858`; [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md#repairing-effect-data-after-its-source-moves));
-- every ticket context is a borrower: `0x003B38B0` sets bits 2 and 3 of its template's byte `+0x02`
+- every ticket context is a borrower: `0x003B38B0` sets bits `0x4` and `0x8` of its template's byte `+0x02`
   (`0x003B3984`) and `0x0024B3A0` copies the template into the context (`0x0024B3D3`-`0x0024B432`), so the
   branch above always runs for a character effect;
 - it zeroes a `0x3B0`-byte template, sets its word `+0x00` to `0x103` and dword `+0x04` to the handle
   id, and makes the instance with `0x0024B270` ([effect element runtime](effect-element-runtime.md#instances-emitters-and-elements));
-- it clears bits 0 and 1 of the slot's flags `+0x30`, stores the instance at `+0x10` and the ticket
+- it clears bits `0x1` and `0x2` of the slot's flags `+0x30`, stores the instance at `+0x10` and the ticket
   id at `+0x18`, and fills the instance: `+0x08` the record index, `+0x340` the context, state word
   `+0x370` = `0x102` and `+0x373` = 1, scale 1.0 at `+0x320`-`+0x328` and `+0x39C`, colours
   `0x80808080` at `+0x330`, `+0x334` and `+0x398`, `0xFF` at `+0x2D0`, `+0x2E0` and `+0x2F0`;
-- it sets `+0x368` bit 0 and `+0x378` bit 8, takes `+0x368` bit 14 and `+0x36A` bit 3 from bits 0 and 1
+- it sets `+0x368` bit `0x1` and `+0x378` bit `0x100`, takes `+0x368` bit `0x4000` and `+0x36A` bit `0x8` from bits `0x1` and `0x2`
   of byte `+0x17` of the record the context holds at `+0x48` (both clear without one), sets `+0x36A`
-  bit 11, and for a borrower copies the context's `+0x858` to `+0x390`; then it returns the id.
+  bit `0x800`, and for a borrower copies the context's `+0x858` to `+0x390`; then it returns the id.
 
 Three routines free handles. `0x003B3300(id)`, from the record teardown `0x0041E860`, ends the instance
 (`0x0024EE60`), moves the slot to the free list, keeps the id's slot and top bits and clears `+0x10`.
@@ -114,17 +114,17 @@ The slot's byte `+0x30` carries three bits the record's presentation pass sets a
 consume ([model effects](model-effects-and-motion-commands.md#the-records-effect-handle) lists the other
 helpers that reach the instance through the handle):
 
-- bit 0 is the advance permit: `0x003B3080(id)` sets it from the per-record presentation pass `0x0042D830`.
+- bit `0x1` is the advance permit: `0x003B3080(id)` sets it from the per-record presentation pass `0x0042D830`.
   The update pass `0x0024B9B0` looks the slot up by the instance's dword `+0x04` and, when the bit is set,
   clears it and lets the instance advance; when it is clear it holds the instance for that step
   (`0x0024BB04`-`0x0024BB26`), so a model's effect advances only while its character is processed;
-- bit 1 is the refresh token and bit 2 the visibility: `0x003B33A0(id, b)` sets bit 1 and stores `b` in
-  bit 2, from `0x0042D830`, the distance-fade callback `0x0042D7A0` and `0x0042CBF0`;
+- bit `0x2` is the refresh token and bit `0x4` the visibility: `0x003B33A0(id, b)` sets bit `0x2` and stores `b` in
+  bit `0x4`, from `0x0042D830`, the distance-fade callback `0x0042D7A0` and `0x0042CBF0`;
 - the draw gate `0x0024D770(instance, consume)` reads them (`0x0024D87B`-`0x0024D8DE`): an instance whose
-  slot has no token is not drawn unless its `+0x36A` bit 3 is set (then bit 2 is cleared instead); with
-  `consume` set the token is cleared; bit 2 is copied into the instance's `+0x36A` bit 0.
+  slot has no token is not drawn unless its `+0x36A` bit `0x8` is set (then bit `0x4` is cleared instead); with
+  `consume` set the token is cleared; bit `0x4` is copied into the instance's `+0x36A` bit `0x1`.
 
-`0x003B3B50` clears `+0x368` bit 1 of every stamped handle's instance and `0x003B3BA0(list, n)` sets it on
+`0x003B3B50` clears `+0x368` bit `0x2` of every stamped handle's instance and `0x003B3BA0(list, n)` sets it on
 the instances whose `+0x08` is in the list: the hold a time stop puts on a character's effect
 ([effect element runtime](effect-element-runtime.md#the-effect-teardown),
 [time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
@@ -140,7 +140,7 @@ the instances whose `+0x08` is in the list: the hold a time stop puts on a chara
   `0x0024FE70(instance, n)` runs the signal;
 - the signal makes the instance current; an instance without a player (`+0x130`) is started when its
   state byte `+0x370` is 2, the value the bind wrote (`0x003A74F0`, `0x0024FEC7`), or given a player when
-  the state is 1 or 7 (`0x003A7460`, `0x0024FEF5`, with `+0x378` bit 10), and the state becomes 1;
+  the state is 1 or 7 (`0x003A7460`, `0x0024FEF5`, with `+0x378` bit `0x400`), and the state becomes 1;
 - it then opens the sub-entry that byte `+0x0A + n` of the emitter record names on the first player
   (`0x0024FF23`, `0x00333280`; [effect element runtime](effect-element-runtime.md#timeline-tracks)); `0x003B3C00`
   returns 1 when a sub-entry was opened, 0 when the cue byte is 0, when a player-less instance is in
@@ -153,14 +153,16 @@ index (`0x003326C0`) and passes its own dword `+0x04` (`0x003B937C`-`0x003B939F`
 ### The deferred write: charefftrigger
 
 The script verb `charefftrigger(n)` (`0x325`, one argument; [verb table](../Scripts-And-Script-Commands/verb-table.md))
-has the handler `0x003401D0`: it pops `n` (`0x00267E10`) and calls `0x002E73C0(actor, n)`. That takes the
+has the handler `0x003401D0`: it pops `n` (`0x00267E10`) and calls `0x002E73C0(actor, n)`.
+
+`0x002E73C0` takes the
 actor's presentation context (`+0xC0`), its record index (word `+0x00`, −1 none) and the render record
 `[0x022C6F28] + index × 0x740` (the array pointer held at `0x022C6F28`, `0x002E73EA`), and for a record whose `+0x284` is non-zero tail-jumps to
-`0x003E6AA0(record, n)`, which stores `n` in bits 27-31 of `+0x304` and sets `+0x294` bit 27
+`0x003E6AA0(record, n)`, which stores `n` in bits `0xF8000000` of `+0x304` and sets `+0x294` bit `0x8000000`
 (`0x003E6AA0`-`0x003E6ABD`). Nothing plays yet.
 
-The dirty walk `0x00427DE0` delivers it: in its fourth pass, for a record with `+0x284` bit 30 clear
-(`0x00428521`), `+0x294` bit 27 set and a handle at `+0x288` (not −1, `0x0042864D`), it calls
+The dirty walk `0x00427DE0` delivers it: in its fourth pass, for a record with `+0x284` bit `0x40000000` clear
+(`0x00428521`), `+0x294` bit `0x8000000` set and a handle at `+0x288` (not −1, `0x0042864D`), it calls
 `0x003B3C00(+0x288, +0x304 >> 27)` and clears the bit (`0x0042863B`-`0x00428660`;
 [character render records](character-render-records.md#the-dirty-words)). A record without a handle
 keeps the bit, so the request waits for the handle.
@@ -203,14 +205,14 @@ A loaded effect file is signalled without the record: `0x003B2830(id, n)` calls
 
 | Offset | Type | Field |
 |---|---|---|
-| `+0x00` | `u32` | id: slot in bits 0-5, serial `0x02EBDBB4` in bits 6-27, 3 in bits 28-31 |
+| `+0x00` | `u32` | id: slot in bits `0x3F`, serial `0x02EBDBB4` in bits 6-27, 3 in bits 28-31 |
 | `+0x08` | `u8[8]` | 0 from start-up; not touched afterwards |
 | `+0x10` | `void*` | the `0x3B0`-byte instance (`0x003B367A`); 0 at start-up and on every release |
 | `+0x18` | `u32` | the ticket id the instance was made for (`0x003B367E`); `0x003B39E0` matches it |
 | `+0x1C` | `u8[4]` | 0 from start-up's qword store; not touched afterwards |
 | `+0x20` | `void*` | next record in its list |
 | `+0x28` | `void*` | previous record in its list |
-| `+0x30` | `u8` | flags: bit 0 the advance permit, bit 1 the refresh token, bit 2 the visibility value |
+| `+0x30` | `u8` | flags: bit `0x1` the advance permit, bit `0x2` the refresh token, bit `0x4` the visibility value |
 | `+0x31` | `u8[7]` | 0 from start-up's qword store; not touched afterwards |
 
 ### The render record's trigger fields
@@ -219,8 +221,8 @@ A loaded effect file is signalled without the record: `0x003B2830(id, n)` calls
   unconditionally, so after a failed bind (no context, no free handle, or `0x0024B270` returning 0,
   `0x003B37A7`) it is 0, which names no slot and, since the bind runs only on −1, is never retried. A
   failed `0x0024B270` also leaves the handle `0x003B3400` took on the used list with `+0x10` = 0.
-- `+0x294` bit 27: the pending trigger, set by `0x003E6AA0`, cleared by the dirty walk at `0x00428660` once it is delivered.
-- `+0x304` bits 27-31: the requested state, written by `0x003E6AA0` and read at `0x00428652`.
+- `+0x294` bit `0x8000000`: the pending trigger, set by `0x003E6AA0`, cleared by the dirty walk at `0x00428660` once it is delivered.
+- `+0x304` bits `0xF8000000`: the requested state, written by `0x003E6AA0` and read at `0x00428652`.
 
 The access tables beside this page list every instruction reaching a record of either table:
 [the tickets](character-effects-effect-ticket-accesses.tsv) and

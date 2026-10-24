@@ -30,7 +30,7 @@ From `0x00189CE0`, guard `0x01F7F5C8`:
 
 The accessor `0x005C3B10` is the smallest complete case (115 bytes): it returns the static `0x02CB5D48`
 whose guard sits at `+0x10` (`0x02CB5D58`), and on first use stores the class descriptor `0x02CAD140` with
-bit 0 set and a zero beside it.
+bit `0x1` set and a zero beside it.
 
 ### Guard and epoch values
 
@@ -197,7 +197,7 @@ class:
 - the arguments follow in order; the return type has no entry;
 - an entry is a static class descriptor, or the result of a descriptor function the holder calls inside the
   guarded block (`0x00630180` `unsigned int`, `0x0062FF50` `char`, `0x006301F0` `float`, `0x006B19A0` `Vector4`);
-- bit 0 is set for the receiver and for an argument passed by reference or pointer, and clear for an
+- bit `0x1` is set for the receiver and for an argument passed by reference or pointer, and clear for an
   argument passed by value;
 - a 0 entry ends the list, and the guard is the next word.
 
@@ -234,7 +234,7 @@ the receiver entry, or any entry from `+0x18` on.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| each row of [lazy-statics-and-one-time-init-state.tsv](lazy-statics-and-one-time-init-state.tsv): the 406 entries of the 161 lists other than the first entries of the 61 descriptor-pair accessors, which are the `descriptor` column of [lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv](lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv) | `void*` | 0 (zero-filled tail of `.data`) | one entry of a caller's type list: its static, offset, guard, holder, caller vtable and class, the entry's type, its value and bit 0, and the holder's abort funclet when it has one (75 of the 161 holders) | the holder, once, inside its guarded block (`set_by`) | `0x005C0B60` or `0x005C0C90` through slot 4, at the sites above (`read_by`); `-` for every other entry |
+| each row of [lazy-statics-and-one-time-init-state.tsv](lazy-statics-and-one-time-init-state.tsv): the 406 entries of the 161 lists other than the first entries of the 61 descriptor-pair accessors, which are the `descriptor` column of [lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv](lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv) | `void*` | 0 (zero-filled tail of `.data`) | one entry of a caller's type list: its static, offset, guard, holder, caller vtable and class, the entry's type, its value and bit `0x1`, and the holder's abort funclet when it has one (75 of the 161 holders) | the holder, once, inside its guarded block (`set_by`) | `0x005C0B60` or `0x005C0C90` through slot 4, at the sites above (`read_by`); `-` for every other entry |
 
 ### The desktop probe
 

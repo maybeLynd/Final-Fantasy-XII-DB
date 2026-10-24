@@ -38,7 +38,7 @@ slot file's read and write).
 | `+0x013B4` | 256 | flag bank of 2048 bits | `0x0032ABF0` | `0x0032A930` |
 | `+0x014B4` | 64 | flag bank of 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0x0032AD70`, `0x0032ADF0` | `0x0032AA60`, `0x0032AAD0` |
 | `+0x014F4` | 64 | the primary flag bank, ids 2-511 | `0x0032AB60` | `0x0032A8A0` |
-| `+0x01534` | 1 | the music track override, used while `+0x1063` bit 6 is set | `0x0026A720`, `0x002628B0` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` |
+| `+0x01534` | 1 | the music track override, used while `+0x1063` bit `0x40` is set | `0x0026A720`, `0x002628B0` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` |
 | `+0x01535` | 1 | a byte the options apply `0x002DDA30` writes as 1 and the verb handler `0x0050D180` writes from its operand, through `0x002EF370` | `0x002EF370` | |
 | `+0x02000` | 24576 | a copy of the battle-state block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` | `0x00235AF0`; `0x002EF4A0` copies the span out to `0x021B290C` |
 | `+0x08000` | 18456 | the image-backed state block, `*(0x020927C0)` | see its table below | |
@@ -100,10 +100,10 @@ Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
 | `+0x18` | `i32` | transitionField | destinationField again; `0x00314530` copies it on restore (`0x003145E0`) |
 | `+0x1C` | `u8` | runtimeParameter | 0 to 2, set by `0x0026D910` while initState is 0, passed to `0x00180620` |
 | `+0x1D` | `u8` | initState | 1 from `0x00268320` and `0x0026D8F0`, cleared by `0x0026D910` |
-| `+0x1E` | `u8` | flags1 | bit 5 cleared by `0x003145E0`, set by `0x00314530` |
-| `+0x1F` | `u8` | flags2 | bit 6: the music override at `+0x1534` is in force (`0x0026A720`, `0x0026DE20`) |
+| `+0x1E` | `u8` | flags1 | bit `0x20` cleared by `0x003145E0`, set by `0x00314530` |
+| `+0x1F` | `u8` | flags2 | bit `0x40`: the music override at `+0x1534` is in force (`0x0026A720`, `0x0026DE20`) |
 
-With load mode 3 and the header's flag bit 0 clear, `0x00584210` copies the five dwords `+0x1044` to
+With load mode 3 and the header's flag bit `0x1` clear, `0x00584210` copies the five dwords `+0x1044` to
 `+0x1057` into the header's `+0x80` to `+0x93` (`0x0058427B`-`0x005842B1`), zeroes `destinationEntrance`
 (`0x005842B7`) and stores `0x483` as `destinationField` through `0x00314DC0` (`0x005842D7`-`0x005842DF`); in
 any other mode with the flag set it copies them back (`0x00584325`-`0x00584362`) (see the
@@ -140,7 +140,7 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 | `+0x0090` | 404 | `u32[101]`, class 8, index clamped to 100 | `0x002527B0`, `0x00252610` | `0x002526F0` |
 | `+0x0224` | 12320 | navigation-map exploration bitmaps: 385 entries of 32 bytes, indexed by `0x003779F0(field)` ([area flags page](../World-Areas-And-Travel/area-flags-navimapdata.md)) | `0x003C60F0`, `0x003C8670`, `0x003C5E50` copy the live block `0x02B45978` in | `0x002551B0` |
 | `+0x3244` | 1 | inventory category bits 1-8, set when a category's derived list is non-empty | `0x00252D40` from `0x002CD650` | `0x00252D10` |
-| `+0x3245` | 1 | a flag byte whose bit 0 `0x00253480` clears after each `0x00253240` | `0x00253480` | |
+| `+0x3245` | 1 | a flag byte whose bit `0x1` `0x00253480` clears after each `0x00253240` | `0x00253480` | |
 | `+0x32C4` | 8 | a bit set indexed by a `u16` | `0x00254E00` | `0x00254DD0` |
 | `+0x32CC` | 62 | Clan Primer family A bits for tabs 0-4 (bases at `0x00D10630`, counts at `0x00D10640`) | `0x00315910` | `0x003154B0` |
 | `+0x330C` | 62 | Clan Primer family B bits for tabs 0-4 | `0x00315B50` | |
@@ -203,10 +203,10 @@ Which pair is used depends on bit `0x1000` of the battle-state block's flag dwor
 cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its only caller `0x003145E0`
 (`0x003147BB`):
 
-| Bit 12 | Capture (`0x00229B40`, `0x00584580`) | Restore (`0x005843E0`) |
+| Bit `0x1000` | Capture (`0x00229B40`, `0x00584580`) | Restore (`0x005843E0`) |
 |---|---|---|
 | clear | bank A at `+0xE040`, image A at `+0xE240`, then the metadata record | the record, bank A, image A |
-| set | bank B at `+0x2E250`, image B at `+0x2E450`, then `0x002EF510` on the record | bank B and image B when the load mode `0x00394450()` is not 3 or the header's `+0x57` bit 0 is set; then bit 1 of the block's `+0x5B04` is cleared |
+| set | bank B at `+0x2E250`, image B at `+0x2E450`, then `0x002EF510` on the record | bank B and image B when the load mode `0x00394450()` is not 3 or the header's `+0x57` bit `0x1` is set; then bit `0x2` of the block's `+0x5B04` is cleared |
 
 `0x00584210` imports bank A again on the restore path, and `0x005843E0` ends by copying the record's first
 byte to `0x0208D455`.
@@ -221,12 +221,12 @@ Struct SaveTransitionRecord base=payload+`0x4E460` size=`0x2C`:
 | `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field here (`0x00314731`) when bit `0x1000` is clear and the field is not 12, and `0x00584580`'s `0x002EF3C0` overwrites it unless `0x003145E0` returned early |
 | `+0x08` | `u8[16]` | blockA | battle-state block `+0x5AE0`-`+0x5AEF` (`0x002EF3C0`) |
 | `+0x18` | `u8[16]` | blockB | battle-state block `+0x5AD0`-`+0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
-| `+0x28` | `u32` | flags | battle-state block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit 0 from bit 1 of `+0x18` |
+| `+0x28` | `u32` | flags | battle-state block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit `0x1` from bit `0x2` of `+0x18` |
 
 `0x002EF540` fills the whole record from the `0x2C` bytes at `0x021B28E0` during `0x00229B40`. The restore
-`0x002EF410` copies `+0x08` to block `+0x5AE0` and `+0x28` to `+0x5B04`; when bit 1 of `+0x18` is set it
-also restores `+0x5AD0` and calls `0x003139D0(+0x20)`; when bit 0 of `+0x08` is set it calls
-`0x00304790(+0x0C)` and `0x003047C0(+0x10)` and rewrites `+0x5B04` with bit 1 set and bit 0 clear.
+`0x002EF410` copies `+0x08` to block `+0x5AE0` and `+0x28` to `+0x5B04`; when bit `0x2` of `+0x18` is set it
+also restores `+0x5AD0` and calls `0x003139D0(+0x20)`; when bit `0x1` of `+0x08` is set it calls
+`0x00304790(+0x0C)` and `0x003047C0(+0x10)` and rewrites `+0x5B04` with bit `0x2` set and bit `0x1` clear.
 
 ### The battle-state block
 
@@ -239,7 +239,7 @@ the save layer itself does to it:
   `+0x5A48`-`+0x5A58` set to `0xFFFF` and the dwords `+0x5AC8` and `+0x5ACC` cleared.
   - It also clears the inventory counts and empties the twelve menu category lists of `[0x020927C0]` (`0x003047F0`
     at `0x002370E5`, ending in `0x00253480`: each list filled with `0xFFFF` and its count zeroed through
-    `0x00253240(i, 1)`, the category bits of `+0x3244` other than bit 0 and bit 0 of `+0x3245` cleared).
+    `0x00253240(i, 1)`, the category bits of `+0x3244` other than bit `0x1` and bit `0x1` of `+0x3245` cleared).
 - Both binders then call `0x0030B6A0`, which rebases the descriptor table at `0x01EEBCC0` (fifteen rows
   of `0x58` bytes outside the image: each non-zero offset at `+0x00`, `+0x18` and `+0x28` becomes the
   32-bit truncated sum of the block's address and the offset at `+0x08`, `+0x20` and `+0x30`, and

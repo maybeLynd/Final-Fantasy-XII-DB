@@ -105,7 +105,7 @@ Every shipped section carries exactly the 17 tags 0, 1, 11, 12, 17, 22 to 33 and
 skipped tags 2 to 8, 10, 13, 15, 16 and 18 to 21 never occur. After the walk the constructor
 allocates `count30 * 0x70` at `[+0x1C0]`, fills each entry from the tag-30 records (colour from the
 record's `+0xC` or from the tag-0 row through the `+0x40` sub-record's transform, `0x00231A90`) and
-links the records that carry bit 30 of their `+0xC` word to their tag-24 entry (`word +0x14`).
+links the records that carry bit `0x40000000` of their `+0xC` word to their tag-24 entry (`word +0x14`).
 
 `0x003ED190` (tag 25) also sends a light direction to the shadow object through `0x001F1590`, which
 creates the 0xB08-byte shadow object at `0x01F82EA8` on first use (`0x001EF2D0`) and stores the direction
@@ -136,7 +136,7 @@ differ.
 | `+0x28` | `i16` | targets | target count |
 | `+0x2A` | `u16` | group | model group the clip belongs to |
 | `+0x2C` | `i16` | mapCount | 0, or the count of 16-byte map entries from `+0x30` that replace `+0x28` |
-| `+0x2E` | `u8` | flags | bit 0: `0x02EBB6E4` = this slot |
+| `+0x2E` | `u8` | flags | bit `0x1`: `0x02EBB6E4` = this slot |
 
 After the clip header (and its map entries) comes a track list: a count and one offset per track,
 again in 16-byte units. A track starts with its own header and then its keys:
@@ -175,10 +175,10 @@ again in 16-byte units. A track starts with its own header and then its keys:
 | `+0x40` | `f32` | rangeEnd | clamped to the clip's end |
 | `+0x44` | `f32` | time |  |
 | `+0x48` | `f32` | step | dt * rate, added each frame by `0x004678E0`, zeroed after the update |
-| `+0x4C` | `u32` | flags | bit 0 playing, bit 1 loop, bit 2 finished, bit 3 update once, bit 4 relink |
+| `+0x4C` | `u32` | flags | bit `0x1` playing, bit `0x2` loop, bit `0x4` finished, bit `0x8` update once, bit `0x10` relink |
 
-`0x00466E70` gives every slot the loop bit and, when it has a clip, bits 0 and 4. `0x00467420` resets
-each live slot: the range becomes the clip's start and end, bit 2 is cleared and bit 3 set, the time
+`0x00466E70` gives every slot the loop bit and, when it has a clip, bits `0x1` and `0x10`. `0x00467420` resets
+each live slot: the range becomes the clip's start and end, bit `0x4` is cleared and bit `0x8` set, the time
 and every track's time become the start, the rate 1.0, and every target gets an identity matrix
 (`0x00203170`), colour 1.0 at `+0x50` to `+0x5C`, rotation and translation 0 and scale 1.0.
 
@@ -198,13 +198,13 @@ channels are:
 | 17 | colour alpha `+0xC8` |
 | 18 to 20 | rotation in radians `+0x118`, `+0x120`, `+0x128` |
 
-Each world step `0x004668C0` (reached through the thunk at `0x0036F400`) advances every slot with bit 0 whose bit 3 is set or
+Each world step `0x004668C0` (reached through the thunk at `0x0036F400`) advances every slot with bit `0x1` whose bit `0x8` is set or
 whose step's absolute value exceeds 0.001 (`|+0x48| > 0.001`, `0x00466969`-`0x0046697B`):
 
-1. bits 2 and 3 are cleared and the time moves by the step;
+1. bits `0x4` and `0x8` are cleared and the time moves by the step;
 2. with `lo` = `+0x3C`, `hi` = `+0x40` and `span = hi - lo`, the loop bit and `span >= 1.0` the
    time `t` becomes `t - span` when `t >= hi` and `t + span` when `t < lo` (`0x004669A7`-`0x004669CA`);
-   otherwise `t >= hi` stores `hi`, `t < lo` stores `lo`, and either sets bit 2 (finished)
+   otherwise `t >= hi` stores `hi`, `t < lo` stores `lo`, and either sets bit `0x4` (finished)
    (`0x004669D1`-`0x004669EA`);
 3. unless the clip's group is above 0x100 with its bit in the hidden-model set (`0x0026E5F0`),
    `0x00466240` advances each track and `0x00466550` rebuilds each target;
@@ -229,12 +229,12 @@ applied only when it is not 0 (`0x00202E90`, `0x00202F00`, `0x00202F70`), and th
 
 The slot accessors take a slot number and test it against `0x02EBB6E0` and `+0x08`:
 
-- `0x00466C80(slot)` returns the time `+0x44` (0 for a bad slot) and `0x00466AD0(slot)` the finished bit 2 (1 for a bad
+- `0x00466C80(slot)` returns the time `+0x44` (0 for a bad slot) and `0x00466AD0(slot)` the finished bit `0x4` (1 for a bad
   slot, the test `0x004735E0` of the actor-control table uses);
 - `0x00473490(slot)` returns the time less the clip's start (`0x00466C40`), the verb `getbganimeframe` (`0x0AD`,
   `0x0034FEE3`); `0x004734C0(slot)` returns the clip's end (`0x00466BB0`) less its start, `getbganimelastframe` (`0x0AE`,
   `0x00350393`);
-- `0x00467730(slot, t)` seeks: it clears bit 2, sets bit 3, stores `t` as the time of the slot and of every track and
+- `0x00467730(slot, t)` seeks: it clears bit `0x4`, sets bit `0x8`, stores `t` as the time of the slot and of every track and
   zeroes the step and each track's `+0x10`; the rewind `0x00473500`, called by `bganimeplay` (`0x09D`, `0x003477B0`),
   `bganimeplay_9e` (`0x09E`, `0x00347CD0`) ([verb table](../Scripts-And-Script-Commands/verb-table.md)), `0x003E8440`,
   `0x003E8690` and `0x003E8990`, and `0x00466DD0` use it;
@@ -247,9 +247,9 @@ instance's group mask, else the target whose `+0x46` (or map entry `+0x00`) equa
 one whose `+0x44` equals `idA`. `0x002F6AB0` and `0x002F5550` call it with the instance record's `+0x02`
 and `+0x08` words and its group mask `+0x20`.
 
-When a slot's bit 4 is set, `0x002F5550` clears it and
+When a slot's bit `0x10` is set, `0x002F5550` clears it and
 stores the target in each matching instance's 0x70-byte entry at `+0x50` while the slot plays
-(`0x00466B80`, bit 0), or 0 when it does not.
+(`0x00466B80`, bit `0x1`), or 0 when it does not.
 
 ### ACTL, the actor-control table
 
@@ -276,16 +276,16 @@ stores the target in each matching instance's 0x70-byte entry at `+0x50` while t
 `0x003E8020` or `0x003E8C50` with the aux table and the weather slot (`0x00265920`); `0x003E8D50` skips
 records whose byte `+0x15` differs from a non-negative mode.
 
-`0x003E8020` keeps the record's state in its first word: bit 0 processed (set on first touch, when the
+`0x003E8020` keeps the record's state in its first word: bit `0x1` processed (set on first touch, when the
 low nibbles of bytes `+0x13` and `+0x14` are copied into their high nibbles and the high nibble of
-`+0x12` becomes 3), bit 1 the alternator, bits 2 and 3 an override, bit 4 "was active". A first word
+`+0x12` becomes 3), bit `0x2` the alternator, bits `0x4` and `0x8` an override, bit `0x10` "was active". A first word
 of 0xFFFF is a tombstone that every walker skips.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | state | the state bits above |
 | `+0x02` | `i16` | animation | map animation slot, -1 for none (`0x004735D0` sets its rate) |
-| `+0x08` | `i16` | light | `LGT2` light id, -1 for none; bit 14 routes it through the aux table (`0x003E8190`) |
+| `+0x08` | `i16` | light | `LGT2` light id, -1 for none; bit `0x4000` routes it through the aux table (`0x003E8190`) |
 | `+0x0E` | `i16` | effect | map effect channel, -1 for none |
 | `+0x10` | `i16` | sound | map sound emitter below 1000 |
 | `+0x12` | `u8` | mode | high nibble 0 runs `0x003E8440`, 1 runs the test `0x003E8350` |
@@ -293,21 +293,21 @@ of 0xFFFF is a tombstone that every walker skips.
 | `+0x14` | `u8` | soundMode | the high nibble feeds `0x00363A90` |
 | `+0x15` | `i8` | effectArg | third argument of `0x0026FAD0`, negatives as 0; the walker's mode filter |
 
-On first touch `0x003E8020` runs `0x003E8990`, which clears state bits 3 and 4, rewinds the animation
+On first touch `0x003E8020` runs `0x003E8990`, which clears state bits `0x8` and `0x10`, rewinds the animation
 slot (`0x00473500(slot, -1.0, -1.0)`), sets its rate to 0 (`0x004735D0`) and sets the sound emitter's
 flags with `0x00363A90`. A toggle with bit 1 clear runs `0x003E85B0` and sets the bit; with bit 1 set it
 runs `0x003E8690` and clears it:
 
 - `0x003E85B0` sets the animation slot's rate to 0, turns the light's loop off and stops its animation
   (`0x0037A310`, `0x0037A130`, or `0x003E8A10` and `0x003E8A40` through the aux table), starts the effect
-  channel (`0x0026FAD0`) and clears its flag (`0x002700F0(channel, 0)`), and sets bit 4 of the sound
+  channel (`0x0026FAD0`) and clears its flag (`0x002700F0(channel, 0)`), and sets bit `0x4` of the sound
   emitter's flag byte (`0x00363AD0(id, 1)`);
 - `0x003E8690` sets the rate to 1.0, resets, turns on and restarts the light (`0x0037A270`, `0x0037B190`,
   `0x0037A1D0`, `0x0037A310`), sets the channel's flags (`0x002700F0`, `0x00270130`) and starts it, and
-  clears the emitter's bit 4.
+  clears the emitter's bit `0x4`.
 
-In mode 1 `0x003E8020` sets state bit 4 when `0x003E8350` finds that `0x004735E0` (the animation slot), `0x0037B030` (the light,
-or the callback `0x003E82A0` through the aux table) and `0x00362E30` (the emitter's bit 0) all return 0
+In mode 1 `0x003E8020` sets state bit `0x10` when `0x003E8350` finds that `0x004735E0` (the animation slot), `0x0037B030` (the light,
+or the callback `0x003E82A0` through the aux table) and `0x00362E30` (the emitter's bit `0x1`) all return 0
 and `0x0026FDB0` does not return 2 for the channel.
 
 ### SP1, the sound emitters
@@ -320,7 +320,7 @@ and `0x0026FDB0` does not return 2 for the channel.
 | `+0x04` | `u32` | listOffset | `0x20` in all 456 sections: `0x00363B40` reads the weather-slot list here when the SPP1 list is absent |
 | `+0x08` | `u32` | areasOffset | the listener grid `0x00362E50` searches |
 | `+0x0C` | `u32` | indexOffset | {u16 bound; u16 recordOffset[]}: the emitter index `0x00362850` passes to `0x003631B0` |
-| `+0x10` | `u32` | emittersOffset | a u16 prefix list terminated by bit 15, then the emitter records |
+| `+0x10` | `u32` | emittersOffset | a u16 prefix list terminated by bit `0x8000`, then the emitter records |
 | `+0x14` | `u32` | reserved14 | 0 |
 | `+0x18` | `u16` | reserved18 | 0 |
 | `+0x1A` | `u16` | reserved1A | 0 |
@@ -413,7 +413,7 @@ bytes.
    with `0x02ADD0EA` clear.
 3. When no load is pending, `0x00377DC0` requests the loose effect bank `PS2Data\efb\<zone>.efb`
    (completions `0x003788F0` in mode 1 to `0x02ADD050`, `0x003789A0` in mode 0 to `0x02ADD098`, bind bits
-   5 and 6) and `0x00378030` requests the pack: `0x0032E400(4, index)` sizes it, `0x0036A190` allocates an
+   `0x20` and `0x40`) and `0x00378030` requests the pack: `0x0032E400(4, index)` sizes it, `0x0036A190` allocates an
    arena block tagged `MapNo`, and `0x0032E620` submits the load with the completion `0x00378BC0` and
    the argument `block | mode`.
 4. Mode 1 names the scene from the pack's path (`0x00379A10(4, index)`, with five alias pairs at
@@ -441,16 +441,16 @@ pending word `0x02ADD0EC` and the bind word `0x02ADD0F0`:
 
 | slots | mode 1 (the field's own pack) | mode 0 (the block pack) |
 |---|---|---|
-| 24 to 27, 28 to 31 | stored at `0x02ADD010 + 8i` and `0x02ADD030 + 8i`, bits 9 + i and 13 + i | the same |
+| 24 to 27, 28 to 31 | stored at `0x02ADD010 + 8i` and `0x02ADD030 + 8i`, bits `0x200` + i and 13 + i | the same |
 | 4 | copied into a block of the same size (`0x0036C100` reads it from the block header) tagged `IdMapNo` at `0x02ADCFE8`, the original freed | neither stored nor freed |
-| 8 | `0x02ADCFE0`, bit 3 | `0x02ADCFF0`, bit 3 |
-| 0, 10 | freed | `0x02ADD080` and `0x02ADD068`, bit 0 |
+| 8 | `0x02ADCFE0`, bit `0x8` | `0x02ADCFF0`, bit `0x8` |
+| 0, 10 | freed | `0x02ADD080` and `0x02ADD068`, bit `0x1` |
 | 1 | freed | stored at `0x02ADD070` and freed at once |
 | 12, 13 | freed | freed |
-| 16 | `0x02ADD060`, bit 7 | the same |
-| 17 | `0x02ADD090`, bit 8 | the same |
-| 9 | `0x02ADD0B8`, bit 4 | the same |
-| 15 | `0x02ADD058`, bit 18 | the same |
+| 16 | `0x02ADD060`, bit `0x80` | the same |
+| 17 | `0x02ADD090`, bit `0x100` | the same |
+| 9 | `0x02ADD0B8`, bit `0x10` | the same |
+| 15 | `0x02ADD058`, bit `0x40000` | the same |
 
 The slot 4 copy does not test its new block. `0x00378CF6` allocates it, top-down on the first try (`0x0036A190`), and when the arena
 cannot make room the allocation's pressure path, retrying bottom-up, gives up and returns 0 (`0x0036C0B2`-`0x0036C0BF`). The labeller
@@ -462,11 +462,11 @@ game faults there.
 
 ### The bind
 
-`0x003775D0` consumes the bind word: bit 7 stores the `SP1` block at `0x022CBAF0` (`0x003635C0`); bit 0
+`0x003775D0` consumes the bind word: bit `0x80` stores the `SP1` block at `0x022CBAF0` (`0x003635C0`); bit `0x1`
 walks the `SeSep` bank with `0x002DF070`, frees it and keeps the `SPP1` list at `0x022CBAF8` with the
-sound map number (`0x003635E0`); bit 4 publishes the `ACTL` block (`0x003E8940`, cleared again when its
-version is not 1); bit 8 binds the lights (`0x0037AA90(block, 0)`) and refreshes with `0x003DE920(0, 1)`;
-bit 3 runs `0x00378120`, which:
+sound map number (`0x003635E0`); bit `0x10` publishes the `ACTL` block (`0x003E8940`, cleared again when its
+version is not 1); bit `0x100` binds the lights (`0x0037AA90(block, 0)`) and refreshes with `0x003DE920(0, 1)`;
+bit `0x8` runs `0x00378120`, which:
 
 1. makes the mode-1 `YM00` current (`0x02ADCFF8`) and uploads picture 0 (`0x003C63A0`) and placement 0
    (`0x00379870`);

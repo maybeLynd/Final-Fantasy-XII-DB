@@ -83,12 +83,12 @@ others. [The channel census](character-fades-fade-channel-census.tsv) holds the 
 ### Attached pieces (channel 1)
 
 A piece is a record whose kind byte `+0x6A0` (from the model's `@FCP` data) is `0x1C` or above. When a
-record's dirty handler `0x0042AC30` runs (`+0x290` bit 31 or `+0x294` bit 3), it passes every descendant
+record's dirty handler `0x0042AC30` runs (`+0x290` bit `0x80000000` or `+0x294` bit `0x8`), it passes every descendant
 to `0x0042E1F0`. For a piece whose parent's kind is `0x11` to `0x15`, the parent's parent decides:
 
-- its `+0x284` bit 27 is set, or its event's index (`+0xCC & 0xFFF`) is `0x35`: channel 1 is set to 0
+- its `+0x284` bit `0x8000000` is set, or its event's index (`+0xCC & 0xFFF`) is `0x35`: channel 1 is set to 0
   at once;
-- otherwise, when bits 0-1 of the handled record's `+0x40B` are both clear, a ramp to 0 over five
+- otherwise, when bits `0x3` of the handled record's `+0x40B` are both clear, a ramp to 0 over five
   frames;
 - otherwise it is set to 1.0 at once.
 
@@ -98,16 +98,16 @@ piece arrives hidden.
 
 ### Distance fade and cull (channels 0 and 4)
 
-`0x0042E850(record)` runs through `0x0042D7A0` for every record with `+0x284` bit 2 set, `+0x2AE` bit 1
+`0x0042E850(record)` runs through `0x0042D7A0` for every record with `+0x284` bit `0x4` set, `+0x2AE` bit `0x2`
 clear and no parent.
 It clears the three cull bits of `+0xD3` and measures a distance `d`: from the camera, or from the
 reference record at tail `+0x2C` when that record is live (0 for the reference record itself). With
-tail flag bit 0 on:
+tail flag bit `0x1` on:
 
-- `+0xD3` bit 0: the record fails the visibility test `0x0046C180` and has `+0x284` bit 21 and `+0xD2`
-  bit 0;
-- `+0xD3` bit 1: distance fade applies (`+0xD2` bits 4 and 1) and `d ≥ start + range`;
-- `+0xD3` bit 3: the record has `+0x284` bit 21 and `+0xD2` bit 3, and its view depth plus its extent is
+- `+0xD3` bit `0x1`: the record fails the visibility test `0x0046C180` and has `+0x284` bit `0x200000` and `+0xD2`
+  bit `0x1`;
+- `+0xD3` bit `0x2`: distance fade applies (`+0xD2` bits `0x10` and `0x2`) and `d ≥ start + range`;
+- `+0xD3` bit `0x8`: the record has `+0x284` bit `0x200000` and `+0xD2` bit `0x8`, and its view depth plus its extent is
   below minus the near limit at tail `+0x20`.
 
 The visibility test `0x0046C180` asks `0x003B3F10(box)` where the box lies against the view. For each of the eight
@@ -119,30 +119,30 @@ outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
 
 | Global | Type | Start | Meaning | Written | Read |
 |---|---|---|---|---|---|
-| `0x02B404B0` | `u32` | 0 | the outcode history: each corner shifts it left by 6 and puts its own outcode in bits 0-5 | `0x003B3F10` (`0x003B4042`) | `0x003B3F10`: the shift (`0x003B4033`), then the OR and the AND over the corners (`0x003B404F`, `0x003B4055`), whose result keeps bits 0-5 (`0x003B4064`, `0x003B4070`) |
+| `0x02B404B0` | `u32` | 0 | the outcode history: each corner shifts it left by 6 and puts its own outcode in bits `0x3F` | `0x003B3F10` (`0x003B4042`) | `0x003B3F10`: the shift (`0x003B4033`), then the OR and the AND over the corners (`0x003B404F`, `0x003B4055`), whose result keeps bits `0x3F` (`0x003B4064`, `0x003B4070`) |
 | `0x02B404B3` | `u8` | 0 | the history's top byte, set to 0 after each corner, so the word holds the last four corners' outcodes | `0x003B3F10` (`0x003B4048`, the byte of `ebp`, 0 from `0x003B3F65`) | through the word reads above |
 
 - `puppet_setcharclipone(d, v)` (`0x0569`, `0x00340890`) sets two of these inputs on the render record
-  of puppet `d` (`0x003EB700`) when it is live: `0x003EB8C0` writes `v` into bit 4 of `+0xD2`, and
-  `0x003EB960` writes it into bit 3 of `+0x304` and raises bit 6 of `+0x290`, whose processor
-  `0x0042BCB0` copies that bit into bit 21 of the children's `+0x284`.
+  of puppet `d` (`0x003EB700`) when it is live: `0x003EB8C0` writes `v` into bit `0x10` of `+0xD2`, and
+  `0x003EB960` writes it into bit `0x8` of `+0x304` and raises bit `0x40` of `+0x290`, whose processor
+  `0x0042BCB0` copies that bit into bit `0x200000` of the children's `+0x284`.
 
 When `0x005C5230()` returns non-zero, or record `+0x6E0` is non-zero, the bits are cleared and no
 distance fade applies. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise
 channel 0 ramps over one frame to 1.0 when `d ≤ start` and to `sin(((start + range − d) / range) ×
 π/2)` inside the band, `start` and `range` being tail `+0x1C` and `+0x24`.
 
-The viewer-inside test runs only with tail flag bit 4 set. When the camera's horizontal distance to
+The viewer-inside test runs only with tail flag bit `0x10` set. When the camera's horizontal distance to
 the character is below record `+0x2A8`, plus 0.15 while the character is already faded, and the
 camera's height is within the character's half-height band, channel 4 ramps to 0 over three frames
-and `+0x4B7` bit 5 is cleared; otherwise it ramps to 1.0 and the bit is set.
+and `+0x4B7` bit `0x20` is cleared; otherwise it ramps to 1.0 and the bit is set.
 
 The settings are the record system's tail ([character render records](character-render-records.md)):
 
 - `setcharclipdistance` (`0x327`, `0x00348B00`) pops two floats: the first to `+0x24` (`0x002E83A0`), the
   second to `+0x1C` (`0x002EBC30`);
 - `setcharclipfaderange` (`0x328`, `0x003493F0`) pops one float into `+0x24`;
-- `0x0042ED30` restores 34.0 and 4.0 and flag bits 0 and 2.
+- `0x0042ED30` restores 34.0 and 4.0 and flag bits `0x1` and `0x4`.
 
 ### Reading the channels
 
@@ -164,7 +164,7 @@ parent's `+0x4B4` when there is a parent, so a piece inherits its owner's fade. 
 
 The factor `+0x2EC` in the composite is the last of four floats at `+0x2E0`: a fog colour (`+0x2E0`,
 `+0x2E4`, `+0x2E8`, 0 to 255) and a fog amount (`+0x2EC`, 0 to 255). `0x0041E960(record)` computes
-them each frame. With `+0x284` bit 29 clear they are 0, 0, 0 and 255. Otherwise it takes the global
+them each frame. With `+0x284` bit `0x20000000` clear they are 0, 0, 0 and 255. Otherwise it takes the global
 fog from `0x003ED0E0`: the far distance `0x02EBB7E8`, the scale `255 / (far − near)` with near
 `0x02EBB7E4`, the floor `255 − [0x02EBB7EF]`, and the colour bytes `0x02EBB7EC`–`0x02EBB7EE`.
 
@@ -179,7 +179,7 @@ the colour `c` from the type-`0x41` pool below (`0x003E4E70` returns `1 − k`):
 
 `0x0042D050` and `0x0042CBF0` call it. For an attached record `0x0042CBF0` takes the parent's projected
 point with w + 2 and copies the fog block of the top ancestor, or of the highest one with `+0x284`
-bit 14 (`0x00202C90`); it computes the record's own block only when that ancestor's word `+0x2CA`
+bit `0x4000` (`0x00202C90`); it computes the record's own block only when that ancestor's word `+0x2CA`
 names the record and `0x003B4750` finds a pool record for it. A record whose parent is gone is
 detached and computes its own (`0x0041EC00`, `0x0041E960`).
 
@@ -195,7 +195,7 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
 | `+0x04` | `u16` | age in steps |  |
 | `+0x06` | `u16` | frame in the period |  |
 | `+0x20` | `u8` | curve number (3: no curve) |  |
-| `+0x21` | `u8` | bits 0-6: 1 linear, other smoothed; bit 7: half strength |  |
+| `+0x21` | `u8` | bits 0-6: 1 linear, other smoothed; bit 0x80: half strength |  |
 | `+0x22` | `u8` | target kind: 1 a render record, 2 a test through 0x0024E2F0 / 0x0024E6D0 |  |
 | `+0x23` | `u8` | target mode |  |
 | `+0x24` | `u32` | target id |  |
@@ -262,7 +262,7 @@ alpha, and writes the record's model instance:
 - `+0xA0` = the second colour `+0x220` × the script colour;
 - `+0xB0` = the Q12 composite `+0x4B4`.
 
-With `+0x284` bit 26 and a live parent, `+0x90` comes from the parent's `+0x210` and `+0xA0` from the
+With `+0x284` bit `0x4000000` and a live parent, `+0x90` comes from the parent's `+0x210` and `+0xA0` from the
 parent's instance `+0xA0` × this record's product. The draw setup `0x004FD4B0` then multiplies the
 character's ambient light by `+0xA0`..`+0xA8` and its alpha by `+0xAC × +0xB0 / 4096`
 ([character lighting and shadows](character-lighting-and-shadows.md)).
@@ -272,11 +272,11 @@ character's ambient light by `+0xA0`..`+0xA8` and its alpha by `+0xAC × +0xB0 /
 The movement step asks `0x00424080(record, &heading, &speed)` before it turns heading and speed into a
 position change ([heading and speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
 which lists every branch). The record keeps a live block at `+0x610` (heading, speed, accumulator,
-flags) and a cached block at `+0x620`; bit 0 of the word `+0x62C` is the latch.
+flags) and a cached block at `+0x620`; bit `0x1` of the word `+0x62C` is the latch.
 
 1. Latched: the cached speed is multiplied by 0.83 and returned with the cached heading; the latch
    clears once the speed is 0.05 or less. A speed of 1.0 is released on the 17th call.
-2. Not latched, for a root record with `+0x284` bit 27: when the event index (`+0xCC & 0xFFF`) is
+2. Not latched, for a root record with `+0x284` bit `0x8000000`: when the event index (`+0xCC & 0xFFF`) is
    `0x10`, the requested speed is exactly 0 and the byte `+0x457` has reached `30 × [0x01DFE0B4]`, the
    latch is armed and the first decayed value is returned at once.
 3. Otherwise, for such a record, the live block moves to the cache and the new heading and speed

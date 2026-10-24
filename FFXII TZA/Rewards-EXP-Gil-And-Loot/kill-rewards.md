@@ -34,15 +34,15 @@ Nothing happens when the status word does not actually change, and two cases ret
 
 ### The Poison and Petrify markers
 
-Adding status 2 (Petrify) or 8 (Poison) sets a marker in the unit's byte `+0xE9A`: bit 1 for Petrify
-(`0x0030E7DD`-`0x0030E801`), bit 0 for Poison (`0x0030E7B3`-`0x0030E7D4`). Each is 1 when the source is a
+Adding status 2 (Petrify) or 8 (Poison) sets a marker in the unit's byte `+0xE9A`: bit `0x2` for Petrify
+(`0x0030E7DD`-`0x0030E801`), bit `0x1` for Poison (`0x0030E7B3`-`0x0030E7D4`). Each is 1 when the source is a
 party record (stats byte `+0x05` = 0) and 0 otherwise.
 
 ### Two more markers
 
-Two more markers are set by the result applier `0x003112F0` on the target unit. Bit 3 is set when
-the result's flag word `+0x2C` has bit 19 (`0x00311384`-`0x0031138D`). Bit 2 is set when the result's
-flag word `+0x140` has bit 14 (`0x00311394`-`0x003113BF`). The only instructions in the image that set bit 14
+Two more markers are set by the result applier `0x003112F0` on the target unit. Bit `0x8` is set when
+the result's flag word `+0x2C` has bit `0x80000` (`0x00311384`-`0x0031138D`). Bit `0x4` is set when the result's
+flag word `+0x140` has bit `0x4000` (`0x00311394`-`0x003113BF`). The only instructions in the image that set bit `0x4000`
 of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x00386E1D` and `0x00386E2F` in
 `0x00386C70` (linear sweep of `.text` for writes to `+0x140`; the two register ORs at `0x0038D6D5` and
 `0x0038E4AB` carry 1).
@@ -56,11 +56,11 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x003
    - then, unless the actor's class nibble (`[enemy+0x10]` byte `+0x0E` & `0xF`, `0x00263C20`) is 3, or
      the species word `[[enemy+0xE68] + 0x52]` is `0xFFFF`, counts the defeat for that species through
      `0x00315820` (`0x003171FE`-`0x0031721F`).
-3. **The reward gate.** Steps 4-8 run only when the enemy's `+0xE9A` bit 3 is clear and one of these
+3. **The reward gate.** Steps 4-8 run only when the enemy's `+0xE9A` bit `0x8` is clear and one of these
    holds (`0x003122DA`-`0x0031232A`):
    - the killer is a party record;
-   - bits 0 and 2 are both set (Poison from a party source, and the killing blow was a periodic drain);
-   - status 1 (Stone) is set in the status words `+0x64 | +0x3C` and bit 1 is set (Petrify from a
+   - bits `0x1` and `0x4` are both set (Poison from a party source, and the killing blow was a periodic drain);
+   - status 1 (Stone) is set in the status words `+0x64 | +0x3C` and bit `0x2` is set (Petrify from a
      party source).
 4. **EXP and LP** for each recipient, with level-ups (see the EXP and LP page).
 5. **The reward display** `0x0028FB80` with the amounts computed for no recipient.
@@ -101,10 +101,10 @@ The achievement ids come from `0x00D10550 + kind*4`, and each record's first dwo
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| unit `+0xE9A` bit 0 | bit | Poison came from a party source | `0x0030E7D4` |
-| unit `+0xE9A` bit 1 | bit | Petrify came from a party source | `0x0030E801` |
-| unit `+0xE9A` bit 2 | bit | hit by a periodic drain result | `0x003113BF` |
-| unit `+0xE9A` bit 3 | bit | pays no rewards | `0x0031138D` |
+| unit `+0xE9A` bit `0x1` | bit | Poison came from a party source | `0x0030E7D4` |
+| unit `+0xE9A` bit `0x2` | bit | Petrify came from a party source | `0x0030E801` |
+| unit `+0xE9A` bit `0x4` | bit | hit by a periodic drain result | `0x003113BF` |
+| unit `+0xE9A` bit `0x8` | bit | pays no rewards | `0x0031138D` |
 | `[0x020927C0] + 0x3404 + species` | `u8` | species defeat count plus one | `0x00315820` |
 | `[0x020927C0] + 0x3854` | `i16` | enemies defeated (kind 4) | `0x00316BF0` |
 | `[0x020927C0] + 0x3868` | `i32` | score (kind 17) | `0x00316BF0` |
@@ -113,10 +113,10 @@ The achievement ids come from `0x00D10550 + kind*4`, and each record's first dwo
 
 - `0x00312280` has one caller, `0x0030E875`-`0x0030E884` in the status write, so every reward goes through it.
   Hooking it sees each enemy defeat once, with the killer.
-- To make an enemy pay nothing, set bit 3 of its unit byte `+0xE9A`. Actions whose result carries `+0x2C`
-  bit 19 do this already.
+- To make an enemy pay nothing, set bit `0x8` of its unit byte `+0xE9A`. Actions whose result carries `+0x2C`
+  bit `0x80000` do this already.
 - Conqueror's 48,000 LP threshold is missing from the `de`, `es`, `fr`, `it` and `us` handbook files; adding
-  bit 11 to that record's mask and inserting 48,000 at its place in the packed values restores it.
+  bit `0x800` to that record's mask and inserting 48,000 at its place in the packed values restores it.
 - The score per enemy is the first word of its two reward rows, the same rows that hold its EXP, LP and
   gil.
 

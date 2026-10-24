@@ -60,8 +60,8 @@ The three storage results reach the screen as message `0x1D`: class 3 is the car
 `0xF` the save transaction's completion (`0x00581B70`).
 
 `0x0057ED40` disarms the card-presence poll: when the queue's front packet has already started (queue
-`+0xDC` bit 0) it sets `+0xDC` bit 1, which makes the dequeue `0x00582240` return before that packet's
-callback; otherwise it empties the queue (`+0x398` = 0). It also clears bits 0 and 1 of the poll
+`+0xDC` bit `0x1`) it sets `+0xDC` bit `0x2`, which makes the dequeue `0x00582240` return before that packet's
+callback; otherwise it empties the queue (`+0x398` = 0). It also clears bits `0x1` and `0x2` of the poll
 widget `0x02CA99D8`. The slot screen calls it when a slot is picked (sub-command `0x8001`) and on
 sub-commands `0x8100`-`0x8102`; `0x00580A80` and the load lifecycle `0x00582860` call it too.
 
@@ -89,7 +89,7 @@ The starting cursor is passed to `0x002D46F0`:
 
 `0x0057F8C0` draws a row. For status 2 it fills the row from the slot's cached header (`0x0057FB00`). Any
 other status shows a line through `0x0057FA30` (text through `0x002F9860`), and when the screen was opened
-with its flag bit 0 (`+0xE0`) every row is drawn as status 5:
+with its flag bit `0x1` (`+0xE0`) every row is drawn as status 5:
 
 | Status | Text (`menu_message.bin`) |
 |---|---|
@@ -141,7 +141,7 @@ message 1); `0x00583C00` copies them back.
 
 1. adds 1 to the counter `+0xE4` unless it is `0xFFFFFFFF`, and writes it to the active image's
    `+0x50` and to `0x02CA99B4`;
-2. sets bit 2 of the controller's `+0xC4`;
+2. sets bit `0x4` of the controller's `+0xC4`;
 3. copies the active image's first `0xA0` bytes to the slot's cache row and refreshes the pane
    (`0x0057EFE0`);
 4. stores `{2, 0}` in the slot's status entry, recounts `+0xED` (status 5) and `+0xEE` (status 5,
@@ -149,7 +149,7 @@ message 1); `0x00583C00` copies them back.
 
 On an error it moves to state `0xD` with popup 5, "Save failed." (`0x818`).
 
-`0x00580840` is the load and format callback; it does nothing once the screen has set `+0xE0` bit 4.
+`0x00580840` is the load and format callback; it does nothing once the screen has set `+0xE0` bit `0x10`.
 For the read (kind 9):
 
 | Result | What it does | Next state, popup |
@@ -165,7 +165,7 @@ the image keeps whatever the read copied into it. For the format (kind `0xC`), s
 ### The save transaction
 
 `0x005819F0` opens the transaction on message 1: it copies the request's slot, counter and flags into
-the record (`+0xCD` slot, `+0xD0` counter, `+0xC8` = request `+0x18` bit 0, the short variant),
+the record (`+0xCD` slot, `+0xD0` counter, `+0xC8` = request `+0x18` bit `0x1`, the short variant),
 keeps the image's header dword `+0x50` at `+0xD4`, sets the gauge total to `0x1DA`, or `0x17C` for
 the short variant (`0x005817D0`, target minus `0x19`), registers the completion callback `0x00581B70`
 on the storage queue, and runs step 1 (`0x00581DA0`).
@@ -191,7 +191,7 @@ The callback `0x00581B70(kind, error, record)` accepts only the kind the current
   (`0x00581C94`-`0x00581CA0`, after the increment at `0x00581C81`).
 - On the last completion, or on any error, it posts message `0x1D` with class `0xF`, the device
   byte from the queue's `+0x39A` and the error code to the controller, and releases the record.
-- On an error it also restores the image's `+0x50` from `+0xD4` and raises bit 2 in the gauge's
+- On an error it also restores the image's `+0x50` from `+0xD4` and raises bit `0x4` in the gauge's
   flags.
 
 So a full save runs states 1, 2, 3, 4, 7, 8 and a short save 1, 2, 7, 8: the short variant still
@@ -420,7 +420,7 @@ Two more entry points that fetch the manager, `0x0020E540` (from `0x002EF690`) a
 ### What a load runs
 
 The load lifecycle `0x00582860` creates the slot screen and its panes (message `0xC`, `0x8001`), and
-on message `0x12` with flag bit 4 of `+0xC4` set runs the post-load sequence: `0x001831A0`,
+on message `0x12` with flag bit `0x10` of `+0xC4` set runs the post-load sequence: `0x001831A0`,
 `0x005843E0` and `0x00182D40` when the controller's byte `+0x598` is clear (that arm also sets
 `0x0209AC10` to 1), `0x00394400` when `0x00394520` reports a pending mode, then `0x00584210`, which handles the mode-3 stash and reseeds the gameplay generator from the clock
 (see the format page). Message `0x10` records the load mode: with `0x00394450()` = 3 it calls
@@ -431,7 +431,7 @@ On message 1 `0x00582790` loads the screen's two layouts into `+0x100` and `+0x1
 with `0x00393600(2)` at `+0x120`. `0x00582FC0`, on message `0x12`, releases them, and the buffers at
 `+0x588` and `+0x590` are freed after it. `0x00581310(pane)`, run on sub-commands `0x8100`-`0x8102` and
 on message `0xF` with value 4, closes the pane and calls `0x00291D40` and `0x002CA110`, then
-`0x002CC9C0(0x002CC9B0())` when bit 3 of `+0xC4` is set.
+`0x002CC9C0(0x002CC9B0())` when bit `0x8` of `+0xC4` is set.
 
 ## Layouts
 
@@ -448,7 +448,7 @@ The slot screen is the `0x1C8`-byte widget with procedure `0x0057FE80` that `0x0
 | `+0x0C8` | `void*` | statusPane | the status pane, the creation record's second qword (`0x0057FEEC`); a cursor move on a status-2 slot fills it from the slot's cached header with `0x0057EFE0` (`0x00580446`, `0x00580E25`) |
 | `+0x0D0` | `void*` | saveTransaction | the save transaction widget `0x005819F0` that state 4 opens as a child (`0x00581031`); 0 at construction and when the screen takes the result (`0x0057FEFD`, `0x005804F3`) |
 | `+0x0D8` | `void*` | popup | the popup the state machine opens with `0x00583990` (The save and load screen above; `0x00581237`); closed and cleared when the popup's answer arrives (`0x00580383`-`0x005803A8`, `0x0058061B`, `0x00580AC5`-`0x00580AE7`, `0x00580CE5`-`0x00580D09`); 0 at construction (`0x0057FF04`) |
-| `+0x0E0` | `u32` | flags | bit 0: the creation record's `+0x14` bit 0 (`0x0057FF2D`), with which every row is drawn as status 5 and the list skips the status-2 work (`0x00580073`); bit 3: a save waits for the device check, taken by `0x00580B40`, which then goes to state 4 (`0x00580BCB`-`0x00580BE1`); bit 4 is tested by the confirm (`0x00580495`). 0 before the creation record is read (`0x0057FEF6`) |
+| `+0x0E0` | `u32` | flags | bit `0x1`: the creation record's `+0x14` bit `0x1` (`0x0057FF2D`), with which every row is drawn as status 5 and the list skips the status-2 work (`0x00580073`); bit `0x8`: a save waits for the device check, taken by `0x00580B40`, which then goes to state 4 (`0x00580BCB`-`0x00580BE1`); bit `0x10` is tested by the confirm (`0x00580495`). 0 before the creation record is read (`0x0057FEF6`) |
 | `+0x0E4` | `u32` | nextCounter | the next save counter: the active image's `+0x50` at construction (`0x0057FFA5`), raised to the highest header `+0x50` among the listed status-2 slots and slot 0's cache row, each time also stored at `0x02CA99B4` (`0x005800AF`-`0x005800BD`, `0x00580179`-`0x00580187`); state 4 passes it plus 1 to the save transaction (`0x00580FA7`); `0x00580CD0` reads and raises it after a save (`0x00580D35`-`0x00580D92`) |
 | `+0x0E8` | `u8` | holdFrames | frames left in state `0xC`, which sets `0x78` (The save and load screen above); counted down by 1 (`0x00580376`) |
 | `+0x0E9` | `u8` | state | the screen's state 0-`0xE` (The save and load screen above), set by the state machine `0x00580EB0` (`0x00581246`) and `0xFF` at construction (`0x0057FF0B`); `0x00580EB0` compares the new state with it (`0x00580EE2`); the popup answer handlers dispatch on it (`0x00580369`, `0x005803D5`, `0x0058062B`, `0x00580A86`, `0x00580A9D`) |
@@ -478,7 +478,7 @@ The queue is the `0x720`-byte widget at `0x02CA99C0` with procedure `0x005823B0`
 | `+0x0CE` | `u8` | pad0CE | read and written by no function; nothing fixes its width |
 | `+0x0CF` | `u8` | pad0CF | read and written by no function; nothing fixes its width |
 | `+0x0D0` | `u32` | spaceNeeded | the space a save needs, 102,400 bytes from `0x003936B0`, stored by the first tick (`0x0058243D`); the popup opener `0x00583990` rounds it up to KB for the popup text (`0x005839C8`) |
-| `+0x0D4` | `u32` | spaceKnown | bit 0 set once the first tick has measured `+0xD0` (`0x00582436`), which it does only while the bit is clear (`0x0058240A`); the load lifecycle `0x00582860` waits for it (`0x00582A6A`); 0 at construction (`0x005824B7`) |
+| `+0x0D4` | `u32` | spaceKnown | bit `0x1` set once the first tick has measured `+0xD0` (`0x00582436`), which it does only while the bit is clear (`0x0058240A`); the load lifecycle `0x00582860` waits for it (`0x00582A6A`); 0 at construction (`0x005824B7`) |
 | `+0x0D8` | `u8[704]` | queue | the eight `0x58`-byte packets of the queue (The storage queue above) |
 | `+0x398` | `u8` | count | the packets queued, 0-8: the enqueue refuses a ninth (`0x0058254E`-`0x0058255D`), copies the packet to entry count (`0x00582570`-`0x005825AD`) and adds 1 (`0x00582692`); the dequeue takes 1 off and moves the rest down (`0x0058224F`-`0x005822D9`); the device check, the poll arm and the disarm empty the queue by setting it to 0 or keep the started packet with 1 (`0x0057EA72`-`0x0057EA98`, `0x0057EC8F`-`0x0057ECB9`, `0x0057ED61`-`0x0057ED8D`); 0 at construction (`0x005824BD`) |
 | `+0x399` | `u8` | pad399 | read and written by no function; nothing fixes its width |
@@ -497,8 +497,8 @@ The gauge is the `0x110`-byte widget at `0x02CA99C8` with procedure `0x00581490`
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00581490` |
 | `+0x0C0` | `void*` | owner | the widget that made the gauge, the creation record's first qword (`0x005816AC`-`0x005816B7`); the gauge opens under it (`0x00246AD0`, `0x005817A9`) and posts it message 12 with sub-command `0xF` on message 15 (`0x005814F4`) and `0x12` on message 18 (`0x005814C9`) |
-| `+0x0C8` | `u32` | flags | bit 0: the count has been sent to its full value, set by `0x005813E0` (`0x00581462`, `0x00581480`) and cleared by it and by `0x00581860` before a new target (`0x00581408`, `0x005818A7`); while it is set the tick does not creep past the target (`0x005815DB`). Bit 1: the shown value is creeping past the target one unit a tick (`0x005815E9`-`0x0058161D`). Bit 2: the count is stopped, set by `0x0057F360` (`0x0057F479`), `0x00580840` (`0x0058091A`, `0x00580A56`) and the save transaction's completion `0x00581B70` (`0x00581D3A`), and the tick does nothing then (`0x00581529`). 0 at construction and on reset (`0x0058171A`, `0x005812E2`, `0x0058180F`) |
-| `+0x0CC` | `u32` | soundOn | bit 0 set while the working sound runs: `0x005819A0` plays sound `0x42` unless its argument is 1, keeps its handle at `+0xE8` and sets the bit (`0x005819B9`-`0x005819D7`); `0x00580EB0` sets it for the save, load and format states (`0x00580FC6`, `0x0058107E`, `0x0058118A`); `0x00581350` stops the sound (`0x0024A1A0`) and clears the bit (`0x00581368`-`0x0058138B`). 0 at construction (`0x0058174F`) |
+| `+0x0C8` | `u32` | flags | bit `0x1`: the count has been sent to its full value, set by `0x005813E0` (`0x00581462`, `0x00581480`) and cleared by it and by `0x00581860` before a new target (`0x00581408`, `0x005818A7`); while it is set the tick does not creep past the target (`0x005815DB`). Bit `0x2`: the shown value is creeping past the target one unit a tick (`0x005815E9`-`0x0058161D`). Bit `0x4`: the count is stopped, set by `0x0057F360` (`0x0057F479`), `0x00580840` (`0x0058091A`, `0x00580A56`) and the save transaction's completion `0x00581B70` (`0x00581D3A`), and the tick does nothing then (`0x00581529`). 0 at construction and on reset (`0x0058171A`, `0x005812E2`, `0x0058180F`) |
+| `+0x0CC` | `u32` | soundOn | bit `0x1` set while the working sound runs: `0x005819A0` plays sound `0x42` unless its argument is 1, keeps its handle at `+0xE8` and sets the bit (`0x005819B9`-`0x005819D7`); `0x00580EB0` sets it for the save, load and format states (`0x00580FC6`, `0x0058107E`, `0x0058118A`); `0x00581350` stops the sound (`0x0024A1A0`) and clears the bit (`0x00581368`-`0x0058138B`). 0 at construction (`0x0058174F`) |
 | `+0x0D0` | `u8` | operation | the operation the gauge counts: 2 a save (`0x00580FD3`), 3 a load (`0x0058108B`), 4 a format (`0x00581197`), or `0x005819A0`'s argument (`0x005819DE`); `0xFF` at construction (`0x00581748`). On success `0x00581350` plays sound `0x27` for 0, 1 and 4 and `0x43` for 2 and 3 (`0x00581396`-`0x005813CD`) |
 | `+0x0D1` | `u8[3]` | pad0D1 | read and written by no function; nothing fixes its width |
 | `+0x0D4` | `u32` | full | the full count in tenths, 10 x `0x005817D0`'s first argument (`0x00581833`), `0xFFFF` at construction and reset (`0x00581708`, `0x005812D0`, `0x005817FD`); `0x005813E0` sends the count to it (`0x005813F6`) and `0x00581860` caps its target at it (`0x00581899`); the number is drawn in colour `0xD2` once the shown value reaches it (`0x00581966`) |
@@ -525,7 +525,7 @@ The poll is the `0xD0`-byte widget at `0x02CA99D8` with procedure `0x0057EB30`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0057EB30` |
-| `+0xC0` | `u32` | flags | bit 0: the second argument of the poll arm `0x0057EC60` (`0x0057ECC7`-`0x0057ECD1`); bit 1: a presence poll is queued, set by `0x0057EC60` (`0x0057ED13`) and by the device check `0x0057EA40` after it queues its packets (`0x0057EAFE`); while bit 1 is set each of the three, `0x0057EA40` (`0x0057EA5D`), `0x0057EC60` (`0x0057EC7A`) and the disarm `0x0057ED40` (`0x0057ED4C`), first empties the storage queue, or marks its started front packet to skip its callback. The disarm clears bits 0 and 1 (`0x0057ED85`, `0x0057ED9B`); the construct message sets 0 (`0x0057EB74`) |
+| `+0xC0` | `u32` | flags | bit `0x1`: the second argument of the poll arm `0x0057EC60` (`0x0057ECC7`-`0x0057ECD1`); bit `0x2`: a presence poll is queued, set by `0x0057EC60` (`0x0057ED13`) and by the device check `0x0057EA40` after it queues its packets (`0x0057EAFE`); while bit `0x2` is set each of the three, `0x0057EA40` (`0x0057EA5D`), `0x0057EC60` (`0x0057EC7A`) and the disarm `0x0057ED40` (`0x0057ED4C`), first empties the storage queue, or marks its started front packet to skip its callback. The disarm clears bits `0x1` and `0x2` (`0x0057ED85`, `0x0057ED9B`); the construct message sets 0 (`0x0057EB74`) |
 | `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
 | `+0xC8` | `void*` | controller | the first argument of the poll arm `0x0057EC60`, the save and load screen that armed it (`0x0057ECD7`); 0 at construction (`0x0057EB6A`) |
 
@@ -539,8 +539,8 @@ The backdrop is the `0xD0`-byte widget at `0x02CA99E0` with procedure `0x0057F7D
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0057F7D0` |
 | `+0xC0` | `void*` | layer | the screen layer 1 the construct message opens with the descriptor `0x00D23E98` (`0x002CCCA0`, `0x0057F893`) |
-| `+0xC8` | `u32` | closing | bit 0 set once the layer has been closed (`0x0057F83E`); 0 at construction (the qword store at `0x0057F8A4`) |
-| `+0xCC` | `i32` | countdown | steps left before the backdrop goes: the save and load code sets 4 when its popup sequence ends (`0x0058039B`, `0x00580611` in `0x0057FE80`; `0x00580890`, `0x005809F4` in `0x00580840`; `0x00580ADD` in `0x00580A80`; `0x00580CFD` in `0x00580CD0`; `0x00582D65` in `0x00582860`; `0x0058312E` in `0x00583040`); the popup opener `0x00583990` sets 0 (`0x00583BA2`) and the construct message clears it (`0x0057F8A4`). Each step on which `0x001EDEC0`(`+0xB4`) answers non-zero lowers it; at 0 the layer closes (`0x002CCB10`), bit 0 of `+0xC8` is set and 14 more steps run (`0x0057F81E`-`0x0057F847`), after which the widget releases itself (`0x0057F85E`-`0x0057F869`) |
+| `+0xC8` | `u32` | closing | bit `0x1` set once the layer has been closed (`0x0057F83E`); 0 at construction (the qword store at `0x0057F8A4`) |
+| `+0xCC` | `i32` | countdown | steps left before the backdrop goes: the save and load code sets 4 when its popup sequence ends (`0x0058039B`, `0x00580611` in `0x0057FE80`; `0x00580890`, `0x005809F4` in `0x00580840`; `0x00580ADD` in `0x00580A80`; `0x00580CFD` in `0x00580CD0`; `0x00582D65` in `0x00582860`; `0x0058312E` in `0x00583040`); the popup opener `0x00583990` sets 0 (`0x00583BA2`) and the construct message clears it (`0x0057F8A4`). Each step on which `0x001EDEC0`(`+0xB4`) answers non-zero lowers it; at 0 the layer closes (`0x002CCB10`), bit `0x1` of `+0xC8` is set and 14 more steps run (`0x0057F81E`-`0x0057F847`), after which the widget releases itself (`0x0057F85E`-`0x0057F869`) |
 
 ### Slot and list records
 
@@ -659,7 +659,7 @@ The device-check pane:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02CA99D0` | `void*` | 0 (zero-filled tail) | the device-check pane, the `0xD0`-byte widget with procedure `0x0057E8D0` that the save and load screen `0x00582860` builds while it is 0; the device check `0x0057EA40` stores the controller at its `+0xC8` and bit 0 of its second argument, the save-or-load mode, in bit 1 of `+0xC0` | `0x0057E8D0`: itself on message 1 (`0x0057E903`), 0 on message 18 (`0x0057E8F4`) | `0x00582860`, which builds it only while it is 0 (`0x00582A90`-`0x00582AA9`) and closes it with `0x00244F00` on leaving (`0x00582B7C`, `0x00582BEF`, `0x00582C38`); `0x0057EA40` (`0x0057EAA6`) |
+| `0x02CA99D0` | `void*` | 0 (zero-filled tail) | the device-check pane, the `0xD0`-byte widget with procedure `0x0057E8D0` that the save and load screen `0x00582860` builds while it is 0; the device check `0x0057EA40` stores the controller at its `+0xC8` and bit `0x1` of its second argument, the save-or-load mode, in bit `0x2` of `+0xC0` | `0x0057E8D0`: itself on message 1 (`0x0057E903`), 0 on message 18 (`0x0057E8F4`) | `0x00582860`, which builds it only while it is 0 (`0x00582A90`-`0x00582AA9`) and closes it with `0x00244F00` on leaving (`0x00582B7C`, `0x00582BEF`, `0x00582C38`); `0x0057EA40` (`0x0057EAA6`) |
 
 No other instruction reaches `0x02CA99D0`: no other RIP-relative, image-base-relative or 32-bit offset reference names
 it.
