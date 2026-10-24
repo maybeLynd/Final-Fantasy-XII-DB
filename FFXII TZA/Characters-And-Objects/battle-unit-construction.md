@@ -14,6 +14,10 @@ code can tell the two apart by one byte in the unit's stats record. A narrower s
 side, by the type number, decides who earns experience and licence points and who is only a guest
 or a summoned creature.
 
+An enemy whose definition names a row past the end of one of the area's battle tables is not installed and does
+not appear. An area without its battle-logic table installs no enemy at all; one without its enemy or class
+table makes the installer read from address 0, and the game crashes.
+
 ## How it works
 
 ### The installer and the definition id
@@ -42,8 +46,21 @@ With kind 1 the unit must have flag bit 26 set. The installer then:
 
 1. takes row `index` of the enemy table `0x02EBF120` (count at `+0x04`, row stride at `+0x08`,
    rows from the section at `+0x0C`), and the class row the enemy row's word `+0x00` names in
-   `0x02EBF150`; the row's words `+0x50`, `+0x22` and `+0x24` must be below the counts of `0x02EBF168`
-   (word `+0`), `0x02EBF148` and `0x02EBF140`, else it returns 0;
+   `0x02EBF150`, and makes five bound tests, returning 0 (`0x0023A63A`) at the first that fails:
+   - the row index against the enemy table's count (`0x0023A65D`-`0x0023A662`);
+   - the enemy row's word `+0x00` against the class table's count at `+0x04` (`0x0023A6B4`-`0x0023A6BB`);
+   - the word `+0x50` against the count word at `+0` of `0x02EBF168` (`0x0023A71E`-`0x0023A726`);
+   - the word `+0x22` against the count at `+0x04` of `0x02EBF148` (`0x0023A73F`-`0x0023A747`);
+   - the word `+0x24` against the count at `+0x04` of `0x02EBF140` (`0x0023A760`-`0x0023A768`).
+
+   Each test compares the index with `count - 1`, the count read as 0 for a null table. Four are unsigned (`ja`):
+   with a null table or a count of 0, `count - 1` is `0xFFFFFFFF` and they pass every index.
+
+   With a count of 0
+   the row taken after them lies past the table's end. With a null enemy or class table the row address is 0 and
+   is read there (`0x0023A69F` and `0x0023A6B4`; `0x0023A708` and `0x0023A8E6`); a null `0x02EBF148` or `0x02EBF140` leaves
+   the unit's row pointer at `+0xE70` or `+0xE78` null (`0x0023A9A3`, `0x0023A9EA`). The `+0x50` test is signed
+   (`jg`) on a zero-extended word, so a null or empty `0x02EBF168` makes it refuse every enemy;
 2. resolves the spawn record: `0x00236100(unit +0x40, unit +0x57)` reads the lane map's byte
    `1 + lane` (lane below the map's count byte, entry not `0xFF`) and returns
    `0x0208E690 + entry * 0x250`; no record returns 0. The stats record is that record's `+0x80`;
@@ -54,13 +71,13 @@ With kind 1 the unit must have flag bit 26 set. The installer then:
    `0x0208D354 + (0x0208D454 * 64 + byte) * 2`, stores the old value's low byte at record `+0x12` and
    writes back `old + 1`, or 1 once `old` reaches `0x00254A40()`; with a byte of `0xFF` it stores 0 at
    `+0x12`;
-4. resolves the name text: the row's word `+0x08` split as bank (high 5 bits) and entry (low 11
+5. resolves the name text: the row's word `+0x08` split as bank (high 5 bits) and entry (low 11
    bits) through `0x02EBF170`, then `0x002B58B0(block, 0)`. `0x00269F20` stores that text and the `+0x12` ordinal at the
    actor's `+0xF8` and `+0x100` (`0x00238EB8`);
-5. stores `+0xE60` = the enemy row, `+0xE68` = the class row, `+0x6E0` = the `0x02EBF168` row named by
+6. stores `+0xE60` = the enemy row, `+0xE68` = the class row, `+0x6E0` = the `0x02EBF168` row named by
    word `+0x50`, `+0xE70` = the `0x02EBF148` row named by word `+0x22`, `+0xE78` = the `0x02EBF140` row
    named by word `+0x24`;
-6. registers the unit (`0x00328FF0(0, row byte +0x03 & 3, unit +0xEA9)`: the class to `0x02EC1384` and
+7. registers the unit (`0x00328FF0(0, row byte +0x03 & 3, unit +0xEA9)`: the class to `0x02EC1384` and
    the slot to `0x02EC1380`, written only when the class is not 0 or the slot is negative), and sets
    flag bit 43 when `row byte +0x03 & 3` or `row byte +0x15` bit 2 is set, else clears it.
 

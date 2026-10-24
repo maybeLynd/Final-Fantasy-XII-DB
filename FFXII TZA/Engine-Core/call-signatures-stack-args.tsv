@@ -54,6 +54,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00125420	3	-	-	-	-
 0x00125710	3	-	-	-	-
 0x00125740	0	-	-	-	-
+0x00125743	1	-	-	-	-
+0x00125753	0	-	-	-	-
+0x00125770	4	5	5	0x001257A5 movsxd rcx, dword ptr [rbp + 0x30]	-
 0x00125850	4	5,6,7	7	0x00125875 mov rdx, qword ptr [rbp + 0x40]	-
 0x0012595A	4	5,6,7	7	0x0012597F mov rdx, qword ptr [rbp + 0x40]	-
 0x00125B02	4	6,8	8	0x00125B27 mov rax, qword ptr [rbp + 0x48]	-
@@ -84,19 +87,94 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x001292C0	3	-	-	-	-
 0x00129312	4	-	-	-	-
 0x001294D0	2	-	-	-	-
+0x00129640	4	5	5	0x00129675 movsxd rdi, dword ptr [rbp + 0x30]	-
 0x001297DE	4	5	5	0x00129829 movsxd rdx, dword ptr [rbp + 0x30]	-
 0x00129870	4	5	5	0x00129B9B mov rcx, qword ptr [rsp + 0x48]	-
+0x00129BE5	4	5	5	0x00129D78 mov rcx, qword ptr [rsp + 0x48]	-
+0x00129DC2	4	5	5	0x0012A050 mov rcx, qword ptr [rsp + 0x48]	-
+0x0012A06F	4	5	5	0x0012A1B5 mov rcx, qword ptr [rsp + 0x48]	-
+0x0012A1D4	4	5	5	0x0012A26A mov rcx, qword ptr [rsp + 0x48]	-
 0x0012A290	3	-	-	-	-
+0x0012A510	4	5,6,7,8,9,10,11,13	13	0x0012A5AF mov r11, qword ptr [rsp + 0x100]	-
+0x0012A880	4	5,6,7,8,9,10,11,13	13	0x0012A93A mov r11, qword ptr [rsp + 0x100]	-
+0x0012AC90	4	-	-	-	-
+0x0012AD00	4	-	-	-	-
+0x0012AD70	4	5	5	0x0012AD70 mov r10, qword ptr [rsp + 0x28]	-
+0x0012AE00	4	5	5	0x0012AE00 mov r10, qword ptr [rsp + 0x28]	-
+0x0012AE90	4	-	-	-	-
+0x0012AF00	4	-	-	-	-
+0x0012AF70	4	-	-	-	-
+0x0012AFE0	4	5	5	0x0012AFE0 mov r10, qword ptr [rsp + 0x28]	-
+0x0012B070	4	5	5	0x0012B070 mov r10, qword ptr [rsp + 0x28]	-
+0x0012B100	4	5	5	0x0012B100 mov r10, qword ptr [rsp + 0x28]	-
+0x0012B190	4	-	-	-	-
+0x0012B200	4	-	-	-	-
+0x0012B270	4	-	-	-	-
+0x0012B2E0	4	5	5	0x0012B2E1 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B370	4	5	5	0x0012B371 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B400	4	5	5	0x0012B401 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B490	4	-	-	-	-
+0x0012B500	4	-	-	-	-
+0x0012B570	4	-	-	-	-
+0x0012B5E0	4	5	5	0x0012B5E1 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B660	4	5	5	0x0012B661 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B6E0	4	5	5	0x0012B6E1 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B760	4	-	-	-	-
+0x0012B7E0	4	-	-	-	-
+0x0012B860	4	5	5	0x0012B861 mov r10, qword ptr [rsp + 0x30]	-
+0x0012B8F0	4	5	5	0x0012B8F1 mov r10, qword ptr [rsp + 0x30]	-
 0x0012B980	3	-	-	-	-
+0x0012C030	3	-	-	-	-
+0x0012C3F0	3	-	-	-	-
+0x0012E2D0	3	-	-	-	-
+0x00130690	3	-	-	-	-
+0x00133650	3	-	-	-	-
+0x00133710	3	-	-	-	-
+0x001338A0	3	-	-	-	-
+0x00133900	3	-	-	-	-
+0x001339B0	3	-	-	-	-
+0x00133A30	3	-	-	-	-
 0x00133B40	4	-	-	-	-
+0x00133BC0	4	-	-	-	-
+0x00133CC0	4	-	-	-	-
+0x00133E80	4	-	-	-	-
+0x00134380	4	-	-	-	-
+0x00134430	4	-	-	-	-
+0x00134540	4	-	-	-	-
+0x001348A0	4	5	5	0x00134E12 mov rdi, qword ptr [rbp + 0x30]	-
+0x00134E36	4	5	5	0x00135100 mov rdi, qword ptr [rbp + 0x30]	-
+0x00135124	4	5	5	0x001352BA mov rdi, qword ptr [rbp + 0x30]	-
+0x001352DE	4	5	5	0x001355E8 mov rdi, qword ptr [rbp + 0x30]	-
+0x0013560C	4	5	5	0x001356B0 mov rdi, qword ptr [rbp + 0x30]	-
+0x001356E0	4	-	-	-	-
+0x00139ACD	4	-	-	-	-
+0x0013BD20	4	5,6,7,8,9,10,11,13	13	0x0013BE56 mov r9, qword ptr [rsp + 0x100]	-
+0x0013C2F0	4	5,6,7,8,9,10,11,13	13	0x0013C3A6 mov r11, qword ptr [rsp + 0x100]	-
+0x0013C730	4	5	5	0x0014078D mov r10, qword ptr [rsp + 0x28]	-
+0x001407B0	4	5	5	0x001427ED mov r10, qword ptr [rsp + 0x28]	-
+0x00142810	4	5	5	0x001448ED mov r10, qword ptr [rsp + 0x28]	-
+0x00144910	4	5	5	0x0014598D mov r10, qword ptr [rsp + 0x28]	-
+0x001459B0	4	5	5	0x001461FD mov r10, qword ptr [rsp + 0x28]	-
+0x00146220	4	5	5	0x00146ABD mov r10, qword ptr [rsp + 0x28]	-
+0x00146AE0	4	5	5	0x00146F3D mov r10, qword ptr [rsp + 0x28]	-
+0x00146F60	4	5	5	0x0014719D mov r10, qword ptr [rsp + 0x28]	-
+0x001471C0	4	5	5	0x001474F5 mov r10, qword ptr [rsp + 0x28]	-
+0x00147510	4	5	5	0x001476B9 mov r10, qword ptr [rsp + 0x28]	-
+0x001476E0	4	5	5	0x001477C3 mov r10, qword ptr [rsp + 0x28]	-
+0x001477E0	4	5	5	0x001479B7 mov r10, qword ptr [rsp + 0x28]	-
+0x001479E0	4	5	5	0x00147ACD mov r10, qword ptr [rsp + 0x28]	-
 0x00147B00	3	-	-	-	-
 0x001481D0	4	-	-	-	-
 0x0014824F	4	-	-	-	-
+0x001482A2	4	-	-	-	-
 0x00148420	4	5,6,7	7	0x00148436 mov rdx, qword ptr [rbp + 0x40]	-
 0x001484DB	4	6,8	8	0x001484F9 mov rbx, qword ptr [rbp + 0x48]	-
+0x00148584	4	5,6	6	0x001485B4 movsxd rdx, dword ptr [rbp + 0x38]	-
 0x001486BC	4	5,6	6	0x001486EC movsxd rdx, dword ptr [rbp + 0x38]	-
 0x001487F4	4	5,6	6	0x00148824 movsxd rdx, dword ptr [rbp + 0x38]	-
 0x001488D0	4	-	-	-	-
+0x001489E0	3	-	-	-	-
+0x00148A50	3	-	-	-	-
 0x00148AF0	4	-	-	-	-
 0x00148B70	4	-	-	-	-
 0x00148C40	4	-	-	-	-
@@ -107,23 +185,99 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00148E50	3	-	-	-	-
 0x00148EB0	4	-	-	-	-
 0x00148F10	2	-	-	-	-
+0x00148F50	4	-	-	-	-
+0x00148FF0	3	-	-	-	-
+0x00149070	4	-	-	-	-
+0x001490F0	2	-	-	-	-
 0x00149160	3	-	-	-	-
 0x001491A0	3	-	-	-	-
+0x001491D0	3	-	-	-	-
 0x00149260	4	-	-	-	-
 0x001492B0	4	-	-	-	-
+0x00149300	4	-	-	-	-
 0x00149370	4	-	-	-	-
 0x001493E0	4	-	-	-	-
 0x00149450	4	-	-	-	-
+0x00149510	4	-	-	-	-
 0x00149610	4	5,6,7,8	8	0x00149686 movsxd rax, dword ptr [rbp + 0x48]	-
 0x001496A0	4	5,6,7	7	0x001496F4 movsxd rcx, dword ptr [rbp + 0x40]	-
 0x00149983	4	5	5	0x001499BC mov eax, dword ptr [rbp + 0x30]	-
 0x00149BCE	4	5	5	0x00149C04 mov eax, dword ptr [rbp + 0x30]	-
 0x00149DC0	4	5	5	0x00149DF3 mov r10, qword ptr [rbp + 0x30]	-
 0x0014A48A	4	5	5	0x0014A4E2 mov r10, qword ptr [rbp + 0x30]	-
+0x0014B1D0	4	5,6	6	0x0014B1FF movsxd rcx, dword ptr [rbp + 0x38]	-
+0x0014B407	4	5,6	6	0x0014B43B movsxd rcx, dword ptr [rbp + 0x38]	-
+0x0014B721	4	5,6	6	0x0014B750 movsxd rcx, dword ptr [rbp + 0x38]	-
+0x0014BA20	4	5,6	6	0x0014BA54 movsxd rcx, dword ptr [rbp + 0x38]	-
+0x0014BE5D	3	-	-	-	-
+0x0014BF7F	3	-	-	-	-
 0x0014C160	4	-	-	-	-
 0x0014C221	4	-	-	-	-
+0x0014C4E6	4	5	5	0x0014C503 mov rdx, qword ptr [rbp + 0x30]	-
+0x0014C588	4	5	5	0x0014C5F4 mov rdx, qword ptr [rbp + 0x30]	-
+0x0014C870	4	5,6	6	0x0014C886 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014C8F8	4	5,6	6	0x0014C91D mov rdx, qword ptr [rbp + 0x38]	-
+0x0014C9A2	4	5,6	6	0x0014C9C7 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CA62	4	5,6	6	0x0014CA78 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CAF2	4	5,6	6	0x0014CB17 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CBA4	4	5,6	6	0x0014CBC9 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CC6C	4	5,6	6	0x0014CC82 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CCF8	4	5,6	6	0x0014CD1D mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CDA6	4	5,6	6	0x0014CDCB mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CE66	4	5,6	6	0x0014CE7C mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CEFA	4	5,6	6	0x0014CF1F mov rdx, qword ptr [rbp + 0x38]	-
+0x0014CFB0	4	5,6	6	0x0014CFD5 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014D080	4	5,6	6	0x0014D0CF mov r11, qword ptr [rsp + 0xf8]	-
+0x0014D260	4	5,6	6	0x0014D2AF mov r11, qword ptr [rsp + 0xf8]	-
+0x0014D450	4	5,6	6	0x0014D49F mov r11, qword ptr [rsp + 0xf8]	-
+0x0014D6D0	4	5,6	6	0x0014D71F mov r11, qword ptr [rsp + 0xf8]	-
+0x0014D970	4	5,6	6	0x0014D9A5 mov r11, qword ptr [rsp + 0xc8]	-
+0x0014DB70	4	5,6	6	0x0014DBA5 mov r11, qword ptr [rsp + 0xc8]	-
+0x0014DD90	4	5,6	6	0x0014DDE1 mov r11, qword ptr [rsp + 0x108]	-
+0x0014DF80	4	5,6	6	0x0014DFD1 mov r11, qword ptr [rsp + 0x108]	-
+0x0014E180	4	5,6	6	0x0014E1D1 mov r11, qword ptr [rsp + 0x108]	-
+0x0014E3E0	4	5,6	6	0x0014E431 mov r11, qword ptr [rsp + 0x108]	-
+0x0014E650	4	5,6	6	0x0014E6A1 mov r11, qword ptr [rsp + 0x108]	-
+0x0014E8B0	4	5,6	6	0x0014E901 mov r11, qword ptr [rsp + 0x108]	-
+0x0014EB20	4	5,6	6	0x0014EB57 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014ECBD	4	5,6	6	0x0014ECF7 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014EEB5	4	5,6	6	0x0014EEEF mov rdx, qword ptr [rbp + 0x38]	-
+0x0014F18C	4	5,6	6	0x0014F1C3 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014F331	4	5,6	6	0x0014F36B mov rdx, qword ptr [rbp + 0x38]	-
+0x0014F531	4	5,6	6	0x0014F56B mov rdx, qword ptr [rbp + 0x38]	-
+0x0014F819	4	5,6	6	0x0014F84F mov rdx, qword ptr [rbp + 0x38]	-
+0x0014F9CD	4	5,6	6	0x0014FA06 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014FBDC	4	5,6	6	0x0014FC15 mov rdx, qword ptr [rbp + 0x38]	-
+0x0014FED9	4	5,6	6	0x0014FF0F mov rdx, qword ptr [rbp + 0x38]	-
+0x00150095	4	5,6	6	0x001500CE mov rdx, qword ptr [rbp + 0x38]	-
+0x001502AC	4	5,6	6	0x001502E5 mov rdx, qword ptr [rbp + 0x38]	-
+0x001505C0	4	5,6	6	0x001505D6 mov rdx, qword ptr [rbp + 0x38]	-
+0x00150661	4	5,6	6	0x00150686 mov rdx, qword ptr [rbp + 0x38]	-
+0x0015071A	4	5,6	6	0x0015073F mov rdx, qword ptr [rbp + 0x38]	-
+0x001507F8	4	5,6	6	0x0015080E mov rdx, qword ptr [rbp + 0x38]	-
+0x001508A1	4	5,6	6	0x001508C6 mov rdx, qword ptr [rbp + 0x38]	-
+0x00150962	4	5,6	6	0x00150987 mov rdx, qword ptr [rbp + 0x38]	-
+0x00150A48	4	5,6	6	0x00150A5E mov rdx, qword ptr [rbp + 0x38]	-
+0x00150AED	4	5,6	6	0x00150B12 mov rdx, qword ptr [rbp + 0x38]	-
+0x00150BAA	4	5,6	6	0x00150BCF mov rdx, qword ptr [rbp + 0x38]	-
+0x00150C88	4	5,6	6	0x00150C9E mov rdx, qword ptr [rbp + 0x38]	-
+0x00150D35	4	5,6	6	0x00150D5A mov rdx, qword ptr [rbp + 0x38]	-
+0x00150DFA	4	5,6	6	0x00150E1F mov rdx, qword ptr [rbp + 0x38]	-
+0x00150EE0	4	5,6,7,8	8	0x00150FB1 mov rdx, qword ptr [rsp + 0xb8]	-
+0x001518B0	4	5,6,7,8	8	0x00151996 mov rdx, qword ptr [rsp + 0xb8]	-
+0x00152350	4	5,6,7,8	8	0x0015242F mov rdx, qword ptr [rsp + 0xb8]	-
+0x00152E10	4	5,6,7,8	8	0x00152EE1 mov rdx, qword ptr [rsp + 0xb8]	-
+0x00153740	4	5,6,7,8	8	0x00153826 mov rdx, qword ptr [rsp + 0xb8]	-
+0x00154110	4	5,6,7,8	8	0x001541EF mov rdx, qword ptr [rsp + 0xb8]	-
+0x00154AC0	4	5,6,7,8,9,10	10	0x00154BB4 mov rdx, qword ptr [rsp + 0xd8]	-
+0x00155580	4	5,6,7,8,9,10	10	0x00155685 mov rdx, qword ptr [rsp + 0xd8]	-
+0x001560E0	4	5,6,7,8,9,10	10	0x001561D8 mov rdx, qword ptr [rsp + 0xd8]	-
+0x00156C40	4	5,6,7,8,9,10	10	0x00156D34 mov rdx, qword ptr [rsp + 0xd8]	-
+0x00157650	4	5,6,7,8,9,10	10	0x00157755 mov rdx, qword ptr [rsp + 0xd8]	-
+0x001580E0	4	5,6,7,8,9,10	10	0x001581D8 mov rdx, qword ptr [rsp + 0xd8]	-
 0x00158B40	4	5	5	0x00158B5F movd xmm0, dword ptr [rbp + 0x30]	-
 0x00158C09	4	5	5	0x00158C1F movd xmm0, dword ptr [rbp + 0x30]	-
+0x00158C97	4	5,6	6	0x00158D32 mov rax, qword ptr [rbp + 0x38]	-
 0x00158DA0	2	-	-	-	-
 0x00158DE0	2	-	-	-	-
 0x00158EC0	1	-	-	-	-
@@ -1362,8 +1516,12 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0016EA80	2	-	-	-	-
 0x0016EC20	2	-	-	-	-
 0x0016ECE0	2	-	-	-	-
+0x0016EE40	2	-	-	-	-
 0x0016EE70	0	-	-	-	-
+0x0016EE80	2	-	-	-	-
 0x0016EEC0	2	-	-	-	-
+0x0016EFF0	2	-	-	-	-
+0x0016F030	2	-	-	-	-
 0x0016F070	0	-	-	-	-
 0x0016F080	0	-	-	-	-
 0x0016F1F0	0	-	-	-	-
@@ -1563,6 +1721,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0017E6E0	1	-	-	-	-
 0x0017E720	1	-	-	-	-
 0x0017E740	1	-	-	-	-
+0x0017E760	1	-	-	-	-
+0x0017E780	1	-	-	-	-
 0x0017E7A0	1	-	-	-	-
 0x0017E7D0	0	-	-	-	-
 0x0017E7E0	3	-	-	-	-
@@ -2157,6 +2317,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00195290	1	-	-	-	-
 0x001952E0	1	-	-	-	-
 0x00195310	1	-	-	-	-
+0x00195340	1	-	-	-	-
 0x00195360	1	-	-	-	-
 0x001953A0	1	-	-	-	-
 0x001953F0	1	-	-	-	-
@@ -3260,6 +3421,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x001DD8E0	1	-	-	-	-
 0x001DDA70	0	-	-	-	-
 0x001DDAB0	0	-	-	-	-
+0x001DDAC0	3	-	-	-	-
 0x001DDBA0	3	-	-	-	-
 0x001DDC40	2	-	-	-	-
 0x001DDE10	2	-	-	-	-
@@ -5782,6 +5944,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0025D740	1	-	-	-	-
 0x0025D8E0	1	-	-	-	-
 0x0025D950	0	-	-	-	-
+0x0025D9C0	1	-	-	-	-
 0x0025D9E0	1	-	-	-	-
 0x0025DF00	2	-	-	-	-
 0x0025E3F0	0	-	-	-	-
@@ -6044,6 +6207,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00269640	1	-	-	-	-
 0x002697A0	1	-	-	-	-
 0x002697E0	0	-	-	-	-
+0x002697F0	0	-	-	-	-
 0x00269800	1	-	-	-	-
 0x00269860	2	-	-	-	-
 0x002699D0	1	-	-	-	-
@@ -6056,11 +6220,13 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00269D60	3	-	-	-	-
 0x00269D80	3	-	-	-	-
 0x00269DD0	2	-	-	-	-
+0x00269E00	2	-	-	-	-
 0x00269E20	2	-	-	-	-
 0x00269E40	2	-	-	-	-
 0x00269E60	2	-	-	-	-
 0x00269EC0	2	-	-	-	-
 0x00269EE0	2	-	-	-	-
+0x00269F00	2	-	-	-	-
 0x00269F20	3	-	-	-	-
 0x00269F30	2	-	-	-	-
 0x00269F40	2	-	-	-	-
@@ -6129,6 +6295,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0026AF10	1	-	-	-	-
 0x0026AF30	2	-	-	-	-
 0x0026AF40	2	-	-	-	-
+0x0026AF70	1	-	-	-	-
 0x0026AF80	1	-	-	-	-
 0x0026AFE0	4	5	5	0x0026B014 cmp dword ptr [rsp + 0x80], 0	-
 0x0026B0C0	4	-	-	-	-
@@ -6216,6 +6383,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0026DB10	1	-	-	-	-
 0x0026DB30	0	-	-	-	-
 0x0026DC40	0	-	-	-	-
+0x0026DC50	0	-	-	-	-
 0x0026DC60	0	-	-	-	-
 0x0026DC70	2	-	-	-	-
 0x0026DD50	2	-	-	-	-
@@ -6865,6 +7033,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00296860	2	-	-	-	-
 0x00296940	0	-	-	-	-
 0x00296960	2	-	-	-	-
+0x002969D0	2	-	-	-	-
 0x002969E0	2	-	-	-	-
 0x002969F0	3	-	-	-	-
 0x00296A10	2	-	-	-	-
@@ -7935,6 +8104,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002E4C20	1	-	-	-	-
 0x002E4C30	2	-	-	-	-
 0x002E4C70	1	-	-	-	-
+0x002E4C90	1	-	-	-	-
 0x002E4CE0	1	-	-	-	-
 0x002E4D20	1	-	-	-	-
 0x002E4E00	1	-	-	-	-
@@ -7949,6 +8119,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002E55C0	2	-	-	-	-
 0x002E5610	4	5	5	0x002E563F mov eax, dword ptr [rsp + 0x60]	-
 0x002E5750	3	-	-	-	-
+0x002E5B00	4	5	5	0x002E5B2B movss xmm0, dword ptr [rsp + 0x28]	-
 0x002E5B60	2	-	-	-	-
 0x002E5B90	2	-	-	-	-
 0x002E5BC0	1	-	-	-	-
@@ -8161,6 +8332,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002EB4A0	1	-	-	-	-
 0x002EB4F0	3	-	-	-	-
 0x002EB540	2	-	-	-	-
+0x002EB5D0	0	-	-	-	-
 0x002EB5E0	4	-	-	-	-
 0x002EB690	4	-	-	-	-
 0x002EB740	3	-	-	-	-
@@ -8179,6 +8351,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002EBC40	2	-	-	-	-
 0x002EBC70	2	-	-	-	-
 0x002EBC90	3	-	-	-	-
+0x002EBD40	2	-	-	-	-
 0x002EBD60	2	-	-	-	-
 0x002EBDB0	1	-	-	-	-
 0x002EBDE0	1	-	-	-	-
@@ -8190,6 +8363,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002EC1C0	3	-	-	-	-
 0x002EC2C0	2	-	-	-	-
 0x002EC380	3	-	-	-	-
+0x002EC3C0	2	-	-	-	-
 0x002EC3F0	1	-	-	-	-
 0x002EC500	0	-	-	-	-
 0x002EC510	3	-	-	-	-
@@ -8218,6 +8392,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002ECC60	2	-	-	-	-
 0x002ECCB0	2	-	-	-	-
 0x002ECCF0	2	-	-	-	-
+0x002ECD20	2	-	-	-	-
 0x002ECD50	2	-	-	-	-
 0x002ECD80	2	-	-	-	-
 0x002ECDC0	2	-	-	-	-
@@ -8237,9 +8412,11 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002ED180	0	-	-	-	-
 0x002ED1E0	1	-	-	-	-
 0x002ED200	2	-	-	-	-
+0x002ED250	2	-	-	-	-
 0x002ED2A0	2	-	-	-	-
 0x002ED300	1	-	-	-	-
 0x002ED320	3	-	-	-	-
+0x002ED350	2	-	-	-	-
 0x002ED3A0	2	-	-	-	-
 0x002ED3F0	1	-	-	-	-
 0x002ED430	1	-	-	-	-
@@ -8513,6 +8690,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002FDC30	1	-	-	-	-
 0x002FDDA0	1	-	-	-	-
 0x002FE660	1	-	-	-	-
+0x002FE7D0	1	-	-	-	-
 0x002FE840	1	-	-	-	-
 0x002FE8D0	1	-	-	-	-
 0x002FE910	1	-	-	-	-
@@ -9043,6 +9221,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0031AC00	0	-	-	-	-
 0x0031AC90	3	-	-	-	-
 0x0031ACC0	2	-	-	-	-
+0x0031AD90	1	-	-	-	-
 0x0031ADB0	3	-	-	-	-
 0x0031B4B0	3	-	-	-	-
 0x0031B4F0	1	-	-	-	-
@@ -11165,6 +11344,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003593A0	1	-	-	-	-
 0x00359410	1	-	-	-	-
 0x003594B0	1	-	-	-	-
+0x003594C0	1	-	-	-	-
 0x003594E0	1	-	-	-	-
 0x003596B0	0	-	-	-	-
 0x003596D0	1	-	-	-	-
@@ -11517,6 +11697,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003649A0	1	-	-	-	-
 0x00365570	1	-	-	-	-
 0x003655F0	1	-	-	-	-
+0x00365660	3	-	-	-	-
 0x003656A0	4	5	5	0x003656E8 movzx eax, byte ptr [rsp + 0xf0]	-
 0x003657E0	1	-	-	-	-
 0x00365810	2	-	-	-	-
@@ -11735,6 +11916,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0036E810	4	-	-	-	-
 0x0036E880	2	-	-	-	-
 0x0036E8B0	2	-	-	-	-
+0x0036E9A0	0	-	-	-	-
 0x0036E9B0	2	-	-	-	-
 0x0036E9F0	1	-	-	-	-
 0x0036EAB0	1	-	-	-	-
@@ -11980,6 +12162,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00379F20	0	-	-	-	-
 0x00379F30	1	-	-	-	-
 0x00379F40	0	-	-	-	-
+0x00379F50	1	-	-	-	-
 0x00379F70	0	-	-	-	-
 0x0037A130	2	-	-	-	-
 0x0037A1D0	2	-	-	-	-
@@ -11994,6 +12177,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0037A910	2	-	-	-	-
 0x0037A960	1	-	-	-	-
 0x0037A9B0	2	-	-	-	-
+0x0037AA00	1	-	-	-	-
 0x0037AA50	1	-	-	-	-
 0x0037AA80	1	-	-	-	-
 0x0037AA90	2	-	-	-	-
@@ -12922,6 +13106,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003B6890	0	-	-	-	-
 0x003B6900	2	-	-	-	-
 0x003B6930	1	-	-	-	-
+0x003B6950	3	-	-	-	-
+0x003B69B0	3	-	-	-	-
 0x003B6A10	3	-	-	-	-
 0x003B6A90	3	-	-	-	-
 0x003B6B10	2	-	-	-	-
@@ -13399,6 +13585,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003DCD00	4	-	-	-	-
 0x003DCF00	1	-	-	-	-
 0x003DCF10	1	-	-	-	-
+0x003DCF20	1	-	-	-	-
 0x003DCF60	2	-	-	-	-
 0x003DCFB0	1	-	-	-	-
 0x003DD0D0	2	-	-	-	-
@@ -13451,6 +13638,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003DE350	1	-	-	-	-
 0x003DE360	1	-	-	-	-
 0x003DE3A0	1	-	-	-	-
+0x003DE3E0	1	-	-	-	-
 0x003DE400	1	-	-	-	-
 0x003DE430	1	-	-	-	-
 0x003DE450	1	-	-	-	-
@@ -13987,6 +14175,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003F4C30	3	-	-	-	-
 0x003F4DD0	1	-	-	-	-
 0x003F4E70	2	-	-	-	-
+0x003F5030	1	-	-	-	-
 0x003F5070	1	-	-	-	-
 0x003F5100	2	-	-	-	-
 0x003F5260	1	-	-	-	-
@@ -14011,6 +14200,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003F6B30	1	-	-	-	-
 0x003F6BB0	1	-	-	-	-
 0x003F6FD0	1	-	-	-	-
+0x003F7000	2	-	-	-	-
 0x003F7050	1	-	-	-	-
 0x003F70F0	1	-	-	-	-
 0x003F7200	1	-	-	-	-
@@ -14517,6 +14707,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x004221F0	1	-	-	-	-
 0x00422310	1	-	-	-	-
 0x00422380	1	-	-	-	-
+0x004223F0	0	-	-	-	-
 0x00422400	0	-	-	-	-
 0x00422410	0	-	-	-	-
 0x00422420	1	-	-	-	-
@@ -14621,6 +14812,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00427860	1	-	-	-	-
 0x00427880	4	-	-	-	-
 0x004278B0	2	-	-	-	-
+0x004278D0	1	-	-	-	-
 0x004278E0	1	-	-	-	-
 0x004279B0	4	-	-	-	-
 0x00427B00	1	-	-	-	-
@@ -14762,6 +14954,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0042FB20	1	-	-	-	-
 0x0042FB80	3	-	-	-	-
 0x0042FCB0	0	-	-	-	-
+0x0042FCC0	1	-	-	-	-
 0x0042FCE0	0	-	-	-	-
 0x0042FCF0	2	-	-	-	-
 0x0042FDB0	2	-	-	-	-
@@ -16688,6 +16881,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0055AE00	1	-	-	-	-
 0x0055AE80	2	-	-	-	-
 0x0055B2B0	1	-	-	-	-
+0x0055B310	1	-	-	-	-
 0x0055B3F0	1	-	-	-	-
 0x0055B560	1	-	-	-	-
 0x0055B6D0	2	-	-	-	-
@@ -25673,45 +25867,267 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006DA8D0	2	-	-	-	-
 0x006DA8E0	2	-	-	-	-
 0x006DA8F0	1	-	-	-	-
+0x006DA960	0	-	-	-	-
+0x006DA970	0	-	-	-	-
 0x006DA980	0	-	-	-	-
 0x006DA990	0	-	-	-	-
+0x006DAA00	0	-	-	-	-
+0x006DAA10	0	-	-	-	-
+0x006DAA20	0	-	-	-	-
+0x006DAA30	0	-	-	-	-
+0x006DAA40	0	-	-	-	-
 0x006DAA50	4	-	-	-	-
 0x006DAA70	4	5,6	6	0x006DACFD mov rax, qword ptr [rsp + 0xc8]	-
 0x006DAF50	0	-	-	-	-
 0x006DAFB0	1	-	-	-	-
 0x006DB1B0	0	-	-	-	-
+0x006DB300	0	-	-	-	-
+0x006DB320	0	-	-	-	-
+0x006DB340	0	-	-	-	-
+0x006DB360	0	-	-	-	-
+0x006DB380	0	-	-	-	-
+0x006DB3A0	0	-	-	-	-
+0x006DB3B0	0	-	-	-	-
+0x006DB3D0	0	-	-	-	-
+0x006DB3F0	0	-	-	-	-
+0x006DB400	0	-	-	-	-
+0x006DB420	0	-	-	-	-
+0x006DB440	0	-	-	-	-
+0x006DB460	0	-	-	-	-
+0x006DB480	0	-	-	-	-
+0x006DB4A0	0	-	-	-	-
 0x006DB4C0	0	-	-	-	-
+0x006DB4E0	0	-	-	-	-
+0x006DB500	0	-	-	-	-
+0x006DB520	0	-	-	-	-
+0x006DB540	0	-	-	-	-
+0x006DB560	0	-	-	-	-
+0x006DB580	0	-	-	-	-
+0x006DB5A0	0	-	-	-	-
+0x006DB5C0	0	-	-	-	-
+0x006DB5E0	0	-	-	-	-
+0x006DB600	0	-	-	-	-
+0x006DB620	0	-	-	-	-
+0x006DB640	0	-	-	-	-
 0x006DB660	0	-	-	-	-
+0x006DB680	0	-	-	-	-
+0x006DB6A0	0	8	8	0x006DB6A0 movzx eax, byte ptr [rsp + 0x40]	-
+0x006DB6C0	0	7	7	0x006DB6C0 movzx eax, byte ptr [rsp + 0x38]	-
+0x006DB6E0	0	7	7	0x006DB6E0 movzx eax, byte ptr [rsp + 0x38]	-
 0x006DB700	4	-	-	-	-
+0x006DB740	0	-	-	-	-
+0x006DB760	0	-	-	-	-
 0x006DB780	0	-	-	-	-
+0x006DB7A0	0	-	-	-	-
 0x006DB7C0	0	-	-	-	-
+0x006DB7E0	0	-	-	-	-
+0x006DB800	0	-	-	-	-
+0x006DB820	0	-	-	-	-
+0x006DB840	0	-	-	-	-
+0x006DB860	0	-	-	-	-
+0x006DB880	0	-	-	-	-
+0x006DB8A0	0	-	-	-	-
 0x006DB8C0	0	-	-	-	-
+0x006DB8E0	0	-	-	-	-
 0x006DB900	0	-	-	-	-
+0x006DB920	0	-	-	-	-
+0x006DB940	2	-	-	-	-
+0x006DB960	0	-	-	-	-
+0x006DB980	0	-	-	-	-
 0x006DB9A0	0	-	-	-	-
+0x006DB9C0	0	-	-	-	-
+0x006DB9E0	0	-	-	-	-
+0x006DBA00	0	-	-	-	-
+0x006DBA20	0	-	-	-	-
+0x006DBA40	0	-	-	-	-
+0x006DBA60	0	-	-	-	-
+0x006DBA80	0	-	-	-	-
+0x006DBAA0	0	-	-	-	-
+0x006DBAC0	0	-	-	-	-
+0x006DBAE0	0	-	-	-	-
+0x006DBB00	0	-	-	-	-
+0x006DBB20	0	-	-	-	-
+0x006DBB40	0	-	-	-	-
+0x006DBB60	0	-	-	-	-
+0x006DBB80	0	-	-	-	-
+0x006DBBA0	0	-	-	-	-
+0x006DBBC0	0	-	-	-	-
+0x006DBBE0	0	-	-	-	-
+0x006DBC00	0	-	-	-	-
 0x006DBC20	0	-	-	-	-
+0x006DBC40	0	-	-	-	-
 0x006DBC60	0	-	-	-	-
+0x006DBC80	0	-	-	-	-
+0x006DBCA0	0	-	-	-	-
+0x006DBCC0	0	-	-	-	-
+0x006DBCE0	0	-	-	-	-
+0x006DBD00	0	-	-	-	-
 0x006DBD20	2	-	-	-	-
+0x006DBD50	0	-	-	-	-
 0x006DBD70	2	-	-	-	-
+0x006DBDA0	0	-	-	-	-
+0x006DBDC0	0	-	-	-	-
 0x006DBDE0	2	-	-	-	-
 0x006DBE00	4	-	-	-	-
 0x006DBF40	4	-	-	-	-
+0x006DC020	0	-	-	-	-
+0x006DC040	0	-	-	-	-
+0x006DC060	0	-	-	-	-
+0x006DC080	0	-	-	-	-
+0x006DC0A0	0	-	-	-	-
+0x006DC0C0	0	-	-	-	-
+0x006DC0E0	0	-	-	-	-
+0x006DC100	0	-	-	-	-
+0x006DC120	0	-	-	-	-
+0x006DC140	0	-	-	-	-
+0x006DC160	0	-	-	-	-
+0x006DC180	0	-	-	-	-
+0x006DC1A0	0	-	-	-	-
+0x006DC1C0	0	-	-	-	-
+0x006DC1E0	0	-	-	-	-
+0x006DC200	0	-	-	-	-
+0x006DC220	0	-	-	-	-
+0x006DC240	0	-	-	-	-
+0x006DC260	0	-	-	-	-
+0x006DC280	0	-	-	-	-
+0x006DC2A0	0	-	-	-	-
+0x006DC2C0	0	-	-	-	-
+0x006DC2E0	0	-	-	-	-
+0x006DC300	0	-	-	-	-
+0x006DC320	0	-	-	-	-
+0x006DC340	0	-	-	-	-
+0x006DC360	0	-	-	-	-
+0x006DC380	0	-	-	-	-
+0x006DC3A0	0	-	-	-	-
+0x006DC3C0	0	-	-	-	-
+0x006DC3E0	0	-	-	-	-
+0x006DC400	0	-	-	-	-
+0x006DC420	0	-	-	-	-
+0x006DC440	0	-	-	-	-
+0x006DC460	0	-	-	-	-
+0x006DC480	2	-	-	-	-
 0x006DC4B0	2	-	-	-	-
+0x006DC4E0	0	-	-	-	-
+0x006DC500	0	-	-	-	-
+0x006DC520	0	-	-	-	-
+0x006DC540	0	-	-	-	-
+0x006DC560	0	-	-	-	-
+0x006DC580	0	-	-	-	-
+0x006DC5A0	0	-	-	-	-
 0x006DC5C0	0	-	-	-	-
+0x006DC5E0	0	-	-	-	-
 0x006DC600	0	-	-	-	-
+0x006DC620	2	-	-	-	-
 0x006DC650	2	-	-	-	-
+0x006DC680	0	-	-	-	-
+0x006DC6A0	0	-	-	-	-
+0x006DC6C0	0	-	-	-	-
+0x006DC6E0	0	-	-	-	-
 0x006DC700	0	-	-	-	-
+0x006DC720	0	-	-	-	-
+0x006DC740	0	-	-	-	-
 0x006DC760	0	-	-	-	-
+0x006DC780	0	-	-	-	-
+0x006DC7A0	0	-	-	-	-
+0x006DC7C0	2	-	-	-	-
+0x006DC7E0	0	-	-	-	-
+0x006DC800	0	-	-	-	-
 0x006DC820	0	-	-	-	-
+0x006DC840	0	-	-	-	-
+0x006DC860	0	-	-	-	-
+0x006DC880	0	-	-	-	-
+0x006DC8A0	4	-	-	-	-
+0x006DC8C0	0	-	-	-	-
+0x006DC8E0	0	-	-	-	-
+0x006DC900	0	-	-	-	-
+0x006DC920	0	-	-	-	-
+0x006DC940	0	-	-	-	-
+0x006DC960	0	-	-	-	-
+0x006DC980	0	-	-	-	-
+0x006DC9A0	0	-	-	-	-
+0x006DC9C0	0	-	-	-	-
+0x006DC9E0	0	-	-	-	-
 0x006DCA00	2	-	-	-	-
+0x006DCA30	0	-	-	-	-
+0x006DCA50	0	-	-	-	-
+0x006DCA70	0	-	-	-	-
+0x006DCA90	0	-	-	-	-
+0x006DCAB0	0	7,8,9	9	0x006DCAB0 movzx eax, byte ptr [rsp + 0x48]	-
+0x006DCAE0	0	7,8	8	0x006DCAE0 movzx eax, byte ptr [rsp + 0x40]	-
 0x006DCB10	0	5	5	0x006DCB14 movss xmm0, dword ptr [rsp + 0x70]	-
+0x006DCB50	0	-	-	-	-
+0x006DCB70	0	-	-	-	-
+0x006DCB90	0	-	-	-	-
+0x006DCBB0	0	-	-	-	-
+0x006DCBD0	0	-	-	-	-
+0x006DCBF0	0	-	-	-	-
+0x006DCC10	0	-	-	-	-
+0x006DCC30	0	-	-	-	-
+0x006DCC50	0	-	-	-	-
+0x006DCC70	0	-	-	-	-
+0x006DCC90	0	-	-	-	-
+0x006DCCB0	0	-	-	-	-
 0x006DCCD0	4	5	5	0x006DCCD4 mov rax, qword ptr [rsp + 0x60]	-
+0x006DCD00	0	7	7	0x006DCD00 movzx eax, byte ptr [rsp + 0x38]	-
+0x006DCD20	0	-	-	-	-
+0x006DCD40	0	-	-	-	-
+0x006DCD60	0	-	-	-	-
+0x006DCD80	0	-	-	-	-
+0x006DCDA0	0	-	-	-	-
+0x006DCDC0	0	-	-	-	-
+0x006DCDE0	0	-	-	-	-
+0x006DCE00	0	-	-	-	-
+0x006DCE20	0	-	-	-	-
+0x006DCE40	0	-	-	-	-
+0x006DCE60	0	-	-	-	-
+0x006DCE80	0	-	-	-	-
+0x006DCEA0	0	-	-	-	-
+0x006DCEC0	0	-	-	-	-
+0x006DCEE0	2	-	-	-	-
+0x006DCF00	0	-	-	-	-
+0x006DCF20	0	-	-	-	-
+0x006DCF40	0	-	-	-	-
+0x006DCF60	0	-	-	-	-
 0x006DCF80	4	6	6	0x006DCFA1 movzx eax, byte ptr [rsp + 0x68]	-
+0x006DCFD0	0	9	9	0x006DCFD0 movzx eax, byte ptr [rsp + 0x48]	-
+0x006DCFF0	0	-	-	-	-
+0x006DD010	0	-	-	-	-
+0x006DD030	0	-	-	-	-
+0x006DD050	0	-	-	-	-
+0x006DD070	0	-	-	-	-
 0x006DD090	4	-	-	-	-
+0x006DD0E0	0	-	-	-	-
 0x006DD100	4	5	5	0x006DD130 movzx eax, byte ptr [rsp + 0x70]	-
+0x006DD150	0	8	8	0x006DD157 movzx eax, byte ptr [rsp + 0x40]	-
+0x006DD170	0	-	-	-	-
+0x006DD190	0	-	-	-	-
+0x006DD1B0	0	-	-	-	-
+0x006DD1D0	0	-	-	-	-
+0x006DD1F0	0	-	-	-	-
+0x006DD210	0	-	-	-	-
+0x006DD230	0	-	-	-	-
+0x006DD250	0	-	-	-	-
+0x006DD270	4	-	-	-	-
+0x006DD2A0	4	5,6	6	0x006DD2CB mov rax, qword ptr [rsp + 0x30]	-
+0x006DD300	4	-	-	-	-
+0x006DD330	0	-	-	-	-
+0x006DD350	4	-	-	-	-
+0x006DD380	3	-	-	-	-
+0x006DD3A0	0	-	-	-	-
+0x006DD3C0	0	-	-	-	-
+0x006DD3E0	0	-	-	-	-
+0x006DD400	0	-	-	-	-
+0x006DD420	0	-	-	-	-
 0x006DD440	0	5	5	0x006DD444 movss xmm0, dword ptr [rsp + 0x60]	-
+0x006DD470	0	-	-	-	-
+0x006DD490	0	-	-	-	-
+0x006DD4B0	0	-	-	-	-
+0x006DD4D0	0	-	-	-	-
 0x006DD4F0	2	-	-	-	-
+0x006DD520	0	-	-	-	-
 0x006DD540	2	-	-	-	-
 0x006DD570	0	-	-	-	-
+0x006DD590	2	-	-	-	-
 0x006DD5B0	2	-	-	-	-
 0x006DD5F0	0	5	5	0x006DD5F4 mov eax, dword ptr [rsp + 0x60]	-
 0x006DD620	2	-	-	-	-
@@ -25719,11 +26135,127 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006DD690	4	5,6	6	0x006DD6B1 movss xmm0, dword ptr [rsp + 0x78]	-
 0x006DD700	0	-	-	-	-
 0x006DD720	4	5,6	6	0x006DD741 movss xmm0, dword ptr [rsp + 0x78]	-
+0x006DD790	0	-	-	-	-
 0x006DD7B0	3	-	-	-	-
+0x006DD7F0	0	-	-	-	-
 0x006DD810	3	-	-	-	-
+0x006DD850	0	-	-	-	-
 0x006DD870	3	-	-	-	-
+0x006DD8B0	0	-	-	-	-
+0x006DD8D0	0	-	-	-	-
+0x006DD8F0	0	-	-	-	-
+0x006DD910	0	5	5	0x006DD917 movzx eax, byte ptr [rsp + 0x28]	-
+0x006DD930	0	-	-	-	-
+0x006DD950	0	-	-	-	-
+0x006DD970	0	-	-	-	-
+0x006DD990	0	-	-	-	-
+0x006DD9B0	0	-	-	-	-
+0x006DD9D0	0	-	-	-	-
+0x006DD9F0	0	-	-	-	-
+0x006DDA10	0	-	-	-	-
+0x006DDA30	0	-	-	-	-
+0x006DDA50	0	-	-	-	-
+0x006DDA70	0	-	-	-	-
+0x006DDA90	0	-	-	-	-
+0x006DDAB0	0	-	-	-	-
+0x006DDAD0	0	-	-	-	-
+0x006DDAF0	0	-	-	-	-
+0x006DDB10	0	-	-	-	-
 0x006DDB30	4	-	-	-	-
+0x006DDB70	0	-	-	-	-
+0x006DDB90	0	-	-	-	-
+0x006DDBB0	0	-	-	-	-
+0x006DDBD0	0	-	-	-	-
+0x006DDBF0	0	-	-	-	-
+0x006DDC10	0	-	-	-	-
+0x006DDC30	0	-	-	-	-
+0x006DDC50	0	-	-	-	-
+0x006DDC70	2	-	-	-	-
+0x006DDC90	2	-	-	-	-
+0x006DDCB0	0	-	-	-	-
+0x006DDCD0	0	-	-	-	-
+0x006DDCF0	0	-	-	-	-
+0x006DDD10	0	-	-	-	-
+0x006DDD30	0	-	-	-	-
+0x006DDD50	0	-	-	-	-
+0x006DDD70	0	-	-	-	-
+0x006DDD90	0	-	-	-	-
+0x006DDDB0	0	-	-	-	-
+0x006DDDD0	0	-	-	-	-
+0x006DDDF0	0	-	-	-	-
+0x006DDE10	0	-	-	-	-
+0x006DDE30	0	-	-	-	-
+0x006DDE50	0	-	-	-	-
+0x006DDE70	0	-	-	-	-
+0x006DDE90	0	-	-	-	-
+0x006DDEB0	0	-	-	-	-
+0x006DDED0	0	-	-	-	-
+0x006DDEF0	0	-	-	-	-
+0x006DDF10	0	-	-	-	-
+0x006DDF30	0	-	-	-	-
+0x006DDF50	0	-	-	-	-
+0x006DDF70	0	-	-	-	-
+0x006DDF90	0	-	-	-	-
+0x006DDFB0	0	-	-	-	-
+0x006DDFD0	0	-	-	-	-
+0x006DDFF0	0	-	-	-	-
+0x006DE010	0	-	-	-	-
+0x006DE030	0	-	-	-	-
+0x006DE050	0	-	-	-	-
+0x006DE070	0	-	-	-	-
+0x006DE090	0	-	-	-	-
+0x006DE0B0	0	-	-	-	-
+0x006DE0D0	0	-	-	-	-
+0x006DE0F0	0	-	-	-	-
 0x006DE110	2	-	-	-	-
+0x006DE140	0	-	-	-	-
+0x006DE160	0	-	-	-	-
+0x006DE180	0	-	-	-	-
+0x006DE1A0	0	-	-	-	-
+0x006DE1C0	0	-	-	-	-
+0x006DE1E0	0	-	-	-	-
+0x006DE200	0	-	-	-	-
+0x006DE220	0	-	-	-	-
+0x006DE240	0	6	6	0x006DE240 movzx eax, byte ptr [rsp + 0x30]	-
+0x006DE260	0	-	-	-	-
+0x006DE280	0	-	-	-	-
+0x006DE2A0	0	-	-	-	-
+0x006DE2C0	0	-	-	-	-
+0x006DE2E0	0	-	-	-	-
+0x006DE300	0	6	6	0x006DE300 movzx eax, byte ptr [rsp + 0x30]	-
+0x006DE320	0	-	-	-	-
+0x006DE340	0	-	-	-	-
+0x006DE360	0	6	6	0x006DE360 movzx eax, byte ptr [rsp + 0x30]	-
+0x006DE380	0	7	7	0x006DE380 movzx eax, byte ptr [rsp + 0x38]	-
+0x006DE3A0	0	-	-	-	-
+0x006DE3C0	0	-	-	-	-
+0x006DE3E0	0	-	-	-	-
+0x006DE400	0	-	-	-	-
+0x006DE420	0	-	-	-	-
+0x006DE440	0	-	-	-	-
+0x006DE460	0	-	-	-	-
+0x006DE480	0	-	-	-	-
+0x006DE4A0	0	-	-	-	-
+0x006DE4C0	0	-	-	-	-
+0x006DE4E0	0	-	-	-	-
+0x006DE500	0	-	-	-	-
+0x006DE520	0	-	-	-	-
+0x006DE540	2	-	-	-	-
+0x006DE560	0	-	-	-	-
+0x006DE580	2	-	-	-	-
+0x006DE5B0	0	-	-	-	-
+0x006DE5D0	0	-	-	-	-
+0x006DE5F0	0	-	-	-	-
+0x006DE610	0	-	-	-	-
+0x006DE630	0	-	-	-	-
+0x006DE650	0	-	-	-	-
+0x006DE670	0	-	-	-	-
+0x006DE690	0	-	-	-	-
+0x006DE6B0	0	-	-	-	-
+0x006DE6D0	0	-	-	-	-
+0x006DE6F0	0	-	-	-	-
+0x006DE710	0	-	-	-	-
+0x006DE730	0	-	-	-	-
 0x006DE750	1	-	-	-	-
 0x006DE780	1	-	-	-	-
 0x006DE950	4	5	5	0x006DEA02 mov rax, qword ptr [rsp + 0x80]	-
@@ -25736,19 +26268,34 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006DEEE0	2	-	-	-	-
 0x006DEF20	0	-	-	-	-
 0x006DEF30	2	-	-	-	-
+0x006DEFD0	0	-	-	-	-
+0x006DEFF0	0	-	-	-	-
 0x006DF010	1	-	-	-	-
+0x006DF040	1	-	-	-	-
 0x006DF060	4	-	-	-	-
 0x006DF140	4	-	-	-	-
 0x006DF1B0	3	-	-	-	-
 0x006DF210	3	-	-	-	-
+0x006DF270	0	-	-	-	-
+0x006DF280	0	-	-	-	-
 0x006DF290	2	-	-	-	-
 0x006DF2C0	4	5,6	6	0x006DF307 mov rcx, qword ptr [rsp + 0xa8]	-
 0x006DF350	4	5,6,7	7	0x006DF367 mov rcx, qword ptr [rsp + 0x80]	-
+0x006DF3A0	1	-	-	-	-
+0x006DF3B0	0	-	-	-	-
 0x006DF3D0	0	-	-	-	-
 0x006DF410	0	-	-	-	-
 0x006DF420	0	-	-	-	-
 0x006DF440	0	-	-	-	-
+0x006DF460	0	-	-	-	-
 0x006DF480	4	-	-	-	-
+0x006DF510	0	-	-	-	-
+0x006DF520	0	-	-	-	-
+0x006DF550	0	-	-	-	-
+0x006DF570	0	-	-	-	-
+0x006DF5A0	0	-	-	-	-
+0x006DF5C0	0	-	-	-	-
+0x006DF5F0	0	-	-	-	-
 0x006DF610	4	-	-	-	-
 0x006DF670	4	5,6,7,8,9,10,11	11	0x006DF72C mov rax, qword ptr [rsp + 0xc0]	-
 0x006DF860	4	5,6,7,8,9,10,11	11	0x006DF991 mov rax, qword ptr [rbp + 0x90]	-
@@ -25806,9 +26353,11 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006E1010	0	-	-	-	-
 0x006E1040	0	-	-	-	-
 0x006E1070	1	-	-	-	-
+0x006E10A0	1	-	-	-	-
 0x006E10B0	2	-	-	-	-
 0x006E10F0	2	-	-	-	-
 0x006E1130	1	-	-	-	-
+0x006E1170	3	-	-	-	-
 0x006E11B0	2	-	-	-	-
 0x006E12A0	2	-	-	-	-
 0x006E12F0	3	-	-	-	-
@@ -25821,13 +26370,39 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006E1830	3	-	-	-	-
 0x006E18D0	2	-	-	-	-
 0x006E1910	1	-	-	-	-
+0x006E19A0	1	-	-	-	-
 0x006E19C0	2	-	-	-	-
 0x006E1AB0	2	-	-	-	-
 0x006E1AE0	4	5,6,7	7	0x006E1C3E movss xmm9, dword ptr [rbp + 0x7f]	-
 0x006E1F10	2	5,6,7	7	0x006E1F1E movss xmm0, dword ptr [rsp + 0x80]	-
+0x006E1F60	1	-	-	-	-
+0x006E1FC0	1	-	-	-	-
+0x006E2020	1	-	-	-	-
+0x006E2080	1	-	-	-	-
+0x006E20E0	1	-	-	-	-
+0x006E2140	1	-	-	-	-
+0x006E21A0	1	-	-	-	-
+0x006E21F0	1	-	-	-	-
+0x006E2240	1	-	-	-	-
+0x006E22A0	1	-	-	-	-
+0x006E2300	1	-	-	-	-
+0x006E2360	1	-	-	-	-
+0x006E23C0	1	-	-	-	-
+0x006E2420	1	-	-	-	-
+0x006E2480	1	-	-	-	-
+0x006E24E0	1	-	-	-	-
+0x006E2540	1	-	-	-	-
+0x006E25A0	1	-	-	-	-
+0x006E2600	1	-	-	-	-
 0x006E2660	1	-	-	-	-
 0x006E26C0	1	-	-	-	-
 0x006E2860	1	-	-	-	-
+0x006E29F0	1	-	-	-	-
+0x006E2A50	1	-	-	-	-
+0x006E2AB0	1	-	-	-	-
+0x006E2B10	1	-	-	-	-
+0x006E2B70	1	-	-	-	-
+0x006E2BD0	1	-	-	-	-
 0x006E2C30	2	-	-	-	-
 0x006E3000	2	-	-	-	-
 0x006E33F0	4	5	5	0x006E344C mov rax, qword ptr [rbp + 0xa0]	-
@@ -25853,6 +26428,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006E5130	3	-	-	-	-
 0x006E5440	2	-	-	-	-
 0x006E54D0	4	5	5	0x006E54D4 cmp byte ptr [rsp + 0x80], 0	-
+0x006E5610	2	-	-	-	-
 0x006E5670	4	-	-	-	-
 0x006E5700	4	5	5	0x006E5713 movss xmm7, dword ptr [rsp + 0x50]	-
 0x006E57D0	4	5	5	0x006E5897 movss xmm0, dword ptr [rsp + 0x140]	-
@@ -25894,6 +26470,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006EEB50	4	5,6	6	0x006EEBFB movss xmm9, dword ptr [rbp + 0x88]	-
 0x006EF030	4	5,6	6	0x006EF0DC movss xmm9, dword ptr [rbp + 0xb8]	-
 0x006EF480	3	-	-	-	-
+0x006EF670	3	-	-	-	-
 0x006EF6A0	4	5,6	6	0x006EF6A9 mov eax, dword ptr [rbp + 0x38]	-
 0x006EFA50	4	5,6	6	0x006EFA5E mov eax, dword ptr [rbp + 0x7f]	-
 0x006F0070	4	5,6,7	7	0x006F0117 mov rax, qword ptr [rbp + 0x70]	-
@@ -25905,9 +26482,21 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006F0FA0	2	-	-	-	-
 0x006F1070	3	-	-	-	-
 0x006F1270	0	-	-	-	-
+0x006F1500	0	-	-	-	-
+0x006F1510	1	-	-	-	-
 0x006F1550	1	-	-	-	-
+0x006F1590	1	-	-	-	-
+0x006F15D0	2	-	-	-	-
+0x006F1610	1	-	-	-	-
 0x006F1650	1	-	-	-	-
+0x006F16A0	1	-	-	-	-
+0x006F16C0	1	-	-	-	-
 0x006F16E0	1	-	-	-	-
+0x006F1730	1	-	-	-	-
+0x006F1770	1	-	-	-	-
+0x006F17C0	3	-	-	-	-
+0x006F1830	0	-	-	-	-
+0x006F1840	0	-	-	-	-
 0x006F1850	0	-	-	-	-
 0x006F1880	0	-	-	-	-
 0x006F18B0	0	-	-	-	-
@@ -25916,11 +26505,20 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006F1940	0	-	-	-	-
 0x006F1970	0	-	-	-	-
 0x006F19A0	0	-	-	-	-
+0x006F19D0	1	-	-	-	-
+0x006F1A30	1	-	-	-	-
 0x006F1A90	1	-	-	-	-
 0x006F1B00	1	-	-	-	-
 0x006F1C00	4	-	-	-	-
 0x006F1CD0	1	-	-	-	-
+0x006F1D10	1	-	-	-	-
 0x006F1D40	1	-	-	-	-
+0x006F1D80	1	-	-	-	-
+0x006F1D90	1	-	-	-	-
+0x006F1DA0	1	-	-	-	-
+0x006F1DC0	1	-	-	-	-
+0x006F1DE0	0	-	-	-	-
+0x006F1DF0	0	-	-	-	-
 0x006F1E00	4	5,6,7,8	8	0x006F1F27 mov rax, qword ptr [rsp + 0xa8]	-
 0x006F1F60	4	5,6,7	7	0x006F220C mov rax, qword ptr [rbp + 0x7f]	-
 0x006F2240	4	5,6,7	7	0x006F234D mov rax, qword ptr [rsp + 0xa0]	-
@@ -25930,6 +26528,11 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006F2560	2	-	-	-	-
 0x006F2690	4	5,6	6	0x006F26E6 cmp byte ptr [rsp + 0xa8], bpl	-
 0x006F2850	4	-	-	-	-
+0x006F2A30	0	-	-	-	-
+0x006F2A40	1	-	-	-	-
+0x006F2A60	1	-	-	-	-
+0x006F2A90	1	-	-	-	-
+0x006F2AC0	1	-	-	-	-
 0x006F2AF0	2	-	-	-	-
 0x006F2CB0	4	5,6,7,8,9,10,11	11	0x006F32B6 movss xmm0, dword ptr [rbp + 0x160]	-
 0x006F35B0	2	-	-	-	-
@@ -25956,15 +26559,33 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006FC760	1	-	-	-	-
 0x006FD070	1	-	-	-	-
 0x006FD110	1	-	-	-	-
+0x006FD4B0	1	-	-	-	-
+0x006FD500	1	-	-	-	-
+0x006FD560	1	-	-	-	-
 0x006FD580	1	-	-	-	-
+0x006FD650	1	-	-	-	-
+0x006FD6B0	1	-	-	-	-
+0x006FD720	1	-	-	-	-
 0x006FD760	1	-	-	-	-
+0x006FDCF0	1	-	-	-	-
 0x006FDD10	1	-	-	-	-
+0x006FDEE0	1	-	-	-	-
+0x006FDF00	1	-	-	-	-
+0x006FDF60	1	-	-	-	-
+0x006FDFA0	1	-	-	-	-
+0x006FE000	1	-	-	-	-
+0x006FE030	1	-	-	-	-
+0x006FE070	1	-	-	-	-
 0x006FE080	2	-	-	-	-
+0x006FE160	3	-	-	-	-
 0x006FE1B0	4	5	5	0x006FE1C6 cmp byte ptr [rsp + 0x90], 0	-
 0x006FE2A0	4	5,6	6	0x006FE2A4 movzx eax, byte ptr [rsp + 0x48]	-
 0x006FE380	4	5	5	0x006FE420 movzx edx, byte ptr [rsp + 0xb0]	-
+0x006FE490	2	-	-	-	-
 0x006FE4C0	1	-	-	-	-
+0x006FE580	0	-	-	-	-
 0x006FE590	1	-	-	-	-
+0x006FE5E0	1	-	-	-	-
 0x006FE620	4	5	5	0x006FE627 cmp byte ptr [rsp + 0x90], 0	-
 0x006FE7A0	1	-	-	-	-
 0x006FE7F0	4	5,6,7,8,9	9	0x006FEC90 mov rax, qword ptr [rbp + 0x120]	-
@@ -25972,7 +26593,12 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006FEE80	2	-	-	-	-
 0x006FEEC0	2	-	-	-	-
 0x006FEEF0	2	-	-	-	-
+0x006FEF20	4	5	5	0x006FEF20 movss xmm0, dword ptr [rsp + 0x28]	-
+0x006FEF60	1	-	-	-	-
 0x006FEF70	2	-	-	-	-
+0x006FEFC0	4	-	-	-	-
+0x006FF000	1	-	-	-	-
+0x006FF010	2	-	-	-	-
 0x006FF050	1	-	-	-	-
 0x006FF5D0	1	-	-	-	-
 0x006FF840	1	-	-	-	-
@@ -25984,6 +26610,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00706690	2	-	-	-	-
 0x00706760	2	-	-	-	-
 0x007067E0	1	-	-	-	-
+0x00706840	1	-	-	-	-
+0x00706890	1	-	-	-	-
 0x007068C0	2	-	-	-	-
 0x00706900	2	-	-	-	-
 0x00706940	2	-	-	-	-
@@ -25994,31 +26622,69 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00706CD0	4	5,6	6	0x00706D28 movss xmm1, dword ptr [rsp + 0x78]	-
 0x00706D90	4	-	-	-	-
 0x00706E40	4	5,6	6	0x00706E98 movss xmm1, dword ptr [rsp + 0x78]	-
+0x00706F00	1	-	-	-	-
+0x00706F10	1	-	-	-	-
+0x00706F20	1	-	-	-	-
+0x00706F30	1	-	-	-	-
+0x00706F40	1	-	-	-	-
+0x00706F50	1	-	-	-	-
 0x00706F60	3	-	-	-	-
 0x007070B0	3	-	-	-	-
 0x00707220	3	-	-	-	-
 0x00707370	3	-	-	-	-
+0x007074E0	2	-	-	-	-
 0x00707500	2	-	-	-	-
 0x00707560	4	5	5	0x00707564 movss xmm3, dword ptr [rsp + 0x60]	-
+0x00707600	2	-	-	-	-
+0x00707610	2	-	-	-	-
 0x00707670	3	-	-	-	-
+0x00707740	3	-	-	-	-
+0x007077D0	2	-	-	-	-
+0x00707810	2	-	-	-	-
+0x00707840	2	-	-	-	-
+0x00707860	2	-	-	-	-
 0x00707880	2	-	-	-	-
+0x00707930	1	-	-	-	-
 0x00707950	4	5,6,7,8,9	9	0x00707A18 movss xmm0, dword ptr [rsp + 0x48]	-
 0x00707A40	4	5,6	6	0x00707ABB mov rax, qword ptr [rsp + 0x30]	-
+0x00707AE0	3	-	-	-	-
+0x00707B10	2	-	-	-	-
 0x00707B40	3	-	-	-	-
 0x00707C10	4	5,6,7,8,9,10	10	0x00707C48 movss xmm1, dword ptr [rsp + 0x68]	-
 0x00707DA0	4	5,6,7	7	0x00707DE6 mov rbx, qword ptr [rsp + 0x40]	-
+0x00707ED0	4	-	-	-	-
 0x00707F70	3	-	-	-	-
+0x00708010	2	-	-	-	-
+0x00708030	1	-	-	-	-
+0x00708050	1	-	-	-	-
+0x00708070	1	-	-	-	-
+0x00708090	2	-	-	-	-
+0x007080B0	1	-	-	-	-
+0x007080D0	2	-	-	-	-
 0x00708110	2	-	-	-	-
+0x00708270	2	-	-	-	-
+0x00708350	2	-	-	-	-
 0x007083B0	2	-	-	-	-
 0x00708470	4	5,6,7	7	0x00708470 movss xmm3, dword ptr [rsp + 0x38]	-
 0x007084E0	4	-	-	-	-
 0x00708540	4	-	-	-	-
+0x007085A0	4	5	5	0x007085A0 movss xmm4, dword ptr [rsp + 0x28]	-
+0x00708600	4	5	5	0x00708600 movss xmm0, dword ptr [rsp + 0x28]	-
+0x007086F0	2	-	-	-	-
 0x00708710	2	-	-	-	-
 0x00708740	2	-	-	-	-
+0x00708770	2	-	-	-	-
 0x007087D0	4	-	-	-	-
+0x00708830	4	5,6,7	7	0x00708851 movss xmm0, dword ptr [rsp + 0x38]	-
+0x007088B0	4	5,6,7	7	0x007088D1 movss xmm0, dword ptr [rsp + 0x38]	-
+0x00708930	2	-	-	-	-
+0x00708960	1	-	-	-	-
 0x00708980	2	-	-	-	-
 0x007089E0	3	-	-	-	-
+0x00708A10	1	-	-	-	-
 0x00708A30	2	-	-	-	-
+0x00708A60	2	-	-	-	-
+0x00708A90	2	-	-	-	-
 0x00708AC0	4	-	-	-	-
 0x00708BA0	2	-	-	-	-
 0x00708C00	2	-	-	-	-
@@ -26063,35 +26729,78 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00709B60	3	-	-	-	-
 0x00709BD0	1	-	-	-	-
 0x00709C20	1	-	-	-	-
+0x00709C70	1	-	-	-	-
+0x00709C80	1	-	-	-	-
 0x00709C90	2	-	-	-	-
+0x00709D00	1	-	-	-	-
 0x00709D10	2	-	-	-	-
+0x00709D80	1	-	-	-	-
+0x00709D90	4	5,6	6	0x00709DA0 movss xmm1, dword ptr [rsp + 0x30]	-
+0x00709DD0	4	5,6,7,8,9,10,11,12	12	0x00709E12 movss xmm0, dword ptr [rsp + 0x60]	-
+0x00709E60	3	-	-	-	-
+0x00709E90	2	-	-	-	-
+0x00709EB0	4	5,6	6	0x00709EC0 movss xmm1, dword ptr [rsp + 0x30]	-
+0x00709F00	3	-	-	-	-
+0x00709F20	3	-	-	-	-
 0x00709F40	3	-	-	-	-
 0x00709FB0	4	5,6	6	0x00709FD3 mov rax, qword ptr [rsp + 0x30]	-
+0x0070A000	4	5,6,7	7	0x0070A004 movzx eax, byte ptr [rsp + 0x38]	-
 0x0070A060	2	-	-	-	-
+0x0070A0D0	4	-	-	-	-
 0x0070A0F0	2	-	-	-	-
+0x0070A160	3	-	-	-	-
+0x0070A180	2	-	-	-	-
+0x0070A1B0	1	-	-	-	-
 0x0070A1F0	3	-	-	-	-
 0x0070A260	4	-	-	-	-
+0x0070A310	3	-	-	-	-
+0x0070A330	2	-	-	-	-
 0x0070A350	2	-	-	-	-
+0x0070A3D0	4	-	-	-	-
 0x0070A410	2	-	-	-	-
 0x0070A480	2	-	-	-	-
+0x0070A500	2	-	-	-	-
 0x0070A510	4	5,6	6	0x0070A54D movss xmm2, dword ptr [rsp + 0x30]	-
+0x0070A590	4	-	-	-	-
+0x0070A5D0	3	-	-	-	-
+0x0070A5F0	4	-	-	-	-
 0x0070A620	4	5,6	6	0x0070A64E movzx eax, byte ptr [rsp + 0x30]	-
 0x0070A690	4	5,6,7,8,9	9	0x0070A76D movzx eax, byte ptr [rsp + 0x90]	-
+0x0070A7D0	3	-	-	-	-
 0x0070A7F0	4	5,6,7	7	0x0070A807 mov rdx, qword ptr [rsp + 0xa0]	-
 0x0070A950	4	5,6,7,8,9,10	10	0x0070AA28 mov rax, qword ptr [rsp + 0x98]	-
 0x0070AA80	2	-	-	-	-
+0x0070AAF0	4	5,6,7,8	8	0x0070AAF6 mov rax, qword ptr [rsp + 0x40]	-
+0x0070AB50	4	5	5	0x0070AB50 mov eax, dword ptr [rsp + 0x28]	-
 0x0070AB80	2	-	-	-	-
 0x0070ABF0	4	5,6	6	0x0070ABFE movss xmm1, dword ptr [rsp + 0x30]	-
 0x0070ACB0	2	-	-	-	-
+0x0070ACF0	2	-	-	-	-
+0x0070AD00	2	-	-	-	-
+0x0070AD10	4	-	-	-	-
+0x0070AD30	2	-	-	-	-
+0x0070AD60	3	-	-	-	-
+0x0070ADC0	3	-	-	-	-
 0x0070AE10	2	-	-	-	-
 0x0070AE50	2	-	-	-	-
 0x0070AE90	4	5	5	0x0070AE94 movss xmm0, dword ptr [rsp + 0x40]	-
 0x0070AED0	4	5,6,7,8,9,10	10	0x0070AF0A movss xmm1, dword ptr [rsp + 0x50]	-
+0x0070AF70	2	-	-	-	-
+0x0070AF80	2	-	-	-	-
 0x0070AF90	2	-	-	-	-
+0x0070B000	4	-	-	-	-
+0x0070B030	1	-	-	-	-
+0x0070B050	2	-	-	-	-
 0x0070B070	3	-	-	-	-
+0x0070B120	1	-	-	-	-
+0x0070B130	1	-	-	-	-
 0x0070B150	1	-	-	-	-
+0x0070B240	2	-	-	-	-
+0x0070B260	1	-	-	-	-
 0x0070B2A0	2	-	-	-	-
+0x0070B350	2	-	-	-	-
 0x0070B390	4	5,6	6	0x0070B3FD movss xmm0, dword ptr [rsp + 0x30]	-
+0x0070B440	4	5,6,7,8	8	0x0070B467 movss xmm0, dword ptr [rsp + 0x40]	-
 0x0070B4B0	3	-	-	-	-
 0x0070B500	4	5,6,7,8,9	9	0x0070B5EE movzx eax, byte ptr [rsp + 0x70]	-
 0x0070B610	4	5,6,7,8	8	0x0070B6D7 movzx eax, byte ptr [rsp + 0x68]	-
@@ -26100,6 +26809,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0070B990	0	-	-	-	-
 0x0070BA00	2	-	-	-	-
 0x0070BB00	3	-	-	-	-
+0x0070BD60	2	6	6	0x0070BD60 movzx eax, byte ptr [rsp + 0x30]	-
 0x0070BD80	4	5,6	6	0x0070BFB2 movzx eax, byte ptr [rsp + 0xc8]	-
 0x0070C050	4	5,6,7	7	0x0070C321 movzx eax, byte ptr [rsp + 0xc0]	-
 0x0070C3C0	4	5,6,7	7	0x0070C3EF movzx eax, byte ptr [rsp + 0x80]	-
@@ -26112,6 +26822,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0070D020	4	5,6	6	0x0070D053 movzx eax, byte ptr [rsp + 0x30]	-
 0x0070D090	4	5,6	6	0x0070D114 cmp byte ptr [rsp + 0x68], 0	-
 0x0070D190	4	5	5	0x0070D1AF movss xmm0, dword ptr [rsp + 0x28]	-
+0x0070D1E0	2	-	-	-	-
+0x0070D210	2	-	-	-	-
 0x0070D240	2	-	-	-	-
 0x0070D270	2	5,6,7	7	0x0070D2D9 mov eax, dword ptr [rsp + 0x80]	-
 0x0070D340	3	-	-	-	-
@@ -26126,14 +26838,22 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0070DA60	4	5,6,7,8	8	0x0070DB6B mov rax, qword ptr [rsp + 0xa8]	-
 0x0070DBA0	3	-	-	-	-
 0x0070DC10	3	-	-	-	-
+0x0070DC80	2	-	-	-	-
 0x0070DC90	4	-	-	-	-
 0x0070DD30	2	-	-	-	-
 0x0070DD40	2	5	5	0x0070DDA6 mov eax, dword ptr [rsp + 0x70]	-
+0x0070DDE0	4	5	5	0x0070DDEB movss xmm0, dword ptr [rsp + 0x28]	-
+0x0070DE20	2	-	-	-	-
+0x0070DE30	2	-	-	-	-
 0x0070DE40	2	5	5	0x0070DEA6 mov eax, dword ptr [rsp + 0x70]	-
+0x0070DEE0	2	-	-	-	-
+0x0070DF30	2	-	-	-	-
+0x0070DF80	2	-	-	-	-
 0x0070DFD0	4	5	5	0x0070E0A2 mov rdi, qword ptr [rsp + 0x90]	-
 0x0070E1B0	4	5,6	6	0x0070E488 mov edx, dword ptr [rsp + 0x138]	-
 0x0070E520	2	-	-	-	-
 0x0070E600	2	-	-	-	-
+0x0070E760	1	-	-	-	-
 0x0070E7A0	2	-	-	-	-
 0x0070E860	4	-	-	-	-
 0x0070E9D0	3	-	-	-	-
@@ -26152,6 +26872,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0070F540	2	-	-	-	-
 0x0070F5D0	2	-	-	-	-
 0x0070F670	3	-	-	-	-
+0x0070F6E0	1	-	-	-	-
+0x0070F750	2	-	-	-	-
+0x0070F790	2	-	-	-	-
 0x0070F7D0	2	-	-	-	-
 0x0070F800	1	-	-	-	-
 0x0070F840	1	-	-	-	-
@@ -26170,6 +26893,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0070FE00	2	-	-	-	-
 0x0070FE50	4	5	5	0x0070FE62 movss xmm6, dword ptr [rsp + 0xe0]	-
 0x0070FF10	2	-	-	-	-
+0x00710000	3	-	-	-	-
+0x00710050	3	-	-	-	-
 0x007100A0	3	-	-	-	-
 0x007100E0	2	-	-	-	-
 0x00710130	2	-	-	-	-
@@ -26204,22 +26929,76 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00710FC0	4	-	-	-	-
 0x007110C0	4	-	-	-	-
 0x007111C0	3	-	-	-	-
+0x00711230	1	-	-	-	-
+0x00711250	1	-	-	-	-
+0x00711270	1	-	-	-	-
+0x00711290	1	-	-	-	-
+0x007112B0	1	-	-	-	-
+0x007112D0	1	-	-	-	-
 0x007112F0	1	-	-	-	-
 0x00711350	2	-	-	-	-
 0x00711410	2	-	-	-	-
 0x00711480	1	-	-	-	-
+0x007114E0	1	-	-	-	-
 0x007114F0	4	5,6,7	7	0x00711602 movss xmm1, dword ptr [rsp + 0x70]	-
 0x007116A0	4	5,6,7,8,9	9	0x00711798 movss xmm0, dword ptr [rsp + 0xa0]	-
+0x007117F0	2	-	-	-	-
 0x00711820	3	-	-	-	-
+0x00711860	2	-	-	-	-
 0x00711890	1	-	-	-	-
+0x007118C0	2	-	-	-	-
+0x007118E0	3	-	-	-	-
+0x00711910	3	-	-	-	-
+0x00711950	2	-	-	-	-
+0x00711990	1	-	-	-	-
+0x007119B0	2	-	-	-	-
+0x007119E0	2	-	-	-	-
+0x00711A30	2	-	-	-	-
+0x00711A50	2	-	-	-	-
+0x00711A70	2	-	-	-	-
+0x00711A90	1	-	-	-	-
+0x00711AB0	2	-	-	-	-
+0x00711AD0	1	-	-	-	-
+0x00711AF0	2	-	-	-	-
+0x00711B30	1	-	-	-	-
 0x00711B50	0	-	-	-	-
+0x00711BA0	1	-	-	-	-
+0x00711BC0	1	-	-	-	-
+0x00711BD0	1	-	-	-	-
 0x00711C10	1	-	-	-	-
+0x00711C60	1	-	-	-	-
+0x00711C80	1	-	-	-	-
+0x00711CC0	1	-	-	-	-
+0x00711D00	1	-	-	-	-
+0x00711D40	1	-	-	-	-
+0x00711D80	1	-	-	-	-
+0x00711D90	1	-	-	-	-
+0x00711DA0	1	-	-	-	-
+0x00711DB0	1	-	-	-	-
+0x00711DC0	1	-	-	-	-
+0x00711DE0	1	-	-	-	-
+0x00711E00	1	-	-	-	-
+0x00711E10	1	-	-	-	-
+0x00711E50	1	-	-	-	-
+0x00711E90	1	-	-	-	-
+0x00711ED0	1	-	-	-	-
+0x00711F10	1	-	-	-	-
 0x00711F50	2	-	-	-	-
 0x00711F90	2	-	-	-	-
 0x00711FD0	2	-	-	-	-
 0x00712010	2	-	-	-	-
 0x00712050	2	-	-	-	-
 0x00712090	2	-	-	-	-
+0x007120D0	0	-	-	-	-
+0x007120E0	0	-	-	-	-
+0x00712100	0	-	-	-	-
+0x00712120	0	-	-	-	-
+0x00712130	4	5,6	6	0x00712138 mov rax, qword ptr [rsp + 0x30]	-
+0x00712180	4	-	-	-	-
+0x007122F0	0	-	-	-	-
+0x00712300	3	-	-	-	-
+0x00712320	2	-	-	-	-
+0x00712360	1	-	-	-	-
 0x00712380	2	-	-	-	-
 0x007124B0	1	-	-	-	-
 0x007125B0	4	5,6,7	7	0x0071281D movzx ebx, byte ptr [rbp + 0x7f]	-
@@ -26296,6 +27075,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00715BC0	2	-	-	-	-
 0x00715C70	1	-	-	-	-
 0x00715CC0	2	-	-	-	-
+0x00715D40	3	-	-	-	-
 0x00715D80	3	-	-	-	-
 0x00716020	1	-	-	-	-
 0x00716090	1	-	-	-	-
@@ -26307,7 +27087,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007167A0	4	-	-	-	-
 0x00716E30	3	-	-	-	-
 0x00716F10	4	-	-	-	-
+0x00716FA0	3	-	-	-	-
 0x00716FC0	4	-	-	-	-
+0x00717010	2	-	-	-	-
 0x00717030	3	-	-	-	-
 0x00717060	2	-	-	-	-
 0x00717090	3	-	-	-	-
@@ -26318,6 +27100,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00717510	4	-	-	-	-
 0x00717620	3	-	-	-	-
 0x00717650	4	-	-	-	-
+0x00717730	3	-	-	-	-
 0x00717760	4	5	5	0x007177A4 cmp byte ptr [rbp + 0x7f], 0	-
 0x007180C0	2	-	-	-	-
 0x007181B0	1	-	-	-	-
@@ -26328,16 +27111,39 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007184D0	3	-	-	-	-
 0x007185D0	3	-	-	-	-
 0x00718610	3	-	-	-	-
+0x00718760	2	-	-	-	-
+0x007187A0	2	-	-	-	-
 0x007187E0	2	-	-	-	-
+0x00718820	2	-	-	-	-
+0x00718860	2	-	-	-	-
+0x00718880	2	-	-	-	-
+0x007188B0	2	-	-	-	-
+0x007188F0	2	-	-	-	-
+0x00718930	2	-	-	-	-
+0x00718950	2	-	-	-	-
+0x00718980	2	-	-	-	-
+0x007189C0	2	-	-	-	-
+0x00718A00	2	-	-	-	-
+0x00718A40	2	-	-	-	-
+0x00718A80	2	-	-	-	-
+0x00718AC0	2	-	-	-	-
+0x00718B00	2	-	-	-	-
+0x00718B40	2	-	-	-	-
 0x00718B80	2	-	-	-	-
 0x00718C50	2	-	-	-	-
 0x00718D20	2	-	-	-	-
 0x00718DF0	2	-	-	-	-
+0x00718EC0	2	-	-	-	-
+0x00718F00	2	-	-	-	-
+0x00718F40	2	-	-	-	-
+0x00718F80	2	-	-	-	-
 0x00718FC0	2	-	-	-	-
 0x00719090	2	-	-	-	-
 0x00719160	2	-	-	-	-
 0x00719230	2	-	-	-	-
 0x00719300	2	-	-	-	-
+0x00719360	0	-	-	-	-
+0x00719370	0	-	-	-	-
 0x00719380	4	-	-	-	-
 0x00719460	4	-	-	-	-
 0x00719560	4	-	-	-	-
@@ -26369,12 +27175,16 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0071B180	1	-	-	-	-
 0x0071B1B0	1	-	-	-	-
 0x0071B3C0	1	-	-	-	-
+0x0071B4A0	2	-	-	-	-
 0x0071B4C0	2	-	-	-	-
 0x0071B4E0	3	-	-	-	-
 0x0071B550	1	-	-	-	-
 0x0071B670	2	-	-	-	-
 0x0071B740	1	-	-	-	-
+0x0071B780	1	-	-	-	-
 0x0071B7C0	1	-	-	-	-
+0x0071B800	1	-	-	-	-
+0x0071B850	2	-	-	-	-
 0x0071B8C0	2	-	-	-	-
 0x0071B9C0	4	-	-	-	-
 0x0071B9E0	1	-	-	-	-
@@ -26383,15 +27193,21 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0071BA60	4	-	-	-	-
 0x0071BAE0	2	-	-	-	-
 0x0071BB00	2	-	-	-	-
+0x0071BB70	2	-	-	-	-
 0x0071BBA0	4	-	-	-	-
 0x0071BC30	4	5,6,7,8	8	0x0071BCB6 mov esi, dword ptr [rsp + 0xb8]	-
 0x0071BEC0	4	5,6	6	0x0071BED7 mov ebx, dword ptr [rsp + 0x30]	-
 0x0071BF50	4	5,6,7,8,9,10	10	0x0071C057 mov rdi, qword ptr [rbp + 0xb8]	-
 0x0071C550	4	5,6,7	7	0x0071C5D2 mov r10, qword ptr [rsp + 0x80]	-
+0x0071C6B0	2	-	-	-	-
 0x0071C6D0	4	5,6,7	7	0x0071C7C2 mov rax, qword ptr [rsp + 0xc0]	-
+0x0071CB30	3	-	-	-	-
+0x0071CB50	3	-	-	-	-
+0x0071CB70	4	-	-	-	-
 0x0071CB80	1	-	-	-	-
 0x0071CC30	1	-	-	-	-
 0x0071CCE0	1	-	-	-	-
+0x0071CCF0	4	-	-	-	-
 0x0071CD10	1	-	-	-	-
 0x0071CE10	0	-	-	-	-
 0x0071D170	0	-	-	-	-
@@ -26423,11 +27239,13 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0071F4B0	4	-	-	-	-
 0x0071F590	3	-	-	-	-
 0x0071F970	4	-	-	-	-
+0x0071F9D0	1	-	-	-	-
 0x0071F9F0	1	-	-	-	-
 0x0071FA10	1	-	-	-	-
 0x0071FA30	1	-	-	-	-
 0x0071FA70	1	-	-	-	-
 0x0071FA90	2	-	-	-	-
+0x0071FB90	1	-	-	-	-
 0x0071FBF0	3	7,11	11	0x0071FBFC mov rax, qword ptr [rsp + 0xa0]	-
 0x0071FD40	4	5,7,8,9,10,11,12,13,14	14	0x0071FD4F mov r14, qword ptr [rsp + 0x118]	-
 0x0071FF10	0	6	6	0x0071FF14 mov rax, qword ptr [rsp + 0x58]	-
@@ -26439,6 +27257,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00720130	1	-	-	-	-
 0x00720160	2	-	-	-	-
 0x00720220	1	-	-	-	-
+0x007202B0	1	-	-	-	-
 0x00720320	1	-	-	-	-
 0x00720C70	4	5,6,7	7	0x00720D0C mov eax, dword ptr [rsp + 0x80]	-
 0x00720D40	4	5,6,7,8	8	0x00720D4F mov eax, dword ptr [rsp + 0x88]	-
@@ -26475,12 +27294,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00723400	2	-	-	-	-
 0x00723420	2	-	-	-	-
 0x00723440	1	-	-	-	-
+0x007236F0	1	-	-	-	-
 0x00723760	3	-	-	-	-
 0x00723A90	1	-	-	-	-
 0x00723CA0	2	-	-	-	-
 0x00723FB0	2	-	-	-	-
 0x00724170	1	-	-	-	-
 0x007241E0	1	-	-	-	-
+0x007242C0	0	-	-	-	-
 0x007242D0	2	-	-	-	-
 0x00724370	2	-	-	-	-
 0x007243E0	1	-	-	-	-
@@ -26525,11 +27346,23 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00725130	0	-	-	-	-
 0x00725140	0	-	-	-	-
 0x00725150	0	-	-	-	-
+0x00725160	0	-	-	-	-
+0x00725170	0	-	-	-	-
+0x00725180	0	-	-	-	-
+0x00725190	0	-	-	-	-
+0x007251A0	0	-	-	-	-
 0x007251B0	0	-	-	-	-
 0x007251C0	0	-	-	-	-
 0x007251D0	0	-	-	-	-
+0x007251E0	0	-	-	-	-
 0x007251F0	0	-	-	-	-
+0x00725200	0	-	-	-	-
+0x00725210	0	-	-	-	-
 0x00725220	0	-	-	-	-
+0x00725230	0	-	-	-	-
+0x00725240	0	-	-	-	-
+0x00725250	0	-	-	-	-
+0x00725260	0	-	-	-	-
 0x00725270	0	-	-	-	-
 0x00725280	1	-	-	-	-
 0x007252A0	2	-	-	-	-
@@ -26581,6 +27414,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007272D0	2	-	-	-	-
 0x00727390	0	-	-	-	-
 0x007273A0	0	-	-	-	-
+0x007273B0	0	-	-	-	-
 0x007273E0	2	-	-	-	-
 0x00727410	1	-	-	-	-
 0x00727440	0	-	-	-	-
@@ -26595,6 +27429,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007279B0	2	-	-	-	-
 0x00727A50	2	-	-	-	-
 0x00727AE0	2	-	-	-	-
+0x00727B70	0	-	-	-	-
 0x00727B80	4	-	-	-	-
 0x00727CA0	4	-	-	-	-
 0x00727DF0	4	-	-	-	-
@@ -26603,10 +27438,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00728330	4	5,6	6	0x0072835A mov rax, qword ptr [rsp + 0x198]	-
 0x007288F0	4	-	-	-	-
 0x00728960	1	-	-	-	-
+0x00728980	2	-	-	-	-
 0x007289A0	3	-	-	-	-
+0x00728A60	1	-	-	-	-
 0x00728A80	2	-	-	-	-
+0x00728AB0	2	-	-	-	-
 0x00728B00	4	-	-	-	-
 0x00728BC0	2	-	-	-	-
+0x00728C60	2	-	-	-	-
 0x00728CD0	4	-	-	-	-
 0x00728DC0	4	-	-	-	-
 0x00728E30	4	-	-	-	-
@@ -26627,6 +27466,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0072A020	1	-	-	-	-
 0x0072A190	1	-	-	-	-
 0x0072A2B0	1	-	-	-	-
+0x0072A310	0	-	-	-	-
 0x0072A320	2	-	-	-	-
 0x0072D820	3	-	-	-	-
 0x0072D9C0	2	-	-	-	-
@@ -26640,11 +27480,19 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0072E940	3	-	-	-	-
 0x0072EB20	4	-	-	-	-
 0x0072EC00	4	-	-	-	-
+0x0072EE00	2	-	-	-	-
+0x0072EE20	3	-	-	-	-
 0x0072EE70	4	-	-	-	-
+0x0072EF10	1	-	-	-	-
+0x0072EF30	2	-	-	-	-
+0x0072EF50	3	-	-	-	-
 0x0072EFA0	4	-	-	-	-
+0x0072F040	1	-	-	-	-
 0x0072F060	2	-	-	-	-
+0x0072F070	2	-	-	-	-
 0x0072F0C0	2	-	-	-	-
 0x0072F300	1	-	-	-	-
+0x0072F3F0	1	-	-	-	-
 0x0072F480	4	5	5	0x0072F638 mov rax, qword ptr [rsp + 0x80]	-
 0x0072F6E0	1	-	-	-	-
 0x0072F7D0	1	-	-	-	-
@@ -26652,6 +27500,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0072F910	0	-	-	-	-
 0x0072F920	0	-	-	-	-
 0x0072F930	0	-	-	-	-
+0x0072F940	1	-	-	-	-
 0x0072F960	1	-	-	-	-
 0x0072F980	4	5,6,7	7	0x0072F98D mov r12, qword ptr [rsp + 0x58]	-
 0x0072FC20	4	5,6,7,8,9,10,11,12	12	0x0072FC7C mov r13, qword ptr [rbp + 0x3c8]	-
@@ -26832,6 +27681,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0075B470	3	-	-	-	-
 0x0075B530	3	-	-	-	-
 0x0075B5F0	2	-	-	-	-
+0x0075B6F0	1	-	-	-	-
 0x0075B710	2	-	-	-	-
 0x0075B760	4	5,6	6	0x0075B825 mov eax, dword ptr [rbp + 0x7f]	-
 0x0075BCC0	4	5,6	6	0x0075BCCE mov eax, dword ptr [rsp + 0x78]	-
@@ -26849,6 +27699,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0075D3A0	4	5,6,7,8	8	0x0075D3CC mov eax, dword ptr [rsp + 0x88]	-
 0x0075D410	4	5,6,7,8	8	0x0075D48A mov eax, dword ptr [rsp + 0x88]	-
 0x0075D4E0	4	5,6,7	7	0x0075D544 cmp byte ptr [rbp + 0x230], 0	0x0075D7F0 rdi+0x0 from -0x228 by +0x8 per pass; 0x0075D8F1 rax+0x0 from -0x1a8 by +0x10 per pass; 0x0075D970 rbx+0x0 from -0x228 by +0x8 per pass
+0x0075D9D0	2	-	-	-	-
+0x0075DA00	0	-	-	-	-
 0x0075DA10	4	5,6,7,8,9	9	0x0075DB26 mov esi, dword ptr [rsp + 0x180]	-
 0x0075DCD0	2	5,6,7	7	0x0075DCFF mov eax, dword ptr [rsp + 0x90]	-
 0x0075DD70	4	8	8	0x0075DDCF movzx eax, byte ptr [rsp + 0xa8]	-
@@ -26860,6 +27712,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0075DF70	4	5,6,7,8,9,10,11,12	12	0x0075DFC8 mov eax, dword ptr [rsp + 0x108]	-
 0x0075E050	2	-	-	-	-
 0x0075E140	1	-	-	-	-
+0x0075E1A0	0	-	-	-	-
 0x0075E1B0	2	-	-	-	-
 0x0075E230	4	5,6,7	7	0x0075E258 mov r10d, dword ptr [rsp + 0x38]	-
 0x0075E2D0	4	5,6,7,8	8	0x0075E2D4 mov eax, dword ptr [rsp + 0x98]	-
@@ -26881,15 +27734,18 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0075EE60	1	-	-	-	-
 0x0075EE80	2	-	-	-	-
 0x0075EEC0	1	-	-	-	-
+0x0075EF20	1	-	-	-	-
 0x0075EF40	1	-	-	-	-
 0x0075EF90	1	-	-	-	-
 0x0075EFE0	2	-	-	-	-
 0x0075F0F0	2	-	-	-	-
 0x0075F160	0	-	-	-	-
 0x0075F390	0	-	-	-	-
+0x0075F3D0	2	-	-	-	-
 0x0075F410	1	-	-	-	-
 0x0075F450	1	-	-	-	-
 0x0075F4B0	1	-	-	-	-
+0x0075F540	1	-	-	-	-
 0x0075F560	1	-	-	-	-
 0x0075F5B0	1	-	-	-	-
 0x0075F600	2	-	-	-	-
@@ -26904,8 +27760,20 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0075FE70	1	-	-	-	-
 0x007600A0	1	-	-	-	-
 0x007600F0	1	-	-	-	-
+0x00760140	2	-	-	-	-
+0x00760160	2	-	-	-	-
+0x00760190	2	-	-	-	-
+0x007601B0	2	-	-	-	-
+0x007601E0	1	-	-	-	-
+0x00760240	1	-	-	-	-
+0x00760290	1	-	-	-	-
+0x007602D0	1	-	-	-	-
+0x00760320	1	-	-	-	-
+0x00760340	2	-	-	-	-
+0x007603A0	1	-	-	-	-
 0x007603E0	2	-	-	-	-
 0x007604A0	1	-	-	-	-
+0x007606E0	1	-	-	-	-
 0x00760700	1	-	-	-	-
 0x007621F0	1	-	-	-	-
 0x00762750	3	-	-	-	-
@@ -26922,13 +27790,22 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00767540	1	-	-	-	-
 0x00767750	1	-	-	-	-
 0x007677B0	1	-	-	-	-
+0x00767FF0	1	-	-	-	-
 0x00768020	2	-	-	-	-
+0x007681B0	0	-	-	-	-
 0x007681C0	2	-	-	-	-
 0x00768210	2	-	-	-	-
 0x00768260	2	-	-	-	-
+0x007682F0	0	-	-	-	-
+0x00768310	2	-	-	-	-
 0x00768330	2	-	-	-	-
 0x00768390	1	-	-	-	-
+0x00768470	1	-	-	-	-
 0x007684C0	1	-	-	-	-
+0x00768530	1	-	-	-	-
+0x00768560	1	-	-	-	-
+0x00768590	1	-	-	-	-
+0x007685D0	1	-	-	-	-
 0x00768600	1	-	-	-	-
 0x00768680	1	-	-	-	-
 0x00768700	2	-	-	-	-
@@ -26954,6 +27831,11 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00769270	3	-	-	-	-
 0x007692A0	3	-	-	-	-
 0x007692D0	4	5,6,7,8,9,10,11,12	12	0x0076931A movss xmm0, dword ptr [rsp + 0x60]	-
+0x00769360	0	-	-	-	-
+0x00769370	0	-	-	-	-
+0x00769380	0	-	-	-	-
+0x00769390	0	-	-	-	-
+0x007693A0	0	-	-	-	-
 0x007693B0	1	-	-	-	-
 0x00769430	1	-	-	-	-
 0x00769470	1	-	-	-	-
@@ -26969,14 +27851,20 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00769FC0	4	5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32	32	0x0076A066 mov rax, qword ptr [rbp + 0x2b8]	-
 0x0076AB60	2	-	-	-	-
 0x0076ABA0	1	-	-	-	-
+0x0076ABE0	1	-	-	-	-
 0x0076AC50	4	-	-	-	-
 0x0076AE30	1	-	-	-	-
 0x0076B060	1	-	-	-	-
+0x0076B0E0	2	-	-	-	-
+0x0076B120	3	-	-	-	-
+0x0076B190	3	-	-	-	-
 0x0076B1E0	2	-	-	-	-
 0x0076B280	4	5,6,7,8,9	9	0x0076B2F3 mov rax, qword ptr [rsp + 0x48]	-
 0x0076B320	1	-	-	-	-
 0x0076B350	3	-	-	-	-
 0x0076B3F0	2	-	-	-	-
+0x0076B480	3	-	-	-	-
+0x0076B500	2	-	-	-	-
 0x0076B580	1	-	-	-	-
 0x0076B5B0	1	-	-	-	-
 0x0076B5E0	1	-	-	-	-
@@ -26994,25 +27882,34 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0076B9C0	2	-	-	-	-
 0x0076BA00	3	-	-	-	-
 0x0076BA40	3	-	-	-	-
+0x0076BA80	1	-	-	-	-
 0x0076BA90	4	5,6	6	0x0076BBDD cmp byte ptr [rsp + 0x68], 0	-
+0x0076BC30	4	5,6	6	0x0076BC5A cmp byte ptr [rsp + 0x30], 0	-
 0x0076BCB0	3	-	-	-	-
 0x0076BD70	3	-	-	-	-
 0x0076BE10	2	-	-	-	-
 0x0076BEE0	2	-	-	-	-
 0x0076BFA0	1	-	-	-	-
+0x0076C310	1	-	-	-	-
 0x0076C330	1	-	-	-	-
 0x0076C980	1	-	-	-	-
 0x0076CC70	1	-	-	-	-
 0x0076F400	1	-	-	-	0x00770260 rdi+0x0 from -0x108 by +0x8 per pass
 0x00770D90	4	5,6	6	0x00770DAA cmp byte ptr [rsp + 0x178], 0	-
 0x00771600	4	-	-	-	-
+0x00771920	1	-	-	-	-
+0x00771950	2	-	-	-	-
 0x007719A0	1	-	-	-	-
 0x00771A20	3	-	-	-	-
 0x00771B30	4	5,6,7,8,9,10	10	0x00771CC2 movzx r12d, byte ptr [rsp + 0x1c8]	-
 0x00772410	4	5,6,7,8	8	0x0077260A mov eax, dword ptr [rbp + 0xe8]	-
 0x007733F0	2	-	-	-	-
 0x00773480	2	-	-	-	-
+0x00773E90	0	-	-	-	-
 0x00773EA0	2	-	-	-	-
+0x007741D0	3	-	-	-	-
+0x00774200	0	-	-	-	-
+0x00774210	2	-	-	-	-
 0x00774260	4	5,6,7,8,9,10,11,12,13,14	14	0x00774A2E mulss xmm0, dword ptr [rbp + 0x188]	-
 0x00775040	2	-	-	-	-
 0x00775150	2	-	-	-	-
@@ -27039,6 +27936,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0077A380	3	-	-	-	-
 0x0077A3C0	4	-	-	-	-
 0x0077A640	3	-	-	-	-
+0x0077A670	3	-	-	-	-
 0x0077A6A0	3	-	-	-	-
 0x0077A710	2	-	-	-	-
 0x0077A7E0	4	5	5	0x0077A84B movss xmm0, dword ptr [rsp + 0x90]	-
@@ -27058,6 +27956,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0077E0B0	1	-	-	-	-
 0x0077ECA0	1	-	-	-	-
 0x0077ECE0	4	5	5	0x0077ED3C cmp byte ptr [rsp + 0x50], 0	-
+0x0077EE80	2	7	7	0x0077EE80 movzx eax, byte ptr [rsp + 0x38]	-
 0x0077EEA0	4	5,6,7	7	0x0077EFD3 cmp byte ptr [rbp + 0x70], 0	-
 0x0077F3A0	1	-	-	-	-
 0x0077F3C0	0	-	-	-	-
@@ -27071,6 +27970,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0077F8D0	1	-	-	-	-
 0x0077F930	3	-	-	-	-
 0x0077F960	2	-	-	-	-
+0x0077FA60	1	-	-	-	-
+0x0077FAC0	1	-	-	-	-
 0x0077FAE0	4	-	-	-	-
 0x0077FE20	1	-	-	-	-
 0x0077FF90	1	-	-	-	-
@@ -27093,6 +27994,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00780C40	1	-	-	-	-
 0x00780C70	1	-	-	-	-
 0x00780D90	2	-	-	-	-
+0x00780E60	1	-	-	-	-
+0x00780E90	1	-	-	-	-
 0x00780EB0	1	-	-	-	-
 0x00781080	1	-	-	-	-
 0x007810D0	2	-	-	-	-
@@ -27103,6 +28006,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00781830	4	5,6,7,8	8	0x007818E5 cmp byte ptr [rsp + 0x78], r9b	-
 0x00781920	1	-	-	-	-
 0x00781930	1	-	-	-	-
+0x00781940	1	-	-	-	-
 0x00781950	4	-	-	-	-
 0x00781990	2	-	-	-	-
 0x007819B0	1	-	-	-	-
@@ -27158,11 +28062,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00784FD0	1	-	-	-	-
 0x00785080	2	-	-	-	-
 0x007850C0	3	-	-	-	-
+0x00785110	2	-	-	-	-
+0x00785160	1	-	-	-	-
 0x007851F0	2	-	-	-	-
 0x00785230	2	-	-	-	-
 0x007852D0	2	-	-	-	-
 0x00785360	2	-	-	-	-
 0x007853F0	1	-	-	-	-
+0x007854C0	0	-	-	-	-
 0x007854D0	2	-	-	-	-
 0x00785650	3	-	-	-	-
 0x00785780	3	-	-	-	-
@@ -27215,6 +28122,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00787230	3	-	-	-	-
 0x00787270	4	5	5	0x00787290 movzx r14d, byte ptr [rsp + 0x60]	-
 0x007872F0	4	5,6,7,8,9	9	0x007873A1 mov r12d, dword ptr [rbp + 0x8f]	-
+0x007875E0	0	-	-	-	-
 0x007875F0	3	-	-	-	-
 0x007876E0	0	6	6	0x007876E0 mov eax, dword ptr [rsp + 0x30]	-
 0x00787720	1	-	-	-	-
@@ -27235,9 +28143,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00787E40	4	-	-	-	-
 0x00788250	3	-	-	-	-
 0x00788430	1	-	-	-	-
+0x007884C0	1	-	-	-	-
 0x007884E0	1	-	-	-	-
+0x00788540	1	-	-	-	-
+0x00788560	4	5,6	6	0x00788588 mov r9, qword ptr [rsp + 0x30]	-
 0x007885A0	4	5,6	6	0x00788681 mov r9, qword ptr [rsp + 0x98]	-
 0x00788720	1	-	-	-	-
+0x00788790	1	-	-	-	-
+0x007887B0	4	5,6,7	7	0x007887E4 mov r9, qword ptr [rsp + 0x38]	-
 0x00788800	4	5,6,7	7	0x007888F5 mov r9, qword ptr [rsp + 0xb0]	-
 0x007889B0	2	-	-	-	-
 0x00788A00	1	-	-	-	-
@@ -27254,12 +28167,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007890C0	1	-	-	-	-
 0x00789120	2	-	-	-	-
 0x00789160	1	-	-	-	-
+0x00789200	1	-	-	-	-
 0x00789250	1	-	-	-	-
 0x007892A0	1	-	-	-	-
 0x007892D0	1	-	-	-	-
 0x00789320	1	-	-	-	-
 0x00789370	2	-	-	-	-
 0x00789470	2	-	-	-	-
+0x007894C0	1	-	-	-	-
 0x007894E0	1	-	-	-	-
 0x00789560	1	-	-	-	-
 0x00789570	2	-	-	-	-
@@ -27313,6 +28228,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0078A100	1	-	-	-	-
 0x0078A120	2	5,7	7	0x0078A15D movzx r8d, byte ptr [rsp + 0x80]	-
 0x0078A240	4	-	-	-	-
+0x0078A390	3	-	-	-	-
 0x0078A3B0	2	-	-	-	-
 0x0078A470	2	-	-	-	-
 0x0078A4B0	1	8	8	0x0078A4B0 movzx eax, byte ptr [rsp + 0x40]	-
@@ -27337,20 +28253,29 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0078B2A0	1	-	-	-	-
 0x0078B3E0	2	-	-	-	-
 0x0078B470	1	-	-	-	-
+0x0078B4C0	2	-	-	-	-
+0x0078B520	2	-	-	-	-
 0x0078B580	3	-	-	-	-
 0x0078B5F0	1	-	-	-	-
 0x0078B690	1	-	-	-	-
 0x0078B6E0	1	-	-	-	-
 0x0078B7C0	1	-	-	-	-
+0x0078B820	1	-	-	-	-
+0x0078B840	0	-	-	-	-
+0x0078B850	2	-	-	-	-
+0x0078B880	0	-	-	-	-
 0x0078B890	1	-	-	-	-
 0x0078B8E0	2	-	-	-	-
 0x0078B940	2	-	-	-	-
+0x0078B9B0	2	-	-	-	-
 0x0078B9D0	1	-	-	-	-
 0x0078BB30	1	-	-	-	-
 0x0078BC90	2	-	-	-	-
 0x0078BD30	1	-	-	-	-
+0x0078C000	0	-	-	-	-
 0x0078C010	1	-	-	-	-
 0x0078C080	3	-	-	-	-
+0x0078C710	2	-	-	-	-
 0x0078C730	1	-	-	-	-
 0x0078D7E0	4	-	-	-	-
 0x0078D920	3	-	-	-	-
@@ -27365,11 +28290,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0078E610	3	-	-	-	-
 0x0078E690	3	-	-	-	-
 0x0078E740	2	-	-	-	-
+0x0078E7E0	0	-	-	-	-
 0x0078E7F0	4	5	5	0x0078E827 mov rdi, qword ptr [rbp + 0x7f]	-
 0x0078EA30	2	-	-	-	-
 0x0078EA70	1	-	-	-	-
+0x0078EAA0	1	-	-	-	-
 0x0078EAF0	1	-	-	-	-
 0x0078F3C0	1	-	-	-	-
+0x0078F4E0	2	-	-	-	-
 0x0078F4F0	2	-	-	-	-
 0x0078F5C0	2	-	-	-	-
 0x0078F690	2	-	-	-	-
@@ -28971,7 +29899,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007EE670	1	-	-	-	-
 0x007EE6F0	1	-	-	-	-
 0x007EE730	4	-	-	-	-
-0x007EE7F0	1	-	-	-	-
+0x007EE7C0	3	-	-	-	-
 0x007EE800	4	-	-	-	-
 0x007EE900	1	-	-	-	-
 0x007EE910	1	-	-	-	-
@@ -30638,7 +31566,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00862016	0	-	-	-	-
 0x0086201C	0	-	-	-	-
 0x00862022	0	-	-	-	-
+0x00862028	0	-	-	-	-
 0x0086202E	0	-	-	-	-
+0x00862034	0	-	-	-	-
 0x0086203A	0	-	-	-	-
 0x00862040	0	-	-	-	-
 0x00862046	0	-	-	-	-
@@ -31578,12 +32508,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00882200	2	-	-	-	-
 0x008822F0	2	-	-	-	-
 0x008824C0	2	-	-	-	-
+0x008824F0	1	-	-	-	-
 0x00882560	3	-	-	-	-
 0x00882850	1	-	-	-	-
 0x008828E0	3	-	-	-	-
 0x00882AC0	1	-	-	-	-
 0x00882B10	2	-	-	-	-
 0x00882C20	2	-	-	-	0x00882E70 rdx+0x0 from -0xffffffffe0 by +0x4 per pass
+0x008832D0	1	-	-	-	-
 0x008832F0	1	-	-	-	-
 0x00883360	1	-	-	-	-
 0x008833D0	4	5,6	6	0x0088340B mov eax, dword ptr [rsp + 0x88]	-
@@ -31592,11 +32524,13 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00883C70	4	-	-	-	-
 0x00883E50	1	-	-	-	-
 0x00883E90	2	-	-	-	-
+0x00884090	1	-	-	-	-
 0x00884100	3	-	-	-	-
 0x00884160	1	-	-	-	-
 0x00884550	2	-	-	-	-
 0x008845A0	4	5,6,7,8,9	9	0x00884626 movsxd r9, dword ptr [rbp + 0x1e0]	-
 0x00885310	4	5,6,7,8,9,10	10	0x008853B7 mov rdi, qword ptr [rbp + 0x108]	-
+0x008858B0	4	5,6,7,8	8	0x008858B0 movsxd r10, dword ptr [rsp + 0x40]	-
 0x00885930	2	-	-	-	-
 0x00885960	4	5,6,7	7	0x008859FA mov rdi, qword ptr [rsp + 0xf0]	-
 0x00885E60	3	5	5	0x00885EBC movss xmm0, dword ptr [rbp + 0x40]	-
@@ -31607,10 +32541,16 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00887330	4	5,6	6	0x0088736C subss xmm6, dword ptr [rsp + 0xa8]	-
 0x00887630	4	5,6,7	7	0x0088764C addss xmm0, dword ptr [rsp + 0x38]	-
 0x00887810	3	5	5	0x00887918 movss xmm7, dword ptr [rbp + 0x8050]	-
+0x00888650	2	-	-	-	-
+0x00888690	2	-	-	-	-
+0x00888700	2	-	-	-	-
+0x00888780	1	-	-	-	-
 0x008887B0	1	-	-	-	-
+0x008888C0	1	-	-	-	-
 0x008888F0	4	5	5	0x008889CE movd xmm6, dword ptr [rsp + 0x170]	-
 0x008892D0	1	-	-	-	-
 0x00889300	1	-	-	-	-
+0x00889330	1	-	-	-	-
 0x00889350	1	-	-	-	-
 0x00889400	3	-	-	-	-
 0x008897C0	2	-	-	-	-
@@ -31628,10 +32568,12 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0088AD40	4	5,6,7,8,9,10	10	0x0088AF6B mov rcx, qword ptr [rsp + 0x178]	-
 0x0088C6D0	4	5,6,7	7	0x0088CBC2 mov rdx, qword ptr [rsp + 0x150]	-
 0x0088D110	4	5	5	0x0088D372 mov r9, qword ptr [rsp + 0x80]	-
+0x0088D4E0	2	-	-	-	-
 0x0088D500	3	-	-	-	-
 0x0088D7A0	1	-	-	-	-
 0x0088D7F0	2	-	-	-	-
 0x0088D890	4	5,6	6	0x0088D8DE cmovne eax, dword ptr [rsp + 0x50]	-
+0x0088DB60	1	-	-	-	-
 0x0088DB70	4	-	-	-	-
 0x0088DC40	2	-	-	-	-
 0x0088DDB0	2	-	-	-	-
@@ -31660,15 +32602,19 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00891C80	2	-	-	-	-
 0x00891F40	2	-	-	-	-
 0x00892150	2	-	-	-	-
+0x008922A0	1	-	-	-	-
 0x008922D0	1	-	-	-	-
 0x008923B0	1	-	-	-	-
 0x008923E0	4	-	-	-	-
 0x00892610	2	-	-	-	-
+0x00892990	3	-	-	-	-
 0x008929C0	4	5,6,7	7	0x00892A44 mov r11, qword ptr [rsp + 0x68]	-
 0x00892C10	4	5	5	0x00892C47 mov rbp, qword ptr [rsp + 0xc0]	-
 0x008932B0	4	5,6,7	7	0x00893402 mov rax, qword ptr [rsp + 0xb0]	-
 0x008937A0	4	5,6	6	0x008937BD mov rbx, qword ptr [rsp + 0x38]	-
 0x00893860	4	5,6	6	0x00893888 mov r13, qword ptr [rsp + 0x68]	-
+0x00893A80	1	-	-	-	-
+0x00893AC0	4	5	5	0x00893AC6 mov ecx, dword ptr [rsp + 0x28]	-
 0x00893B10	2	-	-	-	-
 0x00893E80	2	-	-	-	-
 0x008942D0	2	-	-	-	-
@@ -31678,6 +32624,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00894560	4	5	5	0x0089457A mov r14d, dword ptr [rsp + 0xa0]	-
 0x00894850	4	5	5	0x00894DB0 mov r14, qword ptr [rsp + 0x220]	-
 0x00894EE0	4	-	-	-	-
+0x00895570	2	-	-	-	-
 0x008955A0	4	5,6,7,8	8	0x008956FD movss xmm14, dword ptr [rsp + 0x128]	-
 0x008958B0	0	-	-	-	-
 0x008958C0	1	-	-	-	-

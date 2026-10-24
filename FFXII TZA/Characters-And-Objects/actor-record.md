@@ -2,7 +2,7 @@
 title: "Actor record: the record every field actor is driven through, its pool, its classes, its sub-objects and its lifetime"
 kind: "system"
 category: "Characters and objects"
-addresses: "0x002679F0, 0x00266530, 0x00266AD0, 0x00266BD0, 0x003DB580, 0x003DB550, 0x003DBF60, 0x003DB2A0, 0x003DB640, 0x00358940, 0x0025B070, 0x002628B0, 0x003697F0, 0x00265020, 0x00263C20, 0x003589B0, 0x002659D0, 0x00269FC0, 0x0026BED0, 0x0026B480, 0x0026AD90, 0x0026AB50, 0x0026A140, 0x0026AD40, 0x00269EE0, 0x00269F60, 0x00265060, 0x002638F0, 0x002E9BE0, 0x002638C0, 0x00269DD0, 0x003EC5F0, 0x003EC690, 0x003DC710, 0x003605A0, 0x003E9970, 0x003B6C20, 0x003DEE10, 0x003DEC90, 0x0036DE70, 0x0036E080, 0x002A7A40, 0x002E2300, 0x00368AA0, 0x003EBD70, 0x003604D0, 0x0025A280, 0x002E63D0, 0x003EA200, 0x003E9100, 0x002E1630, 0x0036A280, 0x002E06F0, 0x0035AB50, 0x002ECBE0, 0x002EBDE0, 0x002697A0"
+addresses: "0x002679F0, 0x00266530, 0x00266AD0, 0x00266BD0, 0x003DB580, 0x003DB550, 0x003DBF60, 0x003DB2A0, 0x003DB640, 0x00358940, 0x0025B070, 0x002628B0, 0x003697F0, 0x00265020, 0x00263C20, 0x003589B0, 0x002659D0, 0x00269FC0, 0x0026BED0, 0x0026B480, 0x0026AD90, 0x0026AB50, 0x0026A140, 0x0026AD40, 0x00269EE0, 0x00269F60, 0x00265060, 0x002638F0, 0x002E9BE0, 0x002638C0, 0x00269DD0, 0x003EC5F0, 0x003EC690, 0x003DC710, 0x003605A0, 0x003E9970, 0x003B6C20, 0x003DEE10, 0x003DEC90, 0x0036DE70, 0x0036E080, 0x002A7A40, 0x002E2300, 0x00368AA0, 0x003EBD70, 0x003604D0, 0x0025A280, 0x002E63D0, 0x003EA200, 0x003E9100, 0x002E1630, 0x0036A280, 0x002E06F0, 0x0035AB50, 0x002ECBE0, 0x002EBDE0, 0x002697A0, 0x0033F650, 0x0025BAD0, 0x0025BE50, 0x0025C230, 0x0025C830, 0x0025B7E0, 0x002675C0"
 ---
 
 ## What the player sees
@@ -169,12 +169,28 @@ small accessors. Each takes the calling actor unless the row says otherwise:
 | `fetchambient`, `fetchambient_4e1(x, y, z)` | `0x04E0`, `0x04E1` | `0x0026AD40` | the same bit set, then `0x002E49B0(actor, 0)` or `0x002E49B0(actor, {x, y, z, 1.0})` |
 | `set_ignore_hitgroup(v)` | `0x0503` | `0x00269EE0` | byte `+0x119` of the collision body at secondary `+0x138` = `v` |
 | `unkCall_5d0(v)` | `0x05D0` | `0x00269F60` | through the render record the secondary context's `+0x00` names (`0x003EC200`), dword `+0x738` = `v`, with the debug print `set root bone physical` |
+| `enable_by_chocobo(v)` | `0x040A` | `0x0033F650` | `+0x0B` bit 0 = `v != 0` (`0x0033F661`-`0x0033F66A`); the bit is read only while the leader rides (below) |
 
 The distance verbs `distance3d`, `distance`, `distance_290`, `distance3d_291` (`0x028E`-`0x0291`) and
 `isrange`, `isrange_296` (`0x0295`, `0x0296`) read positions through `0x00265060(actor)`, which
 returns the movement context of a class-1 or class-3 actor and the static block `0x02099DC0` for any
 other actor or a null one. `0x002638F0` returns secondary `+0x140` (0 without a context), and
 `0x002E9BE0` the signed secondary byte `+0x13` (-1 without an actor or a context).
+
+While the leader rides a chocobo, the field leaves out every actor whose script has not called
+`enable_by_chocobo(1)`: the rider cannot talk to it, touch it or set off its trigger. Six tests read `+0x0B` bit 0,
+each only when the chocobo-mode predicate `0x0037C860` (a jump to `0x00303EC0`, control-mode level 2,
+[party control modes](../Engine-Core/party-control-modes.md)) answers non-zero, and each treats an actor
+without the bit as no candidate:
+
+- the talk tests `0x0025BAD0` (class 3, `0x0025BB69`-`0x0025BB77`, which skips the talk-box test to the function's tail at
+  `0x0025BDF3`) and `0x0025BE50` (class 1, `0x0025BE80`-`0x0025BE8F`) ([script requests](../Scripts-And-Script-Commands/script-requests.md));
+- the touch test `0x0025C230` (class 3, `0x0025C35E`-`0x0025C36A`) and the trigger-record test `0x0025C830` (class 1,
+  `0x0025C8CE`-`0x0025C8DB`);
+- `0x0025B7E0` (from `0x003DF6F0`, `0x0025B7F2`-`0x0025B803`) and `0x002675C0` (from `0x002739B0`, `0x002C6F70` and `0x0046BD60`,
+  `0x002675F6`-`0x00267603`).
+
+The initialiser's `+0x0B &= 0xC0` clears the bit, so every load starts with it clear.
 
 `0x002637D0(actor, default)` returns bit 1 of the secondary byte `+0x29` when the context exists (`0x002E97B0`), its
 dword `+0x00` is not -1 and that byte's bit 0 is set, and `default` otherwise. `0x002ED530(actor)` returns
@@ -274,7 +290,7 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x008` | `u8` | flags08 | bit 6 set by the field runtime's roster and record loops |
 | `+0x00A` | `u8` | field0A | 0 at init |
 | `+0x009` | `u8` | flags09 |  |
-| `+0x00B` | `u8` | flags0B |  |
+| `+0x00B` | `u8` | flags0B | bit 0 usable while riding (enable_by_chocobo, `0x0033F650`) |
 | `+0x00C` | `u8` | flags0C | bit 0 the wait resolver's id match |
 | `+0x00D` | `u8` | flags0D | bit 6 set while the `+0x38` callback runs |
 | `+0x00E` | `u8` | flags0E | bits 0-3 the class nibble (`0x00263C20`): 4 class 1, 5 class 3 (`0x00265FF0`) |

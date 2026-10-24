@@ -87,6 +87,11 @@ Measured from the archive, the executable's path arrays and the twelve loose `Fi
 | model files | rows map to kind 22 (`b`, file 2n), 14 (`c`, 25n), 13 (`g`, 2n), 34 (`m`, 11n), 19 (`n`, 25n), 23 (`s`, 25n), 25 (`t`, n) and 16 (`w`, n) |
 | `.fst` sizes | kind 9 ids 12-19 hold the eight file sizes and ids 11 and 20 hold -1, in all 12 `FileSizeTable_*.fst` |
 
+[`character-se-rows.tsv`](character-se-rows.tsv) holds all 943 rows, each with the model it belongs to: `letter`, `number`, `bound_id`, the
+model's `.cm` path (`model`), the four values (`block0`, `block1`, `block2`, `voice_bank`, empty when negative), the
+`.seb` each block names (`se_files`), the `shoutNN` bank (`shout`) and `populated`. [Model asset list](../Graphics/model-asset-list.md)
+gives the same blocks per model, beside the model's other files.
+
 ## Loader behaviour
 
 ### The row lookup

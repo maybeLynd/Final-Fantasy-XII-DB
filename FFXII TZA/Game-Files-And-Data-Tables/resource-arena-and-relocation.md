@@ -2,7 +2,7 @@
 title: "Resource arenas and relocation: the fifteen memory arenas, block headers, handles, the movable-block tree, compaction, and how moved effect data is repaired"
 kind: "system"
 category: "Game files and data tables"
-addresses: "0x022D7FD0, 0x00369D30, 0x0022A0B0, 0x0036C1D0, 0x0036C140, 0x022D89BC, 0x022D89C0, 0x022D89B8, 0x0036A490, 0x00369860, 0x0036C660, 0x0036A100, 0x0036A190, 0x0036BC60, 0x0036BFE0, 0x0020E600, 0x0020E620, 0x01F83530, 0x0036B130, 0x003AB7F0, 0x0036A000, 0x0036D170, 0x003AB880, 0x003AB940, 0x00369800, 0x0036A9C0, 0x0036B410, 0x0036B4E0, 0x0036C790, 0x00369C60, 0x0036AAD0, 0x0036ABE0, 0x0036A2A0, 0x004746F0, 0x00369CF0, 0x003697C0, 0x002E65A0, 0x003B3480, 0x0024D970, 0x0024D940, 0x003AA3D0, 0x003A9BA0, 0x003A9860, 0x003A8FF0, 0x005004C0, 0x0036C5A0, 0x002E6D60, 0x002EA320, 0x0036B160, 0x0036C4B0, 0x0036C6C0, 0x0036CAD0, 0x0036D050, 0x0036A240, 0x0037B450, 0x0037B330, 0x0024AC30, 0x0024AB30, 0x0024AB60, 0x0036A570, 0x0036A850, 0x00369760, 0x0036C1F0, 0x0036B670, 0x0036B730, 0x0036B7F0, 0x0036B8B0, 0x0036C9D0"
+addresses: "0x022D7FD0, 0x00369D30, 0x0022A0B0, 0x0036C1D0, 0x0036C140, 0x022D89BC, 0x022D89C0, 0x022D89B8, 0x0036A490, 0x00369860, 0x0036C660, 0x0036A100, 0x0036A190, 0x0036BC60, 0x0036BFE0, 0x0020E600, 0x0020E620, 0x01F83530, 0x0036B130, 0x003AB7F0, 0x0036A000, 0x0036D170, 0x003AB880, 0x003AB940, 0x00369800, 0x0036A9C0, 0x0036B410, 0x0036B4E0, 0x0036C790, 0x00369C60, 0x0036AAD0, 0x0036ABE0, 0x0036A2A0, 0x004746F0, 0x00369CF0, 0x003697C0, 0x002E65A0, 0x003B3480, 0x0024D970, 0x0024D940, 0x003AA3D0, 0x003A9BA0, 0x003A9860, 0x003A8FF0, 0x005004C0, 0x0036C5A0, 0x002E6D60, 0x002EA320, 0x0036B160, 0x0036C4B0, 0x0036C6C0, 0x0036CAD0, 0x0036D050, 0x0036A240, 0x0037B450, 0x0037B330, 0x0024AC30, 0x0024AB30, 0x0024AB60, 0x0036A570, 0x0036A850, 0x00369760, 0x0036C1F0, 0x0036B670, 0x0036B730, 0x0036B7F0, 0x0036B8B0, 0x0036C9D0, 0x00378BC0"
 ---
 
 ## What the player sees
@@ -227,6 +227,18 @@ moves.
 is set, compacts once, and retries the allocation, until the allocation succeeds or nothing moved and
 the callback returned 0. A disabled arena spins forever. `0x00369CF0` reads and `0x003697C0` clears the
 moved latch.
+
+So `0x0036A100` and `0x0036A190` return null when an enabled arena stays full after compaction and its callback, if it
+has one, gives up (`0x0036C0AE`-`0x0036C0BF`, `0x0036A1F5`-`0x0036A1FB`). Arena 4 has no callback (`0x0036C5A0` is called only
+for arenas 6 and 10, `0x002EA4F3` and `0x002EA504`), and the map-pack completion `0x00378BC0`
+([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md#the-dispatch)) does not test for null.
+
+For a field's own pack
+it takes the size of section 4, the navigation dataset (`0x0036C100`, `0x00378CD5`), pushes arena 4 (`0x0036C1D0(4, 5)` at
+`0x00378CE5`), allocates top-down (`0x0036A190`, `0x00378CF6`), labels the block (`0x0036C660`, which itself skips a null
+block at `0x0036C670`), copies the section into it with `memcpy` (`0x00861EBA`, `0x00378D27`) and frees the original
+(`0x003697F0`, `0x00378D33`). When arena 4 has no room for the copy, the game loading the field writes the navigation
+dataset through address 0 and crashes.
 
 `0x0036C5A0(arena, fn)` is the only setter of the pressure callback. The binding-table init `0x002EA320`
 installs `0x002E6D60` for arenas 6 and 10, so under pressure in arena 6 the binding system first unloads

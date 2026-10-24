@@ -201,8 +201,8 @@ The debug give-all verbs add 99 of every id (`0x003008A0(id, 99, 0, 1, 0)`): ite
 inventory call   0x003008A0(item id, n, set, mode, arg): class = id >> 12, index = id & 0xFFF, class count at 0x01EEBCFC + class × 0x58
 discovery bits   [0x02EBF190] + 4: bit 0 and 0x01EECF98[school] for magicks, bit 6 technicks, bit 7 key items 0xC000..0xC011, bit 8 0xC012..0xC01E
 gil              0x003004B0(n, notify) = max(0, gil + n); 0x00254EE0 stores min(total, 99,999,999) and logs counter 6 or 7
-chest record     +0 index in the field, +8 flags (bit 6 random gil), +9 opened-flag id, +0xA presence %, +0xB item %,
-                 +0xC/+0xE item words, +0x10/+0x12 alternate item words, +0x14 gil, +0x16 alternate gil
+chest record     +0 index in the field, +8 flags (bit 6 random gil), +9 opened-flag id, +0xA presence %, +0xB item %
+chest contents   +0xC/+0xE item words, +0x10/+0x12 alternate item words, +0x14 gil, +0x16 alternate gil
 presence ledger  0x02EC3E60: 3 × {u32 field, u32 value bits, u32 mask bits}, cursor 0x02EC3E84, count 0x02EC3E88
 party record     [0x02EBF190] + 8 + selector × 0x1C8: +0 flags (bit 3 first activation, bit 4 active), +0x50 u16[5] equipment,
                  +0x5A u16[5] saved equipment, +0x88 u32[] grants with mask +0xB8 and count +0xBA

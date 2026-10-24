@@ -2,7 +2,7 @@
 title: "Graphics thread handshake: the shared command-state word, the GS register batch and the waits around them"
 kind: "system"
 category: "Graphics"
-addresses: "0x02EBA3F8, 0x0036D400, 0x0036F360, 0x003A2D80, 0x003A2E30, 0x0036F2F0, 0x0036F2C0, 0x0036D7E0, 0x0022BFD0, 0x0035E9A0, 0x0035EC90, 0x00369100, 0x02EAF6D8, 0x003749F0, 0x00376050, 0x02F8F2E0, 0x00D10F88, 0x022D8EAC, 0x022D8EB4"
+addresses: "0x02EBA3F8, 0x0036D400, 0x0036F360, 0x003A2D80, 0x003A2E30, 0x0036F2F0, 0x0036F2C0, 0x0036D7E0, 0x0022BFD0, 0x0035E9A0, 0x0035EC90, 0x00369100, 0x02EAF6D8, 0x003749F0, 0x00376050, 0x02F8F2E0, 0x00D10F88, 0x022D8EAC, 0x022D8EB4, 0x008636E0, 0x00863610, 0x00863520, 0x00863540, 0x00368C80, 0x00368C10, 0x00368DD0, 0x00369080, 0x00368F70, 0x022CFEF4, 0x022CFEE8, 0x022CFEEC, 0x022CFEF0, 0x022D7FB4"
 ---
 
 ## What the player sees
@@ -12,6 +12,11 @@ stream to the console's DMA hardware by writing a few registers, and waited for 
 take it. The remaster keeps that code: every frame still builds the GS register batch, writes the
 "kick" into one shared dword, spins until the dword settles and clears its bits. The waits finish at
 once unless the vertical-sync thread's end-of-frame callback writes the word between two reads.
+
+The thread layer behind the vertical-sync and background threads keeps the addresses of its thread holders and of
+three of its semaphores in 32 bits. The game makes these allocations while it starts those threads, and while they
+come back below the 2 GB line nothing goes wrong. A mod or loader that makes one of them land between 2 GB and 4 GB
+makes the game crash at start-up; above 4 GB the address loses its high bits and the game reads the wrong memory.
 
 ## How it works
 
@@ -163,11 +168,45 @@ The vertical-sync set-up and the Tk threads use a thin layer over the Windows ca
 - `0x008636E0(desc, name, arg)` makes a `crossThreadImpl` thread object of 0x28 bytes (`0x00863430`, the name
   "UnknownThread" when none is given), files its id under the name in `0x02EB37B8`, and `0x00863610(thread, arg)` stores
   the argument and starts it (`ResumeThread`; `0x0035E92A`, `0x00368D53`);
-- `0x00863520(thread, p)` sets the priority `(32 - p) / 2` (`SetThreadPriority`; `0x00368C61`);
+- `0x00863520(value, p)` calls `SetThreadPriority(value, (32 - p) / 2)` with its first argument unchanged
+  (`0x00863532`); every caller but `0x00368EE7` passes a thread holder, not a handle (below);
 - `0x00863540(desc)` makes a semaphore from the descriptor's counts (`0x008632E0`, `CreateSemaphoreW`; `0x0035E8A7`);
   `0x00863800` releases it by one, `0x00863690(sem, ms)` waits on it (`WaitForSingleObject`), and `0x00863590` closes and
   frees it (`0x0035E74B`);
 - `0x008635F0(ms)` sleeps (`0x0035E735`, `0x0035EAB3`).
+
+`0x008636E0` returns the address of an 8-byte holder it takes from `0x00210EC0` (`malloc`, through `0x0085E730`;
+`0x00863703`), which points at the thread object, and `0x00863540` returns the 8-byte semaphore object it takes the
+same way (`0x00863552`). The callers keep every thread holder and three of the semaphores as 32-bit values and widen
+them again with `movsxd`:
+
+| Address | Kept as | Widened at |
+|---|---|---|
+| every thread holder | the low dword in `eax` | `0x0035E925`, `0x00368D46`, `0x00368E9C` and `0x00369005`, each passed straight to the start `0x00863610`, which reads through it (`0x0086362D`) |
+| the TkBGThread holder (`0x00368C80`) | dword `0x022CFEF4` (`0x00368D5F`) | `0x00368C4C`, on every pass of the thread body `0x00368C10`, for `0x00863520` (`0x00368C61`) |
+| the TkSyncvThread holder (`0x00368DD0`) | dword `0x022CFEE8` (`0x00368EAE`) | never loaded: the store is the only reference to `0x022CFEE8` |
+| the two TkSyncv semaphores | dwords `0x022CFEEC` and `0x022CFEF0` (`0x00368E12`, `0x00368E1D`) | `0x00369120` and `0x00369145` in the thread body `0x00369100`; `0x003691BA` (`0x003691B0`); `0x0036919A` (`0x00369190`) |
+| the TkPowerOff semaphore (`0x00368FB5` in `0x00368F70`, made when bit `0x4` of `0x003692C0()` is set) | the low dword in `ebx` (`0x00368FC1`) | the thread argument of `0x008636E0` and `0x00863610` and the argument of `0x005C5230` (`0x00369010`), widened again by the thread body `0x00368AE0` (`0x00368AE4`) and the callback `0x00368AD0` |
+
+The other four semaphores, made at `0x0035E8A7`, `0x0035E8C4`, `0x00368CC0` and `0x00368F15`, are kept whole in the qwords
+`0x022CA610`, `0x022CA618`, `0x022D7F68` and `0x022D7F90`.
+
+`0x00368C80` and `0x00369080` also read `0x022CFEF4 + 4 × [0x022D7FB4]` (`0x00368D8F`, `0x00368DA4`, `0x003690BC`, `0x003690D1`),
+but only when `0x022D7FB4` is not 0 (`0x00368D6B`, `0x00369093`). It is 0 in the image and every store writes 0
+(`0x00368CAD`, `0x00368D65`, `0x00368D7B`, `0x0036908D`, `0x003690A8`), so those four loads do not run.
+
+An address comes back unchanged only while it is below `0x80000000`. From 2 GB to 4 GB the widened value has its top
+32 bits set, and above 4 GB the high bits are lost. A holder from 2 GB to 4 GB faults at the first read through it,
+at `0x0086362D`; one above 4 GB is read at the wrong address. The executable is large-address-aware with high-entropy
+addressing (file characteristics `0x0022`, DLL characteristics `0x8120`), so the system may place the C-runtime
+heap's blocks above 2 GB.
+
+The holder is not the thread's handle. `CreateThread`'s handle is at `+0x08` of the object the holder points to
+(`0x00863494`), where `0x00863610` reads it for `ResumeThread` (`0x0086362D`-`0x0086363B`), and the creation sets the
+priority with that handle (`0x008634A6`). `0x00863520` passes the holder itself (`0x00368C61`, `0x00368D93`, `0x00368DA8`,
+`0x003690C0`, `0x003690DE`), so those calls name no thread handle; its result is discarded (`0x00863538`). The one call
+with a handle is `0x00368EE7`, with the pseudo-handle of `GetCurrentThread` (`0x00368ED4`), which the dword round trip
+at `0x00368ED9` keeps.
 
 ### Effect capture
 

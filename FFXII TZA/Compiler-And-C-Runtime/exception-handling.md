@@ -265,18 +265,37 @@ A `__C_specific_handler` record's data is a `u32` scope count followed by that m
 
 `0x008F34F0`, the `FuncInfo` of the stream inserter `0x00194B00`, shows the pieces together:
 
-```
-maxState 6   unwind map 0x01D55F44   try blocks 1 (0x01D55F74)   IP map 11 entries (0x01D55FA0)
-unwind[0]  -> -1   0x008968B0   lea rcx,[rdx+0x28] ; jmp 0x001952E0   (sentry)
-unwind[1]  -> -1   0x008968BC   lea rcx,[rdx+0x28] ; jmp 0x001953A0
-unwind[2]  ->  1   none
-unwind[3]  ->  1   none
-unwind[4]  -> -1   0x00861EAE   __std_terminate stub
-unwind[5]  ->  4   0x00861EAE
-try states 2..2, catch high 3, one catch (...) -> 0x008968C8, resumes at 0x00194C5E
-IP map: 0x00194B00 -1, 0x00194B7F 0, 0x00194BB5 1, 0x00194BC3 2, 0x00194C5C 1, 0x00194C82 4,
-        0x00194C96 5, 0x00194CAF -1, 0x008968C8 0, 0x008968D5 3, 0x008968F2 0
-```
+- `maxState` 6, the unwind map at `0x01D55F44`, one try block (`0x01D55F74`) and an IP-to-state map of 11 entries
+  (`0x01D55FA0`).
+- The try block covers states 2 to 2, its catch high state is 3, and its one `catch (...)` handler is `0x008968C8`,
+  which resumes at `0x00194C5E`.
+
+The unwind map:
+
+| State | Next state | Action | Action code |
+|---|---|---|---|
+| 0 | -1 | `0x008968B0` | `lea rcx,[rdx+0x28]` ; `jmp 0x001952E0` (sentry) |
+| 1 | -1 | `0x008968BC` | `lea rcx,[rdx+0x28]` ; `jmp 0x001953A0` |
+| 2 | 1 | none | none |
+| 3 | 1 | none | none |
+| 4 | -1 | `0x00861EAE` | the `__std_terminate` stub |
+| 5 | 4 | `0x00861EAE` | the `__std_terminate` stub |
+
+The IP-to-state map:
+
+| From address | State |
+|---|---|
+| `0x00194B00` | -1 |
+| `0x00194B7F` | 0 |
+| `0x00194BB5` | 1 |
+| `0x00194BC3` | 2 |
+| `0x00194C5C` | 1 |
+| `0x00194C82` | 4 |
+| `0x00194C96` | 5 |
+| `0x00194CAF` | -1 |
+| `0x008968C8` | 0 |
+| `0x008968D5` | 3 |
+| `0x008968F2` | 0 |
 
 ## Shipped data
 

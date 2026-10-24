@@ -106,7 +106,7 @@ nine-word records and `nMembers` six-word records) and the one the validator `0x
 | `+0x0C` | `u32` | nClasses |  |
 | `+0x10` | `u32` | nMembers |  |
 | `+0x14` | `u32` | poolSize | bytes of the string pool |
-| `+0x18` | `u8[4]` | reserved | 0 in every shipped file; read by no function on a shipped file: the validator `0x0059E070` sums `+0x08`, `+0x0C`, `+0x10`, `+0x14` and `+0x1C` against `+0x04` (`0x0059E173`-`0x0059E191`) and reads nothing else of the header, the binders take the counts and the records, and the byte swap `0x0059C180` (`0x0059C1B7`-`0x0059C1BC`) runs only when `0x0059A3B0` finds the cluster marker byte-reversed (`0x0059A3FF`-`0x0059A437`), which no shipped file is; nothing fixes its width |
+| `+0x18` | `u8[4]` | reserved | 0 in every shipped file; read by no function on a shipped file: the validator `0x0059E070` sums `+0x08`, `+0x0C`, `+0x10`, `+0x14` and `+0x1C` against `+0x04` (`0x0059E173`-`0x0059E191`), checks the byte-order mark `+0x00` (`0x0059E167` cmp dword [rdi], `0x1020304`) and reads nothing else of the header, the binders take the counts and the records, and the byte swap `0x0059C180` (`0x0059C1B7`-`0x0059C1BC`) runs only when `0x0059A3B0` finds the cluster marker byte-reversed (`0x0059A3FF`-`0x0059A437`), which no shipped file is; nothing fixes its width |
 | `+0x1C` | `u32` | extraSize | bytes of the block after the pool |
 | `+0x20` | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 

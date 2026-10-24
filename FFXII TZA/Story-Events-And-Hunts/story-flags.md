@@ -7,8 +7,9 @@ addresses: "0x0032A8A0, 0x00377970, 0x0032AB60, 0x0032ABF0, 0x0032AD70, 0x0032AA
 
 ## What the player sees
 
-- Places on the map open up, characters' names appear once they have spoken, and opened chests stay empty: each is a
-  flag in the save.
+- Places on the map open up, characters' names appear once they have spoken, and a one-time chest stays empty once it
+  is opened: its flag is in the save. Most chests have no flag and can be there again later
+  ([treasure chests](../World-Areas-And-Travel/treasure-chests.md)).
 - Some menu entries, such as Equip, Licenses, Gambits and the World Map, appear only after a certain point in the
   story.
 - A new game starts with a set of map flags already on.

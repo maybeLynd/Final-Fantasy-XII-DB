@@ -8,15 +8,15 @@ addresses: "0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A
 ## What it lists
 
 The [actor record](actor-record.md) page lays the record out and names its fields. This page carries
-the measurements behind it: `actor-record-fields.tsv` lists every access to a record, and four further tables
-list the accesses to the record's interiors, which code reaches through the pointers at `+0xA0`, `+0xA8`, `+0xB8`
+the measurements behind it: `actor-record-fields.tsv` lists the accesses to a record found from every holder the census followed, and four
+further tables list the accesses to the record's interiors, which code reaches through the pointers at `+0xA0`, `+0xA8`, `+0xB8`
 and `+0xC0` of a record it holds:
 
 | Table | Region | Rows |
 |---|---|---|
-| `actor-record-fields.tsv` | the record itself | 1,221 |
+| `actor-record-fields.tsv` | the record itself | 1,223 |
 | [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 759 |
-| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 389 |
+| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 392 |
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
 | [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the resource entries behind `+0xA0` | 88 |
 

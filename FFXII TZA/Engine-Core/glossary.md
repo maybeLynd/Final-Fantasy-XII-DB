@@ -7,10 +7,28 @@ addresses: ""
 
 ## What it lists
 
-`glossary.tsv` holds one row per term, 149 in all: the engine objects, records, ids, handles, pools, file kinds and recurring
-words a reader meets on many pages. Each row says what the thing is, the other names the pages use for it, and the
+`glossary.tsv` holds 150 terms: engine objects, records, ids, handles, pools, file kinds and recurring words that
+several pages use. Each row says what the thing is, the other names the pages use for it, and the
 page and section that explain it in full. Player-facing names (items, magicks, statuses) are in the reference tables
 of their own pages, not here.
+
+Community reverse-engineering notes and modding tools use other names for some of these. The first eight below are
+also in the `also_called` column of the row they name, so that a search for one finds the page:
+
+| Community name | Row |
+|---|---|
+| BUW, BattleUnitWork | battle unit |
+| BUK, BattleUnitKeep | stats record |
+| BUKPlus, BattleUnitKeepPlus | spawn record |
+| BAW | actor record |
+| ardUnit | enemy definition |
+| ardClass | class row |
+| section13 | equipment row |
+| section 14 of the battle pack, `g_SecActions` | action row |
+| the order flag names of The Insurgent's Toolkit (`noTimeout` and the others) | order set; the table of aliases is on [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md) |
+
+`btlKeepCharWork1` and `btlKeepCharWork2` are the executable's own labels for the two keep banks
+([battle units](../Characters-And-Objects/battle-units.md)).
 
 ### Words that name more than one thing
 
@@ -31,6 +49,7 @@ gives the meaning on the page it links:
 | control code | an input code of 1 to 152 ([controls](../Controls-And-Input/controls.md)); a control byte or escape inside a string ([text codes](../Menus-And-HUD/text-codes.md)) |
 | emitter | the middle level of a running effect ([effect element runtime](../Graphics/effect-element-runtime.md)); the point, line and polygon submit functions ([effect element types](../Graphics/effect-element-types.md)); a character's sound emitter ([animation sounds](../Sound-And-Music/animation-sounds.md)); a map sound emitter ([map sounds](../Sound-And-Music/map-sounds.md)) |
 | actor class | bits 5 to 7 of the actor's byte `+0x03` ([actor record](../Characters-And-Objects/actor-record.md#the-class-byte)); the nibble of byte `+0x0E` that `0x00263C20` returns ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)) |
+| keep | the keep banks of spawn records and a keep entry, one record in them ([spawn record fields](../Enemy-Spawning/spawn-record-fields.md)); the order flag `0x8000` ([enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md)); in community notes, the stats record ([unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) |
 
 ## Columns
 
@@ -38,7 +57,7 @@ gives the meaning on the page it links:
 |---|---|
 | `term` | the term as the pages use it |
 | `meaning` | what the thing is |
-| `also_called` | other names the pages use for the same thing |
+| `also_called` | other names the pages use for the same thing, and the names community notes and tools give it |
 | `page` | the page that explains it in full, by its path in the database |
 | `section` | the section of that page, as a link anchor, or empty for the whole page |
 

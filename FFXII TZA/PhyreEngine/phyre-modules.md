@@ -154,19 +154,19 @@ The module objects, their entry points and how many functions belong to each (th
 | `PHierarchy` | `0x01F47550` | `0x0016D5B0` | `0x01CDA1F8` | `0x0087AE00` | `0x0087AE80` | `0x008C1580` | 100 |
 | `PDeveloperExtensions` | `0x01F47570` | `0x0016D610` | `0x01CDA228` | stub | stub | `0x008C15E0` | 0 |
 
-"Stub" is `0x005C5230`, which returns 0. The namespaces without a module object are `PFramework` (629 functions), `PGameplay` (147)
+"Stub" is `0x005C5230`, which returns 0. The namespaces without a module object are `PFramework` (628 functions), `PGameplay` (147)
 and `PVision` (74).
 
 [`phyre-modules-attribution.tsv`](phyre-modules-attribution.tsv) attributes to a module every function that a
-PhyreEngine class holds or that PhyreEngine code calls or references, 12,359 in all: by the class it belongs to
+PhyreEngine class holds or that PhyreEngine code calls or references, 12,360 in all: by the class it belongs to
 when it has one (it sits in a vtable slot of the class, or installs the class's vtable), and otherwise by the
 modules whose code calls or references it.
 
-- 10,573 belong to one module, 7,058 of them by class; 1,504 of these belong to the core (`Phyre::` classes and
+- 10,572 belong to one module, 7,058 of them by class; 1,504 of these belong to the core (`Phyre::` classes and
   code outside any module).
-- 1,786 are shared between modules: 150 sit in the vtables of classes from several modules (one body serving
-  several classes) and 1,636 are used by several modules' code.
-- 2,233 are also used by code outside PhyreEngine.
+- 1,788 are shared between modules: 150 sit in the vtables of classes from several modules (one body serving
+  several classes) and 1,638 are used by several modules' code.
+- 2,234 are also used by code outside PhyreEngine.
 
 | Column | Meaning |
 |---|---|

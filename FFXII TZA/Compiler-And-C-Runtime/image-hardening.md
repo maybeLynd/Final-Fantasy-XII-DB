@@ -155,19 +155,18 @@ IMAGE_LOAD_CONFIG_DIRECTORY64, 148 bytes at `0x01CEBE40`:
 | `+0x88` | `u64` | GuardCFFunctionCount | 0 |
 | `+0x90` | `u32` | GuardFlags | `0x00000100` |
 
-```
-section   address    virtual size   raw size    access
-.text     0x00121000   0x07A0635      0x07A0800   R-X
-.rdata    0x008C2000   0x152D7FC      0x152D800   R--
-.data     0x01DF0000   0x11A7530      0x018E400   RW-
-.pdata    0x02F98000   0x0068A0C      0x0068C00   R--
-.rodata   0x03001000   0x00011C0      0x0001200   R--
-.gfids    0x03003000   0x0000030      0x0000200   R--
-.tls      0x03004000   0x0000009      0x0000200   RW-
-_RDATA    0x03005000   0x000A250      0x000A400   R--
-.rsrc     0x03010000   0x004B830      0x004BA00   R--
-.reloc    0x0305C000   0x0039360      0x0039400   R--
-```
+| Section | Address | Virtual size | Raw size | Access |
+|---|---|---|---|---|
+| `.text` | `0x00121000` | `0x07A0635` | `0x07A0800` | R-X |
+| `.rdata` | `0x008C2000` | `0x152D7FC` | `0x152D800` | R-- |
+| `.data` | `0x01DF0000` | `0x11A7530` | `0x018E400` | RW- |
+| `.pdata` | `0x02F98000` | `0x0068A0C` | `0x0068C00` | R-- |
+| `.rodata` | `0x03001000` | `0x00011C0` | `0x0001200` | R-- |
+| `.gfids` | `0x03003000` | `0x0000030` | `0x0000200` | R-- |
+| `.tls` | `0x03004000` | `0x0000009` | `0x0000200` | RW- |
+| `_RDATA` | `0x03005000` | `0x000A250` | `0x000A400` | R-- |
+| `.rsrc` | `0x03010000` | `0x004B830` | `0x004BA00` | R-- |
+| `.reloc` | `0x0305C000` | `0x0039360` | `0x0039400` | R-- |
 
 Scalar-conversion tree node, `0x30` bytes, guard dword at `+0x30` (`0x02CAAD10`..0x02CACC58):
 

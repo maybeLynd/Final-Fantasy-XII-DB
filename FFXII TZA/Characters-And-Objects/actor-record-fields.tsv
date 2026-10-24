@@ -1220,3 +1220,5 @@ function	name	site	disp	kind	instruction	route	note
 0x00266AD0	FUN_00266ad0	0x00266B47	0x140	addr	lea r8, [rax + 0x20]	arg0 from 0x002693D0 at 0x002694A9	
 0x00266AD0	FUN_00266ad0	0x00266B26	0x1A0	addr	lea r8, [rax + 0x80]	arg0 from 0x002693D0 at 0x002694A9	
 0x00266AD0	FUN_00266ad0	0x00266B6F	0x4D8	addr	lea r8, [rax + 0x188]	arg0 from 0x002693D0 at 0x002694A9	
+0x0026A420	FUN_0026a420	0x0026A420	0x3	r	movzx eax, byte ptr [rcx + 3]	arg0 from 0x00349E40 at 0x00349EAA	the class bits 0xE0 compared with 0x60
+0x002E5B00	FUN_002e5b00	0x002E5B05	0xC0	r	mov rax, qword ptr [rcx + 0xc0]	arg0 from 0x0026A420 at 0x0026A428	entered by the je at 0x0026A428 when the class bits 0xE0 equal 0x60

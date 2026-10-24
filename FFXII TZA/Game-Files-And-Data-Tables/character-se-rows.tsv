@@ -1,0 +1,944 @@
+letter	number	bound_id	model	block0	block1	block2	voice_bank	se_files	shout	populated
+b	0	0x00620000	bg_obj/b00/b0001/b0001							0
+b	1	0x00620001	bg_obj/b00/b0003/b0003							0
+b	2	0x00620002	bg_obj/b00/b0004/b0004							0
+b	3	0x00620003	bg_obj/b00/b0005/b0005							0
+b	4	0x00620004	bg_obj/b00/b0006/b0006							0
+b	5	0x00620005	bg_obj/b00/b0007/b0007							0
+b	6	0x00620006	bg_obj/b00/b0014/b0014							0
+b	7	0x00620007	bg_obj/b00/b0008/b0008							0
+b	8	0x00620008	bg_obj/b00/b0009/b0009							0
+b	9	0x00620009	bg_obj/b00/b0010/b0010							0
+b	10	0x0062000A	bg_obj/b00/b0011/b0011							0
+b	11	0x0062000B	bg_obj/b00/b0012/b0012							0
+b	12	0x0062000C	bg_obj/b00/b0013/b0013							0
+b	13	0x0062000D	bg_obj/b00/b0015/b0015							0
+b	14	0x0062000E	bg_obj/b00/b0016/b0016							0
+b	15	0x0062000F	bg_obj/b00/b0002/b0002							0
+b	16	0x00620010	bg_obj/b00/b0017/b0017							0
+b	17	0x00620011	bg_obj/b00/b0018/b0018							0
+c	0	0x00630000	chara/c10/c1004/c1004		200	314	0	slot 1 se200; slot 2 se314	shout00	1
+c	1	0x00630001	chara/c10/c1029/c1029		236	408	14	slot 1 se236; slot 2 se408	shout14	1
+c	2	0x00630002	chara/c10/c1010/c1010		202			slot 1 se202		1
+c	3	0x00630003	chara/c10/c1006/c1006		211	316	2	slot 1 se211; slot 2 se316	shout02	1
+c	4	0x00630004	chara/c10/c1014/c1014		202			slot 1 se202		1
+c	5	0x00630005	chara/c10/c1005/c1005		203	315	1	slot 1 se203; slot 2 se315	shout01	1
+c	6	0x00630006	chara/c10/c1011/c1011		233	390	5	slot 1 se233; slot 2 se390	shout05	1
+c	7	0x00630007	chara/c10/c1018/c1018		202			slot 1 se202		1
+c	8	0x00630008	chara/c10/c1015/c1015		202			slot 1 se202		1
+c	9	0x00630009	chara/c10/c1016/c1016		202			slot 1 se202		1
+c	10	0x0063000A	chara/c10/c1017/c1017		202			slot 1 se202		1
+c	11	0x0063000B	chara/c10/c1021/c1021		212	317	3	slot 1 se212; slot 2 se317	shout03	1
+c	12	0x0063000C	chara/c10/c1023/c1023		230	405	4	slot 1 se230; slot 2 se405	shout04	1
+c	13	0x0063000D	chara/c10/c1019/c1019		233	390	5	slot 1 se233; slot 2 se390	shout05	1
+c	14	0x0063000E	chara/c10/c1024/c1024		234	392	7	slot 1 se234; slot 2 se392	shout07	1
+c	15	0x0063000F	chara/c10/c1025/c1025		232	391	10	slot 1 se232; slot 2 se391	shout10	1
+c	16	0x00630010	chara/c10/c1026/c1026		235	394	8	slot 1 se235; slot 2 se394	shout08	1
+c	17	0x00630011	chara/c10/c1030/c1030		231	390	5	slot 1 se231; slot 2 se390	shout05	1
+c	18	0x00630012	chara/c10/c1042/c1042		233	390	5	slot 1 se233; slot 2 se390	shout05	1
+c	19	0x00630013	chara/c10/c1044/c1044		234	392	7	slot 1 se234; slot 2 se392	shout07	1
+c	20	0x00630014	chara/c10/c1048/c1048							0
+c	21	0x00630015	chara/c10/c1052/c1052							0
+c	22	0x00630016	chara/c10/c1054/c1054							0
+g	0	0x00670000	gadget/g0001							0
+g	1	0x00670001	gadget/g0002							0
+g	2	0x00670002	gadget/g0007							0
+g	3	0x00670003	gadget/g0011							0
+g	4	0x00670004	gadget/g0014							0
+g	5	0x00670005	gadget/g0009							0
+g	6	0x00670006	gadget/g0017							0
+g	7	0x00670007	gadget/g0018							0
+g	8	0x00670008	gadget/g0028							0
+g	9	0x00670009	gadget/g0029							0
+g	10	0x0067000A	gadget/g0030							0
+g	11	0x0067000B	gadget/g0031							0
+g	12	0x0067000C	gadget/g0032							0
+g	13	0x0067000D	gadget/g0033							0
+g	14	0x0067000E	gadget/g0034							0
+g	15	0x0067000F	gadget/g0037							0
+g	16	0x00670010	gadget/g0039							0
+g	17	0x00670011	gadget/g0040							0
+g	18	0x00670012	gadget/g0024							0
+g	19	0x00670013	gadget/g0025							0
+g	20	0x00670014	gadget/g0027							0
+g	21	0x00670015	gadget/g0044							0
+g	22	0x00670016	gadget/g0046							0
+g	23	0x00670017	gadget/g0047							0
+g	24	0x00670018	gadget/g0048							0
+g	25	0x00670019	gadget/g0049							0
+g	26	0x0067001A	gadget/g0050							0
+g	27	0x0067001B	gadget/g0051							0
+g	28	0x0067001C	gadget/g0052							0
+g	29	0x0067001D	gadget/g0053							0
+g	30	0x0067001E	gadget/g0054							0
+g	31	0x0067001F	gadget/g0055							0
+g	32	0x00670020	gadget/g0036							0
+g	33	0x00670021	gadget/g0045							0
+g	34	0x00670022	gadget/g0057							0
+g	35	0x00670023	gadget/g0042							0
+g	36	0x00670024	gadget/g0058							0
+g	37	0x00670025	gadget/g0059							0
+g	38	0x00670026	gadget/g0010							0
+g	39	0x00670027	gadget/g0060							0
+g	40	0x00670028	gadget/g0063							0
+g	41	0x00670029	gadget/g0064							0
+g	42	0x0067002A	gadget/g0999							0
+g	43	0x0067002B	gadget/g0065							0
+g	44	0x0067002C	gadget/g0066							0
+g	45	0x0067002D	gadget/g0067							0
+g	46	0x0067002E	gadget/g0023							0
+g	47	0x0067002F	gadget/g0068							0
+g	48	0x00670030	gadget/g0069							0
+g	49	0x00670031	gadget/g0070							0
+g	50	0x00670032	gadget/g0071							0
+g	51	0x00670033	gadget/g0056							0
+g	52	0x00670034	gadget/g0072							0
+g	53	0x00670035	gadget/g0073							0
+g	54	0x00670036	gadget/g0074							0
+g	55	0x00670037	gadget/g0075							0
+g	56	0x00670038	gadget/g0076							0
+g	57	0x00670039	gadget/g0077							0
+g	58	0x0067003A	gadget/g0078							0
+g	59	0x0067003B	gadget/g0079							0
+g	60	0x0067003C	gadget/g0080							0
+g	61	0x0067003D	gadget/g0081							0
+g	62	0x0067003E	gadget/g0082							0
+g	63	0x0067003F	gadget/g0083							0
+g	64	0x00670040	gadget/g0084							0
+g	65	0x00670041	gadget/g0085							0
+g	66	0x00670042	gadget/g0086							0
+g	67	0x00670043	gadget/g0016							0
+g	68	0x00670044	gadget/g0087							0
+g	69	0x00670045	gadget/g0088							0
+g	70	0x00670046	gadget/g0089							0
+g	71	0x00670047	gadget/g0090							0
+g	72	0x00670048	gadget/g0091							0
+g	73	0x00670049	gadget/g0092							0
+g	74	0x0067004A	gadget/g0093							0
+g	75	0x0067004B	gadget/g0094							0
+g	76	0x0067004C	gadget/g0095							0
+g	77	0x0067004D	gadget/g0096							0
+g	78	0x0067004E	gadget/g0097							0
+g	79	0x0067004F	gadget/g0098							0
+g	80	0x00670050	gadget/g0099							0
+g	81	0x00670051	gadget/g0100							0
+g	82	0x00670052	gadget/g0101							0
+g	83	0x00670053	gadget/g0102							0
+g	84	0x00670054	gadget/g0103							0
+g	85	0x00670055	gadget/g0104							0
+g	86	0x00670056	gadget/g0105							0
+g	87	0x00670057	gadget/g0106							0
+g	88	0x00670058	gadget/g0107							0
+g	89	0x00670059	gadget/g0108							0
+g	90	0x0067005A	gadget/g0109							0
+g	91	0x0067005B	gadget/g0110							0
+g	92	0x0067005C	gadget/g0111							0
+g	93	0x0067005D	gadget/g0112							0
+g	94	0x0067005E	gadget/g0113							0
+g	95	0x0067005F	gadget/g0114							0
+g	96	0x00670060	gadget/g0115							0
+g	97	0x00670061	gadget/g0116							0
+g	98	0x00670062	gadget/g0117							0
+g	99	0x00670063	gadget/g0118							0
+g	100	0x00670064	gadget/g0119							0
+g	101	0x00670065	gadget/g0120							0
+g	102	0x00670066	gadget/g0121							0
+g	103	0x00670067	gadget/g0122							0
+m	0	0x006D0000	monster/m10/m1002/m1002		218	309		slot 1 se218; slot 2 se309		1
+m	1	0x006D0001	monster/m10/m1015/m1015		204	302		slot 1 se204; slot 2 se302		1
+m	2	0x006D0002	monster/m10/m1022/m1022		207	326		slot 1 se207; slot 2 se326		1
+m	3	0x006D0003	monster/m10/m1027/m1027			304		slot 2 se304		1
+m	4	0x006D0004	monster/m10/m1054/m1054		209	300		slot 1 se209; slot 2 se300		1
+m	5	0x006D0005	monster/m10/m1007/m1007		210	301		slot 1 se210; slot 2 se301		1
+m	6	0x006D0006	monster/m10/m1016/m1016		227	303		slot 1 se227; slot 2 se303		1
+m	7	0x006D0007	monster/m10/m1019/m1019			307		slot 2 se307		1
+m	8	0x006D0008	monster/m10/m1044/m1044		226	327		slot 1 se226; slot 2 se327		1
+m	9	0x006D0009	monster/m10/m1046/m1046		227	354		slot 1 se227; slot 2 se354		1
+m	10	0x006D000A	monster/m10/m1057/m1057		208	300		slot 1 se208; slot 2 se300		1
+m	11	0x006D000B	monster/m10/m1056/m1056		217	305		slot 1 se217; slot 2 se305		1
+m	12	0x006D000C	monster/m10/m1021/m1021		207	357		slot 1 se207; slot 2 se357		1
+m	13	0x006D000D	monster/m10/m1050/m1050			311		slot 2 se311		1
+m	14	0x006D000E	monster/m10/m1058/m1058		210	318		slot 1 se210; slot 2 se318		1
+m	15	0x006D000F	monster/m10/m1071/m1071			368		slot 2 se368		1
+m	16	0x006D0010	monster/m10/m1003/m1003		213	324		slot 1 se213; slot 2 se324		1
+m	17	0x006D0011	monster/m10/m1008/m1008			356		slot 2 se356		1
+m	18	0x006D0012	monster/m10/m1011/m1011		214	313		slot 1 se214; slot 2 se313		1
+m	19	0x006D0013	monster/m10/m1012/m1012		202	308		slot 1 se202; slot 2 se308		1
+m	20	0x006D0014	monster/m10/m1014/m1014		205	320		slot 1 se205; slot 2 se320		1
+m	21	0x006D0015	monster/m10/m1034/m1034		201	310		slot 1 se201; slot 2 se310		1
+m	22	0x006D0016	monster/m10/m1031/m1031		202	360		slot 1 se202; slot 2 se360		1
+m	23	0x006D0017	monster/m10/m1033/m1033		209	321		slot 1 se209; slot 2 se321		1
+m	24	0x006D0018	monster/m10/m1038/m1038		218	325		slot 1 se218; slot 2 se325		1
+m	25	0x006D0019	monster/m10/m1036/m1036		201	310		slot 1 se201; slot 2 se310		1
+m	26	0x006D001A	monster/m10/m1043/m1043		226	327		slot 1 se226; slot 2 se327		1
+m	27	0x006D001B	monster/m10/m1045/m1045		227	354		slot 1 se227; slot 2 se354		1
+m	28	0x006D001C	monster/m10/m1032/m1032		209	321		slot 1 se209; slot 2 se321		1
+m	29	0x006D001D	monster/m10/m1040/m1040			342		slot 2 se342		1
+m	30	0x006D001E	monster/m10/m1049/m1049			311		slot 2 se311		1
+m	31	0x006D001F	monster/m10/m1063/m1063		210	301		slot 1 se210; slot 2 se301		1
+m	32	0x006D0020	monster/m10/m1064/m1064		207	326		slot 1 se207; slot 2 se326		1
+m	33	0x006D0021	monster/m10/m1069/m1069		205	302		slot 1 se205; slot 2 se302		1
+m	34	0x006D0022	monster/m10/m1024/m1024		205	320		slot 1 se205; slot 2 se320		1
+m	35	0x006D0023	monster/m10/m1062/m1062		217	305		slot 1 se217; slot 2 se305		1
+m	36	0x006D0024	monster/m10/m1018/m1018			307		slot 2 se307		1
+m	37	0x006D0025	monster/m10/m1023/m1023		204	302		slot 1 se204; slot 2 se302		1
+m	38	0x006D0026	monster/m10/m1068/m1068		214	313		slot 1 se214; slot 2 se313		1
+m	39	0x006D0027	monster/m10/m1039/m1039			342		slot 2 se342		1
+m	40	0x006D0028	monster/m10/m1009/m1009		214	322		slot 1 se214; slot 2 se322		1
+m	41	0x006D0029	monster/m10/m1072/m1072		201	306		slot 1 se201; slot 2 se306		1
+m	42	0x006D002A	monster/m10/m1066/m1066		225	364		slot 1 se225; slot 2 se364		1
+m	43	0x006D002B	monster/m10/m1081/m1081		217	343		slot 1 se217; slot 2 se343		1
+m	44	0x006D002C	monster/m10/m1082/m1082		217	361		slot 1 se217; slot 2 se361		1
+m	45	0x006D002D	monster/m11/m1134/m1134			301		slot 2 se301		1
+m	46	0x006D002E	monster/m10/m1078/m1078		248	406		slot 1 se248; slot 2 se406		1
+m	47	0x006D002F	monster/m11/m1108/m1108		217	361		slot 1 se217; slot 2 se361		1
+m	48	0x006D0030	monster/m11/m1157/m1157							0
+m	49	0x006D0031	monster/m11/m1112/m1112			367		slot 2 se367		1
+m	50	0x006D0032	monster/m11/m1113/m1113			365		slot 2 se365		1
+m	51	0x006D0033	monster/m11/m1111/m1111			369		slot 2 se369		1
+m	52	0x006D0034	monster/m11/m1160/m1160			366		slot 2 se366		1
+m	53	0x006D0035	monster/m11/m1158/m1158		209	300		slot 1 se209; slot 2 se300		1
+m	54	0x006D0036	monster/m11/m1159/m1159		208	300		slot 1 se208; slot 2 se300		1
+m	55	0x006D0037	monster/m11/m1161/m1161			370		slot 2 se370		1
+m	56	0x006D0038	monster/m11/m1162/m1162			371		slot 2 se371		1
+m	57	0x006D0039	monster/m11/m1163/m1163			372		slot 2 se372		1
+m	58	0x006D003A	monster/m11/m1164/m1164			368		slot 2 se368		1
+m	59	0x006D003B	monster/m11/m1165/m1165			369		slot 2 se369		1
+m	60	0x006D003C	monster/m11/m1166/m1166			367		slot 2 se367		1
+m	61	0x006D003D	monster/m11/m1167/m1167			365		slot 2 se365		1
+m	62	0x006D003E	monster/m11/m1168/m1168			366		slot 2 se366		1
+m	63	0x006D003F	monster/m11/m1169/m1169			370		slot 2 se370		1
+m	64	0x006D0040	monster/m11/m1170/m1170			371		slot 2 se371		1
+m	65	0x006D0041	monster/m11/m1171/m1171			372		slot 2 se372		1
+m	66	0x006D0042	monster/m10/m1025/m1025		221	345		slot 1 se221; slot 2 se345		1
+m	67	0x006D0043	monster/m10/m1026/m1026		221	348		slot 1 se221; slot 2 se348		1
+m	68	0x006D0044	monster/m10/m1060/m1060		218	358		slot 1 se218; slot 2 se358		1
+m	69	0x006D0045	monster/m11/m1102/m1102			309		slot 2 se309		1
+m	70	0x006D0046	monster/m10/m1053/m1053			304		slot 2 se304		1
+m	71	0x006D0047	monster/m10/m1074/m1074		201	350		slot 1 se201; slot 2 se350		1
+m	72	0x006D0048	monster/m10/m1055/m1055		213	324		slot 1 se213; slot 2 se324		1
+m	73	0x006D0049	monster/m10/m1059/m1059		207	357		slot 1 se207; slot 2 se357		1
+m	74	0x006D004A	monster/m10/m1073/m1073		201	349		slot 1 se201; slot 2 se349		1
+m	75	0x006D004B	monster/m10/m1075/m1075		201	351		slot 1 se201; slot 2 se351		1
+m	76	0x006D004C	monster/m10/m1076/m1076		201	352		slot 1 se201; slot 2 se352		1
+m	77	0x006D004D	monster/m10/m1079/m1079		204	302		slot 1 se204; slot 2 se302		1
+m	78	0x006D004E	monster/m10/m1080/m1080		204	302		slot 1 se204; slot 2 se302		1
+m	79	0x006D004F	monster/m10/m1083/m1083		218	309		slot 1 se218; slot 2 se309		1
+m	80	0x006D0050	monster/m10/m1084/m1084		202	308		slot 1 se202; slot 2 se308		1
+m	81	0x006D0051	monster/m10/m1085/m1085		202	308		slot 1 se202; slot 2 se308		1
+m	82	0x006D0052	monster/m10/m1086/m1086			304		slot 2 se304		1
+m	83	0x006D0053	monster/m10/m1087/m1087			304		slot 2 se304		1
+m	84	0x006D0054	monster/m10/m1088/m1088		204	346		slot 1 se204; slot 2 se346		1
+m	85	0x006D0055	monster/m10/m1089/m1089		204	346		slot 1 se204; slot 2 se346		1
+m	86	0x006D0056	monster/m10/m1091/m1091		214	313		slot 1 se214; slot 2 se313		1
+m	87	0x006D0057	monster/m10/m1092/m1092		201	310		slot 1 se201; slot 2 se310		1
+m	88	0x006D0058	monster/m10/m1094/m1094		213	324		slot 1 se213; slot 2 se324		1
+m	89	0x006D0059	monster/m10/m1095/m1095		218	325		slot 1 se218; slot 2 se325		1
+m	90	0x006D005A	monster/m10/m1096/m1096			311		slot 2 se311		1
+m	91	0x006D005B	monster/m10/m1097/m1097			342		slot 2 se342		1
+m	92	0x006D005C	monster/m10/m1099/m1099		217	305		slot 1 se217; slot 2 se305		1
+m	93	0x006D005D	monster/m11/m1100/m1100		217	305		slot 1 se217; slot 2 se305		1
+m	94	0x006D005E	monster/m11/m1101/m1101		207	326		slot 1 se207; slot 2 se326		1
+m	95	0x006D005F	monster/m11/m1116/m1116		209	321		slot 1 se209; slot 2 se321		1
+m	96	0x006D0060	monster/m11/m1120/m1120		204	346		slot 1 se204; slot 2 se346		1
+m	97	0x006D0061	monster/m11/m1121/m1121		207	326		slot 1 se207; slot 2 se326		1
+m	98	0x006D0062	monster/m11/m1122/m1122		227	354		slot 1 se227; slot 2 se354		1
+m	99	0x006D0063	monster/m11/m1123/m1123		218	358		slot 1 se218; slot 2 se358		1
+m	100	0x006D0064	monster/m11/m1124/m1124		207	326		slot 1 se207; slot 2 se326		1
+m	101	0x006D0065	monster/m11/m1125/m1125		209	321		slot 1 se209; slot 2 se321		1
+m	102	0x006D0066	monster/m11/m1126/m1126		202	360		slot 1 se202; slot 2 se360		1
+m	103	0x006D0067	monster/m11/m1127/m1127		201	306		slot 1 se201; slot 2 se306		1
+m	104	0x006D0068	monster/m11/m1128/m1128		201	349		slot 1 se201; slot 2 se349		1
+m	105	0x006D0069	monster/m11/m1129/m1129		201	350		slot 1 se201; slot 2 se350		1
+m	106	0x006D006A	monster/m11/m1130/m1130		201	351		slot 1 se201; slot 2 se351		1
+m	107	0x006D006B	monster/m11/m1131/m1131		201	352		slot 1 se201; slot 2 se352		1
+m	108	0x006D006C	monster/m11/m1132/m1132		226	327		slot 1 se226; slot 2 se327		1
+m	109	0x006D006D	monster/m11/m1133/m1133		226	327		slot 1 se226; slot 2 se327		1
+m	110	0x006D006E	monster/m11/m1135/m1135		201	310		slot 1 se201; slot 2 se310		1
+m	111	0x006D006F	monster/m11/m1136/m1136		213	324		slot 1 se213; slot 2 se324		1
+m	112	0x006D0070	monster/m11/m1137/m1137		218	358		slot 1 se218; slot 2 se358		1
+m	113	0x006D0071	monster/m11/m1138/m1138		207	326		slot 1 se207; slot 2 se326		1
+m	114	0x006D0072	monster/m11/m1139/m1139		209	321		slot 1 se209; slot 2 se321		1
+m	115	0x006D0073	monster/m11/m1140/m1140		209	321		slot 1 se209; slot 2 se321		1
+m	116	0x006D0074	monster/m11/m1141/m1141			311		slot 2 se311		1
+m	117	0x006D0075	monster/m11/m1144/m1144		214	313		slot 1 se214; slot 2 se313		1
+m	118	0x006D0076	monster/m11/m1145/m1145		214	313		slot 1 se214; slot 2 se313		1
+m	119	0x006D0077	monster/m11/m1146/m1146		214	313		slot 1 se214; slot 2 se313		1
+m	120	0x006D0078	monster/m11/m1147/m1147		201	310		slot 1 se201; slot 2 se310		1
+m	121	0x006D0079	monster/m11/m1148/m1148		227	354		slot 1 se227; slot 2 se354		1
+m	122	0x006D007A	monster/m11/m1149/m1149		227	354		slot 1 se227; slot 2 se354		1
+m	123	0x006D007B	monster/m11/m1150/m1150		227	354		slot 1 se227; slot 2 se354		1
+m	124	0x006D007C	monster/m11/m1151/m1151		214	322		slot 1 se214; slot 2 se322		1
+m	125	0x006D007D	monster/m11/m1152/m1152		221	345		slot 1 se221; slot 2 se345		1
+m	126	0x006D007E	monster/m11/m1153/m1153		221	348		slot 1 se221; slot 2 se348		1
+m	127	0x006D007F	monster/m11/m1154/m1154		204	346		slot 1 se204; slot 2 se346		1
+m	128	0x006D0080	monster/m11/m1155/m1155		218	309		slot 1 se218; slot 2 se309		1
+m	129	0x006D0081	monster/m11/m1156/m1156		218	309		slot 1 se218; slot 2 se309		1
+m	130	0x006D0082	monster/m10/m1061/m1061		218	358		slot 1 se218; slot 2 se358		1
+m	131	0x006D0083	monster/m11/m1180/m1180		202	308		slot 1 se202; slot 2 se308		1
+m	132	0x006D0084	monster/m11/m1179/m1179							0
+m	133	0x006D0085	monster/m10/m1006/m1006			355		slot 2 se355		1
+m	134	0x006D0086	monster/m10/m1020/m1020			353		slot 2 se353		1
+m	135	0x006D0087	monster/m10/m1042/m1042			353		slot 2 se353		1
+m	136	0x006D0088	monster/m11/m1190/m1190		204	302		slot 1 se204; slot 2 se302		1
+m	137	0x006D0089	monster/m11/m1191/m1191		221	348		slot 1 se221; slot 2 se348		1
+m	138	0x006D008A	monster/m11/m1192/m1192		227	354		slot 1 se227; slot 2 se354		1
+m	139	0x006D008B	monster/m11/m1193/m1193		227	303		slot 1 se227; slot 2 se303		1
+m	140	0x006D008C	monster/m11/m1194/m1194		218	309		slot 1 se218; slot 2 se309		1
+m	141	0x006D008D	monster/m11/m1195/m1195		217	305		slot 1 se217; slot 2 se305		1
+m	142	0x006D008E	monster/m11/m1196/m1196		217	361		slot 1 se217; slot 2 se361		1
+m	143	0x006D008F	monster/m11/m1197/m1197			307		slot 2 se307		1
+m	144	0x006D0090	monster/m11/m1198/m1198		218	358		slot 1 se218; slot 2 se358		1
+m	145	0x006D0091	monster/m11/m1199/m1199		207	357		slot 1 se207; slot 2 se357		1
+m	146	0x006D0092	monster/m12/m1200/m1200		205	320		slot 1 se205; slot 2 se320		1
+m	147	0x006D0093	monster/m12/m1201/m1201		218	309		slot 1 se218; slot 2 se309		1
+m	148	0x006D0094	monster/m12/m1202/m1202		218	325		slot 1 se218; slot 2 se325		1
+m	149	0x006D0095	monster/m11/m1185/m1185		218	309		slot 1 se218; slot 2 se309		1
+m	150	0x006D0096	monster/m11/m1186/m1186		218	309		slot 1 se218; slot 2 se309		1
+m	151	0x006D0097	monster/m11/m1187/m1187		218	358		slot 1 se218; slot 2 se358		1
+m	152	0x006D0098	monster/m11/m1188/m1188		218	363		slot 1 se218; slot 2 se363		1
+m	153	0x006D0099	monster/m11/m1189/m1189			355		slot 2 se355		1
+m	154	0x006D009A	monster/m10/m1070/m1070		218	373		slot 1 se218; slot 2 se373		1
+m	155	0x006D009B	monster/m11/m1172/m1172							0
+m	156	0x006D009C	monster/m11/m1183/m1183		218	325		slot 1 se218; slot 2 se325		1
+m	157	0x006D009D	monster/m12/m1207/m1207							0
+m	158	0x006D009E	monster/m10/m1017/m1017		227	303		slot 1 se227; slot 2 se303		1
+m	159	0x006D009F	monster/m11/m1107/m1107		217	361		slot 1 se217; slot 2 se361		1
+m	160	0x006D00A0	monster/m11/m1109/m1109			355		slot 2 se355		1
+m	161	0x006D00A1	monster/m11/m1173/m1173		204	359		slot 1 se204; slot 2 se359		1
+m	162	0x006D00A2	monster/m11/m1174/m1174		204	359		slot 1 se204; slot 2 se359		1
+m	163	0x006D00A3	monster/m11/m1175/m1175		204	359		slot 1 se204; slot 2 se359		1
+m	164	0x006D00A4	monster/m11/m1176/m1176		214	313		slot 1 se214; slot 2 se313		1
+m	165	0x006D00A5	monster/m11/m1182/m1182		218	325		slot 1 se218; slot 2 se325		1
+m	166	0x006D00A6	monster/m11/m1184/m1184		218	325		slot 1 se218; slot 2 se325		1
+m	167	0x006D00A7	monster/m11/m1181/m1181		218	309		slot 1 se218; slot 2 se309		1
+m	168	0x006D00A8	monster/m12/m1203/m1203							0
+m	169	0x006D00A9	monster/m12/m1204/m1204							0
+m	170	0x006D00AA	monster/m12/m1205/m1205							0
+m	171	0x006D00AB	monster/m12/m1208/m1208			412	17	slot 2 se412	shout17	1
+m	172	0x006D00AC	monster/m11/m1177/m1177		225	364		slot 1 se225; slot 2 se364		1
+m	173	0x006D00AD	monster/m11/m1178/m1178		225	364		slot 1 se225; slot 2 se364		1
+m	174	0x006D00AE	monster/m12/m1209/m1209							0
+m	175	0x006D00AF	monster/m12/m1210/m1210							0
+m	176	0x006D00B0	monster/m12/m1211/m1211							0
+m	177	0x006D00B1	monster/m11/m1143/m1143							0
+m	178	0x006D00B2	monster/m10/m1098/m1098			342		slot 2 se342		1
+m	179	0x006D00B3	monster/m11/m1106/m1106		217	343		slot 1 se217; slot 2 se343		1
+m	180	0x006D00B4	monster/m11/m1114/m1114		227	303		slot 1 se227; slot 2 se303		1
+m	181	0x006D00B5	monster/m11/m1115/m1115		227	303		slot 1 se227; slot 2 se303		1
+m	182	0x006D00B6	monster/m12/m1212/m1212			355		slot 2 se355		1
+m	183	0x006D00B7	monster/m12/m1213/m1213			355		slot 2 se355		1
+m	184	0x006D00B8	monster/m12/m1214/m1214			355		slot 2 se355		1
+m	185	0x006D00B9	monster/m12/m1215/m1215		207	357		slot 1 se207; slot 2 se357		1
+m	186	0x006D00BA	monster/m12/m1216/m1216		207	357		slot 1 se207; slot 2 se357		1
+m	187	0x006D00BB	monster/m12/m1217/m1217			356		slot 2 se356		1
+m	188	0x006D00BC	monster/m12/m1218/m1218		218	325		slot 1 se218; slot 2 se325		1
+m	189	0x006D00BD	monster/m12/m1219/m1219			353		slot 2 se353		1
+m	190	0x006D00BE	monster/m12/m1220/m1220			311		slot 2 se311		1
+m	191	0x006D00BF	monster/m12/m1221/m1221		213	364		slot 1 se213; slot 2 se364		1
+m	192	0x006D00C0	monster/m12/m1222/m1222		214	322		slot 1 se214; slot 2 se322		1
+m	193	0x006D00C1	monster/m12/m1223/m1223		214	322		slot 1 se214; slot 2 se322		1
+m	194	0x006D00C2	monster/m12/m1224/m1224		221	345		slot 1 se221; slot 2 se345		1
+m	195	0x006D00C3	monster/m12/m1225/m1225		221	348		slot 1 se221; slot 2 se348		1
+m	196	0x006D00C4	monster/m12/m1226/m1226		205	320		slot 1 se205; slot 2 se320		1
+m	197	0x006D00C5	monster/m12/m1227/m1227		205	320		slot 1 se205; slot 2 se320		1
+m	198	0x006D00C6	monster/m12/m1228/m1228			356		slot 2 se356		1
+m	199	0x006D00C7	monster/m12/m1229/m1229		218	358		slot 1 se218; slot 2 se358		1
+m	200	0x006D00C8	monster/m12/m1230/m1230		218	358		slot 1 se218; slot 2 se358		1
+m	201	0x006D00C9	monster/m12/m1231/m1231		218	358		slot 1 se218; slot 2 se358		1
+m	202	0x006D00CA	monster/m12/m1232/m1232		218	363		slot 1 se218; slot 2 se363		1
+m	203	0x006D00CB	monster/m12/m1233/m1233		218	363		slot 1 se218; slot 2 se363		1
+m	204	0x006D00CC	monster/m12/m1234/m1234		209	300		slot 1 se209; slot 2 se300		1
+m	205	0x006D00CD	monster/m12/m1235/m1235		209	300		slot 1 se209; slot 2 se300		1
+m	206	0x006D00CE	monster/m12/m1236/m1236		209	300		slot 1 se209; slot 2 se300		1
+m	207	0x006D00CF	monster/m12/m1237/m1237		209	300		slot 1 se209; slot 2 se300		1
+m	208	0x006D00D0	monster/m12/m1238/m1238		202	308		slot 1 se202; slot 2 se308		1
+m	209	0x006D00D1	monster/m12/m1239/m1239		202	308		slot 1 se202; slot 2 se308		1
+m	210	0x006D00D2	monster/m12/m1240/m1240		202	360		slot 1 se202; slot 2 se360		1
+m	211	0x006D00D3	monster/m12/m1241/m1241			307		slot 2 se307		1
+m	212	0x006D00D4	monster/m12/m1242/m1242			307		slot 2 se307		1
+m	213	0x006D00D5	monster/m12/m1243/m1243			307		slot 2 se307		1
+m	214	0x006D00D6	monster/m12/m1244/m1244			353		slot 2 se353		1
+m	215	0x006D00D7	monster/m12/m1245/m1245			353		slot 2 se353		1
+m	216	0x006D00D8	monster/m12/m1246/m1246			353		slot 2 se353		1
+m	217	0x006D00D9	monster/m12/m1247/m1247		249	301		slot 1 se249; slot 2 se301		1
+m	218	0x006D00DA	monster/m12/m1248/m1248		210	301		slot 1 se210; slot 2 se301		1
+m	219	0x006D00DB	monster/m12/m1249/m1249		210	301		slot 1 se210; slot 2 se301		1
+m	220	0x006D00DC	monster/m12/m1250/m1250		210	301		slot 1 se210; slot 2 se301		1
+m	221	0x006D00DD	monster/m12/m1251/m1251		210	301		slot 1 se210; slot 2 se301		1
+m	222	0x006D00DE	monster/m12/m1252/m1252		249	301		slot 1 se249; slot 2 se301		1
+m	223	0x006D00DF	monster/m12/m1253/m1253		227	303		slot 1 se227; slot 2 se303		1
+m	224	0x006D00E0	monster/m12/m1254/m1254		227	303		slot 1 se227; slot 2 se303		1
+m	225	0x006D00E1	monster/m12/m1255/m1255		249	303		slot 1 se249; slot 2 se303		1
+m	226	0x006D00E2	monster/m12/m1256/m1256		227	303		slot 1 se227; slot 2 se303		1
+m	227	0x006D00E3	monster/m12/m1257/m1257		217	361		slot 1 se217; slot 2 se361		1
+m	228	0x006D00E4	monster/m12/m1258/m1258			342		slot 2 se342		1
+m	229	0x006D00E5	monster/m12/m1259/m1259			342		slot 2 se342		1
+m	230	0x006D00E6	monster/m12/m1260/m1260			342		slot 2 se342		1
+m	231	0x006D00E7	monster/m12/m1261/m1261			342		slot 2 se342		1
+m	232	0x006D00E8	monster/m12/m1262/m1262			311		slot 2 se311		1
+m	233	0x006D00E9	monster/m12/m1263/m1263			311		slot 2 se311		1
+m	234	0x006D00EA	monster/m12/m1264/m1264			311		slot 2 se311		1
+m	235	0x006D00EB	monster/m12/m1265/m1265			353		slot 2 se353		1
+m	236	0x006D00EC	monster/m12/m1266/m1266			432		slot 2 se432		1
+m	237	0x006D00ED	monster/m12/m1267/m1267			431		slot 2 se431		1
+m	238	0x006D00EE	monster/m12/m1268/m1268							0
+m	239	0x006D00EF	monster/m12/m1269/m1269							0
+m	240	0x006D00F0	monster/m12/m1270/m1270		201	433		slot 1 se201; slot 2 se433		1
+m	241	0x006D00F1	monster/m12/m1272/m1272		239	374		slot 1 se239; slot 2 se374		1
+m	242	0x006D00F2	monster/m12/m1271/m1271		214	313		slot 1 se214; slot 2 se313		1
+m	243	0x006D00F3	monster/m12/m1206/m1206							0
+m	244	0x006D00F4	monster/m12/m1274/m1274							0
+m	245	0x006D00F5	monster/m12/m1275/m1275							0
+m	246	0x006D00F6	monster/m12/m1277/m1277		217	327		slot 1 se217; slot 2 se327		1
+m	247	0x006D00F7	monster/m12/m1276/m1276		226	327		slot 1 se226; slot 2 se327		1
+m	248	0x006D00F8	monster/m12/m1278/m1278		226	430		slot 1 se226; slot 2 se430		1
+m	249	0x006D00F9	monster/m12/m1279/m1279		214	318		slot 1 se214; slot 2 se318		1
+m	250	0x006D00FA	monster/m12/m1280/m1280							0
+m	251	0x006D00FB	monster/m12/m1281/m1281		225	308		slot 1 se225; slot 2 se308		1
+m	252	0x006D00FC	monster/m12/m1282/m1282		204	302		slot 1 se204; slot 2 se302		1
+m	253	0x006D00FD	monster/m12/m1283/m1283		222	433		slot 1 se222; slot 2 se433		1
+n	0	0x006E0000	npc/n10/n1059/n1059		215			slot 1 se215		1
+n	1	0x006E0001	npc/n10/n1060/n1060		215			slot 1 se215		1
+n	2	0x006E0002	npc/n10/n1018/n1018		241	329		slot 1 se241; slot 2 se329		1
+n	3	0x006E0003	npc/n10/n1019/n1019		215	332		slot 1 se215; slot 2 se332		1
+n	4	0x006E0004	npc/n10/n1020/n1020		215			slot 1 se215		1
+n	5	0x006E0005	npc/n10/n1022/n1022		222	334		slot 1 se222; slot 2 se334		1
+n	6	0x006E0006	npc/n10/n1021/n1021		238	335		slot 1 se238; slot 2 se335		1
+n	7	0x006E0007	npc/n10/n1017/n1017		243	393	6	slot 1 se243; slot 2 se393	shout06	1
+n	8	0x006E0008	npc/n10/n1014/n1014		222			slot 1 se222		1
+n	9	0x006E0009	npc/n10/n1061/n1061		244	410	15	slot 1 se244; slot 2 se410	shout15	1
+n	10	0x006E000A	npc/n10/n1073/n1073		215			slot 1 se215		1
+n	11	0x006E000B	npc/n11/n1148/n1148		243	396	11	slot 1 se243; slot 2 se396	shout11	1
+n	12	0x006E000C	npc/n10/n1084/n1084		215			slot 1 se215		1
+n	13	0x006E000D	npc/n10/n1027/n1027		215			slot 1 se215		1
+n	14	0x006E000E	npc/n10/n1089/n1089		215			slot 1 se215		1
+n	15	0x006E000F	npc/n10/n1032/n1032		215	397	12	slot 1 se215; slot 2 se397	shout12	1
+n	16	0x006E0010	npc/n10/n1037/n1037							0
+n	17	0x006E0011	npc/n10/n1038/n1038			339		slot 2 se339		1
+n	18	0x006E0012	npc/n10/n1033/n1033		215			slot 1 se215		1
+n	19	0x006E0013	npc/n10/n1034/n1034		215			slot 1 se215		1
+n	20	0x006E0014	npc/n10/n1035/n1035		215			slot 1 se215		1
+n	21	0x006E0015	npc/n10/n1036/n1036		215			slot 1 se215		1
+n	22	0x006E0016	npc/n10/n1044/n1044		237			slot 1 se237		1
+n	23	0x006E0017	npc/n10/n1045/n1045		237			slot 1 se237		1
+n	24	0x006E0018	npc/n10/n1053/n1053		222	335		slot 1 se222; slot 2 se335		1
+n	25	0x006E0019	npc/n10/n1054/n1054		222	334		slot 1 se222; slot 2 se334		1
+n	26	0x006E001A	npc/n10/n1090/n1090		217	344		slot 1 se217; slot 2 se344		1
+n	27	0x006E001B	npc/n10/n1091/n1091		217	344		slot 1 se217; slot 2 se344		1
+n	28	0x006E001C	npc/n10/n1092/n1092		217	347		slot 1 se217; slot 2 se347		1
+n	29	0x006E001D	npc/n10/n1093/n1093		217	347		slot 1 se217; slot 2 se347		1
+n	30	0x006E001E	npc/n10/n1094/n1094			323		slot 2 se323		1
+n	31	0x006E001F	npc/n10/n1095/n1095			323		slot 2 se323		1
+n	32	0x006E0020	npc/n10/n1097/n1097		224	340		slot 1 se224; slot 2 se340		1
+n	33	0x006E0021	npc/n11/n1100/n1100		219	312		slot 1 se219; slot 2 se312		1
+n	34	0x006E0022	npc/n11/n1101/n1101		219	312		slot 1 se219; slot 2 se312		1
+n	35	0x006E0023	npc/n11/n1102/n1102		213	319		slot 1 se213; slot 2 se319		1
+n	36	0x006E0024	npc/n11/n1103/n1103		213	319		slot 1 se213; slot 2 se319		1
+n	37	0x006E0025	npc/n11/n1104/n1104		213	319		slot 1 se213; slot 2 se319		1
+n	38	0x006E0026	npc/n11/n1105/n1105		213	319		slot 1 se213; slot 2 se319		1
+n	39	0x006E0027	npc/n11/n1106/n1106		213	319		slot 1 se213; slot 2 se319		1
+n	40	0x006E0028	npc/n11/n1107/n1107		213	319		slot 1 se213; slot 2 se319		1
+n	41	0x006E0029	npc/n10/n1096/n1096		246	416	63	slot 1 se246; slot 2 se416	shout63	1
+n	42	0x006E002A	npc/n10/n1055/n1055		215			slot 1 se215		1
+n	43	0x006E002B	npc/n10/n1056/n1056		242	331		slot 1 se242; slot 2 se331		1
+n	44	0x006E002C	npc/n11/n1114/n1114		215			slot 1 se215		1
+n	45	0x006E002D	npc/n10/n1057/n1057		215	328		slot 1 se215; slot 2 se328		1
+n	46	0x006E002E	npc/n10/n1078/n1078		215	337		slot 1 se215; slot 2 se337		1
+n	47	0x006E002F	npc/n11/n1124/n1124		215			slot 1 se215		1
+n	48	0x006E0030	npc/n11/n1123/n1123		223	336		slot 1 se223; slot 2 se336		1
+n	49	0x006E0031	npc/n11/n1122/n1122		240	338		slot 1 se240; slot 2 se338		1
+n	50	0x006E0032	npc/n10/n1039/n1039		215			slot 1 se215		1
+n	51	0x006E0033	npc/n10/n1040/n1040		215			slot 1 se215		1
+n	52	0x006E0034	npc/n10/n1043/n1043		237			slot 1 se237		1
+n	53	0x006E0035	npc/n10/n1046/n1046		237			slot 1 se237		1
+n	54	0x006E0036	npc/n10/n1047/n1047		215			slot 1 se215		1
+n	55	0x006E0037	npc/n10/n1048/n1048		215			slot 1 se215		1
+n	56	0x006E0038	npc/n10/n1076/n1076		215			slot 1 se215		1
+n	57	0x006E0039	npc/n10/n1077/n1077		215			slot 1 se215		1
+n	58	0x006E003A	npc/n11/n1110/n1110		215			slot 1 se215		1
+n	59	0x006E003B	npc/n11/n1111/n1111		215			slot 1 se215		1
+n	60	0x006E003C	npc/n11/n1112/n1112		237			slot 1 se237		1
+n	61	0x006E003D	npc/n11/n1113/n1113		237			slot 1 se237		1
+n	62	0x006E003E	npc/n10/n1072/n1072		215			slot 1 se215		1
+n	63	0x006E003F	npc/n10/n1066/n1066		215			slot 1 se215		1
+n	64	0x006E0040	npc/n10/n1079/n1079		215	403	52	slot 1 se215; slot 2 se403	shout52	1
+n	65	0x006E0041	npc/n10/n1080/n1080		215	402	51	slot 1 se215; slot 2 se402	shout51	1
+n	66	0x006E0042	npc/n10/n1081/n1081		215	404	53	slot 1 se215; slot 2 se404	shout53	1
+n	67	0x006E0043	npc/n10/n1082/n1082		215			slot 1 se215		1
+n	68	0x006E0044	npc/n10/n1064/n1064		215			slot 1 se215		1
+n	69	0x006E0045	npc/n10/n1042/n1042		215			slot 1 se215		1
+n	70	0x006E0046	npc/n10/n1098/n1098		229	341		slot 1 se229; slot 2 se341		1
+n	71	0x006E0047	npc/n10/n1099/n1099		224	362		slot 1 se224; slot 2 se362		1
+n	72	0x006E0048	npc/n11/n1108/n1108		224	340		slot 1 se224; slot 2 se340		1
+n	73	0x006E0049	npc/n11/n1109/n1109		224	362		slot 1 se224; slot 2 se362		1
+n	74	0x006E004A	npc/n11/n1117/n1117		229	341		slot 1 se229; slot 2 se341		1
+n	75	0x006E004B	npc/n11/n1118/n1118		219	312		slot 1 se219; slot 2 se312		1
+n	76	0x006E004C	npc/n11/n1119/n1119		219	312		slot 1 se219; slot 2 se312		1
+n	77	0x006E004D	npc/n11/n1120/n1120		219	312		slot 1 se219; slot 2 se312		1
+n	78	0x006E004E	npc/n11/n1121/n1121		219	312		slot 1 se219; slot 2 se312		1
+n	79	0x006E004F	npc/n11/n1125/n1125		215			slot 1 se215		1
+n	80	0x006E0050	npc/n11/n1126/n1126		217	344		slot 1 se217; slot 2 se344		1
+n	81	0x006E0051	npc/n11/n1127/n1127		217	347		slot 1 se217; slot 2 se347		1
+n	82	0x006E0052	npc/n11/n1128/n1128		219	312		slot 1 se219; slot 2 se312		1
+n	83	0x006E0053	npc/n11/n1129/n1129		219	312		slot 1 se219; slot 2 se312		1
+n	84	0x006E0054	npc/n10/n1062/n1062		215			slot 1 se215		1
+n	85	0x006E0055	npc/n11/n1140/n1140		215			slot 1 se215		1
+n	86	0x006E0056	npc/n11/n1141/n1141		215			slot 1 se215		1
+n	87	0x006E0057	npc/n11/n1151/n1151		201			slot 1 se201		1
+n	88	0x006E0058	npc/n11/n1152/n1152		201			slot 1 se201		1
+n	89	0x006E0059	npc/n11/n1153/n1153							0
+n	90	0x006E005A	npc/n11/n1154/n1154		201			slot 1 se201		1
+n	91	0x006E005B	npc/n10/n1067/n1067		215			slot 1 se215		1
+n	92	0x006E005C	npc/n10/n1068/n1068							0
+n	93	0x006E005D	npc/n11/n1136/n1136							0
+n	94	0x006E005E	npc/n11/n1137/n1137							0
+n	95	0x006E005F	npc/n11/n1138/n1138							0
+n	96	0x006E0060	npc/n10/n1058/n1058		215			slot 1 se215		1
+n	97	0x006E0061	npc/n11/n1131/n1131		215			slot 1 se215		1
+n	98	0x006E0062	npc/n11/n1143/n1143		241	329		slot 1 se241; slot 2 se329		1
+n	99	0x006E0063	npc/n11/n1144/n1144		241	333		slot 1 se241; slot 2 se333		1
+n	100	0x006E0064	npc/n11/n1130/n1130		215			slot 1 se215		1
+n	101	0x006E0065	npc/n11/n1132/n1132		215			slot 1 se215		1
+n	102	0x006E0066	npc/n11/n1133/n1133		241	329		slot 1 se241; slot 2 se329		1
+n	103	0x006E0067	npc/n11/n1139/n1139		215			slot 1 se215		1
+n	104	0x006E0068	npc/n11/n1142/n1142		215			slot 1 se215		1
+n	105	0x006E0069	npc/n10/n1071/n1071		215			slot 1 se215		1
+n	106	0x006E006A	npc/n11/n1149/n1149		215	332		slot 1 se215; slot 2 se332		1
+n	107	0x006E006B	npc/n11/n1150/n1150		217	347		slot 1 se217; slot 2 se347		1
+n	108	0x006E006C	npc/n10/n1026/n1026							0
+n	109	0x006E006D	npc/n11/n1163/n1163							0
+n	110	0x006E006E	npc/n11/n1164/n1164							0
+n	111	0x006E006F	npc/n11/n1162/n1162							0
+n	112	0x006E0070	npc/n11/n1166/n1166		215			slot 1 se215		1
+n	113	0x006E0071	npc/n11/n1167/n1167		215			slot 1 se215		1
+n	114	0x006E0072	npc/n11/n1159/n1159			411	16	slot 2 se411	shout16	1
+n	115	0x006E0073	npc/n11/n1168/n1168							0
+n	116	0x006E0074	npc/n10/n1085/n1085		245	409	56	slot 1 se245; slot 2 se409	shout56	1
+n	117	0x006E0075	npc/n11/n1169/n1169							0
+n	118	0x006E0076	npc/n11/n1171/n1171		241	329		slot 1 se241; slot 2 se329		1
+n	119	0x006E0077	npc/n11/n1145/n1145		243	398	13	slot 1 se243; slot 2 se398	shout13	1
+n	120	0x006E0078	npc/n11/n1146/n1146		243	434		slot 1 se243; slot 2 se434		1
+n	121	0x006E0079	npc/n11/n1147/n1147		243	434		slot 1 se243; slot 2 se434		1
+n	122	0x006E007A	npc/n10/n1087/n1087							0
+n	123	0x006E007B	npc/n11/n1176/n1176							0
+n	124	0x006E007C	npc/n11/n1177/n1177			323		slot 2 se323		1
+n	125	0x006E007D	npc/n11/n1178/n1178		213	319		slot 1 se213; slot 2 se319		1
+n	126	0x006E007E	npc/n11/n1179/n1179		213	319		slot 1 se213; slot 2 se319		1
+n	127	0x006E007F	npc/n11/n1180/n1180		224	340		slot 1 se224; slot 2 se340		1
+n	128	0x006E0080	npc/n11/n1181/n1181		224	340		slot 1 se224; slot 2 se340		1
+n	129	0x006E0081	npc/n11/n1182/n1182		224	362		slot 1 se224; slot 2 se362		1
+n	130	0x006E0082	npc/n11/n1183/n1183		224	362		slot 1 se224; slot 2 se362		1
+n	131	0x006E0083	npc/n11/n1184/n1184			339		slot 2 se339		1
+n	132	0x006E0084	npc/n11/n1185/n1185		217	344		slot 1 se217; slot 2 se344		1
+n	133	0x006E0085	npc/n11/n1186/n1186			323		slot 2 se323		1
+n	134	0x006E0086	npc/n11/n1187/n1187			323		slot 2 se323		1
+n	135	0x006E0087	npc/n11/n1188/n1188			323		slot 2 se323		1
+n	136	0x006E0088	npc/n11/n1189/n1189			323		slot 2 se323		1
+n	137	0x006E0089	npc/n11/n1190/n1190			323		slot 2 se323		1
+n	138	0x006E008A	npc/n11/n1191/n1191		229	341		slot 1 se229; slot 2 se341		1
+n	139	0x006E008B	npc/n11/n1192/n1192		229	341		slot 1 se229; slot 2 se341		1
+n	140	0x006E008C	npc/n11/n1193/n1193		219	312		slot 1 se219; slot 2 se312		1
+n	141	0x006E008D	npc/n11/n1194/n1194		241	329		slot 1 se241; slot 2 se329		1
+n	142	0x006E008E	npc/n11/n1195/n1195							0
+n	143	0x006E008F	npc/n11/n1196/n1196		217	344		slot 1 se217; slot 2 se344		1
+n	144	0x006E0090	npc/n10/n1069/n1069		215			slot 1 se215		1
+n	145	0x006E0091	npc/n10/n1070/n1070		215			slot 1 se215		1
+n	146	0x006E0092	npc/n11/n1199/n1199		217	347		slot 1 se217; slot 2 se347		1
+n	147	0x006E0093	npc/n12/n1200/n1200		213	319		slot 1 se213; slot 2 se319		1
+n	148	0x006E0094	npc/n12/n1201/n1201		224	340		slot 1 se224; slot 2 se340		1
+n	149	0x006E0095	npc/n12/n1202/n1202		219	312		slot 1 se219; slot 2 se312		1
+n	150	0x006E0096	npc/n12/n1203/n1203		215	328		slot 1 se215; slot 2 se328		1
+n	151	0x006E0097	npc/n12/n1204/n1204		223	336		slot 1 se223; slot 2 se336		1
+n	152	0x006E0098	npc/n12/n1205/n1205		240	338		slot 1 se240; slot 2 se338		1
+n	153	0x006E0099	npc/n12/n1206/n1206		222	334		slot 1 se222; slot 2 se334		1
+n	154	0x006E009A	npc/n12/n1207/n1207		241	332		slot 1 se241; slot 2 se332		1
+n	155	0x006E009B	npc/n12/n1208/n1208		242	331		slot 1 se242; slot 2 se331		1
+n	156	0x006E009C	npc/n12/n1209/n1209		238	335		slot 1 se238; slot 2 se335		1
+n	157	0x006E009D	npc/n12/n1212/n1212							0
+n	158	0x006E009E	npc/n12/n1213/n1213							0
+n	159	0x006E009F	npc/n12/n1214/n1214		201			slot 1 se201		1
+n	160	0x006E00A0	npc/n12/n1215/n1215		201			slot 1 se201		1
+n	161	0x006E00A1	npc/n12/n1216/n1216		201			slot 1 se201		1
+n	162	0x006E00A2	npc/n11/n1174/n1174							0
+n	163	0x006E00A3	npc/n12/n1218/n1218		242			slot 1 se242		1
+n	164	0x006E00A4	npc/n12/n1219/n1219							0
+n	165	0x006E00A5	npc/n12/n1220/n1220							0
+n	166	0x006E00A6	npc/n12/n1221/n1221		247			slot 1 se247		1
+n	167	0x006E00A7	npc/n12/n1222/n1222		247			slot 1 se247		1
+n	168	0x006E00A8	npc/n11/n1175/n1175		247			slot 1 se247		1
+n	169	0x006E00A9	npc/n12/n1225/n1225		215			slot 1 se215		1
+n	170	0x006E00AA	npc/n11/n1172/n1172							0
+n	171	0x006E00AB	npc/n12/n1210/n1210							0
+n	172	0x006E00AC	npc/n12/n1232/n1232		215			slot 1 se215		1
+n	173	0x006E00AD	npc/n12/n1240/n1240							0
+n	174	0x006E00AE	npc/n12/n1248/n1248							0
+s	0	0x00730000	summon/s0002/s0002		217	426	27	slot 1 se217; slot 2 se426	shout27	1
+s	1	0x00730001	summon/s0003/s0003			428	29	slot 2 se428	shout29	1
+s	2	0x00730002	summon/s0004/s0004			420	20	slot 2 se420	shout20	1
+s	3	0x00730003	summon/s0005/s0005			425	26	slot 2 se425	shout26	1
+s	4	0x00730004	summon/s0007/s0007		217	417	23	slot 1 se217; slot 2 se417	shout23	1
+s	5	0x00730005	summon/s0006/s0006		217	423	24	slot 1 se217; slot 2 se423	shout24	1
+s	6	0x00730006	summon/s0009/s0009			424	25	slot 2 se424	shout25	1
+s	7	0x00730007	summon/s0010/s0010			427	28	slot 2 se427	shout28	1
+s	8	0x00730008	summon/s0011/s0011			422	18	slot 2 se422	shout18	1
+s	9	0x00730009	summon/s0012/s0012			429	30	slot 2 se429	shout30	1
+s	10	0x0073000A	summon/s0014/s0014			419	21	slot 2 se419	shout21	1
+s	11	0x0073000B	summon/s0015/s0015			418	22	slot 2 se418	shout22	1
+s	12	0x0073000C	summon/s0013/s0013		217	421	19	slot 1 se217; slot 2 se421	shout19	1
+s	13	0x0073000D	summon/s0019/s0019							0
+s	14	0x0073000E	summon/s0026/s0026							0
+s	15	0x0073000F	summon/s0028/s0028							0
+s	16	0x00730010	summon/s0023/s0023							0
+s	17	0x00730011	summon/s0024/s0024							0
+s	18	0x00730012	summon/s0027/s0027							0
+s	19	0x00730013	summon/s0025/s0025							0
+s	20	0x00730014	summon/s0029/s0029							0
+s	21	0x00730015	summon/s0022/s0022							0
+s	22	0x00730016	summon/s0021/s0021							0
+s	23	0x00730017	summon/s0030/s0030							0
+s	24	0x00730018	summon/s0020/s0020							0
+s	25	0x00730019	summon/s0031/s0031							0
+t	0	0x00740000	treasure/t0004							0
+t	1	0x00740001	treasure/t0005							0
+t	2	0x00740002	treasure/t0006							0
+t	3	0x00740003	treasure/t0007							0
+t	4	0x00740004	treasure/t0008							0
+t	5	0x00740005	treasure/t0009							0
+t	6	0x00740006	treasure/t0010							0
+t	7	0x00740007	treasure/t0011							0
+t	8	0x00740008	treasure/t0012							0
+t	9	0x00740009	treasure/t0013							0
+t	10	0x0074000A	treasure/t0014							0
+t	11	0x0074000B	treasure/t0015							0
+t	12	0x0074000C	treasure/t0016							0
+t	13	0x0074000D	treasure/t0017							0
+t	14	0x0074000E	treasure/t0018							0
+t	15	0x0074000F	treasure/t0019							0
+w	0	0x00770000	weapon/w2002	252				slot 0 se252		1
+w	1	0x00770001	weapon/w2202	702				slot 0 se702		1
+w	2	0x00770002	weapon/w2203	264				slot 0 se264		1
+w	3	0x00770003	weapon/w2204	263				slot 0 se263		1
+w	4	0x00770004	weapon/w2302	269				slot 0 se269		1
+w	5	0x00770005	weapon/w4001	270				slot 0 se270		1
+w	6	0x00770006	weapon/w2101	250				slot 0 se250		1
+w	7	0x00770007	weapon/w3001							0
+w	8	0x00770008	weapon/w6101	264				slot 0 se264		1
+w	9	0x00770009	weapon/w6001	263				slot 0 se263		1
+w	10	0x0077000A	weapon/w5001	253				slot 0 se253		1
+w	11	0x0077000B	weapon/w0001							0
+w	12	0x0077000C	weapon/w0002							0
+w	13	0x0077000D	weapon/w0003							0
+w	14	0x0077000E	weapon/w5003	283				slot 0 se283		1
+w	15	0x0077000F	weapon/w2102	703				slot 0 se703		1
+w	16	0x00770010	weapon/w2103							0
+w	17	0x00770011	weapon/w4002	299				slot 0 se299		1
+w	18	0x00770012	weapon/w4003	299				slot 0 se299		1
+w	19	0x00770013	weapon/w7002	255				slot 0 se255		1
+w	20	0x00770014	weapon/w5019	283				slot 0 se283		1
+w	21	0x00770015	weapon/w7102							0
+w	22	0x00770016	weapon/w2105	250				slot 0 se250		1
+w	23	0x00770017	weapon/w2125	250				slot 0 se250		1
+w	24	0x00770018	weapon/w6108	282				slot 0 se282		1
+w	25	0x00770019	weapon/w0004							0
+w	26	0x0077001A	weapon/w6109	282				slot 0 se282		1
+w	27	0x0077001B	weapon/w0005							0
+w	28	0x0077001C	weapon/w0006							0
+w	29	0x0077001D	weapon/w0007							0
+w	30	0x0077001E	weapon/w0008							0
+w	31	0x0077001F	weapon/w0009							0
+w	32	0x00770020	weapon/w2110	250				slot 0 se250		1
+w	33	0x00770021	weapon/w2111	288				slot 0 se288		1
+w	34	0x00770022	weapon/w2112	250				slot 0 se250		1
+w	35	0x00770023	weapon/w2113	250				slot 0 se250		1
+w	36	0x00770024	weapon/w2114	288				slot 0 se288		1
+w	37	0x00770025	weapon/w2115	250				slot 0 se250		1
+w	38	0x00770026	weapon/w4004	290				slot 0 se290		1
+w	39	0x00770027	weapon/w2116	288				slot 0 se288		1
+w	40	0x00770028	weapon/w2117	288				slot 0 se288		1
+w	41	0x00770029	weapon/w4005	290				slot 0 se290		1
+w	42	0x0077002A	weapon/w2402	268				slot 0 se268		1
+w	43	0x0077002B	weapon/w2118	288				slot 0 se288		1
+w	44	0x0077002C	weapon/w4006	297				slot 0 se297		1
+w	45	0x0077002D	weapon/w2119	288				slot 0 se288		1
+w	46	0x0077002E	weapon/w4007	295				slot 0 se295		1
+w	47	0x0077002F	weapon/w2403	268				slot 0 se268		1
+w	48	0x00770030	weapon/w4008	294				slot 0 se294		1
+w	49	0x00770031	weapon/w4009	276				slot 0 se276		1
+w	50	0x00770032	weapon/w6110	282				slot 0 se282		1
+w	51	0x00770033	weapon/w6111	282				slot 0 se282		1
+w	52	0x00770034	weapon/w8001	262				slot 0 se262		1
+w	53	0x00770035	weapon/w0010							0
+w	54	0x00770036	weapon/w0011							0
+w	55	0x00770037	weapon/w0012							0
+w	56	0x00770038	weapon/w0013							0
+w	57	0x00770039	weapon/w0014							0
+w	58	0x0077003A	weapon/w0015							0
+w	59	0x0077003B	weapon/w0016							0
+w	60	0x0077003C	weapon/w0017							0
+w	61	0x0077003D	weapon/w0018							0
+w	62	0x0077003E	weapon/w0019							0
+w	63	0x0077003F	weapon/w2120	250				slot 0 se250		1
+w	64	0x00770040	weapon/w2121	250				slot 0 se250		1
+w	65	0x00770041	weapon/w2122	250				slot 0 se250		1
+w	66	0x00770042	weapon/w4010	296				slot 0 se296		1
+w	67	0x00770043	weapon/w2123	250				slot 0 se250		1
+w	68	0x00770044	weapon/w4011	298				slot 0 se298		1
+w	69	0x00770045	weapon/w4012	290				slot 0 se290		1
+w	70	0x00770046	weapon/w2124	288				slot 0 se288		1
+w	71	0x00770047	weapon/w4013	290				slot 0 se290		1
+w	72	0x00770048	weapon/w4014	284				slot 0 se284		1
+w	73	0x00770049	weapon/w2411	268				slot 0 se268		1
+w	74	0x0077004A	weapon/w4015	270				slot 0 se270		1
+w	75	0x0077004B	weapon/w4016	250				slot 0 se250		1
+w	76	0x0077004C	weapon/w2412	268				slot 0 se268		1
+w	77	0x0077004D	weapon/w4017	290				slot 0 se290		1
+w	78	0x0077004E	weapon/w2413	268				slot 0 se268		1
+w	79	0x0077004F	weapon/w4018	270				slot 0 se270		1
+w	80	0x00770050	weapon/w2414	286				slot 0 se286		1
+w	81	0x00770051	weapon/w2415	286				slot 0 se286		1
+w	82	0x00770052	weapon/w3501	701				slot 0 se701		1
+w	83	0x00770053	weapon/w2416	286				slot 0 se286		1
+w	84	0x00770054	weapon/w2417	286				slot 0 se286		1
+w	85	0x00770055	weapon/w8010	262				slot 0 se262		1
+w	86	0x00770056	weapon/w8011	262				slot 0 se262		1
+w	87	0x00770057	weapon/w0020							0
+w	88	0x00770058	weapon/w8012	262				slot 0 se262		1
+w	89	0x00770059	weapon/w0021							0
+w	90	0x0077005A	weapon/w8013	262				slot 0 se262		1
+w	91	0x0077005B	weapon/w0022							0
+w	92	0x0077005C	weapon/w8014	262				slot 0 se262		1
+w	93	0x0077005D	weapon/w0023							0
+w	94	0x0077005E	weapon/w8015	277				slot 0 se277		1
+w	95	0x0077005F	weapon/w8016	277				slot 0 se277		1
+w	96	0x00770060	weapon/w2201	265				slot 0 se265		1
+w	97	0x00770061	weapon/w2205							0
+w	98	0x00770062	weapon/w7001	255				slot 0 se255		1
+w	99	0x00770063	weapon/w6201	267				slot 0 se267		1
+w	100	0x00770064	weapon/w7006	255				slot 0 se255		1
+w	101	0x00770065	weapon/w6204	267				slot 0 se267		1
+w	102	0x00770066	weapon/w7007	255				slot 0 se255		1
+w	103	0x00770067	weapon/w6205	267				slot 0 se267		1
+w	104	0x00770068	weapon/w7008	255				slot 0 se255		1
+w	105	0x00770069	weapon/w6206	267				slot 0 se267		1
+w	106	0x0077006A	weapon/w7009	255				slot 0 se255		1
+w	107	0x0077006B	weapon/w6207	267				slot 0 se267		1
+w	108	0x0077006C	weapon/w6208	289				slot 0 se289		1
+w	109	0x0077006D	weapon/w6209	267				slot 0 se267		1
+w	110	0x0077006E	weapon/w4101	269				slot 0 se269		1
+w	111	0x0077006F	weapon/w3301	266				slot 0 se266		1
+w	112	0x00770070	weapon/w2215	265				slot 0 se265		1
+w	113	0x00770071	weapon/w3302	266				slot 0 se266		1
+w	114	0x00770072	weapon/w2216	265				slot 0 se265		1
+w	115	0x00770073	weapon/w2217	284				slot 0 se284		1
+w	116	0x00770074	weapon/w3303	266				slot 0 se266		1
+w	117	0x00770075	weapon/w2218	265				slot 0 se265		1
+w	118	0x00770076	weapon/w3304	266				slot 0 se266		1
+w	119	0x00770077	weapon/w2219	284				slot 0 se284		1
+w	120	0x00770078	weapon/w3305	280				slot 0 se280		1
+w	121	0x00770079	weapon/w3306	266				slot 0 se266		1
+w	122	0x0077007A	weapon/w3307	280				slot 0 se280		1
+w	123	0x0077007B	weapon/w7010	279				slot 0 se279		1
+w	124	0x0077007C	weapon/w7011	279				slot 0 se279		1
+w	125	0x0077007D	weapon/w7012	279				slot 0 se279		1
+w	126	0x0077007E	weapon/w6210	267				slot 0 se267		1
+w	127	0x0077007F	weapon/w7013	279				slot 0 se279		1
+w	128	0x00770080	weapon/w6211	289				slot 0 se289		1
+w	129	0x00770081	weapon/w7014	279				slot 0 se279		1
+w	130	0x00770082	weapon/w6212	289				slot 0 se289		1
+w	131	0x00770083	weapon/w7015	279				slot 0 se279		1
+w	132	0x00770084	weapon/w6213	289				slot 0 se289		1
+w	133	0x00770085	weapon/w8101	256				slot 0 se256		1
+w	134	0x00770086	weapon/w7016	279				slot 0 se279		1
+w	135	0x00770087	weapon/w6214	289				slot 0 se289		1
+w	136	0x00770088	weapon/w7017	279				slot 0 se279		1
+w	137	0x00770089	weapon/w6215	289				slot 0 se289		1
+w	138	0x0077008A	weapon/w7018	255				slot 0 se255		1
+w	139	0x0077008B	weapon/w7019	279				slot 0 se279		1
+w	140	0x0077008C	weapon/w2001	252				slot 0 se252		1
+w	141	0x0077008D	weapon/w8107	256				slot 0 se256		1
+w	142	0x0077008E	weapon/w8108	256				slot 0 se256		1
+w	143	0x0077008F	weapon/w8109	256				slot 0 se256		1
+w	144	0x00770090	weapon/w8110	256				slot 0 se256		1
+w	145	0x00770091	weapon/w8111	256				slot 0 se256		1
+w	146	0x00770092	weapon/w8112	281				slot 0 se281		1
+w	147	0x00770093	weapon/w8113	256				slot 0 se256		1
+w	148	0x00770094	weapon/w8114	256				slot 0 se256		1
+w	149	0x00770095	weapon/w2010	252				slot 0 se252		1
+w	150	0x00770096	weapon/w8115	256				slot 0 se256		1
+w	151	0x00770097	weapon/w8116	281				slot 0 se281		1
+w	152	0x00770098	weapon/w2012	252				slot 0 se252		1
+w	153	0x00770099	weapon/w8117	281				slot 0 se281		1
+w	154	0x0077009A	weapon/w2013	252				slot 0 se252		1
+w	155	0x0077009B	weapon/w2014	252				slot 0 se252		1
+w	156	0x0077009C	weapon/w2015	252				slot 0 se252		1
+w	157	0x0077009D	weapon/w3101	254				slot 0 se254		1
+w	158	0x0077009E	weapon/w2016	276				slot 0 se276		1
+w	159	0x0077009F	weapon/w3102	254				slot 0 se254		1
+w	160	0x007700A0	weapon/w2301	251				slot 0 se251		1
+w	161	0x007700A1	weapon/w3103	273				slot 0 se273		1
+w	162	0x007700A2	weapon/w2018	276				slot 0 se276		1
+w	163	0x007700A3	weapon/w3104	254				slot 0 se254		1
+w	164	0x007700A4	weapon/w2019	252				slot 0 se252		1
+w	165	0x007700A5	weapon/w2303	700				slot 0 se700		1
+w	166	0x007700A6	weapon/w3105	254				slot 0 se254		1
+w	167	0x007700A7	weapon/w3106	254				slot 0 se254		1
+w	168	0x007700A8	weapon/w3107	273				slot 0 se273		1
+w	169	0x007700A9	weapon/w3108	254				slot 0 se254		1
+w	170	0x007700AA	weapon/w4121	269				slot 0 se269		1
+w	171	0x007700AB	weapon/w3109	273				slot 0 se273		1
+w	172	0x007700AC	weapon/w2308	251				slot 0 se251		1
+w	173	0x007700AD	weapon/w4122	269				slot 0 se269		1
+w	174	0x007700AE	weapon/w6011	263				slot 0 se263		1
+w	175	0x007700AF	weapon/w2309	251				slot 0 se251		1
+w	176	0x007700B0	weapon/w4123	269				slot 0 se269		1
+w	177	0x007700B1	weapon/w4124	269				slot 0 se269		1
+w	178	0x007700B2	weapon/w6012	263				slot 0 se263		1
+w	179	0x007700B3	weapon/w4125	269				slot 0 se269		1
+w	180	0x007700B4	weapon/w6013	263				slot 0 se263		1
+w	181	0x007700B5	weapon/w4126	269				slot 0 se269		1
+w	182	0x007700B6	weapon/w6014	263				slot 0 se263		1
+w	183	0x007700B7	weapon/w4127	269				slot 0 se269		1
+w	184	0x007700B8	weapon/w6015	278				slot 0 se278		1
+w	185	0x007700B9	weapon/w4128	285				slot 0 se285		1
+w	186	0x007700BA	weapon/w7101							0
+w	187	0x007700BB	weapon/w6016	263				slot 0 se263		1
+w	188	0x007700BC	weapon/w4129	269				slot 0 se269		1
+w	189	0x007700BD	weapon/w6017	278				slot 0 se278		1
+w	190	0x007700BE	weapon/w7103							0
+w	191	0x007700BF	weapon/w6018	278				slot 0 se278		1
+w	192	0x007700C0	weapon/w2020	276				slot 0 se276		1
+w	193	0x007700C1	weapon/w2021	276				slot 0 se276		1
+w	194	0x007700C2	weapon/w2023	276				slot 0 se276		1
+w	195	0x007700C3	weapon/w3110	273				slot 0 se273		1
+w	196	0x007700C4	weapon/w2310	251				slot 0 se251		1
+w	197	0x007700C5	weapon/w2311	287				slot 0 se287		1
+w	198	0x007700C6	weapon/w2312	287				slot 0 se287		1
+w	199	0x007700C7	weapon/w5002	253				slot 0 se253		1
+w	200	0x007700C8	weapon/w2313	287				slot 0 se287		1
+w	201	0x007700C9	weapon/w2314	287				slot 0 se287		1
+w	202	0x007700CA	weapon/w5004	253				slot 0 se253		1
+w	203	0x007700CB	weapon/w4130	285				slot 0 se285		1
+w	204	0x007700CC	weapon/w3401							0
+w	205	0x007700CD	weapon/w5006	253				slot 0 se253		1
+w	206	0x007700CE	weapon/w5007	253				slot 0 se253		1
+w	207	0x007700CF	weapon/w2601	271				slot 0 se271		1
+w	208	0x007700D0	weapon/w5008	283				slot 0 se283		1
+w	209	0x007700D1	weapon/w2602	271				slot 0 se271		1
+w	210	0x007700D2	weapon/w5009	283				slot 0 se283		1
+w	211	0x007700D3	weapon/w2603	271				slot 0 se271		1
+w	212	0x007700D4	weapon/w2604	271				slot 0 se271		1
+w	213	0x007700D5	weapon/w2605	272				slot 0 se272		1
+w	214	0x007700D6	weapon/w2606							0
+w	215	0x007700D7	weapon/w2104	250				slot 0 se250		1
+w	216	0x007700D8	weapon/w2106	250				slot 0 se250		1
+w	217	0x007700D9	weapon/w2107	250				slot 0 se250		1
+w	218	0x007700DA	weapon/w2108	250				slot 0 se250		1
+w	219	0x007700DB	weapon/w2109	250				slot 0 se250		1
+w	220	0x007700DC	weapon/w5010	283				slot 0 se283		1
+w	221	0x007700DD	weapon/w5011	283				slot 0 se283		1
+w	222	0x007700DE	weapon/w5012	283				slot 0 se283		1
+w	223	0x007700DF	weapon/w5014	283				slot 0 se283		1
+w	224	0x007700E0	weapon/w5015	283				slot 0 se283		1
+w	225	0x007700E1	weapon/w6102	264				slot 0 se264		1
+w	226	0x007700E2	weapon/w5017	283				slot 0 se283		1
+w	227	0x007700E3	weapon/w6103	264				slot 0 se264		1
+w	228	0x007700E4	weapon/w5018	253				slot 0 se253		1
+w	229	0x007700E5	weapon/w6104	264				slot 0 se264		1
+w	230	0x007700E6	weapon/w6105	264				slot 0 se264		1
+w	231	0x007700E7	weapon/w6106	282				slot 0 se282		1
+w	232	0x007700E8	weapon/w6107	264				slot 0 se264		1
+w	233	0x007700E9	weapon/w1000	257				slot 0 se257		1
+w	234	0x007700EA	weapon/w8102							0
+w	235	0x007700EB	weapon/w1001	258				slot 0 se258		1
+w	236	0x007700EC	weapon/w4019	290				slot 0 se290		1
+w	237	0x007700ED	weapon/w4020	290				slot 0 se290		1
+w	238	0x007700EE	weapon/w8301							0
+w	239	0x007700EF	weapon/w8302							0
+w	240	0x007700F0	weapon/w8303							0
+w	241	0x007700F1	weapon/w8304							0
+w	242	0x007700F2	weapon/w8305							0
+w	243	0x007700F3	weapon/w8306							0
+w	244	0x007700F4	weapon/w8307							0
+w	245	0x007700F5	weapon/w8308							0
+w	246	0x007700F6	weapon/w7104							0
+w	247	0x007700F7	weapon/w7105							0
+w	248	0x007700F8	weapon/w7106							0
+w	249	0x007700F9	weapon/w7107							0
+w	250	0x007700FA	weapon/w7108							0
+w	251	0x007700FB	weapon/w7109							0
+w	252	0x007700FC	weapon/w2701							0
+w	253	0x007700FD	weapon/w2702							0
+w	254	0x007700FE	weapon/w2703							0
+w	255	0x007700FF	weapon/w2704							0
+w	256	0x00770100	weapon/w2705							0
+w	257	0x00770101	weapon/w2706							0
+w	258	0x00770102	weapon/w2707							0
+w	259	0x00770103	weapon/w2708							0
+w	260	0x00770104	weapon/w8202							0
+w	261	0x00770105	weapon/w8203							0
+w	262	0x00770106	weapon/w8204							0
+w	263	0x00770107	weapon/w8205							0
+w	264	0x00770108	weapon/w8206							0
+w	265	0x00770109	weapon/w8207							0
+w	266	0x0077010A	weapon/w8208							0
+w	267	0x0077010B	weapon/w8002	277				slot 0 se277		1
+w	268	0x0077010C	weapon/w4021	270				slot 0 se270		1
+w	269	0x0077010D	weapon/w2126	250				slot 0 se250		1
+w	270	0x0077010E	weapon/w2128	256				slot 0 se256		1
+w	271	0x0077010F	weapon/w0024							0
+w	272	0x00770110	weapon/w0025							0
+w	273	0x00770111	weapon/w8103	256				slot 0 se256		1
+w	274	0x00770112	weapon/w6112	264				slot 0 se264		1
+w	275	0x00770113	weapon/w4022	290				slot 0 se290		1
+w	276	0x00770114	weapon/w2129	250				slot 0 se250		1
+w	277	0x00770115	weapon/w0026							0
+w	278	0x00770116	weapon/w0027							0
+w	279	0x00770117	weapon/w0028							0
+w	280	0x00770118	weapon/w0029							0
+w	281	0x00770119	weapon/w2130	706				slot 0 se706		1
+w	282	0x0077011A	weapon/w2131	707				slot 0 se707		1
+w	283	0x0077011B	weapon/w2132	708				slot 0 se708		1
+w	284	0x0077011C	weapon/w2133	709				slot 0 se709		1
+w	285	0x0077011D	weapon/w2134	250				slot 0 se250		1
+w	286	0x0077011E	weapon/w0030							0
+w	287	0x0077011F	weapon/w0031							0
+w	288	0x00770120	weapon/w0032							0
+w	289	0x00770121	weapon/w8118	256				slot 0 se256		1
+w	290	0x00770122	weapon/w1002	291				slot 0 se291		1
+w	291	0x00770123	weapon/w1003	260				slot 0 se260		1
+w	292	0x00770124	weapon/w1004	292				slot 0 se292		1
+w	293	0x00770125	weapon/w1005	257				slot 0 se257		1
+w	294	0x00770126	weapon/w1006	275				slot 0 se275		1
+w	295	0x00770127	weapon/w1007	259				slot 0 se259		1
+w	296	0x00770128	weapon/w1008	274				slot 0 se274		1
+w	297	0x00770129	weapon/w1009	257				slot 0 se257		1
+w	298	0x0077012A	weapon/w1010	275				slot 0 se275		1
+w	299	0x0077012B	weapon/w1011	261				slot 0 se261		1
+w	300	0x0077012C	weapon/w1012	293				slot 0 se293		1
+w	301	0x0077012D	weapon/w1013	260				slot 0 se260		1
+w	302	0x0077012E	weapon/w1014	292				slot 0 se292		1
+w	303	0x0077012F	weapon/w1015	258				slot 0 se258		1
+w	304	0x00770130	weapon/w1016	291				slot 0 se291		1
+w	305	0x00770131	weapon/w5020	283				slot 0 se283		1
+w	306	0x00770132	weapon/w4023	299				slot 0 se299		1
+w	307	0x00770133	weapon/w2135	285				slot 0 se285		1
+w	308	0x00770134	weapon/w0033							0
+w	309	0x00770135	weapon/w0034							0
+w	310	0x00770136	weapon/w0035							0
+w	311	0x00770137	weapon/w8003	705				slot 0 se705		1
+w	312	0x00770138	weapon/w4024	700				slot 0 se700		1
+w	313	0x00770139	weapon/w4025	290				slot 0 se290		1
+w	314	0x0077013A	weapon/w4026	290				slot 0 se290		1
+w	315	0x0077013B	weapon/w8210							0
+w	316	0x0077013C	weapon/w8209							0
+w	317	0x0077013D	weapon/w2304	700				slot 0 se700		1
+w	318	0x0077013E	weapon/w2305	700				slot 0 se700		1
+w	319	0x0077013F	weapon/w4027	299				slot 0 se299		1
+w	320	0x00770140	weapon/w4028	299				slot 0 se299		1
+w	321	0x00770141	weapon/w4029	299				slot 0 se299		1
+w	322	0x00770142	weapon/w1017	281				slot 0 se281		1
+w	323	0x00770143	weapon/w1018	256				slot 0 se256		1
+w	324	0x00770144	weapon/w1019	704				slot 0 se704		1
+w	325	0x00770145	weapon/w4030	298				slot 0 se298		1
+w	326	0x00770146	weapon/w2136	269				slot 0 se269		1

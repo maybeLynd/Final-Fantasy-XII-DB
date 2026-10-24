@@ -2,7 +2,7 @@
 title: "Frame update order: what runs each frame for the field, the battle layer and every unit"
 kind: "system"
 category: "Engine core"
-addresses: "0x0022A490, 0x0022A580, 0x00229F00, 0x00229EA0, 0x0022B6E0, 0x0022B7E0, 0x0022A770, 0x0022B8C0, 0x0022AF50, 0x0022BC20, 0x0022B000, 0x0035EB70, 0x0035EC80, 0x00314020, 0x0025BFB0, 0x0032FC30, 0x00267310, 0x00234590, 0x0025D9E0, 0x00234520, 0x003DB1F0, 0x002623A0, 0x002EEEB0, 0x00233F70, 0x001EBA40, 0x0022BEB0, 0x00332590, 0x0037C2E0, 0x0035E7A0, 0x00265A20, 0x00267240, 0x002671C0, 0x00300FC0, 0x002341C0, 0x0023B020, 0x00238A60, 0x00238AE0, 0x00238B00, 0x00238B20, 0x00238B70, 0x0032A200, 0x0050F2E0, 0x0050F170, 0x0050F380, 0x002E09A0, 0x002E2240, 0x0035E6F0, 0x00360080, 0x0035E9F0, 0x0035E9B0, 0x00358510, 0x00358280, 0x003586A0, 0x00358550, 0x00229ED0, 0x00233700, 0x00233640, 0x002335D0, 0x0023B200, 0x0026A5B0, 0x00360710, 0x00360A50, 0x002342F0, 0x002368D0, 0x0032A170, 0x00308610, 0x003590D0, 0x0031B770, 0x0026B730, 0x0036F460, 0x0027E9E0, 0x002507C0, 0x0022BFB0, 0x00307FF0, 0x00322190, 0x0030C3F0"
+addresses: "0x0022A490, 0x0022A580, 0x00229F00, 0x00229EA0, 0x0022B6E0, 0x0022B7E0, 0x0022A770, 0x0022B8C0, 0x0022AF50, 0x0022BC20, 0x0022B000, 0x0035EB70, 0x0035EC80, 0x00314020, 0x0025BFB0, 0x0032FC30, 0x00267310, 0x00234590, 0x0025D9E0, 0x00234520, 0x003DB1F0, 0x002623A0, 0x002EEEB0, 0x00233F70, 0x001EBA40, 0x0022BEB0, 0x00332590, 0x0037C2E0, 0x0035E7A0, 0x00265A20, 0x00267240, 0x002671C0, 0x00300FC0, 0x002341C0, 0x0023B020, 0x00238A60, 0x00238AE0, 0x00238B00, 0x00238B20, 0x00238B70, 0x0032A200, 0x0050F2E0, 0x0050F170, 0x0050F380, 0x002E09A0, 0x002E2240, 0x0035E6F0, 0x00360080, 0x0035E9F0, 0x0035E9B0, 0x00358510, 0x00358280, 0x003586A0, 0x00358550, 0x00229ED0, 0x00233700, 0x00233640, 0x002335D0, 0x0023B200, 0x0026A5B0, 0x00360710, 0x00360A50, 0x002342F0, 0x002368D0, 0x0032A170, 0x00308610, 0x003590D0, 0x0031B770, 0x0026B730, 0x0036F460, 0x0027E9E0, 0x002507C0, 0x0022BFB0, 0x00307FF0, 0x00322190, 0x0030C3F0, 0x00229E00, 0x00229DF0, 0x00250130, 0x002501A0, 0x00250200, 0x00250180, 0x00250540, 0x020927DC, 0x0022B0B0, 0x00183030"
 ---
 
 ## What the player sees
@@ -22,6 +22,13 @@ doubles or quadruples the number of steps a frame earns, but only after a step i
 held it back: a menu, a load, a cutscene or a dialog drops it to normal speed. Behind the full menu only
 the cutscene managers tick; the field, the battle and every unit stand still until the menu
 closes. A script skip runs the cutscene slots up to sixteen times a frame.
+
+At double and quadruple speed a frame runs two or four world steps, but the two map buttons, Map
+Transparency and Display Map, still act once per frame: the press is taken on the frame's first step
+and ignored on the others (Display Map is read on every step while the location map is open), so a press is
+not counted two or four times. The water in the fields follows the chosen speed, not the game's own pace: it
+flows two or four times as fast, and keeps that pace while the game itself is held at normal speed without
+leaving the speed mode.
 
 ## How it works
 
@@ -123,7 +130,8 @@ Before the pad, once per `0x01E02824` with `0x00264610(0)` non-null, the deferre
 
 - runs the speed-mode pad block (below);
 - sets the speed factor `0x02064AC4` to 1.0 or, with the speed permit `0x02064AD2` set, the entry of
-  the speed table `0x00908BA8` = {1.0, 2.0, 4.0} selected by the speed index `0x01FD4A98` (`0x00229E00` returns that entry);
+  the speed table `0x00908BA8` = {1.0, 2.0, 4.0} selected by the speed index `0x01FD4A98` (`0x00229E00` returns that entry,
+  which is also the divisor of the pad gate below);
   `0x003603C0()` forces 1.0 and runs `0x002370A0`;
 - keeps the accumulator `0x02064AC0` as it stands at `0x01E02820`; when the pump's flag `0x02064AA0` was
   set, sets the accumulator to 1.0 (if `0x01FD4A8C` was 1, which is then cleared) or 0, and clears
@@ -202,6 +210,43 @@ steps already run this pass instead of 1 (`0x001EDE9B`-`0x001EDEA7`), so its cal
   `0x0036FF70()` and `0x0036FFD0()` sets the latch and runs `0x0023B200` (the edge through `0x0208E6B8`:
   `0x00233700` on a press, `0x00233640` while held), which keeps running every pass while the latch
   is set.
+
+Three pad readers take a press on only some of a pass's steps while the speed permit is up. They are the field's
+map controls ([map screens](../Menus-And-HUD/map-screens.md#opening-from-the-field)):
+
+- `0x002501A0`, Map Transparency: bit `0x2` of the pressed word `0x02F97362`, called by the input arbiter at `0x00253E26`;
+- `0x00250130`, Display Map: bit `0x1` of the filtered pressed word `0x02F97392`, called at `0x00253E7A` and by the
+  location map `0x002BAF80` at `0x002BB9C7`;
+- `0x00250200`, either of the two, called at `0x00253E07` and by the overlay page `0x002B7B80` at `0x002B8306`.
+
+Each first asks `0x00229DF0`, which returns the permit byte `0x02064AD2`. With the permit up it truncates the entry
+`0x00229E00` returns (`cvttss2si`), divides the step index `0x020927DC` by it (`cdq`, `idiv`) and, on a non-zero
+remainder, skips that pad read (`0x00250130` and `0x002501A0` then answer 0, `0x00250200` goes on to its second half;
+`0x00250146`-`0x0025015C`, `0x002501AD`-`0x002501C3`, `0x0025020D`-`0x00250221` and `0x0025023E`-`0x00250252`).
+
+`0x00250130` and the
+Display Map half of `0x00250200` read the pad without the gate while the location-map container `0x0209E5F0` exists
+(`0x002B9FC0`, called at `0x0025013D` and `0x00250235`).
+
+The step index numbers the steps of a pass. `0x00250180(first)` is the first call of every step (`0x0022ABB4`, its only
+caller): it stores 0 when `first` is set and the old value plus one otherwise (`0x00250186`-`0x0025018F`). `first` is 1
+on the pass's first step (`0x0022AA10`) and 0 after it (`0x0022ACA7`). The UI tick `0x00250540`, run by the full-menu and
+capture-backed frames (`0x0022BA45`, `0x0022BD08`), stores 0 (`0x002505D0`). These are the only stores to `0x020927DC`;
+its other loads are the gate's four (`0x0025014B`, `0x002501B2`, `0x00250212`, `0x00250243`).
+
+A pass adds `0x02064AC8 × 0x02064AC4` to the accumulator (`0x0022AE18`-`0x0022AE34`) and runs a step for each whole 1.0
+(`0x0022AB90`), so with the step gain at 1.0 and a factor of 2.0 or 4.0 it runs two or four steps, indices 0 to 1 or
+0 to 3, and only index 0 divides: the press counts once per pass. The divisor is the table entry at the speed
+index, not the factor `0x02064AC4`. An entry below 1.0 truncates to 0, and the `idiv` then raises a divide error; the
+index the writers above store is 0 to 2, so the table's fourth entry, 0.0, is never the divisor.
+
+The draw `0x0022B0B0` (from `0x0022A82D` and `0x0022A8B8` in the field frame, and from `0x0022AF50`) also reads the table at
+the speed index (`0x0022B0F2`-`0x0022B103`) and passes the entry to `0x00183030`, which stores it at `+0x330` of the
+map-art context `[0x01F81168]` (`0x00183041`).
+
+`0x001AA2C0` multiplies the two water scroll steps by that value
+(`0x001AA30D`, `0x001AA333`), the U and V scroll speeds `mDebugWaterUFactor` and `mDebugWaterVFactor` ([JSON configs](../Game-Files-And-Data-Tables/json-configs.md); [render command list](../Graphics/render-command-list.md)). The draw does
+not read the permit, so the water keeps the chosen speed for as long as the speed index is raised.
 
 The pacer `0x0035EB70(n, x)` (and its copy `0x0035EC80`), on the game thread, folds the frame time into `0x022CA5C4` and
 `0x022CA5D8`, stores `max(n, 1)` ticks at `0x022CA5F4`, clears the tick counter `0x022CA5F0` and returns

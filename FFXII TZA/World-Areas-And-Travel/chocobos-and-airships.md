@@ -77,9 +77,10 @@ the dismount task stops that track again.
 | `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `0x430` / `0x431` | `0x0034EE20` / `0x0034DD90` | `0x0032AB60(id, 1)` / `(id, 0)`: a primary persistent flag ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md)) |
 | `setflystatus(v)` | `0x1E0` | `0x00342E50` → `0x0026A7F0` | bit 0 of the actor's secondary context `+0x151`, and `+0x152` 1 ↔ 2 with the mode word refreshed (`0x002681E0`, `0x0026A85A`) when it flips; then bits 0 and 1 of `+0x151` are copied to bits 0 and 1 of `+0x90` of the record at context `+0x138` (`0x002682D0`, `0x0026A862`) |
 
-No instruction in the image tests bit 0 of the actor byte `+0x0B` with an immediate mask; the byte
-is cleared to its top two bits by the record initialiser and has bit 6 cleared by the movement
-defaults ([actor record](../Characters-And-Objects/actor-record.md)).
+Bit 0 of the actor byte `+0x0B` lets the rider interact with that actor: while `0x0037C860` answers non-zero, the talk,
+touch and trigger tests (`0x0025BB74`, `0x0025BE8B`, `0x0025C367`, `0x0025C8D7`) and two more actor tests (`0x0025B7FB`,
+`0x002675FF`) leave out every actor without it ([actor record](../Characters-And-Objects/actor-record.md#the-verb-accessors)). The byte is cleared
+to its top two bits by the record initialiser and has bit 6 cleared by the movement defaults.
 
 ### Mounting and dismounting in the scripts
 

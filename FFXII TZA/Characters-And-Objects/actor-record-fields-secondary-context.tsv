@@ -388,3 +388,6 @@ function	name	site	disp	kind	instruction	route	note
 0x00226640	FUN_00226640	0x002267A1	0x178	w	mov dword ptr [rcx + 0x178], r14d	a context the function resolved itself	
 0x00226BE0	FUN_00226be0	0x00226D2A	0x178	rw	and dword ptr [rax + 0x178], esi	a context the function resolved itself	
 0x00266AD0	FUN_00266ad0	0x00266B6F	0x188	addr	lea r8, [rax + 0x188]	ctor	region planter; lea r8,[rax+0x188] computes this type's extent end on the seq-5..7 arm
+0x002E5B00	FUN_002e5b00	0x002E5B11	0x0	r	cmp dword ptr [rax], -1	actor +0xC0, the actor as arg0 from 0x0026A420 at 0x0026A428	
+0x002E5B00	FUN_002e5b00	0x002E5B16	0x138	r	mov rdx, qword ptr [rax + 0x138]	actor +0xC0, the actor as arg0 from 0x0026A420 at 0x0026A428	
+0x002E5B00	FUN_002e5b00	0x002E5B22	0x151	r	test byte ptr [rax + 0x151], 0x10	actor +0xC0, the actor as arg0 from 0x0026A420 at 0x0026A428	
