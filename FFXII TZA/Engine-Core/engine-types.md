@@ -12,27 +12,34 @@ executable builds and reads. Each row gives what the type is for, the page that 
 page) and its lifetime: where its storage lives, which code creates or fills it, and what releases it.
 Addresses in a row are the instructions and functions that do so.
 
-The table holds 370 types in 17 categories. The largest is `SaveImage` (0x56690 bytes).
+The table holds 449 types in 24 categories. The largest is `SaveImage` (0x56690 bytes).
 
 | Category | Types |
 |---|---|
+| Battle actions | 7 |
 | Characters and objects | 23 |
-| Controls and input | 3 |
+| Controls and input | 12 |
+| Damage and battle formulas | 5 |
+| Enemy AI and gambits | 3 |
 | Enemy spawning | 11 |
 | Engine core | 63 |
-| Game files and data tables | 18 |
+| Game files and data tables | 19 |
 | Graphics | 66 |
-| Menus and HUD | 69 |
+| Items, equipment, shops and licenses | 2 |
+| Menus and HUD | 96 |
 | Movement and pathfinding | 14 |
+| Party | 9 |
 | PhyreEngine | 34 |
 | Random numbers | 5 |
-| Rewards: EXP, LP, gil and loot | 8 |
-| Saving, loading and settings | 6 |
+| Rewards: EXP, LP, gil and loot | 9 |
+| Saving, loading and settings | 7 |
 | Scripts and script commands | 10 |
-| Sound and music | 4 |
+| Sound and music | 12 |
+| Status effects and KO | 1 |
 | Steam and achievements | 6 |
+| Story, events and hunts | 1 |
 | Third-party libraries | 16 |
-| World, areas and travel | 14 |
+| World, areas and travel | 18 |
 
 ## Columns
 

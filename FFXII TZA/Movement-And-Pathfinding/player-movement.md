@@ -23,8 +23,9 @@ zeroes the result vector `0x022C7FD0` (w = 1.0), runs `0x0025A520(2)`, and hands
 `0x00358CB0`: the override `0x022C7FEC` when it is non-zero, else the controlled character `0x022C7FE0`
 when manager slot 0 is active (`0x002671F0(0)`) and the handle is positive.
 
-The override exists for one debug verb: its only setter `0x003593A0(handle)` is called by
-`debug_setdebugpc` (`0x2032`, `0x0050D2F0`), which no shipped script calls, and the field-transition
+The override exists for two debug verbs: its only setter `0x003593A0(handle)` is called by
+`debug_setdebugpc` (`0x2032`, `0x0050D2F0`), which no shipped script calls, and with 0 by `debug_cleardebugpc`
+(`0x2033`, `0x0050D330`, `0x0050D332`), and the field-transition
 reset `0x003590E0` (from `0x002695A0` and `0x0026DB30`) clears it with the controlled handle, the pending
 handle `0x022C7FE4`, the second handle `0x022C7FE8`, `0x022C7FF8`, the suppression word `0x022C8000` and
 the four lock bytes, and resets the camera basis (`0x004745B0(0x022C7FA0)`) and `0x022C7FF0`. In retail
@@ -199,7 +200,7 @@ Globals:
 | `0x022C7FF4` | `f32` | displacement, last tick |  |
 | `0x022C7FF8` | `u8` | handle change kind (1 request, 2 summon party) |  |
 | `0x022C7FF9` | `u8` | walk-key latch |  |
-| `0x022C7FFC` | `u32` | zeroed by the stick read |  |
+| `0x022C7FFC` | `u16` | stored by 0x003591F0 (its argument) and 0x00359552 |  |
 | `0x022C8000` | `u32` | suppression bit set |  |
 | `0x022C8004` | `u8[4]` | lock bytes 0x022C8004..0x022C8007 |  |
 | `0x022C8008` | `f32` | stick magnitude / 128 |  |

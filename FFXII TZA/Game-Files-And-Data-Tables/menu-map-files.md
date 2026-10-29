@@ -48,7 +48,7 @@ Each of the two slots at `+0x120` of the map-data widget is `0xA8` bytes.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | file | the menumap_sub file of the slot, requested through `0x00249180` by `0x003C1F00` (`0x003C200D`-`0x003C2012`); `0x003C22B0` frees it with `0x003697F0` and clears it (`0x003C22D5`-`0x003C22E4`), and the release `0x003C2210` does the same for both slots (`0x003C2250`-`0x003C225F`) |
+| `+0x00` | `void*` | file | the menumap_sub file of the slot, requested through `0x00249180` by `0x003C1F00` (`0x003C200D`-`0x003C2012`); `0x003C22B0` frees it with `0x003697F0` and clears it (`0x003C230B`, `0x003C2310`), and the release `0x003C2210` does the same for both slots (`0x003C227C`, `0x003C2281`) |
 | `+0x08` | `void*` | keys | the file's key array, the table at the file's word `+0x0A` plus that table's word `+0x02`, set when the file has arrived (`0x003C2727`-`0x003C273F`); each picture's name is formatted from a key's field id word and variant byte (`0x003C27F4`-`0x003C2808`); `0x003C0CF0` reports the slot ready once it is set (`0x003C0D23`) |
 | `+0x10` | `u8` | subLocation | the sub-location n the slot holds, stored by `0x003C1F00` (`0x003C1FF2`); `0x003C0CF0`, `0x003C21C0` and the sloc readers `0x003BE2D0`, `0x003BECA0`, `0x003BF520` and `0x003BF5E0` find a slot by it (`0x003C0D08`, `0x003C21D9`, `0x003BE30E`, `0x003BECDE`, `0x003BF558`, `0x003BF620`); `0x003C26C0` reads it when registering (`0x003C26EC`) |
 | `+0x11` | `u8[1]` | gap11 | read and written by no function; nothing fixes its width |

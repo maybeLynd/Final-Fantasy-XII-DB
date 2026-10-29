@@ -258,11 +258,12 @@ Title-return bytes:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022CB720` | `u8` | busy mask (0 = idle; 0x003321E0 refreshes bit 0x80; 0x00360100 sets, 0x003601B0/0x003601C0 modify, 0x00360370 clears) |  |
+| `0x022CB720` | `u32` | busy mask (0 = idle; 0x003321E0 refreshes bit 0x80; 0x00360100 and 0x00360370 clear it, 0x003601B0/0x003601C0 modify) |  |
 | `0x022CB724` | `u16` | written 0x5A by 0x00360120 |  |
 | `0x022CB726` | `u8` | 1 after the teardown |  |
 | `0x022CB727` | `u8` | cleared by 0x00360120 |  |
 | `0x022CB72A` | `u8` | softwarereset request (0x003603D0) |  |
+| `0x022CB728` | `u16` | cleared by 0x00360370 (0x0036037E), read by 0x003603B0 |  |
 | `0x022CB72B` | `u8` | title-map request (0x003603E0, from the area controller when +0x3FC is 0x0C) |  |
 
 | Address | Type | Name | Meaning |

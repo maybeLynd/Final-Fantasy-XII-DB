@@ -70,8 +70,11 @@ The mailbox at `0x0215F1A0` holds one request:
 | `+0x1` `u8` | blocked: every post refuses while it is set |
 | `+0x4` `u32` | the id |
 | `+0x8` `u32` | the parameter |
-| `+0xE` `u8` | set when a menu closes |
-| `+0xF` `u8` | set when a menu closes; read by `is_callpartymenu_status` |
+
+`0x0215F1AE` and `0x0215F1AF`, next to the mailbox, are two separate flags. The menu close `0x002E1BA0` sets both.
+`0x002E0650` clears `0x0215F1AE` and `0x002E0F80` reads it: `openfullscreenmenu_48d` clears it when it starts
+(`0x0034631C`) and polls it until a menu closes (`0x00352E04`). `0x002E0660` clears `0x0215F1AF` for
+`clear_callpartymenu_status` (`0x00357440`), and `0x002E0F90` reads it for `is_callpartymenu_status` (`0x0033F239`).
 
 `0x002E1B10(id, parameter)` posts; for id 2 it also refuses on policy bit `0x1` (`0x002E1B27`-`0x002E1B33`). A second post before
 delivery overwrites the first and still answers 1 (`0x002E1B35`-`0x002E1B47`).
@@ -110,7 +113,7 @@ The router is also called directly, without the mailbox:
 | `openspattackwindow` | `0x2A8` | posts id 12 | 1 |
 | `spattackwindowsync` | `0x2A9` | waits on the special-attack window | 1 |
 | `tutorial_sync_partymenu` | `0x3A6` | waits until the next menu closes | none |
-| `clear_callpartymenu_status`, `is_callpartymenu_status` | `0x561`, `0x562` | clear and read mailbox `+0xF` | 1 each |
+| `clear_callpartymenu_status`, `is_callpartymenu_status` | `0x561`, `0x562` | clear and read the flag `0x0215F1AF` | 1 each |
 
 Six more verbs read or set menu state through helpers of their own:
 
@@ -146,8 +149,8 @@ The drain `0x002E09A0` runs once per world tick:
 
 When the router opens a full-screen id, 2, 6, 8-11, 15-19 or 22 (`0x00253BC0`), the drain sets action-policy row 7 to
 `0x100203` and the main loop's mode to 4 (`0x002E0D2A`-`0x002E0D39`). Mode 4 captures the screen once and becomes mode 3,
-which waits each frame for the menu to close (`0x0022BB62`). Then the loop returns to mode 2, sets mailbox `+0xE` and
-`+0xF` (`0x002E1BA0`) and clears row 7 (`0x0022BB81`-`0x0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
+which waits each frame for the menu to close (`0x0022BB62`). Then the loop returns to mode 2, sets the flags `0x0215F1AE` and
+`0x0215F1AF` (`0x002E1BA0`) and clears row 7 (`0x0022BB81`-`0x0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
 14.
 
 A script mask close closes the menu's two band widgets too. `0x002E2400(fast)`, the body of `maskclose` and `maskclosefast`
@@ -162,7 +165,7 @@ otherwise with `0x00916330` (`0x00247570`).
 | Value | Written by | Read by |
 |---|---|---|
 | the chosen map node's paired value, singleton `+0x10FAC` | the world map (`0x002901D0`, `0x0029020E`) | the script verb's result, for ids 17 and 18 only (`0x00254710`) |
-| mailbox `+0xE`, `+0xF` | the menu close (`0x002E1BA0`) | `openfullscreenmenu_48d`, `tutorial_sync_partymenu`, `is_callpartymenu_status` |
+| the flags `0x0215F1AE`, `0x0215F1AF` | the menu close (`0x002E1BA0`) | `openfullscreenmenu_48d`, `tutorial_sync_partymenu`, `is_callpartymenu_status` |
 | the main menu's chosen entry, root `+0xDF8` | `0x00280DE0` (`0x002810FC`) | the Equip compares (`0x00293791`-`0x00295ACB`) |
 | the command menu's chosen member, `+0x2FE0` | `0x00278135`, `0x0027A5A1` | 12 reads (`0x00276FC5`-`0x0027A6D8`); three of them resolve it through `0x002732E0` (`0x00276FCB`, `0x002782BC`, `0x002793BA`) |
 

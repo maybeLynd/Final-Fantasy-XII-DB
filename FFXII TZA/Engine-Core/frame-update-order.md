@@ -523,7 +523,8 @@ The area initialisation also runs three resets:
 
 ### The notice window
 
-The notice window is the `0x1D8`-byte widget with procedure `0x00474100` that `0x00474070` builds and that keeps itself at `0x02CA6C80`.
+The notice window is the `0x1D8`-byte widget with procedure `0x00474100` that `0x00474070` builds and stores at `0x02CA6C80` (`0x004740D8`). `0x00474040` releases it through `0x00245020` and
+clears the cell (`0x00474050`, `0x00474055`).
 
 `NoticeWindow` (`0x1D8` bytes, offsets from the start of the record):
 
