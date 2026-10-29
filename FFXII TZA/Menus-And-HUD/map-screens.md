@@ -184,7 +184,8 @@ helpers:
   (`0x003C3F90`, `0x00202B70`) and shifts the element by how far the leader falls outside a `w` by `h` box.
 - `0x00402610(item, src)` stores `0x00275320` of the item's current values at `+0`, copies `src`'s rectangle
   `+0x30`-`+0x36` to `+8` and clears `+0x10`; `0x004026D0(out, src)` copies the same rectangle twice; `0x004022D0` sets
-  a rectangle to {0, 8, 8, 8, 8, `0x100`}.
+  a rectangle: the words {0, 0, 8, 8} at `+0x00` and again at `+0x08`, and `0x100` at `+0x10` (`0x004022D2`,
+  `0x004022DA`, `0x004022DC`, `0x004022E3`).
 - `0x00403330(fade)` raises `+0x10` by a sixth of its distance to 256, at least 6, and returns true at 256.
 - `0x00403600(out, sprite)` and `0x00403F00` (pane `0x002BC9C0`) size and draw a sprite 1.75 times its height
   (`0x002D8C80`).
@@ -198,8 +199,11 @@ label; `-1` at `+0x10` hides the second), measures the first with `0x0029CD00` t
 width.
 
 `0x002BA1B0(v)` gives the location container a y from the menu bars: the screen height `0x01E0C1DC`, less
-`0x002C9430(0x81)` when `0x002C9430(0x80) + v` is not 0. `0x002BA1F0` is the location map's exit callback: when the location container `0x0209E5F0` is gone
-and `0x00402220` answers 0, it returns to the menu with `0x002814E0(0x417)`. `0x002BC2C0`, the exit callback `0x002BAF80` installs
+`0x002C9430(0x81)` when `0x002C9430(0x80) + v` is not 0.
+
+`0x002BA1F0` is the location sprite pane's continuation, which the pane's procedure `0x002BC9C0` installs at its
+`+0x08` on message 1 (`0x002BCA18`, `0x002BCA1F`): it clears the pane's cell `0x0209E5F8` (`0x002BA1FC`), and when the
+location container `0x0209E5F0` is gone and `0x00402220` answers 0, it returns to the menu with `0x002814E0(0x417)`. `0x002BC2C0`, the exit callback `0x002BAF80` installs
 (`0x002BB202`), does the same when neither `0x0209E5F0` nor `0x0209E5F8` is set, after `0x00285F00(0x0209E608)`.
 
 ### What is shown
@@ -448,7 +452,7 @@ The pane is the `0xC8`-byte widget at `0x0209E5F8` with procedure `0x002BC9C0`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x002BC9C0` |
-| `+0xC0` | `void*` | sprite | the sprite the pane draws: on the draw message 4, when it is not 0, `0x00403F00` sizes and draws it 1.75 times its height in the pane's rectangle `+0x98` (`0x002BC9E7`-`0x002BCA06`). Its one writer, `0x002BA700`, stores 0 after releasing the location container (`0x002BADEA`), so the pane draws nothing |
+| `+0xC0` | `void*` | sprite | the sprite the pane draws: on the draw message 4, when it is not 0, `0x00403F00` sizes and draws it 1.75 times its height in the pane's rectangle `+0x98` (`0x002BC9E7`-`0x002BCA06`). `0x002B9BE0` stores the location container's background image `+0x190` there when it builds the pane (`0x002B9C46`, `0x002B9C4D`), and `0x002BA700` stores 0 after releasing the location container (`0x002BADEA`) |
 
 ### The location caption pane
 
