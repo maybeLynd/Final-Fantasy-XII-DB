@@ -64,8 +64,8 @@ and `help_menu.bin` 117, 396 and 397. The row builder `0x0023ED80` adds every ro
 
 On a confirm, Config's switch (`0x00240065`-`0x00240080`) sends all three commands to `0x00240173`. That code plays sound
 `0x2B`, runs `0x00238A50` for `0x19` (`0x00240182`) or `0x00238A20` for `0x1A` (`0x0024018C`), sets the leaving bit
-(`0x00240191`) and closes. Leaving the title list stores 1 as the list's status (`0x0024022F`-`0x0024023E`,
-`0x00394620`), `fsttl_getconfigstatus` (`0x005120E0`, `0x00394430`) returns it, and the title script calls
+(`0x00240191`) and closes. Leaving the title list stores that bit (1 after a confirm, else the 0 set at
+`0x0023FC58`) as the list's status (`0x0024022F`-`0x0024023E`, `0x00394620`), `fsttl_getconfigstatus` (`0x005120E0`, `0x00394430`) returns it, and the title script calls
 `fsttl_newgamestart` (`ttl_c01` `configcommand.doconfig`; `ttl_a01` `コンフィグ起動`).
 
 `0x02089344` lies outside the save image, so a request survives the new game's image reset.

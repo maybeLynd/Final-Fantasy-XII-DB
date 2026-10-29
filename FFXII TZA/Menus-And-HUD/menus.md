@@ -150,10 +150,10 @@ which waits each frame for the menu to close (`0x0022BB62`). Then the loop retur
 `+0xF` (`0x002E1BA0`) and clears row 7 (`0x0022BB81`-`0x0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
 14.
 
-A script mask close closes the main menu too. `0x002E2400(fast)`, the body of `maskclose` and `maskclosefast`
+A script mask close closes the menu's two band widgets too. `0x002E2400(fast)`, the body of `maskclose` and `maskclosefast`
 ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), and the area unload `0x002E06B0` run
 `0x0029D210`, which closes the widget `0x0029CF90` at `[0x0209C380]`, which draws bands at the top and bottom of the frame
-(`0x002DC290`), and the main menu at `[0x0209C318]`
+(`0x002DC290`), and the side mask `0x0029D340` at `[0x0209C318]`
 (`0x00244F00`). For the fast close, argument 1 or `0x11`, they close with the default animation descriptor `0x00915198`,
 otherwise with `0x00916330` (`0x00247570`).
 
