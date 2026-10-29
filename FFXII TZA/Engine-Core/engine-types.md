@@ -12,20 +12,20 @@ executable builds and reads. Each row gives what the type is for, the page that 
 page) and its lifetime: where its storage lives, which code creates or fills it, and what releases it.
 Addresses in a row are the instructions and functions that do so.
 
-The table holds 260 types in 14 categories. The largest is `SaveImage` (0x56690 bytes).
+The table holds 289 types in 14 categories. The largest is `SaveImage` (0x56690 bytes).
 
 | Category | Types |
 |---|---|
-| Characters and objects | 20 |
-| Enemy spawning | 10 |
-| Engine core | 51 |
+| Characters and objects | 23 |
+| Enemy spawning | 11 |
+| Engine core | 59 |
 | Game files and data tables | 18 |
-| Graphics | 51 |
+| Graphics | 66 |
 | Movement and pathfinding | 14 |
-| PhyreEngine | 33 |
+| PhyreEngine | 34 |
 | Random numbers | 5 |
 | Rewards: EXP, LP, gil and loot | 8 |
-| Saving, loading and settings | 4 |
+| Saving, loading and settings | 5 |
 | Scripts and script commands | 10 |
 | Steam and achievements | 6 |
 | Third-party libraries | 16 |
@@ -36,7 +36,7 @@ The table holds 260 types in 14 categories. The largest is `SaveImage` (0x56690 
 | Column | Meaning |
 |---|---|
 | `type` | the type's name in this database; a name ending in an address is a static at that address |
-| `size` | the type's size in bytes |
+| `size` | the type's size in bytes, or how it varies for a type whose size depends on its contents |
 | `category` | the engine area the type belongs to; its owner page can sit in another one |
 | `purpose` | what the type is for, with the code that uses it |
 | `owner_page` | the page that documents the type |
