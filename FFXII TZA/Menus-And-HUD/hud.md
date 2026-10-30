@@ -604,6 +604,19 @@ The part at `+0x7FB0` holds six `0x110`-byte records, one per unit whose level w
 | `+0x106` | `i16` | produceCursor0106 | the producer's index into `+0xF8`, wrapping at 3 (`0x00296736`-`0x0029675D`, `0x002967CB`-`0x002967FD`, `0x00296807`-`0x00296839`) |
 | `+0x108` | `u8[8]` | unobservedSpan0108 | read and written by no function; nothing fixes its width |
 
+### The set-up and update of the part at +0xA0
+
+`0x003F8D20`, reached through `0x0028FB40` (from `0x00253825`), sets the part up once. It loads the `partytop_8_c`
+picture into `+0x52B8` (`0x0024A5A0`, `0x003F8D51`) and uploads it. It keeps the marker cell's rectangle at `+0x00`-`+0x0C`
+(`0x002711E0`, `0x003F8E51`-`0x003F8E73`) and the cell's palette at `+0x52C4` (`0x003F8E78`). Then it sets bit `0x1` of
+`+0x52C6` (`0x003F8E5B`), which the draw `0x003F8C70` tests first.
+
+Each frame `0x003F8EC0` keeps a point at `+0x10` that follows the controlled character. It copies the position on the
+first frame (`0x003F8F1E`, bit `0x2` of `+0x52C6`) and then moves halfway to it (`0x00275490` at `0x003F8F3D`). With no
+controlled character it clears bit `0x2` (`0x003F8EF2`). It sets the sprite count `+0x52C0` to 0 and the label search
+start `+0x52B0` to the list head (`0x003F8F86`, `0x003F8F7F`). `0x003F9720` measures the lines from the point (`0x003F903B`,
+`0x003F9AA1`) and moves `+0x52B0` past each label it finds (`0x003F99C0`).
+
 ### The labels of the part at +0xA0
 
 Next to its markers the part at `+0xA0` writes a name: an area's name, or text `0x3EC`. It keeps eight

@@ -75,6 +75,20 @@ The seven goods with flag bit `0x2`, all named Forgotten Grimoire, have no loot 
 (`0x0034C710`, `0x0034C2C0`), which writes it only for a good with that flag (`0x0030B5F6`-`0x0030B619`). The third
 verb, `0x2F5` `ishoridashi`, cannot read it: its handler `0x0034BD90` calls `0x005C5230`, which returns 0.
 
+The `us` zone scripts call `sethoridashi` 135 times and never `clearhoridashi`. Each call offers one good once and sets a bit of script global byte `0x0CDA` (or, for good 99, bit `0x2` of `0x0405`) so it is not offered again. The counts are script global bytes `0x0CD0`-`0x0CD4`, each stopped at 255:
+
+| Good | Monograph | Offered when |
+|---|---|---|
+| 99 | Hunter's | Gatsly is talked to in Muthru Bazaar (`rbn_a02`) after the hunt Wolf in the Waste (quest 129) is reported |
+| 102 | Sage's | `0x0CD0` reaches 100: every opening of a shop through its shopkeeper's talk, all 57 shops (98 calls) |
+| 100 | Knight's | `0x0CD1` reaches 30: openings of the Weapon Seller (Archades), Traveling Merchant shop 21 (Mt Bur-Omisace), Targe, Weapons of War, Amal and Beruny |
+| 124 | Mage's | `0x0CD2` reaches 25: openings of Granch (Archades), Mait, Mysterious Magicks, Yugri and Quayside Magickery |
+| 126 | Scholar's | `0x0CD3` reaches 15: openings of the Armor Seller (Archades), Traveling Merchant shop 22 (Mt Bur-Omisace), Rithil, Antiqued Armors, Panamis and Emma |
+| 125 | Warmage's | `0x0CD4` reaches 20: talks to the six hunt notice boards, the Sandsea's from story progress above 80 |
+| 101 | Dragoon's | `0x0CD4` reaches 40 |
+
+The `script_sets_availability` cells name each shop and board.
+
 ### Clearing
 
 Whenever the party block is bound, by `0x00233C10` (`0x00233C3A`) or `0x00238A80` (`0x00238A99`), the rebaser `0x0030B6A0`
@@ -94,7 +108,7 @@ bits `0x7` of every flag byte (`0x0030B739`-`0x0030B75B`).
 | `gives` | the items it gives, with counts and ids |
 | `unlocked_by_selling` | the loots and the counts that must be sold, with ids; `-` for none |
 | `repeatable` | flag bit `0x1`: it can come back after it is bought |
-| `script_sets_availability` | flag bit `0x2`: a script offers it |
+| `script_sets_availability` | flag bit `0x2`: a script offers it; for the seven script goods, the `sethoridashi` calls that offer it and when ("Goods a script offers" above) |
 
 The 128 goods cost from 70 to 600,000 gil. Fifteen can come back: goods 87-94, 103, 104 and 106-110. The seven
 script goods are 99-102 and 124-126.

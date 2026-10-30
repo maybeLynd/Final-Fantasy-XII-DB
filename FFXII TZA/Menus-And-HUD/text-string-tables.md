@@ -59,6 +59,15 @@ the `ch` copy holds the `in` bytes.
 the `kr` and `cn` columns show the same bytes through the Korean and Chinese fonts. 249 strings in the `kr` column
 hold codes the Korean font has no glyph for, written `{glyph:0xN}`.
 
+The two name lists of those trees, `basic_skill_basic_skill_name.bin` and `growth_rate_growth_rate_name.bin`, are
+not `st2e` tables. Each is a `u32` count, `count + 1` `u32` offsets from the file start, the last equal to the file
+size, and the strings in UTF-16LE, each ended by a zero unit, with no gap between them.
+
+[`text-string-tables-name-lists.tsv`](text-string-tables-name-lists.tsv) gives their 1,473 strings, 1,345 and 128,
+one per row of the `st2e` table of the same stem: Japanese designer labels such as `LEVEL-00基本値` and
+`テスト成長値`. The `kr` and `cn` copies are identical, and no path in the game names either file
+([PS2-era .bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md)).
+
 ### Reading the text
 
 Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or
@@ -90,6 +99,16 @@ each code's form. A backslash comes before a literal backslash, brace, square br
 | `us` to `ch` | the string in that language tree, decoded with the tree's font |
 | `missing` | the languages whose tree has no string at this `file` and `index` (no such file, or a shorter text block), comma-separated; empty when all nine have one |
 | `same_bytes` | the groups of languages whose string bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more, and the languages in `missing` take no part |
+
+### text-string-tables-name-lists.tsv
+
+| Column | Meaning |
+|---|---|
+| `file` | the name list's file name |
+| `index` | the string's place in the list, from 0 |
+| `offset` | the string's offset from the file start |
+| `string` | the string |
+| `same_bytes` | the trees whose copy holds this string: `kr cn` |
 
 An empty cell under a language not in `missing` is an empty string: every string offset of these tables lies inside
 its text block.

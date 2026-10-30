@@ -303,6 +303,8 @@ The presets are `battle_pack.bin` section 8, 40 rows of 64 bytes. 29 party table
 `0x5010`-`0x501A` are named by no party row. Party rows 0-5 are Vaan, Ashe, Fran, Balthier, Basch and Penelo,
 the characters the "Ally: Vaan" to "Ally: Penelo" conditions test, and rows 27-39 are the Espers.
 
+Scenario preset rows load six of them: `0x5015`-`0x5019` in scenario sets 3-9 and `0x501A` in set 2 ([Scenario presets](../Party/scenario-presets.md), word `+0x0E`). A new game asks for set 0 (`0x003942F9`), `naf_b04` for set 1 and the developer script `evt_t0505` for sets 0, 2, 3, 11-13, 15, 17, 18, 20 and 22-49 (verb handler `0x0050F810`). No row of either table names `0x5006` or `0x5010`-`0x5014`, and the preset loader `0x00327CB0` takes its id only from those rows (`0x0023AEF5` and `0x00328CAA` from the party row's `+0x14`, `0x00239C00` from the preset row's `+0x0E`), so nothing loads these six.
+
 All 40 rows, with their condition ids and action rows, are in [gambit-preset-list.tsv](gambit-preset-list.tsv),
 read from the shipped file. The twelve presets no party row names hold "Foe: nearest visible → Attack": once in `0x5006` and
 `0x5010`-`0x5019`, twelve times in `0x501A`.

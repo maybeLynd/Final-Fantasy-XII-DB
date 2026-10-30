@@ -74,7 +74,7 @@ A row:
 | `0x04` | Battle Mode | Wait, Active | dword 0 bit `0x8` (`0x002DE060`) | - |
 | `0x05` | Battle Speed | 6 steps | dword 0 bits `0xFF0` (`0x002DE0F0`) | - |
 | `0x06` | Target Lines | On, Off | dword 1 bit `0x400000` (`0x002DE2D0`) | - |
-| `0x08` | Cursor Position | Last Selection, Default | dword 0 bit `0x8000` (`0x002DE1E0`) | clears the saved cursors (`0x002526D0`) |
+| `0x08` | Cursor Position | Last Selection, Default | dword 0 bit `0x8000` (`0x002DE1E0`) and bit `0x10000` (`0x002DE1C0`) | clears the saved cursors (`0x002526D0`) |
 | `0x09` | Vibration Function | On, Off | dword 0 bit `0x2000` (`0x002DE080`) | `0x0035FF30` |
 | `0x0A` | Screen Shake | On, Off | dword 0 bit `0x4000` (`0x002DE200`) | `0x0037DDC0` |
 | `0x0B` | Subtitles | On, Off | dword 0 bit `0x1000`, set for Off (`0x002DE230`) | - |
@@ -250,6 +250,8 @@ it while a row's `+0xC8` differs from its `+0xC4` (`0x0023C25F`-`0x0023C26B`).
 | Graphics rows | `[0x01F82D20]` and the display object `[0x01F82D18]` | `GameSetting.ini` (`0x0017E530`) when Graphics Settings closes (`0x0023C501`) and on Yes to a restart notice |
 | Controls settings | `[0x01F82D20]` `+0x58`-`+0x64` | `GameSetting.ini` when Controls is left (`0x0023D268`, `0x0023D428`) |
 | key bindings | the keymap profiles | `keymap.ini` when Controls is left with Cancel (`0x0023D263`, [keymap.ini](../Controls-And-Input/keymap-file.md)) |
+
+Every Config and Graphics Settings input, with the values it takes, the other writers of the same setting and which one wins, when a change takes effect, every reader and when the input changes nothing, is in [config-screen-inputs.tsv](config-screen-inputs.tsv).
 
 ## Layouts
 

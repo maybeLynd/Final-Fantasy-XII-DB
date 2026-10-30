@@ -81,6 +81,8 @@ Every part names every source. A cell that would be longer than 1,000 characters
 
 That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. The starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
+The five Tufts (Peach, Green, Orange, Brown and White, `0x2104`-`0x2108`) have no source, and their cells say so with `none:`. No shop list, bazaar good, treasure chest, enemy definition, reward package, hunt reward, starting inventory row or scenario set holds their ids ([Scenario presets](../Party/scenario-presets.md)), and no give call of any `us` script names them, the developer scripts `evt_t*` included.
+
 ### What it is used for
 
 `used_in` lists the bazaar goods that need the loot sold before they are offered ([`bazaar.tsv`](bazaar.tsv), `unlocked_by_selling`), with the good's id and the count to sell.
@@ -95,7 +97,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `price`, `sell_price` | `+0x00` in gil, and half of it rounded down |
 | `text_id`, `description` | `+0x02` and its shipped text |
 | `explanation` | the sell price, or that a shop will not buy it, or "a Reserve row" |
-| `sources` | where the loot is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over and the hunt reward, the treasure chests that hold it with the odds ("Where each loot comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
+| `sources` | where the loot is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over and the hunt reward, the treasure chests that hold it with the odds ("Where each loot comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the five Tufts, `none:` and the sources that do not hold them; `-` for a Reserve row |
 | `used_in` | the bazaar goods that need it sold, with the good's id and the count; `-` for none |
 
 ## Related

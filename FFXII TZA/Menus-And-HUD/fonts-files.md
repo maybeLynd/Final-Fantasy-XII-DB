@@ -2,7 +2,7 @@
 title: "Font files: every shipped font data file with its size, its form, its place in the font list and its .dat header"
 kind: "reference"
 category: "Menus and HUD"
-addresses: "0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C00, 0x001B58E0, 0x001B6230, 0x001EA3C0, 0x001E8070, 0x001E9D20, 0x001E8580"
+addresses: "0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C00, 0x001B58E0, 0x001B6230, 0x001EA3C0, 0x001E8070, 0x001E9D20, 0x001E8580, 0x001FDCC0, 0x003643A0, 0x00365810, 0x003649A0, 0x002D8690, 0x0067D3B0"
 ---
 
 ## What it lists
@@ -13,6 +13,11 @@ line also carries the file's header. [Fonts](fonts.md) gives the formats and how
 its list. The 62 `<name>.dds.phyre` atlases and the two `.fgen.phyre` bitmap fonts are in
 [`fonts-files-atlases.tsv`](fonts-files-atlases.tsv), one line each with the texture's size and pixel format
 (The atlas files, below).
+
+[`fonts-files-hashes.tsv`](fonts-files-hashes.tsv) gives all 180 files of the font folder, one line each, with its
+size, its SHA-256 and the other files that have the same bytes: 146 different contents.
+[`fonts-files-bitmap-characters.tsv`](fonts-files-bitmap-characters.tsv) gives the 95 character records of each of
+the two `.fgen.phyre` bitmap fonts (The two bitmap fonts, below).
 
 Three tables hold the rest of the data: the glyph records in [Font glyphs](fonts-glyphs.md), the pairs in
 [Font kerning pairs](fonts-kerning.md) and the lists in [Font expansion lists](fonts-expansion-lists.md).
@@ -73,6 +78,23 @@ for the 45 `A8` atlases and x 4 for the 17 `ARGB8` ones, in all 62; the header b
 `us`, and `font_stf_a` with `font_stf_b`, `font_stf_bs` with `font_stf_cs`, share one image. The
 `same_pixels_as` column names the copies.
 
+### The fonts of the ExFont faces and the staff roll
+
+Ten font ids belong to the faces whose glyph tables are in `fontpack_fs.bin`
+([ExFont sheets](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md)):
+
+- `font_venus` (11), `font_bookman` (13), `font_iwa_g12` (14) and `font_square` (15) are faces 0, 2, 3 and 4. The
+  fontpack binder `0x003643A0` registers ids `0xB`, `0xD`, `0xE` and `0xF` through `0x0017FC00` as it binds those faces'
+  sheets (`0x003643FF`-`0x0036449E`).
+- The six `font_stf_*` fonts (17 to 22) are the [staff roll](staff-roll.md)'s faces 6 to 11: `0x00365810` registers
+  id slot + 10 for sheet slots 7 to 12 (`0x003658D1`, `0x003658D4`).
+
+The face drawer `0x003649A0` takes each glyph's quad and advance from the font whose id is its face byte `+0x60` plus
+11 (`0x00364A50`-`0x00364A58`), and the measure `0x00364530` does the same (`0x003645DD`, `0x00364696`). `0x002D8690`, one of
+the drawer's four callers, uses it only for text that starts with `ex` (`0x00364980`, `0x002D8720`-`0x002D8727`); it
+sets that byte to its record's byte `+0x64` less 1 when that byte is above 0, and to 0
+otherwise, so a record whose byte `+0x64` is 0 draws in face 0, `font_venus` (`0x002D8729`-`0x002D874B`).
+
 ### The two bitmap fonts
 
 `tuffysdf.fgen.phyre` and `tuffy.fgen.phyre`, 269,961 bytes each, sit at the top of the font folder. Each is a
@@ -83,11 +105,35 @@ Phyre cluster holding a `PBitmapFont` of the 95 characters `0x20` to `0x7E` over
 | `tuffysdf.fgen.phyre` | `Samples/tuffySDF.fgen#BitmapFont` | 1 | 86 | 168.375 | 83.75 |
 | `tuffy.fgen.phyre` | `ArtData/font/tuffy.fgen#BitmapFont` | 0 | 88 | 172 | 86 |
 
+After the four members each file holds the character count, 95, seven zero bytes and the 95
+`PBitmapFontCharInfo` records, from `0xD7E` to `0x1E31`: 45 bytes each with no padding, in the order the
+registration `0x0067D3B0` gives the members, `m_characterCode`, `m_kernPairs`, `m_kernOffset`, `m_uv`, `m_width`,
+`m_height`, `m_offset`, `m_advance` and `m_rotated`. The codes run from `0x20` to `0x7E` in order.
+
+Every record's `m_kernPairs` is 0, so neither font kerns. `m_rotated` is set on 85 records of
+`tuffysdf.fgen.phyre` and 84 of `tuffy.fgen.phyre`; the builder `0x0067B530` then swaps the glyph's texture
+coordinates (`0x0067B818`), and the glyph lies in the texture `m_height` wide and `m_width` high.
+
 `tuffysdf.fgen.phyre` is the debug-information overlay's font: the path `0x009019C8`, through the pointer at
 `0x01DFDE08`, is loaded by `0x001EA3C0` for each of the 32 text lines the `MultipleDebugDisplay` constructor
 `0x001C1D40` builds at start-up ([Phyre bitmap-font text](../PhyreEngine/phyre-bitmap-font-text.md)).
 No string in the executable and no other shipped file names `tuffy.fgen.phyre`, so the game never
 loads it.
+
+### Changing a font file
+
+- `fontlist.ah` holds one name per line, each line ended by CR LF or LF, with nothing else on it. `0x001B4930` reads
+  a name with `"%s"` (`0x008F4438`, `0x001B49CE`) and steps past exactly the name's length and then only CR and LF
+  bytes (`0x001B49E0`-`0x001B4A01`), so a blank before or after a name makes a later read start inside a name. The list
+  ends at the first read that finds no name (`0x001B49D3`).
+- The folder and a name are joined with `"%s%s"` (`0x008F80F0`) into a 256-byte buffer (`0x001B4A13`-`0x001B4A24`);
+  every folder, such as `./GameData/D3D11/ArtData/font/jp/`, is 33 characters, which leaves 222 for the name.
+- A `.dat` is the `0x28`-byte header and then `0x24`-byte glyph records to the end of the file ([Fonts](fonts.md)
+  Layouts). A key must not repeat: the filer `0x001FDCC0` files a record only when the font has no record of that key
+  yet, and returns 0 for a repeated key without storing it (`0x001FDCF7`-`0x001FDD09`, `0x001FDD4C`), so the first
+  record of a key is the one drawn.
+- A `.ker` is 12-byte pairs and a `.fex` is `{key, count, values}` chunks, each to the end of the file; a `.fex`
+  key already loaded stops its reader ([Fonts](fonts.md) Loader behaviour).
 
 ### Changing an atlas
 
@@ -128,6 +174,31 @@ loads it.
 | `list_position` | for a `.dat`, the 0-based place of its name in the folder's `fontlist.ah`; empty when the list does not name it |
 | `requested` | 1 when the game requests the file (above), 0 otherwise |
 | `fontId` to `metricB` | the `.dat` header fields, named as on [Fonts](fonts.md): `fontId`, `glyphCount`, `atlasW`, `atlasH`, `cellW`, `cellH`, `scale` (the shortest decimal that gives the same `f32`), `flags` (hex), `metricA`, `metricB`; empty for other files, and `metricA` and `metricB` empty for a `header 0x20` file |
+
+### fonts-files-hashes.tsv
+
+| Column | Meaning |
+|---|---|
+| `folder` | the font folder; empty for the two `.fgen.phyre` files at the folder's top level |
+| `file` | the file name |
+| `bytes` | the file's size |
+| `sha256` | the SHA-256 of the file |
+| `same_bytes_as` | the other files with the same bytes, as `<folder>/<file>`; empty when none |
+
+### fonts-files-bitmap-characters.tsv
+
+| Column | Meaning |
+|---|---|
+| `file` | `tuffysdf.fgen.phyre` or `tuffy.fgen.phyre` |
+| `record` | the record's place in the character table, from 0 |
+| `code`, `char` | `m_characterCode` and its character (`space` for `0x20`, `vertical bar` for `0x7C`) |
+| `texelX`, `texelY` | `m_uv`: the glyph's left and top pixel in the 512 x 512 texture |
+| `width`, `height` | `m_width` and `m_height`: the quad's size in font pixels |
+| `offsetX`, `offsetY` | `m_offset` |
+| `advanceX`, `advanceY` | `m_advance` |
+| `rotated` | `m_rotated`: 1 when the glyph lies in the texture `height` wide and `width` high |
+| `kernPairs`, `kernOffset` | `m_kernPairs` and `m_kernOffset` |
+| `file_offset` | where the record starts in the file |
 
 ### fonts-files-atlases.tsv
 

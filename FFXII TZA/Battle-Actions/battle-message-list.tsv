@@ -10,8 +10,8 @@ event_id	slot0	slot1	slot2	slot3	always_shown	category	rate_limited	text_readabl
 0x08	user name				yes	2	yes	[user]'s target is too far from the[newline]party leader.	{0F}{29}{80}{94}{0F}{31}{80}{80}{80}{0F}{29}{80}{80}'s target is too far from the\n{0F}{3C}{C1}{FE}party leader.
 0x09	user name				yes	2	yes	[user] cannot reach the target.	{0F}{29}{80}{94}{0F}{31}{80}{80}{80}{0F}{29}{80}{80} cannot reach the target.
 0x0A	user name				yes	2	yes	[user]'s target is too far away.	{0F}{29}{80}{94}{0F}{31}{80}{80}{80}{0F}{29}{80}{80}'s target is too far away.
-0x0B					yes	2	yes	{C7}	{C7}
-0x0C					yes	2	yes	{C7}	{C7}
+0x0B					yes	2	yes	？	{C7}
+0x0C					yes	2	yes	？	{C7}
 0x0D	user name	action name			no	1	no	[user] begins casting [action].	{0F}{29}{80}{94}{0F}{31}{80}{80}{80}{0F}{29}{80}{80} begins casting {0F}{29}{80}{9C}{0F}{31}{81}{80}{80}{0F}{29}{80}{80}.
 0x0E	user name	action name			no	1	no	[user] readies [action].	{0F}{29}{80}{94}{0F}{31}{80}{80}{80}{0F}{29}{80}{80} readies {0F}{29}{80}{9C}{0F}{31}{81}{80}{80}{0F}{29}{80}{80}.
 0x0F	user name	action name			no	1	no	[user] uses [article of action][action].	{0F}{29}{80}{94}{0F}{31}{80}{80}{80}{0F}{29}{80}{80} uses {0F}{6E}{80}{81}{0F}{29}{80}{9C}{0F}{31}{81}{80}{80}{0F}{29}{80}{80}.

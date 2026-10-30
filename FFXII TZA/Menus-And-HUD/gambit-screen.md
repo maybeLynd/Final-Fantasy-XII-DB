@@ -199,6 +199,10 @@ The verbs `fsmenu_changechip`, `fsmenu_movechip`, `fsmenu_movelist` and `fsmenu_
 lesson: the editor's state machine `0x0056A3D0` and the list's `0x0056BE40` allow only the input that moves toward the
 target row, page and entry, then only confirm (`0x002D66A0`).
 
+Their step delay is the byte `fsmenu_setrepeat` sets. `fsmenu_changechip` (`0x00511B70`) calls `0x00567AE0` (`0x00511BAF`),
+which stores `0x002D6680`'s answer at the editor's `+0x33A` (`0x00567B4C`). The state machine loads it into the countdown
+`+0x333` (`0x0056A61A`-`0x0056A621`, `0x0056A63F`-`0x0056A646`) and counts it down (`0x0056A576`).
+
 ## Layouts
 
 ### The member pane

@@ -119,7 +119,7 @@ The read marks and the new-entry badge are described on [Clan Primer](clan-prime
 | `countdown` | Bestiary: whether the index row shows the defeats to the next slot, and up to which count | `0x00571710` |
 | `text_file`, `text_lines` | the text bundle that holds the entry, and its number of text slots | `0x00575D10`, `0x00576300` |
 | `picture` | the picture file and the picture inside it | `0x00575DD0`, `0x00575B80` |
-| `monsters`, `monster_count` | Bestiary: the enemy definitions (area, row, name) whose `primer_entry` is this entry, and how many | [Bestiary](../Enemy-Spawning/bestiary.md) |
+| `monsters`, `monster_count` | Bestiary: the enemy definitions (area, row, name) whose `primer_entry` is this entry, and how many; for the ten entries no definition names, which unlock by the story counter alone (33, 35, 278 and 377-383), `none names it` and the definitions the entry stands for, joined by the entry's gallery model to the definitions' `model_id`, or by name for Ba'Gamnan, whose gallery model no definition uses; their count stays 0 | [Bestiary](../Enemy-Spawning/bestiary.md) |
 | `gallery_model_id`, `gallery_model` | the viewer's `monsterModelId` of `monstergallery.json` entry `MonsterId<n>`, and the model of a linked definition with that id | `0x001EB9C0` |
 | `explanation` | a one-line summary | |
 

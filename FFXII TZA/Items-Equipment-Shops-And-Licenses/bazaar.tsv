@@ -98,10 +98,10 @@ good	id	name	price	gives	unlocked_by_selling	repeatable	script_sets_availability
 96	0xD060	The Sunflower	600000	Tournesol x1 (1018)	Gemsteel x3 (20EF); Empyreal Soul x3 (20ED); Serpentarius x3 (20EE)	no	no
 97	0xD061	Dragon Crest	65535	Wyrmhero Blade x1 (10AD)	Omega Badge x1 (20EC); Godslayer's Badge x1 (20F4); Lu Shang's Badge x1 (20F5)	no	no
 98	0xD062	Mysterious Substance	14999	Dark Energy x1 (0018)	Grimoire Togail x3 (2091); Grimoire Aidhed x3 (2092); Bat Wing x1 (20D1)	no	no
-99	0xD063	Forgotten Grimoire	18000	Hunter's Monograph x1 (8066)	-	no	yes
-100	0xD064	Forgotten Grimoire	19000	Knight's Monograph x1 (8067)	-	no	yes
-101	0xD065	Forgotten Grimoire	22000	Dragoon's Monograph x1 (8068)	-	no	yes
-102	0xD066	Forgotten Grimoire	25000	Sage's Monograph x1 (8065)	-	no	yes
+99	0xD063	Forgotten Grimoire	18000	Hunter's Monograph x1 (8066)	-	no	yes: sethoridashi offers it when Gatsly is talked to in Muthru Bazaar (Rabanastre) [rbn_a02] after the hunt Wolf in the Waste (quest 129) is reported; once only, marked by bit 0x2 of script global byte 0x0405
+100	0xD064	Forgotten Grimoire	19000	Knight's Monograph x1 (8067)	-	no	yes: sethoridashi offers it once script global byte 0x0CD1 reaches 30; opening one of these six shops by talking to its shopkeeper: Weapon Seller (Vint's Armaments, Archades) [alc_f03], Traveling Merchant shop 21 (Sand-strewn Pass, Mt Bur-Omisace) [bul_b02], Targe (Bhujerba) [byu_a11], Weapons of War (West Ward, Nalbina Town) [nac_a03], Amal (Rabanastre) [rbn_a07], Beruny (Balfonheim Port) [var_a11] adds 1 to it; once only, marked by bit 0x2 of script global byte 0x0CDA
+101	0xD065	Forgotten Grimoire	22000	Dragoon's Monograph x1 (8068)	-	no	yes: sethoridashi offers it once script global byte 0x0CD4 reaches 40; talking to one of the hunt notice boards of The Sandsea (Rabanastre) [rbn_a16] from story progress above 80, The Cloudborne (Bhujerba) [byu_a18], Jajim Bazaar (Nalbina Town) [nac_a02], Hunters' Camp (Phon Coast) [fon_b01], The Whitecap (Balfonheim Port) [var_a14] and Granch's Requisites (Archades) [alc_f04] adds 1 to it; once only, marked by bit 0x20 of script global byte 0x0CDA
+102	0xD066	Forgotten Grimoire	25000	Sage's Monograph x1 (8065)	-	no	yes: sethoridashi offers it once script global byte 0x0CD0 reaches 100; opening any of the 57 shops by talking to its shopkeeper adds 1 to it; once only, marked by bit 0x1 of script global byte 0x0CDA
 103	0xD067	Magick Shard	99	Holy Mote x1 (0030)	Glass Jewel x8 (208C); Sky Jewel x8 (208D); Diakon Halcyon x1 (204A)	yes	no
 104	0xD068	Magick Shard	499	Scathe Mote x1 (0031)	Book of Orgain x8 (2095); Book of Orgain-Cent x8 (2096); Book of Orgain-Mille x8 (2097)	yes	no
 105	0xD069	Potion Pack	70	Potion x2 (0000)	Cactus Fruit x2 (207A)	no	no
@@ -123,7 +123,7 @@ good	id	name	price	gives	unlocked_by_selling	repeatable	script_sets_availability
 121	0xD079	Gilt Phylactery	3000	Golden Amulet x1 (116F)	Tattered Garment x1 (20A6)	no	no
 122	0xD07A	Exquisite Ring	7800	Opal Ring x1 (1154)	Frogspawn x2 (20D5)	no	no
 123	0xD07B	Feathered Boots	300	Winged Boots x1 (117C)	Arctic Wind x1 (20DB)	no	no
-124	0xD07C	Forgotten Grimoire	21000	Mage's Monograph x1 (8069)	-	no	yes
-125	0xD07D	Forgotten Grimoire	20000	Warmage's Monograph x1 (806A)	-	no	yes
-126	0xD07E	Forgotten Grimoire	22000	Scholar's Monograph x1 (806B)	-	no	yes
+124	0xD07C	Forgotten Grimoire	21000	Mage's Monograph x1 (8069)	-	no	yes: sethoridashi offers it once script global byte 0x0CD2 reaches 25; opening one of these five shops by talking to its shopkeeper: Granch (Archades) [alc_f04], Mait (Bhujerba) [byu_a14], Mysterious Magicks (Jajim Bazaar, Nalbina Town) [nac_a02], Yugri (Rabanastre) [rbn_a10], Quayside Magickery (Gallerina Marketplace, Balfonheim Port) [var_a02] adds 1 to it; once only, marked by bit 0x4 of script global byte 0x0CDA
+125	0xD07D	Forgotten Grimoire	20000	Warmage's Monograph x1 (806A)	-	no	yes: sethoridashi offers it once script global byte 0x0CD4 reaches 20; talking to one of the hunt notice boards of The Sandsea (Rabanastre) [rbn_a16] from story progress above 80, The Cloudborne (Bhujerba) [byu_a18], Jajim Bazaar (Nalbina Town) [nac_a02], Hunters' Camp (Phon Coast) [fon_b01], The Whitecap (Balfonheim Port) [var_a14] and Granch's Requisites (Archades) [alc_f04] adds 1 to it; once only, marked by bit 0x10 of script global byte 0x0CDA
+126	0xD07E	Forgotten Grimoire	22000	Scholar's Monograph x1 (806B)	-	no	yes: sethoridashi offers it once script global byte 0x0CD3 reaches 15; opening one of these six shops by talking to its shopkeeper: Armor Seller (Vint's Armaments, Archades) [alc_f03], Traveling Merchant shop 22 (Sand-strewn Pass, Mt Bur-Omisace) [bul_b02], Rithil (Bhujerba) [byu_a12], Antiqued Armors (West Ward, Nalbina Town) [nac_a03], Panamis (Rabanastre) [rbn_a08], Emma (Balfonheim Port) [var_a11] adds 1 to it; once only, marked by bit 0x8 of script global byte 0x0CDA
 127	0xD07F	Morbid Urn	250000	Canopic Jar x1 (806C)	Horakhty's Flame x1 (20F1); Phobos Glaze x1 (20F2); Deimos Clay x1 (20F3)	no	no

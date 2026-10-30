@@ -46,7 +46,8 @@ and flags through (`0x0030EAE4`-`0x0030EAFC`). `0x0030E990` is used by:
 - the area initialisation `0x002342F0`, which removes X-Zone (31) with flags 0 from each of the 40
   stats records at `[0x02EBF190] + 8`, `0x1C8` bytes apart (`0x00234358`-`0x0023438E`);
 - `0x00318A00` and `0x00318A90`, which pick `0x0030EAE0` or `0x0030E990` by a flag (`0x00318A49`-`0x00318A63`,
-  `0x00318AF0`-`0x00318B14`).
+  `0x00318AF0`-`0x00318B14`). `setpartybattlestatus` (`0x00347F80`) reaches `0x00318A00` through `0x00473820`, which
+  sets the flag to 1 (`0x00473823`), so it always calls the add `0x0030EAE0`.
 
 ### What refuses a change
 

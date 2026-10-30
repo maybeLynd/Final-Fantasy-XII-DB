@@ -141,7 +141,7 @@ lines, in slot order, one per line with a bare line feed: 87 lines.
 
 A code is the value the input name registries give a key or a button ([Control names](control-names.md)): 11-26
 are the pad buttons and 28 and up the keyboard keys, with 28-53 the letters A-Z. Codes 1-3, which no name has, are
-the three mouse buttons: the filter `0x001967D0`, which keeps only the confirm binding's input when it runs, reads a
+the three mouse buttons: the filter `0x001967D0`, which keeps only the cancel binding's input (the Cross slot) when it runs, reads a
 code of 1-3 as one of the mouse device's three button bytes and any other code as a key, code minus 28
 (`0x0019686E`-`0x001968AC`). 0 is no binding.
 
@@ -161,6 +161,8 @@ Numpad 0, Numpad 8/6/2/4, Enter and Backspace); profile 3 binds Select, R3, Righ
 
 Profile 1 is the familiar layout: W, A, S and D move, the arrow keys turn the camera, I, J, K and L are the
 direction pad, Space confirms, C cancels, and F1-F3 set the game speed.
+
+Every one of the 28 slots, with its Controls row, the codes it takes, what else sets it and which one wins, when a change takes effect, every reader, what the player sees and when the binding changes nothing, is in [keymap-file-inputs.tsv](keymap-file-inputs.tsv).
 
 ## Loader behaviour
 

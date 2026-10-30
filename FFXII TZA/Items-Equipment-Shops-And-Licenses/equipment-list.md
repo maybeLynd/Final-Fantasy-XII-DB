@@ -98,6 +98,10 @@ Every part names every source. A cell that would be longer than 1,000 characters
 
 That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. The starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
+Six weapons have no source for the player, and their cells start `none`. Joyeuse, Chirijiraden, Flimsy Blade and the two Nightmare rows are the main-hand weapons of guests in the party table ([Party table](../Party/party-table.md), word `+0x0A`): Larsa (row 13), Reddas (rows 14 and 16), Basch (row 9) and Vossler (`0x10A6` row 11, `0x10A9` row 12). No party table row wears the Hero's Blade.
+
+None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward package, hunt reward or script give. Scenario sets give or equip them ([Scenario presets](../Party/scenario-presets.md)), but a new game asks for set 0, `naf_b04` for set 1, and the developer script `evt_t0505` for sets 0, 2, 3, 11-13, 15, 17, 18, 20 and 22-49.
+
 ### The licence it needs
 
 `licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `none needed` marks a row whose `+0x07` bit `0x10` is set, which `0x00323C60` passes without the board (`0x00323CDF`).
@@ -135,7 +139,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `bonus_record` | the bonus record's index: `+0x28` / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+0x30` |
 | `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
-| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward, the treasure chests that hold it with the odds ("Where each piece of equipment comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
+| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward, the treasure chests that hold it with the odds ("Where each piece of equipment comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the six guest weapons, `none` and who wears them; `-` for none |
 | `licence` | the licence squares that grant it, by name and node, or `none needed` ("The licence it needs" above) |
 
 ## Related

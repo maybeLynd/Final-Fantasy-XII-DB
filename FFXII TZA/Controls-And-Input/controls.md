@@ -23,7 +23,7 @@ The manager is a `0x40`-byte object whose pointer is at `0x01F7FFE0`. `0x0019875
 
 | Field offset | Meaning | Read at |
 |---|---|---|
-| `+0x08`, `+0x09` | invert the right stick's X and Y | `0x0019740F`, `0x0019751A`, `0x001975CB` |
+| `+0x08`, `+0x09` | invert the right stick's X and Y | X: `0x0019740F`, `0x0019751A`, `0x001975CB`; Y: `0x00197422`, `0x0019752E`, `0x001975DF` |
 | `+0x0C`, `+0x10` | mouse wheel notches, total and this frame | `0x0019739A`, `0x001973A4` |
 | `+0x39` | poll on or off | `0x0019701D` |
 | `+0x3A` | movement-key mode bits `0x1`, `0x2` and `0x4` | `0x00197040`-`0x001970F8` |
@@ -431,7 +431,7 @@ presses that the gambit screen and the licence board use, and cleared by `0x0024
 | `0x02F973AE` | `u16` | 0 | buttons forced into both pressed masks for one game frame | `0x002D66A0`, `buttons` (`0x002D66B6`); `0x002498B0`, 0 after use (`0x00249BF8`); `0x00249840` (`0x00249849`) | `0x002498B0` (`0x00249B3A`, `0x00249B4A`) |
 | `0x02F973B0` | `u16` | 0 | buttons forced into both repeat masks for one game frame | `0x002D66A0`, `buttons` (`0x002D66AF`); `0x002498B0`, 0 after use with `0x02F973AE` (`0x00249BF8`); `0x00249840`, 0 (`0x00249850`) | `0x002498B0` (`0x00249B42`, `0x00249B52`) |
 
-`0x002D6680` loads 8 bytes from `0x02F973A1` and uses only the first.
+`0x002D6680` loads 8 bytes from `0x02F973A1` and uses only the first: the byte `0x002D66C0` stores, which is the argument of the script verb `fsmenu_setrepeat`, with 0 read as 8 (`0x002D668E`).
 
 ### Channel 1's button words
 

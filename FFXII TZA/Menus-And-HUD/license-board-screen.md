@@ -373,8 +373,8 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x566` | `u8` | effectB |  |
 | `+0x567` | `i8` | effectCol | the effect's square (`0x0056014A`-`0x00560150`); the mover reads them (`0x0055AA40`, `0x0055AA6F`) |
 | `+0x568` | `i8` | effectRow |  |
-| `+0x569` | `u8` | effectKind | `0x002D6680`'s result (`0x00560187`); read by the mover (`0x0055AA63`, `0x0055AA92`) |
-| `+0x56A` | `u16` | moverWord | a word the mover reads and writes (`0x0055AAA9`-`0x0055AAF1`) |
+| `+0x569` | `u8` | repeatDelay | the step delay of a scripted move: `0x002D6680`'s result (`0x00560187`); the mover loads it into `+0x56A` after a step (`0x0055AA63`, `0x0055AA92`, `0x0055AAF1`) |
+| `+0x56A` | `u16` | repeatCount | the countdown to the next step: `+0x569` (`0x0055AAF1`), `0x18` (`0x0055AA9B`-`0x0055AAA9`) or `0x20` (`0x0055AAEC`-`0x0055AAF1`); decremented while above 0 (`0x0055AABD`-`0x0055AACC`) |
 | `+0x56C` | `u32` | effectNode | the node the effect plays for (`0x0055F76A`, `0x0056017C`) |
 | `+0x570` | `u32` | flags | bit `0x1` set by the purchase `0x0055DD70` (`0x0055DD7F`) and cleared by the sweep (`0x0055B3D6`); bit `0x2` set once the panel has been filled (`0x00561280`); bit `0x4` set at build and when a refresh is served (`0x0055CF2E`, `0x0055F573`), cleared at stage start (`0x0055F453`); bit `0x8` makes `0x0055FAE0` answer 2; bit `0x20` a pending refresh, served and cleared at stage 0 (`0x0055F53C`-`0x0055F550`); bits `0xC0` set at a rebuild and a purchase (`0x0055DC22`, `0x0055F46D`); bit `0x200` set when the Second Board square is bought (`0x0055F4A2`); bit `0x400` from the creation record's `+0x10C` bit `0x4` (`0x0055CEB2`-`0x0055CEC6`): a scripted open, which keeps the child `+0x578` and skips the member read (`0x0055B436`, `0x0055DC9B`); bit `0x800` the cursor goes to the centre (`0x0055E7AF`) |
 | `+0x574` | `u8[4]` | gap574 | reached by no instruction in the table |

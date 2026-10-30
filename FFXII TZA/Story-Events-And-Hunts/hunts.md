@@ -17,10 +17,21 @@ Each hunt's record is the bill, the accepted hunt with where the mark is, the de
 row is marked done at the part that reports the mark defeated, or for hunt 163 trapped in the urn: the `.lst`
 threshold is 3, and 4 for hunt 167.
 
-The files hold no item or gil field, so the table has no reward column. The record files carry text, a
+The files hold no item or gil field. The record files carry text, a
 picture, a threshold, the progress table and the map chunks only (the layouts on
-[Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)); a hunt's reward is given by a
-script call to one of the item and gil verbs that [Scene rewards](scene-rewards.md) describes.
+[Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)).
+
+### The reward
+
+Every hunt's reward is the package of its selector, `0xA000` + the quest id ([Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)). The report script calls `questresultwindow(quest)`, which opens the result window and grants the package at once ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), "The quest result window").
+
+The `us` zone scripts make 56 such calls, with the quest id written in the call for 43 hunts. Montblanc's talk in The Clan Hall (`rbn_a14`) stores 167 or 170 and passes the stored id for those two. Hunt 153 is reported in any of the five aerodromes, and hunt 132 in Lhusu Square (Bhujerba) or The Chosen Path (Tchita Uplands).
+
+### The mark
+
+The `mark` column joins each mark to its [Bestiary](../Enemy-Spawning/bestiary.md) rows and their placements by name. 38 hunts have a step labelled with the mark, and its `location` word is the field id of a map zone, which the location map looks up among its zones (`0x003BC160`, `0x003C0380`; [Map menu files](../Game-Files-And-Data-Tables/menu-map-files.md), lmap `fieldId`).
+
+Seven hunts have no such step. The five steps of 153 carry location 0. The one step of 159, 167, 169, 170, 171 and 172 is labelled Montblanc, Rikken or Whitecap Wench, and the hunt map marks that step's zone. Their marks are the foes their record names; hunt 172's Belito is a ruse, and the foe is Ba'Gamnan.
 
 ### Where the values come from
 
@@ -76,6 +87,8 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `done_from` | the lowest progress byte at which the row is marked done | `0x0037EE10`, `0x00577C30` |
 | `part_1`-`part_5` | the text of each part; `0x02` line breaks become spaces | `0x0037E8D0`, `0x00578450` |
 | `explanation` | a one-line summary: the name, the petitioner, the progress of each part and of the done mark | |
+| `mark` | the mark: its bestiary rows with the Clan Primer entry, the maps whose scripts place it with the level, the Trial Mode rows, and the map zone the hunt map marks with its location word and field id, or, for a hunt with no step labelled with the mark, the zone its one step marks or that no step marks one ("The mark" above) | `0x0037EB90`, `0x003BC160` |
+| `reward` | the reward package with what it gives, its selector, and the maps whose scripts grant it ("The reward" above) | `0x00344C60`, `0x00290130` |
 
 The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B180`), set by the scripts'
 `setquestscenarioflag` ([Quests](quests.md)).

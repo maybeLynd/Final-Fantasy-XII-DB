@@ -67,6 +67,11 @@ the main story counter has reached, comparing as signed 16-bit numbers, so a rec
 first value up to, but not including, the second. The counter is `FieldData_GetVariable0` (`0x00265270`), the word at
 the start of the save payload: slot 0's variable block is bound to the payload base (`0x0026CAF8`-`0x0026CAFD`).
 
+`0x0032A8A0` passes the id's low 14 bits as the record index (`0x0032A8A8`). `0x00377970` answers false when the file is
+not loaded, when the index is at or past the count, and when the record's offset is 0 (`0x0037797F`-`0x00377997`). It
+reads values until one carries bit `0x8000` or the counter is below the next value (`0x003779BC`, `0x003779C6`,
+`0x003779D8`), so a record whose last value lacks the bit reads on into the values after it.
+
 The file is kind 9 file `0xA`, requested by `0x00378540` under the name `MJGP_ROM`; its completion `0x00378BA0` keeps the
 pointer at `0x02ADD0C8`.
 
@@ -139,6 +144,19 @@ The main menu entries and other readers that use the schedule (`0x00281AE0`, `0x
 The menu entry text is `menu_command.bin` rows 203-214. Records 0, 2 and `0x87` need the counter at 32,767, and
 record 1 is true for any counter of 0 or more.
 
+[`story-flags-schedule.tsv`](story-flags-schedule.tsv) gives all 152 records of `mapjumpgroupflagrom.bin`: the
+encoded id, the record's offset, its values and the story counter values for which `0x00377970` answers true. The
+records fill the file from `0x13A` to its end, 271 values, and no two share a list. 48 records have one value, 98
+two, one three, three four and two six.
+
+| Column | Meaning |
+|---|---|
+| `record` | the record's index, from 0 |
+| `encoded_id` | the Primary id that reads it, `0x4000` + record |
+| `offset` | the record's offset from the file start |
+| `values` | the record's story counter values, without bit `0x8000` |
+| `true_while_counter` | the counter values for which the answer is true; `32767 only` for a record whose only value is 32,767 |
+
 The 53 starting ids of `mapjumpgroupinit.bin` are 0, `0x56`, `0x65`, `0x66`, `0x70`, `0x79`, `0x7A`, `0x80`, `0xFC`,
 `0x108`, `0x10B`, `0x10C`, `0x11C`, `0x12C`-`0x134`, `0x136`, `0x137`, `0x13A`-`0x155` and `0x158`. Id 0 is outside
 the setter's range, so 52 flags are set.
@@ -149,6 +167,10 @@ the setter's range, so 52 flags are set.
   nothing for it.
 - Ids 0 and 1 are permanent always and never answers; the setter cannot store them.
 - Editing `mapjumpgroupflagrom.bin` moves the story points at which menus and map groups open.
+- A record is a rising list of counter values with bit `0x8000` on the last; leave it out and the reader goes on
+  into the next record's values (`0x003779C6`). A record at offset 0 is always false (`0x00377997`).
+- `mapjumpgroupinit.bin` is read as a `u16` count at `+0x08` and that many `u16` ids (`0x00379177`-`0x003791A4`), each
+  set with `0x0032AB60(id, 1)`; an id outside 2 to 511 sets nothing.
 
 ## Related
 
