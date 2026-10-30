@@ -76,7 +76,7 @@ when the old one ends.
 |---|---|---|---:|
 | `voiceread(slot)` | `0x085` | loads a slot (`0x0034EE40`) | 389 |
 | `voiceread_20a(slot, flag)` | `0x20A` | the same with a choice of allocator | 171 |
-| `voicereadsync(slot)` | `0x086` | waits while loading | 552 |
+| `voicereadsync(slot)` | `0x086` | waits while the slot is loading, freed while loading or holds one of its two tables (states 2, 4 and 5; poll `0x0034F770`); in states 0, 1 and 3 it goes on at once, since its test `0x0053DD10` always answers 1 | 552 |
 | `voiceplay(cue)` | `0x087` | plays at pan `0x40`, volume `0x7F` | 262 |
 | `voiceplay_b5(cue, pan, volume)` | `0x0B5` | plays with pan and volume | 9 |
 | `voiceplay_28b(speaker, cue)` | `0x28B` | plays at pan `0x40`, volume `0x7F` | 2,218 |
