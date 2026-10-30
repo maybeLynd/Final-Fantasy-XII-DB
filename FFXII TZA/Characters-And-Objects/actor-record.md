@@ -204,6 +204,9 @@ write nothing):
 - `charcommoneffectplay(v)` (`0x0465`, `0x00342A80`) ends a running job (`0x0024CFF0`) and zeroes it,
   pushes -1, `v` and 5, runs the nested verb `0x00357620`, and stores the integer result of the
   current wait slot (`0x002651A0`, which also sets that slot's command phase to 2) as the new job;
+  - `v` indexes the 14-entry common effect table `0x01EF9400` (effect numbers `0x72`-`0x76`, `0x88`, `0x87`, `0x89`,
+    `0x8A`, `0x8C`, `0x8D`, `0x95`, `0x8B`, `0x96`), which `0x0036E750` reads with no bound (`0x0036E764`-`0x0036E76B`)
+    and hands to `0x003B02A0`, so a `v` of 14 or more reads past the table and a negative `v` reads before it;
 - `charcommoneffecttrigger(v)` (`0x0466`, `0x00343080`) passes `v` to the job (`0x0024FE30`);
 - `charcommoneffectstop` (`0x0467`, `0x003433A0`) ends the job and zeroes it, as the release below does.
 

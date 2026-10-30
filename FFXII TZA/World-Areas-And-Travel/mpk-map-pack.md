@@ -99,7 +99,7 @@ parse a chunk:
 | 27 | `0x003ED840(chunk)` |
 | 28, 29, 32 | `[+0x1A8]`, `[+0x1B0]`, `[+0x1B8]` = chunk |
 | 30 | `[+0x174]` = count, `0x001806F0(count)`, `[+0x178]` = chunk + 0x10: the 0x30-byte instance records |
-| 33 | `0x002F6740(object, chunk)` |
+| 33 | `0x002F6740(object, chunk)`: the background NPC list, a count dword at chunk `+0` and 16-byte entries from chunk `+0x10`, kept at `[+0x1A0]` with the count at `[+0x22C]` (`0x002F6749`-`0x002F675C`); each entry's signed word `+0x00` is group × 100 + n, which `setbgnpcstatus` matches through `0x00379C50` and `0x00379BD0` (`0x00379C77`-`0x00379C9E`) |
 
 Every shipped section carries exactly the 17 tags 0, 1, 11, 12, 17, 22 to 33 and the sentinel, so the
 skipped tags 2 to 8, 10, 13, 15, 16 and 18 to 21 never occur. After the walk the constructor

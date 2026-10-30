@@ -2,6 +2,13 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 0	0x0000	Rabanastran	Rabanastran	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC_婆さん
 0	0x0000	Rabanastran	Rabanastran	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC_モーグリＣ
 0	0x0000	Rabanastran	Rabanastran	alc_f03	alc_f03	747	Vint's Armaments	Archades	2	NPC_女の子, NPC_男の子
+0	0x0000	Rabanastran	Rabanastran	dor_a06	dor_a06	1013	Rm 6611 West	Draklor Laboratory	3	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2), NPC_LABO_0 (begin, person 3)
+0	0x0000	Rabanastran	Rabanastran	dor_a14	dor_a14	1021	Rm 6711 East	Draklor Laboratory	2	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2)
+0	0x0000	Rabanastran	Rabanastran	dor_a17	dor_a17	1024	Rm 6704 East	Draklor Laboratory	3	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2), NPC_LABO_0 (begin, person 3)
+0	0x0000	Rabanastran	Rabanastran	dor_a21	dor_a21	1028	Rm 6702 East	Draklor Laboratory	2	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2)
+0	0x0000	Rabanastran	Rabanastran	dor_c06	dor_c06	1041	Rm 6611 West	Draklor Laboratory	3	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2), NPC_LABO_0 (begin, person 3)
+0	0x0000	Rabanastran	Rabanastran	dor_d03	dor_d03	1056	Rm 6711 East	Draklor Laboratory	2	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2)
+0	0x0000	Rabanastran	Rabanastran	dor_d06	dor_d06	1059	Rm 6704 East	Draklor Laboratory	3	NPC_LABO_0 (begin, person 1), NPC_LABO_0 (begin, person 2), NPC_LABO_0 (begin, person 3)
 0	0x0000	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
 0	0x0000	Rabanastran	Rabanastran	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	3	NPC_CEEK_UROURO, NPC_RAMBLER_A, NPC_RAMBLER_B
 0	0x0000	Rabanastran	Rabanastran	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	8	NPC_CHILDLEN_1, NPC_CHILDLEN_2, NPC_RAMBLER_A, NPC_RAMBLER_B, NPC_RAMBLER_C, NPC_RAMBLER_D, NPC_RAMBLER_E, NPC_SHOP_NANASHI
@@ -10,6 +17,8 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 0	0x0000	Rabanastran	Rabanastran	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	6	NPC_CHILDLEN_1, NPC_CHILDLEN_2, NPC_RAMBLER_A, NPC_RAMBLER_B, NPC_RAMBLER_C, NPC_RAMBLER_D
 0	0x0000	Rabanastran	Rabanastran	var_a06	var_a06	828	Canal Lane	Balfonheim Port	3	NPC_CHILDLEN_1, NPC_RAMBLER_A, NPC_RAMBLER_B
 0	0x0000	Rabanastran	Rabanastran	var_b01	var_b01	797	Aerodrome	Balfonheim Port	2	NPC_RAMBLER_A, NPC_RAMBLER_B
+1	0x0001	Imperial	Imperial	dor_a01	dor_a01	1008	66th Floor	Draklor Laboratory	2	NPC01 (clip_show, person 3), NPC01 (clip_show, person 13)
+1	0x0001	Imperial	Imperial	dor_a12	dor_a12	1019	67th Floor	Draklor Laboratory	2	NPC01 (clip_show, person 3), NPC01 (clip_show, person 12)
 1	0x0001	Imperial	Imperial	rbn_a01	rbn_a01	289	North End	Rabanastre	1	DT_STOP01
 1	0x0001	Imperial	Imperial	rbn_a03	rbn_a03	291	East End	Rabanastre	1	DT_STOP01
 2	0x0002	Rabanastran	Rabanastran	rbn_a10	rbn_a10	298	Yugri's Magicks	Rabanastre	1	NPC01
@@ -41,6 +50,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 37	0x0025	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	TWN_CEEK_C
 39	0x0027	Journeyman	Journeyman	rbn_a08	rbn_a08	296	Panamis's Protectives	Rabanastre	1	NPC01
 40	0x0028	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+41	0x0029	Erstwhile Adventurer	Erstwhile Adventurer	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC01 (clip_show, person 13)
 41	0x0029	Erstwhile Adventurer	Erstwhile Adventurer	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	NPC01
 42	0x002A	Adventurer	Adventurer	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
 43	0x002B	Merchant	Merchant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
@@ -132,15 +142,23 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 143	0x008F	Merchant	Merchant	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
 144	0x0090	Rabanastran	Rabanastran	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
 145	0x0091	Bhujerban	Bhujerban	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+147	0x0093	Flights to Nalbina	Flights to Nalbina	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC01 (clip_show, person 12)
 147	0x0093	Flights to Nalbina	Flights to Nalbina	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+147	0x0093	Flights to Nalbina	Flights to Nalbina	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 10)
 148	0x0094	Flights to Bhujerba	Flights to Bhujerba	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+148	0x0094	Flights to Bhujerba	Flights to Bhujerba	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 11)
 149	0x0095	Flights to Archades	Flights to Archades	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	飛空艇受付_03
 149	0x0095	Flights to Archades	Flights to Archades	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+149	0x0095	Flights to Archades	Flights to Archades	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 12)
+150	0x0096	Docent	Docent	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC01 (clip_show, person 8)
 150	0x0096	Docent	Docent	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
 150	0x0096	Docent	Docent	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	中央カウンター
 150	0x0096	Docent	Docent	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+150	0x0096	Docent	Docent	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 8)
+151	0x0097	Private Airships	Private Airships	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC01 (clip_show, person 9)
 151	0x0097	Private Airships	Private Airships	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	シュトラール受付
 151	0x0097	Private Airships	Private Airships	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+151	0x0097	Private Airships	Private Airships	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 9)
 152	0x0098	Rabanastran	Rabanastran	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
 153	0x0099	Rabanastran	Rabanastran	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
 155	0x009B	Cartographers' Guild	Cartographers' Guild	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	地図屋
@@ -226,6 +244,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 236	0x00EC	Nomad Youth	Terra	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	３０テラ
 237	0x00ED	Nomad Youth	Tott	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	２０トト
 238	0x00EE	Cockatrice	Cockatrice	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_COCATRICE
+238	0x00EE	Cockatrice	Cockatrice	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 3)
 238	0x00EE	Cockatrice	Cockatrice	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	2	クエコカトリス, クエコカトリス２
 238	0x00EE	Cockatrice	Cockatrice	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	クエコカトリス
 238	0x00EE	Cockatrice	Cockatrice	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	コカトリス
@@ -294,8 +313,10 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 372	0x0174	Melisa	Melisa	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
 373	0x0175	Magu	Magu	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
 375	0x0177	Traveler	Traveler	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+380	0x017C	Flights to Rabanastre	Flights to Rabanastre	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC01 (clip_show, person 10)
 380	0x017C	Flights to Rabanastre	Flights to Rabanastre	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
 380	0x017C	Flights to Rabanastre	Flights to Rabanastre	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	飛空艇受付_01
+381	0x017D	Flights to Balfonheim	Flights to Balfonheim	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC01 (clip_show, person 11)
 381	0x017D	Flights to Balfonheim	Flights to Balfonheim	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
 381	0x017D	Flights to Balfonheim	Flights to Balfonheim	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	飛空艇受付_02
 383	0x017F	Private Airships	Private Airships	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
@@ -454,6 +475,28 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	frs_b02	frs_b02	158	Grand Bower	The Salikawood	4	treasure_00, treasure_01, treasure_02, treasure_03
 434	0x01B2	Treasure	Treasure	frs_c01	frs_c01	162	Corridor of Ages	The Salikawood	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
 434	0x01B2	Treasure	Treasure	frs_c02	frs_c02	163	Piebald Path	The Salikawood	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	gil_b01	gil_b01	690	The Trimahla Water-Steps	Giruvegan	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	gil_b02	gil_b02	691	The Aadha Water-Steps	Giruvegan	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	gil_c01	gil_c01	694	The Haalmikah Water-Steps	Giruvegan	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_c02	gil_c02	695	Gate of Fire	Giruvegan	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	gil_d01	gil_d01	698	Gate of Wind	Giruvegan	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_e02	gil_e02	622	Kabonii Jilaam Pratii'vaa	The Great Crystal	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_e03	gil_e03	623	Kabonii Jilaam Avaa	The Great Crystal	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_f03	gil_f03	928	Bhrum Pis Avaa	The Great Crystal	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_f04	gil_f04	929	Bhrum Pis Pratii	The Great Crystal	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_g02	gil_g02	333	Trahk Pis Praa	The Great Crystal	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_g05	gil_g05	336	Trahk Jilaam Praa'dii	The Great Crystal	1	treasure_00
+434	0x01B2	Treasure	Treasure	gil_h01	gil_h01	888	Crystal Peak	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_i08	gil_i08	946	Dhebon Jilaam Avaapratii	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_j03	gil_j03	954	Sirhru Phullam Praa	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_j05	gil_j05	956	Sirhru Phullam Praa'vaa	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_j06	gil_j06	957	Sirhru Phullam Pratii'vaa	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_j08	gil_j08	959	Sirhru Phullam Udiipratii	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_j13	gil_j13	964	Sirhru Jilaam Praa'vaa	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_j14	gil_j14	965	Sirhru Jilaam Pratii'vaa	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_k06	gil_k06	984	Uldobi Phullam Pratii'dii	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_k09	gil_k09	987	Uldobi Phullam Udiipraa	The Great Crystal	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gil_k12	gil_k12	990	Uldobi Phullam Pratii	The Great Crystal	2	treasure_00, treasure_01
 434	0x01B2	Treasure	Treasure	glf_a03	glf_a03	753	The Elderknoll	Jahara	2	treasure_00, treasure_01
 434	0x01B2	Treasure	Treasure	gol_a01	gol_a01	447	Paths of Chained Light	Golmore Jungle	4	treasure_00, treasure_01, treasure_02, treasure_03
 434	0x01B2	Treasure	Treasure	gol_a02	gol_a02	448	The Needlebrake	Golmore Jungle	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
@@ -778,6 +821,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 468	0x01D4	Urn	Urn	bog_a03	bog_a03	169	Vale of Lingering Sorrow	Nabreus Deadlands	1	死都ナブディス地図
 468	0x01D4	Urn	Urn	ene_a01	ene_a01	379	Platform 1 - East Tanks	Ogir-Yensa Sandsea	2	東エンサ地図ゲット宝壺, 西エンサ地図ゲット宝壺
 468	0x01D4	Urn	Urn	frs_a02	frs_a02	152	Trunkwall Road	The Salikawood	1	サリカ樹林地図
+468	0x01D4	Urn	Urn	gil_b01	gil_b01	690	The Trimahla Water-Steps	Giruvegan	1	ロケ地図
 468	0x01D4	Urn	Urn	gol_a01	gol_a01	447	Paths of Chained Light	Golmore Jungle	1	ロケ地図
 468	0x01D4	Urn	Urn	grm_a06	grm_a06	316	East Waterway Control	Garamsythe Waterway	1	ガラムサイズ地図宝壺
 468	0x01D4	Urn	Urn	grm_e03	grm_e03	840	East Sluice Control	Garamsythe Waterway	1	ガラムキャンドル宝壺
@@ -1041,6 +1085,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 694	0x02B6	Imperial	Imperial	rrp_a03	rrp_a03	569	Lower Halls	Royal Palace	14	帝国兵01, 帝国兵02, 帝国兵03, 帝国兵04, 帝国兵05, 帝国兵06, 帝国兵07, 帝国兵08, 駒01, 駒02, 駒02_01, 駒02_02, 駒03, 駒03_01
 695	0x02B7	Lulucce	Lulucce	rsn_y01	rsn_y01	876	Brig No. 1	Dreadnought Leviathan	1	ルルチェ
 695	0x02B7	Lulucce	Lulucce	vic_a03	vic_a03	768	Road of Verdant Praise	Eruyt Village	1	０２ルルチェ
+696	0x02B8	Malloud	Malloud	alc_f04	alc_f04	748	Granch's Requisites	Archades	1	NPC01 (clip_show, person 3)
 699	0x02BB	Archadian	Archadian	alc_a01	alc_a01	635	Grand Arcade	Archades	9	NPC_LABO_2, NPC_LABO_3, NPC_LABO_4, NPC_RAMBLER_02b, NPC_RAMBLER_03, NPC_RAMBLER_06, NPC_RAMBLER_08, NPC_RAMBLER_09, NPC_RAMBLER_10
 699	0x02BB	Archadian	Archadian	alc_a02	alc_a02	636	Highgarden Terrace	Archades	4	NPC_HUNTLOOP_B, NPC_HUNTLOOP_C, NPC_HUNTLOOP_D, NPC_MABUSHI
 700	0x02BC	Archadian	Archadian	alc_b04	alc_b04	641	Trant	Archades	2	NPC_BAL, NPC_VAN
@@ -1053,6 +1098,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 704	0x02C0	Elza	Elza	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC_PIRATE_1
 706	0x02C2	Horne	Horne	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	モグシー
 712	0x02C8	Hurdy	Hurdy	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	モグシー
+713	0x02C9	July	July	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC01 (clip_show, person 6)
 713	0x02C9	July	July	nac_a01	nac_a01	630	West Barbican	Nalbina Town	1	ジュリー
 715	0x02CB	Ma'kenroh	Ma'kenroh	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	マッケンロウ
 716	0x02CC	Moogling Attendant	Moogling Attendant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	モグシー
@@ -1072,6 +1118,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 726	0x02D6	Burrogh	Burrogh	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	依頼人ブロッホ
 731	0x02DB	Quiet Nu Mou	Ma'kleou	bog_a02	bog_a02	168	The Muted Scarp	Nabreus Deadlands	1	マクレイオ
 732	0x02DC	Roh'kenmou	Roh'kenmou	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	モウ
+733	0x02DD	Roh'kenmu	Roh'kenmu	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC01 (clip_show, person 1)
 734	0x02DE	Yrlon	Yrlon	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
 734	0x02DE	Yrlon	Yrlon	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	NPC01
 735	0x02DF	Kait	Kait	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	NPC01
@@ -1088,15 +1135,91 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 754	0x02F2	Caravaner	Va'Kansa	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	０６ヴァカンサ_緑
 757	0x02F5	Moogle Boss	Moogle Boss	frs_d01	frs_d01	908	Living Chasm	The Salikawood	1	親方
 759	0x02F7	Forest Traveler	Forest Traveler	frs_a06	frs_a06	156	Path of Hours	The Salikawood	1	旅人
+774	0x0306	Lofty Sky Pirate	Lofty Sky Pirate	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 6)
+775	0x0307	Laboring Bangaa	Laboring Bangaa	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 4)
+776	0x0308	Miffed Moogle	Miffed Moogle	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 1)
+777	0x0309	Hardy Pirate	Hardy Pirate	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 5)
+778	0x030A	Port Wench	Port Wench	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 11)
+779	0x030B	Born Sky Pirate	Born Sky Pirate	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 9)
+780	0x030C	Bangaa Runner	Bangaa Runner	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 8)
+781	0x030D	Lazy Man	Lazy Man	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 5)
+782	0x030E	Fisherman	Fisherman	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 4)
+783	0x030F	Well-informed Man	Well-informed Man	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 13)
+784	0x0310	Beldame	Beldame	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 12)
+785	0x0311	Kind Pirate	Kind Pirate	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 1)
+786	0x0312	Hawker	Hawker	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 10)
+787	0x0313	Bazaar-goer	Bazaar-goer	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	1	NPC01 (clip_show, person 11)
 788	0x0314	Anti-Imperialist	Anti-Imperialist	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_09
 789	0x0315	Proper Pirate	Proper Pirate	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_07
+790	0x0316	Hard-working Bangaa	Hard-working Bangaa	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC01 (clip_show, person 10)
+791	0x0317	Fair Trader	Fair Trader	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC01 (clip_show, person 8)
 792	0x0318	Dyed-in-the-wool Sky Pirate	Dyed-in-the-wool Sky Pirate	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_12
 793	0x0319	Thoughtful Quayhand	Thoughtful Quayhand	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_05
+794	0x031A	Seafarer	Seafarer	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC01 (clip_show, person 1)
+795	0x031B	Gloss-eyed Man	Gloss-eyed Man	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC01 (clip_show, person 9)
 796	0x031C	Wild-eyed Pirate	Wild-eyed Pirate	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_04
 797	0x031D	Well-traveled Man	Well-traveled Man	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_02
+798	0x031E	Irritable Bangaa	Irritable Bangaa	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 6)
+799	0x031F	Queasy Boy	Queasy Boy	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 7)
+800	0x0320	Quayhand	Quayhand	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 4)
+801	0x0321	Quayhand	Quayhand	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 9)
+802	0x0322	Resting Fisherman	Resting Fisherman	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 3)
 803	0x0323	Manse Watch	Manse Watch	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC_STOPPER
+804	0x0324	Placid Pirate	Placid Pirate	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 5)
+805	0x0325	Contemplative Viera	Contemplative Viera	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC01 (clip_show, person 8)
+806	0x0326	Fishing Enthusiast	Fishing Enthusiast	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 5)
+807	0x0327	Jolly Pirate	Jolly Pirate	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 2)
+808	0x0328	Man of Reason	Man of Reason	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 10)
+809	0x0329	Disciplined Pirate	Disciplined Pirate	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 9)
+810	0x032A	Airship Pilot	Airship Pilot	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 7)
+811	0x032B	Troubadour	Troubadour	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 1)
+812	0x032C	Sleepy Man	Sleepy Man	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 8)
+813	0x032D	Worried Pirate	Worried Pirate	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 13)
+814	0x032E	Dubious Sky Pirate	Dubious Sky Pirate	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 7)
+815	0x032F	Fishmonger	Fishmonger	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 5)
+816	0x0330	Muscled Pirate	Muscled Pirate	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 11)
+817	0x0331	Horizon-watcher	Horizon-watcher	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 10)
+818	0x0332	Old Fisherman	Old Fisherman	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 8)
+819	0x0333	Blunt Woman	Blunt Woman	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 1)
+820	0x0334	Quayhag	Quayhag	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 4)
+821	0x0335	Watchwoman	Watchwoman	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 12)
+822	0x0336	Garrulous Pirate	Garrulous Pirate	var_a06	var_a06	828	Canal Lane	Balfonheim Port	1	NPC01 (clip_show, person 2)
+823	0x0337	Perplexed Pirate	Perplexed Pirate	var_a11	var_a11	833	Beruny's Armaments	Balfonheim Port	1	NPC01 (clip_show, person 4)
+824	0x0338	Carefree Man	Carefree Man	var_a11	var_a11	833	Beruny's Armaments	Balfonheim Port	1	NPC01 (clip_show, person 5)
+825	0x0339	Quiet Bangaa	Quiet Bangaa	var_a12	var_a12	834	Odo's Technicks	Balfonheim Port	1	NPC01 (clip_show, person 3)
+826	0x033A	Would-be Seafarer	Would-be Seafarer	var_a12	var_a12	834	Odo's Technicks	Balfonheim Port	1	NPC01 (clip_show, person 2)
+827	0x033B	Prattling Pirate	Prattling Pirate	var_a12	var_a12	834	Odo's Technicks	Balfonheim Port	1	NPC01 (clip_show, person 5)
+828	0x033C	Seafarer's Wife	Seafarer's Wife	var_a12	var_a12	834	Odo's Technicks	Balfonheim Port	1	NPC01 (clip_show, person 6)
+829	0x033D	Reddas Freeman	Reddas Freeman	var_a13	var_a13	835	Port Villa	Balfonheim Port	1	NPC01 (clip_show, person 3)
+830	0x033E	Reddas Freewoman	Reddas Freewoman	var_a13	var_a13	835	Port Villa	Balfonheim Port	1	NPC01 (clip_show, person 4)
+831	0x033F	World-weary Woman	World-weary Woman	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 13)
+832	0x0340	Bangaa in His Cups	Bangaa in His Cups	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 9)
+833	0x0341	Viera Wayfarer	Viera Wayfarer	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 15)
+834	0x0342	Whitecap Wench	Whitecap Wench	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 1)
+835	0x0343	Quay Rat	Quay Rat	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 4)
+836	0x0344	Man of the Quay	Man of the Quay	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 2)
+837	0x0345	Relaxed Man	Relaxed Man	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 12)
+838	0x0346	Resting Pirate	Resting Pirate	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 7)
+839	0x0347	Seeq Merchant	Seeq Merchant	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 5)
+840	0x0348	Whitecap Sisters	Whitecap Sisters	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 3)
+841	0x0349	Pirate Gossip	Pirate Gossip	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 16)
+842	0x034A	Teller of Tales	Teller of Tales	var_a15	var_a15	837	Port Villa	Balfonheim Port	1	NPC01 (clip_show, person 2)
+843	0x034B	Strident Bangaa	Strident Bangaa	var_a15	var_a15	837	Port Villa	Balfonheim Port	1	NPC01 (clip_show, person 4)
+844	0x034C	Seahand	Seahand	var_a15	var_a15	837	Port Villa	Balfonheim Port	1	NPC01 (clip_show, person 6)
+846	0x034E	Angry Woman	Angry Woman	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 1)
+847	0x034F	Troubled Pirate	Troubled Pirate	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 5)
+848	0x0350	Wingless Sky Pirate	Wingless Sky Pirate	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 13)
+849	0x0351	Weeping Woman	Weeping Woman	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 6)
+850	0x0352	Glassy-eyed Man	Glassy-eyed Man	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 3)
+851	0x0353	Welcoming Party	Welcoming Party	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 7)
+852	0x0354	Sky Pirate	Sky Pirate	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	NPC01 (clip_show, person 4)
+853	0x0355	Man of Hope	Man of Hope	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	1	NPC01 (clip_show, person 3)
 854	0x0356	Garif Warrior	Warrior Hsemu	glf_a02	glf_a02	752	Lull of the Land	Jahara	2	ガリフ戦士06, ガリフ戦士06_before
 855	0x0357	Wayward Bangaa	Wayward Bangaa	wdl_a06	wdl_a06	350	The Western Divide	Dalmasca Westersand	1	砂漠のバンガ２
+856	0x0358	Chocobo Wrangler	Chocobo Wrangler	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 12)
+857	0x0359	Sky Watch	Sky Watch	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 14)
+858	0x035A	Sky Watch	Sky Watch	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 15)
+859	0x035B	Sea Watch	Sea Watch	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC01 (clip_show, person 13)
 860	0x035C	Mummer	Mummer	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_大道芸人
 861	0x035D	Archadian Gentry	Proud Mother	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_01
 862	0x035E	Archadian Gentry	Traveling Gentleman	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_02
@@ -1157,6 +1280,11 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 924	0x039C	Archadian Gentry	Philosopher of Cuisine	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_29
 925	0x039D	Archadian Ardent	Tarot Reader	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_31
 927	0x039F	Archadian Gentry	Lucky Man	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_38
+928	0x03A0	Archadian Gentry	Foppish Man	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC01 (clip_show, person 4)
+931	0x03A3	Archadian Ardent	Hopeful Writer	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 3)
+932	0x03A4	Archadian Gentry	Hesitant Man	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 4)
+933	0x03A5	Archadian Ardent	Insecure Seeq	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 5)
+934	0x03A6	Archadian Gentry	Eager Learner	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 2)
 935	0x03A7	Archadian Gentry	Quiet Woman	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_11
 938	0x03AA	Archadian Gentry	Imperious Man	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_15
 939	0x03AB	Archadian Gentry	Curious Boy	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_08
@@ -1171,13 +1299,24 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 950	0x03B6	Archadian Gentry	Seeq-Hater	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_10
 951	0x03B7	Archadian Gentry	Single Gentry	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_12
 952	0x03B8	Imperial	Imperial	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_14
+953	0x03B9	Archadian Ardent	Homesick Man	alc_f03	alc_f03	747	Vint's Armaments	Archades	1	NPC01 (clip_show, person 7)
+954	0x03BA	Archadian Ardent	Willful Woman	alc_f03	alc_f03	747	Vint's Armaments	Archades	1	NPC01 (clip_show, person 4)
+956	0x03BC	Archadian Gentry	Appreciator of Shields	alc_f03	alc_f03	747	Vint's Armaments	Archades	1	NPC01 (clip_show, person 6)
+957	0x03BD	Archadian Gentry	Prospective Dealer	alc_f03	alc_f03	747	Vint's Armaments	Archades	1	NPC01 (clip_show, person 3)
+958	0x03BE	Archadian Ardent	Bargain Hunter	alc_f04	alc_f04	748	Granch's Requisites	Archades	1	NPC01 (clip_show, person 2)
+959	0x03BF	Archadian Gentry	Adventuresome Child	alc_f04	alc_f04	748	Granch's Requisites	Archades	1	NPC01 (clip_show, person 6)
+960	0x03C0	Archadian Gentry	Impressed Nuncle	alc_f05	alc_f05	749	Lebleu's Gambits	Archades	1	NPC01 (clip_show, person 5)
+961	0x03C1	Archadian Gentry	Once-Commander	alc_f05	alc_f05	749	Lebleu's Gambits	Archades	1	NPC01 (clip_show, person 2)
 963	0x03C3	Chopmaster	Chopmaster	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC_GUILD
 963	0x03C3	Chopmaster	Chopmaster	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC_GUILD
 963	0x03C3	Chopmaster	Chopmaster	alc_f03	alc_f03	747	Vint's Armaments	Archades	1	NPC_GUILD
 963	0x03C3	Chopmaster	Chopmaster	alc_f04	alc_f04	748	Granch's Requisites	Archades	1	NPC_GUILD
 963	0x03C3	Chopmaster	Chopmaster	alc_f05	alc_f05	749	Lebleu's Gambits	Archades	1	NPC_GUILD
+964	0x03C4	Archadian Ardent	Patient Man	alc_f05	alc_f05	749	Lebleu's Gambits	Archades	1	NPC01 (clip_show, person 4)
+965	0x03C5	Archadian Vulgar	Fermon	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 13)
 966	0x03C6	Bloom of the Outcast	Bloom of the Outcast	enw_a05	enw_a05	394	The Sandscale Bank	Nam-Yensa Sandsea	1	はぐれウルタンの花
 967	0x03C7	Sandsea Moogle	Sandsea Moogle	ene_a07	ene_a07	385	Platform 2 - Refinery	Ogir-Yensa Sandsea	1	NPC_RAMBLER_A
+967	0x03C7	Sandsea Moogle	Sandsea Moogle	enw_a05	enw_a05	394	The Sandscale Bank	Nam-Yensa Sandsea	1	NPC01 (clip_show, person 1)
 968	0x03C8	Urutan Outcast	Urutan Outcast	ene_a07	ene_a07	385	Platform 2 - Refinery	Ogir-Yensa Sandsea	1	NPC_RAMBLER_B
 969	0x03C9	Wounded Imperial	Wounded Imperial	hne_a02	hne_a02	713	Pithead Junction A	Henne Mines	1	やられ帝国兵
 970	0x03CA	Waiting Bangaa	Waiting Bangaa	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
@@ -1216,13 +1355,46 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 997	0x03E5	Torrie	Torrie	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
 999	0x03E7	Wise Elder	Wise Elder	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
 1000	0x03E8	Recovering Traveler	Recovering Traveler	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	ボス
+1001	0x03E9	Archadian Vulgar	Shifty-Eyed Man	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 3)
+1002	0x03EA	Archadian Vulgar	Beasley	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 10)
+1003	0x03EB	Archadian Vulgar	Nervous Seeq	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 19)
+1004	0x03EC	Archadian Vulgar	Indefatigable Granny	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 7)
+1005	0x03ED	Archadian Vulgar	Lucky Man	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 6)
+1006	0x03EE	Archadian Vulgar	Worried Grandson	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 8)
 1007	0x03EF	Archadian Vulgar	Broken Man	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_L2
 1008	0x03F0	Archadian Vulgar	Frustrated Woman	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_L1
+1009	0x03F1	Archadian Vulgar	Little Sister	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 4)
 1010	0x03F2	Archadian Vulgar	Fallen Man	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_R1
 1011	0x03F3	Archadian Vulgar	Trembling Woman	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_R2
 1012	0x03F4	Archadian Vulgar	Disparaging Woman	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_B
+1013	0x03F5	Archadian Vulgar	Nay-Sayer	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 11)
+1014	0x03F6	Archadian Vulgar	Sighing Boy	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 29)
+1015	0x03F7	Shady Seeq	Shady Seeq	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 31)
+1017	0x03F9	Archadian Vulgar	Defiant Lad	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 14)
+1018	0x03FA	Proper Gent	Ex-Broker	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 1)
 1019	0x03FB	Archadian Vulgar	Loiterer	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC_RAMBLER_A
+1020	0x03FC	Archadian Vulgar	Resting Man	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 15)
+1021	0x03FD	Archadian Vulgar	Proud Brother	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 33)
+1023	0x03FF	Archadian Vulgar	Leaving Man	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 26)
+1025	0x0401	Archadian Vulgar	Man at the Gate	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 4)
+1026	0x0402	Archadian Vulgar	Fisherman	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 12)
+1027	0x0403	Archadian Vulgar	Frank Woman	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 17)
+1028	0x0404	Archadian Vulgar	Hungry Child	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 35)
+1029	0x0405	Archadian Vulgar	Cautious Woman	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 10)
+1030	0x0406	Archadian Vulgar	Suspicious Woman	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 32)
+1031	0x0407	Archadian Vulgar	Busy Girl	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 20)
+1033	0x0409	Archadian Vulgar	Stairbottom Elder	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 6)
+1034	0x040A	Archadian Vulgar	Hating Man	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 11)
 1035	0x040B	Archadian Vulgar	Indecisive Man	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC_RAMBLER_C
+1036	0x040C	Archadian Vulgar	Wary Woman	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 5)
+1037	0x040D	Archadian Vulgar	Quiet Talker	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 22)
+1038	0x040E	Proper Gent	Fresh Ardent	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 21)
+1039	0x040F	Archadian Vulgar	Precocious Girl	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 8)
+1040	0x0410	Archadian Vulgar	Returnee	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 37)
+1041	0x0411	Archadian Vulgar	Wall Child	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 36)
+1042	0x0412	Archadian Vulgar	Dreaming Man	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 18)
+1044	0x0414	Archadian Vulgar	Distinguished Elder	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 41)
+1046	0x0416	Archadian Vulgar	Perplexed Grandpa	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC01 (clip_show, person 28)
 1047	0x0417	Streetear	Jules	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_JULES
 1047	0x0417	Streetear	Jules	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_JULES
 1048	0x0418	Outfitters	Outfitters	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男11
@@ -1279,6 +1451,13 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 1058	0x0422	Archadian Gentry	Cheeky Child	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_RAMBLER_05
 1059	0x0423	Researcher	Researcher	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_LABO_1
 1060	0x0424	Researcher	Researcher	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_LABO_5
+1061	0x0425	Archadian Gentry	Gentle Gentleman	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC01 (clip_show, person 1)
+1062	0x0426	Archadian Gentry	Hesitant Traveler	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC01 (clip_show, person 3)
+1063	0x0427	Archadian Gentry	Weary Man	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC01 (clip_show, person 1)
+1064	0x0428	Archadian Gentry	Proud Horticulturist	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC01 (clip_show, person 2)
+1065	0x0429	Archadian Gentry	Pleasant Woman	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC01 (clip_show, person 4)
+1066	0x042A	Archadian Gentry	Bristly Mother	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC01 (clip_show, person 8)
+1067	0x042B	Archadian Gentry	Idle Gentleman	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC01 (clip_show, person 10)
 1068	0x042C	Archadian Gentry	Hunt Club Owner	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC_HUNTLOOP_A
 1069	0x042D	Stonemason?	Stonemason?	nac_a03	nac_a03	632	West Ward	Nalbina Town	2	NAC_A03_NPC08, NAC_A03_NPC09
 1070	0x042E	Lirschell	Lirschell	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ロクデンナーシ兄弟
@@ -1288,6 +1467,13 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 1072	0x0430	Wayward Chocobo	Wayward Chocobo	fon_c01	fon_c01	491	Caima Hills	Phon Coast	1	野良騎乗チョコボ
 1072	0x0430	Wayward Chocobo	Wayward Chocobo	mnt_b01	mnt_b01	215	Rays of Ashen Light	Mosphoran Highwaste	1	野良騎乗チョコボ
 1072	0x0430	Wayward Chocobo	Wayward Chocobo	ozm_c01	ozm_c01	536	The Shred	Ozmone Plain	1	野良騎乗チョコボ
+1073	0x0431	Researcher	Junior Researcher	dor_a06	dor_a06	1013	Rm 6611 West	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
+1073	0x0431	Researcher	Junior Researcher	dor_c06	dor_c06	1041	Rm 6611 West	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
+1074	0x0432	Researcher	Senior Researcher	dor_a17	dor_a17	1024	Rm 6704 East	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
+1074	0x0432	Researcher	Senior Researcher	dor_d06	dor_d06	1059	Rm 6704 East	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
+1075	0x0433	Researcher	Nethicite Researcher	dor_a14	dor_a14	1021	Rm 6711 East	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
+1075	0x0433	Researcher	Nethicite Researcher	dor_a21	dor_a21	1028	Rm 6702 East	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
+1075	0x0433	Researcher	Nethicite Researcher	dor_d03	dor_d03	1056	Rm 6711 East	Draklor Laboratory	1	NPC_LABO_0 (begin, person 0)
 1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
 1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
 1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
@@ -1297,6 +1483,8 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
 1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
 1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+1078	0x0436	Archadian Ardent	Longing Man	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC01 (clip_show, person 7)
+1079	0x0437	Proper Gent	Otto	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC01 (clip_show, person 1)
 1080	0x0438	High-chief Zayalu	High-chief Zayalu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ長老01
 1080	0x0438	High-chief Zayalu	High-chief Zayalu	glf_a03	glf_a03	753	The Elderknoll	Jahara	1	ガリフ長老02
 1081	0x0439	Judge	Judge Hausen	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ラーサー護衛01

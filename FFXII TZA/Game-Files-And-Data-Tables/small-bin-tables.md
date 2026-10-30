@@ -314,6 +314,22 @@ it runs, reading each entry as one qword with `cmove`/`cmovb`, and calls `0x003B
 
 Nothing bounds the effect against 64.
 
+The effect a model gives comes from its `.cm` file. `0x002EDC3C`-`0x002EDC59` keep the model's `@FCP` payload (the
+chunk plus `0x30`), and `0x003E56C0` reads the section at the payload's word `+0x12`, whose byte `+0xCD` is entry 0's
+effect and byte `+0xCE` entry 1's. Over the 1,066 shipped `.cm` files:
+
+| Models | `+0xCD` | `+0xCE` |
+|---|---|---|
+| the 26 Esper models: the 13 party summons (the shipped files `s0002` to `s0015`) and the 13 bosses (`s0019` to `s0031`), k in the party table's Esper order, Belias 1 to Zodiark 13 | k | 13 + k |
+| The Undying (`m1208`) | 27 | 27 |
+| Omega Mark XII (`m1279`) | 28 | 28 |
+| 695 other models | 0 | 0 |
+| 343 models whose word `+0x12` is 0, so `0x003E56C0` returns 0 | - | - |
+
+The other writers of the effect byte store 0 (`0x003B53C0`, `0x003B4DA0` at `0x003B4DEF`, `0x003B5180` at `0x003B5222`).
+So records 0 to 27 are the ones a model reaches. Records 28 to 63 all hold scale 100 for all six bytes and the tint
+`80 80 80 20`, and no shipped model names them.
+
 ## Modding notes
 
 - No reader checks a tag, so the first bytes can be anything; `summoneffectdata.bin` has none.

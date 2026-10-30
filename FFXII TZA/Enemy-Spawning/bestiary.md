@@ -99,6 +99,55 @@ the word, its `fr` text, its model's folder and the zone-script functions that p
 The 31 `bts_` test-battle scripts under `plan_map` hold the other 517 placements of the shipped scripts. The US
 kind-5 array names none of them, so no area load runs them, and they are left out.
 
+### The Clan Hall reward for a boss
+
+Montblanc's talk in the Clan Hall (`rbn_a14`) calls `funcActor.getClearBoss`, which walks 19 bosses in a fixed
+order. It takes the first boss whose defeat variable is 2 and whose bit in `g_iw_報酬あげたボスフラグ` is clear, sets
+that bit and returns the boss's place k in the order. The talk then gives package `0x903B` + k with two lines that
+name the fight.
+
+- First the talk gives a clan-rank package for each rank reached since the last reward: `0x902F` to `0x903A` for
+  ranks 1 to 12. It raises the rewarded rank by 1 per package and loops until it reaches the current rank.
+- Then it calls the walk again after each boss package, until the walk returns -1. So one talk gives
+  every boss defeated since the last visit, in the walk's order.
+
+[`clan-hall-boss-rewards.tsv`](clan-hall-boss-rewards.tsv) lists the 19 bosses in walk order with:
+- the defeat variable;
+- Montblanc's lines;
+- the package and what it gives;
+- the bit;
+- the shipped script steps that write the defeat, with their map and region;
+- the developer and preset scripts that also write it.
+
+### The boss fights
+
+A boss fight is a defeat variable `g_btl_<name>` in the script that places its monsters. The variable is 1 while
+the fight waits and 2 once it is won. The new-game set-up `pre_z0000` sets most of them to 1, and the fight's
+`setup.battle` binds the battle to its variable.
+
+[`story-bosses.tsv`](story-bosses.tsv) lists the 62 fights of the 156 functions that place a boss. Each row gives:
+- the monsters, map and region;
+- the scene that starts the fight;
+- the story-counter tests that hold where it is placed;
+- the first counter value stored after the battle (the store after the boss gauge opens on the same path, which
+  can come before the step that writes the defeat);
+- whether the boss is an Esper (13 of the fights, one per Esper);
+- the Clan Hall reward;
+- the steps that show each cell.
+
+The `story_counter_link` column says how the fight touches the story counter:
+
+| link | fights |
+|---|---:|
+| both (written after the battle and tested where placed) | 22 |
+| written after the battle | 12 |
+| tested where placed | 1 |
+| not in the fight's steps | 27 |
+
+Where a story-counter value's developer name names the battle, `link_reason` gives the value and its number of
+shipped writes. Eight fights store a value other than the one named for them, because the counter skips the named
+value; `link_reason` gives both.
+
 ### The placement verbs
 
 Every placement in the shipped scripts is one script function calling these four verbs, each with immediate

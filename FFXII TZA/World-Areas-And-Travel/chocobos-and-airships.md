@@ -441,6 +441,17 @@ boarding counter and departure watcher actors:
    `0x320`/3, `0x317`/7, `0x31A`/7, `0x31D`/7); otherwise `setmapjumpgroupflag(94)` and field 124
    (`asp_a01`, the deck), whose script jumps on to `asp_a02` or the destination by the same code.
 
+Each route has its own clerk, who is placed and can be talked to only from a story counter value. The clerk's talk
+stores the route code, and the counter's switch prices it.
+[`airship-routes.tsv`](airship-routes.tsv) lists the 14 routes: from and to, the fare and its price id, the clerk,
+the story point from which the route is sold, and the steps that show it.
+
+- Rabanastre sells Nalbina from story counter 350, Bhujerba from 670 and Archades from 4000.
+- Bhujerba's clerks are placed from the start but cannot be talked to below 710.
+- Every route to or from Balfonheim Port opens at 4100, and the other routes to and from Archades at 4000.
+- The chocobo keepers and their prices are in
+  [`price-list-buys.tsv`](../Rewards-EXP-Gil-And-Loot/price-list-buys.tsv).
+
 The private airship's counter (`nac_b01`) jumps with `mapjump(dest, entrance, 4)`.
 Everything in a flight is therefore a gil write, a scene and a map jump
 ([zone changes](zone-changes-and-mapjump.md)).

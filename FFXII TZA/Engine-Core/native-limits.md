@@ -7,7 +7,7 @@ addresses: "0x00316CD0, 0x003247F0, 0x002FCAC0, 0x003C1A20, 0x00409210, 0x0051CC
 
 ## What it lists
 
-`native-limits.tsv` holds 115 limits the executable fixes: list and pool sizes, counts of loaded objects, value caps,
+`native-limits.tsv` holds 141 limits the executable fixes: list and pool sizes, counts of loaded objects, value caps,
 index and id ranges, name lengths, file-header bounds and one address bound. Each row names the code or table that
 sets the limit and what the engine does with one more, and it links to the page that explains the mechanism.
 

@@ -308,6 +308,18 @@ Follow camera (controller + `0x2B0`):
   change them together.
 - Camera Auto-Rotation off also turns off the wall turn and wall lift, not only the drift behind the
   leader.
+- A replacement `common/behindcamera.bin` keeps:
+  - the 16-byte header with the type count as the word `+0x04`, and the 64-byte entries from `+0x10` laid out as
+    in [The camera types](#the-camera-types);
+  - at least 15 types. `0x0025A160` takes a type only when it is below the count (`0x0025A16C`, a signed test), and a
+    type at or above it leaves `0x02098DF8` and both controllers as they were. The party table's camera types run
+    0 to 14 (the Espers 1 to 13, the Chocobo 14), so with fewer types the members past the count keep the type
+    set before them;
+  - its length, or the entry for kind 9 file 3 in the
+    [file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md) changed with it, since the file
+    is read at that size.
+- With a count of 0 the start-up copy of type 0 is skipped (`0x00259370`); an empty file leaves the table pointer 0,
+  so `0x0025A160` takes no type (`0x0025A16A`).
 
 ## Related
 

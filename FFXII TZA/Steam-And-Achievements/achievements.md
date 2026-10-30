@@ -216,7 +216,7 @@ The chain is therefore correct only while the loaded `menuhandbook.bin` (`[0x022
 | copy read | `in`, or `ch` for three language settings: the kind-7 entry `0xC8` of every language's path array (`0x002DF9A0`) |
 | targets in the copy read | 0: 300, 1: 200, 2: 100, 3: 50, 4: 500, 5: 50,000, 6: 100,000, 7: 1,000,000, 8: 50, 11: 48,000, 13: 8, 14: 1,000, 17: 500,000, 18: 50, 31: 16 |
 | `us`, `de`, `es`, `fr`, `it` copies | the same targets without index 11 |
-| monster list | 11 ids: `0xF8`, `0xFB`, `0xFD`, `0xF0`, `0xFA`, `0xE6`, `0x104`, `0x121`, `0x10F`, `0x111`, `0x103`; no descriptor indexes the last, the sweep reaches it |
+| monster list | 11 Bestiary entries: `0xF8` Trickster, `0xFB` Gilgamesh, `0xFD` Behemoth King, `0xF0` Fafnir, `0xFA` Carrot, `0xE6` Deathgaze, `0x104` Yiazmat, `0x121` Hell Wyrm, `0x10F` Ultima, the High Seraph, `0x111` Zodiark, Keeper of Precepts, `0x103` Shadowseer; no descriptor indexes the last, the sweep reaches it |
 | maps | 369, of which 359 are flagged |
 | Bestiary section | 384 ids, 15 rules in the copy read |
 | action rows by kind (`battle_pack.bin`, all languages) | kind 0: row `0x96`; kind 1: 81; kind 2: 24 (`0x9E`-`0xB5`); kind 10: 16 (`0xE2`-`0xF1`) |
@@ -241,21 +241,21 @@ The full list, with what awards each entry:
 | 12 | `ACH_LEVEL_AVERAGE` | Exemplar | 8 | mean level 50 over six members |
 | 13 | `ACH_MASTER_LICENSE` | Conqueror | 11 | 48,000 licence points given |
 | 14 | `ACH_COMPLETE_MONSTER` | Scrivener | 16 | every Bestiary entry unlocked |
-| 15 | `ACH_MASTER_MAGIC` | Runeweaver | 9 | all of `0x3000`-`0x3050` owned |
-| 16 | `ACH_MASTER_TECH` | Jack-of-All-Trades | 10 | all of `0x4000`-`0x4017` owned |
-| 17 | `ACH_SPECIAL_HORIDASHI` | Collector | 19 | bazaar good `0xD07F` bought |
+| 15 | `ACH_MASTER_MAGIC` | Runeweaver | 9 | all 81 magicks, `0x3000`-`0x3050`, owned (the descriptor's range `0x3000` to `0x3051`) |
+| 16 | `ACH_MASTER_TECH` | Jack-of-All-Trades | 10 | all 24 technicks, `0x4000`-`0x4017`, owned (the descriptor's range `0x4000` to `0x4018`) |
+| 17 | `ACH_SPECIAL_HORIDASHI` | Collector | 19 | bazaar good `0xD07F`, the Morbid Urn, bought |
 | 18 | `ACH_COMPLETE_MAP` | Cartographer | 15 | every flagged map visited |
 | 19 | `ACH_COMPLETE_YUGOU` | Mist Walker | 13 | 8 different kind-10 rows used |
-| 20 | `ACH_SPECIAL_MONSTER06` | Eagle Eye | 25 | monster `0xE6` defeated |
-| 21 | `ACH_SPECIAL_MONSTER04` | Wyrmslayer | 23 | monster `0xF0` defeated |
-| 22 | `ACH_SPECIAL_MONSTER01` | Sharpshooter | 20 | monster `0xF8` defeated |
-| 23 | `ACH_SPECIAL_MONSTER05` | Freshmaker | 24 | monster `0xFA` defeated |
-| 24 | `ACH_SPECIAL_MONSTER02` | Master Swordsman | 21 | monster `0xFB` defeated, or quest `0xA7` |
-| 25 | `ACH_SPECIAL_MONSTER03` | Lord of the Kings | 22 | monster `0xFD` defeated |
-| 26 | `ACH_SPECIAL_MONSTER07` | Hunter Extraordinaire | 26 | monster `0x104` defeated |
-| 27 | `ACH_SPECIAL_MONSTER08` | Radiant Savior | 27 | monster `0x121` defeated |
-| 28 | `ACH_SPECIAL_MONSTER09` | Fell Angel | 28 | monster `0x10F` defeated |
-| 29 | `ACH_SPECIAL_MONSTER10` | Zodiac Knight | 29 | monster `0x111` defeated |
+| 20 | `ACH_SPECIAL_MONSTER06` | Eagle Eye | 25 | Deathgaze (Bestiary entry `0xE6`) defeated |
+| 21 | `ACH_SPECIAL_MONSTER04` | Wyrmslayer | 23 | Fafnir (`0xF0`) defeated |
+| 22 | `ACH_SPECIAL_MONSTER01` | Sharpshooter | 20 | Trickster (`0xF8`) defeated |
+| 23 | `ACH_SPECIAL_MONSTER05` | Freshmaker | 24 | Carrot (`0xFA`) defeated |
+| 24 | `ACH_SPECIAL_MONSTER02` | Master Swordsman | 21 | Gilgamesh (`0xFB`) defeated, or quest `0xA7` |
+| 25 | `ACH_SPECIAL_MONSTER03` | Lord of the Kings | 22 | Behemoth King (`0xFD`) defeated |
+| 26 | `ACH_SPECIAL_MONSTER07` | Hunter Extraordinaire | 26 | Yiazmat (`0x104`) defeated |
+| 27 | `ACH_SPECIAL_MONSTER08` | Radiant Savior | 27 | Hell Wyrm (`0x121`) defeated |
+| 28 | `ACH_SPECIAL_MONSTER09` | Fell Angel | 28 | Ultima, the High Seraph (`0x10F`) defeated |
+| 29 | `ACH_SPECIAL_MONSTER10` | Zodiac Knight | 29 | Zodiark, Keeper of Precepts (`0x111`) defeated |
 | 30 | `ACH_MASTER_SUMMON` | High Summoner | 12 | all of `0xC012`-`0xC01E` owned |
 | 31 | `ACH_EVENT_FINISH_REX` | For the Homeland | - | scene 18 of event script 244 (`naf_b0401`) |
 | 32 | `ACH_EVENT_FIRST_HUNT` | Galbana Bloom | - | scene 4 of event 724 (`dst_a0181`) |

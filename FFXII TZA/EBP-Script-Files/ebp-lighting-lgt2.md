@@ -69,7 +69,7 @@ type 3  +0x04 s32 n, +0x08 u16 record[n]           light index table
 type 4  skipped
 type 5  +0x04 s32 n, +0x08 u32 slot[n], then n sub-entries each led by its s32 size   curve table
 type 6  +0x04 s32 n, +0x08 {u16 type3Index; u16 id}[n]   id lookup into the type-3 table
-type 7  +0x04 + selector × 8: u16[4] record indices, 0xFFFF ends   selector-driven set
+type 7  +0x04 + selector × 8: u16[4] record indices   selector-driven set; 0xFFFF in the first is skipped, in the others it ends the set
 ```
 
 A type-5 sub-entry is a curve with the ease-curve layout of the camera tables and SHK1 (`+0x00` length
@@ -150,6 +150,12 @@ The rows, once per light set (the nine trees carry the same bytes):
 Map packs carry the same section as their slot 17 ([map_ctrl pack](../World-Areas-And-Travel/mpk-map-pack.md)): 212 light
 sets with `+0x08` 0 in all, chunk type 7 in 20 of them, and their own rows beside that page.
 
+Each of the 20 type-7 chunks is 28 bytes, three sets for the selectors 0 to 2. The sets are listed only when the section
+has no type-0 range (Which records are lit, below), and 16 of the 20 have one, so only the map light sets of `gil0102`,
+`mfr0105`, `mnt0109` and `wdl0107` change their lights with the weather.
+[`mpk-map-pack-lgt2-lit-by-slot.tsv`](../World-Areas-And-Travel/mpk-map-pack-lgt2-lit-by-slot.tsv) gives the records group 0
+lists on entry for each map and weather slot.
+
 ## Loader behaviour
 
 ### The bind
@@ -164,8 +170,8 @@ sets with `+0x08` 0 in all, chunk type 7 in 20 of them, and their own rows besid
    `0x0037AAE7`) through the jump table at `0x0037AC7C`: type 0 to `+0x08`, 1 to `+0x10`, 2 to `+0x18`,
    3 to `+0x20`, 6 to `+0x28`, 7 to `+0x30`, type 5's `+0x08` to `+0x38`; type 4 and types above 7 are
    skipped by their size;
-4. for type 2, when `0x01EF94E0` is non-zero, clears every entry's status and turns cut 0 on
-   (`0x0037A9B0(group, 0)`);
+4. for type 2, when `0x01EF94E0` is non-zero, clears every entry's status (`0x0037AB4D`-`0x0037AB76`) and turns on the
+   first entry whose cut id is 0 (`0x0037A9B0(group, 0)`, which stops at the first match, `0x0037A9E6`);
 5. for type 5, replaces each `slot[i]` with the encoded address of sub-entry `i` (`0x0020E620`);
 6. replaces each record's `+0x21` below 6 with `0x01EF94E4[value]` (`0x0037AC20`): the table holds
    `0x20, 0x40, 0x60, 0x80, 0xA0, 0xC0`; values of 6 and above stay;
@@ -187,9 +193,15 @@ The collector `0x0037AD40` runs over the five groups and skips any whose `+0x4C`
 adds every record whose state bit `0x1` is clear, first running `0x0037A5B0` on it, and lists the
 record's request (`record + 0x20`):
 
-- the type-0 range, when present;
-- otherwise the type-7 set for the selector `0x02EBF408` (written by `0x00379860`);
+- the type-0 range, when present (`0x0037ADCB`); after it the collector goes straight to the cuts (`0x0037AE2E`);
+- otherwise the type-7 set for the selector `0x02EBF408`: the `u16` at `+0x04 + selector × 8`, skipped when it is
+  `0xFFFF` (`0x0037AE47`-`0x0037AE50`), then the next three, up to the first `0xFFFF` (`0x0037AEA0`-`0x0037AEF6`);
 - then the range of every type-2 cut whose status is non-zero.
+
+The selector is the weather slot minus 1. `0x00379860(slot)` jumps to `0x00379F50` when a map light set is loaded
+(`0x02ADD090`), and `0x00379F50` stores `slot - 1` at `0x02EBF408` for slots 1 to 3 (`0x00379F5B`); the weather roll calls
+`0x00379860` on every zone start ([Weather](../World-Areas-And-Travel/weather.md)). `0x00379F70` resets the selector to 0
+(`0x0037A0C0`).
 
 The list starts with a default request at `0x02ADD8E0`. Each frame the collector first copies group 0's
 `+0x40`, `+0x44` and `+0x48` (1.0 after a reset, read at `0x02EBF460`, `0x02EBF464` and `0x02EBF468`) into that

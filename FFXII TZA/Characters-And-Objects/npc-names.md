@@ -187,16 +187,24 @@ with a fixed id in the script step tables of the area pages, and from the crysta
 
 What it shows:
 
-- 3,700 steps give 1,387 rows: 635 pairs in 482 scripts. 139 of the pairs have two different names.
+- 3,832 steps with a constant id and the 33 array steps below that name a person give 1,575 rows: 773 pairs in
+  513 scripts. 198 of the pairs have two different names.
 - The save and gate crystal actor is shared by the crystal maps. It picks the crystal's pair by the number
   `getcrystalid` returns: 0 is Save Crystal, 255 Life Crystal, each of 25 gate numbers its own place's crystal, and
   any other number Gate Crystal. Its rows are its 80 loaded crystals
   ([Save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
 - `bts_z01`, `pre_a01` and `pre_b01`, fields 108, 109 and 114, name their treasure chests, but no zone-script entry
   names those scripts.
-- 84 more steps, one in each of 84 scripts, take the id from an array of the script's own data, indexed by the
-  person: `NPC01`'s background people in `clip_show` in 47 scripts, and `NPC_LABO_0`'s `begin` in 37 Draklor
-  Laboratory scripts.
+- 89 more steps, one in each of 89 scripts, take the id from an array of the script's own data, indexed by the
+  person: `NPC01`'s background people in `clip_show` in 52 scripts, and `NPC_LABO_0`'s `begin` in 37 Draklor
+  Laboratory scripts. The arrays start at 0 in every script, and `EventDirector`'s `init` stores their values as
+  constants. In the table these rows name the actor as `NPC01 (clip_show, person k)` or
+  `NPC_LABO_0 (begin, person k)`.
+  - 33 of the steps name people this way.
+  - In 21 scripts no step requests `NPC01`'s `clip_show`, so its step never runs.
+  - In 30 Draklor Laboratory scripts no step stores the flag array that `begin` tests, so `begin` skips the verb.
+  - In 5 Archades scripts (`alc_b03`, `alc_b04`, `alc_c01`, `alc_f01`, `alc_f02`) every placed person's flag has
+    bit `0x2` set. `clip_show` disables talk and skips the verb when the flag ANDed with `0xA` is not 0.
 
 ## Modding notes
 

@@ -360,6 +360,43 @@ all; 13 install the defaults and spawn nothing). What the overriding zones autho
 - `btlAtelCanselInitialSpawnFlag`, 253 scripts, 11,571 calls, on the fresh-placement branch;
 - `btlAtelSetMapJumoKeep`: no script.
 
+[`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives the spawn condition of each of the 6,229
+placements in [`enemy-placements.tsv`](enemy-placements.tsv), in 23,242 rows. A placement is the `entryNN` function of
+its actor. The actor's `spawnNN` and `respawnNN` functions enter it by a `requestreentry` step after `setentrygroup`
+names its group and `btlAtelSetKeepWorkGroup` its lane (`0x00239840`; a negative lane uses the group as the lane). Each
+row is one such step on one path, and gives:
+
+- the group's source: a constant; the lane `btlAtelDecideEntryPointAuto` returns, or that lane plus an offset (the rare
+  variant of a lane in the `rbl` zones); a bank return from `btlAtelDecideEntryGroupByPreviousMap` or
+  `btlAtelDecideEntryGroupByContinuous`; the selection `btlAtelGetKeepWorkRealGroup` keeps for a lane; or the script's
+  loop register; and the lane's source the same way;
+- the tests on that path in five columns: story (シナリオフラグ, read directly or through the variables its writers
+  set), weather, count (death counts, elapsed and respawn times, a death counter), random (call `0x0029`, play time)
+  and other;
+- the lane's respawn table row, decoded from the operand bytes: death limit and cooldown, base and range;
+- for a lane the automatic selector offers, the gates of `0x00235720` with their instruction addresses and the values the
+  script sets for them (cap, attempts, distance band, arc), or the defaults;
+- the steps it comes from.
+
+3,999 placements are entered at a lane the automatic selector offers, and 2,230 by the script's choice alone. By test:
+1,406 placements have a count test, 956 a random test, 303 a story test, 68 a weather test and 3,122 another test;
+3,726 have a path with no script test.
+
+The Larva Eater placed by unique_monster_00 in `gil_e01`, `gil_e04`, `gil_e06`, `gil_f01`, `gil_f05`, `gil_g01` and
+`gil_g04` enters from the area start:
+
+1. `0x0026CE60` binds every record to group 0: `entry00` in slot 0 (`0x0026CFC7`) and `spawn00` in slot 7 (`0x0026D070`).
+2. `0x0025D9E0` files `spawn00` on channel 2 and `entry00` on channel 1 (`0x00269860` at `0x0025DD37`, `0x00269640` at
+   `0x002699B3`).
+3. The higher channel runs first (`0x003DB6E0`). This `spawn00` has no `requestreentry` step: it ends in a loop around
+   `wait 1` with no exit step, so `entry00` stays queued behind it on channel 1.
+
+The Larva Eater of `gil_i`, `gil_j` and `gil_k` (levels 61 to 62) is entered by its own `spawn00`.
+
+[`enemy-spawn-variables.tsv`](enemy-spawn-variables.tsv) lists the 1,442 variables those tests read, by place
+(`file +0x00C0`, `scratch2 +0x40`), with every step that writes them. For `scratch2`, the writers include the zone scripts
+of the same field group. 48 are death counters: a step adds 1 to them when `btlAtelGetRespawnCause()` returns 0.
+
 ## Operations
 
 A zone's battle setup runs `btlAtelSetupActorStart`, then any overrides, then per entry

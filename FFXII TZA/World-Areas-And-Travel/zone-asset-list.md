@@ -89,7 +89,17 @@ map packs and the map art sit in folders of their own with no language.
 | `art`, `art_meshes`, `art_textures` | the remastered `.ah` list and its mesh and texture counts; empty when the zone has none |
 | `models` | the models of the zone script's actor manifest, by name |
 | `foes` | the shipped names of the definitions the zone script places |
+| `chests` | the zone's chests in [`treasure-chest-list.tsv`](treasure-chest-list.tsv), by zone number |
+| `shops` | the shops of [`shops.tsv`](../Items-Equipment-Shops-And-Licenses/shops.tsv) whose `place` ends in the zone script's code, as number and name; `-` when the zone has no shop |
+| `music_run` | the run of [`music-table.tsv`](../Sound-And-Music/music-table.tsv) whose field range holds the zone, by its offset, with the run's track |
+| `npc_names` | the NPC name rows of [`npc-names-maps.tsv`](../Characters-And-Objects/npc-names-maps.tsv) for the zone |
+| `crystals` | the zone's save and teleport crystals in [`save-and-teleport-crystals-list.tsv`](save-and-teleport-crystals-list.tsv), as kind and number; `-` when it has no crystal |
 | `explanation` | a one-line summary |
+
+The joined columns place 1,926 of the 1,966 chests, all 267 shops, 1,572 of the 1,575 NPC name rows and 80 of the 81
+crystals. The others belong to scripts that no zone-script entry names, so no field loads them: the 40 chests of
+`bts_z01`, the NPC name rows of `bts_z01`, `pre_a01` and `pre_b01`, and the crystal of `mic_b07`. Every zone lies in
+a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-table.md)); its `music_run` is `-`.
 
 ## Related
 
