@@ -206,7 +206,7 @@ table). `line` is the listing line of the write or call.
 | `read_guard`, `started_by`, `counter_range` | For the 128 reached unguarded shipped writes, read by hand: what guards the write, what starts its function, and the counter values at which it runs; `-` for the other rows |
 | `read_verdict`, `evidence` | The hand reading's verdict and the listing lines it rests on; `-` for the other rows |
 
-### script-census-declarations.tsv
+### [`script-census-declarations.tsv`](script-census-declarations.tsv)
 
 | Column | Meaning |
 |---|---|
@@ -218,7 +218,7 @@ table). `line` is the listing line of the write or call.
 | `shipped_value` | The value it returns in the shipped zone image (entrance, or crystal or anchor number and key item) |
 | `reach` | `reached` or `unreachable` |
 
-### script-census-version-doors.tsv
+### [`script-census-version-doors.tsv`](script-census-version-doors.tsv)
 
 | Column | Meaning |
 |---|---|
@@ -233,7 +233,7 @@ table). `line` is the listing line of the write or call.
 | `resolved_from` | `literal`, or the store lines that give the field or entrance |
 | `reach` | `reached` or `unreachable` |
 
-### script-census-ai-verbs.tsv
+### [`script-census-ai-verbs.tsv`](script-census-ai-verbs.tsv)
 
 | Column | Meaning |
 |---|---|
