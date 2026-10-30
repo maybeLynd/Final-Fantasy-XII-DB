@@ -7,7 +7,8 @@ addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348D
 
 ## What it lists
 
-The table has one row per scene script of Dalmasca Estersand under `plan_master/us/event` that an event id names. The zone scripts load
+The table has one row per scene script of Dalmasca Estersand under `plan_master/us/event` that an event id names,
+and one for the developer script `dst_z9900`, which none names. The zone scripts load
 them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00351880`); the end handlers `0x00353080` and
 `0x003522C0` queue the load of event `n`, which `0x0032FCA0` reads from index `4n` of the event file table
 ([event scenes](../Scripts-And-Script-Commands/event-scenes.md),
@@ -19,6 +20,7 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
 | `dst_a0181` | `724` | The Stepping | 4 | story counter 70, 75 and 78, then scene `ttl_z0003` |
 | `dst_a0580` | `710` | Passage Entrance | 6 | story counter 343 |
 | `dst_b0100` | `121` | South Bank Village, North Bank Village | 85 | North Bank Village (Dalmasca Estersand) or South Bank Village (Dalmasca Estersand) |
+| `dst_z9900` | - | - | 0 | - |
 
 ### What the scenes give
 
@@ -49,8 +51,8 @@ made by the scene script itself comes first.
 | Column | Meaning |
 |---|---|
 | `scene` | the scene script, by its file name |
-| `event_id` | the event id that loads it |
-| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
+| `event_id` | the event id that loads it; `-` for `dst_z9900` |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event; `-` for `dst_z9900` |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
 | `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / ` |
 | `items` | items the scene's own functions give or take, by name; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |

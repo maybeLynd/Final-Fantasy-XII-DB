@@ -95,6 +95,35 @@ in bits 0-11 and 12-23 of the next dword (`0x0053F26E`-`0x0053F28A`).
 | 2 | 0, 80, 1024 x 176 | the strip holding the Dolby Pro Logic II logo and the S-Force logo with its lines, one picture |
 | 3 | 312, 290, 262 x 74 | "The End" |
 
+### The fades
+
+`fsroll_fade(a, b, c, d)` (`0x00511E00`) does not go through the recorder: it jumps to `0x0053EFC0`, which appends a
+20-byte fade record to the roll object's 128 at `+0xA90` (count `+0x1492`) unless the object is missing or running
+(`+0xFC`, `0x0053EFD7`), and moves the cursor `+0xF0` on by a + 3 (`0x0053F0B6`-`0x0053F0B9`). b, c and d are 30 fps frame
+counts, multiplied by `0x01DFE0B4`; a b or d of -1 or less is kept as it is.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | place | the cursor at the append (`0x0053EFF8`) |
+| `+0x04` | `i16` | totalFrames | c x `[0x01DFE0B4]` + 3, plus b and d when they are not negative (`0x0053F000`, `0x0053F035`-`0x0053F093`) |
+| `+0x06` | `i16` | hold | c x `[0x01DFE0B4]` (`0x0053F000`, `0x0053F02C`) |
+| `08`, `0C` | `i16` | fadeInLeft, fadeInLength | b (`0x0053F008`, `0x0053F011`, `0x0053F05F`, `0x0053F068`) |
+| `0A`, `0E` | `i16` | fadeOutLeft, fadeOutLength | d (`0x0053F01A`, `0x0053F023`, `0x0053F09C`, `0x0053F0A5`) |
+| `+0x10` | `i16` | jump | a (`0x0053F043`) |
+
+The runner `0x0053E640` starts a fade when the scroll `+0xEC` reaches its place less the screen height `0x01E0C1DC`
+(`0x0053E9B9`-`0x0053E9E9`): the scroll becomes the place less the screen height plus a, at most the roll's end, the
+countdown `+0xF8` the total, and the roll stops scrolling in state 6, phase 1 (`0x0053EA87`-`0x0053EAB9`).
+
+Phase 1 raises the text level `+0x1494`, the alpha of the roll's text colour (`0x0053E101`), from 0 to `0x80` over b
+frames; phase 3 holds it for c frames; phase 2 lowers it to 0 over d frames, and a negative d skips it
+(`0x0053E6A6`-`0x0053E78F`).
+
+When the countdown reaches 0 the runner takes the next fade (`+0x1490`) and scrolls again, state 1
+(`0x0053E796`-`0x0053E7AA`); while the level is 0 it keeps scrolling within the same frame (`0x0053EA3E`-`0x0053EA46`). While
+the roll waits for the movie (state 5) each pending fade's place moves with the lines still below the screen
+(`0x0053E7E3`-`0x0053E868`). The roll script calls `fsroll_fade` 67 times.
+
 ### The language trees
 
 All nine language trees run the same `create` sequence: every line has the same position, font and row number in

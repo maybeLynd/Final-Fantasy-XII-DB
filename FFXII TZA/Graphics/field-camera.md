@@ -268,6 +268,7 @@ Follow camera (controller + `0x2B0`):
 | Address | What |
 |---|---|
 | `0x02097D30` | the camera controllers, 0x860 bytes each |
+| `0x02097D20`, `0x02098580` | the two camera contexts, each 16 bytes before its controller: those 16 bytes and controller `+0x848`-`+0x84F` hold 0 and move only when `setinterventioncamera` copies one context over the other (`0x00359410`: `0x002593D0`, `0x00259470`); controller `+0x844` is only ever stored 0 (`0x00259811`, `0x0025A2B5`) |
 | `0x02B4E3F0`, `0x02B4E3F4`, `0x02B4E3F8` | the framed actor's position x, y and z, the first three floats of a `0xB0`-byte copy of its movement body's placement `+0x30` (`0x003D9ED1`): `0x003D9E20` writes them from `0x002E7F70` (`0x003D9F4F`, `0x003D9F65`, `0x003D9F5D`) and raises `0x02B4E4A6` (`0x003D9F6D`); `0x003D9FB0` zeroes the `0xC0` bytes from `0x02B4E3F0` (`0x003D9FB2`) |
 | `0x02B4E4A0`, `0x02B4E4A5` | the framed actor and its flag (`0x003D9E20`) |
 | `0x022C3184`, `0x022C3188` | the curve's highest and lowest `y`, 7.6 and −0.7 (`0x0032B600`) |

@@ -301,6 +301,17 @@ tests `0x0025BAD0` (`0x0025BDD1`) and `0x0025BE50` (`0x0025BF76`) set it, and so
 argument is 0; `0x0025D650` (`0x0025D66A`) and the boot `0x00266D10` (`0x002670F8`) set it to -1. The talk filer `0x00268D10` passes it to `0x00358940` (`0x00268D58`), and
 `0x00268650` passes it to `0x003587C0` (`0x00268668`).
 
+The talk button gate `0x0026DFB0(1)`, which the talk filer runs first (`0x00268D1D`), passes only when the count
+`0x02099DB4` is 0 and the four bytes at `0x0209A2C4` are all 1 (`0x0026E012`-`0x0026E044`). Byte 0 is the talk request:
+`0x0026BC60(1)` sets it on the confirm press (`0x0025415A`, in `0x00253C70`) and for the developer verb `debug_talkrequire`
+(`0x0050DF60`), `0x0025AAD0` sets it with the candidate (`0x0025AB15`), and the filer clears it once it files the talk
+(`0x00268E41`), as `0x0025D650` does (`0x0025D674`).
+
+Byte 1 is the control lock's bit `0x2` inverted (`0x0026BD40`, [Party leader](../Party/party-leader.md)); byte 2 is 0
+while the event lock stands (`0x00307140` through `0x0026BD20`, `0x003071F2`); byte 3 stays 1. The boot sets bytes 1-3 to 1
+and byte 0 to 0 (`0x002670D7`, `0x002670DD`), and the manager unload `0x002628B0` sets bytes 1-3 to 1 again
+(`0x00262C52`-`0x00262C70`), as the manager bind `0x0026C8C0` does (`0x0026CD80`-`0x0026CD94`).
+
 ## Modding notes
 
 - A script's `REQ` channel is the only priority: a higher channel pre-empts a running lower one at

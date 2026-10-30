@@ -25,6 +25,8 @@ bds_a02	Cloister of Distant Song (Necrohol of Nabudis)	treasure_05	talk	talk	-	-
 bds_a02	Cloister of Distant Song (Necrohol of Nabudis)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000290	-	-	-	-	1	-
 bds_a02	Cloister of Distant Song (Necrohol of Nabudis)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002a8	-	-	-	-	1	-
 bds_a02	Cloister of Distant Song (Necrohol of Nabudis)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030002c0	-	-	-	-	1	-
+bds_a03	bds_a03	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	bds_d02 (Pharos at Ridorana), field 434, entrance 1	-	-	-	1	-
+bds_a03	bds_a03	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 3	-	-	-	1	-
 bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 3	-	-	-	1	-
 bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Hall of the Ivory Covenant (Necrohol of Nabudis), field 430, entrance 4	-	-	-	1	-
 bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	1	-
@@ -42,6 +44,8 @@ bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	treasure_08	talk	talk	-	-
 bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000398	-	-	-	-	1	-
 bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030003b0	-	-	-	-	1	-
 bds_b01	Cloister of the Highborn (Necrohol of Nabudis)	バグナムス商人	商売	requested by ショップレクト.talk	-	1	...	-	-	-	-	-	-	-	-	-	-	10	-
+bds_b02	bds_b02	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Field of the Fallen Lord (Nabreus Deadlands), field 180, entrance 2	-	-	-	1	-
+bds_b02	bds_b02	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	bds_d03 (Pharos at Ridorana), field 435, entrance 1	-	-	-	1	-
 bds_c01	Hall of the Ivory Covenant (Necrohol of Nabudis)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Hall of Slumbering Might (Necrohol of Nabudis), field 431, entrance 2	-	-	-	1	-
 bds_c01	Hall of the Ivory Covenant (Necrohol of Nabudis)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 3	-	-	-	1	-
 bds_c01	Hall of the Ivory Covenant (Necrohol of Nabudis)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Reason (Necrohol of Nabudis), field 444, entrance 1	-	-	-	1	-
@@ -67,6 +71,15 @@ bds_c02	Hall of Slumbering Might (Necrohol of Nabudis)	treasure_02	talk	talk	-	-
 bds_c02	Hall of Slumbering Might (Necrohol of Nabudis)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000248	-	-	-	-	1	-
 bds_c02	Hall of Slumbering Might (Necrohol of Nabudis)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000260	-	-	-	-	1	-
 bds_c02	Hall of Slumbering Might (Necrohol of Nabudis)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000278	-	-	-	-	1	-
+bds_d01	bds_d01	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Hall of Effulgent Light (Necrohol of Nabudis), field 421, entrance 2	-	-	-	1	-
+bds_d01	bds_d01	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 1	-	-	-	1	-
+bds_d01	bds_d01	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 1	-	-	-	1	-
+bds_d02	bds_d02	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	bds_a03 (Pharos at Ridorana), field 423, entrance 2	-	-	-	1	-
+bds_d02	bds_d02	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 2	-	-	-	1	-
+bds_d02	bds_d02	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Solace (Necrohol of Nabudis), field 441, entrance 1	-	-	-	1	-
+bds_d03	bds_d03	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	bds_b02 (Pharos at Ridorana), field 427, entrance 2	-	-	-	1	-
+bds_d03	bds_d03	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 3	-	-	-	1	-
+bds_d03	bds_d03	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of Reason (Necrohol of Nabudis), field 444, entrance 1	-	-	-	1	-
 bds_e01	The Crucible (Necrohol of Nabudis)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 4	-	-	-	1	-
 bds_e01	The Crucible (Necrohol of Nabudis)	監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	bds_e0100, event 224; bds_e0101, event 225; pos_z0000, event 427	-	1	-
 bds_e01	The Crucible (Necrohol of Nabudis)	Map_Director	init	init	-	-	-	0x004E: Set or tested in The Crucible (Necrohol of Nabudis)	-	-	-	-	-	-	-	-	-	1	-

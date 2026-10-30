@@ -7,14 +7,16 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 
 ## What it lists
 
-The table has one row per script function of the Skyferry that does something a player can observe. It covers the four
-zone scripts with a field entry, from `plan_master/us`; the group has no scene scripts:
+The table has one row per script function of the Skyferry that does something a player can observe. It covers the six
+zone scripts, four with a field entry and two without, from `plan_master/us`; the group has no scene scripts:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
 | `asp_a01` | zone | Observation Parlour, field `124` | 118 | 983 | 108 | 0 |
 | `asp_a02` | zone | Sky Saloon, field `125` | 117 | 997 | 81 | 1 |
 | `asp_a03` | zone | Air Deck, field `126` | 96 | 685 | 105 | 0 |
+| `asp_b01` | zone | field `1148`, which has no zone-script entry | 1 | 1 | 0 | 0 |
+| `asp_b02` | zone | field `1149`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `asp_b03` | zone | Air Deck, field `1150` | 34 | 152 | 12 | 0 |
 
 The Sky Saloon carries the key-item and message helper `イベント特殊効果画面`, one of the five helper actors that many zone
@@ -22,8 +24,9 @@ scripts share. Its functions are described once on [Shared zone-script actors](s
 no rows here; the Shared helpers column counts it.
 
 The Air Deck has two maps, fields `126` and `1150`. Two more zone scripts ship under `plan_map/asp_b`, `asp_b01` and
-`asp_b02`; the zone-script list has no field entry that names them, so they have no rows here; their steps are in the
-steps table.
+`asp_b02`; the zone-script list has no field entry that names them, so no field loads them. Each has a row in the
+script list above, with the place `field <id>, which has no zone-script entry`, and its steps in the steps table;
+it has no row in the main table, since its one function makes none of the calls the table reads.
 
 - `asp_b01` holds one actor, `Map_Director`, whose `init` returns at once, and the map exit arrays of a map with no
   script; it belongs by its area `asp_b` to field `1148`, which has no map name and no zone-script entry, and no
@@ -183,7 +186,7 @@ The script list [`skyferry-script-list.tsv`](skyferry-script-list.tsv) holds the
 
 | Column | Meaning |
 |---|---|
-| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id; a zone script that no field loads reads `field <id>, which has no zone-script entry` |
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |

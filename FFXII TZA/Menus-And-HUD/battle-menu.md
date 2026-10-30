@@ -366,6 +366,18 @@ procedure. `0x002BE290` then closes the window at `+0x570` once its `+0x280` has
 While `0x002BFD20` lays the target window out, `0x002C0760` hides six of its child widgets
 and seven of its parts and sets its height from part 5, and `0x002C03A0` hides the child of part 12.
 
+The window shows its key `+0x288`: a unit handle, or a party member type when `+0x280` bit `0x2` is set
+(`0x002BFF3D`-`0x002BFF8F`). Message 1 measures the box `+0x28C`-`+0x292` (x, y, width, height) from a scratch layout
+(`0x002C0AD4`-`0x002C0B12`), and message 3 draws it as a soft-edged box (`0x00392A00`, `0x002C08DA`-`0x002C0967`).
+
+The statuses take turns through the status cycle record at `+0x2A0` ([Party list](party-list.md)), stepped by
+`0x00272F80(record, 30, 2, +0x29C, key)` on every layout pass (`0x002C019D`-`0x002C01D6`); `+0x29C` is the frame counter
+`0x0208F570` less 30, stored on activation, message 6 (`0x002C08C6`-`0x002C08CF`), and the layout shows the status row at
+`+0x2B0` (`0x002C01DF`-`0x002C023B`).
+
+The action id and focus handle the help block posts (`0x00290C80`, `0x00290C60`) land at `+0x294` and `+0x298` and set
+`+0x280` bit `0x20`; nothing reads them, and every layout pass sets `+0x294` to `0xFFFF` (`0x002C01B1`).
+
 ### The party list
 
 The party list `0x0029BE50` (`0xB68` bytes, at `[0x0209BE80] + 0x10F78`) draws one slot `0x0029A0A0` per member from the

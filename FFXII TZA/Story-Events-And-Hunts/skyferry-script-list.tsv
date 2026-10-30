@@ -2,4 +2,6 @@ script	kind	place	actors	functions	rows	shared_actors
 asp_a01	zone	Observation Parlour (Skyferry), field 124	118	983	108	0
 asp_a02	zone	Sky Saloon (Skyferry), field 125	117	997	81	1
 asp_a03	zone	Air Deck (Skyferry), field 126	96	685	105	0
+asp_b01	zone	field 1148, which has no zone-script entry	1	1	0	0
+asp_b02	zone	field 1149, which has no zone-script entry	1	1	0	0
 asp_b03	zone	Air Deck (Skyferry), field 1150	34	152	12	0

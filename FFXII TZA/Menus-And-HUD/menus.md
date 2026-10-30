@@ -126,8 +126,8 @@ Six more verbs read or set menu state through helpers of their own:
 | `setpartymenustatus` | `0x45F` | `0x002E23E0`, `0x002E13C0` | sets or clears one flag of the byte array at `[0x020927C0] + 0x32C4` (`0x00254E00`; flag n is bit `1 << (n & 7)` of byte `n >> 3`): kinds 0-7 give flags 0, 1, 9 and `0x12`-`0x16`, kind 9 flag `0x1E` (Config's Battle Mode row), any other flag `0x1D` (the main menu's Config entry, `0x002CDBF4`) |
 
 `show_escapingwindow` (`0x458`) jumps from `0x002E2310` to the return stub `0x0016D6A0` and does nothing. Flags
-`0x1E`-`0x23` of the same array lock Config rows ([Config screen](config-screen.md)). `setmenudisablestatus` (`0x3A5`) sets or clears bit n of
-`0x0215F1C4` through `0x002E1BE0`, one of the 16 words `0x002E0FA0` ORs together; `0x002E12E0` passes 0-18 and turns any other value into -1, which is refused.
+`0x1E`-`0x23` of the same array lock Config rows ([Config screen](config-screen.md)). `setmenudisablestatus` (`0x3A5`) sets or clears bit `1 << n` of
+`0x0215F1C4` through `0x002E1BE0` (`0x002E1BF7`-`0x002E1C0B`), one of the 16 words `0x002E0FA0` ORs together; `0x002E12E0` passes 0-18 and turns any other value into -1, which is refused.
 
 Selector 5 with bit `0x8000`, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
 selector 4, the notice board, 8 times; selector 0 with bit `0x8000`, the destination map, 18 times. Bit `0x8000` makes the screen

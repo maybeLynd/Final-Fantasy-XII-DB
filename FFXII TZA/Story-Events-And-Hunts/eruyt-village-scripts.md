@@ -8,13 +8,15 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 ## What it lists
 
 The table has one row per script function of Eruyt Village that does something a player can observe. It covers the
-three zone scripts and the five scene scripts of the region, from `plan_master/us`:
+four zone scripts, three with a field entry and one without, and the five scene scripts of the region, from
+`plan_master/us`:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
 | `vic_a01` | zone | Fane of the Path, field `766` | 48 | 215 | 28 | 1 |
 | `vic_a02` | zone | The Spiritwood, field `767` | 78 | 298 | 39 | 0 |
 | `vic_a03` | zone | Road of Verdant Praise, field `768` | 23 | 76 | 17 | 5 |
+| `vic_a04` | zone | field `769`, which has no zone-script entry | 3 | 5 | 2 | 0 |
 | `vic_a0100` | scene | event `253` | 25 | 402 | 23 | 0 |
 | `vic_a0280` | scene | event `733` | 18 | 72 | 0 | 0 |
 | `vic_a0300` | scene | event `255` | 25 | 300 | 32 | 0 |
@@ -31,7 +33,8 @@ The scene `vic_a0300` holds its own helper `イベント特殊効果画面_EV`, 
 
 Two exits of The Spiritwood (`__MJ_CTRL002`, `__MJ_CTRL003`) lead to field `769`, which the map name table names by its
 code, `vic_a04`. The script `vic_a04` ships under `plan_map/vic_a`, but the zone-script list has no entry for field
-`769`, so it has no rows here; its steps are in the steps table.
+`769`, so no field loads it. It has a row in the script list above, with the place
+`field 769, which has no zone-script entry`, and its two map exits have rows in the main table.
 
 `vic_a04` holds `Map_Director`, whose `init` returns at once, and two map exits, `__MJ_CTRL000` and `__MJ_CTRL001`, to
 The Spiritwood (field `767`, entrances 3 and 4); the Spiritwood exits jump to field `769` (entrances 1 and 2), but the
@@ -196,7 +199,7 @@ The script list [`eruyt-village-script-list.tsv`](eruyt-village-script-list.tsv)
 
 | Column | Meaning |
 |---|---|
-| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id; a zone script that no field loads reads `field <id>, which has no zone-script entry` |
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |

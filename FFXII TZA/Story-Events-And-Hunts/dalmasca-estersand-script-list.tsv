@@ -14,3 +14,4 @@ dst_a0180	scene	scene, event 122	6	26	0	0
 dst_a0181	scene	scene, event 724	12	73	16	0
 dst_a0580	scene	scene, event 710	10	72	4	0
 dst_b0100	scene	scene, event 121	21	148	17	0
+dst_z9900	developer	developer script, named by no path array	0	0	0	0

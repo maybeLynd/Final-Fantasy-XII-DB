@@ -8,7 +8,8 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 ## What it lists
 
 The table has one row per script function of Draklor Laboratory that does something a player can observe. It covers
-the seventy-one zone scripts and the five scene scripts of the region that have an event id, from `plan_master/us`:
+the eighty-three zone scripts, seventy-one with a field entry and twelve without, and the five scene scripts of the
+region that have an event id, from `plan_master/us`:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
@@ -16,6 +17,7 @@ the seventy-one zone scripts and the five scene scripts of the region that have 
 | `dor_a02` | zone | Rm 6613 West, field `1009` | 13 | 59 | 3 | 1 |
 | `dor_a03` | zone | Rm 6613 East, field `1010` | 16 | 76 | 11 | 0 |
 | `dor_a04` | zone | Rm 6612 West, field `1011` | 16 | 76 | 11 | 0 |
+| `dor_a05` | zone | field `1012`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_a06` | zone | Rm 6611 West, field `1013` | 16 | 76 | 11 | 0 |
 | `dor_a07` | zone | Rm 6611 East, field `1014` | 15 | 62 | 3 | 0 |
 | `dor_a08` | zone | Rm 6602 West, field `1015` | 15 | 74 | 11 | 0 |
@@ -25,12 +27,14 @@ the seventy-one zone scripts and the five scene scripts of the region that have 
 | `dor_a12` | zone | 67th Floor, field `1019` | 19 | 100 | 12 | 0 |
 | `dor_a13` | zone | Rm 6711 West, field `1020` | 5 | 5 | 0 | 0 |
 | `dor_a14` | zone | Rm 6711 East, field `1021` | 16 | 76 | 11 | 0 |
+| `dor_a15` | zone | field `1022`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_a16` | zone | Rm 6703 West, field `1023` | 15 | 74 | 11 | 0 |
 | `dor_a17` | zone | Rm 6704 East, field `1024` | 15 | 74 | 11 | 0 |
 | `dor_a18` | zone | Rm 6703 East, field `1025` | 14 | 60 | 3 | 0 |
 | `dor_a19` | zone | Rm 6702 West, field `1026` | 15 | 74 | 11 | 0 |
 | `dor_a20` | zone | Rm 6701 West, field `1027` | 15 | 74 | 11 | 0 |
 | `dor_a21` | zone | Rm 6702 East, field `1028` | 15 | 74 | 11 | 0 |
+| `dor_a22` | zone | field `1029`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_a23` | zone | 68th Floor, field `1030` | 17 | 75 | 9 | 0 |
 | `dor_a24` | zone | 69th Floor, field `1031` | 7 | 13 | 0 | 0 |
 | `dor_b01` | zone | Energy Transitarium, field `286` | 19 | 35 | 6 | 0 |
@@ -38,6 +42,7 @@ the seventy-one zone scripts and the five scene scripts of the region that have 
 | `dor_c02` | zone | Rm 6613 West, field `1037` | 15 | 62 | 3 | 1 |
 | `dor_c03` | zone | Rm 6613 East, field `1038` | 20 | 83 | 14 | 0 |
 | `dor_c04` | zone | Rm 6612 West, field `1039` | 16 | 76 | 11 | 0 |
+| `dor_c05` | zone | field `1040`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_c06` | zone | Rm 6611 West, field `1041` | 16 | 76 | 11 | 0 |
 | `dor_c07` | zone | Rm 6611 East, field `1042` | 16 | 76 | 11 | 0 |
 | `dor_c08` | zone | Rm 6602 West, field `1043` | 9 | 43 | 3 | 0 |
@@ -48,15 +53,18 @@ the seventy-one zone scripts and the five scene scripts of the region that have 
 | `dor_c13` | zone | Rm 7002 West, field `1048` | 15 | 74 | 11 | 0 |
 | `dor_c14` | zone | Rm 7001 West, field `1049` | 15 | 74 | 11 | 0 |
 | `dor_c15` | zone | Rm 7002 East, field `1050` | 18 | 79 | 13 | 0 |
+| `dor_c16` | zone | field `1051`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_d01` | zone | 67th Floor, field `1054` | 37 | 123 | 16 | 0 |
 | `dor_d02` | zone | Rm 6711 West, field `1055` | 14 | 52 | 6 | 0 |
 | `dor_d03` | zone | Rm 6711 East, field `1056` | 16 | 76 | 11 | 0 |
+| `dor_d04` | zone | field `1057`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_d05` | zone | Rm 6703 West, field `1058` | 15 | 74 | 11 | 0 |
 | `dor_d06` | zone | Rm 6704 East, field `1059` | 23 | 114 | 13 | 5 |
 | `dor_d07` | zone | Rm 6703 East, field `1060` | 9 | 43 | 3 | 0 |
 | `dor_d08` | zone | Rm 6702 West, field `1061` | 15 | 74 | 11 | 0 |
 | `dor_d09` | zone | Rm 6701 West, field `1062` | 15 | 74 | 11 | 0 |
 | `dor_d10` | zone | Rm 6702 East, field `1063` | 15 | 74 | 11 | 0 |
+| `dor_d11` | zone | field `1064`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_e01` | zone | 68th Floor, field `1067` | 48 | 155 | 18 | 0 |
 | `dor_e02` | zone | Rm 6814 West, field `1068` | 16 | 76 | 11 | 0 |
 | `dor_e03` | zone | Rm 6814 East, field `1069` | 21 | 57 | 3 | 0 |
@@ -75,12 +83,17 @@ the seventy-one zone scripts and the five scene scripts of the region that have 
 | `dor_e16` | zone | Rm 6802 East, field `1082` | 9 | 43 | 3 | 0 |
 | `dor_e17` | zone | Rm 6801 East, field `1083` | 15 | 74 | 11 | 0 |
 | `dor_f01` | zone | 69th Floor, field `1086` | 8 | 15 | 0 | 0 |
+| `dor_f02` | zone | field `1087`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_f03` | zone | Rm 6912 East, field `1088` | 6 | 7 | 0 | 0 |
 | `dor_f04` | zone | Rm 6911 West, field `1089` | 6 | 7 | 0 | 0 |
+| `dor_f05` | zone | field `1090`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_f06` | zone | Rm 6904 West, field `1091` | 11 | 36 | 8 | 0 |
+| `dor_f07` | zone | field `1092`, which has no zone-script entry | 1 | 1 | 0 | 0 |
+| `dor_f08` | zone | field `1093`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_f09` | zone | Rm 6903 East, field `1094` | 5 | 5 | 0 | 0 |
 | `dor_f10` | zone | Rm 6902 West, field `1095` | 5 | 5 | 0 | 0 |
 | `dor_f11` | zone | Rm 6901 West, field `1096` | 11 | 36 | 8 | 0 |
+| `dor_f12` | zone | field `1097`, which has no zone-script entry | 1 | 1 | 0 | 0 |
 | `dor_f13` | zone | Rm 6901 East, field `1098` | 11 | 36 | 8 | 0 |
 | `dor_z01` | zone | field `854` | 8 | 19 | 1 | 1 |
 | `dor_a0100` | scene | event `179` | 17 | 115 | 6 | 0 |
@@ -109,7 +122,11 @@ Twelve more zone scripts ship under `plan_map/dor_*`: `dor_a05`, `dor_a15`, `dor
 `dor_d04`, `dor_d11`, `dor_f02`, `dor_f05`, `dor_f07`, `dor_f08` and `dor_f12`. Each holds one actor, `Map_Director`,
 whose `init` returns at once. Their fields, 1012, 1022, 1029, 1040, 1051, 1057, 1064, 1087, 1090, 1092, 1093 and 1097,
 have map names (Rm 6612 East, Rm 6704 West and so on) but no zone-script entry, and no `mapjump` of the `us` scripts
-names them, so no field loads these scripts. They have no row here; their steps are in the steps table.
+names them, so no field loads these scripts.
+
+Each of the twelve has a row in the script list above, with the place
+`field <id>, which has no zone-script entry`, and its steps in the steps table; it has no row in the main table,
+since `Map_Director.init` makes none of the calls the table reads.
 
 ### What the scripts do
 
@@ -310,7 +327,7 @@ The script list [`draklor-laboratory-script-list.tsv`](draklor-laboratory-script
 
 | Column | Meaning |
 |---|---|
-| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id; a zone script that no field loads reads `field <id>, which has no zone-script entry` |
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |

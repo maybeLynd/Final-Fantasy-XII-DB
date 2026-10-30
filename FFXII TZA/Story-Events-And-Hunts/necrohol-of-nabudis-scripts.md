@@ -8,15 +8,21 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 ## What it lists
 
 The table has one row per script function of Necrohol of Nabudis that does something a player can observe. It covers
-the eight zone scripts with a field entry and the seven scene scripts of the region, from `plan_master/us`:
+the thirteen zone scripts, eight with a field entry and five without, and the seven scene scripts of the region, from
+`plan_master/us`:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
 | `bds_a01` | zone | Hall of Effulgent Light, field `421` | 26 | 40 | 12 | 0 |
 | `bds_a02` | zone | Cloister of Distant Song, field `422` | 32 | 80 | 14 | 0 |
+| `bds_a03` | zone | field `423`, which has no zone-script entry | 3 | 5 | 2 | 0 |
 | `bds_b01` | zone | Cloister of the Highborn, field `426` | 37 | 101 | 17 | 0 |
+| `bds_b02` | zone | field `427`, which has no zone-script entry | 3 | 5 | 2 | 0 |
 | `bds_c01` | zone | Hall of the Ivory Covenant, field `430` | 32 | 79 | 14 | 0 |
 | `bds_c02` | zone | Hall of Slumbering Might, field `431` | 25 | 38 | 11 | 0 |
+| `bds_d01` | zone | field `433`, which has no zone-script entry | 4 | 7 | 3 | 0 |
+| `bds_d02` | zone | field `434`, which has no zone-script entry | 4 | 7 | 3 | 0 |
+| `bds_d03` | zone | field `435`, which has no zone-script entry | 4 | 7 | 3 | 0 |
 | `bds_e01` | zone | The Crucible, field `438` | 19 | 55 | 5 | 0 |
 | `bds_f01` | zone | Cloister of Solace, field `441` | 16 | 60 | 5 | 1 |
 | `bds_g01` | zone | Cloister of Reason, field `444` | 16 | 60 | 5 | 1 |
@@ -36,8 +42,13 @@ The scene `bds_e0101` holds its own helper `イベント特殊効果画面_EV`, 
 
 Five more zone scripts of the region ship under `plan_map/bds_a`, `bds_b` and `bds_d`: `bds_a03`, `bds_b02`, `bds_d01`,
 `bds_d02` and `bds_d03`. The map name table names fields `423`, `427` and `433` to `435` by these codes, but the
-zone-script list has no entry for those fields, so the five scripts have no rows here; their steps are in the steps
-table. One exit of Cloister of Distant Song (`__MJ_CTRL001`) leads to field `434`, `bds_d02`.
+zone-script list has no entry for those fields, so no field loads them.
+
+Each of the five has a row in the script list above, with
+the place `field <id>, which has no zone-script entry`, and its map exits have rows in the main table: two each in
+`bds_a03` and `bds_b02` and three each in `bds_d01` to `bds_d03`, to fields `421`, `422`, `426`, `441` and `444` of the
+region, to Field of the Fallen Lord (field `180`, Nabreus Deadlands), and between `bds_a03` and `bds_d02` and between
+`bds_b02` and `bds_d03`. One exit of Cloister of Distant Song (`__MJ_CTRL001`) leads to field `434`, `bds_d02`.
 
 Each script holds `Map_Director`, whose `init` returns at once, and map exits `__MJ_CTRL00n`, each of which turns user
 control off, fades out and calls `mapjump`:
@@ -221,7 +232,7 @@ The script list [`necrohol-of-nabudis-script-list.tsv`](necrohol-of-nabudis-scri
 
 | Column | Meaning |
 |---|---|
-| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id; a zone script that no field loads reads `field <id>, which has no zone-script entry` |
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |

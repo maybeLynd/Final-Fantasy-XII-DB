@@ -8,7 +8,8 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 ## What it lists
 
 The table has one row per script function of Dalmasca Estersand that does something a player can observe. It
-covers the eleven zone scripts and the four scene scripts of the region that have an event id, from `plan_master/us`:
+covers the eleven zone scripts, the four scene scripts of the region that have an event id and the developer script
+`dst_z9900`, from `plan_master/us`:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
@@ -27,6 +28,7 @@ covers the eleven zone scripts and the four scene scripts of the region that hav
 | `dst_a0181` | scene | event `724` | 12 | 73 | 16 | 0 |
 | `dst_a0580` | scene | event `710` | 10 | 72 | 4 | 0 |
 | `dst_b0100` | scene | event `121` | 21 | 148 | 17 | 0 |
+| `dst_z9900` | developer | developer script, named by no path array | 0 | 0 | 0 | 0 |
 
 Passage Entrance and South Bank Village carry the five helper actors that many zone scripts share: the crystal
 (`system_crystal_actor`, `telepoeffectctrl`, `crystaldummyPC`, `saveactor`) and the key-item and message helper
@@ -208,7 +210,7 @@ The script list [`dalmasca-estersand-script-list.tsv`](dalmasca-estersand-script
 
 | Column | Meaning |
 |---|---|
-| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `script`, `kind`, `place` | the script, `zone`, `scene` or `developer`, and its map (region) and field id, its event id, or `developer script, named by no path array` |
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |

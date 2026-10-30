@@ -1,9 +1,14 @@
 script	kind	place	actors	functions	rows	shared_actors
 bds_a01	zone	Hall of Effulgent Light (Necrohol of Nabudis), field 421	26	40	12	0
 bds_a02	zone	Cloister of Distant Song (Necrohol of Nabudis), field 422	32	80	14	0
+bds_a03	zone	field 423, which has no zone-script entry	3	5	2	0
 bds_b01	zone	Cloister of the Highborn (Necrohol of Nabudis), field 426	37	101	17	0
+bds_b02	zone	field 427, which has no zone-script entry	3	5	2	0
 bds_c01	zone	Hall of the Ivory Covenant (Necrohol of Nabudis), field 430	32	79	14	0
 bds_c02	zone	Hall of Slumbering Might (Necrohol of Nabudis), field 431	25	38	11	0
+bds_d01	zone	field 433, which has no zone-script entry	4	7	3	0
+bds_d02	zone	field 434, which has no zone-script entry	4	7	3	0
+bds_d03	zone	field 435, which has no zone-script entry	4	7	3	0
 bds_e01	zone	The Crucible (Necrohol of Nabudis), field 438	19	55	5	0
 bds_f01	zone	Cloister of Solace (Necrohol of Nabudis), field 441	16	60	5	1
 bds_g01	zone	Cloister of Reason (Necrohol of Nabudis), field 444	16	60	5	1

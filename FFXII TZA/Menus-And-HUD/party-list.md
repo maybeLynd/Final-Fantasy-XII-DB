@@ -481,10 +481,11 @@ answers non-zero; the rebuild then calls `0x002547D0(1)` instead (`0x0035BE98`-`
 | `0x022C8066` | `u16` | 0 | the number of listed members whose flag bit `0x2` is clear (not types 7-25); a member with bit `0x2` instead puts its type in `0x022C8076` | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BE42`); `0x0035BB70`, `0x0035C560`, the block cleared | `0x0035BC50`, its own increment (`0x0035BE42`) |
 | `0x022C8068` | `u32` | 0 | the number of listed members whose flag bit `0x40` is clear, bit `0x40` clear being one of the leader choice's tests for a row (`0x00299BD0`) | `0x0035BC50`: 0 in the 8-byte store (`0x0035BD6D`), the count (`0x0035BDEF`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BDEF`; `0x0035BEC7`, where 0 skips the leader choice) |
 | `0x022C8070` | `u32` | 0 | the party leader's type, the byte at battle block `+0x5AA4` (`0x003271D0`), copied at each rebuild | `0x0035BC50` (`0x0035BD7C`); `0x0035BB70`, `0x0035C560` | `0x0035BC50` (`0x0035BE2A`, which finds the leader's record); `0x0035BAA0(type)` (`0x0035BAA6`), which does nothing for the type already stored and otherwise writes the new type to `+0x5AA4` (`0x00327850`) and rebuilds with `0x0035BC50(0)` |
+| `0x022C8388` | `ptr[4]` | 0 | the actor record of each party slot, in slot order: `0x003588B0` of the member's handle when its type `+0x60` is not negative and its handle `+0x04` is not 0, otherwise 0 | `0x0035BC50`: 0 (`0x0035BDC3`), the record (`0x0035BDDF`); `0x0035BB70`, `0x0035C560`, the block cleared | no instruction names it |
 | `0x022C83F4` | `i32` | 0 | list `0x1A`'s default entry, -1 after every rebuild | `0x0035BC50` (`0x0035BCDB`); `0x0035C560` | no instruction names it |
 | `0x022C847C` | `i32` | 0 | list `0x14`'s default entry, -1 after every rebuild | `0x0035BC50` (`0x0035BF6E`); `0x0035C560` | no instruction names it |
 
-No other instruction names these five. The block's address is also returned by `0x0035D320` (21 call sites) and
+No other instruction names these six. The block's address is also returned by `0x0035D320` (21 call sites) and
 passed to `0x0035E5F0` by `0x0035D070`; the code at each call reads the block's `+0x0C`, `+0x14` and `+0x18` and the
 member records, and `0x0035E5F0` writes from `+0x4A0` on.
 

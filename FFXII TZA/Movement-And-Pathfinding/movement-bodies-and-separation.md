@@ -250,6 +250,12 @@ displacement, `+0x80` cell class, `+0x82` cell (-2 refused), `+0x84` second cell
 `+0x8A` the attribute words, `+0x8E` the blocked mask, `+0x90` flags, `+0xAC` ground height, `+0xC0`
 second height, `+0xC8` requested speed.
 
+`0x00231A90` stores the second cell `+0x84` and the tint polygon `+0x8C`, the first kind-4 and the first kind-2 polygon
+of the cell's bucket that hold the position (`0x00231BC6`-`0x00231C4E`), and blends the tint polygon's vertex colours into
+the ground tint `+0x60` (`0x00231C5B`-`0x00231D7D`). The push `+0x70`: `0x00380C40` zeroes it before a move
+(`0x00380C64`-`0x00380C71`), the collision solvers `0x0022F9B0` and `0x002327D0` add each push (`0x0022FDE8`-`0x0022FE02`,
+`0x00232DC5`-`0x00232E0C`) and set flag bit `0x10`, and `0x00380C40` then makes it a unit vector (`0x00380800`, `0x00380CF4`).
+
 ### Registering every frame
 
 The movement step's driver (`0x002E5030`) calls `0x003DB020(body, x, z, 0, &radii)` when `0x002EA7F0`
