@@ -25,7 +25,7 @@ The play calls sit in `0x002DEE80`-`0x002DF530` and reach the audio manager thro
 | `0x002DF010` | id | as `0x002DEF40` with pan `0x40` and volume `0x7F` (`0x002DF02B`) |
 | `0x002DEE80` | handle | answers whether the sound with that handle still plays |
 | `0x002DF0F0` | handle, id | stops the sound with that handle on either side, or every block-bank sound for id -1 |
-| `0x002DF170`, `0x002DF190` | handle or id, frames | stops with a fade of `frames / 60` seconds |
+| `0x002DF170`, `0x002DF190` | handle or id, frames | stops with a fade of `frames / 60` seconds; 0 frames is passed on as 1 (`0x00210DBD`, `0x00210DCD`) |
 | `0x002DF150`, `0x002DF1A0` | handle, volume (, frames) | sets the volume, at once or over frames |
 | `0x002DEF20` | handle, pan | sets the pan |
 | `0x002DF280` | id, position, record | `0x002DEFA0` with bit `0x80000000` set: a block-bank sound placed at the position; 0 for id -1 |

@@ -125,6 +125,8 @@ While an event manager's skip mask is set (`0x00267310`), the music verbs play n
    `0x00360880` runs `0x00360710` for the first armed skip of each of managers 1-3 (`0x022CB9C4`).
 3. The skip-end stage `0x003608D0` starts the recorded track through `0x003614E0` with a 16-frame change, or only sets its
    volume when it already plays.
+4. `getnowmusicno` `0x0363` (`0x003549D0`) answers the recorded track `0x022CB9B0` (`0x003604C0`) while the skip mask is
+   set, and otherwise the current track `0x0215EF44` (`0x002DEBE0(-1)`, `0x003549FA`-`0x003549FD`).
 
 The record is three words that `0x00360960(track, section, resume)` stores (`0x00360960`-`0x00360971`). The skip-end stage
 reads the track and the resume flag (`0x003608D4`, `0x003608E7`, `0x003608F9`, `0x0036090F`), but no reader of the second word
