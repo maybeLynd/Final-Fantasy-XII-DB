@@ -52,7 +52,7 @@ picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053E
 | `arity`, `arity_status`, `net_or_sums` | the measured argument count; `CONFIRMED` equals the catalogue, `CONFLICT` differs from it, `DERIVED` has no catalogue value, `GUARDED` and `CONDITIONAL` take two values (`lo\|hi`) depending on the guard |
 | `result_body` | the result handler's control flow: `CONST`, `TAILJUMP`, `CALL1`, `LINEAR` (several calls, no branch) or `BRANCHING`; carried over from the earlier census, not re-measured for this table |
 | `reach` | the engine subsystems the callbacks call directly, with hit counts, ignoring helpers with more than twenty callers; carried over from the earlier call-graph map |
-| `us_calls` | calls of the verb in the 1,114 decompiled US scripts; a script function that shares a verb's name (`function mapjump(`) is not a call |
+| `us_calls` | calls of the verb in the 1,114 decompiled US scripts, under its name and under the `sys` spelling the listings give a special call form of the same command (`sysTurna(` is `turna`); a script function that shares a verb's name (`function mapjump(`) is not a call |
 
 ## Data
 
@@ -63,7 +63,7 @@ picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053E
 | names | 1,270 from the catalogue (54 of them `unkCall` placeholders), 671 from other sources, 19 without a name (the 19 `DERIVED-UNNAMED` rows) |
 | argument count | 1,229 confirmed against the catalogue, 653 derived, 34 guarded, 24 conditional, 19 derived without a name, 1 conflict |
 | the conflict | `unkCall_5c7` (`0x05C7`): the catalogue declares two arguments, the result is the `ret` stub and pops none |
-| verbs called in the US corpus | 1,135 of 1,960; 1,843,441 calls in all |
+| verbs called in the US corpus | 1,169 of 1,960; 1,850,846 calls in all |
 | most called | `setmapidfloor` 84,066; `wait` 83,795; `setmapidwall` 76,134; `nowmap` 63,695 |
 | `setforcefightmode` (`0x0334`) | 177 calls in 83 scripts, every one `setforcefightmode(0)` |
 | the four empty records | `setnorecovertelepostatus` `0x0330`, `battlemembersync` `0x0356`, `restartbattle` `0x03B0`, `debug_meswin_3e` `0x203E`; none is called in the corpus |

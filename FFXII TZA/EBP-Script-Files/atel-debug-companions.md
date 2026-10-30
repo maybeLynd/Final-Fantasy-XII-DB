@@ -104,6 +104,9 @@ native command `(k << 12) + i`.
 | `.dbg` global variables | 815, 4,950, 943, 4,953 |
 | `.dbg` command tables | class 0: 1,410 / 1,389 / 1,436 / 1,407; class 2: 207 / 203 / 211 / 207; class 3: 131 in all; class 7: 103 (none in `btlctrl`) |
 | command names | 7,297 of 7,303 match the shipped verb table; `0x20C8` and `0x20C9` are `debug_set_jfdemo_status` and `debug_get_jfdemo_status` in `ctrl`, `btlctrl` and `mapctrl` |
+| every message | one row each in [`atel-debug-companions-msb-rows.tsv`](atel-debug-companions-msb-rows.tsv), 194 rows: file, index, flag, offset, size and the bytes in hex |
+| every name | one row each in [`atel-debug-companions-dbg-rows.tsv`](atel-debug-companions-dbg-rows.tsv), 19,364 rows: file, table (source file, declared or global variable, command class), index, the global's descriptor or the command id, and the name |
+| every source line | one row each in [`atel-debug-companions-sbn-rows.tsv`](atel-debug-companions-sbn-rows.tsv), 10,139 rows: file, block, line and its text (tabs written `\t`) |
 
 ## Modding notes
 

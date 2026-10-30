@@ -67,16 +67,16 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 0041	0	041	rcmovea_41	other					0x00355BF0				begin	begin	0	0	0	0		2	DERIVED	2		Movement:1	0
 0042	0	042	rmove	catalogue	3	False	True	0x32,0x31,0x33	0x003488B0				begin	begin	0	0	1	0		3	CONFIRMED	3		Movement:2	5902
 0043	0	043	rmove_43	catalogue	4	False	False	0x30,0x30,0x30,0x30	0x003567D0				begin	begin	0	0	0	0		4	CONFIRMED	4		Movement:1	614
-0044	0	044	rmovea	catalogue	1	False	True	0x10	0x00349080				begin	begin	0	0	1	0		1	CONFIRMED	1		Movement:2	0
-0045	0	045	rmovea_45	catalogue	2	False	False	0x20,0x10	0x0033F190				begin	begin	0	0	0	0		2	CONFIRMED	2		Movement:1	0
+0044	0	044	rmovea	catalogue	1	False	True	0x10	0x00349080				begin	begin	0	0	1	0		1	CONFIRMED	1		Movement:2	46
+0045	0	045	rmovea_45	catalogue	2	False	False	0x20,0x10	0x0033F190				begin	begin	0	0	0	0		2	CONFIRMED	2		Movement:1	8
 0046	0	046	turnsync	catalogue	0	False	False			0x00341D50			poll							0	CONFIRMED	0		Movement:1	6610
 0047	0	047	rturn	other					0x0034B670				begin	begin	0	0	0	0	0x00263D00	3	CONDITIONAL	2|3			0
 0048	0	048	rturn_48	catalogue	1	False	False	0x20	0x00341AB0				begin	begin	0	1	0	0		1	CONFIRMED	1			2
-0049	0	049	rturna	catalogue	1	False	False	0x10	0x0034BE50				begin	begin	1	1	1	0		1	CONFIRMED	1			0
+0049	0	049	rturna	catalogue	1	False	False	0x10	0x0034BE50				begin	begin	1	1	1	0		1	CONFIRMED	1			4
 004A	0	04A	rturnt	catalogue	4	False	False	0x10,0x20,0x20,0x20	0x003425D0				begin	begin	1	0	0	0	0x00263D00	4	CONDITIONAL	3|4		Movement:1	4
 004B	0	04B	rturnt_4b	catalogue	2	False	False	0x10,0x20	0x0034D1B0				begin	begin	1	1	0	0		2	CONFIRMED	2		Movement:1	10
-004C	0	04C	rturnat	catalogue	2	False	False	0x10,0x10	0x0034D9B0				begin	begin	1	0	0	0		2	CONFIRMED	2		Movement:1	0
-004D	0	04D	dira	catalogue	1	False	True	0x10	0x0034E040				begin	begin	1	0	1	0		1	CONFIRMED	1		Movement:1	0
+004C	0	04C	rturnat	catalogue	2	False	False	0x10,0x10	0x0034D9B0				begin	begin	1	0	0	0		2	CONFIRMED	2		Movement:1	9
+004D	0	04D	dira	catalogue	1	False	True	0x10	0x0034E040				begin	begin	1	0	1	0		1	CONFIRMED	1		Movement:1	65
 004E	0	04E	dir_4e	catalogue	3	False	True	0x30,0x31,0x31	0x0034E360				begin	begin	1	0	1	0	0x00263D00	3	CONDITIONAL	2|3		Movement:1	107
 004F	0	04F	rturn_4f	catalogue	4	False	False	0x20,0x20,0x20,0x20	0x003439B0				begin	begin	0	1	0	0	0x00263D00	4	CONDITIONAL	3|4		Movement:1	4
 0050	0	050	rturn_50	catalogue	2	False	False	0x30,0x20	0x0034CD60				begin	begin	0	2	0	0		2	CONFIRMED	2		Movement:1	2
@@ -94,14 +94,14 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 005C	0	05C	cmovea_5c	other					0x00355BF0	0x00356A90			begin+poll	begin	0	0	0	0		2	DERIVED	2		Movement:1	0
 005D	0	05D	move	catalogue	3	False	True	0x31,0x31,0x31	0x003488B0	0x00356A90			begin+poll	begin	0	0	1	0		3	CONFIRMED	3		Movement:2	2116
 005E	0	05E	move_5e	catalogue	4	False	True	0x30,0x30,0x30,0x20	0x003567D0	0x00356A90			begin+poll	begin	0	0	0	0		4	CONFIRMED	4		Movement:1	370
-005F	0	05F	movea	catalogue	1	False	False	0x10	0x00349080	0x00356A90			begin+poll	begin	0	0	1	0		1	CONFIRMED	1		Movement:2	0
-0060	0	060	movea_60	catalogue	2	False	False	0x00,0x10	0x0033F190	0x00356A90			begin+poll	begin	0	0	0	0		2	CONFIRMED	2		Movement:1	0
+005F	0	05F	movea	catalogue	1	False	False	0x10	0x00349080	0x00356A90			begin+poll	begin	0	0	1	0		1	CONFIRMED	1		Movement:2	9
+0060	0	060	movea_60	catalogue	2	False	False	0x00,0x10	0x0033F190	0x00356A90			begin+poll	begin	0	0	0	0		2	CONFIRMED	2		Movement:1	3
 0061	0	061	turn	catalogue	3	False	False	0x30,0x30,0x30	0x0034B670	0x00341D50			begin+poll	begin	0	0	0	0	0x00263D00	3	CONDITIONAL	2|3		Movement:1	1799
 0062	0	062	turn_62	catalogue	1	False	True	0x30	0x00341AB0	0x00341D50			begin+poll	begin	0	1	0	0		1	CONFIRMED	1		Movement:1	3626
-0063	0	063	turna	catalogue	1	False	True	0x11	0x003420A0	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	0
+0063	0	063	turna	catalogue	1	False	True	0x11	0x003420A0	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	92
 0064	0	064	turnt	catalogue	4	False	False	0x10,0x30,0x30,0x30	0x003425D0	0x00341D50			begin+poll	begin	1	0	0	0	0x00263D00	4	CONDITIONAL	3|4		Movement:2	1040
 0065	0	065	turnt_65	catalogue	2	False	False	0x10,0x20	0x00342E40	0x00341D50			begin+poll	begin	0	0	0	0		2	CONFIRMED	2		Movement:1	16
-0066	0	066	turnat	catalogue	2	False	False	0x10,0x10	0x0034D9B0	0x00341D50			begin+poll	begin	1	0	0	0		2	CONFIRMED	2		Movement:2	0
+0066	0	066	turnat	catalogue	2	False	False	0x10,0x10	0x0034D9B0	0x00341D50			begin+poll	begin	1	0	0	0		2	CONFIRMED	2		Movement:2	17
 0067	0	067	turn_67	catalogue	4	False	False	0x20,0x10,0x20,0x10	0x003439B0	0x00341D50			begin+poll	begin	0	1	0	0	0x00263D00	4	CONDITIONAL	3|4		Movement:2	4
 0068	0	068	turn_68	other					0x00344720	0x00341D50			begin+poll	begin	0	0	0	0		2	DERIVED	2		Movement:1	0
 0069	0	069	suspendbattle	catalogue	0	False	False				0x00356970		result	result	0	0	0	0		0	CONFIRMED	0	CALL1		1490
@@ -169,7 +169,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 00A7	0	0A7	setheight	catalogue	1	False	False	0x20			0x0034D260		result	result	0	1	0	0		1	CONFIRMED	1	LINEAR	Movement:1	1001
 00A8	0	0A8	setunderheight	other							0x0034D6D0		result	result	0	1	0	0		1	DERIVED	1	CALL1		0
 00A9	0	0A9	playerstatus	other							0x0034DA30		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
-00AA	0	0AA	sysreq	catalogue	3	False	False	0x10,0x12,0x10			0x0034E5C0		result	result	3	0	0	0		3	CONFIRMED	3	LINEAR		0
+00AA	0	0AA	sysreq	catalogue	3	False	False	0x10,0x12,0x10			0x0034E5C0		result	result	3	0	0	0		3	CONFIRMED	3	LINEAR		75
 00AB	0	0AB	sysreqall	catalogue	2	False	False				0x0034F380		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR	ActorEntity:1	0
 00AC	0	0AC	setentrygroup	catalogue	1	False	False	0x12			0x0034FA70		result	result	1	0	0	0		1	CONFIRMED	1	LINEAR		27236
 00AD	0	0AD	getbganimeframe	other							0x0034FED0		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
@@ -216,7 +216,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 00D6	0	0D6	bindp2_d6	catalogue	2	False	False	0x30,0x10	0x0033FC60	0x00342330	0x00343760		begin+poll+result	begin	0	0	1	0		2	CONFIRMED	2	TAILJUMP		22
 00D7	0	0D7	bindh	catalogue	1	False	False	0x10	0x00344F00	0x00342330	0x00345A60		begin+poll+result	begin	1	0	0	0		1	CONFIRMED	1	BRANCHING		706
 00D8	0	0D8	bindhoff	catalogue	0	False	False				0x003460F0		result	result	0	0	0	0		0	CONFIRMED	0	BRANCHING		774
-00D9	0	0D9	attach	catalogue	2	False	False	0x10,0x10			0x0034A640		result	result	2	0	0	0		2	CONFIRMED	2	BRANCHING		0
+00D9	0	0D9	attach	catalogue	2	False	False	0x10,0x10			0x0034A640		result	result	2	0	0	0		2	CONFIRMED	2	BRANCHING		338
 00DA	0	0DA	attachoff	catalogue	0	False	True				0x0034AD60		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		266
 00DB	0	0DB	effectread	catalogue	1	False	False	0x10			0x0034BC90		result	result	1	0	3	0		1	CONFIRMED	1	LINEAR		4
 00DC	0	0DC	effectreadsync	catalogue	0	False	False		0x0034C290	0x0034D740			begin+poll	begin	1	0	1	0		0	CONFIRMED	0			1143
@@ -350,7 +350,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 015C	0	15C	setpartypos	catalogue	5	False	False	0x20,0x20,0x20,0x20,0x10			0x0034A940		result	result	1	4	0	0		5	CONFIRMED	5	BRANCHING	Movement:3	4
 015D	0	15D	entrysync	catalogue	0	False	False		0x0034AF50	0x0034B350			begin+poll	begin	0	0	0	0		0	CONFIRMED	0		ActorEntity:2	14
 015E	0	15E	isdead	catalogue	0	True	False				0x0034C0C0		result	result	0	0	0	1		0	CONFIRMED	0	LINEAR		21
-015F	0	15F	isdead_15f	catalogue	1	True	False	0x10			0x0034C500		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		0
+015F	0	15F	isdead_15f	catalogue	1	True	False	0x10			0x0034C500		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		17
 0160	0	160	setlod	catalogue	1	False	True	0x10			0x0034D170		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		2266
 0161	0	161	eventsoundtrans	catalogue	3	False	False	0x10,0x10,0x10			0x0034D470		result	result	3	0	0	0		3	CONFIRMED	3	LINEAR	Audio:1	12
 0162	0	162	eventsoundfadeout	catalogue	2	False	False	0x10,0x10			0x0034D970		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR	Audio:1	125
@@ -497,13 +497,13 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 01EF	0	1EF	setmpratio	other							0x00342500		result	result	2	0	1	0		1	DERIVED	1	LINEAR		0
 01F0	0	1F0	setcharbattlestatus	other							0x00346E60		result	result	2	0	0	0		2	DERIVED	2	LINEAR		0
 01F1	0	1F1	clearcharbattlestatus	other							0x003472A0		result	result	2	0	0	0		2	DERIVED	2	LINEAR		0
-01F2	0	1F2	gethp_1f2	catalogue	1	True	False	0x10			0x00348800		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		0
-01F3	0	1F3	getmaxhp_1f3	catalogue	1	True	False	0x10			0x0034B060		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		0
+01F2	0	1F2	gethp_1f2	catalogue	1	True	False	0x10			0x00348800		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		30
+01F3	0	1F3	getmaxhp_1f3	catalogue	1	True	False	0x10			0x0034B060		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		2
 01F4	0	1F4	gethpratio_1f4	other							0x0034B5D0		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
 01F5	0	1F5	getmp_1f5	other							0x0034BB80		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
 01F6	0	1F6	getmaxmp_1f6	other							0x0034C1D0		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
 01F7	0	1F7	getmpratio_1f7	other							0x0034C6A0		result	result	2	0	0	1		2	DERIVED	2	LINEAR		0
-01F8	0	1F8	sethp_1f8	catalogue	2	False	False	0x10,0x10			0x0034A110		result	result	3	0	1	0		2	CONFIRMED	2	LINEAR		0
+01F8	0	1F8	sethp_1f8	catalogue	2	False	False	0x10,0x10			0x0034A110		result	result	3	0	1	0		2	CONFIRMED	2	LINEAR		2
 01F9	0	1F9	sethpratio_1f9	other							0x0034A920		result	result	0	0	1	0		0	DERIVED	0	CALL1		0
 01FA	0	1FA	setmp_1fa	other							0x0034A4C0		result	result	3	0	1	0		2	DERIVED	2	LINEAR		0
 01FB	0	1FB	setmpratio_1fb	other							0x0034A920		result	result	0	0	1	0		0	DERIVED	0	CALL1		0
@@ -578,7 +578,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 0240	0	240	musicclearall	catalogue	0	False	False				0x0034BB00		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		206
 0241	0	241	effectsignal	other							0x0034D690		result	result	2	0	0	0		2	DERIVED	2	LINEAR		0
 0242	0	242	setloopstatusbyevent	catalogue	1	False	False	0x10			0x0034BFC0		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		12
-0243	0	243	turna_243	catalogue	2	False	False	0x20,0x10	0x00344050	0x00341D50			begin+poll	begin	0	1	0	0		2	CONFIRMED	2		Movement:2	0
+0243	0	243	turna_243	catalogue	2	False	False	0x20,0x10	0x00344050	0x00341D50			begin+poll	begin	0	1	0	0		2	CONFIRMED	2		Movement:2	12
 0244	0	244	rturna_244	other					0x00344050				begin	begin	0	1	0	0		2	DERIVED	2		Movement:1	0
 0245	0	245	getdefaultwalkspeed	catalogue	0	True	True				0x0034C7A0		result	result	0	0	0	1		0	CONFIRMED	0	CALL1		939
 0246	0	246	getdefaultrunspeed	catalogue	0	True	True				0x0034CB30		result	result	0	0	0	1		0	CONFIRMED	0	CALL1		811
@@ -592,24 +592,24 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 024E	0	24E	lookatt	catalogue	2	False	False	0x10,0x20	0x00343F90	0x003435C0			begin+poll	begin	1	1	0	0		2	CONFIRMED	2		Movement:3	116
 024F	0	24F	lookat_24f	catalogue	3	False	True	0x30,0x30,0x30	0x00340480	0x003435C0			begin+poll	begin	0	0	1	0	0x00263D00	3	CONDITIONAL	2|3			195
 0250	0	250	lookatt_250	catalogue	4	False	False	0x10,0x30,0x30,0x30	0x003544A0	0x003435C0			begin+poll	begin	0	0	0	0	0x00263D00	4	CONDITIONAL	3|4			37
-0251	0	251	lookata	catalogue	1	False	True	0x10	0x00348650	0x003435C0			begin+poll	begin	0	0	0	0		1	CONFIRMED	1			0
-0252	0	252	lookatat	catalogue	2	False	False	0x10,0x10	0x0034BD20	0x003435C0			begin+poll	begin	0	0	0	0		2	CONFIRMED	2			0
-0253	0	253	lookatab	catalogue	2	False	False	0x10,0x10	0x00349F10	0x003435C0			begin+poll	begin	0	0	1	0		2	CONFIRMED	2			0
+0251	0	251	lookata	catalogue	1	False	True	0x10	0x00348650	0x003435C0			begin+poll	begin	0	0	0	0		1	CONFIRMED	1			3001
+0252	0	252	lookatat	catalogue	2	False	False	0x10,0x10	0x0034BD20	0x003435C0			begin+poll	begin	0	0	0	0		2	CONFIRMED	2			190
+0253	0	253	lookatab	catalogue	2	False	False	0x10,0x10	0x00349F10	0x003435C0			begin+poll	begin	0	0	1	0		2	CONFIRMED	2			2
 0254	0	254	lookatabt	other					0x003551A0	0x003435C0			begin+poll	begin	0	0	0	0		3	DERIVED	3			0
 0255	0	255	rlookat	catalogue	1	False	False	0x20	0x00342040				begin	begin	0	0	1	0		1	CONFIRMED	1			3134
 0256	0	256	rlookatt	catalogue	2	False	False	0x10,0x10	0x00343F90				begin	begin	1	1	0	0		2	CONFIRMED	2		Movement:3	2
 0257	0	257	rlookat_257	catalogue	3	False	False	0x31,0x31,0x31	0x00340480				begin	begin	0	0	1	0	0x00263D00	3	CONDITIONAL	2|3			1562
 0258	0	258	rlookatt_258	catalogue	4	False	True	0x10,0x30,0x30,0x30	0x003544A0				begin	begin	0	0	0	0	0x00263D00	4	CONDITIONAL	3|4			125
-0259	0	259	rlookata	catalogue	1	False	True	0x10	0x00356AF0				begin	begin	0	0	2	0		1	CONFIRMED	1			0
-025A	0	25A	rlookatat	catalogue	2	False	True	0x10,0x10	0x003573C0				begin	begin	1	0	2	0		2	CONFIRMED	2			0
+0259	0	259	rlookata	catalogue	1	False	True	0x10	0x00356AF0				begin	begin	0	0	2	0		1	CONFIRMED	1			1029
+025A	0	25A	rlookatat	catalogue	2	False	True	0x10,0x10	0x003573C0				begin	begin	1	0	2	0		2	CONFIRMED	2			340
 025B	0	25B	rlookatab	other					0x00349F10				begin	begin	0	0	1	0		2	DERIVED	2			0
 025C	0	25C	rlookatabt	other					0x003551A0				begin	begin	0	0	0	0		3	DERIVED	3			0
 025D	0	25D	raturn	catalogue	3	False	True	0x30,0x30,0x30	0x0034FB40				begin	begin	0	0	0	0	0x00263D00	3	CONDITIONAL	2|3			5
 025E	0	25E	raturn_25e	catalogue	1	False	True	0x30	0x0034E710				begin	begin	0	1	0	0		1	CONFIRMED	1		Movement:3	15
-025F	0	25F	raturna	catalogue	1	False	True	0x10	0x0034EFE0				begin	begin	0	0	0	0		1	CONFIRMED	1		Movement:3	0
+025F	0	25F	raturna	catalogue	1	False	True	0x10	0x0034EFE0				begin	begin	0	0	0	0		1	CONFIRMED	1		Movement:3	1412
 0260	0	260	aturn	catalogue	3	False	True	0x30,0x31,0x31	0x0034FB40	0x00341D50			begin+poll	begin	0	0	0	0	0x00263D00	3	CONDITIONAL	2|3		Movement:1	382
 0261	0	261	aturn_261	catalogue	1	False	True	0x33	0x00350950	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	2124
-0262	0	262	aturna	catalogue	1	False	True	0x30	0x00351200	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	0
+0262	0	262	aturna	catalogue	1	False	True	0x30	0x00351200	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	643
 0263	0	263	setfocusmode	catalogue	1	False	False	0x30			0x00352020		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		1714
 0264	0	264	setfreetargetw	other							0x00352500		result	result	1	0	0	0		1	DERIVED	1	CALL1		0
 0265	0	265	setfreetargettype	catalogue	1	False	False	0x10			0x003528C0		result	result	1	0	0	0		1	CONFIRMED	1	LINEAR	ActorEntity:2	302
@@ -632,11 +632,11 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 0276	0	276	setfloaty	other							0x003419A0		result	result	0	1	0	0		1	DERIVED	1	CALL1	ActorEntity:1	0
 0277	0	277	lookat_277	catalogue	2	False	False	0x10,0x10	0x00350980	0x003435C0			begin+poll	begin	0	0	0	0		2	CONFIRMED	2			6
 0278	0	278	lookat_278	catalogue	4	False	False	0x20,0x20,0x20,0x10	0x00341390	0x003435C0			begin+poll	begin	0	0	0	0	0x00263D00	4	CONDITIONAL	3|4			4
-0279	0	279	lookata_279	catalogue	2	False	False	0x10,0x10	0x003492E0	0x003435C0			begin+poll	begin	0	0	0	0		2	CONFIRMED	2			0
+0279	0	279	lookata_279	catalogue	2	False	False	0x10,0x10	0x003492E0	0x003435C0			begin+poll	begin	0	0	0	0		2	CONFIRMED	2			2
 027A	0	27A	lookatab_27a	other					0x0034AEC0	0x003435C0			begin+poll	begin	0	0	0	0		3	DERIVED	3			0
 027B	0	27B	rlookat_27b	other					0x0034EB40				begin	begin	0	2	0	0		2	DERIVED	2		Movement:4	0
 027C	0	27C	rlookat_27c	catalogue	4	False	True	0x10,0x20,0x20,0x20	0x00341390				begin	begin	0	0	0	0	0x00263D00	4	CONDITIONAL	3|4			5
-027D	0	27D	rlookata_27d	catalogue	2	False	False	0x10,0x10	0x0033F770				begin	begin	1	0	2	0		2	CONFIRMED	2			0
+027D	0	27D	rlookata_27d	catalogue	2	False	False	0x10,0x10	0x0033F770				begin	begin	1	0	2	0		2	CONFIRMED	2			1
 027E	0	27E	rlookatab_27e	other					0x0034AEC0				begin	begin	0	0	0	0		3	DERIVED	3			0
 027F	0	27F	setlightallcutstatus	catalogue	1	False	False	0x10			0x00351850		result	result	1	0	0	0		1	CONFIRMED	1	LINEAR		2471
 0280	0	280	animeplaytiming	other							0x00354AD0		result	result	1	0	0	0		1	DERIVED	1	CALL1		0
@@ -726,7 +726,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 02D4	0	2D4	raturny	other					0x00350260				begin	begin	0	0	0	0	0x00263D00	3	CONDITIONAL	2|3			0
 02D5	0	2D5	raturnya	other					0x0034F4F0				begin	begin	0	0	0	0		1	DERIVED	1		Movement:3	0
 02D6	0	2D6	aturny	catalogue	2	False	False	0x20,0x31	0x00350260	0x00341D50			begin+poll	begin	0	0	0	0	0x00263D00	2	CONDITIONAL	2|3		Movement:1	143
-02D7	0	2D7	aturnya	catalogue	1	False	False	0x10	0x00351A30	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	0
+02D7	0	2D7	aturnya	catalogue	1	False	False	0x10	0x00351A30	0x00341D50			begin+poll	begin	0	0	0	0		1	CONFIRMED	1		Movement:1	1
 02D8	0	2D8	lookaty_2d8	other					0x00353330	0x003435C0			begin+poll	begin	0	0	0	0	0x00263D00	4	CONDITIONAL	3|4			0
 02D9	0	2D9	lookatya_2d9	other					0x003498C0	0x003435C0			begin+poll	begin	0	0	0	0		2	DERIVED	2			0
 02DA	0	2DA	lookatyab_2da	other					0x0034B450	0x003435C0			begin+poll	begin	0	0	0	0		3	DERIVED	3			0
@@ -907,7 +907,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 0389	0	389	settalkiconstatus	catalogue	1	False	False	0x10			0x0034AFE0		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		760
 038A	0	38A	setnpcname	catalogue	1	False	True	0x10			0x0034B9A0		result	result	1	0	0	0		1	CONFIRMED	1	BRANCHING		6220
 038B	0	38B	setnavimapdrawstatus	other							0x0034B400		result	result	1	0	0	0		1	DERIVED	1	CALL1		0
-038C	0	38C	sysreqwait	catalogue	2	False	False	0x10,0x12	0x0034C630	0x0034C9E0			begin+poll	begin	2	0	0	0		2	CONFIRMED	2		ActorEntity:1	0
+038C	0	38C	sysreqwait	catalogue	2	False	False	0x10,0x12	0x0034C630	0x0034C9E0			begin+poll	begin	2	0	0	0		2	CONFIRMED	2		ActorEntity:1	169
 038D	0	38D	sethpmode	other							0x00340640		result	result	2	0	0	0		2	DERIVED	2	LINEAR		0
 038E	0	38E	sethpratiomode	other							0x00340CB0		result	result	2	0	0	0		2	DERIVED	2	LINEAR		0
 038F	0	38F	setmpmode	other							0x00341140		result	result	2	0	0	0		2	DERIVED	2	LINEAR		0
@@ -999,7 +999,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 03E5	0	3E5	incentryid	catalogue	0	False	True				0x0034FE70		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		193
 03E6	0	3E6	hidecomplete	catalogue	0	False	True				0x00350320		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		1793
 03E7	0	3E7	clearhidecomplete	catalogue	0	False	True				0x003505F0		result	result	0	0	0	0		0	CONFIRMED	0	TAILJUMP		2839
-03E8	0	3E8	common2effectplay	catalogue	2	False	False	0x10,0x10			0x00353C50		result	result	0	0	1	0		2	CONFIRMED	2	CALL1		0
+03E8	0	3E8	common2effectplay	catalogue	2	False	False	0x10,0x10			0x00353C50		result	result	0	0	1	0		2	CONFIRMED	2	CALL1		324
 03E9	0	3E9	capturebattleid	catalogue	1	True	False	0x10			0x003509E0		result	result	1	0	1	2		1	CONFIRMED	1	BRANCHING	ActorEntity:2,Party:1	249
 03EA	0	3EA	denybonephysicalall_3ea	catalogue	2	False	False	0x10,0x10			0x0034C890		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR		1
 03EB	0	3EB	partyallread	catalogue	0	False	False		0x0034CCD0	0x0034E3E0	0x0034D460		begin+poll+result	begin	0	0	0	0		0	CONFIRMED	0	TAILJUMP		1045
@@ -1182,7 +1182,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 049C	0	49C	mesvgetfaceid	other							0x0034EAF0		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
 049D	0	49D	mesclosesync	other					0x003567F0	0x00351120			begin+poll	begin	1	0	0	0		1	DERIVED	1			0
 049E	0	49E	isdead2	catalogue	0	True	False				0x0034C8D0		result	result	0	0	0	1		0	CONFIRMED	0	LINEAR		76
-049F	0	49F	isdead2_49f	catalogue	1	True	False	0x10			0x0034CC60		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		0
+049F	0	49F	isdead2_49f	catalogue	1	True	False	0x10			0x0034CC60		result	result	1	0	0	1		1	CONFIRMED	1	LINEAR		658
 04A0	0	4A0	deny_char_camerashake	catalogue	1	False	False	0x10			0x003517C0		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		4
 04A1	0	4A1	deny_printf	catalogue	1	False	False	0x10			0x00510720		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		0
 04A2	0	4A2	setkutipakustatus_4a2	catalogue	2	False	True	0x30,0x10			0x00352B90		result	result	1	1	0	0		2	CONFIRMED	2	LINEAR		160
@@ -1191,7 +1191,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 04A5	0	4A5	ucon_4a5	other							0x00352000		result	result	1	0	0	0		1	DERIVED	1	LINEAR	ActorEntity:1	0
 04A6	0	4A6	ucoff_4a6	other							0x00352560		result	result	1	0	0	0		1	DERIVED	1	LINEAR	Movement:1	0
 04A7	0	4A7	freqcancel	catalogue	1	False	True	0x10			0x00352980		result	result	1	0	0	0		1	CONFIRMED	1	LINEAR	ActorEntity:2	82
-04A8	0	4A8	freqcancel_4a8	catalogue	2	False	False	0x10,0x10			0x00353660		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR	ActorEntity:2	0
+04A8	0	4A8	freqcancel_4a8	catalogue	2	False	False	0x10,0x10			0x00353660		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR	ActorEntity:2	2
 04A9	0	4A9	setshopname	catalogue	1	False	False	0x10			0x0034C170		result	result	2	0	1	0		1	CONFIRMED	1	BRANCHING		127
 04AA	0	4AA	atrac3standby	other							0x00353FC0		result	result	2	0	1	1		1	DERIVED	1	LINEAR		0
 04AB	0	4AB	atrac3standbysync	catalogue	0	False	False			0x005C5230			stub							0	CONFIRMED	0			0
@@ -1235,7 +1235,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 04D1	0	4D1	ramovea_4d1	other					0x0034A290				begin	begin	0	0	0	0		2	DERIVED	2		Movement:1	0
 04D2	0	4D2	amove	catalogue	3	False	True	0x30,0x30,0x30	0x0033F850	0x00356A90			begin+poll	begin	0	0	0	0		3	CONFIRMED	3		Movement:1	9
 04D3	0	4D3	amove_4d3	catalogue	4	False	False	0x20,0x30,0x20,0x20	0x0033FFC0	0x00356A90			begin+poll	begin	0	0	0	0		4	CONFIRMED	4		Movement:1	13
-04D4	0	4D4	amovea	catalogue	1	False	False	0x10	0x00340520	0x00356A90			begin+poll	begin	0	0	0	0		1	CONFIRMED	1			0
+04D4	0	4D4	amovea	catalogue	1	False	False	0x10	0x00340520	0x00356A90			begin+poll	begin	0	0	0	0		1	CONFIRMED	1			2
 04D5	0	4D5	amovea_4d5	other					0x0034A290	0x00356A90			begin+poll	begin	0	0	0	0		2	DERIVED	2		Movement:1	0
 04D6	0	4D6	istimestop	other							0x00357380		result	result	0	0	0	1		0	DERIVED	0	CALL1		0
 04D7	0	4D7	istimestop_4d7	other							0x0033F1B0		result	result	1	0	0	1		1	DERIVED	1	LINEAR		0
@@ -1326,8 +1326,8 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 052C	0	52C	ucmovesync_52c	other					0x00345F60	0x003465D0			begin+poll	begin	1	0	0	0		1	DERIVED	1			0
 052D	0	52D	ucmovecancel_52d	catalogue	1	False	False	0x10			0x00344290		result	result	1	0	0	0		1	CONFIRMED	1	BRANCHING	Movement:1	128
 052E	0	52E	setbattlethinkstatus_52e	other							0x0034E530		result	result	2	0	0	0		2	DERIVED	2	LINEAR	ActorEntity:1	0
-052F	0	52F	checkdistance3d	catalogue	2	True	False	0x20,0x10			0x00350DD0		result	result	1	1	0	1		2	CONFIRMED	2	BRANCHING		0
-0530	0	530	checkdistance	catalogue	2	True	False	0x30,0x10			0x003516E0		result	result	1	1	0	1		2	CONFIRMED	2	BRANCHING		0
+052F	0	52F	checkdistance3d	catalogue	2	True	False	0x20,0x10			0x00350DD0		result	result	1	1	0	1		2	CONFIRMED	2	BRANCHING		369
+0530	0	530	checkdistance	catalogue	2	True	False	0x30,0x10			0x003516E0		result	result	1	1	0	1		2	CONFIRMED	2	BRANCHING		5
 0531	0	531	checkdistance3d_531	catalogue	4	True	False	0x20,0x30,0x30,0x30			0x00352580		result	result	0	4	0	1		4	CONFIRMED	4	BRANCHING		471
 0532	0	532	checkdistance_532	other							0x003530F0		result	result	0	3	0	1		3	DERIVED	3	BRANCHING		0
 0533	0	533	waitdistance3d	other					0x003536B0	0x00353AC0			begin+poll	begin	0	4	0	0		4	DERIVED	4			0
@@ -1396,7 +1396,7 @@ call_id	family	command	verb	name_source	cat_args	cat_ret	cat_act	param_types	beg
 0572	0	572	summongethertarget_one	catalogue	1	False	False	0x10			0x003410A0		result	result	0	1	0	0		1	CONFIRMED	1	CALL1	Movement:1	1
 0573	0	573	party_motionsync_and_relax	catalogue	0	False	False		0x00342910	0x00342EC0			begin+poll	begin	0	0	0	0		0	CONFIRMED	0			370
 0574	0	574	freqcancel2	catalogue	1	False	True	0x10			0x00352980		result	result	1	0	0	0		1	CONFIRMED	1	LINEAR	ActorEntity:2	2
-0575	0	575	freqcancel2_575	catalogue	2	False	False	0x10,0x10			0x00353660		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR	ActorEntity:2	0
+0575	0	575	freqcancel2_575	catalogue	2	False	False	0x10,0x10			0x00353660		result	result	2	0	0	0		2	CONFIRMED	2	LINEAR	ActorEntity:2	56
 0576	0	576	fadeout_check_nextmap	other							0x00343710		result	result	1	0	0	0		1	DERIVED	1	BRANCHING	Audio:1	0
 0577	0	577	musicfadeoutall	catalogue	1	False	False	0x10	0x00343C60				begin	begin	1	0	0	0		1	CONFIRMED	1		Audio:1	0
 0578	0	578	set_title_flag	catalogue	1	False	False	0x10			0x003440C0		result	result	1	0	0	0		1	CONFIRMED	1	CALL1		1

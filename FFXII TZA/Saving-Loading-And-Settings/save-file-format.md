@@ -14,8 +14,8 @@ disk because the game compresses and encrypts a much larger image before writing
   play time, the gil and the area) and everything else that persists.
 - The game keeps that image in memory while you play and copies it when you save.
 - Loading checks a few stamps. An image whose battle-state stamp does not match is not partly
-  accepted but rebuilt from scratch; a save written by an older build with a smaller battle block
-  loads with its party records migrated.
+  accepted but rebuilt from scratch. A block that passes is read at this build's layout, and only
+  the members' gambit banks are rebuilt from it.
 
 ## Where it comes from
 
@@ -195,11 +195,13 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
    - On any difference the 40 members' gambit banks are rebuilt (`0x00235B83`-`0x00235D7E`): three `0x34`-byte banks
      per member at block `+0x5B10 + k × 0x9C` ([gambits](../Enemy-AI-And-Gambits/gambits.md)).
      - The selected bank `+0x7370 + 4k` is set to 0.
-     - Bank 0 is copied from the member record's older gambit block (block `+0x90 + k × 0x1C8`, `0x34` bytes).
+     - Bank 0 is copied from the selected bank the member record keeps (block `+0x90 + k × 0x1C8`, `0x34`
+       bytes), which `0x00234ED0` stores there before each capture ([save data fields](save-data-fields.md)).
      - Banks 1 and 2 are filled from the gambit preset the member's party table row names (word `+0x14` of
        `[0x02EBF130]`, a row of `[0x02EBF0E0]` at id `0x5000` + row). Each filled slot's bit is set in the bank's
        `+0x30`, and byte `+0x32` is taken from the record's `+0xBA`.
-   - `0x002EF4A0` first copies `0xC00` bytes from `0x02166480` to `0x021B290C`.
+   - `0x002EF4A0` first copies `0x6000` bytes from `0x02166480` to `0x021B290C`, `0xC0` passes of `0x80` bytes
+     (`0x002EF4A7`, `0x002EF500`).
 3. `0x00233C10`: with no block bound, it binds `0x02EBF190` to the active image `+0x4E68C`, rebases the
    inventory descriptors (`0x0030B6A0`) and runs the battle reset `0x00237DF0` twice (`0x00233C3F`,
    `0x00233C48`). With a block, the first dword must equal `0x05071901` (`0x00233C4D`); otherwise
@@ -247,8 +249,9 @@ for 04 to 06 and 15, 22,016 for 07 to 14), and give those ids no path in this bu
   getter's value, not from the header). `+0x60` is compared only inside the battle block at image
   `+0x4E68C`, and a mismatch there rebuilds the block.
 - The checksum is not verified on load, so an edited image needs no checksum fix.
-- The image size is this build's: the reader honours `+0x04`, and the party-record migration in
-  `0x00235AF0` is what accepts an older block layout.
+- The image size is this build's: the reader honours `+0x04`. `0x00235AF0` rebuilds only the gambit
+  banks and reads the 40 member records at this build's `0x1C8`-byte stride (`0x00235D67`), so a block
+  with shorter records is read further off for each later member.
 
 ## Related
 

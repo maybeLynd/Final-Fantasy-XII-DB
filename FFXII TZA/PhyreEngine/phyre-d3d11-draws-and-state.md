@@ -84,16 +84,20 @@ The context keeps the pending state descriptions in its own body, with dirty bit
 
 A material keeps its parameter values in one buffer whose first `u32` is its size. `0x0018D240(effect
 variant, name)` finds a parameter record (`0x18` bytes) by name; the record's byte `+0x02` is its type,
-`+0x10` its offset in the buffer and the low 13 bits of `+0x12` its size. Three setters copy a value
+`+0x10` its offset in the buffer and the low 13 bits of `+0x12` its size. These setters copy a value
 in:
 
 - `0x0060E7A0(buffer, record, value)` takes any type;
 - `0x0060E5A0` only type `0x44` and `0x001B81B0` only types `0x12`, `0x16`, `0x42` and `0xD9`–`0xDC`,
-  returning 5 for any other.
+  returning 5 for any other;
+- `0x0065CC90` only type `0x43`, `0x0065CB90` only `0x4D` and `0x0065CC10` only `0x4E`, returning 5 for any other
+  (`0x0065CCAE`, `0x0065CBA0`, `0x0065CC20`).
 
 Each returns 1 for a null value and 3 when the offset is below 4 or the value would run past the
 buffer's size. `0x005FD5F0` returns true for a record of type `0x12`–`0x16`, `0x42`–`0x44`,
-`0x48`–`0x4E`, `0x90`, `0x91`, `0xD9`–`0xDC` or `0xDE`–`0xE2`.
+`0x48`–`0x4E`, `0x90`, `0x91`, `0xD9`–`0xDC` or `0xDE`–`0xE2`. `0x00194540` sets a sampler without a type check:
+it builds a `0x18`-byte record of type `0x47` holding the sampler on the stack (`0x0019455F`, `0x0019456F`) and
+copies it under the same bound, returning 3 past it (`0x0019457C`, `0x00194586`, `0x0019459D`).
 
 `0x00600120(effectVariant, pool)` creates a material for an effect variant: a `PParameterBuffer`
 (class `0x02CB7480`) of the variant's buffer size (`u16 +0x60`), zeroed, with the size in its first
@@ -106,7 +110,7 @@ holding the variant and that buffer.
 gives a model instance materials of its own, calls it after copying each parameter's value into the
 new buffer.
 
-A shader program's constant buffer is created on first use by `0x0061F650`: when the record has no
+A stage program's constant buffer is created on first use by `0x0061F650`: when the record has no
 buffer and a non-zero size at `+0x28` it calls the device's `CreateBuffer` (`+0x18`) with that size,
 default usage and bind flag 4 (constant buffer), passes the name `PShaderProgramConstantBuffer` to
 `0x0061C550`, and sizes a main-memory copy at `+0x08` (`0x0067B100`). A failed creation returns 5.
@@ -168,7 +172,9 @@ function `0x00186610` jumps to `0x0062EBC0` on the queue, and then advances the 
 
 ### Shader objects
 
-A shader program holds four shaders, vertex, pixel, geometry and compute. Each shader keeps its
+A shader pass (`PShaderPassD3D11`) holds four stage programs at `+0x00`–`+0x18`, vertex, pixel, geometry and
+compute (`PShaderVertexProgramD3D11`, `PShaderFragmentProgramD3D11`, `PShaderGeometryProgramD3D11`,
+`PShaderComputeProgramD3D11`). Each stage program keeps its
 bytecode as an array at `+0x18`/`+0x20`, a profile word at `+0x70` and its Direct3D shader, which
 is created on first use:
 
@@ -188,16 +194,17 @@ with `0x0061E0B0`: one `D3D11_INPUT_ELEMENT_DESC` per named input of the `0x20`-
 
 ### Switching passes
 
-`0x00608DD0(tracker, pass)` makes a pass current. The pass names its shader program at `+0x28` and
+`0x00608DD0(tracker, pass)` makes a pass current. The pass names its shader pass (`PShaderPassD3D11`) at `+0x28` and
 four parameter blocks at `+0x38`–`+0x50`:
 
-1. With no current pass it takes the new one whole. With the same program it marks only the
-   parameter blocks that differ, bits `0x1`, `0x2`, `0x4` and `0x8` for blocks 0–3; with another program all four.
+1. With no current pass it takes the new one whole. With the same shader pass it marks only the
+   parameter blocks that differ, bits `0x1`, `0x2`, `0x4` and `0x8` for blocks 0–3; with another shader pass all
+   four.
 2. `0x0060B860` unbinds the old pass's marked blocks through `0x00627160`, which hands each stage's
    resource records for that block to `0x006272C0` to clear their pending slots.
-3. When the program changes it also clears the old one (`0x00627140`) and binds the new one:
-   `0x00629AA0` creates the four shaders as needed and sets each through a one-entry cache
-   (`0x01F2DE98`, `0x01F2DEA8`, `0x01F2DEB8`, `0x01F2DEC8`); `0x00629C70` builds the program's pass state at
+3. When the shader pass changes it also clears the old one (`0x00627140`) and binds the new one:
+   `0x00629AA0` creates the four stage programs' Direct3D shaders as needed and sets each through a one-entry cache
+   (`0x01F2DE98`, `0x01F2DEA8`, `0x01F2DEB8`, `0x01F2DEC8`); `0x00629C70` builds the shader pass's state at
    `+0x30` (`0x0061DE20`) and applies it with `0x0061D260`.
 4. `0x0060EC80` binds the marked blocks of the new pass: `0x00629970` writes the value parameters
    (`0x00628B40`) and `0x00629CD0` the resource parameters (`0x0062A0A0`), stage by stage; block 3 also
@@ -205,9 +212,9 @@ four parameter blocks at `+0x38`–`+0x50`:
 5. `0x00623180` applies the shaders, and the pass becomes current.
 
 To drop the current pass, `0x005DE1D0` calls `0x0060B750`, which unbinds all four of its blocks and
-clears the program (`0x00627140`), and then clears the tracker's pass.
+clears the shader pass (`0x00627140`), and then clears the tracker's pass.
 
-`0x005C5230`, called before each block in step 2 and when the program changes, returns 0 and does
+`0x005C5230`, called before each block in step 2 and when the shader pass changes, returns 0 and does
 nothing.
 
 `0x0061D260`
@@ -222,7 +229,7 @@ byte at `+0x20` of a pass state and sets dirty bit `0x1`.
 
 Each shader stage has a `0x9B0`-byte cache of what is bound and what is pending (layout below):
 vertex `0x02CEDA20`, pixel `0x02CEE3D0`, geometry `0x02CEED80`, compute `0x02CEF730`, hull
-`0x02CF00E0` and domain `0x02CF0A90`. A program keeps, per stage and per parameter block, a run of 16-byte
+`0x02CF00E0` and domain `0x02CF0A90`. A shader pass keeps, per stage and per parameter block, a run of 16-byte
 parameter records: start and count as `u16` at `+0x1C0`/`+0x1C8` (value parameters) and
 `+0x240`/`+0x248` (resource parameters), `0x20` apart per stage, with the record arrays at `+0x1D8`
 and `+0x258`.

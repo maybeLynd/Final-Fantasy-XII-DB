@@ -141,6 +141,12 @@ moved to slot 1 by `0x0025ABA0` and the wind class is read from slot 1's entry.
 
 ### The environment variant in map_ref.bin
 
+The map_ref loader `0x00268750` files two reads of resource kind 9: file 4, `map_ref.bin`, into a block
+tagged `MapRef` with the completion `0x002678A0` (`0x00268803`); then file 2, `in/common/test_area_ref.bin` (the
+`ch` copy for Korean and the two Chinese languages; 642 bytes, the two identical), into a block from `0x00267930`
+with no completion (`0x00268838`). That block's pointer goes to `0x02099D98` (`0x00268829`, cleared at `0x00268772`),
+and no instruction reads `0x02099D98` by its address.
+
 `map_ref.bin` is bound at `0x02099D88`; `0x02099D90` is the address of its `+0x14` table, which the load completion
 `0x002678A0` sets, so it also serves as the loaded test (both tested at
 `0x0026D98F`, `0x0026D9CC` and by `0x00264F10`). The field's row is at `header[+4] + field * 8`; its first

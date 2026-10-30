@@ -139,8 +139,7 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 | `+0x0070` | 32 | `u8[32]`, class 7 | `0x002527B0`, `0x00252610` | `0x002526F0` |
 | `+0x0090` | 404 | `u32[101]`, class 8, index clamped to 100 | `0x002527B0`, `0x00252610` | `0x002526F0` |
 | `+0x0224` | 12320 | navigation-map exploration bitmaps: 385 entries of 32 bytes, indexed by `0x003779F0(field)` ([area flags page](../World-Areas-And-Travel/area-flags-navimapdata.md)) | `0x003C60F0`, `0x003C8670`, `0x003C5E50` copy the live block `0x02B45978` in | `0x002551B0` |
-| `+0x3244` | 1 | inventory category bits 1-8, set when a category's derived list is non-empty | `0x00252D40` from `0x002CD650` | `0x00252D10` |
-| `+0x3245` | 1 | a flag byte whose bit `0x1` `0x00253480` clears after each `0x00253240` | `0x00253480` | |
+| `+0x3244` | 128 | a bit set indexed by a `u16`, entry n at bit value `1 << (n & 7)` of byte n >> 3 (`0x00252D40`). Entries 1-8 are the inventory category bits, set when a category's derived list is non-empty (`0x002CD650`) and cleared together by `0x00253480` after it runs `0x00253240` for lists 0-11 (`0x002534AA`, `0x002534B1`); `0x002CD510` sets 13 entries between 42 and 58 (`0x002CD519`-`0x002CD635`) | `0x00252D40`; zeroed by `0x00253A80` (`0x00253B47`-`0x00253B56`) | `0x00252D10` |
 | `+0x32C4` | 8 | a bit set indexed by a `u16` | `0x00254E00` | `0x00254DD0` |
 | `+0x32CC` | 62 | Clan Primer family A bits for tabs 0-4 (bases at `0x00D10630`, counts at `0x00D10640`) | `0x00315910` | `0x003154B0` |
 | `+0x330C` | 62 | Clan Primer family B bits for tabs 0-4 | `0x00315B50` | |
@@ -247,8 +246,8 @@ the save layer itself does to it:
   clears the low three bits of the 128 bytes at `+0x59C8`.
 - Before a capture, `0x00234ED0` (called by `0x00229B40` at `0x00229B71` and by `0x005844A0` at `0x00584510`)
   copies each of the 40 members' selected gambit bank, `+0x5B10 + (3k + [+0x7370 + 4k]) * 0x34`, to
-  `+0x90 + k * 0x1C8`. That is where the older block layout keeps it, and where `0x00235AF0` reads it
-  from when it migrates an older block on load.
+  `+0x90 + k * 0x1C8`. On load, when the saved block differs from the live one, `0x00235AF0` copies it
+  back as the member's bank 0 and sets the selected bank to 0 ([save file format](save-file-format.md)).
 - Bits `0x1000` (Trial Mode stash), `0x2000` (New Game+) and `0x4000` (New Game-) of the flag dword at `+0x04`
   are read by `0x00236760`, `0x00236740` and `0x00236780` and copied into the header's `+0x57` bits `0x1`, `0x2` and
   `0x4` by `0x00583D60` ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).

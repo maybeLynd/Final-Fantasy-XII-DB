@@ -380,6 +380,18 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x04` | `u32` | m_textureBufferIndex | m_textureBufferIndex (u32), registered by `0x005E9350` (`0x00632960` at `0x005E94CA`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferTextureBase |
 
+The per-draw block builder `0x00602A40` fills one record per capture-buffer entry and supplies a default for an empty
+reference. It loads three defaults before the loop: the default 2D texture `0x02CBBE00` (`0x00602AB9`), the default
+object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`0x00602ADB`).
+
+- A `PShaderParameterCaptureBufferTexture2D` record with a null `m_texture` (`+0x10`) receives `0x02CBBE00`
+  (`0x00602B7F`).
+- A `PShaderParameterCaptureBufferTextureCubeMap` record with a null `m_texture` receives `0x02CBC018` (`0x00602B99`).
+- Otherwise both read the texture's `+0x0C` (`0x00602B77`, `0x00602B91`), which the builder stores into
+  `m_textureBufferIndex` (`0x00602CA3`).
+- A `PShaderParameterCaptureBufferSampler` record with a null `m_samplerState` (`+0x08`) receives `0x02CBC368`
+  (`0x00602BA2`, `0x00602BAC`).
+
 `PShaderPassInfo` (`0x30` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
