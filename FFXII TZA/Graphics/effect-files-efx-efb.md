@@ -447,7 +447,8 @@ instance that manager started. The skip paths `0x00360710` and `0x00360A50` call
   one instance's state `+0x370` is neither 0 nor 3, else 3 when one is in state 0 and 4 when all
   are in state 3. `0x00473620` turns that into 1 for 2 and 0 otherwise, for `bgeffectstatus`
   (`0x00343050`) and `bgeffectsync`.
-- `bgeffecttrigger` (`0x003438A0`) calls `0x00270150(channel, n)`, which for `n` of 1 to 10 signals
+- `bgeffecttrigger` (`0x003438A0`) calls `0x00270150(channel, n)` through the one-jump stub `0x00473610`, which for `n` of
+  1 to 10 signals
   every instance of the channel (`0x0024FE70`, with arena 8 selected) and puts `n` in the low nibble
   of the word `+0x378` of each one the signal reached.
 

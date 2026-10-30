@@ -1,0 +1,3 @@
+script	kind	place	actors	functions	rows	shared_actors
+tst_a01	zone	field 0, whose zone-script entry names plan_work/us tst_a01, which does not ship	5	5	0	0
+tst_j01	zone	field 9, which has no zone-script entry	5	6	0	0

@@ -159,18 +159,19 @@ Some actors run another actor's code: `NPC02` in `dst_a05` starts at the same pl
 functions. Such an actor has one `same code` row naming the actor whose steps it runs. There are 48 of these rows: 1
 in `dst_a05`, 13 in `dst_a07`, 15 in `dst_b01` and 19 in `dst_b02`.
 
-The `resolution` column says how far each step is known:
+The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
 | `resolved` | 45,749 |
-| what was searched, when no page yet gives what the arguments name | 742 |
+| empty | 742 |
 | `does not ship`, with the fact | 9 |
 
 The nine `does not ship` rows are `motionread` calls: five in `dst_a06`, whose motion file `dst_a06.mot` is not in the
-archive, and four that read entry 1 of `dst_a07.mot` (three) or of `dst_b02.mot` (one), an empty entry. When no page
-yet gives what a step's arguments name, the cell says what was searched, for example the standard motion table that
-`stdmotionplay` reads, or a verb that no page describes yet.
+archive, and four that read entry 1 of `dst_a07.mot` (three) or of `dst_b02.mot` (one), an empty entry. A row whose
+`resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the script writes
+them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for the step, for
+example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `dst_a0180` (event `122`), `監督.main` files
 `乗っ取り00.cut01_ready` and `イベントトマト.cut01_ready`, and waits for both. It then starts the camera actor's `cut01` and the
@@ -227,7 +228,7 @@ The steps table [`dalmasca-estersand-script-steps.tsv`](dalmasca-estersand-scrip
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
-| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
 | `source` | the page or table that gives the meaning, or the function whose body was read |
 
 The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`

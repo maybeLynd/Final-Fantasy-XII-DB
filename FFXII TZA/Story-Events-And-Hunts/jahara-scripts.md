@@ -129,17 +129,19 @@ functions has a single `shared template` row naming the template; Jahara has 49 
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it
 runs; this table has none.
 
-The `resolution` column says how far each step is known:
+The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
 | `resolved` | 17,255 |
-| what was searched, when no page yet gives what the arguments name | 849 |
+| empty | 849 |
 | `does not ship`, with the fact | 1 |
 
-The one `does not ship` row is a `motionread` call in `glf_a01` that reads entry 3 of `glf_a01.mot`, an empty entry.
-When no page yet gives what a step's arguments name, the cell says what was searched, for example the standard motion
-table that `stdmotionplay` reads, or a verb that no page describes yet.
+The one `does not ship` row is a `motionread` call in `glf_a01` that reads entry 3 of `glf_a01.mot`, an empty entry. A
+row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the script
+writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for the
+step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
+otherwise.
 
 A scene reads from top to bottom in its functions. In `glf_a0200` (event `327`), `DIRECTOR.EV_a0313` shows the guest
 message. When `file_var_s1_1` equals `skipcheck(0)`, it stores 75 and files `イベント特殊効果画面_EV.システムメッセージ表示_FADE付`, waiting
@@ -196,7 +198,7 @@ The steps table [`jahara-script-steps.tsv`](jahara-script-steps.tsv) has one row
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
-| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
 | `source` | the page or table that gives the meaning, or the function whose body was read |
 
 The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`

@@ -22,8 +22,15 @@ scripts share. Its functions are described once on [Shared zone-script actors](s
 no rows here; the Shared helpers column counts it.
 
 The Air Deck has two maps, fields `126` and `1150`. Two more zone scripts ship under `plan_map/asp_b`, `asp_b01` and
-`asp_b02`; the zone-script list has no field entry that names them, so the decoder does not read them and they have no
-rows here.
+`asp_b02`; the zone-script list has no field entry that names them, so they have no rows here; their steps are in the
+steps table.
+
+- `asp_b01` holds one actor, `Map_Director`, whose `init` returns at once, and the map exit arrays of a map with no
+  script; it belongs by its area `asp_b` to field `1148`, which has no map name and no zone-script entry, and no
+  `mapjump` of the `us` scripts reaches field `1148`, by a literal field or by a value stored for a jump.
+- `asp_b02` holds the same single `Map_Director` actor whose `init` returns at once; it belongs to field `1149`, which
+  has no map name and no zone-script entry, and no `mapjump` of the `us` scripts reaches field `1149`, by a literal
+  field or by a value stored for a jump.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
 items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
@@ -106,9 +113,9 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 
 ### Every step
 
-The steps table [`skyferry-script-steps.tsv`](skyferry-script-steps.tsv) has one row for each step of every function
-of the four scripts, in the order the function runs them: each call, request, store, branch, loop, case and return. It
-has 24,775 rows.
+The steps table [`skyferry-script-steps.tsv`](skyferry-script-steps.tsv) has one row for each step of every function of
+the six scripts, in the order the function runs them: each call, request, store, branch, loop, case and return. It has
+24,777 rows.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
@@ -117,8 +124,11 @@ the functions it starts on other actors.
 
 | Script | Steps | Script | Steps |
 |---|---:|---|---:|
-| `asp_a01` | 8,860 | `asp_a03` | 5,798 |
-| `asp_a02` | 9,114 | `asp_b03` | 1,003 |
+| `asp_a01` | 8,860 | `asp_b03` | 1,003 |
+| `asp_a02` | 9,114 | `asp_b01` | 1 |
+| `asp_a03` | 5,798 | `asp_b02` | 1 |
+
+`asp_b01` and `asp_b02`, which no field loads, have one step each: the `return` of `Map_Director.init`.
 
 The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
 (1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
@@ -128,15 +138,17 @@ functions has a single `shared template` row naming the template; Skyferry has 1
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it
 runs; this table has none.
 
-The `resolution` column says how far each step is known:
+The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 22,516 |
-| what was searched, when no page yet gives what the arguments name | 2,259 |
+| `resolved` | 22,518 |
+| empty | 2,259 |
 
-When no page yet gives what a step's arguments name, the cell says what was searched, for example the standard motion
-table that `stdmotionplay` reads, or a verb that no page describes yet.
+A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
+script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
+the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
+otherwise.
 
 A function reads from top to bottom. In `asp_a01` (Observation Parlour), `客呼び出し.for_alc` tests `global_var_2`. When it
 is 0, the function files `AD.メインキャラモデル読込` and waits until it ends, reads motion 1 of `asp_a01.mot`, and re-points
@@ -193,7 +205,7 @@ The steps table [`skyferry-script-steps.tsv`](skyferry-script-steps.tsv) has one
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
-| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
 | `source` | the page or table that gives the meaning, or the function whose body was read |
 
 The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`

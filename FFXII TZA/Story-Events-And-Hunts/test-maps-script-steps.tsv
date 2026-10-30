@@ -1,0 +1,36 @@
+script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
+tst_a01	setup	init	1	0x00343	19	-	sysReqall	1, reqArr0	-	-	-	files each pair of 1, reqArr0 on channel 1; does not wait	-		01 ../Scripts-And-Script-Commands/script-requests.md
+tst_a01	setup	init	2	0x00349	20	-	sysReqall	0, reqArr1	-	-	-	files each pair of 0, reqArr1 on channel 0; does not wait	-		01 ../Scripts-And-Script-Commands/script-requests.md
+tst_a01	setup	init	3	0x0034C	21	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC00	init	1	0x00350	36	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_a01	PC00	init	2	0x0035C	37	-	setpos	1.96930301, 0.000113000002, 2.5865109	this actor, placed at (1.96930301, 0.000113000002, 2.5865109)	-	-	-	-	resolved	0x0034EBC0 (read here)
+tst_a01	PC00	init	3	0x00365	38	-	sysDVAR	0, local_var_s1f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC00	init	4	0x0036C	39	-	sysDVAR	1, local_var_s1f0_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC00	init	5	0x00370	40	-	getequipitemid	1	result stored in local_var_s1f0_2	-	-	-	-		01 verb-table.tsv
+tst_a01	PC00	init	6	0x00379	41	-	getequipitemid	0	result stored in local_var_s1f0_1	-	-	-	-		01 verb-table.tsv
+tst_a01	PC00	init	7	0x0037F	42	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC01	init	1	0x00383	51	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_a01	PC01	init	2	0x0038F	52	-	setpos	0, 0, 1	this actor, placed at (0, 0, 1)	-	-	-	-	resolved	0x0034EBC0 (read here)
+tst_a01	PC01	init	3	0x00392	53	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC02	init	1	0x00396	62	-	setupbattle	2	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_a01	PC02	init	2	0x003A2	63	-	setpos	0, 0, 2	this actor, placed at (0, 0, 2)	-	-	-	-	resolved	0x0034EBC0 (read here)
+tst_a01	PC02	init	3	0x003A5	64	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC03	init	1	0x003A9	73	-	setupbattle	3	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_a01	PC03	init	2	0x003B5	74	-	setpos	0, 0, 3	this actor, placed at (0, 0, 3)	-	-	-	-	resolved	0x0034EBC0 (read here)
+tst_a01	PC03	init	3	0x003B8	75	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_j01	setup	init	1	0x00340	26	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_j01	setup	battle	1	0x00341	31	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
+tst_j01	setup	battle	2	0x00344	32	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+tst_j01	setup	battle	3	0x0034A	33	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+tst_j01	setup	battle	4	0x00350	34	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+tst_j01	setup	battle	5	0x00356	35	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+tst_j01	setup	battle	6	0x00362	36	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
+tst_j01	setup	battle	7	0x00365	37	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_j01	PC00	init	1	0x00369	46	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_j01	PC00	init	2	0x0036C	47	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_j01	PC01	init	1	0x00370	56	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_j01	PC01	init	2	0x00373	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_j01	PC02	init	1	0x00377	66	-	setupbattle	2	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_j01	PC02	init	2	0x0037A	67	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_j01	PC03	init	1	0x0037E	76	-	setupbattle	3	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_j01	PC03	init	2	0x00381	77	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

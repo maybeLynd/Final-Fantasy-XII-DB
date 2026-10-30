@@ -1,0 +1,5 @@
+script	kind	place	actors	functions	rows	shared_actors
+pre_a01	zone	field 109, which has no zone-script entry	13	25	12	0
+pre_a03	zone	field 111, which has no zone-script entry	0	0	0	0
+pre_b01	zone	field 114, which has no zone-script entry	13	25	12	0
+pre_z0000	scene	scene, event 212	1	1	0	0

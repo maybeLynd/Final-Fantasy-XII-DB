@@ -133,15 +133,17 @@ functions has a single `shared template` row naming the template; Ozmone Plain h
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it
 runs; this table has none.
 
-The `resolution` column says how far each step is known:
+The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
 | `resolved` | 7,237 |
-| what was searched, when no page yet gives what the arguments name | 321 |
+| empty | 321 |
 
-When no page yet gives what a step's arguments name, the cell says what was searched, for example the standard motion
-table that `stdmotionplay` reads, or a verb that no page describes yet.
+A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
+script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
+the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
+otherwise.
 
 A scene reads from top to bottom in its functions. In `ozm_b0400` (event `268`), `ディレクター.イベント進行` calls `fadein_d2(0,
 30)` and runs the cuts in order: it files `ＡＤ.s01` and waits for it, then `ＡＤ.s02`, and so on to `ＡＤ.s08`. It then
@@ -197,7 +199,7 @@ The steps table [`ozmone-plain-script-steps.tsv`](ozmone-plain-script-steps.tsv)
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
-| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
 | `source` | the page or table that gives the meaning, or the function whose body was read |
 
 The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`

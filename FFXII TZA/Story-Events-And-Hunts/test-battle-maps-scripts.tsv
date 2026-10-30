@@ -1,0 +1,17 @@
+script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
+bts_z01	bts_z01	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000108	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000120	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000138	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000150	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000168	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000180	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000198	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001b0	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_11	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001c8	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_12	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001e0	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_13	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001f8	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_14	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000210	-	-	-	-	1	-
+bts_z01	bts_z01	treasure_15	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000228	-	-	-	-	1	-

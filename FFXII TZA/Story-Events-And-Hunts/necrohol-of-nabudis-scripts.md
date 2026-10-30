@@ -34,10 +34,30 @@ actors](shared-zone-script-actors.md) and have no rows here; the Shared helpers 
 
 The scene `bds_e0101` holds its own helper `イベント特殊効果画面_EV`, which is not one of the five, so its functions have rows.
 
-Five more zone scripts of the region ship under `plan_map/bds_a`, `bds_b` and `bds_d`: `bds_a03`, `bds_b02`,
-`bds_d01`, `bds_d02` and `bds_d03`. The map name table names fields `423`, `427` and `433` to `435` by these codes,
-but the zone-script list has no entry for those fields, so the decoder does not read the five scripts and they have no
-rows here. One exit of Cloister of Distant Song (`__MJ_CTRL001`) leads to field `434`, `bds_d02`.
+Five more zone scripts of the region ship under `plan_map/bds_a`, `bds_b` and `bds_d`: `bds_a03`, `bds_b02`, `bds_d01`,
+`bds_d02` and `bds_d03`. The map name table names fields `423`, `427` and `433` to `435` by these codes, but the
+zone-script list has no entry for those fields, so the five scripts have no rows here; their steps are in the steps
+table. One exit of Cloister of Distant Song (`__MJ_CTRL001`) leads to field `434`, `bds_d02`.
+
+Each script holds `Map_Director`, whose `init` returns at once, and map exits `__MJ_CTRL00n`, each of which turns user
+control off, fades out and calls `mapjump`:
+
+- `bds_a03`, field `423`, has two exits, to field `434` (`bds_d02`), entrance 1, and to Cloister of Distant Song, field
+  `422`, entrance 3; the only `mapjump` that names field `423` is `bds_d02`'s, which no field loads, so no jump reaches
+  `bds_a03`.
+- `bds_b02`, field `427`, has two exits, to Field of the Fallen Lord (Nabreus Deadlands), field `180`, entrance 2, and
+  to field `435` (`bds_d03`), entrance 1; the only `mapjump` that names field `427` is `bds_d03`'s, which no field
+  loads, so no jump reaches `bds_b02`.
+- `bds_d01`, field `433`, has three exits, to Hall of Effulgent Light (field `421`, entrance 2), Cloister of Distant
+  Song (field `422`, entrance 1) and Cloister of the Highborn (field `426`, entrance 1); no `mapjump` names field `433`,
+  so no jump reaches `bds_d01`.
+- `bds_d02`, field `434`, has three exits, to field `423` (`bds_a03`, entrance 2), Cloister of Distant Song (field
+  `422`, entrance 2) and Cloister of Solace (field `441`, entrance 1); `bds_a02`'s `__MJ_CTRL001` jumps to field `434`
+  (entrance 2), as does `bds_a03`, but field `434` has no zone-script entry, so these jumps load no zone script and no
+  jump reaches `bds_d02`.
+- `bds_d03`, field `435`, has three exits, to field `427` (`bds_b02`, entrance 2), Cloister of the Highborn (field
+  `426`, entrance 3) and Cloister of Reason (field `444`, entrance 1); the only `mapjump` that names field `435` is
+  `bds_b02`'s, which no field loads, so no jump reaches `bds_d03`.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
 items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
@@ -123,9 +143,9 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 
 ### Every step
 
-The steps table [`necrohol-of-nabudis-script-steps.tsv`](necrohol-of-nabudis-script-steps.tsv) has one row for each
-step of every function of the fifteen scripts, in the order the function runs them: each call, request, store, branch,
-loop, case and return. It has 11,796 rows.
+The steps table [`necrohol-of-nabudis-script-steps.tsv`](necrohol-of-nabudis-script-steps.tsv) has one row for each step
+of every function of the twenty scripts, in the order the function runs them: each call, request, store, branch, loop,
+case and return. It has 12,204 rows.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
@@ -134,14 +154,19 @@ the functions it starts on other actors.
 
 | Script | Steps | Script | Steps |
 |---|---:|---|---:|
-| `bds_a01` | 494 | `bds_g01` | 648 |
-| `bds_a02` | 1,154 | `bds_a0100` | 1,196 |
-| `bds_b01` | 1,407 | `bds_e0100` | 482 |
-| `bds_c01` | 1,165 | `bds_e0101` | 881 |
-| `bds_c02` | 351 | `bds_f0100` | 605 |
-| `bds_e01` | 681 | `bds_f0101` | 860 |
-| `bds_f01` | 661 | `bds_g0100` | 666 |
-| | | `bds_g0101` | 545 |
+| `bds_a01` | 494 | `bds_e0101` | 881 |
+| `bds_a02` | 1,154 | `bds_f0100` | 605 |
+| `bds_b01` | 1,407 | `bds_f0101` | 860 |
+| `bds_c01` | 1,165 | `bds_g0100` | 666 |
+| `bds_c02` | 351 | `bds_g0101` | 545 |
+| `bds_e01` | 681 | `bds_a03` | 63 |
+| `bds_f01` | 661 | `bds_b02` | 63 |
+| `bds_g01` | 648 | `bds_d01` | 94 |
+| `bds_a0100` | 1,196 | `bds_d02` | 94 |
+| `bds_e0100` | 482 | `bds_d03` | 94 |
+
+The five zone scripts no field loads, last in the table, have 408 steps: those of `Map_Director.init` and of their map
+exits.
 
 The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
 (1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
@@ -151,15 +176,17 @@ functions has a single `shared template` row naming the template; Necrohol of Na
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it
 runs; this table has none.
 
-The `resolution` column says how far each step is known:
+The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 10,966 |
-| what was searched, when no page yet gives what the arguments name | 830 |
+| `resolved` | 11,374 |
+| empty | 830 |
 
-When no page yet gives what a step's arguments name, the cell says what was searched, for example the standard motion
-table that `stdmotionplay` reads, or a verb that no page describes yet.
+A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
+script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
+the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
+otherwise.
 
 A scene reads from top to bottom in its functions. In `bds_a0100` (event `226`), `監督.ナブレウス湿原F` starts scene cut 0,
 reads an effect into effect slot 0 and waits for it, hides the party and starts cut 1. It files `cut_01_c3` on the
@@ -216,7 +243,7 @@ The steps table [`necrohol-of-nabudis-script-steps.tsv`](necrohol-of-nabudis-scr
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
-| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
 | `source` | the page or table that gives the meaning, or the function whose body was read |
 
 The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`

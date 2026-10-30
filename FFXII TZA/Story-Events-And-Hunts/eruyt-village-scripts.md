@@ -29,9 +29,13 @@ them.
 
 The scene `vic_a0300` holds its own helper `イベント特殊効果画面_EV`, which is not one of the five, so its functions have rows.
 
-Two exits of The Spiritwood (`__MJ_CTRL002`, `__MJ_CTRL003`) lead to field `769`, which the map name table names by
-its code, `vic_a04`. The script `vic_a04` ships under `plan_map/vic_a`, but the zone-script list has no entry for
-field `769`, so the decoder does not read it and it has no rows here.
+Two exits of The Spiritwood (`__MJ_CTRL002`, `__MJ_CTRL003`) lead to field `769`, which the map name table names by its
+code, `vic_a04`. The script `vic_a04` ships under `plan_map/vic_a`, but the zone-script list has no entry for field
+`769`, so it has no rows here; its steps are in the steps table.
+
+`vic_a04` holds `Map_Director`, whose `init` returns at once, and two map exits, `__MJ_CTRL000` and `__MJ_CTRL001`, to
+The Spiritwood (field `767`, entrances 3 and 4); the Spiritwood exits jump to field `769` (entrances 1 and 2), but the
+field has no zone-script entry, so these jumps load no zone script and no jump reaches `vic_a04`.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
 items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
@@ -121,8 +125,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 ### Every step
 
 The steps table [`eruyt-village-script-steps.tsv`](eruyt-village-script-steps.tsv) has one row for each step of every
-function of the eight scripts, in the order the function runs them: each call, request, store, branch, loop, case and
-return. It has 17,851 rows.
+function of the nine scripts, in the order the function runs them: each call, request, store, branch, loop, case and
+return. It has 17,914 rows.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
@@ -131,10 +135,13 @@ the functions it starts on other actors.
 
 | Script | Steps | Script | Steps |
 |---|---:|---|---:|
-| `vic_a01` | 3,663 | `vic_a0280` | 453 |
-| `vic_a02` | 4,471 | `vic_a0300` | 2,918 |
-| `vic_a03` | 1,169 | `vic_a0301` | 1,613 |
-| `vic_a0100` | 2,986 | `vic_a0380` | 578 |
+| `vic_a01` | 3,663 | `vic_a0300` | 2,918 |
+| `vic_a02` | 4,471 | `vic_a0301` | 1,613 |
+| `vic_a03` | 1,169 | `vic_a0380` | 578 |
+| `vic_a0100` | 2,986 | `vic_a04` | 63 |
+| `vic_a0280` | 453 | | |
+
+`vic_a04`, which no field loads, has 63 steps: those of `Map_Director.init` and of its two map exits.
 
 The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
 (1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
@@ -144,15 +151,17 @@ functions has a single `shared template` row naming the template; Eruyt Village 
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it
 runs; this table has none.
 
-The `resolution` column says how far each step is known:
+The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 17,224 |
-| what was searched, when no page yet gives what the arguments name | 627 |
+| `resolved` | 17,287 |
+| empty | 627 |
 
-When no page yet gives what a step's arguments name, the cell says what was searched, for example the standard motion
-table that `stdmotionplay` reads, or a verb that no page describes yet.
+A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
+script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
+the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
+otherwise.
 
 A scene reads from top to bottom in its functions. In `vic_a0280` (event `733`), `ＡＤ.Ｃ０３_ヴァン登場` starts scene cut 3,
 sets `scratch1_var_1` to 3, files `EventLightActor.setEventLight` and files `カット０３` on fourteen actors at once, Vaan
@@ -209,7 +218,7 @@ The steps table [`eruyt-village-script-steps.tsv`](eruyt-village-script-steps.ts
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
-| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
 | `source` | the page or table that gives the meaning, or the function whose body was read |
 
 The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`

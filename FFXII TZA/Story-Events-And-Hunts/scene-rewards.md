@@ -7,8 +7,8 @@ addresses: "0x00345080, 0x003449A0, 0x0034A6D0, 0x0034B1E0, 0x00346930, 0x00346E
 
 ## What it lists
 
-The table has one row for every give or take in the shipping scripts under `plan_master/us`: 5,198 rows in 355
-scripts. Item ids are the encoded ids of [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md), so a
+The table has one row for every give or take call in the shipping scripts under `plan_master/us`: 5,198 rows in 355
+scripts. 891 of them, in the Trial Mode scripts, are calls that never run (see [Where a script is](#where-a-script-is)). Item ids are the encoded ids of [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md), so a
 reward package (`0x9xxx`) gives its gil and items together.
 
 ### The verbs
@@ -76,7 +76,7 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 | `count` | the count or gil amount, or the expression that computes it |
 | `item_source` | where the item comes from, as in the table above |
 | `through` | for a routine give, the routine actor and function the caller requested; otherwise `-` |
-| `explanation` | where the give or take happens, as map name (region): see below; a give reads "Given in", a take (`subitem`, `subgill`) "Taken in" |
+| `explanation` | where the give or take happens, as map name (region): see below; a give reads "Given in", a take (`subitem`, `subgill`) "Taken in"; a Trial Mode reward reads "Given after Stage N" or "Never given from this script" |
 
 ### Where a script is
 
@@ -86,6 +86,11 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 - An event script is the scene of every zone script that loads it with `eventread` (`0x0E7`) or `eventread_e8`
   (`0x0E8`) and a literal id; the id names the event through the `us` event path table, four paths per id.
 - `mic_b07` has no field id in the path table, so no map loads it.
+- Each of the hundred Trial Mode scripts `tri_*` holds all nine reward calls (`additemmes`, packages `0x9123` to
+  `0x912B`), each under its own test that the loaded field is that of stage 10, 20, ... or 90 (`nowmap() == 0x048f`
+  and so on) ([Trial Mode scripts](trial-mode-scripts.md)).
+- So of the 900 rows only 9 give: the call in the script of stages 10, 20, ... 90 whose field matches. The other 891
+  never run, and their explanation says which stage's script gives that package.
 
 Actor and function names are the ones the scripts carry.
 

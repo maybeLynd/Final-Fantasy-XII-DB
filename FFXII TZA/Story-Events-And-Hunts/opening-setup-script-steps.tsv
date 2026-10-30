@@ -1,0 +1,808 @@
+script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
+pre_a01	btl_trap_ctrl	init	1	0x01563	20	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	btl_trap_ctrl	init	2	0x01569	21	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	btl_trap_ctrl	init	3	0x0156F	22	-	settrapresource	0x03000001	-	-	-	-	-		01 verb-table.tsv
+pre_a01	btl_trap_ctrl	init	4	0x01572	23	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_00	init	1	0x01576	32	-	setuptreasure	0x03000000	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	init	2	0x01579	33	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	init	3	0x01582	34	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	init	4	0x01588	35	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_00	init	5	0x0158B	36	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_00	talk	1	0x0158F	41	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_00	talk	2	0x01592	42	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_00	talk	3	0x01598	43	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_00	talk	4	0x0159B	44	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	5	0x015A1	45	-	talktreasure	0x03000000	items: treasure chest 0x03000000	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_00	talk	6	0x015AA	46	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	7	0x015B0	47	-	btlAtelOpenTreasureMessage	0x03000000	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	8	0x015B9	48	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	9	0x015BF	49	-	talktreasureafter	0x03000000	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	10	0x015C2	50	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	11	0x015C5	51	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_00	talk	12	0x015CB	52	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_00	talk	13	0x015CE	53	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	14	0x015D4	54	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	15	0x015DA	55	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	16	0x015E0	56	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_00	talk	17	0x015E6	57	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_00	talk	18	0x015E9	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_01	init	1	0x015ED	67	-	setuptreasure	0x03000018	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	init	2	0x015F0	68	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	init	3	0x015F9	69	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	init	4	0x015FF	70	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_01	init	5	0x01602	71	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_01	talk	1	0x01606	76	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_01	talk	2	0x01609	77	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_01	talk	3	0x0160F	78	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_01	talk	4	0x01612	79	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	5	0x01618	80	-	talktreasure	0x03000018	items: treasure chest 0x03000018	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_01	talk	6	0x01621	81	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	7	0x01627	82	-	btlAtelOpenTreasureMessage	0x03000018	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	8	0x01630	83	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	9	0x01636	84	-	talktreasureafter	0x03000018	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	10	0x01639	85	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	11	0x0163C	86	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_01	talk	12	0x01642	87	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_01	talk	13	0x01645	88	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	14	0x0164B	89	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	15	0x01651	90	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	16	0x01657	91	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_01	talk	17	0x0165D	92	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_01	talk	18	0x01660	93	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_02	init	1	0x01664	102	-	setuptreasure	0x03000030	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	init	2	0x01667	103	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	init	3	0x01670	104	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	init	4	0x01676	105	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_02	init	5	0x01679	106	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_02	talk	1	0x0167D	111	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_02	talk	2	0x01680	112	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_02	talk	3	0x01686	113	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_02	talk	4	0x01689	114	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	5	0x0168F	115	-	talktreasure	0x03000030	items: treasure chest 0x03000030	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_02	talk	6	0x01698	116	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	7	0x0169E	117	-	btlAtelOpenTreasureMessage	0x03000030	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	8	0x016A7	118	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	9	0x016AD	119	-	talktreasureafter	0x03000030	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	10	0x016B0	120	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	11	0x016B3	121	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_02	talk	12	0x016B9	122	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_02	talk	13	0x016BC	123	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	14	0x016C2	124	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	15	0x016C8	125	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	16	0x016CE	126	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_02	talk	17	0x016D4	127	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_02	talk	18	0x016D7	128	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_03	init	1	0x016DB	137	-	setuptreasure	0x03000048	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	init	2	0x016DE	138	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	init	3	0x016E7	139	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	init	4	0x016ED	140	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_03	init	5	0x016F0	141	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_03	talk	1	0x016F4	146	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_03	talk	2	0x016F7	147	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_03	talk	3	0x016FD	148	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_03	talk	4	0x01700	149	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	5	0x01706	150	-	talktreasure	0x03000048	items: treasure chest 0x03000048	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_03	talk	6	0x0170F	151	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	7	0x01715	152	-	btlAtelOpenTreasureMessage	0x03000048	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	8	0x0171E	153	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	9	0x01724	154	-	talktreasureafter	0x03000048	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	10	0x01727	155	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	11	0x0172A	156	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_03	talk	12	0x01730	157	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_03	talk	13	0x01733	158	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	14	0x01739	159	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	15	0x0173F	160	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	16	0x01745	161	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_03	talk	17	0x0174B	162	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_03	talk	18	0x0174E	163	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_04	init	1	0x01752	172	-	setuptreasure	0x03000060	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	init	2	0x01755	173	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	init	3	0x0175E	174	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	init	4	0x01764	175	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_04	init	5	0x01767	176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_04	talk	1	0x0176B	181	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_04	talk	2	0x0176E	182	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_04	talk	3	0x01774	183	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_04	talk	4	0x01777	184	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	5	0x0177D	185	-	talktreasure	0x03000060	items: treasure chest 0x03000060	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_04	talk	6	0x01786	186	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	7	0x0178C	187	-	btlAtelOpenTreasureMessage	0x03000060	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	8	0x01795	188	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	9	0x0179B	189	-	talktreasureafter	0x03000060	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	10	0x0179E	190	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	11	0x017A1	191	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_04	talk	12	0x017A7	192	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_04	talk	13	0x017AA	193	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	14	0x017B0	194	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	15	0x017B6	195	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	16	0x017BC	196	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_04	talk	17	0x017C2	197	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_04	talk	18	0x017C5	198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_05	init	1	0x017C9	207	-	setuptreasure	0x03000078	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	init	2	0x017CC	208	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	init	3	0x017D5	209	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	init	4	0x017DB	210	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_05	init	5	0x017DE	211	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_05	talk	1	0x017E2	216	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_05	talk	2	0x017E5	217	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_05	talk	3	0x017EB	218	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_05	talk	4	0x017EE	219	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	5	0x017F4	220	-	talktreasure	0x03000078	items: treasure chest 0x03000078	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_05	talk	6	0x017FD	221	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	7	0x01803	222	-	btlAtelOpenTreasureMessage	0x03000078	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	8	0x0180C	223	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	9	0x01812	224	-	talktreasureafter	0x03000078	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	10	0x01815	225	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	11	0x01818	226	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_05	talk	12	0x0181E	227	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_05	talk	13	0x01821	228	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	14	0x01827	229	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	15	0x0182D	230	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	16	0x01833	231	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_05	talk	17	0x01839	232	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_05	talk	18	0x0183C	233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_06	init	1	0x01840	242	-	setuptreasure	0x03000090	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	init	2	0x01843	243	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	init	3	0x0184C	244	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	init	4	0x01852	245	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_06	init	5	0x01855	246	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_06	talk	1	0x01859	251	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_06	talk	2	0x0185C	252	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_06	talk	3	0x01862	253	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_06	talk	4	0x01865	254	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	5	0x0186B	255	-	talktreasure	0x03000090	items: treasure chest 0x03000090	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_06	talk	6	0x01874	256	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	7	0x0187A	257	-	btlAtelOpenTreasureMessage	0x03000090	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	8	0x01883	258	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	9	0x01889	259	-	talktreasureafter	0x03000090	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	10	0x0188C	260	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	11	0x0188F	261	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_06	talk	12	0x01895	262	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_06	talk	13	0x01898	263	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	14	0x0189E	264	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	15	0x018A4	265	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	16	0x018AA	266	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_06	talk	17	0x018B0	267	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_06	talk	18	0x018B3	268	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_07	init	1	0x018B7	277	-	setuptreasure	0x030000a8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	init	2	0x018BA	278	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	init	3	0x018C3	279	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	init	4	0x018C9	280	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_07	init	5	0x018CC	281	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_07	talk	1	0x018D0	286	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_07	talk	2	0x018D3	287	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_07	talk	3	0x018D9	288	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_07	talk	4	0x018DC	289	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	5	0x018E2	290	-	talktreasure	0x030000a8	items: treasure chest 0x030000a8	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_07	talk	6	0x018EB	291	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	7	0x018F1	292	-	btlAtelOpenTreasureMessage	0x030000a8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	8	0x018FA	293	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	9	0x01900	294	-	talktreasureafter	0x030000a8	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	10	0x01903	295	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	11	0x01906	296	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_07	talk	12	0x0190C	297	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_07	talk	13	0x0190F	298	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	14	0x01915	299	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	15	0x0191B	300	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	16	0x01921	301	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_07	talk	17	0x01927	302	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_07	talk	18	0x0192A	303	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_08	init	1	0x0192E	312	-	setuptreasure	0x030000c0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	init	2	0x01931	313	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	init	3	0x0193A	314	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	init	4	0x01940	315	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_08	init	5	0x01943	316	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_08	talk	1	0x01947	321	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_08	talk	2	0x0194A	322	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_08	talk	3	0x01950	323	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_08	talk	4	0x01953	324	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	5	0x01959	325	-	talktreasure	0x030000c0	items: treasure chest 0x030000c0	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_08	talk	6	0x01962	326	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	7	0x01968	327	-	btlAtelOpenTreasureMessage	0x030000c0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	8	0x01971	328	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	9	0x01977	329	-	talktreasureafter	0x030000c0	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	10	0x0197A	330	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	11	0x0197D	331	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_08	talk	12	0x01983	332	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_08	talk	13	0x01986	333	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	14	0x0198C	334	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	15	0x01992	335	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	16	0x01998	336	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_08	talk	17	0x0199E	337	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_08	talk	18	0x019A1	338	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_09	init	1	0x019A5	347	-	setuptreasure	0x030000d8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	init	2	0x019A8	348	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	init	3	0x019B1	349	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	init	4	0x019B7	350	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_09	init	5	0x019BA	351	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_09	talk	1	0x019BE	356	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_09	talk	2	0x019C1	357	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_09	talk	3	0x019C7	358	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_09	talk	4	0x019CA	359	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	5	0x019D0	360	-	talktreasure	0x030000d8	items: treasure chest 0x030000d8	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_09	talk	6	0x019D9	361	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	7	0x019DF	362	-	btlAtelOpenTreasureMessage	0x030000d8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	8	0x019E8	363	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	9	0x019EE	364	-	talktreasureafter	0x030000d8	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	10	0x019F1	365	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	11	0x019F4	366	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_09	talk	12	0x019FA	367	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_09	talk	13	0x019FD	368	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	14	0x01A03	369	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	15	0x01A09	370	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	16	0x01A0F	371	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_09	talk	17	0x01A15	372	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_09	talk	18	0x01A18	373	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_10	init	1	0x01A1C	382	-	setuptreasure	0x030000f0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	init	2	0x01A1F	383	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	init	3	0x01A28	384	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	init	4	0x01A2E	385	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_10	init	5	0x01A31	386	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_10	talk	1	0x01A35	391	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_10	talk	2	0x01A38	392	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_10	talk	3	0x01A3E	393	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_10	talk	4	0x01A41	394	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	5	0x01A47	395	-	talktreasure	0x030000f0	items: treasure chest 0x030000f0	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_10	talk	6	0x01A50	396	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	7	0x01A56	397	-	btlAtelOpenTreasureMessage	0x030000f0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	8	0x01A5F	398	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	9	0x01A65	399	-	talktreasureafter	0x030000f0	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	10	0x01A68	400	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	11	0x01A6B	401	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_10	talk	12	0x01A71	402	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_10	talk	13	0x01A74	403	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	14	0x01A7A	404	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	15	0x01A80	405	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	16	0x01A86	406	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_10	talk	17	0x01A8C	407	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_10	talk	18	0x01A8F	408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_11	init	1	0x01A93	417	-	setuptreasure	0x03000108	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	init	2	0x01A96	418	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	init	3	0x01A9F	419	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	init	4	0x01AA5	420	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_11	init	5	0x01AA8	421	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_a01	treasure_11	talk	1	0x01AAC	426	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_11	talk	2	0x01AAF	427	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_11	talk	3	0x01AB5	428	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_11	talk	4	0x01AB8	429	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	5	0x01ABE	430	-	talktreasure	0x03000108	items: treasure chest 0x03000108	-	-	-	-	resolved	this page's How a call is read
+pre_a01	treasure_11	talk	6	0x01AC7	431	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	7	0x01ACD	432	-	btlAtelOpenTreasureMessage	0x03000108	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	8	0x01AD6	433	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	9	0x01ADC	434	-	talktreasureafter	0x03000108	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	10	0x01ADF	435	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	11	0x01AE2	436	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_a01	treasure_11	talk	12	0x01AE8	437	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_a01	treasure_11	talk	13	0x01AEB	438	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	14	0x01AF1	439	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	15	0x01AF7	440	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	16	0x01AFD	441	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_a01	treasure_11	talk	17	0x01B03	442	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_a01	treasure_11	talk	18	0x01B06	443	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	btl_trap_ctrl	init	1	0x00AB3	20	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	btl_trap_ctrl	init	2	0x00AB9	21	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	btl_trap_ctrl	init	3	0x00ABF	22	-	settrapresource	0x03000001	-	-	-	-	-		01 verb-table.tsv
+pre_b01	btl_trap_ctrl	init	4	0x00AC2	23	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_00	init	1	0x00AC6	32	-	setuptreasure	0x03000000	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	init	2	0x00AC9	33	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	init	3	0x00AD2	34	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	init	4	0x00AD8	35	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_00	init	5	0x00ADB	36	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_00	talk	1	0x00ADF	41	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_00	talk	2	0x00AE2	42	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_00	talk	3	0x00AE8	43	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_00	talk	4	0x00AEB	44	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	5	0x00AF1	45	-	talktreasure	0x03000000	items: treasure chest 0x03000000	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_00	talk	6	0x00AFA	46	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	7	0x00B00	47	-	btlAtelOpenTreasureMessage	0x03000000	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	8	0x00B09	48	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	9	0x00B0F	49	-	talktreasureafter	0x03000000	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	10	0x00B12	50	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	11	0x00B15	51	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_00	talk	12	0x00B1B	52	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_00	talk	13	0x00B1E	53	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	14	0x00B24	54	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	15	0x00B2A	55	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	16	0x00B30	56	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_00	talk	17	0x00B36	57	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_00	talk	18	0x00B39	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_01	init	1	0x00B3D	67	-	setuptreasure	0x03000018	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	init	2	0x00B40	68	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	init	3	0x00B49	69	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	init	4	0x00B4F	70	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_01	init	5	0x00B52	71	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_01	talk	1	0x00B56	76	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_01	talk	2	0x00B59	77	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_01	talk	3	0x00B5F	78	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_01	talk	4	0x00B62	79	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	5	0x00B68	80	-	talktreasure	0x03000018	items: treasure chest 0x03000018	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_01	talk	6	0x00B71	81	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	7	0x00B77	82	-	btlAtelOpenTreasureMessage	0x03000018	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	8	0x00B80	83	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	9	0x00B86	84	-	talktreasureafter	0x03000018	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	10	0x00B89	85	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	11	0x00B8C	86	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_01	talk	12	0x00B92	87	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_01	talk	13	0x00B95	88	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	14	0x00B9B	89	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	15	0x00BA1	90	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	16	0x00BA7	91	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_01	talk	17	0x00BAD	92	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_01	talk	18	0x00BB0	93	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_02	init	1	0x00BB4	102	-	setuptreasure	0x03000030	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	init	2	0x00BB7	103	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	init	3	0x00BC0	104	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	init	4	0x00BC6	105	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_02	init	5	0x00BC9	106	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_02	talk	1	0x00BCD	111	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_02	talk	2	0x00BD0	112	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_02	talk	3	0x00BD6	113	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_02	talk	4	0x00BD9	114	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	5	0x00BDF	115	-	talktreasure	0x03000030	items: treasure chest 0x03000030	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_02	talk	6	0x00BE8	116	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	7	0x00BEE	117	-	btlAtelOpenTreasureMessage	0x03000030	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	8	0x00BF7	118	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	9	0x00BFD	119	-	talktreasureafter	0x03000030	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	10	0x00C00	120	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	11	0x00C03	121	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_02	talk	12	0x00C09	122	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_02	talk	13	0x00C0C	123	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	14	0x00C12	124	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	15	0x00C18	125	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	16	0x00C1E	126	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_02	talk	17	0x00C24	127	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_02	talk	18	0x00C27	128	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_03	init	1	0x00C2B	137	-	setuptreasure	0x03000048	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	init	2	0x00C2E	138	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	init	3	0x00C37	139	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	init	4	0x00C3D	140	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_03	init	5	0x00C40	141	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_03	talk	1	0x00C44	146	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_03	talk	2	0x00C47	147	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_03	talk	3	0x00C4D	148	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_03	talk	4	0x00C50	149	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	5	0x00C56	150	-	talktreasure	0x03000048	items: treasure chest 0x03000048	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_03	talk	6	0x00C5F	151	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	7	0x00C65	152	-	btlAtelOpenTreasureMessage	0x03000048	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	8	0x00C6E	153	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	9	0x00C74	154	-	talktreasureafter	0x03000048	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	10	0x00C77	155	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	11	0x00C7A	156	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_03	talk	12	0x00C80	157	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_03	talk	13	0x00C83	158	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	14	0x00C89	159	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	15	0x00C8F	160	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	16	0x00C95	161	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_03	talk	17	0x00C9B	162	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_03	talk	18	0x00C9E	163	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_04	init	1	0x00CA2	172	-	setuptreasure	0x03000060	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	init	2	0x00CA5	173	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	init	3	0x00CAE	174	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	init	4	0x00CB4	175	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_04	init	5	0x00CB7	176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_04	talk	1	0x00CBB	181	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_04	talk	2	0x00CBE	182	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_04	talk	3	0x00CC4	183	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_04	talk	4	0x00CC7	184	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	5	0x00CCD	185	-	talktreasure	0x03000060	items: treasure chest 0x03000060	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_04	talk	6	0x00CD6	186	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	7	0x00CDC	187	-	btlAtelOpenTreasureMessage	0x03000060	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	8	0x00CE5	188	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	9	0x00CEB	189	-	talktreasureafter	0x03000060	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	10	0x00CEE	190	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	11	0x00CF1	191	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_04	talk	12	0x00CF7	192	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_04	talk	13	0x00CFA	193	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	14	0x00D00	194	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	15	0x00D06	195	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	16	0x00D0C	196	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_04	talk	17	0x00D12	197	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_04	talk	18	0x00D15	198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_05	init	1	0x00D19	207	-	setuptreasure	0x03000078	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	init	2	0x00D1C	208	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	init	3	0x00D25	209	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	init	4	0x00D2B	210	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_05	init	5	0x00D2E	211	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_05	talk	1	0x00D32	216	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_05	talk	2	0x00D35	217	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_05	talk	3	0x00D3B	218	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_05	talk	4	0x00D3E	219	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	5	0x00D44	220	-	talktreasure	0x03000078	items: treasure chest 0x03000078	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_05	talk	6	0x00D4D	221	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	7	0x00D53	222	-	btlAtelOpenTreasureMessage	0x03000078	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	8	0x00D5C	223	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	9	0x00D62	224	-	talktreasureafter	0x03000078	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	10	0x00D65	225	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	11	0x00D68	226	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_05	talk	12	0x00D6E	227	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_05	talk	13	0x00D71	228	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	14	0x00D77	229	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	15	0x00D7D	230	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	16	0x00D83	231	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_05	talk	17	0x00D89	232	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_05	talk	18	0x00D8C	233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_06	init	1	0x00D90	242	-	setuptreasure	0x03000090	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	init	2	0x00D93	243	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	init	3	0x00D9C	244	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	init	4	0x00DA2	245	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_06	init	5	0x00DA5	246	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_06	talk	1	0x00DA9	251	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_06	talk	2	0x00DAC	252	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_06	talk	3	0x00DB2	253	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_06	talk	4	0x00DB5	254	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	5	0x00DBB	255	-	talktreasure	0x03000090	items: treasure chest 0x03000090	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_06	talk	6	0x00DC4	256	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	7	0x00DCA	257	-	btlAtelOpenTreasureMessage	0x03000090	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	8	0x00DD3	258	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	9	0x00DD9	259	-	talktreasureafter	0x03000090	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	10	0x00DDC	260	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	11	0x00DDF	261	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_06	talk	12	0x00DE5	262	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_06	talk	13	0x00DE8	263	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	14	0x00DEE	264	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	15	0x00DF4	265	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	16	0x00DFA	266	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_06	talk	17	0x00E00	267	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_06	talk	18	0x00E03	268	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_07	init	1	0x00E07	277	-	setuptreasure	0x030000a8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	init	2	0x00E0A	278	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	init	3	0x00E13	279	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	init	4	0x00E19	280	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_07	init	5	0x00E1C	281	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_07	talk	1	0x00E20	286	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_07	talk	2	0x00E23	287	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_07	talk	3	0x00E29	288	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_07	talk	4	0x00E2C	289	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	5	0x00E32	290	-	talktreasure	0x030000a8	items: treasure chest 0x030000a8	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_07	talk	6	0x00E3B	291	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	7	0x00E41	292	-	btlAtelOpenTreasureMessage	0x030000a8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	8	0x00E4A	293	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	9	0x00E50	294	-	talktreasureafter	0x030000a8	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	10	0x00E53	295	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	11	0x00E56	296	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_07	talk	12	0x00E5C	297	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_07	talk	13	0x00E5F	298	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	14	0x00E65	299	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	15	0x00E6B	300	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	16	0x00E71	301	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_07	talk	17	0x00E77	302	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_07	talk	18	0x00E7A	303	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_08	init	1	0x00E7E	312	-	setuptreasure	0x030000c0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	init	2	0x00E81	313	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	init	3	0x00E8A	314	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	init	4	0x00E90	315	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_08	init	5	0x00E93	316	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_08	talk	1	0x00E97	321	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_08	talk	2	0x00E9A	322	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_08	talk	3	0x00EA0	323	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_08	talk	4	0x00EA3	324	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	5	0x00EA9	325	-	talktreasure	0x030000c0	items: treasure chest 0x030000c0	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_08	talk	6	0x00EB2	326	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	7	0x00EB8	327	-	btlAtelOpenTreasureMessage	0x030000c0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	8	0x00EC1	328	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	9	0x00EC7	329	-	talktreasureafter	0x030000c0	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	10	0x00ECA	330	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	11	0x00ECD	331	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_08	talk	12	0x00ED3	332	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_08	talk	13	0x00ED6	333	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	14	0x00EDC	334	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	15	0x00EE2	335	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	16	0x00EE8	336	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_08	talk	17	0x00EEE	337	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_08	talk	18	0x00EF1	338	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_09	init	1	0x00EF5	347	-	setuptreasure	0x030000d8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	init	2	0x00EF8	348	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	init	3	0x00F01	349	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	init	4	0x00F07	350	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_09	init	5	0x00F0A	351	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_09	talk	1	0x00F0E	356	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_09	talk	2	0x00F11	357	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_09	talk	3	0x00F17	358	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_09	talk	4	0x00F1A	359	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	5	0x00F20	360	-	talktreasure	0x030000d8	items: treasure chest 0x030000d8	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_09	talk	6	0x00F29	361	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	7	0x00F2F	362	-	btlAtelOpenTreasureMessage	0x030000d8	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	8	0x00F38	363	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	9	0x00F3E	364	-	talktreasureafter	0x030000d8	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	10	0x00F41	365	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	11	0x00F44	366	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_09	talk	12	0x00F4A	367	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_09	talk	13	0x00F4D	368	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	14	0x00F53	369	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	15	0x00F59	370	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	16	0x00F5F	371	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_09	talk	17	0x00F65	372	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_09	talk	18	0x00F68	373	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_10	init	1	0x00F6C	382	-	setuptreasure	0x030000f0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	init	2	0x00F6F	383	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	init	3	0x00F78	384	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	init	4	0x00F7E	385	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_10	init	5	0x00F81	386	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_10	talk	1	0x00F85	391	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_10	talk	2	0x00F88	392	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_10	talk	3	0x00F8E	393	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_10	talk	4	0x00F91	394	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	5	0x00F97	395	-	talktreasure	0x030000f0	items: treasure chest 0x030000f0	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_10	talk	6	0x00FA0	396	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	7	0x00FA6	397	-	btlAtelOpenTreasureMessage	0x030000f0	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	8	0x00FAF	398	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	9	0x00FB5	399	-	talktreasureafter	0x030000f0	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	10	0x00FB8	400	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	11	0x00FBB	401	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_10	talk	12	0x00FC1	402	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_10	talk	13	0x00FC4	403	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	14	0x00FCA	404	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	15	0x00FD0	405	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	16	0x00FD6	406	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_10	talk	17	0x00FDC	407	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_10	talk	18	0x00FDF	408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_11	init	1	0x00FE3	417	-	setuptreasure	0x03000108	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	init	2	0x00FE6	418	-	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	init	3	0x00FEF	419	-	btlAtelTreasureInitWithRange	0.5, 5	argument 1: the chest actor's talk radius, both axes of its talk ellipse / argument 2: the chest actor's touch radius, both axes of its touch ellipse (0x0026BF60, which clears +0xDF)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	init	4	0x00FF5	420	-	setnpcname	0x01b2	name pair 0x01b2: Treasure	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_11	init	5	0x00FF8	421	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_b01	treasure_11	talk	1	0x00FFC	426	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_11	talk	2	0x00FFF	427	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_11	talk	3	0x01005	428	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_11	talk	4	0x01008	429	-	btlAtelOpenTreasureStart	-	the player's control while a chest opens	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	5	0x0100E	430	-	talktreasure	0x03000108	items: treasure chest 0x03000108	-	-	-	-	resolved	this page's How a call is read
+pre_b01	treasure_11	talk	6	0x01017	431	-	sethpmenu_436	0, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	7	0x0101D	432	-	btlAtelOpenTreasureMessage	0x03000108	argument 1: the chest record	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	8	0x01026	433	-	sethpmenu_436	1, 5	argument 1: show or hide / argument 2: the bit of the hide word the call owns	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	9	0x0102C	434	-	talktreasureafter	0x03000108	argument 1: the chest reference, which the begin pops and discards (0x00356588; 0x003590D0 reads no argument)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	10	0x0102F	435	-	btlAtelOpenTreasureFinish	-	the chest opening the treasure verbs started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	11	0x01032	436	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pre_b01	treasure_11	talk	12	0x01038	437	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pre_b01	treasure_11	talk	13	0x0103B	438	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	14	0x01041	439	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	15	0x01047	440	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	16	0x0104D	441	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_b01	treasure_11	talk	17	0x01053	442	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pre_b01	treasure_11	talk	18	0x01056	443	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	1	0x00703	78	-	store	g_com_debug_flag = 0	variable g_com_debug_flag (global u_char@0x0a71)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	2	0x0070A	79	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	3	0x0070D	81	-	case	lte(85)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	4	0x00710	82	シナリオフラグ = lte(85)	store	g_com_会話段階変数 = 0	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	5	0x00713	83	シナリオフラグ = lte(85)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	6	0x00716	84	-	case	lte(0x0157)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	7	0x00719	85	シナリオフラグ = lte(0x0157)	store	g_com_会話段階変数 = 1	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	8	0x0071C	86	シナリオフラグ = lte(0x0157)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	9	0x0071F	87	-	case	lte(0x049c)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	10	0x00722	88	シナリオフラグ = lte(0x049c)	store	g_com_会話段階変数 = 2	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	11	0x00725	89	シナリオフラグ = lte(0x049c)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	12	0x00728	90	-	case	lte(0x05f0)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	13	0x0072B	91	シナリオフラグ = lte(0x05f0)	store	g_com_会話段階変数 = 3	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	14	0x0072E	92	シナリオフラグ = lte(0x05f0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	15	0x00731	93	-	case	lte(0x07b2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	16	0x00734	94	シナリオフラグ = lte(0x07b2)	store	g_com_会話段階変数 = 4	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	17	0x00737	95	シナリオフラグ = lte(0x07b2)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	18	0x0073A	96	-	case	lte(0x0bb8)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	19	0x0073D	97	シナリオフラグ = lte(0x0bb8)	store	g_com_会話段階変数 = 5	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	20	0x00740	98	シナリオフラグ = lte(0x0bb8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	21	0x00743	99	-	case	lte(0x1004)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	22	0x00746	100	シナリオフラグ = lte(0x1004)	store	g_com_会話段階変数 = 6	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	23	0x00749	101	シナリオフラグ = lte(0x1004)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	24	0x0074C	102	-	case	lte(0x13ec)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	25	0x0074F	103	シナリオフラグ = lte(0x13ec)	store	g_com_会話段階変数 = 7	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	26	0x00752	104	シナリオフラグ = lte(0x13ec)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	27	0x00755	105	-	case	lte(0x17d4)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	28	0x00758	106	シナリオフラグ = lte(0x17d4)	store	g_com_会話段階変数 = 8	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	29	0x0075B	107	シナリオフラグ = lte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	30	0x0075E	108	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	31	0x00761	109	シナリオフラグ is none of lte(85), lte(0x0157), lte(0x049c), lte(0x05f0), lte(0x07b2), lte(0x0bb8), lte(0x1004), lte(0x13ec), lte(0x17d4)	store	g_com_会話段階変数 = 9	variable g_com_会話段階変数 (global u_char@0x0a00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	32	0x00764	110	シナリオフラグ is none of lte(85), lte(0x0157), lte(0x049c), lte(0x05f0), lte(0x07b2), lte(0x0bb8), lte(0x1004), lte(0x13ec), lte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	33	0x007FD	112	-	store	battle_global_flag[0] = (((((((((((haveitem(0xc012) + haveitem(0xc013)) + haveitem(0xc014)) + haveitem(0xc015)) + haveitem(0xc016)) + haveitem(0xc017)) + haveitem(0xc018)) + haveitem(0xc019)) + haveitem(0xc01a)) + haveitem(0xc01b)) + haveitem(0xc01c)) + haveitem(0xc01d)) + haveitem(0xc01e)	variable battle_global_flag[0] (global short[64]@0x0a72)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	34	0x00825	113	-	if	(シナリオフラグ >= 0x1004 and (0xa00000 bitor getquestscenarioflag(160)) >= 0xa00064) and (0xa00000 bitor getquestscenarioflag(160)) < 0xa00078	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	35	0x00831	115	(シナリオフラグ >= 0x1004 and (0xa00000 bitor getquestscenarioflag(160)) >= 0xa00064) and (0xa00000 bitor getquestscenarioflag(160)) < 0xa00078	setquestscenarioflag	160, 120	argument 1: the quest id q, clamped to 0-255 / argument 2: the scenario value stored there, clamped to 0-255, which getquestscenarioflag (0x0046B180) returns for the quest	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_z0000	制御	init	36	0x00838	117	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	37	0x0083B	119	-	case	lt(100)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	38	0x0083E	120	シナリオフラグ = lt(100)	store	g_iw_ラバナスタ通行止め状態 = 2	variable g_iw_ラバナスタ通行止め状態 (global u_char@0x040a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	39	0x00841	121	シナリオフラグ = lt(100)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	40	0x00844	122	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	41	0x00847	123	シナリオフラグ is none of lt(100)	store	g_iw_ラバナスタ通行止め状態 = 0	variable g_iw_ラバナスタ通行止め状態 (global u_char@0x040a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	42	0x0084A	124	シナリオフラグ is none of lt(100)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	43	0x0085A	126	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	44	0x0085D	128	-	case	lt(27)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	45	0x00863	129	シナリオフラグ = lt(27)	store	global_flag[3] = 0	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	46	0x00866	130	シナリオフラグ = lt(27)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	47	0x00869	131	-	case	lte(0x0122)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	48	0x0086F	132	シナリオフラグ = lte(0x0122)	store	global_flag[3] = 1	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	49	0x00872	133	シナリオフラグ = lte(0x0122)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	50	0x00875	134	-	case	lte(0x0157)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	51	0x0087B	135	シナリオフラグ = lte(0x0157)	store	global_flag[3] = 2	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	52	0x0087E	136	シナリオフラグ = lte(0x0157)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	53	0x00881	137	-	case	lte(0x049c)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	54	0x00887	138	シナリオフラグ = lte(0x049c)	store	global_flag[3] = 3	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	55	0x0088A	139	シナリオフラグ = lte(0x049c)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	56	0x0088D	140	-	case	lte(0x05f0)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	57	0x00893	141	シナリオフラグ = lte(0x05f0)	store	global_flag[3] = 4	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	58	0x00896	142	シナリオフラグ = lte(0x05f0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	59	0x00899	143	-	case	lte(0x07b2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	60	0x0089F	144	シナリオフラグ = lte(0x07b2)	store	global_flag[3] = 5	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	61	0x008A2	145	シナリオフラグ = lte(0x07b2)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	62	0x008A5	146	-	case	lte(0x0bb8)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	63	0x008AB	147	シナリオフラグ = lte(0x0bb8)	store	global_flag[3] = 6	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	64	0x008AE	148	シナリオフラグ = lte(0x0bb8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	65	0x008B1	149	-	case	lte(0x1004)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	66	0x008B7	150	シナリオフラグ = lte(0x1004)	store	global_flag[3] = 7	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	67	0x008BA	151	シナリオフラグ = lte(0x1004)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	68	0x008BD	152	-	case	lte(0x13ec)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	69	0x008C3	153	シナリオフラグ = lte(0x13ec)	store	global_flag[3] = 8	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	70	0x008C6	154	シナリオフラグ = lte(0x13ec)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	71	0x008C9	155	-	case	lte(0x17d4)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	72	0x008CF	156	シナリオフラグ = lte(0x17d4)	store	global_flag[3] = 9	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	73	0x008D2	157	シナリオフラグ = lte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	74	0x008D5	158	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	75	0x008DB	159	シナリオフラグ is none of lt(27), lte(0x0122), lte(0x0157), lte(0x049c), lte(0x05f0), lte(0x07b2), lte(0x0bb8), lte(0x1004), lte(0x13ec), lte(0x17d4)	store	global_flag[3] = 10	variable global_flag[3] (global short[256]@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	76	0x008DE	160	シナリオフラグ is none of lt(27), lte(0x0122), lte(0x0157), lte(0x049c), lte(0x05f0), lte(0x07b2), lte(0x0bb8), lte(0x1004), lte(0x13ec), lte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	77	0x00924	162	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	78	0x00927	164	-	case	lt(220)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	79	0x0092A	165	シナリオフラグ = lt(220)	store	g_com_パーティ人数変数 = 0	variable g_com_パーティ人数変数 (global u_char@0x0a01)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	80	0x0092D	166	シナリオフラグ = lt(220)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	81	0x00930	167	-	case	lte(249)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	82	0x00933	168	シナリオフラグ = lte(249)	store	g_com_パーティ人数変数 = 2	variable g_com_パーティ人数変数 (global u_char@0x0a01)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	83	0x00936	169	シナリオフラグ = lte(249)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	84	0x00939	170	-	case	lte(0x0122)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	85	0x0093C	171	シナリオフラグ = lte(0x0122)	store	g_com_パーティ人数変数 = 3	variable g_com_パーティ人数変数 (global u_char@0x0a01)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	86	0x0093F	172	シナリオフラグ = lte(0x0122)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	87	0x00942	173	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	88	0x00945	174	シナリオフラグ is none of lt(220), lte(249), lte(0x0122)	store	g_com_パーティ人数変数 = 2	variable g_com_パーティ人数変数 (global u_char@0x0a01)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	89	0x00948	175	シナリオフラグ is none of lt(220), lte(249), lte(0x0122)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	90	0x00967	177	-	if	g_btl_ネズミ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	91	0x0096D	179	g_btl_ネズミ == 0	store	g_btl_ネズミ = 1	variable g_btl_ネズミ (global u_char@0x0a42)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	92	0x00977	181	-	if	g_btl_ガラムサイズ帝国兵 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	93	0x0097D	183	g_btl_ガラムサイズ帝国兵 == 0	store	g_btl_ガラムサイズ帝国兵 = 1	variable g_btl_ガラムサイズ帝国兵 (global u_char@0x0a3a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	94	0x00987	185	-	if	g_btl_プリン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	95	0x0098D	187	g_btl_プリン == 0	store	g_btl_プリン = 1	variable g_btl_プリン (global u_char@0x0a05)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	96	0x00997	189	-	if	g_btl_ブッシュファイア == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	97	0x0099D	191	g_btl_ブッシュファイア == 0	store	g_btl_ブッシュファイア = 1	variable g_btl_ブッシュファイア (global u_char@0x0a06)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	98	0x009A7	193	-	if	g_btl_ザコジャッジ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	99	0x009AD	195	g_btl_ザコジャッジ == 0	store	g_btl_ザコジャッジ = 1	variable g_btl_ザコジャッジ (global u_char@0x0a27)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	100	0x009BF	197	-	if	シナリオフラグ >= 0x03e8 and シナリオフラグ < 0x03fa	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	101	0x009C9	199	シナリオフラグ >= 0x03e8 and シナリオフラグ < 0x03fa	if	g_btl_ギース == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	102	0x009CF	201	シナリオフラグ >= 0x03e8 and シナリオフラグ < 0x03fa; g_btl_ギース == 0	store	g_btl_ギース = 1	variable g_btl_ギース (global u_char@0x0a28)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	103	0x009D9	204	-	if	g_btl_バッガモナン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	104	0x009DF	206	g_btl_バッガモナン == 0	store	g_btl_バッガモナン = 1	variable g_btl_バッガモナン (global u_char@0x0a26)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	105	0x009E9	208	-	if	g_btl_デモンズウォールA == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	106	0x009EF	210	g_btl_デモンズウォールA == 0	store	g_btl_デモンズウォールA = 1	variable g_btl_デモンズウォールA (global u_char@0x0a14)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	107	0x009F9	212	-	if	g_btl_デモンズウォールB == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	108	0x009FF	214	g_btl_デモンズウォールB == 0	store	g_btl_デモンズウォールB = 1	variable g_btl_デモンズウォールB (global u_char@0x0a15)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	109	0x00A09	216	-	if	g_btl_ウォースラ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	110	0x00A0F	218	g_btl_ウォースラ == 0	store	g_btl_ウォースラ = 1	variable g_btl_ウォースラ (global u_char@0x0a3b)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	111	0x00A19	220	-	if	g_btl_シドドラクロア == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	112	0x00A1F	222	g_btl_シドドラクロア == 0	store	g_btl_シドドラクロア = 1	variable g_btl_シドドラクロア (global u_char@0x0a29)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	113	0x00A29	224	-	if	g_btl_ベリアス == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	114	0x00A2F	226	g_btl_ベリアス == 0	store	g_btl_ベリアス = 1	variable g_btl_ベリアス (global u_char@0x0a19)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	115	0x00A39	228	-	if	g_btl_カオス == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	116	0x00A3F	230	g_btl_カオス == 0	store	g_btl_カオス = 1	variable g_btl_カオス (global u_char@0x0a1a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	117	0x00A49	232	-	if	g_btl_ガブラスバハムート == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	118	0x00A4F	234	g_btl_ガブラスバハムート == 0	store	g_btl_ガブラスバハムート = 1	variable g_btl_ガブラスバハムート (global u_char@0x0a30)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	119	0x00A59	236	-	if	g_btl_ヴェイン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	120	0x00A5F	238	g_btl_ヴェイン == 0	store	g_btl_ヴェイン = 1	variable g_btl_ヴェイン (global u_char@0x0a2c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	121	0x00A69	240	-	if	g_btl_ラスト・ヴェイン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	122	0x00A6F	242	g_btl_ラスト・ヴェイン == 0	store	g_btl_ラスト・ヴェイン = 1	variable g_btl_ラスト・ヴェイン (global u_char@0x0a2e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	123	0x00A79	244	-	if	g_btl_ジャッジ・ベルガ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	124	0x00A7F	246	g_btl_ジャッジ・ベルガ == 0	store	g_btl_ジャッジ・ベルガ = 1	variable g_btl_ジャッジ・ベルガ (global u_char@0x0a3c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	125	0x00A89	248	-	if	g_btl_ゾディアーク == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	126	0x00A8F	250	g_btl_ゾディアーク == 0	store	g_btl_ゾディアーク = 1	variable g_btl_ゾディアーク (global u_char@0x0a1b)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	127	0x00A99	252	-	if	g_btl_キュクレイン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	128	0x00A9F	254	g_btl_キュクレイン == 0	store	g_btl_キュクレイン = 1	variable g_btl_キュクレイン (global u_char@0x0a1c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	129	0x00AA9	256	-	if	g_btl_ザルエラ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	130	0x00AAF	258	g_btl_ザルエラ == 0	store	g_btl_ザルエラ = 1	variable g_btl_ザルエラ (global u_char@0x0a1d)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	131	0x00AB9	260	-	if	g_btl_ハシュマリム == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	132	0x00ABF	262	g_btl_ハシュマリム == 0	store	g_btl_ハシュマリム = 1	variable g_btl_ハシュマリム (global u_char@0x0a1f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	133	0x00AC9	264	-	if	g_btl_シュミハザ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	134	0x00ACF	266	g_btl_シュミハザ == 0	store	g_btl_シュミハザ = 1	variable g_btl_シュミハザ (global u_char@0x0a20)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	135	0x00AD9	268	-	if	g_btl_マティウス == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	136	0x00ADF	270	g_btl_マティウス == 0	store	g_btl_マティウス = 1	variable g_btl_マティウス (global u_char@0x0a21)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	137	0x00AE9	272	-	if	g_btl_ゼロムス == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	138	0x00AEF	274	g_btl_ゼロムス == 0	store	g_btl_ゼロムス = 1	variable g_btl_ゼロムス (global u_char@0x0a22)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	139	0x00AF9	276	-	if	g_btl_エクスデス == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	140	0x00AFF	278	g_btl_エクスデス == 0	store	g_btl_エクスデス = 1	variable g_btl_エクスデス (global u_char@0x0a23)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	141	0x00B09	280	-	if	g_btl_アルテマ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	142	0x00B0F	282	g_btl_アルテマ == 0	store	g_btl_アルテマ = 1	variable g_btl_アルテマ (global u_char@0x0a24)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	143	0x00B19	284	-	if	g_btl_アドラメレク == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	144	0x00B1F	286	g_btl_アドラメレク == 0	store	g_btl_アドラメレク = 1	variable g_btl_アドラメレク (global u_char@0x0a25)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	145	0x00B29	288	-	if	g_btl_ボムキング == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	146	0x00B2F	290	g_btl_ボムキング == 0	store	g_btl_ボムキング = 1	variable g_btl_ボムキング (global u_char@0x0a16)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	147	0x00B39	292	-	if	g_btl_魔神竜 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	148	0x00B3F	294	g_btl_魔神竜 == 0	store	g_btl_魔神竜 = 1	variable g_btl_魔神竜 (global u_char@0x0a18)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	149	0x00B49	296	-	if	g_btl_ミミッククイーン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	150	0x00B4F	298	g_btl_ミミッククイーン == 0	store	g_btl_ミミッククイーン = 1	variable g_btl_ミミッククイーン (global u_char@0x0a04)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	151	0x00B61	300	-	if	シナリオフラグ >= 0 and シナリオフラグ < 0x14b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	152	0x00B6B	302	シナリオフラグ >= 0 and シナリオフラグ < 0x14b4	if	g_btl_ハイドラ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	153	0x00B71	304	シナリオフラグ >= 0 and シナリオフラグ < 0x14b4; g_btl_ハイドラ == 0	store	g_btl_ハイドラ = 1	variable g_btl_ハイドラ (global u_char@0x0a07)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	154	0x00B86	307	not (シナリオフラグ >= 0 and シナリオフラグ < 0x14b4)	else if	シナリオフラグ >= 0x14b4 and シナリオフラグ <= 0x2af8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	155	0x00B8C	309	not (シナリオフラグ >= 0 and シナリオフラグ < 0x14b4); シナリオフラグ >= 0x14b4 and シナリオフラグ <= 0x2af8	store	g_btl_ハイドラ = 2	variable g_btl_ハイドラ (global u_char@0x0a07)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	156	0x00B96	311	-	if	g_btl_ティアマット == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	157	0x00B9C	313	g_btl_ティアマット == 0	store	g_btl_ティアマット = 1	variable g_btl_ティアマット (global u_char@0x0a08)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	158	0x00BA6	315	-	if	g_btl_ダイダロス == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	159	0x00BAC	317	g_btl_ダイダロス == 0	store	g_btl_ダイダロス = 1	variable g_btl_ダイダロス (global u_char@0x0a09)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	160	0x00BBE	319	-	if	シナリオフラグ >= 0 and シナリオフラグ < 0x10fe	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	161	0x00BC8	321	シナリオフラグ >= 0 and シナリオフラグ < 0x10fe	if	g_btl_タイラント == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	162	0x00BCE	323	シナリオフラグ >= 0 and シナリオフラグ < 0x10fe; g_btl_タイラント == 0	store	g_btl_タイラント = 1	variable g_btl_タイラント (global u_char@0x0a0a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	163	0x00BE3	326	not (シナリオフラグ >= 0 and シナリオフラグ < 0x10fe)	else if	シナリオフラグ >= 0x10fe and シナリオフラグ <= 0x2af8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	164	0x00BE9	328	not (シナリオフラグ >= 0 and シナリオフラグ < 0x10fe); シナリオフラグ >= 0x10fe and シナリオフラグ <= 0x2af8	store	g_btl_タイラント = 2	variable g_btl_タイラント (global u_char@0x0a0a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	165	0x00BF3	330	-	if	g_btl_メタルドラゴン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	166	0x00BF9	332	g_btl_メタルドラゴン == 0	store	g_btl_メタルドラゴン = 1	variable g_btl_メタルドラゴン (global u_char@0x0a0b)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	167	0x00C03	334	-	if	g_btl_アーリマン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	168	0x00C09	336	g_btl_アーリマン == 0	store	g_btl_アーリマン = 1	variable g_btl_アーリマン (global u_char@0x0a0c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	169	0x00C13	338	-	if	g_btl_ラフレシア == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	170	0x00C19	340	g_btl_ラフレシア == 0	store	g_btl_ラフレシア = 1	variable g_btl_ラフレシア (global u_char@0x0a0d)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	171	0x00C23	342	-	if	g_btl_マンドラゴラーズ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	172	0x00C29	344	g_btl_マンドラゴラーズ == 0	store	g_btl_マンドラゴラーズ = 1	variable g_btl_マンドラゴラーズ (global u_char@0x0a0e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	173	0x00C33	346	-	if	g_btl_フンババ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	174	0x00C39	348	g_btl_フンババ == 0	store	g_btl_フンババ = 1	variable g_btl_フンババ (global u_char@0x0a0f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	175	0x00C43	350	-	if	g_btl_フューリー == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	176	0x00C49	352	g_btl_フューリー == 0	store	g_btl_フューリー = 1	variable g_btl_フューリー (global u_char@0x0a10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	177	0x00C53	354	-	if	g_btl_エルダードラゴン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	178	0x00C59	356	g_btl_エルダードラゴン == 0	store	g_btl_エルダードラゴン = 1	variable g_btl_エルダードラゴン (global u_char@0x0a11)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	179	0x00C63	358	-	if	g_btl_ゲンブ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	180	0x00C69	360	g_btl_ゲンブ == 0	store	g_btl_ゲンブ = 1	variable g_btl_ゲンブ (global u_char@0x0a34)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	181	0x00C73	362	-	if	g_btl_ビャッコ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	182	0x00C79	364	g_btl_ビャッコ == 0	store	g_btl_ビャッコ = 1	variable g_btl_ビャッコ (global u_char@0x0a36)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	183	0x00C83	366	-	if	g_btl_セイリュウ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	184	0x00C89	368	g_btl_セイリュウ == 0	store	g_btl_セイリュウ = 1	variable g_btl_セイリュウ (global u_char@0x0a35)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	185	0x00C93	370	-	if	g_btl_スザク == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	186	0x00C99	372	g_btl_スザク == 0	store	g_btl_スザク = 1	variable g_btl_スザク (global u_char@0x0a37)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	187	0x00CA3	374	-	if	g_btl_クリスタルミミックグリーン == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	188	0x00CA9	376	g_btl_クリスタルミミックグリーン == 0	store	g_btl_クリスタルミミックグリーン = 1	variable g_btl_クリスタルミミックグリーン (global u_char@0x0a31)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	189	0x00CB3	378	-	if	g_btl_クリスタルミミックブルー == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	190	0x00CB9	380	g_btl_クリスタルミミックブルー == 0	store	g_btl_クリスタルミミックブルー = 1	variable g_btl_クリスタルミミックブルー (global u_char@0x0a32)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	191	0x00CC3	382	-	if	g_btl_クリスタルミミックレッド == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	192	0x00CC9	384	g_btl_クリスタルミミックレッド == 0	store	g_btl_クリスタルミミックレッド = 1	variable g_btl_クリスタルミミックレッド (global u_char@0x0a33)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	193	0x00CD0	386	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	194	0x00CD3	388	-	case	lt(105)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	195	0x00CD6	389	シナリオフラグ = lt(105)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	196	0x00CD9	390	シナリオフラグ = lt(105)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	197	0x00CDC	391	-	case	lt(190)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	198	0x00CDF	392	シナリオフラグ = lt(190)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	199	0x00CE2	393	シナリオフラグ = lt(190)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	200	0x00CE5	394	-	case	lt(0x0157)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	201	0x00CE8	395	シナリオフラグ = lt(0x0157)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	202	0x00CEB	396	シナリオフラグ = lt(0x0157)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	203	0x00CEE	397	-	case	lt(0x0208)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	204	0x00CF1	398	シナリオフラグ = lt(0x0208)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	205	0x00CF4	399	シナリオフラグ = lt(0x0208)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	206	0x00CF7	400	-	case	lt(0x029e)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	207	0x00CFA	401	シナリオフラグ = lt(0x029e)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	208	0x00CFD	402	シナリオフラグ = lt(0x029e)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	209	0x00D00	403	-	case	lt(0x02f8)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	210	0x00D03	404	シナリオフラグ = lt(0x02f8)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	211	0x00D06	405	シナリオフラグ = lt(0x02f8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	212	0x00D09	406	-	case	lt(0x0442)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	213	0x00D0C	407	シナリオフラグ = lt(0x0442)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	214	0x00D0F	408	シナリオフラグ = lt(0x0442)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	215	0x00D12	409	-	case	lt(0x056e)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	216	0x00D15	410	シナリオフラグ = lt(0x056e)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	217	0x00D18	411	シナリオフラグ = lt(0x056e)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	218	0x00D1B	412	-	case	lt(0x062c)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	219	0x00D1E	413	シナリオフラグ = lt(0x062c)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	220	0x00D21	414	シナリオフラグ = lt(0x062c)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	221	0x00D24	415	-	case	lt(0x0898)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	222	0x00D27	416	シナリオフラグ = lt(0x0898)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	223	0x00D2A	417	シナリオフラグ = lt(0x0898)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	224	0x00D2D	418	-	case	lt(0x0d16)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	225	0x00D30	419	シナリオフラグ = lt(0x0d16)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	226	0x00D33	420	シナリオフラグ = lt(0x0d16)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	227	0x00D36	421	-	case	lt(0x0fa0)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	228	0x00D39	422	シナリオフラグ = lt(0x0fa0)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	229	0x00D3C	423	シナリオフラグ = lt(0x0fa0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	230	0x00D3F	424	-	case	lt(0x1518)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	231	0x00D42	425	シナリオフラグ = lt(0x1518)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	232	0x00D45	426	シナリオフラグ = lt(0x1518)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	233	0x00D48	427	-	case	lt(0x17d4)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	234	0x00D4B	428	シナリオフラグ = lt(0x17d4)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	235	0x00D4E	429	シナリオフラグ = lt(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	236	0x00D51	430	-	case	lt(0x1806)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	237	0x00D54	431	シナリオフラグ = lt(0x1806)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	238	0x00D57	432	シナリオフラグ = lt(0x1806)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	239	0x00D5A	433	-	case	lt(0x2af8)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	240	0x00D5D	434	シナリオフラグ = lt(0x2af8)	setsaveramtelepostatus	0	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	241	0x00D60	435	シナリオフラグ = lt(0x2af8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	242	0x00D63	436	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	243	0x00D66	437	シナリオフラグ is none of lt(105), lt(190), lt(0x0157), lt(0x0208), lt(0x029e), lt(0x02f8), lt(0x0442), lt(0x056e), lt(0x062c), lt(0x0898), lt(0x0d16), lt(0x0fa0), lt(0x1518), lt(0x17d4), lt(0x1806), lt(0x2af8)	setsaveramtelepostatus	1	-	-	-	-	-		01 verb-table.tsv
+pre_z0000	制御	init	244	0x00D69	438	シナリオフラグ is none of lt(105), lt(190), lt(0x0157), lt(0x0208), lt(0x029e), lt(0x02f8), lt(0x0442), lt(0x056e), lt(0x062c), lt(0x0898), lt(0x0d16), lt(0x0fa0), lt(0x1518), lt(0x17d4), lt(0x1806), lt(0x2af8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pre_z0000	制御	init	245	0x00DD2	440	-	store	g_com_e3_flag = 0	variable g_com_e3_flag (global u_char@0x0a02)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+pre_z0000	制御	init	246	0x00DD5	441	-	eventdispose	-	ends an event scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pre_z0000	制御	init	247	0x00DD8	442	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

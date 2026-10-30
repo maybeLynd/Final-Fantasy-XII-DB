@@ -1,0 +1,25 @@
+script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
+pre_a01	pre_a01	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000000	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000018	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000030	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000048	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000060	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000078	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000090	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000a8	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
+pre_a01	pre_a01	treasure_11	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000108	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000000	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000018	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000030	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000048	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000060	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000078	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000090	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000a8	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
+pre_b01	pre_b01	treasure_11	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000108	-	-	-	-	1	-

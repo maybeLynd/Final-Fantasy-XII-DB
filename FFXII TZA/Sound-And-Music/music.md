@@ -65,7 +65,8 @@ When no track is chosen and one is playing, `0x002DEE50(current, 0x78)` and `0x0
 The start is fresh (`0x002DED30`) when the top byte of the task word is 0, and from the track's resume point
 (`0x002DEDB0`) otherwise; `0x003614C0` passes 0, so area music always starts fresh.
 
-`0x00361170(track, length, release)` marks the track's slot as fading and schedules `0x00361080` after `length` frames.
+`0x00361170(track, length, release)` marks the track's slot as fading and schedules `0x00361080` after `length / [0x01F3DA18] + 1` passes (`0x00361186`-`0x00361194`), that is after `length`
+sixtieths of a second.
 `0x00361200` does the same for every loaded slot, with a fade of 120 frames for a negative length. When `0x00361080` runs
 it calls the stop `0x002DEDE0` with the slot's own index, byte `+0x03`, which names no shipped track. With the release
 flag and the fading bit it then stops and frees the slot's track (`0x002DEDE0`, `0x002DEC20`), or marks a slot still
