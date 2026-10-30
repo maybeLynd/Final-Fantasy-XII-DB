@@ -281,6 +281,23 @@ An allowed confirm makes the row's member the leader (`0x0035BAA0` with its type
 `0x003C93E0(0)`, `0x0035C080` and `0x0035C050(0)` (`0x0029C008`-`0x0029C033`); an allowed cancel closes the mode through
 `0x0035D8D0` (`0x0029C04C`-`0x0029C058`).
 
+Moving the cursor in this mode shows the member in a member window. `0x0029B440(member)` rings the member
+(`0x002BE080`), builds the window when it is not there (`0x002906D0`, `0x0029B46E`) and hands it the member's handle
+(`0x00290680`, `0x0029B47E`), which `0x00296960` shows while the window's `+0x710` is still 0 (`0x0029696A`-`0x00296976`).
+
+`0x002906D0` builds the window in place at `[0x0209BE80]` + `0xAB30`, a `0x720`-byte widget with procedure `0x002985D0`
+(`0x00296940`), only while bit `0x2000` of `[0x0209BE80]` + `0x10F68` is clear, and then sets that bit
+(`0x00290707`-`0x00290726`).
+
+On message 1 the window builds its `0x650`-byte panel in place at `+0xC0` (procedure `0x00298250`,
+`0x0029867A`-`0x00298686`), stores the release hook `0x00290610` at `+0x08` (`0x00298690`-`0x00298697`), attaches the panel
+(`0x002986A5`) and first shows the controlled character (`0x0035BAD0`, `0x002986AA`).
+
+Ending the leader choice runs `0x00290630` (`0x00296C28` in `0x00296BE0`, and `0x0029C455`), which closes the panel
+(`0x002964B5`) and sets `+0x710` to 1 (`0x002964BA`). On its next message 2 the window finds the panel gone and tears
+itself down (`0x00298620`-`0x00298637`). The release gives the storage back by clearing `+0xA2` and runs the hook
+(`0x002483E5`-`0x00248405`), which clears bit `0x2000` (`0x00290617`).
+
 ### Picking a party member as a target
 
 The battle menu turns the list into its cursor for a target list of party members through `0x002904D0(page, start)`,

@@ -401,6 +401,15 @@ The active log, procedure `0x002BE4F0` built by `0x002BDCE0` under the field HUD
 The root `0x00253780` reaches that builder through `0x0035C630` (`0x002537E6`), which runs `0x002BDCE0` (through `0x0028E220`),
 `0x0028FF80`, the chocobo menu task builder `0x003CA280`, the HUD widget builder `0x003C98E0` and then `0x00290450(1)`.
 
+The log is built once and lasts the whole run. `0x002BDCE0` does nothing once the help block's `+0x1058` holds the
+log (`0x002BDD20`), and it builds the pane `+0x1080` (`0xF8` bytes, `0x002C0BE0`) and the log, a `0x40C8`-byte heap
+block (`0x002BDE78`-`0x002BDE90`), as the pane's child (`0x002BDFC8`). The manager itself is built once, from the start-up
+`0x00253970` (`0x0022A415`).
+
+`0x002BDB60` hides the pane with a closing run that does not release it (`0x00244DD0` at `0x002BDBE3`; the run ends in
+the teardown only for a widget closed through `0x00244F00`, `0x002449BC`-`0x002449CB`), and `0x002BDC00` opens it again
+under the main root (`0x002BDC94`).
+
 `0x0028E110` posts a line through `0x002BDB00` ([Battle log](../Battle-Actions/battle-log.md)), and `0x002BE8D0` files it
 as a `0x198`-byte record: the text, `0x180` bytes copied by `0x00254F30`, its colour at `+0x180`, the hold time at
 `+0x184`, an in-use bit at `+0x186` and half its width at `+0x187` (`0x0029CD00`). Records move between three lists

@@ -160,6 +160,18 @@ lesser of the two `0x00265090` floats) and the candidate's larger radius (`0x003
 actor). The candidate with the smallest gap below the action row's reach `+0x05` / 10 wins (`0x0038517D`); with none,
 it returns 0.
 
+Each battle unit keeps a bounce slot beside every entry of its target list: 32 slots of `0x10` bytes at `+0x988`,
+slot i beside the entry at `+0x780` + `0x10` x i. The Reflect arm marks an entry bounced by writing code 8 to its
+result (`0x00390E35`) and the new target from `0x00384F40` to the result's `+0x10` (`0x00390E42`).
+
+The preview `0x00303A00` then stores that unit in the slot (`0x00303B45`-`0x00303B6D`) and previews the action again
+against it, keeping that preview's code at the slot's `+0x08` (`0x00303B75`-`0x00303B90`). With no result record the
+slot gets 0 (`0x00303B97`-`0x00303B9D`), and an entry that is not bounced keeps its slot (`0x00303B34`-`0x00303B37`).
+
+The target step `0x003191B0` works a bounced entry through its slot when the slot is set (`0x003192C3`-`0x0031932E`),
+and `0x00322760` returns the bounce unit's actor handle (`0x003589B0`) for an entry whose code at `+0x788` is 8
+(`0x00322810`-`0x00322839`).
+
 ### Tutorial limits on the command lists
 
 For a party-side member (stats `+0x05` = 0) the list builder also checks a `tutorial_data` row (`0x02EBF020`).
