@@ -40,21 +40,21 @@ read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 
 ### Who holds each row
 
-| Row | Holder | Bits |
+| Row | Holder | Bits (mask) |
 |---:|---|---|
-| `0` | the movie verbs `moviestandby` `0x368` (its handler `0x00356460` is a jump to `0x0035B840` at `0x00356467`; `0x0035B861`, `0x0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0x0035B816`, `0x0035B967`); the event-skip arm `0x00360980`, from verb `skipstart` `0x51A` (`0x0034D3BB`; `0x003609A7`, `0x003609B3`), and its release `0x00360A50`, from `0x003603F0` and `0x00360A20` (`0x00360B06`, `0x00360B12`); the title screen (`0x00394112`, `0x003940CB`); actor and field loads (`0x002678EB`, `0x0025D41A`, `0x0025D5A9`) | `0`, `1`, `9`, `12`, `13`, `15`-`17`, `19`, `20`, `21` |
-| `1` | verb `setmenudisablestatus` `0x3A5` through `0x002E1BE0` (`0x0035276D`); bit `0x200000` for the movie player (`0x001B82E4`, `0x001B76C8`, `0x001B80A4`, `0x001B84BE`), saving and loading (`0x0058252C`, `0x005823F8`, `0x005828B4`, `0x00582F1B`), the title screen (`0x00393A29`, `0x00393E07`), a Config screen widget (`0x0023FC78`, `0x0024024B`) and the callback `0x002CEB40` that `0x002CEFA0` installs (`0x002CEDE5`, `0x002CEBB6`) | `0`-`18`, `21` |
-| `2` | battle selection, `0x00313A00`, below | `0`-`8`, `10`-`12`, `20` |
+| `0` | the movie verbs `moviestandby` `0x368` (its handler `0x00356460` is a jump to `0x0035B840` at `0x00356467`; `0x0035B861`, `0x0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0x0035B816`, `0x0035B967`); the event-skip arm `0x00360980`, from verb `skipstart` `0x51A` (`0x0034D3BB`; `0x003609A7`, `0x003609B3`), and its release `0x00360A50`, from `0x003603F0` and `0x00360A20` (`0x00360B06`, `0x00360B12`); the title screen (`0x00394112`, `0x003940CB`); actor and field loads (`0x002678EB`, `0x0025D41A`, `0x0025D5A9`) | `0x3BB203` |
+| `1` | verb `setmenudisablestatus` `0x3A5` through `0x002E1BE0` (`0x0035276D`); bit `0x200000` for the movie player (`0x001B82E4`, `0x001B76C8`, `0x001B80A4`, `0x001B84BE`), saving and loading (`0x0058252C`, `0x005823F8`, `0x005828B4`, `0x00582F1B`), the title screen (`0x00393A29`, `0x00393E07`), a Config screen widget (`0x0023FC78`, `0x0024024B`) and the callback `0x002CEB40` that `0x002CEFA0` installs (`0x002CEDE5`, `0x002CEBB6`) | `0x27FFFF` |
+| `2` | battle selection, `0x00313A00`, below | `0x101DFF` |
 | `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`0x00344C84`, `0x00345704`, `0x0034515F`, `0x003464E8`) and `0x00268D10`/`0x00263050` | the mask |
-| `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0`, `1`, `9`, `20` |
+| `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0x100203` |
 | `6` | user control, verbs `ucon` and `ucon_4a5` (`0x0026C70C`, `0x0026C80C`, `0x0026C82C`) and `0x00263660`, `0x0026C3E0` | the mask |
-| `7` | the full-screen frame modes: set by `0x00228930` and `0x002E09A0`, cleared by the main loop (`0x0022BBA1`-`0x0022BBC5`) | `0`, `1`, `9`, `20` |
-| `8` | the menu-request family, below | `0`-`2`, `4`-`9`, `11`, `12`, `20` |
-| `9` | verb `crossfade` `0x16F` (`0x002F1AD4`, `0x002F1AE1`) and its completion (`0x002F19D3`, `0x002F19E0`) | `0`, `20` |
-| `10` | a timed hold after a menu request (`0x002F1C8B`, `0x002F18AC`) | `1` |
-| `12` | user control (`0x0026C738`) and a spawn group's last member dying (`0x00306F9A`), through `0x00307140` | `0`, `3`-`8`, `11`, `12`, `20` |
+| `7` | the full-screen frame modes: set by `0x00228930` and `0x002E09A0`, cleared by the main loop (`0x0022BBA1`-`0x0022BBC5`) | `0x100203` |
+| `8` | the menu-request family, below | `0x101BF7` |
+| `9` | verb `crossfade` `0x16F` (`0x002F1AD4`, `0x002F1AE1`) and its completion (`0x002F19D3`, `0x002F19E0`) | `0x100001` |
+| `10` | a timed hold after a menu request (`0x002F1C8B`, `0x002F18AC`) | `0x2` |
+| `12` | user control (`0x0026C738`) and a spawn group's last member dying (`0x00306F9A`), through `0x00307140` | `0x1019F9` |
 | `13` | cleared only: `0x0025B500` jumps to `0x002E1CD0` with clear 1 and row 13 (`0x0025B567`-`0x0025B573`) | - |
-| `15` | the pause menu, `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`) | `0`, `1`, `9`, `20` |
+| `15` | the pause menu, `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`) | `0x100203` |
 
 No holder sets a bit in rows 5, 11 and 14; only the two clears `0x002E0670` and `0x002E1450` write them (`0x002E0680`/`0x002E1572`, `0x002E0695`/`0x002E1587`, `0x002E06A3`/`0x002E1595`).
 
@@ -90,7 +90,7 @@ area's bit `0x8000` (`0x00377C20`). It is called from the field frame (`0x002346
 
 When the Start screen opens, `0x00228930` copies all 16 rows to `0x01FD4700` (the `0x002E1020` loop at `0x00228972`) and
 sets row 7 through `0x002E2240(1)` (`0x002E2248`). On close, `0x00229510` clears row 7 through `0x002E2240(0)` (`0x00229526`,
-`0x002E2265`) and writes back rows 2 and 8 only, clearing and re-setting each of bits 0-21 from the copy (`0x00229554`,
+`0x002E2265`) and writes back rows 2 and 8 only, clearing and re-setting each bit of the mask `0x3FFFFF` from the copy (`0x00229554`,
 `0x00229562`).
 
 ### What each bit blocks
@@ -160,7 +160,7 @@ same verb sequence.
 
 ### Menu requests
 
-`0x00254500` turns the combined mask into a set of refused menu requests: for each of bits 0-21 that is set, it ORs in
+`0x00254500` turns the combined mask into a set of refused menu requests: for each bit of the mask `0x3FFFFF` that is set, it ORs in
 that bit's word of `0x01E0C2C0` (`0x00254500`-`0x0025453C`). The menu router refuses those requests (`0x00254B80`-`0x00254BC5`).
 
 | Bit | Requests refused |
@@ -217,7 +217,7 @@ No other instruction reaches `0x01FD46F8`; only `0x00228922` stores to it.
 
 ## Modding notes
 
-- To keep a menu shut from a script, `setmenudisablestatus` owns row 1 bits 0-18; the other rows are rewritten by
+- To keep a menu shut from a script, `setmenudisablestatus` owns row 1 bits `0x7FFFF`; the other rows are rewritten by
   their holders.
 - A row number below 0 passes the signed test and writes below the table at `0x0215F1C0`.
 - In row 0 the movie verbs and the actor and field loads all write the mask `0x139203`, so one holder's clear also

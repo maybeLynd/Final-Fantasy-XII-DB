@@ -99,7 +99,8 @@ helpers (`0x003EF770`) moves it: payload 1 puts it in state 1, payload 2 spawns 
 
 1. State 1 waits until the image slot is ready (image task state 3) and message `0x10` has
    arrived (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes, widget `0x002432B0` from
-   the descriptor at `0x00D11CA8`) at `+0xE0`, shows image 7 with `0x002DECE0(7)` and goes to state 2.
+   the descriptor at `0x00D11CA8`) at `+0xE0`, starts music track 7 at full volume with `0x002DECE0(7)` (`0x003EFC69`;
+   [Music](../Sound-And-Music/music.md)) and goes to state 2.
 2. At the same moment the image task enters state 4 with a display count of `0x564`, `0x3DE` or
    `0x3A2` frames when `0x002DDCA0()` returns 1, 2 or anything else; that is the word at
    `[0x0215E6E0] + 0x0E`, a 2 downgraded to 1 when `0x0017E490()` has bit `0x1` clear.

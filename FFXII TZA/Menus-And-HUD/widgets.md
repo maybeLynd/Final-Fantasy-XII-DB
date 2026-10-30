@@ -74,7 +74,7 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 | `+0x74` | `u32` | start | frame the run started (`0x0208F570`) |
 | `+0x78` | `u32` | t78 | 0 forward, 1.0 backward |
 | `+0x7C` | `u32` | state | low nibble: run state 0-4 |
-| `+0x80` | `u32` | tween | bits 0-2: tween channels running |
+| `+0x80` | `u32` | tween | bits `0xF`: the four animated values running (one bit each, below) |
 | `+0x98` | `u16[2]` | pos | tween channel 0 output |
 | `+0x9C` | `u16[2]` | ext | tween channel 1 output |
 | `+0xA0` | `u8` | alpha | `0x80` when built |
@@ -84,23 +84,23 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 | `+0xB8` | `f32` | rate | 1.0, or 1 / steps at game speed (`0x00246B49`) |
 
 | `+0x40` bit | Meaning |
-|---:|---|
-| 0 | active (`0x002473F0`) |
-| 1 | may be activated |
-| 3 | can take the focus (`0x002481D8`) |
-| 4 | has the focus (`0x00244865`) |
-| 5 | passed to children on attach (`0x00248271`) |
-| 6 | close requested (`0x00244F0A`) |
-| 7 | the byte offsets at `+0xA4`-`+0xAD` move the draw box (`0x00246480`) |
-| 9 | a run was started |
-| 10 | release deferred to the next tick (`0x00245097`) |
-| 13 | has had a child attached, or a child's priority changed: the children are re-sorted (`0x00244990`) |
-| 14 | borrowed storage |
-| 15 | use the default animation descriptor |
-| 17 | generation parity |
-| 18 | skip the per-tick update |
-| 24 | drawn in the second draw pass (`0x00247730`) |
-| 27 | `+0xAE`/`+0xAF` also widen the draw box |
+|---|---|
+| `0x1` | active (`0x002473F0`) |
+| `0x2` | may be activated |
+| `0x8` | can take the focus (`0x002481D8`) |
+| `0x10` | has the focus (`0x00244865`) |
+| `0x20` | passed to children on attach (`0x00248271`) |
+| `0x40` | close requested (`0x00244F0A`) |
+| `0x80` | the byte offsets at `+0xA4`-`+0xAD` move the draw box (`0x00246480`) |
+| `0x200` | a run was started |
+| `0x400` | release deferred to the next tick (`0x00245097`) |
+| `0x2000` | has had a child attached, or a child's priority changed: the children are re-sorted (`0x00244990`) |
+| `0x4000` | borrowed storage |
+| `0x8000` | use the default animation descriptor |
+| `0x20000` | generation parity |
+| `0x40000` | skip the per-tick update |
+| `0x1000000` | drawn in the second draw pass (`0x00247730`) |
+| `0x8000000` | `+0xAE`/`+0xAF` also widen the draw box |
 
 ### The tree
 
@@ -203,7 +203,7 @@ Two helpers set those offset bytes:
 
 - `0x002476E0(widget, d)` adds the low bytes of the four words at `d` to `+0xA4`-`+0xA7` when bit `0x80` is set and bit `0x100`
   clear; `0x002A70B0` calls it.
-- `0x00247810(widget)` reads the three bits 16-18 of `+0x44`. With bit `0x40000` clear it sets `+0xAD` to -7 when bit `0x20000` is
+- `0x00247810(widget)` reads the three bits `0x70000` of `+0x44`. With bit `0x40000` clear it sets `+0xAD` to -7 when bit `0x20000` is
   set and to 6 otherwise, and `+0xAC` the same way from bit `0x10000`; with bit `0x40000` set it writes only the -7 values.
   `0x00227EE0`, `0x002A6A80` and the confirmation window `0x0057C480` call it.
 - `0x002478D0(widget, on)` sets or clears bit `0x40000`, the per-tick skip, on a widget and every descendant (first child
@@ -274,14 +274,14 @@ channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) o
 
 Besides its opening and closing runs, a widget has four animated values, one per bit of `+0x80`. Each starter
 refuses while any of the other three bits is set, records the start value, the change and the length
-`ms x 60 / 1000` frames, and stores a curve in bits 10-13:
+`ms x 60 / 1000` frames, and stores a curve in the bits `0x3C00`:
 
 | Bit | Starter | Animates | Message per step |
-|---:|---|---|---|
-| `0` | `0x002468A0(widget, x, y, curve, ms)` | the position `+0x98`/`+0x9A` | 22, and 17 at the end |
-| `1` | `0x00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit `0x1` or `0x2` keeps the right or bottom edge in place (`0x00246EAE`-`0x00246EDE`) | 21 |
-| `2` | `0x00247300(widget, from, to, curve, ms)` | the float `+0x8C` | 23 |
-| `3` | `0x002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`0x00244D74`-`0x00244DC1`) | none |
+|---|---|---|---|
+| `0x1` | `0x002468A0(widget, x, y, curve, ms)` | the position `+0x98`/`+0x9A` | 22, and 17 at the end |
+| `0x2` | `0x00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit `0x1` or `0x2` keeps the right or bottom edge in place (`0x00246EAE`-`0x00246EDE`) | 21 |
+| `0x4` | `0x00247300(widget, from, to, curve, ms)` | the float `+0x8C` | 23 |
+| `0x8` | `0x002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`0x00244D74`-`0x00244DC1`) | none |
 
 `0x00247260` starts bit `0x2` like `0x00247130` and then replaces the curve with its sixth argument. `0x002468A0` sends 17
 twice instead of starting when the widget is already at the target (`0x002468DE`-`0x00246922`).
@@ -305,7 +305,7 @@ The curve function `0x00248F40(curve, length, t)` returns 1.0 once `t` reaches `
 Many menu rows fade their alpha `+0xA0` or colour byte `+0xA1` with a pair of helpers that keep their state in the row
 widget's own `+0xC0`-`+0xD3`:
 
-- `0x002D04F0(widget, to, which, curve, ms)` starts the fade: bit `0x1` of `+0xC0` running, bits 2-5 the curve, bits 6-7
+- `0x002D04F0(widget, to, which, curve, ms)` starts the fade: bit `0x1` of `+0xC0` running, the bits `0x3C` the curve, the bits `0xC0`
   `which` (above 0 for `+0xA1`), the start value at `+0xC4`, the change at `+0xC8`, the length `ms x 60 / 1000`
   frames at `+0xCC` and the start frame `0x0208F570` at `+0xD0`.
 - `0x002D0410(widget)`, run each tick by the row, writes `start + change x 0x00248F40(curve, length, now - start)` to the
@@ -451,7 +451,7 @@ after them. Its private messages 33-52 set or read the fields below ([Widget mes
 | `+0x61B8` | `i16` | nextListKind | the list kind to open next: 1, the top commands, when built (`0x0027670D`); message 33 sets it (`0x0027A793`); the tick builds a panel while it is not 0 (`0x0027A3E7`), reads it for the panel (`0x0027A48D`, `0x0027A4B9`, `0x0027A515`, `0x0027A543`, `0x0027A5B6`, `0x0027A67E`, `0x0027A6B3`) and sets it to 0 (`0x0027A6F0`); `0x002767C0` answers it when no child answers message 44 (`0x0027680A`). |
 | `+0x61BA` | `u16` | targetAction | the action id of the target list being opened: message 34 stores it (`0x0027A7BC`), sent by the list widget `0x002778C0` at `0x00278660` with its word `+0xDC`; read for the tab strip's action (`0x0027A154`, `0x0027A213`) and as message 1's first argument of each new panel (`0x0027A3F4`). |
 | `+0x61BC` | `u32` | member | the handle of the party member whose menu is open: the controlled character `0x0035BAD0` when built (`0x0027A01D`), then message 36 (`0x0027A768`), sent by `0x002778C0` at `0x0027815B` after a left or right step; read for the tab strip (`0x0027A15C`, `0x0027A21A`), for each new panel's `+0x2FE0` (`0x0027A59B`), and by the panel `0x00276D30`, which compares it with `0x0035BAD0` (`0x0027778A`). |
-| `+0x61C0` | `u16` | requestId | the router id the menu was requested with, bits 0-6 of message 1's first argument (`0x00279FD1`, `0x00279FD8`), which `0x00290CF0` takes from [`0x0209BE80`] + `0x10F60` (`0x00290D8F`); read for the refusal test `0x00254550`(`0x00254500`(), id) before the Dismiss confirmation (`0x0027A337`), as each new panel's byte `+0x2FF0` (`0x0027A480`), and by the confirmation `0x0027AA70` (`0x0027AC0B`). |
+| `+0x61C0` | `u16` | requestId | the router id the menu was requested with, bits `0x7F` of message 1's first argument (`0x00279FD1`, `0x00279FD8`), which `0x00290CF0` takes from [`0x0209BE80`] + `0x10F60` (`0x00290D8F`); read for the refusal test `0x00254550`(`0x00254500`(), id) before the Dismiss confirmation (`0x0027A337`), as each new panel's byte `+0x2FF0` (`0x0027A480`), and by the confirmation `0x0027AA70` (`0x0027AC0B`). |
 | `+0x61C2` | `u16` | tutorialGroup | the tutorial command group, message 1's second argument (`0x00279E86`, `0x00279E8B`), which `0x00290CF0` takes from [`0x0209BE80`] + `0x10FA0` (`0x00290D9D`); read for the tab strip's `+0xCB` (`0x0027A143`, `0x0027A20B`) and each new panel's `+0x2FF6` (`0x0027A432`), from which `0x002778C0` fills the word `+0x04` of its list requests. |
 | `+0x61C4` | `i16` | panelX | the x at which panels are placed: item 0's x of the menu's layout record 14 plus the record's x (`0x00279EC0`-`0x00279ED2`); read to compute `+0x61C8` (`0x00279F28`) and as each new panel's `+0x98` (`0x0027A465`). |
 | `+0x61C6` | `i16` | panelY | the y at which panels are placed: item 0's y plus its height minus 14 plus the record's y (`0x00279ED9`-`0x00279EEB`); read to compute `+0x61CA` (`0x00279F43`) and as each new panel's `+0x9A` (`0x0027A45E`). |

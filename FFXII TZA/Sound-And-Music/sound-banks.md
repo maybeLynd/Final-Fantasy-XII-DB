@@ -8,9 +8,10 @@ addresses: "0x007CFF90, 0x007CF6B0, 0x00223AD0, 0x00222DC0, 0x00222740, 0x0036ED
 ## What the player sees
 
 - Every sword hit, menu blip, spell and footstep plays from a sound bank; the game ships no loose sound files.
-- 64 characters call out in battle (66 banks ship per language; the path arrays name only `shout00`-`shout63`),
-  each with ten lines: three for attacking, three for taking damage, two for a
-  critical and two for being knocked out.
+- Battle voices come from 46 banks per language: the party members, guests and summons the model sound tables
+  name, and the Imperial soldiers, judges and other enemies whose battle records name one. Each language ships 66
+  voice banks and the path arrays name `shout00`-`shout63`. Each bank holds ten lines: three for attacking, three
+  for taking damage, two for a critical and two for being knocked out.
 - Music plays from much larger bank files, one per track.
 
 ## Where it comes from
@@ -31,6 +32,11 @@ each controller's bank class names the family in its run-time type name.
 The manager's fifth controller, at `+0x18`, is `StreamAudioController`. The two SE folders' root is
 `PS2Data/sound/se/sead_data_win` (`0x00908950`), and `.win.sab` comes from `0x00908998`. Music ids run 7, 15-92,
 94-116 and 200-213.
+
+Every shipped bank and index is listed, with its header, contents, loader and what names it, in
+[`sound-music-bank-files.tsv`](sound-music-bank-files.tsv), [`sound-se-bank-files.tsv`](sound-se-bank-files.tsv),
+[`sound-block-index-files.tsv`](sound-block-index-files.tsv) and [`sound-voice-bank-files.tsv`](sound-voice-bank-files.tsv).
+The columns are under Shipped data.
 
 ### Block banks and the block index
 
@@ -149,6 +155,31 @@ The effect loader `0x00504060` adds an entry for a kind-1 record and opens its b
 
 `0x0036F000` answers 1 only when no record of either table is in state 1 or 2, so every voice load has finished.
 
+### What names each bank
+
+A music track number reaches the bank loader `0x00222740` only through the four track slots. `0x00361630` is called by
+`musicread` (`0x0034174B`), the start of `musicplay` (`0x003427D6`), `0x0035CC57` and `0x0035CC82` with the area's track
+from `0x0026DE00`, the two change tasks (`0x00360F3C`, `0x003613DF`) and the game-over task, which asks for track 7
+(`0x003EF3D0`, `0x003EF42C`). The change tasks are scheduled by `0x003614E0`, which `0x003614C0` calls for the area's
+track (`0x002620A8`) and for `musiccrossplay_22f` (`0x00347367`).
+
+The area's track is the music table's (`0x003EAA70`), the saved override set by `setnowmapmusicno`, or `0x5A` in
+chocobo mode and `0x5B` in summon mode ([Music](music.md)).
+
+A block is registered through `0x003A0C90` from two places: `0x003A1650`, for the start-up blocks 0, 1 and 2
+(`0x003A13F0`) and for the block ids of a model's `charseinfo` row (`0x002E60F0`), and the developer verb
+`debug_registcharsep` `0x206F` (`0x0050CAB2`), which no shipped script calls.
+
+A six-digit bank is opened only by `0x00222DC0`, reached from `0x002DF070` alone (`0x0021A0CB` <- `0x00210C40` <-
+`0x001DBE60` <- `0x002DF0B8`). `0x002DF070` walks `SeSep` records for the map binder `0x003635E0` (`0x0036362D`, slot 0 of
+the block pack), the event sound slots (`0x003DEC14`, `0x003DF3B7`) and the effect loader `0x00504060` (`0x00504149`).
+
+A voice bank is loaded by `0x0036ED50` from the voice pool `0x0036F0F0` (`0x0036F224`), which the model rebuild calls
+(`0x0037B896`) with the bank `0x002ED910` gives: an enemy's battle record word `+0x26` (`0x003212E0`, kind byte 1 at
+`0x003212FF`), or else the model's `charseinfo` row
+([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)). The verb
+`actoriopvoiceread` `0x0341` (`0x003466CB`) also feeds the pool, and no shipped script calls it.
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -157,7 +188,7 @@ All multi-byte fields are little-endian.
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "sabf" in a .sab, "mabf" in a .mab |
 | `+0x04` | `u8` | version | 2; below 2 the directory is at +dirDelta |
-| `+0x05` | `u8` | flag | 1 in a six-digit bank and in every .mab, 0 in the others |
+| `+0x05` | `u8` | flags | bit `0x1`: the bank's sound check `0x007A8CF0` takes sound 0 whatever number it is asked for (`0x007A8D94`-`0x007A8DA5`), and a music bank of version 2 or later answers that any number is present (`0x007A8E28`-`0x007A8E34`); set in every six-digit bank and every `.mab`, clear in the others |
 | `+0x06` | `u16` | dirDelta | `0x10` |
 | `+0x08` | `u8` | chunkCount | 4 in a .sab, 3 in a .mab |
 | `+0x09` | `u8` | nameLength | length of the bank name at `+0x10` |
@@ -167,12 +198,38 @@ All multi-byte fields are little-endian.
 The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk directory starts at
 `((0x10 + nameLength) & 0xF0) + dirDelta`, which is `0x20` in every shipped file.
 
+In a six-digit bank the name at `+0x10` is the folder, `se<id/1000>`, and the bank's one sound carries the file's
+own name, `se<id>`. Block and voice banks carry the file's name, and every music bank carries `music`.
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[4]` | tag | "snd " "seq " "trk " "mtrl" in a .sab; "musc" "inst" "mtrl" in a .mab |
 | `+0x04` | `u32` | flags | `0x00100000` |
 | `+0x08` | `u32` | offset | from the start of the file |
 | `+0x0C` | `u8[4]` | pad | 0; read by no function: `0x007CF6B0` and `0x007D0580` read the tag and the offset, and the five functions that call `0x007CF6B0` (`0x007D0210`, `0x007D0580`, `0x007E3450`, `0x007E3CF0`, `0x007E48D0`) read the offset `+0x08` of the entry it returns and not its `+0x0C`; nothing fixes its width |
+
+The records the game reads in a sound bank's `snd ` chunk:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x02` | `u16` | nameOffset | the sound's name, from the record's start |
+| `+0x04` | `u8` | playable | 0 makes `0x007A8CF0` refuse the sound (`0x007A8DE3`); 1 in every playable shipped sound |
+| `+0x08` | `u16` | number | the number `0x007A8F40` matches when an id carries bit `0x40000000` (`0x007A8F94`-`0x007A8F9D`); equal to the record's position in every block and voice bank |
+
+The music header fields that name its sections that name its sections (the readers are on [Interactive music](interactive-music.md)):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x02` | `u16` | nameOffset | the music's name, `music<NNN>` in every shipped bank |
+| `+0x04` | `u8` | sectionCount | 3 in every shipped bank; section *n* is music version *n* |
+| `+0x48` | `u8` | nameLength | the offset table follows the name, at `nameOffset + ((nameLength + 0x10) & 0xF0)` |
+
+A section header gives its name offset at `u16 +0x02` and its name length at byte `+0x04`.
+
+A material record holds its header size at `u16 +0x02`, the channels at byte `+0x04`, the codec at `+0x05`, the
+rate at `u32 +0x08` and the loop region at `+0x0C`-`+0x10` (`0x007EBAD0`, [Sound engine](sound-engine.md)). The
+codec header's size follows at `u32 +0x14` and the sample data's size at `+0x18`; in every shipped material the
+header, the codec header and the data end exactly at the next material or at the file's end.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -191,7 +248,7 @@ The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk direc
 |---|---|---|---|
 | `+0x00` | `char[5]` | magic | "SeSep" |
 | `+0x08` | `i32` | id | the six-digit bank id |
-| `+0x0C` | `u32` | size | record length in bits 0-30 |
+| `+0x0C` | `u32` | size | record length in the bits `0x7FFFFFFF` |
 | `+0x10` | `u32` | word | copied to bank `+0x40` and `+0x45` |
 | `+0x14` | `u8` | flags | copied to bank `+0x44` and `+0x49` |
 
@@ -212,18 +269,88 @@ The `.seb` files are `se000`, `se002`, `se007`, `se200`-`se434` and `se700`-`se7
 4,404 slots present. The slot flag byte takes the values 0 (2,647 slots), 128 (1,574), 1 (133), 4 (33), 5 (11), 17
 (5) and 8 (1).
 
+### The music banks
+
+Each of the 116 `.mab` banks holds one music of three sections, two-channel HCA at 48,000 Hz. Section 0 is named
+for its recording, for example `31_FinalFantasyXII-GameOver` in `music007`; section 1 is `bgm_<NNN>` in most
+banks; section 2 `bgm_<NNN>s` in most. The game starts every music in the section of the music version option
+([Music](music.md)), which the settings reset sets to 1 (`0x002DF530(1, 1)`,
+[Game settings](../Saving-Loading-And-Settings/game-settings.md)). Banks 208, 209, 210 and 212 name their sections `E2NN` and track 211
+`bgm_211`.
+
+| Track | Section 0 |
+|---|---|
+| 7 | the game-over music, `31_FinalFantasyXII-GameOver` |
+| 90 | the chocobo music, `59_FinalFantasyXII-Chocobo(FFXIIVersion)` |
+| 91 | the summon music, `74_FinalFantasyXII-Esper` |
+
+The other 113 are in [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv). Tracks 102, 106 and 114 carry the
+same three section names as 61, 95 and 72.
+
+### The block banks
+
+The 248 block banks hold 6,395 sound records. 4,410 have byte `+0x04` set and can play; 1,985 are empty. The
+`.seb` slots name 4,376 of the playable sounds, one slot names an empty sound (`se301` slot 21), and 27 slots lie
+past their bank's last sound:
+
+| Block | Slots | Bank sounds | What does not match |
+|---|---:|---:|---|
+| `se007` (block 1) | 1-4 | 0-3 | slot 4 is past the bank; sound 0 has no slot |
+| `se228`, `se241` | 0-18, 32-43 | 0-30 | slots 32-43 are past the bank; sounds 19-30 have no slot |
+| `se301` | 0-12, 21, 22 | 0-22 | slot 21 names an empty sound; playable sound 13 has no slot |
+| `se330`, `se331` | 0-9, 21, 22 | 0-22 | playable sounds 10-12 have no slot |
+| `se353` | 0-12, 21-24 | 0-22 | slots 23 and 24 are past the bank; playable sounds 15 and 16 have no slot |
+
+A slot past the bank or naming an empty sound plays nothing (Loader behaviour), and a sound with no slot cannot be
+reached by id. In the 241 other blocks every slot names a playable sound and every playable sound has a slot.
+
+### The six-digit banks
+
+Each six-digit bank holds one sound, named as its file, and one HCA material: 3,251 stereo and 846 mono, 4,080 at
+48,000 Hz and 17 at 44,100 Hz, 0.11 to 153.81 seconds long. The folder says what plays them:
+
+| Folders | Banks | Named by |
+|---|---:|---|
+| `se001` | 157 | map sound lists; ids 1,001-1,999 are the ambiences ([Map sounds](map-sounds.md)) |
+| `se010`, `se050` | 502 | map sound lists |
+| `se100`, `se101`, `se150`, `se151` | 601 | effect files' sound records |
+| `se600`-`se610` | 2,829 | cutscene sound lists in `.snd` packs |
+| `se650` | 8 | nothing |
+
 ### Battle voice lines
 
 Each language's 66 voice banks hold ten lines per character, named `ve` (English) or `vj` (Japanese), a character
 code, a number and an event: 198 `at` (attack), 198 `dm` (damage), 130 `crt` (critical) plus 2 spelt `ctr`, and
-132 `dead`. Nine `us` banks hold an eleventh line named `vefah_01` and a code, and `shout62` holds a `vjD032` line in
-both languages.
+132 `dead`. Nine `us` banks, all summons, hold an eleventh line named `vefah_01` and a code.
 
-### Files the PC build never opens
+In five of them, `shout18` (Famfrit), `shout22` (Zodiark), `shout24` (Hashmal), `shout25` (Zalera) and `shout28`
+(Mateus), that line is sound 0 and the ten battle lines are sounds 1-10; in the other four and in every `jp` bank
+the battle lines are sounds 0-9.
+
+A voice id carries the animation variant, 0-9, as its sound number (`0x002E9F9E`, `0x003A0E30`-`0x003A0E3F`,
+`0x00224F5B`). So in English those five summons say the `vefah_01` line where the Japanese voice says the first
+attack line, each later variant plays the line before its Japanese counterpart, and no animation sound reaches
+`ve<code>_10dead`: the route stops at variant 9 (`0x002E9F79`).
+
+### Files nothing loads
 
 - 132 `.orb.sab` voice banks, 66 per language, each beside a `.win.sab` of the same name; the executable holds no
   `.orb` string.
 - `shout64` and `shout65` in both languages: the kind-33 and kind-39 arrays name only `shout00`-`shout63`.
+- 18 more voice banks in each language, `shout35`-`shout39`, `shout41`-`shout45`, `shout48`-`shout50`, `shout54`,
+  `shout55`, `shout58`, `shout61` and `shout62`: no `charseinfo` row and no battle unit names them.
+- Music tracks 24 (`A Small Bargain`), 25 (`A Small Happiness`), 43 (`Battle Drum (Incomplete)`), 106 and 112
+  (`Sky Fortress Bahamut (Partial Loop)`): no music-table run, override, mode track, game-over call or script
+  argument names them.
+- 28 blocks, `.seb` and `.win.sab` both: 206, 216, 220, 228, 330, 375-389, 395, 399-401, 407 and 413-415. No
+  `charseinfo` row names them and they are not start-up blocks.
+- 59 six-digit banks that no `SeSep` record in any shipped file names, among them all 8 of `se650`; the list is in
+  the `used` column of [`sound-se-bank-files.tsv`](sound-se-bank-files.tsv).
+- 2 more six-digit banks named only where the game never opens the record: 600173 and 600181, in slot 1 of the
+  `sum_a0000` and `sum_c0000` cutscene packs, which their scripts never read.
+
+One record names a bank that does not ship: `600070`, in slot 7 of `sum_a0001.snd`. The scene's script reads slots
+0-6 only, in all nine languages, so the record is never opened.
 
 ## Loader behaviour
 
@@ -267,6 +394,23 @@ header's first byte is non-zero (0 when `max <= min`), the search finds the last
 value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] - y[k])`, or `y[k]` at the last point
 (`0x007CFD00`-`0x007CFE5B`).
 
+8. A six-digit or block bank whose file cannot be read stops the game. The load thread leaves the bank's data
+   pointer at 0 when the file gives no length (`0x00212293`-`0x0021229E`), and the completion stores to address 0:
+   `0x00222F9E` for a six-digit bank, `0x00223E1E` for a block bank.
+9. The six-digit pool holds 256 banks. When every bank is taken and the sweep (`0x00212860`) frees none, the take
+   answers 0 (`0x00219A4F`) and `0x0021A0BF` stores through it at address `0x60`.
+10. A block sound plays only when its slot is in the index, `id & 0x1FF` (`0x002245D3`, `0x0022462A`), the slot is below
+    the bank's sound count (`0x007A8DB8`-`0x007A8DC6`) and the sound's byte `+0x04` is set (`0x007A8DE3`); otherwise
+    nothing plays (`0x00224651`).
+11. `0x00223AD0` reads the slot count as a signed word (`0x00223B72`, `0x00223BBA`), so a negative count registers no
+    slots.
+12. Each track number keeps a resume point in two 256-entry tables of the object manager, `+0x3D8` (`f32`) and
+    `+0x7D8` (`u8`). Their bound checks only call the empty `0x0016D6A0` (`0x00221737`, `0x00221112`, `0x00220DB2`), so a
+    track of 256 or more writes its position over the flag bytes and its flag past the `0x8D8`-byte object
+    (`0x00221748`, `0x00221756`).
+13. The animation-sound route sends a variant to the voice bank only below 10 (`0x002E9F79`); a higher variant
+    plays from the block instead.
+
 ## Modding notes
 
 - A block bank is found by its number: `se<n>/se<n>.win.sab`, where `n` is the index file's block number; a
@@ -276,6 +420,16 @@ value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1]
 - Block ids 3-191 give a negative index, 192-199 read the array's first eight entries, and 500-699 land on another
   block's file (500 reads `se300`).
 - Editing an `.orb.sab` file changes nothing on PC.
+- A replacement `.sab` needs the magic `sabf`, version 2, the chunk directory where the name length puts it, and
+  the four chunks; their order and `fileSize` are free. A material may use codec 1 (PCM), 2 (MS ADPCM), 3 (Vorbis)
+  or 7 (HCA); codec 4, the `.orb` format, is refused ([Sound engine](sound-engine.md)).
+- In a block bank, slot *n* of the `.seb` plays sound *n*, which must have byte `+0x04` set. Keep the index's
+  block number equal to the file's number: the registry and the `.win.sab` path both use it.
+- A six-digit bank plays its sound 0. Every id a loaded map, cutscene or effect record names must have its file,
+  or the load stops the game (`0x00222F9E`).
+- A voice bank's sound *n* is variant *n*: three attack lines, three damage lines, two critical lines, two
+  knock-out lines, in that order.
+- A replacement `.mab` needs the magic `mabf` and three sections; a track number must stay below 256.
 
 ## Related
 

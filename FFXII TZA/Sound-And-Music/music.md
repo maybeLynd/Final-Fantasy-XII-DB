@@ -104,6 +104,7 @@ set flag at `+0x7D8`, 256 each ([Audio manager](audio-manager.md)). `0x00222A40`
 | `0x002DEC30(track, length)` | clears the track's point and crossfades to it over `length` (`0x00218AE0`); the other tracks fade out |
 | `0x002DEC80(track, section)` | full volume, clears the point and starts from section `section` (`0x00218C10`) |
 | `0x002DED30(track)` | clears the point and starts at once (`0x00218C40`) |
+| `0x002DECE0(track)` | full volume, clears the point and starts at once; `musicplay`'s result `0x00342F80` uses it for a play with no section and no flags in `+0x02` & `0xF` (`0x00342FAF`-`0x00342FC1`) |
 | `0x002DED70(track)` | full volume and starts at once, from the point when one is stored |
 | `0x002DEDB0(track)` | starts at once, from the point when one is stored |
 | `0x002DEDD0()` | stores the current track's point (`0x00218D00`) |
