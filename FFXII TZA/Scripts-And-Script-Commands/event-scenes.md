@@ -32,7 +32,7 @@ never set in retail, so scene verbs always proceed past it.
 |---|---|---|---|
 | `eventread_e8(slot, id)` | `0x00E8` | begin `0x00351880`, poll `0x00351C90`, result `0x003522C0` | the begin stores both and prefetches `0x001D6A70(id, slot)`; the poll waits while manager `m` is active (`+0x10` bit `0x1`) and busy (`+0x13`); the result queues the load `0x0032FC30(m, id)` and sets the hold `0x0032ED70(m)` |
 | `eventread(id)` | `0x00E7` | result `0x00353080` | slot 0, the same load after `0x00314D40(1)` |
-| `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | waits while `0x0032F6C0(m)` reports loads pending, calling `0x00314D40(1)` each poll |
+| `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | waits while `0x0032F6C0(m)` reports loads pending other than the start hold bit `0x1` (`0x0032F6CD`), so for the scene's files and not for `eventplay`, calling `0x00314D40(1)` each poll |
 | `eventplay_ec(slot)` | `0x00EC` | result `0x00354B20` | releases the hold `0x00332130(m)`, then `0x001EC680(m)`, `0x0020AF10(m, −1)` and `0x001EC600()` |
 | `eventsync_ee(slot)` | `0x00EE` | begin `0x00353A10`, poll `0x00355970` | waits while `0x00267210(m)` is non-zero: manager active or busy |
 | `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first; waits while manager `+0x10` has bit `0x2` |

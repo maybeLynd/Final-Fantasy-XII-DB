@@ -234,7 +234,7 @@ or write the transition record:
 | `0x91` `nowjumpindex()` | `0x0033F7F0` | the entrance `+0x1048` resolved by `0x00264CE0` against manager 0's header: -1 gives `short +0x52`, -2 `+0x78`, -3 `+0x7A`, other negatives `+0x52`, then clamped to 0 or above |
 | `0x92` `lastmap()` | `0x0033FC40` | payload `+0x104C` (`0x00314870`) |
 | `0x93` `lastjumpindex()` | `0x0033FFF0` | payload `+0x1050` (`0x00314850`) |
-| `0xD5` `mapjumpstatus(v)` | `0x0034A250` | bit `0x1` of byte `+0x17` of the current field context |
+| `0xD5` `mapjumpstatus(v)` | `0x0034A250` | bit `0x1` of the `flags3` byte `+0x17` of the running manager slot (`0x002640C0`, `0x0034A26D`-`0x0034A27B`; [actor managers](../Characters-And-Objects/actor-managers.md)) |
 | `0x211` `getmapjumpposbyindex(i, ...)` | `0x003538F0` | x, y, z and angle of entrance `i` into four script variables |
 | `0x2C5` `effectkeepmapjump(v)` | `0x0033FC20` | `0x0036E9B0(v, 1)` |
 | `0x323` `getmapjumpanglebyindex(i)` | `0x00353490` | the angle of entrance `i` |

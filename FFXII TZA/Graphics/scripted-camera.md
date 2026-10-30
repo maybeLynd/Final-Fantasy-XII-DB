@@ -176,8 +176,9 @@ sets them again.
 
 `setsummoncameratarget(id, on)` (`0x0271`, `0x00341410`) makes the actor `id` names (`0x00264010`, the
 party focus for a negative id) the subject `0x02096508` through `0x002578F0`, or clears the subject when
-`on` is 0. Clearing it also drops the mark bit `0x8000` from every other live actor's fade word and
-keeps the fade running while any actor was marked.
+`on` is 0. Clearing it also keeps only the low byte, the fade level, of every other live actor's fade word
+(`and` with `0xFF`, `0x00257987`), which drops the mark bit `0x8000`, and keeps the fade running
+while any actor was marked.
 
 The fade word is a `u16` of the actor's `+0xC0` context: `0x00263EB0(actor, i)` and
 `0x0026A3B0(actor, i, v)` read and write `+0x20 + 2i`, `i` clamped to 1 and taken as 0 when negative,

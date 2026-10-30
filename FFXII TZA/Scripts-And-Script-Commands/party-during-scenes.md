@@ -17,18 +17,24 @@ scale every time the player talks to a townsperson or opens a door.
 
 `hideparty` (`0x0147`, `0x003415D0`) and `showparty` (`0x0148`, `0x00342250`) call `0x002ECD50(actor,
 0 or 1)` for party slots 0 to 3 through `0x00263750`; `hideparty_without_uc` (`0x0498`,
-`0x00341CB0`) skips the controlled character. `0x002ECD50` acts only on a class-3 actor whose
-lifecycle byte is not 1: it writes bit `0x1` of byte `+0x10` of the presentation record (`+0xC0`) and
-refreshes visibility through `0x002E8FD0`. It hides the body and leaves the actor and its battle
-unit in place.
+`0x00341CB0`) skips the controlled character. `0x002ECD50` acts only on a class-3 actor that is not a
+captured member (bind state `+0x18` is not 1, `0x002ECD50`-`0x002ECD54`): it writes bit `0x1` of byte
+`+0x10` of the presentation record (`+0xC0`) and refreshes visibility through `0x002E8FD0`. It hides
+the body and leaves the actor and its battle unit in place.
 
 `disposepartywithoutcontrol` (`0x0202`, `0x0034C990` → `0x003B6F30`) clears the party-control byte
 `0x02B40534`, empties the follower list (`0x003B6DE0`), narrows the controlled set to one actor
 (`0x003B6D60`), the actor of the party slot that holds the summoner's row `+0x5AD5` ([party control
-modes](../Engine-Core/party-control-modes.md), `0x003B6D69`-`0x003B6D82`), and snapshots each controlled
-actor's pose (`0x003B7510`). `capturepartyforsummon`
-(`0x0232`) does the same and binds the set to manager 3's entries (`0x003B72F0`);
-`releasepartyforsummon` (`0x0233`) releases them (`0x003B7AB0`).
+modes](../Engine-Core/party-control-modes.md), `0x003B6D69`-`0x003B6D82`), turns its [animation-driven
+movement](../Movement-And-Pathfinding/animation-driven-movement.md) off (`0x0026B500`, `0x003B6D9B`) and
+sets its `+9` bit `0x4` (`0x003B6DA0`), and snapshots each controlled actor's pose (`0x003B7510`).
+
+`capturepartyforsummon`
+(`0x0232`) does the same and binds the set to manager 3's entries (`0x003B72F0`): for entry i of the
+second list of the script image's `+0x68` table ([EBP script image](../EBP-Script-Files/ebp-script-image.md))
+with a non-negative ordinal, it clears that actor's `+9` bit `0x1` (`0x003B736E`) and has it capture
+controlled actor i (`0x00262F50`, `0x003B7375`). `releasepartyforsummon` (`0x0233`) releases them
+(`0x003B7AB0`, which does not read the manager slot 3 its handler passes).
 
 `hide_freetarget_group(g)` (`0x04B8`, `0x003569E0`) and `show_freetarget_group(g)` (`0x04B9`,
 `0x00356D00`) call `0x0035AA50(0, g, 0 or 1)`. It walks manager 0's ordinal window (first ordinal at
@@ -189,7 +195,7 @@ Actor record fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x09` | `u8` | summonFlags | bit `0x4` follower, bit `0x8` dedup mark, bit `0x10` follower candidate |
+| `+0x09` | `u8` | summonFlags | bit `0x1` cleared on a manager-3 actor before it captures a controlled actor (`0x003B736E`), bit `0x4` follower (also set on the summoner's actor by `0x003B6D60`, `0x003B6DA0`), bit `0x8` dedup mark, bit `0x10` follower candidate |
 | `+0x18` | `u8` | bindState | 1 captured, 2 capturer |
 | `+0x19` | `u8` | otherManager | the bound partner's manager |
 | `+0x1A` | `u16` | otherId | the bound partner's id |
