@@ -133,6 +133,7 @@ case-by-case load and destroy arms are in [`effect-element-runtime-switch-family
 |---|---|
 | `.efx` files | 3,288, 4,579,689,088 bytes, 1,840 to 25,310,800 bytes each, all under `ps2data/effect_finish` |
 | `.efb` files | 410, 226,292,720 bytes, 7,584 to 4,444,528 bytes each, all under `ps2data/efb` |
+| banks a zone can load | 388: `0x00377DC0` is called with kind 4 (`0x00378B1A`) and keeps the zone pack's file name without its extension (`0x00377E64`-`0x00377E83`), so of the 550 zone packs 388 name a shipped bank and 162 name none (that read fails and frees its block). The other 22 banks match no zone pack: `alc0201`, `alc0202`, `alc0204`, `bds0102`, `bds0105`, `bds0106`, `bds0108`, `bul0103`, `rbl0102`, `rbl0114`, `rbl0118`, `rbl0120`, `rbl0123`, `rbn0105`, `rbn0106`, `rdl0105`, `rdl0110`, `rwf0102`, `rwf0104`, `rwf0108`, `vic0103` and `vic0104` |
 | embedded streams | 144 `.cm` and 387 `.mpk` files, one stream each |
 | streams | 4,229; every chunk walk ends exactly at `+0x0C`; `+0x08` is 1.0 in all |
 | `.efx` magics | `EFX0010` 3,284, `EFX0008` 4 (`l0000.efx` in four locales) |

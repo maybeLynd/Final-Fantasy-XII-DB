@@ -62,10 +62,12 @@ All multi-byte fields are little-endian.
 | `+0x74` | `u32` | table74 | -> u32 count, `0x1C`-byte records (`0x00264390` mode 1) |
 | `+0x78` | `i16` | entryMinus2 | entry-point index used for -2 |
 | `+0x7A` | `i16` | entryMinus3 | entry-point index used for -3 |
-| `+0x7C` | `u32` | word7C | 0 in 1,014 of the 1,114 us images |
+| `+0x7C` | `i16` | explorationField | exploration field id (`0x00264790`, `0x002551B0`); 0, or 289 to 1,143 |
+| `+0x7E` | `i16` | word7E | returned by `0x00264770`; 0, or 1 to 31 when `+0x7C` is set |
 | `+0x80` | `u32` | table80 | -> u32 count, {u32 id, u32 mask} (`0x0035A270`) |
 | `+0x84` | `u32` | entryPointsB | -> u32 count, 32-byte records (`0x00264B90` kind 1) |
-| `+0x88` | `u32` | word88 | 0 in 364 of the 1,114 us images |
+| `+0x88` | `i16` | treasureModel setuptreasure's chest model (0x0026E060, version 11 or above); -1, 0, 4 or 5 |  |
+| `+0x8A` | `u16` | pad8A | 0 in every image |
 | `+0x8C` | `u32` | table8C | -> u32 count, 16-byte records (`0x00264870`) |
 
 ### Actor directory entry
@@ -119,6 +121,9 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 | `startActor` | -1 in 4,445 (493), 0 in 4,835 (537), positive in 756 (84) |
 | fixed counts | `+0x64` target 3, `+0x6C` target 1, `+0x70` target 5, in all |
 | `+0x68` | present with count 2 in 7,101 (789), absent otherwise |
+| name pool | `+0x4C` = `+0x48` + `+0x44` rounded up to 16, in all |
+| `+0x7C`, `+0x7E` | both non-zero in 900 (100), both 0 in 9,136 (1,014); `+0x7C` 289 to 1,143, `+0x7E` 1 to 31 |
+| `+0x88` | -1 in 6,571 (729), 0 in 3,276 (364), 4 in 171 (19), 5 in 18 (2); `+0x8A` 0 in all |
 | weather triples | 17 distinct |
 
 ## Loader behaviour
@@ -215,6 +220,24 @@ record's `+0x10` bit `0x1`.
 
 `0x00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative
 index to `+0x52`.
+
+Four more header fields are read as values, not as table offsets:
+
+- `+0x4C`: `0x00263A30(manager, ordinal)` returns the image plus `+0x4C` plus the first int of the entry's
+  `+0x40` record (`0x00263A83`-`0x00263A8C`), the issuer name `captureactor` (`0x00354E10`) searches by, and
+  `0x00263E40(image, offset)` returns the image plus `+0x4C` plus `offset` (`0x00263E40`-`0x00263E4A`);
+- `+0x7C`: `0x00264790` returns this signed word of manager 0's image (`0x002647A5`), or -1 while manager
+  0's record `+0x10` lacks bit `0x1`. `0x003C4AE0` passes a positive value to `0x002551B0(0, field)`, which
+  indexes the save's exploration bitmaps through `0x003779F0` ([menu map
+  files](../Game-Files-And-Data-Tables/menu-map-files.md));
+- `+0x7E`: `0x00264770` returns it the same way (`0x00264785`). The map screen's point-list pane `0x002BA310`
+  compares it with its list's words at `+0xCC` (`0x002BA4A0`-`0x002BA4AA`), and `0x002B7B80` (`0x002B8621`) and
+  `0x004048E0` (`0x00404A6A`) read it;
+- `+0x88`: `0x0026E060`, for `setuptreasure` (`0x00354435`, `0x003552DE`), reads this word of manager 0's
+  image when the record's `+0x10` has bit `0x1` and the version is 11 or above (`0x0026E093`-`0x0026E09B`).
+  A non-negative value ORed with `0x3000000` is the chest model's name index, resolved by `0x002E9A60`
+  through the name table (`0x00263F80`); otherwise the model is -1 ([script name
+  bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
 
 ## Modding notes
 

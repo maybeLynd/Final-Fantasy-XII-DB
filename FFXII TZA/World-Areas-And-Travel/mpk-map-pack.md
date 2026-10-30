@@ -103,9 +103,84 @@ parse a chunk:
 
 Every shipped section carries exactly the 17 tags 0, 1, 11, 12, 17, 22 to 33 and the sentinel, so the
 skipped tags 2 to 8, 10, 13, 15, 16 and 18 to 21 never occur. After the walk the constructor
-allocates `count30 * 0x70` at `[+0x1C0]`, fills each entry from the tag-30 records (colour from the
-record's `+0xC` or from the tag-0 row through the `+0x40` sub-record's transform, `0x00231A90`) and
-links the records that carry bit `0x40000000` of their `+0xC` word to their tag-24 entry (`word +0x14`).
+allocates `count30 * 0x70` at `[+0x1C0]`, fills each entry from the tag-30 records (with bit `0x2000`
+of the record's `+0xC`, the colour from its `+0x18` or, when that word is 0, from the tag-0 row through
+the `+0x40` sub-record's transform, `0x00231A90`) and links the records that carry bit `0x40000000` of
+their `+0xC` word to their tag-24 entry (`word +0x14`).
+
+### The record arrays
+
+Four chunks are arrays of fixed records after a 16-byte head whose first dword is the count; in every
+shipped section the chunk is exactly 0x10 + count × the record size.
+
+`Ym00TransformRow` (`0x40` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `f32[3]` | row0 | first matrix row; `+0x0C` is 0.0 in all 390,136 rows |
+| `+0x10` | `f32[3]` | row1 | second matrix row; `+0x1C` is 0.0 in all |
+| `+0x20` | `f32[3]` | row2 | third matrix row; `+0x2C` is 0.0 in all |
+| `+0x30` | `f32[3]` | position | read for the instance's distance at `0x002F6962`-`0x002F6979` and for its facing at `0x002F60D7`-`0x002F60FB`; `+0x3C` is 1.0 in all |
+
+`0x002F5550` multiplies the row selected by an instance's `+0x02` into the instance's transform
+(`0x002F5EEF`-`0x002F6022`, through `0x00202D70`).
+
+`Ym00Switch` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | id | 1 to 692 in the shipped sections |
+| `+0x04` | `u32[3]` | words04 | 0 in 659 of the 1,060 records |
+| `+0x10` | `i32` | shownValue | copied into the per-frame cache [`+0x1C8`] (`0x002F6056`), which `0x002F5550` resets to -1 each frame unless [`+0x114`] is 1 (`0x002F5800`-`0x002F5832`) |
+| `+0x14` | `i32` | word14 | the shown value + 1 in 118 records |
+| `+0x18` | `i32` | word18 | -1 in 1,052 records, 48 or 51 in the others |
+| `+0x1C` | `i32` | word1C | -1 in all |
+| `+0x20` | `f32` | float20 | 30.0 in 767 records, 3.5 to 100.0 in the others |
+| `+0x24` | `f32[3]` | floats24 | -1.0 in all three in 1,052 records; 7.0, -1.0, -1.0 in 8 |
+
+`Ym00ClipGroup` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u32` | kind | 1: the default near and far (`0x002F59AC`); 3: near and far from `+0x04` and `+0x08` (`0x002F5946`, `0x002F594B`); 0: the previous group's pair; stored at the group entry's `+0xC8` and `+0xCC` (`0x002F59BA`, `0x002F59CA`); kind 1 is also tested at `0x002F5219` and `0x002F6670` |
+| `+0x04` | `f32` | near | 0.1 in 834 records, -1.0 in 1,150 |
+| `+0x08` | `f32` | far | -1.0 in 927 records, 60.0 in 469 |
+| `+0x0C` | `f32` | value | copied to the group entry's `+0xD0` (`0x002F6FB1`-`0x002F6FB6`); -1.0 in 4,182 records |
+
+In every section group 0 is of kind 0 and group 1 of kind 1; the other 4,361 groups are of kind 3.
+
+`Ym00Instance` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `i16` | piece | entry piece + 1 of the tag-22 chunk's offset table locates the geometry (`0x002F494B`-`0x002F4967`) |
+| `+0x02` | `i16` | row | the tag-0 transform row (`0x002F5EEF`, `0x002F70C2`); with bit `0x40000000` of flags, also the tag-32 entry whose word `+0x02` is the fade slot (`0x002F4BD1`-`0x002F4BE0`); compared with a clip track's `+0x46` (`0x00466D4C`) |
+| `+0x04` | `i16` | paletteId | the paletted texture pair bound to the instance (`0x002F5DDB`, `0x001807A0`); 0 to `0x3FFF` also index the texture-frame list [`+0x150`] (`0x002F49A6`, `0x002F74C0`) |
+| `+0x06` | `i16` | switch | -1, or the tag-1 switch whose shown value decides the draw (`0x002F602C`-`0x002F6067`) |
+| `+0x08` | `u16` | switchValue | the instance is drawn while it equals the switch's value (`0x002F605E`-`0x002F6067`); compared with a clip track's `+0x44` (`0x00466D90`) |
+| `+0x0A` | `u16` | facing | 0 keeps the row's matrix; 1 to 4 select how the matrix is turned toward the view each frame (`0x002F5F07`, `0x002F6092`-`0x002F64F1`) |
+| `+0x0C` | `u32` | flags | bits `0x2`, `0x4`, `0x8` draw mode (`0x002F4A95`-`0x002F4A9C`); `0x10`, `0x20` (`0x002F4B71`-`0x002F4B87`); `0x80` (`0x002F497D`); `0x100` (`0x002F4A82`); `0x200` (`0x002F4E03`); `0x400` (`0x002F4D43`); `0x1000` (`0x002F4A88`); `0x2000` colour (`0x002F703F`, `0x002F4ED1`); `0x4000` the draw list (`0x002F6FFE`, `0x002F606D`); `0x8000` (`0x002F4993`); `0x10000`, `0x20000` (`0x002F4971`); `0x10000000` sky piece (`0x002F4D3C`); `0x20000000` (`0x002F4A9F`); `0x40000000` fade slot and clip-group link (`0x002F4BC7`, `0x002F701D`) |
+| `+0x10` | `u32` | word10 | 0 in all 764,018 records |
+| `+0x14` | `u16` | clipGroup | the tag-24 group (`0x002F49B2`, `0x002F5E16`, `0x002F520A`, `0x002F6661`, `0x002F7025`) |
+| `+0x16` | `u8` | byte16 | 20 in 725,633 records; 19 values from 3 to 120 |
+| `+0x17` | `u8` | alpha | read at `0x002F49BD` for the draw's alpha (`0x002F4D93`-`0x002F4DC4`); 96 in 742,199 records, 128 in 14,472 |
+| `+0x18` | `u32` | colour | with flags bit `0x2000`, a non-zero word unpacked by `0x00466140` into the instance colour (`0x002F7049`-`0x002F70A8`) |
+| `+0x1C` | `u8` | maskBit | 1 to 254: drawn only while that bit of the active map-part mask (`0x0026E5F0`) is set (`0x002F4B8F`-`0x002F4BB5`), and the alpha is scaled from the table `0x02EBF278` (`0x002F4FD4`); 255 in 762,837 records |
+| `+0x1D` | `u8` | byte1D | compared with the texture-slot argument at `0x002F74C5` and `0x002F74E0`; 0 in all |
+| `+0x1E` | `u8` | biasA | the negated product of `+0x1E` and `+0x1F` goes to `0x00180890` (`0x002F4AA9`-`0x002F4AC5`) |
+| `+0x1F` | `u8` | biasB |  |
+| `+0x20` | `u64` | animGroups | bit n puts the instance in the clips of group n (`0x00466D07`-`0x00466D14`, from `0x002F57AC` and `0x002F7160`) |
+| `+0x28` | `u64` | qword28 | 0 in all |
+
+The tables beside this page list every record, each with the pack, the record's index and its offset in the
+section:
+
+- transforms, 390,136 rows: [part 1](mpk-map-pack-ym00-transforms-part1.tsv) and
+  [part 2](mpk-map-pack-ym00-transforms-part2.tsv);
+- [switches](mpk-map-pack-ym00-switches.tsv), 1,060 rows;
+- [clip groups](mpk-map-pack-ym00-clip-groups.tsv), 5,283 rows;
+- instances, 764,018 rows: [part 1](mpk-map-pack-ym00-instances-part1.tsv) and
+  [part 2](mpk-map-pack-ym00-instances-part2.tsv).
 
 `0x003ED190` (tag 25) also sends a light direction to the shadow object through `0x001F1590`, which
 creates the 0xB08-byte shadow object at `0x01F82EA8` on first use (`0x001EF2D0`) and stores the direction
@@ -393,7 +468,7 @@ bytes.
 | slots used | 0 (545), 1 (46), 4 (461), 8 (461), 9 (270), 10 (545), 13 (387), 15 (2), 16 (456), 17 (212), 24 to 27 (421, 136, 32, 17), 28 to 31 (396, 133, 31, 17) |
 | commonest slot sets | {0, 4, 8, 10, 13, 16, 24, 28} 113 packs; with 9 added 48; with 9 and 17 48; with 9, 17, 25, 29 47; {0, 1, 10} 46; {0, 10} 41 |
 | block packs | the 89 `<area>00` packs: 46 carry {0, 1, 10}, 41 {0, 10}, 2 nothing; no other pack is sound-only |
-| YM00 | 461 sections, median 2.9 MB; count 17 and the same 17 tags, in the same index order, in every one; 441 stamps are float-shaped values between 1 and 1000. [`mpk-map-pack-ym00-chunks.tsv`](mpk-map-pack-ym00-chunks.tsv) has the 8,298 index entries: pack, the section's file offset, entry, tag, the chunk's offset in the section and its bytes (to the next chunk start), its first dword and its SHA-256; the sentinel's row has no bytes |
+| YM00 | 461 sections, median 2.9 MB; count 17 and the same 17 tags, in the same index order, in every one; 441 stamps are float-shaped values between 1 and 1000. [`mpk-map-pack-ym00-chunks.tsv`](mpk-map-pack-ym00-chunks.tsv) has the 8,298 index entries: pack, the section's file offset, entry, tag, the chunk's offset in the section and its bytes (to the next chunk start), its first dword and its SHA-256; the sentinel's row has no bytes. The records of tags 0, 1, 24 and 30 are listed in [`mpk-map-pack-ym00-transforms-part1.tsv`](mpk-map-pack-ym00-transforms-part1.tsv) and [part 2](mpk-map-pack-ym00-transforms-part2.tsv), [`mpk-map-pack-ym00-switches.tsv`](mpk-map-pack-ym00-switches.tsv), [`mpk-map-pack-ym00-clip-groups.tsv`](mpk-map-pack-ym00-clip-groups.tsv), and [`mpk-map-pack-ym00-instances-part1.tsv`](mpk-map-pack-ym00-instances-part1.tsv) and [part 2](mpk-map-pack-ym00-instances-part2.tsv) |
 | ACTL | 270 sections, 64 to 1,792 bytes; version 1 and record size 0x16 in all; the index ends where the first record begins and the records end at the aux offset in all 270; 1,822 records, 101 of them tombstones. [`mpk-map-pack-actl-rows.tsv`](mpk-map-pack-actl-rows.tsv) has every record: pack, section offset, id (bucket × 100 + slot), bucket, slot, record offset, tombstone, then the record's fields by the layout above |
 | SP1 | 456 sections, 704 to 9,792 bytes; `listOffset` (`+0x04`) 0x20 in all; the three regions tile areas, emitters, index in 454 (two sections have no emitter index). [`mpk-map-pack-sp1-rows.tsv`](mpk-map-pack-sp1-rows.tsv) has each section's header offsets, its weather-slot list, the `u16` prefix list up to the bit `0x8000` word, the index bound and its distinct records; [`mpk-map-pack-sp1-index.tsv`](mpk-map-pack-sp1-index.tsv) every index entry (14,272, of which 11,946 are 0); [`mpk-map-pack-sp1-emitters.tsv`](mpk-map-pack-sp1-emitters.tsv) every distinct non-zero record offset (2,326) with its bytes up to the next record or the index, its list index (`+0x00`), flag byte (`+0x08`), shape byte (`+0x09`) and position (`+0x20` to `+0x28`) as the map sound list page reads them |
 | SPP1 | 545 lists of 1 to 48 ids, 624 distinct; the weather-table offset `+0x1A` is non-zero in all 545, with 1, 2 or 3 entries in 189, 130 and 226 tables. [`mpk-map-pack-spp1-rows.tsv`](mpk-map-pack-spp1-rows.tsv) has each list's header and weather table; [`mpk-map-pack-spp1-ids.tsv`](mpk-map-pack-spp1-ids.tsv) its 6,512 id entries, each with its bank |

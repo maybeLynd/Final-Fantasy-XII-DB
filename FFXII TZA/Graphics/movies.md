@@ -95,6 +95,10 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 | kind-28 entries | slots 0 to 97 hold 45 `.md` and 45 `.mh` paths in pairs; slots 76 to 81 and 92 to 93 are null, so ids 38, 39, 40 and 46 are empty and the array goes on past them |
 | `.mh` paths by folder | `us` 36, `in` 8, `jp` 1; `in\ANX.mh` and `us\DLB.mh` have no file |
 | `.mhe` in the executable | 0 occurrences |
+| movies by id | one row per movie id in [`movies-by-id.tsv`](movies-by-id.tsv), 49 rows: the kind-28 `.md` path, the `.webm` name the player opens and whether it ships (with its size and SHA-256), the `.mh` path and file, and every script step that opens the id |
+| opened by a script | 43 of the 45 ids with a path have a `moviestandby` step; 39 of those 43 open a shipped `.webm` |
+| title movies | `ttl_a01` and `ttl_a01_e3` choose the logo (44 or 45) and the opening (41 or 47) by `getscreenaspect` (`0x58E`, `0x0050D1C0`), whose `0x0053DD10` always answers 1, so they open 45 and 47; `ttl_c01` opens 41. None of 41, 44, 45 and 47 has a `.webm`, so each of these opens fails and resets the player |
+| named by no step | ids 35 (`GRV`) and 37 (`DLB`): no `moviestandby` step of the zone and event scripts names them; `grv.webm` ships and `dlb.webm` does not |
 
 ## Loader behaviour
 
@@ -209,6 +213,10 @@ fade time is left, so a running fade finishes first.
 and returns 1; it returns 2 and 3 for those states and 0 otherwise. `0x0035B7D0` calls `0x001B82A0`
 (through `0x001848C0`), which starts play only when `+0x08` is set. `0x0035B840` starts a movie and
 `0x0035B8D0` stops it.
+
+A script chooses its movie with `moviestandby` (`0x368`): its result step `0x00356460` passes the
+id to `0x0035B840`, the only caller of `0x001848A0`. `movieplay` (`0x36A`, `0x00356D20`) pops an argument
+that it does not use and runs `0x0035B7D0`, so it plays whichever movie `moviestandby` opened.
 
 `setmoviescreensize(n)` (`0x058C`, `0x00347C40`) stores `n` at `0x02ADD933` through `0x0037B470`, or 3
 for a negative `n`, and `getmoviescreensize` (`0x058D`, `0x00347F40`) returns it (`0x0037B370`). The

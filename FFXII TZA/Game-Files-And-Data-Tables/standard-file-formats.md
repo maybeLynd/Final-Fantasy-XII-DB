@@ -503,7 +503,8 @@ opens it with `0x0067A480` on the player object at its `+0x678`. A null path ent
 
 The first 98 ids of kind 28 hold 45 `.md` paths at even ids, each followed by its `.mh` path, and
 four empty pairs. 40 of the 45 base names have a `.webm`; `dlb`, `opd`, `se1`, `se2` and `bd2` have
-none.
+none. Which script step opens each movie id, and so what each `.webm` is shown for, is in
+[`movies-by-id.tsv`](../Graphics/movies-by-id.tsv) ([movies](../Graphics/movies.md)).
 
 ### Files no path names
 

@@ -96,6 +96,25 @@ Measured over every `.ebp` in `FFXII_TZA.vbf`.
 | zone-only sections (`us`) | 3, 4, 16 and 19 occur only in zone scripts; 14 only in event scripts |
 | section 6 by tree | 67 or 68 files in each Latin-script tree; 556 `kr`, 584 `cn`, 603 `ch`, 633 `in`; plus 3 control scripts in each of `in` and `ch` |
 | first bytes | the word or tag in the section table, the same in every file that has the section |
+| file tables | [ebp-script-container-files-event.tsv](ebp-script-container-files-event.tsv), 3,114 event scripts, and [ebp-script-container-files-plan-map.tsv](ebp-script-container-files-plan-map.tsv), 6,923 zone scripts: every file of every tree with its bytes, SHA-256, the path-array entry that names it, the size check, the decode check and whether the game loads it |
+| named by a path array | 2,934 event scripts (326 per tree), each at an index 4 × id of namespace 8, and 6,372 zone scripts (708 per tree), each at an index 3 × id of namespace 5; in all 9,306 every naming language's size table gives the file's exact size |
+| decode | 10,028 files read to their end: the directory walk above, the sections cut at each next offset and the last at the end of the file, and section 0 disassembled through the image's `length` (`+0x04`), the rest of the section zero padding under 64 bytes; the 9 `evt_t0020` files stop at offset 0, where no header begins |
+| named by no path array | 180 event scripts, 20 per tree (`dst_z9900` and the developer scripts `evt_t0005` to `evt_t0509`), and 551 zone scripts, 61 per tree and 62 in `kr` and `cn` (31 `bts_` test maps, 12 `dor_`, 5 `bds_`, 5 `mic_b`, 3 `pre_`, 2 `asp_b`, 2 `tst_`, `vic_a04`, and `ttl_a01_e3` in `kr` and `cn`): no language's path array names them, and the script load `0x0032FCA0` takes a script's path from those arrays through the resolver `0x002DF980` |
+
+### Per-file tables
+
+Both tables have one row per shipped file, in path order within each language tree:
+
+| Column | Meaning |
+|---|---|
+| `language` | the language tree: `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr` or `us` |
+| `family` | `event` or `plan_map` |
+| `path` | the file's path in the archive |
+| `bytes`, `sha256` | the file's size and SHA-256 |
+| `named_by` | each size-table kind and id whose path array names the file, with the languages of that array ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)); `-` when no array names it. Namespace 37 entries are listed too: `0x0032FCA0` asks namespace 37 only for index + 3, the `.vpcjp` |
+| `fst_size_matches` | `yes` when the size table of every naming language that sizes the entry gives the file's size; `-` for a file no array names |
+| `decodes` | `yes` when the file reads to its end as the decode row of Shipped data states, otherwise `no at` the offset where reading stops |
+| `loaded` | `read by` the languages whose namespace 5 or 8 array names the file at a script index with a size, or `named by no path array`. UK's size table has no entry in namespaces 5 and 8, so no UK language is listed |
 
 ## Loader behaviour
 

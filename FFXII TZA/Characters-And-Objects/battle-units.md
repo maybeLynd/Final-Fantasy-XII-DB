@@ -30,6 +30,13 @@ trigger line can be given its six coordinates by a script.
    `0x0208935C` to 5.0 and `0x02F973B8` to infinity, and requests the twelve job boards
    (`0x00238260(0..11)`).
 
+`0x02089300` is the battle system's up flag. Boot runs `0x002368D0` once (`0x0022A41A`), and `0x00236A40`
+sets the flag to 1 (`0x00236A44`) when the start-up state `0x0022B6E0` moves to state 1 (`0x0022B77C`).
+While it is 0 the definition installer `0x0023A570` returns 0 (`0x0023A5B5`), the fresh stats record
+`0x0023AC80` returns 0 (`0x0023ACE4`) and `0x002342F0` does nothing (`0x002342F4`) ([battle unit
+construction](battle-unit-construction.md), [kill
+chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
+
 A unit is `0xF50` (3,920) bytes; `0x00236850` returns the count and `0x00236820(i)` returns
 `0x0208E688 + i * 0xF50` for `0 <= i < count` and null otherwise. `0x002367A0(selector)` scans the pool
 for a unit whose stats record `+0x698` has the word `+0x04` equal to the selector, after

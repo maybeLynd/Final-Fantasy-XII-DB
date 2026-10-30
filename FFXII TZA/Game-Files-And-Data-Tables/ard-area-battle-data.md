@@ -115,7 +115,7 @@ growth rows on [stats](../Damage-And-Battle-Formulas/stats.md) and
 | section 19 (`us` scripts) | 271 carry an `FF12AR03` block, `+0x2C` = `0x30` in all, 2,116 slot-7 records in all; 266 with a trailer |
 | `.nmb` files | 166 per tree, byte-identical, version 100, `8 + 7 × count` bytes |
 | `.nmb` counts | 0 to 22; equal to the `.ard`'s slot 2 row count in all 166 |
-| `.nmb` entries | 1,146: `12 BA 00` 1,120 and `12 BB 00` 26, each a one-glyph two-byte string |
+| `.nmb` entries | 1,146: `12 BA 00` 1,120 and `12 BB 00` 26, each a one-glyph two-byte string. Read as text (`0x002AC2F0`; the lead-byte tables `0x00916570` and `0x009165B0` both hold `0x2A0` for lead `0x12`), they are glyphs 826 and 827, which the Japanese font `jp/font00` draws as the digits `0` and `1`: one digit per enemy definition. The 26 ones are `bds_e` 1-4, `bhm_c` 5-9, `bhm_d` 0, `dor_b` 1-2, `mrm_e` 1, `rui_c` 1, `tri_d` 1, `tri_f` 10-11, `tri_q` 7-10 and `tri_t` 5-9 |
 
 Every row of the area files is in six tables, and `pc_skillmotion.bin`'s in a seventh. The `ch` and `in` copies are
 byte-identical. The 1,146 enemy

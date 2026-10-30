@@ -43,7 +43,8 @@ clears the first-pass byte `0x022BE7E0`. The swaps are `dst0109` to `dst0103`, `
    `+0x418` and `+0x419` get bytes 1 and 3 of the entry, or both 0 without one. The render manager's
    byte `+0xDB9` is cleared and the post-process object's byte `+0x3E8` (`0x00193D50`) set to 1.
 5. The asset list `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_D3D11_srm.ah` is requested when
-   `0x0019EAA0` can open it, else `<map>_D3D11.ah`, through `0x0019EB60`; the handle goes to `+0x78`.
+   `0x0019EAA0` can open it, else `<map>_D3D11.ah`, through `0x0019EB60`; the handle goes to `+0x78`. Every shipped
+   map folder has its `_srm` list, so none of the 456 plain `<map>_d3d11.ah` lists of the map folders is requested.
 6. The texture-animation prefix `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` is written
    to `+0x141`.
 
@@ -134,6 +135,19 @@ is looked up by name in the procedural context (`+0x78`); `0x001A9CD0` stores th
 After the last record `0x001A53F0` applies them: for each slot whose current-view object has a main
 texture (`+0x260`) whose entry carries a kind, it stores the kind at the object's `+0x08` and passes
 the kind's texture (`+0x20`) and the seven values to `0x001E5C40`.
+
+`0x001E5C40` copies them into the material's shader constants, whose handles `0x001E4000` looks up by name
+(`0x001E480D`-`0x001E4929`). In file order:
+
+| Value | Shader constant | Shipped |
+|---|---|---|
+| float 1 | `ProceduralNormalBlendingRatio` | 1.0 in 7,582 of the 10,477 records |
+| floats 2 and 3 | `ProceduralTilingOffsetU`, `ProceduralTilingOffsetV` | 0.0 in every record |
+| floats 4 and 5 | `ProceduralTilingRatioU`, `ProceduralTilingRatioV` | equal in every record |
+| the integer | `EnableProceduralTexture`; the game writes 0 instead while byte `+0x09` or `+0x0A` of the procedural context `[0x01F81258]` is set or the object's `+0x5C` has bit `0x800` (`0x001E5D19`-`0x001E5D3E`) | 2 or 3 |
+| the optional float | `ProceduralRotation` | absent, so 0 |
+
+The detail kind's texture goes to `ProceduralNormalTexture` (`0x001E6040`).
 
 ### Paletted textures from the PS2 data
 
@@ -432,13 +446,15 @@ Measured over the archive.
 
 | Fact | Value |
 |---|---|
-| asset lists | 914 under `gamedata/d3d11/artdata/map/`: 457 `<map>_d3d11.ah` and 457 `<map>_d3d11_srm.ah` |
+| asset lists | 914 under `gamedata/d3d11/artdata/map/`: 457 `_d3d11.ah` and 457 `_d3d11_srm.ah`, one of each in the 456 map folders and in `proceduraltexture/` |
+| `_mipmap` and `_a` textures | 72 base textures end in `_mipmap` (with 57 `_n` and 52 `_spec` companions) and 51 in `_a` (with 44 `_n` and 36 `_spec`). Both endings are part of the authored names: each base texture is named by its map's scene (`.dae.phyre`) and asset list, and each companion by the asset list, so they are base, normal and specular layers like any other, paired as in [material extras for each model](#material-extras-for-each-model) |
 | `opt.csv` | `ps2data/opt.csv`, 10,182 bytes, CRLF, a header and 459 rows of 5 fields |
 | `FlipMapOpaqueOrder` | `Yes` for 7 maps: `ene0102`, `enw0103`, `frs0106`, `rbn0101`, `rbn0201`, `var0101`, `vic0101` |
 | `ForceNoOpaqueChrFirst` | `Yes` for 9 maps: `bul0101`, `rbn5001`, `rrp0101` to `rrp0106`, `rsn5001` |
 | `ForceMSAAOff`, `SMAA` | `No` and `Yes` in every row |
 | `NoModelGroupMaps.txt` | 32 map names, CRLF, each with an asset list |
 | `proceduralTextureConfigs.txt` | 451 files, 68 to 6,696 bytes, all CRLF; 10,477 records, every one of 8 values |
+| map folders no zone names | `alc02/alc0201` and `frs01/frs0109`: no zone pack path (kind 4) names them after the five swaps of [naming the map](#naming-the-map), so neither is loaded. `alc0201` holds a `proceduralTextureConfigs.txt` of 1,157 bytes; neither holds a `cubeMapConfigs.txt` |
 | procedural records | one row each in [`map-art-procedural-rows.tsv`](map-art-procedural-rows.tsv): map, folder, record index, texture, kind, the five floats, the integer, and where the texture resolves (`tex` in 1,969, `phyremaps` in 8,508; every record resolves) |
 | procedural floats | first 1.0 in 7,582 records, 0.7 in 1,372, 0.5 in 1,302, 0.9 in 169, 0.6 in 41, 1.2 in 11; second and third 0.0 in all; fourth and fifth equal in every record; integer 2 in 10,027 and 3 in 450 |
 | detail kinds used | `Wall_concrete_01` 6,332, `Steel_rough_01` 1,516, `Rock_roughlittle_01` 1,158, `Sand_little_01` 612, `Fabric_flax_01` 543, `Fabric_carpet_01` 169, `Wood_rough_01` 60, `snow_01` 41, `Leather_base_01` 35, `Wall_concrete_04` 11 |

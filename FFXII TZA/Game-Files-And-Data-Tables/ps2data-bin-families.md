@@ -85,6 +85,11 @@ Two tables list the files of two folders one by one:
 its decoded header, the kind and id the path arrays give it, the languages that read it, the loader, and whether
 the game reads it.
 
+[`ps2data-bin-families-common-files.tsv`](ps2data-bin-families-common-files.tsv) lists the seven files of
+`image/ff12/common/`, 4,892 bytes in all: `behindcamera.bin`, `eventmemorylist.bin`, `eventvib.bin`,
+`fhmusicdata.bin`, `soundfoottable.bin`, `summoneffectdata.bin` and `test_map_ref.bin`. Each row gives the file's
+size, its SHA-256 and its first four bytes in hex; no two of the seven have the same bytes.
+
 | Fact | Value |
 |---|---|
 | families, files | 146, 1,439 |
@@ -335,6 +340,8 @@ The game reads only the pack's tables, so none of these differences reaches play
 - A size entry of -1 is never read, and the requester is told the file was delivered
   ([File requests](file-requests-and-the-read-queue.md)).
 - Edit a battle table inside `battle_pack.bin`: the loose copies under `test_battle/` are never requested.
+- `common/fhmusicdata.bin` and `common/test_map_ref.bin` are requested by no code path (Data, above), so a
+  replacement of either has no effect in play and no layout to keep.
 - Edit the copy the language reads, the `read_by` column. For the files whose only named copies are in `in` and
   `ch`, `in` serves the Western languages, Japanese, ASIA and IN, and `ch` serves Korean and the two Chinese
   languages; the copies in the other folders are never read.

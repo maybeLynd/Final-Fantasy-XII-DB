@@ -1,0 +1,50 @@
+movie_id	md_path	webm	webm_ships	webm_bytes	webm_sha256	mh_path	mh_file	opened_by
+0	PS2Data\movie_finish\us\OPN.md	opn.webm	yes	1205743697	4EF52538F1640EB77383C71FF980B043CF21F481F4D54EF70EC50D011383A895	PS2Data\movie_finish\us\OPN.mh	ps2data/movie_finish/us/opn.mh	naf_a01 main step 25
+1	PS2Data\movie_finish\us\NAL.md	nal.webm	yes	150864751	759989AD73268F9974A7A87A959A7849F3278F2F51FEA9E6F021019FFA557BA0	PS2Data\movie_finish\us\NAL.mh	ps2data/movie_finish/us/nal.mh	nac_a02 main step 8; nac_a03 main step 25
+2	PS2Data\movie_finish\us\DLS.md	dls.webm	yes	86896556	8801FA9A1CF012ACE75D96C411A68185FBBAD7308109B4DD17CC5217C50C22D0	PS2Data\movie_finish\us\DLS.mh	ps2data/movie_finish/us/dls.mh	byu_b0101 main step 40
+3	PS2Data\movie_finish\us\RLV.md	rlv.webm	yes	84878876	C1B98E8D653269E0A3385BBABB883D7D02EC602D565D967B4B2A39B3C9E11291	PS2Data\movie_finish\us\RLV.mh	ps2data/movie_finish/us/rlv.mh	rwg_a01 touchon step 24
+4	PS2Data\movie_finish\us\LVB.md	lvb.webm	yes	67260835	0A1A46E36AF2CDF531E43A61E268732AE92CCECD58B3B68E50D387C619948058	PS2Data\movie_finish\us\LVB.mh	ps2data/movie_finish/us/lvb.mh	rsn_z0200 砂漠の牙 step 33
+5	PS2Data\movie_finish\us\ARC.md	arc.webm	yes	106821292	8FC1B1DB444A4E1861A5AA244827B48F02465AAF05C589DDCBE385BB424D68EA	PS2Data\movie_finish\us\ARC.mh	ps2data/movie_finish/us/arc.mh	alc_z0100 read_movie step 9
+6	PS2Data\movie_finish\us\ENS.md	ens.webm	yes	209256882	65E60EF74E2179F486E86B577FFB9B0F97C9E6259E1A20DBBA8F0AF93F861358	PS2Data\movie_finish\us\ENS.mh	ps2data/movie_finish/us/ens.mh	ene_a0180 main step 51
+7	PS2Data\movie_finish\us\LHO.md	lho.webm	yes	182246722	07705E0777FF95CF25987858A3774712CD62E3216FA280EB457555229E6E756A	PS2Data\movie_finish\us\LHO.mh	ps2data/movie_finish/us/lho.mh	rwf_a0100 main step 45
+8	PS2Data\movie_finish\us\CLS.md	cls.webm	yes	54243092	77C75B254E5CB80F5BF39C9B333DE62C1013A00C90082A681F3DE7C9626FBA8B	PS2Data\movie_finish\us\CLS.mh	ps2data/movie_finish/us/cls.mh	byu_y0100 main step 144
+9	PS2Data\movie_finish\us\LWG.md	lwg.webm	yes	119821995	EBD4BF1AB25FA41FC820E3D71D7D91EDEC33AB060778E7398B412BDB0B13EF69	PS2Data\movie_finish\us\LWG.mh	ps2data/movie_finish/us/lwg.mh	rwg_a01 main step 51
+10	PS2Data\movie_finish\us\ALX.md	alx.webm	yes	172692877	7898EDD173AC70069CF5257300E59353D9C9AD8AD8598026ADD1B0C2B77D04EC	PS2Data\movie_finish\us\ALX.mh	ps2data/movie_finish/us/alx.mh	mrm_a02 touchon step 85
+11	PS2Data\movie_finish\us\VAF.md	vaf.webm	yes	67771669	1E6B1B58F39CA798310484C1641D2E530A3BD0DDC3876B3EC09F3B6BB1004F53	PS2Data\movie_finish\us\VAF.mh	ps2data/movie_finish/us/vaf.mh	rrp_a01 main step 2
+12	PS2Data\movie_finish\us\LVA.md	lva.webm	yes	113124364	BFF930DA6BA87434441B8B248072CD97AA386FF512D9234AA264E6C2DFDBC582	PS2Data\movie_finish\us\LVA.mh	ps2data/movie_finish/us/lva.mh	rsn_z0100 リヴァイアサン艦橋にて step 56
+13	PS2Data\movie_finish\us\WEN.md	wen.webm	yes	171248674	1EA6DB738435E2C2DC5E536B7B9AA7028FFE382217C23EEF8650A3CD99B7C272	PS2Data\movie_finish\us\WEN.mh	ps2data/movie_finish/us/wen.mh	ene_a0200 EV_a0200 step 177
+14	PS2Data\movie_finish\us\DRC.md	drc.webm	yes	54370162	0A9B558E728C691FC20D293ED5785E1B2FB8A53D28B8F17AA7DF87B4EE54781E	PS2Data\movie_finish\us\DRC.mh	ps2data/movie_finish/us/drc.mh	dor_a0100 main step 28
+15	PS2Data\movie_finish\us\END.md	end.webm	yes	870895543	E34B72DF54A955223504A1D92E9DF86B190B5A4F8500B5C3E30CE717B26DB49B	PS2Data\movie_finish\us\END.mh	ps2data/movie_finish/us/end.mh	bhm_d0101 main step 415
+16	PS2Data\movie_finish\us\STR_STA.md	str_sta.webm	yes	275389768	B97AEBF66973DE318679ED7A1CC9ECEE8888443F0BA6F2F9E6FA9A6BEE9CAF34	PS2Data\movie_finish\us\STR_STA.mh	ps2data/movie_finish/us/str_sta.mh	rbn_b01 バルフレアtalk_意思確認時 step 38
+17	PS2Data\movie_finish\us\DIS.md	dis.webm	yes	237064028	215578D53D2364BD52F1864CA671EDF8F94337617C6F60998BCF7EA6DA6E27D1	PS2Data\movie_finish\us\DIS.mh	ps2data/movie_finish/us/dis.mh	rsn_z0201 main step 262
+18	PS2Data\movie_finish\us\RAR.md	rar.webm	yes	130789545	3538C30365F6ADCAF7E1EDE2CB1198B30A54F158225102D6BD1094A005D57BFF	PS2Data\movie_finish\us\RAR.mh	ps2data/movie_finish/us/rar.mh	alc_z0200 main step 69
+19	PS2Data\movie_finish\us\STM.md	stm.webm	yes	126986876	C3485E7D5ED0E7D93DC4F641F26D82F852D994B6E99058F5E65BED6B4539660B	PS2Data\movie_finish\us\STM.mh	ps2data/movie_finish/us/stm.mh	dgl_f0100 main step 190
+20	PS2Data\movie_finish\us\LRF.md	lrf.webm	yes	257557699	E562982CCBE914B0C6521A713C469680631220A0E6A88D95A271E022598A9494	PS2Data\movie_finish\us\LRF.mh	ps2data/movie_finish/us/lrf.mh	rrp_a06 落ちる飛空艇ＢＧＭ読み込み step 1
+21	PS2Data\movie_finish\us\EST.md	est.webm	yes	86985815	8B16E81C645BCF13DAF5B69C8F99DA571AB7E6CDB05BEDE74665232892B4968B	PS2Data\movie_finish\us\EST.mh	ps2data/movie_finish/us/est.mh	dgl_g0102 main step 449
+22	PS2Data\movie_finish\us\BAR.md	bar.webm	yes	94653904	8106841AF906B865ADE8ED7D3C120150B699AFBEA44CD1D8D18AC7DF71DFAD9E	PS2Data\movie_finish\us\BAR.mh	ps2data/movie_finish/us/bar.mh	bhm_z0100 ムービー１準備 step 2
+23	PS2Data\movie_finish\us\ESC.md	esc.webm	yes	85178935	AEB9DE870BF7BAE5686B7EA6173E2DA725F09A99C81B7335646036F86B112D4D	PS2Data\movie_finish\us\ESC.mh	ps2data/movie_finish/us/esc.mh	rsn_a0102 movie_ready step 2
+24	PS2Data\movie_finish\us\BAH.md	bah.webm	yes	153425141	235E8D8D17A598E31DB3C5FB0D58FD1E824791341F7B72332DE63FD8651F4BF2	PS2Data\movie_finish\us\BAH.mh	ps2data/movie_finish/us/bah.mh	bhm_z0100 ムービー２準備 step 2
+25	PS2Data\movie_finish\us\EPL.md	epl.webm	yes	577360890	C80F2A1541655BB987593B00146D0F90D6D74E26A3193A30FB04E3CEE746DD9D	PS2Data\movie_finish\us\EPL.mh	ps2data/movie_finish/us/epl.mh	msg_z0001 main step 8
+26	PS2Data\movie_finish\us\MEM.md	mem.webm	yes	84422799	3AEEFC2001E9DB44C6B4549B5956DB1C51AA44D7003BCAED21CB914B9BEE61FD	PS2Data\movie_finish\us\MEM.mh	ps2data/movie_finish/us/mem.mh	fon_b0100 movie_ready step 5
+27	PS2Data\movie_finish\us\VAD.md	vad.webm	yes	387516379	2EDEE8ADB961AD1D755FFE3A6274DD791A7D888E174851EE6642F0A36051BCA0	PS2Data\movie_finish\us\VAD.mh	ps2data/movie_finish/us/vad.mh	bhm_y0100 movie_forth_play step 2
+28	PS2Data\movie_finish\us\CHV.md	chv.webm	yes	325157537	24F6C229EAA75B3EAB85FB66D0D94C9FEEB30394C3D60869D0E05FC75D012513	PS2Data\movie_finish\us\CHV.mh	ps2data/movie_finish/us/chv.mh	bhm_d0100 EV_e0100 step 148
+29	PS2Data\movie_finish\us\DED.md	ded.webm	yes	161796205	99004E9E195978759E774E8FA52EC9C95B13C34BACD7FEB27657685346598F5D	PS2Data\movie_finish\us\DED.mh	ps2data/movie_finish/us/ded.mh	bhm_d0101 main step 25
+30	PS2Data\movie_finish\us\VNP.md	vnp.webm	yes	693703469	8B1C9C6E19F555D897BAD1716568ECEB790DEACA86D55324E724F9840B41743C	PS2Data\movie_finish\us\VNP.mh	ps2data/movie_finish/us/vnp.mh	rbn_y0100 main step 7
+31	PS2Data\movie_finish\us\SCB.md	scb.webm	yes	227844214	8D53319B3B612A8E96ABA8A484417AC58C86B103288C33C4DE6A5000CC4B3360	PS2Data\movie_finish\us\SCB.mh	ps2data/movie_finish/us/scb.mh	bhm_y0100 movie_hind_ready step 4
+32	PS2Data\movie_finish\us\WAR.md	war.webm	yes	154417036	C3399EB173BC8F27AD41F4B3E759E7263E3FC765CAF950C04F3F606AB8BEEF95	PS2Data\movie_finish\us\WAR.mh	ps2data/movie_finish/us/war.mh	bhm_a0200 read_movie step 11
+33	PS2Data\movie_finish\in\BLU.md	blu.webm	yes	46187461	42E7506DE59CE84FA5815FA142C9B158A22662F655546DA5BD3973D2927F32D6	PS2Data\movie_finish\in\BLU.mh	ps2data/movie_finish/in/blu.mh	bul_b02 main step 35
+34	PS2Data\movie_finish\in\BLB.md	blb.webm	yes	81027960	D2E200B6E2A02A63BDCBA85963548457EB490B3AEB2187FA1A95C7054CDF8162	PS2Data\movie_finish\in\BLB.mh	ps2data/movie_finish/in/blb.mh	bul_a03 main step 30
+35	PS2Data\movie_finish\in\GRV.md	grv.webm	yes	28126702	D0A366D0B8BBA1A129E3806304B094B48E01237F8985FF83CCBE1D0D0BE9B57F	PS2Data\movie_finish\in\GRV.mh	ps2data/movie_finish/in/grv.mh	-
+36	PS2Data\movie_finish\in\RBS.md	rbs.webm	yes	84874210	7D80C9A48BCEA2AA8BA09F912946DCB8DEBFC3B1458CD0BB9979CB0D4C64F20F	PS2Data\movie_finish\in\RBS.mh	ps2data/movie_finish/in/rbs.mh	bhm_y0101 read_movie step 10
+37	PS2Data\movie_finish\us\DLB.md	dlb.webm	no	-	-	PS2Data\movie_finish\us\DLB.mh	-	-
+38	-	-	-	-	-	-	-	-
+39	-	-	-	-	-	-	-	-
+40	-	-	-	-	-	-	-	-
+41	PS2Data\movie_finish\jp\OPD.md	opd.webm	no	-	-	PS2Data\movie_finish\jp\OPD.mh	ps2data/movie_finish/jp/opd.mh	ttl_a01 オープニングデモ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers 0); ttl_c01 main step 15; ttl_a01_e3 オープニングデモ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers 0)
+42	PS2Data\movie_finish\us\STF.md	stf.webm	yes	1451123949	08E0BC409487A0D8BF2519217CF504C82BD5DC5A0271525D696FFC2A6FA19B3E	PS2Data\movie_finish\us\STF.mh	ps2data/movie_finish/us/stf.mh	men_z0005 main step 30
+43	PS2Data\movie_finish\us\IVT.md	ivt.webm	yes	21563773	E909D601F03C99BE8860F1DFA98147012E78F08AEFEC383C34EEB9449172EAED	PS2Data\movie_finish\us\IVT.mh	ps2data/movie_finish/us/ivt.mh	dgl_g0102 main step 390
+44	PS2Data\movie_finish\in\SE1.md	se1.webm	no	-	-	PS2Data\movie_finish\in\SE1.mh	ps2data/movie_finish/in/se1.mh	ttl_a01 スクエニロゴ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers 0); ttl_a01_e3 スクエニロゴ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers 0)
+45	PS2Data\movie_finish\in\SE2.md	se2.webm	no	-	-	PS2Data\movie_finish\in\SE2.mh	ps2data/movie_finish/in/se2.mh	ttl_a01 スクエニロゴ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers non-zero); ttl_a01_e3 スクエニロゴ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers non-zero)
+46	-	-	-	-	-	-	-	-
+47	PS2Data\movie_finish\in\BD2.md	bd2.webm	no	-	-	PS2Data\movie_finish\in\BD2.mh	ps2data/movie_finish/in/bd2.mh	ttl_a01 オープニングデモ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers non-zero); ttl_a01_e3 オープニングデモ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers non-zero)
+48	PS2Data\movie_finish\in\ANX.md	anx.webm	yes	1390488957	96087B7208B8F5D8047895D14DD0CECDF813CE7394D56BE13126893EE9BCDBE1	PS2Data\movie_finish\in\ANX.mh	-	ttl_a01 キーチェック step 81; ttl_a01 moviesload step 1; ttl_a01_e3 キーチェック step 81; ttl_a01_e3 moviesload step 1

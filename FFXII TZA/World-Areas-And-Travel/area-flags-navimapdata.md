@@ -40,6 +40,13 @@ it at `0x02ADD100` (`0x00378B82`). `0x00378540` clears `0x02ADD100` first, so th
 arrives. No other function writes `0x02ADD100` (its references are the seven reads in the accessors
 below, one in each, and the two writes in `0x00378540` and `0x00378B80`).
 
+`0x00378540` sizes the file with `0x0032E400` (`0x003785FA`) and allocates that many bytes in arena 3
+(`0x0036C1D0(3, 5)` at `0x0037860D`, `0x0036A190` at `0x00378614`; [resource
+arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)), which boot builds once
+(`0x0022A2CB`). Its one caller is the loader reset `0x00377CC0` (`0x00377D8C`), which the start-up
+initialiser `0x00266D10` runs once (`0x00267146`). No instruction passes the value of `0x02ADD100` to a free,
+so the table stays loaded for the run.
+
 ### The record and its seven readers
 
 Every record is a little-endian 16-bit word at `+0` and `+1` plus a third byte at `+2`. Seven short

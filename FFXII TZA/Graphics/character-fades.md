@@ -139,10 +139,24 @@ and `+0x4B7` bit `0x20` is cleared; otherwise it ramps to 1.0 and the bit is set
 
 The settings are the record system's tail ([character render records](character-render-records.md)):
 
-- `setcharclipdistance` (`0x327`, `0x00348B00`) pops two floats: the first to `+0x24` (`0x002E83A0`), the
-  second to `+0x1C` (`0x002EBC30`);
+- `setcharclipdistance_327` (`0x327`, `0x00348B00`) pops two floats: the first to `+0x24` (`0x002E83A0`), the
+  second to `+0x1C` (`0x002EBC30`, through `0x0026A460`);
+- `setcharclipdistance` (`0x157`, `0x00348310`) pops one float to `+0x1C` the same way;
 - `setcharclipfaderange` (`0x328`, `0x003493F0`) pops one float into `+0x24`;
 - `0x0042ED30` restores 34.0 and 4.0 and flag bits `0x1` and `0x4`.
+
+Two `f32` globals hold the defaults, both in the zero-filled tail of `.data`: `0x021641F4`, the default
+distance, and `0x021641F8`, the default fade range. `0x002EDA70` and `0x002EDA80` store them; `0x002EDA30` and
+`0x002EDA40` read them. `0x0026C8C0`, run from the load completion `0x0032F850`, sets both and the tail from them
+(`0x0026CD96`-`0x0026CDB9`): 4.0 (`0x01CEBC70`, through `0x002EDA60`) into `0x021641F8` and on to `+0x24`, and 34.0
+(`0x00D0F8EC`, through `0x002EDA50`) into `0x021641F4` and on to `+0x1C`. Their verbs:
+
+- `getcharclipdefaultdistance` (`0x329`, `0x00340B50`) and `getcharclipdefaultfaderange` (`0x32A`,
+  `0x00340F80`) return the two defaults;
+- `setcharclipdefaultdistance` (`0x33E`, `0x00348700`) pops one float into `0x021641F4` and `+0x1C`;
+- `setcharclipdefaultfaderange` (`0x33F`, `0x003497D0`) pops one float into `0x021641F8` and `+0x24`;
+- `setcharclipdefaultdistance_340` (`0x340`, `0x00348F20`) pops two floats: the first into `0x021641F8` and
+  `+0x24`, the second into `0x021641F4` and `+0x1C`.
 
 ### Reading the channels
 

@@ -181,8 +181,12 @@ at disposal, one machine run at a time (`0x022C8024` = 1 while one runs, 2 when 
 
 The begins store 1 for an accepted call and 0 (dispose) or -1 (recover) otherwise. The
 `disposeentry` poll `0x003453D0` holds an accepted call until the state reads 2, 3 or 5
-(`0x0035A0A0`); the `recoverentry` poll `0x00346020` holds an accepted call while it does, so it
-returns once the walk is back at 0. Both write `0x022C253D` = 1 (`0x00314D40`) while they hold.
+(`0x0035A0A0`); the `recoverentry` poll `0x00346020` holds an accepted call while it does. Both write
+`0x022C253D` = 1 (`0x00314D40`) while they hold.
+
+`0x0035A0A0` answers 0 for state 4 too (`0x0035A0B1`, `0x0035A0B4`), so the `recoverentry` poll also returns
+while the tick waits in state 4 for the `entryread` task, before the scene step has run, as well as once
+the walk is back at 0.
 `0x0035A240` clears the state from the slot-0 bind's field reset `0x0026DB30`, from `0x002695A0` and
 from `0x00266D10`.
 

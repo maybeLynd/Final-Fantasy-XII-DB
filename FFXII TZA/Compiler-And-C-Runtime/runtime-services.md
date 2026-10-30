@@ -226,8 +226,14 @@ into the executable:
 - 13 formatted-output wrappers that fetch the options word through `0x0016D670` and call one
   `__stdio_common_v*printf*` import (`0x0017D2E0` `sprintf`, `0x0019C5D0`, `0x0017D280` and others),
   plus `0x0016D670` itself;
-- 3 ATL module functions: the `CAtlBaseModule` constructor `0x0080C440` and destructor `0x0080C4E8`,
-  and `GetHInstanceAt` `0x0080C51C`;
+- 3 ATL module functions: the `CAtlBaseModule` constructor `0x0080C440` and destructor `0x0080C4E8`, and
+  `GetHInstanceAt` `0x0080C51C`, which work on the one module object `0x02EAF320` (`0x60` bytes, in the
+  zero-filled tail of `.data`):
+  - entry `0x008C31E8` of the C++ initialiser table runs `0x0016A29C`, which constructs it (`0x0016A2A7`)
+    and registers `0x008B9088` with `atexit` (`0x0016A2AC`-`0x0016A2B7`), and at exit `0x008B9088` runs the
+    destructor on it (`0x008B908F`);
+  - the constructor stores the version GUID pointer `0x01CC7308`, and the string lookup `0x0019A510`
+    passes the object to `GetHInstanceAt` (`0x0019A528`, `0x0019A576`);
 - 5 call-free SSE routines: `0x00809D20`, `0x00809D80`, `0x0080A720`, `0x0080AFE0`, and `0x008098C0`, which
   jumps to `0x00809D70` or `0x00809D20` by a CPU-level global;
 - 30 start-up, security-check and exception-support routines, among them `atexit` `0x00808B90`,

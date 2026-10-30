@@ -79,7 +79,7 @@ tail, and clears the presence table through `0x002FB250`. It runs from the area 
    `0x00319A20(drops)`, and the chain level `0x022C3158` mapped through `0x01EED3A8` (`{0, 1, 2, 3}`,
    so the level itself for 0-3, and 0 for a level of 4 or more) (`0x00319D9D`-`0x00319DF0`).
 5. Posts presentation op 1 and keeps the returned handle at `+0x58` (`0x00319DF4`-`0x00319E05`).
-6. When the chain count `0x022C3164` is above 0 it calls `0x0016D6A0`, a `ret 0` stub that does
+6. When the breaks in a row `0x022C3164` are above 0 it calls `0x0016D6A0`, a `ret 0` stub that does
    nothing (`0x00319E08`-`0x00319E10`).
 
 No drop is refused for lack of space; an older pickup is always sacrificed.

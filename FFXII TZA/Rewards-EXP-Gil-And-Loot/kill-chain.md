@@ -201,7 +201,7 @@ then the clock value (`0x00863D4D`-`0x00863D6A`). It does not touch `0x022C256C`
 | `0x022C3158` | `u32` | chain level 0-3 | `0x003183D0` (rise); zeroed on a break (`0x00318098`) |
 | `0x022C315C` | `u32` | chain length, cap 999 or 998 | `0x00317F64`; zeroed on a break |
 | `0x022C3160` | `u32` | same-model run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) |
-| `0x022C3164` | `u32` | breaks in a row, cap 999 | `0x003180B5`; zeroed by a continuing kill (`0x00317F6A`) |
+| `0x022C3164` | `u32` | breaks in a row, cap 999 | `0x003180B5`; zeroed by a continuing kill (`0x00317F6A`) and by the chain reset `0x003183A0` (`0x003183B0`, a qword store from `0x022C3160`) |
 | `0x022C3168` | `i32` | previous kill's class byte; negative before the first kill | `0x003180D0` |
 | `0x022C316C` | `u32` | model id stored by the last continuing kill whose model differed from it; -1 after a reset | `0x00317FB6`; `0x003183BE` (-1) |
 | `0x022C3170` | `u32` | chain length at the last level rise | `0x003184DC`; zeroed on a break (`0x00318091`) |

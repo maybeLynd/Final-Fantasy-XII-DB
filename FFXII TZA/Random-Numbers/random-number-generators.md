@@ -184,14 +184,17 @@ the effect's byte `+0x1F8` is set (`0x0074BEFC`-`0x0074BF0E`). So each later reb
 
 ## Layouts
 
-`Mt19937State` (`0x9C8` bytes, offsets from the start of the record):
+`Mt19937State` (`0x9C4` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u32[624]` | state | the MT19937 state vector; `0x00866D60` (seed), `0x00866B90` (twist) |
 | `+0x9C0` | `i32` | index | next word to draw, 624 = refill needed; `0x00866D60`, `0x00866B90`, `0x00863BF0`, `0x00863C80` |
-| `+0x9C4` | `u8` | seeded | 0 until the first seed; `0x00863BF0`, `0x00863C80`, `0x00863D30` |
-| `+0x9C5` | `u8[3]` | pad | not written by the five functions |
+
+The byte after the index, the seeded flag `0x02EB4234`, is a global of its own: `0x00863BF0`, `0x00863C80` and
+`0x00863D30` test it and set it to 1 by its address (`0x00863BF4`-`0x00863C1E`, `0x00863C84`-`0x00863CBA`,
+`0x00863D36`-`0x00863D5E`). Every access of the five gameplay functions to the state, the index and the flag is
+RIP-relative. `0x02EB4235` to `0x02EB423F` have no RIP-relative reference.
 
 `GraphicsNoiseMtState` (`0x9D0` bytes, offsets from the start of the record):
 

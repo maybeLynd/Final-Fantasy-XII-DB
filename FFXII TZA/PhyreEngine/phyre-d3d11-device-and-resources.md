@@ -27,10 +27,11 @@ at `+0x2F8` (each zeroed and set up by `0x006160B0`), and the colour and depth r
 texture at `+0x00`, sets bit `0x100` of the texture's `+0x18` and points the texture's `+0x20` at the
 target unless another live target already holds it.
 
-It also builds two `0x28`-byte records at `+0x520` and `+0x548` with `0x005DBF30` (`0x00615940`, `0x0061594D`), which
-zeroes their first `0x20` bytes and gives each the null format `0x02CF7A30` at `+0x20`. The first record's `+0x18` and
-`+0x1C` (context `+0x538` and `+0x53C`) are the width and height that a post effect configured with a zero size takes
-([post effect classes](phyre-post-effect-classes.md)).
+It also builds two `0x28`-byte records at `+0x520` and `+0x548` with `0x005DBF30` (`0x00615940`, `0x0061594D`), which zeroes
+the qwords `+0x00`, `+0x08` and `+0x18` and the dword `+0x10` of each and gives each the null format `0x02CF7A30` at
+`+0x20`. `0x00607D10` then gives both one size, the first as `RGBA8` `0x02CF7480` and the second as `DEPTH24S8` `0x02CF79C0`
+(`0x00625D0F`, `0x00625D28`). The first record's `+0x18` and `+0x1C` (context `+0x538` and `+0x53C`) are the width and
+height that a post effect configured with a zero size takes ([post effect classes](phyre-post-effect-classes.md)).
 
 When a member's constructor throws, the unwind actions of `0x00615840` destroy what has been built:
 

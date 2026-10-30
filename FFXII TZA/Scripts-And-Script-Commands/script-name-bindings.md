@@ -527,7 +527,11 @@ Per bind verb: one begin, one poll per frame until the entry is ready, one resul
 ## State
 
 The 128 binding entries and 32 lane records, the list heads `0x0215FD58` to `0x0215FD98`, the flag
-`0x0215FD46`, the loading flag `0x022C253D`, and each actor's presentation context.
+`0x0215FD46`, the loading flag `0x022C253D`, and each actor's presentation context. The flag sits in a band of
+separate globals, `0x0215FD40` to `0x0215FD57`: the float `0x0215FD40` (`0x002EEED0`), the masks `0x0215FD44` and
+`0x0215FD45` (`0x002EA8E0`, `0x002EA8B0`), the wind save `0x0215FD47` and `0x0215FD48` (`0x002EAB40`, `0x002EAA60`), the
+sound gates `0x0215FD54` and `0x0215FD55` (`0x002E9D90`), the culling mask `0x0215FD56` (`0x002EBBF0`) and the byte
+`0x0215FD57` (`0x002E63B0`).
 
 ## Modding notes
 

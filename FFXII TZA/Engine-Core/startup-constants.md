@@ -66,6 +66,11 @@ from the wall clock, not from the save; loading the same save twice does not giv
 command-line argument for the eight bytes `"-nologo"` with its terminator (`0x00314DE0(1)` stores 1
 at `0x022C2528` on a match; the loop does not stop at one), and calls `0x001EDDC0(FrameLimit == 1)`.
 
+The second argument is read on its own as well: `0x00408C30`, the settings-file loader, takes the argument vector from
+`0x0017D240` (the pointer and count at `0x01F7F480` and `0x01F7F488`). When there are at least two arguments and the second
+is `debug` (the six bytes at `0x00D121F8` with the terminator, compared at `0x00408DA1`-`0x00408DC2`), it stores 0 to the
+u16 `0x02B62DB4` (`0x00408DC4`).
+
 With 0 that arm begins a multimedia timer period (`timeGetDevCaps`, `timeBeginPeriod(wPeriodMin)`,
 the period at `0x01F82E40`, `0x01F82E3C` = 1); with 1 it writes the time base, `0x01DFE0B8` = 2.0,
 `0x01DFE0BC` = 0.5, `0x01F82E38` = 1 and `0x01DFE0B4` = 2, runs `0x0033F020` and ends any period begun.
@@ -73,7 +78,9 @@ Both arms then run `0x0032AE70`, `0x003333D0`, `0x00337A00` and `0x002BDA90`. Of
 `0x00337A00` sets the formation angle step `0x02EC0F84` to `2 / (30 × [0x01DFE0B4])`
 ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
 
-`0x01DFE0B4` ships as 1 and has that one writer; its readers divide authored 30 fps frame counts by
+`0x01DFE0B4` ships as 1 and has that one writer. Its readers scale authored 30 fps frame counts both ways:
+of its 211 reading instructions, 59 multiply by it (`imul`, the staff roll's fade hold at `0x0053F000`
+among them) and 35 divide by
 it. The boot fixer then computes `0x02064ACC = 2 / [0x01DFE0B4]`, 2 at 30 fps and 1 at 60: the number
 of pacer ticks the field frame waits per frame (`0x0035EC80([0x02064ACC], 0)`, an identical copy of
 `0x0035EB70`, at the end of `0x0022A770`; the second argument is the stub's 0).
@@ -302,7 +309,7 @@ Globals written by the boot fixer:
 | ticks per frame | 2 at 30 fps, 1 at 60 |
 | masks | confirm `0x4000`, cancel `0x2000`; swapped when DecideButton is 0 |
 | registered arenas | 255.6 MiB in nine; 257.1 MiB allocated in eleven |
-| command line | only `-nologo` is honoured, as an exact eight-byte match |
+| command line | `-nologo` in any argument, as an exact eight-byte match; `debug` as the second argument, which zeroes `0x02B62DB4` |
 
 ## Operations
 

@@ -27,6 +27,11 @@ documents that are not empty (29 of them, `0.json` among them, are an empty obje
 documents that are not strict JSON are read with the trailing comma dropped or the missing commas supplied; no
 document repeats a key.
 
+[json-configs-documents.tsv](json-configs-documents.tsv) lists the 832 files under `jsondata/` one by one: the 830
+documents and the two struct files `parametersmanageruisizestruct.csv` and `parametersmanagermonstergallerystruct.txt`,
+3,242,429 bytes in all. Each row gives the file's size, its SHA-256 and the number of rows `json-configs-values.tsv`
+gives it: 775 documents give rows, 29 are an empty object and 26 are files of 0 bytes.
+
 One more file under `jsondata/` is text, not JSON: `parametersmanagermonstergallerystruct.txt`, 1,781 bytes, LF line ends, no line end after the last line. No string in the executable holds its name or a setter name in it; the viewer reads `JsonData/MonsterGallery.json`.
 
 - The first line is the column title `#title name, dummy, type, dummy, min, max, default.`
@@ -107,6 +112,15 @@ The columns come from the documents and from the loaders that read them:
 | `key` | the key's path: nested keys joined by `.`, an array element as `[i]` |
 | `type` | the JSON type: `int`, `float`, `string`, `bool` or `null` |
 | `value` | the value as the document spells it; a tab or line break inside a string is written `\t` or `\n` |
+
+`json-configs-documents.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `document` | the archive path of the file |
+| `bytes` | the file's size |
+| `sha256` | the SHA-256 of the file's bytes |
+| `value_rows` | the rows `json-configs-values.tsv` gives the document; 0 for an empty object, a file of 0 bytes and the two struct files |
 
 ## Related
 
