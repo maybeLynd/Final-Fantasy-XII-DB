@@ -94,9 +94,14 @@ The other 19 classes (`PInputSourceTouchDragX` and `Y`, `TouchTwoFingerDragX` an
 
 Each class's constructor sits in slot 10 of its class descriptor's vtable, which the class's static initialiser
 installs (`0x0016A440` stores `0x01CD24E8`, whose slot 10 `0x01CD2538` holds the `PInputSourceJoypadButton` constructor
-`0x00869670`; the 25 initialisers are `0x0016A400`-`0x0016AA00`). No instruction calls a slot-10 entry. For the key, pad-button,
-mouse-button and mouse-delta classes the entry only calls the real constructor (`0x00869670` calls `0x0086C460` at
-`0x0086968F`); the other entries construct in place.
+`0x00869670`; the 25 initialisers are `0x0016A400`-`0x0016AA00`). For the key, pad-button, mouse-button and mouse-delta
+classes the entry only calls the real constructor (`0x00869670` calls `0x0086C460` at `0x0086968F`); the other entries
+construct in place.
+
+No instruction calls a slot-10 entry directly. The default-buffer builder `0x00639A60` calls it through the descriptor
+(`0x00639B20`, `0x00639B3E`) to build the class's default instance at descriptor `+0xC0`. A source a cluster creates is a
+byte copy of that instance (`0x0063C961`-`0x0063C974`: the descriptor's `+0x38` bytes from `+0xC0`); only a descriptor
+with no default instance has slot 10 construct it (`0x0063C990`).
 
 - Every constructor stores the vtable, the class descriptor at `+0x08`, its type semantic at `+0x10`, 0 at `+0x18`
   and `+0x1C`, and 1.0 at `+0x20` (`0x0086C460`-`0x0086C49B`, `0x00866FA0`-`0x00866FD0`).
