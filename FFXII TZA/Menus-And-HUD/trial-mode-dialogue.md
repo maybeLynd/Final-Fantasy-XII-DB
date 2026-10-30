@@ -1,0 +1,187 @@
+---
+title: "Trial Mode dialogue: every line and caption of the Trial Mode scripts in all nine languages"
+kind: "reference"
+category: "Menus and HUD"
+addresses: "0x00348DF0, 0x0034ADA0, 0x00264D60, 0x00264D90, 0x00355A00, 0x00357120, 0x002AC825, 0x002AC957, 0x002AD151, 0x001E9D20, 0x001FDD60, 0x00674A00, 0x001B6350"
+---
+
+## What it lists
+
+[trial-mode-dialogue.tsv](trial-mode-dialogue.tsv) has one row per string of sections 2 and 3 of the Trial Mode scripts, with the string in each of the nine language trees (`us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch`): 200 rows from 100 zone scripts under `plan_map/`. Every row is a line of section 2; the scripts carry no section 3 caption ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
+
+### How a script finds a row
+
+A row's key is the script, the section and the text id, the entry number in that section:
+
+- `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
+- `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
+- The `lines` column of `trial-mode-scripts.tsv`, the table of [Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md), names section 2 rows by the same key: 100 of its rows name 200 of the 200 section 2 rows here. The `quoted_lines` column of its steps table quotes 200 of them, in 1,800 steps.
+
+### The scripts
+
+| Script | Kind | Section 2 rows | Section 3 rows | Named in the scripts table | Quoted by a step |
+|---|---|---:|---:|---:|---:|
+| `tri_a01` | zone | 2 | 0 | 2 | 2 |
+| `tri_a02` | zone | 2 | 0 | 2 | 2 |
+| `tri_a03` | zone | 2 | 0 | 2 | 2 |
+| `tri_a04` | zone | 2 | 0 | 2 | 2 |
+| `tri_a05` | zone | 2 | 0 | 2 | 2 |
+| `tri_b01` | zone | 2 | 0 | 2 | 2 |
+| `tri_b02` | zone | 2 | 0 | 2 | 2 |
+| `tri_b03` | zone | 2 | 0 | 2 | 2 |
+| `tri_b04` | zone | 2 | 0 | 2 | 2 |
+| `tri_b05` | zone | 2 | 0 | 2 | 2 |
+| `tri_c01` | zone | 2 | 0 | 2 | 2 |
+| `tri_c02` | zone | 2 | 0 | 2 | 2 |
+| `tri_c03` | zone | 2 | 0 | 2 | 2 |
+| `tri_c04` | zone | 2 | 0 | 2 | 2 |
+| `tri_c05` | zone | 2 | 0 | 2 | 2 |
+| `tri_d01` | zone | 2 | 0 | 2 | 2 |
+| `tri_d02` | zone | 2 | 0 | 2 | 2 |
+| `tri_d03` | zone | 2 | 0 | 2 | 2 |
+| `tri_d04` | zone | 2 | 0 | 2 | 2 |
+| `tri_d05` | zone | 2 | 0 | 2 | 2 |
+| `tri_e01` | zone | 2 | 0 | 2 | 2 |
+| `tri_e02` | zone | 2 | 0 | 2 | 2 |
+| `tri_e03` | zone | 2 | 0 | 2 | 2 |
+| `tri_e04` | zone | 2 | 0 | 2 | 2 |
+| `tri_e05` | zone | 2 | 0 | 2 | 2 |
+| `tri_f01` | zone | 2 | 0 | 2 | 2 |
+| `tri_f02` | zone | 2 | 0 | 2 | 2 |
+| `tri_f03` | zone | 2 | 0 | 2 | 2 |
+| `tri_f04` | zone | 2 | 0 | 2 | 2 |
+| `tri_f05` | zone | 2 | 0 | 2 | 2 |
+| `tri_g01` | zone | 2 | 0 | 2 | 2 |
+| `tri_g02` | zone | 2 | 0 | 2 | 2 |
+| `tri_g03` | zone | 2 | 0 | 2 | 2 |
+| `tri_g04` | zone | 2 | 0 | 2 | 2 |
+| `tri_g05` | zone | 2 | 0 | 2 | 2 |
+| `tri_h01` | zone | 2 | 0 | 2 | 2 |
+| `tri_h02` | zone | 2 | 0 | 2 | 2 |
+| `tri_h03` | zone | 2 | 0 | 2 | 2 |
+| `tri_h04` | zone | 2 | 0 | 2 | 2 |
+| `tri_h05` | zone | 2 | 0 | 2 | 2 |
+| `tri_i01` | zone | 2 | 0 | 2 | 2 |
+| `tri_i02` | zone | 2 | 0 | 2 | 2 |
+| `tri_i03` | zone | 2 | 0 | 2 | 2 |
+| `tri_i04` | zone | 2 | 0 | 2 | 2 |
+| `tri_i05` | zone | 2 | 0 | 2 | 2 |
+| `tri_j01` | zone | 2 | 0 | 2 | 2 |
+| `tri_j02` | zone | 2 | 0 | 2 | 2 |
+| `tri_j03` | zone | 2 | 0 | 2 | 2 |
+| `tri_j04` | zone | 2 | 0 | 2 | 2 |
+| `tri_j05` | zone | 2 | 0 | 2 | 2 |
+| `tri_k01` | zone | 2 | 0 | 2 | 2 |
+| `tri_k02` | zone | 2 | 0 | 2 | 2 |
+| `tri_k03` | zone | 2 | 0 | 2 | 2 |
+| `tri_k04` | zone | 2 | 0 | 2 | 2 |
+| `tri_k05` | zone | 2 | 0 | 2 | 2 |
+| `tri_l01` | zone | 2 | 0 | 2 | 2 |
+| `tri_l02` | zone | 2 | 0 | 2 | 2 |
+| `tri_l03` | zone | 2 | 0 | 2 | 2 |
+| `tri_l04` | zone | 2 | 0 | 2 | 2 |
+| `tri_l05` | zone | 2 | 0 | 2 | 2 |
+| `tri_m01` | zone | 2 | 0 | 2 | 2 |
+| `tri_m02` | zone | 2 | 0 | 2 | 2 |
+| `tri_m03` | zone | 2 | 0 | 2 | 2 |
+| `tri_m04` | zone | 2 | 0 | 2 | 2 |
+| `tri_m05` | zone | 2 | 0 | 2 | 2 |
+| `tri_n01` | zone | 2 | 0 | 2 | 2 |
+| `tri_n02` | zone | 2 | 0 | 2 | 2 |
+| `tri_n03` | zone | 2 | 0 | 2 | 2 |
+| `tri_n04` | zone | 2 | 0 | 2 | 2 |
+| `tri_n05` | zone | 2 | 0 | 2 | 2 |
+| `tri_o01` | zone | 2 | 0 | 2 | 2 |
+| `tri_o02` | zone | 2 | 0 | 2 | 2 |
+| `tri_o03` | zone | 2 | 0 | 2 | 2 |
+| `tri_o04` | zone | 2 | 0 | 2 | 2 |
+| `tri_o05` | zone | 2 | 0 | 2 | 2 |
+| `tri_p01` | zone | 2 | 0 | 2 | 2 |
+| `tri_p02` | zone | 2 | 0 | 2 | 2 |
+| `tri_p03` | zone | 2 | 0 | 2 | 2 |
+| `tri_p04` | zone | 2 | 0 | 2 | 2 |
+| `tri_p05` | zone | 2 | 0 | 2 | 2 |
+| `tri_q01` | zone | 2 | 0 | 2 | 2 |
+| `tri_q02` | zone | 2 | 0 | 2 | 2 |
+| `tri_q03` | zone | 2 | 0 | 2 | 2 |
+| `tri_q04` | zone | 2 | 0 | 2 | 2 |
+| `tri_q05` | zone | 2 | 0 | 2 | 2 |
+| `tri_r01` | zone | 2 | 0 | 2 | 2 |
+| `tri_r02` | zone | 2 | 0 | 2 | 2 |
+| `tri_r03` | zone | 2 | 0 | 2 | 2 |
+| `tri_r04` | zone | 2 | 0 | 2 | 2 |
+| `tri_r05` | zone | 2 | 0 | 2 | 2 |
+| `tri_s01` | zone | 2 | 0 | 2 | 2 |
+| `tri_s02` | zone | 2 | 0 | 2 | 2 |
+| `tri_s03` | zone | 2 | 0 | 2 | 2 |
+| `tri_s04` | zone | 2 | 0 | 2 | 2 |
+| `tri_s05` | zone | 2 | 0 | 2 | 2 |
+| `tri_t01` | zone | 2 | 0 | 2 | 2 |
+| `tri_t02` | zone | 2 | 0 | 2 | 2 |
+| `tri_t03` | zone | 2 | 0 | 2 | 2 |
+| `tri_t04` | zone | 2 | 0 | 2 | 2 |
+| `tri_t05` | zone | 2 | 0 | 2 | 2 |
+
+### Where the languages differ
+
+Every script ships in all nine trees with the same number of strings in each, so every row has a string in every language: the `missing` column is empty in all 200 rows.
+
+No string is empty in any tree.
+
+### The alternate font and the expansion lists
+
+`{alt-font}` is the escape `0F 21`, which switches the string to the alternate font record (`0x002AD151`) ([Text codes](text-codes.md)), font 3, `fontex_subtitle` ([Text drawing](text-drawing.md), [Fonts](fonts.md)).
+
+In the `in`, `kr`, `cn` and `ch` trees the expansion codes of a string draw their glyphs from the expansion list keyed by `0x00674A00` of the script's path, `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`): `0x001E9D20` binds the running font's list for that key, which `0x001FDD60` finds in the font's map `+0xA8` ([Fonts](fonts.md), Expansion lists).
+
+No string of these scripts carries `{alt-font}`, so every one takes the list of `fontex_expand` ([Font expansion lists](fonts-expansion-lists.md)).
+
+No cell of the `in`, `kr`, `cn` or `ch` columns holds `{exp:...}`: every expansion code there has a glyph in its list. No `us` font asks for a `.fex`, so in the `us` to `it` columns `{alt-font}` changes the font only ([Fonts](fonts.md)).
+
+### Choice lists
+
+No string of these scripts holds a choice list.
+
+### Reading the text
+
+Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
+
+Examples, by script, section and id:
+
+- `tri_a01` 2/1, a line with a line break (`{line}`). `us`: `{speed:8180}You will now have the option{line}of saving your game.`; `in`: `{spacing:8181}{speed:8180}ここまでの進行をセーブします。`.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `script` | the script file under `plan_master/<language>/`: `plan_map/...` for a zone script, `event/...` for a scene script |
+| `section` | `2` for a line of the message bank, `3` for a caption |
+| `id` | the entry number in that section, from 0: the text id a verb passes |
+| `us` to `ch` | the string in that language tree, decoded with the tree's font |
+| `missing` | the languages whose tree has no string at this key (no such script, or a shorter section), comma-separated; empty when all nine have one |
+| `same_bytes` | the groups of languages whose string bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more, and the languages in `missing` take no part |
+
+An empty cell under a language not in `missing` is an empty string.
+
+## Data
+
+| Fact | Value |
+|---|---|
+| rows | 200: 200 in section 2, 0 in section 3 |
+| scripts | 100: 100 zone, 0 scene |
+| strings per tree | `us` 200, `de` 200, `es` 200, `fr` 200, `it` 200, `in` 200, `kr` 200, `cn` 200, `ch` 200 |
+| non-empty strings per tree | `us` 200, `de` 200, `es` 200, `fr` 200, `it` 200, `in` 200, `kr` 200, `cn` 200, `ch` 200 |
+| strings with `{alt-font}` | `us` 0, `de` 0, `es` 0, `fr` 0, `it` 0, `in` 0, `kr` 0, `cn` 0, `ch` 0 |
+| strings with a choice list | `us` 0, `de` 0, `es` 0, `fr` 0, `it` 0, `in` 0, `kr` 0, `cn` 0, `ch` 0 |
+| section 2 rows the scripts table names | 200 |
+| section 2 rows a step quotes | 200, in 1,800 steps |
+
+## Related
+
+- [Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md) - what each function of these scripts shows, with the text ids of its lines.
+- [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
+- [Text codes](text-codes.md) - every control code and the choice list.
+- [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.
+- [Font expansion lists](fonts-expansion-lists.md) - every list with the script path it belongs to.
+- [Message windows](message-windows.md) - the window a line is shown in.
+- [NPC names](../Characters-And-Objects/npc-names.md) - the name text a caption becomes.

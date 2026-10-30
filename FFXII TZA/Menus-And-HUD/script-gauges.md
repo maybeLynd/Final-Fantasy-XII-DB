@@ -46,6 +46,9 @@ and the body), and every verb that changes the gauge does nothing while the wind
 | `setgaugecounter` | `0x0034EA90` → `0x004085B0` | sets the value of a counter (mode 0) and redraws it |
 | `setgaugetimer` | `0x0034ED90` → `0x004088D0` | sets the value of a timer (mode 1) in seconds, stored times 60 |
 | `changegaugecounterbyratio` | `0x003502C0` → `0x004084C0` → `0x00407290` | moves the value toward the target over a ramp |
+| `changegaugecounterbyframe` | `0x0034FDE0` → `0x003E8EC0` → `0x00408450` | moves the value toward the target over a ramp of `+0x108` frames, 1 when that is 0 (`0x004084A1`); it sets the ramp fields itself, as `0x00407240` does. A new counter has `+0x108` = 0 (`0x00407FC8`), so unless `setgaugechangeframe` sets it the value reaches the target on the counter's next step (`0x004076C6`) |
+| `setgaugechangeratio` | `0x0034F7C0` → `0x003E8F40` → `0x00408520` | stores the ramp rate: argument 1 at `+0x10C`, argument 2 at `+0x110` (`0x00408549`, `0x0040854F`) |
+| `setgaugechangeframe` | `0x0034F360` → `0x003E8F30` → `0x004084F0` | stores twice the argument as the word `+0x108` (`0x0034F36C`, `0x00408516`) |
 | `setgaugecountercondition`, `setgaugetimercondition`, `setgaugeracecondition` | `0x003514F0` → `0x00408560` → `0x00407300` | sets the three thresholds |
 | `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `0x00354190` → `0x003E8F70` → `0x00408A20` | sets the type `+0xDC`; `0x003E8F70` keeps 1 to 4 and turns any other value into 0 (`0x003E8F84`); `0x00408A20` sets bit `0x2000000` of the `+0xD0` widget's `+0x20` for types 2 and 4 (`0x00408A79`) and clears it for 1 and 3 (`0x00408A88`) |
 | `setgaugecolor` | `0x00357270` → `0x00408780` | sets the four colours |
@@ -72,7 +75,8 @@ value = start + delta, length = 0             at the end; 0x004076B0 returns -1 
 - `0x00407290(counter, target)` starts a ramp of `|target - value| x [+0x10C] / [+0x110]` frames, at least 1,
   and only when `+0x110` is not 0.
 - `0x00407240(counter, target)` starts a ramp of `+0x108` frames, or 1 when that is 0; its only caller is
-  the boss gauge's bar (`0x00406552`).
+  the boss gauge's bar (`0x00406552`). `changegaugecounterbyframe` (`0x00408450`) starts the same ramp with its own
+  copy of these stores.
 - The counter child steps its ramp only while the window's `+0xC8` bits `0x4` and `0x8` are both clear
   (`0x00407631`-`0x00407639`).
 
@@ -150,9 +154,9 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 | `+0x0EE` | `i16` | cond3 | third threshold |
 | `+0x0F0` | `i16` | limit | the maximum again (`0x004073B0`) |
 | `+0x0F8` | `u32[4]` | colour | four colours (`0x00408780`) |
-| `+0x108` | `i16` | frames | ramp length for `0x00407240` |
-| `+0x10C` | `i32` | ratio_num | ramp frames per unit, numerator (`0x00407290`) |
-| `+0x110` | `i32` | ratio_den | ramp denominator; 0 disables `0x00407290` |
+| `+0x108` | `i16` | frames | ramp length for `0x00407240` and changegaugecounterbyframe; 0 from `0x00407F90` (`0x00407FC8`); setgaugechangeframe and the boss gauge (`0x0040654B`) write it |
+| `+0x10C` | `i32` | ratio_num | ramp frames per unit, numerator (`0x00407290`); setgaugechangeratio argument 1 |
+| `+0x110` | `i32` | ratio_den | ramp denominator; 0 disables `0x00407290`; setgaugechangeratio argument 2 |
 | `+0x114` | `i32` | elapsed | ramp frames done (`0x004076B0`) |
 | `+0x118` | `i32` | length | ramp length; 0 when no ramp runs |
 | `+0x11C` | `i32` | start | ramp start value |
