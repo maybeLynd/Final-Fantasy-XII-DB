@@ -1,292 +1,292 @@
-first_field	last_field	zones	track	ladder	kept_in_modes
-12	14	ttl_a01, ttl_b01, ttl_c01	none	-	-
-48	48	nal_a01	none	above 300: none	-
-49	50	nal_b01, rbn_z01	none	-	-
-51	51	nal_d01	15	-	-
-53	53	mic_a01	none	above 316: 29	-
-54	58	mic_a02, mic_a03, mic_a04, mic_a05, mic_a06	29	-	-
-61	62	mic_b01, mic_b02	29	-	-
-66	66	mic_b06	29	-	-
-69	71	mic_c01, mic_c02, mic_d01	29	-	-
-109	109	-	20	-	-
-114	114	-	47	-	-
-124	126	asp_a01, asp_a02, asp_a03	40	-	-
-129	130	dst_b01, dst_b02	83	-	-
-132	133	dst_c01, dst_c02	100	-	-
-137	142	pla_a01, pla_a02, pla_a03, pla_a04, pla_a05, pla_a06	201	-	-
-144	149	pla_b01, pla_b02, pla_b03, pla_b04, pla_b05, pla_b06	201	-	-
-151	158	frs_a01, frs_a02, frs_a03, frs_a04, frs_a05, frs_a06, frs_b01, frs_b02	45	-	-
-162	163	frs_c01, frs_c02	45	-	-
-167	167	bog_a01	73	-	-
-168	168	bog_a02	73	above 1540: none; above 1550: 73; above 11000: none	-
-169	171	bog_a03, bog_a04, bog_a05	73	-	-
-175	180	bog_b01, bog_b02, bog_b03, bog_b04, bog_b05, bog_b06	73	-	-
-184	186	rui_a01, rui_a02, rui_a03	92	-	-
-187	187	rui_a04	201	above 3100: none; above 3130: 92; above 11000: none	-
-188	188	rui_a05	30	-	-
-192	193	rui_b01, rui_b02	92	-	-
-194	194	rui_b03	30	-	-
-198	198	rui_c01	92	above 3130: none; above 3150: 92; above 11000: none	-
-200	200	rui_d01	none	above 3130: 92; above 11000: none	-
-202	202	rui_e01	92	-	-
-209	211	mnt_a01, mnt_a02, -	18	-	-
-215	220	mnt_b01, mnt_b02, mnt_b03, mnt_b04, mnt_b05, mnt_b06	18	-	-
-223	223	mnt_c01	18	-	-
-227	230	dst_a01, dst_a02, dst_a03, dst_a04	100	-	-
-231	231	dst_a05	100	above 340: none; above 341: 100; above 11000: none	-
-232	232	dst_a06	100	-	-
-233	233	dst_a07	83	-	-
-236	239	sav_a01, sav_a02, sav_a03, sav_a04	20	-	-
-243	243	sav_b01	54	-	-
-247	249	sav_c01, sav_c02, sav_c03	20	-	-
-253	256	sav_d01, sav_d02, sav_d03, sav_d04	20	-	-
-260	260	sav_e01	20	-	-
-264	266	sav_f01, sav_f02, sav_f03	20	-	-
-270	270	sav_g01	20	-	-
-274	274	naf_a01	none	above 10: 34	-
-275	275	naf_a02	34	-	-
-279	280	naf_b01, naf_b02	34	-	-
-282	282	naf_b04	34	-	-
-286	286	dor_b01	none	-	-
-289	289	rbn_a01	19	above 95: none; above 100: 19; above 11000: none	-
-290	290	rbn_a02	19	above 27: none; above 33: 19; above 11000: none	-
-291	292	rbn_a03, rbn_a04	19	-	-
-295	300	rbn_a07, rbn_a08, rbn_a09, rbn_a10, rbn_a11, rbn_a12	19	-	-
-301	301	rbn_a13	79	-	-
-302	302	rbn_a14	86	-	-
-304	304	rbn_a16	19	-	-
-305	307	rbn_a17, rbn_a18, rbn_a19	19	above 341: none; above 343: 19; above 11000: none	-
-311	311	grm_a01	55	-	-
-312	312	grm_a02	55	above 160: 64; above 175: 55; above 11000: none	-
-313	313	grm_a03	55	-	-
-314	314	grm_a04	55	above 223: none; above 225: 55; above 11000: none	-
-315	316	grm_a05, grm_a06	55	-	-
-318	322	grm_b01, grm_b02, grm_b03, grm_b04, grm_b05	55	-	-
-326	326	grm_c01	55	-	-
-329	329	grm_d01	55	-	-
-332	337	gil_g01, gil_g02, gil_g03, gil_g04, gil_g05, gil_g06	48	-	-
-341	341	gil_g10	48	-	-
-342	342	grm_f01	55	-	-
-345	349	wdl_a01, wdl_a02, wdl_a03, wdl_a04, wdl_a05	37	-	-
-350	350	wdl_a06	37	above 1150: none; above 1240: 37; above 11000: none	-
-354	354	wdl_b01	37	-	-
-357	357	lus_a01	none	above 580: 22; above 610: 51; above 655: 22; above 11000: none	51
-358	360	lus_a02, lus_a03, lus_a04	22	-	-
-365	367	lus_b01, lus_b02, lus_b03	22	-	-
-369	369	lus_c01	22	-	-
-372	372	lus_d01	22	-	-
-374	374	lus_d03	22	-	-
-376	376	lus_e01	22	-	-
-379	379	ene_a01	none	above 1240: 16; above 11000: none	-
-380	387	ene_a02, ene_a03, ene_a04, ene_a05, ene_a06, ene_a07, ene_a08, ene_a09	16	-	-
-390	394	enw_a01, enw_a02, enw_a03, enw_a04, enw_a05	200	-	-
-398	400	enw_b01, enw_b02, enw_b03	200	-	-
-403	403	rwg_a01	none	above 1342: 22; above 1355: 62; above 11000: none	-
-406	406	rwg_b01	63	-	-
-407	407	rwg_b02	none	above 1370: 63; above 11000: none	-
-410	412	rwg_c01, rwg_c02, rwg_c03	63	-	-
-415	415	rwg_d01	63	-	-
-418	418	rwg_e01	30	-	-
-421	422	bds_a01, bds_a02	60	-	-
-426	426	bds_b01	60	-	-
-430	431	bds_c01, bds_c02	60	-	-
-438	438	bds_e01	60	-	-
-441	441	bds_f01	60	-	-
-444	444	bds_g01	60	-	-
-447	450	gol_a01, gol_a02, gol_a03, gol_a04	21	-	-
-453	453	gol_b01	21	-	-
-456	456	gol_c01	21	-	-
-459	460	gol_d01, gol_d02	21	-	-
-463	465	pbc_a01, pbc_a02, pbc_a03	75	-	-
-468	470	pbc_b01, pbc_b02, pbc_b03	75	-	-
-473	475	pbc_c01, pbc_c02, pbc_c03	75	-	-
-478	484	fon_a01, fon_a02, fon_a03, fon_a04, fon_a05, fon_a06, fon_a07	88	-	-
-488	488	fon_b01	83	-	-
-491	494	fon_c01, fon_c02, fon_c03, fon_c04	88	-	-
-497	500	srb_a01, srb_a02, srb_a03, srb_a04	56	-	-
-503	506	srb_b01, srb_b02, srb_b03, srb_b04	56	-	-
-509	509	rwf_a01	none	above 5160: 202; above 11000: none	-
-511	511	rwf_a03	202	-	-
-517	518	rwf_b01, rwf_b02	202	-	-
-522	522	rwf_c01	none	-	-
-525	527	ozm_a01, ozm_a02, ozm_a03	50	-	-
-530	533	ozm_b01, ozm_b02, ozm_b03, ozm_b04	50	-	-
-536	536	ozm_c01	50	-	-
-539	542	mfr_a01, mfr_a02, mfr_a03, mfr_a04	89	-	-
-545	545	mfr_b01	89	-	-
-548	550	mfr_c01, mfr_c02, mfr_c03	89	-	-
-552	552	rsn_a01	16	above 890: 76; above 970: 74; above 1000: 69; above 11000: none	69
-555	558	rsn_b01, rsn_b02, rsn_b03, rsn_b04	76	above 970: 74; above 11000: none	-
-561	561	rsn_c01	76	above 970: 74; above 11000: none	-
-564	564	rsn_d01	76	above 966: none; above 970: 74; above 11000: none	-
-567	572	rrp_a01, rrp_a02, rrp_a03, rrp_a04, rrp_a05, rrp_a06	none	-	-
-576	578	ztc_a01, ztc_a02, ztc_a03	49	-	-
-581	582	ztc_b01, ztc_b02	49	-	-
-585	588	ztc_c01, ztc_c02, ztc_c03, ztc_c04	49	-	-
-590	590	ztc_d01	49	-	-
-593	593	mrm_a01	75	-	-
-594	594	mrm_a02	none	-	-
-597	600	mrm_b01, mrm_b02, mrm_b03, mrm_b04	46	-	-
-603	603	mrm_c01	46	-	-
-606	609	mrm_d01, mrm_d02, mrm_d03, mrm_d04	46	-	-
-612	612	mrm_e01	none	-	-
-615	615	mrm_f01	30	-	-
-618	618	mrm_g01	46	-	-
-621	626	gil_e01, gil_e02, gil_e03, gil_e04, gil_e05, gil_e06	48	-	-
-630	630	nac_a01	100	-	-
-631	631	nac_a02	53	-	-
-632	632	nac_a03	53	above 285: none; above 290: 53; above 11000: none	-
-635	636	alc_a01, alc_a02	87	-	-
-640	640	alc_b03	87	-	-
-641	641	alc_b04	none	above 3220: 87; above 11000: none	-
-642	643	alc_b05, alc_b06	87	-	-
-666	666	dgl_f01	none	-	-
-668	668	dgl_g01	92	-	-
-670	670	dgl_h01	203	-	-
-682	682	dgl_n01	85	-	-
-686	686	gil_a01	none	above 4230: 84; above 11000: none	-
-687	687	gil_a02	84	-	-
-690	691	gil_b01, gil_b02	41	-	-
-694	695	gil_c01, gil_c02	41	-	-
-698	698	gil_d01	41	-	-
-701	701	slm_a01	64	above 280: 23; above 290: 64; above 375: 81; above 386: 64; above 11000: none	-
-702	704	slm_a02, slm_a03, slm_a04	64	-	-
-709	710	nal_c01, nal_c02	15	-	-
-712	719	hne_a01, hne_a02, hne_a03, hne_a04, hne_a05, hne_a06, hne_a07, hne_a08	82	-	-
-722	722	hne_b01	82	-	-
-725	728	hne_c01, hne_c02, hne_c03, hne_c04	82	-	-
-730	730	hne_d01	82	-	-
-733	733	hne_e01	82	-	-
-736	736	bul_a01	39	above 1998: 65; above 2000: 39; above 11000: none	-
-737	737	bul_a02	31	-	-
-738	738	bul_a03	39	above 2200: 31; above 2350: 59; above 11000: none	-
-741	741	bul_b01	39	above 2200: none; above 2250: 31; above 2350: 59; above 11000: none	-
-742	742	bul_b02	75	above 1976: none; above 1982: 39; above 2200: none; above 2250: 31; above 2350: 59; above 11000: none	-
-745	749	alc_f01, alc_f02, alc_f03, alc_f04, alc_f05	87	-	-
-751	751	glf_a01	58	-	-
-752	752	glf_a02	58	above 1630: none; above 1640: 58; above 11000: none	-
-753	753	glf_a03	58	-	-
-756	756	alc_c01	87	-	-
-762	762	ald_a01	62	-	-
-763	763	ald_a02	62	above 3150: 30; above 3200: 62; above 11000: none	-
-766	766	vic_a01	42	above 1830: 39; above 1900: 42; above 11000: none	-
-767	768	vic_a02, vic_a03	42	-	-
-774	776	bhm_a01, bhm_a02, bhm_a03	44	-	-
-777	777	bhm_a04	70	above 6400: 44	70
-779	779	bhm_b01	44	-	-
-782	782	bhm_c01	none	-	-
-785	785	bhm_d01	none	-	-
-788	788	rbn_b01	19	-	-
-791	791	byu_b01	none	above 520: 54; above 11000: none	-
-794	794	alc_e01	87	-	-
-797	797	var_b01	99	-	-
-800	800	nac_b01	53	-	-
-803	805	byu_a01, byu_a02, byu_a03	54	-	-
-806	806	byu_a04	54	above 655: 22; above 660: 54; above 11000: none	-
-809	810	byu_a07, byu_a08	54	-	-
-813	814	byu_a11, byu_a12	54	-	-
-816	819	byu_a14, byu_a15, byu_a16, byu_a17	54	-	-
-820	820	byu_a18	54	above 710: 67; above 720: 54; above 11000: none	-
-823	825	var_a01, var_a02, var_a03	99	-	-
-826	826	var_a04	99	above 4050: none; above 4100: 99; above 5600: none; above 6100: 99; above 11000: none	-
-827	828	var_a05, var_a06	99	-	-
-833	837	var_a11, var_a12, var_a13, var_a14, var_a15	99	-	-
-838	850	grm_e01, grm_e02, grm_e03, grm_e04, grm_e05, grm_e06, grm_e07, grm_e08, grm_e09, grm_e10, grm_e11, grm_e12, grm_e13	55	-	-
-854	854	dor_z01	61	-	-
-856	856	slm_z01	none	-	-
-858	858	glf_z01	none	-	-
-860	860	rbn_x01	none	-	-
-862	862	byu_z01	none	-	-
-864	864	byu_y01	none	-	-
-866	866	alc_z01	none	above 1950: none; above 1658: 75; above 1973: 22; above 11000: none	-
-867	867	alc_z02	none	-	-
-868	868	alc_z03	67	-	-
-871	872	rsn_z01, rsn_z02	none	-	-
-876	876	rsn_y01	76	above 966: none; above 970: 74; above 11000: none	-
-888	888	gil_h01	48	-	-
-891	895	mic_e01, mic_e02, mic_e03, mic_e04, mic_e05	29	-	-
-898	898	rwf_d01	202	-	-
-901	905	lus_f01, lus_f02, lus_f03, lus_f04, lus_f05	22	-	-
-908	908	frs_d01	none	-	-
-910	910	rbn_y01	87	-	-
-912	912	byu_w01	67	-	-
-914	914	byu_x01	none	-	-
-916	916	gil_z01	none	-	-
-918	918	var_z01	67	above 4050: 99; above 5100: none; above 5650: 78; above 6000: none	-
-922	922	bhm_y01	none	above 4050: 111	-
-924	924	bhm_z01	none	-	-
-926	930	gil_f01, gil_f02, gil_f03, gil_f04, gil_f05	48	-	-
-933	933	lus_g01	22	above 610: 51; above 655: 22; above 11000: none	51
-934	936	lus_g02, lus_g03, lus_g04	51	-	51
-939	949	gil_i01, gil_i02, gil_i03, gil_i04, gil_i05, gil_i06, gil_i07, gil_i08, gil_i09, -, gil_i11	48	-	-
-952	973	gil_j01, gil_j02, gil_j03, gil_j04, gil_j05, gil_j06, gil_j07, gil_j08, gil_j09, gil_j10, gil_j11, gil_j12, gil_j13, gil_j14, gil_j15, gil_j16, gil_j17, gil_j18, gil_j19, gil_j20, gil_j21, gil_j22	48	-	-
-979	996	gil_k01, gil_k02, gil_k03, gil_k04, gil_k05, gil_k06, gil_k07, gil_k08, gil_k09, gil_k10, gil_k11, gil_k12, gil_k13, gil_k14, gil_k15, gil_k16, gil_k17, gil_k18	48	-	-
-1002	1005	gil_l01, gil_l02, gil_l03, gil_l04	48	-	-
-1008	1008	dor_a01	87	above 3330: 61; above 11000: none	-
-1009	1031	dor_a02, dor_a03, dor_a04, -, dor_a06, dor_a07, dor_a08, dor_a09, dor_a10, dor_a11, dor_a12, dor_a13, dor_a14, -, dor_a16, dor_a17, dor_a18, dor_a19, dor_a20, dor_a21, -, dor_a23, dor_a24	61	-	-
-1036	1046	dor_c01, dor_c02, dor_c03, dor_c04, -, dor_c06, dor_c07, dor_c08, dor_c09, dor_c10, dor_c11	61	-	-
-1047	1047	dor_c12	61	above 3370: none; above 3400: 57; above 11000: none	-
-1048	1049	dor_c13, dor_c14	61	-	-
-1050	1050	dor_c15	61	above 3400: 57; above 11000: none	-
-1051	1051	-	61	-	-
-1054	1064	dor_d01, dor_d02, dor_d03, -, dor_d05, dor_d06, dor_d07, dor_d08, dor_d09, dor_d10, -	61	-	-
-1067	1083	dor_e01, dor_e02, dor_e03, dor_e04, dor_e05, dor_e06, dor_e07, dor_e08, dor_e09, dor_e10, dor_e11, dor_e12, dor_e13, dor_e14, dor_e15, dor_e16, dor_e17	61	-	-
-1086	1098	dor_f01, -, dor_f03, dor_f04, -, dor_f06, -, -, dor_f09, dor_f10, dor_f11, -, dor_f13	61	-	-
-1101	1102	rbl_a01, rbl_a02	57	-	-
-1103	1105	rbl_a03, rbl_a04, rbl_a05	47	-	-
-1106	1108	-, -, -	57	-	-
-1111	1111	rbl_b01	57	-	-
-1113	1113	rbl_c01	none	-	-
-1114	1116	rbl_c02, rbl_d01, rbl_d02	57	-	-
-1118	1119	rbl_e01, rbl_e02	57	-	-
-1121	1121	rbl_f01	none	-	-
-1122	1122	rbl_f02	57	-	-
-1123	1131	rbl_g01, rbl_g02, rbl_g03, rbl_h01, rbl_h02, rbl_h03, rbl_i01, rbl_i02, rbl_i03	204	-	-
-1132	1132	rbl_j01	none	-	-
-1133	1134	rbl_j02, rbl_k01	47	-	-
-1136	1136	rbl_l01	47	-	-
-1138	1138	rbl_m01	47	-	-
-1140	1141	rbl_n01, rbl_n02	203	-	-
-1143	1143	rbl_q01	none	-	-
-1145	1145	grm_g01	none	above 25: 55	-
-1147	1147	ttl_d01	none	-	-
-1150	1150	asp_b03	51	-	51
-1151	1151	mnt_d01	18	-	-
-1153	1153	enw_c01	200	-	-
-1155	1159	tri_a01, tri_a02, tri_a03, tri_a04, tri_a05	20	-	-
-1163	1167	tri_b01, tri_b02, tri_b03, tri_b04, tri_b05	20	-	-
-1171	1171	tri_c01	86	-	-
-1172	1175	tri_c02, tri_c03, tri_c04, tri_c05	35	-	-
-1179	1183	tri_d01, tri_d02, tri_d03, tri_d04, tri_d05	35	-	-
-1187	1187	tri_e01	86	-	-
-1188	1191	tri_e02, tri_e03, tri_e04, tri_e05	45	-	-
-1195	1199	tri_f01, tri_f02, tri_f03, tri_f04, tri_f05	45	-	-
-1203	1203	tri_g01	86	-	-
-1204	1207	tri_g02, tri_g03, tri_g04, tri_g05	15	-	-
-1211	1215	tri_h01, tri_h02, tri_h03, tri_h04, tri_h05	15	-	-
-1219	1219	tri_i01	86	-	-
-1220	1223	tri_i02, tri_i03, tri_i04, tri_i05	85	-	-
-1227	1231	tri_j01, tri_j02, tri_j03, tri_j04, tri_j05	85	-	-
-1235	1235	tri_k01	86	-	-
-1236	1239	tri_k02, tri_k03, tri_k04, tri_k05	60	-	-
-1243	1244	tri_l01, tri_l02	60	-	-
-1245	1245	tri_l03	90	-	-
-1246	1246	tri_l04	51	-	51
-1247	1247	tri_l05	60	-	-
-1251	1251	tri_m01	86	-	-
-1252	1255	tri_m02, tri_m03, tri_m04, tri_m05	88	-	-
-1259	1263	tri_n01, tri_n02, tri_n03, tri_n04, tri_n05	88	-	-
-1267	1267	tri_o01	86	-	-
-1268	1271	tri_o02, tri_o03, tri_o04, tri_o05	48	-	-
-1275	1279	tri_p01, tri_p02, tri_p03, tri_p04, tri_p05	48	-	-
-1283	1283	tri_q01	86	-	-
-1284	1287	tri_q02, tri_q03, tri_q04, tri_q05	75	-	-
-1291	1291	tri_r01	113	-	113
-1292	1295	tri_r02, tri_r03, tri_r04, tri_r05	75	-	-
-1299	1299	tri_s01	86	-	-
-1300	1300	tri_s02	57	-	-
-1301	1301	tri_s03	90	-	-
-1302	1302	tri_s04	97	-	97
-1303	1303	tri_s05	57	-	-
-1307	1310	tri_t01, tri_t02, tri_t03, tri_t04	57	-	-
-1311	1311	tri_t05	70	-	70
+first_field	last_field	zones	track	ladder	kept_in_modes	offset	page
+12	14	ttl_a01, ttl_b01, ttl_c01	none	-	-	0x34	0
+48	48	nal_a01	none	above 300: none	-	0x38	0
+49	50	nal_b01, rbn_z01	none	-	-	0x3F	0
+51	51	nal_d01	15	-	-	0x43	0
+53	53	mic_a01	none	above 316: 29	-	0x47	0
+54	58	mic_a02, mic_a03, mic_a04, mic_a05, mic_a06	29	-	-	0x4E	0
+61	62	mic_b01, mic_b02	29	-	-	0x52	0
+66	66	mic_b06	29	-	-	0x56	0
+69	71	mic_c01, mic_c02, mic_d01	29	-	-	0x5A	0
+109	109	-	20	-	-	0x5E	0
+114	114	-	47	-	-	0x62	0
+124	126	asp_a01, asp_a02, asp_a03	40	-	-	0x66	0
+129	130	dst_b01, dst_b02	83	-	-	0x6A	1
+132	133	dst_c01, dst_c02	100	-	-	0x6E	1
+137	142	pla_a01, pla_a02, pla_a03, pla_a04, pla_a05, pla_a06	201	-	-	0x72	1
+144	149	pla_b01, pla_b02, pla_b03, pla_b04, pla_b05, pla_b06	201	-	-	0x76	1
+151	158	frs_a01, frs_a02, frs_a03, frs_a04, frs_a05, frs_a06, frs_b01, frs_b02	45	-	-	0x7A	1
+162	163	frs_c01, frs_c02	45	-	-	0x7E	1
+167	167	bog_a01	73	-	-	0x82	1
+168	168	bog_a02	73	above 1540: none; above 1550: 73; above 11000: none	-	0x86	1
+169	171	bog_a03, bog_a04, bog_a05	73	-	-	0x93	1
+175	180	bog_b01, bog_b02, bog_b03, bog_b04, bog_b05, bog_b06	73	-	-	0x97	1
+184	186	rui_a01, rui_a02, rui_a03	92	-	-	0x9B	1
+187	187	rui_a04	201	above 3100: none; above 3130: 92; above 11000: none	-	0x9F	1
+188	188	rui_a05	30	-	-	0xAC	1
+192	193	rui_b01, rui_b02	92	-	-	0xB0	1
+194	194	rui_b03	30	-	-	0xB4	1
+198	198	rui_c01	92	above 3130: none; above 3150: 92; above 11000: none	-	0xB8	1
+200	200	rui_d01	none	above 3130: 92; above 11000: none	-	0xC5	1
+202	202	rui_e01	92	-	-	0xCF	1
+209	211	mnt_a01, mnt_a02, -	18	-	-	0xD3	1
+215	220	mnt_b01, mnt_b02, mnt_b03, mnt_b04, mnt_b05, mnt_b06	18	-	-	0xD7	1
+223	223	mnt_c01	18	-	-	0xDB	1
+227	230	dst_a01, dst_a02, dst_a03, dst_a04	100	-	-	0xDF	1
+231	231	dst_a05	100	above 340: none; above 341: 100; above 11000: none	-	0xE3	1
+232	232	dst_a06	100	-	-	0xF0	1
+233	233	dst_a07	83	-	-	0xF4	1
+236	239	sav_a01, sav_a02, sav_a03, sav_a04	20	-	-	0xF8	1
+243	243	sav_b01	54	-	-	0xFC	1
+247	249	sav_c01, sav_c02, sav_c03	20	-	-	0x100	1
+253	256	sav_d01, sav_d02, sav_d03, sav_d04	20	-	-	0x104	2
+260	260	sav_e01	20	-	-	0x108	2
+264	266	sav_f01, sav_f02, sav_f03	20	-	-	0x10C	2
+270	270	sav_g01	20	-	-	0x110	2
+274	274	naf_a01	none	above 10: 34	-	0x114	2
+275	275	naf_a02	34	-	-	0x11B	2
+279	280	naf_b01, naf_b02	34	-	-	0x11F	2
+282	282	naf_b04	34	-	-	0x123	2
+286	286	dor_b01	none	-	-	0x127	2
+289	289	rbn_a01	19	above 95: none; above 100: 19; above 11000: none	-	0x12B	2
+290	290	rbn_a02	19	above 27: none; above 33: 19; above 11000: none	-	0x138	2
+291	292	rbn_a03, rbn_a04	19	-	-	0x145	2
+295	300	rbn_a07, rbn_a08, rbn_a09, rbn_a10, rbn_a11, rbn_a12	19	-	-	0x149	2
+301	301	rbn_a13	79	-	-	0x14D	2
+302	302	rbn_a14	86	-	-	0x151	2
+304	304	rbn_a16	19	-	-	0x155	2
+305	307	rbn_a17, rbn_a18, rbn_a19	19	above 341: none; above 343: 19; above 11000: none	-	0x159	2
+311	311	grm_a01	55	-	-	0x166	2
+312	312	grm_a02	55	above 160: 64; above 175: 55; above 11000: none	-	0x16A	2
+313	313	grm_a03	55	-	-	0x177	2
+314	314	grm_a04	55	above 223: none; above 225: 55; above 11000: none	-	0x17B	2
+315	316	grm_a05, grm_a06	55	-	-	0x188	2
+318	322	grm_b01, grm_b02, grm_b03, grm_b04, grm_b05	55	-	-	0x18C	2
+326	326	grm_c01	55	-	-	0x190	2
+329	329	grm_d01	55	-	-	0x194	2
+332	337	gil_g01, gil_g02, gil_g03, gil_g04, gil_g05, gil_g06	48	-	-	0x198	2
+341	341	gil_g10	48	-	-	0x19C	2
+342	342	grm_f01	55	-	-	0x1A0	2
+345	349	wdl_a01, wdl_a02, wdl_a03, wdl_a04, wdl_a05	37	-	-	0x1A4	2
+350	350	wdl_a06	37	above 1150: none; above 1240: 37; above 11000: none	-	0x1A8	2
+354	354	wdl_b01	37	-	-	0x1B5	2
+357	357	lus_a01	none	above 580: 22; above 610: 51; above 655: 22; above 11000: none	51	0x1B9	2
+358	360	lus_a02, lus_a03, lus_a04	22	-	-	0x1C9	2
+365	367	lus_b01, lus_b02, lus_b03	22	-	-	0x1CD	2
+369	369	lus_c01	22	-	-	0x1D1	2
+372	372	lus_d01	22	-	-	0x1D5	2
+374	374	lus_d03	22	-	-	0x1D9	2
+376	376	lus_e01	22	-	-	0x1DD	2
+379	379	ene_a01	none	above 1240: 16; above 11000: none	-	0x1E1	2
+380	387	ene_a02, ene_a03, ene_a04, ene_a05, ene_a06, ene_a07, ene_a08, ene_a09	16	-	-	0x1EB	3
+390	394	enw_a01, enw_a02, enw_a03, enw_a04, enw_a05	200	-	-	0x1EF	3
+398	400	enw_b01, enw_b02, enw_b03	200	-	-	0x1F3	3
+403	403	rwg_a01	none	above 1342: 22; above 1355: 62; above 11000: none	-	0x1F7	3
+406	406	rwg_b01	63	-	-	0x204	3
+407	407	rwg_b02	none	above 1370: 63; above 11000: none	-	0x208	3
+410	412	rwg_c01, rwg_c02, rwg_c03	63	-	-	0x212	3
+415	415	rwg_d01	63	-	-	0x216	3
+418	418	rwg_e01	30	-	-	0x21A	3
+421	422	bds_a01, bds_a02	60	-	-	0x21E	3
+426	426	bds_b01	60	-	-	0x222	3
+430	431	bds_c01, bds_c02	60	-	-	0x226	3
+438	438	bds_e01	60	-	-	0x22A	3
+441	441	bds_f01	60	-	-	0x22E	3
+444	444	bds_g01	60	-	-	0x232	3
+447	450	gol_a01, gol_a02, gol_a03, gol_a04	21	-	-	0x236	3
+453	453	gol_b01	21	-	-	0x23A	3
+456	456	gol_c01	21	-	-	0x23E	3
+459	460	gol_d01, gol_d02	21	-	-	0x242	3
+463	465	pbc_a01, pbc_a02, pbc_a03	75	-	-	0x246	3
+468	470	pbc_b01, pbc_b02, pbc_b03	75	-	-	0x24A	3
+473	475	pbc_c01, pbc_c02, pbc_c03	75	-	-	0x24E	3
+478	484	fon_a01, fon_a02, fon_a03, fon_a04, fon_a05, fon_a06, fon_a07	88	-	-	0x252	3
+488	488	fon_b01	83	-	-	0x256	3
+491	494	fon_c01, fon_c02, fon_c03, fon_c04	88	-	-	0x25A	3
+497	500	srb_a01, srb_a02, srb_a03, srb_a04	56	-	-	0x25E	3
+503	506	srb_b01, srb_b02, srb_b03, srb_b04	56	-	-	0x262	3
+509	509	rwf_a01	none	above 5160: 202; above 11000: none	-	0x266	3
+511	511	rwf_a03	202	-	-	0x270	3
+517	518	rwf_b01, rwf_b02	202	-	-	0x274	4
+522	522	rwf_c01	none	-	-	0x278	4
+525	527	ozm_a01, ozm_a02, ozm_a03	50	-	-	0x27C	4
+530	533	ozm_b01, ozm_b02, ozm_b03, ozm_b04	50	-	-	0x280	4
+536	536	ozm_c01	50	-	-	0x284	4
+539	542	mfr_a01, mfr_a02, mfr_a03, mfr_a04	89	-	-	0x288	4
+545	545	mfr_b01	89	-	-	0x28C	4
+548	550	mfr_c01, mfr_c02, mfr_c03	89	-	-	0x290	4
+552	552	rsn_a01	16	above 890: 76; above 970: 74; above 1000: 69; above 11000: none	69	0x294	4
+555	558	rsn_b01, rsn_b02, rsn_b03, rsn_b04	76	above 970: 74; above 11000: none	-	0x2A4	4
+561	561	rsn_c01	76	above 970: 74; above 11000: none	-	0x2AE	4
+564	564	rsn_d01	76	above 966: none; above 970: 74; above 11000: none	-	0x2B8	4
+567	572	rrp_a01, rrp_a02, rrp_a03, rrp_a04, rrp_a05, rrp_a06	none	-	-	0x2C5	4
+576	578	ztc_a01, ztc_a02, ztc_a03	49	-	-	0x2C9	4
+581	582	ztc_b01, ztc_b02	49	-	-	0x2CD	4
+585	588	ztc_c01, ztc_c02, ztc_c03, ztc_c04	49	-	-	0x2D1	4
+590	590	ztc_d01	49	-	-	0x2D5	4
+593	593	mrm_a01	75	-	-	0x2D9	4
+594	594	mrm_a02	none	-	-	0x2DD	4
+597	600	mrm_b01, mrm_b02, mrm_b03, mrm_b04	46	-	-	0x2E1	4
+603	603	mrm_c01	46	-	-	0x2E5	4
+606	609	mrm_d01, mrm_d02, mrm_d03, mrm_d04	46	-	-	0x2E9	4
+612	612	mrm_e01	none	-	-	0x2ED	4
+615	615	mrm_f01	30	-	-	0x2F1	4
+618	618	mrm_g01	46	-	-	0x2F5	4
+621	626	gil_e01, gil_e02, gil_e03, gil_e04, gil_e05, gil_e06	48	-	-	0x2F9	4
+630	630	nac_a01	100	-	-	0x2FD	4
+631	631	nac_a02	53	-	-	0x301	4
+632	632	nac_a03	53	above 285: none; above 290: 53; above 11000: none	-	0x305	4
+635	636	alc_a01, alc_a02	87	-	-	0x312	4
+640	640	alc_b03	87	-	-	0x316	5
+641	641	alc_b04	none	above 3220: 87; above 11000: none	-	0x31A	5
+642	643	alc_b05, alc_b06	87	-	-	0x324	5
+666	666	dgl_f01	none	-	-	0x328	5
+668	668	dgl_g01	92	-	-	0x32C	5
+670	670	dgl_h01	203	-	-	0x330	5
+682	682	dgl_n01	85	-	-	0x334	5
+686	686	gil_a01	none	above 4230: 84; above 11000: none	-	0x338	5
+687	687	gil_a02	84	-	-	0x342	5
+690	691	gil_b01, gil_b02	41	-	-	0x346	5
+694	695	gil_c01, gil_c02	41	-	-	0x34A	5
+698	698	gil_d01	41	-	-	0x34E	5
+701	701	slm_a01	64	above 280: 23; above 290: 64; above 375: 81; above 386: 64; above 11000: none	-	0x352	5
+702	704	slm_a02, slm_a03, slm_a04	64	-	-	0x365	5
+709	710	nal_c01, nal_c02	15	-	-	0x369	5
+712	719	hne_a01, hne_a02, hne_a03, hne_a04, hne_a05, hne_a06, hne_a07, hne_a08	82	-	-	0x36D	5
+722	722	hne_b01	82	-	-	0x371	5
+725	728	hne_c01, hne_c02, hne_c03, hne_c04	82	-	-	0x375	5
+730	730	hne_d01	82	-	-	0x379	5
+733	733	hne_e01	82	-	-	0x37D	5
+736	736	bul_a01	39	above 1998: 65; above 2000: 39; above 11000: none	-	0x381	5
+737	737	bul_a02	31	-	-	0x38E	5
+738	738	bul_a03	39	above 2200: 31; above 2350: 59; above 11000: none	-	0x392	5
+741	741	bul_b01	39	above 2200: none; above 2250: 31; above 2350: 59; above 11000: none	-	0x39F	5
+742	742	bul_b02	75	above 1976: none; above 1982: 39; above 2200: none; above 2250: 31; above 2350: 59; above 11000: none	-	0x3AF	5
+745	749	alc_f01, alc_f02, alc_f03, alc_f04, alc_f05	87	-	-	0x3C5	5
+751	751	glf_a01	58	-	-	0x3C9	5
+752	752	glf_a02	58	above 1630: none; above 1640: 58; above 11000: none	-	0x3CD	5
+753	753	glf_a03	58	-	-	0x3DA	5
+756	756	alc_c01	87	-	-	0x3DE	5
+762	762	ald_a01	62	-	-	0x3E2	5
+763	763	ald_a02	62	above 3150: 30; above 3200: 62; above 11000: none	-	0x3E6	5
+766	766	vic_a01	42	above 1830: 39; above 1900: 42; above 11000: none	-	0x3F3	5
+767	768	vic_a02, vic_a03	42	-	-	0x400	6
+774	776	bhm_a01, bhm_a02, bhm_a03	44	-	-	0x404	6
+777	777	bhm_a04	70	above 6400: 44	70	0x408	6
+779	779	bhm_b01	44	-	-	0x40F	6
+782	782	bhm_c01	none	-	-	0x413	6
+785	785	bhm_d01	none	-	-	0x417	6
+788	788	rbn_b01	19	-	-	0x41B	6
+791	791	byu_b01	none	above 520: 54; above 11000: none	-	0x41F	6
+794	794	alc_e01	87	-	-	0x429	6
+797	797	var_b01	99	-	-	0x42D	6
+800	800	nac_b01	53	-	-	0x431	6
+803	805	byu_a01, byu_a02, byu_a03	54	-	-	0x435	6
+806	806	byu_a04	54	above 655: 22; above 660: 54; above 11000: none	-	0x439	6
+809	810	byu_a07, byu_a08	54	-	-	0x446	6
+813	814	byu_a11, byu_a12	54	-	-	0x44A	6
+816	819	byu_a14, byu_a15, byu_a16, byu_a17	54	-	-	0x44E	6
+820	820	byu_a18	54	above 710: 67; above 720: 54; above 11000: none	-	0x452	6
+823	825	var_a01, var_a02, var_a03	99	-	-	0x45F	6
+826	826	var_a04	99	above 4050: none; above 4100: 99; above 5600: none; above 6100: 99; above 11000: none	-	0x463	6
+827	828	var_a05, var_a06	99	-	-	0x476	6
+833	837	var_a11, var_a12, var_a13, var_a14, var_a15	99	-	-	0x47A	6
+838	850	grm_e01, grm_e02, grm_e03, grm_e04, grm_e05, grm_e06, grm_e07, grm_e08, grm_e09, grm_e10, grm_e11, grm_e12, grm_e13	55	-	-	0x47E	6
+854	854	dor_z01	61	-	-	0x482	6
+856	856	slm_z01	none	-	-	0x486	6
+858	858	glf_z01	none	-	-	0x48A	6
+860	860	rbn_x01	none	-	-	0x48E	6
+862	862	byu_z01	none	-	-	0x492	6
+864	864	byu_y01	none	-	-	0x496	6
+866	866	alc_z01	none	above 1950: none; above 1658: 75; above 1973: 22; above 11000: none	-	0x49A	6
+867	867	alc_z02	none	-	-	0x4AA	6
+868	868	alc_z03	67	-	-	0x4AE	6
+871	872	rsn_z01, rsn_z02	none	-	-	0x4B2	6
+876	876	rsn_y01	76	above 966: none; above 970: 74; above 11000: none	-	0x4B6	6
+888	888	gil_h01	48	-	-	0x4C3	6
+891	895	mic_e01, mic_e02, mic_e03, mic_e04, mic_e05	29	-	-	0x4C7	6
+898	898	rwf_d01	202	-	-	0x4CB	7
+901	905	lus_f01, lus_f02, lus_f03, lus_f04, lus_f05	22	-	-	0x4CF	7
+908	908	frs_d01	none	-	-	0x4D3	7
+910	910	rbn_y01	87	-	-	0x4D7	7
+912	912	byu_w01	67	-	-	0x4DB	7
+914	914	byu_x01	none	-	-	0x4DF	7
+916	916	gil_z01	none	-	-	0x4E3	7
+918	918	var_z01	67	above 4050: 99; above 5100: none; above 5650: 78; above 6000: none	-	0x4E7	7
+922	922	bhm_y01	none	above 4050: 111	-	0x4F7	7
+924	924	bhm_z01	none	-	-	0x4FE	7
+926	930	gil_f01, gil_f02, gil_f03, gil_f04, gil_f05	48	-	-	0x502	7
+933	933	lus_g01	22	above 610: 51; above 655: 22; above 11000: none	51	0x506	7
+934	936	lus_g02, lus_g03, lus_g04	51	-	51	0x513	7
+939	949	gil_i01, gil_i02, gil_i03, gil_i04, gil_i05, gil_i06, gil_i07, gil_i08, gil_i09, -, gil_i11	48	-	-	0x517	7
+952	973	gil_j01, gil_j02, gil_j03, gil_j04, gil_j05, gil_j06, gil_j07, gil_j08, gil_j09, gil_j10, gil_j11, gil_j12, gil_j13, gil_j14, gil_j15, gil_j16, gil_j17, gil_j18, gil_j19, gil_j20, gil_j21, gil_j22	48	-	-	0x51B	7
+979	996	gil_k01, gil_k02, gil_k03, gil_k04, gil_k05, gil_k06, gil_k07, gil_k08, gil_k09, gil_k10, gil_k11, gil_k12, gil_k13, gil_k14, gil_k15, gil_k16, gil_k17, gil_k18	48	-	-	0x51F	7
+1002	1005	gil_l01, gil_l02, gil_l03, gil_l04	48	-	-	0x523	7
+1008	1008	dor_a01	87	above 3330: 61; above 11000: none	-	0x527	7
+1009	1031	dor_a02, dor_a03, dor_a04, -, dor_a06, dor_a07, dor_a08, dor_a09, dor_a10, dor_a11, dor_a12, dor_a13, dor_a14, -, dor_a16, dor_a17, dor_a18, dor_a19, dor_a20, dor_a21, -, dor_a23, dor_a24	61	-	-	0x531	8
+1036	1046	dor_c01, dor_c02, dor_c03, dor_c04, -, dor_c06, dor_c07, dor_c08, dor_c09, dor_c10, dor_c11	61	-	-	0x535	8
+1047	1047	dor_c12	61	above 3370: none; above 3400: 57; above 11000: none	-	0x539	8
+1048	1049	dor_c13, dor_c14	61	-	-	0x546	8
+1050	1050	dor_c15	61	above 3400: 57; above 11000: none	-	0x54A	8
+1051	1051	-	61	-	-	0x554	8
+1054	1064	dor_d01, dor_d02, dor_d03, -, dor_d05, dor_d06, dor_d07, dor_d08, dor_d09, dor_d10, -	61	-	-	0x558	8
+1067	1083	dor_e01, dor_e02, dor_e03, dor_e04, dor_e05, dor_e06, dor_e07, dor_e08, dor_e09, dor_e10, dor_e11, dor_e12, dor_e13, dor_e14, dor_e15, dor_e16, dor_e17	61	-	-	0x55C	8
+1086	1098	dor_f01, -, dor_f03, dor_f04, -, dor_f06, -, -, dor_f09, dor_f10, dor_f11, -, dor_f13	61	-	-	0x560	8
+1101	1102	rbl_a01, rbl_a02	57	-	-	0x564	8
+1103	1105	rbl_a03, rbl_a04, rbl_a05	47	-	-	0x568	8
+1106	1108	-, -, -	57	-	-	0x56C	8
+1111	1111	rbl_b01	57	-	-	0x570	8
+1113	1113	rbl_c01	none	-	-	0x574	8
+1114	1116	rbl_c02, rbl_d01, rbl_d02	57	-	-	0x578	8
+1118	1119	rbl_e01, rbl_e02	57	-	-	0x57C	8
+1121	1121	rbl_f01	none	-	-	0x580	8
+1122	1122	rbl_f02	57	-	-	0x584	8
+1123	1131	rbl_g01, rbl_g02, rbl_g03, rbl_h01, rbl_h02, rbl_h03, rbl_i01, rbl_i02, rbl_i03	204	-	-	0x588	8
+1132	1132	rbl_j01	none	-	-	0x58C	8
+1133	1134	rbl_j02, rbl_k01	47	-	-	0x590	8
+1136	1136	rbl_l01	47	-	-	0x594	8
+1138	1138	rbl_m01	47	-	-	0x598	8
+1140	1141	rbl_n01, rbl_n02	203	-	-	0x59C	8
+1143	1143	rbl_q01	none	-	-	0x5A0	8
+1145	1145	grm_g01	none	above 25: 55	-	0x5A4	8
+1147	1147	ttl_d01	none	-	-	0x5AB	8
+1150	1150	asp_b03	51	-	51	0x5AF	8
+1151	1151	mnt_d01	18	-	-	0x5B3	8
+1153	1153	enw_c01	200	-	-	0x5B7	9
+1155	1159	tri_a01, tri_a02, tri_a03, tri_a04, tri_a05	20	-	-	0x5BB	9
+1163	1167	tri_b01, tri_b02, tri_b03, tri_b04, tri_b05	20	-	-	0x5BF	9
+1171	1171	tri_c01	86	-	-	0x5C3	9
+1172	1175	tri_c02, tri_c03, tri_c04, tri_c05	35	-	-	0x5C7	9
+1179	1183	tri_d01, tri_d02, tri_d03, tri_d04, tri_d05	35	-	-	0x5CB	9
+1187	1187	tri_e01	86	-	-	0x5CF	9
+1188	1191	tri_e02, tri_e03, tri_e04, tri_e05	45	-	-	0x5D3	9
+1195	1199	tri_f01, tri_f02, tri_f03, tri_f04, tri_f05	45	-	-	0x5D7	9
+1203	1203	tri_g01	86	-	-	0x5DB	9
+1204	1207	tri_g02, tri_g03, tri_g04, tri_g05	15	-	-	0x5DF	9
+1211	1215	tri_h01, tri_h02, tri_h03, tri_h04, tri_h05	15	-	-	0x5E3	9
+1219	1219	tri_i01	86	-	-	0x5E7	9
+1220	1223	tri_i02, tri_i03, tri_i04, tri_i05	85	-	-	0x5EB	9
+1227	1231	tri_j01, tri_j02, tri_j03, tri_j04, tri_j05	85	-	-	0x5EF	9
+1235	1235	tri_k01	86	-	-	0x5F3	9
+1236	1239	tri_k02, tri_k03, tri_k04, tri_k05	60	-	-	0x5F7	9
+1243	1244	tri_l01, tri_l02	60	-	-	0x5FB	9
+1245	1245	tri_l03	90	-	-	0x5FF	9
+1246	1246	tri_l04	51	-	51	0x603	9
+1247	1247	tri_l05	60	-	-	0x607	9
+1251	1251	tri_m01	86	-	-	0x60B	9
+1252	1255	tri_m02, tri_m03, tri_m04, tri_m05	88	-	-	0x60F	9
+1259	1263	tri_n01, tri_n02, tri_n03, tri_n04, tri_n05	88	-	-	0x613	9
+1267	1267	tri_o01	86	-	-	0x617	9
+1268	1271	tri_o02, tri_o03, tri_o04, tri_o05	48	-	-	0x61B	9
+1275	1279	tri_p01, tri_p02, tri_p03, tri_p04, tri_p05	48	-	-	0x61F	9
+1283	1283	tri_q01	86	-	-	0x623	10
+1284	1287	tri_q02, tri_q03, tri_q04, tri_q05	75	-	-	0x627	10
+1291	1291	tri_r01	113	-	113	0x62B	10
+1292	1295	tri_r02, tri_r03, tri_r04, tri_r05	75	-	-	0x62F	10
+1299	1299	tri_s01	86	-	-	0x633	10
+1300	1300	tri_s02	57	-	-	0x637	10
+1301	1301	tri_s03	90	-	-	0x63B	10
+1302	1302	tri_s04	97	-	97	0x63F	10
+1303	1303	tri_s05	57	-	-	0x643	10
+1307	1310	tri_t01, tri_t02, tri_t03, tri_t04	57	-	-	0x647	10
+1311	1311	tri_t05	70	-	70	0x64B	10

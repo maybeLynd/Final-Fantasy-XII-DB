@@ -54,7 +54,7 @@ scenario presets set the slots with `update` 0.
 | the equip menu, remove all | `0x0031A300(member, 1)` | `0x003FF87F` |
 | equipping a piece just bought in a shop | `0x0031A510` | `0x0057AF18` |
 | `takeaway_item_and_equip` `0x388`, `giveback_item_and_equip` `0x387` | `0x0031A300`, `0x0031A710` | `0x0030FC2F`, `0x0030FBA0` |
-| `takeoff_equip` `0x55B`: the given id taken off party rows 0-6 that wear it, except members who are down outside a town (`0x0030FD40`-`0x0030FD89`) | `0x0031A630(record, slot, 0xFFFF, 1)` | `0x0030FDC8` |
+| `takeoff_equip` `0x55B`: the given id taken off each of the nine party records that wears it and holds a main character (byte `+4` 6 or less, `0x0030FD6E`; byte `+5` 0, `0x0030FD68`), except members who are down outside a town (`0x0030FD40`-`0x0030FD89`) | `0x0031A630(record, slot, 0xFFFF, 1)` | `0x0030FDC8` |
 | `resetJobs` `0x5D6` ([Licenses](licenses.md)) | `0x0031A260` → `0x0031A410` | `0x00328C11` |
 | the scenario presets and the party record set-up | `0x0031A630(…, 0)` | `0x00239C6F`-`0x00239CBF`, `0x0023AE99`-`0x0023AEE9` |
 | the enemy record set-up: slot 0 from the enemy row's `+0x16`, slot 1 from `+0x1C`, slots 2-4 empty | `0x0031A630(…, 0)` | `0x0023ADB5`-`0x0023ADFA` |

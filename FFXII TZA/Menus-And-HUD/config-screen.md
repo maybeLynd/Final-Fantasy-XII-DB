@@ -121,7 +121,7 @@ The painter `0x0023F8B0(screen, row widget, -, row)` reads the layout kind of th
   (`0x0023DFC0`). Yes sets 99,999 LP in each party record (`0x00305A00`) or 99,999,999 gil (`0x003058B0`, `0x00254EE0`).
 - On the Parameter Settings screen `0x00240AD0` each of the two rows is painted by `0x00240A60`: its label from the
   `{label, help}` pairs at `0x00914C60` (Max. LP `0x53B`, Max. Gil `0x53C`) and the option Acquire (`0x53D`).
-- Rows 4, 5, 6, 8, 9 and 10 can be locked by bits `0x1E`-`0x23` of `[0x020927C0] + 0x32C4` (`0x002405F0`): a locked row
+- Rows 4, 5, 6, 8, 9 and 10 can be locked by flags `0x1E`, `0x1F`, `0x23`, `0x22`, `0x20` and `0x21` of the byte array at `[0x020927C0] + 0x32C4` (`0x002405F0`, read by `0x00254DD0`; flag n is bit `1 << (n & 7)` of byte `n >> 3`): a locked row
   is greyed and plays sound 5 (`0x002400AC`).
 
 ### Graphics Settings rows

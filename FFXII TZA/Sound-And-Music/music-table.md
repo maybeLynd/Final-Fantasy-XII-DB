@@ -105,13 +105,67 @@ One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; a
 | `track` | the run's track, or `none` |
 | `ladder` | the rungs as `above <counter>: <track>`, in order |
 | `kept_in_modes` | the run's boss-music tracks, which chocobo and summon music do not replace |
+| `offset` | the run's file offset in `musicctrl.bin` |
+| `page` | the page whose offset leads to the run |
+
+### Pages
+
+| Page | Field ids | Offset | Runs |
+|---|---|---|---|
+| 0 | 0-127 | `0x34` | 12 |
+| 1 | 128-255 | `0x6A` | 28 |
+| 2 | 256-383 | `0x104` | 39 |
+| 3 | 384-511 | `0x1EB` | 29 |
+| 4 | 512-639 | `0x274` | 30 |
+| 5 | 640-767 | `0x316` | 33 |
+| 6 | 768-895 | `0x400` | 35 |
+| 7 | 896-1,023 | `0x4CB` | 18 |
+| 8 | 1,024-1,151 | `0x531` | 29 |
+| 9 | 1,152-1,279 | `0x5B7` | 27 |
+| 10 | 1,280-1,407 | `0x623` | 11 |
+
+Each page's runs end where the next page's begin, and the last run ends at `0x64F`, the end of the 1,615-byte file.
+Four runs start in one page and end in the next: 253-256, 380-387, 767-768 and 1,009-1,031. Each is stored once,
+as the first run of the later page.
+
+### Track entries
+
+[`music-track-flags.tsv`](music-track-flags.tsv) lists all 256 entries of `musicinfo.bin`; 122 are not zero.
+
+| | |
+|---|---|
+| flags `0x06` | 86 tracks |
+| flags `0x07`, boss music | 12 |
+| flags `0x02` | 10 |
+| flags `0x04` | 6 |
+| flags `0x03`, boss music | 4 |
+| flags `0x01`, boss music | 2: tracks 10 and 11 |
+| flags `0x80` | 2: tracks 0 and 12 |
+| flags `0x00` | 134 |
+| byte `+1` | the entry's own track in 96; another track in 8 (101: 36, 102: 61, 104: 73, 106: 95, 111: 44, 112: 44, 114: 72, 116: 83); 0 in 152 |
+
+Each of the 116 shipped `musicNNN.win.mab` has an entry that is not zero. Six entries that are not zero name a
+track with no shipped bank: 0, 10, 11, 12, 93 and 130.
+
+### Columns of music-track-flags.tsv
+
+| Column | Meaning |
+|---|---|
+| `track` | the track, the entry's index |
+| `offset` | the entry's file offset, 2 x track |
+| `flags` | byte `+0` |
+| `boss` | `yes` when bit `0x1` of the flags is set, the bit `0x00361010` answers |
+| `b01`, `b01_is` | byte `+1`, and whether it is 0, the entry's own track or another track |
+| `runs`, `rungs` | the runs and rungs of `musicctrl.bin` that name the track; for track 0, those whose track is none |
+| `bank_file` | the track's shipped `music/magi_data/win/musicNNN.win.mab`, or `-` when none ships |
 
 ## Loader behaviour
 
 1. Neither loader checks the magic or the sizes.
-2. A page has no end marker: a lookup that runs past a page's last run reads the next page's first run, whose first
-   field is above every id of the page, and stops there. On the last page the last run is field 1,311, and the header
-   refuses anything above it.
+2. A page has no end marker: a lookup that runs past a page's last run walks on into the next page's runs. For the
+   four runs that cross a page boundary (above), that is how the earlier page's ids reach their run. Every other
+   page's next first run starts above every id of the page, and the walk stops there. On the last page the last run
+   is field 1,311, and the header refuses anything above it.
 3. A track number is the `NNN` of `music/magi_data/win/musicNNN.win.mab` ([Sound banks](sound-banks.md)).
 
 ## Modding notes

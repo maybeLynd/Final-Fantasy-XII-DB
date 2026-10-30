@@ -38,11 +38,20 @@ Each `fsroll` verb pops its arguments and calls the recorder `0x0053F0D0(kind, a
 
 | Verb | Begin | Kind | Effect |
 |---|---|---|---|
+| `fsroll_speed(n)` | `0x00511810` | 1 | the speed `+0xFF` = n (`0x0053F138`); the roll object starts at 1 (`0x0053E4D9`). Each frame of the roll moves the scroll `+0xEC` on by n (`0x0053E94F`-`0x0053E960`) |
 | `fsroll_linedisp(n)` | `0x00511830` | 2 | the line mode `+0x102` = n, at least 1 and at most 3; the slot `+0x103` = 0 (`0x0053F14B`-`0x0053F16D`) |
 | `fsroll_layout(a, b)` | `0x00511890` | 3 | the alignment `+0x100` = a and the offset `+0xF4` = b (`0x0053F181`-`0x0053F18E`) |
 | `fsroll_blank(n)` | `0x00511900` | 4 | moves the cursor `+0xF0` down n times `0x01DFE0B4`; slot 0 (`0x0053F19C`-`0x0053F1AA`) |
 | `fsroll_nameA(v)`, `fsroll_nameB(v)`, `fsroll_nameC(v)` | `0x00511980`, `0x005119A0`, `0x005119F0` | 5, with font 0, 1 or 2 | adds a text line through `0x0053DD20` (below) and moves the cursor by its height (`0x0053F1B9`-`0x0053F1DE`) |
 | `fsroll_data(n)` | `0x00511A40` | 6 | adds cell n of the picture `sf_logo_c`, centred on the screen width `0x01E0C1D8`, and moves the cursor by its height; slot 0 (`0x0053F1EA`-`0x0053F2AB`) |
+| `fsroll_stop(a, b)` | `0x00511A60` | 7 | a stop: stop n's place `+0x110 + 4n` = the cursor `+0xF0` + a and its hold `+0x210 + 2n` = b times `0x01DFE0B4` frames, n the stop count `+0x106`, then raised by 1; the cursor moves on by a (`0x0053F2B8`-`0x0053F2F1`) |
+| `fsroll_fontA(a, b)`, `fsroll_fontB(a, b)`, `fsroll_fontC(a, b)` | `0x00511AC0`, `0x00511B30`, `0x00511BD0` | 8, 9, 10 | the settings of font 0, 1 or 2, eight bytes at `+0xCC` + 8 x font: a at `+0xCC` and b at `+0xCD` (`0x0053F34A`-`0x0053F358`). a is added to the height `+0x16` of each later line in that font, in all three line modes (`0x0053DD59`; `0x0053DE2E`, `0x0053DF6C`, `0x0053DFB2`, `0x0053E094`); b goes to the line's byte `+0x1B` (`0x0053DD74`), and a line with it not 0 is drawn twice, first with the font's bytes `+0xCE` and `+0xCF` added to its x and y (2 and 2 for every font: `0x0053E527`, `0x0053E53D`, `0x0053E550`), then in place (`0x0053E1C1`-`0x0053E262`) |
+| `fsroll_setend(m, a, b)` | `0x00511610` | 11 + m (`0x00511643`) | the end mode `+0x104` = m (`0x0053F36D`-`0x0053F38A`); for m 1 or 2 also the end line's value `+0x10C` = a and the offset `+0x10E` = b (`0x0053F391`-`0x0053F399`). At `fsroll_start` (`0x0053F460` calls `0x0053E580`), mode 1 takes the first text line (font 0 to 2) whose value `+0x0C` is a and mode 2 the first picture line (byte `+0x18` = 3) whose cell `+0x0C` is a, and sets the cursor `+0xF0` to its place `+0x10` + b − (the screen height `0x01E0C1DC` − its height `+0x16`) / 2 (`0x0053E5AF`-`0x0053E62F`). The scroll stops there (`0x0053E96D`, `0x0053EB04`). Mode 0, or no such line, leaves the cursor where the last line left it. m 3 gives kind 14, a movie mark at frame a, and a larger m a kind the recorder ignores. The roll's two calls, `fsroll_setend(2, 3, 0)`, end on picture cell 3, "The End" |
+| `fsroll_moviewait(n)` | `0x00511DE0` | 14 | a movie mark: mark m's place `+0x290 + 4m` = the cursor `+0xF0` and its frame `+0x690 + 4m` = n, m the mark count `+0x10A`, then raised by 1 and held at most 255 (`0x0053F2FD`-`0x0053F336`). When the scroll `+0xEC` reaches a mark's place less the screen height `0x01E0C1DC` (`0x0053E976`-`0x0053E9A8`), the roll waits (state `+0xFC` = 5, n at `+0xF8`; `0x0053EA5E`-`0x0053EA70`) until the movie's frame (`0x0035B730`, a jump to `0x00184810`; [Movies](../Graphics/movies.md)) is at least n, or the read-out is -1, which `0x00184810` returns outside state 3 (`0x0053E7CA`-`0x0053E7DD`) |
+| `fsroll_setparam(k, a, b)` | `0x00511760` | k | passes its first argument k to the recorder as the kind and the other two as a and b (`0x0051178E`-`0x00511793`); no shipped script calls it |
+
+A kind outside 1 to 14 does nothing (`0x0053F113` to `0x0053F3A0`). Kinds 1 and 8 to 14 do not move the cursor: their
+closing `add [rbx+0xF0], r9d` adds the 0 that `0x0053F10A` put in r9d.
 
 The roll object starts in line mode 1 (`0x0053E4EE`).
 
